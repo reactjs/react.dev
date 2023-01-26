@@ -14,11 +14,9 @@ import {IconHamburger} from 'components/Icon/IconHamburger';
 import {Search} from 'components/Search';
 import {Logo} from '../../Logo';
 import {Feedback} from '../Feedback';
-import NavLink from './NavLink';
 import {SidebarRouteTree} from '../Sidebar/SidebarRouteTree';
 import type {RouteItem} from '../getRouteMeta';
-import sidebarLearn from '../../../sidebarLearn.json';
-import sidebarReference from '../../../sidebarReference.json';
+import {SidebarLink} from '../Sidebar';
 
 declare global {
   interface Window {
@@ -90,14 +88,37 @@ const lightIcon = (
   </svg>
 );
 
-export default function Nav({
+const githubIcon = (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="20"
+    height="20"
+    viewBox="0 0 24 24">
+    <g fill="currentColor">
+      <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+    </g>
+  </svg>
+);
+
+function Link({href, children, ...props}: JSX.IntrinsicElements['a']) {
+  return (
+    <NextLink href={`${href}`}>
+      {/* eslint-disable-next-line jsx-a11y/anchor-has-content */}
+      <a
+        className="inline text-primary dark:text-primary-dark hover:text-link hover:dark:text-link-dark border-b border-link border-opacity-0 hover:border-opacity-100 duration-100 ease-in transition leading-normal"
+        {...props}>
+        {children}
+      </a>
+    </NextLink>
+  );
+}
+
+export default function TopNav({
   routeTree,
   breadcrumbs,
-  section,
 }: {
   routeTree: RouteItem;
   breadcrumbs: RouteItem[];
-  section: 'learn' | 'reference' | 'home';
 }) {
   const [isOpen, setIsOpen] = useState(false);
   const [showFeedback, setShowFeedback] = useState(false);
@@ -106,25 +127,6 @@ export default function Nav({
   const {asPath} = useRouter();
   const feedbackPopupRef = useRef<null | HTMLDivElement>(null);
 
-  // In mobile mode, let the user switch tabs there and back without navigating.
-  // Seed the tab state from the router, but keep it independent.
-  const [tab, setTab] = useState(section);
-  const [prevSection, setPrevSection] = useState(section);
-  if (prevSection !== section) {
-    setPrevSection(section);
-    setTab(section);
-  }
-  if (isOpen) {
-    switch (tab) {
-      case 'home':
-      case 'learn':
-        routeTree = sidebarLearn as RouteItem;
-        break;
-      case 'reference':
-        routeTree = sidebarReference as RouteItem;
-        break;
-    }
-  }
   // HACK. Fix up the data structures instead.
   if ((routeTree as any).routes.length === 1) {
     routeTree = (routeTree as any).routes[0];
@@ -150,11 +152,13 @@ export default function Nav({
   // (This is also important because we don't want to keep the body locked!)
   useEffect(() => {
     const media = window.matchMedia(`(max-width: 1023px)`);
+
     function closeIfNeeded() {
       if (!media.matches) {
         setIsOpen(false);
       }
     }
+
     closeIfNeeded();
     media.addEventListener('change', closeIfNeeded);
     return () => {
@@ -172,6 +176,7 @@ export default function Nav({
     if (!showFeedback) {
       return;
     }
+
     function handleDocumentClickCapture(e: MouseEvent) {
       if (!feedbackPopupRef.current!.contains(e.target as any)) {
         e.stopPropagation();
@@ -179,6 +184,7 @@ export default function Nav({
         setShowFeedback(false);
       }
     }
+
     document.addEventListener('click', handleDocumentClickCapture, {
       capture: true,
     });
@@ -188,19 +194,13 @@ export default function Nav({
       });
   }, [showFeedback]);
 
-  function selectTab(nextTab: 'learn' | 'reference') {
-    setTab(nextTab);
-    scrollParentRef.current!.scrollTop = 0;
-  }
-
   return (
     <div
       className={cn(
-        'sticky top-0 lg:bottom-0 lg:h-screen flex flex-col',
-        isOpen && 'h-screen'
+        isOpen && 'h-screen sticky top-0 lg:bottom-0 lg:h-screen flex flex-col'
       )}>
-      <nav className="items-center w-full flex lg:block justify-between bg-wash dark:bg-wash-dark pt-0 lg:pt-4 pr-5 lg:px-5 z-50">
-        <div className="xl:w-full xl:max-w-xs flex items-center">
+      <nav className="items-center w-full flex md:block justify-between bg-wash dark:bg-wash-dark pt-4 pr-5 md:px-5 z-50">
+        <div className="w-full flex items-center text-l">
           <button
             type="button"
             aria-label="Menu"
@@ -211,7 +211,7 @@ export default function Nav({
             {isOpen ? <IconClose /> : <IconHamburger />}
           </button>
           <NextLink href="/">
-            <a className="inline-flex text-l font-normal items-center text-primary dark:text-primary-dark py-1 mr-0 sm:mr-3 whitespace-nowrap">
+            <a className="inline-flex text-l font-normal items-center text-primary dark:text-primary-dark py-1 mr-3 whitespace-nowrap">
               <Logo className="text-sm mr-2 w-8 h-8 text-link dark:text-link-dark" />
               React Docs
             </a>
@@ -221,167 +221,184 @@ export default function Nav({
               Beta
             </div>
           </div>
-          <div className="block dark:hidden">
-            <button
-              type="button"
-              aria-label="Use Dark Mode"
-              onClick={() => {
-                window.__setPreferredTheme('dark');
-              }}
-              className="hidden lg:flex items-center h-full pr-2">
-              {darkIcon}
-            </button>
+          <div className="hidden lg:flex">
+            <div className="block mr-4">
+              <Link href="/learn">Learn</Link>
+            </div>
+            <div className="block mr-4">
+              <Link href="/reference/react">Reference</Link>
+            </div>
+            <div className="block mr-4">
+              <Link href="/community">Community</Link>
+            </div>
+            <div className="block mr-4">
+              <Link href="/blog">Blog</Link>
+            </div>
           </div>
-          <div className="hidden dark:block">
-            <button
-              type="button"
-              aria-label="Use Light Mode"
-              onClick={() => {
-                window.__setPreferredTheme('light');
-              }}
-              className="hidden lg:flex items-center h-full pr-2">
-              {lightIcon}
-            </button>
-          </div>
-        </div>
-        {!isOpen && (
-          <div className="hidden lg:block sm:pt-10 lg:pt-4">
+          <div className="hidden md:flex sm:w-full lg:hidden">
             <Search />
           </div>
-        )}
-        <div className="px-0 pt-2 w-full 2xl:max-w-xs hidden lg:flex items-center self-center border-b-0 lg:border-b border-border dark:border-border-dark">
-          <NavLink
-            href="/learn"
-            isActive={section === 'learn' || section === 'home'}>
-            Learn
-          </NavLink>
-          <NavLink href="/reference/react" isActive={section === 'reference'}>
-            Reference
-          </NavLink>
-        </div>
-        <div className="flex my-4 h-10 mx-0 w-full lg:hidden justify-end lg:max-w-sm">
-          <Search />
-          <button
-            aria-label="Give feedback"
-            type="button"
-            className={cn(
-              'inline-flex lg:hidden items-center rounded-full px-1.5 ml-4 lg:ml-6 relative top-px',
-              {
-                'bg-card dark:bg-card-dark': showFeedback,
-              }
-            )}
-            onClick={handleFeedback}>
-            {feedbackIcon}
-          </button>
-          <div className="block dark:hidden">
-            <button
-              type="button"
-              aria-label="Use Dark Mode"
-              onClick={() => {
-                window.__setPreferredTheme('dark');
-              }}
-              className="flex lg:hidden items-center p-1 h-full ml-4 lg:ml-6">
-              {darkIcon}
-            </button>
-          </div>
-          <div
-            ref={feedbackPopupRef}
-            className={cn(
-              'fixed top-12 right-0',
-              showFeedback ? 'block' : 'hidden'
-            )}>
-            <Feedback
-              onSubmit={() => {
-                clearTimeout(feedbackAutohideRef.current);
-                feedbackAutohideRef.current = setTimeout(() => {
-                  setShowFeedback(false);
-                }, 1000);
-              }}
-            />
-          </div>
-          <div className="hidden dark:block">
-            <button
-              type="button"
-              aria-label="Use Light Mode"
-              onClick={() => {
-                window.__setPreferredTheme('light');
-              }}
-              className="flex lg:hidden items-center p-1 h-full ml-4 lg:ml-6">
-              {lightIcon}
-            </button>
+          <div className="flex w-full md:hidden"></div>
+          <div className="flex items-center md:border-l border-gray-20 dark:border-gray-70 pl-4 ">
+            <div className="block md:hidden">
+              <Search />
+            </div>
+            <div className="block mr-4 lg:hidden">
+              <button
+                aria-label="Give feedback"
+                type="button"
+                className={cn(
+                  'inline-flex lg:hidden items-center rounded-full px-1.5 ml-4 lg:ml-6 relative top-px',
+                  {
+                    'bg-card dark:bg-card-dark': showFeedback,
+                  }
+                )}
+                onClick={handleFeedback}>
+                {feedbackIcon}
+              </button>
+              <div
+                ref={feedbackPopupRef}
+                className={cn(
+                  'fixed top-12 right-0',
+                  showFeedback ? 'block' : 'hidden'
+                )}>
+                <Feedback
+                  onSubmit={() => {
+                    clearTimeout(feedbackAutohideRef.current);
+                    feedbackAutohideRef.current = setTimeout(() => {
+                      setShowFeedback(false);
+                    }, 1000);
+                  }}
+                />
+              </div>
+            </div>
+            <div className="block mr-4 dark:hidden">
+              <button
+                type="button"
+                aria-label="Use Dark Mode"
+                onClick={() => {
+                  window.__setPreferredTheme('dark');
+                }}
+                className="flex items-center h-full pr-2">
+                {darkIcon}
+              </button>
+            </div>
+            <div className="hidden mr-4 dark:block">
+              <button
+                type="button"
+                aria-label="Use Light Mode"
+                onClick={() => {
+                  window.__setPreferredTheme('light');
+                }}
+                className="items-center h-full pr-2">
+                {lightIcon}
+              </button>
+            </div>
+            <div className="block">
+              <button
+                type="button"
+                aria-label="Open on GitHub"
+                onClick={() => {
+                  // todo
+                }}
+                className="items-center h-full pr-2">
+                {githubIcon}
+              </button>
+            </div>
           </div>
         </div>
       </nav>
 
       {isOpen && (
-        <div className="bg-wash dark:bg-wash-dark px-5 flex justify-end border-b border-border dark:border-border-dark items-center self-center w-full z-10">
-          <TabButton
-            isActive={tab === 'learn' || tab === 'home'}
-            onClick={() => selectTab('learn')}>
-            Learn
-          </TabButton>
-          <TabButton
-            isActive={tab === 'reference'}
-            onClick={() => selectTab('reference')}>
-            Reference
-          </TabButton>
+        <div
+          ref={scrollParentRef}
+          className="overflow-y-scroll no-bg-scrollbar lg:w-[336px] grow bg-wash dark:bg-wash-dark">
+          <aside
+            className={cn(
+              `lg:grow lg:flex flex-col w-full pb-8 lg:pb-0 lg:max-w-xs z-10`,
+              isOpen ? 'block z-40' : 'hidden lg:block'
+            )}>
+            <nav
+              role="navigation"
+              style={{'--bg-opacity': '.2'} as React.CSSProperties} // Need to cast here because CSS vars aren't considered valid in TS types (cuz they could be anything)
+              className="w-full lg:h-auto grow pr-0 lg:pr-5 pt-6 lg:py-6 md:pt-4 lg:pt-4 scrolling-touch scrolling-gpu">
+              {/* No fallback UI so need to be careful not to suspend directly inside. */}
+              <Suspense fallback={null}>
+                <div className="block md:hidden">
+                  <div className="block mr-4">
+                    <SidebarLink
+                      href="/learn"
+                      isPending={false}
+                      selected={false}
+                      level={0}
+                      title="Learn"
+                      wip={false}
+                      isExpanded={false}
+                      isBreadcrumb={false}
+                      hideArrow
+                    />
+                  </div>
+                  <div className="block mr-4">
+                    <SidebarLink
+                      href="/reference/react"
+                      isPending={false}
+                      selected={false}
+                      level={0}
+                      title="Reference"
+                      wip={false}
+                      isExpanded={false}
+                      isBreadcrumb={false}
+                      hideArrow
+                    />
+                  </div>
+                  <div className="block mr-4">
+                    <SidebarLink
+                      href="/community"
+                      isPending={false}
+                      selected={false}
+                      level={0}
+                      title="Community"
+                      wip={false}
+                      isExpanded={false}
+                      isBreadcrumb={false}
+                      hideArrow
+                    />
+                  </div>
+                  <div className="block mr-4">
+                    <SidebarLink
+                      href="/blog"
+                      isPending={false}
+                      selected={false}
+                      level={0}
+                      title="Blog"
+                      wip={false}
+                      isExpanded={false}
+                      isBreadcrumb={false}
+                      hideArrow
+                    />
+                  </div>
+                  <div
+                    role="separator"
+                    className="mt-4 mb-2 ml-5 border-b border-border dark:border-border-dark"
+                  />
+                </div>
+                <SidebarRouteTree
+                  // Don't share state between the desktop and mobile versions.
+                  // This avoids unnecessary animations and visual flicker.
+                  key={isOpen ? 'mobile-overlay' : 'desktop-or-hidden'}
+                  routeTree={routeTree}
+                  breadcrumbs={breadcrumbs}
+                  isForceExpanded={isOpen}
+                />
+              </Suspense>
+              <div className="h-20" />
+            </nav>
+            <div className="fixed bottom-0 hidden lg:block">
+              <Feedback />
+            </div>
+          </aside>
         </div>
       )}
-
-      <div
-        ref={scrollParentRef}
-        className="overflow-y-scroll no-bg-scrollbar lg:w-[336px] grow bg-wash dark:bg-wash-dark">
-        <aside
-          className={cn(
-            `lg:grow lg:flex flex-col w-full pb-8 lg:pb-0 lg:max-w-xs z-10`,
-            isOpen ? 'block z-40' : 'hidden lg:block'
-          )}>
-          <nav
-            role="navigation"
-            style={{'--bg-opacity': '.2'} as React.CSSProperties} // Need to cast here because CSS vars aren't considered valid in TS types (cuz they could be anything)
-            className="w-full lg:h-auto grow pr-0 lg:pr-5 pt-6 lg:py-6 md:pt-4 lg:pt-4 scrolling-touch scrolling-gpu">
-            {/* No fallback UI so need to be careful not to suspend directly inside. */}
-            <Suspense fallback={null}>
-              <SidebarRouteTree
-                // Don't share state between the desktop and mobile versions.
-                // This avoids unnecessary animations and visual flicker.
-                key={isOpen ? 'mobile-overlay' : 'desktop-or-hidden'}
-                routeTree={routeTree}
-                breadcrumbs={breadcrumbs}
-                isForceExpanded={isOpen}
-              />
-            </Suspense>
-            <div className="h-20" />
-          </nav>
-          <div className="fixed bottom-0 hidden lg:block">
-            <Feedback />
-          </div>
-        </aside>
-      </div>
     </div>
-  );
-}
-
-function TabButton({
-  children,
-  onClick,
-  isActive,
-}: {
-  children: any;
-  onClick: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
-  isActive: boolean;
-}) {
-  const classes = cn(
-    'inline-flex items-center w-full border-b-2 justify-center text-base leading-9 px-3 pb-0.5 hover:text-link hover:gray-5',
-    {
-      'text-link dark:text-link-dark dark:border-link-dark border-link font-bold':
-        isActive,
-      'border-transparent': !isActive,
-    }
-  );
-  return (
-    <button className={classes} onClick={onClick}>
-      {children}
-    </button>
   );
 }

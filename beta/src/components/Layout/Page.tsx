@@ -5,7 +5,7 @@
 import {Suspense} from 'react';
 import * as React from 'react';
 import {useRouter} from 'next/router';
-import {Nav} from './Nav';
+import {SidebarNav} from './SidebarNav';
 import {Footer} from './Footer';
 import {Toc} from './Toc';
 import SocialBanner from '../SocialBanner';
@@ -14,10 +14,10 @@ import {Seo} from 'components/Seo';
 import PageHeading from 'components/PageHeading';
 import {getRouteMeta} from './getRouteMeta';
 import {TocContext} from '../MDX/TocContext';
-import sidebarLearn from '../../sidebarLearn.json';
-import sidebarReference from '../../sidebarReference.json';
 import type {TocItem} from 'components/MDX/TocContext';
 import type {RouteItem} from 'components/Layout/getRouteMeta';
+import {HomePage} from './HomePage';
+import {TopNav} from './TopNav';
 
 import(/* webpackPrefetch: true */ '../MDX/CodeBlock/CodeBlock');
 
@@ -39,21 +39,21 @@ export function Page({children, toc, routeTree, meta, section}: PageProps) {
   const title = meta.title || route?.title || '';
   const description = meta.description || route?.description || '';
   const isHomePage = cleanedPath === '/';
+
+  if (isHomePage) {
+    return <HomePage routeTree={routeTree} meta={meta} />;
+  }
   return (
     <>
       <SocialBanner />
+      <TopNav routeTree={routeTree} breadcrumbs={breadcrumbs} />
       <div className="grid grid-cols-only-content lg:grid-cols-sidebar-content 2xl:grid-cols-sidebar-content-toc">
         <div className="fixed lg:sticky top-0 left-0 right-0 py-0 shadow lg:shadow-none z-50">
-          <Nav
-            routeTree={routeTree}
-            breadcrumbs={breadcrumbs}
-            section={section}
-          />
+          <SidebarNav routeTree={routeTree} breadcrumbs={breadcrumbs} />
         </div>
         {/* No fallback UI so need to be careful not to suspend directly inside. */}
         <Suspense fallback={null}>
           <main className="min-w-0">
-            <div className="lg:hidden h-16 mb-2" />
             <article className="break-words" key={asPath}>
               <div className="pl-0">
                 <Seo title={title} isHomePage={isHomePage} />

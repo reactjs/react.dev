@@ -11,6 +11,7 @@ import {useState, useCallback, useEffect} from 'react';
 import * as React from 'react';
 import {createPortal} from 'react-dom';
 import {siteConfig} from 'siteConfig';
+import cn from 'classnames';
 
 export interface SearchProps {
   appId?: string;
@@ -18,6 +19,7 @@ export interface SearchProps {
   indexName?: string;
   searchParameters?: any;
   renderModal?: boolean;
+  fullsize?: boolean;
 }
 
 function Hit({hit, children}: any) {
@@ -99,6 +101,7 @@ export function Search({
   searchParameters = {
     hitsPerPage: 5,
   },
+  fullsize,
 }: SearchProps) {
   const [isShowing, setIsShowing] = useState(false);
 
@@ -145,17 +148,22 @@ export function Search({
         />
       </Head>
 
-      <button
-        aria-label="Search"
-        type="button"
-        className="inline-flex md:hidden items-center text-lg p-1 ml-4 lg:ml-6"
-        onClick={onOpen}>
-        <IconSearch className="align-middle" />
-      </button>
+      {!fullsize && (
+        <button
+          aria-label="Search"
+          type="button"
+          className="inline-flex md:hidden items-center text-lg p-1 ml-4 lg:ml-6"
+          onClick={onOpen}>
+          <IconSearch className="align-middle" />
+        </button>
+      )}
 
       <button
         type="button"
-        className="hidden md:flex relative pl-4 pr-1 py-1 h-10 bg-secondary-button dark:bg-gray-80 outline-none focus:ring focus:outline-none betterhover:hover:bg-opacity-80 pointer items-center shadow-inner text-left w-full text-gray-30 rounded-md align-middle text-sm"
+        className={cn(
+          ' relative pl-4 pr-1 py-1 h-10 bg-secondary-button dark:bg-gray-80 outline-none focus:ring focus:outline-none betterhover:hover:bg-opacity-80 pointer items-center shadow-inner text-left w-full text-gray-30 rounded-md align-middle text-sm',
+          fullsize ? 'flex' : 'hidden md:flex'
+        )}
         onClick={onOpen}>
         <IconSearch className="mr-3 align-middle text-gray-30 shrink-0 group-betterhover:hover:text-gray-70" />
         Search

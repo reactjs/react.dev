@@ -4,7 +4,6 @@ title: React Docs Beta
 permalink: index.html
 ---
 
-<HomepageHero />
 
 ## What is this site? {/*what-is-this-site*/}
 

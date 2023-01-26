@@ -12,7 +12,6 @@ import ConsoleBlock from './ConsoleBlock';
 import ExpandableCallout from './ExpandableCallout';
 import ExpandableExample from './ExpandableExample';
 import {H1, H2, H3, H4} from './Heading';
-import HomepageHero from './HomepageHero';
 import InlineCode from './InlineCode';
 import Intro from './Intro';
 import Link from './Link';
@@ -398,7 +397,6 @@ export const MDXComponents = {
   Pitfall,
   Deprecated,
   Wip,
-  HomepageHero,
   Illustration,
   IllustrationBlock,
   Intro,

@@ -149,7 +149,7 @@ function emitChange() {
 
 <Note>
 
-When possible, we recommend to use the built-in React state with [`useState`](/reference/react/useState) and [`useReducer`](/reference/react/useReducer) instead. The `useExternalSyncStore` API is mostly useful if you need to integrate with existing non-React code.
+When possible, we recommend to use the built-in React state with [`useState`](/reference/react/useState) and [`useReducer`](/reference/react/useReducer) instead. The `useSyncExternalStore` API is mostly useful if you need to integrate with existing non-React code.
 
 </Note>
 

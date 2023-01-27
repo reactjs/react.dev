@@ -1507,7 +1507,7 @@ Effect Events like `onAppear` are not reactive, so you can read `duration` insid
 
 #### Fix a reconnecting chat {/*fix-a-reconnecting-chat*/}
 
-In this example, every time you press "Toggle theme", the chat re-connects. Why does this happen? Fix the mistake so that the chat re-connects only when you edit Server URL or choose a different the chat room.
+In this example, every time you press "Toggle theme", the chat re-connects. Why does this happen? Fix the mistake so that the chat re-connects only when you edit the Server URL or choose a different chat room.
 
 Treat `chat.js` as an external third-party library: you can consult it to check its API, but don't edit it.
 

@@ -55,7 +55,7 @@ module.exports = {
         large: '38px',
       },
       fontSize: {
-        '6xl': '52px',
+        '6xl': '68px',
         '5xl': '40px',
         '4xl': '32px',
         '3xl': '28px',

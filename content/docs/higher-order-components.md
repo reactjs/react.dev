@@ -279,7 +279,7 @@ This form may seem confusing or unnecessary, but it has a useful property. Singl
 
 ```js
 // Instead of doing this...
-const EnhancedComponent = withRouter(connect(commentSelector)(WrappedComponent))
+const EnhancedComponent = withRouter(connect(commentSelector, WrappedComponent))
 
 // ... you can use a function composition utility
 // compose(f, g, h) is the same as (...args) => f(g(h(...args)))

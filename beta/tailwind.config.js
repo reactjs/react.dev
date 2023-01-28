@@ -29,6 +29,7 @@ module.exports = {
       xl: '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
       '2xl': '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
       '3xl': '0 35px 60px -15px rgba(0, 0, 0, 0.3)',
+      nav: '0 25px 50px -12px rgba(0, 0, 0, 0.1)',
       inner: 'inset 0 1px 4px 0 rgba(0, 0, 0, 0.05)',
       none: 'none',
     },
@@ -55,7 +56,7 @@ module.exports = {
         large: '38px',
       },
       fontSize: {
-        '6xl': '68px',
+        '6xl': '52px',
         '5xl': '40px',
         '4xl': '32px',
         '3xl': '28px',

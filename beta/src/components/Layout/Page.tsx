@@ -48,8 +48,10 @@ export function Page({children, toc, routeTree, meta, section}: PageProps) {
       <SocialBanner />
       <TopNav routeTree={routeTree} breadcrumbs={breadcrumbs} />
       <div className="grid grid-cols-only-content lg:grid-cols-sidebar-content 2xl:grid-cols-sidebar-content-toc">
-        <div className="fixed lg:sticky top-0 left-0 right-0 py-0 shadow lg:shadow-none z-50">
-          <SidebarNav routeTree={routeTree} breadcrumbs={breadcrumbs} />
+        <div className="lg:-mt-20">
+          <div className="lg:pt-20 fixed lg:sticky top-0 left-0 right-0 py-0 shadow lg:shadow-none">
+            <SidebarNav routeTree={routeTree} breadcrumbs={breadcrumbs} />
+          </div>
         </div>
         {/* No fallback UI so need to be careful not to suspend directly inside. */}
         <Suspense fallback={null}>
@@ -82,7 +84,7 @@ export function Page({children, toc, routeTree, meta, section}: PageProps) {
             <Footer />
           </main>
         </Suspense>
-        <div className="hidden lg:max-w-xs 2xl:block">
+        <div className="-mt-20 hidden lg:max-w-xs 2xl:block">
           {toc.length > 0 && <Toc headings={toc} key={asPath} />}
         </div>
       </div>

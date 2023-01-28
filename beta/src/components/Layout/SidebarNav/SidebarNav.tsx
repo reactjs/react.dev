@@ -31,11 +31,6 @@ export default function SidebarNav({
 
   return (
     <div className={cn('sticky top-0 lg:bottom-0 lg:h-screen flex flex-col')}>
-      <nav className="items-center w-full flex lg:block justify-between bg-wash dark:bg-wash-dark pt-0 lg:pt-4 pr-5 lg:px-5 z-50">
-        <div className="hidden lg:block sm:pt-10 lg:pt-0">
-          <Search />
-        </div>
-      </nav>
       <div className="overflow-y-scroll no-bg-scrollbar lg:w-[336px] grow bg-wash dark:bg-wash-dark">
         <aside
           className={cn(

@@ -2,7 +2,7 @@
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
 
-import {useState, useRef, useContext, useEffect, Suspense} from 'react';
+import {useState, useRef, useEffect, Suspense} from 'react';
 import * as React from 'react';
 import cn from 'classnames';
 import NextLink from 'next/link';
@@ -126,6 +126,7 @@ export default function TopNav({
   const feedbackAutohideRef = useRef<any>(null);
   const {asPath} = useRouter();
   const feedbackPopupRef = useRef<null | HTMLDivElement>(null);
+  const [isScrolled, setIsScrolled] = useState(false);
 
   // HACK. Fix up the data structures instead.
   if ((routeTree as any).routes.length === 1) {
@@ -194,12 +195,30 @@ export default function TopNav({
       });
   }, [showFeedback]);
 
+  useEffect(() => {
+    function handleScroll() {
+      if (window.scrollY > 40) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    }
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
     <div
       className={cn(
-        isOpen && 'h-screen sticky top-0 lg:bottom-0 lg:h-screen flex flex-col'
+        isOpen
+          ? 'h-screen sticky top-0 lg:bottom-0 lg:h-screen flex flex-col shadow-nav z-20'
+          : 'z-50 sticky top-0'
       )}>
-      <nav className="items-center w-full flex md:block justify-between bg-wash dark:bg-wash-dark pt-4 pr-5 md:px-5 z-50">
+      <nav
+        className={cn(
+          'max-h-20 backdrop-filter backdrop-blur-lg backdrop-saturate-200 transition-shadow bg-opacity-[.97] items-center w-full flex justify-between bg-wash dark:bg-wash-dark pt-4 pb-4 pr-5 lg:px-5 z-50',
+          {'shadow-nav': isScrolled || isOpen}
+        )}>
         <div className="w-full flex items-center text-l">
           <button
             type="button"
@@ -211,35 +230,31 @@ export default function TopNav({
             {isOpen ? <IconClose /> : <IconHamburger />}
           </button>
           <NextLink href="/">
-            <a className="inline-flex text-l font-normal items-center text-primary dark:text-primary-dark py-1 mr-3 whitespace-nowrap">
+            <a className="inline-flex text-l font-normal items-center text-primary dark:text-primary-dark py-1 mr-6 whitespace-nowrap">
               <Logo className="text-sm mr-2 w-8 h-8 text-link dark:text-link-dark" />
-              React Docs
+              React
             </a>
           </NextLink>
-          <div className="lg:w-full leading-loose hidden sm:flex flex-initial items-center h-auto pr-5 lg:pr-5 pt-0.5">
-            <div className="px-1 mb-px bg-highlight dark:bg-highlight-dark rounded uppercase text-link dark:text-link-dark font-bold tracking-wide text-xs whitespace-nowrap">
-              Beta
-            </div>
+
+          <div className="hidden md:flex w-full">
+            <Search />
           </div>
-          <div className="hidden lg:flex">
-            <div className="block mr-4">
+          <div className="mx-8 hidden lg:flex gap-8">
+            <div className="block">
               <Link href="/learn">Learn</Link>
             </div>
-            <div className="block mr-4">
+            <div className="block">
               <Link href="/reference/react">Reference</Link>
             </div>
-            <div className="block mr-4">
+            <div className="block">
               <Link href="/community">Community</Link>
             </div>
-            <div className="block mr-4">
+            <div className="block">
               <Link href="/blog">Blog</Link>
             </div>
           </div>
-          <div className="hidden md:flex sm:w-full lg:hidden">
-            <Search />
-          </div>
           <div className="flex w-full md:hidden"></div>
-          <div className="flex items-center md:border-l border-gray-20 dark:border-gray-70 pl-4 ">
+          <div className="flex items-center">
             <div className="block md:hidden">
               <Search />
             </div>
@@ -272,7 +287,7 @@ export default function TopNav({
                 />
               </div>
             </div>
-            <div className="block mr-4 dark:hidden">
+            <div className="w-8 flex mr-4 dark:hidden">
               <button
                 type="button"
                 aria-label="Use Dark Mode"
@@ -283,18 +298,18 @@ export default function TopNav({
                 {darkIcon}
               </button>
             </div>
-            <div className="hidden mr-4 dark:block">
+            <div className="w-8 hidden mr-4 dark:flex">
               <button
                 type="button"
                 aria-label="Use Light Mode"
                 onClick={() => {
                   window.__setPreferredTheme('light');
                 }}
-                className="items-center h-full pr-2">
+                className="flex items-center h-full pr-2">
                 {lightIcon}
               </button>
             </div>
-            <div className="block">
+            <div className="flex">
               <button
                 type="button"
                 aria-label="Open on GitHub"
@@ -315,7 +330,7 @@ export default function TopNav({
           className="overflow-y-scroll no-bg-scrollbar lg:w-[336px] grow bg-wash dark:bg-wash-dark">
           <aside
             className={cn(
-              `lg:grow lg:flex flex-col w-full pb-8 lg:pb-0 lg:max-w-xs z-10`,
+              `lg:grow lg:flex flex-col w-full pb-8 lg:pb-0 lg:max-w-xs z-50`,
               isOpen ? 'block z-40' : 'hidden lg:block'
             )}>
             <nav

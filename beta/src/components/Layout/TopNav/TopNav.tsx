@@ -239,7 +239,7 @@ export default function TopNav({
             <Search />
           </div>
           <div className="flex w-full md:hidden"></div>
-          <div className="flex items-center md:border-l border-gray-20 dark:border-gray-70 pl-4 ">
+          <div className="flex items-center md:border-l border-gray-10 dark:border-gray-70 pl-4 ">
             <div className="block md:hidden">
               <Search />
             </div>
@@ -294,7 +294,7 @@ export default function TopNav({
                 {lightIcon}
               </button>
             </div>
-            <div className="block">
+            <div className="flex">
               <button
                 type="button"
                 aria-label="Open on GitHub"

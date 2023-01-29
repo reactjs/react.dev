@@ -877,6 +877,8 @@ class Board extends React.Component {
     let status;
     if (winner) {
       status = 'Winner: ' + winner;
+    } else if (!this.state.squares.includes(null)){
+      status = "Draw";
     } else {
       status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
     }

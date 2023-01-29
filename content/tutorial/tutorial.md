@@ -619,10 +619,10 @@ Each time a player moves, `xIsNext` (a boolean) will be flipped to determine whi
   handleClick(i) {
     const squares = this.state.squares.slice();
     squares[i] = this.state.xIsNext ? 'X' : 'O';
-    this.setState({
+    this.setState(state => ({
       squares: squares,
-      xIsNext: !this.state.xIsNext,
-    });
+      xIsNext: !state.xIsNext,
+    }));
   }
 ```
 
@@ -653,10 +653,10 @@ class Board extends React.Component {
   handleClick(i) {
     const squares = this.state.squares.slice();
     squares[i] = this.state.xIsNext ? 'X' : 'O';
-    this.setState({
+    this.setState(state => ({
       squares: squares,
-      xIsNext: !this.state.xIsNext,
-    });
+      xIsNext: !state.xIsNext,
+    }));
   }
 
   renderSquare(i) {
@@ -750,10 +750,10 @@ We can now change the Board's `handleClick` function to return early by ignoring
       return;
     }
     squares[i] = this.state.xIsNext ? 'X' : 'O';
-    this.setState({
+    this.setState(state => ({
       squares: squares,
-      xIsNext: !this.state.xIsNext,
-    });
+      xIsNext: !state.xIsNext,
+    }));
   }
 ```
 
@@ -857,10 +857,10 @@ class Board extends React.Component {
       return;
     }
     squares[i] = this.state.xIsNext ? 'X' : 'O';
-    this.setState({
+    this.setState(state => ({
       squares: squares,
-      xIsNext: !this.state.xIsNext,
-    });
+      xIsNext: !state.xIsNext,
+    }));
   }
 
   renderSquare(i) {
@@ -974,12 +974,12 @@ Finally, we need to move the `handleClick` method from the Board component to th
       return;
     }
     squares[i] = this.state.xIsNext ? 'X' : 'O';
-    this.setState({
+    this.setState(state => ({
       history: history.concat([{
         squares: squares,
       }]),
-      xIsNext: !this.state.xIsNext,
-    });
+      xIsNext: !state.xIsNext,
+    }));
   }
 ```
 
@@ -1171,13 +1171,13 @@ We will also replace reading `this.state.history` with `this.state.history.slice
       return;
     }
     squares[i] = this.state.xIsNext ? 'X' : 'O';
-    this.setState({
+    this.setState(state => ({
       history: history.concat([{
         squares: squares
       }]),
       stepNumber: history.length,
-      xIsNext: !this.state.xIsNext,
-    });
+      xIsNext: !state.xIsNext,
+    }));
   }
 ```
 
@@ -1219,3 +1219,4 @@ If you have extra time or want to practice your new React skills, here are some 
 6. When no one wins, display a message about the result being a draw.
 
 Throughout this tutorial, we touched on React concepts including elements, components, props, and state. For a more detailed explanation of each of these topics, check out [the rest of the documentation](/docs/hello-world.html). To learn more about defining components, check out the [`React.Component` API reference](/docs/react-component.html).
+

@@ -589,7 +589,7 @@ function Square({ value }) {
 }
 ```
 
-For now, you should see a empty board:
+For now, you should see an empty board:
 
 ![empty board](../images/tutorial/empty-board.png)
 
@@ -982,7 +982,7 @@ function Square({value}) {
 }
 ```
 
-At this point you should see a empty tic-tac-toe board:
+At this point you should see an empty tic-tac-toe board:
 
 ![empty board](../images/tutorial/empty-board.png)
 
@@ -1195,7 +1195,7 @@ export default function Board() {
 
 Notice the new `() =>` syntax. Here, `() => handleClick(0)` is an *arrow function,* which is a shorter way to define functions. When the square is clicked, the code after the `=>` "arrow" will run, calling `handleClick(0)`.
 
-Now you need to update the other eight squares to call `handleClick` from the arrow functions you pass. Make sure that the argument for each call the `handleClick` corresponds to the index of the correct square:
+Now you need to update the other eight squares to call `handleClick` from the arrow functions you pass. Make sure that the argument for each call of the `handleClick` corresponds to the index of the correct square:
 
 ```js {6-8,11-13,16-18}
 export default function Board() {
@@ -2247,7 +2247,7 @@ body {
 
 As you iterate through `history` array inside the function you passed to `map`, the `squares` argument goes through each element of `history`, and the `move` argument goes through each array index: `0`, `1`, `2`, …. (In most cases, you'd need the actual array elements, but in this case you don't use `squares` to render a list of moves.)
 
-For each move in the tic-tac-toe game's history, you create a list item `<li>` which contains a button `<button>`. The button has a `onClick` handler which calls a function called `jumpTo` (that you haven't implemented yet).
+For each move in the tic-tac-toe game's history, you create a list item `<li>` which contains a button `<button>`. The button has an `onClick` handler which calls a function called `jumpTo` (that you haven't implemented yet).
 
 For now, you should see a list of the moves that occurred in the game and an error in the developer tools console.
 

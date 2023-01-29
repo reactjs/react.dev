@@ -52,6 +52,11 @@ June 27th, 2023. Tel Aviv, Israel
 
 [Website](https://www.react-next.com/) - [Facebook](https://www.facebook.com/ReactNextConf) - [Youtube](https://www.youtube.com/@ReactNext)
 
+### React Nexus 2023 {#react-nexus-2023}
+July 07-08, 2023. Bangalore, India
+
+[Website](https://reactnexus.com/) - [Twitter](https://twitter.com/ReactNexus) - [Linkedin](https://www.linkedin.com/company/react-nexus) - [YouTube](https://www.youtube.com/reactify_in)
+
 ## Past Conferences {#past-conferences}
 
 ### React Advanced 2022 {#react-advanced-2022}

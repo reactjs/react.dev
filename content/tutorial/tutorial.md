@@ -713,13 +713,10 @@ function calculateWinner(squares) {
     [0, 4, 8],
     [2, 4, 6],
   ];
-  for (let i = 0; i < lines.length; i++) {
-    const [a, b, c] = lines[i];
-    if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
-      return squares[a];
-    }
-  }
-  return null;
+  return lines.find(
+    ([a, b, c]) =>
+      squares[a] && squares[a] === squares[b] && squares[a] === squares[c]
+  );
 }
 ```
 
@@ -732,7 +729,7 @@ We will call `calculateWinner(squares)` in the Board's `render` function to chec
     const winner = calculateWinner(this.state.squares);
     let status;
     if (winner) {
-      status = 'Winner: ' + winner;
+      status = 'Winner: ' + this.state.squares[winner[0]];
     } else {
       status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
     }
@@ -876,7 +873,7 @@ class Board extends React.Component {
     const winner = calculateWinner(this.state.squares);
     let status;
     if (winner) {
-      status = 'Winner: ' + winner;
+      status = 'Winner: ' + this.state.squares[winner[0]];
     } else {
       status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
     }
@@ -915,7 +912,7 @@ We'll update the Game component's `render` function to use the most recent histo
 
     let status;
     if (winner) {
-      status = 'Winner: ' + winner;
+      status = 'Winner: ' + this.state.squares[winner[0]];
     } else {
       status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
     }
@@ -1027,7 +1024,7 @@ Let's `map` over the `history` in the Game's `render` method:
 
     let status;
     if (winner) {
-      status = 'Winner: ' + winner;
+      status = 'Winner: ' + this.state.squares[winner[0]];
     } else {
       status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
     }

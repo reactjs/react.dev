@@ -748,14 +748,14 @@
 
 "@collapsed/core@4.0.1":
   version "4.0.1"
-  resolved "https://artifactorybase.service.csnzoo.com/artifactory/api/npm/npm/@collapsed/core/-/core-4.0.1.tgz#859714110abfb68eac48f6ce5ed480bf97bcfd72"
+  resolved "https://registry.yarnpkg.com/@collapsed/core/-/core-4.0.1.tgz#859714110abfb68eac48f6ce5ed480bf97bcfd72"
   integrity sha512-RdejmttES4HzIrtIoX0hIi6cUtrakmgaS7CJEiz7lANgbPU/WRSZBLghcM4ZeNY0dyH6kHYL46KsiuyNijWqXg==
   dependencies:
     tiny-warning "^1.0.3"
 
 "@collapsed/react@^4.0.1":
   version "4.0.1"
-  resolved "https://artifactorybase.service.csnzoo.com/artifactory/api/npm/npm/@collapsed/react/-/react-4.0.1.tgz#87f4fc2b3974812e4aa31653c7a9462c9d055726"
+  resolved "https://registry.yarnpkg.com/@collapsed/react/-/react-4.0.1.tgz#87f4fc2b3974812e4aa31653c7a9462c9d055726"
   integrity sha512-tHm5bgxl/ddsfh6paK+0XTxdE3t9UfISOWODUbikyhhVGPh06mg4C2z7Y0AkXaj+LJIFBnn6Qbp73AH2KULdrw==
   dependencies:
     "@collapsed/core" "4.0.1"

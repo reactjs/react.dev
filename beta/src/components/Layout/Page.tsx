@@ -16,7 +16,7 @@ import {getRouteMeta} from './getRouteMeta';
 import {TocContext} from '../MDX/TocContext';
 import type {TocItem} from 'components/MDX/TocContext';
 import type {RouteItem} from 'components/Layout/getRouteMeta';
-import {HomePage} from './HomePage';
+import {HomeContent} from './HomeContent';
 import {TopNav} from './TopNav';
 
 import(/* webpackPrefetch: true */ '../MDX/CodeBlock/CodeBlock');
@@ -40,15 +40,45 @@ export function Page({children, toc, routeTree, meta, section}: PageProps) {
   const description = meta.description || route?.description || '';
   const isHomePage = cleanedPath === '/';
 
+  let content;
   if (isHomePage) {
-    return <HomePage routeTree={routeTree} meta={meta} />;
+    content = <HomeContent />;
+  } else {
+    content = (
+      <div className="pl-0">
+        <Seo title={title} isHomePage={isHomePage} />
+        <PageHeading
+          title={title}
+          description={description}
+          tags={route?.tags}
+          breadcrumbs={breadcrumbs}
+        />
+        <div className="px-5 sm:px-12">
+          <div className="max-w-7xl mx-auto">
+            <TocContext.Provider value={toc}>{children}</TocContext.Provider>
+          </div>
+          <DocsPageFooter
+            route={route}
+            nextRoute={nextRoute}
+            prevRoute={prevRoute}
+          />
+        </div>
+      </div>
+    );
   }
+
   return (
     <>
+      <Seo title={title} isHomePage={isHomePage} />
       <SocialBanner />
       <TopNav routeTree={routeTree} breadcrumbs={breadcrumbs} />
-      <div className="grid grid-cols-only-content lg:grid-cols-sidebar-content 2xl:grid-cols-sidebar-content-toc">
-        <div className="lg:-mt-20">
+      <div
+        className={
+          isHomePage
+            ? ''
+            : 'grid grid-cols-only-content lg:grid-cols-sidebar-content 2xl:grid-cols-sidebar-content-toc'
+        }>
+        <div className={'lg:-mt-20 ' + (isHomePage ? 'hidden' : '')}>
           <div className="lg:pt-20 fixed lg:sticky top-0 left-0 right-0 py-0 shadow lg:shadow-none">
             <SidebarNav routeTree={routeTree} breadcrumbs={breadcrumbs} />
           </div>
@@ -57,29 +87,7 @@ export function Page({children, toc, routeTree, meta, section}: PageProps) {
         <Suspense fallback={null}>
           <main className="min-w-0">
             <article className="break-words" key={asPath}>
-              <div className="pl-0">
-                <Seo title={title} isHomePage={isHomePage} />
-                {!isHomePage && (
-                  <PageHeading
-                    title={title}
-                    description={description}
-                    tags={route?.tags}
-                    breadcrumbs={breadcrumbs}
-                  />
-                )}
-                <div className="px-5 sm:px-12">
-                  <div className="max-w-7xl mx-auto">
-                    <TocContext.Provider value={toc}>
-                      {children}
-                    </TocContext.Provider>
-                  </div>
-                  <DocsPageFooter
-                    route={route}
-                    nextRoute={nextRoute}
-                    prevRoute={prevRoute}
-                  />
-                </div>
-              </div>
+              {content}
             </article>
             <Footer />
           </main>

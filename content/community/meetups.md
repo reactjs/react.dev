@@ -219,3 +219,6 @@ Do you have a local React.js meetup? Add it here! (Please keep the list alphabet
 * [Tampa, FL - ReactJS](https://www.meetup.com/ReactJS-Tampa-Bay/)
 * [Tucson, AZ - ReactJS](https://www.meetup.com/Tucson-ReactJS-Meetup/)
 * [Washington, DC - ReactJS](https://www.meetup.com/React-DC/)
+
+## Vietnam {#vietnam}
+* [Ha Noi](https://www.meetup.com/vietnam-reactjs-react-native)

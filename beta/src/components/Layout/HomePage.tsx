@@ -80,10 +80,11 @@ export function HomePage({routeTree, meta}: PageProps) {
                         combine them into entire screens, pages, and apps.
                       </p>
                     </div>
-                    <div className="flex grow w-full max-w-2xl">
-                      <CodeBlock isFromPackageImport={false}>
-                        <div className="w-full">
-                          {`function UserPanel({ user }) {
+                    <div className="max-w-6xl mx-auto flex flex-col w-full">
+                      <div className="flex-col lg:flex-row gap-20 flex grow w-full mx-auto items-center">
+                        <div className="flex grow">
+                          <CodeBlock isFromPackageImport={false}>
+                            <div>{`function UserPanel({ user }) {
   return (
     <Panel color="grey">
       <Avatar image={user.image} />
@@ -91,13 +92,28 @@ export function HomePage({routeTree, meta}: PageProps) {
       <FollowButton user={user} />
     </Panel>
   );
-}`}
+}`}</div>
+                          </CodeBlock>
                         </div>
-                      </CodeBlock>
+                        <div className="max-w-xl">
+                          <div className="leading-tight text-white font-bold text-5xl mb-6">
+                            Placeholder slot for image
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="max-w-2xl text-center text-white text-opacity-80">
+                      <p className="text-xl leading-normal">
+                        React lets you build user interfaces out of individual
+                        pieces called components. Create your own React
+                        components like a button, a panel, or an avatar. Then
+                        combine them into entire screens, pages, and apps.
+                      </p>
                     </div>
                   </div>
                 </div>
               </div>
+
               <div className="p-20">
                 <div className="max-w-6xl mx-auto flex flex-col w-full">
                   <div className="flex-col lg:flex-row gap-20 flex grow w-full mx-auto items-center">

@@ -42,6 +42,11 @@ Oct 5 - 7, 2023. In-person in Goa, India (hybrid event) + Oct 3 2023 - remote da
 
 ## Past Conferences {/*past-conferences*/}
 
+### React Day Berlin 2022 {/*react-day-berlin-2022*/}
+December 2, 2022. In-person in Berlin, Germany + remote (hybrid event)
+
+[Website](https://reactday.berlin) - [Twitter](https://twitter.com/reactdayberlin) - [Facebook](https://www.facebook.com/reactdayberlin/) - [Videos](https://www.youtube.com/c/ReactConferences)
+
 ### React Global Online Summit 22.2 by Geekle {/*react-global-online-summit-222-by-geekle*/}
 November 8 - 9, 2022 - Online Summit
 
@@ -51,12 +56,6 @@ November 8 - 9, 2022 - Online Summit
 November 18, 2022, 7am PST / 10am EST / 4pm CET - remote event
 
 [Website](https://remixconf.eu/) - [Twitter](https://twitter.com/remixconfeu)
-
-### React Day Berlin 2022 {/*react-day-berlin-2022*/}
-December 2, 2022. In-person in Berlin, Germany + remote (hybrid event)
-
-[Website](https://reactday.berlin) - [Twitter](https://twitter.com/reactdayberlin) - [Facebook](https://www.facebook.com/reactdayberlin/) - [Videos](https://www.youtube.com/c/ReactConferences)
-
 
 ### React Advanced 2022 {/*react-advanced-2022*/}
 October 21 & 25, 2022. In-person in London, UK + remote (hybrid event)

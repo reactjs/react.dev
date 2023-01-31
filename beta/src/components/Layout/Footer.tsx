@@ -127,13 +127,13 @@ export function Footer() {
               <FooterLink href="https://github.com/facebook/react/blob/main/CODE_OF_CONDUCT.md">
                 Code of Conduct
               </FooterLink>
-              <FooterLink href="/learn/acknowledgements">
+              <FooterLink href="/community/acknowledgements">
                 Acknowledgements
               </FooterLink>
-              <FooterLink href="/learn/docs-contributors">
+              <FooterLink href="/community/docs-contributors">
                 Docs Contributors
               </FooterLink>
-              <FooterLink href="/learn/meet-the-team">Meet the Team</FooterLink>
+              <FooterLink href="/community/team">Meet the Team</FooterLink>
               <FooterLink href="https://reactjs.org/blog">Blog</FooterLink>
               {/* <FooterLink href="/">Community Resources</FooterLink> */}
             </div>

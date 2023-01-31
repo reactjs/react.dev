@@ -42,7 +42,8 @@ export default function MyApp({Component, pageProps}: AppProps) {
 
   useEffect(() => {
     const handleRouteChange = (url: string) => {
-      ga('set', 'page', url);
+      const cleanedUrl = url.split(/[\?\#]/)[0];
+      ga('set', 'page', cleanedUrl);
       ga('send', 'pageview');
     };
     router.events.on('routeChangeComplete', handleRouteChange);

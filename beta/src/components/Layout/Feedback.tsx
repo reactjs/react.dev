@@ -8,8 +8,9 @@ import {ga} from '../../utils/analytics';
 
 export function Feedback({onSubmit = () => {}}: {onSubmit?: () => void}) {
   const {asPath} = useRouter();
+  const cleanedPath = asPath.split(/[\?\#]/)[0];
   // Reset on route changes.
-  return <SendFeedback key={asPath} onSubmit={onSubmit} />;
+  return <SendFeedback key={cleanedPath} onSubmit={onSubmit} />;
 }
 
 const thumbsUpIcon = (

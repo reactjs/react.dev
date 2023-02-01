@@ -55,19 +55,15 @@ export function HomeContent() {
                 <div className="flex-col lg:flex-row gap-20 flex grow w-full mx-auto items-center">
                   <div className="flex grow">
                     <CodeBlock isFromPackageImport={false}>
-                      <div>{`function Post({ post, author }) {
+                      <div>{`function Comment({ comment, author }) {
   return (
     <Panel background="grey">
-      <PostHeader>
-        <Avatar image={author.image} />
-        <Link to={author.url}>
-          {author.name}
-        </Link>
-      </PostHeader>
-      <PostBody>
-        {post.text}
-      </PostBody>
-      <LikeButton post={post} />
+      <Avatar image={author.image} />
+      <Link to={author.url}>{author.name}</Link>
+      <CommentBody>
+        {comment.text}
+      </CommentBody>
+      <LikeButton comment={comment} />
     </Panel>
   );
 }`}</div>
@@ -463,7 +459,7 @@ function Example() {
         <div
           style={{
             color: 'grey',
-            fontSize: 14,
+            fontSize: 12,
             marginBottom: 20,
           }}>
           Lorem Ipsum is simply dummy text of the printing and typesetting

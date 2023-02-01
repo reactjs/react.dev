@@ -2,7 +2,7 @@
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
 
-import {useState} from 'react';
+import {createContext, useState, useContext} from 'react';
 import ButtonLink from '../ButtonLink';
 import {Logo} from 'components/Logo';
 import Link from 'next/link';
@@ -401,99 +401,118 @@ function Example1() {
     <div className="flex-col lg:flex-row gap-20 flex grow w-full mx-auto items-center">
       <div className="flex grow">
         <CodeBlock isFromPackageImport={false}>
-          <div>{`function Comment({ author, text }) {
+          <div>{`
+function PostComment({ author, text, postedAt }) {
   return (
-    <Panel background="grey">
-      <Avatar user={author} />
+    <Stack>
+      <Row>
+        <Avatar user={author} />
+        <Link to={author.url}>{author.name}</Link>
+        <Timestamp time={postedAt} />
+      </Row>
       {text}
-    </Panel>
+    </Stack>
   );
-}`}</div>
+}
+          `}</div>
         </CodeBlock>
       </div>
       <div className="max-w-xl">
-        <Example />
+        <ExamplePanel>
+          <PostComment
+            text="The quick brown fox jumps over the lazy dog"
+            postedAt="2m ago"
+            author={{
+              name: 'Lauren',
+              image: {
+                url: 'https://pbs.twimg.com/profile_images/1467169010437570562/THFD56Pc_400x400.jpg',
+              },
+            }}
+          />
+        </ExamplePanel>
       </div>
     </div>
   );
 }
 
+const PostContext = createContext(null);
+const author = {
+  name: 'Lauren',
+  image: {
+    url: 'https://pbs.twimg.com/profile_images/1467169010437570562/THFD56Pc_400x400.jpg',
+  },
+};
+
 function Example2() {
+  const [comments, setComments] = useState([
+    {
+      id: 0,
+      text: 'The quick brown fox jumps over the lazy dog',
+      postedAt: '4m ago',
+      author,
+    },
+    {
+      id: 1,
+      text: 'The quick brown fox jumps over the lazy dog',
+      postedAt: '2m ago',
+      author,
+    },
+  ]);
+
+  function handleAddComment(text) {
+    setComments((c) => [
+      ...c,
+      {
+        id: c.length,
+        text,
+        postedAt: 'just now',
+        author,
+      },
+    ]);
+  }
+
   return (
     <div className="flex-col lg:flex-row gap-20 flex grow w-full mx-auto items-center">
       <div className="flex grow">
         <CodeBlock isFromPackageImport={false}>
-          <div>{`function Post({ post, comments }) {
-  let content = null;
-  if (post.isPhoto) {
-    content = <Photo image={post.image} />;
-  } else {
-    content = <PostBody>{post.body}</PostBody>;
+          <div>{`function Post({ imageUrl, description, comments }) {
+  let headingText = 'Be the first to comment';
+  if (comments.length > 0) {
+    headingText = comments.length + ' Comments';
   }
   return (
-    <PostLayout>
-      <PostTitle>{post.title}</PostTitle>
-      {content}
-      <PostFooter>
-        {comments.map(comment =>
-          <Comment comment={comment} />
-        );}
-      </PostFooter>
-    </PostLayout>
+    <Stack gap={16}>
+      <CoverImage src={imageUrl} alt={description} />
+      <Heading>{headingText}</Heading>
+      {comments.map(comment =>
+        <PostComment key={comment.id} {...comment} />
+      )}
+      <AddComment />
+    </Stack>
   );
 }`}</div>
         </CodeBlock>
       </div>
       <div className="max-w-xl">
-        <Example />
+        <ExamplePanel>
+          <PostContext.Provider
+            value={{
+              currentUser: author,
+              onAddComment: handleAddComment,
+            }}>
+            <Post
+              imageUrl="https://www.nasa.gov/sites/default/files/styles/full_width/public/thumbnails/image/main_image_star-forming_region_carina_nircam_final-1280.jpg"
+              description="A picture of the galaxy"
+              comments={comments}
+            />
+          </PostContext.Provider>
+        </ExamplePanel>
       </div>
     </div>
   );
 }
 
-function Example() {
-  return (
-    <div style={{width: 450}}>
-      <Comment
-        comment={{
-          text: `The quick brown fox jumps over the lazy dog`,
-        }}
-        author={{
-          name: 'Lauren',
-          image: {
-            url: 'https://pbs.twimg.com/profile_images/1467169010437570562/THFD56Pc_400x400.jpg',
-          },
-        }}
-      />
-    </div>
-  );
-}
-
-function Comment({author, comment}) {
-  return (
-    <Panel background="grey">
-      <ProfileLink to={author.id}>
-        <Avatar user={author} />
-        {author.name}
-      </ProfileLink>
-      {comment.text}
-    </Panel>
-  );
-}
-
-function ProfileLink({children}) {
-  return (
-    <div
-      style={{
-        fontSize: 16,
-        color: '#222',
-      }}>
-      {children}
-    </div>
-  );
-}
-
-function Panel({children}) {
+function ExamplePanel({children}) {
   return (
     <div
       style={{
@@ -503,15 +522,140 @@ function Panel({children}) {
       <div
         style={{
           margin: 25,
-          width: 'fit-content',
           padding: 20,
-          backgroundColor: '#f0f0f0',
+          backgroundColor: '#fefefe',
+          boxShadow: '0 0 20px 0 rgba(0, 0, 0, 0.1)',
           borderRadius: 10,
-          minWidth: 100,
           minHeight: 40,
+          overflow: 'hidden',
         }}>
         {children}
       </div>
+    </div>
+  );
+}
+
+function Post({imageUrl, description, comments}) {
+  let headingText = 'Be the first to comment';
+  if (comments.length > 0) {
+    headingText = comments.length + ' Comments';
+  }
+  return (
+    <Stack gap={16}>
+      <CoverImage src={imageUrl} alt={description} />
+      <Heading>{headingText}</Heading>
+      {comments.map((comment) => (
+        <PostComment key={comment.id} {...comment} />
+      ))}
+      <AddComment />
+    </Stack>
+  );
+}
+
+function CoverImage({src, alt}) {
+  return (
+    <img
+      src={src}
+      alt={alt}
+      width="300"
+      style={{
+        transform: 'scale(1.2)',
+        transformOrigin: 'bottom',
+      }}
+    />
+  );
+}
+
+function Heading({children}) {
+  return (
+    <h1
+      style={{
+        fontWeight: 'bold',
+        fontSize: 23,
+        color: '#222',
+      }}>
+      {children}
+    </h1>
+  );
+}
+
+function AddComment() {
+  const {currentUser, onAddComment} = useContext(PostContext);
+  return (
+    <>
+      <hr />
+      <Row>
+        <Avatar user={currentUser} />
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            const formData = new FormData(e.target);
+            const json = Object.fromEntries(formData.entries());
+            onAddComment(json.text);
+            e.target.reset();
+          }}>
+          <input
+            name="text"
+            placeholder="Add a comment..."
+            style={{backgroundColor: 'transparent'}}
+          />
+        </form>
+      </Row>
+    </>
+  );
+}
+
+function PostComment({author, text, postedAt}) {
+  return (
+    <Stack>
+      <Row>
+        <Avatar user={author} />
+        <ExampleLink to={author.url}>{author.name}</ExampleLink>
+        <Timestamp time={postedAt} />
+      </Row>
+      {text}
+    </Stack>
+  );
+}
+
+function Timestamp({time}) {
+  return (
+    <span
+      style={{
+        color: '#aaa',
+      }}>
+      {time}
+    </span>
+  );
+}
+
+function Stack({children, gap}) {
+  return (
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        gap,
+      }}>
+      {children}
+    </div>
+  );
+}
+
+function Row({children}) {
+  return <div style={{display: 'flex', flexDirection: 'row'}}>{children}</div>;
+}
+
+function ExampleLink({children}) {
+  return (
+    <div
+      style={{
+        fontSize: 16,
+        marginRight: 10,
+        color: '#222',
+        fontWeight: 'bold',
+      }}>
+      {children}
     </div>
   );
 }
@@ -523,8 +667,8 @@ function Avatar({user}) {
       style={{
         marginRight: 10,
         marginBottom: 5,
-        height: 60,
-        width: 60,
+        height: 30,
+        width: 30,
         borderRadius: '50%',
         display: 'inline-block',
         verticalAlign: 'middle',
@@ -532,19 +676,5 @@ function Avatar({user}) {
         backgroundColor: '#aaa',
       }}
     />
-  );
-}
-
-function LikeButton() {
-  return (
-    <button
-      style={{
-        backgroundColor: '#222',
-        color: 'white',
-        borderRadius: 4,
-        padding: '4px 10px',
-      }}>
-      Like
-    </button>
   );
 }

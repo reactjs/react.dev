@@ -4,4 +4,4 @@ title: React Docs Beta
 permalink: index.html
 ---
 
-{/* See HomeContent.tsx */}
+{/* See HomeContent.js */}

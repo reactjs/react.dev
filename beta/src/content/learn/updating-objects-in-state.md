@@ -672,9 +672,8 @@ The `draft` provided by Immer is a special type of object, called a [Proxy](http
 
 To try Immer:
 
-1. Add `use-immer` to your `package.json` as a dependency
-2. Run `npm install`
-3. Then replace `import { useState } from 'react'` with `import { useImmer } from 'use-immer'`
+1. Run `npm install use-immer` to add Immer as a dependency
+2. Then replace `import { useState } from 'react'` with `import { useImmer } from 'use-immer'`
 
 Here is the above example converted to Immer:
 

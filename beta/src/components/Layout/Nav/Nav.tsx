@@ -12,13 +12,11 @@ import {disableBodyScroll, enableBodyScroll} from 'body-scroll-lock';
 import {IconClose} from 'components/Icon/IconClose';
 import {IconHamburger} from 'components/Icon/IconHamburger';
 import {Search} from 'components/Search';
-import {useActiveSection} from 'hooks/useActiveSection';
 import {Logo} from '../../Logo';
 import {Feedback} from '../Feedback';
 import NavLink from './NavLink';
-import {SidebarContext} from 'components/Layout/useRouteMeta';
 import {SidebarRouteTree} from '../Sidebar/SidebarRouteTree';
-import type {RouteItem} from '../useRouteMeta';
+import type {RouteItem} from '../getRouteMeta';
 import sidebarLearn from '../../../sidebarLearn.json';
 import sidebarReference from '../../../sidebarReference.json';
 
@@ -92,17 +90,22 @@ const lightIcon = (
   </svg>
 );
 
-export default function Nav() {
+export default function Nav({
+  routeTree,
+  breadcrumbs,
+  section,
+}: {
+  routeTree: RouteItem;
+  breadcrumbs: RouteItem[];
+  section: 'learn' | 'reference' | 'home';
+}) {
   const [isOpen, setIsOpen] = useState(false);
   const [showFeedback, setShowFeedback] = useState(false);
   const scrollParentRef = useRef<HTMLDivElement>(null);
   const feedbackAutohideRef = useRef<any>(null);
-  const section = useActiveSection();
   const {asPath} = useRouter();
   const feedbackPopupRef = useRef<null | HTMLDivElement>(null);
 
-  // In desktop mode, use the route tree for current route.
-  let routeTree: RouteItem = useContext(SidebarContext);
   // In mobile mode, let the user switch tabs there and back without navigating.
   // Seed the tab state from the router, but keep it independent.
   const [tab, setTab] = useState(section);
@@ -344,6 +347,7 @@ export default function Nav() {
                 // This avoids unnecessary animations and visual flicker.
                 key={isOpen ? 'mobile-overlay' : 'desktop-or-hidden'}
                 routeTree={routeTree}
+                breadcrumbs={breadcrumbs}
                 isForceExpanded={isOpen}
               />
             </Suspense>

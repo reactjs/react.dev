@@ -113,3 +113,9 @@ These Hooks are mostly useful to library authors and aren't commonly used in the
 - [`useDebugValue`](/reference/react/useDebugValue) lets you customize the label React DevTools displays for your custom Hook.
 - [`useId`](/reference/react/useId) lets a component associate a unique ID with itself. Typically used with accessibility APIs.
 - [`useSyncExternalStore`](/reference/react/useSyncExternalStore) lets a component subscribe to an external store.
+
+---
+
+## Your own Hooks {/*your-own-hooks*/}
+
+You can also [define your own custom Hooks](/learn/reusing-logic-with-custom-hooks#extracting-your-own-custom-hook-from-a-component) as JavaScript functions.

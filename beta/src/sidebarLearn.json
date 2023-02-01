@@ -205,25 +205,71 @@
         },
         {
           "title": "Community",
-          "path": "/learn/community",
+          "path": "/community",
           "routes": [
             {
-              "title": "Acknowledgements",
-              "path": "/learn/acknowledgements"
+              "title": "React Conferences",
+              "path": "/community/conferences"
             },
             {
-              "title": "Docs Contributors",
-              "path": "/learn/docs-contributors"
+              "title": "React Meetups",
+              "path": "/community/meetups"
+            },
+            {
+              "title": "React Videos",
+              "path": "/community/videos"
             },
             {
               "title": "Meet the Team",
-              "path": "/learn/meet-the-team"
+              "path": "/community/team"
+            },
+            {
+              "title": "Docs Contributors",
+              "path": "/community/docs-contributors"
+            },
+            {
+              "title": "Acknowledgements",
+              "path": "/community/acknowledgements"
+            },
+            {
+              "title": "Versioning Policy",
+              "path": "/community/versioning-policy"
             }
           ]
         },
         {
           "title": "Blog",
-          "path": "https://reactjs.org/blog"
+          "path": "/blog",
+          "routes": [
+            {
+              "title": "React Labs: June 2022",
+              "path": "/blog/2022/06/15/react-labs-what-we-have-been-working-on-june-2022"
+            },
+            {
+              "title": "React v18.0",
+              "path": "/blog/2022/03/29/react-v18"
+            },
+            {
+              "title": "How to Upgrade to React 18",
+              "path": "/blog/2022/03/08/react-18-upgrade-guide"
+            },
+            {
+              "title": "React Conf 2021 Recap",
+              "path": "/blog/2021/12/17/react-conf-2021-recap"
+            },
+            {
+              "title": "The Plan for React 18",
+              "path": "/blog/2021/06/08/the-plan-for-react-18"
+            },
+            {
+              "title": "Introducing Server Components",
+              "path": "/blog/2020/12/21/data-fetching-with-react-server-components"
+            },
+            {
+              "title": "Older posts",
+              "path": "https://reactjs.org/blog/all.html"
+            }
+          ]
         }
       ]
     }

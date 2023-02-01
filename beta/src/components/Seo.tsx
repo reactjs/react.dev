@@ -12,6 +12,7 @@ export interface SeoProps {
   image?: string;
   // jsonld?: JsonLDType | Array<JsonLDType>;
   children?: React.ReactNode;
+  isHomePage: boolean;
 }
 
 export const Seo = withRouter(
@@ -21,13 +22,16 @@ export const Seo = withRouter(
     image = '/logo-og.png',
     router,
     children,
+    isHomePage,
   }: SeoProps & {router: Router}) => (
     <Head>
       {/* DEFAULT */}
 
       <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-      {title != null && <title key="title">{title}</title>}
+      {title != null && (
+        <title key="title">{title + (isHomePage ? '' : ' • React')}</title>
+      )}
       {description != null && (
         <meta name="description" key="description" content={description} />
       )}

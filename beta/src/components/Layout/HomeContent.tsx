@@ -410,13 +410,8 @@ function CodeAnimation() {
           <div>{`function Comment({ author, comment }) {
   return (
     <Panel background="grey">
-      <ProfileLink to={author}>
-        <Avatar image={author.image} />
-      </ProfileLink>
-      <CommentBody>
-        {comment.text}
-      </CommentBody>
-      <LikeButton />
+      <Avatar user={author} />
+      {comment.text}
     </Panel>
   );
 }`}</div>
@@ -446,11 +441,8 @@ function Example() {
 function Comment({author, comment}) {
   return (
     <Panel background="grey">
-      <ProfileLink to={author}>
-        <Avatar image={author.image} />
-      </ProfileLink>
-      <CommentBody>{comment.text}</CommentBody>
-      <LikeButton />
+      <Avatar user={author} />
+      {comment.text}
     </Panel>
   );
 }
@@ -459,9 +451,8 @@ function Panel({children}) {
   return (
     <div
       style={{
-        width: 500,
-        height: 300,
-        color: 'black',
+        fontSize: 14,
+        color: '#444',
       }}>
       <div
         style={{
@@ -479,28 +470,10 @@ function Panel({children}) {
   );
 }
 
-function ProfileLink({children, to}) {
-  return (
-    <div
-      style={{
-        backgroundColor: '#f0f0f0',
-        transition: 'all 0.4s ease-in-out',
-      }}>
-      {children}
-      <div
-        style={{
-          display: 'inline-block',
-        }}>
-        {to.name}
-      </div>
-    </div>
-  );
-}
-
-function Avatar({image}) {
+function Avatar({user}) {
   return (
     <img
-      src={image ? image.url : null}
+      src={user ? user.image.url : null}
       style={{
         marginRight: 10,
         marginBottom: 5,
@@ -513,20 +486,6 @@ function Avatar({image}) {
         backgroundColor: '#aaa',
       }}
     />
-  );
-}
-
-function CommentBody({children}) {
-  return (
-    <div
-      style={{
-        fontSize: 14,
-        color: '#444',
-        marginTop: 10,
-        marginBottom: 10,
-      }}>
-      {children}
-    </div>
   );
 }
 

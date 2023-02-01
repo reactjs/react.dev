@@ -58,11 +58,11 @@ export function HomeContent() {
                       <div>{`function Comment({ author, comment }) {
   return (
     <Panel background="grey">
-      <Avatar image={author.image} />
-      <Link to={author.url}>{author.name}</Link>
-      <CommentBody>
-        {comment.text}
-      </CommentBody>
+      <ProfileLink to={author}>
+        <Avatar image={author.image} />
+        {author.name}
+      </ProfileLink>
+      {comment.text}
       <LikeButton comment={comment} />
     </Panel>
   );
@@ -427,24 +427,26 @@ function Example() {
       style={{
         width: 500,
         height: 300,
+        color: 'black',
       }}>
       <div
         style={{
-          margin: 25,
-          height: 250,
+          margin: 50,
+          height: 200,
           padding: 20,
           backgroundColor: '#f0f0f0',
           borderRadius: 10,
+          boxShadow: '0px 0px 20px 10px rgba(0, 0, 0, 0.2)',
         }}>
         <div>
-          <div
+          <img
+            src="https://i.imgur.com/xWJFmSR.jpg"
             style={{
               marginRight: 10,
               marginBottom: 10,
               height: 60,
               width: 60,
               borderRadius: '50%',
-              backgroundColor: '#d82',
               display: 'inline-block',
               verticalAlign: 'middle',
             }}
@@ -453,7 +455,7 @@ function Example() {
             style={{
               display: 'inline',
             }}>
-            Someone Someone
+            Alan Turing
           </div>
         </div>
         <div
@@ -462,9 +464,7 @@ function Example() {
             fontSize: 12,
             marginBottom: 20,
           }}>
-          Lorem Ipsum is simply dummy text of the printing and typesetting
-          industry. Lorem Ipsum has been the industry's standard dummy text ever
-          since the 1500s.
+          Machines take me by surprise with great frequency.
         </div>
         <button
           style={{

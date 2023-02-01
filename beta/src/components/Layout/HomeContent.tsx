@@ -55,30 +55,35 @@ export function HomeContent() {
                 <div className="flex-col lg:flex-row gap-20 flex grow w-full mx-auto items-center">
                   <div className="flex grow">
                     <CodeBlock isFromPackageImport={false}>
-                      <div>{`function UserPanel({ user }) {
+                      <div>{`function Post({ post, author }) {
   return (
-    <Panel color="grey">
-      <Avatar image={user.image} />
-      <Label size="xl">{user.name}</Label>
-      <FollowButton user={user} />
+    <Panel background="grey">
+      <PostHeader>
+        <Avatar image={author.image} />
+        <Link to={author.url}>
+          {author.name}
+        </Link>
+      </PostHeader>
+      <PostBody>
+        {post.text}
+      </PostBody>
+      <LikeButton post={post} />
     </Panel>
   );
 }`}</div>
                     </CodeBlock>
                   </div>
                   <div className="max-w-xl">
-                    <div className="leading-tight text-white font-bold text-5xl mb-6">
-                      Placeholder slot for image
-                    </div>
+                    <Example />
                   </div>
                 </div>
               </div>
               <div className="max-w-2xl text-center text-white text-opacity-80">
                 <p className="text-xl leading-normal">
-                  React lets you build user interfaces out of individual pieces
-                  called components. Create your own React components like a
-                  button, a panel, or an avatar. Then combine them into entire
-                  screens, pages, and apps.
+                  Whether you work on your own or with thousands of other
+                  developers, using React feels the same. It is designed to let
+                  you seamlessly combine components written by independent
+                  people, teams, and organizations.
                 </p>
               </div>
             </div>
@@ -94,9 +99,12 @@ export function HomeContent() {
                 </h3>
                 <p className="text-xl leading-normal text-left">
                   React components are JavaScript functions. Want to show
-                  something conditionally? Use an `if` statement. Need to
-                  display a list? Use a `for` loop or array `map`. Learning
-                  React is learning programming.
+                  something conditionally? Use an <code>if</code> statement.
+                  Need to display a list? Use a <code>for</code> loop or array{' '}
+                  <code>map()</code>.
+                  <br />
+                  <br />
+                  Learning React is learning programming.
                 </p>
               </div>
               <div className="flex grow">
@@ -414,5 +422,64 @@ export function HomeContent() {
         </div>
       </div>
     </>
+  );
+}
+
+function Example() {
+  return (
+    <div
+      style={{
+        width: 500,
+        height: 300,
+      }}>
+      <div
+        style={{
+          margin: 25,
+          height: 250,
+          padding: 20,
+          backgroundColor: '#f0f0f0',
+          borderRadius: 10,
+        }}>
+        <div>
+          <div
+            style={{
+              marginRight: 10,
+              marginBottom: 10,
+              height: 60,
+              width: 60,
+              borderRadius: '50%',
+              backgroundColor: '#d82',
+              display: 'inline-block',
+              verticalAlign: 'middle',
+            }}
+          />
+          <div
+            style={{
+              display: 'inline',
+            }}>
+            Someone Someone
+          </div>
+        </div>
+        <div
+          style={{
+            color: 'grey',
+            fontSize: 14,
+            marginBottom: 20,
+          }}>
+          Lorem Ipsum is simply dummy text of the printing and typesetting
+          industry. Lorem Ipsum has been the industry's standard dummy text ever
+          since the 1500s.
+        </div>
+        <button
+          style={{
+            backgroundColor: '#222',
+            color: 'white',
+            borderRadius: 4,
+            padding: '4px 10px',
+          }}>
+          Like
+        </button>
+      </div>
+    </div>
   );
 }

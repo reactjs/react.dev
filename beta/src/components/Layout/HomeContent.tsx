@@ -2,6 +2,7 @@
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
 
+import {useState} from 'react';
 import ButtonLink from '../ButtonLink';
 import {Logo} from 'components/Logo';
 import Link from 'next/link';
@@ -422,8 +423,11 @@ export function HomeContent() {
 }
 
 function Example() {
+  const [hover, setHover] = useState(false);
   return (
     <div
+      onPointerEnter={() => setHover(true)}
+      onPointerLeave={() => setHover(false)}
       style={{
         width: 500,
         height: 300,
@@ -431,14 +435,26 @@ function Example() {
       }}>
       <div
         style={{
-          margin: 50,
-          height: 200,
+          margin: 25,
+          height: 250,
           padding: 20,
           backgroundColor: '#f0f0f0',
           borderRadius: 10,
           boxShadow: '0px 0px 20px 10px rgba(0, 0, 0, 0.2)',
+          transform: hover ? 'rotate3d(0, -10, 1, -20deg)' : '',
+          transition: 'all 0.4s ease-in-out',
+          transformStyle: 'preserve-3d',
+          perspective: '1000px',
         }}>
-        <div>
+        <div
+          style={{
+            backgroundColor: '#f0f0f0',
+            transform: hover ? 'translate3d(20px, 0, 100px)' : '',
+            transformStyle: 'preserve-3d',
+            transition: 'all 0.4s ease-in-out',
+            border: hover ? '2px dashed #ddd' : '2px dashed transparent',
+            margin: 10,
+          }}>
           <img
             src="https://i.imgur.com/xWJFmSR.jpg"
             style={{
@@ -449,11 +465,15 @@ function Example() {
               borderRadius: '50%',
               display: 'inline-block',
               verticalAlign: 'middle',
+              transform: hover ? 'translate3d(20px, 0, 100px)' : '',
+              transformStyle: 'preserve-3d',
+              transition: 'all 0.4s ease-in-out',
+              border: hover ? '2px dashed #ddd' : '2px dashed transparent',
             }}
           />
           <div
             style={{
-              display: 'inline',
+              display: 'inline-block',
             }}>
             Alan Turing
           </div>
@@ -463,6 +483,12 @@ function Example() {
             color: 'grey',
             fontSize: 12,
             marginBottom: 20,
+            backgroundColor: '#f0f0f0',
+            transform: hover ? 'translate3d(20px, 0, 100px)' : '',
+            transformStyle: 'preserve-3d',
+            transition: 'all 0.4s ease-in-out',
+            border: hover ? '2px dashed #ddd' : '2px dashed transparent',
+            margin: 10,
           }}>
           Machines take me by surprise with great frequency.
         </div>
@@ -472,6 +498,11 @@ function Example() {
             color: 'white',
             borderRadius: 4,
             padding: '4px 10px',
+            transform: hover ? 'translate3d(20px, 0, 100px)' : '',
+            transformStyle: 'preserve-3d',
+            transition: 'all 0.4s ease-in-out',
+            border: hover ? '2px dashed #ddd' : '2px dashed transparent',
+            margin: 10,
           }}>
           Like
         </button>

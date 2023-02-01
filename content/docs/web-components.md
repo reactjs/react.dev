@@ -12,12 +12,12 @@ Most people who use React don't use Web Components, but you may want to, especia
 
 ## Using Web Components in React {#using-web-components-in-react}
 
+Web components are just custom (HTML) elements which can be used directly in React:
+
 ```javascript
-class HelloMessage extends React.Component {
-  render() {
-    return <div>Hello <x-search>{this.props.name}</x-search>!</div>;
-  }
-}
+function Dropdown(props) {
+  return <my-dropdown></my-dropdown>;
+};
 ```
 
 > Note:
@@ -26,6 +26,47 @@ class HelloMessage extends React.Component {
 >
 > Events emitted by a Web Component may not properly propagate through a React render tree.
 > You will need to manually attach event handlers to handle these events within your React components.
+
+It's possible to pass primitive JavaScript data types directly as attributes. However, in case of arrays and objects (or other complex data structures), make sure to pass them in JSON format if you want to use them as attributes. As alternative, it's also possible to pass information as properties by defining them on the element instance. Last but not least, functions should be registered as event listeners. Events emitted by a Web Component may not properly propagate through a React render tree. You will need to manually attach event handlers to handle these events within your React components.
+
+```javascript
+function Dropdown({ label, option, options, onChange }) {
+  const ref = React.useRef();
+  
+  React.useLayoutEffect(() => {
+    const { current } = ref;
+
+    const handleChange = customEvent => onChange(customEvent.detail);
+
+    current.addEventListener('onChange', handleChange);
+
+    return () => current.removeEventListener('onChange', handleChange);
+  }, [onChange]);
+  
+  return (
+    <my-dropdown
+      ref={ref}
+      label={label}
+      option={option}
+      options={JSON.stringify(options)}
+    />
+  );
+};
+```
+
+Check out this tutorial [about using Web Components in React](https://www.robinwieruch.de/react-web-components/), if you want to dig deeper. 
+
+There exists a custom React hook, called [use-custom-element](https://github.com/the-road-to-learn-react/use-custom-element), which takes care about all the event listener registration, unregistration, and serialization of arrays/objects into JSON. It doesn't serialize Date or Immutable data structures though. Any contributions to this custom React hook are welcome.
+
+```javascript
+import useCustomElement from 'use-custom-element';
+
+const Dropdown = props => {
+  const [customElementProps, ref] = useCustomElement(props);
+  
+  return <my-dropdown {...customElementProps} ref={ref} />;
+};
+```
 
 One common confusion is that Web Components use "class" instead of "className".
 
@@ -54,6 +95,7 @@ class XSearch extends HTMLElement {
     root.render(<a href={url}>{name}</a>);
   }
 }
+
 customElements.define('x-search', XSearch);
 ```
 

@@ -61,10 +61,11 @@ export function HomeContent() {
     <Panel background="grey">
       <ProfileLink to={author}>
         <Avatar image={author.image} />
-        {author.name}
       </ProfileLink>
-      {comment.text}
-      <LikeButton comment={comment} />
+      <CommentBody>
+        {comment.text}
+      </CommentBody>
+      <LikeButton />
     </Panel>
   );
 }`}</div>
@@ -432,43 +433,47 @@ function Example() {
         width: 500,
         height: 300,
         color: 'black',
+        transformStyle: 'preserve-3d',
+        perspective: '1000px',
       }}>
       <div
         style={{
           margin: 25,
-          height: 250,
+          height: 180,
+          width: 350,
           padding: 20,
           backgroundColor: '#f0f0f0',
           borderRadius: 10,
           boxShadow: '0px 0px 20px 10px rgba(0, 0, 0, 0.2)',
-          transform: hover ? 'rotate3d(0, -10, 1, -20deg)' : '',
+          transform: hover
+            ? 'translate3d(0, 0, 0) rotate3d(0, 10, 0, 40deg)'
+            : '',
           transition: 'all 0.4s ease-in-out',
           transformStyle: 'preserve-3d',
-          perspective: '1000px',
         }}>
         <div
           style={{
             backgroundColor: '#f0f0f0',
             transform: hover ? 'translate3d(20px, 0, 100px)' : '',
+            boxShadow: hover ? '0px 0px 10px 10px rgba(0, 0, 0, 0.05)' : '',
             transformStyle: 'preserve-3d',
             transition: 'all 0.4s ease-in-out',
-            border: hover ? '2px dashed #ddd' : '2px dashed transparent',
-            margin: 10,
+            width: 'fit-content',
           }}>
           <img
             src="https://i.imgur.com/xWJFmSR.jpg"
             style={{
               marginRight: 10,
-              marginBottom: 10,
+              marginBottom: 5,
               height: 60,
               width: 60,
               borderRadius: '50%',
               display: 'inline-block',
               verticalAlign: 'middle',
               transform: hover ? 'translate3d(20px, 0, 100px)' : '',
+              boxShadow: hover ? '0px 0px 10px 10px rgba(0, 0, 0, 0.05)' : '',
               transformStyle: 'preserve-3d',
               transition: 'all 0.4s ease-in-out',
-              border: hover ? '2px dashed #ddd' : '2px dashed transparent',
             }}
           />
           <div
@@ -482,13 +487,12 @@ function Example() {
           style={{
             color: 'grey',
             fontSize: 12,
-            marginBottom: 20,
+            marginBottom: 5,
             backgroundColor: '#f0f0f0',
-            transform: hover ? 'translate3d(20px, 0, 100px)' : '',
-            transformStyle: 'preserve-3d',
             transition: 'all 0.4s ease-in-out',
-            border: hover ? '2px dashed #ddd' : '2px dashed transparent',
-            margin: 10,
+            transform: hover ? 'translate3d(20px, 0, 100px)' : '',
+            boxShadow: hover ? '0px 0px 10px 10px rgba(0, 0, 0, 0.05)' : '',
+            transformStyle: 'preserve-3d',
           }}>
           Machines take me by surprise with great frequency.
         </div>
@@ -498,11 +502,11 @@ function Example() {
             color: 'white',
             borderRadius: 4,
             padding: '4px 10px',
-            transform: hover ? 'translate3d(20px, 0, 100px)' : '',
             transformStyle: 'preserve-3d',
             transition: 'all 0.4s ease-in-out',
-            border: hover ? '2px dashed #ddd' : '2px dashed transparent',
-            margin: 10,
+            transform: hover ? 'translate3d(20px, 0, 100px)' : '',
+            boxShadow: hover ? '0px 0px 10px 10px rgba(0, 0, 0, 0.05)' : '',
+            transformStyle: 'preserve-3d',
           }}>
           Like
         </button>

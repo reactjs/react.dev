@@ -11,6 +11,7 @@ import {
   useEffect,
   useRef,
   useState,
+  useMemo,
 } from 'react';
 import {useRouter} from 'next/router';
 import {ga} from '../../utils/analytics';
@@ -84,18 +85,20 @@ export function FeedbackProvider({children}: {children?: ReactNode}) {
     setForceHide(false);
   }, [forceShow, setForceShow, setForceHide]);
 
+  const value = useMemo(
+    () => ({
+      forceShow,
+      forceHide,
+      isSubmitted,
+      onSubmit,
+      showOrHide,
+      hide,
+    }),
+    [forceShow, forceHide, isSubmitted, onSubmit, showOrHide, hide]
+  );
+
   return (
-    <FeedbackContext.Provider
-      value={{
-        forceShow,
-        forceHide,
-
-        isSubmitted,
-        onSubmit,
-
-        showOrHide,
-        hide,
-      }}>
+    <FeedbackContext.Provider value={value}>
       {children}
     </FeedbackContext.Provider>
   );

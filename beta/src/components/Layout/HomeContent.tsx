@@ -55,7 +55,7 @@ export function HomeContent() {
                 <div className="flex-col lg:flex-row gap-20 flex grow w-full mx-auto items-center">
                   <div className="flex grow">
                     <CodeBlock isFromPackageImport={false}>
-                      <div>{`function Comment({ comment, author }) {
+                      <div>{`function Comment({ author, comment }) {
   return (
     <Panel background="grey">
       <Avatar image={author.image} />

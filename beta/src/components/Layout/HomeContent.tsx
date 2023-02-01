@@ -53,28 +53,7 @@ export function HomeContent() {
                 </p>
               </div>
               <div className="max-w-6xl mx-auto flex flex-col w-full">
-                <div className="flex-col lg:flex-row gap-20 flex grow w-full mx-auto items-center">
-                  <div className="flex grow">
-                    <CodeBlock isFromPackageImport={false}>
-                      <div>{`function Comment({ author, comment }) {
-  return (
-    <Panel background="grey">
-      <ProfileLink to={author}>
-        <Avatar image={author.image} />
-      </ProfileLink>
-      <CommentBody>
-        {comment.text}
-      </CommentBody>
-      <LikeButton />
-    </Panel>
-  );
-}`}</div>
-                    </CodeBlock>
-                  </div>
-                  <div className="max-w-xl">
-                    <Example />
-                  </div>
-                </div>
+                <CodeAnimation />
               </div>
               <div className="max-w-2xl text-center text-white text-opacity-80">
                 <p className="text-xl leading-normal">
@@ -423,94 +402,144 @@ export function HomeContent() {
   );
 }
 
+function CodeAnimation() {
+  return (
+    <div className="flex-col lg:flex-row gap-20 flex grow w-full mx-auto items-center">
+      <div className="flex grow">
+        <CodeBlock isFromPackageImport={false}>
+          <div>{`function Comment({ author, comment }) {
+  return (
+    <Panel background="grey">
+      <ProfileLink to={author}>
+        <Avatar image={author.image} />
+      </ProfileLink>
+      <CommentBody>
+        {comment.text}
+      </CommentBody>
+      <LikeButton />
+    </Panel>
+  );
+}`}</div>
+        </CodeBlock>
+      </div>
+      <div className="max-w-xl">
+        <Example />
+      </div>
+    </div>
+  );
+}
+
 function Example() {
-  const [hover, setHover] = useState(false);
+  return (
+    <Comment
+      comment={{
+        text: 'Machines take me by surprise with great frequency.',
+      }}
+      author={{
+        name: 'Alan Turing',
+        image: {url: 'https://i.imgur.com/xWJFmSR.jpg'},
+      }}
+    />
+  );
+}
+
+function Comment({author, comment}) {
+  return (
+    <Panel background="grey">
+      <ProfileLink to={author}>
+        <Avatar image={author.image} />
+      </ProfileLink>
+      <CommentBody>{comment.text}</CommentBody>
+      <LikeButton />
+    </Panel>
+  );
+}
+
+function Panel({children}) {
   return (
     <div
-      onPointerEnter={() => setHover(true)}
-      onPointerLeave={() => setHover(false)}
       style={{
         width: 500,
         height: 300,
         color: 'black',
-        transformStyle: 'preserve-3d',
-        perspective: '1000px',
       }}>
       <div
         style={{
           margin: 25,
-          height: 180,
-          width: 350,
+          width: 'fit-content',
           padding: 20,
           backgroundColor: '#f0f0f0',
           borderRadius: 10,
-          boxShadow: '0px 0px 20px 10px rgba(0, 0, 0, 0.2)',
-          transform: hover
-            ? 'translate3d(0, 0, 0) rotate3d(0, 10, 0, 40deg)'
-            : '',
-          transition: 'all 0.4s ease-in-out',
-          transformStyle: 'preserve-3d',
+          minWidth: 100,
+          minHeight: 40,
         }}>
-        <div
-          style={{
-            backgroundColor: '#f0f0f0',
-            transform: hover ? 'translate3d(20px, 0, 100px)' : '',
-            boxShadow: hover ? '0px 0px 10px 10px rgba(0, 0, 0, 0.05)' : '',
-            transformStyle: 'preserve-3d',
-            transition: 'all 0.4s ease-in-out',
-            width: 'fit-content',
-          }}>
-          <img
-            src="https://i.imgur.com/xWJFmSR.jpg"
-            style={{
-              marginRight: 10,
-              marginBottom: 5,
-              height: 60,
-              width: 60,
-              borderRadius: '50%',
-              display: 'inline-block',
-              verticalAlign: 'middle',
-              transform: hover ? 'translate3d(20px, 0, 100px)' : '',
-              boxShadow: hover ? '0px 0px 10px 10px rgba(0, 0, 0, 0.05)' : '',
-              transformStyle: 'preserve-3d',
-              transition: 'all 0.4s ease-in-out',
-            }}
-          />
-          <div
-            style={{
-              display: 'inline-block',
-            }}>
-            Alan Turing
-          </div>
-        </div>
-        <div
-          style={{
-            color: 'grey',
-            fontSize: 12,
-            marginBottom: 5,
-            backgroundColor: '#f0f0f0',
-            transition: 'all 0.4s ease-in-out',
-            transform: hover ? 'translate3d(20px, 0, 100px)' : '',
-            boxShadow: hover ? '0px 0px 10px 10px rgba(0, 0, 0, 0.05)' : '',
-            transformStyle: 'preserve-3d',
-          }}>
-          Machines take me by surprise with great frequency.
-        </div>
-        <button
-          style={{
-            backgroundColor: '#222',
-            color: 'white',
-            borderRadius: 4,
-            padding: '4px 10px',
-            transformStyle: 'preserve-3d',
-            transition: 'all 0.4s ease-in-out',
-            transform: hover ? 'translate3d(20px, 0, 100px)' : '',
-            boxShadow: hover ? '0px 0px 10px 10px rgba(0, 0, 0, 0.05)' : '',
-            transformStyle: 'preserve-3d',
-          }}>
-          Like
-        </button>
+        {children}
       </div>
     </div>
+  );
+}
+
+function ProfileLink({children, to}) {
+  return (
+    <div
+      style={{
+        backgroundColor: '#f0f0f0',
+        transition: 'all 0.4s ease-in-out',
+      }}>
+      {children}
+      <div
+        style={{
+          display: 'inline-block',
+        }}>
+        {to.name}
+      </div>
+    </div>
+  );
+}
+
+function Avatar({image}) {
+  return (
+    <img
+      src={image ? image.url : null}
+      style={{
+        marginRight: 10,
+        marginBottom: 5,
+        height: 60,
+        width: 60,
+        borderRadius: '50%',
+        display: 'inline-block',
+        verticalAlign: 'middle',
+        transition: 'all 0.4s ease-in-out',
+        backgroundColor: '#aaa',
+      }}
+    />
+  );
+}
+
+function CommentBody({children}) {
+  return (
+    <div
+      style={{
+        fontSize: 14,
+        color: '#444',
+        marginTop: 10,
+        marginBottom: 10,
+      }}>
+      {children}
+    </div>
+  );
+}
+
+function LikeButton() {
+  return (
+    <button
+      style={{
+        backgroundColor: '#222',
+        color: 'white',
+        borderRadius: 4,
+        padding: '4px 10px',
+      }}>
+      Like
+    </button>
   );
 }

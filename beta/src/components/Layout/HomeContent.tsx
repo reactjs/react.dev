@@ -477,8 +477,8 @@ function Avatar({user}) {
       style={{
         marginRight: 10,
         marginBottom: 5,
-        height: 60,
-        width: 60,
+        height: 40,
+        width: 40,
         borderRadius: '50%',
         display: 'inline-block',
         verticalAlign: 'middle',

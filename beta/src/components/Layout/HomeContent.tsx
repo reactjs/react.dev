@@ -53,7 +53,7 @@ export function HomeContent() {
                 </p>
               </div>
               <div className="max-w-6xl mx-auto flex flex-col w-full">
-                <CodeAnimation />
+                <Example1 />
               </div>
               <div className="max-w-2xl text-center text-white text-opacity-80">
                 <p className="text-xl leading-normal">
@@ -69,36 +69,30 @@ export function HomeContent() {
 
         <div className="p-20">
           <div className="max-w-6xl mx-auto flex flex-col w-full">
-            <div className="flex-col lg:flex-row gap-20 flex grow w-full mx-auto items-center">
-              <div className="max-w-xl">
-                <h3 className="leading-tight dark:text-primary-dark text-primary font-bold text-5xl mb-6 text-left">
-                  Write components with code and markup
+            <div className="flex-col gap-2 flex grow w-full my-20 mx-auto items-center">
+              <div className="max-w-2xl text-center text-opacity-80">
+                <h3 className="leading-tight dark:text-primary-dark text-primary font-bold text-5xl mb-6">
+                  Write components
+                  <br />
+                  with code and markup
                 </h3>
-                <p className="text-xl leading-normal text-left">
+                <p className="text-xl leading-normal">
                   React components are JavaScript functions. Want to show
                   something conditionally? Use an <code>if</code> statement.
                   Need to display a list? Use a <code>for</code> loop or array{' '}
-                  <code>map()</code>.
-                  <br />
-                  <br />
-                  Learning React is learning programming.
+                  <code>map()</code>. Learning React is learning programming.
                 </p>
               </div>
-              <div className="flex grow">
-                <CodeBlock isFromPackageImport={false}>
-                  <div>{`function SearchResults({ users, query }) {
-  if (users.length === 0) {
-    return <EmptyMessage text="No matches" />;
-  }
-  return (
-    <Grid cols={3} rows={10} title="Search results">
-      {users.map(user =>
-        <UserPanel user={user} key={user.id} />
-      )}
-    </Grid>
-  );
-}`}</div>
-                </CodeBlock>
+              <div className="max-w-6xl mx-auto flex flex-col w-full">
+                <Example2 />
+              </div>
+              <div className="max-w-2xl text-center text-opacity-80">
+                <p className="text-xl leading-normal">
+                  This markup syntax is called JSX. It is a JavaScript syntax
+                  extension popularized by React. Putting JSX markup close to
+                  related rendering logic makes React components easy to create,
+                  maintain, and delete.
+                </p>
               </div>
             </div>
           </div>
@@ -402,17 +396,50 @@ export function HomeContent() {
   );
 }
 
-function CodeAnimation() {
+function Example1() {
   return (
     <div className="flex-col lg:flex-row gap-20 flex grow w-full mx-auto items-center">
       <div className="flex grow">
         <CodeBlock isFromPackageImport={false}>
-          <div>{`function Comment({ author, comment }) {
+          <div>{`function Comment({ author, text }) {
   return (
     <Panel background="grey">
       <Avatar user={author} />
-      {comment.text}
+      {text}
     </Panel>
+  );
+}`}</div>
+        </CodeBlock>
+      </div>
+      <div className="max-w-xl">
+        <Example />
+      </div>
+    </div>
+  );
+}
+
+function Example2() {
+  return (
+    <div className="flex-col lg:flex-row gap-20 flex grow w-full mx-auto items-center">
+      <div className="flex grow">
+        <CodeBlock isFromPackageImport={false}>
+          <div>{`function Post({ post, comments }) {
+  let content = null;
+  if (post.isPhoto) {
+    content = <Photo image={post.image} />;
+  } else {
+    content = <PostBody>{post.body}</PostBody>;
+  }
+  return (
+    <PostLayout>
+      <PostTitle>{post.title}</PostTitle>
+      {content}
+      <PostFooter>
+        {comments.map(comment =>
+          <Comment comment={comment} />
+        );}
+      </PostFooter>
+    </PostLayout>
   );
 }`}</div>
         </CodeBlock>
@@ -426,24 +453,43 @@ function CodeAnimation() {
 
 function Example() {
   return (
-    <Comment
-      comment={{
-        text: 'Machines take me by surprise with great frequency.',
-      }}
-      author={{
-        name: 'Alan Turing',
-        image: {url: 'https://i.imgur.com/xWJFmSR.jpg'},
-      }}
-    />
+    <div style={{width: 450}}>
+      <Comment
+        comment={{
+          text: `The quick brown fox jumps over the lazy dog`,
+        }}
+        author={{
+          name: 'Lauren',
+          image: {
+            url: 'https://pbs.twimg.com/profile_images/1467169010437570562/THFD56Pc_400x400.jpg',
+          },
+        }}
+      />
+    </div>
   );
 }
 
 function Comment({author, comment}) {
   return (
     <Panel background="grey">
-      <Avatar user={author} />
+      <ProfileLink to={author.id}>
+        <Avatar user={author} />
+        {author.name}
+      </ProfileLink>
       {comment.text}
     </Panel>
+  );
+}
+
+function ProfileLink({children}) {
+  return (
+    <div
+      style={{
+        fontSize: 16,
+        color: '#222',
+      }}>
+      {children}
+    </div>
   );
 }
 
@@ -473,12 +519,12 @@ function Panel({children}) {
 function Avatar({user}) {
   return (
     <img
-      src={user ? user.image.url : null}
+      src={user?.image?.url}
       style={{
         marginRight: 10,
         marginBottom: 5,
-        height: 40,
-        width: 40,
+        height: 60,
+        width: 60,
         borderRadius: '50%',
         display: 'inline-block',
         verticalAlign: 'middle',

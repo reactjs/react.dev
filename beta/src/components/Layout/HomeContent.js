@@ -2,7 +2,7 @@
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
 
-import {createContext, useState, useContext} from 'react';
+import {createContext, useState, useContext, Suspense} from 'react';
 import ButtonLink from '../ButtonLink';
 import {Logo} from 'components/Logo';
 import Link from 'components/MDX/Link';
@@ -138,9 +138,9 @@ export function HomeContent() {
             <div className="flex-col gap-2 flex grow w-full my-20 mx-auto items-center">
               <div className="max-w-2xl text-center text-opacity-80">
                 <h3 className="leading-tight dark:text-primary-dark text-primary font-bold text-5xl mb-6">
-                  Use the best
+                  Make the best
                   <br />
-                  from every platform
+                  use of the platform
                 </h3>
                 <p className="text-xl leading-normal">
                   Web users expect pages to load fast. React can render into an
@@ -150,9 +150,7 @@ export function HomeContent() {
                   even during rendering.
                 </p>
               </div>
-              <div className="max-w-6xl mx-auto flex flex-col w-full">
-                <Example2 />
-              </div>
+
               <div className="max-w-2xl text-center text-opacity-80">
                 <p className="text-xl leading-normal">
                   Mobile app users expect native look-and-feel. With{' '}
@@ -488,7 +486,7 @@ function Comment({ author, text, postedAt }) {
       </div>
       <div className="max-w-xl">
         <ExamplePanel>
-          <PostComment
+          <Comment
             text="The quick brown fox jumps over the lazy dog"
             postedAt="2m ago"
             author={{
@@ -568,7 +566,7 @@ function Example2() {
               currentUser: author,
               onAddComment: handleAddComment,
             }}>
-            <PostCommentList comments={comments} />
+            <CommentList comments={comments} />
           </PostContext.Provider>
         </ExamplePanel>
       </div>
@@ -619,7 +617,7 @@ function Example3() {
 }
 
 async function Post({ id }) {
-  const post = await db.getPost(params.postId);
+  const post = await db.getPost(id);
   return (
     <Stack>
       <CoverImage src={post.imageUrl} alt={post.description} />
@@ -672,16 +670,36 @@ function ExamplePanel({children}) {
   );
 }
 
+function PostPage(props) {
+  return (
+    <PageLayout>
+      <Suspense fallback={<PostSkeleton />}>
+        <Post {...props} />
+      </Suspense>
+    </PageLayout>
+  );
+}
+
+function PageLayout({children}) {
+  // TODO: add some layout here
+  return <div>{children}</div>;
+}
+
+function PostSkeleton() {
+  // TODO: add glimmer here
+  return <div />;
+}
+
 function Post({imageUrl, description, comments}) {
   return (
     <Stack>
       <CoverImage src={imageUrl} alt={description} />
-      <PostCommentList comments={comments} />
+      <CommentList comments={comments} />
     </Stack>
   );
 }
 
-function PostCommentList({comments}) {
+function CommentList({comments}) {
   let headingText = 'Be the first to comment';
   if (comments.length > 0) {
     headingText = comments.length + ' Comments';
@@ -690,7 +708,7 @@ function PostCommentList({comments}) {
     <Stack gap={16}>
       <Heading>{headingText}</Heading>
       {comments.map((comment) => (
-        <PostComment key={comment.id} {...comment} />
+        <Comment key={comment.id} {...comment} />
       ))}
       <AddComment />
     </Stack>
@@ -752,7 +770,7 @@ function AddComment() {
   );
 }
 
-function PostComment({author, text, postedAt}) {
+function Comment({author, text, postedAt}) {
   return (
     <Stack>
       <Row>

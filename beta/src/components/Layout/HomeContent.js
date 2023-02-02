@@ -469,15 +469,16 @@ function Example1() {
       <div className="flex grow">
         <CodeBlock isFromPackageImport={false}>
           <div>{`
-function Comment({ author, text, postedAt }) {
+function Comment({ comment }) {
+  const { author } = comment;
   return (
     <Stack>
       <Row>
         <Avatar user={author} />
         <Link to={author.url}>{author.name}</Link>
-        <Timestamp time={postedAt} />
+        <Timestamp time={comment.postedAt} />
       </Row>
-      {text}
+      {comment.text}
     </Stack>
   );
 }
@@ -487,12 +488,14 @@ function Comment({ author, text, postedAt }) {
       <div className="max-w-xl">
         <ExamplePanel>
           <Comment
-            text="The quick brown fox jumps over the lazy dog"
-            postedAt="2m ago"
-            author={{
-              name: 'Lauren',
-              image: {
-                url: 'https://pbs.twimg.com/profile_images/1467169010437570562/THFD56Pc_400x400.jpg',
+            comment={{
+              text: 'The quick brown fox jumps over the lazy dog',
+              postedAt: '2m ago',
+              author: {
+                name: 'Lauren',
+                image: {
+                  url: 'https://pbs.twimg.com/profile_images/1467169010437570562/THFD56Pc_400x400.jpg',
+                },
               },
             }}
           />
@@ -551,7 +554,7 @@ function Example2() {
     <Stack gap={16}>
       <Heading>{headingText}</Heading>
       {comments.map(comment =>
-        <Comment key={comment.id} {...comment} />
+        <Comment key={comment.id} comment={comment} />
       )}
       <AddComment />
     </Stack>
@@ -606,26 +609,22 @@ function Example3() {
     <div className="flex-col lg:flex-row gap-20 flex grow w-full mx-auto items-center">
       <div className="flex grow">
         <CodeBlock isFromPackageImport={false}>
-          <div>{`function PostPage({ params }) {
-  return (
-    <PageLayout>
-      <Suspense fallback={<PostSkeleton />}>
-        <Post id={params.postId} />
-      </Suspense>
-    </PageLayout>
-  );
-}
-
-async function Post({ id }) {
-  const post = await db.getPost(id);
+          <div>{`async function PostPage({ params }) {
+  const post = await db.getPost(params.postId);
   return (
     <Stack>
       <CoverImage src={post.imageUrl} alt={post.description} />
-      <CommentList comments={post.comments} />
+      <Suspense fallback={<CommentsSkeleton />}>
+        <PostComments post={post} />
+      </Suspense>
     </Stack>
   );
 }
-`}</div>
+
+async function PostComments({ post }) {
+  const comments = await post.getComments();
+  return <CommentList comments={comments} />;
+}`}</div>
         </CodeBlock>
       </div>
       <div className="max-w-xl">
@@ -637,9 +636,12 @@ async function Post({ id }) {
                 onAddComment: handleAddComment,
               }}>
               <PostPage
-                imageUrl="https://www.nasa.gov/sites/default/files/styles/full_width/public/thumbnails/image/main_image_star-forming_region_carina_nircam_final-1280.jpg"
-                description="A picture of the galaxy"
-                comments={comments}
+                post={{
+                  imageUrl:
+                    'https://www.nasa.gov/sites/default/files/styles/full_width/public/thumbnails/image/main_image_star-forming_region_carina_nircam_final-1280.jpg',
+                  description: 'A picture of the galaxy',
+                  comments,
+                }}
               />
             </PostContext.Provider>
           </ExamplePanel>
@@ -672,37 +674,28 @@ function ExamplePanel({children}) {
   );
 }
 
-function PostPage(props) {
-  return (
-    <PageLayout>
-      <Suspense fallback={<PostSkeleton />}>
-        <Post {...props} />
-      </Suspense>
-    </PageLayout>
-  );
-}
-
 function BrowserChrome({children}) {
   return <div>{children}</div>;
 }
 
-function PageLayout({children}) {
-  // TODO: add some layout here
-  return <div>{children}</div>;
+function PostPage({post}) {
+  return (
+    <Stack>
+      <CoverImage src={post.imageUrl} alt={post.description} />
+      <Suspense fallback={<CommentsSkeleton />}>
+        <PostComments post={post} />
+      </Suspense>
+    </Stack>
+  );
 }
 
-function PostSkeleton() {
+function CommentsSkeleton() {
   // TODO: add glimmer here
   return <div />;
 }
 
-function Post({imageUrl, description, comments}) {
-  return (
-    <Stack>
-      <CoverImage src={imageUrl} alt={description} />
-      <CommentList comments={comments} />
-    </Stack>
-  );
+function PostComments({post}) {
+  return <CommentList comments={post.comments} />;
 }
 
 function CommentList({comments}) {
@@ -714,7 +707,7 @@ function CommentList({comments}) {
     <Stack gap={16}>
       <Heading>{headingText}</Heading>
       {comments.map((comment) => (
-        <Comment key={comment.id} {...comment} />
+        <Comment key={comment.id} comment={comment} />
       ))}
       <AddComment />
     </Stack>
@@ -776,15 +769,16 @@ function AddComment() {
   );
 }
 
-function Comment({author, text, postedAt}) {
+function Comment({comment}) {
+  const {author} = comment;
   return (
     <Stack>
       <Row>
         <Avatar user={author} />
         <ExampleLink to={author.url}>{author.name}</ExampleLink>
-        <Timestamp time={postedAt} />
+        <Timestamp time={comment.postedAt} />
       </Row>
-      {text}
+      {comment.text}
     </Stack>
   );
 }

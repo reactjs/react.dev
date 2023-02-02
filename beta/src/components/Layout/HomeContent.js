@@ -5,7 +5,7 @@
 import {createContext, useState, useContext} from 'react';
 import ButtonLink from '../ButtonLink';
 import {Logo} from 'components/Logo';
-import Link from 'next/link';
+import Link from 'components/MDX/Link';
 import CodeBlock from 'components/MDX/CodeBlock';
 
 export function HomeContent() {
@@ -67,7 +67,7 @@ export function HomeContent() {
           </div>
         </div>
 
-        <div className="p-20">
+        <div className="">
           <div className="max-w-6xl mx-auto flex flex-col w-full">
             <div className="flex-col gap-2 flex grow w-full my-20 mx-auto items-center">
               <div className="max-w-2xl text-center text-opacity-80">
@@ -92,6 +92,75 @@ export function HomeContent() {
                   extension popularized by React. Putting JSX markup close to
                   related rendering logic makes React components easy to create,
                   maintain, and delete.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="bg-card dark:bg-card-dark">
+          <div className="max-w-6xl mx-auto flex flex-col w-full">
+            <div className="flex-col gap-2 flex grow w-full my-20 mx-auto items-center">
+              <div className="max-w-2xl text-center text-opacity-80">
+                <h3 className="leading-tight dark:text-primary-dark text-primary font-bold text-5xl mb-6">
+                  Go full-stack
+                  <br />
+                  with a framework
+                </h3>
+                <p className="text-xl leading-normal">
+                  React is a library. It lets you put components together, but
+                  it doesn't prescribe solutions for routing and data fetching.
+                  To get the most out of React, we recommend a React framework
+                  like{' '}
+                  <Link href="https://github.com/vercel/next.js">Next.js</Link>,{' '}
+                  <Link href="https://remix.run/">Remix</Link>, and{' '}
+                  <Link href="https://expo.dev/">Expo</Link>. Frameworks let you
+                  create full-stack apps with very little configuration.
+                </p>
+              </div>
+              <div className="max-w-6xl mx-auto flex flex-col w-full">
+                <Example3 />
+              </div>
+              <div className="max-w-2xl text-center text-opacity-80">
+                <p className="text-xl leading-normal">
+                  React is <i>also</i> an architecture. It bridges the gap
+                  between the client and the server, empowering frameworks
+                  designed for React to use both to the full. Write components,
+                  and let a framework take care of the rest.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="">
+          <div className="max-w-6xl mx-auto flex flex-col w-full">
+            <div className="flex-col gap-2 flex grow w-full my-20 mx-auto items-center">
+              <div className="max-w-2xl text-center text-opacity-80">
+                <h3 className="leading-tight dark:text-primary-dark text-primary font-bold text-5xl mb-6">
+                  Use the best
+                  <br />
+                  from every platform
+                </h3>
+                <p className="text-xl leading-normal">
+                  Web users expect pages to load fast. React can render into an
+                  HTML stream on the server, gradually revealing more content
+                  even before React itself has loaded on the client. React
+                  relies on modern web standards to keep the page responsive
+                  even during rendering.
+                </p>
+              </div>
+              <div className="max-w-6xl mx-auto flex flex-col w-full">
+                <Example2 />
+              </div>
+              <div className="max-w-2xl text-center text-opacity-80">
+                <p className="text-xl leading-normal">
+                  Mobile app users expect native look-and-feel. With{' '}
+                  <Link href="https://reactnative.dev">React Native</Link>, you
+                  can create Android and iOS apps with React. These user
+                  interfaces can feel truly native because they <i>are</i> truly
+                  native. Your React components render real Android and iOS
+                  views natively provided by the platform.
                 </p>
               </div>
             </div>
@@ -402,7 +471,7 @@ function Example1() {
       <div className="flex grow">
         <CodeBlock isFromPackageImport={false}>
           <div>{`
-function PostComment({ author, text, postedAt }) {
+function Comment({ author, text, postedAt }) {
   return (
     <Stack>
       <Row>
@@ -475,22 +544,90 @@ function Example2() {
     <div className="flex-col lg:flex-row gap-20 flex grow w-full mx-auto items-center">
       <div className="flex grow">
         <CodeBlock isFromPackageImport={false}>
-          <div>{`function Post({ imageUrl, description, comments }) {
+          <div>{`function CommentList({ comments }) {
   let headingText = 'Be the first to comment';
   if (comments.length > 0) {
     headingText = comments.length + ' Comments';
   }
   return (
     <Stack gap={16}>
-      <CoverImage src={imageUrl} alt={description} />
       <Heading>{headingText}</Heading>
       {comments.map(comment =>
-        <PostComment key={comment.id} {...comment} />
+        <Comment key={comment.id} {...comment} />
       )}
       <AddComment />
     </Stack>
   );
 }`}</div>
+        </CodeBlock>
+      </div>
+      <div className="max-w-xl">
+        <ExamplePanel>
+          <PostContext.Provider
+            value={{
+              currentUser: author,
+              onAddComment: handleAddComment,
+            }}>
+            <PostCommentList comments={comments} />
+          </PostContext.Provider>
+        </ExamplePanel>
+      </div>
+    </div>
+  );
+}
+
+function Example3() {
+  const [comments, setComments] = useState([
+    {
+      id: 0,
+      text: 'The quick brown fox jumps over the lazy dog',
+      postedAt: '4m ago',
+      author,
+    },
+    {
+      id: 1,
+      text: 'The quick brown fox jumps over the lazy dog',
+      postedAt: '2m ago',
+      author,
+    },
+  ]);
+
+  function handleAddComment(text) {
+    setComments((c) => [
+      ...c,
+      {
+        id: c.length,
+        text,
+        postedAt: 'just now',
+        author,
+      },
+    ]);
+  }
+
+  return (
+    <div className="flex-col lg:flex-row gap-20 flex grow w-full mx-auto items-center">
+      <div className="flex grow">
+        <CodeBlock isFromPackageImport={false}>
+          <div>{`function PostPage({ params }) {
+  return (
+    <PageLayout>
+      <Suspense fallback={<PostSkeleton />}>
+        <Post id={params.postId} />
+      </Suspense>
+    </PageLayout>
+  );
+}
+
+async function Post({ id }) {
+  const post = await db.getPost(params.postId);
+  return (
+    <Stack>
+      <CoverImage src={post.imageUrl} alt={post.description} />
+      <CommentList comments={post.comments} />
+    </Stack>
+  );
+}
+`}</div>
         </CodeBlock>
       </div>
       <div className="max-w-xl">
@@ -536,13 +673,21 @@ function ExamplePanel({children}) {
 }
 
 function Post({imageUrl, description, comments}) {
+  return (
+    <Stack>
+      <CoverImage src={imageUrl} alt={description} />
+      <PostCommentList comments={comments} />
+    </Stack>
+  );
+}
+
+function PostCommentList({comments}) {
   let headingText = 'Be the first to comment';
   if (comments.length > 0) {
     headingText = comments.length + ' Comments';
   }
   return (
     <Stack gap={16}>
-      <CoverImage src={imageUrl} alt={description} />
       <Heading>{headingText}</Heading>
       {comments.map((comment) => (
         <PostComment key={comment.id} {...comment} />
@@ -561,6 +706,7 @@ function CoverImage({src, alt}) {
       style={{
         transform: 'scale(1.2)',
         transformOrigin: 'bottom',
+        marginBottom: 16,
       }}
     />
   );
@@ -597,6 +743,7 @@ function AddComment() {
           <input
             name="text"
             placeholder="Add a comment..."
+            autocomplete="off"
             style={{backgroundColor: 'transparent'}}
           />
         </form>

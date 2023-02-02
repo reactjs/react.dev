@@ -629,19 +629,21 @@ async function Post({ id }) {
         </CodeBlock>
       </div>
       <div className="max-w-xl">
-        <ExamplePanel>
-          <PostContext.Provider
-            value={{
-              currentUser: author,
-              onAddComment: handleAddComment,
-            }}>
-            <Post
-              imageUrl="https://www.nasa.gov/sites/default/files/styles/full_width/public/thumbnails/image/main_image_star-forming_region_carina_nircam_final-1280.jpg"
-              description="A picture of the galaxy"
-              comments={comments}
-            />
-          </PostContext.Provider>
-        </ExamplePanel>
+        <BrowserChrome>
+          <ExamplePanel>
+            <PostContext.Provider
+              value={{
+                currentUser: author,
+                onAddComment: handleAddComment,
+              }}>
+              <PostPage
+                imageUrl="https://www.nasa.gov/sites/default/files/styles/full_width/public/thumbnails/image/main_image_star-forming_region_carina_nircam_final-1280.jpg"
+                description="A picture of the galaxy"
+                comments={comments}
+              />
+            </PostContext.Provider>
+          </ExamplePanel>
+        </BrowserChrome>
       </div>
     </div>
   );
@@ -678,6 +680,10 @@ function PostPage(props) {
       </Suspense>
     </PageLayout>
   );
+}
+
+function BrowserChrome({children}) {
+  return <div>{children}</div>;
 }
 
 function PageLayout({children}) {

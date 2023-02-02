@@ -547,7 +547,7 @@ function Example2() {
       <div className="flex grow">
         <CodeBlock isFromPackageImport={false}>
           <div>{`import { Stack, Heading } from 'your-design-system';
-import { Comment, AddComment } from '.';
+import { Comment } from './Comment.js';
 
 export function CommentList({ comments, children }) {
   let headingText = 'Be the first to comment';
@@ -614,7 +614,7 @@ function Example3() {
       <div className="flex grow">
         <CodeBlock isFromPackageImport={false}>
           <div>{`import { Suspense } from 'react';
-import { PostCover, CommentList, AddComment } from '.';
+import { PostCover, CommentList, AddComment } from './components';
 import { db } from './database.js';
 
 export default async function PostPage({ params }) {

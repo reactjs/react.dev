@@ -614,7 +614,7 @@ function Example3() {
       <div className="flex grow">
         <CodeBlock isFromPackageImport={false}>
           <div>{`import { Suspense } from 'react';
-import { CommentList, PostCover } from '.';
+import { CommentList, PostCover, AddComment } from '.';
 import { db } from './database.js';
 
 export default async function PostPage({ params }) {

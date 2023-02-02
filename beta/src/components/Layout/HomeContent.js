@@ -125,8 +125,8 @@ export function HomeContent() {
                 <p className="text-xl leading-normal">
                   For frameworks, React is more than a library—React is an
                   architecture. React provides a single unified programming
-                  model across the client and the server so that you can use
-                  both for what they’re best at.
+                  model that spans across the client and the server, and lets
+                  you use both for what they’re best at.
                 </p>
               </div>
             </div>

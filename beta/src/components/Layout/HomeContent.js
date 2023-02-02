@@ -125,8 +125,8 @@ export function HomeContent() {
                 <p className="text-xl leading-normal">
                   For frameworks, React is more than a library—React is an
                   architecture. React provides a single unified programming
-                  model that spans across the client and the server, and lets
-                  you use both for what they’re best at.
+                  model that spans across the client and the server, letting you
+                  use both for what they’re best at.
                 </p>
               </div>
             </div>
@@ -549,7 +549,7 @@ function Example2() {
           <div>{`import { Stack, Heading } from 'your-design-system';
 import { Comment, AddComment } from '.';
 
-export function CommentList({ comments }) {
+export function CommentList({ comments, children }) {
   let headingText = 'Be the first to comment';
   if (comments.length > 0) {
     headingText = comments.length + ' Comments';
@@ -560,7 +560,7 @@ export function CommentList({ comments }) {
       {comments.map(comment =>
         <Comment key={comment.id} comment={comment} />
       )}
-      <AddComment />
+      {children}
     </Stack>
   );
 }`}</div>
@@ -618,19 +618,22 @@ import { CommentList, PostCover } from '.';
 import { db } from './database.js';
 
 export default async function PostPage({ params }) {
-  const post = await db.posts.findOne({ slug: params.slug });
+  const post = await db.findPost({ slug: params.slug });
   return (
     <PostCover imageUrl={post.coverUrl}>
       <Suspense fallback={<CommentsSkeleton />}>
-        <PostComments postId={post} />
+        <PostComments postId={post.id} />
       </Suspense>
     </PostCover>
   );
 }
 
-async function PostComments({ post }) {
-  const comments = await db.comments.findAll({ postId: post.id });
-  return <CommentList comments={comments} />;
+async function PostComments({ postId }) {
+  return (
+    <CommentList comments={await db.findComments({ postId })}>
+      <AddComment />
+    </CommentList>
+  );
 }`}</div>
         </CodeBlock>
       </div>
@@ -701,10 +704,14 @@ function CommentsSkeleton() {
 }
 
 function PostComments({post}) {
-  return <CommentList comments={post.comments} />;
+  return (
+    <CommentList comments={post.comments}>
+      <AddComment />
+    </CommentList>
+  );
 }
 
-function CommentList({comments}) {
+function CommentList({comments, children}) {
   let headingText = 'Be the first to comment';
   if (comments.length > 0) {
     headingText = comments.length + ' Comments';
@@ -715,7 +722,7 @@ function CommentList({comments}) {
       {comments.map((comment) => (
         <Comment key={comment.id} comment={comment} />
       ))}
-      <AddComment />
+      {children}
     </Stack>
   );
 }

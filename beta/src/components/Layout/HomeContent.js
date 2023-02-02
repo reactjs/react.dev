@@ -123,10 +123,10 @@ export function HomeContent() {
               </div>
               <div className="max-w-2xl text-center text-opacity-80">
                 <p className="text-xl leading-normal">
-                  React is <i>also</i> an architecture. It bridges the gap
-                  between the client and the server, empowering frameworks
-                  designed for React to use both to the full. Write components,
-                  and let a framework take care of the rest.
+                  For frameworks, React is more than a library—React is an
+                  architecture. React provides a single unified programming
+                  model across the client and the server so that you can use
+                  both for what they’re best at.
                 </p>
               </div>
             </div>
@@ -556,7 +556,6 @@ function Example2() {
       {comments.map(comment =>
         <Comment key={comment.id} comment={comment} />
       )}
-      <AddComment />
     </Stack>
   );
 }`}</div>
@@ -582,13 +581,13 @@ function Example3() {
     {
       id: 0,
       text: 'The quick brown fox jumps over the lazy dog',
-      postedAt: '4m ago',
+      postedAt: '5m ago',
       author,
     },
     {
       id: 1,
       text: 'The quick brown fox jumps over the lazy dog',
-      postedAt: '2m ago',
+      postedAt: '4m ago',
       author,
     },
   ]);
@@ -610,20 +609,25 @@ function Example3() {
       <div className="flex grow">
         <CodeBlock isFromPackageImport={false}>
           <div>{`async function PostPage({ params }) {
-  const post = await db.getPost(params.postId);
+  const post = await db.posts.findOne({ slug: params.slug });
   return (
     <Stack>
       <CoverImage src={post.imageUrl} alt={post.description} />
       <Suspense fallback={<CommentsSkeleton />}>
-        <PostComments post={post} />
+        <PostComments postId={post} />
       </Suspense>
     </Stack>
   );
 }
 
 async function PostComments({ post }) {
-  const comments = await post.getComments();
-  return <CommentList comments={comments} />;
+  const comments = await db.comments.findAll({ postId: post.id });
+  return (
+    <>
+      <CommentList comments={comments} />
+      <AddComment postId={post.id} />
+    </>
+  );
 }`}</div>
         </CodeBlock>
       </div>
@@ -695,7 +699,12 @@ function CommentsSkeleton() {
 }
 
 function PostComments({post}) {
-  return <CommentList comments={post.comments} />;
+  return (
+    <>
+      <CommentList comments={post.comments} />
+      <AddComment postId={post.id} />
+    </>
+  );
 }
 
 function CommentList({comments}) {
@@ -709,7 +718,6 @@ function CommentList({comments}) {
       {comments.map((comment) => (
         <Comment key={comment.id} comment={comment} />
       ))}
-      <AddComment />
     </Stack>
   );
 }
@@ -746,7 +754,7 @@ function AddComment() {
   const {currentUser, onAddComment} = useContext(PostContext);
   return (
     <>
-      <hr />
+      <hr style={{marginTop: 16, marginBottom: 16}} />
       <Row>
         <Avatar user={currentUser} />
         <form

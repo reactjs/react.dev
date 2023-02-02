@@ -468,8 +468,9 @@ function Example1() {
     <div className="flex-col lg:flex-row gap-20 flex grow w-full mx-auto items-center">
       <div className="flex grow">
         <CodeBlock isFromPackageImport={false}>
-          <div>{`
-function Comment({ comment }) {
+          <div>{`import { Stack, Row, Avatar, Link, Timestamp } from 'your-design-system';
+
+export function Comment({ comment }) {
   const { author } = comment;
   return (
     <Stack>
@@ -545,7 +546,10 @@ function Example2() {
     <div className="flex-col lg:flex-row gap-20 flex grow w-full mx-auto items-center">
       <div className="flex grow">
         <CodeBlock isFromPackageImport={false}>
-          <div>{`function CommentList({ comments }) {
+          <div>{`import { Stack, Heading } from 'your-design-system';
+import { Comment, AddComment } from '.';
+
+export function CommentList({ comments }) {
   let headingText = 'Be the first to comment';
   if (comments.length > 0) {
     headingText = comments.length + ' Comments';
@@ -556,6 +560,7 @@ function Example2() {
       {comments.map(comment =>
         <Comment key={comment.id} comment={comment} />
       )}
+      <AddComment />
     </Stack>
   );
 }`}</div>
@@ -608,26 +613,24 @@ function Example3() {
     <div className="flex-col lg:flex-row gap-20 flex grow w-full mx-auto items-center">
       <div className="flex grow">
         <CodeBlock isFromPackageImport={false}>
-          <div>{`async function PostPage({ params }) {
+          <div>{`import { Suspense } from 'react';
+import { CommentList, PostCover } from '.';
+import { db } from './database.js';
+
+export default async function PostPage({ params }) {
   const post = await db.posts.findOne({ slug: params.slug });
   return (
-    <Stack>
-      <CoverImage src={post.imageUrl} alt={post.description} />
+    <PostCover imageUrl={post.coverUrl}>
       <Suspense fallback={<CommentsSkeleton />}>
         <PostComments postId={post} />
       </Suspense>
-    </Stack>
+    </PostCover>
   );
 }
 
 async function PostComments({ post }) {
   const comments = await db.comments.findAll({ postId: post.id });
-  return (
-    <>
-      <CommentList comments={comments} />
-      <AddComment postId={post.id} />
-    </>
-  );
+  return <CommentList comments={comments} />;
 }`}</div>
         </CodeBlock>
       </div>
@@ -641,7 +644,7 @@ async function PostComments({ post }) {
               }}>
               <PostPage
                 post={{
-                  imageUrl:
+                  coverUrl:
                     'https://www.nasa.gov/sites/default/files/styles/full_width/public/thumbnails/image/main_image_star-forming_region_carina_nircam_final-1280.jpg',
                   description: 'A picture of the galaxy',
                   comments,
@@ -684,12 +687,11 @@ function BrowserChrome({children}) {
 
 function PostPage({post}) {
   return (
-    <Stack>
-      <CoverImage src={post.imageUrl} alt={post.description} />
+    <PostCover imageUrl={post.coverUrl}>
       <Suspense fallback={<CommentsSkeleton />}>
         <PostComments post={post} />
       </Suspense>
-    </Stack>
+    </PostCover>
   );
 }
 
@@ -699,12 +701,7 @@ function CommentsSkeleton() {
 }
 
 function PostComments({post}) {
-  return (
-    <>
-      <CommentList comments={post.comments} />
-      <AddComment postId={post.id} />
-    </>
-  );
+  return <CommentList comments={post.comments} />;
 }
 
 function CommentList({comments}) {
@@ -718,22 +715,26 @@ function CommentList({comments}) {
       {comments.map((comment) => (
         <Comment key={comment.id} comment={comment} />
       ))}
+      <AddComment />
     </Stack>
   );
 }
 
-function CoverImage({src, alt}) {
+function PostCover({imageUrl, children}) {
   return (
-    <img
-      src={src}
-      alt={alt}
-      width="300"
-      style={{
-        transform: 'scale(1.2)',
-        transformOrigin: 'bottom',
-        marginBottom: 16,
-      }}
-    />
+    <>
+      <img
+        src={imageUrl}
+        alt="Cover image"
+        width="300"
+        style={{
+          transform: 'scale(1.2)',
+          transformOrigin: 'bottom',
+          marginBottom: 16,
+        }}
+      />
+      {children}
+    </>
   );
 }
 
@@ -754,7 +755,7 @@ function AddComment() {
   const {currentUser, onAddComment} = useContext(PostContext);
   return (
     <>
-      <hr style={{marginTop: 16, marginBottom: 16}} />
+      <hr />
       <Row>
         <Avatar user={currentUser} />
         <form

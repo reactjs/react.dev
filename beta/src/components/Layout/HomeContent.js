@@ -109,7 +109,7 @@ export function HomeContent() {
                 </h3>
                 <p className="text-xl leading-normal">
                   React is a library. It lets you put components together, but
-                  it doesn't prescribe solutions for routing and data fetching.
+                  it doesn’t prescribe solutions for routing and data fetching.
                   To get the most out of React, we recommend a React framework
                   like{' '}
                   <Link href="https://github.com/vercel/next.js">Next.js</Link>,{' '}
@@ -761,7 +761,7 @@ function AddComment() {
           <input
             name="text"
             placeholder="Add a comment..."
-            autocomplete="off"
+            autoComplete="off"
             style={{backgroundColor: 'transparent'}}
           />
         </form>

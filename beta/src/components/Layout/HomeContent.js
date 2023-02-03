@@ -468,19 +468,13 @@ function Example1() {
     <div className="flex-col lg:flex-row gap-20 flex grow w-full mx-auto items-center">
       <div className="flex grow">
         <CodeBlock isFromPackageImport={false}>
-          <div>{`import { Stack, Row, Avatar, Link, Timestamp } from 'your-design-system';
-
-export function Comment({ comment }) {
-  const { author } = comment;
+          <div>{`function Comment({ comment }) {
   return (
-    <Stack>
-      <Row>
-        <Avatar user={author} />
-        <Link to={author.url}>{author.name}</Link>
-        <Timestamp time={comment.postedAt} />
-      </Row>
-      {comment.text}
-    </Stack>
+    <div>
+      <Avatar user={comment.author} />
+      <ProfileLink to={comment.author} />
+      <p>{comment.text}</p>
+    </div>
   );
 }
           `}</div>
@@ -548,22 +542,18 @@ function Example2() {
     <div className="flex-col lg:flex-row gap-20 flex grow w-full mx-auto items-center">
       <div className="flex grow">
         <CodeBlock isFromPackageImport={false}>
-          <div>{`import { Stack, Heading } from 'your-design-system';
-import { Comment } from './Comment.js';
-
-export function CommentList({ comments, children }) {
-  let headingText = 'Be the first to comment';
+          <div>{`function CommentList({ comments }) {
+  let heading = 'Be the first to comment';
   if (comments.length > 0) {
-    headingText = comments.length + ' Comments';
+    heading = comments.length + ' Comments';
   }
   return (
-    <Stack gap={16}>
-      <Heading>{headingText}</Heading>
+    <section>
+      <h1>{heading}</h1>
       {comments.map(comment =>
         <Comment key={comment.id} comment={comment} />
       )}
-      {children}
-    </Stack>
+    </section>
   );
 }`}</div>
         </CodeBlock>
@@ -671,26 +661,24 @@ function Example3() {
     <div className="flex-col lg:flex-row gap-20 flex grow w-full mx-auto items-center">
       <div className="flex grow">
         <CodeBlock isFromPackageImport={false}>
-          <div>{`import { Suspense } from 'react';
-import { PostCover, CommentList, AddComment } from './components';
-import { db } from './database.js';
-
-export default async function PostPage({ params }) {
-  const post = await db.findPost({ slug: params.slug });
+          <div>{`async function PostPage({ slug }) {
+  const post = await db.findPost({ slug });
   return (
-    <PostCover imageUrl={post.coverUrl}>
+    <PostLayout coverUrl={post.coverUrl}>
       <Suspense fallback={<CommentsSkeleton />}>
         <PostComments postId={post.id} />
       </Suspense>
-    </PostCover>
+    </PostLayout>
   );
 }
 
 async function PostComments({ postId }) {
+  const comments = await db.findComments({ postId });
   return (
-    <CommentList comments={await db.findComments({ postId })}>
+    <>
+      <CommentList comments={comments} />
       <AddComment postId={postId} />
-    </CommentList>
+    </>
   );
 }`}</div>
         </CodeBlock>
@@ -863,22 +851,10 @@ function Comment({comment}) {
         <Row>
           <Avatar user={author} />
           <ExampleLink to={author.url}>{author.name}</ExampleLink>
-          <Timestamp time={comment.postedAt} />
         </Row>
         {comment.text}
       </Stack>
     </div>
-  );
-}
-
-function Timestamp({time}) {
-  return (
-    <span
-      style={{
-        color: '#aaa',
-      }}>
-      {time}
-    </span>
   );
 }
 

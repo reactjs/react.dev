@@ -689,7 +689,7 @@ export default async function PostPage({ params }) {
 async function PostComments({ postId }) {
   return (
     <CommentList comments={await db.findComments({ postId })}>
-      <AddComment />
+      <AddComment postId={postId} />
     </CommentList>
   );
 }`}</div>

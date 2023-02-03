@@ -157,6 +157,8 @@ function FriendListItem(props) {
 
 **How does a custom Hook get isolated state?** Each *call* to a Hook gets isolated state. Because we call `useFriendStatus` directly, from React's point of view our component just calls `useState` and `useEffect`. And as we [learned](/docs/hooks-state.html#tip-using-multiple-state-variables) [earlier](/docs/hooks-effect.html#tip-use-multiple-effects-to-separate-concerns), we can call `useState` and `useEffect` many times in one component, and they will be completely independent.
 
+**Does any change of state in a custom Hook cause any component that uses it to re-render?** Yes, when we use any Hook in our function, this function becomes a custom Hook, and when other components use it, any update of the state in this custom hook can cause the component to re-render. So we should not think of the custom Hook as a static function.
+
 ### Tip: Pass Information Between Hooks {#tip-pass-information-between-hooks}
 
 Since Hooks are functions, we can pass information between them.

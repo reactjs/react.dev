@@ -123,10 +123,10 @@ export function HomeContent() {
               </div>
               <div className="max-w-2xl text-center text-opacity-80">
                 <p className="text-xl leading-normal">
-                  For frameworks, React is more than a library—React is an
-                  architecture. React provides a single unified programming
-                  model that spans across the client <i>and</i> the server to
-                  let you use both for what they’re best at.
+                  To frameworks, React is more than a library—React is an
+                  architecture. React provides a unified programming model that
+                  spans across client and server so that you can use both of
+                  them for what they are best at.
                 </p>
               </div>
             </div>

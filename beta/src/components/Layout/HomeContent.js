@@ -125,8 +125,8 @@ export function HomeContent() {
                 <p className="text-xl leading-normal">
                   For frameworks, React is more than a library—React is an
                   architecture. React provides a single unified programming
-                  model that spans across the client and the server, letting you
-                  use both for what they’re best at.
+                  model that spans across the client <i>and</i> the server to
+                  let you use both for what they’re best at.
                 </p>
               </div>
             </div>
@@ -493,10 +493,8 @@ export function Comment({ comment }) {
               text: 'The quick brown fox jumps over the lazy dog',
               postedAt: '2m ago',
               author: {
-                name: 'Lauren',
-                image: {
-                  url: 'https://pbs.twimg.com/profile_images/1467169010437570562/THFD56Pc_400x400.jpg',
-                },
+                name: 'Firstname',
+                image: null,
               },
             }}
           />
@@ -508,10 +506,8 @@ export function Comment({ comment }) {
 
 const PostContext = createContext(null);
 const author = {
-  name: 'Lauren',
-  image: {
-    url: 'https://pbs.twimg.com/profile_images/1467169010437570562/THFD56Pc_400x400.jpg',
-  },
+  name: 'Firstname',
+  image: null,
 };
 
 function Example2() {
@@ -519,11 +515,17 @@ function Example2() {
     {
       id: 0,
       text: 'The quick brown fox jumps over the lazy dog',
-      postedAt: '4m ago',
+      postedAt: '2m ago',
       author,
     },
     {
       id: 1,
+      text: 'The quick brown fox jumps over the lazy dog',
+      postedAt: '2m ago',
+      author,
+    },
+    {
+      id: 2,
       text: 'The quick brown fox jumps over the lazy dog',
       postedAt: '2m ago',
       author,
@@ -585,15 +587,71 @@ function Example3() {
   const [comments, setComments] = useState([
     {
       id: 0,
-      text: 'The quick brown fox jumps over the lazy dog',
-      postedAt: '5m ago',
-      author,
+      text: 'fika :D',
+      postedAt: '1h ago',
+      author: {
+        name: 'Luna',
+        image: {
+          url: 'https://i.imgur.com/B3E9zDz.jpg',
+        },
+      },
     },
     {
       id: 1,
-      text: 'The quick brown fox jumps over the lazy dog',
+      text: `ok, I have to ask. What is FIKA?`,
+      postedAt: '12m ago',
+      author: {
+        name: 'Samuel',
+        image: {
+          url: 'https://i.imgur.com/OUkVY2C.jpg',
+        },
+      },
+    },
+    {
+      id: 2,
+      text:
+        `It's a thing the core team used to do, I believe (never been to one). ` +
+        `Basically grab a drink and/or snack and just chill for a bit together`,
+      postedAt: '7m ago',
+      author: {
+        name: 'Lauren',
+        image: {
+          url: 'https://i.imgur.com/8ayW9oH.jpg',
+        },
+      },
+    },
+    {
+      id: 3,
+      text: `When I ask to get cofee, I really mean "fika".`,
       postedAt: '4m ago',
-      author,
+      author: {
+        name: 'Sebastian',
+        image: {
+          url: 'https://i.imgur.com/FX7DZbQ.jpg',
+        },
+      },
+    },
+    {
+      id: 4,
+      text: `There's no english word for it.`,
+      postedAt: '4m ago',
+      author: {
+        name: 'Sebastian',
+        image: {
+          url: 'https://i.imgur.com/FX7DZbQ.jpg',
+        },
+      },
+    },
+    {
+      id: 5,
+      text: `we need more sweets to go with the coffee!`,
+      postedAt: '2m ago',
+      author: {
+        name: 'Yuzhi',
+        image: {
+          url: 'https://i.imgur.com/jxLrU8B.jpg',
+        },
+      },
     },
   ]);
 
@@ -648,8 +706,7 @@ async function PostComments({ postId }) {
               <PostPage
                 post={{
                   coverUrl:
-                    'https://www.nasa.gov/sites/default/files/styles/full_width/public/thumbnails/image/main_image_star-forming_region_carina_nircam_final-1280.jpg',
-                  description: 'A picture of the galaxy',
+                    'https://scontent-lcy1-1.xx.fbcdn.net/v/t1.15752-9/325627001_1075043223360852_6145649023119737113_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=ae9488&_nc_ohc=YepLoUA6kagAX8eEoQd&_nc_ht=scontent-lcy1-1.xx&uss=92da8eebfce9f94a&odm=b3ZlcnJlYWN0ZWQ4OTEud29ya3BsYWNlLmNvbQ&oe2=6403CA36&oh=03_AdSFsiiDB06aO6D8zrrWXG2ou1ek7tJ2GD0YXI71gyynCQ&oe=63DC5A82',
                   comments,
                 }}
               />
@@ -717,13 +774,21 @@ function CommentList({comments, children}) {
     headingText = comments.length + ' Comments';
   }
   return (
-    <Stack gap={16}>
-      <Heading>{headingText}</Heading>
-      {comments.map((comment) => (
-        <Comment key={comment.id} comment={comment} />
-      ))}
-      {children}
-    </Stack>
+    <div
+      style={{
+        maxHeight: 300,
+        width: 300,
+        overflow: 'scroll',
+        position: 'relative',
+      }}>
+      <Stack gap={16}>
+        <Heading>{headingText}</Heading>
+        {comments.map((comment) => (
+          <Comment key={comment.id} comment={comment} />
+        ))}
+        {children}
+      </Stack>
+    </div>
   );
 }
 
@@ -735,9 +800,9 @@ function PostCover({imageUrl, children}) {
         alt="Cover image"
         width="300"
         style={{
-          transform: 'scale(1.2)',
+          transform: 'scale(1.2) translateY(-10px)',
           transformOrigin: 'bottom',
-          marginBottom: 16,
+          background: 'transparent',
         }}
       />
       {children}
@@ -761,8 +826,14 @@ function Heading({children}) {
 function AddComment() {
   const {currentUser, onAddComment} = useContext(PostContext);
   return (
-    <>
-      <hr />
+    <div
+      style={{
+        position: 'sticky',
+        bottom: 0,
+        background: 'white',
+        width: '100%',
+      }}>
+      <hr style={{paddingTop: 10}} />
       <Row>
         <Avatar user={currentUser} />
         <form
@@ -781,21 +852,23 @@ function AddComment() {
           />
         </form>
       </Row>
-    </>
+    </div>
   );
 }
 
 function Comment({comment}) {
   const {author} = comment;
   return (
-    <Stack>
-      <Row>
-        <Avatar user={author} />
-        <ExampleLink to={author.url}>{author.name}</ExampleLink>
-        <Timestamp time={comment.postedAt} />
-      </Row>
-      {comment.text}
-    </Stack>
+    <div>
+      <Stack>
+        <Row>
+          <Avatar user={author} />
+          <ExampleLink to={author.url}>{author.name}</ExampleLink>
+          <Timestamp time={comment.postedAt} />
+        </Row>
+        {comment.text}
+      </Stack>
+    </div>
   );
 }
 
@@ -843,8 +916,7 @@ function ExampleLink({children}) {
 
 function Avatar({user}) {
   return (
-    <img
-      src={user?.image?.url}
+    <div
       style={{
         marginRight: 10,
         marginBottom: 5,
@@ -854,7 +926,10 @@ function Avatar({user}) {
         display: 'inline-block',
         verticalAlign: 'middle',
         transition: 'all 0.4s ease-in-out',
-        backgroundColor: '#aaa',
+        backgroundImage: user.image
+          ? `url(${user.image.url})`
+          : 'linear-gradient(63deg, rgba(184,101,164,1) 0%, rgba(226,105,59,1) 100%)',
+        backgroundSize: 'cover',
       }}
     />
   );

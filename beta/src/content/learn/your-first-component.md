@@ -159,7 +159,7 @@ Notice the difference in casing:
 * `<section>` is lowercase, so React knows we refer to an HTML tag.
 * `<Profile />` starts with a capital `P`, so React knows that we want to use our component called `Profile`.
 
-And `Profile` contains even more HTML: `<img />`. In the end, this is what the browser sees:
+And `Profile` contains even more JSX: `<img />`. In the end, this is what the browser sees:
 
 ```html
 <section>

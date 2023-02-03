@@ -163,7 +163,7 @@ As a last resort, you can pass an item's index in the array as a key. This can w
 
 Reorders can also cause issues with component state when indexes are used as keys. Component instances are updated and reused based on their key. If the key is an index, moving an item changes it. As a result, component state for things like uncontrolled inputs can get mixed up and updated in unexpected ways.
 
-Here is [an example of the issues that can be caused by using indexes as keys](codepen://reconciliation/index-used-as-key) on CodePen, and here is [an updated version of the same example showing how not using indexes as keys will fix these reordering, sorting, and prepending issues](codepen://reconciliation/no-index-used-as-key).
+Here is [an example of the issues that can be caused by using indexes as keys](codepen://reconciliation/index-used-as-key) on CodePen, and here is [an updated version of the same example showing how not using indexes as keys will fix these reordering, sorting, and prepending issues](codepen://reconciliation/no-index-used-as-key). Enter some text in the box and click "Add New to End". Repeat three times and now reorder the list by clicking on "Sort by Earliest" and "Sort by Latest". In the first example,  the "created at" data is re-ordered but the entered text is not. In the second example, the entered text is re-ordered as expected.
 
 ## Tradeoffs {#tradeoffs}
 

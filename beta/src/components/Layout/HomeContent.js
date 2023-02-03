@@ -493,7 +493,7 @@ export function Comment({ comment }) {
               text: 'The quick brown fox jumps over the lazy dog',
               postedAt: '2m ago',
               author: {
-                name: 'Firstname',
+                name: 'First name',
                 image: null,
               },
             }}
@@ -506,7 +506,7 @@ export function Comment({ comment }) {
 
 const PostContext = createContext(null);
 const author = {
-  name: 'Firstname',
+  name: 'First name',
   image: null,
 };
 

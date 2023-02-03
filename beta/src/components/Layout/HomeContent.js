@@ -29,7 +29,7 @@ export function HomeContent() {
               Learn React
             </ButtonLink>
             <ButtonLink
-              href={'/apis/react'}
+              href={'/reference/react'}
               type="secondary"
               size="lg"
               label="Take the Tutorial">

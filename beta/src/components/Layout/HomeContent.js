@@ -705,8 +705,7 @@ async function PostComments({ postId }) {
               }}>
               <PostPage
                 post={{
-                  coverUrl:
-                    'https://scontent-lcy1-1.xx.fbcdn.net/v/t1.15752-9/325627001_1075043223360852_6145649023119737113_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=ae9488&_nc_ohc=YepLoUA6kagAX8eEoQd&_nc_ht=scontent-lcy1-1.xx&uss=92da8eebfce9f94a&odm=b3ZlcnJlYWN0ZWQ4OTEud29ya3BsYWNlLmNvbQ&oe2=6403CA36&oh=03_AdSFsiiDB06aO6D8zrrWXG2ou1ek7tJ2GD0YXI71gyynCQ&oe=63DC5A82',
+                  coverUrl: 'https://i.imgur.com/Q7TJkPm.jpg',
                   comments,
                 }}
               />

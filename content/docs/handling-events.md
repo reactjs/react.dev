@@ -99,6 +99,8 @@ class Toggle extends React.Component {
 
 You have to be careful about the meaning of `this` in JSX callbacks. In JavaScript, class methods are not [bound](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_objects/Function/bind) by default. If you forget to bind `this.handleClick` and pass it to `onClick`, `this` will be `undefined` when the function is actually called.
 
+A special note here is, `this.handleEvent` may appear in the form of `this.handleEvent()`, so it may give the impression that when `handleEvent` is invoked, the `this` is bound to the correct object.  However, this is not the case, as `this.handleEvent` is first evaluated to be a reference to a function object, so it is similar to assigning `this.handleEvent` to `fn`, and then using `onClick={fn}`, and in this case, we can clearly see that the `this` will not be correctly bound.
+
 This is not React-specific behavior; it is a part of [how functions work in JavaScript](https://www.smashingmagazine.com/2014/01/understanding-javascript-function-prototype-bind/). Generally, if you refer to a method without `()` after it, such as `onClick={this.handleClick}`, you should bind that method.
 
 If calling `bind` annoys you, there are two ways you can get around this. You can use [public class fields syntax](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/Public_class_fields#public_instance_fields) to correctly bind callbacks:

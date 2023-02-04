@@ -38,25 +38,22 @@ export function HomeContent() {
           </div>
         </div>
         <div className="">
-          <div className="mx-auto bg-blue-60 dark:bg-blue-60 dark:bg-opacity-20 shadow-inner px-12 mt-8 flex flex-col w-full">
+          <div className="mx-auto bg-card dark:bg-card-dark shadow-inner px-12 mt-8 flex flex-col w-full">
             <div className="flex-col gap-2 flex grow w-full my-20 mx-auto items-center">
-              <div className="max-w-2xl text-center text-white text-opacity-80">
-                <h3 className="leading-tight text-white font-bold text-5xl mb-6">
-                  Create user interfaces
-                  <br /> from components
+              <div className="max-w-4xl text-center text-white text-opacity-80">
+                <h3 className="leading-tight text-primary dark:text-primary-dark font-semibold text-5xl mb-6">
+                  Create user interfaces from components
                 </h3>
-                <p className="text-xl leading-normal">
+                <p className="text-2xl text-secondary dark:text-secondary-dark leading-normal">
                   React lets you build user interfaces out of individual pieces
                   called components. Create your own React components like a
                   button, a panel, or an avatar. Then combine them into entire
                   screens, pages, and apps.
                 </p>
               </div>
-              <div className="max-w-6xl mx-auto flex flex-col w-full">
-                <Example1 />
-              </div>
-              <div className="max-w-2xl text-center text-white text-opacity-80">
-                <p className="text-xl leading-normal">
+              <Example1 />
+              <div className="max-w-4xl text-center text-white text-opacity-80">
+                <p className="text-2xl text-secondary dark:text-secondary-dark leading-normal">
                   Whether you work on your own or with thousands of other
                   developers, using React feels the same. It is designed to let
                   you seamlessly combine components written by independent
@@ -70,24 +67,22 @@ export function HomeContent() {
         <div className="">
           <div className="max-w-6xl mx-auto flex flex-col w-full">
             <div className="flex-col gap-2 flex grow w-full my-20 mx-auto items-center">
-              <div className="max-w-2xl text-center text-opacity-80">
+              <div className="max-w-4xl text-center text-opacity-80">
                 <h3 className="leading-tight dark:text-primary-dark text-primary font-bold text-5xl mb-6">
-                  Write components
-                  <br />
-                  with code and markup
+                  Write components with code and markup
                 </h3>
-                <p className="text-xl leading-normal">
+                <p className="text-2xl leading-normal">
                   React components are JavaScript functions. Want to show
-                  something conditionally? Use an <code>if</code> statement.
-                  Need to display a list? Use a <code>for</code> loop or array{' '}
-                  <code>map()</code>. Learning React is learning programming.
+                  something conditionally? Use an <Code>if</Code> statement.
+                  Need to display a list? Use a <Code>for</Code> loop or array{' '}
+                  <Code>map()</Code>. Learning React is learning programming.
                 </p>
               </div>
               <div className="max-w-6xl mx-auto flex flex-col w-full">
                 <Example2 />
               </div>
-              <div className="max-w-2xl text-center text-opacity-80">
-                <p className="text-xl leading-normal">
+              <div className="max-w-4xl text-center text-opacity-80">
+                <p className="text-2xl leading-normal">
                   This markup syntax is called JSX. It is a JavaScript syntax
                   extension popularized by React. Putting JSX markup close to
                   related rendering logic makes React components easy to create,
@@ -98,16 +93,14 @@ export function HomeContent() {
           </div>
         </div>
 
-        <div className="bg-card dark:bg-card-dark">
+        <div className="shadow-inner bg-card dark:bg-card-dark">
           <div className="max-w-6xl mx-auto flex flex-col w-full">
             <div className="flex-col gap-2 flex grow w-full my-20 mx-auto items-center">
-              <div className="max-w-2xl text-center text-opacity-80">
+              <div className="max-w-4xl text-center text-opacity-80">
                 <h3 className="leading-tight dark:text-primary-dark text-primary font-bold text-5xl mb-6">
-                  Go full-stack
-                  <br />
-                  with a framework
+                  Go full-stack with a framework
                 </h3>
-                <p className="text-xl leading-normal">
+                <p className="text-2xl text-secondary dark:text-secondary-dark leading-normal">
                   React is a library. It lets you put components together, but
                   it doesn’t prescribe solutions for routing and data fetching.
                   To get the most out of React, we recommend a React framework
@@ -121,8 +114,8 @@ export function HomeContent() {
               <div className="max-w-6xl mx-auto flex flex-col w-full">
                 <Example3 />
               </div>
-              <div className="max-w-2xl text-center text-opacity-80">
-                <p className="text-xl leading-normal">
+              <div className="max-w-4xl text-center text-secondary dark:text-secondary-dark">
+                <p className="text-2xl leading-normal">
                   To frameworks, React is more than a library—React is an
                   architecture. React provides a unified programming model that
                   spans across client and server so that you can use both of
@@ -136,13 +129,11 @@ export function HomeContent() {
         <div className="">
           <div className="max-w-6xl mx-auto flex flex-col w-full">
             <div className="flex-col gap-2 flex grow w-full my-20 mx-auto items-center">
-              <div className="max-w-2xl text-center text-opacity-80">
+              <div className="max-w-4xl text-center text-opacity-80">
                 <h3 className="leading-tight dark:text-primary-dark text-primary font-bold text-5xl mb-6">
-                  Make the best
-                  <br />
-                  use of the platform
+                  Make the best use of the platform
                 </h3>
-                <p className="text-xl leading-normal">
+                <p className="text-2xl leading-normal text-secondary dark:text-secondary-dark">
                   Web users expect pages to load fast. React can render into an
                   HTML stream on the server, gradually revealing more content
                   even before React itself has loaded on the client. React
@@ -150,9 +141,9 @@ export function HomeContent() {
                   even during rendering.
                 </p>
               </div>
-
-              <div className="max-w-2xl text-center text-opacity-80">
-                <p className="text-xl leading-normal">
+              <br />
+              <div className="max-w-4xl text-center text-opacity-80">
+                <p className="text-2xl leading-normal">
                   Mobile app users expect native look-and-feel. With{' '}
                   <Link href="https://reactnative.dev">React Native</Link>, you
                   can create Android and iOS apps with React. These user
@@ -165,175 +156,14 @@ export function HomeContent() {
           </div>
         </div>
 
-        <div className="mx-5 max-auto">
-          <div className="bg-card dark:bg-card-dark shadow-inner rounded-3xl px-12 mt-8 flex flex-col w-full">
-            <h3 className="w-full leading-tight font-bold text-5xl text-primary dark:text-primary-dark mt-20 text-center ">
-              React homepage section header
-            </h3>
-            <div className="mt-20 mx-auto flex gap-8 flex-col lg:flex-row max-w-6xl">
-              <div className="w-full lg:w-5/12 bg-red-60 p-16 rounded-3xl flex-col flex items-center">
-                <div className="flex-col text-white flex grow items-end justify-start my-0 mx-auto">
-                  <h3 className="w-full leading-tight font-bold text-5xl mb-6 text-left">
-                    Use as little or as much React as you need
-                  </h3>
-                  <p className="text-xl text-white text-opacity-80 leading-normal text-left">
-                    Many teams build their entire user interface with React. For
-                    example, the web experiences of
-                    <Link href="https://facebook.com"> Facebook</Link>,
-                    <Link href="https://instagram.com"> Instagram</Link>,
-                    <Link href="https://www.tiktok.com/en/"> TikTok</Link>,
-                    <Link href="https://twitter.com/"> Twitter</Link>,
-                    <Link href="https://airbnb.com/"> Airbnb</Link>,
-                    <Link href="https://spotify.com/"> Spotify</Link>,
-                    <Link href="https://trello.com/"> Trello</Link>, and
-                    <Link href="https://www.nytimes.com/">
-                      The New York Times
-                    </Link>
-                    are fully powered by React.
-                  </p>
-                </div>
-                <div className="rounded-lg w-full p-8 mt-8 justify-center leading-6 h-full overflow-x-auto flex-1 flex items-center bg-wash dark:bg-gray-95 shadow-lg overflow-hidden">
-                  Illustration goes here
-                </div>
-              </div>
-
-              <div className="w-full lg:w-7/12 bg-green-60 p-16 rounded-3xl flex-col flex items-center">
-                <div className="flex-col text-white flex grow items-end justify-start my-0 mx-auto">
-                  <h3 className="w-full leading-tight font-bold text-5xl mb-6 text-left">
-                    Stability without stagnation
-                  </h3>
-                  <p className="text-xl text-white text-opacity-80 leading-normal text-left">
-                    React approaches changes with care. Every React commit is
-                    tested on business-critical surfaces with hundreds of
-                    millions of users. When an API is deprecated, we add
-                    warnings and publish automatic scripts to assist with the
-                    migration. The 100,000 React components in the Meta codebase
-                    help validate every migration strategy. The React team is
-                    also always researching how to improve React. React has a
-                    high bar for taking an idea from research to production.
-                    Only proven approaches become part of React. Learn about our
-                    latest research
-                  </p>
-                </div>
-                <div className="rounded-lg w-full p-8 mt-8 justify-center leading-6 h-full overflow-x-auto flex items-center bg-wash dark:bg-gray-95 shadow-lg overflow-hidden">
-                  Illustration goes here
-                </div>
-              </div>
-            </div>
-
-            <div className="mx-auto flex mt-8 mb-20 gap-8 flex-col lg:flex-row max-w-6xl">
-              <div className="w-full lg:w-7/12 bg-blue-60 p-16 rounded-3xl flex-col flex items-center">
-                <div className="rounded-lg w-full p-8 justify-center leading-6 h-full overflow-x-auto flex items-center bg-wash dark:bg-gray-95 shadow-lg overflow-hidden">
-                  Illustration goes here
-                </div>
-
-                <div className="flex-col text-white flex grow items-end justify-start mt-12 mx-auto">
-                  <h3 className="w-full leading-tight font-bold text-5xl mb-6 text-left">
-                    Let a framework take care of the rest
-                  </h3>
-                  <p className="text-xl text-white text-opacity-80 leading-normal text-left">
-                    React is a library. It lets you create components and put
-                    them together, but it doesn&apos;t prescribe solutions for
-                    routing and data fetching. To take full advantage of React,
-                    we recommend using a mature React framework. React
-                    frameworks like
-                    <Link href="https://github.com/vercel/next.js">
-                      Next.js
-                    </Link>
-                    , <Link href="https://remix.run">Remix</Link>, and
-                    <Link href="https://expo.dev">Expo</Link> let you create
-                    full-stack React apps with little configuration.
-                  </p>
-                </div>
-              </div>
-
-              <div className="w-full lg:w-5/12 bg-purple-60 p-16 rounded-3xl flex-col flex items-center">
-                <div className="flex-col text-white flex grow items-end justify-start my-0 mx-auto">
-                  <h3 className="w-full leading-tight font-bold text-5xl mb-6 text-left">
-                    Match underlying platform expectations
-                  </h3>
-                  <p className="text-xl text-white text-opacity-80 leading-normal text-left">
-                    Users expect pages to load fast. On the web, React can
-                    progressively render to a stream of HTML, enabling content
-                    to be revealed gradually while the rest of the app&apos;s
-                    code and React itself are still loading. React takes
-                    advantage of modern web standards to keep the page
-                    responsive even during rendering.
-                  </p>
-                </div>
-                <div className="rounded-lg w-full p-8 mt-8 justify-center leading-6 h-full overflow-x-auto flex items-center bg-wash dark:bg-gray-95 shadow-lg overflow-hidden">
-                  Illustration goes here
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div className="my-20 px-12 flex flex-col w-full">
-          <h3 className="w-full leading-tight font-bold text-5xl text-primary dark:text-primary-dark mt-20 text-center ">
-            React homepage section header
-          </h3>
-          <div className="mb-20 mt-20 gap-20 mx-auto flex flex-col lg:flex-row max-w-6xl">
-            <div className="w-full lg:w-4/12 rounded-3xl flex-col flex items-center">
-              <div className="rounded-lg w-full p-8 mb-8 justify-center leading-6 overflow-x-auto flex items-center bg-wash dark:bg-gray-95 shadow-lg overflow-hidden">
-                Illustration goes here
-              </div>
-              <div className="flex-col text-primary dark:text-primary-dark flex grow items-end justify-start my-0 mx-auto">
-                <h3 className="w-full leading-tight font-bold text-3xl mb-6 text-left">
+        <div className="">
+          <div className="max-w-6xl mx-auto flex flex-col w-full">
+            <div className="flex-col gap-2 flex grow w-full my-20 mx-auto items-center">
+              <div className="max-w-4xl text-center text-opacity-80">
+                <h3 className="leading-tight dark:text-primary-dark text-primary font-bold text-5xl mb-6">
                   Use as little or as much React as you need
                 </h3>
-                <p className="text-lg leading-normal text-secondary dark:text-secondary-dark text-left w-full">
-                  Many teams build their entire user interface with React.
-                </p>
-              </div>
-            </div>
-
-            <div className="w-full lg:w-4/12 rounded-3xl flex-col flex items-center">
-              <div className="rounded-lg w-full p-8 mb-8 justify-center leading-6 overflow-x-auto flex items-center bg-wash dark:bg-gray-95 shadow-lg overflow-hidden">
-                Illustration goes here
-              </div>
-              <div className="flex-col text-primary dark:text-primary-dark flex grow items-end justify-start my-0 mx-auto">
-                <h3 className="w-full leading-tight font-bold text-3xl mb-6 text-left">
-                  Stability without stagnation
-                </h3>
-                <p className="text-lg leading-normal text-secondary dark:text-secondary-dark text-left w-full">
-                  React approaches changes with care. Every React commit is
-                  tested on business-critical surfaces with hundreds of millions
-                  of users.
-                </p>
-              </div>
-            </div>
-
-            <div className="w-full lg:w-4/12 rounded-3xl flex-col flex items-center">
-              <div className="rounded-lg w-full p-8 mb-8 justify-center leading-6 overflow-x-auto flex items-center bg-wash dark:bg-gray-95 shadow-lg overflow-hidden">
-                Illustration goes here
-              </div>
-
-              <div className="flex-col text-primary dark:text-primary-dark flex grow items-end justify-start mx-auto">
-                <h3 className="w-full leading-tight font-bold text-3xl mb-6 text-left">
-                  Let a framework take care of the rest
-                </h3>
-                <p className="text-lg text-secondary dark:text-secondary-dark leading-normal text-left w-full">
-                  React is a library. It lets you create components and put them
-                  together, but it doesn&apos;t prescribe solutions for routing
-                  and data fetching.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div className="px-12 flex flex-col w-full">
-          <h3 className="w-full leading-tight font-bold text-5xl text-primary dark:text-primary-dark mt-20 text-center ">
-            React homepage section header
-          </h3>
-          <div className="mt-20 mx-auto flex gap-8 flex-col lg:flex-row max-w-6xl">
-            <div className="w-full lg:w-6/12 bg-card dark:bg-card-dark p-16 rounded-3xl flex-col flex items-center">
-              <div className="flex-col text-primary dark:text-primary-dark flex grow items-end justify-start my-0 mx-auto">
-                <h3 className="w-full leading-tight font-bold text-5xl mb-6 text-left">
-                  Use as little or as much React as you need
-                </h3>
-                <p className="text-xl leading-normal text-left">
+                <p className="text-2xl leading-normal text-secondary dark:text-secondary-dark">
                   Many teams build their entire user interface with React. For
                   example, the web experiences of
                   <Link href="https://facebook.com"> Facebook</Link>,
@@ -349,25 +179,29 @@ export function HomeContent() {
                   are fully powered by React.
                 </p>
               </div>
-              <div className="rounded-lg w-full p-8 mt-8 justify-center leading-6 h-full overflow-x-auto flex items-center bg-wash dark:bg-gray-95 shadow-lg overflow-hidden">
-                Illustration goes here
-              </div>
             </div>
+          </div>
+        </div>
 
-            <div className="w-full lg:w-6/12 bg-card dark:bg-card-dark p-16 rounded-3xl flex-col flex items-center">
-              <div className="flex-col text-primary dark:text-primary-dark flex grow items-end justify-start my-0 mx-auto">
-                <h3 className="w-full leading-tight font-bold text-5xl mb-6 text-left">
+        <div className="">
+          <div className="max-w-6xl mx-auto flex flex-col w-full">
+            <div className="flex-col gap-2 flex grow w-full my-20 mx-auto items-center">
+              <div className="max-w-4xl text-center text-opacity-80">
+                <h3 className="leading-tight dark:text-primary-dark text-primary font-bold text-5xl mb-6">
                   Stability without stagnation
                 </h3>
-                <p className="text-xl leading-normal text-left">
+                <p className="text-2xl leading-normal text-secondary dark:text-secondary-dark">
                   React approaches changes with care. Every React commit is
                   tested on business-critical surfaces with hundreds of millions
                   of users. When an API is deprecated, we add warnings and
-                  publish automatic scripts to assist with the migration.
+                  publish automatic scripts to assist with the migration. The
+                  100,000 React components in the Meta codebase help validate
+                  every migration strategy. The React team is also always
+                  researching how to improve React. React has a high bar for
+                  taking an idea from research to production. Only proven
+                  approaches become part of React. Learn about our latest
+                  research
                 </p>
-              </div>
-              <div className="rounded-lg w-full p-8 mt-8 justify-center leading-6 h-full overflow-x-auto flex items-center bg-wash dark:bg-gray-95 shadow-lg overflow-hidden">
-                Illustration goes here
               </div>
             </div>
           </div>
@@ -465,10 +299,15 @@ export function HomeContent() {
 
 function Example1() {
   return (
-    <div className="flex-col lg:flex-row gap-20 flex grow w-full mx-auto items-center">
-      <div className="flex grow">
-        <CodeBlock isFromPackageImport={false}>
-          <div>{`function Comment({ comment }) {
+    <div className="lg:mx-2 w-full">
+      <div className="my-20 p-2 max-w-6xl mx-auto flex flex-col w-full border border-border dark:border-opacity-10 lg:rounded-2xl bg-card dark:bg-card-dark">
+        <div className="flex-col-reverse lg:flex-row gap-2 flex grow w-full mx-auto items-center">
+          <div className="rounded-2xl bg-wash dark:bg-gray-95 w-full p-2 flex grow flex-col border-t border border-border dark:border-border-dark">
+            <h3 className="text-sm my-2 mx-4 text-gray-30 dark:text-gray-50 select-none">
+              comment.react.js
+            </h3>
+            <CodeBlock isFromPackageImport={false} noShadow={true}>
+              <div>{`function Comment({ comment }) {
   return (
     <div>
       <Avatar user={comment.author} />
@@ -478,21 +317,23 @@ function Example1() {
   );
 }
           `}</div>
-        </CodeBlock>
-      </div>
-      <div className="max-w-xl">
-        <ExamplePanel>
-          <Comment
-            comment={{
-              text: 'The quick brown fox jumps over the lazy dog',
-              postedAt: '2m ago',
-              author: {
-                name: 'First name',
-                image: null,
-              },
-            }}
-          />
-        </ExamplePanel>
+            </CodeBlock>
+          </div>
+          <div className="w-full px-2 py-12 flex grow justify-center">
+            <ExamplePanel>
+              <Comment
+                comment={{
+                  text: 'The quick brown fox jumps over the lazy dog',
+                  postedAt: '2m ago',
+                  author: {
+                    name: 'First name',
+                    image: null,
+                  },
+                }}
+              />
+            </ExamplePanel>
+          </div>
+        </div>
       </div>
     </div>
   );
@@ -539,10 +380,15 @@ function Example2() {
   }
 
   return (
-    <div className="flex-col lg:flex-row gap-20 flex grow w-full mx-auto items-center">
-      <div className="flex grow">
-        <CodeBlock isFromPackageImport={false}>
-          <div>{`function CommentList({ comments }) {
+    <div className="lg:mx-2">
+      <div className="my-20 p-2 max-w-6xl mx-auto flex flex-col w-full border border-border dark:border-border-dark lg:rounded-2xl bg-card dark:bg-wash-dark">
+        <div className="flex-col-reverse lg:flex-row gap-2 flex grow w-full mx-auto items-center">
+          <div className="rounded-2xl bg-wash dark:bg-gray-95 w-full p-2 flex grow flex-col border-t border border-border dark:border-border-dark">
+            <h3 className="text-sm my-2 mx-4 text-gray-30 dark:text-gray-50 select-none">
+              commentList.react.js
+            </h3>
+            <CodeBlock isFromPackageImport={false} noShadow={true}>
+              <div>{`function CommentList({ comments }) {
   let heading = 'Be the first to comment';
   if (comments.length > 0) {
     heading = comments.length + ' Comments';
@@ -556,18 +402,20 @@ function Example2() {
     </section>
   );
 }`}</div>
-        </CodeBlock>
-      </div>
-      <div className="max-w-xl">
-        <ExamplePanel>
-          <PostContext.Provider
-            value={{
-              currentUser: author,
-              onAddComment: handleAddComment,
-            }}>
-            <CommentList comments={comments} />
-          </PostContext.Provider>
-        </ExamplePanel>
+            </CodeBlock>
+          </div>
+          <div className="w-full px-2 py-8 flex grow justify-center">
+            <ExamplePanel padding={true}>
+              <PostContext.Provider
+                value={{
+                  currentUser: author,
+                  onAddComment: handleAddComment,
+                }}>
+                <CommentList comments={comments} />
+              </PostContext.Provider>
+            </ExamplePanel>
+          </div>
+        </div>
       </div>
     </div>
   );
@@ -658,10 +506,15 @@ function Example3() {
   }
 
   return (
-    <div className="flex-col lg:flex-row gap-20 flex grow w-full mx-auto items-center">
-      <div className="flex grow">
-        <CodeBlock isFromPackageImport={false}>
-          <div>{`async function PostPage({ slug }) {
+    <div className="lg:mx-2">
+      <div className="my-20 p-2 max-w-6xl mx-auto flex flex-col w-full border border-border dark:border-opacity-10 lg:rounded-2xl bg-card dark:bg-card-dark">
+        <div className="flex-col-reverse lg:flex-row gap-2 flex grow w-full mx-auto items-center">
+          <div className="rounded-2xl bg-wash dark:bg-gray-95 w-full p-2 flex grow flex-col border-t border border-border dark:border-border-dark">
+            <h3 className="text-sm my-2 mx-4 text-gray-30 dark:text-gray-50 select-none">
+              postPage.react.js
+            </h3>
+            <CodeBlock isFromPackageImport={false} noShadow={true}>
+              <div>{`async function PostPage({ slug }) {
   const post = await db.findPost({ slug });
   return (
     <PostLayout coverUrl={post.coverUrl}>
@@ -681,55 +534,52 @@ async function PostComments({ postId }) {
     </>
   );
 }`}</div>
-        </CodeBlock>
-      </div>
-      <div className="max-w-xl">
-        <BrowserChrome>
-          <ExamplePanel>
-            <PostContext.Provider
-              value={{
-                currentUser: author,
-                onAddComment: handleAddComment,
-              }}>
-              <PostPage
-                post={{
-                  coverUrl: 'https://i.imgur.com/Q7TJkPm.jpg',
-                  comments,
-                }}
-              />
-            </PostContext.Provider>
-          </ExamplePanel>
-        </BrowserChrome>
+            </CodeBlock>
+          </div>
+          <div className="w-full py-12 flex grow justify-center">
+            <BrowserChrome>
+              <ExamplePanel padding={true}>
+                <PostContext.Provider
+                  value={{
+                    currentUser: author,
+                    onAddComment: handleAddComment,
+                  }}>
+                  <PostPage
+                    post={{
+                      coverUrl: 'https://i.imgur.com/Q7TJkPm.jpg',
+                      comments,
+                    }}
+                  />
+                </PostContext.Provider>
+              </ExamplePanel>
+            </BrowserChrome>
+          </div>
+        </div>
       </div>
     </div>
   );
 }
 
-function ExamplePanel({children}) {
+function ExamplePanel({children, padding}) {
   return (
     <div
       style={{
-        fontSize: 14,
-        color: '#444',
+        padding: padding ? 0 : '20px 20px 0 20px',
+        margin: '0 auto',
+        color: '#404756',
+        backgroundColor: '#fefefe',
+        boxShadow: '0 0 20px 0 rgba(0, 0, 0, 0.1)',
+        borderRadius: 10,
+        minHeight: 40,
+        overflow: 'hidden',
       }}>
-      <div
-        style={{
-          margin: 25,
-          padding: 20,
-          backgroundColor: '#fefefe',
-          boxShadow: '0 0 20px 0 rgba(0, 0, 0, 0.1)',
-          borderRadius: 10,
-          minHeight: 40,
-          overflow: 'hidden',
-        }}>
-        {children}
-      </div>
+      {children}
     </div>
   );
 }
 
 function BrowserChrome({children}) {
-  return <div>{children}</div>;
+  return <div className="max-w-sm">{children}</div>;
 }
 
 function PostPage({post}) {
@@ -763,12 +613,14 @@ function CommentList({comments, children}) {
   return (
     <div
       style={{
-        maxHeight: 300,
-        width: 300,
+        maxHeight: 320,
         overflow: 'scroll',
         position: 'relative',
+        paddingTop: 20,
+        paddingLeft: 20,
+        paddingRight: 20,
       }}>
-      <Stack gap={16}>
+      <Stack gap={0}>
         <Heading>{headingText}</Heading>
         {comments.map((comment) => (
           <Comment key={comment.id} comment={comment} />
@@ -782,16 +634,17 @@ function CommentList({comments, children}) {
 function PostCover({imageUrl, children}) {
   return (
     <>
-      <img
-        src={imageUrl}
-        alt="Cover image"
-        width="300"
+      <div
         style={{
-          transform: 'scale(1.2) translateY(-10px)',
-          transformOrigin: 'bottom',
-          background: 'transparent',
-        }}
-      />
+          marginLeft: -20,
+          marginRight: -20,
+          height: 120,
+          position: 'sticky',
+          top: 0,
+          overflow: 'hidden',
+        }}>
+        <img src={imageUrl} alt="Cover image" width="100%" />
+      </div>
       {children}
     </>
   );
@@ -802,8 +655,9 @@ function Heading({children}) {
     <h1
       style={{
         fontWeight: 'bold',
-        fontSize: 23,
+        fontSize: 20,
         color: '#222',
+        paddingBottom: 15,
       }}>
       {children}
     </h1>
@@ -817,13 +671,15 @@ function AddComment() {
       style={{
         position: 'sticky',
         bottom: 0,
+        paddingBottom: 20,
         background: 'white',
         width: '100%',
       }}>
-      <hr style={{paddingTop: 10}} />
+      <hr style={{paddingTop: 15}} />
       <Row>
         <Avatar user={currentUser} />
         <form
+          style={{width: '100%'}}
           onSubmit={(e) => {
             e.preventDefault();
             const formData = new FormData(e.target);
@@ -835,7 +691,11 @@ function AddComment() {
             name="text"
             placeholder="Add a comment..."
             autoComplete="off"
-            style={{backgroundColor: 'transparent'}}
+            style={{
+              backgroundColor: 'transparent',
+              outline: 'none',
+              width: '100%',
+            }}
           />
         </form>
       </Row>
@@ -846,7 +706,7 @@ function AddComment() {
 function Comment({comment}) {
   const {author} = comment;
   return (
-    <div>
+    <div style={{margin: '0 0 20px 0'}}>
       <Stack>
         <Row>
           <Avatar user={author} />
@@ -866,6 +726,14 @@ function Stack({children, gap}) {
         flexDirection: 'column',
         gap,
       }}>
+      {children}
+    </div>
+  );
+}
+
+function Code({children}) {
+  return (
+    <div className="font-mono inline rounded-lg bg-secondary-button dark:bg-secondary-button-dark py-0.5 px-1">
       {children}
     </div>
   );
@@ -894,11 +762,10 @@ function Avatar({user}) {
     <div
       style={{
         marginRight: 10,
-        marginBottom: 5,
-        height: 30,
-        width: 30,
+        minHeight: 32,
+        minWidth: 32,
         borderRadius: '50%',
-        display: 'inline-block',
+        display: 'flex',
         verticalAlign: 'middle',
         transition: 'all 0.4s ease-in-out',
         backgroundImage: user.image

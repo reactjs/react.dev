@@ -26,6 +26,7 @@ const CodeBlock = function CodeBlock({
     props: {className = 'language-js', children: code = '', meta},
   },
   noMargin,
+  noShadow,
 }: {
   children: React.ReactNode & {
     props: {
@@ -36,6 +37,7 @@ const CodeBlock = function CodeBlock({
   };
   className?: string;
   noMargin?: boolean;
+  noShadow?: boolean;
 }) {
   code = code.trimEnd();
   let lang = jsxLang;
@@ -196,7 +198,8 @@ const CodeBlock = function CodeBlock({
       className={cn(
         'sandpack sandpack--codeblock',
         'rounded-lg h-full w-full overflow-x-auto flex items-center bg-wash dark:bg-gray-95 shadow-lg',
-        !noMargin && 'my-8'
+        !noMargin && 'my-8',
+        noShadow && 'shadow-none px-8 w-full flex rounded-none bg-transparent'
       )}>
       <div className="sp-wrapper">
         <div className="sp-stack">

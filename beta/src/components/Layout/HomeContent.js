@@ -304,7 +304,7 @@ function Example1() {
         <div className="flex-col-reverse lg:flex-row gap-2 flex grow w-full mx-auto items-center">
           <div className="rounded-2xl bg-wash dark:bg-gray-95 w-full p-2 flex grow flex-col border-t border border-border dark:border-border-dark">
             <h3 className="text-sm my-2 mx-4 text-gray-30 dark:text-gray-50 select-none">
-              comment.react.js
+              Comment.js
             </h3>
             <CodeBlock isFromPackageImport={false} noShadow={true}>
               <div>{`function Comment({ comment }) {
@@ -385,7 +385,7 @@ function Example2() {
         <div className="flex-col-reverse lg:flex-row gap-2 flex grow w-full mx-auto items-center">
           <div className="rounded-2xl bg-wash dark:bg-gray-95 w-full p-2 flex grow flex-col border-t border border-border dark:border-border-dark">
             <h3 className="text-sm my-2 mx-4 text-gray-30 dark:text-gray-50 select-none">
-              commentList.react.js
+              CommentList.js
             </h3>
             <CodeBlock isFromPackageImport={false} noShadow={true}>
               <div>{`function CommentList({ comments }) {
@@ -511,7 +511,7 @@ function Example3() {
         <div className="flex-col-reverse lg:flex-row gap-2 flex grow w-full mx-auto items-center">
           <div className="rounded-2xl bg-wash dark:bg-gray-95 w-full p-2 flex grow flex-col border-t border border-border dark:border-border-dark">
             <h3 className="text-sm my-2 mx-4 text-gray-30 dark:text-gray-50 select-none">
-              postPage.react.js
+              PostPage.js
             </h3>
             <CodeBlock isFromPackageImport={false} noShadow={true}>
               <div>{`async function PostPage({ slug }) {

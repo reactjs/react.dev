@@ -182,9 +182,9 @@ export function Footer({hideSurvey = false}: FooterProps) {
                       x2="6.21654"
                       y2="4.08099"
                       gradientUnits="userSpaceOnUse">
-                      <stop offset="0.0006" stop-color="#0867DF" />
-                      <stop offset="0.4539" stop-color="#0668E1" />
-                      <stop offset="0.8591" stop-color="#0064E0" />
+                      <stop offset="0.0006" stopColor="#0867DF" />
+                      <stop offset="0.4539" stopColor="#0668E1" />
+                      <stop offset="0.8591" stopColor="#0064E0" />
                     </linearGradient>
                     <linearGradient
                       id="paint1_linear_627_396207"
@@ -193,8 +193,8 @@ export function Footer({hideSurvey = false}: FooterProps) {
                       x2="5.15084"
                       y2="3.84063"
                       gradientUnits="userSpaceOnUse">
-                      <stop offset="0.1323" stop-color="#0064DF" />
-                      <stop offset="0.9988" stop-color="#0064E0" />
+                      <stop offset="0.1323" stopColor="#0064DF" />
+                      <stop offset="0.9988" stopColor="#0064E0" />
                     </linearGradient>
                     <linearGradient
                       id="paint2_linear_627_396207"
@@ -203,8 +203,8 @@ export function Footer({hideSurvey = false}: FooterProps) {
                       x2="2.29244"
                       y2="6.25404"
                       gradientUnits="userSpaceOnUse">
-                      <stop offset="0.0147" stop-color="#0072EC" />
-                      <stop offset="0.6881" stop-color="#0064DF" />
+                      <stop offset="0.0147" stopColor="#0072EC" />
+                      <stop offset="0.6881" stopColor="#0064DF" />
                     </linearGradient>
                     <linearGradient
                       id="paint3_linear_627_396207"
@@ -213,8 +213,8 @@ export function Footer({hideSurvey = false}: FooterProps) {
                       x2="1.15"
                       y2="9.39138"
                       gradientUnits="userSpaceOnUse">
-                      <stop offset="0.0731" stop-color="#007CF6" />
-                      <stop offset="0.9943" stop-color="#0072EC" />
+                      <stop offset="0.0731" stopColor="#007CF6" />
+                      <stop offset="0.9943" stopColor="#0072EC" />
                     </linearGradient>
                     <linearGradient
                       id="paint4_linear_627_396207"
@@ -223,8 +223,8 @@ export function Footer({hideSurvey = false}: FooterProps) {
                       x2="0.998912"
                       y2="11.3606"
                       gradientUnits="userSpaceOnUse">
-                      <stop offset="0.0731" stop-color="#007FF9" />
-                      <stop offset="1" stop-color="#007CF6" />
+                      <stop offset="0.0731" stopColor="#007FF9" />
+                      <stop offset="1" stopColor="#007CF6" />
                     </linearGradient>
                     <linearGradient
                       id="paint5_linear_627_396207"
@@ -233,8 +233,8 @@ export function Footer({hideSurvey = false}: FooterProps) {
                       x2="1.61491"
                       y2="13.4591"
                       gradientUnits="userSpaceOnUse">
-                      <stop offset="0.0731" stop-color="#007FF9" />
-                      <stop offset="1" stop-color="#0082FB" />
+                      <stop offset="0.0731" stopColor="#007FF9" />
+                      <stop offset="1" stopColor="#0082FB" />
                     </linearGradient>
                     <linearGradient
                       id="paint6_linear_627_396207"
@@ -243,8 +243,8 @@ export function Footer({hideSurvey = false}: FooterProps) {
                       x2="10.689"
                       y2="5.24046"
                       gradientUnits="userSpaceOnUse">
-                      <stop offset="0.2799" stop-color="#007FF8" />
-                      <stop offset="0.9141" stop-color="#0082FB" />
+                      <stop offset="0.2799" stopColor="#007FF8" />
+                      <stop offset="0.9141" stopColor="#0082FB" />
                     </linearGradient>
                     <linearGradient
                       id="paint7_linear_627_396207"
@@ -253,8 +253,8 @@ export function Footer({hideSurvey = false}: FooterProps) {
                       x2="17.3361"
                       y2="10.8108"
                       gradientUnits="userSpaceOnUse">
-                      <stop stop-color="#0082FB" />
-                      <stop offset="0.9995" stop-color="#0081FA" />
+                      <stop stopColor="#0082FB" />
+                      <stop offset="0.9995" stopColor="#0081FA" />
                     </linearGradient>
                     <linearGradient
                       id="paint8_linear_627_396207"
@@ -263,8 +263,8 @@ export function Footer({hideSurvey = false}: FooterProps) {
                       x2="16.7086"
                       y2="13.0813"
                       gradientUnits="userSpaceOnUse">
-                      <stop offset="0.0619" stop-color="#0081FA" />
-                      <stop offset="1" stop-color="#0080F9" />
+                      <stop offset="0.0619" stopColor="#0081FA" />
+                      <stop offset="1" stopColor="#0080F9" />
                     </linearGradient>
                     <linearGradient
                       id="paint9_linear_627_396207"
@@ -273,8 +273,8 @@ export function Footer({hideSurvey = false}: FooterProps) {
                       x2="16.8526"
                       y2="13.5213"
                       gradientUnits="userSpaceOnUse">
-                      <stop stop-color="#027AF3" />
-                      <stop offset="1" stop-color="#0080F9" />
+                      <stop stopColor="#027AF3" />
+                      <stop offset="1" stopColor="#0080F9" />
                     </linearGradient>
                     <linearGradient
                       id="paint10_linear_627_396207"
@@ -283,8 +283,8 @@ export function Footer({hideSurvey = false}: FooterProps) {
                       x2="15.7366"
                       y2="14.2915"
                       gradientUnits="userSpaceOnUse">
-                      <stop stop-color="#0377EF" />
-                      <stop offset="0.9994" stop-color="#0279F1" />
+                      <stop stopColor="#0377EF" />
+                      <stop offset="0.9994" stopColor="#0279F1" />
                     </linearGradient>
                     <linearGradient
                       id="paint11_linear_627_396207"
@@ -293,8 +293,8 @@ export function Footer({hideSurvey = false}: FooterProps) {
                       x2="14.2235"
                       y2="14.1236"
                       gradientUnits="userSpaceOnUse">
-                      <stop offset="0.0019" stop-color="#0471E9" />
-                      <stop offset="1" stop-color="#0377EF" />
+                      <stop offset="0.0019" stopColor="#0471E9" />
+                      <stop offset="1" stopColor="#0377EF" />
                     </linearGradient>
                     <linearGradient
                       id="paint12_linear_627_396207"
@@ -303,8 +303,8 @@ export function Footer({hideSurvey = false}: FooterProps) {
                       x2="13.424"
                       y2="13.274"
                       gradientUnits="userSpaceOnUse">
-                      <stop offset="0.2765" stop-color="#0867DF" />
-                      <stop offset="1" stop-color="#0471E9" />
+                      <stop offset="0.2765" stopColor="#0867DF" />
+                      <stop offset="1" stopColor="#0471E9" />
                     </linearGradient>
                   </defs>
                 </svg>

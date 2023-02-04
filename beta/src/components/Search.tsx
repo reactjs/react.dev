@@ -154,14 +154,14 @@ export function Search({
           type="button"
           className="inline-flex md:hidden items-center text-lg p-1 ml-4 lg:ml-6"
           onClick={onOpen}>
-          <IconSearch className="align-middle" />
+          <IconSearch className="align-middle w-5 h-5" />
         </button>
       )}
 
       <button
         type="button"
         className={cn(
-          'relative pl-4 pr-1 py-1 h-10 bg-secondary-button bg-opacity-80 dark:bg-gray-80 outline-none focus:ring focus:outline-none betterhover:hover:bg-opacity-80 pointer items-center shadow-inner text-left w-full text-gray-30 rounded-full align-middle text-base',
+          '3xl:w-[56rem] mx-2 3xl:mx-0 w-full relative pl-4 pr-1 py-1 h-10 bg-secondary-button dark:bg-gray-80 outline-none focus:ring focus:outline-none betterhover:hover:bg-opacity-80 pointer items-center text-left w-full text-gray-30 rounded-full align-middle text-base',
           fullsize ? 'flex' : 'hidden md:flex'
         )}
         onClick={onOpen}>

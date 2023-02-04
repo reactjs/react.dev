@@ -30,7 +30,7 @@ export function Button({
       onClick={onClick}
       className={cn(
         className,
-        'text-base leading-tight font-bold border rounded-lg py-2 px-4 focus:ring-1 focus:ring-offset-2 focus:ring-link active:bg-link active:border-link active:text-white active:ring-0 active:ring-offset-0 outline-none inline-flex items-center my-1',
+        'text-base leading-tight font-bold border rounded-full py-2 px-4 focus:ring-1 focus:ring-offset-2 focus:ring-link active:bg-link active:border-link active:text-white active:ring-0 active:ring-offset-0 outline-none inline-flex items-center my-1',
         {
           'bg-link border-link text-white hover:bg-link focus:bg-link active:bg-link':
             active,

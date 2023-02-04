@@ -4,6 +4,7 @@
 
 import {createContext, useState, useContext, Suspense} from 'react';
 import ButtonLink from '../ButtonLink';
+import {IconRestart} from '../Icon/IconRestart';
 import {Logo} from 'components/Logo';
 import Link from 'components/MDX/Link';
 import CodeBlock from 'components/MDX/CodeBlock';
@@ -12,19 +13,20 @@ export function HomeContent() {
   return (
     <>
       <div className="pl-0">
-        <div className="mt-12 mb-20 flex flex-col justify-center">
-          <Logo className="mt-4 mb-3 text-link dark:text-link-dark w-28 self-center" />
-          <h1 className="text-6xl self-center flex font-bold leading-snug text-primary dark:text-primary-dark">
+        <div className="mx-5 mt-12 mb-20 flex flex-col justify-center">
+          <Logo className="mt-4 mb-3 text-link dark:text-link-dark w-24 lg:w-28 self-center" />
+          <h1 className="text-5xl lg:text-6xl self-center flex font-bold leading-snug text-primary dark:text-primary-dark">
             React
           </h1>
           <p className="text-4xl py-1 text-center text-secondary dark:text-primary-dark leading-snug self-center">
             The library for web and native user interfaces
           </p>
-          <div className="my-5 self-center flex gap-2">
+          <div className="my-5 self-center flex gap-2 w-full sm:w-auto">
             <ButtonLink
               href={'/learn'}
               type="primary"
               size="lg"
+              className="w-full sm:w-auto justify-center"
               label="Take the Tutorial">
               Learn React
             </ButtonLink>
@@ -32,19 +34,20 @@ export function HomeContent() {
               href={'/reference/react'}
               type="secondary"
               size="lg"
+              className="w-full sm:w-auto justify-center"
               label="Take the Tutorial">
               API Reference
             </ButtonLink>
           </div>
         </div>
         <div className="">
-          <div className="mx-auto bg-card dark:bg-card-dark shadow-inner px-12 mt-8 flex flex-col w-full">
-            <div className="flex-col gap-2 flex grow w-full my-20 mx-auto items-center">
-              <div className="max-w-4xl text-center text-white text-opacity-80">
-                <h3 className="leading-tight text-primary dark:text-primary-dark font-semibold text-5xl mb-6">
+          <div className="mx-auto bg-card dark:bg-card-dark shadow-inner mt-8 flex flex-col w-full">
+            <div className="flex-col gap-2 flex grow w-full my-16 lg:my-20 mx-auto items-center">
+              <div className="px-5 lg:px-0 max-w-4xl text-center text-white text-opacity-80">
+                <h3 className="leading-tight text-primary dark:text-primary-dark font-semibold text-4xl lg:text-5xl mb-6">
                   Create user interfaces from components
                 </h3>
-                <p className="text-2xl text-secondary dark:text-secondary-dark leading-normal">
+                <p className="text-xl lg:text-2xl text-secondary dark:text-secondary-dark leading-normal">
                   React lets you build user interfaces out of individual pieces
                   called components. Create your own React components like a
                   button, a panel, or an avatar. Then combine them into entire
@@ -52,8 +55,8 @@ export function HomeContent() {
                 </p>
               </div>
               <Example1 />
-              <div className="max-w-4xl text-center text-white text-opacity-80">
-                <p className="text-2xl text-secondary dark:text-secondary-dark leading-normal">
+              <div className="px-5 lg:px-0 max-w-4xl text-center text-white text-opacity-80">
+                <p className="text-xl lg:text-2xl text-secondary dark:text-secondary-dark leading-normal">
                   Whether you work on your own or with thousands of other
                   developers, using React feels the same. It is designed to let
                   you seamlessly combine components written by independent
@@ -66,12 +69,12 @@ export function HomeContent() {
 
         <div className="">
           <div className="max-w-6xl mx-auto flex flex-col w-full">
-            <div className="flex-col gap-2 flex grow w-full my-20 mx-auto items-center">
-              <div className="max-w-4xl text-center text-opacity-80">
-                <h3 className="leading-tight dark:text-primary-dark text-primary font-bold text-5xl mb-6">
+            <div className="flex-col gap-2 flex grow w-full my-16 lg:my-20 mx-auto items-center">
+              <div className="px-5 lg:px-0 max-w-4xl text-center text-opacity-80">
+                <h3 className="leading-tight dark:text-primary-dark text-primary font-bold text-4xl lg:text-5xl mb-6">
                   Write components with code and markup
                 </h3>
-                <p className="text-2xl leading-normal">
+                <p className="text-xl lg:text-2xl leading-normal">
                   React components are JavaScript functions. Want to show
                   something conditionally? Use an <Code>if</Code> statement.
                   Need to display a list? Use a <Code>for</Code> loop or array{' '}
@@ -81,8 +84,8 @@ export function HomeContent() {
               <div className="max-w-6xl mx-auto flex flex-col w-full">
                 <Example2 />
               </div>
-              <div className="max-w-4xl text-center text-opacity-80">
-                <p className="text-2xl leading-normal">
+              <div className="px-5 lg:px-0 max-w-4xl text-center text-opacity-80">
+                <p className="text-xl lg:text-2xl leading-normal">
                   This markup syntax is called JSX. It is a JavaScript syntax
                   extension popularized by React. Putting JSX markup close to
                   related rendering logic makes React components easy to create,
@@ -95,12 +98,12 @@ export function HomeContent() {
 
         <div className="shadow-inner bg-card dark:bg-card-dark">
           <div className="max-w-6xl mx-auto flex flex-col w-full">
-            <div className="flex-col gap-2 flex grow w-full my-20 mx-auto items-center">
-              <div className="max-w-4xl text-center text-opacity-80">
-                <h3 className="leading-tight dark:text-primary-dark text-primary font-bold text-5xl mb-6">
+            <div className="flex-col gap-2 flex grow w-full my-16 lg:my-20 mx-auto items-center">
+              <div className="px-5 lg:px-0 max-w-4xl text-center text-opacity-80">
+                <h3 className="leading-tight dark:text-primary-dark text-primary font-bold text-4xl lg:text-5xl mb-6">
                   Go full-stack with a framework
                 </h3>
-                <p className="text-2xl text-secondary dark:text-secondary-dark leading-normal">
+                <p className="text-xl lg:text-2xl text-secondary dark:text-secondary-dark leading-normal">
                   React is a library. It lets you put components together, but
                   it doesn’t prescribe solutions for routing and data fetching.
                   To get the most out of React, we recommend a React framework
@@ -114,8 +117,8 @@ export function HomeContent() {
               <div className="max-w-6xl mx-auto flex flex-col w-full">
                 <Example3 />
               </div>
-              <div className="max-w-4xl text-center text-secondary dark:text-secondary-dark">
-                <p className="text-2xl leading-normal">
+              <div className="px-5 lg:px-0 max-w-4xl text-center text-secondary dark:text-secondary-dark">
+                <p className="text-2xl text-secondary dark:text-secondary-dark leading-normal">
                   To frameworks, React is more than a library—React is an
                   architecture. React provides a unified programming model that
                   spans across client and server so that you can use both of
@@ -128,12 +131,12 @@ export function HomeContent() {
 
         <div className="">
           <div className="max-w-6xl mx-auto flex flex-col w-full">
-            <div className="flex-col gap-2 flex grow w-full my-20 mx-auto items-center">
-              <div className="max-w-4xl text-center text-opacity-80">
-                <h3 className="leading-tight dark:text-primary-dark text-primary font-bold text-5xl mb-6">
+            <div className="flex-col gap-2 flex grow w-full my-16 lg:my-20 mx-auto items-center">
+              <div className="px-5 lg:px-0 max-w-4xl text-center text-opacity-80">
+                <h3 className="leading-tight dark:text-primary-dark text-primary font-bold text-4xl lg:text-5xl mb-6">
                   Make the best use of the platform
                 </h3>
-                <p className="text-2xl leading-normal text-secondary dark:text-secondary-dark">
+                <p className="text-xl lg:text-2xl leading-normal text-secondary dark:text-secondary-dark">
                   Web users expect pages to load fast. React can render into an
                   HTML stream on the server, gradually revealing more content
                   even before React itself has loaded on the client. React
@@ -142,8 +145,8 @@ export function HomeContent() {
                 </p>
               </div>
               <br />
-              <div className="max-w-4xl text-center text-opacity-80">
-                <p className="text-2xl leading-normal">
+              <div className="px-5 lg:px-0 max-w-4xl text-center text-opacity-80">
+                <p className="text-xl lg:text-2xl text-secondary dark:text-secondary-dark leading-normal">
                   Mobile app users expect native look-and-feel. With{' '}
                   <Link href="https://reactnative.dev">React Native</Link>, you
                   can create Android and iOS apps with React. These user
@@ -158,12 +161,12 @@ export function HomeContent() {
 
         <div className="">
           <div className="max-w-6xl mx-auto flex flex-col w-full">
-            <div className="flex-col gap-2 flex grow w-full my-20 mx-auto items-center">
-              <div className="max-w-4xl text-center text-opacity-80">
-                <h3 className="leading-tight dark:text-primary-dark text-primary font-bold text-5xl mb-6">
+            <div className="flex-col gap-2 flex grow w-full my-16 lg:my-20 mx-auto items-center">
+              <div className="px-5 lg:px-0 max-w-4xl text-center text-opacity-80">
+                <h3 className="leading-tight dark:text-primary-dark text-primary font-bold text-4xl lg:text-5xl mb-6">
                   Use as little or as much React as you need
                 </h3>
-                <p className="text-2xl leading-normal text-secondary dark:text-secondary-dark">
+                <p className="text-xl lg:text-2xl leading-normal text-secondary dark:text-secondary-dark">
                   Many teams build their entire user interface with React. For
                   example, the web experiences of
                   <Link href="https://facebook.com"> Facebook</Link>,
@@ -185,12 +188,12 @@ export function HomeContent() {
 
         <div className="">
           <div className="max-w-6xl mx-auto flex flex-col w-full">
-            <div className="flex-col gap-2 flex grow w-full my-20 mx-auto items-center">
-              <div className="max-w-4xl text-center text-opacity-80">
-                <h3 className="leading-tight dark:text-primary-dark text-primary font-bold text-5xl mb-6">
+            <div className="flex-col gap-2 flex grow w-full my-16 lg:my-20 mx-auto items-center">
+              <div className="px-5 lg:px-0 max-w-4xl text-center text-opacity-80">
+                <h3 className="leading-tight dark:text-primary-dark text-primary font-bold text-4xl lg:text-5xl mb-6">
                   Stability without stagnation
                 </h3>
-                <p className="text-2xl leading-normal text-secondary dark:text-secondary-dark">
+                <p className="text-xl lg:text-2xl leading-normal text-secondary dark:text-secondary-dark">
                   React approaches changes with care. Every React commit is
                   tested on business-critical surfaces with hundreds of millions
                   of users. When an API is deprecated, we add warnings and
@@ -207,7 +210,7 @@ export function HomeContent() {
           </div>
         </div>
 
-        <div className="my-20 px-12 flex flex-col w-full">
+        <div className="my-16 lg:my-20 px-12 flex flex-col w-full">
           <h3 className="w-full leading-tight font-bold text-5xl text-primary dark:text-primary-dark mt-20 text-center">
             React homepage section header
           </h3>
@@ -263,7 +266,7 @@ export function HomeContent() {
           </div>
         </div>
 
-        <div className="bg-link bg-opacity-8 my-20 max-w-6xl mx-auto rounded-3xl p-20 text-base text-secondary dark:text-secondary-dark flex flex-col w-full justify-center items-center">
+        <div className="bg-link bg-opacity-8 my-16 lg:my-20 max-w-6xl mx-auto rounded-3xl p-20 text-base text-secondary dark:text-secondary-dark flex flex-col w-full justify-center items-center">
           <Logo className="text-link dark:text-link-dark w-36 mt-12 h-auto mx-auto self-start" />
           <div className="flex flex-wrap">
             <div className="mb-8 mt-4">
@@ -277,7 +280,7 @@ export function HomeContent() {
           </div>
         </div>
 
-        <div className="my-20 px-12 flex flex-col w-full">
+        <div className="my-16 lg:my-20 px-12 flex flex-col w-full">
           <div className="p-20 text-base text-secondary dark:text-secondary-dark flex flex-col w-full justify-center items-center">
             <Logo className="text-link dark:text-link-dark w-36 mt-12 h-auto mx-auto self-start" />
             <div className="flex flex-wrap">
@@ -300,9 +303,9 @@ export function HomeContent() {
 function Example1() {
   return (
     <div className="lg:mx-2 w-full">
-      <div className="my-20 p-2 max-w-6xl mx-auto flex flex-col w-full border border-border dark:border-opacity-10 lg:rounded-2xl bg-card dark:bg-card-dark">
+      <div className="my-16 lg:my-20 p-2 max-w-6xl mx-auto flex flex-col w-full border border-border dark:border-opacity-10 lg:rounded-2xl bg-card dark:bg-card-dark">
         <div className="flex-col-reverse lg:flex-row gap-2 flex grow w-full mx-auto items-center">
-          <div className="rounded-2xl bg-wash dark:bg-gray-95 w-full p-2 flex grow flex-col border-t border border-border dark:border-border-dark">
+          <div className="h-full rounded-2xl bg-wash dark:bg-gray-95 w-full p-2 flex grow flex-col border-t border border-border dark:border-border-dark">
             <h3 className="text-sm my-2 mx-4 text-gray-30 dark:text-gray-50 select-none">
               Comment.js
             </h3>
@@ -319,7 +322,7 @@ function Example1() {
           `}</div>
             </CodeBlock>
           </div>
-          <div className="w-full px-2 py-12 flex grow justify-center">
+          <div className="w-full p-8 flex grow justify-center">
             <ExamplePanel>
               <Comment
                 comment={{
@@ -381,7 +384,7 @@ function Example2() {
 
   return (
     <div className="lg:mx-2">
-      <div className="my-20 p-2 max-w-6xl mx-auto flex flex-col w-full border border-border dark:border-border-dark lg:rounded-2xl bg-card dark:bg-wash-dark">
+      <div className="my-16 lg:my-20 p-2 max-w-6xl mx-auto flex flex-col w-full border border-border dark:border-border-dark lg:rounded-2xl bg-card dark:bg-wash-dark">
         <div className="flex-col-reverse lg:flex-row gap-2 flex grow w-full mx-auto items-center">
           <div className="rounded-2xl bg-wash dark:bg-gray-95 w-full p-2 flex grow flex-col border-t border border-border dark:border-border-dark">
             <h3 className="text-sm my-2 mx-4 text-gray-30 dark:text-gray-50 select-none">
@@ -404,8 +407,8 @@ function Example2() {
 }`}</div>
             </CodeBlock>
           </div>
-          <div className="w-full px-2 py-8 flex grow justify-center">
-            <ExamplePanel padding={true}>
+          <div className="w-full p-8 py-8 flex grow justify-center">
+            <ExamplePanel noShadow={false} noPadding={true}>
               <PostContext.Provider
                 value={{
                   currentUser: author,
@@ -507,7 +510,7 @@ function Example3() {
 
   return (
     <div className="lg:mx-2">
-      <div className="my-20 p-2 max-w-6xl mx-auto flex flex-col w-full border border-border dark:border-opacity-10 lg:rounded-2xl bg-card dark:bg-card-dark">
+      <div className="my-16 lg:my-20 p-2 max-w-6xl mx-auto flex flex-col w-full border border-border dark:border-opacity-10 lg:rounded-2xl bg-card dark:bg-card-dark">
         <div className="flex-col-reverse lg:flex-row gap-2 flex grow w-full mx-auto items-center">
           <div className="rounded-2xl bg-wash dark:bg-gray-95 w-full p-2 flex grow flex-col border-t border border-border dark:border-border-dark">
             <h3 className="text-sm my-2 mx-4 text-gray-30 dark:text-gray-50 select-none">
@@ -536,9 +539,9 @@ async function PostComments({ postId }) {
 }`}</div>
             </CodeBlock>
           </div>
-          <div className="w-full py-12 flex grow justify-center">
+          <div className="w-full p-8 flex grow justify-center">
             <BrowserChrome>
-              <ExamplePanel padding={true}>
+              <ExamplePanel noPadding={true} noShadow={true}>
                 <PostContext.Provider
                   value={{
                     currentUser: author,
@@ -560,18 +563,23 @@ async function PostComments({ postId }) {
   );
 }
 
-function ExamplePanel({children, padding}) {
+function ExamplePanel({children, noPadding, noShadow}) {
   return (
     <div
       style={{
-        padding: padding ? 0 : '20px 20px 0 20px',
+        padding: noPadding ? 0 : '20px 20px 0 20px',
+        boxShadow: noShadow
+          ? 'none'
+          : '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
+        borderRadius: 20,
         margin: '0 auto',
         color: '#404756',
+        fontSize: 15,
+        lineHeight: 1.5,
         backgroundColor: '#fefefe',
-        boxShadow: '0 0 20px 0 rgba(0, 0, 0, 0.1)',
-        borderRadius: 10,
         minHeight: 40,
         overflow: 'hidden',
+        width: '100%',
       }}>
       {children}
     </div>
@@ -579,7 +587,20 @@ function ExamplePanel({children, padding}) {
 }
 
 function BrowserChrome({children}) {
-  return <div className="max-w-sm">{children}</div>;
+  return (
+    <div className="bg-wash dark:bg-gray-95 shadow-xl relative overflow-hidden w-full border border-border dark:border-opacity-10 rounded-2xl">
+      <div className="w-full border-b border-border backdrop-filter backdrop-blur-lg backdrop-saturate-200 bg-wash bg-opacity-95 z-10 absolute top-0 py-4 px-4 gap-2 flex flex-row items-center">
+        <div className="bg-secondary-button bg-opacity-80 text-sm text-gray-50 text-center rounded-full p-1 w-full flex-row flex space-between items-center">
+          <div className="h-6 w-6" />
+          <div className="w-full leading-snug">localhost:3000</div>
+          <div className="flex items-center p-1.5 rounded-full hover:bg-gray-20 hover:bg-opacity-50 cursor-pointer justify-center">
+            <IconRestart className="text-primary text-lg" />
+          </div>
+        </div>
+      </div>
+      <div className="">{children}</div>
+    </div>
+  );
 }
 
 function PostPage({post}) {
@@ -614,7 +635,6 @@ function CommentList({comments, children}) {
     <div
       style={{
         maxHeight: 320,
-        overflow: 'scroll',
         position: 'relative',
         paddingTop: 20,
         paddingLeft: 20,
@@ -634,18 +654,22 @@ function CommentList({comments, children}) {
 function PostCover({imageUrl, children}) {
   return (
     <>
-      <div
-        style={{
-          marginLeft: -20,
-          marginRight: -20,
-          height: 120,
-          position: 'sticky',
-          top: 0,
-          overflow: 'hidden',
-        }}>
-        <img src={imageUrl} alt="Cover image" width="100%" />
+      <div style={{overflowY: 'scroll'}}>
+        <div
+          style={{
+            height: 160,
+            marginTop: 70,
+            overflow: 'hidden',
+          }}>
+          <img
+            src={imageUrl}
+            alt="Cover image"
+            width="100%"
+            style={{maxWidth: '100%'}}
+          />
+        </div>
+        {children}
       </div>
-      {children}
     </>
   );
 }
@@ -671,7 +695,7 @@ function AddComment() {
       style={{
         position: 'sticky',
         bottom: 0,
-        paddingBottom: 20,
+        paddingBottom: 15,
         background: 'white',
         width: '100%',
       }}>
@@ -679,7 +703,7 @@ function AddComment() {
       <Row>
         <Avatar user={currentUser} />
         <form
-          style={{width: '100%'}}
+          style={{width: '100%', display: 'flex', alignItems: 'center'}}
           onSubmit={(e) => {
             e.preventDefault();
             const formData = new FormData(e.target);
@@ -707,7 +731,7 @@ function Comment({comment}) {
   const {author} = comment;
   return (
     <div style={{margin: '0 0 20px 0'}}>
-      <Stack>
+      <Stack gap={8}>
         <Row>
           <Avatar user={author} />
           <ExampleLink to={author.url}>{author.name}</ExampleLink>
@@ -747,7 +771,8 @@ function ExampleLink({children}) {
   return (
     <div
       style={{
-        fontSize: 16,
+        fontSize: 17,
+        marginTop: 3,
         marginRight: 10,
         color: '#222',
         fontWeight: 'bold',
@@ -765,14 +790,56 @@ function Avatar({user}) {
         minHeight: 32,
         minWidth: 32,
         borderRadius: '50%',
+        position: 'relative',
         display: 'flex',
+        alignItems: 'end',
+        overflow: 'hidden',
+        justifyContent: 'center',
         verticalAlign: 'middle',
         transition: 'all 0.4s ease-in-out',
-        backgroundImage: user.image
-          ? `url(${user.image.url})`
-          : 'linear-gradient(63deg, rgba(184,101,164,1) 0%, rgba(226,105,59,1) 100%)',
+        backgroundColor: '#EBECF0',
+        backgroundImage: user.image ? `url(${user.image.url})` : null,
         backgroundSize: 'cover',
-      }}
-    />
+      }}>
+      {user.image ? null : <AvatarPlaceholder />}
+      <div
+        style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          borderRadius: '50%',
+          boxShadow: 'inset 0 0 0 1px rgba(0,0,0,.1)',
+        }}
+      />
+    </div>
+  );
+}
+
+function AvatarPlaceholder() {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      style={{marginBottom: -1}}
+      width="24"
+      height="24"
+      viewBox="0 0 24 24">
+      <g fill="none" fill-rule="evenodd" transform="translate(-444 -156)">
+        <g fill="#99A1B3" transform="translate(353 156)">
+          <path d="M106.75,5.75 C106.75,8.2355 105.0715,10.25 103,10.25 C100.9285,10.25 99.25,8.2355 99.25,5.75 C99.25,3.2645 100.3215,1.25 103,1.25 C105.6785,1.25 106.75,3.2645 106.75,5.75" />
+          <path
+            fill-rule="nonzero"
+            d="M107.5,5.75 C107.5,8.62264765 105.518964,11 103,11 C100.481036,11 98.5,8.62264765 98.5,5.75 C98.5,2.60742209 100.059741,0.5 103,0.5 C105.940259,0.5 107.5,2.60742209 107.5,5.75 Z M106,5.75 C106,3.35481964 104.997273,2 103,2 C101.002727,2 100,3.35481964 100,5.75 C100,7.84855959 101.376137,9.5 103,9.5 C104.623863,9.5 106,7.84855959 106,5.75 Z"
+          />
+          <path d="M110.3008,22.75 L95.6993,22.75 C94.6268,22.75 93.7498,21.873 93.7498,20.801 L93.7498,19.601 C93.7498,16.108 96.6078,13.25 100.1013,13.25 L105.8988,13.25 C109.3923,13.25 112.2498,16.108 112.2498,19.601 L112.2498,20.801 C112.2498,21.873 111.3733,22.75 110.3008,22.75" />
+          <path
+            fill-rule="nonzero"
+            d="M110.3008,23.5 L95.6993,23.5 C94.2126937,23.5 92.9998,22.2873208 92.9998,20.801 L92.9998,19.601 C92.9998,15.6936997 96.1936731,12.5 100.1013,12.5 L105.8988,12.5 C109.80635,12.5 112.9998,15.6936231 112.9998,19.601 L112.9998,20.801 C112.9998,22.2873563 111.787371,23.5 110.3008,23.5 Z M110.3008,22 C110.958884,22 111.4998,21.4589886 111.4998,20.801 L111.4998,19.601 C111.4998,16.522032 108.977905,14 105.8988,14 L100.1013,14 C97.022082,14 94.4998,16.5221451 94.4998,19.601 L94.4998,20.801 C94.4998,21.4588343 95.0410614,22 95.6993,22 L110.3008,22 Z"
+          />
+        </g>
+        <polygon points="444 180 468 180 468 156 444 156" />
+      </g>
+    </svg>
   );
 }

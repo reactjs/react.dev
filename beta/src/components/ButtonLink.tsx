@@ -29,8 +29,8 @@ function ButtonLink({
       'bg-link text-white hover:bg-opacity-80': type === 'primary',
       'bg-secondary-button dark:bg-secondary-button-dark text-primary dark:text-primary-dark hover:text-link focus:bg-link focus:text-white focus:border-link focus:border-2':
         type === 'secondary',
-      'text-xl rounded-lg py-3 rounded-xl px-6': size === 'lg',
-      'text-base rounded-lg px-4 py-1.5': size === 'md',
+      'text-lg rounded-lg py-2.5 rounded-full px-6': size === 'lg',
+      'text-base rounded-full px-4 py-1.5': size === 'md',
     }
   );
   return (

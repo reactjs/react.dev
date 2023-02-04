@@ -118,7 +118,7 @@ export function HomeContent() {
                 <Example3 />
               </div>
               <div className="px-5 lg:px-0 max-w-4xl text-center text-secondary dark:text-secondary-dark">
-                <p className="text-2xl text-secondary dark:text-secondary-dark leading-normal">
+                <p className="text-xl lg:text-2xl text-secondary dark:text-secondary-dark leading-normal">
                   To frameworks, React is more than a library—React is an
                   architecture. React provides a unified programming model that
                   spans across client and server so that you can use both of
@@ -825,16 +825,16 @@ function AvatarPlaceholder() {
       width="24"
       height="24"
       viewBox="0 0 24 24">
-      <g fill="none" fill-rule="evenodd" transform="translate(-444 -156)">
+      <g fill="none" fillRule="evenodd" transform="translate(-444 -156)">
         <g fill="#99A1B3" transform="translate(353 156)">
           <path d="M106.75,5.75 C106.75,8.2355 105.0715,10.25 103,10.25 C100.9285,10.25 99.25,8.2355 99.25,5.75 C99.25,3.2645 100.3215,1.25 103,1.25 C105.6785,1.25 106.75,3.2645 106.75,5.75" />
           <path
-            fill-rule="nonzero"
+            fillRule="nonzero"
             d="M107.5,5.75 C107.5,8.62264765 105.518964,11 103,11 C100.481036,11 98.5,8.62264765 98.5,5.75 C98.5,2.60742209 100.059741,0.5 103,0.5 C105.940259,0.5 107.5,2.60742209 107.5,5.75 Z M106,5.75 C106,3.35481964 104.997273,2 103,2 C101.002727,2 100,3.35481964 100,5.75 C100,7.84855959 101.376137,9.5 103,9.5 C104.623863,9.5 106,7.84855959 106,5.75 Z"
           />
           <path d="M110.3008,22.75 L95.6993,22.75 C94.6268,22.75 93.7498,21.873 93.7498,20.801 L93.7498,19.601 C93.7498,16.108 96.6078,13.25 100.1013,13.25 L105.8988,13.25 C109.3923,13.25 112.2498,16.108 112.2498,19.601 L112.2498,20.801 C112.2498,21.873 111.3733,22.75 110.3008,22.75" />
           <path
-            fill-rule="nonzero"
+            fillRule="nonzero"
             d="M110.3008,23.5 L95.6993,23.5 C94.2126937,23.5 92.9998,22.2873208 92.9998,20.801 L92.9998,19.601 C92.9998,15.6936997 96.1936731,12.5 100.1013,12.5 L105.8988,12.5 C109.80635,12.5 112.9998,15.6936231 112.9998,19.601 L112.9998,20.801 C112.9998,22.2873563 111.787371,23.5 110.3008,23.5 Z M110.3008,22 C110.958884,22 111.4998,21.4589886 111.4998,20.801 L111.4998,19.601 C111.4998,16.522032 108.977905,14 105.8988,14 L100.1013,14 C97.022082,14 94.4998,16.5221451 94.4998,19.601 L94.4998,20.801 C94.4998,21.4588343 95.0410614,22 95.6993,22 L110.3008,22 Z"
           />
         </g>

@@ -548,20 +548,22 @@ async function PostComments({ postId }) {
               setCommentsPromise={setCommentsPromise}>
               <ExamplePanel noPadding={true} noShadow={true} height={544}>
                 <Suspense fallback={null}>
-                  <PostContext.Provider
-                    value={{
-                      currentUser: author,
-                      onAddComment: handleAddComment,
-                    }}>
-                    <PostPage
-                      post={{
-                        coverUrl: 'https://i.imgur.com/Q7TJkPm.jpg',
-                        comments,
-                      }}
-                      postPromise={postPromise}
-                      commentsPromise={commentsPromise}
-                    />
-                  </PostContext.Provider>
+                  <div style={{animation: 'fadein 150ms'}}>
+                    <PostContext.Provider
+                      value={{
+                        currentUser: author,
+                        onAddComment: handleAddComment,
+                      }}>
+                      <PostPage
+                        post={{
+                          coverUrl: 'https://i.imgur.com/Q7TJkPm.jpg',
+                          comments,
+                        }}
+                        postPromise={postPromise}
+                        commentsPromise={commentsPromise}
+                      />
+                    </PostContext.Provider>
+                  </div>
                 </Suspense>
               </ExamplePanel>
             </BrowserChrome>
@@ -602,7 +604,7 @@ function BrowserChrome({children, setPostPromise, setCommentsPromise}) {
       setTimeout(() => {
         postPromise._resolved = true;
         resolve();
-      }, 800);
+      }, 200);
     });
     const commentsPromise = new Promise((resolve) => {
       setTimeout(() => {

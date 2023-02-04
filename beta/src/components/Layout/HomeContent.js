@@ -733,9 +733,9 @@ function Stack({children, gap}) {
 
 function Code({children}) {
   return (
-    <div className="font-mono inline rounded-lg bg-secondary-button dark:bg-secondary-button-dark py-0.5 px-1">
+    <span className="font-mono inline rounded-lg bg-secondary-button dark:bg-secondary-button-dark py-0.5 px-1">
       {children}
-    </div>
+    </span>
   );
 }
 

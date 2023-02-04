@@ -68,6 +68,13 @@ module.exports = {
         xs: '11px',
         code: 'calc(1em - 20%)',
       },
+      keyframes: {
+        shimmer: {
+          '100%': {
+            transform: 'translateX(100%)',
+          },
+        },
+      },
       colors,
       gridTemplateColumns: {
         'only-content': 'auto',

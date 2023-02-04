@@ -384,7 +384,7 @@ function Example2() {
 
   return (
     <div className="lg:mx-2">
-      <div className="my-16 lg:my-20 p-2 max-w-6xl mx-auto flex flex-col w-full border border-border dark:border-border-dark lg:rounded-2xl bg-card dark:bg-wash-dark">
+      <div className="my-16 lg:my-20 p-2 max-w-6xl mx-auto flex flex-col w-full border border-border dark:border-border-dark lg:rounded-3xl bg-card dark:bg-wash-dark">
         <div className="flex-col-reverse lg:flex-row gap-2 flex grow w-full mx-auto items-center">
           <div className="rounded-2xl bg-wash dark:bg-gray-95 w-full p-2 flex grow flex-col border-t border border-border dark:border-border-dark">
             <h3 className="text-sm my-2 mx-4 text-gray-30 dark:text-gray-50 select-none">
@@ -589,8 +589,8 @@ function ExamplePanel({children, noPadding, noShadow}) {
 function BrowserChrome({children}) {
   return (
     <div className="bg-wash dark:bg-gray-95 shadow-xl relative overflow-hidden w-full border border-border dark:border-opacity-10 rounded-2xl">
-      <div className="w-full border-b border-border backdrop-filter backdrop-blur-lg backdrop-saturate-200 bg-wash bg-opacity-95 z-10 absolute top-0 py-4 px-4 gap-2 flex flex-row items-center">
-        <div className="bg-secondary-button bg-opacity-80 text-sm text-gray-50 text-center rounded-full p-1 w-full flex-row flex space-between items-center">
+      <div className="w-full h-16 border-b border-border backdrop-filter backdrop-blur-lg backdrop-saturate-200 bg-wash bg-opacity-95 z-10 absolute top-0 py-4 px-4 gap-2 flex flex-row items-center">
+        <div className="bg-gray-10 text-sm text-gray-50 text-center rounded-full p-1 w-full flex-row flex space-between items-center">
           <div className="h-6 w-6" />
           <div className="w-full leading-snug">localhost:3000</div>
           <div className="flex items-center p-1.5 rounded-full hover:bg-gray-20 hover:bg-opacity-50 cursor-pointer justify-center">
@@ -604,18 +604,49 @@ function BrowserChrome({children}) {
 }
 
 function PostPage({post}) {
+  // TODO: fix suspense
   return (
-    <PostCover imageUrl={post.coverUrl}>
-      <Suspense fallback={<CommentsSkeleton />}>
-        <PostComments post={post} />
-      </Suspense>
-    </PostCover>
+    <>
+      <CommentsSkeleton />
+      <PostCover imageUrl={post.coverUrl}>
+        <Suspense fallback={<CommentsSkeleton />}>
+          <PostComments post={post} />
+        </Suspense>
+      </PostCover>
+    </>
   );
 }
 
 function CommentsSkeleton() {
-  // TODO: add glimmer here
-  return <div />;
+  return (
+    <div className="absolute inset-0 z-10 mt-16 flex flex-col items-center overflow-hidden bg-white">
+      <div className="w-full">
+        <div className="relative overflow-hidden before:-skew-x-12 before:absolute before:inset-0 before:-translate-x-full before:animate-[shimmer_1.75s_infinite] before:bg-gradient-to-r before:from-transparent before:via-white/50 before:to-transparent">
+          <div className="space-y-3 space-x-5">
+            <div className="h-40 bg-gray-10"></div>
+            <div className="pt-3.5">
+              <div className="h-5 w-32 rounded-lg bg-gray-10"></div>
+            </div>
+            <div className="flex flex-row items-center gap-3 pt-2">
+              <div className="h-8 w-8 rounded-full bg-gray-10"></div>
+              <div className="h-3 w-12 rounded-lg bg-gray-10"></div>
+            </div>
+            <div className="h-3.5 w-2/5 rounded-lg bg-gray-10"></div>
+            <div className="flex flex-row items-center gap-3 pt-3">
+              <div className="h-8 w-8 rounded-full bg-gray-10"></div>
+              <div className="h-3 w-20 rounded-lg bg-gray-10"></div>
+            </div>
+            <div className="h-3.5 w-3/5 rounded-lg bg-gray-10"></div>
+            <div className="flex flex-row items-center gap-3 pt-3">
+              <div className="h-8 w-8 rounded-full bg-gray-10"></div>
+              <div className="h-3 w-20 rounded-lg bg-gray-10"></div>
+            </div>
+            <div className="h-3.5 w-3/5 rounded-lg bg-gray-10"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 }
 
 function PostComments({post}) {
@@ -658,7 +689,7 @@ function PostCover({imageUrl, children}) {
         <div
           style={{
             height: 160,
-            marginTop: 70,
+            marginTop: 64,
             overflow: 'hidden',
           }}>
           <img
@@ -695,6 +726,7 @@ function AddComment() {
       style={{
         position: 'sticky',
         bottom: 0,
+        zIndex: 10,
         paddingBottom: 15,
         background: 'white',
         width: '100%',

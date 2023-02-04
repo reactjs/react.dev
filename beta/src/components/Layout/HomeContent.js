@@ -354,13 +354,13 @@ function Example2() {
     {
       id: 0,
       text: 'The quick brown fox jumps over the lazy dog',
-      postedAt: '2m ago',
+      postedAt: '10m ago',
       author,
     },
     {
       id: 1,
       text: 'The quick brown fox jumps over the lazy dog',
-      postedAt: '2m ago',
+      postedAt: '4m ago',
       author,
     },
     {
@@ -426,6 +426,8 @@ function Example2() {
 }
 
 function Example3() {
+  const [postPromise, setPostPromise] = useState(null);
+  const [commentsPromise, setCommentsPromise] = useState(null);
   const [comments, setComments] = useState([
     {
       id: 0,
@@ -541,20 +543,26 @@ async function PostComments({ postId }) {
             </CodeBlock>
           </div>
           <div className="w-full p-8 flex grow justify-center">
-            <BrowserChrome>
-              <ExamplePanel noPadding={true} noShadow={true}>
-                <PostContext.Provider
-                  value={{
-                    currentUser: author,
-                    onAddComment: handleAddComment,
-                  }}>
-                  <PostPage
-                    post={{
-                      coverUrl: 'https://i.imgur.com/Q7TJkPm.jpg',
-                      comments,
-                    }}
-                  />
-                </PostContext.Provider>
+            <BrowserChrome
+              setPostPromise={setPostPromise}
+              setCommentsPromise={setCommentsPromise}>
+              <ExamplePanel noPadding={true} noShadow={true} height={544}>
+                <Suspense fallback={null}>
+                  <PostContext.Provider
+                    value={{
+                      currentUser: author,
+                      onAddComment: handleAddComment,
+                    }}>
+                    <PostPage
+                      post={{
+                        coverUrl: 'https://i.imgur.com/Q7TJkPm.jpg',
+                        comments,
+                      }}
+                      postPromise={postPromise}
+                      commentsPromise={commentsPromise}
+                    />
+                  </PostContext.Provider>
+                </Suspense>
               </ExamplePanel>
             </BrowserChrome>
           </div>
@@ -564,7 +572,7 @@ async function PostComments({ postId }) {
   );
 }
 
-function ExamplePanel({children, noPadding, noShadow}) {
+function ExamplePanel({children, noPadding, noShadow, height}) {
   return (
     <div
       style={{
@@ -581,22 +589,44 @@ function ExamplePanel({children, noPadding, noShadow}) {
         minHeight: 40,
         overflow: 'hidden',
         width: '100%',
+        height,
       }}>
       {children}
     </div>
   );
 }
 
-function BrowserChrome({children}) {
+function BrowserChrome({children, setPostPromise, setCommentsPromise}) {
+  function handleRestart() {
+    const postPromise = new Promise((resolve) => {
+      setTimeout(() => {
+        postPromise._resolved = true;
+        resolve();
+      }, 800);
+    });
+    const commentsPromise = new Promise((resolve) => {
+      setTimeout(() => {
+        commentsPromise._resolved = true;
+        resolve();
+      }, 2200);
+    });
+    setPostPromise(postPromise);
+    setCommentsPromise(commentsPromise);
+  }
+
   return (
     <div className="bg-wash dark:bg-gray-95 shadow-xl relative overflow-hidden w-full border border-border dark:border-opacity-10 rounded-2xl">
       <div className="w-full h-16 border-b border-border backdrop-filter backdrop-blur-lg backdrop-saturate-200 bg-wash bg-opacity-95 z-10 absolute top-0 py-4 px-4 gap-2 flex flex-row items-center">
         <div className="bg-gray-10 text-sm text-gray-50 text-center rounded-full p-1 w-full flex-row flex space-between items-center">
           <div className="h-6 w-6" />
-          <div className="w-full leading-snug">localhost:3000</div>
-          <div className="flex items-center p-1.5 rounded-full hover:bg-gray-20 hover:bg-opacity-50 cursor-pointer justify-center">
-            <IconRestart className="text-primary text-lg" />
+          <div className="w-full leading-snug">
+            example.com/posts/its-fika-time
           </div>
+          <button
+            onClick={handleRestart}
+            className="flex items-center p-1.5 rounded-full hover:bg-gray-20 hover:bg-opacity-50 cursor-pointer justify-center">
+            <IconRestart className="text-primary text-lg" />
+          </button>
         </div>
       </div>
       <div className="">{children}</div>
@@ -604,27 +634,26 @@ function BrowserChrome({children}) {
   );
 }
 
-function PostPage({post}) {
-  // TODO: fix suspense
+function PostPage({post, postPromise, commentsPromise}) {
+  if (postPromise && !postPromise._resolved) {
+    throw postPromise;
+  }
   return (
-    <>
-      <CommentsSkeleton />
-      <PostCover imageUrl={post.coverUrl}>
-        <Suspense fallback={<CommentsSkeleton />}>
-          <PostComments post={post} />
-        </Suspense>
-      </PostCover>
-    </>
+    <PostCover imageUrl={post.coverUrl}>
+      <Suspense fallback={<CommentsSkeleton />}>
+        <PostComments post={post} commentsPromise={commentsPromise} />
+      </Suspense>
+    </PostCover>
   );
 }
 
 function CommentsSkeleton() {
   return (
-    <div className="absolute inset-0 z-10 mt-16 flex flex-col items-center overflow-hidden bg-white">
+    <div className="flex flex-col items-center bg-white h-[320px] overflow-hidden">
       <div className="w-full">
         <div className="relative overflow-hidden before:-skew-x-12 before:absolute before:inset-0 before:-translate-x-full before:animate-[shimmer_1.75s_infinite] before:bg-gradient-to-r before:from-transparent before:via-white/50 before:to-transparent">
           <div className="space-y-3 space-x-5">
-            <div className="h-40 bg-gray-10"></div>
+            <div />
             <div className="pt-3.5">
               <div className="h-5 w-32 rounded-lg bg-gray-10"></div>
             </div>
@@ -650,7 +679,11 @@ function CommentsSkeleton() {
   );
 }
 
-function PostComments({post}) {
+function PostComments({post, commentsPromise}) {
+  if (commentsPromise && !commentsPromise._resolved) {
+    throw commentsPromise;
+  }
+
   return (
     <CommentList comments={post.comments}>
       <AddComment />
@@ -883,6 +916,8 @@ function Timestamp({time}) {
     <span
       style={{
         color: '#aaa',
+        marginTop: 5,
+        fontSize: 15,
       }}>
       {time}
     </span>

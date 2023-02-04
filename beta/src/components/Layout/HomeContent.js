@@ -384,7 +384,7 @@ function Example2() {
 
   return (
     <div className="lg:mx-2">
-      <div className="my-16 lg:my-20 p-2 max-w-6xl mx-auto flex flex-col w-full border border-border dark:border-border-dark lg:rounded-3xl bg-card dark:bg-wash-dark">
+      <div className="my-16 lg:my-20 p-2 max-w-6xl mx-auto flex flex-col w-full border-y lg:border border-border dark:border-border-dark lg:rounded-3xl bg-card dark:bg-wash-dark">
         <div className="flex-col-reverse lg:flex-row gap-2 flex grow w-full mx-auto items-center">
           <div className="rounded-2xl bg-wash dark:bg-gray-95 w-full p-2 flex grow flex-col border-t border border-border dark:border-border-dark">
             <h3 className="text-sm my-2 mx-4 text-gray-30 dark:text-gray-50 select-none">
@@ -589,7 +589,7 @@ function ExamplePanel({children, noPadding, noShadow}) {
 function BrowserChrome({children}) {
   return (
     <div className="bg-wash dark:bg-gray-95 shadow-xl relative overflow-hidden w-full border border-border dark:border-opacity-10 rounded-2xl">
-      <div className="w-full h-16 border-b border-border backdrop-filter backdrop-blur-lg backdrop-saturate-200 bg-wash bg-opacity-95 z-10 absolute top-0 py-4 px-4 gap-2 flex flex-row items-center">
+      <div className="w-full h-16 border-b border-border backdrop-filter rounded-t-2xl overflow-hidden backdrop-blur-lg backdrop-saturate-200 bg-white bg-opacity-90 z-10 absolute top-0 py-4 px-4 gap-2 flex flex-row items-center">
         <div className="bg-gray-10 text-sm text-gray-50 text-center rounded-full p-1 w-full flex-row flex space-between items-center">
           <div className="h-6 w-6" />
           <div className="w-full leading-snug">localhost:3000</div>
@@ -619,7 +619,7 @@ function PostPage({post}) {
 
 function CommentsSkeleton() {
   return (
-    <div className="absolute inset-0 z-10 mt-16 flex flex-col items-center overflow-hidden bg-white">
+    <div className="absolute inset-0 z-10 mt-16 flex flex-col items-center overflow-hidden">
       <div className="w-full">
         <div className="relative overflow-hidden before:-skew-x-12 before:absolute before:inset-0 before:-translate-x-full before:animate-[shimmer_1.75s_infinite] before:bg-gradient-to-r before:from-transparent before:via-white/50 before:to-transparent">
           <div className="space-y-3 space-x-5">

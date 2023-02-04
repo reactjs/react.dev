@@ -315,6 +315,7 @@ function Example1() {
     <div>
       <Avatar user={comment.author} />
       <ProfileLink to={comment.author} />
+      <Timestamp time={comment.postedAt} />
       <p>{comment.text}</p>
     </div>
   );
@@ -767,6 +768,7 @@ function Comment({comment}) {
         <Row>
           <Avatar user={author} />
           <ExampleLink to={author.url}>{author.name}</ExampleLink>
+          <Timestamp time={comment.postedAt} />
         </Row>
         {comment.text}
       </Stack>
@@ -873,5 +875,16 @@ function AvatarPlaceholder() {
         <polygon points="444 180 468 180 468 156 444 156" />
       </g>
     </svg>
+  );
+}
+
+function Timestamp({time}) {
+  return (
+    <span
+      style={{
+        color: '#aaa',
+      }}>
+      {time}
+    </span>
   );
 }

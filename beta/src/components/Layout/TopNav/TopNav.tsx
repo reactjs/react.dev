@@ -211,9 +211,10 @@ export default function TopNav({
 
   useEffect(() => {
     function handleScroll() {
-      if (window.scrollY > 40 && !isScrolled) {
+      const scrollY = window.scrollY;
+      if (scrollY > 40 && !isScrolled) {
         setIsScrolled(true);
-      } else if (isScrolled) {
+      } else if (scrollY <= 40 && isScrolled) {
         setIsScrolled(false);
       }
     }

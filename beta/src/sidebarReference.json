@@ -9,7 +9,7 @@
       "routes": [
         {
           "hasSectionHeader": true,
-          "sectionHeader": "'react' package"
+          "sectionHeader": "react@18.2.0"
         },
         {
           "title": "Components",
@@ -127,7 +127,7 @@
         },
         {
           "hasSectionHeader": true,
-          "sectionHeader": "'react-dom' package"
+          "sectionHeader": "react-dom@18.2.0"
         },
         {
           "title": "Components",

@@ -35,6 +35,8 @@ export interface RouteItem {
   hasSectionHeader?: boolean;
   /** Title of section header */
   sectionHeader?: string;
+  /** Whether it should be omitted in breadcrumbs */
+  skipBreadcrumb?: boolean;
 }
 
 export interface Routes {

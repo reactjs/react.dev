@@ -1,5 +1,5 @@
 ---
-title: The React Blog
+title: Blog
 ---
 
 <Intro>

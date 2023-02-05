@@ -1,4 +1,6 @@
 {
+  "title": "React Blog",
+  "path": "/blog",
   "routes": [
     {
       "hasSectionHeader": true,
@@ -7,6 +9,7 @@
     {
       "title": "Blog",
       "path": "/blog",
+      "skipBreadcrumb": true,
       "routes": [
         {
           "title": "React Labs: June 2022",

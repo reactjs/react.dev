@@ -1,4 +1,6 @@
 {
+  "title": "React Community",
+  "path": "/community",
   "routes": [
     {
       "hasSectionHeader": true,
@@ -7,6 +9,7 @@
     {
       "title": "Community",
       "path": "/community",
+      "skipBreadcrumb": true,
       "routes": [
         {
           "title": "React Conferences",

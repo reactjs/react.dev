@@ -95,8 +95,8 @@ Do you have a local React.js meetup? Add it here! (Please keep the list alphabet
 * [Budapest](https://www.meetup.com/React-Budapest/)
 
 ## India {/*india*/}
-* [Bangalore](https://www.meetup.com/ReactJS-Bangalore/)
-* [Bangalore](https://www.meetup.com/React-Native-Bangalore-Meetup)
+* [Bengaluru](https://www.meetup.com/ReactJS-Bangalore/)
+* [Bengaluru (React Native)](https://www.meetup.com/React-Native-Bangalore-Meetup)
 * [Chandigarh](https://www.meetup.com/Chandigarh-React-Developers/)
 * [Chennai](https://www.meetup.com/React-Chennai/)
 * [Delhi NCR](https://www.meetup.com/React-Delhi-NCR/)

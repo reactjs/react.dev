@@ -622,7 +622,8 @@ function BrowserChrome({children, setPostPromise, setCommentsPromise}) {
         <div className="bg-gray-10 text-sm text-gray-50 text-center rounded-full p-1 w-full flex-row flex space-between items-center">
           <div className="h-6 w-6" />
           <div className="w-full leading-snug">
-            example.com/posts/its-fika-time
+            <span className="text-gray-30">example.com</span>
+            /posts/its-fika-time
           </div>
           <button
             onClick={handleRestart}

@@ -342,8 +342,8 @@ function Example1() {
   return (
     <div className="lg:pl-10 lg:pr-5 w-full">
       <div className="my-16 lg:my-20 max-w-6xl mx-auto flex flex-col w-full border-t lg:border border-border dark:border-opacity-10 lg:rounded-2xl bg-card dark:bg-card-dark">
-        <div className="flex-col-reverse gap-5 lg:rounded-xl bg-gray-10 dark:bg-gray-70 shadow-inner lg:flex-row gap-8 flex grow w-full mx-auto items-center">
-          <div className="-m-5 h-full shadow-xl lg:rounded-2xl bg-wash dark:bg-gray-95 w-full flex grow flex-col border-t lg:border border-border dark:border-border-dark">
+        <div className="flex-col-reverse gap-0 lg:gap-5 lg:rounded-xl bg-gray-10 dark:bg-gray-70 shadow-inner lg:flex-row flex grow w-full mx-auto items-center">
+          <div className="lg:-m-5 h-full shadow-xl lg:rounded-2xl bg-wash dark:bg-gray-95 w-full flex grow flex-col border-t lg:border border-border dark:border-border-dark">
             <div className="w-full bg-card dark:bg-wash-dark lg:rounded-t-2xl border-b border-border dark:border-border-dark">
               <h3 className="text-sm my-1 mx-5 text-gray-50 dark:text-gray-30 select-none">
                 Comment.js
@@ -429,8 +429,8 @@ function Example2() {
   return (
     <div className="lg:pl-10 lg:pr-5 w-full">
       <div className="my-16 lg:my-20 max-w-6xl mx-auto flex flex-col w-full border-t lg:border border-border dark:border-opacity-10 lg:rounded-xl bg-card dark:bg-card-dark">
-        <div className="flex-col-reverse gap-5 bg-gray-05 dark:gray-95 shadow-inner lg:rounded-xl lg:flex-row gap-8 flex grow w-full mx-auto items-center">
-          <div className="-m-5 h-full shadow-xl lg:rounded-xl bg-wash dark:bg-gray-95 w-full flex grow flex-col border-t lg:border border-border dark:border-border-dark">
+        <div className="flex-col-reverse gap-0 lg:gap-5 bg-gray-05 dark:gray-95 shadow-inner lg:rounded-xl lg:flex-row flex grow w-full mx-auto items-center">
+          <div className="lg:-m-5 h-full shadow-xl lg:rounded-xl bg-wash dark:bg-gray-95 w-full flex grow flex-col border-t lg:border border-border dark:border-border-dark">
             <div className="w-full bg-card dark:bg-wash-dark lg:rounded-t-xl border-b border-border dark:border-border-dark">
               <h3 className="text-sm my-1 mx-5 text-gray-50 dark:text-gray-30 select-none">
                 CommentList.js
@@ -562,8 +562,8 @@ function Example3() {
   return (
     <div className="lg:pl-10 lg:pr-5 w-full">
       <div className="my-16 lg:my-20 max-w-6xl mx-auto flex flex-col w-full border-t lg:border border-border dark:border-opacity-10 lg:rounded-2xl bg-card dark:bg-card-dark">
-        <div className="flex-col-reverse gap-5 lg:rounded-xl bg-gray-10 dark:bg-gray-70 shadow-inner lg:flex-row gap-8 flex grow w-full mx-auto items-center">
-          <div className="-m-5 h-full shadow-xl lg:rounded-2xl bg-wash dark:bg-gray-95 w-full flex grow flex-col border-t lg:border border-border dark:border-border-dark">
+        <div className="flex-col-reverse gap-0 lg:gap-5 lg:rounded-xl bg-gray-10 dark:bg-gray-70 shadow-inner lg:flex-row flex grow w-full mx-auto items-center">
+          <div className="lg:-m-5 h-full shadow-xl lg:rounded-2xl bg-wash dark:bg-gray-95 w-full flex grow flex-col border-t lg:border border-border dark:border-border-dark">
             <div className="w-full bg-card dark:bg-wash-dark lg:rounded-t-2xl border-b border-border dark:border-border-dark">
               <h3 className="text-sm my-1 mx-5 text-gray-50 dark:text-gray-30 select-none">
                 PostPage.js

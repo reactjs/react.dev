@@ -125,17 +125,17 @@ function Link({href, children, ...props}: JSX.IntrinsicElements['a']) {
   );
 }
 
-function NavItem({url, section, title}: any) {
+function NavItem({url, isActive, children}: any) {
   return (
     <div className="block">
       <Link
-        href={`${url}`}
+        href={url}
         className={cn(
           'outline-link p-2 rounded-lg capitalize',
-          section != title && 'hover:bg-card hover:dark:bg-card-dark',
-          section === title && 'bg-highlight dark:bg-highlight-dark text-link'
+          !isActive && 'hover:bg-card hover:dark:bg-card-dark',
+          isActive && 'bg-highlight dark:bg-highlight-dark text-link'
         )}>
-        {title}
+        {children}
       </Link>
     </div>
   );
@@ -148,7 +148,7 @@ export default function TopNav({
 }: {
   routeTree: RouteItem;
   breadcrumbs: RouteItem[];
-  section: 'learn' | 'reference' | 'community' | 'blog' | 'home';
+  section: 'learn' | 'reference' | 'community' | 'blog' | 'home' | 'unknown';
 }) {
   const [isOpen, setIsOpen] = useState(false);
   const [showFeedback, setShowFeedback] = useState(false);
@@ -264,26 +264,34 @@ export default function TopNav({
               )}>
               {isOpen ? <IconClose /> : <IconHamburger />}
             </button>
-            <NextLink href="/">
-              <a className="3xl:flex-1 mr-0 sm:mr-2.5 3xl:mr-0 inline-flex text-lg font-normal items-center text-primary dark:text-primary-dark py-1 whitespace-nowrap outline-link p-2.5 rounded-lg">
-                <Logo className="text-sm mr-2 w-8 h-8 text-link dark:text-link-dark" />
-                React
-              </a>
-            </NextLink>
+            <div className="3xl:flex-1 mr-0 sm:mr-2.5 3xl:mr-0">
+              <NextLink href="/">
+                <a className="inline-flex text-lg font-normal items-center text-primary dark:text-primary-dark py-1 whitespace-nowrap outline-link p-2.5 rounded-lg">
+                  <Logo className="text-sm mr-2 w-8 h-8 text-link dark:text-link-dark" />
+                  React
+                </a>
+              </NextLink>
+            </div>
           </div>
           <div className="hidden md:flex flex-1 justify-center items-center w-full 3xl:w-auto 3xl:shrink-0 3xl:justify-center">
             <Search />
           </div>
           <div className="text-base justify-center items-center flex 3xl:flex-1 flex-row 3xl:justify-end">
             <div className="ml-2.5 mr-5 hidden lg:flex gap-5">
-              <NavItem section={section} url="/learn" title="learn" />
+              <NavItem isActive={section === 'learn'} url="/learn">
+                Learn
+              </NavItem>
               <NavItem
-                section={section}
-                url="/reference/react"
-                title="reference"
-              />
-              <NavItem section={section} url="/community" title="community" />
-              <NavItem section={section} url="/blog" title="blog" />
+                isActive={section === 'reference'}
+                url="/reference/react">
+                Reference
+              </NavItem>
+              <NavItem isActive={section === 'community'} url="/community">
+                Community
+              </NavItem>
+              <NavItem isActive={section === 'blog'} url="/blog">
+                Blog
+              </NavItem>
             </div>
             <div className="flex w-full md:hidden"></div>
             <div className="flex items-center -space-x-2.5 xs:space-x-0 ">

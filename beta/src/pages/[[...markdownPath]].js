@@ -22,6 +22,7 @@ export default function Layout({content, toc, meta}) {
   let routeTree;
   switch (section) {
     case 'home':
+    case 'unknown':
       routeTree = sidebarHome;
       break;
     case 'learn':
@@ -46,7 +47,10 @@ export default function Layout({content, toc, meta}) {
 
 function useActiveSection() {
   const {asPath} = useRouter();
-  if (asPath.startsWith('/reference')) {
+  const cleanedPath = asPath.split(/[\?\#]/)[0];
+  if (cleanedPath === '/') {
+    return 'home';
+  } else if (cleanedPath.startsWith('/reference')) {
     return 'reference';
   } else if (asPath.startsWith('/learn')) {
     return 'learn';
@@ -55,7 +59,7 @@ function useActiveSection() {
   } else if (asPath.startsWith('/blog')) {
     return 'blog';
   } else {
-    return 'home';
+    return 'unknown';
   }
 }
 

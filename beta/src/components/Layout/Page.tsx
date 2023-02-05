@@ -26,7 +26,7 @@ interface PageProps {
   toc: Array<TocItem>;
   routeTree: RouteItem;
   meta: {title?: string; description?: string};
-  section: 'learn' | 'reference' | 'community' | 'blog' | 'home';
+  section: 'learn' | 'reference' | 'community' | 'blog' | 'home' | 'unknown';
 }
 
 export function Page({children, toc, routeTree, meta, section}: PageProps) {
@@ -66,6 +66,19 @@ export function Page({children, toc, routeTree, meta, section}: PageProps) {
     );
   }
 
+  let hasColumns = true;
+  if (section === 'home') {
+    hasColumns = false;
+  }
+  let showSidebar = true;
+  let showToc = true;
+  if (section === 'home' || section === 'blog') {
+    showSidebar = false;
+  }
+  if (cleanedPath === '/blog') {
+    showToc = false;
+  }
+
   return (
     <>
       <Seo title={title} isHomePage={isHomePage} />
@@ -77,13 +90,19 @@ export function Page({children, toc, routeTree, meta, section}: PageProps) {
       />
       <div
         className={
-          isHomePage
-            ? ''
-            : 'grid grid-cols-only-content lg:grid-cols-sidebar-content 2xl:grid-cols-sidebar-content-toc'
+          hasColumns
+            ? 'grid grid-cols-only-content lg:grid-cols-sidebar-content 2xl:grid-cols-sidebar-content-toc'
+            : ''
         }>
-        <div className={'lg:-mt-20 ' + (isHomePage ? 'hidden' : '')}>
+        <div className="lg:-mt-20">
           <div className="lg:pt-20 fixed lg:sticky top-0 left-0 right-0 py-0 shadow lg:shadow-none">
-            <SidebarNav routeTree={routeTree} breadcrumbs={breadcrumbs} />
+            {showSidebar && (
+              <SidebarNav
+                key={section}
+                routeTree={routeTree}
+                breadcrumbs={breadcrumbs}
+              />
+            )}
           </div>
         </div>
         {/* No fallback UI so need to be careful not to suspend directly inside. */}
@@ -96,7 +115,7 @@ export function Page({children, toc, routeTree, meta, section}: PageProps) {
           </main>
         </Suspense>
         <div className="-mt-20 hidden lg:max-w-xs 2xl:block">
-          {toc.length > 0 && <Toc headings={toc} key={asPath} />}
+          {showToc && toc.length > 0 && <Toc headings={toc} key={asPath} />}
         </div>
       </div>
     </>

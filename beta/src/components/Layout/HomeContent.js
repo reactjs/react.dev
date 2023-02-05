@@ -9,7 +9,6 @@ import {Logo} from 'components/Logo';
 import Link from 'components/MDX/Link';
 import CodeBlock from 'components/MDX/CodeBlock';
 import {IconNavArrow} from 'components/Icon/IconNavArrow';
-import cn from 'classnames';
 
 export function HomeContent() {
   return (

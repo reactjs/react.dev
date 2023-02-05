@@ -254,6 +254,16 @@ export default function TopNav({
                 React
               </a>
             </NextLink>
+            <div className="lg:w-full leading-loose hidden sm:flex flex-initial items-center h-auto pl-2 pr-3 lg:pr-2.5 pt-0.5">
+              <Link
+                href="https://github.com/facebook/react/releases"
+                target="_blank"
+                className="underline-offset-2 hover:underline decoration-gray-50 dark:decoration-gray-30">
+                <div className="px-1 mb-px bg-card dark:bg-card-dark rounded text-gray-50 dark:text-gray-30 font-bold tracking-wide text-xs whitespace-nowrap">
+                  v18.2.0
+                </div>
+              </Link>
+            </div>
           </div>
           <div className="hidden md:flex flex-1 justify-center items-center w-full 3xl:w-auto 3xl:shrink-0 3xl:justify-center">
             <Search />

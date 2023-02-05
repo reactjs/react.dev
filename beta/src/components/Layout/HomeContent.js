@@ -354,12 +354,14 @@ function Example1() {
               noMargin={true}>
               <div>{`function Comment({ comment }) {
   return (
-    <div>
-      <Artwork user={comment.author} />
-      <ProfileLink to={comment.author} />
-      <Timestamp time={comment.postedAt} />
-      <p>{comment.text}</p>
-    </div>
+    <Row>
+      <Artwork user={author} />
+      <Stack>
+        <ExampleLink to={author.url}>{author.name}</ExampleLink>
+        <Timestamp time={comment.postedAt} />
+      </Stack>
+      <SaveButton/>
+    </Row>
   );
 }
           `}</div>
@@ -821,10 +823,10 @@ function AddComment() {
         width: '100%',
       }}>
       <hr style={{paddingTop: 15}} />
-      <Row>
+      <Row gap={12}>
         <Artwork user={currentUser} />
         <form
-          style={{width: '100%', display: 'flex', alignItems: 'center'}}
+          style={{flex: '1', display: 'flex', alignItems: 'center'}}
           onSubmit={(e) => {
             e.preventDefault();
             const formData = new FormData(e.target);
@@ -852,12 +854,13 @@ function Comment({comment}) {
   const {author} = comment;
   return (
     <Stack gap={8}>
-      <Row>
+      <Row gap={12}>
         <Artwork user={author} />
         <Stack>
           <ExampleLink to={author.url}>{author.name}</ExampleLink>
           <Timestamp time={comment.postedAt} />
         </Stack>
+        <SaveButton />
       </Row>
     </Stack>
   );
@@ -869,6 +872,7 @@ function Stack({children, gap}) {
       style={{
         display: 'flex',
         flexDirection: 'column',
+        flex: '1',
         gap,
       }}>
       {children}
@@ -884,9 +888,15 @@ function Code({children}) {
   );
 }
 
-function Row({children}) {
+function Row({children, gap}) {
   return (
-    <div style={{display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'row',
+        alignItems: 'center',
+        gap,
+      }}>
       {children}
     </div>
   );
@@ -911,7 +921,6 @@ function Artwork({user}) {
   return (
     <div
       style={{
-        marginRight: 12,
         height: 72,
         width: 72,
         borderRadius: '8px',
@@ -943,6 +952,48 @@ function ArtworkPlaceholder() {
         d="M20.42,2.31a1.52,1.52,0,0,0-1.3-.26L8.12,5A1.52,1.52,0,0,0,7,6.41v8.15A3.91,3.91,0,0,0,5,14a4,4,0,1,0,4,4V10.87L19,8.31v3.25A3.91,3.91,0,0,0,17,11a4,4,0,1,0,4,4V3.5A1.5,1.5,0,0,0,20.42,2.31Z"
       />
     </svg>
+  );
+}
+
+function SaveButton({saved}) {
+  return (
+    <div
+      style={{
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        height: 44,
+        width: 44,
+        borderRadius: '50%',
+        color: '#5E687E',
+        backgroundColor: 'transparent',
+        transition: 'background-color 0.2s ease-in-out',
+        '&:hover': {backgroundColor: '#F6F7F9'},
+      }}>
+      {saved ? (
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24">
+          <path
+            fill="currentColor"
+            d="M20.5,2H3.5A1.5,1.5,0,0,0,2,3.5V21a1,1,0,0,0,.56.9,1,1,0,0,0,1-.11L12,15.27l8.39,6.52A1,1,0,0,0,21,22a1,1,0,0,0,.44-.1A1,1,0,0,0,22,21V3.5A1.5,1.5,0,0,0,20.5,2Z"
+          />
+        </svg>
+      ) : (
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24">
+          <path
+            fill="currentColor"
+            d="M21,22a1,1,0,0,1-.61-.21L12,15.27,3.61,21.79a1,1,0,0,1-1,.11A1,1,0,0,1,2,21V3.5A1.5,1.5,0,0,1,3.5,2h17A1.5,1.5,0,0,1,22,3.5V21a1,1,0,0,1-.56.9A1,1,0,0,1,21,22Zm-9-9a1,1,0,0,1,.61.21L20,19V4H4V19l7.39-5.75A1,1,0,0,1,12,13Z"
+          />
+        </svg>
+      )}
+    </div>
   );
 }
 

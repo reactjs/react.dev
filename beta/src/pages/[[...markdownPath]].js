@@ -8,6 +8,8 @@ import {MDXComponents} from 'components/MDX/MDXComponents';
 import {Page} from 'components/Layout/Page';
 import sidebarLearn from '../sidebarLearn.json';
 import sidebarReference from '../sidebarReference.json';
+import sidebarCommunity from '../sidebarCommunity.json';
+import sidebarBlog from '../sidebarBlog.json';
 
 export default function Layout({content, toc, meta}) {
   const parsedContent = useMemo(
@@ -20,6 +22,12 @@ export default function Layout({content, toc, meta}) {
   switch (section) {
     case 'reference':
       routeTree = sidebarReference;
+      break;
+    case 'community':
+      routeTree = sidebarCommunity;
+      break;
+    case 'blog':
+      routeTree = sidebarBlog;
       break;
   }
   return (
@@ -35,8 +43,10 @@ function useActiveSection() {
     return 'reference';
   } else if (asPath.startsWith('/learn')) {
     return 'learn';
+  } else if (asPath.startsWith('/community')) {
+    return 'community';
   } else if (asPath.startsWith('/blog')) {
-    return 'learn';
+    return 'blog';
   } else {
     return 'home';
   }

@@ -1,0 +1,42 @@
+{
+  "routes": [
+    {
+      "hasSectionHeader": true,
+      "sectionHeader": "Get Involved"
+    },
+    {
+      "title": "Community",
+      "path": "/community",
+      "routes": [
+        {
+          "title": "React Conferences",
+          "path": "/community/conferences"
+        },
+        {
+          "title": "React Meetups",
+          "path": "/community/meetups"
+        },
+        {
+          "title": "React Videos",
+          "path": "/community/videos"
+        },
+        {
+          "title": "Meet the Team",
+          "path": "/community/team"
+        },
+        {
+          "title": "Docs Contributors",
+          "path": "/community/docs-contributors"
+        },
+        {
+          "title": "Acknowledgements",
+          "path": "/community/acknowledgements"
+        },
+        {
+          "title": "Versioning Policy",
+          "path": "/community/versioning-policy"
+        }
+      ]
+    }
+  ]
+}

@@ -46,7 +46,6 @@ export function Page({children, toc, routeTree, meta, section}: PageProps) {
   } else {
     content = (
       <div className="pl-0">
-        <Seo title={title} isHomePage={isHomePage} />
         <PageHeading
           title={title}
           description={description}

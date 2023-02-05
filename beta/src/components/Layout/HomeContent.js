@@ -205,7 +205,14 @@ export function HomeContent() {
                   taking an idea from research to production. Only proven
                   approaches become part of React.
                   <br />
-                  <Link href="#">Learn about our latest research</Link>
+                  <ButtonLink
+                    href={'/'}
+                    type="primary"
+                    size="lg"
+                    className="mt-16 w-full sm:w-auto justify-center"
+                    label="Learn about our latest research">
+                    Learn about our latest research
+                  </ButtonLink>
                 </p>
               </div>
             </div>
@@ -288,7 +295,7 @@ export function HomeContent() {
         </div>
 
         <div className="mx-5">
-          <div className="mx-auto my-40 max-w-6xl bg-blue-80 rounded-3xl flex-col-reverse lg:flex-row flex items-center">
+          <div className="mx-auto mt-40 max-w-6xl bg-blue-80 rounded-3xl flex-col-reverse lg:flex-row flex items-center">
             <div className="w-full lg:w-6/12 p-12 flex-col text-white flex grow items-end justify-start my-0 mx-auto">
               <h3 className="w-full leading-tight font-bold text-4xl mb-6 text-left">
                 Stability without stagnation
@@ -305,77 +312,8 @@ export function HomeContent() {
             </div>
           </div>
         </div>
-        <div className="my-16 lg:my-20 px-12 flex flex-col w-full">
-          <h3 className="w-full leading-tight font-bold text-5xl text-primary dark:text-primary-dark mt-20 text-center">
-            React homepage section header
-          </h3>
-          <div className="mb-20 mt-12 gap-8 mx-auto flex flex-col max-w-6xl">
-            <div className="lg:gap-20 w-full rounded-3xl flex-col lg:flex-row flex items-center">
-              <div className="w-full lg:w-6/12 px-20 py-40 rounded-lg my-8 justify-center leading-6 overflow-x-auto flex items-center bg-wash dark:bg-gray-95 shadow-lg overflow-hidden">
-                Illustration goes here
-              </div>
-              <div className="w-full lg:w-6/12 p-8 flex-col text-primary dark:text-primary-dark flex grow items-end justify-start my-0 mx-auto">
-                <h3 className="w-full leading-tight font-bold text-4xl mb-6 text-left">
-                  Use as little or as much <br />
-                  React as you need
-                </h3>
-                <p className="text-xl leading-normal text-secondary dark:text-secondary-dark w-full text-left">
-                  Many teams build their entire user interface with React.
-                </p>
-              </div>
-            </div>
 
-            <div className="w-full lg:gap-20 rounded-3xl flex-col-reverse lg:flex-row flex items-center">
-              <div className="w-full lg:w-6/12 p-8 flex-col text-primary dark:text-primary-dark flex grow items-end justify-start my-0 mx-auto">
-                <h3 className="w-full leading-tight font-bold text-4xl mb-6 text-left">
-                  Stability without stagnation
-                </h3>
-                <p className="text-xl leading-normal text-secondary dark:text-secondary-dark w-full text-left">
-                  React approaches changes with care. Every React commit is
-                  tested on business-critical surfaces with hundreds of millions
-                  of users.
-                </p>
-              </div>
-
-              <div className="w-full lg:w-6/12 px-20 py-40 rounded-lg my-8 justify-center leading-6 overflow-x-auto flex items-center bg-wash dark:bg-gray-95 shadow-lg overflow-hidden">
-                Illustration goes here
-              </div>
-            </div>
-
-            <div className="w-full rounded-3xl lg:gap-20 flex-col lg:flex-row flex items-center">
-              <div className="w-full lg:w-6/12 rounded-lg px-20 py-40 my-8 justify-center leading-6 overflow-x-auto flex items-center bg-wash dark:bg-gray-95 shadow-lg overflow-hidden">
-                Illustration goes here
-              </div>
-
-              <div className="flex-col p-8 w-full lg:w-6/12 text-primary dark:text-primary-dark flex grow items-end justify-start mx-auto">
-                <h3 className="w-full leading-tight font-bold text-4xl mb-6 text-left">
-                  Let a framework take care of the rest
-                </h3>
-                <p className="text-xl text-secondary dark:text-secondary-dark text-opacity-80 leading-normal text-left">
-                  React is a library. It lets you create components and put them
-                  together, but it doesn&apos;t prescribe solutions for routing
-                  and data fetching.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div className="bg-link bg-opacity-8 my-16 lg:my-20 max-w-6xl mx-auto rounded-3xl p-20 text-base text-secondary dark:text-secondary-dark flex flex-col w-full justify-center items-center">
-          <Logo className="text-link dark:text-link-dark w-36 mt-12 h-auto mx-auto self-start" />
-          <div className="flex flex-wrap">
-            <div className="mb-8 mt-4">
-              <h1 className="text-center text-6xl mr-4 flex wrap font-bold leading-tight text-primary dark:text-primary-dark">
-                Welcome to the React community
-              </h1>
-              <p className="text-4xl w-full text-center text-secondary dark:text-secondary-dark leading-relaxed self-center my-2">
-                Get started today.
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <div className="my-16 lg:my-20 px-12 flex flex-col w-full">
+        <div className="my-16 px-12 flex flex-col w-full">
           <div className="p-20 text-base text-secondary dark:text-secondary-dark flex flex-col w-full justify-center items-center">
             <Logo className="text-link dark:text-link-dark w-36 mt-12 h-auto mx-auto self-start" />
             <div className="flex flex-wrap">
@@ -399,7 +337,7 @@ function Example1() {
   return (
     <div className="lg:pl-10 lg:pr-5 w-full">
       <div className="my-16 lg:my-20 max-w-6xl mx-auto flex flex-col w-full border-t lg:border border-border dark:border-opacity-10 lg:rounded-2xl bg-card dark:bg-card-dark">
-        <div className="flex-col-reverse gap-5 lg:rounded-xl bg-secondary-button dark:bg-secondary-button-dark shadow-inner lg:flex-row gap-8 flex grow w-full mx-auto items-center">
+        <div className="flex-col-reverse gap-5 lg:rounded-xl bg-gray-10 dark:bg-gray-70 shadow-inner lg:flex-row gap-8 flex grow w-full mx-auto items-center">
           <div className="-m-5 h-full shadow-xl lg:rounded-2xl bg-wash dark:bg-gray-95 w-full flex grow flex-col border-t lg:border border-border dark:border-border-dark">
             <div className="w-full bg-card dark:bg-wash-dark lg:rounded-t-2xl border-b border-border dark:border-border-dark">
               <h3 className="text-sm my-1 mx-5 text-gray-50 dark:text-gray-30 select-none">
@@ -486,7 +424,7 @@ function Example2() {
   return (
     <div className="lg:pl-10 lg:pr-5 w-full">
       <div className="my-16 lg:my-20 max-w-6xl mx-auto flex flex-col w-full border-t lg:border border-border dark:border-opacity-10 lg:rounded-xl bg-card dark:bg-card-dark">
-        <div className="flex-col-reverse gap-5 bg-secondary-button dark:bg-secondary-button-dark shadow-inner lg:rounded-xl lg:flex-row gap-8 flex grow w-full mx-auto items-center">
+        <div className="flex-col-reverse gap-5 bg-gray-05 dark:gray-95 shadow-inner lg:rounded-xl lg:flex-row gap-8 flex grow w-full mx-auto items-center">
           <div className="-m-5 h-full shadow-xl lg:rounded-xl bg-wash dark:bg-gray-95 w-full flex grow flex-col border-t lg:border border-border dark:border-border-dark">
             <div className="w-full bg-card dark:bg-wash-dark lg:rounded-t-xl border-b border-border dark:border-border-dark">
               <h3 className="text-sm my-1 mx-5 text-gray-50 dark:text-gray-30 select-none">
@@ -619,7 +557,7 @@ function Example3() {
   return (
     <div className="lg:pl-10 lg:pr-5 w-full">
       <div className="my-16 lg:my-20 max-w-6xl mx-auto flex flex-col w-full border-t lg:border border-border dark:border-opacity-10 lg:rounded-2xl bg-card dark:bg-card-dark">
-        <div className="flex-col-reverse gap-5 lg:rounded-xl bg-secondary-button dark:bg-secondary-button-dark shadow-inner lg:flex-row gap-8 flex grow w-full mx-auto items-center">
+        <div className="flex-col-reverse gap-5 lg:rounded-xl bg-gray-10 dark:bg-gray-70 shadow-inner lg:flex-row gap-8 flex grow w-full mx-auto items-center">
           <div className="-m-5 h-full shadow-xl lg:rounded-2xl bg-wash dark:bg-gray-95 w-full flex grow flex-col border-t lg:border border-border dark:border-border-dark">
             <div className="w-full bg-card dark:bg-wash-dark lg:rounded-t-2xl border-b border-border dark:border-border-dark">
               <h3 className="text-sm my-1 mx-5 text-gray-50 dark:text-gray-30 select-none">

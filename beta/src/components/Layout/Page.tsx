@@ -39,6 +39,7 @@ export function Page({children, toc, routeTree, meta, section}: PageProps) {
   const title = meta.title || route?.title || '';
   const description = meta.description || route?.description || '';
   const isHomePage = cleanedPath === '/';
+  const isBlogIndex = cleanedPath === '/blog';
 
   let content;
   if (isHomePage) {
@@ -67,16 +68,14 @@ export function Page({children, toc, routeTree, meta, section}: PageProps) {
   }
 
   let hasColumns = true;
-  if (section === 'home') {
-    hasColumns = false;
-  }
   let showSidebar = true;
   let showToc = true;
-  if (section === 'home' || section === 'blog') {
+  if (isHomePage || isBlogIndex) {
+    hasColumns = false;
     showSidebar = false;
-  }
-  if (cleanedPath === '/blog') {
     showToc = false;
+  } else if (section === 'blog') {
+    showSidebar = false;
   }
 
   return (

@@ -89,7 +89,7 @@ export function Page({children, toc, routeTree, meta, section}: PageProps) {
             <article className="break-words" key={asPath}>
               {content}
             </article>
-            <Footer />
+            <Footer hideSurvey={isHomePage} />
           </main>
         </Suspense>
         <div className="-mt-20 hidden lg:max-w-xs 2xl:block">

@@ -254,24 +254,30 @@ export default function TopNav({
           <div className="text-base justify-center items-center flex 3xl:flex-1 flex-row 3xl:justify-end">
             <div className="ml-2.5 mr-5 hidden lg:flex gap-5">
               <div className="block">
-                <Link href="/learn" className="outline-link p-2 rounded-lg">
+                <Link
+                  href="/learn"
+                  className="outline-link p-2 rounded-lg hover:bg-card hover:dark:bg-card-dark">
                   Learn
                 </Link>
               </div>
               <div className="block">
                 <Link
                   href="/reference/react"
-                  className="outline-link p-2 rounded-lg">
+                  className="outline-link p-2 rounded-lg hover:bg-card hover:dark:bg-card-dark">
                   Reference
                 </Link>
               </div>
               <div className="block">
-                <Link href="/community" className="outline-link p-2 rounded-lg">
+                <Link
+                  href="/community"
+                  className="outline-link p-2 rounded-lg hover:bg-card hover:dark:bg-card-dark">
                   Community
                 </Link>
               </div>
               <div className="block">
-                <Link href="/blog" className="outline-link p-2 rounded-lg">
+                <Link
+                  href="/blog"
+                  className="outline-link p-2 rounded-lg hover:bg-card hover:dark:bg-card-dark">
                   Blog
                 </Link>
               </div>

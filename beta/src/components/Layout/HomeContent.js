@@ -456,7 +456,7 @@ function Example2() {
             </CodeBlock>
           </div>
           <div className="w-full p-5 flex grow justify-center">
-            <ExamplePanel noShadow={false} noPadding={true} height={292}>
+            <ExamplePanel noShadow={false} noPadding={true} height={328}>
               <PostContext.Provider
                 value={{
                   currentUser: author,
@@ -912,8 +912,8 @@ function Artwork({user}) {
     <div
       style={{
         marginRight: 12,
-        height: 60,
-        width: 60,
+        height: 72,
+        width: 72,
         borderRadius: '8px',
         display: 'flex',
         alignItems: 'center',
@@ -935,8 +935,8 @@ function ArtworkPlaceholder() {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width="32"
-      height="32"
+      width="36"
+      height="36"
       viewBox="0 0 24 24">
       <path
         fill="currentColor"

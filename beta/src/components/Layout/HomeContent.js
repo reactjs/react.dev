@@ -355,7 +355,7 @@ function Example1() {
               <div>{`function Comment({ comment }) {
   return (
     <div>
-      <Avatar user={comment.author} />
+      <Artwork user={comment.author} />
       <ProfileLink to={comment.author} />
       <Timestamp time={comment.postedAt} />
       <p>{comment.text}</p>
@@ -370,9 +370,9 @@ function Example1() {
               <Comment
                 comment={{
                   text: 'The quick brown fox jumps over the lazy dog',
-                  postedAt: '2m ago',
+                  postedAt: 'Release year',
                   author: {
-                    name: 'First name',
+                    name: 'Album title',
                     image: null,
                   },
                 }}
@@ -456,7 +456,7 @@ function Example2() {
             </CodeBlock>
           </div>
           <div className="w-full p-5 flex grow justify-center">
-            <ExamplePanel noShadow={false} noPadding={true} height={310}>
+            <ExamplePanel noShadow={false} noPadding={true} height={292}>
               <PostContext.Provider
                 value={{
                   currentUser: author,
@@ -630,7 +630,7 @@ function ExamplePanel({children, noPadding, noShadow, height}) {
   return (
     <div
       style={{
-        padding: noPadding ? 0 : '20px 20px 0 20px',
+        padding: noPadding ? 0 : '20px',
         boxShadow: noShadow
           ? 'none'
           : '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
@@ -759,8 +759,8 @@ function CommentList({comments, children}) {
         paddingLeft: 20,
         paddingRight: 20,
       }}>
-      <Stack gap={0}>
-        <Heading>{headingText}</Heading>
+      <Heading>{headingText}</Heading>
+      <Stack gap={16}>
         {comments.map((comment) => (
           <Comment key={comment.id} comment={comment} />
         ))}
@@ -822,7 +822,7 @@ function AddComment() {
       }}>
       <hr style={{paddingTop: 15}} />
       <Row>
-        <Avatar user={currentUser} />
+        <Artwork user={currentUser} />
         <form
           style={{width: '100%', display: 'flex', alignItems: 'center'}}
           onSubmit={(e) => {
@@ -851,16 +851,15 @@ function AddComment() {
 function Comment({comment}) {
   const {author} = comment;
   return (
-    <div style={{margin: '0 0 20px 0'}}>
-      <Stack gap={8}>
-        <Row>
-          <Avatar user={author} />
+    <Stack gap={8}>
+      <Row>
+        <Artwork user={author} />
+        <Stack>
           <ExampleLink to={author.url}>{author.name}</ExampleLink>
           <Timestamp time={comment.postedAt} />
-        </Row>
-        {comment.text}
-      </Stack>
-    </div>
+        </Stack>
+      </Row>
+    </Stack>
   );
 }
 
@@ -886,7 +885,11 @@ function Code({children}) {
 }
 
 function Row({children}) {
-  return <div style={{display: 'flex', flexDirection: 'row'}}>{children}</div>;
+  return (
+    <div style={{display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
+      {children}
+    </div>
+  );
 }
 
 function ExampleLink({children}) {
@@ -904,64 +907,41 @@ function ExampleLink({children}) {
   );
 }
 
-function Avatar({user}) {
+function Artwork({user}) {
   return (
     <div
       style={{
-        marginRight: 10,
-        minHeight: 32,
-        minWidth: 32,
-        borderRadius: '50%',
-        position: 'relative',
+        marginRight: 12,
+        height: 60,
+        width: 60,
+        borderRadius: '8px',
         display: 'flex',
-        alignItems: 'end',
+        alignItems: 'center',
         overflow: 'hidden',
         justifyContent: 'center',
         verticalAlign: 'middle',
         transition: 'all 0.4s ease-in-out',
+        color: '#99A1B3',
         backgroundColor: '#EBECF0',
         backgroundImage: user.image ? `url(${user.image.url})` : null,
         backgroundSize: 'cover',
       }}>
-      {user.image ? null : <AvatarPlaceholder />}
-      <div
-        style={{
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          right: 0,
-          bottom: 0,
-          borderRadius: '50%',
-          boxShadow: 'inset 0 0 0 1px rgba(0,0,0,.1)',
-        }}
-      />
+      {user.image ? null : <ArtworkPlaceholder />}
     </div>
   );
 }
 
-function AvatarPlaceholder() {
+function ArtworkPlaceholder() {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      style={{marginBottom: -1}}
-      width="24"
-      height="24"
+      width="32"
+      height="32"
       viewBox="0 0 24 24">
-      <g fill="none" fillRule="evenodd" transform="translate(-444 -156)">
-        <g fill="#99A1B3" transform="translate(353 156)">
-          <path d="M106.75,5.75 C106.75,8.2355 105.0715,10.25 103,10.25 C100.9285,10.25 99.25,8.2355 99.25,5.75 C99.25,3.2645 100.3215,1.25 103,1.25 C105.6785,1.25 106.75,3.2645 106.75,5.75" />
-          <path
-            fillRule="nonzero"
-            d="M107.5,5.75 C107.5,8.62264765 105.518964,11 103,11 C100.481036,11 98.5,8.62264765 98.5,5.75 C98.5,2.60742209 100.059741,0.5 103,0.5 C105.940259,0.5 107.5,2.60742209 107.5,5.75 Z M106,5.75 C106,3.35481964 104.997273,2 103,2 C101.002727,2 100,3.35481964 100,5.75 C100,7.84855959 101.376137,9.5 103,9.5 C104.623863,9.5 106,7.84855959 106,5.75 Z"
-          />
-          <path d="M110.3008,22.75 L95.6993,22.75 C94.6268,22.75 93.7498,21.873 93.7498,20.801 L93.7498,19.601 C93.7498,16.108 96.6078,13.25 100.1013,13.25 L105.8988,13.25 C109.3923,13.25 112.2498,16.108 112.2498,19.601 L112.2498,20.801 C112.2498,21.873 111.3733,22.75 110.3008,22.75" />
-          <path
-            fillRule="nonzero"
-            d="M110.3008,23.5 L95.6993,23.5 C94.2126937,23.5 92.9998,22.2873208 92.9998,20.801 L92.9998,19.601 C92.9998,15.6936997 96.1936731,12.5 100.1013,12.5 L105.8988,12.5 C109.80635,12.5 112.9998,15.6936231 112.9998,19.601 L112.9998,20.801 C112.9998,22.2873563 111.787371,23.5 110.3008,23.5 Z M110.3008,22 C110.958884,22 111.4998,21.4589886 111.4998,20.801 L111.4998,19.601 C111.4998,16.522032 108.977905,14 105.8988,14 L100.1013,14 C97.022082,14 94.4998,16.5221451 94.4998,19.601 L94.4998,20.801 C94.4998,21.4588343 95.0410614,22 95.6993,22 L110.3008,22 Z"
-          />
-        </g>
-        <polygon points="444 180 468 180 468 156 444 156" />
-      </g>
+      <path
+        fill="currentColor"
+        d="M20.42,2.31a1.52,1.52,0,0,0-1.3-.26L8.12,5A1.52,1.52,0,0,0,7,6.41v8.15A3.91,3.91,0,0,0,5,14a4,4,0,1,0,4,4V10.87L19,8.31v3.25A3.91,3.91,0,0,0,17,11a4,4,0,1,0,4,4V3.5A1.5,1.5,0,0,0,20.42,2.31Z"
+      />
     </svg>
   );
 }
@@ -971,7 +951,7 @@ function Timestamp({time}) {
     <span
       style={{
         color: '#99A1B3',
-        marginTop: 5,
+        marginBottom: 2,
         fontSize: 15,
       }}>
       {time}

@@ -406,7 +406,10 @@ function Example1() {
                 Comment.js
               </h3>
             </div>
-            <CodeBlock isFromPackageImport={false} noShadow={true}>
+            <CodeBlock
+              isFromPackageImport={false}
+              noShadow={true}
+              noMargin={true}>
               <div>{`function Comment({ comment }) {
   return (
     <div>
@@ -490,7 +493,10 @@ function Example2() {
                 CommentList.js
               </h3>
             </div>
-            <CodeBlock isFromPackageImport={false} noShadow={true}>
+            <CodeBlock
+              isFromPackageImport={false}
+              noShadow={true}
+              noMargin={true}>
               <div>{`function CommentList({ comments }) {
   let heading = 'Be the first to comment';
   if (comments.length > 0) {
@@ -620,7 +626,10 @@ function Example3() {
                 PostPage.js
               </h3>
             </div>
-            <CodeBlock isFromPackageImport={false} noShadow={true}>
+            <CodeBlock
+              isFromPackageImport={false}
+              noShadow={true}
+              noMargin={true}>
               <div>{`async function PostPage({ slug }) {
   const post = await db.findPost({ slug });
   return (

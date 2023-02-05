@@ -8,6 +8,7 @@ import {IconRestart} from '../Icon/IconRestart';
 import {Logo} from 'components/Logo';
 import Link from 'components/MDX/Link';
 import CodeBlock from 'components/MDX/CodeBlock';
+import {IconNavArrow} from 'components/Icon/IconNavArrow';
 import cn from 'classnames';
 
 export function HomeContent() {
@@ -209,9 +210,13 @@ export function HomeContent() {
                     href={'/'}
                     type="primary"
                     size="lg"
-                    className="mt-16 w-full sm:w-auto justify-center"
+                    className="mt-16 justify-center"
                     label="Learn about our latest research">
                     Learn about our latest research
+                    <IconNavArrow
+                      displayDirection="right"
+                      className="inline ml-1"
+                    />
                   </ButtonLink>
                 </p>
               </div>
@@ -313,15 +318,15 @@ export function HomeContent() {
           </div>
         </div>
 
-        <div className="my-16 px-12 flex flex-col w-full">
-          <div className="p-20 text-base text-secondary dark:text-secondary-dark flex flex-col w-full justify-center items-center">
-            <Logo className="text-link dark:text-link-dark w-36 mt-12 h-auto mx-auto self-start" />
+        <div className="my-16 px-5 flex flex-col w-full">
+          <div className="py-12 lg:py-20 text-base text-secondary dark:text-secondary-dark flex flex-col w-full justify-center items-center">
+            <Logo className="text-link dark:text-link-dark w-28 lg:w-36 mt-12 h-auto mx-auto self-start" />
             <div className="flex flex-wrap">
               <div className="mb-8 mt-4">
-                <h1 className="text-center text-6xl mr-4 flex wrap font-bold leading-tight text-primary dark:text-primary-dark">
+                <h1 className="text-center text-5xl lg:text-6xl flex wrap font-bold leading-tight text-primary dark:text-primary-dark">
                   Welcome to the React community
                 </h1>
-                <p className="text-4xl w-full text-center text-secondary dark:text-secondary-dark leading-relaxed self-center my-2">
+                <p className="text-3xl lg:text-4xl w-full text-center text-secondary dark:text-secondary-dark leading-relaxed self-center my-2">
                   Get started today.
                 </p>
               </div>

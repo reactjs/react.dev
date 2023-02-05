@@ -125,6 +125,22 @@ function Link({href, children, ...props}: JSX.IntrinsicElements['a']) {
   );
 }
 
+function NavItem({url, section, title}: any) {
+  return (
+    <div className="block">
+      <Link
+        href={`${url}`}
+        className={cn(
+          'outline-link p-2 rounded-lg capitalize',
+          section != title && 'hover:bg-card hover:dark:bg-card-dark',
+          section === title && 'bg-highlight dark:bg-highlight-dark text-link'
+        )}>
+        {title}
+      </Link>
+    </div>
+  );
+}
+
 export default function TopNav({
   routeTree,
   breadcrumbs,
@@ -260,50 +276,14 @@ export default function TopNav({
           </div>
           <div className="text-base justify-center items-center flex 3xl:flex-1 flex-row 3xl:justify-end">
             <div className="ml-2.5 mr-5 hidden lg:flex gap-5">
-              <div className="block">
-                <Link
-                  href="/learn"
-                  className={cn(
-                    'outline-link p-2 rounded-lg hover:bg-card hover:dark:bg-card-dark',
-                    section === 'learn' &&
-                      'bg-highlight dark:bg-highlight-dark text-link'
-                  )}>
-                  Learn
-                </Link>
-              </div>
-              <div className="block">
-                <Link
-                  href="/reference/react"
-                  className={cn(
-                    'outline-link p-2 rounded-lg hover:bg-card hover:dark:bg-card-dark',
-                    section === 'reference' &&
-                      'bg-highlight dark:bg-highlight-dark text-link'
-                  )}>
-                  Reference
-                </Link>
-              </div>
-              <div className="block">
-                <Link
-                  href="/community"
-                  className={cn(
-                    'outline-link p-2 rounded-lg hover:bg-card hover:dark:bg-card-dark',
-                    section === 'community' &&
-                      'bg-highlight dark:bg-highlight-dark text-link'
-                  )}>
-                  Community
-                </Link>
-              </div>
-              <div className="block">
-                <Link
-                  href="/blog"
-                  className={cn(
-                    'outline-link p-2 rounded-lg hover:bg-card hover:dark:bg-card-dark',
-                    section === 'blog' &&
-                      'bg-highlight dark:bg-highlight-dark text-link'
-                  )}>
-                  Blog
-                </Link>
-              </div>
+              <NavItem section={section} url="/learn" title="learn" />
+              <NavItem
+                section={section}
+                url="/reference/react"
+                title="reference"
+              />
+              <NavItem section={section} url="/community" title="community" />
+              <NavItem section={section} url="/blog" title="blog" />
             </div>
             <div className="flex w-full md:hidden"></div>
             <div className="flex items-center -space-x-2.5 xs:space-x-0 ">

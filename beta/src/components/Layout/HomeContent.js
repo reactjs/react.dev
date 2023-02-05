@@ -179,7 +179,7 @@ export function HomeContent() {
                   <Link href="https://trello.com/"> Trello</Link>, and
                   <Link href="https://www.nytimes.com/">
                     The New York Times
-                  </Link>
+                  </Link>{' '}
                   are fully powered by React.
                 </p>
               </div>
@@ -203,14 +203,108 @@ export function HomeContent() {
                   every migration strategy. The React team is also always
                   researching how to improve React. React has a high bar for
                   taking an idea from research to production. Only proven
-                  approaches become part of React. Learn about our latest
-                  research
+                  approaches become part of React.
+                  <br />
+                  <Link href="#">Learn about our latest research</Link>
                 </p>
               </div>
             </div>
           </div>
         </div>
 
+        <div className="overflow-hidden relative px-5">
+          <div className="border-2 border-link dark:border-link-dark rounded-lg absolute h-full border left-1/2"></div>
+          <div className="-mb-12 flex justify-between flex-row-reverse items-center w-full left-timeline">
+            <div className="order-1 w-5/12"></div>
+            <div className="order-1 w-5/12 px-1 py-4 text-right">
+              <p className="mb-2 text-base text-link dark:text-link-dark">
+                Q1 2022
+              </p>
+              <h4 className="mb-3 font-bold text-xl sm:text-2xl lg:text-3xl">
+                React v18
+              </h4>
+              <p className="text-base lg:text-md leading-normal text-secondary-text dark:text-secondary-text-dark">
+                Lorem ipsum dolor
+              </p>
+            </div>
+          </div>
+          <div className="-mb-12 flex justify-between items-center w-full right-timeline">
+            <div className="order-1 w-5/12"></div>
+            <div className="order-1  w-5/12 px-1 py-4 text-left">
+              <p className="mb-2 text-base text-link dark:text-link-dark">
+                Q4 2020
+              </p>
+              <h4 className="mb-3 font-bold text-xl sm:text-2xl lg:text-3xl">
+                Server components
+              </h4>
+              <p className="text-base lg:text-md leading-normal text-secondary-text dark:text-secondary-text-dark">
+                Lorem ipsum dolor
+              </p>
+            </div>
+          </div>
+          <div className="-mb-12 flex justify-between flex-row-reverse items-center w-full left-timeline">
+            <div className="order-1 w-5/12"></div>
+            <div className="order-1 w-5/12 px-1 py-4 text-right">
+              <p className="mb-2 text-base text-link dark:text-link-dark">
+                Q4 2020
+              </p>
+              <h4 className="mb-3 font-bold text-xl sm:text-2xl lg:text-3xl">
+                React v17
+              </h4>
+              <p className="text-base lg:text-md leading-normal text-secondary-text dark:text-secondary-text-dark">
+                Lorem ipsum dolor
+              </p>
+            </div>
+          </div>
+
+          <div className="-mb-12 flex justify-between items-center w-full right-timeline">
+            <div className="order-1 w-5/12"></div>
+            <div className="order-1 w-5/12 px-1 py-4 text-left">
+              <p className="mb-2 text-base text-link dark:text-link-dark">
+                Q1 2019
+              </p>
+              <h4 className="mb-3 font-bold text-xl sm:text-2xl lg:text-3xl">
+                Hooks
+              </h4>
+              <p className="text-base lg:text-md leading-normal text-secondary-text dark:text-secondary-text-dark">
+                Lorem ipsum dolor
+              </p>
+            </div>
+          </div>
+          <div className="flex justify-between flex-row-reverse items-center w-full left-timeline">
+            <div className="order-1 w-5/12"></div>
+            <div className="order-1 w-5/12 px-1 py-4 text-right">
+              <p className="mb-2 text-base text-link dark:text-link-dark">
+                Q4 2017
+              </p>
+              <h4 className="mb-3 font-bold text-xl sm:text-2xl lg:text-3xl">
+                React v16
+              </h4>
+              <p className="text-base lg:text-md leading-normal text-secondary-text dark:text-secondary-text-dark">
+                Lorem ipsum dolor
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div className="mx-5">
+          <div className="mx-auto my-40 max-w-6xl bg-blue-80 rounded-3xl flex-col-reverse lg:flex-row flex items-center">
+            <div className="w-full lg:w-6/12 p-12 flex-col text-white flex grow items-end justify-start my-0 mx-auto">
+              <h3 className="w-full leading-tight font-bold text-4xl mb-6 text-left">
+                Stability without stagnation
+              </h3>
+              <p className="text-xl leading-normal text-secondary-dark w-full text-left">
+                React approaches changes with care. Every React commit is tested
+                on business-critical surfaces with hundreds of millions of
+                users.
+              </p>
+            </div>
+
+            <div className="text-secondary-dark w-full lg:w-6/12 px-20 py-60 rounded-tl-3xl rounded-tr-3xl lg:rounded-r-3xl lg:rounded-tl-none justify-center leading-6 overflow-x-auto flex items-center bg-blue-60 overflow-hidden">
+              Illustration goes here
+            </div>
+          </div>
+        </div>
         <div className="my-16 lg:my-20 px-12 flex flex-col w-full">
           <h3 className="w-full leading-tight font-bold text-5xl text-primary dark:text-primary-dark mt-20 text-center">
             React homepage section header

@@ -36,6 +36,7 @@ module.exports = {
   'gray-5': '#F6F7F9',
 
   // Blue
+  'blue-80': '#043849',
   'blue-60': '#045975',
   'blue-50': '#087EA4',
   'blue-40': '#149ECA', // Brand Blue

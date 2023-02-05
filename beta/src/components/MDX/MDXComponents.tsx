@@ -224,23 +224,29 @@ function Illustration({
   alt,
   author,
   authorLink,
+  width,
+  height,
 }: {
   caption: string;
   src: string;
   alt: string;
   author: string;
   authorLink: string;
+  width: string;
+  height: string;
 }) {
   const {isInBlock} = React.useContext(IllustrationContext);
 
   return (
     <div className="relative group before:absolute before:-inset-y-16 before:inset-x-0 my-16 mx-0 2xl:mx-auto max-w-4xl 2xl:max-w-6xl">
       <figure className="my-8 flex justify-center">
-        <img
+        <Image
           src={src}
           alt={alt}
           style={{maxHeight: 300}}
           className="bg-white rounded-lg"
+          width={width}
+          height={height}
         />
         {caption ? (
           <figcaption className="text-center leading-tight mt-4">

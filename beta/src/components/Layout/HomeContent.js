@@ -709,8 +709,7 @@ function CommentsSkeleton() {
       <div className="w-full">
         <div className="relative overflow-hidden before:-skew-x-12 before:absolute before:inset-0 before:-translate-x-full before:animate-[shimmer_1.75s_infinite] before:bg-gradient-to-r before:from-transparent before:via-white/50 before:to-transparent">
           <div className="space-y-3 space-x-5">
-            <div />
-            <div className="pt-3.5">
+            <div className="pt-5 pl-5">
               <div className="h-5 w-32 rounded-lg bg-gray-10"></div>
             </div>
             <div className="flex flex-row items-center gap-3 pt-2">

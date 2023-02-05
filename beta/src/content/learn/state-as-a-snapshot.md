@@ -82,17 +82,17 @@ When React re-renders a component:
 3. React then updates the screen to match the snapshot you've returned.
 
 <IllustrationBlock sequential>
-    <Illustration caption="React executing the function" src="/images/docs/illustrations/i_render1.png" />
-    <Illustration caption="Calculating the snapshot" src="/images/docs/illustrations/i_render2.png" />
-    <Illustration caption="Updating the DOM tree" src="/images/docs/illustrations/i_render3.png" />
+    <Illustration caption="React executing the function" src="/images/docs/illustrations/i_render1.png" height="201" width="155"/>
+    <Illustration caption="Calculating the snapshot" src="/images/docs/illustrations/i_render2.png" height="201" width="155"/>
+    <Illustration caption="Updating the DOM tree" src="/images/docs/illustrations/i_render3.png" height="99" width="155" />
 </IllustrationBlock>
 
 As a component's memory, state is not like a regular variable that disappears after your function returns. State actually "lives" in React itself--as if on a shelf!--outside of your function. When React calls your component, it gives you a snapshot of the state for that particular render. Your component returns a snapshot of the UI with a fresh set of props and event handlers in its JSX, all calculated **using the state values from that render!**
 
 <IllustrationBlock sequential>
-  <Illustration caption="You tell React to update the state" src="/images/docs/illustrations/i_state-snapshot1.png" />
-  <Illustration caption="React updates the state value" src="/images/docs/illustrations/i_state-snapshot2.png" />
-  <Illustration caption="React passes a snapshot of the state value into the component" src="/images/docs/illustrations/i_state-snapshot3.png" />
+  <Illustration caption="You tell React to update the state" src="/images/docs/illustrations/i_state-snapshot1.png" height="250" width="142" />
+  <Illustration caption="React updates the state value" src="/images/docs/illustrations/i_state-snapshot2.png" height="243" width="155" />
+  <Illustration caption="React passes a snapshot of the state value into the component" src="/images/docs/illustrations/i_state-snapshot3.png" height="250" width="151" />
 </IllustrationBlock>
 
 Here's a little experiment to show you how this works. In this example, you might expect that clicking the "+3" button would increment the counter three times because it calls `setNumber(number + 1)` three times.

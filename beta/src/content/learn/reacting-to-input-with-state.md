@@ -319,8 +319,8 @@ You can trigger state updates in response to two kinds of inputs:
 * **Computer inputs,** like a network response arriving, a timeout completing, an image loading.
 
 <IllustrationBlock>
-  <Illustration caption="Human inputs" alt="A finger." src="/images/docs/illustrations/i_inputs1.png" />
-  <Illustration caption="Computer inputs" alt="Ones and zeroes." src="/images/docs/illustrations/i_inputs2.png" />
+  <Illustration caption="Human inputs" alt="A finger." src="/images/docs/illustrations/i_inputs1.png" height="250" width="245"/>
+  <Illustration caption="Computer inputs" alt="Ones and zeroes." src="/images/docs/illustrations/i_inputs2.png" height="250" width="264" />
 </IllustrationBlock>
 
 In both cases, **you must set [state variables](/learn/state-a-components-memory#anatomy-of-usestate) to update the UI.** For the form you're developing, you will need to change state in response to a few different inputs:

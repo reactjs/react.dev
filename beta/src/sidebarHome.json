@@ -1,0 +1,94 @@
+{
+  "title": "React Docs",
+  "path": "/",
+  "routes": [
+    {
+      "hasSectionHeader": true,
+      "sectionHeader": "Get Started"
+    },
+    {
+      "title": "Installation",
+      "path": "/learn/installation"
+    },
+    {
+      "title": "Quick Start",
+      "path": "/learn"
+    },
+    {
+      "hasSectionHeader": true,
+      "sectionHeader": "Learn React"
+    },
+    {
+      "title": "Describing the UI",
+      "path": "/learn/describing-the-ui"
+    },
+    {
+      "title": "Adding Interactivity",
+      "path": "/learn/adding-interactivity"
+    },
+    {
+      "title": "Managing State",
+      "path": "/learn/managing-state"
+    },
+    {
+      "title": "Escape Hatches",
+      "path": "/learn/escape-hatches"
+    },
+    {
+      "hasSectionHeader": true,
+      "sectionHeader": "Reference (react)"
+    },
+    {
+      "title": "Components",
+      "path": "/reference/react/components"
+    },
+    {
+      "title": "Hooks",
+      "path": "/reference/react"
+    },
+    {
+      "title": "APIs",
+      "path": "/reference/react/apis"
+    },
+    {
+      "title": "Legacy APIs",
+      "path": "/reference/react/legacy"
+    },
+    {
+      "hasSectionHeader": true,
+      "sectionHeader": "Reference (react-dom)"
+    },
+    {
+      "title": "Components",
+      "path": "/reference/react-dom/components"
+    },
+    {
+      "title": "APIs",
+      "path": "/reference/react-dom"
+    },
+    {
+      "title": "Client APIs",
+      "path": "/reference/react-dom/client"
+    },
+    {
+      "title": "Server APIs",
+      "path": "/reference/react-dom/server"
+    },
+    {
+      "hasSectionHeader": true,
+      "sectionHeader": "Get Involved"
+    },
+    {
+      "title": "React Community",
+      "path": "/community"
+    },
+    {
+      "hasSectionHeader": true,
+      "sectionHeader": "Stay Informed"
+    },
+    {
+      "title": "React Blog",
+      "path": "/blog"
+    }
+  ]
+}

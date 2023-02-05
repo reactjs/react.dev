@@ -6,6 +6,7 @@ import {Fragment, useMemo} from 'react';
 import {useRouter} from 'next/router';
 import {MDXComponents} from 'components/MDX/MDXComponents';
 import {Page} from 'components/Layout/Page';
+import sidebarHome from '../sidebarHome.json';
 import sidebarLearn from '../sidebarLearn.json';
 import sidebarReference from '../sidebarReference.json';
 import sidebarCommunity from '../sidebarCommunity.json';
@@ -18,8 +19,14 @@ export default function Layout({content, toc, meta}) {
   );
   const parsedToc = useMemo(() => JSON.parse(toc, reviveNodeOnClient), [toc]);
   const section = useActiveSection();
-  let routeTree = sidebarLearn;
+  let routeTree;
   switch (section) {
+    case 'home':
+      routeTree = sidebarHome;
+      break;
+    case 'learn':
+      routeTree = sidebarLearn;
+      break;
     case 'reference':
       routeTree = sidebarReference;
       break;

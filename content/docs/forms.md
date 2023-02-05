@@ -228,6 +228,7 @@ class Reservation extends React.Component {
     const name = target.name;
 
     this.setState({
+      ...state,
       [name]: value
     });
   }

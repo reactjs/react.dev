@@ -88,8 +88,8 @@ export function SidebarLink({
         {isExpanded != null && !heading && !hideArrow && (
           <span
             className={cn('pr-1', {
-              'text-link': isExpanded,
-              'text-gray-30': !isExpanded,
+              'text-link dark:text-link-dark': isExpanded,
+              'text-tertiary dark:text-tertiary-dark': !isExpanded,
             })}>
             <IconNavArrow displayDirection={isExpanded ? 'down' : 'right'} />
           </span>

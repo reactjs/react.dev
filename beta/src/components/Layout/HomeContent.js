@@ -344,7 +344,7 @@ function Example1() {
         <div className="flex-col-reverse gap-0 lg:gap-5 lg:rounded-xl bg-gray-10 dark:bg-gray-70 shadow-inner lg:flex-row flex grow w-full mx-auto items-center">
           <div className="lg:-m-5 h-full shadow-xl lg:rounded-2xl bg-wash dark:bg-gray-95 w-full flex grow flex-col border-t lg:border border-border dark:border-border-dark">
             <div className="w-full bg-card dark:bg-wash-dark lg:rounded-t-2xl border-b border-border dark:border-border-dark">
-              <h3 className="text-sm my-1 mx-5 text-gray-50 dark:text-gray-30 select-none">
+              <h3 className="text-sm my-1 mx-5 text-tertiary dark:text-tertiary-dark select-none">
                 Comment.js
               </h3>
             </div>
@@ -431,7 +431,7 @@ function Example2() {
         <div className="flex-col-reverse gap-0 lg:gap-5 bg-gray-05 dark:gray-95 shadow-inner lg:rounded-xl lg:flex-row flex grow w-full mx-auto items-center">
           <div className="lg:-m-5 h-full shadow-xl lg:rounded-xl bg-wash dark:bg-gray-95 w-full flex grow flex-col border-t lg:border border-border dark:border-border-dark">
             <div className="w-full bg-card dark:bg-wash-dark lg:rounded-t-xl border-b border-border dark:border-border-dark">
-              <h3 className="text-sm my-1 mx-5 text-gray-50 dark:text-gray-30 select-none">
+              <h3 className="text-sm my-1 mx-5 text-tertiary dark:text-tertiary-dark select-none">
                 CommentList.js
               </h3>
             </div>
@@ -564,7 +564,7 @@ function Example3() {
         <div className="flex-col-reverse gap-0 lg:gap-5 lg:rounded-xl bg-gray-10 dark:bg-gray-70 shadow-inner lg:flex-row flex grow w-full mx-auto items-center">
           <div className="lg:-m-5 h-full shadow-xl lg:rounded-2xl bg-wash dark:bg-gray-95 w-full flex grow flex-col border-t lg:border border-border dark:border-border-dark">
             <div className="w-full bg-card dark:bg-wash-dark lg:rounded-t-2xl border-b border-border dark:border-border-dark">
-              <h3 className="text-sm my-1 mx-5 text-gray-50 dark:text-gray-30 select-none">
+              <h3 className="text-sm my-1 mx-5 text-tertiary dark:text-tertiary-dark select-none">
                 PostPage.js
               </h3>
             </div>
@@ -671,7 +671,7 @@ function BrowserChrome({children, setPostPromise, setCommentsPromise}) {
   return (
     <div className="bg-wash dark:bg-gray-95 shadow-xl relative overflow-hidden w-full border border-border dark:border-opacity-10 rounded-2xl">
       <div className="w-full h-16 border-b border-border backdrop-filter rounded-t-2xl overflow-hidden backdrop-blur-lg backdrop-saturate-200 bg-white bg-opacity-90 z-10 absolute top-0 py-4 px-4 gap-2 flex flex-row items-center">
-        <div className="bg-gray-10 text-sm text-gray-50 text-center rounded-full p-1 w-full flex-row flex space-between items-center">
+        <div className="bg-gray-10 text-sm text-tertiary text-center rounded-full p-1 w-full flex-row flex space-between items-center">
           <div className="h-6 w-6" />
           <div className="w-full leading-snug">
             <span className="text-gray-30">example.com</span>

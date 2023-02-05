@@ -26,7 +26,7 @@ interface PageProps {
   toc: Array<TocItem>;
   routeTree: RouteItem;
   meta: {title?: string; description?: string};
-  section: 'learn' | 'reference' | 'home';
+  section: 'learn' | 'reference' | 'community' | 'blog' | 'home';
 }
 
 export function Page({children, toc, routeTree, meta, section}: PageProps) {
@@ -71,7 +71,11 @@ export function Page({children, toc, routeTree, meta, section}: PageProps) {
     <>
       <Seo title={title} isHomePage={isHomePage} />
       <SocialBanner />
-      <TopNav routeTree={routeTree} breadcrumbs={breadcrumbs} />
+      <TopNav
+        section={section}
+        routeTree={routeTree}
+        breadcrumbs={breadcrumbs}
+      />
       <div
         className={
           isHomePage

@@ -17,6 +17,10 @@ import {Feedback} from '../Feedback';
 import {SidebarRouteTree} from '../Sidebar/SidebarRouteTree';
 import type {RouteItem} from '../getRouteMeta';
 import {SidebarLink} from '../Sidebar';
+import sidebarLearn from '../../../sidebarLearn.json';
+import sidebarReference from '../../../sidebarReference.json';
+import sidebarCommunity from '../../../sidebarCommunity.json';
+import sidebarBlog from '../../../sidebarBlog.json';
 
 declare global {
   interface Window {
@@ -124,9 +128,11 @@ function Link({href, children, ...props}: JSX.IntrinsicElements['a']) {
 export default function TopNav({
   routeTree,
   breadcrumbs,
+  section,
 }: {
   routeTree: RouteItem;
   breadcrumbs: RouteItem[];
+  section: 'learn' | 'reference' | 'community' | 'blog' | 'home';
 }) {
   const [isOpen, setIsOpen] = useState(false);
   const [showFeedback, setShowFeedback] = useState(false);
@@ -256,28 +262,44 @@ export default function TopNav({
               <div className="block">
                 <Link
                   href="/learn"
-                  className="outline-link p-2 rounded-lg hover:bg-card hover:dark:bg-card-dark">
+                  className={cn(
+                    'outline-link p-2 rounded-lg hover:bg-card hover:dark:bg-card-dark',
+                    section === 'learn' &&
+                      'bg-highlight dark:bg-highlight-dark text-link'
+                  )}>
                   Learn
                 </Link>
               </div>
               <div className="block">
                 <Link
                   href="/reference/react"
-                  className="outline-link p-2 rounded-lg hover:bg-card hover:dark:bg-card-dark">
+                  className={cn(
+                    'outline-link p-2 rounded-lg hover:bg-card hover:dark:bg-card-dark',
+                    section === 'reference' &&
+                      'bg-highlight dark:bg-highlight-dark text-link'
+                  )}>
                   Reference
                 </Link>
               </div>
               <div className="block">
                 <Link
                   href="/community"
-                  className="outline-link p-2 rounded-lg hover:bg-card hover:dark:bg-card-dark">
+                  className={cn(
+                    'outline-link p-2 rounded-lg hover:bg-card hover:dark:bg-card-dark',
+                    section === 'community' &&
+                      'bg-highlight dark:bg-highlight-dark text-link'
+                  )}>
                   Community
                 </Link>
               </div>
               <div className="block">
                 <Link
                   href="/blog"
-                  className="outline-link p-2 rounded-lg hover:bg-card hover:dark:bg-card-dark">
+                  className={cn(
+                    'outline-link p-2 rounded-lg hover:bg-card hover:dark:bg-card-dark',
+                    section === 'blog' &&
+                      'bg-highlight dark:bg-highlight-dark text-link'
+                  )}>
                   Blog
                 </Link>
               </div>
@@ -340,15 +362,14 @@ export default function TopNav({
                 </button>
               </div>
               <div className="flex">
-                <button
-                  type="button"
+                <Link
+                  href="https://github.com/facebook/react"
+                  target="_blank"
+                  rel="noreferrer noopener"
                   aria-label="Open on GitHub"
-                  onClick={() => {
-                    // todo
-                  }}
                   className="flex w-12 h-12 items-center rounded-full items-center justify-center hover:bg-secondary-button hover:dark:bg-secondary-button-dark outline-link">
                   {githubIcon}
-                </button>
+                </Link>
               </div>
             </div>
           </div>
@@ -370,64 +391,48 @@ export default function TopNav({
               className="w-full lg:h-auto grow pr-0 lg:pr-5 pt-6 lg:py-6 md:pt-4 lg:pt-4 scrolling-touch scrolling-gpu">
               {/* No fallback UI so need to be careful not to suspend directly inside. */}
               <Suspense fallback={null}>
-                <div className="block md:hidden">
-                  <div className="block mr-4">
-                    <SidebarLink
-                      href="/learn"
-                      isPending={false}
-                      selected={false}
-                      level={0}
-                      title="Learn"
-                      wip={false}
-                      isExpanded={false}
-                      isBreadcrumb={false}
-                      hideArrow
-                    />
-                  </div>
-                  <div className="block mr-4">
-                    <SidebarLink
-                      href="/reference/react"
-                      isPending={false}
-                      selected={false}
-                      level={0}
-                      title="Reference"
-                      wip={false}
-                      isExpanded={false}
-                      isBreadcrumb={false}
-                      hideArrow
-                    />
-                  </div>
-                  <div className="block mr-4">
-                    <SidebarLink
-                      href="/community"
-                      isPending={false}
-                      selected={false}
-                      level={0}
-                      title="Community"
-                      wip={false}
-                      isExpanded={false}
-                      isBreadcrumb={false}
-                      hideArrow
-                    />
-                  </div>
-                  <div className="block mr-4">
-                    <SidebarLink
-                      href="/blog"
-                      isPending={false}
-                      selected={false}
-                      level={0}
-                      title="Blog"
-                      wip={false}
-                      isExpanded={false}
-                      isBreadcrumb={false}
-                      hideArrow
-                    />
-                  </div>
-                  <div
-                    role="separator"
-                    className="mt-4 mb-2 ml-5 border-b border-border dark:border-border-dark"
-                  />
+                <div className="block ml-3 flex flex-row gap-2 lg:hidden text-base font-bold text-secondary dark:text-secondary-dark">
+                  <Link
+                    href="/learn"
+                    className={cn(
+                      'outline-link px-2 py-1 rounded-lg hover:bg-card hover:dark:bg-card-dark',
+                      section === 'learn' &&
+                        'bg-highlight dark:bg-highlight-dark text-link'
+                    )}>
+                    Learn
+                  </Link>
+                  <Link
+                    href="/reference/react"
+                    className={cn(
+                      'outline-link px-2 py-1 rounded-lg hover:bg-card hover:dark:bg-card-dark',
+                      section === 'reference' &&
+                        'bg-highlight dark:bg-highlight-dark text-link'
+                    )}>
+                    Reference
+                  </Link>
+                  <Link
+                    href="/community"
+                    className={cn(
+                      'outline-link px-2 py-1 rounded-lg hover:bg-card hover:dark:bg-card-dark',
+                      section === 'community' &&
+                        'bg-highlight dark:bg-highlight-dark text-link'
+                    )}>
+                    Community
+                  </Link>
+                  <Link
+                    href="/blog"
+                    className={cn(
+                      'outline-link px-2 py-1 rounded-lg hover:bg-card hover:dark:bg-card-dark',
+                      section === 'blog' &&
+                        'bg-highlight dark:bg-highlight-dark text-link'
+                    )}>
+                    Blog
+                  </Link>
                 </div>
+                <div
+                  role="separator"
+                  className="ml-5 mt-4 mb-2 border-b border-border dark:border-border-dark"
+                />
                 <SidebarRouteTree
                   // Don't share state between the desktop and mobile versions.
                   // This avoids unnecessary animations and visual flicker.

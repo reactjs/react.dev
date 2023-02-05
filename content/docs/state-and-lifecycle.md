@@ -370,6 +370,15 @@ this.setState(function(state, props) {
 });
 ```
 
+If the props aren't needed for updating the state, you can also use `setState()` with a function that takes the previous state as only argument:
+
+```js
+// Correct
+this.setState(prevState => ({
+  counter: prevState.counter + 1
+}));
+```
+
 ### State Updates are Merged {#state-updates-are-merged}
 
 When you call `setState()`, React merges the object you provide into the current state.

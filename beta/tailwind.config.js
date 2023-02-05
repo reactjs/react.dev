@@ -17,6 +17,7 @@ module.exports = {
     screens: {
       ...defaultTheme.screens,
       betterhover: {raw: '(hover: hover)'},
+      xs: '374px',
       '3xl': '1919px',
     },
     boxShadow: {

@@ -78,7 +78,7 @@ const lightIcon = (
     height="32"
     viewBox="0 0 32 32">
     <g fill="none" fillRule="evenodd" transform="translate(-442 -200)">
-      <g fill="currentColor" transform="translate(354 144)">
+      <g fill="currentColor" transform="translate(356 144)">
         <path
           fillRule="nonzero"
           d="M108.5 24C108.5 27.5902136 105.590214 30.5 102 30.5 98.4097864 30.5 95.5 27.5902136 95.5 24 95.5 20.4097864 98.4097864 17.5 102 17.5 105.590214 17.5 108.5 20.4097864 108.5 24zM107 24C107 21.2382136 104.761786 19 102 19 99.2382136 19 97 21.2382136 97 24 97 26.7617864 99.2382136 29 102 29 104.761786 29 107 26.7617864 107 24zM101 12.75L101 14.75C101 15.1642136 101.335786 15.5 101.75 15.5 102.164214 15.5 102.5 15.1642136 102.5 14.75L102.5 12.75C102.5 12.3357864 102.164214 12 101.75 12 101.335786 12 101 12.3357864 101 12.75zM95.7255165 14.6323616L96.7485165 16.4038616C96.9556573 16.7625614 97.4143618 16.8854243 97.7730616 16.6782835 98.1317614 16.4711427 98.2546243 16.0124382 98.0474835 15.6537384L97.0244835 13.8822384C96.8173427 13.5235386 96.3586382 13.4006757 95.9999384 13.6078165 95.6412386 13.8149573 95.5183757 14.2736618 95.7255165 14.6323616zM91.8822384 19.0244835L93.6537384 20.0474835C94.0124382 20.2546243 94.4711427 20.1317614 94.6782835 19.7730616 94.8854243 19.4143618 94.7625614 18.9556573 94.4038616 18.7485165L92.6323616 17.7255165C92.2736618 17.5183757 91.8149573 17.6412386 91.6078165 17.9999384 91.4006757 18.3586382 91.5235386 18.8173427 91.8822384 19.0244835zM90.75 25L92.75 25C93.1642136 25 93.5 24.6642136 93.5 24.25 93.5 23.8357864 93.1642136 23.5 92.75 23.5L90.75 23.5C90.3357864 23.5 90 23.8357864 90 24.25 90 24.6642136 90.3357864 25 90.75 25zM92.6323616 30.2744835L94.4038616 29.2514835C94.7625614 29.0443427 94.8854243 28.5856382 94.6782835 28.2269384 94.4711427 27.8682386 94.0124382 27.7453757 93.6537384 27.9525165L91.8822384 28.9755165C91.5235386 29.1826573 91.4006757 29.6413618 91.6078165 30.0000616 91.8149573 30.3587614 92.2736618 30.4816243 92.6323616 30.2744835zM97.0244835 34.1177616L98.0474835 32.3462616C98.2546243 31.9875618 98.1317614 31.5288573 97.7730616 31.3217165 97.4143618 31.1145757 96.9556573 31.2374386 96.7485165 31.5961384L95.7255165 33.3676384C95.5183757 33.7263382 95.6412386 34.1850427 95.9999384 34.3921835 96.3586382 34.5993243 96.8173427 34.4764614 97.0244835 34.1177616zM103 35.25L103 33.25C103 32.8357864 102.664214 32.5 102.25 32.5 101.835786 32.5 101.5 32.8357864 101.5 33.25L101.5 35.25C101.5 35.6642136 101.835786 36 102.25 36 102.664214 36 103 35.6642136 103 35.25zM108.274483 33.3676384L107.251483 31.5961384C107.044343 31.2374386 106.585638 31.1145757 106.226938 31.3217165 105.868239 31.5288573 105.745376 31.9875618 105.952517 32.3462616L106.975517 34.1177616C107.182657 34.4764614 107.641362 34.5993243 108.000062 34.3921835 108.358761 34.1850427 108.481624 33.7263382 108.274483 33.3676384zM112.117762 28.9755165L110.346262 27.9525165C109.987562 27.7453757 109.528857 27.8682386 109.321717 28.2269384 109.114576 28.5856382 109.237439 29.0443427 109.596138 29.2514835L111.367638 30.2744835C111.726338 30.4816243 112.185043 30.3587614 112.392183 30.0000616 112.599324 29.6413618 112.476461 29.1826573 112.117762 28.9755165zM113.25 23L111.25 23C110.835786 23 110.5 23.3357864 110.5 23.75 110.5 24.1642136 110.835786 24.5 111.25 24.5L113.25 24.5C113.664214 24.5 114 24.1642136 114 23.75 114 23.3357864 113.664214 23 113.25 23zM111.367638 17.7255165L109.596138 18.7485165C109.237439 18.9556573 109.114576 19.4143618 109.321717 19.7730616 109.528857 20.1317614 109.987562 20.2546243 110.346262 20.0474835L112.117762 19.0244835C112.476461 18.8173427 112.599324 18.3586382 112.392183 17.9999384 112.185043 17.6412386 111.726338 17.5183757 111.367638 17.7255165zM106.975517 13.8822384L105.952517 15.6537384C105.745376 16.0124382 105.868239 16.4711427 106.226938 16.6782835 106.585638 16.8854243 107.044343 16.7625614 107.251483 16.4038616L108.274483 14.6323616C108.481624 14.2736618 108.358761 13.8149573 108.000062 13.6078165 107.641362 13.4006757 107.182657 13.5235386 106.975517 13.8822384z"
@@ -224,56 +224,72 @@ export default function TopNav({
       )}>
       <nav
         className={cn(
-          'max-h-20 backdrop-filter backdrop-blur-lg backdrop-saturate-200 transition-shadow bg-opacity-90 items-center w-full flex justify-between bg-wash dark:bg-wash-dark dark:bg-opacity-95 pt-4 pb-4 pr-5 lg:px-5 z-50',
+          'max-h-20 backdrop-filter backdrop-blur-lg backdrop-saturate-200 transition-shadow bg-opacity-90 items-center w-full flex justify-between bg-wash dark:bg-wash-dark dark:bg-opacity-95 py-3 px-1.5 lg:px-5 lg:pr-5 z-50',
           {'dark:shadow-nav-dark shadow-nav': isScrolled || isOpen}
         )}>
-        <div className="w-full flex items-center text-l">
-          <button
-            type="button"
-            aria-label="Menu"
-            onClick={() => setIsOpen(!isOpen)}
-            className={cn('flex lg:hidden items-center h-full px-4', {
-              'text-link dark:text-link-dark mr-0': isOpen,
-            })}>
-            {isOpen ? <IconClose /> : <IconHamburger />}
-          </button>
-          <NextLink href="/">
-            <a className="flex-1 mr-5 3xl:mr-0 inline-flex text-lg font-normal items-center text-primary dark:text-primary-dark py-1 whitespace-nowrap">
-              <Logo className="text-sm mr-2 w-8 h-8 text-link dark:text-link-dark" />
-              React
-            </a>
-          </NextLink>
-          <div className="hidden md:flex w-full 3xl:w-auto 3xl:shrink-0 3xl:justify-center">
+        <div className="w-full gap-0 sm:gap-2.5 flex justify-center items-center justify-between">
+          <div className="3xl:flex-1 flex flex-row -space-x-1.5">
+            <button
+              type="button"
+              aria-label="Menu"
+              onClick={() => setIsOpen(!isOpen)}
+              className={cn(
+                'flex lg:hidden w-12 h-12 items-center rounded-full items-center justify-center hover:bg-secondary-button hover:dark:bg-secondary-button-dark outline-link',
+                {
+                  'text-link dark:text-link-dark': isOpen,
+                }
+              )}>
+              {isOpen ? <IconClose /> : <IconHamburger />}
+            </button>
+            <NextLink href="/">
+              <a className="3xl:flex-1 mr-0 sm:mr-2.5 3xl:mr-0 inline-flex text-lg font-normal items-center text-primary dark:text-primary-dark py-1 whitespace-nowrap outline-link p-2.5 rounded-lg">
+                <Logo className="text-sm mr-2 w-8 h-8 text-link dark:text-link-dark" />
+                React
+              </a>
+            </NextLink>
+          </div>
+          <div className="hidden md:flex flex-1 justify-center items-center w-full 3xl:w-auto 3xl:shrink-0 3xl:justify-center">
             <Search />
           </div>
-          <div className="text-base justify-end flex flex-1 flex-row">
-            <div className="mx-8 hidden lg:flex gap-8">
+          <div className="text-base justify-center items-center flex 3xl:flex-1 flex-row 3xl:justify-end">
+            <div className="ml-2.5 mr-5 hidden lg:flex gap-5">
               <div className="block">
-                <Link href="/learn">Learn</Link>
+                <Link href="/learn" className="outline-link p-2 rounded-lg">
+                  Learn
+                </Link>
               </div>
               <div className="block">
-                <Link href="/reference/react">Reference</Link>
+                <Link
+                  href="/reference/react"
+                  className="outline-link p-2 rounded-lg">
+                  Reference
+                </Link>
               </div>
               <div className="block">
-                <Link href="/community">Community</Link>
+                <Link href="/community" className="outline-link p-2 rounded-lg">
+                  Community
+                </Link>
               </div>
               <div className="block">
-                <Link href="/blog">Blog</Link>
+                <Link href="/blog" className="outline-link p-2 rounded-lg">
+                  Blog
+                </Link>
               </div>
             </div>
             <div className="flex w-full md:hidden"></div>
-            <div className="flex items-center">
+            <div className="flex items-center -space-x-2.5 xs:space-x-0 ">
               <div className="flex md:hidden">
                 <Search />
               </div>
-              <div className="flex mr-4 lg:hidden">
+              <div className="flex lg:hidden">
                 <button
                   aria-label="Give feedback"
                   type="button"
                   className={cn(
-                    'inline-flex lg:hidden h-10 items-center rounded-full px-1.5 ml-4 lg:ml-6 relative top-px',
+                    'flex w-12 h-12 items-center rounded-full items-center justify-center hover:bg-secondary-button hover:dark:bg-secondary-button-dark outline-link',
                     {
-                      'bg-card dark:bg-card-dark': showFeedback,
+                      'bg-secondary-button dark:bg-secondary-button-dark':
+                        showFeedback,
                     }
                   )}
                   onClick={handleFeedback}>
@@ -295,25 +311,25 @@ export default function TopNav({
                   />
                 </div>
               </div>
-              <div className="w-8 flex mr-4 dark:hidden">
+              <div className="flex dark:hidden">
                 <button
                   type="button"
                   aria-label="Use Dark Mode"
                   onClick={() => {
                     window.__setPreferredTheme('dark');
                   }}
-                  className="flex items-center h-full pr-2">
+                  className="flex w-12 h-12 items-center rounded-full items-center justify-center hover:bg-secondary-button hover:dark:bg-secondary-button-dark outline-link">
                   {darkIcon}
                 </button>
               </div>
-              <div className="w-8 hidden mr-4 dark:flex">
+              <div className="hidden dark:flex">
                 <button
                   type="button"
                   aria-label="Use Light Mode"
                   onClick={() => {
                     window.__setPreferredTheme('light');
                   }}
-                  className="flex items-center h-full pr-2">
+                  className="flex w-12 h-12 items-center rounded-full items-center justify-center hover:bg-secondary-button hover:dark:bg-secondary-button-dark outline-link">
                   {lightIcon}
                 </button>
               </div>
@@ -324,7 +340,7 @@ export default function TopNav({
                   onClick={() => {
                     // todo
                   }}
-                  className="items-center h-full pr-2">
+                  className="flex w-12 h-12 items-center rounded-full items-center justify-center hover:bg-secondary-button hover:dark:bg-secondary-button-dark outline-link">
                   {githubIcon}
                 </button>
               </div>

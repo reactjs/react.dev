@@ -152,7 +152,7 @@ export function Search({
         <button
           aria-label="Search"
           type="button"
-          className="inline-flex md:hidden items-center text-lg p-1 ml-4 lg:ml-6"
+          className="flex md:hidden w-12 h-12 items-center rounded-full items-center justify-center hover:bg-secondary-button hover:dark:bg-secondary-button-dark outline-link"
           onClick={onOpen}>
           <IconSearch className="align-middle w-5 h-5" />
         </button>
@@ -161,7 +161,7 @@ export function Search({
       <button
         type="button"
         className={cn(
-          '3xl:w-[56rem] mx-2 3xl:mx-0 w-full relative pl-4 pr-1 py-1 h-10 bg-secondary-button dark:bg-gray-80 outline-none focus:ring focus:outline-none betterhover:hover:bg-opacity-80 pointer items-center text-left w-full text-gray-30 rounded-full align-middle text-base',
+          '3xl:w-[56rem] mx-2 3xl:mx-0 w-full relative pl-4 pr-1 py-1 h-10 bg-secondary-button dark:bg-gray-80 outline-none  focus:outline-link betterhover:hover:bg-opacity-80 pointer items-center text-left w-full text-gray-30 rounded-full align-middle text-base',
           fullsize ? 'flex' : 'hidden md:flex'
         )}
         onClick={onOpen}>

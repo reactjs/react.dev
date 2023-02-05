@@ -197,10 +197,10 @@ const CodeBlock = function CodeBlock({
     <div
       className={cn(
         'sandpack sandpack--codeblock',
-        'rounded-lg h-full w-full overflow-x-auto flex items-center bg-wash dark:bg-gray-95 shadow-lg',
+        'rounded-2xl h-full w-full overflow-x-auto flex items-center bg-wash dark:bg-gray-95 shadow-lg',
         !noMargin && 'my-8',
         noShadow &&
-          'shadow-none px-0 sm:px-8 w-full flex rounded-none bg-transparent'
+          'shadow-none my-0 rounded-2xl overflow-hidden px-0 sm:px-0 w-full flex bg-transparent'
       )}>
       <div className="sp-wrapper">
         <div className="sp-stack">

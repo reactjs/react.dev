@@ -8,6 +8,7 @@ import {IconRestart} from '../Icon/IconRestart';
 import {Logo} from 'components/Logo';
 import Link from 'components/MDX/Link';
 import CodeBlock from 'components/MDX/CodeBlock';
+import cn from 'classnames';
 
 export function HomeContent() {
   return (
@@ -21,7 +22,7 @@ export function HomeContent() {
           <p className="text-4xl py-1 text-center text-secondary dark:text-primary-dark leading-snug self-center">
             The library for web and native user interfaces
           </p>
-          <div className="my-5 self-center flex gap-2 w-full sm:w-auto">
+          <div className="my-5 self-center flex gap-2 w-full sm:w-auto flex-col sm:flex-row">
             <ButtonLink
               href={'/learn'}
               type="primary"
@@ -302,13 +303,15 @@ export function HomeContent() {
 
 function Example1() {
   return (
-    <div className="lg:mx-2 w-full">
-      <div className="my-16 lg:my-20 p-2 max-w-6xl mx-auto flex flex-col w-full border border-border dark:border-opacity-10 lg:rounded-2xl bg-card dark:bg-card-dark">
-        <div className="flex-col-reverse lg:flex-row gap-2 flex grow w-full mx-auto items-center">
-          <div className="h-full rounded-2xl bg-wash dark:bg-gray-95 w-full p-2 flex grow flex-col border-t border border-border dark:border-border-dark">
-            <h3 className="text-sm my-2 mx-4 text-gray-30 dark:text-gray-50 select-none">
-              Comment.js
-            </h3>
+    <div className="lg:pl-10 lg:pr-5 w-full">
+      <div className="my-16 lg:my-20 max-w-6xl mx-auto flex flex-col w-full border-t lg:border border-border dark:border-opacity-10 lg:rounded-2xl bg-card dark:bg-card-dark">
+        <div className="flex-col-reverse gap-5 lg:rounded-xl bg-secondary-button dark:bg-secondary-button-dark shadow-inner lg:flex-row gap-8 flex grow w-full mx-auto items-center">
+          <div className="-m-5 h-full shadow-xl lg:rounded-2xl bg-wash dark:bg-gray-95 w-full flex grow flex-col border-t lg:border border-border dark:border-border-dark">
+            <div className="w-full bg-card dark:bg-wash-dark lg:rounded-t-2xl border-b border-border dark:border-border-dark">
+              <h3 className="text-sm my-1 mx-5 text-gray-50 dark:text-gray-30 select-none">
+                Comment.js
+              </h3>
+            </div>
             <CodeBlock isFromPackageImport={false} noShadow={true}>
               <div>{`function Comment({ comment }) {
   return (
@@ -323,7 +326,7 @@ function Example1() {
           `}</div>
             </CodeBlock>
           </div>
-          <div className="w-full p-8 flex grow justify-center">
+          <div className="w-full p-5 flex grow justify-center">
             <ExamplePanel>
               <Comment
                 comment={{
@@ -384,13 +387,15 @@ function Example2() {
   }
 
   return (
-    <div className="lg:mx-2">
-      <div className="my-16 lg:my-20 p-2 max-w-6xl mx-auto flex flex-col w-full border-y lg:border border-border dark:border-border-dark lg:rounded-3xl bg-card dark:bg-wash-dark">
-        <div className="flex-col-reverse lg:flex-row gap-2 flex grow w-full mx-auto items-center">
-          <div className="rounded-2xl bg-wash dark:bg-gray-95 w-full p-2 flex grow flex-col border-t border border-border dark:border-border-dark">
-            <h3 className="text-sm my-2 mx-4 text-gray-30 dark:text-gray-50 select-none">
-              CommentList.js
-            </h3>
+    <div className="lg:pl-10 lg:pr-5 w-full">
+      <div className="my-16 lg:my-20 max-w-6xl mx-auto flex flex-col w-full border-t lg:border border-border dark:border-opacity-10 lg:rounded-xl bg-card dark:bg-card-dark">
+        <div className="flex-col-reverse gap-5 bg-secondary-button dark:bg-secondary-button-dark shadow-inner lg:rounded-xl lg:flex-row gap-8 flex grow w-full mx-auto items-center">
+          <div className="-m-5 h-full shadow-xl lg:rounded-xl bg-wash dark:bg-gray-95 w-full flex grow flex-col border-t lg:border border-border dark:border-border-dark">
+            <div className="w-full bg-card dark:bg-wash-dark lg:rounded-t-xl border-b border-border dark:border-border-dark">
+              <h3 className="text-sm my-1 mx-5 text-gray-50 dark:text-gray-30 select-none">
+                CommentList.js
+              </h3>
+            </div>
             <CodeBlock isFromPackageImport={false} noShadow={true}>
               <div>{`function CommentList({ comments }) {
   let heading = 'Be the first to comment';
@@ -408,8 +413,8 @@ function Example2() {
 }`}</div>
             </CodeBlock>
           </div>
-          <div className="w-full p-8 py-8 flex grow justify-center">
-            <ExamplePanel noShadow={false} noPadding={true}>
+          <div className="w-full p-5 flex grow justify-center">
+            <ExamplePanel noShadow={false} noPadding={true} height={310}>
               <PostContext.Provider
                 value={{
                   currentUser: author,
@@ -512,13 +517,15 @@ function Example3() {
   }
 
   return (
-    <div className="lg:mx-2">
-      <div className="my-16 lg:my-20 p-2 max-w-6xl mx-auto flex flex-col w-full border border-border dark:border-opacity-10 lg:rounded-2xl bg-card dark:bg-card-dark">
-        <div className="flex-col-reverse lg:flex-row gap-2 flex grow w-full mx-auto items-center">
-          <div className="rounded-2xl bg-wash dark:bg-gray-95 w-full p-2 flex grow flex-col border-t border border-border dark:border-border-dark">
-            <h3 className="text-sm my-2 mx-4 text-gray-30 dark:text-gray-50 select-none">
-              PostPage.js
-            </h3>
+    <div className="lg:pl-10 lg:pr-5 w-full">
+      <div className="my-16 lg:my-20 max-w-6xl mx-auto flex flex-col w-full border-t lg:border border-border dark:border-opacity-10 lg:rounded-2xl bg-card dark:bg-card-dark">
+        <div className="flex-col-reverse gap-5 lg:rounded-xl bg-secondary-button dark:bg-secondary-button-dark shadow-inner lg:flex-row gap-8 flex grow w-full mx-auto items-center">
+          <div className="-m-5 h-full shadow-xl lg:rounded-2xl bg-wash dark:bg-gray-95 w-full flex grow flex-col border-t lg:border border-border dark:border-border-dark">
+            <div className="w-full bg-card dark:bg-wash-dark lg:rounded-t-2xl border-b border-border dark:border-border-dark">
+              <h3 className="text-sm my-1 mx-5 text-gray-50 dark:text-gray-30 select-none">
+                PostPage.js
+              </h3>
+            </div>
             <CodeBlock isFromPackageImport={false} noShadow={true}>
               <div>{`async function PostPage({ slug }) {
   const post = await db.findPost({ slug });
@@ -542,13 +549,13 @@ async function PostComments({ postId }) {
 }`}</div>
             </CodeBlock>
           </div>
-          <div className="w-full p-8 flex grow justify-center">
+          <div className="w-full p-5 sm:p-5 flex grow justify-center">
             <BrowserChrome
               setPostPromise={setPostPromise}
               setCommentsPromise={setCommentsPromise}>
-              <ExamplePanel noPadding={true} noShadow={true} height={544}>
+              <ExamplePanel noPadding={true} noShadow={true} height={475}>
                 <Suspense fallback={null}>
-                  <div style={{animation: 'fadein 150ms'}}>
+                  <div style={{animation: 'fadein 200ms'}}>
                     <PostContext.Provider
                       value={{
                         currentUser: author,
@@ -702,7 +709,7 @@ function CommentList({comments, children}) {
   return (
     <div
       style={{
-        maxHeight: 320,
+        maxHeight: 250,
         position: 'relative',
         paddingTop: 20,
         paddingLeft: 20,
@@ -748,8 +755,9 @@ function Heading({children}) {
       style={{
         fontWeight: 'bold',
         fontSize: 20,
-        color: '#222',
-        paddingBottom: 15,
+        color: '#23272F',
+        lineHeight: '100%',
+        paddingBottom: 20,
       }}>
       {children}
     </h1>
@@ -844,7 +852,7 @@ function ExampleLink({children}) {
         fontSize: 17,
         marginTop: 3,
         marginRight: 10,
-        color: '#222',
+        color: '#23272F',
         fontWeight: 'bold',
       }}>
       {children}
@@ -918,7 +926,7 @@ function Timestamp({time}) {
   return (
     <span
       style={{
-        color: '#aaa',
+        color: '#99A1B3',
         marginTop: 5,
         fontSize: 15,
       }}>

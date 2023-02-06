@@ -161,6 +161,25 @@ export function HomeContent() {
           </div>
         </div>
 
+        <div className="mx-5">
+          <div className="mx-auto my-8 max-w-6xl rounded-3xl flex-col-reverse lg:flex-row flex items-center shadow-inner bg-[conic-gradient(at_top_left,_var(--tw-gradient-stops))] from-purple-60 via-blue-50 to-yellow-50">
+            <div className="w-full lg:w-6/12 p-8 lg:p-12 flex-col text-white flex grow items-end justify-start my-0 mx-auto">
+              <h3 className="w-full leading-tight font-bold text-4xl lg:text-5xl mb-6 text-left">
+                Stability without stagnation
+              </h3>
+              <p className="text-xl lg:text-2xl leading-normal text-secondary-dark w-full text-left">
+                React approaches changes with care. Every React commit is tested
+                on business-critical surfaces with hundreds of millions of
+                users.
+              </p>
+            </div>
+
+            <div className="text-secondary-dark w-full lg:w-6/12 pt-20 mb-8 lg:py-28 rounded-tl-3xl rounded-tr-3xl lg:rounded-r-3xl lg:rounded-tl-none justify-center leading-6 overflow-x-auto flex items-center overflow-hidden">
+              <Logo className="backdrop-blur-sm text-white/10 w-48 lg:w-64 drop-shadow-xl" />
+            </div>
+          </div>
+        </div>
+
         <div className="">
           <div className="max-w-6xl mx-auto flex flex-col w-full">
             <div className="flex-col gap-2 flex grow w-full my-16 lg:my-20 mx-auto items-center">
@@ -187,7 +206,7 @@ export function HomeContent() {
             </div>
           </div>
         </div>
-
+        <hr className="max-w-6xl mx-auto" />
         <div className="">
           <div className="max-w-6xl mx-auto flex flex-col w-full">
             <div className="flex-col gap-2 flex grow w-full my-16 lg:my-20 mx-auto items-center">
@@ -299,25 +318,6 @@ export function HomeContent() {
           </div>
         </div>
 
-        <div className="mx-5">
-          <div className="mx-auto mt-40 max-w-6xl bg-blue-80 rounded-3xl flex-col-reverse lg:flex-row flex items-center">
-            <div className="w-full lg:w-6/12 p-12 flex-col text-white flex grow items-end justify-start my-0 mx-auto">
-              <h3 className="w-full leading-tight font-bold text-4xl mb-6 text-left">
-                Stability without stagnation
-              </h3>
-              <p className="text-xl leading-normal text-secondary-dark w-full text-left">
-                React approaches changes with care. Every React commit is tested
-                on business-critical surfaces with hundreds of millions of
-                users.
-              </p>
-            </div>
-
-            <div className="text-secondary-dark w-full lg:w-6/12 px-20 py-60 rounded-tl-3xl rounded-tr-3xl lg:rounded-r-3xl lg:rounded-tl-none justify-center leading-6 overflow-x-auto flex items-center bg-blue-60 overflow-hidden">
-              Illustration goes here
-            </div>
-          </div>
-        </div>
-
         <div className="my-16 px-5 flex flex-col w-full">
           <div className="py-12 lg:py-20 text-base text-secondary dark:text-secondary-dark flex flex-col w-full justify-center items-center">
             <Logo className="text-link dark:text-link-dark w-28 lg:w-36 mt-12 h-auto mx-auto self-start" />
@@ -372,7 +372,7 @@ function Example1() {
                 album={{
                   name: 'Album title',
                   year: 'Release year',
-                  artwork: null,
+                  artwork: 'blue',
                 }}
               />
             </ExamplePanel>
@@ -389,19 +389,19 @@ function Example2() {
       id: 0,
       name: 'First album',
       year: 'Release year',
-      artwork: null,
+      artwork: 'blue',
     },
     {
       id: 1,
       name: 'Second album',
       year: 'Release year',
-      artwork: null,
+      artwork: 'red',
     },
     {
       id: 2,
       name: 'Third album',
       year: 'Release year',
-      artwork: null,
+      artwork: 'green',
     },
   ]);
 
@@ -808,11 +808,21 @@ function Row({children, gap}) {
 function Artwork({image}) {
   return (
     <div
-      className="h-24 w-24 shadow-inner-border rounded-xl flex items-center overflow-hidden justify-center align-middle text-white/60 bg-white bg-cover bg-[conic-gradient(at_top_left,_var(--tw-gradient-stops))] from-purple-60 via-blue-40 to-yellow-50"
+      className={cn(
+        'h-24 w-24 shadow-inner-border rounded-xl flex items-center overflow-hidden justify-center align-middle text-white/30 bg-cover bg-white bg-[conic-gradient(at_top_left,_var(--tw-gradient-stops))] from-purple-60 via-blue-50 to-yellow-50',
+        image == 'blue' && 'via-blue-50',
+        image == 'red' && 'via-red-50',
+        image == 'green' && 'via-green-50'
+      )}
       style={{
-        backgroundImage: image ? `url(${image})` : null,
+        backgroundImage:
+          image !== 'blue' && image !== 'red' && image !== 'green'
+            ? `url(${image})`
+            : null,
       }}>
-      {image ? null : <ArtworkPlaceholder />}
+      {image !== 'blue' && image !== 'red' && image !== 'green' ? null : (
+        <ArtworkPlaceholder />
+      )}
     </div>
   );
 }

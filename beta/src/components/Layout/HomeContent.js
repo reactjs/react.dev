@@ -356,7 +356,7 @@ function Example1() {
   return (
     <div>
       <Artwork image={album.artwork} />
-      <h2>{album.title}</h2>
+      <h3>{album.title}</h3>
       <p>{album.year}</p>
       <SaveButton album={album} />
     </div>
@@ -381,12 +381,6 @@ function Example1() {
     </div>
   );
 }
-
-const PostContext = createContext(null);
-const author = {
-  name: 'First name',
-  image: null,
-};
 
 function Example2() {
   const [albums, setAlbums] = useState([
@@ -431,7 +425,7 @@ function Example2() {
   }
   return (
     <section>
-      <h1>{heading}</h1>
+      <h2>{heading}</h2>
       {albums.map(album =>
         <Album key={album.id} album={album} />
       )}
@@ -519,6 +513,7 @@ async function Discography({ artistId }) {
                     <ArtistPage
                       artist={{
                         cover: 'https://i.imgur.com/Q7TJkPm.jpg',
+                        name: 'TODO',
                         albums,
                       }}
                       artistPromise={artistPromise}
@@ -603,11 +598,16 @@ function ArtistPage({artist, artistPromise, albumsPromise}) {
     throw artistPromise;
   }
   return (
-    <PostCover imageUrl={artist.coverUrl}>
+    <div style={{overflowY: 'scroll'}}>
+      <Cover background={artist.cover}>
+        <h1 className="text-xl text-primary-dark font-bold pl-2.5">
+          {artist.name}
+        </h1>
+      </Cover>
       <Suspense fallback={<DiscographySkeleton />}>
         <Discography artist={artist} albumsPromise={albumsPromise} />
       </Suspense>
-    </PostCover>
+    </div>
   );
 }
 
@@ -657,7 +657,9 @@ function AlbumList({albums, children}) {
   }
   return (
     <div className="relative max-h-64 pt-5 pl-5 pr-5">
-      <Heading>{headingText}</Heading>
+      <h2 className="font-bold text-xl text-primary pb-4 leading-snug">
+        {headingText}
+      </h2>
       <Stack gap={16}>
         {albums.map((album) => (
           <Album key={album.id} album={album} />
@@ -668,34 +670,19 @@ function AlbumList({albums, children}) {
   );
 }
 
-function PostCover({imageUrl, title, children}) {
+function Cover({background, children}) {
   return (
-    <>
-      <div style={{overflowY: 'scroll'}}>
-        <div className="h-40 mt-16 overflow-hidden relative">
-          <div className="absolute inset-0 p-3 flex items-end bg-gradient-to-t from-black/50 via-black/0">
-            <h1 className="text-xl text-primary-dark font-bold pl-2.5">
-              To do: add title {title}
-            </h1>
-          </div>
-          <img
-            src={imageUrl}
-            alt="Cover image"
-            width="100%"
-            style={{maxWidth: '100%'}}
-          />
-        </div>
+    <div className="h-40 mt-16 overflow-hidden relative">
+      <div className="absolute inset-0 p-3 flex items-end bg-gradient-to-t from-black/50 via-black/0">
         {children}
       </div>
-    </>
-  );
-}
-
-function Heading({children}) {
-  return (
-    <h1 className="font-bold text-xl text-primary pb-4 leading-snug">
-      {children}
-    </h1>
+      <img
+        src={background}
+        alt="Cover image"
+        width="100%"
+        style={{maxWidth: '100%'}}
+      />
+    </div>
   );
 }
 
@@ -705,8 +692,10 @@ function Album({album}) {
       <Row gap={12}>
         <Artwork image={album.cover} />
         <Stack>
-          <ExampleLink to={album.url}>{album.name}</ExampleLink>
-          <Timestamp time={album.year} />
+          <h2 className="text-md mt-2 mr-5 text-primary font-bold">
+            {album.name}
+          </h2>
+          <p className="text-tertiary mb-1 text-base">{album.year}</p>
         </Stack>
         <SaveButton />
       </Row>
@@ -743,12 +732,6 @@ function Row({children, gap}) {
       }}>
       {children}
     </div>
-  );
-}
-
-function ExampleLink({children}) {
-  return (
-    <div className="text-md mt-2 mr-5 text-primary font-bold">{children}</div>
   );
 }
 
@@ -811,8 +794,4 @@ function SaveButton() {
       )}
     </button>
   );
-}
-
-function Timestamp({time}) {
-  return <span className="text-tertiary mb-1 text-base">{time}</span>;
 }

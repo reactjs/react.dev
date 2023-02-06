@@ -174,7 +174,7 @@ export function HomeContent() {
               </p>
             </div>
 
-            <div className="text-secondary-dark w-full lg:w-6/12 pt-20 mb-8 lg:py-28 rounded-tl-3xl rounded-tr-3xl lg:rounded-r-3xl lg:rounded-tl-none justify-center leading-6 overflow-x-auto flex items-center overflow-hidden">
+            <div className="text-secondary-dark w-full lg:w-6/12 pt-20 lg:py-28 rounded-tl-3xl rounded-tr-3xl lg:rounded-r-3xl lg:rounded-tl-none justify-center leading-6 overflow-x-auto flex items-center overflow-hidden">
               <Logo className="backdrop-blur-sm text-white/10 w-48 lg:w-64 drop-shadow-xl" />
             </div>
           </div>
@@ -810,7 +810,7 @@ function Artwork({image}) {
   return (
     <div
       className={cn(
-        'h-24 w-24 shadow-inner-border rounded-xl flex items-center overflow-hidden justify-center align-middle text-white/30 bg-cover bg-white bg-[conic-gradient(at_top_left,_var(--tw-gradient-stops))] from-purple-60 via-blue-50 to-yellow-50',
+        'h-24 w-24 shadow-inner-border rounded-xl flex items-center overflow-hidden justify-center align-middle text-white/50 bg-cover bg-white bg-[conic-gradient(at_top_left,_var(--tw-gradient-stops))] from-purple-60 via-blue-50 to-yellow-50',
         image == 'blue' && 'via-blue-50',
         image == 'red' && 'via-red-50',
         image == 'green' && 'via-green-50'
@@ -834,11 +834,11 @@ function ArtworkPlaceholder() {
       xmlns="http://www.w3.org/2000/svg"
       width="36"
       height="36"
-      className="drop-shadow"
+      className="drop-shadow-xl"
       viewBox="0 0 24 24">
       <path
         fill="currentColor"
-        d="M20.42,2.31a1.52,1.52,0,0,0-1.3-.26L8.12,5A1.52,1.52,0,0,0,7,6.41v8.15A3.91,3.91,0,0,0,5,14a4,4,0,1,0,4,4V10.87L19,8.31v3.25A3.91,3.91,0,0,0,17,11a4,4,0,1,0,4,4V3.5A1.5,1.5,0,0,0,20.42,2.31Z"
+        d="M20.42,2.31a1.52,1.52,0,0,0-1.3-.26L8.12,5A1.52,1.52,0,0,0,7,6.41v8.15A3.91,3.91,0,0,0,5,14a4,4,0,1,0,4,4V10.87L19,8.31v3.25A3.91,3.91,0,0,0,17,11a4,4,0,1,0,4,4V3.5A1.5,1.5,0,0,0,20.42,2.31ZM5,20a2,2,0,1,1,2-2A2,2,0,0,1,5,20ZM9,8.81v-2L19,4.15v2.1ZM17,17a2,2,0,1,1,2-2A2,2,0,0,1,17,17Z"
       />
     </svg>
   );

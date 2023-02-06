@@ -581,7 +581,7 @@ async function Discography({ artistId }) {
             <BrowserChrome
               setPostPromise={setPostPromise}
               setAlbumsPromise={setAlbumsPromise}>
-              <ExamplePanel noPadding={true} noShadow={true}>
+              <ExamplePanel noPadding={true} noShadow={true} height="33.5rem">
                 <Suspense fallback={null}>
                   <div style={{animation: 'fadein 200ms'}}>
                     <ArtistPage
@@ -604,14 +604,15 @@ async function Discography({ artistId }) {
   );
 }
 
-function ExamplePanel({children, noPadding, noShadow}) {
+function ExamplePanel({children, noPadding, noShadow, height}) {
   return (
     <div
       className={cn(
-        'rounded-2xl mx-auto text-secondary leading-normal bg-white overflow-hidden w-full max-h-[33.5rem] overflow-y-scroll',
+        'rounded-2xl mx-auto text-secondary leading-normal bg-white overflow-hidden w-full overflow-y-scroll',
         noPadding ? 'p-0' : 'p-4',
         noShadow ? 'shadow-none' : 'shadow-3xl'
-      )}>
+      )}
+      style={{height}}>
       {children}
     </div>
   );
@@ -676,7 +677,7 @@ function ArtistPage({artist, artistPromise, albumsPromise}) {
 
 function LoadingDiscography() {
   return (
-    <div className="flex flex-col items-center h-[320px] overflow-hidden">
+    <div className="flex flex-col items-center h-[312px] overflow-hidden">
       <div className="w-full">
         <div className="relative overflow-hidden before:-skew-x-12 before:absolute before:inset-0 before:-translate-x-full before:animate-[shimmer_1.75s_infinite] before:bg-gradient-to-r before:from-transparent before:via-white/50 before:to-transparent">
           <div className="space-y-3 space-x-5">

@@ -359,7 +359,7 @@ function Example1() {
       <Artwork image={album.artwork} />
       <h3>{album.title}</h3>
       <p>{album.year}</p>
-      <SaveButton album={album} />
+      <LikeButton album={album} />
     </div>
   );
 }
@@ -768,7 +768,7 @@ function Album({album}) {
           </h2>
           <p className="text-tertiary mb-1 text-base">{album.year}</p>
         </Stack>
-        <SaveButton />
+        <LikeButton />
       </Row>
     </Stack>
   );
@@ -844,7 +844,7 @@ function ArtworkPlaceholder() {
   );
 }
 
-function SaveButton() {
+function LikeButton() {
   const [saved, setSaved] = useState(false);
   return (
     <button

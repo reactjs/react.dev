@@ -206,7 +206,7 @@ export function HomeContent() {
             </div>
           </div>
         </div>
-        <hr className="max-w-6xl mx-auto" />
+        <hr className="max-w-6xl mx-auto border-border dark:border-border-dark" />
         <div className="">
           <div className="max-w-6xl mx-auto flex flex-col w-full">
             <div className="flex-col gap-2 flex grow w-full my-16 lg:my-20 mx-auto items-center">

@@ -127,12 +127,12 @@ function Link({href, children, ...props}: JSX.IntrinsicElements['a']) {
 
 function NavItem({url, isActive, children}: any) {
   return (
-    <div className="block">
+    <div className="flex flex-1">
       <Link
         href={url}
         className={cn(
-          'outline-link py-2 px-3 rounded-lg capitalize',
-          !isActive && 'hover:bg-card hover:dark:bg-card-dark',
+          'w-full text-center outline-link py-2 px-2.5 xs:px-3 rounded-lg capitalize',
+          !isActive && 'hover:bg-primary/5 hover:dark:bg-primary-dark/5',
           isActive &&
             'bg-highlight dark:bg-highlight-dark text-link dark:text-link-dark'
         )}>
@@ -258,7 +258,7 @@ export default function TopNav({
               aria-label="Menu"
               onClick={() => setIsOpen(!isOpen)}
               className={cn(
-                'flex lg:hidden w-12 h-12 items-center rounded-full items-center justify-center hover:bg-secondary-button hover:dark:bg-secondary-button-dark outline-link',
+                'flex lg:hidden w-12 h-12 items-center rounded-full items-center justify-center hover:bg-primary/5 hover:dark:bg-primary-dark/5 outline-link',
                 {
                   'text-link dark:text-link-dark': isOpen,
                 }
@@ -267,7 +267,7 @@ export default function TopNav({
             </button>
             <div className="3xl:flex-1 mr-0 sm:mr-2.5 3xl:mr-0 flex align-center">
               <NextLink href="/">
-                <a className="inline-flex text-lg font-normal items-center text-primary dark:text-primary-dark py-1 whitespace-nowrap outline-link p-2.5 rounded-lg">
+                <a className="inline-flex text-lg font-normal items-center text-primary dark:text-primary-dark py-1 whitespace-nowrap outline-link px-1.5 rounded-lg">
                   <Logo className="text-sm mr-2 w-8 h-8 text-link dark:text-link-dark" />
                   React
                 </a>
@@ -304,7 +304,7 @@ export default function TopNav({
                   aria-label="Give feedback"
                   type="button"
                   className={cn(
-                    'flex w-12 h-12 items-center rounded-full items-center justify-center hover:bg-secondary-button hover:dark:bg-secondary-button-dark outline-link',
+                    'flex w-12 h-12 items-center rounded-full items-center justify-center hover:bg-primary/5 hover:dark:bg-primary-dark/5 outline-link',
                     {
                       'bg-secondary-button dark:bg-secondary-button-dark':
                         showFeedback,
@@ -336,7 +336,7 @@ export default function TopNav({
                   onClick={() => {
                     window.__setPreferredTheme('dark');
                   }}
-                  className="flex w-12 h-12 items-center rounded-full items-center justify-center hover:bg-secondary-button hover:dark:bg-secondary-button-dark outline-link">
+                  className="flex w-12 h-12 items-center rounded-full items-center justify-center hover:bg-primary/5 hover:dark:bg-primary-dark/5 outline-link">
                   {darkIcon}
                 </button>
               </div>
@@ -347,7 +347,7 @@ export default function TopNav({
                   onClick={() => {
                     window.__setPreferredTheme('light');
                   }}
-                  className="flex w-12 h-12 items-center rounded-full items-center justify-center hover:bg-secondary-button hover:dark:bg-secondary-button-dark outline-link">
+                  className="flex w-12 h-12 items-center rounded-full items-center justify-center hover:bg-primary/5 hover:dark:bg-primary-dark/5 outline-link">
                   {lightIcon}
                 </button>
               </div>
@@ -357,7 +357,7 @@ export default function TopNav({
                   target="_blank"
                   rel="noreferrer noopener"
                   aria-label="Open on GitHub"
-                  className="flex w-12 h-12 items-center rounded-full items-center justify-center hover:bg-secondary-button hover:dark:bg-secondary-button-dark outline-link">
+                  className="flex w-12 h-12 items-center rounded-full items-center justify-center hover:bg-primary/5 hover:dark:bg-primary-dark/5 outline-link">
                   {githubIcon}
                 </Link>
               </div>
@@ -381,43 +381,21 @@ export default function TopNav({
               className="w-full lg:h-auto grow pr-0 lg:pr-5 pt-4 lg:py-6 md:pt-4 lg:pt-4 scrolling-touch scrolling-gpu">
               {/* No fallback UI so need to be careful not to suspend directly inside. */}
               <Suspense fallback={null}>
-                <div className="block ml-3 flex flex-row gap-2 lg:hidden text-base font-bold text-secondary dark:text-secondary-dark">
-                  <Link
-                    href="/learn"
-                    className={cn(
-                      'outline-link px-2 py-1 rounded-lg hover:bg-card hover:dark:bg-card-dark',
-                      section === 'learn' &&
-                        'bg-highlight dark:bg-highlight-dark text-link'
-                    )}>
+                <div className="ml-2.5 xs:ml-5 xs:gap-0.5 text-[13px] xs:text-base overflow-x-scroll flex flex-row lg:hidden text-base font-bold text-secondary dark:text-secondary-dark">
+                  <NavItem isActive={section === 'learn'} url="/learn">
                     Learn
-                  </Link>
-                  <Link
-                    href="/reference/react"
-                    className={cn(
-                      'outline-link px-2 py-1 rounded-lg hover:bg-card hover:dark:bg-card-dark',
-                      section === 'reference' &&
-                        'bg-highlight dark:bg-highlight-dark text-link'
-                    )}>
+                  </NavItem>
+                  <NavItem
+                    isActive={section === 'reference'}
+                    url="/reference/react">
                     Reference
-                  </Link>
-                  <Link
-                    href="/community"
-                    className={cn(
-                      'outline-link px-2 py-1 rounded-lg hover:bg-card hover:dark:bg-card-dark',
-                      section === 'community' &&
-                        'bg-highlight dark:bg-highlight-dark text-link'
-                    )}>
+                  </NavItem>
+                  <NavItem isActive={section === 'community'} url="/community">
                     Community
-                  </Link>
-                  <Link
-                    href="/blog"
-                    className={cn(
-                      'outline-link px-2 py-1 rounded-lg hover:bg-card hover:dark:bg-card-dark',
-                      section === 'blog' &&
-                        'bg-highlight dark:bg-highlight-dark text-link'
-                    )}>
+                  </NavItem>
+                  <NavItem isActive={section === 'blog'} url="/blog">
                     Blog
-                  </Link>
+                  </NavItem>
                 </div>
                 <div
                   role="separator"

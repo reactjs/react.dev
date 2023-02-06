@@ -12,7 +12,7 @@ This API will be removed in a future major version of React. [See the alternativ
 
 `findDOMNode` finds the browser DOM node for a React [class component](/reference/react/Component) instance.
 
-```
+```js
 const domNode = findDOMNode(componentInstance)
 ```
 
@@ -29,6 +29,8 @@ const domNode = findDOMNode(componentInstance)
 Call `findDOMNode` to find the browser DOM node for a given React [class component](/reference/react/Component) instance.
 
 ```js
+import { findDOMNode } from 'react-dom';
+
 const domNode = findDOMNode(componentInstance);
 ```
 

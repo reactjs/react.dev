@@ -26,6 +26,8 @@ To display a progress indicator, render the [built-in browser `<progress>`](http
 <progress value={0.5} />
 ```
 
+[See more examples below.](#usage)
+
 #### Props {/*props*/}
 
 `<progress>` supports all [common element props.](/reference/react-dom/components/common#props)

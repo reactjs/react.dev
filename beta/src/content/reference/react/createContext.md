@@ -28,6 +28,8 @@ import { createContext } from 'react';
 const ThemeContext = createContext('light');
 ```
 
+[See more examples below.](#usage)
+
 #### Parameters {/*parameters*/}
 
 * `defaultValue`: The value that you want the context to have when there is no matching context provider in the tree above the component that reads context. If you don't have any meaningful default value, specify `null`. The default value is meant as a "last resort" fallback. It is static and never changes over time.

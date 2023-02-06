@@ -1,5 +1,5 @@
 ---
-title: "react: APIs"
+title: "Built-in React APIs"
 ---
 
 <Intro>
@@ -8,11 +8,7 @@ In addition to [Hooks](/reference/react) and [Components](/reference/react/compo
 
 </Intro>
 
-<InlineToc />
-
 ---
-
-## React APIs {/*react-apis*/}
 
 * [`createContext`](/reference/react/createContext) lets you define and provide context to the child components. Used with [`useContext`.](/reference/react/useContext)
 * [`forwardRef`](/reference/react/forwardRef) lets your component expose a DOM node as a ref to the parent. Used with [`useRef`.](/reference/react/useRef)

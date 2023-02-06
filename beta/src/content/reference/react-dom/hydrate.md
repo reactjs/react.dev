@@ -6,7 +6,7 @@ title: hydrate
 
 This API will be removed in a future major version of React.
 
-In React 18, `hydrate` was replaced by [`hydrateRoot`.](/reference/react-dom/client/hydrateRoot) Using `hydrate` in React 18 will warn that your app will behave as if it’s running React 17. Learn more [here.](https://reactjs.org/blog/2022/03/08/react-18-upgrade-guide.html#updates-to-client-rendering-apis)
+In React 18, `hydrate` was replaced by [`hydrateRoot`.](/reference/react-dom/client/hydrateRoot) Using `hydrate` in React 18 will warn that your app will behave as if it’s running React 17. Learn more [here.](/blog/2022/03/08/react-18-upgrade-guide#updates-to-client-rendering-apis)
 
 </Deprecated>
 
@@ -31,6 +31,8 @@ hydrate(reactNode, domNode, callback?)
 Call `hydrate` in React 17 and below to “attach” React to existing HTML that was already rendered by React in a server environment.
 
 ```js
+import { hydrate } from 'react-dom';
+
 hydrate(reactNode, domNode);
 ```
 
@@ -62,7 +64,7 @@ React will attach to the HTML that exists inside the `domNode`, and take over ma
 
 Call `hydrate` to attach a <CodeStep step={1}>React component</CodeStep> into a server-rendered <CodeStep step={2}>browser DOM node</CodeStep>.
 
-```js [[1, 3, "document.getElementById('root')"], [2, 3, "<App />"]]
+```js [[1, 3, "<App />"], [2, 3, "document.getElementById('root')"]]
 import {hydrate} from 'react-dom';
 
 hydrate(<App />, document.getElementById('root'));

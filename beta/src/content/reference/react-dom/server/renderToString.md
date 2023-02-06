@@ -28,11 +28,15 @@ const html = renderToString(reactNode)
 
 On the server, call `renderToString` to render your app to HTML.
 
-```js {3-4}
+```js
+import { renderToString } from 'react-dom/server';
+
 const html = renderToString(<App />);
 ```
 
 On the client, call [`hydrateRoot`](/reference/react-dom/client/hydrateRoot) to make the server-generated HTML interactive.
+
+[See more examples below.](#usage)
 
 #### Parameters {/*parameters*/}
 

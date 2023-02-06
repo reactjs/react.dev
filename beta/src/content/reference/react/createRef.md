@@ -40,6 +40,8 @@ class MyComponent extends Component {
   // ...
 ```
 
+[See more examples below.](#usage)
+
 #### Parameters {/*parameters*/}
 
 `createRef` takes no parameters.

@@ -23,6 +23,8 @@ const root = hydrateRoot(domNode, reactNode, options?)
 Call `hydrateRoot` to “attach” React to existing HTML that was already rendered by React in a server environment.
 
 ```js
+import { hydrateRoot } from 'react-dom/client';
+
 const domNode = document.getElementById('root');
 const root = hydrateRoot(domNode, reactNode);
 ```

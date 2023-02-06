@@ -296,7 +296,7 @@ Something isn't right about this `return` statement. Can you fix it?
 
 <Hint>
 
-You may get an "Unexpected token" error while trying to fix this. In that case, check the that semicolon appears *after* the closing parenthesis. Leaving a semicolon inside `return ( )` will cause an error.
+You may get an "Unexpected token" error while trying to fix this. In that case, check that the semicolon appears *after* the closing parenthesis. Leaving a semicolon inside `return ( )` will cause an error.
 
 </Hint>
 

@@ -764,7 +764,7 @@ function PostCover({imageUrl, title, children}) {
     <>
       <div style={{overflowY: 'scroll'}}>
         <div className="h-40 mt-16 overflow-hidden relative">
-          <div class="absolute inset-0 p-3 flex items-end bg-gradient-to-t from-black/50 via-black/0">
+          <div className="absolute inset-0 p-3 flex items-end bg-gradient-to-t from-black/50 via-black/0">
             <h1 className="text-xl text-primary-dark font-bold pl-2.5">
               To do: add title {title}
             </h1>

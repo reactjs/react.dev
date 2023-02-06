@@ -18,6 +18,7 @@ import type {TocItem} from 'components/MDX/TocContext';
 import type {RouteItem} from 'components/Layout/getRouteMeta';
 import {HomeContent} from './HomeContent';
 import {TopNav} from './TopNav';
+import cn from 'classnames';
 
 import(/* webpackPrefetch: true */ '../MDX/CodeBlock/CodeBlock');
 
@@ -75,6 +76,8 @@ export function Page({children, toc, routeTree, meta, section}: PageProps) {
     showSidebar = false;
     showToc = false;
   } else if (section === 'blog') {
+    showToc = false;
+    hasColumns = false;
     showSidebar = false;
   }
 
@@ -88,29 +91,29 @@ export function Page({children, toc, routeTree, meta, section}: PageProps) {
         breadcrumbs={breadcrumbs}
       />
       <div
-        className={
-          hasColumns
-            ? 'grid grid-cols-only-content lg:grid-cols-sidebar-content 2xl:grid-cols-sidebar-content-toc'
-            : ''
-        }>
-        <div className="lg:-mt-20">
-          <div className="lg:pt-20 fixed lg:sticky top-0 left-0 right-0 py-0 shadow lg:shadow-none">
-            {showSidebar && (
+        className={cn(
+          hasColumns &&
+            'grid grid-cols-only-content lg:grid-cols-sidebar-content 2xl:grid-cols-sidebar-content-toc',
+          section === 'blog' && 'max-w-5xl mx-auto'
+        )}>
+        {showSidebar && (
+          <div className="lg:-mt-20">
+            <div className="lg:pt-20 fixed lg:sticky top-0 left-0 right-0 py-0 shadow lg:shadow-none">
               <SidebarNav
                 key={section}
                 routeTree={routeTree}
                 breadcrumbs={breadcrumbs}
               />
-            )}
+            </div>
           </div>
-        </div>
+        )}
         {/* No fallback UI so need to be careful not to suspend directly inside. */}
         <Suspense fallback={null}>
           <main className="min-w-0">
             <article className="break-words" key={asPath}>
               {content}
             </article>
-            <Footer hideSurvey={isHomePage} />
+            <Footer hideSurvey={isHomePage || isBlogIndex} />
           </main>
         </Suspense>
         <div className="-mt-20 hidden lg:max-w-xs 2xl:block">

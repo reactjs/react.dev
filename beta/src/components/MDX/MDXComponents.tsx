@@ -14,6 +14,7 @@ import ExpandableExample from './ExpandableExample';
 import {H1, H2, H3, H4} from './Heading';
 import InlineCode from './InlineCode';
 import Intro from './Intro';
+import BlogCard from './BlogCard';
 import Link from './Link';
 import {PackageImport} from './PackageImport';
 import Recap from './Recap';
@@ -377,6 +378,7 @@ export const MDXComponents = {
   h4: H4,
   hr: Divider,
   a: LinkWithTodo,
+  BlogCard,
   code: InlineCode,
   pre: CodeBlock,
   CodeDiagram,

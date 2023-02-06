@@ -747,14 +747,7 @@ function CommentList({comments, children}) {
     headingText = comments.length + ' Albums';
   }
   return (
-    <div
-      style={{
-        maxHeight: 250,
-        position: 'relative',
-        paddingTop: 20,
-        paddingLeft: 20,
-        paddingRight: 20,
-      }}>
+    <div className="relative max-h-64 pt-5 pl-5 pr-5">
       <Heading>{headingText}</Heading>
       <Stack gap={16}>
         {comments.map((comment) => (
@@ -766,16 +759,16 @@ function CommentList({comments, children}) {
   );
 }
 
-function PostCover({imageUrl, children}) {
+function PostCover({imageUrl, title, children}) {
   return (
     <>
       <div style={{overflowY: 'scroll'}}>
-        <div
-          style={{
-            height: 160,
-            marginTop: 64,
-            overflow: 'hidden',
-          }}>
+        <div className="h-40 mt-16 overflow-hidden relative">
+          <div class="absolute inset-0 p-3 flex items-end bg-gradient-to-t from-black/50 via-black/0">
+            <h1 className="text-xl text-primary-dark font-bold pl-2.5">
+              To do: add title {title}
+            </h1>
+          </div>
           <img
             src={imageUrl}
             alt="Cover image"
@@ -791,14 +784,7 @@ function PostCover({imageUrl, children}) {
 
 function Heading({children}) {
   return (
-    <h1
-      style={{
-        fontWeight: 'bold',
-        fontSize: 20,
-        color: '#23272F',
-        lineHeight: '100%',
-        paddingBottom: 20,
-      }}>
+    <h1 className="font-bold text-xl text-primary pb-4 leading-snug">
       {children}
     </h1>
   );
@@ -807,20 +793,12 @@ function Heading({children}) {
 function AddComment() {
   const {currentUser, onAddComment} = useContext(PostContext);
   return (
-    <div
-      style={{
-        position: 'sticky',
-        bottom: 0,
-        zIndex: 10,
-        paddingBottom: 15,
-        background: 'white',
-        width: '100%',
-      }}>
-      <hr style={{paddingTop: 15}} />
+    <div className="sticky bottom-0 z-10 pb-4 bg-white w-full">
+      <hr className="pt-4" />
       <Row gap={12}>
         <Artwork user={currentUser} />
         <form
-          style={{flex: '1', display: 'flex', alignItems: 'center'}}
+          className="flex-1 flex items-center"
           onSubmit={(e) => {
             e.preventDefault();
             const formData = new FormData(e.target);
@@ -832,11 +810,7 @@ function AddComment() {
             name="text"
             placeholder="Add a comment..."
             autoComplete="off"
-            style={{
-              backgroundColor: 'transparent',
-              outline: 'none',
-              width: '100%',
-            }}
+            className="bg-transparent outline-none w-full"
           />
         </form>
       </Row>
@@ -863,10 +837,8 @@ function Comment({comment}) {
 function Stack({children, gap}) {
   return (
     <div
+      className={'flex flex-col flex-1'}
       style={{
-        display: 'flex',
-        flexDirection: 'column',
-        flex: '1',
         gap,
       }}>
       {children}
@@ -885,10 +857,8 @@ function Code({children}) {
 function Row({children, gap}) {
   return (
     <div
+      className="flex flex-row items-center"
       style={{
-        display: 'flex',
-        flexDirection: 'row',
-        alignItems: 'center',
         gap,
       }}>
       {children}
@@ -898,36 +868,16 @@ function Row({children, gap}) {
 
 function ExampleLink({children}) {
   return (
-    <div
-      style={{
-        fontSize: 17,
-        marginTop: 3,
-        marginRight: 10,
-        color: '#23272F',
-        fontWeight: 'bold',
-      }}>
-      {children}
-    </div>
+    <div className="text-md mt-2 mr-5 text-primary font-bold">{children}</div>
   );
 }
 
 function Artwork({user}) {
   return (
     <div
+      className="h-24 w-24 rounded-xl flex items-center overflow-hidden justify-center align-middle text-gray-30 bg-card bg-cover"
       style={{
-        height: 72,
-        width: 72,
-        borderRadius: '8px',
-        display: 'flex',
-        alignItems: 'center',
-        overflow: 'hidden',
-        justifyContent: 'center',
-        verticalAlign: 'middle',
-        transition: 'all 0.4s ease-in-out',
-        color: '#99A1B3',
-        backgroundColor: '#EBECF0',
         backgroundImage: user.image ? `url(${user.image.url})` : null,
-        backgroundSize: 'cover',
       }}>
       {user.image ? null : <ArtworkPlaceholder />}
     </div>
@@ -951,19 +901,7 @@ function ArtworkPlaceholder() {
 
 function SaveButton({saved}) {
   return (
-    <div
-      style={{
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        height: 44,
-        width: 44,
-        borderRadius: '50%',
-        color: '#5E687E',
-        backgroundColor: 'transparent',
-        transition: 'background-color 0.2s ease-in-out',
-        '&:hover': {backgroundColor: '#F6F7F9'},
-      }}>
+    <div className="flex items-center justify-center w-12 h-12 cursor-pointer rounded-full text-tertiary hover:bg-card">
       {saved ? (
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -992,14 +930,5 @@ function SaveButton({saved}) {
 }
 
 function Timestamp({time}) {
-  return (
-    <span
-      style={{
-        color: '#99A1B3',
-        marginBottom: 2,
-        fontSize: 15,
-      }}>
-      {time}
-    </span>
-  );
+  return <span className="text-tertiary mb-1 text-base">{time}</span>;
 }

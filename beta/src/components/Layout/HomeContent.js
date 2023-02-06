@@ -604,14 +604,14 @@ function ArtistPage({artist, artistPromise, albumsPromise}) {
           {artist.name}
         </h1>
       </Cover>
-      <Suspense fallback={<DiscographySkeleton />}>
+      <Suspense fallback={<LoadingDiscography />}>
         <Discography artist={artist} albumsPromise={albumsPromise} />
       </Suspense>
     </div>
   );
 }
 
-function DiscographySkeleton() {
+function LoadingDiscography() {
   return (
     <div className="flex flex-col items-center h-[320px] overflow-hidden">
       <div className="w-full">

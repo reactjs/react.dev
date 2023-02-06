@@ -97,8 +97,8 @@ export function Page({children, toc, routeTree, meta, section}: PageProps) {
           section === 'blog' && 'max-w-5xl mx-auto'
         )}>
         {showSidebar && (
-          <div className="lg:-mt-20">
-            <div className="lg:pt-20 fixed lg:sticky top-0 left-0 right-0 py-0 shadow lg:shadow-none">
+          <div className="lg:-mt-16">
+            <div className="lg:pt-16 fixed lg:sticky top-0 left-0 right-0 py-0 shadow lg:shadow-none">
               <SidebarNav
                 key={section}
                 routeTree={routeTree}
@@ -116,7 +116,7 @@ export function Page({children, toc, routeTree, meta, section}: PageProps) {
             <Footer hideSurvey={isHomePage || isBlogIndex} />
           </main>
         </Suspense>
-        <div className="-mt-20 hidden lg:max-w-xs 2xl:block">
+        <div className="-mt-16 hidden lg:max-w-xs 2xl:block">
           {showToc && toc.length > 0 && <Toc headings={toc} key={asPath} />}
         </div>
       </div>

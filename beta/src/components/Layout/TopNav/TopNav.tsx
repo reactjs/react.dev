@@ -131,9 +131,10 @@ function NavItem({url, isActive, children}: any) {
       <Link
         href={url}
         className={cn(
-          'outline-link p-2 rounded-lg capitalize',
+          'outline-link py-2 px-3 rounded-lg capitalize',
           !isActive && 'hover:bg-card hover:dark:bg-card-dark',
-          isActive && 'bg-highlight dark:bg-highlight-dark text-link'
+          isActive &&
+            'bg-highlight dark:bg-highlight-dark text-link dark:text-link-dark'
         )}>
         {children}
       </Link>
@@ -247,10 +248,10 @@ export default function TopNav({
       )}>
       <nav
         className={cn(
-          'max-h-20 backdrop-filter backdrop-blur-lg backdrop-saturate-200 transition-shadow bg-opacity-90 items-center w-full flex justify-between bg-wash dark:bg-wash-dark dark:bg-opacity-95 py-3 px-1.5 lg:px-5 lg:pr-5 z-50',
+          'backdrop-filter backdrop-blur-lg backdrop-saturate-200 transition-shadow bg-opacity-90 items-center w-full flex justify-between bg-wash dark:bg-wash-dark dark:bg-opacity-95 px-1.5 lg:px-5 lg:pr-5 z-50',
           {'dark:shadow-nav-dark shadow-nav': isScrolled || isOpen}
         )}>
-        <div className="w-full gap-0 sm:gap-2.5 flex justify-center items-center justify-between">
+        <div className="h-16 w-full gap-0 sm:gap-2.5 flex justify-center items-center justify-between">
           <div className="3xl:flex-1 flex flex-row -space-x-1.5">
             <button
               type="button"
@@ -276,8 +277,8 @@ export default function TopNav({
           <div className="hidden md:flex flex-1 justify-center items-center w-full 3xl:w-auto 3xl:shrink-0 3xl:justify-center">
             <Search />
           </div>
-          <div className="text-base justify-center items-center flex 3xl:flex-1 flex-row 3xl:justify-end">
-            <div className="ml-2.5 mr-5 hidden lg:flex gap-5">
+          <div className="text-base justify-center items-center gap-2.5 flex 3xl:flex-1 flex-row 3xl:justify-end">
+            <div className="mx-2.5 gap-2.5 hidden lg:flex">
               <NavItem isActive={section === 'learn'} url="/learn">
                 Learn
               </NavItem>
@@ -377,7 +378,7 @@ export default function TopNav({
             <nav
               role="navigation"
               style={{'--bg-opacity': '.2'} as React.CSSProperties} // Need to cast here because CSS vars aren't considered valid in TS types (cuz they could be anything)
-              className="w-full lg:h-auto grow pr-0 lg:pr-5 pt-6 lg:py-6 md:pt-4 lg:pt-4 scrolling-touch scrolling-gpu">
+              className="w-full lg:h-auto grow pr-0 lg:pr-5 pt-4 lg:py-6 md:pt-4 lg:pt-4 scrolling-touch scrolling-gpu">
               {/* No fallback UI so need to be careful not to suspend directly inside. */}
               <Suspense fallback={null}>
                 <div className="block ml-3 flex flex-row gap-2 lg:hidden text-base font-bold text-secondary dark:text-secondary-dark">
@@ -431,7 +432,7 @@ export default function TopNav({
                   isForceExpanded={isOpen}
                 />
               </Suspense>
-              <div className="h-20" />
+              <div className="h-16" />
             </nav>
             <div className="fixed bottom-0 hidden lg:block">
               <Feedback />

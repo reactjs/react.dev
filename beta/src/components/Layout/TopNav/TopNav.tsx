@@ -264,7 +264,7 @@ export default function TopNav({
               )}>
               {isOpen ? <IconClose /> : <IconHamburger />}
             </button>
-            <div className="3xl:flex-1 mr-0 sm:mr-2.5 3xl:mr-0">
+            <div className="3xl:flex-1 mr-0 sm:mr-2.5 3xl:mr-0 flex align-center">
               <NextLink href="/">
                 <a className="inline-flex text-lg font-normal items-center text-primary dark:text-primary-dark py-1 whitespace-nowrap outline-link p-2.5 rounded-lg">
                   <Logo className="text-sm mr-2 w-8 h-8 text-link dark:text-link-dark" />

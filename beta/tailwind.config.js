@@ -35,6 +35,7 @@ module.exports = {
       'nav-dark':
         '0 25px 50px -12px rgba(0, 0, 0, 0.1), 0 1px 1px rgba(255,255,255,.05)',
       inner: 'inset 0 1px 4px 0 rgba(0, 0, 0, 0.05)',
+      'inner-border': 'inset 0 0 0 1px rgba(0, 0, 0, 0.05)',
       none: 'none',
     },
     extend: {

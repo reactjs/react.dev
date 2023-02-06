@@ -3,6 +3,7 @@
  */
 
 import {createContext, useState, useContext, Suspense} from 'react';
+import cn from 'classnames';
 import ButtonLink from '../ButtonLink';
 import {IconRestart} from '../Icon/IconRestart';
 import {Logo} from 'components/Logo';
@@ -365,7 +366,7 @@ function Example1() {
           `}</div>
             </CodeBlock>
           </div>
-          <div className="w-full p-5 flex grow justify-center">
+          <div className="w-full p-10 flex grow justify-center">
             <ExamplePanel>
               <Album
                 album={{
@@ -434,8 +435,8 @@ function Example2() {
 }`}</div>
             </CodeBlock>
           </div>
-          <div className="w-full p-5 flex grow justify-center">
-            <ExamplePanel noShadow={false} noPadding={true} height={328}>
+          <div className="lg:-my-20 w-full p-10 flex grow justify-center">
+            <ExamplePanel noShadow={false} noPadding={true}>
               <AlbumList albums={albums} />
             </ExamplePanel>
           </div>
@@ -576,11 +577,11 @@ async function Discography({ artistId }) {
 }`}</div>
             </CodeBlock>
           </div>
-          <div className="w-full p-5 sm:p-5 flex grow justify-center">
+          <div className="lg:-my-20 w-full p-10 flex grow justify-center">
             <BrowserChrome
               setPostPromise={setPostPromise}
               setAlbumsPromise={setAlbumsPromise}>
-              <ExamplePanel noPadding={true} noShadow={true} height={475}>
+              <ExamplePanel noPadding={true} noShadow={true}>
                 <Suspense fallback={null}>
                   <div style={{animation: 'fadein 200ms'}}>
                     <ArtistPage
@@ -603,25 +604,14 @@ async function Discography({ artistId }) {
   );
 }
 
-function ExamplePanel({children, noPadding, noShadow, height}) {
+function ExamplePanel({children, noPadding, noShadow}) {
   return (
     <div
-      style={{
-        padding: noPadding ? 0 : '20px',
-        boxShadow: noShadow
-          ? 'none'
-          : '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
-        borderRadius: 20,
-        margin: '0 auto',
-        color: '#404756',
-        fontSize: 15,
-        lineHeight: 1.5,
-        backgroundColor: '#fefefe',
-        minHeight: 40,
-        overflow: 'hidden',
-        width: '100%',
-        height,
-      }}>
+      className={cn(
+        'rounded-2xl mx-auto text-secondary leading-normal bg-white overflow-hidden w-full max-h-[33.5rem] overflow-y-scroll',
+        noPadding ? 'p-0' : 'p-4',
+        noShadow ? 'shadow-none' : 'shadow-3xl'
+      )}>
       {children}
     </div>
   );
@@ -646,8 +636,8 @@ function BrowserChrome({children, setPostPromise, setAlbumsPromise}) {
   }
 
   return (
-    <div className="bg-wash dark:bg-gray-95 shadow-xl relative overflow-hidden w-full border border-border dark:border-opacity-10 rounded-2xl">
-      <div className="w-full h-16 border-b border-border backdrop-filter rounded-t-2xl overflow-hidden backdrop-blur-lg backdrop-saturate-200 bg-white bg-opacity-90 z-10 absolute top-0 py-4 px-4 gap-2 flex flex-row items-center">
+    <div className="bg-wash dark:bg-gray-95 shadow-xl relative overflow-hidden w-full dark:border-opacity-10 rounded-2xl">
+      <div className="w-full h-16 rounded-t-2xl border-b border-black/10 backdrop-filter overflow-hidden backdrop-blur-lg backdrop-saturate-200 bg-white bg-opacity-90 z-10 absolute top-0 py-4 px-4 gap-2 flex flex-row items-center">
         <div className="bg-gray-10 text-sm text-tertiary text-center rounded-full p-1 w-full flex-row flex space-between items-center">
           <div className="h-6 w-6" />
           <div className="w-full leading-snug">
@@ -671,9 +661,9 @@ function ArtistPage({artist, artistPromise, albumsPromise}) {
     throw artistPromise;
   }
   return (
-    <div style={{overflowY: 'scroll'}}>
+    <div className="overflow-y-scroll">
       <Cover background={artist.cover}>
-        <h1 className="text-xl text-primary-dark font-bold pl-2.5">
+        <h1 className="text-3xl text-primary-dark font-bold pl-2.5">
           {artist.name}
         </h1>
       </Cover>
@@ -691,21 +681,28 @@ function LoadingDiscography() {
         <div className="relative overflow-hidden before:-skew-x-12 before:absolute before:inset-0 before:-translate-x-full before:animate-[shimmer_1.75s_infinite] before:bg-gradient-to-r before:from-transparent before:via-white/50 before:to-transparent">
           <div className="space-y-3 space-x-5">
             <div className="pt-5 pl-5">
-              <div className="h-5 w-32 rounded-lg bg-gray-10"></div>
+              <div className="h-5 w-28 rounded-lg bg-gray-10"></div>
             </div>
-            <div className="flex flex-row items-center gap-3 pt-2">
-              <div className="h-8 w-8 rounded-full bg-gray-10"></div>
-              <div className="h-3 w-12 rounded-lg bg-gray-10"></div>
+            <div className="flex flex-row items-center gap-4 pt-2">
+              <div className="h-24 w-24 rounded-xl bg-gray-10"></div>
+              <div className="pt-1 flex flex-col gap-2.5">
+                <div className="h-4 w-20 rounded-lg bg-gray-10"></div>
+                <div className="h-4 w-10 rounded-lg bg-gray-10"></div>
+              </div>
             </div>
-            <div className="h-3.5 w-2/5 rounded-lg bg-gray-10"></div>
-            <div className="flex flex-row items-center gap-3 pt-3">
-              <div className="h-8 w-8 rounded-full bg-gray-10"></div>
-              <div className="h-3 w-20 rounded-lg bg-gray-10"></div>
+            <div className="flex flex-row items-center gap-4 pt-1">
+              <div className="h-24 w-24 rounded-xl bg-gray-10"></div>
+              <div className="pt-1 flex flex-col gap-2.5">
+                <div className="h-4 w-24 rounded-lg bg-gray-10"></div>
+                <div className="h-4 w-10 rounded-lg bg-gray-10"></div>
+              </div>
             </div>
-            <div className="h-3.5 w-3/5 rounded-lg bg-gray-10"></div>
-            <div className="flex flex-row items-center gap-3 pt-3">
-              <div className="h-8 w-8 rounded-full bg-gray-10"></div>
-              <div className="h-3 w-20 rounded-lg bg-gray-10"></div>
+            <div className="flex flex-row items-center gap-4 pt-1">
+              <div className="h-24 w-24 rounded-xl bg-gray-10"></div>
+              <div className="pt-1 flex flex-col gap-2.5">
+                <div className="h-4 w-20 rounded-lg bg-gray-10"></div>
+                <div className="h-4 w-10 rounded-lg bg-gray-10"></div>
+              </div>
             </div>
             <div className="h-3.5 w-3/5 rounded-lg bg-gray-10"></div>
           </div>
@@ -729,8 +726,8 @@ function AlbumList({albums, children}) {
     headingText = albums.length + ' Albums';
   }
   return (
-    <div className="relative max-h-64 pt-5 pl-5 pr-5">
-      <h2 className="font-bold text-xl text-primary pb-4 leading-snug">
+    <div className="relative p-5">
+      <h2 className="font-bold text-xl text-primary -mt-1 pb-4 leading-snug">
         {headingText}
       </h2>
       <Stack gap={16}>
@@ -746,14 +743,14 @@ function AlbumList({albums, children}) {
 function Cover({background, children}) {
   return (
     <div className="h-40 mt-16 overflow-hidden relative">
-      <div className="absolute inset-0 p-3 flex items-end bg-gradient-to-t from-black/50 via-black/0">
+      <div className="absolute inset-0 p-3 flex items-end bg-gradient-to-t from-black/80 via-black/0">
         {children}
       </div>
       <img
         src={background}
         alt="Cover image"
         width="100%"
-        style={{maxWidth: '100%'}}
+        className="max-w-full"
       />
     </div>
   );
@@ -762,10 +759,10 @@ function Cover({background, children}) {
 function Album({album}) {
   return (
     <Stack gap={8}>
-      <Row gap={12}>
+      <Row gap={16}>
         <Artwork image={album.artwork} />
         <Stack>
-          <h2 className="text-md mt-2 mr-5 text-primary font-bold">
+          <h2 className="text-md leading-snug mt-2 text-primary font-bold">
             {album.name}
           </h2>
           <p className="text-tertiary mb-1 text-base">{album.year}</p>
@@ -811,7 +808,7 @@ function Row({children, gap}) {
 function Artwork({image}) {
   return (
     <div
-      className="h-24 w-24 rounded-xl flex items-center overflow-hidden justify-center align-middle text-gray-30 bg-card bg-cover"
+      className="h-24 w-24 shadow-inner-border rounded-xl flex items-center overflow-hidden justify-center align-middle text-white/60 bg-white bg-cover bg-[conic-gradient(at_top_left,_var(--tw-gradient-stops))] from-purple-60 via-blue-40 to-yellow-50"
       style={{
         backgroundImage: image ? `url(${image})` : null,
       }}>
@@ -826,6 +823,7 @@ function ArtworkPlaceholder() {
       xmlns="http://www.w3.org/2000/svg"
       width="36"
       height="36"
+      className="drop-shadow"
       viewBox="0 0 24 24">
       <path
         fill="currentColor"
@@ -839,7 +837,10 @@ function SaveButton() {
   const [saved, setSaved] = useState(false);
   return (
     <button
-      className="flex items-center justify-center w-12 h-12 cursor-pointer rounded-full text-tertiary hover:bg-card"
+      className={cn(
+        'flex items-center justify-center w-12 h-12 cursor-pointer rounded-full text-tertiary hover:bg-card',
+        saved && 'text-red-50'
+      )}
       aria-label={saved ? 'Unsave' : 'Save'}
       onClick={() => setSaved(!saved)}>
       {saved ? (

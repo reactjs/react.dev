@@ -638,19 +638,22 @@ function BrowserChrome({children, setPostPromise, setAlbumsPromise}) {
 
   return (
     <div className="bg-wash dark:bg-gray-95 shadow-xl relative overflow-hidden w-full dark:border-opacity-10 rounded-2xl">
-      <div className="w-full h-16 rounded-t-2xl border-b border-black/10 backdrop-filter overflow-hidden backdrop-blur-lg backdrop-saturate-200 bg-white bg-opacity-90 z-10 absolute top-0 py-4 px-4 gap-2 flex flex-row items-center">
-        <div className="bg-gray-10 text-sm text-tertiary text-center rounded-full p-1 w-full flex-row flex space-between items-center">
+      <div className="w-full h-16 rounded-t-2xl shadow-md backdrop-filter overflow-hidden backdrop-blur-lg backdrop-saturate-200 bg-white bg-opacity-90 z-10 absolute top-0 py-4 px-4 gap-2 flex flex-row items-center">
+        <div className="relative bg-gray-10 text-sm text-tertiary text-center rounded-full p-1 w-full flex-row flex space-between items-center">
           <div className="h-6 w-6" />
           <div className="w-full leading-snug">
             <span className="text-gray-30">example.com</span>
             /artists/the-beatles
           </div>
-          <button
-            onClick={handleRestart}
-            className="flex items-center p-1.5 rounded-full hover:bg-gray-20 hover:bg-opacity-50 cursor-pointer justify-center">
-            <IconRestart className="text-primary text-lg" />
-          </button>
+          <div class="bg-card rounded-full flex justify-center items-center animation-pulse">
+            <button
+              onClick={handleRestart}
+              className="flex items-center p-1.5 rounded-full hover:bg-gray-20 hover:bg-opacity-50 cursor-pointer justify-center">
+              <IconRestart className="text-primary text-lg" />
+            </button>
+          </div>
         </div>
+        <div class="z-10 loading h-0.5 w-[75%] bg-link transition-all duration-200 absolute bottom-0 left-0"></div>
       </div>
       <div className="">{children}</div>
     </div>

@@ -331,3 +331,23 @@ ol.mdx-illustration-block {
     opacity: 1;
   }
 }
+
+.animation-pulse {
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(0.9);
+    box-shadow: 0 0 0 0 rgba(8, 126, 164, 1);
+  }
+
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 20px rgba(8, 126, 164, 0);
+  }
+
+  100% {
+    transform: scale(0.9);
+  }
+}

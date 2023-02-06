@@ -358,7 +358,7 @@ function Example1() {
       <Artwork image={album.artwork} />
       <h2>{album.title}</h2>
       <p>{album.year}</p>
-      <LikeButton album={album} />
+      <SaveButton album={album} />
     </div>
   );
 }
@@ -367,14 +367,11 @@ function Example1() {
           </div>
           <div className="w-full p-5 flex grow justify-center">
             <ExamplePanel>
-              <Comment
-                comment={{
-                  text: 'The quick brown fox jumps over the lazy dog',
-                  postedAt: 'Release year',
-                  author: {
-                    name: 'Album title',
-                    image: null,
-                  },
+              <Album
+                album={{
+                  name: 'Album title',
+                  year: 'Release year',
+                  artwork: null,
                 }}
               />
             </ExamplePanel>
@@ -392,38 +389,26 @@ const author = {
 };
 
 function Example2() {
-  const [comments, setComments] = useState([
+  const [albums, setAlbums] = useState([
     {
       id: 0,
-      text: 'The quick brown fox jumps over the lazy dog',
-      postedAt: '10m ago',
-      author,
+      name: 'First album',
+      year: 'Release year',
+      artwork: null,
     },
     {
       id: 1,
-      text: 'The quick brown fox jumps over the lazy dog',
-      postedAt: '4m ago',
-      author,
+      name: 'Second album',
+      year: 'Release year',
+      artwork: null,
     },
     {
       id: 2,
-      text: 'The quick brown fox jumps over the lazy dog',
-      postedAt: '2m ago',
-      author,
+      name: 'Third album',
+      year: 'Release year',
+      artwork: null,
     },
   ]);
-
-  function handleAddComment(text) {
-    setComments((c) => [
-      ...c,
-      {
-        id: c.length,
-        text,
-        postedAt: 'just now',
-        author,
-      },
-    ]);
-  }
 
   return (
     <div className="lg:pl-10 lg:pr-5 w-full">
@@ -440,7 +425,7 @@ function Example2() {
               noShadow={true}
               noMargin={true}>
               <div>{`function AlbumList({ albums }) {
-  let heading = 'No releases yet';
+  let heading = 'No Albums Yet';
   if (albums.length > 0) {
     heading = albums.length + ' Albums';
   }
@@ -457,13 +442,7 @@ function Example2() {
           </div>
           <div className="w-full p-5 flex grow justify-center">
             <ExamplePanel noShadow={false} noPadding={true} height={328}>
-              <PostContext.Provider
-                value={{
-                  currentUser: author,
-                  onAddComment: handleAddComment,
-                }}>
-                <CommentList comments={comments} />
-              </PostContext.Provider>
+              <AlbumList albums={albums} />
             </ExamplePanel>
           </div>
         </div>
@@ -473,90 +452,28 @@ function Example2() {
 }
 
 function Example3() {
-  const [postPromise, setPostPromise] = useState(null);
-  const [commentsPromise, setCommentsPromise] = useState(null);
-  const [comments, setComments] = useState([
+  const [artistPromise, setPostPromise] = useState(null);
+  const [albumsPromise, setAlbumsPromise] = useState(null);
+  const [albums, setAlbums] = useState([
     {
       id: 0,
-      text: 'fika :D',
-      postedAt: '1h ago',
-      author: {
-        name: 'Luna',
-        image: {
-          url: 'https://i.imgur.com/B3E9zDz.jpg',
-        },
-      },
+      name: 'TODO',
+      year: '2023',
+      artwork: null,
     },
     {
       id: 1,
-      text: `ok, I have to ask. What is FIKA?`,
-      postedAt: '12m ago',
-      author: {
-        name: 'Samuel',
-        image: {
-          url: 'https://i.imgur.com/OUkVY2C.jpg',
-        },
-      },
+      name: 'TODO',
+      year: '2020',
+      artwork: null,
     },
     {
       id: 2,
-      text:
-        `It's a thing the core team used to do, I believe (never been to one). ` +
-        `Basically grab a drink and/or snack and just chill for a bit together`,
-      postedAt: '7m ago',
-      author: {
-        name: 'Lauren',
-        image: {
-          url: 'https://i.imgur.com/8ayW9oH.jpg',
-        },
-      },
-    },
-    {
-      id: 3,
-      text: `When I ask to get cofee, I really mean "fika".`,
-      postedAt: '4m ago',
-      author: {
-        name: 'Sebastian',
-        image: {
-          url: 'https://i.imgur.com/FX7DZbQ.jpg',
-        },
-      },
-    },
-    {
-      id: 4,
-      text: `There's no english word for it.`,
-      postedAt: '4m ago',
-      author: {
-        name: 'Sebastian',
-        image: {
-          url: 'https://i.imgur.com/FX7DZbQ.jpg',
-        },
-      },
-    },
-    {
-      id: 5,
-      text: `we need more sweets to go with the coffee!`,
-      postedAt: '2m ago',
-      author: {
-        name: 'Yuzhi',
-        image: {
-          url: 'https://i.imgur.com/jxLrU8B.jpg',
-        },
-      },
+      name: 'TODO',
+      year: '2013',
+      artwork: null,
     },
   ]);
-
-  function handleAddComment(text) {
-    setComments((c) => [
-      ...c,
-      {
-        id: c.length,
-        text,
-        postedAt: 'just now',
-        author,
-      },
-    ]);
-  }
 
   return (
     <div className="lg:pl-10 lg:pr-5 w-full">
@@ -565,7 +482,7 @@ function Example3() {
           <div className="lg:-m-5 h-full shadow-xl lg:rounded-2xl bg-wash dark:bg-gray-95 w-full flex grow flex-col border-t lg:border border-border dark:border-border-dark">
             <div className="w-full bg-card dark:bg-wash-dark lg:rounded-t-2xl border-b border-border dark:border-border-dark">
               <h3 className="text-sm my-1 mx-5 text-tertiary dark:text-tertiary-dark select-none">
-                ArtistPage.js
+                routes/artists/(slug).js
               </h3>
             </div>
             <CodeBlock
@@ -575,12 +492,14 @@ function Example3() {
               <div>{`async function ArtistPage({ slug }) {
   const artist = await db.findArtist({ slug });
   return (
-    <Cover background={artist.cover}>
-      <h1>{artist.name}</h1>
-      <Suspense fallback={<DiscographyLoading />}>
+    <main>
+      <Cover background={artist.cover}>
+        <h1>{artist.name}</h1>
+      </Cover>
+      <Suspense fallback={<LoadingDiscography />}>
         <Discography artistId={artist.id} />
       </Suspense>
-    </Cover>
+    </main>
   );
 }
 
@@ -593,24 +512,18 @@ async function Discography({ artistId }) {
           <div className="w-full p-5 sm:p-5 flex grow justify-center">
             <BrowserChrome
               setPostPromise={setPostPromise}
-              setCommentsPromise={setCommentsPromise}>
+              setAlbumsPromise={setAlbumsPromise}>
               <ExamplePanel noPadding={true} noShadow={true} height={475}>
                 <Suspense fallback={null}>
                   <div style={{animation: 'fadein 200ms'}}>
-                    <PostContext.Provider
-                      value={{
-                        currentUser: author,
-                        onAddComment: handleAddComment,
-                      }}>
-                      <PostPage
-                        post={{
-                          coverUrl: 'https://i.imgur.com/Q7TJkPm.jpg',
-                          comments,
-                        }}
-                        postPromise={postPromise}
-                        commentsPromise={commentsPromise}
-                      />
-                    </PostContext.Provider>
+                    <ArtistPage
+                      artist={{
+                        cover: 'https://i.imgur.com/Q7TJkPm.jpg',
+                        albums,
+                      }}
+                      artistPromise={artistPromise}
+                      albumsPromise={albumsPromise}
+                    />
                   </div>
                 </Suspense>
               </ExamplePanel>
@@ -646,22 +559,22 @@ function ExamplePanel({children, noPadding, noShadow, height}) {
   );
 }
 
-function BrowserChrome({children, setPostPromise, setCommentsPromise}) {
+function BrowserChrome({children, setPostPromise, setAlbumsPromise}) {
   function handleRestart() {
-    const postPromise = new Promise((resolve) => {
+    const artistPromise = new Promise((resolve) => {
       setTimeout(() => {
-        postPromise._resolved = true;
+        artistPromise._resolved = true;
         resolve();
       }, 200);
     });
-    const commentsPromise = new Promise((resolve) => {
+    const albumsPromise = new Promise((resolve) => {
       setTimeout(() => {
-        commentsPromise._resolved = true;
+        albumsPromise._resolved = true;
         resolve();
       }, 2200);
     });
-    setPostPromise(postPromise);
-    setCommentsPromise(commentsPromise);
+    setPostPromise(artistPromise);
+    setAlbumsPromise(albumsPromise);
   }
 
   return (
@@ -671,7 +584,7 @@ function BrowserChrome({children, setPostPromise, setCommentsPromise}) {
           <div className="h-6 w-6" />
           <div className="w-full leading-snug">
             <span className="text-gray-30">example.com</span>
-            /posts/its-fika-time
+            /artists/todo
           </div>
           <button
             onClick={handleRestart}
@@ -685,20 +598,20 @@ function BrowserChrome({children, setPostPromise, setCommentsPromise}) {
   );
 }
 
-function PostPage({post, postPromise, commentsPromise}) {
-  if (postPromise && !postPromise._resolved) {
-    throw postPromise;
+function ArtistPage({artist, artistPromise, albumsPromise}) {
+  if (artistPromise && !artistPromise._resolved) {
+    throw artistPromise;
   }
   return (
-    <PostCover imageUrl={post.coverUrl}>
-      <Suspense fallback={<CommentsSkeleton />}>
-        <PostComments post={post} commentsPromise={commentsPromise} />
+    <PostCover imageUrl={artist.coverUrl}>
+      <Suspense fallback={<DiscographySkeleton />}>
+        <Discography artist={artist} albumsPromise={albumsPromise} />
       </Suspense>
     </PostCover>
   );
 }
 
-function CommentsSkeleton() {
+function DiscographySkeleton() {
   return (
     <div className="flex flex-col items-center h-[320px] overflow-hidden">
       <div className="w-full">
@@ -729,29 +642,25 @@ function CommentsSkeleton() {
   );
 }
 
-function PostComments({post, commentsPromise}) {
-  if (commentsPromise && !commentsPromise._resolved) {
-    throw commentsPromise;
+function Discography({artist, albumsPromise}) {
+  if (albumsPromise && !albumsPromise._resolved) {
+    throw albumsPromise;
   }
 
-  return (
-    <CommentList comments={post.comments}>
-      <AddComment />
-    </CommentList>
-  );
+  return <AlbumList albums={artist.albums} />;
 }
 
-function CommentList({comments, children}) {
-  let headingText = 'No releases yet';
-  if (comments.length > 0) {
-    headingText = comments.length + ' Albums';
+function AlbumList({albums, children}) {
+  let headingText = 'No Albums Yet';
+  if (albums.length > 0) {
+    headingText = albums.length + ' Albums';
   }
   return (
     <div className="relative max-h-64 pt-5 pl-5 pr-5">
       <Heading>{headingText}</Heading>
       <Stack gap={16}>
-        {comments.map((comment) => (
-          <Comment key={comment.id} comment={comment} />
+        {albums.map((album) => (
+          <Album key={album.id} album={album} />
         ))}
         {children}
       </Stack>
@@ -790,43 +699,14 @@ function Heading({children}) {
   );
 }
 
-function AddComment() {
-  const {currentUser, onAddComment} = useContext(PostContext);
-  return (
-    <div className="sticky bottom-0 z-10 pb-4 bg-white w-full">
-      <hr className="pt-4" />
-      <Row gap={12}>
-        <Artwork user={currentUser} />
-        <form
-          className="flex-1 flex items-center"
-          onSubmit={(e) => {
-            e.preventDefault();
-            const formData = new FormData(e.target);
-            const json = Object.fromEntries(formData.entries());
-            onAddComment(json.text);
-            e.target.reset();
-          }}>
-          <input
-            name="text"
-            placeholder="Add a comment..."
-            autoComplete="off"
-            className="bg-transparent outline-none w-full"
-          />
-        </form>
-      </Row>
-    </div>
-  );
-}
-
-function Comment({comment}) {
-  const {author} = comment;
+function Album({album}) {
   return (
     <Stack gap={8}>
       <Row gap={12}>
-        <Artwork user={author} />
+        <Artwork image={album.cover} />
         <Stack>
-          <ExampleLink to={author.url}>{author.name}</ExampleLink>
-          <Timestamp time={comment.postedAt} />
+          <ExampleLink to={album.url}>{album.name}</ExampleLink>
+          <Timestamp time={album.year} />
         </Stack>
         <SaveButton />
       </Row>
@@ -872,14 +752,14 @@ function ExampleLink({children}) {
   );
 }
 
-function Artwork({user}) {
+function Artwork({image}) {
   return (
     <div
       className="h-24 w-24 rounded-xl flex items-center overflow-hidden justify-center align-middle text-gray-30 bg-card bg-cover"
       style={{
-        backgroundImage: user.image ? `url(${user.image.url})` : null,
+        backgroundImage: image ? `url(${image})` : null,
       }}>
-      {user.image ? null : <ArtworkPlaceholder />}
+      {image ? null : <ArtworkPlaceholder />}
     </div>
   );
 }
@@ -899,9 +779,13 @@ function ArtworkPlaceholder() {
   );
 }
 
-function SaveButton({saved}) {
+function SaveButton() {
+  const [saved, setSaved] = useState(false);
   return (
-    <div className="flex items-center justify-center w-12 h-12 cursor-pointer rounded-full text-tertiary hover:bg-card">
+    <button
+      className="flex items-center justify-center w-12 h-12 cursor-pointer rounded-full text-tertiary hover:bg-card"
+      aria-label={saved ? 'Unsave' : 'Save'}
+      onClick={() => setSaved(!saved)}>
       {saved ? (
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -925,7 +809,7 @@ function SaveButton({saved}) {
           />
         </svg>
       )}
-    </div>
+    </button>
   );
 }
 

@@ -345,23 +345,21 @@ function Example1() {
           <div className="lg:-m-5 h-full shadow-xl lg:rounded-2xl bg-wash dark:bg-gray-95 w-full flex grow flex-col border-t lg:border border-border dark:border-border-dark">
             <div className="w-full bg-card dark:bg-wash-dark lg:rounded-t-2xl border-b border-border dark:border-border-dark">
               <h3 className="text-sm my-1 mx-5 text-tertiary dark:text-tertiary-dark select-none">
-                Comment.js
+                Album.js
               </h3>
             </div>
             <CodeBlock
               isFromPackageImport={false}
               noShadow={true}
               noMargin={true}>
-              <div>{`function Comment({ comment }) {
+              <div>{`function Album({ album }) {
   return (
-    <Row>
-      <Artwork user={author} />
-      <Stack>
-        <ExampleLink to={author.url}>{author.name}</ExampleLink>
-        <Timestamp time={comment.postedAt} />
-      </Stack>
-      <SaveButton/>
-    </Row>
+    <div>
+      <Artwork image={album.artwork} />
+      <h2>{album.title}</h2>
+      <p>{album.year}</p>
+      <LikeButton album={album} />
+    </div>
   );
 }
           `}</div>
@@ -434,23 +432,23 @@ function Example2() {
           <div className="lg:-m-5 h-full shadow-xl lg:rounded-xl bg-wash dark:bg-gray-95 w-full flex grow flex-col border-t lg:border border-border dark:border-border-dark">
             <div className="w-full bg-card dark:bg-wash-dark lg:rounded-t-xl border-b border-border dark:border-border-dark">
               <h3 className="text-sm my-1 mx-5 text-tertiary dark:text-tertiary-dark select-none">
-                CommentList.js
+                AlbumList.js
               </h3>
             </div>
             <CodeBlock
               isFromPackageImport={false}
               noShadow={true}
               noMargin={true}>
-              <div>{`function CommentList({ comments }) {
-  let heading = 'Be the first to comment';
-  if (comments.length > 0) {
-    heading = comments.length + ' Comments';
+              <div>{`function AlbumList({ albums }) {
+  let heading = 'No releases yet';
+  if (albums.length > 0) {
+    heading = albums.length + ' Albums';
   }
   return (
     <section>
       <h1>{heading}</h1>
-      {comments.map(comment =>
-        <Comment key={comment.id} comment={comment} />
+      {albums.map(album =>
+        <Album key={album.id} album={album} />
       )}
     </section>
   );
@@ -567,32 +565,28 @@ function Example3() {
           <div className="lg:-m-5 h-full shadow-xl lg:rounded-2xl bg-wash dark:bg-gray-95 w-full flex grow flex-col border-t lg:border border-border dark:border-border-dark">
             <div className="w-full bg-card dark:bg-wash-dark lg:rounded-t-2xl border-b border-border dark:border-border-dark">
               <h3 className="text-sm my-1 mx-5 text-tertiary dark:text-tertiary-dark select-none">
-                PostPage.js
+                ArtistPage.js
               </h3>
             </div>
             <CodeBlock
               isFromPackageImport={false}
               noShadow={true}
               noMargin={true}>
-              <div>{`async function PostPage({ slug }) {
-  const post = await db.findPost({ slug });
+              <div>{`async function ArtistPage({ slug }) {
+  const artist = await db.findArtist({ slug });
   return (
-    <PostLayout coverUrl={post.coverUrl}>
-      <Suspense fallback={<CommentsSkeleton />}>
-        <PostComments postId={post.id} />
+    <Cover background={artist.cover}>
+      <h1>{artist.name}</h1>
+      <Suspense fallback={<DiscographyLoading />}>
+        <Discography artistId={artist.id} />
       </Suspense>
-    </PostLayout>
+    </Cover>
   );
 }
 
-async function PostComments({ postId }) {
-  const comments = await db.findComments({ postId });
-  return (
-    <>
-      <CommentList comments={comments} />
-      <AddComment postId={postId} />
-    </>
-  );
+async function Discography({ artistId }) {
+  const albums = await db.findAlbums({ artistId });
+  return <AlbumList albums={albums} />;
 }`}</div>
             </CodeBlock>
           </div>
@@ -748,9 +742,9 @@ function PostComments({post, commentsPromise}) {
 }
 
 function CommentList({comments, children}) {
-  let headingText = 'Be the first to comment';
+  let headingText = 'No releases yet';
   if (comments.length > 0) {
-    headingText = comments.length + ' Comments';
+    headingText = comments.length + ' Albums';
   }
   return (
     <div

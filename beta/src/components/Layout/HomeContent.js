@@ -450,22 +450,95 @@ function Example3() {
   const [albumsPromise, setAlbumsPromise] = useState(null);
   const [albums, setAlbums] = useState([
     {
-      id: 0,
-      name: 'TODO',
-      year: '2023',
-      artwork: null,
+      id: 13,
+      name: 'Let It Be',
+      year: 1970,
+      artwork:
+        'https://e.snmc.io/i/600/w/5c91497d86b2a17f89bfb0f9462b458f/3264656/the-beatles-let-it-be-Cover-Art.jpg',
     },
     {
-      id: 1,
-      name: 'TODO',
-      year: '2020',
-      artwork: null,
+      id: 12,
+      name: 'Abbey Road',
+      year: 1969,
+      artwork:
+        'https://e.snmc.io/i/600/w/556a5058d86284041d4ac0852ce0a23b/6617288/the-beatles-abbey-road-Cover-Art.jpg',
+    },
+    {
+      id: 11,
+      name: 'Yellow Submarine',
+      year: 1969,
+      artwork:
+        'https://e.snmc.io/i/600/w/7ff05b4efcebcb870aa8b0c732f30714/9971128/the-beatles-yellow-submarine-Cover-Art.jpg',
+    },
+    {
+      id: 10,
+      name: 'The Beatles',
+      year: 1968,
+      artwork:
+        'https://e.snmc.io/i/600/w/1328de4857371d494f4778f83fb783f7/7430929/the-beatles-the-beatles-white-album-Cover-Art.jpg',
+    },
+    {
+      id: 9,
+      name: 'Magical Mystery Tour',
+      year: 1967,
+      artwork:
+        'https://e.snmc.io/i/600/w/71026c3dcec012f38cb6f96a87d31390/5770162/the-beatles-magical-mystery-tour-Cover-Art.jpg',
+    },
+    {
+      id: 8,
+      name: "Sgt. Pepper's Lonely Hearts Club Band",
+      year: 1967,
+      artwork:
+        'https://e.snmc.io/i/600/w/5ab702b0fbf94f6ac96731cbed054eb0/6617240/the-beatles-sgt-peppers-lonely-hearts-club-band-Cover-Art.jpg',
+    },
+    {
+      id: 7,
+      name: 'Revolver',
+      year: 1966,
+      artwork:
+        'https://e.snmc.io/i/600/w/d1dc1ba868e70b299ebd6733fa4fbf5b/6112311/the-beatles-revolver-Cover-Art.png',
+    },
+    {
+      id: 6,
+      name: 'Rubber Soul',
+      year: 1965,
+      artwork:
+        'https://e.snmc.io/i/600/w/9fa4dfd4de69b639e08f6a5b346a52c6/5248558/the-beatles-rubber-soul-Cover-Art.jpg',
+    },
+    {
+      id: 5,
+      name: 'Help!',
+      year: 1965,
+      artwork:
+        'https://e.snmc.io/i/600/w/cec66c7556b30248d9c6a54b44098787/2635809/the-beatles-help-Cover-Art.jpg,',
+    },
+    {
+      id: 4,
+      name: 'Beatles For Sale',
+      year: 1964,
+      artwork:
+        'https://e.snmc.io/i/600/w/e55b1e8ed7145c767ccb4aafd3ae02cb/2305142/the-beatles-beatles-for-sale-Cover-Art.jpg',
+    },
+    {
+      id: 3,
+      name: "A Hard Day's Night",
+      year: 1964,
+      artwork:
+        'https://e.snmc.io/i/600/w/e859a9a29b890f294189e558de07e3b9/5247969/the-beatles-a-hard-days-night-Cover-Art.jpg',
     },
     {
       id: 2,
-      name: 'TODO',
-      year: '2013',
-      artwork: null,
+      name: 'With The Beatles',
+      year: 1963,
+      artwork:
+        'https://e.snmc.io/i/600/w/ce20c23673292626968286ff246e11f0/6084996/the-beatles-with-the-beatles-Cover-Art.jpg',
+    },
+    {
+      id: 1,
+      name: 'Please Please Me',
+      year: 1963,
+      artwork:
+        'https://e.snmc.io/i/600/w/32e9a260edd19b0cfc84cd333aac992a/10434810/the-beatles-please-please-me-Cover-Art.jpg',
     },
   ]);
 
@@ -476,7 +549,7 @@ function Example3() {
           <div className="lg:-m-5 h-full shadow-xl lg:rounded-2xl bg-wash dark:bg-gray-95 w-full flex grow flex-col border-t lg:border border-border dark:border-border-dark">
             <div className="w-full bg-card dark:bg-wash-dark lg:rounded-t-2xl border-b border-border dark:border-border-dark">
               <h3 className="text-sm my-1 mx-5 text-tertiary dark:text-tertiary-dark select-none">
-                routes/artists/(slug).js
+                artists/[slug].js
               </h3>
             </div>
             <CodeBlock
@@ -512,8 +585,8 @@ async function Discography({ artistId }) {
                   <div style={{animation: 'fadein 200ms'}}>
                     <ArtistPage
                       artist={{
-                        cover: 'https://i.imgur.com/Q7TJkPm.jpg',
-                        name: 'TODO',
+                        cover: 'https://i.imgur.com/rj1ZNFt.jpg',
+                        name: 'The Beatles',
                         albums,
                       }}
                       artistPromise={artistPromise}
@@ -579,7 +652,7 @@ function BrowserChrome({children, setPostPromise, setAlbumsPromise}) {
           <div className="h-6 w-6" />
           <div className="w-full leading-snug">
             <span className="text-gray-30">example.com</span>
-            /artists/todo
+            /artists/the-beatles
           </div>
           <button
             onClick={handleRestart}
@@ -690,7 +763,7 @@ function Album({album}) {
   return (
     <Stack gap={8}>
       <Row gap={12}>
-        <Artwork image={album.cover} />
+        <Artwork image={album.artwork} />
         <Stack>
           <h2 className="text-md mt-2 mr-5 text-primary font-bold">
             {album.name}

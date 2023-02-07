@@ -131,14 +131,14 @@ export function HomeContent() {
           </div>
         </div>
 
-        <div className="mx-5">
+        <div className="mx-5 my-5">
           <div className="max-w-6xl mx-auto flex flex-col w-full">
             <div className="flex-col gap-2 flex grow w-full my-16 lg:my-20 mx-auto items-center">
               <h3 className="leading-tight dark:text-primary-dark text-primary font-bold text-4xl lg:text-5xl mb-6">
                 Make the best use of the platform
               </h3>
               <div className="flex flex-col lg:flex-row mt-8 lg:gap-2.5">
-                <div className="bg-card dark:bg-card-dark rounded-3xl p-10 max-w-4xl text-center items-center justify-center flex flex-col text-opacity-80">
+                <div className="lg:w-6/12 bg-card dark:bg-card-dark rounded-3xl p-10 max-w-4xl text-center items-center justify-center flex flex-col text-opacity-80">
                   <WebIcons className="mb-8" />
                   <h3 className="leading-tight dark:text-primary-dark text-primary font-bold text-4xl lg:text-5xl mb-6">
                     Web
@@ -152,7 +152,7 @@ export function HomeContent() {
                   </p>
                 </div>
                 <br />
-                <div className="bg-card dark:bg-card-dark rounded-3xl p-10 max-w-4xl text-center items-center justify-center text-opacity-80 flex flex-col">
+                <div className="lg:w-6/12 bg-card dark:bg-card-dark rounded-3xl p-10 max-w-4xl text-center items-center justify-center text-opacity-80 flex flex-col">
                   <NativeIcons className="mb-8" />
                   <h3 className="leading-tight dark:text-primary-dark text-primary font-bold text-4xl lg:text-5xl mb-6">
                     Native
@@ -171,7 +171,7 @@ export function HomeContent() {
           </div>
         </div>
 
-        <div className="">
+        <div className="shadow-inner bg-card dark:bg-card-dark">
           <div className="max-w-6xl mx-auto flex flex-col w-full">
             <div className="flex-col gap-2 flex grow w-full my-16 lg:my-20 mx-auto items-center">
               <div className="px-5 lg:px-0 max-w-4xl text-center text-opacity-80">
@@ -199,24 +199,6 @@ export function HomeContent() {
           </div>
         </div>
 
-        <div className="mx-5">
-          <div className="mx-auto my-16 max-w-6xl rounded-3xl flex-col-reverse lg:flex-row flex items-center shadow-inner bg-[conic-gradient(at_top_left,_var(--tw-gradient-stops))] from-purple-60 via-blue-50 to-yellow-50">
-            <div className="w-full lg:w-6/12 p-8 lg:p-12 flex-col text-white flex grow items-end justify-start my-0 mx-auto">
-              <h3 className="w-full leading-tight font-bold text-4xl lg:text-5xl mb-6 text-left">
-                Stability without stagnation
-              </h3>
-              <p className="text-xl lg:text-2xl leading-normal text-secondary-dark w-full text-left">
-                React approaches changes with care. Every React commit is tested
-                on business-critical surfaces with hundreds of millions of
-                users.
-              </p>
-            </div>
-
-            <div className="text-secondary-dark w-full lg:w-6/12 pt-20 lg:py-28 rounded-tl-3xl rounded-tr-3xl lg:rounded-r-3xl lg:rounded-tl-none justify-center leading-6 overflow-x-auto flex items-center overflow-hidden">
-              <Logo className="backdrop-blur-sm text-white/10 w-48 lg:w-64 drop-shadow-xl" />
-            </div>
-          </div>
-        </div>
         <div className="">
           <div className="max-w-6xl mx-auto flex flex-col w-full">
             <div className="flex-col gap-2 flex grow w-full my-16 lg:my-20 mx-auto items-center">
@@ -252,7 +234,6 @@ export function HomeContent() {
             </div>
           </div>
         </div>
-
         <div className="overflow-hidden relative px-5">
           <div className="border-2 border-link dark:border-link-dark rounded-lg absolute h-full left-1/2"></div>
           <div className="-mb-12 flex justify-between flex-row-reverse items-center w-full left-timeline">
@@ -297,7 +278,6 @@ export function HomeContent() {
               </p>
             </div>
           </div>
-
           <div className="-mb-12 flex justify-between items-center w-full right-timeline">
             <div className="order-1 w-5/12"></div>
             <div className="order-1 w-5/12 px-1 py-4 text-left">

@@ -64,7 +64,7 @@ React will attach to the HTML that exists inside the `domNode`, and take over ma
 
 Call `hydrate` to attach a <CodeStep step={1}>React component</CodeStep> into a server-rendered <CodeStep step={2}>browser DOM node</CodeStep>.
 
-```js [[1, 3, "document.getElementById('root')"], [2, 3, "<App />"]]
+```js [[1, 3, "<App />"], [2, 3, "document.getElementById('root')"]]
 import {hydrate} from 'react-dom';
 
 hydrate(<App />, document.getElementById('root'));

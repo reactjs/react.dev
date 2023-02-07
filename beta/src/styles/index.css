@@ -351,3 +351,12 @@ ol.mdx-illustration-block {
     transform: scale(0.9);
   }
 }
+
+@keyframes progressbar {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}

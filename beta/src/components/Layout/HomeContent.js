@@ -619,21 +619,27 @@ function ExamplePanel({children, noPadding, noShadow, height}) {
 }
 
 function BrowserChrome({children, setPostPromise, setAlbumsPromise}) {
+  const [restartId, setRestartId] = useState(0);
+
+  const simulatedArtistMs = 200;
+  const simulatedAlbumsMs = 2200;
+
   function handleRestart() {
     const artistPromise = new Promise((resolve) => {
       setTimeout(() => {
         artistPromise._resolved = true;
         resolve();
-      }, 200);
+      }, simulatedArtistMs);
     });
     const albumsPromise = new Promise((resolve) => {
       setTimeout(() => {
         albumsPromise._resolved = true;
         resolve();
-      }, 2200);
+      }, simulatedAlbumsMs);
     });
     setPostPromise(artistPromise);
     setAlbumsPromise(albumsPromise);
+    setRestartId((id) => id + 1);
   }
 
   return (
@@ -645,7 +651,11 @@ function BrowserChrome({children, setPostPromise, setAlbumsPromise}) {
             <span className="text-gray-30">example.com</span>
             /artists/the-beatles
           </div>
-          <div className="bg-card rounded-full flex justify-center items-center animation-pulse">
+          <div
+            className={
+              'bg-card rounded-full flex justify-center items-center ' +
+              (restartId > 0 ? '' : 'animation-pulse')
+            }>
             <button
               onClick={handleRestart}
               className="flex items-center p-1.5 rounded-full hover:bg-gray-20 hover:bg-opacity-50 cursor-pointer justify-center">
@@ -653,7 +663,15 @@ function BrowserChrome({children, setPostPromise, setAlbumsPromise}) {
             </button>
           </div>
         </div>
-        <div className="z-10 loading h-0.5 w-[75%] bg-link transition-all duration-200 absolute bottom-0 left-0"></div>
+        {restartId > 0 && (
+          <div
+            key={restartId}
+            className="z-10 loading h-0.5 bg-link transition-all duration-200 absolute bottom-0 left-0"
+            style={{
+              animation: `progressbar ${simulatedAlbumsMs + 100}ms linear`,
+            }}
+          />
+        )}
       </div>
       <div className="">{children}</div>
     </div>

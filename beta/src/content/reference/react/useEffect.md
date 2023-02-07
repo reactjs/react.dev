@@ -1147,7 +1147,7 @@ If you specify the dependencies, your Effect runs **after the initial render _an
 ```js {3}
 useEffect(() => {
   // ...
-}, [a, b]); // Runs again if a or b are different
+}, [a, b]); // Runs again if either a or b, or both, have been changed.
 ```
 
 In the below example, `serverUrl` and `roomId` are [reactive values,](/learn/lifecycle-of-reactive-effects#effects-react-to-reactive-values) so they both must be specified as dependencies. As a result, selecting a different room in the dropdown or editing the server URL input causes the chat to re-connect. However, since `message` isn't used in the Effect (and so it isn't a dependency), editing the message doesn't re-connect to the chat.

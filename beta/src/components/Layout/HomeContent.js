@@ -149,7 +149,7 @@ export function HomeContent() {
                 <div className="lg:w-6/12 max-w-4xl text-center items-center justify-center flex flex-col text-opacity-80">
                   <WebIcons />
                   <h4 className="leading-tight dark:text-primary-dark text-primary font-bold text-3xl lg:text-4xl mb-6">
-                    Take full advantage of the web
+                    Stay true to the web
                   </h4>
                   <p className="h-full text-xl lg:text-xl leading-normal text-secondary dark:text-secondary-dark">
                     People expect web app pages to load fast. On the server,
@@ -164,7 +164,7 @@ export function HomeContent() {
                 <div className="lg:w-6/12 max-w-4xl text-center items-center justify-center text-opacity-80 flex flex-col">
                   <NativeIcons />
                   <h4 className="leading-tight dark:text-primary-dark text-primary font-bold text-3xl lg:text-4xl mb-6">
-                    Or build a truly native app
+                    Go truly native
                   </h4>
                   <p className="h-full text-xl lg:text-xl text-secondary dark:text-secondary-dark leading-normal">
                     People expect native apps to look and feel truly native.{' '}

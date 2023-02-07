@@ -131,7 +131,7 @@ export function HomeContent() {
           </div>
         </div>
 
-        <div className="mx-5 my-5">
+        <div className="mx-12 my-5">
           <div className="max-w-6xl mx-auto flex flex-col w-full">
             <div className="flex-col gap-2 flex grow w-full my-16 lg:my-20 mx-auto items-center">
               <div className="px-5 lg:px-0 max-w-4xl text-center text-opacity-80">
@@ -145,13 +145,13 @@ export function HomeContent() {
                   platform. Learn once, write everywhere.
                 </p>
               </div>
-              <div className="flex flex-col lg:flex-row my-8 lg:gap-2.5">
-                <div className="lg:w-6/12 bg-card dark:bg-card-dark rounded-3xl p-10 max-w-4xl text-center items-center justify-center flex flex-col text-opacity-80">
-                  <WebIcons className="mb-8" />
+              <div className="flex flex-col lg:flex-row my-20 lg:gap-20">
+                <div className="lg:w-6/12 max-w-4xl text-center items-center justify-center flex flex-col text-opacity-80">
+                  <WebIcons />
                   <h4 className="leading-tight dark:text-primary-dark text-primary font-bold text-3xl lg:text-4xl mb-6">
                     Take full advantage of the web
                   </h4>
-                  <p className="h-full text-xl lg:text-2xl leading-normal text-secondary dark:text-secondary-dark">
+                  <p className="h-full text-xl lg:text-xl leading-normal text-secondary dark:text-secondary-dark">
                     People expect web app pages to load fast. React lets you
                     start streaming HTML from the server while your data is{' '}
                     still fetching, and then progressivelly fill in the content
@@ -160,13 +160,13 @@ export function HomeContent() {
                     browser.
                   </p>
                 </div>
-                <br />
-                <div className="lg:w-6/12 bg-card dark:bg-card-dark rounded-3xl p-10 max-w-4xl text-center items-center justify-center text-opacity-80 flex flex-col">
-                  <NativeIcons className="mb-8" />
+                <div className="h-px w-full lg:h-auto flex grow lg:w-px my-16 lg:my-5 bg-border" />
+                <div className="lg:w-6/12 max-w-4xl text-center items-center justify-center text-opacity-80 flex flex-col">
+                  <NativeIcons />
                   <h4 className="leading-tight dark:text-primary-dark text-primary font-bold text-3xl lg:text-4xl mb-6">
                     Or build a truly native app
                   </h4>
-                  <p className="h-full text-xl lg:text-2xl text-secondary dark:text-secondary-dark leading-normal">
+                  <p className="h-full text-xl lg:text-xl text-secondary dark:text-secondary-dark leading-normal">
                     People expect native apps to look and feel truly native.{' '}
                     <Link href="https://reactnative.dev">React Native</Link>{' '}
                     lets you develop Android and iOS applications using React.{' '}
@@ -591,7 +591,7 @@ async function Discography({ artistId }) {
             <BrowserChrome
               setPostPromise={setPostPromise}
               setAlbumsPromise={setAlbumsPromise}>
-              <ExamplePanel noPadding={true} noShadow={true} height="33.5rem">
+              <ExamplePanel noPadding={true} noShadow={true} height="36.25rem">
                 <Suspense fallback={null}>
                   <div style={{animation: 'fadein 200ms'}}>
                     <ArtistPage
@@ -708,7 +708,7 @@ function ArtistPage({artist, artistPromise, albumsPromise}) {
 
 function LoadingDiscography() {
   return (
-    <div className="flex flex-col items-center h-[312px] overflow-hidden">
+    <div className="flex flex-col items-center h-[22.25rem] overflow-hidden">
       <div className="w-full">
         <div className="relative overflow-hidden before:-skew-x-12 before:absolute before:inset-0 before:-translate-x-full before:animate-[shimmer_1.75s_infinite] before:bg-gradient-to-r before:from-transparent before:via-white/50 before:to-transparent">
           <div className="space-y-3 space-x-5">
@@ -736,7 +736,6 @@ function LoadingDiscography() {
                 <div className="h-4 w-10 rounded-lg bg-gray-10"></div>
               </div>
             </div>
-            <div className="h-3.5 w-3/5 rounded-lg bg-gray-10"></div>
           </div>
         </div>
       </div>
@@ -918,7 +917,7 @@ function NativeIcons() {
   return (
     <div className="flex items-center justify-center gap-5 mb-8">
       <svg
-        className="w-20 h-20 lg:w-28 lg:h-28 rounded-3xl shadow-2xl bg-wash"
+        className="w-20 h-20 lg:w-24 lg:h-24 rounded-3xl shadow-2xl bg-wash"
         viewBox="0 0 120 120"
         fill="none"
         xmlns="http://www.w3.org/2000/svg">
@@ -929,7 +928,7 @@ function NativeIcons() {
       </svg>
 
       <svg
-        className="w-20 h-20 lg:w-28 lg:h-28 rounded-3xl shadow-2xl bg-wash"
+        className="w-20 h-20 lg:w-24 lg:h-24 rounded-3xl shadow-2xl bg-wash"
         viewBox="0 0 120 120"
         fill="none"
         xmlns="http://www.w3.org/2000/svg">
@@ -979,7 +978,7 @@ function WebIcons() {
     <div className="flex items-center justify-center gap-5 mb-8">
       <svg
         fill="none"
-        className="w-20 h-20 lg:w-28 lg:h-28 rounded-3xl shadow-2xl bg-wash"
+        className="w-20 h-20 lg:w-24 lg:h-24 rounded-3xl shadow-2xl bg-wash"
         viewBox="0 0 120 120"
         xmlns="http://www.w3.org/2000/svg">
         <g clipPath="url(#ee)">
@@ -1047,7 +1046,7 @@ function WebIcons() {
       </svg>
 
       <svg
-        className="w-20 h-20 lg:w-28 lg:h-28 rounded-3xl shadow-2xl bg-wash"
+        className="w-20 h-20 lg:w-24 lg:h-24 rounded-3xl shadow-2xl bg-wash"
         fill="none"
         viewBox="0 0 120 120"
         xmlns="http://www.w3.org/2000/svg">
@@ -1266,7 +1265,7 @@ function WebIcons() {
       </svg>
       <svg
         fill="none"
-        className="w-20 h-20 lg:w-28 lg:h-28 rounded-3xl shadow-2xl bg-wash"
+        className="w-20 h-20 lg:w-24 lg:h-24 rounded-3xl shadow-2xl bg-wash"
         viewBox="0 0 120 120"
         xmlns="http://www.w3.org/2000/svg">
         <path

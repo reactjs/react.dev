@@ -131,20 +131,19 @@ export function HomeContent() {
           </div>
         </div>
 
-        <div className="">
+        <div className="mx-5">
           <div className="max-w-6xl mx-auto flex flex-col w-full">
             <div className="flex-col gap-2 flex grow w-full my-16 lg:my-20 mx-auto items-center">
               <h3 className="leading-tight dark:text-primary-dark text-primary font-bold text-4xl lg:text-5xl mb-6">
                 Make the best use of the platform
               </h3>
-              <div className="flex flex-row mt-8">
-                <div className="px-5 lg:px-0 max-w-4xl text-center items-center justify-center flex flex-col text-opacity-80">
-                  <Logo className="text-link dark:text-link w-32 mb-8 drop-shadow-xl" />
-
+              <div className="flex flex-col lg:flex-row mt-8 lg:gap-2.5">
+                <div className="bg-card dark:bg-card-dark rounded-3xl p-10 max-w-4xl text-center items-center justify-center flex flex-col text-opacity-80">
+                  <WebIcons className="mb-8" />
                   <h3 className="leading-tight dark:text-primary-dark text-primary font-bold text-4xl lg:text-5xl mb-6">
                     Web
                   </h3>
-                  <p className="text-xl lg:text-2xl leading-normal text-secondary dark:text-secondary-dark">
+                  <p className="h-full text-xl lg:text-2xl leading-normal text-secondary dark:text-secondary-dark">
                     Web users expect pages to load fast. React can render into
                     an HTML stream on the server, gradually revealing more
                     content even before React itself has loaded on the client.
@@ -153,13 +152,12 @@ export function HomeContent() {
                   </p>
                 </div>
                 <br />
-                <div className="px-5 lg:px-0 max-w-4xl text-center items-center justify-center text-opacity-80 flex flex-col">
-                  <Logo className="text-link dark:text-link w-32 mb-8 drop-shadow-xl" />
-
+                <div className="bg-card dark:bg-card-dark rounded-3xl p-10 max-w-4xl text-center items-center justify-center text-opacity-80 flex flex-col">
+                  <NativeIcons className="mb-8" />
                   <h3 className="leading-tight dark:text-primary-dark text-primary font-bold text-4xl lg:text-5xl mb-6">
                     Native
                   </h3>
-                  <p className="text-xl lg:text-2xl text-secondary dark:text-secondary-dark leading-normal">
+                  <p className="h-full text-xl lg:text-2xl text-secondary dark:text-secondary-dark leading-normal">
                     Mobile app users expect native look-and-feel. With{' '}
                     <Link href="https://reactnative.dev">React Native</Link>,
                     you can create Android and iOS apps with React. These user
@@ -169,25 +167,6 @@ export function HomeContent() {
                   </p>
                 </div>
               </div>
-            </div>
-          </div>
-        </div>
-
-        <div className="mx-5">
-          <div className="mx-auto my-8 max-w-6xl rounded-3xl flex-col-reverse lg:flex-row flex items-center shadow-inner bg-[conic-gradient(at_top_left,_var(--tw-gradient-stops))] from-purple-60 via-blue-50 to-yellow-50">
-            <div className="w-full lg:w-6/12 p-8 lg:p-12 flex-col text-white flex grow items-end justify-start my-0 mx-auto">
-              <h3 className="w-full leading-tight font-bold text-4xl lg:text-5xl mb-6 text-left">
-                Stability without stagnation
-              </h3>
-              <p className="text-xl lg:text-2xl leading-normal text-secondary-dark w-full text-left">
-                React approaches changes with care. Every React commit is tested
-                on business-critical surfaces with hundreds of millions of
-                users.
-              </p>
-            </div>
-
-            <div className="text-secondary-dark w-full lg:w-6/12 pt-20 lg:py-28 rounded-tl-3xl rounded-tr-3xl lg:rounded-r-3xl lg:rounded-tl-none justify-center leading-6 overflow-x-auto flex items-center overflow-hidden">
-              <Logo className="backdrop-blur-sm text-white/10 w-48 lg:w-64 drop-shadow-xl" />
             </div>
           </div>
         </div>
@@ -218,7 +197,25 @@ export function HomeContent() {
             </div>
           </div>
         </div>
-        <hr className="max-w-6xl mx-auto border-border dark:border-border-dark" />
+
+        <div className="mx-5">
+          <div className="mx-auto my-16 max-w-6xl rounded-3xl flex-col-reverse lg:flex-row flex items-center shadow-inner bg-[conic-gradient(at_top_left,_var(--tw-gradient-stops))] from-purple-60 via-blue-50 to-yellow-50">
+            <div className="w-full lg:w-6/12 p-8 lg:p-12 flex-col text-white flex grow items-end justify-start my-0 mx-auto">
+              <h3 className="w-full leading-tight font-bold text-4xl lg:text-5xl mb-6 text-left">
+                Stability without stagnation
+              </h3>
+              <p className="text-xl lg:text-2xl leading-normal text-secondary-dark w-full text-left">
+                React approaches changes with care. Every React commit is tested
+                on business-critical surfaces with hundreds of millions of
+                users.
+              </p>
+            </div>
+
+            <div className="text-secondary-dark w-full lg:w-6/12 pt-20 lg:py-28 rounded-tl-3xl rounded-tr-3xl lg:rounded-r-3xl lg:rounded-tl-none justify-center leading-6 overflow-x-auto flex items-center overflow-hidden">
+              <Logo className="backdrop-blur-sm text-white/10 w-48 lg:w-64 drop-shadow-xl" />
+            </div>
+          </div>
+        </div>
         <div className="">
           <div className="max-w-6xl mx-auto flex flex-col w-full">
             <div className="flex-col gap-2 flex grow w-full my-16 lg:my-20 mx-auto items-center">
@@ -256,7 +253,7 @@ export function HomeContent() {
         </div>
 
         <div className="overflow-hidden relative px-5">
-          <div className="border-2 border-link dark:border-link-dark rounded-lg absolute h-full border left-1/2"></div>
+          <div className="border-2 border-link dark:border-link-dark rounded-lg absolute h-full left-1/2"></div>
           <div className="-mb-12 flex justify-between flex-row-reverse items-center w-full left-timeline">
             <div className="order-1 w-5/12"></div>
             <div className="order-1 w-5/12 px-1 py-4 text-right">
@@ -913,5 +910,405 @@ function LikeButton() {
         </svg>
       )}
     </button>
+  );
+}
+
+function NativeIcons() {
+  return (
+    <div className="flex items-center justify-center gap-5 mb-8">
+      <svg
+        className="rounded-3xl shadow-2xl bg-wash"
+        width="120"
+        height="120"
+        viewBox="0 0 120 120"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg">
+        <path
+          d="M89.9356 44.0658C89.4752 44.4231 81.3451 49.0042 81.3451 59.1906C81.3451 70.9729 91.6903 75.1411 91.9999 75.2443C91.9523 75.4984 90.3564 80.9529 86.5455 86.5105C83.1474 91.4013 79.5984 96.2841 74.1995 96.2841C68.8006 96.2841 67.4112 93.148 61.1787 93.148C55.105 93.148 52.9454 96.3873 48.007 96.3873C43.0686 96.3873 39.6229 91.8618 35.6611 86.3041C31.072 79.7778 27.3643 69.639 27.3643 60.0163C27.3643 44.5819 37.3998 36.3963 47.2766 36.3963C52.5246 36.3963 56.8993 39.842 60.1942 39.842C63.3303 39.842 68.221 36.1898 74.1916 36.1898C76.4543 36.1898 84.5844 36.3963 89.9356 44.0658ZM71.3572 29.6556C73.8264 26.7259 75.573 22.6609 75.573 18.5958C75.573 18.0321 75.5254 17.4605 75.4222 17C71.4048 17.1509 66.6252 19.6756 63.7432 23.0182C61.4804 25.5906 59.3685 29.6556 59.3685 33.7762C59.3685 34.3955 59.4717 35.0148 59.5193 35.2133C59.7734 35.2609 60.1863 35.3165 60.5991 35.3165C64.2036 35.3165 68.7371 32.9029 71.3572 29.6556Z"
+          fill="black"
+        />
+      </svg>
+
+      <svg
+        className="rounded-3xl shadow-2xl bg-wash"
+        width="120"
+        height="120"
+        viewBox="0 0 120 120"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg">
+        <path
+          d="M22.1378 84.6843C19.1119 84.6843 16 87.1151 16 91.363C16 95.259 18.7358 98 22.1378 98C24.9457 98 26.1963 96.1105 26.1963 96.1105V96.9286C26.2071 97.1436 26.2971 97.3469 26.4489 97.4991C26.6008 97.6513 26.8036 97.7416 27.018 97.7523H29.0473V84.9626H26.1963V86.5864C26.1963 86.5864 24.9346 84.6843 22.1378 84.6843ZM22.6458 87.3002C25.1359 87.3002 26.4434 89.4958 26.4434 91.3686C26.4434 93.4557 24.8916 95.4371 22.65 95.4371C20.7775 95.4371 18.9023 93.9163 18.9023 91.3422C18.9009 89.0102 20.5152 87.2932 22.6458 87.2932V87.3002Z"
+          fill="black"
+        />
+        <path
+          d="M33.01 97.7636C32.9013 97.7667 32.793 97.7475 32.692 97.7072C32.5909 97.6669 32.4991 97.6063 32.4222 97.5292C32.3452 97.4521 32.2848 97.3601 32.2446 97.2587C32.2044 97.1574 32.1852 97.0489 32.1883 96.9399V84.9628H35.0407V86.5462C35.6861 85.5722 36.9478 84.6692 38.8855 84.6692C42.0529 84.6692 43.7435 87.1988 43.7435 89.5655V97.7636H41.7573C41.5268 97.7625 41.3061 97.6703 41.1431 97.5069C40.9801 97.3435 40.8881 97.1223 40.887 96.8912V90.2C40.887 88.8893 40.0861 87.2962 38.2317 87.2962C36.2316 87.2962 35.0393 89.1912 35.0393 90.975V97.7636H33.01Z"
+          fill="black"
+        />
+        <path
+          d="M52.0506 84.6843C49.0248 84.6843 45.9128 87.1151 45.9128 91.363C45.9128 95.259 48.6486 98 52.0506 98C54.8641 98 56.1133 96.1105 56.1133 96.1105V96.9286C56.1241 97.1436 56.2141 97.3469 56.3659 97.4991C56.5178 97.6513 56.7206 97.7416 56.9351 97.7523H58.9643V78.5747H56.1133V86.5919C56.1133 86.5919 54.8475 84.6843 52.0506 84.6843ZM52.5586 87.3002C55.0487 87.3002 56.3562 89.4958 56.3562 91.3686C56.3562 93.4557 54.8045 95.4371 52.5628 95.4371C50.6904 95.4371 48.8152 93.9163 48.8152 91.3422C48.8138 89.0102 50.4225 87.2932 52.5586 87.2932V87.3002Z"
+          fill="black"
+        />
+        <path
+          d="M62.9232 97.7634C62.8145 97.7665 62.7064 97.7473 62.6054 97.707C62.5044 97.6667 62.4126 97.6061 62.3358 97.5289C62.259 97.4518 62.1987 97.3598 62.1587 97.2584C62.1186 97.1571 62.0996 97.0487 62.1029 96.9397V84.9626H64.9539V87.0942C65.4438 85.9004 66.5029 84.8179 68.385 84.8179C68.7253 84.8211 69.0648 84.8532 69.3997 84.9139V87.8692C68.9654 87.7128 68.5078 87.631 68.0464 87.6271C66.0462 87.6271 64.9539 89.5222 64.9539 91.3073V97.7634H62.9232Z"
+          fill="black"
+        />
+        <path
+          d="M86.6997 97.7635C86.591 97.7668 86.4826 97.7477 86.3815 97.7075C86.2803 97.6673 86.1884 97.6067 86.1114 97.5295C86.0345 97.4524 85.9741 97.3603 85.9339 97.2589C85.8938 97.1574 85.8748 97.0489 85.878 96.9398V84.9626H88.7318V97.7635H86.6997Z"
+          fill="black"
+        />
+        <path
+          d="M97.089 84.6843C94.0632 84.6843 90.9526 87.1151 90.9526 91.363C90.9526 95.259 93.6884 98 97.089 98C99.897 98 101.149 96.1105 101.149 96.1105V96.9286C101.16 97.1436 101.25 97.3469 101.402 97.4991C101.553 97.6513 101.756 97.7416 101.971 97.7523H104V78.5747H101.149V86.5919C101.149 86.5919 99.8873 84.6843 97.089 84.6843ZM97.5971 87.3002C100.095 87.3002 101.395 89.4958 101.395 91.3686C101.395 93.4557 99.8429 95.4371 97.6026 95.4371C95.7288 95.4371 93.855 93.9163 93.855 91.3422C93.8536 89.0102 95.4678 87.2932 97.5971 87.2932V87.3002Z"
+          fill="black"
+        />
+        <path
+          d="M87.2813 82.2103C88.3231 82.2103 89.1676 81.3637 89.1676 80.3194C89.1676 79.2751 88.3231 78.4285 87.2813 78.4285C86.2395 78.4285 85.395 79.2751 85.395 80.3194C85.395 81.3637 86.2395 82.2103 87.2813 82.2103Z"
+          fill="black"
+        />
+        <path
+          d="M76.9184 84.6731C73.7496 84.6731 70.2712 87.0496 70.2712 91.3407C70.2712 95.2547 73.236 97.9999 76.9143 97.9999C81.4475 97.9999 83.66 94.3475 83.66 91.3643C83.66 87.705 80.8104 84.6731 76.9212 84.6731H76.9184ZM76.9282 87.3432C79.1198 87.3432 80.7549 89.1131 80.7549 91.3476C80.7549 93.6226 79.0199 95.3827 76.9351 95.3827C75.0002 95.3827 73.1194 93.8035 73.1194 91.3922C73.1194 88.9405 74.9086 87.3488 76.9282 87.3488V87.3432Z"
+          fill="black"
+        />
+        <path
+          d="M81.4769 35.895L88.7723 23.2263C88.9677 22.8863 89.021 22.4826 88.9207 22.1034C88.8203 21.7241 88.5743 21.4 88.2365 21.2018C88.0696 21.1035 87.8848 21.0394 87.693 21.0133C87.5011 20.9871 87.306 20.9993 87.119 21.0493C86.9319 21.0992 86.7566 21.1859 86.6031 21.3043C86.4497 21.4227 86.3213 21.5704 86.2253 21.7389L78.8355 34.5704C73.196 31.988 66.85 30.5493 60.0237 30.5493C53.1975 30.5493 46.8501 31.988 41.212 34.5704L33.8208 21.7389C33.7265 21.565 33.5983 21.4118 33.4439 21.2884C33.2895 21.165 33.1119 21.0739 32.9217 21.0205C32.7316 20.9671 32.5326 20.9524 32.3367 20.9774C32.1408 21.0025 31.9519 21.0666 31.7811 21.1661C31.6104 21.2656 31.4613 21.3984 31.3427 21.5567C31.224 21.715 31.1383 21.8955 31.0904 22.0876C31.0426 22.2797 31.0337 22.4794 31.0643 22.675C31.0948 22.8706 31.1642 23.0581 31.2683 23.2263L38.5623 35.895C25.9827 42.7268 17.4645 55.4915 16.0557 70.4337H104C102.587 55.4915 94.0661 42.7268 81.4769 35.895ZM39.8365 58.053C39.1072 58.0533 38.3943 57.8368 37.7878 57.4308C37.1814 57.0248 36.7086 56.4477 36.4294 55.7723C36.1502 55.097 36.0771 54.3538 36.2193 53.6368C36.3615 52.9199 36.7126 52.2612 37.2283 51.7443C37.744 51.2274 38.401 50.8754 39.1162 50.7329C39.8315 50.5903 40.5728 50.6636 41.2465 50.9435C41.9202 51.2234 42.496 51.6973 42.9009 52.3052C43.3059 52.9131 43.5219 53.6278 43.5217 54.3589C43.5209 55.3389 43.132 56.2785 42.4405 56.9712C41.749 57.6639 40.8113 58.053 39.8337 58.053H39.8365ZM80.2068 58.053C79.4776 58.053 78.7648 57.8363 78.1585 57.4301C77.5523 57.024 77.0798 56.4467 76.8008 55.7714C76.5218 55.096 76.4488 54.3529 76.5912 53.636C76.7336 52.9191 77.0848 52.2606 77.6005 51.7438C78.1162 51.2271 78.7733 50.8752 79.4885 50.7328C80.2037 50.5903 80.945 50.6637 81.6186 50.9436C82.2922 51.2235 82.8679 51.6974 83.2728 52.3053C83.6777 52.9133 83.8937 53.6279 83.8934 54.3589C83.8932 54.8443 83.7976 55.3249 83.6121 55.7733C83.4266 56.2217 83.1548 56.629 82.8122 56.9721C82.4695 57.3152 82.0629 57.5872 81.6154 57.7727C81.1679 57.9581 80.6883 58.0534 80.2041 58.053H80.2068Z"
+          fill="#32DE84"
+        />
+      </svg>
+    </div>
+  );
+}
+
+function WebIcons() {
+  return (
+    <div className="flex items-center justify-center gap-5 mb-8">
+      <svg
+        fill="none"
+        className="rounded-3xl shadow-2xl bg-wash"
+        width="120"
+        height="120"
+        viewBox="0 0 120 120"
+        xmlns="http://www.w3.org/2000/svg">
+        <g clipPath="url(#ee)">
+          <path
+            d="m60 81.99c12.15 0 22-9.8497 22-22 0-12.15-9.8497-22-22-22s-22 9.8498-22 22c0 12.15 9.8497 22 22 22z"
+            fill="#fff"
+          />
+          <path
+            d="m60 38h38.099c-3.8606-6.6892-9.4144-12.244-16.103-16.106-6.6884-3.862-14.276-5.8948-21.999-5.8943-7.7232 5e-4 -15.31 2.0345-21.998 5.8973-6.6879 3.8629-12.241 9.4184-16.101 16.108l19.05 32.995 0.017-0.0044c-1.9378-3.3417-2.9604-7.1352-2.9648-10.998-0.0043-3.8629 1.0098-7.6586 2.9401-11.005 1.9303-3.346 4.7086-6.124 8.0548-8.0539 3.3463-1.93 7.1422-2.9437 11.005-2.9389z"
+            fill="url(#cc)"
+          />
+          <path
+            d="m60 77.417c9.619 0 17.417-7.7977 17.417-17.417 0-9.6189-7.7977-17.417-17.417-17.417-9.6189 0-17.417 7.7977-17.417 17.417 0 9.619 7.7977 17.417 17.417 17.417z"
+            fill="#1A73E8"
+          />
+          <path
+            d="m79.05 71.006-19.05 32.994c7.7233 1e-3 15.311-2.031 21.999-5.8925 6.6886-3.8614 12.243-9.4158 16.104-16.105 3.8607-6.6888 5.8927-14.276 5.8917-22-1e-3 -7.7232-2.036-15.31-5.8996-21.997h-38.099l-0.0045 0.017c3.8629-0.0074 7.6595 1.0036 11.007 2.9313 3.3476 1.9277 6.1278 4.7038 8.0604 8.0485s2.9492 7.1398 2.9474 11.003c-0.0017 3.8629-1.0219 7.657-2.9575 11z"
+            fill="url(#bb)"
+          />
+          <path
+            d="m40.949 71.006-19.049-32.995c-3.8626 6.688-5.8963 14.275-5.8966 21.998s2.0328 15.31 5.8949 21.999 9.4171 12.242 16.106 16.102c6.6893 3.8603 14.277 5.8913 22 5.8893l19.049-32.994-0.0123-0.0124c-1.925 3.349-4.699 6.1314-8.0422 8.0666s-7.1375 2.9549-11 2.9562-7.6579-1.0158-11.002-2.9488c-3.3445-1.9329-6.1203-4.7134-8.0476-8.0612z"
+            fill="url(#aa)"
+          />
+        </g>
+        <defs>
+          <linearGradient
+            id="cc"
+            x1="21.898"
+            x2="98.099"
+            y1="43.5"
+            y2="43.5"
+            gradientUnits="userSpaceOnUse">
+            <stop stopColor="#D93025" offset="0" />
+            <stop stopColor="#EA4335" offset="1" />
+          </linearGradient>
+          <linearGradient
+            id="bb"
+            x1="53.99"
+            x2="92.09"
+            y1="103.41"
+            y2="37.42"
+            gradientUnits="userSpaceOnUse">
+            <stop stopColor="#FCC934" offset="0" />
+            <stop stopColor="#FBBC04" offset="1" />
+          </linearGradient>
+          <linearGradient
+            id="aa"
+            x1="64.763"
+            x2="26.663"
+            y1="101.25"
+            y2="35.261"
+            gradientUnits="userSpaceOnUse">
+            <stop stopColor="#1E8E3E" offset="0" />
+            <stop stopColor="#34A853" offset="1" />
+          </linearGradient>
+          <clipPath id="ee">
+            <rect
+              transform="translate(16 16)"
+              width="88"
+              height="88"
+              fill="#fff"
+            />
+          </clipPath>
+        </defs>
+      </svg>
+
+      <svg
+        fill="none"
+        className="rounded-3xl shadow-2xl bg-wash"
+        width="120"
+        height="120"
+        viewBox="0 0 120 120"
+        xmlns="http://www.w3.org/2000/svg">
+        <path
+          d="m60 104c24.3 0 44-19.7 44-44s-19.7-44-44-44-44 19.7-44 44 19.7 44 44 44z"
+          fill="url(#a)"
+        />
+        <path
+          d="m60.002 100.1v-6.756"
+          stroke="#fff"
+          strokeLinecap="square"
+          strokeWidth=".84706"
+        />
+        <path
+          d="m60.002 26.624v-6.7563"
+          stroke="#fff"
+          strokeLinecap="square"
+          strokeWidth=".84706"
+        />
+        <path
+          d="m53.018 99.512 1.1732-6.6536m11.585-65.704 1.1732-6.6536"
+          stroke="#fff"
+          strokeLinecap="square"
+          strokeWidth=".84706"
+        />
+        <path
+          d="m46.278 97.689 2.3108-6.3488m22.819-62.694 2.3108-6.3488"
+          stroke="#fff"
+          strokeLinecap="square"
+          strokeWidth=".84706"
+        />
+        <path
+          d="m39.91 94.765 3.3781-5.851m33.359-57.779 3.3782-5.8511"
+          stroke="#fff"
+          strokeLinecap="square"
+          strokeWidth=".84706"
+        />
+        <path
+          d="m34.252 90.737 4.3428-5.1756m42.885-51.109 4.3429-5.1756"
+          stroke="#fff"
+          strokeLinecap="square"
+          strokeWidth=".84706"
+        />
+        <path
+          d="m29.227 85.774 5.1756-4.3428m51.109-42.885 5.1756-4.3428"
+          stroke="#fff"
+          strokeLinecap="square"
+          strokeWidth=".84706"
+        />
+        <path
+          d="m25.244 80.033 5.8511-3.3781m57.779-33.359 5.8511-3.3781"
+          stroke="#fff"
+          strokeLinecap="square"
+          strokeWidth=".84706"
+        />
+        <path
+          d="m22.238 73.725 6.3488-2.3108m62.694-22.819 6.3488-2.3108"
+          stroke="#fff"
+          strokeLinecap="square"
+          strokeWidth=".84706"
+        />
+        <path
+          d="m20.469 67.009 6.6535-1.1733m65.704-11.585 6.6536-1.1732"
+          stroke="#fff"
+          strokeLinecap="square"
+          strokeWidth=".84706"
+        />
+        <path
+          d="m19.9 60.002h6.7563m66.718 0h6.7558"
+          stroke="#fff"
+          strokeLinecap="square"
+          strokeWidth=".84706"
+        />
+        <path
+          d="m20.488 53.062 6.6536 1.1732m65.704 11.585 6.6536 1.1732"
+          stroke="#fff"
+          strokeLinecap="square"
+          strokeWidth=".84706"
+        />
+        <path
+          d="m22.309 46.295 6.3488 2.3108m62.694 22.819 6.3488 2.3108"
+          stroke="#fff"
+          strokeLinecap="square"
+          strokeWidth=".84706"
+        />
+        <path
+          d="m25.229 39.99 5.8511 3.3781m57.779 33.359 5.851 3.3781"
+          stroke="#fff"
+          strokeLinecap="square"
+          strokeWidth=".84706"
+        />
+        <path
+          d="m29.24 34.19 5.1756 4.3428m51.109 42.885 5.1756 4.3429"
+          stroke="#fff"
+          strokeLinecap="square"
+          strokeWidth=".84706"
+        />
+        <path
+          d="m34.166 29.281 4.3428 5.1756m42.885 51.109 4.3428 5.1755"
+          stroke="#fff"
+          strokeLinecap="square"
+          strokeWidth=".84706"
+        />
+        <path
+          d="m39.918 25.256 3.3781 5.8511m33.359 57.779 3.3781 5.8511"
+          stroke="#fff"
+          strokeLinecap="square"
+          strokeWidth=".84706"
+        />
+        <path
+          d="m46.28 22.3 2.3108 6.3487m22.819 62.694 2.3107 6.3488"
+          stroke="#fff"
+          strokeLinecap="square"
+          strokeWidth=".84706"
+        />
+        <path
+          d="m52.992 20.554 1.1733 6.6536m11.585 65.704 1.1732 6.6536"
+          stroke="#fff"
+          strokeLinecap="square"
+          strokeWidth=".84706"
+        />
+        <path
+          d="m56.484 99.953 0.2945-3.3653m6.4037-73.194 0.2944-3.3653"
+          stroke="#fff"
+          strokeLinecap="square"
+          strokeWidth=".84706"
+        />
+        <path
+          d="m49.629 98.788 0.8743-3.263m19.016-70.97 0.8743-3.263"
+          stroke="#fff"
+          strokeLinecap="square"
+          strokeWidth=".84706"
+        />
+        <path
+          d="m43.024 96.33 1.4276-3.0616m31.052-66.59 1.4277-3.0616"
+          stroke="#fff"
+          strokeLinecap="square"
+          strokeWidth=".84706"
+        />
+        <path
+          d="m36.978 92.875 1.9376-2.7672m42.143-60.186 1.9376-2.7672"
+          stroke="#fff"
+          strokeLinecap="square"
+          strokeWidth=".84706"
+        />
+        <path
+          d="m31.658 88.369 2.3887-2.3886m51.954-51.954 2.3887-2.3886"
+          stroke="#fff"
+          strokeLinecap="square"
+          strokeWidth=".84706"
+        />
+        <path
+          d="m27.141 83.051 2.7672-1.9376m60.186-42.143 2.7672-1.9376"
+          stroke="#fff"
+          strokeLinecap="square"
+          strokeWidth=".84706"
+        />
+        <path
+          d="m23.653 76.966 3.0616-1.4277m66.59-31.052 3.0617-1.4276"
+          stroke="#fff"
+          strokeLinecap="square"
+          strokeWidth=".84706"
+        />
+        <path
+          d="m21.24 70.41 3.263-0.8744m70.97-19.016 3.263-0.8743"
+          stroke="#fff"
+          strokeLinecap="square"
+          strokeWidth=".84706"
+        />
+        <path
+          d="m20 63.507 3.3653-0.2944m73.194-6.4037 3.3652-0.2944"
+          stroke="#fff"
+          strokeLinecap="square"
+          strokeWidth=".84706"
+        />
+        <path
+          d="m20.03 56.514 3.3653 0.2944m73.194 6.4037 3.3653 0.2944"
+          stroke="#fff"
+          strokeLinecap="square"
+          strokeWidth=".84706"
+        />
+        <path
+          d="m21.19 49.657 3.2631 0.8743m70.97 19.016 3.263 0.8744"
+          stroke="#fff"
+          strokeLinecap="square"
+          strokeWidth=".84706"
+        />
+        <path
+          d="m23.624 43.042 3.0616 1.4276m66.59 31.052 3.0616 1.4277"
+          stroke="#fff"
+          strokeLinecap="square"
+          strokeWidth=".84706"
+        />
+        <path
+          d="m27.127 37.029 2.7671 1.9376m60.186 42.143 2.7672 1.9376"
+          stroke="#fff"
+          strokeLinecap="square"
+          strokeWidth=".84706"
+        />
+        <path
+          d="m31.654 31.661 2.3887 2.3887m51.954 51.954 2.3887 2.3887"
+          stroke="#fff"
+          strokeLinecap="square"
+          strokeWidth=".84706"
+        />
+        <path
+          d="m36.935 27.134 1.9376 2.7672m42.143 60.186 1.9376 2.7672"
+          stroke="#fff"
+          strokeLinecap="square"
+          strokeWidth=".84706"
+        />
+        <path
+          d="m43.044 23.676 1.4276 3.0616m31.052 66.59 1.4277 3.0616"
+          stroke="#fff"
+          strokeLinecap="square"
+          strokeWidth=".84706"
+        />
+        <path
+          d="m49.59 21.297 0.8743 3.263m19.016 70.97 0.8743 3.263"
+          stroke="#fff"
+          strokeLinecap="square"
+          strokeWidth=".84706"
+        />
+        <path
+          d="m56.449 20.063 0.2944 3.3653m6.4037 73.194 0.2944 3.3652"
+          stroke="#fff"
+          strokeLinecap="square"
+          strokeWidth=".84706"
+        />
+        <path
+          d="m91.222 33.87-34.71 22.211-27.785 30.15 34.879-21.704 27.616-30.656z"
+          clipRule="evenodd"
+          fill="#fff"
+          fillRule="evenodd"
+        />
+        <path
+          d="m91.222 33.87-34.71 22.211 7.094 8.4453 27.616-30.656z"
+          clipRule="evenodd"
+          fill="#FF3B30"
+          fillRule="evenodd"
+        />
+        <defs>
+          <linearGradient
+            id="a"
+            x1="59.999"
+            x2="59.999"
+            y1="104.01"
+            y2="15.992"
+            gradientUnits="userSpaceOnUse">
+            <stop stopColor="#1E6FF1" offset="0" />
+            <stop stopColor="#28CEFB" offset="1" />
+          </linearGradient>
+        </defs>
+      </svg>
+    </div>
   );
 }

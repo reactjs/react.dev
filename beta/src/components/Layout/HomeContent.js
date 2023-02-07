@@ -134,28 +134,40 @@ export function HomeContent() {
         <div className="">
           <div className="max-w-6xl mx-auto flex flex-col w-full">
             <div className="flex-col gap-2 flex grow w-full my-16 lg:my-20 mx-auto items-center">
-              <div className="px-5 lg:px-0 max-w-4xl text-center text-opacity-80">
-                <h3 className="leading-tight dark:text-primary-dark text-primary font-bold text-4xl lg:text-5xl mb-6">
-                  Make the best use of the platform
-                </h3>
-                <p className="text-xl lg:text-2xl leading-normal text-secondary dark:text-secondary-dark">
-                  Web users expect pages to load fast. React can render into an
-                  HTML stream on the server, gradually revealing more content
-                  even before React itself has loaded on the client. React
-                  relies on modern web standards to keep the page responsive
-                  even during rendering.
-                </p>
-              </div>
-              <br />
-              <div className="px-5 lg:px-0 max-w-4xl text-center text-opacity-80">
-                <p className="text-xl lg:text-2xl text-secondary dark:text-secondary-dark leading-normal">
-                  Mobile app users expect native look-and-feel. With{' '}
-                  <Link href="https://reactnative.dev">React Native</Link>, you
-                  can create Android and iOS apps with React. These user
-                  interfaces can feel truly native because they <i>are</i> truly
-                  native. Your React components render real Android and iOS
-                  views natively provided by the platform.
-                </p>
+              <h3 className="leading-tight dark:text-primary-dark text-primary font-bold text-4xl lg:text-5xl mb-6">
+                Make the best use of the platform
+              </h3>
+              <div className="flex flex-row mt-8">
+                <div className="px-5 lg:px-0 max-w-4xl text-center items-center justify-center flex flex-col text-opacity-80">
+                  <Logo className="text-link dark:text-link w-32 mb-8 drop-shadow-xl" />
+
+                  <h3 className="leading-tight dark:text-primary-dark text-primary font-bold text-4xl lg:text-5xl mb-6">
+                    Web
+                  </h3>
+                  <p className="text-xl lg:text-2xl leading-normal text-secondary dark:text-secondary-dark">
+                    Web users expect pages to load fast. React can render into
+                    an HTML stream on the server, gradually revealing more
+                    content even before React itself has loaded on the client.
+                    React relies on modern web standards to keep the page
+                    responsive even during rendering.
+                  </p>
+                </div>
+                <br />
+                <div className="px-5 lg:px-0 max-w-4xl text-center items-center justify-center text-opacity-80 flex flex-col">
+                  <Logo className="text-link dark:text-link w-32 mb-8 drop-shadow-xl" />
+
+                  <h3 className="leading-tight dark:text-primary-dark text-primary font-bold text-4xl lg:text-5xl mb-6">
+                    Native
+                  </h3>
+                  <p className="text-xl lg:text-2xl text-secondary dark:text-secondary-dark leading-normal">
+                    Mobile app users expect native look-and-feel. With{' '}
+                    <Link href="https://reactnative.dev">React Native</Link>,
+                    you can create Android and iOS apps with React. These user
+                    interfaces can feel truly native because they <i>are</i>{' '}
+                    truly native. Your React components render real Android and
+                    iOS views natively provided by the platform.
+                  </p>
+                </div>
               </div>
             </div>
           </div>

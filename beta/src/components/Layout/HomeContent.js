@@ -141,7 +141,7 @@ export function HomeContent() {
                 <p className="text-xl lg:text-2xl text-secondary dark:text-secondary-dark leading-normal">
                   People love using web apps and native apps for different
                   reasons. React lets you build both web and native apps in the
-                  same paradigm, while taking full advantage of the underlying
+                  same paradigm while taking full advantage of the underlying
                   platform. Learn once, write everywhere.
                 </p>
               </div>
@@ -152,10 +152,10 @@ export function HomeContent() {
                     Use the web to the full
                   </h4>
                   <p className="h-full text-xl lg:text-2xl leading-normal text-secondary dark:text-secondary-dark">
-                    Web users expect pages to load fast. React lets your server
-                    start a stream of HTML to progressively reveal fetching
-                    content even before the browser loads any JavaScript. Then,
-                    React relies on the modern web standards to keep your app
+                    People expect web app pages to load fast. React lets your
+                    server stream HTML to progressively reveal fetching content
+                    even before the browser loads any JavaScript. Then, React
+                    relies on the modern web standards to keep your app
                     responsive even in the middle of rendering.
                   </p>
                 </div>
@@ -166,7 +166,7 @@ export function HomeContent() {
                     Make your app truly native
                   </h4>
                   <p className="h-full text-xl lg:text-2xl text-secondary dark:text-secondary-dark leading-normal">
-                    Native app users expect native look-and-feel.{' '}
+                    People expect native apps to look and feel truly native.{' '}
                     <Link href="https://reactnative.dev">React Native</Link>{' '}
                     lets you create Android and iOS apps with React. These user
                     interfaces can feel truly native because they <i>are</i>{' '}

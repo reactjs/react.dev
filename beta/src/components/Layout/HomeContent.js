@@ -164,7 +164,7 @@ export function HomeContent() {
                 <div className="lg:w-6/12 max-w-4xl text-center items-center justify-center text-opacity-80 flex flex-col">
                   <NativeIcons />
                   <h4 className="leading-tight dark:text-primary-dark text-primary font-bold text-3xl lg:text-4xl mb-6">
-                    Go truly native
+                    Go truly native, too
                   </h4>
                   <p className="h-full text-xl lg:text-xl text-secondary dark:text-secondary-dark leading-normal">
                     People expect native apps to look and feel truly native.{' '}

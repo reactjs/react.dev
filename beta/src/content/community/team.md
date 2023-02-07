@@ -4,7 +4,7 @@ title: "Meet the Team"
 
 <Intro>
 
-React development is led by a dedicated team working full time at Meta. It also receives contributions from people all over the world.
+React development is led by a dedicated team working full-time at Meta. It also receives contributions from people all over the world.
 
 </Intro>
 
@@ -15,7 +15,7 @@ The React Core team members work full time on the core component APIs, the engin
 Current members of the React team are listed in alphabetical order below.
 
 <TeamMember name="Andrew Clark" permalink="andrew-clark" photo="/images/team/acdlite.jpg" github="acdlite" twitter="acdlite" title="Engineer at Meta">
-    Andrew got started with web development by making sites with WordPress, and eventually tricked himself into doing JavaScript. His favorite pastime is karaoke. Andrew is either a Disney villain or a Disney princess, depending on the day.
+    Andrew got started with web development by making sites with WordPress and eventually tricked himself into doing JavaScript. His favourite pastime is karaoke. Andrew is either a Disney villain or a Disney princess, depending on the day.
 </TeamMember>
 
 <TeamMember name="Dan Abramov" permalink="dan-abramov" photo="/images/team/gaearon.jpg" github="gaearon" twitter="dan_abramov" title="Engineer at Meta">
@@ -23,7 +23,7 @@ Current members of the React team are listed in alphabetical order below.
 </TeamMember>
 
 <TeamMember name="Jason Bonta" permalink="jason-bonta" photo="/images/team/jasonbonta.jpg" title="Engineering Manager at Meta">
-    Jason likes having large volumes of Amazon packages delivered to the office so that he can build forts. Despite literally walling himself off from his team at times and not understanding how for-of loops work, we appreciate him for the unique qualities he brings to his work.
+    Jason likes having large volumes of Amazon packages delivered to the office so that he can build forts. Despite him literally walling himself off from his team at times and not understanding how for-of loops work, we appreciate the unique qualities he brings to his work.
 </TeamMember>
 
 <TeamMember name="Joe Savona" permalink="joe-savona" photo="/images/team/joe.jpg" github="josephsavona" twitter="en_JS" title="Engineer at Meta">

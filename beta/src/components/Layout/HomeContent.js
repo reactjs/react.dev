@@ -152,12 +152,12 @@ export function HomeContent() {
                     Take full advantage of the web
                   </h4>
                   <p className="h-full text-xl lg:text-xl leading-normal text-secondary dark:text-secondary-dark">
-                    People expect web app pages to load fast. React lets you
-                    start streaming HTML from the server while your data is{' '}
-                    still fetching, and then progressivelly fill in the content
-                    before the browser loads any JavaScript. Using modern web
-                    APIs, React can render components without blocking the
-                    browser.
+                    People expect web app pages to load fast. On the server,
+                    React lets you start streaming HTML while you’re still
+                    fetching data, and progressivelly fill in the remaining
+                    content before the JavaScript loads. On the client, React
+                    uses modern web APIs to let you render components without
+                    blocking the browser.
                   </p>
                 </div>
                 <div className="h-px w-full lg:h-auto flex grow lg:w-px my-16 lg:my-5 bg-border" />
@@ -178,10 +178,11 @@ export function HomeContent() {
               </div>
               <div className="px-5 lg:px-0 max-w-4xl text-center text-secondary dark:text-secondary-dark">
                 <p className="text-xl lg:text-2xl text-secondary dark:text-secondary-dark leading-normal">
-                  React lets you be both a web and a native developer. It allows
-                  your team to ship to multiple platforms without compromising
-                  on the user experience. It lets your organization bridge the
-                  platform silos, and build teams that own entire features.
+                  With React, you can be a web <i>and</i> a native developer. It
+                  allows your team to ship to multiple platforms without
+                  compromising on the user experience. It lets your organization
+                  bridge the platform silos, and form teams that own entire
+                  features.
                 </p>
               </div>
             </div>

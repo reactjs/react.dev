@@ -231,7 +231,7 @@ If you use a [design system](https://uxdesign.cc/everything-you-need-to-know-abo
 
 ### Naming event handler props {/*naming-event-handler-props*/}
 
-Built-in components like `<button>` and `<div>` only support [browser event names](TODO:/apis/react-dom/events) like `onClick`. However, when you're building your own components, you can name their event handler props any way that you like.
+Built-in components like `<button>` and `<div>` only support [browser event names](/reference/react-dom/components/common#common-props) like `onClick`. However, when you're building your own components, you can name their event handler props any way that you like.
 
 By convention, event handler props should start with `on`, followed by a capital letter.
 

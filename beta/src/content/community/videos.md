@@ -16,13 +16,13 @@ In the keynote, we shared our vision for the future of React starting with React
 
 Watch the full keynote from [Andrew Clark](https://twitter.com/acdlite), [Juan Tejada](https://twitter.com/_jstejada), [Lauren Tan](https://twitter.com/potetotes), and [Rick Hanlon](https://twitter.com/rickhanlonii) here:
 
-<iframe style={{marginTop:10}} width="560" height="315" src="https://www.youtube.com/embed/FZ0cG47msEk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<YouTubeIframe src="https://www.youtube.com/embed/FZ0cG47msEk" title="YouTube video player" />
 
 ### React 18 for Application Developers {/*react-18-for-application-developers*/}
 
 For a demo of upgrading to React 18, see [Shruti Kapoor](https://twitter.com/shrutikapoor08)’s talk here:
 
-<iframe style={{marginTop:10}} width="560" height="315" src="https://www.youtube.com/embed/ytudH8je5ko" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<YouTubeIframe src="https://www.youtube.com/embed/ytudH8je5ko" title="YouTube video player" />
 
 ### Streaming Server Rendering with Suspense {/*streaming-server-rendering-with-suspense*/}
 
@@ -32,7 +32,7 @@ Streaming server rendering lets you generate HTML from React components on the s
 
 For a deep dive, see [Shaundai Person](https://twitter.com/shaundai)’s talk here:
 
-<iframe style={{marginTop:10}} width="560" height="315" src="https://www.youtube.com/embed/pj5N-Khihgc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<YouTubeIframe src="https://www.youtube.com/embed/pj5N-Khihgc" title="YouTube video player" />
 
 ### The first React working group {/*the-first-react-working-group*/}
 
@@ -40,7 +40,7 @@ For React 18, we created our first Working Group to collaborate with a panel of 
 
 For an overview of this work, see [Aakansha' Doshi](https://twitter.com/aakansha1216)'s talk:
 
-<iframe style={{marginTop:10}} width="560" height="315" src="https://www.youtube.com/embed/qn7gRClrC9U" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<YouTubeIframe src="https://www.youtube.com/embed/qn7gRClrC9U" title="YouTube video player" />
 
 ### React Developer Tooling {/*react-developer-tooling*/}
 
@@ -48,19 +48,19 @@ To support the new features in this release, we also announced the newly formed 
 
 For more information and a demo of new DevTools features, see [Brian Vaughn](https://twitter.com/brian_d_vaughn)’s talk:
 
-<iframe style={{marginTop:10}} width="560" height="315" src="https://www.youtube.com/embed/oxDfrke8rZg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<YouTubeIframe src="https://www.youtube.com/embed/oxDfrke8rZg" title="YouTube video player" />
 
 ### React without memo {/*react-without-memo*/}
 
 Looking further into the future, [Xuan Huang (黄玄)](https://twitter.com/Huxpro) shared an update from our React Labs research into an auto-memoizing compiler. Check out this talk for more information and a demo of the compiler prototype:
 
-<iframe style={{marginTop:10}} width="560" height="315" src="https://www.youtube.com/embed/lGEMwh32soc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<YouTubeIframe src="https://www.youtube.com/embed/lGEMwh32soc" title="YouTube video player" />
 
 ### React docs keynote {/*react-docs-keynote*/}
 
 [Rachel Nabors](https://twitter.com/rachelnabors) kicked off a section of talks about learning and designing with React with a keynote about our investment in React's [new docs](https://beta.reactjs.org/):
 
-<iframe style={{marginTop:10}} width="560" height="315" src="https://www.youtube.com/embed/mneDaMYOKP8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<YouTubeIframe src="https://www.youtube.com/embed/mneDaMYOKP8" title="YouTube video player" />
 
 ### And more... {/*and-more*/}
 
@@ -90,34 +90,34 @@ Looking further into the future, [Xuan Huang (黄玄)](https://twitter.com/Huxpr
 ### React Conf 2019 {/*react-conf-2019*/}
 
 A playlist of videos from React Conf 2019.
-<iframe title="React Conf 2019" width="650" height="366" src="https://www.youtube-nocookie.com/embed/playlist?list=PLPxbbTqCLbGHPxZpw4xj_Wwg8-fdNxJRh" frameborder="0" allowfullscreen></iframe>
+<YouTubeIframe title="React Conf 2019" src="https://www.youtube-nocookie.com/embed/playlist?list=PLPxbbTqCLbGHPxZpw4xj_Wwg8-fdNxJRh" />
 
 ### React Conf 2018 {/*react-conf-2018*/}
 
 A playlist of videos from React Conf 2018.
-<iframe title="React Conf 2018" width="650" height="366" src="https://www.youtube-nocookie.com/embed/playlist?list=PLPxbbTqCLbGE5AihOSExAa4wUM-P42EIJ" frameborder="0" allowfullscreen></iframe>
+<YouTubeIframe title="React Conf 2018" src="https://www.youtube-nocookie.com/embed/playlist?list=PLPxbbTqCLbGE5AihOSExAa4wUM-P42EIJ" />
 
 ### React.js Conf 2017 {/*reactjs-conf-2017*/}
 
 A playlist of videos from React.js Conf 2017.
-<iframe title="React.js Conf 2017" width="650" height="366" src="https://www.youtube-nocookie.com/embed/playlist?list=PLb0IAmt7-GS3fZ46IGFirdqKTIxlws7e0" frameborder="0" allowfullscreen></iframe>
+<YouTubeIframe title="React.js Conf 2017" src="https://www.youtube-nocookie.com/embed/playlist?list=PLb0IAmt7-GS3fZ46IGFirdqKTIxlws7e0" />
 
 ### React.js Conf 2016 {/*reactjs-conf-2016*/}
 
 A playlist of videos from React.js Conf 2016.
-<iframe title="React.js Conf 2016" width="650" height="366" src="https://www.youtube-nocookie.com/embed/playlist?list=PLb0IAmt7-GS0M8Q95RIc2lOM6nc77q1IY" frameborder="0" allowfullscreen></iframe>
+<YouTubeIframe title="React.js Conf 2016" src="https://www.youtube-nocookie.com/embed/playlist?list=PLb0IAmt7-GS0M8Q95RIc2lOM6nc77q1IY" />
 
 ### React.js Conf 2015 {/*reactjs-conf-2015*/}
 
 A playlist of videos from React.js Conf 2015.
-<iframe title="React.js Conf 2015" width="650" height="366" src="https://www.youtube-nocookie.com/embed/playlist?list=PLb0IAmt7-GS1cbw4qonlQztYV1TAW0sCr" frameborder="0" allowfullscreen></iframe>
+<YouTubeIframe title="React.js Conf 2015" src="https://www.youtube-nocookie.com/embed/playlist?list=PLb0IAmt7-GS1cbw4qonlQztYV1TAW0sCr" />
 
 ### Rethinking Best Practices {/*rethinking-best-practices*/}
 
 Pete Hunt's talk at JSConf EU 2013 covers three topics: throwing out the notion of templates and building views with JavaScript, “re-rendering” your entire application when your data changes, and a lightweight implementation of the DOM and events - (2013 - 0h30m).
-<iframe title="Pete Hunt: React: Rethinking Best Practices - JSConf EU 2013" width="650" height="366" src="https://www.youtube-nocookie.com/embed/x7cQ3mrcKaY" frameborder="0" allowfullscreen></iframe>
+<YouTubeIframe title="Pete Hunt: React: Rethinking Best Practices - JSConf EU 2013" src="https://www.youtube-nocookie.com/embed/x7cQ3mrcKaY" />
 
 ### Introduction to React {/*introduction-to-react*/}
 
 Tom Occhino and Jordan Walke introduce React at Facebook Seattle - (2013 - 1h20m).
-<iframe title="Tom Occhino and Jordan Walke introduce React at Facebook Seattle" width="650" height="366" src="https://www.youtube-nocookie.com/embed/XxVg_s8xAms" frameborder="0" allowfullscreen></iframe>
+<YouTubeIframe title="Tom Occhino and Jordan Walke introduce React at Facebook Seattle" src="https://www.youtube-nocookie.com/embed/XxVg_s8xAms" />

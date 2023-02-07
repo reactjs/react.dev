@@ -124,7 +124,7 @@ export function HomeContent() {
                   To frameworks, React is more than a library—React is an
                   architecture. React provides a unified programming model that
                   spans across client and server so that you can use both of
-                  them for what they are best at.
+                  them for what they do best.
                 </p>
               </div>
             </div>
@@ -136,7 +136,7 @@ export function HomeContent() {
             <div className="flex-col gap-2 flex grow w-full my-16 lg:my-20 mx-auto items-center">
               <div className="px-5 lg:px-0 max-w-4xl text-center text-opacity-80">
                 <h3 className="leading-tight dark:text-primary-dark text-primary font-bold text-4xl lg:text-5xl mb-6">
-                  Take the best from every platform
+                  Use the best from every platform
                 </h3>
                 <p className="text-xl lg:text-2xl text-secondary dark:text-secondary-dark leading-normal">
                   People love using web apps and native apps for different
@@ -145,18 +145,19 @@ export function HomeContent() {
                   platform. Learn once, write everywhere.
                 </p>
               </div>
-              <div className="flex flex-col lg:flex-row mt-8 lg:gap-2.5">
+              <div className="flex flex-col lg:flex-row my-8 lg:gap-2.5">
                 <div className="lg:w-6/12 bg-card dark:bg-card-dark rounded-3xl p-10 max-w-4xl text-center items-center justify-center flex flex-col text-opacity-80">
                   <WebIcons className="mb-8" />
                   <h4 className="leading-tight dark:text-primary-dark text-primary font-bold text-3xl lg:text-4xl mb-6">
-                    Use the web to the full
+                    Take full advantage of the web
                   </h4>
                   <p className="h-full text-xl lg:text-2xl leading-normal text-secondary dark:text-secondary-dark">
                     People expect web app pages to load fast. React lets you
-                    start streaming HTML from the server while the data is still
-                    fetching, and gradually reveal more content even before the
-                    browser loads any JavaScript. As your code loads, React can
-                    render your components without blocking the browser.
+                    start streaming HTML from the server while your data is{' '}
+                    still fetching, and then progressivelly fill in the content
+                    before the browser loads any JavaScript. Using modern web
+                    APIs, React can render components without blocking the
+                    browser.
                   </p>
                 </div>
                 <br />
@@ -166,15 +167,22 @@ export function HomeContent() {
                     Make your app truly native
                   </h4>
                   <p className="h-full text-xl lg:text-2xl text-secondary dark:text-secondary-dark leading-normal">
-                    People expect native apps to look and feel native.{' '}
+                    People expect native apps to look and feel truly native.{' '}
                     <Link href="https://reactnative.dev">React Native</Link>{' '}
-                    lets you create truly native Android and iOS apps with
-                    React. These user interfaces can feel truly native because
-                    they <i>are</i> truly native. Your React components render
-                    real Android and iOS views natively provided by the
-                    platform.
+                    lets you develop Android and iOS applications using React.{' '}
+                    These user interfaces can feel truly native because they{' '}
+                    <i>are</i> truly native. Your React components render real
+                    Android and iOS views natively provided by the platform.
                   </p>
                 </div>
+              </div>
+              <div className="px-5 lg:px-0 max-w-4xl text-center text-secondary dark:text-secondary-dark">
+                <p className="text-xl lg:text-2xl text-secondary dark:text-secondary-dark leading-normal">
+                  React lets you be both a web and a native developer. It allows
+                  your team to ship to multiple platforms without compromising
+                  on the user experience. It lets your organization bridge the
+                  platform silos and build teams that own entire features.
+                </p>
               </div>
             </div>
           </div>

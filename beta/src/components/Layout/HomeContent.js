@@ -160,7 +160,7 @@ export function HomeContent() {
                     blocking the browser.
                   </p>
                 </div>
-                <div className="h-px w-full lg:h-auto flex grow lg:w-px my-16 lg:my-5 bg-border" />
+                <div className="h-px w-full lg:h-auto flex grow lg:w-px my-16 lg:my-5 bg-border dark:bg-border-dark" />
                 <div className="lg:w-6/12 max-w-4xl text-center items-center justify-center text-opacity-80 flex flex-col">
                   <NativeIcons />
                   <h4 className="leading-tight dark:text-primary-dark text-primary font-bold text-3xl lg:text-4xl mb-6">

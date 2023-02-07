@@ -152,11 +152,11 @@ export function HomeContent() {
                     Use the web to the full
                   </h4>
                   <p className="h-full text-xl lg:text-2xl leading-normal text-secondary dark:text-secondary-dark">
-                    People expect web app pages to load fast. React lets your
-                    server stream HTML to progressively reveal fetching content
-                    even before the browser loads any JavaScript. Then, React
-                    relies on the modern web standards to keep your app
-                    responsive even in the middle of rendering.
+                    People expect web app pages to load fast. React lets you
+                    start streaming HTML from the server while the data is still
+                    fetching, and gradually reveal more content even before the
+                    browser loads any JavaScript. As your code loads, React can
+                    render your components without blocking the browser.
                   </p>
                 </div>
                 <br />
@@ -166,12 +166,13 @@ export function HomeContent() {
                     Make your app truly native
                   </h4>
                   <p className="h-full text-xl lg:text-2xl text-secondary dark:text-secondary-dark leading-normal">
-                    People expect native apps to look and feel truly native.{' '}
+                    People expect native apps to look and feel native.{' '}
                     <Link href="https://reactnative.dev">React Native</Link>{' '}
-                    lets you create Android and iOS apps with React. These user
-                    interfaces can feel truly native because they <i>are</i>{' '}
-                    truly native. Your React components render real Android and
-                    iOS views natively provided by the platform.
+                    lets you create truly native Android and iOS apps with
+                    React. These user interfaces can feel truly native because
+                    they <i>are</i> truly native. Your React components render
+                    real Android and iOS views natively provided by the
+                    platform.
                   </p>
                 </div>
               </div>
@@ -555,8 +556,11 @@ function Example3() {
               isFromPackageImport={false}
               noShadow={true}
               noMargin={true}>
-              <div>{`async function ArtistPage({ slug }) {
-  const artist = await db.findArtist({ slug });
+              <div>{`import { db } from './database.js';
+import { Suspense } from 'react';
+
+async function ArtistPage({ slug }) {
+  const artist = await db.Artists.find({ slug });
   return (
     <main>
       <Cover background={artist.cover}>
@@ -570,7 +574,7 @@ function Example3() {
 }
 
 async function Discography({ artistId }) {
-  const albums = await db.findAlbums({ artistId });
+  const albums = await db.Albums.find({ artistId });
   return <AlbumList albums={albums} />;
 }`}</div>
             </CodeBlock>

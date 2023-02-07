@@ -164,7 +164,7 @@ export function HomeContent() {
                 <div className="lg:w-6/12 bg-card dark:bg-card-dark rounded-3xl p-10 max-w-4xl text-center items-center justify-center text-opacity-80 flex flex-col">
                   <NativeIcons className="mb-8" />
                   <h4 className="leading-tight dark:text-primary-dark text-primary font-bold text-3xl lg:text-4xl mb-6">
-                    Make your app truly native
+                    Or build a truly native app
                   </h4>
                   <p className="h-full text-xl lg:text-2xl text-secondary dark:text-secondary-dark leading-normal">
                     People expect native apps to look and feel truly native.{' '}
@@ -181,7 +181,7 @@ export function HomeContent() {
                   React lets you be both a web and a native developer. It allows
                   your team to ship to multiple platforms without compromising
                   on the user experience. It lets your organization bridge the
-                  platform silos and build teams that own entire features.
+                  platform silos, and build teams that own entire features.
                 </p>
               </div>
             </div>

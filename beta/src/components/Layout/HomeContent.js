@@ -591,7 +591,7 @@ async function Discography({ artistId }) {
             <BrowserChrome
               setPostPromise={setPostPromise}
               setAlbumsPromise={setAlbumsPromise}>
-              <ExamplePanel noPadding={true} noShadow={true} height="36.25rem">
+              <ExamplePanel noPadding={true} noShadow={true} height="38rem">
                 <Suspense fallback={null}>
                   <div style={{animation: 'fadein 200ms'}}>
                     <ArtistPage
@@ -708,7 +708,7 @@ function ArtistPage({artist, artistPromise, albumsPromise}) {
 
 function LoadingDiscography() {
   return (
-    <div className="flex flex-col items-center h-[22.25rem] overflow-hidden">
+    <div className="flex flex-col items-center h-[24rem] overflow-hidden">
       <div className="w-full">
         <div className="relative overflow-hidden before:-skew-x-12 before:absolute before:inset-0 before:-translate-x-full before:animate-[shimmer_1.75s_infinite] before:bg-gradient-to-r before:from-transparent before:via-white/50 before:to-transparent">
           <div className="space-y-3 space-x-5">

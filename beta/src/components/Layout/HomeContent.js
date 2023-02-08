@@ -106,14 +106,14 @@ export function HomeContent() {
                   Go full-stack with a framework
                 </h3>
                 <p className="text-xl lg:text-2xl text-secondary dark:text-secondary-dark leading-normal">
-                  React is a library. It lets you put components together, but
-                  it doesn’t prescribe solutions for routing and data fetching.
-                  To get the most out of React, we recommend a React framework
-                  like{' '}
+                  React is a library. It lets you create components and put them
+                  together, but it doesn’t prescribe how to do routing and data
+                  fetching. To get the most out of React, we recommend a React
+                  framework like{' '}
                   <Link href="https://github.com/vercel/next.js">Next.js</Link>,{' '}
                   <Link href="https://remix.run/">Remix</Link>, and{' '}
                   <Link href="https://expo.dev/">Expo</Link>. Frameworks let you
-                  create full-stack apps with very little configuration.
+                  create full-stack apps with almost no configuration.
                 </p>
               </div>
               <div className="max-w-6xl mx-auto flex flex-col w-full">
@@ -121,10 +121,10 @@ export function HomeContent() {
               </div>
               <div className="px-5 lg:px-0 max-w-4xl text-center text-secondary dark:text-secondary-dark">
                 <p className="text-xl lg:text-2xl text-secondary dark:text-secondary-dark leading-normal">
-                  To frameworks, React is more than a library—React is an
-                  architecture. React provides a unified programming model that
-                  spans across client and server so that you can use both of
-                  them for what they do best.
+                  For frameworks, React is more than a library—React is an
+                  architecture. React provides a unified asynchronous
+                  programming model spanning across client and server so that
+                  you can use both of them for what they do best.
                 </p>
               </div>
             </div>
@@ -139,10 +139,10 @@ export function HomeContent() {
                   Use the best from every platform
                 </h3>
                 <p className="text-xl lg:text-2xl text-secondary dark:text-secondary-dark leading-normal">
-                  People love using web apps and native apps for different
-                  reasons. React lets you build both web and native apps in the
-                  same paradigm while taking full advantage of the underlying
-                  platform. Learn once, write everywhere.
+                  People love web and native apps for different reasons. React
+                  lets you build both web apps and native apps in the same
+                  paradigm. It takes advantage of each platform’s unique
+                  strengths to let your interfaces feel just right.
                 </p>
               </div>
               <div className="flex flex-col lg:flex-row my-20 lg:gap-20">
@@ -154,10 +154,10 @@ export function HomeContent() {
                   <p className="h-full text-xl lg:text-xl leading-normal text-secondary dark:text-secondary-dark">
                     People expect web app pages to load fast. On the server,
                     React lets you start streaming HTML while you’re still
-                    fetching data, and progressivelly fill in the remaining
-                    content before the JavaScript loads. On the client, React
-                    uses modern web APIs to let you render components without
-                    blocking the browser.
+                    fetching data, progressivelly filling in the remaining
+                    content before any JavaScript code loads. On the client,
+                    React uses standard web APIs to keep your app responsive
+                    even in the middle of rendering.
                   </p>
                 </div>
                 <div className="h-px w-full lg:h-auto flex grow lg:w-px my-16 lg:my-5 bg-border dark:bg-border-dark" />
@@ -167,22 +167,22 @@ export function HomeContent() {
                     Go truly native, too
                   </h4>
                   <p className="h-full text-xl lg:text-xl text-secondary dark:text-secondary-dark leading-normal">
-                    People expect native apps to look and feel truly native.{' '}
+                    People expect native apps to look and feel native.{' '}
                     <Link href="https://reactnative.dev">React Native</Link>{' '}
-                    lets you develop Android and iOS applications using React.{' '}
-                    These user interfaces can feel truly native because they{' '}
-                    <i>are</i> truly native. Your React components render real
-                    Android and iOS views natively provided by the platform.
+                    lets you build apps for Android, iOS, and more with React.{' '}
+                    These apps can look and feel native because their user
+                    interfaces <i>are</i> truly native. It ain’t no web
+                    view—your React components render real Android and iOS views
+                    provided by the platform.
                   </p>
                 </div>
               </div>
               <div className="px-5 lg:px-0 max-w-4xl text-center text-secondary dark:text-secondary-dark">
                 <p className="text-xl lg:text-2xl text-secondary dark:text-secondary-dark leading-normal">
-                  With React, you can be a web <i>and</i> a native developer. It
-                  allows your team to ship to multiple platforms without
-                  compromising on the user experience. It lets your organization
-                  bridge the platform silos, and form teams that own entire
-                  features.
+                  With React, you can be a web <i>and</i> a native developer.
+                  Your team can ship to many platforms without sacrificing the
+                  user experience. Your organization can bridge the platform
+                  silos, and form teams that own entire features end-to-end.
                 </p>
               </div>
             </div>

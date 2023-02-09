@@ -139,7 +139,7 @@ Keep in mind that by exposing a ref to the DOM node inside your component, you'r
 
 #### Focusing a text input {/*focusing-a-text-input*/}
 
-Clicking the button will focus the input. The `Form` component defines a ref and passes it to the `MyInput` component. The `MyInput` component fowards that ref to the browser `<input>`. This lets the `Form` component focus the `<input>`.
+Clicking the button will focus the input. The `Form` component defines a ref and passes it to the `MyInput` component. The `MyInput` component forwards that ref to the browser `<input>`. This lets the `Form` component focus the `<input>`.
 
 <Sandpack>
 

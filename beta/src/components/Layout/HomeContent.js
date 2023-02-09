@@ -106,14 +106,13 @@ export function HomeContent() {
                   Go full-stack with a framework
                 </h3>
                 <p className="text-xl lg:text-2xl text-secondary dark:text-secondary-dark leading-normal">
-                  React is a library. It lets you create components and put them
-                  together, but it doesn’t prescribe how to do routing and data
-                  fetching. To get the most out of React, we recommend a React
-                  framework like{' '}
+                  React is a library. It lets you put components together, but
+                  it doesn’t prescribe how to do routing and data fetching. To
+                  build an entire app with React, we recommend an integrated
+                  React framework like{' '}
                   <Link href="https://github.com/vercel/next.js">Next.js</Link>,{' '}
                   <Link href="https://remix.run/">Remix</Link>, and{' '}
-                  <Link href="https://expo.dev/">Expo</Link>. Frameworks let you
-                  create full-stack apps with almost no configuration.
+                  <Link href="https://expo.dev/">Expo</Link>.
                 </p>
               </div>
               <div className="max-w-6xl mx-auto flex flex-col w-full">
@@ -121,10 +120,10 @@ export function HomeContent() {
               </div>
               <div className="px-5 lg:px-0 max-w-4xl text-center text-secondary dark:text-secondary-dark">
                 <p className="text-xl lg:text-2xl text-secondary dark:text-secondary-dark leading-normal">
-                  For frameworks, React is more than a library—React is an
-                  architecture. React provides a unified asynchronous
-                  programming model spanning across client and server so that
-                  you can use both of them for what they do best.
+                  To frameworks, React is more than a library—React is an
+                  architecture. React provides a unified asynchronous component
+                  model across the entire stack so that you can use both client{' '}
+                  <i>and</i> server for what they do best.
                 </p>
               </div>
             </div>
@@ -141,8 +140,8 @@ export function HomeContent() {
                 <p className="text-xl lg:text-2xl text-secondary dark:text-secondary-dark leading-normal">
                   People love web and native apps for different reasons. React
                   lets you build both web apps and native apps in the same
-                  paradigm. It takes advantage of each platform’s unique
-                  strengths to let your interfaces feel just right.
+                  paradigm. It uses each platform’s unique strengths to let your
+                  user interfaces feel just right on every platform.
                 </p>
               </div>
               <div className="flex flex-col lg:flex-row my-20 lg:gap-20">
@@ -171,8 +170,8 @@ export function HomeContent() {
                     <Link href="https://reactnative.dev">React Native</Link>{' '}
                     lets you build apps for Android, iOS, and more with React.{' '}
                     These apps can look and feel native because their user
-                    interfaces <i>are</i> truly native. It ain’t no web
-                    view—your React components render real Android and iOS views
+                    interfaces <i>are</i> truly native. It’s not a web view:
+                    your React components render real iOS and Android views
                     provided by the platform.
                   </p>
                 </div>

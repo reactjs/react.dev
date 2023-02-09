@@ -1,6 +1,6 @@
 ---
 id: home
-title: React Docs Beta
+title: React • The library for web and native user interfaces
 permalink: index.html
 ---
 

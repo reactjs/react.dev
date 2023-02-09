@@ -18,7 +18,7 @@ export interface SeoProps {
 export const Seo = withRouter(
   ({
     title,
-    description = 'A JavaScript library for building user interfaces',
+    description = 'The library for web and native user interfaces',
     image = '/logo-og.png',
     router,
     children,

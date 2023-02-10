@@ -376,7 +376,7 @@ function Example1() {
           `}</div>
             </CodeBlock>
           </div>
-          <div className="w-full p-10 flex grow justify-center">
+          <div className="w-full p-2.5 sm:p-5 lg:p-10 flex grow justify-center">
             <ExamplePanel>
               <VideoRow
                 video={{

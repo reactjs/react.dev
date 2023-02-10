@@ -771,8 +771,15 @@ function VideoRow({video}) {
   return (
     <div className="flex flex-row items-center gap-4">
       <VideoThumbnail video={video} />
-      <a href={video.url} target="_blank" className="flex flex-col flex-1">
-        <h2 className="text-md leading-snug mt-2 text-primary font-bold">
+      <a
+        href={video.url}
+        target="_blank"
+        className="group flex flex-col flex-1">
+        <h2
+          className={cn(
+            'text-md leading-snug mt-2 text-primary font-bold',
+            video.url && 'group-hover:underline'
+          )}>
           {video.title}
         </h2>
         <p className="text-tertiary mb-1 text-base">{video.description}</p>
@@ -797,16 +804,32 @@ function VideoThumbnail({video}) {
       href={video.url}
       target="_blank"
       className={cn(
-        'w-[171px] h-24 shadow-inner-border rounded-xl flex items-center overflow-hidden justify-center align-middle text-white/50 bg-cover bg-white bg-[conic-gradient(at_top_left,_var(--tw-gradient-stops))] from-purple-60 via-blue-50 to-yellow-50',
+        'w-[171px] select-none flex-col h-24 shadow-inner-border rounded-xl flex items-center overflow-hidden justify-center align-middle text-white/50 bg-cover bg-white bg-[conic-gradient(at_top_left,_var(--tw-gradient-stops))] from-purple-60 via-blue-50 to-yellow-50',
         image === 'blue' && 'via-blue-50',
         image === 'red' && 'via-red-50',
         image === 'green' && 'via-green-50',
-        typeof image === 'object' && 'from-gray-70 via-gray-50'
+        typeof image === 'object' && 'from-gray-95 via-gray-80',
+        video.url && 'hover:opacity-80 transition-opacity'
       )}>
-      {typeof image !== 'string' &&
-        image.speakers.map((src) => (
-          <img className="h-8 w-8 rounded-full" src={src} alt="" />
-        ))}
+      {typeof image !== 'string' && (
+        <>
+          <div className="transition-opacity mt-2 -space-x-2 flex flex-row w-full justify-center">
+            {image.speakers.map((src) => (
+              <img
+                className="h-10 w-10 border-2 border-gray-80 object-cover rounded-full"
+                src={src}
+                alt=""
+              />
+            ))}
+          </div>
+          <div className="mt-1">
+            <a className="inline-flex text-xs font-normal items-center text-primary-dark py-1 whitespace-nowrap outline-link px-1.5 rounded-lg">
+              <Logo className="text-xs mr-1 w-4 h-4 text-link-dark" />
+              React Conf
+            </a>
+          </div>
+        </>
+      )}
     </a>
   );
 }

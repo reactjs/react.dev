@@ -769,7 +769,7 @@ function Cover({background, children}) {
 
 function VideoRow({video}) {
   return (
-    <div className="flex flex-row items-center gap-4">
+    <div className="flex flex-row items-center gap-3">
       <VideoThumbnail video={video} />
       <a
         href={video.url}
@@ -777,7 +777,7 @@ function VideoRow({video}) {
         className="group flex flex-col flex-1">
         <h2
           className={cn(
-            'text-md leading-snug mt-2 text-primary font-bold',
+            'text-md leading-snug text-primary font-bold',
             video.url && 'group-hover:underline'
           )}>
           {video.title}
@@ -813,11 +813,11 @@ function VideoThumbnail({video}) {
       )}>
       {typeof image !== 'string' && (
         <>
-          <div className="transition-opacity shadow-2xl mt-2.5 -space-x-2 flex flex-row w-full justify-center">
+          <div className="transition-opacity mt-2.5 -space-x-2 flex flex-row w-full justify-center">
             {image.speakers.map((src, i) => (
               <img
                 key={i}
-                className="h-10 w-10 border-2 border-gray-70 object-cover rounded-full"
+                className="h-10 w-10 border-2 shadow-md border-gray-70 object-cover rounded-full"
                 src={src}
                 alt=""
               />

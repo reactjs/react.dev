@@ -348,10 +348,10 @@ export function HomeContent() {
 function Example1() {
   return (
     <div className="lg:pl-10 lg:pr-5 w-full">
-      <div className="my-16 lg:my-20 max-w-6xl mx-auto flex flex-col w-full border-t lg:border border-border dark:border-opacity-10 lg:rounded-2xl bg-card dark:bg-card-dark">
+      <div className="my-16 lg:my-20 max-w-6xl mx-auto flex flex-col w-full lg:rounded-2xl bg-card dark:bg-card-dark">
         <div className="flex-col-reverse gap-0 lg:gap-5 lg:rounded-xl bg-gray-10 dark:bg-gray-70 shadow-inner lg:flex-row flex grow w-full mx-auto items-center">
-          <div className="lg:-m-5 h-full shadow-xl lg:rounded-2xl bg-wash dark:bg-gray-95 w-full flex grow flex-col border-t lg:border border-border dark:border-border-dark">
-            <div className="w-full bg-card dark:bg-wash-dark lg:rounded-t-2xl border-b border-border dark:border-border-dark">
+          <div className="lg:-m-5 h-full shadow-nav dark:shadow-nav-dark lg:rounded-2xl bg-wash dark:bg-gray-95 w-full flex grow flex-col">
+            <div className="w-full bg-card dark:bg-wash-dark lg:rounded-t-2xl border-b border-black/5 dark:border-white/5">
               <h3 className="text-sm my-1 mx-5 text-tertiary dark:text-tertiary-dark select-none">
                 VideoRow.js
               </h3>
@@ -417,10 +417,10 @@ function Example2() {
 
   return (
     <div className="lg:pl-10 lg:pr-5 w-full">
-      <div className="my-16 lg:my-20 max-w-6xl mx-auto flex flex-col w-full border-t lg:border border-border dark:border-opacity-10 lg:rounded-xl bg-card dark:bg-card-dark">
-        <div className="flex-col-reverse gap-0 lg:gap-5 bg-gray-05 dark:gray-95 shadow-inner lg:rounded-xl lg:flex-row flex grow w-full mx-auto items-center">
-          <div className="lg:-m-5 h-full shadow-xl lg:rounded-xl bg-wash dark:bg-gray-95 w-full flex grow flex-col border-t lg:border border-border dark:border-border-dark">
-            <div className="w-full bg-card dark:bg-wash-dark lg:rounded-t-xl border-b border-border dark:border-border-dark">
+      <div className="my-16 lg:my-20 max-w-6xl mx-auto flex flex-col w-full lg:rounded-2xl bg-card dark:bg-card-dark">
+        <div className="flex-col-reverse gap-0 lg:gap-5 lg:rounded-xl bg-gray-10 dark:bg-gray-70 shadow-inner lg:flex-row flex grow w-full mx-auto items-center">
+          <div className="lg:-m-5 h-full shadow-nav dark:shadow-nav-dark lg:rounded-2xl bg-wash dark:bg-gray-95 w-full flex grow flex-col">
+            <div className="w-full bg-card dark:bg-wash-dark lg:rounded-t-2xl border-b border-black/5 dark:border-white/5">
               <h3 className="text-sm my-1 mx-5 text-tertiary dark:text-tertiary-dark select-none">
                 VideoList.js
               </h3>
@@ -532,10 +532,10 @@ function Example3() {
 
   return (
     <div className="lg:pl-10 lg:pr-5 w-full">
-      <div className="my-16 lg:my-20 max-w-6xl mx-auto flex flex-col w-full border-t lg:border border-border dark:border-opacity-10 lg:rounded-2xl bg-card dark:bg-card-dark">
+      <div className="my-16 lg:my-20 max-w-6xl mx-auto flex flex-col w-full lg:rounded-2xl bg-card dark:bg-card-dark">
         <div className="flex-col-reverse gap-0 lg:gap-5 lg:rounded-xl bg-gray-10 dark:bg-gray-70 shadow-inner lg:flex-row flex grow w-full mx-auto items-center">
-          <div className="lg:-m-5 h-full shadow-xl lg:rounded-2xl bg-wash dark:bg-gray-95 w-full flex grow flex-col border-t lg:border border-border dark:border-border-dark">
-            <div className="w-full bg-card dark:bg-wash-dark lg:rounded-t-2xl border-b border-border dark:border-border-dark">
+          <div className="lg:-m-5 h-full shadow-nav dark:shadow-nav-dark lg:rounded-2xl bg-wash dark:bg-gray-95 w-full flex grow flex-col">
+            <div className="w-full bg-card dark:bg-wash-dark lg:rounded-t-2xl border-b border-black/5 dark:border-white/5">
               <h3 className="text-sm my-1 mx-5 text-tertiary dark:text-tertiary-dark select-none">
                 playlists/[slug].js
               </h3>
@@ -691,29 +691,32 @@ function PlaylistLoading() {
     <div className="flex flex-col items-center h-[24rem] overflow-hidden">
       <div className="w-full">
         <div className="relative overflow-hidden before:-skew-x-12 before:absolute before:inset-0 before:-translate-x-full before:animate-[shimmer_1.75s_infinite] before:bg-gradient-to-r before:from-transparent before:via-white/50 before:to-transparent">
-          <div className="space-y-3 space-x-5">
-            <div className="pt-5 pb-2 pl-5">
+          <div className="space-y-5 space-x-5">
+            <div className="pt-5 pl-5">
               <div className="h-5 w-20 rounded-lg bg-gray-10"></div>
             </div>
             <div className="flex flex-row items-center gap-3">
               <div className="aspect-video w-44 rounded-lg bg-gray-10"></div>
-              <div className="flex flex-col gap-2.5">
-                <div className="h-4 w-20 rounded-lg bg-gray-10"></div>
-                <div className="h-4 w-10 rounded-lg bg-gray-10"></div>
+              <div className="flex flex-col gap-2 pb-1">
+                <div className="h-4 w-16 rounded-lg bg-gray-10"></div>
+                <div className="h-4 w-32 rounded-lg bg-gray-10"></div>
+                <div className="h-4 w-32 rounded-lg bg-gray-10"></div>
               </div>
             </div>
             <div className="flex flex-row items-center gap-3">
               <div className="aspect-video w-44 rounded-lg bg-gray-10"></div>
-              <div className="flex flex-col gap-2.5">
-                <div className="h-4 w-24 rounded-lg bg-gray-10"></div>
-                <div className="h-4 w-10 rounded-lg bg-gray-10"></div>
+              <div className="flex flex-col gap-2 pb-1">
+                <div className="h-4 w-16 rounded-lg bg-gray-10"></div>
+                <div className="h-4 w-32 rounded-lg bg-gray-10"></div>
+                <div className="h-4 w-32 rounded-lg bg-gray-10"></div>
               </div>
             </div>
             <div className="flex flex-row items-center gap-3">
               <div className="aspect-video w-44 rounded-lg bg-gray-10"></div>
-              <div className="flex flex-col gap-2.5">
-                <div className="h-4 w-20 rounded-lg bg-gray-10"></div>
-                <div className="h-4 w-10 rounded-lg bg-gray-10"></div>
+              <div className="flex flex-col gap-2 pb-1">
+                <div className="h-4 w-16 rounded-lg bg-gray-10"></div>
+                <div className="h-4 w-32 rounded-lg bg-gray-10"></div>
+                <div className="h-4 w-32 rounded-lg bg-gray-10"></div>
               </div>
             </div>
           </div>
@@ -741,7 +744,7 @@ function VideoList({videos, children}) {
       <h2 className="font-bold text-xl text-primary -mt-1 pb-4 leading-snug">
         {headingText}
       </h2>
-      <div className="flex flex-col gap-3">
+      <div className="flex flex-col gap-5">
         {videos.map((video) => (
           <VideoRow key={video.id} video={video} />
         ))}
@@ -782,6 +785,7 @@ function VideoRow({video}) {
       <a
         href={video.url}
         target="_blank"
+        rel="noreferrer"
         className="group flex flex-col flex-1">
         <h2
           className={cn(
@@ -811,6 +815,7 @@ function VideoThumbnail({video}) {
     <a
       href={video.url}
       target="_blank"
+      rel="noreferrer"
       className={cn(
         'aspect-video w-44 select-none flex-col shadow-inner-border rounded-lg flex items-center overflow-hidden justify-center align-middle text-white/50 bg-cover bg-white bg-[conic-gradient(at_top_right,_var(--tw-gradient-stops))]',
         image === 'blue' && 'from-yellow-50 via-blue-50 to-purple-60',
@@ -819,7 +824,7 @@ function VideoThumbnail({video}) {
         typeof image === 'object' && 'from-gray-80 via-gray-95 to-gray-70',
         video.url && 'hover:opacity-95 transition-opacity'
       )}>
-      {typeof image !== 'string' && (
+      {typeof image !== 'string' ? (
         <>
           <div className="transition-opacity mt-2.5 -space-x-2 flex flex-row w-full justify-center">
             {image.speakers.map((src, i) => (
@@ -838,6 +843,8 @@ function VideoThumbnail({video}) {
             </span>
           </div>
         </>
+      ) : (
+        <ThumbnailPlaceholder />
       )}
     </a>
   );
@@ -846,14 +853,17 @@ function VideoThumbnail({video}) {
 function ThumbnailPlaceholder() {
   return (
     <svg
-      xmlns="http://www.w3.org/2000/svg"
+      className="drop-shadow-xl"
       width="36"
       height="36"
-      className="drop-shadow-xl"
-      viewBox="0 0 24 24">
+      viewBox="0 0 72 72"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg">
       <path
+        fillRule="evenodd"
+        clipRule="evenodd"
+        d="M36 69C54.2254 69 69 54.2254 69 36C69 17.7746 54.2254 3 36 3C17.7746 3 3 17.7746 3 36C3 54.2254 17.7746 69 36 69ZM52.1716 38.6337L28.4366 51.5801C26.4374 52.6705 24 51.2235 24 48.9464V23.0536C24 20.7764 26.4374 19.3295 28.4366 20.4199L52.1716 33.3663C54.2562 34.5034 54.2562 37.4966 52.1716 38.6337Z"
         fill="currentColor"
-        d="M20.42,2.31a1.52,1.52,0,0,0-1.3-.26L8.12,5A1.52,1.52,0,0,0,7,6.41v8.15A3.91,3.91,0,0,0,5,14a4,4,0,1,0,4,4V10.87L19,8.31v3.25A3.91,3.91,0,0,0,17,11a4,4,0,1,0,4,4V3.5A1.5,1.5,0,0,0,20.42,2.31ZM5,20a2,2,0,1,1,2-2A2,2,0,0,1,5,20ZM9,8.81v-2L19,4.15v2.1ZM17,17a2,2,0,1,1,2-2A2,2,0,0,1,17,17Z"
       />
     </svg>
   );

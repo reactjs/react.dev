@@ -483,6 +483,33 @@ function Example3() {
         speakers: ['https://i.imgur.com/cyaiwpP.jpg'],
       },
     },
+    {
+      id: 2,
+      title: 'Streaming Server Rendering with Suspense',
+      description: 'Shaundai Person',
+      url: 'https://www.youtube.com/watch?v=pj5N-Khihgc&list=PLNG_1j3cPCaZZ7etkzWA7JfdmKWT0pMsa&index=3',
+      image: {
+        speakers: ['https://i.imgur.com/RUmFLhB.jpg'],
+      },
+    },
+    {
+      id: 3,
+      title: 'The first React Working Group',
+      description: 'Aakansha Doshi',
+      url: 'https://www.youtube.com/watch?v=qn7gRClrC9U&list=PLNG_1j3cPCaZZ7etkzWA7JfdmKWT0pMsa&index=4',
+      image: {
+        speakers: ['https://i.imgur.com/xRs64T1.jpg'],
+      },
+    },
+    {
+      id: 4,
+      title: 'React Developer Tooling',
+      description: 'Brian Vaughn',
+      url: 'https://www.youtube.com/watch?v=oxDfrke8rZg&list=PLNG_1j3cPCaZZ7etkzWA7JfdmKWT0pMsa&index=5',
+      image: {
+        speakers: ['https://i.imgur.com/IasQNDL.jpg'],
+      },
+    },
   ];
 
   return (

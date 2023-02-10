@@ -576,7 +576,7 @@ async function Playlist({ playlistId }) {
                   <div style={{animation: 'fadein 200ms'}}>
                     <PlaylistPage
                       playlist={{
-                        cover: 'https://i.imgur.com/ViI3rY8.jpg',
+                        cover: 'https://i.imgur.com/zBJvLHG.jpg',
                         name: 'React Conf 2021',
                         videos,
                       }}
@@ -772,7 +772,8 @@ function Cover({background, children}) {
         src={background}
         alt="Cover image"
         width="100%"
-        className="max-w-full"
+        height="100%"
+        className="max-w-full object-cover"
       />
     </div>
   );

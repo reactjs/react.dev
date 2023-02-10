@@ -806,7 +806,9 @@ function VideoRow({video}) {
           )}>
           {video.title}
         </h2>
-        <p className="text-tertiary text-sm">{video.description}</p>
+        <p className="text-tertiary text-sm leading-snug">
+          {video.description}
+        </p>
       </a>
       <LikeButton />
     </div>

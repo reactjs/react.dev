@@ -690,33 +690,33 @@ function PlaylistLoading() {
   return (
     <div className="flex flex-col items-center h-[24rem] overflow-hidden">
       <div className="w-full">
-        <div className="relative overflow-hidden before:-skew-x-12 before:absolute before:inset-0 before:-translate-x-full before:animate-[shimmer_1.75s_infinite] before:bg-gradient-to-r before:from-transparent before:via-white/50 before:to-transparent">
+        <div className="relative overflow-hidden before:-skew-x-12 before:absolute before:inset-0 before:-translate-x-full before:animate-[shimmer_2.5s_infinite] before:bg-gradient-to-r before:from-transparent before:via-white/50 before:to-transparent">
           <div className="space-y-5 space-x-5">
             <div className="pt-5 pl-5">
               <div className="h-5 w-20 rounded-lg bg-gray-10"></div>
             </div>
             <div className="flex flex-row items-center gap-3">
               <div className="aspect-video w-44 rounded-lg bg-gray-10"></div>
-              <div className="flex flex-col gap-2 pb-1">
-                <div className="h-4 w-16 rounded-lg bg-gray-10"></div>
+              <div className="flex flex-col gap-2">
+                <div className="h-4 w-44 rounded-lg bg-gray-10"></div>
                 <div className="h-4 w-32 rounded-lg bg-gray-10"></div>
-                <div className="h-4 w-32 rounded-lg bg-gray-10"></div>
+                <div className="h-4 w-24 rounded-lg bg-gray-10"></div>
               </div>
             </div>
             <div className="flex flex-row items-center gap-3">
               <div className="aspect-video w-44 rounded-lg bg-gray-10"></div>
-              <div className="flex flex-col gap-2 pb-1">
-                <div className="h-4 w-16 rounded-lg bg-gray-10"></div>
+              <div className="flex flex-col gap-1.5">
+                <div className="h-4 w-44 rounded-lg bg-gray-10"></div>
                 <div className="h-4 w-32 rounded-lg bg-gray-10"></div>
-                <div className="h-4 w-32 rounded-lg bg-gray-10"></div>
+                <div className="h-4 w-24 rounded-lg bg-gray-10"></div>
               </div>
             </div>
             <div className="flex flex-row items-center gap-3">
               <div className="aspect-video w-44 rounded-lg bg-gray-10"></div>
-              <div className="flex flex-col gap-2 pb-1">
-                <div className="h-4 w-16 rounded-lg bg-gray-10"></div>
+              <div className="flex flex-col gap-1.5">
+                <div className="h-4 w-44 rounded-lg bg-gray-10"></div>
                 <div className="h-4 w-32 rounded-lg bg-gray-10"></div>
-                <div className="h-4 w-32 rounded-lg bg-gray-10"></div>
+                <div className="h-4 w-24 rounded-lg bg-gray-10"></div>
               </div>
             </div>
           </div>
@@ -794,7 +794,7 @@ function VideoRow({video}) {
           )}>
           {video.title}
         </h2>
-        <p className="text-tertiary mb-1 text-base">{video.description}</p>
+        <p className="text-tertiary text-base">{video.description}</p>
       </a>
       <LikeButton />
     </div>

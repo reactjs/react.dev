@@ -414,6 +414,12 @@ function Example2() {
       description: 'Video description',
       image: 'green',
     },
+    {
+      id: 3,
+      title: 'Fourth video',
+      description: 'Video description',
+      image: 'purple',
+    },
   ];
 
   return (
@@ -827,6 +833,7 @@ function VideoThumbnail({video}) {
         image === 'blue' && 'from-yellow-50 via-blue-50 to-purple-60',
         image === 'red' && 'from-yellow-50 via-red-50 to-purple-60',
         image === 'green' && 'from-yellow-50 via-green-50 to-purple-60',
+        image === 'purple' && 'from-yellow-50 via-purple-50 to-purple-60',
         typeof image === 'object' && 'from-gray-80 via-gray-95 to-gray-70',
         video.url && 'hover:opacity-95 transition-opacity'
       )}>

@@ -467,10 +467,10 @@ function Example3() {
       url: 'https://www.youtube.com/watch?v=FZ0cG47msEk&list=PLNG_1j3cPCaZZ7etkzWA7JfdmKWT0pMsa&index=1',
       image: {
         speakers: [
-          'https://i.imgur.com/0QYEjMC.jpg',
-          'https://i.imgur.com/LkrR4ic.jpg',
-          'https://i.imgur.com/vEpJyQp.jpg',
-          'https://i.imgur.com/9rVEo0T.jpg',
+          'https://i.imgur.com/D69ZvSY.jpg',
+          'https://i.imgur.com/RznoMDK.jpg',
+          'https://i.imgur.com/CeGgjK3.jpg',
+          'https://i.imgur.com/tK5OEus.jpg',
         ],
       },
     },
@@ -480,7 +480,7 @@ function Example3() {
       description: 'Shruti Kapoor',
       url: 'https://www.youtube.com/watch?v=ytudH8je5ko&list=PLNG_1j3cPCaZZ7etkzWA7JfdmKWT0pMsa&index=2',
       image: {
-        speakers: ['https://i.imgur.com/zb9wYXC.jpg'],
+        speakers: ['https://i.imgur.com/cyaiwpP.jpg'],
       },
     },
   ];
@@ -503,7 +503,7 @@ function Example3() {
 import { Suspense } from 'react';
 
 async function PlaylistPage({ slug }) {
-  const playlist = await db.Playlists.findOne({ slug });
+  const playlist = await db.Playlists.find({ slug });
   return (
     <main>
       <Cover background={playlist.cover}>
@@ -760,7 +760,7 @@ function VideoThumbnail({video}) {
       )}>
       {typeof image !== 'string' &&
         image.speakers.map((src) => (
-          <img className="h-8 w-8 object-cover rounded-full" src={src} alt="" />
+          <img className="h-8 w-8 rounded-full" src={src} alt="" />
         ))}
     </a>
   );

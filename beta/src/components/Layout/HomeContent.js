@@ -758,7 +758,7 @@ function Cover({background, children}) {
         {children}
         <select
           id="year"
-          class="bg-secondary-button-dark text-primary-dark text-sm rounded-full block p-2.5">
+          className="bg-secondary-button-dark text-primary-dark text-sm rounded-full block p-2.5">
           <option value="2021" selected>
             2021
           </option>

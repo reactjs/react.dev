@@ -675,43 +675,43 @@ function PlaylistPage({playlist, playlistPromise, videosPromise}) {
   return (
     <div className="overflow-y-scroll">
       <Cover background={playlist.cover}>
-        <h1 className="text-3xl text-primary-dark font-bold pl-2.5">
+        <h1 className="text-3xl text-primary-dark w-full font-bold">
           {playlist.name}
         </h1>
       </Cover>
-      <Suspense fallback={<LoadingDiscography />}>
+      <Suspense fallback={<PlaylistLoading />}>
         <Discography playlist={playlist} videosPromise={videosPromise} />
       </Suspense>
     </div>
   );
 }
 
-function LoadingDiscography() {
+function PlaylistLoading() {
   return (
     <div className="flex flex-col items-center h-[24rem] overflow-hidden">
       <div className="w-full">
         <div className="relative overflow-hidden before:-skew-x-12 before:absolute before:inset-0 before:-translate-x-full before:animate-[shimmer_1.75s_infinite] before:bg-gradient-to-r before:from-transparent before:via-white/50 before:to-transparent">
           <div className="space-y-3 space-x-5">
-            <div className="pt-5 pl-5">
-              <div className="h-5 w-28 rounded-lg bg-gray-10"></div>
+            <div className="pt-5 pb-2 pl-5">
+              <div className="h-5 w-20 rounded-lg bg-gray-10"></div>
             </div>
-            <div className="flex flex-row items-center gap-4 pt-2">
-              <div className="h-24 w-24 rounded-xl bg-gray-10"></div>
-              <div className="pt-1 flex flex-col gap-2.5">
+            <div className="flex flex-row items-center gap-3">
+              <div className="aspect-video w-44 rounded-lg bg-gray-10"></div>
+              <div className="flex flex-col gap-2.5">
                 <div className="h-4 w-20 rounded-lg bg-gray-10"></div>
                 <div className="h-4 w-10 rounded-lg bg-gray-10"></div>
               </div>
             </div>
-            <div className="flex flex-row items-center gap-4 pt-1">
-              <div className="h-24 w-24 rounded-xl bg-gray-10"></div>
-              <div className="pt-1 flex flex-col gap-2.5">
+            <div className="flex flex-row items-center gap-3">
+              <div className="aspect-video w-44 rounded-lg bg-gray-10"></div>
+              <div className="flex flex-col gap-2.5">
                 <div className="h-4 w-24 rounded-lg bg-gray-10"></div>
                 <div className="h-4 w-10 rounded-lg bg-gray-10"></div>
               </div>
             </div>
-            <div className="flex flex-row items-center gap-4 pt-1">
-              <div className="h-24 w-24 rounded-xl bg-gray-10"></div>
-              <div className="pt-1 flex flex-col gap-2.5">
+            <div className="flex flex-row items-center gap-3">
+              <div className="aspect-video w-44 rounded-lg bg-gray-10"></div>
+              <div className="flex flex-col gap-2.5">
                 <div className="h-4 w-20 rounded-lg bg-gray-10"></div>
                 <div className="h-4 w-10 rounded-lg bg-gray-10"></div>
               </div>
@@ -754,8 +754,16 @@ function VideoList({videos, children}) {
 function Cover({background, children}) {
   return (
     <div className="h-40 mt-16 overflow-hidden relative">
-      <div className="absolute inset-0 p-3 flex items-end bg-gradient-to-t from-black/80 via-black/0">
+      <div className="absolute inset-0 px-5 py-2.5 flex items-end bg-gradient-to-t from-black/40 via-black/0">
         {children}
+        <select
+          id="year"
+          class="bg-secondary-button-dark text-primary-dark text-sm rounded-full block p-2.5">
+          <option value="2021" selected>
+            2021
+          </option>
+          <option value="2020">2020</option>
+        </select>
       </div>
       <img
         src={background}
@@ -804,7 +812,7 @@ function VideoThumbnail({video}) {
       href={video.url}
       target="_blank"
       className={cn(
-        'w-[171px] select-none flex-col h-24 shadow-inner-border rounded-md flex items-center overflow-hidden justify-center align-middle text-white/50 bg-cover bg-white bg-[conic-gradient(at_top_right,_var(--tw-gradient-stops))]',
+        'aspect-video w-44 select-none flex-col shadow-inner-border rounded-lg flex items-center overflow-hidden justify-center align-middle text-white/50 bg-cover bg-white bg-[conic-gradient(at_top_right,_var(--tw-gradient-stops))]',
         image === 'blue' && 'from-yellow-50 via-blue-50 to-purple-60',
         image === 'red' && 'from-yellow-50 via-red-50 to-purple-60',
         image === 'green' && 'from-yellow-50 via-green-50 to-purple-60',

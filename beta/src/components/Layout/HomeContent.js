@@ -353,20 +353,22 @@ function Example1() {
           <div className="lg:-m-5 h-full shadow-xl lg:rounded-2xl bg-wash dark:bg-gray-95 w-full flex grow flex-col border-t lg:border border-border dark:border-border-dark">
             <div className="w-full bg-card dark:bg-wash-dark lg:rounded-t-2xl border-b border-border dark:border-border-dark">
               <h3 className="text-sm my-1 mx-5 text-tertiary dark:text-tertiary-dark select-none">
-                Album.js
+                VideoRow.js
               </h3>
             </div>
             <CodeBlock
               isFromPackageImport={false}
               noShadow={true}
               noMargin={true}>
-              <div>{`function Album({ album }) {
+              <div>{`function VideoRow({ video }) {
   return (
     <div>
-      <Artwork image={album.artwork} />
-      <h3>{album.title}</h3>
-      <p>{album.year}</p>
-      <LikeButton album={album} />
+      <VideoThumbnail video={video} />
+      <a href={video.url}>
+        <h3>{video.title}</h3>
+        <p>{video.description}</p>
+      </a>
+      <LikeButton video={video} />
     </div>
   );
 }
@@ -375,11 +377,12 @@ function Example1() {
           </div>
           <div className="w-full p-10 flex grow justify-center">
             <ExamplePanel>
-              <Album
-                album={{
-                  name: 'Album title',
-                  year: 'Release year',
-                  artwork: 'blue',
+              <VideoRow
+                video={{
+                  title: 'Some video',
+                  description: 'Video description',
+                  image: 'blue',
+                  url: null,
                 }}
               />
             </ExamplePanel>
@@ -391,26 +394,26 @@ function Example1() {
 }
 
 function Example2() {
-  const [albums, setAlbums] = useState([
+  const videos = [
     {
       id: 0,
-      name: 'First album',
-      year: 'Release year',
-      artwork: 'blue',
+      title: 'First video',
+      description: 'Video description',
+      image: 'blue',
     },
     {
       id: 1,
-      name: 'Second album',
-      year: 'Release year',
-      artwork: 'red',
+      title: 'Second video',
+      description: 'Video description',
+      image: 'red',
     },
     {
       id: 2,
-      name: 'Third album',
-      year: 'Release year',
-      artwork: 'green',
+      title: 'Third video',
+      description: 'Video description',
+      image: 'green',
     },
-  ]);
+  ];
 
   return (
     <div className="lg:pl-10 lg:pr-5 w-full">
@@ -419,23 +422,23 @@ function Example2() {
           <div className="lg:-m-5 h-full shadow-xl lg:rounded-xl bg-wash dark:bg-gray-95 w-full flex grow flex-col border-t lg:border border-border dark:border-border-dark">
             <div className="w-full bg-card dark:bg-wash-dark lg:rounded-t-xl border-b border-border dark:border-border-dark">
               <h3 className="text-sm my-1 mx-5 text-tertiary dark:text-tertiary-dark select-none">
-                AlbumList.js
+                VideoList.js
               </h3>
             </div>
             <CodeBlock
               isFromPackageImport={false}
               noShadow={true}
               noMargin={true}>
-              <div>{`function AlbumList({ albums }) {
-  let heading = 'No Albums Yet';
-  if (albums.length > 0) {
-    heading = albums.length + ' Albums';
+              <div>{`function VideoList({ videos }) {
+  let heading = 'No Videos Yet';
+  if (videos.length > 0) {
+    heading = videos.length + ' Videos';
   }
   return (
     <section>
       <h2>{heading}</h2>
-      {albums.map(album =>
-        <Album key={album.id} album={album} />
+      {videos.map(video =>
+        <VideoRow key={video.id} video={video} />
       )}
     </section>
   );
@@ -444,7 +447,7 @@ function Example2() {
           </div>
           <div className="lg:-my-20 w-full p-10 flex grow justify-center">
             <ExamplePanel noShadow={false} noPadding={true}>
-              <AlbumList albums={albums} />
+              <VideoList videos={videos} />
             </ExamplePanel>
           </div>
         </div>
@@ -454,101 +457,24 @@ function Example2() {
 }
 
 function Example3() {
-  const [artistPromise, setPostPromise] = useState(null);
-  const [albumsPromise, setAlbumsPromise] = useState(null);
-  const [albums, setAlbums] = useState([
+  const [playlistPromise, setPostPromise] = useState(null);
+  const [videosPromise, setAlbumsPromise] = useState(null);
+  const videos = [
     {
-      id: 13,
-      name: 'Let It Be',
-      year: 1970,
-      artwork:
-        'https://e.snmc.io/i/600/w/5c91497d86b2a17f89bfb0f9462b458f/3264656/the-beatles-let-it-be-Cover-Art.jpg',
-    },
-    {
-      id: 12,
-      name: 'Abbey Road',
-      year: 1969,
-      artwork:
-        'https://e.snmc.io/i/600/w/556a5058d86284041d4ac0852ce0a23b/6617288/the-beatles-abbey-road-Cover-Art.jpg',
-    },
-    {
-      id: 11,
-      name: 'Yellow Submarine',
-      year: 1969,
-      artwork:
-        'https://e.snmc.io/i/600/w/7ff05b4efcebcb870aa8b0c732f30714/9971128/the-beatles-yellow-submarine-Cover-Art.jpg',
-    },
-    {
-      id: 10,
-      name: 'The Beatles',
-      year: 1968,
-      artwork:
-        'https://e.snmc.io/i/600/w/1328de4857371d494f4778f83fb783f7/7430929/the-beatles-the-beatles-white-album-Cover-Art.jpg',
-    },
-    {
-      id: 9,
-      name: 'Magical Mystery Tour',
-      year: 1967,
-      artwork:
-        'https://e.snmc.io/i/600/w/71026c3dcec012f38cb6f96a87d31390/5770162/the-beatles-magical-mystery-tour-Cover-Art.jpg',
-    },
-    {
-      id: 8,
-      name: "Sgt. Pepper's Lonely Hearts Club Band",
-      year: 1967,
-      artwork:
-        'https://e.snmc.io/i/600/w/5ab702b0fbf94f6ac96731cbed054eb0/6617240/the-beatles-sgt-peppers-lonely-hearts-club-band-Cover-Art.jpg',
-    },
-    {
-      id: 7,
-      name: 'Revolver',
-      year: 1966,
-      artwork:
-        'https://e.snmc.io/i/600/w/d1dc1ba868e70b299ebd6733fa4fbf5b/6112311/the-beatles-revolver-Cover-Art.png',
-    },
-    {
-      id: 6,
-      name: 'Rubber Soul',
-      year: 1965,
-      artwork:
-        'https://e.snmc.io/i/600/w/9fa4dfd4de69b639e08f6a5b346a52c6/5248558/the-beatles-rubber-soul-Cover-Art.jpg',
-    },
-    {
-      id: 5,
-      name: 'Help!',
-      year: 1965,
-      artwork:
-        'https://e.snmc.io/i/600/w/cec66c7556b30248d9c6a54b44098787/2635809/the-beatles-help-Cover-Art.jpg,',
-    },
-    {
-      id: 4,
-      name: 'Beatles For Sale',
-      year: 1964,
-      artwork:
-        'https://e.snmc.io/i/600/w/e55b1e8ed7145c767ccb4aafd3ae02cb/2305142/the-beatles-beatles-for-sale-Cover-Art.jpg',
-    },
-    {
-      id: 3,
-      name: "A Hard Day's Night",
-      year: 1964,
-      artwork:
-        'https://e.snmc.io/i/600/w/e859a9a29b890f294189e558de07e3b9/5247969/the-beatles-a-hard-days-night-Cover-Art.jpg',
-    },
-    {
-      id: 2,
-      name: 'With The Beatles',
-      year: 1963,
-      artwork:
-        'https://e.snmc.io/i/600/w/ce20c23673292626968286ff246e11f0/6084996/the-beatles-with-the-beatles-Cover-Art.jpg',
+      id: 0,
+      title: 'React 18 Keynote',
+      description: 'Andrew Clark, Lauren Tan, Juan Tejada, Ricky Hanlon',
+      url: 'https://www.youtube.com/watch?v=FZ0cG47msEk&list=PLNG_1j3cPCaZZ7etkzWA7JfdmKWT0pMsa&index=1',
+      image: 'https://i.imgur.com/WAkFBlj.jpg',
     },
     {
       id: 1,
-      name: 'Please Please Me',
-      year: 1963,
-      artwork:
-        'https://e.snmc.io/i/600/w/32e9a260edd19b0cfc84cd333aac992a/10434810/the-beatles-please-please-me-Cover-Art.jpg',
+      title: 'React 18 for app developers',
+      description: 'Andrew Clark, Lauren Tan, Juan Tejada, Ricky Hanlon',
+      url: 'https://www.youtube.com/watch?v=ytudH8je5ko&list=PLNG_1j3cPCaZZ7etkzWA7JfdmKWT0pMsa&index=2',
+      image: 'https://i.imgur.com/Wqcw83j.jpg',
     },
-  ]);
+  ];
 
   return (
     <div className="lg:pl-10 lg:pr-5 w-full">
@@ -557,7 +483,7 @@ function Example3() {
           <div className="lg:-m-5 h-full shadow-xl lg:rounded-2xl bg-wash dark:bg-gray-95 w-full flex grow flex-col border-t lg:border border-border dark:border-border-dark">
             <div className="w-full bg-card dark:bg-wash-dark lg:rounded-t-2xl border-b border-border dark:border-border-dark">
               <h3 className="text-sm my-1 mx-5 text-tertiary dark:text-tertiary-dark select-none">
-                artists/[slug].js
+                playlists/[slug].js
               </h3>
             </div>
             <CodeBlock
@@ -567,23 +493,23 @@ function Example3() {
               <div>{`import { db } from './database.js';
 import { Suspense } from 'react';
 
-async function ArtistPage({ slug }) {
-  const artist = await db.Artists.find({ slug });
+async function PlaylistPage({ slug }) {
+  const playlist = await db.Playlists.findOne({ slug });
   return (
     <main>
-      <Cover background={artist.cover}>
-        <h1>{artist.name}</h1>
+      <Cover background={playlist.cover}>
+        <h1>{playlist.name}</h1>
       </Cover>
-      <Suspense fallback={<LoadingDiscography />}>
-        <Discography artistId={artist.id} />
+      <Suspense fallback={<PlaylistLoading />}>
+        <Playlist playlistId={playlist.id} />
       </Suspense>
     </main>
   );
 }
 
-async function Discography({ artistId }) {
-  const albums = await db.Albums.find({ artistId });
-  return <AlbumList albums={albums} />;
+async function Playlist({ playlistId }) {
+  const videos = await db.Videos.findMany({ playlistId });
+  return <VideoList videos={videos} />;
 }`}</div>
             </CodeBlock>
           </div>
@@ -594,14 +520,14 @@ async function Discography({ artistId }) {
               <ExamplePanel noPadding={true} noShadow={true} height="38rem">
                 <Suspense fallback={null}>
                   <div style={{animation: 'fadein 200ms'}}>
-                    <ArtistPage
-                      artist={{
-                        cover: 'https://i.imgur.com/rj1ZNFt.jpg',
-                        name: 'The Beatles',
-                        albums,
+                    <PlaylistPage
+                      playlist={{
+                        cover: 'https://i.imgur.com/ViI3rY8.jpg',
+                        name: 'React Conf 2021',
+                        videos,
                       }}
-                      artistPromise={artistPromise}
-                      albumsPromise={albumsPromise}
+                      playlistPromise={playlistPromise}
+                      videosPromise={videosPromise}
                     />
                   </div>
                 </Suspense>
@@ -635,20 +561,20 @@ function BrowserChrome({children, setPostPromise, setAlbumsPromise}) {
   const simulatedAlbumsMs = 2200;
 
   function handleRestart() {
-    const artistPromise = new Promise((resolve) => {
+    const playlistPromise = new Promise((resolve) => {
       setTimeout(() => {
-        artistPromise._resolved = true;
+        playlistPromise._resolved = true;
         resolve();
       }, simulatedArtistMs);
     });
-    const albumsPromise = new Promise((resolve) => {
+    const videosPromise = new Promise((resolve) => {
       setTimeout(() => {
-        albumsPromise._resolved = true;
+        videosPromise._resolved = true;
         resolve();
       }, simulatedAlbumsMs);
     });
-    setPostPromise(artistPromise);
-    setAlbumsPromise(albumsPromise);
+    setPostPromise(playlistPromise);
+    setAlbumsPromise(videosPromise);
     setRestartId((id) => id + 1);
   }
 
@@ -659,7 +585,7 @@ function BrowserChrome({children, setPostPromise, setAlbumsPromise}) {
           <div className="h-6 w-6" />
           <div className="w-full leading-snug">
             <span className="text-gray-30">example.com</span>
-            /artists/the-beatles
+            /playlists/react-conf-2021
           </div>
           <div
             className={
@@ -688,19 +614,19 @@ function BrowserChrome({children, setPostPromise, setAlbumsPromise}) {
   );
 }
 
-function ArtistPage({artist, artistPromise, albumsPromise}) {
-  if (artistPromise && !artistPromise._resolved) {
-    throw artistPromise;
+function PlaylistPage({playlist, playlistPromise, videosPromise}) {
+  if (playlistPromise && !playlistPromise._resolved) {
+    throw playlistPromise;
   }
   return (
     <div className="overflow-y-scroll">
-      <Cover background={artist.cover}>
+      <Cover background={playlist.cover}>
         <h1 className="text-3xl text-primary-dark font-bold pl-2.5">
-          {artist.name}
+          {playlist.name}
         </h1>
       </Cover>
       <Suspense fallback={<LoadingDiscography />}>
-        <Discography artist={artist} albumsPromise={albumsPromise} />
+        <Discography playlist={playlist} videosPromise={videosPromise} />
       </Suspense>
     </div>
   );
@@ -743,30 +669,30 @@ function LoadingDiscography() {
   );
 }
 
-function Discography({artist, albumsPromise}) {
-  if (albumsPromise && !albumsPromise._resolved) {
-    throw albumsPromise;
+function Discography({playlist, videosPromise}) {
+  if (videosPromise && !videosPromise._resolved) {
+    throw videosPromise;
   }
 
-  return <AlbumList albums={artist.albums} />;
+  return <VideoList videos={playlist.videos} />;
 }
 
-function AlbumList({albums, children}) {
-  let headingText = 'No Albums Yet';
-  if (albums.length > 0) {
-    headingText = albums.length + ' Albums';
+function VideoList({videos, children}) {
+  let headingText = 'No Videos Yet';
+  if (videos.length > 0) {
+    headingText = videos.length + ' Videos';
   }
   return (
     <div className="relative p-5">
       <h2 className="font-bold text-xl text-primary -mt-1 pb-4 leading-snug">
         {headingText}
       </h2>
-      <Stack gap={16}>
-        {albums.map((album) => (
-          <Album key={album.id} album={album} />
+      <div className="flex flex-col gap-2">
+        {videos.map((video) => (
+          <VideoRow key={video.id} video={video} />
         ))}
         {children}
-      </Stack>
+      </div>
     </div>
   );
 }
@@ -787,31 +713,17 @@ function Cover({background, children}) {
   );
 }
 
-function Album({album}) {
+function VideoRow({video}) {
   return (
-    <Stack gap={8}>
-      <Row gap={16}>
-        <Artwork image={album.artwork} />
-        <Stack>
-          <h2 className="text-md leading-snug mt-2 text-primary font-bold">
-            {album.name}
-          </h2>
-          <p className="text-tertiary mb-1 text-base">{album.year}</p>
-        </Stack>
-        <LikeButton />
-      </Row>
-    </Stack>
-  );
-}
-
-function Stack({children, gap}) {
-  return (
-    <div
-      className={'flex flex-col flex-1'}
-      style={{
-        gap,
-      }}>
-      {children}
+    <div className="flex flex-row items-center gap-4">
+      <VideoThumbnail video={video} />
+      <a href={video.url} target="_blank" className="flex flex-col flex-1">
+        <h2 className="text-md leading-snug mt-2 text-primary font-bold">
+          {video.title}
+        </h2>
+        <p className="text-tertiary mb-1 text-base">{video.description}</p>
+      </a>
+      <LikeButton />
     </div>
   );
 }
@@ -824,23 +736,14 @@ function Code({children}) {
   );
 }
 
-function Row({children, gap}) {
+function VideoThumbnail({video}) {
+  const {image} = video;
   return (
-    <div
-      className="flex flex-row items-center"
-      style={{
-        gap,
-      }}>
-      {children}
-    </div>
-  );
-}
-
-function Artwork({image}) {
-  return (
-    <div
+    <a
+      href={video.url}
+      target="_blank"
       className={cn(
-        'h-24 w-24 shadow-inner-border rounded-xl flex items-center overflow-hidden justify-center align-middle text-white/50 bg-cover bg-white bg-[conic-gradient(at_top_left,_var(--tw-gradient-stops))] from-purple-60 via-blue-50 to-yellow-50',
+        'w-[171px] h-24 shadow-inner-border rounded-xl flex items-center overflow-hidden justify-center align-middle text-white/50 bg-cover bg-white bg-[conic-gradient(at_top_left,_var(--tw-gradient-stops))] from-purple-60 via-blue-50 to-yellow-50',
         image == 'blue' && 'via-blue-50',
         image == 'red' && 'via-red-50',
         image == 'green' && 'via-green-50'
@@ -852,13 +755,13 @@ function Artwork({image}) {
             : null,
       }}>
       {image !== 'blue' && image !== 'red' && image !== 'green' ? null : (
-        <ArtworkPlaceholder />
+        <ThumbnailPlaceholder />
       )}
-    </div>
+    </a>
   );
 }
 
-function ArtworkPlaceholder() {
+function ThumbnailPlaceholder() {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

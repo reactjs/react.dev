@@ -814,8 +814,9 @@ function VideoThumbnail({video}) {
       {typeof image !== 'string' && (
         <>
           <div className="transition-opacity mt-2 -space-x-2 flex flex-row w-full justify-center">
-            {image.speakers.map((src) => (
+            {image.speakers.map((src, i) => (
               <img
+                key={i}
                 className="h-10 w-10 border-2 border-gray-80 object-cover rounded-full"
                 src={src}
                 alt=""
@@ -823,10 +824,10 @@ function VideoThumbnail({video}) {
             ))}
           </div>
           <div className="mt-1">
-            <a className="inline-flex text-xs font-normal items-center text-primary-dark py-1 whitespace-nowrap outline-link px-1.5 rounded-lg">
+            <span className="inline-flex text-xs font-normal items-center text-primary-dark py-1 whitespace-nowrap outline-link px-1.5 rounded-lg">
               <Logo className="text-xs mr-1 w-4 h-4 text-link-dark" />
               React Conf
-            </a>
+            </span>
           </div>
         </>
       )}

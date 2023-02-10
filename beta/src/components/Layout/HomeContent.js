@@ -6,6 +6,7 @@ import {createContext, useState, useContext, Suspense} from 'react';
 import cn from 'classnames';
 import ButtonLink from '../ButtonLink';
 import {IconRestart} from '../Icon/IconRestart';
+import {IconChevron} from 'components/Icon/IconChevron';
 import {Logo} from 'components/Logo';
 import Link from 'components/MDX/Link';
 import CodeBlock from 'components/MDX/CodeBlock';
@@ -445,7 +446,7 @@ function Example2() {
 }`}</div>
             </CodeBlock>
           </div>
-          <div className="lg:-my-20 w-full p-10 flex grow justify-center">
+          <div className="lg:-my-20 w-full p-2.5 sm:p-5 lg:p-10 flex grow justify-center">
             <ExamplePanel noShadow={false} noPadding={true}>
               <VideoList videos={videos} />
             </ExamplePanel>
@@ -567,7 +568,7 @@ async function Playlist({ playlistId }) {
 }`}</div>
             </CodeBlock>
           </div>
-          <div className="lg:-my-20 w-full p-10 flex grow justify-center">
+          <div className="lg:-my-20 w-full p-2.5 sm:p-5 lg:p-10 flex grow justify-center">
             <BrowserChrome
               setPostPromise={setPostPromise}
               setAlbumsPromise={setAlbumsPromise}>
@@ -675,9 +676,15 @@ function PlaylistPage({playlist, playlistPromise, videosPromise}) {
   return (
     <div className="overflow-y-scroll">
       <Cover background={playlist.cover}>
-        <h1 className="text-3xl text-primary-dark w-full font-bold">
-          {playlist.name}
-        </h1>
+        <select
+          id="year"
+          className="appearance-none bg-transparent text-primary-dark text-2xl font-bold mb-0.5">
+          <option value="2021" defaultValue>
+            {playlist.name}
+          </option>
+          <option value="2020">{playlist.name}</option>
+        </select>
+        <IconChevron displayDirection="down" className="text-white mb-2 ml-1" />
       </Cover>
       <Suspense fallback={<PlaylistLoading />}>
         <Discography playlist={playlist} videosPromise={videosPromise} />
@@ -696,27 +703,35 @@ function PlaylistLoading() {
               <div className="h-5 w-20 rounded-lg bg-gray-10"></div>
             </div>
             <div className="flex flex-row items-center gap-3">
-              <div className="aspect-video w-44 rounded-lg bg-gray-10"></div>
+              <div className="aspect-video w-36 rounded-lg bg-gray-10"></div>
               <div className="flex flex-col gap-2">
-                <div className="h-4 w-44 rounded-lg bg-gray-10"></div>
-                <div className="h-4 w-32 rounded-lg bg-gray-10"></div>
-                <div className="h-4 w-24 rounded-lg bg-gray-10"></div>
+                <div className="h-3 w-40 rounded-lg bg-gray-10"></div>
+                <div className="h-3 w-32 rounded-lg bg-gray-10"></div>
+                <div className="h-3 w-24 rounded-lg bg-gray-10"></div>
               </div>
             </div>
             <div className="flex flex-row items-center gap-3">
-              <div className="aspect-video w-44 rounded-lg bg-gray-10"></div>
-              <div className="flex flex-col gap-1.5">
-                <div className="h-4 w-44 rounded-lg bg-gray-10"></div>
-                <div className="h-4 w-32 rounded-lg bg-gray-10"></div>
-                <div className="h-4 w-24 rounded-lg bg-gray-10"></div>
+              <div className="aspect-video w-36 rounded-lg bg-gray-10"></div>
+              <div className="flex flex-col gap-2">
+                <div className="h-3 w-40 rounded-lg bg-gray-10"></div>
+                <div className="h-3 w-32 rounded-lg bg-gray-10"></div>
+                <div className="h-3 w-24 rounded-lg bg-gray-10"></div>
               </div>
             </div>
             <div className="flex flex-row items-center gap-3">
-              <div className="aspect-video w-44 rounded-lg bg-gray-10"></div>
-              <div className="flex flex-col gap-1.5">
-                <div className="h-4 w-44 rounded-lg bg-gray-10"></div>
-                <div className="h-4 w-32 rounded-lg bg-gray-10"></div>
-                <div className="h-4 w-24 rounded-lg bg-gray-10"></div>
+              <div className="aspect-video w-36 rounded-lg bg-gray-10"></div>
+              <div className="flex flex-col gap-2">
+                <div className="h-3 w-40 rounded-lg bg-gray-10"></div>
+                <div className="h-3 w-32 rounded-lg bg-gray-10"></div>
+                <div className="h-3 w-24 rounded-lg bg-gray-10"></div>
+              </div>
+            </div>
+            <div className="flex flex-row items-center gap-3">
+              <div className="aspect-video w-36 rounded-lg bg-gray-10"></div>
+              <div className="flex flex-col gap-2">
+                <div className="h-3 w-40 rounded-lg bg-gray-10"></div>
+                <div className="h-3 w-32 rounded-lg bg-gray-10"></div>
+                <div className="h-3 w-24 rounded-lg bg-gray-10"></div>
               </div>
             </div>
           </div>
@@ -740,7 +755,7 @@ function VideoList({videos, children}) {
     headingText = videos.length + ' Videos';
   }
   return (
-    <div className="relative p-5">
+    <div className="relative py-5 pl-5 pr-2.5">
       <h2 className="font-bold text-xl text-primary -mt-1 pb-4 leading-snug">
         {headingText}
       </h2>
@@ -756,23 +771,13 @@ function VideoList({videos, children}) {
 
 function Cover({background, children}) {
   return (
-    <div className="h-40 mt-16 overflow-hidden relative">
+    <div className="h-40 mt-16 overflow-hidden relative items-center flex">
       <div className="absolute inset-0 px-5 py-2.5 flex items-end bg-gradient-to-t from-black/40 via-black/0">
         {children}
-        <select
-          id="year"
-          className="bg-secondary-button-dark text-primary-dark text-sm rounded-full block p-2.5">
-          <option value="2021" selected>
-            2021
-          </option>
-          <option value="2020">2020</option>
-        </select>
       </div>
       <img
         src={background}
         alt="Cover image"
-        width="100%"
-        height="100%"
         className="max-w-full object-cover"
       />
     </div>
@@ -790,12 +795,12 @@ function VideoRow({video}) {
         className="group flex flex-col flex-1">
         <h2
           className={cn(
-            'text-md leading-snug text-primary font-bold',
+            'text-base leading-snug text-primary font-bold',
             video.url && 'group-hover:underline'
           )}>
           {video.title}
         </h2>
-        <p className="text-tertiary text-base">{video.description}</p>
+        <p className="text-tertiary text-sm">{video.description}</p>
       </a>
       <LikeButton />
     </div>
@@ -818,7 +823,7 @@ function VideoThumbnail({video}) {
       target="_blank"
       rel="noreferrer"
       className={cn(
-        'aspect-video w-44 select-none flex-col shadow-inner-border rounded-lg flex items-center overflow-hidden justify-center align-middle text-white/50 bg-cover bg-white bg-[conic-gradient(at_top_right,_var(--tw-gradient-stops))]',
+        'aspect-video w-36 select-none flex-col shadow-inner-border rounded-lg flex items-center overflow-hidden justify-center align-middle text-white/50 bg-cover bg-white bg-[conic-gradient(at_top_right,_var(--tw-gradient-stops))]',
         image === 'blue' && 'from-yellow-50 via-blue-50 to-purple-60',
         image === 'red' && 'from-yellow-50 via-red-50 to-purple-60',
         image === 'green' && 'from-yellow-50 via-green-50 to-purple-60',
@@ -831,7 +836,7 @@ function VideoThumbnail({video}) {
             {image.speakers.map((src, i) => (
               <img
                 key={i}
-                className="h-10 w-10 border-2 shadow-md border-gray-70 object-cover rounded-full"
+                className="h-8 w-8 border-2 shadow-md border-gray-70 object-cover rounded-full"
                 src={src}
                 alt=""
               />

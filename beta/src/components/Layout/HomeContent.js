@@ -465,14 +465,23 @@ function Example3() {
       title: 'React 18 Keynote',
       description: 'Andrew Clark, Lauren Tan, Juan Tejada, Ricky Hanlon',
       url: 'https://www.youtube.com/watch?v=FZ0cG47msEk&list=PLNG_1j3cPCaZZ7etkzWA7JfdmKWT0pMsa&index=1',
-      image: 'https://i.imgur.com/WAkFBlj.jpg',
+      image: {
+        speakers: [
+          'https://i.imgur.com/0QYEjMC.jpg',
+          'https://i.imgur.com/LkrR4ic.jpg',
+          'https://i.imgur.com/vEpJyQp.jpg',
+          'https://i.imgur.com/9rVEo0T.jpg',
+        ],
+      },
     },
     {
       id: 1,
       title: 'React 18 for app developers',
-      description: 'Andrew Clark, Lauren Tan, Juan Tejada, Ricky Hanlon',
+      description: 'Shruti Kapoor',
       url: 'https://www.youtube.com/watch?v=ytudH8je5ko&list=PLNG_1j3cPCaZZ7etkzWA7JfdmKWT0pMsa&index=2',
-      image: 'https://i.imgur.com/Wqcw83j.jpg',
+      image: {
+        speakers: ['https://i.imgur.com/zb9wYXC.jpg'],
+      },
     },
   ];
 
@@ -744,19 +753,15 @@ function VideoThumbnail({video}) {
       target="_blank"
       className={cn(
         'w-[171px] h-24 shadow-inner-border rounded-xl flex items-center overflow-hidden justify-center align-middle text-white/50 bg-cover bg-white bg-[conic-gradient(at_top_left,_var(--tw-gradient-stops))] from-purple-60 via-blue-50 to-yellow-50',
-        image == 'blue' && 'via-blue-50',
-        image == 'red' && 'via-red-50',
-        image == 'green' && 'via-green-50'
-      )}
-      style={{
-        backgroundImage:
-          image !== 'blue' && image !== 'red' && image !== 'green'
-            ? `url(${image})`
-            : null,
-      }}>
-      {image !== 'blue' && image !== 'red' && image !== 'green' ? null : (
-        <ThumbnailPlaceholder />
-      )}
+        image === 'blue' && 'via-blue-50',
+        image === 'red' && 'via-red-50',
+        image === 'green' && 'via-green-50',
+        typeof image === 'object' && 'from-gray-70 via-gray-50'
+      )}>
+      {typeof image !== 'string' &&
+        image.speakers.map((src) => (
+          <img className="h-8 w-8 object-cover rounded-full" src={src} alt="" />
+        ))}
     </a>
   );
 }

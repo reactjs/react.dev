@@ -510,6 +510,24 @@ function Example3() {
         speakers: ['https://i.imgur.com/IasQNDL.jpg'],
       },
     },
+    {
+      id: 5,
+      title: 'React without memo',
+      description: 'Xuan Huang (黄玄)',
+      url: 'https://www.youtube.com/watch?v=lGEMwh32soc&list=PLNG_1j3cPCaZZ7etkzWA7JfdmKWT0pMsa&index=6',
+      image: {
+        speakers: ['https://i.imgur.com/Zloqi0V.jpg'],
+      },
+    },
+    {
+      id: 6,
+      title: 'React Docs Keynote',
+      description: 'Rachel Nabors',
+      url: 'https://www.youtube.com/watch?v=mneDaMYOKP8&list=PLNG_1j3cPCaZZ7etkzWA7JfdmKWT0pMsa&index=7',
+      image: {
+        speakers: ['https://i.imgur.com/NkwwAZF.png'],
+      },
+    },
   ];
 
   return (

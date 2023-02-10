@@ -798,10 +798,10 @@ function VideoRow({video}) {
         href={video.url}
         target="_blank"
         rel="noreferrer"
-        className="group flex flex-col flex-1">
+        className="group flex flex-col flex-1 gap-0.5">
         <h2
           className={cn(
-            'text-base leading-snug text-primary font-bold',
+            'text-base leading-tight text-primary font-bold',
             video.url && 'group-hover:underline'
           )}>
           {video.title}

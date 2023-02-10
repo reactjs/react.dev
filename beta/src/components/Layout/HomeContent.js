@@ -741,7 +741,7 @@ function VideoList({videos, children}) {
       <h2 className="font-bold text-xl text-primary -mt-1 pb-4 leading-snug">
         {headingText}
       </h2>
-      <div className="flex flex-col gap-2">
+      <div className="flex flex-col gap-3">
         {videos.map((video) => (
           <VideoRow key={video.id} video={video} />
         ))}
@@ -804,20 +804,20 @@ function VideoThumbnail({video}) {
       href={video.url}
       target="_blank"
       className={cn(
-        'w-[171px] select-none flex-col h-24 shadow-inner-border rounded-xl flex items-center overflow-hidden justify-center align-middle text-white/50 bg-cover bg-white bg-[conic-gradient(at_top_left,_var(--tw-gradient-stops))] from-purple-60 via-blue-50 to-yellow-50',
-        image === 'blue' && 'via-blue-50',
-        image === 'red' && 'via-red-50',
-        image === 'green' && 'via-green-50',
-        typeof image === 'object' && 'from-gray-95 via-gray-80',
-        video.url && 'hover:opacity-80 transition-opacity'
+        'w-[171px] select-none flex-col h-24 shadow-inner-border rounded-md flex items-center overflow-hidden justify-center align-middle text-white/50 bg-cover bg-white bg-[conic-gradient(at_top_right,_var(--tw-gradient-stops))]',
+        image === 'blue' && 'from-yellow-50 via-blue-50 to-purple-60',
+        image === 'red' && 'from-yellow-50 via-red-50 to-purple-60',
+        image === 'green' && 'from-yellow-50 via-green-50 to-purple-60',
+        typeof image === 'object' && 'from-gray-80 via-gray-95 to-gray-70',
+        video.url && 'hover:opacity-95 transition-opacity'
       )}>
       {typeof image !== 'string' && (
         <>
-          <div className="transition-opacity mt-2 -space-x-2 flex flex-row w-full justify-center">
+          <div className="transition-opacity shadow-2xl mt-2.5 -space-x-2 flex flex-row w-full justify-center">
             {image.speakers.map((src, i) => (
               <img
                 key={i}
-                className="h-10 w-10 border-2 border-gray-80 object-cover rounded-full"
+                className="h-10 w-10 border-2 border-gray-70 object-cover rounded-full"
                 src={src}
                 alt=""
               />

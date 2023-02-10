@@ -600,7 +600,7 @@ function ExamplePanel({children, noPadding, noShadow, height}) {
       className={cn(
         'rounded-2xl mx-auto text-secondary leading-normal bg-white overflow-hidden w-full overflow-y-scroll',
         noPadding ? 'p-0' : 'p-4',
-        noShadow ? 'shadow-none' : 'shadow-3xl'
+        noShadow ? 'shadow-none' : 'shadow-nav dark:shadow-nav-dark'
       )}
       style={{height}}>
       {children}
@@ -633,7 +633,7 @@ function BrowserChrome({children, setPostPromise, setAlbumsPromise}) {
   }
 
   return (
-    <div className="bg-wash dark:bg-gray-95 shadow-xl relative overflow-hidden w-full dark:border-opacity-10 rounded-2xl">
+    <div className="bg-wash dark:bg-gray-95 shadow-nav dark:shadow-nav-dark relative overflow-hidden w-full dark:border-opacity-10 rounded-2xl">
       <div className="w-full h-16 rounded-t-2xl shadow-md backdrop-filter overflow-hidden backdrop-blur-lg backdrop-saturate-200 bg-white bg-opacity-90 z-10 absolute top-0 py-4 px-4 gap-2 flex flex-row items-center">
         <div className="relative bg-gray-10 text-sm text-tertiary text-center rounded-full p-1 w-full flex-row flex space-between items-center">
           <div className="h-6 w-6" />

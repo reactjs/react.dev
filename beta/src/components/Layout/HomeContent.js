@@ -131,10 +131,10 @@ export function HomeContent() {
           </div>
         </div>
 
-        <div className="mx-12 my-5">
+        <div className="mx-5 lg:mx-12 my-5">
           <div className="max-w-6xl mx-auto flex flex-col w-full">
             <div className="flex-col gap-2 flex grow w-full my-16 lg:my-20 mx-auto items-center">
-              <div className="px-5 lg:px-0 max-w-4xl text-center text-opacity-80">
+              <div className="max-w-4xl text-center text-opacity-80">
                 <h3 className="leading-tight dark:text-primary-dark text-primary font-bold text-4xl lg:text-5xl mb-6">
                   Use the best from every platform
                 </h3>
@@ -145,7 +145,7 @@ export function HomeContent() {
                   user interfaces feel just right on every platform.
                 </p>
               </div>
-              <div className="flex flex-col lg:flex-row my-20 lg:gap-20">
+              <div className="flex flex-col lg:flex-row my-16 lg:my-20 lg:gap-20">
                 <div className="lg:w-6/12 max-w-4xl text-center items-center justify-center flex flex-col text-opacity-80">
                   <WebIcons />
                   <h4 className="leading-tight dark:text-primary-dark text-primary font-bold text-3xl lg:text-4xl mb-6">

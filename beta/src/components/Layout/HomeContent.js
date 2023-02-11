@@ -104,6 +104,34 @@ export function HomeContent() {
             <div className="flex-col gap-2 flex grow w-full my-16 lg:my-20 mx-auto items-center">
               <div className="px-5 lg:px-0 max-w-4xl text-center text-opacity-80">
                 <h3 className="leading-tight dark:text-primary-dark text-primary font-bold text-4xl lg:text-5xl mb-6">
+                  Try React for a part of your page
+                </h3>
+                <p className="text-xl lg:text-2xl leading-normal text-secondary dark:text-secondary-dark">
+                  You don’t have to rewrite your entire app with React. Add
+                  React as a <Code>&lt;script&gt;</Code> tag in your HTML, and
+                  render interactive components anywhere on the page.
+                </p>
+              </div>
+              <div className="max-w-6xl mx-auto flex flex-col w-full">
+                <Example3 />
+              </div>
+              <div className="px-5 lg:px-0 max-w-4xl text-center text-opacity-80">
+                <p className="text-xl lg:text-2xl leading-normal">
+                  React does not make assumptions about the rest of your stack.
+                  Whether you use a traditional server environment like Python
+                  or Ruby, a static HTML page generator, or write HTML by hand,
+                  you can add interactivity with React.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="">
+          <div className="max-w-6xl mx-auto flex flex-col w-full">
+            <div className="flex-col gap-2 flex grow w-full my-16 lg:my-20 mx-auto items-center">
+              <div className="px-5 lg:px-0 max-w-4xl text-center text-opacity-80">
+                <h3 className="leading-tight dark:text-primary-dark text-primary font-bold text-4xl lg:text-5xl mb-6">
                   Go full-stack with a framework
                 </h3>
                 <p className="text-xl lg:text-2xl text-secondary dark:text-secondary-dark leading-normal">
@@ -117,7 +145,7 @@ export function HomeContent() {
                 </p>
               </div>
               <div className="max-w-6xl mx-auto flex flex-col w-full">
-                <Example3 />
+                <Example4 />
               </div>
               <div className="px-5 lg:px-0 max-w-4xl text-center text-secondary dark:text-secondary-dark">
                 <p className="text-xl lg:text-2xl text-secondary dark:text-secondary-dark leading-normal">
@@ -131,12 +159,12 @@ export function HomeContent() {
           </div>
         </div>
 
-        <div className="mx-5 lg:mx-12 my-5">
+        <div className="shadow-inner bg-card dark:bg-card-dark">
           <div className="max-w-6xl mx-auto flex flex-col w-full">
             <div className="flex-col gap-2 flex grow w-full my-16 lg:my-20 mx-auto items-center">
               <div className="max-w-4xl text-center text-opacity-80">
                 <h3 className="leading-tight dark:text-primary-dark text-primary font-bold text-4xl lg:text-5xl mb-6">
-                  Get the best from every platform
+                  Use the best from every platform
                 </h3>
                 <p className="text-xl lg:text-2xl text-secondary dark:text-secondary-dark leading-normal">
                   People love web and native apps for different reasons. React
@@ -160,7 +188,7 @@ export function HomeContent() {
                     even in the middle of rendering.
                   </p>
                 </div>
-                <div className="h-px w-full lg:h-auto flex grow lg:w-px my-16 lg:my-5 bg-border dark:bg-border-dark" />
+                <div className="h-px w-full lg:h-auto flex grow lg:w-px my-16 lg:my-5 bg-gray-30 dark:bg-gray-50-dark bg-opacity-20" />
                 <div className="lg:w-6/12 max-w-4xl text-center items-center justify-center text-opacity-80 flex flex-col">
                   <NativeIcons />
                   <h4 className="leading-tight dark:text-primary-dark text-primary font-bold text-3xl lg:text-4xl mb-6">
@@ -189,40 +217,32 @@ export function HomeContent() {
           </div>
         </div>
 
-        <div className="shadow-inner bg-card dark:bg-card-dark">
-          <div className="max-w-6xl mx-auto flex flex-col w-full">
-            <div className="flex-col gap-2 flex grow w-full my-16 lg:my-20 mx-auto items-center">
-              <div className="px-5 lg:px-0 max-w-4xl text-center text-opacity-80">
-                <h3 className="leading-tight dark:text-primary-dark text-primary font-bold text-4xl lg:text-5xl mb-6">
-                  Use as little or as much as you need
-                </h3>
-                <p className="min-h-[500px] text-xl lg:text-2xl leading-normal text-secondary dark:text-secondary-dark">
-                  TODO
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-
         <div className="">
           <div className="max-w-6xl mx-auto flex flex-col w-full">
             <div className="flex-col gap-2 flex grow w-full my-16 lg:my-20 mx-auto items-center">
               <div className="px-5 lg:px-0 max-w-4xl text-center text-opacity-80">
                 <h3 className="leading-tight dark:text-primary-dark text-primary font-bold text-4xl lg:text-5xl mb-6">
-                  Stability without stagnation
+                  Evolve your code at a stable pace
                 </h3>
-                <p className="min-h-[500px] text-xl lg:text-2xl leading-normal text-secondary dark:text-secondary-dark">
+                <p className="text-xl lg:text-2xl text-secondary dark:text-secondary-dark leading-normal">
+                  React approaches changes with care. Every React commit is
+                  tested on business-critical surfaces with over a billion
+                  users. Over 100,000 React components in the Meta codebase help
+                  validate every migration strategy.
+                </p>
+
+                <p className="py-20 text-xl lg:text-2xl leading-normal text-secondary dark:text-secondary-dark">
                   TODO
-                  {/*React approaches changes with care. Every React commit is
-                  tested on business-critical surfaces with hundreds of millions
-                  of users. When an API is deprecated, we add warnings and
-                  publish automatic scripts to assist with the migration. The
-                  100,000 React components in the Meta codebase help validate
-                  every migration strategy. The React team is also always
-                  researching how to improve React. React has a high bar for
-                  taking an idea from research to production. Only proven
-                  approaches become part of React.
-                  <br />
+                </p>
+
+                <p className="text-xl lg:text-2xl text-secondary dark:text-secondary-dark leading-normal">
+                  The React team is always researching how to improve React.
+                  Some of these research projects take years to realize. React
+                  has a high bar for taking an idea from research to production.
+                  Only proven approaches become part of React.
+                </p>
+
+                {/*<p className="min-h-[500px] text-xl lg:text-2xl leading-normal text-secondary dark:text-secondary-dark">
                   <ButtonLink
                     href={'/'}
                     type="primary"
@@ -234,8 +254,7 @@ export function HomeContent() {
                       displayDirection="right"
                       className="inline ml-1"
                     />
-                  </ButtonLink>*/}
-                </p>
+                  </ButtonLink></p>*/}
               </div>
             </div>
           </div>
@@ -321,7 +340,7 @@ export function HomeContent() {
                 <h3 className="leading-tight dark:text-primary-dark text-primary font-bold text-4xl lg:text-5xl mb-6">
                   Join a community of millions
                 </h3>
-                <p className="min-h-[500px] text-xl lg:text-2xl leading-normal text-secondary dark:text-secondary-dark">
+                <p className="py-40 text-xl lg:text-2xl leading-normal text-secondary dark:text-secondary-dark">
                   TODO
                 </p>
               </div>
@@ -467,8 +486,70 @@ function Example2() {
 }
 
 function Example3() {
-  const [playlistPromise, setPostPromise] = useState(null);
-  const [videosPromise, setAlbumsPromise] = useState(null);
+  return (
+    <div className="lg:pl-10 lg:pr-5 w-full">
+      <div className="my-16 lg:my-20 max-w-6xl mx-auto flex flex-col w-full lg:rounded-2xl bg-card dark:bg-card-dark">
+        <div className="flex-col-reverse gap-0 lg:gap-5 lg:rounded-xl bg-gray-10 dark:bg-gray-70 shadow-inner lg:flex-row flex grow w-full mx-auto items-center">
+          <div className="lg:-m-5 h-full shadow-nav dark:shadow-nav-dark lg:rounded-2xl bg-wash dark:bg-gray-95 w-full flex grow flex-col">
+            <div className="w-full bg-card dark:bg-wash-dark lg:rounded-t-2xl border-b border-black/5 dark:border-white/5">
+              <h3 className="text-sm my-1 mx-5 text-tertiary dark:text-tertiary-dark select-none">
+                my-page.html
+              </h3>
+            </div>
+            <CodeBlock
+              isFromPackageImport={false}
+              noShadow={true}
+              noMargin={true}>
+              <div className="language-html">{`<html>
+  <head><title>My web page</title></head>
+  <body>
+    <h1>Welcome to my personal page.</h1>
+    <p>I will collect some interesting links here.</p>
+    <div id="my-react-root">
+      <!-- This part is rendered with React on the client -->
+    </div>
+    <p>Thank you for visiting!</p>
+    <script src="react.production.min.js"></script>
+    <script src="react-dom.production.min.js"></script>
+    <script src="my-components.min.js"></script>
+  </body>
+</html>
+           `}</div>
+            </CodeBlock>
+          </div>
+          <div className="w-full p-2.5 sm:p-5 lg:p-10 flex grow justify-center">
+            <BrowserChrome
+              domain="example.com"
+              path="my-page.html"
+              hasRefresh={false}>
+              <ExamplePanel noPadding={true} noShadow={true} height="20rem">
+                <div className="mt-16 p-5 flex flex-col gap-3">
+                  <h1 className="text-primary text-2xl font-bold mb-0.5">
+                    Welcome to my personal page.
+                  </h1>
+                  <p>I will collect some interesting links here.</p>
+                  <VideoRow
+                    video={{
+                      title: 'React Documentary',
+                      description: 'Watch the origin story of React.',
+                      image: 'https://i.imgur.com/ny0WlyW.jpg',
+                      url: 'https://www.youtube.com/watch?v=8pDqJVdNa44',
+                    }}
+                  />
+                  <p>Thank you for visiting!</p>
+                </div>
+              </ExamplePanel>
+            </BrowserChrome>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function Example4() {
+  const [confPromise, setConfPromise] = useState(null);
+  const [playlistPromise, setPlaylistPromise] = useState(null);
   const videos = [
     {
       id: 0,
@@ -668,7 +749,7 @@ function Example3() {
               <div>{`import { db } from './database.js';
 import { Suspense } from 'react';
 
-async function Conference({ slug }) {
+async function ConferencePage({ slug }) {
   const conf = await db.Confs.find({ slug });
   return (
     <main>
@@ -691,19 +772,22 @@ async function Talks({ confId }) {
           </div>
           <div className="lg:-my-20 w-full p-2.5 sm:p-5 lg:p-10 flex grow justify-center">
             <BrowserChrome
-              setPostPromise={setPostPromise}
-              setAlbumsPromise={setAlbumsPromise}>
+              setConfPromise={setConfPromise}
+              setPlaylistPromise={setPlaylistPromise}
+              domain="example.com"
+              path="confs/react-conf-2021"
+              hasRefresh={true}>
               <ExamplePanel noPadding={true} noShadow={true} height="38rem">
                 <Suspense fallback={null}>
                   <div style={{animation: 'fadein 200ms'}}>
-                    <PlaylistPage
-                      playlist={{
+                    <ConfPage
+                      conf={{
                         cover: 'https://i.imgur.com/zBJvLHG.jpg',
                         name: 'React Conf 2021',
                         videos,
                       }}
+                      confPromise={confPromise}
                       playlistPromise={playlistPromise}
-                      videosPromise={videosPromise}
                     />
                   </div>
                 </Suspense>
@@ -730,27 +814,34 @@ function ExamplePanel({children, noPadding, noShadow, height}) {
   );
 }
 
-function BrowserChrome({children, setPostPromise, setAlbumsPromise}) {
+function BrowserChrome({
+  children,
+  setConfPromise,
+  setPlaylistPromise,
+  hasRefresh,
+  domain,
+  path,
+}) {
   const [restartId, setRestartId] = useState(0);
 
-  const simulatedArtistMs = 200;
-  const simulatedAlbumsMs = 2200;
+  const confDelay = 100;
+  const playlistDelay = 1200;
 
   function handleRestart() {
+    const confPromise = new Promise((resolve) => {
+      setTimeout(() => {
+        confPromise._resolved = true;
+        resolve();
+      }, confDelay);
+    });
     const playlistPromise = new Promise((resolve) => {
       setTimeout(() => {
         playlistPromise._resolved = true;
         resolve();
-      }, simulatedArtistMs);
+      }, playlistDelay);
     });
-    const videosPromise = new Promise((resolve) => {
-      setTimeout(() => {
-        videosPromise._resolved = true;
-        resolve();
-      }, simulatedAlbumsMs);
-    });
-    setPostPromise(playlistPromise);
-    setAlbumsPromise(videosPromise);
+    setConfPromise(confPromise);
+    setPlaylistPromise(playlistPromise);
     setRestartId((id) => id + 1);
   }
 
@@ -760,27 +851,29 @@ function BrowserChrome({children, setPostPromise, setAlbumsPromise}) {
         <div className="relative bg-gray-10 text-sm text-tertiary text-center rounded-full p-1 w-full flex-row flex space-between items-center">
           <div className="h-6 w-6" />
           <div className="w-full leading-snug">
-            <span className="text-gray-30">example.com/</span>
-            confs/react-conf-2021
+            <span className="text-gray-30">{domain}/</span>
+            {path}
           </div>
-          <div
-            className={
-              'bg-card rounded-full flex justify-center items-center ' +
-              (restartId > 0 ? '' : 'animation-pulse')
-            }>
-            <button
-              onClick={handleRestart}
-              className="flex items-center p-1.5 rounded-full hover:bg-gray-20 hover:bg-opacity-50 cursor-pointer justify-center">
-              <IconRestart className="text-primary text-lg" />
-            </button>
-          </div>
+          {hasRefresh && (
+            <div
+              className={
+                'bg-card rounded-full flex justify-center items-center ' +
+                (restartId > 0 ? '' : 'animation-pulse')
+              }>
+              <button
+                onClick={handleRestart}
+                className="flex items-center p-1.5 rounded-full hover:bg-gray-20 hover:bg-opacity-50 cursor-pointer justify-center">
+                <IconRestart className="text-primary text-lg" />
+              </button>
+            </div>
+          )}
         </div>
         {restartId > 0 && (
           <div
             key={restartId}
             className="z-10 loading h-0.5 bg-link transition-all duration-200 absolute bottom-0 left-0"
             style={{
-              animation: `progressbar ${simulatedAlbumsMs + 100}ms linear`,
+              animation: `progressbar ${playlistDelay + 100}ms linear`,
             }}
           />
         )}
@@ -790,19 +883,19 @@ function BrowserChrome({children, setPostPromise, setAlbumsPromise}) {
   );
 }
 
-function PlaylistPage({playlist, playlistPromise, videosPromise}) {
-  if (playlistPromise && !playlistPromise._resolved) {
-    throw playlistPromise;
+function ConfPage({conf, confPromise, playlistPromise}) {
+  if (confPromise && !confPromise._resolved) {
+    throw confPromise;
   }
   return (
     <div className="overflow-y-scroll">
-      <Cover background={playlist.cover}>
+      <Cover background={conf.cover}>
         <h1 className="text-primary-dark text-2xl font-bold mb-0.5">
-          {playlist.name}
+          {conf.name}
         </h1>
       </Cover>
       <Suspense fallback={<PlaylistLoading />}>
-        <Discography playlist={playlist} videosPromise={videosPromise} />
+        <Talks conf={conf} playlistPromise={playlistPromise} />
       </Suspense>
     </div>
   );
@@ -856,12 +949,11 @@ function PlaylistLoading() {
   );
 }
 
-function Discography({playlist, videosPromise}) {
-  if (videosPromise && !videosPromise._resolved) {
-    throw videosPromise;
+function Talks({conf, playlistPromise}) {
+  if (playlistPromise && !playlistPromise._resolved) {
+    throw playlistPromise;
   }
-
-  return <VideoList videos={playlist.videos} />;
+  return <VideoList videos={conf.videos} />;
 }
 
 function VideoList({videos, children}) {
@@ -947,7 +1039,13 @@ function VideoThumbnail({video}) {
         image === 'purple' && 'from-yellow-50 via-purple-50 to-purple-60',
         typeof image === 'object' && 'from-gray-80 via-gray-95 to-gray-70',
         video.url && 'hover:opacity-95 transition-opacity'
-      )}>
+      )}
+      style={{
+        backgroundImage:
+          typeof image === 'string' && image.startsWith('http')
+            ? 'url(' + image + ')'
+            : null,
+      }}>
       {typeof image !== 'string' ? (
         <>
           <div className="transition-opacity mt-2.5 -space-x-2 flex flex-row w-full justify-center">
@@ -967,7 +1065,7 @@ function VideoThumbnail({video}) {
             </span>
           </div>
         </>
-      ) : (
+      ) : image.startsWith('http') ? null : (
         <ThumbnailPlaceholder />
       )}
     </a>

@@ -170,8 +170,8 @@ export function HomeContent() {
                   user interfaces feel just right on every platform.
                 </p>
               </div>
-              <div className="max-w-7xl flex flex-col lg:flex-row my-12 sm:my-16 lg:my-20 lg:mx-5 gap-5 lg:gap-0">
-                <div className="shadow-inner bg-secondary-button dark:bg-secondary-button-dark rounded-2xl p-6 xs:p-10 mx-5 lg:w-6/12 max-w-4xl lg:text-center lg:items-center lg:justify-center flex flex-col text-opacity-80">
+              <div className="max-w-7xl flex flex-col lg:flex-row my-12 sm:my-16 lg:my-20 mx-5 lg:mx-10 gap-5 lg:gap-5">
+                <div className="shadow-inner bg-secondary-button dark:bg-secondary-button-dark rounded-2xl p-6 xs:p-10 lg:w-6/12 max-w-4xl lg:text-center lg:items-center lg:justify-center flex flex-col text-opacity-80">
                   <WebIcons />
                   <h4 className="leading-tight dark:text-primary-dark text-primary font-bold text-3xl lg:text-4xl mb-4 lg:mb-6">
                     Stay true to the web
@@ -185,7 +185,7 @@ export function HomeContent() {
                     even in the middle of rendering.
                   </p>
                 </div>
-                <div className="shadow-inner bg-secondary-button dark:bg-secondary-button-dark rounded-2xl p-6 xs:p-10 mx-5 lg:w-6/12 max-w-4xl lg:text-center lg:items-center lg:justify-center text-opacity-80 flex flex-col">
+                <div className="shadow-inner bg-secondary-button dark:bg-secondary-button-dark rounded-2xl p-6 xs:p-10 lg:w-6/12 max-w-4xl lg:text-center lg:items-center lg:justify-center text-opacity-80 flex flex-col">
                   <NativeIcons />
                   <h4 className="leading-tight dark:text-primary-dark text-primary font-bold text-3xl lg:text-4xl mb-4 lg:mb-6">
                     Go truly native, too

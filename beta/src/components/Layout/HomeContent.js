@@ -30,7 +30,7 @@ export function HomeContent() {
               type="primary"
               size="lg"
               className="w-full sm:w-auto justify-center"
-              label="Take the Tutorial">
+              label="Learn React">
               Learn React
             </ButtonLink>
             <ButtonLink
@@ -38,7 +38,7 @@ export function HomeContent() {
               type="secondary"
               size="lg"
               className="w-full sm:w-auto justify-center"
-              label="Take the Tutorial">
+              label="API Reference">
               API Reference
             </ButtonLink>
           </div>
@@ -136,7 +136,7 @@ export function HomeContent() {
             <div className="flex-col gap-2 flex grow w-full my-16 lg:my-20 mx-auto items-center">
               <div className="max-w-4xl text-center text-opacity-80">
                 <h3 className="leading-tight dark:text-primary-dark text-primary font-bold text-4xl lg:text-5xl mb-6">
-                  Use the best from every platform
+                  Get the best from every platform
                 </h3>
                 <p className="text-xl lg:text-2xl text-secondary dark:text-secondary-dark leading-normal">
                   People love web and native apps for different reasons. React
@@ -194,23 +194,10 @@ export function HomeContent() {
             <div className="flex-col gap-2 flex grow w-full my-16 lg:my-20 mx-auto items-center">
               <div className="px-5 lg:px-0 max-w-4xl text-center text-opacity-80">
                 <h3 className="leading-tight dark:text-primary-dark text-primary font-bold text-4xl lg:text-5xl mb-6">
-                  Use as little or as much React as you need
+                  Use as little or as much as you need
                 </h3>
-                <p className="text-xl lg:text-2xl leading-normal text-secondary dark:text-secondary-dark">
-                  Many teams build their entire user interface with React. For
-                  example, the web experiences of
-                  <Link href="https://facebook.com"> Facebook</Link>,
-                  <Link href="https://instagram.com"> Instagram</Link>,
-                  <Link href="https://www.tiktok.com/en/"> TikTok</Link>,
-                  <Link href="https://twitter.com/"> Twitter</Link>,
-                  <Link href="https://airbnb.com/"> Airbnb</Link>,
-                  <Link href="https://spotify.com/"> Spotify</Link>,
-                  <Link href="https://trello.com/"> Trello</Link>, and
-                  <Link href="https://www.nytimes.com/">
-                    {' '}
-                    The New York Times
-                  </Link>{' '}
-                  are fully powered by React.
+                <p className="min-h-[500px] text-xl lg:text-2xl leading-normal text-secondary dark:text-secondary-dark">
+                  TODO
                 </p>
               </div>
             </div>
@@ -224,8 +211,9 @@ export function HomeContent() {
                 <h3 className="leading-tight dark:text-primary-dark text-primary font-bold text-4xl lg:text-5xl mb-6">
                   Stability without stagnation
                 </h3>
-                <p className="text-xl lg:text-2xl leading-normal text-secondary dark:text-secondary-dark">
-                  React approaches changes with care. Every React commit is
+                <p className="min-h-[500px] text-xl lg:text-2xl leading-normal text-secondary dark:text-secondary-dark">
+                  TODO
+                  {/*React approaches changes with care. Every React commit is
                   tested on business-critical surfaces with hundreds of millions
                   of users. When an API is deprecated, we add warnings and
                   publish automatic scripts to assist with the migration. The
@@ -246,13 +234,13 @@ export function HomeContent() {
                       displayDirection="right"
                       className="inline ml-1"
                     />
-                  </ButtonLink>
+                  </ButtonLink>*/}
                 </p>
               </div>
             </div>
           </div>
         </div>
-        <div className="overflow-hidden relative px-5">
+        {/*<div className="overflow-hidden relative px-5">
           <div className="border-2 border-link dark:border-link-dark rounded-lg absolute h-full left-1/2"></div>
           <div className="-mb-12 flex justify-between flex-row-reverse items-center w-full left-timeline">
             <div className="order-1 w-5/12"></div>
@@ -324,19 +312,38 @@ export function HomeContent() {
               </p>
             </div>
           </div>
+        </div>*/}
+
+        <div className="shadow-inner bg-card dark:bg-card-dark">
+          <div className="max-w-6xl mx-auto flex flex-col w-full">
+            <div className="flex-col gap-2 flex grow w-full my-16 lg:my-20 mx-auto items-center">
+              <div className="px-5 lg:px-0 max-w-4xl text-center text-opacity-80">
+                <h3 className="leading-tight dark:text-primary-dark text-primary font-bold text-4xl lg:text-5xl mb-6">
+                  Join a community of millions
+                </h3>
+                <p className="min-h-[500px] text-xl lg:text-2xl leading-normal text-secondary dark:text-secondary-dark">
+                  TODO
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
 
-        <div className="my-16 px-5 flex flex-col w-full">
-          <div className="py-12 lg:py-20 text-base text-secondary dark:text-secondary-dark flex flex-col w-full justify-center items-center">
-            <Logo className="text-link dark:text-link-dark w-28 lg:w-36 mt-12 h-auto mx-auto self-start" />
-            <div className="flex flex-wrap">
-              <div className="mb-8 mt-4">
-                <h1 className="text-center text-5xl lg:text-6xl flex wrap font-bold leading-tight text-primary dark:text-primary-dark">
-                  Welcome to the React community
-                </h1>
-                <p className="text-3xl lg:text-4xl w-full text-center text-secondary dark:text-secondary-dark leading-relaxed self-center my-2">
-                  Get started today.
-                </p>
+        <div className="">
+          <div className="max-w-6xl mx-auto flex flex-col w-full">
+            <div className="flex-col gap-2 flex grow w-full my-16 lg:my-20 mx-auto items-center">
+              <div className="px-5 lg:px-0 max-w-4xl text-center text-opacity-80">
+                <Logo className="text-link dark:text-link-dark w-28 lg:w-36 mt-12 h-auto mx-auto self-start" />
+                <h3 className="mt-4 mb-8 leading-tight dark:text-primary-dark text-primary font-bold text-4xl lg:text-5xl mb-6">
+                  Welcome to the React community!
+                </h3>
+                <ButtonLink
+                  href={'/learn'}
+                  type="primary"
+                  size="lg"
+                  label="Take the Tutorial">
+                  Get Started
+                </ButtonLink>
               </div>
             </div>
           </div>
@@ -661,22 +668,23 @@ function Example3() {
               <div>{`import { db } from './database.js';
 import { Suspense } from 'react';
 
-async function ConferencePage({ slug }) {
-  const conf = await db.Conferences.find({ slug });
+async function Conference({ slug }) {
+  const conf = await db.Confs.find({ slug });
   return (
     <main>
       <Cover background={conf.cover}>
         <h1>{conf.name}</h1>
       </Cover>
-      <Suspense fallback={<LoadingPlaylist />}>
-        <Playlist playlistId={conf.playlistId} />
+      <Suspense fallback={<LoadingTalks />}>
+        <Talks confId={conf.id} />
       </Suspense>
     </main>
   );
 }
 
-async function Playlist({ playlistId }) {
-  const videos = await db.Videos.findMany({ playlistId });
+async function Talks({ confId }) {
+  const talks = await db.Talks.findAll({ confId });
+  const videos = talks.map(talk => talk.video);
   return <VideoList videos={videos} />;
 }`}</div>
             </CodeBlock>

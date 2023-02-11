@@ -431,7 +431,7 @@ function Example1() {
           `}</div>
             </CodeBlock>
           </div>
-          <div className="w-full p-2.5 sm:p-5 lg:p-10 flex grow justify-center">
+          <div className="w-full p-2.5 xs:p-5 lg:p-10 flex grow justify-center">
             <ExamplePanel>
               <VideoRow
                 video={{
@@ -503,7 +503,7 @@ function Example2() {
 }`}</div>
             </CodeBlock>
           </div>
-          <div className="lg:-my-20 w-full p-5 sm:p-5 lg:p-10 flex grow justify-center">
+          <div className="lg:-my-20 w-full p-2.5 xs:p-5 lg:p-10 flex grow justify-center">
             <ExamplePanel noShadow={false} noPadding={true}>
               <VideoList videos={videos} />
             </ExamplePanel>
@@ -547,7 +547,7 @@ function Example3() {
            `}</div>
             </CodeBlock>
           </div>
-          <div className="w-full p-2.5 sm:p-5 lg:p-10 flex grow justify-center">
+          <div className="w-full p-2.5 xs:p-5 lg:p-10 flex grow justify-center">
             <BrowserChrome
               domain="example.com"
               path="my-page.html"
@@ -799,7 +799,7 @@ async function Talks({ confId }) {
 }`}</div>
             </CodeBlock>
           </div>
-          <div className="lg:-my-20 w-full p-2.5 sm:p-5 lg:p-10 flex grow justify-center">
+          <div className="lg:-my-20 w-full p-2.5 xs:p-5 lg:p-10 flex grow justify-center">
             <BrowserChrome
               setConfPromise={setConfPromise}
               setPlaylistPromise={setPlaylistPromise}

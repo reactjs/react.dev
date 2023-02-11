@@ -658,7 +658,7 @@ function Example3() {
           <div className="lg:-m-5 h-full shadow-nav dark:shadow-nav-dark lg:rounded-2xl bg-wash dark:bg-gray-95 w-full flex grow flex-col">
             <div className="w-full bg-card dark:bg-wash-dark lg:rounded-t-2xl border-b border-black/5 dark:border-white/5">
               <h3 className="text-sm my-1 mx-5 text-tertiary dark:text-tertiary-dark select-none">
-                conferences/[slug].js
+                confs/[slug].js
               </h3>
             </div>
             <CodeBlock
@@ -761,7 +761,7 @@ function BrowserChrome({children, setPostPromise, setAlbumsPromise}) {
           <div className="h-6 w-6" />
           <div className="w-full leading-snug">
             <span className="text-gray-30">example.com</span>
-            /conferences/react-conf-2021
+            /confs/react-conf-2021
           </div>
           <div
             className={

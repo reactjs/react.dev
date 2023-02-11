@@ -106,7 +106,7 @@ export default function MyComponent() {
 
 </Sandpack>
 
-Notice how the second paragraph visually appears outside the parent `<div>` with the border. If you inspect the DOM structure with developer tools, you can confirm that the second `<p>` got placed direcly into the `<body>`:
+Notice how the second paragraph visually appears outside the parent `<div>` with the border. If you inspect the DOM structure with developer tools, you can confirm that the second `<p>` got placed directly into the `<body>`:
 
 ```html {4-6,9}
 <body>

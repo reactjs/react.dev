@@ -73,7 +73,7 @@ module.exports = exports.onCreateNode = ({node, actions, getNode}) => {
       });
 
       // Used to generate a GitHub edit link.
-      // this presumes that the name in gastby-config.js refers to parent folder
+      // this presumes that the name in gatsby-config.js refers to parent folder
       createNodeField({
         node,
         name: 'path',

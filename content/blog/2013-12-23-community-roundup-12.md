@@ -69,7 +69,7 @@ React declarative approach is well suited to write games. [Cheng Lou](https://gi
 
 [William Högman Rudenmalm](http://blog.whn.se/) wrote an article on how to write good React components. This is full of good advice.
 
-> The idea of dividing software into smaller parts or components is hardly new - It is the essance of good software. The same principles that apply to software in general apply to building React components. That doesn’t mean that writing good React components is just about applying general rules.
+> The idea of dividing software into smaller parts or components is hardly new - It is the essence of good software. The same principles that apply to software in general apply to building React components. That doesn’t mean that writing good React components is just about applying general rules.
 >
 > The web offers a unique set of challenges, which React offers interesting solutions to. First and foremost among these solutions is the what is called the Mock DOM. Rather than having user code interface with the DOM in a direct fashion, as is the case with most DOM manipulation libraries.
 >

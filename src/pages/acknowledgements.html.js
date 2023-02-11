@@ -14,7 +14,7 @@ import {sharedStyles} from 'theme';
 
 import names from '../../content/acknowledgements.yml';
 
-const Acknowlegements = ({data, location}) => (
+const Acknowledgements = ({data, location}) => (
   <Layout location={location}>
     <Container>
       <div css={sharedStyles.articleLayout.container}>
@@ -85,4 +85,4 @@ const Acknowlegements = ({data, location}) => (
   </Layout>
 );
 
-export default Acknowlegements;
+export default Acknowledgements;

@@ -1364,7 +1364,7 @@ You might have a provider without a `value` in the tree:
 
 If you forget to specify `value`, it's like passing `value={undefined}`.
 
-You may have also mistakingly used a different prop name by mistake:
+You may have also mistakenly used a different prop name by mistake:
 
 ```js {1,2}
 // 🚩 Doesn't work: prop should be called "value"

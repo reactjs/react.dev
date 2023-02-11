@@ -269,7 +269,7 @@ const ParagraphView = Backbone.View.extend({
 
 [**Try it on CodePen**](https://codepen.io/gaearon/pen/gWgOYL?editors=0010)
 
-It is important that we also call `root.unmount()` in the `remove` method so that React unregisters event handlers and other resources associated with the component tree when it is detached.
+It is important that we also call `root.unmount()` in the `remove` method so that React deregisters event handlers and other resources associated with the component tree when it is detached.
 
 When a component is removed *from within* a React tree, the cleanup is performed automatically, but because we are removing the entire tree by hand, we must call this method.
 

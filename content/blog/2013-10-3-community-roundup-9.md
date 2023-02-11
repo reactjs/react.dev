@@ -69,7 +69,7 @@ The video will be available soon on the [JSConf EU website](http://2013.jsconf.e
 
 [Ross Allen](https://twitter.com/ssorallen) working at [Mesosphere](http://mesosphere.io/) combined [Turbolinks](https://github.com/rails/turbolinks/), a library used by Ruby on Rails to speed up page transition, and React.
 
-> "Re-request this page" is just a link to the current page. When you click it, Turbolinks intercepts the GET request and fetchs the full page via XHR.
+> "Re-request this page" is just a link to the current page. When you click it, Turbolinks intercepts the GET request and fetches the full page via XHR.
 >
 > The panel is rendered with a random panel- class on each request, and the progress bar gets a random widthX class.
 >

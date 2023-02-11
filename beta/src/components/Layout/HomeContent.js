@@ -6,7 +6,9 @@ import {createContext, useState, useContext, Suspense} from 'react';
 import cn from 'classnames';
 import ButtonLink from '../ButtonLink';
 import {IconRestart} from '../Icon/IconRestart';
+import BlogCard from 'components/MDX/BlogCard';
 import {IconChevron} from 'components/Icon/IconChevron';
+import {IconSearch} from 'components/Icon/IconSearch';
 import {Logo} from 'components/Logo';
 import Link from 'components/MDX/Link';
 import CodeBlock from 'components/MDX/CodeBlock';
@@ -16,7 +18,7 @@ export function HomeContent() {
   return (
     <>
       <div className="pl-0">
-        <div className="mx-5 mt-12 mb-20 flex flex-col justify-center">
+        <div className="mx-5 mt-12 mb-16 sm:mb-20 lg:mb-24 flex flex-col justify-center">
           <Logo className="mt-4 mb-3 text-link dark:text-link-dark w-24 lg:w-28 self-center" />
           <h1 className="text-5xl lg:text-6xl self-center flex font-bold leading-snug text-primary dark:text-primary-dark">
             React
@@ -24,7 +26,7 @@ export function HomeContent() {
           <p className="text-4xl py-1 text-center text-secondary dark:text-primary-dark leading-snug self-center">
             The library for web and native user interfaces
           </p>
-          <div className="my-5 self-center flex gap-2 w-full sm:w-auto flex-col sm:flex-row">
+          <div className="mt-5 self-center flex gap-2 w-full sm:w-auto flex-col sm:flex-row">
             <ButtonLink
               href={'/learn'}
               type="primary"
@@ -43,66 +45,63 @@ export function HomeContent() {
             </ButtonLink>
           </div>
         </div>
-        <div className="">
-          <div className="mx-auto bg-card dark:bg-card-dark shadow-inner mt-8 flex flex-col w-full">
-            <div className="flex-col gap-2 flex grow w-full my-16 lg:my-20 mx-auto items-center">
-              <div className="px-5 lg:px-0 max-w-4xl text-center text-white text-opacity-80">
-                <h3 className="leading-tight text-primary dark:text-primary-dark font-semibold text-4xl lg:text-5xl mb-6">
-                  Create user interfaces from components
-                </h3>
-                <p className="text-xl lg:text-2xl text-secondary dark:text-secondary-dark leading-normal">
-                  React lets you build user interfaces out of individual pieces
-                  called components. Create your own React components like a
-                  button, a panel, or an avatar. Then combine them into entire
-                  screens, pages, and apps.
-                </p>
-              </div>
-              <Example1 />
-              <div className="px-5 lg:px-0 max-w-4xl text-center text-white text-opacity-80">
-                <p className="text-xl lg:text-2xl text-secondary dark:text-secondary-dark leading-normal">
-                  Whether you work on your own or with thousands of other
-                  developers, using React feels the same. It is designed to let
-                  you seamlessly combine components written by independent
-                  people, teams, and organizations.
-                </p>
-              </div>
+
+        <div className="mx-auto bg-card dark:bg-card-dark shadow-inner flex flex-col w-full">
+          <div className="flex-col gap-2 flex grow w-full my-12 sm:my-16 lg:my-20 mx-auto items-center">
+            <div className="px-5 lg:px-0 max-w-4xl lg:text-center text-white text-opacity-80">
+              <h3 className="leading-tight text-primary dark:text-primary-dark font-semibold text-4xl lg:text-5xl mb-6">
+                Create user interfaces from components
+              </h3>
+              <p className="text-xl lg:text-2xl text-secondary dark:text-secondary-dark leading-normal">
+                React lets you build user interfaces out of individual pieces
+                called components. Create your own React components like a
+                button, a panel, or an avatar. Then combine them into entire
+                screens, pages, and apps.
+              </p>
+            </div>
+            <Example1 />
+            <div className="px-5 lg:px-0 max-w-4xl lg:text-center text-white text-opacity-80">
+              <p className="text-xl lg:text-2xl text-secondary dark:text-secondary-dark leading-normal">
+                Whether you work on your own or with thousands of other
+                developers, using React feels the same. It is designed to let
+                you seamlessly combine components written by independent people,
+                teams, and organizations.
+              </p>
             </div>
           </div>
         </div>
 
-        <div className="">
-          <div className="max-w-6xl mx-auto flex flex-col w-full">
-            <div className="flex-col gap-2 flex grow w-full my-16 lg:my-20 mx-auto items-center">
-              <div className="px-5 lg:px-0 max-w-4xl text-center text-opacity-80">
-                <h3 className="leading-tight dark:text-primary-dark text-primary font-bold text-4xl lg:text-5xl mb-6">
-                  Write components with code and markup
-                </h3>
-                <p className="text-xl lg:text-2xl leading-normal">
-                  React components are JavaScript functions. Want to show
-                  something conditionally? Use an <Code>if</Code> statement.
-                  Need to display a list? Use a <Code>for</Code> loop or array{' '}
-                  <Code>map()</Code>. Learning React is learning programming.
-                </p>
-              </div>
-              <div className="max-w-6xl mx-auto flex flex-col w-full">
-                <Example2 />
-              </div>
-              <div className="px-5 lg:px-0 max-w-4xl text-center text-opacity-80">
-                <p className="text-xl lg:text-2xl leading-normal">
-                  This markup syntax is called JSX. It is a JavaScript syntax
-                  extension popularized by React. Putting JSX markup close to
-                  related rendering logic makes React components easy to create,
-                  maintain, and delete.
-                </p>
-              </div>
+        <div className="max-w-6xl mx-auto flex flex-col w-full">
+          <div className="flex-col gap-2 flex grow w-full my-12 sm:my-16 lg:my-20 mx-auto items-center">
+            <div className="px-5 lg:px-0 max-w-4xl lg:text-center text-opacity-80">
+              <h3 className="leading-tight dark:text-primary-dark text-primary font-bold text-4xl lg:text-5xl mb-6">
+                Write components with code and markup
+              </h3>
+              <p className="text-xl lg:text-2xl leading-normal">
+                React components are JavaScript functions. Want to show
+                something conditionally? Use an <Code>if</Code> statement. Need
+                to display a list? Use a <Code>for</Code> loop or array{' '}
+                <Code>map()</Code>. Learning React is learning programming.
+              </p>
+            </div>
+            <div className="max-w-6xl mx-auto flex flex-col w-full">
+              <Example2 />
+            </div>
+            <div className="px-5 lg:px-0 max-w-4xl lg:text-center text-opacity-80">
+              <p className="text-xl lg:text-2xl leading-normal">
+                This markup syntax is called JSX. It is a JavaScript syntax
+                extension popularized by React. Putting JSX markup close to
+                related rendering logic makes React components easy to create,
+                maintain, and delete.
+              </p>
             </div>
           </div>
         </div>
 
         <div className="shadow-inner bg-card dark:bg-card-dark">
           <div className="max-w-6xl mx-auto flex flex-col w-full">
-            <div className="flex-col gap-2 flex grow w-full my-16 lg:my-20 mx-auto items-center">
-              <div className="px-5 lg:px-0 max-w-4xl text-center text-opacity-80">
+            <div className="flex-col gap-2 flex grow w-full my-12 sm:my-16 lg:my-20 mx-auto items-center">
+              <div className="px-5 lg:px-0 max-w-4xl lg:text-center text-opacity-80">
                 <h3 className="leading-tight dark:text-primary-dark text-primary font-bold text-4xl lg:text-5xl mb-6">
                   Try React for a part of your page
                 </h3>
@@ -115,7 +114,7 @@ export function HomeContent() {
               <div className="max-w-6xl mx-auto flex flex-col w-full">
                 <Example3 />
               </div>
-              <div className="px-5 lg:px-0 max-w-4xl text-center text-opacity-80">
+              <div className="px-5 lg:px-0 max-w-4xl lg:text-center text-opacity-80">
                 <p className="text-xl lg:text-2xl leading-normal">
                   React does not make assumptions about the rest of your stack.
                   Whether you use a traditional server environment like Python
@@ -127,42 +126,40 @@ export function HomeContent() {
           </div>
         </div>
 
-        <div className="">
-          <div className="max-w-6xl mx-auto flex flex-col w-full">
-            <div className="flex-col gap-2 flex grow w-full my-16 lg:my-20 mx-auto items-center">
-              <div className="px-5 lg:px-0 max-w-4xl text-center text-opacity-80">
-                <h3 className="leading-tight dark:text-primary-dark text-primary font-bold text-4xl lg:text-5xl mb-6">
-                  Go full-stack with a framework
-                </h3>
-                <p className="text-xl lg:text-2xl text-secondary dark:text-secondary-dark leading-normal">
-                  React is a library. It lets you put components together, but
-                  it doesn’t prescribe how to do routing and data fetching. To
-                  build an entire app with React, we recommend an integrated
-                  React framework like{' '}
-                  <Link href="https://github.com/vercel/next.js">Next.js</Link>,{' '}
-                  <Link href="https://remix.run/">Remix</Link>, and{' '}
-                  <Link href="https://expo.dev/">Expo</Link>.
-                </p>
-              </div>
-              <div className="max-w-6xl mx-auto flex flex-col w-full">
-                <Example4 />
-              </div>
-              <div className="px-5 lg:px-0 max-w-4xl text-center text-secondary dark:text-secondary-dark">
-                <p className="text-xl lg:text-2xl text-secondary dark:text-secondary-dark leading-normal">
-                  To frameworks, React is more than a library—React is an
-                  architecture. React provides a unified asynchronous component
-                  model across the entire stack so that you can use both client{' '}
-                  <i>and</i> server for what they do best.
-                </p>
-              </div>
+        <div className="max-w-6xl mx-auto flex flex-col w-full">
+          <div className="flex-col gap-2 flex grow w-full my-12 sm:my-16 lg:my-20 mx-auto items-center">
+            <div className="px-5 lg:px-0 max-w-4xl lg:text-center text-opacity-80">
+              <h3 className="leading-tight dark:text-primary-dark text-primary font-bold text-4xl lg:text-5xl mb-6">
+                Go full-stack with a framework
+              </h3>
+              <p className="text-xl lg:text-2xl text-secondary dark:text-secondary-dark leading-normal">
+                React is a library. It lets you put components together, but it
+                doesn’t prescribe how to do routing and data fetching. To build
+                an entire app with React, we recommend an integrated React
+                framework like{' '}
+                <Link href="https://github.com/vercel/next.js">Next.js</Link>,{' '}
+                <Link href="https://remix.run/">Remix</Link>, and{' '}
+                <Link href="https://expo.dev/">Expo</Link>.
+              </p>
+            </div>
+            <div className="max-w-6xl mx-auto flex flex-col w-full">
+              <Example4 />
+            </div>
+            <div className="px-5 lg:px-0 max-w-4xl lg:text-center text-secondary dark:text-secondary-dark">
+              <p className="text-xl lg:text-2xl text-secondary dark:text-secondary-dark leading-normal">
+                To frameworks, React is more than a library—React is an
+                architecture. React provides a unified asynchronous component
+                model across the entire stack so that you can use both client{' '}
+                <i>and</i> server for what they do best.
+              </p>
             </div>
           </div>
         </div>
 
         <div className="shadow-inner bg-card dark:bg-card-dark">
-          <div className="max-w-6xl mx-auto flex flex-col w-full">
-            <div className="flex-col gap-2 flex grow w-full my-16 lg:my-20 mx-auto items-center">
-              <div className="max-w-4xl text-center text-opacity-80">
+          <div className="max-w-4xl lg:max-w-7xl mx-auto flex flex-col w-full">
+            <div className="flex-col gap-2 flex grow w-full my-12 sm:my-16 lg:my-20 mx-auto items-center">
+              <div className="mx-5 max-w-4xl lg:text-center text-opacity-80">
                 <h3 className="leading-tight dark:text-primary-dark text-primary font-bold text-4xl lg:text-5xl mb-6">
                   Use the best from every platform
                 </h3>
@@ -173,13 +170,13 @@ export function HomeContent() {
                   user interfaces feel just right on every platform.
                 </p>
               </div>
-              <div className="flex flex-col lg:flex-row my-16 lg:my-20 lg:gap-20">
-                <div className="lg:w-6/12 max-w-4xl text-center items-center justify-center flex flex-col text-opacity-80">
+              <div className="max-w-7xl flex flex-col lg:flex-row my-12 sm:my-16 lg:my-20 lg:mx-5 gap-5 lg:gap-0">
+                <div className="shadow-inner bg-secondary-button dark:bg-secondary-button-dark rounded-2xl p-6 xs:p-10 mx-5 lg:w-6/12 max-w-4xl lg:text-center lg:items-center lg:justify-center flex flex-col text-opacity-80">
                   <WebIcons />
-                  <h4 className="leading-tight dark:text-primary-dark text-primary font-bold text-3xl lg:text-4xl mb-6">
+                  <h4 className="leading-tight dark:text-primary-dark text-primary font-bold text-3xl lg:text-4xl mb-4 lg:mb-6">
                     Stay true to the web
                   </h4>
-                  <p className="h-full text-xl lg:text-xl leading-normal text-secondary dark:text-secondary-dark">
+                  <p className="h-full lg:text-xl leading-normal text-secondary dark:text-secondary-dark">
                     People expect web app pages to load fast. On the server,
                     React lets you start streaming HTML while you’re still
                     fetching data, progressivelly filling in the remaining
@@ -188,13 +185,12 @@ export function HomeContent() {
                     even in the middle of rendering.
                   </p>
                 </div>
-                <div className="h-px w-full lg:h-auto flex grow lg:w-px my-16 lg:my-5 bg-gray-30 dark:bg-gray-50-dark bg-opacity-20" />
-                <div className="lg:w-6/12 max-w-4xl text-center items-center justify-center text-opacity-80 flex flex-col">
+                <div className="shadow-inner bg-secondary-button dark:bg-secondary-button-dark rounded-2xl p-6 xs:p-10 mx-5 lg:w-6/12 max-w-4xl lg:text-center lg:items-center lg:justify-center text-opacity-80 flex flex-col">
                   <NativeIcons />
-                  <h4 className="leading-tight dark:text-primary-dark text-primary font-bold text-3xl lg:text-4xl mb-6">
+                  <h4 className="leading-tight dark:text-primary-dark text-primary font-bold text-3xl lg:text-4xl mb-4 lg:mb-6">
                     Go truly native, too
                   </h4>
-                  <p className="h-full text-xl lg:text-xl text-secondary dark:text-secondary-dark leading-normal">
+                  <p className="h-full lg:text-xl text-secondary dark:text-secondary-dark leading-normal">
                     People expect native apps to look and feel native.{' '}
                     <Link href="https://reactnative.dev">React Native</Link>{' '}
                     lets you build apps for Android, iOS, and more with React.{' '}
@@ -205,7 +201,7 @@ export function HomeContent() {
                   </p>
                 </div>
               </div>
-              <div className="px-5 lg:px-0 max-w-4xl text-center text-secondary dark:text-secondary-dark">
+              <div className="px-5 lg:px-0 max-w-4xl lg:text-center text-secondary dark:text-secondary-dark">
                 <p className="text-xl lg:text-2xl text-secondary dark:text-secondary-dark leading-normal">
                   With React, you can be a web <i>and</i> a native developer.
                   Your team can ship to many platforms without sacrificing the
@@ -217,32 +213,31 @@ export function HomeContent() {
           </div>
         </div>
 
-        <div className="">
-          <div className="max-w-6xl mx-auto flex flex-col w-full">
-            <div className="flex-col gap-2 flex grow w-full my-16 lg:my-20 mx-auto items-center">
-              <div className="px-5 lg:px-0 max-w-4xl text-center text-opacity-80">
-                <h3 className="leading-tight dark:text-primary-dark text-primary font-bold text-4xl lg:text-5xl mb-6">
-                  Evolve with the proven approaches
-                </h3>
-                <p className="text-xl lg:text-2xl text-secondary dark:text-secondary-dark leading-normal">
-                  React approaches changes with care. Every React commit is
-                  tested on business-critical surfaces with over a billion
-                  users. Over 100,000 React components in the Meta codebase help
-                  validate every migration strategy.
-                </p>
+        <div className="max-w-6xl mx-auto flex flex-col w-full">
+          <div className="flex-col gap-2 flex grow w-full my-12 sm:my-16 lg:my-20 mx-auto items-center">
+            <div className="px-5 lg:px-0 max-w-4xl lg:text-center text-opacity-80">
+              <h3 className="leading-tight dark:text-primary-dark text-primary font-bold text-4xl lg:text-5xl mb-6">
+                Evolve with the proven approaches
+              </h3>
+              <p className="text-xl lg:text-2xl text-secondary dark:text-secondary-dark leading-normal">
+                React approaches changes with care. Every React commit is tested
+                on business-critical surfaces with over a billion users. Over
+                100,000 React components in the Meta codebase help validate
+                every migration strategy.
+              </p>
 
-                <p className="py-20 text-xl lg:text-2xl leading-normal text-secondary dark:text-secondary-dark">
-                  TODO
-                </p>
+              <p className="py-8 text-xl lg:text-2xl leading-normal text-secondary dark:text-secondary-dark">
+                TODO
+              </p>
 
-                <p className="text-xl lg:text-2xl text-secondary dark:text-secondary-dark leading-normal">
-                  The React team is always researching how to improve React.
-                  Some of these research projects take years to realize. React
-                  has a high bar for taking an idea from research to production.
-                  Only proven approaches become part of React.
-                </p>
+              <p className="text-xl lg:text-2xl text-secondary dark:text-secondary-dark leading-normal">
+                The React team is always researching how to improve React. Some
+                of these research projects take years to realize. React has a
+                high bar for taking an idea from research to production. Only
+                proven approaches become part of React.
+              </p>
 
-                {/*<p className="min-h-[500px] text-xl lg:text-2xl leading-normal text-secondary dark:text-secondary-dark">
+              {/*<p className="min-h-[500px] text-xl lg:text-2xl leading-normal text-secondary dark:text-secondary-dark">
                   <ButtonLink
                     href={'/'}
                     type="primary"
@@ -255,7 +250,6 @@ export function HomeContent() {
                       className="inline ml-1"
                     />
                   </ButtonLink></p>*/}
-              </div>
             </div>
           </div>
         </div>
@@ -332,38 +326,73 @@ export function HomeContent() {
             </div>
           </div>
         </div>*/}
+        <div className="bg-wash dark:bg-wash-dark max-w-4xl lg:max-w-7xl mx-auto w-full flex items-center flex-col px-5">
+          <div className="h-px max-w-4xl w-full flex grow bg-border dark:bg-border-dark" />
+          <div className="max-w-4xl lg:max-w-7xl mx-auto flex flex-col w-full lg:px-5">
+            <div className="flex-col gap-2 flex grow w-full my-12 sm:my-16 lg:my-20 mx-auto items-center">
+              <div className="w-full lg:text-center text-opacity-80">
+                <h3 className="leading-tight dark:text-primary-dark text-primary font-bold text-4xl lg:text-5xl mb-8">
+                  Blog
+                </h3>
+                <div className="mx-auto flex-col lg:flex-row gap-5 flex grow w-full items-start text-left">
+                  <BlogCard
+                    title="React Labs: What We've Been Working On – June 2022"
+                    date="June 15, 2022"
+                    url="/blog/2022/06/15/react-labs-what-we-have-been-working-on-june-2022"></BlogCard>
+                  <BlogCard
+                    title="React v18.0"
+                    date="March 29, 2022"
+                    url="/blog/2022/03/29/react-v18"></BlogCard>
+                  <BlogCard
+                    title="How to Upgrade to React 18"
+                    date="March 8, 2022"
+                    url="/blog/2022/03/08/react-18-upgrade-guide"></BlogCard>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
 
         <div className="shadow-inner bg-card dark:bg-card-dark">
           <div className="max-w-6xl mx-auto flex flex-col w-full">
-            <div className="flex-col gap-2 flex grow w-full my-16 lg:my-20 mx-auto items-center">
-              <div className="px-5 lg:px-0 max-w-4xl text-center text-opacity-80">
+            <div className="flex-col gap-2 flex grow w-full my-12 sm:my-16 lg:my-20 mx-auto items-center">
+              <div className="px-5 lg:px-0 max-w-4xl lg:text-center text-opacity-80">
                 <h3 className="leading-tight dark:text-primary-dark text-primary font-bold text-4xl lg:text-5xl mb-6">
                   Join a community of millions
                 </h3>
-                <p className="py-40 text-xl lg:text-2xl leading-normal text-secondary dark:text-secondary-dark">
-                  TODO
+                <p className="text-xl lg:text-2xl leading-normal text-secondary dark:text-secondary-dark">
+                  You&apos;re not alone. Two million developers visit the React
+                  site every month and the React Developer Tools extension has
+                  over three million weekly active users. React is something
+                  that people and teams can agree on.
+                  <br />
+                  <br />
+                  If you&apos;re debugging an obscure problem, chances are,
+                  somebody has already run into it before and shared a solution.
+                  React also has a vibrant ecosystem. Whether you need a table,
+                  a chart, a fully accessible datepicker, a production-grade
+                  data fetching strategy, or a 3D rendering engine, chances are
+                  you&apos;ll find what you need.
                 </p>
               </div>
             </div>
           </div>
         </div>
 
-        <div className="">
-          <div className="max-w-6xl mx-auto flex flex-col w-full">
-            <div className="flex-col gap-2 flex grow w-full my-16 lg:my-20 mx-auto items-center">
-              <div className="px-5 lg:px-0 max-w-4xl text-center text-opacity-80">
-                <Logo className="text-link dark:text-link-dark w-28 lg:w-36 mt-12 h-auto mx-auto self-start" />
-                <h3 className="mt-4 mb-8 leading-tight dark:text-primary-dark text-primary font-bold text-4xl lg:text-5xl mb-6">
-                  Welcome to the React community!
-                </h3>
-                <ButtonLink
-                  href={'/learn'}
-                  type="primary"
-                  size="lg"
-                  label="Take the Tutorial">
-                  Get Started
-                </ButtonLink>
-              </div>
+        <div className="max-w-6xl mx-auto flex flex-col w-full">
+          <div className="flex-col gap-2 flex grow w-full my-12 sm:my-16 lg:my-20 mx-auto items-center">
+            <div className="px-5 lg:px-0 mb-6 max-w-4xl text-center text-opacity-80">
+              <Logo className="text-link dark:text-link-dark w-24 sm:w-28 lg:w-32  mt-12 h-auto mx-auto self-start" />
+              <h3 className="mt-4 mb-8 leading-tight dark:text-primary-dark text-primary font-bold text-4xl lg:text-5xl">
+                Welcome to the React community!
+              </h3>
+              <ButtonLink
+                href={'/learn'}
+                type="primary"
+                size="lg"
+                label="Take the Tutorial">
+                Get Started
+              </ButtonLink>
             </div>
           </div>
         </div>
@@ -375,8 +404,8 @@ export function HomeContent() {
 function Example1() {
   return (
     <div className="lg:pl-10 lg:pr-5 w-full">
-      <div className="my-16 lg:my-20 max-w-6xl mx-auto flex flex-col w-full lg:rounded-2xl bg-card dark:bg-card-dark">
-        <div className="flex-col-reverse gap-0 lg:gap-5 lg:rounded-xl bg-gray-10 dark:bg-gray-70 shadow-inner lg:flex-row flex grow w-full mx-auto items-center">
+      <div className="my-12 sm:my-16 lg:my-20 max-w-6xl mx-auto flex flex-col w-full lg:rounded-2xl bg-card dark:bg-card-dark">
+        <div className="flex-col-reverse gap-0 lg:gap-5 lg:rounded-2xl bg-gray-10 dark:bg-gray-70 shadow-inner lg:flex-row flex grow w-full mx-auto items-center">
           <div className="lg:-m-5 h-full shadow-nav dark:shadow-nav-dark lg:rounded-2xl bg-wash dark:bg-gray-95 w-full flex grow flex-col">
             <div className="w-full bg-card dark:bg-wash-dark lg:rounded-t-2xl border-b border-black/5 dark:border-white/5">
               <h3 className="text-sm my-1 mx-5 text-tertiary dark:text-tertiary-dark select-none">
@@ -444,8 +473,8 @@ function Example2() {
 
   return (
     <div className="lg:pl-10 lg:pr-5 w-full">
-      <div className="my-16 lg:my-20 max-w-6xl mx-auto flex flex-col w-full lg:rounded-2xl bg-card dark:bg-card-dark">
-        <div className="flex-col-reverse gap-0 lg:gap-5 lg:rounded-xl bg-gray-10 dark:bg-gray-70 shadow-inner lg:flex-row flex grow w-full mx-auto items-center">
+      <div className="my-12 sm:my-16 lg:my-20 max-w-6xl mx-auto flex flex-col w-full lg:rounded-2xl bg-card dark:bg-card-dark">
+        <div className="flex-col-reverse gap-0 lg:gap-5 lg:rounded-2xl bg-gray-10 dark:bg-gray-70 shadow-inner lg:flex-row flex grow w-full mx-auto items-center">
           <div className="lg:-m-5 h-full shadow-nav dark:shadow-nav-dark lg:rounded-2xl bg-wash dark:bg-gray-95 w-full flex grow flex-col">
             <div className="w-full bg-card dark:bg-wash-dark lg:rounded-t-2xl border-b border-black/5 dark:border-white/5">
               <h3 className="text-sm my-1 mx-5 text-tertiary dark:text-tertiary-dark select-none">
@@ -474,7 +503,7 @@ function Example2() {
 }`}</div>
             </CodeBlock>
           </div>
-          <div className="lg:-my-20 w-full p-2.5 sm:p-5 lg:p-10 flex grow justify-center">
+          <div className="lg:-my-20 w-full p-5 sm:p-5 lg:p-10 flex grow justify-center">
             <ExamplePanel noShadow={false} noPadding={true}>
               <VideoList videos={videos} />
             </ExamplePanel>
@@ -488,8 +517,8 @@ function Example2() {
 function Example3() {
   return (
     <div className="lg:pl-10 lg:pr-5 w-full">
-      <div className="my-16 lg:my-20 max-w-6xl mx-auto flex flex-col w-full lg:rounded-2xl bg-card dark:bg-card-dark">
-        <div className="flex-col-reverse gap-0 lg:gap-5 lg:rounded-xl bg-gray-10 dark:bg-gray-70 shadow-inner lg:flex-row flex grow w-full mx-auto items-center">
+      <div className="my-12 sm:my-16 lg:my-20 max-w-6xl mx-auto flex flex-col w-full lg:rounded-2xl bg-card dark:bg-card-dark">
+        <div className="flex-col-reverse gap-0 lg:gap-5 lg:rounded-2xl bg-gray-10 dark:bg-gray-70 shadow-inner lg:flex-row flex grow w-full mx-auto items-center">
           <div className="lg:-m-5 h-full shadow-nav dark:shadow-nav-dark lg:rounded-2xl bg-wash dark:bg-gray-95 w-full flex grow flex-col">
             <div className="w-full bg-card dark:bg-wash-dark lg:rounded-t-2xl border-b border-black/5 dark:border-white/5">
               <h3 className="text-sm my-1 mx-5 text-tertiary dark:text-tertiary-dark select-none">
@@ -524,7 +553,7 @@ function Example3() {
               path="my-page.html"
               hasRefresh={false}>
               <ExamplePanel noPadding={true} noShadow={true} height="20rem">
-                <div className="mt-16 p-5 flex flex-col gap-3">
+                <div className="mt-16 p-4 flex flex-col gap-3">
                   <h1 className="text-primary text-2xl font-bold mb-0.5">
                     Interesting links
                   </h1>
@@ -734,8 +763,8 @@ function Example4() {
 
   return (
     <div className="lg:pl-10 lg:pr-5 w-full">
-      <div className="my-16 lg:my-20 max-w-6xl mx-auto flex flex-col w-full lg:rounded-2xl bg-card dark:bg-card-dark">
-        <div className="flex-col-reverse gap-0 lg:gap-5 lg:rounded-xl bg-gray-10 dark:bg-gray-70 shadow-inner lg:flex-row flex grow w-full mx-auto items-center">
+      <div className="my-12 sm:my-16 lg:my-20 max-w-6xl mx-auto flex flex-col w-full lg:rounded-2xl bg-card dark:bg-card-dark">
+        <div className="flex-col-reverse gap-0 lg:gap-5 lg:rounded-2xl bg-gray-10 dark:bg-gray-70 shadow-inner lg:flex-row flex grow w-full mx-auto items-center">
           <div className="lg:-m-5 h-full shadow-nav dark:shadow-nav-dark lg:rounded-2xl bg-wash dark:bg-gray-95 w-full flex grow flex-col">
             <div className="w-full bg-card dark:bg-wash-dark lg:rounded-t-2xl border-b border-black/5 dark:border-white/5">
               <h3 className="text-sm my-1 mx-5 text-tertiary dark:text-tertiary-dark select-none">
@@ -805,7 +834,7 @@ function ExamplePanel({children, noPadding, noShadow, height}) {
     <div
       className={cn(
         'rounded-2xl mx-auto text-secondary leading-normal bg-white overflow-hidden w-full overflow-y-scroll',
-        noPadding ? 'p-0' : 'p-4',
+        noPadding ? 'p-0' : 'p-4 pr-2',
         noShadow ? 'shadow-none' : 'shadow-nav dark:shadow-nav-dark'
       )}
       style={{height}}>
@@ -878,7 +907,7 @@ function BrowserChrome({
           />
         )}
       </div>
-      <div className="">{children}</div>
+      <div>{children}</div>
     </div>
   );
 }
@@ -894,6 +923,7 @@ function ConfPage({conf, confPromise, playlistPromise}) {
           {conf.name}
         </h1>
       </Cover>
+      <Search />
       <Suspense fallback={<PlaylistLoading />}>
         <Talks conf={conf} playlistPromise={playlistPromise} />
       </Suspense>
@@ -906,12 +936,12 @@ function PlaylistLoading() {
     <div className="flex flex-col items-center h-[24rem] overflow-hidden">
       <div className="w-full">
         <div className="relative overflow-hidden before:-skew-x-12 before:absolute before:inset-0 before:-translate-x-full before:animate-[shimmer_2.5s_infinite] before:bg-gradient-to-r before:from-transparent before:via-white/50 before:to-transparent">
-          <div className="space-y-5 space-x-5">
-            <div className="pt-5 pl-5">
+          <div className="space-y-5 space-x-4">
+            <div className="pt-5 pl-4">
               <div className="h-5 w-20 rounded-lg bg-gray-10"></div>
             </div>
             <div className="flex flex-row items-center gap-3">
-              <div className="aspect-video w-36 rounded-lg bg-gray-10"></div>
+              <div className="aspect-video w-32 xs:w-36 rounded-lg bg-gray-10"></div>
               <div className="flex flex-col gap-2">
                 <div className="h-3 w-40 rounded-lg bg-gray-10"></div>
                 <div className="h-3 w-32 rounded-lg bg-gray-10"></div>
@@ -919,7 +949,7 @@ function PlaylistLoading() {
               </div>
             </div>
             <div className="flex flex-row items-center gap-3">
-              <div className="aspect-video w-36 rounded-lg bg-gray-10"></div>
+              <div className="aspect-video w-32 xs:w-36 rounded-lg bg-gray-10"></div>
               <div className="flex flex-col gap-2">
                 <div className="h-3 w-40 rounded-lg bg-gray-10"></div>
                 <div className="h-3 w-32 rounded-lg bg-gray-10"></div>
@@ -927,7 +957,7 @@ function PlaylistLoading() {
               </div>
             </div>
             <div className="flex flex-row items-center gap-3">
-              <div className="aspect-video w-36 rounded-lg bg-gray-10"></div>
+              <div className="aspect-video w-32 xs:w-36 rounded-lg bg-gray-10"></div>
               <div className="flex flex-col gap-2">
                 <div className="h-3 w-40 rounded-lg bg-gray-10"></div>
                 <div className="h-3 w-32 rounded-lg bg-gray-10"></div>
@@ -935,7 +965,7 @@ function PlaylistLoading() {
               </div>
             </div>
             <div className="flex flex-row items-center gap-3">
-              <div className="aspect-video w-36 rounded-lg bg-gray-10"></div>
+              <div className="aspect-video w-32 xs:w-36 rounded-lg bg-gray-10"></div>
               <div className="flex flex-col gap-2">
                 <div className="h-3 w-40 rounded-lg bg-gray-10"></div>
                 <div className="h-3 w-32 rounded-lg bg-gray-10"></div>
@@ -962,11 +992,11 @@ function VideoList({videos, children}) {
     headingText = videos.length + ' Videos';
   }
   return (
-    <div className="relative py-5 pl-5 pr-2.5">
-      <h2 className="font-bold text-xl text-primary -mt-1 pb-4 leading-snug">
+    <div className="relative p-4">
+      <h2 className="font-bold text-xl text-primary pb-4 leading-snug">
         {headingText}
       </h2>
-      <div className="flex flex-col gap-5">
+      <div className="flex flex-col gap-4">
         {videos.map((video) => (
           <VideoRow key={video.id} video={video} />
         ))}
@@ -976,10 +1006,25 @@ function VideoList({videos, children}) {
   );
 }
 
+function Search({}) {
+  return (
+    <div className="mx-5 mt-5">
+      <button
+        type="button"
+        className={cn(
+          'flex pl-4 py-4 h-10 w-full bg-secondary-button outline-none focus:outline-link betterhover:hover:bg-opacity-80 pointer items-center text-left text-gray-30 rounded-full align-middle text-base'
+        )}>
+        <IconSearch className="mr-3 align-middle text-gray-30 shrink-0 group-betterhover:hover:text-gray-70" />
+        Search
+      </button>
+    </div>
+  );
+}
+
 function Cover({background, children}) {
   return (
     <div className="h-40 mt-16 overflow-hidden relative items-center flex">
-      <div className="absolute inset-0 px-5 py-2.5 flex items-end bg-gradient-to-t from-black/40 via-black/0">
+      <div className="absolute inset-0 px-4 py-2 flex items-end bg-gradient-to-t from-black/40 via-black/0">
         {children}
       </div>
       <img
@@ -1032,7 +1077,7 @@ function VideoThumbnail({video}) {
       target="_blank"
       rel="noreferrer"
       className={cn(
-        'aspect-video w-36 select-none flex-col shadow-inner-border rounded-lg flex items-center overflow-hidden justify-center align-middle text-white/50 bg-cover bg-white bg-[conic-gradient(at_top_right,_var(--tw-gradient-stops))]',
+        'aspect-video w-32 xs:w-36 select-none flex-col shadow-inner-border rounded-lg flex items-center overflow-hidden justify-center align-middle text-white/50 bg-cover bg-white bg-[conic-gradient(at_top_right,_var(--tw-gradient-stops))]',
         image === 'blue' && 'from-yellow-50 via-blue-50 to-purple-60',
         image === 'red' && 'from-yellow-50 via-red-50 to-purple-60',
         image === 'green' && 'from-yellow-50 via-green-50 to-purple-60',
@@ -1096,15 +1141,15 @@ function LikeButton() {
   return (
     <button
       className={cn(
-        'flex items-center justify-center w-12 h-12 cursor-pointer rounded-full text-tertiary hover:bg-card',
+        'flex items-center justify-center w-10 h-10 cursor-pointer rounded-full text-tertiary hover:bg-card',
         saved && 'text-red-50'
       )}
       aria-label={saved ? 'Unsave' : 'Save'}
       onClick={() => setSaved(!saved)}>
       {saved ? (
         <svg
-          width="24"
-          height="24"
+          className="w-6 h-6"
+          viewBox="0 0 24 24"
           fill="none"
           xmlns="http://www.w3.org/2000/svg">
           <path
@@ -1114,8 +1159,8 @@ function LikeButton() {
         </svg>
       ) : (
         <svg
-          width="24"
-          height="24"
+          className="w-6 h-6"
+          viewBox="0 0 24 24"
           fill="none"
           xmlns="http://www.w3.org/2000/svg">
           <path
@@ -1132,9 +1177,9 @@ function LikeButton() {
 
 function NativeIcons() {
   return (
-    <div className="flex items-center justify-center gap-5 mb-8">
+    <div className="flex lg:items-center lg:justify-center gap-5 mb-5 lg:mb-8">
       <svg
-        className="w-20 h-20 lg:w-24 lg:h-24 rounded-3xl shadow-2xl bg-wash"
+        className="w-16 h-16 lg:w-20 lg:h-20 rounded-2xl lg:rounded-3xl shadow-2xl bg-wash"
         viewBox="0 0 120 120"
         fill="none"
         xmlns="http://www.w3.org/2000/svg">
@@ -1145,7 +1190,7 @@ function NativeIcons() {
       </svg>
 
       <svg
-        className="w-20 h-20 lg:w-24 lg:h-24 rounded-3xl shadow-2xl bg-wash"
+        className="w-16 h-16 lg:w-20 lg:h-20 rounded-2xl lg:rounded-3xl shadow-2xl bg-wash"
         viewBox="0 0 120 120"
         fill="none"
         xmlns="http://www.w3.org/2000/svg">
@@ -1192,10 +1237,10 @@ function NativeIcons() {
 
 function WebIcons() {
   return (
-    <div className="flex items-center justify-center gap-5 mb-8">
+    <div className="flex lg:items-center lg:justify-center gap-5 mb-5 lg:mb-8">
       <svg
         fill="none"
-        className="w-20 h-20 lg:w-24 lg:h-24 rounded-3xl shadow-2xl bg-wash"
+        className="w-16 h-16 lg:w-20 lg:h-20 rounded-2xl lg:rounded-3xl shadow-2xl bg-wash"
         viewBox="0 0 120 120"
         xmlns="http://www.w3.org/2000/svg">
         <g clipPath="url(#ee)">
@@ -1263,7 +1308,7 @@ function WebIcons() {
       </svg>
 
       <svg
-        className="w-20 h-20 lg:w-24 lg:h-24 rounded-3xl shadow-2xl bg-wash"
+        className="w-16 h-16 lg:w-20 lg:h-20 rounded-2xl lg:rounded-3xl shadow-2xl bg-wash"
         fill="none"
         viewBox="0 0 120 120"
         xmlns="http://www.w3.org/2000/svg">
@@ -1482,7 +1527,7 @@ function WebIcons() {
       </svg>
       <svg
         fill="none"
-        className="w-20 h-20 lg:w-24 lg:h-24 rounded-3xl shadow-2xl bg-wash"
+        className="w-16 h-16 lg:w-20 lg:h-20 rounded-2xl lg:rounded-3xl shadow-2xl bg-wash"
         viewBox="0 0 120 120"
         xmlns="http://www.w3.org/2000/svg">
         <path

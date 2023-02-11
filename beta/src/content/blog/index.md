@@ -5,9 +5,9 @@ title: React Blog
 <Intro>
 
 This blog is the official source for the updates from the React team. Anything important, including release notes or deprecation notices, will be posted here first. You can also follow the [@reactjs](https://twitter.com/reactjs) account on Twitter, but you won’t miss anything essential if you only read this blog.
-
+<br />
 </Intro>
-
+<div className="sm:-mx-5 flex flex-col gap-5">
 <BlogCard title="React Labs: What We've Been Working On – June 2022" date="June 15, 2022" url="/blog/2022/06/15/react-labs-what-we-have-been-working-on-june-2022">
 React 18 was years in the making, and with it brought valuable lessons for the React team. Its release was the result of many years of research and exploring many paths. Some of those paths were successful; many more were dead-ends that led to new insights. One lesson we’ve learned is that it’s frustrating for the community to wait for new features without having insight into these paths that we’re exploring. [...]
 <ReadBlogPost path="/blog/2022/06/15/react-labs-what-we-have-been-working-on-june-2022" />
@@ -43,6 +43,7 @@ The React team is excited to share a few updates:
 2020 has been a long year. As it comes to an end we wanted to share a special Holiday Update on our research into zero-bundle-size React Server Components. To introduce React Server Components, we have prepared a talk and a demo. If you want, you can check them out during the holidays, or later when work picks back up in the new year. [...]
 <ReadBlogPost path="/blog/2020/12/21/data-fetching-with-react-server-components" />
 </BlogCard>
+</div>
 
 ---
 

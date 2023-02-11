@@ -15,8 +15,8 @@ export interface BlogCardProps {
 function BlogCard({title, date, url, children}: BlogCardProps) {
   return (
     <Link href={url as string}>
-      <div className="-mx-2.5 sm:-mx-6 my-6 p-5 sm:p-6 cursor-pointer border-border border dark:border-border-dark hover:bg-card group hover:dark:bg-card-dark rounded-2xl text-xl text-primary dark:text-primary-dark leading-relaxed">
-        <h2 className="font-bold text-3xl group-hover:underline leading-snug mb-4">
+      <div className="p-5 sm:p-5 cursor-pointer w-full h-full flex flex-col flex-1 border-border border dark:border-border-dark hover:bg-card group hover:dark:bg-card-dark rounded-2xl text-xl text-primary dark:text-primary-dark leading-relaxed">
+        <h2 className="font-bold text-2xl lg:text-3xl group-hover:underline leading-snug lg:mb-4">
           {title}
         </h2>
         <span className="text-base text-tertiary dark:text-tertiary-dark">

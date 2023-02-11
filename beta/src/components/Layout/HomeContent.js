@@ -23,7 +23,7 @@ export function HomeContent() {
           <h1 className="text-5xl lg:text-6xl self-center flex font-bold leading-snug text-primary dark:text-primary-dark">
             React
           </h1>
-          <p className="text-4xl py-1 text-center text-secondary dark:text-primary-dark leading-snug self-center">
+          <p className="text-4xl max-w-lg md:max-w-full py-1 text-center text-secondary dark:text-primary-dark leading-snug self-center">
             The library for web and native user interfaces
           </p>
           <div className="mt-5 self-center flex gap-2 w-full sm:w-auto flex-col sm:flex-row">

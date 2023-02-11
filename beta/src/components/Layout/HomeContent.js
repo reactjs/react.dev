@@ -501,14 +501,15 @@ function Example3() {
               noShadow={true}
               noMargin={true}>
               <div className="language-html">{`<html>
-  <head><title>My web page</title></head>
+  <head>
+    <title>Interesting links</title>
+  </head>
   <body>
-    <h1>Welcome to my personal page.</h1>
-    <p>I will collect some interesting links here.</p>
+    <h1>Interesting links</h1>
     <div id="my-react-root">
-      <!-- This part is rendered with React on the client -->
+      <!-- This part will be rendered with React -->
     </div>
-    <p>Thank you for visiting!</p>
+    <p>Thank you for visiting my page!</p>
     <script src="react.production.min.js"></script>
     <script src="react-dom.production.min.js"></script>
     <script src="my-components.min.js"></script>
@@ -525,9 +526,8 @@ function Example3() {
               <ExamplePanel noPadding={true} noShadow={true} height="20rem">
                 <div className="mt-16 p-5 flex flex-col gap-3">
                   <h1 className="text-primary text-2xl font-bold mb-0.5">
-                    Welcome to my personal page.
+                    Interesting links
                   </h1>
-                  <p>I will collect some interesting links here.</p>
                   <VideoRow
                     video={{
                       title: 'React Documentary',
@@ -536,7 +536,7 @@ function Example3() {
                       url: 'https://www.youtube.com/watch?v=8pDqJVdNa44',
                     }}
                   />
-                  <p>Thank you for visiting!</p>
+                  <p>Thank you for visiting my page!</p>
                 </div>
               </ExamplePanel>
             </BrowserChrome>

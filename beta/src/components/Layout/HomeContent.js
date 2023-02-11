@@ -760,8 +760,8 @@ function BrowserChrome({children, setPostPromise, setAlbumsPromise}) {
         <div className="relative bg-gray-10 text-sm text-tertiary text-center rounded-full p-1 w-full flex-row flex space-between items-center">
           <div className="h-6 w-6" />
           <div className="w-full leading-snug">
-            <span className="text-gray-30">example.com</span>
-            /confs/react-conf-2021
+            <span className="text-gray-30">example.com/</span>
+            confs/react-conf-2021
           </div>
           <div
             className={

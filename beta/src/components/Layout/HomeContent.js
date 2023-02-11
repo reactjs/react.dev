@@ -682,15 +682,9 @@ function PlaylistPage({playlist, playlistPromise, videosPromise}) {
   return (
     <div className="overflow-y-scroll">
       <Cover background={playlist.cover}>
-        <select
-          id="year"
-          className="appearance-none bg-transparent text-primary-dark text-2xl font-bold mb-0.5">
-          <option value="2021" defaultValue>
-            {playlist.name}
-          </option>
-          <option value="2020">{playlist.name}</option>
-        </select>
-        <IconChevron displayDirection="down" className="text-white mb-2 ml-1" />
+        <h1 className="text-primary-dark text-2xl font-bold mb-0.5">
+          {playlist.name}
+        </h1>
       </Cover>
       <Suspense fallback={<PlaylistLoading />}>
         <Discography playlist={playlist} videosPromise={videosPromise} />

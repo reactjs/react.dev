@@ -919,9 +919,15 @@ function ConfPage({conf, confPromise, playlistPromise}) {
   return (
     <div className="overflow-y-scroll">
       <Cover background={conf.cover}>
-        <h1 className="text-primary-dark text-2xl font-bold mb-0.5">
-          {conf.name}
-        </h1>
+        <select
+          id="year"
+          className="appearance-none bg-transparent text-primary-dark text-2xl font-bold mb-0.5">
+          <option value="2021" defaultValue>
+            {conf.name}
+          </option>
+          <option value="2020">{conf.name}</option>
+        </select>
+        <IconChevron displayDirection="down" className="text-white mb-2 ml-1" />
       </Cover>
       <Search />
       <Suspense fallback={<PlaylistLoading />}>
@@ -1008,7 +1014,7 @@ function VideoList({videos, children}) {
 
 function Search({}) {
   return (
-    <div className="mx-5 mt-5">
+    <div className="mx-4 mt-5">
       <button
         type="button"
         className={cn(

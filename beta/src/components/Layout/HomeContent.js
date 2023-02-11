@@ -380,7 +380,7 @@ function Example1() {
             <ExamplePanel>
               <VideoRow
                 video={{
-                  title: 'Some video',
+                  title: 'My video',
                   description: 'Video description',
                   image: 'blue',
                   url: null,
@@ -414,12 +414,6 @@ function Example2() {
       description: 'Video description',
       image: 'green',
     },
-    {
-      id: 3,
-      title: 'Fourth video',
-      description: 'Video description',
-      image: 'purple',
-    },
   ];
 
   return (
@@ -445,7 +439,9 @@ function Example2() {
     <section>
       <h2>{heading}</h2>
       {videos.map(video =>
-        <VideoRow key={video.id} video={video} />
+        <VideoRow
+          key={video.id}
+          video={video} />
       )}
     </section>
   );
@@ -470,7 +466,7 @@ function Example3() {
     {
       id: 0,
       title: 'React 18 Keynote',
-      description: 'Andrew Clark, Lauren Tan, Juan Tejada, Ricky Hanlon',
+      description: 'Andrew Clark, Lauren Tan, Juan Tejada, and Ricky Hanlon',
       url: 'https://www.youtube.com/watch?v=FZ0cG47msEk&list=PLNG_1j3cPCaZZ7etkzWA7JfdmKWT0pMsa&index=1',
       image: {
         speakers: [
@@ -535,6 +531,117 @@ function Example3() {
         speakers: ['https://i.imgur.com/NkwwAZF.png'],
       },
     },
+    {
+      id: 7,
+      title: 'Things I learnt from the new React docs',
+      description: "Debbie O'Brien",
+      url: 'https://www.youtube.com/watch?v=-7odLW_hG7s&list=PLNG_1j3cPCaZZ7etkzWA7JfdmKWT0pMsa&index=8',
+      image: {
+        speakers: ['https://i.imgur.com/uhF5Hyo.jpg'],
+      },
+    },
+    {
+      id: 8,
+      title: 'Learning in the Browser',
+      description: 'Sarah Rainsberger',
+      url: 'https://www.youtube.com/watch?v=5X-WEQflCL0&list=PLNG_1j3cPCaZZ7etkzWA7JfdmKWT0pMsa&index=9',
+      image: {
+        speakers: ['https://i.imgur.com/s36xhcT.jpg'],
+      },
+    },
+    {
+      id: 9,
+      title: 'The ROI of Designing with React',
+      description: 'Linton Ye',
+      url: 'https://www.youtube.com/watch?v=7cPWmID5XAk&list=PLNG_1j3cPCaZZ7etkzWA7JfdmKWT0pMsa&index=10',
+      image: {
+        speakers: ['https://i.imgur.com/Frxfjpq.jpg'],
+      },
+    },
+    {
+      id: 10,
+      title: 'Interactive playgrounds with React',
+      description: 'Delba de Oliveira',
+      url: 'https://www.youtube.com/watch?v=zL8cz2W0z34&list=PLNG_1j3cPCaZZ7etkzWA7JfdmKWT0pMsa&index=11',
+      image: {
+        speakers: ['https://i.imgur.com/N1zNMrC.jpg'],
+      },
+    },
+    {
+      id: 11,
+      title: 'Re-introducing Relay',
+      description: 'Robert Balicki',
+      url: 'https://www.youtube.com/watch?v=lhVGdErZuN4&list=PLNG_1j3cPCaZZ7etkzWA7JfdmKWT0pMsa&index=12',
+      image: {
+        speakers: ['https://i.imgur.com/vxgsVlt.jpg'],
+      },
+    },
+    {
+      id: 12,
+      title: 'React Native Desktop',
+      description: 'Eric Rozell and Steven Moyes',
+      url: 'https://www.youtube.com/watch?v=9L4FFrvwJwY&list=PLNG_1j3cPCaZZ7etkzWA7JfdmKWT0pMsa&index=13',
+      image: {
+        speakers: [
+          'https://i.imgur.com/roifbxu.jpg',
+          'https://i.imgur.com/Y0k7sBd.jpg',
+        ],
+      },
+    },
+    {
+      id: 13,
+      title: 'On-device Machine Learning for React Native',
+      description: 'Roman Rädle',
+      url: 'https://www.youtube.com/watch?v=NLj73vrc2I8&list=PLNG_1j3cPCaZZ7etkzWA7JfdmKWT0pMsa&index=14',
+      image: {
+        speakers: ['https://i.imgur.com/pECN2Yi.jpg'],
+      },
+    },
+    {
+      id: 14,
+      title: 'React 18 for External Store Libraries',
+      description: 'Daishi Kato',
+      url: 'https://www.youtube.com/watch?v=oPfSC5bQPR8&list=PLNG_1j3cPCaZZ7etkzWA7JfdmKWT0pMsa&index=15',
+      image: {
+        speakers: ['https://i.imgur.com/NqPgNiJ.jpg'],
+      },
+    },
+    {
+      id: 15,
+      title: 'Building accessible components with React 18',
+      description: 'Diego Haz',
+      url: 'https://www.youtube.com/watch?v=dcm8fjBfro8&list=PLNG_1j3cPCaZZ7etkzWA7JfdmKWT0pMsa&index=16',
+      image: {
+        speakers: ['https://i.imgur.com/47mWLlJ.jpg'],
+      },
+    },
+    {
+      id: 16,
+      title: 'Accessible Japanese Form Components with React',
+      description: 'Tafu Nakazaki',
+      url: 'https://www.youtube.com/watch?v=S4a0QlsH0pU&list=PLNG_1j3cPCaZZ7etkzWA7JfdmKWT0pMsa&index=17',
+      image: {
+        speakers: ['https://i.imgur.com/yJvnZQy.jpg'],
+      },
+    },
+    {
+      id: 17,
+      title: 'UI Tools for artists',
+      description: 'Lyle Troxell',
+      url: 'https://www.youtube.com/watch?v=b3l4WxipFsE&list=PLNG_1j3cPCaZZ7etkzWA7JfdmKWT0pMsa&index=18',
+      image: {
+        speakers: ['https://i.imgur.com/cs03udp.jpg'],
+      },
+    },
+    {
+      id: 18,
+      title: 'Hydrogen + React 18',
+      description: 'Helen Lin',
+      url: 'https://www.youtube.com/watch?v=HS6vIYkSNks&list=PLNG_1j3cPCaZZ7etkzWA7JfdmKWT0pMsa&index=19',
+      image: {
+        speakers: ['https://i.imgur.com/4S4N5n1.jpg'],
+      },
+    },
   ];
 
   return (
@@ -544,7 +651,7 @@ function Example3() {
           <div className="lg:-m-5 h-full shadow-nav dark:shadow-nav-dark lg:rounded-2xl bg-wash dark:bg-gray-95 w-full flex grow flex-col">
             <div className="w-full bg-card dark:bg-wash-dark lg:rounded-t-2xl border-b border-black/5 dark:border-white/5">
               <h3 className="text-sm my-1 mx-5 text-tertiary dark:text-tertiary-dark select-none">
-                playlists/[slug].js
+                conferences/[slug].js
               </h3>
             </div>
             <CodeBlock
@@ -554,15 +661,15 @@ function Example3() {
               <div>{`import { db } from './database.js';
 import { Suspense } from 'react';
 
-async function PlaylistPage({ slug }) {
-  const playlist = await db.Playlists.find({ slug });
+async function ConferencePage({ slug }) {
+  const conf = await db.Conferences.find({ slug });
   return (
     <main>
-      <Cover background={playlist.cover}>
-        <h1>{playlist.name}</h1>
+      <Cover background={conf.cover}>
+        <h1>{conf.name}</h1>
       </Cover>
-      <Suspense fallback={<PlaylistLoading />}>
-        <Playlist playlistId={playlist.id} />
+      <Suspense fallback={<LoadingPlaylist />}>
+        <Playlist playlistId={conf.playlistId} />
       </Suspense>
     </main>
   );
@@ -646,7 +753,7 @@ function BrowserChrome({children, setPostPromise, setAlbumsPromise}) {
           <div className="h-6 w-6" />
           <div className="w-full leading-snug">
             <span className="text-gray-30">example.com</span>
-            /playlists/react-conf-2021
+            /conferences/react-conf-2021
           </div>
           <div
             className={

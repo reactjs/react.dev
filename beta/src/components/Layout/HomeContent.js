@@ -1015,7 +1015,7 @@ function VideoList({videos, children}) {
 function Search({}) {
   return (
     <form className="mx-4 mt-5">
-      <label for="search" className="sr-only">
+      <label htmlFor="search" className="sr-only">
         Search
       </label>
       <div className="relative w-full">

@@ -251,14 +251,14 @@ export default function TopNav({
           'backdrop-filter backdrop-blur-lg backdrop-saturate-200 transition-shadow bg-opacity-90 items-center w-full flex justify-between bg-wash dark:bg-wash-dark dark:bg-opacity-95 px-1.5 lg:px-5 lg:pr-5 z-50',
           {'dark:shadow-nav-dark shadow-nav': isScrolled || isOpen}
         )}>
-        <div className="h-16 w-full gap-0 sm:gap-2.5 flex justify-center items-center justify-between">
+        <div className="h-16 w-full gap-0 sm:gap-2.5 flex items-center justify-between">
           <div className="3xl:flex-1 flex flex-row -space-x-1.5">
             <button
               type="button"
               aria-label="Menu"
               onClick={() => setIsOpen(!isOpen)}
               className={cn(
-                'flex lg:hidden w-12 h-12 items-center rounded-full items-center justify-center hover:bg-primary/5 hover:dark:bg-primary-dark/5 outline-link',
+                'flex lg:hidden w-12 h-12 rounded-full items-center justify-center hover:bg-primary/5 hover:dark:bg-primary-dark/5 outline-link',
                 {
                   'text-link dark:text-link-dark': isOpen,
                 }
@@ -304,7 +304,7 @@ export default function TopNav({
                   aria-label="Give feedback"
                   type="button"
                   className={cn(
-                    'flex w-12 h-12 items-center rounded-full items-center justify-center hover:bg-primary/5 hover:dark:bg-primary-dark/5 outline-link',
+                    'flex w-12 h-12 rounded-full items-center justify-center hover:bg-primary/5 hover:dark:bg-primary-dark/5 outline-link',
                     {
                       'bg-secondary-button dark:bg-secondary-button-dark':
                         showFeedback,
@@ -336,7 +336,7 @@ export default function TopNav({
                   onClick={() => {
                     window.__setPreferredTheme('dark');
                   }}
-                  className="flex w-12 h-12 items-center rounded-full items-center justify-center hover:bg-primary/5 hover:dark:bg-primary-dark/5 outline-link">
+                  className="flex w-12 h-12 rounded-full items-center justify-center hover:bg-primary/5 hover:dark:bg-primary-dark/5 outline-link">
                   {darkIcon}
                 </button>
               </div>
@@ -347,7 +347,7 @@ export default function TopNav({
                   onClick={() => {
                     window.__setPreferredTheme('light');
                   }}
-                  className="flex w-12 h-12 items-center rounded-full items-center justify-center hover:bg-primary/5 hover:dark:bg-primary-dark/5 outline-link">
+                  className="flex w-12 h-12 rounded-full items-center justify-center hover:bg-primary/5 hover:dark:bg-primary-dark/5 outline-link">
                   {lightIcon}
                 </button>
               </div>
@@ -357,7 +357,7 @@ export default function TopNav({
                   target="_blank"
                   rel="noreferrer noopener"
                   aria-label="Open on GitHub"
-                  className="flex w-12 h-12 items-center rounded-full items-center justify-center hover:bg-primary/5 hover:dark:bg-primary-dark/5 outline-link">
+                  className="flex w-12 h-12 rounded-full items-center justify-center hover:bg-primary/5 hover:dark:bg-primary-dark/5 outline-link">
                   {githubIcon}
                 </Link>
               </div>
@@ -381,7 +381,7 @@ export default function TopNav({
               className="w-full lg:h-auto grow pr-0 lg:pr-5 pt-4 lg:py-6 md:pt-4 lg:pt-4 scrolling-touch scrolling-gpu">
               {/* No fallback UI so need to be careful not to suspend directly inside. */}
               <Suspense fallback={null}>
-                <div className="ml-2.5 xs:ml-5 xs:gap-0.5 text-[13px] xs:text-base overflow-x-scroll flex flex-row lg:hidden text-base font-bold text-secondary dark:text-secondary-dark">
+                <div className="pl-2.5 xs:pl-5 xs:gap-0.5 xs:text-base overflow-x-scroll flex flex-row lg:hidden text-base font-bold text-secondary dark:text-secondary-dark">
                   <NavItem isActive={section === 'learn'} url="/learn">
                     Learn
                   </NavItem>

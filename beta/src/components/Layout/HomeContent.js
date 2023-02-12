@@ -1014,16 +1014,23 @@ function VideoList({videos, children}) {
 
 function Search({}) {
   return (
-    <div className="mx-4 mt-5">
-      <button
-        type="button"
-        className={cn(
-          'flex pl-4 py-4 h-10 w-full bg-secondary-button outline-none focus:outline-link betterhover:hover:bg-opacity-80 pointer items-center text-left text-gray-30 rounded-full align-middle text-base'
-        )}>
-        <IconSearch className="mr-3 align-middle text-gray-30 shrink-0 group-betterhover:hover:text-gray-70" />
+    <form className="mx-4 mt-5">
+      <label for="search" className="sr-only">
         Search
-      </button>
-    </div>
+      </label>
+      <div className="relative w-full">
+        <div className="absolute inset-y-0 left-0 flex items-center pl-4 pointer-events-none">
+          <IconSearch className="text-gray-30 w-4" />
+        </div>
+        <input
+          type="text"
+          id="search"
+          className="flex pl-11 py-4 h-10 w-full bg-secondary-button outline-none focus:outline-link betterhover:hover:bg-opacity-80 pointer items-center text-left text-gray-30 rounded-full align-middle text-base"
+          placeholder="Search"
+          required
+        />
+      </div>
+    </form>
   );
 }
 

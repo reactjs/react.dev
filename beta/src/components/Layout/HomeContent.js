@@ -405,7 +405,7 @@ function Example1() {
   return (
     <div className="lg:pl-10 lg:pr-5 w-full">
       <div className="my-12 sm:my-16 lg:my-20 max-w-6xl mx-auto flex flex-col w-full lg:rounded-2xl bg-card dark:bg-card-dark">
-        <div className="flex-col-reverse gap-0 lg:gap-5 lg:rounded-2xl bg-gray-10 dark:bg-gray-70 shadow-inner lg:flex-row flex grow w-full mx-auto items-center">
+        <div className="flex-col gap-0 lg:gap-5 lg:rounded-2xl bg-gray-10 dark:bg-gray-70 shadow-inner lg:flex-row flex grow w-full mx-auto items-center">
           <div className="lg:-m-5 h-full shadow-nav dark:shadow-nav-dark lg:rounded-2xl bg-wash dark:bg-gray-95 w-full flex grow flex-col">
             <div className="w-full bg-card dark:bg-wash-dark lg:rounded-t-2xl border-b border-black/5 dark:border-white/5">
               <h3 className="text-sm my-1 mx-5 text-tertiary dark:text-tertiary-dark select-none">
@@ -474,7 +474,7 @@ function Example2() {
   return (
     <div className="lg:pl-10 lg:pr-5 w-full">
       <div className="my-12 sm:my-16 lg:my-20 max-w-6xl mx-auto flex flex-col w-full lg:rounded-2xl bg-card dark:bg-card-dark">
-        <div className="flex-col-reverse gap-0 lg:gap-5 lg:rounded-2xl bg-gray-10 dark:bg-gray-70 shadow-inner lg:flex-row flex grow w-full mx-auto items-center">
+        <div className="flex-col gap-0 lg:gap-5 lg:rounded-2xl bg-gray-10 dark:bg-gray-70 shadow-inner lg:flex-row flex grow w-full mx-auto items-center">
           <div className="lg:-m-5 h-full shadow-nav dark:shadow-nav-dark lg:rounded-2xl bg-wash dark:bg-gray-95 w-full flex grow flex-col">
             <div className="w-full bg-card dark:bg-wash-dark lg:rounded-t-2xl border-b border-black/5 dark:border-white/5">
               <h3 className="text-sm my-1 mx-5 text-tertiary dark:text-tertiary-dark select-none">
@@ -518,7 +518,7 @@ function Example3() {
   return (
     <div className="lg:pl-10 lg:pr-5 w-full">
       <div className="my-12 sm:my-16 lg:my-20 max-w-6xl mx-auto flex flex-col w-full lg:rounded-2xl bg-card dark:bg-card-dark">
-        <div className="flex-col-reverse gap-0 lg:gap-5 lg:rounded-2xl bg-gray-10 dark:bg-gray-70 shadow-inner lg:flex-row flex grow w-full mx-auto items-center">
+        <div className="flex-col gap-0 lg:gap-5 lg:rounded-2xl bg-gray-10 dark:bg-gray-70 shadow-inner lg:flex-row flex grow w-full mx-auto items-center">
           <div className="lg:-m-5 h-full shadow-nav dark:shadow-nav-dark lg:rounded-2xl bg-wash dark:bg-gray-95 w-full flex grow flex-col">
             <div className="w-full bg-card dark:bg-wash-dark lg:rounded-t-2xl border-b border-black/5 dark:border-white/5">
               <h3 className="text-sm my-1 mx-5 text-tertiary dark:text-tertiary-dark select-none">
@@ -764,7 +764,7 @@ function Example4() {
   return (
     <div className="lg:pl-10 lg:pr-5 w-full">
       <div className="my-12 sm:my-16 lg:my-20 max-w-6xl mx-auto flex flex-col w-full lg:rounded-2xl bg-card dark:bg-card-dark">
-        <div className="flex-col-reverse gap-0 lg:gap-5 lg:rounded-2xl bg-gray-10 dark:bg-gray-70 shadow-inner lg:flex-row flex grow w-full mx-auto items-center">
+        <div className="flex-col gap-0 lg:gap-5 lg:rounded-2xl bg-gray-10 dark:bg-gray-70 shadow-inner lg:flex-row flex grow w-full mx-auto items-center">
           <div className="lg:-m-5 h-full shadow-nav dark:shadow-nav-dark lg:rounded-2xl bg-wash dark:bg-gray-95 w-full flex grow flex-col">
             <div className="w-full bg-card dark:bg-wash-dark lg:rounded-t-2xl border-b border-black/5 dark:border-white/5">
               <h3 className="text-sm my-1 mx-5 text-tertiary dark:text-tertiary-dark select-none">

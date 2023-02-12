@@ -921,13 +921,20 @@ function ConfPage({conf, confPromise, playlistPromise}) {
       <Cover background={conf.cover}>
         <select
           id="year"
-          className="appearance-none bg-transparent text-primary-dark text-2xl font-bold mb-0.5">
+          className="appearance-none pr-8 bg-transparent text-primary-dark text-2xl font-bold mb-0.5"
+          style={{
+            backgroundSize: '4px 4px, 4px 4px',
+            backgroundRepeat: 'no-repeat',
+            backgroundPosition:
+              'calc(100% - 20px) calc(1px + 50%),calc(100% - 16px) calc(1px + 50%)',
+            backgroundImage:
+              'linear-gradient(45deg,transparent 50%,currentColor 50%),linear-gradient(135deg,currentColor 50%,transparent 50%)',
+          }}>
           <option value="2021" defaultValue>
             {conf.name}
           </option>
           <option value="2020">{conf.name}</option>
         </select>
-        <IconChevron displayDirection="down" className="text-white mb-2 ml-1" />
       </Cover>
       <Search />
       <Suspense fallback={<PlaylistLoading />}>

@@ -817,6 +817,7 @@ async function Talks({ confId }) {
                       }}
                       confPromise={confPromise}
                       playlistPromise={playlistPromise}
+                      isLoading={false}
                     />
                   </div>
                 </Suspense>
@@ -912,12 +913,18 @@ function BrowserChrome({
   );
 }
 
-function ConfPage({conf, confPromise, playlistPromise}) {
+function ConfPage({conf, isLoading, confPromise, playlistPromise}) {
   if (confPromise && !confPromise._resolved) {
     throw confPromise;
   }
   return (
-    <div className="overflow-y-scroll">
+    <div
+      className={cn(
+        'transition-opacity',
+        isLoading
+          ? 'opacity-20 select-none pointer-events-none'
+          : 'opacity-100 overflow-y-scroll'
+      )}>
       <Cover background={conf.cover}>
         <select
           id="year"

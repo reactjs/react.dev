@@ -103,7 +103,7 @@ export function HomeContent() {
             <div className="flex-col gap-2 flex grow w-full my-12 sm:my-16 lg:my-20 mx-auto items-center">
               <div className="px-5 lg:px-0 max-w-4xl lg:text-center text-opacity-80">
                 <h3 className="leading-tight dark:text-primary-dark text-primary font-bold text-4xl lg:text-5xl mb-6">
-                  Add interactivity wherever you need it
+                  Add interactivity where you need it
                 </h3>
                 <p className="text-xl lg:text-2xl leading-normal text-secondary dark:text-secondary-dark">
                   Each React component receives some data and returns what
@@ -520,20 +520,44 @@ function Example3() {
     {
       id: 0,
       title: 'First video',
-      description: 'Video description',
+      description: 'First video description',
       image: 'blue',
     },
     {
       id: 1,
       title: 'Second video',
-      description: 'Video description',
+      description: 'Second video description',
       image: 'red',
     },
     {
       id: 2,
       title: 'Third video',
-      description: 'Video description',
+      description: 'Third video description',
       image: 'green',
+    },
+    {
+      id: 3,
+      title: 'Fourth video',
+      description: 'Fourth video description',
+      image: 'blue',
+    },
+    {
+      id: 4,
+      title: 'Fifth video',
+      description: 'Fifth description',
+      image: 'red',
+    },
+    {
+      id: 5,
+      title: 'Sixth video',
+      description: 'Sixth video description',
+      image: 'green',
+    },
+    {
+      id: 6,
+      title: 'Seventh video',
+      description: 'Seventh video description',
+      image: 'blue',
     },
   ];
 
@@ -544,7 +568,7 @@ function Example3() {
           <div className="lg:-m-5 h-full shadow-nav dark:shadow-nav-dark lg:rounded-2xl bg-wash dark:bg-gray-95 w-full flex grow flex-col">
             <div className="w-full bg-card dark:bg-wash-dark lg:rounded-t-2xl border-b border-black/5 dark:border-white/5">
               <h3 className="text-sm my-1 mx-5 text-tertiary dark:text-tertiary-dark select-none">
-                FilterableVideoList.js
+                SearchableVideoList.js
               </h3>
             </div>
             <CodeBlock
@@ -553,9 +577,9 @@ function Example3() {
               noMargin={true}>
               <div>{`import { useState } from 'react';
 
-function FilterableVideoList({ videos }) {
+function SearchableVideoList({ videos }) {
   const [query, setQuery] = useState('');
-  const filteredVideos = filterVideos(videos, query);
+  const matchingVideos = filterVideos(videos, query);
   return (
     <>
       <SearchInput
@@ -563,7 +587,7 @@ function FilterableVideoList({ videos }) {
         onChange={newQuery => setQuery(newQuery)}
       />
       <VideoList
-        videos={filteredVideos}
+        videos={matchingVideos}
         emptyHeading={\`No matches for "\${query}"\`}
       />
     </>
@@ -573,7 +597,7 @@ function FilterableVideoList({ videos }) {
           </div>
           <div className="lg:-my-20 w-full p-2.5 xs:p-5 lg:p-10 flex grow justify-center">
             <ExamplePanel noShadow={false} noPadding={true} height="26rem">
-              <FilterableVideoList allVideos={videos} />
+              <SearchableVideoList allVideos={videos} />
             </ExamplePanel>
           </div>
         </div>
@@ -1008,17 +1032,17 @@ function Talks({conf, playlistPromise}) {
   if (playlistPromise && !playlistPromise._resolved) {
     throw playlistPromise;
   }
-  return <FilterableVideoList allVideos={conf.videos} />;
+  return <SearchableVideoList allVideos={conf.videos} />;
 }
 
-function FilterableVideoList({allVideos}) {
+function SearchableVideoList({allVideos}) {
   const [query, setQuery] = useState('');
-  const foundVideos = findVideos(allVideos, query);
+  const matchingVideos = findVideos(allVideos, query);
   const emptyHeading = `No matches for "${query}"`;
   return (
     <>
       <SearchInput value={query} onChange={setQuery} />
-      <VideoList videos={foundVideos} emptyHeading={emptyHeading} />
+      <VideoList videos={matchingVideos} emptyHeading={emptyHeading} />
     </>
   );
 }

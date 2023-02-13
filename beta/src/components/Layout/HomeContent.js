@@ -825,7 +825,7 @@ async function ConferencePage({ slug }) {
 async function Talks({ confId }) {
   const talks = await db.Talks.findAll({ confId });
   const videos = talks.map(talk => talk.video);
-  return <VideoList videos={videos} />;
+  return <SearchableVideoList videos={videos} />;
 }`}</div>
             </CodeBlock>
           </div>

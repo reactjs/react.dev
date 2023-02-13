@@ -2,7 +2,7 @@
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
 
-import {createContext, useState, useContext, Suspense} from 'react';
+import {createContext, useState, useContext, useId, Suspense} from 'react';
 import cn from 'classnames';
 import ButtonLink from '../ButtonLink';
 import {IconRestart} from '../Icon/IconRestart';
@@ -103,12 +103,12 @@ export function HomeContent() {
             <div className="flex-col gap-2 flex grow w-full my-12 sm:my-16 lg:my-20 mx-auto items-center">
               <div className="px-5 lg:px-0 max-w-4xl lg:text-center text-opacity-80">
                 <h3 className="leading-tight dark:text-primary-dark text-primary font-bold text-4xl lg:text-5xl mb-6">
-                  Try React for a part of your page
+                  Add interactivity wherever you need it
                 </h3>
                 <p className="text-xl lg:text-2xl leading-normal text-secondary dark:text-secondary-dark">
-                  You don’t have to rewrite your entire app with React. Add
-                  React as a <Code>&lt;script&gt;</Code> tag in your HTML, and
-                  render interactive components anywhere on the page.
+                  Each React component receives some data and returns what
+                  should appear on the screen. Pass different data, and React
+                  will update the screen to match it.
                 </p>
               </div>
               <div className="max-w-6xl mx-auto flex flex-col w-full">
@@ -116,10 +116,9 @@ export function HomeContent() {
               </div>
               <div className="px-5 lg:px-0 max-w-4xl lg:text-center text-opacity-80">
                 <p className="text-xl lg:text-2xl leading-normal">
-                  React does not make assumptions about the rest of your stack.
-                  Whether you use a traditional server environment like Python
-                  or Ruby, a static HTML page generator, or write HTML by hand,
-                  you can add interactivity with React.
+                  You don’t have to rewrite your entire app to React. Add React
+                  as a <Code>{'<script>'}</Code> tag to any HTML page, and
+                  render interactive components anywhere on it.
                 </p>
               </div>
             </div>
@@ -135,11 +134,12 @@ export function HomeContent() {
               <p className="text-xl lg:text-2xl text-secondary dark:text-secondary-dark leading-normal">
                 React is a library. It lets you put components together, but it
                 doesn’t prescribe how to do routing and data fetching. To build
-                an entire app with React, we recommend an integrated React
+                an entire app with React, we recommend a full-stack React
                 framework like{' '}
                 <Link href="https://github.com/vercel/next.js">Next.js</Link>,{' '}
-                <Link href="https://remix.run/">Remix</Link>, and{' '}
-                <Link href="https://expo.dev/">Expo</Link>.
+                <Link href="https://github.com/gatsbyjs/gatsby/">Gatsby</Link>,
+                and <Link href="https://github.com/remix-run/remix">Remix</Link>
+                .
               </p>
             </div>
             <div className="max-w-6xl mx-auto flex flex-col w-full">
@@ -181,8 +181,8 @@ export function HomeContent() {
                     React lets you start streaming HTML while you’re still
                     fetching data, progressivelly filling in the remaining
                     content before any JavaScript code loads. On the client,
-                    React uses standard web APIs to keep your app responsive
-                    even in the middle of rendering.
+                    React can use standard web APIs to keep UI responsive even
+                    in the middle of rendering.
                   </p>
                 </div>
                 <div className="shadow-inner bg-secondary-button dark:bg-secondary-button-dark rounded-2xl p-6 xs:p-10 lg:w-6/12 max-w-4xl lg:text-center lg:items-center lg:justify-center text-opacity-80 flex flex-col">
@@ -192,12 +192,13 @@ export function HomeContent() {
                   </h4>
                   <p className="h-full lg:text-xl text-secondary dark:text-secondary-dark leading-normal">
                     People expect native apps to look and feel native.{' '}
-                    <Link href="https://reactnative.dev">React Native</Link>{' '}
-                    lets you build apps for Android, iOS, and more with React.{' '}
-                    These apps can look and feel native because their user
-                    interfaces <i>are</i> truly native. It’s not a web view:
-                    your React components render real iOS and Android views
-                    provided by the platform.
+                    <Link href="https://reactnative.dev">React Native</Link> and{' '}
+                    <Link href="https://github.com/expo/expo">Expo</Link> let
+                    you build apps in React for Android, iOS, and more. These
+                    apps can look and feel native because their user interfaces{' '}
+                    <i>are</i> truly native. It’s not a web view—your React
+                    components render real Android and iOS views provided by the
+                    platform.
                   </p>
                 </div>
               </div>
@@ -485,18 +486,18 @@ function Example2() {
               isFromPackageImport={false}
               noShadow={true}
               noMargin={true}>
-              <div>{`function VideoList({ videos }) {
-  let heading = 'No Videos Yet';
-  if (videos.length > 0) {
-    heading = videos.length + ' Videos';
+              <div>{`function VideoList({ videos, emptyHeading }) {
+  const count = videos.length;
+  let heading = emptyHeading;
+  if (count > 0) {
+    const noun = count > 1 ? 'Videos' : 'Video';
+    heading = count + ' ' + noun;
   }
   return (
     <section>
       <h2>{heading}</h2>
       {videos.map(video =>
-        <VideoRow
-          key={video.id}
-          video={video} />
+        <VideoRow key={video.id} video={video} />
       )}
     </section>
   );
@@ -515,6 +516,27 @@ function Example2() {
 }
 
 function Example3() {
+  const videos = [
+    {
+      id: 0,
+      title: 'First video',
+      description: 'Video description',
+      image: 'blue',
+    },
+    {
+      id: 1,
+      title: 'Second video',
+      description: 'Video description',
+      image: 'red',
+    },
+    {
+      id: 2,
+      title: 'Third video',
+      description: 'Video description',
+      image: 'green',
+    },
+  ];
+
   return (
     <div className="lg:pl-10 lg:pr-5 w-full">
       <div className="my-12 sm:my-16 lg:my-20 max-w-6xl mx-auto flex flex-col w-full lg:rounded-2xl bg-card dark:bg-card-dark">
@@ -522,53 +544,37 @@ function Example3() {
           <div className="lg:-m-5 h-full shadow-nav dark:shadow-nav-dark lg:rounded-2xl bg-wash dark:bg-gray-95 w-full flex grow flex-col">
             <div className="w-full bg-card dark:bg-wash-dark lg:rounded-t-2xl border-b border-black/5 dark:border-white/5">
               <h3 className="text-sm my-1 mx-5 text-tertiary dark:text-tertiary-dark select-none">
-                my-page.html
+                FilterableVideoList.js
               </h3>
             </div>
             <CodeBlock
               isFromPackageImport={false}
               noShadow={true}
               noMargin={true}>
-              <div className="language-html">{`<html>
-  <head>
-    <title>Interesting links</title>
-  </head>
-  <body>
-    <h1>Interesting links</h1>
-    <div id="my-react-root">
-      <!-- This part will be rendered with React -->
-    </div>
-    <p>Thank you for visiting my page!</p>
-    <script src="react.production.min.js"></script>
-    <script src="react-dom.production.min.js"></script>
-    <script src="my-components.min.js"></script>
-  </body>
-</html>
-           `}</div>
+              <div>{`import { useState } from 'react';
+
+function FilterableVideoList({ videos }) {
+  const [query, setQuery] = useState('');
+  const filteredVideos = filterVideos(videos, query);
+  return (
+    <>
+      <SearchInput
+        value={query}
+        onChange={newQuery => setQuery(newQuery)}
+      />
+      <VideoList
+        videos={filteredVideos}
+        emptyHeading={\`No matches for "\${query}"\`}
+      />
+    </>
+  );
+}`}</div>
             </CodeBlock>
           </div>
-          <div className="w-full p-2.5 xs:p-5 lg:p-10 flex grow justify-center">
-            <BrowserChrome
-              domain="example.com"
-              path="my-page.html"
-              hasRefresh={false}>
-              <ExamplePanel noPadding={true} noShadow={true} height="20rem">
-                <div className="mt-16 p-4 flex flex-col gap-3">
-                  <h1 className="text-primary text-2xl font-bold mb-0.5">
-                    Interesting links
-                  </h1>
-                  <VideoRow
-                    video={{
-                      title: 'React Documentary',
-                      description: 'Watch the origin story of React.',
-                      image: 'https://i.imgur.com/ny0WlyW.jpg',
-                      url: 'https://www.youtube.com/watch?v=8pDqJVdNa44',
-                    }}
-                  />
-                  <p>Thank you for visiting my page!</p>
-                </div>
-              </ExamplePanel>
-            </BrowserChrome>
+          <div className="lg:-my-20 w-full p-2.5 xs:p-5 lg:p-10 flex grow justify-center">
+            <ExamplePanel noShadow={false} noPadding={true} height="26rem">
+              <FilterableVideoList allVideos={videos} />
+            </ExamplePanel>
           </div>
         </div>
       </div>
@@ -943,7 +949,6 @@ function ConfPage({conf, isLoading, confPromise, playlistPromise}) {
           <option value="2020">{conf.name}</option>
         </select>
       </Cover>
-      <Search />
       <Suspense fallback={<PlaylistLoading />}>
         <Talks conf={conf} playlistPromise={playlistPromise} />
       </Suspense>
@@ -1003,33 +1008,61 @@ function Talks({conf, playlistPromise}) {
   if (playlistPromise && !playlistPromise._resolved) {
     throw playlistPromise;
   }
-  return <VideoList videos={conf.videos} />;
+  return <FilterableVideoList allVideos={conf.videos} />;
 }
 
-function VideoList({videos, children}) {
-  let headingText = 'No Videos Yet';
-  if (videos.length > 0) {
-    headingText = videos.length + ' Videos';
+function FilterableVideoList({allVideos}) {
+  const [query, setQuery] = useState('');
+  const foundVideos = findVideos(allVideos, query);
+  const emptyHeading = `No matches for "${query}"`;
+  return (
+    <>
+      <SearchInput value={query} onChange={setQuery} />
+      <VideoList videos={foundVideos} emptyHeading={emptyHeading} />
+    </>
+  );
+}
+
+function findVideos(videos, query) {
+  const keywords = query
+    .toLowerCase()
+    .split(' ')
+    .filter((s) => s !== '');
+  if (keywords.length === 0) {
+    return videos;
+  }
+  return videos.filter((video) => {
+    const words = video.title.toLowerCase().split(' ');
+    return words.some((w) => keywords.some((kw) => w.startsWith(kw)));
+  });
+}
+
+function VideoList({videos, emptyHeading}) {
+  let heading = emptyHeading;
+  const count = videos.length;
+  if (count > 0) {
+    heading = count + ' Video';
+    if (count > 1) heading += 's';
   }
   return (
     <div className="relative p-4">
       <h2 className="font-bold text-xl text-primary pb-4 leading-snug">
-        {headingText}
+        {heading}
       </h2>
       <div className="flex flex-col gap-4">
         {videos.map((video) => (
           <VideoRow key={video.id} video={video} />
         ))}
-        {children}
       </div>
     </div>
   );
 }
 
-function Search({}) {
+function SearchInput({value, onChange}) {
+  const id = useId();
   return (
     <form className="mx-4 mt-5">
-      <label htmlFor="search" className="sr-only">
+      <label htmlFor={id} className="sr-only">
         Search
       </label>
       <div className="relative w-full">
@@ -1038,10 +1071,12 @@ function Search({}) {
         </div>
         <input
           type="text"
-          id="search"
-          className="flex pl-11 py-4 h-10 w-full bg-secondary-button outline-none focus:outline-link betterhover:hover:bg-opacity-80 pointer items-center text-left text-gray-30 rounded-full align-middle text-base"
+          id={id}
+          className="flex pl-11 py-4 h-10 w-full bg-secondary-button outline-none focus:outline-link betterhover:hover:bg-opacity-80 pointer items-center text-left text-primary rounded-full align-middle text-base"
           placeholder="Search"
           required
+          value={value}
+          onChange={(e) => onChange(e.target.value)}
         />
       </div>
     </form>

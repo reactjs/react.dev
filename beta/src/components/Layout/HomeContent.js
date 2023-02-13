@@ -2,7 +2,14 @@
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
 
-import {createContext, useState, useContext, useId, Suspense} from 'react';
+import {
+  createContext,
+  useState,
+  useContext,
+  useId,
+  Fragment,
+  Suspense,
+} from 'react';
 import cn from 'classnames';
 import ButtonLink from '../ButtonLink';
 import {IconRestart} from '../Icon/IconRestart';
@@ -597,7 +604,7 @@ function SearchableVideoList({ videos }) {
           </div>
           <div className="lg:-my-20 w-full p-2.5 xs:p-5 lg:p-10 flex grow justify-center">
             <ExamplePanel noShadow={false} noPadding={true} height="26rem">
-              <SearchableVideoList allVideos={videos} />
+              <SearchableVideoList videos={videos} />
             </ExamplePanel>
           </div>
         </div>
@@ -607,190 +614,7 @@ function SearchableVideoList({ videos }) {
 }
 
 function Example4() {
-  const [confPromise, setConfPromise] = useState(null);
-  const [playlistPromise, setPlaylistPromise] = useState(null);
-  const videos = [
-    {
-      id: 0,
-      title: 'React 18 Keynote',
-      description: 'Andrew Clark, Lauren Tan, Juan Tejada, and Ricky Hanlon',
-      url: 'https://www.youtube.com/watch?v=FZ0cG47msEk&list=PLNG_1j3cPCaZZ7etkzWA7JfdmKWT0pMsa&index=1',
-      image: {
-        speakers: [
-          'https://i.imgur.com/D69ZvSY.jpg',
-          'https://i.imgur.com/RznoMDK.jpg',
-          'https://i.imgur.com/CeGgjK3.jpg',
-          'https://i.imgur.com/tK5OEus.jpg',
-        ],
-      },
-    },
-    {
-      id: 1,
-      title: 'React 18 for app developers',
-      description: 'Shruti Kapoor',
-      url: 'https://www.youtube.com/watch?v=ytudH8je5ko&list=PLNG_1j3cPCaZZ7etkzWA7JfdmKWT0pMsa&index=2',
-      image: {
-        speakers: ['https://i.imgur.com/cyaiwpP.jpg'],
-      },
-    },
-    {
-      id: 2,
-      title: 'Streaming Server Rendering with Suspense',
-      description: 'Shaundai Person',
-      url: 'https://www.youtube.com/watch?v=pj5N-Khihgc&list=PLNG_1j3cPCaZZ7etkzWA7JfdmKWT0pMsa&index=3',
-      image: {
-        speakers: ['https://i.imgur.com/RUmFLhB.jpg'],
-      },
-    },
-    {
-      id: 3,
-      title: 'The first React Working Group',
-      description: 'Aakansha Doshi',
-      url: 'https://www.youtube.com/watch?v=qn7gRClrC9U&list=PLNG_1j3cPCaZZ7etkzWA7JfdmKWT0pMsa&index=4',
-      image: {
-        speakers: ['https://i.imgur.com/xRs64T1.jpg'],
-      },
-    },
-    {
-      id: 4,
-      title: 'React Developer Tooling',
-      description: 'Brian Vaughn',
-      url: 'https://www.youtube.com/watch?v=oxDfrke8rZg&list=PLNG_1j3cPCaZZ7etkzWA7JfdmKWT0pMsa&index=5',
-      image: {
-        speakers: ['https://i.imgur.com/IasQNDL.jpg'],
-      },
-    },
-    {
-      id: 5,
-      title: 'React without memo',
-      description: 'Xuan Huang (黄玄)',
-      url: 'https://www.youtube.com/watch?v=lGEMwh32soc&list=PLNG_1j3cPCaZZ7etkzWA7JfdmKWT0pMsa&index=6',
-      image: {
-        speakers: ['https://i.imgur.com/Zloqi0V.jpg'],
-      },
-    },
-    {
-      id: 6,
-      title: 'React Docs Keynote',
-      description: 'Rachel Nabors',
-      url: 'https://www.youtube.com/watch?v=mneDaMYOKP8&list=PLNG_1j3cPCaZZ7etkzWA7JfdmKWT0pMsa&index=7',
-      image: {
-        speakers: ['https://i.imgur.com/NkwwAZF.png'],
-      },
-    },
-    {
-      id: 7,
-      title: 'Things I learnt from the new React docs',
-      description: "Debbie O'Brien",
-      url: 'https://www.youtube.com/watch?v=-7odLW_hG7s&list=PLNG_1j3cPCaZZ7etkzWA7JfdmKWT0pMsa&index=8',
-      image: {
-        speakers: ['https://i.imgur.com/uhF5Hyo.jpg'],
-      },
-    },
-    {
-      id: 8,
-      title: 'Learning in the Browser',
-      description: 'Sarah Rainsberger',
-      url: 'https://www.youtube.com/watch?v=5X-WEQflCL0&list=PLNG_1j3cPCaZZ7etkzWA7JfdmKWT0pMsa&index=9',
-      image: {
-        speakers: ['https://i.imgur.com/s36xhcT.jpg'],
-      },
-    },
-    {
-      id: 9,
-      title: 'The ROI of Designing with React',
-      description: 'Linton Ye',
-      url: 'https://www.youtube.com/watch?v=7cPWmID5XAk&list=PLNG_1j3cPCaZZ7etkzWA7JfdmKWT0pMsa&index=10',
-      image: {
-        speakers: ['https://i.imgur.com/Frxfjpq.jpg'],
-      },
-    },
-    {
-      id: 10,
-      title: 'Interactive playgrounds with React',
-      description: 'Delba de Oliveira',
-      url: 'https://www.youtube.com/watch?v=zL8cz2W0z34&list=PLNG_1j3cPCaZZ7etkzWA7JfdmKWT0pMsa&index=11',
-      image: {
-        speakers: ['https://i.imgur.com/N1zNMrC.jpg'],
-      },
-    },
-    {
-      id: 11,
-      title: 'Re-introducing Relay',
-      description: 'Robert Balicki',
-      url: 'https://www.youtube.com/watch?v=lhVGdErZuN4&list=PLNG_1j3cPCaZZ7etkzWA7JfdmKWT0pMsa&index=12',
-      image: {
-        speakers: ['https://i.imgur.com/vxgsVlt.jpg'],
-      },
-    },
-    {
-      id: 12,
-      title: 'React Native Desktop',
-      description: 'Eric Rozell and Steven Moyes',
-      url: 'https://www.youtube.com/watch?v=9L4FFrvwJwY&list=PLNG_1j3cPCaZZ7etkzWA7JfdmKWT0pMsa&index=13',
-      image: {
-        speakers: [
-          'https://i.imgur.com/roifbxu.jpg',
-          'https://i.imgur.com/Y0k7sBd.jpg',
-        ],
-      },
-    },
-    {
-      id: 13,
-      title: 'On-device Machine Learning for React Native',
-      description: 'Roman Rädle',
-      url: 'https://www.youtube.com/watch?v=NLj73vrc2I8&list=PLNG_1j3cPCaZZ7etkzWA7JfdmKWT0pMsa&index=14',
-      image: {
-        speakers: ['https://i.imgur.com/pECN2Yi.jpg'],
-      },
-    },
-    {
-      id: 14,
-      title: 'React 18 for External Store Libraries',
-      description: 'Daishi Kato',
-      url: 'https://www.youtube.com/watch?v=oPfSC5bQPR8&list=PLNG_1j3cPCaZZ7etkzWA7JfdmKWT0pMsa&index=15',
-      image: {
-        speakers: ['https://i.imgur.com/NqPgNiJ.jpg'],
-      },
-    },
-    {
-      id: 15,
-      title: 'Building accessible components with React 18',
-      description: 'Diego Haz',
-      url: 'https://www.youtube.com/watch?v=dcm8fjBfro8&list=PLNG_1j3cPCaZZ7etkzWA7JfdmKWT0pMsa&index=16',
-      image: {
-        speakers: ['https://i.imgur.com/47mWLlJ.jpg'],
-      },
-    },
-    {
-      id: 16,
-      title: 'Accessible Japanese Form Components with React',
-      description: 'Tafu Nakazaki',
-      url: 'https://www.youtube.com/watch?v=S4a0QlsH0pU&list=PLNG_1j3cPCaZZ7etkzWA7JfdmKWT0pMsa&index=17',
-      image: {
-        speakers: ['https://i.imgur.com/yJvnZQy.jpg'],
-      },
-    },
-    {
-      id: 17,
-      title: 'UI Tools for artists',
-      description: 'Lyle Troxell',
-      url: 'https://www.youtube.com/watch?v=b3l4WxipFsE&list=PLNG_1j3cPCaZZ7etkzWA7JfdmKWT0pMsa&index=18',
-      image: {
-        speakers: ['https://i.imgur.com/cs03udp.jpg'],
-      },
-    },
-    {
-      id: 18,
-      title: 'Hydrogen + React 18',
-      description: 'Helen Lin',
-      url: 'https://www.youtube.com/watch?v=HS6vIYkSNks&list=PLNG_1j3cPCaZZ7etkzWA7JfdmKWT0pMsa&index=19',
-      image: {
-        speakers: ['https://i.imgur.com/4S4N5n1.jpg'],
-      },
-    },
-  ];
-
+  const [slug, setSlug] = useState('react-conf-2021');
   return (
     <div className="lg:pl-10 lg:pr-5 w-full">
       <div className="my-12 sm:my-16 lg:my-20 max-w-6xl mx-auto flex flex-col w-full lg:rounded-2xl bg-card dark:bg-card-dark">
@@ -811,14 +635,11 @@ import { Suspense } from 'react';
 async function ConferencePage({ slug }) {
   const conf = await db.Confs.find({ slug });
   return (
-    <main>
-      <Cover background={conf.cover}>
-        <h1>{conf.name}</h1>
-      </Cover>
-      <Suspense fallback={<LoadingTalks />}>
+    <ConferenceLayout conf={conf}>
+      <Suspense fallback={<TalksLoading />}>
         <Talks confId={conf.id} />
       </Suspense>
-    </main>
+    </ConferenceLayout>
   );
 }
 
@@ -831,24 +652,13 @@ async function Talks({ confId }) {
           </div>
           <div className="lg:-my-20 w-full p-2.5 xs:p-5 lg:p-10 flex grow justify-center">
             <BrowserChrome
-              setConfPromise={setConfPromise}
-              setPlaylistPromise={setPlaylistPromise}
               domain="example.com"
-              path="confs/react-conf-2021"
+              path={'confs/' + slug}
               hasRefresh={true}>
-              <ExamplePanel noPadding={true} noShadow={true} height="38rem">
+              <ExamplePanel noPadding={true} noShadow={true} height="35rem">
                 <Suspense fallback={null}>
                   <div style={{animation: 'fadein 200ms'}}>
-                    <ConfPage
-                      conf={{
-                        cover: 'https://i.imgur.com/zBJvLHG.jpg',
-                        name: 'React Conf 2021',
-                        videos,
-                      }}
-                      confPromise={confPromise}
-                      playlistPromise={playlistPromise}
-                      isLoading={false}
-                    />
+                    <ConferencePage slug={slug} />
                   </div>
                 </Suspense>
               </ExamplePanel>
@@ -874,35 +684,13 @@ function ExamplePanel({children, noPadding, noShadow, height}) {
   );
 }
 
-function BrowserChrome({
-  children,
-  setConfPromise,
-  setPlaylistPromise,
-  hasRefresh,
-  domain,
-  path,
-}) {
+function BrowserChrome({children, hasRefresh, domain, path}) {
   const [restartId, setRestartId] = useState(0);
 
-  const confDelay = 100;
-  const playlistDelay = 1200;
-
   function handleRestart() {
-    const confPromise = new Promise((resolve) => {
-      setTimeout(() => {
-        confPromise._resolved = true;
-        resolve();
-      }, confDelay);
-    });
-    const playlistPromise = new Promise((resolve) => {
-      setTimeout(() => {
-        playlistPromise._resolved = true;
-        resolve();
-      }, playlistDelay);
-    });
-    setConfPromise(confPromise);
-    setPlaylistPromise(playlistPromise);
-    setRestartId((id) => id + 1);
+    confCache = new Map();
+    talksCache = new Map();
+    setRestartId((i) => i + 1);
   }
 
   return (
@@ -933,54 +721,28 @@ function BrowserChrome({
             key={restartId}
             className="z-10 loading h-0.5 bg-link transition-all duration-200 absolute bottom-0 left-0"
             style={{
-              animation: `progressbar ${playlistDelay + 100}ms linear`,
+              animation: `progressbar ${loadTalksDelay + 100}ms linear`,
             }}
           />
         )}
       </div>
-      <div>{children}</div>
+      <div key={restartId}>{children}</div>
     </div>
   );
 }
 
-function ConfPage({conf, isLoading, confPromise, playlistPromise}) {
-  if (confPromise && !confPromise._resolved) {
-    throw confPromise;
-  }
+function ConferencePage({slug}) {
+  const conf = use(fetchConf(slug));
   return (
-    <div
-      className={cn(
-        'transition-opacity',
-        isLoading
-          ? 'opacity-20 select-none pointer-events-none'
-          : 'opacity-100 overflow-y-scroll'
-      )}>
-      <Cover background={conf.cover}>
-        <select
-          id="year"
-          className="appearance-none pr-8 bg-transparent text-primary-dark text-2xl font-bold mb-0.5"
-          style={{
-            backgroundSize: '4px 4px, 4px 4px',
-            backgroundRepeat: 'no-repeat',
-            backgroundPosition:
-              'calc(100% - 20px) calc(1px + 50%),calc(100% - 16px) calc(1px + 50%)',
-            backgroundImage:
-              'linear-gradient(45deg,transparent 50%,currentColor 50%),linear-gradient(135deg,currentColor 50%,transparent 50%)',
-          }}>
-          <option value="2021" defaultValue>
-            {conf.name}
-          </option>
-          <option value="2020">{conf.name}</option>
-        </select>
-      </Cover>
-      <Suspense fallback={<PlaylistLoading />}>
-        <Talks conf={conf} playlistPromise={playlistPromise} />
+    <ConferenceLayout conf={conf}>
+      <Suspense fallback={<TalksLoading />}>
+        <Talks confId={conf.id} />
       </Suspense>
-    </div>
+    </ConferenceLayout>
   );
 }
 
-function PlaylistLoading() {
+function TalksLoading() {
   return (
     <div className="flex flex-col items-center h-[24rem] overflow-hidden">
       <div className="w-full">
@@ -1028,16 +790,14 @@ function PlaylistLoading() {
   );
 }
 
-function Talks({conf, playlistPromise}) {
-  if (playlistPromise && !playlistPromise._resolved) {
-    throw playlistPromise;
-  }
-  return <SearchableVideoList allVideos={conf.videos} />;
+function Talks({confId}) {
+  const videos = use(fetchTalks(confId));
+  return <SearchableVideoList videos={videos} />;
 }
 
-function SearchableVideoList({allVideos}) {
+function SearchableVideoList({videos}) {
   const [query, setQuery] = useState('');
-  const matchingVideos = findVideos(allVideos, query);
+  const matchingVideos = findVideos(videos, query);
   const emptyHeading = `No matches for "${query}"`;
   return (
     <>
@@ -1104,6 +864,38 @@ function SearchInput({value, onChange}) {
         />
       </div>
     </form>
+  );
+}
+
+function ConferenceLayout({conf, children}) {
+  const isPending = false; // TODO
+  return (
+    <div
+      className={cn(
+        'transition-opacity',
+        isPending
+          ? 'opacity-20 select-none pointer-events-none'
+          : 'opacity-100 overflow-y-scroll'
+      )}>
+      <Cover background={conf.cover}>
+        <select
+          className="appearance-none pr-8 bg-transparent text-primary-dark text-2xl font-bold mb-0.5"
+          style={{
+            backgroundSize: '4px 4px, 4px 4px',
+            backgroundRepeat: 'no-repeat',
+            backgroundPosition:
+              'calc(100% - 20px) calc(1px + 50%),calc(100% - 16px) calc(1px + 50%)',
+            backgroundImage:
+              'linear-gradient(45deg,transparent 50%,currentColor 50%),linear-gradient(135deg,currentColor 50%,transparent 50%)',
+          }}>
+          <option value="2021" defaultValue>
+            {conf.name}
+          </option>
+          <option value="2020">{conf.name}</option>
+        </select>
+      </Cover>
+      <Fragment key={conf.id}>{children}</Fragment>
+    </div>
   );
 }
 
@@ -1869,4 +1661,269 @@ function WebIcons() {
       </svg>
     </div>
   );
+}
+
+// TODO: upgrade React and use the built-in version.
+function use(promise) {
+  if (promise.status === 'fulfilled') {
+    return promise.value;
+  } else if (promise.status === 'rejected') {
+    throw promise.reason;
+  } else if (promise.status === 'pending') {
+    throw promise;
+  } else {
+    promise.status = 'pending';
+    promise.then(
+      (result) => {
+        promise.status = 'fulfilled';
+        promise.value = result;
+      },
+      (reason) => {
+        promise.status = 'rejected';
+        promise.reason = reason;
+      }
+    );
+    throw promise;
+  }
+}
+
+let confCache = new Map();
+let talksCache = new Map();
+const loadTalksDelay = 1500;
+
+function fetchConf(slug) {
+  if (confCache.has(slug)) {
+    return confCache.get(slug);
+  }
+  const promise = new Promise((resolve) => {
+    setTimeout(() => {
+      if (slug === 'react-conf-2021') {
+        resolve({
+          id: 0,
+          cover: 'https://i.imgur.com/zBJvLHG.jpg',
+          name: 'React Conf 2021',
+        });
+      } else if (slug === 'react-conf-2019') {
+        resolve({
+          id: 1,
+          cover:
+            'https://techcrunch.com/wp-content/uploads/2014/06/screenshot-2014-06-18-16-31-30.png',
+          name: 'React Conf 2019',
+        });
+      }
+    }, loadTalksDelay - 2000);
+  });
+  confCache.set(slug, promise);
+  return promise;
+}
+
+function fetchTalks(confId) {
+  if (talksCache.has(confId)) {
+    return talksCache.get(confId);
+  }
+  const promise = new Promise((resolve) => {
+    setTimeout(() => {
+      if (confId === 0) {
+        resolve([
+          {
+            id: 0,
+            title: 'React 18 Keynote',
+            description:
+              'Andrew Clark, Lauren Tan, Juan Tejada, and Ricky Hanlon',
+            url: 'https://www.youtube.com/watch?v=FZ0cG47msEk&list=PLNG_1j3cPCaZZ7etkzWA7JfdmKWT0pMsa&index=1',
+            image: {
+              speakers: [
+                'https://i.imgur.com/D69ZvSY.jpg',
+                'https://i.imgur.com/RznoMDK.jpg',
+                'https://i.imgur.com/CeGgjK3.jpg',
+                'https://i.imgur.com/tK5OEus.jpg',
+              ],
+            },
+          },
+          {
+            id: 1,
+            title: 'React 18 for app developers',
+            description: 'Shruti Kapoor',
+            url: 'https://www.youtube.com/watch?v=ytudH8je5ko&list=PLNG_1j3cPCaZZ7etkzWA7JfdmKWT0pMsa&index=2',
+            image: {
+              speakers: ['https://i.imgur.com/cyaiwpP.jpg'],
+            },
+          },
+          {
+            id: 2,
+            title: 'Streaming Server Rendering with Suspense',
+            description: 'Shaundai Person',
+            url: 'https://www.youtube.com/watch?v=pj5N-Khihgc&list=PLNG_1j3cPCaZZ7etkzWA7JfdmKWT0pMsa&index=3',
+            image: {
+              speakers: ['https://i.imgur.com/RUmFLhB.jpg'],
+            },
+          },
+          {
+            id: 3,
+            title: 'The first React Working Group',
+            description: 'Aakansha Doshi',
+            url: 'https://www.youtube.com/watch?v=qn7gRClrC9U&list=PLNG_1j3cPCaZZ7etkzWA7JfdmKWT0pMsa&index=4',
+            image: {
+              speakers: ['https://i.imgur.com/xRs64T1.jpg'],
+            },
+          },
+          {
+            id: 4,
+            title: 'React Developer Tooling',
+            description: 'Brian Vaughn',
+            url: 'https://www.youtube.com/watch?v=oxDfrke8rZg&list=PLNG_1j3cPCaZZ7etkzWA7JfdmKWT0pMsa&index=5',
+            image: {
+              speakers: ['https://i.imgur.com/IasQNDL.jpg'],
+            },
+          },
+          {
+            id: 5,
+            title: 'React without memo',
+            description: 'Xuan Huang (黄玄)',
+            url: 'https://www.youtube.com/watch?v=lGEMwh32soc&list=PLNG_1j3cPCaZZ7etkzWA7JfdmKWT0pMsa&index=6',
+            image: {
+              speakers: ['https://i.imgur.com/Zloqi0V.jpg'],
+            },
+          },
+          {
+            id: 6,
+            title: 'React Docs Keynote',
+            description: 'Rachel Nabors',
+            url: 'https://www.youtube.com/watch?v=mneDaMYOKP8&list=PLNG_1j3cPCaZZ7etkzWA7JfdmKWT0pMsa&index=7',
+            image: {
+              speakers: ['https://i.imgur.com/NkwwAZF.png'],
+            },
+          },
+          {
+            id: 7,
+            title: 'Things I learnt from the new React docs',
+            description: "Debbie O'Brien",
+            url: 'https://www.youtube.com/watch?v=-7odLW_hG7s&list=PLNG_1j3cPCaZZ7etkzWA7JfdmKWT0pMsa&index=8',
+            image: {
+              speakers: ['https://i.imgur.com/uhF5Hyo.jpg'],
+            },
+          },
+          {
+            id: 8,
+            title: 'Learning in the Browser',
+            description: 'Sarah Rainsberger',
+            url: 'https://www.youtube.com/watch?v=5X-WEQflCL0&list=PLNG_1j3cPCaZZ7etkzWA7JfdmKWT0pMsa&index=9',
+            image: {
+              speakers: ['https://i.imgur.com/s36xhcT.jpg'],
+            },
+          },
+          {
+            id: 9,
+            title: 'The ROI of Designing with React',
+            description: 'Linton Ye',
+            url: 'https://www.youtube.com/watch?v=7cPWmID5XAk&list=PLNG_1j3cPCaZZ7etkzWA7JfdmKWT0pMsa&index=10',
+            image: {
+              speakers: ['https://i.imgur.com/Frxfjpq.jpg'],
+            },
+          },
+          {
+            id: 10,
+            title: 'Interactive playgrounds with React',
+            description: 'Delba de Oliveira',
+            url: 'https://www.youtube.com/watch?v=zL8cz2W0z34&list=PLNG_1j3cPCaZZ7etkzWA7JfdmKWT0pMsa&index=11',
+            image: {
+              speakers: ['https://i.imgur.com/N1zNMrC.jpg'],
+            },
+          },
+          {
+            id: 11,
+            title: 'Re-introducing Relay',
+            description: 'Robert Balicki',
+            url: 'https://www.youtube.com/watch?v=lhVGdErZuN4&list=PLNG_1j3cPCaZZ7etkzWA7JfdmKWT0pMsa&index=12',
+            image: {
+              speakers: ['https://i.imgur.com/vxgsVlt.jpg'],
+            },
+          },
+          {
+            id: 12,
+            title: 'React Native Desktop',
+            description: 'Eric Rozell and Steven Moyes',
+            url: 'https://www.youtube.com/watch?v=9L4FFrvwJwY&list=PLNG_1j3cPCaZZ7etkzWA7JfdmKWT0pMsa&index=13',
+            image: {
+              speakers: [
+                'https://i.imgur.com/roifbxu.jpg',
+                'https://i.imgur.com/Y0k7sBd.jpg',
+              ],
+            },
+          },
+          {
+            id: 13,
+            title: 'On-device Machine Learning for React Native',
+            description: 'Roman Rädle',
+            url: 'https://www.youtube.com/watch?v=NLj73vrc2I8&list=PLNG_1j3cPCaZZ7etkzWA7JfdmKWT0pMsa&index=14',
+            image: {
+              speakers: ['https://i.imgur.com/pECN2Yi.jpg'],
+            },
+          },
+          {
+            id: 14,
+            title: 'React 18 for External Store Libraries',
+            description: 'Daishi Kato',
+            url: 'https://www.youtube.com/watch?v=oPfSC5bQPR8&list=PLNG_1j3cPCaZZ7etkzWA7JfdmKWT0pMsa&index=15',
+            image: {
+              speakers: ['https://i.imgur.com/NqPgNiJ.jpg'],
+            },
+          },
+          {
+            id: 15,
+            title: 'Building accessible components with React 18',
+            description: 'Diego Haz',
+            url: 'https://www.youtube.com/watch?v=dcm8fjBfro8&list=PLNG_1j3cPCaZZ7etkzWA7JfdmKWT0pMsa&index=16',
+            image: {
+              speakers: ['https://i.imgur.com/47mWLlJ.jpg'],
+            },
+          },
+          {
+            id: 16,
+            title: 'Accessible Japanese Form Components with React',
+            description: 'Tafu Nakazaki',
+            url: 'https://www.youtube.com/watch?v=S4a0QlsH0pU&list=PLNG_1j3cPCaZZ7etkzWA7JfdmKWT0pMsa&index=17',
+            image: {
+              speakers: ['https://i.imgur.com/yJvnZQy.jpg'],
+            },
+          },
+          {
+            id: 17,
+            title: 'UI Tools for artists',
+            description: 'Lyle Troxell',
+            url: 'https://www.youtube.com/watch?v=b3l4WxipFsE&list=PLNG_1j3cPCaZZ7etkzWA7JfdmKWT0pMsa&index=18',
+            image: {
+              speakers: ['https://i.imgur.com/cs03udp.jpg'],
+            },
+          },
+          {
+            id: 18,
+            title: 'Hydrogen + React 18',
+            description: 'Helen Lin',
+            url: 'https://www.youtube.com/watch?v=HS6vIYkSNks&list=PLNG_1j3cPCaZZ7etkzWA7JfdmKWT0pMsa&index=19',
+            image: {
+              speakers: ['https://i.imgur.com/4S4N5n1.jpg'],
+            },
+          },
+        ]);
+      } else if (confId === 1) {
+        resolve([
+          {
+            id: 19,
+            title: 'Some stuff',
+            description: 'Andrew Clark, Lauren Tan',
+            url: 'https://www.youtube.com/watch?v=FZ0cG47msEk&list=PLNG_1j3cPCaZZ7etkzWA7JfdmKWT0pMsa&index=1',
+            image: {
+              speakers: [
+                'https://i.imgur.com/D69ZvSY.jpg',
+                'https://i.imgur.com/RznoMDK.jpg',
+              ],
+            },
+          },
+        ]);
+      }
+    }, loadTalksDelay);
+  });
+  talksCache.set(confId, promise);
+  return promise;
 }

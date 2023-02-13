@@ -589,10 +589,7 @@ function SearchableVideoList({ videos }) {
   const matchingVideos = filterVideos(videos, query);
   return (
     <>
-      <SearchInput
-        value={query}
-        onChange={newQuery => setQuery(newQuery)}
-      />
+      <SearchInput value={query} onChange={setQuery} />
       <VideoList
         videos={matchingVideos}
         emptyHeading={\`No matches for "\${query}"\`}
@@ -858,7 +855,6 @@ function SearchInput({value, onChange}) {
           id={id}
           className="flex pl-11 py-4 h-10 w-full bg-secondary-button outline-none focus:outline-link betterhover:hover:bg-opacity-80 pointer items-center text-left text-primary rounded-full align-middle text-base"
           placeholder="Search"
-          required
           value={value}
           onChange={(e) => onChange(e.target.value)}
         />

@@ -9,6 +9,7 @@ import {
   useId,
   Fragment,
   Suspense,
+  useTransition,
 } from 'react';
 import cn from 'classnames';
 import ButtonLink from '../ButtonLink';
@@ -655,18 +656,20 @@ async function Talks({ confId }) {
             </CodeBlock>
           </div>
           <div className="lg:-my-20 w-full p-2.5 xs:p-5 lg:p-10 flex grow justify-center">
-            <BrowserChrome
-              domain="example.com"
-              path={'confs/' + slug}
-              hasRefresh={true}>
-              <ExamplePanel noPadding={true} noShadow={true} height="35rem">
-                <Suspense fallback={null}>
-                  <div style={{animation: 'fadein 200ms'}}>
-                    <ConferencePage slug={slug} />
-                  </div>
-                </Suspense>
-              </ExamplePanel>
-            </BrowserChrome>
+            <NavContext.Provider value={{slug, setSlug}}>
+              <BrowserChrome
+                domain="example.com"
+                path={'confs/' + slug}
+                hasRefresh={true}>
+                <ExamplePanel noPadding={true} noShadow={true} height="35rem">
+                  <Suspense fallback={null}>
+                    <div style={{animation: 'fadein 200ms'}}>
+                      <ConferencePage slug={slug} />
+                    </div>
+                  </Suspense>
+                </ExamplePanel>
+              </BrowserChrome>
+            </NavContext.Provider>
           </div>
         </div>
       </div>
@@ -687,6 +690,8 @@ function ExamplePanel({children, noPadding, noShadow, height}) {
     </div>
   );
 }
+
+const NavContext = createContext(null);
 
 function BrowserChrome({children, hasRefresh, domain, path}) {
   const [restartId, setRestartId] = useState(0);
@@ -752,7 +757,10 @@ function TalksLoading() {
       <div className="w-full">
         <div className="relative overflow-hidden before:-skew-x-12 before:absolute before:inset-0 before:-translate-x-full before:animate-[shimmer_2.5s_infinite] before:bg-gradient-to-r before:from-transparent before:via-white/50 before:to-transparent">
           <div className="space-y-4 space-x-4">
-            <div className="pt-5 pb-1 pl-4">
+            <div className="pt-5 pb-1 pl-4 pr-4">
+              <div className="h-10 w-full rounded-full bg-gray-10"></div>
+            </div>
+            <div className="pb-1">
               <div className="h-5 w-20 rounded-lg bg-gray-10"></div>
             </div>
             <div className="flex flex-row items-center gap-3">
@@ -875,17 +883,22 @@ function SearchInput({value, onChange}) {
 }
 
 function ConferenceLayout({conf, children}) {
-  const isPending = false; // TODO
+  const {slug, setSlug} = useContext(NavContext);
+  const [isPending, startTransition] = useTransition();
   return (
     <div
       className={cn(
-        'transition-opacity',
-        isPending
-          ? 'opacity-20 select-none pointer-events-none'
-          : 'opacity-100 overflow-y-scroll'
+        'transition-opacity delay-100',
+        isPending ? 'opacity-90' : 'opacity-100 overflow-y-scroll'
       )}>
       <Cover background={conf.cover}>
         <select
+          defaultValue={slug}
+          onChange={(e) => {
+            startTransition(() => {
+              setSlug(e.target.value);
+            });
+          }}
           className="appearance-none pr-8 bg-transparent text-primary-dark text-2xl font-bold mb-0.5"
           style={{
             backgroundSize: '4px 4px, 4px 4px',
@@ -895,10 +908,8 @@ function ConferenceLayout({conf, children}) {
             backgroundImage:
               'linear-gradient(45deg,transparent 50%,currentColor 50%),linear-gradient(135deg,currentColor 50%,transparent 50%)',
           }}>
-          <option value="2021" defaultValue>
-            {conf.name}
-          </option>
-          <option value="2020">{conf.name}</option>
+          <option value="react-conf-2021">React Conf 2021</option>
+          <option value="react-conf-2019">React Conf 2019</option>
         </select>
       </Cover>
       <Fragment key={conf.id}>{children}</Fragment>
@@ -912,11 +923,7 @@ function Cover({background, children}) {
       <div className="absolute inset-0 px-4 py-2 flex items-end bg-gradient-to-t from-black/40 via-black/0">
         {children}
       </div>
-      <img
-        src={background}
-        alt="Cover image"
-        className="max-w-full object-cover"
-      />
+      <img src={background} alt="" className="w-full object-cover" />
     </div>
   );
 }
@@ -1696,7 +1703,8 @@ function use(promise) {
 
 let confCache = new Map();
 let talksCache = new Map();
-const loadTalksDelay = 1500;
+const loadConfDelay = 250;
+const loadTalksDelay = 1000;
 
 function fetchConf(slug) {
   if (confCache.has(slug)) {
@@ -1713,12 +1721,11 @@ function fetchConf(slug) {
       } else if (slug === 'react-conf-2019') {
         resolve({
           id: 1,
-          cover:
-            'https://techcrunch.com/wp-content/uploads/2014/06/screenshot-2014-06-18-16-31-30.png',
+          cover: 'https://i.imgur.com/8Gj5yhV.png',
           name: 'React Conf 2019',
         });
       }
-    }, loadTalksDelay - 2000);
+    }, loadConfDelay);
   });
   confCache.set(slug, promise);
   return promise;
@@ -1917,13 +1924,86 @@ function fetchTalks(confId) {
         resolve([
           {
             id: 19,
-            title: 'Some stuff',
-            description: 'Andrew Clark, Lauren Tan',
-            url: 'https://www.youtube.com/watch?v=FZ0cG47msEk&list=PLNG_1j3cPCaZZ7etkzWA7JfdmKWT0pMsa&index=1',
+            title: 'Day 1 Keynote',
+            description: 'Tom Occhino',
+            url: 'https://www.youtube.com/watch?v=QnZHO7QvjaM&list=PLPxbbTqCLbGHPxZpw4xj_Wwg8-fdNxJRh',
             image: {
               speakers: [
-                'https://i.imgur.com/D69ZvSY.jpg',
-                'https://i.imgur.com/RznoMDK.jpg',
+                'https://conf2019.reactjs.org/img/speakers/tomocchino.jpg',
+              ],
+            },
+          },
+          {
+            id: 20,
+            title: 'Day 1 Keynote',
+            description: 'Yuzhi Zheng',
+            url: 'https://www.youtube.com/watch?v=uXEEL9mrkAQ&list=PLPxbbTqCLbGHPxZpw4xj_Wwg8-fdNxJRh&index=2',
+            image: {
+              speakers: ['https://conf2019.reactjs.org/img/speakers/yuzhi.jpg'],
+            },
+          },
+          {
+            id: 21,
+            title: 'Building The New Facebook With React and Relay',
+            description: 'Frank Yan',
+            url: 'https://www.youtube.com/watch?v=9JZHodNR184&list=PLPxbbTqCLbGHPxZpw4xj_Wwg8-fdNxJRh&index=3',
+            image: {
+              speakers: ['https://conf2019.reactjs.org/img/speakers/frank.jpg'],
+            },
+          },
+          {
+            id: 22,
+            title: 'Building The New Facebook With React and Relay',
+            description: 'Ashley Watkins',
+            url: 'https://www.youtube.com/watch?v=KT3XKDBZW7M&list=PLPxbbTqCLbGHPxZpw4xj_Wwg8-fdNxJRh&index=4',
+            image: {
+              speakers: [
+                'https://conf2019.reactjs.org/img/speakers/ashley.jpg',
+              ],
+            },
+          },
+          {
+            id: 23,
+            title: 'How Our Team Is Using React Native to Save The World',
+            description: 'Ashley Watkins',
+            url: 'https://www.youtube.com/watch?v=zVHWugBPGBE&list=PLPxbbTqCLbGHPxZpw4xj_Wwg8-fdNxJRh&index=5',
+            image: {
+              speakers: [
+                'https://conf2019.reactjs.org/img/speakers/_Tany_.jpg',
+              ],
+            },
+          },
+          {
+            id: 24,
+            title:
+              'Using Hooks and Codegen to Bring the Benefits of GraphQL to REST APIs',
+            description: 'Tejas Kumar',
+            url: 'https://www.youtube.com/watch?v=cdsnzfJUqm0&list=PLPxbbTqCLbGHPxZpw4xj_Wwg8-fdNxJRh&index=6',
+            image: {
+              speakers: [
+                'https://conf2019.reactjs.org/img/speakers/tejaskumar_.jpg',
+              ],
+            },
+          },
+          {
+            id: 25,
+            title: 'Building a Custom React Renderer',
+            description: 'Sophie Alpert',
+            url: 'https://www.youtube.com/watch?v=CGpMlWVcHok&list=PLPxbbTqCLbGHPxZpw4xj_Wwg8-fdNxJRh&index=7',
+            image: {
+              speakers: [
+                'https://conf2019.reactjs.org/img/speakers/sophiebits.jpg',
+              ],
+            },
+          },
+          {
+            id: 26,
+            title: 'Is React Translated Yet?',
+            description: 'Nat Alison',
+            url: 'https://www.youtube.com/watch?v=lLE4Jqaek5k&list=PLPxbbTqCLbGHPxZpw4xj_Wwg8-fdNxJRh&index=12',
+            image: {
+              speakers: [
+                'https://conf2019.reactjs.org/img/speakers/tesseralis.jpg',
               ],
             },
           },

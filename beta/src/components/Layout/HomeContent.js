@@ -371,11 +371,10 @@ export function HomeContent() {
                   <h3 className="leading-tight dark:text-primary-dark text-primary font-bold text-4xl lg:text-5xl mb-6">
                     Join a community of millions
                   </h3>
-                  <p className="text-xl lg:text-xl leading-normal text-secondary dark:text-secondary-dark">
-                    You&apos;re not alone. Two million developers visit the
-                    React site every month and the React Developer Tools
-                    extension has over three million weekly active users. React
-                    is something that people and teams can agree on.
+                  <p className="text-xl lg:text-2xl text-secondary dark:text-secondary-dark leading-normal">
+                    You’re not alone. Two million developers from all over the
+                    world visit the React site every month. React is something
+                    that people and teams can agree on.
                   </p>
                 </div>
               </div>
@@ -389,15 +388,15 @@ export function HomeContent() {
               </div>
             </div>
             <div className="mx-auto flex flex-col max-w-4xl">
-              <div className="flex-row gap-2 flex gap-10 grow w-full mb-12 sm:mb-16 lg:mb-20 mx-auto items-center">
+              <div className="flex-row gap-2 flex gap-10 grow w-full my-12 sm:my-16 lg:my-20 mx-auto items-center">
                 <div className="px-5 lg:px-0 max-w-4xl lg:text-center text-opacity-80">
-                  <p className="text-xl lg:text-xl leading-normal text-secondary dark:text-secondary-dark">
-                    If you&apos;re debugging an obscure problem, chances are,
-                    somebody has already run into it before and shared a
-                    solution. React also has a vibrant ecosystem. Whether you
-                    need a table, a chart, a fully accessible datepicker, a
-                    production-grade data fetching strategy, or a 3D rendering
-                    engine, chances are you&apos;ll find what you need.
+                  <p className="text-xl lg:text-2xl text-secondary dark:text-secondary-dark leading-normal">
+                    In the end, React is more than a library or an architecture.
+                    React is a community. Behind every component in the vibrant
+                    React ecosystem, there is a person who wanted to make it
+                    easier for the next person. Many questions remain unsolved,
+                    but we know one thing for sure. It’s more fun to build user
+                    interfaces together.
                   </p>
                 </div>
               </div>
@@ -430,8 +429,8 @@ const reactConf2021Cover = 'https://i.imgur.com/TsMgXlX.jpg';
 const reactConf2019Cover = 'https://i.imgur.com/YDWtkrY.jpg';
 const images = [
   // "https://i.imgur.io/lZ4jBCs_d.webp?maxwidth=640",
-  // "https://i.imgur.io/ujHe9Gd_d.webp?maxwidth=640",
   // "https://i.imgur.io/kJ5jUqY_d.webp?maxwidth=640",
+  // "https://i.imgur.io/ujHe9Gd_d.webp?maxwidth=640",
   // "https://i.imgur.io/lTYO6aH_d.webp?maxwidth=640",
   reactConf2019Cover,
   reactConf2021Cover,

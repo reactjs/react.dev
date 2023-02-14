@@ -380,11 +380,11 @@ export function HomeContent() {
                 </div>
               </div>
             </div>
-            <div class="relative flex overflow-x-hidden w-auto">
-              <div class="w-full py-12 animate-marquee whitespace-nowrap flex flex-row">
+            <div className="relative flex overflow-x-hidden w-auto">
+              <div className="w-full py-12 animate-marquee whitespace-nowrap flex flex-row">
                 <CommunityImages />
               </div>
-              <div class="w-full absolute left-0 right-0 top-0 py-12 animate-marquee2 whitespace-nowrap flex flex-row">
+              <div className="w-full absolute left-0 right-0 top-0 py-12 animate-marquee2 whitespace-nowrap flex flex-row">
                 <CommunityImages />
               </div>
             </div>

@@ -363,11 +363,11 @@ export function HomeContent() {
           </div>
         </div>
 
-        <div className="max-w-7xl mx-auto">
-          <div className="shadow-inner px-20 rounded-3xl bg-card dark:bg-card-dark">
-            <div className="mx-auto flex flex-col w-full">
-              <div className="flex-row gap-2 flex gap-10 grow w-full my-12 sm:my-16 lg:my-20 mx-auto items-center">
-                <div className="w-6/12 px-5 lg:px-0 max-w-4xl lg:text-left text-opacity-80">
+        <div className="w-full">
+          <div className="shadow-inner bg-card dark:bg-card-dark">
+            <div className="mx-auto flex flex-col max-w-4xl">
+              <div className="flex-row gap-2 flex gap-10 grow w-full mt-12 sm:mt-16 lg:mt-20 mx-auto items-center">
+                <div className="px-5 lg:px-0 max-w-4xl lg:text-center text-opacity-80">
                   <h3 className="leading-tight dark:text-primary-dark text-primary font-bold text-4xl lg:text-5xl mb-6">
                     Join a community of millions
                   </h3>
@@ -376,8 +376,22 @@ export function HomeContent() {
                     React site every month and the React Developer Tools
                     extension has over three million weekly active users. React
                     is something that people and teams can agree on.
-                    <br />
-                    <br />
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="relative flex overflow-x-hidden w-auto">
+              <div class="w-full py-12 animate-marquee whitespace-nowrap flex flex-row">
+                <CommunityImages />
+              </div>
+              <div class="w-full absolute left-0 right-0 top-0 py-12 animate-marquee2 whitespace-nowrap flex flex-row">
+                <CommunityImages />
+              </div>
+            </div>
+            <div className="mx-auto flex flex-col max-w-4xl">
+              <div className="flex-row gap-2 flex gap-10 grow w-full mb-12 sm:mb-16 lg:mb-20 mx-auto items-center">
+                <div className="px-5 lg:px-0 max-w-4xl lg:text-center text-opacity-80">
+                  <p className="text-xl lg:text-xl leading-normal text-secondary dark:text-secondary-dark">
                     If you&apos;re debugging an obscure problem, chances are,
                     somebody has already run into it before and shared a
                     solution. React also has a vibrant ecosystem. Whether you
@@ -386,37 +400,10 @@ export function HomeContent() {
                     engine, chances are you&apos;ll find what you need.
                   </p>
                 </div>
-                <div className="bg-black w-6/12 h-auto py-60 rounded-xl"></div>
               </div>
             </div>
           </div>
         </div>
-        {/* <div className="shadow-inner bg-card dark:bg-card-dark">
-          <div className="max-w-6xl mx-auto flex flex-col w-full">
-            <div className="flex-col gap-2 flex grow w-full my-12 sm:my-16 lg:my-20 mx-auto items-center">
-              <div className="px-5 lg:px-0 max-w-4xl lg:text-center text-opacity-80">
-                <h3 className="leading-tight dark:text-primary-dark text-primary font-bold text-4xl lg:text-5xl mb-6">
-                  Join a community of millions
-                </h3>
-                <p className="text-xl lg:text-2xl leading-normal text-secondary dark:text-secondary-dark">
-                  You&apos;re not alone. Two million developers visit the React
-                  site every month and the React Developer Tools extension has
-                  over three million weekly active users. React is something
-                  that people and teams can agree on.
-                  <br />
-                  <br />
-                  If you&apos;re debugging an obscure problem, chances are,
-                  somebody has already run into it before and shared a solution.
-                  React also has a vibrant ecosystem. Whether you need a table,
-                  a chart, a fully accessible datepicker, a production-grade
-                  data fetching strategy, or a 3D rendering engine, chances are
-                  you&apos;ll find what you need.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div> */}
-
         <div className="max-w-6xl mx-auto flex flex-col w-full">
           <div className="flex-col gap-2 flex grow w-full my-12 sm:my-16 lg:my-20 mx-auto items-center">
             <div className="px-5 lg:px-0 mb-6 max-w-4xl text-center text-opacity-80">
@@ -434,6 +421,39 @@ export function HomeContent() {
             </div>
           </div>
         </div>
+      </div>
+    </>
+  );
+}
+
+function CommunityImages() {
+  return (
+    <>
+      <div className="flex justify-center px-2.5 lg:px-5 w-6/12 lg:w-3/12">
+        <img
+          src="https://i.imgur.com/zBJvLHG.jpg"
+          className="aspect-video rotate-2 transition-all hover:rotate-0"
+        />
+      </div>
+      <div className="flex justify-center px-2.5 lg:px-5 w-6/12 lg:w-3/12">
+        <img
+          src="https://i.imgur.com/zBJvLHG.jpg"
+          className="aspect-video rotate-[-2deg] transition-all hover:rotate-0"
+        />
+      </div>
+
+      <div className="flex justify-center px-2.5 lg:px-5 w-6/12 lg:w-3/12">
+        <img
+          src="https://i.imgur.com/zBJvLHG.jpg"
+          className="aspect-video rotate-2 transition-all hover:rotate-0"
+        />
+      </div>
+
+      <div className="flex justify-center px-2.5 lg:px-5 w-6/12 lg:w-3/12">
+        <img
+          src="https://i.imgur.com/zBJvLHG.jpg"
+          className="aspect-video rotate-[-2deg] transition-all hover:rotate-0"
+        />
       </div>
     </>
   );

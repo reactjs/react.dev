@@ -426,35 +426,34 @@ export function HomeContent() {
   );
 }
 
+const reactConf2021Cover = 'https://i.imgur.com/TsMgXlX.jpg';
+const reactConf2019Cover = 'https://i.imgur.com/YDWtkrY.jpg';
+const images = [
+  // "https://i.imgur.io/lZ4jBCs_d.webp?maxwidth=640",
+  // "https://i.imgur.io/ujHe9Gd_d.webp?maxwidth=640",
+  // "https://i.imgur.io/kJ5jUqY_d.webp?maxwidth=640",
+  // "https://i.imgur.io/lTYO6aH_d.webp?maxwidth=640",
+  reactConf2019Cover,
+  reactConf2021Cover,
+  reactConf2019Cover,
+  reactConf2021Cover,
+];
+
 function CommunityImages() {
   return (
     <>
-      <div className="flex justify-center px-2.5 lg:px-5 w-6/12 lg:w-3/12">
-        <img
-          src="https://i.imgur.com/zBJvLHG.jpg"
-          className="rounded-xl aspect-video rotate-2 transition-all hover:rotate-0"
-        />
-      </div>
-      <div className="flex justify-center px-2.5 lg:px-5 w-6/12 lg:w-3/12">
-        <img
-          src="https://i.imgur.com/L4VckWD.png"
-          className="rounded-xl aspect-video rotate-[-2deg] transition-all hover:rotate-0"
-        />
-      </div>
-
-      <div className="flex justify-center px-2.5 lg:px-5 w-6/12 lg:w-3/12">
-        <img
-          src="https://i.imgur.com/zBJvLHG.jpg"
-          className="rounded-xl aspect-video rotate-2 transition-all hover:rotate-0"
-        />
-      </div>
-
-      <div className="flex justify-center px-2.5 lg:px-5 w-6/12 lg:w-3/12">
-        <img
-          src="https://i.imgur.com/L4VckWD.png"
-          className="rounded-xl aspect-video rotate-[-2deg] transition-all hover:rotate-0"
-        />
-      </div>
+      {images.map((src, i) => (
+        <div
+          key={i}
+          className="flex justify-center px-2.5 lg:px-5 w-6/12 lg:w-3/12">
+          <img
+            src={src}
+            className={`rounded-xl object-cover rotate-${
+              i % 2 === 0 ? '2' : '[-2deg]'
+            } transition-all hover:rotate-0`}
+          />
+        </div>
+      ))}
     </>
   );
 }
@@ -1759,9 +1758,6 @@ let confCache = new Map();
 let talksCache = new Map();
 const loadConfDelay = 250;
 const loadTalksDelay = 1000;
-
-const reactConf2021Cover = 'https://i.imgur.com/TsMgXlX.jpg';
-const reactConf2019Cover = 'https://i.imgur.com/YDWtkrY.jpg';
 
 function fetchConf(slug) {
   if (confCache.has(slug)) {

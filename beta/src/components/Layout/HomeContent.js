@@ -432,27 +432,27 @@ function CommunityImages() {
       <div className="flex justify-center px-2.5 lg:px-5 w-6/12 lg:w-3/12">
         <img
           src="https://i.imgur.com/zBJvLHG.jpg"
-          className="aspect-video rotate-2 transition-all hover:rotate-0"
+          className="rounded-xl aspect-video rotate-2 transition-all hover:rotate-0"
         />
       </div>
       <div className="flex justify-center px-2.5 lg:px-5 w-6/12 lg:w-3/12">
         <img
           src="https://i.imgur.com/zBJvLHG.jpg"
-          className="aspect-video rotate-[-2deg] transition-all hover:rotate-0"
-        />
-      </div>
-
-      <div className="flex justify-center px-2.5 lg:px-5 w-6/12 lg:w-3/12">
-        <img
-          src="https://i.imgur.com/zBJvLHG.jpg"
-          className="aspect-video rotate-2 transition-all hover:rotate-0"
+          className="rounded-xl aspect-video rotate-[-2deg] transition-all hover:rotate-0"
         />
       </div>
 
       <div className="flex justify-center px-2.5 lg:px-5 w-6/12 lg:w-3/12">
         <img
           src="https://i.imgur.com/zBJvLHG.jpg"
-          className="aspect-video rotate-[-2deg] transition-all hover:rotate-0"
+          className="rounded-xl aspect-video rotate-2 transition-all hover:rotate-0"
+        />
+      </div>
+
+      <div className="flex justify-center px-2.5 lg:px-5 w-6/12 lg:w-3/12">
+        <img
+          src="https://i.imgur.com/zBJvLHG.jpg"
+          className="rounded-xl aspect-video rotate-[-2deg] transition-all hover:rotate-0"
         />
       </div>
     </>

@@ -114,8 +114,9 @@ export function HomeContent() {
                 </h3>
                 <p className="text-xl lg:text-2xl leading-normal text-secondary dark:text-secondary-dark">
                   Each React component receives some data and returns what
-                  should appear on the screen. Pass different data, and React
-                  will update the screen to match it.
+                  should appear on the screen. You can update that data in
+                  response to any interaction, for example when typing into an
+                  input. React will update the screen to match the new data.
                 </p>
               </div>
               <div className="max-w-6xl mx-auto flex flex-col w-full">
@@ -123,9 +124,9 @@ export function HomeContent() {
               </div>
               <div className="px-5 lg:px-0 max-w-4xl lg:text-center text-opacity-80">
                 <p className="text-xl lg:text-2xl leading-normal">
-                  You don’t have to rewrite your entire app to React. Add React
-                  as a <Code>{'<script>'}</Code> tag to any HTML page, and
-                  render interactive components anywhere on it.
+                  You don’t have to rewrite your app to React. Add the React{' '}
+                  <Code>{'<script>'}</Code> tag to your HTML page, and render
+                  interactive React components anywhere on it.
                 </p>
               </div>
             </div>
@@ -526,45 +527,45 @@ function Example3() {
   const videos = [
     {
       id: 0,
-      title: 'First video',
-      description: 'First video description',
-      image: 'blue',
+      title: 'The React Documentary',
+      description:
+        'A documentary about the origin story of React and its ' +
+        'journey from an idea to a community.',
+      image: 'https://i.imgur.com/F5SIYH7.jpg',
+      url: 'https://www.youtube.com/watch?v=8pDqJVdNa44',
     },
     {
       id: 1,
-      title: 'Second video',
-      description: 'Second video description',
-      image: 'red',
+      title: 'Data Fetching with Server Components',
+      description:
+        'A 2020 talk by Dan Abramov and Lauren Tan introducing ' +
+        'the RFC for Server Components.',
+      image: 'https://i.imgur.com/SK8Smd8.jpg',
+      url: 'https://www.youtube.com/watch?v=TQQPAU21ZUw',
     },
     {
       id: 2,
-      title: 'Third video',
-      description: 'Third video description',
-      image: 'green',
+      title: 'React Today and Tomorrow',
+      description:
+        'A 2018 keynote by Sophie Alpert and Dan Abramov introducing React Hooks.',
+      image: 'https://i.imgur.com/LgqfWd4.jpg',
+      url: 'https://www.youtube.com/watch?v=V-QO-KO90iQ',
     },
     {
       id: 3,
-      title: 'Fourth video',
-      description: 'Fourth video description',
-      image: 'blue',
+      title: 'Introducing React Native',
+      description:
+        'A 2015 keynote by Tom Occhino introducing React Native for the first time.',
+      image: 'https://i.imgur.com/suhZaIj.jpg',
+      url: 'https://www.youtube.com/watch?v=KVZ-P-ZI6W4',
     },
     {
       id: 4,
-      title: 'Fifth video',
-      description: 'Fifth description',
-      image: 'red',
-    },
-    {
-      id: 5,
-      title: 'Sixth video',
-      description: 'Sixth video description',
-      image: 'green',
-    },
-    {
-      id: 6,
-      title: 'Seventh video',
-      description: 'Seventh video description',
-      image: 'blue',
+      title: 'Rethinking Best Practices',
+      description:
+        'A 2013 talk by Pete Hunt that explained the ideas behind React.',
+      image: 'https://i.imgur.com/Zmcmt2E.jpg',
+      url: 'https://www.youtube.com/watch?v=x7cQ3mrcKaY',
     },
   ];
 
@@ -585,24 +586,30 @@ function Example3() {
               <div>{`import { useState } from 'react';
 
 function SearchableVideoList({ videos }) {
-  const [query, setQuery] = useState('');
-  const matchingVideos = filterVideos(videos, query);
+  const [searchText, setSearchText] = useState('');
+  const foundVideos = filterVideos(videos, searchText);
   return (
     <>
-      <SearchInput value={query} onChange={setQuery} />
+      <SearchInput
+        value={searchText}
+        onChange={newText => setSearchText(newText)} />
       <VideoList
-        videos={matchingVideos}
-        emptyHeading={\`No matches for "\${query}"\`}
-      />
+        videos={foundVideos}
+        emptyHeading={\`No matches for "\${searchText}"\`} />
     </>
   );
 }`}</div>
             </CodeBlock>
           </div>
           <div className="lg:-my-20 w-full p-2.5 xs:p-5 lg:p-10 flex grow justify-center">
-            <ExamplePanel noShadow={false} noPadding={true} height="26rem">
-              <SearchableVideoList videos={videos} />
-            </ExamplePanel>
+            <BrowserChrome domain="example.com" path={'videos.html'}>
+              <ExamplePanel noShadow={false} noPadding={true} height="28rem">
+                <p className="mt-20 px-4 text-primary leading-snug">
+                  This page has a few videos about React through the years.
+                </p>
+                <SearchableVideoList videos={videos} />
+              </ExamplePanel>
+            </BrowserChrome>
           </div>
         </div>
       </div>
@@ -793,18 +800,20 @@ function Talks({confId}) {
 }
 
 function SearchableVideoList({videos}) {
-  const [query, setQuery] = useState('');
-  const matchingVideos = findVideos(videos, query);
-  const emptyHeading = `No matches for "${query}"`;
+  const [searchText, setSearchText] = useState('');
+  const foundVideos = filterVideos(videos, searchText);
   return (
     <>
-      <SearchInput value={query} onChange={setQuery} />
-      <VideoList videos={matchingVideos} emptyHeading={emptyHeading} />
+      <SearchInput value={searchText} onChange={setSearchText} />
+      <VideoList
+        videos={foundVideos}
+        emptyHeading={`No matches for "${searchText}"`}
+      />
     </>
   );
 }
 
-function findVideos(videos, query) {
+function filterVideos(videos, query) {
   const keywords = query
     .toLowerCase()
     .split(' ')
@@ -813,7 +822,9 @@ function findVideos(videos, query) {
     return videos;
   }
   return videos.filter((video) => {
-    const words = video.title.toLowerCase().split(' ');
+    const words = (video.title + ' ' + video.description)
+      .toLowerCase()
+      .split(' ');
     return words.some((w) => keywords.some((kw) => w.startsWith(kw)));
   });
 }

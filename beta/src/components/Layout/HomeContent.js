@@ -1787,7 +1787,7 @@ function fetchTalks(confId) {
           },
           {
             id: 1,
-            title: 'React 18 for app developers',
+            title: 'React 18 for App Developers',
             description: 'Shruti Kapoor',
             url: 'https://www.youtube.com/watch?v=ytudH8je5ko&list=PLNG_1j3cPCaZZ7etkzWA7JfdmKWT0pMsa&index=2',
             image: {
@@ -1805,7 +1805,7 @@ function fetchTalks(confId) {
           },
           {
             id: 3,
-            title: 'The first React Working Group',
+            title: 'The First React Working Group',
             description: 'Aakansha Doshi',
             url: 'https://www.youtube.com/watch?v=qn7gRClrC9U&list=PLNG_1j3cPCaZZ7etkzWA7JfdmKWT0pMsa&index=4',
             image: {
@@ -1841,7 +1841,7 @@ function fetchTalks(confId) {
           },
           {
             id: 7,
-            title: 'Things I learnt from the new React docs',
+            title: 'Things I Learnt from the New React Docs',
             description: "Debbie O'Brien",
             url: 'https://www.youtube.com/watch?v=-7odLW_hG7s&list=PLNG_1j3cPCaZZ7etkzWA7JfdmKWT0pMsa&index=8',
             image: {
@@ -1868,7 +1868,7 @@ function fetchTalks(confId) {
           },
           {
             id: 10,
-            title: 'Interactive playgrounds with React',
+            title: 'Interactive Playgrounds with React',
             description: 'Delba de Oliveira',
             url: 'https://www.youtube.com/watch?v=zL8cz2W0z34&list=PLNG_1j3cPCaZZ7etkzWA7JfdmKWT0pMsa&index=11',
             image: {
@@ -1916,7 +1916,7 @@ function fetchTalks(confId) {
           },
           {
             id: 15,
-            title: 'Building accessible components with React 18',
+            title: 'Building Accessible Components with React 18',
             description: 'Diego Haz',
             url: 'https://www.youtube.com/watch?v=dcm8fjBfro8&list=PLNG_1j3cPCaZZ7etkzWA7JfdmKWT0pMsa&index=16',
             image: {
@@ -1934,7 +1934,7 @@ function fetchTalks(confId) {
           },
           {
             id: 17,
-            title: 'UI Tools for artists',
+            title: 'UI Tools for Artists',
             description: 'Lyle Troxell',
             url: 'https://www.youtube.com/watch?v=b3l4WxipFsE&list=PLNG_1j3cPCaZZ7etkzWA7JfdmKWT0pMsa&index=18',
             image: {

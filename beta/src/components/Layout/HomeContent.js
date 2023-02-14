@@ -556,43 +556,36 @@ function Example3() {
   const videos = [
     {
       id: 0,
-      title: 'The React Documentary',
-      description:
-        'A documentary about the origin story of React and its ' +
-        'journey from an idea to a community.',
+      title: 'React: The Documentary',
+      description: 'The origin story of React (2023)',
       image: 'https://i.imgur.com/F5SIYH7.jpg',
       url: 'https://www.youtube.com/watch?v=8pDqJVdNa44',
     },
     {
       id: 1,
-      title: 'Data Fetching with Server Components',
-      description:
-        'A 2020 talk by Dan Abramov and Lauren Tan introducing ' +
-        'the RFC for Server Components.',
+      title: 'Introducing Server Components',
+      description: 'Dan Abramov and Lauren Tan (2020)',
       image: 'https://i.imgur.com/SK8Smd8.jpg',
       url: 'https://www.youtube.com/watch?v=TQQPAU21ZUw',
     },
     {
       id: 2,
-      title: 'React Today and Tomorrow',
-      description:
-        'A 2018 keynote by Sophie Alpert and Dan Abramov introducing React Hooks.',
+      title: 'Introducing React Hooks',
+      description: 'Sophie Alpert and Dan Abramov (2018)',
       image: 'https://i.imgur.com/LgqfWd4.jpg',
       url: 'https://www.youtube.com/watch?v=V-QO-KO90iQ',
     },
     {
       id: 3,
       title: 'Introducing React Native',
-      description:
-        'A 2015 keynote by Tom Occhino introducing React Native for the first time.',
+      description: 'Tom Occhino (2015)',
       image: 'https://i.imgur.com/suhZaIj.jpg',
       url: 'https://www.youtube.com/watch?v=KVZ-P-ZI6W4',
     },
     {
       id: 4,
       title: 'Rethinking Best Practices',
-      description:
-        'A 2013 talk by Pete Hunt that explained the ideas behind React.',
+      description: 'Pete Hunt (2013)',
       image: 'https://i.imgur.com/Zmcmt2E.jpg',
       url: 'https://www.youtube.com/watch?v=x7cQ3mrcKaY',
     },
@@ -637,7 +630,7 @@ function SearchableVideoList({ videos }) {
                   React Videos
                 </h1>
                 <p className="mx-4 mb-0 leading-snug text-secondary text-xl">
-                  Videos from throughout the years
+                  A brief history of React
                 </p>
                 <SearchableVideoList videos={videos} />
               </ExamplePanel>

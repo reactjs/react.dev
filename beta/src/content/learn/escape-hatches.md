@@ -471,14 +471,14 @@ This is not ideal. You want to re-connect to the chat only if the `roomId` has c
 
 ```js
 import { useState, useEffect } from 'react';
-import { experimental_useEvent as useEvent } from 'react';
+import { experimental_useEffectEvent as useEffectEvent } from 'react';
 import { createConnection, sendMessage } from './chat.js';
 import { showNotification } from './notifications.js';
 
 const serverUrl = 'https://localhost:1234';
 
 function ChatRoom({ roomId, theme }) {
-  const onConnected = useEvent(() => {
+  const onConnected = useEffectEvent(() => {
     showNotification('Connected!', theme);
   });
 

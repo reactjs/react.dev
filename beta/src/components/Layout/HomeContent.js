@@ -111,12 +111,12 @@ export function HomeContent() {
             <div className="flex-col gap-2 flex grow w-full my-12 sm:my-16 lg:my-20 mx-auto items-center">
               <div className="px-5 lg:px-0 max-w-4xl lg:text-center text-opacity-80">
                 <h3 className="leading-tight dark:text-primary-dark text-primary font-bold text-4xl lg:text-5xl mb-6">
-                  Add interactivity where you need it
+                  Make any page interactive
                 </h3>
                 <p className="text-xl lg:text-2xl leading-normal text-secondary dark:text-secondary-dark">
                   Each React component receives some data and returns what
                   should appear on the screen. You can update that data in
-                  response to any interaction, for example when typing into an
+                  response to an interaction, for example when typing into an
                   input. React will update the screen to match the new data.
                 </p>
               </div>
@@ -125,9 +125,9 @@ export function HomeContent() {
               </div>
               <div className="px-5 lg:px-0 max-w-4xl lg:text-center text-opacity-80">
                 <p className="text-xl lg:text-2xl leading-normal">
-                  You don’t have to rewrite your app to React. Add the React{' '}
-                  <Code>{'<script>'}</Code> tag to your HTML page, and render
-                  interactive React components anywhere on it.
+                  You don’t have to build your whole page in React. Add the
+                  React <Code>{'<script>'}</Code> tag to your HTML page, and
+                  render interactive React components anywhere on it.
                 </p>
               </div>
             </div>

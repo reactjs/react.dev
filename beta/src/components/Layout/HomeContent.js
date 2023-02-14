@@ -708,6 +708,16 @@ async function Talks({ confId }) {
                 <ExamplePanel noPadding={true} noShadow={true} height="35rem">
                   <Suspense fallback={null}>
                     <div style={{animation: 'fadein 200ms'}}>
+                      <link
+                        rel="preload"
+                        href={reactConf2019Cover}
+                        as="image"
+                      />
+                      <link
+                        rel="preload"
+                        href={reactConf2021Cover}
+                        as="image"
+                      />
                       <ConferencePage slug={slug} />
                     </div>
                   </Suspense>
@@ -1750,6 +1760,9 @@ let talksCache = new Map();
 const loadConfDelay = 250;
 const loadTalksDelay = 1000;
 
+const reactConf2021Cover = 'https://i.imgur.com/TsMgXlX.jpg';
+const reactConf2019Cover = 'https://i.imgur.com/YDWtkrY.jpg';
+
 function fetchConf(slug) {
   if (confCache.has(slug)) {
     return confCache.get(slug);
@@ -1759,13 +1772,13 @@ function fetchConf(slug) {
       if (slug === 'react-conf-2021') {
         resolve({
           id: 0,
-          cover: 'https://i.imgur.com/zBJvLHG.jpg',
+          cover: reactConf2021Cover,
           name: 'React Conf 2021',
         });
       } else if (slug === 'react-conf-2019') {
         resolve({
           id: 1,
-          cover: 'https://i.imgur.com/L4VckWD.png',
+          cover: reactConf2019Cover,
           name: 'React Conf 2019',
         });
       }
@@ -1792,7 +1805,7 @@ function fetchTalks(confId) {
             image: {
               speakers: [
                 'https://i.imgur.com/D69ZvSY.jpg',
-                'https://i.imgur.com/RznoMDK.jpg',
+                'https://i.imgur.com/19tOZCm.jpg',
                 'https://i.imgur.com/CeGgjK3.jpg',
                 'https://i.imgur.com/tK5OEus.jpg',
               ],
@@ -1849,7 +1862,7 @@ function fetchTalks(confId) {
             description: 'Rachel Nabors',
             url: 'https://www.youtube.com/watch?v=mneDaMYOKP8&list=PLNG_1j3cPCaZZ7etkzWA7JfdmKWT0pMsa&index=7',
             image: {
-              speakers: ['https://i.imgur.com/NkwwAZF.png'],
+              speakers: ['https://i.imgur.com/ESbZUTa.jpg'],
             },
           },
           {

@@ -857,7 +857,7 @@ function filterVideos(videos, query) {
     const words = (video.title + ' ' + video.description)
       .toLowerCase()
       .split(' ');
-    return words.some((w) => keywords.some((kw) => w.startsWith(kw)));
+    return keywords.every((kw) => words.some((w) => w.startsWith(kw)));
   });
 }
 

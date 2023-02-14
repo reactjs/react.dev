@@ -363,7 +363,35 @@ export function HomeContent() {
           </div>
         </div>
 
-        <div className="shadow-inner bg-card dark:bg-card-dark">
+        <div className="max-w-7xl mx-auto">
+          <div className="shadow-inner px-20 rounded-3xl bg-card dark:bg-card-dark">
+            <div className="mx-auto flex flex-col w-full">
+              <div className="flex-row gap-2 flex gap-10 grow w-full my-12 sm:my-16 lg:my-20 mx-auto items-center">
+                <div className="w-6/12 px-5 lg:px-0 max-w-4xl lg:text-left text-opacity-80">
+                  <h3 className="leading-tight dark:text-primary-dark text-primary font-bold text-4xl lg:text-5xl mb-6">
+                    Join a community of millions
+                  </h3>
+                  <p className="text-xl lg:text-xl leading-normal text-secondary dark:text-secondary-dark">
+                    You&apos;re not alone. Two million developers visit the
+                    React site every month and the React Developer Tools
+                    extension has over three million weekly active users. React
+                    is something that people and teams can agree on.
+                    <br />
+                    <br />
+                    If you&apos;re debugging an obscure problem, chances are,
+                    somebody has already run into it before and shared a
+                    solution. React also has a vibrant ecosystem. Whether you
+                    need a table, a chart, a fully accessible datepicker, a
+                    production-grade data fetching strategy, or a 3D rendering
+                    engine, chances are you&apos;ll find what you need.
+                  </p>
+                </div>
+                <div className="bg-black w-6/12 h-auto py-60 rounded-xl"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        {/* <div className="shadow-inner bg-card dark:bg-card-dark">
           <div className="max-w-6xl mx-auto flex flex-col w-full">
             <div className="flex-col gap-2 flex grow w-full my-12 sm:my-16 lg:my-20 mx-auto items-center">
               <div className="px-5 lg:px-0 max-w-4xl lg:text-center text-opacity-80">
@@ -387,7 +415,7 @@ export function HomeContent() {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
 
         <div className="max-w-6xl mx-auto flex flex-col w-full">
           <div className="flex-col gap-2 flex grow w-full my-12 sm:my-16 lg:my-20 mx-auto items-center">
@@ -604,9 +632,12 @@ function SearchableVideoList({ videos }) {
           </div>
           <div className="lg:-my-20 w-full p-2.5 xs:p-5 lg:p-10 flex grow justify-center">
             <BrowserChrome domain="example.com" path={'videos.html'}>
-              <ExamplePanel noShadow={false} noPadding={true} height="28rem">
-                <p className="mt-20 px-4 text-primary leading-snug">
-                  This page has a few videos about React through the years.
+              <ExamplePanel noShadow={false} noPadding={true} height="30rem">
+                <h1 className="mt-20 mx-4 mb-1 font-bold text-3xl text-primary">
+                  React Videos
+                </h1>
+                <p className="mx-4 mb-0 leading-snug text-secondary text-xl">
+                  Videos from throughout the years
                 </p>
                 <SearchableVideoList videos={videos} />
               </ExamplePanel>
@@ -730,7 +761,7 @@ function BrowserChrome({children, hasRefresh, domain, path}) {
             key={restartId}
             className="z-10 loading h-0.5 bg-link transition-all duration-200 absolute bottom-0 left-0"
             style={{
-              animation: `progressbar ${loadTalksDelay + 100}ms linear`,
+              animation: `progressbar ${loadTalksDelay + 100}ms ease-in-out`,
             }}
           />
         )}
@@ -757,7 +788,7 @@ function TalksLoading() {
       <div className="w-full">
         <div className="relative overflow-hidden before:-skew-x-12 before:absolute before:inset-0 before:-translate-x-full before:animate-[shimmer_2.5s_infinite] before:bg-gradient-to-r before:from-transparent before:via-white/50 before:to-transparent">
           <div className="space-y-4 space-x-4">
-            <div className="pt-5 pb-1 pl-4 pr-4">
+            <div className="pt-4 pb-1 pl-4 pr-4">
               <div className="h-10 w-full rounded-full bg-gray-10"></div>
             </div>
             <div className="pb-1">
@@ -861,7 +892,7 @@ function VideoList({videos, emptyHeading}) {
 function SearchInput({value, onChange}) {
   const id = useId();
   return (
-    <form className="mx-4 mt-5">
+    <form className="mx-4 mt-4">
       <label htmlFor={id} className="sr-only">
         Search
       </label>
@@ -872,7 +903,7 @@ function SearchInput({value, onChange}) {
         <input
           type="text"
           id={id}
-          className="flex pl-11 py-4 h-10 w-full bg-secondary-button outline-none focus:outline-link betterhover:hover:bg-opacity-80 pointer items-center text-left text-primary rounded-full align-middle text-base"
+          className="flex pl-11 py-4 h-10 w-full bg-secondary-button outline-none betterhover:hover:bg-opacity-80 pointer items-center text-left text-primary rounded-full align-middle text-base"
           placeholder="Search"
           value={value}
           onChange={(e) => onChange(e.target.value)}
@@ -1721,7 +1752,7 @@ function fetchConf(slug) {
       } else if (slug === 'react-conf-2019') {
         resolve({
           id: 1,
-          cover: 'https://i.imgur.com/8Gj5yhV.png',
+          cover: 'https://i.imgur.com/L4VckWD.png',
           name: 'React Conf 2019',
         });
       }

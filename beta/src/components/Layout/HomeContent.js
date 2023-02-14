@@ -1955,7 +1955,7 @@ function fetchTalks(confId) {
         resolve([
           {
             id: 19,
-            title: 'Day 1 Keynote',
+            title: 'Keynote (Part 1)',
             description: 'Tom Occhino',
             url: 'https://www.youtube.com/watch?v=QnZHO7QvjaM&list=PLPxbbTqCLbGHPxZpw4xj_Wwg8-fdNxJRh',
             image: {
@@ -1966,7 +1966,7 @@ function fetchTalks(confId) {
           },
           {
             id: 20,
-            title: 'Day 1 Keynote',
+            title: 'Keynote (Part 2)',
             description: 'Yuzhi Zheng',
             url: 'https://www.youtube.com/watch?v=uXEEL9mrkAQ&list=PLPxbbTqCLbGHPxZpw4xj_Wwg8-fdNxJRh&index=2',
             image: {
@@ -1975,7 +1975,7 @@ function fetchTalks(confId) {
           },
           {
             id: 21,
-            title: 'Building The New Facebook With React and Relay',
+            title: 'Building The New Facebook With React and Relay (Part 1)',
             description: 'Frank Yan',
             url: 'https://www.youtube.com/watch?v=9JZHodNR184&list=PLPxbbTqCLbGHPxZpw4xj_Wwg8-fdNxJRh&index=3',
             image: {
@@ -1984,7 +1984,7 @@ function fetchTalks(confId) {
           },
           {
             id: 22,
-            title: 'Building The New Facebook With React and Relay',
+            title: 'Building The New Facebook With React and Relay (Part 2)',
             description: 'Ashley Watkins',
             url: 'https://www.youtube.com/watch?v=KT3XKDBZW7M&list=PLPxbbTqCLbGHPxZpw4xj_Wwg8-fdNxJRh&index=4',
             image: {
@@ -2035,6 +2035,145 @@ function fetchTalks(confId) {
             image: {
               speakers: [
                 'https://conf2019.reactjs.org/img/speakers/tesseralis.jpg',
+              ],
+            },
+          },
+          {
+            id: 27,
+            title: 'Building (And Re-Building) the Airbnb Design System',
+            description: 'Maja Wichrowska and Tae Kim',
+            url: 'https://www.youtube.com/watch?v=fHQ1WSx41CA&list=PLPxbbTqCLbGHPxZpw4xj_Wwg8-fdNxJRh&index=13',
+            image: {
+              speakers: [
+                'https://conf2019.reactjs.org/img/speakers/majapw.jpg',
+                'https://conf2019.reactjs.org/img/speakers/taekimjr.jpg',
+              ],
+            },
+          },
+          {
+            id: 28,
+            title: 'Accessibility Is a Marathon, Not a Sprint',
+            description: 'Brittany Feenstra',
+            url: 'https://www.youtube.com/watch?v=ONSD-t4gBb8&list=PLPxbbTqCLbGHPxZpw4xj_Wwg8-fdNxJRh&index=14',
+            image: {
+              speakers: [
+                'https://conf2019.reactjs.org/img/speakers/brittanyIRL.jpg',
+              ],
+            },
+          },
+          {
+            id: 29,
+            title: 'The State of React State in 2019',
+            description: 'Becca Bailey',
+            url: 'https://www.youtube.com/watch?v=wUMMUyQtMSg&list=PLPxbbTqCLbGHPxZpw4xj_Wwg8-fdNxJRh&index=15',
+            image: {
+              speakers: [
+                'https://conf2019.reactjs.org/img/speakers/beccaliz.jpg',
+              ],
+            },
+          },
+          {
+            id: 30,
+            title: 'Let’s Program Like It’s 1999',
+            description: 'Lee Byron',
+            url: 'https://www.youtube.com/watch?v=vG8WpLr6y_U&list=PLPxbbTqCLbGHPxZpw4xj_Wwg8-fdNxJRh&index=16',
+            image: {
+              speakers: ['https://conf2019.reactjs.org/img/speakers/leeb.jpg'],
+            },
+          },
+          {
+            id: 31,
+            title: 'React Developer Tooling',
+            description: 'Brian Vaughn',
+            url: 'https://www.youtube.com/watch?v=Mjrfb1r3XEM&list=PLPxbbTqCLbGHPxZpw4xj_Wwg8-fdNxJRh&index=17',
+            image: {
+              speakers: ['https://conf2019.reactjs.org/img/speakers/brian.jpg'],
+            },
+          },
+          {
+            id: 32,
+            title: 'Data Fetching With Suspense In Relay',
+            description: 'Joe Savona',
+            url: 'https://www.youtube.com/watch?v=Tl0S7QkxFE4&list=PLPxbbTqCLbGHPxZpw4xj_Wwg8-fdNxJRh&index=18',
+            image: {
+              speakers: ['https://conf2019.reactjs.org/img/speakers/joe.jpg'],
+            },
+          },
+          {
+            id: 33,
+            title: 'Automatic Visualizations of the Frontend',
+            description: 'Cameron Yick',
+            url: 'https://www.youtube.com/watch?v=SbreAPNmZOk&list=PLPxbbTqCLbGHPxZpw4xj_Wwg8-fdNxJRh&index=19',
+            image: {
+              speakers: [
+                'https://conf2019.reactjs.org/img/speakers/hydrosquall.jpg',
+              ],
+            },
+          },
+          {
+            id: 34,
+            title: 'React Is Fiction',
+            description: 'Jenn Creighton',
+            url: 'https://www.youtube.com/watch?v=kqh4lz2Lkzs&list=PLPxbbTqCLbGHPxZpw4xj_Wwg8-fdNxJRh&index=20',
+            image: {
+              speakers: [
+                'https://conf2019.reactjs.org/img/speakers/gurlcode.jpg',
+              ],
+            },
+          },
+          {
+            id: 35,
+            title: 'Progressive Web Animations',
+            description: 'Alexandra Holachek',
+            url: 'https://www.youtube.com/watch?v=laPsceJ4tTY&list=PLPxbbTqCLbGHPxZpw4xj_Wwg8-fdNxJRh&index=21',
+            image: {
+              speakers: [
+                'https://conf2019.reactjs.org/img/speakers/aholachek.jpg',
+              ],
+            },
+          },
+          {
+            id: 36,
+            title:
+              'Creating Games, Animations and Interactions with the Wick Editor',
+            description: 'Luca Damasco',
+            url: 'https://www.youtube.com/watch?v=laPsceJ4tTY&list=PLPxbbTqCLbGHPxZpw4xj_Wwg8-fdNxJRh&index=21',
+            image: {
+              speakers: [
+                'https://conf2019.reactjs.org/img/speakers/Lucapodular.jpg',
+              ],
+            },
+          },
+          {
+            id: 37,
+            title: 'Building React-Select',
+            description: 'Jed Watson',
+            url: 'https://www.youtube.com/watch?v=yS0jUnmBujE&list=PLPxbbTqCLbGHPxZpw4xj_Wwg8-fdNxJRh&index=25',
+            image: {
+              speakers: [
+                'https://conf2019.reactjs.org/img/speakers/JedWatson.jpg',
+              ],
+            },
+          },
+          {
+            id: 38,
+            title: 'Promoting Transparency in Government Spending with React',
+            description: 'Lizzie Salita',
+            url: 'https://www.youtube.com/watch?v=CVfXICcNfHE&list=PLPxbbTqCLbGHPxZpw4xj_Wwg8-fdNxJRh&index=26',
+            image: {
+              speakers: [
+                'https://conf2019.reactjs.org/img/speakers/ebsalita.jpg',
+              ],
+            },
+          },
+          {
+            id: 39,
+            title: 'Wonder-driven Development: Using React to Make a Spaceship',
+            description: 'Alex Anderson',
+            url: 'https://www.youtube.com/watch?v=aV0uOPWHKt4&list=PLPxbbTqCLbGHPxZpw4xj_Wwg8-fdNxJRh&index=27',
+            image: {
+              speakers: [
+                'https://conf2019.reactjs.org/img/speakers/ralex1993.jpg',
               ],
             },
           },

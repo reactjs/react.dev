@@ -101,10 +101,17 @@ export default function Nav({
 }) {
   const [isOpen, setIsOpen] = useState(false);
   const [showFeedback, setShowFeedback] = useState(false);
+  const [isFirefox, setIsFirefox] = useState(false);
   const scrollParentRef = useRef<HTMLDivElement>(null);
   const feedbackAutohideRef = useRef<any>(null);
   const {asPath} = useRouter();
   const feedbackPopupRef = useRef<null | HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (typeof window !== undefined) {
+      setIsFirefox(window.navigator.userAgent.indexOf('Firefox') > -1);
+    }
+  }, []);
 
   // In mobile mode, let the user switch tabs there and back without navigating.
   // Seed the tab state from the router, but keep it independent.
@@ -330,7 +337,10 @@ export default function Nav({
 
       <div
         ref={scrollParentRef}
-        className="overflow-y-scroll no-bg-scrollbar lg:w-[336px] grow bg-wash dark:bg-wash-dark">
+        className={cn(
+          `overflow-y-scroll no-bg-scrollbar grow bg-wash dark:bg-wash-dark`,
+          isFirefox ? 'lg-w[310px]' : 'lg-w[336px]'
+        )}>
         <aside
           className={cn(
             `lg:grow lg:flex flex-col w-full pb-8 lg:pb-0 lg:max-w-xs z-10`,

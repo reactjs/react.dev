@@ -84,14 +84,14 @@ module.exports = {
           },
         },
         scale: {
-          from: {transform: 'scale(0.6)', opacity: '0'},
+          from: {transform: 'scale(0.8)', opacity: '0'},
           '90%': {transform: 'scale(1.05)', opacity: '1'},
           to: {transform: 'scale(1)', opacity: '1'},
         },
         circle: {
-          from: {transform: 'scale(0)', strokeWidth: '16px'},
-          '50%': {transform: 'scale(0.4)', strokeWidth: '16px'},
-          to: {transform: 'scale(1.2)', strokeWidth: '0px'},
+          from: {transform: 'scale(0)', strokeWidth: '16px', opacity: '.8'},
+          '50%': {transform: 'scale(0.5)', strokeWidth: '16px', opacity: '.8'},
+          to: {transform: 'scale(1)', strokeWidth: '0px', opacity: '.25'},
         },
         marquee: {
           '0%': {transform: 'translateX(0%)'},

@@ -1097,7 +1097,7 @@ function LikeButton() {
         <circle
           className={cn(
             'text-red-50/50 origin-center transition-all ease-in-out',
-            saved && 'animate-[circle_.25s_forwards]'
+            saved && 'animate-[circle_.3s_forwards]'
           )}
           cx="12"
           cy="12"
@@ -1111,7 +1111,7 @@ function LikeButton() {
         <svg
           className={cn(
             'w-6 h-6 origin-center transition-all ease-in-out',
-            saved && 'animate-[scale_.25s_.1s_ease-in-out_forwards]'
+            saved && 'animate-[scale_.3s_.15s_ease-in-out_forwards]'
           )}
           viewBox="0 0 24 24"
           fill="none"

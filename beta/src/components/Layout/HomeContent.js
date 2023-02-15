@@ -262,10 +262,10 @@ export function HomeContent() {
               </div>
 
               <p className="text-xl lg:text-2xl text-secondary dark:text-secondary-dark leading-normal">
-                The React team is always researching how to improve React. Some
-                of these research projects take years to realize. React has a
-                high bar for taking an idea from research to production. Only
-                proven approaches become a part of React.
+                The React team is always researching how to improve React. It
+                can take years of investment for that research to pay off. React
+                has a high bar for taking an idea from research to production.
+                Only proven approaches become a part of React.
               </p>
 
               {/*<p className="min-h-[500px] text-xl lg:text-2xl leading-normal text-secondary dark:text-secondary-dark">
@@ -387,11 +387,11 @@ export function HomeContent() {
                 <div className="px-5 lg:px-0 max-w-4xl lg:text-center text-opacity-80">
                   <p className="text-xl lg:text-2xl text-secondary dark:text-secondary-dark leading-normal">
                     This is why React is more than a library, an architecture,
-                    or even an ecosystem. React is a community. We are
-                    developers and designers, beginners and experts, researchers
-                    and artists, enthusiasts and skeptics, teachers and
-                    students, and those who don’t fit any labels. React lets us
-                    all create user interfaces together.
+                    or even an ecosystem. React is a community where you can ask
+                    for help, find opportunities, and meet new friends.
+                    Developers and designers, beginners and experts, researchers
+                    and artists, students and teachers—React lets us all create
+                    user interfaces together.
                   </p>
                 </div>
               </div>

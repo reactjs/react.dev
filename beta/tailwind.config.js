@@ -83,6 +83,16 @@ module.exports = {
             transform: 'translateX(100%)',
           },
         },
+        scale: {
+          from: {transform: 'scale(0.6)', opacity: '0'},
+          '90%': {transform: 'scale(1.05)', opacity: '1'},
+          to: {transform: 'scale(1)', opacity: '1'},
+        },
+        circle: {
+          from: {transform: 'scale(0)', strokeWidth: '16px'},
+          '50%': {transform: 'scale(0.4)', strokeWidth: '16px'},
+          to: {transform: 'scale(1.2)', strokeWidth: '0px'},
+        },
         marquee: {
           '0%': {transform: 'translateX(0%)'},
           '100%': {transform: 'translateX(-100%)'},

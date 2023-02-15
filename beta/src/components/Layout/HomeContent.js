@@ -1084,14 +1084,35 @@ function LikeButton() {
   return (
     <button
       className={cn(
-        'flex items-center justify-center w-10 h-10 cursor-pointer rounded-full text-tertiary hover:bg-card',
+        'relative flex items-center justify-center w-10 h-10 cursor-pointer rounded-full text-tertiary hover:bg-card active:bg-red-50/5 active:text-red-50',
         saved && 'text-red-50'
       )}
       aria-label={saved ? 'Unsave' : 'Save'}
       onClick={() => setSaved(!saved)}>
+      <svg
+        className="absolute overflow-visible"
+        viewBox="0 0 24 24"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg">
+        <circle
+          className={cn(
+            'text-red-50/50 origin-center transition-all ease-in-out',
+            saved && 'animate-[circle_.3s_forwards]'
+          )}
+          cx="12"
+          cy="12"
+          r="11.5"
+          fill="transparent"
+          strokeWidth="0"
+          stroke="currentColor"
+        />
+      </svg>
       {saved ? (
         <svg
-          className="w-6 h-6"
+          className={cn(
+            'w-6 h-6 origin-center transition-all ease-in-out',
+            saved && 'animate-[scale_.3s_.1s_ease-in-out_forwards]'
+          )}
           viewBox="0 0 24 24"
           fill="none"
           xmlns="http://www.w3.org/2000/svg">

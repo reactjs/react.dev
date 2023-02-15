@@ -79,9 +79,6 @@ const Header = ({location}: {location: Location}) => (
               color: colors.white,
             },
 
-            [media.greaterThan('small')]: {
-              width: 'calc(100% / 6)',
-            },
             [media.lessThan('small')]: {
               flex: '0 0 auto',
             },
@@ -145,14 +142,22 @@ const Header = ({location}: {location: Location}) => (
                 'linear-gradient(to right, transparent, black 20px, black 90%, transparent)',
             },
           }}>
-          {navHeader.items.map(link => (
-            <HeaderLink
-              key={link.title}
-              isActive={location.pathname.includes(link.activeSelector)}
-              title={link.title}
-              to={link.to}
-            />
-          ))}
+          <div
+            css={{
+              display: 'flex',
+              flexDirection: 'row',
+              marginLeft: 'auto',
+              marginRight: 'auto',
+            }}>
+            {navHeader.items.map(link => (
+              <HeaderLink
+                key={link.title}
+                isActive={location.pathname.includes(link.activeSelector)}
+                title={link.title}
+                to={link.to}
+              />
+            ))}
+          </div>
         </nav>
 
         <DocSearch />

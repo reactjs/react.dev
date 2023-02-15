@@ -236,28 +236,27 @@ export function HomeContent() {
                 every migration strategy.
               </p>
 
-              <div className="flex-col gap-2 flex grow w-full my-12 sm:my-16 lg:my-20 mx-auto items-center">
-                <div className="w-full lg:text-center text-opacity-80">
-                  <div className="mx-auto flex-col lg:flex-row gap-5 flex grow w-full items-start text-left">
-                    <BlogCard
-                      title="How to Upgrade to React 18"
-                      date="March 8, 2022"
-                      url="/blog/2022/03/08/react-18-upgrade-guide"></BlogCard>
-                    <BlogCard
-                      title={
-                        <>
-                          React v18.0
-                          <br />
-                          <br />
-                        </>
-                      }
-                      date="March 29, 2022"
-                      url="/blog/2022/03/29/react-v18"></BlogCard>
-                    <BlogCard
-                      title="React Labs: June 2022"
-                      date="June 15, 2022"
-                      url="/blog/2022/06/15/react-labs-what-we-have-been-working-on-june-2022"></BlogCard>
-                  </div>
+              <div className="flex-col sm:flex-row flex gap-5 text-left my-12 sm:my-16 lg:my-20">
+                <div className="flex-1">
+                  <BlogCard
+                    icon="blog"
+                    title="How to Upgrade to React 18"
+                    date="March 8, 2022"
+                    url="/blog/2022/03/08/react-18-upgrade-guide"></BlogCard>
+                </div>
+                <div className="flex-1">
+                  <BlogCard
+                    title="React v18.0"
+                    icon="blog"
+                    date="March 29, 2022"
+                    url="/blog/2022/03/29/react-v18"></BlogCard>
+                </div>
+                <div className="flex-1">
+                  <BlogCard
+                    title="React Labs: June 2022"
+                    icon="labs"
+                    date="June 15, 2022"
+                    url="/blog/2022/06/15/react-labs-what-we-have-been-working-on-june-2022"></BlogCard>
                 </div>
               </div>
 

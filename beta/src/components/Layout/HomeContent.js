@@ -445,7 +445,9 @@ function CommunityImages() {
   return (
     <>
       {images.map((src, i) => (
-        <div key={i} className="flex justify-center px-2.5 lg:px-5 min-w-[25%]">
+        <div
+          key={i}
+          className="flex justify-center px-2.5 lg:px-5 min-w-[50%] lg:min-w-[25%]">
           <img
             src={src}
             className={cn(

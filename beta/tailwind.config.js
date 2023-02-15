@@ -74,10 +74,10 @@ module.exports = {
         code: 'calc(1em - 20%)',
       },
       animation: {
-        marquee: 'marquee 60s linear infinite',
-        marquee2: 'marquee2 60s linear infinite',
-        'large-marquee': 'marquee 120s linear infinite',
-        'large-marquee2': 'marquee2 120s linear infinite',
+        marquee: 'marquee 40s linear infinite',
+        marquee2: 'marquee2 40s linear infinite',
+        'large-marquee': 'large-marquee 80s linear infinite',
+        'large-marquee2': 'large-marquee2 80s linear infinite',
       },
       keyframes: {
         shimmer: {
@@ -97,9 +97,17 @@ module.exports = {
         },
         marquee: {
           '0%': {transform: 'translateX(0%)'},
-          '100%': {transform: 'translateX(-200%)'},
+          '100%': {transform: 'translateX(-400%)'},
         },
         marquee2: {
+          '0%': {transform: 'translateX(400%)'},
+          '100%': {transform: 'translateX(0%)'},
+        },
+        'large-marquee': {
+          '0%': {transform: 'translateX(0%)'},
+          '100%': {transform: 'translateX(-200%)'},
+        },
+        'large-marquee2': {
           '0%': {transform: 'translateX(200%)'},
           '100%': {transform: 'translateX(0%)'},
         },

@@ -446,9 +446,10 @@ function CommunityImages() {
           className="flex justify-center px-2.5 lg:px-5 min-w-[50%] lg:min-w-[25%]">
           <img
             src={src}
-            className={`rounded-xl object-cover rotate-${
-              i % 2 === 0 ? '2' : '[-2deg]'
-            } transition-all hover:rotate-0`}
+            className={cn(
+              `rounded-xl object-cover transition-all hover:rotate-0`,
+              i % 2 === 0 ? 'rotate-2' : 'rotate-[-2deg]'
+            )}
           />
         </div>
       ))}

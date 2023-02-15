@@ -111,13 +111,13 @@ export function HomeContent() {
             <div className="flex-col gap-2 flex grow w-full my-12 sm:my-16 lg:my-20 mx-auto items-center">
               <div className="px-5 lg:px-0 max-w-4xl lg:text-center text-opacity-80">
                 <h3 className="leading-tight dark:text-primary-dark text-primary font-bold text-4xl lg:text-5xl mb-6">
-                  Add interactivity anywhere
+                  Add interactivity wherever you need it
                 </h3>
                 <p className="text-xl lg:text-2xl leading-normal text-secondary dark:text-secondary-dark">
-                  Each React component receives some data and returns what
-                  should appear on the screen. You can update that data in
-                  response to an interaction, for example when typing into an
-                  input. React will update the screen to match the new data.
+                  React components receive data and return what should appear on
+                  the screen. You can pass them new data in response to an
+                  interaction, like when the user types into an input. React
+                  will then update the screen to match the new data.
                 </p>
               </div>
               <div className="max-w-6xl mx-auto flex flex-col w-full">
@@ -236,15 +236,36 @@ export function HomeContent() {
                 every migration strategy.
               </p>
 
-              <p className="py-8 text-xl lg:text-2xl leading-normal text-secondary dark:text-secondary-dark">
-                TODO
-              </p>
+              <div className="flex-col gap-2 flex grow w-full my-12 sm:my-16 lg:my-20 mx-auto items-center">
+                <div className="w-full lg:text-center text-opacity-80">
+                  <div className="mx-auto flex-col lg:flex-row gap-5 flex grow w-full items-start text-left">
+                    <BlogCard
+                      title="How to Upgrade to React 18"
+                      date="March 8, 2022"
+                      url="/blog/2022/03/08/react-18-upgrade-guide"></BlogCard>
+                    <BlogCard
+                      title={
+                        <>
+                          React v18.0
+                          <br />
+                          <br />
+                        </>
+                      }
+                      date="March 29, 2022"
+                      url="/blog/2022/03/29/react-v18"></BlogCard>
+                    <BlogCard
+                      title="React Labs: June 2022"
+                      date="June 15, 2022"
+                      url="/blog/2022/06/15/react-labs-what-we-have-been-working-on-june-2022"></BlogCard>
+                  </div>
+                </div>
+              </div>
 
               <p className="text-xl lg:text-2xl text-secondary dark:text-secondary-dark leading-normal">
                 The React team is always researching how to improve React. Some
                 of these research projects take years to realize. React has a
                 high bar for taking an idea from research to production. Only
-                proven approaches become part of React.
+                proven approaches become a part of React.
               </p>
 
               {/*<p className="min-h-[500px] text-xl lg:text-2xl leading-normal text-secondary dark:text-secondary-dark">
@@ -336,32 +357,6 @@ export function HomeContent() {
             </div>
           </div>
         </div>*/}
-        <div className="bg-wash dark:bg-wash-dark max-w-4xl lg:max-w-7xl mx-auto w-full flex items-center flex-col px-5">
-          <div className="h-px max-w-4xl w-full flex grow bg-border dark:bg-border-dark" />
-          <div className="max-w-4xl lg:max-w-7xl mx-auto flex flex-col w-full lg:px-5">
-            <div className="flex-col gap-2 flex grow w-full my-12 sm:my-16 lg:my-20 mx-auto items-center">
-              <div className="w-full lg:text-center text-opacity-80">
-                <h3 className="leading-tight dark:text-primary-dark text-primary font-bold text-4xl lg:text-5xl mb-8">
-                  Blog
-                </h3>
-                <div className="mx-auto flex-col lg:flex-row gap-5 flex grow w-full items-start text-left">
-                  <BlogCard
-                    title="React Labs: What We've Been Working On – June 2022"
-                    date="June 15, 2022"
-                    url="/blog/2022/06/15/react-labs-what-we-have-been-working-on-june-2022"></BlogCard>
-                  <BlogCard
-                    title="React v18.0"
-                    date="March 29, 2022"
-                    url="/blog/2022/03/29/react-v18"></BlogCard>
-                  <BlogCard
-                    title="How to Upgrade to React 18"
-                    date="March 8, 2022"
-                    url="/blog/2022/03/08/react-18-upgrade-guide"></BlogCard>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
 
         <div className="w-full">
           <div className="shadow-inner bg-card dark:bg-card-dark">
@@ -373,7 +368,7 @@ export function HomeContent() {
                   </h3>
                   <p className="text-xl lg:text-2xl text-secondary dark:text-secondary-dark leading-normal">
                     You’re not alone. Two million developers from all over the
-                    world visit the React site every month. React is something
+                    world visit the React docs every month. React is something
                     that people and teams can agree on.
                   </p>
                 </div>
@@ -391,12 +386,12 @@ export function HomeContent() {
               <div className="flex-row gap-2 flex gap-10 grow w-full my-12 sm:my-16 lg:my-20 mx-auto items-center">
                 <div className="px-5 lg:px-0 max-w-4xl lg:text-center text-opacity-80">
                   <p className="text-xl lg:text-2xl text-secondary dark:text-secondary-dark leading-normal">
-                    In the end, React is more than a library or an architecture.
-                    React is a community. Behind every component in the vibrant
-                    React ecosystem, there is a person who wanted to make it
-                    easier for the next person. Many questions remain unsolved,
-                    but we know one thing for sure. It’s more fun to build user
-                    interfaces together.
+                    This is why React is more than a library, an architecture,
+                    or even an ecosystem. React is a community. We are
+                    developers and designers, beginners and experts, researchers
+                    and artists, enthusiasts and skeptics, teachers and
+                    students, and those who don’t fit any labels. React lets us
+                    all create user interfaces together.
                   </p>
                 </div>
               </div>

@@ -373,11 +373,11 @@ export function HomeContent() {
                 </div>
               </div>
             </div>
-            <div className="relative flex overflow-x-hidden w-auto">
+            <div className="relative flex overflow-hidden w-auto">
               <div className="w-full py-12 animate-marquee whitespace-nowrap flex flex-row">
                 <CommunityImages />
               </div>
-              <div className="w-full absolute left-0 right-0 top-0 py-12 animate-marquee2 whitespace-nowrap flex flex-row">
+              <div className="w-full absolute top-0 py-12 animate-marquee2 whitespace-nowrap flex flex-row">
                 <CommunityImages />
               </div>
             </div>
@@ -423,14 +423,24 @@ export function HomeContent() {
 const reactConf2021Cover = 'https://i.imgur.com/TsMgXlX.jpg';
 const reactConf2019Cover = 'https://i.imgur.com/YDWtkrY.jpg';
 const images = [
-  // "https://i.imgur.io/lZ4jBCs_d.webp?maxwidth=640",
-  // "https://i.imgur.io/kJ5jUqY_d.webp?maxwidth=640",
-  // "https://i.imgur.io/ujHe9Gd_d.webp?maxwidth=640",
-  // "https://i.imgur.io/lTYO6aH_d.webp?maxwidth=640",
   reactConf2019Cover,
   reactConf2021Cover,
   reactConf2019Cover,
   reactConf2021Cover,
+  reactConf2019Cover,
+  reactConf2021Cover,
+  reactConf2019Cover,
+  reactConf2021Cover,
+
+  // 'https://i.imgur.com/PfxTBy9.jpg',
+  // 'https://i.imgur.com/hNuzz36.jpg',
+  // 'https://i.imgur.com/LXQqeAc.jpg',
+  // 'https://i.imgur.com/xDLyt24.jpg',
+
+  // 'https://i.imgur.com/kvEsxjY.jpg',
+  // 'https://i.imgur.com/e8M5gVl.jpg',
+  // 'https://i.imgur.com/aQDyCPY.jpg',
+  // 'https://i.imgur.com/RX96gix.jpg',
 ];
 
 function CommunityImages() {
@@ -439,7 +449,7 @@ function CommunityImages() {
       {images.map((src, i) => (
         <div
           key={i}
-          className="flex justify-center px-2.5 lg:px-5 w-6/12 lg:w-3/12">
+          className="flex justify-center px-2.5 lg:px-5 min-w-[50%] lg:min-w-[25%]">
           <img
             src={src}
             className={cn(

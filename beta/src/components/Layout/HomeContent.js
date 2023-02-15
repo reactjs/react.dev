@@ -373,16 +373,16 @@ export function HomeContent() {
                 </div>
               </div>
             </div>
-            <div className="relative flex overflow-hidden w-auto">
-              <div className="w-full py-12 animate-marquee whitespace-nowrap flex flex-row">
+            <div className="relative flex overflow-hidden w-auto lg:my-5">
+              <div className="w-full py-12 animate-marquee lg:animate-large-marquee whitespace-nowrap flex flex-row">
                 <CommunityImages />
               </div>
-              <div className="w-full absolute top-0 py-12 animate-marquee2 whitespace-nowrap flex flex-row">
+              <div className="w-full absolute top-0 py-12 animate-marquee2 lg:animate-large-marquee2 whitespace-nowrap flex flex-row">
                 <CommunityImages />
               </div>
             </div>
             <div className="mx-auto flex flex-col max-w-4xl">
-              <div className="flex-row gap-2 flex gap-10 grow w-full my-12 sm:my-16 lg:my-20 mx-auto items-center">
+              <div className="flex-row gap-2 flex gap-10 grow w-full mb-12 sm:mb-16 lg:mb-20 mx-auto items-center">
                 <div className="px-5 lg:px-0 max-w-4xl lg:text-center text-opacity-80">
                   <p className="text-xl lg:text-2xl text-secondary dark:text-secondary-dark leading-normal">
                     This is why React is more than a library, an architecture,
@@ -447,9 +447,7 @@ function CommunityImages() {
   return (
     <>
       {images.map((src, i) => (
-        <div
-          key={i}
-          className="flex justify-center px-2.5 lg:px-5 min-w-[50%] lg:min-w-[25%]">
+        <div key={i} className="flex justify-center px-2.5 lg:px-5 min-w-[25%]">
           <img
             src={src}
             className={cn(

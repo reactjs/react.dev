@@ -373,11 +373,11 @@ export function HomeContent() {
                 </div>
               </div>
             </div>
-            <div className="relative flex overflow-hidden w-auto">
+            <div className="relative flex overflow-x-hidden w-auto">
               <div className="w-full py-12 animate-marquee whitespace-nowrap flex flex-row">
                 <CommunityImages />
               </div>
-              <div className="w-full absolute top-0 py-12 animate-marquee2 whitespace-nowrap flex flex-row">
+              <div className="w-full absolute left-0 right-0 top-0 py-12 animate-marquee2 whitespace-nowrap flex flex-row">
                 <CommunityImages />
               </div>
             </div>
@@ -431,10 +431,6 @@ const images = [
   reactConf2021Cover,
   reactConf2019Cover,
   reactConf2021Cover,
-  reactConf2019Cover,
-  reactConf2021Cover,
-  reactConf2019Cover,
-  reactConf2021Cover,
 ];
 
 function CommunityImages() {
@@ -443,7 +439,7 @@ function CommunityImages() {
       {images.map((src, i) => (
         <div
           key={i}
-          className="flex justify-center px-2.5 lg:px-5 min-w-[50%] lg:min-w-[25%]">
+          className="flex justify-center px-2.5 lg:px-5 w-6/12 lg:w-3/12">
           <img
             src={src}
             className={cn(

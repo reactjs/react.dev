@@ -236,7 +236,7 @@ export function HomeContent() {
                 every migration strategy.
               </p>
 
-              <div className="flex-col sm:flex-row flex gap-5 text-left my-12 sm:my-16 lg:my-20">
+              <div className="flex-col sm:flex-row flex gap-5 text-left my-12">
                 <div className="flex-1">
                   <BlogCard
                     icon="blog"
@@ -401,9 +401,9 @@ export function HomeContent() {
         <div className="max-w-6xl mx-auto flex flex-col w-full">
           <div className="flex-col gap-2 flex grow w-full my-12 sm:my-16 lg:my-20 mx-auto items-center">
             <div className="px-5 lg:px-0 mb-6 max-w-4xl text-center text-opacity-80">
-              <Logo className="text-link dark:text-link-dark w-24 sm:w-28 lg:w-32  mt-12 h-auto mx-auto self-start" />
-              <h3 className="mt-4 mb-8 leading-tight dark:text-primary-dark text-primary font-bold text-4xl lg:text-5xl">
-                Welcome to the React community!
+              <Logo className="text-link dark:text-link-dark w-24 lg:w-28  mt-12 h-auto mx-auto self-start" />
+              <h3 className="mt-5 mb-6 leading-tight dark:text-primary-dark text-primary font-bold text-4xl lg:text-5xl">
+                Welcome to the React community
               </h3>
               <ButtonLink
                 href={'/learn'}

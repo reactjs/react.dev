@@ -267,14 +267,14 @@ export default function TopNav({
             </button>
             <div className="3xl:flex-1 mr-0 sm:mr-2.5 3xl:mr-0 flex align-center">
               <NextLink href="/">
-                <a className="inline-flex text-lg font-normal items-center text-primary dark:text-primary-dark py-1 whitespace-nowrap outline-link px-1.5 rounded-lg">
+                <a className="inline-flex text-lg font-normal items-center text-primary dark:text-primary-dark py-1.5 whitespace-nowrap outline-link px-1.5 rounded-lg">
                   <Logo className="text-sm mr-2 w-8 h-8 text-link dark:text-link-dark" />
                   React
                 </a>
               </NextLink>
             </div>
           </div>
-          <div className="hidden md:flex flex-1 justify-center items-center w-full 3xl:w-auto 3xl:shrink-0 3xl:justify-center">
+          <div className="hidden md:flex flex-1 justify-start items-center w-auto 3xl:w-auto 3xl:shrink-0 3xl:justify-center">
             <Search />
           </div>
           <div className="text-base justify-center items-center gap-2.5 flex 3xl:flex-1 flex-row 3xl:justify-end">

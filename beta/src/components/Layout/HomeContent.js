@@ -231,7 +231,7 @@ export function HomeContent() {
                 </p>
                 <div className="flex lg:justify-center">
                   <CTA color="gray" href="https://reactnative.dev/">
-                    Try React Native
+                    Try native development
                   </CTA>
                 </div>
               </div>
@@ -284,7 +284,7 @@ export function HomeContent() {
               </p>
               <div className="flex lg:justify-center">
                 <CTA color="gray" href="/blog">
-                  Read the React blog
+                  See what’s new in React
                 </CTA>
               </div>
             </div>

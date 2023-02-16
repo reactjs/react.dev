@@ -75,9 +75,6 @@ export function HomeContent() {
                 you seamlessly combine components written by independent people,
                 teams, and organizations.
               </p>
-              <div className="flex lg:justify-center">
-                <CTA color="gray">Learn about components</CTA>
-              </div>
             </div>
           </div>
         </div>
@@ -105,9 +102,6 @@ export function HomeContent() {
                 related rendering logic makes React components easy to create,
                 maintain, and delete.
               </p>
-              <div className="flex lg:justify-center">
-                <CTA color="gray">Learn about JSX</CTA>
-              </div>
             </div>
           </div>
         </div>
@@ -136,7 +130,9 @@ export function HomeContent() {
                   render interactive React components anywhere on it.
                 </p>
                 <div className="flex lg:justify-center">
-                  <CTA color="gray">Learn about interactivity</CTA>
+                  <CTA color="gray" href="/learn/add-react-to-a-website">
+                    Add React to a website
+                  </CTA>
                 </div>
               </div>
             </div>
@@ -171,7 +167,11 @@ export function HomeContent() {
                 <i>and</i> server for what they do best.
               </p>
               <div className="flex lg:justify-center">
-                <CTA color="gray">Learn about frameworks</CTA>
+                <CTA
+                  color="gray"
+                  href="/learn/start-a-new-react-project#building-with-a-full-featured-framework">
+                  Get started with a framework
+                </CTA>
               </div>
             </div>
           </div>
@@ -231,7 +231,9 @@ export function HomeContent() {
                   silos, and form teams that own entire features end-to-end.
                 </p>
                 <div className="flex lg:justify-center">
-                  <CTA color="gray">Learn about React Native</CTA>
+                  <CTA color="gray" href="https://reactnative.dev/">
+                    Try React Native
+                  </CTA>
                 </div>
               </div>
             </div>
@@ -282,7 +284,9 @@ export function HomeContent() {
                 Only proven approaches become a part of React.
               </p>
               <div className="flex lg:justify-center">
-                <CTA color="gray">See our Blog</CTA>
+                <CTA color="gray" href="/blog">
+                  Read the React blog
+                </CTA>
               </div>
 
               {/*<p className="min-h-[500px] text-xl lg:text-2xl leading-normal text-secondary dark:text-secondary-dark">

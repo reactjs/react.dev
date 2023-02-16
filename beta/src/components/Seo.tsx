@@ -30,7 +30,7 @@ export const Seo = withRouter(
       <meta name="viewport" content="width=device-width, initial-scale=1" />
 
       {title != null && (
-        <title key="title">{title + (isHomePage ? '' : ' • React')}</title>
+        <title key="title">{title + (isHomePage ? '' : ' – React')}</title>
       )}
       {description != null && (
         <meta name="description" key="description" content={description} />

@@ -53,7 +53,6 @@ export function HomeContent() {
             </ButtonLink>
           </div>
         </div>
-
         <div className="mx-auto bg-card dark:bg-card-dark shadow-inner flex flex-col w-full">
           <div className="flex-col gap-2 flex grow w-full my-12 sm:my-16 lg:my-20 mx-auto items-center">
             <div className="px-5 lg:px-0 max-w-4xl lg:text-center text-white text-opacity-80">
@@ -288,97 +287,9 @@ export function HomeContent() {
                   Read the React blog
                 </CTA>
               </div>
-
-              {/*<p className="min-h-[500px] text-xl lg:text-2xl leading-normal text-secondary dark:text-secondary-dark">
-                  <ButtonLink
-                    href={'/'}
-                    type="primary"
-                    size="lg"
-                    className="mt-16 justify-center"
-                    label="Learn about our latest research">
-                    Learn about our latest research
-                    <IconNavArrow
-                      displayDirection="right"
-                      className="inline ml-1"
-                    />
-                  </ButtonLink></p>*/}
             </div>
           </div>
         </div>
-        {/*<div className="overflow-hidden relative px-5">
-          <div className="border-2 border-link dark:border-link-dark rounded-lg absolute h-full left-1/2"></div>
-          <div className="-mb-12 flex justify-between flex-row-reverse items-center w-full left-timeline">
-            <div className="order-1 w-5/12"></div>
-            <div className="order-1 w-5/12 px-1 py-4 text-right">
-              <p className="mb-2 text-base text-link dark:text-link-dark">
-                Q1 2022
-              </p>
-              <h4 className="mb-3 font-bold text-xl sm:text-2xl lg:text-3xl">
-                React v18
-              </h4>
-              <p className="text-base lg:text-md leading-normal text-secondary-text dark:text-secondary-text-dark">
-                Lorem ipsum dolor
-              </p>
-            </div>
-          </div>
-          <div className="-mb-12 flex justify-between items-center w-full right-timeline">
-            <div className="order-1 w-5/12"></div>
-            <div className="order-1  w-5/12 px-1 py-4 text-left">
-              <p className="mb-2 text-base text-link dark:text-link-dark">
-                Q4 2020
-              </p>
-              <h4 className="mb-3 font-bold text-xl sm:text-2xl lg:text-3xl">
-                Server components
-              </h4>
-              <p className="text-base lg:text-md leading-normal text-secondary-text dark:text-secondary-text-dark">
-                Lorem ipsum dolor
-              </p>
-            </div>
-          </div>
-          <div className="-mb-12 flex justify-between flex-row-reverse items-center w-full left-timeline">
-            <div className="order-1 w-5/12"></div>
-            <div className="order-1 w-5/12 px-1 py-4 text-right">
-              <p className="mb-2 text-base text-link dark:text-link-dark">
-                Q4 2020
-              </p>
-              <h4 className="mb-3 font-bold text-xl sm:text-2xl lg:text-3xl">
-                React v17
-              </h4>
-              <p className="text-base lg:text-md leading-normal text-secondary-text dark:text-secondary-text-dark">
-                Lorem ipsum dolor
-              </p>
-            </div>
-          </div>
-          <div className="-mb-12 flex justify-between items-center w-full right-timeline">
-            <div className="order-1 w-5/12"></div>
-            <div className="order-1 w-5/12 px-1 py-4 text-left">
-              <p className="mb-2 text-base text-link dark:text-link-dark">
-                Q1 2019
-              </p>
-              <h4 className="mb-3 font-bold text-xl sm:text-2xl lg:text-3xl">
-                Hooks
-              </h4>
-              <p className="text-base lg:text-md leading-normal text-secondary-text dark:text-secondary-text-dark">
-                Lorem ipsum dolor
-              </p>
-            </div>
-          </div>
-          <div className="flex justify-between flex-row-reverse items-center w-full left-timeline">
-            <div className="order-1 w-5/12"></div>
-            <div className="order-1 w-5/12 px-1 py-4 text-right">
-              <p className="mb-2 text-base text-link dark:text-link-dark">
-                Q4 2017
-              </p>
-              <h4 className="mb-3 font-bold text-xl sm:text-2xl lg:text-3xl">
-                React v16
-              </h4>
-              <p className="text-base lg:text-md leading-normal text-secondary-text dark:text-secondary-text-dark">
-                Lorem ipsum dolor
-              </p>
-            </div>
-          </div>
-        </div>*/}
-
         <div className="w-full">
           <div className="shadow-inner bg-card dark:bg-card-dark">
             <div className="mx-auto flex flex-col max-w-4xl">

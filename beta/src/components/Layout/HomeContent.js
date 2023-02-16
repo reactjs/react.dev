@@ -22,6 +22,51 @@ import Link from 'components/MDX/Link';
 import CodeBlock from 'components/MDX/CodeBlock';
 import {IconNavArrow} from 'components/Icon/IconNavArrow';
 
+function Section({children, background = null}) {
+  return (
+    <div
+      className={cn(
+        'mx-auto flex flex-col w-full',
+        background === null && 'max-w-6xl',
+        background === 'card' && 'bg-card dark:bg-card-dark shadow-inner'
+      )}>
+      <div className="flex-col gap-2 flex grow w-full my-12 sm:my-16 lg:my-20 mx-auto items-center">
+        {children}
+      </div>
+    </div>
+  );
+}
+
+function Header({children}) {
+  return (
+    <h3 className="leading-tight text-primary dark:text-primary-dark font-semibold text-4xl lg:text-5xl mb-6">
+      {children}
+    </h3>
+  );
+}
+
+function Para({children}) {
+  return (
+    <p className="text-xl lg:text-2xl text-secondary dark:text-secondary-dark leading-normal">
+      {children}
+    </p>
+  );
+}
+
+function Center({children}) {
+  return (
+    <div className="px-5 lg:px-0 max-w-4xl lg:text-center text-white text-opacity-80">
+      {children}
+    </div>
+  );
+}
+
+function FullBleed({children}) {
+  return (
+    <div className="max-w-6xl mx-auto flex flex-col w-full">{children}</div>
+  );
+}
+
 export function HomeContent() {
   return (
     <>
@@ -53,142 +98,121 @@ export function HomeContent() {
             </ButtonLink>
           </div>
         </div>
-        <div className="mx-auto bg-card dark:bg-card-dark shadow-inner flex flex-col w-full">
-          <div className="flex-col gap-2 flex grow w-full my-12 sm:my-16 lg:my-20 mx-auto items-center">
-            <div className="px-5 lg:px-0 max-w-4xl lg:text-center text-white text-opacity-80">
-              <h3 className="leading-tight text-primary dark:text-primary-dark font-semibold text-4xl lg:text-5xl mb-6">
-                Create user interfaces from components
-              </h3>
-              <p className="text-xl lg:text-2xl text-secondary dark:text-secondary-dark leading-normal">
-                React lets you build user interfaces out of individual pieces
-                called components. Create your own React components like a
-                button, a panel, or an avatar. Then combine them into entire
-                screens, pages, and apps.
-              </p>
-            </div>
-            <Example1 />
-            <div className="px-5 lg:px-0 max-w-4xl lg:text-center text-white text-opacity-80">
-              <p className="text-xl lg:text-2xl text-secondary dark:text-secondary-dark leading-normal">
-                Whether you work on your own or with thousands of other
-                developers, using React feels the same. It is designed to let
-                you seamlessly combine components written by independent people,
-                teams, and organizations.
-              </p>
-            </div>
-          </div>
-        </div>
 
-        <div className="max-w-6xl mx-auto flex flex-col w-full">
-          <div className="flex-col gap-2 flex grow w-full my-12 sm:my-16 lg:my-20 mx-auto items-center">
-            <div className="px-5 lg:px-0 max-w-4xl lg:text-center text-opacity-80">
-              <h3 className="leading-tight dark:text-primary-dark text-primary font-bold text-4xl lg:text-5xl mb-6">
-                Write components with code and markup
-              </h3>
-              <p className="text-xl lg:text-2xl leading-normal">
-                React components are JavaScript functions. Want to show
-                something conditionally? Use an <Code>if</Code> statement. Need
-                to display a list? Use a <Code>for</Code> loop or array{' '}
-                <Code>map()</Code>. Learning React is learning programming.
-              </p>
-            </div>
-            <div className="max-w-6xl mx-auto flex flex-col w-full">
-              <Example2 />
-            </div>
-            <div className="px-5 lg:px-0 max-w-4xl lg:text-center text-opacity-80">
-              <p className="text-xl lg:text-2xl leading-normal">
-                This markup syntax is called JSX. It is a JavaScript syntax
-                extension popularized by React. Putting JSX markup close to
-                related rendering logic makes React components easy to create,
-                maintain, and delete.
-              </p>
-            </div>
-          </div>
-        </div>
+        <Section background="card">
+          <Center>
+            <Header>Create user interfaces from components</Header>
+            <Para>
+              React lets you build user interfaces out of individual pieces
+              called components. Create your own React components like a button,
+              a panel, or an avatar. Then combine them into entire screens,
+              pages, and apps.
+            </Para>
+          </Center>
+          <Example1 />
+          <Center>
+            <Para>
+              Whether you work on your own or with thousands of other
+              developers, using React feels the same. It is designed to let you
+              seamlessly combine components written by independent people,
+              teams, and organizations.
+            </Para>
+          </Center>
+        </Section>
 
-        <div className="shadow-inner bg-card dark:bg-card-dark">
-          <div className="max-w-6xl mx-auto flex flex-col w-full">
-            <div className="flex-col gap-2 flex grow w-full my-12 sm:my-16 lg:my-20 mx-auto items-center">
-              <div className="px-5 lg:px-0 max-w-4xl lg:text-center text-opacity-80">
-                <h3 className="leading-tight dark:text-primary-dark text-primary font-bold text-4xl lg:text-5xl mb-6">
-                  Add interactivity wherever you need it
-                </h3>
-                <p className="text-xl lg:text-2xl leading-normal text-secondary dark:text-secondary-dark">
-                  React components receive data and return what should appear on
-                  the screen. You can pass them new data in response to an
-                  interaction, like when the user types into an input. React
-                  will then update the screen to match the new data.
-                </p>
-              </div>
-              <div className="max-w-6xl mx-auto flex flex-col w-full">
-                <Example3 />
-              </div>
-              <div className="px-5 lg:px-0 max-w-4xl lg:text-center text-opacity-80">
-                <p className="text-xl lg:text-2xl leading-normal">
-                  You don’t have to build your whole page in React. Add the
-                  React <Code>{'<script>'}</Code> tag to your HTML page, and
-                  render interactive React components anywhere on it.
-                </p>
-                <div className="flex lg:justify-center">
-                  <CTA color="gray" href="/learn/add-react-to-a-website">
-                    Add React to a website
-                  </CTA>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+        <Section>
+          <Center>
+            <Header>Write components with code and markup</Header>
+            <Para>
+              React components are JavaScript functions. Want to show something
+              conditionally? Use an <Code>if</Code> statement. Need to display a
+              list? Use a <Code>for</Code> loop or array <Code>map()</Code>.
+              Learning React is learning programming.
+            </Para>
+          </Center>
+          <FullBleed>
+            <Example2 />
+          </FullBleed>
+          <Center>
+            <Para>
+              This markup syntax is called JSX. It is a JavaScript syntax
+              extension popularized by React. Putting JSX markup close to
+              related rendering logic makes React components easy to create,
+              maintain, and delete.
+            </Para>
+          </Center>
+        </Section>
 
-        <div className="max-w-6xl mx-auto flex flex-col w-full">
-          <div className="flex-col gap-2 flex grow w-full my-12 sm:my-16 lg:my-20 mx-auto items-center">
-            <div className="px-5 lg:px-0 max-w-4xl lg:text-center text-opacity-80">
-              <h3 className="leading-tight dark:text-primary-dark text-primary font-bold text-4xl lg:text-5xl mb-6">
-                Go full-stack with a framework
-              </h3>
-              <p className="text-xl lg:text-2xl text-secondary dark:text-secondary-dark leading-normal">
-                React is a library. It lets you put components together, but it
-                doesn’t prescribe how to do routing and data fetching. To build
-                an entire app with React, we recommend a full-stack React
-                framework like{' '}
-                <Link href="https://github.com/vercel/next.js">Next.js</Link>,{' '}
-                <Link href="https://github.com/gatsbyjs/gatsby/">Gatsby</Link>,
-                and <Link href="https://github.com/remix-run/remix">Remix</Link>
-                .
-              </p>
+        <Section background="card">
+          <Center>
+            <Header>Add interactivity wherever you need it</Header>
+            <Para>
+              React components receive data and return what should appear on the
+              screen. You can pass them new data in response to an interaction,
+              like when the user types into an input. React will then update the
+              screen to match the new data.
+            </Para>
+          </Center>
+          <FullBleed>
+            <Example3 />
+          </FullBleed>
+          <Center>
+            <Para>
+              You don’t have to build your whole page in React. Add the React{' '}
+              <Code>{'<script>'}</Code> tag to your HTML page, and render
+              interactive React components anywhere on it.
+            </Para>
+            <div className="flex lg:justify-center">
+              <CTA color="gray" href="/learn/add-react-to-a-website">
+                Add React to a website
+              </CTA>
             </div>
-            <div className="max-w-6xl mx-auto flex flex-col w-full">
-              <Example4 />
+          </Center>
+        </Section>
+
+        <Section>
+          <Center>
+            <Header>Go full-stack with a framework</Header>
+            <Para>
+              React is a library. It lets you put components together, but it
+              doesn’t prescribe how to do routing and data fetching. To build an
+              entire app with React, we recommend a full-stack React framework
+              like <Link href="https://github.com/vercel/next.js">Next.js</Link>
+              , <Link href="https://github.com/gatsbyjs/gatsby/">Gatsby</Link>,
+              or <Link href="https://github.com/remix-run/remix">Remix</Link>.
+            </Para>
+          </Center>
+          <FullBleed>
+            <Example4 />
+          </FullBleed>
+          <Center>
+            <Para>
+              To frameworks, React is more than a library—React is an
+              architecture. React provides a unified asynchronous component
+              model across the entire stack so that you can use both client{' '}
+              <i>and</i> server for what they do best.
+            </Para>
+            <div className="flex lg:justify-center">
+              <CTA
+                color="gray"
+                href="/learn/start-a-new-react-project#building-with-a-full-featured-framework">
+                Start with a framework
+              </CTA>
             </div>
-            <div className="px-5 lg:px-0 max-w-4xl lg:text-center text-secondary dark:text-secondary-dark">
-              <p className="text-xl lg:text-2xl text-secondary dark:text-secondary-dark leading-normal">
-                To frameworks, React is more than a library—React is an
-                architecture. React provides a unified asynchronous component
-                model across the entire stack so that you can use both client{' '}
-                <i>and</i> server for what they do best.
-              </p>
-              <div className="flex lg:justify-center">
-                <CTA
-                  color="gray"
-                  href="/learn/start-a-new-react-project#building-with-a-full-featured-framework">
-                  Get started with a framework
-                </CTA>
-              </div>
-            </div>
-          </div>
-        </div>
+          </Center>
+        </Section>
 
         <div className="shadow-inner bg-card dark:bg-card-dark">
           <div className="max-w-4xl lg:max-w-7xl mx-auto flex flex-col w-full">
             <div className="flex-col gap-2 flex grow w-full my-12 sm:my-16 lg:my-20 mx-auto items-center">
               <div className="mx-5 max-w-4xl lg:text-center text-opacity-80">
-                <h3 className="leading-tight dark:text-primary-dark text-primary font-bold text-4xl lg:text-5xl mb-6">
-                  Use the best from every platform
-                </h3>
-                <p className="text-xl lg:text-2xl text-secondary dark:text-secondary-dark leading-normal">
+                <Header>Use the best from every platform</Header>
+                <Para>
                   People love web and native apps for different reasons. React
                   lets you build both web apps and native apps in the same
                   paradigm. It uses each platform’s unique strengths to let your
                   user interfaces feel just right on every platform.
-                </p>
+                </Para>
               </div>
               <div className="max-w-7xl flex flex-col lg:flex-row my-12 sm:my-16 lg:my-20 mx-5 lg:mx-10 gap-5 lg:gap-5">
                 <div className="shadow-inner bg-secondary-button dark:bg-secondary-button-dark rounded-2xl p-6 xs:p-10 lg:w-6/12 max-w-4xl lg:text-center lg:items-center lg:justify-center flex flex-col text-opacity-80">
@@ -223,14 +247,14 @@ export function HomeContent() {
                 </div>
               </div>
               <div className="px-5 lg:px-0 max-w-4xl lg:text-center text-secondary dark:text-secondary-dark">
-                <p className="text-xl lg:text-2xl text-secondary dark:text-secondary-dark leading-normal">
+                <Para>
                   With React, you can be a web <i>and</i> a native developer.
                   Your team can ship to many platforms without sacrificing the
                   user experience. Your organization can bridge the platform
                   silos, and form teams that own entire features end-to-end.
-                </p>
+                </Para>
                 <div className="flex lg:justify-center">
-                  <CTA color="gray" href="https://reactnative.dev/">
+                  <CTA color="gray" href="/learn/add-react-to-a-website">
                     Try native development
                   </CTA>
                 </div>
@@ -239,71 +263,64 @@ export function HomeContent() {
           </div>
         </div>
 
-        <div className="max-w-6xl mx-auto flex flex-col w-full">
-          <div className="flex-col gap-2 flex grow w-full my-12 sm:my-16 lg:my-20 mx-auto items-center">
-            <div className="px-5 lg:px-0 max-w-4xl lg:text-center text-opacity-80">
-              <h3 className="leading-tight dark:text-primary-dark text-primary font-bold text-4xl lg:text-5xl mb-6">
-                Upgrade when the future is ready
-              </h3>
-              <p className="text-xl lg:text-2xl text-secondary dark:text-secondary-dark leading-normal">
-                React approaches changes with care. Every React commit is tested
-                on business-critical surfaces with over a billion users. Over
-                100,000 React components in the Meta codebase help validate
-                every migration strategy.
-              </p>
-
-              <div className="flex-col sm:flex-row flex gap-5 text-left my-12">
-                <div className="flex-1">
-                  <BlogCard
-                    icon="blog"
-                    title="How to Upgrade to React 18"
-                    date="March 8, 2022"
-                    url="/blog/2022/03/08/react-18-upgrade-guide"></BlogCard>
-                </div>
-                <div className="flex-1">
-                  <BlogCard
-                    title="React v18.0"
-                    icon="blog"
-                    date="March 29, 2022"
-                    url="/blog/2022/03/29/react-v18"></BlogCard>
-                </div>
-                <div className="flex-1">
-                  <BlogCard
-                    title="React Labs: June 2022"
-                    icon="labs"
-                    date="June 15, 2022"
-                    url="/blog/2022/06/15/react-labs-what-we-have-been-working-on-june-2022"></BlogCard>
-                </div>
+        <Section>
+          <Center>
+            <Header>Upgrade when the future is ready</Header>
+            <Para>
+              React approaches changes with care. Every React commit is tested
+              on business-critical surfaces with over a billion users. Over
+              100,000 React components in the Meta codebase help validate every
+              migration strategy.
+            </Para>
+            <div className="flex-col sm:flex-row flex gap-5 text-left my-12">
+              <div className="flex-1">
+                <BlogCard
+                  icon="blog"
+                  title="How to Upgrade to React 18"
+                  date="March 8, 2022"
+                  url="/blog/2022/03/08/react-18-upgrade-guide"></BlogCard>
               </div>
-
-              <p className="text-xl lg:text-2xl text-secondary dark:text-secondary-dark leading-normal">
-                The React team is always researching how to improve React. It
-                can take years of investment for that research to pay off. React
-                has a high bar for taking an idea from research to production.
-                Only proven approaches become a part of React.
-              </p>
-              <div className="flex lg:justify-center">
-                <CTA color="gray" href="/blog">
-                  See what’s new in React
-                </CTA>
+              <div className="flex-1">
+                <BlogCard
+                  title="React v18.0"
+                  icon="blog"
+                  date="March 29, 2022"
+                  url="/blog/2022/03/29/react-v18"></BlogCard>
+              </div>
+              <div className="flex-1">
+                <BlogCard
+                  title="React Labs: June 2022"
+                  icon="labs"
+                  date="June 15, 2022"
+                  url="/blog/2022/06/15/react-labs-what-we-have-been-working-on-june-2022"></BlogCard>
               </div>
             </div>
-          </div>
-        </div>
+            <Para>
+              The React team is always researching how to improve React. It can
+              take years of investment for that research to pay off. React has a
+              high bar for taking an idea from research to production. Only
+              proven approaches become a part of React.
+            </Para>
+            <div className="flex lg:justify-center">
+              <CTA color="gray" href="/blog">
+                See what’s new in React
+              </CTA>
+            </div>
+          </Center>
+        </Section>
+
         <div className="w-full">
           <div className="shadow-inner bg-card dark:bg-card-dark">
             <div className="mx-auto flex flex-col max-w-4xl">
               <div className="flex-row gap-2 flex gap-10 grow w-full mt-12 sm:mt-16 lg:mt-20 mx-auto items-center">
-                <div className="px-5 lg:px-0 max-w-4xl lg:text-center text-opacity-80">
-                  <h3 className="leading-tight dark:text-primary-dark text-primary font-bold text-4xl lg:text-5xl mb-6">
-                    Join a community of millions
-                  </h3>
-                  <p className="text-xl lg:text-2xl text-secondary dark:text-secondary-dark leading-normal">
+                <Center>
+                  <Header>Join a community of millions</Header>
+                  <Para>
                     You’re not alone. Two million developers from all over the
                     world visit the React docs every month. React is something
                     that people and teams can agree on.
-                  </p>
-                </div>
+                  </Para>
+                </Center>
               </div>
             </div>
             <div className="relative flex overflow-hidden w-auto lg:my-5">
@@ -316,8 +333,8 @@ export function HomeContent() {
             </div>
             <div className="mx-auto flex flex-col max-w-4xl">
               <div className="flex-row gap-2 flex gap-10 grow w-full mb-12 sm:mb-16 lg:mb-20 mx-auto items-center">
-                <div className="px-5 lg:px-0 max-w-4xl lg:text-center text-opacity-80">
-                  <p className="text-xl lg:text-2xl text-secondary dark:text-secondary-dark leading-normal">
+                <Center>
+                  <Para>
                     This is why React is more than a library, an architecture,
                     or even an ecosystem. React is a community. It’s a place
                     where you can ask for help, find opportunities, and meet new
@@ -325,29 +342,26 @@ export function HomeContent() {
                     beginners and experts, researchers and artists, teachers and
                     students. Our backgrounds may be very different, but React
                     lets us all create user interfaces together.
-                  </p>
-                </div>
+                  </Para>
+                </Center>
               </div>
             </div>
           </div>
         </div>
-        <div className="max-w-6xl mx-auto flex flex-col w-full">
-          <div className="flex-col gap-2 flex grow w-full my-12 sm:my-16 lg:my-20 mx-auto items-center">
-            <div className="px-5 lg:px-0 mb-6 max-w-4xl text-center text-opacity-80">
-              <Logo className="text-link dark:text-link-dark w-24 lg:w-28  mt-12 h-auto mx-auto self-start" />
-              <h3 className="mt-5 mb-6 leading-tight dark:text-primary-dark text-primary font-bold text-4xl lg:text-5xl">
-                Welcome to the React community
-              </h3>
-              <ButtonLink
-                href={'/learn'}
-                type="primary"
-                size="lg"
-                label="Take the Tutorial">
-                Get Started
-              </ButtonLink>
-            </div>
+
+        <Section>
+          <div className="px-5 lg:px-0 mb-6 max-w-4xl text-center text-opacity-80">
+            <Logo className="text-link dark:text-link-dark w-24 lg:w-28 mb-5 mt-12 h-auto mx-auto self-start" />
+            <Header>Welcome to the React community</Header>
+            <ButtonLink
+              href={'/learn'}
+              type="primary"
+              size="lg"
+              label="Take the Tutorial">
+              Get Started
+            </ButtonLink>
           </div>
-        </div>
+        </Section>
       </div>
     </>
   );

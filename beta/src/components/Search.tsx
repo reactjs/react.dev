@@ -159,7 +159,7 @@ export function Search({
       )}
       <div
         className={cn(
-          'hidden mx-2 h-8 w-px bg-border dark:bg-border-dark',
+          'hidden mx-2 h-6 w-px bg-border dark:bg-border-dark',
           fullsize ? 'flex' : 'hidden md:flex'
         )}
       />

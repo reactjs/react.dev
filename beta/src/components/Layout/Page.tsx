@@ -83,7 +83,11 @@ export function Page({children, toc, routeTree, meta, section}: PageProps) {
 
   return (
     <>
-      <Seo title={title} isHomePage={isHomePage} />
+      <Seo
+        title={title}
+        isHomePage={isHomePage}
+        image={`/images/og-` + section + '.png'}
+      />
       <SocialBanner />
       <TopNav
         section={section}

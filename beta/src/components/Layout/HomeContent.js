@@ -75,6 +75,9 @@ export function HomeContent() {
                 you seamlessly combine components written by independent people,
                 teams, and organizations.
               </p>
+              <div className="flex lg:justify-center">
+                <CTA color="gray">Learn about components</CTA>
+              </div>
             </div>
           </div>
         </div>
@@ -102,6 +105,9 @@ export function HomeContent() {
                 related rendering logic makes React components easy to create,
                 maintain, and delete.
               </p>
+              <div className="flex lg:justify-center">
+                <CTA color="gray">Learn about JSX</CTA>
+              </div>
             </div>
           </div>
         </div>
@@ -129,6 +135,9 @@ export function HomeContent() {
                   React <Code>{'<script>'}</Code> tag to your HTML page, and
                   render interactive React components anywhere on it.
                 </p>
+                <div className="flex lg:justify-center">
+                  <CTA color="gray">Learn about interactivity</CTA>
+                </div>
               </div>
             </div>
           </div>
@@ -161,6 +170,9 @@ export function HomeContent() {
                 model across the entire stack so that you can use both client{' '}
                 <i>and</i> server for what they do best.
               </p>
+              <div className="flex lg:justify-center">
+                <CTA color="gray">Learn about frameworks</CTA>
+              </div>
             </div>
           </div>
         </div>
@@ -218,6 +230,9 @@ export function HomeContent() {
                   user experience. Your organization can bridge the platform
                   silos, and form teams that own entire features end-to-end.
                 </p>
+                <div className="flex lg:justify-center">
+                  <CTA color="gray">Learn about React Native</CTA>
+                </div>
               </div>
             </div>
           </div>
@@ -266,6 +281,9 @@ export function HomeContent() {
                 has a high bar for taking an idea from research to production.
                 Only proven approaches become a part of React.
               </p>
+              <div className="flex lg:justify-center">
+                <CTA color="gray">See our Blog</CTA>
+              </div>
 
               {/*<p className="min-h-[500px] text-xl lg:text-2xl leading-normal text-secondary dark:text-secondary-dark">
                   <ButtonLink
@@ -441,6 +459,35 @@ const images = [
   // 'https://i.imgur.com/RX96gix.jpg', // react conf fun
 ];
 
+function CTA({children, href}) {
+  return (
+    <a
+      href={href}
+      className="group cursor-pointer w-auto justify-center inline-flex font-bold items-center mt-10 outline-none active:bg-opacity-100 leading-normal hover:bg-opacity-80 text-lg py-2.5 rounded-full px-4 sm:px-6 ease-in-out bg-secondary-button dark:bg-secondary-button-dark text-primary dark:text-primary-dark">
+      {children}
+      <svg
+        className="text-primary dark:text-primary-dark"
+        fill="none"
+        width="24"
+        height="24"
+        viewBox="0 0 72 72"
+        aria-hidden="true">
+        <path
+          className="transition-transform ease-in-out translate-x-[-8px] group-hover:translate-x-[8px]"
+          fillRule="evenodd"
+          clipRule="evenodd"
+          d="M40.0001 19.0245C41.0912 17.7776 42.9864 17.6513 44.2334 18.7423L58.9758 33.768C59.6268 34.3377 60.0002 35.1607 60.0002 36.0257C60.0002 36.8908 59.6268 37.7138 58.9758 38.2835L44.2335 53.3078C42.9865 54.3988 41.0913 54.2725 40.0002 53.0256C38.9092 51.7786 39.0355 49.8835 40.2824 48.7924L52.4445 36.0257L40.2823 23.2578C39.0354 22.1667 38.9091 20.2714 40.0001 19.0245Z"
+          fill="currentColor"
+        />
+        <path
+          className="opacity-0 ease-in-out transition-opacity group-hover:opacity-100"
+          d="M60 36.0273C60 37.6842 58.6569 39.0273 57 39.0273H15C13.3431 39.0273 12 37.6842 12 36.0273C12 34.3704 13.3431 33.0273 15 33.0273H57C58.6569 33.0273 60 34.3704 60 36.0273Z"
+          fill="currentColor"
+        />
+      </svg>
+    </a>
+  );
+}
 function CommunityImages() {
   return (
     <>

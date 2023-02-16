@@ -93,7 +93,7 @@ module.exports = {
         circle: {
           from: {transform: 'scale(0)', strokeWidth: '16px', opacity: '.8'},
           '50%': {transform: 'scale(0.5)', strokeWidth: '16px', opacity: '.8'},
-          to: {transform: 'scale(1)', strokeWidth: '0px', opacity: '.25'},
+          to: {transform: 'scale(1)', strokeWidth: '0px', opacity: '.8'},
         },
         marquee: {
           '0%': {transform: 'translateX(0%)'},

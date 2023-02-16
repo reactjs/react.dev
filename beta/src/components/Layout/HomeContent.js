@@ -1089,7 +1089,7 @@ function LikeButton() {
   return (
     <button
       className={cn(
-        'relative flex items-center justify-center w-10 h-10 cursor-pointer rounded-full text-tertiary hover:bg-card active:bg-red-50/5 active:text-red-50',
+        'relative flex items-center justify-center w-10 h-10 cursor-pointer rounded-full text-tertiary hover:bg-card active:scale-95 active:bg-red-50/5 active:text-red-50',
         saved && 'text-red-50'
       )}
       aria-label={saved ? 'Unsave' : 'Save'}
@@ -1116,7 +1116,7 @@ function LikeButton() {
         <svg
           className={cn(
             'w-6 h-6 origin-center transition-all ease-in-out',
-            saved && 'animate-[scale_.3s_.15s_ease-in-out_forwards]'
+            saved && 'animate-[scale_.35s_ease-in-out_forwards]'
           )}
           viewBox="0 0 24 24"
           fill="none"

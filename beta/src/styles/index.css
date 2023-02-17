@@ -216,15 +216,9 @@ html.dark .code-step * {
 }
 
 .mdx-heading {
-  scroll-margin-top: 3.5em;
+  scroll-margin-top: 3em;
   /* Space for the anchor */
   padding-right: 1em;
-}
-
-@media (min-width: 1024px) {
-  .mdx-heading {
-    scroll-margin-top: 1em;
-  }
 }
 
 .mdx-heading:before {

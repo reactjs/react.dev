@@ -43,6 +43,11 @@ July 07 & 08, 2023. In-person in Bangalore, India
 
 [Website](https://reactnexus.com/) - [Twitter](https://twitter.com/ReactNexus) - [Linkedin](https://www.linkedin.com/company/react-nexus) - [YouTube](https://www.youtube.com/reactify_in)
 
+### React Alicante 2023 {#react-alicante-2023}
+September 28 - 30, 2023. In-person in Alicante, Spain + remote (hybrid event)
+
+[Website](https://reactalicante.es) - [Twitter](https://twitter.com/ReactAlicante) - [Youtube](https://www.youtube.com/@ReactAlicante)
+
 ### React India 2023 {#react-india-2023}
 Oct 5 - 7, 2023. In-person in Goa, India (hybrid event) + Oct 3 2023 - remote day 
 
@@ -84,6 +89,7 @@ October 14, 2022. In-person in Brussels, Belgium + remote (hybrid event)
 September 29 - October 1, 2022. In-person in Alicante, Spain + remote (hybrid event)
 
 [Website](https://reactalicante.es/) - [Twitter](https://twitter.com/reactalicante) - [Facebook](https://www.facebook.com/ReactAlicante) - [Videos](https://www.youtube.com/channel/UCaSdUaITU1Cz6PvC97A7e0w)
+
 ### React India 2022 {#react-india-2022}
 September 22 - 24, 2022. In-person in Goa, India + remote (hybrid event)
 

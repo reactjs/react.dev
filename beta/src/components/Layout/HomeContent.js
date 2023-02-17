@@ -713,7 +713,7 @@ function ExamplePanel({children, noPadding, noShadow, height}) {
   return (
     <div
       className={cn(
-        'rounded-2xl mx-auto text-secondary leading-normal bg-white overflow-hidden w-full overflow-y-scroll',
+        'rounded-2xl mx-auto text-secondary leading-normal bg-white overflow-hidden w-full overflow-y-auto',
         noPadding ? 'p-0' : 'p-4 pr-2',
         noShadow ? 'shadow-none' : 'shadow-nav dark:shadow-nav-dark'
       )}
@@ -785,7 +785,7 @@ function ConferencePage({slug}) {
 
 function TalksLoading() {
   return (
-    <div className="flex flex-col items-center h-[24rem] overflow-hidden">
+    <div className="flex flex-col items-center h-[25rem] overflow-hidden">
       <div className="w-full">
         <div className="relative overflow-hidden before:-skew-x-12 before:absolute before:inset-0 before:-translate-x-full before:animate-[shimmer_2.5s_infinite] before:bg-gradient-to-r before:from-transparent before:via-white/50 before:to-transparent">
           <div className="space-y-4 space-x-4">
@@ -921,7 +921,7 @@ function ConferenceLayout({conf, children}) {
     <div
       className={cn(
         'transition-opacity delay-100',
-        isPending ? 'opacity-90' : 'opacity-100 overflow-y-scroll'
+        isPending ? 'opacity-90' : 'opacity-100'
       )}>
       <Cover background={conf.cover}>
         <select

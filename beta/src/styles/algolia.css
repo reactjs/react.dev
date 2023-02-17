@@ -34,7 +34,7 @@ html.dark {
 }
 .DocSearch-Form {
   @apply rounded-full;
-  @apply shadow-none;
+  @apply shadow-inner;
   @apply text-base;
   @apply text-tertiary;
   @apply bg-gray-10;

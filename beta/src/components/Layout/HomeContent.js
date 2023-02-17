@@ -303,7 +303,7 @@ export function HomeContent() {
             </Para>
             <div className="flex lg:justify-center">
               <CTA color="gray" href="/blog">
-                See what’s new in React
+                Read more React news
               </CTA>
             </div>
           </Center>

@@ -209,9 +209,9 @@ export function HomeContent() {
                 <Header>Use the best from every platform</Header>
                 <Para>
                   People love web and native apps for different reasons. React
-                  lets you build both web apps and native apps in the same
-                  paradigm. It uses each platform’s unique strengths to let your
-                  user interfaces feel just right on every platform.
+                  lets you build both web apps and native apps using the same
+                  skills. It leans upon each platform’s unique strengths to let
+                  your interfaces feel just right on every platform.
                 </Para>
               </div>
               <div className="max-w-7xl flex flex-col lg:flex-row my-12 sm:my-16 lg:my-20 mx-5 lg:mx-10 gap-5 lg:gap-5">

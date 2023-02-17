@@ -23,7 +23,7 @@ const isElement = isValidElement(value)
 Call `isValidElement(value)` to check whether `value` is a React element.
 
 ```js
-import { isValidElement } from 'react';
+import { isValidElement, createElement } from 'react';
 
 // ✅ React elements
 console.log(isValidElement(<p />)); // true

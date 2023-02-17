@@ -223,7 +223,7 @@ export function HomeContent() {
                   <p className="h-full lg:text-xl leading-normal text-secondary dark:text-secondary-dark">
                     People expect web app pages to load fast. On the server,
                     React lets you start streaming HTML while you’re still
-                    fetching data, progressivelly filling in the remaining
+                    fetching data, progressively filling in the remaining
                     content before any JavaScript code loads. On the client,
                     React can use standard web APIs to keep UI responsive even
                     in the middle of rendering.

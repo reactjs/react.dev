@@ -235,11 +235,12 @@ export function HomeContent() {
                     Go truly native, too
                   </h4>
                   <p className="h-full lg:text-xl text-secondary dark:text-secondary-dark leading-normal">
-                    People expect native apps to look and feel native.{' '}
+                    People expect native apps to look and feel like their
+                    platform.{' '}
                     <Link href="https://reactnative.dev">React Native</Link> and{' '}
                     <Link href="https://github.com/expo/expo">Expo</Link> let
-                    you build apps in React for Android, iOS, and more. These
-                    apps can look and feel native because their user interfaces{' '}
+                    you build apps in React for Android, iOS, and more. They
+                    look and feel native because their user interfaces{' '}
                     <i>are</i> truly native. It’s not a web view—your React
                     components render real Android and iOS views provided by the
                     platform.

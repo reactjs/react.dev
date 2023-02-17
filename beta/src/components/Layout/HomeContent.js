@@ -196,7 +196,7 @@ export function HomeContent() {
               <CTA
                 color="gray"
                 href="/learn/start-a-new-react-project#building-with-a-full-featured-framework">
-                Start with a framework
+                Get started with a framework
               </CTA>
             </div>
           </Center>
@@ -254,8 +254,8 @@ export function HomeContent() {
                   silos, and form teams that own entire features end-to-end.
                 </Para>
                 <div className="flex lg:justify-center">
-                  <CTA color="gray" href="/learn/add-react-to-a-website">
-                    Try native development
+                  <CTA color="gray" href="https://reactnative.dev/">
+                    Build for native platforms
                   </CTA>
                 </div>
               </div>

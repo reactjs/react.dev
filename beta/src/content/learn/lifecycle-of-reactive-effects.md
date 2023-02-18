@@ -748,7 +748,7 @@ If you have an existing codebase, you might have some Effects that suppress the 
 useEffect(() => {
   // ...
   // 🔴 Avoid suppressing the linter like this:
-  // eslint-ignore-next-line react-hooks/exhaustive-dependencies
+  // eslint-ignore-next-line react-hooks/exhaustive-deps
 }, []);
 ```
 

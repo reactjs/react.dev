@@ -129,9 +129,10 @@ export function HomeContent() {
             <Header>Create user interfaces from components</Header>
             <Para>
               React lets you build user interfaces out of individual pieces
-              called components. Create your own React components like a button,
-              a panel, or an avatar. Then combine them into entire screens,
-              pages, and apps.
+              called components. Create your own React components like{' '}
+              <Code>Thumbnail</Code>, <Code>LikeButton</Code>, and{' '}
+              <Code>Video</Code>. Then combine them into entire screens, pages,
+              and apps.
             </Para>
           </Center>
           <FullBleed>
@@ -721,17 +722,17 @@ function Example1() {
           <div className="lg:-m-5 h-full shadow-nav dark:shadow-nav-dark lg:rounded-2xl bg-wash dark:bg-gray-95 w-full flex grow flex-col">
             <div className="w-full bg-card dark:bg-wash-dark lg:rounded-t-2xl border-b border-black/5 dark:border-white/5">
               <h3 className="text-sm my-1 mx-5 text-tertiary dark:text-tertiary-dark select-none">
-                VideoRow.js
+                Video.js
               </h3>
             </div>
             <CodeBlock
               isFromPackageImport={false}
               noShadow={true}
               noMargin={true}>
-              <div>{`function VideoRow({ video }) {
+              <div>{`function Video({ video }) {
   return (
     <div>
-      <VideoThumbnail video={video} />
+      <Thumbnail video={video} />
       <a href={video.url}>
         <h3>{video.title}</h3>
         <p>{video.description}</p>
@@ -745,7 +746,7 @@ function Example1() {
           </div>
           <div className="mt-5 w-full p-2.5 xs:p-5 lg:p-10 flex grow justify-center">
             <ExamplePanel>
-              <VideoRow
+              <Video
                 video={{
                   title: 'My video',
                   description: 'Video description',
@@ -808,7 +809,7 @@ function Example2() {
     <section>
       <h2>{heading}</h2>
       {videos.map(video =>
-        <VideoRow key={video.id} video={video} />
+        <Video key={video.id} video={video} />
       )}
     </section>
   );
@@ -1177,7 +1178,7 @@ function VideoList({videos, emptyHeading}) {
       </h2>
       <div className="flex flex-col gap-4">
         {videos.map((video) => (
-          <VideoRow key={video.id} video={video} />
+          <Video key={video.id} video={video} />
         ))}
       </div>
     </div>
@@ -1254,10 +1255,10 @@ function Cover({background, children}) {
   );
 }
 
-function VideoRow({video}) {
+function Video({video}) {
   return (
     <div className="flex flex-row items-center gap-3">
-      <VideoThumbnail video={video} />
+      <Thumbnail video={video} />
       <a
         href={video.url}
         target="_blank"
@@ -1287,7 +1288,7 @@ function Code({children}) {
   );
 }
 
-function VideoThumbnail({video}) {
+function Thumbnail({video}) {
   const {image} = video;
   return (
     <a

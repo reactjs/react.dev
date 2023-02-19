@@ -35,10 +35,25 @@ module.exports = {
       'nav-dark':
         '0 25px 50px -12px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(255,255,255,.05)',
       inner: 'inset 0 1px 4px 0 rgba(0, 0, 0, 0.05)',
-      'inner-border': 'inset 0 0 0 1px rgba(0, 0, 0, 0.05)',
+      'inner-border': 'inset 0 0 0 1px rgba(0, 0, 0, 0.08)',
+      'inner-border-dark': 'inset 0 0 0 1px rgba(255, 255, 255, 0.08)',
+      'outer-border': '0 0 0 1px rgba(0, 0, 0, 0.08)',
+      'outer-border-dark': '0 0 0 1px rgba(255, 255, 255, 0.08)',
+      'secondary-button-stroke': 'inset 0 0 0 1px #D9DBE3',
+      'secondary-button-stroke-dark': 'inset 0 0 0 1px #404756',
       none: 'none',
     },
     extend: {
+      backgroundImage: {
+        'gradient-left-dark':
+          'conic-gradient(from 90deg at -10% 100%, #2B303B 0deg, #2B303B 90deg, #16181D 360deg)',
+        'gradient-right-dark':
+          'conic-gradient(from -90deg at 110% 100%, #2B303B 0deg, #16181D 90.07deg, #16181D 360deg)',
+        'gradient-left':
+          'conic-gradient(from 90deg at -10% 100%, #BCC1CD 0deg, #BCC1CD 90deg, #FFFFFF 360deg)',
+        'gradient-right':
+          'conic-gradient(from -90deg at 110% 100%, #FFFFFF 0deg, #EBECF0 90.07deg, #EBECF0 360deg)',
+      },
       maxWidth: {
         xs: '21rem',
       },
@@ -59,6 +74,7 @@ module.exports = {
       lineHeight: {
         base: '30px',
         large: '38px',
+        xl: '1.15',
       },
       fontSize: {
         '6xl': '52px',
@@ -85,15 +101,19 @@ module.exports = {
             transform: 'translateX(100%)',
           },
         },
+        rotate: {
+          from: {transform: 'rotate(0deg)'},
+          to: {transform: 'rotate(180deg)'},
+        },
         scale: {
-          from: {transform: 'scale(0.8)', opacity: '0'},
-          '90%': {transform: 'scale(1.05)', opacity: '1'},
-          to: {transform: 'scale(1)', opacity: '1'},
+          from: {transform: 'scale(0.8)'},
+          '90%': {transform: 'scale(1.05)'},
+          to: {transform: 'scale(1)'},
         },
         circle: {
-          from: {transform: 'scale(0)', strokeWidth: '16px', opacity: '.8'},
-          '50%': {transform: 'scale(0.5)', strokeWidth: '16px', opacity: '.8'},
-          to: {transform: 'scale(1)', strokeWidth: '0px', opacity: '.8'},
+          from: {transform: 'scale(0)', strokeWidth: '16px'},
+          '50%': {transform: 'scale(0.5)', strokeWidth: '16px'},
+          to: {transform: 'scale(1)', strokeWidth: '0px'},
         },
         marquee: {
           '0%': {transform: 'translateX(0%)'},

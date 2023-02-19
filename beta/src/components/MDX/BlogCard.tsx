@@ -17,7 +17,7 @@ export interface BlogCardProps {
 function BlogCard({title, badge, date, icon, url, children}: BlogCardProps) {
   return (
     <Link href={url as string}>
-      <div className="justify-between p-5 sm:p-5 cursor-pointer w-full h-full flex flex-col flex-1 border-border border dark:border-border-dark hover:bg-card group hover:dark:bg-card-dark rounded-2xl text-xl text-primary dark:text-primary-dark leading-relaxed">
+      <div className="justify-between p-5 sm:p-5 cursor-pointer w-full h-full flex flex-col flex-1 group shadow-secondary-button-stroke dark:shadow-secondary-button-stroke-dark hover:bg-gray-40/5 active:bg-gray-40/10  hover:dark:bg-gray-60/5 active:dark:bg-gray-60/10 rounded-2xl text-xl text-primary dark:text-primary-dark leading-relaxed">
         <div className="flex flex-col w-full">
           {icon === 'labs' && (
             <svg
@@ -47,7 +47,7 @@ function BlogCard({title, badge, date, icon, url, children}: BlogCardProps) {
               />
             </svg>
           )}
-          <h2 className="font-bold text-2xl lg:text-3xl group-hover:underline leading-snug mb-4">
+          <h2 className="font-semibold text-2xl lg:text-3xl group-hover:underline leading-snug mb-4">
             {title}
           </h2>
         </div>

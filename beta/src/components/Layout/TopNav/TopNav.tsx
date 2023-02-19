@@ -131,7 +131,7 @@ function NavItem({url, isActive, children}: any) {
       <Link
         href={url}
         className={cn(
-          'w-full text-center outline-link py-2 px-2.5 xs:px-3 rounded-lg capitalize',
+          'active:scale-95 transition-transform w-full text-center outline-link py-2 px-2.5 xs:px-3 rounded-lg capitalize',
           !isActive && 'hover:bg-primary/5 hover:dark:bg-primary-dark/5',
           isActive &&
             'bg-highlight dark:bg-highlight-dark text-link dark:text-link-dark'
@@ -152,6 +152,7 @@ export default function TopNav({
   section: 'learn' | 'reference' | 'community' | 'blog' | 'home' | 'unknown';
 }) {
   const [isOpen, setIsOpen] = useState(false);
+  const [logoAnimation, setLogoAnimation] = useState(false);
   const [showFeedback, setShowFeedback] = useState(false);
   const scrollParentRef = useRef<HTMLDivElement>(null);
   const feedbackAutohideRef = useRef<any>(null);
@@ -251,14 +252,14 @@ export default function TopNav({
           'backdrop-filter backdrop-blur-lg backdrop-saturate-200 transition-shadow bg-opacity-90 items-center w-full flex justify-between bg-wash dark:bg-wash-dark dark:bg-opacity-95 px-1.5 lg:px-5 lg:pr-5 z-50',
           {'dark:shadow-nav-dark shadow-nav': isScrolled || isOpen}
         )}>
-        <div className="h-16 w-full gap-0 sm:gap-2.5 flex items-center justify-between">
+        <div className="h-16 w-full gap-0 sm:gap-1.5 flex items-center justify-between">
           <div className="3xl:flex-1 flex flex-row -space-x-1.5">
             <button
               type="button"
               aria-label="Menu"
               onClick={() => setIsOpen(!isOpen)}
               className={cn(
-                'flex lg:hidden w-12 h-12 rounded-full items-center justify-center hover:bg-primary/5 hover:dark:bg-primary-dark/5 outline-link',
+                'active:scale-95 transition-transform flex lg:hidden w-12 h-12 rounded-full items-center justify-center hover:bg-primary/5 hover:dark:bg-primary-dark/5 outline-link',
                 {
                   'text-link dark:text-link-dark': isOpen,
                 }
@@ -267,9 +268,19 @@ export default function TopNav({
             </button>
             <div className="3xl:flex-1 mr-0 sm:mr-2.5 3xl:mr-0 flex align-center">
               <NextLink href="/">
-                <a className="inline-flex text-lg font-normal items-center text-primary dark:text-primary-dark py-1 whitespace-nowrap outline-link px-1.5 rounded-lg">
-                  <Logo className="text-sm mr-2 w-8 h-8 text-link dark:text-link-dark" />
-                  React
+                <a
+                  className={`active:scale-95 transition-transform relative items-center text-primary dark:text-primary-dark py-1 whitespace-nowrap outline-link pl-1.5 rounded-lg`}
+                  onClick={() => {
+                    setLogoAnimation(true);
+                  }}
+                  onAnimationEnd={() => setLogoAnimation(false)}>
+                  <Logo
+                    className={cn(
+                      'text-sm mr-0 w-10 h-10 text-link dark:text-link-dark flex origin-center transition-all ease-in-out',
+                      logoAnimation &&
+                        'animate-[rotate_.5s_ease-in-out_forwards]'
+                    )}
+                  />
                 </a>
               </NextLink>
             </div>
@@ -304,7 +315,7 @@ export default function TopNav({
                   aria-label="Give feedback"
                   type="button"
                   className={cn(
-                    'flex w-12 h-12 rounded-full items-center justify-center hover:bg-primary/5 hover:dark:bg-primary-dark/5 outline-link',
+                    'active:scale-95 transition-transform flex w-12 h-12 rounded-full items-center justify-center hover:bg-primary/5 hover:dark:bg-primary-dark/5 outline-link',
                     {
                       'bg-secondary-button dark:bg-secondary-button-dark':
                         showFeedback,
@@ -336,7 +347,7 @@ export default function TopNav({
                   onClick={() => {
                     window.__setPreferredTheme('dark');
                   }}
-                  className="flex w-12 h-12 rounded-full items-center justify-center hover:bg-primary/5 hover:dark:bg-primary-dark/5 outline-link">
+                  className="active:scale-95 transition-transform flex w-12 h-12 rounded-full items-center justify-center hover:bg-primary/5 hover:dark:bg-primary-dark/5 outline-link">
                   {darkIcon}
                 </button>
               </div>
@@ -347,7 +358,7 @@ export default function TopNav({
                   onClick={() => {
                     window.__setPreferredTheme('light');
                   }}
-                  className="flex w-12 h-12 rounded-full items-center justify-center hover:bg-primary/5 hover:dark:bg-primary-dark/5 outline-link">
+                  className="active:scale-95 transition-transform flex w-12 h-12 rounded-full items-center justify-center hover:bg-primary/5 hover:dark:bg-primary-dark/5 outline-link">
                   {lightIcon}
                 </button>
               </div>
@@ -357,7 +368,7 @@ export default function TopNav({
                   target="_blank"
                   rel="noreferrer noopener"
                   aria-label="Open on GitHub"
-                  className="flex w-12 h-12 rounded-full items-center justify-center hover:bg-primary/5 hover:dark:bg-primary-dark/5 outline-link">
+                  className="active:scale-95 transition-transform flex w-12 h-12 rounded-full items-center justify-center hover:bg-primary/5 hover:dark:bg-primary-dark/5 outline-link">
                   {githubIcon}
                 </Link>
               </div>

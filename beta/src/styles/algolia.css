@@ -34,7 +34,7 @@ html.dark {
 }
 .DocSearch-Form {
   @apply rounded-full;
-  @apply shadow-inner;
+  @apply shadow-none;
   @apply text-base;
   @apply text-tertiary;
   @apply bg-gray-10;
@@ -151,6 +151,10 @@ html.dark .DocSearch-Hit-title {
   @apply rounded-2xl;
   @apply overflow-hidden;
   @apply my-4;
+  @apply shadow-nav;
+}
+html.dark .DocSearch-Modal {
+  @apply shadow-nav-dark;
 }
 .DocSearch-Cancel {
   @apply pl-5;

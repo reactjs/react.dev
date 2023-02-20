@@ -50,7 +50,7 @@ function SubHeader({children}) {
 
 function Header({children}) {
   return (
-    <h3 className="bg-gradient-to-tl dark:from-gray-5 dark:via-gray-10 dark:to-gray-20 from-gray-95 via-gray-80 to-gray-70 bg-clip-text text-transparent leading-xl font-medium text-5xl lg:text-6xl -mt-4 mb-7 w-full max-w-3xl lg:max-w-xl">
+    <h3 className="bg-gradient-to-tl dark:from-gray-5 dark:via-gray-10 dark:to-gray-30 from-gray-95 via-gray-70 to-gray-60 bg-clip-text text-transparent leading-xl font-medium text-5xl lg:text-6xl -mt-4 mb-7 w-full max-w-3xl lg:max-w-xl">
       {children}
     </h3>
   );

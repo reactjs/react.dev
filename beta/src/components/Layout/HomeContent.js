@@ -134,7 +134,6 @@ export function HomeContent() {
 
         <Section background="left-card">
           <Center>
-            <SubHeader>Create Components</SubHeader>
             <Header>Create user interfaces from components</Header>
             <Para>
               React lets you build user interfaces out of individual pieces

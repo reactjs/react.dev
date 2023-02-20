@@ -48,11 +48,11 @@ module.exports = {
         'gradient-left-dark':
           'conic-gradient(from 90deg at -10% 100%, #2B303B 0deg, #2B303B 90deg, #16181D 360deg)',
         'gradient-right-dark':
-          'conic-gradient(from -90deg at 110% 100%, #2B303B 0deg, #16181D 90.07deg, #16181D 360deg)',
+          'conic-gradient(from -90deg at 110% 100%, #2B303B 0deg, #16181D 90deg, #16181D 360deg)',
         'gradient-left':
           'conic-gradient(from 90deg at -10% 100%, #BCC1CD 0deg, #BCC1CD 90deg, #FFFFFF 360deg)',
         'gradient-right':
-          'conic-gradient(from -90deg at 110% 100%, #FFFFFF 0deg, #EBECF0 90.07deg, #EBECF0 360deg)',
+          'conic-gradient(from -90deg at 110% 100%, #FFFFFF 0deg, #EBECF0 90deg, #EBECF0 360deg)',
       },
       maxWidth: {
         xs: '21rem',

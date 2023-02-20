@@ -391,7 +391,7 @@ export function HomeContent() {
           </div>
         </Section>
 
-        <Section background="left-card">
+        <Section background="right-card">
           <div className="max-w-7xl mx-auto flex flex-col lg:flex-row px-5">
             <div className="max-w-3xl lg:max-w-7xl gap-5 flex flex-col lg:flex-row lg:px-5 gap-5">
               <div className="w-full lg:w-6/12 max-w-3xl flex flex-col items-start justify-start lg:pl-5 lg:pr-10">
@@ -457,34 +457,7 @@ export function HomeContent() {
           </div>
         </Section>
 
-        <Section background="right-card">
-          {/* <div className="max-w-7xl mx-auto flex flex-col lg:flex-row px-5">
-            <div className="max-w-3xl lg:max-w-7xl gap-5 flex flex-col lg:flex-row lg:px-5 gap-5">
-              <div className="w-full lg:w-6/12 max-w-3xl flex flex-col items-start justify-start lg:pl-5 lg:pr-10">
-                <Header>
-                  Join a <br className="hidden lg:inline" />
-                  community <br className="hidden lg:inline" />
-                  of millions
-                </Header>
-                <Para>
-                  You’re not alone. Two million developers from all over the
-                  world visit the React docs every month. React is something
-                  that people and teams can agree on.
-                </Para>
-              </div>
-              <div className="w-full lg:w-6/12">
-                <Para>
-                  This is why React is more than a library, an architecture, or
-                  even an ecosystem. React is a community. It’s a place where
-                  you can ask for help, find opportunities, and meet new
-                  friends. You will meet both developers and designers,
-                  beginners and experts, researchers and artists, teachers and
-                  students. Our backgrounds may be very different, but React
-                  lets us all create user interfaces together.
-                </Para>
-              </div>
-            </div>
-          </div> */}
+        <Section background="left-card">
           <div className="w-full">
             <div className="mx-auto flex flex-col max-w-4xl">
               <Center>

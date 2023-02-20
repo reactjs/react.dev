@@ -249,11 +249,11 @@ export default function TopNav({
       )}>
       <nav
         className={cn(
-          'backdrop-filter backdrop-blur-lg backdrop-saturate-200 transition-shadow bg-opacity-90 items-center w-full flex justify-between bg-wash dark:bg-wash-dark dark:bg-opacity-95 px-1.5 lg:px-5 lg:pr-5 z-50',
+          'backdrop-filter backdrop-blur-lg backdrop-saturate-200 transition-shadow bg-opacity-90 items-center w-full flex justify-between bg-wash dark:bg-wash-dark dark:bg-opacity-95 px-1.5 lg:pr-5 lg:pl-4 z-50',
           {'dark:shadow-nav-dark shadow-nav': isScrolled || isOpen}
         )}>
-        <div className="h-16 w-full gap-0 sm:gap-1.5 flex items-center justify-between">
-          <div className="3xl:flex-1 flex flex-row -space-x-1.5">
+        <div className="h-16 w-full gap-0 sm:gap-3 flex items-center justify-between">
+          <div className="3xl:flex-1 flex flex-row ">
             <button
               type="button"
               aria-label="Menu"
@@ -266,10 +266,10 @@ export default function TopNav({
               )}>
               {isOpen ? <IconClose /> : <IconHamburger />}
             </button>
-            <div className="3xl:flex-1 mr-0 sm:mr-2.5 3xl:mr-0 flex align-center">
+            <div className="3xl:flex-1 flex align-center">
               <NextLink href="/">
                 <a
-                  className={`active:scale-95 transition-transform relative items-center text-primary dark:text-primary-dark py-1 whitespace-nowrap outline-link pl-1.5 rounded-lg`}
+                  className={`active:scale-95 transition-transform relative items-center text-primary dark:text-primary-dark p-1 whitespace-nowrap outline-link rounded-lg`}
                   onClick={() => {
                     setLogoAnimation(true);
                   }}
@@ -288,7 +288,7 @@ export default function TopNav({
           <div className="hidden md:flex flex-1 justify-center items-center w-full 3xl:w-auto 3xl:shrink-0 3xl:justify-center">
             <Search />
           </div>
-          <div className="text-base justify-center items-center gap-2.5 flex 3xl:flex-1 flex-row 3xl:justify-end">
+          <div className="text-base justify-center items-center gap-1.5 flex 3xl:flex-1 flex-row 3xl:justify-end">
             <div className="mx-2.5 gap-2.5 hidden lg:flex">
               <NavItem isActive={section === 'learn'} url="/learn">
                 Learn

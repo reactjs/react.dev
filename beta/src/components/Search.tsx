@@ -161,7 +161,7 @@ export function Search({
       <button
         type="button"
         className={cn(
-          '3xl:w-[56rem] mx-2 3xl:mx-0 relative pl-4 pr-1 py-1 h-10 bg-gray-30/20 dark:bg-gray-40/20 outline-none  focus:outline-link betterhover:hover:bg-opacity-80 pointer items-center text-left w-full text-gray-30 rounded-full align-middle text-base',
+          '3xl:w-[56rem] 3xl:mx-0 relative pl-4 pr-1 py-1 h-10 bg-gray-30/20 dark:bg-gray-40/20 outline-none  focus:outline-link betterhover:hover:bg-opacity-80 pointer items-center text-left w-full text-gray-30 rounded-full align-middle text-base',
           fullsize ? 'flex' : 'hidden md:flex'
         )}
         onClick={onOpen}>

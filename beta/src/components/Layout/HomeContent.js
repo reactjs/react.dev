@@ -50,7 +50,7 @@ function SubHeader({children}) {
 
 function Header({children}) {
   return (
-    <h3 className="leading-xl text-primary dark:text-primary-dark font-medium text-5xl lg:text-6xl -mt-4 mb-6 w-full max-w-3xl lg:max-w-xl">
+    <h3 className="leading-xl text-primary dark:text-primary-dark font-medium text-5xl lg:text-6xl -mt-4 mb-7 w-full max-w-3xl lg:max-w-xl">
       {children}
     </h3>
   );

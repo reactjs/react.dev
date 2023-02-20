@@ -40,6 +40,14 @@ function Section({children, background = null}) {
   );
 }
 
+function SubHeader({children}) {
+  return (
+    <h3 className="uppercase font-bold mb-8 tracking-wide text-link dark:text-link-dark text-sm">
+      {children}
+    </h3>
+  );
+}
+
 function Header({children}) {
   return (
     <h3 className="leading-xl text-primary dark:text-primary-dark font-medium text-5xl lg:text-6xl -mt-4 mb-6 w-full max-w-3xl lg:max-w-xl">
@@ -126,6 +134,7 @@ export function HomeContent() {
 
         <Section background="left-card">
           <Center>
+            <SubHeader>Create Components</SubHeader>
             <Header>Create user interfaces from components</Header>
             <Para>
               React lets you build user interfaces out of individual pieces

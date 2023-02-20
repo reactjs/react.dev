@@ -273,8 +273,8 @@ export function HomeContent() {
                         React lets you start streaming HTML while you’re still
                         fetching data, progressively filling in the remaining
                         content before any JavaScript code loads. On the client,
-                        React can use standard web APIs to keep UI responsive
-                        even in the middle of rendering.
+                        React can use standard web APIs to keep your UI
+                        responsive even in the middle of rendering.
                       </p>
                     </div>
                   </div>
@@ -425,10 +425,10 @@ export function HomeContent() {
                 <div className="flex-col sm:flex-row flex-wrap flex gap-5 text-left my-5">
                   <div className="flex-1 min-w-[40%]">
                     <BlogCard
-                      icon="blog"
-                      title="How to Upgrade to React 18"
-                      date="March 8, 2022"
-                      url="/blog/2022/03/08/react-18-upgrade-guide"></BlogCard>
+                      title="React Labs: June 2022"
+                      icon="labs"
+                      date="June 15, 2022"
+                      url="/blog/2022/06/15/react-labs-what-we-have-been-working-on-june-2022"></BlogCard>
                   </div>
                   <div className="flex-1 min-w-[40%]">
                     <BlogCard
@@ -439,10 +439,10 @@ export function HomeContent() {
                   </div>
                   <div className="flex-1 min-w-[40%]">
                     <BlogCard
-                      title="React Labs: June 2022"
-                      icon="labs"
-                      date="June 15, 2022"
-                      url="/blog/2022/06/15/react-labs-what-we-have-been-working-on-june-2022"></BlogCard>
+                      icon="blog"
+                      title="How to Upgrade to React 18"
+                      date="March 8, 2022"
+                      url="/blog/2022/03/08/react-18-upgrade-guide"></BlogCard>
                   </div>
                   <div className="flex-1">
                     <BlogCard
@@ -1027,7 +1027,7 @@ function BrowserChrome({children, hasPulse, hasRefresh, domain, path}) {
           <div className="h-4 w-6" />
           <div className="w-full leading-snug flex flex-row items-center justify-center">
             <svg
-              className="text-tertiary mr-1"
+              className="text-tertiary mr-1 opacity-60"
               width="12"
               height="12"
               viewBox="0 0 44 44"
@@ -1041,7 +1041,10 @@ function BrowserChrome({children, hasPulse, hasRefresh, domain, path}) {
               />
             </svg>
 
-            <span className="text-gray-30">{domain}/</span>
+            <span className="text-gray-30">
+              {domain}
+              {path != null && '/'}
+            </span>
             {path}
           </div>
           {hasRefresh && (

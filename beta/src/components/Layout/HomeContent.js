@@ -160,7 +160,7 @@ export function HomeContent() {
           <Center>
             <Header>Write components with code and markup</Header>
             <Para>
-              React components are JavaScript functions. Want to show something
+              React components are JavaScript functions. Want to show content
               conditionally? Use an <Code>if</Code> statement. Need to display a
               list? Use a <Code>for</Code> loop or array <Code>map()</Code>.
               Learning React is learning programming.
@@ -260,7 +260,7 @@ export function HomeContent() {
                 <div className="absolute -bottom-8 lg:-bottom-10 z-20 w-full">
                   <WebIcons />
                 </div>
-                <BrowserChrome hasRefresh={true} domain="example.com">
+                <BrowserChrome hasRefresh={false} domain="example.com">
                   <div className="relative overflow-hidden">
                     <div className="absolute inset-0 bg-gradient-right" />
                     <div className="bg-wash relative h-14 w-full" />

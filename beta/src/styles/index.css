@@ -41,6 +41,7 @@
     font-style: normal;
     font-display: swap;
   }
+
   @font-face {
     font-family: 'Optimistic Text';
     src: url('https://beta.reactjs.org/fonts/Optimistic_Text_W_Rg.woff2')

@@ -48,6 +48,15 @@ Oct 5 - 7, 2023. In-person in Goa, India (hybrid event) + Oct 3 2023 - remote da
 
 [Website](https://www.reactindia.io) - [Twitter](https://twitter.com/react_india) - [Facebook](https://www.facebook.com/ReactJSIndia) - [Youtube](https://www.youtube.com/channel/UCaFbHCBkPvVv1bWs_jwYt3w)
 
+### React Native EU 2023: Powered by {callstack} {#react-native-eu-2023-powered-by-callstack}
+September 7 - 8, 2023. In-person event in Wroclaw, Poland
+
+[Website](https://www.react-native.eu/?utm_campaign=React_Native_EU&utm_source=referral&utm_content=reactjs_community_conferences) -
+[Twitter](https://twitter.com/react_native_eu) -
+[Linkedin](https://www.linkedin.com/showcase/react-native-eu) -
+[Facebook](https://www.facebook.com/reactnativeeu/) -
+[Instagram](https://www.instagram.com/reactnative_eu/)
+
 ## Past Conferences {#past-conferences}
 
 ### React Day Berlin 2022 {#react-day-berlin-2022}

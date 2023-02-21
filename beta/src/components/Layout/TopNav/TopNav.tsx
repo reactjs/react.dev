@@ -131,7 +131,7 @@ function NavItem({url, isActive, children}: any) {
       <Link
         href={url}
         className={cn(
-          'active:scale-95 transition-transform w-full text-center outline-link py-2 px-2.5 xs:px-3 rounded-lg capitalize',
+          'active:scale-95 transition-transform w-full text-center outline-link py-2 px-2.5 xs:px-3 rounded-full capitalize',
           !isActive && 'hover:bg-primary/5 hover:dark:bg-primary-dark/5',
           isActive &&
             'bg-highlight dark:bg-highlight-dark text-link dark:text-link-dark'

@@ -50,7 +50,7 @@ function SubHeader({children}) {
 
 function Header({children}) {
   return (
-    <h3 className="leading-xl text-primary dark:text-primary-dark font-medium text-5xl lg:text-6xl -mt-4 mb-7 w-full max-w-3xl lg:max-w-xl">
+    <h3 className="leading-xl font-display text-primary dark:text-primary-dark font-semibold text-5xl lg:text-6xl -mt-4 mb-7 w-full max-w-3xl lg:max-w-xl">
       {children}
     </h3>
   );
@@ -106,10 +106,10 @@ export function HomeContent() {
               logoAnimation && 'animate-[rotate_.5s_ease-in-out_forwards]'
             )}
           />
-          <h1 className="text-5xl lg:text-6xl self-center flex font-bold leading-snug text-primary dark:text-primary-dark">
+          <h1 className="text-5xl font-display lg:text-6xl self-center flex font-semibold leading-snug text-primary dark:text-primary-dark">
             React
           </h1>
-          <p className="text-4xl max-w-lg md:max-w-full py-1 text-center text-secondary dark:text-primary-dark leading-snug self-center">
+          <p className="text-4xl font-display max-w-lg md:max-w-full py-1 text-center text-secondary dark:text-primary-dark leading-snug self-center">
             The library for web and native user interfaces
           </p>
           <div className="mt-5 self-center flex gap-2 w-full sm:w-auto flex-col sm:flex-row">

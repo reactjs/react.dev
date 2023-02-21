@@ -64,8 +64,13 @@ module.exports = {
         8: '0.08',
       },
       fontFamily: {
-        sans: [
+        display: [
           'Optimistic Display',
+          '-apple-system',
+          ...defaultTheme.fontFamily.sans,
+        ],
+        text: [
+          'Optimistic Text',
           '-apple-system',
           ...defaultTheme.fontFamily.sans,
         ],

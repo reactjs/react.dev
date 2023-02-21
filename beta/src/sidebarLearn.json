@@ -4,7 +4,7 @@
   "routes": [
     {
       "hasSectionHeader": true,
-      "sectionHeader": "Get Started"
+      "sectionHeader": "GET STARTED"
     },
     {
       "title": "Installation",
@@ -44,7 +44,7 @@
     },
     {
       "hasSectionHeader": true,
-      "sectionHeader": "Learn React"
+      "sectionHeader": "LEARN REACT"
     },
     {
       "title": "Describing the UI",

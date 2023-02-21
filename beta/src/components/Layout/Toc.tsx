@@ -31,7 +31,7 @@ export function Toc({headings}: {headings: Toc}) {
                 <li
                   key={`heading-${h.url}-${i}`}
                   className={cx(
-                    'text-sm px-2 rounded-l-lg',
+                    'text-sm px-2 rounded-l-xl',
                     selectedIndex === i
                       ? 'bg-highlight dark:bg-highlight-dark'
                       : null,

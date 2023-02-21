@@ -528,13 +528,13 @@ const images = [
   reactConf2021Cover,
   reactConf2019Cover,
   reactConf2021Cover,
+  // 'https://i.imgur.com/QJmZSEq.jpg', // react conf nat
   // 'https://i.imgur.com/LXQqeAc.jpg', // react india sunil
+  // 'https://i.imgur.com/xDLyt24.jpg', // react conf hallway
   // 'https://i.imgur.com/e8M5gVl.jpg', // react india audience
   // 'https://i.imgur.com/hNuzz36.jpg', // react conf elizabet
-  // 'https://i.imgur.com/RX96gix.jpg', // react conf fun
-  // 'https://i.imgur.com/xDLyt24.jpg', // react conf hallway
-  // 'https://i.imgur.com/QJmZSEq.jpg', // react conf nat
   // 'https://i.imgur.com/PfxTBy9.jpg', // react india selfie
+  // 'https://i.imgur.com/RX96gix.jpg', // react conf fun
   // 'https://i.imgur.com/4po0zdV.jpg', // react india table
 ];
 

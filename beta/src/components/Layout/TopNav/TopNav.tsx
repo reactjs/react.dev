@@ -131,7 +131,7 @@ function NavItem({url, isActive, children}: any) {
       <Link
         href={url}
         className={cn(
-          'active:scale-95 transition-transform w-full text-center outline-link py-2 px-2.5 xs:px-3 rounded-full capitalize',
+          'active:scale-95 transition-transform w-full text-center outline-link py-2 px-2.5 xs:px-4 rounded-full capitalize',
           !isActive && 'hover:bg-primary/5 hover:dark:bg-primary-dark/5',
           isActive &&
             'bg-highlight dark:bg-highlight-dark text-link dark:text-link-dark'
@@ -289,7 +289,7 @@ export default function TopNav({
             <Search />
           </div>
           <div className="text-base justify-center items-center gap-1.5 flex 3xl:flex-1 flex-row 3xl:justify-end">
-            <div className="mx-2.5 gap-2.5 hidden lg:flex">
+            <div className="mx-2.5 gap-1.5 hidden lg:flex">
               <NavItem isActive={section === 'learn'} url="/learn">
                 Learn
               </NavItem>

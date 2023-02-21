@@ -23,7 +23,7 @@ May 10 - 12, 2023. In-person in Kraków, Poland + remote
 
 [Website](https://appjs.co) - [Twitter](https://twitter.com/appjsconf)
 
-### Render(ATL) 2023 🍑 {#render-atlanta-2023} 
+### Render(ATL) 2023 🍑 {#render-atlanta-2023}
 May 31 - June 2, 2023. Atlanta, GA, USA
 
 [Website](https://renderatl.com) - [Discord](https://www.renderatl.com/discord) - [Twitter](https://twitter.com/renderATL) - [Instagram](https://www.instagram.com/renderatl/) - [Facebook](https://www.facebook.com/renderatl/) - [LinkedIn](https://www.linkedin.com/company/renderatl) - [Podcast](https://www.renderatl.com/culture-and-code#/)
@@ -43,8 +43,13 @@ July 07 & 08, 2023. In-person in Bangalore, India
 
 [Website](https://reactnexus.com/) - [Twitter](https://twitter.com/ReactNexus) - [Linkedin](https://www.linkedin.com/company/react-nexus) - [YouTube](https://www.youtube.com/reactify_in)
 
+### React Rally 2023 🐙 {#react-rally-2023}
+August 17 & 18, 2023. Salt Lake City, UT, USA
+
+[Website](https://www.reactrally.com/) - [Twitter](https://twitter.com/ReactRally) - [Instagram](https://www.instagram.com/reactrally/)
+
 ### React India 2023 {#react-india-2023}
-Oct 5 - 7, 2023. In-person in Goa, India (hybrid event) + Oct 3 2023 - remote day 
+Oct 5 - 7, 2023. In-person in Goa, India (hybrid event) + Oct 3 2023 - remote day
 
 [Website](https://www.reactindia.io) - [Twitter](https://twitter.com/react_india) - [Facebook](https://www.facebook.com/ReactJSIndia) - [Youtube](https://www.youtube.com/channel/UCaFbHCBkPvVv1bWs_jwYt3w)
 
@@ -75,7 +80,7 @@ October 21, 2022 in Verona, Italy
 
 [Website](https://2022.reactjsday.it/) - [Twitter](https://twitter.com/reactjsday) - [LinkedIn](https://www.linkedin.com/company/grusp/) - [Facebook](https://www.facebook.com/reactjsday/) - [Videos](https://www.youtube.com/c/grusp)
 
-### React Brussels 2022 {#react-brussels-2022} 
+### React Brussels 2022 {#react-brussels-2022}
 October 14, 2022. In-person in Brussels, Belgium + remote (hybrid event)
 
 [Website](https://www.react.brussels/) - [Twitter](https://twitter.com/BrusselsReact) - [LinkedIn](https://www.linkedin.com/events/6938421827153088512/) - [Facebook](https://www.facebook.com/events/1289080838167252/) - [Videos](https://www.youtube.com/channel/UCvES7lMpnx-t934qGxD4w4g)
@@ -100,7 +105,7 @@ September 1-2, 2022 - Remote event
 [Website](https://www.react-native.eu/?utm_campaign=React_Native_EU&utm_source=referral&utm_content=reactjs_community_conferences) -
 [Twitter](https://twitter.com/react_native_eu) -
 [Linkedin](https://www.linkedin.com/showcase/react-native-eu) -
-[Facebook](https://www.facebook.com/reactnativeeu/) - 
+[Facebook](https://www.facebook.com/reactnativeeu/) -
 [Instagram](https://www.instagram.com/reactnative_eu/)
 
 ### ReactNext 2022 {#react-next-2022}
@@ -128,7 +133,7 @@ June 8 - 9, 2022.  Remote
 
 [Website](https://reactday.in/) - [Twitter](https://twitter.com/ReactDayIn) - [Linkedin](https://www.linkedin.com/company/react-day/) - [YouTube](https://www.youtube.com/reactify_in)
 
-### render(ATL) 2022 🍑 {#render-atlanta-2022} 
+### render(ATL) 2022 🍑 {#render-atlanta-2022}
 June 1 - 4, 2022. Atlanta, GA, USA
 
 [Website](https://renderatl.com) - [Discord](https://www.renderatl.com/discord) - [Twitter](https://twitter.com/renderATL) - [Instagram](https://www.instagram.com/renderatl/) - [Facebook](https://www.facebook.com/renderatl/) - [LinkedIn](https://www.linkedin.com/company/renderatl) - [Podcast](https://www.renderatl.com/culture-and-code#/)
@@ -138,7 +143,7 @@ May 24 - 25, 2022. Salt Lake City, UT
 
 [Website](https://remix.run/conf/2022) - [Twitter](https://twitter.com/remix_run) - [YouTube](https://www.youtube.com/playlist?list=PLXoynULbYuEC36XutMMWEuTu9uuh171wx)
 
-### Reactathon 2022 {#reactathon-2022} 
+### Reactathon 2022 {#reactathon-2022}
 May 3 - 5, 2022. Berkeley, CA
 
 [Website](https://reactathon.com) - [Twitter](https://twitter.com/reactathon) -[YouTube](https://www.youtube.com/watch?v=-YG5cljNXIA)
@@ -157,7 +162,7 @@ April 1, 2022. Amsterdam, The Netherlands
 
 [Website](https://www.reactlive.nl/) - [Twitter](https://twitter.com/reactlivenl)
 
-### AgentConf 2022 {#agent-conf-2022} 
+### AgentConf 2022 {#agent-conf-2022}
 
 January 27 - 30, 2022. In-person in Dornbirn and Lech Austria
 
@@ -198,12 +203,12 @@ October 16, 2021 - remote event
 
 [Website](http://reactconf.com.br) - [Twitter](https://twitter.com/reactconfbr) - [Slack](https://react.now.sh) - [Facebook](https://facebook.com/reactconf) - [Instagram](https://instagram.com/reactconfbr) - [YouTube](https://www.youtube.com/channel/UCJL5eorStQfC0x1iiWhvqPA/videos)
 
-### React Brussels 2021 {#react-brussels-2021} 
+### React Brussels 2021 {#react-brussels-2021}
 October 15, 2021 - remote event
 
 [Website](https://www.react.brussels/) - [Twitter](https://twitter.com/BrusselsReact) - [LinkedIn](https://www.linkedin.com/events/6805708233819336704/)
 
-### render(ATL) 2021 {#render-atlanta-2021} 
+### render(ATL) 2021 {#render-atlanta-2021}
 September 13-15, 2021. Atlanta, GA, USA
 
 [Website](https://renderatl.com) - [Twitter](https://twitter.com/renderATL) - [Instagram](https://www.instagram.com/renderatl/) - [Facebook](https://www.facebook.com/renderatl/) - [LinkedIn](https://www.linkedin.com/company/renderatl)
@@ -213,7 +218,7 @@ September 1-2, 2021 - remote event
 
 [Website](https://www.react-native.eu/) - [Twitter](https://twitter.com/react_native_eu) - [Facebook](https://www.facebook.com/reactnativeeu/) - [Instagram](https://www.instagram.com/reactnative_eu/)
 
-### React Finland 2021 {#react-finland-2021} 
+### React Finland 2021 {#react-finland-2021}
 August 30 - September 3, 2021 - remote event
 
 [Website](https://react-finland.fi/) - [Twitter](https://twitter.com/ReactFinland) - [LinkedIn](https://www.linkedin.com/company/react-finland/)
@@ -221,7 +226,7 @@ August 30 - September 3, 2021 - remote event
 ### React Case Study Festival 2021 {#react-case-study-festival-2021}
 April 27-28, 2021 - remote event
 
-[Website](https://link.geekle.us/react/offsite) - [LinkedIn](https://www.linkedin.com/events/reactcasestudyfestival6721300943411015680/) - [Facebook](https://www.facebook.com/events/255715435820203) 
+[Website](https://link.geekle.us/react/offsite) - [LinkedIn](https://www.linkedin.com/events/reactcasestudyfestival6721300943411015680/) - [Facebook](https://www.facebook.com/events/255715435820203)
 
 ### React Summit - Remote Edition 2021 {#react-summit-remote-2021}
 April 14-16, 2021, 7am PST / 10am EST / 4pm CEST - remote event
@@ -473,7 +478,7 @@ August 18 in Guangzhou, China
 
 [Website](https://react.w3ctech.com)
 
-### React Rally {#react-rally}
+### React Rally {#react-rally-2018}
 August 16-17 in Salt Lake City, Utah USA
 
 [Website](http://www.reactrally.com) - [Twitter](https://twitter.com/reactrally)

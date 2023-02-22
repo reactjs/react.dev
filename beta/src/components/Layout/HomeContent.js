@@ -134,11 +134,8 @@ export function HomeContent() {
 
         <Section background="left-card">
           <Center>
-            <SubHeader>Create UI from components</SubHeader>
-            <Header>
-              You start with a<br />
-              single component
-            </Header>
+            <SubHeader>You start with a single component…</SubHeader>
+            <Header>Create user interfaces from components</Header>
             <Para>
               React lets you build user interfaces out of individual pieces
               called components. Create your own React components like{' '}
@@ -162,8 +159,8 @@ export function HomeContent() {
 
         <Section background="right-card">
           <Center>
-            <SubHeader>Write components with code and markup</SubHeader>
-            <Header>Then, you keep making more of them</Header>
+            <SubHeader>…Then, you keep making more of them…</SubHeader>
+            <Header>Write components with code and markup</Header>
             <Para>
               React components are JavaScript functions. Want to show some
               content conditionally? Use an <Code>if</Code> statement.
@@ -186,8 +183,8 @@ export function HomeContent() {
 
         <Section background="left-card">
           <Center>
-            <SubHeader>Add interactivity where you need it</SubHeader>
-            <Header>They can handle events in the browser</Header>
+            <SubHeader>…They can handle events in the browser…</SubHeader>
+            <Header>Add interactivity where you need it</Header>
             <Para>
               React components receive data and return what should appear on the
               screen. You can pass them new data in response to an interaction,
@@ -217,8 +214,8 @@ export function HomeContent() {
 
         <Section background="right-card">
           <Center>
-            <SubHeader>Go full-stack with a framework</SubHeader>
-            <Header>They can read database on the server</Header>
+            <SubHeader>…They can read database on the server…</SubHeader>
+            <Header>Go full-stack with a framework</Header>
             <Para>
               React is a library. It lets you put components together, but it
               doesn’t prescribe how to do routing and data fetching. To build an
@@ -251,8 +248,8 @@ export function HomeContent() {
         <Section background="left-card">
           <div className="mx-auto flex flex-col w-full">
             <div className="mx-auto max-w-4xl lg:text-center items-center px-5 flex flex-col">
-              <SubHeader>Use the best from every platform</SubHeader>
-              <Header>They feel native on every platform</Header>
+              <SubHeader>…They’re native on every platform…</SubHeader>
+              <Header>Use the best from every platform</Header>
               <Para>
                 People love web and native apps for different reasons. React
                 lets you build both web apps and native apps using the same
@@ -400,8 +397,8 @@ export function HomeContent() {
           <div className="max-w-7xl mx-auto flex flex-col lg:flex-row px-5">
             <div className="max-w-3xl lg:max-w-7xl gap-5 flex flex-col lg:flex-row lg:px-5 gap-5">
               <div className="w-full lg:w-6/12 max-w-3xl flex flex-col items-start justify-start lg:pl-5 lg:pr-10">
-                <SubHeader>Upgrade when the future is ready</SubHeader>
-                <Header>With time, they will only get better</Header>
+                <SubHeader>…With time, they will only get better…</SubHeader>
+                <Header>Upgrade when the future is ready</Header>
                 <Para>
                   React approaches changes with care. Every React commit is
                   tested on business-critical surfaces with over a billion
@@ -466,8 +463,8 @@ export function HomeContent() {
           <div className="w-full">
             <div className="mx-auto flex flex-col max-w-4xl">
               <Center>
-                <SubHeader>Join a community of millions</SubHeader>
-                <Header>We hope that someday you will join us…</Header>
+                <SubHeader>…We’d like to invite you to join us…</SubHeader>
+                <Header>Join a community of millions</Header>
                 <Para>
                   You’re not alone. Two million developers from all over the
                   world visit the React docs every month. React is something
@@ -501,8 +498,9 @@ export function HomeContent() {
 
         <Section>
           <div className="px-5 lg:px-0 mb-6 max-w-4xl text-center text-opacity-80">
+            <SubHeader>…in making components together.</SubHeader>
             <Logo className="text-link dark:text-link-dark w-24 lg:w-28 mb-10 lg:mb-8 mt-12 h-auto mx-auto self-start" />
-            <Header>…in making components together.</Header>
+            <Header>Welcome to the React community</Header>
             <ButtonLink
               href={'/learn'}
               type="primary"

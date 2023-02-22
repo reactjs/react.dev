@@ -160,7 +160,7 @@ export function HomeContent() {
           <Center>
             <Header>Write components with code and markup</Header>
             <Para>
-              React components are JavaScript functions. Need to show some
+              React components are JavaScript functions. Want to show some
               content conditionally? Use an <Code>if</Code> statement.
               Displaying a list? Try array <Code>map()</Code>. Learning React is
               learning programming.

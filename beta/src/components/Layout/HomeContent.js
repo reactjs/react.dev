@@ -160,10 +160,10 @@ export function HomeContent() {
           <Center>
             <Header>Write components with code and markup</Header>
             <Para>
-              React components are JavaScript functions. Want to show content
-              conditionally? Use an <Code>if</Code> statement. Need to display a
-              list? Use a <Code>for</Code> loop or array <Code>map()</Code>.
-              Learning React is learning programming.
+              React components are JavaScript functions. Need to show some
+              content conditionally? Use an <Code>if</Code> statement.
+              Displaying a list? Try array <Code>map()</Code>. Learning React is
+              learning programming.
             </Para>
           </Center>
           <FullBleed>
@@ -399,16 +399,15 @@ export function HomeContent() {
                 <Para>
                   React approaches changes with care. Every React commit is
                   tested on business-critical surfaces with over a billion
-                  users. Over 100,000 React components in the Meta codebase help
-                  validate every migration strategy.
+                  users. Over 100,000 React components at Meta help validate
+                  every migration strategy.
                 </Para>
                 <div className="order-last pt-5">
                   <Para>
                     The React team is always researching how to improve React.
-                    It can take years of investment for that research to pay
-                    off. React has a high bar for taking an idea from research
-                    to production. Only proven approaches become a part of
-                    React.
+                    Some research takes years to pay off. React has a high bar
+                    for taking a research idea into production. Only proven
+                    approaches become a part of React.
                   </Para>
                   <div className="flex justify-start w-full">
                     <CTA color="gray" icon="news" href="/blog">

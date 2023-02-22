@@ -18,7 +18,7 @@ const root = hydrateRoot(domNode, reactNode, options?)
 
 ## Reference {/*reference*/}
 
-### `hydrateRoot(domNode, options?)` {/*hydrateroot*/}
+### `hydrateRoot(domNode, reactNode, options?)` {/*hydrateroot*/}
 
 Call `hydrateRoot` to “attach” React to existing HTML that was already rendered by React in a server environment.
 

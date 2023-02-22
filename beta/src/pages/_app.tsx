@@ -6,6 +6,7 @@ import {useEffect} from 'react';
 import {AppProps} from 'next/app';
 import {useRouter} from 'next/router';
 import {ga} from '../utils/analytics';
+import {NProgressBar} from '../components/NProgressBar';
 
 import '@docsearch/css';
 import '../styles/algolia.css';
@@ -52,5 +53,10 @@ export default function MyApp({Component, pageProps}: AppProps) {
     };
   }, [router.events]);
 
-  return <Component {...pageProps} />;
+  return (
+    <>
+      <NProgressBar />
+      <Component {...pageProps} />
+    </>
+  );
 }

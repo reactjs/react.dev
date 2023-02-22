@@ -10,7 +10,7 @@ Do you know of a local React.js conference? Add it here! (Please keep the list c
 
 ## Upcoming Conferences {/*upcoming-conferences*/}
 
-### Reactathon 2023 {#reactathon-2023}
+### Reactathon 2023 {/*reactathon-2023*/}
 May 2 - 3, 2023. San Francisco, CA, USA
 
 [Website](https://reactathon.com) - [Twitter](https://twitter.com/reactathon) - [YouTube](https://www.youtube.com/realworldreact)

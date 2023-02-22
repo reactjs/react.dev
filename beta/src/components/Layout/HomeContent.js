@@ -134,7 +134,7 @@ export function HomeContent() {
 
         <Section background="left-card">
           <Center>
-            <Header>Create user interfaces from components</Header>
+            <Header>You start with a single component</Header>
             <Para>
               React lets you build user interfaces out of individual pieces
               called components. Create your own React components like{' '}
@@ -158,7 +158,7 @@ export function HomeContent() {
 
         <Section background="right-card">
           <Center>
-            <Header>Write components with code and markup</Header>
+            <Header>Then you keep making more of them</Header>
             <Para>
               React components are JavaScript functions. Want to show some
               content conditionally? Use an <Code>if</Code> statement.
@@ -181,7 +181,7 @@ export function HomeContent() {
 
         <Section background="left-card">
           <Center>
-            <Header>Add interactivity wherever you need it</Header>
+            <Header>They handle events in the browser</Header>
             <Para>
               React components receive data and return what should appear on the
               screen. You can pass them new data in response to an interaction,
@@ -211,10 +211,7 @@ export function HomeContent() {
 
         <Section background="right-card">
           <Center>
-            <Header>
-              Go full-stack <br className="hidden lg:inline" />
-              with a framework
-            </Header>
+            <Header>They read database on the server</Header>
             <Para>
               React is a library. It lets you put components together, but it
               doesn’t prescribe how to do routing and data fetching. To build an
@@ -247,7 +244,7 @@ export function HomeContent() {
         <Section background="left-card">
           <div className="mx-auto flex flex-col w-full">
             <div className="mx-auto max-w-4xl lg:text-center items-center px-5 flex flex-col">
-              <Header>Use the best from every platform</Header>
+              <Header>They’re native on every platform</Header>
               <Para>
                 People love web and native apps for different reasons. React
                 lets you build both web apps and native apps using the same
@@ -395,7 +392,7 @@ export function HomeContent() {
           <div className="max-w-7xl mx-auto flex flex-col lg:flex-row px-5">
             <div className="max-w-3xl lg:max-w-7xl gap-5 flex flex-col lg:flex-row lg:px-5 gap-5">
               <div className="w-full lg:w-6/12 max-w-3xl flex flex-col items-start justify-start lg:pl-5 lg:pr-10">
-                <Header>Upgrade when the future is ready</Header>
+                <Header>With time, they will only get better</Header>
                 <Para>
                   React approaches changes with care. Every React commit is
                   tested on business-critical surfaces with over a billion
@@ -460,10 +457,7 @@ export function HomeContent() {
           <div className="w-full">
             <div className="mx-auto flex flex-col max-w-4xl">
               <Center>
-                <Header>
-                  Join a community <br className="hidden lg:inline" />
-                  of millions
-                </Header>
+                <Header>We hope that someday you will join us…</Header>
                 <Para>
                   You’re not alone. Two million developers from all over the
                   world visit the React docs every month. React is something
@@ -498,10 +492,7 @@ export function HomeContent() {
         <Section>
           <div className="px-5 lg:px-0 mb-6 max-w-4xl text-center text-opacity-80">
             <Logo className="text-link dark:text-link-dark w-24 lg:w-28 mb-10 lg:mb-8 mt-12 h-auto mx-auto self-start" />
-            <Header>
-              Welcome to the <br className="" />
-              React community
-            </Header>
+            <Header>…in making components together.</Header>
             <ButtonLink
               href={'/learn'}
               type="primary"
@@ -519,20 +510,20 @@ export function HomeContent() {
 const reactConf2021Cover = 'https://i.imgur.com/TsMgXlX.jpg';
 const reactConf2019Cover = 'https://i.imgur.com/YDWtkrY.jpg';
 const images = [
-  // 'https://i.imgur.com/QJmZSEq.jpg', // react conf nat
+  'https://i.imgur.com/QJmZSEq.jpg', // react conf nat
   'https://i.imgur.com/LXQqeAc.jpg', // react india sunil
-  // 'https://i.imgur.com/xDLyt24.jpg', // react conf hallway
+  'https://i.imgur.com/xDLyt24.jpg', // react conf hallway
   'https://i.imgur.com/e8M5gVl.jpg', // react india audience
-  // 'https://i.imgur.com/hNuzz36.jpg', // react conf elizabet
+  'https://i.imgur.com/hNuzz36.jpg', // react conf elizabet
   'https://i.imgur.com/PfxTBy9.jpg', // react india selfie
-  // 'https://i.imgur.com/RX96gix.jpg', // react conf fun
+  'https://i.imgur.com/RX96gix.jpg', // react conf fun
   'https://i.imgur.com/4po0zdV.jpg', // react india table
 
   // TODO: remove repetition after we license other images.
-  'https://i.imgur.com/LXQqeAc.jpg', // react india sunil
-  'https://i.imgur.com/e8M5gVl.jpg', // react india audience
-  'https://i.imgur.com/PfxTBy9.jpg', // react india selfie
-  'https://i.imgur.com/4po0zdV.jpg', // react india table
+  // 'https://i.imgur.com/LXQqeAc.jpg', // react india sunil
+  // 'https://i.imgur.com/e8M5gVl.jpg', // react india audience
+  // 'https://i.imgur.com/PfxTBy9.jpg', // react india selfie
+  // 'https://i.imgur.com/4po0zdV.jpg', // react india table
 ];
 
 function CTA({children, icon, href}) {

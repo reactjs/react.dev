@@ -92,4 +92,4 @@ Same as [`createRoot()`](#createroot), but is used to hydrate a container whose 
 
 > Note
 > 
-> React expects that the rendered content is identical between the server and the client. It can patch up differences in text content, but you should treat mismatches as bugs and fix them. In development mode, React warns about mismatches during hydration. There are no guarantees that attribute differences will be patched up in case of mismatches. This is important for performance reasons because in most apps, mismatches are rare, and so validating all markup would be prohibitively expensive.
+> React expects that the rendered content is identical between the server and the client. Starting React v18, Hydration mismatches due to missing or extra text content are treated like errors instead of warnings.

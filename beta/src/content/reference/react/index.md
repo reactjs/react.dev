@@ -4,7 +4,7 @@ title: "Built-in React Hooks"
 
 <Intro>
 
-*Hooks* let you use different React features from your components. You can either use the built-in Hooks or combine them to build your own. This page lists all the built-in Hooks in React.
+*Hooks* let you use different React features from your components. You can either use the built-in Hooks or combine them to build your own. This page lists all built-in Hooks in React.
 
 </Intro>
 

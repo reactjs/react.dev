@@ -42,9 +42,9 @@ The React team primarily recommends these solutions:
 It sets up your development environment so that you can use the latest JavaScript features, provides a nice developer experience, and optimizes your app for production. You’ll need to have [Node >= 14.0.0 and npm >= 5.6](https://nodejs.org/en/) on your machine. To create a project, run:
 
 ```bash
-npx create-react-app my-app
-cd my-app
-npm start
+npx create-react-app my-app     //my-app is a folder name you can change the name with your project name
+cd my-app      // you can switch to your project folder
+npm start     // you can run your project 
 ```
 
 >Note

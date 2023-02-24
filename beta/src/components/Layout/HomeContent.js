@@ -2085,8 +2085,7 @@ function fetchTalks(confId) {
           {
             id: 0,
             title: 'React 18 Keynote',
-            description:
-              'Andrew Clark, Lauren Tan, Juan Tejada, and Ricky Hanlon',
+            description: 'Andrew Clark, Lauren Tan, Juan Tejada, Ricky Hanlon',
             url: 'https://www.youtube.com/watch?v=FZ0cG47msEk&list=PLNG_1j3cPCaZZ7etkzWA7JfdmKWT0pMsa&index=1',
             image: {
               speakers: [

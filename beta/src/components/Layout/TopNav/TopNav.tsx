@@ -269,7 +269,7 @@ export default function TopNav({
             <div className="3xl:flex-1 flex align-center">
               <NextLink href="/">
                 <a
-                  className={`active:scale-95 transition-transform relative items-center text-primary dark:text-primary-dark p-1 whitespace-nowrap outline-link rounded-lg`}
+                  className={`active:scale-95 overflow-hidden transition-transform relative items-center text-primary dark:text-primary-dark p-1 whitespace-nowrap outline-link rounded-full 3xl:rounded-xl inline-flex text-lg font-normal gap-2`}
                   onClick={() => {
                     setLogoAnimation(true);
                   }}
@@ -281,6 +281,7 @@ export default function TopNav({
                         'animate-[rotate_.5s_ease-in-out_forwards]'
                     )}
                   />
+                  <span className="hidden 3xl:inline">React</span>
                 </a>
               </NextLink>
             </div>

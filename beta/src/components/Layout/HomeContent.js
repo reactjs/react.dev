@@ -27,11 +27,11 @@ function Section({children, background = null}) {
     <div
       className={cn(
         'mx-auto flex flex-col w-full',
-        background === null && 'max-w-6xl',
+        background === null && 'max-w-7xl',
         background === 'left-card' &&
-          'bg-gradient-left dark:bg-gradient-left-dark shadow-nav dark:shadow-nav-dark',
+          'bg-gradient-left dark:bg-gradient-left-dark border-t border-primary/10 dark:border-primary-dark/10 ',
         background === 'right-card' &&
-          'bg-gradient-right dark:bg-gradient-right-dark shadow-nav dark:shadow-nav-dark'
+          'bg-gradient-right dark:bg-gradient-right-dark border-t border-primary/5 dark:border-primary-dark/5'
       )}>
       <div className="flex-col gap-2 flex grow w-full my-20 lg:my-32 mx-auto items-center">
         {children}
@@ -391,7 +391,7 @@ export function HomeContent() {
           </div>
         </Section>
 
-        <Section background="right-card">
+        <Section>
           <div className="max-w-7xl mx-auto flex flex-col lg:flex-row px-5">
             <div className="max-w-3xl lg:max-w-7xl gap-5 flex flex-col lg:flex-row lg:px-5 gap-5">
               <div className="w-full lg:w-6/12 max-w-3xl flex flex-col items-start justify-start lg:pl-5 lg:pr-10">
@@ -498,10 +498,8 @@ export function HomeContent() {
               </Center>
             </div>
           </div>
-        </Section>
 
-        <Section>
-          <div className="px-5 lg:px-0 mb-6 max-w-4xl text-center text-opacity-80">
+          <div className="mt-20 px-5 lg:px-0 mb-6 max-w-4xl text-center text-opacity-80">
             <Logo className="text-link dark:text-link-dark w-24 lg:w-28 mb-10 lg:mb-8 mt-12 h-auto mx-auto self-start" />
             <Header>
               Welcome to the <br className="" />
@@ -675,8 +673,8 @@ function CommunityImages() {
             className={cn(
               'h-auto relative rounded-2xl overflow-hidden before:-skew-x-12 before:absolute before:inset-0 before:-translate-x-full group-hover:before:animate-[shimmer_1s_forwards] before:bg-gradient-to-r before:from-transparent before:via-white/10 before:to-transparent transition-all ease-in-out duration-500',
               i % 2 === 0
-                ? 'rotate-2 group-hover:rotate-[-1deg] group-hover:scale-110 group-hover:shadow-2xl'
-                : 'group-hover:rotate-1 group-hover:scale-110 group-hover:shadow-2xl rotate-[-2deg]'
+                ? 'rotate-2 group-hover:rotate-[-1deg] group-hover:scale-110 group-hover:shadow-lg lg:group-hover:shadow-2xl'
+                : 'group-hover:rotate-1 group-hover:scale-110 group-hover:shadow-lg lg:group-hover:shadow-2xl rotate-[-2deg]'
             )}>
             <img
               src={src}

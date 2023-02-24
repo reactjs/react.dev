@@ -118,7 +118,7 @@ export function Challenges({
     <div className="max-w-7xl mx-auto py-4">
       <div
         className={cn(
-          'border-gray-10 bg-card dark:bg-card-dark shadow-inner rounded-none -mx-5 sm:mx-auto sm:rounded-lg'
+          'border-gray-10 bg-card dark:bg-card-dark shadow-inner rounded-none -mx-5 sm:mx-auto sm:rounded-2xl'
         )}>
         <div ref={scrollAnchorRef} className="py-2 px-5 sm:px-8 pb-0 md:pb-0">
           <Heading

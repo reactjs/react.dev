@@ -93,7 +93,7 @@ const Blockquote = ({
 }: JSX.IntrinsicElements['blockquote']) => {
   return (
     <blockquote
-      className="mdx-blockquote py-4 px-8 my-8 shadow-inner bg-highlight dark:bg-highlight-dark bg-opacity-50 rounded-lg leading-6 flex relative"
+      className="mdx-blockquote py-4 px-8 my-8 shadow-inner-border dark:shadow-inner-border-dark bg-highlight dark:bg-highlight-dark bg-opacity-50 rounded-2xl leading-6 flex relative"
       {...props}>
       <span className="block relative">{children}</span>
     </blockquote>
@@ -110,9 +110,9 @@ function LearnMore({
 }) {
   return (
     <>
-      <section className="p-8 mt-16 mb-16 flex flex-row shadow-inner justify-between items-center bg-card dark:bg-card-dark rounded-lg">
+      <section className="p-8 mt-16 mb-16 flex flex-row shadow-inner-border dark:shadow-inner-border-dark justify-between items-center bg-card dark:bg-card-dark rounded-2xl">
         <div className="flex-col">
-          <h2 className="text-primary dark:text-primary-dark font-bold text-2xl leading-tight">
+          <h2 className="text-primary font-display dark:text-primary-dark font-bold text-2xl leading-tight">
             Ready to learn this topic?
           </h2>
           {children}

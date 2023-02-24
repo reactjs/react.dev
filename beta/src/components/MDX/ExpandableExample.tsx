@@ -46,10 +46,13 @@ function ExpandableExample({children, excerpt, type}: ExpandableExampleProps) {
       onToggle={(e: any) => {
         setIsExpanded(e.currentTarget!.open);
       }}
-      className={cn('my-12 rounded-lg shadow-inner relative', {
-        'dark:bg-opacity-20 dark:bg-purple-60 bg-purple-5': isDeepDive,
-        'dark:bg-opacity-20 dark:bg-yellow-60 bg-yellow-5': isExample,
-      })}>
+      className={cn(
+        'my-12 rounded-2xl shadow-inner-border dark:shadow-inner-border-dark relative',
+        {
+          'dark:bg-opacity-20 dark:bg-purple-60 bg-purple-5': isDeepDive,
+          'dark:bg-opacity-20 dark:bg-yellow-60 bg-yellow-5': isExample,
+        }
+      )}>
       <summary
         className="list-none p-8"
         tabIndex={-1 /* there's a button instead */}

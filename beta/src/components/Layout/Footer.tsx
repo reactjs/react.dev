@@ -14,9 +14,10 @@ import {IconNavArrow} from 'components/Icon/IconNavArrow';
 
 interface FooterProps {
   hideSurvey?: boolean;
+  hideBorder?: boolean;
 }
 
-export function Footer({hideSurvey = false}: FooterProps) {
+export function Footer({hideSurvey = false, hideBorder = false}: FooterProps) {
   const socialLinkClasses = 'hover:text-primary dark:text-primary-dark';
   return (
     <>
@@ -45,8 +46,14 @@ export function Footer({hideSurvey = false}: FooterProps) {
             </div>
           </div>
         )}
-        <hr className="max-w-7xl mx-auto border-border dark:border-border-dark" />
-        <footer className="text-secondary dark:text-secondary-dark py-12 px-5 sm:px-12 md:px-12 sm:py-12 md:py-16 lg:py-14">
+        {!hideBorder && (
+          <hr className="max-w-7xl mx-auto border-border dark:border-border-dark" />
+        )}
+        <footer
+          className={cn(
+            'text-secondary dark:text-secondary-dark py-12 px-5 sm:px-12 md:px-12 sm:py-12 md:py-16 lg:py-14',
+            hideBorder && 'bg-wash dark:bg-gray-95 lg:pt-0'
+          )}>
           <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-x-12 gap-y-8 max-w-7xl mx-auto">
             <div className="col-span-2 md:col-span-1 justify-items-start mt-3.5 text-left">
               <ExternalLink href="https://opensource.fb.com/">

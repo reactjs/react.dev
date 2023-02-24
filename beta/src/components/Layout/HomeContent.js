@@ -441,7 +441,7 @@ export function HomeContent() {
                   <div className="flex-1 min-w-[40%]">
                     <BlogCard
                       icon="blog"
-                      title="How to Upgrade to React 18"
+                      title="Upgrading to React 18"
                       date="March 8, 2022"
                       url="/blog/2022/03/08/react-18-upgrade-guide"></BlogCard>
                   </div>

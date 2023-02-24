@@ -9,6 +9,8 @@ import {
   useId,
   Fragment,
   Suspense,
+  useEffect,
+  useRef,
   useTransition,
 } from 'react';
 import cn from 'classnames';
@@ -962,9 +964,34 @@ async function Talks({ confId }) {
   );
 }
 
+function useNestedScrollLock(ref) {
+  useEffect(() => {
+    let isLocked = false;
+    let unlockTimeout;
+    function handleScroll() {
+      if (!isLocked) {
+        isLocked = true;
+        ref.current.style.pointerEvents = 'none';
+      }
+      clearTimeout(unlockTimeout);
+      unlockTimeout = setTimeout(() => {
+        isLocked = false;
+        ref.current.style.pointerEvents = '';
+      }, 250);
+    }
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+}
+
 function ExamplePanel({children, noPadding, noShadow, height}) {
+  const ref = useRef();
+  useNestedScrollLock(ref);
   return (
     <div
+      ref={ref}
       className={cn(
         'max-w-3xl rounded-2xl mx-auto text-secondary leading-normal bg-white overflow-hidden w-full overflow-y-auto',
         noPadding ? 'p-0' : 'p-4 pr-2',

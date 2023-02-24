@@ -409,7 +409,7 @@ export function HomeContent() {
                     for taking a research idea into production. Only proven
                     approaches become a part of React.
                   </Para>
-                  <div className="flex justify-start w-full">
+                  <div className="hidden lg:flex justify-start w-full">
                     <CTA color="gray" icon="news" href="/blog">
                       Read more React news
                     </CTA>
@@ -450,6 +450,11 @@ export function HomeContent() {
                       date="December 17, 2021"
                       url="/blog/2021/12/17/react-conf-2021-recap"></BlogCard>
                   </div>
+                </div>
+                <div className="flex lg:hidden justify-start w-full">
+                  <CTA color="gray" icon="news" href="/blog">
+                    Read more React news
+                  </CTA>
                 </div>
               </div>
             </div>

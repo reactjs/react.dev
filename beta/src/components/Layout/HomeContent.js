@@ -443,7 +443,7 @@ export function HomeContent() {
                       date="March 8, 2022"
                       url="/blog/2022/03/08/react-18-upgrade-guide"></BlogCard>
                   </div>
-                  <div className="flex-1">
+                  <div className="hidden sm:flex-1 sm:inline">
                     <BlogCard
                       title="React Conf 2021 Recap"
                       icon="blog"

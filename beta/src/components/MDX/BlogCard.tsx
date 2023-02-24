@@ -64,9 +64,11 @@ function BlogCard({title, badge, date, icon, url, children}: BlogCardProps) {
             <span className="text-base text-secondary dark:text-secondary-dark">
               {children}
             </span>
-            <div className="text-link text-base dark:text-link-dark hover:underline mt-4">
-              Read more
-            </div>
+            {children != null && (
+              <div className="text-link text-base dark:text-link-dark hover:underline mt-4">
+                Read more
+              </div>
+            )}
           </div>
         </div>
       </a>

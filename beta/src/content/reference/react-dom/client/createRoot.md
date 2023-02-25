@@ -334,7 +334,7 @@ export default function App({counter}) {
 
 </Sandpack>
 
-It is uncommon to call `render` multiple times. Usually, you'll [update state](/reference/react/useState) inside one of the components instead.
+It is uncommon to call `render` multiple times. Usually, your components will [update state](/reference/react/useState) instead.
 
 ---
 ## Troubleshooting {/*troubleshooting*/}

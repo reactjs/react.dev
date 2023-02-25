@@ -597,16 +597,19 @@ function Parent() {
 }
 
 function Child({ onFetched }) {
+
   // 🔴 Avoid: Passing data to the parent in an Effect
   useEffect(() => {
-    async function fetchData() {
-      const data = await useSomeAPI();
-      if (data) {
+    let canRun = true;
+    
+    useSomeAPI().then(data => {
+      if (data && canRun) {
         onFetched(data);
       }
-    }
+    });
     
-    fetchData();
+    // clean up
+    return () => (canRun = false);
   }, [onFetched]);
   
   // ...
@@ -620,12 +623,16 @@ function Parent() {
   const [data, setData] = useState(null);
   
   useEffect(() => {
-    async function fetchData() {
-      const fetchedData = await useSomeAPI();
-      setData(fetchedData);
-    }
-
-    fetchData();
+    let canRun = true;
+    
+    useSomeAPI().then(fetchedData => {
+      if (fetchedData && canRun) {
+        setData(fetchedData);
+      }
+    });
+    
+    // clean up
+    return () => (canRun = false);
   }, []);
   
   // ...

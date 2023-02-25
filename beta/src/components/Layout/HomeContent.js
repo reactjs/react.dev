@@ -1193,11 +1193,11 @@ function VideoList({videos, emptyHeading}) {
   let heading = emptyHeading;
   const count = videos.length;
   if (count > 0) {
-    heading = count + ' Video';
-    if (count > 1) heading += 's';
+    const noun = count > 1 ? 'Videos' : 'Video';
+    heading = count + ' ' + noun;
   }
   return (
-    <div className="relative p-4">
+    <section className="relative p-4">
       <h2 className="font-bold text-xl text-primary pb-4 leading-snug">
         {heading}
       </h2>
@@ -1206,7 +1206,7 @@ function VideoList({videos, emptyHeading}) {
           <Video key={video.id} video={video} />
         ))}
       </div>
-    </div>
+    </section>
   );
 }
 
@@ -1290,13 +1290,13 @@ function Video({video}) {
         target="_blank"
         rel="noreferrer"
         className="outline-link dark:outline-link outline-offset-4 group flex flex-col flex-1 gap-0.5">
-        <h2
+        <h3
           className={cn(
             'text-base leading-tight text-primary font-bold',
             video.url && 'group-hover:underline'
           )}>
           {video.title}
-        </h2>
+        </h3>
         <p className="text-tertiary text-sm leading-snug">
           {video.description}
         </p>

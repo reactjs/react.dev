@@ -597,13 +597,18 @@ function Parent() {
 }
 
 function Child({ onFetched }) {
-  const data = useSomeAPI();
   // 🔴 Avoid: Passing data to the parent in an Effect
   useEffect(() => {
-    if (data) {
-      onFetched(data);
+    async function fetchData() {
+      const data = await useSomeAPI();
+      if (data) {
+        onFetched(data);
+      }
     }
-  }, [onFetched, data]);
+    
+    fetchData();
+  }, [onFetched]);
+  
   // ...
 }
 ```
@@ -612,7 +617,17 @@ In React, data flows from the parent components to their children. When you see 
 
 ```js {4-5}
 function Parent() {
-  const data = useSomeAPI();
+  const [data, setData] = useState(null);
+  
+  useEffect(() => {
+    async function fetchData() {
+      const fetchedData = await useSomeAPI();
+      setData(fetchedData);
+    }
+
+    fetchData();
+  }, []);
+  
   // ...
   // ✅ Good: Passing data down to the child
   return <Child data={data} />;

@@ -12,6 +12,7 @@ import {
   useEffect,
   useRef,
   useTransition,
+  useReducer,
 } from 'react';
 import cn from 'classnames';
 import ButtonLink from '../ButtonLink';
@@ -89,10 +90,22 @@ function FullBleed({children}) {
 }
 
 export function HomeContent() {
-  const currentTime = new Date().toLocaleTimeString([], {
+  const date = new Date();
+  const currentTime = date.toLocaleTimeString([], {
     hour: 'numeric',
     minute: 'numeric',
   });
+  let [, forceUpdate] = useReducer((n) => n + 1, 0);
+  useEffect(() => {
+    // Force update the clock each minute
+    const msPerMinute = 60 * 1000;
+    const msUntilNextMinute = msPerMinute - (+date % msPerMinute);
+    const timeout = setTimeout(() => {
+      forceUpdate();
+    }, msUntilNextMinute);
+    return () => clearTimeout(timeout);
+  }, [date]);
+
   const [logoAnimation, setLogoAnimation] = useState(false);
   return (
     <>
@@ -101,6 +114,9 @@ export function HomeContent() {
           <Logo
             onClick={() => {
               setLogoAnimation(true);
+            }}
+            onMouseDown={(event) => {
+              event.preventDefault();
             }}
             onAnimationEnd={() => setLogoAnimation(false)}
             className={cn(
@@ -290,7 +306,9 @@ export function HomeContent() {
                   <div className="p-2.5 bg-gray-95 dark:bg-black rounded-2xl shadow-nav dark:shadow-nav-dark">
                     <div className="bg-gradient-right dark:bg-gradient-right-dark px-3 sm:px-3 pb-12 lg:pb-20 rounded-lg overflow-hidden">
                       <div className="select-none w-full h-14 flex flex-row items-start pt-3 -mb-2.5 justify-between text-tertiary dark:text-tertiary-dark">
-                        <span className="uppercase tracking-wide leading-none font-bold text-sm text-tertiary dark:text-tertiary-dark">
+                        <span
+                          className="uppercase tracking-wide leading-none font-bold text-sm text-tertiary dark:text-tertiary-dark"
+                          suppressHydrationWarning>
                           {currentTime}
                         </span>
                         <div className="gap-2 flex -mt-0.5">

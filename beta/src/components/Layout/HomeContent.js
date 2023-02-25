@@ -710,9 +710,63 @@ function CommunityImages() {
   );
 }
 
-function Example1() {
+const example1Steps = [
+  `function Video({ video }) {
   return (
-    <div className="lg:pl-10 lg:pr-5 w-full">
+    <div>
+      <a href={video.url}>
+        <h3>{video.title}</h3>
+      </a>
+    </div>
+  );
+}`,
+  `function Video({ video }) {
+  return (
+    <div>
+      <Thumbnail video={video} />
+      <a href={video.url}>
+        <h3>{video.title}</h3>
+      </a>
+    </div>
+  );
+}`,
+  `function Video({ video }) {
+  return (
+    <div>
+      <Thumbnail video={video} />
+      <a href={video.url}>
+        <h3>{video.title}</h3>
+        <p>{video.description}</p>
+      </a>
+    </div>
+  );
+}`,
+  `function Video({ video }) {
+  return (
+    <div>
+      <Thumbnail video={video} />
+      <a href={video.url}>
+        <h3>{video.title}</h3>
+        <p>{video.description}</p>
+      </a>
+      <LikeButton video={video} />
+    </div>
+  );
+}`,
+];
+
+function Example1() {
+  const [step, setStep] = useState(0);
+  return (
+    <div
+      className="lg:pl-10 lg:pr-5 w-full"
+      onClick={() => {
+        if (step < example1Steps.length - 1) {
+          setStep(step + 1);
+        } else {
+          setStep(0);
+        }
+      }}>
       <div className="mt-12 mb-2 lg:my-16 max-w-7xl mx-auto flex flex-col w-full lg:rounded-2xl lg:bg-card lg:dark:bg-card-dark">
         <div className="flex-col gap-0 lg:gap-5 lg:rounded-2xl lg:bg-gray-10 lg:dark:bg-gray-70 shadow-inner lg:flex-row flex grow w-full mx-auto items-center bg-cover bg-center bg-fixed lg:bg-right lg:bg-[length:60%_100%] bg-no-repeat bg-meta-gradient dark:bg-meta-gradient-dark">
           <div className="lg:-m-5 h-full shadow-nav dark:shadow-nav-dark lg:rounded-2xl bg-wash dark:bg-gray-95 w-full flex grow flex-col">
@@ -725,31 +779,22 @@ function Example1() {
               isFromPackageImport={false}
               noShadow={true}
               noMargin={true}>
-              <div>{`function Video({ video }) {
-  return (
-    <div>
-      <Thumbnail video={video} />
-      <a href={video.url}>
-        <h3>{video.title}</h3>
-        <p>{video.description}</p>
-      </a>
-      <LikeButton video={video} />
-    </div>
-  );
-}
-          `}</div>
+              <div>{example1Steps[step]}</div>
             </CodeBlock>
           </div>
           <div className="mt-5 w-full p-2.5 xs:p-5 lg:p-10 flex grow justify-center">
             <ExamplePanel>
-              <Video
-                video={{
-                  title: 'My video',
-                  description: 'Video description',
-                  image: 'blue',
-                  url: null,
-                }}
-              />
+              <div className="all">
+                <Video
+                  step={step}
+                  video={{
+                    title: 'My video',
+                    description: 'Video description',
+                    image: 'blue',
+                    url: null,
+                  }}
+                />
+              </div>
             </ExamplePanel>
           </div>
         </div>
@@ -1281,7 +1326,69 @@ function Cover({background, children}) {
   );
 }
 
-function Video({video}) {
+function Video({video, step = 3}) {
+  if (step === 0) {
+    return (
+      <div className="flex flex-row items-center gap-3">
+        <a
+          href={video.url}
+          target="_blank"
+          rel="noreferrer"
+          className="outline-link dark:outline-link outline-offset-4 group flex flex-col flex-1 gap-0.5">
+          <h3
+            className={cn(
+              'text-base leading-tight text-primary font-bold',
+              video.url && 'group-hover:underline'
+            )}>
+            {video.title}
+          </h3>
+        </a>
+      </div>
+    );
+  }
+  if (step === 1) {
+    return (
+      <div className="flex flex-row items-center gap-3">
+        <Thumbnail video={video} />
+        <a
+          href={video.url}
+          target="_blank"
+          rel="noreferrer"
+          className="outline-link dark:outline-link outline-offset-4 group flex flex-col flex-1 gap-0.5">
+          <h3
+            className={cn(
+              'text-base leading-tight text-primary font-bold',
+              video.url && 'group-hover:underline'
+            )}>
+            {video.title}
+          </h3>
+        </a>
+      </div>
+    );
+  }
+  if (step === 2) {
+    return (
+      <div className="flex flex-row items-center gap-3">
+        <Thumbnail video={video} />
+        <a
+          href={video.url}
+          target="_blank"
+          rel="noreferrer"
+          className="outline-link dark:outline-link outline-offset-4 group flex flex-col flex-1 gap-0.5">
+          <h3
+            className={cn(
+              'text-base leading-tight text-primary font-bold',
+              video.url && 'group-hover:underline'
+            )}>
+            {video.title}
+          </h3>
+          <p className="text-tertiary text-sm leading-snug">
+            {video.description}
+          </p>
+        </a>
+      </div>
+    );
+  }
   return (
     <div className="flex flex-row items-center gap-3">
       <Thumbnail video={video} />

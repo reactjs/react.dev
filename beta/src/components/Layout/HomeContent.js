@@ -89,23 +89,24 @@ function FullBleed({children}) {
   );
 }
 
-export function HomeContent() {
+function CurrentTime() {
+  const msPerMinute = 60 * 1000;
   const date = new Date();
+  let nextMinute = Math.floor(+date / msPerMinute + 1) * msPerMinute;
+
   const currentTime = date.toLocaleTimeString([], {
     hour: 'numeric',
     minute: 'numeric',
   });
   let [, forceUpdate] = useReducer((n) => n + 1, 0);
   useEffect(() => {
-    // Force update the clock each minute
-    const msPerMinute = 60 * 1000;
-    const msUntilNextMinute = msPerMinute - (+date % msPerMinute);
-    const timeout = setTimeout(() => {
-      forceUpdate();
-    }, msUntilNextMinute);
+    const timeout = setTimeout(forceUpdate, nextMinute - Date.now());
     return () => clearTimeout(timeout);
   }, [date]);
+  return <span suppressHydrationWarning>{currentTime}</span>;
+}
 
+export function HomeContent() {
   const [logoAnimation, setLogoAnimation] = useState(false);
   return (
     <>
@@ -306,10 +307,8 @@ export function HomeContent() {
                   <div className="p-2.5 bg-gray-95 dark:bg-black rounded-2xl shadow-nav dark:shadow-nav-dark">
                     <div className="bg-gradient-right dark:bg-gradient-right-dark px-3 sm:px-3 pb-12 lg:pb-20 rounded-lg overflow-hidden">
                       <div className="select-none w-full h-14 flex flex-row items-start pt-3 -mb-2.5 justify-between text-tertiary dark:text-tertiary-dark">
-                        <span
-                          className="uppercase tracking-wide leading-none font-bold text-sm text-tertiary dark:text-tertiary-dark"
-                          suppressHydrationWarning>
-                          {currentTime}
+                        <span className="uppercase tracking-wide leading-none font-bold text-sm text-tertiary dark:text-tertiary-dark">
+                          <CurrentTime />
                         </span>
                         <div className="gap-2 flex -mt-0.5">
                           <svg

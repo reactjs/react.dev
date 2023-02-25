@@ -56,7 +56,9 @@ export function Footer({hideSurvey = false, hideBorder = false}: FooterProps) {
           )}>
           <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-x-12 gap-y-8 max-w-7xl mx-auto">
             <div className="col-span-2 md:col-span-1 justify-items-start mt-3.5 text-left">
-              <ExternalLink href="https://opensource.fb.com/">
+              <ExternalLink
+                href="https://opensource.fb.com/"
+                aria-label="Meta Open Source">
                 <div>
                   <svg
                     width="160"

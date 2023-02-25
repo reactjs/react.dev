@@ -499,7 +499,9 @@ export function HomeContent() {
               <div className="w-full py-12 lg:py-20 animate-marquee lg:animate-large-marquee whitespace-nowrap flex flex-row">
                 <CommunityImages />
               </div>
-              <div className="w-full absolute top-0 py-12 lg:py-20 animate-marquee2 lg:animate-large-marquee2 whitespace-nowrap flex flex-row">
+              <div
+                aria-hidden="true"
+                className="w-full absolute top-0 py-12 lg:py-20 animate-marquee2 lg:animate-large-marquee2 whitespace-nowrap flex flex-row">
                 <CommunityImages />
               </div>
             </div>
@@ -1065,6 +1067,7 @@ function BrowserChrome({children, hasPulse, hasRefresh, domain, path}) {
                 hasPulse && (restartId > 0 ? '' : 'animation-pulse')
               )}>
               <button
+                aria-label="Reload"
                 onClick={handleRestart}
                 className="flex items-center p-1.5 rounded-full hover:bg-gray-20 hover:bg-opacity-50 cursor-pointer justify-center">
                 <IconRestart className="text-tertiary text-lg" />
@@ -1242,6 +1245,7 @@ function ConferenceLayout({conf, children}) {
       )}>
       <Cover background={conf.cover}>
         <select
+          aria-label="Event"
           defaultValue={slug}
           onChange={(e) => {
             startTransition(() => {
@@ -1317,6 +1321,8 @@ function Thumbnail({video}) {
       href={video.url}
       target="_blank"
       rel="noreferrer"
+      aria-hidden="true"
+      tabIndex={-1}
       className={cn(
         'outline-link dark:outline-link outline-offset-2 aspect-video w-32 xs:w-36 select-none flex-col shadow-inner-border rounded-lg flex items-center overflow-hidden justify-center align-middle text-white/50 bg-cover bg-white bg-[conic-gradient(at_top_right,_var(--tw-gradient-stops))]',
         image === 'blue' && 'from-yellow-50 via-blue-50 to-purple-60',

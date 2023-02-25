@@ -281,7 +281,7 @@ export default function TopNav({
                         'animate-[rotate_.5s_ease-in-out_forwards]'
                     )}
                   />
-                  <span className="hidden 3xl:inline">React</span>
+                  <span className="sr-only 3xl:not-sr-only">React</span>
                 </a>
               </NextLink>
             </div>

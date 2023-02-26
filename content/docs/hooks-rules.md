@@ -38,7 +38,7 @@ npm install eslint-plugin-react-hooks --save-dev
 {
   "plugins": [
     // ...
-    "react-hooks"
+    "plugin:react-hooks/recommended"
   ],
   "rules": {
     // ...

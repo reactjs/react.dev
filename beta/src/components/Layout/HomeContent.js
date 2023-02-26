@@ -778,6 +778,10 @@ function generateFrames(initialCode, commands) {
         linePos++;
         charPos = newIndent;
         captureFrame();
+        captureFrame();
+        captureFrame();
+        captureFrame();
+        captureFrame();
         break;
       }
       case 'type': {
@@ -804,6 +808,10 @@ function generateFrames(initialCode, commands) {
       case 'save': {
         step++;
         captureFrame();
+        captureFrame();
+        captureFrame();
+        captureFrame();
+        captureFrame();
         break;
       }
     }
@@ -814,16 +822,22 @@ function generateFrames(initialCode, commands) {
 function Example1() {
   const [frameIndex, setFrameIndex] = useState(0);
   const frame = example1Frames[frameIndex];
-  return (
-    <div
-      className="lg:pl-10 lg:pr-5 w-full"
-      onClick={() => {
-        if (frameIndex < example1Frames.length - 1) {
-          setFrameIndex(frameIndex + 1);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setFrameIndex((f) => {
+        if (f < example1Frames.length - 1) {
+          return f + 1;
         } else {
-          setFrameIndex(0);
+          return f;
         }
-      }}>
+      });
+    }, 150);
+    return () => clearInterval(interval);
+  }, []);
+
+  return (
+    <div className="lg:pl-10 lg:pr-5 w-full">
       <div className="mt-12 mb-2 lg:my-16 max-w-7xl mx-auto flex flex-col w-full lg:rounded-2xl lg:bg-card lg:dark:bg-card-dark">
         <div className="flex-col gap-0 lg:gap-5 lg:rounded-2xl lg:bg-gray-10 lg:dark:bg-gray-70 shadow-inner lg:flex-row flex grow w-full mx-auto items-center bg-cover bg-center bg-fixed lg:bg-right lg:bg-[length:60%_100%] bg-no-repeat bg-meta-gradient dark:bg-meta-gradient-dark">
           <div className="lg:-m-5 h-full shadow-nav dark:shadow-nav-dark lg:rounded-2xl bg-wash dark:bg-gray-95 w-full flex grow flex-col">
@@ -833,6 +847,7 @@ function Example1() {
               </h3>
             </div>
             <CodeBlock
+              caret={frame.caret}
               isFromPackageImport={false}
               noShadow={true}
               noMargin={true}>

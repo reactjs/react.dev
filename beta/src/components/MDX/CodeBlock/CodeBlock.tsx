@@ -25,6 +25,7 @@ const CodeBlock = function CodeBlock({
   children: {
     props: {className = 'language-js', children: code = '', meta},
   },
+  caret,
   noMargin,
   noShadow,
 }: {
@@ -93,6 +94,7 @@ const CodeBlock = function CodeBlock({
   let currentToken = null;
   let buffer = '';
   let lineIndex = 0;
+  let colIndex = 0;
   let lineOutput = [];
   let finalOutput = [];
   for (let i = 0; i < code.length; i++) {
@@ -153,6 +155,17 @@ const CodeBlock = function CodeBlock({
         buffer = '';
       }
     }
+    if (caret != null) {
+      if (lineIndex === caret.linePos - 1 && colIndex === caret.charPos) {
+        lineOutput.push(buffer);
+        lineOutput.push(
+          <span key="caret" className="inline-block">
+            |
+          </span>
+        );
+        buffer = '';
+      }
+    }
     if (code[i] === '\n') {
       lineOutput.push(buffer);
       buffer = '';
@@ -166,8 +179,10 @@ const CodeBlock = function CodeBlock({
       );
       lineOutput = [];
       lineIndex++;
+      colIndex = 0;
     } else {
       buffer += code[i];
+      colIndex++;
     }
   }
   if (currentDecorator) {

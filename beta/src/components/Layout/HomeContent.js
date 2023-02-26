@@ -710,8 +710,7 @@ function CommunityImages() {
   );
 }
 
-const example1Steps = [
-  `function Video({ video }) {
+const example1Start = `function Video({ video }) {
   return (
     <div>
       <a href={video.url}>
@@ -719,52 +718,110 @@ const example1Steps = [
       </a>
     </div>
   );
-}`,
-  `function Video({ video }) {
-  return (
-    <div>
-      <Thumbnail video={video} />
-      <a href={video.url}>
-        <h3>{video.title}</h3>
-      </a>
-    </div>
-  );
-}`,
-  `function Video({ video }) {
-  return (
-    <div>
-      <Thumbnail video={video} />
-      <a href={video.url}>
-        <h3>{video.title}</h3>
-        <p>{video.description}</p>
-      </a>
-    </div>
-  );
-}`,
-  `function Video({ video }) {
-  return (
-    <div>
-      <Thumbnail video={video} />
-      <a href={video.url}>
-        <h3>{video.title}</h3>
-        <p>{video.description}</p>
-      </a>
-      <LikeButton video={video} />
-    </div>
-  );
-}`,
-];
+}`;
+const example1Frames = generateFrames(example1Start, [
+  ['jump', {line: 3, after: '<div>'}],
+  ['newline', {indentChange: 2}],
+  ['type', {write: '<Thumbnail', complete: ' />'}],
+  ['type', {write: ' video={', complete: '}'}],
+  ['type', {write: 'video'}],
+  ['save'],
+  ['jump', {line: 4, after: '/>'}],
+  ['jump', {line: 5, after: '>'}],
+  ['jump', {line: 6, after: '/h3>'}],
+  ['newline', {indentChange: 0}],
+  ['type', {write: '<p>', complete: '</p>'}],
+  ['type', {write: '{', complete: '}'}],
+  ['type', {write: 'video.description'}],
+  ['save'],
+  ['jump', {line: 7, after: '/p>'}],
+  ['jump', {line: 8, after: '/a>'}],
+  ['newline', {indentChange: 0}],
+  ['type', {write: '<LikeButton', complete: ' />'}],
+  ['type', {write: ' video={', complete: '}'}],
+  ['type', {write: 'video'}],
+  ['save'],
+]);
+
+function generateFrames(initialCode, commands) {
+  let frames = [];
+  let lines = initialCode.split('\n');
+  let linePos = 1;
+  let charPos = 0;
+  let step = 0;
+
+  function captureFrame() {
+    frames.push({
+      code: lines.join('\n'),
+      caret: {linePos, charPos},
+      step,
+    });
+  }
+
+  captureFrame();
+  for (let i = 0; i < commands.length; i++) {
+    const [op, data] = commands[i];
+    switch (op) {
+      case 'jump': {
+        linePos = data.line;
+        const line = lines[linePos - 1];
+        charPos = line.indexOf(data.after) + data.after.length;
+        captureFrame();
+        break;
+      }
+      case 'newline': {
+        const line = lines[linePos - 1];
+        const currentIndent = line.match(/^[\s]*/)[0].length;
+        const newIndent = currentIndent + data.indentChange;
+        const newLine = ' '.repeat(newIndent);
+        lines.splice(linePos, 0, newLine);
+        linePos++;
+        charPos = newIndent;
+        captureFrame();
+        break;
+      }
+      case 'type': {
+        const {write, complete} = data;
+        for (let j = 0; j < write.length; j++) {
+          const line = lines[linePos - 1];
+          const newChar = write[j];
+          const updatedLine =
+            line.slice(0, charPos) + newChar + line.slice(charPos);
+          lines[linePos - 1] = updatedLine;
+          charPos++;
+          captureFrame();
+        }
+        if (complete != null) {
+          frames.pop();
+          const line = lines[linePos - 1];
+          const updatedLine =
+            line.slice(0, charPos) + complete + line.slice(charPos);
+          lines[linePos - 1] = updatedLine;
+          captureFrame();
+        }
+        break;
+      }
+      case 'save': {
+        step++;
+        captureFrame();
+        break;
+      }
+    }
+  }
+  return frames;
+}
 
 function Example1() {
-  const [step, setStep] = useState(0);
+  const [frameIndex, setFrameIndex] = useState(0);
+  const frame = example1Frames[frameIndex];
   return (
     <div
       className="lg:pl-10 lg:pr-5 w-full"
       onClick={() => {
-        if (step < example1Steps.length - 1) {
-          setStep(step + 1);
+        if (frameIndex < example1Frames.length - 1) {
+          setFrameIndex(frameIndex + 1);
         } else {
-          setStep(0);
+          setFrameIndex(0);
         }
       }}>
       <div className="mt-12 mb-2 lg:my-16 max-w-7xl mx-auto flex flex-col w-full lg:rounded-2xl lg:bg-card lg:dark:bg-card-dark">
@@ -779,14 +836,14 @@ function Example1() {
               isFromPackageImport={false}
               noShadow={true}
               noMargin={true}>
-              <div>{example1Steps[step]}</div>
+              <div>{frame.code}</div>
             </CodeBlock>
           </div>
           <div className="mt-5 w-full p-2.5 xs:p-5 lg:p-10 flex grow justify-center">
             <ExamplePanel>
               <div className="all">
                 <Video
-                  step={step}
+                  step={frame.step}
                   video={{
                     title: 'My video',
                     description: 'Video description',

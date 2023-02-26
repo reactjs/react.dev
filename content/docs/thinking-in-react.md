@@ -8,6 +8,12 @@ redirect_from:
 prev: composition-vs-inheritance.html
 ---
 
+> Try the new React documentation.
+> 
+> The updated [Thinking in React](https://beta.reactjs.org/learn/thinking-in-react) guide teaches modern React and includes live examples.
+>
+> The new docs will soon replace this site, which will be archived. [Provide feedback.](https://github.com/reactjs/reactjs.org/issues/3308)
+
 React is, in our opinion, the premier way to build big, fast Web apps with JavaScript. It has scaled very well for us at Facebook and Instagram.
 
 One of the many great parts of React is how it makes you think about apps as you build them. In this document, we'll walk you through the thought process of building a searchable product data table using React.
@@ -39,9 +45,9 @@ But how do you know what should be its own component? Use the same techniques fo
 
 Since you're often displaying a JSON data model to a user, you'll find that if your model was built correctly, your UI (and therefore your component structure) will map nicely. That's because UI and data models tend to adhere to the same *information architecture*. Separate your UI into components, where each component matches one piece of your data model.
 
-![Component diagram](../images/blog/thinking-in-react-components.png)
+![Diagram showing nesting of components](../images/blog/thinking-in-react-components.png)
 
-You'll see here that we have five components in our app. We've italicized the data each component represents.
+You'll see here that we have five components in our app. We've italicized the data each component represents. The numbers in the image correspond to the numbers below.
 
   1. **`FilterableProductTable` (orange):** contains the entirety of the example
   2. **`SearchBar` (blue):** receives all *user input*
@@ -70,9 +76,9 @@ To build a static version of your app that renders your data model, you'll want 
 
 You can build top-down or bottom-up. That is, you can either start with building the components higher up in the hierarchy (i.e. starting with `FilterableProductTable`) or with the ones lower in it (`ProductRow`). In simpler examples, it's usually easier to go top-down, and on larger projects, it's easier to go bottom-up and write tests as you build.
 
-At the end of this step, you'll have a library of reusable components that render your data model. The components will only have `render()` methods since this is a static version of your app. The component at the top of the hierarchy (`FilterableProductTable`) will take your data model as a prop. If you make a change to your underlying data model and call `ReactDOM.render()` again, the UI will be updated. You can see how your UI is updated and where to make changes. React's **one-way data flow** (also called *one-way binding*) keeps everything modular and fast.
+At the end of this step, you'll have a library of reusable components that render your data model. The components will only have `render()` methods since this is a static version of your app. The component at the top of the hierarchy (`FilterableProductTable`) will take your data model as a prop. If you make a change to your underlying data model and call `root.render()` again, the UI will be updated. You can see how your UI is updated and where to make changes. React's **one-way data flow** (also called *one-way binding*) keeps everything modular and fast.
 
-Refer to the [React docs](/docs/) if you need help executing this step.
+Refer to the [React docs](/docs/getting-started.html) if you need help executing this step.
 
 ### A Brief Interlude: Props vs State {#a-brief-interlude-props-vs-state}
 
@@ -137,10 +143,10 @@ So far, we've built an app that renders correctly as a function of props and sta
 
 React makes this data flow explicit to help you understand how your program works, but it does require a little more typing than traditional two-way data binding.
 
-If you try to type or check the box in the current version of the example, you'll see that React ignores your input. This is intentional, as we've set the `value` prop of the `input` to always be equal to the `state` passed in from `FilterableProductTable`.
+If you try to type or check the box in the previous version of the example (step 4), you'll see that React ignores your input. This is intentional, as we've set the `value` prop of the `input` to always be equal to the `state` passed in from `FilterableProductTable`.
 
 Let's think about what we want to happen. We want to make sure that whenever the user changes the form, we update the state to reflect the user input. Since components should only update their own state, `FilterableProductTable` will pass callbacks to `SearchBar` that will fire whenever the state should be updated. We can use the `onChange` event on the inputs to be notified of it. The callbacks passed by `FilterableProductTable` will call `setState()`, and the app will be updated.
 
 ## And That's It {#and-thats-it}
 
-Hopefully, this gives you an idea of how to think about building components and applications with React. While it may be a little more typing than you're used to, remember that code is read far more than it's written, and it's less difficult to read this modular, explicit code. As you start to build large libraries of components, you'll appreciate this explicitness and modularity, and with code reuse, your lines of code will start to shrink. :)
+Hopefully, this gives you an idea of how to think about building components and applications with React. While it may be a little more typing than you're used to, remember that code is read far more often than it's written, and it's less difficult to read this modular, explicit code. As you start to build large libraries of components, you'll appreciate this explicitness and modularity, and with code reuse, your lines of code will start to shrink. :)

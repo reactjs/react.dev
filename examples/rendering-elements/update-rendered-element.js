@@ -1,3 +1,7 @@
+const root = ReactDOM.createRoot(
+  document.getElementById('root')
+);
+
 function tick() {
   const element = (
     <div>
@@ -6,7 +10,7 @@ function tick() {
     </div>
   );
   // highlight-next-line
-  ReactDOM.render(element, document.getElementById('root'));
+  root.render(element);
 }
 
 setInterval(tick, 1000);

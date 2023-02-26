@@ -1,0 +1,95 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="355" viewBox="0 0 800 355">
+  <defs>
+    <style>
+      .a {
+        fill: #e0ddf0;
+      }
+
+      .b {
+        fill: #a19ad1;
+      }
+
+      .c, .h {
+        font-size: 14px;
+font-family: Menlo,Monaco,Consolas,Liberation Mono,Courier New,monospace ;
+      }       
+      .c {
+        fill: #312c59;
+      }
+
+      .c, .d, .h, .i {
+        font-weight: 700;
+      }
+
+      .d, .i {
+        font-size: 24px;
+        font-family: system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
+      }
+
+      .d {
+        fill: #8179c1;
+      }
+
+      .e {
+        fill: #cdeffc;
+      }
+
+      .f {
+        fill: none;
+        stroke: #416c7c;
+        stroke-miterlimit: 10;
+        stroke-width: 3px;
+      }
+
+      .g {
+        fill: #81d8f7;
+      }
+
+      .h {
+        fill: #154854;
+      }
+
+      .i {
+        fill: #61a2b9;
+      }
+
+      .j {
+        letter-spacing: -0.02em;
+      }
+    </style>
+  </defs>
+  <g>
+    <rect class="a" x="424.31" y="39" width="290.19" height="273"/>
+    <g>
+      <rect class="b" x="466.74" y="103.5" width="203.99" height="37.5" rx="4.83"/>
+      <text class="c" transform="translate(479.95 126.36)">onSubmit() { ... }</text>
+    </g>
+    <g>
+      <rect class="b" x="467.15" y="153.75" width="203.99" height="37.5" rx="4.83"/>
+      <text class="c" transform="translate(480.34 176.6)">login() { ... }</text>
+    </g>
+    <g>
+      <rect class="b" x="467.15" y="203.75" width="203.99" height="37.5" rx="4.83"/>
+      <text class="c" transform="translate(480.34 226.6)">onClick() { ... }</text>
+    </g>
+    <text class="d" transform="translate(554.31 76.12)">JS</text>
+  </g>
+  <g>
+    <rect class="e" x="75.5" y="39" width="291.37" height="273"/>
+    <path class="f" d="M213.69,124.36v17A16.67,16.67,0,0,1,197,158H175.83a16.68,16.68,0,0,0-16.68,16.67v13.24"/>
+    <path class="f" d="M214.15,124.36v17A16.68,16.68,0,0,0,230.83,158H252a16.67,16.67,0,0,1,16.67,16.67V220.5"/>
+    <g>
+      <rect class="g" x="178" y="103.5" width="76.5" height="37.5" rx="4.83"/>
+      <text class="h" transform="translate(194.95 126.36)">&lt;div&gt;</text>
+    </g>
+    <g>
+      <rect class="g" x="230.8" y="217.92" width="76.5" height="37.5" rx="4.83"/>
+      <text class="h" transform="translate(243.55 240.78)">&lt;form&gt;</text>
+    </g>
+    <g>
+      <rect class="g" x="123.81" y="182.92" width="76.5" height="37.5" rx="4.83"/>
+      <text class="h" transform="translate(149.15 205.78)">&lt;p&gt;</text>
+    </g>
+    <text class="i" transform="translate(189.88 76.12)">HTML</text>
+  </g>
+</svg>

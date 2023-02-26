@@ -24,7 +24,12 @@ permalink: community/courses.html
 
 - [Scrimba: Learn React for free](https://scrimba.com/g/glearnreact) - 48 hands-on video tutorials building react apps.
 
+- [University of Helsinki: Full Stack Open MOOC](https://fullstackopen.com/en/) - Learn to build web applications with React. Available in English, Spanish, Chinese and Finnish.
+
+
 ## Paid Courses {#paid-courses}
+
+- [Meta Front-End Developer Professional Certificate](https://www.coursera.org/professional-certificates/meta-front-end-developer) - Launch your career as a front-end developer. Build job-ready skills for an in-demand career and earn a credential from Meta. No degree or prior experience required to get started.
 
 - [Egghead.io](https://egghead.io/browse/frameworks/react) - Short instructional videos on React and many other topics.
 
@@ -44,7 +49,7 @@ permalink: community/courses.html
 
 - [React Training: Advanced React.js](https://courses.reacttraining.com/p/advanced-react) - Take your React skills to the next level.
 
-- [Tyler McGinnis](https://tylermcginnis.com/courses) - Tyler McGinnis provides access to his courses for a monthly fee. Courses include "React Fundamentals" and "Universal React".
+- [Tyler McGinnis](https://ui.dev/) - Tyler McGinnis provides access to his courses for a monthly fee. Courses include "React Fundamentals" and "Universal React".
 
 - [Mastering React](https://codewithmosh.com/p/mastering-react/) - Build professional interactive apps with React.
 

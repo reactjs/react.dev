@@ -25,7 +25,7 @@ In this section, we will show how to add a React component to an existing HTML p
 
 There will be no complicated tools or install requirements -- **to complete this section, you only need an internet connection, and a minute of your time.**
 
-Optional: [Download the full example (2KB zipped)](https://gist.github.com/gaearon/6668a1f6986742109c00a581ce704605/archive/f6c882b6ae18bde42dcf6fdb751aae93495a2275.zip)
+Optional: [Download the full example (2KB zipped)](https://gist.github.com/gaearon/6668a1f6986742109c00a581ce704605/archive/87f0b6f34238595b44308acfb86df6ea43669c08.zip)
 
 ### Step 1: Add a DOM Container to the HTML {#step-1-add-a-dom-container-to-the-html}
 
@@ -54,8 +54,8 @@ Next, add three `<script>` tags to the HTML page right before the closing `</bod
 
   <!-- Load React. -->
   <!-- Note: when deploying, replace "development.js" with "production.min.js". -->
-  <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
-  <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
 
   <!-- Load our React component. -->
   <script src="like_button.js"></script>
@@ -75,16 +75,17 @@ Open **[this starter code](https://gist.github.com/gaearon/0b180827c190fe4fd98b4
 >
 >This code defines a React component called `LikeButton`. Don't worry if you don't understand it yet -- we'll cover the building blocks of React later in our [hands-on tutorial](/tutorial/tutorial.html) and [main concepts guide](/docs/hello-world.html). For now, let's just get it showing on the screen!
 
-After **[the starter code](https://gist.github.com/gaearon/0b180827c190fe4fd98b4c7f570ea4a8/raw/b9157ce933c79a4559d2aa9ff3372668cce48de7/LikeButton.js)**, add two lines to the bottom of `like_button.js`:
+After **[the starter code](https://gist.github.com/gaearon/0b180827c190fe4fd98b4c7f570ea4a8/raw/b9157ce933c79a4559d2aa9ff3372668cce48de7/LikeButton.js)**, add three lines to the bottom of `like_button.js`:
 
-```js{3,4}
+```js{3,4,5}
 // ... the starter code you pasted ...
 
 const domContainer = document.querySelector('#like_button_container');
-ReactDOM.render(e(LikeButton), domContainer);
+const root = ReactDOM.createRoot(domContainer);
+root.render(e(LikeButton));
 ```
 
-These two lines of code find the `<div>` we added to our HTML in the first step, and then display our "Like" button React component inside of it.
+These three lines of code find the `<div>` we added to our HTML in the first step, create a React app with it, and then display our "Like" button React component inside of it.
 
 ### That's It! {#thats-it}
 
@@ -94,7 +95,7 @@ Check out the next sections for more tips on integrating React.
 
 **[View the full example source code](https://gist.github.com/gaearon/6668a1f6986742109c00a581ce704605)**
 
-**[Download the full example (2KB zipped)](https://gist.github.com/gaearon/6668a1f6986742109c00a581ce704605/archive/f6c882b6ae18bde42dcf6fdb751aae93495a2275.zip)**
+**[Download the full example (2KB zipped)](https://gist.github.com/gaearon/6668a1f6986742109c00a581ce704605/archive/87f0b6f34238595b44308acfb86df6ea43669c08.zip)**
 
 ### Tip: Reuse a Component {#tip-reuse-a-component}
 
@@ -102,7 +103,7 @@ Commonly, you might want to display React components in multiple places on the H
 
 [View the full example source code](https://gist.github.com/gaearon/faa67b76a6c47adbab04f739cba7ceda)
 
-[Download the full example (2KB zipped)](https://gist.github.com/gaearon/faa67b76a6c47adbab04f739cba7ceda/archive/9d0dd0ee941fea05fd1357502e5aa348abb84c12.zip)
+[Download the full example (2KB zipped)](https://gist.github.com/gaearon/faa67b76a6c47adbab04f739cba7ceda/archive/279839cb9891bd41802ebebc5365e9dec08eeb9f.zip)
 
 >Note
 >
@@ -115,8 +116,8 @@ Before deploying your website to production, be mindful that unminified JavaScri
 If you already minify the application scripts, **your site will be production-ready** if you ensure that the deployed HTML loads the versions of React ending in `production.min.js`:
 
 ```js
-<script src="https://unpkg.com/react@17/umd/react.production.min.js" crossorigin></script>
-<script src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js" crossorigin></script>
+<script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
 ```
 
 If you don't have a minification step for your scripts, [here's one way to set it up](https://gist.github.com/gaearon/42a2ffa41b8319948f9be4076286e1f3).
@@ -149,7 +150,7 @@ return (
 
 These two code snippets are equivalent. While **JSX is [completely optional](/docs/react-without-jsx.html)**, many people find it helpful for writing UI code -- both with React and with other libraries.
 
-You can play with JSX using [this online converter](https://babeljs.io/en/repl#?babili=false&browsers=&build=&builtIns=false&spec=false&loose=false&code_lz=DwIwrgLhD2B2AEcDCAbAlgYwNYF4DeAFAJTw4B88EAFmgM4B0tAphAMoQCGETBe86WJgBMAXJQBOYJvAC-RGWQBQ8FfAAyaQYuAB6cFDhkgA&debug=false&forceAllTransforms=false&shippedProposals=false&circleciRepo=&evaluate=false&fileSize=false&timeTravel=false&sourceType=module&lineWrap=true&presets=es2015%2Creact%2Cstage-2&prettier=false&targets=&version=7.4.3).
+You can play with JSX using [this online converter](https://babeljs.io/en/repl#?babili=false&browsers=&build=&builtIns=false&spec=false&loose=false&code_lz=DwIwrgLhD2B2AEcDCAbAlgYwNYF4DeAFAJTw4B88EAFmgM4B0tAphAMoQCGETBe86WJgBMAXJQBOYJvAC-RGWQBQ8FfAAyaQYuAB6cFDhkgA&debug=false&forceAllTransforms=false&shippedProposals=false&circleciRepo=&evaluate=false&fileSize=false&timeTravel=false&sourceType=module&lineWrap=true&presets=es2015%2Creact%2Cstage-2&prettier=false&targets=&version=7.15.7).
 
 ### Quickly Try JSX {#quickly-try-jsx}
 
@@ -183,7 +184,7 @@ Congratulations! You just added a **production-ready JSX setup** to your project
 
 Create a folder called `src` and run this terminal command:
 
-```
+```console
 npx babel --watch src --out-dir . --presets react-app/prod
 ```
 

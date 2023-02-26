@@ -34,11 +34,11 @@ We call this a "root" DOM node because everything inside it will be managed by R
 
 Applications built with just React usually have a single root DOM node. If you are integrating React into an existing app, you may have as many isolated root DOM nodes as you like.
 
-To render a React element into a root DOM node, pass both to [`ReactDOM.render()`](/docs/react-dom.html#render):
+To render a React element, first pass the DOM element to [`ReactDOM.createRoot()`](/docs/react-dom-client.html#createroot), then pass the React element to `root.render()`:
 
 `embed:rendering-elements/render-an-element.js`
 
-[](codepen://rendering-elements/render-an-element)
+**[Try it on CodePen](https://codepen.io/gaearon/pen/ZpvBNJ?editors=1010)**
 
 It displays "Hello, world" on the page.
 
@@ -46,19 +46,19 @@ It displays "Hello, world" on the page.
 
 React elements are [immutable](https://en.wikipedia.org/wiki/Immutable_object). Once you create an element, you can't change its children or attributes. An element is like a single frame in a movie: it represents the UI at a certain point in time.
 
-With our knowledge so far, the only way to update the UI is to create a new element, and pass it to [`ReactDOM.render()`](/docs/react-dom.html#render).
+With our knowledge so far, the only way to update the UI is to create a new element, and pass it to `root.render()`.
 
 Consider this ticking clock example:
 
 `embed:rendering-elements/update-rendered-element.js`
 
-[](codepen://rendering-elements/update-rendered-element)
+**[Try it on CodePen](https://codepen.io/gaearon/pen/gwoJZk?editors=1010)**
 
-It calls [`ReactDOM.render()`](/docs/react-dom.html#render) every second from a [`setInterval()`](https://developer.mozilla.org/en-US/docs/Web/API/WindowTimers/setInterval) callback.
+It calls [`root.render()`](/docs/react-dom.html#render) every second from a [`setInterval()`](https://developer.mozilla.org/en-US/docs/Web/API/WindowTimers/setInterval) callback.
 
 >**Note:**
 >
->In practice, most React apps only call [`ReactDOM.render()`](/docs/react-dom.html#render) once. In the next sections we will learn how such code gets encapsulated into [stateful components](/docs/state-and-lifecycle.html).
+>In practice, most React apps only call `root.render()` once. In the next sections we will learn how such code gets encapsulated into [stateful components](/docs/state-and-lifecycle.html).
 >
 >We recommend that you don't skip topics because they build on each other.
 
@@ -66,7 +66,7 @@ It calls [`ReactDOM.render()`](/docs/react-dom.html#render) every second from a 
 
 React DOM compares the element and its children to the previous one, and only applies the DOM updates necessary to bring the DOM to the desired state.
 
-You can verify by inspecting the [last example](codepen://rendering-elements/update-rendered-element) with the browser tools:
+You can verify by inspecting the [last example](https://codepen.io/gaearon/pen/gwoJZk?editors=1010) with the browser tools:
 
 ![DOM inspector showing granular updates](../images/docs/granular-dom-updates.gif)
 

@@ -42,4 +42,7 @@ function Content() {
   );
 }
 
-ReactDOM.render(<App />, document.root);
+const root = ReactDOM.createRoot(
+  document.getElementById('root')
+);
+root.render(<App />);

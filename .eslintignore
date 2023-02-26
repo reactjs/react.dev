@@ -1,5 +1,8 @@
 node_modules/*
 
+# Skip beta
+beta/*
+
 # Ignore markdown files and examples
 content/*
 

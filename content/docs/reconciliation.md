@@ -4,6 +4,14 @@ title: Reconciliation
 permalink: docs/reconciliation.html
 ---
 
+> Try the new React documentation.
+> 
+> These new documentation pages teach modern React and include live examples:
+>
+> - [Preserving and Resetting State](https://beta.reactjs.org/learn/preserving-and-resetting-state)
+>
+> The new docs will soon replace this site, which will be archived. [Provide feedback.](https://github.com/reactjs/reactjs.org/issues/3308)
+
 React provides a declarative API so that you don't have to worry about exactly what changes on every update. This makes writing applications a lot easier, but it might not be obvious how this is implemented within React. This article explains the choices we made in React's "diffing" algorithm so that component updates are predictable while being fast enough for high-performance apps.
 
 ## Motivation {#motivation}
@@ -45,7 +53,7 @@ This will destroy the old `Counter` and remount a new one.
 
 >Note:
 >
->These methods are considered legacy and you should [avoid them](/blog/2018/03/27/update-on-async-rendering.html) in new code:
+>This method is considered legacy and you should [avoid it](/blog/2018/03/27/update-on-async-rendering.html) in new code:
 >
 >- `UNSAFE_componentWillMount()`
 

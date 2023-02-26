@@ -15,6 +15,10 @@ redirect_from:
   - "tips/use-react-with-other-libraries.html"
 ---
 
+> Try the new React documentation for [`Component`](https://beta.reactjs.org/reference/react/Component).
+>
+> The new docs will soon replace this site, which will be archived. [Provide feedback.](https://github.com/reactjs/reactjs.org/issues/3308)
+
 This page contains a detailed API reference for the React component class definition. It assumes you're familiar with fundamental React concepts, such as [Components and Props](/docs/components-and-props.html), as well as [State and Lifecycle](/docs/state-and-lifecycle.html). If you're not, read them first.
 
 ## Overview {#overview}
@@ -52,7 +56,7 @@ These methods are called in the following order when an instance of a component 
 
 >Note:
 >
->These methods are considered legacy and you should [avoid them](/blog/2018/03/27/update-on-async-rendering.html) in new code:
+>This method is considered legacy and you should [avoid it](/blog/2018/03/27/update-on-async-rendering.html) in new code:
 >
 >- [`UNSAFE_componentWillMount()`](#unsafe_componentwillmount)
 
@@ -125,7 +129,7 @@ When called, it should examine `this.props` and `this.state` and return one of t
 - **Arrays and fragments.** Let you return multiple elements from render. See the documentation on [fragments](/docs/fragments.html) for more details.
 - **Portals**. Let you render children into a different DOM subtree. See the documentation on [portals](/docs/portals.html) for more details.
 - **String and numbers.** These are rendered as text nodes in the DOM.
-- **Booleans or `null`**. Render nothing. (Mostly exists to support `return test && <Child />` pattern, where `test` is boolean.)
+- **Booleans or `null` or `undefined`**. Render nothing. (Mostly exists to support `return test && <Child />` pattern, where `test` is boolean).
 
 The `render()` function should be pure, meaning that it does not modify component state, it returns the same result each time it's invoked, and it does not directly interact with the browser.
 
@@ -507,12 +511,12 @@ There are just two of them: `setState()` and `forceUpdate()`.
 ### `setState()` {#setstate}
 
 ```javascript
-setState(updater, [callback])
+setState(updater[, callback])
 ```
 
 `setState()` enqueues changes to the component state and tells React that this component and its children need to be re-rendered with the updated state. This is the primary method you use to update the user interface in response to event handlers and server responses.
 
-Think of `setState()` as a *request* rather than an immediate command to update the component. For better perceived performance, React may delay it, and then update several components in a single pass. React does not guarantee that the state changes are applied immediately.
+Think of `setState()` as a *request* rather than an immediate command to update the component. For better perceived performance, React may delay it, and then update several components in a single pass. In the rare case that you need to force the DOM update to be applied synchronously, you may wrap it in [`flushSync`](/docs/react-dom.html#flushsync), but this may hurt performance.
 
 `setState()` does not always immediately update the component. It may batch or defer the update until later. This makes reading `this.state` right after calling `setState()` a potential pitfall. Instead, use `componentDidUpdate` or a `setState` callback (`setState(updater, callback)`), either of which are guaranteed to fire after the update has been applied. If you need to set the state based on the previous state, read about the `updater` argument below.
 

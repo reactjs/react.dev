@@ -16,6 +16,15 @@ prev: rendering-elements.html
 next: state-and-lifecycle.html
 ---
 
+> Try the new React documentation.
+> 
+> These new documentation pages teach modern React and include live examples:
+>
+> - [Your First Component](https://beta.reactjs.org/learn/your-first-component)
+> - [Passing Props to a Component](https://beta.reactjs.org/learn/passing-props-to-a-component)
+>
+> The new docs will soon replace this site, which will be archived. [Provide feedback.](https://github.com/reactjs/reactjs.org/issues/3308)
+
 Components let you split the UI into independent, reusable pieces, and think about each piece in isolation. This page provides an introduction to the idea of components. You can find a [detailed component API reference here](/docs/react-component.html).
 
 Conceptually, components are like JavaScript functions. They accept arbitrary inputs (called "props") and return React elements describing what should appear on the screen.
@@ -64,23 +73,21 @@ When React sees an element representing a user-defined component, it passes JSX 
 
 For example, this code renders "Hello, Sara" on the page:
 
-```js{1,5}
+```js{1,6}
 function Welcome(props) {
   return <h1>Hello, {props.name}</h1>;
 }
 
+const root = ReactDOM.createRoot(document.getElementById('root'));
 const element = <Welcome name="Sara" />;
-ReactDOM.render(
-  element,
-  document.getElementById('root')
-);
+root.render(element);
 ```
 
-[](codepen://components-and-props/rendering-a-component)
+**[Try it on CodePen](https://codepen.io/gaearon/pen/YGYmEG?editors=1010)**
 
 Let's recap what happens in this example:
 
-1. We call `ReactDOM.render()` with the `<Welcome name="Sara" />` element.
+1. We call `root.render()` with the `<Welcome name="Sara" />` element.
 2. React calls the `Welcome` component with `{name: 'Sara'}` as the props.
 3. Our `Welcome` component returns a `<h1>Hello, Sara</h1>` element as the result.
 4. React DOM efficiently updates the DOM to match `<h1>Hello, Sara</h1>`.
@@ -111,14 +118,9 @@ function App() {
     </div>
   );
 }
-
-ReactDOM.render(
-  <App />,
-  document.getElementById('root')
-);
 ```
 
-[](codepen://components-and-props/composing-components)
+**[Try it on CodePen](https://codepen.io/gaearon/pen/KgQKPr?editors=1010)**
 
 Typically, new React apps have a single `App` component at the very top. However, if you integrate React into an existing app, you might start bottom-up with a small component like `Button` and gradually work your way to the top of the view hierarchy.
 
@@ -152,7 +154,7 @@ function Comment(props) {
 }
 ```
 
-[](codepen://components-and-props/extracting-components)
+**[Try it on CodePen](https://codepen.io/gaearon/pen/VKQwEo?editors=1010)**
 
 It accepts `author` (an object), `text` (a string), and `date` (a date) as props, and describes a comment on a social media website.
 
@@ -231,7 +233,7 @@ function Comment(props) {
 }
 ```
 
-[](codepen://components-and-props/extracting-components-continued)
+**[Try it on CodePen](https://codepen.io/gaearon/pen/rrJNJY?editors=1010)**
 
 Extracting components might seem like grunt work at first, but having a palette of reusable components pays off in larger apps. A good rule of thumb is that if a part of your UI is used several times (`Button`, `Panel`, `Avatar`), or is complex enough on its own (`App`, `FeedStory`, `Comment`), it is a good candidate to be extracted to a separate component.
 

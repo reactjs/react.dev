@@ -97,8 +97,6 @@ You can't use Hooks *inside* a class component, but you can definitely mix class
 
 Our goal is for Hooks to cover all use cases for classes as soon as possible. There are no Hook equivalents to the uncommon `getSnapshotBeforeUpdate`, `getDerivedStateFromError` and `componentDidCatch` lifecycles yet, but we plan to add them soon.
 
-It is an early time for Hooks, and some third-party libraries might not be compatible with Hooks at the moment.
-
 ### Do Hooks replace render props and higher-order components? {#do-hooks-replace-render-props-and-higher-order-components}
 
 Often, render props and higher-order components render only a single child. We think Hooks are a simpler way to serve this use case. There is still a place for both patterns (for example, a virtual scroller component might have a `renderItem` prop, or a visual container component might have its own DOM structure). But in most cases, Hooks will be sufficient and can help reduce nesting in your tree.
@@ -150,7 +148,7 @@ We'll test it using React DOM. To make sure that the behavior matches what happe
 
 ```js{3,20-22,29-31}
 import React from 'react';
-import ReactDOM from 'react-dom';
+import ReactDOM from 'react-dom/client';
 import { act } from 'react-dom/test-utils';
 import Counter from './Counter';
 
@@ -169,7 +167,7 @@ afterEach(() => {
 it('can render and update a counter', () => {
   // Test first render and effect
   act(() => {
-    ReactDOM.render(<Counter />, container);
+    ReactDOM.createRoot(container).render(<Counter />);
   });
   const button = container.querySelector('button');
   const label = container.querySelector('p');
@@ -333,54 +331,22 @@ This is a rare use case. If you need it, you can [use a mutable ref](#is-there-s
 
 ### How to get the previous props or state? {#how-to-get-the-previous-props-or-state}
 
-Currently, you can do it manually [with a ref](#is-there-something-like-instance-variables):
+There are two cases in which you might want to get previous props or state.
 
-```js{6,8}
-function Counter() {
-  const [count, setCount] = useState(0);
+Sometimes, you need previous props to **clean up an effect.** For example, you might have an effect that subscribes to a socket based on the `userId` prop. If the `userId` prop changes, you want to unsubscribe from the _previous_ `userId` and subscribe to the _next_ one. You don't need to do anything special for this to work:
 
-  const prevCountRef = useRef();
-  useEffect(() => {
-    prevCountRef.current = count;
-  });
-  const prevCount = prevCountRef.current;
-
-  return <h1>Now: {count}, before: {prevCount}</h1>;
-}
+```js
+useEffect(() => {
+  ChatAPI.subscribeToSocket(props.userId);
+  return () => ChatAPI.unsubscribeFromSocket(props.userId);
+}, [props.userId]);
 ```
 
-This might be a bit convoluted but you can extract it into a custom Hook:
+In the above example, if `userId` changes from `3` to `4`, `ChatAPI.unsubscribeFromSocket(3)` will run first, and then `ChatAPI.subscribeToSocket(4)` will run. There is no need to get "previous" `userId` because the cleanup function will capture it in a closure.
 
-```js{3,7}
-function Counter() {
-  const [count, setCount] = useState(0);
-  const prevCount = usePrevious(count);
-  return <h1>Now: {count}, before: {prevCount}</h1>;
-}
+Other times, you might need to **adjust state based on a change in props or other state**. This is rarely needed and is usually a sign you have some duplicate or redundant state. However, in the rare case that you need this pattern, you can [store previous state or props in state and update them during rendering](#how-do-i-implement-getderivedstatefromprops).
 
-function usePrevious(value) {
-  const ref = useRef();
-  useEffect(() => {
-    ref.current = value;
-  });
-  return ref.current;
-}
-```
-
-Note how this would work for props, state, or any other calculated value.
-
-```js{5}
-function Counter() {
-  const [count, setCount] = useState(0);
-
-  const calculation = count + 100;
-  const prevCalculation = usePrevious(calculation);
-  // ...
-```
-
-It's possible that in the future React will provide a `usePrevious` Hook out of the box since it's a relatively common use case.
-
-See also [the recommended pattern for derived state](#how-do-i-implement-getderivedstatefromprops).
+We have previously suggested a custom Hook called `usePrevious` to hold the previous value. However, we've found that most use cases fall into the two patterns described above. If your use case is different, you can [hold a value in a ref](#is-there-something-like-instance-variables) and manually update it when needed. Avoid reading and updating refs during rendering because this makes your component's behavior difficult to predict and understand.
 
 ### Why am I seeing stale props or state inside my function? {#why-am-i-seeing-stale-props-or-state-inside-my-function}
 
@@ -914,8 +880,6 @@ Note that you can still choose whether to pass the application *state* down as p
 >Note
 >
 >We recommend to [pass `dispatch` down in context](#how-to-avoid-passing-callbacks-down) rather than individual callbacks in props. The approach below is only mentioned here for completeness and as an escape hatch.
->
->Also note that this pattern might cause problems in the [concurrent mode](/blog/2018/03/27/update-on-async-rendering.html). We plan to provide more ergonomic alternatives in the future, but the safest solution right now is to always invalidate the callback if some value it depends on changes.
 
 In some rare cases you might need to memoize a callback with [`useCallback`](/docs/hooks-reference.html#usecallback) but the memoization doesn't work very well because the inner function has to be re-created too often. If the function you're memoizing is an event handler and isn't used during rendering, you can use [ref as an instance variable](#is-there-something-like-instance-variables), and save the last committed value into it manually:
 

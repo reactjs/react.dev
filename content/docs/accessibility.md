@@ -226,7 +226,7 @@ class Parent extends React.Component {
 this.inputElement.current.focus();
 ```
 
-When using a HOC to extend components, it is recommended to [forward the ref](/docs/forwarding-refs.html) to the wrapped component using the `forwardRef` function of React. If a third party HOC does not implement ref forwarding, the above pattern can still be used as a fallback.
+When using a [HOC](/docs/higher-order-components.html) to extend components, it is recommended to [forward the ref](/docs/forwarding-refs.html) to the wrapped component using the `forwardRef` function of React. If a third party HOC does not implement ref forwarding, the above pattern can still be used as a fallback.
 
 A great focus management example is the [react-aria-modal](https://github.com/davidtheclark/react-aria-modal). This is a relatively rare example of a fully accessible modal window. Not only does it set initial focus on
 the cancel button (preventing the keyboard user from accidentally activating the success action) and trap keyboard focus inside the modal, it also resets focus back to the element that initially triggered the modal.
@@ -376,7 +376,7 @@ These are toolboxes filled with HTML attributes that are fully supported in JSX 
 
 Each type of widget has a specific design pattern and is expected to function in a certain way by users and user agents alike:
 
-- [WAI-ARIA Authoring Practices - Design Patterns and Widgets](https://www.w3.org/TR/wai-aria-practices/#aria_ex)
+- [ARIA Authoring Practices Guide (APG) - Design Patterns and Examples](https://www.w3.org/WAI/ARIA/apg/patterns/)
 - [Heydon Pickering - ARIA Examples](https://heydonworks.com/article/practical-aria-examples/)
 - [Inclusive Components](https://inclusive-components.design/)
 
@@ -404,7 +404,7 @@ Ensure that all readable text on your website has sufficient color contrast to r
 - [Everything About Color Contrast And Why You Should Rethink It](https://www.smashingmagazine.com/2014/10/color-contrast-tips-and-tools-for-accessibility/)
 - [A11yProject - What is Color Contrast](https://a11yproject.com/posts/what-is-color-contrast/)
 
-It can be tedious to manually calculate the proper color combinations for all cases in your website so instead, you can [calculate an entire accessible color palette with Colorable](https://jxnblk.com/colorable/).
+It can be tedious to manually calculate the proper color combinations for all cases in your website so instead, you can [calculate an entire accessible color palette with Colorable](https://colorable.jxnblk.com/).
 
 Both the aXe and WAVE tools mentioned below also include color contrast tests and will report on contrast errors.
 
@@ -454,7 +454,7 @@ Deque Systems offers [aXe-core](https://github.com/dequelabs/axe-core) for autom
 
 [The Accessibility Engine](https://www.deque.com/products/axe/) or aXe, is an accessibility inspector browser extension built on `aXe-core`.
 
-You can also use the [react-axe](https://github.com/dylanb/react-axe) module to report these accessibility findings directly to the console while developing and debugging.
+You can also use the [@axe-core/react](https://github.com/dequelabs/axe-core-npm/tree/develop/packages/react) module to report these accessibility findings directly to the console while developing and debugging.
 
 #### WebAIM WAVE {#webaim-wave}
 

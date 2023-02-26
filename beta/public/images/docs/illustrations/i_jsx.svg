@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="355" viewBox="0 0 800 355">
+  <defs>
+    <style>
+      .a {
+        fill: #a19ad1;
+      }
+
+      .b {
+        fill: #cdeffc;
+      }
+
+      .c {
+        font-size: 14px;
+        fill: #18162d;
+font-family: Menlo,Monaco,Consolas,Liberation Mono,Courier New,monospace ;
+      }
+      .c, .f {
+        font-weight: 700;
+      }
+
+      .d {
+        fill: #81d8f7;
+      }
+
+      .e {
+        fill: #20363e;
+      }
+
+      .f {
+        font-size: 24px;
+        fill: #fff;
+        font-family: system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
+      }
+
+      .g {
+        letter-spacing: -0.06em;
+      }
+    </style>
+  </defs>
+  <g>
+    <g>
+      <rect class="a" x="424.5" y="39" width="290" height="273"/>
+      <rect class="b" x="446.51" y="173" width="247.76" height="84" rx="4.83"/>
+      <text class="c" transform="translate(457.95 126.36)">Form() {<tspan x="0" y="16.8" xml:space="preserve">  onClick() { ... }</tspan><tspan x="0" y="33.6" xml:space="preserve">  onSubmit() { ... }</tspan><tspan class="d"><tspan x="0" y="67.2" xml:space="preserve">  </tspan><tspan class="e" x="16.8" y="67.2">&lt;form onSubmit&gt;</tspan></tspan><tspan class="e"><tspan x="0" y="84" xml:space="preserve">    &lt;input onClick /&gt;</tspan><tspan x="0" y="100.8" xml:space="preserve">    &lt;input onClick /&gt;</tspan><tspan x="0" y="117.6" xml:space="preserve">  &lt;/form&gt; </tspan></tspan><tspan x="0" y="151.2">}</tspan></text>
+      <text class="f" transform="translate(526.64 76.12)">Form.js</text>
+    </g>
+    <g>
+      <rect class="a" x="76.5" y="39" width="290" height="273"/>
+      <rect class="b" x="127.66" y="223.25" width="218.35" height="35" rx="4.83"/>
+      <rect class="b" x="127.5" y="156" width="218.35" height="35" rx="4.83"/>
+      <text class="c" transform="translate(109.95 126.36)">Sidebar() {<tspan x="0" y="16.8" xml:space="preserve">  isLoggedIn() {</tspan><tspan class="d"><tspan x="0" y="50.4" xml:space="preserve">    </tspan><tspan class="e" x="33.61" y="50.4">&lt;p&gt;Welcome&lt;/p&gt; </tspan></tspan><tspan x="0" y="84" xml:space="preserve">  } else {</tspan><tspan class="d"><tspan x="0" y="117.6" xml:space="preserve">    </tspan><tspan class="e" x="33.61" y="117.6">&lt;Form /&gt; </tspan></tspan><tspan x="0" y="151.2" xml:space="preserve">  }</tspan><tspan x="0" y="168">}</tspan></text>
+      <text class="f" transform="translate(165.29 76.12)">Sidebar.js</text>
+    </g>
+  </g>
+</svg>

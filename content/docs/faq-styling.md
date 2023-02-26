@@ -48,4 +48,4 @@ _Note that this functionality is not a part of React, but provided by third-part
 
 ### Can I do animations in React? {#can-i-do-animations-in-react}
 
-React can be used to power animations. See [React Transition Group](https://reactcommunity.org/react-transition-group/) and [React Motion](https://github.com/chenglou/react-motion) or [React Spring](https://github.com/react-spring/react-spring), for example.
+React can be used to power animations. See [React Transition Group](https://reactcommunity.org/react-transition-group/), [React Motion](https://github.com/chenglou/react-motion), [React Spring](https://github.com/react-spring/react-spring), or [Framer Motion](https://framer.com/motion), for example.

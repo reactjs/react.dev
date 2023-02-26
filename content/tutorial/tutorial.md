@@ -12,6 +12,12 @@ redirect_from:
   - "docs/tutorial-zh-CN.html"
 ---
 
+> Try the new React documentation.
+> 
+> The updated [Tutorial](https://beta.reactjs.org/learn/tutorial-tic-tac-toe) teaches modern React and includes live examples.
+>
+> The new docs will soon replace this site, which will be archived. [Provide feedback.](https://github.com/reactjs/reactjs.org/issues/3308)
+
 This tutorial doesn't assume any existing React knowledge.
 
 ## Before We Start the Tutorial {#before-we-start-the-tutorial}
@@ -106,7 +112,7 @@ cd ..
 
 ```js
 import React from 'react';
-import ReactDOM from 'react-dom';
+import ReactDOM from 'react-dom/client';
 import './index.css';
 ```
 
@@ -454,7 +460,7 @@ When a Square is clicked, the `onClick` function provided by the Board is called
 1. The `onClick` prop on the built-in DOM `<button>` component tells React to set up a click event listener.
 2. When the button is clicked, React will call the `onClick` event handler that is defined in Square's `render()` method.
 3. This event handler calls `this.props.onClick()`. The Square's `onClick` prop was specified by the Board.
-4. Since the Board passed `onClick={() => this.handleClick(i)}` to Square, the Square calls `this.handleClick(i)` when clicked.
+4. Since the Board passed `onClick={() => this.handleClick(i)}` to Square, the Square calls the Board's `handleClick(i)` when clicked.
 5. We have not defined the `handleClick()` method yet, so our code crashes. If you click a square now, you should see a red error screen saying something like "this.handleClick is not a function".
 
 >Note
@@ -524,7 +530,7 @@ Note how in `handleClick`, we call `.slice()` to create a copy of the `squares` 
 
 ### Why Immutability Is Important {#why-immutability-is-important}
 
-In the previous code example, we suggested that you use the `.slice()` method to create a copy of the `squares` array to copy instead of modifying the existing array. We'll now discuss immutability and why immutability is important to learn.
+In the previous code example, we suggested that you create a copy of the `squares` array using the `slice()` method instead of modifying the existing array. We'll now discuss immutability and why immutability is important to learn.
 
 There are generally two approaches to changing data. The first approach is to *mutate* the data by directly changing the data's values. The second approach is to replace the data with a new copy which has the desired changes.
 
@@ -542,7 +548,7 @@ var player = {score: 1, name: 'Jeff'};
 var newPlayer = Object.assign({}, player, {score: 2});
 // Now player is unchanged, but newPlayer is {score: 2, name: 'Jeff'}
 
-// Or if you are using object spread syntax proposal, you can write:
+// Or if you are using object spread syntax, you can write:
 // var newPlayer = {...player, score: 2};
 ```
 
@@ -1045,6 +1051,8 @@ Let's `map` over the `history` in the Game's `render` method:
 
 **[View the full code at this point](https://codepen.io/gaearon/pen/EmmGEa?editors=0010)**
 
+As we iterate through `history` array, `step` variable refers to the current `history` element value, and `move` refers to the current `history` element index. We are only interested in `move` here, hence `step` is not getting assigned to anything.
+
 For each move in the tic-tac-toe game's history, we create a list item `<li>` which contains a button `<button>`. The button has a `onClick` handler which calls a method called `this.jumpTo()`. We haven't implemented the `jumpTo()` method yet. For now, we should see a list of the moves that have occurred in the game and a warning in the developer tools console that says:
 
 >  Warning:
@@ -1146,11 +1154,13 @@ Next, we'll define the `jumpTo` method in Game to update that `stepNumber`. We a
   }
 ```
 
+Notice in `jumpTo` method, we haven't updated `history` property of the state. That is because state updates are merged or in more simple words React will update only the properties mentioned in `setState` method leaving the remaining state as is. For more info **[see the documentation](/docs/state-and-lifecycle.html#state-updates-are-merged)**.
+
 We will now make a few changes to the Game's `handleClick` method which fires when you click on a square.
 
 The `stepNumber` state we've added reflects the move displayed to the user now. After we make a new move, we need to update `stepNumber` by adding `stepNumber: history.length` as part of the `this.setState` argument. This ensures we don't get stuck showing the same move after a new one has been made.
 
-We will also replace reading `this.state.history` with `this.state.history.slice(0, this.state.stepNumber + 1)`. This ensures that if we "go back in time" and then make a new move from that point, we throw away all the "future" history that would now become incorrect.
+We will also replace reading `this.state.history` with `this.state.history.slice(0, this.state.stepNumber + 1)`. This ensures that if we "go back in time" and then make a new move from that point, we throw away all the "future" history that would now be incorrect.
 
 ```javascript{2,13}
   handleClick(i) {

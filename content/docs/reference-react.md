@@ -65,6 +65,13 @@ Suspense lets components "wait" for something before rendering. Today, Suspense 
 - [`React.lazy`](#reactlazy)
 - [`React.Suspense`](#reactsuspense)
 
+### Transitions {#transitions}
+
+*Transitions* are a new concurrent feature introduced in React 18. They allow you to mark updates as transitions, which tells React that they can be interrupted and avoid going back to Suspense fallbacks for already visible content.
+
+- [`React.startTransition`](#starttransition)
+- [`React.useTransition`](/docs/hooks-reference.html#usetransition)
+
 ### Hooks {#hooks}
 
 *Hooks* are a new addition in React 16.8. They let you use state and other React features without writing a class. Hooks have a [dedicated docs section](/docs/hooks-intro.html) and a separate API reference:
@@ -81,12 +88,22 @@ Suspense lets components "wait" for something before rendering. Today, Suspense 
   - [`useImperativeHandle`](/docs/hooks-reference.html#useimperativehandle)
   - [`useLayoutEffect`](/docs/hooks-reference.html#uselayouteffect)
   - [`useDebugValue`](/docs/hooks-reference.html#usedebugvalue)
+  - [`useDeferredValue`](/docs/hooks-reference.html#usedeferredvalue)
+  - [`useTransition`](/docs/hooks-reference.html#usetransition)
+  - [`useId`](/docs/hooks-reference.html#useid)
+- [Library Hooks](/docs/hooks-reference.html#library-hooks)
+  - [`useSyncExternalStore`](/docs/hooks-reference.html#usesyncexternalstore)
+  - [`useInsertionEffect`](/docs/hooks-reference.html#useinsertioneffect)
 
 * * *
 
 ## Reference {#reference}
 
 ### `React.Component` {#reactcomponent}
+
+> Try the new React documentation for [`Component`](https://beta.reactjs.org/reference/react/Component).
+>
+> The new docs will soon replace this site, which will be archived. [Provide feedback.](https://github.com/reactjs/reactjs.org/issues/3308)
 
 `React.Component` is the base class for React components when they are defined using [ES6 classes](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Classes):
 
@@ -104,19 +121,27 @@ See the [React.Component API Reference](/docs/react-component.html) for a list o
 
 ### `React.PureComponent` {#reactpurecomponent}
 
+> Try the new React documentation for [`PureComponent`](https://beta.reactjs.org/reference/react/PureComponent).
+>
+> The new docs will soon replace this site, which will be archived. [Provide feedback.](https://github.com/reactjs/reactjs.org/issues/3308)
+
 `React.PureComponent` is similar to [`React.Component`](#reactcomponent). The difference between them is that [`React.Component`](#reactcomponent) doesn't implement [`shouldComponentUpdate()`](/docs/react-component.html#shouldcomponentupdate), but `React.PureComponent` implements it with a shallow prop and state comparison.
 
 If your React component's `render()` function renders the same result given the same props and state, you can use `React.PureComponent` for a performance boost in some cases.
 
 > Note
 >
-> `React.PureComponent`'s `shouldComponentUpdate()` only shallowly compares the objects. If these contain complex data structures, it may produce false-negatives for deeper differences. Only extend `PureComponent` when you expect to have simple props and state, or use [`forceUpdate()`](/docs/react-component.html#forceupdate) when you know deep data structures have changed. Or, consider using [immutable objects](https://facebook.github.io/immutable-js/) to facilitate fast comparisons of nested data.
+> `React.PureComponent`'s `shouldComponentUpdate()` only shallowly compares the objects. If these contain complex data structures, it may produce false-negatives for deeper differences. Only extend `PureComponent` when you expect to have simple props and state, or use [`forceUpdate()`](/docs/react-component.html#forceupdate) when you know deep data structures have changed. Or, consider using [immutable objects](https://immutable-js.com/) to facilitate fast comparisons of nested data.
 >
 > Furthermore, `React.PureComponent`'s `shouldComponentUpdate()` skips prop updates for the whole component subtree. Make sure all the children components are also "pure".
 
 * * *
 
 ### `React.memo` {#reactmemo}
+
+> Try the new React documentation for [`memo`](https://beta.reactjs.org/reference/react/memo).
+>
+> The new docs will soon replace this site, which will be archived. [Provide feedback.](https://github.com/reactjs/reactjs.org/issues/3308)
 
 ```javascript
 const MyComponent = React.memo(function MyComponent(props) {
@@ -156,6 +181,10 @@ This method only exists as a **[performance optimization](/docs/optimizing-perfo
 
 ### `createElement()` {#createelement}
 
+> Try the new React documentation for [`createElement`](https://beta.reactjs.org/reference/react/createElement).
+>
+> The new docs will soon replace this site, which will be archived. [Provide feedback.](https://github.com/reactjs/reactjs.org/issues/3308)
+
 ```javascript
 React.createElement(
   type,
@@ -171,6 +200,10 @@ Code written with [JSX](/docs/introducing-jsx.html) will be converted to use `Re
 * * *
 
 ### `cloneElement()` {#cloneelement}
+
+> Try the new React documentation for [`cloneElement`](https://beta.reactjs.org/reference/react/cloneElement).
+>
+> The new docs will soon replace this site, which will be archived. [Provide feedback.](https://github.com/reactjs/reactjs.org/issues/3308)
 
 ```
 React.cloneElement(
@@ -196,6 +229,10 @@ This API was introduced as a replacement of the deprecated `React.addons.cloneWi
 
 ### `createFactory()` {#createfactory}
 
+> Try the new React documentation for [`createFactory`](https://beta.reactjs.org/reference/react/createFactory).
+>
+> The new docs will soon replace this site, which will be archived. [Provide feedback.](https://github.com/reactjs/reactjs.org/issues/3308)
+
 ```javascript
 React.createFactory(type)
 ```
@@ -210,6 +247,10 @@ You will not typically invoke `React.createFactory()` directly if you are using 
 
 ### `isValidElement()` {#isvalidelement}
 
+> Try the new React documentation for [`isValidElement`](https://beta.reactjs.org/reference/react/isValidElement).
+>
+> The new docs will soon replace this site, which will be archived. [Provide feedback.](https://github.com/reactjs/reactjs.org/issues/3308)
+
 ```javascript
 React.isValidElement(object)
 ```
@@ -219,6 +260,10 @@ Verifies the object is a React element. Returns `true` or `false`.
 * * *
 
 ### `React.Children` {#reactchildren}
+
+> Try the new React documentation for [`Children`](https://beta.reactjs.org/reference/react/Children).
+>
+> The new docs will soon replace this site, which will be archived. [Provide feedback.](https://github.com/reactjs/reactjs.org/issues/3308)
 
 `React.Children` provides utilities for dealing with the `this.props.children` opaque data structure.
 
@@ -278,6 +323,10 @@ Returns the `children` opaque data structure as a flat array with keys assigned 
 
 ### `React.Fragment` {#reactfragment}
 
+> Try the new React documentation for [`Fragment`](https://beta.reactjs.org/reference/react/Fragment).
+>
+> The new docs will soon replace this site, which will be archived. [Provide feedback.](https://github.com/reactjs/reactjs.org/issues/3308)
+
 The `React.Fragment` component lets you return multiple elements in a `render()` method without creating an additional DOM element:
 
 ```javascript
@@ -296,10 +345,18 @@ You can also use it with the shorthand `<></>` syntax. For more information, see
 
 ### `React.createRef` {#reactcreateref}
 
+> Try the new React documentation for [`createRef`](https://beta.reactjs.org/reference/react/createRef).
+>
+> The new docs will soon replace this site, which will be archived. [Provide feedback.](https://github.com/reactjs/reactjs.org/issues/3308)
+
 `React.createRef` creates a [ref](/docs/refs-and-the-dom.html) that can be attached to React elements via the ref attribute.
 `embed:16-3-release-blog-post/create-ref-example.js`
 
 ### `React.forwardRef` {#reactforwardref}
+
+> Try the new React documentation for [`forwardRef`](https://beta.reactjs.org/reference/react/forwardRef).
+>
+> The new docs will soon replace this site, which will be archived. [Provide feedback.](https://github.com/reactjs/reactjs.org/issues/3308)
 
 `React.forwardRef` creates a React component that forwards the [ref](/docs/refs-and-the-dom.html) attribute it receives to another component below in the tree. This technique is not very common but is particularly useful in two scenarios:
 
@@ -318,6 +375,10 @@ For more information, see [forwarding refs](/docs/forwarding-refs.html).
 
 ### `React.lazy` {#reactlazy}
 
+> Try the new React documentation for [`lazy`](https://beta.reactjs.org/reference/react/lazy).
+>
+> The new docs will soon replace this site, which will be archived. [Provide feedback.](https://github.com/reactjs/reactjs.org/issues/3308)
+
 `React.lazy()` lets you define a component that is loaded dynamically. This helps reduce the bundle size to delay loading components that aren't used during the initial render.
 
 You can learn how to use it from our [code splitting documentation](/docs/code-splitting.html#reactlazy). You might also want to check out [this article](https://medium.com/@pomber/lazy-loading-and-preloading-components-in-react-16-6-804de091c82d) explaining how to use it in more detail.
@@ -329,13 +390,15 @@ const SomeComponent = React.lazy(() => import('./SomeComponent'));
 
 Note that rendering `lazy` components requires that there's a `<React.Suspense>` component higher in the rendering tree. This is how you specify a loading indicator.
 
-> **Note**
->
-> Using `React.lazy`with dynamic import requires Promises to be available in the JS environment. This requires a polyfill on IE11 and below.
-
 ### `React.Suspense` {#reactsuspense}
 
-`React.Suspense` lets you specify the loading indicator in case some components in the tree below it are not yet ready to render. Today, lazy loading components is the **only** use case supported by `<React.Suspense>`:
+> Try the new React documentation for [`Suspense`](https://beta.reactjs.org/reference/react/Suspense).
+>
+> The new docs will soon replace this site, which will be archived. [Provide feedback.](https://github.com/reactjs/reactjs.org/issues/3308)
+
+`React.Suspense` lets you specify the loading indicator in case some components in the tree below it are not yet ready to render. In the future we plan to let `Suspense` handle more scenarios such as data fetching. You can read about this in [our roadmap](/blog/2018/11/27/react-16-roadmap.html).
+
+Today, lazy loading components is the **only** use case supported by `<React.Suspense>`:
 
 ```js
 // This component is loaded dynamically
@@ -355,8 +418,32 @@ function MyComponent() {
 
 It is documented in our [code splitting guide](/docs/code-splitting.html#reactlazy). Note that `lazy` components can be deep inside the `Suspense` tree -- it doesn't have to wrap every one of them. The best practice is to place `<Suspense>` where you want to see a loading indicator, but to use `lazy()` wherever you want to do code splitting.
 
-While this is not supported today, in the future we plan to let `Suspense` handle more scenarios such as data fetching. You can read about this in [our roadmap](/blog/2018/11/27/react-16-roadmap.html).
-
->Note:
+> Note
 >
->`React.lazy()` and `<React.Suspense>` are not yet supported by `ReactDOMServer`. This is a known limitation that will be resolved in the future.
+> For content that is already shown to the user, switching back to a loading indicator can be disorienting. It is sometimes better to show the "old" UI while the new UI is being prepared. To do this, you can use the new transition APIs [`startTransition`](#starttransition) and [`useTransition`](/docs/hooks-reference.html#usetransition) to mark updates as transitions and avoid unexpected fallbacks.
+
+#### `React.Suspense` in Server Side Rendering {#reactsuspense-in-server-side-rendering}
+During server side rendering Suspense Boundaries allow you to flush your application in smaller chunks by suspending.
+When a component suspends we schedule a low priority task to render the closest Suspense boundary's fallback. If the component unsuspends before we flush the fallback then we send down the actual content and throw away the fallback.
+
+#### `React.Suspense` during hydration {#reactsuspense-during-hydration}
+Suspense boundaries depend on their parent boundaries being hydrated before they can hydrate, but they can hydrate independently from sibling boundaries. Events on a boundary before it is hydrated will cause the boundary to hydrate at a higher priority than neighboring boundaries. [Read more](https://github.com/reactwg/react-18/discussions/130)
+
+### `React.startTransition` {#starttransition}
+
+> Try the new React documentation for [`startTransition`](https://beta.reactjs.org/reference/react/startTransition).
+>
+> The new docs will soon replace this site, which will be archived. [Provide feedback.](https://github.com/reactjs/reactjs.org/issues/3308)
+
+```js
+React.startTransition(callback)
+```
+`React.startTransition` lets you mark updates inside the provided callback as transitions. This method is designed to be used when [`React.useTransition`](/docs/hooks-reference.html#usetransition) is not available.
+
+> Note:
+>
+> Updates in a transition yield to more urgent updates such as clicks.
+>
+> Updates in a transition will not show a fallback for re-suspended content, allowing the user to continue interacting while rendering the update.
+>
+> `React.startTransition` does not provide an `isPending` flag. To track the pending status of a transition see [`React.useTransition`](/docs/hooks-reference.html#usetransition).

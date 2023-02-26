@@ -70,7 +70,7 @@ If you're only fixing a bug, it's fine to submit a pull request right away but w
 
 Working on your first Pull Request? You can learn how from this free video series:
 
-**[How to Contribute to an Open Source Project on GitHub](https://app.egghead.io/courses/how-to-contribute-to-an-open-source-project-on-github)**
+**[How to Contribute to an Open Source Project on GitHub](https://egghead.io/courses/how-to-contribute-to-an-open-source-project-on-github)**
 
 To help you get your feet wet and get you familiar with our contribution process, we have a list of **[good first issues](https://github.com/facebook/react/issues?q=is:open+is:issue+label:"good+first+issue")** that contain bugs that have a relatively limited scope. This is a great place to get started.
 
@@ -89,7 +89,7 @@ The core team is monitoring for pull requests. We will review your pull request 
 3. If you've fixed a bug or added code that should be tested, add tests!
 4. Ensure the test suite passes (`yarn test`). Tip: `yarn test --watch TestName` is helpful in development.
 5. Run `yarn test --prod` to test in the production environment.
-6. If you need a debugger, run `yarn debug-test --watch TestName`, open `chrome://inspect`, and press "Inspect".
+6. If you need a debugger, run `yarn test --debug --watch TestName`, open `chrome://inspect`, and press "Inspect".
 7. Format your code with [prettier](https://github.com/prettier/prettier) (`yarn prettier`).
 8. Make sure your code lints (`yarn lint`). Tip: `yarn linc` to only check changed files.
 9. Run the [Flow](https://flowtype.org/) typechecks (`yarn flow`).
@@ -103,7 +103,7 @@ In order to accept your pull request, we need you to submit a CLA. You only need
 
 ### Contribution Prerequisites {#contribution-prerequisites}
 
-* You have [Node](https://nodejs.org) installed at v8.0.0+ and [Yarn](https://yarnpkg.com/en/) at v1.2.0+.
+* You have [Node](https://nodejs.org) installed at LTS and [Yarn](https://yarnpkg.com/en/) at v1.2.0+.
 * You have [JDK](https://www.oracle.com/technetwork/java/javase/downloads/index.html) installed.
 * You have `gcc` installed or are comfortable installing a compiler if needed. Some of our dependencies may require a compilation step. On OS X, the Xcode Command Line Tools will cover this. On Ubuntu, `apt-get install build-essential` will install the required packages. Similar commands should work on other Linux distros. Windows will require some additional steps, see the [`node-gyp` installation instructions](https://github.com/nodejs/node-gyp#installation) for details.
 * You are familiar with Git.

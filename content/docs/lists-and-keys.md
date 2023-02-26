@@ -6,6 +6,15 @@ prev: conditional-rendering.html
 next: forms.html
 ---
 
+> Try the new React documentation.
+> 
+> These new documentation pages teach modern React and include live examples:
+>
+> - [Rendering Lists](https://beta.reactjs.org/learn/rendering-lists)
+>
+> The new docs will soon replace this site, which will be archived. [Provide feedback.](https://github.com/reactjs/reactjs.org/issues/3308)
+
+
 First, let's review how you transform lists in JavaScript.
 
 Given the code below, we use the [`map()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) function to take an array of `numbers` and double their values. We assign the new array returned by `map()` to the variable `doubled` and log it:
@@ -33,13 +42,10 @@ const listItems = numbers.map((number) =>
 );
 ```
 
-We include the entire `listItems` array inside a `<ul>` element, and [render it to the DOM](/docs/rendering-elements.html#rendering-an-element-into-the-dom):
+Then, we can include the entire `listItems` array inside a `<ul>` element:
 
 ```javascript{2}
-ReactDOM.render(
-  <ul>{listItems}</ul>,
-  document.getElementById('root')
-);
+<ul>{listItems}</ul>
 ```
 
 [**Try it on CodePen**](https://codepen.io/gaearon/pen/GjPyQr?editors=0011)
@@ -64,10 +70,8 @@ function NumberList(props) {
 }
 
 const numbers = [1, 2, 3, 4, 5];
-ReactDOM.render(
-  <NumberList numbers={numbers} />,
-  document.getElementById('root')
-);
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<NumberList numbers={numbers} />);
 ```
 
 When you run this code, you'll be given a warning that a key should be provided for list items. A "key" is a special string attribute you need to include when creating lists of elements. We'll discuss why it's important in the next section.
@@ -86,12 +90,6 @@ function NumberList(props) {
     <ul>{listItems}</ul>
   );
 }
-
-const numbers = [1, 2, 3, 4, 5];
-ReactDOM.render(
-  <NumberList numbers={numbers} />,
-  document.getElementById('root')
-);
 ```
 
 [**Try it on CodePen**](https://codepen.io/gaearon/pen/jrXYRR?editors=0011)
@@ -130,7 +128,7 @@ const todoItems = todos.map((todo, index) =>
 );
 ```
 
-We don't recommend using indexes for keys if the order of items may change. This can negatively impact performance and may cause issues with component state. Check out Robin Pokorny's article for an [in-depth explanation on the negative impacts of using an index as a key](https://medium.com/@robinpokorny/index-as-a-key-is-an-anti-pattern-e0349aece318). If you choose not to assign an explicit key to list items then React will default to using indexes as keys.
+We don't recommend using indexes for keys if the order of items may change. This can negatively impact performance and may cause issues with component state. Check out Robin Pokorny's article for an [in-depth explanation on the negative impacts of using an index as a key](https://robinpokorny.com/blog/index-as-a-key-is-an-anti-pattern/). If you choose not to assign an explicit key to list items then React will default to using indexes as keys.
 
 Here is an [in-depth explanation about why keys are necessary](/docs/reconciliation.html#recursing-on-children) if you're interested in learning more.
 
@@ -165,12 +163,6 @@ function NumberList(props) {
     </ul>
   );
 }
-
-const numbers = [1, 2, 3, 4, 5];
-ReactDOM.render(
-  <NumberList numbers={numbers} />,
-  document.getElementById('root')
-);
 ```
 
 **Example: Correct Key Usage**
@@ -193,12 +185,6 @@ function NumberList(props) {
     </ul>
   );
 }
-
-const numbers = [1, 2, 3, 4, 5];
-ReactDOM.render(
-  <NumberList numbers={numbers} />,
-  document.getElementById('root')
-);
 ```
 
 [**Try it on CodePen**](https://codepen.io/gaearon/pen/ZXeOGM?editors=0010)
@@ -239,10 +225,9 @@ const posts = [
   {id: 1, title: 'Hello World', content: 'Welcome to learning React!'},
   {id: 2, title: 'Installation', content: 'You can install React from npm.'}
 ];
-ReactDOM.render(
-  <Blog posts={posts} />,
-  document.getElementById('root')
-);
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<Blog posts={posts} />);
 ```
 
 [**Try it on CodePen**](https://codepen.io/gaearon/pen/NRZYGN?editors=0010)

@@ -722,6 +722,7 @@ function CommunityImages() {
                 : 'group-hover:rotate-1 group-hover:scale-110 group-hover:shadow-lg lg:group-hover:shadow-2xl rotate-[-2deg]'
             )}>
             <img
+              loading="lazy"
               src={src}
               alt={alt}
               className={cn(

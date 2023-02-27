@@ -532,8 +532,8 @@ export function HomeContent() {
   );
 }
 
-const reactConf2021Cover = '/images/home/conf2021/cover.webp';
-const reactConf2019Cover = '/images/home/conf2019/cover.webp';
+const reactConf2021Cover = '/images/home/conf2021/cover.svg';
+const reactConf2019Cover = '/images/home/conf2019/cover.svg';
 const images = [
   {
     src: '/images/home/community/react_conf_nat.webp',

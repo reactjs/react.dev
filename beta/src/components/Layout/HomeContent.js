@@ -24,6 +24,7 @@ import {Logo} from 'components/Logo';
 import Link from 'components/MDX/Link';
 import CodeBlock from 'components/MDX/CodeBlock';
 import {IconNavArrow} from 'components/Icon/IconNavArrow';
+import {ExternalLink} from 'components/ExternalLink';
 
 function Section({children, background = null}) {
   return (
@@ -43,19 +44,11 @@ function Section({children, background = null}) {
   );
 }
 
-function SubHeader({children}) {
-  return (
-    <h3 className="uppercase font-bold mb-8 tracking-wide text-link dark:text-link-dark text-sm">
-      {children}
-    </h3>
-  );
-}
-
 function Header({children}) {
   return (
-    <h3 className="leading-xl font-display text-primary dark:text-primary-dark font-semibold text-5xl lg:text-6xl -mt-4 mb-7 w-full max-w-3xl lg:max-w-xl">
+    <h2 className="leading-xl font-display text-primary dark:text-primary-dark font-semibold text-5xl lg:text-6xl -mt-4 mb-7 w-full max-w-3xl lg:max-w-xl">
       {children}
-    </h3>
+    </h2>
   );
 }
 
@@ -540,22 +533,47 @@ export function HomeContent() {
   );
 }
 
-const reactConf2021Cover = 'https://i.imgur.com/TsMgXlX.jpg';
-const reactConf2019Cover = 'https://i.imgur.com/YDWtkrY.jpg';
+const reactConf2021Cover = '/images/home/conf2021/cover.svg';
+const reactConf2019Cover = '/images/home/conf2019/cover.svg';
 const images = [
-  'https://i.imgur.com/QJmZSEq.jpg', // react conf nat
-  'https://i.imgur.com/LXQqeAc.jpg', // react india sunil
-  'https://i.imgur.com/xDLyt24.jpg', // react conf hallway
-  'https://i.imgur.com/e8M5gVl.jpg', // react india audience
-  'https://i.imgur.com/hNuzz36.jpg', // react conf elizabet
-  'https://i.imgur.com/PfxTBy9.jpg', // react india selfie
-  'https://i.imgur.com/Xz4hMUC.jpg', // react conf fun
-  'https://i.imgur.com/4po0zdV.jpg', // react india table
+  {
+    src: '/images/home/community/react_conf_fun.webp',
+    alt: 'People singing karaoke at React Conf',
+  },
+  {
+    src: '/images/home/community/react_india_sunil.webp',
+    alt: 'Sunil Pai speaking at React India',
+  },
+  {
+    src: '/images/home/community/react_conf_hallway.webp',
+    alt: 'A hallway conversation between two people at React Conf',
+  },
+  {
+    src: '/images/home/community/react_india_hallway.webp',
+    alt: 'A hallway conversation at React India',
+  },
+  {
+    src: '/images/home/community/react_conf_elizabet.webp',
+    alt: 'Elizabet Oliveira speaking at React Conf',
+  },
+  {
+    src: '/images/home/community/react_india_selfie.webp',
+    alt: 'People taking a group selfie at React India',
+  },
+  {
+    src: '/images/home/community/react_conf_nat.webp',
+    alt: 'Nat Alison speaking at React Conf',
+  },
+  {
+    src: '/images/home/community/react_india_team.webp',
+    alt: 'Organizers greeting attendees at React India',
+  },
 ];
 
 function CTA({children, icon, href}) {
+  const Tag = href.startsWith('https://') ? ExternalLink : 'a';
   return (
-    <a
+    <Tag
       href={href}
       className="outline-none focus:outline-none focus-visible:outline focus-visible:outline-link focus:outline-offset-2 focus-visible:dark:focus:outline-link-dark group cursor-pointer w-auto justify-center inline-flex font-bold items-center mt-10 outline-none hover:bg-gray-40/5 active:bg-gray-40/10 hover:dark:bg-gray-60/5 active:dark:bg-gray-60/10 leading-tight hover:bg-opacity-80 text-lg py-2.5 rounded-full px-4 sm:px-6 ease-in-out shadow-secondary-button-stroke dark:shadow-secondary-button-stroke-dark text-primary dark:text-primary-dark">
       {icon === 'native' && (
@@ -678,13 +696,13 @@ function CTA({children, icon, href}) {
           fill="currentColor"
         />
       </svg>
-    </a>
+    </Tag>
   );
 }
 function CommunityImages() {
   return (
     <>
-      {images.map((src, i) => (
+      {images.map(({src, alt}, i) => (
         <div
           key={i}
           className={cn(
@@ -698,10 +716,10 @@ function CommunityImages() {
                 : 'group-hover:rotate-1 group-hover:scale-110 group-hover:shadow-lg lg:group-hover:shadow-2xl rotate-[-2deg]'
             )}>
             <img
+              loading="lazy"
               src={src}
-              className={cn(
-                `aspect-[4/3] h-full w-full flex object-cover rounded-2xl`
-              )}
+              alt={alt}
+              className="aspect-[4/3] h-full w-full flex object-cover rounded-2xl bg-gray-10 dark:bg-gray-80"
             />
           </div>
         </div>
@@ -832,6 +850,28 @@ function generateFrames(initialCode, commands) {
   return frames;
 }
 
+function ExampleLayout({filename, left, right}) {
+  return (
+    <div className="lg:pl-10 lg:pr-5 w-full">
+      <div className="mt-12 mb-2 lg:my-16 max-w-7xl mx-auto flex flex-col w-full lg:rounded-2xl lg:bg-card lg:dark:bg-card-dark">
+        <div className="flex-col gap-0 lg:gap-5 lg:rounded-2xl lg:bg-gray-10 lg:dark:bg-gray-70 shadow-inner lg:flex-row flex grow w-full mx-auto items-center bg-cover bg-center lg:bg-right lg:bg-[length:60%_100%] bg-no-repeat bg-meta-gradient dark:bg-meta-gradient-dark">
+          <div className="lg:-m-5 h-full shadow-nav dark:shadow-nav-dark lg:rounded-2xl bg-wash dark:bg-gray-95 w-full flex grow flex-col">
+            <div className="w-full bg-card dark:bg-wash-dark lg:rounded-t-2xl border-b border-black/5 dark:border-white/5">
+              <h3 className="text-sm my-1 mx-5 text-tertiary dark:text-tertiary-dark select-none">
+                {filename}
+              </h3>
+            </div>
+            {left}
+          </div>
+          <div className="mt-5 lg:-my-20 w-full p-2.5 xs:p-5 lg:p-10 flex grow justify-center">
+            {right}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function Example1() {
   const [frameIndex, setFrameIndex] = useState(0);
   const frame = example1Frames[frameIndex];
@@ -846,41 +886,31 @@ function Example1() {
   }, [frame]);
 
   return (
-    <div className="lg:pl-10 lg:pr-5 w-full">
-      <div className="mt-12 mb-2 lg:my-16 max-w-7xl mx-auto flex flex-col w-full lg:rounded-2xl lg:bg-card lg:dark:bg-card-dark">
-        <div className="flex-col gap-0 lg:gap-5 lg:rounded-2xl lg:bg-gray-10 lg:dark:bg-gray-70 shadow-inner lg:flex-row flex grow w-full mx-auto items-center bg-cover bg-center bg-fixed lg:bg-right lg:bg-[length:60%_100%] bg-no-repeat bg-meta-gradient dark:bg-meta-gradient-dark">
-          <div className="lg:-m-5 h-full shadow-nav dark:shadow-nav-dark lg:rounded-2xl bg-wash dark:bg-gray-95 w-full flex grow flex-col">
-            <div className="w-full bg-card dark:bg-wash-dark lg:rounded-t-2xl border-b border-black/5 dark:border-white/5">
-              <h3 className="text-sm my-1 mx-5 text-tertiary dark:text-tertiary-dark select-none">
-                Video.js
-              </h3>
-            </div>
-            <CodeBlock
-              caret={frame.caret}
-              isFromPackageImport={false}
-              noShadow={true}
-              noMargin={true}>
-              <div>{frame.code}</div>
-            </CodeBlock>
-          </div>
-          <div className="mt-5 w-full p-2.5 xs:p-5 lg:p-10 flex grow justify-center">
-            <ExamplePanel>
-              <div className="all">
-                <Video
-                  step={frame.step}
-                  video={{
-                    title: 'My video',
-                    description: 'Video description',
-                    image: 'blue',
-                    url: null,
-                  }}
-                />
-              </div>
-            </ExamplePanel>
-          </div>
-        </div>
-      </div>
-    </div>
+    <ExampleLayout
+      filename="Video.js"
+      left={
+        <CodeBlock
+          caret={frame.caret}
+          isFromPackageImport={false}
+          noShadow={true}
+          noMargin={true}>
+          <div>{frame.code}</div>
+        </CodeBlock>
+      }
+      right={
+        <ExamplePanel>
+          <Video
+            step={frame.step}
+            video={{
+              title: 'My video',
+              description: 'Video description',
+              image: 'blue',
+              url: null,
+            }}
+          />
+        </ExamplePanel>
+      }
+    />
   );
 }
 
@@ -907,20 +937,11 @@ function Example2() {
   ];
 
   return (
-    <div className="lg:pl-10 lg:pr-5 w-full">
-      <div className="mt-12 mb-2 lg:my-16 max-w-7xl mx-auto flex flex-col w-full lg:rounded-2xl lg:bg-card lg:dark:bg-card-dark">
-        <div className="flex-col gap-0 lg:gap-5 lg:rounded-2xl lg:bg-gray-10 lg:dark:bg-gray-70 shadow-inner lg:flex-row flex grow w-full mx-auto items-center bg-cover bg-center bg-fixed lg:bg-right lg:bg-[length:60%_100%] bg-no-repeat bg-meta-gradient dark:bg-meta-gradient-dark">
-          <div className="lg:-m-5 h-full shadow-nav dark:shadow-nav-dark lg:rounded-2xl bg-wash dark:bg-gray-95 w-full flex grow flex-col">
-            <div className="w-full bg-card dark:bg-wash-dark lg:rounded-t-2xl border-b border-black/5 dark:border-white/5">
-              <h3 className="text-sm my-1 mx-5 text-tertiary dark:text-tertiary-dark select-none">
-                VideoList.js
-              </h3>
-            </div>
-            <CodeBlock
-              isFromPackageImport={false}
-              noShadow={true}
-              noMargin={true}>
-              <div>{`function VideoList({ videos, emptyHeading }) {
+    <ExampleLayout
+      filename="VideoList.js"
+      left={
+        <CodeBlock isFromPackageImport={false} noShadow={true} noMargin={true}>
+          <div>{`function VideoList({ videos, emptyHeading }) {
   const count = videos.length;
   let heading = emptyHeading;
   if (count > 0) {
@@ -936,16 +957,14 @@ function Example2() {
     </section>
   );
 }`}</div>
-            </CodeBlock>
-          </div>
-          <div className="mt-5 lg:-my-20 w-full p-2.5 xs:p-5 lg:p-10 flex grow justify-center">
-            <ExamplePanel noShadow={false} noPadding={true}>
-              <VideoList videos={videos} />
-            </ExamplePanel>
-          </div>
-        </div>
-      </div>
-    </div>
+        </CodeBlock>
+      }
+      right={
+        <ExamplePanel noShadow={false} noPadding={true}>
+          <VideoList videos={videos} />
+        </ExamplePanel>
+      }
+    />
   );
 }
 
@@ -955,54 +974,45 @@ function Example3() {
       id: 0,
       title: 'React: The Documentary',
       description: 'The origin story of React',
-      image: 'https://i.imgur.com/F5SIYH7.jpg',
+      image: '/images/home/videos/documentary.webp',
       url: 'https://www.youtube.com/watch?v=8pDqJVdNa44',
     },
     {
       id: 1,
       title: 'Rethinking Best Practices',
       description: 'Pete Hunt (2013)',
-      image: 'https://i.imgur.com/Zmcmt2E.jpg',
+      image: '/images/home/videos/rethinking.jpg',
       url: 'https://www.youtube.com/watch?v=x7cQ3mrcKaY',
     },
     {
       id: 2,
       title: 'Introducing React Native',
       description: 'Tom Occhino (2015)',
-      image: 'https://i.imgur.com/suhZaIj.jpg',
+      image: '/images/home/videos/rn.jpg',
       url: 'https://www.youtube.com/watch?v=KVZ-P-ZI6W4',
     },
     {
       id: 3,
       title: 'Introducing React Hooks',
       description: 'Sophie Alpert and Dan Abramov (2018)',
-      image: 'https://i.imgur.com/LgqfWd4.jpg',
+      image: '/images/home/videos/hooks.jpg',
       url: 'https://www.youtube.com/watch?v=V-QO-KO90iQ',
     },
     {
       id: 4,
       title: 'Introducing Server Components',
       description: 'Dan Abramov and Lauren Tan (2020)',
-      image: 'https://i.imgur.com/SK8Smd8.jpg',
+      image: '/images/home/videos/rsc.jpg',
       url: 'https://www.youtube.com/watch?v=TQQPAU21ZUw',
     },
   ];
 
   return (
-    <div className="lg:pl-10 lg:pr-5 w-full">
-      <div className="mt-12 mb-2 lg:my-16 max-w-7xl mx-auto flex flex-col w-full lg:rounded-2xl lg:bg-card lg:dark:bg-card-dark">
-        <div className="flex-col gap-0 lg:gap-5 lg:rounded-2xl lg:bg-gray-10 lg:dark:bg-gray-70 shadow-inner lg:flex-row flex grow w-full mx-auto items-center bg-cover bg-center bg-fixed lg:bg-right lg:bg-[length:60%_100%] bg-no-repeat bg-meta-gradient dark:bg-meta-gradient-dark">
-          <div className="lg:-m-5 h-full shadow-nav dark:shadow-nav-dark lg:rounded-2xl bg-wash dark:bg-gray-95 w-full flex grow flex-col">
-            <div className="w-full bg-card dark:bg-wash-dark lg:rounded-t-2xl border-b border-black/5 dark:border-white/5">
-              <h3 className="text-sm my-1 mx-5 text-tertiary dark:text-tertiary-dark select-none">
-                SearchableVideoList.js
-              </h3>
-            </div>
-            <CodeBlock
-              isFromPackageImport={false}
-              noShadow={true}
-              noMargin={true}>
-              <div>{`import { useState } from 'react';
+    <ExampleLayout
+      filename="SearchableVideoList.js"
+      left={
+        <CodeBlock isFromPackageImport={false} noShadow={true} noMargin={true}>
+          <div>{`import { useState } from 'react';
 
 function SearchableVideoList({ videos }) {
   const [searchText, setSearchText] = useState('');
@@ -1018,44 +1028,33 @@ function SearchableVideoList({ videos }) {
     </>
   );
 }`}</div>
-            </CodeBlock>
-          </div>
-          <div className="mt-5 lg:-my-20 w-full p-2.5 xs:p-5 lg:p-10 flex grow justify-center">
-            <BrowserChrome domain="example.com" path={'videos.html'}>
-              <ExamplePanel noShadow={false} noPadding={true} height="30rem">
-                <h1 className="mt-20 mx-4 mb-1 font-bold text-3xl text-primary">
-                  React Videos
-                </h1>
-                <p className="mx-4 mb-0 leading-snug text-secondary text-xl">
-                  A brief history of React
-                </p>
-                <SearchableVideoList videos={videos} />
-              </ExamplePanel>
-            </BrowserChrome>
-          </div>
-        </div>
-      </div>
-    </div>
+        </CodeBlock>
+      }
+      right={
+        <BrowserChrome domain="example.com" path={'videos.html'}>
+          <ExamplePanel noShadow={false} noPadding={true} height="30rem">
+            <h1 className="mt-20 mx-4 mb-1 font-bold text-3xl text-primary">
+              React Videos
+            </h1>
+            <p className="mx-4 mb-0 leading-snug text-secondary text-xl">
+              A brief history of React
+            </p>
+            <SearchableVideoList videos={videos} />
+          </ExamplePanel>
+        </BrowserChrome>
+      }
+    />
   );
 }
 
 function Example4() {
   const [slug, setSlug] = useState('react-conf-2021');
   return (
-    <div className="lg:pl-10 lg:pr-5 w-full">
-      <div className="mt-12 mb-2 lg:my-16 max-w-7xl mx-auto flex flex-col w-full lg:rounded-2xl lg:bg-card lg:dark:bg-card-dark">
-        <div className="flex-col gap-0 lg:gap-5 lg:rounded-2xl lg:bg-gray-10 lg:dark:bg-gray-70 shadow-inner lg:flex-row flex grow w-full mx-auto items-center bg-cover bg-center bg-fixed lg:bg-right lg:bg-[length:60%_100%] bg-no-repeat bg-meta-gradient dark:bg-meta-gradient-dark">
-          <div className="lg:-m-5 h-full shadow-nav dark:shadow-nav-dark lg:rounded-2xl bg-wash dark:bg-gray-95 w-full flex grow flex-col">
-            <div className="w-full bg-card dark:bg-wash-dark lg:rounded-t-2xl border-b border-black/5 dark:border-white/5">
-              <h3 className="text-sm my-1 mx-5 text-tertiary dark:text-tertiary-dark select-none">
-                confs/[slug].js
-              </h3>
-            </div>
-            <CodeBlock
-              isFromPackageImport={false}
-              noShadow={true}
-              noMargin={true}>
-              <div>{`import { db } from './database.js';
+    <ExampleLayout
+      filename="confs/[slug].js"
+      left={
+        <CodeBlock isFromPackageImport={false} noShadow={true} noMargin={true}>
+          <div>{`import { db } from './database.js';
 import { Suspense } from 'react';
 
 async function ConferencePage({ slug }) {
@@ -1074,38 +1073,28 @@ async function Talks({ confId }) {
   const videos = talks.map(talk => talk.video);
   return <SearchableVideoList videos={videos} />;
 }`}</div>
-            </CodeBlock>
-          </div>
-          <div className="mt-5 lg:-my-20 w-full p-2.5 xs:p-5 lg:p-10 flex grow justify-center">
-            <NavContext.Provider value={{slug, setSlug}}>
-              <BrowserChrome
-                domain="example.com"
-                path={'confs/' + slug}
-                hasRefresh={true}
-                hasPulse={true}>
-                <ExamplePanel noPadding={true} noShadow={true} height="35rem">
-                  <Suspense fallback={null}>
-                    <div style={{animation: 'fadein 200ms'}}>
-                      <link
-                        rel="preload"
-                        href={reactConf2019Cover}
-                        as="image"
-                      />
-                      <link
-                        rel="preload"
-                        href={reactConf2021Cover}
-                        as="image"
-                      />
-                      <ConferencePage slug={slug} />
-                    </div>
-                  </Suspense>
-                </ExamplePanel>
-              </BrowserChrome>
-            </NavContext.Provider>
-          </div>
-        </div>
-      </div>
-    </div>
+        </CodeBlock>
+      }
+      right={
+        <NavContext.Provider value={{slug, setSlug}}>
+          <BrowserChrome
+            domain="example.com"
+            path={'confs/' + slug}
+            hasRefresh={true}
+            hasPulse={true}>
+            <ExamplePanel noPadding={true} noShadow={true} height="35rem">
+              <Suspense fallback={null}>
+                <div style={{animation: 'fadein 200ms'}}>
+                  <link rel="preload" href={reactConf2019Cover} as="image" />
+                  <link rel="preload" href={reactConf2021Cover} as="image" />
+                  <ConferencePage slug={slug} />
+                </div>
+              </Suspense>
+            </ExamplePanel>
+          </BrowserChrome>
+        </NavContext.Provider>
+      }
+    />
   );
 }
 
@@ -1522,7 +1511,7 @@ function Thumbnail({video}) {
       )}
       style={{
         backgroundImage:
-          typeof image === 'string' && image.startsWith('http')
+          typeof image === 'string' && image.startsWith('/')
             ? 'url(' + image + ')'
             : null,
       }}>
@@ -1545,7 +1534,7 @@ function Thumbnail({video}) {
             </span>
           </div>
         </>
-      ) : image.startsWith('http') ? null : (
+      ) : image.startsWith('/') ? null : (
         <ThumbnailPlaceholder />
       )}
     </a>
@@ -2300,10 +2289,10 @@ function fetchTalks(confId) {
             url: 'https://www.youtube.com/watch?v=FZ0cG47msEk&list=PLNG_1j3cPCaZZ7etkzWA7JfdmKWT0pMsa&index=1',
             image: {
               speakers: [
-                'https://i.imgur.com/D69ZvSY.jpg',
-                'https://i.imgur.com/19tOZCm.jpg',
-                'https://i.imgur.com/CeGgjK3.jpg',
-                'https://i.imgur.com/tK5OEus.jpg',
+                '/images/home/conf2021/andrew.jpg',
+                '/images/home/conf2021/lauren.jpg',
+                '/images/home/conf2021/juan.jpg',
+                '/images/home/conf2021/rick.jpg',
               ],
             },
           },
@@ -2313,7 +2302,7 @@ function fetchTalks(confId) {
             description: 'Shruti Kapoor',
             url: 'https://www.youtube.com/watch?v=ytudH8je5ko&list=PLNG_1j3cPCaZZ7etkzWA7JfdmKWT0pMsa&index=2',
             image: {
-              speakers: ['https://i.imgur.com/cyaiwpP.jpg'],
+              speakers: ['/images/home/conf2021/shruti.jpg'],
             },
           },
           {
@@ -2322,7 +2311,7 @@ function fetchTalks(confId) {
             description: 'Shaundai Person',
             url: 'https://www.youtube.com/watch?v=pj5N-Khihgc&list=PLNG_1j3cPCaZZ7etkzWA7JfdmKWT0pMsa&index=3',
             image: {
-              speakers: ['https://i.imgur.com/RUmFLhB.jpg'],
+              speakers: ['/images/home/conf2021/shaundai.jpg'],
             },
           },
           {
@@ -2331,7 +2320,7 @@ function fetchTalks(confId) {
             description: 'Aakansha Doshi',
             url: 'https://www.youtube.com/watch?v=qn7gRClrC9U&list=PLNG_1j3cPCaZZ7etkzWA7JfdmKWT0pMsa&index=4',
             image: {
-              speakers: ['https://i.imgur.com/xRs64T1.jpg'],
+              speakers: ['/images/home/conf2021/aakansha.jpg'],
             },
           },
           {
@@ -2340,7 +2329,7 @@ function fetchTalks(confId) {
             description: 'Brian Vaughn',
             url: 'https://www.youtube.com/watch?v=oxDfrke8rZg&list=PLNG_1j3cPCaZZ7etkzWA7JfdmKWT0pMsa&index=5',
             image: {
-              speakers: ['https://i.imgur.com/IasQNDL.jpg'],
+              speakers: ['/images/home/conf2021/brian.jpg'],
             },
           },
           {
@@ -2349,7 +2338,7 @@ function fetchTalks(confId) {
             description: 'Xuan Huang (黄玄)',
             url: 'https://www.youtube.com/watch?v=lGEMwh32soc&list=PLNG_1j3cPCaZZ7etkzWA7JfdmKWT0pMsa&index=6',
             image: {
-              speakers: ['https://i.imgur.com/Zloqi0V.jpg'],
+              speakers: ['/images/home/conf2021/xuan.jpg'],
             },
           },
           {
@@ -2358,7 +2347,7 @@ function fetchTalks(confId) {
             description: 'Rachel Nabors',
             url: 'https://www.youtube.com/watch?v=mneDaMYOKP8&list=PLNG_1j3cPCaZZ7etkzWA7JfdmKWT0pMsa&index=7',
             image: {
-              speakers: ['https://i.imgur.com/ESbZUTa.jpg'],
+              speakers: ['/images/home/conf2021/rachel.jpg'],
             },
           },
           {
@@ -2367,7 +2356,7 @@ function fetchTalks(confId) {
             description: "Debbie O'Brien",
             url: 'https://www.youtube.com/watch?v=-7odLW_hG7s&list=PLNG_1j3cPCaZZ7etkzWA7JfdmKWT0pMsa&index=8',
             image: {
-              speakers: ['https://i.imgur.com/uhF5Hyo.jpg'],
+              speakers: ['/images/home/conf2021/debbie.jpg'],
             },
           },
           {
@@ -2376,7 +2365,7 @@ function fetchTalks(confId) {
             description: 'Sarah Rainsberger',
             url: 'https://www.youtube.com/watch?v=5X-WEQflCL0&list=PLNG_1j3cPCaZZ7etkzWA7JfdmKWT0pMsa&index=9',
             image: {
-              speakers: ['https://i.imgur.com/s36xhcT.jpg'],
+              speakers: ['/images/home/conf2021/sarah.jpg'],
             },
           },
           {
@@ -2385,7 +2374,7 @@ function fetchTalks(confId) {
             description: 'Linton Ye',
             url: 'https://www.youtube.com/watch?v=7cPWmID5XAk&list=PLNG_1j3cPCaZZ7etkzWA7JfdmKWT0pMsa&index=10',
             image: {
-              speakers: ['https://i.imgur.com/Frxfjpq.jpg'],
+              speakers: ['/images/home/conf2021/linton.jpg'],
             },
           },
           {
@@ -2394,7 +2383,7 @@ function fetchTalks(confId) {
             description: 'Delba de Oliveira',
             url: 'https://www.youtube.com/watch?v=zL8cz2W0z34&list=PLNG_1j3cPCaZZ7etkzWA7JfdmKWT0pMsa&index=11',
             image: {
-              speakers: ['https://i.imgur.com/N1zNMrC.jpg'],
+              speakers: ['/images/home/conf2021/delba.jpg'],
             },
           },
           {
@@ -2403,7 +2392,7 @@ function fetchTalks(confId) {
             description: 'Robert Balicki',
             url: 'https://www.youtube.com/watch?v=lhVGdErZuN4&list=PLNG_1j3cPCaZZ7etkzWA7JfdmKWT0pMsa&index=12',
             image: {
-              speakers: ['https://i.imgur.com/vxgsVlt.jpg'],
+              speakers: ['/images/home/conf2021/robert.jpg'],
             },
           },
           {
@@ -2413,8 +2402,8 @@ function fetchTalks(confId) {
             url: 'https://www.youtube.com/watch?v=9L4FFrvwJwY&list=PLNG_1j3cPCaZZ7etkzWA7JfdmKWT0pMsa&index=13',
             image: {
               speakers: [
-                'https://i.imgur.com/roifbxu.jpg',
-                'https://i.imgur.com/Y0k7sBd.jpg',
+                '/images/home/conf2021/eric.jpg',
+                '/images/home/conf2021/steven.jpg',
               ],
             },
           },
@@ -2424,7 +2413,7 @@ function fetchTalks(confId) {
             description: 'Roman Rädle',
             url: 'https://www.youtube.com/watch?v=NLj73vrc2I8&list=PLNG_1j3cPCaZZ7etkzWA7JfdmKWT0pMsa&index=14',
             image: {
-              speakers: ['https://i.imgur.com/pECN2Yi.jpg'],
+              speakers: ['/images/home/conf2021/roman.jpg'],
             },
           },
           {
@@ -2433,7 +2422,7 @@ function fetchTalks(confId) {
             description: 'Daishi Kato',
             url: 'https://www.youtube.com/watch?v=oPfSC5bQPR8&list=PLNG_1j3cPCaZZ7etkzWA7JfdmKWT0pMsa&index=15',
             image: {
-              speakers: ['https://i.imgur.com/NqPgNiJ.jpg'],
+              speakers: ['/images/home/conf2021/daishi.jpg'],
             },
           },
           {
@@ -2442,7 +2431,7 @@ function fetchTalks(confId) {
             description: 'Diego Haz',
             url: 'https://www.youtube.com/watch?v=dcm8fjBfro8&list=PLNG_1j3cPCaZZ7etkzWA7JfdmKWT0pMsa&index=16',
             image: {
-              speakers: ['https://i.imgur.com/47mWLlJ.jpg'],
+              speakers: ['/images/home/conf2021/diego.jpg'],
             },
           },
           {
@@ -2451,7 +2440,7 @@ function fetchTalks(confId) {
             description: 'Tafu Nakazaki',
             url: 'https://www.youtube.com/watch?v=S4a0QlsH0pU&list=PLNG_1j3cPCaZZ7etkzWA7JfdmKWT0pMsa&index=17',
             image: {
-              speakers: ['https://i.imgur.com/yJvnZQy.jpg'],
+              speakers: ['/images/home/conf2021/tafu.jpg'],
             },
           },
           {
@@ -2460,7 +2449,7 @@ function fetchTalks(confId) {
             description: 'Lyle Troxell',
             url: 'https://www.youtube.com/watch?v=b3l4WxipFsE&list=PLNG_1j3cPCaZZ7etkzWA7JfdmKWT0pMsa&index=18',
             image: {
-              speakers: ['https://i.imgur.com/cs03udp.jpg'],
+              speakers: ['/images/home/conf2021/lyle.jpg'],
             },
           },
           {
@@ -2469,7 +2458,7 @@ function fetchTalks(confId) {
             description: 'Helen Lin',
             url: 'https://www.youtube.com/watch?v=HS6vIYkSNks&list=PLNG_1j3cPCaZZ7etkzWA7JfdmKWT0pMsa&index=19',
             image: {
-              speakers: ['https://i.imgur.com/4S4N5n1.jpg'],
+              speakers: ['/images/home/conf2021/helen.jpg'],
             },
           },
         ]);
@@ -2481,9 +2470,7 @@ function fetchTalks(confId) {
             description: 'Tom Occhino',
             url: 'https://www.youtube.com/watch?v=QnZHO7QvjaM&list=PLPxbbTqCLbGHPxZpw4xj_Wwg8-fdNxJRh',
             image: {
-              speakers: [
-                'https://conf2019.reactjs.org/img/speakers/tomocchino.jpg',
-              ],
+              speakers: ['/images/home/conf2019/tom.jpg'],
             },
           },
           {
@@ -2501,7 +2488,7 @@ function fetchTalks(confId) {
             description: 'Frank Yan',
             url: 'https://www.youtube.com/watch?v=9JZHodNR184&list=PLPxbbTqCLbGHPxZpw4xj_Wwg8-fdNxJRh&index=3',
             image: {
-              speakers: ['https://conf2019.reactjs.org/img/speakers/frank.jpg'],
+              speakers: ['/images/home/conf2019/frank.jpg'],
             },
           },
           {
@@ -2510,20 +2497,16 @@ function fetchTalks(confId) {
             description: 'Ashley Watkins',
             url: 'https://www.youtube.com/watch?v=KT3XKDBZW7M&list=PLPxbbTqCLbGHPxZpw4xj_Wwg8-fdNxJRh&index=4',
             image: {
-              speakers: [
-                'https://conf2019.reactjs.org/img/speakers/ashley.jpg',
-              ],
+              speakers: ['/images/home/conf2019/ashley.jpg'],
             },
           },
           {
             id: 23,
             title: 'How Our Team Is Using React Native to Save The World',
-            description: 'Ashley Watkins',
+            description: 'Tania Papazafeiropoulou',
             url: 'https://www.youtube.com/watch?v=zVHWugBPGBE&list=PLPxbbTqCLbGHPxZpw4xj_Wwg8-fdNxJRh&index=5',
             image: {
-              speakers: [
-                'https://conf2019.reactjs.org/img/speakers/_Tany_.jpg',
-              ],
+              speakers: ['/images/home/conf2019/tania.jpg'],
             },
           },
           {
@@ -2533,9 +2516,7 @@ function fetchTalks(confId) {
             description: 'Tejas Kumar',
             url: 'https://www.youtube.com/watch?v=cdsnzfJUqm0&list=PLPxbbTqCLbGHPxZpw4xj_Wwg8-fdNxJRh&index=6',
             image: {
-              speakers: [
-                'https://conf2019.reactjs.org/img/speakers/tejaskumar_.jpg',
-              ],
+              speakers: ['/images/home/conf2019/tejas.jpg'],
             },
           },
           {
@@ -2544,9 +2525,7 @@ function fetchTalks(confId) {
             description: 'Sophie Alpert',
             url: 'https://www.youtube.com/watch?v=CGpMlWVcHok&list=PLPxbbTqCLbGHPxZpw4xj_Wwg8-fdNxJRh&index=7',
             image: {
-              speakers: [
-                'https://conf2019.reactjs.org/img/speakers/sophiebits.jpg',
-              ],
+              speakers: ['/images/home/conf2019/sophie.jpg'],
             },
           },
           {
@@ -2555,9 +2534,7 @@ function fetchTalks(confId) {
             description: 'Nat Alison',
             url: 'https://www.youtube.com/watch?v=lLE4Jqaek5k&list=PLPxbbTqCLbGHPxZpw4xj_Wwg8-fdNxJRh&index=12',
             image: {
-              speakers: [
-                'https://conf2019.reactjs.org/img/speakers/tesseralis.jpg',
-              ],
+              speakers: ['/images/home/conf2019/nat.jpg'],
             },
           },
           {
@@ -2567,8 +2544,8 @@ function fetchTalks(confId) {
             url: 'https://www.youtube.com/watch?v=fHQ1WSx41CA&list=PLPxbbTqCLbGHPxZpw4xj_Wwg8-fdNxJRh&index=13',
             image: {
               speakers: [
-                'https://conf2019.reactjs.org/img/speakers/majapw.jpg',
-                'https://conf2019.reactjs.org/img/speakers/taekimjr.jpg',
+                '/images/home/conf2019/maja.jpg',
+                '/images/home/conf2019/tae.jpg',
               ],
             },
           },
@@ -2578,9 +2555,7 @@ function fetchTalks(confId) {
             description: 'Brittany Feenstra',
             url: 'https://www.youtube.com/watch?v=ONSD-t4gBb8&list=PLPxbbTqCLbGHPxZpw4xj_Wwg8-fdNxJRh&index=14',
             image: {
-              speakers: [
-                'https://conf2019.reactjs.org/img/speakers/brittanyIRL.jpg',
-              ],
+              speakers: ['/images/home/conf2019/brittany.jpg'],
             },
           },
           {
@@ -2589,9 +2564,7 @@ function fetchTalks(confId) {
             description: 'Becca Bailey',
             url: 'https://www.youtube.com/watch?v=wUMMUyQtMSg&list=PLPxbbTqCLbGHPxZpw4xj_Wwg8-fdNxJRh&index=15',
             image: {
-              speakers: [
-                'https://conf2019.reactjs.org/img/speakers/beccaliz.jpg',
-              ],
+              speakers: ['/images/home/conf2019/becca.jpg'],
             },
           },
           {
@@ -2600,7 +2573,7 @@ function fetchTalks(confId) {
             description: 'Lee Byron',
             url: 'https://www.youtube.com/watch?v=vG8WpLr6y_U&list=PLPxbbTqCLbGHPxZpw4xj_Wwg8-fdNxJRh&index=16',
             image: {
-              speakers: ['https://conf2019.reactjs.org/img/speakers/leeb.jpg'],
+              speakers: ['/images/home/conf2019/lee.jpg'],
             },
           },
           {
@@ -2609,7 +2582,7 @@ function fetchTalks(confId) {
             description: 'Brian Vaughn',
             url: 'https://www.youtube.com/watch?v=Mjrfb1r3XEM&list=PLPxbbTqCLbGHPxZpw4xj_Wwg8-fdNxJRh&index=17',
             image: {
-              speakers: ['https://conf2019.reactjs.org/img/speakers/brian.jpg'],
+              speakers: ['/images/home/conf2019/brian.jpg'],
             },
           },
           {
@@ -2618,7 +2591,7 @@ function fetchTalks(confId) {
             description: 'Joe Savona',
             url: 'https://www.youtube.com/watch?v=Tl0S7QkxFE4&list=PLPxbbTqCLbGHPxZpw4xj_Wwg8-fdNxJRh&index=18',
             image: {
-              speakers: ['https://conf2019.reactjs.org/img/speakers/joe.jpg'],
+              speakers: ['/images/home/conf2019/joe.jpg'],
             },
           },
           {
@@ -2627,9 +2600,7 @@ function fetchTalks(confId) {
             description: 'Cameron Yick',
             url: 'https://www.youtube.com/watch?v=SbreAPNmZOk&list=PLPxbbTqCLbGHPxZpw4xj_Wwg8-fdNxJRh&index=19',
             image: {
-              speakers: [
-                'https://conf2019.reactjs.org/img/speakers/hydrosquall.jpg',
-              ],
+              speakers: ['/images/home/conf2019/cameron.jpg'],
             },
           },
           {
@@ -2638,9 +2609,7 @@ function fetchTalks(confId) {
             description: 'Jenn Creighton',
             url: 'https://www.youtube.com/watch?v=kqh4lz2Lkzs&list=PLPxbbTqCLbGHPxZpw4xj_Wwg8-fdNxJRh&index=20',
             image: {
-              speakers: [
-                'https://conf2019.reactjs.org/img/speakers/gurlcode.jpg',
-              ],
+              speakers: ['/images/home/conf2019/jenn.jpg'],
             },
           },
           {
@@ -2649,9 +2618,7 @@ function fetchTalks(confId) {
             description: 'Alexandra Holachek',
             url: 'https://www.youtube.com/watch?v=laPsceJ4tTY&list=PLPxbbTqCLbGHPxZpw4xj_Wwg8-fdNxJRh&index=21',
             image: {
-              speakers: [
-                'https://conf2019.reactjs.org/img/speakers/aholachek.jpg',
-              ],
+              speakers: ['/images/home/conf2019/alexandra.jpg'],
             },
           },
           {
@@ -2661,9 +2628,7 @@ function fetchTalks(confId) {
             description: 'Luca Damasco',
             url: 'https://www.youtube.com/watch?v=laPsceJ4tTY&list=PLPxbbTqCLbGHPxZpw4xj_Wwg8-fdNxJRh&index=21',
             image: {
-              speakers: [
-                'https://conf2019.reactjs.org/img/speakers/Lucapodular.jpg',
-              ],
+              speakers: ['/images/home/conf2019/luca.jpg'],
             },
           },
           {
@@ -2672,9 +2637,7 @@ function fetchTalks(confId) {
             description: 'Jed Watson',
             url: 'https://www.youtube.com/watch?v=yS0jUnmBujE&list=PLPxbbTqCLbGHPxZpw4xj_Wwg8-fdNxJRh&index=25',
             image: {
-              speakers: [
-                'https://conf2019.reactjs.org/img/speakers/JedWatson.jpg',
-              ],
+              speakers: ['/images/home/conf2019/jed.jpg'],
             },
           },
           {
@@ -2683,9 +2646,7 @@ function fetchTalks(confId) {
             description: 'Lizzie Salita',
             url: 'https://www.youtube.com/watch?v=CVfXICcNfHE&list=PLPxbbTqCLbGHPxZpw4xj_Wwg8-fdNxJRh&index=26',
             image: {
-              speakers: [
-                'https://conf2019.reactjs.org/img/speakers/ebsalita.jpg',
-              ],
+              speakers: ['/images/home/conf2019/lizzie.jpg'],
             },
           },
           {
@@ -2694,9 +2655,7 @@ function fetchTalks(confId) {
             description: 'Alex Anderson',
             url: 'https://www.youtube.com/watch?v=aV0uOPWHKt4&list=PLPxbbTqCLbGHPxZpw4xj_Wwg8-fdNxJRh&index=27',
             image: {
-              speakers: [
-                'https://conf2019.reactjs.org/img/speakers/ralex1993.jpg',
-              ],
+              speakers: ['/images/home/conf2019/alex.jpg'],
             },
           },
         ]);

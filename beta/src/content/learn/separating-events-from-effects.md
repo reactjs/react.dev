@@ -406,7 +406,7 @@ This section describes an **experimental API that has not yet been released** in
 
 </Wip>
 
-Use a special Hook called [`useEffectEvent`](/reference/react/useEffectEvent) to extract this non-reactive logic out of your Effect:
+Use a special Hook called [`useEffectEvent`](/reference/react/experimental_useEffectEvent) to extract this non-reactive logic out of your Effect:
 
 ```js {1,4-6}
 import { useEffect, useEffectEvent } from 'react';

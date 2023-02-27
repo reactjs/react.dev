@@ -536,8 +536,8 @@ const reactConf2021Cover = '/images/home/conf2021/cover.svg';
 const reactConf2019Cover = '/images/home/conf2019/cover.svg';
 const images = [
   {
-    src: '/images/home/community/react_conf_nat.webp',
-    alt: 'Nat Alison speaking at React Conf',
+    src: '/images/home/community/react_conf_fun.webp',
+    alt: 'People singing karaoke at React Conf',
   },
   {
     src: '/images/home/community/react_india_sunil.webp',
@@ -560,8 +560,8 @@ const images = [
     alt: 'People taking a group selfie at React India',
   },
   {
-    src: '/images/home/community/react_conf_fun.webp',
-    alt: 'People singing karaoke at React Conf',
+    src: '/images/home/community/react_conf_nat.webp',
+    alt: 'Nat Alison speaking at React Conf',
   },
   {
     src: '/images/home/community/react_india_team.webp',

@@ -15,3 +15,15 @@ execSync(
 execSync(
   'curl https://conf.reactjs.org/fonts/Optimistic_Display_W_Bd.woff2 --output public/fonts/Optimistic_Display_W_Bd.woff2'
 );
+execSync(
+  'curl https://conf.reactjs.org/fonts/Optimistic_Display_W_SBd.woff2 --output public/fonts/Optimistic_Display_W_SBd.woff2'
+);
+execSync(
+  'curl https://conf.reactjs.org/fonts/Optimistic_Text_W_Rg.woff2 --output public/fonts/Optimistic_Text_W_Rg.woff2'
+);
+execSync(
+  'curl https://conf.reactjs.org/fonts/Optimistic_Text_W_Md.woff2 --output public/fonts/Optimistic_Text_W_Md.woff2'
+);
+execSync(
+  'curl https://conf.reactjs.org/fonts/Optimistic_Text_W_Bd.woff2 --output public/fonts/Optimistic_Text_W_Bd.woff2'
+);

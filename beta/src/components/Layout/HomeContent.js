@@ -717,9 +717,7 @@ function CommunityImages() {
               loading="lazy"
               src={src}
               alt={alt}
-              className={cn(
-                `aspect-[4/3] h-full w-full flex object-cover rounded-2xl`
-              )}
+              className="aspect-[4/3] h-full w-full flex object-cover rounded-2xl bg-gray-10 dark:bg-gray-80"
             />
           </div>
         </div>

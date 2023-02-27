@@ -159,8 +159,10 @@ const CodeBlock = function CodeBlock({
       if (lineIndex === caret.linePos - 1 && colIndex === caret.charPos) {
         lineOutput.push(buffer);
         lineOutput.push(
-          <span key="caret" className="inline-block">
-            |
+          <span
+            key="caret"
+            className="w-[2px] -mr-[2px] bg-primary dark:bg-white inline-block">
+            ‎
           </span>
         );
         buffer = '';

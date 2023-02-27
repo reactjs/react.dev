@@ -761,11 +761,21 @@ function generateFrames(initialCode, commands) {
       done,
     });
   }
+  const meanDelay = 100; // mean delay value in milliseconds
+  const stdDevDelay = 50; // standard deviation of delay value in milliseconds
+
+  // Generate a random delay value using a normal distribution
+  function generateRandomDelay() {
+    const delay = Math.round(
+      Math.random() * stdDevDelay * 2 + meanDelay - stdDevDelay
+    );
+    return delay;
+  }
 
   captureFrame();
   for (let i = 0; i < commands.length; i++) {
     const [op, data] = commands[i];
-    delay = data?.delay ?? 150;
+    delay = data?.delay ?? generateRandomDelay();
     switch (op) {
       case 'jump': {
         linePos = data.line;

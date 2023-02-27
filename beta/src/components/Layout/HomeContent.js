@@ -1307,7 +1307,13 @@ function Cover({background, children}) {
       <div className="absolute inset-0 px-4 py-2 flex items-end bg-gradient-to-t from-black/40 via-black/0">
         {children}
       </div>
-      <img src={background} alt="" className="w-full object-cover" />
+      <img
+        src={background}
+        width={500}
+        height={263}
+        alt=""
+        className="w-full object-cover"
+      />
     </div>
   );
 }

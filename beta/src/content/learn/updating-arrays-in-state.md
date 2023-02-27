@@ -411,7 +411,6 @@ For example:
 ```js
 import { useState } from 'react';
 
-let nextId = 3;
 const initialList = [
   { id: 0, title: 'Big Bellies' },
   { id: 1, title: 'Lunar Landscape' },
@@ -469,7 +468,6 @@ In this example, two separate artwork lists have the same initial state. They ar
 ```js
 import { useState } from 'react';
 
-let nextId = 3;
 const initialList = [
   { id: 0, title: 'Big Bellies', seen: false },
   { id: 1, title: 'Lunar Landscape', seen: false },
@@ -576,7 +574,6 @@ With this approach, none of the existing state items are being mutated, and the 
 ```js
 import { useState } from 'react';
 
-let nextId = 3;
 const initialList = [
   { id: 0, title: 'Big Bellies', seen: false },
   { id: 1, title: 'Lunar Landscape', seen: false },
@@ -672,7 +669,6 @@ Here is the Art Bucket List example rewritten with Immer:
 import { useState } from 'react';
 import { useImmer } from 'use-immer';
 
-let nextId = 3;
 const initialList = [
   { id: 0, title: 'Big Bellies', seen: false },
   { id: 1, title: 'Lunar Landscape', seen: false },

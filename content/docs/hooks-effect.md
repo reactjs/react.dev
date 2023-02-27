@@ -480,7 +480,7 @@ useEffect(() => {
 
 In the future, the second argument might get added automatically by a build-time transformation.
 
->Note
+>Notes
 >
 >If you use this optimization, make sure the array includes **all values from the component scope (such as props and state) that change over time and that are used by the effect**. Otherwise, your code will reference stale values from previous renders. Learn more about [how to deal with functions](/docs/hooks-faq.html#is-it-safe-to-omit-functions-from-the-list-of-dependencies) and [what to do when the array changes too often](/docs/hooks-faq.html#what-can-i-do-if-my-effect-dependencies-change-too-often).
 >
@@ -489,6 +489,8 @@ In the future, the second argument might get added automatically by a build-time
 >If you pass an empty array (`[]`), the props and state inside the effect will always have their initial values. While passing `[]` as the second argument is closer to the familiar `componentDidMount` and `componentWillUnmount` mental model, there are usually [better](/docs/hooks-faq.html#is-it-safe-to-omit-functions-from-the-list-of-dependencies) [solutions](/docs/hooks-faq.html#what-can-i-do-if-my-effect-dependencies-change-too-often) to avoid re-running effects too often. Also, don't forget that React defers running `useEffect` until after the browser has painted, so doing extra work is less of a problem.
 >
 >We recommend using the [`exhaustive-deps`](https://github.com/facebook/react/issues/14920) rule as part of our [`eslint-plugin-react-hooks`](https://www.npmjs.com/package/eslint-plugin-react-hooks#installation) package. It warns when dependencies are specified incorrectly and suggests a fix.
+>
+>Also note that if you compose the dependencies array dynamically its length will not be checked, but the two arrays will be compared up to the shorter of the two lengths. When you pass variable-length arrays in second argument, always prepend the length of the array like so: `[myArray.length, ...myArray]`
 
 ## Next Steps {#next-steps}
 

@@ -540,39 +540,39 @@ export function HomeContent() {
   );
 }
 
-const reactConf2021Cover = '/images/home/conf2021/cover.jpg';
-const reactConf2019Cover = '/images/home/conf2019/cover.jpg';
+const reactConf2021Cover = '/images/home/conf2021/cover.webp';
+const reactConf2019Cover = '/images/home/conf2019/cover.webp';
 const images = [
   {
-    src: '/images/home/community/react_conf_nat.jpg',
+    src: '/images/home/community/react_conf_nat.webp',
     alt: 'Nat Alison speaking at React Conf',
   },
   {
-    src: '/images/home/community/react_india_sunil.jpg',
+    src: '/images/home/community/react_india_sunil.webp',
     alt: 'Sunil Pai speaking at React India',
   },
   {
-    src: '/images/home/community/react_conf_hallway.jpg',
+    src: '/images/home/community/react_conf_hallway.webp',
     alt: 'A hallway conversation between two people at React Conf',
   },
   {
-    src: '/images/home/community/react_india_hallway.jpg',
+    src: '/images/home/community/react_india_hallway.webp',
     alt: 'A hallway conversation at React India',
   },
   {
-    src: '/images/home/community/react_conf_elizabet.jpg',
+    src: '/images/home/community/react_conf_elizabet.webp',
     alt: 'Elizabet Oliveira speaking at React Conf',
   },
   {
-    src: '/images/home/community/react_india_selfie.jpg',
+    src: '/images/home/community/react_india_selfie.webp',
     alt: 'People taking a group selfie at React India',
   },
   {
-    src: '/images/home/community/react_conf_fun.jpg',
+    src: '/images/home/community/react_conf_fun.webp',
     alt: 'People singing karaoke at React Conf',
   },
   {
-    src: '/images/home/community/react_india_team.jpg',
+    src: '/images/home/community/react_india_team.webp',
     alt: 'Organizers greeting attendees at React India',
   },
 ];
@@ -854,7 +854,7 @@ function Example3() {
       id: 0,
       title: 'React: The Documentary',
       description: 'The origin story of React',
-      image: '/images/home/videos/documentary.jpg',
+      image: '/images/home/videos/documentary.webp',
       url: 'https://www.youtube.com/watch?v=8pDqJVdNa44',
     },
     {
@@ -1382,7 +1382,7 @@ function Thumbnail({video}) {
             </span>
           </div>
         </>
-      ) : image.startsWith('http') ? null : (
+      ) : image.startsWith('/') ? null : (
         <ThumbnailPlaceholder />
       )}
     </a>

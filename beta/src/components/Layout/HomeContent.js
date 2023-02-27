@@ -728,7 +728,7 @@ function CommunityImages() {
   );
 }
 
-function Example1() {
+function ExampleLayout({filename, left, right}) {
   return (
     <div className="lg:pl-10 lg:pr-5 w-full">
       <div className="mt-12 mb-2 lg:my-16 max-w-7xl mx-auto flex flex-col w-full lg:rounded-2xl lg:bg-card lg:dark:bg-card-dark">
@@ -736,14 +736,27 @@ function Example1() {
           <div className="lg:-m-5 h-full shadow-nav dark:shadow-nav-dark lg:rounded-2xl bg-wash dark:bg-gray-95 w-full flex grow flex-col">
             <div className="w-full bg-card dark:bg-wash-dark lg:rounded-t-2xl border-b border-black/5 dark:border-white/5">
               <h3 className="text-sm my-1 mx-5 text-tertiary dark:text-tertiary-dark select-none">
-                Video.js
+                {filename}
               </h3>
             </div>
-            <CodeBlock
-              isFromPackageImport={false}
-              noShadow={true}
-              noMargin={true}>
-              <div>{`function Video({ video }) {
+            {left}
+          </div>
+          <div className="mt-5 lg:-my-20 w-full p-2.5 xs:p-5 lg:p-10 flex grow justify-center">
+            {right}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function Example1() {
+  return (
+    <ExampleLayout
+      filename="Video.js"
+      left={
+        <CodeBlock isFromPackageImport={false} noShadow={true} noMargin={true}>
+          <div>{`function Video({ video }) {
   return (
     <div>
       <Thumbnail video={video} />
@@ -756,23 +769,21 @@ function Example1() {
   );
 }
           `}</div>
-            </CodeBlock>
-          </div>
-          <div className="mt-5 w-full p-2.5 xs:p-5 lg:p-10 flex grow justify-center">
-            <ExamplePanel>
-              <Video
-                video={{
-                  title: 'My video',
-                  description: 'Video description',
-                  image: 'blue',
-                  url: null,
-                }}
-              />
-            </ExamplePanel>
-          </div>
-        </div>
-      </div>
-    </div>
+        </CodeBlock>
+      }
+      right={
+        <ExamplePanel>
+          <Video
+            video={{
+              title: 'My video',
+              description: 'Video description',
+              image: 'blue',
+              url: null,
+            }}
+          />
+        </ExamplePanel>
+      }
+    />
   );
 }
 
@@ -799,20 +810,11 @@ function Example2() {
   ];
 
   return (
-    <div className="lg:pl-10 lg:pr-5 w-full">
-      <div className="mt-12 mb-2 lg:my-16 max-w-7xl mx-auto flex flex-col w-full lg:rounded-2xl lg:bg-card lg:dark:bg-card-dark">
-        <div className="flex-col gap-0 lg:gap-5 lg:rounded-2xl lg:bg-gray-10 lg:dark:bg-gray-70 shadow-inner lg:flex-row flex grow w-full mx-auto items-center bg-cover bg-center bg-fixed lg:bg-right lg:bg-[length:60%_100%] bg-no-repeat bg-meta-gradient dark:bg-meta-gradient-dark">
-          <div className="lg:-m-5 h-full shadow-nav dark:shadow-nav-dark lg:rounded-2xl bg-wash dark:bg-gray-95 w-full flex grow flex-col">
-            <div className="w-full bg-card dark:bg-wash-dark lg:rounded-t-2xl border-b border-black/5 dark:border-white/5">
-              <h3 className="text-sm my-1 mx-5 text-tertiary dark:text-tertiary-dark select-none">
-                VideoList.js
-              </h3>
-            </div>
-            <CodeBlock
-              isFromPackageImport={false}
-              noShadow={true}
-              noMargin={true}>
-              <div>{`function VideoList({ videos, emptyHeading }) {
+    <ExampleLayout
+      filename="VideoList.js"
+      left={
+        <CodeBlock isFromPackageImport={false} noShadow={true} noMargin={true}>
+          <div>{`function VideoList({ videos, emptyHeading }) {
   const count = videos.length;
   let heading = emptyHeading;
   if (count > 0) {
@@ -828,16 +830,14 @@ function Example2() {
     </section>
   );
 }`}</div>
-            </CodeBlock>
-          </div>
-          <div className="mt-5 lg:-my-20 w-full p-2.5 xs:p-5 lg:p-10 flex grow justify-center">
-            <ExamplePanel noShadow={false} noPadding={true}>
-              <VideoList videos={videos} />
-            </ExamplePanel>
-          </div>
-        </div>
-      </div>
-    </div>
+        </CodeBlock>
+      }
+      right={
+        <ExamplePanel noShadow={false} noPadding={true}>
+          <VideoList videos={videos} />
+        </ExamplePanel>
+      }
+    />
   );
 }
 
@@ -881,20 +881,11 @@ function Example3() {
   ];
 
   return (
-    <div className="lg:pl-10 lg:pr-5 w-full">
-      <div className="mt-12 mb-2 lg:my-16 max-w-7xl mx-auto flex flex-col w-full lg:rounded-2xl lg:bg-card lg:dark:bg-card-dark">
-        <div className="flex-col gap-0 lg:gap-5 lg:rounded-2xl lg:bg-gray-10 lg:dark:bg-gray-70 shadow-inner lg:flex-row flex grow w-full mx-auto items-center bg-cover bg-center bg-fixed lg:bg-right lg:bg-[length:60%_100%] bg-no-repeat bg-meta-gradient dark:bg-meta-gradient-dark">
-          <div className="lg:-m-5 h-full shadow-nav dark:shadow-nav-dark lg:rounded-2xl bg-wash dark:bg-gray-95 w-full flex grow flex-col">
-            <div className="w-full bg-card dark:bg-wash-dark lg:rounded-t-2xl border-b border-black/5 dark:border-white/5">
-              <h3 className="text-sm my-1 mx-5 text-tertiary dark:text-tertiary-dark select-none">
-                SearchableVideoList.js
-              </h3>
-            </div>
-            <CodeBlock
-              isFromPackageImport={false}
-              noShadow={true}
-              noMargin={true}>
-              <div>{`import { useState } from 'react';
+    <ExampleLayout
+      filename="SearchableVideoList.js"
+      left={
+        <CodeBlock isFromPackageImport={false} noShadow={true} noMargin={true}>
+          <div>{`import { useState } from 'react';
 
 function SearchableVideoList({ videos }) {
   const [searchText, setSearchText] = useState('');
@@ -910,44 +901,33 @@ function SearchableVideoList({ videos }) {
     </>
   );
 }`}</div>
-            </CodeBlock>
-          </div>
-          <div className="mt-5 lg:-my-20 w-full p-2.5 xs:p-5 lg:p-10 flex grow justify-center">
-            <BrowserChrome domain="example.com" path={'videos.html'}>
-              <ExamplePanel noShadow={false} noPadding={true} height="30rem">
-                <h1 className="mt-20 mx-4 mb-1 font-bold text-3xl text-primary">
-                  React Videos
-                </h1>
-                <p className="mx-4 mb-0 leading-snug text-secondary text-xl">
-                  A brief history of React
-                </p>
-                <SearchableVideoList videos={videos} />
-              </ExamplePanel>
-            </BrowserChrome>
-          </div>
-        </div>
-      </div>
-    </div>
+        </CodeBlock>
+      }
+      right={
+        <BrowserChrome domain="example.com" path={'videos.html'}>
+          <ExamplePanel noShadow={false} noPadding={true} height="30rem">
+            <h1 className="mt-20 mx-4 mb-1 font-bold text-3xl text-primary">
+              React Videos
+            </h1>
+            <p className="mx-4 mb-0 leading-snug text-secondary text-xl">
+              A brief history of React
+            </p>
+            <SearchableVideoList videos={videos} />
+          </ExamplePanel>
+        </BrowserChrome>
+      }
+    />
   );
 }
 
 function Example4() {
   const [slug, setSlug] = useState('react-conf-2021');
   return (
-    <div className="lg:pl-10 lg:pr-5 w-full">
-      <div className="mt-12 mb-2 lg:my-16 max-w-7xl mx-auto flex flex-col w-full lg:rounded-2xl lg:bg-card lg:dark:bg-card-dark">
-        <div className="flex-col gap-0 lg:gap-5 lg:rounded-2xl lg:bg-gray-10 lg:dark:bg-gray-70 shadow-inner lg:flex-row flex grow w-full mx-auto items-center bg-cover bg-center bg-fixed lg:bg-right lg:bg-[length:60%_100%] bg-no-repeat bg-meta-gradient dark:bg-meta-gradient-dark">
-          <div className="lg:-m-5 h-full shadow-nav dark:shadow-nav-dark lg:rounded-2xl bg-wash dark:bg-gray-95 w-full flex grow flex-col">
-            <div className="w-full bg-card dark:bg-wash-dark lg:rounded-t-2xl border-b border-black/5 dark:border-white/5">
-              <h3 className="text-sm my-1 mx-5 text-tertiary dark:text-tertiary-dark select-none">
-                confs/[slug].js
-              </h3>
-            </div>
-            <CodeBlock
-              isFromPackageImport={false}
-              noShadow={true}
-              noMargin={true}>
-              <div>{`import { db } from './database.js';
+    <ExampleLayout
+      filename="confs/[slug].js"
+      left={
+        <CodeBlock isFromPackageImport={false} noShadow={true} noMargin={true}>
+          <div>{`import { db } from './database.js';
 import { Suspense } from 'react';
 
 async function ConferencePage({ slug }) {
@@ -966,38 +946,28 @@ async function Talks({ confId }) {
   const videos = talks.map(talk => talk.video);
   return <SearchableVideoList videos={videos} />;
 }`}</div>
-            </CodeBlock>
-          </div>
-          <div className="mt-5 lg:-my-20 w-full p-2.5 xs:p-5 lg:p-10 flex grow justify-center">
-            <NavContext.Provider value={{slug, setSlug}}>
-              <BrowserChrome
-                domain="example.com"
-                path={'confs/' + slug}
-                hasRefresh={true}
-                hasPulse={true}>
-                <ExamplePanel noPadding={true} noShadow={true} height="35rem">
-                  <Suspense fallback={null}>
-                    <div style={{animation: 'fadein 200ms'}}>
-                      <link
-                        rel="preload"
-                        href={reactConf2019Cover}
-                        as="image"
-                      />
-                      <link
-                        rel="preload"
-                        href={reactConf2021Cover}
-                        as="image"
-                      />
-                      <ConferencePage slug={slug} />
-                    </div>
-                  </Suspense>
-                </ExamplePanel>
-              </BrowserChrome>
-            </NavContext.Provider>
-          </div>
-        </div>
-      </div>
-    </div>
+        </CodeBlock>
+      }
+      right={
+        <NavContext.Provider value={{slug, setSlug}}>
+          <BrowserChrome
+            domain="example.com"
+            path={'confs/' + slug}
+            hasRefresh={true}
+            hasPulse={true}>
+            <ExamplePanel noPadding={true} noShadow={true} height="35rem">
+              <Suspense fallback={null}>
+                <div style={{animation: 'fadein 200ms'}}>
+                  <link rel="preload" href={reactConf2019Cover} as="image" />
+                  <link rel="preload" href={reactConf2021Cover} as="image" />
+                  <ConferencePage slug={slug} />
+                </div>
+              </Suspense>
+            </ExamplePanel>
+          </BrowserChrome>
+        </NavContext.Provider>
+      }
+    />
   );
 }
 

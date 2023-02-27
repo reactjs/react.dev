@@ -725,7 +725,7 @@ const example1Frames = generateFrames(example1Start, [
   ['type', {write: '<Thumbnail', complete: ' />'}],
   ['type', {write: ' video={', complete: '}'}],
   ['type', {write: 'video'}],
-  ['save'],
+  ['save', {delay: 2000}],
   ['jump', {line: 4, after: '/>'}],
   ['jump', {line: 5, after: '>'}],
   ['jump', {line: 6, after: '/h3>'}],
@@ -733,14 +733,15 @@ const example1Frames = generateFrames(example1Start, [
   ['type', {write: '<p>', complete: '</p>'}],
   ['type', {write: '{', complete: '}'}],
   ['type', {write: 'video.description'}],
-  ['save'],
+  ['save', {delay: 2000}],
   ['jump', {line: 7, after: '/p>'}],
   ['jump', {line: 8, after: '/a>'}],
   ['newline', {indentChange: 0}],
   ['type', {write: '<LikeButton', complete: ' />'}],
   ['type', {write: ' video={', complete: '}'}],
   ['type', {write: 'video'}],
-  ['save'],
+  ['save', {delay: 2000}],
+  ['done'],
 ]);
 
 function generateFrames(initialCode, commands) {
@@ -749,18 +750,22 @@ function generateFrames(initialCode, commands) {
   let linePos = 1;
   let charPos = 0;
   let step = 0;
+  let delay;
 
-  function captureFrame() {
+  function captureFrame(done = false) {
     frames.push({
       code: lines.join('\n'),
       caret: {linePos, charPos},
       step,
+      delay,
+      done,
     });
   }
 
   captureFrame();
   for (let i = 0; i < commands.length; i++) {
     const [op, data] = commands[i];
+    delay = data?.delay ?? 150;
     switch (op) {
       case 'jump': {
         linePos = data.line;
@@ -777,10 +782,6 @@ function generateFrames(initialCode, commands) {
         lines.splice(linePos, 0, newLine);
         linePos++;
         charPos = newIndent;
-        captureFrame();
-        captureFrame();
-        captureFrame();
-        captureFrame();
         captureFrame();
         break;
       }
@@ -808,10 +809,12 @@ function generateFrames(initialCode, commands) {
       case 'save': {
         step++;
         captureFrame();
-        captureFrame();
-        captureFrame();
-        captureFrame();
-        captureFrame();
+        break;
+      }
+      case 'done': {
+        linePos = -1;
+        charPos = -1;
+        captureFrame(true);
         break;
       }
     }
@@ -824,17 +827,13 @@ function Example1() {
   const frame = example1Frames[frameIndex];
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setFrameIndex((f) => {
-        if (f < example1Frames.length - 1) {
-          return f + 1;
-        } else {
-          return f;
-        }
-      });
-    }, 150);
-    return () => clearInterval(interval);
-  }, []);
+    if (!frame.done) {
+      const id = setTimeout(() => {
+        setFrameIndex((i) => i + 1);
+      }, frame.delay);
+      return () => clearTimeout(id);
+    }
+  }, [frame]);
 
   return (
     <div className="lg:pl-10 lg:pr-5 w-full">

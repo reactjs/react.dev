@@ -1,5 +1,5 @@
 ---
-title: useEffectEvent
+title: experimental_useEffectEvent
 ---
 
 <Wip>

@@ -26,18 +26,32 @@ import CodeBlock from 'components/MDX/CodeBlock';
 import {IconNavArrow} from 'components/Icon/IconNavArrow';
 import {ExternalLink} from 'components/ExternalLink';
 
-function Section({children, background = null}) {
+function Section({children, z, isFirst, background = null}) {
   return (
     <div
       className={cn(
-        'mx-auto flex flex-col w-full',
+        'relative mx-auto flex flex-col w-full',
+        '-mt-[100px] pt-[100px]',
         background === null && 'max-w-7xl',
+        background === 'wash' && 'bg-wash dark:bg-wash-dark',
         background === 'left-card' &&
           'bg-gradient-left dark:bg-gradient-left-dark border-t border-primary/10 dark:border-primary-dark/10 ',
         background === 'right-card' &&
           'bg-gradient-right dark:bg-gradient-right-dark border-t border-primary/5 dark:border-primary-dark/5'
-      )}>
-      <div className="flex-col gap-2 flex grow w-full my-20 lg:my-32 mx-auto items-center">
+      )}
+      style={{
+        WebkitMask: `radial-gradient(circle at center calc(100% - 10px), transparent ${
+          100 / 2
+        }px, black 0px) 0px`,
+        zIndex: z,
+      }}>
+      <div
+        className={cn(
+          isFirst &&
+            'flex-col flex grow w-full my-20 lg:my-24 pb-8 mx-auto items-center',
+          !isFirst &&
+            'flex-col gap-2 flex grow w-full my-20 lg:my-32 mx-auto items-center'
+        )}>
         {children}
       </div>
     </div>
@@ -101,10 +115,11 @@ function CurrentTime() {
 
 export function HomeContent() {
   const [logoAnimation, setLogoAnimation] = useState(false);
+  let sectionZIndex = -1;
   return (
     <>
       <div className="pl-0">
-        <div className="mx-5 mt-12 lg:mt-24 mb-20 lg:mb-32 flex flex-col justify-center">
+        <Section z={sectionZIndex--} background="wash" isFirst={true}>
           <Logo
             onClick={() => {
               setLogoAnimation(true);
@@ -142,9 +157,9 @@ export function HomeContent() {
               API Reference
             </ButtonLink>
           </div>
-        </div>
+        </Section>
 
-        <Section background="left-card">
+        <Section z={sectionZIndex--} background="left-card">
           <Center>
             <Header>Create user interfaces from components</Header>
             <Para>
@@ -168,7 +183,7 @@ export function HomeContent() {
           </Center>
         </Section>
 
-        <Section background="right-card">
+        <Section z={sectionZIndex--} background="right-card">
           <Center>
             <Header>Write components with code and markup</Header>
             <Para>
@@ -191,7 +206,7 @@ export function HomeContent() {
           </Center>
         </Section>
 
-        <Section background="left-card">
+        <Section z={sectionZIndex--} background="left-card">
           <Center>
             <Header>Add interactivity wherever you need it</Header>
             <Para>
@@ -221,7 +236,7 @@ export function HomeContent() {
           </Center>
         </Section>
 
-        <Section background="right-card">
+        <Section z={sectionZIndex--} background="right-card">
           <Center>
             <Header>
               Go full-stack <br className="hidden lg:inline" />
@@ -256,7 +271,7 @@ export function HomeContent() {
             </div>
           </Center>
         </Section>
-        <Section background="left-card">
+        <Section z={sectionZIndex--} background="left-card">
           <div className="mx-auto flex flex-col w-full">
             <div className="mx-auto max-w-4xl lg:text-center items-center px-5 flex flex-col">
               <Header>Use the best from every platform</Header>
@@ -403,7 +418,7 @@ export function HomeContent() {
           </div>
         </Section>
 
-        <Section background="right-card">
+        <Section z={sectionZIndex--} background="right-card">
           <div className="max-w-7xl mx-auto flex flex-col lg:flex-row px-5">
             <div className="max-w-3xl lg:max-w-7xl gap-5 flex flex-col lg:flex-row lg:px-5 gap-5">
               <div className="w-full lg:w-6/12 max-w-3xl flex flex-col items-start justify-start lg:pl-5 lg:pr-10">
@@ -473,7 +488,7 @@ export function HomeContent() {
           </div>
         </Section>
 
-        <Section background="left-card">
+        <Section z={sectionZIndex--} background="left-card">
           <div className="w-full">
             <div className="mx-auto flex flex-col max-w-4xl">
               <Center>

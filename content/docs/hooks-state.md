@@ -29,7 +29,7 @@ function Example() {
   return (
     <div>
       <p>You clicked {count} times</p>
-      <button onClick={() => setCount(count + 1)}>
+      <button onClick={() => setCount(prevCount => prevCount + 1)}>
         Click me
       </button>
     </div>
@@ -56,7 +56,7 @@ class Example extends React.Component {
     return (
       <div>
         <p>You clicked {this.state.count} times</p>
-        <button onClick={() => this.setState({ count: this.state.count + 1 })}>
+        <button onClick={() => this.setState(prevState => { count: prevState.count + 1 })}>
           Click me
         </button>
       </div>
@@ -183,7 +183,7 @@ In a function, we can use `count` directly:
 In a class, we need to call `this.setState()` to update the `count` state:
 
 ```js{1}
-  <button onClick={() => this.setState({ count: this.state.count + 1 })}>
+  <button onClick={() => this.setState(prevState => { count: prevState.count + 1 })}>
     Click me
   </button>
 ```
@@ -191,7 +191,7 @@ In a class, we need to call `this.setState()` to update the `count` state:
 In a function, we already have `setCount` and `count` as variables so we don't need `this`:
 
 ```js{1}
-  <button onClick={() => setCount(count + 1)}>
+  <button onClick={() => setCount(prevCount => prevCount + 1)}>
     Click me
   </button>
 ```
@@ -213,7 +213,7 @@ Let's now **recap what we learned line by line** and check our understanding.
  6:    return (
  7:      <div>
  8:        <p>You clicked {count} times</p>
- 9:        <button onClick={() => setCount(count + 1)}>
+ 9:        <button onClick={() => setCount(prevCount => prevCount + 1)}>
 10:         Click me
 11:        </button>
 12:      </div>

@@ -43,19 +43,11 @@ function Section({children, background = null}) {
   );
 }
 
-function SubHeader({children}) {
-  return (
-    <h3 className="uppercase font-bold mb-8 tracking-wide text-link dark:text-link-dark text-sm">
-      {children}
-    </h3>
-  );
-}
-
 function Header({children}) {
   return (
-    <h3 className="leading-xl font-display text-primary dark:text-primary-dark font-semibold text-5xl lg:text-6xl -mt-4 mb-7 w-full max-w-3xl lg:max-w-xl">
+    <h2 className="leading-xl font-display text-primary dark:text-primary-dark font-semibold text-5xl lg:text-6xl -mt-4 mb-7 w-full max-w-3xl lg:max-w-xl">
       {children}
-    </h3>
+    </h2>
   );
 }
 

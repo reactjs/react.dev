@@ -818,27 +818,14 @@ const example1Frames = generateFrames(example1Start, [
   ['jump', {line: 9, after: '<LikeButton'}],
   ['type', {write: ' showCount={', complete: '}'}],
   ['type', {write: 'true'}],
+  ['jump', {line: 9, after: 'showCount={true}'}],
   ['save', {delay: 2000}],
-
+  ['type', {erase: ' showCount={true}'}],
+  ['save', {delay: 2000}],
+  ['jump', {line: 4, after: 'square"'}],
+  ['type', {erase: ' shape="square"'}],
+  ['save', {delay: 2000}],
   ['done'],
-  // ['type', {write: ' video={', complete: '}'}],
-  // ['type', {write: 'video'}],
-  // ['save', {delay: 2000}],
-  // ['jump', {line: 5, after: '>'}],
-  // ['jump', {line: 6, after: '/h3>'}],
-  // ['newline', {indentChange: 0}],
-  // ['type', {write: '<p>', complete: '</p>'}],
-  // ['type', {write: '{', complete: '}'}],
-  // ['type', {write: 'video.description'}],
-  // ['save', {delay: 2000}],
-  // ['jump', {line: 7, after: '/p>'}],
-  // ['jump', {line: 8, after: '/a>'}],
-  // ['newline', {indentChange: 0}],
-  // ['type', {write: '<LikeButton', complete: ' />'}],
-  // ['type', {write: ' video={', complete: '}'}],
-  // ['type', {write: 'video'}],
-  // ['save', {delay: 2000}],
-  // ['done'],
 ]);
 
 function generateFrames(initialCode, commands) {
@@ -893,23 +880,36 @@ function generateFrames(initialCode, commands) {
         break;
       }
       case 'type': {
-        const {write, complete} = data;
-        for (let j = 0; j < write.length; j++) {
-          const line = lines[linePos - 1];
-          const newChar = write[j];
-          const updatedLine =
-            line.slice(0, charPos) + newChar + line.slice(charPos);
-          lines[linePos - 1] = updatedLine;
-          charPos++;
-          captureFrame();
-        }
-        if (complete != null) {
-          frames.pop();
-          const line = lines[linePos - 1];
-          const updatedLine =
-            line.slice(0, charPos) + complete + line.slice(charPos);
-          lines[linePos - 1] = updatedLine;
-          captureFrame();
+        const {write, erase, complete} = data;
+        if (erase) {
+          let line = lines[linePos - 1];
+          const startIndex = line.indexOf(erase);
+          if (startIndex === -1) throw Error('Could not find: ' + erase);
+          const endIndex = startIndex + erase.length;
+          for (let j = endIndex; j > startIndex; j--) {
+            line = line.slice(0, j - 1) + line.slice(j);
+            lines[linePos - 1] = line;
+            charPos--;
+            captureFrame();
+          }
+        } else {
+          for (let j = 0; j < write.length; j++) {
+            const line = lines[linePos - 1];
+            const newChar = write[j];
+            const updatedLine =
+              line.slice(0, charPos) + newChar + line.slice(charPos);
+            lines[linePos - 1] = updatedLine;
+            charPos++;
+            captureFrame();
+          }
+          if (complete != null) {
+            frames.pop();
+            const line = lines[linePos - 1];
+            const updatedLine =
+              line.slice(0, charPos) + complete + line.slice(charPos);
+            lines[linePos - 1] = updatedLine;
+            captureFrame();
+          }
         }
         break;
       }
@@ -1669,8 +1669,8 @@ function Thumbnail({video, shape}) {
         image === 'purple' && 'from-yellow-50 via-purple-50 to-purple-60',
         typeof image === 'object' && 'from-gray-80 via-gray-95 to-gray-70',
         video.url && 'hover:opacity-95 transition-opacity',
-        shape !== 'square' && 'aspect-video w-32 xs:w-36',
-        shape === 'square' && 'aspect-square h-[81px]'
+        shape !== 'square' && 'w-32 xs:w-36 h-[81px]',
+        shape === 'square' && 'w-[81px] h-[81px]'
       )}
       style={{
         backgroundImage:
@@ -1725,7 +1725,7 @@ function ThumbnailPlaceholder() {
 
 function LikeButton({video, showCount}) {
   const [liked, setLiked] = useState(false);
-  const totalLikeCount = video.likes + (liked ? 1 : 0);
+  const totalLikeCount = (video.likes || 0) + (liked ? 1 : 0);
   return (
     <button
       className={cn(

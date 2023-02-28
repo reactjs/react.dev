@@ -811,19 +811,20 @@ const example1Start = `function Video({ video }) {
   );
 }`;
 const example1Frames = generateFrames(example1Start, [
-  ['jump', {line: 4, after: '<Thumbnail', delay: 3000}],
+  ['jump', {line: 4, after: '<Thumbnail'}],
   ['type', {write: ' shape="', complete: '"'}],
   ['type', {write: 'square'}],
   ['save', {delay: 2000}],
   ['jump', {line: 9, after: '<LikeButton'}],
-  ['type', {write: ' showCount={', complete: '}'}],
-  ['type', {write: 'true'}],
-  ['jump', {line: 9, after: 'showCount={true}'}],
-  ['save', {delay: 2000}],
-  ['type', {erase: ' showCount={true}'}],
+  ['type', {write: ' showCount='}],
+  ['type', {write: '{t', complete: '}'}],
+  ['type', {write: 'rue'}],
+  ['jump', {line: 9, after: 'true}'}],
+  ['save', {delay: 4000}],
+  ['type', {erase: ' showCount={true}', delay: 70}],
   ['save', {delay: 2000}],
   ['jump', {line: 4, after: 'square"'}],
-  ['type', {erase: ' shape="square"'}],
+  ['type', {erase: ' shape="square"', delay: 70}],
   ['save', {delay: 2000}],
   ['done'],
 ]);
@@ -831,8 +832,8 @@ const example1Frames = generateFrames(example1Start, [
 function generateFrames(initialCode, commands) {
   let frames = [];
   let lines = initialCode.split('\n');
-  let linePos = 1;
-  let charPos = 0;
+  let linePos = null;
+  let charPos = null;
   let step = 0;
   let delay;
 
@@ -856,7 +857,6 @@ function generateFrames(initialCode, commands) {
     return delay;
   }
 
-  captureFrame();
   for (let i = 0; i < commands.length; i++) {
     const [op, data] = commands[i];
     delay = data?.delay ?? generateRandomDelay();
@@ -983,6 +983,7 @@ function Example1() {
       {
         root: null,
         rootMargin: `0px 0px`,
+        threshold: 0.8,
       }
     );
     observer.observe(ref.current);
@@ -990,17 +991,17 @@ function Example1() {
   }, []);
 
   return (
-    <div ref={ref}>
-      <ExampleLayout
-        filename="Video.js"
-        onPlay={
-          frame.done
-            ? () => {
-                setFrameIndex(0);
-              }
-            : null
-        }
-        left={
+    <ExampleLayout
+      filename="Video.js"
+      onPlay={
+        frame.done
+          ? () => {
+              setFrameIndex(0);
+            }
+          : null
+      }
+      left={
+        <div ref={ref}>
           <CodeBlock
             caret={frame.done ? null : frame.caret}
             isFromPackageImport={false}
@@ -1008,23 +1009,23 @@ function Example1() {
             noMargin={true}>
             <div>{frame.code}</div>
           </CodeBlock>
-        }
-        right={
-          <ExamplePanel height="113px">
-            <Video
-              step={frame.step}
-              video={{
-                title: 'My video',
-                description: 'Video description',
-                image: 'blue',
-                url: null,
-                likes: 7,
-              }}
-            />
-          </ExamplePanel>
-        }
-      />
-    </div>
+        </div>
+      }
+      right={
+        <ExamplePanel height="113px">
+          <Video
+            step={frame.step}
+            video={{
+              title: 'My video',
+              description: 'Video description',
+              image: 'blue',
+              url: null,
+              likes: 7,
+            }}
+          />
+        </ExamplePanel>
+      }
+    />
   );
 }
 
@@ -1627,7 +1628,7 @@ function Video({video, step = 0}) {
   } else if (step === 3) {
     return (
       <div className="flex flex-row items-center gap-3">
-        <Thumbnail video={video} />
+        <Thumbnail shape="square" video={video} />
         <a
           href={video.url}
           target="_blank"
@@ -1644,7 +1645,7 @@ function Video({video, step = 0}) {
             {video.description}
           </p>
         </a>
-        <LikeButton video={video} showCount={true} />
+        <LikeButton video={video} />
       </div>
     );
   } else if (step === 4) {

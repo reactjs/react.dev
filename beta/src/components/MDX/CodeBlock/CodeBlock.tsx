@@ -163,8 +163,8 @@ const CodeBlock = function CodeBlock({
       if (lineIndex === caret.linePos - 1 && colIndex === caret.charPos) {
         buffer.push(
           <span
-            key="caret"
-            className="w-[2px] -mr-[2px] bg-primary dark:bg-white inline-block">
+            key={'caret_' + colIndex}
+            className="w-[2px] -mr-[2px] bg-primary dark:bg-white inline-block animation-pulse-caret">
             ‎
           </span>
         );

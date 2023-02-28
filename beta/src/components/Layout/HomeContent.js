@@ -804,19 +804,26 @@ const example1Start = `function Video({ video }) {
       <Thumbnail video={video} />
       <a href={video.url}>
         <h3>{video.title}</h3>
+        <p>{video.description}</p>
       </a>
       <LikeButton video={video} />
     </div>
   );
 }`;
 const example1Frames = generateFrames(example1Start, [
-  // ['jump', {line: 3, after: '<div>'}],
-  // ['newline', {indentChange: 2}],
-  // ['type', {write: '<Thumbnail', complete: ' />'}],
+  ['jump', {line: 4, after: '<Thumbnail'}],
+  ['type', {write: ' size="', complete: '"'}],
+  ['type', {write: 'small'}],
+  ['save', {delay: 2000}],
+  ['jump', {line: 9, after: '<LikeButton'}],
+  ['type', {write: ' showCount={', complete: '}'}],
+  ['type', {write: 'true'}],
+  ['save', {delay: 2000}],
+
+  ['done'],
   // ['type', {write: ' video={', complete: '}'}],
   // ['type', {write: 'video'}],
   // ['save', {delay: 2000}],
-  // ['jump', {line: 4, after: '/>'}],
   // ['jump', {line: 5, after: '>'}],
   // ['jump', {line: 6, after: '/h3>'}],
   // ['newline', {indentChange: 0}],
@@ -983,6 +990,7 @@ function Example1() {
               description: 'Video description',
               image: 'blue',
               url: null,
+              likes: 7,
             }}
           />
         </ExamplePanel>
@@ -1517,29 +1525,123 @@ function Cover({background, children}) {
   );
 }
 
-function Video({video, step = 3}) {
-  return (
-    <div className="flex flex-row items-center gap-3">
-      <Thumbnail video={video} />
-      <a
-        href={video.url}
-        target="_blank"
-        rel="noreferrer"
-        className="outline-link dark:outline-link outline-offset-4 group flex flex-col flex-1 gap-0.5">
-        <h3
-          className={cn(
-            'text-base leading-tight text-primary font-bold',
-            video.url && 'group-hover:underline'
-          )}>
-          {video.title}
-        </h3>
-        <p className="text-tertiary text-sm leading-snug">
-          {video.description}
-        </p>
-      </a>
-      <LikeButton />
-    </div>
-  );
+function Video({video, step = 0}) {
+  if (step === 0) {
+    return (
+      <div className="flex flex-row items-center gap-3">
+        <Thumbnail video={video} />
+        <a
+          href={video.url}
+          target="_blank"
+          rel="noreferrer"
+          className="outline-link dark:outline-link outline-offset-4 group flex flex-col flex-1 gap-0.5">
+          <h3
+            className={cn(
+              'text-base leading-tight text-primary font-bold',
+              video.url && 'group-hover:underline'
+            )}>
+            {video.title}
+          </h3>
+          <p className="text-tertiary text-sm leading-snug">
+            {video.description}
+          </p>
+        </a>
+        <LikeButton video={video} />
+      </div>
+    );
+  } else if (step === 1) {
+    return (
+      <div className="flex flex-row items-center gap-3">
+        <Thumbnail size="small" video={video} />
+        <a
+          href={video.url}
+          target="_blank"
+          rel="noreferrer"
+          className="outline-link dark:outline-link outline-offset-4 group flex flex-col flex-1 gap-0.5">
+          <h3
+            className={cn(
+              'text-base leading-tight text-primary font-bold',
+              video.url && 'group-hover:underline'
+            )}>
+            {video.title}
+          </h3>
+          <p className="text-tertiary text-sm leading-snug">
+            {video.description}
+          </p>
+        </a>
+        <LikeButton video={video} />
+      </div>
+    );
+  } else if (step === 2) {
+    return (
+      <div className="flex flex-row items-center gap-3">
+        <Thumbnail size="small" video={video} />
+        <a
+          href={video.url}
+          target="_blank"
+          rel="noreferrer"
+          className="outline-link dark:outline-link outline-offset-4 group flex flex-col flex-1 gap-0.5">
+          <h3
+            className={cn(
+              'text-base leading-tight text-primary font-bold',
+              video.url && 'group-hover:underline'
+            )}>
+            {video.title}
+          </h3>
+          <p className="text-tertiary text-sm leading-snug">
+            {video.description}
+          </p>
+        </a>
+        <LikeButton video={video} showCount={true} />
+      </div>
+    );
+  } else if (step === 3) {
+    return (
+      <div className="flex flex-row items-center gap-3">
+        <Thumbnail video={video} />
+        <a
+          href={video.url}
+          target="_blank"
+          rel="noreferrer"
+          className="outline-link dark:outline-link outline-offset-4 group flex flex-col flex-1 gap-0.5">
+          <h3
+            className={cn(
+              'text-base leading-tight text-primary font-bold',
+              video.url && 'group-hover:underline'
+            )}>
+            {video.title}
+          </h3>
+          <p className="text-tertiary text-sm leading-snug">
+            {video.description}
+          </p>
+        </a>
+        <LikeButton video={video} showCount={true} />
+      </div>
+    );
+  } else if (step === 4) {
+    return (
+      <div className="flex flex-row items-center gap-3">
+        <Thumbnail video={video} />
+        <a
+          href={video.url}
+          target="_blank"
+          rel="noreferrer"
+          className="outline-link dark:outline-link outline-offset-4 group flex flex-col flex-1 gap-0.5">
+          <h3
+            className={cn(
+              'text-base leading-tight text-primary font-bold',
+              video.url && 'group-hover:underline'
+            )}>
+            {video.title}
+          </h3>
+          <p className="text-tertiary text-sm leading-snug">
+            {video.description}
+          </p>
+        </a>
+        <LikeButton video={video} />
+      </div>
+    );
+  }
 }
 
 function Code({children}) {
@@ -1550,7 +1652,7 @@ function Code({children}) {
   );
 }
 
-function Thumbnail({video}) {
+function Thumbnail({video, size}) {
   const {image} = video;
   return (
     <a
@@ -1560,13 +1662,15 @@ function Thumbnail({video}) {
       aria-hidden="true"
       tabIndex={-1}
       className={cn(
-        'outline-link dark:outline-link outline-offset-2 aspect-video w-32 xs:w-36 select-none flex-col shadow-inner-border rounded-lg flex items-center overflow-hidden justify-center align-middle text-white/50 bg-cover bg-white bg-[conic-gradient(at_top_right,_var(--tw-gradient-stops))]',
+        'transition-all duration-700 outline-link dark:outline-link outline-offset-2 select-none flex-col shadow-inner-border rounded-lg flex items-center overflow-hidden justify-center align-middle text-white/50 bg-cover bg-white bg-[conic-gradient(at_top_right,_var(--tw-gradient-stops))]',
         image === 'blue' && 'from-yellow-50 via-blue-50 to-purple-60',
         image === 'red' && 'from-yellow-50 via-red-50 to-purple-60',
         image === 'green' && 'from-yellow-50 via-green-50 to-purple-60',
         image === 'purple' && 'from-yellow-50 via-purple-50 to-purple-60',
         typeof image === 'object' && 'from-gray-80 via-gray-95 to-gray-70',
-        video.url && 'hover:opacity-95 transition-opacity'
+        video.url && 'hover:opacity-95 transition-opacity',
+        size !== 'small' && 'aspect-video w-32 xs:w-36',
+        size === 'small' && 'aspect-square h-[81px]'
       )}
       style={{
         backgroundImage:
@@ -1576,7 +1680,7 @@ function Thumbnail({video}) {
       }}>
       {typeof image !== 'string' ? (
         <>
-          <div className="transition-opacity mt-2.5 -space-x-2 flex flex-row w-full justify-center">
+          <div className="transition-opacity duration-150 mt-2.5 -space-x-2 flex flex-row w-full justify-center">
             {image.speakers.map((src, i) => (
               <img
                 key={i}
@@ -1619,16 +1723,19 @@ function ThumbnailPlaceholder() {
   );
 }
 
-function LikeButton() {
-  const [saved, setSaved] = useState(false);
+function LikeButton({video, showCount}) {
+  const [liked, setLiked] = useState(false);
+  const totalLikeCount = video.likes + (liked ? 1 : 0);
   return (
     <button
       className={cn(
-        'outline-none focus:bg-red-50/5 focus:text-red-50 relative flex items-center justify-center w-10 h-10 cursor-pointer rounded-full text-tertiary hover:bg-card active:scale-95 active:bg-red-50/5 active:text-red-50',
-        saved && 'text-red-50'
+        'transition-[width] duration-700 outline-none focus:bg-red-50/5 focus:text-red-50 relative flex items-center justify-center cursor-pointer rounded-full text-tertiary hover:bg-card active:scale-95 active:bg-red-50/5 active:text-red-50',
+        liked && 'text-red-50',
+        !showCount && 'w-10 h-10',
+        showCount && 'w-16 h-10'
       )}
-      aria-label={saved ? 'Unsave' : 'Save'}
-      onClick={() => setSaved(!saved)}>
+      aria-label={liked ? 'Unsave' : 'Save'}
+      onClick={() => setLiked(!liked)}>
       <svg
         className="absolute overflow-visible"
         viewBox="0 0 24 24"
@@ -1636,8 +1743,8 @@ function LikeButton() {
         xmlns="http://www.w3.org/2000/svg">
         <circle
           className={cn(
-            'text-red-50/50 origin-center transition-all ease-in-out',
-            saved && 'animate-[circle_.3s_forwards]'
+            'text-red-50/50 origin-center transition-all ease-in-out duration-150',
+            liked && 'animate-[circle_.3s_forwards]'
           )}
           cx="12"
           cy="12"
@@ -1647,11 +1754,11 @@ function LikeButton() {
           stroke="currentColor"
         />
       </svg>
-      {saved ? (
+      {liked ? (
         <svg
           className={cn(
-            'w-6 h-6 origin-center transition-all ease-in-out',
-            saved && 'animate-[scale_.35s_ease-in-out_forwards]'
+            'w-6 h-6 origin-center transition-all ease-in-out duration-150',
+            liked && 'animate-[scale_.35s_ease-in-out_forwards]'
           )}
           viewBox="0 0 24 24"
           fill="none"
@@ -1675,6 +1782,14 @@ function LikeButton() {
           />
         </svg>
       )}
+      <div
+        className={cn(
+          'transition-[width,margin-left,opacity] duration-700 ',
+          showCount && 'w-auto ml-2 opacity-100',
+          !showCount && 'w-0 ml-0 opacity-0'
+        )}>
+        {totalLikeCount}
+      </div>
     </button>
   );
 }

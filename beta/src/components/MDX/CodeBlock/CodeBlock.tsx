@@ -96,7 +96,7 @@ const CodeBlock = function CodeBlock({
   // In that case, decorators always take precedence.
   let currentDecorator = null;
   let currentToken = null;
-  let buffer = '';
+  let buffer = [];
   let lineIndex = 0;
   let colIndex = 0;
   let lineOutput = [];
@@ -112,7 +112,7 @@ const CodeBlock = function CodeBlock({
             {buffer}
           </span>
         );
-        buffer = '';
+        buffer = [];
       }
       currentToken = null;
     }
@@ -127,7 +127,7 @@ const CodeBlock = function CodeBlock({
           {buffer}
         </span>
       );
-      buffer = '';
+      buffer = [];
       currentDecorator = null;
     }
     if (decoratorStarts.has(i)) {
@@ -142,10 +142,10 @@ const CodeBlock = function CodeBlock({
             {buffer}
           </span>
         );
-        buffer = '';
+        buffer = [];
       } else {
         lineOutput.push(buffer);
-        buffer = '';
+        buffer = [];
       }
       currentDecorator = decoratorStarts.get(i);
     }
@@ -155,26 +155,24 @@ const CodeBlock = function CodeBlock({
       }
       currentToken = tokenStarts.get(i);
       if (!currentDecorator) {
-        lineOutput.push(buffer);
-        buffer = '';
+        buffer.forEach((c) => lineOutput.push(c));
+        buffer = [];
       }
     }
     if (caret != null) {
       if (lineIndex === caret.linePos - 1 && colIndex === caret.charPos) {
-        lineOutput.push(buffer);
-        lineOutput.push(
+        buffer.push(
           <span
             key="caret"
             className="w-[2px] -mr-[2px] bg-primary dark:bg-white inline-block">
             ‎
           </span>
         );
-        buffer = '';
       }
     }
     if (code[i] === '\n') {
-      lineOutput.push(buffer);
-      buffer = '';
+      buffer.forEach((c) => lineOutput.push(c));
+      buffer = [];
       finalOutput.push(
         <div
           key={lineIndex}
@@ -187,7 +185,12 @@ const CodeBlock = function CodeBlock({
       lineIndex++;
       colIndex = 0;
     } else {
-      buffer += code[i];
+      if (typeof buffer[buffer.length - 1] === 'string') {
+        // Keep flattened strings when possible for React.
+        buffer[buffer.length - 1] += code[i];
+      } else {
+        buffer.push(code[i]);
+      }
       colIndex++;
     }
   }

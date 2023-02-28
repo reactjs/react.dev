@@ -29,32 +29,6 @@ declare global {
   }
 }
 
-const feedbackIcon = (
-  <svg
-    width="28"
-    height="28"
-    viewBox="0 0 28 28"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg">
-    <path
-      clipRule="evenodd"
-      fillRule="evenodd"
-      strokeWidth={0.25}
-      stroke="currentColor"
-      d="M8.41477 2.29921C8.41479 2.29923 8.41476 2.2992 8.41477 2.29921L8.48839 2.35275C8.91454 2.66267 9.22329 3.10774 9.36429 3.61547C9.50529 4.12319 9.47029 4.6637 9.26497 5.14899L8.33926 7.33703H11C11.7072 7.33703 12.3855 7.61798 12.8856 8.11807C13.3857 8.61817 13.6667 9.29645 13.6667 10.0037V12.6704C13.6667 13.5544 13.3155 14.4023 12.6904 15.0274C12.0652 15.6525 11.2174 16.0037 10.3333 16.0037H5C3.93914 16.0037 2.92172 15.5823 2.17157 14.8321C1.42142 14.082 1 13.0646 1 12.0037V10.7531C1 9.68422 1.36696 8.6477 2.03953 7.81688L6.27886 2.58006C6.53107 2.26851 6.89328 2.06562 7.29077 2.01335C7.68823 1.96109 8.09061 2.06347 8.41477 2.29921ZM7.63054 3.37753C7.58264 3.34269 7.52323 3.32759 7.46459 3.33531C7.40594 3.34302 7.35245 3.37296 7.31519 3.41899L3.07585 8.65581C2.59545 9.24925 2.33333 9.98963 2.33333 10.7531V12.0037C2.33333 12.7109 2.61428 13.3892 3.11438 13.8893C3.61448 14.3894 4.29275 14.6704 5 14.6704H10.3333C10.8638 14.6704 11.3725 14.4596 11.7475 14.0846C12.1226 13.7095 12.3333 13.2008 12.3333 12.6704V10.0037C12.3333 9.65007 12.1929 9.31093 11.9428 9.06088C11.6928 8.81084 11.3536 8.67036 11 8.67036H7.33333C7.10979 8.67036 6.90112 8.55832 6.77763 8.37198C6.65413 8.18564 6.63225 7.94981 6.71936 7.74393L8.03701 4.62947C8.125 4.42149 8.14001 4.18984 8.07958 3.97224C8.01916 3.75467 7.88687 3.56396 7.70425 3.43113L7.63054 3.37753Z"
-      fill="currentColor"
-    />
-    <path
-      fillRule="evenodd"
-      clipRule="evenodd"
-      strokeWidth={0.25}
-      stroke="currentColor"
-      d="M19.2517 25.7047C19.2517 25.7047 19.2517 25.7047 19.2517 25.7047L19.1781 25.6512C18.752 25.3412 18.4432 24.8962 18.3022 24.3884C18.1612 23.8807 18.1962 23.3402 18.4015 22.8549L19.3272 20.6669L16.6665 20.6669C15.9593 20.6669 15.281 20.3859 14.7809 19.8858C14.2808 19.3857 13.9998 18.7075 13.9998 18.0002L13.9998 15.3335C13.9998 14.4495 14.351 13.6016 14.9761 12.9765C15.6013 12.3514 16.4491 12.0002 17.3332 12.0002L22.6665 12.0002C23.7274 12.0002 24.7448 12.4216 25.4949 13.1718C26.2451 13.9219 26.6665 14.9393 26.6665 16.0002L26.6665 17.2508C26.6665 18.3197 26.2995 19.3562 25.627 20.187L21.3876 25.4238C21.1354 25.7354 20.7732 25.9383 20.3757 25.9906C19.9783 26.0428 19.5759 25.9404 19.2517 25.7047ZM20.036 24.6264C20.0839 24.6612 20.1433 24.6763 20.2019 24.6686C20.2606 24.6609 20.3141 24.6309 20.3513 24.5849L24.5907 19.3481C25.0711 18.7547 25.3332 18.0143 25.3332 17.2508L25.3332 16.0002C25.3332 15.293 25.0522 14.6147 24.5521 14.1146C24.052 13.6145 23.3738 13.3335 22.6665 13.3335L17.3332 13.3335C16.8027 13.3335 16.294 13.5443 15.919 13.9193C15.5439 14.2944 15.3332 14.8031 15.3332 15.3335L15.3332 18.0002C15.3332 18.3538 15.4736 18.693 15.7237 18.943C15.9737 19.1931 16.3129 19.3335 16.6665 19.3335L20.3332 19.3335C20.5567 19.3335 20.7654 19.4456 20.8889 19.6319C21.0124 19.8183 21.0343 20.0541 20.9471 20.26L19.6295 23.3744C19.5415 23.5824 19.5265 23.8141 19.5869 24.0317C19.6473 24.2492 19.7796 24.4399 19.9623 24.5728L20.036 24.6264Z"
-      fill="currentColor"
-    />
-  </svg>
-);
-
 const darkIcon = (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -153,11 +127,8 @@ export default function TopNav({
 }) {
   const [isOpen, setIsOpen] = useState(false);
   const [logoAnimation, setLogoAnimation] = useState(false);
-  const [showFeedback, setShowFeedback] = useState(false);
   const scrollParentRef = useRef<HTMLDivElement>(null);
-  const feedbackAutohideRef = useRef<any>(null);
   const {asPath} = useRouter();
-  const feedbackPopupRef = useRef<null | HTMLDivElement>(null);
   const [isScrolled, setIsScrolled] = useState(false);
 
   // HACK. Fix up the data structures instead.
@@ -198,34 +169,6 @@ export default function TopNav({
       media.removeEventListener('change', closeIfNeeded);
     };
   }, []);
-
-  function handleFeedback() {
-    clearTimeout(feedbackAutohideRef.current);
-    setShowFeedback(!showFeedback);
-  }
-
-  // Hide the Feedback widget on any click outside.
-  useEffect(() => {
-    if (!showFeedback) {
-      return;
-    }
-
-    function handleDocumentClickCapture(e: MouseEvent) {
-      if (!feedbackPopupRef.current!.contains(e.target as any)) {
-        e.stopPropagation();
-        e.preventDefault();
-        setShowFeedback(false);
-      }
-    }
-
-    document.addEventListener('click', handleDocumentClickCapture, {
-      capture: true,
-    });
-    return () =>
-      document.removeEventListener('click', handleDocumentClickCapture, {
-        capture: true,
-      });
-  }, [showFeedback]);
 
   const scrollDetectorRef = useRef(null);
   useEffect(() => {
@@ -317,36 +260,6 @@ export default function TopNav({
               <div className="flex items-center -space-x-2.5 xs:space-x-0 ">
                 <div className="flex md:hidden">
                   <Search />
-                </div>
-                <div className="flex lg:hidden">
-                  <button
-                    aria-label="Give feedback"
-                    type="button"
-                    className={cn(
-                      'active:scale-95 transition-transform flex w-12 h-12 rounded-full items-center justify-center hover:bg-primary/5 hover:dark:bg-primary-dark/5 outline-link',
-                      {
-                        'bg-secondary-button dark:bg-secondary-button-dark':
-                          showFeedback,
-                      }
-                    )}
-                    onClick={handleFeedback}>
-                    {feedbackIcon}
-                  </button>
-                  <div
-                    ref={feedbackPopupRef}
-                    className={cn(
-                      'fixed top-12 right-0',
-                      showFeedback ? 'block' : 'hidden'
-                    )}>
-                    <Feedback
-                      onSubmit={() => {
-                        clearTimeout(feedbackAutohideRef.current);
-                        feedbackAutohideRef.current = setTimeout(() => {
-                          setShowFeedback(false);
-                        }, 1000);
-                      }}
-                    />
-                  </div>
                 </div>
                 <div className="flex dark:hidden">
                   <button

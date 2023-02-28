@@ -4,6 +4,7 @@
 
 import {
   createContext,
+  memo,
   useState,
   useContext,
   useId,
@@ -695,9 +696,26 @@ const communityImages = [
 ];
 
 function CommunityGallery() {
-  const [isLazy, setIsLazy] = useState(true);
   const ref = useRef();
 
+  const [shouldPlay, setShouldPlay] = useState(true /* play for SSR */);
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          setShouldPlay(entry.isIntersecting);
+        });
+      },
+      {
+        root: null,
+        rootMargin: `400px 0px`,
+      }
+    );
+    observer.observe(ref.current);
+    return () => observer.disconnect();
+  }, []);
+
+  const [isLazy, setIsLazy] = useState(true);
   // Either wait until we're scrolling close...
   useEffect(() => {
     if (!isLazy) {
@@ -720,7 +738,6 @@ function CommunityGallery() {
     observer.observe(ref.current);
     return () => observer.disconnect();
   }, [isLazy]);
-
   // ... or until it's been a while after hydration.
   useEffect(() => {
     const timeout = setTimeout(() => {
@@ -733,19 +750,26 @@ function CommunityGallery() {
     <div
       ref={ref}
       className="relative flex overflow-x-hidden overflow-y-visible w-auto">
-      <div className="w-full py-12 lg:py-20 animate-marquee lg:animate-large-marquee whitespace-nowrap flex flex-row">
+      <div
+        className="w-full py-12 lg:py-20 whitespace-nowrap flex flex-row animate-marquee lg:animate-large-marquee"
+        style={{
+          animationPlayState: shouldPlay ? 'running' : 'paused',
+        }}>
         <CommunityImages isLazy={isLazy} />
       </div>
       <div
         aria-hidden="true"
-        className="w-full absolute top-0 py-12 lg:py-20 animate-marquee2 lg:animate-large-marquee2 whitespace-nowrap flex flex-row">
+        className="w-full absolute top-0 py-12 lg:py-20 whitespace-nowrap flex flex-row animate-marquee2 lg:animate-large-marquee2"
+        style={{
+          animationPlayState: shouldPlay ? 'running' : 'paused',
+        }}>
         <CommunityImages isLazy={isLazy} />
       </div>
     </div>
   );
 }
 
-function CommunityImages({isLazy}) {
+const CommunityImages = memo(function CommunityImages({isLazy}) {
   return (
     <>
       {communityImages.map(({src, alt}, i) => (
@@ -772,7 +796,7 @@ function CommunityImages({isLazy}) {
       ))}
     </>
   );
-}
+});
 
 function ExampleLayout({filename, left, right}) {
   return (
@@ -1068,6 +1092,27 @@ const NavContext = createContext(null);
 function BrowserChrome({children, hasPulse, hasRefresh, domain, path}) {
   const [restartId, setRestartId] = useState(0);
   const isPulsing = hasPulse && restartId === 0;
+  const [shouldAnimatePulse, setShouldAnimatePulse] = useState(false);
+  const refreshRef = useRef(null);
+
+  useEffect(() => {
+    if (!isPulsing) {
+      return;
+    }
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          setShouldAnimatePulse(entry.isIntersecting);
+        });
+      },
+      {
+        root: null,
+        rootMargin: `0px 0px`,
+      }
+    );
+    observer.observe(refreshRef.current);
+    return () => observer.disconnect();
+  }, [isPulsing]);
 
   function handleRestart() {
     confCache = new Map();
@@ -1104,11 +1149,12 @@ function BrowserChrome({children, hasPulse, hasRefresh, domain, path}) {
           </div>
           {hasRefresh && (
             <div
+              ref={refreshRef}
               className={cn(
                 'relative rounded-full flex justify-center items-center ',
-                isPulsing && 'animation-pulse-button'
+                isPulsing && shouldAnimatePulse && 'animation-pulse-button'
               )}>
-              {isPulsing && (
+              {isPulsing && shouldAnimatePulse && (
                 <div className="z-0 absolute shadow-[0_0_0_8px_rgba(0,0,0,0.5)] inset-0 rounded-full animation-pulse-shadow" />
               )}
               <button

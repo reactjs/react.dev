@@ -27,14 +27,12 @@ import CodeBlock from 'components/MDX/CodeBlock';
 import {IconNavArrow} from 'components/Icon/IconNavArrow';
 import {ExternalLink} from 'components/ExternalLink';
 
-function Section({children, z, isFirst, background = null}) {
+function Section({children, background = null}) {
   return (
     <div
       className={cn(
-        'relative mx-auto flex flex-col w-full',
-        '-mt-[100px] pt-[100px]',
+        'mx-auto flex flex-col w-full relative',
         background === null && 'max-w-7xl',
-        background === 'wash' && 'bg-wash dark:bg-wash-dark',
         background === 'left-card' &&
           'bg-gradient-left dark:bg-gradient-left-dark border-t border-primary/10 dark:border-primary-dark/10 ',
         background === 'right-card' &&
@@ -42,16 +40,10 @@ function Section({children, z, isFirst, background = null}) {
       )}
       style={{
         contentVisibility: 'layout style paint',
-        WebkitMask: `radial-gradient(circle at center bottom, transparent calc(80px / 2 + 8px), black 0px) 0px`,
-        zIndex: z,
+        WebkitMaskImage: 'url(/images/puzzleup.svg)',
+        paddingTop: 80,
       }}>
-      <div
-        className={cn(
-          isFirst &&
-            'flex-col flex grow w-full my-20 lg:my-24 pb-8 mx-auto items-center',
-          !isFirst &&
-            'flex-col gap-2 flex grow w-full my-20 lg:my-32 mx-auto items-center'
-        )}>
+      <div className="flex-col gap-2 flex grow w-full my-20 lg:my-32 mx-auto items-center">
         {children}
       </div>
     </div>
@@ -115,11 +107,10 @@ function CurrentTime() {
 
 export function HomeContent() {
   const [logoAnimation, setLogoAnimation] = useState(false);
-  let sectionZIndex = -1;
   return (
     <>
       <div className="pl-0">
-        <Section z={sectionZIndex--} background="wash" isFirst={true}>
+        <div className="mx-5 mt-12 lg:mt-24 mb-20 lg:mb-32 flex flex-col justify-center">
           <Logo
             onClick={() => {
               setLogoAnimation(true);
@@ -157,9 +148,9 @@ export function HomeContent() {
               API Reference
             </ButtonLink>
           </div>
-        </Section>
+        </div>
 
-        <Section z={sectionZIndex--} background="left-card">
+        <Section background="left-card">
           <Center>
             <Header>Create user interfaces from components</Header>
             <Para>
@@ -183,7 +174,7 @@ export function HomeContent() {
           </Center>
         </Section>
 
-        <Section z={sectionZIndex--} background="right-card">
+        <Section background="right-card">
           <Center>
             <Header>Write components with code and markup</Header>
             <Para>
@@ -206,7 +197,7 @@ export function HomeContent() {
           </Center>
         </Section>
 
-        <Section z={sectionZIndex--} background="left-card">
+        <Section background="left-card">
           <Center>
             <Header>Add interactivity wherever you need it</Header>
             <Para>
@@ -236,40 +227,45 @@ export function HomeContent() {
           </Center>
         </Section>
 
-        <div className="flex justify-center items-center -mb-10 z-10 -mt-10 ">
-          <div className="rounded-full text-purple-40 font-bold text-display  bg-fixed bg-center bg-[length:80px_100%] bg-[conic-gradient(at_top_right,_var(--tw-gradient-stops))] from-yellow-10 via-purple-10 to-purple-40 h-20 w-20 flex justify-center items-center text-lg shadow-inner dark:border-inner-border">
-            <svg
-              className="text-purple-50 dark:text-primary-dark"
-              fill="none"
-              width="36"
-              height="36"
-              viewBox="0 0 72 72"
-              aria-hidden="true">
-              <g clipPath="url(#clip0_8_10998)">
-                <path
-                  d="M54.0001 15H18.0001C16.3432 15 15.0001 16.3431 15.0001 18V42H33V48H12.9567L9.10021 57L24.0006 57C24.0006 55.3431 25.3437 54 27.0006 54H33V57.473C33 59.3786 33.3699 61.2582 34.0652 63H9.10021C4.79287 63 1.88869 58.596 3.5852 54.6368L9.0001 42V18C9.0001 13.0294 13.0295 9 18.0001 9H54.0001C58.9707 9 63.0001 13.0294 63.0001 18V25.4411C62.0602 25.0753 61.0589 24.8052 60.0021 24.6458C59.0567 24.5032 58.0429 24.3681 57.0001 24.2587V18C57.0001 16.3431 55.6569 15 54.0001 15Z"
-                  fill="currentColor"
-                />
-                <path
-                  d="M48 42C48 40.3431 49.3431 39 51 39H54C55.6569 39 57 40.3431 57 42C57 43.6569 55.6569 45 54 45H51C49.3431 45 48 43.6569 48 42Z"
-                  fill="currentColor"
-                />
-                <path
-                  fillRule="evenodd"
-                  clipRule="evenodd"
-                  d="M45.8929 30.5787C41.8093 31.1947 39 34.8257 39 38.9556V57.473C39 61.6028 41.8093 65.2339 45.8929 65.8499C48.0416 66.174 50.3981 66.4286 52.5 66.4286C54.6019 66.4286 56.9584 66.174 59.1071 65.8499C63.1907 65.2339 66 61.6028 66 57.473V38.9556C66 34.8258 63.1907 31.1947 59.1071 30.5787C56.9584 30.2545 54.6019 30 52.5 30C50.3981 30 48.0416 30.2545 45.8929 30.5787ZM60 57.473V38.9556C60 37.4615 59.0438 36.637 58.2121 36.5116C56.2014 36.2082 54.1763 36 52.5 36C50.8237 36 48.7986 36.2082 46.7879 36.5116C45.9562 36.637 45 37.4615 45 38.9556V57.473C45 58.9671 45.9562 59.7916 46.7879 59.917C48.7986 60.2203 50.8237 60.4286 52.5 60.4286C54.1763 60.4286 56.2014 60.2203 58.2121 59.917C59.0438 59.7916 60 58.9671 60 57.473Z"
-                  fill="currentColor"
-                />
-              </g>
-              <defs>
-                <clipPath id="clip0_8_10998">
-                  <rect width="72" height="72" fill="white" />
-                </clipPath>
-              </defs>
-            </svg>
+        <Section background="right-card">
+          <div
+            className="absolute flex justify-center items-center"
+            style={{
+              top: 0,
+              transform: 'translate(2px, 4px)',
+            }}>
+            <div className="rounded-full text-purple-40 font-bold text-display  bg-fixed bg-center bg-[length:80px_100%] bg-[conic-gradient(at_top_right,_var(--tw-gradient-stops))] from-yellow-10 via-purple-10 to-purple-40 h-20 w-20 flex justify-center items-center text-lg shadow-inner dark:border-inner-border">
+              <svg
+                className="text-purple-50 dark:text-primary-dark"
+                fill="none"
+                width="36"
+                height="36"
+                viewBox="0 0 72 72"
+                aria-hidden="true">
+                <g clipPath="url(#clip0_8_10998)">
+                  <path
+                    d="M54.0001 15H18.0001C16.3432 15 15.0001 16.3431 15.0001 18V42H33V48H12.9567L9.10021 57L24.0006 57C24.0006 55.3431 25.3437 54 27.0006 54H33V57.473C33 59.3786 33.3699 61.2582 34.0652 63H9.10021C4.79287 63 1.88869 58.596 3.5852 54.6368L9.0001 42V18C9.0001 13.0294 13.0295 9 18.0001 9H54.0001C58.9707 9 63.0001 13.0294 63.0001 18V25.4411C62.0602 25.0753 61.0589 24.8052 60.0021 24.6458C59.0567 24.5032 58.0429 24.3681 57.0001 24.2587V18C57.0001 16.3431 55.6569 15 54.0001 15Z"
+                    fill="currentColor"
+                  />
+                  <path
+                    d="M48 42C48 40.3431 49.3431 39 51 39H54C55.6569 39 57 40.3431 57 42C57 43.6569 55.6569 45 54 45H51C49.3431 45 48 43.6569 48 42Z"
+                    fill="currentColor"
+                  />
+                  <path
+                    fillRule="evenodd"
+                    clipRule="evenodd"
+                    d="M45.8929 30.5787C41.8093 31.1947 39 34.8257 39 38.9556V57.473C39 61.6028 41.8093 65.2339 45.8929 65.8499C48.0416 66.174 50.3981 66.4286 52.5 66.4286C54.6019 66.4286 56.9584 66.174 59.1071 65.8499C63.1907 65.2339 66 61.6028 66 57.473V38.9556C66 34.8258 63.1907 31.1947 59.1071 30.5787C56.9584 30.2545 54.6019 30 52.5 30C50.3981 30 48.0416 30.2545 45.8929 30.5787ZM60 57.473V38.9556C60 37.4615 59.0438 36.637 58.2121 36.5116C56.2014 36.2082 54.1763 36 52.5 36C50.8237 36 48.7986 36.2082 46.7879 36.5116C45.9562 36.637 45 37.4615 45 38.9556V57.473C45 58.9671 45.9562 59.7916 46.7879 59.917C48.7986 60.2203 50.8237 60.4286 52.5 60.4286C54.1763 60.4286 56.2014 60.2203 58.2121 59.917C59.0438 59.7916 60 58.9671 60 57.473Z"
+                    fill="currentColor"
+                  />
+                </g>
+                <defs>
+                  <clipPath id="clip0_8_10998">
+                    <rect width="72" height="72" fill="white" />
+                  </clipPath>
+                </defs>
+              </svg>
+            </div>
           </div>
-        </div>
-        <Section z={sectionZIndex--} background="right-card">
           <Center>
             <Header>
               Go full-stack <br className="hidden lg:inline" />
@@ -304,7 +300,7 @@ export function HomeContent() {
             </div>
           </Center>
         </Section>
-        <Section z={sectionZIndex--} background="left-card">
+        <Section background="left-card">
           <div className="mx-auto flex flex-col w-full">
             <div className="mx-auto max-w-4xl lg:text-center items-center px-5 flex flex-col">
               <Header>Use the best from every platform</Header>
@@ -451,7 +447,7 @@ export function HomeContent() {
           </div>
         </Section>
 
-        <Section z={sectionZIndex--} background="right-card">
+        <Section background="right-card">
           <div className="max-w-7xl mx-auto flex flex-col lg:flex-row px-5">
             <div className="max-w-3xl lg:max-w-7xl gap-5 flex flex-col lg:flex-row lg:px-5 gap-5">
               <div className="w-full lg:w-6/12 max-w-3xl flex flex-col items-start justify-start lg:pl-5 lg:pr-10">
@@ -521,7 +517,7 @@ export function HomeContent() {
           </div>
         </Section>
 
-        <Section z={sectionZIndex--} background="left-card">
+        <Section background="left-card">
           <div className="w-full">
             <div className="mx-auto flex flex-col max-w-4xl">
               <Center>

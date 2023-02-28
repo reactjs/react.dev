@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns="http://www.w3.org/2000/svg"
+   version="142.0"
+   width="100%"
+   height="100%"
+   fill="blue"
+   style="transform: scaleY(-1)"
+   >
+
+  <defs>
+     <filter id="colorMeLTA">
+    <feColorMatrix
+      in="SourceGraphic"
+      type="matrix"
+      values="0 0 0 0 0
+              0 0 0 0 0
+              0 0 0 0 0
+              1 1 1 0 0" />
+
+     </filter>
+  </defs>
+
+  <g style="filter: url(#colorMeLTA)">
+
+    <rect width="100%" fill="white" y="0" style="height: calc(100% - 0.7 * 96px)" />
+
+   <svg viewBox="0 0 1 1" preserveAspectRatio="xMidYMax meet"
+         x="50%" width="96" y="60%" height="40%" style="overflow: visible">
+        <path fill="white" style="transform: translateX(-0.5px)"
+              d="M 1 0.293 C 1 0.293 0.9622 0.3429 0.9772 0.3928 C 0.9974 0.4599 1.003 0.5333 0.9903 0.609 C 0.9566 0.8114 0.7873 0.9717 0.5836 0.996 C 0.2984 1.03 0.0552 0.8071 0.0552 0.5285 C 0.0552 0.481 0.0622 0.4352 0.0754 0.392 C 0.0903 0.3425 0.0518 0.293 0 0.293"
+              />
+    </svg>
+
+
+
+   <svg viewBox="0 0 1 1" preserveAspectRatio="xMidYMin meet"
+         x="50%" width="96" y="96" height="40%" style="overflow: visible;">
+        <path fill="black" style="transform: translateX(-0.5px) scaleY(-1)"
+              d="M 1 1 C 1 1 0.9622 0.9501 0.9772 0.9002 C 0.9974 0.8331 1.003 0.7597 0.9903 0.684 C 0.9566 0.4816 0.7873 0.3213 0.5836 0.297 C 0.2984 0.263 0.0552 0.4859 0.0552 0.7645 C 0.0552 0.812 0.0622 0.8578 0.0754 0.901 C 0.0903 0.9505 0.0518 1 0 1"
+              />
+    </svg>
+   </g>
+
+</svg>

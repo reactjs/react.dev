@@ -798,38 +798,6 @@ const CommunityImages = memo(function CommunityImages({isLazy}) {
   );
 });
 
-const example1Start = `function Video({ video }) {
-  return (
-    <div>
-      <Thumbnail video={video} />
-      <a href={video.url}>
-        <h3>{video.title}</h3>
-        <p>{video.description}</p>
-      </a>
-      <LikeButton video={video} />
-    </div>
-  );
-}`;
-const example1Frames = generateFrames(example1Start, [
-  ['jump', {line: 4, after: '<Thumbnail', delay: 1000}],
-  ['type', {write: ' shape="', complete: '"'}],
-  ['type', {write: 'square'}],
-  ['jump', {line: 4, after: 'square"'}],
-  ['save', {delay: 1000}],
-  ['jump', {line: 9, after: '<LikeButton'}],
-  ['type', {write: ' showCount={', complete: 't}'}],
-  ['jump', {line: 9, after: '={t'}],
-  ['type', {write: 'rue'}],
-  ['jump', {line: 9, after: 'showCount={true}'}],
-  ['save', {delay: 3000}],
-  ['type', {erase: ' showCount={true}'}],
-  ['save', {delay: 1000}],
-  ['jump', {line: 4, after: 'square"'}],
-  ['type', {erase: ' shape="square"'}],
-  ['save', {delay: 1000}],
-  ['done'],
-]);
-
 function generateFrames(initialCode, commands) {
   let frames = [];
   let lines = initialCode.split('\n');
@@ -968,10 +936,10 @@ function ExampleLayout({filename, left, right, onPlay}) {
   );
 }
 
-function Example1() {
+function useExampleFrames(frames) {
   const [frameIndex, setFrameIndex] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
-  const frame = example1Frames[frameIndex];
+  const frame = frames[frameIndex];
   const ref = useRef(null);
   const timeoutRef = useRef(null);
 
@@ -1010,16 +978,53 @@ function Example1() {
     };
   }, []);
 
+  let onPlay = null;
+  if (frame.done) {
+    onPlay = () => setFrameIndex(0);
+  }
+  return [ref, frame];
+}
+
+const example1Frames = generateFrames(
+  `function Video({ video }) {
+  return (
+    <div>
+      <Thumbnail video={video} />
+      <a href={video.url}>
+        <h3>{video.title}</h3>
+        <p>{video.description}</p>
+      </a>
+      <LikeButton video={video} />
+    </div>
+  );
+}`,
+  [
+    ['jump', {line: 4, after: '<Thumbnail', delay: 1000}],
+    ['type', {write: ' shape="', complete: '"'}],
+    ['type', {write: 'square'}],
+    ['jump', {line: 4, after: 'square"'}],
+    ['save', {delay: 1000}],
+    ['jump', {line: 9, after: '<LikeButton'}],
+    ['type', {write: ' showCount={', complete: 't}'}],
+    ['jump', {line: 9, after: '={t'}],
+    ['type', {write: 'rue'}],
+    ['jump', {line: 9, after: 'showCount={true}'}],
+    ['save', {delay: 3000}],
+    ['type', {erase: ' showCount={true}'}],
+    ['save', {delay: 1000}],
+    ['jump', {line: 4, after: 'square"'}],
+    ['type', {erase: ' shape="square"'}],
+    ['save', {delay: 1000}],
+    ['done'],
+  ]
+);
+
+function Example1() {
+  const [ref, frame, onPlay] = useExampleFrames(example1Frames);
   return (
     <ExampleLayout
       filename="Video.js"
-      onPlay={
-        frame.done
-          ? () => {
-              setFrameIndex(0);
-            }
-          : null
-      }
+      onPlay={onPlay}
       left={
         <div ref={ref}>
           <CodeBlock

@@ -982,7 +982,7 @@ function useExampleFrames(frames) {
   if (frame.done) {
     onPlay = () => setFrameIndex(0);
   }
-  return [ref, frame];
+  return [ref, frame, onPlay];
 }
 
 const example1Frames = generateFrames(
@@ -1054,7 +1054,41 @@ function Example1() {
   );
 }
 
+const example2Frames = generateFrames(
+  `function VideoList({ videos, emptyHeading }) {
+  const count = videos.length;
+  let heading = emptyHeading;
+  if (count > 0) {
+    const noun = count > 1 ? 'Videos' : 'Video';
+    heading = count + ' ' + noun;
+  }
+  return (
+    <section>
+      <h2>{heading}</h2>
+      {videos.map(video =>
+        <Video key={video.id} video={video} />
+      )}
+    </section>
+  );
+}`,
+  [
+    ['jump', {line: 10, after: 'heading', delay: 1000}],
+    ['type', {write: '.toUpperCase()'}],
+    ['save', {delay: 1000}],
+    ['jump', {line: 11, after: '{videos'}],
+    ['type', {write: '.toReversed()'}],
+    ['save', {delay: 3000}],
+    ['type', {erase: '.toReversed()'}],
+    ['save', {delay: 1000}],
+    ['jump', {line: 10, after: '.toUpperCase()'}],
+    ['type', {erase: '.toUpperCase()'}],
+    ['save', {delay: 1000}],
+    ['done'],
+  ]
+);
+
 function Example2() {
+  const [ref, frame, onPlay] = useExampleFrames(example2Frames);
   const videos = [
     {
       id: 0,
@@ -1079,29 +1113,21 @@ function Example2() {
   return (
     <ExampleLayout
       filename="VideoList.js"
+      onPlay={onPlay}
       left={
-        <CodeBlock isFromPackageImport={false} noShadow={true} noMargin={true}>
-          <div>{`function VideoList({ videos, emptyHeading }) {
-  const count = videos.length;
-  let heading = emptyHeading;
-  if (count > 0) {
-    const noun = count > 1 ? 'Videos' : 'Video';
-    heading = count + ' ' + noun;
-  }
-  return (
-    <section>
-      <h2>{heading}</h2>
-      {videos.map(video =>
-        <Video key={video.id} video={video} />
-      )}
-    </section>
-  );
-}`}</div>
-        </CodeBlock>
+        <div ref={ref}>
+          <CodeBlock
+            caret={frame.done ? null : frame.caret}
+            isFromPackageImport={false}
+            noShadow={true}
+            noMargin={true}>
+            <div>{frame.code}</div>
+          </CodeBlock>
+        </div>
       }
       right={
         <ExamplePanel height="22rem" noShadow={false} noPadding={true}>
-          <VideoList videos={videos} />
+          <VideoList videos={videos} step={frame.step} />
         </ExamplePanel>
       }
     />
@@ -1482,7 +1508,7 @@ function filterVideos(videos, query) {
   });
 }
 
-function VideoList({videos, emptyHeading}) {
+function VideoList({videos, emptyHeading, step}) {
   let heading = emptyHeading;
   const count = videos.length;
   if (count > 0) {
@@ -1492,10 +1518,12 @@ function VideoList({videos, emptyHeading}) {
   return (
     <section className="relative p-4">
       <h2 className="font-bold text-xl text-primary pb-4 leading-snug">
-        {heading}
+        {step === 1 || step === 2 || step === 3
+          ? heading.toUpperCase()
+          : heading}
       </h2>
       <div className="flex flex-col gap-4">
-        {videos.map((video) => (
+        {(step === 2 ? videos.slice().reverse() : videos).map((video) => (
           <Video key={video.id} video={video} />
         ))}
       </div>

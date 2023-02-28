@@ -920,16 +920,19 @@ function generateFrames(initialCode, commands) {
   return frames;
 }
 
-function ExampleLayout({filename, left, right}) {
+function ExampleLayout({filename, left, right, onPlay}) {
   return (
     <div className="lg:pl-10 lg:pr-5 w-full">
       <div className="mt-12 mb-2 lg:my-16 max-w-7xl mx-auto flex flex-col w-full lg:rounded-2xl lg:bg-card lg:dark:bg-card-dark">
         <div className="flex-col gap-0 lg:gap-5 lg:rounded-2xl lg:bg-gray-10 lg:dark:bg-gray-70 shadow-inner lg:flex-row flex grow w-full mx-auto items-center bg-cover bg-center lg:bg-right lg:bg-[length:60%_100%] bg-no-repeat bg-meta-gradient dark:bg-meta-gradient-dark">
           <div className="lg:-m-5 h-full shadow-nav dark:shadow-nav-dark lg:rounded-2xl bg-wash dark:bg-gray-95 w-full flex grow flex-col">
-            <div className="w-full bg-card dark:bg-wash-dark lg:rounded-t-2xl border-b border-black/5 dark:border-white/5">
+            <div className="w-full bg-card dark:bg-wash-dark lg:rounded-t-2xl border-b border-black/5 dark:border-white/5 relative">
               <h3 className="text-sm my-1 mx-5 text-tertiary dark:text-tertiary-dark select-none">
                 {filename}
               </h3>
+              <button onClick={onPlay} className="absolute right-0 top-0">
+                play
+              </button>
             </div>
             {left}
           </div>
@@ -944,23 +947,25 @@ function ExampleLayout({filename, left, right}) {
 
 function Example1() {
   const [frameIndex, setFrameIndex] = useState(0);
+  const [isPlaying, setIsPlaying] = useState(false);
   const frame = example1Frames[frameIndex];
 
   useEffect(() => {
-    if (!frame.done) {
+    if (isPlaying && !frame.done) {
       const id = setTimeout(() => {
         setFrameIndex((i) => i + 1);
       }, frame.delay);
       return () => clearTimeout(id);
     }
-  }, [frame]);
+  }, [isPlaying, frame]);
 
   return (
     <ExampleLayout
       filename="Video.js"
+      onPlay={() => setIsPlaying(true)}
       left={
         <CodeBlock
-          caret={frame.caret}
+          caret={isPlaying ? frame.caret : null}
           isFromPackageImport={false}
           noShadow={true}
           noMargin={true}>

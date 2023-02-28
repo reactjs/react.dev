@@ -227,209 +227,219 @@ export default function TopNav({
       });
   }, [showFeedback]);
 
+  const scrollDetectorRef = useRef(null);
   useEffect(() => {
-    function handleScroll() {
-      const scrollY = window.scrollY;
-      if (scrollY > 40 && !isScrolled) {
-        setIsScrolled(true);
-      } else if (scrollY <= 40 && isScrolled) {
-        setIsScrolled(false);
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          setIsScrolled(!entry.isIntersecting);
+        });
+      },
+      {
+        root: null,
+        rootMargin: `0px 0px`,
+        threshold: 0,
       }
-    }
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [isScrolled]);
+    );
+    observer.observe(scrollDetectorRef.current);
+    return () => observer.disconnect();
+  }, []);
 
   return (
-    <div
-      className={cn(
-        isOpen
-          ? 'h-screen sticky top-0 lg:bottom-0 lg:h-screen flex flex-col shadow-nav dark:shadow-nav-dark z-20'
-          : 'z-50 sticky top-0'
-      )}>
-      <nav
+    <>
+      <div ref={scrollDetectorRef} />
+      <div
         className={cn(
-          'backdrop-filter backdrop-blur-lg backdrop-saturate-200 transition-shadow bg-opacity-90 items-center w-full flex justify-between bg-wash dark:bg-wash-dark dark:bg-opacity-95 px-1.5 lg:pr-5 lg:pl-4 z-50',
-          {'dark:shadow-nav-dark shadow-nav': isScrolled || isOpen}
+          isOpen
+            ? 'h-screen sticky top-0 lg:bottom-0 lg:h-screen flex flex-col shadow-nav dark:shadow-nav-dark z-20'
+            : 'z-50 sticky top-0'
         )}>
-        <div className="h-16 w-full gap-0 sm:gap-3 flex items-center justify-between">
-          <div className="3xl:flex-1 flex flex-row ">
-            <button
-              type="button"
-              aria-label="Menu"
-              onClick={() => setIsOpen(!isOpen)}
-              className={cn(
-                'active:scale-95 transition-transform flex lg:hidden w-12 h-12 rounded-full items-center justify-center hover:bg-primary/5 hover:dark:bg-primary-dark/5 outline-link',
-                {
-                  'text-link dark:text-link-dark': isOpen,
-                }
-              )}>
-              {isOpen ? <IconClose /> : <IconHamburger />}
-            </button>
-            <div className="3xl:flex-1 flex align-center">
-              <NextLink href="/">
-                <a
-                  className={`active:scale-95 overflow-hidden transition-transform relative items-center text-primary dark:text-primary-dark p-1 whitespace-nowrap outline-link rounded-full 3xl:rounded-xl inline-flex text-lg font-normal gap-2`}
-                  onClick={() => {
-                    setLogoAnimation(true);
-                  }}
-                  onAnimationEnd={() => setLogoAnimation(false)}>
-                  <Logo
-                    className={cn(
-                      'text-sm mr-0 w-10 h-10 text-link dark:text-link-dark flex origin-center transition-all ease-in-out',
-                      logoAnimation &&
-                        'animate-[rotate_.5s_ease-in-out_forwards]'
-                    )}
-                  />
-                  <span className="sr-only 3xl:not-sr-only">React</span>
-                </a>
-              </NextLink>
-            </div>
-          </div>
-          <div className="hidden md:flex flex-1 justify-center items-center w-full 3xl:w-auto 3xl:shrink-0 3xl:justify-center">
-            <Search />
-          </div>
-          <div className="text-base justify-center items-center gap-1.5 flex 3xl:flex-1 flex-row 3xl:justify-end">
-            <div className="mx-2.5 gap-1.5 hidden lg:flex">
-              <NavItem isActive={section === 'learn'} url="/learn">
-                Learn
-              </NavItem>
-              <NavItem
-                isActive={section === 'reference'}
-                url="/reference/react">
-                Reference
-              </NavItem>
-              <NavItem isActive={section === 'community'} url="/community">
-                Community
-              </NavItem>
-              <NavItem isActive={section === 'blog'} url="/blog">
-                Blog
-              </NavItem>
-            </div>
-            <div className="flex w-full md:hidden"></div>
-            <div className="flex items-center -space-x-2.5 xs:space-x-0 ">
-              <div className="flex md:hidden">
-                <Search />
-              </div>
-              <div className="flex lg:hidden">
-                <button
-                  aria-label="Give feedback"
-                  type="button"
-                  className={cn(
-                    'active:scale-95 transition-transform flex w-12 h-12 rounded-full items-center justify-center hover:bg-primary/5 hover:dark:bg-primary-dark/5 outline-link',
-                    {
-                      'bg-secondary-button dark:bg-secondary-button-dark':
-                        showFeedback,
-                    }
-                  )}
-                  onClick={handleFeedback}>
-                  {feedbackIcon}
-                </button>
-                <div
-                  ref={feedbackPopupRef}
-                  className={cn(
-                    'fixed top-12 right-0',
-                    showFeedback ? 'block' : 'hidden'
-                  )}>
-                  <Feedback
-                    onSubmit={() => {
-                      clearTimeout(feedbackAutohideRef.current);
-                      feedbackAutohideRef.current = setTimeout(() => {
-                        setShowFeedback(false);
-                      }, 1000);
+        <nav
+          className={cn(
+            'backdrop-filter backdrop-blur-lg backdrop-saturate-200 transition-shadow bg-opacity-90 items-center w-full flex justify-between bg-wash dark:bg-wash-dark dark:bg-opacity-95 px-1.5 lg:pr-5 lg:pl-4 z-50',
+            {'dark:shadow-nav-dark shadow-nav': isScrolled || isOpen}
+          )}>
+          <div className="h-16 w-full gap-0 sm:gap-3 flex items-center justify-between">
+            <div className="3xl:flex-1 flex flex-row ">
+              <button
+                type="button"
+                aria-label="Menu"
+                onClick={() => setIsOpen(!isOpen)}
+                className={cn(
+                  'active:scale-95 transition-transform flex lg:hidden w-12 h-12 rounded-full items-center justify-center hover:bg-primary/5 hover:dark:bg-primary-dark/5 outline-link',
+                  {
+                    'text-link dark:text-link-dark': isOpen,
+                  }
+                )}>
+                {isOpen ? <IconClose /> : <IconHamburger />}
+              </button>
+              <div className="3xl:flex-1 flex align-center">
+                <NextLink href="/">
+                  <a
+                    className={`active:scale-95 overflow-hidden transition-transform relative items-center text-primary dark:text-primary-dark p-1 whitespace-nowrap outline-link rounded-full 3xl:rounded-xl inline-flex text-lg font-normal gap-2`}
+                    onClick={() => {
+                      setLogoAnimation(true);
                     }}
-                  />
+                    onAnimationEnd={() => setLogoAnimation(false)}>
+                    <Logo
+                      className={cn(
+                        'text-sm mr-0 w-10 h-10 text-link dark:text-link-dark flex origin-center transition-all ease-in-out',
+                        logoAnimation &&
+                          'animate-[rotate_.5s_ease-in-out_forwards]'
+                      )}
+                    />
+                    <span className="sr-only 3xl:not-sr-only">React</span>
+                  </a>
+                </NextLink>
+              </div>
+            </div>
+            <div className="hidden md:flex flex-1 justify-center items-center w-full 3xl:w-auto 3xl:shrink-0 3xl:justify-center">
+              <Search />
+            </div>
+            <div className="text-base justify-center items-center gap-1.5 flex 3xl:flex-1 flex-row 3xl:justify-end">
+              <div className="mx-2.5 gap-1.5 hidden lg:flex">
+                <NavItem isActive={section === 'learn'} url="/learn">
+                  Learn
+                </NavItem>
+                <NavItem
+                  isActive={section === 'reference'}
+                  url="/reference/react">
+                  Reference
+                </NavItem>
+                <NavItem isActive={section === 'community'} url="/community">
+                  Community
+                </NavItem>
+                <NavItem isActive={section === 'blog'} url="/blog">
+                  Blog
+                </NavItem>
+              </div>
+              <div className="flex w-full md:hidden"></div>
+              <div className="flex items-center -space-x-2.5 xs:space-x-0 ">
+                <div className="flex md:hidden">
+                  <Search />
                 </div>
-              </div>
-              <div className="flex dark:hidden">
-                <button
-                  type="button"
-                  aria-label="Use Dark Mode"
-                  onClick={() => {
-                    window.__setPreferredTheme('dark');
-                  }}
-                  className="active:scale-95 transition-transform flex w-12 h-12 rounded-full items-center justify-center hover:bg-primary/5 hover:dark:bg-primary-dark/5 outline-link">
-                  {darkIcon}
-                </button>
-              </div>
-              <div className="hidden dark:flex">
-                <button
-                  type="button"
-                  aria-label="Use Light Mode"
-                  onClick={() => {
-                    window.__setPreferredTheme('light');
-                  }}
-                  className="active:scale-95 transition-transform flex w-12 h-12 rounded-full items-center justify-center hover:bg-primary/5 hover:dark:bg-primary-dark/5 outline-link">
-                  {lightIcon}
-                </button>
-              </div>
-              <div className="flex">
-                <Link
-                  href="https://github.com/facebook/react/releases"
-                  target="_blank"
-                  rel="noreferrer noopener"
-                  aria-label="Open on GitHub"
-                  className="active:scale-95 transition-transform flex w-12 h-12 rounded-full items-center justify-center hover:bg-primary/5 hover:dark:bg-primary-dark/5 outline-link">
-                  {githubIcon}
-                </Link>
+                <div className="flex lg:hidden">
+                  <button
+                    aria-label="Give feedback"
+                    type="button"
+                    className={cn(
+                      'active:scale-95 transition-transform flex w-12 h-12 rounded-full items-center justify-center hover:bg-primary/5 hover:dark:bg-primary-dark/5 outline-link',
+                      {
+                        'bg-secondary-button dark:bg-secondary-button-dark':
+                          showFeedback,
+                      }
+                    )}
+                    onClick={handleFeedback}>
+                    {feedbackIcon}
+                  </button>
+                  <div
+                    ref={feedbackPopupRef}
+                    className={cn(
+                      'fixed top-12 right-0',
+                      showFeedback ? 'block' : 'hidden'
+                    )}>
+                    <Feedback
+                      onSubmit={() => {
+                        clearTimeout(feedbackAutohideRef.current);
+                        feedbackAutohideRef.current = setTimeout(() => {
+                          setShowFeedback(false);
+                        }, 1000);
+                      }}
+                    />
+                  </div>
+                </div>
+                <div className="flex dark:hidden">
+                  <button
+                    type="button"
+                    aria-label="Use Dark Mode"
+                    onClick={() => {
+                      window.__setPreferredTheme('dark');
+                    }}
+                    className="active:scale-95 transition-transform flex w-12 h-12 rounded-full items-center justify-center hover:bg-primary/5 hover:dark:bg-primary-dark/5 outline-link">
+                    {darkIcon}
+                  </button>
+                </div>
+                <div className="hidden dark:flex">
+                  <button
+                    type="button"
+                    aria-label="Use Light Mode"
+                    onClick={() => {
+                      window.__setPreferredTheme('light');
+                    }}
+                    className="active:scale-95 transition-transform flex w-12 h-12 rounded-full items-center justify-center hover:bg-primary/5 hover:dark:bg-primary-dark/5 outline-link">
+                    {lightIcon}
+                  </button>
+                </div>
+                <div className="flex">
+                  <Link
+                    href="https://github.com/facebook/react/releases"
+                    target="_blank"
+                    rel="noreferrer noopener"
+                    aria-label="Open on GitHub"
+                    className="active:scale-95 transition-transform flex w-12 h-12 rounded-full items-center justify-center hover:bg-primary/5 hover:dark:bg-primary-dark/5 outline-link">
+                    {githubIcon}
+                  </Link>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </nav>
+        </nav>
 
-      {isOpen && (
-        <div
-          ref={scrollParentRef}
-          className="overflow-y-scroll no-bg-scrollbar lg:w-[342px] grow bg-wash dark:bg-wash-dark">
-          <aside
-            className={cn(
-              `lg:grow lg:flex flex-col w-full pb-8 lg:pb-0 lg:max-w-xs z-50`,
-              isOpen ? 'block z-40' : 'hidden lg:block'
-            )}>
-            <nav
-              role="navigation"
-              style={{'--bg-opacity': '.2'} as React.CSSProperties} // Need to cast here because CSS vars aren't considered valid in TS types (cuz they could be anything)
-              className="w-full lg:h-auto grow pr-0 lg:pr-5 pt-4 lg:py-6 md:pt-4 lg:pt-4 scrolling-touch scrolling-gpu">
-              {/* No fallback UI so need to be careful not to suspend directly inside. */}
-              <Suspense fallback={null}>
-                <div className="pl-2.5 xs:pl-5 xs:gap-0.5 xs:text-base overflow-x-scroll flex flex-row lg:hidden text-base font-bold text-secondary dark:text-secondary-dark">
-                  <NavItem isActive={section === 'learn'} url="/learn">
-                    Learn
-                  </NavItem>
-                  <NavItem
-                    isActive={section === 'reference'}
-                    url="/reference/react">
-                    Reference
-                  </NavItem>
-                  <NavItem isActive={section === 'community'} url="/community">
-                    Community
-                  </NavItem>
-                  <NavItem isActive={section === 'blog'} url="/blog">
-                    Blog
-                  </NavItem>
-                </div>
-                <div
-                  role="separator"
-                  className="ml-5 mt-4 mb-2 border-b border-border dark:border-border-dark"
-                />
-                <SidebarRouteTree
-                  // Don't share state between the desktop and mobile versions.
-                  // This avoids unnecessary animations and visual flicker.
-                  key={isOpen ? 'mobile-overlay' : 'desktop-or-hidden'}
-                  routeTree={routeTree}
-                  breadcrumbs={breadcrumbs}
-                  isForceExpanded={isOpen}
-                />
-              </Suspense>
-              <div className="h-16" />
-            </nav>
-            <div className="fixed bottom-0 hidden lg:block">
-              <Feedback />
-            </div>
-          </aside>
-        </div>
-      )}
-    </div>
+        {isOpen && (
+          <div
+            ref={scrollParentRef}
+            className="overflow-y-scroll no-bg-scrollbar lg:w-[342px] grow bg-wash dark:bg-wash-dark">
+            <aside
+              className={cn(
+                `lg:grow lg:flex flex-col w-full pb-8 lg:pb-0 lg:max-w-xs z-50`,
+                isOpen ? 'block z-40' : 'hidden lg:block'
+              )}>
+              <nav
+                role="navigation"
+                style={{'--bg-opacity': '.2'} as React.CSSProperties} // Need to cast here because CSS vars aren't considered valid in TS types (cuz they could be anything)
+                className="w-full lg:h-auto grow pr-0 lg:pr-5 pt-4 lg:py-6 md:pt-4 lg:pt-4 scrolling-touch scrolling-gpu">
+                {/* No fallback UI so need to be careful not to suspend directly inside. */}
+                <Suspense fallback={null}>
+                  <div className="pl-2.5 xs:pl-5 xs:gap-0.5 xs:text-base overflow-x-scroll flex flex-row lg:hidden text-base font-bold text-secondary dark:text-secondary-dark">
+                    <NavItem isActive={section === 'learn'} url="/learn">
+                      Learn
+                    </NavItem>
+                    <NavItem
+                      isActive={section === 'reference'}
+                      url="/reference/react">
+                      Reference
+                    </NavItem>
+                    <NavItem
+                      isActive={section === 'community'}
+                      url="/community">
+                      Community
+                    </NavItem>
+                    <NavItem isActive={section === 'blog'} url="/blog">
+                      Blog
+                    </NavItem>
+                  </div>
+                  <div
+                    role="separator"
+                    className="ml-5 mt-4 mb-2 border-b border-border dark:border-border-dark"
+                  />
+                  <SidebarRouteTree
+                    // Don't share state between the desktop and mobile versions.
+                    // This avoids unnecessary animations and visual flicker.
+                    key={isOpen ? 'mobile-overlay' : 'desktop-or-hidden'}
+                    routeTree={routeTree}
+                    breadcrumbs={breadcrumbs}
+                    isForceExpanded={isOpen}
+                  />
+                </Suspense>
+                <div className="h-16" />
+              </nav>
+              <div className="fixed bottom-0 hidden lg:block">
+                <Feedback />
+              </div>
+            </aside>
+          </div>
+        )}
+      </div>
+    </>
   );
 }

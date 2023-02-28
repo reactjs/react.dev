@@ -811,7 +811,7 @@ const example1Start = `function Video({ video }) {
   );
 }`;
 const example1Frames = generateFrames(example1Start, [
-  ['jump', {line: 4, after: '<Thumbnail'}],
+  ['jump', {line: 4, after: '<Thumbnail', delay: 3000}],
   ['type', {write: ' shape="', complete: '"'}],
   ['type', {write: 'square'}],
   ['save', {delay: 2000}],
@@ -939,9 +939,13 @@ function ExampleLayout({filename, left, right, onPlay}) {
               <h3 className="text-sm my-1 mx-5 text-tertiary dark:text-tertiary-dark select-none">
                 {filename}
               </h3>
-              <button onClick={onPlay} className="absolute right-0 top-0">
-                play
-              </button>
+              {onPlay != null && (
+                <button
+                  onClick={onPlay}
+                  className="absolute right-0 top-0 text-tertiary text-sm my-1 mx-5">
+                  Replay
+                </button>
+              )}
             </div>
             {left}
           </div>
@@ -958,6 +962,7 @@ function Example1() {
   const [frameIndex, setFrameIndex] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
   const frame = example1Frames[frameIndex];
+  const ref = useRef(null);
 
   useEffect(() => {
     if (isPlaying && !frame.done) {
@@ -968,34 +973,58 @@ function Example1() {
     }
   }, [isPlaying, frame]);
 
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          setIsPlaying(entry.isIntersecting);
+        });
+      },
+      {
+        root: null,
+        rootMargin: `0px 0px`,
+      }
+    );
+    observer.observe(ref.current);
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <ExampleLayout
-      filename="Video.js"
-      onPlay={() => setIsPlaying(true)}
-      left={
-        <CodeBlock
-          caret={isPlaying ? frame.caret : null}
-          isFromPackageImport={false}
-          noShadow={true}
-          noMargin={true}>
-          <div>{frame.code}</div>
-        </CodeBlock>
-      }
-      right={
-        <ExamplePanel height="113px">
-          <Video
-            step={frame.step}
-            video={{
-              title: 'My video',
-              description: 'Video description',
-              image: 'blue',
-              url: null,
-              likes: 7,
-            }}
-          />
-        </ExamplePanel>
-      }
-    />
+    <div ref={ref}>
+      <ExampleLayout
+        filename="Video.js"
+        onPlay={
+          frame.done
+            ? () => {
+                setFrameIndex(0);
+              }
+            : null
+        }
+        left={
+          <CodeBlock
+            caret={frame.done ? null : frame.caret}
+            isFromPackageImport={false}
+            noShadow={true}
+            noMargin={true}>
+            <div>{frame.code}</div>
+          </CodeBlock>
+        }
+        right={
+          <ExamplePanel height="113px">
+            <Video
+              step={frame.step}
+              video={{
+                title: 'My video',
+                description: 'Video description',
+                image: 'blue',
+                url: null,
+                likes: 7,
+              }}
+            />
+          </ExamplePanel>
+        }
+      />
+    </div>
   );
 }
 

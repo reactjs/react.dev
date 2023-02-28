@@ -354,11 +354,11 @@ ol.mdx-illustration-block {
     opacity: 0;
     transform: scale(1);
   }
-  90% {
+  80% {
     opacity: 0;
     transform: scale(1);
   }
-  95% {
+  90% {
     opacity: 0.5;
     transform: scale(1.1);
   }

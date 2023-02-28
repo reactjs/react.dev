@@ -811,12 +811,22 @@ const example1Start = `function Video({ video }) {
   );
 }`;
 const example1Frames = generateFrames(example1Start, [
-  ['jump', {line: 4, after: '<Thumbnail', delay: 3000}],
+  ['jump', {line: 4, after: '<Thumbnail', delay: 1000}],
   ['type', {write: ' shape="', complete: '"'}],
   ['type', {write: 'square'}],
   ['jump', {line: 4, after: 'square"'}],
+  ['save', {delay: 1000}],
+  ['jump', {line: 9, after: '<LikeButton'}],
+  ['type', {write: ' showCount={', complete: 't}'}],
+  ['jump', {line: 9, after: '={t'}],
+  ['type', {write: 'rue'}],
+  ['jump', {line: 9, after: 'showCount={true}'}],
   ['save', {delay: 3000}],
+  ['type', {erase: ' showCount={true}'}],
+  ['save', {delay: 1000}],
+  ['jump', {line: 4, after: 'square"'}],
   ['type', {erase: ' shape="square"'}],
+  ['save', {delay: 1000}],
   ['done'],
 ]);
 
@@ -888,7 +898,7 @@ function generateFrames(initialCode, commands) {
             line = line.slice(0, j - 1) + line.slice(j);
             lines[linePos - 1] = line;
             charPos--;
-            delay = data?.delay ?? generateRandomDelay();
+            delay = 70;
             captureFrame();
           }
         } else {
@@ -942,7 +952,7 @@ function ExampleLayout({filename, left, right, onPlay}) {
                 <button
                   onClick={onPlay}
                   className="absolute right-0 top-0 text-tertiary text-sm my-1 mx-5"
-                  style={{animation: 'delayed-fadein 2000ms'}}>
+                  style={{animation: 'delayed-fadein 1500ms'}}>
                   Replay
                 </button>
               )}
@@ -981,7 +991,7 @@ function Example1() {
           if (entry.isIntersecting) {
             timeoutRef.current = setTimeout(() => {
               setIsPlaying(true);
-            }, 3000);
+            }, 2000);
           } else {
             clearTimeout(timeoutRef.current);
           }
@@ -1632,7 +1642,53 @@ function Video({video, step = 0}) {
             {video.description}
           </p>
         </a>
-        <LikeButton video={video} showCount={true} />
+        <LikeButton showCount={true} video={video} />
+      </div>
+    );
+  } else if (step === 3) {
+    return (
+      <div className="flex flex-row items-center gap-3">
+        <Thumbnail shape="square" video={video} />
+        <a
+          href={video.url}
+          target="_blank"
+          rel="noreferrer"
+          className="outline-link dark:outline-link outline-offset-4 group flex flex-col flex-1 gap-0.5">
+          <h3
+            className={cn(
+              'text-base leading-tight text-primary font-bold',
+              video.url && 'group-hover:underline'
+            )}>
+            {video.title}
+          </h3>
+          <p className="text-tertiary text-sm leading-snug">
+            {video.description}
+          </p>
+        </a>
+        <LikeButton video={video} />
+      </div>
+    );
+  } else if (step === 4) {
+    return (
+      <div className="flex flex-row items-center gap-3">
+        <Thumbnail video={video} />
+        <a
+          href={video.url}
+          target="_blank"
+          rel="noreferrer"
+          className="outline-link dark:outline-link outline-offset-4 group flex flex-col flex-1 gap-0.5">
+          <h3
+            className={cn(
+              'text-base leading-tight text-primary font-bold',
+              video.url && 'group-hover:underline'
+            )}>
+            {video.title}
+          </h3>
+          <p className="text-tertiary text-sm leading-snug">
+            {video.description}
+          </p>
+        </a>
+        <LikeButton video={video} />
       </div>
     );
   }

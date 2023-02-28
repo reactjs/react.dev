@@ -36,7 +36,10 @@ function Section({children, background = null}) {
           'bg-gradient-left dark:bg-gradient-left-dark border-t border-primary/10 dark:border-primary-dark/10 ',
         background === 'right-card' &&
           'bg-gradient-right dark:bg-gradient-right-dark border-t border-primary/5 dark:border-primary-dark/5'
-      )}>
+      )}
+      style={{
+        contentVisibility: 'layout style paint',
+      }}>
       <div className="flex-col gap-2 flex grow w-full my-20 lg:my-32 mx-auto items-center">
         {children}
       </div>
@@ -815,7 +818,7 @@ function Example1() {
         </CodeBlock>
       }
       right={
-        <ExamplePanel>
+        <ExamplePanel height="113px">
           <Video
             video={{
               title: 'My video',
@@ -876,7 +879,7 @@ function Example2() {
         </CodeBlock>
       }
       right={
-        <ExamplePanel noShadow={false} noPadding={true}>
+        <ExamplePanel height="22rem" noShadow={false} noPadding={true}>
           <VideoList videos={videos} />
         </ExamplePanel>
       }
@@ -1048,7 +1051,7 @@ function ExamplePanel({children, noPadding, noShadow, height}) {
         noShadow ? 'shadow-none' : 'shadow-nav dark:shadow-nav-dark'
       )}
       style={{height}}>
-      {children}
+      <div style={{contentVisibility: 'auto'}}>{children}</div>
     </div>
   );
 }

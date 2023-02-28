@@ -241,7 +241,7 @@ export default function TopNav({
         threshold: 0,
       }
     );
-    observer.observe(scrollDetectorRef.current);
+    observer.observe(scrollDetectorRef.current!);
     return () => observer.disconnect();
   }, []);
 

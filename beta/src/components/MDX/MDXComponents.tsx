@@ -368,7 +368,7 @@ function YouTubeIframe(props: any) {
   );
 }
 
-function Image(props) {
+function Image(props: any) {
   return <img className="max-w-[calc(min(700px,100%))]" {...props} />;
 }
 

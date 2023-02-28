@@ -811,21 +811,12 @@ const example1Start = `function Video({ video }) {
   );
 }`;
 const example1Frames = generateFrames(example1Start, [
-  ['jump', {line: 4, after: '<Thumbnail'}],
+  ['jump', {line: 4, after: '<Thumbnail', delay: 3000}],
   ['type', {write: ' shape="', complete: '"'}],
   ['type', {write: 'square'}],
-  ['save', {delay: 2000}],
-  ['jump', {line: 9, after: '<LikeButton'}],
-  ['type', {write: ' showCount='}],
-  ['type', {write: '{t', complete: '}'}],
-  ['type', {write: 'rue'}],
-  ['jump', {line: 9, after: 'true}'}],
-  ['save', {delay: 4000}],
-  ['type', {erase: ' showCount={true}', delay: 70}],
-  ['save', {delay: 2000}],
   ['jump', {line: 4, after: 'square"'}],
-  ['type', {erase: ' shape="square"', delay: 70}],
-  ['save', {delay: 2000}],
+  ['save', {delay: 3000}],
+  ['type', {erase: ' shape="square"'}],
   ['done'],
 ]);
 
@@ -837,13 +828,13 @@ function generateFrames(initialCode, commands) {
   let step = 0;
   let delay;
 
-  function captureFrame(done = false) {
+  function captureFrame() {
     frames.push({
       code: lines.join('\n'),
       caret: {linePos, charPos},
       step,
       delay,
-      done,
+      done: false,
     });
   }
   const meanDelay = 100; // mean delay value in milliseconds
@@ -857,6 +848,13 @@ function generateFrames(initialCode, commands) {
     return delay;
   }
 
+  frames.push({
+    code: lines.join('\n'),
+    caret: null,
+    step,
+    delay,
+    done: false,
+  });
   for (let i = 0; i < commands.length; i++) {
     const [op, data] = commands[i];
     delay = data?.delay ?? generateRandomDelay();
@@ -890,6 +888,7 @@ function generateFrames(initialCode, commands) {
             line = line.slice(0, j - 1) + line.slice(j);
             lines[linePos - 1] = line;
             charPos--;
+            delay = data?.delay ?? generateRandomDelay();
             captureFrame();
           }
         } else {
@@ -900,6 +899,7 @@ function generateFrames(initialCode, commands) {
               line.slice(0, charPos) + newChar + line.slice(charPos);
             lines[linePos - 1] = updatedLine;
             charPos++;
+            delay = data?.delay ?? generateRandomDelay();
             captureFrame();
           }
           if (complete != null) {
@@ -908,6 +908,7 @@ function generateFrames(initialCode, commands) {
             const updatedLine =
               line.slice(0, charPos) + complete + line.slice(charPos);
             lines[linePos - 1] = updatedLine;
+            delay = data?.delay ?? generateRandomDelay();
             captureFrame();
           }
         }
@@ -919,9 +920,7 @@ function generateFrames(initialCode, commands) {
         break;
       }
       case 'done': {
-        linePos = -1;
-        charPos = -1;
-        captureFrame(true);
+        frames.push({...frames[0], done: true});
         break;
       }
     }
@@ -942,7 +941,8 @@ function ExampleLayout({filename, left, right, onPlay}) {
               {onPlay != null && (
                 <button
                   onClick={onPlay}
-                  className="absolute right-0 top-0 text-tertiary text-sm my-1 mx-5">
+                  className="absolute right-0 top-0 text-tertiary text-sm my-1 mx-5"
+                  style={{animation: 'delayed-fadein 2000ms'}}>
                   Replay
                 </button>
               )}
@@ -963,6 +963,7 @@ function Example1() {
   const [isPlaying, setIsPlaying] = useState(false);
   const frame = example1Frames[frameIndex];
   const ref = useRef(null);
+  const timeoutRef = useRef(null);
 
   useEffect(() => {
     if (isPlaying && !frame.done) {
@@ -977,7 +978,13 @@ function Example1() {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          setIsPlaying(entry.isIntersecting);
+          if (entry.isIntersecting) {
+            timeoutRef.current = setTimeout(() => {
+              setIsPlaying(true);
+            }, 3000);
+          } else {
+            clearTimeout(timeoutRef.current);
+          }
         });
       },
       {
@@ -987,7 +994,10 @@ function Example1() {
       }
     );
     observer.observe(ref.current);
-    return () => observer.disconnect();
+    return () => {
+      observer.disconnect();
+      clearTimeout(timeoutRef.current);
+    };
   }, []);
 
   return (
@@ -1623,52 +1633,6 @@ function Video({video, step = 0}) {
           </p>
         </a>
         <LikeButton video={video} showCount={true} />
-      </div>
-    );
-  } else if (step === 3) {
-    return (
-      <div className="flex flex-row items-center gap-3">
-        <Thumbnail shape="square" video={video} />
-        <a
-          href={video.url}
-          target="_blank"
-          rel="noreferrer"
-          className="outline-link dark:outline-link outline-offset-4 group flex flex-col flex-1 gap-0.5">
-          <h3
-            className={cn(
-              'text-base leading-tight text-primary font-bold',
-              video.url && 'group-hover:underline'
-            )}>
-            {video.title}
-          </h3>
-          <p className="text-tertiary text-sm leading-snug">
-            {video.description}
-          </p>
-        </a>
-        <LikeButton video={video} />
-      </div>
-    );
-  } else if (step === 4) {
-    return (
-      <div className="flex flex-row items-center gap-3">
-        <Thumbnail video={video} />
-        <a
-          href={video.url}
-          target="_blank"
-          rel="noreferrer"
-          className="outline-link dark:outline-link outline-offset-4 group flex flex-col flex-1 gap-0.5">
-          <h3
-            className={cn(
-              'text-base leading-tight text-primary font-bold',
-              video.url && 'group-hover:underline'
-            )}>
-            {video.title}
-          </h3>
-          <p className="text-tertiary text-sm leading-snug">
-            {video.description}
-          </p>
-        </a>
-        <LikeButton video={video} />
       </div>
     );
   }

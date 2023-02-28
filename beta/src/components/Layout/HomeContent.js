@@ -4,6 +4,7 @@
 
 import {
   createContext,
+  memo,
   useState,
   useContext,
   useId,
@@ -40,6 +41,7 @@ function Section({children, z, isFirst, background = null}) {
           'bg-gradient-right dark:bg-gradient-right-dark border-t border-primary/5 dark:border-primary-dark/5'
       )}
       style={{
+        contentVisibility: 'layout style paint',
         WebkitMask: `radial-gradient(circle at center bottom, transparent calc(80px / 2 + 8px), black 0px) 0px`,
         zIndex: z,
       }}>
@@ -411,7 +413,7 @@ export function HomeContent() {
 
                       <div className="px-5 xs:px-5 sm:px-12 lg:pt-5 flex flex-col items-start justify-center">
                         <h4 className="leading-tight text-primary dark:text-primary-dark font-semibold text-3xl lg:text-4xl mb-4 lg:mb-5 mt-2.5">
-                          Go truly native, too
+                          Go truly native
                         </h4>
                         <p className="h-full lg:text-xl text-secondary dark:text-secondary-dark leading-normal">
                           People expect native apps to look and feel like their
@@ -534,16 +536,7 @@ export function HomeContent() {
                 </Para>
               </Center>
             </div>
-            <div className="relative flex overflow-x-hidden overflow-y-visible w-auto">
-              <div className="w-full py-12 lg:py-20 animate-marquee lg:animate-large-marquee whitespace-nowrap flex flex-row">
-                <CommunityImages />
-              </div>
-              <div
-                aria-hidden="true"
-                className="w-full absolute top-0 py-12 lg:py-20 animate-marquee2 lg:animate-large-marquee2 whitespace-nowrap flex flex-row">
-                <CommunityImages />
-              </div>
-            </div>
+            <CommunityGallery />
             <div className="mx-auto flex flex-col max-w-4xl">
               <Center>
                 <Para>
@@ -578,43 +571,6 @@ export function HomeContent() {
     </>
   );
 }
-
-const reactConf2021Cover = '/images/home/conf2021/cover.svg';
-const reactConf2019Cover = '/images/home/conf2019/cover.svg';
-const images = [
-  {
-    src: '/images/home/community/react_conf_fun.webp',
-    alt: 'People singing karaoke at React Conf',
-  },
-  {
-    src: '/images/home/community/react_india_sunil.webp',
-    alt: 'Sunil Pai speaking at React India',
-  },
-  {
-    src: '/images/home/community/react_conf_hallway.webp',
-    alt: 'A hallway conversation between two people at React Conf',
-  },
-  {
-    src: '/images/home/community/react_india_hallway.webp',
-    alt: 'A hallway conversation at React India',
-  },
-  {
-    src: '/images/home/community/react_conf_elizabet.webp',
-    alt: 'Elizabet Oliveira speaking at React Conf',
-  },
-  {
-    src: '/images/home/community/react_india_selfie.webp',
-    alt: 'People taking a group selfie at React India',
-  },
-  {
-    src: '/images/home/community/react_conf_nat.webp',
-    alt: 'Nat Alison speaking at React Conf',
-  },
-  {
-    src: '/images/home/community/react_india_team.webp',
-    alt: 'Organizers greeting attendees at React India',
-  },
-];
 
 function CTA({children, icon, href}) {
   const Tag = href.startsWith('https://') ? ExternalLink : 'a';
@@ -745,10 +701,122 @@ function CTA({children, icon, href}) {
     </Tag>
   );
 }
-function CommunityImages() {
+
+const reactConf2021Cover = '/images/home/conf2021/cover.svg';
+const reactConf2019Cover = '/images/home/conf2019/cover.svg';
+const communityImages = [
+  {
+    src: '/images/home/community/react_conf_fun.webp',
+    alt: 'People singing karaoke at React Conf',
+  },
+  {
+    src: '/images/home/community/react_india_sunil.webp',
+    alt: 'Sunil Pai speaking at React India',
+  },
+  {
+    src: '/images/home/community/react_conf_hallway.webp',
+    alt: 'A hallway conversation between two people at React Conf',
+  },
+  {
+    src: '/images/home/community/react_india_hallway.webp',
+    alt: 'A hallway conversation at React India',
+  },
+  {
+    src: '/images/home/community/react_conf_elizabet.webp',
+    alt: 'Elizabet Oliveira speaking at React Conf',
+  },
+  {
+    src: '/images/home/community/react_india_selfie.webp',
+    alt: 'People taking a group selfie at React India',
+  },
+  {
+    src: '/images/home/community/react_conf_nat.webp',
+    alt: 'Nat Alison speaking at React Conf',
+  },
+  {
+    src: '/images/home/community/react_india_team.webp',
+    alt: 'Organizers greeting attendees at React India',
+  },
+];
+
+function CommunityGallery() {
+  const ref = useRef();
+
+  const [shouldPlay, setShouldPlay] = useState(true /* play for SSR */);
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          setShouldPlay(entry.isIntersecting);
+        });
+      },
+      {
+        root: null,
+        rootMargin: `400px 0px`,
+      }
+    );
+    observer.observe(ref.current);
+    return () => observer.disconnect();
+  }, []);
+
+  const [isLazy, setIsLazy] = useState(true);
+  // Either wait until we're scrolling close...
+  useEffect(() => {
+    if (!isLazy) {
+      return;
+    }
+    const rootVertical = parseInt(window.innerHeight * 2.5);
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setIsLazy(false);
+          }
+        });
+      },
+      {
+        root: null,
+        rootMargin: `${rootVertical}px 0px`,
+      }
+    );
+    observer.observe(ref.current);
+    return () => observer.disconnect();
+  }, [isLazy]);
+  // ... or until it's been a while after hydration.
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setIsLazy(false);
+    }, 20 * 1000);
+    return () => clearTimeout(timeout);
+  }, []);
+
+  return (
+    <div
+      ref={ref}
+      className="relative flex overflow-x-hidden overflow-y-visible w-auto">
+      <div
+        className="w-full py-12 lg:py-20 whitespace-nowrap flex flex-row animate-marquee lg:animate-large-marquee"
+        style={{
+          animationPlayState: shouldPlay ? 'running' : 'paused',
+        }}>
+        <CommunityImages isLazy={isLazy} />
+      </div>
+      <div
+        aria-hidden="true"
+        className="w-full absolute top-0 py-12 lg:py-20 whitespace-nowrap flex flex-row animate-marquee2 lg:animate-large-marquee2"
+        style={{
+          animationPlayState: shouldPlay ? 'running' : 'paused',
+        }}>
+        <CommunityImages isLazy={isLazy} />
+      </div>
+    </div>
+  );
+}
+
+const CommunityImages = memo(function CommunityImages({isLazy}) {
   return (
     <>
-      {images.map(({src, alt}, i) => (
+      {communityImages.map(({src, alt}, i) => (
         <div
           key={i}
           className={cn(
@@ -762,7 +830,7 @@ function CommunityImages() {
                 : 'group-hover:rotate-1 group-hover:scale-110 group-hover:shadow-lg lg:group-hover:shadow-2xl rotate-[-2deg]'
             )}>
             <img
-              loading="lazy"
+              loading={isLazy ? 'lazy' : 'eager'}
               src={src}
               alt={alt}
               className="aspect-[4/3] h-full w-full flex object-cover rounded-2xl bg-gray-10 dark:bg-gray-80"
@@ -772,7 +840,7 @@ function CommunityImages() {
       ))}
     </>
   );
-}
+});
 
 function ExampleLayout({filename, left, right}) {
   return (
@@ -818,7 +886,7 @@ function Example1() {
         </CodeBlock>
       }
       right={
-        <ExamplePanel>
+        <ExamplePanel height="113px">
           <Video
             video={{
               title: 'My video',
@@ -879,7 +947,7 @@ function Example2() {
         </CodeBlock>
       }
       right={
-        <ExamplePanel noShadow={false} noPadding={true}>
+        <ExamplePanel height="22rem" noShadow={false} noPadding={true}>
           <VideoList videos={videos} />
         </ExamplePanel>
       }
@@ -1020,21 +1088,28 @@ async function Talks({ confId }) {
 function useNestedScrollLock(ref) {
   useEffect(() => {
     let isLocked = false;
-    let unlockTimeout;
+    let lastScroll = performance.now();
+
     function handleScroll() {
       if (!isLocked) {
         isLocked = true;
         ref.current.style.pointerEvents = 'none';
       }
-      clearTimeout(unlockTimeout);
-      unlockTimeout = setTimeout(() => {
+      lastScroll = performance.now();
+    }
+
+    function updateLock() {
+      if (isLocked && performance.now() - lastScroll > 250) {
         isLocked = false;
         ref.current.style.pointerEvents = '';
-      }, 250);
+      }
     }
+
     window.addEventListener('scroll', handleScroll);
+    const interval = setInterval(updateLock, 100);
     return () => {
       window.removeEventListener('scroll', handleScroll);
+      clearInterval(interval);
     };
   }, []);
 }
@@ -1051,7 +1126,7 @@ function ExamplePanel({children, noPadding, noShadow, height}) {
         noShadow ? 'shadow-none' : 'shadow-nav dark:shadow-nav-dark'
       )}
       style={{height}}>
-      {children}
+      <div style={{contentVisibility: 'auto'}}>{children}</div>
     </div>
   );
 }
@@ -1060,6 +1135,28 @@ const NavContext = createContext(null);
 
 function BrowserChrome({children, hasPulse, hasRefresh, domain, path}) {
   const [restartId, setRestartId] = useState(0);
+  const isPulsing = hasPulse && restartId === 0;
+  const [shouldAnimatePulse, setShouldAnimatePulse] = useState(false);
+  const refreshRef = useRef(null);
+
+  useEffect(() => {
+    if (!isPulsing) {
+      return;
+    }
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          setShouldAnimatePulse(entry.isIntersecting);
+        });
+      },
+      {
+        root: null,
+        rootMargin: `0px 0px`,
+      }
+    );
+    observer.observe(refreshRef.current);
+    return () => observer.disconnect();
+  }, [isPulsing]);
 
   function handleRestart() {
     confCache = new Map();
@@ -1096,14 +1193,23 @@ function BrowserChrome({children, hasPulse, hasRefresh, domain, path}) {
           </div>
           {hasRefresh && (
             <div
+              ref={refreshRef}
               className={cn(
-                'bg-transparent rounded-full flex justify-center items-center ',
-                hasPulse && (restartId > 0 ? '' : 'animation-pulse')
+                'relative rounded-full flex justify-center items-center ',
+                isPulsing && shouldAnimatePulse && 'animation-pulse-button'
               )}>
+              {isPulsing && shouldAnimatePulse && (
+                <div className="z-0 absolute shadow-[0_0_0_8px_rgba(0,0,0,0.5)] inset-0 rounded-full animation-pulse-shadow" />
+              )}
               <button
                 aria-label="Reload"
                 onClick={handleRestart}
-                className="flex items-center p-1.5 rounded-full hover:bg-gray-20 hover:bg-opacity-50 cursor-pointer justify-center">
+                className={
+                  'z-10 flex items-center p-1.5 rounded-full cursor-pointer justify-center' +
+                  // bg-transparent hover:bg-gray-20/50,
+                  // but opaque to obscure the pulsing wave.
+                  ' bg-[#ebecef] hover:bg-[#d3d7de]'
+                }>
                 <IconRestart className="text-tertiary text-lg" />
               </button>
             </div>
@@ -1310,7 +1416,13 @@ function Cover({background, children}) {
       <div className="absolute inset-0 px-4 py-2 flex items-end bg-gradient-to-t from-black/40 via-black/0">
         {children}
       </div>
-      <img src={background} alt="" className="w-full object-cover" />
+      <img
+        src={background}
+        width={500}
+        height={263}
+        alt=""
+        className="w-full object-cover"
+      />
     </div>
   );
 }

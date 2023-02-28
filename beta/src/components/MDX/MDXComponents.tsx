@@ -368,6 +368,10 @@ function YouTubeIframe(props: any) {
   );
 }
 
+function Image(props: any) {
+  return <img className="max-w-[calc(min(700px,100%))]" {...props} />;
+}
+
 export const MDXComponents = {
   p: P,
   strong: Strong,
@@ -381,6 +385,7 @@ export const MDXComponents = {
   h4: H4,
   hr: Divider,
   a: Link,
+  img: Image,
   BlogCard,
   code: InlineCode,
   pre: CodeBlock,

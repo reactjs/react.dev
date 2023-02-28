@@ -801,35 +801,37 @@ const CommunityImages = memo(function CommunityImages({isLazy}) {
 const example1Start = `function Video({ video }) {
   return (
     <div>
+      <Thumbnail video={video} />
       <a href={video.url}>
         <h3>{video.title}</h3>
       </a>
+      <LikeButton video={video} />
     </div>
   );
 }`;
 const example1Frames = generateFrames(example1Start, [
-  ['jump', {line: 3, after: '<div>'}],
-  ['newline', {indentChange: 2}],
-  ['type', {write: '<Thumbnail', complete: ' />'}],
-  ['type', {write: ' video={', complete: '}'}],
-  ['type', {write: 'video'}],
-  ['save', {delay: 2000}],
-  ['jump', {line: 4, after: '/>'}],
-  ['jump', {line: 5, after: '>'}],
-  ['jump', {line: 6, after: '/h3>'}],
-  ['newline', {indentChange: 0}],
-  ['type', {write: '<p>', complete: '</p>'}],
-  ['type', {write: '{', complete: '}'}],
-  ['type', {write: 'video.description'}],
-  ['save', {delay: 2000}],
-  ['jump', {line: 7, after: '/p>'}],
-  ['jump', {line: 8, after: '/a>'}],
-  ['newline', {indentChange: 0}],
-  ['type', {write: '<LikeButton', complete: ' />'}],
-  ['type', {write: ' video={', complete: '}'}],
-  ['type', {write: 'video'}],
-  ['save', {delay: 2000}],
-  ['done'],
+  // ['jump', {line: 3, after: '<div>'}],
+  // ['newline', {indentChange: 2}],
+  // ['type', {write: '<Thumbnail', complete: ' />'}],
+  // ['type', {write: ' video={', complete: '}'}],
+  // ['type', {write: 'video'}],
+  // ['save', {delay: 2000}],
+  // ['jump', {line: 4, after: '/>'}],
+  // ['jump', {line: 5, after: '>'}],
+  // ['jump', {line: 6, after: '/h3>'}],
+  // ['newline', {indentChange: 0}],
+  // ['type', {write: '<p>', complete: '</p>'}],
+  // ['type', {write: '{', complete: '}'}],
+  // ['type', {write: 'video.description'}],
+  // ['save', {delay: 2000}],
+  // ['jump', {line: 7, after: '/p>'}],
+  // ['jump', {line: 8, after: '/a>'}],
+  // ['newline', {indentChange: 0}],
+  // ['type', {write: '<LikeButton', complete: ' />'}],
+  // ['type', {write: ' video={', complete: '}'}],
+  // ['type', {write: 'video'}],
+  // ['save', {delay: 2000}],
+  // ['done'],
 ]);
 
 function generateFrames(initialCode, commands) {
@@ -1516,68 +1518,6 @@ function Cover({background, children}) {
 }
 
 function Video({video, step = 3}) {
-  if (step === 0) {
-    return (
-      <div className="flex flex-row items-center gap-3">
-        <a
-          href={video.url}
-          target="_blank"
-          rel="noreferrer"
-          className="outline-link dark:outline-link outline-offset-4 group flex flex-col flex-1 gap-0.5">
-          <h3
-            className={cn(
-              'text-base leading-tight text-primary font-bold',
-              video.url && 'group-hover:underline'
-            )}>
-            {video.title}
-          </h3>
-        </a>
-      </div>
-    );
-  }
-  if (step === 1) {
-    return (
-      <div className="flex flex-row items-center gap-3">
-        <Thumbnail video={video} />
-        <a
-          href={video.url}
-          target="_blank"
-          rel="noreferrer"
-          className="outline-link dark:outline-link outline-offset-4 group flex flex-col flex-1 gap-0.5">
-          <h3
-            className={cn(
-              'text-base leading-tight text-primary font-bold',
-              video.url && 'group-hover:underline'
-            )}>
-            {video.title}
-          </h3>
-        </a>
-      </div>
-    );
-  }
-  if (step === 2) {
-    return (
-      <div className="flex flex-row items-center gap-3">
-        <Thumbnail video={video} />
-        <a
-          href={video.url}
-          target="_blank"
-          rel="noreferrer"
-          className="outline-link dark:outline-link outline-offset-4 group flex flex-col flex-1 gap-0.5">
-          <h3
-            className={cn(
-              'text-base leading-tight text-primary font-bold',
-              video.url && 'group-hover:underline'
-            )}>
-            {video.title}
-          </h3>
-          <p className="text-tertiary text-sm leading-snug">
-            {video.description}
-          </p>
-        </a>
-      </div>
-    );
-  }
   return (
     <div className="flex flex-row items-center gap-3">
       <Thumbnail video={video} />

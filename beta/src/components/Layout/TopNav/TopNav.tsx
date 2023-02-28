@@ -101,11 +101,11 @@ function Link({href, children, ...props}: JSX.IntrinsicElements['a']) {
 
 function NavItem({url, isActive, children}: any) {
   return (
-    <div className="flex flex-1">
+    <div className="flex flex-auto sm:flex-1">
       <Link
         href={url}
         className={cn(
-          'active:scale-95 transition-transform w-full text-center outline-link py-1.5 px-2.5 xs:px-4 rounded-full capitalize',
+          'active:scale-95 transition-transform w-full text-center outline-link py-1.5 px-1.5 xs:px-3 sm:px-4 rounded-full capitalize',
           !isActive && 'hover:bg-primary/5 hover:dark:bg-primary-dark/5',
           isActive &&
             'bg-highlight dark:bg-highlight-dark text-link dark:text-link-dark'
@@ -313,7 +313,7 @@ export default function TopNav({
                 className="w-full lg:h-auto grow pr-0 lg:pr-5 pt-4 lg:py-6 md:pt-4 lg:pt-4 scrolling-touch scrolling-gpu">
                 {/* No fallback UI so need to be careful not to suspend directly inside. */}
                 <Suspense fallback={null}>
-                  <div className="pl-2.5 xs:pl-5 xs:gap-0.5 xs:text-base overflow-x-scroll flex flex-row lg:hidden text-base font-bold text-secondary dark:text-secondary-dark">
+                  <div className="pl-3 xs:pl-5 xs:gap-0.5 xs:text-base overflow-x-scroll flex flex-row lg:hidden text-base font-bold text-secondary dark:text-secondary-dark">
                     <NavItem isActive={section === 'learn'} url="/learn">
                       Learn
                     </NavItem>

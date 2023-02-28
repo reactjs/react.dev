@@ -273,7 +273,7 @@ export function HomeContent() {
             </div>
             <div className="max-w-7xl mx-auto flex flex-col lg:flex-row mt-16 mb-20 lg:mb-28 px-5 gap-20 lg:gap-5">
               <div className="relative lg:w-6/12 flex">
-                <div className="absolute -bottom-8 lg:-bottom-10 z-20 w-full">
+                <div className="absolute -bottom-8 lg:-bottom-10 z-10 w-full">
                   <WebIcons />
                 </div>
                 <BrowserChrome hasRefresh={false} domain="example.com">
@@ -297,7 +297,7 @@ export function HomeContent() {
                 </BrowserChrome>
               </div>
               <div className="relative lg:w-6/12 flex">
-                <div className="absolute -bottom-8 lg:-bottom-10 z-20 w-full">
+                <div className="absolute -bottom-8 lg:-bottom-10 z-10 w-full">
                   <NativeIcons />
                 </div>
                 <figure className="mx-auto max-w-3xl h-auto">

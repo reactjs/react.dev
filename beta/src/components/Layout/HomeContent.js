@@ -812,8 +812,8 @@ const example1Start = `function Video({ video }) {
 }`;
 const example1Frames = generateFrames(example1Start, [
   ['jump', {line: 4, after: '<Thumbnail'}],
-  ['type', {write: ' size="', complete: '"'}],
-  ['type', {write: 'small'}],
+  ['type', {write: ' shape="', complete: '"'}],
+  ['type', {write: 'square'}],
   ['save', {delay: 2000}],
   ['jump', {line: 9, after: '<LikeButton'}],
   ['type', {write: ' showCount={', complete: '}'}],
@@ -1552,7 +1552,7 @@ function Video({video, step = 0}) {
   } else if (step === 1) {
     return (
       <div className="flex flex-row items-center gap-3">
-        <Thumbnail size="small" video={video} />
+        <Thumbnail shape="square" video={video} />
         <a
           href={video.url}
           target="_blank"
@@ -1575,7 +1575,7 @@ function Video({video, step = 0}) {
   } else if (step === 2) {
     return (
       <div className="flex flex-row items-center gap-3">
-        <Thumbnail size="small" video={video} />
+        <Thumbnail shape="square" video={video} />
         <a
           href={video.url}
           target="_blank"
@@ -1652,7 +1652,7 @@ function Code({children}) {
   );
 }
 
-function Thumbnail({video, size}) {
+function Thumbnail({video, shape}) {
   const {image} = video;
   return (
     <a
@@ -1669,8 +1669,8 @@ function Thumbnail({video, size}) {
         image === 'purple' && 'from-yellow-50 via-purple-50 to-purple-60',
         typeof image === 'object' && 'from-gray-80 via-gray-95 to-gray-70',
         video.url && 'hover:opacity-95 transition-opacity',
-        size !== 'small' && 'aspect-video w-32 xs:w-36',
-        size === 'small' && 'aspect-square h-[81px]'
+        shape !== 'square' && 'aspect-video w-32 xs:w-36',
+        shape === 'square' && 'aspect-square h-[81px]'
       )}
       style={{
         backgroundImage:

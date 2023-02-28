@@ -1020,21 +1020,28 @@ async function Talks({ confId }) {
 function useNestedScrollLock(ref) {
   useEffect(() => {
     let isLocked = false;
-    let unlockTimeout;
+    let lastScroll = performance.now();
+
     function handleScroll() {
       if (!isLocked) {
         isLocked = true;
         ref.current.style.pointerEvents = 'none';
       }
-      clearTimeout(unlockTimeout);
-      unlockTimeout = setTimeout(() => {
+      lastScroll = performance.now();
+    }
+
+    function updateLock() {
+      if (isLocked && performance.now() - lastScroll > 250) {
         isLocked = false;
         ref.current.style.pointerEvents = '';
-      }, 250);
+      }
     }
+
     window.addEventListener('scroll', handleScroll);
+    const interval = setInterval(updateLock, 100);
     return () => {
       window.removeEventListener('scroll', handleScroll);
+      clearInterval(interval);
     };
   }, []);
 }

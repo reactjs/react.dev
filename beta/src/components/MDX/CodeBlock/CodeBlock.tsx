@@ -36,6 +36,10 @@ const CodeBlock = function CodeBlock({
       meta?: string;
     };
   };
+  caret?: {
+    linePos: number;
+    charPos: number;
+  };
   className?: string;
   noMargin?: boolean;
   noShadow?: boolean;

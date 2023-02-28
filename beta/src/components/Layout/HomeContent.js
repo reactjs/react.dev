@@ -1048,7 +1048,7 @@ function useNestedScrollLock(ref) {
 
 function ExamplePanel({children, noPadding, noShadow, height}) {
   const ref = useRef();
-  useNestedScrollLock(ref);
+  // useNestedScrollLock(ref);
   return (
     <div
       ref={ref}

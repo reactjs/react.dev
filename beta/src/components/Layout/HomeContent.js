@@ -4,6 +4,7 @@
 
 import {
   createContext,
+  memo,
   useState,
   useContext,
   useId,
@@ -36,7 +37,10 @@ function Section({children, background = null}) {
           'bg-gradient-left dark:bg-gradient-left-dark border-t border-primary/10 dark:border-primary-dark/10 ',
         background === 'right-card' &&
           'bg-gradient-right dark:bg-gradient-right-dark border-t border-primary/5 dark:border-primary-dark/5'
-      )}>
+      )}
+      style={{
+        contentVisibility: 'layout style paint',
+      }}>
       <div className="flex-col gap-2 flex grow w-full my-20 lg:my-32 mx-auto items-center">
         {children}
       </div>
@@ -365,7 +369,7 @@ export function HomeContent() {
 
                       <div className="px-5 xs:px-5 sm:px-12 lg:pt-5 flex flex-col items-start justify-center">
                         <h4 className="leading-tight text-primary dark:text-primary-dark font-semibold text-3xl lg:text-4xl mb-4 lg:mb-5 mt-2.5">
-                          Go truly native, too
+                          Go truly native
                         </h4>
                         <p className="h-full lg:text-xl text-secondary dark:text-secondary-dark leading-normal">
                           People expect native apps to look and feel like their
@@ -692,9 +696,26 @@ const communityImages = [
 ];
 
 function CommunityGallery() {
-  const [isLazy, setIsLazy] = useState(true);
   const ref = useRef();
 
+  const [shouldPlay, setShouldPlay] = useState(true /* play for SSR */);
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          setShouldPlay(entry.isIntersecting);
+        });
+      },
+      {
+        root: null,
+        rootMargin: `400px 0px`,
+      }
+    );
+    observer.observe(ref.current);
+    return () => observer.disconnect();
+  }, []);
+
+  const [isLazy, setIsLazy] = useState(true);
   // Either wait until we're scrolling close...
   useEffect(() => {
     if (!isLazy) {
@@ -717,7 +738,6 @@ function CommunityGallery() {
     observer.observe(ref.current);
     return () => observer.disconnect();
   }, [isLazy]);
-
   // ... or until it's been a while after hydration.
   useEffect(() => {
     const timeout = setTimeout(() => {
@@ -730,19 +750,26 @@ function CommunityGallery() {
     <div
       ref={ref}
       className="relative flex overflow-x-hidden overflow-y-visible w-auto">
-      <div className="w-full py-12 lg:py-20 animate-marquee lg:animate-large-marquee whitespace-nowrap flex flex-row">
+      <div
+        className="w-full py-12 lg:py-20 whitespace-nowrap flex flex-row animate-marquee lg:animate-large-marquee"
+        style={{
+          animationPlayState: shouldPlay ? 'running' : 'paused',
+        }}>
         <CommunityImages isLazy={isLazy} />
       </div>
       <div
         aria-hidden="true"
-        className="w-full absolute top-0 py-12 lg:py-20 animate-marquee2 lg:animate-large-marquee2 whitespace-nowrap flex flex-row">
+        className="w-full absolute top-0 py-12 lg:py-20 whitespace-nowrap flex flex-row animate-marquee2 lg:animate-large-marquee2"
+        style={{
+          animationPlayState: shouldPlay ? 'running' : 'paused',
+        }}>
         <CommunityImages isLazy={isLazy} />
       </div>
     </div>
   );
 }
 
-function CommunityImages({isLazy}) {
+const CommunityImages = memo(function CommunityImages({isLazy}) {
   return (
     <>
       {communityImages.map(({src, alt}, i) => (
@@ -769,7 +796,7 @@ function CommunityImages({isLazy}) {
       ))}
     </>
   );
-}
+});
 
 const example1Start = `function Video({ video }) {
   return (
@@ -941,7 +968,7 @@ function Example1() {
         </CodeBlock>
       }
       right={
-        <ExamplePanel>
+        <ExamplePanel height="113px">
           <Video
             step={frame.step}
             video={{
@@ -1003,7 +1030,7 @@ function Example2() {
         </CodeBlock>
       }
       right={
-        <ExamplePanel noShadow={false} noPadding={true}>
+        <ExamplePanel height="22rem" noShadow={false} noPadding={true}>
           <VideoList videos={videos} />
         </ExamplePanel>
       }
@@ -1144,21 +1171,28 @@ async function Talks({ confId }) {
 function useNestedScrollLock(ref) {
   useEffect(() => {
     let isLocked = false;
-    let unlockTimeout;
+    let lastScroll = performance.now();
+
     function handleScroll() {
       if (!isLocked) {
         isLocked = true;
         ref.current.style.pointerEvents = 'none';
       }
-      clearTimeout(unlockTimeout);
-      unlockTimeout = setTimeout(() => {
+      lastScroll = performance.now();
+    }
+
+    function updateLock() {
+      if (isLocked && performance.now() - lastScroll > 250) {
         isLocked = false;
         ref.current.style.pointerEvents = '';
-      }, 250);
+      }
     }
+
     window.addEventListener('scroll', handleScroll);
+    const interval = setInterval(updateLock, 100);
     return () => {
       window.removeEventListener('scroll', handleScroll);
+      clearInterval(interval);
     };
   }, []);
 }
@@ -1175,7 +1209,7 @@ function ExamplePanel({children, noPadding, noShadow, height}) {
         noShadow ? 'shadow-none' : 'shadow-nav dark:shadow-nav-dark'
       )}
       style={{height}}>
-      {children}
+      <div style={{contentVisibility: 'auto'}}>{children}</div>
     </div>
   );
 }
@@ -1184,6 +1218,28 @@ const NavContext = createContext(null);
 
 function BrowserChrome({children, hasPulse, hasRefresh, domain, path}) {
   const [restartId, setRestartId] = useState(0);
+  const isPulsing = hasPulse && restartId === 0;
+  const [shouldAnimatePulse, setShouldAnimatePulse] = useState(false);
+  const refreshRef = useRef(null);
+
+  useEffect(() => {
+    if (!isPulsing) {
+      return;
+    }
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          setShouldAnimatePulse(entry.isIntersecting);
+        });
+      },
+      {
+        root: null,
+        rootMargin: `0px 0px`,
+      }
+    );
+    observer.observe(refreshRef.current);
+    return () => observer.disconnect();
+  }, [isPulsing]);
 
   function handleRestart() {
     confCache = new Map();
@@ -1220,14 +1276,23 @@ function BrowserChrome({children, hasPulse, hasRefresh, domain, path}) {
           </div>
           {hasRefresh && (
             <div
+              ref={refreshRef}
               className={cn(
-                'bg-transparent rounded-full flex justify-center items-center ',
-                hasPulse && (restartId > 0 ? '' : 'animation-pulse')
+                'relative rounded-full flex justify-center items-center ',
+                isPulsing && shouldAnimatePulse && 'animation-pulse-button'
               )}>
+              {isPulsing && shouldAnimatePulse && (
+                <div className="z-0 absolute shadow-[0_0_0_8px_rgba(0,0,0,0.5)] inset-0 rounded-full animation-pulse-shadow" />
+              )}
               <button
                 aria-label="Reload"
                 onClick={handleRestart}
-                className="flex items-center p-1.5 rounded-full hover:bg-gray-20 hover:bg-opacity-50 cursor-pointer justify-center">
+                className={
+                  'z-10 flex items-center p-1.5 rounded-full cursor-pointer justify-center' +
+                  // bg-transparent hover:bg-gray-20/50,
+                  // but opaque to obscure the pulsing wave.
+                  ' bg-[#ebecef] hover:bg-[#d3d7de]'
+                }>
                 <IconRestart className="text-tertiary text-lg" />
               </button>
             </div>

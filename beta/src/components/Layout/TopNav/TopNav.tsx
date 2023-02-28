@@ -29,32 +29,6 @@ declare global {
   }
 }
 
-const feedbackIcon = (
-  <svg
-    width="28"
-    height="28"
-    viewBox="0 0 28 28"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg">
-    <path
-      clipRule="evenodd"
-      fillRule="evenodd"
-      strokeWidth={0.25}
-      stroke="currentColor"
-      d="M8.41477 2.29921C8.41479 2.29923 8.41476 2.2992 8.41477 2.29921L8.48839 2.35275C8.91454 2.66267 9.22329 3.10774 9.36429 3.61547C9.50529 4.12319 9.47029 4.6637 9.26497 5.14899L8.33926 7.33703H11C11.7072 7.33703 12.3855 7.61798 12.8856 8.11807C13.3857 8.61817 13.6667 9.29645 13.6667 10.0037V12.6704C13.6667 13.5544 13.3155 14.4023 12.6904 15.0274C12.0652 15.6525 11.2174 16.0037 10.3333 16.0037H5C3.93914 16.0037 2.92172 15.5823 2.17157 14.8321C1.42142 14.082 1 13.0646 1 12.0037V10.7531C1 9.68422 1.36696 8.6477 2.03953 7.81688L6.27886 2.58006C6.53107 2.26851 6.89328 2.06562 7.29077 2.01335C7.68823 1.96109 8.09061 2.06347 8.41477 2.29921ZM7.63054 3.37753C7.58264 3.34269 7.52323 3.32759 7.46459 3.33531C7.40594 3.34302 7.35245 3.37296 7.31519 3.41899L3.07585 8.65581C2.59545 9.24925 2.33333 9.98963 2.33333 10.7531V12.0037C2.33333 12.7109 2.61428 13.3892 3.11438 13.8893C3.61448 14.3894 4.29275 14.6704 5 14.6704H10.3333C10.8638 14.6704 11.3725 14.4596 11.7475 14.0846C12.1226 13.7095 12.3333 13.2008 12.3333 12.6704V10.0037C12.3333 9.65007 12.1929 9.31093 11.9428 9.06088C11.6928 8.81084 11.3536 8.67036 11 8.67036H7.33333C7.10979 8.67036 6.90112 8.55832 6.77763 8.37198C6.65413 8.18564 6.63225 7.94981 6.71936 7.74393L8.03701 4.62947C8.125 4.42149 8.14001 4.18984 8.07958 3.97224C8.01916 3.75467 7.88687 3.56396 7.70425 3.43113L7.63054 3.37753Z"
-      fill="currentColor"
-    />
-    <path
-      fillRule="evenodd"
-      clipRule="evenodd"
-      strokeWidth={0.25}
-      stroke="currentColor"
-      d="M19.2517 25.7047C19.2517 25.7047 19.2517 25.7047 19.2517 25.7047L19.1781 25.6512C18.752 25.3412 18.4432 24.8962 18.3022 24.3884C18.1612 23.8807 18.1962 23.3402 18.4015 22.8549L19.3272 20.6669L16.6665 20.6669C15.9593 20.6669 15.281 20.3859 14.7809 19.8858C14.2808 19.3857 13.9998 18.7075 13.9998 18.0002L13.9998 15.3335C13.9998 14.4495 14.351 13.6016 14.9761 12.9765C15.6013 12.3514 16.4491 12.0002 17.3332 12.0002L22.6665 12.0002C23.7274 12.0002 24.7448 12.4216 25.4949 13.1718C26.2451 13.9219 26.6665 14.9393 26.6665 16.0002L26.6665 17.2508C26.6665 18.3197 26.2995 19.3562 25.627 20.187L21.3876 25.4238C21.1354 25.7354 20.7732 25.9383 20.3757 25.9906C19.9783 26.0428 19.5759 25.9404 19.2517 25.7047ZM20.036 24.6264C20.0839 24.6612 20.1433 24.6763 20.2019 24.6686C20.2606 24.6609 20.3141 24.6309 20.3513 24.5849L24.5907 19.3481C25.0711 18.7547 25.3332 18.0143 25.3332 17.2508L25.3332 16.0002C25.3332 15.293 25.0522 14.6147 24.5521 14.1146C24.052 13.6145 23.3738 13.3335 22.6665 13.3335L17.3332 13.3335C16.8027 13.3335 16.294 13.5443 15.919 13.9193C15.5439 14.2944 15.3332 14.8031 15.3332 15.3335L15.3332 18.0002C15.3332 18.3538 15.4736 18.693 15.7237 18.943C15.9737 19.1931 16.3129 19.3335 16.6665 19.3335L20.3332 19.3335C20.5567 19.3335 20.7654 19.4456 20.8889 19.6319C21.0124 19.8183 21.0343 20.0541 20.9471 20.26L19.6295 23.3744C19.5415 23.5824 19.5265 23.8141 19.5869 24.0317C19.6473 24.2492 19.7796 24.4399 19.9623 24.5728L20.036 24.6264Z"
-      fill="currentColor"
-    />
-  </svg>
-);
-
 const darkIcon = (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -153,11 +127,8 @@ export default function TopNav({
 }) {
   const [isOpen, setIsOpen] = useState(false);
   const [logoAnimation, setLogoAnimation] = useState(false);
-  const [showFeedback, setShowFeedback] = useState(false);
   const scrollParentRef = useRef<HTMLDivElement>(null);
-  const feedbackAutohideRef = useRef<any>(null);
   const {asPath} = useRouter();
-  const feedbackPopupRef = useRef<null | HTMLDivElement>(null);
   const [isScrolled, setIsScrolled] = useState(false);
 
   // HACK. Fix up the data structures instead.
@@ -199,237 +170,189 @@ export default function TopNav({
     };
   }, []);
 
-  function handleFeedback() {
-    clearTimeout(feedbackAutohideRef.current);
-    setShowFeedback(!showFeedback);
-  }
-
-  // Hide the Feedback widget on any click outside.
+  const scrollDetectorRef = useRef(null);
   useEffect(() => {
-    if (!showFeedback) {
-      return;
-    }
-
-    function handleDocumentClickCapture(e: MouseEvent) {
-      if (!feedbackPopupRef.current!.contains(e.target as any)) {
-        e.stopPropagation();
-        e.preventDefault();
-        setShowFeedback(false);
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          setIsScrolled(!entry.isIntersecting);
+        });
+      },
+      {
+        root: null,
+        rootMargin: `0px 0px`,
+        threshold: 0,
       }
-    }
-
-    document.addEventListener('click', handleDocumentClickCapture, {
-      capture: true,
-    });
-    return () =>
-      document.removeEventListener('click', handleDocumentClickCapture, {
-        capture: true,
-      });
-  }, [showFeedback]);
-
-  useEffect(() => {
-    function handleScroll() {
-      const scrollY = window.scrollY;
-      if (scrollY > 40 && !isScrolled) {
-        setIsScrolled(true);
-      } else if (scrollY <= 40 && isScrolled) {
-        setIsScrolled(false);
-      }
-    }
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [isScrolled]);
+    );
+    observer.observe(scrollDetectorRef.current!);
+    return () => observer.disconnect();
+  }, []);
 
   return (
-    <div
-      className={cn(
-        isOpen
-          ? 'h-screen sticky top-0 lg:bottom-0 lg:h-screen flex flex-col shadow-nav dark:shadow-nav-dark z-20'
-          : 'z-50 sticky top-0'
-      )}>
-      <nav
+    <>
+      <div ref={scrollDetectorRef} />
+      <div
         className={cn(
-          'backdrop-filter backdrop-blur-lg backdrop-saturate-200 transition-shadow bg-opacity-90 items-center w-full flex justify-between bg-wash dark:bg-wash-dark dark:bg-opacity-95 px-1.5 lg:pr-5 lg:pl-4 z-50',
-          {'dark:shadow-nav-dark shadow-nav': isScrolled || isOpen}
+          isOpen
+            ? 'h-screen sticky top-0 lg:bottom-0 lg:h-screen flex flex-col shadow-nav dark:shadow-nav-dark z-20'
+            : 'z-50 sticky top-0'
         )}>
-        <div className="h-16 w-full gap-0 sm:gap-3 flex items-center justify-between">
-          <div className="3xl:flex-1 flex flex-row ">
-            <button
-              type="button"
-              aria-label="Menu"
-              onClick={() => setIsOpen(!isOpen)}
-              className={cn(
-                'active:scale-95 transition-transform flex lg:hidden w-12 h-12 rounded-full items-center justify-center hover:bg-primary/5 hover:dark:bg-primary-dark/5 outline-link',
-                {
-                  'text-link dark:text-link-dark': isOpen,
-                }
-              )}>
-              {isOpen ? <IconClose /> : <IconHamburger />}
-            </button>
-            <div className="3xl:flex-1 flex align-center">
-              <NextLink href="/">
-                <a
-                  className={`active:scale-95 overflow-hidden transition-transform relative items-center text-primary dark:text-primary-dark p-1 whitespace-nowrap outline-link rounded-full 3xl:rounded-xl inline-flex text-lg font-normal gap-2`}
-                  onClick={() => {
-                    setLogoAnimation(true);
-                  }}
-                  onAnimationEnd={() => setLogoAnimation(false)}>
-                  <Logo
-                    className={cn(
-                      'text-sm mr-0 w-10 h-10 text-link dark:text-link-dark flex origin-center transition-all ease-in-out',
-                      logoAnimation &&
-                        'animate-[rotate_.5s_ease-in-out_forwards]'
-                    )}
-                  />
-                  <span className="sr-only 3xl:not-sr-only">React</span>
-                </a>
-              </NextLink>
-            </div>
-          </div>
-          <div className="hidden md:flex flex-1 justify-center items-center w-full 3xl:w-auto 3xl:shrink-0 3xl:justify-center">
-            <Search />
-          </div>
-          <div className="text-base justify-center items-center gap-1.5 flex 3xl:flex-1 flex-row 3xl:justify-end">
-            <div className="mx-2.5 gap-1.5 hidden lg:flex">
-              <NavItem isActive={section === 'learn'} url="/learn">
-                Learn
-              </NavItem>
-              <NavItem
-                isActive={section === 'reference'}
-                url="/reference/react">
-                Reference
-              </NavItem>
-              <NavItem isActive={section === 'community'} url="/community">
-                Community
-              </NavItem>
-              <NavItem isActive={section === 'blog'} url="/blog">
-                Blog
-              </NavItem>
-            </div>
-            <div className="flex w-full md:hidden"></div>
-            <div className="flex items-center -space-x-2.5 xs:space-x-0 ">
-              <div className="flex md:hidden">
-                <Search />
-              </div>
-              <div className="flex lg:hidden">
-                <button
-                  aria-label="Give feedback"
-                  type="button"
-                  className={cn(
-                    'active:scale-95 transition-transform flex w-12 h-12 rounded-full items-center justify-center hover:bg-primary/5 hover:dark:bg-primary-dark/5 outline-link',
-                    {
-                      'bg-secondary-button dark:bg-secondary-button-dark':
-                        showFeedback,
-                    }
-                  )}
-                  onClick={handleFeedback}>
-                  {feedbackIcon}
-                </button>
-                <div
-                  ref={feedbackPopupRef}
-                  className={cn(
-                    'fixed top-12 right-0',
-                    showFeedback ? 'block' : 'hidden'
-                  )}>
-                  <Feedback
-                    onSubmit={() => {
-                      clearTimeout(feedbackAutohideRef.current);
-                      feedbackAutohideRef.current = setTimeout(() => {
-                        setShowFeedback(false);
-                      }, 1000);
+        <nav
+          className={cn(
+            'backdrop-filter backdrop-blur-lg backdrop-saturate-200 transition-shadow bg-opacity-90 items-center w-full flex justify-between bg-wash dark:bg-wash-dark dark:bg-opacity-95 px-1.5 lg:pr-5 lg:pl-4 z-50',
+            {'dark:shadow-nav-dark shadow-nav': isScrolled || isOpen}
+          )}>
+          <div className="h-16 w-full gap-0 sm:gap-3 flex items-center justify-between">
+            <div className="3xl:flex-1 flex flex-row ">
+              <button
+                type="button"
+                aria-label="Menu"
+                onClick={() => setIsOpen(!isOpen)}
+                className={cn(
+                  'active:scale-95 transition-transform flex lg:hidden w-12 h-12 rounded-full items-center justify-center hover:bg-primary/5 hover:dark:bg-primary-dark/5 outline-link',
+                  {
+                    'text-link dark:text-link-dark': isOpen,
+                  }
+                )}>
+                {isOpen ? <IconClose /> : <IconHamburger />}
+              </button>
+              <div className="3xl:flex-1 flex align-center">
+                <NextLink href="/">
+                  <a
+                    className={`active:scale-95 overflow-hidden transition-transform relative items-center text-primary dark:text-primary-dark p-1 whitespace-nowrap outline-link rounded-full 3xl:rounded-xl inline-flex text-lg font-normal gap-2`}
+                    onClick={() => {
+                      setLogoAnimation(true);
                     }}
-                  />
+                    onAnimationEnd={() => setLogoAnimation(false)}>
+                    <Logo
+                      className={cn(
+                        'text-sm mr-0 w-10 h-10 text-link dark:text-link-dark flex origin-center transition-all ease-in-out',
+                        logoAnimation &&
+                          'animate-[rotate_.5s_ease-in-out_forwards]'
+                      )}
+                    />
+                    <span className="sr-only 3xl:not-sr-only">React</span>
+                  </a>
+                </NextLink>
+              </div>
+            </div>
+            <div className="hidden md:flex flex-1 justify-center items-center w-full 3xl:w-auto 3xl:shrink-0 3xl:justify-center">
+              <Search />
+            </div>
+            <div className="text-base justify-center items-center gap-1.5 flex 3xl:flex-1 flex-row 3xl:justify-end">
+              <div className="mx-2.5 gap-1.5 hidden lg:flex">
+                <NavItem isActive={section === 'learn'} url="/learn">
+                  Learn
+                </NavItem>
+                <NavItem
+                  isActive={section === 'reference'}
+                  url="/reference/react">
+                  Reference
+                </NavItem>
+                <NavItem isActive={section === 'community'} url="/community">
+                  Community
+                </NavItem>
+                <NavItem isActive={section === 'blog'} url="/blog">
+                  Blog
+                </NavItem>
+              </div>
+              <div className="flex w-full md:hidden"></div>
+              <div className="flex items-center -space-x-2.5 xs:space-x-0 ">
+                <div className="flex md:hidden">
+                  <Search />
                 </div>
-              </div>
-              <div className="flex dark:hidden">
-                <button
-                  type="button"
-                  aria-label="Use Dark Mode"
-                  onClick={() => {
-                    window.__setPreferredTheme('dark');
-                  }}
-                  className="active:scale-95 transition-transform flex w-12 h-12 rounded-full items-center justify-center hover:bg-primary/5 hover:dark:bg-primary-dark/5 outline-link">
-                  {darkIcon}
-                </button>
-              </div>
-              <div className="hidden dark:flex">
-                <button
-                  type="button"
-                  aria-label="Use Light Mode"
-                  onClick={() => {
-                    window.__setPreferredTheme('light');
-                  }}
-                  className="active:scale-95 transition-transform flex w-12 h-12 rounded-full items-center justify-center hover:bg-primary/5 hover:dark:bg-primary-dark/5 outline-link">
-                  {lightIcon}
-                </button>
-              </div>
-              <div className="flex">
-                <Link
-                  href="https://github.com/facebook/react/releases"
-                  target="_blank"
-                  rel="noreferrer noopener"
-                  aria-label="Open on GitHub"
-                  className="active:scale-95 transition-transform flex w-12 h-12 rounded-full items-center justify-center hover:bg-primary/5 hover:dark:bg-primary-dark/5 outline-link">
-                  {githubIcon}
-                </Link>
+                <div className="flex dark:hidden">
+                  <button
+                    type="button"
+                    aria-label="Use Dark Mode"
+                    onClick={() => {
+                      window.__setPreferredTheme('dark');
+                    }}
+                    className="active:scale-95 transition-transform flex w-12 h-12 rounded-full items-center justify-center hover:bg-primary/5 hover:dark:bg-primary-dark/5 outline-link">
+                    {darkIcon}
+                  </button>
+                </div>
+                <div className="hidden dark:flex">
+                  <button
+                    type="button"
+                    aria-label="Use Light Mode"
+                    onClick={() => {
+                      window.__setPreferredTheme('light');
+                    }}
+                    className="active:scale-95 transition-transform flex w-12 h-12 rounded-full items-center justify-center hover:bg-primary/5 hover:dark:bg-primary-dark/5 outline-link">
+                    {lightIcon}
+                  </button>
+                </div>
+                <div className="flex">
+                  <Link
+                    href="https://github.com/facebook/react/releases"
+                    target="_blank"
+                    rel="noreferrer noopener"
+                    aria-label="Open on GitHub"
+                    className="active:scale-95 transition-transform flex w-12 h-12 rounded-full items-center justify-center hover:bg-primary/5 hover:dark:bg-primary-dark/5 outline-link">
+                    {githubIcon}
+                  </Link>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </nav>
+        </nav>
 
-      {isOpen && (
-        <div
-          ref={scrollParentRef}
-          className="overflow-y-scroll no-bg-scrollbar lg:w-[342px] grow bg-wash dark:bg-wash-dark">
-          <aside
-            className={cn(
-              `lg:grow lg:flex flex-col w-full pb-8 lg:pb-0 lg:max-w-xs z-50`,
-              isOpen ? 'block z-40' : 'hidden lg:block'
-            )}>
-            <nav
-              role="navigation"
-              style={{'--bg-opacity': '.2'} as React.CSSProperties} // Need to cast here because CSS vars aren't considered valid in TS types (cuz they could be anything)
-              className="w-full lg:h-auto grow pr-0 lg:pr-5 pt-4 lg:py-6 md:pt-4 lg:pt-4 scrolling-touch scrolling-gpu">
-              {/* No fallback UI so need to be careful not to suspend directly inside. */}
-              <Suspense fallback={null}>
-                <div className="pl-2.5 xs:pl-5 xs:gap-0.5 xs:text-base overflow-x-scroll flex flex-row lg:hidden text-base font-bold text-secondary dark:text-secondary-dark">
-                  <NavItem isActive={section === 'learn'} url="/learn">
-                    Learn
-                  </NavItem>
-                  <NavItem
-                    isActive={section === 'reference'}
-                    url="/reference/react">
-                    Reference
-                  </NavItem>
-                  <NavItem isActive={section === 'community'} url="/community">
-                    Community
-                  </NavItem>
-                  <NavItem isActive={section === 'blog'} url="/blog">
-                    Blog
-                  </NavItem>
-                </div>
-                <div
-                  role="separator"
-                  className="ml-5 mt-4 mb-2 border-b border-border dark:border-border-dark"
-                />
-                <SidebarRouteTree
-                  // Don't share state between the desktop and mobile versions.
-                  // This avoids unnecessary animations and visual flicker.
-                  key={isOpen ? 'mobile-overlay' : 'desktop-or-hidden'}
-                  routeTree={routeTree}
-                  breadcrumbs={breadcrumbs}
-                  isForceExpanded={isOpen}
-                />
-              </Suspense>
-              <div className="h-16" />
-            </nav>
-            <div className="fixed bottom-0 hidden lg:block">
-              <Feedback />
-            </div>
-          </aside>
-        </div>
-      )}
-    </div>
+        {isOpen && (
+          <div
+            ref={scrollParentRef}
+            className="overflow-y-scroll no-bg-scrollbar lg:w-[342px] grow bg-wash dark:bg-wash-dark">
+            <aside
+              className={cn(
+                `lg:grow lg:flex flex-col w-full pb-8 lg:pb-0 lg:max-w-xs z-50`,
+                isOpen ? 'block z-40' : 'hidden lg:block'
+              )}>
+              <nav
+                role="navigation"
+                style={{'--bg-opacity': '.2'} as React.CSSProperties} // Need to cast here because CSS vars aren't considered valid in TS types (cuz they could be anything)
+                className="w-full lg:h-auto grow pr-0 lg:pr-5 pt-4 lg:py-6 md:pt-4 lg:pt-4 scrolling-touch scrolling-gpu">
+                {/* No fallback UI so need to be careful not to suspend directly inside. */}
+                <Suspense fallback={null}>
+                  <div className="pl-2.5 xs:pl-5 xs:gap-0.5 xs:text-base overflow-x-scroll flex flex-row lg:hidden text-base font-bold text-secondary dark:text-secondary-dark">
+                    <NavItem isActive={section === 'learn'} url="/learn">
+                      Learn
+                    </NavItem>
+                    <NavItem
+                      isActive={section === 'reference'}
+                      url="/reference/react">
+                      Reference
+                    </NavItem>
+                    <NavItem
+                      isActive={section === 'community'}
+                      url="/community">
+                      Community
+                    </NavItem>
+                    <NavItem isActive={section === 'blog'} url="/blog">
+                      Blog
+                    </NavItem>
+                  </div>
+                  <div
+                    role="separator"
+                    className="ml-5 mt-4 mb-2 border-b border-border dark:border-border-dark"
+                  />
+                  <SidebarRouteTree
+                    // Don't share state between the desktop and mobile versions.
+                    // This avoids unnecessary animations and visual flicker.
+                    key={isOpen ? 'mobile-overlay' : 'desktop-or-hidden'}
+                    routeTree={routeTree}
+                    breadcrumbs={breadcrumbs}
+                    isForceExpanded={isOpen}
+                  />
+                </Suspense>
+                <div className="h-16" />
+              </nav>
+              <div className="fixed bottom-0 hidden lg:block">
+                <Feedback />
+              </div>
+            </aside>
+          </div>
+        )}
+      </div>
+    </>
   );
 }

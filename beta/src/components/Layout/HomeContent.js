@@ -1067,6 +1067,7 @@ const NavContext = createContext(null);
 
 function BrowserChrome({children, hasPulse, hasRefresh, domain, path}) {
   const [restartId, setRestartId] = useState(0);
+  const isPulsing = hasPulse && restartId === 0;
 
   function handleRestart() {
     confCache = new Map();
@@ -1104,13 +1105,21 @@ function BrowserChrome({children, hasPulse, hasRefresh, domain, path}) {
           {hasRefresh && (
             <div
               className={cn(
-                'bg-transparent rounded-full flex justify-center items-center ',
-                hasPulse && (restartId > 0 ? '' : 'animation-pulse')
+                'relative rounded-full flex justify-center items-center ',
+                isPulsing && 'animation-pulse-button'
               )}>
+              {isPulsing && (
+                <div className="z-0 absolute shadow-[0_0_0_8px_rgba(0,0,0,0.5)] inset-0 rounded-full animation-pulse-shadow" />
+              )}
               <button
                 aria-label="Reload"
                 onClick={handleRestart}
-                className="flex items-center p-1.5 rounded-full hover:bg-gray-20 hover:bg-opacity-50 cursor-pointer justify-center">
+                className={
+                  'z-10 flex items-center p-1.5 rounded-full cursor-pointer justify-center' +
+                  // bg-transparent hover:bg-gray-20/50,
+                  // but opaque to obscure the pulsing wave.
+                  ' bg-[#ebecef] hover:bg-[#d3d7de]'
+                }>
                 <IconRestart className="text-tertiary text-lg" />
               </button>
             </div>

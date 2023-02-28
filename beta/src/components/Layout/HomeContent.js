@@ -16,6 +16,8 @@ import {
   useReducer,
 } from 'react';
 import cn from 'classnames';
+import NextLink from 'next/link';
+
 import ButtonLink from '../ButtonLink';
 import {IconRestart} from '../Icon/IconRestart';
 import BlogCard from 'components/MDX/BlogCard';
@@ -529,9 +531,17 @@ export function HomeContent() {
 }
 
 function CTA({children, icon, href}) {
-  const Tag = href.startsWith('https://') ? ExternalLink : 'a';
+  let Tag;
+  let extraProps;
+  if (href.startsWith('https://')) {
+    Tag = ExternalLink;
+  } else {
+    Tag = NextLink;
+    extraProps = {legacyBehavior: false};
+  }
   return (
     <Tag
+      {...extraProps}
       href={href}
       className="outline-none focus:outline-none focus-visible:outline focus-visible:outline-link focus:outline-offset-2 focus-visible:dark:focus:outline-link-dark group cursor-pointer w-auto justify-center inline-flex font-bold items-center mt-10 outline-none hover:bg-gray-40/5 active:bg-gray-40/10 hover:dark:bg-gray-60/5 active:dark:bg-gray-60/10 leading-tight hover:bg-opacity-80 text-lg py-2.5 rounded-full px-4 sm:px-6 ease-in-out shadow-secondary-button-stroke dark:shadow-secondary-button-stroke-dark text-primary dark:text-primary-dark">
       {icon === 'native' && (

@@ -897,12 +897,12 @@ function Example1() {
 }
 
 const example2Areas = new Map([
-  [8, {name: 'section'}],
+  [8, {name: 'VideoList'}],
   [9, {name: 'h2'}],
   [10, {name: 'Video', lines: [10, 11, 12]}],
   [11, {name: 'Video', lines: [10, 11, 12]}],
   [12, {name: 'Video', lines: [10, 11, 12]}],
-  [13, {name: 'section'}],
+  [13, {name: 'VideoList'}],
 ]);
 
 function Example2() {
@@ -968,7 +968,19 @@ function Example2() {
   );
 }
 
+const example3Areas = new Map([
+  [6, {name: 'SearchableVideoList'}],
+  [7, {name: 'SearchInput', lines: [7, 8, 9]}],
+  [8, {name: 'SearchInput', lines: [7, 8, 9]}],
+  [9, {name: 'SearchInput', lines: [7, 8, 9]}],
+  [10, {name: 'VideoList', lines: [10, 11, 12]}],
+  [11, {name: 'VideoList', lines: [10, 11, 12]}],
+  [12, {name: 'VideoList', lines: [10, 11, 12]}],
+  [13, {name: 'SearchableVideoList'}],
+]);
+
 function Example3() {
+  const [area, meta, onLineHover] = useCodeHover(example3Areas);
   const videos = [
     {
       id: 0,
@@ -1011,8 +1023,12 @@ function Example3() {
     <ExampleLayout
       filename="SearchableVideoList.js"
       left={
-        <CodeBlock isFromPackageImport={false} noShadow={true} noMargin={true}>
-          <div>{`import { useState } from 'react';
+        <CodeBlock
+          onLineHover={onLineHover}
+          isFromPackageImport={false}
+          noShadow={true}
+          noMargin={true}>
+          <div meta={meta}>{`import { useState } from 'react';
 
 function SearchableVideoList({ videos }) {
   const [searchText, setSearchText] = useState('');
@@ -1032,7 +1048,11 @@ function SearchableVideoList({ videos }) {
       }
       right={
         <BrowserChrome domain="example.com" path={'videos.html'}>
-          <ExamplePanel noShadow={false} noPadding={true} height="30rem">
+          <ExamplePanel
+            activeArea={area}
+            noShadow={false}
+            noPadding={true}
+            height="30rem">
             <h1 className="mt-20 mx-4 mb-1 font-bold text-3xl text-primary">
               React Videos
             </h1>
@@ -1047,14 +1067,28 @@ function SearchableVideoList({ videos }) {
   );
 }
 
+const example4Areas = new Map([
+  [6, {name: 'ConferenceLayout'}],
+  [7, {name: 'Suspense'}],
+  [8, {name: 'SearchableVideoList'}],
+  [9, {name: 'Suspense'}],
+  [10, {name: 'ConferenceLayout'}],
+  [17, {name: 'SearchableVideoList'}],
+]);
+
 function Example4() {
+  const [area, meta, onLineHover] = useCodeHover(example4Areas);
   const [slug, setSlug] = useState('react-conf-2021');
   return (
     <ExampleLayout
       filename="confs/[slug].js"
       left={
-        <CodeBlock isFromPackageImport={false} noShadow={true} noMargin={true}>
-          <div>{`import { db } from './database.js';
+        <CodeBlock
+          onLineHover={onLineHover}
+          isFromPackageImport={false}
+          noShadow={true}
+          noMargin={true}>
+          <div meta={meta}>{`import { db } from './database.js';
 import { Suspense } from 'react';
 
 async function ConferencePage({ slug }) {
@@ -1082,7 +1116,11 @@ async function Talks({ confId }) {
             path={'confs/' + slug}
             hasRefresh={true}
             hasPulse={true}>
-            <ExamplePanel noPadding={true} noShadow={true} height="35rem">
+            <ExamplePanel
+              activeArea={area}
+              noPadding={true}
+              noShadow={true}
+              height="35rem">
               <Suspense fallback={null}>
                 <div style={{animation: 'fadein 200ms'}}>
                   <link rel="preload" href={reactConf2019Cover} as="image" />
@@ -1292,9 +1330,11 @@ function ConferencePage({slug}) {
   const conf = use(fetchConf(slug));
   return (
     <ConferenceLayout conf={conf}>
-      <Suspense fallback={<TalksLoading />}>
-        <Talks confId={conf.id} />
-      </Suspense>
+      <div data-hover="Suspense">
+        <Suspense fallback={<TalksLoading />}>
+          <Talks confId={conf.id} />
+        </Suspense>
+      </div>
     </ConferenceLayout>
   );
 }
@@ -1359,13 +1399,13 @@ function SearchableVideoList({videos}) {
   const [searchText, setSearchText] = useState('');
   const foundVideos = filterVideos(videos, searchText);
   return (
-    <>
+    <div data-hover="SearchableVideoList">
       <SearchInput value={searchText} onChange={setSearchText} />
       <VideoList
         videos={foundVideos}
         emptyHeading={`No matches for “${searchText}”`}
       />
-    </>
+    </div>
   );
 }
 
@@ -1393,7 +1433,7 @@ function VideoList({videos, emptyHeading}) {
     heading = count + ' ' + noun;
   }
   return (
-    <section className="relative m-4" data-hover="section">
+    <section className="relative m-4" data-hover="VideoList">
       <h2
         className="font-bold text-xl text-primary mb-4 leading-snug"
         data-hover="h2">
@@ -1411,7 +1451,7 @@ function VideoList({videos, emptyHeading}) {
 function SearchInput({value, onChange}) {
   const id = useId();
   return (
-    <form className="mx-4 mt-4">
+    <form className="mx-4 mt-4" data-hover="SearchInput">
       <label htmlFor={id} className="sr-only">
         Search
       </label>
@@ -1437,6 +1477,7 @@ function ConferenceLayout({conf, children}) {
   const [isPending, startTransition] = useTransition();
   return (
     <div
+      data-hover="ConferenceLayout"
       className={cn(
         'transition-opacity delay-100',
         isPending ? 'opacity-90' : 'opacity-100'

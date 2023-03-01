@@ -808,7 +808,7 @@ const CommunityImages = memo(function CommunityImages({isLazy}) {
   );
 });
 
-function ExampleLayout({filename, left, right}) {
+function ExampleLayout({filename, left, right, wrapperRef}) {
   return (
     <div className="lg:pl-10 lg:pr-5 w-full">
       <div className="mt-12 mb-2 lg:my-16 max-w-7xl mx-auto flex flex-col w-full lg:rounded-2xl lg:bg-card lg:dark:bg-card-dark">
@@ -821,7 +821,9 @@ function ExampleLayout({filename, left, right}) {
             </div>
             {left}
           </div>
-          <div className="mt-5 lg:-my-20 w-full p-2.5 xs:p-5 lg:p-10 flex grow justify-center">
+          <div
+            ref={wrapperRef}
+            className="relative mt-5 lg:-my-20 w-full p-2.5 xs:p-5 lg:p-10 flex grow justify-center">
             {right}
           </div>
         </div>
@@ -830,9 +832,17 @@ function ExampleLayout({filename, left, right}) {
   );
 }
 
-const ranges = new Map([
-  [0, {lines: [0, 1, 10, 11], name: 'Video'}],
-  [1, {lines: [0, 1, 10, 11], name: 'Video'}],
+function useCodeHover(areas) {
+  const [hoverLine, setHoverLine] = useState(null);
+  const area = areas.get(hoverLine);
+  let meta;
+  if (area) {
+    meta = '```js {' + (hoverLine + 1) + '}';
+  }
+  return [area, meta, setHoverLine];
+}
+
+const example1Areas = new Map([
   [2, {lines: [2, 9], name: 'Video'}],
   [3, {lines: [3], name: 'Thumbnail'}],
   [4, {lines: [4, 7], name: 'a'}],
@@ -841,48 +851,16 @@ const ranges = new Map([
   [7, {lines: [4, 7], name: 'a'}],
   [8, {lines: [8], name: 'LikeButton'}],
   [9, {lines: [2, 9], name: 'Video'}],
-  [10, {lines: [0, 1, 10, 11], name: 'Video'}],
-  [11, {lines: [0, 1, 10, 11], name: 'Video'}],
 ]);
 
 function Example1() {
-  const [hoverLine, setHoverLine] = useState(null);
-  const ref = useRef(null);
-  const overlayRef = useRef(null);
-  const range = ranges.get(hoverLine);
-
-  function handleHover(line) {
-    setHoverLine(line);
-    const overlay = overlayRef.current;
-    const newRange = ranges.get(line);
-    if (newRange) {
-      const node = ref.current.querySelector(
-        '[data-hover="' + newRange.name + '"]'
-      );
-      const parentRect = ref.current.getBoundingClientRect();
-      const rect = node.getBoundingClientRect();
-      overlay.style.display = 'block';
-      overlay.style.top = Math.round(rect.top - parentRect.top) + 'px';
-      overlay.style.left = Math.round(rect.left - parentRect.left) + 'px';
-      overlay.style.width = Math.round(rect.width) + 'px';
-      overlay.style.height = Math.round(rect.height) + 'px';
-      console.log(overlay.style.top);
-    } else {
-      overlay.style.display = 'none';
-    }
-  }
-
-  let meta;
-  if (range) {
-    meta = '```js {' + range.lines.map((l) => l + 1).join(',') + '}';
-  }
-
+  const [area, meta, onLineHover] = useCodeHover(example1Areas);
   return (
     <ExampleLayout
       filename="Video.js"
       left={
         <CodeBlock
-          onLineHover={handleHover}
+          onLineHover={onLineHover}
           isFromPackageImport={false}
           noShadow={true}
           noMargin={true}>
@@ -902,21 +880,16 @@ function Example1() {
         </CodeBlock>
       }
       right={
-        <div className="w-full h-full relative">
-          <ExamplePanel height="113px">
-            <Video
-              video={{
-                title: 'My video',
-                description: 'Video description',
-                image: 'blue',
-                url: null,
-              }}
-            />
-          </ExamplePanel>
-          <div ref={ref} className="absolute bg-black/10 inset-0">
-            <div className="absolute bg-white/20 rounded-sm" ref={overlayRef} />
-          </div>
-        </div>
+        <ExamplePanel activeArea={area} height="113px">
+          <Video
+            video={{
+              title: 'My video',
+              description: 'Video description',
+              image: 'blue',
+              url: null,
+            }}
+          />
+        </ExamplePanel>
       }
     />
   );
@@ -1135,19 +1108,50 @@ function useNestedScrollLock(ref) {
   }, []);
 }
 
-function ExamplePanel({children, noPadding, noShadow, height}) {
+function ExamplePanel({children, noPadding, noShadow, height, activeArea}) {
   const ref = useRef();
+  const overlayRef = useRef(null);
+  const contentRef = useRef(null);
   useNestedScrollLock(ref);
+
+  useEffect(() => {
+    const overlay = overlayRef.current;
+    if (activeArea) {
+      const node = contentRef.current.querySelector(
+        '[data-hover="' + activeArea.name + '"]'
+      );
+      const parentRect = contentRef.current.getBoundingClientRect();
+      const rect = node.getBoundingClientRect();
+      overlay.style.opacity = 1;
+      overlay.style.top = Math.round(rect.top - parentRect.top - 4) + 'px';
+      overlay.style.left = Math.round(rect.left - parentRect.left - 4) + 'px';
+      overlay.style.width = Math.round(rect.width + 4 * 2) + 'px';
+      overlay.style.height = Math.round(rect.height + 4 * 2) + 'px';
+    } else {
+      overlay.style.opacity = 0;
+    }
+  }, [activeArea]);
+
   return (
     <div
       ref={ref}
       className={cn(
-        'max-w-3xl rounded-2xl mx-auto text-secondary leading-normal bg-white overflow-hidden w-full overflow-y-auto',
-        noPadding ? 'p-0' : 'p-4 pr-2',
+        'relative max-w-3xl rounded-2xl mx-auto text-secondary leading-normal bg-white overflow-hidden w-full overflow-y-auto',
         noShadow ? 'shadow-none' : 'shadow-nav dark:shadow-nav-dark'
       )}
       style={{height}}>
-      <div style={{contentVisibility: 'auto'}}>{children}</div>
+      <div
+        ref={contentRef}
+        className={noPadding ? 'p-0' : 'p-4 pr-2'}
+        style={{contentVisibility: 'auto'}}>
+        {children}
+        {overlayRef && (
+          <div
+            className="transition-all shadow-[0_0_0_1000px_rgba(0,0,0,0.15)] dark:shadow-[0_0_0_1000px_rgba(0,0,0,0.25)] duration-300 ease-out absolute rounded-lg"
+            ref={overlayRef}
+          />
+        )}
+      </div>
     </div>
   );
 }

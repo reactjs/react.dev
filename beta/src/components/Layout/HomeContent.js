@@ -1410,7 +1410,7 @@ function SearchableVideoList({videos}) {
   const [searchText, setSearchText] = useState('');
   const foundVideos = filterVideos(videos, searchText);
   return (
-    <div data-hover="SearchableVideoList">
+    <div className="mt-3 pt-1" data-hover="SearchableVideoList">
       <SearchInput value={searchText} onChange={setSearchText} />
       <VideoList
         videos={foundVideos}
@@ -1462,7 +1462,7 @@ function VideoList({videos, emptyHeading}) {
 function SearchInput({value, onChange}) {
   const id = useId();
   return (
-    <form className="mx-4 mt-4" data-hover="SearchInput">
+    <form className="mx-4" data-hover="SearchInput">
       <label htmlFor={id} className="sr-only">
         Search
       </label>

@@ -808,9 +808,40 @@ const CommunityImages = memo(function CommunityImages({isLazy}) {
   );
 });
 
-function ExampleLayout({filename, left, right, wrapperRef}) {
+function ExampleLayout({
+  filename,
+  left,
+  right,
+  activeArea,
+  hoverTopOffset = 0,
+}) {
   const ref = useRef(null);
   useNestedScrollLock(ref);
+  const contentRef = useRef(null);
+  const [overlayStyles, setOverlayStyles] = useState([]);
+  useEffect(() => {
+    if (activeArea) {
+      const nodes = contentRef.current.querySelectorAll(
+        '[data-hover="' + activeArea.name + '"]'
+      );
+      const nextOverlayStyles = Array.from(nodes).map((node) => {
+        const parentRect = contentRef.current.getBoundingClientRect();
+        const nodeRect = node.getBoundingClientRect();
+        let top = Math.round(nodeRect.top - parentRect.top) - 8;
+        let left = Math.round(nodeRect.left - parentRect.left) - 8;
+        let width = Math.round(nodeRect.width) + 16;
+        let height = Math.round(nodeRect.height) + 16;
+        top = Math.max(top, hoverTopOffset);
+        height = Math.min(height, parentRect.height - top - 12);
+        return {
+          width: width + 'px',
+          height: height + 'px',
+          transform: `translate(${left}px, ${top}px)`,
+        };
+      });
+      setOverlayStyles(nextOverlayStyles);
+    }
+  }, [activeArea]);
   return (
     <div className="lg:pl-10 lg:pr-5 w-full" ref={ref}>
       <div className="mt-12 mb-2 lg:my-16 max-w-7xl mx-auto flex flex-col w-full lg:rounded-2xl lg:bg-card lg:dark:bg-card-dark">
@@ -824,9 +855,22 @@ function ExampleLayout({filename, left, right, wrapperRef}) {
             {left}
           </div>
           <div
-            ref={wrapperRef}
+            ref={contentRef}
             className="relative mt-5 lg:-my-20 w-full p-2.5 xs:p-5 lg:p-10 flex grow justify-center">
             {right}
+            <div
+              className={cn(
+                'absolute z-10 inset-0 pointer-events-none transition-opacity',
+                activeArea ? 'opacity-100' : 'opacity-0'
+              )}>
+              {overlayStyles.map((styles, i) => (
+                <div
+                  key={i}
+                  className="top-0 left-0 bg-blue-30/5 border-2 border-link dark:border-link-dark absolute rounded-lg"
+                  style={styles}
+                />
+              ))}
+            </div>
           </div>
         </div>
       </div>
@@ -861,6 +905,7 @@ function Example1() {
   return (
     <ExampleLayout
       filename="Video.js"
+      activeArea={area}
       left={
         <CodeBlock
           onLineHover={onLineHover}
@@ -883,7 +928,7 @@ function Example1() {
         </CodeBlock>
       }
       right={
-        <ExamplePanel activeArea={area} height="113px">
+        <ExamplePanel height="113px">
           <Video
             video={{
               title: 'My video',
@@ -933,6 +978,7 @@ function Example2() {
   return (
     <ExampleLayout
       filename="VideoList.js"
+      activeArea={area}
       left={
         <CodeBlock
           onLineHover={onLineHover}
@@ -958,11 +1004,7 @@ function Example2() {
         </CodeBlock>
       }
       right={
-        <ExamplePanel
-          activeArea={area}
-          height="22rem"
-          noShadow={false}
-          noPadding={true}>
+        <ExamplePanel height="22rem" noShadow={false} noPadding={true}>
           <VideoList videos={videos} />
         </ExamplePanel>
       }
@@ -1024,6 +1066,7 @@ function Example3() {
   return (
     <ExampleLayout
       filename="SearchableVideoList.js"
+      activeArea={area}
       left={
         <CodeBlock
           onLineHover={onLineHover}
@@ -1051,7 +1094,6 @@ function SearchableVideoList({ videos }) {
       right={
         <BrowserChrome domain="example.com" path={'videos.html'}>
           <ExamplePanel
-            activeArea={area}
             noShadow={false}
             noPadding={true}
             contentMarginTop="80px"
@@ -1085,6 +1127,8 @@ function Example4() {
   return (
     <ExampleLayout
       filename="confs/[slug].js"
+      activeArea={area}
+      hoverTopOffset={60}
       left={
         <CodeBlock
           onLineHover={onLineHover}
@@ -1120,7 +1164,6 @@ async function Talks({ confId }) {
             hasRefresh={true}
             hasPulse={true}>
             <ExamplePanel
-              activeArea={area}
               noPadding={true}
               noShadow={true}
               contentMarginTop="56px"
@@ -1177,60 +1220,17 @@ function ExamplePanel({
   contentMarginTop,
   activeArea,
 }) {
-  const contentRef = useRef(null);
-  const [overlayStyles, setOverlayStyles] = useState([]);
-
-  useEffect(() => {
-    if (activeArea) {
-      const nodes = contentRef.current.querySelectorAll(
-        '[data-hover="' + activeArea.name + '"]'
-      );
-      const nextOverlayStyles = Array.from(nodes).map((node) => {
-        const parentRect = contentRef.current.getBoundingClientRect();
-        const nodeRect = node.getBoundingClientRect();
-        let top = Math.round(nodeRect.top - parentRect.top) - 8;
-        let left = Math.round(nodeRect.left - parentRect.left) - 8;
-        let width = Math.round(nodeRect.width) + 16;
-        let height = Math.round(nodeRect.height) + 16;
-        top = Math.max(top, 0);
-        left = Math.max(left, 0);
-        width = Math.min(width, parentRect.width);
-        height = Math.min(height, parentRect.height);
-        return {
-          width: width + 'px',
-          height: height + 'px',
-          transform: `translate(${left}px, ${top}px)`,
-        };
-      });
-      setOverlayStyles(nextOverlayStyles);
-    }
-  }, [activeArea]);
-
   return (
     <div
       className={cn(
-        'relative max-w-3xl rounded-2xl mx-auto text-secondary leading-normal bg-white overflow-hidden w-full overflow-y-auto',
+        'max-w-3xl rounded-2xl mx-auto text-secondary leading-normal bg-white overflow-hidden w-full overflow-y-auto',
         noShadow ? 'shadow-none' : 'shadow-nav dark:shadow-nav-dark'
       )}
       style={{height}}>
       <div
-        ref={contentRef}
         className={noPadding ? 'p-0' : 'p-4'}
         style={{contentVisibility: 'auto', marginTop: contentMarginTop}}>
         {children}
-        <div
-          className={cn(
-            'absolute inset-0 pointer-events-none transition-opacity',
-            activeArea ? 'opacity-100' : 'opacity-0'
-          )}>
-          {overlayStyles.map((styles, i) => (
-            <div
-              key={i}
-              className="top-0 left-0 bg-blue-30/5 border-2 border-link dark:border-link-dark absolute rounded-lg"
-              style={styles}
-            />
-          ))}
-        </div>
       </div>
     </div>
   );

@@ -1002,7 +1002,9 @@ function Example2() {
       }
       right={
         <ExamplePanel height="22rem" noShadow={false} noPadding={true}>
-          <VideoList videos={videos} />
+          <div className="m-4">
+            <VideoList videos={videos} />
+          </div>
         </ExamplePanel>
       }
     />
@@ -1102,7 +1104,9 @@ function SearchableVideoList({ videos }) {
             <p className="mx-4 mb-0 leading-snug text-secondary text-xl">
               A brief history of React
             </p>
-            <SearchableVideoList videos={videos} />
+            <div className="px-4">
+              <SearchableVideoList videos={videos} />
+            </div>
           </ExamplePanel>
         </BrowserChrome>
       }
@@ -1353,8 +1357,8 @@ function TalksLoading() {
     <div className="flex flex-col items-center h-[25rem] overflow-hidden">
       <div className="w-full">
         <div className="relative overflow-hidden before:-skew-x-12 before:absolute before:inset-0 before:-translate-x-full before:animate-[shimmer_2.5s_infinite] before:bg-gradient-to-r before:from-transparent before:via-white/50 before:to-transparent">
-          <div className="space-y-4 space-x-4">
-            <div className="pt-4 pb-1 pl-4 pr-4">
+          <div className="space-y-4">
+            <div className="pt-4 pb-1">
               <div className="h-10 w-full rounded-full bg-gray-10"></div>
             </div>
             <div className="pb-1">
@@ -1442,7 +1446,7 @@ function VideoList({videos, emptyHeading}) {
     heading = count + ' ' + noun;
   }
   return (
-    <section className="relative m-4" data-hover="VideoList">
+    <section className="relative" data-hover="VideoList">
       <h2
         className="font-bold text-xl text-primary mb-4 leading-snug"
         data-hover="h2">
@@ -1460,7 +1464,7 @@ function VideoList({videos, emptyHeading}) {
 function SearchInput({value, onChange}) {
   const id = useId();
   return (
-    <form className="mx-4" data-hover="SearchInput">
+    <form className="mb-4" data-hover="SearchInput">
       <label htmlFor={id} className="sr-only">
         Search
       </label>
@@ -1513,7 +1517,9 @@ function ConferenceLayout({conf, children}) {
           <option value="react-conf-2019">React Conf 2019</option>
         </select>
       </Cover>
-      <Fragment key={conf.id}>{children}</Fragment>
+      <div className="px-4" key={conf.id}>
+        {children}
+      </div>
     </div>
   );
 }

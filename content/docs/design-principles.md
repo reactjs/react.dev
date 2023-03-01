@@ -161,3 +161,9 @@ This doesn't mean that we ignore the issues raised by the community. For example
 After releasing many open source projects at Facebook, we have learned that trying to make everyone happy at the same time produced projects with poor focus that didn't grow well. Instead, we found that picking a small audience and focusing on making them happy brings a positive net effect. That's exactly what we did with React, and so far solving the problems encountered by Facebook product teams has translated well to the open source community.
 
 The downside of this approach is that sometimes we fail to give enough focus to the things that Facebook teams don't have to deal with, such as the "getting started" experience. We are acutely aware of this, and we are thinking of how to improve in a way that would benefit everyone in the community without making the same mistakes we did with open source projects before.
+
+### Learn More
+
+More perspectives on principles for further reading:
+
+- [What are the React Team Principles?](https://react.christmas/2019/24) by Dan Abramov

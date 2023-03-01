@@ -1128,19 +1128,21 @@ function ExamplePanel({children, noPadding, noShadow, height, activeArea}) {
 
   useEffect(() => {
     if (activeArea) {
-      const node = contentRef.current.querySelector(
+      const nodes = contentRef.current.querySelectorAll(
         '[data-hover="' + activeArea.name + '"]'
       );
-      const parentRect = contentRef.current.getBoundingClientRect();
-      const nodeRect = node.getBoundingClientRect();
-      const top = Math.round(nodeRect.top - parentRect.top - 4);
-      const left = Math.round(nodeRect.left - parentRect.left - 4);
-      const overlayStyle = {
-        width: Math.round(nodeRect.width + 4 * 2) + 'px',
-        height: Math.round(nodeRect.height + 4 * 2) + 'px',
-        transform: `translate(${left}px, ${top}px)`,
-      };
-      setOverlayStyles([overlayStyle]);
+      const nextOverlayStyles = Array.from(nodes).map((node) => {
+        const parentRect = contentRef.current.getBoundingClientRect();
+        const nodeRect = node.getBoundingClientRect();
+        const top = Math.round(nodeRect.top - parentRect.top - 4);
+        const left = Math.round(nodeRect.left - parentRect.left - 4);
+        return {
+          width: Math.round(nodeRect.width + 4 * 2) + 'px',
+          height: Math.round(nodeRect.height + 4 * 2) + 'px',
+          transform: `translate(${left}px, ${top}px)`,
+        };
+      });
+      setOverlayStyles(nextOverlayStyles);
     }
   }, [activeArea]);
 
@@ -1162,10 +1164,13 @@ function ExamplePanel({children, noPadding, noShadow, height, activeArea}) {
             'pointer-events-none transition-opacity',
             activeArea ? 'opacity-100' : 'opacity-0'
           )}>
-          <div
-            className="pointer-events-none mix-blend-overlay top-0 left-0 transition-all shadow-[0_0_0_1000px_rgba(0,0,0,0.15)] dark:shadow-[0_0_0_1000px_rgba(0,0,0,0.25)] duration-300 ease-out absolute rounded-lg"
-            style={overlayStyles[0]}
-          />
+          {overlayStyles.map((styles, i) => (
+            <div
+              key={i}
+              className="mix-blend-overlay top-0 left-0 transition-all shadow-[0_0_0_1000px_rgba(0,0,0,0.15)] dark:shadow-[0_0_0_1000px_rgba(0,0,0,0.25)] duration-300 ease-out absolute rounded-lg"
+              style={styles}
+            />
+          ))}
         </div>
       </div>
     </div>

@@ -1052,8 +1052,9 @@ function SearchableVideoList({ videos }) {
             activeArea={area}
             noShadow={false}
             noPadding={true}
+            contentMarginTop="80px"
             height="30rem">
-            <h1 className="mt-20 mx-4 mb-1 font-bold text-3xl text-primary">
+            <h1 className="mx-4 mb-1 font-bold text-3xl text-primary">
               React Videos
             </h1>
             <p className="mx-4 mb-0 leading-snug text-secondary text-xl">
@@ -1120,6 +1121,7 @@ async function Talks({ confId }) {
               activeArea={area}
               noPadding={true}
               noShadow={true}
+              contentMarginTop="56px"
               height="35rem">
               <Suspense fallback={null}>
                 <div style={{animation: 'fadein 200ms'}}>
@@ -1165,7 +1167,14 @@ function useNestedScrollLock(ref) {
   }, []);
 }
 
-function ExamplePanel({children, noPadding, noShadow, height, activeArea}) {
+function ExamplePanel({
+  children,
+  noPadding,
+  noShadow,
+  height,
+  contentMarginTop,
+  activeArea,
+}) {
   const ref = useRef();
   const contentRef = useRef(null);
   const [overlayStyles, setOverlayStyles] = useState([]);
@@ -1180,11 +1189,17 @@ function ExamplePanel({children, noPadding, noShadow, height, activeArea}) {
       const nextOverlayStyles = Array.from(nodes).map((node) => {
         const parentRect = contentRef.current.getBoundingClientRect();
         const nodeRect = node.getBoundingClientRect();
-        const top = Math.round(nodeRect.top - parentRect.top - 4);
-        const left = Math.round(nodeRect.left - parentRect.left - 4);
+        let top = Math.round(nodeRect.top - parentRect.top);
+        let left = Math.round(nodeRect.left - parentRect.left);
+        let width = Math.round(nodeRect.width);
+        let height = Math.round(nodeRect.height);
+        top = Math.max(8, top);
+        left = Math.max(8, left);
+        width = Math.min(width, parentRect.width - 16);
+        height = Math.min(height, parentRect.height - 16);
         return {
-          width: Math.round(nodeRect.width + 4 * 2) + 'px',
-          height: Math.round(nodeRect.height + 4 * 2) + 'px',
+          width: width + 'px',
+          height: height + 'px',
           transform: `translate(${left}px, ${top}px)`,
         };
       });
@@ -1203,20 +1218,18 @@ function ExamplePanel({children, noPadding, noShadow, height, activeArea}) {
       <div
         ref={contentRef}
         className={noPadding ? 'p-0' : 'p-4 pr-2'}
-        style={{contentVisibility: 'auto'}}>
+        style={{contentVisibility: 'auto', marginTop: contentMarginTop}}>
         {children}
         <div
           className={cn(
-            'absolute inset-0 pointer-events-none transition-opacity mix-blend-multiply',
-            activeArea ? 'opacity-15 dark:opacity-25' : 'opacity-0'
+            'absolute inset-0 pointer-events-none transition-opacity',
+            activeArea ? 'opacity-100' : 'opacity-0'
           )}>
-          {new Array(3).fill(null).map((_, i) => (
+          {overlayStyles.map((styles, i) => (
             <div
               key={i}
-              className="mix-blend-screen bg-white top-0 left-0 transition-all shadow-[0_0_0_1000px_black] duration-300 ease-out absolute rounded-lg"
-              style={
-                overlayStyles[i] || overlayStyles[overlayStyles.length - 1]
-              }
+              className="top-0 left-0 outline outline-2 outline-offset-4 outline-link dark:outline-link-dark absolute rounded-lg"
+              style={styles}
             />
           ))}
         </div>
@@ -1477,11 +1490,11 @@ function ConferenceLayout({conf, children}) {
   const [isPending, startTransition] = useTransition();
   return (
     <div
-      data-hover="ConferenceLayout"
       className={cn(
         'transition-opacity delay-100',
         isPending ? 'opacity-90' : 'opacity-100'
-      )}>
+      )}
+      data-hover="ConferenceLayout">
       <Cover background={conf.cover}>
         <select
           aria-label="Event"
@@ -1511,7 +1524,7 @@ function ConferenceLayout({conf, children}) {
 
 function Cover({background, children}) {
   return (
-    <div className="h-40 mt-14 overflow-hidden relative items-center flex">
+    <div className="h-40 overflow-hidden relative items-center flex">
       <div className="absolute inset-0 px-4 py-2 flex items-end bg-gradient-to-t from-black/40 via-black/0">
         {children}
       </div>

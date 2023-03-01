@@ -1222,7 +1222,7 @@ function ExamplePanel({
           {overlayStyles.map((styles, i) => (
             <div
               key={i}
-              className="top-0 left-0 bg-blue-40/10 border-2 border-link dark:border-link-dark absolute rounded-md"
+              className="top-0 left-0 bg-blue-40/5 border-2 border-link dark:border-link-dark absolute rounded-md"
               style={styles}
             />
           ))}

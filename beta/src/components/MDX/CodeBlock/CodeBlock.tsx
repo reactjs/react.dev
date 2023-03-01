@@ -163,7 +163,7 @@ const CodeBlock = function CodeBlock({
         <div
           key={lineIndex}
           className={'cm-line ' + (highlightedLines.get(lineIndex) ?? '')}
-          onPointerEnter={
+          onMouseEnter={
             onLineHover ? () => onLineHover(currentLineIndex) : undefined
           }>
           {lineOutput}
@@ -195,7 +195,7 @@ const CodeBlock = function CodeBlock({
     <div
       key={lineIndex}
       className={'cm-line ' + (highlightedLines.get(lineIndex) ?? '')}
-      onPointerEnter={onLineHover ? () => onLineHover(lineIndex) : undefined}>
+      onMouseEnter={onLineHover ? () => onLineHover(lineIndex) : undefined}>
       {lineOutput}
     </div>
   );
@@ -215,7 +215,7 @@ const CodeBlock = function CodeBlock({
             <pre className="sp-cm sp-pristine sp-javascript flex align-start">
               <code
                 className="sp-pre-placeholder grow-[2]"
-                onPointerLeave={
+                onMouseLeave={
                   onLineHover ? () => onLineHover(null) : undefined
                 }>
                 {finalOutput}

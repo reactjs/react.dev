@@ -843,14 +843,14 @@ function useCodeHover(areas) {
 }
 
 const example1Areas = new Map([
-  [2, {lines: [2, 9], name: 'Video'}],
-  [3, {lines: [3], name: 'Thumbnail'}],
-  [4, {lines: [4, 7], name: 'a'}],
-  [5, {lines: [5], name: 'h3'}],
-  [6, {lines: [6], name: 'p'}],
-  [7, {lines: [4, 7], name: 'a'}],
-  [8, {lines: [8], name: 'LikeButton'}],
-  [9, {lines: [2, 9], name: 'Video'}],
+  [2, {name: 'Video'}],
+  [3, {name: 'Thumbnail'}],
+  [4, {name: 'a'}],
+  [5, {name: 'h3'}],
+  [6, {name: 'p'}],
+  [7, {name: 'a'}],
+  [8, {name: 'LikeButton'}],
+  [9, {name: 'Video'}],
 ]);
 
 function Example1() {
@@ -894,6 +894,17 @@ function Example1() {
     />
   );
 }
+
+// const example2Areas = new Map([
+//   [8, {name: 'section'}],
+//   [9, {name: 'Thumbnail'}],
+//   [4, {name: 'a'}],
+//   [5, {name: 'h3'}],
+//   [6, {name: 'p'}],
+//   [7, {name: 'a'}],
+//   [8, {name: 'LikeButton'}],
+//   [9, {name: 'Video'}],
+// ]);
 
 function Example2() {
   const videos = [
@@ -1110,25 +1121,26 @@ function useNestedScrollLock(ref) {
 
 function ExamplePanel({children, noPadding, noShadow, height, activeArea}) {
   const ref = useRef();
-  const overlayRef = useRef(null);
   const contentRef = useRef(null);
+  const [overlayStyles, setOverlayStyles] = useState([]);
+
   useNestedScrollLock(ref);
 
   useEffect(() => {
-    const overlay = overlayRef.current;
     if (activeArea) {
       const node = contentRef.current.querySelector(
         '[data-hover="' + activeArea.name + '"]'
       );
       const parentRect = contentRef.current.getBoundingClientRect();
-      const rect = node.getBoundingClientRect();
-      overlay.style.opacity = 1;
-      overlay.style.top = Math.round(rect.top - parentRect.top - 4) + 'px';
-      overlay.style.left = Math.round(rect.left - parentRect.left - 4) + 'px';
-      overlay.style.width = Math.round(rect.width + 4 * 2) + 'px';
-      overlay.style.height = Math.round(rect.height + 4 * 2) + 'px';
-    } else {
-      overlay.style.opacity = 0;
+      const nodeRect = node.getBoundingClientRect();
+      const top = Math.round(nodeRect.top - parentRect.top - 4);
+      const left = Math.round(nodeRect.left - parentRect.left - 4);
+      const overlayStyle = {
+        width: Math.round(nodeRect.width + 4 * 2) + 'px',
+        height: Math.round(nodeRect.height + 4 * 2) + 'px',
+        transform: `translate(${left}px, ${top}px)`,
+      };
+      setOverlayStyles([overlayStyle]);
     }
   }, [activeArea]);
 
@@ -1145,12 +1157,16 @@ function ExamplePanel({children, noPadding, noShadow, height, activeArea}) {
         className={noPadding ? 'p-0' : 'p-4 pr-2'}
         style={{contentVisibility: 'auto'}}>
         {children}
-        {overlayRef && (
+        <div
+          className={cn(
+            'pointer-events-none transition-opacity',
+            activeArea ? 'opacity-100' : 'opacity-0'
+          )}>
           <div
-            className="pointer-events-none transition-all shadow-[0_0_0_1000px_rgba(0,0,0,0.15)] dark:shadow-[0_0_0_1000px_rgba(0,0,0,0.25)] duration-300 ease-out absolute rounded-lg"
-            ref={overlayRef}
+            className="pointer-events-none mix-blend-overlay top-0 left-0 transition-all shadow-[0_0_0_1000px_rgba(0,0,0,0.15)] dark:shadow-[0_0_0_1000px_rgba(0,0,0,0.25)] duration-300 ease-out absolute rounded-lg"
+            style={overlayStyles[0]}
           />
-        )}
+        </div>
       </div>
     </div>
   );

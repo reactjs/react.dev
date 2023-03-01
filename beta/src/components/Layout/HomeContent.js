@@ -837,7 +837,8 @@ function useCodeHover(areas) {
   const area = areas.get(hoverLine);
   let meta;
   if (area) {
-    meta = '```js {' + (hoverLine + 1) + '}';
+    const highlightLines = area.lines ?? [hoverLine];
+    meta = '```js {' + highlightLines.map((l) => l + 1).join(',') + '}';
   }
   return [area, meta, setHoverLine];
 }
@@ -895,18 +896,17 @@ function Example1() {
   );
 }
 
-// const example2Areas = new Map([
-//   [8, {name: 'section'}],
-//   [9, {name: 'Thumbnail'}],
-//   [4, {name: 'a'}],
-//   [5, {name: 'h3'}],
-//   [6, {name: 'p'}],
-//   [7, {name: 'a'}],
-//   [8, {name: 'LikeButton'}],
-//   [9, {name: 'Video'}],
-// ]);
+const example2Areas = new Map([
+  [8, {name: 'section'}],
+  [9, {name: 'h2'}],
+  [10, {name: 'Video', lines: [10, 11, 12]}],
+  [11, {name: 'Video', lines: [10, 11, 12]}],
+  [12, {name: 'Video', lines: [10, 11, 12]}],
+  [13, {name: 'section'}],
+]);
 
 function Example2() {
+  const [area, meta, onLineHover] = useCodeHover(example2Areas);
   const videos = [
     {
       id: 0,
@@ -932,8 +932,12 @@ function Example2() {
     <ExampleLayout
       filename="VideoList.js"
       left={
-        <CodeBlock isFromPackageImport={false} noShadow={true} noMargin={true}>
-          <div>{`function VideoList({ videos, emptyHeading }) {
+        <CodeBlock
+          onLineHover={onLineHover}
+          isFromPackageImport={false}
+          noShadow={true}
+          noMargin={true}>
+          <div meta={meta}>{`function VideoList({ videos, emptyHeading }) {
   const count = videos.length;
   let heading = emptyHeading;
   if (count > 0) {
@@ -952,7 +956,11 @@ function Example2() {
         </CodeBlock>
       }
       right={
-        <ExamplePanel height="22rem" noShadow={false} noPadding={true}>
+        <ExamplePanel
+          activeArea={area}
+          height="22rem"
+          noShadow={false}
+          noPadding={true}>
           <VideoList videos={videos} />
         </ExamplePanel>
       }
@@ -1161,14 +1169,16 @@ function ExamplePanel({children, noPadding, noShadow, height, activeArea}) {
         {children}
         <div
           className={cn(
-            'pointer-events-none transition-opacity',
-            activeArea ? 'opacity-100' : 'opacity-0'
+            'absolute inset-0 pointer-events-none transition-opacity mix-blend-multiply',
+            activeArea ? 'opacity-15 dark:opacity-25' : 'opacity-0'
           )}>
-          {overlayStyles.map((styles, i) => (
+          {new Array(3).fill(null).map((_, i) => (
             <div
               key={i}
-              className="mix-blend-overlay top-0 left-0 transition-all shadow-[0_0_0_1000px_rgba(0,0,0,0.15)] dark:shadow-[0_0_0_1000px_rgba(0,0,0,0.25)] duration-300 ease-out absolute rounded-lg"
-              style={styles}
+              className="mix-blend-screen bg-white top-0 left-0 transition-all shadow-[0_0_0_1000px_black] duration-300 ease-out absolute rounded-lg"
+              style={
+                overlayStyles[i] || overlayStyles[overlayStyles.length - 1]
+              }
             />
           ))}
         </div>
@@ -1383,8 +1393,10 @@ function VideoList({videos, emptyHeading}) {
     heading = count + ' ' + noun;
   }
   return (
-    <section className="relative p-4">
-      <h2 className="font-bold text-xl text-primary pb-4 leading-snug">
+    <section className="relative m-4" data-hover="section">
+      <h2
+        className="font-bold text-xl text-primary mb-4 leading-snug"
+        data-hover="h2">
         {heading}
       </h2>
       <div className="flex flex-col gap-4">

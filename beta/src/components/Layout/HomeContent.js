@@ -282,8 +282,8 @@ export function HomeContent() {
                   <div className="relative overflow-hidden">
                     <div className="absolute inset-0 bg-gradient-right" />
                     <div className="bg-wash relative h-14 w-full" />
-                    <div className="relative flex items-start justify-center flex-col px-5 xs:px-10 pt-5 xs:pt-6 sm:px-12 sm:pt-10 pb-16 flex-1 flex-col">
-                      <h4 className="leading-tight text-primary font-semibold text-3xl lg:text-4xl mb-4 lg:mb-5 mt-2.5">
+                    <div className="relative flex items-start justify-center flex-col flex-1 flex-col pb-16 pt-5 gap-3 px-5 lg:px-10 lg:pt-8">
+                      <h4 className="leading-tight text-primary font-semibold text-3xl lg:text-4xl">
                         Stay true to the web
                       </h4>
                       <p className="lg:text-xl leading-normal text-secondary">
@@ -368,9 +368,8 @@ export function HomeContent() {
                           </svg>
                         </div>
                       </div>
-
-                      <div className="px-5 xs:px-5 sm:px-12 lg:pt-5 flex flex-col items-start justify-center">
-                        <h4 className="leading-tight text-primary dark:text-primary-dark font-semibold text-3xl lg:text-4xl mb-4 lg:mb-5 mt-2.5">
+                      <div className="flex flex-col items-start justify-center pt-0 gap-3 px-2.5 lg:pt-8 lg:px-8">
+                        <h4 className="leading-tight text-primary dark:text-primary-dark font-semibold text-3xl lg:text-4xl">
                           Go truly native
                         </h4>
                         <p className="h-full lg:text-xl text-secondary dark:text-secondary-dark leading-normal">

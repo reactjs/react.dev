@@ -807,9 +807,42 @@ const CommunityImages = memo(function CommunityImages({isLazy}) {
   );
 });
 
-function ExampleLayout({filename, left, right}) {
+function ExampleLayout({
+  filename,
+  left,
+  right,
+  activeArea,
+  hoverTopOffset = 0,
+}) {
+  const ref = useRef(null);
+  useNestedScrollLock(ref);
+  const contentRef = useRef(null);
+  const [overlayStyles, setOverlayStyles] = useState([]);
+  useEffect(() => {
+    if (activeArea) {
+      const nodes = contentRef.current.querySelectorAll(
+        '[data-hover="' + activeArea.name + '"]'
+      );
+      const nextOverlayStyles = Array.from(nodes).map((node) => {
+        const parentRect = contentRef.current.getBoundingClientRect();
+        const nodeRect = node.getBoundingClientRect();
+        let top = Math.round(nodeRect.top - parentRect.top) - 8;
+        let left = Math.round(nodeRect.left - parentRect.left) - 8;
+        let width = Math.round(nodeRect.width) + 16;
+        let height = Math.round(nodeRect.height) + 16;
+        top = Math.max(top, hoverTopOffset);
+        height = Math.min(height, parentRect.height - top - 12);
+        return {
+          width: width + 'px',
+          height: height + 'px',
+          transform: `translate(${left}px, ${top}px)`,
+        };
+      });
+      setOverlayStyles(nextOverlayStyles);
+    }
+  }, [activeArea]);
   return (
-    <div className="lg:pl-10 lg:pr-5 w-full">
+    <div className="lg:pl-10 lg:pr-5 w-full" ref={ref}>
       <div className="mt-12 mb-2 lg:my-16 max-w-7xl mx-auto flex flex-col w-full lg:rounded-2xl lg:bg-card lg:dark:bg-card-dark">
         <div className="flex-col gap-0 lg:gap-5 lg:rounded-2xl lg:bg-gray-10 lg:dark:bg-gray-70 shadow-inner lg:flex-row flex grow w-full mx-auto items-center bg-cover bg-center lg:bg-right lg:bg-[length:60%_100%] bg-no-repeat bg-meta-gradient dark:bg-meta-gradient-dark">
           <div className="lg:-m-5 h-full shadow-nav dark:shadow-nav-dark lg:rounded-2xl bg-wash dark:bg-gray-95 w-full flex grow flex-col">
@@ -820,8 +853,23 @@ function ExampleLayout({filename, left, right}) {
             </div>
             {left}
           </div>
-          <div className="mt-5 lg:-my-20 w-full p-2.5 xs:p-5 lg:p-10 flex grow justify-center">
+          <div
+            ref={contentRef}
+            className="relative mt-5 lg:-my-20 w-full p-2.5 xs:p-5 lg:p-10 flex grow justify-center">
             {right}
+            <div
+              className={cn(
+                'absolute z-10 inset-0 pointer-events-none transition-opacity',
+                activeArea ? 'opacity-100' : 'opacity-0'
+              )}>
+              {overlayStyles.map((styles, i) => (
+                <div
+                  key={i}
+                  className="top-0 left-0 bg-blue-30/5 border-2 border-link dark:border-link-dark absolute rounded-lg"
+                  style={styles}
+                />
+              ))}
+            </div>
           </div>
         </div>
       </div>
@@ -829,13 +877,41 @@ function ExampleLayout({filename, left, right}) {
   );
 }
 
+function useCodeHover(areas) {
+  const [hoverLine, setHoverLine] = useState(null);
+  const area = areas.get(hoverLine);
+  let meta;
+  if (area) {
+    const highlightLines = area.lines ?? [hoverLine];
+    meta = '```js {' + highlightLines.map((l) => l + 1).join(',') + '}';
+  }
+  return [area, meta, setHoverLine];
+}
+
+const example1Areas = new Map([
+  [2, {name: 'Video'}],
+  [3, {name: 'Thumbnail'}],
+  [4, {name: 'a'}],
+  [5, {name: 'h3'}],
+  [6, {name: 'p'}],
+  [7, {name: 'a'}],
+  [8, {name: 'LikeButton'}],
+  [9, {name: 'Video'}],
+]);
+
 function Example1() {
+  const [area, meta, onLineHover] = useCodeHover(example1Areas);
   return (
     <ExampleLayout
       filename="Video.js"
+      activeArea={area}
       left={
-        <CodeBlock isFromPackageImport={false} noShadow={true} noMargin={true}>
-          <div>{`function Video({ video }) {
+        <CodeBlock
+          onLineHover={onLineHover}
+          isFromPackageImport={false}
+          noShadow={true}
+          noMargin={true}>
+          <div meta={meta}>{`function Video({ video }) {
   return (
     <div>
       <Thumbnail video={video} />
@@ -866,7 +942,17 @@ function Example1() {
   );
 }
 
+const example2Areas = new Map([
+  [8, {name: 'VideoList'}],
+  [9, {name: 'h2'}],
+  [10, {name: 'Video', lines: [10, 11, 12]}],
+  [11, {name: 'Video', lines: [10, 11, 12]}],
+  [12, {name: 'Video', lines: [10, 11, 12]}],
+  [13, {name: 'VideoList'}],
+]);
+
 function Example2() {
+  const [area, meta, onLineHover] = useCodeHover(example2Areas);
   const videos = [
     {
       id: 0,
@@ -891,9 +977,14 @@ function Example2() {
   return (
     <ExampleLayout
       filename="VideoList.js"
+      activeArea={area}
       left={
-        <CodeBlock isFromPackageImport={false} noShadow={true} noMargin={true}>
-          <div>{`function VideoList({ videos, emptyHeading }) {
+        <CodeBlock
+          onLineHover={onLineHover}
+          isFromPackageImport={false}
+          noShadow={true}
+          noMargin={true}>
+          <div meta={meta}>{`function VideoList({ videos, emptyHeading }) {
   const count = videos.length;
   let heading = emptyHeading;
   if (count > 0) {
@@ -920,7 +1011,19 @@ function Example2() {
   );
 }
 
+const example3Areas = new Map([
+  [6, {name: 'SearchableVideoList'}],
+  [7, {name: 'SearchInput', lines: [7, 8, 9]}],
+  [8, {name: 'SearchInput', lines: [7, 8, 9]}],
+  [9, {name: 'SearchInput', lines: [7, 8, 9]}],
+  [10, {name: 'VideoList', lines: [10, 11, 12]}],
+  [11, {name: 'VideoList', lines: [10, 11, 12]}],
+  [12, {name: 'VideoList', lines: [10, 11, 12]}],
+  [13, {name: 'SearchableVideoList'}],
+]);
+
 function Example3() {
+  const [area, meta, onLineHover] = useCodeHover(example3Areas);
   const videos = [
     {
       id: 0,
@@ -962,9 +1065,14 @@ function Example3() {
   return (
     <ExampleLayout
       filename="SearchableVideoList.js"
+      activeArea={area}
       left={
-        <CodeBlock isFromPackageImport={false} noShadow={true} noMargin={true}>
-          <div>{`import { useState } from 'react';
+        <CodeBlock
+          onLineHover={onLineHover}
+          isFromPackageImport={false}
+          noShadow={true}
+          noMargin={true}>
+          <div meta={meta}>{`import { useState } from 'react';
 
 function SearchableVideoList({ videos }) {
   const [searchText, setSearchText] = useState('');
@@ -984,8 +1092,12 @@ function SearchableVideoList({ videos }) {
       }
       right={
         <BrowserChrome domain="example.com" path={'videos.html'}>
-          <ExamplePanel noShadow={false} noPadding={true} height="30rem">
-            <h1 className="mt-20 mx-4 mb-1 font-bold text-3xl text-primary">
+          <ExamplePanel
+            noShadow={false}
+            noPadding={true}
+            contentMarginTop="80px"
+            height="30rem">
+            <h1 className="mx-4 mb-1 font-bold text-3xl text-primary">
               React Videos
             </h1>
             <p className="mx-4 mb-0 leading-snug text-secondary text-xl">
@@ -999,14 +1111,30 @@ function SearchableVideoList({ videos }) {
   );
 }
 
+const example4Areas = new Map([
+  [6, {name: 'ConferenceLayout'}],
+  [7, {name: 'Suspense'}],
+  [8, {name: 'SearchableVideoList'}],
+  [9, {name: 'Suspense'}],
+  [10, {name: 'ConferenceLayout'}],
+  [17, {name: 'SearchableVideoList'}],
+]);
+
 function Example4() {
+  const [area, meta, onLineHover] = useCodeHover(example4Areas);
   const [slug, setSlug] = useState('react-conf-2021');
   return (
     <ExampleLayout
       filename="confs/[slug].js"
+      activeArea={area}
+      hoverTopOffset={60}
       left={
-        <CodeBlock isFromPackageImport={false} noShadow={true} noMargin={true}>
-          <div>{`import { db } from './database.js';
+        <CodeBlock
+          onLineHover={onLineHover}
+          isFromPackageImport={false}
+          noShadow={true}
+          noMargin={true}>
+          <div meta={meta}>{`import { db } from './database.js';
 import { Suspense } from 'react';
 
 async function ConferencePage({ slug }) {
@@ -1034,7 +1162,11 @@ async function Talks({ confId }) {
             path={'confs/' + slug}
             hasRefresh={true}
             hasPulse={true}>
-            <ExamplePanel noPadding={true} noShadow={true} height="35rem">
+            <ExamplePanel
+              noPadding={true}
+              noShadow={true}
+              contentMarginTop="56px"
+              height="35rem">
               <Suspense fallback={null}>
                 <div style={{animation: 'fadein 200ms'}}>
                   <link rel="preload" href={reactConf2019Cover} as="image" />
@@ -1079,19 +1211,26 @@ function useNestedScrollLock(ref) {
   }, []);
 }
 
-function ExamplePanel({children, noPadding, noShadow, height}) {
-  const ref = useRef();
-  useNestedScrollLock(ref);
+function ExamplePanel({
+  children,
+  noPadding,
+  noShadow,
+  height,
+  contentMarginTop,
+  activeArea,
+}) {
   return (
     <div
-      ref={ref}
       className={cn(
         'max-w-3xl rounded-2xl mx-auto text-secondary leading-normal bg-white overflow-hidden w-full overflow-y-auto',
-        noPadding ? 'p-0' : 'p-4 pr-2',
         noShadow ? 'shadow-none' : 'shadow-nav dark:shadow-nav-dark'
       )}
       style={{height}}>
-      <div style={{contentVisibility: 'auto'}}>{children}</div>
+      <div
+        className={noPadding ? 'p-0' : 'p-4'}
+        style={{contentVisibility: 'auto', marginTop: contentMarginTop}}>
+        {children}
+      </div>
     </div>
   );
 }
@@ -1201,9 +1340,11 @@ function ConferencePage({slug}) {
   const conf = use(fetchConf(slug));
   return (
     <ConferenceLayout conf={conf}>
-      <Suspense fallback={<TalksLoading />}>
-        <Talks confId={conf.id} />
-      </Suspense>
+      <div data-hover="Suspense">
+        <Suspense fallback={<TalksLoading />}>
+          <Talks confId={conf.id} />
+        </Suspense>
+      </div>
     </ConferenceLayout>
   );
 }
@@ -1268,13 +1409,13 @@ function SearchableVideoList({videos}) {
   const [searchText, setSearchText] = useState('');
   const foundVideos = filterVideos(videos, searchText);
   return (
-    <>
+    <div data-hover="SearchableVideoList">
       <SearchInput value={searchText} onChange={setSearchText} />
       <VideoList
         videos={foundVideos}
         emptyHeading={`No matches for “${searchText}”`}
       />
-    </>
+    </div>
   );
 }
 
@@ -1302,8 +1443,10 @@ function VideoList({videos, emptyHeading}) {
     heading = count + ' ' + noun;
   }
   return (
-    <section className="relative p-4">
-      <h2 className="font-bold text-xl text-primary pb-4 leading-snug">
+    <section className="relative m-4" data-hover="VideoList">
+      <h2
+        className="font-bold text-xl text-primary mb-4 leading-snug"
+        data-hover="h2">
         {heading}
       </h2>
       <div className="flex flex-col gap-4">
@@ -1318,7 +1461,7 @@ function VideoList({videos, emptyHeading}) {
 function SearchInput({value, onChange}) {
   const id = useId();
   return (
-    <form className="mx-4 mt-4">
+    <form className="mx-4 mt-4" data-hover="SearchInput">
       <label htmlFor={id} className="sr-only">
         Search
       </label>
@@ -1347,7 +1490,8 @@ function ConferenceLayout({conf, children}) {
       className={cn(
         'transition-opacity delay-100',
         isPending ? 'opacity-90' : 'opacity-100'
-      )}>
+      )}
+      data-hover="ConferenceLayout">
       <Cover background={conf.cover}>
         <select
           aria-label="Event"
@@ -1377,7 +1521,7 @@ function ConferenceLayout({conf, children}) {
 
 function Cover({background, children}) {
   return (
-    <div className="h-40 mt-14 overflow-hidden relative items-center flex">
+    <div className="h-40 overflow-hidden relative items-center flex">
       <div className="absolute inset-0 px-4 py-2 flex items-end bg-gradient-to-t from-black/40 via-black/0">
         {children}
       </div>
@@ -1394,21 +1538,23 @@ function Cover({background, children}) {
 
 function Video({video}) {
   return (
-    <div className="flex flex-row items-center gap-3">
+    <div className="flex flex-row items-center gap-3" data-hover="Video">
       <Thumbnail video={video} />
       <a
         href={video.url}
         target="_blank"
         rel="noreferrer"
-        className="outline-link dark:outline-link outline-offset-4 group flex flex-col flex-1 gap-0.5">
+        className="outline-link dark:outline-link outline-offset-4 group flex flex-col flex-1 gap-0.5"
+        data-hover="a">
         <h3
           className={cn(
             'text-base leading-tight text-primary font-bold',
             video.url && 'group-hover:underline'
-          )}>
+          )}
+          data-hover="h3">
           {video.title}
         </h3>
-        <p className="text-tertiary text-sm leading-snug">
+        <p className="text-tertiary text-sm leading-snug" data-hover="p">
           {video.description}
         </p>
       </a>
@@ -1429,6 +1575,7 @@ function Thumbnail({video}) {
   const {image} = video;
   return (
     <a
+      data-hover="Thumbnail"
       href={video.url}
       target="_blank"
       rel="noreferrer"
@@ -1498,6 +1645,7 @@ function LikeButton() {
   const [saved, setSaved] = useState(false);
   return (
     <button
+      data-hover="LikeButton"
       className={cn(
         'outline-none focus:bg-red-50/5 focus:text-red-50 relative flex items-center justify-center w-10 h-10 cursor-pointer rounded-full text-tertiary hover:bg-card active:scale-95 active:bg-red-50/5 active:text-red-50',
         saved && 'text-red-50'
@@ -2219,7 +2367,7 @@ function fetchTalks(confId) {
           {
             id: 0,
             title: 'React 18 Keynote',
-            description: 'Andrew Clark, Lauren Tan, Juan Tejada, Ricky Hanlon',
+            description: 'The React Team',
             url: 'https://www.youtube.com/watch?v=FZ0cG47msEk&list=PLNG_1j3cPCaZZ7etkzWA7JfdmKWT0pMsa&index=1',
             image: {
               speakers: [

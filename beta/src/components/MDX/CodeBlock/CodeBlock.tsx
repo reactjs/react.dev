@@ -27,6 +27,7 @@ const CodeBlock = function CodeBlock({
   },
   noMargin,
   noShadow,
+  onLineHover,
 }: {
   children: React.ReactNode & {
     props: {
@@ -38,6 +39,7 @@ const CodeBlock = function CodeBlock({
   className?: string;
   noMargin?: boolean;
   noShadow?: boolean;
+  onLineHover?: (lineNumber: number | null) => void;
 }) {
   code = code.trimEnd();
   let lang = jsxLang;
@@ -156,10 +158,14 @@ const CodeBlock = function CodeBlock({
     if (code[i] === '\n') {
       lineOutput.push(buffer);
       buffer = '';
+      const currentLineIndex = lineIndex;
       finalOutput.push(
         <div
           key={lineIndex}
-          className={'cm-line ' + (highlightedLines.get(lineIndex) ?? '')}>
+          className={'cm-line ' + (highlightedLines.get(lineIndex) ?? '')}
+          onMouseEnter={
+            onLineHover ? () => onLineHover(currentLineIndex) : undefined
+          }>
           {lineOutput}
           <br />
         </div>
@@ -188,7 +194,8 @@ const CodeBlock = function CodeBlock({
   finalOutput.push(
     <div
       key={lineIndex}
-      className={'cm-line ' + (highlightedLines.get(lineIndex) ?? '')}>
+      className={'cm-line ' + (highlightedLines.get(lineIndex) ?? '')}
+      onMouseEnter={onLineHover ? () => onLineHover(lineIndex) : undefined}>
       {lineOutput}
     </div>
   );
@@ -206,7 +213,13 @@ const CodeBlock = function CodeBlock({
         <div className="sp-stack">
           <div className="sp-code-editor">
             <pre className="sp-cm sp-pristine sp-javascript flex align-start">
-              <code className="sp-pre-placeholder grow-[2]">{finalOutput}</code>
+              <code
+                className="sp-pre-placeholder grow-[2]"
+                onMouseLeave={
+                  onLineHover ? () => onLineHover(null) : undefined
+                }>
+                {finalOutput}
+              </code>
             </pre>
           </div>
         </div>

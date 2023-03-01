@@ -977,7 +977,7 @@ function SearchableVideoList({ videos }) {
         onChange={newText => setSearchText(newText)} />
       <VideoList
         videos={foundVideos}
-        emptyHeading={\`No matches for "\${searchText}"\`} />
+        emptyHeading={\`No matches for “\${searchText}”\`} />
     </>
   );
 }`}</div>
@@ -1273,7 +1273,7 @@ function SearchableVideoList({videos}) {
       <SearchInput value={searchText} onChange={setSearchText} />
       <VideoList
         videos={foundVideos}
-        emptyHeading={`No matches for "${searchText}"`}
+        emptyHeading={`No matches for “${searchText}”`}
       />
     </>
   );

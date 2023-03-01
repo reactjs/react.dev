@@ -809,8 +809,10 @@ const CommunityImages = memo(function CommunityImages({isLazy}) {
 });
 
 function ExampleLayout({filename, left, right, wrapperRef}) {
+  const ref = useRef(null);
+  useNestedScrollLock(ref);
   return (
-    <div className="lg:pl-10 lg:pr-5 w-full">
+    <div className="lg:pl-10 lg:pr-5 w-full" ref={ref}>
       <div className="mt-12 mb-2 lg:my-16 max-w-7xl mx-auto flex flex-col w-full lg:rounded-2xl lg:bg-card lg:dark:bg-card-dark">
         <div className="flex-col gap-0 lg:gap-5 lg:rounded-2xl lg:bg-gray-10 lg:dark:bg-gray-70 shadow-inner lg:flex-row flex grow w-full mx-auto items-center bg-cover bg-center lg:bg-right lg:bg-[length:60%_100%] bg-no-repeat bg-meta-gradient dark:bg-meta-gradient-dark">
           <div className="lg:-m-5 h-full shadow-nav dark:shadow-nav-dark lg:rounded-2xl bg-wash dark:bg-gray-95 w-full flex grow flex-col">
@@ -1175,11 +1177,8 @@ function ExamplePanel({
   contentMarginTop,
   activeArea,
 }) {
-  const ref = useRef();
   const contentRef = useRef(null);
   const [overlayStyles, setOverlayStyles] = useState([]);
-
-  useNestedScrollLock(ref);
 
   useEffect(() => {
     if (activeArea) {
@@ -1193,10 +1192,6 @@ function ExamplePanel({
         let left = Math.round(nodeRect.left - parentRect.left);
         let width = Math.round(nodeRect.width);
         let height = Math.round(nodeRect.height);
-        top = Math.max(8, top);
-        left = Math.max(8, left);
-        width = Math.min(width, parentRect.width - 16);
-        height = Math.min(height, parentRect.height - 16);
         return {
           width: width + 'px',
           height: height + 'px',
@@ -1209,7 +1204,6 @@ function ExamplePanel({
 
   return (
     <div
-      ref={ref}
       className={cn(
         'relative max-w-3xl rounded-2xl mx-auto text-secondary leading-normal bg-white overflow-hidden w-full overflow-y-auto',
         noShadow ? 'shadow-none' : 'shadow-nav dark:shadow-nav-dark'
@@ -1228,7 +1222,7 @@ function ExamplePanel({
           {overlayStyles.map((styles, i) => (
             <div
               key={i}
-              className="top-0 left-0 outline outline-2 outline-offset-4 outline-link dark:outline-link-dark absolute rounded-lg"
+              className="top-0 left-0 bg-blue-40/10 border-2 border-link dark:border-link-dark absolute rounded-md"
               style={styles}
             />
           ))}

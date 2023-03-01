@@ -1188,10 +1188,14 @@ function ExamplePanel({
       const nextOverlayStyles = Array.from(nodes).map((node) => {
         const parentRect = contentRef.current.getBoundingClientRect();
         const nodeRect = node.getBoundingClientRect();
-        let top = Math.round(nodeRect.top - parentRect.top);
-        let left = Math.round(nodeRect.left - parentRect.left);
-        let width = Math.round(nodeRect.width);
-        let height = Math.round(nodeRect.height);
+        let top = Math.round(nodeRect.top - parentRect.top) - 8;
+        let left = Math.round(nodeRect.left - parentRect.left) - 8;
+        let width = Math.round(nodeRect.width) + 16;
+        let height = Math.round(nodeRect.height) + 16;
+        top = Math.max(top, 0);
+        left = Math.max(left, 0);
+        width = Math.min(width, parentRect.width);
+        height = Math.min(height, parentRect.height);
         return {
           width: width + 'px',
           height: height + 'px',
@@ -1211,7 +1215,7 @@ function ExamplePanel({
       style={{height}}>
       <div
         ref={contentRef}
-        className={noPadding ? 'p-0' : 'p-4 pr-2'}
+        className={noPadding ? 'p-0' : 'p-4'}
         style={{contentVisibility: 'auto', marginTop: contentMarginTop}}>
         {children}
         <div
@@ -1222,7 +1226,7 @@ function ExamplePanel({
           {overlayStyles.map((styles, i) => (
             <div
               key={i}
-              className="top-0 left-0 bg-blue-40/5 border-2 border-link dark:border-link-dark absolute rounded-md"
+              className="top-0 left-0 bg-blue-30/5 border-2 border-link dark:border-link-dark absolute rounded-lg"
               style={styles}
             />
           ))}
@@ -2364,7 +2368,7 @@ function fetchTalks(confId) {
           {
             id: 0,
             title: 'React 18 Keynote',
-            description: 'Andrew Clark, Lauren Tan, Juan Tejada, Ricky Hanlon',
+            description: 'The React Team',
             url: 'https://www.youtube.com/watch?v=FZ0cG47msEk&list=PLNG_1j3cPCaZZ7etkzWA7JfdmKWT0pMsa&index=1',
             image: {
               speakers: [

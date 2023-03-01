@@ -1147,7 +1147,7 @@ function ExamplePanel({children, noPadding, noShadow, height, activeArea}) {
         {children}
         {overlayRef && (
           <div
-            className="transition-all shadow-[0_0_0_1000px_rgba(0,0,0,0.15)] dark:shadow-[0_0_0_1000px_rgba(0,0,0,0.25)] duration-300 ease-out absolute rounded-lg"
+            className="pointer-events-none transition-all shadow-[0_0_0_1000px_rgba(0,0,0,0.15)] dark:shadow-[0_0_0_1000px_rgba(0,0,0,0.25)] duration-300 ease-out absolute rounded-lg"
             ref={overlayRef}
           />
         )}

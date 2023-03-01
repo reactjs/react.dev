@@ -39,7 +39,7 @@ const CodeBlock = function CodeBlock({
   className?: string;
   noMargin?: boolean;
   noShadow?: boolean;
-  onLineHover?: (lineNumber: number) => void;
+  onLineHover?: (lineNumber: number | null) => void;
 }) {
   code = code.trimEnd();
   let lang = jsxLang;
@@ -164,7 +164,7 @@ const CodeBlock = function CodeBlock({
           key={lineIndex}
           className={'cm-line ' + (highlightedLines.get(lineIndex) ?? '')}
           onPointerEnter={
-            onLineHover ? () => onLineHover(currentLineIndex) : null
+            onLineHover ? () => onLineHover(currentLineIndex) : undefined
           }>
           {lineOutput}
           <br />
@@ -195,7 +195,7 @@ const CodeBlock = function CodeBlock({
     <div
       key={lineIndex}
       className={'cm-line ' + (highlightedLines.get(lineIndex) ?? '')}
-      onPointerEnter={onLineHover ? () => onLineHover(lineIndex) : null}>
+      onPointerEnter={onLineHover ? () => onLineHover(lineIndex) : undefined}>
       {lineOutput}
     </div>
   );
@@ -215,7 +215,9 @@ const CodeBlock = function CodeBlock({
             <pre className="sp-cm sp-pristine sp-javascript flex align-start">
               <code
                 className="sp-pre-placeholder grow-[2]"
-                onPointerLeave={onLineHover ? () => onLineHover(null) : null}>
+                onPointerLeave={
+                  onLineHover ? () => onLineHover(null) : undefined
+                }>
                 {finalOutput}
               </code>
             </pre>

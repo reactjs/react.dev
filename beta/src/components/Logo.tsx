@@ -12,7 +12,7 @@ export function Logo(props: JSX.IntrinsicElements['svg']) {
       xmlns="http://www.w3.org/2000/svg"
       {...props}>
       <circle cx="0" cy="0" r="2" fill="currentColor" />
-      <g stroke="currentColor" stroke-width="1" fill="none">
+      <g stroke="currentColor" strokeWidth="1" fill="none">
         <ellipse rx="10" ry="4.5" />
         <ellipse rx="10" ry="4.5" transform="rotate(60)" />
         <ellipse rx="10" ry="4.5" transform="rotate(120)" />

@@ -384,7 +384,7 @@ export function HomeContent() {
                           more. They look and feel native because their user
                           interfaces <i>are</i> truly native. It’s not a web
                           view—your React components render real Android and iOS
-                          views provided by the platform.
+                          views provided by the platform.
                         </p>
                       </div>
                     </div>

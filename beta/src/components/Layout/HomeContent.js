@@ -830,13 +830,63 @@ function ExampleLayout({filename, left, right}) {
   );
 }
 
+const ranges = new Map([
+  [0, {lines: [0, 1, 10, 11], name: 'Video'}],
+  [1, {lines: [0, 1, 10, 11], name: 'Video'}],
+  [2, {lines: [2, 9], name: 'Video'}],
+  [3, {lines: [3], name: 'Thumbnail'}],
+  [4, {lines: [4, 7], name: 'a'}],
+  [5, {lines: [5], name: 'h3'}],
+  [6, {lines: [6], name: 'p'}],
+  [7, {lines: [4, 7], name: 'a'}],
+  [8, {lines: [8], name: 'LikeButton'}],
+  [9, {lines: [2, 9], name: 'Video'}],
+  [10, {lines: [0, 1, 10, 11], name: 'Video'}],
+  [11, {lines: [0, 1, 10, 11], name: 'Video'}],
+]);
+
 function Example1() {
+  const [hoverLine, setHoverLine] = useState(null);
+  const ref = useRef(null);
+  const overlayRef = useRef(null);
+  const range = ranges.get(hoverLine);
+
+  function handleHover(line) {
+    setHoverLine(line);
+    const overlay = overlayRef.current;
+    const newRange = ranges.get(line);
+    if (newRange) {
+      const node = ref.current.querySelector(
+        '[data-hover="' + newRange.name + '"]'
+      );
+      const parentRect = ref.current.getBoundingClientRect();
+      const rect = node.getBoundingClientRect();
+      overlay.style.display = 'block';
+      overlay.style.top = Math.round(rect.top - parentRect.top) + 'px';
+      overlay.style.left = Math.round(rect.left - parentRect.left) + 'px';
+      overlay.style.width = Math.round(rect.width) + 'px';
+      overlay.style.height = Math.round(rect.height) + 'px';
+      console.log(overlay.style.top);
+    } else {
+      overlay.style.display = 'none';
+    }
+  }
+
+  let meta;
+  if (range) {
+    meta = '```js {' + range.lines.map((l) => l + 1).join(',') + '}';
+  }
+
   return (
     <ExampleLayout
       filename="Video.js"
       left={
-        <CodeBlock isFromPackageImport={false} noShadow={true} noMargin={true}>
-          <div>{`function Video({ video }) {
+        <CodeBlock
+          onLineHover={handleHover}
+          isFromPackageImport={false}
+          noShadow={true}
+          noMargin={true}>
+          <div meta={meta}>{`function Video({ video }) {
   return (
     <div>
       <Thumbnail video={video} />
@@ -852,16 +902,21 @@ function Example1() {
         </CodeBlock>
       }
       right={
-        <ExamplePanel height="113px">
-          <Video
-            video={{
-              title: 'My video',
-              description: 'Video description',
-              image: 'blue',
-              url: null,
-            }}
-          />
-        </ExamplePanel>
+        <div className="w-full h-full relative">
+          <ExamplePanel height="113px">
+            <Video
+              video={{
+                title: 'My video',
+                description: 'Video description',
+                image: 'blue',
+                url: null,
+              }}
+            />
+          </ExamplePanel>
+          <div ref={ref} className="absolute bg-black/10 inset-0">
+            <div className="absolute bg-white/20 rounded-sm" ref={overlayRef} />
+          </div>
+        </div>
       }
     />
   );
@@ -1395,21 +1450,23 @@ function Cover({background, children}) {
 
 function Video({video}) {
   return (
-    <div className="flex flex-row items-center gap-3">
+    <div className="flex flex-row items-center gap-3" data-hover="Video">
       <Thumbnail video={video} />
       <a
         href={video.url}
         target="_blank"
         rel="noreferrer"
-        className="outline-link dark:outline-link outline-offset-4 group flex flex-col flex-1 gap-0.5">
+        className="outline-link dark:outline-link outline-offset-4 group flex flex-col flex-1 gap-0.5"
+        data-hover="a">
         <h3
           className={cn(
             'text-base leading-tight text-primary font-bold',
             video.url && 'group-hover:underline'
-          )}>
+          )}
+          data-hover="h3">
           {video.title}
         </h3>
-        <p className="text-tertiary text-sm leading-snug">
+        <p className="text-tertiary text-sm leading-snug" data-hover="p">
           {video.description}
         </p>
       </a>
@@ -1430,6 +1487,7 @@ function Thumbnail({video}) {
   const {image} = video;
   return (
     <a
+      data-hover="Thumbnail"
       href={video.url}
       target="_blank"
       rel="noreferrer"
@@ -1499,6 +1557,7 @@ function LikeButton() {
   const [saved, setSaved] = useState(false);
   return (
     <button
+      data-hover="LikeButton"
       className={cn(
         'outline-none focus:bg-red-50/5 focus:text-red-50 relative flex items-center justify-center w-10 h-10 cursor-pointer rounded-full text-tertiary hover:bg-card active:scale-95 active:bg-red-50/5 active:text-red-50',
         saved && 'text-red-50'

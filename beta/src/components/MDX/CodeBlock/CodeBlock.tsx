@@ -27,6 +27,7 @@ const CodeBlock = function CodeBlock({
   },
   noMargin,
   noShadow,
+  onLineHover,
 }: {
   children: React.ReactNode & {
     props: {
@@ -38,6 +39,7 @@ const CodeBlock = function CodeBlock({
   className?: string;
   noMargin?: boolean;
   noShadow?: boolean;
+  onLineHover?: (lineNumber: number) => void;
 }) {
   code = code.trimEnd();
   let lang = jsxLang;
@@ -156,10 +158,15 @@ const CodeBlock = function CodeBlock({
     if (code[i] === '\n') {
       lineOutput.push(buffer);
       buffer = '';
+      const currentLineIndex = lineIndex;
       finalOutput.push(
         <div
           key={lineIndex}
-          className={'cm-line ' + (highlightedLines.get(lineIndex) ?? '')}>
+          className={'cm-line ' + (highlightedLines.get(lineIndex) ?? '')}
+          onPointerEnter={
+            onLineHover ? () => onLineHover(currentLineIndex) : null
+          }
+          onPointerLeave={onLineHover ? () => onLineHover(null) : null}>
           {lineOutput}
           <br />
         </div>
@@ -188,7 +195,9 @@ const CodeBlock = function CodeBlock({
   finalOutput.push(
     <div
       key={lineIndex}
-      className={'cm-line ' + (highlightedLines.get(lineIndex) ?? '')}>
+      className={'cm-line ' + (highlightedLines.get(lineIndex) ?? '')}
+      onPointerEnter={onLineHover ? () => onLineHover(lineIndex) : null}
+      onPointerLeave={onLineHover ? () => onLineHover(null) : null}>
       {lineOutput}
     </div>
   );

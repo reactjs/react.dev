@@ -284,13 +284,13 @@ function SectionIcon({icon}) {
           icon={icon}
           size={36}
           className={cn(
-            icon === 'interactivity' ||
-              (icon === 'community' && 'text-purple-50 dark:text-purple-10'),
+            (icon === 'interactivity' || icon === 'community') &&
+              'text-purple-50 dark:text-purple-10',
             icon === 'framework' && 'text-red-50 dark:text-red-10',
             icon == 'code' && 'text-green-50 dark:text-green-10',
             icon == 'native' && 'text-yellow-50 dark:text-yellow-10',
-            icon == 'components' ||
-              (icon === 'news' && 'text-blue-50 dark:text-blue-10')
+            (icon == 'components' || icon === 'news') &&
+              'text-blue-50 dark:text-blue-10'
           )}
         />
       </div>

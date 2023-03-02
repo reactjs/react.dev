@@ -105,6 +105,33 @@ function CurrentTime() {
   return <span suppressHydrationWarning>{currentTime}</span>;
 }
 
+const recentPosts = [
+  {
+    title: 'React Labs: June 2022',
+    icon: 'labs',
+    date: 'June 15, 2022',
+    url: '/blog/2022/06/15/react-labs-what-we-have-been-working-on-june-2022',
+  },
+  {
+    title: 'React v18.0',
+    icon: 'blog',
+    date: 'March 29, 2022',
+    url: '/blog/2022/03/29/react-v18',
+  },
+  {
+    title: 'Upgrading to React 18',
+    icon: 'blog',
+    date: 'March 8, 2022',
+    url: '/blog/2022/03/08/react-18-upgrade-guide',
+  },
+  {
+    title: 'React Conf 2021 Recap',
+    icon: 'blog',
+    date: 'December 17, 2021',
+    url: '/blog/2021/12/17/react-conf-2021-recap',
+  },
+];
+
 export function HomeContent() {
   const [logoAnimation, setLogoAnimation] = useState(false);
   return (
@@ -440,32 +467,16 @@ export function HomeContent() {
                 </p>
                 <div className="flex-col sm:flex-row flex-wrap flex gap-5 text-left my-5">
                   <div className="flex-1 min-w-[40%]">
-                    <BlogCard
-                      title="React Labs: June 2022"
-                      icon="labs"
-                      date="June 15, 2022"
-                      url="/blog/2022/06/15/react-labs-what-we-have-been-working-on-june-2022"></BlogCard>
+                    <BlogCard {...recentPosts[0]} />
                   </div>
                   <div className="flex-1 min-w-[40%]">
-                    <BlogCard
-                      title="React v18.0"
-                      icon="blog"
-                      date="March 29, 2022"
-                      url="/blog/2022/03/29/react-v18"></BlogCard>
+                    <BlogCard {...recentPosts[1]} />
                   </div>
                   <div className="flex-1 min-w-[40%]">
-                    <BlogCard
-                      icon="blog"
-                      title="Upgrading to React 18"
-                      date="March 8, 2022"
-                      url="/blog/2022/03/08/react-18-upgrade-guide"></BlogCard>
+                    <BlogCard {...recentPosts[2]} />
                   </div>
                   <div className="hidden sm:flex-1 sm:inline">
-                    <BlogCard
-                      title="React Conf 2021 Recap"
-                      icon="blog"
-                      date="December 17, 2021"
-                      url="/blog/2021/12/17/react-conf-2021-recap"></BlogCard>
+                    <BlogCard {...recentPosts[3]} />
                   </div>
                 </div>
                 <div className="flex lg:hidden justify-start w-full">

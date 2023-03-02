@@ -292,7 +292,7 @@ export function HomeContent() {
                         fetching data, progressively filling in the remaining
                         content before any JavaScript code loads. On the client,
                         React can use standard web APIs to keep your UI
-                        responsive even in the middle of rendering.
+                        responsive even in the middle of rendering.
                       </p>
                     </div>
                   </div>
@@ -381,10 +381,10 @@ export function HomeContent() {
                           and{' '}
                           <Link href="https://github.com/expo/expo">Expo</Link>{' '}
                           let you build apps in React for Android, iOS, and
-                          more. They look and feel native because their user
-                          interfaces <i>are</i> truly native. It’s not a web
-                          view—your React components render real Android and iOS
-                          views provided by the platform.
+                          more. They look and feel native because their UIs{' '}
+                          <i>are</i> truly native. It’s not a web view—your
+                          React components render real Android and iOS views
+                          provided by the platform.
                         </p>
                       </div>
                     </div>

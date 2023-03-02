@@ -1143,6 +1143,13 @@ const example4Areas = new Map([
 function Example4() {
   const [area, meta, onLineHover] = useCodeHover(example4Areas);
   const [slug, setSlug] = useState('react-conf-2021');
+  const [animate, setAnimate] = useState(false);
+
+  function navigate(newSlug) {
+    setSlug(newSlug);
+    setAnimate(true);
+  }
+
   return (
     <ExampleLayout
       filename="confs/[slug].js"
@@ -1176,7 +1183,7 @@ async function Talks({ confId }) {
         </CodeBlock>
       }
       right={
-        <NavContext.Provider value={{slug, setSlug}}>
+        <NavContext.Provider value={{slug, navigate}}>
           <BrowserChrome
             domain="example.com"
             path={'confs/' + slug}
@@ -1188,7 +1195,7 @@ async function Talks({ confId }) {
               contentMarginTop="56px"
               height="35rem">
               <Suspense fallback={null}>
-                <div style={{animation: 'fadein 200ms'}}>
+                <div style={{animation: animate ? 'fadein 200ms' : null}}>
                   <link rel="preload" href={reactConf2019Cover} as="image" />
                   <link rel="preload" href={reactConf2021Cover} as="image" />
                   <ConferencePage slug={slug} />
@@ -1503,7 +1510,7 @@ function SearchInput({value, onChange}) {
 }
 
 function ConferenceLayout({conf, children}) {
-  const {slug, setSlug} = useContext(NavContext);
+  const {slug, navigate} = useContext(NavContext);
   const [isPending, startTransition] = useTransition();
   return (
     <div
@@ -1518,7 +1525,7 @@ function ConferenceLayout({conf, children}) {
           defaultValue={slug}
           onChange={(e) => {
             startTransition(() => {
-              setSlug(e.target.value);
+              navigate(e.target.value);
             });
           }}
           className="appearance-none pr-8 bg-transparent text-primary-dark text-2xl font-bold mb-0.5"

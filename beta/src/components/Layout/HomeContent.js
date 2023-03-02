@@ -834,21 +834,26 @@ function ExampleLayout({
       const nodes = contentRef.current.querySelectorAll(
         '[data-hover="' + activeArea.name + '"]'
       );
-      const nextOverlayStyles = Array.from(nodes).map((node) => {
-        const parentRect = contentRef.current.getBoundingClientRect();
-        const nodeRect = node.getBoundingClientRect();
-        let top = Math.round(nodeRect.top - parentRect.top) - 8;
-        let left = Math.round(nodeRect.left - parentRect.left) - 8;
-        let width = Math.round(nodeRect.width) + 16;
-        let height = Math.round(nodeRect.height) + 16;
-        top = Math.max(top, hoverTopOffset);
-        height = Math.min(height, parentRect.height - top - 12);
-        return {
-          width: width + 'px',
-          height: height + 'px',
-          transform: `translate(${left}px, ${top}px)`,
-        };
-      });
+      const nextOverlayStyles = Array.from(nodes)
+        .map((node) => {
+          const parentRect = contentRef.current.getBoundingClientRect();
+          const nodeRect = node.getBoundingClientRect();
+          let top = Math.round(nodeRect.top - parentRect.top) - 8;
+          let bottom = Math.round(nodeRect.bottom - parentRect.top) + 8;
+          let left = Math.round(nodeRect.left - parentRect.left) - 8;
+          let right = Math.round(nodeRect.right - parentRect.left) + 8;
+          top = Math.max(top, hoverTopOffset);
+          bottom = Math.min(bottom, parentRect.height - 12);
+          if (top >= bottom) {
+            return null;
+          }
+          return {
+            width: right - left + 'px',
+            height: bottom - top + 'px',
+            transform: `translate(${left}px, ${top}px)`,
+          };
+        })
+        .filter((s) => s !== null);
       setOverlayStyles(nextOverlayStyles);
     }
   }, [activeArea]);

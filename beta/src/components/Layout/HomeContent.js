@@ -36,9 +36,9 @@ function Section({children, z, isFirst, background = null}) {
         background === null && 'max-w-7xl',
         background === 'wash' && 'bg-wash dark:bg-wash-dark',
         background === 'left-card' &&
-          'bg-gradient-left dark:bg-gradient-left-dark border-t border-primary/10 dark:border-primary-dark/10 ',
+          'bg-gradient-left dark:bg-gradient-left-dark shadow-inner-border dark:shadow-inner-border-dark',
         background === 'right-card' &&
-          'bg-gradient-right dark:bg-gradient-right-dark border-t border-primary/5 dark:border-primary-dark/5'
+          'bg-gradient-right dark:bg-gradient-right-dark shadow-inner-border dark:shadow-innner-border-dark'
       )}
       style={{
         contentVisibility: 'layout style paint',
@@ -257,31 +257,9 @@ function SectionIcon({icon}) {
     <div className="flex justify-center items-center -mb-10 z-10 -mt-10 ">
       <div
         className={cn(
-          'rounded-full font-bold text-display bg-center bg-[conic-gradient(at_top_right,_var(--tw-gradient-stops))] h-20 w-20 flex justify-center items-center text-lg shadow-inner-border dark:shadow-inner-border-dark',
-          (icon === 'interactivity' || icon === 'community') &&
-            'dark:from-yellow-60 dark:via-purple-40 dark:to-purple-60 from-yellow-10 via-purple-10 to-purple-40',
-          icon === 'framework' &&
-            'dark:from-yellow-60 dark:via-red-40 dark:to-red-60 from-yellow-10 via-red-10 to-red-40',
-          icon === 'code' &&
-            'dark:from-yellow-60 dark:via-green-40 dark:to-green-60 from-yellow-10 via-green-10 to-green-40',
-          icon === 'native' &&
-            'dark:from-yellow-60 dark:via-yellow-40 dark:to-yellow-60 from-yellow-10 via-yellow-10 to-yellow-40',
-          (icon === 'components' || icon === 'news') &&
-            'dark:from-yellow-60 dark:via-blue-40 dark:to-blue-60 from-yellow-10 via-blue-10 to-blue-40'
+          'rounded-full font-bold text-display bg-link h-20 w-20 flex justify-center items-center text-lg shadow-inner-border dark:shadow-inner-border-dark'
         )}>
-        <Icon
-          icon={icon}
-          size={36}
-          className={cn(
-            (icon === 'interactivity' || icon === 'community') &&
-              'text-purple-50 dark:text-purple-10',
-            icon === 'framework' && 'text-red-50 dark:text-red-10',
-            icon == 'code' && 'text-green-50 dark:text-green-10',
-            icon == 'native' && 'text-yellow-50 dark:text-yellow-10',
-            (icon == 'components' || icon === 'news') &&
-              'text-blue-50 dark:text-blue-10'
-          )}
-        />
+        <Icon icon={icon} size={36} className="text-blue-10" />
       </div>
     </div>
   );

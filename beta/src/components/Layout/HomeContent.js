@@ -1104,7 +1104,7 @@ function SearchableVideoList({ videos }) {
             <p className="mx-4 mb-0 leading-snug text-secondary text-xl">
               A brief history of React
             </p>
-            <div className="px-4">
+            <div className="px-4 pb-4">
               <SearchableVideoList videos={videos} />
             </div>
           </ExamplePanel>
@@ -1517,7 +1517,7 @@ function ConferenceLayout({conf, children}) {
           <option value="react-conf-2019">React Conf 2019</option>
         </select>
       </Cover>
-      <div className="px-4" key={conf.id}>
+      <div className="px-4 pb-4" key={conf.id}>
         {children}
       </div>
     </div>

@@ -1216,14 +1216,14 @@ function useNestedScrollLock(ref) {
     }
 
     function updateLock() {
-      if (isLocked && performance.now() - lastScroll > 250) {
+      if (isLocked && performance.now() - lastScroll > 150) {
         isLocked = false;
         ref.current.style.pointerEvents = '';
       }
     }
 
     window.addEventListener('scroll', handleScroll);
-    const interval = setInterval(updateLock, 100);
+    const interval = setInterval(updateLock, 60);
     return () => {
       window.removeEventListener('scroll', handleScroll);
       clearInterval(interval);

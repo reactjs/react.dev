@@ -4,7 +4,7 @@
   "routes": [
     {
       "hasSectionHeader": true,
-      "sectionHeader": "Get Started"
+      "sectionHeader": "GET STARTED"
     },
     {
       "title": "Installation",
@@ -16,7 +16,7 @@
     },
     {
       "hasSectionHeader": true,
-      "sectionHeader": "Learn React"
+      "sectionHeader": "LEARN REACT"
     },
     {
       "title": "Describing the UI",
@@ -36,7 +36,7 @@
     },
     {
       "hasSectionHeader": true,
-      "sectionHeader": "Reference (react)"
+      "sectionHeader": "REACT API"
     },
     {
       "title": "Components",
@@ -56,7 +56,7 @@
     },
     {
       "hasSectionHeader": true,
-      "sectionHeader": "Reference (react-dom)"
+      "sectionHeader": "REACT DOM API"
     },
     {
       "title": "Components",
@@ -76,7 +76,7 @@
     },
     {
       "hasSectionHeader": true,
-      "sectionHeader": "Get Involved"
+      "sectionHeader": "GET INVOLVED"
     },
     {
       "title": "React Community",
@@ -84,7 +84,7 @@
     },
     {
       "hasSectionHeader": true,
-      "sectionHeader": "Stay Informed"
+      "sectionHeader": "STAY INFORMED"
     },
     {
       "title": "React Blog",

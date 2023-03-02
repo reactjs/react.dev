@@ -359,21 +359,17 @@ export function Footer({hideSurvey = false, hideBorder = false}: FooterProps) {
               <FooterLink href="https://github.com/facebook/react/blob/main/CODE_OF_CONDUCT.md">
                 Code of Conduct
               </FooterLink>
-              <FooterLink href="/community/acknowledgements">
-                Acknowledgements
-              </FooterLink>
+              <FooterLink href="/community/team">Meet the Team</FooterLink>
               <FooterLink href="/community/docs-contributors">
                 Docs Contributors
               </FooterLink>
-              <FooterLink href="/community/team">Meet the Team</FooterLink>
-              <FooterLink href="https://reactjs.org/blog">Blog</FooterLink>
-              {/* <FooterLink href="/">Community Resources</FooterLink> */}
+              <FooterLink href="/community/acknowledgements">
+                Acknowledgements
+              </FooterLink>
             </div>
             <div className="flex flex-col">
               <FooterLink isHeader={true}>More</FooterLink>
-              {/* <FooterLink href="/">Tutorial</FooterLink> */}
-              {/* <FooterLink href="/">Blog</FooterLink> */}
-              {/* <FooterLink href="/">Acknowledgements</FooterLink> */}
+              <FooterLink href="/blog">Blog</FooterLink>
               <FooterLink href="https://reactnative.dev/">
                 React Native
               </FooterLink>

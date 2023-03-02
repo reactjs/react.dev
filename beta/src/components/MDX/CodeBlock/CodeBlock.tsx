@@ -208,7 +208,8 @@ const CodeBlock = function CodeBlock({
         !noMargin && 'my-8',
         noShadow &&
           'shadow-none rounded-2xl overflow-hidden w-full flex bg-transparent'
-      )}>
+      )}
+      style={{contain: 'content'}}>
       <div className="sp-wrapper">
         <div className="sp-stack">
           <div className="sp-code-editor">

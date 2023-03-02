@@ -42,6 +42,10 @@ Current members of the React team are listed in alphabetical order below.
     Luna learned programming because she thought it meant creating video games. Instead, she ended up working on the Pinterest web app, and now on React itself. Luna doesn't want to make video games anymore, but she plans to do creative writing if she ever gets bored.
 </TeamMember>
 
+<TeamMember name="Mengdi Chen" permalink="mengdi-chen" photo="/images/team/mengdi-chen.jpg" github="mondaychen" twitter="mengdi_en" title="Engineer at Meta">
+    When Mengdi was working on his Digital Arts degree he was conceited about his front-end skills because his CSS worked perfectly even on IE6. But soon React opened a new door of programming for him, and he has been dreaming of joining the React team ever since. Outside of work, he is usually busy chasing his two kids around or cooking.
+</TeamMember>
+
 <TeamMember name="Mofei Zhang" permalink="mofei-zhang" photo="/images/team/mofei-zhang.png" github="mofeiZ" title="Engineer at Meta">
     Mofei started programming when she realized it can help her cheat in video games. She focused on operating systems in undergrad / grad school, but now finds herself happily tinkering on React. Outside of work, she enjoys debugging bouldering problems and planning her next backpacking trip(s).
 </TeamMember>

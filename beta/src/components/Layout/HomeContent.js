@@ -889,14 +889,14 @@ function useCodeHover(areas) {
 }
 
 const example1Areas = new Map([
-  [2, {name: 'Video', lines: [2, 9]}],
+  [2, {name: 'Video'}],
   [3, {name: 'Thumbnail'}],
-  [4, {name: 'a', lines: [4, 7]}],
+  [4, {name: 'a'}],
   [5, {name: 'h3'}],
   [6, {name: 'p'}],
-  [7, {name: 'a', lines: [4, 7]}],
+  [7, {name: 'a'}],
   [8, {name: 'LikeButton'}],
-  [9, {name: 'Video', lines: [2, 9]}],
+  [9, {name: 'Video'}],
 ]);
 
 function Example1() {
@@ -943,10 +943,10 @@ function Example1() {
 }
 
 const example2Areas = new Map([
-  [8, {name: 'VideoList', lines: [8, 13]}],
+  [8, {name: 'VideoList'}],
   [9, {name: 'h2'}],
   [11, {name: 'Video', lines: [11]}],
-  [13, {name: 'VideoList', lines: [8, 13]}],
+  [13, {name: 'VideoList'}],
 ]);
 
 function Example2() {
@@ -1012,14 +1012,14 @@ function Example2() {
 }
 
 const example3Areas = new Map([
-  [6, {name: 'SearchableVideoList', lines: [6, 13]}],
+  [6, {name: 'SearchableVideoList'}],
   [7, {name: 'SearchInput', lines: [7, 8, 9]}],
   [8, {name: 'SearchInput', lines: [7, 8, 9]}],
   [9, {name: 'SearchInput', lines: [7, 8, 9]}],
   [10, {name: 'VideoList', lines: [10, 11, 12]}],
   [11, {name: 'VideoList', lines: [10, 11, 12]}],
   [12, {name: 'VideoList', lines: [10, 11, 12]}],
-  [13, {name: 'SearchableVideoList', lines: [6, 13]}],
+  [13, {name: 'SearchableVideoList'}],
 ]);
 
 function Example3() {
@@ -1115,11 +1115,11 @@ function SearchableVideoList({ videos }) {
 }
 
 const example4Areas = new Map([
-  [6, {name: 'ConferenceLayout', lines: [6, 10]}],
-  [7, {name: 'Suspense', lines: [7, 9]}],
+  [6, {name: 'ConferenceLayout'}],
+  [7, {name: 'Suspense'}],
   [8, {name: 'SearchableVideoList'}],
-  [9, {name: 'Suspense', lines: [7, 9]}],
-  [10, {name: 'ConferenceLayout', lines: [6, 10]}],
+  [9, {name: 'Suspense'}],
+  [10, {name: 'ConferenceLayout'}],
   [17, {name: 'SearchableVideoList'}],
 ]);
 

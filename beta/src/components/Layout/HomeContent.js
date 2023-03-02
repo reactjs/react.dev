@@ -41,7 +41,7 @@ function Section({children, background = null}) {
           'bg-gradient-right dark:bg-gradient-right-dark border-t border-primary/5 dark:border-primary-dark/5'
       )}
       style={{
-        contentVisibility: 'layout style paint',
+        contain: 'content',
       }}>
       <div className="flex-col gap-2 flex grow w-full my-20 lg:my-32 mx-auto items-center">
         {children}

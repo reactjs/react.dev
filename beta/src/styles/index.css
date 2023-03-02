@@ -354,7 +354,7 @@ ol.mdx-illustration-block {
 }
 
 .animation-pulse-shadow {
-  animation: pulse-button 2s infinite, pulse-shadow 2s infinite;
+  animation: pulse-shadow 2s infinite;
 }
 
 @keyframes pulse-button {

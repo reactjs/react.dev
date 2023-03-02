@@ -718,7 +718,7 @@ const communityImages = [
 function CommunityGallery() {
   const ref = useRef();
 
-  const [shouldPlay, setShouldPlay] = useState(true /* play for SSR */);
+  const [shouldPlay, setShouldPlay] = useState(false);
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {

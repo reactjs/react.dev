@@ -875,7 +875,7 @@ function ExampleLayout({
             {right}
             <div
               className={cn(
-                'absolute z-10 inset-0 pointer-events-none transition-opacity',
+                'absolute z-10 inset-0 pointer-events-none transition-opacity transform-gpu',
                 activeArea ? 'opacity-100' : 'opacity-0'
               )}>
               {overlayStyles.map((styles, i) => (

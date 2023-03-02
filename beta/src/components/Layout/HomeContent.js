@@ -946,6 +946,7 @@ function Example1() {
         <ExamplePanel height="113px">
           <Video
             video={{
+              id: 'ex1-0',
               title: 'My video',
               description: 'Video description',
               image: 'blue',
@@ -969,19 +970,19 @@ function Example2() {
   const [area, meta, onLineHover] = useCodeHover(example2Areas);
   const videos = [
     {
-      id: 0,
+      id: 'ex2-0',
       title: 'First video',
       description: 'Video description',
       image: 'blue',
     },
     {
-      id: 1,
+      id: 'ex2-1',
       title: 'Second video',
       description: 'Video description',
       image: 'red',
     },
     {
-      id: 2,
+      id: 'ex2-2',
       title: 'Third video',
       description: 'Video description',
       image: 'green',
@@ -1042,35 +1043,35 @@ function Example3() {
   const [area, meta, onLineHover] = useCodeHover(example3Areas);
   const videos = [
     {
-      id: 0,
+      id: 'vids-0',
       title: 'React: The Documentary',
       description: 'The origin story of React',
       image: '/images/home/videos/documentary.webp',
       url: 'https://www.youtube.com/watch?v=8pDqJVdNa44',
     },
     {
-      id: 1,
+      id: 'vids-1',
       title: 'Rethinking Best Practices',
       description: 'Pete Hunt (2013)',
       image: '/images/home/videos/rethinking.jpg',
       url: 'https://www.youtube.com/watch?v=x7cQ3mrcKaY',
     },
     {
-      id: 2,
+      id: 'vids-2',
       title: 'Introducing React Native',
       description: 'Tom Occhino (2015)',
       image: '/images/home/videos/rn.jpg',
       url: 'https://www.youtube.com/watch?v=KVZ-P-ZI6W4',
     },
     {
-      id: 3,
+      id: 'vids-3',
       title: 'Introducing React Hooks',
       description: 'Sophie Alpert and Dan Abramov (2018)',
       image: '/images/home/videos/hooks.jpg',
       url: 'https://www.youtube.com/watch?v=V-QO-KO90iQ',
     },
     {
-      id: 4,
+      id: 'vids-4',
       title: 'Introducing Server Components',
       description: 'Dan Abramov and Lauren Tan (2020)',
       image: '/images/home/videos/rsc.jpg',
@@ -1579,7 +1580,7 @@ function Video({video}) {
           {video.description}
         </p>
       </a>
-      <LikeButton />
+      <LikeButton video={video} />
     </div>
   );
 }
@@ -1662,17 +1663,31 @@ function ThumbnailPlaceholder() {
   );
 }
 
-function LikeButton() {
-  const [saved, setSaved] = useState(false);
+// A hack since we don't actually have a backend.
+// Unlike local state, this survives videos being filtered.
+const likedVideos = new Set();
+
+function LikeButton({video}) {
+  const [isLiked, setIsLiked] = useState(() => likedVideos.has(video.id));
+  const [animate, setAnimate] = useState(false);
   return (
     <button
       data-hover="LikeButton"
       className={cn(
         'outline-none focus:bg-red-50/5 focus:text-red-50 relative flex items-center justify-center w-10 h-10 cursor-pointer rounded-full text-tertiary hover:bg-card active:scale-95 active:bg-red-50/5 active:text-red-50',
-        saved && 'text-red-50'
+        isLiked && 'text-red-50'
       )}
-      aria-label={saved ? 'Unsave' : 'Save'}
-      onClick={() => setSaved(!saved)}>
+      aria-label={isLiked ? 'Unsave' : 'Save'}
+      onClick={() => {
+        const nextIsLiked = !isLiked;
+        if (nextIsLiked) {
+          likedVideos.add(video.id);
+        } else {
+          likedVideos.delete(video.id);
+        }
+        setAnimate(true);
+        setIsLiked(nextIsLiked);
+      }}>
       <svg
         className="absolute overflow-visible"
         viewBox="0 0 24 24"
@@ -1681,7 +1696,7 @@ function LikeButton() {
         <circle
           className={cn(
             'text-red-50/50 origin-center transition-all ease-in-out',
-            saved && 'animate-[circle_.3s_forwards]'
+            isLiked && animate && 'animate-[circle_.3s_forwards]'
           )}
           cx="12"
           cy="12"
@@ -1691,11 +1706,11 @@ function LikeButton() {
           stroke="currentColor"
         />
       </svg>
-      {saved ? (
+      {isLiked ? (
         <svg
           className={cn(
             'w-6 h-6 origin-center transition-all ease-in-out',
-            saved && 'animate-[scale_.35s_ease-in-out_forwards]'
+            isLiked && animate && 'animate-[scale_.35s_ease-in-out_forwards]'
           )}
           viewBox="0 0 24 24"
           fill="none"
@@ -2386,7 +2401,7 @@ function fetchTalks(confId) {
       if (confId === 0) {
         resolve([
           {
-            id: 0,
+            id: 'conf-2021-0',
             title: 'React 18 Keynote',
             description: 'The React Team',
             url: 'https://www.youtube.com/watch?v=FZ0cG47msEk&list=PLNG_1j3cPCaZZ7etkzWA7JfdmKWT0pMsa&index=1',
@@ -2400,7 +2415,7 @@ function fetchTalks(confId) {
             },
           },
           {
-            id: 1,
+            id: 'conf-2021-1',
             title: 'React 18 for App Developers',
             description: 'Shruti Kapoor',
             url: 'https://www.youtube.com/watch?v=ytudH8je5ko&list=PLNG_1j3cPCaZZ7etkzWA7JfdmKWT0pMsa&index=2',
@@ -2409,7 +2424,7 @@ function fetchTalks(confId) {
             },
           },
           {
-            id: 2,
+            id: 'conf-2021-2',
             title: 'Streaming Server Rendering with Suspense',
             description: 'Shaundai Person',
             url: 'https://www.youtube.com/watch?v=pj5N-Khihgc&list=PLNG_1j3cPCaZZ7etkzWA7JfdmKWT0pMsa&index=3',
@@ -2418,7 +2433,7 @@ function fetchTalks(confId) {
             },
           },
           {
-            id: 3,
+            id: 'conf-2021-3',
             title: 'The First React Working Group',
             description: 'Aakansha Doshi',
             url: 'https://www.youtube.com/watch?v=qn7gRClrC9U&list=PLNG_1j3cPCaZZ7etkzWA7JfdmKWT0pMsa&index=4',
@@ -2427,7 +2442,7 @@ function fetchTalks(confId) {
             },
           },
           {
-            id: 4,
+            id: 'conf-2021-4',
             title: 'React Developer Tooling',
             description: 'Brian Vaughn',
             url: 'https://www.youtube.com/watch?v=oxDfrke8rZg&list=PLNG_1j3cPCaZZ7etkzWA7JfdmKWT0pMsa&index=5',
@@ -2436,7 +2451,7 @@ function fetchTalks(confId) {
             },
           },
           {
-            id: 5,
+            id: 'conf-2021-5',
             title: 'React without memo',
             description: 'Xuan Huang (黄玄)',
             url: 'https://www.youtube.com/watch?v=lGEMwh32soc&list=PLNG_1j3cPCaZZ7etkzWA7JfdmKWT0pMsa&index=6',
@@ -2445,7 +2460,7 @@ function fetchTalks(confId) {
             },
           },
           {
-            id: 6,
+            id: 'conf-2021-6',
             title: 'React Docs Keynote',
             description: 'Rachel Nabors',
             url: 'https://www.youtube.com/watch?v=mneDaMYOKP8&list=PLNG_1j3cPCaZZ7etkzWA7JfdmKWT0pMsa&index=7',
@@ -2454,7 +2469,7 @@ function fetchTalks(confId) {
             },
           },
           {
-            id: 7,
+            id: 'conf-2021-7',
             title: 'Things I Learnt from the New React Docs',
             description: "Debbie O'Brien",
             url: 'https://www.youtube.com/watch?v=-7odLW_hG7s&list=PLNG_1j3cPCaZZ7etkzWA7JfdmKWT0pMsa&index=8',
@@ -2463,7 +2478,7 @@ function fetchTalks(confId) {
             },
           },
           {
-            id: 8,
+            id: 'conf-2021-8',
             title: 'Learning in the Browser',
             description: 'Sarah Rainsberger',
             url: 'https://www.youtube.com/watch?v=5X-WEQflCL0&list=PLNG_1j3cPCaZZ7etkzWA7JfdmKWT0pMsa&index=9',
@@ -2472,7 +2487,7 @@ function fetchTalks(confId) {
             },
           },
           {
-            id: 9,
+            id: 'conf-2021-9',
             title: 'The ROI of Designing with React',
             description: 'Linton Ye',
             url: 'https://www.youtube.com/watch?v=7cPWmID5XAk&list=PLNG_1j3cPCaZZ7etkzWA7JfdmKWT0pMsa&index=10',
@@ -2481,7 +2496,7 @@ function fetchTalks(confId) {
             },
           },
           {
-            id: 10,
+            id: 'conf-2021-10',
             title: 'Interactive Playgrounds with React',
             description: 'Delba de Oliveira',
             url: 'https://www.youtube.com/watch?v=zL8cz2W0z34&list=PLNG_1j3cPCaZZ7etkzWA7JfdmKWT0pMsa&index=11',
@@ -2490,7 +2505,7 @@ function fetchTalks(confId) {
             },
           },
           {
-            id: 11,
+            id: 'conf-2021-11',
             title: 'Re-introducing Relay',
             description: 'Robert Balicki',
             url: 'https://www.youtube.com/watch?v=lhVGdErZuN4&list=PLNG_1j3cPCaZZ7etkzWA7JfdmKWT0pMsa&index=12',
@@ -2499,7 +2514,7 @@ function fetchTalks(confId) {
             },
           },
           {
-            id: 12,
+            id: 'conf-2021-12',
             title: 'React Native Desktop',
             description: 'Eric Rozell and Steven Moyes',
             url: 'https://www.youtube.com/watch?v=9L4FFrvwJwY&list=PLNG_1j3cPCaZZ7etkzWA7JfdmKWT0pMsa&index=13',
@@ -2511,7 +2526,7 @@ function fetchTalks(confId) {
             },
           },
           {
-            id: 13,
+            id: 'conf-2021-13',
             title: 'On-device Machine Learning for React Native',
             description: 'Roman Rädle',
             url: 'https://www.youtube.com/watch?v=NLj73vrc2I8&list=PLNG_1j3cPCaZZ7etkzWA7JfdmKWT0pMsa&index=14',
@@ -2520,7 +2535,7 @@ function fetchTalks(confId) {
             },
           },
           {
-            id: 14,
+            id: 'conf-2021-14',
             title: 'React 18 for External Store Libraries',
             description: 'Daishi Kato',
             url: 'https://www.youtube.com/watch?v=oPfSC5bQPR8&list=PLNG_1j3cPCaZZ7etkzWA7JfdmKWT0pMsa&index=15',
@@ -2529,7 +2544,7 @@ function fetchTalks(confId) {
             },
           },
           {
-            id: 15,
+            id: 'conf-2021-15',
             title: 'Building Accessible Components with React 18',
             description: 'Diego Haz',
             url: 'https://www.youtube.com/watch?v=dcm8fjBfro8&list=PLNG_1j3cPCaZZ7etkzWA7JfdmKWT0pMsa&index=16',
@@ -2538,7 +2553,7 @@ function fetchTalks(confId) {
             },
           },
           {
-            id: 16,
+            id: 'conf-2021-16',
             title: 'Accessible Japanese Form Components with React',
             description: 'Tafu Nakazaki',
             url: 'https://www.youtube.com/watch?v=S4a0QlsH0pU&list=PLNG_1j3cPCaZZ7etkzWA7JfdmKWT0pMsa&index=17',
@@ -2547,7 +2562,7 @@ function fetchTalks(confId) {
             },
           },
           {
-            id: 17,
+            id: 'conf-2021-17',
             title: 'UI Tools for Artists',
             description: 'Lyle Troxell',
             url: 'https://www.youtube.com/watch?v=b3l4WxipFsE&list=PLNG_1j3cPCaZZ7etkzWA7JfdmKWT0pMsa&index=18',
@@ -2556,7 +2571,7 @@ function fetchTalks(confId) {
             },
           },
           {
-            id: 18,
+            id: 'conf-2021-18',
             title: 'Hydrogen + React 18',
             description: 'Helen Lin',
             url: 'https://www.youtube.com/watch?v=HS6vIYkSNks&list=PLNG_1j3cPCaZZ7etkzWA7JfdmKWT0pMsa&index=19',
@@ -2568,7 +2583,7 @@ function fetchTalks(confId) {
       } else if (confId === 1) {
         resolve([
           {
-            id: 19,
+            id: 'conf-2019-0',
             title: 'Keynote (Part 1)',
             description: 'Tom Occhino',
             url: 'https://www.youtube.com/watch?v=QnZHO7QvjaM&list=PLPxbbTqCLbGHPxZpw4xj_Wwg8-fdNxJRh',
@@ -2577,7 +2592,7 @@ function fetchTalks(confId) {
             },
           },
           {
-            id: 20,
+            id: 'conf-2019-1',
             title: 'Keynote (Part 2)',
             description: 'Yuzhi Zheng',
             url: 'https://www.youtube.com/watch?v=uXEEL9mrkAQ&list=PLPxbbTqCLbGHPxZpw4xj_Wwg8-fdNxJRh&index=2',
@@ -2586,7 +2601,7 @@ function fetchTalks(confId) {
             },
           },
           {
-            id: 21,
+            id: 'conf-2019-2',
             title: 'Building The New Facebook With React and Relay (Part 1)',
             description: 'Frank Yan',
             url: 'https://www.youtube.com/watch?v=9JZHodNR184&list=PLPxbbTqCLbGHPxZpw4xj_Wwg8-fdNxJRh&index=3',
@@ -2595,7 +2610,7 @@ function fetchTalks(confId) {
             },
           },
           {
-            id: 22,
+            id: 'conf-2019-3',
             title: 'Building The New Facebook With React and Relay (Part 2)',
             description: 'Ashley Watkins',
             url: 'https://www.youtube.com/watch?v=KT3XKDBZW7M&list=PLPxbbTqCLbGHPxZpw4xj_Wwg8-fdNxJRh&index=4',
@@ -2604,7 +2619,7 @@ function fetchTalks(confId) {
             },
           },
           {
-            id: 23,
+            id: 'conf-2019-4',
             title: 'How Our Team Is Using React Native to Save The World',
             description: 'Tania Papazafeiropoulou',
             url: 'https://www.youtube.com/watch?v=zVHWugBPGBE&list=PLPxbbTqCLbGHPxZpw4xj_Wwg8-fdNxJRh&index=5',
@@ -2613,7 +2628,7 @@ function fetchTalks(confId) {
             },
           },
           {
-            id: 24,
+            id: 'conf-2019-5',
             title:
               'Using Hooks and Codegen to Bring the Benefits of GraphQL to REST APIs',
             description: 'Tejas Kumar',
@@ -2623,7 +2638,7 @@ function fetchTalks(confId) {
             },
           },
           {
-            id: 25,
+            id: 'conf-2019-6',
             title: 'Building a Custom React Renderer',
             description: 'Sophie Alpert',
             url: 'https://www.youtube.com/watch?v=CGpMlWVcHok&list=PLPxbbTqCLbGHPxZpw4xj_Wwg8-fdNxJRh&index=7',
@@ -2632,7 +2647,7 @@ function fetchTalks(confId) {
             },
           },
           {
-            id: 26,
+            id: 'conf-2019-7',
             title: 'Is React Translated Yet?',
             description: 'Nat Alison',
             url: 'https://www.youtube.com/watch?v=lLE4Jqaek5k&list=PLPxbbTqCLbGHPxZpw4xj_Wwg8-fdNxJRh&index=12',
@@ -2641,7 +2656,7 @@ function fetchTalks(confId) {
             },
           },
           {
-            id: 27,
+            id: 'conf-2019-8',
             title: 'Building (And Re-Building) the Airbnb Design System',
             description: 'Maja Wichrowska and Tae Kim',
             url: 'https://www.youtube.com/watch?v=fHQ1WSx41CA&list=PLPxbbTqCLbGHPxZpw4xj_Wwg8-fdNxJRh&index=13',
@@ -2653,7 +2668,7 @@ function fetchTalks(confId) {
             },
           },
           {
-            id: 28,
+            id: 'conf-2019-9',
             title: 'Accessibility Is a Marathon, Not a Sprint',
             description: 'Brittany Feenstra',
             url: 'https://www.youtube.com/watch?v=ONSD-t4gBb8&list=PLPxbbTqCLbGHPxZpw4xj_Wwg8-fdNxJRh&index=14',
@@ -2662,7 +2677,7 @@ function fetchTalks(confId) {
             },
           },
           {
-            id: 29,
+            id: 'conf-2019-10',
             title: 'The State of React State in 2019',
             description: 'Becca Bailey',
             url: 'https://www.youtube.com/watch?v=wUMMUyQtMSg&list=PLPxbbTqCLbGHPxZpw4xj_Wwg8-fdNxJRh&index=15',
@@ -2671,7 +2686,7 @@ function fetchTalks(confId) {
             },
           },
           {
-            id: 30,
+            id: 'conf-2019-11',
             title: 'Let’s Program Like It’s 1999',
             description: 'Lee Byron',
             url: 'https://www.youtube.com/watch?v=vG8WpLr6y_U&list=PLPxbbTqCLbGHPxZpw4xj_Wwg8-fdNxJRh&index=16',
@@ -2680,7 +2695,7 @@ function fetchTalks(confId) {
             },
           },
           {
-            id: 31,
+            id: 'conf-2019-12',
             title: 'React Developer Tooling',
             description: 'Brian Vaughn',
             url: 'https://www.youtube.com/watch?v=Mjrfb1r3XEM&list=PLPxbbTqCLbGHPxZpw4xj_Wwg8-fdNxJRh&index=17',
@@ -2689,7 +2704,7 @@ function fetchTalks(confId) {
             },
           },
           {
-            id: 32,
+            id: 'conf-2019-13',
             title: 'Data Fetching With Suspense In Relay',
             description: 'Joe Savona',
             url: 'https://www.youtube.com/watch?v=Tl0S7QkxFE4&list=PLPxbbTqCLbGHPxZpw4xj_Wwg8-fdNxJRh&index=18',
@@ -2698,7 +2713,7 @@ function fetchTalks(confId) {
             },
           },
           {
-            id: 33,
+            id: 'conf-2019-14',
             title: 'Automatic Visualizations of the Frontend',
             description: 'Cameron Yick',
             url: 'https://www.youtube.com/watch?v=SbreAPNmZOk&list=PLPxbbTqCLbGHPxZpw4xj_Wwg8-fdNxJRh&index=19',
@@ -2707,7 +2722,7 @@ function fetchTalks(confId) {
             },
           },
           {
-            id: 34,
+            id: 'conf-2019-15',
             title: 'React Is Fiction',
             description: 'Jenn Creighton',
             url: 'https://www.youtube.com/watch?v=kqh4lz2Lkzs&list=PLPxbbTqCLbGHPxZpw4xj_Wwg8-fdNxJRh&index=20',
@@ -2716,7 +2731,7 @@ function fetchTalks(confId) {
             },
           },
           {
-            id: 35,
+            id: 'conf-2019-16',
             title: 'Progressive Web Animations',
             description: 'Alexandra Holachek',
             url: 'https://www.youtube.com/watch?v=laPsceJ4tTY&list=PLPxbbTqCLbGHPxZpw4xj_Wwg8-fdNxJRh&index=21',
@@ -2725,7 +2740,7 @@ function fetchTalks(confId) {
             },
           },
           {
-            id: 36,
+            id: 'conf-2019-17',
             title:
               'Creating Games, Animations and Interactions with the Wick Editor',
             description: 'Luca Damasco',
@@ -2735,7 +2750,7 @@ function fetchTalks(confId) {
             },
           },
           {
-            id: 37,
+            id: 'conf-2019-18',
             title: 'Building React-Select',
             description: 'Jed Watson',
             url: 'https://www.youtube.com/watch?v=yS0jUnmBujE&list=PLPxbbTqCLbGHPxZpw4xj_Wwg8-fdNxJRh&index=25',
@@ -2744,7 +2759,7 @@ function fetchTalks(confId) {
             },
           },
           {
-            id: 38,
+            id: 'conf-2019-19',
             title: 'Promoting Transparency in Government Spending with React',
             description: 'Lizzie Salita',
             url: 'https://www.youtube.com/watch?v=CVfXICcNfHE&list=PLPxbbTqCLbGHPxZpw4xj_Wwg8-fdNxJRh&index=26',
@@ -2753,7 +2768,7 @@ function fetchTalks(confId) {
             },
           },
           {
-            id: 39,
+            id: 'conf-2019-20',
             title: 'Wonder-driven Development: Using React to Make a Spaceship',
             description: 'Alex Anderson',
             url: 'https://www.youtube.com/watch?v=aV0uOPWHKt4&list=PLPxbbTqCLbGHPxZpw4xj_Wwg8-fdNxJRh&index=27',

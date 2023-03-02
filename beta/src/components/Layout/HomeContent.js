@@ -728,7 +728,7 @@ function CommunityGallery() {
       },
       {
         root: null,
-        rootMargin: `400px 0px`,
+        rootMargin: `${window.innerHeight}px 0px`,
       }
     );
     observer.observe(ref.current);

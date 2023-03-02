@@ -15,10 +15,13 @@ export default function NotFound() {
         <Intro>
           <P>This page doesn’t exist.</P>
           <P>
-            Quite possibly, it hasn’t been written yet. This beta is a{' '}
-            <A href="/#how-much-content-is-ready">work in progress!</A>
+            If this is a mistake{', '}
+            <A href="https://github.com/reactjs/reactjs.org/issues/new">
+              let us know
+            </A>
+            {', '}
+            and we will try to fix it!
           </P>
-          <P>Please check back later.</P>
         </Intro>
       </MaxWidth>
     </Page>

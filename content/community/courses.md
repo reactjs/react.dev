@@ -58,3 +58,5 @@ permalink: community/courses.html
 - [Road to React](https://www.roadtoreact.com/) - Your journey to master React in JavaScript.
 
 - [Epic React](https://epicreact.dev/) - Confidently Ship Well-Architected Production Ready React Apps Like a Pro
+
+- [The React Bootcamp](https://reactbootcamp.com) - Master the modern React stack, build 4 amazing full-stack apps, and become an in-demand React developer.

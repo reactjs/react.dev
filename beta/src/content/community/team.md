@@ -43,7 +43,7 @@ Current members of the React team are listed in alphabetical order below.
 </TeamMember>
 
 <TeamMember name="Mengdi Chen" permalink="mengdi-chen" photo="/images/team/mengdi-chen.jpg" github="mondaychen" twitter="mengdi_en" title="Engineer at Meta">
-    When Mengdi was working on his Digital Arts degree he was conceited about his front-end skills because his CSS worked perfectly even on IE6. But soon React opened a new door of programming for him, and he has been dreaming of joining the React team ever since. Outside of work, he is usually busy chasing his two kids around or cooking.
+    While working on his Digital Arts degree Mengdi was conceited about his front-end skills because his CSS worked perfectly even on IE6. But soon React opened a new door of programming for him, and he has been dreaming of joining the React team ever since. Outside of work, he is usually busy chasing his two kids around or collecting strange recipes.
 </TeamMember>
 
 <TeamMember name="Mofei Zhang" permalink="mofei-zhang" photo="/images/team/mofei-zhang.png" github="mofeiZ" title="Engineer at Meta">

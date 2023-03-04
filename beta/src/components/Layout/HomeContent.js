@@ -107,6 +107,12 @@ function CurrentTime() {
 
 const recentPosts = [
   {
+    title: 'Introducing react.dev',
+    icon: 'blog',
+    date: 'March 6, 2023',
+    url: '/blog/2023/03/06/introducing-react-dev',
+  },
+  {
     title: 'React Labs: June 2022',
     icon: 'labs',
     date: 'June 15, 2022',
@@ -123,12 +129,6 @@ const recentPosts = [
     icon: 'blog',
     date: 'March 8, 2022',
     url: '/blog/2022/03/08/react-18-upgrade-guide',
-  },
-  {
-    title: 'React Conf 2021 Recap',
-    icon: 'blog',
-    date: 'December 17, 2021',
-    url: '/blog/2021/12/17/react-conf-2021-recap',
   },
 ];
 

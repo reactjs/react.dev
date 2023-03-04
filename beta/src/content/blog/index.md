@@ -11,7 +11,7 @@ This blog is the official source for the updates from the React team. Anything i
 <div className="sm:-mx-5 flex flex-col gap-5 mt-12">
 
 
-<BlogCard title="Introducing react.dev" date="March 2, 2023" url="/blog/2023/03/02/introducing-react-dev">
+<BlogCard title="Introducing react.dev" date="March 6, 2023" url="/blog/2023/03/06/introducing-react-dev">
 Yo
 </BlogCard>
 

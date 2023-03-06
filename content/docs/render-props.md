@@ -4,7 +4,7 @@ title: Render Props
 permalink: docs/render-props.html
 ---
 
-The term ["render prop"](https://cdb.reacttraining.com/use-a-render-prop-50de598f11ce) refers to a technique for sharing code between React components using a prop whose value is a function.
+The term "render prop" refers to a technique for sharing code between React components using a prop whose value is a function.
 
 A component with a render prop takes a function that returns a React element and calls it instead of implementing its own render logic.
 
@@ -237,7 +237,7 @@ So using a render prop makes it possible to use either pattern.
 
 ## Using Props Other Than `render` {#using-props-other-than-render}
 
-It's important to remember that just because the pattern is called "render props" you don't *have to use a prop named `render` to use this pattern*. In fact, [*any* prop that is a function that a component uses to know what to render is technically a "render prop"](https://cdb.reacttraining.com/use-a-render-prop-50de598f11ce).
+It's important to remember that just because the pattern is called "render props" you don't *have to use a prop named `render` to use this pattern*. In fact, *any* prop that is a function that a component uses to know what to render is technically a "render prop".
 
 Although the examples above use `render`, we could just as easily use the `children` prop!
 

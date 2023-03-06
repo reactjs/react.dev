@@ -274,10 +274,10 @@ export function HomeContent() {
           </FullBleed>
           <Center>
             <Para>
-              To frameworks, React is more than a library—React is an
-              architecture. React provides a unified asynchronous component
-              model across the entire stack so that you can use both client{' '}
-              <i>and</i> server for what they do best.
+              React is also an architecture. Frameworks designed for React let
+              you mix build-time, server-only, and interactive components in a
+              single interleaving tree. Read data from a file or a database, and
+              pass it down to the interactive components.
             </Para>
             <div className="flex justify-start w-full lg:justify-center">
               <CTA

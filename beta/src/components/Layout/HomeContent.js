@@ -277,7 +277,7 @@ export function HomeContent() {
               React is also an architecture. Frameworks designed for React let
               you mix build-time, server-only, and interactive components in a
               single interleaving tree. Read data from a file or a database, and
-              pass it down to the interactive components.
+              pass it down to your interactive components.
             </Para>
             <div className="flex justify-start w-full lg:justify-center">
               <CTA

@@ -2,13 +2,13 @@
 title: "Introducing react.dev"
 ---
 
-March 06, 2023 by [Dan Abramov](https://twitter.com/dan_abramov) and [Rachel Nabors](https://twitter.com/rnabors)
+March 07, 2023 by [Dan Abramov](https://twitter.com/dan_abramov) and [Rachel Nabors](https://twitter.com/rnabors)
 
 ---
 
 <Intro>
 
-Today we are thrilled to launch [react.dev](https://react.dev), the new home for React and its documentation. We'd like to welcome you and give you a little tour of the new site.
+Today we are thrilled to launch [react.dev](https://react.dev), the new home for React and its documentation. In this post, we would like to give you a tour of the new site.
 
 </Intro>
 
@@ -22,15 +22,17 @@ Today we are thrilled to launch [react.dev](https://react.dev), the new home for
 
 ## New site, new domain, new homepage {/*new-site-new-domain-new-homepage*/}
 
-Before we start this tour, there's a few things you might want to know!
+First, a little bit of housekeeping.
 
 To celebrate the launch of the new docs and, more importantly, to clearly separate the old and the new content, we've moved to the shorter [react.dev](https://react.dev) domain. The old [reactjs.org](https://reactjs.org) domain will now redirect here.
 
 The old React docs are now archived at [legacy.reactjs.org](https://legacy.reactjs.org). All existing links to the old content will automatically redirect there to avoid "breaking the web", but the legacy site will not get many more updates.
 
-Believe it or not, but React will soon be ten years old. In JavaScript years, it's like a whole century! We've **[refreshed the React homepage](https://react.dev)** to reflect why we think React is a great way to create user interfaces today.
+Believe it or not, but React will soon be ten years old. In JavaScript years, it's like a whole century! We've [refreshed the React homepage](https://react.dev) to reflect why we think React is a great way to create user interfaces today.
 
-## All-in on modern React with Hooks {/*all-in-on-modern-react-with-hooks*/}
+If you haven't seen it yet, check it out!
+
+## Going all-in on modern React with Hooks {/*going-all-in-on-modern-react-with-hooks*/}
 
 When we released React Hooks in 2018, the docs assumed the reader is familiar with class components. This helped the community adopt Hooks very swiftly, but after a while the old docs failed to serve the new readers. With the old docs, you had to learn React twice: once with class components and then once again with Hooks.
 
@@ -43,7 +45,7 @@ Let's have a closer look at what you can find in each section.
 
 <Note>
 
-There are still some rare class component use cases that do not yet have a Hook-based replacement. Class components remain supported, and are documented in the [Legacy API](/reference/react/legacy) section of the new site.
+There are still a few rare class component use cases that do not yet have a Hook-based equivalent. Class components remain supported, and are documented in the [Legacy API](/reference/react/legacy) section of the new site.
 
 </Note>
 
@@ -241,7 +243,7 @@ The next two chapters are more advanced, and will give you a deeper insight into
 
 Every chapter consists of several related pages. Most of these pages teach a specific skill or a technique—for example, [Writing Markup with JSX](/learn/writing-markup-with-jsx), [Updating Objects in State](/learn/updating-objects-in-state), or [Sharing State Between Components](/learn/sharing-state-between-components). Some of the pages focus on explaining an idea—like [Render and Commit](/learn/render-and-commit), or [State as a Snapshot](/learn/state-as-a-snapshot). And there are a few, like [You Might Not Need an Effect](/learn/you-might-not-need-an-effect), that share our suggestions based on what we've learned over these years.
 
-You don't have to read these chapters as a sequence. Who has the time for this?! But you could. **Every page is written to only use the concepts introduced in the earlier pages.** If you want to read it all like a book, go for it.
+You don't have to read these chapters as a sequence. Who has the time for this?! But you could. Pages in the Learn section only rely on concepts introduced by the earlier pages. If you want to read it like a book, go for it!
 
 ### Check your understanding with challenges {/*check-your-understanding-with-challenges*/}
 
@@ -429,9 +431,9 @@ In this solution, two separate conditions are used to insert a space between the
 
 </Challenges>
 
-Notice the "Show solution" button in the left bottom corner. Tempting, isn't it?
+Notice the "Show solution" button in the left bottom corner. It's handy if you want to check yourself!
 
-### Diagrams and illustrations {/*diagrams-and-illustrations*/}
+### Build an intuition with diagrams and illustrations {/*build-an-intuition-with-diagrams-and-illustrations*/}
 
 When we couldn't figure out how to explain something with code and words alone, we've added diagrams that help provide some intuition. For example, here is one of the diagrams from [Preserving and Resetting State](/learn/preserving-and-resetting-state):
 
@@ -447,7 +449,7 @@ You'll also see some illustrations throughout the docs--here's one of the [brows
 
 We've confirmed with the browser vendors that this depiction is 100% scientifically accurate.
 
-## Look things up in the API Reference {/*look-things-up-in-the-api-reference*/}
+## A new, detailed API Reference {/*a-new-detailed-api-reference*/}
 
 In the [API Reference](/reference/react), every React API now has a dedicated page. This includes all kinds of APIs:
 
@@ -457,14 +459,11 @@ In the [API Reference](/reference/react), every React API now has a dedicated pa
 - Framework-oriented APIs like [`renderToPipeableStream`](/reference/react-dom/server/renderToReadableStream).
 - Other React APIs like [`memo`](/reference/react/memo).
 
-Some of these pages are long! Here's why. You'll notice that every API page is split into two parts:
+You'll notice that every API page is split into at least two segments: *Reference* and *Usage*.
 
-1. *Reference* describes the formal API signature by listing its arguments and return values.
-2. *Usage* explains how and why you would use this API in practice, like a colleague or a friend would explain.
+[Reference](/reference/react/useState#reference) describes the formal API signature by listing its arguments and return values. It's concise, but it can feel a bit abstract if you're not familiar with that API. It describes what an API does, but not how to use it.
 
-The [Reference part](/reference/react/useState#reference) can help if you only want to look up an argument or the return value type. It's written to be concise and specific, but it can feel a bit dry and abstract. It describes what an API does, but not how to use it.
-
-The [Usage part](/reference/react/useState#usage) is all about the examples. It shows the **canonical scenarios for how each API was meant to be used by the React team.** This includes both the simpler cases and the more advanced ones. It may also include color-coded explanations, examples with other APIs, and recipes like these that you can copy and paste from:
+[Usage](/reference/react/useState#usage) shows why and how you would use this API in practice, like a colleague or a friend might explain. It shows the **canonical scenarios for how each API was meant to be used by the React team.** We've added color-coded snippets, examples of using different APIs together, and recipes that you can copy and paste from:
 
 <Recipes titleText="Basic useState examples" titleId="examples-basic">
 
@@ -602,9 +601,39 @@ button { display: block; margin-top: 10px; }
 
 </Recipes>
 
-Some pages also include [Troubleshooting](/reference/react/useEffect#troubleshooting) (for common problems) and [Alternatives](/reference/react-dom/findDOMNode#alternatives) (for deprecated APIs).
+Some API pages also include [Troubleshooting](/reference/react/useEffect#troubleshooting) (for common problems) and [Alternatives](/reference/react-dom/findDOMNode#alternatives) (for deprecated APIs).
+
+We hope that this approach will make the API reference useful not only as a way to look up an argument, but as a way to see all the different things you can do with any given API—and how it connects to the other ones.
 
 ## What's next? {/*whats-next*/}
 
+That's a wrap for our little tour! Have a look around the new website, see what you like or don't like, and keep the feedback coming in the [anonymous survey](https://www.surveymonkey.co.uk/r/PYRPF3X) or in our [issue tracker](https://github.com/reactjs/reactjs.org/issues).
 
+We acknowledge this project has taken a long time to ship. We wanted to maintain a high quality bar that the React community deserves. While writing these docs and creating all of the examples, we found mistakes in some of our own explanations, bugs in React, and even gaps in the React design that we are now working to address. We hope that the new documentation will help us hold React itself to a higher bar in the future.
+
+We've heard many of your requests to expand the content and functionality of the website, for example:
+
+- Providing a TypeScript version for all examples;
+- Creating the updated performance, testing, and accessibility guides;
+- Documenting React Server Components independently from the frameworks that support them.
+
+Now that [react.dev](https://react.dev/) is out, we will be able to shift our focus from "catching up" with the third-party React educational resources to adding new information. We think there's never been a better time to learn React.
+
+## Who worked on this? {/*who-worked-on-this*/}
+
+On the React team, [Rachel Nabors](https://twitter.com/rachelnabors/) led the project (and provided the illustrations), and [Dan Abramov](https://twitter.com/dan_abramov) designed the curriculum. They co-authored most of the content together as well.
+
+Of course, no project this large happens in isolation. We have a lot of people to thank!
+
+[Sylwia Vargas](https://twitter.com/SylwiaVargas) overhauled our examples to go beyond "foo/bar/baz" and kittens, and feature scientists, artists and cities from around the world. [Maggie Appleton](https://twitter.com/Mappletons) turned our doodles into a clear diagram system.
+
+Thanks to [David McCabe](https://twitter.com/mcc_abe), [Sophie Alpert](https://twitter.com/sophiebits), [Rick Hanlon](https://twitter.com/rickhanlonii), [Andrew Clark](https://twitter.com/acdlite), and [Matt Carroll](https://twitter.com/mattcarrollcode) for additional writing contributions. We'd also like to thank [Natalia Tepluhina](https://twitter.com/n_tepluhina) and [Sebastian Markbåge](https://twitter.com/sebmarkbage) for their ideas and feedback.
+
+Thanks to [Dan Lebowitz](https://twitter.com/lebo) for the site design and [Razvan Gradinar](https://dribbble.com/GradinarRazvan) for the sandbox design.
+
+On the development front, thanks to [Jared Palmer](https://twitter.com/jaredpalmer) for prototype development. Thanks to [Dane Grant](https://twitter.com/danecando) and [Dustin Goodman](https://twitter.com/dustinsgoodman) from [ThisDotLabs](https://www.thisdot.co/) for their support on UI development. Thanks to [Ives van Hoorne](https://twitter.com/CompuIves), [Alex Moldovan](https://twitter.com/alexnmoldovan), [Jasper De Moor](https://twitter.com/JasperDeMoor), and [Danilo Woznica](https://twitter.com/danilowoz) from [CodeSandbox](https://codesandbox.io/) for their work with sandbox integration. Thanks to [Rick Hanlon](https://twitter.com/rickhanlonii) for spot development and design work, finessing our colors and finer details. Thanks to [Harish Kumar](https://www.strek.in/) and [Luna Ruan](https://twitter.com/lunaruan) for adding new features to the site and helping maintain it.
+
+Huge thanks to the folks who volunteered their time to participate in the alpha and beta testing program. Your enthusiasm and invaluable feedback helped us shape these docs. A special shout out to our beta tester, [Debbie O'Brien](https://twitter.com/debs_obrien), who gave a talk about her experience using the React docs at React Conf 2021.
+
+Finally, thanks to the React community for being the inspiration behind this effort. You are the reason we do this, and we hope that the new docs will be a valuable resource for you.
 

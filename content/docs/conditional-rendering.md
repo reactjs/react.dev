@@ -206,7 +206,7 @@ Just like in JavaScript, it is up to you to choose an appropriate style based on
 
 ### Preventing Component from Rendering {#preventing-component-from-rendering}
 
-In rare cases you might want a component to hide itself even though it was rendered by another component. To do this return `null` instead of its render output.
+To skip rendering, return `null` instead of its render output.
 
 In the example below, the `<WarningBanner />` is rendered depending on the value of the prop called `warn`. If the value of the prop is `false`, then the component does not render:
 

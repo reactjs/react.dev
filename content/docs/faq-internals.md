@@ -21,3 +21,7 @@ No, they are different. The Shadow DOM is a browser technology designed primaril
 ### What is "React Fiber"? {#what-is-react-fiber}
 
 Fiber is the new reconciliation engine in React 16. Its main goal is to enable incremental rendering of the virtual DOM. [Read more](https://github.com/acdlite/react-fiber-architecture).
+
+### What is reconciliation? {#what-is-reconciliation}
+
+Reconciliation is the process of comparing two sets of data and determining which items need to be added, removed, or updated to match the new data. This process is known as a diff, and it is often used to determine which DOM nodes need to be updated to reflect the new data. In React, reconciliation is performed automatically by React when the component is re-rendered. This is called reconciliation. The process of reconciling is known as a diff.

@@ -47,9 +47,15 @@ createRoot(container[, options]);
 
 Create a React root for the supplied `container` and return the root. The root can be used to render a React element into the DOM with `render`:
 
-```javascript
-const root = createRoot(container);
-root.render(element);
+```html
+<!-- index.html -->
+<div id="root"></div>
+```
+```jsx
+// index.jsx
+const rootElement = document.getElementById('root');
+const root = createRoot(rootElement);
+root.render(<App />);
 ```
 
 `createRoot` accepts two options:

@@ -16,9 +16,9 @@ Today we are thrilled to launch [react.dev](https://react.dev), the new home for
 
 ## tl;dr {/*tldr*/}
 
-* The previous React documentation site has now moved to [legacy.reactjs.org](https://legacy.reactjs.org).
 * The new React site ([react.dev](https://react.dev)) teaches modern React with function components and Hooks.
 * We've included diagrams, illustrations, challenges, and over 600 new interactive examples.
+* The previous React documentation site has now moved to [legacy.reactjs.org](https://legacy.reactjs.org).
 
 ## New site, new domain, new homepage {/*new-site-new-domain-new-homepage*/}
 
@@ -28,7 +28,7 @@ To celebrate the launch of the new docs and, more importantly, to clearly separa
 
 The old React docs are now archived at [legacy.reactjs.org](https://legacy.reactjs.org). All existing links to the old content will automatically redirect there to avoid "breaking the web", but the legacy site will not get many more updates.
 
-Believe it or not, but React will soon be ten years old. In JavaScript years, it's like a whole century! We've [refreshed the React homepage](https://react.dev) to reflect why we think React is a great way to create user interfaces today.
+Believe it or not, React will soon be ten years old. In JavaScript years, it's like a whole century! We've [refreshed the React homepage](https://react.dev) to reflect why we think React is a great way to create user interfaces today.
 
 If you haven't seen it yet, check it out!
 
@@ -54,6 +54,7 @@ There are still a few rare class component use cases that do not yet have a Hook
 The Learn section begins with the [Quick Start](/learn) page. It is a short introductory tour of React. It introduces the syntax for concepts like components, props, and state, but doesn't go into much detail on how to use them.
 
 If you like to learn by doing, we recommend to check out the [Tic-Tac-Toe Tutorial](/learn/tutorial-tic-tac-toe) next. It walks you through building a little game with React, while teaching the skills you'll use every day. Here's what you'll build:
+
 <Sandpack>
 
 ```js App.js

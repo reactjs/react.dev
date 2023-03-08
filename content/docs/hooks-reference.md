@@ -501,7 +501,7 @@ useImperativeHandle(ref, createHandle, [deps])
 function FancyInput(props, ref) {
   const inputRef = useRef();
   useImperativeHandle(ref, () => ({
-    focus: () => {
+    fancyFocus: () => {
       inputRef.current.focus();
     }
   }));
@@ -510,7 +510,7 @@ function FancyInput(props, ref) {
 FancyInput = forwardRef(FancyInput);
 ```
 
-In this example, a parent component that renders `<FancyInput ref={inputRef} />` would be able to call `inputRef.current.focus()`.
+In this example, a parent component that renders `<FancyInput ref={inputRef} />` would be able to call `inputRef.current.fancyFocus()` which will trigger `inputRef.current.focus()` in `FancyInput` component.
 
 ### `useLayoutEffect` {#uselayouteffect}
 

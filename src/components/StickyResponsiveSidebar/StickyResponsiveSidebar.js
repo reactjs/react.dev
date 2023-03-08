@@ -72,6 +72,7 @@ class StickyResponsiveSidebar extends Component<Props, State> {
           style={{
             opacity: menuOpacity,
             transition: 'opacity 0.5s ease',
+            overflow: 'scroll',
           }}
           css={{
             [media.lessThan('small')]: smallScreenSidebarStyles,
@@ -91,7 +92,7 @@ class StickyResponsiveSidebar extends Component<Props, State> {
             [media.greaterThan('small')]: {
               position: 'fixed',
               zIndex: 2,
-              height: 'calc(100vh - 60px)',
+              height: 'calc(100vh - 100px)',
               overflowY: 'auto',
               WebkitOverflowScrolling: 'touch',
               marginRight: -999,
@@ -101,11 +102,11 @@ class StickyResponsiveSidebar extends Component<Props, State> {
             },
 
             [media.size('small')]: {
-              height: 'calc(100vh - 40px)',
+              height: 'calc(100vh - 100px)',
             },
 
             [media.between('medium', 'large')]: {
-              height: 'calc(100vh - 50px)',
+              height: 'calc(100vh - 100px)',
             },
 
             [media.greaterThan('sidebarFixed')]: {

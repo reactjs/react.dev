@@ -1185,6 +1185,8 @@ let helloText = document.getElementById('helloText');
 form.onsubmit = handleFormSubmit;
 firstNameInput.oninput = handleFirstNameChange;
 lastNameInput.oninput = handleLastNameChange;
+
+updateDOM();
 ```
 
 ```js sandbox.config.json hidden

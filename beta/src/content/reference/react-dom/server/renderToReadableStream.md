@@ -167,7 +167,7 @@ const assetMap = {
 
 async function handler(request) {
   const stream = await renderToReadableStream(<App assetMap={assetMap} />, {
-    bootstrapScripts: [assets['/main.js']]
+    bootstrapScripts: [assetMap['/main.js']]
   });
   return new Response(stream, {
     headers: { 'content-type': 'text/html' },
@@ -188,7 +188,7 @@ async function handler(request) {
   const stream = await renderToReadableStream(<App assetMap={assetMap} />, {
     // Careful: It's safe to stringify() this because this data isn't user-generated.
     bootstrapScriptContent: `window.assetMap = ${JSON.stringify(assetMap)};`,
-    bootstrapScripts: [assets['/main.js']],
+    bootstrapScripts: [assetMap['/main.js']],
   });
   return new Response(stream, {
     headers: { 'content-type': 'text/html' },

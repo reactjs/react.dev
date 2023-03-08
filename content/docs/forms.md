@@ -45,18 +45,18 @@ For example, if we want to make the previous example log the name when it is sub
 class NameForm extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {value: ''};
+    this.state = {inputValue: ''};
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleChange(event) {
-    this.setState({value: event.target.value});
+    this.setState({inputValue: event.target.value});
   }
 
   handleSubmit(event) {
-    alert('A name was submitted: ' + this.state.value);
+    alert('A name was submitted: ' + this.state.inputValue);
     event.preventDefault();
   }
 
@@ -65,7 +65,7 @@ class NameForm extends React.Component {
       <form onSubmit={this.handleSubmit}>
         <label>
           Name:
-          <input type="text" value={this.state.value} onChange={this.handleChange} />
+          <input type="text" value={this.state.inputValue} onChange={this.handleChange} />
         </label>
         <input type="submit" value="Submit" />
       </form>
@@ -76,7 +76,7 @@ class NameForm extends React.Component {
 
 [**Try it on CodePen**](https://codepen.io/gaearon/pen/VmmPgp?editors=0010)
 
-Since the `value` attribute is set on our form element, the displayed value will always be `this.state.value`, making the React state the source of truth. Since `handleChange` runs on every keystroke to update the React state, the displayed value will update as the user types.
+Since the `value` attribute is set on our form element, the displayed value will always be `this.state.inputValue`, making the React state the source of truth. Since `handleChange` runs on every keystroke to update the React state, the displayed value will update as the user types.
 
 With a controlled component, the input's value is always driven by the React state. While this means you have to type a bit more code, you can now pass the value to other UI elements too, or reset it from other event handlers.
 
@@ -97,7 +97,7 @@ class EssayForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      value: 'Please write an essay about your favorite DOM element.'
+      areaValue: 'Please write an essay about your favorite DOM element.'
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -105,11 +105,11 @@ class EssayForm extends React.Component {
   }
 
   handleChange(event) {
-    this.setState({value: event.target.value});
+    this.setState({areaValue: event.target.value});
   }
 
   handleSubmit(event) {
-    alert('An essay was submitted: ' + this.state.value);
+    alert('An essay was submitted: ' + this.state.areaValue);
     event.preventDefault();
   }
 
@@ -118,7 +118,7 @@ class EssayForm extends React.Component {
       <form onSubmit={this.handleSubmit}>
         <label>
           Essay:
-          <textarea value={this.state.value} onChange={this.handleChange} />
+          <textarea value={this.state.areaValue} onChange={this.handleChange} />
         </label>
         <input type="submit" value="Submit" />
       </form>
@@ -127,7 +127,7 @@ class EssayForm extends React.Component {
 }
 ```
 
-Notice that `this.state.value` is initialized in the constructor, so that the text area starts off with some text in it.
+Notice that `this.state.areaValue` is initialized in the constructor, so that the text area starts off with some text in it.
 
 ## The select Tag {#the-select-tag}
 
@@ -148,18 +148,18 @@ Note that the Coconut option is initially selected, because of the `selected` at
 class FlavorForm extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {value: 'coconut'};
+    this.state = {selectValue: 'coconut'};
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleChange(event) {
-    this.setState({value: event.target.value});
+    this.setState({selectValue: event.target.value});
   }
 
   handleSubmit(event) {
-    alert('Your favorite flavor is: ' + this.state.value);
+    alert('Your favorite flavor is: ' + this.state.selectValue);
     event.preventDefault();
   }
 
@@ -168,7 +168,7 @@ class FlavorForm extends React.Component {
       <form onSubmit={this.handleSubmit}>
         <label>
           Pick your favorite flavor:
-          <select value={this.state.value} onChange={this.handleChange}>
+          <select value={this.state.selectValue} onChange={this.handleChange}>
             <option value="grapefruit">Grapefruit</option>
             <option value="lime">Lime</option>
             <option value="coconut">Coconut</option>

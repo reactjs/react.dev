@@ -247,7 +247,7 @@ With the example above, the `Post` component can read `props.id`, but not `props
 
 ### Embedding map() in JSX {#embedding-map-in-jsx}
 
-In the examples above we declared a separate `listItems` variable and included it in JSX:
+In the examples below we declared a separate `listItems` variable and included it in JSX:
 
 ```js{3-6}
 function NumberList(props) {

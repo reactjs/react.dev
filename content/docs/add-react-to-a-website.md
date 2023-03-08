@@ -124,7 +124,7 @@ If you don't have a minification step for your scripts, [here's one way to set i
 
 ## Optional: Try React with JSX {#optional-try-react-with-jsx}
 
-In the examples above, we only relied on features that are natively supported by browsers. This is why we used a JavaScript function call to tell React what to display:
+In the examples above, we only relied on features that are natively supported by browsers. This is why we can directly call the `React.createElement` function to tell React what to display:
 
 ```js
 const e = React.createElement;

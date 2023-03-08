@@ -337,27 +337,37 @@ The only place where you can assign `this.state` is the constructor.
 
 ### State Updates May Be Asynchronous {#state-updates-may-be-asynchronous}
 
-React may batch multiple `setState()` calls into a single update for performance.
+React may batch multiple `setState()` calls into a single update to improve performance.
 
-Because `this.props` and `this.state` may be updated asynchronously, you should not rely on their values for calculating the next state.
+And since `this.props` and `this.state` may be updated asynchronously,
+we should not directly rely on their values when calculating the next state.
 
 For example, this code may fail to update the counter:
 
 ```js
-// Wrong
+// Wrong (calculates the value immediately)
 this.setState({
   counter: this.state.counter + this.props.increment,
 });
 ```
 
+Failing to update might happen when:
+1. We passed an object to the `setState` that has an already calculated value of the `counter`.
+2. React then batch that `setSate` call.
+3. An asynchronous update happened that changed the `this.state.counter` and `this.props.increment`, at this point the calculated value that was batched in step 1 and 2 is already outdated.
+4. React then executes the last batched update and renders it with an outdated `counter` value.
+
 To fix it, use a second form of `setState()` that accepts a function rather than an object. That function will receive the previous state as the first argument, and the props at the time the update is applied as the second argument:
 
 ```js
-// Correct
+// Correct (calculates only during batch execution)
 this.setState((state, props) => ({
   counter: state.counter + props.increment
 }));
 ```
+
+By doing this, the calculation will only happen during the batch update,
+minimizing the chances of rendering an inaccurate result.
 
 We used an [arrow function](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Functions/Arrow_functions) above, but it also works with regular functions:
 

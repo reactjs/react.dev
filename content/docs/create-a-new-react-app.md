@@ -79,6 +79,8 @@ The following toolchains offer more flexibility and choice. We recommend them to
 
 - **[Razzle](https://github.com/jaredpalmer/razzle)** is a server-rendering framework that doesn't require any configuration, but offers more flexibility than Next.js.
 
+- **[Bit](https://bit.dev/)** is a toolchain for component-driven software. It can be used to power monorepo and polyrepo architectures and has built-in support and predefined templates for React apps, reusable components, express apps, node modules and more.
+
 ## Creating a Toolchain from Scratch {#creating-a-toolchain-from-scratch}
 
 A JavaScript build toolchain typically consists of:

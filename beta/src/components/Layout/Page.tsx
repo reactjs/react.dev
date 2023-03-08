@@ -98,7 +98,7 @@ export function Page({children, toc, routeTree, meta, section}: PageProps) {
         className={cn(
           hasColumns &&
             'grid grid-cols-only-content lg:grid-cols-sidebar-content 2xl:grid-cols-sidebar-content-toc',
-          section === 'blog' && 'max-w-5xl mx-auto'
+          section === 'blog' && 'max-w-6xl 3xl:max-w-none mx-auto'
         )}>
         {showSidebar && (
           <div className="lg:-mt-16">

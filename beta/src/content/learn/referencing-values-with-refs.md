@@ -588,7 +588,7 @@ Usually, this behavior is what you want in an app. However, there may be occasio
 <Sandpack>
 
 ```js
-import { useState, useRef } from 'react';
+import { useState } from 'react';
 
 export default function Chat() {
   const [text, setText] = useState('');

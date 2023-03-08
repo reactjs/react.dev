@@ -216,7 +216,7 @@ When possible, we advise against exposing DOM nodes, but it can be a useful esca
 
 React also supports another way to set refs called "callback refs", which gives more fine-grain control over when refs are set and unset.
 
-Instead of passing a `ref` attribute created by `createRef()`, you pass a function. The function receives the React component instance or HTML DOM element as its argument, which can be stored and accessed elsewhere. 
+Instead of passing a `ref` object created by `createRef()`, you pass a function. The function receives the React component instance or HTML DOM element as its argument, which can be stored and accessed elsewhere. 
 
 The example below implements a common pattern: using the `ref` callback to store a reference to a DOM node in an instance property.
 

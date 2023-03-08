@@ -20,14 +20,6 @@ export interface SearchProps {
   renderModal?: boolean;
 }
 
-function Hit({hit, children}: any) {
-  return (
-    <Link href={hit.url.replace()}>
-      <a>{children}</a>
-    </Link>
-  );
-}
-
 function Kbd(props: {children?: React.ReactNode}) {
   return (
     <kbd
@@ -134,6 +126,22 @@ export function Search({
     [setIsShowing]
   );
 
+  function Hit({hit, children}: any) {
+    return (
+      <Link href={hit.url.replace()}>
+        <a
+          onClick={(e) => {
+            if (!(e.ctrlKey || e.metaKey)) {
+              // If (ctrl+click) or (cmd+click) is not triggered on search results, close the search modal.
+              onClose();
+            }
+          }}>
+          {children}
+        </a>
+      </Link>
+    );
+  }
+
   useDocSearchKeyboardEvents({isOpen: isShowing, onOpen, onClose});
 
   return (
@@ -171,7 +179,14 @@ export function Search({
             {...options}
             initialScrollY={window.scrollY}
             searchParameters={searchParameters}
-            onClose={onClose}
+            onClose={() => {
+              const outside = document.getElementsByClassName(
+                'DocSearch-Container'
+              );
+              if (event?.target === outside[0]) {
+                onClose();
+              }
+            }}
             navigator={{
               navigate({itemUrl}: any) {
                 Router.push(itemUrl);

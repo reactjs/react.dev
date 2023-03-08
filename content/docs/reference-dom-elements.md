@@ -91,7 +91,7 @@ function HelloWorldComponent() {
 }
 ```
 
-Note that styles are not autoprefixed. To support older browsers, you need to supply corresponding style properties:
+Note that styles are not autoprefixed. Use autoprefixer [online version](https://goonlinetools.com/autoprefixer/) that allows you to enter your non-prefixed CSS and gives you a autoprefixed CSS. To support older browsers, you need to supply corresponding style properties:
 
 ```js
 const divStyle = {

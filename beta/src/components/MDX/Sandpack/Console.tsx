@@ -113,8 +113,9 @@ export const SandpackConsole = ({visible}: {visible: boolean}) => {
                 return false;
               }
               if (
-                typeof consoleData.data[0] === 'string' &&
-                consoleData.data[0].indexOf('The above error occurred') !== -1
+                !Array.isArray(consoleData.data) ||
+                (typeof consoleData.data[0] === 'string' &&
+                  consoleData.data[0].includes('The above error occurred'))
               ) {
                 // Don't show React error addendum because
                 // we have a custom error overlay.

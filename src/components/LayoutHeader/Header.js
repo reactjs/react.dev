@@ -80,7 +80,7 @@ const Header = ({location}: {location: Location}) => (
             },
 
             [media.greaterThan('small')]: {
-              width: 'calc(100% / 6)',
+              width: 'calc(100% / 8)',
             },
             [media.lessThan('small')]: {
               flex: '0 0 auto',

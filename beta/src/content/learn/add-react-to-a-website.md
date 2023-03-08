@@ -43,7 +43,7 @@ You may have as many root HTML tags as you need on one page.
 In the HTML page, right before the closing `</body>` tag, add three `<script>` tags for the following files:
 
 - [`react.development.js`](https://unpkg.com/react@18/umd/react.development.js) lets you define React components.
-- [`react-dom.development.js`](https://unpkg.com/react-dom@18/umd/react-dom.development.js) lets React render HTML elements to the [DOM.](https://developer.mozilla.org/docs/Web/API/Document_Object_Model)
+- [`react-dom.development.js`](https://unpkg.com/react-dom@18/umd/react-dom.development.js) lets React render React components to the [DOM.](https://developer.mozilla.org/docs/Web/API/Document_Object_Model)
 - **`like-button.js`** is where you'll write your component in the next step!
 
 Your HTML should now end like this:

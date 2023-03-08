@@ -113,22 +113,7 @@ The `render` method will be called each time an update happens, but as long as w
 
 We will move the `date` from props to state in three steps:
 
-1) Replace `this.props.date` with `this.state.date` in the `render()` method:
-
-```js{6}
-class Clock extends React.Component {
-  render() {
-    return (
-      <div>
-        <h1>Hello, world!</h1>
-        <h2>It is {this.state.date.toLocaleTimeString()}.</h2>
-      </div>
-    );
-  }
-}
-```
-
-2) Add a [class constructor](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Classes#Constructor) that assigns the initial `this.state`:
+1) Add a [class constructor](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Classes#Constructor) that assigns the initial `state`:
 
 ```js{4}
 class Clock extends React.Component {
@@ -158,6 +143,21 @@ Note how we pass `props` to the base constructor:
 ```
 
 Class components should always call the base constructor with `props`.
+
+2) Replace `this.props.date` with `this.state.date` in the `render()` method:
+
+```js{6}
+class Clock extends React.Component {
+  render() {
+    return (
+      <div>
+        <h1>Hello, world!</h1>
+        <h2>It is {this.state.date.toLocaleTimeString()}.</h2>
+      </div>
+    );
+  }
+}
+```
 
 3) Remove the `date` prop from the `<Clock />` element:
 

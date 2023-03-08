@@ -2164,7 +2164,7 @@ ul, li { margin: 0; padding: 0; }
 
 <Solution>
 
-Although you could carefully change each event handler to update the `total` and `packed` counters correctly, the root problem is that these state variables exist at all. They are redundant because you can always calculate the number of items (packed or total) from the `items` array itself. Remove the redundant state to fix the bug:
+Although you could carefully change each event handler to update the `total` and `packed` counters correctly, the root problem is that these state variables should not exist at all. They are redundant because you can always calculate the number of items (packed or total) from the `items` array itself. Remove the redundant state to fix the bug:
 
 <Sandpack>
 

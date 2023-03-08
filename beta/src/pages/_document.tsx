@@ -3,6 +3,7 @@
  */
 
 import {Html, Head, Main, NextScript} from 'next/document';
+import Script from 'next/script';
 
 const MyDocument = () => {
   //  @todo specify language in HTML?
@@ -10,7 +11,9 @@ const MyDocument = () => {
     <Html lang="en">
       <Head />
       <body className="font-sans antialiased text-lg bg-wash dark:bg-wash-dark text-secondary dark:text-secondary-dark leading-base">
-        <script
+        <Script
+          strategy="beforeInteractive"
+          id="reactjs___docs___thememode"
           dangerouslySetInnerHTML={{
             __html: `
                 (function () {

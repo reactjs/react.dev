@@ -1572,13 +1572,8 @@ export default function ContactManager() {
   );
 
   function handleSave(updatedData) {
-    const nextContacts = contacts.map(c => {
-      if (c.id === updatedData.id) {
-        return updatedData;
-      } else {
-        return c;
-      }
-    });
+    const nextContacts = [...contacts];
+    nextContacts[nextContacts.findIndex(c => c.id === updatedData.id)] = updatedData;
     setContacts(nextContacts);
   }
 
@@ -1724,13 +1719,8 @@ export default function ContactManager() {
   );
 
   function handleSave(updatedData) {
-    const nextContacts = contacts.map(c => {
-      if (c.id === updatedData.id) {
-        return updatedData;
-      } else {
-        return c;
-      }
-    });
+    const nextContacts = [...contacts];
+    nextContacts[nextContacts.findIndex(c => c.id === updatedData.id)] = updatedData;
     setContacts(nextContacts);
   }
 

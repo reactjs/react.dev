@@ -267,7 +267,7 @@ const App = () => {
 In the example above, the `kind` prop is safely consumed and *is not* passed on to the `<button>` element in the DOM.
 All other props are passed via the `...other` object making this component really flexible. You can see that it passes an `onClick` and `children` props.
 
-Spread attributes can be useful but they also make it easy to pass unnecessary props to components that don't care about them or to pass invalid HTML attributes to the DOM. We recommend using this syntax sparingly.  
+Spread attributes can be useful, but they also make it easy to pass unnecessary props to components that don't care about them, or to pass invalid HTML attributes to the DOM. We recommend using this syntax sparingly.
 
 ## Children in JSX {#children-in-jsx}
 

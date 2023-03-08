@@ -119,7 +119,7 @@ Then, you can run several commands:
 * `yarn test --watch` runs an interactive test watcher.
 * `yarn test --prod` runs tests in the production environment.
 * `yarn test <pattern>` runs tests with matching filenames.
-* `yarn debug-test` is just like `yarn test` but with a debugger. Open `chrome://inspect` and press "Inspect".
+* `yarn test --debug` is just like `yarn test` but with a debugger. Open `chrome://inspect` and press "Inspect".
 * `yarn flow` runs the [Flow](https://flowtype.org/) typechecks.
 * `yarn build` creates a `build` folder with all the packages.
 * `yarn build react/index,react-dom/index --type=UMD` creates UMD builds of just React and ReactDOM.

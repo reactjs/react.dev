@@ -45,9 +45,7 @@ const MyDocument = () => {
                   setTheme(initialTheme);
 
                   darkQuery.addEventListener('change', function (e) {
-                    if (!preferredTheme) {
-                      setTheme(e.matches ? 'dark' : 'light');
-                    }
+                    setTheme(e.matches ? 'dark' : 'light');
                   });
                 })();
               `,

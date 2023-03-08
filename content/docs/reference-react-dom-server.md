@@ -57,7 +57,7 @@ const stream = renderToPipeableStream(
       // The content above all Suspense boundaries is ready.
       // If something errored before we started streaming, we set the error code appropriately.
       res.statusCode = didError ? 500 : 200;
-      res.setHeader('Content-type', 'text/html');
+      res.setHeader('Content-type', 'text/html; charset=UTF-8');
       stream.pipe(res);
     },
     onShellError(error) {
@@ -73,7 +73,7 @@ const stream = renderToPipeableStream(
       // You can use this for crawlers or static generation.
 
       // res.statusCode = didError ? 500 : 200;
-      // res.setHeader('Content-type', 'text/html');
+      // res.setHeader('Content-type', 'text/html; charset=UTF-8');
       // stream.pipe(res);
     },
     onError(err) {
@@ -132,14 +132,14 @@ try {
 
   return new Response(stream, {
     status: didError ? 500 : 200,
-    headers: {'Content-Type': 'text/html'},
+    headers: {'Content-Type': 'text/html; charset=UTF-8'},
   });
 } catch (error) {
   return new Response(
     '<!doctype html><p>Loading...</p><script src="clientrender.js"></script>',
     {
       status: 500,
-      headers: {'Content-Type': 'text/html'},
+      headers: {'Content-Type': 'text/html; charset=UTF-8'},
     }
   );
 }

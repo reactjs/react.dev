@@ -106,7 +106,7 @@ rootEl.appendChild(node);
 
 >**Note:**
 >
->This really *is* a pseudo-code. It isn't similar to the real implementation. It will also cause a stack overflow because we haven't discussed when to stop the recursion.
+>This really *is* a pseudo-code. It isn't similar to the real implementation. It will also cause a stack overflow error because we haven't discussed when to stop the recursion.
 
 Let's recap a few key ideas in the example above:
 

@@ -13,6 +13,11 @@ Do you know of a local React.js conference? Add it here! (Please keep the list c
 ## Upcoming Conferences {#upcoming-conferences}
 
 
+### < React Global > Online Summit 2022 by Geekle {#react-global-2023}
+April 18 & 19, 2022 - remote event
+
+[Website](https://events.geekle.us/react23/) - [LinkedIn](https://www.linkedin.com/events/7024644869893558272/comments/) - [Twitter](https://twitter.com/reactfellows)
+
 ### RemixConf 2023 {#remixconf-2023}
 May, 2023. Salt Lake City, UT
 

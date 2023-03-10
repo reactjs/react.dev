@@ -15,11 +15,16 @@ Test runners like [Jest](https://jestjs.io/), [mocha](https://mochajs.org/), [av
 
 - Jest is widely compatible with React projects, supporting features like mocked [modules](#mocking-modules) and [timers](#mocking-timers), and [`jsdom`](#mocking-a-rendering-surface) support. **If you use Create React App, [Jest is already included out of the box](https://facebook.github.io/create-react-app/docs/running-tests) with useful defaults.**
 - Libraries like [mocha](https://mochajs.org/#running-mocha-in-the-browser) work well in real browser environments, and could help for tests that explicitly need it.
+- Tools like [Cypress](https://www.cypress.io) can build on the capabilities provided by Jest & Mocha to provide visual feedback when writing tests for components
 - End-to-end tests are used for testing longer flows across multiple pages, and require a [different setup](#end-to-end-tests-aka-e2e-tests).
 
-### Mocking a rendering surface {#mocking-a-rendering-surface}
+### Rendering {#rendering}
 
-Tests often run in an environment without access to a real rendering surface like a browser. For these environments, we recommend simulating a browser with [`jsdom`](https://github.com/jsdom/jsdom), a lightweight browser implementation that runs inside Node.js.
+Tests that render content will need a way to supply a Document Object Model (DOM) to the testing environment.
+
+#### Mocking a rendering surface {#mocking-a-rendering-surface}
+
+Tests that are run in an environment without access to a real rendering surface like a browser (such as a CI server) will need to simulate one with [`jsdom`](https://github.com/jsdom/jsdom), a lightweight browser implementation that runs inside Node.js.
 
 In most cases, jsdom behaves like a regular browser would, but doesn't have features like [layout and navigation](https://github.com/jsdom/jsdom#unimplemented-parts-of-the-web-platform). This is still useful for most web-based component tests, since it runs quicker than having to start up a browser for each test. It also runs in the same process as your tests, so you can write code to examine and assert on the rendered DOM.
 
@@ -27,9 +32,15 @@ Just like in a real browser, jsdom lets us model user interactions; tests can di
 
 A large portion of UI tests can be written with the above setup: using Jest as a test runner, rendered to jsdom, with user interactions specified as sequences of browser events, powered by the `act()` helper [<small>(example)</small>](/docs/testing-recipes.html). For example, a lot of React's own tests are written with this combination.
 
-If you're writing a library that tests mostly browser-specific behavior, and requires native browser behavior like layout or real inputs, you could use a framework like [mocha.](https://mochajs.org/)
+#### Use a browser {#use-a-browser}
 
-In an environment where you _can't_ simulate a DOM (e.g. testing React Native components on Node.js), you could use [event simulation helpers](/docs/test-utils.html#simulate) to simulate interactions with elements. Alternately, you could use the `fireEvent` helper from [`@testing-library/react-native`](https://testing-library.com/docs/react-native-testing-library/intro).
+To more closely match your Production environment, or to create tests that supply visual feedback (live renders, screenshots, and videos), you can use a tool like [Cypress Component Testing](https://docs.cypress.io/guides/component-testing/overview). This launches a browser of your choice (headed or headless) and renders your individual components within to supply a real-world environment for your tests. Within the tests, specific component behaviors and outputs can be verified by simulating state and user interactions.
+
+If you're writing a library that tests mostly browser-specific behavior without the need for visual feedback, and requires native browser behavior like layout or real inputs, you could use a framework like [mocha.](https://mochajs.org/)
+
+#### Other situations {#other-situations}
+
+In an environment where you _can't_ supply a DOM (e.g. testing React Native components on Node.js), you could use [event simulation helpers](/docs/test-utils.html#simulate) to simulate interactions with elements. Alternately, you could use the `fireEvent` helper from [`@testing-library/react-native`](https://testing-library.com/docs/react-native-testing-library/intro).
 
 Frameworks like [Cypress](https://www.cypress.io/), [puppeteer](https://github.com/GoogleChrome/puppeteer) and [webdriver](https://www.seleniumhq.org/projects/webdriver/) are useful for running [end-to-end tests](#end-to-end-tests-aka-e2e-tests).
 

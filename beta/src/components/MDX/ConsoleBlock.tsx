@@ -44,7 +44,7 @@ function ConsoleBlock({level = 'error', children}: ConsoleBlockProps) {
           <Box className="bg-gray-300 dark:bg-gray-90" width="15px" />
         </div>
         <div className="flex text-sm px-4">
-          <div className="border-b-2 border-gray-300 dark:border-gray-90">
+          <div className="border-b-2 border-gray-300 dark:border-gray-90 dark:text-gray-30 text-gray-50">
             Console
           </div>
           <div className="px-4 py-2 flex">

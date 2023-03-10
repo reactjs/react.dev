@@ -65,7 +65,7 @@ function Tooltip() {
 
 * Effects **only run on the client.** They don't run during server rendering.
 
-* The code inside `useLayoutEffect` and all state updates scheduled from it **block the browser from repainting the screen.** When used excessively, this can make your app very slow. When possible, prefer [`useEffect`.](/reference/reac/useEffect)
+* The code inside `useLayoutEffect` and all state updates scheduled from it **block the browser from repainting the screen.** When used excessively, this can make your app very slow. When possible, prefer [`useEffect`.](/reference/react/useEffect)
 
 ---
 

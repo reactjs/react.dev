@@ -1410,7 +1410,7 @@ But wait, there's a problem. Try clicking on the same square multiple times:
 
 The `X` is overwritten by an `O`! While this would add a very interesting twist to the game, we're going to stick to the original rules for now.
 
-When you mark a square with a `X` or a `O` you aren't first checking to see if the square already has a `X` or `O` value. You can fix this by *returning early*. You'll check to see if the square already has a `X` or and `O`. If the square is already filled, you will `return` in the `handleClick` function early--before it tries to update the board state.
+When you mark a square with a `X` or an `O` you aren't first checking to see if the square already has a `X` or `O` value. You can fix this by *returning early*. You'll check to see if the square already has a `X` or an `O`. If the square is already filled, you will `return` in the `handleClick` function early--before it tries to update the board state.
 
 ```js {2,3,4}
 function handleClick(i) {

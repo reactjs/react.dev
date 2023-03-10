@@ -931,7 +931,7 @@ function useEventCallback(fn, dependencies) {
 
   useEffect(() => {
     ref.current = fn;
-  }, [fn, ...dependencies]);
+  }, dependencies);
 
   return useCallback(() => {
     const fn = ref.current;

@@ -358,7 +358,7 @@ export default function Form() {
         Last name:
         <input value={lastName} onChange={handleLastNameChange} />
       </label>
-      <p><b>Good morning, {firstName} {lastName}.</b></p>
+      <p><strong>Good morning, {firstName} {lastName}.</strong></p>
     </>
   );
 }
@@ -398,7 +398,7 @@ export default function Form() {
         Last name:
         <input {...lastNameProps} />
       </label>
-      <p><b>Good morning, {firstNameProps.value} {lastNameProps.value}.</b></p>
+      <p><strong>Good morning, {firstNameProps.value} {lastNameProps.value}.</strong></p>
     </>
   );
 }

@@ -156,7 +156,7 @@ export default function Form() {
         />
       </label>
       <p>
-        Your ticket will be issued to: <b>{fullName}</b>
+        Your ticket will be issued to: <strong>{fullName}</strong>
       </p>
     </>
   );
@@ -208,7 +208,7 @@ export default function Form() {
         />
       </label>
       <p>
-        Your ticket will be issued to: <b>{fullName}</b>
+        Your ticket will be issued to: <strong>{fullName}</strong>
       </p>
     </>
   );

@@ -864,7 +864,7 @@ export default function EditProfile() {
             }}
           />
         ) : (
-          <b>{firstName}</b>
+          <strong>{firstName}</strong>
         )}
       </label>
       <label>
@@ -877,7 +877,7 @@ export default function EditProfile() {
             }}
           />
         ) : (
-          <b>{lastName}</b>
+          <strong>{lastName}</strong>
         )}
       </label>
       <button type="submit">

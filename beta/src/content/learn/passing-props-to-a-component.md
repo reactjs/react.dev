@@ -556,7 +556,7 @@ function Profile({
       <ul>
         <li><b>Profession:</b> {profession}</li>
         <li>
-          <b>Awards: {awards.length} </b>
+          <strong>Awards: {awards.length} </strong>
           ({awards.join(', ')})
         </li>
         <li>
@@ -653,7 +653,7 @@ function Profile({ person, imageSize = 70 }) {
           <b>Profession:</b> {person.profession}
         </li>
         <li>
-          <b>Awards: {person.awards.length} </b>
+          <strong>Awards: {person.awards.length} </strong>
           ({person.awards.join(', ')})
         </li>
         <li>

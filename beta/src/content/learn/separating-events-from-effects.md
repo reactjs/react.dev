@@ -1000,7 +1000,7 @@ export default function Timer() {
         <button disabled={increment === 0} onClick={() => {
           setIncrement(i => i - 1);
         }}>–</button>
-        <b>{increment}</b>
+        <strong>{increment}</strong>
         <button onClick={() => {
           setIncrement(i => i + 1);
         }}>+</button>
@@ -1052,7 +1052,7 @@ export default function Timer() {
         <button disabled={increment === 0} onClick={() => {
           setIncrement(i => i - 1);
         }}>–</button>
-        <b>{increment}</b>
+        <strong>{increment}</strong>
         <button onClick={() => {
           setIncrement(i => i + 1);
         }}>+</button>
@@ -1131,7 +1131,7 @@ export default function Timer() {
         <button disabled={increment === 0} onClick={() => {
           setIncrement(i => i - 1);
         }}>–</button>
-        <b>{increment}</b>
+        <strong>{increment}</strong>
         <button onClick={() => {
           setIncrement(i => i + 1);
         }}>+</button>
@@ -1204,7 +1204,7 @@ export default function Timer() {
         <button disabled={increment === 0} onClick={() => {
           setIncrement(i => i - 1);
         }}>–</button>
-        <b>{increment}</b>
+        <strong>{increment}</strong>
         <button onClick={() => {
           setIncrement(i => i + 1);
         }}>+</button>
@@ -1291,7 +1291,7 @@ export default function Timer() {
         <button disabled={increment === 0} onClick={() => {
           setIncrement(i => i - 1);
         }}>–</button>
-        <b>{increment}</b>
+        <strong>{increment}</strong>
         <button onClick={() => {
           setIncrement(i => i + 1);
         }}>+</button>
@@ -1301,7 +1301,7 @@ export default function Timer() {
         <button disabled={delay === 100} onClick={() => {
           setDelay(d => d - 100);
         }}>–100 ms</button>
-        <b>{delay} ms</b>
+        <strong>{delay} ms</strong>
         <button onClick={() => {
           setDelay(d => d + 100);
         }}>+100 ms</button>
@@ -1374,7 +1374,7 @@ export default function Timer() {
         <button disabled={increment === 0} onClick={() => {
           setIncrement(i => i - 1);
         }}>–</button>
-        <b>{increment}</b>
+        <strong>{increment}</strong>
         <button onClick={() => {
           setIncrement(i => i + 1);
         }}>+</button>
@@ -1384,7 +1384,7 @@ export default function Timer() {
         <button disabled={delay === 100} onClick={() => {
           setDelay(d => d - 100);
         }}>–100 ms</button>
-        <b>{delay} ms</b>
+        <strong>{delay} ms</strong>
         <button onClick={() => {
           setDelay(d => d + 100);
         }}>+100 ms</button>

@@ -929,7 +929,7 @@ function Place({ place, imageSize }) {
         imageSize={imageSize}
       />
       <p>
-        <b>{place.name}</b>
+        <strong>{place.name}</strong>
         {': ' + place.description}
       </p>
     </>
@@ -1065,7 +1065,7 @@ function Place({ place }) {
     <>
       <PlaceImage place={place} />
       <p>
-        <b>{place.name}</b>
+        <strong>{place.name}</strong>
         {': ' + place.description}
       </p>
     </>

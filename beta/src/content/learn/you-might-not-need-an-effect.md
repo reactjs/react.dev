@@ -1337,7 +1337,7 @@ export default function ContactList({
               onSelect(contact.id);
             }}>
               {contact.id === selectedId ?
-                <b>{contact.name}</b> :
+                <strong>{contact.name}</strong> :
                 contact.name
               }
             </button>
@@ -1501,7 +1501,7 @@ export default function ContactList({
               onSelect(contact.id);
             }}>
               {contact.id === selectedId ?
-                <b>{contact.name}</b> :
+                <strong>{contact.name}</strong> :
                 contact.name
               }
             </button>

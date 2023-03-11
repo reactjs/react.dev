@@ -467,15 +467,15 @@ function TestCase({
   const actual = getFinalState(baseState, queue);
   return (
     <>
-      <p>Base state: <b>{baseState}</b></p>
-      <p>Queue: <b>[{queue.join(', ')}]</b></p>
-      <p>Expected result: <b>{expected}</b></p>
+      <p>Base state: <strong>{baseState}</strong></p>
+      <p>Queue: <strong>[{queue.join(', ')}]</strong></p>
+      <p>Expected result: <strong>{expected}</strong></p>
       <p style={{
         color: actual === expected ?
           'green' :
           'red'
       }}>
-        Your result: <b>{actual}</b>
+        Your result: <strong>{actual}</strong>
         {' '}
         ({actual === expected ?
           'correct' :
@@ -570,15 +570,15 @@ function TestCase({
   const actual = getFinalState(baseState, queue);
   return (
     <>
-      <p>Base state: <b>{baseState}</b></p>
-      <p>Queue: <b>[{queue.join(', ')}]</b></p>
-      <p>Expected result: <b>{expected}</b></p>
+      <p>Base state: <strong>{baseState}</strong></p>
+      <p>Queue: <strong>[{queue.join(', ')}]</strong></p>
+      <p>Expected result: <strong>{expected}</strong></p>
       <p style={{
         color: actual === expected ?
           'green' :
           'red'
       }}>
-        Your result: <b>{actual}</b>
+        Your result: <strong>{actual}</strong>
         {' '}
         ({actual === expected ?
           'correct' :

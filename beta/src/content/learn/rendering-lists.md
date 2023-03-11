@@ -143,7 +143,7 @@ const listItems = chemists.map(person =>
        alt={person.name}
      />
      <p>
-       <b>{person.name}:</b>
+       <strong>{person.name}:</strong>
        {' ' + person.profession + ' '}
        known for {person.accomplishment}
      </p>
@@ -174,7 +174,7 @@ export default function List() {
         alt={person.name}
       />
       <p>
-        <b>{person.name}:</b>
+        <strong>{person.name}:</strong>
         {' ' + person.profession + ' '}
         known for {person.accomplishment}
       </p>
@@ -304,7 +304,7 @@ export default function List() {
         alt={person.name}
       />
       <p>
-        <b>{person.name}</b>
+        <strong>{person.name}</strong>
           {' ' + person.profession + ' '}
           known for {person.accomplishment}
       </p>
@@ -460,7 +460,7 @@ export default function List() {
         alt={person.name}
       />
       <p>
-        <b>{person.name}:</b>
+        <strong>{person.name}:</strong>
         {' ' + person.profession + ' '}
         known for {person.accomplishment}
       </p>
@@ -562,7 +562,7 @@ export default function List() {
               alt={person.name}
             />
             <p>
-              <b>{person.name}:</b>
+              <strong>{person.name}:</strong>
               {' ' + person.profession + ' '}
               known for {person.accomplishment}
             </p>
@@ -578,7 +578,7 @@ export default function List() {
               alt={person.name}
             />
             <p>
-              <b>{person.name}:</b>
+              <strong>{person.name}:</strong>
               {' ' + person.profession + ' '}
               known for {person.accomplishment}
             </p>
@@ -670,7 +670,7 @@ function ListSection({ title, people }) {
               alt={person.name}
             />
             <p>
-              <b>{person.name}:</b>
+              <strong>{person.name}:</strong>
               {' ' + person.profession + ' '}
               known for {person.accomplishment}
             </p>
@@ -794,7 +794,7 @@ function ListSection({ title, people }) {
               alt={person.name}
             />
             <p>
-              <b>{person.name}:</b>
+              <strong>{person.name}:</strong>
               {' ' + person.profession + ' '}
               known for {person.accomplishment}
             </p>

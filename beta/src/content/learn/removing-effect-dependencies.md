@@ -330,7 +330,7 @@ export default function Timer() {
         <button disabled={increment === 0} onClick={() => {
           setIncrement(i => i - 1);
         }}>–</button>
-        <b>{increment}</b>
+        <strong>{increment}</strong>
         <button onClick={() => {
           setIncrement(i => i + 1);
         }}>+</button>

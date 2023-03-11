@@ -267,7 +267,7 @@ export default function Form() {
         />
       </label>
       <p>
-        Your ticket will be issued to: <b>{fullName}</b>
+        Your ticket will be issued to: <strong>{fullName}</strong>
       </p>
     </>
   );
@@ -321,7 +321,7 @@ export default function Form() {
         />
       </label>
       <p>
-        Your ticket will be issued to: <b>{fullName}</b>
+        Your ticket will be issued to: <strong>{fullName}</strong>
       </p>
     </>
   );
@@ -2091,7 +2091,7 @@ export default function TravelPlan() {
         onDeleteItem={handleDeleteItem}
       />
       <hr />
-      <b>{packed} out of {total} packed!</b>
+      <strong>{packed} out of {total} packed!</strong>
     </>
   );
 }
@@ -2226,7 +2226,7 @@ export default function TravelPlan() {
         onDeleteItem={handleDeleteItem}
       />
       <hr />
-      <b>{packed} out of {total} packed!</b>
+      <strong>{packed} out of {total} packed!</strong>
     </>
   );
 }
@@ -2568,9 +2568,9 @@ export default function MailClient() {
         ))}
         <hr />
         <p>
-          <b>
+          <strong>
             You selected {selectedCount} letters
-          </b>
+          </strong>
         </p>
       </ul>
     </>
@@ -2676,9 +2676,9 @@ export default function MailClient() {
         ))}
         <hr />
         <p>
-          <b>
+          <strong>
             You selected {selectedCount} letters
-          </b>
+          </strong>
         </p>
       </ul>
     </>
@@ -2781,9 +2781,9 @@ export default function MailClient() {
         ))}
         <hr />
         <p>
-          <b>
+          <strong>
             You selected {selectedCount} letters
-          </b>
+          </strong>
         </p>
       </ul>
     </>

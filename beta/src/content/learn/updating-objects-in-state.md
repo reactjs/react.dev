@@ -860,7 +860,7 @@ export default function Scoreboard() {
   return (
     <>
       <label>
-        Score: <b>{player.score}</b>
+        Score: <strong>{player.score}</strong>
         {' '}
         <button onClick={handlePlusClick}>
           +1
@@ -932,7 +932,7 @@ export default function Scoreboard() {
   return (
     <>
       <label>
-        Score: <b>{player.score}</b>
+        Score: <strong>{player.score}</strong>
         {' '}
         <button onClick={handlePlusClick}>
           +1

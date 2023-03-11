@@ -1199,7 +1199,7 @@ export default function ContactList({contacts, selectedId, dispatch}) {
               onClick={() => {
                 // TODO: dispatch changed_selection
               }}>
-              {selectedId === contact.id ? <b>{contact.name}</b> : contact.name}
+              {selectedId === contact.id ? <strong>{contact.name}</strong> : contact.name}
             </button>
           </li>
         ))}
@@ -1352,7 +1352,7 @@ export default function ContactList({contacts, selectedId, dispatch}) {
                   contactId: contact.id,
                 });
               }}>
-              {selectedId === contact.id ? <b>{contact.name}</b> : contact.name}
+              {selectedId === contact.id ? <strong>{contact.name}</strong> : contact.name}
             </button>
           </li>
         ))}
@@ -1496,7 +1496,7 @@ export default function ContactList({contacts, selectedId, dispatch}) {
                   contactId: contact.id,
                 });
               }}>
-              {selectedId === contact.id ? <b>{contact.name}</b> : contact.name}
+              {selectedId === contact.id ? <strong>{contact.name}</strong> : contact.name}
             </button>
           </li>
         ))}
@@ -1635,7 +1635,7 @@ export default function ContactList({contacts, selectedId, dispatch}) {
                   contactId: contact.id,
                 });
               }}>
-              {selectedId === contact.id ? <b>{contact.name}</b> : contact.name}
+              {selectedId === contact.id ? <strong>{contact.name}</strong> : contact.name}
             </button>
           </li>
         ))}
@@ -1789,7 +1789,7 @@ export default function ContactList({contacts, selectedId, dispatch}) {
                   contactId: contact.id,
                 });
               }}>
-              {selectedId === contact.id ? <b>{contact.name}</b> : contact.name}
+              {selectedId === contact.id ? <strong>{contact.name}</strong> : contact.name}
             </button>
           </li>
         ))}
@@ -1986,7 +1986,7 @@ export default function ContactList({contacts, selectedId, dispatch}) {
                   contactId: contact.id,
                 });
               }}>
-              {selectedId === contact.id ? <b>{contact.name}</b> : contact.name}
+              {selectedId === contact.id ? <strong>{contact.name}</strong> : contact.name}
             </button>
           </li>
         ))}
@@ -2172,7 +2172,7 @@ export default function ContactList({contacts, selectedId, dispatch}) {
                   contactId: contact.id,
                 });
               }}>
-              {selectedId === contact.id ? <b>{contact.name}</b> : contact.name}
+              {selectedId === contact.id ? <strong>{contact.name}</strong> : contact.name}
             </button>
           </li>
         ))}
@@ -2372,7 +2372,7 @@ export default function ContactList({contacts, selectedId, dispatch}) {
                   contactId: contact.id,
                 });
               }}>
-              {selectedId === contact.id ? <b>{contact.name}</b> : contact.name}
+              {selectedId === contact.id ? <strong>{contact.name}</strong> : contact.name}
             </button>
           </li>
         ))}
@@ -2549,7 +2549,7 @@ export default function ContactList({contacts, selectedId, dispatch}) {
                   contactId: contact.id,
                 });
               }}>
-              {selectedId === contact.id ? <b>{contact.name}</b> : contact.name}
+              {selectedId === contact.id ? <strong>{contact.name}</strong> : contact.name}
             </button>
           </li>
         ))}

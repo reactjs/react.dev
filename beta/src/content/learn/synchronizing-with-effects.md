@@ -1018,7 +1018,7 @@ export default function Form() {
             />
             Make it uppercase
           </label>
-          <p>Hello, <b>{upper ? name.toUpperCase() : name}</b></p>
+          <p>Hello, <strong>{upper ? name.toUpperCase() : name}</strong></p>
         </>
       )}
     </>
@@ -1103,7 +1103,7 @@ export default function Form() {
             />
             Make it uppercase
           </label>
-          <p>Hello, <b>{upper ? name.toUpperCase() : name}</b></p>
+          <p>Hello, <strong>{upper ? name.toUpperCase() : name}</strong></p>
         </>
       )}
     </>
@@ -1191,7 +1191,7 @@ export default function Form() {
               shouldFocus={false}
             />
           </label>
-          <p>Hello, <b>{upper ? name.toUpperCase() : name}</b></p>
+          <p>Hello, <strong>{upper ? name.toUpperCase() : name}</strong></p>
         </>
       )}
     </>
@@ -1282,7 +1282,7 @@ export default function Form() {
               shouldFocus={false}
             />
           </label>
-          <p>Hello, <b>{upper ? name.toUpperCase() : name}</b></p>
+          <p>Hello, <strong>{upper ? name.toUpperCase() : name}</strong></p>
         </>
       )}
     </>

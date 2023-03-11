@@ -1620,7 +1620,7 @@ export default function ContactList({
               onSelect(contact.id);
             }}>
               {contact.id === selectedId ?
-                <b>{contact.name}</b> :
+                <strong>{contact.name}</strong> :
                 contact.name
               }
             </button>
@@ -1773,7 +1773,7 @@ export default function ContactList({
               onSelect(contact.id);
             }}>
               {contact.id === selectedId ?
-                <b>{contact.name}</b> :
+                <strong>{contact.name}</strong> :
                 contact.name
               }
             </button>
@@ -2055,7 +2055,7 @@ export default function Contact({ contact }) {
   const [expanded, setExpanded] = useState(false);
   return (
     <>
-      <p><b>{contact.name}</b></p>
+      <p><strong>{contact.name}</strong></p>
       {expanded &&
         <p><i>{contact.email}</i></p>
       }
@@ -2154,7 +2154,7 @@ export default function Contact({ contact }) {
   const [expanded, setExpanded] = useState(false);
   return (
     <>
-      <p><b>{contact.name}</b></p>
+      <p><strong>{contact.name}</strong></p>
       {expanded &&
         <p><i>{contact.email}</i></p>
       }

@@ -831,7 +831,7 @@ export default function ShoppingCart() {
         <li key={product.id}>
           {product.name}
           {' '}
-          (<b>{product.count}</b>)
+          (<strong>{product.count}</strong>)
           <button onClick={() => {
             handleIncreaseClick(product.id);
           }}>
@@ -898,7 +898,7 @@ export default function ShoppingCart() {
         <li key={product.id}>
           {product.name}
           {' '}
-          (<b>{product.count}</b>)
+          (<strong>{product.count}</strong>)
           <button onClick={() => {
             handleIncreaseClick(product.id);
           }}>
@@ -967,7 +967,7 @@ export default function ShoppingCart() {
         <li key={product.id}>
           {product.name}
           {' '}
-          (<b>{product.count}</b>)
+          (<strong>{product.count}</strong>)
           <button onClick={() => {
             handleIncreaseClick(product.id);
           }}>
@@ -1054,7 +1054,7 @@ export default function ShoppingCart() {
         <li key={product.id}>
           {product.name}
           {' '}
-          (<b>{product.count}</b>)
+          (<strong>{product.count}</strong>)
           <button onClick={() => {
             handleIncreaseClick(product.id);
           }}>

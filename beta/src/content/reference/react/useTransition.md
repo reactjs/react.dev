@@ -189,7 +189,7 @@ import { useTransition } from 'react';
 
 export default function TabButton({ children, isActive, onClick }) {
   if (isActive) {
-    return <b>{children}</b>
+    return <strong>{children}</strong>
   }
   return (
     <button onClick={() => {
@@ -325,7 +325,7 @@ import { useTransition } from 'react';
 
 export default function TabButton({ children, isActive, onClick }) {
   if (isActive) {
-    return <b>{children}</b>
+    return <strong>{children}</strong>
   }
   return (
     <button onClick={() => {
@@ -417,7 +417,7 @@ The `useTransition` call does not have to be in the same component whose state y
 export default function TabButton({ children, isActive, onClick }) {
   const [isPending, startTransition] = useTransition();
   if (isActive) {
-    return <b>{children}</b>
+    return <strong>{children}</strong>
   }
   return (
     <button onClick={() => {
@@ -479,7 +479,7 @@ import { useTransition } from 'react';
 export default function TabButton({ children, isActive, onClick }) {
   const [isPending, startTransition] = useTransition();
   if (isActive) {
-    return <b>{children}</b>
+    return <strong>{children}</strong>
   }
   return (
     <button onClick={() => {
@@ -622,7 +622,7 @@ import { useTransition } from 'react';
 export default function TabButton({ children, isActive, onClick }) {
   const [isPending, startTransition] = useTransition();
   if (isActive) {
-    return <b>{children}</b>
+    return <strong>{children}</strong>
   }
   if (isPending) {
     return <b className="pending">{children}</b>;
@@ -754,7 +754,7 @@ export default function TabContainer() {
 ```js TabButton.js
 export default function TabButton({ children, isActive, onClick }) {
   if (isActive) {
-    return <b>{children}</b>
+    return <strong>{children}</strong>
   }
   return (
     <button onClick={() => {
@@ -943,7 +943,7 @@ import { useTransition } from 'react';
 export default function TabButton({ children, isActive, onClick }) {
   const [isPending, startTransition] = useTransition();
   if (isActive) {
-    return <b>{children}</b>
+    return <strong>{children}</strong>
   }
   if (isPending) {
     return <b className="pending">{children}</b>;

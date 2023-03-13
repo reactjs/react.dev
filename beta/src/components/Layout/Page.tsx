@@ -63,8 +63,7 @@ export function Page({children, toc, routeTree, meta, section}: PageProps) {
           <div
             className={cn(
               'max-w-7xl mx-auto',
-              section === 'blog' &&
-                'flex flex-col items-center mx-auto max-w-6xl'
+              section === 'blog' && 'flex flex-col items-center mx-auto'
             )}>
             <TocContext.Provider value={toc}>{children}</TocContext.Provider>
           </div>

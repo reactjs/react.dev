@@ -48,14 +48,24 @@ export function Page({children, toc, routeTree, meta, section}: PageProps) {
   } else {
     content = (
       <div className="pl-0">
-        <PageHeading
-          title={title}
-          description={description}
-          tags={route?.tags}
-          breadcrumbs={breadcrumbs}
-        />
+        <div
+          className={cn(
+            section === 'blog' && 'mx-auto px-0 lg:px-4 max-w-5xl'
+          )}>
+          <PageHeading
+            title={title}
+            description={description}
+            tags={route?.tags}
+            breadcrumbs={breadcrumbs}
+          />
+        </div>
         <div className="px-5 sm:px-12">
-          <div className="max-w-7xl mx-auto">
+          <div
+            className={cn(
+              'max-w-7xl mx-auto',
+              section === 'blog' &&
+                'flex flex-col items-center mx-auto max-w-6xl'
+            )}>
             <TocContext.Provider value={toc}>{children}</TocContext.Provider>
           </div>
           <DocsPageFooter
@@ -97,8 +107,7 @@ export function Page({children, toc, routeTree, meta, section}: PageProps) {
       <div
         className={cn(
           hasColumns &&
-            'grid grid-cols-only-content lg:grid-cols-sidebar-content 2xl:grid-cols-sidebar-content-toc',
-          section === 'blog' && 'max-w-6xl 3xl:max-w-none mx-auto'
+            'grid grid-cols-only-content lg:grid-cols-sidebar-content 2xl:grid-cols-sidebar-content-toc'
         )}>
         {showSidebar && (
           <div className="lg:-mt-16">

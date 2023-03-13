@@ -117,7 +117,7 @@ export function Challenges({
 
   const Heading = isRecipes ? H4 : H2;
   return (
-    <div className="max-w-7xl mx-auto py-4">
+    <div className="max-w-7xl mx-auto py-4 w-full">
       <div
         className={cn(
           'border-gray-10 bg-card dark:bg-card-dark shadow-inner rounded-none -mx-5 sm:mx-auto sm:rounded-2xl'

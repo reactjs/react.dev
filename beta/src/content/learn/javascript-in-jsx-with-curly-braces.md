@@ -469,7 +469,7 @@ export default function TodoList() {
 ```css
 body { padding: 0; margin: 0 }
 body > div > div { padding: 20px; }
-.avatar { border-radius: 50%; height: 90px; }
+.avatar { border-radius: 50%; }
 ```
 
 </Sandpack>
@@ -520,7 +520,7 @@ export default function TodoList() {
 ```css
 body { padding: 0; margin: 0 }
 body > div > div { padding: 20px; }
-.avatar { border-radius: 50%; height: 90px; }
+.avatar { border-radius: 50%; }
 ```
 
 </Sandpack>
@@ -575,7 +575,7 @@ export function getImageUrl(person) {
 ```css
 body { padding: 0; margin: 0 }
 body > div > div { padding: 20px; }
-.avatar { border-radius: 50%; height: 90px; }
+.avatar { border-radius: 50%; }
 ```
 
 </Sandpack>

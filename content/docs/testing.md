@@ -32,7 +32,7 @@ Different answers may work for different teams and products.
 
 **[React Testing Library](https://testing-library.com/react)** is a set of helpers that let you test React components without relying on their implementation details. This approach makes refactoring a breeze and also nudges you towards best practices for accessibility. Although it doesn't provide a way to "shallowly" render a component without its children, a test runner like Jest lets you do this by [mocking](/docs/testing-recipes.html#mocking-modules).
 
-**[WebdriverIO](https://webdriver.io/docs/component-testing/react)** is a JavaScript test framework for unit, component and e2e testing in the browser. It is an alternative runner that lets you render the component in a real browser and __not__ JSDOM. Interacting with React components can happen through [WebDriver](https://w3c.github.io/webdriver/) which mimics user behavior much closer than e.g. JavaScript based clicks. Similar to Jest it provides powerful features such as mocking of [modules and dependencies](https://webdriver.io/docs/component-testing/mocking#modules).
+**[WebdriverIO](https://webdriver.io/docs/component-testing/react)** is a JavaScript test framework for unit, component and e2e testing in the browser. It is an alternative runner that lets you render the component in a real browser and __not__ JSDOM. Interacting with React components can happen through [WebDriver](https://w3c.github.io/webdriver/) which mimics user behavior much closer than e.g. JavaScript based clicks. Similar to Jest it also provides powerful features such as mocking of [modules and dependencies](https://webdriver.io/docs/component-testing/mocking#modules).
 
 ### Learn More {#learn-more}
 

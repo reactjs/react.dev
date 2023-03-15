@@ -20,7 +20,7 @@ const MemoizedComponent = memo(SomeComponent, arePropsEqual?)
 
 ### `memo(Component, arePropsEqual?)` {/*memo*/}
 
-Wrap a component in `memo` to get a *memoized* version of that component. This memoized version of your component will usually not be re-rendered when its parent component is re-rendered as long as its props have not changed. But React may still re-render it: memoization is only a performance optimization, not a guarantee.
+Wrap a component in `memo` to get a *memoized* version of that component. This memoized version of your component will usually not be re-rendered when its parent component is re-rendered as long as its props have not changed. But React may still re-render it: memoization is only a performance optimization hint, not a guarantee.
 
 ```js
 import { memo } from 'react';

@@ -107,7 +107,7 @@ Usually you shouldn't need to call `render` again or to call it in more places. 
 
 ### Rendering multiple roots {/*rendering-multiple-roots*/}
 
-If your page [isn't fully built with React](/learn/add-react-to-a-website), call `render` for each top-level piece of UI managed by React.
+If your page [isn't fully built with React](/learn/add-react-to-an-existing-project#using-react-for-a-part-of-your-existing-page), call `render` for each top-level piece of UI managed by React.
 
 <Sandpack>
 

@@ -239,16 +239,16 @@ export function HomeContent() {
           </FullBleed>
           <Center>
             <Para>
-              You don’t have to build your whole page in React. Add the React{' '}
-              <Code>{'<script>'}</Code> tag to your HTML page, and render
-              interactive React components anywhere on it.
+              You don’t have to build your whole page in React. Add React to
+              your existing HTML page, and render interactive React components
+              anywhere on it.
             </Para>
             <div className="flex justify-start w-full lg:justify-center">
               <CTA
                 color="gray"
                 icon="code"
-                href="/learn/add-react-to-a-website">
-                Add React to a website
+                href="/learn/add-react-to-an-existing-project">
+                Add React to your page
               </CTA>
             </div>
           </Center>
@@ -274,9 +274,9 @@ export function HomeContent() {
           </FullBleed>
           <Center>
             <Para>
-              React is also an architecture. Frameworks designed for React let
-              you mix build-time, server-only, and interactive components in a
-              single interleaving tree. Read data from a file or a database, and
+              React is also an architecture. Frameworks that implement it let
+              you fetch data in asynchronous components that run on the server
+              or even during the build. Read data from a file or a database, and
               pass it down to your interactive components.
             </Para>
             <div className="flex justify-start w-full lg:justify-center">

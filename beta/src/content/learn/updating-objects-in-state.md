@@ -594,6 +594,108 @@ img { width: 200px; height: 200px; }
 
 </Sandpack>
 
+### Make a deep copy of the object using the global structuredClone() method {/*make-deep-object-copy-with-structuredclone*/}
+
+The structuredClone method is a built-in function in JavaScript that allows for the creation of a deep copy of an object or array, including all of its properties and nested objects, without any reference to the original object. This method was introduced in ECMAScript 6 (ES6) and is available in almost all modern browsers.
+
+So instead of using the `...` [object spread](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax#spread_in_object_literals) syntax, we can make use of the `structuredClone` method to copy the original object, mutate the copy and finally set the state with the new object: 
+
+<Sandpack>
+
+```js
+import { useState } from 'react';
+
+export default function Form() {
+  const [person, setPerson] = useState({
+    name: 'Niki de Saint Phalle',
+    artwork: {
+      title: 'Blue Nana',
+      city: 'Hamburg',
+      image: 'https://i.imgur.com/Sd1AgUOm.jpg',
+    }
+  });
+
+  function handleNameChange(e) {
+    const personClone = structuredClone(person);
+    personClone.name = e.target.value;
+    setPerson(personClone);
+  }
+
+  function handleTitleChange(e) {
+    const personClone = structuredClone(person);
+    personClone.artwork.title = e.target.value;
+    setPerson(personClone);
+  }
+
+  function handleCityChange(e) {
+    const personClone = structuredClone(person);
+    personClone.artwork.city = e.target.value;
+    setPerson(personClone);
+  }
+
+  function handleImageChange(e) {
+    const personClone = structuredClone(person);
+    personClone.artwork.image = e.target.value;
+    setPerson(personClone);
+  }
+
+  return (
+    <>
+      <label>
+        Name:
+        <input
+          value={person.name}
+          onChange={handleNameChange}
+        />
+      </label>
+      <label>
+        Title:
+        <input
+          value={person.artwork.title}
+          onChange={handleTitleChange}
+        />
+      </label>
+      <label>
+        City:
+        <input
+          value={person.artwork.city}
+          onChange={handleCityChange}
+        />
+      </label>
+      <label>
+        Image:
+        <input
+          value={person.artwork.image}
+          onChange={handleImageChange}
+        />
+      </label>
+      <p>
+        <i>{person.artwork.title}</i>
+        {' by '}
+        {person.name}
+        <br />
+        (located in {person.artwork.city})
+      </p>
+      <img 
+        src={person.artwork.image} 
+        alt={person.artwork.title}
+      />
+    </>
+  );
+}
+```
+
+```css
+label { display: block; }
+input { margin-left: 5px; margin-bottom: 5px; }
+img { width: 200px; height: 200px; }
+```
+
+</Sandpack>
+
+
+To learn more about the structuredClone method in JavaScript, including its syntax and limitations, visit the MDN web docs at [structuredClone - Web APIs | MDN](https://developer.mozilla.org/en-US/docs/Web/API/structuredClone).
+
 <DeepDive>
 
 #### Objects are not really nested {/*objects-are-not-really-nested*/}

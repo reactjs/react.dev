@@ -49,7 +49,7 @@ const MyInput = forwardRef(function MyInput(props, ref) {
 
 ### `render` function {/*render-function*/}
 
-`forwardRef` accepts a render function as an argument. React calls this function with `props` and `ref`:
+`forwardRef` accepts a render function as an argument. React calls this function with `props` and `ref`. Also, Hooks can be used in this render function.
 
 ```js
 const MyInput = forwardRef(function MyInput(props, ref) {

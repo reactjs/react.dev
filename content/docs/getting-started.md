@@ -60,10 +60,10 @@ As your application grows, you might want to consider a more integrated setup. T
 
 People come to React from different backgrounds and with different learning styles. Whether you prefer a more theoretical or a practical approach, we hope you'll find this section helpful.
 
-* If you prefer to **learn by doing**, start with our [practical tutorial](/tutorial/tutorial.html).
-* If you prefer to **learn concepts step by step**, start with our [guide to main concepts](/docs/hello-world.html).
+* If you prefer **learning by doing**, start with our [practical tutorial](/tutorial/tutorial.html).
+* If you prefer **learning concepts step by step**, start with our [guide to main concepts](/docs/hello-world.html).
 
-Like any unfamiliar technology, React does have a learning curve. With practice and some patience, you *will* get the hang of it.
+Like any unfamiliar technology, React does have a learning curve. With practice and some patience, *you will get the hang of it.*
 
 ### First Examples {#first-examples}
 
@@ -71,7 +71,7 @@ The [React homepage](/) contains a few small React examples with a live editor. 
 
 ### React for Beginners {#react-for-beginners}
 
-If you feel that the React documentation goes at a faster pace than you're comfortable with, check out [this overview of React by Tania Rascia](https://www.taniarascia.com/getting-started-with-react/). It introduces the most important React concepts in a detailed, beginner-friendly way. Once you're done, give the documentation another try!
+If you feel that the React documentation goes at a faster pace than you're comfortable with, check out [this overview of React by Tania Rascia](https://www.taniarascia.com/getting-started-with-react/). It introduces the most important React concepts in a *detailed* and *beginner-friendly* way. Once you're done, give the documentation another try!
 
 ### React for Designers {#react-for-designers}
 
@@ -81,7 +81,7 @@ If you're coming from a design background, [these resources](https://reactfordes
 
 The React documentation assumes some familiarity with programming in the JavaScript language. You don't have to be an expert, but it's harder to learn both React and JavaScript at the same time.
 
-We recommend going through [this JavaScript overview](https://developer.mozilla.org/en-US/docs/Web/JavaScript/A_re-introduction_to_JavaScript) to check your knowledge level. It will take you between 30 minutes and an hour but you will feel more confident learning React.
+We recommend going through [this JavaScript overview](https://developer.mozilla.org/en-US/docs/Web/JavaScript/A_re-introduction_to_JavaScript) to check your knowledge level. It will take between 30 minutes and an hour but you will feel more confident learning React.
 
 >Tip
 >

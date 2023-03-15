@@ -87,7 +87,7 @@ This will produce the initial non-interactive HTML output of your React componen
 
 `renderToString` returns a string immediately, so it does not support streaming or waiting for data.
 
-When possible, we recommend to use these fully-featured alternatives:
+When possible, we recommend using these fully-featured alternatives:
 
 * If you use Node.js, use [`renderToPipeableStream`.](/reference/react-dom/server/renderToPipeableStream)
 * If you use Deno or a modern edge runtime with [Web Streams](https://developer.mozilla.org/en-US/docs/Web/API/Streams_API), use [`renderToReadableStream`.](/reference/react-dom/server/renderToReadableStream)

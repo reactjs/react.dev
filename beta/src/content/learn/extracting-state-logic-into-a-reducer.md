@@ -371,7 +371,7 @@ function tasksReducer(tasks, action) {
 }
 ```
 
-We recommend to wrap each `case` block into the `{` and `}` curly braces so that variables declared inside of different `case`s don't clash with each other. Also, a `case` should usually end with a `return`. If you forget to `return`, the code will "fall through" to the next `case`, which can lead to mistakes!
+We recommend wrapping each `case` block into the `{` and `}` curly braces so that variables declared inside of different `case`s don't clash with each other. Also, a `case` should usually end with a `return`. If you forget to `return`, the code will "fall through" to the next `case`, which can lead to mistakes!
 
 If you're not yet comfortable with switch statements, using if/else is completely fine.
 

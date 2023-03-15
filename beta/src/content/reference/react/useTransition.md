@@ -1099,7 +1099,7 @@ Transitions will only "wait" long enough to avoid hiding *already revealed* cont
 
 ### Building a Suspense-enabled router {/*building-a-suspense-enabled-router*/}
 
-If you're building a React framework or a router, we recommend to mark page navigations as transitions.
+If you're building a React framework or a router, we recommend marking page navigations as transitions.
 
 ```js {3,6,8}
 function Router() {

@@ -4,7 +4,7 @@ title: Component
 
 <Pitfall>
 
-We recommend to define components as functions instead of classes. [See how to migrate.](#alternatives)
+We recommend defining components as functions instead of classes. [See how to migrate.](#alternatives)
 
 </Pitfall>
 
@@ -1119,7 +1119,7 @@ Note that Hooks (functions starting with `use`, like [`useState`](/reference/rea
 
 <Pitfall>
 
-We recommend to define components as functions instead of classes. [See how to migrate.](#migrating-a-simple-component-from-a-class-to-a-function)
+We recommend defining components as functions instead of classes. [See how to migrate.](#migrating-a-simple-component-from-a-class-to-a-function)
 
 </Pitfall>
 
@@ -1177,7 +1177,7 @@ button { display: block; margin-top: 10px; }
 
 <Pitfall>
 
-We recommend to define components as functions instead of classes. [See how to migrate.](#migrating-a-component-with-state-from-a-class-to-a-function)
+We recommend defining components as functions instead of classes. [See how to migrate.](#migrating-a-component-with-state-from-a-class-to-a-function)
 
 </Pitfall>
 
@@ -1311,7 +1311,7 @@ Note that in development when [Strict Mode](/reference/react/StrictMode) is on, 
 
 <Pitfall>
 
-We recommend to define components as functions instead of classes. [See how to migrate.](#migrating-a-component-with-lifecycle-methods-from-a-class-to-a-function)
+We recommend defining components as functions instead of classes. [See how to migrate.](#migrating-a-component-with-lifecycle-methods-from-a-class-to-a-function)
 
 </Pitfall>
 

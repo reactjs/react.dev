@@ -4,7 +4,7 @@ title: Start a New React Project
 
 <Intro>
 
-If you want to build a new app or a new website fully with React, we recommend to pick one of the React-powered frameworks popular in the community. Frameworks provide features that most apps and sites eventually need, including routing, data fetching, and generating HTML.
+If you want to build a new app or a new website fully with React, we recommend picking one of the React-powered frameworks popular in the community. Frameworks provide features that most apps and sites eventually need, including routing, data fetching, and generating HTML.
 
 </Intro>
 

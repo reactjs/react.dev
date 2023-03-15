@@ -60,10 +60,10 @@ As your application grows, you might want to consider a more integrated setup. T
 
 People come to React from different backgrounds and with different learning styles. Whether you prefer a more theoretical or a practical approach, we hope you'll find this section helpful.
 
-* If you prefer to **learn by doing**, start with our [practical tutorial](/tutorial/tutorial.html).
-* If you prefer to **learn concepts step by step**, start with our [guide to main concepts](/docs/hello-world.html).
+* If you prefer **learning by doing**, start with our [practical tutorial](/tutorial/tutorial.html).
+* If you prefer  **learning concepts step by step**, start with our [guide to main concepts](/docs/hello-world.html).
 
-Like any unfamiliar technology, React does have a learning curve. With practice and some patience, you *will* get the hang of it.
+Like any other unfamiliar technology, React does have a learning curve. With practice and some patience, *you will get the hang of it.*
 
 ### First Examples {#first-examples}
 
@@ -71,11 +71,11 @@ The [React homepage](/) contains a few small React examples with a live editor. 
 
 ### React for Beginners {#react-for-beginners}
 
-If you feel that the React documentation goes at a faster pace than you're comfortable with, check out [this overview of React by Tania Rascia](https://www.taniarascia.com/getting-started-with-react/). It introduces the most important React concepts in a detailed, beginner-friendly way. Once you're done, give the documentation another try!
+If you feel that the React documentation goes at a faster pace than you're comfortable with, check out [this overview of React by Tania Rascia](https://www.taniarascia.com/getting-started-with-react/). It introduces the most important concepts of React *in detailed* and *beginner-friendly way.* Once you're done, give the documentation another try!
 
 ### React for Designers {#react-for-designers}
 
-If you're coming from a design background, [these resources](https://reactfordesigners.com/) are a great place to get started.
+If you're coming from a design background, [these resources](https://reactfordesigners.com/) are a great place to start with.
 
 ### JavaScript Resources {#javascript-resources}
 

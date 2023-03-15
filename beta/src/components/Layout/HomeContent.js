@@ -133,22 +133,13 @@ const recentPosts = [
 ];
 
 export function HomeContent() {
-  const [logoAnimation, setLogoAnimation] = useState(false);
   return (
     <>
       <div className="pl-0">
         <div className="mx-5 mt-12 lg:mt-24 mb-20 lg:mb-32 flex flex-col justify-center">
           <Logo
-            onClick={() => {
-              setLogoAnimation(true);
-            }}
-            onMouseDown={(event) => {
-              event.preventDefault();
-            }}
-            onAnimationEnd={() => setLogoAnimation(false)}
             className={cn(
-              'mt-4 mb-3 text-link dark:text-link-dark w-24 lg:w-28 self-center text-sm mr-0 text-link dark:text-link-dark flex origin-center transition-all ease-in-out',
-              logoAnimation && 'animate-[rotate_.5s_ease-in-out_forwards]'
+              'mt-4 mb-3 text-link dark:text-link-dark w-24 lg:w-28 self-center text-sm mr-0 text-link dark:text-link-dark flex origin-center transition-all ease-in-out'
             )}
           />
           <h1 className="text-5xl font-display lg:text-6xl self-center flex font-semibold leading-snug text-primary dark:text-primary-dark">

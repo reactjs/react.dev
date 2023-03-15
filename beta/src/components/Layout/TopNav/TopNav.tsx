@@ -126,7 +126,6 @@ export default function TopNav({
   section: 'learn' | 'reference' | 'community' | 'blog' | 'home' | 'unknown';
 }) {
   const [isOpen, setIsOpen] = useState(false);
-  const [logoAnimation, setLogoAnimation] = useState(false);
   const scrollParentRef = useRef<HTMLDivElement>(null);
   const {asPath} = useRouter();
   const [isScrolled, setIsScrolled] = useState(false);
@@ -219,16 +218,10 @@ export default function TopNav({
               <div className="3xl:flex-1 flex align-center">
                 <NextLink href="/">
                   <a
-                    className={`active:scale-95 overflow-hidden transition-transform relative items-center text-primary dark:text-primary-dark p-1 whitespace-nowrap outline-link rounded-full 3xl:rounded-xl inline-flex text-lg font-normal gap-2`}
-                    onClick={() => {
-                      setLogoAnimation(true);
-                    }}
-                    onAnimationEnd={() => setLogoAnimation(false)}>
+                    className={`active:scale-95 overflow-hidden transition-transform relative items-center text-primary dark:text-primary-dark p-1 whitespace-nowrap outline-link rounded-full 3xl:rounded-xl inline-flex text-lg font-normal gap-2`}>
                     <Logo
                       className={cn(
-                        'text-sm mr-0 w-10 h-10 text-link dark:text-link-dark flex origin-center transition-all ease-in-out',
-                        logoAnimation &&
-                          'animate-[rotate_.5s_ease-in-out_forwards]'
+                        'text-sm mr-0 w-10 h-10 text-link dark:text-link-dark flex origin-center transition-all ease-in-out'
                       )}
                     />
                     <span className="sr-only 3xl:not-sr-only">React</span>

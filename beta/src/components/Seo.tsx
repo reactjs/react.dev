@@ -99,35 +99,35 @@ export const Seo = withRouter(
       />
       <link
         rel="preload"
-        href="https://beta.reactjs.org/fonts/Optimistic_Display_W_Md.woff2"
+        href="https://react.dev/fonts/Optimistic_Display_W_Md.woff2"
         as="font"
         type="font/woff2"
         crossOrigin="anonymous"
       />
       <link
         rel="preload"
-        href="https://beta.reactjs.org/fonts/Optimistic_Display_W_SBd.woff2"
+        href="https://react.dev/fonts/Optimistic_Display_W_SBd.woff2"
         as="font"
         type="font/woff2"
         crossOrigin="anonymous"
       />
       <link
         rel="preload"
-        href="https://beta.reactjs.org/fonts/Optimistic_Display_W_Bd.woff2"
+        href="https://react.dev/fonts/Optimistic_Display_W_Bd.woff2"
         as="font"
         type="font/woff2"
         crossOrigin="anonymous"
       />
       <link
         rel="preload"
-        href="https://beta.reactjs.org/fonts/Optimistic_Text_W_Md.woff2"
+        href="https://react.dev/fonts/Optimistic_Text_W_Md.woff2"
         as="font"
         type="font/woff2"
         crossOrigin="anonymous"
       />
       <link
         rel="preload"
-        href="https://beta.reactjs.org/fonts/Optimistic_Text_W_Bd.woff2"
+        href="https://react.dev/fonts/Optimistic_Text_W_Bd.woff2"
         as="font"
         type="font/woff2"
         crossOrigin="anonymous"

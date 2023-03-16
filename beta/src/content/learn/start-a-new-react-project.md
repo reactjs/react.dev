@@ -42,7 +42,7 @@ Remix is maintained by [Shopify](https://www.shopify.com/). When you create a Re
 
 ### Gatsby {/*gatsby*/}
 
-**[Gatsby](https://www.gatsbyjs.org/) is a popular React framework with a focus on static websites.** Its rich plugin ecosystem lets you pull data from different sources during the build time using GraphQL. To create a new Gatsby project, run:
+**[Gatsby](https://www.gatsbyjs.com/) is a React framework for fast CMS-backed websites.** Its rich plugin ecosystem and its GraphQL data layer simplify integrating content, APIs, and services into one website. To create a new Gatsby project, run:
 
 <TerminalBlock>
 npx create-gatsby

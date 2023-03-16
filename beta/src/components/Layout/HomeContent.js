@@ -255,8 +255,8 @@ export function HomeContent() {
               React is a library. It lets you put components together, but it
               doesn’t prescribe how to do routing and data fetching. To build an
               entire app with React, we recommend a full-stack React framework
-              like <Link href="https://github.com/vercel/next.js">Next.js</Link>{' '}
-              or <Link href="https://github.com/remix-run/remix">Remix</Link>.
+              like <Link href="https://nextjs.org">Next.js</Link> or{' '}
+              <Link href="https://remix.run">Remix</Link>.
             </Para>
           </Center>
           <FullBleed>

@@ -2,7 +2,7 @@
 title: "Introducing react.dev"
 ---
 
-March 07, 2023 by [Dan Abramov](https://twitter.com/dan_abramov) and [Rachel Nabors](https://twitter.com/rnabors)
+March 16, 2023 by [Dan Abramov](https://twitter.com/dan_abramov) and [Rachel Nabors](https://twitter.com/rnabors)
 
 ---
 

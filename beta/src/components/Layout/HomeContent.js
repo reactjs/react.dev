@@ -109,8 +109,8 @@ const recentPosts = [
   {
     title: 'Introducing react.dev',
     icon: 'blog',
-    date: 'March 7, 2023',
-    url: '/blog/2023/03/07/introducing-react-dev',
+    date: 'March 16, 2023',
+    url: '/blog/2023/03/16/introducing-react-dev',
   },
   {
     title: 'React Labs: June 2022',

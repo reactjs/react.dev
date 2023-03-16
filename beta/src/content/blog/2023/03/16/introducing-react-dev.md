@@ -232,7 +232,9 @@ The example above is a *sandbox*. We've added a lot of sandboxes—over 600!—e
 
 ## Learn React step by step {/*learn-react-step-by-step*/}
 
-The rest of the Learn section is organized like a self-paced course split into chapters. The first two chapters describe the fundamentals of React. If you're new to React, or want to refresh it in your memory, start here:
+We'd like everyone in the world to have an equal opportunity to learn React for free on their own.
+
+This is why the Learn section is organized like a self-paced course split into chapters. The first two chapters describe the fundamentals of React. If you're new to React, or want to refresh it in your memory, start here:
 
 - **[Describing the UI](/learn/describing-the-ui)** teaches how to display information with components.
 - **[Adding Interactivity](/learn/adding-interactivity)** teaches how to update the screen in response to user input.
@@ -638,5 +640,5 @@ On the development front, thanks to [Jared Palmer](https://twitter.com/jaredpalm
 
 Huge thanks to the folks who volunteered their time to participate in the alpha and beta testing program. Your enthusiasm and invaluable feedback helped us shape these docs. A special shout out to our beta tester, [Debbie O'Brien](https://twitter.com/debs_obrien), who gave a talk about her experience using the React docs at React Conf 2021.
 
-Finally, thanks to the React community for being the inspiration behind this effort. You are the reason we do this, and we hope that the new docs will be a valuable resource for you.
+Finally, thanks to the React community for being the inspiration behind this effort. You are the reason we do this, and we hope that the new docs will help you use React to build any user interface that you want.
 

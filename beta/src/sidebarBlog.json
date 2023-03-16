@@ -12,6 +12,10 @@
       "skipBreadcrumb": true,
       "routes": [
         {
+          "title": "Introducing react.dev",
+          "path": "/blog/2023/03/16/introducing-react-dev"
+        },
+        {
           "title": "React Labs: June 2022",
           "path": "/blog/2022/06/15/react-labs-what-we-have-been-working-on-june-2022"
         },

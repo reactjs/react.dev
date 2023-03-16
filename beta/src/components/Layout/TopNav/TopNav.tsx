@@ -17,10 +17,6 @@ import {Feedback} from '../Feedback';
 import {SidebarRouteTree} from '../Sidebar/SidebarRouteTree';
 import type {RouteItem} from '../getRouteMeta';
 import {SidebarLink} from '../Sidebar';
-import sidebarLearn from '../../../sidebarLearn.json';
-import sidebarReference from '../../../sidebarReference.json';
-import sidebarCommunity from '../../../sidebarCommunity.json';
-import sidebarBlog from '../../../sidebarBlog.json';
 
 declare global {
   interface Window {

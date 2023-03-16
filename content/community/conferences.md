@@ -12,6 +12,11 @@ Do you know of a local React.js conference? Add it here! (Please keep the list c
 
 ## Upcoming Conferences {#upcoming-conferences}
 
+### React Miami 2023 {#react-miami-2023}
+April 20 - 21, 2023. Miami, FL, USA
+
+[Website](https://www.reactmiami.com/) - [Twitter](https://twitter.com/ReactMiamiConf)
+
 ### Reactathon 2023 {#reactathon-2023}
 May 2 - 3, 2023. San Francisco, CA, USA
 

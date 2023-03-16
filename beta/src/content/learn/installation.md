@@ -10,8 +10,8 @@ React has been designed from the start for gradual adoption. You can use as litt
 
 <YouWillLearn isChapter={true}>
 
-* [How to add React to an HTML page](/learn/add-react-to-a-website)
-* [How to start a standalone React project](/learn/start-a-new-react-project)
+* [How to start a new React project](/learn/start-a-new-react-project)
+* [How to add React to an existing project](/learn/add-react-to-an-existing-project)
 * [How to set up your editor](/learn/editor-setup)
 * [How to install React Developer Tools](/learn/react-developer-tools)
 
@@ -41,15 +41,15 @@ Most pages in the React documentation contain sandboxes like this. Outside of th
 
 ### Try React locally {/*try-react-locally*/}
 
-To try React locally on your computer, [download this HTML page.](https://raw.githubusercontent.com/reactjs/reactjs.org/main/static/html/single-file-example.html) Open it in your editor and in your browser!
+To try React locally on your computer, [download this HTML page.](https://gist.githubusercontent.com/gaearon/0275b1e1518599bbeafcde4722e79ed1/raw/db72dcbf3384ee1708c4a07d3be79860db04bff0/example.html) Open it in your editor and in your browser!
 
-## Add React to a page {/*add-react-to-a-page*/}
+## Start a new React project {/*start-a-new-react-project*/}
 
-If you're working with an existing site and need to add a little bit of React, you can [add React with a script tag.](/learn/add-react-to-a-website)
+If you want to build an app or a website fully with React, [start a new React project.](/learn/start-a-new-react-project)
 
-## Start a React project {/*start-a-react-project*/}
+## Add React to an existing project {/*add-react-to-an-existing-project*/}
 
-If you're ready to [start a standalone project](/learn/start-a-new-react-project) with React, you can set up a minimal toolchain for a pleasant developer experience. You can also start with a framework that makes a lot of decisions for you out of the box.
+If want to try using React in your existing app or a website, [add React to an existing project.](/learn/add-react-to-an-existing-project)
 
 ## Next steps {/*next-steps*/}
 

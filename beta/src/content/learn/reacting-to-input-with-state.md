@@ -31,7 +31,7 @@ In **imperative programming,** the above corresponds directly to how you impleme
 
 They don't know where you want to go, they just follow your commands. (And if you get the directions wrong, you end up in the wrong place!) It's called *imperative* because you have to "command" each element, from the spinner to the button, telling the computer *how* to update the UI.
 
-In this example of imperative UI programming, the form is built *without* React. It uses the built-in browser [DOM](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model):
+In this example of imperative UI programming, the form is built *without* React. It only uses the browser [DOM](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model):
 
 <Sandpack>
 
@@ -330,7 +330,11 @@ In both cases, **you must set [state variables](/learn/state-a-components-memory
 * **Successful network response** (computer) should switch it to the *Success* state.
 * **Failed network response** (computer) should switch it to the *Error* state with the matching error message.
 
-> Notice that human inputs often require [event handlers](/learn/responding-to-events)!
+<Note>
+
+Notice that human inputs often require [event handlers](/learn/responding-to-events)!
+
+</Note>
 
 To help visualize this flow, try drawing each state on paper as a labeled circle, and each change between two states as an arrow. You can sketch out many flows this way and sort out bugs long before implementation.
 
@@ -355,7 +359,7 @@ const [answer, setAnswer] = useState('');
 const [error, setError] = useState(null);
 ```
 
-Then, you'll need a state variable representing which one of the visual states described earlier you want to display. There's usually more than a single way to represent that in memory, so you'll need to experiment with it.
+Then, you'll need a state variable representing which one of the visual states that you want to display. There's usually more than a single way to represent that in memory, so you'll need to experiment with it.
 
 If you struggle to think of the best way immediately, start by adding enough state that you're *definitely* sure that all the possible visual states are covered:
 
@@ -399,7 +403,7 @@ These three variables are a good enough representation of this form's state. How
 
 ### Step 5: Connect the event handlers to set state {/*step-5-connect-the-event-handlers-to-set-state*/}
 
-Lastly, create event handlers to set the state variables. Below is the final form, with all event handlers wired up:
+Lastly, create event handlers that update the state. Below is the final form, with all event handlers wired up:
 
 <Sandpack>
 

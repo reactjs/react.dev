@@ -17,7 +17,6 @@ interface SidebarLinkProps {
   level: number;
   wip: boolean | undefined;
   icon?: React.ReactNode;
-  heading?: boolean;
   isExpanded?: boolean;
   isBreadcrumb?: boolean;
   hideArrow?: boolean;
@@ -30,7 +29,6 @@ export function SidebarLink({
   title,
   wip,
   level,
-  heading = false,
   isExpanded,
   isBreadcrumb,
   hideArrow,
@@ -60,18 +58,14 @@ export function SidebarLink({
         target={target}
         aria-current={selected ? 'page' : undefined}
         className={cn(
-          'p-2 pr-2 w-full rounded-none lg:rounded-r-lg text-left hover:bg-gray-5 dark:hover:bg-gray-80 relative flex items-center justify-between',
+          'p-2 pr-2 w-full rounded-none lg:rounded-r-2xl text-left hover:bg-gray-5 dark:hover:bg-gray-80 relative flex items-center justify-between',
           {
-            'my-6': heading,
-            'text-primary dark:text-primary-dark': heading && !isBreadcrumb,
             'text-sm pl-6': level > 0,
             'pl-5': level < 2,
             'text-base font-bold': level === 0,
-            'dark:text-primary-dark text-primary ': level === 0 && !selected,
-            'text-base text-link dark:text-link-dark': level === 1 && selected,
-            'dark:text-primary-dark text-primary': heading,
+            'text-primary dark:text-primary-dark': level === 0 && !selected,
             'text-base text-secondary dark:text-secondary-dark':
-              !selected && !heading,
+              level > 0 && !selected,
             'text-base text-link dark:text-link-dark bg-highlight dark:bg-highlight-dark border-blue-40 hover:bg-highlight hover:text-link dark:hover:bg-highlight-dark dark:hover:text-link-dark':
               selected,
             'dark:bg-gray-70 bg-gray-3 dark:hover:bg-gray-70 hover:bg-gray-3':
@@ -85,11 +79,11 @@ export function SidebarLink({
           })}>
           {title}
         </span>
-        {isExpanded != null && !heading && !hideArrow && (
+        {isExpanded != null && !hideArrow && (
           <span
             className={cn('pr-1', {
-              'text-link': isExpanded,
-              'text-gray-30': !isExpanded,
+              'text-link dark:text-link-dark': isExpanded,
+              'text-tertiary dark:text-tertiary-dark': !isExpanded,
             })}>
             <IconNavArrow displayDirection={isExpanded ? 'down' : 'right'} />
           </span>

@@ -17,15 +17,6 @@
 
   @font-face {
     font-family: 'Optimistic Display';
-    src: url('https://beta.reactjs.org/fonts/Optimistic_Display_W_Lt.woff2')
-      format('woff2');
-    font-weight: 300;
-    font-style: normal;
-    font-display: swap;
-  }
-
-  @font-face {
-    font-family: 'Optimistic Display';
     src: url('https://beta.reactjs.org/fonts/Optimistic_Display_W_Md.woff2')
       format('woff2');
     font-weight: 500;
@@ -35,7 +26,43 @@
 
   @font-face {
     font-family: 'Optimistic Display';
+    src: url('https://beta.reactjs.org/fonts/Optimistic_Display_W_SBd.woff2')
+      format('woff2');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: 'Optimistic Display';
     src: url('https://beta.reactjs.org/fonts/Optimistic_Display_W_Bd.woff2')
+      format('woff2');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: 'Optimistic Text';
+    src: url('https://beta.reactjs.org/fonts/Optimistic_Text_W_Rg.woff2')
+      format('woff2');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: 'Optimistic Text';
+    src: url('https://beta.reactjs.org/fonts/Optimistic_Text_W_Md.woff2')
+      format('woff2');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: 'Optimistic Text';
+    src: url('https://beta.reactjs.org/fonts/Optimistic_Text_W_Bd.woff2')
       format('woff2');
     font-weight: 700;
     font-style: normal;
@@ -145,10 +172,6 @@
     overflow: auto;
   }
 
-  img {
-    max-width: calc(min(700px, 100%));
-  }
-
   summary::-webkit-details-marker {
     display: none;
   }
@@ -216,15 +239,9 @@ html.dark .code-step * {
 }
 
 .mdx-heading {
-  scroll-margin-top: 3.5em;
+  scroll-margin-top: 3em;
   /* Space for the anchor */
   padding-right: 1em;
-}
-
-@media (min-width: 1024px) {
-  .mdx-heading {
-    scroll-margin-top: 1em;
-  }
 }
 
 .mdx-heading:before {
@@ -320,5 +337,60 @@ ol.mdx-illustration-block {
     left: 50%;
     right: auto;
     transform: translateX(-50%) translateY(-100%) rotate(90deg);
+  }
+}
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.animation-pulse-button {
+  animation: pulse-button 2s infinite;
+}
+
+.animation-pulse-shadow {
+  animation: pulse-shadow 2s infinite;
+}
+
+@keyframes pulse-button {
+  0% {
+    transform: scale(0.9);
+  }
+  70% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(0.9);
+  }
+}
+
+@keyframes pulse-shadow {
+  0% {
+    transform: scale(0.65);
+    opacity: 1;
+  }
+
+  70% {
+    transform: scale(1);
+    opacity: 0;
+  }
+
+  100% {
+    transform: scale(0.65);
+    opacity: 0;
+  }
+}
+
+@keyframes progressbar {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
   }
 }

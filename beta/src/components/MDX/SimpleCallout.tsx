@@ -15,7 +15,7 @@ function SimpleCallout({title, children, className}: SimpleCalloutProps) {
   return (
     <div
       className={cn(
-        'p-6 xl:p-8 pb-4 xl:pb-6 bg-card dark:bg-card-dark rounded-lg shadow-inner text-base text-secondary dark:text-secondary-dark my-8',
+        'p-6 xl:p-8 pb-4 xl:pb-6 bg-card dark:bg-card-dark rounded-2xl shadow-inner-border dark:shadow-inner-border-dark text-base text-secondary dark:text-secondary-dark my-8',
         className
       )}>
       <H3

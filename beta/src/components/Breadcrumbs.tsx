@@ -11,7 +11,8 @@ function Breadcrumbs({breadcrumbs}: {breadcrumbs: RouteItem[]}) {
     <div className="flex flex-wrap">
       {breadcrumbs.map(
         (crumb, i) =>
-          crumb.path && (
+          crumb.path &&
+          !crumb.skipBreadcrumb && (
             <div className="flex mb-3 mt-0.5 items-center" key={i}>
               <Fragment key={crumb.path}>
                 <Link href={crumb.path}>

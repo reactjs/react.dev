@@ -29,17 +29,18 @@ html.dark {
   filter: blur(0px);
 }
 .DocSearch-SearchBar {
-  @apply py-4;
+  @apply py-3;
   @apply px-5;
 }
 .DocSearch-Form {
-  @apply rounded-lg;
-  @apply shadow-inner;
-  @apply text-sm;
+  @apply rounded-full;
+  @apply shadow-none;
+  @apply text-base;
+  @apply text-tertiary;
   @apply bg-gray-10;
-  @apply outline-none;
-  @apply h-auto;
-  @apply focus-within:ring;
+  @apply focus:outline-link;
+  @apply h-10;
+  @apply focus-within:outline-none;
 }
 html.dark .DocSearch-Form {
   @apply bg-gray-80;
@@ -72,6 +73,7 @@ html.dark .DocSearch-Commands {
   @apply text-xs;
 }
 .DocSearch-Footer {
+  @apply bg-transparent;
   @apply flex-col-reverse;
   @apply items-start;
   @apply h-auto;
@@ -84,11 +86,11 @@ html.dark .DocSearch-Footer {
 }
 .DocSearch-Input {
   @apply py-3;
-  @apply text-sm;
+  @apply text-base;
   @apply leading-tight;
   @apply text-primary;
   @apply appearance-none !important;
-  @apply focus:outline-none;
+  @apply focus:outline-link !important;
 }
 html.dark .DocSearch-Input {
   @apply text-primary-dark;
@@ -131,19 +133,28 @@ html.dark .DocSearch-Hit-title {
 }
 .DocSearch-LoadingIndicator svg,
 .DocSearch-MagnifierLabel svg {
-  width: 13px;
-  height: 13px;
+  width: 15px;
+  height: 15px;
   @apply text-gray-30;
   @apply mx-1;
+}
+.DocSearch-Container {
+  @apply flex;
+  @apply justify-center;
 }
 .DocSearch-Modal {
   margin: 0;
   @apply flex;
-  @apply justify-between;
-  @apply h-full;
-  @apply max-w-xs;
-  @apply rounded-r-lg;
-  @apply rounded-l-none;
+  @apply justify-center;
+  @apply max-w-3xl;
+  @apply w-full;
+  @apply rounded-2xl;
+  @apply overflow-hidden;
+  @apply my-4;
+  @apply shadow-nav;
+}
+html.dark .DocSearch-Modal {
+  @apply shadow-nav-dark;
 }
 .DocSearch-Cancel {
   @apply pl-5;
@@ -151,6 +162,14 @@ html.dark .DocSearch-Hit-title {
   @apply text-base;
   @apply text-link;
   @apply font-normal;
+}
+.DocSearch-Screen-Icon {
+  @apply flex;
+  @apply justify-center;
+}
+.DocSearch-Help {
+  @apply text-center;
+  @apply mt-4;
 }
 @media (max-width: 1024px) {
   .DocSearch-Modal {
@@ -164,6 +183,7 @@ html.dark .DocSearch-Hit-title {
   }
   .DocSearch-Modal {
     @apply rounded-none;
+    @apply my-0;
   }
 }
 .DocSearch-Search-Icon {

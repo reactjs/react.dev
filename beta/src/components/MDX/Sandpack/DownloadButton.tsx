@@ -57,6 +57,7 @@ export function DownloadButton({
 <!-- This setup is not suitable for production. -->
 <!-- Only use it in development! -->
 <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script async src="https://ga.jspm.io/npm:es-module-shims@1.7.0/dist/es-module-shims.js"></script>
 <script type="importmap">
 {
   "imports": {

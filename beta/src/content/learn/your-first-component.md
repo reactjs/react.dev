@@ -102,7 +102,7 @@ Return statements can be written all on one line, as in this component:
 return <img src="https://i.imgur.com/MK3eW3As.jpg" alt="Katherine Johnson" />;
 ```
 
-But if your markup isn't all on the same line as the `return` keyword, you must wrap it in a pair of parentheses like this:
+But if your markup isn't all on the same line as the `return` keyword, you must wrap it in a pair of parentheses:
 
 ```js
 return (
@@ -215,9 +215,9 @@ Your React application begins at a "root" component. Usually, it is created auto
 
 Most React apps use components all the way down. This means that you won't only use components for reusable pieces like buttons, but also for larger pieces like sidebars, lists, and ultimately, complete pages! Components are a handy way to organize UI code and markup, even if some of them are only used once.
 
-Frameworks like Next.js take this a step further. Instead of using an empty HTML file and letting React "take over" managing the page with JavaScript, they *also* generate the HTML automatically from your React components. This allows your app to show some content before the JavaScript code loads.
+[React-based frameworks](/learn/start-a-new-react-project) take this a step further. Instead of using an empty HTML file and letting React "take over" managing the page with JavaScript, they *also* generate the HTML automatically from your React components. This allows your app to show some content before the JavaScript code loads.
 
-Still, many websites only use React to [add "sprinkles of interactivity".](/learn/add-react-to-a-website) They have many root components instead of a single one for the entire page. You can use as much—or as little—React as you need.
+Still, many websites only use React to [add interactivity to existing HTML pages.](/learn/add-react-to-an-existing-project#using-react-for-a-part-of-your-existing-page) They have many root components instead of a single one for the entire page. You can use as much—or as little—React as you need.
 
 </DeepDive>
 

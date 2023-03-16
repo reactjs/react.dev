@@ -331,7 +331,7 @@ function tasksReducer(tasks, action) {
 }
 ```
 
-> Because the reducer function takes state (`tasks`) as an argument, you can **declare it outside of your component.** This decreases the indentation level and can make your code easier to read.
+Because the reducer function takes state (`tasks`) as an argument, you can **declare it outside of your component.** This decreases the indentation level and can make your code easier to read.
 
 <Note>
 
@@ -371,7 +371,7 @@ function tasksReducer(tasks, action) {
 }
 ```
 
-We recommend to wrap each `case` block into the `{` and `}` curly braces so that variables declared inside of different `case`s don't clash with each other. Also, a `case` should usually end with a `return`. If you forget to `return`, the code will "fall through" to the next `case`, which can lead to mistakes!
+We recommend wrapping each `case` block into the `{` and `}` curly braces so that variables declared inside of different `case`s don't clash with each other. Also, a `case` should usually end with a `return`. If you forget to `return`, the code will "fall through" to the next `case`, which can lead to mistakes!
 
 If you're not yet comfortable with switch statements, using if/else is completely fine.
 
@@ -459,7 +459,7 @@ You probably won't need to do this yourself, but this is similar to what React d
 
 ### Step 3: Use the reducer from your component {/*step-3-use-the-reducer-from-your-component*/}
 
-Finally, you need to hook up the `tasksReducer` to your component. Make sure to import the `useReducer` Hook from React:
+Finally, you need to hook up the `tasksReducer` to your component. Import the `useReducer` Hook from React:
 
 ```js
 import {useReducer} from 'react';

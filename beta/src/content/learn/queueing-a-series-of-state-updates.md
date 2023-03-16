@@ -55,7 +55,7 @@ setNumber(0 + 1);
 setNumber(0 + 1);
 ```
 
-But there is one other factor at work here to discuss. **React waits until *all* code in the event handlers has run before processing your state updates.** This is why the re-render only happens *after* all these `setNumber()` calls.
+But there is one other factor at play here. **React waits until *all* code in the event handlers has run before processing your state updates.** This is why the re-render only happens *after* all these `setNumber()` calls.
 
 This might remind you of a waiter taking an order at the restaurant. A waiter doesn't run to the kitchen at the mention of your first dish! Instead, they let you finish your order, let you make changes to it, and even take orders from other people at the table.
 
@@ -65,7 +65,7 @@ This lets you update multiple state variables--even from multiple components--wi
 
 **React does not batch across *multiple* intentional events like clicks**--each click is handled separately. Rest assured that React only does batching when it's generally safe to do. This ensures that, for example, if the first button click disables a form, the second click would not submit it again.
 
-## Updating the same state variable multiple times before the next render {/*updating-the-same-state-variable-multiple-times-before-the-next-render*/}
+## Updating the same state multiple times before the next render {/*updating-the-same-state-multiple-times-before-the-next-render*/}
 
 It is an uncommon use case, but if you would like to update the same state variable multiple times before the next render, instead of passing the *next state value* like `setNumber(number + 1)`, you can pass a *function* that calculates the next state based on the previous one in the queue, like `setNumber(n => n + 1)`. It is a way to tell React to "do something with the state value" instead of just replacing it.
 
@@ -179,7 +179,11 @@ During the next render, React goes through the state queue:
 
 React stores `6` as the final result and returns it from `useState`. 
 
-> You may have noticed that `setState(x)` actually works like `setState(n => x)`, but `n` is unused!
+<Note>
+
+You may have noticed that `setState(5)` actually works like `setState(n => 5)`, but `n` is unused!
+
+</Note>
 
 ### What happens if you replace state after updating it {/*what-happens-if-you-replace-state-after-updating-it*/}
 

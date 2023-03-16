@@ -8,6 +8,8 @@ module.exports = {
   'primary-dark': '#F6F7F9', // gray-5
   secondary: '#404756', // gray-70
   'secondary-dark': '#EBECF0', // gray-10
+  tertiary: '#5E687E', // gray-50
+  'tertiary-dark': '#99A1B3', // gray-30
   link: '#087EA4', // blue-50
   'link-dark': '#149ECA', // blue-40
   syntax: '#EBECF0', // gray-10
@@ -28,14 +30,16 @@ module.exports = {
   'gray-80': '#343A46',
   'gray-70': '#404756',
   'gray-60': '#4E5769',
-  'gray-50': '#5E687E', // unused
+  'gray-50': '#5E687E',
   'gray-40': '#78839B',
   'gray-30': '#99A1B3',
   'gray-20': '#BCC1CD',
+  'gray-15': '#D0D3DC',
   'gray-10': '#EBECF0',
   'gray-5': '#F6F7F9',
 
   // Blue
+  'blue-80': '#043849',
   'blue-60': '#045975',
   'blue-50': '#087EA4',
   'blue-40': '#149ECA', // Brand Blue

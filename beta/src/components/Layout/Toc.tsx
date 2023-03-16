@@ -13,7 +13,7 @@ export function Toc({headings}: {headings: Toc}) {
   // Select the max TOC item we have here for now, but remove this after the fix.
   const selectedIndex = Math.min(currentIndex, headings.length - 1);
   return (
-    <nav role="navigation" className="pt-[22px] sticky top-0 right-0">
+    <nav role="navigation" className="pt-20 sticky top-0 right-0">
       {headings.length > 0 && (
         <h2 className="mb-3 lg:mb-3 uppercase tracking-wide font-bold text-sm text-secondary dark:text-secondary-dark px-4 w-full">
           On this page
@@ -31,7 +31,7 @@ export function Toc({headings}: {headings: Toc}) {
                 <li
                   key={`heading-${h.url}-${i}`}
                   className={cx(
-                    'text-sm px-2 rounded-l-lg',
+                    'text-sm px-2 rounded-l-xl',
                     selectedIndex === i
                       ? 'bg-highlight dark:bg-highlight-dark'
                       : null,

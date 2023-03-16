@@ -71,10 +71,10 @@ Then add these lines of code at the top of your main JavaScript file (it might b
 import { createRoot } from 'react-dom/client';
 
 // Clear the existing HTML content
-document.body.innerHTML = '<div id="root"></div>';
+document.body.innerHTML = '<div id="app"></div>';
 
 // Render your React component instead
-const root = createRoot(document.getElementById('root'));
+const root = createRoot(document.getElementById('app'));
 root.render(<h1>Hello, world</h1>);
 ```
 
@@ -96,10 +96,10 @@ In the previous step, you put this code at the top of your main file:
 import { createRoot } from 'react-dom/client';
 
 // Clear the existing HTML content
-document.body.innerHTML = '<div id="root"></div>';
+document.body.innerHTML = '<div id="app"></div>';
 
 // Render your React component instead
-const root = createRoot(document.getElementById('root'));
+const root = createRoot(document.getElementById('app'));
 root.render(<h1>Hello, world</h1>);
 ```
 

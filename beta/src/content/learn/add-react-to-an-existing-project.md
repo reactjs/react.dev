@@ -150,6 +150,6 @@ Notice how the original HTML content from `index.html` is preserved, but your ow
 
 When you adopt React in an existing project, it's common to start with small interactive components (like buttons), and then gradually keep "moving upwards" until eventually your entire page is built with React. If you ever reach that point, we recommend migrating to [a React framework](/learn/start-a-new-react-project) right after to get the most out of React.
 
-## Using React Native in an existing native app {/*using-react-native-in-an-existing-native-app*/}
+## Using React Native in an existing native mobile app {/*using-react-native-in-an-existing-native-mobile-app*/}
 
 [React Native](https://reactnative.dev/) can also be integrated into existing native apps incrementally. If you have an existing native app for Android (Java or Kotlin) or iOS (Objective-C or Swift), [follow this guide](https://reactnative.dev/docs/integration-with-existing-apps) to add a React Native screen to it.

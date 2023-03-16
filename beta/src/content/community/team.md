@@ -18,8 +18,20 @@ Current members of the React team are listed in alphabetical order below.
     Andrew got started with web development by making sites with WordPress, and eventually tricked himself into doing JavaScript. His favorite pastime is karaoke. Andrew is either a Disney villain or a Disney princess, depending on the day.
 </TeamMember>
 
+<TeamMember name="Andrey Lunyov" permalink="andrey-lunyov" photo="/images/team/andrey-lunyov.jpg" github="alunyov" twitter="alunyov" title="Engineer at Meta">
+    Andrey started his career as a designer and then gradually transitioned into web development. After joining the React Data team at Meta he worked on adding an incremental JavaScript compiler to Relay, and then later on, worked on removing the same compiler from Relay. Outside of work, Andrey likes to play music and engage in various sports.
+</TeamMember>
+
 <TeamMember name="Dan Abramov" permalink="dan-abramov" photo="/images/team/gaearon.jpg" github="gaearon" twitter="dan_abramov" title="Engineer at Meta">
     Dan got into programming after he accidentally discovered Visual Basic inside Microsoft PowerPoint. He has found his true calling in turning [Sebastian](#sebastian-markbåge)'s tweets into long-form blog posts. Dan occasionally wins at Fortnite by hiding in a bush until the game ends.
+</TeamMember>
+
+<TeamMember name="Dave McCabe" permalink="dave-mccabe" photo="/images/team/dave-mccabe.jpg" github="davidmccabe" twitter="mcc_abe" title="Engineer at Meta">
+    An engineer by trade and outdoorsman at heart, David has long been an innovator in the field of programming-while-sunbathing. Besides surprising his colleagues with unique outdoor video-call backgrounds, he enjoys playing guitar (in sunlit meadows, of course) and martial arts (still indoors, gotta work on that). 
+</TeamMember>
+
+<TeamMember name="Eli White" permalink="eli-white" photo="/images/team/eli-white.jpg" github="TheSavior" twitter="Eli_White" title="Engineering Manager at Meta">
+    Eli got into programming after he got suspended from middle school for hacking. He has been working on React and React Native since 2017. He enjoys eating treats, especially ice cream and apple pie. You can find Eli trying quirky activities like parkour, indoor skydiving, and aerial silks.
 </TeamMember>
 
 <TeamMember name="Jason Bonta" permalink="jason-bonta" photo="/images/team/jasonbonta.jpg" title="Engineering Manager at Meta">
@@ -34,12 +46,24 @@ Current members of the React team are listed in alphabetical order below.
     Josh majored in Mathematics and discovered programming while in college. His first professional developer job was to program insurance rate calculations in Microsoft Excel, the paragon of Reactive Programming which must be why he now works on React. In between that time Josh has been an IC, Manager, and Executive at a few startups. outside of work he likes to push his limits with cooking.
 </TeamMember>
 
+<TeamMember name="Kathryn Middleton" permalink="kathryn-middleton" photo="/images/team/kathryn-middleton.jpg" github="kmiddleton14" twitter="kmiddleton14" title="Engineering Manager at Meta">
+    Kathryn initially discovered web development when she wanted to make her myspace page look cool. She ended up majoring in Computer Science, and quickly became a huge fan of React building features on the Instagram.com team. Outside of work she loves playing pingpong, teaching spin classes, and going plant shopping.
+</TeamMember>
+
 <TeamMember name="Lauren Tan" permalink="lauren-tan" photo="/images/team/lauren.jpg" github="poteto" twitter="potetotes" personal="no.lol" title="Engineer at Meta">
     Lauren’s programming career peaked when she first discovered the `<marquee>` tag. She’s been chasing that high ever since. When she’s not adding bugs into React, she enjoys dropping cheeky memes in chat, and playing all too many video games with her partner, and her dog Zelda.
 </TeamMember>
 
 <TeamMember name="Luna Ruan" permalink="luna-ruan" photo="/images/team/lunaruan.jpg" github="lunaruan" twitter="lunaruan" title="Independent Engineer">
     Luna learned programming because she thought it meant creating video games. Instead, she ended up working on the Pinterest web app, and now on React itself. Luna doesn't want to make video games anymore, but she plans to do creative writing if she ever gets bored.
+</TeamMember>
+
+<TeamMember name="Luna Wei" permalink="luna-wei" photo="/images/team/luna-wei.jpg" github="lunaleaps" twitter="lunaleaps" title="Engineer at Meta">
+    Luna first learnt the fundamentals of python at the age of 6 from her father. Since then, she has been unstoppable. Luna aspires to be a gen z, and the road to success is paved with environmental advocacy, urban gardening and lots of quality time with her Voo-Doo’d (as pictured). 
+</TeamMember>
+
+<TeamMember name="Matt Carroll" permalink="matt-carroll" photo="/images/team/matt-carroll.png" github="mattcarrollcode" twitter="mattcarrollcode" title="Developer Advocate at Meta">
+    Matt stumbled into coding, and since then, has become enamored with creating things in communities that can’t be created alone. Prior to React, he worked on YouTube, the Google Assistant, Fuchsia, and Google Cloud AI and Evernote. When he's not trying to make better developer tools he enjoys the mountains, jazz, and spending time with his family.
 </TeamMember>
 
 <TeamMember name="Mengdi Chen" permalink="mengdi-chen" photo="/images/team/mengdi-chen.jpg" github="mondaychen" twitter="mengdi_en" title="Engineer at Meta">
@@ -60,6 +84,10 @@ Current members of the React team are listed in alphabetical order below.
 
 <TeamMember name="Sathya Gunasekaran " permalink="sathya-gunasekaran" photo="/images/team/sathya.jpg" github="gsathya" twitter="_gsathya" title="Engineer at Meta">
     Sathya hated the Dragon Book in school but somehow ended up working on compilers all his career. When he's not compiling React components, he's either drinking coffee or eating yet another Dosa.
+</TeamMember>
+
+<TeamMember name="Sean Keegan" permalink="sean-keegan" photo="/images/team/sean-keegan.jpg" github="seanryankeegan" twitter="DevRelSean" title="Developer Advocate at Meta">
+    After a first career as a math teacher, Sean remembered that one intro to comp sci class he had to take as a prereq and thought “that was kind of fun!”. One coding bootcamp and several tech jobs later, Sean discovered developer advocacy and hasn’t looked back. Outside of work, Sean enjoys ultimate frisbee, video games, and researching (but rarely implementing) better ways to care for his houseplants.
 </TeamMember>
 
 <TeamMember name="Sebastian Markbåge" permalink="sebastian-markbåge" photo="/images/team/sebmarkbage.jpg" github="sebmarkbage" twitter="sebmarkbage" title="Engineer at Vercel">

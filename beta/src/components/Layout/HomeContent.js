@@ -974,7 +974,7 @@ function Example2() {
           isFromPackageImport={false}
           noShadow={true}
           noMargin={true}>
-          <div meta={meta}>{`function VideoList({ videos, emptyHeading }) {
+          <div meta={meta}>{`function VideoList({ videos, emptyHeading = 'No Videos Yet' }) {
   const count = videos.length;
   let heading = emptyHeading;
   if (count > 0) {

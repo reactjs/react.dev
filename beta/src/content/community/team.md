@@ -19,7 +19,7 @@ Current members of the React team are listed in alphabetical order below.
 </TeamMember>
 
 <TeamMember name="Andrey Lunyov" permalink="andrey-lunyov" photo="/images/team/andrey-lunyov.jpg" github="alunyov" twitter="alunyov" title="Engineer at Meta">
-    I started my career as a designer and then gradually transitioned into web development. After joining the React Data team at Meta, I worked on adding an incremental JavaScript compiler to Relay, and then later on, I worked on removing the same compiler from Relay. Outside of work, I like to play music and engage in various sports.
+    Andrey started his career as a designer and then gradually transitioned into web development. After joining the React Data team at Meta he worked on adding an incremental JavaScript compiler to Relay, and then later on, worked on removing the same compiler from Relay. Outside of work, Andrey likes to play music and engage in various sports.
 </TeamMember>
 
 <TeamMember name="Dan Abramov" permalink="dan-abramov" photo="/images/team/gaearon.jpg" github="gaearon" twitter="dan_abramov" title="Engineer at Meta">
@@ -87,7 +87,7 @@ Current members of the React team are listed in alphabetical order below.
 </TeamMember>
 
 <TeamMember name="Sean Keegan" permalink="sean-keegan" photo="/images/team/sean-keegan.jpg" github="seanryankeegan" twitter="DevRelSean" title="Developer Advocate at Meta">
-    After a first career as a math teacher, Sean remembered that one intro to comp sci class he had to take as a prereq and thought “that was kind of fun!” One coding bootcamp and several tech jobs later, Sean discovered developer advocacy and hasn’t looked back. Outside of work, Sean enjoys ultimate frisbee, video games, and researching (but rarely implementing) better ways to care for his houseplants.
+    After a first career as a math teacher, Sean remembered that one intro to comp sci class he had to take as a prereq and thought “that was kind of fun!”. One coding bootcamp and several tech jobs later, Sean discovered developer advocacy and hasn’t looked back. Outside of work, Sean enjoys ultimate frisbee, video games, and researching (but rarely implementing) better ways to care for his houseplants.
 </TeamMember>
 
 <TeamMember name="Sebastian Markbåge" permalink="sebastian-markbåge" photo="/images/team/sebmarkbage.jpg" github="sebmarkbage" twitter="sebmarkbage" title="Engineer at Vercel">

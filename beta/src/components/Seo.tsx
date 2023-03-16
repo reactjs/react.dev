@@ -75,7 +75,11 @@ export const Seo = withRouter(
       <meta name="twitter:site" key="twitter:site" content="@reactjs" />
       <meta name="twitter:creator" key="twitter:creator" content="@reactjs" />
       {title != null && (
-        <meta name="twitter:title" key="twitter:title" content={title} />
+        <meta
+          name="twitter:title"
+          key="twitter:title"
+          content={isHomePage ? 'React' : title}
+        />
       )}
       {description != null && (
         <meta

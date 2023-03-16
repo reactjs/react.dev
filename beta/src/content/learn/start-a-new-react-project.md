@@ -62,8 +62,7 @@ npx create-expo-app
 
 If you're new to Expo, check out the [Expo tutorial](https://docs.expo.dev/tutorial/introduction/).
 
-Expo is maintained by [Expo (the company)](https://expo.dev/about). Building apps with Expo is free, and you can submit them to the App Stores without any restrictions. Expo additionally provides opt-in paid cloud services.
-
+Expo is maintained by [Expo (the company)](https://expo.dev/about). Building apps with Expo is free, and you can submit them to the Google and Apple app stores without restrictions. Expo additionally provides opt-in paid cloud services.
 
 <DeepDive>
 

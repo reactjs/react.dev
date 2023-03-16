@@ -10,7 +10,7 @@ If you want to add some interactivity to your existing project, you don't have t
 
 <Note>
 
-**You need to install [Node.js](https://nodejs.org/en/) for local development.** Although you can try React online or on a simple HTML page, realistically most JavaScript tooling you'll want to use for development requires Node.js.
+**You need to install [Node.js](https://nodejs.org/en/) for local development.** Although you can [try React](/learn/installation#try-react) online or with a simple HTML page, realistically most JavaScript tooling you'll want to use for development requires Node.js.
 
 </Note>
 
@@ -70,8 +70,11 @@ Then add these lines of code at the top of your main JavaScript file (it might b
 ```js index.js active
 import { createRoot } from 'react-dom/client';
 
-document.body.innerHTML = '<div>'; // Clear all content
-const root = createRoot(document.body.firstChild);
+// Clear the existing HTML content
+document.body.innerHTML = '<div id="root"></div>';
+
+// Render your React component instead
+const root = createRoot(document.getElementById('root'));
 root.render(<h1>Hello, world</h1>);
 ```
 
@@ -92,8 +95,11 @@ In the previous step, you put this code at the top of your main file:
 ```js
 import { createRoot } from 'react-dom/client';
 
-document.body.innerHTML = '<div>'; // Clear all content
-const root = createRoot(document.body.firstChild);
+// Clear the existing HTML content
+document.body.innerHTML = '<div id="root"></div>';
+
+// Render your React component instead
+const root = createRoot(document.getElementById('root'));
 root.render(<h1>Hello, world</h1>);
 ```
 

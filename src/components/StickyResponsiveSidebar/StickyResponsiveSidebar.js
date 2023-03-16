@@ -91,7 +91,6 @@ class StickyResponsiveSidebar extends Component<Props, State> {
             [media.greaterThan('small')]: {
               position: 'fixed',
               zIndex: 2,
-              height: 'calc(100vh - 60px)',
               overflowY: 'auto',
               WebkitOverflowScrolling: 'touch',
               marginRight: -999,
@@ -101,11 +100,15 @@ class StickyResponsiveSidebar extends Component<Props, State> {
             },
 
             [media.size('small')]: {
-              height: 'calc(100vh - 40px)',
+              height: 'calc(100vh - 60px - var(--social-banner-height-normal))',
             },
 
             [media.between('medium', 'large')]: {
-              height: 'calc(100vh - 50px)',
+              height: 'calc(100vh - 50px - var(--social-banner-height-normal))',
+            },
+
+            [media.greaterThan('large')]: {
+              height: 'calc(100vh - 60px - var(--social-banner-height-normal))',
             },
 
             [media.greaterThan('sidebarFixed')]: {

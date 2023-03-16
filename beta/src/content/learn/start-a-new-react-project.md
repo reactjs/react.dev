@@ -52,7 +52,7 @@ If you're new to Gatsby, check out the [Gatsby tutorial.](https://www.gatsbyjs.c
 
 Gatsby is maintained by [Netlify](https://www.netlify.com/). You can [deploy a fully static Gatsby site](https://www.gatsbyjs.com/docs/how-to/previews-deploys-hosting) to any static hosting. If you opt into using server-only features, make sure your hosting provider supports them for Gatsby.
 
-### Expo {/*expo*/}
+### Expo (for native apps) {/*expo*/}
 
 **[Expo](https://expo.dev/) is a React framework that lets you create universal Android, iOS, and web apps with truly native UIs.** It provides an SDK for [React Native](https://reactnative.dev/) that makes the native parts easier to use. To create a new Expo project, run:
 

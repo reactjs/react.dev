@@ -28,6 +28,7 @@ import Link from 'components/MDX/Link';
 import CodeBlock from 'components/MDX/CodeBlock';
 import {IconNavArrow} from 'components/Icon/IconNavArrow';
 import {ExternalLink} from 'components/ExternalLink';
+import sidebarBlog from '../../sidebarBlog.json';
 
 function Section({children, background = null}) {
   return (
@@ -105,32 +106,16 @@ function CurrentTime() {
   return <span suppressHydrationWarning>{currentTime}</span>;
 }
 
-const recentPosts = [
-  {
-    title: 'Introducing react.dev',
-    icon: 'blog',
-    date: 'March 16, 2023',
-    url: '/blog/2023/03/16/introducing-react-dev',
-  },
-  {
-    title: 'React Labs: June 2022',
-    icon: 'labs',
-    date: 'June 15, 2022',
-    url: '/blog/2022/06/15/react-labs-what-we-have-been-working-on-june-2022',
-  },
-  {
-    title: 'React v18.0',
-    icon: 'blog',
-    date: 'March 29, 2022',
-    url: '/blog/2022/03/29/react-v18',
-  },
-  {
-    title: 'Upgrading to React 18',
-    icon: 'blog',
-    date: 'March 8, 2022',
-    url: '/blog/2022/03/08/react-18-upgrade-guide',
-  },
-];
+const blogSidebar = sidebarBlog.routes[1];
+if (blogSidebar.path !== '/blog') {
+  throw Error('Could not find the blog route in sidebarBlog.json');
+}
+const recentPosts = blogSidebar.routes.slice(0, 4).map((entry) => ({
+  title: entry.titleForHomepage,
+  icon: entry.icon,
+  date: entry.date,
+  url: entry.path,
+}));
 
 export function HomeContent() {
   return (

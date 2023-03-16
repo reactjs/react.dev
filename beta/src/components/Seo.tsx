@@ -43,10 +43,14 @@ export const Seo = withRouter(
       <meta
         property="og:url"
         key="og:url"
-        content={`https://beta.reactjs.org${router.asPath.split(/[\?\#]/)[0]}`}
+        content={`https://react.dev${router.asPath.split(/[\?\#]/)[0]}`}
       />
       {title != null && (
-        <meta property="og:title" content={title} key="og:title" />
+        <meta
+          property="og:title"
+          content={isHomePage ? 'React' : title}
+          key="og:title"
+        />
       )}
       {description != null && (
         <meta
@@ -59,7 +63,7 @@ export const Seo = withRouter(
       <meta
         property="og:image"
         key="og:image"
-        content={`https://beta.reactjs.org${image}`}
+        content={`https://react.dev${image}`}
       />
 
       {/* TWITTER */}
@@ -84,7 +88,7 @@ export const Seo = withRouter(
       <meta
         name="twitter:image"
         key="twitter:image"
-        content={`https://beta.reactjs.org${image}`}
+        content={`https://react.dev${image}`}
       />
       <meta
         name="google-site-verification"

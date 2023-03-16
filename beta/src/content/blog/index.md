@@ -11,7 +11,7 @@ This blog is the official source for the updates from the React team. Anything i
 <div className="sm:-mx-5 flex flex-col gap-5 mt-12">
 
 
-<BlogCard title="Introducing react.dev" date="March 7, 2023" url="/blog/2023/03/07/introducing-react-dev">
+<BlogCard title="Introducing react.dev" date="March 16, 2023" url="/blog/2023/03/16/introducing-react-dev">
 
 Today we are thrilled to launch react.dev, the new home for React and its documentation. In this post, we would like to give you a tour of the new site.
 

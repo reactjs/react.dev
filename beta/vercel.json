@@ -6,7 +6,7 @@
   "redirects": [
     {
       "source": "/docs/add-react-to-a-website.html",
-      "destination": "/learn/add-react-to-a-website",
+      "destination": "/learn/add-react-to-an-existing-project",
       "permanent": false
     },
     {
@@ -282,6 +282,11 @@
     {
       "source": "/learn/meet-the-team",
       "destination": "/community/team",
+      "permanent": true
+    },
+    {
+      "source": "/learn/add-react-to-a-website",
+      "destination": "/learn/add-react-to-an-existing-project",
       "permanent": true
     }
   ],

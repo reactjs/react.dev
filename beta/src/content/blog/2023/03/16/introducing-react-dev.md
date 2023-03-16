@@ -34,7 +34,7 @@ If you haven't seen it yet, check it out!
 
 ## Going all-in on modern React with Hooks {/*going-all-in-on-modern-react-with-hooks*/}
 
-When we released React Hooks in 2018, the docs assumed the reader is familiar with class components. This helped the community adopt Hooks very swiftly, but after a while the old docs failed to serve the new readers. With the old docs, you had to learn React twice: once with class components and then once again with Hooks.
+When we released React Hooks in 2018, the Hooks docs assumed the reader is familiar with class components. This helped the community adopt Hooks very swiftly, but after a while the old docs failed to serve the new readers. New readers had to learn React twice: once with class components and then once again with Hooks.
 
 **The new docs teach React with Hooks from the beginning.** The docs are divided in two main sections:
 
@@ -618,7 +618,9 @@ We've heard many of your requests to expand the content and functionality of the
 - Creating the updated performance, testing, and accessibility guides;
 - Documenting React Server Components independently from the frameworks that support them.
 
-Now that [react.dev](https://react.dev/) is out, we will be able to shift our focus from "catching up" with the third-party React educational resources to adding new information. We think there's never been a better time to learn React.
+Now that [react.dev](https://react.dev/) is out, we will be able to shift our focus from "catching up" with the third-party React educational resources to adding new information.
+
+We think there's never been a better time to learn React.
 
 ## Who worked on this? {/*who-worked-on-this*/}
 

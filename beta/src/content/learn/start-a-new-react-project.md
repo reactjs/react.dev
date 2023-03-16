@@ -93,11 +93,11 @@ These features are getting closer to being production-ready every day, and we've
 
 **[Next.js (App Router)](https://beta.nextjs.org/docs/getting-started) is a redesign of the Next.js APIs aiming to fulfill the React team’s full-stack architecture vision.** It lets you fetch data in asynchronous components that run on the server or even during the build.
 
-Next.js is maintained by [Vercel](https://vercel.com/). You can [deploy a Next.js app](https://nextjs.org/docs/deployment) to any other Node.js hosting, to some Serverless hosts, or to your own server. Static export is [planned but not yet supported](https://beta.nextjs.org/docs/app-directory-roadmap#configuration) for the App Router Beta.
+Next.js is maintained by [Vercel](https://vercel.com/). You can [deploy a Next.js app](https://nextjs.org/docs/deployment) to any other Node.js hosting, to some Serverless hosts, or to your own server. Static export is [planned but not yet supported](https://beta.nextjs.org/docs/app-directory-roadmap#configuration) in the Next.js's App Router.
 
 <Pitfall>
 
-Next.js's App Router is **currently in beta and is not yet recommended for production.** To experiment with the Next.js App Router in an existing Next.js project, [follow this incremental migration guide](https://beta.nextjs.org/docs/upgrade-guide#migrating-from-pages-to-app).
+Next.js's App Router is **currently in beta and is not yet recommended for production.** To experiment with the Next.js's App Router in an existing Next.js project, [follow this incremental migration guide](https://beta.nextjs.org/docs/upgrade-guide#migrating-from-pages-to-app).
 
 </Pitfall>
 

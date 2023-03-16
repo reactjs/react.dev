@@ -28,9 +28,9 @@ To celebrate the launch of the new docs and, more importantly, to clearly separa
 
 The old React docs are now archived at [legacy.reactjs.org](https://legacy.reactjs.org). All existing links to the old content will automatically redirect there to avoid "breaking the web", but the legacy site will not get many more updates.
 
-Believe it or not, React will soon be ten years old. In JavaScript years, it's like a whole century! We've [refreshed the React homepage](https://react.dev) to reflect why we think React is a great way to create user interfaces today.
+Believe it or not, React will soon be ten years old. In JavaScript years, it's like a whole century! We've [refreshed the React homepage](https://react.dev) to reflect why we think React is a great way to create user interfaces today, and updated the getting started guides to more prominently mention modern React-based frameworks.
 
-If you haven't seen it yet, check it out!
+If you haven't seen the new homepage yet, check it out!
 
 ## Going all-in on modern React with Hooks {/*going-all-in-on-modern-react-with-hooks*/}
 

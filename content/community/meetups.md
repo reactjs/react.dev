@@ -71,7 +71,7 @@ Do you have a local React.js meetup? Add it here! (Please keep the list alphabet
 ## England (UK) {#england-uk}
 * [Manchester](https://www.meetup.com/Manchester-React-User-Group/)
 * [React.JS Girls London](https://www.meetup.com/ReactJS-Girls-London/)
-* [React London : Bring Your Own Project](https://www.meetup.com/React-London-Bring-Your-Own-Project/)
+* [React Advanced London](https://beta.guild.host/react-advanced-london)
 
 ## France {#france}
 * [Nantes](https://www.meetup.com/React-Nantes/)
@@ -107,7 +107,8 @@ Do you have a local React.js meetup? Add it here! (Please keep the list alphabet
 * [Indonesia](https://www.meetup.com/reactindonesia/)
 
 ## Ireland {#ireland}
-* [Dublin](https://www.meetup.com/ReactJS-Dublin/)
+* [ReactJS Dublin](https://www.meetup.com/ReactJS-Dublin/)
+* [React Dublin Community Meetup](https://www.meetup.com/react-community-dublin/)
 
 ## Israel {#israel}
 * [Tel Aviv](https://www.meetup.com/ReactJS-Israel/)

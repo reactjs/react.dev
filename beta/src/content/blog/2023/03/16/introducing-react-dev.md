@@ -619,8 +619,11 @@ We've heard many of your requests to expand the content and functionality of the
 - Providing a TypeScript version for all examples;
 - Creating the updated performance, testing, and accessibility guides;
 - Documenting React Server Components independently from the frameworks that support them.
+- Documenting React Server Components independently from the frameworks that support them;
+- Working with our international community to get the new docs translated;
+- Adding missing features to the new website (for example, RSS for this blog).
 
-Now that [react.dev](https://react.dev/) is out, we will be able to shift our focus from "catching up" with the third-party React educational resources to adding new information.
+Now that [react.dev](https://react.dev/) is out, we will be able to shift our focus from "catching up" with the third-party React educational resources to adding new information and further improving our new website.
 
 We think there's never been a better time to learn React.
 

@@ -1452,7 +1452,7 @@ If your linter is [configured for React](/learn/editor-setup#linting), you shoul
 
 #### Remove unnecessary state {/*remove-unnecessary-state*/}
 
-When the button is clicked, this example should ask for the user's name and then display an alert greeting them. You tried to use state to keep the name, but for some reason it always shows "Hello, !".
+When the button is clicked, this example should ask for the user's name and then display an alert greeting them. You tried to use state to keep the name, but for some reason it shows only "Hello, !" the first time you enter a name, and then subsequently, it also shows whatever name you entered just before that time.
 
 To fix this code, remove the unnecessary state variable. (We will discuss about [why this didn't work](/learn/state-as-a-snapshot) later.)
 

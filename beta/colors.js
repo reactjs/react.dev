@@ -2,7 +2,7 @@
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
 
-module.exports = {
+const colors = {
   // Text colors
   primary: '#23272F', // gray-90
   'primary-dark': '#F6F7F9', // gray-5
@@ -10,8 +10,8 @@ module.exports = {
   'secondary-dark': '#EBECF0', // gray-10
   tertiary: '#5E687E', // gray-50
   'tertiary-dark': '#99A1B3', // gray-30
-  link: '#087EA4', // blue-50
-  'link-dark': '#149ECA', // blue-40
+  // link: '#087EA4', // blue-50
+  // 'link-dark': '#149ECA', // blue-40
   syntax: '#EBECF0', // gray-10
   wash: '#FFFFFF',
   'wash-dark': '#23272F', // gray-90
@@ -39,14 +39,15 @@ module.exports = {
   'gray-5': '#F6F7F9',
 
   // Blue
-  'blue-80': '#043849',
-  'blue-60': '#045975',
-  'blue-50': '#087EA4',
-  'blue-40': '#149ECA', // Brand Blue
-  'blue-30': '#58C4DC', // unused
-  'blue-20': '#ABE2ED',
-  'blue-10': '#E6F7FF', // todo: doesn't match illustrations
+  'blue-80': '#043849', // unused
+  'blue-20': '#ABE2ED', // unused
+  'blue-10': '#E6F7FF', // UNUSED todo: doesn't match illustrations
   'blue-5': '#E6F6FA',
+
+  'blue-60': '#045975',
+  'blue-50': '#087EA4', // text-link
+  'blue-40': '#149ECA', // Brand Blue (text-link-dark)
+  'blue-30': '#58C4DC',
 
   // Yellow
   'yellow-60': '#B65700',
@@ -56,6 +57,7 @@ module.exports = {
   'yellow-20': '#FCDEB0', // unused
   'yellow-10': '#FDE7C7',
   'yellow-5': '#FEF5E7',
+  'yellow-x': '#FFC107',
 
   // Purple
   'purple-60': '#2B3491', // unused
@@ -91,3 +93,33 @@ module.exports = {
     highlight: '#fffbdd',
   },
 };
+
+const experiments = [
+  ['#58C4DC', '#149ECA', '#087EA4', , '#045975'], // OG
+  ['#2BA2B9', '#0090A7', '#007E92', '#006778'], // Dans fave
+  ['#1DA1CD', '#008EB7', '#007CA0', '#006684'],
+  ['#00A3C3', '#008FAA', '#007D96', '#00677C'],
+  ['#58C4DC', '#0090A7', '#007E92', '#006778'],
+  ['#58C4DC', '#2BA2B9', '#0090A7', '#007E92'], // 5 (nice)
+  ['#58C4DC', '#3194AA', '#165873', '#1A4C5F'],
+  ['#58C4DC', '#3194AA', '#1E7C8A', '#1A4C5F'],
+  ['#58C4DC', '#3194AA', '#227C9D', '#1A4C5F'],
+  ['#58C4DC', '#1F9CB5', '#227F96', '#1A4C5F'],
+  ['#58C4DC', '#1F9CB5', '#2A6F7C', '#1A4C5F'], // 10
+  ['#58C4DC', '#39A4C8', '#2A7D98', '#1A4C5F'], // fave **
+  ['#58C4DC', '#3FA9CC', '#2A7D98', '#1A4C5F'], // fave *
+];
+
+const experiment = 11;
+
+colors['blue-30'] = experiments[experiment][0];
+colors['blue-40'] = experiments[experiment][1];
+colors['blue-50'] = experiments[experiment][2];
+colors['blue-60'] = experiments[experiment][3];
+
+colors.link = colors['blue-40'];
+colors['link-dark'] = colors['blue-40'];
+colors.brand = colors['blue-40'];
+colors['brand-dark'] = colors['blue-40'];
+
+module.exports = colors;

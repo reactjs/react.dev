@@ -79,7 +79,7 @@ It receives parameters describing what was rendered and how long it took.
 ```js
 function onRenderCallback(
   id, // the "id" prop of the Profiler tree that has just committed
-  phase, // either "mount" (if the tree just mounted) or "update" (if it re-rendered)
+  phase, // either "mount" (if the tree just mounted) or "update" | "nested-update" (if it re-rendered)
   actualDuration, // time spent rendering the committed update
   baseDuration, // estimated time to render the entire subtree without memoization
   startTime, // when React began rendering this update
@@ -95,7 +95,7 @@ Let's take a closer look at each of the props:
 * **`id: string`** - 
 The `id` prop of the `Profiler` tree that has just committed.
 This can be used to identify which part of the tree was committed if you are using multiple profilers.
-* **`phase: "mount" | "update"`** -
+* **`phase: "mount" | "update" | "nested-update"`** -
 Identifies whether the tree has just been mounted for the first time or re-rendered due to a change in props, state, or hooks.
 * **`actualDuration: number`** -
 Time spent rendering the `Profiler` and its descendants for the current update.

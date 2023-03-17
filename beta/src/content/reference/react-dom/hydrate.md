@@ -104,7 +104,7 @@ export default function App() {
 
 </Sandpack>
 
-Usually you shouldn't need to call `hydrate` again or to call it in more places. From this point on, React will be managing the DOM of your application. If you want to update the UI, your components can do this by [using state.](/reference/react/useState)
+Usually you shouldn't need to call `hydrate` again or to call it in more places. From this point on, React will be managing the DOM of your application. To update the UI, your components will [use state.](/reference/react/useState)
 
 For more information on hydration, see the docs for [`hydrateRoot`.](/reference/react-dom/client/hydrateRoot)
 
@@ -196,6 +196,6 @@ This way the initial render pass will render the same content as the server, avo
 
 <Pitfall>
 
-This approach makes hydration slower because your components have to render twice. Be mindful of the user experience on slow connections. The JavaScript code may load significantly later than the initial HTML render, so rendering a different UI immediately after hydration may also feel jarring to the user.
+This approach makes hydration slower because your components have to render twice. Be mindful of the user experience on slow connections. The JavaScript code may load significantly later than the initial HTML render, so rendering a different UI immediately after hydration may feel jarring to the user.
 
 </Pitfall>

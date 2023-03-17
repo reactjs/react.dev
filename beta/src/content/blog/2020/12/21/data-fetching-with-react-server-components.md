@@ -20,7 +20,7 @@ To introduce React Server Components, we have prepared a talk and a demo. If you
 
 **React Server Components are still in research and development.** We are sharing this work in the spirit of transparency and to get initial feedback from the React community. There will be plenty of time for that, so **don't feel like you have to catch up right now!**
 
-If you want to check them out, we recommend to go in the following order:
+If you want to check them out, we recommend going in the following order:
 
 1. **Watch the talk** to learn about React Server Components and see the demo.
 

@@ -10,6 +10,16 @@ Do you know of a local React.js conference? Add it here! (Please keep the list c
 
 ## Upcoming Conferences {/*upcoming-conferences*/}
 
+### React Miami 2023 {/*react-miami-2023*/}
+April 20 - 21, 2023. Miami, FL, USA
+
+[Website](https://www.reactmiami.com/) - [Twitter](https://twitter.com/ReactMiamiConf)
+
+### Reactathon 2023 {/*reactathon-2023*/}
+May 2 - 3, 2023. San Francisco, CA, USA
+
+[Website](https://reactathon.com) - [Twitter](https://twitter.com/reactathon) - [YouTube](https://www.youtube.com/realworldreact)
+
 ### RemixConf 2023 {/*remixconf-2023*/}
 May, 2023. Salt Lake City, UT
 
@@ -29,6 +39,11 @@ May 31 - June 2, 2023. Atlanta, GA, USA
 June 2 & 6, 2023. In-person in Amsterdam, Netherlands + remote first interactivity (hybrid event)
 
 [Website](https://reactsummit.com) - [Twitter](https://twitter.com/reactsummit) - [Facebook](https://www.facebook.com/reactamsterdam) - [Videos](https://youtube.com/c/ReactConferences)
+
+### React Norway 2023 {/*react-norway-2023*/}
+June 16th, 2023. Larvik, Norway
+
+[Website](https://reactnorway.com/) - [Twitter](https://twitter.com/ReactNorway/) - [Facebook](https://www.facebook.com/reactdaynorway/)
 
 ### ReactNext 2023 {/*reactnext-2023*/}
 June 27th, 2023. Tel Aviv, Israel

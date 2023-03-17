@@ -1,0 +1,70 @@
+{
+  "title": "Blog",
+  "path": "/blog",
+  "routes": [
+    {
+      "hasSectionHeader": true,
+      "sectionHeader": "STAY INFORMED"
+    },
+    {
+      "title": "Blog",
+      "path": "/blog",
+      "skipBreadcrumb": true,
+      "routes": [
+        {
+          "title": "Introducing react.dev",
+          "titleForHomepage": "Introducing react.dev",
+          "icon": "blog",
+          "date": "March 16, 2023",
+          "path": "/blog/2023/03/16/introducing-react-dev"
+        },
+        {
+          "title": "React Labs: What We've Been Working On – June 2022",
+          "titleForHomepage": "React Labs: June 2022",
+          "icon": "labs",
+          "date": "June 15, 2022",
+          "path": "/blog/2022/06/15/react-labs-what-we-have-been-working-on-june-2022"
+        },
+        {
+          "title": "React v18.0",
+          "titleForHomepage": "React v18.0",
+          "icon": "blog",
+          "date": "March 29, 2022",
+          "path": "/blog/2022/03/29/react-v18"
+        },
+        {
+          "title": "How to Upgrade to React 18",
+          "titleForHomepage": "Upgrading to React 18",
+          "icon": "blog",
+          "date": "March 8, 2022",
+          "path": "/blog/2022/03/08/react-18-upgrade-guide"
+        },
+        {
+          "title": "React Conf 2021 Recap",
+          "titleForHomepage": "React Conf 2021 Recap",
+          "icon": "blog",
+          "date": "December 17, 2021",
+          "path": "/blog/2021/12/17/react-conf-2021-recap"
+        },
+        {
+          "title": "The Plan for React 18",
+          "titleForHomepage": "The Plan for React 18",
+          "icon": "blog",
+          "date": "June 8, 2021",
+          "path": "/blog/2021/06/08/the-plan-for-react-18"
+        },
+        {
+          "title": "Introducing Server Components",
+          "titleForHomepage": "Introducing Server Components",
+          "icon": "labs",
+          "date": "December 21, 2020",
+          "path": "/blog/2020/12/21/data-fetching-with-react-server-components"
+        },
+        {
+          "title": "Older posts",
+          "path": "https://reactjs.org/blog/all.html"
+        }
+      ]
+    }
+  ]
+}

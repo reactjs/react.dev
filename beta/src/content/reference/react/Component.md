@@ -4,7 +4,7 @@ title: Component
 
 <Pitfall>
 
-We recommend to define components as functions instead of classes. [See how to migrate.](#alternatives)
+We recommend defining components as functions instead of classes. [See how to migrate.](#alternatives)
 
 </Pitfall>
 
@@ -1119,7 +1119,7 @@ Note that Hooks (functions starting with `use`, like [`useState`](/reference/rea
 
 <Pitfall>
 
-We recommend to define components as functions instead of classes. [See how to migrate.](#migrating-a-simple-component-from-a-class-to-a-function)
+We recommend defining components as functions instead of classes. [See how to migrate.](#migrating-a-simple-component-from-a-class-to-a-function)
 
 </Pitfall>
 
@@ -1177,7 +1177,7 @@ button { display: block; margin-top: 10px; }
 
 <Pitfall>
 
-We recommend to define components as functions instead of classes. [See how to migrate.](#migrating-a-component-with-state-from-a-class-to-a-function)
+We recommend defining components as functions instead of classes. [See how to migrate.](#migrating-a-component-with-state-from-a-class-to-a-function)
 
 </Pitfall>
 
@@ -1311,7 +1311,7 @@ Note that in development when [Strict Mode](/reference/react/StrictMode) is on, 
 
 <Pitfall>
 
-We recommend to define components as functions instead of classes. [See how to migrate.](#migrating-a-component-with-lifecycle-methods-from-a-class-to-a-function)
+We recommend defining components as functions instead of classes. [See how to migrate.](#migrating-a-component-with-lifecycle-methods-from-a-class-to-a-function)
 
 </Pitfall>
 
@@ -1321,7 +1321,7 @@ We recommend to define components as functions instead of classes. [See how to m
 
 By default, if your application throws an error during rendering, React will remove its UI from the screen. To prevent this, you can wrap a part of your UI into an *error boundary*. An error boundary is a special component that lets you display some fallback UI instead of the part that crashed--for example, an error message.
 
-To implement an error boundary component, you need to provide [`static getDerivedStateFromError`](#static-getderivedstatefromerror) which lets you update state in response to an error and display an error message to the user. You can also optionally implement [`componentDidcatch`](#componentdidcatch) to add some extra logic, for example, to log the error to an analytics service.
+To implement an error boundary component, you need to provide [`static getDerivedStateFromError`](#static-getderivedstatefromerror) which lets you update state in response to an error and display an error message to the user. You can also optionally implement [`componentDidCatch`](#componentdidcatch) to add some extra logic, for example, to log the error to an analytics service.
 
 ```js {7-10,12-19}
 class ErrorBoundary extends React.Component {

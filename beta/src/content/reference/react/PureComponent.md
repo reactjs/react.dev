@@ -4,7 +4,7 @@ title: PureComponent
 
 <Pitfall>
 
-We recommend to define components as functions instead of classes. [See how to migrate.](#alternatives)
+We recommend defining components as functions instead of classes. [See how to migrate.](#alternatives)
 
 </Pitfall>
 
@@ -109,7 +109,7 @@ label {
 
 <Pitfall>
 
-We recommend to define components as functions instead of classes. [See how to migrate.](#alternatives)
+We recommend defining components as functions instead of classes. [See how to migrate.](#alternatives)
 
 </Pitfall>
 
@@ -119,7 +119,7 @@ We recommend to define components as functions instead of classes. [See how to m
 
 ### Migrating from a `PureComponent` class component to a function {/*migrating-from-a-purecomponent-class-component-to-a-function*/}
 
-We recommend to use function components instead of [class components](/reference/react/Component) in the new code. If you have some existing class components using `PureComponent`, here is how you can convert them. This is the original code:
+We recommend using function components instead of [class components](/reference/react/Component) in new code. If you have some existing class components using `PureComponent`, here is how you can convert them. This is the original code:
 
 <Sandpack>
 

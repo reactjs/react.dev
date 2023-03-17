@@ -21,7 +21,7 @@ Usually, you will pass information from a parent component to a child component 
 
 [Passing props](/learn/passing-props-to-a-component) is a great way to explicitly pipe data through your UI tree to the components that use it.
 
-But passing props can become verbose and inconvenient when you need to pass some prop deeply through the tree, or if many components need the same prop. The nearest common ancestor could be far removed from the components that need data, and [lifting state up](/learn/sharing-state-between-components) that high can lead to a situation sometimes called "prop drilling".
+But passing props can become verbose and inconvenient when you need to pass some prop deeply through the tree, or if many components need the same prop. The nearest common ancestor could be far removed from the components that need data, and [lifting state up](/learn/sharing-state-between-components) that high can lead to a situation called "prop drilling".
 
 <DiagramGroup>
 
@@ -697,7 +697,11 @@ export const LevelContext = createContext(0);
 
 Now both `Heading` and `Section` read the `LevelContext` to figure out how "deep" they are. And the `Section` wraps its children into the `LevelContext` to specify that anything inside of it is at a "deeper" level.
 
->This example uses heading levels because they show visually how nested components can override context. But context is useful for many other use cases too. You can use it to pass down any information needed by the entire subtree: the current color theme, the currently logged in user, and so on.
+<Note>
+
+This example uses heading levels because they show visually how nested components can override context. But context is useful for many other use cases too. You can pass down any information needed by the entire subtree: the current color theme, the currently logged in user, and so on.
+
+</Note>
 
 ## Context passes through intermediate components {/*context-passes-through-intermediate-components*/}
 

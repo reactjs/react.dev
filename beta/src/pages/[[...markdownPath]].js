@@ -6,8 +6,11 @@ import {Fragment, useMemo} from 'react';
 import {useRouter} from 'next/router';
 import {MDXComponents} from 'components/MDX/MDXComponents';
 import {Page} from 'components/Layout/Page';
+import sidebarHome from '../sidebarHome.json';
 import sidebarLearn from '../sidebarLearn.json';
 import sidebarReference from '../sidebarReference.json';
+import sidebarCommunity from '../sidebarCommunity.json';
+import sidebarBlog from '../sidebarBlog.json';
 
 export default function Layout({content, toc, meta}) {
   const parsedContent = useMemo(
@@ -16,10 +19,23 @@ export default function Layout({content, toc, meta}) {
   );
   const parsedToc = useMemo(() => JSON.parse(toc, reviveNodeOnClient), [toc]);
   const section = useActiveSection();
-  let routeTree = sidebarLearn;
+  let routeTree;
   switch (section) {
+    case 'home':
+    case 'unknown':
+      routeTree = sidebarHome;
+      break;
+    case 'learn':
+      routeTree = sidebarLearn;
+      break;
     case 'reference':
       routeTree = sidebarReference;
+      break;
+    case 'community':
+      routeTree = sidebarCommunity;
+      break;
+    case 'blog':
+      routeTree = sidebarBlog;
       break;
   }
   return (
@@ -31,14 +47,19 @@ export default function Layout({content, toc, meta}) {
 
 function useActiveSection() {
   const {asPath} = useRouter();
-  if (asPath.startsWith('/reference')) {
+  const cleanedPath = asPath.split(/[\?\#]/)[0];
+  if (cleanedPath === '/') {
+    return 'home';
+  } else if (cleanedPath.startsWith('/reference')) {
     return 'reference';
   } else if (asPath.startsWith('/learn')) {
     return 'learn';
+  } else if (asPath.startsWith('/community')) {
+    return 'community';
   } else if (asPath.startsWith('/blog')) {
-    return 'learn';
+    return 'blog';
   } else {
-    return 'home';
+    return 'unknown';
   }
 }
 

@@ -16,6 +16,7 @@ interface ChallengesProps {
   isRecipes?: boolean;
   titleText?: string;
   titleId?: string;
+  noTitle?: boolean;
 }
 
 export interface ChallengeContents {
@@ -76,6 +77,7 @@ enum QueuedScroll {
 export function Challenges({
   children,
   isRecipes,
+  noTitle,
   titleText = isRecipes ? 'Try out some examples' : 'Try out some challenges',
   titleId = isRecipes ? 'examples' : 'challenges',
 }: ChallengesProps) {
@@ -115,22 +117,24 @@ export function Challenges({
 
   const Heading = isRecipes ? H4 : H2;
   return (
-    <div className="max-w-7xl mx-auto py-4">
+    <div className="max-w-7xl mx-auto py-4 w-full">
       <div
         className={cn(
-          'border-gray-10 bg-card dark:bg-card-dark shadow-inner rounded-none -mx-5 sm:mx-auto sm:rounded-lg'
+          'border-gray-10 bg-card dark:bg-card-dark shadow-inner rounded-none -mx-5 sm:mx-auto sm:rounded-2xl'
         )}>
         <div ref={scrollAnchorRef} className="py-2 px-5 sm:px-8 pb-0 md:pb-0">
-          <Heading
-            id={titleId}
-            className={cn(
-              'mb-2 leading-10 relative',
-              isRecipes
-                ? 'text-xl text-purple-50 dark:text-purple-30'
-                : 'text-3xl text-link'
-            )}>
-            {titleText}
-          </Heading>
+          {!noTitle && (
+            <Heading
+              id={titleId}
+              className={cn(
+                'mb-2 leading-10 relative',
+                isRecipes
+                  ? 'text-xl text-purple-50 dark:text-purple-30'
+                  : 'text-3xl text-link'
+              )}>
+              {titleText}
+            </Heading>
+          )}
           {totalChallenges > 1 && (
             <Navigation
               currentChallenge={currentChallenge}

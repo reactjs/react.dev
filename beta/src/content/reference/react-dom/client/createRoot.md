@@ -198,7 +198,7 @@ When your HTML is empty, the user sees a blank page until the app's JavaScript c
 <div id="root"></div>
 ```
 
-This can feel very slow! To solve this, you can generate the initial HTML from your components [on the server or during the build.](/reference/react-dom/server) Then your visitors can read text, see images, and click links before any of the JavaScript code loads. We recommend to [use a framework](/learn/start-a-new-react-project#building-with-a-full-featured-framework) that does this optimization out of the box. Depending on when it runs, this is called *server-side rendering (SSR)* or *static site generation (SSG).*
+This can feel very slow! To solve this, you can generate the initial HTML from your components [on the server or during the build.](/reference/react-dom/server) Then your visitors can read text, see images, and click links before any of the JavaScript code loads. We recommend [using a framework](/learn/start-a-new-react-project#production-grade-react-frameworks) that does this optimization out of the box. Depending on when it runs, this is called *server-side rendering (SSR)* or *static site generation (SSG).*
 
 </Note>
 
@@ -212,18 +212,24 @@ This can feel very slow! To solve this, you can generate the initial HTML from y
 
 ### Rendering a page partially built with React {/*rendering-a-page-partially-built-with-react*/}
 
-If your page [isn't fully built with React](/learn/add-react-to-a-website), you can call `createRoot` multiple times to create a root for each top-level piece of UI managed by React. You can display different content in each root by calling [`root.render`.](#root-render)
+If your page [isn't fully built with React](/learn/add-react-to-an-existing-project#using-react-for-a-part-of-your-existing-page), you can call `createRoot` multiple times to create a root for each top-level piece of UI managed by React. You can display different content in each root by calling [`root.render`.](#root-render)
 
 Here, two different React components are rendered into two DOM nodes defined in the `index.html` file:
 
 <Sandpack>
 
 ```html public/index.html
-<nav id="navigation"></nav>
-<main>
-  <p>This paragraph is not rendered by React (open index.html to verify).</p>
-  <section id="comments"></section>
-</main>
+<!DOCTYPE html>
+<html>
+  <head><title>My app</title></head>
+  <body>
+    <nav id="navigation"></nav>
+    <main>
+      <p>This paragraph is not rendered by React (open index.html to verify).</p>
+      <section id="comments"></section>
+    </main>
+  </body>
+</html>
 ```
 
 ```js index.js active
@@ -334,7 +340,7 @@ export default function App({counter}) {
 
 </Sandpack>
 
-It is uncommon to call `render` multiple times. Usually, you'll [update state](/reference/react/useState) inside one of the components instead.
+It is uncommon to call `render` multiple times. Usually, your components will [update state](/reference/react/useState) instead.
 
 ---
 ## Troubleshooting {/*troubleshooting*/}
@@ -373,8 +379,6 @@ For example, if `domNode` is `null`, it means that [`getElementById`](https://de
 1. The ID you're looking for might differ from the ID you used in the HTML file. Check for typos!
 2. Your bundle's `<script>` tag cannot "see" any DOM nodes that appear *after* it in the HTML.
 
-If you can't get it working, check out [Adding React to a Website](/learn/add-react-to-a-website) for a working example.
-
 Another common way to get this error is to write `createRoot(<App />)` instead of `createRoot(domNode)`.
 
 ---
@@ -402,8 +406,6 @@ root.render(createApp);
 // ✅ Correct: call createApp to return a component.
 root.render(createApp());
 ```
-
-If you can't get it working, check out [Adding React to a Website](/learn/add-react-to-a-website) for a working example.
 
 ---
 

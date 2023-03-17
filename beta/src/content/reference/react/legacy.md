@@ -4,7 +4,7 @@ title: "Legacy React APIs"
 
 <Intro>
 
-These APIs are exported from the `react` package, but they are not recommended for use in the newly written code. See the linked individual API pages for the suggested alternatives.
+These APIs are exported from the `react` package, but they are not recommended for use in newly written code. See the linked individual API pages for the suggested alternatives.
 
 </Intro>
 

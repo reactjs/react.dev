@@ -99,9 +99,9 @@ Read **[Manipulating the DOM with Refs](/learn/manipulating-the-dom-with-refs)**
 
 ## Synchronizing with Effects {/*synchronizing-with-effects*/}
 
-Some components need to synchronize with external systems. For example, you might want to control a non-React component based on the React state, set up a server connection, or send an analytics log when a component appears on the screen. Unlike event handlers, which let you handle particular events, *Effects* let you run some code after rendering. Use them to synchronize your component with some system outside of React.
+Some components need to synchronize with external systems. For example, you might want to control a non-React component based on the React state, set up a server connection, or send an analytics log when a component appears on the screen. Unlike event handlers, which let you handle particular events, *Effects* let you run some code after rendering. Use them to synchronize your component with a system outside of React.
 
-Press Play/Pause multiple times and see how the video player stays synchronized to the `isPlaying` prop value:
+Press Play/Pause a few times and see how the video player stays synchronized to the `isPlaying` prop value:
 
 <Sandpack>
 
@@ -145,7 +145,7 @@ video { width: 250px; }
 
 </Sandpack>
 
-Many Effects also need to "clean up" after themselves. For example, if your Effect sets up a connection to a chat server, it should return a *cleanup function* that tells React how to disconnect your component from that server:
+Many Effects also "clean up" after themselves. For example, an Effect that sets up a connection to a chat server should return a *cleanup function* that tells React how to disconnect your component from that server:
 
 <Sandpack>
 
@@ -239,7 +239,7 @@ Read **[You Might Not Need an Effect](/learn/you-might-not-need-an-effect)** to 
 
 Effects have a different lifecycle from components. Components may mount, update, or unmount. An Effect can only do two things: to start synchronizing something, and later to stop synchronizing it. This cycle can happen multiple times if your Effect depends on props and state that change over time.
 
-This Effect depends on the value of the `roomId` prop. Props are *reactive values,* which means they can change on a re-render. Notice that the Effect *re-synchronizes* (and re-connects to the server) after you update the `roomId`:
+This Effect depends on the value of the `roomId` prop. Props are *reactive values,* which means they can change on a re-render. Notice that the Effect *re-synchronizes* (and re-connects to the server) if `roomId` changes:
 
 <Sandpack>
 
@@ -314,13 +314,13 @@ Read **[Lifecycle of Reactive Events](/learn/lifecycle-of-reactive-effects)** to
 
 <Wip>
 
-This section describes an **experimental API that has not yet been added to React,** so you can't use it yet.
+This section describes an **experimental API that has not yet been released** in a stable vesion of React.
 
 </Wip>
 
-Event handlers only re-run when you perform the same interaction again. Unlike event handlers, Effects re-synchronize if some value they read, like a prop or a state variable, is different from what it was on last render. Sometimes, you want a mix of both behaviors: an Effect that re-runs in response to some values but not others.
+Event handlers only re-run when you perform the same interaction again. Unlike event handlers, Effects re-synchronize if any of the values they read, like props or state, are different than during last render. Sometimes, you want a mix of both behaviors: an Effect that re-runs in response to some values but not others.
 
-All code inside Effects is *reactive.* It will run again if some reactive value it reads has changed due to a re-render. For example, this Effect will re-connect to the chat if either `roomId` or `theme` have changed after interaction:
+All code inside Effects is *reactive.* It will run again if some reactive value it reads has changed due to a re-render. For example, this Effect will re-connect to the chat if either `roomId` or `theme` have changed:
 
 <Sandpack>
 
@@ -448,7 +448,7 @@ label { display: block; margin-top: 10px; }
 
 </Sandpack>
 
-This is not ideal. You want to re-connect to the chat only if the `roomId` has changed. Switching the `theme` shouldn't re-connect to the chat! Move the code reading `theme` out of your Effect into an *Event function*:
+This is not ideal. You want to re-connect to the chat only if the `roomId` has changed. Switching the `theme` shouldn't re-connect to the chat! Move the code reading `theme` out of your Effect into an *Effect Event*:
 
 <Sandpack>
 
@@ -581,7 +581,7 @@ label { display: block; margin-top: 10px; }
 
 </Sandpack>
 
-Code inside Event functions isn't reactive, so changing the `theme` no longer makes your Effect re-connect.
+Code inside Effect Events isn't reactive, so changing the `theme` no longer makes your Effect re-connect.
 
 <LearnMore path="/learn/separating-events-from-effects">
 
@@ -742,7 +742,7 @@ button { margin-left: 10px; }
 
 </Sandpack>
 
-Notice that you didn't start by editing the dependency list to remove the `options` dependency. That would be wrong. Instead, you changed the surrounding code so that the dependency became *unnecessary.* You can think of the dependency list as a list of all the reactive values used by your Effect's code. You don't intentionally choose what to put on that list. The list describes your code. To change the dependency list, change the code.
+Notice that you didn't start by editing the dependency list to remove the `options` dependency. That would be wrong. Instead, you changed the surrounding code so that the dependency became *unnecessary.* Think of the dependency list as a list of all the reactive values used by your Effect's code. You don't intentionally choose what to put on that list. The list describes your code. To change the dependency list, change the code.
 
 <LearnMore path="/learn/removing-effect-dependencies">
 

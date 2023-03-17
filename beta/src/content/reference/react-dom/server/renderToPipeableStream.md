@@ -92,7 +92,9 @@ app.use('/', (request, response) => {
 });
 ```
 
-Along with the <CodeStep step={1}>root component</CodeStep>, you need to provide a list of <CodeStep step={2}>boostrap `<script>` paths</CodeStep>. Your root component should return **the entire document including the root `<html>` tag.** For example, it might look like this:
+Along with the <CodeStep step={1}>root component</CodeStep>, you need to provide a list of <CodeStep step={2}>boostrap `<script>` paths</CodeStep>. Your root component should return **the entire document including the root `<html>` tag.**
+
+For example, it might look like this:
 
 ```js [[1, 1, "App"]]
 export default function App() {
@@ -112,7 +114,7 @@ export default function App() {
 }
 ```
 
-React will automatically inject the [doctype](https://developer.mozilla.org/en-US/docs/Glossary/Doctype) and your <CodeStep step={2}>bootstrap `<script>` tags</CodeStep> into the resulting HTML stream:
+React will inject the [doctype](https://developer.mozilla.org/en-US/docs/Glossary/Doctype) and your <CodeStep step={2}>bootstrap `<script>` tags</CodeStep> into the resulting HTML stream:
 
 ```html [[2, 5, "/main.js"]]
 <!DOCTYPE html>
@@ -251,7 +253,7 @@ function ProfilePage() {
 }
 ```
 
-This way, you tell React to start streaming the HTML before `Posts` loads its data. React will send the HTML for the loading fallback (`PostsGlimmer`) first, and then, when `Posts` finishes loading its data, React will send the remaining HTML along with an inline `<script>` tag that replaces the loading fallback with that HTML. From the user's perspective, the page will first appear with the `PostsGlimmer`, and then it will be replaced by the `Posts`.
+This tells React to start streaming the HTML before `Posts` loads its data. React will send the HTML for the loading fallback (`PostsGlimmer`) first, and then, when `Posts` finishes loading its data, React will send the remaining HTML along with an inline `<script>` tag that replaces the loading fallback with that HTML. From the user's perspective, the page will first appear with the `PostsGlimmer`, later replaced by the `Posts`.
 
 You can further [nest `<Suspense>` boundaries](/reference/react/Suspense#revealing-nested-content-as-it-loads) to create a more granular loading sequence:
 
@@ -274,9 +276,9 @@ function ProfilePage() {
 }
 ```
 
-In this example, React can start streaming the page even earlier. Only `ProfileLayout` and `ProfileCover` must finish rendering first because they are not wrapped in any `<Suspense>` boundary. However, if `Sidebar`, `Friends`, or `Photos` need to load some data, React will send the HTML for the `BigSpinner` fallback instead. Then, as enough data becomes available, more content will continue to be revealed until all of it becomes visible.
+In this example, React can start streaming the page even earlier. Only `ProfileLayout` and `ProfileCover` must finish rendering first because they are not wrapped in any `<Suspense>` boundary. However, if `Sidebar`, `Friends`, or `Photos` need to load some data, React will send the HTML for the `BigSpinner` fallback instead. Then, as more data becomes available, more content will continue to be revealed until all of it becomes visible.
 
-Streaming does not need to wait for React itself to load in the browser, or for your app to become interactive. The HTML content from the server will get progressively revealed before any of the `<script>` tags have loaded.
+Streaming does not need to wait for React itself to load in the browser, or for your app to become interactive. The HTML content from the server will get progressively revealed before any of the `<script>` tags load.
 
 [Read more about how streaming HTML works.](https://github.com/reactwg/react-18/discussions/37)
 
@@ -407,7 +409,7 @@ const { pipe } = renderToPipeableStream(<App />, {
 });
 ```
 
-If there is an error while generating the shell, both `onError` and `onShellError` will fire. Use `onError` for error reporting and use `onShellError` to send the fallback HTML document. Your fallback HTML does not have to be an error page. For example, you can include an alternative shell that tries to render your app on the client only.
+If there is an error while generating the shell, both `onError` and `onShellError` will fire. Use `onError` for error reporting and use `onShellError` to send the fallback HTML document. Your fallback HTML does not have to be an error page. Instead, you may include an alternative shell that renders your app on the client only.
 
 ---
 
@@ -432,7 +434,7 @@ If an error happens in the `Posts` component or somewhere inside it, React will 
 
 1. It will emit the loading fallback for the closest `<Suspense>` boundary (`PostsGlimmer`) into the HTML.
 2. It will "give up" on trying to render the `Posts` content on the server anymore.
-3. When the JavaScript code loads on the client, React will *retry* rendering the `Posts` component on the client.
+3. When the JavaScript code loads on the client, React will *retry* rendering `Posts` on the client.
 
 If retrying rendering `Posts` on the client *also* fails, React will throw the error on the client. As with all the errors thrown during rendering, the [closest parent error boundary](/reference/react/Component#static-getderivedstatefromerror) determines how to present the error to the user. In practice, this means that the user will see a loading indicator until it is certain that the error is not recoverable.
 
@@ -444,7 +446,7 @@ If retrying rendering `Posts` on the client succeeds, the loading fallback from 
 
 Streaming introduces a tradeoff. You want to start streaming the page as early as possible so that the user can see the content sooner. However, once you start streaming, you can no longer set the response status code.
 
-By [dividing your app](#specifying-what-goes-into-the-shell) into the shell (above all `<Suspense>` boundaries) and the rest of the content, you've already solved a part of this problem. If the shell errors, you'll get the `onShellError` callback which lets you set the error status code. Otherwise, you know that the app may recover on the client, so the "OK" status code is reasonable.
+By [dividing your app](#specifying-what-goes-into-the-shell) into the shell (above all `<Suspense>` boundaries) and the rest of the content, you've already solved a part of this problem. If the shell errors, you'll get the `onShellError` callback which lets you set the error status code. Otherwise, you know that the app may recover on the client, so you can send "OK".
 
 ```js {4}
 const { pipe } = renderToPipeableStream(<App />, {

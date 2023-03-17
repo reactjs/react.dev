@@ -86,7 +86,7 @@ export default function TodoList() {
 
 </Sandpack>
 
-Try changing `name`'s value from `'Gregorio Y. Zara'` to `'Hedy Lamarr'`. See how the To Do List title changes?
+Try changing the `name`'s value from `'Gregorio Y. Zara'` to `'Hedy Lamarr'`. See how the list title changes?
 
 Any JavaScript expression will work between curly braces, including function calls like `formatDate()`:
 
@@ -469,7 +469,7 @@ export default function TodoList() {
 ```css
 body { padding: 0; margin: 0 }
 body > div > div { padding: 20px; }
-.avatar { border-radius: 50%; height: 90px; }
+.avatar { border-radius: 50%; }
 ```
 
 </Sandpack>
@@ -520,7 +520,7 @@ export default function TodoList() {
 ```css
 body { padding: 0; margin: 0 }
 body > div > div { padding: 20px; }
-.avatar { border-radius: 50%; height: 90px; }
+.avatar { border-radius: 50%; }
 ```
 
 </Sandpack>
@@ -575,7 +575,7 @@ export function getImageUrl(person) {
 ```css
 body { padding: 0; margin: 0 }
 body > div > div { padding: 20px; }
-.avatar { border-radius: 50%; height: 90px; }
+.avatar { border-radius: 50%; }
 ```
 
 </Sandpack>

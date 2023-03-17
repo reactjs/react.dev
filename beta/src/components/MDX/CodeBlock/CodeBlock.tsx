@@ -26,6 +26,8 @@ const CodeBlock = function CodeBlock({
     props: {className = 'language-js', children: code = '', meta},
   },
   noMargin,
+  noShadow,
+  onLineHover,
 }: {
   children: React.ReactNode & {
     props: {
@@ -36,6 +38,8 @@ const CodeBlock = function CodeBlock({
   };
   className?: string;
   noMargin?: boolean;
+  noShadow?: boolean;
+  onLineHover?: (lineNumber: number | null) => void;
 }) {
   code = code.trimEnd();
   let lang = jsxLang;
@@ -154,10 +158,14 @@ const CodeBlock = function CodeBlock({
     if (code[i] === '\n') {
       lineOutput.push(buffer);
       buffer = '';
+      const currentLineIndex = lineIndex;
       finalOutput.push(
         <div
           key={lineIndex}
-          className={'cm-line ' + (highlightedLines.get(lineIndex) ?? '')}>
+          className={'cm-line ' + (highlightedLines.get(lineIndex) ?? '')}
+          onMouseEnter={
+            onLineHover ? () => onLineHover(currentLineIndex) : undefined
+          }>
           {lineOutput}
           <br />
         </div>
@@ -186,7 +194,8 @@ const CodeBlock = function CodeBlock({
   finalOutput.push(
     <div
       key={lineIndex}
-      className={'cm-line ' + (highlightedLines.get(lineIndex) ?? '')}>
+      className={'cm-line ' + (highlightedLines.get(lineIndex) ?? '')}
+      onMouseEnter={onLineHover ? () => onLineHover(lineIndex) : undefined}>
       {lineOutput}
     </div>
   );
@@ -195,14 +204,23 @@ const CodeBlock = function CodeBlock({
     <div
       className={cn(
         'sandpack sandpack--codeblock',
-        'rounded-lg h-full w-full overflow-x-auto flex items-center bg-wash dark:bg-gray-95 shadow-lg',
-        !noMargin && 'my-8'
-      )}>
+        'rounded-2xl h-full w-full overflow-x-auto flex items-center bg-wash dark:bg-gray-95 shadow-lg',
+        !noMargin && 'my-8',
+        noShadow &&
+          'shadow-none rounded-2xl overflow-hidden w-full flex bg-transparent'
+      )}
+      style={{contain: 'content'}}>
       <div className="sp-wrapper">
         <div className="sp-stack">
           <div className="sp-code-editor">
             <pre className="sp-cm sp-pristine sp-javascript flex align-start">
-              <code className="sp-pre-placeholder grow-[2]">{finalOutput}</code>
+              <code
+                className="sp-pre-placeholder grow-[2]"
+                onMouseLeave={
+                  onLineHover ? () => onLineHover(null) : undefined
+                }>
+                {finalOutput}
+              </code>
             </pre>
           </div>
         </div>

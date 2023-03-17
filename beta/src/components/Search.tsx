@@ -11,6 +11,7 @@ import {useState, useCallback, useEffect} from 'react';
 import * as React from 'react';
 import {createPortal} from 'react-dom';
 import {siteConfig} from 'siteConfig';
+import cn from 'classnames';
 
 export interface SearchProps {
   appId?: string;
@@ -18,6 +19,7 @@ export interface SearchProps {
   indexName?: string;
   searchParameters?: any;
   renderModal?: boolean;
+  fullsize?: boolean;
 }
 
 function Hit({hit, children}: any) {
@@ -31,7 +33,7 @@ function Hit({hit, children}: any) {
 function Kbd(props: {children?: React.ReactNode}) {
   return (
     <kbd
-      className="h-6 w-6 border border-transparent mr-1 bg-wash dark:bg-wash-dark text-gray-30 align-middle p-0 inline-flex justify-center items-center  text-xs text-center rounded"
+      className="h-5 w-5 border border-transparent mr-1 bg-wash dark:bg-wash-dark text-gray-30 align-middle p-0 inline-flex justify-center items-center text-xs text-center rounded-md"
       {...props}
     />
   );
@@ -99,6 +101,7 @@ export function Search({
   searchParameters = {
     hitsPerPage: 5,
   },
+  fullsize,
 }: SearchProps) {
   const [isShowing, setIsShowing] = useState(false);
 
@@ -145,21 +148,26 @@ export function Search({
         />
       </Head>
 
-      <button
-        aria-label="Search"
-        type="button"
-        className="inline-flex md:hidden items-center text-lg p-1 ml-4 lg:ml-6"
-        onClick={onOpen}>
-        <IconSearch className="align-middle" />
-      </button>
+      {!fullsize && (
+        <button
+          aria-label="Search"
+          type="button"
+          className="active:scale-95 transition-transform flex md:hidden w-12 h-12 rounded-full items-center justify-center hover:bg-secondary-button hover:dark:bg-secondary-button-dark outline-link"
+          onClick={onOpen}>
+          <IconSearch className="align-middle w-5 h-5" />
+        </button>
+      )}
 
       <button
         type="button"
-        className="hidden md:flex relative pl-4 pr-1 py-1 h-10 bg-secondary-button dark:bg-gray-80 outline-none focus:ring focus:outline-none betterhover:hover:bg-opacity-80 pointer items-center shadow-inner text-left w-full text-gray-30 rounded-md align-middle text-sm"
+        className={cn(
+          '3xl:w-[56rem] 3xl:mx-0 relative pl-4 pr-1 py-1 h-10 bg-gray-30/20 dark:bg-gray-40/20 outline-none  focus:outline-link betterhover:hover:bg-opacity-80 pointer items-center text-left w-full text-gray-30 rounded-full align-middle text-base',
+          fullsize ? 'flex' : 'hidden md:flex'
+        )}
         onClick={onOpen}>
         <IconSearch className="mr-3 align-middle text-gray-30 shrink-0 group-betterhover:hover:text-gray-70" />
         Search
-        <span className="ml-auto hidden sm:flex item-center">
+        <span className="ml-auto hidden sm:flex item-center mr-1">
           <Kbd>⌘</Kbd>
           <Kbd>K</Kbd>
         </span>

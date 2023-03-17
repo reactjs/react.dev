@@ -31,7 +31,7 @@ export const CustomTheme = {
     string: 'inherit',
   },
   font: {
-    body: tailwindConfig.theme.extend.fontFamily.sans
+    body: tailwindConfig.theme.extend.fontFamily.text
       .join(', ')
       .replace(/"/gm, ''),
     mono: tailwindConfig.theme.extend.fontFamily.mono

@@ -1,5 +1,5 @@
 ---
-title: The React Blog
+title: React Blog
 ---
 
 <Intro>
@@ -8,71 +8,45 @@ This blog is the official source for the updates from the React team. Anything i
 
 </Intro>
 
----
+<div className="sm:-mx-5 flex flex-col gap-5 mt-12">
 
-### React Labs: What We've Been Working On – June 2022 {/*react-labs-what-weve-been-working-on--june-2022*/}
 
-*June 15, 2022*
+<BlogCard title="Introducing react.dev" date="March 16, 2023" url="/blog/2023/03/16/introducing-react-dev">
 
-React 18 was years in the making, and with it brought valuable lessons for the React team. Its release was the result of many years of research and exploring many paths. Some of those paths were successful; many more were dead-ends that led to new insights. One lesson we’ve learned is that it’s frustrating for the community to wait for new features without having insight into these paths that we’re exploring. [...]
+Today we are thrilled to launch react.dev, the new home for React and its documentation. In this post, we would like to give you a tour of the new site.
 
-<ReadBlogPost path="/blog/2022/06/15/react-labs-what-we-have-been-working-on-june-2022" />
+</BlogCard>
 
----
 
-### React v18.0 {/*react-v180*/}
+<BlogCard title="React Labs: What We've Been Working On – June 2022" date="June 15, 2022" url="/blog/2022/06/15/react-labs-what-we-have-been-working-on-june-2022">
+React 18 was years in the making, and with it brought valuable lessons for the React team. Its release was the result of many years of research and exploring many paths. Some of those paths were successful; many more were dead-ends that led to new insights. One lesson we’ve learned is that it’s frustrating for the community to wait for new features without having insight into these paths that we’re exploring...
+</BlogCard>
 
-*March 29, 2022*
+<BlogCard title="React v18.0" date="March 29, 2022" url="/blog/2022/03/29/react-v18">
+React 18 is now available on npm! In our last post, we shared step-by-step instructions for upgrading your app to React 18. In this post, we’ll give an overview of what’s new in React 18, and what it means for the future...
+</BlogCard>
 
-React 18 is now available on npm! In our last post, we shared step-by-step instructions for upgrading your app to React 18. In this post, we’ll give an overview of what’s new in React 18, and what it means for the future. [...]
+<BlogCard title="How to Upgrade to React 18" date="March 8, 2022" url="/blog/2022/03/08/react-18-upgrade-guide">
+As we shared in the release post, React 18 introduces features powered by our new concurrent renderer, with a gradual adoption strategy for existing applications. In this post, we will guide you through the steps for upgrading to React 18...
+</BlogCard>
 
-<ReadBlogPost path="/blog/2022/03/29/react-v18" />
+<BlogCard title="React Conf 2021 Recap" date="December 17, 2021" url="/blog/2021/12/17/react-conf-2021-recap">
+Last week we hosted our 6th React Conf.  In previous years, we’ve used the React Conf stage to deliver industry changing announcements such as React Native and React Hooks. This year, we shared our multi-platform vision for React, starting with the release of React 18 and gradual adoption of concurrent features...
+</BlogCard>
 
----
-
-### How to Upgrade to React 18 {/*how-to-upgrade-to-react-18*/}
-
-*March 8, 2022*
-
-As we shared in the release post, React 18 introduces features powered by our new concurrent renderer, with a gradual adoption strategy for existing applications. In this post, we will guide you through the steps for upgrading to React 18. [...]
-
-<ReadBlogPost path="/blog/2022/03/08/react-18-upgrade-guide" />
-
----
-
-### React Conf 2021 Recap {/*react-conf-2021-recap*/}
-
-*December 17, 2021*
-
-Last week we hosted our 6th React Conf.  In previous years, we’ve used the React Conf stage to deliver industry changing announcements such as React Native and React Hooks. This year, we shared our multi-platform vision for React, starting with the release of React 18 and gradual adoption of concurrent features. [...]
-
-<ReadBlogPost path="/blog/2021/12/17/react-conf-2021-recap" />
-
----
-
-### The Plan for React 18 {/*the-plan-for-react-18*/}
-
-*June 8, 2021*
-
+<BlogCard title="The Plan for React 18" date="June 8, 2021" url="/blog/2021/06/08/the-plan-for-react-18">
 The React team is excited to share a few updates:
 
 - We’ve started work on the React 18 release, which will be our next major version.
 - We’ve created a Working Group to prepare the community for gradual adoption of new features in React 18.
-- We’ve published a React 18 Alpha so that library authors can try it and provide feedback.
+- We’ve published a React 18 Alpha so that library authors can try it and provide feedback...
+</BlogCard>
 
-[...]
+<BlogCard title="Introducing Zero-Bundle-Size React Server Components" date="December 21, 2020" url="/blog/2020/12/21/data-fetching-with-react-server-components">
+2020 has been a long year. As it comes to an end we wanted to share a special Holiday Update on our research into zero-bundle-size React Server Components. To introduce React Server Components, we have prepared a talk and a demo. If you want, you can check them out during the holidays, or later when work picks back up in the new year...
+</BlogCard>
 
-<ReadBlogPost path="/blog/2021/06/08/the-plan-for-react-18" />
-
----
-
-### Introducing Zero-Bundle-Size React Server Components {/*introducing-zero-bundle-size-react-server-components*/}
-
-*December 21, 2020*
-
-2020 has been a long year. As it comes to an end we wanted to share a special Holiday Update on our research into zero-bundle-size React Server Components. To introduce React Server Components, we have prepared a talk and a demo. If you want, you can check them out during the holidays, or later when work picks back up in the new year. [...]
-
-<ReadBlogPost path="/blog/2020/12/21/data-fetching-with-react-server-components" />
+</div>
 
 ---
 
@@ -85,3 +59,5 @@ Not every React release deserves its own blog post, but you can find a detailed 
 ### Older posts {/*older-posts*/}
 
 See the [older posts.](https://reactjs.org/blog/all.html)
+
+<div className="h-12"></div>

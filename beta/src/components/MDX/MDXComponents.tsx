@@ -12,9 +12,9 @@ import ConsoleBlock from './ConsoleBlock';
 import ExpandableCallout from './ExpandableCallout';
 import ExpandableExample from './ExpandableExample';
 import {H1, H2, H3, H4} from './Heading';
-import HomepageHero from './HomepageHero';
 import InlineCode from './InlineCode';
 import Intro from './Intro';
+import BlogCard from './BlogCard';
 import Link from './Link';
 import {PackageImport} from './PackageImport';
 import Recap from './Recap';
@@ -93,7 +93,7 @@ const Blockquote = ({
 }: JSX.IntrinsicElements['blockquote']) => {
   return (
     <blockquote
-      className="mdx-blockquote py-4 px-8 my-8 shadow-inner bg-highlight dark:bg-highlight-dark bg-opacity-50 rounded-lg leading-6 flex relative"
+      className="mdx-blockquote py-4 px-8 my-8 shadow-inner-border dark:shadow-inner-border-dark bg-highlight dark:bg-highlight-dark bg-opacity-50 rounded-2xl leading-6 flex relative"
       {...props}>
       <span className="block relative">{children}</span>
     </blockquote>
@@ -110,9 +110,9 @@ function LearnMore({
 }) {
   return (
     <>
-      <section className="p-8 mt-16 mb-16 flex flex-row shadow-inner justify-between items-center bg-card dark:bg-card-dark rounded-lg">
+      <section className="p-8 mt-16 mb-16 flex flex-row shadow-inner-border dark:shadow-inner-border-dark justify-between items-center bg-card dark:bg-card-dark rounded-2xl">
         <div className="flex-col">
-          <h2 className="text-primary dark:text-primary-dark font-bold text-2xl leading-tight">
+          <h2 className="text-primary font-display dark:text-primary-dark font-bold text-2xl leading-tight">
             Ready to learn this topic?
           </h2>
           {children}
@@ -191,7 +191,7 @@ function AuthorCredit({
 }) {
   return (
     <div className="sr-only group-hover:not-sr-only group-focus-within:not-sr-only hover:sr-only">
-      <p className="bg-card dark:bg-card-dark text-center text-sm text-secondary dark:text-secondary-dark leading-tight dark:text-secondary-dark p-2 rounded-lg absolute left-1/2 top-0 -translate-x-1/2 -translate-y-full group-hover:flex group-hover:opacity-100 after:content-[''] after:absolute after:left-1/2 after:top-[95%] after:-translate-x-1/2 after:border-8 after:border-x-transparent after:border-b-transparent after:border-t-card after:dark:border-t-card-dark opacity-0 transition-opacity duration-300">
+      <p className="bg-card dark:bg-card-dark text-center text-sm text-secondary dark:text-secondary-dark leading-tight dark:text-secondary-dark p-2 rounded-lg absolute left-1/2 -top-4 -translate-x-1/2 -translate-y-full group-hover:flex group-hover:opacity-100 after:content-[''] after:absolute after:left-1/2 after:top-[95%] after:-translate-x-1/2 after:border-8 after:border-x-transparent after:border-b-transparent after:border-t-card after:dark:border-t-card-dark opacity-0 transition-opacity duration-300">
         <cite>
           Illustrated by{' '}
           {authorLink ? (
@@ -368,6 +368,10 @@ function YouTubeIframe(props: any) {
   );
 }
 
+function Image(props: any) {
+  return <img className="max-w-[calc(min(700px,100%))]" {...props} />;
+}
+
 export const MDXComponents = {
   p: P,
   strong: Strong,
@@ -381,6 +385,8 @@ export const MDXComponents = {
   h4: H4,
   hr: Divider,
   a: Link,
+  img: Image,
+  BlogCard,
   code: InlineCode,
   pre: CodeBlock,
   CodeDiagram,
@@ -401,7 +407,6 @@ export const MDXComponents = {
   Pitfall,
   Deprecated,
   Wip,
-  HomepageHero,
   Illustration,
   IllustrationBlock,
   Intro,

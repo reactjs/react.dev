@@ -60,10 +60,10 @@ function ExpandableCallout({children, type}: ExpandableCalloutProps) {
     <div
       className={cn(
         'expandable-callout',
-        'pt-8 pb-4 px-5 sm:px-8 my-8 relative rounded-none shadow-inner -mx-5 sm:mx-auto sm:rounded-lg',
+        'pt-8 pb-4 px-5 sm:px-8 my-8 relative rounded-none shadow-inner-border -mx-5 sm:mx-auto sm:rounded-2xl',
         variant.containerClasses
       )}>
-      <h3 className={cn('mb-2 text-2xl font-bold', variant.textColor)}>
+      <h3 className={cn('text-2xl font-display font-bold', variant.textColor)}>
         <variant.Icon
           className={cn('inline mr-3 mb-1 text-lg', variant.textColor)}
         />

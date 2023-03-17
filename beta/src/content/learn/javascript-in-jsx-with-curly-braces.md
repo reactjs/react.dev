@@ -86,7 +86,7 @@ export default function TodoList() {
 
 </Sandpack>
 
-Try changing `name`'s value from `'Gregorio Y. Zara'` to `'Hedy Lamarr'`. See how the To Do List title changes?
+Try changing the `name`'s value from `'Gregorio Y. Zara'` to `'Hedy Lamarr'`. See how the list title changes?
 
 Any JavaScript expression will work between curly braces, including function calls like `formatDate()`:
 

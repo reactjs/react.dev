@@ -4,7 +4,7 @@ title: useInsertionEffect
 
 <Pitfall>
 
-`useInsertionEffect` is aimed at CSS-in-JS library authors. Unless you are working on a CSS-in-JS library and need a place to inject the styles, you probably want [`useEffect`](/reference/react/useEffect) or [`useLayoutEffect`](/reference/react/useLayoutEffect) instead.
+`useInsertionEffect` is for CSS-in-JS library authors. Unless you are working on a CSS-in-JS library and need a place to inject the styles, you probably want [`useEffect`](/reference/react/useEffect) or [`useLayoutEffect`](/reference/react/useLayoutEffect) instead.
 
 </Pitfall>
 
@@ -74,7 +74,7 @@ Traditionally, you would style React components using plain CSS.
 .success { color: green; }
 ```
 
-Some teams prefer to author styles directly in JavaScript code instead of writing CSS files. This usually requires using a CSS-in-JS library or a tool. There are three common approaches to CSS-in-JS you might encounter:
+Some teams prefer to author styles directly in JavaScript code instead of writing CSS files. This usually requires using a CSS-in-JS library or a tool. There are three common approaches to CSS-in-JS:
 
 1. Static extraction to CSS files with a compiler
 2. Inline styles, e.g. `<div style={{ opacity: 1 }}>`

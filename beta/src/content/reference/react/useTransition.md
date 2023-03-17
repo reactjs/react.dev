@@ -76,11 +76,11 @@ function TabContainer() {
 
 * `useTransition` is a Hook, so it can only be called inside components or custom Hooks. If you need to start a transition somewhere else (for example, from a data library), call the standalone [`startTransition`](/reference/react/startTransition) instead.
 
-* You can wrap an update into a transition only if you have access to the `set` function of that state. If you want to start a transition in response to some prop or a custom Hook return value, try [`useDeferredValue`](/reference/react/useDeferredValue) instead.
+* You can wrap an update into a transition only if you have access to the `set` function of that state. If you want to start a transition in response to some prop or a custom Hook value, try [`useDeferredValue`](/reference/react/useDeferredValue) instead.
 
 * The function you pass to `startTransition` must be synchronous. React immediately executes this function, marking all state updates that happen while it executes as transitions. If you try to perform more state updates later (for example, in a timeout), they won't be marked as transitions.
 
-* A state update marked as a transition will be interrupted by other state updates. For example, if you update a chart component inside a transition, but then start typing into an input while the chart is in the middle of a re-render, React will restart the rendering work on the chart component after handling the input state update.
+* A state update marked as a transition will be interrupted by other state updates. For example, if you update a chart component inside a transition, but then start typing into an input while the chart is in the middle of a re-render, React will restart the rendering work on the chart component after handling the input update.
 
 * Transition updates can't be used to control text inputs.
 
@@ -92,7 +92,7 @@ function TabContainer() {
 
 ### Marking a state update as a non-blocking transition {/*marking-a-state-update-as-a-non-blocking-transition*/}
 
-Call `useTransition` at the top level of your component to mark some state updates as non-blocking *transitions*.
+Call `useTransition` at the top level of your component to mark state updates as non-blocking *transitions*.
 
 ```js [[1, 4, "isPending"], [2, 4, "startTransition"]]
 import { useState, useTransition } from 'react';
@@ -411,7 +411,7 @@ b { display: inline-block; margin-right: 10px; }
 
 ### Updating the parent component in a transition {/*updating-the-parent-component-in-a-transition*/}
 
-The `useTransition` call does not have to be in the same component whose state you're updating. You can also move it into a child component. For example, this `TabButton` component wraps its `onClick` logic in a transition:
+You can update a parent component's state from the `useTransition` call, too. For example, this `TabButton` component wraps its `onClick` logic in a transition:
 
 ```js {8-10}
 export default function TabButton({ children, isActive, onClick }) {
@@ -431,7 +431,7 @@ export default function TabButton({ children, isActive, onClick }) {
 }
 ```
 
-Because the parent component updates its state inside the `onClick` event handler, that state update gets marked as a transition. This is why, like in the earlier example, you can click on "Posts" and then immediately click "Contact". Updating the selected tab is marked as a transition, so it does not block further user interactions.
+Because the parent component updates its state inside the `onClick` event handler, that state update gets marked as a transition. This is why, like in the earlier example, you can click on "Posts" and then immediately click "Contact". Updating the selected tab is marked as a transition, so it does not block user interactions.
 
 <Sandpack>
 
@@ -709,7 +709,7 @@ b { display: inline-block; margin-right: 10px; }
 
 ### Preventing unwanted loading indicators {/*preventing-unwanted-loading-indicators*/}
 
-In this example, the `PostsTab` component fetches some data using a [Suspense-enabled](/reference/react/Suspense) data source. When you click the "Posts" tab, the `PostsTab` component *suspends*, causing the closest loading fallback to be displayed:
+In this example, the `PostsTab` component fetches some data using a [Suspense-enabled](/reference/react/Suspense) data source. When you click the "Posts" tab, the `PostsTab` component *suspends*, causing the closest loading fallback to appear:
 
 <Sandpack>
 
@@ -1091,7 +1091,7 @@ b { display: inline-block; margin-right: 10px; }
 
 <Note>
 
-Transitions will only "wait" long enough to avoid hiding *already revealed* content (like the tab container). For example, if the Posts tab had a [nested `<Suspense>` boundary,](/reference/react/Suspense#revealing-nested-content-as-it-loads) the transition would not "wait" for it.
+Transitions will only "wait" long enough to avoid hiding *already revealed* content (like the tab container). If the Posts tab had a [nested `<Suspense>` boundary,](/reference/react/Suspense#revealing-nested-content-as-it-loads) the transition would not "wait" for it.
 
 </Note>
 
@@ -1099,7 +1099,7 @@ Transitions will only "wait" long enough to avoid hiding *already revealed* cont
 
 ### Building a Suspense-enabled router {/*building-a-suspense-enabled-router*/}
 
-If you're building your own React framework or a router, we recommend to mark page navigations as transitions.
+If you're building a React framework or a router, we recommend marking page navigations as transitions.
 
 ```js {3,6,8}
 function Router() {
@@ -1603,7 +1603,7 @@ startTransition(() => {
 console.log(3);
 ```
 
-**It is expected to print 1, 2, 3.** The function you pass to `startTransition` does not get delayed. Unlike with the browser `setTimeout`, it does not run the callback later. React executes your function immediately, but any state updates scheduled *while it is running* will get marked as transitions. You can imagine that it works like this:
+**It is expected to print 1, 2, 3.** The function you pass to `startTransition` does not get delayed. Unlike with the browser `setTimeout`, it does not run the callback later. React executes your function immediately, but any state updates scheduled *while it is running* are marked as transitions. You can imagine that it works like this:
 
 ```js
 // A simplified version of how React works

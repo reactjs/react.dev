@@ -101,13 +101,13 @@ export default function App() {
 
 </Sandpack>
 
-Usually you shouldn't need to call `render` again or to call it in more places. From this point on, React will be managing the DOM of your application. If you want to update the UI, your components can do this by [using state.](/reference/react/useState)
+Usually you shouldn't need to call `render` again or to call it in more places. From this point on, React will be managing the DOM of your application. To update the UI, your components will [use state.](/reference/react/useState)
 
 ---
 
 ### Rendering multiple roots {/*rendering-multiple-roots*/}
 
-If your page [isn't fully built with React](/learn/add-react-to-a-website), call `render` for each top-level piece of UI managed by React.
+If your page [isn't fully built with React](/learn/add-react-to-an-existing-project#using-react-for-a-part-of-your-existing-page), call `render` for each top-level piece of UI managed by React.
 
 <Sandpack>
 
@@ -183,7 +183,7 @@ You can destroy the rendered trees with [`unmountComponentAtNode()`.](/reference
 
 ### Updating the rendered tree {/*updating-the-rendered-tree*/}
 
-You can call `render` more than once on the same DOM node. As long as the component tree structure matches up with what was previously rendered, React will [preserve the state.](/learn/preserving-and-resetting-state) Notice how you can type in the input, which means that the updates from repeated `render` calls every second in this example are not destructive:
+You can call `render` more than once on the same DOM node. As long as the component tree structure matches up with what was previously rendered, React will [preserve the state.](/learn/preserving-and-resetting-state) Notice how you can type in the input, which means that the updates from repeated `render` calls every second are not destructive:
 
 <Sandpack>
 
@@ -215,4 +215,4 @@ export default function App({counter}) {
 
 </Sandpack>
 
-It is uncommon to call `render` multiple times. Usually, you'll [update state](/reference/react/useState) inside one of the components instead.
+It is uncommon to call `render` multiple times. Usually, you'll [update state](/reference/react/useState) inside your components instead.

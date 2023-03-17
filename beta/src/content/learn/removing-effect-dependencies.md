@@ -173,7 +173,7 @@ button { margin-left: 10px; }
 
 ### To remove a dependency, prove that it's not a dependency {/*to-remove-a-dependency-prove-that-its-not-a-dependency*/}
 
-Notice that you can't "choose" the dependencies of your Effect. Every <CodeStep step={2}>reactive value</CodeStep> used by your Effect's code must be declared in your dependency list. Your Effect's dependency list is determined by the surrounding code:
+Notice that you can't "choose" the dependencies of your Effect. Every <CodeStep step={2}>reactive value</CodeStep> used by your Effect's code must be declared in your dependency list. The dependency list is determined by the surrounding code:
 
 ```js [[2, 3, "roomId"], [2, 5, "roomId"], [2, 8, "roomId"]]
 const serverUrl = 'https://localhost:1234';
@@ -205,7 +205,7 @@ function ChatRoom({ roomId }) {
 
 And the linter would be right! Since `roomId` may change over time, this would introduce a bug in your code.
 
-**To remove a dependency, you need to "prove" to the linter that it *doesn't need* to be a dependency.** For example, you can move `roomId` out of your component to prove that it's not reactive and won't change on re-renders:
+**To remove a dependency, "prove" to the linter that it *doesn't need* to be a dependency.** For example, you can move `roomId` out of your component to prove that it's not reactive and won't change on re-renders:
 
 ```js {2,9}
 const serverUrl = 'https://localhost:1234';
@@ -273,9 +273,9 @@ You might have noticed a pattern in your workflow:
 2. Then, you follow the linter and adjust the dependencies to **match the code you have changed.**
 3. If you're not happy with the list of dependencies, you **go back to the first step** (and change the code again).
 
-The last part is important. **If you want to change the dependencies, change the surrounding code first.** You can think of the dependency list as [a list of all the reactive values used by your Effect's code.](/learn/lifecycle-of-reactive-effects#react-verifies-that-you-specified-every-reactive-value-as-a-dependency) You don't intentionally *choose* what to put on that list. The list *describes* your code. To change the dependency list, change the code.
+The last part is important. **If you want to change the dependencies, change the surrounding code first.** You can think of the dependency list as [a list of all the reactive values used by your Effect's code.](/learn/lifecycle-of-reactive-effects#react-verifies-that-you-specified-every-reactive-value-as-a-dependency) You don't *choose* what to put on that list. The list *describes* your code. To change the dependency list, change the code.
 
-This might feel like solving an equation. You might start with a goal (for example, to remove a dependency), and you need to "find" the exact code matching that goal. Not everyone finds solving equations fun, and the same thing could be said about writing Effects! Luckily, there is a list of common recipes that you can try below.
+This might feel like solving an equation. You might start with a goal (for example, to remove a dependency), and you need to "find" the code matching that goal. Not everyone finds solving equations fun, and the same thing could be said about writing Effects! Luckily, there is a list of common recipes that you can try below.
 
 <Pitfall>
 
@@ -289,7 +289,9 @@ useEffect(() => {
 }, []);
 ```
 
-**When dependencies don't match the code, there is a very high risk of introducing bugs.** By suppressing the linter, you "lie" to React about the values your Effect depends on. Instead, use the techniques below.
+**When dependencies don't match the code, there is a very high risk of introducing bugs.** By suppressing the linter, you "lie" to React about the values your Effect depends on.
+
+Instead, use the techniques below.
 
 </Pitfall>
 
@@ -352,7 +354,7 @@ This counter was supposed to increment every second by the amount configurable w
 
 There's always a better solution than ignoring the linter! To fix this code, you need to add `onTick` to the dependency list. (To ensure the interval is only setup once, [make `onTick` an Effect Event.](/learn/separating-events-from-effects#reading-latest-props-and-state-with-effect-events))
 
-**We recommend to treat the dependency lint error as a compilation error. If you don't suppress it, you will never see bugs like this.** The rest of this page documents the alternatives for this and other cases.
+**We recommend treating the dependency lint error as a compilation error. If you don't suppress it, you will never see bugs like this.** The rest of this page documents the alternatives for this and other cases.
 
 </DeepDive>
 
@@ -360,9 +362,9 @@ There's always a better solution than ignoring the linter! To fix this code, you
 
 Every time you adjust the Effect's dependencies to reflect the code, look at the dependency list. Does it make sense for the Effect to re-run when any of these dependencies change? Sometimes, the answer is "no":
 
-* Sometimes, you want to re-execute *different parts* of your Effect under different conditions.
-* Sometimes, you want to only read the *latest value* of some dependency instead of "reacting" to its changes.
-* Sometimes, a dependency may change too often *unintentionally* because it's an object or a function.
+* You might want to re-execute *different parts* of your Effect under different conditions.
+* You might want to only read the *latest value* of some dependency instead of "reacting" to its changes.
+* A dependency may change too often *unintentionally* because it's an object or a function.
 
 To find the right solution, you'll need to answer a few questions about your Effect. Let's walk through them.
 
@@ -370,7 +372,7 @@ To find the right solution, you'll need to answer a few questions about your Eff
 
 The first thing you should think about is whether this code should be an Effect at all.
 
-Imagine a form. On submit, you set the `submitted` state variable to `true`. You need to send a POST request and show a notification. You've decided to put this logic inside an Effect that "reacts" to `submitted` being `true`:
+Imagine a form. On submit, you set the `submitted` state variable to `true`. You need to send a POST request and show a notification. You've put this logic inside an Effect that "reacts" to `submitted` being `true`:
 
 ```js {6-8}
 function Form() {
@@ -392,7 +394,7 @@ function Form() {
 }
 ```
 
-Later, you want to style the notification message according to the current theme, so you read the current theme. Since `theme` is declared in the component body, it is a reactive value, and you must declare it as a dependency:
+Later, you want to style the notification message according to the current theme, so you read the current theme. Since `theme` is declared in the component body, it is a reactive value, so you add it as a dependency:
 
 ```js {3,9,11}
 function Form() {
@@ -415,9 +417,9 @@ function Form() {
 }
 ```
 
-But by doing this, you've introduced a bug. Imagine you submit the form first and then switch between Dark and Light themes. The `theme` will change, the Effect will re-run, and so it will display the same notification again!
+By doing this, you've introduced a bug. Imagine you submit the form first and then switch between Dark and Light themes. The `theme` will change, the Effect will re-run, and so it will display the same notification again!
 
-**The problem here is that this shouldn't be an Effect in the first place.** You want to send this POST request and show the notification in response to *submitting the form,* which is a particular interaction. When you want to run some code in response to particular interaction, put that logic directly into the corresponding event handler:
+**The problem here is that this shouldn't be an Effect in the first place.** You want to send this POST request and show the notification in response to *submitting the form,* which is a particular interaction. To run some code in response to particular interaction, put that logic directly into the corresponding event handler:
 
 ```js {6-7}
 function Form() {
@@ -439,7 +441,7 @@ Now that the code is in an event handler, it's not reactive--so it will only run
 
 The next question you should ask yourself is whether your Effect is doing several unrelated things.
 
-Imagine you're creating a shipping form where the user needs to choose their city and area. You fetch the list of `cities` from the server according to the selected `country` so that you can show them as dropdown options:
+Imagine you're creating a shipping form where the user needs to choose their city and area. You fetch the list of `cities` from the server according to the selected `country` to show them in a dropdown:
 
 ```js
 function ShippingForm({ country }) {
@@ -500,7 +502,7 @@ function ShippingForm({ country }) {
   // ...
 ```
 
-However, since the Effect now uses the `city` state variable, you've had to add `city` to the list of dependencies. That, in turn, has introduced a problem. Now, whenever the user selects a different city, the Effect will re-run and call `fetchCities(country)`. As a result, you will be unnecessarily refetching the list of cities many times.
+However, since the Effect now uses the `city` state variable, you've had to add `city` to the list of dependencies. That, in turn, introduced a problem: when the user selects a different city, the Effect will re-run and call `fetchCities(country)`. As a result, you will be unnecessarily refetching the list of cities many times.
 
 **The problem with this code is that you're synchronizing two different unrelated things:**
 
@@ -547,9 +549,9 @@ function ShippingForm({ country }) {
   // ...
 ```
 
-Now the first Effect only re-runs if the `country` changes, while the second Effect re-runs when the `city` changes. You've separated them by purpose: two different things are synchronized by two separate Effects. Two separate Effects have two separate dependency lists, so they will no longer trigger each other unintentionally.
+Now the first Effect only re-runs if the `country` changes, while the second Effect re-runs when the `city` changes. You've separated them by purpose: two different things are synchronized by two separate Effects. Two separate Effects have two separate dependency lists, so they won't trigger each other unintentionally.
 
-The final code is longer than the original, but splitting these Effects is still correct. [Each Effect should represent an independent synchronization process.](/learn/lifecycle-of-reactive-effects#each-effect-represents-a-separate-synchronization-process) In this example, deleting one Effect doesn't break the other Effect's logic. This is a good indication that they *synchronize different things,* and it made sense to split them up. If the duplication feels concerning, you can further improve this code by [extracting repetitive logic into a custom Hook.](/learn/reusing-logic-with-custom-hooks#when-to-use-custom-hooks)
+The final code is longer than the original, but splitting these Effects is still correct. [Each Effect should represent an independent synchronization process.](/learn/lifecycle-of-reactive-effects#each-effect-represents-a-separate-synchronization-process) In this example, deleting one Effect doesn't break the other Effect's logic. This means they *synchronize different things,* and it's good to split them up. If you're concerned about duplication, you can improve this code by [extracting repetitive logic into a custom Hook.](/learn/reusing-logic-with-custom-hooks#when-to-use-custom-hooks)
 
 ### Are you reading some state to calculate the next state? {/*are-you-reading-some-state-to-calculate-the-next-state*/}
 
@@ -609,7 +611,7 @@ function ChatRoom({ roomId }) {
 
 <Wip>
 
-This section describes an **experimental API that has not yet been added to React,** so you can't use it yet.
+This section describes an **experimental API that has not yet been released** in a stable vesion of React.
 
 </Wip>
 
@@ -653,7 +655,7 @@ function ChatRoom({ roomId }) {
   // ...
 ```
 
-The problem is that every time `isMuted` changes (for example, when the user presses the "Muted" toggle), the Effect will re-synchronize, and reconnect to the chat server. This is not the desired user experience! (In this example, even disabling the linter would not work--if you do that, `isMuted` would get "stuck" with its old value.)
+The problem is that every time `isMuted` changes (for example, when the user presses the "Muted" toggle), the Effect will re-synchronize, and reconnect to the chat. This is not the desired user experience! (In this example, even disabling the linter would not work--if you do that, `isMuted` would get "stuck" with its old value.)
 
 To solve this problem, you need to extract the logic that shouldn't be reactive out of the Effect. You don't want this Effect to "react" to the changes in `isMuted`. [Move this non-reactive piece of logic into an Effect Event:](/learn/separating-events-from-effects#declaring-an-effect-event)
 
@@ -714,7 +716,7 @@ Suppose that the parent component passes a *different* `onReceiveMessage` functi
 />
 ```
 
-Since `onReceiveMessage` is a dependency of your Effect, it would cause the Effect to re-synchronize after every parent re-render. This would make it re-connect to the chat. To solve this, wrap the call in an Effect Event:
+Since `onReceiveMessage` is a dependency, it would cause the Effect to re-synchronize after every parent re-render. This would make it re-connect to the chat. To solve this, wrap the call in an Effect Event:
 
 ```js {4-6,12,15}
 function ChatRoom({ roomId, onReceiveMessage }) {
@@ -788,7 +790,7 @@ This object is declared in the component body, so it's a [reactive value.](/lear
   // ...
 ```
 
-It is important to declare it as a dependency! This ensures, for example, that if the `roomId` changes, then your Effect will re-connect to the chat with the new `options`. However, there is also a problem with the code above. To see the problem, try typing into the input in the sandbox below, and watch what happens in the console:
+It is important to declare it as a dependency! This ensures, for example, that if the `roomId` changes, your Effect will re-connect to the chat with the new `options`. However, there is also a problem with the code above. To see it, try typing into the input in the sandbox below, and watch what happens in the console:
 
 <Sandpack>
 
@@ -865,9 +867,9 @@ button { margin-left: 10px; }
 
 In the sandbox above, the input only updates the `message` state variable. From the user's perspective, this should not affect the chat connection. However, every time you update the `message`, your component re-renders. When your component re-renders, the code inside of it runs again from scratch.
 
-This means that a new `options` object is created from scratch on every re-render of the `ChatRoom` component. React sees that the `options` object is a *different object* from the `options` object created during the last render. This is why it re-synchronizes your Effect (which depends on `options`), and the chat re-connects as you type.
+A new `options` object is created from scratch on every re-render of the `ChatRoom` component. React sees that the `options` object is a *different object* from the `options` object created during the last render. This is why it re-synchronizes your Effect (which depends on `options`), and the chat re-connects as you type.
 
-**This problem affects objects and functions in particular. In JavaScript, each newly created object and function is considered distinct from all the others. It doesn't matter that the contents inside of them may be the same!**
+**This problem only affects objects and functions. In JavaScript, each newly created object and function is considered distinct from all the others. It doesn't matter that the contents inside of them may be the same!**
 
 ```js {7-8}
 // During the first render
@@ -880,7 +882,7 @@ const options2 = { serverUrl: 'https://localhost:1234', roomId: 'music' };
 console.log(Object.is(options1, options2)); // false
 ````
 
-**Object and function dependencies create a risk that your Effect will re-synchronize more often than you need.** 
+**Object and function dependencies can make your Effect re-synchronize more often than you need.** 
 
 This is why, whenever possible, you should try to avoid objects and functions as your Effect's dependencies. Instead, try moving them outside the component, inside the Effect, or extracting primitive values out of them.
 
@@ -905,7 +907,7 @@ function ChatRoom() {
   // ...
 ```
 
-This way, you *prove* to the linter that it's not reactive. It can't change as a result of a re-render, so it doesn't need to be a dependency of your Effect. Now re-rendering `ChatRoom` won't cause your Effect to re-synchronize.
+This way, you *prove* to the linter that it's not reactive. It can't change as a result of a re-render, so it doesn't need to be a dependency. Now re-rendering `ChatRoom` won't cause your Effect to re-synchronize.
 
 This works for functions too:
 
@@ -1096,7 +1098,7 @@ The risk here is that the parent component will create the object during renderi
 />
 ```
 
-This would cause your Effect to re-connect every time the parent component re-renders. To fix this, read all the necessary information from the object *outside* the Effect, and avoid having objects and functions dependencies:
+This would cause your Effect to re-connect every time the parent component re-renders. To fix this, read information from the object *outside* the Effect, and avoid having object and function dependencies:
 
 ```js {4,7-8,12}
 function ChatRoom({ options }) {
@@ -1114,7 +1116,7 @@ function ChatRoom({ options }) {
   // ...
 ```
 
-The logic gets a little repetitive (you read some values from an object outside an Effect, and then create an object with the same values inside the Effect). But it makes it very explicit what information your Effect *actually* depends on. If an object is re-created unintentionally by the parent component, the chat would not re-connect. However, if `options.roomId` or `options.serverUrl` actually change, the chat would re-connect as you'd expect.
+The logic gets a little repetitive (you read some values from an object outside an Effect, and then create an object with the same values inside the Effect). But it makes it very explicit what information your Effect *actually* depends on. If an object is re-created unintentionally by the parent component, the chat would not re-connect. However, if `options.roomId` or `options.serverUrl` really are different, the chat would re-connect.
 
 #### Calculate primitive values from functions {/*calculate-primitive-values-from-functions*/}
 
@@ -1132,7 +1134,7 @@ The same approach can work for functions. For example, suppose the parent compon
 />
 ```
 
-To avoid making it a dependency (and thus causing it to re-connect on re-renders), call it outside the Effect. This gives you the `roomId` and `serverUrl` values that aren't objects, and that you can read from inside your Effect:
+To avoid making it a dependency (and causing it to re-connect on re-renders), call it outside the Effect. This gives you the `roomId` and `serverUrl` values that aren't objects, and that you can read from inside your Effect:
 
 ```js {1,4}
 function ChatRoom({ getOptions }) {
@@ -1158,7 +1160,7 @@ This only works for [pure](/learn/keeping-components-pure) functions because the
 - When you're not happy with your dependencies, what you need to edit is the code.
 - Suppressing the linter leads to very confusing bugs, and you should always avoid it.
 - To remove a dependency, you need to "prove" to the linter that it's not necessary.
-- If the code in your Effect should run in response to a specific interaction, move that code to an event handler.
+- If some code should run in response to a specific interaction, move that code to an event handler.
 - If different parts of your Effect should re-run for different reasons, split it into several Effects.
 - If you want to update some state based on the previous state, pass an updater function.
 - If you want to read the latest value without "reacting" it, extract an Effect Event from your Effect.

@@ -166,7 +166,7 @@ export function Preview({
     }
 
     if (isExpanded) {
-      return {position: 'sticky', top: '2em'};
+      return {position: 'sticky', top: 'calc(2em + 64px)'};
     }
 
     return {};

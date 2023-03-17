@@ -114,7 +114,7 @@ Read **[Reacting to Input with State](/learn/reacting-to-input-with-state)** to 
 
 ## Choosing the state structure {/*choosing-the-state-structure*/}
 
-Structuring state well can make a difference between a component that is pleasant to modify and debug, and one that is a constant source of bugs. The most important principle is that state shouldn't contain redundant or duplicated information. If there's some unnecessary state, it's easy to forget to update it, and introduce bugs!
+Structuring state well can make a difference between a component that is pleasant to modify and debug, and one that is a constant source of bugs. The most important principle is that state shouldn't contain redundant or duplicated information. If there's unnecessary state, it's easy to forget to update it, and introduce bugs!
 
 For example, this form has a **redundant** `fullName` state variable:
 
@@ -304,7 +304,7 @@ Read **[Sharing State Between Components](/learn/sharing-state-between-component
 
 When you re-render a component, React needs to decide which parts of the tree to keep (and update), and which parts to discard or re-create from scratch. In most cases, React's automatic behavior works well enough. By default, React preserves the parts of the tree that "match up" with the previously rendered component tree.
 
-However, sometimes this is not what you want. For example, in this app, typing a message and then switching the recipient does not reset the input. This can make the user accidentally send a message to the wrong person:
+However, sometimes this is not what you want. In this chat app, typing a message and then switching the recipient does not reset the input. This can make the user accidentally send a message to the wrong person:
 
 <Sandpack>
 
@@ -399,7 +399,7 @@ textarea {
 
 </Sandpack>
 
-React lets you override the default behavior, and *force* a component to reset its state by passing it a different `key`, like `<Chat key={email} />`. This tells React that if the recipient is different, it should be considered a *different* `Chat` component that needs to be re-created from scratch with the new data (and UI like inputs). Now switching between the recipients always resets the input field--even though you render the same component.
+React lets you override the default behavior, and *force* a component to reset its state by passing it a different `key`, like `<Chat key={email} />`. This tells React that if the recipient is different, it should be considered a *different* `Chat` component that needs to be re-created from scratch with the new data (and UI like inputs). Now switching between the recipients resets the input field--even though you render the same component.
 
 <Sandpack>
 

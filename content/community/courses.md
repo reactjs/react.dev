@@ -58,3 +58,5 @@ permalink: community/courses.html
 - [Road to React](https://www.roadtoreact.com/) - Your journey to master React in JavaScript.
 
 - [Epic React](https://epicreact.dev/) - Confidently Ship Well-Architected Production Ready React Apps Like a Pro
+
+- [useEffect.dev](https://useeffect.dev) - Learn how to use Hooks and solve common problems they can cause.

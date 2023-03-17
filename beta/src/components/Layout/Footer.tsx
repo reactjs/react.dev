@@ -353,7 +353,7 @@ export function Footer({hideSurvey = false, hideBorder = false}: FooterProps) {
               </FooterLink>
             </div>
             <div className="md:col-start-2 xl:col-start-4 flex flex-col">
-              <FooterLink href="/" isHeader={true}>
+              <FooterLink href="/community" isHeader={true}>
                 Community
               </FooterLink>
               <FooterLink href="https://github.com/facebook/react/blob/main/CODE_OF_CONDUCT.md">

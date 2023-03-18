@@ -186,6 +186,7 @@
   html.dark .no-bg-scrollbar {
     scrollbar-color: rgba(255, 255, 255, 0.2) transparent;
   }
+
   /*
    * Until then, we have ... this.
    * If you're changing this, make sure you've tested:

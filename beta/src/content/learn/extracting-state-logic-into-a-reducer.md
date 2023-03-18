@@ -1210,7 +1210,6 @@ export default function ContactList({contacts, selectedId, dispatch}) {
 ```
 
 ```js Chat.js
-import {useState} from 'react';
 
 export default function Chat({contact, message, dispatch}) {
   return (

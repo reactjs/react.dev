@@ -1,5 +1,5 @@
 {
-  "name": "react-website",
+  "name": "react-dev",
   "version": "1.0.0",
   "private": true,
   "license": "CC",
@@ -18,7 +18,7 @@
     "ci-check": "npm-run-all prettier:diff --parallel lint tsc lint-heading-ids",
     "tsc": "tsc --noEmit",
     "start": "next start",
-    "postinstall": "patch-package && (is-ci || (cd .. && husky install beta/.husky))",
+    "postinstall": "patch-package && (is-ci || (cd .. && husky install .husky))",
     "check-all": "npm-run-all prettier lint:fix tsc"
   },
   "dependencies": {

@@ -1,7 +1,6 @@
-# reactjs.org
+# react.dev
 
-This repo contains the source code and documentation powering [beta.reactjs.org](https://beta.reactjs.org/).
-
+This repo contains the source code and documentation powering [react.dev](https://react.dev/).
 
 ## Getting started
 
@@ -15,13 +14,11 @@ This repo contains the source code and documentation powering [beta.reactjs.org]
 
 ### Installation
 
-1. `cd reactjs.org` to go into the project root
-1. `cd beta` to open the beta website
+1. `cd react.dev` to go into the project root
 3. `yarn` to install the website's npm dependencies
 
 ### Running locally
 
-1. Make sure you're in the `beta` folder
 1. `yarn dev` to start the development server (powered by [Next.js](https://nextjs.org/))
 1. `open http://localhost:3000` to open the site in your favorite browser
 
@@ -48,26 +45,19 @@ The documentation is divided into several sections with a different tone and pur
 ### Test the change
 
 1. If possible, test any visual changes in all latest versions of common browsers, on both desktop and mobile.
-2. Run `yarn check-all` from the `beta` folder. (This will run Prettier, ESLint and validate types.)
+2. Run `yarn check-all`. (This will run Prettier, ESLint and validate types.)
 
 ### Push it
 
 1. `git add -A && git commit -m "My message"` (replacing `My message` with a commit message, such as `Fix header logo on Android`) to stage and commit your changes
 1. `git push my-fork-name the-name-of-my-branch`
-1. Go to the [reactjs.org repo](https://github.com/reactjs/reactjs.org) and you should see recently pushed branches.
+1. Go to the [react.dev repo](https://github.com/reactjs/react.dev) and you should see recently pushed branches.
 1. Follow GitHub's instructions.
 1. If possible, include screenshots of visual changes. A preview build is triggered after your changes are pushed to GitHub.
 
 ## Translation
 
-If you are interested in translating `reactjs.org`, please see the current translation efforts at [translations.reactjs.org](https://translations.reactjs.org/).
-
-
-If your language does not have a translation and you would like to create one, please follow the instructions at [reactjs.org Translations](https://github.com/reactjs/reactjs.org-translation#translating-reactjsorg).
-
-## Troubleshooting
-
-- `yarn reset` to clear the local cache
+If you are interested in translating `react.dev`, please see the current translation efforts [here](https://github.com/reactjs/react.dev/issues/4135).
 
 ## License
-Content submitted to [reactjs.org](https://reactjs.org/) is CC-BY-4.0 licensed, as found in the [LICENSE-DOCS.md](https://github.com/open-source-explorer/reactjs.org/blob/master/LICENSE-DOCS.md) file.
+Content submitted to [react.dev](https://react.dev/) is CC-BY-4.0 licensed, as found in the [LICENSE-DOCS.md](https://github.com/reactjs/react.dev/blob/master/LICENSE-DOCS.md) file.

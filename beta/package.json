@@ -85,7 +85,7 @@
     "reading-time": "^1.2.0",
     "remark": "^12.0.1",
     "remark-external-links": "^7.0.0",
-    "remark-html": "^12.0.0",
+    "remark-html": "^13.0.2",
     "remark-images": "^2.0.0",
     "remark-slug": "^7.0.0",
     "remark-unwrap-images": "^2.0.0",

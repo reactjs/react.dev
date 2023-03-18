@@ -302,7 +302,7 @@ export default function TopNav({
                 className="w-full lg:h-auto grow pr-0 lg:pr-5 pt-4 lg:py-6 md:pt-4 lg:pt-4 scrolling-touch scrolling-gpu">
                 {/* No fallback UI so need to be careful not to suspend directly inside. */}
                 <Suspense fallback={null}>
-                  <div className="px-5 sm:pl-3 sm:pr-0 xs:gap-0.5 xs:text-base flex flex-row lg:hidden text-base font-bold text-secondary dark:text-secondary-dark">
+                  <div className="px-5 lg:pl-3 lg:pr-0 xs:gap-0.5 xs:text-base flex flex-row lg:hidden text-base font-bold text-secondary dark:text-secondary-dark">
                     <NavItem isActive={section === 'learn'} url="/learn">
                       Learn
                     </NavItem>
@@ -322,7 +322,7 @@ export default function TopNav({
                   </div>
                   <div
                     role="separator"
-                    className="mx-5 sm:mr-0 mt-4 mb-2 border-b border-border dark:border-border-dark"
+                    className="mx-5 lg:mr-0 mt-4 mb-2 border-b border-border dark:border-border-dark"
                   />
                   <SidebarRouteTree
                     // Don't share state between the desktop and mobile versions.

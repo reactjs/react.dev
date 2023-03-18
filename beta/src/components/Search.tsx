@@ -30,11 +30,14 @@ function Hit({hit, children}: any) {
   );
 }
 
-function Kbd(props: {children?: React.ReactNode}) {
+function Kbd(props: {children?: React.ReactNode; wide?: boolean}) {
+  const {wide, ...rest} = props;
+  const width = wide ? 'w-10' : 'w-5';
+
   return (
     <kbd
-      className="h-5 w-5 border border-transparent mr-1 bg-wash dark:bg-wash-dark text-gray-30 align-middle p-0 inline-flex justify-center items-center text-xs text-center rounded-md"
-      {...props}
+      className={`${width} h-5 border border-transparent mr-1 bg-wash dark:bg-wash-dark text-gray-30 align-middle p-0 inline-flex justify-center items-center text-xs text-center rounded-md`}
+      {...rest}
     />
   );
 }
@@ -168,7 +171,10 @@ export function Search({
         <IconSearch className="mr-3 align-middle text-gray-30 shrink-0 group-betterhover:hover:text-gray-70" />
         Search
         <span className="ml-auto hidden sm:flex item-center mr-1">
-          <Kbd>⌘</Kbd>
+          <Kbd data-platform="mac">⌘</Kbd>
+          <Kbd data-platform="win" wide>
+            Ctrl
+          </Kbd>
           <Kbd>K</Kbd>
         </span>
       </button>

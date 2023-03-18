@@ -49,6 +49,13 @@ const MyDocument = () => {
                       setTheme(e.matches ? 'dark' : 'light');
                     }
                   });
+
+                  // Detect whether the browser is Mac to display either the ⌘ symbol or Ctrl in the search bar
+                  document.documentElement.classList.add(
+                      window.navigator.platform.includes('Mac')
+                      ? "platform-mac" 
+                      : "platform-win"
+                  );
                 })();
               `,
           }}

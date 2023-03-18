@@ -30,6 +30,7 @@ import ButtonLink from 'components/ButtonLink';
 import {TocContext} from './TocContext';
 import type {Toc, TocItem} from './TocContext';
 import {TeamMember} from './TeamMember';
+import Image from 'next/image';
 
 function CodeStep({children, step}: {children: any; step: number}) {
   return (
@@ -223,23 +224,29 @@ function Illustration({
   alt,
   author,
   authorLink,
+  width,
+  height,
 }: {
   caption: string;
   src: string;
   alt: string;
   author: string;
   authorLink: string;
+  width: string;
+  height: string;
 }) {
   const {isInBlock} = React.useContext(IllustrationContext);
 
   return (
     <div className="relative group before:absolute before:-inset-y-16 before:inset-x-0 my-16 mx-0 2xl:mx-auto max-w-4xl 2xl:max-w-6xl">
       <figure className="my-8 flex justify-center">
-        <img
+        <Image
           src={src}
           alt={alt}
           style={{maxHeight: 300}}
           className="bg-white rounded-lg"
+          width={width}
+          height={height}
         />
         {caption ? (
           <figcaption className="text-center leading-tight mt-4">
@@ -271,7 +278,12 @@ function IllustrationBlock({
   const images = imageInfos.map((info, index) => (
     <figure key={index}>
       <div className="bg-white rounded-lg p-4 flex-1 flex xl:p-6 justify-center items-center my-4">
-        <img src={info.src} alt={info.alt} height={info.height} />
+        <Image
+          src={info.src}
+          alt={info.alt}
+          height={info.height}
+          width={info.width}
+        />
       </div>
       {info.caption ? (
         <figcaption className="text-secondary dark:text-secondary-dark text-center leading-tight mt-4">

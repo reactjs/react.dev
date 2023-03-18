@@ -97,6 +97,15 @@
     display: none;
   }
 
+  /* Hide all content that's relevant only to a specific platform */
+  html.platform-mac [data-platform='win'] {
+    display: none;
+  }
+
+  html.platform-win [data-platform='mac'] {
+    display: none;
+  }
+
   html,
   body {
     padding: 0;

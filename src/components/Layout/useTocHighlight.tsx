@@ -4,7 +4,7 @@
 
 import {useState, useRef, useEffect} from 'react';
 
-const TOP_OFFSET = 75;
+const TOP_OFFSET = 85;
 
 export function getHeaderAnchors(): HTMLAnchorElement[] {
   return Array.prototype.filter.call(

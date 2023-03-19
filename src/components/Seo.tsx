@@ -96,7 +96,7 @@ export const Seo = withRouter(
       />
       <meta
         name="google-site-verification"
-        content="j1duf8XRaKuZyGvhPd8GkYXHG7LI4GYbIvAXBsqTC9U"
+        content="sIlAGs48RulR4DdP95YSWNKZIEtCqQmRjzn-Zq-CcD0"
       />
       <link
         rel="preload"

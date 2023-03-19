@@ -151,13 +151,15 @@ export function SidebarRouteTree({
                     className="mt-4 mb-2 ml-5 border-b border-border dark:border-border-dark"
                   />
                 )}
-                <h3
-                  className={cn(
-                    'mb-1 text-sm font-bold ml-5 text-tertiary dark:text-tertiary-dark',
-                    index !== 0 && 'mt-2'
-                  )}>
-                  {sectionHeader}
-                </h3>
+                <li>
+                  <h3
+                    className={cn(
+                      'mb-1 text-sm font-bold ml-5 text-tertiary dark:text-tertiary-dark',
+                      index !== 0 && 'mt-2'
+                    )}>
+                    {sectionHeader}
+                  </h3>
+                </li>
               </Fragment>
             );
           } else {

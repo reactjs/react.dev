@@ -85,7 +85,7 @@
       "permanent": false
     },
     {
-      "source": "/(?!google)(:path*(\\.html))",
+      "source": "/((?!google)(:path*(\\.html)))",
       "destination": "https://legacy.reactjs.org/:path*.html",
       "permanent": false
     },

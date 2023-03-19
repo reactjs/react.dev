@@ -108,7 +108,7 @@ export function Search({
 }: SearchProps) {
   const [isShowing, setIsShowing] = useState(false);
 
-    useLayoutEffect(() => {
+  useLayoutEffect(() => {
     const scrollBarWidth = window.innerWidth - document.body.clientWidth;
     if (isShowing) {
       document.body.style.marginRight = `${scrollBarWidth}px`;

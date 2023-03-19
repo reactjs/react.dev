@@ -402,7 +402,7 @@ You need a way to separate this non-reactive logic from the reactive Effect arou
 
 <Wip>
 
-This section describes an **experimental API that has not yet been released** in a stable vesion of React.
+This section describes an **experimental API that has not yet been released** in a stable version of React.
 
 </Wip>
 
@@ -580,7 +580,7 @@ You can think of Effect Events as being very similar to event handlers. The main
 
 <Wip>
 
-This section describes an **experimental API that has not yet been released** in a stable vesion of React.
+This section describes an **experimental API that has not yet been released** in a stable version of React.
 
 </Wip>
 
@@ -880,7 +880,7 @@ Read [Removing Effect Dependencies](/learn/removing-effect-dependencies) for oth
 
 <Wip>
 
-This section describes an **experimental API that has not yet been released** in a stable vesion of React.
+This section describes an **experimental API that has not yet been released** in a stable version of React.
 
 </Wip>
 

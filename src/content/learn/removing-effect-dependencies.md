@@ -611,7 +611,7 @@ function ChatRoom({ roomId }) {
 
 <Wip>
 
-This section describes an **experimental API that has not yet been released** in a stable vesion of React.
+This section describes an **experimental API that has not yet been released** in a stable version of React.
 
 </Wip>
 

@@ -314,7 +314,7 @@ Read **[Lifecycle of Reactive Events](/learn/lifecycle-of-reactive-effects)** to
 
 <Wip>
 
-This section describes an **experimental API that has not yet been released** in a stable vesion of React.
+This section describes an **experimental API that has not yet been released** in a stable version of React.
 
 </Wip>
 

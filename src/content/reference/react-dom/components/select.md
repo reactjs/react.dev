@@ -48,7 +48,7 @@ If your `<select>` is uncontrolled, you may pass the `defaultValue` prop instead
 
 * `defaultValue`: A string (or an array of strings for [`multiple={true}`](#enabling-multiple-selection)). Specifies [the initially selected option.](#providing-an-initially-selected-option)
 
-These `<select>` props are relevant both for uncontrolled and controlled select boxs:
+These `<select>` props are relevant both for uncontrolled and controlled select boxes:
 
 * [`autoComplete`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select#attr-autocomplete): A string. Specifies one of the possible [autocomplete behaviors.](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete#values)
 * [`autoFocus`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select#attr-autofocus): A boolean. If `true`, React will focus the element on mount.

@@ -7,7 +7,7 @@ import {IconSearch} from 'components/Icon/IconSearch';
 import Head from 'next/head';
 import Link from 'next/link';
 import Router from 'next/router';
-import {useState, useCallback, useEffect} from 'react';
+import {useState, useCallback, useEffect, useLayoutEffect} from 'react';
 import * as React from 'react';
 import {createPortal} from 'react-dom';
 import {siteConfig} from 'siteConfig';
@@ -107,6 +107,15 @@ export function Search({
   fullsize,
 }: SearchProps) {
   const [isShowing, setIsShowing] = useState(false);
+
+    useLayoutEffect(() => {
+    const scrollBarWidth = window.innerWidth - document.body.clientWidth;
+    if (isShowing) {
+      document.body.style.marginRight = `${scrollBarWidth}px`;
+    } else if (!isShowing) {
+      document.body.style.marginRight = '0px';
+    }
+  }, [isShowing]);
 
   const importDocSearchModalIfNeeded = useCallback(
     function importDocSearchModalIfNeeded() {

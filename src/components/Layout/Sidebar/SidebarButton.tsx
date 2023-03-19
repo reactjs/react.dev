@@ -46,7 +46,7 @@ export function SidebarButton({
         )}
         onClick={onClick}>
         {title}
-        {typeof isExpanded && !heading && (
+        {isExpanded && !heading && (
           <span className="pr-2 text-gray-30">
             <IconNavArrow displayDirection={isExpanded ? 'down' : 'right'} />
           </span>

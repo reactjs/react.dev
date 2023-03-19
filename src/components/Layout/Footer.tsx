@@ -393,7 +393,7 @@ export function Footer({hideSurvey = false, hideBorder = false}: FooterProps) {
                   <IconTwitter />
                 </ExternalLink>
                 <ExternalLink
-                  aria-label="React on Github"
+                  aria-label="React on GitHub"
                   href="https://github.com/facebook/react"
                   className={socialLinkClasses}>
                   <IconGitHub />

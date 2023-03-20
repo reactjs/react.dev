@@ -78,6 +78,10 @@ function buildRouteMeta(
 
   if (currentRoute.path === searchPath) {
     ctx.route = currentRoute;
+    // If we've found a deeper match, reset the previously stored next route.
+    // TODO: this only works reliably if deeper matches are first in the tree.
+    // We should revamp all of this to be more explicit.
+    ctx.nextRoute = undefined;
   }
 
   if (!ctx.route) {

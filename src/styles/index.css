@@ -195,6 +195,7 @@
   html.dark .no-bg-scrollbar {
     scrollbar-color: rgba(255, 255, 255, 0.2) transparent;
   }
+
   /*
    * Until then, we have ... this.
    * If you're changing this, make sure you've tested:
@@ -232,6 +233,16 @@
   html.dark .no-bg-scrollbar::-webkit-scrollbar-thumb:hover,
   html.dark .no-bg-scrollbar::-webkit-scrollbar-thumb:active {
     background-color: rgba(255, 255, 255, 0.35) !important;
+  }
+
+  /*
+  * 'overlay' is a deprecated value, but works with the .no-bg-scrollbar solution
+  * so the scrollbar width doesn't offset the containing element's width.
+  * We can go back to using 'scroll' when .no-bg-scrollbar is no longer needed.
+  */
+  html .overflow-y-overlay {
+    overflow-y: scroll; /* For Firefox. */
+    overflow-y: overlay; /* For WebKit-based browsers. */
   }
 }
 

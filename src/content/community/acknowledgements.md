@@ -47,11 +47,9 @@ We'd like to recognize a few people who have made significant contributions to R
 * [Sasha Aickin](https://github.com/aickin)
 * [Seth Webster](https://github.com/sethwebster)
 * [Sophia Shoemaker](https://github.com/mrscobbler)
-* [Sophie Alpert](https://github.com/sophiebits)
 * [Sunil Pai](https://github.com/threepointone)
 * [Tim Yung](https://github.com/yungsters)
 * [Xuan Huang](https://github.com/huxpro)
-* [Yuzhi Zheng](https://github.com/yuzhi)
 
 This list is not exhaustive.
 

@@ -30,8 +30,15 @@ export default function SidebarNav({
   }
 
   return (
-    <div className={cn('sticky top-0 lg:bottom-0 lg:h-screen flex flex-col')}>
-      <div className="overflow-y-scroll no-bg-scrollbar lg:w-[342px] grow bg-wash dark:bg-wash-dark">
+    <div
+      className={cn(
+        'sticky top-0 lg:bottom-0 lg:h-[calc(100vh-4rem)] flex flex-col'
+      )}>
+      <div
+        className="overflow-y-scroll no-bg-scrollbar lg:w-[342px] grow bg-wash dark:bg-wash-dark"
+        style={{
+          overscrollBehavior: 'contain',
+        }}>
         <aside
           className={cn(
             `lg:grow lg:flex flex-col w-full pb-8 lg:pb-0 lg:max-w-xs z-10 hidden lg:block`

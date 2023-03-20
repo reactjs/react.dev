@@ -13,10 +13,7 @@ import {IconGitHub} from 'components/Icon/IconGitHub';
 export function Footer() {
   const socialLinkClasses = 'hover:text-primary dark:text-primary-dark';
   return (
-    <footer
-      className={cn(
-        'text-secondary dark:text-secondary-dark',
-      )}>
+    <footer className={cn('text-secondary dark:text-secondary-dark')}>
       <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-x-12 gap-y-8 max-w-7xl mx-auto">
         <div className="col-span-2 md:col-span-1 justify-items-start mt-3.5 text-left">
           <ExternalLink
@@ -299,21 +296,15 @@ export function Footer() {
           <FooterLink href="/learn/adding-interactivity">
             Adding Interactivity
           </FooterLink>
-          <FooterLink href="/learn/managing-state">
-            Managing State
-          </FooterLink>
-          <FooterLink href="/learn/escape-hatches">
-            Escape Hatches
-          </FooterLink>
+          <FooterLink href="/learn/managing-state">Managing State</FooterLink>
+          <FooterLink href="/learn/escape-hatches">Escape Hatches</FooterLink>
         </div>
         <div className="flex flex-col">
           <FooterLink href="/reference/react" isHeader={true}>
             API Reference
           </FooterLink>
           <FooterLink href="/reference/react">React APIs</FooterLink>
-          <FooterLink href="/reference/react-dom">
-            React DOM APIs
-          </FooterLink>
+          <FooterLink href="/reference/react-dom">React DOM APIs</FooterLink>
         </div>
         <div className="md:col-start-2 xl:col-start-4 flex flex-col">
           <FooterLink href="/community" isHeader={true}>
@@ -333,9 +324,7 @@ export function Footer() {
         <div className="flex flex-col">
           <FooterLink isHeader={true}>More</FooterLink>
           <FooterLink href="/blog">Blog</FooterLink>
-          <FooterLink href="https://reactnative.dev/">
-            React Native
-          </FooterLink>
+          <FooterLink href="https://reactnative.dev/">React Native</FooterLink>
           <FooterLink href="https://opensource.facebook.com/legal/privacy">
             Privacy
           </FooterLink>

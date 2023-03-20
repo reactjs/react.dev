@@ -159,7 +159,7 @@ export function Page({children, toc, routeTree, meta, section}: PageProps) {
               )}
               <div className={cn(
                 "py-12 px-5 sm:px-12 md:px-12 sm:py-12 md:py-16 lg:py-14",
-                isHomePage && 'bg-wash dark:bg-gray-95 lg:pt-0'
+                isHomePage && 'bg-wash dark:bg-gray-95 lg:pt-0 mt-[-1px]'
               )}>
                 <Footer />
               </div>              

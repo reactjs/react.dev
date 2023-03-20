@@ -70,7 +70,7 @@ Usually, you'll return the element from your component or make it a child of ano
 
 * You should only **pass children as multiple arguments to `cloneElement` if they are all statically known,** like `cloneElement(element, null, child1, child2, child3)`. If your children are dynamic, pass the entire array as the third argument: `cloneElement(element, null, listItems)`. This ensures that React will [warn you about missing `key`s](/learn/rendering-lists#keeping-list-items-in-order-with-key) for any dynamic lists. For static lists this is not necessary because they never reorder.
 
-* `cloneElement` makes it harder to trace the data flow, so **try the [alternatives](/#alternatives) instead.**
+* `cloneElement` makes it harder to trace the data flow, so **try the [alternatives](#alternatives) instead.**
 
 ---
 

@@ -7,6 +7,20 @@
       "sectionHeader": "GET STARTED"
     },
     {
+      "title": "Quick Start",
+      "path": "/learn",
+      "routes": [
+        {
+          "title": "Tutorial: Tic-Tac-Toe",
+          "path": "/learn/tutorial-tic-tac-toe"
+        },
+        {
+          "title": "Thinking in React",
+          "path": "/learn/thinking-in-react"
+        }
+      ]
+    },
+    {
       "title": "Installation",
       "path": "/learn/installation",
       "routes": [
@@ -25,20 +39,6 @@
         {
           "title": "React Developer Tools",
           "path": "/learn/react-developer-tools"
-        }
-      ]
-    },
-    {
-      "title": "Quick Start",
-      "path": "/learn",
-      "routes": [
-        {
-          "title": "Tutorial: Tic-Tac-Toe",
-          "path": "/learn/tutorial-tic-tac-toe"
-        },
-        {
-          "title": "Thinking in React",
-          "path": "/learn/thinking-in-react"
         }
       ]
     },

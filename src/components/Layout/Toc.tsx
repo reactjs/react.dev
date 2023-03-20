@@ -19,7 +19,11 @@ export function Toc({headings}: {headings: Toc}) {
           On this page
         </h2>
       )}
-      <div className="h-full overflow-y-auto pl-4 max-h-[calc(100vh-7.5rem)]">
+      <div
+        className="h-full overflow-y-auto pl-4 max-h-[calc(100vh-7.5rem)]"
+        style={{
+          overscrollBehavior: 'contain',
+        }}>
         <ul className="space-y-2 pb-16">
           {headings.length > 0 &&
             headings.map((h, i) => {

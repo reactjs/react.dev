@@ -32,7 +32,7 @@ export function useTocHighlight() {
       const scrollPosition = window.scrollY + window.innerHeight;
       const headersAnchors = getHeaderAnchors();
 
-      if (scrollPosition >= 0 && pageHeight - scrollPosition <= TOP_OFFSET) {
+      if (scrollPosition >= 0 && pageHeight - scrollPosition <= 0) {
         // Scrolled to bottom of page.
         setCurrentIndex(headersAnchors.length - 1);
         return;

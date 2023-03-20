@@ -55,6 +55,11 @@ July 07 & 08, 2023. Bangalore, India (In-person event)
 
 [Website](https://reactnexus.com/) - [Twitter](https://twitter.com/ReactNexus) - [Linkedin](https://www.linkedin.com/company/react-nexus) - [YouTube](https://www.youtube.com/reactify_in)
 
+### React On The Beach 2023 {/*react-on-the-beach-2023*/}
+September 07, 2023. Amsterdam, Netherlands (In-person event)
+
+[Website](https://reactonthebeach.com/) - [Twitter](https://twitter.com/reactonthebeach)
+
 ### React India 2023 {/*react-india-2023*/}
 Oct 5 - 7, 2023. In-person in Goa, India (hybrid event) + Oct 3 2023 - remote day 
 

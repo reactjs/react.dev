@@ -11,6 +11,8 @@ import {Toc} from './Toc';
 import SocialBanner from '../SocialBanner';
 import {DocsPageFooter} from 'components/DocsFooter';
 import {Seo} from 'components/Seo';
+import ButtonLink from 'components/ButtonLink';
+import {IconNavArrow} from 'components/Icon/IconNavArrow';
 import PageHeading from 'components/PageHeading';
 import {getRouteMeta} from './getRouteMeta';
 import {TocContext} from '../MDX/TocContext';
@@ -80,10 +82,12 @@ export function Page({children, toc, routeTree, meta, section}: PageProps) {
   let hasColumns = true;
   let showSidebar = true;
   let showToc = true;
+  let showSurvey = true;
   if (isHomePage || isBlogIndex) {
     hasColumns = false;
     showSidebar = false;
     showToc = false;
+    showSurvey = false;
   } else if (section === 'blog') {
     showToc = false;
     hasColumns = false;
@@ -125,10 +129,41 @@ export function Page({children, toc, routeTree, meta, section}: PageProps) {
             <article className="break-words" key={asPath}>
               {content}
             </article>
-            <Footer
-              hideSurvey={isHomePage || isBlogIndex}
-              hideBorder={isHomePage}
-            />
+            <div className="self-stretch w-full">
+              {showSurvey && (
+                <div className="mx-auto w-full px-5 sm:px-12 md:px-12 pt-10 md:pt-12 lg:pt-10">
+                  <hr className="max-w-7xl mx-auto border-border dark:border-border-dark" />
+                  <div className="flex flex-col items-center m-4 p-4">
+                    <p className="font-bold text-primary dark:text-primary-dark text-lg mb-4">
+                      How do you like these docs?
+                    </p>
+                    <div>
+                      <ButtonLink
+                        href="https://www.surveymonkey.co.uk/r/PYRPF3X"
+                        className="mt-1"
+                        type="primary"
+                        size="md"
+                        target="_blank">
+                        Take our survey!
+                        <IconNavArrow
+                          displayDirection="right"
+                          className="inline ml-1"
+                        />
+                      </ButtonLink>
+                    </div>
+                  </div>
+                </div>
+              )}
+              {!isHomePage && (
+                <hr className="max-w-7xl mx-auto border-border dark:border-border-dark" />
+              )}
+              <div className={cn(
+                "py-12 px-5 sm:px-12 md:px-12 sm:py-12 md:py-16 lg:py-14",
+                isHomePage && 'bg-wash dark:bg-gray-95 lg:pt-0'
+              )}>
+                <Footer />
+              </div>              
+            </div>
           </main>
         </Suspense>
         <div className="-mt-16 hidden lg:max-w-xs 2xl:block">

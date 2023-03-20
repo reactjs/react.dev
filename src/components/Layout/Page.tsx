@@ -69,11 +69,11 @@ export function Page({children, toc, routeTree, meta, section}: PageProps) {
             )}>
             <TocContext.Provider value={toc}>{children}</TocContext.Provider>
           </div>
-          <DocsPageFooter
+          {!isBlogIndex && <DocsPageFooter
             route={route}
             nextRoute={nextRoute}
             prevRoute={prevRoute}
-          />
+          />}
         </div>
       </div>
     );

@@ -924,7 +924,7 @@ const Report = memo(function Report({ item }) {
 
   return (
     <figure>
-      <Chart data={data} />
+      <Chart onClick={handleClick} />
     </figure>
   );
 });

@@ -802,7 +802,8 @@ const serverUrl = 'https://localhost:1234';
 
 function ChatRoom({ roomId }) {
   const [message, setMessage] = useState('');
-    
+
+  // Temporarily disable the linter to demonstrate the problem
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const options = {
     serverUrl: serverUrl,

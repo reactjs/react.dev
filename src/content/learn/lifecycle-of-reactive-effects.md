@@ -672,7 +672,7 @@ This may look like a React error, but really React is pointing out a bug in your
 To fix the bug, follow the linter's suggestion to specify `roomId` and `serverUrl` as dependencies of your Effect:
 
 ```js {9}
-function ChatRoom({ roomId }) {
+function ChatRoom({ roomId }) { // roomId is reactive
   const [serverUrl, setServerUrl] = useState('https://localhost:1234'); // serverUrl is reactive
   useEffect(() => {
     const connection = createConnection(serverUrl, roomId);

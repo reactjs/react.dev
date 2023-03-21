@@ -35,6 +35,8 @@ jobs:
         run: |
           echo 'body<<EOF' >> $GITHUB_OUTPUT
           echo '' >>  $GITHUB_OUTPUT
+          echo '## Size changes' >>  $GITHUB_OUTPUT
+          echo '' >>  $GITHUB_OUTPUT
           echo '<details>' >>  $GITHUB_OUTPUT
           echo '' >>  $GITHUB_OUTPUT
           cat analysis_comment.txt/__bundle_analysis_comment.txt >> $GITHUB_OUTPUT

@@ -74,7 +74,6 @@ function useDocSearchKeyboardEvents({
         }
       }
       if (
-        (event.key === 'Enter' && isOpen) ||
         (event.key === 'Escape' && isOpen) ||
         (event.key === 'k' && (event.metaKey || event.ctrlKey)) ||
         (!isEditingContent(event) && event.key === '/' && !isOpen)

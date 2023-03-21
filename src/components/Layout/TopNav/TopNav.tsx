@@ -247,9 +247,6 @@ export default function TopNav({
               </div>
               <div className="flex w-full md:hidden"></div>
               <div className="flex items-center -space-x-2.5 xs:space-x-0 ">
-                <div className="flex md:hidden">
-                  <Search />
-                </div>
                 <div className="flex dark:hidden">
                   <button
                     type="button"

@@ -1690,7 +1690,7 @@ Now that you define the `createOptions` function inside the Effect, the Effect i
 
 <Wip>
 
-This section describes an **experimental API that has not yet been released** in a stable vesion of React.
+This section describes an **experimental API that has not yet been released** in a stable version of React.
 
 </Wip>
 

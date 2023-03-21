@@ -92,7 +92,7 @@ app.use('/', (request, response) => {
 });
 ```
 
-Along with the <CodeStep step={1}>root component</CodeStep>, you need to provide a list of <CodeStep step={2}>boostrap `<script>` paths</CodeStep>. Your root component should return **the entire document including the root `<html>` tag.**
+Along with the <CodeStep step={1}>root component</CodeStep>, you need to provide a list of <CodeStep step={2}>bootstrap `<script>` paths</CodeStep>. Your root component should return **the entire document including the root `<html>` tag.**
 
 For example, it might look like this:
 

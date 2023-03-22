@@ -83,7 +83,7 @@ Offscreen rendering is an upcoming capability in React for rendering screens in 
 - A virtualized list component can prerender additional rows above and below the visible window.
 - When opening a modal or popup, the rest of the app can be put into "background" mode so that events and updates are disabled for everything except the modal.
 
-Most React developers will not interact with React's offscreen APIs directly. Instead, library developers will integrate offscreen rendering into their components, and your router and UI will automatically take advantage of the capability.
+Most React developers will not interact with React's offscreen APIs directly. Instead, offscreen rendering will be integrated into things like routers and UI libraries, and then developers who use those libraries will automatically benefit without additional work.
 
 The idea is that you should be able to render any React tree offscreen without changing the way you write your components. When a component is rendered offscreen, it does not actually *mount* until the component becomes visible — its effects are not fired. For example, if a component uses `useEffect` to log analytics when it appears for the first time, prerendering won't mess up the accuracy of those analytics. Similarly, when a component goes offscreen, its effects are unmounted, too. A key feature of offscreen rendering is that you can toggle the visibility of a component without losing its state.
 

@@ -16,7 +16,7 @@ We’ve made good progress on many of the projects we covered in our [last updat
 
 *In React Labs posts, we write about ongoing research and projects in development. Though not everything in these posts may eventually ship, we want to share with you the problem spaces we’re actively thinking about, and what we’ve learned so far.*
 
-One guiding philosophy the React team believes in is in “[trusting the theory](https://overreacted.io/what-are-the-react-team-principles/#trust-the-theory)”. The research we undertake is often in the pursuit of a long term theory, and we’re willing to invest the effort to get there even if it might take longer. This time around, we’re sharing greater details on some of the lessons and theory that underpin these projects.
+One guiding philosophy the React team believes in is in "[trusting the theory](https://overreacted.io/what-are-the-react-team-principles/#trust-the-theory)". The research we undertake is often in the pursuit of a long term theory, and we’re willing to invest the effort to get there even if it might take longer. This time around, we’re sharing greater details on some of the lessons and theory that underpin these projects.
 
 As before, this isn’t a roadmap with clear timelines, but we are hopeful that we’ll be able to continue sharing greater details on these projects with you in the coming months.
 
@@ -73,7 +73,7 @@ One area of further research is how these new capabilities might better serve cs
 
 ## React Optimizing Compiler {/*react-optimizing-compiler*/}
 
-Since our previous update we’ve been actively iterating on the design of React Forget, an optimizing compiler for React. We’ve previously talked about it as an “auto-memoizing compiler”, and that is true in some sense. But building the compiler has helped us understand React’s programming model even more deeply. A better way to understand React Forget is as an automatic *reactivity* compiler.
+Since our previous update we’ve been actively iterating on the design of React Forget, an optimizing compiler for React. We’ve previously talked about it as an "auto-memoizing compiler", and that is true in some sense. But building the compiler has helped us understand React’s programming model even more deeply. A better way to understand React Forget is as an automatic *reactivity* compiler.
 
 The core idea of React is that developers define their UI as a function of the current state. You work with plain JavaScript values — numbers, strings, arrays, objects — and use standard JavaScript idioms — if/else, for, etc — to describe your component logic. The mental model is that React will re-render whenever the application state changes. We believe this simple mental model and keeping close to JavaScript semantics is an important principle in React’s programming model.
 

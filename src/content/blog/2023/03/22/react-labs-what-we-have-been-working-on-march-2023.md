@@ -20,7 +20,7 @@ React Server Components (or RSC) is a new application architecture designed by t
 
 We've first shared our research on RSC in an [introductory talk](/blog/2020/12/21/data-fetching-with-react-server-components) and an [RFC](https://github.com/reactjs/rfcs/pull/188). To recap them, we are introducing a new kind of components--Server Components--that run ahead of time and are excluded from the browser JavaScript bundle. Server Components can run during the build, letting you read from the filesystem or fetch static content. They can also run on the server, letting you access your data layer without having to build an API. You can pass data by props from Server Components to the interactive Client components in the browser.
 
-The RSC architecture is to combine the simple "request/response" mental model of the server-centric Multi-Page Apps with the seamless interactivity of client-centric Single-Page Apps, taking the best parts of both.
+The RSC architecture combines the simple "request/response" mental model of the server-centric Multi-Page Apps with the seamless interactivity of client-centric Single-Page Apps, taking the best parts of both.
 
 Since our last update, we have merged the [React Server Components RFC](https://github.com/reactjs/rfcs/blob/main/text/0188-server-components.md) to ratify the proposal. We resolved outstanding issues with the [React Server Module Conventions](https://github.com/reactjs/rfcs/blob/main/text/0227-server-module-conventions.md) proposal, and reached consensus with our partners to go with the `"use client"` convention. These documents also act as specification for what an RSC-compatible implementation should support.
 

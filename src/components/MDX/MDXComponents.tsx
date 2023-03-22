@@ -30,6 +30,8 @@ import ButtonLink from 'components/ButtonLink';
 import {TocContext} from './TocContext';
 import type {Toc, TocItem} from './TocContext';
 import {TeamMember} from './TeamMember';
+import NextImage from 'next/image';
+import styles from './MDXComponents.module.css';
 
 function CodeStep({children, step}: {children: any; step: number}) {
   return (
@@ -369,7 +371,20 @@ function YouTubeIframe(props: any) {
 }
 
 function Image(props: any) {
-  return <img className="max-w-[calc(min(700px,100%))]" {...props} />;
+  return (
+    <div
+      style={{width: `${props.width}px`}}
+      className={styles.imageContainer + ` mx-auto`}>
+      <NextImage
+        {...props}
+        src={
+          props?.src?.startsWith('/') ? props.src : props.src.replace('..', '')
+        }
+        layout="fill"
+        className={styles.image}
+      />
+    </div>
+  );
 }
 
 export const MDXComponents = {

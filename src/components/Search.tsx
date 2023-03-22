@@ -7,7 +7,14 @@ import {IconSearch} from 'components/Icon/IconSearch';
 import Head from 'next/head';
 import Link from 'next/link';
 import Router from 'next/router';
-import {useState, useCallback, useEffect} from 'react';
+import {
+  lazy,
+  Suspense,
+  useState,
+  startTransition,
+  useCallback,
+  useEffect,
+} from 'react';
 import * as React from 'react';
 import {createPortal} from 'react-dom';
 import {siteConfig} from 'siteConfig';
@@ -98,7 +105,13 @@ const options = {
   apiKey: siteConfig.algolia.apiKey,
   indexName: siteConfig.algolia.indexName,
 };
-let DocSearchModal: any = null;
+
+const DocSearchModal: any = lazy(() =>
+  import('@docsearch/react/modal').then((mod) => ({
+    default: mod.DocSearchModal,
+  }))
+);
+
 export function Search({
   searchParameters = {
     hitsPerPage: 5,
@@ -106,37 +119,15 @@ export function Search({
 }: SearchProps) {
   const [isShowing, setIsShowing] = useState(false);
 
-  const importDocSearchModalIfNeeded = useCallback(
-    function importDocSearchModalIfNeeded() {
-      if (DocSearchModal) {
-        return Promise.resolve();
-      }
+  const onOpen = useCallback(() => {
+    startTransition(() => {
+      setIsShowing(true);
+    });
+  }, []);
 
-      // @ts-ignore
-      return import('@docsearch/react/modal').then(
-        ({DocSearchModal: Modal}) => {
-          DocSearchModal = Modal;
-        }
-      );
-    },
-    []
-  );
-
-  const onOpen = useCallback(
-    function onOpen() {
-      importDocSearchModalIfNeeded().then(() => {
-        setIsShowing(true);
-      });
-    },
-    [importDocSearchModalIfNeeded, setIsShowing]
-  );
-
-  const onClose = useCallback(
-    function onClose() {
-      setIsShowing(false);
-    },
-    [setIsShowing]
-  );
+  const onClose = useCallback(() => {
+    setIsShowing(false);
+  }, []);
 
   useDocSearchKeyboardEvents({isOpen: isShowing, onOpen, onClose});
 

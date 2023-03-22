@@ -19,7 +19,6 @@ export interface SearchProps {
   indexName?: string;
   searchParameters?: any;
   renderModal?: boolean;
-  fullsize?: boolean;
 }
 
 function Hit({hit, children}: any) {
@@ -104,7 +103,6 @@ export function Search({
   searchParameters = {
     hitsPerPage: 5,
   },
-  fullsize,
 }: SearchProps) {
   const [isShowing, setIsShowing] = useState(false);
 
@@ -151,21 +149,18 @@ export function Search({
         />
       </Head>
 
-      {!fullsize && (
-        <button
-          aria-label="Search"
-          type="button"
-          className="active:scale-95 transition-transform flex md:hidden w-12 h-12 rounded-full items-center justify-center hover:bg-secondary-button hover:dark:bg-secondary-button-dark outline-link"
-          onClick={onOpen}>
-          <IconSearch className="align-middle w-5 h-5" />
-        </button>
-      )}
+      <button
+        aria-label="Search"
+        type="button"
+        className="active:scale-95 transition-transform flex md:hidden w-12 h-12 rounded-full items-center justify-center hover:bg-secondary-button hover:dark:bg-secondary-button-dark outline-link"
+        onClick={onOpen}>
+        <IconSearch className="align-middle w-5 h-5" />
+      </button>
 
       <button
         type="button"
         className={cn(
-          '3xl:w-[56rem] 3xl:mx-0 relative pl-4 pr-1 py-1 h-10 bg-gray-30/20 dark:bg-gray-40/20 outline-none  focus:outline-link betterhover:hover:bg-opacity-80 pointer items-center text-left w-full text-gray-30 rounded-full align-middle text-base',
-          fullsize ? 'flex' : 'hidden md:flex'
+          'hidden md:flex 3xl:w-[56rem] 3xl:mx-0 relative pl-4 pr-1 py-1 h-10 bg-gray-30/20 dark:bg-gray-40/20 outline-none  focus:outline-link betterhover:hover:bg-opacity-80 pointer items-center text-left w-full text-gray-30 rounded-full align-middle text-base'
         )}
         onClick={onOpen}>
         <IconSearch className="mr-3 align-middle text-gray-30 shrink-0 group-betterhover:hover:text-gray-70" />

@@ -32,17 +32,27 @@ React Server Components has shipped in [Next.js App Router](/learn/start-a-new-r
 
 We generally recommend using an existing framework, but if you need to build your own custom framework, it is possible. Building your own RSC-compatible framework is not as easy as we'd like it to be, mainly due to the deep bundler integration needed. The current generation of bundlers are great for use on the client, but they weren't designed with first-class support for splitting a single module graph between the server and the client. This is why we're now partnering directly with bundler developers to get the primitives for RSC built-in.
 
-## Asset Loading and Document Metadata {/*asset-loading-and-document-metadata*/}
+## Asset Loading {/*asset-loading*/}
 
-If you use React to render your entire app, whether with Server Components or just with the new [Streaming SSR](/reference/react-dom/server/renderToReadableStream) capabilities of React 18, you need to have some way to manage the tags that go in the document `<head>`.  These include assets such as scripts, stylesheets, and fonts, and also document metadata such as the `<title>` tag and `<meta>` tags. In addition to these tags that go in the document `<head>`, you need a good way to pre-load images and other assets that are needed by components, all in a manner that gives a deliberate loading experience and the best possible performance.
+[Suspense](/reference/react/Suspense) lets you specify what to display on the screen while the data or code for your components is still being loaded. This lets your users progressively see more content while the page is loading, and later during router navigations that load more data and code. However, from the user's perspective, data loading and rendering do not tell the whole story when considering whether new content is ready. By default, browsers load stylesheets, fonts, and images independently, which can lead to UI jumps and consecutive layout shifts.
 
-It's important for scalability that each component defines everything that it needs to work, rather than being coupled to parent components. But you don't want each component directly manipulating the document head or fetching images directly. You want to coordinate and de-duplicate them across every component. And any `<head>` tags shouldn't be rendered within the individual component's output, but in the document head, which has to be streamed *first*, before the body even begins. Additionally, one of our goals is to not require components to care whether they're running on the client or the server--React should handle the details.
+We're working to fully integrate Suspense with the loading lifecycle of stylesheets, fonts, and images, so that React takes them into account to determine whether the content is ready to be displayed. Without any change to the way you author your React components, updates will behave in a more coherent and pleasing manner. As an optimization, we will also provide a manual way to preload assets like fonts directly from components.
 
-People have addressed this in various ways: you can render head-based tags inline in the body and then use client JavaScript to hoist them up to the head. Or you can render in two passes, doing a first pass to collect the head information and then rendering again with the stuff you collected at the top. Unfortunately this last solution isn't compatible with Streaming SSR, since it prevents you from flushing anything until you've already rendered the entire body once through. And often this metadata is used by clients that don't execute JavaScript, so the client hoisting solution isn't ideal either. We need something that works with streaming and doesn't require client code. It should also work without even rendering the component, so that assets can be pre-loaded ahead of navigations.
+We currently implementing these features and will have more to share soon.
 
-We've created a solution that addresses all of these problems in a unified way. In short, tags like `<meta>`, `<link>`, and `<title>` anywhere in your component tree will be automatically deduplicated by React, preloaded during streaming, and inserted into the `<head>` automatically by React. We're publishing an RFC soon that describes the tradeoffs of this approach and the decision-making behind it.
+## Document Metadata {/*document-metadata*/}
 
-One area of further research is how these new capabilities might better serve CSS-in-JS libraries. We believe the solution we've already implemented will form a solid foundation for better interop between Server Components and CSS-in-JS. Stay tuned for future updates on that!
+Different pages and screens in your app may have different metadata like the `<title>` tag, description, and other `<meta>` tags specific to this screen. From the maintenance perspective, it's more scalable to keep this information close to the React component for that page or screen. However, the HTML tags for this metadata need to be in the document `<head>` which is typically rendered in a component at the very root of your app.
+
+Today, people solve this problem with one of the two techniques.
+
+One technique is to render a special third-party component that moves `<title>`, `<meta>`, and other tags inside it into the document `<head>`. This works for major browsers but there are many clients which do not run client-side JavaScript, such as Open Graph parsers, and so this technique is not universally suitable.
+
+Another technique is to server-render the page in two parts. First, the main content is rendered and all such tags are collected. Then, the `<head>` is rendered with these tags. Finally, the `<head>` and the main content are sent to the browser. This approach works, but it prevents you from taking advantage of the [React 18's Streaming Server Renderer](/reference/react-dom/server/renderToReadableStream) because you'd have to wait for all content to render you can send the `<head>`.
+
+This is why we've created a solution that addresses all of these problems in a unified way. In short, tags like `<meta>`, `<link>`, and `<title>` anywhere in your component tree will be automatically deduplicated by React, preloaded during streaming, and inserted into the `<head>` automatically as they are discovered in the tree. This would work the same way in all environments, including fully client-side code, SSR, and in the future, RSC.
+
+We will share more details about this soon.
 
 ## React Optimizing Compiler {/*react-optimizing-compiler*/}
 

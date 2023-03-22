@@ -16,7 +16,7 @@ We’ve made good progress on many of the projects we covered in our [last updat
 
 *In React Labs posts, we write about ongoing research and projects in development. Though not everything in these posts may eventually ship, we want to share with you the problem spaces we’re actively thinking about, and what we’ve learned so far.*
 
-One guiding philosophy the React team believes is in ["trusting the theory"](https://overreacted.io/what-are-the-react-team-principles/#trust-the-theory). The research we undertake is often in the pursuit of a long term theory, and we’re willing to invest the effort to get there even if it might take longer. This time around, we’re sharing greater details on some of the lessons and theory that underpin these projects.
+One guiding philosophy the React team believes is in ["trusting the theory"](https://overreacted.io/what-are-the-react-team-principles/#trust-the-theory). The research we undertake is often in the pursuit of a long term theory, and we’re willing to invest the effort to get there even if it might take longer. This time around, we’re sharing more details on some of the lessons and theory that underpin these projects.
 
 As before, this isn’t a roadmap with clear timelines, but we are hopeful that we’ll be able to continue sharing greater details on these projects with you in the coming months.
 
@@ -26,7 +26,7 @@ As before, this isn’t a roadmap with clear timelines, but we are hopeful that 
 
 React Server Components, or RSC, let you run React components entirely on the server, without ever downloading them to the client or requiring hydration. They let you use client rendering for rich interactivity while minimizing payload sizes, and also simplify your app architecture.
 
-Since our last update, we have merged the [React Server Components (RSC) RFC](https://github.com/reactjs/rfcs/blob/main/text/0188-server-components.md) to ratify the proposal. We resolved outstanding issues with the [React Server Module Conventions](https://github.com/reactjs/rfcs/blob/main/text/0227-server-module-conventions.md) proposal, and reached consensus with our partners to go with the `"use client"` convention. These documents also act as specification for what an RSC-compatible implementation should support.
+Since our last update, we have merged the [React Server Components RFC](https://github.com/reactjs/rfcs/blob/main/text/0188-server-components.md) to ratify the proposal. We resolved outstanding issues with the [React Server Module Conventions](https://github.com/reactjs/rfcs/blob/main/text/0227-server-module-conventions.md) proposal, and reached consensus with our partners to go with the `"use client"` convention. These documents also act as specification for what an RSC-compatible implementation should support.
 
 The biggest change is that we introduced [`async` Components](https://github.com/reactjs/rfcs/pull/229) as the primary way to do data fetching from Server Components. We also plan to support data loading from the client by introducing a new hook called `use` that is conceptually similar to `await`.
 
@@ -89,8 +89,7 @@ The core of the compiler is almost completely decoupled from Babel, and the core
 
 As we refactored the compiler over the last few months, we wanted to focus on refining the core compilation model to ensure we could handle complexities such as conditionals, loops, reassignment, and mutation. However, JavaScript has a lot of ways to express each of those features: if/else, ternaries, for, for-in, for-of, etc. Trying to support the full language up-front would have delayed the point where we could validate the core model. Instead, we started with a small but representative subset of the language: let/const, if/else, for loops, objects, arrays, primitives, function calls, and a few other features. As we gained confidence in the core model and refined our internal abstractions, we expanded the supported language subset. We're also explicit about syntax we don't support, logging diagnostics and skipping compilation for unsupported input. We have utilities to try the compiler on our codebase and see what unsupported features are most common so we can prioritize those next. We'll continue incrementally expanding towards supporting the whole language.
 
-Making plain JavaScript reactive requires a very sophisticated compiler so that it can understand exactly what the code is doing. By taking this approach, we’re creating a system for reactivity within JavaScript that lets you write normal product code of any complexity, instead of being limited to some DSL for reactivity. You write a function that takes in data and returns a UI, just like React has always done.
-
+Making plain JavaScript in React components reactive requires a compiler with a deep understanding of semantics so that it can understand exactly what the code is doing. By taking this approach, we’re creating a system for reactivity within JavaScript that lets you write product code of any complexity with the full expressivity of the language, instead of being limited to a domain specific language.
 
 ## Offscreen Rendering {/*offscreen-rendering*/}
 

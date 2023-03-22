@@ -16,7 +16,7 @@ We’ve made good progress on many of the projects we covered in our [last updat
 
 *In React Labs posts, we write about ongoing research and projects in development. Though not everything in these posts may eventually ship, we want to share with you the problem spaces we’re actively thinking about, and what we’ve learned so far.*
 
-One guiding philosophy the React team believes in is in "[trusting the theory](https://overreacted.io/what-are-the-react-team-principles/#trust-the-theory)". The research we undertake is often in the pursuit of a long term theory, and we’re willing to invest the effort to get there even if it might take longer. This time around, we’re sharing greater details on some of the lessons and theory that underpin these projects.
+One guiding philosophy the React team believes in is in ["trusting the theory"](https://overreacted.io/what-are-the-react-team-principles/#trust-the-theory). The research we undertake is often in the pursuit of a long term theory, and we’re willing to invest the effort to get there even if it might take longer. This time around, we’re sharing greater details on some of the lessons and theory that underpin these projects.
 
 As before, this isn’t a roadmap with clear timelines, but we are hopeful that we’ll be able to continue sharing greater details on these projects with you in the coming months.
 

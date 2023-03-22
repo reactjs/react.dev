@@ -2,7 +2,14 @@
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
 
-import {useState, useRef, useEffect, Suspense} from 'react';
+import {
+  useState,
+  useRef,
+  useCallback,
+  useEffect,
+  startTransition,
+  Suspense,
+} from 'react';
 import * as React from 'react';
 import cn from 'classnames';
 import NextLink from 'next/link';
@@ -11,6 +18,7 @@ import {disableBodyScroll, enableBodyScroll} from 'body-scroll-lock';
 
 import {IconClose} from 'components/Icon/IconClose';
 import {IconHamburger} from 'components/Icon/IconHamburger';
+import {IconSearch} from 'components/Icon/IconSearch';
 import {Search} from 'components/Search';
 import {Logo} from '../../Logo';
 import {Feedback} from '../Feedback';
@@ -112,6 +120,18 @@ function NavItem({url, isActive, children}: any) {
   );
 }
 
+function Kbd(props: {children?: React.ReactNode; wide?: boolean}) {
+  const {wide, ...rest} = props;
+  const width = wide ? 'w-10' : 'w-5';
+
+  return (
+    <kbd
+      className={`${width} h-5 border border-transparent mr-1 bg-wash dark:bg-wash-dark text-gray-30 align-middle p-0 inline-flex justify-center items-center text-xs text-center rounded-md`}
+      {...rest}
+    />
+  );
+}
+
 export default function TopNav({
   routeTree,
   breadcrumbs,
@@ -183,8 +203,23 @@ export default function TopNav({
     return () => observer.disconnect();
   }, []);
 
+  const [showSearch, setShowSearch] = useState(false);
+  const onOpenSearch = useCallback(() => {
+    startTransition(() => {
+      setShowSearch(true);
+    });
+  }, []);
+  const onCloseSearch = useCallback(() => {
+    setShowSearch(false);
+  }, []);
+
   return (
     <>
+      <Search
+        isOpen={showSearch}
+        onOpen={onOpenSearch}
+        onClose={onCloseSearch}
+      />
       <div ref={scrollDetectorRef} />
       <div
         className={cn(
@@ -226,7 +261,22 @@ export default function TopNav({
               </div>
             </div>
             <div className="hidden md:flex flex-1 justify-center items-center w-full 3xl:w-auto 3xl:shrink-0 3xl:justify-center">
-              <Search />
+              <button
+                type="button"
+                className={cn(
+                  'flex 3xl:w-[56rem] 3xl:mx-0 relative pl-4 pr-1 py-1 h-10 bg-gray-30/20 dark:bg-gray-40/20 outline-none focus:outline-link betterhover:hover:bg-opacity-80 pointer items-center text-left w-full text-gray-30 rounded-full align-middle text-base'
+                )}
+                onClick={onOpenSearch}>
+                <IconSearch className="mr-3 align-middle text-gray-30 shrink-0 group-betterhover:hover:text-gray-70" />
+                Search
+                <span className="ml-auto hidden sm:flex item-center mr-1">
+                  <Kbd data-platform="mac">⌘</Kbd>
+                  <Kbd data-platform="win" wide>
+                    Ctrl
+                  </Kbd>
+                  <Kbd>K</Kbd>
+                </span>
+              </button>
             </div>
             <div className="text-base justify-center items-center gap-1.5 flex 3xl:flex-1 flex-row 3xl:justify-end">
               <div className="mx-2.5 gap-1.5 hidden lg:flex">
@@ -248,7 +298,13 @@ export default function TopNav({
               <div className="flex w-full md:hidden"></div>
               <div className="flex items-center -space-x-2.5 xs:space-x-0 ">
                 <div className="flex md:hidden">
-                  <Search />
+                  <button
+                    aria-label="Search"
+                    type="button"
+                    className="active:scale-95 transition-transform flex md:hidden w-12 h-12 rounded-full items-center justify-center hover:bg-secondary-button hover:dark:bg-secondary-button-dark outline-link"
+                    onClick={onOpenSearch}>
+                    <IconSearch className="align-middle w-5 h-5" />
+                  </button>
                 </div>
                 <div className="flex dark:hidden">
                   <button

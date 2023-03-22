@@ -38,38 +38,15 @@ We generally recommend using an existing framework, but if you have need to buil
 
 ## Asset Loading and Document Metadata {/*asset-loading-and-document-metadata*/}
 
---
-new attempt:
-
 If you use React to render your entire app, whether with Server Components or just with the new Streaming SSR capabilities of React 18, you need to have some way to manage the tags that go in the document `<head>`.  These include assets such as scripts, stylesheets, and fonts, and also document metadata such as the `<title>` tag and `<meta>` tags. In addition to these tags that go in the document `<head>`, you need a good way to pre-load images and other assets that are needed by components, all in a manner that gives a deliberate loading experience and the best possible performance.
 
-It’s important for composition and scalability that each component define everything that it needs to work, rather than being coupled to parent components. But you don’t want each component directly manipulating the document head or fetching images directly. You want to coordinate and de-duplicate them across every component. And any `<head>` tags shouldn’t be rendered within the individual component’s output, but in the document head, which has to be streamed *first*, before the body even begins.
+It’s important for composition and scalability that each component define everything that it needs to work, rather than being coupled to parent components. But you don’t want each component directly manipulating the document head or fetching images directly. You want to coordinate and de-duplicate them across every component. And any `<head>` tags shouldn’t be rendered within the individual component’s output, but in the document head, which has to be streamed *first*, before the body even begins. Additionally, one of our goals is to not require components to care whether they're running on the client or the server – React should handle the details.
 
 People have addressed this in various ways: you can render head-based tags inline in the body and then use client JavaScript to hoist them up to the head. Or you can render in two passes, doing a first pass to collect the head information and then rendering again with the stuff you collected at the top. Unfortunately this last solution isn't compatible with Streaming SSR, since it prevents you from flushing anything until you've already rendered the entire body once through. And often this metadata is used by clients that don't execute JavaScript, so the client hoisting solution isn't ideal either. We need something that works with streaming and doesn't require client code. It should also work without even rendering the component, so that assets can be pre-loaded ahead of navigations.
-
-Finally, one of our goals is to not require components to care whether they're running on the client or the server. React should handle the details.
 
 We’ve created a solution that addresses all of these problems in a unified way. We’re publishing an RFC soon that describes the tradeoffs of this approach and the decision-making behind it.
 
 One area of further research is how these new capabilities might better serve CSS-in-JS libraries. We believe the solution we’ve already implemented will form a solid foundation for better interop between Server Components and CSS-in-JS. Stay tuned for future updates on that!
-
---
-
-In our last update, we said we were trying to make asset loading for things like scripts and stylesheets more compatible with client navigations and streaming Server Side Rendering (streaming SSR). Since then we’ve made progress on a working implementation, and expanded it to include any element that goes in the document `<head>`, such as `<meta>` tags for document metadata, or the `<title>` tag. These are challenging to support with streaming SSR since the `<head`> has to come before the `<body>`, but it may be components deep in the tree that determine what `<head>` elements are wanted — since having the resources that components depend on co-located with each component is an important part of making applications out of composable components.
-
-For example, let's say I want to use a certain stylesheet and script in multiple components, but I don't want to load them more than once. Or maybe I want to describe the page title and description in a component specific to a certain route, but that component is buried deep inside other components that act as layouts or context for some or all routes. In these cases, I have data that's specific to certain components, but I may want them to only render once or render somewhere else in the document, like the document head.
-
-This is a problem with SSR because the document head has to come before the body. People have addressed this in various ways: you can render head-based tags inline in the body and then use client JavaScript to hoist them up to the head. Or you can render in two passes, doing a first pass to collect the head information and then rendering again with the stuff you collected at the top. Unfortunately this last solution isn't compatible with Streaming SSR, since it prevents you from flushing anything until you've already rendered the entire body once through. And often this metadata is used by clients that don't execute JavaScript, so the client hoisting solution isn't ideal either. We need something that works with streaming and doesn't require client code.
-
-There are also times when rendering something isn’t the best way to model the dependency. For instance, if you are preparing to navigate to another page and you know certain fonts will be used and should be preloaded. Today, you can render a link preload, however if the transition is blocked by data loading, the browser won’t see this preload until it’s already needed. A new approach is required that allows applications to reason about external resources loading independently from rendering them as elements.
-
-~~Since the last update, we have implemented what we describe as hoistable elements and hoistable resources which unlocks the ability to colocate loadable assets and Document metadata with the components that depend on them.~~ ~~~~ We also have an implementation of some resource loading methods in `react-dom` for cases better served outside of rendering elements. ~~In the near future we will publish an RFC outlining these implementations, their tradeoffs, and the decision-making that went into the design.~~
-
-We have implemented primitives called *hoistable elements* and *hoistable resources* to solve these problems, letting us co-locate loadable assets and document metadata with the components that need them, in a way that’s compatible with streaming SSR and doesn’t require client code for document metadata. We’re publishing an RFC soon that describes the tradeoffs of this approach and the decision-making behind it.
-
-~~One of the goals of the research we are doing here is to make the solutions we come up with for these problems not require awareness of the runtime your components are running in. In an ideal world, there would be no `isServer` or `isClient` checks or checking if `window` exists to figure out what behavior is needed to maximize performance. You just write your components to run anywhere, and React does the right thing.~~ One of our goals is to not require components to care whether they're running on the client or the server. React should handle the details.
-
-One area of further research is how these new capabilities might better serve css-in-js libraries. We believe there is a lot of reason to think the solutions we’ve already implemented will form a solid foundation for better interop between React Server Components and streaming server rendering with css-in-js. Stay tuned for future updates on that!
 
 ## React Optimizing Compiler {/*react-optimizing-compiler*/}
 

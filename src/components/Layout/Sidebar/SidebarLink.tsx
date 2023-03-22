@@ -22,6 +22,9 @@ interface SidebarLinkProps {
   hideArrow?: boolean;
   isPending: boolean;
 }
+interface HTMLAnchorExtended extends HTMLAnchorElement {
+  scrollIntoViewIfNeeded?: any;
+}
 
 export function SidebarLink({
   href,
@@ -34,13 +37,11 @@ export function SidebarLink({
   hideArrow,
   isPending,
 }: SidebarLinkProps) {
-  const ref = useRef<HTMLAnchorElement>(null);
+  const ref = useRef<HTMLAnchorExtended>(null);
 
   useEffect(() => {
     if (selected && ref && ref.current) {
-      // @ts-ignore
       if (typeof ref.current.scrollIntoViewIfNeeded === 'function') {
-        // @ts-ignore
         ref.current.scrollIntoViewIfNeeded();
       }
     }

@@ -12,7 +12,9 @@ This blog is the official source for the updates from the React team. Anything i
 
 
 <BlogCard title="React Labs: What We've Been Working On – March 2023" date="March 22, 2023" url="/blog/2023/03/22/react-labs-what-we-have-been-working-on-march-2023">
-We’ve made good progress on many of the projects we covered in our last update. In this post we share updates on Server Components, asset and document metadata loading, progress on our experimental compiler, offscreen rendering, and Transition Tracing.
+
+In React Labs posts, we write about projects in active research and development. Since our last update, we've made significant progress on React Server Components, Asset Loading, Optimizing Compiler, Offscreen Rendering, and Transition Tracing, and we'd like to share what we learned.
+
 </BlogCard>
 
 

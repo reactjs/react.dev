@@ -373,8 +373,12 @@ function YouTubeIframe(props: any) {
 function Image(props: any) {
   return (
     <div
-      style={{width: `${props.width}px`, maxWidth: 'calc(min(700px,100%))'}}
-      className={styles.imageContainer + ` mx-auto`}>
+      style={{
+        width: `${props.width}px`,
+        maxWidth: 'calc(min(700px,100%))',
+        ...props?.style,
+      }}
+      className={styles.imageContainer}>
       <NextImage
         {...props}
         src={

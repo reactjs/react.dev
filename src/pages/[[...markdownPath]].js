@@ -11,6 +11,7 @@ import sidebarLearn from '../sidebarLearn.json';
 import sidebarReference from '../sidebarReference.json';
 import sidebarCommunity from '../sidebarCommunity.json';
 import sidebarBlog from '../sidebarBlog.json';
+import imgPath from 'path';
 
 export default function Layout({content, toc, meta}) {
   const parsedContent = useMemo(
@@ -102,6 +103,7 @@ const DISK_CACHE_BREAKER = 7;
 // Put MDX output into JSON for client.
 export async function getStaticProps(context) {
   const fs = require('fs');
+  const imageSize = require('image-size');
   const {
     prepareMDX,
     PREPARE_MDX_CACHE_BREAKER,
@@ -227,9 +229,19 @@ export async function getStaticProps(context) {
   // Serialize a server React tree node to JSON.
   function stringifyNodeOnServer(key, val) {
     if (val != null && val.$$typeof === Symbol.for('react.element')) {
+
+      // Get image resolution: height and width
+      let res={};
+      if (val['type'] === 'img') {
+        const src = val?.props?.src;
+        res = src? imageSize(
+          imgPath.join(process.cwd(), "public", src.replace('..', ''))
+        ):undefined;
+      }
+
       // Remove fake MDX props.
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      const {mdxType, originalType, parentName, ...cleanProps} = val.props;
+      const {mdxType, originalType, parentName, type, ...cleanProps} = { ...res, ...val.props};
       return [
         '$r',
         typeof val.type === 'string' ? val.type : mdxType,

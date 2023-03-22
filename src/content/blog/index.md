@@ -11,6 +11,11 @@ This blog is the official source for the updates from the React team. Anything i
 <div className="sm:-mx-5 flex flex-col gap-5 mt-12">
 
 
+<BlogCard title="React Labs: What We've Been Working On – March 2023" date="March 22, 2023" url="/blog/2023/03/22/react-labs-what-we-have-been-working-on-march-2023">
+We’ve made good progress on many of the projects we covered in our [last update](https://react.dev/blog/2022/06/15/react-labs-what-we-have-been-working-on-june-2022). We’ve learned many lessons throughout the process of working on these projects and we’re excited to share them with you!
+</BlogCard>
+
+
 <BlogCard title="Introducing react.dev" date="March 16, 2023" url="/blog/2023/03/16/introducing-react-dev">
 
 Today we are thrilled to launch react.dev, the new home for React and its documentation. In this post, we would like to give you a tour of the new site.

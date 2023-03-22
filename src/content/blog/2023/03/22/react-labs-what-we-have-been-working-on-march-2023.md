@@ -34,11 +34,11 @@ We generally recommend using an existing framework, but if you need to build you
 
 ## Asset Loading {/*asset-loading*/}
 
-[Suspense](/reference/react/Suspense) lets you specify what to display on the screen while the data or code for your components is still being loaded. This lets your users progressively see more content while the page is loading, and later during router navigations that load more data and code. However, from the user's perspective, data loading and rendering do not tell the whole story when considering whether new content is ready. By default, browsers load stylesheets, fonts, and images independently, which can lead to UI jumps and consecutive layout shifts.
+[Suspense](/reference/react/Suspense) lets you specify what to display on the screen while the data or code for your components is still being loaded. This lets your users progressively see more content while the page is loading as well as during the router navigations that load more data and code. However, from the user's perspective, data loading and rendering do not tell the whole story when considering whether new content is ready. By default, browsers load stylesheets, fonts, and images independently, which can lead to UI jumps and consecutive layout shifts.
 
 We're working to fully integrate Suspense with the loading lifecycle of stylesheets, fonts, and images, so that React takes them into account to determine whether the content is ready to be displayed. Without any change to the way you author your React components, updates will behave in a more coherent and pleasing manner. As an optimization, we will also provide a manual way to preload assets like fonts directly from components.
 
-We currently implementing these features and will have more to share soon.
+We are currently implementing these features and will have more to share soon.
 
 ## Document Metadata {/*document-metadata*/}
 
@@ -50,13 +50,11 @@ One technique is to render a special third-party component that moves `<title>`,
 
 Another technique is to server-render the page in two parts. First, the main content is rendered and all such tags are collected. Then, the `<head>` is rendered with these tags. Finally, the `<head>` and the main content are sent to the browser. This approach works, but it prevents you from taking advantage of the [React 18's Streaming Server Renderer](/reference/react-dom/server/renderToReadableStream) because you'd have to wait for all content to render you can send the `<head>`.
 
-This is why we've created a solution that addresses all of these problems in a unified way. In short, tags like `<meta>`, `<link>`, and `<title>` anywhere in your component tree will be automatically deduplicated by React, preloaded during streaming, and inserted into the `<head>` automatically as they are discovered in the tree. This would work the same way in all environments, including fully client-side code, SSR, and in the future, RSC.
-
-We will share more details about this soon.
+This is why we're adding built-in support for rendering `<title>` and `<meta>` tags anywhere in your component tree out of the box. It would work the same way in all environments, including fully client-side code, SSR, and in the future, RSC. We will share more details about this soon.
 
 ## React Optimizing Compiler {/*react-optimizing-compiler*/}
 
-Since our previous update we've been actively iterating on the design of React Forget, an optimizing compiler for React. We've previously talked about it as an "auto-memoizing compiler", and that is true in some sense. But building the compiler has helped us understand React's programming model even more deeply. A better way to understand React Forget is as an automatic *reactivity* compiler.
+Since our previous update we've been actively iterating on the design of [React Forget](/blog/2022/06/15/react-labs-what-we-have-been-working-on-june-2022#react-compiler), an optimizing compiler for React. We've previously talked about it as an "auto-memoizing compiler", and that is true in some sense. But building the compiler has helped us understand React's programming model even more deeply. A better way to understand React Forget is as an automatic *reactivity* compiler.
 
 The core idea of React is that developers define their UI as a function of the current state. You work with plain JavaScript values — numbers, strings, arrays, objects — and use standard JavaScript idioms — if/else, for, etc — to describe your component logic. The mental model is that React will re-render whenever the application state changes. We believe this simple mental model and keeping close to JavaScript semantics is an important principle in React's programming model.
 

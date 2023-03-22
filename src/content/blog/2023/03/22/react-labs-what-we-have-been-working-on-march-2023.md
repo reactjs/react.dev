@@ -2,7 +2,7 @@
 title: "React Labs: What We've Been Working On – March 2023"
 ---
 
-March 22, 2023 by [Joseph Savona](https://twitter.com/en_JS), [Josh Story](https://twitter.com/joshcstory), [Lauren Tan](https://twitter.com/potetotes), [Mengdi Chen](https://twitter.com/mengdi_en), [Samuel Susla](https://twitter.com/SamuelSusla), [Sathya Gunasekaran](https://twitter.com/_gsathya), and [Sebastian Markbåge](https://twitter.com/sebmarkbage)
+March 22, 2023 by [Joseph Savona](https://twitter.com/en_JS), [Josh Story](https://twitter.com/joshcstory), [Lauren Tan](https://twitter.com/potetotes), [Mengdi Chen](https://twitter.com/mengdi_en), [Samuel Susla](https://twitter.com/SamuelSusla), [Sathya Gunasekaran](https://twitter.com/_gsathya), [Sebastian Markbåge](https://twitter.com/sebmarkbage), and [Andrew Clark](https://twitter.com/acdlite)
 
 ---
 
@@ -70,11 +70,19 @@ Making plain JavaScript in React components reactive requires a compiler with a 
 
 ## Offscreen Rendering {/*offscreen-rendering*/}
 
-We’re researching an API that makes it easy to hide and show components while preserving their state, without additional performance overhead. One of the use cases we’ve been exploring is pre-rendering — so you can load and render screens in the background before they’re navigated to.
+Offscreen rendering is an upcoming capability in React for rendering screens in the background without additional performance overhead. You can think of it as a version of the [`content-visiblity` CSS property](https://developer.mozilla.org/en-US/docs/Web/CSS/content-visibility) that works not only for DOM elements but React components, too. During our research, we've discovered a variety of use cases:
 
-Since our last update, we’ve tested an experimental offscreen API internally at Meta when pre-rendering screens in React Native on Android and iOS. When a screen is pre-rendered in the background, we render it at a low priority and keep the app responsive to a user’s actions. The offscreen API only *mounts* components once they become visible, so all components work out of the box without the need to account for pre-rendering — for example, if a component logs analytics when it’s mounted, pre-rendering it won’t mess up the accuracy of those analytics.
+- A router can prerender screens in the background so that when a user navigates to them, they're instantly available.
+- A tab switching component can preserve the state of hidden tabs, so the user can switch between them without losing their progress.
+- A virtualized list component can prerender additional rows above and below the visible window.
+- When opening a modal or popup, the rest of the app can be put into "background" mode so that events and updates are disabled for everything except the modal.
 
-Currently we're researching different modes to control behavior ranging from fully automatic to fully manual. These support use cases like pre-rendering, virtualized lists, or background content.
+Most React developers will not interact with React's offscreen APIs directly. Instead, library developers will integrate offscreen rendering into their components, and your router and UI will automatically take advantage of the capability.
+
+The idea is that you should be able to render any React tree offscreen without changing the way you write your components. When a component is rendered offscreen, it does not actually *mount* until the component becomes visible — its effects are not fired. For example, if a component uses `useEffect` to log analytics when it appears for the first time, prerendering won't mess up the accuracy of those analytics. Similarly, when a component is goes offscreen, its effects are unmounted, too. A key feature of offscreen rendering is that you can toggle the visibility of a component without losing its state.
+
+Since our last update, we’ve tested an experimental version of prerendering internally at Meta in our React Native apps on Android and iOS, with positive performance results. We've also made improved how offscreen rendering works with Suspense — suspending inside a offscreen tree will not trigger Suspense fallbacks. Our remaining work involves finalizing the primitives that are exposed to library developers. We expect to publish an RFC later this year, alongside an experimental API for testing and feedback.
+
 
 ## Transition Tracing {/*transition-tracing*/}
 

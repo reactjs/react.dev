@@ -1213,7 +1213,7 @@ Alternatively, you could render a collection of fragments which contain `<hr />`
 <Sandpack>
 
 ```js
-import React, { Fragment } from 'react';
+import { Fragment } from 'react';
 
 const poem = {
   lines: [

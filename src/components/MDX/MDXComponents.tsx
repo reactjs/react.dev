@@ -370,13 +370,15 @@ function YouTubeIframe(props: any) {
   );
 }
 
-function Image(props: any) {
+function Image(allProps: any) {
+  const {style, ...props} = allProps;
   return (
     <div
       style={{
-        width: `${props.width}px`,
+        position: 'relative',
+        width: !props?.width?'':`${props.width}px`,
         maxWidth: 'calc(min(700px,100%))',
-        ...props?.style,
+        ...style,
       }}
       className={styles.imageContainer}>
       <NextImage
@@ -384,7 +386,7 @@ function Image(props: any) {
         src={
           props?.src?.startsWith('/') ? props.src : props.src.replace('..', '')
         }
-        layout="fill"
+        layout={!props.height && !props.width ? 'fill' : 'intrinsic'}
         className={styles.image}
       />
     </div>

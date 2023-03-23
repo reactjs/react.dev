@@ -1382,7 +1382,7 @@ export default function App() {
         </button>
       </label>
       {show && <hr />}
-      {show && <ChatRoom />}
+      {show && <ChatRoom roomId={roomId}/>}
     </>
   );
 }

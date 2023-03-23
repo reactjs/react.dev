@@ -376,10 +376,10 @@ function Image(allProps: any) {
     <div
       style={{
         position: 'relative',
-        width: !width?'':`${width}px`,
-        maxHeight: !height?'':`${height}px`,
-        maxWidth: 'calc(min(${700}px,100%))',
-        ...(!style?{}:style),
+        width: !width ? '' : `${width}px`,
+        maxHeight: !height ? '' : `${height}px`,
+        maxWidth: 'calc(min(700px,100%))',
+        ...(!style ? {} : style),
       }}
       className={styles.imageContainer}>
       <NextImage

@@ -115,7 +115,7 @@ React does not prescribe how you add CSS files. In the simplest case, you'll add
 
 ## Displaying data {/*displaying-data*/}
 
-JSX lets you put markup into JavaScript. Curly braces let you "escape back" into JavaScript so that you can embed some variable from your code and display it to the user. For example, this will display `user.name`:
+JSX lets you put JavaScript into markup. Curly braces let you "escape back" into JavaScript so that you can embed some variable from your code and display it to the user. For example, this will display `user.name`:
 
 ```js {3}
 return (

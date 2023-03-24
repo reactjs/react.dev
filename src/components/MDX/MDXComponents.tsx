@@ -31,7 +31,6 @@ import {TocContext} from './TocContext';
 import type {Toc, TocItem} from './TocContext';
 import {TeamMember} from './TeamMember';
 import NextImage from 'next/image';
-import styles from './MDXComponents.module.css';
 
 function CodeStep({children, step}: {children: any; step: number}) {
   return (
@@ -375,20 +374,20 @@ function Image(allProps: any) {
   return (
     <div
       style={{
-        position: 'relative',
-        width: !width ? '' : `${width}px`,
-        maxHeight: !height ? '' : `${height}px`,
-        maxWidth: 'calc(min(700px,100%))',
         ...(!style ? {} : style),
+        ...(!width ? {} : {width: `${width}px`}),
+        ...(!height ? {} : {maxHeight: `${height}px`}),
       }}
-      className={styles.imageContainer}>
+      className={
+        'relative max-w-[calc(min(700px,100%))] NextImageWrapper:!static'
+      }>
       <NextImage
         {...props}
         src={
           props?.src?.startsWith('/') ? props.src : props.src.replace('..', '')
         }
         layout={'fill'}
-        className={styles.image}
+        className={'object-contain !w-full !relative !h-[unset]'}
       />
     </div>
   );

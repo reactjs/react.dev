@@ -147,5 +147,8 @@ module.exports = {
       },
     },
   },
-  plugins: [],
+  plugins: [
+    function ({ addVariant }) {
+        addVariant('NextImageWrapper', '& > span');
+    }],
 };

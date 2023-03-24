@@ -41,7 +41,7 @@ export default function SidebarNav({
         }}>
         <aside
           className={cn(
-            `lg:grow lg:flex flex-col w-full pb-8 lg:pb-0 lg:max-w-xs z-10 hidden lg:block`
+            `lg:grow flex-col w-full pb-8 lg:pb-0 lg:max-w-xs z-10 hidden lg:block`
           )}>
           <nav
             role="navigation"

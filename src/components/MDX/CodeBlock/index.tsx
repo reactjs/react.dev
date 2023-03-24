@@ -25,7 +25,7 @@ export default memo(function CodeBlockWrapper(props: {
       fallback={
         <pre
           className={cn(
-            'rounded-lg leading-6 h-full w-full overflow-x-auto flex items-center bg-wash dark:bg-gray-95 shadow-lg text-[13.6px] overflow-hidden',
+            'flex h-full w-full items-center overflow-hidden overflow-x-auto rounded-lg bg-wash text-[13.6px] leading-6 shadow-lg dark:bg-gray-95',
             !isFromPackageImport && 'my-8'
           )}>
           <div className="py-[18px] pl-5 font-normal ">

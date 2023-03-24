@@ -36,15 +36,15 @@ function CodeStep({children, step}: {children: any; step: number}) {
     <span
       data-step={step}
       className={cn(
-        'code-step bg-opacity-10 dark:bg-opacity-20 relative rounded px-[6px] py-[1.5px] border-b-[2px] border-opacity-60',
+        'code-step relative rounded border-b-[2px] border-opacity-60 bg-opacity-10 px-[6px] py-[1.5px] dark:bg-opacity-20',
         {
-          'bg-blue-40 border-blue-40 text-blue-60 dark:text-blue-30':
+          'border-blue-40 bg-blue-40 text-blue-60 dark:text-blue-30':
             step === 1,
-          'bg-yellow-40 border-yellow-40 text-yellow-60 dark:text-yellow-30':
+          'border-yellow-40 bg-yellow-40 text-yellow-60 dark:text-yellow-30':
             step === 2,
-          'bg-purple-40 border-purple-40 text-purple-60 dark:text-purple-30':
+          'border-purple-40 bg-purple-40 text-purple-60 dark:text-purple-30':
             step === 3,
-          'bg-green-40 border-green-40 text-green-60 dark:text-green-30':
+          'border-green-40 bg-green-40 text-green-60 dark:text-green-30':
             step === 4,
         }
       )}>
@@ -54,7 +54,7 @@ function CodeStep({children, step}: {children: any; step: number}) {
 }
 
 const P = (p: JSX.IntrinsicElements['p']) => (
-  <p className="whitespace-pre-wrap my-4" {...p} />
+  <p className="my-4 whitespace-pre-wrap" {...p} />
 );
 
 const Strong = (strong: JSX.IntrinsicElements['strong']) => (
@@ -62,13 +62,13 @@ const Strong = (strong: JSX.IntrinsicElements['strong']) => (
 );
 
 const OL = (p: JSX.IntrinsicElements['ol']) => (
-  <ol className="ml-6 my-3 list-decimal" {...p} />
+  <ol className="my-3 ml-6 list-decimal" {...p} />
 );
 const LI = (p: JSX.IntrinsicElements['li']) => (
-  <li className="leading-relaxed mb-1" {...p} />
+  <li className="mb-1 leading-relaxed" {...p} />
 );
 const UL = (p: JSX.IntrinsicElements['ul']) => (
-  <ul className="ml-6 my-3 list-disc" {...p} />
+  <ul className="my-3 ml-6 list-disc" {...p} />
 );
 
 const Divider = () => (
@@ -93,9 +93,9 @@ const Blockquote = ({
 }: JSX.IntrinsicElements['blockquote']) => {
   return (
     <blockquote
-      className="mdx-blockquote py-4 px-8 my-8 shadow-inner-border dark:shadow-inner-border-dark bg-highlight dark:bg-highlight-dark bg-opacity-50 rounded-2xl leading-6 flex relative"
+      className="mdx-blockquote relative my-8 flex rounded-2xl bg-highlight bg-opacity-50 py-4 px-8 leading-6 shadow-inner-border dark:bg-highlight-dark dark:shadow-inner-border-dark"
       {...props}>
-      <span className="block relative">{children}</span>
+      <span className="relative block">{children}</span>
     </blockquote>
   );
 };
@@ -110,9 +110,9 @@ function LearnMore({
 }) {
   return (
     <>
-      <section className="p-8 mt-16 mb-16 flex flex-row shadow-inner-border dark:shadow-inner-border-dark justify-between items-center bg-card dark:bg-card-dark rounded-2xl">
+      <section className="mt-16 mb-16 flex flex-row items-center justify-between rounded-2xl bg-card p-8 shadow-inner-border dark:bg-card-dark dark:shadow-inner-border-dark">
         <div className="flex-col">
-          <h2 className="text-primary font-display dark:text-primary-dark font-bold text-2xl leading-tight">
+          <h2 className="font-display text-2xl font-bold leading-tight text-primary dark:text-primary-dark">
             Ready to learn this topic?
           </h2>
           {children}
@@ -123,12 +123,12 @@ function LearnMore({
               href={path}
               type="primary">
               Read More
-              <IconNavArrow displayDirection="right" className="inline ml-1" />
+              <IconNavArrow displayDirection="right" className="ml-1 inline" />
             </ButtonLink>
           ) : null}
         </div>
       </section>
-      <hr className="border-border dark:border-border-dark mb-14" />
+      <hr className="mb-14 border-border dark:border-border-dark" />
     </>
   );
 }
@@ -137,7 +137,7 @@ function ReadBlogPost({path}: {path: string}) {
   return (
     <ButtonLink className="mt-1" label="Read Post" href={path} type="primary">
       Read Post
-      <IconNavArrow displayDirection="right" className="inline ml-1" />
+      <IconNavArrow displayDirection="right" className="ml-1 inline" />
     </ButtonLink>
   );
 }
@@ -190,8 +190,8 @@ function AuthorCredit({
   authorLink: string;
 }) {
   return (
-    <div className="sr-only group-hover:not-sr-only group-focus-within:not-sr-only hover:sr-only">
-      <p className="bg-card dark:bg-card-dark text-center text-sm text-secondary dark:text-secondary-dark leading-tight dark:text-secondary-dark p-2 rounded-lg absolute left-1/2 -top-4 -translate-x-1/2 -translate-y-full group-hover:flex group-hover:opacity-100 after:content-[''] after:absolute after:left-1/2 after:top-[95%] after:-translate-x-1/2 after:border-8 after:border-x-transparent after:border-b-transparent after:border-t-card after:dark:border-t-card-dark opacity-0 transition-opacity duration-300">
+    <div className="sr-only hover:sr-only group-focus-within:not-sr-only group-hover:not-sr-only">
+      <p className="absolute left-1/2 -top-4 -translate-x-1/2 -translate-y-full rounded-lg bg-card p-2 text-center text-sm leading-tight text-secondary opacity-0 transition-opacity duration-300 after:absolute after:left-1/2 after:top-[95%] after:-translate-x-1/2 after:border-8 after:border-x-transparent after:border-b-transparent after:border-t-card after:content-[''] group-hover:flex group-hover:opacity-100 dark:bg-card-dark dark:text-secondary-dark dark:text-secondary-dark after:dark:border-t-card-dark">
         <cite>
           Illustrated by{' '}
           {authorLink ? (
@@ -233,16 +233,16 @@ function Illustration({
   const {isInBlock} = React.useContext(IllustrationContext);
 
   return (
-    <div className="relative group before:absolute before:-inset-y-16 before:inset-x-0 my-16 mx-0 2xl:mx-auto max-w-4xl 2xl:max-w-6xl">
+    <div className="group relative my-16 mx-0 max-w-4xl before:absolute before:-inset-y-16 before:inset-x-0 2xl:mx-auto 2xl:max-w-6xl">
       <figure className="my-8 flex justify-center">
         <img
           src={src}
           alt={alt}
           style={{maxHeight: 300}}
-          className="bg-white rounded-lg"
+          className="rounded-lg bg-white"
         />
         {caption ? (
-          <figcaption className="text-center leading-tight mt-4">
+          <figcaption className="mt-4 text-center leading-tight">
             {caption}
           </figcaption>
         ) : null}
@@ -270,11 +270,11 @@ function IllustrationBlock({
   );
   const images = imageInfos.map((info, index) => (
     <figure key={index}>
-      <div className="bg-white rounded-lg p-4 flex-1 flex xl:p-6 justify-center items-center my-4">
+      <div className="my-4 flex flex-1 items-center justify-center rounded-lg bg-white p-4 xl:p-6">
         <img src={info.src} alt={info.alt} height={info.height} />
       </div>
       {info.caption ? (
-        <figcaption className="text-secondary dark:text-secondary-dark text-center leading-tight mt-4">
+        <figcaption className="mt-4 text-center leading-tight text-secondary dark:text-secondary-dark">
           {info.caption}
         </figcaption>
       ) : null}
@@ -282,7 +282,7 @@ function IllustrationBlock({
   ));
   return (
     <IllustrationContext.Provider value={isInBlockTrue}>
-      <div className="relative group before:absolute before:-inset-y-16 before:inset-x-0 my-16 mx-0 2xl:mx-auto max-w-4xl 2xl:max-w-6xl">
+      <div className="group relative my-16 mx-0 max-w-4xl before:absolute before:-inset-y-16 before:inset-x-0 2xl:mx-auto 2xl:max-w-6xl">
         {sequential ? (
           <ol className="mdx-illustration-block flex">
             {images.map((x: any, i: number) => (
@@ -357,7 +357,7 @@ function YouTubeIframe(props: any) {
   return (
     <div className="relative h-0 overflow-hidden pt-[56.25%]">
       <iframe
-        className="absolute inset-0 w-full h-full"
+        className="absolute inset-0 h-full w-full"
         frameBorder="0"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
         allowFullScreen
@@ -402,7 +402,7 @@ export const MDXComponents = {
     return children;
   },
   MaxWidth({children}: {children: any}) {
-    return <div className="max-w-4xl ml-0 2xl:mx-auto">{children}</div>;
+    return <div className="ml-0 max-w-4xl 2xl:mx-auto">{children}</div>;
   },
   Pitfall,
   Deprecated,

@@ -10,7 +10,7 @@ export interface IntroProps {
 
 function Intro({children}: IntroProps) {
   return (
-    <div className="font-display text-xl text-primary dark:text-primary-dark leading-relaxed">
+    <div className="font-display text-xl leading-relaxed text-primary dark:text-primary-dark">
       {children}
     </div>
   );

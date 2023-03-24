@@ -52,7 +52,7 @@ export function Page({children, toc, routeTree, meta, section}: PageProps) {
       <div className="pl-0">
         <div
           className={cn(
-            section === 'blog' && 'mx-auto px-0 lg:px-4 max-w-5xl'
+            section === 'blog' && 'mx-auto max-w-5xl px-0 lg:px-4'
           )}>
           <PageHeading
             title={title}
@@ -64,7 +64,7 @@ export function Page({children, toc, routeTree, meta, section}: PageProps) {
         <div className="px-5 sm:px-12">
           <div
             className={cn(
-              'max-w-7xl mx-auto',
+              'mx-auto max-w-7xl',
               section === 'blog' && 'lg:flex lg:flex-col lg:items-center'
             )}>
             <TocContext.Provider value={toc}>{children}</TocContext.Provider>
@@ -116,7 +116,7 @@ export function Page({children, toc, routeTree, meta, section}: PageProps) {
         )}>
         {showSidebar && (
           <div className="lg:-mt-16">
-            <div className="lg:pt-16 fixed lg:sticky top-0 left-0 right-0 py-0 shadow lg:shadow-none">
+            <div className="fixed top-0 left-0 right-0 py-0 shadow lg:sticky lg:pt-16 lg:shadow-none">
               <SidebarNav
                 key={section}
                 routeTree={routeTree}
@@ -127,24 +127,24 @@ export function Page({children, toc, routeTree, meta, section}: PageProps) {
         )}
         {/* No fallback UI so need to be careful not to suspend directly inside. */}
         <Suspense fallback={null}>
-          <main className="min-w-0 isolate">
+          <main className="isolate min-w-0">
             <article className="break-words" key={asPath}>
               {content}
             </article>
             <div
               className={cn(
-                'self-stretch w-full',
-                isHomePage && 'bg-wash dark:bg-gray-95 mt-[-1px]'
+                'w-full self-stretch',
+                isHomePage && 'mt-[-1px] bg-wash dark:bg-gray-95'
               )}>
               {!isHomePage && (
-                <div className="mx-auto w-full px-5 sm:px-12 md:px-12 pt-10 md:pt-12 lg:pt-10">
+                <div className="mx-auto w-full px-5 pt-10 sm:px-12 md:px-12 md:pt-12 lg:pt-10">
                   {
-                    <hr className="max-w-7xl mx-auto border-border dark:border-border-dark" />
+                    <hr className="mx-auto max-w-7xl border-border dark:border-border-dark" />
                   }
                   {showSurvey && (
                     <>
-                      <div className="flex flex-col items-center m-4 p-4">
-                        <p className="font-bold text-primary dark:text-primary-dark text-lg mb-4">
+                      <div className="m-4 flex flex-col items-center p-4">
+                        <p className="mb-4 text-lg font-bold text-primary dark:text-primary-dark">
                           How do you like these docs?
                         </p>
                         <div>
@@ -157,19 +157,19 @@ export function Page({children, toc, routeTree, meta, section}: PageProps) {
                             Take our survey!
                             <IconNavArrow
                               displayDirection="right"
-                              className="inline ml-1"
+                              className="ml-1 inline"
                             />
                           </ButtonLink>
                         </div>
                       </div>
-                      <hr className="max-w-7xl mx-auto border-border dark:border-border-dark" />
+                      <hr className="mx-auto max-w-7xl border-border dark:border-border-dark" />
                     </>
                   )}
                 </div>
               )}
               <div
                 className={cn(
-                  'py-12 px-5 sm:px-12 md:px-12 sm:py-12 md:py-16 lg:py-14',
+                  'py-12 px-5 sm:px-12 sm:py-12 md:px-12 md:py-16 lg:py-14',
                   isHomePage && 'lg:pt-0'
                 )}>
                 <Footer />

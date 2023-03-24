@@ -13,14 +13,14 @@ function Breadcrumbs({breadcrumbs}: {breadcrumbs: RouteItem[]}) {
         (crumb, i) =>
           crumb.path &&
           !crumb.skipBreadcrumb && (
-            <div className="flex mb-3 mt-0.5 items-center" key={i}>
+            <div className="mb-3 mt-0.5 flex items-center" key={i}>
               <Fragment key={crumb.path}>
                 <Link href={crumb.path}>
-                  <a className="text-link dark:text-link-dark text-sm tracking-wide font-bold uppercase mr-1 hover:underline">
+                  <a className="mr-1 text-sm font-bold uppercase tracking-wide text-link hover:underline dark:text-link-dark">
                     {crumb.title}
                   </a>
                 </Link>
-                <span className="inline-block mr-1 text-link dark:text-link-dark text-lg">
+                <span className="mr-1 inline-block text-lg text-link dark:text-link-dark">
                   <svg
                     width="20"
                     height="20"

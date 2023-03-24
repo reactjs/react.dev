@@ -61,14 +61,14 @@ function sendGAEvent(isPositive: boolean) {
 function SendFeedback({onSubmit}: {onSubmit: () => void}) {
   const [isSubmitted, setIsSubmitted] = useState(false);
   return (
-    <div className="max-w-xs w-80 lg:w-auto py-3 shadow-lg rounded-lg m-4 bg-wash dark:bg-gray-95 px-4 flex">
-      <p className="w-full font-bold text-primary dark:text-primary-dark text-lg mr-4">
+    <div className="m-4 flex w-80 max-w-xs rounded-lg bg-wash py-3 px-4 shadow-lg dark:bg-gray-95 lg:w-auto">
+      <p className="mr-4 w-full text-lg font-bold text-primary dark:text-primary-dark">
         {isSubmitted ? 'Thank you for your feedback!' : 'Is this page useful?'}
       </p>
       {!isSubmitted && (
         <button
           aria-label="Yes"
-          className="bg-secondary-button dark:bg-secondary-button-dark rounded-lg text-primary dark:text-primary-dark px-3 mr-2"
+          className="mr-2 rounded-lg bg-secondary-button px-3 text-primary dark:bg-secondary-button-dark dark:text-primary-dark"
           onClick={() => {
             setIsSubmitted(true);
             onSubmit();
@@ -80,7 +80,7 @@ function SendFeedback({onSubmit}: {onSubmit: () => void}) {
       {!isSubmitted && (
         <button
           aria-label="No"
-          className="bg-secondary-button dark:bg-secondary-button-dark rounded-lg text-primary dark:text-primary-dark px-3"
+          className="rounded-lg bg-secondary-button px-3 text-primary dark:bg-secondary-button-dark dark:text-primary-dark"
           onClick={() => {
             setIsSubmitted(true);
             onSubmit();

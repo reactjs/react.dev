@@ -83,17 +83,17 @@ export function Navigation({
       <div className="overflow-hidden">
         <div
           ref={containerRef}
-          className="flex relative transition-transform content-box overflow-x-auto">
+          className="content-box relative flex overflow-x-auto transition-transform">
           {challenges.map(({name, id, order}, index) => (
             <button
               className={cn(
-                'py-2 mr-4 text-base border-b-4 duration-100 ease-in transition whitespace-nowrap text-ellipsis',
+                'mr-4 text-ellipsis whitespace-nowrap border-b-4 py-2 text-base transition duration-100 ease-in',
                 isRecipes &&
                   currentChallenge.id === id &&
-                  'text-purple-50 border-purple-50 hover:text-purple-50 dark:text-purple-30 dark:border-purple-30 dark:hover:text-purple-30',
+                  'border-purple-50 text-purple-50 hover:text-purple-50 dark:border-purple-30 dark:text-purple-30 dark:hover:text-purple-30',
                 !isRecipes &&
                   currentChallenge.id === id &&
-                  'text-link border-link hover:text-link dark:text-link-dark dark:border-link-dark dark:hover:text-link-dark'
+                  'border-link text-link hover:text-link dark:border-link-dark dark:text-link-dark dark:hover:text-link-dark'
               )}
               onClick={() => handleSelectNav(index)}
               key={`button-${id}`}
@@ -103,12 +103,12 @@ export function Navigation({
           ))}
         </div>
       </div>
-      <div className="flex z-10 pb-2 pl-2">
+      <div className="z-10 flex pb-2 pl-2">
         <button
           onClick={handleScrollLeft}
           aria-label="Scroll left"
           className={cn(
-            'bg-secondary-button dark:bg-secondary-button-dark h-8 px-2 rounded-l border-gray-20 border-r',
+            'h-8 rounded-l border-r border-gray-20 bg-secondary-button px-2 dark:bg-secondary-button-dark',
             {
               'text-primary dark:text-primary-dark': canScrollLeft,
               'text-gray-30': !canScrollLeft,
@@ -120,7 +120,7 @@ export function Navigation({
           onClick={handleScrollRight}
           aria-label="Scroll right"
           className={cn(
-            'bg-secondary-button dark:bg-secondary-button-dark h-8 px-2 rounded-r',
+            'h-8 rounded-r bg-secondary-button px-2 dark:bg-secondary-button-dark',
             {
               'text-primary dark:text-primary-dark': canScrollRight,
               'text-gray-30': !canScrollRight,

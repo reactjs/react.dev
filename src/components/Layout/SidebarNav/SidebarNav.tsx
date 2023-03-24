@@ -32,21 +32,21 @@ export default function SidebarNav({
   return (
     <div
       className={cn(
-        'sticky top-0 lg:bottom-0 lg:h-[calc(100vh-4rem)] flex flex-col'
+        'sticky top-0 flex flex-col lg:bottom-0 lg:h-[calc(100vh-4rem)]'
       )}>
       <div
-        className="overflow-y-scroll no-bg-scrollbar lg:w-[342px] grow bg-wash dark:bg-wash-dark"
+        className="no-bg-scrollbar grow overflow-y-scroll bg-wash dark:bg-wash-dark lg:w-[342px]"
         style={{
           overscrollBehavior: 'contain',
         }}>
         <aside
           className={cn(
-            `lg:grow flex-col w-full pb-8 lg:pb-0 lg:max-w-xs z-10 hidden lg:block`
+            `z-10 hidden w-full flex-col pb-8 lg:block lg:max-w-xs lg:grow lg:pb-0`
           )}>
           <nav
             role="navigation"
             style={{'--bg-opacity': '.2'} as React.CSSProperties} // Need to cast here because CSS vars aren't considered valid in TS types (cuz they could be anything)
-            className="w-full lg:h-auto grow pr-0 lg:pr-5 pt-6 lg:pb-16 md:pt-4 lg:pt-4 scrolling-touch scrolling-gpu">
+            className="scrolling-touch scrolling-gpu w-full grow pr-0 pt-6 md:pt-4 lg:h-auto lg:pr-5 lg:pb-16 lg:pt-4">
             {/* No fallback UI so need to be careful not to suspend directly inside. */}
             <Suspense fallback={null}>
               <SidebarRouteTree

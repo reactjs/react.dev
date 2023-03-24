@@ -17,18 +17,18 @@ export interface BlogCardProps {
 function BlogCard({title, badge, date, icon, url, children}: BlogCardProps) {
   return (
     <Link href={url as string}>
-      <a className="block h-full w-full rounded-2xl outline-none focus:outline-none focus-visible:outline focus-visible:outline-link focus:outline-offset-2 focus-visible:dark:focus:outline-link-dark">
-        <div className="justify-between p-5 sm:p-5 cursor-pointer w-full h-full flex flex-col flex-1 shadow-secondary-button-stroke dark:shadow-secondary-button-stroke-dark hover:bg-gray-40/5 active:bg-gray-40/10  hover:dark:bg-gray-60/5 active:dark:bg-gray-60/10 rounded-2xl text-xl text-primary dark:text-primary-dark leading-relaxed">
-          <div className="flex flex-row gap-3 w-full">
-            <h2 className="font-semibold flex-1 text-2xl lg:text-3xl hover:underline leading-snug mb-4">
+      <a className="block h-full w-full rounded-2xl outline-none focus:outline-none focus:outline-offset-2 focus-visible:outline focus-visible:outline-link focus-visible:dark:focus:outline-link-dark">
+        <div className="flex h-full w-full flex-1 cursor-pointer flex-col justify-between rounded-2xl p-5 text-xl leading-relaxed text-primary shadow-secondary-button-stroke  hover:bg-gray-40/5 active:bg-gray-40/10 dark:text-primary-dark dark:shadow-secondary-button-stroke-dark hover:dark:bg-gray-60/5 active:dark:bg-gray-60/10 sm:p-5">
+          <div className="flex w-full flex-row gap-3">
+            <h2 className="mb-4 flex-1 text-2xl font-semibold leading-snug hover:underline lg:text-3xl">
               {title}
             </h2>
           </div>
           <div>
-            <div className="flex flex-row justify-start gap-2 items-center text-base text-tertiary dark:text-tertiary-dark">
+            <div className="flex flex-row items-center justify-start gap-2 text-base text-tertiary dark:text-tertiary-dark">
               {icon === 'labs' && (
                 <svg
-                  className="w-6 h-6 text-tertiary dark:text-tertiary-dark"
+                  className="h-6 w-6 text-tertiary dark:text-tertiary-dark"
                   viewBox="0 0 72 72"
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg">
@@ -42,7 +42,7 @@ function BlogCard({title, badge, date, icon, url, children}: BlogCardProps) {
               )}
               {icon === 'blog' && (
                 <svg
-                  className="w-6 h-6 text-tertiary dark:text-tertiary-dark"
+                  className="h-6 w-6 text-tertiary dark:text-tertiary-dark"
                   viewBox="0 0 72 72"
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg">
@@ -56,7 +56,7 @@ function BlogCard({title, badge, date, icon, url, children}: BlogCardProps) {
               )}
               {date}
               {badge ? (
-                <div className="h-fit px-1 bg-highlight dark:bg-highlight-dark rounded uppercase text-link dark:text-link-dark font-bold tracking-wide text-xs whitespace-nowrap">
+                <div className="h-fit whitespace-nowrap rounded bg-highlight px-1 text-xs font-bold uppercase tracking-wide text-link dark:bg-highlight-dark dark:text-link-dark">
                   New
                 </div>
               ) : null}
@@ -65,7 +65,7 @@ function BlogCard({title, badge, date, icon, url, children}: BlogCardProps) {
               {children}
             </span>
             {children != null && (
-              <div className="text-link text-base dark:text-link-dark hover:underline mt-4">
+              <div className="mt-4 text-base text-link hover:underline dark:text-link-dark">
                 Read more
               </div>
             )}

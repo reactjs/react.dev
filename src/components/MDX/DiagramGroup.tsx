@@ -10,7 +10,7 @@ interface DiagramGroupProps {
 
 export function DiagramGroup({children}: DiagramGroupProps) {
   return (
-    <div className="flex flex-col sm:flex-row py-2 sm:p-0 sm:space-y-0 justify-center items-start sm:items-center w-full">
+    <div className="flex w-full flex-col items-start justify-center py-2 sm:flex-row sm:items-center sm:space-y-0 sm:p-0">
       {children}
     </div>
   );

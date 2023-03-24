@@ -31,16 +31,16 @@ export function SidebarButton({
       })}>
       <button
         className={cn(
-          'p-2 pr-2 pl-5 w-full rounded-r-lg text-left hover:bg-gray-5 dark:hover:bg-gray-80 relative flex items-center justify-between',
+          'relative flex w-full items-center justify-between rounded-r-lg p-2 pr-2 pl-5 text-left hover:bg-gray-5 dark:hover:bg-gray-80',
           {
             'p-2 text-base': level > 1,
-            'text-link bg-highlight dark:bg-highlight-dark text-base font-bold hover:bg-highlight dark:hover:bg-highlight-dark hover:text-link dark:hover:text-link-dark':
+            'bg-highlight text-base font-bold text-link hover:bg-highlight hover:text-link dark:bg-highlight-dark dark:hover:bg-highlight-dark dark:hover:text-link-dark':
               !heading && isBreadcrumb && !isExpanded,
-            'p-4 my-6 text-2xl lg:my-auto lg:text-sm font-bold': heading,
-            'p-2 hover:text-gray-70 text-base font-bold text-primary dark:text-primary-dark':
+            'my-6 p-4 text-2xl font-bold lg:my-auto lg:text-sm': heading,
+            'p-2 text-base font-bold text-primary hover:text-gray-70 dark:text-primary-dark':
               !heading && !isBreadcrumb,
             'text-primary dark:text-primary-dark': heading && !isBreadcrumb,
-            'text-primary dark:text-primary-dark text-base font-bold bg-card dark:bg-card-dark':
+            'bg-card text-base font-bold text-primary dark:bg-card-dark dark:text-primary-dark':
               !heading && isExpanded,
           }
         )}

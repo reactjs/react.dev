@@ -13,14 +13,14 @@ export function Toc({headings}: {headings: Toc}) {
   // Select the max TOC item we have here for now, but remove this after the fix.
   const selectedIndex = Math.min(currentIndex, headings.length - 1);
   return (
-    <nav role="navigation" className="pt-20 sticky top-0 right-0">
+    <nav role="navigation" className="sticky top-0 right-0 pt-20">
       {headings.length > 0 && (
-        <h2 className="mb-3 lg:mb-3 uppercase tracking-wide font-bold text-sm text-secondary dark:text-secondary-dark px-4 w-full">
+        <h2 className="mb-3 w-full px-4 text-sm font-bold uppercase tracking-wide text-secondary dark:text-secondary-dark lg:mb-3">
           On this page
         </h2>
       )}
       <div
-        className="h-full overflow-y-auto pl-4 max-h-[calc(100vh-7.5rem)]"
+        className="h-full max-h-[calc(100vh-7.5rem)] overflow-y-auto pl-4"
         style={{
           overscrollBehavior: 'contain',
         }}>
@@ -35,7 +35,7 @@ export function Toc({headings}: {headings: Toc}) {
                 <li
                   key={`heading-${h.url}-${i}`}
                   className={cx(
-                    'text-sm px-2 rounded-l-xl',
+                    'rounded-l-xl px-2 text-sm',
                     selectedIndex === i
                       ? 'bg-highlight dark:bg-highlight-dark'
                       : null,
@@ -47,9 +47,9 @@ export function Toc({headings}: {headings: Toc}) {
                   <a
                     className={cx(
                       selectedIndex === i
-                        ? 'text-link dark:text-link-dark font-bold'
+                        ? 'font-bold text-link dark:text-link-dark'
                         : 'text-secondary dark:text-secondary-dark',
-                      'block hover:text-link dark:hover:text-link-dark leading-normal py-2'
+                      'block py-2 leading-normal hover:text-link dark:hover:text-link-dark'
                     )}
                     href={h.url}>
                     {h.text}

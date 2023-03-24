@@ -14,8 +14,8 @@ export function Footer() {
   const socialLinkClasses = 'hover:text-primary dark:text-primary-dark';
   return (
     <footer className={cn('text-secondary dark:text-secondary-dark')}>
-      <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-x-12 gap-y-8 max-w-7xl mx-auto">
-        <div className="col-span-2 md:col-span-1 justify-items-start mt-3.5 text-left">
+      <div className="mx-auto grid max-w-7xl grid-cols-2 gap-x-12 gap-y-8 md:grid-cols-3 xl:grid-cols-5">
+        <div className="col-span-2 mt-3.5 justify-items-start text-left md:col-span-1">
           <ExternalLink
             href="https://opensource.fb.com/"
             aria-label="Meta Open Source">
@@ -280,7 +280,7 @@ export function Footer() {
             </div>
           </ExternalLink>
 
-          <div className="text-xs text-left mt-2 pr-0.5">
+          <div className="mt-2 pr-0.5 text-left text-xs">
             &copy;{new Date().getFullYear()}
           </div>
         </div>
@@ -306,7 +306,7 @@ export function Footer() {
           <FooterLink href="/reference/react">React APIs</FooterLink>
           <FooterLink href="/reference/react-dom">React DOM APIs</FooterLink>
         </div>
-        <div className="md:col-start-2 xl:col-start-4 flex flex-col">
+        <div className="flex flex-col md:col-start-2 xl:col-start-4">
           <FooterLink href="/community" isHeader={true}>
             Community
           </FooterLink>
@@ -331,7 +331,7 @@ export function Footer() {
           <FooterLink href="https://opensource.fb.com/legal/terms/">
             Terms
           </FooterLink>
-          <div className="flex flex-row mt-8 gap-x-2">
+          <div className="mt-8 flex flex-row gap-x-2">
             <ExternalLink
               aria-label="React on Facebook"
               href="https://www.facebook.com/react"

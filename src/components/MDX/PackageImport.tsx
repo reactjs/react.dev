@@ -30,7 +30,7 @@ export function PackageImport({children}: PackageImportProps) {
     }
   });
   return (
-    <section className="my-8 grid grid-cols-1 lg:grid-cols-2 gap-x-8 gap-y-4">
+    <section className="my-8 grid grid-cols-1 gap-x-8 gap-y-4 lg:grid-cols-2">
       <div className="flex flex-col justify-center">{terminal}</div>
       <div className="flex flex-col justify-center">{code}</div>
     </section>

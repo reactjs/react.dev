@@ -156,7 +156,7 @@ export const SandpackConsole = ({visible}: {visible: boolean}) => {
   }
 
   return (
-    <div className="absolute dark:border-gray-700 bg-white dark:bg-gray-95 border-t bottom-0 w-full dark:text-white">
+    <div className="absolute bottom-0 w-full border-t bg-white dark:border-gray-700 dark:bg-gray-95 dark:text-white">
       <div className="flex justify-between">
         <button
           className="flex items-center p-1"
@@ -184,14 +184,14 @@ export const SandpackConsole = ({visible}: {visible: boolean}) => {
         </button>
       </div>
       {isExpanded && (
-        <div className="w-full h-full border-t bg-white dark:border-gray-700 dark:bg-gray-95 min-h-[28px] console">
-          <div className="max-h-40 h-auto overflow-auto" ref={wrapperRef}>
+        <div className="console h-full min-h-[28px] w-full border-t bg-white dark:border-gray-700 dark:bg-gray-95">
+          <div className="h-auto max-h-40 overflow-auto" ref={wrapperRef}>
             {logs.map(({data, id, method}) => {
               return (
                 <div
                   key={id}
                   className={cn(
-                    'first:border-none border-t dark:border-gray-700 text-md p-1 pl-2 leading-6 font-mono min-h-[32px] whitespace-pre-wrap',
+                    'text-md min-h-[32px] whitespace-pre-wrap border-t p-1 pl-2 font-mono leading-6 first:border-none dark:border-gray-700',
                     `console-${getType(method)}`,
                     getColor(method)
                   )}>

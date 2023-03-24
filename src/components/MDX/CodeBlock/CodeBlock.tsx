@@ -204,16 +204,16 @@ const CodeBlock = function CodeBlock({
     <div
       className={cn(
         'sandpack sandpack--codeblock',
-        'rounded-2xl h-full w-full overflow-x-auto flex items-center bg-wash dark:bg-gray-95 shadow-lg',
+        'flex h-full w-full items-center overflow-x-auto rounded-2xl bg-wash shadow-lg dark:bg-gray-95',
         !noMargin && 'my-8',
         noShadow &&
-          'shadow-none rounded-2xl overflow-hidden w-full flex bg-transparent'
+          'flex w-full overflow-hidden rounded-2xl bg-transparent shadow-none'
       )}
       style={{contain: 'content'}}>
       <div className="sp-wrapper">
         <div className="sp-stack">
           <div className="sp-code-editor">
-            <pre className="sp-cm sp-pristine sp-javascript flex align-start">
+            <pre className="sp-cm sp-pristine sp-javascript align-start flex">
               <code
                 className="sp-pre-placeholder grow-[2]"
                 onMouseLeave={

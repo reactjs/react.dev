@@ -117,17 +117,17 @@ export function Challenges({
 
   const Heading = isRecipes ? H4 : H2;
   return (
-    <div className="max-w-7xl mx-auto py-4 w-full">
+    <div className="mx-auto w-full max-w-7xl py-4">
       <div
         className={cn(
-          'border-gray-10 bg-card dark:bg-card-dark shadow-inner rounded-none -mx-5 sm:mx-auto sm:rounded-2xl'
+          '-mx-5 rounded-none border-gray-10 bg-card shadow-inner dark:bg-card-dark sm:mx-auto sm:rounded-2xl'
         )}>
-        <div ref={scrollAnchorRef} className="py-2 px-5 sm:px-8 pb-0 md:pb-0">
+        <div ref={scrollAnchorRef} className="py-2 px-5 pb-0 sm:px-8 md:pb-0">
           {!noTitle && (
             <Heading
               id={titleId}
               className={cn(
-                'mb-2 leading-10 relative',
+                'relative mb-2 leading-10',
                 isRecipes
                   ? 'text-xl text-purple-50 dark:text-purple-30'
                   : 'text-3xl text-link'

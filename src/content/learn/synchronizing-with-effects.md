@@ -600,7 +600,7 @@ Most of the Effects you'll write will fit into one of the common patterns below.
 
 ### Controlling non-React widgets {/*controlling-non-react-widgets*/}
 
-Sometimes you need to add UI widgets that aren't written to React. For example, let's say you're adding a map component to your page. It has a `setZoomLevel()` method, and you'd like to keep the zoom level in sync with a `zoomLevel` state variable in your React code. Your Effect would look like similar to this:
+Sometimes you need to add UI widgets that aren't written to React. For example, let's say you're adding a map component to your page. It has a `setZoomLevel()` method, and you'd like to keep the zoom level in sync with a `zoomLevel` state variable in your React code. Your Effect would look similar to this:
 
 ```js
 useEffect(() => {

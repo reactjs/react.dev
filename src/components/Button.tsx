@@ -16,9 +16,9 @@ interface ButtonProps {
 export function Button({
   children,
   onClick,
-  active,
+  active = false,
   className,
-  style,
+  style = {},
 }: ButtonProps) {
   return (
     <button
@@ -42,10 +42,5 @@ export function Button({
     </button>
   );
 }
-
-Button.defaultProps = {
-  active: false,
-  style: {},
-};
 
 export default Button;

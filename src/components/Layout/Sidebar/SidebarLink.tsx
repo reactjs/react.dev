@@ -4,7 +4,7 @@
 
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-import {useRef, useEffect} from 'react';
+import {useRef, useEffect, useCallback} from 'react';
 import * as React from 'react';
 import cn from 'classnames';
 import {IconNavArrow} from 'components/Icon/IconNavArrow';
@@ -21,6 +21,7 @@ interface SidebarLinkProps {
   isBreadcrumb?: boolean;
   hideArrow?: boolean;
   isPending: boolean;
+  onArrowClick?: () => void;
 }
 
 export function SidebarLink({
@@ -30,7 +31,7 @@ export function SidebarLink({
   wip,
   level,
   isExpanded,
-  isBreadcrumb,
+  onArrowClick,
   hideArrow,
   isPending,
 }: SidebarLinkProps) {
@@ -45,6 +46,12 @@ export function SidebarLink({
       }
     }
   }, [ref, selected]);
+
+  const onClick = useCallback((): void => {
+    if (selected && onArrowClick) {
+      onArrowClick();
+    }
+  }, [selected, onArrowClick]);
 
   let target = '';
   if (href.startsWith('https://')) {
@@ -81,6 +88,7 @@ export function SidebarLink({
         </span>
         {isExpanded != null && !hideArrow && (
           <span
+            onClick={onClick}
             className={cn('pr-1', {
               'text-link dark:text-link-dark': isExpanded,
               'text-tertiary dark:text-tertiary-dark': !isExpanded,

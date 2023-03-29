@@ -35,4 +35,4 @@ yarn-error.log*
 .vercel
 
 # external fonts
-public/fonts/Optimistic_*.woff2
+public/fonts/**/Optimistic_*.woff2

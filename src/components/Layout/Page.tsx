@@ -28,7 +28,7 @@ interface PageProps {
   children: React.ReactNode;
   toc: Array<TocItem>;
   routeTree: RouteItem;
-  meta: {title?: string; description?: string; translatedTitle: string};
+  meta: {title?: string; description?: string; translatedTitle?: string};
   section: 'learn' | 'reference' | 'community' | 'blog' | 'home' | 'unknown';
 }
 

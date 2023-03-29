@@ -9,6 +9,7 @@ import type {RouteTag, RouteItem} from './Layout/getRouteMeta';
 
 interface PageHeadingProps {
   title: string;
+  translatedTitle: string | undefined;
   status?: string;
   description?: string;
   tags?: RouteTag[];
@@ -17,6 +18,7 @@ interface PageHeadingProps {
 
 function PageHeading({
   title,
+  translatedTitle,
   status,
   description,
   tags = [],
@@ -28,6 +30,8 @@ function PageHeading({
         {breadcrumbs ? <Breadcrumbs breadcrumbs={breadcrumbs} /> : null}
         <H1 className="mt-0 text-primary dark:text-primary-dark -mx-.5 break-words">
           {title}
+          <br />
+          {translatedTitle && `| ${translatedTitle}`}
           {status ? <em>—{status}</em> : ''}
         </H1>
         {description && (

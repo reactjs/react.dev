@@ -28,7 +28,7 @@ interface PageProps {
   children: React.ReactNode;
   toc: Array<TocItem>;
   routeTree: RouteItem;
-  meta: {title?: string; description?: string};
+  meta: {title?: string; description?: string; translatedTitle: string};
   section: 'learn' | 'reference' | 'community' | 'blog' | 'home' | 'unknown';
 }
 
@@ -40,6 +40,7 @@ export function Page({children, toc, routeTree, meta, section}: PageProps) {
     routeTree
   );
   const title = meta.title || route?.title || '';
+  const translatedTitle = meta.translatedTitle || undefined;
   const description = meta.description || route?.description || '';
   const isHomePage = cleanedPath === '/';
   const isBlogIndex = cleanedPath === '/blog';
@@ -56,6 +57,7 @@ export function Page({children, toc, routeTree, meta, section}: PageProps) {
           )}>
           <PageHeading
             title={title}
+            translatedTitle={translatedTitle}
             description={description}
             tags={route?.tags}
             breadcrumbs={breadcrumbs}
@@ -99,7 +101,7 @@ export function Page({children, toc, routeTree, meta, section}: PageProps) {
   return (
     <>
       <Seo
-        title={title}
+        title={translatedTitle || title}
         isHomePage={isHomePage}
         image={`/images/og-` + section + '.png'}
       />

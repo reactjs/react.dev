@@ -40,33 +40,33 @@ function ConsoleBlock({level = 'error', children}: ConsoleBlockProps) {
   return (
     <div className="mb-4 text-secondary" translate="no">
       <div className="flex w-full rounded-t-lg bg-gray-200 dark:bg-gray-80">
-        <div className="px-4 py-2 border-gray-300 dark:border-gray-90 border-r">
+        <div className="border-r border-gray-300 px-4 py-2 dark:border-gray-90">
           <Box className="bg-gray-300 dark:bg-gray-70" width="15px" />
         </div>
-        <div className="flex text-sm px-4">
-          <div className="border-b-2 border-gray-300 dark:border-gray-90 text-tertiary dark:text-tertiary-dark">
+        <div className="flex px-4 text-sm">
+          <div className="border-b-2 border-gray-300 text-tertiary dark:border-gray-90 dark:text-tertiary-dark">
             Console
           </div>
-          <div className="px-4 py-2 flex">
+          <div className="flex px-4 py-2">
             <Box className="mr-2 bg-gray-300 dark:bg-gray-70" />
-            <Box className="mr-2 hidden md:block bg-gray-300 dark:bg-gray-70" />
-            <Box className="hidden md:block bg-gray-300 dark:bg-gray-70" />
+            <Box className="mr-2 hidden bg-gray-300 dark:bg-gray-70 md:block" />
+            <Box className="hidden bg-gray-300 dark:bg-gray-70 md:block" />
           </div>
         </div>
       </div>
       <div
         className={cn(
-          'flex px-4 pt-4 pb-6 items-center content-center font-mono text-code rounded-b-md',
+          'flex content-center items-center rounded-b-md px-4 pt-4 pb-6 font-mono text-code',
           {
-            'bg-red-30 text-red-50 dark:text-red-30 bg-opacity-5':
+            'bg-red-30 bg-opacity-5 text-red-50 dark:text-red-30':
               level === 'error',
             'bg-yellow-5 text-yellow-50': level === 'warning',
             'bg-gray-5 text-secondary dark:text-secondary-dark':
               level === 'info',
           }
         )}>
-        {level === 'error' && <IconError className="self-start mt-1.5" />}
-        {level === 'warning' && <IconWarning className="self-start mt-1" />}
+        {level === 'error' && <IconError className="mt-1.5 self-start" />}
+        {level === 'warning' && <IconWarning className="mt-1 self-start" />}
         <div className="px-3">{message}</div>
       </div>
     </div>

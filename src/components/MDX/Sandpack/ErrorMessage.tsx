@@ -14,9 +14,9 @@ export function ErrorMessage({error, ...props}: {error: ErrorType}) {
   const {message, title} = error;
 
   return (
-    <div className="bg-white border-2 border-red-40 rounded-lg p-6" {...props}>
-      <h2 className="text-red-40 text-xl mb-4">{title || 'Error'}</h2>
-      <pre className="text-secondary whitespace-pre-wrap break-words leading-tight">
+    <div className="rounded-lg border-2 border-red-40 bg-white p-6" {...props}>
+      <h2 className="mb-4 text-xl text-red-40">{title || 'Error'}</h2>
+      <pre className="whitespace-pre-wrap break-words leading-tight text-secondary">
         {message}
       </pre>
     </div>

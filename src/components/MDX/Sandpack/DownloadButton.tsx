@@ -96,11 +96,11 @@ ${css}
 
   return (
     <button
-      className="text-sm text-primary dark:text-primary-dark inline-flex items-center hover:text-link duration-100 ease-in transition mx-1"
+      className="mx-1 inline-flex items-center text-sm text-primary transition duration-100 ease-in hover:text-link dark:text-primary-dark"
       onClick={downloadHTML}
       title="Download Sandbox"
       type="button">
-      <IconDownload className="inline mr-1" /> Download
+      <IconDownload className="mr-1 inline" /> Download
     </button>
   );
 }

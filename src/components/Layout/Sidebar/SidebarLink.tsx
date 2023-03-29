@@ -58,17 +58,17 @@ export function SidebarLink({
         target={target}
         aria-current={selected ? 'page' : undefined}
         className={cn(
-          'p-2 pr-2 w-full rounded-none lg:rounded-r-2xl text-left hover:bg-gray-5 dark:hover:bg-gray-80 relative flex items-center justify-between',
+          'relative flex w-full items-center justify-between rounded-none p-2 pr-2 text-left hover:bg-gray-5 dark:hover:bg-gray-80 lg:rounded-r-2xl',
           {
-            'text-sm pl-6': level > 0,
+            'pl-6 text-sm': level > 0,
             'pl-5': level < 2,
             'text-base font-bold': level === 0,
             'text-primary dark:text-primary-dark': level === 0 && !selected,
             'text-base text-secondary dark:text-secondary-dark':
               level > 0 && !selected,
-            'text-base text-link dark:text-link-dark bg-highlight dark:bg-highlight-dark border-blue-40 hover:bg-highlight hover:text-link dark:hover:bg-highlight-dark dark:hover:text-link-dark':
+            'border-blue-40 bg-highlight text-base text-link hover:bg-highlight hover:text-link dark:bg-highlight-dark dark:text-link-dark dark:hover:bg-highlight-dark dark:hover:text-link-dark':
               selected,
-            'dark:bg-gray-70 bg-gray-3 dark:hover:bg-gray-70 hover:bg-gray-3':
+            'bg-gray-3 hover:bg-gray-3 dark:bg-gray-70 dark:hover:bg-gray-70':
               isPending,
           }
         )}>

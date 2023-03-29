@@ -10,21 +10,21 @@ const SandpackRoot = lazy(() => import('./SandpackRoot'));
 const SandpackGlimmer = ({code}: {code: string}) => (
   <div className="sandpack sandpack--playground my-8">
     <div className="sp-wrapper">
-      <div className="shadow-lg dark:shadow-lg-dark rounded-lg">
-        <div className="bg-wash h-10 dark:bg-card-dark flex justify-between items-center relative z-10 border-b border-border dark:border-border-dark rounded-t-lg rounded-b-none">
+      <div className="rounded-lg shadow-lg dark:shadow-lg-dark">
+        <div className="relative z-10 flex h-10 items-center justify-between rounded-t-lg rounded-b-none border-b border-border bg-wash dark:border-border-dark dark:bg-card-dark">
           <div className="px-4 lg:px-6">
             <div className="sp-tabs"></div>
           </div>
-          <div className="px-3 flex items-center justify-end grow text-right"></div>
+          <div className="flex grow items-center justify-end px-3 text-right"></div>
         </div>
-        <div className="sp-layout min-h-[216px] flex items-stretch flex-wrap">
-          <div className="sp-stack sp-editor max-h-[406px] h-auto overflow-auto">
+        <div className="sp-layout flex min-h-[216px] flex-wrap items-stretch">
+          <div className="sp-stack sp-editor h-auto max-h-[406px] overflow-auto">
             <div className="sp-code-editor">
               <div className="sp-cm sp-pristine">
                 <div className="cm-editor">
                   <div>
-                    <div className="cm-gutters pl-9 sticky min-h-[192px]">
-                      <div className="cm-gutter cm-lineNumbers whitespace-pre sp-pre-placeholder">
+                    <div className="cm-gutters sticky min-h-[192px] pl-9">
+                      <div className="cm-gutter cm-lineNumbers sp-pre-placeholder whitespace-pre">
                         {code}
                       </div>
                     </div>
@@ -33,11 +33,11 @@ const SandpackGlimmer = ({code}: {code: string}) => (
               </div>
             </div>
           </div>
-          <div className="sp-stack order-last xl:order-2 max-h-[406px] h-auto">
-            <div className="p-0 sm:p-2 md:p-4 lg:p-8 bg-card dark:bg-wash-dark h-full relative rounded-b-lg lg:rounded-b-none overflow-auto"></div>
+          <div className="sp-stack order-last h-auto max-h-[406px] xl:order-2">
+            <div className="relative h-full overflow-auto rounded-b-lg bg-card p-0 dark:bg-wash-dark sm:p-2 md:p-4 lg:rounded-b-none lg:p-8"></div>
           </div>
           {code.split('\n').length > 16 && (
-            <div className="flex h-[45px] text-base justify-between dark:border-card-dark bg-wash dark:bg-card-dark items-center z-10 rounded-t-none p-1 w-full order-2 xl:order-last border-b-1 relative top-0"></div>
+            <div className="border-b-1 relative top-0 z-10 order-2 flex h-[45px] w-full items-center justify-between rounded-t-none bg-wash p-1 text-base dark:border-card-dark dark:bg-card-dark xl:order-last"></div>
           )}
         </div>
       </div>

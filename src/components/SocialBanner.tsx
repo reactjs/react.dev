@@ -33,11 +33,11 @@ export default function SocialBanner() {
     <div
       ref={ref}
       className={cn(
-        `h-[40px] hidden lg:flex w-full bg-gray-100 dark:bg-gray-700 text-base md:text-lg py-2 sm:py-0 items-center justify-center flex-col sm:flex-row z-[100]`
+        `z-[100] hidden h-[40px] w-full flex-col items-center justify-center bg-gray-100 py-2 text-base dark:bg-gray-700 sm:flex-row sm:py-0 md:text-lg lg:flex`
       )}>
       <div className="hidden sm:block">{bannerText}</div>
       <ExternalLink
-        className="ml-0 sm:ml-1 text-link dark:text-link-dark hover:underline"
+        className="ml-0 text-link hover:underline dark:text-link-dark sm:ml-1"
         href={bannerLink}>
         <div className="inline sm:hidden">🇺🇦 </div>
         {bannerLinkText}

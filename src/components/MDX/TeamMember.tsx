@@ -43,18 +43,18 @@ export function TeamMember({
   }
   return (
     <div className="pb-6 sm:pb-10">
-      <div className="flex flex-col sm:flex-row height-auto">
+      <div className="height-auto flex flex-col sm:flex-row">
         <div
-          className="hidden sm:block basis-2/5 rounded overflow-hidden relative"
+          className="relative hidden basis-2/5 overflow-hidden rounded sm:block"
           style={{width: 300, height: 250}}>
           <Image src={photo} layout="fill" objectFit="cover" alt={name} />
         </div>
         <div
           style={{minHeight: 300}}
-          className="block w-full sm:hidden flex-grow basis-2/5 rounded overflow-hidden relative">
+          className="relative block w-full flex-grow basis-2/5 overflow-hidden rounded sm:hidden">
           <Image src={photo} layout="fill" objectFit="cover" alt={name} />
         </div>
-        <div className="pl-0 sm:pl-6 basis-3/5 items-start">
+        <div className="basis-3/5 items-start pl-0 sm:pl-6">
           <H3 className="mb-1 sm:my-0" id={permalink}>
             {name}
           </H3>
@@ -66,7 +66,7 @@ export function TeamMember({
                 <ExternalLink
                   aria-label="React on Twitter"
                   href={`https://twitter.com/${twitter}`}
-                  className="hover:text-primary dark:text-primary-dark flex flex-row items-center">
+                  className="flex flex-row items-center hover:text-primary dark:text-primary-dark">
                   <IconTwitter className="pr-2" />
                   {twitter}
                 </ExternalLink>
@@ -77,7 +77,7 @@ export function TeamMember({
                 <ExternalLink
                   aria-label="GitHub Profile"
                   href={`https://github.com/${github}`}
-                  className="hover:text-primary dark:text-primary-dark flex flex-row items-center">
+                  className="flex flex-row items-center hover:text-primary dark:text-primary-dark">
                   <IconGitHub className="pr-2" /> {github}
                 </ExternalLink>
               </div>
@@ -86,7 +86,7 @@ export function TeamMember({
               <ExternalLink
                 aria-label="Personal Site"
                 href={`https://${personal}`}
-                className="hover:text-primary dark:text-primary-dark flex flex-row items-center">
+                className="flex flex-row items-center hover:text-primary dark:text-primary-dark">
                 <IconLink className="pr-2" /> {personal}
               </ExternalLink>
             )}

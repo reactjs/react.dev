@@ -111,8 +111,8 @@ export function NavigationBar({providedFiles}: {providedFiles: Array<string>}) {
   };
 
   return (
-    <div className="bg-wash dark:bg-card-dark flex justify-between items-center relative z-10 border-b border-border dark:border-border-dark rounded-t-lg text-lg">
-      <div className="flex-1 grow min-w-0 px-4 lg:px-6">
+    <div className="relative z-10 flex items-center justify-between rounded-t-lg border-b border-border bg-wash text-lg dark:border-border-dark dark:bg-card-dark">
+      <div className="min-w-0 flex-1 grow px-4 lg:px-6">
         <Listbox value={activeFile} onChange={setActiveFile}>
           <div ref={containerRef}>
             <div className="relative overflow-hidden">
@@ -140,7 +140,7 @@ export function NavigationBar({providedFiles}: {providedFiles: Array<string>}) {
                     )}>
                     <span
                       className={cn(
-                        'h-full py-2 px-1 mt-px -mb-px flex border-b text-link dark:text-link-dark border-link dark:border-link-dark items-center text-md leading-tight truncate'
+                        'text-md mt-px -mb-px flex h-full items-center truncate border-b border-link py-2 px-1 leading-tight text-link dark:border-link-dark dark:text-link-dark'
                       )}
                       style={{maxWidth: '160px'}}>
                       {getFileName(activeFile)}
@@ -158,7 +158,7 @@ export function NavigationBar({providedFiles}: {providedFiles: Array<string>}) {
             </div>
           </div>
           {isMultiFile && showDropdown && (
-            <Listbox.Options className="absolute mt-0.5 bg-card dark:bg-card-dark px-2 left-0 right-0 mx-0 rounded-b-lg border-1 border-border dark:border-border-dark rounded-sm shadow-md">
+            <Listbox.Options className="border-1 absolute left-0 right-0 mx-0 mt-0.5 rounded-sm rounded-b-lg border-border bg-card px-2 shadow-md dark:border-border-dark dark:bg-card-dark">
               {visibleFiles.map((filePath: string) => (
                 <Listbox.Option key={filePath} value={filePath} as={Fragment}>
                   {({active}) => (
@@ -177,7 +177,7 @@ export function NavigationBar({providedFiles}: {providedFiles: Array<string>}) {
         </Listbox>
       </div>
       <div
-        className="px-3 flex items-center justify-end text-right"
+        className="flex items-center justify-end px-3 text-right"
         translate="yes">
         <DownloadButton providedFiles={providedFiles} />
         <ResetButton onReset={handleReset} />

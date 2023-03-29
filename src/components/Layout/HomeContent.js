@@ -34,17 +34,17 @@ function Section({children, background = null}) {
   return (
     <div
       className={cn(
-        'mx-auto flex flex-col w-full',
+        'mx-auto flex w-full flex-col',
         background === null && 'max-w-7xl',
         background === 'left-card' &&
-          'bg-gradient-left dark:bg-gradient-left-dark border-t border-primary/10 dark:border-primary-dark/10 ',
+          'border-t border-primary/10 bg-gradient-left dark:border-primary-dark/10 dark:bg-gradient-left-dark ',
         background === 'right-card' &&
-          'bg-gradient-right dark:bg-gradient-right-dark border-t border-primary/5 dark:border-primary-dark/5'
+          'border-t border-primary/5 bg-gradient-right dark:border-primary-dark/5 dark:bg-gradient-right-dark'
       )}
       style={{
         contain: 'content',
       }}>
-      <div className="flex-col gap-2 flex grow w-full my-20 lg:my-32 mx-auto items-center">
+      <div className="my-20 mx-auto flex w-full grow flex-col items-center gap-2 lg:my-32">
         {children}
       </div>
     </div>
@@ -53,7 +53,7 @@ function Section({children, background = null}) {
 
 function Header({children}) {
   return (
-    <h2 className="leading-xl font-display text-primary dark:text-primary-dark font-semibold text-5xl lg:text-6xl -mt-4 mb-7 w-full max-w-3xl lg:max-w-xl">
+    <h2 className="-mt-4 mb-7 w-full max-w-3xl font-display text-5xl font-semibold leading-xl text-primary dark:text-primary-dark lg:max-w-xl lg:text-6xl">
       {children}
     </h2>
   );
@@ -61,7 +61,7 @@ function Header({children}) {
 
 function Para({children}) {
   return (
-    <p className="max-w-3xl mx-auto text-lg lg:text-xl text-secondary dark:text-secondary-dark leading-normal">
+    <p className="mx-auto max-w-3xl text-lg leading-normal text-secondary dark:text-secondary-dark lg:text-xl">
       {children}
     </p>
   );
@@ -69,7 +69,7 @@ function Para({children}) {
 
 function Left({children}) {
   return (
-    <div className="px-5 lg:px-0 max-w-4xl lg:text-left text-white text-opacity-80">
+    <div className="max-w-4xl px-5 text-white text-opacity-80 lg:px-0 lg:text-left">
       {children}
     </div>
   );
@@ -77,7 +77,7 @@ function Left({children}) {
 
 function Center({children}) {
   return (
-    <div className="px-5 lg:px-0 max-w-4xl lg:text-center text-white text-opacity-80 flex flex-col items-center justify-center">
+    <div className="flex max-w-4xl flex-col items-center justify-center px-5 text-white text-opacity-80 lg:px-0 lg:text-center">
       {children}
     </div>
   );
@@ -85,7 +85,7 @@ function Center({children}) {
 
 function FullBleed({children}) {
   return (
-    <div className="max-w-7xl mx-auto flex flex-col w-full">{children}</div>
+    <div className="mx-auto flex w-full max-w-7xl flex-col">{children}</div>
   );
 }
 
@@ -121,24 +121,24 @@ export function HomeContent() {
   return (
     <>
       <div className="pl-0">
-        <div className="mx-5 mt-12 lg:mt-24 mb-20 lg:mb-32 flex flex-col justify-center">
+        <div className="mx-5 mt-12 mb-20 flex flex-col justify-center lg:mt-24 lg:mb-32">
           <Logo
             className={cn(
-              'mt-4 mb-3 text-link dark:text-link-dark w-24 lg:w-28 self-center text-sm mr-0 flex origin-center transition-all ease-in-out'
+              'mt-4 mb-3 mr-0 flex w-24 origin-center self-center text-sm text-link transition-all ease-in-out dark:text-link-dark lg:w-28'
             )}
           />
-          <h1 className="text-5xl font-display lg:text-6xl self-center flex font-semibold leading-snug text-primary dark:text-primary-dark">
+          <h1 className="flex self-center font-display text-5xl font-semibold leading-snug text-primary dark:text-primary-dark lg:text-6xl">
             React
           </h1>
-          <p className="text-4xl font-display max-w-lg md:max-w-full py-1 text-center text-secondary dark:text-primary-dark leading-snug self-center">
+          <p className="max-w-lg self-center py-1 text-center font-display text-4xl leading-snug text-secondary dark:text-primary-dark md:max-w-full">
             The library for web and native user interfaces
           </p>
-          <div className="mt-5 self-center flex gap-2 w-full sm:w-auto flex-col sm:flex-row">
+          <div className="mt-5 flex w-full flex-col gap-2 self-center sm:w-auto sm:flex-row">
             <ButtonLink
               href={'/learn'}
               type="primary"
               size="lg"
-              className="w-full sm:w-auto justify-center"
+              className="w-full justify-center sm:w-auto"
               label="Learn React">
               Learn React
             </ButtonLink>
@@ -146,7 +146,7 @@ export function HomeContent() {
               href={'/reference/react'}
               type="secondary"
               size="lg"
-              className="w-full sm:w-auto justify-center"
+              className="w-full justify-center sm:w-auto"
               label="API Reference">
               API Reference
             </ButtonLink>
@@ -219,7 +219,7 @@ export function HomeContent() {
               your existing HTML page, and render interactive React components
               anywhere on it.
             </Para>
-            <div className="flex justify-start w-full lg:justify-center">
+            <div className="flex w-full justify-start lg:justify-center">
               <CTA
                 color="gray"
                 icon="code"
@@ -254,7 +254,7 @@ export function HomeContent() {
               or even during the build. Read data from a file or a database, and
               pass it down to your interactive components.
             </Para>
-            <div className="flex justify-start w-full lg:justify-center">
+            <div className="flex w-full justify-start lg:justify-center">
               <CTA
                 color="gray"
                 icon="framework"
@@ -265,8 +265,8 @@ export function HomeContent() {
           </Center>
         </Section>
         <Section background="left-card">
-          <div className="mx-auto flex flex-col w-full">
-            <div className="mx-auto max-w-4xl lg:text-center items-center px-5 flex flex-col">
+          <div className="mx-auto flex w-full flex-col">
+            <div className="mx-auto flex max-w-4xl flex-col items-center px-5 lg:text-center">
               <Header>Use the best from every platform</Header>
               <Para>
                 People love web and native apps for different reasons. React
@@ -275,20 +275,20 @@ export function HomeContent() {
                 your interfaces feel just right on every platform.
               </Para>
             </div>
-            <div className="max-w-7xl mx-auto flex flex-col lg:flex-row mt-16 mb-20 lg:mb-28 px-5 gap-20 lg:gap-5">
-              <div className="relative lg:w-6/12 flex">
-                <div className="absolute -bottom-8 lg:-bottom-10 z-10 w-full">
+            <div className="mx-auto mt-16 mb-20 flex max-w-7xl flex-col gap-20 px-5 lg:mb-28 lg:flex-row lg:gap-5">
+              <div className="relative flex lg:w-6/12">
+                <div className="absolute -bottom-8 z-10 w-full lg:-bottom-10">
                   <WebIcons />
                 </div>
                 <BrowserChrome hasRefresh={false} domain="example.com">
                   <div className="relative overflow-hidden">
                     <div className="absolute inset-0 bg-gradient-right" />
-                    <div className="bg-wash relative h-14 w-full" />
-                    <div className="relative flex items-start justify-center flex-col flex-1 pb-16 pt-5 gap-3 px-5 lg:px-10 lg:pt-8">
-                      <h4 className="leading-tight text-primary font-semibold text-3xl lg:text-4xl">
+                    <div className="relative h-14 w-full bg-wash" />
+                    <div className="relative flex flex-1 flex-col items-start justify-center gap-3 px-5 pb-16 pt-5 lg:px-10 lg:pt-8">
+                      <h4 className="text-3xl font-semibold leading-tight text-primary lg:text-4xl">
                         Stay true to the web
                       </h4>
-                      <p className="lg:text-xl leading-normal text-secondary">
+                      <p className="leading-normal text-secondary lg:text-xl">
                         People expect web app pages to load fast. On the server,
                         React lets you start streaming HTML while you’re still
                         fetching data, progressively filling in the remaining
@@ -300,18 +300,18 @@ export function HomeContent() {
                   </div>
                 </BrowserChrome>
               </div>
-              <div className="relative lg:w-6/12 flex">
-                <div className="absolute -bottom-8 lg:-bottom-10 z-10 w-full">
+              <div className="relative flex lg:w-6/12">
+                <div className="absolute -bottom-8 z-10 w-full lg:-bottom-10">
                   <NativeIcons />
                 </div>
-                <figure className="mx-auto max-w-3xl h-auto">
-                  <div className="p-2.5 bg-gray-95 dark:bg-black rounded-2xl shadow-nav dark:shadow-nav-dark">
-                    <div className="bg-gradient-right dark:bg-gradient-right-dark px-3 sm:px-3 pb-12 lg:pb-20 rounded-lg overflow-hidden">
-                      <div className="select-none w-full h-14 flex flex-row items-start pt-3 -mb-2.5 justify-between text-tertiary dark:text-tertiary-dark">
-                        <span className="uppercase tracking-wide leading-none font-bold text-sm text-tertiary dark:text-tertiary-dark">
+                <figure className="mx-auto h-auto max-w-3xl">
+                  <div className="rounded-2xl bg-gray-95 p-2.5 shadow-nav dark:bg-black dark:shadow-nav-dark">
+                    <div className="overflow-hidden rounded-lg bg-gradient-right px-3 pb-12 dark:bg-gradient-right-dark sm:px-3 lg:pb-20">
+                      <div className="-mb-2.5 flex h-14 w-full select-none flex-row items-start justify-between pt-3 text-tertiary dark:text-tertiary-dark">
+                        <span className="text-sm font-bold uppercase leading-none tracking-wide text-tertiary dark:text-tertiary-dark">
                           <CurrentTime />
                         </span>
-                        <div className="gap-2 flex -mt-0.5">
+                        <div className="-mt-0.5 flex gap-2">
                           <svg
                             width="16"
                             height="20"
@@ -370,11 +370,11 @@ export function HomeContent() {
                           </svg>
                         </div>
                       </div>
-                      <div className="flex flex-col items-start justify-center pt-0 gap-3 px-2.5 lg:pt-8 lg:px-8">
-                        <h4 className="leading-tight text-primary dark:text-primary-dark font-semibold text-3xl lg:text-4xl">
+                      <div className="flex flex-col items-start justify-center gap-3 px-2.5 pt-0 lg:px-8 lg:pt-8">
+                        <h4 className="text-3xl font-semibold leading-tight text-primary dark:text-primary-dark lg:text-4xl">
                           Go truly native
                         </h4>
-                        <p className="h-full lg:text-xl text-secondary dark:text-secondary-dark leading-normal">
+                        <p className="h-full leading-normal text-secondary dark:text-secondary-dark lg:text-xl">
                           People expect native apps to look and feel like their
                           platform.{' '}
                           <Link href="https://reactnative.dev">
@@ -394,14 +394,14 @@ export function HomeContent() {
                 </figure>
               </div>
             </div>
-            <div className="px-5 lg:px-0 max-w-4xl mx-auto lg:text-center text-secondary dark:text-secondary-dark">
+            <div className="mx-auto max-w-4xl px-5 text-secondary dark:text-secondary-dark lg:px-0 lg:text-center">
               <Para>
                 With React, you can be a web <i>and</i> a native developer. Your
                 team can ship to many platforms without sacrificing the user
                 experience. Your organization can bridge the platform silos, and
                 form teams that own entire features end-to-end.
               </Para>
-              <div className="flex justify-start w-full lg:justify-center">
+              <div className="flex w-full justify-start lg:justify-center">
                 <CTA color="gray" icon="native" href="https://reactnative.dev/">
                   Build for native platforms
                 </CTA>
@@ -411,9 +411,9 @@ export function HomeContent() {
         </Section>
 
         <Section background="right-card">
-          <div className="max-w-7xl mx-auto flex flex-col lg:flex-row px-5">
-            <div className="max-w-3xl lg:max-w-7xl gap-5 flex flex-col lg:flex-row lg:px-5">
-              <div className="w-full lg:w-6/12 max-w-3xl flex flex-col items-start justify-start lg:pl-5 lg:pr-10">
+          <div className="mx-auto flex max-w-7xl flex-col px-5 lg:flex-row">
+            <div className="flex max-w-3xl flex-col gap-5 lg:max-w-7xl lg:flex-row lg:px-5">
+              <div className="flex w-full max-w-3xl flex-col items-start justify-start lg:w-6/12 lg:pl-5 lg:pr-10">
                 <Header>Upgrade when the future is ready</Header>
                 <Para>
                   React approaches changes with care. Every React commit is
@@ -428,7 +428,7 @@ export function HomeContent() {
                     for taking a research idea into production. Only proven
                     approaches become a part of React.
                   </Para>
-                  <div className="hidden lg:flex justify-start w-full">
+                  <div className="hidden w-full justify-start lg:flex">
                     <CTA color="gray" icon="news" href="/blog">
                       Read more React news
                     </CTA>
@@ -436,25 +436,25 @@ export function HomeContent() {
                 </div>
               </div>
               <div className="w-full lg:w-6/12">
-                <p className="uppercase tracking-wide font-bold text-sm text-tertiary dark:text-tertiary-dark flex flex-row gap-2 items-center mt-5 lg:-mt-2 w-full">
+                <p className="mt-5 flex w-full flex-row items-center gap-2 text-sm font-bold uppercase tracking-wide text-tertiary dark:text-tertiary-dark lg:-mt-2">
                   <IconChevron />
                   Latest React News
                 </p>
-                <div className="flex-col sm:flex-row flex-wrap flex gap-5 text-left my-5">
-                  <div className="flex-1 min-w-[40%]">
+                <div className="my-5 flex flex-col flex-wrap gap-5 text-left sm:flex-row">
+                  <div className="min-w-[40%] flex-1">
                     <BlogCard {...recentPosts[0]} />
                   </div>
-                  <div className="flex-1 min-w-[40%]">
+                  <div className="min-w-[40%] flex-1">
                     <BlogCard {...recentPosts[1]} />
                   </div>
-                  <div className="flex-1 min-w-[40%]">
+                  <div className="min-w-[40%] flex-1">
                     <BlogCard {...recentPosts[2]} />
                   </div>
-                  <div className="hidden sm:flex-1 sm:inline">
+                  <div className="hidden sm:inline sm:flex-1">
                     <BlogCard {...recentPosts[3]} />
                   </div>
                 </div>
-                <div className="flex lg:hidden justify-start w-full">
+                <div className="flex w-full justify-start lg:hidden">
                   <CTA color="gray" icon="news" href="/blog">
                     Read more React news
                   </CTA>
@@ -466,7 +466,7 @@ export function HomeContent() {
 
         <Section background="left-card">
           <div className="w-full">
-            <div className="mx-auto flex flex-col max-w-4xl">
+            <div className="mx-auto flex max-w-4xl flex-col">
               <Center>
                 <Header>
                   Join a community <br className="hidden lg:inline" />
@@ -480,7 +480,7 @@ export function HomeContent() {
               </Center>
             </div>
             <CommunityGallery />
-            <div className="mx-auto flex flex-col max-w-4xl">
+            <div className="mx-auto flex max-w-4xl flex-col">
               <Center>
                 <Para>
                   This is why React is more than a library, an architecture, or
@@ -495,8 +495,8 @@ export function HomeContent() {
             </div>
           </div>
 
-          <div className="mt-20 px-5 lg:px-0 mb-6 max-w-4xl text-center text-opacity-80">
-            <Logo className="text-link dark:text-link-dark w-24 lg:w-28 mb-10 lg:mb-8 mt-12 h-auto mx-auto self-start" />
+          <div className="mt-20 mb-6 max-w-4xl px-5 text-center text-opacity-80 lg:px-0">
+            <Logo className="mx-auto mb-10 mt-12 h-auto w-24 self-start text-link dark:text-link-dark lg:mb-8 lg:w-28" />
             <Header>
               Welcome to the <br className="" />
               React community
@@ -528,7 +528,7 @@ function CTA({children, icon, href}) {
     <Tag
       {...extraProps}
       href={href}
-      className="focus:outline-none focus-visible:outline focus-visible:outline-link focus:outline-offset-2 focus-visible:dark:focus:outline-link-dark group cursor-pointer w-auto justify-center inline-flex font-bold items-center mt-10 outline-none hover:bg-gray-40/5 active:bg-gray-40/10 hover:dark:bg-gray-60/5 active:dark:bg-gray-60/10 leading-tight hover:bg-opacity-80 text-lg py-2.5 rounded-full px-4 sm:px-6 ease-in-out shadow-secondary-button-stroke dark:shadow-secondary-button-stroke-dark text-primary dark:text-primary-dark">
+      className="group mt-10 inline-flex w-auto cursor-pointer items-center justify-center rounded-full py-2.5 px-4 text-lg font-bold leading-tight text-primary shadow-secondary-button-stroke outline-none ease-in-out hover:bg-gray-40/5 hover:bg-opacity-80 focus:outline-none focus:outline-offset-2 focus-visible:outline focus-visible:outline-link active:bg-gray-40/10 dark:text-primary-dark dark:shadow-secondary-button-stroke-dark hover:dark:bg-gray-60/5 focus-visible:dark:focus:outline-link-dark active:dark:bg-gray-60/10 sm:px-6">
       {icon === 'native' && (
         <svg
           className="mr-2.5 text-primary dark:text-primary-dark"
@@ -637,14 +637,14 @@ function CTA({children, icon, href}) {
         viewBox="0 0 72 72"
         aria-hidden="true">
         <path
-          className="transition-transform ease-in-out translate-x-[-8px] group-hover:translate-x-[8px]"
+          className="translate-x-[-8px] transition-transform ease-in-out group-hover:translate-x-[8px]"
           fillRule="evenodd"
           clipRule="evenodd"
           d="M40.0001 19.0245C41.0912 17.7776 42.9864 17.6513 44.2334 18.7423L58.9758 33.768C59.6268 34.3377 60.0002 35.1607 60.0002 36.0257C60.0002 36.8908 59.6268 37.7138 58.9758 38.2835L44.2335 53.3078C42.9865 54.3988 41.0913 54.2725 40.0002 53.0256C38.9092 51.7786 39.0355 49.8835 40.2824 48.7924L52.4445 36.0257L40.2823 23.2578C39.0354 22.1667 38.9091 20.2714 40.0001 19.0245Z"
           fill="currentColor"
         />
         <path
-          className="opacity-0 ease-in-out transition-opacity group-hover:opacity-100"
+          className="opacity-0 transition-opacity ease-in-out group-hover:opacity-100"
           d="M60 36.0273C60 37.6842 58.6569 39.0273 57 39.0273H15C13.3431 39.0273 12 37.6842 12 36.0273C12 34.3704 13.3431 33.0273 15 33.0273H57C58.6569 33.0273 60 34.3704 60 36.0273Z"
           fill="currentColor"
         />
@@ -744,9 +744,9 @@ function CommunityGallery() {
   return (
     <div
       ref={ref}
-      className="relative flex overflow-x-hidden overflow-y-visible w-auto">
+      className="relative flex w-auto overflow-x-hidden overflow-y-visible">
       <div
-        className="w-full py-12 lg:py-20 whitespace-nowrap flex flex-row animate-marquee lg:animate-large-marquee"
+        className="flex w-full animate-marquee flex-row whitespace-nowrap py-12 lg:animate-large-marquee lg:py-20"
         style={{
           animationPlayState: shouldPlay ? 'running' : 'paused',
         }}>
@@ -754,7 +754,7 @@ function CommunityGallery() {
       </div>
       <div
         aria-hidden="true"
-        className="w-full absolute top-0 py-12 lg:py-20 whitespace-nowrap flex flex-row animate-marquee2 lg:animate-large-marquee2"
+        className="absolute top-0 flex w-full animate-marquee2 flex-row whitespace-nowrap py-12 lg:animate-large-marquee2 lg:py-20"
         style={{
           animationPlayState: shouldPlay ? 'running' : 'paused',
         }}>
@@ -771,20 +771,20 @@ const CommunityImages = memo(function CommunityImages({isLazy}) {
         <div
           key={i}
           className={cn(
-            `group flex justify-center px-5 min-w-[50%] lg:min-w-[25%] rounded-2xl relative`
+            `group relative flex min-w-[50%] justify-center rounded-2xl px-5 lg:min-w-[25%]`
           )}>
           <div
             className={cn(
-              'h-auto relative rounded-2xl overflow-hidden before:-skew-x-12 before:absolute before:inset-0 before:-translate-x-full group-hover:before:animate-[shimmer_1s_forwards] before:bg-gradient-to-r before:from-transparent before:via-white/10 before:to-transparent transition-all ease-in-out duration-300',
+              'relative h-auto overflow-hidden rounded-2xl transition-all duration-300 ease-in-out before:absolute before:inset-0 before:-translate-x-full before:-skew-x-12 before:bg-gradient-to-r before:from-transparent before:via-white/10 before:to-transparent group-hover:before:animate-[shimmer_1s_forwards]',
               i % 2 === 0
                 ? 'rotate-2 group-hover:rotate-[-1deg] group-hover:scale-110 group-hover:shadow-lg lg:group-hover:shadow-2xl'
-                : 'group-hover:rotate-1 group-hover:scale-110 group-hover:shadow-lg lg:group-hover:shadow-2xl rotate-[-2deg]'
+                : 'rotate-[-2deg] group-hover:rotate-1 group-hover:scale-110 group-hover:shadow-lg lg:group-hover:shadow-2xl'
             )}>
             <img
               loading={isLazy ? 'lazy' : 'eager'}
               src={src}
               alt={alt}
-              className="aspect-[4/3] h-full w-full flex object-cover rounded-2xl bg-gray-10 dark:bg-gray-80"
+              className="flex aspect-[4/3] h-full w-full rounded-2xl bg-gray-10 object-cover dark:bg-gray-80"
             />
           </div>
         </div>
@@ -833,12 +833,12 @@ function ExampleLayout({
     }
   }, [activeArea]);
   return (
-    <div className="lg:pl-10 lg:pr-5 w-full">
-      <div className="mt-12 mb-2 lg:my-16 max-w-7xl mx-auto flex flex-col w-full lg:rounded-2xl lg:bg-card lg:dark:bg-card-dark">
-        <div className="flex-col gap-0 lg:gap-5 lg:rounded-2xl lg:bg-gray-10 lg:dark:bg-gray-70 shadow-inner-border dark:shadow-inner-border-dark lg:flex-row flex grow w-full mx-auto items-center bg-cover bg-center lg:bg-right lg:bg-[length:60%_100%] bg-no-repeat bg-meta-gradient dark:bg-meta-gradient-dark">
-          <div className="lg:-m-5 h-full shadow-nav dark:shadow-nav-dark lg:rounded-2xl bg-wash dark:bg-gray-95 w-full flex grow flex-col">
-            <div className="w-full bg-card dark:bg-wash-dark lg:rounded-t-2xl border-b border-black/5 dark:border-white/5">
-              <h3 className="text-sm my-1 mx-5 text-tertiary dark:text-tertiary-dark select-none">
+    <div className="w-full lg:pl-10 lg:pr-5">
+      <div className="mx-auto mt-12 mb-2 flex w-full max-w-7xl flex-col lg:my-16 lg:rounded-2xl lg:bg-card lg:dark:bg-card-dark">
+        <div className="mx-auto flex w-full grow flex-col items-center gap-0 bg-meta-gradient bg-cover bg-center bg-no-repeat shadow-inner-border dark:bg-meta-gradient-dark dark:shadow-inner-border-dark lg:flex-row lg:gap-5 lg:rounded-2xl lg:bg-gray-10 lg:bg-[length:60%_100%] lg:bg-right lg:dark:bg-gray-70">
+          <div className="flex h-full w-full grow flex-col bg-wash shadow-nav dark:bg-gray-95 dark:shadow-nav-dark lg:-m-5 lg:rounded-2xl">
+            <div className="w-full border-b border-black/5 bg-card dark:border-white/5 dark:bg-wash-dark lg:rounded-t-2xl">
+              <h3 className="my-1 mx-5 select-none text-sm text-tertiary dark:text-tertiary-dark">
                 {filename}
               </h3>
             </div>
@@ -846,17 +846,17 @@ function ExampleLayout({
           </div>
           <div
             ref={contentRef}
-            className="relative mt-0 lg:-my-20 w-full p-2.5 xs:p-5 lg:p-10 flex grow justify-center">
+            className="relative mt-0 flex w-full grow justify-center p-2.5 lg:-my-20 lg:p-10 xs:p-5">
             {right}
             <div
               className={cn(
-                'absolute z-10 inset-0 pointer-events-none transition-opacity transform-gpu',
+                'pointer-events-none absolute inset-0 z-10 transform-gpu transition-opacity',
                 activeArea ? 'opacity-100' : 'opacity-0'
               )}>
               {overlayStyles.map((styles, i) => (
                 <div
                   key={i}
-                  className="top-0 left-0 bg-blue-30/5 border-2 border-link dark:border-link-dark absolute rounded-lg"
+                  className="absolute top-0 left-0 rounded-lg border-2 border-link bg-blue-30/5 dark:border-link-dark"
                   style={styles}
                 />
               ))}
@@ -1090,10 +1090,10 @@ function SearchableVideoList({ videos }) {
             noPadding={true}
             contentMarginTop="72px"
             height="30rem">
-            <h1 className="mx-4 mb-1 font-bold text-3xl text-primary">
+            <h1 className="mx-4 mb-1 text-3xl font-bold text-primary">
               React Videos
             </h1>
-            <p className="mx-4 mb-0 leading-snug text-secondary text-xl">
+            <p className="mx-4 mb-0 text-xl leading-snug text-secondary">
               A brief history of React
             </p>
             <div className="px-4 pb-4">
@@ -1224,7 +1224,7 @@ function ExamplePanel({
   return (
     <div
       className={cn(
-        'max-w-3xl rounded-2xl mx-auto text-secondary leading-normal bg-white overflow-hidden w-full overflow-y-auto',
+        'mx-auto w-full max-w-3xl overflow-hidden overflow-y-auto rounded-2xl bg-white leading-normal text-secondary',
         noShadow ? 'shadow-none' : 'shadow-nav dark:shadow-nav-dark'
       )}
       style={{height}}>
@@ -1271,13 +1271,13 @@ function BrowserChrome({children, hasPulse, hasRefresh, domain, path}) {
   }
 
   return (
-    <div className="mx-auto max-w-3xl shadow-nav dark:shadow-nav-dark relative overflow-hidden w-full dark:border-opacity-10 rounded-2xl">
-      <div className="w-full h-14 rounded-t-2xl shadow-outer-border backdrop-filter overflow-hidden backdrop-blur-lg backdrop-saturate-200 bg-white bg-opacity-90 z-10 absolute top-0 px-3 gap-2 flex flex-row items-center">
-        <div className="select-none h-8 relative bg-gray-30/20 text-sm text-tertiary text-center rounded-full w-full flex-row flex space-between items-center">
+    <div className="relative mx-auto w-full max-w-3xl overflow-hidden rounded-2xl shadow-nav dark:border-opacity-10 dark:shadow-nav-dark">
+      <div className="absolute top-0 z-10 flex h-14 w-full flex-row items-center gap-2 overflow-hidden rounded-t-2xl bg-white bg-opacity-90 px-3 shadow-outer-border backdrop-blur-lg backdrop-saturate-200 backdrop-filter">
+        <div className="space-between relative flex h-8 w-full select-none flex-row items-center rounded-full bg-gray-30/20 text-center text-sm text-tertiary">
           <div className="h-4 w-6" />
-          <div className="w-full leading-snug flex flex-row items-center justify-center">
+          <div className="flex w-full flex-row items-center justify-center leading-snug">
             <svg
-              className="text-tertiary mr-1 opacity-60"
+              className="mr-1 text-tertiary opacity-60"
               width="12"
               height="12"
               viewBox="0 0 44 44"
@@ -1301,22 +1301,22 @@ function BrowserChrome({children, hasPulse, hasRefresh, domain, path}) {
             <div
               ref={refreshRef}
               className={cn(
-                'relative rounded-full flex justify-center items-center ',
+                'relative flex items-center justify-center rounded-full ',
                 isPulsing && shouldAnimatePulse && 'animation-pulse-button'
               )}>
               {isPulsing && shouldAnimatePulse && (
-                <div className="z-0 absolute shadow-[0_0_0_8px_rgba(0,0,0,0.5)] inset-0 rounded-full animation-pulse-shadow" />
+                <div className="animation-pulse-shadow absolute inset-0 z-0 rounded-full shadow-[0_0_0_8px_rgba(0,0,0,0.5)]" />
               )}
               <button
                 aria-label="Reload"
                 onClick={handleRestart}
                 className={
-                  'z-10 flex items-center p-1.5 rounded-full cursor-pointer justify-center' +
+                  'z-10 flex cursor-pointer items-center justify-center rounded-full p-1.5' +
                   // bg-transparent hover:bg-gray-20/50,
                   // but opaque to obscure the pulsing wave.
                   ' bg-[#ebecef] hover:bg-[#d3d7de]'
                 }>
-                <IconRestart className="text-tertiary text-lg" />
+                <IconRestart className="text-lg text-tertiary" />
               </button>
             </div>
           )}
@@ -1324,14 +1324,14 @@ function BrowserChrome({children, hasPulse, hasRefresh, domain, path}) {
         {restartId > 0 && (
           <div
             key={restartId}
-            className="z-10 loading h-0.5 bg-link transition-all duration-200 absolute bottom-0 left-0"
+            className="loading absolute bottom-0 left-0 z-10 h-0.5 bg-link transition-all duration-200"
             style={{
               animation: `progressbar ${loadTalksDelay + 100}ms ease-in-out`,
             }}
           />
         )}
       </div>
-      <div className="h-full flex flex-1" key={restartId}>
+      <div className="flex h-full flex-1" key={restartId}>
         {children}
       </div>
     </div>
@@ -1353,9 +1353,9 @@ function ConferencePage({slug}) {
 
 function TalksLoading() {
   return (
-    <div className="flex flex-col items-center h-[25rem] overflow-hidden">
+    <div className="flex h-[25rem] flex-col items-center overflow-hidden">
       <div className="w-full">
-        <div className="relative overflow-hidden before:-skew-x-12 before:absolute before:inset-0 before:-translate-x-full before:animate-[shimmer_2.5s_infinite] before:bg-gradient-to-r before:from-transparent before:via-white/50 before:to-transparent">
+        <div className="relative overflow-hidden before:absolute before:inset-0 before:-translate-x-full before:-skew-x-12 before:animate-[shimmer_2.5s_infinite] before:bg-gradient-to-r before:from-transparent before:via-white/50 before:to-transparent">
           <div className="space-y-4">
             <div className="pt-4 pb-1">
               <div className="h-10 w-full rounded-full bg-gray-10"></div>
@@ -1364,7 +1364,7 @@ function TalksLoading() {
               <div className="h-5 w-20 rounded-lg bg-gray-10"></div>
             </div>
             <div className="flex flex-row items-center gap-3">
-              <div className="aspect-video w-32 xs:w-36 rounded-lg bg-gray-10"></div>
+              <div className="aspect-video w-32 rounded-lg bg-gray-10 xs:w-36"></div>
               <div className="flex flex-col gap-2">
                 <div className="h-3 w-40 rounded-lg bg-gray-10"></div>
                 <div className="h-3 w-32 rounded-lg bg-gray-10"></div>
@@ -1372,7 +1372,7 @@ function TalksLoading() {
               </div>
             </div>
             <div className="flex flex-row items-center gap-3">
-              <div className="aspect-video w-32 xs:w-36 rounded-lg bg-gray-10"></div>
+              <div className="aspect-video w-32 rounded-lg bg-gray-10 xs:w-36"></div>
               <div className="flex flex-col gap-2">
                 <div className="h-3 w-40 rounded-lg bg-gray-10"></div>
                 <div className="h-3 w-32 rounded-lg bg-gray-10"></div>
@@ -1380,7 +1380,7 @@ function TalksLoading() {
               </div>
             </div>
             <div className="flex flex-row items-center gap-3">
-              <div className="aspect-video w-32 xs:w-36 rounded-lg bg-gray-10"></div>
+              <div className="aspect-video w-32 rounded-lg bg-gray-10 xs:w-36"></div>
               <div className="flex flex-col gap-2">
                 <div className="h-3 w-40 rounded-lg bg-gray-10"></div>
                 <div className="h-3 w-32 rounded-lg bg-gray-10"></div>
@@ -1388,7 +1388,7 @@ function TalksLoading() {
               </div>
             </div>
             <div className="flex flex-row items-center gap-3">
-              <div className="aspect-video w-32 xs:w-36 rounded-lg bg-gray-10"></div>
+              <div className="aspect-video w-32 rounded-lg bg-gray-10 xs:w-36"></div>
               <div className="flex flex-col gap-2">
                 <div className="h-3 w-40 rounded-lg bg-gray-10"></div>
                 <div className="h-3 w-32 rounded-lg bg-gray-10"></div>
@@ -1447,7 +1447,7 @@ function VideoList({videos, emptyHeading}) {
   return (
     <section className="relative" data-hover="VideoList">
       <h2
-        className="font-bold text-xl text-primary mb-4 leading-snug"
+        className="mb-4 text-xl font-bold leading-snug text-primary"
         data-hover="h2">
         {heading}
       </h2>
@@ -1468,13 +1468,13 @@ function SearchInput({value, onChange}) {
         Search
       </label>
       <div className="relative w-full">
-        <div className="absolute inset-y-0 left-0 flex items-center pl-4 pointer-events-none">
-          <IconSearch className="text-gray-30 w-4" />
+        <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-4">
+          <IconSearch className="w-4 text-gray-30" />
         </div>
         <input
           type="text"
           id={id}
-          className="flex pl-11 py-4 h-10 w-full bg-secondary-button outline-none betterhover:hover:bg-opacity-80 pointer items-center text-left text-primary rounded-full align-middle text-base"
+          className="pointer flex h-10 w-full items-center rounded-full bg-secondary-button py-4 pl-11 text-left align-middle text-base text-primary outline-none betterhover:hover:bg-opacity-80"
           placeholder="Search"
           value={value}
           onChange={(e) => onChange(e.target.value)}
@@ -1503,7 +1503,7 @@ function ConferenceLayout({conf, children}) {
               navigate(e.target.value);
             });
           }}
-          className="appearance-none pr-8 bg-transparent text-primary-dark text-2xl font-bold mb-0.5"
+          className="mb-0.5 appearance-none bg-transparent pr-8 text-2xl font-bold text-primary-dark"
           style={{
             backgroundSize: '4px 4px, 4px 4px',
             backgroundRepeat: 'no-repeat',
@@ -1525,8 +1525,8 @@ function ConferenceLayout({conf, children}) {
 
 function Cover({background, children}) {
   return (
-    <div className="h-40 overflow-hidden relative items-center flex">
-      <div className="absolute inset-0 px-4 py-2 flex items-end bg-gradient-to-t from-black/40 via-black/0">
+    <div className="relative flex h-40 items-center overflow-hidden">
+      <div className="absolute inset-0 flex items-end bg-gradient-to-t from-black/40 via-black/0 px-4 py-2">
         {children}
       </div>
       <img
@@ -1548,17 +1548,17 @@ function Video({video}) {
         href={video.url}
         target="_blank"
         rel="noreferrer"
-        className="outline-link dark:outline-link outline-offset-4 group flex flex-col flex-1 gap-0.5"
+        className="group flex flex-1 flex-col gap-0.5 outline-offset-4 outline-link dark:outline-link"
         data-hover="a">
         <h3
           className={cn(
-            'text-base leading-tight text-primary font-bold',
+            'text-base font-bold leading-tight text-primary',
             video.url && 'group-hover:underline'
           )}
           data-hover="h3">
           {video.title}
         </h3>
-        <p className="text-tertiary text-sm leading-snug" data-hover="p">
+        <p className="text-sm leading-snug text-tertiary" data-hover="p">
           {video.description}
         </p>
       </a>
@@ -1569,7 +1569,7 @@ function Video({video}) {
 
 function Code({children}) {
   return (
-    <span className="font-mono inline rounded-lg bg-secondary-button dark:bg-secondary-button-dark py-0.5 px-1">
+    <span className="inline rounded-lg bg-secondary-button py-0.5 px-1 font-mono dark:bg-secondary-button-dark">
       {children}
     </span>
   );
@@ -1586,13 +1586,13 @@ function Thumbnail({video}) {
       aria-hidden="true"
       tabIndex={-1}
       className={cn(
-        'outline-link dark:outline-link outline-offset-2 aspect-video w-32 xs:w-36 select-none flex-col shadow-inner-border rounded-lg flex items-center overflow-hidden justify-center align-middle text-white/50 bg-cover bg-white bg-[conic-gradient(at_top_right,_var(--tw-gradient-stops))]',
+        'flex aspect-video w-32 select-none flex-col items-center justify-center overflow-hidden rounded-lg bg-white bg-[conic-gradient(at_top_right,_var(--tw-gradient-stops))] bg-cover align-middle text-white/50 shadow-inner-border outline-offset-2 outline-link dark:outline-link xs:w-36',
         image === 'blue' && 'from-yellow-50 via-blue-50 to-purple-60',
         image === 'red' && 'from-yellow-50 via-red-50 to-purple-60',
         image === 'green' && 'from-yellow-50 via-green-50 to-purple-60',
         image === 'purple' && 'from-yellow-50 via-purple-50 to-purple-60',
         typeof image === 'object' && 'from-gray-80 via-gray-95 to-gray-70',
-        video.url && 'hover:opacity-95 transition-opacity'
+        video.url && 'transition-opacity hover:opacity-95'
       )}
       style={{
         backgroundImage:
@@ -1602,19 +1602,19 @@ function Thumbnail({video}) {
       }}>
       {typeof image !== 'string' ? (
         <>
-          <div className="transition-opacity mt-2.5 -space-x-2 flex flex-row w-full justify-center">
+          <div className="mt-2.5 flex w-full flex-row justify-center -space-x-2 transition-opacity">
             {image.speakers.map((src, i) => (
               <img
                 key={i}
-                className="h-8 w-8 border-2 shadow-md border-gray-70 object-cover rounded-full"
+                className="h-8 w-8 rounded-full border-2 border-gray-70 object-cover shadow-md"
                 src={src}
                 alt=""
               />
             ))}
           </div>
           <div className="mt-1">
-            <span className="inline-flex text-xs font-normal items-center text-primary-dark py-1 whitespace-nowrap outline-link px-1.5 rounded-lg">
-              <Logo className="text-xs mr-1 w-4 h-4 text-link-dark" />
+            <span className="inline-flex items-center whitespace-nowrap rounded-lg py-1 px-1.5 text-xs font-normal text-primary-dark outline-link">
+              <Logo className="mr-1 h-4 w-4 text-xs text-link-dark" />
               React Conf
             </span>
           </div>
@@ -1656,7 +1656,7 @@ function LikeButton({video}) {
     <button
       data-hover="LikeButton"
       className={cn(
-        'outline-none focus:bg-red-50/5 focus:text-red-50 relative flex items-center justify-center w-10 h-10 cursor-pointer rounded-full text-tertiary hover:bg-card active:scale-95 active:bg-red-50/5 active:text-red-50',
+        'relative flex h-10 w-10 cursor-pointer items-center justify-center rounded-full text-tertiary outline-none hover:bg-card focus:bg-red-50/5 focus:text-red-50 active:scale-95 active:bg-red-50/5 active:text-red-50',
         isLiked && 'text-red-50'
       )}
       aria-label={isLiked ? 'Unsave' : 'Save'}
@@ -1677,7 +1677,7 @@ function LikeButton({video}) {
         xmlns="http://www.w3.org/2000/svg">
         <circle
           className={cn(
-            'text-red-50/50 origin-center transition-all ease-in-out',
+            'origin-center text-red-50/50 transition-all ease-in-out',
             isLiked && animate && 'animate-[circle_.3s_forwards]'
           )}
           cx="12"
@@ -1691,7 +1691,7 @@ function LikeButton({video}) {
       {isLiked ? (
         <svg
           className={cn(
-            'w-6 h-6 origin-center transition-all ease-in-out',
+            'h-6 w-6 origin-center transition-all ease-in-out',
             isLiked && animate && 'animate-[scale_.35s_ease-in-out_forwards]'
           )}
           viewBox="0 0 24 24"
@@ -1704,7 +1704,7 @@ function LikeButton({video}) {
         </svg>
       ) : (
         <svg
-          className="w-6 h-6"
+          className="h-6 w-6"
           viewBox="0 0 24 24"
           fill="none"
           xmlns="http://www.w3.org/2000/svg">
@@ -1722,7 +1722,7 @@ function LikeButton({video}) {
 function SvgContainer({children}) {
   return (
     <svg
-      className="w-16 h-16 lg:w-20 lg:h-20 rounded-2xl lg:rounded-3xl shadow-nav bg-wash"
+      className="h-16 w-16 rounded-2xl bg-wash shadow-nav lg:h-20 lg:w-20 lg:rounded-3xl"
       viewBox="0 0 120 120"
       fill="none"
       xmlns="http://www.w3.org/2000/svg">

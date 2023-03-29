@@ -15,8 +15,8 @@ interface DiagramProps {
 
 function Caption({text}: {text: string}) {
   return (
-    <div className="w-full table">
-      <figcaption className="p-1 sm:p-2 mt-0 sm:mt-0 text-gray-40 text-base lg:text-lg text-center leading-tight table-caption">
+    <div className="table w-full">
+      <figcaption className="mt-0 table-caption p-1 text-center text-base leading-tight text-gray-40 sm:mt-0 sm:p-2 lg:text-lg">
         {text}
       </figcaption>
     </div>
@@ -32,7 +32,7 @@ export function Diagram({
   captionPosition,
 }: DiagramProps) {
   return (
-    <figure className="flex flex-col px-0 p-0 sm:p-10 first:mt-0 mt-10 sm:mt-0 justify-center items-center">
+    <figure className="mt-10 flex flex-col items-center justify-center p-0 px-0 first:mt-0 sm:mt-0 sm:p-10">
       {captionPosition === 'top' && <Caption text={children} />}
       <div className="dark-image">
         <Image

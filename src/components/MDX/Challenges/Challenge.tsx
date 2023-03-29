@@ -47,9 +47,9 @@ export function Challenge({
     <div className="p-5 sm:py-8 sm:px-8">
       <div>
         <H4
-          className="text-xl text-primary dark:text-primary-dark mb-2 mt-0 font-medium"
+          className="mb-2 mt-0 text-xl font-medium text-primary dark:text-primary-dark"
           id={currentChallenge.id}>
-          <div className="font-bold block md:inline">
+          <div className="block font-bold md:inline">
             {isRecipes ? 'Example' : 'Challenge'} {currentChallenge.order} of{' '}
             {totalChallenges}
             <span className="text-primary dark:text-primary-dark">: </span>
@@ -58,7 +58,7 @@ export function Challenge({
         </H4>
         {currentChallenge.content}
       </div>
-      <div className="flex justify-between items-center mt-4">
+      <div className="mt-4 flex items-center justify-between">
         {currentChallenge.hint ? (
           <div>
             <Button className="mr-2" onClick={toggleHint} active={showHint}>
@@ -89,13 +89,13 @@ export function Challenge({
           <Button
             className={cn(
               isRecipes
-                ? 'bg-purple-50 border-purple-50 hover:bg-purple-50 focus:bg-purple-50 active:bg-purple-50'
+                ? 'border-purple-50 bg-purple-50 hover:bg-purple-50 focus:bg-purple-50 active:bg-purple-50'
                 : 'bg-link dark:bg-link-dark'
             )}
             onClick={handleClickNextChallenge}
             active>
             Next {isRecipes ? 'Example' : 'Challenge'}
-            <IconArrowSmall displayDirection="right" className="block ml-1.5" />
+            <IconArrowSmall displayDirection="right" className="ml-1.5 block" />
           </Button>
         )}
       </div>
@@ -107,7 +107,7 @@ export function Challenge({
             Solution
           </h3>
           {currentChallenge.solution}
-          <div className="flex justify-between items-center mt-4">
+          <div className="mt-4 flex items-center justify-between">
             <Button onClick={() => setShowSolution(false)}>
               Close solution
             </Button>
@@ -121,7 +121,7 @@ export function Challenge({
                 Next Challenge
                 <IconArrowSmall
                   displayDirection="right"
-                  className="block ml-1.5"
+                  className="ml-1.5 block"
                 />
               </Button>
             )}

@@ -14,9 +14,9 @@ interface YouWillLearnCardProps {
 
 function YouWillLearnCard({title, path, children}: YouWillLearnCardProps) {
   return (
-    <div className="flex flex-col h-full bg-card dark:bg-card-dark shadow-inner justify-between rounded-lg pb-8 p-6 xl:p-8 mt-3">
+    <div className="mt-3 flex h-full flex-col justify-between rounded-lg bg-card p-6 pb-8 shadow-inner dark:bg-card-dark xl:p-8">
       <div>
-        <h4 className="text-primary dark:text-primary-dark font-bold text-2xl leading-tight">
+        <h4 className="text-2xl font-bold leading-tight text-primary dark:text-primary-dark">
           {title}
         </h4>
         <div className="my-4">{children}</div>
@@ -29,7 +29,7 @@ function YouWillLearnCard({title, path, children}: YouWillLearnCardProps) {
           size="md"
           label={title}>
           Read More
-          <IconNavArrow displayDirection="right" className="inline ml-1" />
+          <IconNavArrow displayDirection="right" className="ml-1 inline" />
         </ButtonLink>
       </div>
     </div>

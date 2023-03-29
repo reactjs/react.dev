@@ -17,9 +17,9 @@ interface TerminalBlockProps {
 function LevelText({type}: {type: LogLevel}) {
   switch (type) {
     case 'warning':
-      return <span className="text-yellow-50 bg-none mr-1">Warning: </span>;
+      return <span className="mr-1 bg-none text-yellow-50">Warning: </span>;
     case 'error':
-      return <span className="text-red-40 mr-1">Error: </span>;
+      return <span className="mr-1 text-red-40">Error: </span>;
     default:
       return null;
   }
@@ -51,11 +51,11 @@ function TerminalBlock({level = 'info', children}: TerminalBlockProps) {
   }, [copied]);
 
   return (
-    <div className="rounded-lg bg-secondary dark:bg-gray-50 h-full">
-      <div className="bg-gray-90 dark:bg-gray-60 w-full rounded-t-lg">
-        <div className="text-primary-dark dark:text-primary-dark flex text-sm px-4 py-0.5 relative justify-between">
+    <div className="h-full rounded-lg bg-secondary dark:bg-gray-50">
+      <div className="w-full rounded-t-lg bg-gray-90 dark:bg-gray-60">
+        <div className="relative flex justify-between px-4 py-0.5 text-sm text-primary-dark dark:text-primary-dark">
           <div>
-            <IconTerminal className="inline-flex mr-2 self-center" /> Terminal
+            <IconTerminal className="mr-2 inline-flex self-center" /> Terminal
           </div>
           <div>
             <button
@@ -64,13 +64,13 @@ function TerminalBlock({level = 'info', children}: TerminalBlockProps) {
                 window.navigator.clipboard.writeText(message ?? '');
                 setCopied(true);
               }}>
-              <IconCopy className="inline-flex mr-2 self-center" />{' '}
+              <IconCopy className="mr-2 inline-flex self-center" />{' '}
               {copied ? 'Copied' : 'Copy'}
             </button>
           </div>
         </div>
       </div>
-      <div className="px-8 pt-4 pb-6 text-primary-dark dark:text-primary-dark font-mono text-code whitespace-pre">
+      <div className="whitespace-pre px-8 pt-4 pb-6 font-mono text-code text-primary-dark dark:text-primary-dark">
         <LevelText type={level} />
         {message}
       </div>

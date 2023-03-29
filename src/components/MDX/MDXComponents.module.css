@@ -4,7 +4,7 @@
 
 /* Stop purging. */
 .markdown p {
-  @apply mb-4 leading-7 whitespace-pre-wrap text-gray-70;
+  @apply mb-4 whitespace-pre-wrap leading-7 text-gray-70;
 }
 
 .markdown ol {
@@ -30,7 +30,7 @@
 }
 
 .markdown code {
-  @apply text-gray-70 bg-card dark:bg-card-dark   p-1 rounded-lg no-underline;
+  @apply rounded-lg bg-card p-1   text-gray-70 no-underline dark:bg-card-dark;
   font-size: 90%;
 }
 
@@ -39,5 +39,5 @@
 }
 
 .markdown a {
-  @apply inline text-link dark:text-link-dark break-normal border-b border-link border-opacity-0 hover:border-opacity-100 duration-100 ease-in transition leading-normal;
+  @apply inline break-normal border-b border-link border-opacity-0 leading-normal text-link transition duration-100 ease-in hover:border-opacity-100 dark:text-link-dark;
 }

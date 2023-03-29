@@ -176,7 +176,7 @@ export function Preview({
     <SandpackStack className={className}>
       <div
         className={cn(
-          'p-0 sm:p-2 md:p-4 lg:p-8 bg-card dark:bg-wash-dark h-full relative md:rounded-b-lg lg:rounded-b-none',
+          'relative h-full bg-card p-0 dark:bg-wash-dark sm:p-2 md:rounded-b-lg md:p-4 lg:rounded-b-none lg:p-8',
           // Allow content to be scrolled if it's too high to fit.
           // Note we don't want this in the expanded state
           // because it breaks position: sticky (and isn't needed anyway).
@@ -186,14 +186,14 @@ export function Preview({
           <iframe
             ref={iframeRef}
             className={cn(
-              'rounded-t-none bg-white md:shadow-md sm:rounded-lg w-full max-w-full transition-opacity',
+              'w-full max-w-full rounded-t-none bg-white transition-opacity sm:rounded-lg md:shadow-md',
               // We can't *actually* hide content because that would
               // break calculating the computed height in the iframe
               // (which we're using for autosizing). This is noticeable
               // if you make a compiler error and then fix it with code
               // that expands the content. You want to measure that.
               hideContent
-                ? 'absolute opacity-0 pointer-events-none duration-75'
+                ? 'pointer-events-none absolute opacity-0 duration-75'
                 : 'opacity-100 duration-150'
             )}
             title="Sandbox Preview"

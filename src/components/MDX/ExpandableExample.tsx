@@ -47,10 +47,10 @@ function ExpandableExample({children, excerpt, type}: ExpandableExampleProps) {
         setIsExpanded(e.currentTarget!.open);
       }}
       className={cn(
-        'my-12 rounded-2xl shadow-inner-border dark:shadow-inner-border-dark relative',
+        'relative my-12 rounded-2xl shadow-inner-border dark:shadow-inner-border-dark',
         {
-          'dark:bg-opacity-20 dark:bg-purple-60 bg-purple-5': isDeepDive,
-          'dark:bg-opacity-20 dark:bg-yellow-60 bg-yellow-5': isExample,
+          'bg-purple-5 dark:bg-purple-60 dark:bg-opacity-20': isDeepDive,
+          'bg-yellow-5 dark:bg-yellow-60 dark:bg-opacity-20': isExample,
         }
       )}>
       <summary
@@ -64,19 +64,19 @@ function ExpandableExample({children, excerpt, type}: ExpandableExampleProps) {
           }
         }}>
         <h5
-          className={cn('mb-4 uppercase font-bold flex items-center text-sm', {
-            'dark:text-purple-30 text-purple-50': isDeepDive,
-            'dark:text-yellow-30 text-yellow-60': isExample,
+          className={cn('mb-4 flex items-center text-sm font-bold uppercase', {
+            'text-purple-50 dark:text-purple-30': isDeepDive,
+            'text-yellow-60 dark:text-yellow-30': isExample,
           })}>
           {isDeepDive && (
             <>
-              <IconDeepDive className="inline mr-2 dark:text-purple-30 text-purple-40" />
+              <IconDeepDive className="mr-2 inline text-purple-40 dark:text-purple-30" />
               Deep Dive
             </>
           )}
           {isExample && (
             <>
-              <IconCodeBlock className="inline mr-2 dark:text-yellow-30 text-yellow-50" />
+              <IconCodeBlock className="mr-2 inline text-yellow-50 dark:text-yellow-30" />
               Example
             </>
           )}
@@ -92,9 +92,9 @@ function ExpandableExample({children, excerpt, type}: ExpandableExampleProps) {
         <Button
           active={true}
           className={cn({
-            'bg-purple-50 border-purple-50 hover:bg-purple-40 focus:bg-purple-50 active:bg-purple-50':
+            'border-purple-50 bg-purple-50 hover:bg-purple-40 focus:bg-purple-50 active:bg-purple-50':
               isDeepDive,
-            'bg-yellow-50 border-yellow-50 hover:bg-yellow-40 focus:bg-yellow-50 active:bg-yellow-50':
+            'border-yellow-50 bg-yellow-50 hover:bg-yellow-40 focus:bg-yellow-50 active:bg-yellow-50':
               isExample,
           })}
           onClick={() => setIsExpanded((current) => !current)}>
@@ -105,9 +105,9 @@ function ExpandableExample({children, excerpt, type}: ExpandableExampleProps) {
         </Button>
       </summary>
       <div
-        className={cn('p-8 border-t', {
-          'dark:border-purple-60 border-purple-10 ': isDeepDive,
-          'dark:border-yellow-60 border-yellow-50': isExample,
+        className={cn('border-t p-8', {
+          'border-purple-10 dark:border-purple-60 ': isDeepDive,
+          'border-yellow-50 dark:border-yellow-60': isExample,
         })}>
         {children.slice(1)}
       </div>

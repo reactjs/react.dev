@@ -74,7 +74,7 @@ const SandboxShell = memo(function SandboxShell({
   return (
     <>
       <div
-        className="shadow-lg dark:shadow-lg-dark rounded-lg"
+        className="rounded-lg shadow-lg dark:shadow-lg-dark"
         ref={containerRef}
         style={{
           contain: 'content',
@@ -83,7 +83,7 @@ const SandboxShell = memo(function SandboxShell({
         <SandpackLayout
           className={cn(
             showDevTools && devToolsLoaded && 'sp-layout-devtools',
-            !(isExpandable || isExpanded) && 'rounded-b-lg overflow-hidden',
+            !(isExpandable || isExpanded) && 'overflow-hidden rounded-b-lg',
             isExpanded && 'sp-layout-expanded'
           )}>
           <Editor lintExtensions={lintExtensions} />
@@ -95,7 +95,7 @@ const SandboxShell = memo(function SandboxShell({
           {(isExpandable || isExpanded) && (
             <button
               translate="yes"
-              className="sandpack-expand flex text-base justify-between dark:border-card-dark bg-wash dark:bg-card-dark items-center z-10 p-1 w-full order-2 xl:order-last border-b-1 relative top-0"
+              className="sandpack-expand border-b-1 relative top-0 z-10 order-2 flex w-full items-center justify-between bg-wash p-1 text-base dark:border-card-dark dark:bg-card-dark xl:order-last"
               onClick={() => {
                 const nextIsExpanded = !isExpanded;
                 flushSync(() => {
@@ -114,9 +114,9 @@ const SandboxShell = memo(function SandboxShell({
                   }
                 }
               }}>
-              <span className="flex p-2 focus:outline-none text-primary dark:text-primary-dark leading-[20px]">
+              <span className="flex p-2 leading-[20px] text-primary focus:outline-none dark:text-primary-dark">
                 <IconChevron
-                  className="inline mr-1.5 text-xl"
+                  className="mr-1.5 inline text-xl"
                   displayDirection={isExpanded ? 'up' : 'down'}
                 />
                 {isExpanded ? 'Show less' : 'Show more'}

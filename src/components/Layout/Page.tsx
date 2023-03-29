@@ -129,7 +129,7 @@ export function Page({children, toc, routeTree, meta, section}: PageProps) {
         <Suspense fallback={null}>
           <main className="min-w-0 isolate">
             <article
-              className="break-words text-primary dark:text-primary-dark"
+              className="break-words font-normal text-primary dark:text-primary-dark"
               key={asPath}>
               {content}
             </article>

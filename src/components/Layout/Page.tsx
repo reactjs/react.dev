@@ -128,7 +128,9 @@ export function Page({children, toc, routeTree, meta, section}: PageProps) {
         {/* No fallback UI so need to be careful not to suspend directly inside. */}
         <Suspense fallback={null}>
           <main className="min-w-0 isolate">
-            <article className="break-words" key={asPath}>
+            <article
+              className="break-words font-normal text-primary dark:text-primary-dark"
+              key={asPath}>
               {content}
             </article>
             <div

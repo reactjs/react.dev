@@ -138,6 +138,20 @@ export const Seo = withRouter(
           type="font/woff2"
           crossOrigin="anonymous"
         />
+        <link
+          rel="preload"
+          href="https://react.dev/fonts/Optimistic_Text_W_Rg.woff2"
+          as="font"
+          type="font/woff2"
+          crossOrigin="anonymous"
+        />
+        <link
+          rel="preload"
+          href="https://react.dev/fonts/Optimistic_Text_W_It.woff2"
+          as="font"
+          type="font/woff2"
+          crossOrigin="anonymous"
+        />
         {children}
       </Head>
     );

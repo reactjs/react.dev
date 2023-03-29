@@ -24,7 +24,7 @@ export const Seo = withRouter(
     children,
     isHomePage,
   }: SeoProps & {router: Router}) => {
-    const pageTitle = isHomePage ? 'React' : title + ' – React';
+    const pageTitle = isHomePage ? title : title + ' – React';
     // Twitter's meta parser is not very good.
     const twitterTitle = pageTitle.replace(/[<>]/g, '');
     return (

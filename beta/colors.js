@@ -108,9 +108,12 @@ const experiments = [
   ['#58C4DC', '#1F9CB5', '#2A6F7C', '#1A4C5F'], // 10
   ['#58C4DC', '#39A4C8', '#2A7D98', '#1A4C5F'], // fave **
   ['#58C4DC', '#3FA9CC', '#2A7D98', '#1A4C5F'], // fave *
+  ['#39a4c8', '#3394b5', '#25728c', '#195569'], // fave (shake)
+  ['#1eb3d4', '#1898b5', '#10748a', '#095667'], // fave (og)
+  ['#11b1ea', '#0ea0d4', '#2e87ae', '#055572'], // 15 fave (gen)
 ];
 
-const experiment = 11;
+const experiment = 13;
 
 colors['blue-30'] = experiments[experiment][0];
 colors['blue-40'] = experiments[experiment][1];

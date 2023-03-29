@@ -8,7 +8,7 @@ import cn from 'classnames';
 interface ButtonProps {
   children: React.ReactNode;
   onClick?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
-  active: boolean;
+  active?: boolean;
   className?: string;
   style?: Record<string, string>;
 }
@@ -16,7 +16,7 @@ interface ButtonProps {
 export function Button({
   children,
   onClick,
-  active,
+  active = false,
   className,
   style,
 }: ButtonProps) {
@@ -42,10 +42,5 @@ export function Button({
     </button>
   );
 }
-
-Button.defaultProps = {
-  active: false,
-  style: {},
-};
 
 export default Button;

@@ -18,7 +18,7 @@ export function Button({
   onClick,
   active = false,
   className,
-  style = {},
+  style,
 }: ButtonProps) {
   return (
     <button

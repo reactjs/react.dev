@@ -397,6 +397,9 @@ export const MDXComponents = {
     title: string;
     excerpt: string;
   }) => <ExpandableExample {...props} type="DeepDive" />,
+  Extra: (props: {children: React.ReactNode; title: string}) => (
+    <ExpandableExample {...props} type="ExtraComment" />
+  ),
   Diagram,
   DiagramGroup,
   FullWidth({children}: {children: any}) {

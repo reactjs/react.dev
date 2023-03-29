@@ -1,6 +1,6 @@
 ---
 title: Extracting State Logic into a Reducer
-translatedTitle: state로직을 Reducer로 추출하기
+translatedTitle: State로직을 Reducer로 추출하기
 ---
 
 <Intro>

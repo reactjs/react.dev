@@ -19,6 +19,15 @@ Welcome to the React documentation! This page will give you an introduction to t
 - How to respond to events and update the screen
 - How to share data between components
 
+<TransBlock>
+- 컴포넌트를 만들고 중첩하는 방법
+- 마크업 및 스타일을 추가하는 방법
+- 데이터를 표시하는 방법
+- 조건 및 목록을 렌더링하는 방법
+- 이벤트에 응답하고 화면을 업데이트하는 방법
+- 컴포넌트 간에 데이터를 공유하는 방법
+</TransBlock>
+
 </YouWillLearn>
 
 ## Creating and nesting components<br/><Trans>컴포넌트 생성 및 중첩하기</Trans> {/*components*/}

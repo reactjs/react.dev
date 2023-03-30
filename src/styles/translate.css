@@ -1,0 +1,64 @@
+.translate {
+  display: inline-block;
+  position: relative;
+  padding-left: 14px;
+}
+.translate::before {
+  content: '';
+  position: absolute;
+  left: 2px;
+  top: 0.2em;
+  bottom: 0.2em;
+  border-left: 4px solid var(--docsearch-primary-color);
+}
+
+h1 > .translate {
+  padding-left: 20px;
+}
+h1 > .translate::before {
+  left: 4px;
+  border-left-width: 6px;
+}
+
+h2 > .translate {
+  padding-left: 19px;
+}
+h2 > .translate::before {
+  left: 3px;
+  border-left-width: 5px;
+}
+
+nav[role='navigation'] {
+  line-height: 1.4;
+}
+nav[role='navigation'] .translate {
+  display: block;
+  padding-left: 11px;
+}
+nav[role='navigation'] .translate::before {
+  left: 3px;
+  border-left-width: 3px;
+}
+
+.translate-block {
+  position: relative;
+  padding-left: 14px;
+  margin-top: -0.5rem;
+}
+.translate-block > ul {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+.translate-block > *:first-of-type {
+  margin-top: 0;
+}
+.translate-block::before {
+  content: '';
+  position: absolute;
+  display: inline-block;
+  vertical-align: middle;
+  left: 2px;
+  top: 5px;
+  bottom: 5px;
+  border-left: 4px solid var(--docsearch-primary-color);
+}

@@ -174,8 +174,13 @@ function YouWillLearn({
   children: any;
   isChapter?: boolean;
 }) {
-  let title = isChapter ? 'In this chapter' : 'You will learn';
-  return <SimpleCallout title={title}>{children}</SimpleCallout>;
+  const title = isChapter ? 'In this chapter' : 'You will learn';
+  const translatedTitle = isChapter ? '이 챕터에서 다룰 내용' : '학습 내용';
+  return (
+    <SimpleCallout title={title} translatedTitle={translatedTitle}>
+      {children}
+    </SimpleCallout>
+  );
 }
 
 // TODO: typing.

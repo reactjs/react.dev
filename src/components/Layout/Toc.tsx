@@ -5,6 +5,7 @@
 import cx from 'classnames';
 import {useTocHighlight} from './useTocHighlight';
 import type {Toc} from '../MDX/TocContext';
+import Trans from 'components/MDX/Trans';
 
 export function Toc({headings}: {headings: Toc}) {
   const {currentIndex} = useTocHighlight();

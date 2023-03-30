@@ -518,10 +518,10 @@ label {
 </Sandpack>
 
 You might expect the state to reset when you tick checkbox, but it doesn't! This is because **both of these `<Counter />` tags are rendered at the same position.** React doesn't know where you place the conditions in your function. All it "sees" is the tree you return.
-<Trans>checkbox를 선택하면 state가 재설정될 것으로 예상할 수 있지만 그렇지 않습니다! 이 **두 `<Counter />` 태그가 모두 같은 위치에 렌더링되기 때문입니다.** React는 함수에서 조건을 어디에 배치했는지 알지 못합니다. 단지 여러분이 반환하는 트리만 볼 수 있을 뿐입니다. 두 경우 모두 `App` 컴포넌트는 `<Counter />`를 첫 번째 자식으로 가진 `<div>`를 반환합니다. 이것이 React가 이들을 동일한 `<Counter />`로 간주하는 이유입니다.</Trans>
+<Trans>checkbox를 선택하면 state가 재설정될 것으로 예상할 수 있지만 그렇지 않습니다! 이 **두 `<Counter />` 태그가 모두 같은 위치에 렌더링되기 때문입니다.** React는 함수에서 조건을 어디에 배치했는지 알지 못합니다. 단지 여러분이 반환하는 트리만 볼 수 있을 뿐입니다. </Trans>
 
 In both cases, the `App` component returns a `<div>` with `<Counter />` as a first child. To React, these two counters have the same "address": the first child of the first child of the root. This is how React matches them up between the previous and next renders, regardless of how you structure your logic.
-<Trans>루트의 첫 번째 자식의 첫 번째 자식이라는 동일한 "주소"를 가진 것으로 생각할 수 있습니다. 이것이 로직을 어떻게 구성하든 상관없이 이전 렌더링과 다음 렌더링 사이에서 React가 이들을 일치시키는 방식입니다.</Trans>
+<Trans>두 경우 모두 `App` 컴포넌트는 `<Counter />`를 첫 번째 자식으로 가진 `<div>`를 반환합니다. 리액트에서 이 두 카운터는 루트의 첫 번째 자식의 첫 번째 자식이라는 동일한 "주소"를 갖습니다. React는 로직을 어떻게 구성하든 상관없이 이전 렌더링과 다음 렌더링 사이에서 이 방법으로 이들을 일치시킬 수 있습니다.</Trans>
 
 </Pitfall>
 

@@ -382,7 +382,7 @@ All of these approaches also work for conditionally specifying attributes. If yo
 <Sandpack>
 
 ```js App.js
-import Profile from './Profile.js
+import Profile from './Profile.js';
 const user = [
   {
     id: 0,

@@ -31,7 +31,7 @@ May 10 - 12, 2023. In-person in Kraków, Poland + remote
 [Website](https://appjs.co) - [Twitter](https://twitter.com/appjsconf)
 
 ### Chain React 2023 {/*chain-react-2023*/}
-May 17-19, 2023. Portland, OR, USA
+May 17 - 19, 2023. Portland, OR, USA
 
 [Website](https://chainreactconf.com/) - [Twitter](https://twitter.com/ChainReactConf) - [Facebook](https://www.facebook.com/ChainReactConf/) - [Youtube](https://www.youtube.com/channel/UCwpSzVt7QpLDbCnPXqR97-g/playlists)
 

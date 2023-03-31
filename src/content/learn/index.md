@@ -30,7 +30,7 @@ Welcome to the React documentation! This page will give you an introduction to t
 
 </YouWillLearn>
 
-## Creating and nesting components<br/><Trans>컴포넌트 생성 및 중첩하기</Trans> {/*components*/}
+## Creating and nesting components<Trans>컴포넌트 생성 및 중첩하기</Trans> {/*components*/}
 
 React apps are made out of *components*. A component is a piece of the UI (user interface) that has its own logic and appearance. A component can be as small as a button, or as large as an entire page.
 <Trans>React 앱은 *컴포넌트*로 만들어집니다. 컴포넌트는 고유한 로직과 모양을 가진 UI(사용자 인터페이스)의 일부입니다. 컴포넌트는 버튼만큼 작을 수도 있고 전체 페이지만큼 클 수도 있습니다.</Trans>
@@ -215,7 +215,7 @@ The `export default` keywords specify the main component in the file. If you're 
 <Trans>`export default` 키워드는 파일의 주요 컴포넌트를 지정합니다. 자바스크립트 구문에 익숙하지 않은 경우 [MDN](https://developer.mozilla.org/en-US/docs/web/javascript/reference/statements/export) 및 [javascript.info](https://javascript.info/import-export)를 참조하세요.</Trans>
 
 
-## Writing markup with JSX<br/><Trans>JSX로 마크업 작성하기</Trans> {/*writing-markup-with-jsx*/}
+## Writing markup with JSX<Trans>JSX로 마크업 작성하기</Trans> {/*writing-markup-with-jsx*/}
 
 The markup syntax you've seen above is called *JSX*. It is optional, but most React projects use JSX for its convenience. All of the [tools we recommend for local development](/learn/installation) support JSX out of the box.
 <Trans>위에서 본 마크업 구문을 *JSX*라고 합니다. 선택 사항이지만 대부분의 React 프로젝트는 편의성을 위해 JSX를 사용합니다. [로컬 개발을 위해 권장하는 모든 도구](/learn/installation)는 JSX를 기본적으로 지원합니다.</Trans>
@@ -237,7 +237,7 @@ function AboutPage() {
 If you have a lot of HTML to port to JSX, you can use an [online converter.](https://transform.tools/html-to-jsx)
 <Trans>JSX로 포팅할 HTML이 많은 경우 [온라인 변환기](https://transform.tools/html-to-jsx)를 사용할 수 있습니다.</Trans>
 
-## Adding styles<br/><Trans>스타일 추가하기</Trans> {/*adding-styles*/}
+## Adding styles<Trans>스타일 추가하기</Trans> {/*adding-styles*/}
 
 In React, you specify a CSS class with `className`. It works the same way as the HTML [`class`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class) attribute:
 <Trans>React에서는 `className`으로 CSS 클래스를 지정합니다. HTML [`class`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class) 어트리뷰트와 같은 방식으로 작동합니다:</Trans>
@@ -259,7 +259,7 @@ Then you write the CSS rules for it in a separate CSS file:
 React does not prescribe how you add CSS files. In the simplest case, you'll add a [`<link>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/link) tag to your HTML. If you use a build tool or a framework, consult its documentation to learn how to add a CSS file to your project.
 <Trans>React는 CSS 파일을 추가하는 방법을 규정하지 않습니다. 가장 간단한 경우 HTML에 [`<link>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/link) 태그를 추가하면 됩니다. 빌드 도구나 프레임워크를 사용하는 경우 해당 문서를 참조하여 프로젝트에 CSS 파일을 추가하는 방법을 알아보세요.</Trans>
 
-## Displaying data<br/><Trans>데이터 표시하기</Trans> {/*displaying-data*/}
+## Displaying data<Trans>데이터 표시하기</Trans> {/*displaying-data*/}
 
 JSX lets you put markup into JavaScript. Curly braces let you "escape back" into JavaScript so that you can embed some variable from your code and display it to the user. For example, this will display `user.name`:
 <Trans>JSX를 사용하면 자바스크립트에 마크업을 넣을 수 있습니다. 중괄호를 사용하면 코드에서 일부 변수를 삽입하여 사용자에게 표시할 수 있도록 자바스크립트로 "이스케이프"할 수 있습니다. 예를 들어 `user.name`이 표시됩니다:</Trans>
@@ -330,7 +330,7 @@ export default function Profile() {
 In the above example, `style={{}}` is not a special syntax, but a regular `{}` object inside the `style={ }` JSX curly braces. You can use the `style` attribute when your styles depend on JavaScript variables.
 <Trans>위의 예에서 `style={{}}`은 특별한 구문이 아니라 `style={ }` JSX 중괄호 안에 있는 일반 `{}` 객체입니다. 스타일이 자바스크립트 변수에 의존할 때 `style` 속성을 사용할 수 있습니다.</Trans>
 
-## Conditional rendering<br/><Trans>조건부 렌더링</Trans> {/*conditional-rendering*/}
+## Conditional rendering<Trans>조건부 렌더링</Trans> {/*conditional-rendering*/}
 
 In React, there is no special syntax for writing conditions. Instead, you'll use the same techniques as you use when writing regular JavaScript code. For example, you can use an [`if`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/if...else) statement to conditionally include JSX:
 <Trans>React에서는 조건을 작성하기 위한 특별한 문법이 없습니다. 대신 일반 자바스크립트 코드를 작성할 때 사용하는 것과 동일한 기법을 사용하면 됩니다. 예를 들어, [`if`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/if...else) 문을 사용하여 조건부로 JSX를 포함할 수 있습니다:</Trans>
@@ -434,7 +434,7 @@ export default function Profile({ user }) {
 위의 예제는 user의 id의 존재 여부에 따라 논리 연산자 `&&` 를 사용해 조건부 렌더링을 구현한 예제입니다. JavaScript에서 0은 `falsy` 값이므로 아무것도 렌더링이 되지 않아야 합니다. 하지만 위의 예제에서는 0이 렌더링 되어 보여집니다.  왜 그럴까요? JavaScript에서 `&&` 연산자는 앞의 조건이 `falsy` 한 값이라면, 해당 객체를 반환하기 때문에 위의 예제에서는 0이 반환 되어 렌더링 되는 것입니다. [조건부 렌더링 - "&&의 왼쪽에 숫자를 넣지 마세요."](/learn/conditional-rendering)에서 다시 다룰 것입니다. [MDN - falsy](https://developer.mozilla.org/ko/docs/Glossary/Falsy#%EB%85%BC%EB%A6%AC_and_%EC%97%B0%EC%82%B0%EC%9E%90)도 참고하세요. 
 </Extra>
 
-## Rendering lists<br/><Trans>목록 렌더링</Trans> {/*rendering-lists*/}
+## Rendering lists<Trans>목록 렌더링</Trans> {/*rendering-lists*/}
 
 You will rely on JavaScript features like [`for` loop](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for) and the [array `map()` function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) to render lists of components.
 <Trans>컴포넌트 목록을 렌더링하려면 [`for` loop](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for) 및 [배열 `map()` 함수](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map)와 같은 JavaScript 기능을 사용해야 합니다. </Trans>
@@ -497,7 +497,7 @@ export default function ShoppingList() {
 
 </Sandpack>
 
-## Responding to events<br/><Trans>이벤트에 응답하기</Trans> {/*responding-to-events*/}
+## Responding to events<Trans>이벤트에 응답하기</Trans> {/*responding-to-events*/}
 
 You can respond to events by declaring *event handler* functions inside your components:
 <Trans>컴포넌트 내부에 *이벤트 핸들러* 함수를 선언하여 이벤트에 응답할 수 있습니다:</Trans>
@@ -526,7 +526,7 @@ Notice how `onClick={handleClick}` has no parentheses at the end! Do not _call_ 
 이런 현상이 발생하는 이유는 `development 환경`에서  `<StrictMode>` 컴포넌트의 하위에 있는 컴포넌트가 처음 렌더될 때, React가 오류 검사 등을 위해 한 번 더 렌더링을 발동시키기 때문입니다. `production 환경`에서는 두 번 렌더링되는 현상은 발생하지 않을 것이니 안심하세요. 자세한 내용은 [`<StrictMode>`](/reference/react/StrictMode)에서 확인하세요.
 </Extra>
 
-## Updating the screen<br/><Trans>화면 업데이트하기</Trans> {/*updating-the-screen*/}
+## Updating the screen<Trans>화면 업데이트하기</Trans> {/*updating-the-screen*/}
 
 Often, you'll want your component to "remember" some information and display it. For example, maybe you want to count the number of times a button is clicked. To do this, add *state* to your component.
 <Trans>컴포넌트가 특정 정보를 “기억”하여 표시하기를 원하는 경우가 종종 있습니다. 예를 들어 버튼이 클릭된 횟수를 카운트하고 싶을 수 있습니다. 이렇게 하려면 컴포넌트에 *state*를 추가하면 됩니다.</Trans>
@@ -616,7 +616,7 @@ button {
 Notice how each button "remembers" its own `count` state and doesn't affect other buttons.
 <Trans>각 버튼이 고유한 `카운트` state를 "기억"하고 다른 버튼에 영향을 주지 않는 방식에 주목하세요.</Trans>
 
-## Using Hooks<br/><Trans>훅 사용하기</Trans> {/*using-hooks*/}
+## Using Hooks<Trans>훅 사용하기</Trans> {/*using-hooks*/}
 
 Functions starting with `use` are called *Hooks*. `useState` is a built-in Hook provided by React. You can find other built-in Hooks in the [API reference.](/reference/react) You can also write your own Hooks by combining the existing ones.
 <Trans>`use`로 시작하는 함수를 *훅(Hook)*이라고 합니다. `useState`는 React에서 제공하는 빌트인 훅입니다. 다른 내장 훅은 [React API reference](/reference/react)에서 찾을 수 있으며, 기존의 훅을 조합하여 자신만의 훅을 작성할 수도 있습니다.</Trans>
@@ -624,7 +624,7 @@ Functions starting with `use` are called *Hooks*. `useState` is a built-in Hook 
 Hooks are more restrictive than other functions. You can only call Hooks *at the top* of your components (or other Hooks). If you want to use `useState` in a condition or a loop, extract a new component and put it there.
 <Trans>훅은 일반 함수보다 더 제한적입니다. 컴포넌트(또는 다른 훅)의 *최상위 레벨*에서만 훅을 호출할 수 있습니다. 조건이나 루프에서 `useState`를 사용하려면 새 컴포넌트를 추출하여 거기에 넣어야 합니다.</Trans>
 
-## Sharing data between components<br/><Trans>컴포넌트 간 데이터 공유하기</Trans> {/*sharing-data-between-components*/}
+## Sharing data between components<Trans>컴포넌트 간 데이터 공유하기</Trans> {/*sharing-data-between-components*/}
 
 In the previous example, each `MyButton` had its own independent `count`, and when each button was clicked, only the `count` for the button clicked changed:
 <Trans>이전 예제에서는 각각의 `MyButton`에 독립적인 `count`가 있었고, 각 버튼을 클릭하면 클릭한 버튼의 `count`만 변경되었습니다:</Trans>
@@ -781,7 +781,7 @@ button {
 
 </Sandpack>
 
-## Next Steps<br/><Trans>다음 단계</Trans> {/*next-steps*/}
+## Next Steps<Trans>다음 단계</Trans> {/*next-steps*/}
 
 By now, you know the basics of how to write React code!
 <Trans>이제 React 코드를 작성하는 방법에 대한 기본 사항을 알았습니다!</Trans>

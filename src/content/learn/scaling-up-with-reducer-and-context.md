@@ -24,7 +24,7 @@ Reducers let you consolidate a component's state update logic. Context lets you 
 
 </YouWillLearn>
 
-## Combining a reducer with context<br/><Trans>reducer와 context를 결합하기</Trans> {/*combining-a-reducer-with-context*/}
+## Combining a reducer with context<Trans>reducer와 context를 결합하기</Trans> {/*combining-a-reducer-with-context*/}
 
 In this example from [the introduction to reducers](/learn/extracting-state-logic-into-a-reducer), the state is managed by a reducer. The reducer function contains all of the state update logic and is declared at the bottom of this file:
 <Trans>[Reducer의 개요](/learn/extracting-state-logic-into-a-reducer)에서 reducer로 state를 관리하는 방법에 대해 알아보았습니다. 해당 예시에서 state 업데이트 로직을 모두 포함하는 reducer 함수를 App.js 파일의 맨 아래에 선언했습니다:</Trans>
@@ -220,7 +220,7 @@ A reducer helps keep the event handlers short and concise. However, as your app 
 <Trans>Reducer를 사용하면 이벤트 핸들러를 간결하고 명확하게 만들 수 있습니다. 그러나 앱이 커질수록 다른 어려움에 부딪힐 수 있습니다. **현재 `tasks` state와 `dispatch` 함수는 최상위 컴포넌트인 `TaskBoard`에서만 사용할 수 있습니다.** 다른 컴포넌트들에서 tasks의 리스트를 읽고 변경하려면 prop을 통해 현재 state와 state를 변경할 수 있는 이벤트 핸들러를 명시적으로 [전달](/learn/passing-props-to-a-component)해야 합니다.</Trans>
 
 For example, `TaskApp` passes a list of tasks and the event handlers to `TaskList`:
-<Trans>예를 들어, 아래 `TaskBoard` 컴포넌트에서 TaskList 컴포넌트로 tasks 리스트와 이벤트 핸들러를 전달합니다:</Trans>
+<Trans>예를 들어, 아래 `TaskApp` 컴포넌트에서 `TaskList` 컴포넌트로 task 리스트와 이벤트 핸들러를 전달합니다:</Trans>
 
 ```js
 <TaskList
@@ -261,10 +261,10 @@ Here is how you can combine a reducer with context:
 3. 트리 안에서 context를 **사용한다**.
 </TransBlock>
 
-### Step 1: Create the context<br/><Trans>Context 생성하기</Trans> {/*step-1-create-the-context*/}
+### Step 1: Create the context<Trans>Context 생성하기</Trans> {/*step-1-create-the-context*/}
 
 The `useReducer` Hook returns the current `tasks` and the `dispatch` function that lets you update them:
-<Trans>`useReducer` Hook은 현재 `tasks`와 업데이트할 수 있는 `dispatch` 함수를 반환합니다.</Trans>
+<Trans>`useReducer`훅은 현재 `tasks`와 업데이트할 수 있는 `dispatch` 함수를 반환합니다.</Trans>
 
 ```js
 const [tasks, dispatch] = useReducer(tasksReducer, initialTasks);
@@ -481,7 +481,7 @@ ul, li { margin: 0; padding: 0; }
 Here, you're passing `null` as the default value to both contexts. The actual values will be provided by the `TaskApp` component.
 <Trans>두 개의 context에 모두 기본값을 `null`로 전달하고 있습니다. 실제 값은 `TaskBoard` 컴포넌트에서 제공합니다.</Trans>
 
-### Step 2: Put state and dispatch into context<br/><Trans>State와 dispatch 함수를 context에 넣기</Trans> {/*step-2-put-state-and-dispatch-into-context*/}
+### Step 2: Put state and dispatch into context<Trans>State와 dispatch 함수를 context에 넣기</Trans> {/*step-2-put-state-and-dispatch-into-context*/}
 
 Now you can import both contexts in your `TaskApp` component. Take the `tasks` and `dispatch` returned by `useReducer()` and [provide them](/learn/passing-data-deeply-with-context#step-3-provide-the-context) to the entire tree below:
 <Trans>이제 `TaskBoard` 컴포넌트에서 두 context를 모두 불러올 수 있습니다. `useReducer()`를 통해 반환된 `tasks`와 `dispatch`를 받고 [아래 트리 전체에 전달](/learn/passing-data-deeply-with-context#step-3-provide-the-context)합니다:</Trans>
@@ -705,7 +705,7 @@ ul, li { margin: 0; padding: 0; }
 In the next step, you will remove prop passing.
 <Trans>다음 단계에서 이제 prop을 통한 전달을 제거합니다.</Trans>
 
-### Step 3: Use context anywhere in the tree<br/><Trans>트리 안에서 context 사용하기</Trans> {/*step-3-use-context-anywhere-in-the-tree*/}
+### Step 3: Use context anywhere in the tree<Trans>트리 안에서 context 사용하기</Trans> {/*step-3-use-context-anywhere-in-the-tree*/}
 
 Now you don't need to pass the list of tasks or the event handlers down the tree:
 <Trans>이제 tasks 리스트나 이벤트 핸들러를 트리 아래로 전달할 필요가 없습니다:</Trans>
@@ -938,7 +938,7 @@ ul, li { margin: 0; padding: 0; }
 **The state still "lives" in the top-level `TaskApp` component, managed with `useReducer`.** But its `tasks` and `dispatch` are now available to every component below in the tree by importing and using these contexts.
 <Trans>**State와 state를 관리하는 `useReducer`는 여전히 최상위 컴포넌트인 `TaskBoard`에 있습니다.** 그러나 `tasks`와 `dispatch`는 하위 트리 컴포넌트 어디서나 context를 불러와서 사용할 수 있습니다.</Trans>
 
-## Moving all wiring into a single file<br/><Trans>하나의 파일로 합치기</Trans> {/*moving-all-wiring-into-a-single-file*/}
+## Moving all wiring into a single file<Trans>하나의 파일로 합치기</Trans> {/*moving-all-wiring-into-a-single-file*/}
 
 You don't have to do this, but you could further declutter the components by moving both reducer and context into a single file. Currently, `TasksContext.js` contains only two context declarations:
 <Trans>반드시 이런 방식으로 작성하지 않아도 되지만, reducer와 context를 모두 하나의 파일에 작성하면 컴포넌트들을 조금 더 정리할 수 있습니다. 현재, `TasksContext.js`는 두 개의 context만을 선언하고 있습니다:</Trans>
@@ -1397,7 +1397,7 @@ You can think of `TasksProvider` as a part of the screen that knows how to deal 
 <Note>
 
 Functions like `useTasks` and `useTasksDispatch` are called *[Custom Hooks.](/learn/reusing-logic-with-custom-hooks)* Your function is considered a custom Hook if its name starts with `use`. This lets you use other Hooks, like `useContext`, inside it.
-<Trans>`useTasks`와 `useTasksDispatch` 같은 함수들을 *[사용자 정의 Hook](/learn/reusing-logic-with-custom-hooks)* 이라고 합니다. 이름이 `use`로 시작되는 함수들은 사용자 정의 Hook입니다. 사용자 정의 Hook 안에서도 `useContext` 등 다른 Hook을 사용할 수 있습니다.</Trans>
+<Trans>`useTasks`와 `useTasksDispatch` 같은 함수들을 *[사용자 정의 훅](/learn/reusing-logic-with-custom-hooks)* 이라고 합니다. 이름이 `use`로 시작되는 함수들은 사용자 정의 훅입니다. 사용자 정의 훅 안에서도 `useContext` 등 다른 Hook을 사용할 수 있습니다.</Trans>
 
 </Note>
 

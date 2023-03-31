@@ -382,7 +382,7 @@ export function HomeContent() {
                       <h4 className="leading-tight text-primary font-semibold text-3xl lg:text-4xl">
                         Stay true to the web
                         <br />
-                        웹에 충실합니다
+                        <Trans>웹에 충실합니다</Trans>
                       </h4>
                       <p className="lg:text-xl leading-normal text-secondary">
                         People expect web app pages to load fast. On the server,

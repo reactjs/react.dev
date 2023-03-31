@@ -31,7 +31,6 @@ function PageHeading({
         {breadcrumbs ? <Breadcrumbs breadcrumbs={breadcrumbs} /> : null}
         <H1 className="mt-0 text-primary dark:text-primary-dark -mx-.5 break-words">
           {title}
-          <br />
           {translatedTitle && <Trans>{translatedTitle}</Trans>}
           {status ? <em>—{status}</em> : ''}
         </H1>

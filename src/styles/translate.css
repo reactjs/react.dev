@@ -12,6 +12,15 @@
   border-left: 4px solid var(--docsearch-primary-color);
 }
 
+h1 > strong,
+h2 > strong,
+h3 > strong,
+h4 > strong,
+h5 > strong,
+h6 > strong {
+  display: block;
+}
+
 h1 > .translate {
   padding-left: 20px;
 }
@@ -39,7 +48,6 @@ nav[role='navigation'] .translate::before {
   left: 3px;
   border-left-width: 3px;
 }
-
 .translate-block {
   position: relative;
   padding-left: 14px;

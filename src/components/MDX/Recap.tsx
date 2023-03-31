@@ -15,7 +15,6 @@ function Recap({children}: RecapProps) {
     <section>
       <H2 isPageAnchor id="recap">
         Recap
-        <br />
         <Trans>요약</Trans>
       </H2>
       {children}

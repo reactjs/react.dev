@@ -315,7 +315,7 @@ dispatch({
 
 </Note>
 
-### Step 2: Write a reducer function<br/><Trans>reducer 함수 작성하기</Trans> {/*step-2-write-a-reducer-function*/}
+### Step 2: Write a reducer function<Trans>reducer 함수 작성하기</Trans> {/*step-2-write-a-reducer-function*/}
 
 A reducer function is where you will put your state logic. It takes two arguments, the current state and the action object, and it returns the next state:
 <Trans>reducer 함수에 state 로직을 둘 수 있습니다. 이 함수는 두 개의 매개변수를 가지는데, 하나는 현재 state이고 하나는 action 객체입니다. 그리고 이 함수가 다음 state를 반환합니다:</Trans>
@@ -425,7 +425,7 @@ If you're not yet comfortable with switch statements, using if/else is completel
 
 <DeepDive>
 
-#### Why are reducers called this way?<br/><Trans>왜 reducer라고 부를까요?</Trans> {/*why-are-reducers-called-this-way*/}
+#### Why are reducers called this way?<Trans>왜 reducer라고 부를까요?</Trans> {/*why-are-reducers-called-this-way*/}
 
 Although reducers can "reduce" the amount of code inside your component, they are actually named after the [`reduce()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce) operation that you can perform on arrays.
 <Trans>reducer들이 비록 컴포넌트 안에 있는 코드의 양을 “줄여주긴” 하지만, 이건 사실 배열에서 사용하는 [`reduce()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce) 연산을 따서 지은 이름입니다.</Trans>
@@ -508,7 +508,7 @@ You probably won't need to do this yourself, but this is similar to what React d
 
 </DeepDive>
 
-### Step 3: Use the reducer from your component<br/><Trans>컴포넌트에서 reducer 사용하기</Trans> {/*step-3-use-the-reducer-from-your-component*/}
+### Step 3: Use the reducer from your component<Trans>컴포넌트에서 reducer 사용하기</Trans> {/*step-3-use-the-reducer-from-your-component*/}
 
 Finally, you need to hook up the `tasksReducer` to your component. Import the `useReducer` Hook from React:
 <Trans>마지막으로, 컴포넌트에 `tasksReducer`를 연결해야 합니다. 리액트에서 `useReducer` Hook을 import하세요:</Trans>
@@ -934,36 +934,36 @@ li {
 Component logic can be easier to read when you separate concerns like this. Now the event handlers only specify _what happened_ by dispatching actions, and the reducer function determines _how the state updates_ in response to them.
 <Trans>이렇게 관심사를 분리하면 컴포넌트 로직을 더 쉽게 읽을 수 있습니다. 이제 이벤트 핸들러는 action을 전달하여 _무슨 일이 일어났는지_ 만 지정하고, reducer 함수는 action에 대한 응답으로 _state가 어떻게 변경되는지_ 를 결정합니다.</Trans>
 
-## Comparing `useState` and `useReducer`<br/><Trans>`useState`와 `useReducer` 비교하기</Trans> {/*comparing-usestate-and-usereducer*/}
+## Comparing `useState` and `useReducer`<Trans>`useState`와 `useReducer` 비교하기</Trans> {/*comparing-usestate-and-usereducer*/}
 
 Reducers are not without downsides! Here's a few ways you can compare them:
 <Trans>Reducer도 좋은 점만 있는 것은 아닙니다! 다음은 useState 와 useReducer 를 비교할 수 있는 몇 가지 방법입니다:</Trans>
 
-- **Code size:** Generally, with `useState` you have to write less code upfront. With `useReducer`, you have to write both a reducer function _and_ dispatch actions. However, `useReducer` can help cut down on the code if many event handlers modify state in a similar way.<br/>
+- **Code size:** Generally, with `useState` you have to write less code upfront. With `useReducer`, you have to write both a reducer function _and_ dispatch actions. However, `useReducer` can help cut down on the code if many event handlers modify state in a similar way.
 <Trans>**코드 크기:** 일반적으로 `useState`를 사용하면 미리 작성해야 하는 코드가 줄어듭니다. `useReducer`를 사용하면 reducer 함수 _와_ action을 전달하는 부분 모두 작성해야 합니다. 하지만 많은 이벤트 핸들러가 비슷한 방식으로 state를 업데이트하는 경우 `useReducer`를 사용하면 코드를 줄이는 데 도움이 될 수 있습니다.</Trans>
-- **Readability:** `useState` is very easy to read when the state updates are simple. When they get more complex, they can bloat your component's code and make it difficult to scan. In this case, `useReducer` lets you cleanly separate the _how_ of update logic from the _what happened_ of event handlers.<br/>
+- **Readability:** `useState` is very easy to read when the state updates are simple. When they get more complex, they can bloat your component's code and make it difficult to scan. In this case, `useReducer` lets you cleanly separate the _how_ of update logic from the _what happened_ of event handlers.
 <Trans>**가독성:** `useState`로 간단한 state를 업데이트 하는 경우 가독성이 좋습니다. 그렇지만 state의 구조가 더욱 복잡해지면, 컴포넌트의 코드의 양이 부풀어 오르고 한눈에 읽기 어려워질 수 있습니다. 이 경우 `useReducer`를 사용하면 업데이트 로직이 _어떻게 동작_ 하는지와 이벤트 핸들러를 통해 _무엇이 일어났는지_ 를 깔끔하게 분리할 수 있습니다.</Trans>
-- **Debugging:** When you have a bug with `useState`, it can be difficult to tell _where_ the state was set incorrectly, and _why_. With `useReducer`, you can add a console log into your reducer to see every state update, and _why_ it happened (due to which `action`). If each `action` is correct, you'll know that the mistake is in the reducer logic itself. However, you have to step through more code than with `useState`.<br/>
+- **Debugging:** When you have a bug with `useState`, it can be difficult to tell _where_ the state was set incorrectly, and _why_. With `useReducer`, you can add a console log into your reducer to see every state update, and _why_ it happened (due to which `action`). If each `action` is correct, you'll know that the mistake is in the reducer logic itself. However, you have to step through more code than with `useState`.
 <Trans>**디버깅:** `useState`에 버그가 있는 경우, state가 _어디서_ 잘못 설정되었는지, 그리고 _왜 그런지_ 알기 어려울 수 있습니다. `useReducer`를 사용하면, reducer에 콘솔 로그를 추가하여 모든 state 업데이트와 _왜_ (어떤 action으로 인해) 버그가 발생했는지 확인할 수 있습니다. 각 `action`이 정확하다면, 버그가 reducer 로직 자체에 있다는 것을 알 수 있습니다. 하지만 `useState`를 사용할 때보다 더 많은 코드를 살펴봐야 합니다.</Trans>
-- **Testing:** A reducer is a pure function that doesn't depend on your component. This means that you can export and test it separately in isolation. While generally it's best to test components in a more realistic environment, for complex state update logic it can be useful to assert that your reducer returns a particular state for a particular initial state and action.<br/>
+- **Testing:** A reducer is a pure function that doesn't depend on your component. This means that you can export and test it separately in isolation. While generally it's best to test components in a more realistic environment, for complex state update logic it can be useful to assert that your reducer returns a particular state for a particular initial state and action.
 <Trans>**테스팅:** reducer는 컴포넌트에 의존하지 않는 순수한 함수입니다. 즉, 별도로 분리해서 내보내거나 테스트할 수 있습니다. 일반적으로 보다 현실적인 환경에서 컴포넌트를 테스트하는 것이 가장 좋지만, 복잡한 state 업데이트 로직의 경우 reducer가 특정 초기 state와 action에 대해 특정 state를 반환한다고 단언하는 것이 유용할 수 있습니다.</Trans>
-- **Personal preference:** Some people like reducers, others don't. That's okay. It's a matter of preference. You can always convert between `useState` and `useReducer` back and forth: they are equivalent!<br/>
+- **Personal preference:** Some people like reducers, others don't. That's okay. It's a matter of preference. You can always convert between `useState` and `useReducer` back and forth: they are equivalent!
 <Trans>**개인 취향:** 어떤 사람은 reducer를 좋아하고 어떤 사람은 싫어합니다. 괜찮습니다. 취향의 문제니까요. `useState` 와 `useReducer`는 언제든지 앞뒤로 변환할 수 있으며, 서로 동등합니다!</Trans>
 
 We recommend using a reducer if you often encounter bugs due to incorrect state updates in some component, and want to introduce more structure to its code. You don't have to use reducers for everything: feel free to mix and match! You can even `useState` and `useReducer` in the same component.
 <Trans>일부 컴포넌트에서 잘못된 state 업데이트로 인해 버그가 자주 발생하고 코드에 더 많은 구조를 도입하려는 경우 reducer를 사용하는 것이 좋습니다. 모든 컴포넌트에 reducer를 사용할 필요는 없으니 자유롭게 섞어서 사용하세요! 심지어 같은 컴포넌트에서 `useState`와 `useReducer`를 함께 사용할 수도 있습니다.</Trans>
 
-## Writing reducers well<br/><Trans>reducer 잘 작성하기</Trans> {/*writing-reducers-well*/}
+## Writing reducers well<Trans>reducer 잘 작성하기</Trans> {/*writing-reducers-well*/}
 
 Keep these two tips in mind when writing reducers:
 <Trans>reducer를 작성할 때 다음 두 개의 팁을 기억하세요:</Trans>
 
-- **Reducers must be pure.** Similar to [state updater functions](/learn/queueing-a-series-of-state-updates), reducers run during rendering! (Actions are queued until the next render.) This means that reducers [must be pure](/learn/keeping-components-pure)—same inputs always result in the same output. They should not send requests, schedule timeouts, or perform any side effects (operations that impact things outside the component). They should update [objects](/learn/updating-objects-in-state) and [arrays](/learn/updating-arrays-in-state) without mutations.<br/>
+- **Reducers must be pure.** Similar to [state updater functions](/learn/queueing-a-series-of-state-updates), reducers run during rendering! (Actions are queued until the next render.) This means that reducers [must be pure](/learn/keeping-components-pure)—same inputs always result in the same output. They should not send requests, schedule timeouts, or perform any side effects (operations that impact things outside the component). They should update [objects](/learn/updating-objects-in-state) and [arrays](/learn/updating-arrays-in-state) without mutations.
 <Trans>**reducer는 반드시 순수해야 합니다.** [state 설정 함수](/learn/queueing-a-series-of-state-updates)와 비슷하게, reducer는 렌더링 중에 실행됩니다! (action은 다음 렌더링까지 대기합니다.) 즉, reducer는 [반드시 순수](/learn/keeping-components-pure)해야 합니다. 즉, 입력 값이 같다면 결과 값도 항상 같아야 합니다. 요청을 보내거나 timeout을 스케쥴링하거나 사이드이펙트(컴포넌트 외부에 영향을 미치는 작업)을 수행해서는 안 됩니다. reducer는 [객체](/learn/updating-objects-in-state) 및 [배열](/learn/updating-arrays-in-state)을 변이 없이 업데이트해야 합니다.</Trans>
-- **Each action describes a single user interaction, even if that leads to multiple changes in the data.** For example, if a user presses "Reset" on a form with five fields managed by a reducer, it makes more sense to dispatch one `reset_form` action rather than five separate `set_field` actions. If you log every action in a reducer, that log should be clear enough for you to reconstruct what interactions or responses happened in what order. This helps with debugging!<br/>
+- **Each action describes a single user interaction, even if that leads to multiple changes in the data.** For example, if a user presses "Reset" on a form with five fields managed by a reducer, it makes more sense to dispatch one `reset_form` action rather than five separate `set_field` actions. If you log every action in a reducer, that log should be clear enough for you to reconstruct what interactions or responses happened in what order. This helps with debugging!
 <Trans>**각 action은 여러 데이터가 변경되더라도, 하나의 사용자 상호작용을 설명해야 합니다.** 예를 들어 사용자가 reducer가 관리하는 5개의 필드가 있는 양식에서 '재설정'을 누른 경우, 5개의 개별 `set_field action`보다는 하나의 `reset_form action`을 전송하는 것이 더 합리적입니다. 모든 action을 reducer에 기록하면 어떤 상호작용이나 응답이 어떤 순서로 일어났는지 재구성할 수 있을 만큼 로그가 명확해야 합니다. 이는 디버깅에 도움이 됩니다!</Trans>
 
-## Writing concise reducers with Immer<br/><Trans>Immer를 사용하여 간결한 reducer 작성하기</Trans> {/*writing-concise-reducers-with-immer*/}
+## Writing concise reducers with Immer<Trans>Immer를 사용하여 간결한 reducer 작성하기</Trans> {/*writing-concise-reducers-with-immer*/}
 
 Just like with [updating objects](/learn/updating-objects-in-state#write-concise-update-logic-with-immer) and [arrays](/learn/updating-arrays-in-state#write-concise-update-logic-with-immer) in regular state, you can use the Immer library to make reducers more concise. Here, [`useImmerReducer`](https://github.com/immerjs/use-immer#useimmerreducer) lets you mutate the state with `push` or `arr[i] =` assignment:
 <Trans>일반 state의 [객체](/learn/updating-objects-in-state#write-concise-update-logic-with-immer)와 [배열을 변경](/learn/updating-arrays-in-state#write-concise-update-logic-with-immer)할 때와 마찬가지로 Immer 라이브러리를 사용해 reducer를 더 간결하게 만들 수 있습니다. 여기서 `useImmerReducer`를 사용하면 `push` 또는 `arr[i] =` 할당으로 state를 변경할 수 있습니다:</Trans>
@@ -1192,7 +1192,7 @@ Reducers must be pure, so they shouldn't mutate state. But Immer provides you wi
 
 <Challenges>
 
-#### Dispatch actions from event handlers<br/><Trans>이벤트 핸들러에서 action을 dispatch하기</Trans> {/*dispatch-actions-from-event-handlers*/}
+#### Dispatch actions from event handlers<Trans>이벤트 핸들러에서 action을 dispatch하기</Trans> {/*dispatch-actions-from-event-handlers*/}
 
 Currently, the event handlers in `ContactList.js` and `Chat.js` have `// TODO` comments. This is why typing into the input doesn't work, and clicking on the buttons doesn't change the selected recipient.
 <Trans>현재 `ContactList.js`와 `Chat.js`의 이벤트 핸들러에는 `// TODO` 주석이 있습니다. 이 때문에 입력을 입력해도 작동하지 않고 버튼을 클릭해도 선택한 수신자가 변경되지 않습니다.</Trans>
@@ -1511,13 +1511,13 @@ textarea {
 
 </Solution>
 
-#### Clear the input on sending a message<br/><Trans>메세지 전송 시 입력창 지우기</Trans> {/*clear-the-input-on-sending-a-message*/}
+#### Clear the input on sending a message<Trans>메세지 전송 시 입력창 지우기</Trans> {/*clear-the-input-on-sending-a-message*/}
 
 Currently, pressing "Send" doesn't do anything. Add an event handler to the "Send" button that will:
 <Trans>지금은 "Send"를 눌러도 아무 일도 일어나지 않습니다. "Send" 버튼에 이벤트 핸들러를 추가해 주세요:</Trans>
 
-1. Show an `alert` with the recipient's email and the message.<br/>
-2. Clear the message input.<br/>
+1. Show an `alert` with the recipient's email and the message.
+2. Clear the message input.
 
 <TransBlock>
 1. 수신자의 이메일과 메시지가 포함된 `alert`를 표시하세요.
@@ -1971,7 +1971,7 @@ With either solution, it's important that you **don't** place the `alert` inside
 
 </Solution>
 
-#### Restore input values when switching between tabs<br/><Trans>탭 전환 시 입력값 복구하기</Trans> {/*restore-input-values-when-switching-between-tabs*/}
+#### Restore input values when switching between tabs<Trans>탭 전환 시 입력값 복구하기</Trans> {/*restore-input-values-when-switching-between-tabs*/}
 
 In this example, switching between different recipients always clears the text input:
 <Trans>이 예제에서, 수신자를 전환하면 항상 텍스트 입력이 지워집니다:</Trans>
@@ -2361,7 +2361,7 @@ Notably, you didn't need to change any of the event handlers to implement this d
 
 </Solution>
 
-#### Implement `useReducer` from scratch<br/><Trans>`useReducer`를 처음부터 구현하기</Trans> {/*implement-usereducer-from-scratch*/}
+#### Implement `useReducer` from scratch<Trans>`useReducer`를 처음부터 구현하기</Trans> {/*implement-usereducer-from-scratch*/}
 
 In the earlier examples, you imported the `useReducer` Hook from React. This time, you will implement _the `useReducer` Hook itself!_ Here is a stub to get you started. It shouldn't take more than 10 lines of code.
 <Trans>앞선 예제에서는 React에서 `useReducer` Hook을 import 했습니다. 이번에는 _`useReducer` Hook 자체를 구현_ 해 보세요! 다음은 시작을 위한 초안입니다. 코드는 10줄을 넘지 않아야 합니다.</Trans>

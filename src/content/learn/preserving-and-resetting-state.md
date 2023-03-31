@@ -27,7 +27,7 @@ State is isolated between components. React keeps track of which state belongs t
 
 </YouWillLearn>
 
-## The UI tree<br/><Trans>UI 트리</Trans> {/*the-ui-tree*/}
+## The UI tree<Trans>UI 트리</Trans> {/*the-ui-tree*/}
 
 Browsers use many tree structures to model UI. The [DOM](https://developer.mozilla.org/docs/Web/API/Document_Object_Model/Introduction) represents HTML elements, the [CSSOM](https://developer.mozilla.org/docs/Web/API/CSS_Object_Model) does the same for CSS. There's even an [Accessibility tree](https://developer.mozilla.org/docs/Glossary/Accessibility_tree)!
 <Trans>브라우저는 UI를 모델링하기 위해 많은 트리 구조를 사용합니다. [DOM](https://developer.mozilla.org/ko/docs/Web/API/Document_Object_Model/Introduction)은 HTML 요소를 나타내고, [CSSOM](https://developer.mozilla.org/ko/docs/Web/API/CSS_Object_Model)은 CSS에 대해 동일한 역할을 합니다. 심지어 [접근성 트리](https://developer.mozilla.org/en-US/docs/Glossary/Accessibility_tree)도 있습니다!</Trans>
@@ -45,7 +45,7 @@ From components, React creates a UI tree which React DOM uses to render the DOM
 
 </DiagramGroup>
 
-## State is tied to a position in the tree<br/><Trans>state는 트리의 한 위치에 묶입니다</Trans> {/*state-is-tied-to-a-position-in-the-tree*/}
+## State is tied to a position in the tree<Trans>state는 트리의 한 위치에 묶입니다</Trans> {/*state-is-tied-to-a-position-in-the-tree*/}
 
 When you give a component state, you might think the state "lives" inside the component. But the state is actually held inside React. React associates each piece of state it's holding with the correct component by where that component sits in the UI tree.
 <Trans>컴포넌트에 state를 부여할 때, state가 컴포넌트 내부에 "존재"한다고 생각할 수 있습니다. 하지만 state는 실제로 React 내부에서 유지됩니다. React는 UI 트리에서 해당 컴포넌트가 어디에 위치하는지에 따라 보유하고 있는 각 state를 올바른 컴포넌트와 연결합니다.</Trans>
@@ -311,7 +311,7 @@ Adding a component
 **React preserves a component's state for as long as it's being rendered at its position in the UI tree.** If it gets removed, or a different component gets rendered at the same position, React discards its state.
 <Trans>React는 컴포넌트가 UI 트리의 해당 위치에서 렌더링되는 동안 컴포넌트의 state를 유지합니다. 컴포넌트가 제거되거나 같은 위치에 다른 컴포넌트가 렌더링되면 React는 해당 컴포넌트의 state를 삭제합니다.</Trans>
 
-## Same component at the same position preserves state<br/><Trans>동일한 위치의 동일한 컴포넌트는 state를 유지합니다</Trans> {/*same-component-at-the-same-position-preserves-state*/}
+## Same component at the same position preserves state<Trans>동일한 위치의 동일한 컴포넌트는 state를 유지합니다</Trans> {/*same-component-at-the-same-position-preserves-state*/}
 
 In this example, there are two different `<Counter />` tags:
 <Trans>다음 예제에는 두 개의 서로 다른 `<Counter />` 태그가 있습니다:</Trans>
@@ -525,7 +525,7 @@ In both cases, the `App` component returns a `<div>` with `<Counter />` as a fir
 
 </Pitfall>
 
-## Different components at the same position reset state<br/><Trans>동일한 위치의 다른 컴포넌트는 state를 초기화합니다</Trans> {/*different-components-at-the-same-position-reset-state*/}
+## Different components at the same position reset state<Trans>동일한 위치의 다른 컴포넌트는 state를 초기화합니다</Trans> {/*different-components-at-the-same-position-reset-state*/}
 
 In this example, ticking the checkbox will replace `<Counter>` with a `<p>`:
 <Trans>아래 예제에서 확인란을 선택하면 `<Counter/>`가 `<p>`로 바뀝니다:</Trans>
@@ -791,7 +791,7 @@ Every time you click the button, the input state disappears! This is because a *
 
 </Pitfall>
 
-## Resetting state at the same position<br/><Trans>동일한 위치에서 state 재설정하기</Trans> {/*resetting-state-at-the-same-position*/}
+## Resetting state at the same position<Trans>동일한 위치에서 state 재설정하기</Trans> {/*resetting-state-at-the-same-position*/}
 
 By default, React preserves state of a component while it stays at the same position. Usually, this is exactly what you want, so it makes sense as the default behavior. But sometimes, you may want to reset a component's state. Consider this app that lets two players keep track of their scores during each turn:
 <Trans>기본적으로 React는 컴포넌트가 같은 위치에 있는 동안 컴포넌트의 state를 보존합니다. 일반적으로 이것은 사용자가 원하는 것이므로 기본 동작으로 적합합니다. 하지만 때로는 컴포넌트의 state를 리셋하고 싶을 때가 있습니다. 두 명의 플레이어가 각 턴 동안 점수를 추적할 수 있는 이 앱을 예로 들어보겠습니다:</Trans>
@@ -881,7 +881,7 @@ There are two ways to reset state when switching between them:
   2. 각 컴포넌트에 `key`로 명시적인 아이덴티티를 부여합니다.
 </TransBlock>
 
-### Option 1: Rendering a component in different positions<br/><Trans>컴포넌트를 다른 위치에 렌더링하기</Trans> {/*option-1-rendering-a-component-in-different-positions*/}
+### Option 1: Rendering a component in different positions<Trans>컴포넌트를 다른 위치에 렌더링하기</Trans> {/*option-1-rendering-a-component-in-different-positions*/}
 
 If you want these two `Counter`s to be independent, you can render them in two different positions:
 <Trans>이 두 `Counter`를 독립적으로 만들려면 두 개의 다른 위치에 렌더링하면 됩니다:</Trans>
@@ -991,7 +991,7 @@ Each `Counter`'s state gets destroyed each time its removed from the DOM. This i
 This solution is convenient when you only have a few independent components rendered in the same place. In this example, you only have two, so it's not a hassle to render both separately in the JSX.
 <Trans>이 솔루션은 같은 위치에 몇 개의 독립적인 컴포넌트만 렌더링할 때 편리합니다. 이 예시에서는 두 개만 있으므로 JSX에서 두 컴포넌트를 별도로 렌더링하는 것이 번거롭지 않습니다.</Trans>
 
-### Option 2: Resetting state with a key<br/><Trans>key로 state 재설정하기</Trans> {/*option-2-resetting-state-with-a-key*/}
+### Option 2: Resetting state with a key<Trans>key로 state 재설정하기</Trans> {/*option-2-resetting-state-with-a-key*/}
 
 There is also another, more generic, way to reset a component's state.
 <Trans>컴포넌트의 state를 재설정하는 더 일반적인 방법도 있습니다.</Trans>
@@ -1091,7 +1091,7 @@ Remember that keys are not globally unique. They only specify the position *with
 
 </Note>
 
-### Resetting a form with a key<br/><Trans>키로 form 재설정하기</Trans> {/*resetting-a-form-with-a-key*/}
+### Resetting a form with a key<Trans>키로 form 재설정하기</Trans> {/*resetting-a-form-with-a-key*/}
 
 Resetting state with a key is particularly useful when dealing with forms.
 <Trans>키로 state를 재설정하는 것은 form을 다룰 때 특히 유용합니다</Trans>
@@ -1303,7 +1303,7 @@ textarea {
 
 <DeepDive>
 
-#### Preserving state for removed components<br/><Trans>제거된 컴포넌트에 대한 state 보존</Trans> {/*preserving-state-for-removed-components*/}
+#### Preserving state for removed components<Trans>제거된 컴포넌트에 대한 state 보존</Trans> {/*preserving-state-for-removed-components*/}
 
 In a real chat app, you'd probably want to recover the input state when the user selects the previous recipient again. There are a few ways to keep the state "alive" for a component that's no longer visible:
 <Trans>실제 채팅 앱에서는 사용자가 이전 수신자를 다시 선택할 때 입력 state를 복구하고 싶을 것입니다. 더 이상 표시되지 않는 컴포넌트의 state를 '살아있게' 유지하는 몇 가지 방법이 있습니다:</Trans>
@@ -1344,7 +1344,7 @@ No matter which strategy you pick, a chat _with Alice_ is conceptually distinct 
 
 <Challenges>
 
-#### Fix disappearing input text<br/><Trans>사라지는 입력 텍스트 수정하기</Trans> {/*fix-disappearing-input-text*/}
+#### Fix disappearing input text<Trans>사라지는 입력 텍스트 수정하기</Trans> {/*fix-disappearing-input-text*/}
 
 This example shows a message when you press the button. However, pressing the button also accidentally resets the input. Why does this happen? Fix it so that pressing the button does not reset the input text.
 <Trans>이 예는 버튼을 누르면 메시지가 표시되는 것을 보여줍니다. 그러나 버튼을 누르면 실수로 입력이 재설정됩니다. 왜 이런 일이 발생하나요? 버튼을 눌러도 입력 텍스트가 재설정되지 않도록 수정하세요.</Trans>
@@ -1500,7 +1500,7 @@ This way, `Form` is always the second child, so it stays in the same position an
 
 </Solution>
 
-#### Swap two form fields<br/><Trans>두 form 필드 교체하기</Trans> {/*swap-two-form-fields*/}
+#### Swap two form fields<Trans>두 form 필드 교체하기</Trans> {/*swap-two-form-fields*/}
 
 This form lets you enter first and last name. It also has a checkbox controlling which field goes first. When you tick the checkbox, the "Last name" field will appear before the "First name" field.
 <Trans>이 양식에서는 이름과 성을 입력할 수 있습니다. 또한 어떤 필드가 먼저 표시되는지 제어하는 확인란도 있습니다. 확인란을 선택하면 '성' 필드가 '이름' 필드 앞에 표시됩니다.</Trans>
@@ -1636,7 +1636,7 @@ label { display: block; margin: 10px 0; }
 
 </Solution>
 
-#### Reset a detail form<br/><Trans>상세 form 재설정하기</Trans> {/*reset-a-detail-form*/}
+#### Reset a detail form<Trans>상세 form 재설정하기</Trans> {/*reset-a-detail-form*/}
 
 This is an editable contact list. You can edit the selected contact's details and then either press "Save" to update it, or "Reset" to undo your changes.
 <Trans>수정 가능한 연락처 목록입니다. 선택한 연락처의 세부 정보를 수정한 다음 'Save'을 눌러 업데이트하거나 'Reset'을 눌러 변경 내용을 취소할 수 있습니다.</Trans>
@@ -1948,7 +1948,7 @@ button {
 
 </Solution>
 
-#### Clear an image while it's loading<br/><Trans>이미지 로딩중에 기존 이미지 지우기</Trans> {/*clear-an-image-while-its-loading*/}
+#### Clear an image while it's loading<Trans>이미지 로딩중에 기존 이미지 지우기</Trans> {/*clear-an-image-while-its-loading*/}
 
 When you press "Next", the browser starts loading the next image. However, because it's displayed in the same `<img>` tag, by default you would still see the previous image until the next one loads. This may be undesirable if it's important for the text to always match the image. Change it so that the moment you press "Next", the previous image immediately clears.
 <Trans>"Next"을 누르면 브라우저에서 다음 이미지 로딩이 시작됩니다. 그러나 동일한 `<img>` 태그에 표시되기 때문에 기본적으로 다음 이미지가 로드될 때까지 이전 이미지가 계속 표시됩니다. 텍스트가 항상 이미지와 일치하는 것이 중요한 경우 이는 바람직하지 않을 수 있습니다. '다음'을 누르는 순간 이전 이미지가 즉시 지워지도록 변경하세요.</Trans>
@@ -2093,7 +2093,7 @@ img { width: 150px; height: 150px; }
 
 </Solution>
 
-#### Fix misplaced state in the list<br/><Trans>목록에서 잘못 배치된 상태 수정하기</Trans> {/*fix-misplaced-state-in-the-list*/}
+#### Fix misplaced state in the list<Trans>목록에서 잘못 배치된 상태 수정하기</Trans> {/*fix-misplaced-state-in-the-list*/}
 
 In this list, each `Contact` has state that determines whether "Show email" has been pressed for it. Press "Show email" for Alice, and then tick the "Show in reverse order" checkbox. You will notice that it's _Taylor's_ email that is expanded now, but Alice's--which has moved to the bottom--appears collapsed.
 <Trans>이 목록에서 각 `Contact`에는 "Show email"를 눌렀는지 여부를 결정하는 상태가 있습니다. Alice에 대해 'Show email'를 누른 다음 'Show in reverse order' 확인란을 선택합니다. 이제 Taylor의 이메일은 확장되어 있지만 하단으로 이동한 Alice의 이메일은 접혀 있는 것을 볼 수 있습니다.</Trans>

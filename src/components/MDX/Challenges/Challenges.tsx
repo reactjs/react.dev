@@ -134,7 +134,6 @@ export function Challenges({
                   : 'text-3xl text-link'
               )}>
               {titleText}
-              <br />
               <Trans>{isRecipes ? '예제를 풀어보세요' : '도전 과제'}</Trans>
             </Heading>
           )}

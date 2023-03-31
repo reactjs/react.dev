@@ -26,7 +26,7 @@ Usually, you will pass information from a parent component to a child component 
 
 </YouWillLearn>
 
-## The problem with passing props <br/><Trans>props 전달의 문제</Trans> {/*the-problem-with-passing-props*/}
+## The problem with passing props <Trans>props 전달의 문제</Trans> {/*the-problem-with-passing-props*/}
 
 [Passing props](/learn/passing-props-to-a-component) is a great way to explicitly pipe data through your UI tree to the components that use it.
 <Trans>[props 전달](/learn/passing-props-to-a-component)은 UI 트리를 통해 데이터를 사용하는 컴포넌트로 명시적으로 연결할 수 있는 좋은 방법입니다.</Trans>
@@ -54,7 +54,7 @@ Prop drilling
 Wouldn't it be great if there were a way to "teleport" data to the components in the tree that need it without passing props? With React's context feature, there is!
 <Trans>props를 전달하지 않고도 트리에서 데이터를 필요한 컴포넌트로 "텔레포트"할 수 있는 방법이 있다면 좋지 않을까요? React의 context 기능을 사용하면 가능합니다!</Trans>
 
-## Context: an alternative to passing props<br/><Trans>Context: props 전달의 대안</Trans> {/*context-an-alternative-to-passing-props*/}
+## Context: an alternative to passing props<Trans>Context: props 전달의 대안</Trans> {/*context-an-alternative-to-passing-props*/}
 
 Context lets a parent component provide data to the entire tree below it. There are many uses for context. Here is one example. Consider this `Heading` component that accepts a `level` for its size:
 <Trans>Context를 사용하면 상위 컴포넌트가 그 아래 전체 트리에 데이터를 제공할 수 있습니다. context는 다양한 용도로 사용됩니다. 다음은 한 가지 예시입니다. 크기에 대한 `level`을 받아들이는 `Heading`컴포넌트를 생각해 봅시다:</Trans>
@@ -224,9 +224,9 @@ But how can the `<Heading>` component know the level of its closest `<Section>`?
 You can't do it with props alone. This is where context comes into play. You will do it in three steps:
 <Trans>props 만으로는 부족합니다. 이때 context가 중요한 역할을 합니다. 세 단계로 진행합니다:</Trans>
 
-1. **Create** a context. (You can call it `LevelContext`, since it's for the heading level.)<br/>
-2. **Use** that context from the component that needs the data. (`Heading` will use `LevelContext`.)<br/>
-3. **Provide** that context from the component that specifies the data. (`Section` will provide `LevelContext`.)<br/>
+1. **Create** a context. (You can call it `LevelContext`, since it's for the heading level.)
+2. **Use** that context from the component that needs the data. (`Heading` will use `LevelContext`.)
+3. **Provide** that context from the component that specifies the data. (`Section` will provide `LevelContext`.)
 
 <TransBlock>
 1. context를 **생성**합니다. (제목 level을 위한 것이므로 `LevelContext`라고 부를 수 있습니다)
@@ -254,7 +254,7 @@ Using context in distant children
 
 </DiagramGroup>
 
-### Step 1: Create the context<br/><Trans>Step1: Context 만들기</Trans> {/*step-1-create-the-context*/}
+### Step 1: Create the context<Trans>Step1: Context 만들기</Trans> {/*step-1-create-the-context*/}
 
 First, you need to create the context. You'll need to **export it from a file** so that your components can use it:
 <Trans>먼저 context를 만들어야 합니다. 컴포넌트에서 사용할 수 있도록 **파일에서 내보내기**를해야 합니다:</Trans>
@@ -340,7 +340,7 @@ export const LevelContext = createContext(1);
 The only argument to `createContext` is the _default_ value. Here, `1` refers to the biggest heading level, but you could pass any kind of value (even an object). You will see the significance of the default value in the next step.
 <Trans>`createContext`의 유일한 인수는 _기본값_ 입니다. 여기서 `1`은 가장 큰 제목 수준을 의미하지만 모든 종류의 값(객체 포함)을 전달할 수 있습니다. 기본값의 중요성은 다음 단계에서 확인할 수 있습니다.</Trans>
 
-### Step 2: Use the context<br/><Trans>Step 2: context 사용하기</Trans> {/*step-2-use-the-context*/}
+### Step 2: Use the context<Trans>Step 2: context 사용하기</Trans> {/*step-2-use-the-context*/}
 
 Import the `useContext` Hook from React and your context:
 <Trans>React와 context에서 `useContext` Hook을 가져옵니다:</Trans>
@@ -486,7 +486,7 @@ If you don't provide the context, React will use the default value you've specif
 <Trans>context를 제공하지 않으면 React는 이전 단계에서 지정한 기본값을 사용합니다. 이 예제에서는 `createContext`의 인수로 `1`을 지정했기 때문에, `useContext(LevelContext)`는 `1`을 반환하고 모든 제목을 `<h1>`으로 설정합니다. </Trans>
 각 `Section`이 자체 context를 제공하도록 하여 이 문제를 해결해 보겠습니다.
 
-### Step 3: Provide the context<br/><Trans>Step 3: context 제공하기</Trans> {/*step-3-provide-the-context*/}
+### Step 3: Provide the context<Trans>Step 3: context 제공하기</Trans> {/*step-3-provide-the-context*/}
 
 The `Section` component currently renders its children:
 <Trans>`Section` 컴포넌트는 현재 children을 렌더링합니다:</Trans>
@@ -620,7 +620,7 @@ It's the same result as the original code, but you did not need to pass the `lev
 3. `Heading`은 `useContext(LevelContext)`를 사용하여 위의 `LevelContext`값에 가장 가까운 값을 요청합니다.
 </TransBlock>
 
-## Using and providing context from the same component<br/><Trans>동일한 컴포넌트에서 context 사용 및 제공</Trans> {/*using-and-providing-context-from-the-same-component*/}
+## Using and providing context from the same component<Trans>동일한 컴포넌트에서 context 사용 및 제공</Trans> {/*using-and-providing-context-from-the-same-component*/}
 
 Currently, you still have to specify each section's `level` manually:
 <Trans>현재는 여전히 각 section의 `level`을 수동으로 지정해야 합니다:</Trans>
@@ -758,7 +758,7 @@ This example uses heading levels because they show visually how nested component
 
 </Note>
 
-## Context passes through intermediate components<br/><Trans>Context는 중간 컴포넌트들을 통과합니다</Trans> {/*context-passes-through-intermediate-components*/}
+## Context passes through intermediate components<Trans>Context는 중간 컴포넌트들을 통과합니다</Trans> {/*context-passes-through-intermediate-components*/}
 
 You can insert as many components as you like between the component that provides context and the one that uses it. This includes both built-in components like `<div>` and components you might build yourself.
 <Trans>context를 제공하는 컴포넌트와 context를 사용하는 컴포넌트 사이에 원하는 만큼의 컴포넌트를 삽입할 수 있습니다. 여기에는 `<div>`와 같은 기본 제공 컴포넌트와 사용자가 직접 빌드할 수 있는 컴포넌트가 모두 포함됩니다.</Trans>
@@ -901,7 +901,7 @@ How context works might remind you of [CSS property inheritance.](https://develo
 In CSS, different properties like `color` and `background-color` don't override each other. You can set all  `<div>`'s `color` to red without impacting `background-color`. Similarly, **different React contexts don't override each other.** Each context that you make with `createContext()` is completely separate from other ones, and ties together components using and providing *that particular* context. One component may use or provide many different contexts without a problem.
 <Trans>CSS에서는 `color` 및 `background-color`와 같은 서로 다른 속성이 서로 재정의되지 않습니다. `background-color`에 영향을 주지 않고 모든 `<div>`의 `color`를 빨간색으로 설정할 수 있습니다. 마찬가지로 서로 다른 React context도 서로 재정의하지 않습니다. `createContext()`로 만드는 각 context는 다른 context와 완전히 분리되어 있으며, *특정* context를 사용하거나 제공하는 컴포넌트를 함께 묶습니다. 하나의 컴포넌트가 문제없이 다양한 context를 사용하거나 제공할 수 있습니다.</Trans>
 
-## Before you use context<br/><Trans>context를 사용하기 전에</Trans> {/*before-you-use-context*/}
+## Before you use context<Trans>context를 사용하기 전에</Trans> {/*before-you-use-context*/}
 
 Context is very tempting to use! However, this also means it's too easy to overuse it. **Just because you need to pass some props several levels deep doesn't mean you should put that information into context.**
 <Trans>context는 사용하기 매우 유혹적입니다! 그러나 이는 또한 너무 쉽게 남용될 수 있다는 의미이기도 합니다. </Trans>
@@ -910,23 +910,23 @@ Context is very tempting to use! However, this also means it's too easy to overu
 Here's a few alternatives you should consider before using context:
 <Trans>다음은 context를 사용하기 전에 고려해야 할 몇 가지 대안입니다:</Trans>
 
-1. **Start by [passing props.](/learn/passing-props-to-a-component)** If your components are not trivial, it's not unusual to pass a dozen props down through a dozen components. It may feel like a slog, but it makes it very clear which components use which data! The person maintaining your code will be glad you've made the data flow explicit with props.<br/>
+1. **Start by [passing props.](/learn/passing-props-to-a-component)** If your components are not trivial, it's not unusual to pass a dozen props down through a dozen components. It may feel like a slog, but it makes it very clear which components use which data! The person maintaining your code will be glad you've made the data flow explicit with props.
 <Trans>**[props 전달](/learn/passing-props-to-a-component)로 시작하세요.** 컴포넌트가 사소하지 않다면, 수십 개의 props를 수십 개의 컴포넌트에 전달해야 하는 경우가 드물지 않습니다. 지루하게 느껴질 수도 있지만, 어떤 컴포넌트가 어떤 데이터를 사용하는지 매우 명확해집니다! 코드를 유지 관리하는 사람은 props를 사용하여 데이터 흐름을 명확하게 만든 것에 만족할 것입니다.</Trans>
-2. **Extract components and [pass JSX as `children`](/learn/passing-props-to-a-component#passing-jsx-as-children) to them.** If you pass some data through many layers of intermediate components that don't use that data (and only pass it further down), this often means that you forgot to extract some components along the way. For example, maybe you pass data props like `posts` to visual components that don't use them directly, like `<Layout posts={posts} />`. Instead, make `Layout` take `children` as a prop, and render `<Layout><Posts posts={posts} /></Layout>`. This reduces the number of layers between the component specifying the data and the one that needs it.<br/>
+2. **Extract components and [pass JSX as `children`](/learn/passing-props-to-a-component#passing-jsx-as-children) to them.** If you pass some data through many layers of intermediate components that don't use that data (and only pass it further down), this often means that you forgot to extract some components along the way. For example, maybe you pass data props like `posts` to visual components that don't use them directly, like `<Layout posts={posts} />`. Instead, make `Layout` take `children` as a prop, and render `<Layout><Posts posts={posts} /></Layout>`. This reduces the number of layers between the component specifying the data and the one that needs it.
 <Trans>컴포넌트를 추출하고 [JSX를 `children`](/learn/passing-props-to-a-component#passing-jsx-as-children)으로 전달하세요. 일부 데이터를 해당 데이터를 사용하지 않는 중간 컴포넌트의 여러 레이어를 거쳐 전달한다면(그리고 더 아래로만 전달한다면), 이는 종종 그 과정에서 일부 컴포넌트를 추출하는 것을 잊었다는 것을 의미합니다. 예를 들어, `posts`과 같은 데이터 props를 직접 사용하지 않는 시각적 컴포넌트에 `<Layout posts={posts} />` 와 같은 방법 대신, Layout이 children을 prop으로 사용하도록 만들고 `<Layout><Posts posts={posts} /></Layout>`를 렌더링합니다. 이렇게 하면 데이터를 지정하는 컴포넌트와 데이터를 필요로 하는 컴포넌트 사이의 레이어 수가 줄어듭니다.</Trans>
 
 If neither of these approaches works well for you, consider context.
 <Trans>이 두 가지 접근 방식이 모두 적합하지 않은 경우 context를 고려하세요.</Trans>
 
-## Use cases for context<br/><Trans>context 사용 사례</Trans> {/*use-cases-for-context*/}
+## Use cases for context<Trans>context 사용 사례</Trans> {/*use-cases-for-context*/}
 
-* **Theming:** If your app lets the user change its appearance (e.g. dark mode), you can put a context provider at the top of your app, and use that context in components that need to adjust their visual look.<br/>
+* **Theming:** If your app lets the user change its appearance (e.g. dark mode), you can put a context provider at the top of your app, and use that context in components that need to adjust their visual look.
 <Trans>**테마:** 앱에서 사용자가 앱의 모양을 변경할 수 있는 경우(예: 다크 모드), 앱 상단에 context provider를 배치하고 시각적 모양을 조정해야 하는 컴포넌트에서 해당 context를 사용할 수 있습니다.</Trans>
-* **Current account:** Many components might need to know the currently logged in user. Putting it in context makes it convenient to read it anywhere in the tree. Some apps also let you operate multiple accounts at the same time (e.g. to leave a comment as a different user). In those cases, it can be convenient to wrap a part of the UI into a nested provider with a different current account value.<br/>
+* **Current account:** Many components might need to know the currently logged in user. Putting it in context makes it convenient to read it anywhere in the tree. Some apps also let you operate multiple accounts at the same time (e.g. to leave a comment as a different user). In those cases, it can be convenient to wrap a part of the UI into a nested provider with a different current account value.
 <Trans>**현재 계정:** 많은 컴포넌트에서 현재 로그인한 사용자를 알아야 할 수 있습니다. 이 정보를 context에 넣으면 트리의 어느 곳에서나 편리하게 읽을 수 있습니다. 또한 일부 앱에서는 여러 계정을 동시에 조작할 수 있습니다(예: 다른 사용자로 댓글을 남기는 경우). 이러한 경우 UI의 일부를 다른 현재 계정 값으로 중첩된 provider로 감싸는 것이 편리할 수 있습니다.</Trans>
-* **Routing:** Most routing solutions use context internally to hold the current route. This is how every link "knows" whether it's active or not. If you build your own router, you might want to do it too.<br/>
+* **Routing:** Most routing solutions use context internally to hold the current route. This is how every link "knows" whether it's active or not. If you build your own router, you might want to do it too.
 <Trans>**라우팅:** 대부분의 라우팅 솔루션은 내부적으로 context를 사용하여 현재 경로를 유지합니다. 이것이 모든 링크가 활성 상태인지 아닌지를 "아는" 방식입니다. 자체 라우터를 구축하는 경우에도 이러한 방식을 사용할 수 있습니다.</Trans>
-* **Managing state:** As your app grows, you might end up with a lot of state closer to the top of your app. Many distant components below may want to change it. It is common to [use a reducer together with context](/learn/scaling-up-with-reducer-and-context) to manage complex state and pass it down to distant components without too much hassle.<br/>
+* **Managing state:** As your app grows, you might end up with a lot of state closer to the top of your app. Many distant components below may want to change it. It is common to [use a reducer together with context](/learn/scaling-up-with-reducer-and-context) to manage complex state and pass it down to distant components without too much hassle.
 <Trans>**state 관리**: 앱이 성장함에 따라 앱 상단에 많은 state가 가까워질 수 있습니다. 아래에 있는 많은 멀리 떨어진 컴포넌트에서 이를 변경하고 싶을 수 있습니다. [context와 함께 reducer를 사용](/learn/scaling-up-with-reducer-and-context)하여 복잡한 state를 관리하고 번거로움 없이 멀리 떨어진 컴포넌트에 전달하는 것이 일반적입니다.</Trans>
   
 Context is not limited to static values. If you pass a different value on the next render, React will update all the components reading it below! This is why context is often used in combination with state.
@@ -936,15 +936,14 @@ In general, if some information is needed by distant components in different par
 <Trans>일반적으로 트리의 다른 부분에 있는 멀리 떨어진 컴포넌트에서 일부 정보가 필요한 경우 context가 도움이 될 수 있다는 좋은 신호입니다.</Trans>
 
 <Recap>
-* Context lets a component provide some information to the entire tree below it.<br/>
-* To pass context:<br/>
-
-  1. Create and export it with `export const MyContext = createContext(defaultValue)`.<br/>
-  2. Pass it to the `useContext(MyContext)` Hook to read it in any child component, no matter how deep.<br/>
-  3. Wrap children into `<MyContext.Provider value={...}>` to provide it from a parent.<br/>
-* Context passes through any components in the middle.<br/>
-* Context lets you write components that "adapt to their surroundings".<br/>
-* Before you use context, try passing props or passing JSX as `children`.<br/>
+* Context lets a component provide some information to the entire tree below it.
+* To pass context:
+  1. Create and export it with `export const MyContext = createContext(defaultValue)`.
+  2. Pass it to the `useContext(MyContext)` Hook to read it in any child component, no matter how deep.
+  3. Wrap children into `<MyContext.Provider value={...}>` to provide it from a parent.
+* Context passes through any components in the middle.
+* Context lets you write components that "adapt to their surroundings".
+* Before you use context, try passing props or passing JSX as `children`.
 
 <TransBlock>
 * Context는 컴포넌트가 그 아래 전체 트리에 일부 정보를 제공할 수 있도록 합니다.
@@ -960,7 +959,7 @@ In general, if some information is needed by distant components in different par
 
 <Challenges>
 
-#### Replace prop drilling with context<br/><Trans>context로 prop drilling 바꾸기</Trans> {/*replace-prop-drilling-with-context*/}
+#### Replace prop drilling with context<Trans>context로 prop drilling 바꾸기</Trans> {/*replace-prop-drilling-with-context*/}
 
 In this example, toggling the checkbox changes the `imageSize` prop passed to each `<PlaceImage>`. The checkbox state is held in the top-level `App` component, but each `<PlaceImage>` needs to be aware of it.
 <Trans>이 예제에서 체크박스를 토글하면 각 `<PlaceImage>`에 전달된 `imageSize` prop이 변경됩니다. 체크박스 state는 최상위 App 컴포넌트에 유지되지만, 각 `<PlaceImage>`는 이를 인식해야 합니다.</Trans>

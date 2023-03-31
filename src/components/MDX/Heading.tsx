@@ -24,7 +24,11 @@ const Heading = forwardRefWithAs<HeadingProps, 'div'>(function Heading(
     c = children;
   } else if (Array.isArray(children)) {
     c = children.map((child, i) =>
-      i === 0 && typeof child === 'string' ? <strong>{child}</strong> : child
+      i === 0 && typeof child === 'string' ? (
+        <strong key={child}>{child}</strong>
+      ) : (
+        child
+      )
     );
   }
 

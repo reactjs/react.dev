@@ -87,6 +87,7 @@ export function Navigation({
           {challenges.map(({name, id, order}, index) => (
             <button
               className={cn(
+                'challenge-tab',
                 'py-2 mr-4 text-base border-b-4 duration-100 ease-in transition whitespace-nowrap text-ellipsis text-left',
                 isRecipes &&
                   currentChallenge.id === id &&

@@ -29,12 +29,7 @@ function SimpleCallout({
         className="text-primary dark:text-primary-dark mt-0 mb-3 leading-tight"
         isPageAnchor={false}>
         {title}
-        {translatedTitle && (
-          <>
-            <br />
-            <Trans>{translatedTitle}</Trans>
-          </>
-        )}
+        {translatedTitle && <Trans>{translatedTitle}</Trans>}
       </H3>
       {children}
     </div>

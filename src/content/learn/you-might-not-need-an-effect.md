@@ -598,7 +598,7 @@ Code at the top level runs once when your component is imported--even if it does
 ### Notifying parent components about state changes<Trans>state변경을 부모 컴포넌트에 알리기</Trans> {/*notifying-parent-components-about-state-changes*/}
 
 Let's say you're writing a `Toggle` component with an internal `isOn` state which can be either `true` or `false`. There are a few different ways to toggle it (by clicking or dragging). You want to notify the parent component whenever the `Toggle` internal state changes, so you expose an `onChange` event and call it from an Effect:
-<Trans>`참` 또는 `거짓`일 수 있는 내부 `isOn` 상태를 가진 `Toggle` 컴포넌트를 작성하고 있다고 가정해 봅시다. 토글하는 방법에는 몇 가지가 있습니다(클릭 또는 드래그). `Toggle` 내부 state가 변경될 때마다 부모 컴포넌트에 알리고 싶어서 `onChange` 이벤트를 prop으로 받고 Effect에서 이를 호출하도록 했습니다:</Trans>
+<Trans>`참` 또는 `거짓`일 수 있는 내부 `isOn` state를 가진 `Toggle` 컴포넌트를 작성하고 있다고 가정해 봅시다. 토글하는 방법에는 몇 가지가 있습니다(클릭 또는 드래그). `Toggle` 내부 state가 변경될 때마다 부모 컴포넌트에 알리고 싶어서 `onChange` 이벤트를 prop으로 받고 Effect에서 이를 호출하도록 했습니다:</Trans>
 
 ```js {4-8}
 function Toggle({ onChange }) {
@@ -802,7 +802,7 @@ function ChatIndicator() {
 ```
 
 This approach is less error-prone than manually syncing mutable data to React state with an Effect. Typically, you'll write a custom Hook like `useOnlineStatus()` above so that you don't need to repeat this code in the individual components. [Read more about subscribing to external stores from React components.](/reference/react/useSyncExternalStore)
-<Trans>이 접근 방식은 변경 가능한 데이터를 Effect를 사용해 React state에 수동으로 동기화하는 것보다 오류 가능성이 적습니다. 일반적으로 위의 `useOnlineStatus()`와 같은 사용자 정의 훅을 작성하여 개별 컴포넌트에서 이 코드를 반복할 필요가 없도록 합니다. [React 컴포넌트에서 외부 store를 구독하는 방법에 대해 자세히 읽어보세요](/reference/react/useSyncExternalStore).</Trans>
+<Trans>이 접근 방식은 변경 가능한 데이터를 Effect를 사용해 React state에 수동으로 동기화하는 것보다 오류 가능성이 적습니다. 일반적으로 위의 `useOnlineStatus()`와 같은 커스텀 훅을 작성하여 개별 컴포넌트에서 이 코드를 반복할 필요가 없도록 합니다. [React 컴포넌트에서 외부 store를 구독하는 방법에 대해 자세히 읽어보세요](/reference/react/useSyncExternalStore).</Trans>
 
 ### Fetching data<Trans>데이터 가져오기(fetch)</Trans> {/*fetching-data*/}
 
@@ -877,7 +877,7 @@ Handling race conditions is not the only difficulty with implementing data fetch
 <Trans>**이런 문제는 React뿐만 아니라 모든 UI 라이브러리에 적용됩니다. 이러한 문제를 해결하는 것은 간단하지 않기 때문에 최신 [프레임워크](/learn/start-a-new-react-project#building-with-a-full-featured-framework)들은 컴포넌트에서 직접 Effect를 작성하는 것보다 더 효율적인 내장 데이터 페칭 메커니즘을 제공합니다.**</Trans>
 
 If you don't use a framework (and don't want to build your own) but would like to make data fetching from Effects more ergonomic, consider extracting your fetching logic into a custom Hook like in this example:
-<Trans>프레임워크를 사용하지 않고(또한 직접 만들고 싶지 않고) Effect에서 데이터 페칭을 보다 인체공학적으로 만들고 싶다면, 다음 예시처럼 페칭 로직을 사용자 정의 훅으로 추출하는 것을 고려해 보세요:</Trans>
+<Trans>프레임워크를 사용하지 않고(또한 직접 만들고 싶지 않고) Effect에서 데이터 페칭을 보다 인체공학적으로 만들고 싶다면, 다음 예시처럼 페칭 로직을 커스텀 훅으로 추출하는 것을 고려해 보세요:</Trans>
 
 ```js {4}
 function SearchResults({ query }) {
@@ -911,10 +911,10 @@ function useData(url) {
 ```
 
 You'll likely also want to add some logic for error handling and to track whether the content is loading. You can build a Hook like this yourself or use one of the many solutions already available in the React ecosystem. **Although this alone won't be as efficient as using a framework's built-in data fetching mechanism, moving the data fetching logic into a custom Hook will make it easier to adopt an efficient data fetching strategy later.**
-<Trans>또한 오류 처리와 콘텐츠 로딩 여부를 추적하기 위한 로직을 추가하고 싶을 것입니다. 이와 같은 훅을 직접 빌드하거나 React 에코시스템에서 이미 사용 가능한 많은 솔루션 중 하나를 사용할 수 있습니다. **이 방법만으로는 프레임워크에 내장된 데이터 페칭 메커니즘을 사용하는 것만큼 효율적이지는 않겠지만, 데이터 페칭 로직을 사용자 정의 훅으로 옮기면 나중에 효율적인 데이터 페칭 전략을 채택하기가 더 쉬워집니다.**</Trans>
+<Trans>또한 오류 처리와 콘텐츠 로딩 여부를 추적하기 위한 로직을 추가하고 싶을 것입니다. 이와 같은 훅을 직접 빌드하거나 React 에코시스템에서 이미 사용 가능한 많은 솔루션 중 하나를 사용할 수 있습니다. **이 방법만으로는 프레임워크에 내장된 데이터 페칭 메커니즘을 사용하는 것만큼 효율적이지는 않겠지만, 데이터 페칭 로직을 커스텀 훅으로 옮기면 나중에 효율적인 데이터 페칭 전략을 채택하기가 더 쉬워집니다.**</Trans>
 
 In general, whenever you have to resort to writing Effects, keep an eye out for when you can extract a piece of functionality into a custom Hook with a more declarative and purpose-built API like `useData` above. The fewer raw `useEffect` calls you have in your components, the easier you will find to maintain your application.
-<Trans>일반적으로 Effects를 작성해야 할 때마다 위의 `useData`와 같이 좀 더 선언적이고 목적에 맞게 만들어진 API를 사용하여 기능을 사용자 정의 훅으로 추출할 수 있는지 잘 살펴보세요. 컴포넌트에서 날것의 `useEffect` 호출이 적을수록 애플리케이션을 유지 관리하기가 더 쉬워집니다.</Trans>
+<Trans>일반적으로 Effects를 작성해야 할 때마다 위의 `useData`와 같이 좀 더 선언적이고 목적에 맞게 만들어진 API를 사용하여 기능을 커스텀 훅으로 추출할 수 있는지 잘 살펴보세요. 컴포넌트에서 날것의 `useEffect` 호출이 적을수록 애플리케이션을 유지 관리하기가 더 쉬워집니다.</Trans>
 
 <Recap>
 
@@ -1047,7 +1047,7 @@ input { margin-top: 10px; }
 <Hint>
 
 If you can calculate something during rendering, you don't need state or an Effect that updates it.
-<Trans>렌더링 중에 무언가를 계산할 수 있다면 상태나 이를 업데이트하는 Effect가 필요하지 않습니다.</Trans>
+<Trans>렌더링 중에 무언가를 계산할 수 있다면 state나 이를 업데이트하는 Effect가 필요하지 않습니다.</Trans>
 
 </Hint>
 
@@ -1322,7 +1322,7 @@ input { margin-top: 10px; }
 </Sandpack>
 
 With this change, `getVisibleTodos()` will be called only if `todos` or `showActive` change. Typing into the input only changes the `text` state variable, so it does not trigger a call to `getVisibleTodos()`.
-<Trans>이 변경으로 `todos` 또는 `showActive`가 변경된 경우에만 `getVisibleTodos()`가 호출됩니다. 입력을 입력하면 `text` 상태 변수만 변경되므로 `getVisibleTodos()` 호출을 트리거하지 않습니다.</Trans>
+<Trans>이 변경으로 `todos` 또는 `showActive`가 변경된 경우에만 `getVisibleTodos()`가 호출됩니다. 입력을 입력하면 `text` state 변수만 변경되므로 `getVisibleTodos()` 호출을 트리거하지 않습니다.</Trans>
 
 There is also another solution which does not need `useMemo`. Since the `text` state variable can't possibly affect the list of todos, you can extract the `NewTodo` form into a separate component, and move the `text` state variable inside of it:
 <Trans>`useMemo`가 필요 없는 또 다른 해결책도 있습니다. `text` state 변수가 할 일 목록에 영향을 줄 수 없기 때문에 `NewTodo` form을 별도의 컴포넌트로 추출하고 그 안에 `text` state 변수를 옮길 수 있습니다:</Trans>
@@ -1752,7 +1752,7 @@ button {
 #### Submit a form without Effects<Trans>Effect 없이 양식 제출하기</Trans> {/*submit-a-form-without-effects*/}
 
 This `Form` component lets you send a message to a friend. When you submit the form, the `showForm` state variable is set to `false`. This triggers an Effect calling `sendMessage(message)`, which sends the message (you can see it in the console). After the message is sent, you see a "Thank you" dialog with an "Open chat" button that lets you get back to the form.
-<Trans>이 `Form` 컴포넌트를 사용하면 친구에게 메시지를 보낼 수 있습니다. 양식을 제출하면 `showForm` 상태 변수가 `false`로 설정됩니다. 그러면 메시지를 전송하는 `sendMessage(message)`라는 Effect가 트리거됩니다(콘솔에서 확인할 수 있음). 메시지가 전송되면 'Open Chat' 버튼이 있는 "Thank you" 대화 상자가 표시되어 양식으로 돌아갈 수 있습니다.</Trans>
+<Trans>이 `Form` 컴포넌트를 사용하면 친구에게 메시지를 보낼 수 있습니다. 양식을 제출하면 `showForm` state 변수가 `false`로 설정됩니다. 그러면 메시지를 전송하는 `sendMessage(message)`라는 Effect가 트리거됩니다(콘솔에서 확인할 수 있음). 메시지가 전송되면 'Open Chat' 버튼이 있는 "Thank you" 대화 상자가 표시되어 양식으로 돌아갈 수 있습니다.</Trans>
 
 Your app's users are sending way too many messages. To make chatting a little bit more difficult, you've decided to show the "Thank you" dialog *first* rather than the form. Change the `showForm` state variable to initialize to `false` instead of `true`. As soon as you make that change, the console will show that an empty message was sent. Something in this logic is wrong!
 <Trans>앱 사용자가 너무 많은 메시지를 보내고 있습니다. 채팅을 조금 더 어렵게 만들기 위해 양식 대신 "감사합니다" 대화 상자를 *먼저* 표시하기로 결정했습니다. `showForm` state 변수를 `true` 대신 `false`로 초기화하도록 변경해 보세요. 이렇게 변경하자마자 콘솔에 빈 메시지가 전송된 것으로 표시됩니다. 이 로직에서 뭔가 잘못되었습니다!</Trans>

@@ -35,7 +35,7 @@ interface PageProps {
 export function Page({children, toc, routeTree, meta, section}: PageProps) {
   const {asPath} = useRouter();
   const cleanedPath = asPath.split(/[\?\#]/)[0];
-  const {route, nextRoute, prevRoute, breadcrumbs} = getRouteMeta(
+  const {route, nextRoute, prevRoute, breadcrumbs, order} = getRouteMeta(
     cleanedPath,
     routeTree
   );
@@ -96,12 +96,18 @@ export function Page({children, toc, routeTree, meta, section}: PageProps) {
     showSidebar = false;
   }
 
+  let searchOrder;
+  if (section === 'learn' || (section === 'blog' && !isBlogIndex)) {
+    searchOrder = order;
+  }
+
   return (
     <>
       <Seo
         title={title}
         isHomePage={isHomePage}
         image={`/images/og-` + section + '.png'}
+        searchOrder={searchOrder}
       />
       <SocialBanner />
       <TopNav

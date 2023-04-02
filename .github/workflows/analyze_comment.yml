@@ -77,7 +77,7 @@ jobs:
 
       - name: Update Comment
         uses: peter-evans/create-or-update-comment@v1.4.4
-        if:  success() && steps.fc.outputs.comment-id != 0 && github.event.workflow_run.conclusion == 'success' && steps.get-type.outputs.event-type == 'pull_request'
+        if: success() && steps.fc.outputs.comment-id != 0 && github.event.workflow_run.conclusion == 'success' && steps.get-type.outputs.event-type == 'pull_request'
         with:
           issue-number: ${{ steps.get-comment-body.outputs.pr-number }}
           body: ${{ steps.get-comment-body.outputs.body }}

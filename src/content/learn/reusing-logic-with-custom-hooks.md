@@ -34,11 +34,11 @@ Imagine you're developing an app that heavily relies on the network (as most app
 2. An Effect that subscribes to the global [`online`](https://developer.mozilla.org/en-US/docs/Web/API/Window/online_event) and [`offline`](https://developer.mozilla.org/en-US/docs/Web/API/Window/offline_event) events, and updates that state.
 <TransBlock>
 1. 네트워크가 온라인 상태인지 여부를 추적하는 state
-2. 전역 online 및 offline 이벤트를 구독하고, state를 업데이트하는 Effect
+2. 전역 [`online`](https://developer.mozilla.org/en-US/docs/Web/API/Window/online_event) 및 [`offline`](https://developer.mozilla.org/en-US/docs/Web/API/Window/offline_event) 이벤트를 구독하고, state를 업데이트하는 Effect
 </TransBlock>
 
 This will keep your component [synchronized](/learn/synchronizing-with-effects) with the network status. You might start with something like this:
-<Trans>이렇게 하면 컴포넌트가 네트워크 상태와 [동기화](/learn/synchronizing-with-effects)된 상태로 유지됩니다. 다음과 같이 시작할 수 있습니다:</Trans>
+<Trans>이렇게 하면 컴포넌트가 네트워크 상태와 [동기화된 상태](/learn/synchronizing-with-effects)로 유지됩니다. 다음과 같이 시작할 수 있습니다:</Trans>
 
 <Sandpack>
 
@@ -75,7 +75,7 @@ Now imagine you *also* want to use the same logic in a different component. You 
 <Trans>이제 *다른 컴포넌트에서도* 동일한 로직을 사용하고 싶다고 가정해 봅시다. 네트워크가 꺼져 있을 때 비활성화되고 "저장" 대신 "다시 연결 중..."이 표시되는 저장 버튼을 구현하고 싶다고 가정해 보겠습니다.</Trans>
 
 To start, you can copy and paste the `isOnline` state and the Effect into `SaveButton`:
-<Trans>시작하려면 `isOnline` 상태와 이펙트를 복사하여 `SaveButton`에 붙여넣으면 됩니다:</Trans>
+<Trans>시작하려면 `isOnline` 상태와 Effect를 복사하여 `SaveButton`에 붙여넣으면 됩니다:</Trans>
 
 <Sandpack>
 
@@ -119,7 +119,7 @@ Verify that, if you turn off the network, the button will change its appearance.
 These two components work fine, but the duplication in logic between them is unfortunate. It seems like even though they have different *visual appearance,* you want to reuse the logic between them.
 <Trans>이 두 컴포넌트는 잘 작동하지만 두 컴포넌트 간의 로직이 중복되는 것은 안타까운 일입니다. 두 컴포넌트의 *시각적 모양*은 다르지만 당신은 두 컴포넌트 사이의 로직을 재사용하고 싶을 것입니다.</Trans>
 
-### Extracting your own custom Hook from a component <Trans>컴포넌트에서 커스텀 훅 추출하기</Trans> {/*extracting-your-own-custom-hook-from-a-component*/}
+### Extracting your own custom Hook from a component<Trans>컴포넌트에서 커스텀 훅 추출하기</Trans> {/*extracting-your-own-custom-hook-from-a-component*/}
 
 Imagine for a moment that, similar to [`useState`](/reference/react/useState) and [`useEffect`](/reference/react/useEffect), there was a built-in `useOnlineStatus` Hook. Then both of these components could be simplified and you could remove the duplication between them:
 <Trans>[`useState`](/reference/react/useState) 와 [`useEffect`](/reference/react/useEffect)와 같은, 만들어진 `useOnlineStatus` 훅이 있다고 잠깐만 가정해봅시다. 이 두 컴포넌트들은 단순화 될 수 있고 두 컴포넌트 간의 중복을 제거할 수 있습니다</Trans>
@@ -240,7 +240,7 @@ Now your components don't have as much repetitive logic. **More importantly, the
 When you extract logic into custom Hooks, you can hide the gnarly details of how you deal with some external system or a browser API. The code of your components expresses your intent, not the implementation.
 <Trans>로직을 커스텀 훅으로 추출하면 외부 시스템이나 브라우저 API를 처리하는 방법에 대한 지저분한 세부 사항을 숨길 수 있습니다. 컴포넌트의 코드는 구현이 아니라 의도를 표현합니다.</Trans>
 
-### Hook names always start with `use` <Trans>훅의 이름은 언제나 `use`로 시작됩니다.</Trans> {/*hook-names-always-start-with-use*/}
+### Hook names always start with `use`<Trans>훅의 이름은 언제나 `use`로 시작됩니다.</Trans> {/*hook-names-always-start-with-use*/}
 
 React applications are built from components. Components are built from Hooks, whether built-in or custom. You'll likely often use custom Hooks created by others, but occasionally you might write one yourself!
 <Trans>React 애플리케이션은 컴포넌트로 빌드됩니다. 컴포넌트는 내장된 것이든 커스텀이든 상관없이 훅으로 빌드됩니다. 다른 사람이 만든 커스텀 훅을 사용하는 경우가 많지만, 가끔은 직접 작성할 수도 있습니다!</Trans>
@@ -268,21 +268,23 @@ If your linter is [configured for React,](/learn/editor-setup#linting) it will e
 
 <DeepDive>
 
-#### Should all functions called during rendering start with the use prefix? <Trans>렌더링 시에 호출되는 모든 함수에 use 접두사를 써야 하나요?</Trans> {/*should-all-functions-called-during-rendering-start-with-the-use-prefix*/}
+#### Should all functions called during rendering start with the use prefix?<Trans>렌더링 시에 호출되는 모든 함수에 use 접두사를 써야 하나요?</Trans> {/*should-all-functions-called-during-rendering-start-with-the-use-prefix*/}
 
 No. Functions that don't *call* Hooks don't need to *be* Hooks.
-<Trans>아니요. Hook을 *호출*하지 않는 함수는 Hook이 될 필요가 없습니다.</Trans>
+<Trans>아니요. 훅을 *호출*하지 않는 함수는 훅이 될 필요가 없습니다.</Trans>
 
 If your function doesn't call any Hooks, avoid the `use` prefix. Instead, write it as a regular function *without* the `use` prefix. For example, `useSorted` below doesn't call Hooks, so call it `getSorted` instead:
-<Trans>함수가 Hook을 호출하지 않는다면 `use` 접두사를 사용하지 마세요. 대신 `use` 접두사가 없는 일반 함수로 작성하세요. 예를 들어, 아래의 `useSorted`는 Hook을 호출하지 않으므로 대신 `getSorted`로 호출하세요: </Trans>
+<Trans>함수가 훅을 호출하지 않는다면 `use` 접두사를 사용하지 마세요. 대신 `use` 접두사가 없는 일반 함수로 작성하세요. 예를 들어, 아래의 `useSorted`는 Hook을 호출하지 않으므로 대신 `getSorted`로 호출하세요: </Trans>
 
 ```js
 // 🔴 Avoid: A Hook that doesn't use Hooks
+// 🔴 이러지 마세요: 훅을 사용하지 않는 훅
 function useSorted(items) {
   return items.slice().sort();
 }
 
 // ✅ Good: A regular function that doesn't use Hooks
+// ✅ 좋습니다: 훅을 사용하지 않는 일반 함수
 function getSorted(items) {
   return items.slice().sort();
 }
@@ -296,6 +298,7 @@ function List({ items, shouldSort }) {
   let displayedItems = items;
   if (shouldSort) {
     // ✅ It's ok to call getSorted() conditionally because it's not a Hook
+    // ✅ getSorted()는 훅이 아니므로 조건부로 호출해도 괜찮음
     displayedItems = getSorted(items);
   }
   // ...
@@ -303,22 +306,25 @@ function List({ items, shouldSort }) {
 ```
 
 You should give `use` prefix to a function (and thus make it a Hook) if it uses at least one Hook inside of it:
-<Trans>함수가 내부에 하나 이상의 Hook을 사용하는 경우 함수에 `use` 접두사를 지정해야 합니다(따라서 Hook으로 만들어야 합니다):</Trans>
+<Trans>함수가 내부에 하나 이상의 훅을 사용하는 경우 함수에 `use` 접두사를 지정해야 합니다(따라서 훅으로 만들어야 합니다):</Trans>
 
 ```js
 // ✅ Good: A Hook that uses other Hooks
+// ✅ 좋습니다: 다른 훅을 사용하는 훅
 function useAuth() {
   return useContext(Auth);
 }
 ```
 
 Technically, this isn't enforced by React. In principle, you could make a Hook that doesn't call other Hooks. This is often confusing and limiting so it's best to avoid that pattern. However, there may be rare cases where it is helpful. For example, maybe your function doesn't use any Hooks right now, but you plan to add some Hook calls to it in the future. Then it makes sense to name it with the `use` prefix:
-<Trans>엄밀히 말하자면 이것은 React에 의해 강제되지 않습니다. 원칙적으로 다른 Hook을 호출하지 않는 Hook을 만들 수 있습니다. 이는 종종 혼란스럽고 제한적이므로 이 패턴은 피하는 것이 가장 좋습니다. 하지만 드물게 도움이 되는 경우가 있을 수 있습니다. 예를 들어, 함수에 지금은 Hook을 사용하지 않지만 나중에 Hook 호출을 추가할 계획이 있을 수 있습니다. 이 경우 `use`접두사를 사용하여 이름을 지정하는 것이 좋습니다:</Trans>
+<Trans>엄밀히 말하자면 이것은 React에 의해 강제되지 않습니다. 원칙적으로 다른 훅을 호출하지 않는 훅을 만들 수 있습니다. 이는 종종 혼란스럽고 제한적이므로 이 패턴은 피하는 것이 가장 좋습니다. 하지만 드물게 도움이 되는 경우가 있을 수 있습니다. 예를 들어, 함수에 지금은 훅을 사용하지 않지만 나중에 훅 호출을 추가할 계획이 있을 수 있습니다. 이 경우 `use`접두사를 사용하여 이름을 지정하는 것이 좋습니다:</Trans>
 
-```js {3-4}
+```js {4-5}
 // ✅ Good: A Hook that will likely use some other Hooks later
+// ✅ 좋습니다: 나중에 다른 훅을 사용할 가능성이 있는 훅
 function useAuth() {
   // TODO: Replace with this line when authentication is implemented:
+  // TODO: 인증 기능이 구현되면 다음 줄로 바꿀 것:
   // return useContext(Auth);
   return TEST_USER;
 }
@@ -329,7 +335,7 @@ Then components won't be able to call it conditionally. This will become importa
 
 </DeepDive>
 
-### Custom Hooks let you share stateful logic, not state itself <Trans>커스텀 훅은 state 자체가 아닌 상태적인 로직(stateful logic)을 공유합니다.</Trans> {/*custom-hooks-let-you-share-stateful-logic-not-state-itself*/}
+### Custom Hooks let you share stateful logic, not state itself<Trans>커스텀 훅은 state 자체가 아닌 상태적인 로직(stateful logic)을 공유합니다.</Trans> {/*custom-hooks-let-you-share-stateful-logic-not-state-itself*/}
 
 In the earlier example, when you turned the network on and off, both components updated together. However, it's wrong to think that a single `isOnline` state variable is shared between them. Look at this code:
 <Trans>앞의 예제에서는 네트워크를 켜고 끌 때 두 컴포넌트가 함께 업데이트되었습니다. 그러나 하나의 `isOnline` state 변수가 두 컴포넌트 간에 공유된다고 생각하는 것은 잘못된 생각입니다. 이 코드를 보세요:</Trans>
@@ -483,7 +489,7 @@ Notice that it only declares *one* state variable called `value`.
 <Trans>`value`라는 state variable(state 변수)를 하나만 선언하는 것을 주목하세요.</Trans>
 
 However, the `Form` component calls `useFormInput` *two times:*
-<Trans>하지만 `Form` 컴포넌트는 `useFormInput`을 두 번 호출합니다.</Trans>
+<Trans>하지만 `Form` 컴포넌트는 `useFormInput`을 두 번 호출합니다:</Trans>
 
 ```js
 function Form() {
@@ -501,10 +507,10 @@ This is why it works like declaring two separate state variables!
 When you need to share the state itself between multiple components, [lift it up and pass it down](/learn/sharing-state-between-components) instead.
 <Trans>여러 컴포넌트 간에 상태 자체를 공유해야 하는 경우, 대신 [끌어올려 전달하기](/learn/sharing-state-between-components)를 사용하세요.</Trans>
 
-## Passing reactive values between Hooks <Trans>훅 사이에 반응형 값 전달하기</Trans> {/*passing-reactive-values-between-hooks*/}
+## Passing reactive values between Hooks<Trans>훅 사이에 반응형 값 전달하기</Trans> {/*passing-reactive-values-between-hooks*/}
 
 The code inside your custom Hooks will re-run during every re-render of your component. This is why, like components, custom Hooks [need to be pure.](/learn/keeping-components-pure) Think of custom Hooks' code as part of your component's body!
-<Trans>컴포넌트를 다시 렌더링할 때마다 커스텀 훅 내부의 코드가 다시 실행됩니다. 이것이 컴포넌트와 마찬가지로 커스텀 훅도 [순수해야 하는 이유입니다.](/learn/keeping-components-pure) 커스텀 Hook의 코드를 컴포넌트 본문의 일부로 생각하세요!</Trans>
+<Trans>컴포넌트를 다시 렌더링할 때마다 커스텀 훅 내부의 코드가 다시 실행됩니다. 이것이 컴포넌트와 마찬가지로 커스텀 훅도 [순수해야 하는](/learn/keeping-components-pure) 이유입니다. 커스텀 Hook의 코드를 컴포넌트 본문의 일부로 생각하세요!</Trans>
 
 Because custom Hooks re-render together with your component, they always receive the latest props and state. To see what this means, consider this chat room example. Change the server URL or the chat room:
 <Trans>커스텀 훅은 컴포넌트와 함께 다시 렌더링되기 때문에 항상 최신 프로퍼티와 상태를 받습니다. 이것이 무엇을 의미하는지 이 채팅방 예시를 통해 알아보세요. 서버 URL 또는 선택한 채팅방을 변경합니다:</Trans>
@@ -575,6 +581,7 @@ export default function ChatRoom({ roomId }) {
 ```js chat.js
 export function createConnection({ serverUrl, roomId }) {
   // A real implementation would actually connect to the server
+  // 실제 구현은 진짜 서버로 연결됩니다
   if (typeof serverUrl !== 'string') {
     throw Error('Expected serverUrl to be a string. Received: ' + serverUrl);
   }
@@ -705,7 +712,7 @@ export default function ChatRoom({ roomId }) {
 ```
 
 This looks much simpler! (But it does the same thing.)
-<Trans>이렇게 하면 더 간단해 보입니다! (하지만 같은 것이 아닙니다.)</Trans>
+<Trans>이렇게 하면 더 간단해 보입니다! (하지만 기능상 동일합니다.)</Trans>
 
 Notice that the logic *still responds* to prop and state changes. Try editing the server URL or the selected room:
 <Trans>이 로직이 *여전히 prop과 state 변화에 반응*한다는 것을 주목하세요. 서버 URL과 선택한 room을 편집해보세요:</Trans>
@@ -788,6 +795,7 @@ export function useChatRoom({ serverUrl, roomId }) {
 ```js chat.js
 export function createConnection({ serverUrl, roomId }) {
   // A real implementation would actually connect to the server
+  // 실제 구현은 진짜 서버로 연결됩니다
   if (typeof serverUrl !== 'string') {
     throw Error('Expected serverUrl to be a string. Received: ' + serverUrl);
   }
@@ -885,7 +893,7 @@ export default function ChatRoom({ roomId }) {
 ```
 
 and pass it as an input to another Hook:
-<Trans>그리고 다른 훅에 인풋으로 전달합니다.</Trans>
+<Trans>그리고 다른 훅에 인풋으로 전달합니다:</Trans>
 
 ```js {6}
 export default function ChatRoom({ roomId }) {
@@ -901,7 +909,7 @@ export default function ChatRoom({ roomId }) {
 Every time your `ChatRoom` component re-renders, it passes the latest `roomId` and `serverUrl` to your Hook. This is why your Effect re-connects to the chat whenever their values are different after a re-render. (If you ever worked with audio or video processing software, chaining Hooks like this might remind you of chaining visual or audio effects. It's as if the output of `useState` "feeds into" the input of the `useChatRoom`.)
 <Trans>`ChatRoom` 컴포넌트가 다시 렌더링할 때마다 최신 `roomId`와`serverUrl`을 Hook에 전달합니다. 이것이 바로 재렌더링 후 값이 달라질 때마다 Effect가 채팅에 다시 연결되는 이유입니다. (음악 처리 소프트웨어로 작업해 본 적이 있다면 이런 식으로 Hook을 연결하면 리버브나 코러스 추가와 같이 여러 오디오 효과를 연결하는 것을 떠올릴 수 있습니다. 마치 `useState`의 출력이 `useChatRoom`의 입력에 '피드' 되는 것과 같습니다.)</Trans>
 
-### Passing event handlers to custom Hooks <Trans>커스텀훅에게 이벤트 핸들러 전달하기</Trans> {/*passing-event-handlers-to-custom-hooks*/}
+### Passing event handlers to custom Hooks<Trans>커스텀훅에게 이벤트 핸들러 전달하기</Trans> {/*passing-event-handlers-to-custom-hooks*/}
 
 <Wip>
 
@@ -948,7 +956,7 @@ export default function ChatRoom({ roomId }) {
 ```
 
 To make this work, change your custom Hook to take `onReceiveMessage` as one of its named options:
-<Trans>이 기능을 사용하려면 사용자 정의 훅을 변경하여 `onReceiveMessage` 를 이름 옵션 중 하나로 사용하세요.</Trans>
+<Trans>이 기능을 사용하려면 커스텀 훅을 변경하여 `onReceiveMessage` 를 이름 옵션 중 하나로 사용하세요.</Trans>
 
 ```js {1,10,13}
 export function useChatRoom({ serverUrl, roomId, onReceiveMessage }) {
@@ -964,6 +972,7 @@ export function useChatRoom({ serverUrl, roomId, onReceiveMessage }) {
     });
     return () => connection.disconnect();
   }, [roomId, serverUrl, onReceiveMessage]); // ✅ All dependencies declared
+                                             // ✅ 모든 의존성이 선언됨
 }
 ```
 
@@ -992,6 +1001,7 @@ export function useChatRoom({ serverUrl, roomId, onReceiveMessage }) {
     });
     return () => connection.disconnect();
   }, [roomId, serverUrl]); // ✅ All dependencies declared
+                           // ✅ 모든 의존성이 선언됨
 }
 ```
 
@@ -1082,6 +1092,7 @@ export function useChatRoom({ serverUrl, roomId, onReceiveMessage }) {
 ```js chat.js
 export function createConnection({ serverUrl, roomId }) {
   // A real implementation would actually connect to the server
+  // 실제 구현은 진짜 서버로 연결됩니다
   if (typeof serverUrl !== 'string') {
     throw Error('Expected serverUrl to be a string. Received: ' + serverUrl);
   }
@@ -1167,13 +1178,13 @@ button { margin-left: 10px; }
 Notice how you no longer need to know *how* `useChatRoom` works in order to use it. You could add it to any other component, pass any other options, and it would work the same way. That's the power of custom Hooks.
 <Trans>이제 더 이상 `useChatRoom`이 *어떻게* 작동하는지 알 필요 없이 사용할 수 있습니다. 다른 컴포넌트에 추가하고 다른 옵션을 전달해도 동일한 방식으로 작동합니다. 이것이 바로 커스텀 Hook의 힘입니다.</Trans>
 
-## When to use custom Hooks <Trans>언제 커스텀 훅을 사용할 것인가</Trans> {/*when-to-use-custom-hooks*/}
+## When to use custom Hooks<Trans>언제 커스텀 훅을 사용할 것인가</Trans> {/*when-to-use-custom-hooks*/}
 
 You don't need to extract a custom Hook for every little duplicated bit of code. Some duplication is fine. For example, extracting a `useFormInput` Hook to wrap a single `useState` call like earlier is probably unnecessary.
-<Trans>중복되는 모든 코드에 대해 사용자 정의 Hook을 추출할 필요는 없습니다. 약간의 중복은 괜찮습니다. 예를 들어, 앞서처럼 단일 `useState` 호출을 감싸기 위해 `useFormInput` Hook을 추출하는 것은 불필요할 수 있습니다.</Trans>
+<Trans>중복되는 모든 코드에 대해 커스텀 훅을 추출할 필요는 없습니다. 약간의 중복은 괜찮습니다. 예를 들어, 앞서처럼 단일 `useState` 호출을 감싸기 위해 `useFormInput` 훅을 추출하는 것은 불필요할 수 있습니다.</Trans>
 
 However, whenever you write an Effect, consider whether it would be clearer to also wrap it in a custom Hook. [You shouldn't need Effects very often,](/learn/you-might-not-need-an-effect) so if you're writing one, it means that you need to "step outside React" to synchronize with some external system or to do something that React doesn't have a built-in API for. Wrapping it into a custom Hook lets you precisely communicate your intent and how the data flows through it.
-<Trans>하지만 Effect를 작성할 때마다 커스텀 Hook으로 감싸는 것이 더 명확할지 고려하세요. [Effect는 자주 필요하지 않으므로,](/learn/you-might-not-need-an-effect) 만약 Effect를 작성한다면 외부 시스템과 동기화하거나 React에 내장된 API가 없는 작업을 수행하기 위해 "React 외부로 나가야 한다"는 뜻입니다. Effect를 커스텀 Hook으로 감싸면 의도와 데이터 흐름 방식을 정확하게 전달할 수 있습니다.</Trans>
+<Trans>하지만 Effect를 작성할 때마다 커스텀 훅으로 감싸는 것이 더 명확할지 고려하세요. [Effect는 자주 필요하지 않으므로,](/learn/you-might-not-need-an-effect) 만약 Effect를 작성한다면 외부 시스템과 동기화하거나 React에 내장된 API가 없는 작업을 수행하기 위해 "React 외부로 나가야 한다"는 뜻입니다. Effect를 커스텀 훅으로 감싸면 의도와 데이터 흐름 방식을 정확하게 전달할 수 있습니다.</Trans>
 
 For example, consider a `ShippingForm` component that displays two dropdowns: one shows the list of cities, and another shows the list of areas in the selected city. You might start with some code that looks like this:
 <Trans>예를 들어, 도시 목록을 표시하는 드롭다운과 선택한 도시의 지역 목록을 표시하는 드롭다운 두 개를 표시하는 `ShippingForm` 컴포넌트를 생각해 봅시다. 다음과 같은 코드로 시작할 수 있습니다:</Trans>
@@ -1182,6 +1193,7 @@ For example, consider a `ShippingForm` component that displays two dropdowns: on
 function ShippingForm({ country }) {
   const [cities, setCities] = useState(null);
   // This Effect fetches cities for a country
+  // 이 Effect는 국가의 도시들을 페치합니다
   useEffect(() => {
     let ignore = false;
     fetch(`/api/cities?country=${country}`)
@@ -1199,6 +1211,7 @@ function ShippingForm({ country }) {
   const [city, setCity] = useState(null);
   const [areas, setAreas] = useState(null);
   // This Effect fetches areas for the selected city
+  // 이 Effect는 선택된 도시의 장소들을 페치합니다
   useEffect(() => {
     if (city) {
       let ignore = false;
@@ -1219,7 +1232,7 @@ function ShippingForm({ country }) {
 ```
 
 Although this code is quite repetitive, [it's correct to keep these Effects separate from each other.](/learn/removing-effect-dependencies#is-your-effect-doing-several-unrelated-things) They synchronize two different things, so you shouldn't merge them into one Effect. Instead, you can simplify the `ShippingForm` component above by extracting the common logic between them into your own `useData` Hook:
-<Trans>이 코드는 상당히 반복적이지만 이러한 효과는 [서로 분리하여 유지](/learn/removing-effect-dependencies#is-your-effect-doing-several-unrelated-things)하는 것이 맞습니다. 서로 다른 두 가지를 동기화하므로 하나의 Effect로 병합해서는 안 됩니다. 대신, 위의 `ShippingForm` 컴포넌트 사이의 공통 로직을 자체 `useData` 훅으로 추출하여 단순화할 수 있습니다:</Trans>
+<Trans>이 코드는 상당히 반복적이지만 이러한 효과는 [서로 분리하여 유지하는 것이 맞습니다.](/learn/removing-effect-dependencies#is-your-effect-doing-several-unrelated-things) 서로 다른 두 가지를 동기화하므로 하나의 Effect로 병합해서는 안 됩니다. 대신, 위의 `ShippingForm` 컴포넌트 사이의 공통 로직을 자체 `useData` 훅으로 추출하여 단순화할 수 있습니다:</Trans>
 
 ```js {2-18}
 function useData(url) {
@@ -1255,14 +1268,14 @@ function ShippingForm({ country }) {
 ```
 
 Extracting a custom Hook makes the data flow explicit. You feed the `url` in and you get the `data` out. By "hiding" your Effect inside `useData`, you also prevent someone working on the `ShippingForm` component from adding [unnecessary dependencies](/learn/removing-effect-dependencies) to it. With time, most of your app's Effects will be in custom Hooks.
-<Trans>커스텀 Hook을 추출하면 데이터 흐름을 명시적으로 만들 수 있습니다. `url`을 입력하면 `data`를 가져올 수 있습니다. `useData` 안에 효과를 "숨기면" `ShippingForm` 컴포넌트에서 작업하는 사람이 불필요한 종속성을 추가하는 것을 방지할 수 있습니다. 이상적으로는 시간이 지나면 앱의 효과 대부분이 커스텀 Hook에 포함될 것입니다.</Trans>
+<Trans>커스텀 훅을 추출하면 데이터 흐름을 명시적으로 만들 수 있습니다. `url`을 입력하면 `data`를 가져올 수 있습니다. `useData` 안에 효과를 "숨기면" `ShippingForm` 컴포넌트에서 작업하는 사람이 [불필요한 종속성](/learn/removing-effect-dependencies)을 추가하는 것을 방지할 수 있습니다. 이상적으로는 시간이 지나면 앱의 효과 대부분이 커스텀 훅에 포함될 것입니다.</Trans>
 
 <DeepDive>
 
-#### Keep your custom Hooks focused on concrete high-level use cases <Trans>견고한 고수준 사용 사례에 초점을 맞춘 커스텀 훅을 사용하세요.</Trans> {/*keep-your-custom-hooks-focused-on-concrete-high-level-use-cases*/}
+#### Keep your custom Hooks focused on concrete high-level use cases<Trans>커스텀 훅은 구체적인 고수준 사용 사례에 집중하세요</Trans> {/*keep-your-custom-hooks-focused-on-concrete-high-level-use-cases*/}
 
 Start by choosing your custom Hook's name. If you struggle to pick a clear name, it might mean that your Effect is too coupled to the rest of your component's logic, and is not yet ready to be extracted.
-<Trans>먼저 커스텀 훅의 이름을 선택하세요. 명확한 이름을 고르는 데 어려움을 겪는다면 이펙트가 컴포넌트의 나머지 로직과 너무 결합되어 있어 아직 추출할 준비가 되지 않았다는 의미일 수 있습니다.</Trans>
+<Trans>먼저 커스텀 훅의 이름을 선택하세요. 명확한 이름을 고르는 데 어려움을 겪는다면 Effect가 컴포넌트의 나머지 로직과 너무 결합되어 있어 아직 추출할 준비가 되지 않았다는 의미일 수 있습니다.</Trans>
 
 Ideally, your custom Hook's name should be clear enough that even a person who doesn't write code often could have a good guess about what your custom Hook does, what it takes, and what it returns:
 <Trans>커스텀 훅의 이름은 코드를 자주 작성하지 않는 사람이라도 커스텀 훅이 무엇을 하고, 무엇을 취하고, 무엇을 반환하는지 짐작할 수 있을 정도로 명확해야 합니다:</Trans>
@@ -1286,13 +1299,14 @@ When you synchronize with an external system, your custom Hook name may be more 
 * 🔴 `useUpdateEffect(fn)`
 
 For example, this `useMount` Hook tries to ensure some code only runs "on mount":
-<Trans>예를 들어`useMount` 훅은 일부코드가 “마운트 할 경우”에만 실행됩니다.</Trans>
+<Trans>예를 들어`useMount` 훅은 일부코드가 “마운트 할 때”에만 실행됩니다.</Trans>
 
 ```js {4-5,14-15}
 function ChatRoom({ roomId }) {
   const [serverUrl, setServerUrl] = useState('https://localhost:1234');
 
   // 🔴 Avoid: using custom "lifecycle" Hooks
+  // 🔴 이러지 마세요: 커스텀 "라이프사이클" 훅 사용
   useMount(() => {
     const connection = createConnection({ roomId, serverUrl });
     connection.connect();
@@ -1303,10 +1317,12 @@ function ChatRoom({ roomId }) {
 }
 
 // 🔴 Avoid: creating custom "lifecycle" Hooks
+// 🔴 이러지 마세요: 커스텀 "라이브사이클" 훅 생성
 function useMount(fn) {
   useEffect(() => {
     fn();
   }, []); // 🔴 React Hook useEffect has a missing dependency: 'fn'
+          // 🔴 React 훅 useEffect에 의존성 누락: 'fn'
 }
 ```
 
@@ -1321,6 +1337,7 @@ function ChatRoom({ roomId }) {
   const [serverUrl, setServerUrl] = useState('https://localhost:1234');
 
   // ✅ Good: two raw Effects separated by purpose
+  // ✅ 좋습니다: 목적별로 분리된 두 원시 Effect
 
   useEffect(() => {
     const connection = createConnection({ serverUrl, roomId });
@@ -1337,13 +1354,14 @@ function ChatRoom({ roomId }) {
 ```
 
 Then, you can (but don't have to) extract custom Hooks for different high-level use cases:
-<Trans>그러면 커스텀 훅을 다른 고수준 사용 사례를 위해 추출할 수 있습니다(꼭 할 필요는 없습니다):</Trans>
+<Trans>그러면 다른 고수준 사용 사례에 대한 커스텀 훅을 추출할 수 있습니다(반드시 그럴 필요는 없습니다):</Trans>
 
 ```js
 function ChatRoom({ roomId }) {
   const [serverUrl, setServerUrl] = useState('https://localhost:1234');
 
   // ✅ Great: custom Hooks named after their purpose
+  // ✅ 매우 좋습니다: 용도에 따라 이름을 지정한 커스텀 훅
   useChatRoom({ serverUrl, roomId });
   useImpressionLog('visit_chat', { roomId });
   // ...
@@ -1351,14 +1369,14 @@ function ChatRoom({ roomId }) {
 ```
 
 **A good custom Hook makes the calling code more declarative by constraining what it does.** For example, `useChatRoom(options)` can only connect to the chat room, while `useImpressionLog(eventName, extraData)` can only send an impression log to the analytics. If your custom Hook API doesn't constrain the use cases and is very abstract, in the long run it's likely to introduce more problems than it solves.
-<Trans>**좋은 커스텀 Hook은 호출 코드가 수행하는 작업을 제한하여 보다 선언적으로 만듭니다**. 예를 들어, `useChatRoom(options)`은 채팅방에만 연결할 수 있고, `useImpressionLog(eventName, extraData)`는 애널리틱스에 노출 로그만 전송할 수 있습니다. 커스텀 Hook API가 사용 사례를 제한하지 않고 매우 추상적일 경우, 장기적으로는 해결하는 것보다 더 많은 문제를 야기할 가능성이 높습니다.</Trans>
+<Trans>**좋은 커스텀 훅은 호출 코드가 수행하는 작업을 제한하여 보다 선언적으로 만듭니다**. 예를 들어, `useChatRoom(options)`은 채팅방에만 연결할 수 있고, `useImpressionLog(eventName, extraData)`는 애널리틱스에 노출 로그만 전송할 수 있습니다. 커스텀 훅 API가 사용 사례를 제한하지 않고 매우 추상적일 경우, 장기적으로는 해결하는 것보다 더 많은 문제를 야기할 가능성이 높습니다.</Trans>
 
 </DeepDive>
 
-### Custom Hooks help you migrate to better patterns <Trans>커스텀 훅은 더 나은 패턴으로 마이그레이션하는데 도움을 줍니다.</Trans> {/*custom-hooks-help-you-migrate-to-better-patterns*/}
+### Custom Hooks help you migrate to better patterns<Trans>커스텀 훅은 더 나은 패턴으로 마이그레이션하는데 도움을 줍니다.</Trans> {/*custom-hooks-help-you-migrate-to-better-patterns*/}
 
 Effects are an ["escape hatch"](/learn/escape-hatches): you use them when you need to "step outside React" and when there is no better built-in solution for your use case. With time, the React team's goal is to reduce the number of the Effects in your app to the minimum by providing more specific solutions to more specific problems. Wrapping your Effects in custom Hooks makes it easier to upgrade your code when these solutions become available.
-<Trans>Effect는 ["escape hatch"](/learn/escape-hatches):입니다. "React를 벗어나야 할 때", 그리고 사용 사례에 더 나은 내장 솔루션이 없을 때 사용합니다. 시간이 지남에 따라 React 팀의 목표는 더 구체적인 문제에 대한 더 구체적인 솔루션을 제공함으로써 앱에서 이펙트의 수를 최소한으로 줄이는 것입니다. 효과를 커스텀 Hook으로 감싸면 이러한 솔루션이 제공될 때 코드를 더 쉽게 업그레이드할 수 있습니다.</Trans>
+<Trans>Effect는 ["탈출구"](/learn/escape-hatches):입니다. "React를 벗어나야 할 때", 그리고 사용 사례에 더 나은 내장 솔루션이 없을 때 사용합니다. 시간이 지남에 따라 React 팀의 목표는 더 구체적인 문제에 대한 더 구체적인 솔루션을 제공함으로써 앱에서 Effect의 수를 최소한으로 줄이는 것입니다. 효과를 커스텀 훅으로 감싸면 이러한 솔루션이 제공될 때 코드를 더 쉽게 업그레이드할 수 있습니다.</Trans>
 
 Let's return to this example:
 <Trans>이 예제로 돌아가 보겠습니다:</Trans>
@@ -1426,7 +1444,7 @@ In the above example, `useOnlineStatus` is implemented with a pair of [`useState
 <Trans>위의 예제에서는,  [`useState`](/reference/react/useState)와 [`useEffect`](/reference/react/useEffect)의 페어로 `useOnlineStatus`를 구성했습니다. 하지만 이것은 최적의 방법은 아닙니다. 고려하지 않은 여러 케이스들이 있습니다.예를 들어, 컴포넌트가 마운트될 때 `isOnline`이 이미 `true`라고 가정하지만, 네트워크가 이미 오프라인 상태였다면 이는 틀릴 수 있습니다. 브라우저 [`navigator.onLine`](https://developer.mozilla.org/ko/docs/Web/API/Navigator/onLine) API를 사용하여 이를 확인할 수 있지만, 서버에서 React 앱을 실행하여 초기 HTML을 생성하는 경우 이를 직접 사용하면 코드가 깨질 수 있습니다. 요컨대, 이 코드는 개선될 수 있습니다.</Trans>
 
 Luckily, React 18 includes a dedicated API called [`useSyncExternalStore`](/reference/react/useSyncExternalStore) which takes care of all of these problems for you. Here is how your `useOnlineStatus` Hook, rewritten to take advantage of this new API:
-<Trans>다행히 React 18에는 이 모든 문제를 해결해 주는 [`useSyncExternalStore`](/reference/react/useSyncExternalStore)라는 전용 API가 포함되어 있습니다. 이 새로운 API를 활용하기 위해 재작성된 `useOnlineStatus` Hook은 다음과 같습니다:</Trans>
+<Trans>다행히 React 18에는 이 모든 문제를 해결해 주는 [`useSyncExternalStore`](/reference/react/useSyncExternalStore)라는 전용 API가 포함되어 있습니다. 이 새로운 API를 활용하기 위해 재작성된 `useOnlineStatus` 훅은 다음과 같습니다:</Trans>
 
 <Sandpack>
 
@@ -1478,10 +1496,11 @@ export function useOnlineStatus() {
   return useSyncExternalStore(
     subscribe,
     () => navigator.onLine, // How to get the value on the client
+                            // 클라이언트에서 값을 가져오는 방법
     () => true // How to get the value on the server
+               // 서버에서 값을 가져오는 방법
   );
 }
-
 ```
 
 </Sandpack>
@@ -1502,7 +1521,7 @@ function SaveButton() {
 ```
 
 This is another reason for why wrapping Effects in custom Hooks is often beneficial:
-<Trans>이것이 커스텀 Hook으로 효과를 래핑하는 것이 종종 유익한 또 다른 이유입니다:</Trans>
+<Trans>이것이 커스텀 훅으로 효과를 래핑하는 것이 종종 유익한 또 다른 이유입니다:</Trans>
 
 1. You make the data flow to and from your Effects very explicit.
 2. You let your components focus on the intent rather than on the exact implementation of your Effects.
@@ -1514,18 +1533,18 @@ This is another reason for why wrapping Effects in custom Hooks is often benefic
 </TransBlock>
 
 Similar to a [design system,](https://uxdesign.cc/everything-you-need-to-know-about-design-systems-54b109851969) you might find it helpful to start extracting common idioms from your app's components into custom Hooks. This will keep your components' code focused on the intent, and let you avoid writing raw Effects very often. Many excellent custom Hooks are maintained by the React community.
-<Trans>[디자인 시스템](https://uxdesign.cc/everything-you-need-to-know-about-design-systems-54b109851969)과 유사하게 앱의 컴포넌트에서 공통된 관용구를 추출하여 커스텀 Hook으로 만드는 것이 도움이 될 수 있습니다. 이렇게 하면 컴포넌트의 코드가 의도에 집중할 수 있고, 원시 효과를 자주 작성하는 것을 피할 수 있습니다. React 커뮤니티에서 관리하고 있는 훌륭한 커스텀 Hook도 많이 있습니다.</Trans>
+<Trans>[디자인 시스템](https://uxdesign.cc/everything-you-need-to-know-about-design-systems-54b109851969)과 유사하게 앱의 컴포넌트에서 공통된 관용구를 추출하여 커스텀 훅으로 만드는 것이 도움이 될 수 있습니다. 이렇게 하면 컴포넌트의 코드가 의도에 집중할 수 있고, 원시 효과를 자주 작성하는 것을 피할 수 있습니다. React 커뮤니티에서 관리하고 있는 훌륭한 커스텀 훅도 많이 있습니다.</Trans>
 
 <DeepDive>
 
-#### Will React provide any built-in solution for data fetching? <Trans>리액트는 데이터 fetching을 위해 내장된 해결책을 만들 예정인가요?</Trans> {/*will-react-provide-any-built-in-solution-for-data-fetching*/}
+#### Will React provide any built-in solution for data fetching?<Trans>React는 데이터 페칭을 위해 내장 솔루션을 제공할건가요?</Trans> {/*will-react-provide-any-built-in-solution-for-data-fetching*/}
 
 We're still working out the details, but we expect that in the future, you'll write data fetching like this:
-<Trans>우리는 이 상세 내용을 만들고 있고, 미래에는 아래와 같이 데이터fetching을 할 수 있을 것입니다:</Trans>
+<Trans>아직 세부 사항을 작업 중이지만, 앞으로는 다음과 같이 데이터 페칭을 할 수 있을 것으로 예상합니다:</Trans>
 
 ```js {1,4,6}
-import { use } from 'react'; // Not available yet!
-
+import { use } from 'react'; // Not available yet! 
+                             // 아직 동작하지 않습니다!
 function ShippingForm({ country }) {
   const cities = use(fetch(`/api/cities?country=${country}`));
   const [city, setCity] = useState(null);
@@ -1534,14 +1553,14 @@ function ShippingForm({ country }) {
 ```
 
 If you use custom Hooks like `useData` above in your app, it will require fewer changes to migrate to the eventually recommended approach than if you write raw Effects in every component manually. However, the old approach will still work fine, so if you feel happy writing raw Effects, you can continue to do that.
-<Trans>앱에서 위의 useData와 같은 커스텀 훅을 사용하면 모든 컴포넌트에 원시 효과를 수동으로 작성하는 것보다 최종적으로 권장되는 접근 방식으로 마이그레이션하는 데 더 적은 변경이 필요합니다. 하지만 이전 접근 방식도 여전히 잘 작동하므로 원시 효과를 작성하는 것이 만족스럽다면 계속 사용할 수 있습니다.</Trans>
+<Trans>앱에서 위의 `useData`와 같은 커스텀 훅을 사용하면 모든 컴포넌트에 원시 Effect를 수동으로 작성하는 것보다 최종적으로 권장되는 접근 방식으로 마이그레이션하는 데 더 적은 변경이 필요할 것입니다. 다만 이전 접근 방식도 여전히 잘 작동하므로 원시 Effect를 작성하는 것이 만족스럽다면 계속 사용할 수 있습니다.</Trans>
 
 </DeepDive>
 
-### There is more than one way to do it <Trans>여러가지 방법이 있습니다</Trans> {/*there-is-more-than-one-way-to-do-it*/}
+### There is more than one way to do it<Trans>여러가지 방법이 있습니다</Trans> {/*there-is-more-than-one-way-to-do-it*/}
 
 Let's say you want to implement a fade-in animation *from scratch* using the browser [`requestAnimationFrame`](https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame) API. You might start with an Effect that sets up an animation loop. During each frame of the animation, you could change the opacity of the DOM node you [hold in a ref](/learn/manipulating-the-dom-with-refs) until it reaches `1`. Your code might start like this:
-<Trans>브라우저 요청 [`requestAnimationFrame`](https://developer.mozilla.org/ko/docs/Web/API/window/requestAnimationFrame) API를 사용하여 페이드인 애니메이션을 *처음부터* 구현한다고 가정해 보겠습니다. 애니메이션 루프를 설정하는 효과로 시작할 수 있습니다. 애니메이션의 각 프레임 동안 [참조로 유지하는](/learn/manipulating-the-dom-with-refs) DOM 노드의 불투명도를 `1`에 도달할 때까지 변경할 수 있습니다. 코드는 다음과 같이 시작할 수 있습니다:</Trans>
+<Trans>브라우저 요청 [`requestAnimationFrame`](https://developer.mozilla.org/ko/docs/Web/API/window/requestAnimationFrame) API를 사용하여 페이드인 애니메이션을 *처음부터* 구현한다고 가정해 보겠습니다. 애니메이션 루프를 설정하는 효과로 시작할 수 있습니다. 애니메이션의 각 프레임 동안 [ref로 유지하는](/learn/manipulating-the-dom-with-refs) DOM 노드의 불투명도를 `1`에 도달할 때까지 변경할 수 있습니다. 코드는 다음과 같이 시작할 수 있습니다:</Trans>
 
 <Sandpack>
 
@@ -1564,6 +1583,7 @@ function Welcome() {
       onProgress(progress);
       if (progress < 1) {
         // We still have more frames to paint
+        // 아직 칠해야 할 프레임이 남아있습니다
         frameId = requestAnimationFrame(onFrame);
       }
     }
@@ -1625,7 +1645,7 @@ html, body { min-height: 300px; }
 </Sandpack>
 
 To make the component more readable, you might extract the logic into a `useFadeIn` custom Hook:
-<Trans>컴포넌트의 가독성을 높이기 위해 로직을 `useFadeIn` 커스텀 Hook으로 추출할 수 있습니다:</Trans>
+<Trans>컴포넌트의 가독성을 높이기 위해 로직을 `useFadeIn` 커스텀 훅으로 추출할 수 있습니다:</Trans>
 
 <Sandpack>
 
@@ -1675,6 +1695,7 @@ export function useFadeIn(ref, duration) {
       onProgress(progress);
       if (progress < 1) {
         // We still have more frames to paint
+        // 아직 칠해야 할 프레임이 남아있습니다
         frameId = requestAnimationFrame(onFrame);
       }
     }
@@ -1717,7 +1738,7 @@ html, body { min-height: 300px; }
 </Sandpack>
 
 You could keep the `useFadeIn` code as is, but you could also refactor it more. For example, you could extract the logic for setting up the animation loop out of `useFadeIn` into a custom `useAnimationLoop` Hook:
-<Trans>`useFadeIn` 코드를 그대로 유지할 수도 있지만 더 리팩토링할 수도 있습니다. 예를 들어, 애니메이션 루프를 설정하는 로직을 `useFadeIn`에서 추출하여 `useAnimationLoop`라는 새로운 커스텀 Hook으로 만들 수 있습니다:</Trans>
+<Trans>`useFadeIn` 코드를 그대로 유지할 수도 있지만 더 리팩토링할 수도 있습니다. 예를 들어, 애니메이션 루프를 설정하는 로직을 `useFadeIn`에서 추출하여 `useAnimationLoop`라는 새로운 커스텀 훅으로 만들 수 있습니다:</Trans>
 
 <Sandpack>
 
@@ -1890,6 +1911,7 @@ export class FadeInAnimation {
       this.stop();
     } else {
       // We still have more frames to paint
+      // 아직 칠해야 할 프레임이 남아있습니다
       this.frameId = requestAnimationFrame(() => this.onFrame());
     }
   }
@@ -1921,10 +1943,10 @@ html, body { min-height: 300px; }
 </Sandpack>
 
 Effects let you connect React to external systems. The more coordination between Effects is needed (for example, to chain multiple animations), the more it makes sense to extract that logic out of Effects and Hooks *completely* like in the sandbox above. Then, the code you extracted *becomes* the "external system". This lets your Effects stay simple because they only need to send messages to the system you've moved outside React.
-<Trans>Effects를 사용하면 React를 외부 시스템에 연결할 수 있습니다. 예를 들어 여러 애니메이션을 체인으로 연결하기 위해 효과 간의 조정이 더 많이 필요할수록 위의 샌드박스에서처럼 효과와 Hook에서 해당 로직을 완전히 추출하는 것이 더 합리적입니다. 그러면 추출한 코드가 "외부 시스템"이 됩니다. 이렇게 하면 React 외부로 이동한 시스템으로 메시지를 보내기만 하면 되기 때문에 Effects를 단순하게 유지할 수 있습니다.</Trans>
+<Trans>Effects를 사용하면 React를 외부 시스템에 연결할 수 있습니다. 예를 들어 여러 애니메이션을 체인으로 연결하기 위해 효과 간의 조정이 더 많이 필요할수록 위의 샌드박스에서처럼 효과와 훅에서 해당 로직을 완전히 추출하는 것이 더 합리적입니다. 그러면 추출한 코드가 "외부 시스템"이 됩니다. 이렇게 하면 React 외부로 이동한 시스템으로 메시지를 보내기만 하면 되기 때문에 Effects를 단순하게 유지할 수 있습니다.</Trans>
 
 The examples above assume that the fade-in logic needs to be written in JavaScript. However, this particular fade-in animation is both simpler and much more efficient to implement with a plain [CSS Animation:](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Animations/Using_CSS_animations)
-<Trans>위의 예시에서는 페이드인 로직이 자바스크립트로 작성되어야 한다고 가정했습니다. 하지만 이 특정 페이드인 애니메이션은 일반 [CSS 애니메이션](https://developer.mozilla.org/ko/docs/Web/CSS/CSS_Animations/Using_CSS_animations)으로 구현하는 것이 더 간단하고 훨씬 더 효율적입니다.</Trans>
+<Trans>위의 예시에서는 페이드인 로직이 자바스크립트로 작성되어야 한다고 가정했습니다. 하지만 이 특정 페이드인 애니메이션은 일반 [CSS 애니메이션](https://developer.mozilla.org/ko/docs/Web/CSS/CSS_Animations/Using_CSS_animations)으로 구현하는 것이 더 간단하고 훨씬 더 효율적입니다:</Trans>
 
 <Sandpack>
 
@@ -1980,7 +2002,7 @@ html, body { min-height: 300px; }
 </Sandpack>
 
 Sometimes, you don't even need a Hook!
-<Trans>가끔은 훅을 전혀 사용할 필요가 없습니다.</Trans>
+<Trans>때로는 훅이 전혀 필요 없을 때도 있습니다!</Trans>
 
 <Recap>
 
@@ -2009,10 +2031,10 @@ Sometimes, you don't even need a Hook!
 
 <Challenges>
 
-#### Extract a `useCounter` Hook <Trans>`useCounter` hook 추출하기</Trans> {/*extract-a-usecounter-hook*/}
+#### Extract a `useCounter` Hook<Trans>`useCounter` 훅 추출하기</Trans> {/*extract-a-usecounter-hook*/}
 
 This component uses a state variable and an Effect to display a number that increments every second. Extract this logic into a custom Hook called `useCounter`. Your goal is to make the `Counter` component implementation look exactly like this:
-<Trans>이 컴포넌트는 state 변수와 Effect를 사용해 매초마다 증가하는 숫자를 표시합니다. 이 로직을 `useCounter`라는 커스텀 Hook으로 추출합니다. 목표는 `Counter` 컴포넌트 구현을 다음과 같이 만드는 것입니다:</Trans>
+<Trans>이 컴포넌트는 state 변수와 Effect를 사용해 매초마다 증가하는 숫자를 표시합니다. 이 로직을 `useCounter`라는 커스텀 훅으로 추출합니다. 목표는 `Counter` 컴포넌트 구현을 다음과 같이 만드는 것입니다:</Trans>
 
 ```js
 export default function Counter() {
@@ -2022,7 +2044,7 @@ export default function Counter() {
 ```
 
 You'll need to write your custom Hook in `useCounter.js` and import it into the `Counter.js` file.
-<Trans>`useCounter.js`에 커스텀 Hook을 작성하고 이를 `Counter.js` 파일로 가져와야 합니다.</Trans>
+<Trans>`useCounter.js`에 커스텀 훅을 작성하고 이를 `Counter.js` 파일로 가져와야 합니다.</Trans>
 
 <Sandpack>
 
@@ -2085,7 +2107,7 @@ Notice that `App.js` doesn't need to import `useState` or `useEffect` anymore.
 
 </Solution>
 
-#### Make the counter delay configurable <Trans>카운터 지연을 구성 가능하게 만들기</Trans> {/*make-the-counter-delay-configurable*/}
+#### Make the counter delay configurable<Trans>카운터 지연을 구성 가능하게 만들기</Trans> {/*make-the-counter-delay-configurable*/}
 
 In this example, there is a `delay` state variable controlled by a slider, but its value is not used. Pass the `delay` value to your custom `useCounter` Hook, and change the `useCounter` Hook to use the passed `delay` instead of hardcoding `1000` ms.
 <Trans>이 예시에서는 슬라이더로 제어되는 `delay` 되는 state 변수가 있지만 그 값은 사용되지 않습니다. `delay`값을 커스텀 훅인 `useCounter`에 전달하고, 1000ms를 하드코딩하는 대신 전달된 `delay`을 사용하도록 `useCounter` 훅을 변경하세요.</Trans>
@@ -2139,7 +2161,7 @@ export function useCounter() {
 <Solution>
 
 Pass the `delay` to your Hook with `useCounter(delay)`. Then, inside the Hook, use `delay` instead of the hardcoded `1000` value. You'll need to add `delay` to your Effect's dependencies. This ensures that a change in `delay` will reset the interval.
-<Trans>`useCounter(delay)`로 `delay`를 Hook에 전달합니다. 그런 다음 Hook 내부에서 하드코딩된 `1000` 값 대신 `delay`를 사용합니다. Effect의 종속성에 `delay`를 추가해야 합니다. 이렇게 하면 `delay`가 변경되면 간격이 재설정됩니다.</Trans>
+<Trans>`useCounter(delay)`로 `delay`를 훅에 전달합니다. 그런 다음 훅 내부에서 하드코딩된 `1000` 값 대신 `delay`를 사용합니다. Effect의 종속성에 `delay`를 추가해야 합니다. 이렇게 하면 `delay`가 변경되면 간격이 재설정됩니다.</Trans>
 
 <Sandpack>
 
@@ -2189,10 +2211,10 @@ export function useCounter(delay) {
 
 </Solution>
 
-#### Extract `useInterval` out of `useCounter` <Trans>`useCounter`에서 `useInterval` 추출하기</Trans> {/*extract-useinterval-out-of-usecounter*/}
+#### Extract `useInterval` out of `useCounter`<Trans>`useCounter`에서 `useInterval` 추출하기</Trans> {/*extract-useinterval-out-of-usecounter*/}
 
 Currently, your `useCounter` Hook does two things. It sets up an interval, and it also increments a state variable on every interval tick. Split out the logic that sets up the interval into a separate Hook called `useInterval`. It should take two arguments: the `onTick` callback, and the `delay`. After this change, your `useCounter` implementation should look like this:
-<Trans>현재 사용 중인 `useCounter` 훅은 두 가지 작업을 수행합니다. 간격(interval)을 설정하고 간격이 틱 될 때마다 state 변수를 증가시킵니다. 간격을 설정하는 로직을 `useInterval`이라는 별도의 Hook으로 분리하세요. 이 Hook은 `onTick` 과`delay` 라는 두 개의 인수를 받아야 합니다. 이렇게 변경하면 `useCounter`구현은 다음과 같이 보일 것입니다:</Trans>
+<Trans>현재 사용 중인 `useCounter` 훅은 두 가지 작업을 수행합니다. 간격(interval)을 설정하고 간격이 틱 될 때마다 state 변수를 증가시킵니다. 간격을 설정하는 로직을 `useInterval`이라는 별도의 훅으로 분리하세요. 이 훅은 `onTick` 과`delay` 라는 두 개의 인수를 받아야 합니다. 이렇게 변경하면 `useCounter`구현은 다음과 같이 보일 것입니다:</Trans>
 
 ```js
 export function useCounter(delay) {
@@ -2287,7 +2309,7 @@ Note that there is a bit of a problem with this solution, which you'll solve in 
 
 </Solution>
 
-#### Fix a resetting interval <Trans>인터벌 리셋 고치기</Trans> {/*fix-a-resetting-interval*/}
+#### Fix a resetting interval<Trans>인터벌 리셋 고치기</Trans> {/*fix-a-resetting-interval*/}
 
 In this example, there are *two* separate intervals.
 <Trans>이 예시에서는 두 개의 별도의 인터벌이 있습니다.</Trans>
@@ -2310,7 +2332,7 @@ For some reason, the callback that updates the page background never runs. Add s
 ```
 
 Do the logs match what you expect to happen? If some of your Effects seem to re-synchronize unnecessarily, can you guess which dependency is causing that to happen? Is there some way to [remove that dependency](/learn/removing-effect-dependencies) from your Effect?
-<Trans>로그가 예상한 것과 일치하나요? 일부 이펙트가 불필요하게 재동기화되는 것 같다면 어떤 종속성 때문에 그런 일이 발생하는지 짐작할 수 있나요? 이펙트에서 해당 [종속성을 제거](/learn/removing-effect-dependencies)할 수 있는 방법이 있나요?</Trans>
+<Trans>로그가 예상한 것과 일치하나요? 일부 Effect가 불필요하게 재동기화되는 것 같다면 어떤 종속성 때문에 그런 일이 발생하는지 짐작할 수 있나요? Effect에서 해당 [종속성을 제거](/learn/removing-effect-dependencies)할 수 있는 방법이 있나요?</Trans>
 
 After you fix the issue, you should expect the page background to update every two seconds.
 <Trans>문제를 해결한 후에는 페이지 배경이 2초마다 업데이트되어야 합니다.</Trans>
@@ -2318,7 +2340,7 @@ After you fix the issue, you should expect the page background to update every t
 <Hint>
 
 It looks like your `useInterval` Hook accepts an event listener as an argument. Can you think of some way to wrap that event listener so that it doesn't need to be a dependency of your Effect?
-<Trans>`useInterval` Hook이 이벤트 리스너를 인수로 받아들이는 것 같습니다. 이벤트 리스너가 Effect의 종속성이 될 필요가 없도록 이벤트 리스너를 감싸는 방법을 생각해낼 수 있을까요?</Trans>
+<Trans>`useInterval` 훅이 이벤트 리스너를 인수로 받아들이는 것 같습니다. 이벤트 리스너가 Effect의 종속성이 될 필요가 없도록 이벤트 리스너를 감싸는 방법을 생각해낼 수 있을까요?</Trans>
 
 </Hint>
 
@@ -2461,16 +2483,16 @@ export function useInterval(callback, delay) {
 
 </Solution>
 
-#### Implement a staggering movement <Trans>비틀거리는 움직임 구현하기</Trans> {/*implement-a-staggering-movement*/}
+#### Implement a staggering movement<Trans>비틀거리는 움직임 구현하기</Trans> {/*implement-a-staggering-movement*/}
 
 In this example, the `usePointerPosition()` Hook tracks the current pointer position. Try moving your cursor or your finger over the preview area and see the red dot follow your movement. Its position is saved in the `pos1` variable.
-<Trans>이 예시에서는 `usePointerPosition()`Hook이 현재 포인터 위치를 추적합니다. 미리보기 영역 위로 커서나 손가락을 움직이면 빨간색 점이 움직임을 따라가는 것을 확인하세요. 그 위치는 `pos1` 변수에 저장됩니다.</Trans>
+<Trans>이 예시에서는 `usePointerPosition()`훅이 현재 포인터 위치를 추적합니다. 미리보기 영역 위로 커서나 손가락을 움직이면 빨간색 점이 움직임을 따라가는 것을 확인하세요. 그 위치는 `pos1` 변수에 저장됩니다.</Trans>
 
 In fact, there are five (!) different red dots being rendered. You don't see them because currently they all appear at the same position. This is what you need to fix. What you want to implement instead is a "staggered" movement: each dot should "follow" the previous dot's path. For example, if you quickly move your cursor, the first dot should follow it immediately, the second dot should follow the first dot with a small delay, the third dot should follow the second dot, and so on.
 <Trans>실제로는 다섯 개(!)의 다른 빨간색 점이 렌더링되고 있습니다. 현재는 모두 같은 위치에 나타나기 때문에 보이지 않습니다. 이 부분을 수정해야 합니다. 대신 구현하려는 것은 "엇갈린" 움직임입니다. 각 점이 이전 점의 경로를 "따라야" 합니다. 예를 들어 커서를 빠르게 이동하면 첫 번째 점은 즉시 따라가고, 두 번째 점은 약간의 지연을 두고 첫 번째 점을 따라가고, 세 번째 점은 두 번째 점을 따라가는 등의 방식으로 커서를 이동해야 합니다.</Trans>
 
 You need to implement the `useDelayedValue` custom Hook. Its current implementation returns the `value` provided to it. Instead, you want to return the value back from `delay` milliseconds ago. You might need some state and an Effect to do this.
-<Trans>`useDelayedValue` 커스텀 Hook을 구현해야 합니다. 현재 구현은 제공된 값을 반환합니다. 대신 밀리초 전 `delay`에서 값을 다시 반환하고 싶습니다. 이를 위해서는 state와 Effect가 필요할 수 있습니다.</Trans>
+<Trans>`useDelayedValue` 커스텀 훅을 구현해야 합니다. 현재 구현은 제공된 값을 반환합니다. 대신 밀리초 전 `delay`에서 값을 다시 반환하고 싶습니다. 이를 위해서는 state와 Effect가 필요할 수 있습니다.</Trans>
 
 After you implement `useDelayedValue`, you should see the dots move following one another.
 <Trans>`useDelayedValue`을 구현하고 나면 점들이 서로 따라 움직이는 것을 볼 수 있어야합니다</Trans>
@@ -2478,7 +2500,7 @@ After you implement `useDelayedValue`, you should see the dots move following on
 <Hint>
 
 You'll need to store the `delayedValue` as a state variable inside your custom Hook. When the `value` changes, you'll want to run an Effect. This Effect should update `delayedValue` after the `delay`. You might find it helpful to call `setTimeout`.
-<Trans>`delayedValue`을 커스텀 Hook 안에 state 변수로 저장해야 합니다. `value`가 변경되면 Effect를 실행하고 싶을 것입니다. 이 Effect는 `delay` 이후에 `delayedValue`를 업데이트해야 합니다. `setTimeout`을 호출하는 것이 도움이 될 수 있습니다.</Trans>
+<Trans>`delayedValue`을 커스텀 훅 안에 state 변수로 저장해야 합니다. `value`가 변경되면 Effect를 실행하고 싶을 것입니다. 이 Effect는 `delay` 이후에 `delayedValue`를 업데이트해야 합니다. `setTimeout`을 호출하는 것이 도움이 될 수 있습니다.</Trans>
 
 Does this Effect need cleanup? Why or why not?
 <Trans>Effect를 정리해야 하나요? 왜 또는 왜 하지 말아야 하나요?</Trans>

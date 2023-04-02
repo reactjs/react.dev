@@ -914,7 +914,7 @@ You'll likely also want to add some logic for error handling and to track whethe
 <Trans>또한 오류 처리와 콘텐츠 로딩 여부를 추적하기 위한 로직을 추가하고 싶을 것입니다. 이와 같은 훅을 직접 빌드하거나 React 에코시스템에서 이미 사용 가능한 많은 솔루션 중 하나를 사용할 수 있습니다. **이 방법만으로는 프레임워크에 내장된 데이터 페칭 메커니즘을 사용하는 것만큼 효율적이지는 않겠지만, 데이터 페칭 로직을 커스텀 훅으로 옮기면 나중에 효율적인 데이터 페칭 전략을 채택하기가 더 쉬워집니다.**</Trans>
 
 In general, whenever you have to resort to writing Effects, keep an eye out for when you can extract a piece of functionality into a custom Hook with a more declarative and purpose-built API like `useData` above. The fewer raw `useEffect` calls you have in your components, the easier you will find to maintain your application.
-<Trans>일반적으로 Effects를 작성해야 할 때마다 위의 `useData`와 같이 좀 더 선언적이고 목적에 맞게 만들어진 API를 사용하여 기능을 커스텀 훅으로 추출할 수 있는지 잘 살펴보세요. 컴포넌트에서 날것의 `useEffect` 호출이 적을수록 애플리케이션을 유지 관리하기가 더 쉬워집니다.</Trans>
+<Trans>일반적으로 Effects를 작성해야 할 때마다 위의 `useData`와 같이 좀 더 선언적이고 목적에 맞게 만들어진 API를 사용하여 기능을 커스텀 훅으로 추출할 수 있는지 잘 살펴보세요. 컴포넌트에서 원시 `useEffect` 호출이 적을수록 애플리케이션을 유지 관리하기가 더 쉬워집니다.</Trans>
 
 <Recap>
 

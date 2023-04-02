@@ -9,11 +9,23 @@ on:
 jobs:
   comment:
     runs-on: ubuntu-latest
-    if: >
-      ${{ github.event.workflow_run.event == 'pull_request' &&
-      github.event.workflow_run.conclusion == 'success' }}
     steps:
+      - name: Download Event Type
+        uses: dawidd6/action-download-artifact@v2
+        with:
+          workflow: analyze.yml
+          run_id: ${{ github.event.workflow_run.id }}
+          name: event_type
+          path: event_type
+
+      - name: get type
+        id: get-type
+        run: |
+          event_type=$(cat event_type/event_type)
+          echo "event-type=$event_type" >> $GITHUB_OUTPUT
+
       - name: Download base branch bundle stats
+        if: github.event.workflow_run.conclusion == 'success' && steps.get-type.outputs.event-type == 'pull_request'
         uses: dawidd6/action-download-artifact@v2
         with:
           workflow: analyze.yml
@@ -22,6 +34,7 @@ jobs:
           path: analysis_comment.txt
 
       - name: Download PR number
+        if: github.event.workflow_run.conclusion == 'success' && steps.get-type.outputs.event-type == 'pull_request'
         uses: dawidd6/action-download-artifact@v2
         with:
           workflow: analyze.yml
@@ -31,7 +44,7 @@ jobs:
 
       - name: Get comment body
         id: get-comment-body
-        if: success()
+        if: success() && github.event.workflow_run.conclusion == 'success' && steps.get-type.outputs.event-type == 'pull_request'
         run: |
           echo 'body<<EOF' >> $GITHUB_OUTPUT
           echo '' >>  $GITHUB_OUTPUT
@@ -49,7 +62,7 @@ jobs:
 
       - name: Find Comment
         uses: peter-evans/find-comment@v1
-        if: success()
+        if: success() && github.event.workflow_run.conclusion == 'success' && steps.get-type.outputs.event-type == 'pull_request'
         id: fc
         with:
           issue-number: ${{ steps.get-comment-body.outputs.pr-number }}
@@ -57,14 +70,14 @@ jobs:
 
       - name: Create Comment
         uses: peter-evans/create-or-update-comment@v1.4.4
-        if: success() && steps.fc.outputs.comment-id == 0
+        if: success() && steps.fc.outputs.comment-id == 0 && github.event.workflow_run.conclusion == 'success' && steps.get-type.outputs.event-type == 'pull_request'
         with:
           issue-number: ${{ steps.get-comment-body.outputs.pr-number }}
           body: ${{ steps.get-comment-body.outputs.body }}
 
       - name: Update Comment
         uses: peter-evans/create-or-update-comment@v1.4.4
-        if: success() && steps.fc.outputs.comment-id != 0
+        if:  success() && steps.fc.outputs.comment-id != 0 && github.event.workflow_run.conclusion == 'success' && steps.get-type.outputs.event-type == 'pull_request'
         with:
           issue-number: ${{ steps.get-comment-body.outputs.pr-number }}
           body: ${{ steps.get-comment-body.outputs.body }}

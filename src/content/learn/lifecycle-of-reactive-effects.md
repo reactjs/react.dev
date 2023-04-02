@@ -162,10 +162,7 @@ At this point, you want React to do two things:
 
 1. Stop synchronizing with the old `roomId` (disconnect from the `"general"` room)
 2. Start synchronizing with the new `roomId` (connect to the `"travel"` room)
-<Trans> 이 시점에서 React가 두 가지 작업을 수행하기를 원합니다:</Trans> 
-
-<Trans> 1. 이전 `roomId`와의 동기화를 중지합니다(`"general"` 룸에서 연결 해제).</Trans>
-<Trans> 2. 새 `roomId`와 동기화 시작 ( `"travel"` 객실과 연결)</Trans>
+<Trans> 이 시점에서 React가 두 가지 작업을 수행하기를 원합니다:<br></br> 1. 이전 `roomId`와의 동기화를 중지합니다(`"general"` 룸에서 연결 해제)<br></br>2. 새 `roomId`와 동기화 시작 (`"travel"` 객실과 연결)</Trans>
 
 
 **Luckily, you've already taught React how to do both of these things!** Your Effect's body specifies how to start synchronizing, and your cleanup function specifies how to stop synchronizing. All that React needs to do now is to call them in the correct order and with the correct props and state. Let's see how exactly that happens.

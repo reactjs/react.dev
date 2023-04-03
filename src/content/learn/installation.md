@@ -61,12 +61,12 @@ To try React locally on your computer, [download this HTML page.](https://gist.g
 If you want to build an app or a website fully with React, [start a new React project.](/learn/start-a-new-react-project)
 <Trans>React로 앱이나 웹사이트를 완전히 구축하려면 [새 React 프로젝트를 시작하세요.](/learn/start-a-new-react-project)</Trans>
 
-## Add React to an existing project {/*add-react-to-an-existing-project*/}
+## Add React to an existing project<Trans>기존 프로젝트에 React 추가하기</Trans> {/*add-react-to-an-existing-project*/}
 
 If want to try using React in your existing app or a website, [add React to an existing project.](/learn/add-react-to-an-existing-project)
 <Trans>기존 앱이나 웹사이트에서 React를 사용해보고 싶다면 [기존 프로젝트에 React를 추가하세요.](/learn/add-react-to-an-existing-project)</Trans>
 
-## Next steps {/*next-steps*/}
+## Next steps<Trans>다음 단계</Trans> {/*next-steps*/}
 
 Head to the [Quick Start](/learn) guide for a tour of the most important React concepts you will encounter every day.
 <Trans>[빠른 시작](/learn) 가이드를 통해 매일 접하게 될 가장 중요한 React 개념을 살펴보세요.</Trans>

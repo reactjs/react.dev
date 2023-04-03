@@ -272,7 +272,7 @@ Read [**You Might Not Need an Effect**](/learn/you-might-not-need-an-effect) to 
 
 </LearnMore>
 
-## Lifecycle of reactive effects<Trans>반응형 effect의 생명주기</Trans> {/*lifecycle-of-reactive-effects*/}
+## Lifecycle of reactive Effects<Trans>반응형 Effect의 생명주기</Trans> {/*lifecycle-of-reactive-effects*/}
 
 Effects have a different lifecycle from components. Components may mount, update, or unmount. An Effect can only do two things: to start synchronizing something, and later to stop synchronizing it. This cycle can happen multiple times if your Effect depends on props and state that change over time.
 <Trans>Effect는 컴포넌트와 다른 생명주기를 가집니다. 컴포넌트는 마운트, 업데이트 또는 언마운트할 수 있습니다. 반면 Effect는 동기화를 시작하거나 동기화를 중지하는 두 가지 작업만 할 수 있습니다. Effect가 시간에 따라 변하는 prop 및 state에 의존하는 경우 이 주기는 여러 번 발생할 수 있습니다.</Trans>

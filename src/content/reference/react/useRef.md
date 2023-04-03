@@ -265,7 +265,7 @@ After React creates the DOM node and puts it on the screen, React will set the <
 
 React will set the `current` property back to `null` when the node is removed from the screen.
 
-Read more about [manipulating the DOM with refs.](/learn/manipulating-the-dom-with-refs)
+Read more about [manipulating the DOM with Refs.](/learn/manipulating-the-dom-with-refs)
 
 <Recipes titleText="Examples of manipulating the DOM with useRef" titleId="examples-dom">
 

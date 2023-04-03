@@ -1,6 +1,6 @@
 ---
 title: Referencing Values with Refs
-translatedTitle: Ref로 값 참조하기
+translatedTitle: ref로 값 참조하기
 ---
 
 <Intro>

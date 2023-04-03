@@ -6,7 +6,7 @@ translatedTitle: ref로 DOM 조작하기
 <Intro>
 
 React automatically updates the [DOM](https://developer.mozilla.org/docs/Web/API/Document_Object_Model/Introduction) to match your render output, so your components won't often need to manipulate it. However, sometimes you might need access to the DOM elements managed by React--for example, to focus a node, scroll to it, or measure its size and position. There is no built-in way to do those things in React, so you will need a *ref* to the DOM node.
-<Trans>React는 렌더링 출력과 일치하도록 [DOM](https://developer.mozilla.org/docs/Web/API/Document_Object_Model/Introduction)을 자동으로 업데이트하므로 컴포넌트가 자주 조작할 필요가 없습니다. 하지만 때로는 노드에 포커스를 맞추거나 스크롤하거나 크기와 위치를 측정하기 위해 React가 관리하는 DOM 요소에 접근해야 할 수도 있습니다. React에는 이러한 작업을 수행할 수 있는 내장된 방법이 없으므로 DOM 노드에 대한 참조가 필요합니다.</Trans>
+<Trans>React는 렌더링 출력과 일치하도록 [DOM](https://developer.mozilla.org/docs/Web/API/Document_Object_Model/Introduction)을 자동으로 업데이트하므로 컴포넌트가 자주 조작할 필요가 없습니다. 하지만 때로는 노드에 포커스를 맞추거나 스크롤하거나 크기와 위치를 측정하기 위해 React가 관리하는 DOM 요소에 접근해야 할 수도 있습니다. React에는 이러한 작업을 수행할 수 있는 내장된 방법이 없으므로 DOM 노드에 대한 *ref*가 필요합니다.</Trans>
 
 </Intro>
 
@@ -240,7 +240,7 @@ One possible way around this is to get a single ref to their parent element, and
 <Trans>이 문제를 해결할 수 있는 한 가지 방법은 부모 엘리먼트에 대한 단일 ref를 가져온 다음 [`querySelectorAll`](https://developer.mozilla.org/ko/docs/Web/API/Document/querySelectorAll)과 같은 DOM 조작 메서드를 사용하여 개별 하위 노드를 "찾는" 것입니다. 하지만 이 방법은 DOM 구조가 변경되면 깨질 수 있습니다.</Trans>
 
 Another solution is to **pass a function to the `ref` attribute.** This is called a [`ref` callback.](/reference/react-dom/components/common#ref-callback) React will call your ref callback with the DOM node when it's time to set the ref, and with `null` when it's time to clear it. This lets you maintain your own array or a [Map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map), and access any ref by its index or some kind of ID.
-<Trans>또 다른 해결책은 **`ref` 속성에 함수를 전달**하는 것입니다. 이를 [`ref` 콜백](/reference/react-dom/components/common#ref-callback)이라고 합니다. React는 참조를 설정할 때가 되면 DOM 노드로, 지울 때가 되면 `null`로 참조 콜백을 호출할 것입니다. 이를 통해 자신만의 배열이나 [Map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map)을 유지 관리하고, 인덱스나 일종의 ID로 모든 ref에 접근할 수 있습니다.</Trans>
+<Trans>또 다른 해결책은 **`ref` 속성에 함수를 전달**하는 것입니다. 이를 [`ref` 콜백](/reference/react-dom/components/common#ref-callback)이라고 합니다. React는 ref를 설정할 때가 되면 DOM 노드로, 지울 때가 되면 `null`로 ref 콜백을 호출할 것입니다. 이를 통해 자신만의 배열이나 [Map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map)을 유지 관리하고, 인덱스나 일종의 ID로 모든 ref에 접근할 수 있습니다.</Trans>
 
 This example shows how you can use this approach to scroll to an arbitrary node in a long list:
 <Trans>다음 예제는 이러한 접근으로 긴 목록에서 임의 노드로 스크롤하는 방법을 보여 줍니다:</Trans>

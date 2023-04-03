@@ -140,11 +140,6 @@
       "permanent": false
     },
     {
-      "source": "/link/derived-state",
-      "destination": "https://legacy.reactjs.org/blog/2018/06/07/you-probably-dont-need-derived-state.html",
-      "permanent": false
-    },
-    {
       "source": "/link/error-boundaries",
       "destination": "https://legacy.reactjs.org/docs/error-boundaries.html",
       "permanent": false

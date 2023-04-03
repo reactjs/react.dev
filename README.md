@@ -24,9 +24,9 @@
 
 3. 깃헙에서 `New Pull Request`를 하세요.
 
-- base repository: **"roy-jung/react.dev.ko"** 로 바꿔주세요.
-- 다시 base: **develop** 브랜치로 바꿔주세요.
-- compare: 작업한 브랜치를 선택합니다.
+| 1. base repository:<br/> **"roy-jung/react.dev.ko"** 선택 | 2. 다시 base:<br/> **develop** 선택 | 3. compare:<br/> 작업한 브랜치를 선택 |
+| --- | --- | --- |
+| <img width="75%" alt="image" src="https://user-images.githubusercontent.com/6881617/229475203-38e76220-9b5a-48a8-ae27-6820a5574b14.png"> | <img width="80%" alt="image" src="https://user-images.githubusercontent.com/6881617/229475456-7d7ef659-0800-420e-985c-4e16bb2e5592.png"> | <img width="80%" alt="image" src="https://user-images.githubusercontent.com/6881617/229475665-590316e2-fb93-4de3-88f0-b54c3a71934f.png"> |
 
 ## 번역 규칙
 

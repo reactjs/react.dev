@@ -3,18 +3,18 @@ title: 번역 진행상황
 ---
 
 <Intro>
-last updated @ 2023-04-03 PM 12:00
+last updated @ 2023-04-03 PM 18:00
 </Intro>
 
 ## 완료 페이지 {/*완료-페이지*/}
 
 - [0-1. 빠른 시작 :: Quick Start](/learn)
-- [0-3. React로 사고하기 :: Thinking in React](/learn/thinking-in-react)
-- [0-4. 설치하기 :: Installation](/learn/installation) 
-- [0-4-1. 새 리액트 프로젝트 시작하기 :: Start a New React Project](/learn/start-a-new-react-project)
-- [0-4-2. 기존 프로젝트에 리액트 추가하기 :: Add React to an Existing Project](/learn/add-react-to-an-existing-project)
-- [0-4-3. 편집기 설정 :: Editor Setup](/learn/editor-setup)
-- [0-4-4. 리액트 개발자 도구 :: React Developer Tools](/learn/react-developer-tools)
+- [0-1-2. React로 사고하기 :: Thinking in React](/learn/thinking-in-react)
+- [0-2. 설치하기 :: Installation](/learn/installation) 
+- [0-2-1. 새 리액트 프로젝트 시작하기 :: Start a New React Project](/learn/start-a-new-react-project)
+- [0-2-2. 기존 프로젝트에 리액트 추가하기 :: Add React to an Existing Project](/learn/add-react-to-an-existing-project)
+- [0-2-3. 편집기 설정 :: Editor Setup](/learn/editor-setup)
+- [0-2-4. 리액트 개발자 도구 :: React Developer Tools](/learn/react-developer-tools)
 - [1. UI 구성하기 :: Describing the UI](/learn/describing-the-ui)
 - [1-3. JSX로 마크업 작성하기 :: Writing Markup with JSX](/learn/writing-markup-with-jsx)
 - [3-4. state 보존 및 재설정 :: Preserving and Resetting State](/learn/preserving-and-resetting-state)
@@ -24,6 +24,7 @@ last updated @ 2023-04-03 PM 12:00
 - [4. 탈출구 :: Escape Hatches](/learn/escape-hatches)
 - [4-1. ref로 값 참조하기 :: Referencing Values with Refs](/learn/referencing-values-with-refs)
 - [4-2. ref로 DOM 조작하기 :: Manipulating the DOM with Refs ](/learn/manipulating-the-dom-with-refs)
+- [4-3. Effect와 동기화하기 :: Synchronizing with Effects](/learn/synchronizing-with-effects)
 - [4-4. Effect가 필요하지 않을 수도 있습니다 :: You Might Not Need an Effect](/learn/you-might-not-need-an-effect)
 - [4-5. 반응형 Effect의 생명주기 :: Lifecycle of Reactive Effects](/learn/lifecycle-of-reactive-effects)
 - [4-6. 이벤트와 Effect 분리하기 :: Separating Events from Effects](/learn/separating-events-from-effects)
@@ -34,13 +35,13 @@ last updated @ 2023-04-03 PM 12:00
 | 번역 | title |
 | :-: | --- |
 | O | [0-1. 빠른 시작 :: Quick Start](/learn) | 
-| X | [0-2. Tic-Tac-Toe 게임 :: Tic-Tac-Toe](/learn/tutorial-tic-tac-toe) |
-| O | [0-3. React로 사고하기 :: Thinking in React](/learn/thinking-in-react) | 
-| O | [0-4. 설치하기 :: Installation](/learn/installation)  | 
-| O | [0-4-1. 새 리액트 프로젝트 시작하기 :: Start a New React Project](/learn/start-a-new-react-project) | 
-| O | [0-4-2. 기존 프로젝트에 리액트 추가하기 :: Add React to an Existing Project](/learn/add-react-to-an-existing-project) | 
-| O | [0-4-3. 편집기 설정 :: Editor Setup](/learn/editor-setup) | 
-| O | [0-4-4. 리액트 개발자 도구 :: React Developer Tools](/learn/react-developer-tools) | 
+| X | [0-1-1. Tic-Tac-Toe 게임 :: Tic-Tac-Toe](/learn/tutorial-tic-tac-toe) |
+| O | [0-1-2. React로 사고하기 :: Thinking in React](/learn/thinking-in-react) | 
+| O | [0-2. 설치하기 :: Installation](/learn/installation)  | 
+| O | [0-2-1. 새 리액트 프로젝트 시작하기 :: Start a New React Project](/learn/start-a-new-react-project) | 
+| O | [0-2-2. 기존 프로젝트에 리액트 추가하기 :: Add React to an Existing Project](/learn/add-react-to-an-existing-project) | 
+| O | [0-2-3. 편집기 설정 :: Editor Setup](/learn/editor-setup) | 
+| O | [0-2-4. 리액트 개발자 도구 :: React Developer Tools](/learn/react-developer-tools) | 
 | O | [1. UI 구성하기 :: Describing the UI](/learn/describing-the-ui) | 
 | X | [1-1. 첫번째 컴포넌트 :: Your First Component](/learn/your-first-component) | 
 | X | [1-2. 컴포넌트 import 및 export :: Importing and Exporting Components](/learn/importing-and-exporting-components) | 
@@ -69,7 +70,7 @@ last updated @ 2023-04-03 PM 12:00
 | O | [4. 탈출구 :: Escape Hatches](/learn/escape-hatches) | 
 | O | [4-1. ref로 값 참조하기 :: Referencing Values with Refs](/learn/referencing-values-with-refs) | 
 | O | [4-2. ref로 DOM 조작하기 :: Manipulating the DOM with Refs ](/learn/manipulating-the-dom-with-refs) | 
-| X | [4-3. Effect와 동기화하기 :: Synchronizing with Effects](/learn/synchronizing-with-effects) | 
+| O | [4-3. Effect와 동기화하기 :: Synchronizing with Effects](/learn/synchronizing-with-effects) | 
 | O | [4-4. Effect가 필요하지 않을 수도 있습니다 :: You Might Not Need an Effect](/learn/you-might-not-need-an-effect) | 
 | O | [4-5. 반응형 Effect의 생명주기 :: Lifecycle of Reactive Effects](/learn/lifecycle-of-reactive-effects) | 
 | O | [4-6. 이벤트와 Effect 분리하기 :: Separating Events from Effects](/learn/separating-events-from-effects) | 

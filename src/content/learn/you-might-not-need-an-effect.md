@@ -842,7 +842,7 @@ However, the code above has a bug. Imagine you type `"hello"` fast. Then the `qu
 <Trans>다만 위 코드에는 버그가 있습니다. `"hello"`를 빠르게 입력한다고 합시다. 그러면 `query`가 `"h"`에서 `"he"`, `"hel"`, `"hell"`, `"hello"`로 변경됩니다. 이렇게 하면 각각 fetching을 수행하지만, 어떤 순서로 응답이 도착할지는 보장할 수 없습니다. 예를 들어 `"hell"` 응답은 `"hello"` 응답 *이후*에 도착할 수 있습니다. 이에 따라 마지막에 호출된 `setResults()`로부터 잘못된 검색 결과가 표시될 수 있습니다. 이를 ["경쟁 조건"](https://en.wikipedia.org/wiki/Race_condition)이라고 합니다. 서로 다른 두 요청이 서로 "경쟁"하여 예상과 다른 순서로 도착한 경우입니다.</Trans>
 
 **To fix the race condition, you need to [add a cleanup function](/learn/synchronizing-with-effects#fetching-data) to ignore stale responses:**
-<Trans>**경쟁 조건을 수정하기 위해서는 오래된 응답을 무시하도록 [정리 함수를 추가](/learn/synchronizing-with-effects#fetching-data)해야 합니다.**</Trans>
+<Trans>**경쟁 조건을 수정하기 위해서는 오래된 응답을 무시하도록 [클린업 함수를 추가](/learn/synchronizing-with-effects#fetching-data)해야 합니다.**</Trans>
 
 ```js {5,7,9,11-13}
 function SearchResults({ query }) {

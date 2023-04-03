@@ -24,7 +24,7 @@ This API is specific to Node.js. Environments with [Web Streams,](https://develo
 
 ## Reference {/*reference*/}
 
-### `renderToPipeableStream(reactNode, options)` {/*rendertopipeablestream*/}
+### `renderToPipeableStream(reactNode, options?)` {/*rendertopipeablestream*/}
 
 Call `renderToPipeableStream` to render your React tree as HTML into a [Node.js Stream.](https://nodejs.org/api/stream.html#writable-streams)
 

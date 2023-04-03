@@ -740,7 +740,7 @@ function MyButton({ count, onClick }) {
 ```
 
 When you click the button, the `onClick` handler fires. Each button's `onClick` prop was set to the `handleClick` function inside `MyApp`, so the code inside of it runs. That code calls `setCount(count + 1)`, incrementing the `count` state variable. The new `count` value is passed as a prop to each button, so they all show the new value. This is called "lifting state up". By moving state up, you've shared it between components.
-<Trans>버튼을 클릭하면 `onClick` 핸들러가 실행됩니다. 각 버튼의 `onClick` 프로퍼티는 `MyApp` 내부의 `handleClick` 함수로 설정되었으므로 그 안에 있는 코드가 실행됩니다. 이 코드는 `setCount(count + 1)`를 호출하여 `count` state 변수를 증가시킵니다. 새로운 `count` 값은 각 버튼에 프로퍼티로 전달되므로 모든 버튼에 새로운 값이 표시됩니다. 이를 " state 위로 올리기"라고 합니다. state를 위로 올리면 컴포넌트 간에 공유할 수 있습니다.</Trans>
+<Trans>버튼을 클릭하면 `onClick` 핸들러가 실행됩니다. 각 버튼의 `onClick` prop은 `MyApp` 내부의 `handleClick` 함수로 설정되었으므로 그 안에 있는 코드가 실행됩니다. 이 코드는 `setCount(count + 1)`를 호출하여 `count` state 변수를 증가시킵니다. 새로운 `count` 값은 각 버튼에 prop으로 전달되므로 모든 버튼에 새로운 값이 표시됩니다. 이를 "state 끌어올리기"라고 합니다. state를 끌어올리면 컴포넌트 간에 공유할 수 있습니다.</Trans>
 
 <Sandpack>
 

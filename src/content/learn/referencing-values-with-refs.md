@@ -1,6 +1,6 @@
 ---
 title: Referencing Values with Refs
-translatedTitle: Ref로 값 참조하기
+translatedTitle: ref로 값 참조하기
 ---
 
 <Intro>
@@ -693,7 +693,7 @@ export default function Chat() {
 <Solution>
 
 State works [like a snapshot](/learn/state-as-a-snapshot), so you can't read the latest state from an asynchronous operation like a timeout. However, you can keep the latest input text in a ref. A ref is mutable, so you can read the `current` property at any time. Since the current text is also used for rendering, in this example, you will need *both* a state variable (for rendering), *and* a ref (to read it in the timeout). You will need to update the current ref value manually.
-<Trans>상태는 [스냅샷처럼](/learn/state-as-a-snapshot) 작동하므로, 타임아웃과 같은 비동기 작업에서 최신 상태를 읽을 수 없습니다. 그러나 최신 입력 텍스트는 ref에 보관할 수 있습니다. ref는 변경 가능하므로 언제든지 `current` 속성을 읽을 수 있습니다. 현재 텍스트는 렌더링에도 사용되므로 이 예제에서는 state 변수(렌더링용)*와* ref(타임아웃 읽기용)가 모두 필요합니다. 현재 ref 값을 수동으로 업데이트해야 합니다.</Trans>
+<Trans>state는 [스냅샷처럼](/learn/state-as-a-snapshot) 작동하므로, 타임아웃과 같은 비동기 작업에서 최신 state를 읽을 수 없습니다. 그러나 최신 입력 텍스트는 ref에 보관할 수 있습니다. ref는 변경 가능하므로 언제든지 `current` 속성을 읽을 수 있습니다. 현재 텍스트는 렌더링에도 사용되므로 이 예제에서는 state 변수(렌더링용)*와* ref(타임아웃 읽기용)가 모두 필요합니다. 현재 ref 값을 수동으로 업데이트해야 합니다.</Trans>
 
 <Sandpack>
 

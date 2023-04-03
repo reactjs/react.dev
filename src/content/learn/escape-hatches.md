@@ -34,10 +34,10 @@ Some of your components may need to control and synchronize with systems outside
 
 </YouWillLearn>
 
-## Referencing values with refs<Trans>ref로 값 참조하기</Trans> {/*referencing-values-with-refs*/}
+## Referencing values with Refs<Trans>ref로 값 참조하기</Trans> {/*referencing-values-with-refs*/}
 
 When you want a component to "remember" some information, but you don't want that information to [trigger new renders](/learn/render-and-commit), you can use a *ref*:
-<Trans>컴포넌트가 특정 정보를 '기억'하도록 하고 싶지만 해당 정보가 새 렌더링을 트리거하지 않도록 하려는 경우 ref를 사용할 수 있습니다:</Trans>
+<Trans>컴포넌트가 특정 정보를 '기억'하도록 하고 싶지만 해당 정보가 [새 렌더링을 트리거](/learn/render-and-commit)하지 않도록 하려는 경우 ref를 사용할 수 있습니다:</Trans>
 
 ```js
 const ref = useRef(0);
@@ -80,7 +80,7 @@ Read [**Referencing Values with Refs**](/learn/referencing-values-with-refs) to 
 
 </LearnMore>
 
-## Manipulating the DOM with refs<Trans>ref로 DOM 조작하기</Trans> {/*manipulating-the-dom-with-refs*/}
+## Manipulating the DOM with Refs<Trans>ref로 DOM 조작하기</Trans> {/*manipulating-the-dom-with-refs*/}
 
 React automatically updates the DOM to match your render output, so your components won't often need to manipulate it. However, sometimes you might need access to the DOM elements managed by React—for example, to focus a node, scroll to it, or measure its size and position. There is no built-in way to do those things in React, so you will need a ref to the DOM node. For example, clicking the button will focus the input using a ref:
 <Trans>React는 렌더링 출력과 일치하도록 DOM을 자동으로 업데이트하므로 컴포넌트에서 자주 조작할 필요가 없습니다. 하지만 때로는 노드에 포커스를 맞추거나 스크롤하거나 크기와 위치를 측정하기 위해 React가 관리하는 DOM 요소에 접근해야 할 수도 있습니다. React에는 이러한 작업을 수행할 수 있는 내장된 방법이 없으므로 DOM 노드에 대한 ref(참조)가 필요합니다. 예를 들어 버튼을 클릭하면 ref를 사용해 입력에 포커스를 맞춥니다:</Trans>
@@ -120,10 +120,10 @@ Read [**Manipulating the DOM with Refs**](/learn/manipulating-the-dom-with-refs)
 ## Synchronizing with Effects<Trans>Effect와 동기화하기</Trans> {/*synchronizing-with-effects*/}
 
 Some components need to synchronize with external systems. For example, you might want to control a non-React component based on the React state, set up a server connection, or send an analytics log when a component appears on the screen. Unlike event handlers, which let you handle particular events, *Effects* let you run some code after rendering. Use them to synchronize your component with a system outside of React.
-<Trans>일부 컴포넌트는 외부 시스템과 동기화해야 합니다. 예를 들어 React 상태에 따라 비 React 컴포넌트를 제어하거나, 서버 연결을 설정하거나, 컴포넌트가 화면에 표시될 때 분석 로그를 보내야 할 수 있습니다. 특정 이벤트를 처리할 수 있는 이벤트 핸들러와 달리 *Effect*를 사용하면 렌더링 후 일부 코드를 실행할 수 있습니다. 이를 사용해 컴포넌트를 React 외부 시스템과 동기화할 수 있습니다.</Trans>
+<Trans>일부 컴포넌트는 외부 시스템과 동기화해야 합니다. 예를 들어 React state에 따라 비 React 컴포넌트를 제어하거나, 서버 연결을 설정하거나, 컴포넌트가 화면에 표시될 때 분석 로그를 보내야 할 수 있습니다. 특정 이벤트를 처리할 수 있는 이벤트 핸들러와 달리 *Effect*를 사용하면 렌더링 후 일부 코드를 실행할 수 있습니다. 이를 사용해 컴포넌트를 React 외부 시스템과 동기화할 수 있습니다.</Trans>
 
 Press Play/Pause a few times and see how the video player stays synchronized to the `isPlaying` prop value:
-<Trans>재생/일시정지를 몇 번 누르고 비디오 플레이어가 `isPlaying` 프로퍼티 값에 어떻게 동기화되는지 확인해 보세요:</Trans>
+<Trans>재생/일시정지를 몇 번 누르고 비디오 플레이어가 `isPlaying` prop 값에 어떻게 동기화되는지 확인해 보세요:</Trans>
 
 <Sandpack>
 
@@ -168,7 +168,7 @@ video { width: 250px; }
 </Sandpack>
 
 Many Effects also "clean up" after themselves. For example, an Effect that sets up a connection to a chat server should return a *cleanup function* that tells React how to disconnect your component from that server:
-<Trans>많은 Effect는 스스로 "정리"하기도 합니다. 예를 들어, 채팅 서버에 대한 연결을 설정하는 Effect는 해당 서버에서 컴포넌트의 연결을 끊는 방법을 React에 알려주는 정리 함수를 반환해야 합니다:</Trans>
+<Trans>많은 Effect는 스스로 "정리"하기도 합니다. 예를 들어, 채팅 서버에 대한 연결을 설정하는 Effect는 해당 서버에서 컴포넌트의 연결을 끊는 방법을 React에 알려주는 *클린업 함수*를 반환해야 합니다:</Trans>
 
 <Sandpack>
 
@@ -207,7 +207,7 @@ input { display: block; margin-bottom: 20px; }
 </Sandpack>
 
 In development, React will immediately run and clean up your Effect one extra time. This is why you see `"✅ Connecting..."` printed twice. This ensures that you don't forget to implement the cleanup function.
-<Trans>개발 모드에서 React는 즉시 실행되고 Effect를 한 번 더 정리합니다. 그래서 `"✅ Connecting..."`이 두 번 인쇄되는 것입니다. 이렇게 하면 정리 함수를 구현하는 것을 잊지 않도록 할 수 있습니다.</Trans>
+<Trans>개발 모드에서 React는 즉시 실행되고 Effect를 한 번 더 정리합니다. 그래서 `"✅ Connecting..."`이 두 번 인쇄되는 것입니다. 이렇게 하면 클린업 함수를 구현하는 것을 잊지 않도록 할 수 있습니다.</Trans>
 
 <LearnMore path="/learn/synchronizing-with-effects">
 
@@ -219,7 +219,7 @@ Read [**Synchronizing with Effects**](/learn/synchronizing-with-effects) to lear
 ## You Might Not Need An Effect<Trans>Effect가 필요하지 않을 수도 있습니다</Trans> {/*you-might-not-need-an-effect*/}
 
 Effects are an escape hatch from the React paradigm. They let you "step outside" of React and synchronize your components with some external system. If there is no external system involved (for example, if you want to update a component's state when some props or state change), you shouldn't need an Effect. Removing unnecessary Effects will make your code easier to follow, faster to run, and less error-prone.
-<Trans>Effect는 React 패러다임에서 벗어날 수 있는 탈출구입니다. 이를 통해 React의 "외부"로 나가서 컴포넌트를 외부 시스템과 동기화할 수 있습니다. 외부 시스템이 관여하지 않는 경우(예: 일부 prop이나 state가 변경될 때 컴포넌트의 상태를 업데이트하려는 경우)에는 Effect가 필요하지 않습니다. 불필요한 Effect를 제거하면 코드를 더 쉽게 따라갈 수 있고, 실행 속도가 빨라지며, 오류 발생 가능성이 줄어듭니다.</Trans>
+<Trans>Effect는 React 패러다임에서 벗어날 수 있는 탈출구입니다. 이를 통해 React의 "외부"로 나가서 컴포넌트를 외부 시스템과 동기화할 수 있습니다. 외부 시스템이 관여하지 않는 경우(예: 일부 prop이나 state가 변경될 때 컴포넌트의 state를 업데이트하려는 경우)에는 Effect가 필요하지 않습니다. 불필요한 Effect를 제거하면 코드를 더 쉽게 따라갈 수 있고, 실행 속도가 빨라지며, 오류 발생 가능성이 줄어듭니다.</Trans>
 
 There are two common cases in which you don't need Effects:
 <Trans>이펙트가 필요하지 않은 일반적인 경우는 두 가지가 있습니다:</Trans>
@@ -233,7 +233,7 @@ There are two common cases in which you don't need Effects:
 </TransBlock>
 
 For example, you don't need an Effect to adjust some state based on other state:
-<Trans>예를 들어, 다른 상태에 따라 일부 상태를 조정하는 데는 Effect가 필요하지 않습니다:</Trans>
+<Trans>예를 들어, 다른 state에 따라 일부 state를 조정하는 데는 Effect가 필요하지 않습니다:</Trans>
 
 ```js {5-9}
 function Form() {
@@ -272,7 +272,7 @@ Read [**You Might Not Need an Effect**](/learn/you-might-not-need-an-effect) to 
 
 </LearnMore>
 
-## Lifecycle of reactive effects<Trans>반응형 effect의 생명주기</Trans> {/*lifecycle-of-reactive-effects*/}
+## Lifecycle of reactive Effects<Trans>반응형 Effect의 생명주기</Trans> {/*lifecycle-of-reactive-effects*/}
 
 Effects have a different lifecycle from components. Components may mount, update, or unmount. An Effect can only do two things: to start synchronizing something, and later to stop synchronizing it. This cycle can happen multiple times if your Effect depends on props and state that change over time.
 <Trans>Effect는 컴포넌트와 다른 생명주기를 가집니다. 컴포넌트는 마운트, 업데이트 또는 언마운트할 수 있습니다. 반면 Effect는 동기화를 시작하거나 동기화를 중지하는 두 가지 작업만 할 수 있습니다. Effect가 시간에 따라 변하는 prop 및 state에 의존하는 경우 이 주기는 여러 번 발생할 수 있습니다.</Trans>

@@ -132,7 +132,7 @@ React tree
 <Trans>**이 카운터는 각 트리에서 고유한 위치에 렌더링되기 때문에 두 개의 개별 카운터입니다.** 일반적으로 React를 사용하기 위해 이러한 위치에 대해 생각할 필요는 없지만, 작동 방식을 이해하는 것이 유용할 수 있습니다.</Trans>
 
 In React, each component on the screen has fully isolated state. For example, if you render two `Counter` components side by side, each of them will get its own, independent, `score` and `hover` states.
-<Trans>React에서 화면의 각 컴포넌트는 완전히 분리된 상태를 갖습니다. 예를 들어 두 개의 `Counter` 컴포넌트를 나란히 렌더링하면 각각 독립적인 `score` 및 `hover` 상태를 갖게 됩니다.</Trans>
+<Trans>React에서 화면의 각 컴포넌트는 완전히 분리된 state를 갖습니다. 예를 들어 두 개의 `Counter` 컴포넌트를 나란히 렌더링하면 각각 독립적인 `score` 및 `hover` state를 갖게 됩니다.</Trans>
 
 Try clicking both counters and notice they don't affect each other:
 <Trans>두 counter를 모두 클릭해 보면 서로 영향을 미치지 않는 것을 확인할 수 있습니다:</Trans>
@@ -194,7 +194,7 @@ function Counter() {
 </Sandpack>
 
 As you can see, when one counter is updated, only the state for that component is updated:
-<Trans>보시다시피 counter 하나가 업데이트되면 해당 컴포넌트에 대한 상태만 업데이트됩니다:</Trans>
+<Trans>보시다시피 counter 하나가 업데이트되면 해당 컴포넌트에 대한 state만 업데이트됩니다:</Trans>
 
 <DiagramGroup>
 
@@ -606,7 +606,7 @@ label {
 </Sandpack>
 
 Here, you switch between _different_ component types at the same position. Initially, the first child of the `<div>` contained a `Counter`. But when you swapped in a `p`, React removed the `Counter` from the UI tree and destroyed its state.
-<Trans>여기서는 같은 위치에서 서로 다른 컴포넌트 유형 사이를 전환합니다. 처음에 `<div>`의 첫 번째 자식에는 `Counter`가 있었습니다. 하지만 `p`를 넣었을 때 React는 UI 트리에서 `Counter`를 제거하고 그 상태를 소멸시켰습니다.</Trans>
+<Trans>여기서는 같은 위치에서 서로 다른 컴포넌트 유형 사이를 전환합니다. 처음에 `<div>`의 첫 번째 자식에는 `Counter`가 있었습니다. 하지만 `p`를 넣었을 때 React는 UI 트리에서 `Counter`를 제거하고 그 state를 소멸시켰습니다.</Trans>
 
 <DiagramGroup>
 
@@ -719,7 +719,7 @@ label {
 </Sandpack>
 
 The counter state gets reset when you click the checkbox. Although you render a `Counter`, the first child of the `div` changes from a `div` to a `section`. When the child `div` was removed from the DOM, the whole tree below it (including the `Counter` and its state) was destroyed as well.
-<Trans>확인란을 클릭하면 counter state가 재설정됩니다. `Counter`를 렌더링하더라도 `div`의 첫 번째 자식은 `div`에서 `section`으로 변경됩니다. 자식 `div`가 DOM에서 제거되면 그 아래의 전체 트리(카운터 및 해당 상태 포함)도 함께 제거됩니다.</Trans>
+<Trans>확인란을 클릭하면 counter state가 재설정됩니다. `Counter`를 렌더링하더라도 `div`의 첫 번째 자식은 `div`에서 `section`으로 변경됩니다. 자식 `div`가 DOM에서 제거되면 그 아래의 전체 트리(카운터 및 해당 state 포함)도 함께 제거됩니다.</Trans>
 
 <DiagramGroup>
 
@@ -871,7 +871,7 @@ But conceptually, in this app they should be two separate counters. They might a
 <Trans>하지만 개념적으로 이 앱에서는 두 개의 별도 카운터가 있어야 합니다. UI에서 같은 위치에 표시될 수도 있지만 하나는 Taylor의 카운터이고 다른 하나는 Sarah의 카운터입니다.</Trans>
 
 There are two ways to reset state when switching between them:
-<Trans>전환할 때 상태를 재설정하는 방법에는 두 가지가 있습니다:</Trans>
+<Trans>전환할 때 state를 재설정하는 방법에는 두 가지가 있습니다:</Trans>
 
 1. Render components in different positions
 2. Give each component an explicit identity with `key`
@@ -959,7 +959,7 @@ h1 {
 * When you click the "Next player" button the first position clears but the second one now contains a `Counter`.
 
 <TransBlock>
-- 처음에는 `isPlayerA`가 `true`입니다. 따라서 첫 번째 위치에는 `Counter` 상태가 포함되고 두 번째 위치는 비어 있습니다.
+- 처음에는 `isPlayerA`가 `true`입니다. 따라서 첫 번째 위치에는 `Counter` state가 포함되고 두 번째 위치는 비어 있습니다.
 - "Next player" 버튼을 클릭하면 첫 번째 위치는 지워지지만 두 번째 위치에는 이제 `Counter`가 포함됩니다.
 </TransBlock>
 
@@ -1082,7 +1082,7 @@ Switching between Taylor and Sarah does not preserve the state. This is because 
 ```
 
 Specifying a `key` tells React to use the `key` itself as part of the position, instead of their order within the parent. This is why, even though you render them in the same place in JSX, React sees them as two different counters, and so they will never share state. Every time a counter appears on the screen, its state is created. Every time it is removed, its state is destroyed. Toggling between them resets their state over and over.
-<Trans>`key`를 지정하면 React가 부모 내 순서가 아닌 `key` 자체를 위치의 일부로 사용하도록 지시합니다. 그렇기 때문에 JSX에서 같은 위치에 렌더링하더라도 React의 관점에서 보면 두 카운터는 서로 다른 카운터입니다. 결과적으로 state를 공유하지 않습니다. 카운터가 화면에 나타날 때마다 그 상태가 생성됩니다. 카운터가 제거될 때마다 그 state는 소멸됩니다. 두 카운터 사이를 토글하면 state가 계속 초기화됩니다.</Trans>
+<Trans>`key`를 지정하면 React가 부모 내 순서가 아닌 `key` 자체를 위치의 일부로 사용하도록 지시합니다. 그렇기 때문에 JSX에서 같은 위치에 렌더링하더라도 React의 관점에서 보면 두 카운터는 서로 다른 카운터입니다. 결과적으로 state를 공유하지 않습니다. 카운터가 화면에 나타날 때마다 그 state가 생성됩니다. 카운터가 제거될 때마다 그 state는 소멸됩니다. 두 카운터 사이를 토글하면 state가 계속 초기화됩니다.</Trans>
 
 <Note>
 
@@ -1097,7 +1097,7 @@ Resetting state with a key is particularly useful when dealing with forms.
 <Trans>키로 state를 재설정하는 것은 form을 다룰 때 특히 유용합니다</Trans>
 
 In this chat app, the `<Chat>` component contains the text input state:
-<Trans>이 채팅 앱에서 `<Chat>` 컴포넌트는 텍스트 입력 상태를 포함합니다:</Trans>
+<Trans>이 채팅 앱에서 `<Chat>` 컴포넌트는 텍스트 input state를 포함합니다:</Trans>
 
 <Sandpack>
 
@@ -1397,7 +1397,7 @@ textarea { display: block; margin: 10px 0; }
 <Solution>
 
 The problem is that `Form` is rendered in different positions. In the `if` branch, it is the second child of the `<div>`, but in the `else` branch, it is the first child. Therefore, the component type in each position changes. The first position changes between holding a `p` and a `Form`, while the second position changes between holding a `Form` and a `button`. React resets the state every time the component type changes.
-<Trans>문제는 `Form`이 다른 위치에서 렌더링된다는 것입니다. `if` 브랜치에서는 `<div>`의 두 번째 자식이지만 `else` 브랜치에서는 첫 번째 자식입니다. 따라서 각 위치의 컴포넌트 유형이 변경됩니다. 첫 번째 위치는 `p`와 `Form`이 있을 때 바뀌고, 두 번째 위치는 `Form`과 `button`이 있을 때 바뀝니다. React는 컴포넌트 타입이 변경될 때마다 상태를 초기화합니다.</Trans>
+<Trans>문제는 `Form`이 다른 위치에서 렌더링된다는 것입니다. `if` 브랜치에서는 `<div>`의 두 번째 자식이지만 `else` 브랜치에서는 첫 번째 자식입니다. 따라서 각 위치의 컴포넌트 유형이 변경됩니다. 첫 번째 위치는 `p`와 `Form`이 있을 때 바뀌고, 두 번째 위치는 `Form`과 `button`이 있을 때 바뀝니다. React는 컴포넌트 타입이 변경될 때마다 state를 초기화합니다.</Trans>
 
 The easiest solution is to unify the branches so that `Form` always renders in the same position:
 <Trans>가장 쉬운 해결책은 `Form`이 항상 같은 위치에서 렌더링되도록 브랜치를 통합하는 것입니다:</Trans>
@@ -1496,7 +1496,7 @@ textarea { display: block; margin: 10px 0; }
 </Sandpack>
 
 This way, `Form` is always the second child, so it stays in the same position and keeps its state. But this approach is much less obvious and introduces a risk that someone else will remove that `null`.
-<Trans>이렇게 하면 `Form`은 항상 두 번째 자식이므로 같은 위치에 머물며 상태를 유지합니다. 하지만 이 접근 방식은 훨씬 덜 명확하고 다른 사람이 `null`을 제거할 위험이 있습니다.</Trans>
+<Trans>이렇게 하면 `Form`은 항상 두 번째 자식이므로 같은 위치에 머물며 state를 유지합니다. 하지만 이 접근 방식은 훨씬 덜 명확하고 다른 사람이 `null`을 제거할 위험이 있습니다.</Trans>
 
 </Solution>
 
@@ -1511,7 +1511,7 @@ It almost works, but there is a bug. If you fill in the "First name" input and t
 <Hint>
 
 It seems like for these fields, their position within the parent is not enough. Is there some way to tell React how to match up the state between re-renders?
-<Trans>이러한 필드의 경우 부모 내에서의 위치만으로는 충분하지 않은 것 같습니다. 리랜더링 간에 상태를 일치시키는 방법을 React에 알려줄 방법이 있을까요?</Trans>
+<Trans>이러한 필드의 경우 부모 내에서의 위치만으로는 충분하지 않은 것 같습니다. 리랜더링 간에 state를 일치시키는 방법을 React에 알려줄 방법이 있을까요?</Trans>
 </Hint>
 
 <Sandpack>
@@ -1575,7 +1575,7 @@ label { display: block; margin: 10px 0; }
 <Solution>
 
 Give a `key` to both `<Field>` components in both `if` and `else` branches. This tells React how to "match up" the correct state for either `<Field>` even if their order within the parent changes:
-<Trans>`if`와 `else` 브랜치 모두에 있는 두 `<Field>` 컴포넌트에 `key`를 부여하세요. 이렇게 하면 부모 내 순서가 변경되더라도 두 `<Field>`의 올바른 상태를 "일치"시키는 방법을 React에 알려줍니다:</Trans>
+<Trans>`if`와 `else` 브랜치 모두에 있는 두 `<Field>` 컴포넌트에 `key`를 부여하세요. 이렇게 하면 부모 내 순서가 변경되더라도 두 `<Field>`의 올바른 state를 "일치"시키는 방법을 React에 알려줍니다:</Trans>
 <Sandpack>
 
 ```js App.js
@@ -2093,10 +2093,10 @@ img { width: 150px; height: 150px; }
 
 </Solution>
 
-#### Fix misplaced state in the list<Trans>목록에서 잘못 배치된 상태 수정하기</Trans> {/*fix-misplaced-state-in-the-list*/}
+#### Fix misplaced state in the list<Trans>목록에서 잘못 배치된 state 수정하기</Trans> {/*fix-misplaced-state-in-the-list*/}
 
 In this list, each `Contact` has state that determines whether "Show email" has been pressed for it. Press "Show email" for Alice, and then tick the "Show in reverse order" checkbox. You will notice that it's _Taylor's_ email that is expanded now, but Alice's--which has moved to the bottom--appears collapsed.
-<Trans>이 목록에서 각 `Contact`에는 "Show email"를 눌렀는지 여부를 결정하는 상태가 있습니다. Alice에 대해 'Show email'를 누른 다음 'Show in reverse order' 확인란을 선택합니다. 이제 Taylor의 이메일은 확장되어 있지만 하단으로 이동한 Alice의 이메일은 접혀 있는 것을 볼 수 있습니다.</Trans>
+<Trans>이 목록에서 각 `Contact`에는 "Show email"를 눌렀는지 여부를 결정하는 state가 있습니다. Alice에 대해 'Show email'를 누른 다음 'Show in reverse order' 확인란을 선택합니다. 이제 Taylor의 이메일은 확장되어 있지만 하단으로 이동한 Alice의 이메일은 접혀 있는 것을 볼 수 있습니다.</Trans>
 
 Fix it so that the expanded state is associated with each contact, regardless of the chosen ordering.
 <Trans>선택한 순서에 관계없이 expanded state가 각 연락처와 연결되도록 수정하세요.</Trans>
@@ -2198,7 +2198,7 @@ The problem is that this example was using index as a `key`:
 ```
 
 However, you want the state to be associated with _each particular contact_.
-<Trans>상태가 _각 특정 연락처_와 연결되기를 원합니다.</Trans>
+<Trans>state가 _각 특정 연락처_와 연결되기를 원합니다.</Trans>
 
 Using the contact ID as a `key` instead fixes the issue:
 <Trans>대신 연락처 ID를 `key`로 사용하면 문제가 해결됩니다:</Trans>
@@ -2289,7 +2289,7 @@ button {
 </Sandpack>
 
 State is associated with the tree position. A `key` lets you specify a named position instead of relying on order.
-<Trans>상태는 트리 위치와 연관됩니다. `key`를 사용하면 순서에 의존하지 않고 명명된 위치를 지정할 수 있습니다.</Trans>
+<Trans>state는 트리 위치와 연관됩니다. `key`를 사용하면 순서에 의존하지 않고 명명된 위치를 지정할 수 있습니다.</Trans>
 </Solution>
 
 </Challenges>

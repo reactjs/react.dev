@@ -34,7 +34,7 @@ Some of your components may need to control and synchronize with systems outside
 
 </YouWillLearn>
 
-## Referencing values with refs<Trans>ref로 값 참조하기</Trans> {/*referencing-values-with-refs*/}
+## Referencing values with Refs<Trans>ref로 값 참조하기</Trans> {/*referencing-values-with-refs*/}
 
 When you want a component to "remember" some information, but you don't want that information to [trigger new renders](/learn/render-and-commit), you can use a *ref*:
 <Trans>컴포넌트가 특정 정보를 '기억'하도록 하고 싶지만 해당 정보가 새 렌더링을 트리거하지 않도록 하려는 경우 ref를 사용할 수 있습니다:</Trans>
@@ -80,7 +80,7 @@ Read [**Referencing Values with Refs**](/learn/referencing-values-with-refs) to 
 
 </LearnMore>
 
-## Manipulating the DOM with refs<Trans>ref로 DOM 조작하기</Trans> {/*manipulating-the-dom-with-refs*/}
+## Manipulating the DOM with Refs<Trans>ref로 DOM 조작하기</Trans> {/*manipulating-the-dom-with-refs*/}
 
 React automatically updates the DOM to match your render output, so your components won't often need to manipulate it. However, sometimes you might need access to the DOM elements managed by React—for example, to focus a node, scroll to it, or measure its size and position. There is no built-in way to do those things in React, so you will need a ref to the DOM node. For example, clicking the button will focus the input using a ref:
 <Trans>React는 렌더링 출력과 일치하도록 DOM을 자동으로 업데이트하므로 컴포넌트에서 자주 조작할 필요가 없습니다. 하지만 때로는 노드에 포커스를 맞추거나 스크롤하거나 크기와 위치를 측정하기 위해 React가 관리하는 DOM 요소에 접근해야 할 수도 있습니다. React에는 이러한 작업을 수행할 수 있는 내장된 방법이 없으므로 DOM 노드에 대한 ref(참조)가 필요합니다. 예를 들어 버튼을 클릭하면 ref를 사용해 입력에 포커스를 맞춥니다:</Trans>
@@ -168,7 +168,7 @@ video { width: 250px; }
 </Sandpack>
 
 Many Effects also "clean up" after themselves. For example, an Effect that sets up a connection to a chat server should return a *cleanup function* that tells React how to disconnect your component from that server:
-<Trans>많은 Effect는 스스로 "정리"하기도 합니다. 예를 들어, 채팅 서버에 대한 연결을 설정하는 Effect는 해당 서버에서 컴포넌트의 연결을 끊는 방법을 React에 알려주는 정리 함수를 반환해야 합니다:</Trans>
+<Trans>많은 Effect는 스스로 "정리"하기도 합니다. 예를 들어, 채팅 서버에 대한 연결을 설정하는 Effect는 해당 서버에서 컴포넌트의 연결을 끊는 방법을 React에 알려주는 *클린업 함수*를 반환해야 합니다:</Trans>
 
 <Sandpack>
 
@@ -207,7 +207,7 @@ input { display: block; margin-bottom: 20px; }
 </Sandpack>
 
 In development, React will immediately run and clean up your Effect one extra time. This is why you see `"✅ Connecting..."` printed twice. This ensures that you don't forget to implement the cleanup function.
-<Trans>개발 모드에서 React는 즉시 실행되고 Effect를 한 번 더 정리합니다. 그래서 `"✅ Connecting..."`이 두 번 인쇄되는 것입니다. 이렇게 하면 정리 함수를 구현하는 것을 잊지 않도록 할 수 있습니다.</Trans>
+<Trans>개발 모드에서 React는 즉시 실행되고 Effect를 한 번 더 정리합니다. 그래서 `"✅ Connecting..."`이 두 번 인쇄되는 것입니다. 이렇게 하면 클린업 함수를 구현하는 것을 잊지 않도록 할 수 있습니다.</Trans>
 
 <LearnMore path="/learn/synchronizing-with-effects">
 
@@ -272,7 +272,7 @@ Read [**You Might Not Need an Effect**](/learn/you-might-not-need-an-effect) to 
 
 </LearnMore>
 
-## Lifecycle of reactive effects<Trans>반응형 effect의 생명주기</Trans> {/*lifecycle-of-reactive-effects*/}
+## Lifecycle of reactive Effects<Trans>반응형 Effect의 생명주기</Trans> {/*lifecycle-of-reactive-effects*/}
 
 Effects have a different lifecycle from components. Components may mount, update, or unmount. An Effect can only do two things: to start synchronizing something, and later to stop synchronizing it. This cycle can happen multiple times if your Effect depends on props and state that change over time.
 <Trans>Effect는 컴포넌트와 다른 생명주기를 가집니다. 컴포넌트는 마운트, 업데이트 또는 언마운트할 수 있습니다. 반면 Effect는 동기화를 시작하거나 동기화를 중지하는 두 가지 작업만 할 수 있습니다. Effect가 시간에 따라 변하는 prop 및 state에 의존하는 경우 이 주기는 여러 번 발생할 수 있습니다.</Trans>

@@ -84,7 +84,7 @@ Your Effect's body specifies how to **start synchronizing:**
 ```
 
 The cleanup function returned by your Effect specifies how to **stop synchronizing:**
-<Trans>Effect에서 반환되는 정리 함수는 **동기화를 중지**하는 방법을 지정합니다:</Trans>
+<Trans>Effect에서 반환되는 클린업 함수는 **동기화를 중지**하는 방법을 지정합니다:</Trans>
 
 ```js {5}
     // ...
@@ -105,7 +105,7 @@ Let's look at _why_ this is necessary, _when_ it happens, and _how_ you can cont
 <Note>
 
 Some Effects don't return a cleanup function at all. [More often than not,](/learn/synchronizing-with-effects#how-to-handle-the-effect-firing-twice-in-development) you'll want to return one--but if you don't, React will behave as if you returned an empty cleanup function.
-<Trans>일부 Effect는 정리 함수를 전혀 반환하지 않습니다. [대부분의 경우](/learn/synchronizing-with-effects#how-to-handle-the-effect-firing-twice-in-development) 함수를 반환하고 싶겠지만, 그렇지 않은 경우 React는 아무 작업도 하지 않는 빈 정리 함수를 반환한 것처럼 동작합니다.</Trans>
+<Trans>일부 Effect는 클린업 함수를 전혀 반환하지 않습니다. [대부분의 경우](/learn/synchronizing-with-effects#how-to-handle-the-effect-firing-twice-in-development) 함수를 반환하고 싶겠지만, 그렇지 않은 경우 React는 아무 작업도 하지 않는 빈 클린업 함수를 반환한 것처럼 동작합니다.</Trans>
 
 </Note>
 
@@ -166,7 +166,7 @@ At this point, you want React to do two things:
 </TransBlock>
 
 **Luckily, you've already taught React how to do both of these things!** Your Effect's body specifies how to start synchronizing, and your cleanup function specifies how to stop synchronizing. All that React needs to do now is to call them in the correct order and with the correct props and state. Let's see how exactly that happens.
-<Trans>**다행히 여러분은 이미 이 두 가지를 수행하는 방법을 React에 가르쳤습니다!** Effect의 본문은 동기화를 시작하는 방법을 지정하고, 정리 함수는 동기화를 중지하는 방법을 지정합니다. 이제 React가 해야 할 일은 올바른 순서로 올바른 props와 state로 호출하기만 하면 됩니다. 정확히 어떻게 일어나는지 살펴보겠습니다.</Trans>
+<Trans>**다행히 여러분은 이미 이 두 가지를 수행하는 방법을 React에 가르쳤습니다!** Effect의 본문은 동기화를 시작하는 방법을 지정하고, 클린업 함수는 동기화를 중지하는 방법을 지정합니다. 이제 React가 해야 할 일은 올바른 순서로 올바른 props와 state로 호출하기만 하면 됩니다. 정확히 어떻게 일어나는지 살펴보겠습니다.</Trans>
 
 ### How React re-synchronizes your Effect<Trans>React가 Effect를 재동기화 하는 방법</Trans> {/*how-react-re-synchronizes-your-effect*/}
 
@@ -174,7 +174,7 @@ Recall that your `ChatRoom` component has received a new value for its `roomId` 
 <Trans> `ChatRoom`컴포넌트의 `roomId` prop이 새로운 값을 받았다는 것을 기억하세요. 이전에는 `"general"`이었지만 이제는 `"travel"`입니다. 다른 방에 다시 연결하려면 React가 Effect를 다시 동기화해야 합니다.</Trans>
 
 To **stop synchronizing,** React will call the cleanup function that your Effect returned after connecting to the `"general"` room. Since `roomId` was `"general"`, the cleanup function disconnects from the `"general"` room:
-<Trans>**동기화를 중지**하기 위해, React는 `"general"`  방에 연결한 후 Effect가 반환한 정리 함수를 호출합니다. `roomId`가 `"general"`이므로, 정리 함수는 `"general"` 방에서 연결을 끊습니다:</Trans>
+<Trans>**동기화를 중지**하기 위해, React는 `"general"`  방에 연결한 후 Effect가 반환한 클린업 함수를 호출합니다. `roomId`가 `"general"`이므로, 클린업 함수는 `"general"` 방에서 연결을 끊습니다:</Trans>
 
 ```js {6}
 function ChatRoom({ roomId /* "general" */ }) {
@@ -188,7 +188,7 @@ function ChatRoom({ roomId /* "general" */ }) {
 ```
 
 Then React will run the Effect that you've provided during this render. This time, `roomId` is `"travel"` so it will **start synchronizing** to the `"travel"` chat room (until its cleanup function is eventually called too):
-<Trans>그러면 React는 이 렌더링 중에 여러분이 제공한 Effect를 실행합니다. 이번에는 `roomId`가 `"travel"`이므로 (정리 함수가 호출되기 전까지) `"travel"`채팅방과 **동기화되기 시작**합니다:</Trans>
+<Trans>그러면 React는 이 렌더링 중에 여러분이 제공한 Effect를 실행합니다. 이번에는 `roomId`가 `"travel"`이므로 (클린업 함수가 호출되기 전까지) `"travel"`채팅방과 **동기화되기 시작**합니다:</Trans>
 
 ```js {3,4}
 function ChatRoom({ roomId /* "travel" */ }) {
@@ -202,7 +202,7 @@ Thanks to this, you're now connected to the same room that the user chose in the
 <Trans>덕분에 이제 사용자가 UI에서 선택한 방과 동일한 방에 연결됩니다. 재앙을 피했습니다!</Trans>
 
 Every time after your component re-renders with a different `roomId`, your Effect will re-synchronize. For example, let's say the user changes `roomId` from `"travel"` to `"music"`. React will again **stop synchronizing** your Effect by calling its cleanup function (disconnecting you from the `"travel"` room). Then it will **start synchronizing** again by running its body with the new `roomId` prop (connecting you to the `"music"` room).
-<Trans>컴포넌트가 다른 `roomId`로 다시 렌더링할 때마다 Effect가 다시 동기화됩니다. 예를 들어 사용자가 `roomId`를 `"travel"`에서 `"music"`으로 변경한다고 가정해 봅시다. React는 다시 정리 함수를 호출하여 Effect **동기화를 중지**합니다(`"travel"` 방에서 연결을 끊습니다). 그런 다음 새 `roomId` prop으로 본문을 실행하여 다시 **동기화를 시작**합니다(`"music"` 방에 연결).</Trans>
+<Trans>컴포넌트가 다른 `roomId`로 다시 렌더링할 때마다 Effect가 다시 동기화됩니다. 예를 들어 사용자가 `roomId`를 `"travel"`에서 `"music"`으로 변경한다고 가정해 봅시다. React는 다시 클린업 함수를 호출하여 Effect **동기화를 중지**합니다(`"travel"` 방에서 연결을 끊습니다). 그런 다음 새 `roomId` prop으로 본문을 실행하여 다시 **동기화를 시작**합니다(`"music"` 방에 연결).</Trans>
 
 Finally, when the user goes to a different screen, `ChatRoom` unmounts. Now there is no need to stay connected at all. React will **stop synchronizing** your Effect one last time and disconnect you from the `"music"` chat room.
 <Trans>마지막으로 사용자가 다른 화면으로 이동하면 `ChatRoom`이 마운트 해제됩니다. 이제 연결 상태를 유지할 필요가 전혀 없습니다. React는 마지막으로 Effect의 **동기화를 중지**하고 `"music"` 채팅방에서 연결을 끊습니다.</Trans>

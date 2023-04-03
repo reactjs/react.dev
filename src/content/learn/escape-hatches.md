@@ -168,7 +168,7 @@ video { width: 250px; }
 </Sandpack>
 
 Many Effects also "clean up" after themselves. For example, an Effect that sets up a connection to a chat server should return a *cleanup function* that tells React how to disconnect your component from that server:
-<Trans>많은 Effect는 스스로 "정리"하기도 합니다. 예를 들어, 채팅 서버에 대한 연결을 설정하는 Effect는 해당 서버에서 컴포넌트의 연결을 끊는 방법을 React에 알려주는 정리 함수를 반환해야 합니다:</Trans>
+<Trans>많은 Effect는 스스로 "정리"하기도 합니다. 예를 들어, 채팅 서버에 대한 연결을 설정하는 Effect는 해당 서버에서 컴포넌트의 연결을 끊는 방법을 React에 알려주는 *클린업 함수*를 반환해야 합니다:</Trans>
 
 <Sandpack>
 
@@ -207,7 +207,7 @@ input { display: block; margin-bottom: 20px; }
 </Sandpack>
 
 In development, React will immediately run and clean up your Effect one extra time. This is why you see `"✅ Connecting..."` printed twice. This ensures that you don't forget to implement the cleanup function.
-<Trans>개발 모드에서 React는 즉시 실행되고 Effect를 한 번 더 정리합니다. 그래서 `"✅ Connecting..."`이 두 번 인쇄되는 것입니다. 이렇게 하면 정리 함수를 구현하는 것을 잊지 않도록 할 수 있습니다.</Trans>
+<Trans>개발 모드에서 React는 즉시 실행되고 Effect를 한 번 더 정리합니다. 그래서 `"✅ Connecting..."`이 두 번 인쇄되는 것입니다. 이렇게 하면 클린업 함수를 구현하는 것을 잊지 않도록 할 수 있습니다.</Trans>
 
 <LearnMore path="/learn/synchronizing-with-effects">
 

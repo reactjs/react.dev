@@ -18,6 +18,7 @@ Some components need to synchronize with external systems. For example, you migh
 - How to skip re-running an Effect unnecessarily
 - Why Effects run twice in development and how to fix them
 
+
 <TransBlock>
 - Effect가 무엇인지
 - Effect와 이벤트의 차이점

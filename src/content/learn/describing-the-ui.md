@@ -25,7 +25,7 @@ React is a JavaScript library for rendering user interfaces (UI). UI is built fr
 - [멀티 컴포넌트 파일을 생성하는 시기와 방법](/learn/importing-and-exporting-components)
 - [JSX로 JavaScript에 마크업을 추가하는 방법](/learn/writing-markup-with-jsx)
 - [JSX와 함께 중괄호를 사용해 컴포넌트에서 JavaScript 기능에 액세스하는 방법](/learn/javascript-in-jsx-with-curly-braces)
-- [프로퍼티로 컴포넌트를 구성하는 방법](/learn/passing-props-to-a-component)
+- [prop으로 컴포넌트를 구성하는 방법](/learn/passing-props-to-a-component)
 - [컴포넌트를 조건부로 렌더링하는 방법](/learn/conditional-rendering)
 - [한 번에 여러 컴포넌트를 렌더링하는 방법](/learn/rendering-lists)
 - [컴포넌트를 순수하게 유지하여 혼란스러운 버그를 피하는 방법](/learn/keeping-components-pure)

@@ -1277,7 +1277,7 @@ In this example, the pink dot should move when the checkbox is on, and should st
 <Trans>이 예제에서는 체크박스가 켜져 있으면 분홍색 점이 움직여야 하고 체크박스가 꺼져 있으면 움직임을 멈춰야 합니다. 이를 위한 로직은 이미 구현되어 있습니다. `handleMove` 이벤트 핸들러는 `canMove` state 변수를 확인합니다.</Trans>
 
 However, for some reason, the `canMove` state variable inside `handleMove` appears to be "stale": it's always `true`, even after you tick off the checkbox. How is this possible? Find the mistake in the code and fix it.
-<Trans>그러나 어떤 이유에서인지 `handleMove` 내부의 `canMove` 상태 변수가 체크박스를 체크한 후에도 항상 `true`인 "오래된" 상태인 것처럼 보입니다. 어떻게 이런 일이 가능할까요? 코드에서 실수를 찾아서 수정하세요.</Trans>
+<Trans>그러나 어떤 이유에서인지 `handleMove` 내부의 `canMove` state 변수가 체크박스를 체크한 후에도 항상 `true`로 "오래된" 것처럼 보입니다. 어떻게 이런 일이 가능할까요? 코드에서 실수를 찾아서 수정하세요.</Trans>
 
 <Hint>
 

@@ -41,7 +41,7 @@ Before getting to Effects, you need to be familiar with two types of logic insid
 <TransBlock>
 - **렌더링 코드** ([UI 구성하기](/learn/describing-the-ui)에서 소개됨)는 컴포넌트의 최상위 레벨에 있습니다. 여기에는 props와 state를 가져와 변환하고 회면에 표시하려는 JSX를 반환합니다. [렌더링 코드는 순수해야합니다.](/learn/keeping-components-pure) 수학 공식처럼 결과만 계산할 뿐 다른 작업은 수행하지 않습니다.
 
-- **이벤트 핸들러** ([상호작용 추가하기](/learn/adding-interactivity)에서 소개됨)는 컴포넌트 내부에 있는 중첩된 함수로, 계산만 하는 것이 아니라 작업을 수행합니다. 이벤트 핸들러는 입력 필드를 업데이트하거나 HTTP POST요청을 제출하여 제품을 구매하거나 사용자를 다른 화면으로 이동할 수 있습니다. 이벤트 핸들러에는 특정 사용자 작업(예:버튼 클릭 또는 입력)으로 인해 발생하는 ["사이드 Effect"](https://en.wikipedia.org/wiki/Side_effect_(computer_science)) (프로그램의 상태를 변경함)이 포함되어 있습니다.
+- **이벤트 핸들러** ([상호작용 추가하기](/learn/adding-interactivity)에서 소개됨)는 컴포넌트 내부에 있는 중첩된 함수로, 계산만 하는 것이 아니라 작업을 수행합니다. 이벤트 핸들러는 입력 필드를 업데이트하거나 HTTP POST요청을 제출하여 제품을 구매하거나 사용자를 다른 화면으로 이동할 수 있습니다. 이벤트 핸들러에는 특정 사용자 작업(예:버튼 클릭 또는 입력)으로 인해 발생하는 ["사이드 Effect"](https://en.wikipedia.org/wiki/Side_effect_(computer_science)) (프로그램의 state를 변경함)이 포함되어 있습니다.
 </TransBlock>
 
 Sometimes this isn't enough. Consider a `ChatRoom` component that must connect to the chat server whenever it's visible on the screen. Connecting to a server is not a pure calculation (it's a side effect) so it can't happen during rendering. However, there is no single particular event like a click that causes `ChatRoom` to be displayed.
@@ -61,7 +61,7 @@ Here and later in this text, capitalized "Effect" refers to the React-specific d
 ## You might not need an Effect <Trans>Effect가 필요하지 않을 수도 있습니다</Trans> {/*you-might-not-need-an-effect*/}
 
 **Don't rush to add Effects to your components.** Keep in mind that Effects are typically used to "step out" of your React code and synchronize with some *external* system. This includes browser APIs, third-party widgets, network, and so on. If your Effect only adjusts some state based on other state, [you might not need an Effect.](/learn/you-might-not-need-an-effect)
-<Trans>**컴포넌트에 Effect를 추가하고자 서두르지 마세요.** Effect는 일반적으로 React코드에서 벗어나 일부 외부 시스템과 동기화하는데 사용된다는 점을 명심하십시오. 여기에는 브라우저 API, 타사 위젯, 네트워크 등이 포함됩니다. Effect가 다른 상태에 따라 일부 상태만 조정하는 경우 [Effect가 필요하지 않을 수도 있습니다.](/learn/you-might-not-need-an-effect)</Trans>
+<Trans>**컴포넌트에 Effect를 추가하고자 서두르지 마세요.** Effect는 일반적으로 React코드에서 벗어나 일부 외부 시스템과 동기화하는데 사용된다는 점을 명심하십시오. 여기에는 브라우저 API, 타사 위젯, 네트워크 등이 포함됩니다. Effect가 다른 state에 따라 일부 state만 조정하는 경우 [Effect가 필요하지 않을 수도 있습니다.](/learn/you-might-not-need-an-effect)</Trans>
 
 ## How to write an Effect <Trans>Effect 작성 방법</Trans> {/*how-to-write-an-effect*/}
 
@@ -686,7 +686,7 @@ Most of the Effects you'll write will fit into one of the common patterns below.
 ### Controlling non-React widgets<Trans>React가 아닌 위젯 제어</Trans> {/*controlling-non-react-widgets*/}
 
 Sometimes you need to add UI widgets that aren't written to React. For example, let's say you're adding a map component to your page. It has a `setZoomLevel()` method, and you'd like to keep the zoom level in sync with a `zoomLevel` state variable in your React code. Your Effect would look similar to this:
-<Trans>때때로 React에 작성되지 않은 UI 위젯을 추가해야 합니다. 예를 들어 페이지에 지도 컴포넌트를 추가한다고 가정해 보겠습니다. 여기에는 `setZoomLevel()` 메서드가 있으며, 확대/축소 수준을 React 코드의 `zoomLevel` 상태 변수와 동기화하고 싶습니다. Effect는 다음과 유사합니다:</Trans>
+<Trans>때때로 React에 작성되지 않은 UI 위젯을 추가해야 합니다. 예를 들어 페이지에 지도 컴포넌트를 추가한다고 가정해 보겠습니다. 여기에는 `setZoomLevel()` 메서드가 있으며, 확대/축소 수준을 React 코드의 `zoomLevel` state 변수와 동기화하고 싶습니다. Effect는 다음과 유사합니다:</Trans>
 
 
 ```js
@@ -747,7 +747,7 @@ useEffect(() => {
 ```
 
 In development, opacity will be set to `1`, then to `0`, and then to `1` again. This should have the same user-visible behavior as setting it to `1` directly, which is what would happen in production. If you use a third-party animation library with support for tweening, your cleanup function should reset the timeline to its initial state.
-<Trans>개발 과정에서 불투명도는 `1` 그리고 `0` 그리고 다시 `1`로 설정됩니다. 이것은 `1`로 직접 설정하는 것과 동일한 사용자 가시적 동작을 가져야 하며, 이는 프로덕션에서 발생합니다. 트위닝을 지원하는 타사 애니메이션 라이브러리를 사용하는 경우 클린업 기능이 타임라인을 초기 상태로 재설정해야 합니다.</Trans>
+<Trans>개발 과정에서 불투명도는 `1` 그리고 `0` 그리고 다시 `1`로 설정됩니다. 이것은 `1`로 직접 설정하는 것과 동일한 사용자 가시적 동작을 가져야 하며, 이는 프로덕션에서 발생합니다. 트위닝을 지원하는 타사 애니메이션 라이브러리를 사용하는 경우 클린업 기능이 타임라인을 초기 state로 재설정해야 합니다.</Trans>
 
 ### Fetching data<Trans>데이터 페칭하기</Trans> {/*fetching-data*/}
 
@@ -799,7 +799,7 @@ Writing `fetch` calls inside Effects is a [popular way to fetch data](https://ww
 <Trans>Effect 내에서 `fetch` 호출을 작성하는 것은 특히 완전한 클라이언트 측 앱에서 [데이터를 페치하는 인기 있는 방법입니다.](https://www.robinwieruch.de/react-hooks-fetch-data/) 그러나 이것은 매우 수동적인 접근 방식이며 상당한 단점이 있습니다.</Trans>
 
 - **Effects don't run on the server.** This means that the initial server-rendered HTML will only include a loading state with no data. The client computer will have to download all JavaScript and render your app only to discover that now it needs to load the data. This is not very efficient.
-<Trans>**Effects는 서버에서 실행되지 않습니다.** 즉, 초기 서버 렌더링 HTML에는 데이터가 없는 로드 상태만 포함됩니다. 클라이언트 컴퓨터는 이제 데이터를 로드해야 한다는 사실을 발견하기 위해서만 모든 JavaScript를 다운로드하고 앱을 렌더링해야 합니다. 이것은 그다지 효율적이지 않습니다.</Trans>
+<Trans>**Effects는 서버에서 실행되지 않습니다.** 즉, 초기 서버 렌더링 HTML에는 데이터가 없는 로딩 state만 포함됩니다. 클라이언트 컴퓨터는 이제 데이터를 로드해야 한다는 사실을 발견하기 위해서만 모든 JavaScript를 다운로드하고 앱을 렌더링해야 합니다. 이것은 그다지 효율적이지 않습니다.</Trans>
 - **Fetching directly in Effects makes it easy to create "network waterfalls".** You render the parent component, it fetches some data, renders the child components, and then they start fetching their data. If the network is not very fast, this is significantly slower than fetching all data in parallel.
 <Trans>**Effects에서 직접 페치하면 "네트워크 폭포"를 쉽게 만들 수 있습니다.** 상위 컴포넌트를 렌더링하면 일부 데이터를 페치하고 하위 컴포넌트를 렌더링한 다음 데이터를 페치하기 시작합니다. 네트워크가 매우 빠르지 않으면 모든 데이터를 병렬로 페치하는 것보다 훨씬 느립니다.</Trans>
 - **Fetching directly in Effects usually means you don't preload or cache data.** For example, if the component unmounts and then mounts again, it would have to fetch the data again.
@@ -962,7 +962,7 @@ Finally, edit the component above and comment out the cleanup function so that t
 <Trans>마지막으로 위의 컴포넌트를 편집하고 클린업 기능을 주석 처리하여 시간 초과가 취소되지 않도록 합시다. `abcde`를 빠르게 입력해 보세요. 3초 후에 무슨 일이 일어날 것으로 예상하십니까? timeout 내부의 `console.log(text)`가 최신 `text`를 인쇄하고 5개의 `abcde` 로그를 생성합니까? 당신의 직감을 확인해보세요!</Trans>
 
 Three seconds later, you should see a sequence of logs (`a`, `ab`, `abc`, `abcd`, and `abcde`) rather than five `abcde` logs. **Each Effect "captures" the `text` value from its corresponding render.**  It doesn't matter that the `text` state changed: an Effect from the render with `text = 'ab'` will always see `'ab'`. In other words, Effects from each render are isolated from each other. If you're curious how this works, you can read about [closures](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Closures).
-<Trans>3초 후에 5개의 `abcde` 로그가 아닌 일련의 로그(`a`, `ab`, `abc`, `abcd`, `abcde`)가 표시되어야 합니다. **각 Effect는 해당 렌더링에서 `text` 값을 "캡처"합니다.** `text` 상태가 변경되는 것은 중요하지 않습니다. `text = 'ab'`인 렌더링의 Effect는 항상 `'ab'`를 볼 것입니다. 즉, 각 렌더링의 Effect는 서로 격리됩니다. 이것이 어떻게 작동하는지 궁금하다면 [closures](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Closures)를 읽어 보세요.</Trans>
+<Trans>3초 후에 5개의 `abcde` 로그가 아닌 일련의 로그(`a`, `ab`, `abc`, `abcd`, `abcde`)가 표시되어야 합니다. **각 Effect는 해당 렌더링에서 `text` 값을 "캡처"합니다.** `text` state가 변경되는 것은 중요하지 않습니다. `text = 'ab'`인 렌더링의 Effect는 항상 `'ab'`를 볼 것입니다. 즉, 각 렌더링의 Effect는 서로 격리됩니다. 이것이 어떻게 작동하는지 궁금하다면 [closures](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Closures)를 읽어 보세요.</Trans>
 
 <DeepDive>
 
@@ -1087,7 +1087,7 @@ Finally, let's say the user navigates away, and the `ChatRoom` component unmount
 #### Development-only behaviors<Trans>개발 전용 동작</Trans> {/*development-only-behaviors*/}
 
 When [Strict Mode](/reference/react/StrictMode) is on, React remounts every component once after mount (state and DOM are preserved). This [helps you find Effects that need cleanup](#step-3-add-cleanup-if-needed) and exposes bugs like race conditions early. Additionally, React will remount the Effects whenever you save a file in development. Both of these behaviors are development-only.
-<Trans>[Strict Mode](/reference/react/StrictMode)가 켜져 있으면 React는 마운트 후 모든 컴포넌트를 한 번 다시 마운트합니다(상태 및 DOM이 보존됨). 이를 통해 [정리가 필요한 Effect를 찾고](#step-3-add-cleanup-if-needed) 경합 상태와 같은 버그를 조기에 노출할 수 있습니다. 또한 React는 개발 중에 파일을 저장할 때마다 Effect를 다시 마운트합니다. 이러한 동작은 모두 개발 전용입니다.</Trans>
+<Trans>[Strict Mode](/reference/react/StrictMode)가 켜져 있으면 React는 마운트 후 모든 컴포넌트를 한 번 다시 마운트합니다(state 및 DOM이 보존됨). 이를 통해 [정리가 필요한 Effect를 찾고](#step-3-add-cleanup-if-needed) 경합 상태와 같은 버그를 조기에 노출할 수 있습니다. 또한 React는 개발 중에 파일을 저장할 때마다 Effect를 다시 마운트합니다. 이러한 동작은 모두 개발 전용입니다.</Trans>
 
 </DeepDive>
 

@@ -37,7 +37,7 @@ Some of your components may need to control and synchronize with systems outside
 ## Referencing values with Refs<Trans>ref로 값 참조하기</Trans> {/*referencing-values-with-refs*/}
 
 When you want a component to "remember" some information, but you don't want that information to [trigger new renders](/learn/render-and-commit), you can use a *ref*:
-<Trans>컴포넌트가 특정 정보를 '기억'하도록 하고 싶지만 해당 정보가 새 렌더링을 트리거하지 않도록 하려는 경우 ref를 사용할 수 있습니다:</Trans>
+<Trans>컴포넌트가 특정 정보를 '기억'하도록 하고 싶지만 해당 정보가 [새 렌더링을 트리거](/learn/render-and-commit)하지 않도록 하려는 경우 ref를 사용할 수 있습니다:</Trans>
 
 ```js
 const ref = useRef(0);
@@ -120,10 +120,10 @@ Read [**Manipulating the DOM with Refs**](/learn/manipulating-the-dom-with-refs)
 ## Synchronizing with Effects<Trans>Effect와 동기화하기</Trans> {/*synchronizing-with-effects*/}
 
 Some components need to synchronize with external systems. For example, you might want to control a non-React component based on the React state, set up a server connection, or send an analytics log when a component appears on the screen. Unlike event handlers, which let you handle particular events, *Effects* let you run some code after rendering. Use them to synchronize your component with a system outside of React.
-<Trans>일부 컴포넌트는 외부 시스템과 동기화해야 합니다. 예를 들어 React 상태에 따라 비 React 컴포넌트를 제어하거나, 서버 연결을 설정하거나, 컴포넌트가 화면에 표시될 때 분석 로그를 보내야 할 수 있습니다. 특정 이벤트를 처리할 수 있는 이벤트 핸들러와 달리 *Effect*를 사용하면 렌더링 후 일부 코드를 실행할 수 있습니다. 이를 사용해 컴포넌트를 React 외부 시스템과 동기화할 수 있습니다.</Trans>
+<Trans>일부 컴포넌트는 외부 시스템과 동기화해야 합니다. 예를 들어 React state에 따라 비 React 컴포넌트를 제어하거나, 서버 연결을 설정하거나, 컴포넌트가 화면에 표시될 때 분석 로그를 보내야 할 수 있습니다. 특정 이벤트를 처리할 수 있는 이벤트 핸들러와 달리 *Effect*를 사용하면 렌더링 후 일부 코드를 실행할 수 있습니다. 이를 사용해 컴포넌트를 React 외부 시스템과 동기화할 수 있습니다.</Trans>
 
 Press Play/Pause a few times and see how the video player stays synchronized to the `isPlaying` prop value:
-<Trans>재생/일시정지를 몇 번 누르고 비디오 플레이어가 `isPlaying` 프로퍼티 값에 어떻게 동기화되는지 확인해 보세요:</Trans>
+<Trans>재생/일시정지를 몇 번 누르고 비디오 플레이어가 `isPlaying` prop 값에 어떻게 동기화되는지 확인해 보세요:</Trans>
 
 <Sandpack>
 
@@ -219,7 +219,7 @@ Read [**Synchronizing with Effects**](/learn/synchronizing-with-effects) to lear
 ## You Might Not Need An Effect<Trans>Effect가 필요하지 않을 수도 있습니다</Trans> {/*you-might-not-need-an-effect*/}
 
 Effects are an escape hatch from the React paradigm. They let you "step outside" of React and synchronize your components with some external system. If there is no external system involved (for example, if you want to update a component's state when some props or state change), you shouldn't need an Effect. Removing unnecessary Effects will make your code easier to follow, faster to run, and less error-prone.
-<Trans>Effect는 React 패러다임에서 벗어날 수 있는 탈출구입니다. 이를 통해 React의 "외부"로 나가서 컴포넌트를 외부 시스템과 동기화할 수 있습니다. 외부 시스템이 관여하지 않는 경우(예: 일부 prop이나 state가 변경될 때 컴포넌트의 상태를 업데이트하려는 경우)에는 Effect가 필요하지 않습니다. 불필요한 Effect를 제거하면 코드를 더 쉽게 따라갈 수 있고, 실행 속도가 빨라지며, 오류 발생 가능성이 줄어듭니다.</Trans>
+<Trans>Effect는 React 패러다임에서 벗어날 수 있는 탈출구입니다. 이를 통해 React의 "외부"로 나가서 컴포넌트를 외부 시스템과 동기화할 수 있습니다. 외부 시스템이 관여하지 않는 경우(예: 일부 prop이나 state가 변경될 때 컴포넌트의 state를 업데이트하려는 경우)에는 Effect가 필요하지 않습니다. 불필요한 Effect를 제거하면 코드를 더 쉽게 따라갈 수 있고, 실행 속도가 빨라지며, 오류 발생 가능성이 줄어듭니다.</Trans>
 
 There are two common cases in which you don't need Effects:
 <Trans>이펙트가 필요하지 않은 일반적인 경우는 두 가지가 있습니다:</Trans>
@@ -233,7 +233,7 @@ There are two common cases in which you don't need Effects:
 </TransBlock>
 
 For example, you don't need an Effect to adjust some state based on other state:
-<Trans>예를 들어, 다른 상태에 따라 일부 상태를 조정하는 데는 Effect가 필요하지 않습니다:</Trans>
+<Trans>예를 들어, 다른 state에 따라 일부 state를 조정하는 데는 Effect가 필요하지 않습니다:</Trans>
 
 ```js {5-9}
 function Form() {

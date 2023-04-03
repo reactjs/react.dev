@@ -155,7 +155,7 @@ async function Talks({ confId }) {
 ```
 
 Next.js's App Router also integrates [data fetching with Suspense](/blog/2022/03/29/react-v18#suspense-in-data-frameworks). This lets you specify a loading state (like a skeleton placeholder) for different parts of your user interface directly in your React tree:
-<Trans>Next.js의 App Router는 데이터 불러오기를 통해 [데이터 페칭과 Suspense를 통합](/blog/2022/03/29/react-v18#suspense-in-data-frameworks)하기도 합니다.  이를 통해 사용자 인터페이스의 여러 부분에 대한 로딩 상태(예: 스켈레톤 placeholder)를 React 트리에서 직접 지정할 수 있습니다.</Trans>
+<Trans>Next.js의 App Router는 데이터 불러오기를 통해 [데이터 페칭과 Suspense를 통합](/blog/2022/03/29/react-v18#suspense-in-data-frameworks)하기도 합니다.  이를 통해 사용자 인터페이스의 여러 부분에 대한 로딩 state(예: 스켈레톤 placeholder)를 React 트리에서 직접 지정할 수 있습니다.</Trans>
 
 ```js
 <Suspense fallback={<TalksLoading />}>

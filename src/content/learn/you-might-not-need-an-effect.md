@@ -238,7 +238,7 @@ Normally, React preserves the state when the same component is rendered in the s
 <Trans>일반적으로 React는 같은 컴포넌트가 같은 위치에서 렌더링될 때 state를 유지합니다. **`userId`를 `key`로 `Profile` 컴포넌트에 전달하는 것은 곧, `userId`가 다른 두 `Profile` 컴포넌트를 state를 공유하지 않는 별개의 컴포넌트들로 취급하도록 React에게 요청하는 것입니다.** React는 (`userId`로 설정한) key가 변경될 때마다 DOM을 다시 생성하고 state를 재설정하며, `Profile` 컴포넌트 및 모든 자식들의 [state를 재설정](/learn/preserving-and-resetting-state#option-2-resetting-state-with-a-key)할 것입니다. 그 결과 `comment` 필드는 프로필들을 탐색할 때마다 자동으로 지워집니다.</Trans>
 
 Note that in this example, only the outer `ProfilePage` component is exported and visible to other files in the project. Components rendering `ProfilePage` don't need to pass the key to it: they pass `userId` as a regular prop. The fact `ProfilePage` passes it as a `key` to the inner `Profile` component is an implementation detail.
-<Trans>위 예제에서는 외부의 `ProfilePage` 컴포넌트만 export하였으므로 프로젝트의 다른 파일에서는 오직 `ProfilePage` 컴포넌트에만 접근 가능한 상태입니다. `ProfilePage`를 렌더링하는 컴포넌트는 key를 전달할 필요 없이 일반적인 prop으로 `userId`만 전달하고 있습니다. `ProfilePage`가 내부의 `Profile` 컴포넌트에 `key`로 전달한다는 사실은 내부에서만 알고 있는 구현 세부 사항입니다.</Trans>
+<Trans>위 예제에서는 외부의 `ProfilePage` 컴포넌트만 export하였으므로 프로젝트의 다른 파일에서는 오직 `ProfilePage` 컴포넌트에만 접근 가능합니다. `ProfilePage`를 렌더링하는 컴포넌트는 key를 전달할 필요 없이 일반적인 prop으로 `userId`만 전달하고 있습니다. `ProfilePage`가 내부의 `Profile` 컴포넌트에 `key`로 전달한다는 사실은 내부에서만 알고 있는 구현 세부 사항입니다.</Trans>
 
 ### Adjusting some state when a prop changes<Trans>props가 변경될 때 일부 state 조정하기</Trans> {/*adjusting-some-state-when-a-prop-changes*/}
 

@@ -476,7 +476,7 @@ export default function Form() {
 </Sandpack>
 
 In design systems, it is a common pattern for low-level components like buttons, inputs, and so on, to forward their refs to their DOM nodes. On the other hand, high-level components like forms, lists, or page sections usually won't expose their DOM nodes to avoid accidental dependencies on the DOM structure.
-<Trans>디자인 시스템에서 버튼, 입력 등과 같은 저수준 컴포넌트는 해당 레퍼런스를 DOM 노드로 전달하는 것이 일반적인 패턴입니다. 반면 양식, 목록 또는 페이지 섹션과 같은 상위 수준 컴포넌트는 일반적으로 DOM 구조에 대한 우발적 종속성을 피하기 위해 해당 DOM 노드를 노출하지 않습니다.</Trans>
+<Trans>디자인 시스템에서 버튼, 입력 등과 같은 저수준 컴포넌트는 해당 ref를 DOM 노드로 전달하는 것이 일반적인 패턴입니다. 반면 양식, 목록 또는 페이지 섹션과 같은 상위 수준 컴포넌트는 일반적으로 DOM 구조에 대한 우발적 종속성을 피하기 위해 해당 DOM 노드를 노출하지 않습니다.</Trans>
 
 <DeepDive>
 
@@ -530,7 +530,7 @@ Here, `realInputRef` inside `MyInput` holds the actual input DOM node. However, 
 
 </DeepDive>
 
-## When React attaches the refs<Trans>React가 레퍼런스를 첨부할 때</Trans> {/*when-react-attaches-the-refs*/}
+## When React attaches the refs<Trans>React가 ref를 첨부할 때</Trans> {/*when-react-attaches-the-refs*/}
 
 In React, every update is split in [two phases](/learn/render-and-commit#step-3-react-commits-changes-to-the-dom):
 <Trans>React에서 모든 업데이트는 [두 단계](/learn/render-and-commit#step-3-react-commits-changes-to-the-dom)로 나뉩니다:</Trans>
@@ -557,7 +557,7 @@ React sets `ref.current` during the commit. Before updating the DOM, React sets 
 #### Flushing state updates synchronously with flushSync<Trans>플러싱 state는 flushSync와 동기식으로 업데이트됩니다.</Trans> {/*flushing-state-updates-synchronously-with-flush-sync*/}
 
 Consider code like this, which adds a new todo and scrolls the screen down to the last child of the list. Notice how, for some reason, it always scrolls to the todo that was *just before* the last added one:
-<Trans>다음과 같이, 새 할 일을 추가하고 목록의 마지막 하위 항목까지 화면을 아래로 스크롤하는 코드를 고려해 보세요. 어떤 이유에서인지 항상 마지막으로 추가한 할 일의 *바로 앞*에 있던 할 일로 스크롤되는 것을 볼 수 있습니다:</Trans>
+<Trans>다음과 같이 새 할 일을 추가하고 목록의 마지막 하위 항목까지 화면을 아래로 스크롤하는 코드를 고려해 보세요. 어떤 이유에서인지 항상 마지막으로 추가한 할 일의 *바로 앞*에 있던 할 일로 스크롤되는 것을 볼 수 있습니다:</Trans>
 
 <Sandpack>
 
@@ -620,7 +620,7 @@ listRef.current.lastChild.scrollIntoView();
 ```
 
 In React, [state updates are queued.](/learn/queueing-a-series-of-state-updates) Usually, this is what you want. However, here it causes a problem because `setTodos` does not immediately update the DOM. So the time you scroll the list to its last element, the todo has not yet been added. This is why scrolling always "lags behind" by one item.
-<Trans>React에서는 [상태 업데이트가 큐에 대기합니다.](/learn/queueing-a-series-of-state-updates) 일반적으로 이것은 사용자가 원하는 것입니다. 그러나 여기서는 `setTodos`가 DOM을 즉시 업데이트하지 않기 때문에 문제가 발생합니다. 따라서 목록을 마지막 요소로 스크롤할 때 할 일이 아직 추가되지 않은 상태입니다. 이것이 스크롤이 항상 한 항목씩 "뒤처지는" 이유입니다.</Trans>
+<Trans>React에서는 [state 업데이트가 큐에 등록됩니다.](/learn/queueing-a-series-of-state-updates) 일반적으로 이것은 사용자가 원하는 것입니다. 그러나 여기서는 `setTodos`가 DOM을 즉시 업데이트하지 않기 때문에 문제가 발생합니다. 따라서 목록을 마지막 요소로 스크롤할 때 할 일이 아직 추가되지 않은 상태입니다. 이것이 스크롤이 항상 한 항목씩 "뒤처지는" 이유입니다.</Trans>
 
 To fix this issue, you can force React to update ("flush") the DOM synchronously. To do this, import `flushSync` from `react-dom` and **wrap the state update** into a `flushSync` call:
 <Trans>이 문제를 해결하기 위해 React가 DOM을 동기적으로 업데이트("플러시")하도록 강제할 수 있습니다. 이렇게 하려면 `react-dom`에서 `flushSync`를 import하고 **state 업데이트를** `flushSync` 호출로 **감싸면** 됩니다:</Trans>

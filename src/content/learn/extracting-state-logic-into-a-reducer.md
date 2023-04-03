@@ -1204,7 +1204,7 @@ Replace these two `// TODO`s with the code to `dispatch` the corresponding actio
 <Hint>
 
 The `dispatch` function is already available in both of these components because it was passed as a prop. So you need to call `dispatch` with the corresponding action object.
-<Trans>`dispatch` 함수는 프로퍼티로 전달되었기 때문에 이 두 컴포넌트에서 이미 사용할 수 있습니다. 따라서 해당 action 객체에 상응하는 `dispatch`를 호출해야 합니다.</Trans>
+<Trans>`dispatch` 함수는 prop으로 전달되었기 때문에 이 두 컴포넌트에서 이미 사용할 수 있습니다. 따라서 해당 action 객체에 상응하는 `dispatch`를 호출해야 합니다.</Trans>
 
 To check the action object shape, you can look at the reducer and see which `action` fields it expects to see. For example, the `changed_selection` case in the reducer looks like this:
 <Trans>action 객체 형태를 확인하려면 reducer를 살펴보고 어떤 `action` 필드가 표시될 것으로 예상되는지 확인할 수 있습니다. 예를 들어, reducer의 `changed_selection` 케이스는 다음과 같습니다:</Trans>
@@ -1965,10 +1965,10 @@ textarea {
 </Sandpack>
 
 The resulting behavior is the same. But keep in mind that action types should ideally describe "what the user did" rather than "how you want the state to change". This makes it easier to later add more features.
-<Trans>결과 동작은 동일합니다. 하지만 action type은 '상태가 어떻게 변경되기를 원하는지'가 아니라 '사용자가 무엇을 했는지'를 설명하는 것이 이상적이라는 점을 명심하세요. 이렇게 하면 나중에 더 많은 기능을 추가하기가 더 쉬워집니다.</Trans>
+<Trans>결과 동작은 동일합니다. 하지만 action type은 'state가 어떻게 변경되기를 원하는지'가 아니라 '사용자가 무엇을 했는지'를 설명하는 것이 이상적이라는 점을 명심하세요. 이렇게 하면 나중에 더 많은 기능을 추가하기가 더 쉬워집니다.</Trans>
 
 With either solution, it's important that you **don't** place the `alert` inside a reducer. The reducer should be a pure function--it should only calculate the next state. It should not "do" anything, including displaying messages to the user. That should happen in the event handler. (To help catch mistakes like this, React will call your reducers multiple times in Strict Mode. This is why, if you put an alert in a reducer, it fires twice.)
-<Trans>어떤 솔루션을 사용하든 reducer 안에 `alert`를 배치하지 **않는 것**이 중요합니다. reducer는 다음 상태만 계산하는 순수한 함수여야 합니다. 사용자에게 메시지를 표시하는 등 어떤 '작업'도 해서는 안 됩니다. 이는 이벤트 핸들러에서 발생해야 합니다. (이와 같은 실수를 잡기 위해 React는 Strict Mode에서 reducer를 여러 번 호출합니다. 이것이 바로 reducer에 `alert`를 넣으면 두 번 실행되는 이유입니다).</Trans>
+<Trans>어떤 솔루션을 사용하든 reducer 안에 `alert`를 배치하지 **않는 것**이 중요합니다. reducer는 다음 state만 계산하는 순수한 함수여야 합니다. 사용자에게 메시지를 표시하는 등 어떤 '작업'도 해서는 안 됩니다. 이는 이벤트 핸들러에서 발생해야 합니다. (이와 같은 실수를 잡기 위해 React는 Strict Mode에서 reducer를 여러 번 호출합니다. 이것이 바로 reducer에 `alert`를 넣으면 두 번 실행되는 이유입니다).</Trans>
 
 </Solution>
 
@@ -2565,7 +2565,7 @@ textarea {
 <Solution>
 
 Dispatching an action calls a reducer with the current state and the action, and stores the result as the next state. This is what it looks like in code:
-<Trans>action을 전달하면 현재 state와 action이 있는 reducer를 호출하고 결과를 다음 상태로 저장합니다. 이것이 코드에서 보이는 모습입니다:</Trans>
+<Trans>action을 전달하면 현재 state와 action이 있는 reducer를 호출하고 결과를 다음 state로 저장합니다. 이것이 코드에서 보이는 모습입니다:</Trans>
 
 <Sandpack>
 

@@ -38,7 +38,7 @@ Imagine you're developing an app that heavily relies on the network (as most app
 </TransBlock>
 
 This will keep your component [synchronized](/learn/synchronizing-with-effects) with the network status. You might start with something like this:
-<Trans>이렇게 하면 컴포넌트가 네트워크 상태와 [동기화된 상태](/learn/synchronizing-with-effects)로 유지됩니다. 다음과 같이 시작할 수 있습니다:</Trans>
+<Trans>이렇게 하면 컴포넌트가 네트워크 state와 [동기화된 상태](/learn/synchronizing-with-effects)로 유지됩니다. 다음과 같이 시작할 수 있습니다:</Trans>
 
 <Sandpack>
 
@@ -75,7 +75,7 @@ Now imagine you *also* want to use the same logic in a different component. You 
 <Trans>이제 *다른 컴포넌트에서도* 동일한 로직을 사용하고 싶다고 가정해 봅시다. 네트워크가 꺼져 있을 때 비활성화되고 "저장" 대신 "다시 연결 중..."이 표시되는 저장 버튼을 구현하고 싶다고 가정해 보겠습니다.</Trans>
 
 To start, you can copy and paste the `isOnline` state and the Effect into `SaveButton`:
-<Trans>시작하려면 `isOnline` 상태와 Effect를 복사하여 `SaveButton`에 붙여넣으면 됩니다:</Trans>
+<Trans>시작하려면 `isOnline` state와 Effect를 복사하여 `SaveButton`에 붙여넣으면 됩니다:</Trans>
 
 <Sandpack>
 
@@ -257,7 +257,7 @@ You must follow these naming conventions:
 </TransBlock>
 
 This convention guarantees that you can always look at a component and know where its state, Effects, and other React features might "hide". For example, if you see a `getColor()` function call inside your component, you can be sure that it can't possibly contain React state inside because its name doesn't start with `use`. However, a function call like `useOnlineStatus()` will most likely contain calls to other Hooks inside!
-<Trans>이 규칙은 컴포넌트를 보고 상태, 효과 및 기타 React 기능이 어디에 "숨어 있는지" 항상 알 수 있도록 보장합니다. 예를 들어 컴포넌트 내부에 `getColor()` 함수 호출이 있다면, 그 이름이 `use`로 시작하지 않기 때문에 내부에 React state를 포함할 수 없다는 것을 확신할 수 있습니다. 하지만 `useOnlineStatus()`와 같은 함수 호출은 내부에 다른 훅에 대한 호출을 포함할 가능성이 높습니다!</Trans>
+<Trans>이 규칙은 컴포넌트를 보고 state, Effect 및 기타 React 기능이 어디에 "숨어 있는지" 항상 알 수 있도록 보장합니다. 예를 들어 컴포넌트 내부에 `getColor()` 함수 호출이 있다면, 그 이름이 `use`로 시작하지 않기 때문에 내부에 React state를 포함할 수 없다는 것을 확신할 수 있습니다. 하지만 `useOnlineStatus()`와 같은 함수 호출은 내부에 다른 훅에 대한 호출을 포함할 가능성이 높습니다!</Trans>
 
 <Note>
 
@@ -374,7 +374,7 @@ function SaveButton() {
 ```
 
 These are two completely independent state variables and Effects! They happened to have the same value at the same time because you synchronized them with the same external value (whether the network is on).
-<Trans>완전히 독립적인 두 개의 state variables(상태 변수)와 Effects입니다! 단지 네트워크가 켜져 있는지 여부에 관계없이 동일한 외부 값과 동기화했기 때문에 동시에 동일한 값을 갖게 된 것입니다.</Trans>
+<Trans>이들은 두 완전히 독립적인 state 변수 및 Effect입니다! 단지 네트워크가 켜져 있는지 여부에 관계없이 동일한 외부 값과 동기화했기 때문에 동시에 동일한 값을 갖게 된 것입니다.</Trans>
 
 To better illustrate this, we'll need a different example. Consider this `Form` component:
 <Trans>이를 더 잘 설명하기 위해 다른 예시가 필요합니다. 이 `Form` 컴포넌트를 생각해 봅시다:</Trans>
@@ -505,7 +505,7 @@ This is why it works like declaring two separate state variables!
 <Trans>**커스텀 훅을 사용하면 *상태 로직(stateful logic)*은 공유할 수 있지만 *state 자체*는 공유할 수 없습니다.** 각 훅 호출은 동일한 훅에 대한 다른 모든 호출과 완전히 독립적입니다.** 이것이 바로 위의 두 샌드박스가 완전히 동일한 이유입니다. 원하신다면 스크롤을 위로 올려서 비교해 보세요. 커스텀 훅을 추출하기 전과 후의 동작은 동일합니다.</Trans>
 
 When you need to share the state itself between multiple components, [lift it up and pass it down](/learn/sharing-state-between-components) instead.
-<Trans>여러 컴포넌트 간에 상태 자체를 공유해야 하는 경우, 대신 [끌어올려 전달하기](/learn/sharing-state-between-components)를 사용하세요.</Trans>
+<Trans>여러 컴포넌트 간에 state 자체를 공유해야 하는 경우, 대신 [끌어올려 전달하기](/learn/sharing-state-between-components)를 사용하세요.</Trans>
 
 ## Passing reactive values between Hooks<Trans>훅 사이에 반응형 값 전달하기</Trans> {/*passing-reactive-values-between-hooks*/}
 
@@ -513,7 +513,7 @@ The code inside your custom Hooks will re-run during every re-render of your com
 <Trans>컴포넌트를 다시 렌더링할 때마다 커스텀 훅 내부의 코드가 다시 실행됩니다. 이것이 컴포넌트와 마찬가지로 커스텀 훅도 [순수해야 하는](/learn/keeping-components-pure) 이유입니다. 커스텀 Hook의 코드를 컴포넌트 본문의 일부로 생각하세요!</Trans>
 
 Because custom Hooks re-render together with your component, they always receive the latest props and state. To see what this means, consider this chat room example. Change the server URL or the chat room:
-<Trans>커스텀 훅은 컴포넌트와 함께 다시 렌더링되기 때문에 항상 최신 프로퍼티와 상태를 받습니다. 이것이 무엇을 의미하는지 이 채팅방 예시를 통해 알아보세요. 서버 URL 또는 선택한 채팅방을 변경합니다:</Trans>
+<Trans>커스텀 훅은 컴포넌트와 함께 다시 렌더링되기 때문에 항상 최신 props와 state를 받습니다. 이것이 무엇을 의미하는지 이 채팅방 예시를 통해 알아보세요. 서버 URL 또는 선택한 채팅방을 변경합니다:</Trans>
 
 <Sandpack>
 
@@ -2018,8 +2018,8 @@ Sometimes, you don't even need a Hook!
 <TransBlock>
 - 커스텀 훅을 사용하면 컴포넌트 간에 로직을 공유할 수 있습니다.
 - 커스텀 훅의 이름은 `use`로 시작하고 대문자로 끝나야 합니다.
-- 커스텀 훅은 state 저장 로직만 공유하며 상태 자체는 공유하지 않습니다.
-- 반응형 값을 한 훅에서 다른 훅으로 전달할 수 있으며 최신 상태로 유지됩니다.
+- 커스텀 훅은 상태적 로직만 공유하며 state 자체는 공유하지 않습니다.
+- 반응형 값을 한 훅에서 다른 훅으로 전달할 수 있으며 최신 state로 유지됩니다.
 - 컴포넌트가 다시 렌더링될 때마다 모든 훅이 다시 실행됩니다.
 - 커스텀 훅의 코드는 컴포넌트의 코드와 같이 순수해야 합니다.
 - 커스텀 훅이 수신한 이벤트 핸들러를 Effect Event로 래핑하세요.

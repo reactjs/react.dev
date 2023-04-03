@@ -1386,7 +1386,7 @@ This code already works, but there is something you want to change. Currently, w
 <Hint>
 
 Is there a line of code inside the Effect that should not be reactive? How can you move non-reactive code out of the Effect?
-<Trans></Trans>
+<Trans>Effect 안에 반응성이 없어야 하는 코드가 있나요? 비반응형 코드를 Effect 밖으로 옮기려면 어떻게 해야 하나요?</Trans>
 
 </Hint>
 
@@ -1516,7 +1516,7 @@ html, body { min-height: 300px; }
 <Solution>
 
 Your Effect needs to read the latest value of `duration`, but you don't want it to "react" to changes in `duration`. You use `duration` to start the animation, but starting animation isn't reactive. Extract the non-reactive line of code into an Effect Event, and call that function from your Effect.
-<Trans></Trans>
+<Trans>Effect는 `duration`의 최신 값을 읽어야 하지만, `duration`의 변화에 "반응"하지 않기를 원합니다. 애니메이션을 시작하기 위해 `duration`을 사용하지만 애니메이션이 시작해도 반응하지 않습니다. 반응하지 않는 코드를 추출하고 Effect에서 해당 함수를 호출합니다.</Trans>
 
 <Sandpack>
 
@@ -1640,7 +1640,7 @@ html, body { min-height: 300px; }
 </Sandpack>
 
 Effect Events like `onAppear` are not reactive, so you can read `duration` inside without retriggering the animation.
-<Trans></Trans>
+<Trans>`onAppear`와 같은 Effect Event는 반응형 이벤트가 아니므로 애니메이션을 다시 트리거하지 않고도 내부의 `duration`을 읽을 수 있습니다.</Trans>
 
 </Solution>
 
@@ -1655,7 +1655,7 @@ Treat `chat.js` as an external third-party library: you can consult it to check 
 <Hint>
 
 There's more than one way to fix this, but ultimately you want to avoid having an object as your dependency.
-<Trans></Trans>
+<Trans>이 문제를 해결하는 방법은 여러 가지가 있지만 궁극적으로 객체를 종속성으로 사용하지 않으려는 것입니다.</Trans>
 
 </Hint>
 
@@ -1750,10 +1750,10 @@ label, button { display: block; margin-bottom: 5px; }
 <Solution>
 
 Your Effect is re-running because it depends on the `options` object. Objects can be re-created unintentionally, you should try to avoid them as dependencies of your Effects whenever possible.
-<Trans></Trans>
+<Trans>Effect가 `options` 객체에 의존하기 때문에 다시 실행되고 있습니다. 객체는 의도치 않게 다시 생성될 수 있으므로 가능하면 Effect의 종속 요소로 지정하지 않도록 해야 합니다.</Trans>
 
 The least invasive fix is to read `roomId` and `serverUrl` right outside the Effect, and then make the Effect depend on those primitive values (which can't change unintentionally). Inside the Effect, create an object and it pass to `createConnection`:
-<Trans></Trans>
+<Trans>가장 덜 침범적인 수정 방법은 Effect 외부에서 `roomId`와 `serverUrl`을 읽은 다음 Effect가 이러한 기본 값에 의존하도록 만드는 것입니다(의도치 않게 변경할 수 없음). Effect 내부에서 객체를 생성하면 `createConnection`으로 전달됩니다:</Trans>
 
 <Sandpack>
 
@@ -1848,7 +1848,7 @@ label, button { display: block; margin-bottom: 5px; }
 </Sandpack>
 
 It would be even better to replace the object `options` prop with the more specific `roomId` and `serverUrl` props:
-<Trans></Trans>
+<Trans>객체의 `options` 프로퍼티를 보다 구체적인 `roomId` 및 `serverUrl` 프로퍼티로 대체하는 것이 더 좋을 것입니다:</Trans>
 
 <Sandpack>
 
@@ -1940,7 +1940,7 @@ label, button { display: block; margin-bottom: 5px; }
 </Sandpack>
 
 Sticking to primitive props where possible makes it easier to optimize your components later.
-<Trans></Trans>
+<Trans>가능하면 primitive props를 사용하면 나중에 컴포넌트를 더 쉽게 최적화할 수 있습니다.</Trans>
 
 </Solution>
 
@@ -1958,11 +1958,13 @@ Don't change any code in `chat.js`. Other than that, you can change any code as 
 <Hint>
 
 You're passing down two functions: `onMessage` and `createConnection`. Both of them are created from scratch every time `App` re-renders. They are considered to be new values every time, which is why they re-trigger your Effect.
+<Trans>두 개의 함수를 전달하고 있습니다: `onMessage`와 `createConnection`입니다. 이 두 함수는 `App`이 다시 렌더링할 때마다 처음부터 새로 생성됩니다. 매번 새로운 값으로 간주되기 때문에 Effect를 다시 트리거합니다.</Trans>
 
 One of these functions is an event handler. Do you know some way to call an event handler an Effect without "reacting" to the new values of the event handler function? That would come in handy!
+<Trans>이러한 함수 중 하나가 이벤트 핸들러입니다. 이벤트 핸들러 함수의 새 값에 '반응'하지 않고 이벤트 핸들러를 Effect로 호출하는 방법을 알고 계신가요? 유용할 것 같습니다!</Trans>
 
 Another of these functions only exists to pass some state to an imported API method. Is this function really necessary? What is the essential information that's being passed down? You might need to move some imports from `App.js` to `ChatRoom.js`.
-<Trans></Trans>
+<Trans>이러한 함수 중 다른 함수는 가져온 API 메서드에 일부 state를 전달하기 위해서만 존재합니다. 이 함수가 정말 필요한가요? 전달되는 필수 정보는 무엇인가요? 일부 imports를 `App.js`에서 `ChatRoom.js`로 옮겨야 할 수도 있습니다.</Trans>
 
 </Hint>
 
@@ -2182,7 +2184,9 @@ There's more than one correct way to solve this, but here is one possible soluti
 In the original example, toggling the theme caused different `onMessage` and `createConnection` functions to be created and passed down. Since the Effect depended on these functions, the chat would re-connect every time you toggle the theme.
 
 To fix the problem with `onMessage`, you needed to wrap it into an Effect Event:
-<Trans></Trans>
+<Trans>이 문제를 해결하는 올바른 방법은 여러 가지가 있지만, 여기 한 가지 가능한 해결책이 있습니다.
+원래 예제에서는 테마를 변경하면 다른 `onMessage` 및 `createConnection` 함수가 생성되어 전달되었습니다. Effect가 이러한 함수에 의존했기 때문에 테마를 전환할 때마다 채팅이 다시 연결되었습니다.
+`message`의 문제를 해결하려면 `onMessage`를 Effect Event로 래핑해야 했습니다:</Trans>
 
 ```js {1,2,6}
 export default function ChatRoom({ roomId, createConnection, onMessage }) {
@@ -2195,10 +2199,10 @@ export default function ChatRoom({ roomId, createConnection, onMessage }) {
 ```
 
 Unlike the `onMessage` prop, the `onReceiveMessage` Effect Event is not reactive. This is why it doesn't need to be a dependency of your Effect. As a result, changes to `onMessage` won't cause the chat to re-connect.
-<Trans></Trans>
+<Trans>`onMessage` 프로퍼티와 달리 `onReceiveMessage` Effect Event는 반응하지 않습니다. 그렇기 때문에 Effect의 종속성이 될 필요가 없습니다. 따라서 `onMessage`를 변경해도 채팅이 다시 연결되지 않습니다.</Trans>
 
 You can't do the same with `createConnection` because it *should* be reactive. You *want* the Effect to re-trigger if the user switches between an encrypted and an unencryption connection, or if the user switches the current room. However, because `createConnection` is a function, you can't check whether the information it reads has *actually* changed or not. To solve this, instead of passing `createConnection` down from the `App` component, pass the raw `roomId` and `isEncrypted` values:
-<Trans></Trans>
+<Trans>반응형이어야 하기 때문에 'createConnection'으로는 동일한 작업을 수행할 수 없습니다. 사용자가 암호화 연결과 비암호화 연결 사이를 전환하거나 사용자가 현재 방을 전환하면 Effect가 다시 트리거되기를 원합니다. 하지만 `createConnection`은 함수이기 때문에 이 함수가 읽는 정보가 실제로 변경되었는지 여부를 확인할 수 없습니다. 이 문제를 해결하려면 `App` 컴포넌트에서 `createConnection`을 전달하는 대신 primitive 값인 `roomId` 및 `isEncrypted`를 전달하세요:</Trans>
 
 ```js {2-3}
       <ChatRoom
@@ -2211,7 +2215,7 @@ You can't do the same with `createConnection` because it *should* be reactive. Y
 ```
 
 Now you can move the `createConnection` function *inside* the Effect instead of passing it down from the `App`:
-<Trans></Trans>
+<Trans>이제 `App`에서 전달하지 않고 Effect 내부로 `createConnection` 함수를 옮길 수 있습니다:</Trans>
 
 ```js {1-4,6,10-20}
 import {
@@ -2238,7 +2242,7 @@ export default function ChatRoom({ roomId, isEncrypted, onMessage }) {
 ```
 
 After these two changes, your Effect no longer depends on any function values:
-<Trans></Trans>
+<Trans>이 두 가지 변경 사항 이후에는 Effect가 더 이상 함수 값에 의존하지 않습니다:</Trans>
 
 ```js {1,8,10,21}
 export default function ChatRoom({ roomId, isEncrypted, onMessage }) { // Reactive values
@@ -2265,7 +2269,7 @@ export default function ChatRoom({ roomId, isEncrypted, onMessage }) { // Reacti
 ```
 
 As a result, the chat re-connects only when something meaningful (`roomId` or `isEncrypted`) changes:
-<Trans></Trans>
+<Trans>그 결과, 의미 있는 정보(`roomId` 또는 `isEncrypted`)가 변경될 때만 채팅이 다시 연결됩니다:</Trans>
 
 <Sandpack>
 

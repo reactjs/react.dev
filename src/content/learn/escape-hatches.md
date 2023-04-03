@@ -34,7 +34,7 @@ Some of your components may need to control and synchronize with systems outside
 
 </YouWillLearn>
 
-## Referencing values with refs<Trans>ref로 값 참조하기</Trans> {/*referencing-values-with-refs*/}
+## Referencing values with Refs<Trans>ref로 값 참조하기</Trans> {/*referencing-values-with-refs*/}
 
 When you want a component to "remember" some information, but you don't want that information to [trigger new renders](/learn/render-and-commit), you can use a *ref*:
 <Trans>컴포넌트가 특정 정보를 '기억'하도록 하고 싶지만 해당 정보가 새 렌더링을 트리거하지 않도록 하려는 경우 ref를 사용할 수 있습니다:</Trans>
@@ -80,7 +80,7 @@ Read [**Referencing Values with Refs**](/learn/referencing-values-with-refs) to 
 
 </LearnMore>
 
-## Manipulating the DOM with refs<Trans>ref로 DOM 조작하기</Trans> {/*manipulating-the-dom-with-refs*/}
+## Manipulating the DOM with Refs<Trans>ref로 DOM 조작하기</Trans> {/*manipulating-the-dom-with-refs*/}
 
 React automatically updates the DOM to match your render output, so your components won't often need to manipulate it. However, sometimes you might need access to the DOM elements managed by React—for example, to focus a node, scroll to it, or measure its size and position. There is no built-in way to do those things in React, so you will need a ref to the DOM node. For example, clicking the button will focus the input using a ref:
 <Trans>React는 렌더링 출력과 일치하도록 DOM을 자동으로 업데이트하므로 컴포넌트에서 자주 조작할 필요가 없습니다. 하지만 때로는 노드에 포커스를 맞추거나 스크롤하거나 크기와 위치를 측정하기 위해 React가 관리하는 DOM 요소에 접근해야 할 수도 있습니다. React에는 이러한 작업을 수행할 수 있는 내장된 방법이 없으므로 DOM 노드에 대한 ref(참조)가 필요합니다. 예를 들어 버튼을 클릭하면 ref를 사용해 입력에 포커스를 맞춥니다:</Trans>

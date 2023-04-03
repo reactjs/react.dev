@@ -22,10 +22,11 @@ last updated @ 2023-04-03 PM 12:00
 - [3-6. 컨텍스트로 데이터를 깊게 전달하기 :: Passing Data Deeply with Context](/learn/passing-data-deeply-with-context)
 - [3-7. Reducer와 Context로 확장하기 :: Scaling Up with Reducer and Context](/learn/scaling-up-with-reducer-and-context)
 - [4. 탈출구 :: Escape Hatches](/learn/escape-hatches)
-- [4-1. Ref로 값 참조하기 :: Referencing Values with Refs](/learn/referencing-values-with-refs)
-- [4-2. ref로 DOM  조작하기 :: Manipulating the DOM with Refs ](/learn/manipulating-the-dom-with-refs)
+- [4-1. ref로 값 참조하기 :: Referencing Values with Refs](/learn/referencing-values-with-refs)
+- [4-2. ref로 DOM 조작하기 :: Manipulating the DOM with Refs ](/learn/manipulating-the-dom-with-refs)
 - [4-4. Effect가 필요하지 않을 수도 있습니다 :: You Might Not Need an Effect](/learn/you-might-not-need-an-effect)
-- [4-5. 반응형 effect의 생명주기 :: Lifecycle of Reactive Effects](/learn/lifecycle-of-reactive-effects)
+- [4-5. 반응형 Effect의 생명주기 :: Lifecycle of Reactive Effects](/learn/lifecycle-of-reactive-effects)
+- [4-6. 이벤트와 Effect 분리하기 :: Separating Events from Effects](/learn/separating-events-from-effects)
 - [4-8. 커스텀 훅으로 로직 재사용하기 :: Reusing Logic with Custom Hooks](/learn/reusing-logic-with-custom-hooks)
 
 ## 전체 진행상황 {/*전체-진행상황*/}
@@ -66,12 +67,12 @@ last updated @ 2023-04-03 PM 12:00
 | O | [3-6. 컨텍스트로 데이터를 깊게 전달하기 :: Passing Data Deeply with Context](/learn/passing-data-deeply-with-context) | 
 | O | [3-7. Reducer와 Context로 확장하기 :: Scaling Up with Reducer and Context](/learn/scaling-up-with-reducer-and-context) | 
 | O | [4. 탈출구 :: Escape Hatches](/learn/escape-hatches) | 
-| O | [4-1. Ref로 값 참조하기 :: Referencing Values with Refs](/learn/referencing-values-with-refs) | 
-| O | [4-2. ref로 DOM  조작하기 :: Manipulating the DOM with Refs ](/learn/manipulating-the-dom-with-refs) | 
+| O | [4-1. ref로 값 참조하기 :: Referencing Values with Refs](/learn/referencing-values-with-refs) | 
+| O | [4-2. ref로 DOM 조작하기 :: Manipulating the DOM with Refs ](/learn/manipulating-the-dom-with-refs) | 
 | X | [4-3. Effect와 동기화하기 :: Synchronizing with Effects](/learn/synchronizing-with-effects) | 
 | O | [4-4. Effect가 필요하지 않을 수도 있습니다 :: You Might Not Need an Effect](/learn/you-might-not-need-an-effect) | 
-| O | [4-5. 반응형 effect의 생명주기 :: Lifecycle of Reactive Effects](/learn/lifecycle-of-reactive-effects) | 
-| X | [4-6. 이벤트와 Effect 분리하기 :: Separating Events from Effects](/learn/separating-events-from-effects) | 
+| O | [4-5. 반응형 Effect의 생명주기 :: Lifecycle of Reactive Effects](/learn/lifecycle-of-reactive-effects) | 
+| O | [4-6. 이벤트와 Effect 분리하기 :: Separating Events from Effects](/learn/separating-events-from-effects) | 
 | X | [4-7. Effect 종속성 제거하기 :: Removing Effect Dependencies](/learn/removing-effect-dependencies) | 
 | O | [4-8. 커스텀 훅으로 로직 재사용하기 :: Reusing Logic with Custom Hooks](/learn/reusing-logic-with-custom-hooks) | 
 | X | [5. Hooks](/reference/react) |

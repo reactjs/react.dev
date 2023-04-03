@@ -1040,11 +1040,11 @@ Note that this pattern requires you to keep a previous value of the prop (like `
 
 <Pitfall>
 
-Deriving state leads to verbose code and makes your components difficult to think about. [Make sure you're familiar with simpler alternatives:](/blog/2018/06/07/you-probably-dont-need-derived-state.html)
+Deriving state leads to verbose code and makes your components difficult to think about. [Make sure you're familiar with simpler alternatives:](/link/derived-state)
 
 - If you need to **perform a side effect** (for example, data fetching or an animation) in response to a change in props, use [`componentDidUpdate`](#componentdidupdate) method instead.
 - If you want to **re-compute some data only when a prop changes,** [use a memoization helper instead.](/blog/2018/06/07/you-probably-dont-need-derived-state#what-about-memoization)
-- If you want to **"reset" some state when a prop changes,** consider either making a component [fully controlled](/blog/2018/06/07/you-probably-dont-need-derived-state.html#recommendation-fully-controlled-component) or [fully uncontrolled with a key](/blog/2018/06/07/you-probably-dont-need-derived-state.html#recommendation-fully-uncontrolled-component-with-a-key) instead.
+- If you want to **"reset" some state when a prop changes,** consider either making a component [fully controlled](/link/derived-state#recommendation-fully-controlled-component) or [fully uncontrolled with a key](/link/derived-state#recommendation-fully-uncontrolled-component-with-a-key) instead.
 
 </Pitfall>
 

@@ -25,7 +25,8 @@
 3. 깃헙에서 `New Pull Request`를 하세요.
 
 - base repository: **"roy-jung/react.dev.ko"** 로 바꿔주세요.
-- compare: **develop** 브랜치로 바꿔주세요.
+- 다시 base: **develop** 브랜치로 바꿔주세요.
+- compare: 작업한 브랜치를 선택합니다.
 
 ## 번역 규칙
 

@@ -6,9 +6,11 @@ import Breadcrumbs from 'components/Breadcrumbs';
 import Tag from 'components/Tag';
 import {H1} from './MDX/Heading';
 import type {RouteTag, RouteItem} from './Layout/getRouteMeta';
+import Trans from './MDX/Trans';
 
 interface PageHeadingProps {
   title: string;
+  translatedTitle: string | undefined;
   status?: string;
   description?: string;
   tags?: RouteTag[];
@@ -17,6 +19,7 @@ interface PageHeadingProps {
 
 function PageHeading({
   title,
+  translatedTitle,
   status,
   description,
   tags = [],
@@ -28,6 +31,7 @@ function PageHeading({
         {breadcrumbs ? <Breadcrumbs breadcrumbs={breadcrumbs} /> : null}
         <H1 className="mt-0 text-primary dark:text-primary-dark -mx-.5 break-words">
           {title}
+          {translatedTitle && <Trans>{translatedTitle}</Trans>}
           {status ? <em>—{status}</em> : ''}
         </H1>
         {description && (

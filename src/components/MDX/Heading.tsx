@@ -17,14 +17,25 @@ const Heading = forwardRefWithAs<HeadingProps, 'div'>(function Heading(
   {as: Comp = 'div', className, children, id, isPageAnchor = true, ...props},
   ref
 ) {
+  let newChildren;
   let label = 'Link for this heading';
   if (typeof children === 'string') {
     label = 'Link for ' + children;
+    newChildren = children;
+  } else if (Array.isArray(children)) {
+    const transIndex = children.findIndex((c) => c?.type?.mdxName === 'Trans');
+    newChildren =
+      transIndex > -1
+        ? [
+            <strong key={0}>{children.slice(0, transIndex)}</strong>,
+            ...children.slice(transIndex),
+          ]
+        : children;
   }
 
   return (
     <Comp id={id} {...props} ref={ref} className={cn('mdx-heading', className)}>
-      {children}
+      {newChildren}
       {isPageAnchor && (
         <a
           href={`#${id}`}

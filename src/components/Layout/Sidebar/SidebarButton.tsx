@@ -5,9 +5,11 @@
 import * as React from 'react';
 import cn from 'classnames';
 import {IconNavArrow} from 'components/Icon/IconNavArrow';
+import Trans from 'components/MDX/Trans';
 
 interface SidebarButtonProps {
   title: string;
+  translatedTitle?: string;
   heading: boolean;
   level: number;
   onClick: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
@@ -17,6 +19,7 @@ interface SidebarButtonProps {
 
 export function SidebarButton({
   title,
+  translatedTitle,
   heading,
   level,
   onClick,
@@ -46,6 +49,12 @@ export function SidebarButton({
         )}
         onClick={onClick}>
         {title}
+        {!!translatedTitle && (
+          <>
+            <br />
+            <Trans>{translatedTitle}</Trans>
+          </>
+        )}
         {typeof isExpanded && !heading && (
           <span className="pr-2 text-gray-30">
             <IconNavArrow displayDirection={isExpanded ? 'down' : 'right'} />

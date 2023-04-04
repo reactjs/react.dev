@@ -4,6 +4,26 @@
 스터디그룹에서 한글 번역을 진행하고 있고,  
 유튜브 [FE재남](https://www.youtube.com/playlist?list=PLjQV3hketAJkh6BEl0n4PDS_2fBd0cS9v)에 스터디 영상을 공개하고 있습니다.
 
+## 자기소개 추가하기
+
+1. `feature/translators` 브랜치를 기준으로 작업합니다.
+
+2. 적당한 크기의 이미지를 `/public/images/translators` 폴더에 올려주세요.
+
+3. `/src/content/community/translators` 폴더의 `data.json` 파일에서, 본인의 소개글을 작성해 주세요.
+
+4. 다음 명령을 내립니다.
+
+```bash
+/[your-own-branch-name]/> npm run build-trans
+
+# or
+
+/[your-own-branch-name]/> yarn run build-trans
+```
+
+4. 푸쉬하고, feature/translators 브랜치로 PR 올려주세요.
+
 ## PR 작성 규칙
 
 1. `develop` 브랜치를 기준으로 로컬 브랜치를 만듭니다.  
@@ -24,8 +44,8 @@
 
 3. 깃헙에서 `New Pull Request`를 하세요.
 
-| 1. base repository:<br/> **"roy-jung/react.dev.ko"** 선택 | 2. 다시 base:<br/> **develop** 선택 | 3. compare:<br/> 작업한 브랜치를 선택 |
-| --- | --- | --- |
+| 1. base repository:<br/> **"roy-jung/react.dev.ko"** 선택                                                                                | 2. 다시 base:<br/> **develop** 선택                                                                                                      | 3. compare:<br/> 작업한 브랜치를 선택                                                                                                    |
+| ---------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
 | <img width="75%" alt="image" src="https://user-images.githubusercontent.com/6881617/229475203-38e76220-9b5a-48a8-ae27-6820a5574b14.png"> | <img width="80%" alt="image" src="https://user-images.githubusercontent.com/6881617/229475456-7d7ef659-0800-420e-985c-4e16bb2e5592.png"> | <img width="80%" alt="image" src="https://user-images.githubusercontent.com/6881617/229475665-590316e2-fb93-4de3-88f0-b54c3a71934f.png"> |
 
 ## 번역 규칙

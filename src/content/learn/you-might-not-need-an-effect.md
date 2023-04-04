@@ -288,7 +288,7 @@ function List({ items }) {
 <Trans>이렇게 [이전 렌더링의 정보를 저장하는 것](/reference/react/useState#storing-information-from-previous-renders)은 이해하기 어려울 수 있지만, Effect에서 동일한 state를 업데이트하는 것보다는 낫습니다. 위 예시에서는 렌더링 도중 `setSelection`이 직접 호출됩니다. React는 `return`문과 함께 종료된 _직후에_ `List`를 다시 렌더링합니다. 이 시점에서 React는 아직 `List`의 자식들을 렌더링하거나 DOM을 업데이트하지 않았기 때문에, `List`의 자식들은 기존의 `selection` 값에 대한 렌더링을 건너뛰게 됩니다.</Trans>
 
 When you update a component during rendering, React throws away the returned JSX and immediately retries rendering. To avoid very slow cascading retries, React only lets you update the *same* component's state during a render. If you update another component's state during a render, you'll see an error. A condition like `items !== prevItems` is necessary to avoid loops. You may adjust state like this, but any other side effects (like changing the DOM or setting timeouts) should stay in event handlers or Effects to [keep components pure.](/learn/keeping-components-pure)
-<Trans>렌더링 도중 컴포넌트를 업데이트하면, React는 반환된 JSX를 버리고 즉시 렌더링을 다시 시도합니다. React는 계단식으로 전파되는 매우 느린 재시도를 피하기 위해, 렌더링 중에 *동일한* 컴포넌트의 state만 업데이트할 수 있도록 허용합니다. 렌더링 도중 다른 컴포넌트의 state를 업데이트하면 오류가 발생합니다. 동일 컴포넌트가 무한으로 재렌더링을 반복 시도하는 상황을 피하기 위해 `items !== prevItems`와 같은 조건이 필요한 것입니다. 이런 식으로 state를 조정할 수 있긴 하지만, 다른 side effect(DOM 변경이나 timeout 설정 등)은 이벤트 핸들러나 Effect에서만 처리함으로써 [컴포넌트의 순수성을 유지](/learn/keeping-components-pure)해야 합니다.</Trans>
+<Trans>렌더링 도중 컴포넌트를 업데이트하면, React는 반환된 JSX를 버리고 즉시 렌더링을 다시 시도합니다. React는 계단식으로 전파되는 매우 느린 재시도를 피하기 위해, 렌더링 중에 *동일한* 컴포넌트의 state만 업데이트할 수 있도록 허용합니다. 렌더링 도중 다른 컴포넌트의 state를 업데이트하면 오류가 발생합니다. 동일 컴포넌트가 무한으로 리렌더링을 반복 시도하는 상황을 피하기 위해 `items !== prevItems`와 같은 조건이 필요한 것입니다. 이런 식으로 state를 조정할 수 있긴 하지만, 다른 side effect(DOM 변경이나 timeout 설정 등)은 이벤트 핸들러나 Effect에서만 처리함으로써 [컴포넌트의 순수성을 유지](/learn/keeping-components-pure)해야 합니다.</Trans>
 
 **Although this pattern is more efficient than an Effect, most components shouldn't need it either.** No matter how you do it, adjusting state based on props or other state makes your data flow more difficult to understand and debug. Always check whether you can [reset all state with a key](#resetting-all-state-when-a-prop-changes) or [calculate everything during rendering](#updating-state-based-on-props-or-state) instead. For example, instead of storing (and resetting) the selected *item*, you can store the selected *item ID:*
 <Trans>**이 패턴은 Effect보다 효율적이지만, 대부분의 컴포넌트에는 필요하지 않습니다.** 어떻게 하든 props나 다른 state들을 바탕으로 state를 조정하면 데이터 흐름을 이해하고 디버깅하기 어려워질 것입니다. 항상 [key로 모든 state를 재설정](#resetting-all-state-when-a-prop-changes)하거나 [렌더링 중에 모두 계산](#updating-state-based-on-props-or-state)할 수 있는지를 확인하세요. 예를 들어 선택한 *item*을 저장(및 재설정)하는 대신, 선택한 item의 *ID*를 저장할 수 있습니다:</Trans>
@@ -481,7 +481,7 @@ There are two problems with this code.
 <Trans>이 코드에는 두 가지 문제가 있습니다.</Trans>
 
 One problem is that it is very inefficient: the component (and its children) have to re-render between each `set` call in the chain. In the example above, in the worst case (`setCard` → render → `setGoldCardCount` → render → `setRound` → render → `setIsGameOver` → render) there are three unnecessary re-renders of the tree below.
-<Trans>한 가지 문제는 매우 비효율적이라는 점입니다. 컴포넌트(및 그 자식들)은 체인의 각 `set` 호출 사이에 다시 렌더링해야 합니다. 위의 예시에서 최악의 경우(`setCard` → 렌더링 → `setGoldCardCount` → 렌더링 → `setRound` → 렌더링 → `setIsGameOver` → 렌더링)에는 하위 트리의 불필요한 재랜더링이 세 번이나 발생합니다.</Trans>
+<Trans>한 가지 문제는 매우 비효율적이라는 점입니다. 컴포넌트(및 그 자식들)은 체인의 각 `set` 호출 사이에 다시 렌더링해야 합니다. 위의 예시에서 최악의 경우(`setCard` → 렌더링 → `setGoldCardCount` → 렌더링 → `setRound` → 렌더링 → `setIsGameOver` → 렌더링)에는 하위 트리의 불필요한 리렌더링이 세 번이나 발생합니다.</Trans>
 
 Even if it weren't slow, as your code evolves, you will run into cases where the "chain" you wrote doesn't fit the new requirements. Imagine you are adding a way to step through the history of the game moves. You'd do it by updating each state variable to a value from the past. However, setting the `card` state to a value from the past would trigger the Effect chain again and change the data you're showing. Such code is often rigid and fragile.
 <Trans>속도가 느리지는 않더라도, 코드가 발전함에 따라 작성한 '체인'이 새로운 요구사항에 맞지 않는 경우가 발생할 수 있습니다. 게임 이동의 기록을 단계별로 살펴볼 수 있는 방법을 추가한다고 가정해 보겠습니다. 각 state 변수를 과거의 값으로 업데이트하여 이를 수행할 수 있습니다. 하지만 '카드' state를 과거의 값으로 설정하면 Effect 체인이 다시 트리거되고 표시되는 데이터가 변경됩니다. 이와 같은 코드는 종종 경직되고 취약합니다.</Trans>
@@ -691,7 +691,7 @@ function Toggle({ isOn, onChange }) {
 ### Passing data to the parent<Trans>부모에게 데이터 전달하기</Trans> {/*passing-data-to-the-parent*/}
 
 This `Child` component fetches some data and then passes it to the `Parent` component in an Effect:
-<Trans>다음 `Child` 컴포넌트는 일부 데이터를 가져온 다음 Effect의 `Parent` 컴포넌트에 전달합니다:</Trans>
+<Trans>다음 `Child` 컴포넌트는 일부 데이터를 페치한 다음 Effect의 `Parent` 컴포넌트에 전달합니다:</Trans>
 
 ```js {9-15}
 function Parent() {
@@ -714,7 +714,7 @@ function Child({ onFetched }) {
 ```
 
 In React, data flows from the parent components to their children. When you see something wrong on the screen, you can trace where the information comes from by going up the component chain until you find which component passes the wrong prop or has the wrong state. When child components update the state of their parent components in Effects, the data flow becomes very difficult to trace. Since both the child and the parent need the same data, let the parent component fetch that data, and *pass it down* to the child instead:
-<Trans>React에서 데이터는 부모 컴포넌트에서 자식 컴포넌트로 흐릅니다. 화면에 뭔가 잘못된 것이 보이면, 컴포넌트 체인을 따라 올라가서 어떤 컴포넌트가 잘못된 prop을 전달하거나 잘못된 state를 가지고 있는지 찾아냄으로써 정보의 출처를 추적할 수 있습니다. 자식 컴포넌트가 Effect에서 부모 컴포넌트의 state를 업데이트하면, 데이터 흐름을 추적하기가 매우 어려워집니다. 자식과 부모 컴포넌트 모두 동일한 데이터가 필요하므로, 대신 부모 컴포넌트가 해당 데이터를 fetch해서 자식에게 *전달*하도록 하세요:</Trans>
+<Trans>React에서 데이터는 부모 컴포넌트에서 자식 컴포넌트로 흐릅니다. 화면에 뭔가 잘못된 것이 보이면, 컴포넌트 체인을 따라 올라가서 어떤 컴포넌트가 잘못된 prop을 전달하거나 잘못된 state를 가지고 있는지 찾아냄으로써 정보의 출처를 추적할 수 있습니다. 자식 컴포넌트가 Effect에서 부모 컴포넌트의 state를 업데이트하면, 데이터 흐름을 추적하기가 매우 어려워집니다. 자식과 부모 컴포넌트 모두 동일한 데이터가 필요하므로, 대신 부모 컴포넌트가 해당 데이터를 페치해서 자식에게 *전달*하도록 하세요:</Trans>
 
 ```js {4-6}
 function Parent() {
@@ -804,10 +804,10 @@ function ChatIndicator() {
 This approach is less error-prone than manually syncing mutable data to React state with an Effect. Typically, you'll write a custom Hook like `useOnlineStatus()` above so that you don't need to repeat this code in the individual components. [Read more about subscribing to external stores from React components.](/reference/react/useSyncExternalStore)
 <Trans>이 접근 방식은 변경 가능한 데이터를 Effect를 사용해 React state에 수동으로 동기화하는 것보다 오류 가능성이 적습니다. 일반적으로 위의 `useOnlineStatus()`와 같은 커스텀 훅을 작성하여 개별 컴포넌트에서 이 코드를 반복할 필요가 없도록 합니다. [React 컴포넌트에서 외부 store를 구독하는 방법에 대해 자세히 읽어보세요](/reference/react/useSyncExternalStore).</Trans>
 
-### Fetching data<Trans>데이터 가져오기(fetch)</Trans> {/*fetching-data*/}
+### Fetching data<Trans>데이터 페칭하기</Trans> {/*fetching-data*/}
 
 Many apps use Effects to kick off data fetching. It is quite common to write a data fetching Effect like this:
-<Trans>많은 앱이 데이터 fetch를 시작하기 위해 Effect를 사용합니다. 이와 같은 데이터 fetching Effect를 작성하는 것은 매우 일반적입니다:</Trans>
+<Trans>많은 앱이 데이터 페칭을 시작하기 위해 Effect를 사용합니다. 이와 같은 데이터 페칭 Effect를 작성하는 것은 매우 일반적입니다:</Trans>
 
 ```js {5-11}
 function SearchResults({ query }) {
@@ -833,13 +833,13 @@ You *don't* need to move this fetch to an event handler.
 <Trans>이 페치를 이벤트 핸들러로 옮길 필요는 *없습니다*.</Trans>
 
 This might seem like a contradiction with the earlier examples where you needed to put the logic into the event handlers! However, consider that it's not *the typing event* that's the main reason to fetch. Search inputs are often prepopulated from the URL, and the user might navigate Back and Forward without touching the input.
-<Trans>이벤트 핸들러에 로직을 넣어야 했던 앞선 예제와 모순되는 것처럼 보일 수 있습니다! 하지만 가져와야 하는 주된 이유가 *타이핑 이벤트*가 아니라는 점을 생각해 보세요. 검색 입력은 URL에 미리 채워져 있는 경우가 많으며, 사용자는 input을 건드리지 않고도 앞뒤로 탐색할 수 있습니다.</Trans>
+<Trans>이벤트 핸들러에 로직을 넣어야 했던 앞선 예제와 모순되는 것처럼 보일 수 있습니다! 하지만 페치해야 하는 주된 이유가 *타이핑 이벤트*가 아니라는 점을 생각해 보세요. 검색 입력은 URL에 미리 채워져 있는 경우가 많으며, 사용자는 input을 건드리지 않고도 앞뒤로 탐색할 수 있습니다.</Trans>
 
 It doesn't matter where `page` and `query` come from. While this component is visible, you want to keep `results` [synchronized](/learn/synchronizing-with-effects) with data from the network for the current `page` and `query`. This is why it's an Effect.
 <Trans>`page`와 `query`가 어디에서 오는지는 중요하지 않습니다. 이 컴포넌트가 표시되는 동안 현재의 `page` 및 `query`에 대한 네트워크의 데이터와 `results`의 [동기화](/learn/synchronizing-with-effects)가 유지되면 됩니다. 이것이 Effect인 이유입니다.</Trans>
 
 However, the code above has a bug. Imagine you type `"hello"` fast. Then the `query` will change from `"h"`, to `"he"`, `"hel"`, `"hell"`, and `"hello"`. This will kick off separate fetches, but there is no guarantee about which order the responses will arrive in. For example, the `"hell"` response may arrive *after* the `"hello"` response. Since it will call `setResults()` last, you will be displaying the wrong search results. This is called a ["race condition"](https://en.wikipedia.org/wiki/Race_condition): two different requests "raced" against each other and came in a different order than you expected.
-<Trans>다만 위 코드에는 버그가 있습니다. `"hello"`를 빠르게 입력한다고 합시다. 그러면 `query`가 `"h"`에서 `"he"`, `"hel"`, `"hell"`, `"hello"`로 변경됩니다. 이렇게 하면 각각 fetching을 수행하지만, 어떤 순서로 응답이 도착할지는 보장할 수 없습니다. 예를 들어 `"hell"` 응답은 `"hello"` 응답 *이후*에 도착할 수 있습니다. 이에 따라 마지막에 호출된 `setResults()`로부터 잘못된 검색 결과가 표시될 수 있습니다. 이를 ["경쟁 조건"](https://en.wikipedia.org/wiki/Race_condition)이라고 합니다. 서로 다른 두 요청이 서로 "경쟁"하여 예상과 다른 순서로 도착한 경우입니다.</Trans>
+<Trans>다만 위 코드에는 버그가 있습니다. `"hello"`를 빠르게 입력한다고 합시다. 그러면 `query`가 `"h"`에서 `"he"`, `"hel"`, `"hell"`, `"hello"`로 변경됩니다. 이렇게 하면 각각 페칭을 수행하지만, 어떤 순서로 응답이 도착할지는 보장할 수 없습니다. 예를 들어 `"hell"` 응답은 `"hello"` 응답 *이후*에 도착할 수 있습니다. 이에 따라 마지막에 호출된 `setResults()`로부터 잘못된 검색 결과가 표시될 수 있습니다. 이를 ["경쟁 조건"](https://en.wikipedia.org/wiki/Race_condition)이라고 합니다. 서로 다른 두 요청이 서로 "경쟁"하여 예상과 다른 순서로 도착한 경우입니다.</Trans>
 
 **To fix the race condition, you need to [add a cleanup function](/learn/synchronizing-with-effects#fetching-data) to ignore stale responses:**
 <Trans>**경쟁 조건을 수정하기 위해서는 오래된 응답을 무시하도록 [클린업 함수를 추가](/learn/synchronizing-with-effects#fetching-data)해야 합니다.**</Trans>
@@ -868,10 +868,10 @@ function SearchResults({ query }) {
 ```
 
 This ensures that when your Effect fetches data, all responses except the last requested one will be ignored.
-<Trans>이렇게 하면 Effect가 데이터를 가져올 때 마지막으로 요청된 응답을 제외한 모든 응답이 무시됩니다.</Trans>
+<Trans>이렇게 하면 Effect가 데이터를 페치할 때 마지막으로 요청된 응답을 제외한 모든 응답이 무시됩니다.</Trans>
 
 Handling race conditions is not the only difficulty with implementing data fetching. You might also want to think about caching responses (so that the user can click Back and see the previous screen instantly), how to fetch data on the server (so that the initial server-rendered HTML contains the fetched content instead of a spinner), and how to avoid network waterfalls (so that a child can fetch data without waiting for every parent).
-<Trans>데이터 불러오기를 구현할 때 경합 조건을 처리하는 것만 어려운 것은 아닙니다. 응답을 캐시하는 방법(사용자가 Back을 클릭하고면 스피너 대신 이전 화면을 즉시 볼 수 있도록), 서버에서 가져오는 방법(초기 서버 렌더링 HTML에 스피너 대신 가져온 콘텐츠가 포함되도록), 네트워크 워터폴을 피하는 방법(데이터를 가져와야 하는 하위 컴포넌트가 시작하기 전에 위의 모든 부모가 데이터 가져오기를 완료할 때까지 기다릴 필요가 없도록) 등도 고려해볼 사항입니다. </Trans>
+<Trans>데이터 페칭을 구현할 때 경합 조건을 처리하는 것만 어려운 것은 아닙니다. 응답을 캐시하는 방법(사용자가 Back을 클릭하고면 스피너 대신 이전 화면을 즉시 볼 수 있도록), 서버에서 페치하는 방법(초기 서버 렌더링 HTML에 스피너 대신 가져온 콘텐츠가 포함되도록), 네트워크 워터폴을 피하는 방법(데이터를 페치해야 하는 하위 컴포넌트가 시작하기 전에 위의 모든 부모가 데이터 페치를 완료할 때까지 기다릴 필요가 없도록) 등도 고려해볼 사항입니다. </Trans>
 
 **These issues apply to any UI library, not just React. Solving them is not trivial, which is why modern [frameworks](/learn/start-a-new-react-project#production-grade-react-frameworks) provide more efficient built-in data fetching mechanisms than fetching data in Effects.**
 <Trans>**이런 문제는 React뿐만 아니라 모든 UI 라이브러리에 적용됩니다. 이러한 문제를 해결하는 것은 간단하지 않기 때문에 최신 [프레임워크](/learn/start-a-new-react-project#building-with-a-full-featured-framework)들은 컴포넌트에서 직접 Effect를 작성하는 것보다 더 효율적인 내장 데이터 페칭 메커니즘을 제공합니다.**</Trans>
@@ -935,7 +935,7 @@ In general, whenever you have to resort to writing Effects, keep an eye out for 
 - 컴포넌트가 *표시*되었기 때문에 실행해야 하는 코드는 Effect에 있어야 하고, 나머지는 이벤트에 있어야 합니다.
 - 여러 컴포넌트의 state를 업데이트해야 하는 경우 단일 이벤트에서 처리하는 것이 좋습니다.
 - 여러 컴포넌트에서 state 변수를 동기화하려고 할 때마다 state 끌어올리기를 고려하세요.
-- Effect로 데이터를 가져올 수 있지만, 경쟁 조건을 피하기 위해 정리 로직을 구현해야 합니다.
+- Effect로 데이터를 페치할 수 있지만, 경쟁 조건을 피하기 위해 정리 로직을 구현해야 합니다.
 </TransBlock>
 </Recap>
 

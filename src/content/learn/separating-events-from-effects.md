@@ -198,14 +198,14 @@ function ChatRoom({ roomId }) {
 ```
 
 Reactive values like these can change due to a re-render. For example, the user may edit the `message` or choose a different `roomId` in a dropdown. Event handlers and Effects respond to changes differently:
-<Trans>이와 같은 반응형 값은 재렌더링으로 인해 변경될 수 있습니다. 예를 들어, 사용자가 `message`를 수정하거나 드롭다운에서 다른 `roomId`를 선택할 수 있습니다. 이벤트 핸들러와 Effect는 변경 사항에 다르게 반응합니다:</Trans>
+<Trans>이와 같은 반응형 값은 리렌더링으로 인해 변경될 수 있습니다. 예를 들어, 사용자가 `message`를 수정하거나 드롭다운에서 다른 `roomId`를 선택할 수 있습니다. 이벤트 핸들러와 Effect는 변경 사항에 다르게 반응합니다:</Trans>
 
 - **Logic inside event handlers is *not reactive.*** It will not run again unless the user performs the same interaction (e.g. a click) again. Event handlers can read reactive values without "reacting" to their changes.
 - **Logic inside Effects is *reactive.*** If your Effect reads a reactive value, [you have to specify it as a dependency.](/learn/lifecycle-of-reactive-effects#effects-react-to-reactive-values) Then, if a re-render causes that value to change, React will re-run your Effect's logic with the new value.
 
 <TransBlock>
 - **이벤트 핸들러 내부의 로직은 *반응형이 아닙니다*.** 사용자가 동일한 상호작용(예: 클릭)을 다시 수행하지 않는 한 다시 실행되지 않습니다. 이벤트 핸들러는 변경에 "반응"하지 않고 반응형 값을 읽을 수 있습니다.
-- **Effects 내부의 로직은 *반응형입니다*.** Effect에서 반응형 값을 읽는 경우 [의존성으로 지정해야 합니다.](https://react.dev/learn/lifecycle-of-reactive-effects#effects-react-to-reactive-values) 그런 다음 재렌더링으로 인해 해당 값이 변경되면 React는 새 값으로 Effect의 로직을 다시 실행합니다.
+- **Effects 내부의 로직은 *반응형입니다*.** Effect에서 반응형 값을 읽는 경우 [의존성으로 지정해야 합니다.](https://react.dev/learn/lifecycle-of-reactive-effects#effects-react-to-reactive-values) 그런 다음 리렌더링으로 인해 해당 값이 변경되면 React는 새 값으로 Effect의 로직을 다시 실행합니다.
 </TransBlock>
 
 Let's revisit the previous example to illustrate this difference.
@@ -638,7 +638,7 @@ This section describes an **experimental API that has not yet been released** in
 </Wip>
 
 Effect Events let you fix many patterns where you might be tempted to suppress the dependency linter.
-<Trans>Effect Event를 사용하면 제한하고 싶을 수 있는 많은 의존성 linter 패턴을 수정할 수 있습니다.</Trans>
+<Trans>Effect Event를 사용하면 억제하고 싶을 수 있는 많은 의존성 linter 패턴을 수정할 수 있습니다.</Trans>
 
 For example, say you have an Effect to log the page visits:
 <Trans>예를 들어, 페이지 방문을 기록하는 Effect가 있다고 가정해 보겠습니다:</Trans>
@@ -773,10 +773,10 @@ Here, `url` inside `onVisit` corresponds to the *latest* `url` (which could have
 
 <DeepDive>
 
-#### Is it okay to suppress the dependency linter instead? <Trans>대신 의존성 린터를 제한해도 괜찮나요?</Trans> {/*is-it-okay-to-suppress-the-dependency-linter-instead*/}
+#### Is it okay to suppress the dependency linter instead? <Trans>대신 의존성 린터를 억제해도 괜찮나요?</Trans> {/*is-it-okay-to-suppress-the-dependency-linter-instead*/}
 
 In the existing codebases, you may sometimes see the lint rule suppressed like this:
-<Trans>기존 코드베이스에서는 때때로 다음과 같이 Lint 규칙이 제한된 것을 볼 수 있습니다:</Trans>
+<Trans>기존 코드베이스에서는 때때로 다음과 같이 Lint 규칙이 억제된 것을 볼 수 있습니다:</Trans>
 
 ```js {7-9}
 function Page({ url }) {
@@ -793,13 +793,13 @@ function Page({ url }) {
 ```
 
 After `useEffectEvent` becomes a stable part of React, we recommend **never suppressing the linter**.
-<Trans>`useEffectEvent`가 React의 안정적인 API가 된 후에는 **Linter를 제한하지 않는 것이 좋습니다**.</Trans>
+<Trans>`useEffectEvent`가 React의 안정적인 API가 된 후에는 **Linter를 억제하지 않는 것이 좋습니다**.</Trans>
 
 The first downside of suppressing the rule is that React will no longer warn you when your Effect needs to "react" to a new reactive dependency you've introduced to your code. In the earlier example, you added `url` to the dependencies *because* React reminded you to do it. You will no longer get such reminders for any future edits to that Effect if you disable the linter. This leads to bugs.
-<Trans>이 규칙을 제한하는 첫 번째 단점은 코드에 도입한 새로운 반응형 의존성에 Efect가 "반응"해야 할 때 React가 더 이상 경고하지 않는다는 것입니다. 의 예제에서 `url`을 의존성에 추가한 이유는 React가 이를 상기시켜줬기 문입니다. Linter를 비활성화하면 해당 Effect를 이후에 수정할 때, 더 이상 이러한 경고를 받지 않게 됩니다. 이것은 버그로 이어집니다.</Trans>
+<Trans>이 규칙을 억제하는 첫 번째 단점은 코드에 도입한 새로운 반응형 의존성에 Efect가 "반응"해야 할 때 React가 더 이상 경고하지 않는다는 것입니다. 의 예제에서 `url`을 의존성에 추가한 이유는 React가 이를 상기시켜줬기 문입니다. Linter를 비활성화하면 해당 Effect를 이후에 수정할 때, 더 이상 이러한 경고를 받지 않게 됩니다. 이것은 버그로 이어집니다.</Trans>
 
 Here is an example of a confusing bug caused by suppressing the linter. In this example, the `handleMove` function is supposed to read the current `canMove` state variable value in order to decide whether the dot should follow the cursor. However, `canMove` is always `true` inside `handleMove`.
-<Trans> 다음은 Linter를 제한하여 발생하는 혼란스러운 버그의 예입니다. 이 예제에서 `handleMove` 함수는 커서를 따라갈지 여부를 결정하기 위해 현재 `canMove` state 변수 값을 읽어야 합니다. 그러나 `canMove`는 `handleMove` 내부에서 항상 `true`입니다.</Trans>
+<Trans> 다음은 Linter를 억제하여 발생하는 혼란스러운 버그의 예입니다. 이 예제에서 `handleMove` 함수는 커서를 따라갈지 여부를 결정하기 위해 현재 `canMove` state 변수 값을 읽어야 합니다. 그러나 `canMove`는 `handleMove` 내부에서 항상 `true`입니다.</Trans>
 
 Can you see why?
 <Trans>그 이유를 알 수 있을까요?</Trans>
@@ -861,13 +861,13 @@ body {
 
 
 The problem with this code is in suppressing the dependency linter. If you remove the suppression, you'll see that this Effect should depend on the `handleMove` function. This makes sense: `handleMove` is declared inside the component body, which makes it a reactive value. Every reactive value must be specified as a dependency, or it can potentially get stale over time!
-<Trans>이 코드의 문제는 의존성 Linter를 제한하는 데 있습니다. 제한을 제거하면 이 Effect가 `handleMove` 함수에 종속되어야 한다는 것을 알 수 있습니다. `handleMove` 는 컴포넌트 본문 내부에서 선언되어 반응형 값이 되기 때문입니다. 모든 반응형 값은 의존성으로 지정해야 하며, 그렇지 않으면 시간이 지나 낡을 수 있습니다!</Trans>
+<Trans>이 코드의 문제는 의존성 Linter를 억제하는 데 있습니다. 억제를 제거하면 이 Effect가 `handleMove` 함수에 종속되어야 한다는 것을 알 수 있습니다. `handleMove` 는 컴포넌트 본문 내부에서 선언되어 반응형 값이 되기 때문입니다. 모든 반응형 값은 의존성으로 지정해야 하며, 그렇지 않으면 시간이 지나 낡을 수 있습니다!</Trans>
 
 The author of the original code has "lied" to React by saying that the Effect does not depend (`[]`) on any reactive values. This is why React did not re-synchronize the Effect after `canMove` has changed (and `handleMove` with it). Because React did not re-synchronize the Effect, the `handleMove` attached as a listener is the `handleMove` function created during the initial render. During the initial render, `canMove` was `true`, which is why `handleMove` from the initial render will forever see that value.
 <Trans>원래 코드의 작성자는 Effect가 어떤 반응형 값에도 의존하지(`[]`) 않는다고 말함으로써 React에 "거짓말"을 했습니다. 이것이 바로 `canMove`가 변경된 후 React가 Effect를 다시 동기화하지 않은 이유입니다(그리고 `handleMove`도 함께). React가 Effect를 다시 동기화하지 않았기 때문에 리스너로 첨부된 `handleMove`는 초기 렌더링 중에 생성된 `handleMove` 함수입니다. 초기 렌더링 중에 `canMove`는 `true`였기 때문에 초기 렌더링의 `handleMove`는 영원히 그 값을 보게 됩니다.</Trans>
 
 **If you never suppress the linter, you will never see problems with stale values.**
-<Trans>**Linter를 제한하지 않으면 오래된 값으로 인한 문제가 발생하지 않습니다.**</Trans>
+<Trans>**Linter를 억제하지 않으면 오래된 값으로 인한 문제가 발생하지 않습니다.**</Trans>
 
 With `useEffectEvent`, there is no need to "lie" to the linter, and the code works as you would expect:
 <Trans>`useEffectEvent`를 사용하면 Linter에 "거짓말"을 할 필요가 없으며 코드가 예상대로 작동합니다:</Trans>
@@ -948,7 +948,7 @@ This doesn't mean that `useEffectEvent` is *always* the correct solution. You sh
 <Trans>그렇다고 해서 `useEffectEvent`가 항상 올바른 해결책이라는 의미는 아닙니다. 반응하지 않으려는 코드 줄에만 적용해야 합니다. 위의 샌드박스에서는 `canMove`와 관련하여 Effect의 코드가 반응하는 것을 원하지 않았습니다. 그렇기 때문에 Effect 이벤트를 추출하는 것이 합리적입니다.</Trans>
 
 Read [Removing Effect Dependencies](/learn/removing-effect-dependencies) for other correct alternatives to suppressing the linter.
-<Trans>Linter를 제한하는 다른 올바른 대안에 대해서는 [Effect 의존성 제거하기](https://react.dev/learn/removing-effect-dependencies)를 읽어보세요.</Trans>
+<Trans>Linter를 억제하는 다른 올바른 대안에 대해서는 [Effect 의존성 제거하기](https://react.dev/learn/removing-effect-dependencies)를 읽어보세요.</Trans>
 
 </DeepDive>
 
@@ -1115,10 +1115,10 @@ button { margin: 10px; }
 <Solution>
 
 As usual, when you're looking for bugs in Effects, start by searching for linter suppressions.
-<Trans>평소와 같이 Effect에서 버그를 찾을 때는 먼저 린터 제한을 검색합니다.</Trans>
+<Trans>평소와 같이 Effect에서 버그를 찾을 때는 먼저 린터 억제를 검색합니다.</Trans>
 
 If you remove the suppression comment, React will tell you that this Effect's code depends on `increment`, but you "lied" to React by claiming that this Effect does not depend on any reactive values (`[]`). Add `increment` to the dependency array:
-<Trans>제한 주석을 제거하면 React는 이 Effect의 코드가 `increment`에 의존한다고 알려주지만, 이 Effect는 어떤 반응 값(`[]`)에도 의존하지 않는다고 주장함으로써 React에게 "거짓말"을 한 것입니다. 의존성 배열에 `increment`를 추가합니다:</Trans>
+<Trans>억제 주석을 제거하면 React는 이 Effect의 코드가 `increment`에 의존한다고 알려주지만, 이 Effect는 어떤 반응 값(`[]`)에도 의존하지 않는다고 주장함으로써 React에게 "거짓말"을 한 것입니다. 의존성 배열에 `increment`를 추가합니다:</Trans>
 <Sandpack>
 
 ```js
@@ -1251,7 +1251,7 @@ button { margin: 10px; }
 <Solution>
 
 The issue is that the code inside the Effect uses the `increment` state variable. Since it's a dependency of your Effect, every change to `increment` causes the Effect to re-synchronize, which causes the interval to clear. If you keep clearing the interval every time before it has a chance to fire, it will appear as if the timer has stalled.
-<Trans>문제는 Effect 내부의 코드가 `increment` state 변수를 사용한다는 것입니다. 이 변수는 Effect의 종속 변수이기 때문에 '증가'를 변경할 때마다 Effect가 다시 동기화되고 이로 인해 간격이 지워집니다. Effect가 발사될 기회를 갖기 전에 매번 간격을 계속 지우면 타이머가 멈춘 것처럼 보일 것입니다.</Trans>
+<Trans>문제는 Effect 내부의 코드가 `increment` state 변수를 사용한다는 것입니다. 이 변수는 Effect의 종속 변수이기 때문에 '증가'를 변경할 때마다 Effect가 다시 동기화되고 이로 인해 interval이 지워집니다. Effect가 발사될 기회를 갖기 전에 매번 interval을 지우면 타이머가 멈춘 것처럼 보일 것입니다.</Trans>
 
 To solve the issue, extract an `onTick` Effect Event from the Effect:
 <Trans>이 문제를 해결하려면 Effect에서 `onTick` Effect 이벤트를 추출하세요:</Trans>

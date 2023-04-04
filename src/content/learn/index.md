@@ -36,7 +36,7 @@ React apps are made out of *components*. A component is a piece of the UI (user 
 <Trans>React 앱은 *컴포넌트*로 만들어집니다. 컴포넌트는 고유한 로직과 모양을 가진 UI(사용자 인터페이스)의 일부입니다. 컴포넌트는 버튼만큼 작을 수도 있고 전체 페이지만큼 클 수도 있습니다.</Trans>
 
 React components are JavaScript functions that return markup:
-<Trans>리액트 컴포넌트는 마크업을 반환하는 자바스크립트 함수입니다:</Trans>
+<Trans>리액트 컴포넌트는 마크업을 반환하는 JavaScript 함수입니다:</Trans>
 
 ```js
 function MyButton() {
@@ -212,7 +212,7 @@ export function namedExportProfileThree({ user }) {
 </Extra>
 
 The `export default` keywords specify the main component in the file. If you're not familiar with some piece of JavaScript syntax, [MDN](https://developer.mozilla.org/en-US/docs/web/javascript/reference/statements/export) and [javascript.info](https://javascript.info/import-export) have great references.
-<Trans>`export default` 키워드는 파일의 주요 컴포넌트를 지정합니다. 자바스크립트 구문에 익숙하지 않은 경우 [MDN](https://developer.mozilla.org/en-US/docs/web/javascript/reference/statements/export) 및 [javascript.info](https://javascript.info/import-export)를 참조하세요.</Trans>
+<Trans>`export default` 키워드는 파일의 주요 컴포넌트를 지정합니다. JavaScript 구문에 익숙하지 않은 경우 [MDN](https://developer.mozilla.org/en-US/docs/web/javascript/reference/statements/export) 및 [javascript.info](https://javascript.info/import-export)를 참조하세요.</Trans>
 
 
 ## Writing markup with JSX<Trans>JSX로 마크업 작성하기</Trans> {/*writing-markup-with-jsx*/}
@@ -262,7 +262,7 @@ React does not prescribe how you add CSS files. In the simplest case, you'll add
 ## Displaying data<Trans>데이터 표시하기</Trans> {/*displaying-data*/}
 
 JSX lets you put markup into JavaScript. Curly braces let you "escape back" into JavaScript so that you can embed some variable from your code and display it to the user. For example, this will display `user.name`:
-<Trans>JSX를 사용하면 자바스크립트에 마크업을 넣을 수 있습니다. 중괄호를 사용하면 코드에서 일부 변수를 삽입하여 사용자에게 표시할 수 있도록 자바스크립트로 "이스케이프"할 수 있습니다. 예를 들어 `user.name`이 표시됩니다:</Trans>
+<Trans>JSX를 사용하면 JavaScript에 마크업을 넣을 수 있습니다. 중괄호를 사용하면 코드에서 일부 변수를 삽입하여 사용자에게 표시할 수 있도록 JavaScript로 "이스케이프"할 수 있습니다. 예를 들어 `user.name`이 표시됩니다:</Trans>
 
 
 ```js {3}
@@ -274,7 +274,7 @@ return (
 ```
 
 You can also "escape into JavaScript" from JSX attributes, but you have to use curly braces *instead of* quotes. For example, `className="avatar"` passes the `"avatar"` string as the CSS class, but `src={user.imageUrl}` reads the JavaScript `user.imageUrl` variable value, and then passes that value as the `src` attribute:
-<Trans>JSX 속성에서 "자바스크립트로 이스케이프"할 수도 있지만 따옴표 *대신* 중괄호를 사용해야 합니다. 예를 들어 `className="avatar"`는 `"avatar"` 문자열을 CSS 클래스로 전달하지만 `src={user.imageUrl}`는 JavaScript `user.imageUrl` 변수 값을 읽은 다음 해당 값을 `src` 어트리뷰트로 전달합니다:</Trans>
+<Trans>JSX 속성에서 "JavaScript로 이스케이프"할 수도 있지만 따옴표 *대신* 중괄호를 사용해야 합니다. 예를 들어 `className="avatar"`는 `"avatar"` 문자열을 CSS 클래스로 전달하지만 `src={user.imageUrl}`는 JavaScript `user.imageUrl` 변수 값을 읽은 다음 해당 값을 `src` 어트리뷰트로 전달합니다:</Trans>
 
 ```js {3,4}
 return (
@@ -328,12 +328,12 @@ export default function Profile() {
 </Sandpack>
 
 In the above example, `style={{}}` is not a special syntax, but a regular `{}` object inside the `style={ }` JSX curly braces. You can use the `style` attribute when your styles depend on JavaScript variables.
-<Trans>위의 예에서 `style={{}}`은 특별한 구문이 아니라 `style={ }` JSX 중괄호 안에 있는 일반 `{}` 객체입니다. 스타일이 자바스크립트 변수에 의존할 때 `style` 속성을 사용할 수 있습니다.</Trans>
+<Trans>위의 예에서 `style={{}}`은 특별한 구문이 아니라 `style={ }` JSX 중괄호 안에 있는 일반 `{}` 객체입니다. 스타일이 JavaScript 변수에 의존할 때 `style` 속성을 사용할 수 있습니다.</Trans>
 
 ## Conditional rendering<Trans>조건부 렌더링</Trans> {/*conditional-rendering*/}
 
 In React, there is no special syntax for writing conditions. Instead, you'll use the same techniques as you use when writing regular JavaScript code. For example, you can use an [`if`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/if...else) statement to conditionally include JSX:
-<Trans>React에서는 조건을 작성하기 위한 특별한 문법이 없습니다. 대신 일반 자바스크립트 코드를 작성할 때 사용하는 것과 동일한 기법을 사용하면 됩니다. 예를 들어, [`if`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/if...else) 문을 사용하여 조건부로 JSX를 포함할 수 있습니다:</Trans>
+<Trans>React에서는 조건을 작성하기 위한 특별한 문법이 없습니다. 대신 일반 JavaScript 코드를 작성할 때 사용하는 것과 동일한 기법을 사용하면 됩니다. 예를 들어, [`if`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/if...else) 문을 사용하여 조건부로 JSX를 포함할 수 있습니다:</Trans>
 
 ```js
 let content;
@@ -374,7 +374,7 @@ When you don't need the `else` branch, you can also use a shorter [logical `&&` 
 ```
 
 All of these approaches also work for conditionally specifying attributes. If you're unfamiliar with some of this JavaScript syntax, you can start by always using `if...else`.
-<Trans>이 모든 접근 방식은 조건부로 속성을 지정할 때도 작동합니다. 이러한 자바스크립트 구문에 익숙하지 않다면 항상 `if...else`를 사용하는 것으로 시작할 수 있습니다.</Trans>
+<Trans>이 모든 접근 방식은 조건부로 속성을 지정할 때도 작동합니다. 이러한 JavaScript 구문에 익숙하지 않다면 항상 `if...else`를 사용하는 것으로 시작할 수 있습니다.</Trans>
 
 <Extra>
 #### 논리 연산자 `&&`를 이용한 조건부 렌더링 시 주의사항 - @이승효 {/*논리-연산자-를-이용한-조건부-렌더링-시-주의사항---이승효*/}

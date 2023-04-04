@@ -6,7 +6,7 @@ translatedTitle: 커스텀 훅으로 로직 재사용하기
 <Intro>
 
 React comes with several built-in Hooks like `useState`, `useContext`, and `useEffect`. Sometimes, you'll wish that there was a Hook for some more specific purpose: for example, to fetch data, to keep track of whether the user is online, or to connect to a chat room. You might not find these Hooks in React, but you can create your own Hooks for your application's needs.
-<Trans>React에는 `useState`, `useContext`, `useEffect`와 같은 몇 가지 내장 훅이 있습니다. 때로는 데이터를 불러오거나, 사용자가 온라인 상태인지 추적하거나, 채팅방에 연결하는 등 좀 더 구체적인 목적을 위한 훅이 있었으면 좋겠다는 생각을 할 수 있습니다. React에서 이러한 훅을 찾지 못할 수도 있지만 애플리케이션의 필요에 따라 자신만의 훅을 만들 수 있습니다.</Trans>
+<Trans>React에는 `useState`, `useContext`, `useEffect`와 같은 몇 가지 내장 훅이 있습니다. 때로는 데이터를 페치하거나, 사용자가 온라인 상태인지 추적하거나, 채팅방에 연결하는 등 좀 더 구체적인 목적을 위한 훅이 있었으면 좋겠다는 생각을 할 수 있습니다. React에서 이러한 훅을 찾지 못할 수도 있지만 애플리케이션의 필요에 따라 자신만의 훅을 만들 수 있습니다.</Trans>
 
 </Intro>
 
@@ -907,7 +907,7 @@ export default function ChatRoom({ roomId }) {
 ```
 
 Every time your `ChatRoom` component re-renders, it passes the latest `roomId` and `serverUrl` to your Hook. This is why your Effect re-connects to the chat whenever their values are different after a re-render. (If you ever worked with audio or video processing software, chaining Hooks like this might remind you of chaining visual or audio effects. It's as if the output of `useState` "feeds into" the input of the `useChatRoom`.)
-<Trans>`ChatRoom` 컴포넌트가 다시 렌더링할 때마다 최신 `roomId`와`serverUrl`을 Hook에 전달합니다. 이것이 바로 재렌더링 후 값이 달라질 때마다 Effect가 채팅에 다시 연결되는 이유입니다. (음악 처리 소프트웨어로 작업해 본 적이 있다면 이런 식으로 Hook을 연결하면 리버브나 코러스 추가와 같이 여러 오디오 효과를 연결하는 것을 떠올릴 수 있습니다. 마치 `useState`의 출력이 `useChatRoom`의 입력에 '피드' 되는 것과 같습니다.)</Trans>
+<Trans>`ChatRoom` 컴포넌트가 다시 렌더링할 때마다 최신 `roomId`와`serverUrl`을 Hook에 전달합니다. 이것이 바로 리렌더링 후 값이 달라질 때마다 Effect가 채팅에 다시 연결되는 이유입니다. (음악 처리 소프트웨어로 작업해 본 적이 있다면 이런 식으로 Hook을 연결하면 리버브나 코러스 추가와 같이 여러 오디오 효과를 연결하는 것을 떠올릴 수 있습니다. 마치 `useState`의 출력이 `useChatRoom`의 입력에 '피드' 되는 것과 같습니다.)</Trans>
 
 ### Passing event handlers to custom Hooks<Trans>커스텀훅에게 이벤트 핸들러 전달하기</Trans> {/*passing-event-handlers-to-custom-hooks*/}
 
@@ -1292,7 +1292,7 @@ When you synchronize with an external system, your custom Hook name may be more 
 * ✅ `useIntersectionObserver(ref, options)`
 
 **Keep custom Hooks focused on concrete high-level use cases.** Avoid creating and using custom "lifecycle" Hooks that act as alternatives and convenience wrappers for the `useEffect` API itself:
-<Trans>**커스텀 훅은 구체적인 고수준 사용 사례에 집중하세요.** `useEffect` API 자체에 대한 대안 및 편의 래퍼 역할을 하는 커스텀 "라이프사이클" 훅을 생성하거나 사용하지 마세요:</Trans>
+<Trans>**커스텀 훅은 구체적인 고수준 사용 사례에 집중하세요.** `useEffect` API 자체에 대한 대안 및 편의 래퍼 역할을 하는 커스텀 "생명주기" 훅을 생성하거나 사용하지 마세요:</Trans>
 
 * 🔴 `useMount(fn)`
 * 🔴 `useEffectOnce(fn)`
@@ -1306,7 +1306,7 @@ function ChatRoom({ roomId }) {
   const [serverUrl, setServerUrl] = useState('https://localhost:1234');
 
   // 🔴 Avoid: using custom "lifecycle" Hooks
-  // 🔴 이러지 마세요: 커스텀 "라이프사이클" 훅 사용
+  // 🔴 이러지 마세요: 커스텀 "생명주기" 훅 사용
   useMount(() => {
     const connection = createConnection({ roomId, serverUrl });
     connection.connect();
@@ -1327,7 +1327,7 @@ function useMount(fn) {
 ```
 
 **Custom "lifecycle" Hooks like `useMount` don't fit well into the React paradigm.** For example, this code example has a mistake (it doesn't "react" to `roomId` or `serverUrl` changes), but the linter won't warn you about it because the linter only checks direct `useEffect` calls. It won't know about your Hook.
-<Trans>**`useMount`와 같은 커스텀 "라이프사이클" 훅은 React 패러다임에 잘 맞지 않습니다.** 예를 들어, 이 코드 예시에는 실수가 있지만(`roomId` 및 `serverUrl`변경에 "반응"하지 않음), linter는 직접적인 `useEffect` 호출만 확인하기 때문에 경고하지 않습니다. 당신의 훅에 대해서 알지 못합니다.</Trans>
+<Trans>**`useMount`와 같은 커스텀 "생명주기" 훅은 React 패러다임에 잘 맞지 않습니다.** 예를 들어, 이 코드 예시에는 실수가 있지만(`roomId` 및 `serverUrl`변경에 "반응"하지 않음), linter는 직접적인 `useEffect` 호출만 확인하기 때문에 경고하지 않습니다. 당신의 훅에 대해서 알지 못합니다.</Trans>
 
 If you're writing an Effect, start by using the React API directly:
 <Trans>Effect를 사용할 것이라면 React API를 직접 사용하세요:</Trans>
@@ -1946,7 +1946,7 @@ Effects let you connect React to external systems. The more coordination between
 <Trans>Effects를 사용하면 React를 외부 시스템에 연결할 수 있습니다. 예를 들어 여러 애니메이션을 체인으로 연결하기 위해 효과 간의 조정이 더 많이 필요할수록 위의 샌드박스에서처럼 효과와 훅에서 해당 로직을 완전히 추출하는 것이 더 합리적입니다. 그러면 추출한 코드가 "외부 시스템"이 됩니다. 이렇게 하면 React 외부로 이동한 시스템으로 메시지를 보내기만 하면 되기 때문에 Effects를 단순하게 유지할 수 있습니다.</Trans>
 
 The examples above assume that the fade-in logic needs to be written in JavaScript. However, this particular fade-in animation is both simpler and much more efficient to implement with a plain [CSS Animation:](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Animations/Using_CSS_animations)
-<Trans>위의 예시에서는 페이드인 로직이 자바스크립트로 작성되어야 한다고 가정했습니다. 하지만 이 특정 페이드인 애니메이션은 일반 [CSS 애니메이션](https://developer.mozilla.org/ko/docs/Web/CSS/CSS_Animations/Using_CSS_animations)으로 구현하는 것이 더 간단하고 훨씬 더 효율적입니다:</Trans>
+<Trans>위의 예시에서는 페이드인 로직이 JavaScript로 작성되어야 한다고 가정했습니다. 하지만 이 특정 페이드인 애니메이션은 일반 [CSS 애니메이션](https://developer.mozilla.org/ko/docs/Web/CSS/CSS_Animations/Using_CSS_animations)으로 구현하는 것이 더 간단하고 훨씬 더 효율적입니다:</Trans>
 
 <Sandpack>
 
@@ -2161,7 +2161,7 @@ export function useCounter() {
 <Solution>
 
 Pass the `delay` to your Hook with `useCounter(delay)`. Then, inside the Hook, use `delay` instead of the hardcoded `1000` value. You'll need to add `delay` to your Effect's dependencies. This ensures that a change in `delay` will reset the interval.
-<Trans>`useCounter(delay)`로 `delay`를 훅에 전달합니다. 그런 다음 훅 내부에서 하드코딩된 `1000` 값 대신 `delay`를 사용합니다. Effect의 종속성에 `delay`를 추가해야 합니다. 이렇게 하면 `delay`가 변경되면 간격이 재설정됩니다.</Trans>
+<Trans>`useCounter(delay)`로 `delay`를 훅에 전달합니다. 그런 다음 훅 내부에서 하드코딩된 `1000` 값 대신 `delay`를 사용합니다. Effect의 종속성에 `delay`를 추가해야 합니다. 이렇게 하면 `delay`가 변경되면 interval이 재설정됩니다.</Trans>
 
 <Sandpack>
 
@@ -2214,7 +2214,7 @@ export function useCounter(delay) {
 #### Extract `useInterval` out of `useCounter`<Trans>`useCounter`에서 `useInterval` 추출하기</Trans> {/*extract-useinterval-out-of-usecounter*/}
 
 Currently, your `useCounter` Hook does two things. It sets up an interval, and it also increments a state variable on every interval tick. Split out the logic that sets up the interval into a separate Hook called `useInterval`. It should take two arguments: the `onTick` callback, and the `delay`. After this change, your `useCounter` implementation should look like this:
-<Trans>현재 사용 중인 `useCounter` 훅은 두 가지 작업을 수행합니다. 간격(interval)을 설정하고 간격이 틱 될 때마다 state 변수를 증가시킵니다. 간격을 설정하는 로직을 `useInterval`이라는 별도의 훅으로 분리하세요. 이 훅은 `onTick` 과`delay` 라는 두 개의 인수를 받아야 합니다. 이렇게 변경하면 `useCounter`구현은 다음과 같이 보일 것입니다:</Trans>
+<Trans>현재 사용 중인 `useCounter` 훅은 두 가지 작업을 수행합니다. interval을 설정하고 간격이 tick 될 때마다 state 변수를 증가시킵니다. interval을 설정하는 로직을 `useInterval`이라는 별도의 훅으로 분리하세요. 이 훅은 `onTick` 과`delay` 라는 두 개의 인수를 받아야 합니다. 이렇게 변경하면 `useCounter`구현은 다음과 같이 보일 것입니다:</Trans>
 
 ```js
 export function useCounter(delay) {
@@ -2410,7 +2410,7 @@ export function useInterval(onTick, delay) {
 <Solution>
 
 Inside `useInterval`, wrap the tick callback into an Effect Event, as you did [earlier on this page.](/learn/reusing-logic-with-custom-hooks#passing-event-handlers-to-custom-hooks)
-<Trans>`useInterval` 내에서 [이 페이지의 앞부분에서 한 것처럼](/learn/reusing-logic-with-custom-hook#passing-event-handlers-to-custom-hook) 틱 콜백을 효과 이벤트에 래핑합니다.</Trans>
+<Trans>`useInterval` 내에서 [이 페이지의 앞부분에서 한 것처럼](/learn/reusing-logic-with-custom-hook#passing-event-handlers-to-custom-hook) tick 콜백을 효과 이벤트에 래핑합니다.</Trans>
 
 This will allow you to omit `onTick` from dependencies of your Effect. The Effect won't re-synchronize on every re-render of the component, so the page background color change interval won't get reset every second before it has a chance to fire.
 <Trans>이렇게 하면 Effect의 종속성에서 `onTick`을 생략할 수 있습니다. 컴포넌트를 다시 렌더링할 때마다 Effect가 다시 동기화되지 않으므로 페이지 배경색 변경 간격이 매초마다 재설정되지 않고 실행될 수 있습니다.</Trans>

@@ -33,7 +33,7 @@ Other popular text editors used in the React community include:
 * [Vim](https://www.vim.org/) is a highly configurable text editor built to make creating and changing any kind of text very efficient. It is included as "vi" with most UNIX systems and with Apple OS X.
 
 <TransBlock>
-  - [웹스톰](https://www.jetbrains.com/webstorm/)은 자바스크립트를 위해 특별히 설계된 통합 개발 환경입니다.
+  - [웹스톰](https://www.jetbrains.com/webstorm/)은 JavaScript를 위해 특별히 설계된 통합 개발 환경입니다.
   - [Sublime Text](https://www.sublimetext.com/)는 JSX와 TypeScript를 지원하며, [구문 강조](https://stackoverflow.com/a/70960574/458193) 및 자동 완성 기능이 내장되어 있습니다.
   - [Vim](https://www.vim.org/)은 모든 종류의 텍스트를 매우 효율적으로 생성하고 변경할 수 있도록 고도로 구성 가능한 텍스트 편집기입니다. 대부분의 UNIX 시스템과 Apple OS X에 "vi"로 포함되어 있습니다.
 </TransBlock>
@@ -46,7 +46,7 @@ Some editors come with these features built in, but others might require adding 
 ### Linting {/*linting*/}
 
 Code linters find problems in your code as you write, helping you fix them early. [ESLint](https://eslint.org/) is a popular, open source linter for JavaScript. 
-<Trans>코드 린트는 코드를 작성할 때 코드의 문제를 찾아내어 조기에 수정할 수 있도록 도와줍니다. [ESLint](https://eslint.org/)는 널리 사용되는 자바스크립트용 오픈 소스 린터입니다.</Trans>
+<Trans>코드 린트는 코드를 작성할 때 코드의 문제를 찾아내어 조기에 수정할 수 있도록 도와줍니다. [ESLint](https://eslint.org/)는 널리 사용되는 JavaScript용 오픈 소스 린터입니다.</Trans>
 
 * [Install ESLint with the recommended configuration for React](https://www.npmjs.com/package/eslint-config-react-app) (be sure you have [Node installed!](https://nodejs.org/en/download/current/))
 * [Integrate ESLint in VSCode with the official extension](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)

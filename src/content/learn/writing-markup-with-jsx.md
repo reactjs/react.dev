@@ -73,7 +73,7 @@ Each React component is a JavaScript function that may contain some markup that 
 <Note>
 
 JSX and React are two separate things. They're often used together, but you *can* [use them independently](https://reactjs.org/blog/2020/09/22/introducing-the-new-jsx-transform.html#whats-a-jsx-transform) of each other. JSX is a syntax extension, while React is a JavaScript library.
-<Trans>JSX와 React는 서로 다른 별개의 개념입니다. 종종 함께 사용되기도 하지만 [독립적으로](https://reactjs.org/blog/2020/09/22/introducing-the-new-jsx-transform.html#whats-a-jsx-transform) 사용할 수도 있습니다. JSX는 구문 확장이고, React는 자바스크립트 라이브러리입니다.</Trans>
+<Trans>JSX와 React는 서로 다른 별개의 개념입니다. 종종 함께 사용되기도 하지만 [독립적으로](https://reactjs.org/blog/2020/09/22/introducing-the-new-jsx-transform.html#whats-a-jsx-transform) 사용할 수도 있습니다. JSX는 구문 확장이고, React는 JavaScript 라이브러리입니다.</Trans>
 
 </Note>
 

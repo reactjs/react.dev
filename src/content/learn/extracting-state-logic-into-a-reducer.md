@@ -295,7 +295,7 @@ function handleDeleteTask(taskId) {
 ```
 
 It is a regular JavaScript object. You decide what to put in it, but generally it should contain the minimal information about _what happened_. (You will add the `dispatch` function itself in a later step.)
-<Trans>이 객체는 일반적인 자바스크립트 객체입니다. 여기에 무엇을 넣을지는 여러분이 결정하지만, 일반적으로 _무슨 일이 일어났는지_ 에 대한 최소한의 정보를 포함해야 합니다. (`dispatch` 함수 자체는 이후 단계에서 추가할 것입니다.)</Trans>
+<Trans>이 객체는 일반적인 JavaScript 객체입니다. 여기에 무엇을 넣을지는 여러분이 결정하지만, 일반적으로 _무슨 일이 일어났는지_ 에 대한 최소한의 정보를 포함해야 합니다. (`dispatch` 함수 자체는 이후 단계에서 추가할 것입니다.)</Trans>
 
 <Note>
 
@@ -967,7 +967,7 @@ Keep these two tips in mind when writing reducers:
 ## Writing concise reducers with Immer<Trans>Immer를 사용하여 간결한 reducer 작성하기</Trans> {/*writing-concise-reducers-with-immer*/}
 
 Just like with [updating objects](/learn/updating-objects-in-state#write-concise-update-logic-with-immer) and [arrays](/learn/updating-arrays-in-state#write-concise-update-logic-with-immer) in regular state, you can use the Immer library to make reducers more concise. Here, [`useImmerReducer`](https://github.com/immerjs/use-immer#useimmerreducer) lets you mutate the state with `push` or `arr[i] =` assignment:
-<Trans>일반 state의 [객체](/learn/updating-objects-in-state#write-concise-update-logic-with-immer)와 [배열을 변경](/learn/updating-arrays-in-state#write-concise-update-logic-with-immer)할 때와 마찬가지로 Immer 라이브러리를 사용해 reducer를 더 간결하게 만들 수 있습니다. 여기서 `useImmerReducer`를 사용하면 `push` 또는 `arr[i] =` 할당으로 state를 변경할 수 있습니다:</Trans>
+<Trans>일반 state의 [객체](/learn/updating-objects-in-state#write-concise-update-logic-with-immer)와 [배열을 변경](/learn/updating-arrays-in-state#write-concise-update-logic-with-immer)할 때와 마찬가지로 Immer 라이브러리를 사용해 reducer를 더 간결하게 만들 수 있습니다. 여기서 `useImmerReducer`를 사용하면 `push` 또는 `arr[i] =` 할당으로 state를 변이할 수 있습니다:</Trans>
 
 <Sandpack>
 
@@ -1186,7 +1186,7 @@ Reducers must be pure, so they shouldn't mutate state. But Immer provides you wi
 - reducer를 사용하면 코드를 조금 더 작성해야 하지만 디버깅과 테스트에 도움이 됩니다.
 - reducer는 반드시 순수해야 합니다.
 - 각 action은 단일 사용자 상호작용을 설명해야 합니다.
-- mutating 스타일로 reducer를 작성하려면 Immer를 사용하세요.
+- 변이 스타일로 reducer를 작성하려면 Immer를 사용하세요.
 </TransBlock>
 
 </Recap>

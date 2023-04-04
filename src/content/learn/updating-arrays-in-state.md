@@ -562,7 +562,7 @@ setMyList(myList.map(artwork => {
     // No changes
     return artwork;
   }
-});
+}));
 ```
 
 Here, `...` is the object spread syntax used to [create a copy of an object.](/learn/updating-objects-in-state#copying-objects-with-the-spread-syntax)

@@ -9,7 +9,7 @@ export const siteConfig = {
   twitterUrl: 'https://twitter.com/reactjs',
   algolia: {
     appId: '1FCF9AYYAT',
-    apiKey: '861ccfb8707150c0e776b88357286123',
+    apiKey: 'e8451218980a351815563de007648b00',
     indexName: 'beta-react',
   },
 };

@@ -3,7 +3,7 @@ title: 번역 진행상황
 ---
 
 <Intro>
-last updated @ 2023-04-03 PM 18:00
+last updated @ 2023-04-04 PM 12:30
 </Intro>
 
 ## 완료 페이지 {/*완료-페이지*/}
@@ -28,6 +28,7 @@ last updated @ 2023-04-03 PM 18:00
 - [4-4. Effect가 필요하지 않을 수도 있습니다 :: You Might Not Need an Effect](/learn/you-might-not-need-an-effect)
 - [4-5. 반응형 Effect의 생명주기 :: Lifecycle of Reactive Effects](/learn/lifecycle-of-reactive-effects)
 - [4-6. 이벤트와 Effect 분리하기 :: Separating Events from Effects](/learn/separating-events-from-effects)
+- [4-7. Effect 종속성 제거하기 :: Removing Effect Dependencies](/learn/removing-effect-dependencies)
 - [4-8. 커스텀 훅으로 로직 재사용하기 :: Reusing Logic with Custom Hooks](/learn/reusing-logic-with-custom-hooks)
 
 ## 전체 진행상황 {/*전체-진행상황*/}
@@ -74,7 +75,7 @@ last updated @ 2023-04-03 PM 18:00
 | O | [4-4. Effect가 필요하지 않을 수도 있습니다 :: You Might Not Need an Effect](/learn/you-might-not-need-an-effect) | 
 | O | [4-5. 반응형 Effect의 생명주기 :: Lifecycle of Reactive Effects](/learn/lifecycle-of-reactive-effects) | 
 | O | [4-6. 이벤트와 Effect 분리하기 :: Separating Events from Effects](/learn/separating-events-from-effects) | 
-| X | [4-7. Effect 종속성 제거하기 :: Removing Effect Dependencies](/learn/removing-effect-dependencies) | 
+| O | [4-7. Effect 종속성 제거하기 :: Removing Effect Dependencies](/learn/removing-effect-dependencies) | 
 | O | [4-8. 커스텀 훅으로 로직 재사용하기 :: Reusing Logic with Custom Hooks](/learn/reusing-logic-with-custom-hooks) | 
 | X | [5. Hooks](/reference/react) |
 | X | [5-1. useCallback](/reference/react/useCallback) |

@@ -742,7 +742,7 @@ When switching back, the `div` is deleted and the new `section` is added
 </DiagramGroup>
 
 As a rule of thumb, **if you want to preserve the state between re-renders, the structure of your tree needs to "match up"** from one render to another. If the structure is different, the state gets destroyed because React destroys state when it removes a component from the tree.
-<Trans>경험칙상 **재랜더링 사이에 state를 유지하려면 트리의 구조가 "일치"해야 합니다**. 구조가 다르면 React는 트리에서 컴포넌트를 제거할 때 state를 파괴하기 때문입니다.</Trans>
+<Trans>경험칙상 **리렌더링 사이에 state를 유지하려면 트리의 구조가 "일치"해야 합니다**. 구조가 다르면 React는 트리에서 컴포넌트를 제거할 때 state를 파괴하기 때문입니다.</Trans>
 
 <Pitfall>
 
@@ -1511,7 +1511,7 @@ It almost works, but there is a bug. If you fill in the "First name" input and t
 <Hint>
 
 It seems like for these fields, their position within the parent is not enough. Is there some way to tell React how to match up the state between re-renders?
-<Trans>이러한 필드의 경우 부모 내에서의 위치만으로는 충분하지 않은 것 같습니다. 리랜더링 간에 state를 일치시키는 방법을 React에 알려줄 방법이 있을까요?</Trans>
+<Trans>이러한 필드의 경우 부모 내에서의 위치만으로는 충분하지 않은 것 같습니다. 리렌더링 간에 state를 일치시키는 방법을 React에 알려줄 방법이 있을까요?</Trans>
 </Hint>
 
 <Sandpack>

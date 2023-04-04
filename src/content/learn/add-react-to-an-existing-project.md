@@ -13,7 +13,7 @@ If you want to add some interactivity to your existing project, you don't have t
 <Note>
 
 **You need to install [Node.js](https://nodejs.org/en/) for local development.** Although you can [try React](/learn/installation#try-react) online or with a simple HTML page, realistically most JavaScript tooling you'll want to use for development requires Node.js.
-<Trans>**로컬 개발을 위해서는 [Node.js](https://nodejs.org/en/)를 설치해야 합니다.** 온라인이나 간단한 HTML 페이지에서 [React를 사용](/learn/installation#try-react)해 볼 수는 있지만, 현실적으로 개발에 사용할 대부분의 자바스크립트 도구에는 Node.js가 필요합니다.</Trans>
+<Trans>**로컬 개발을 위해서는 [Node.js](https://nodejs.org/en/)를 설치해야 합니다.** 온라인이나 간단한 HTML 페이지에서 [React를 사용](/learn/installation#try-react)해 볼 수는 있지만, 현실적으로 개발에 사용할 대부분의 JavaScript 도구에는 Node.js가 필요합니다.</Trans>
 
 </Note>
 
@@ -53,23 +53,23 @@ You can do this in two steps:
 2. **Render your React components** where you want to see them on the page.
 
 <TransBlock>
-1. **[JSX 구문](/learn/writing-markup-with-jsx)을 사용할 수 있는 자바스크립트 환경**을 설정하고, [`import`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import) / [`export`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/export) 구문을 사용하여 코드를 모듈로 분할한 다음, [npm](https://www.npmjs.com/) 패키지 레지스트리에서 패키지(예: React)를 사용하세요.
+1. **[JSX 구문](/learn/writing-markup-with-jsx)을 사용할 수 있는 JavaScript 환경**을 설정하고, [`import`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import) / [`export`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/export) 구문을 사용하여 코드를 모듈로 분할한 다음, [npm](https://www.npmjs.com/) 패키지 레지스트리에서 패키지(예: React)를 사용하세요.
 2. 페이지에서 보고 싶은 위치에 React 컴포넌트를 **렌더링**합니다.
 </TransBlock>
 
 The exact approach depends on your existing page setup, so let's walk through some details.
 <Trans>정확한 접근 방식은 기존 페이지 설정에 따라 다르므로 몇 가지 세부 사항을 살펴봅시다.</Trans>
 
-### Step 1: Set up a modular JavaScript environment<Trans>모듈형 자바스크립트 환경 설정</Trans> {/*step-1-set-up-a-modular-javascript-environment*/}
+### Step 1: Set up a modular JavaScript environment<Trans>모듈형 JavaScript 환경 설정</Trans> {/*step-1-set-up-a-modular-javascript-environment*/}
 
 A modular JavaScript environment lets you write your React components in individual files, as opposed to writing all of your code in a single file. It also lets you use all the wonderful packages published by other developers on the [npm](https://www.npmjs.com/) registry--including React itself! How you do this depends on your existing setup:
-<Trans>모듈형 자바스크립트 환경에서는 모든 코드를 하나의 파일에 작성하는 대신 개별 파일에 React 컴포넌트를 작성할 수 있습니다. 또한 React 자체를 포함해 다른 개발자가 [npm](https://www.npmjs.com/) 레지스트리에 게시한 모든 멋진 패키지를 사용할 수 있습니다. 이 작업을 수행하는 방법은 기존 설정에 따라 다릅니다:</Trans>
+<Trans>모듈형 JavaScript 환경에서는 모든 코드를 하나의 파일에 작성하는 대신 개별 파일에 React 컴포넌트를 작성할 수 있습니다. 또한 React 자체를 포함해 다른 개발자가 [npm](https://www.npmjs.com/) 레지스트리에 게시한 모든 멋진 패키지를 사용할 수 있습니다. 이 작업을 수행하는 방법은 기존 설정에 따라 다릅니다:</Trans>
 
 * **If your app is already split into files that use `import` statements,** try to use the setup you already have. Check whether writing `<div />` in your JS code causes a syntax error. If it causes a syntax error, you might need to [transform your JavaScript code with Babel](https://babeljs.io/setup), and enable the [Babel React preset](https://babeljs.io/docs/babel-preset-react) to use JSX.
-<Trans>**앱이 이미 `import` 문을 사용하는 파일로 분할되어 있는 경우,** 이미 가지고 있는 설정을 사용해보세요. JS 코드에 `<div />`를 작성하면 구문 오류가 발생하는지 확인하세요. 구문 오류가 발생하면 [Babel로 자바스크립트 코드 변환](https://babeljs.io/setup)을 하고 [Babel React 프리셋](https://babeljs.io/docs/babel-preset-react)을 활성화하여 JSX를 사용해야 할 수 있습니다.</Trans>
+<Trans>**앱이 이미 `import` 문을 사용하는 파일로 분할되어 있는 경우,** 이미 가지고 있는 설정을 사용해보세요. JS 코드에 `<div />`를 작성하면 구문 오류가 발생하는지 확인하세요. 구문 오류가 발생하면 [Babel로 JavaScript 코드 변환](https://babeljs.io/setup)을 하고 [Babel React 프리셋](https://babeljs.io/docs/babel-preset-react)을 활성화하여 JSX를 사용해야 할 수 있습니다.</Trans>
 
 * **If your app doesn't have an existing setup for compiling JavaScript modules,** set it up with [Vite](https://vitejs.dev/). The Vite community maintains [many integrations with backend frameworks](https://github.com/vitejs/awesome-vite#integrations-with-backends), including Rails, Django, and Laravel. If your backend framework is not listed, [follow this guide](https://vitejs.dev/guide/backend-integration.html) to manually integrate Vite builds with your backend.
-<Trans>**앱에 자바스크립트 모듈 컴파일을 위한 기존 설정이 없는 경우** [Vite](https://vitejs.dev/)로 설정하세요. Vite 커뮤니티는 Rails, Django, Laravel을 포함한 [백엔드 프레임워크와의 다양한 통합](https://github.com/vitejs/awesome-vite#integrations-with-backends)을 유지 관리합니다. 사용 중인 백엔드 프레임워크가 목록에 없는 경우, [이 가이드](https://vitejs.dev/guide/backend-integration.html)를 따라 Vite 빌드를 백엔드와 수동으로 통합하세요.</Trans>
+<Trans>**앱에 JavaScript 모듈 컴파일을 위한 기존 설정이 없는 경우** [Vite](https://vitejs.dev/)로 설정하세요. Vite 커뮤니티는 Rails, Django, Laravel을 포함한 [백엔드 프레임워크와의 다양한 통합](https://github.com/vitejs/awesome-vite#integrations-with-backends)을 유지 관리합니다. 사용 중인 백엔드 프레임워크가 목록에 없는 경우, [이 가이드](https://vitejs.dev/guide/backend-integration.html)를 따라 Vite 빌드를 백엔드와 수동으로 통합하세요.</Trans>
 
 
 To check whether your setup works, run this command in your project folder:
@@ -80,7 +80,7 @@ npm install react react-dom
 </TerminalBlock>
 
 Then add these lines of code at the top of your main JavaScript file (it might be called `index.js` or `main.js`):
-<Trans>그런 다음 메인 자바스크립트 파일(`index.js` 또는 `main.js`라고 할 수 있음) 상단에 다음 코드 줄을 추가합니다:</Trans>
+<Trans>그런 다음 메인 JavaScript 파일(`index.js` 또는 `main.js`라고 할 수 있음) 상단에 다음 코드 줄을 추가합니다:</Trans>
 
 <Sandpack>
 
@@ -113,7 +113,7 @@ If the entire content of your page was replaced by a "Hello, world!", everything
 <Note>
 
 Integrating a modular JavaScript environment into an existing project for the first time can feel intimidating, but it's worth it! If you get stuck, try our [community resources](/community) or the [Vite Chat](https://chat.vitejs.dev/).
-<Trans>모듈형 자바스크립트 환경을 기존 프로젝트에 처음 통합하는 것은 어렵게 느껴질 수 있지만 그만한 가치가 있습니다! 막히는 부분이 있으면 [커뮤니티 리소스](/community) 또는 [Vite 채팅](https://chat.vitejs.dev/)을 사용해 보세요.</Trans>
+<Trans>모듈형 JavaScript 환경을 기존 프로젝트에 처음 통합하는 것은 어렵게 느껴질 수 있지만 그만한 가치가 있습니다! 막히는 부분이 있으면 [커뮤니티 리소스](/community) 또는 [Vite 채팅](https://chat.vitejs.dev/)을 사용해 보세요.</Trans>
 
 </Note>
 

@@ -6,7 +6,7 @@ translatedTitle: 새 리액트 프로젝트 시작하기
 <Intro>
 
 If you want to build a new app or a new website fully with React, we recommend picking one of the React-powered frameworks popular in the community. Frameworks provide features that most apps and sites eventually need, including routing, data fetching, and generating HTML.
-<Trans>새 앱이나 새 웹사이트를 React로 완전히 구축하려면 커뮤니티에서 인기 있는 React 기반 프레임워크 중 하나를 선택하는 것이 좋습니다. 프레임워크는 라우팅, 데이터 불러오기, HTML 생성 등 대부분의 앱과 사이트에서 궁극적으로 필요로 하는 기능을 제공합니다.</Trans>
+<Trans>새 앱이나 새 웹사이트를 React로 완전히 구축하려면 커뮤니티에서 인기 있는 React 기반 프레임워크 중 하나를 선택하는 것이 좋습니다. 프레임워크는 라우팅, 데이터 페치하기, HTML 생성 등 대부분의 앱과 사이트에서 궁극적으로 필요로 하는 기능을 제공합니다.</Trans>
 
 </Intro>
 
@@ -90,10 +90,10 @@ Here's why.
 <Trans>그 이유는 다음과 같습니다.</Trans>
 
 Even if you don't need routing or data fetching at first, you'll likely want to add some libraries for them. As your JavaScript bundle grows with every new feature, you might have to figure out how to split code for every route individually. As your data fetching needs get more complex, you are likely to encounter server-client network waterfalls that make your app feel very slow. As your audience includes more users with poor network conditions and low-end devices, you might need to generate HTML from your components to display content early--either on the server, or during the build time. Changing your setup to run some of your code on the server or during the build can be very tricky.
-<Trans>처음에는 routing이나 데이터 페칭이 필요하지 않더라도 이를 위한 라이브러리를 추가하고싶을 것입니다. 새로운 기능이 추가될 때마다 자바스크립트 번들이 증가함에 따라 모든 경로에 대한 코드를 개별적으로 분할하는 방법을 찾아야 할 수 있습니다. 데이터 페칭의 요구사항이 복잡해지면 서버-클라이언트 네트워크 워터폴이 발생하여 앱이 매우 느리게 느껴질 수 있습니다. 네트워크 상태가 좋지않은 사용자나 저사양기기를 사용하는 사용자가 대상에 더 많이 포함되므로 서버 또는 빌드 시간 중에 컨텐츠를 우선적으로 표시하기 위해 컴포넌트에서 HTML을 생성해야 할 수 있습니다. 서버 또는 빌드 중에 일부 코드를 실행하도록 설정을 변경하는 것은 매우 까다로울 수 있습니다.</Trans>
+<Trans>처음에는 routing이나 데이터 페칭이 필요하지 않더라도 이를 위한 라이브러리를 추가하고싶을 것입니다. 새로운 기능이 추가될 때마다 JavaScript 번들이 증가함에 따라 모든 경로에 대한 코드를 개별적으로 분할하는 방법을 찾아야 할 수 있습니다. 데이터 페칭의 요구사항이 복잡해지면 서버-클라이언트 네트워크 워터폴이 발생하여 앱이 매우 느리게 느껴질 수 있습니다. 네트워크 상태가 좋지않은 사용자나 저사양기기를 사용하는 사용자가 대상에 더 많이 포함되므로 서버 또는 빌드 시간 중에 컨텐츠를 우선적으로 표시하기 위해 컴포넌트에서 HTML을 생성해야 할 수 있습니다. 서버 또는 빌드 중에 일부 코드를 실행하도록 설정을 변경하는 것은 매우 까다로울 수 있습니다.</Trans>
 
 **These problems are not React-specific. This is why Svelte has SvelteKit, Vue has Nuxt, and so on.** To solve these problems on your own, you'll need to integrate your bundler with your router and with your data fetching library. It's not hard to get an initial setup working, but there are a lot of subtleties involved in making an app that loads quickly even as it grows over time. You'll want to send down the minimal amount of app code but do so in a single client–server roundtrip, in parallel with any data required for the page. You'll likely want the page to be interactive before your JavaScript code even runs, to support progressive enhancement. You may want to generate a folder of fully static HTML files for your marketing pages that can be hosted anywhere and still work with JavaScript disabled. Building these capabilities yourself takes real work.
-<Trans>**이러한 문제는 React에만 국한된 것이 아닙니다. 이것은 Svelte에 SvelteKit이 있고, Vue에 Nuxt가 있는 이유입니다.** 이러한 문제를 해결하려면 번들러를 라우터 및 데이터 페칭 라이브러리와 통합해야합니다. 초기 설정은 어렵지 않지만 시간이 지나면서 앱이 커져도 빠르게 로드되는 앱을 만드는 데에는 미묘한 차이가 있습니다. 최소한의 앱의 코드를 전송하면서 페이지에 필요한 모든 데이터와 함께 클라이언트-서버를 한 번으로 전송하는 방법이 좋습니다. 당신은 점진적인 개선을 지원하기 위해 자바스크립트 코드가 실행하기 전에 페이지가 인터랙티브하게 표시되기를 원할 것입니다. 어디서나 호스팅이 가능하며 자바스크립트가 비활성화한 상태에서도 작동하는 마케팅 페이지용 정적 HTML폴더를 생성하고 싶을 수 있습니다. 이런 기능을 직접 구축한다면 상당한 노력이 필요합니다.</Trans>
+<Trans>**이러한 문제는 React에만 국한된 것이 아닙니다. 이것은 Svelte에 SvelteKit이 있고, Vue에 Nuxt가 있는 이유입니다.** 이러한 문제를 해결하려면 번들러를 라우터 및 데이터 페칭 라이브러리와 통합해야합니다. 초기 설정은 어렵지 않지만 시간이 지나면서 앱이 커져도 빠르게 로드되는 앱을 만드는 데에는 미묘한 차이가 있습니다. 최소한의 앱의 코드를 전송하면서 페이지에 필요한 모든 데이터와 함께 클라이언트-서버를 한 번으로 전송하는 방법이 좋습니다. 당신은 점진적인 개선을 지원하기 위해 JavaScript 코드가 실행하기 전에 페이지가 인터랙티브하게 표시되기를 원할 것입니다. 어디서나 호스팅이 가능하며 JavaScript가 비활성화한 상태에서도 작동하는 마케팅 페이지용 정적 HTML폴더를 생성하고 싶을 수 있습니다. 이런 기능을 직접 구축한다면 상당한 노력이 필요합니다.</Trans>
 
 **React frameworks on this page solve problems like these by default, with no extra work from your side.** They let you start very lean and then scale your app with your needs. Each React framework has a community, so finding answers to questions and upgrading tooling is easier. Frameworks also give structure to your code, helping you and others retain context and skills between different projects. Conversely, with a custom setup it's easier to get stuck on unsupported dependency versions, and you'll essentially end up creating your own framework—albeit one with no community or upgrade path (and if it's anything like the ones we've made in the past, more haphazardly designed).
 <Trans>**이 페이지의 React 프레임워크는 사용자가 추가작업을 하지 않아도 기본적으로 같은 문제를 해결합니다.** 매우 간결하게 시작한 다음, 필요에 따라 앱을 확장할 수도 있습니다. 각 React 프레임워크에는 커뮤니티가 있으며 질문에 대한 답을 찾고 툴을 업그래이드 하는 것이 더 쉽습니다. 또한 프레임워크는 코드에 구조를 부여하여 다른 사람들이 다른 프로젝트간의 컨텍스트와 기술을 유지할 수 있도록 도와줍니다. 반대로 사용자 정의 설정을 사용하면, 지원되지 않는 종속성 버전에 갇히기 쉬우며, 커뮤니티나 업그레이드 경로가 없는 (그리고 과거에 만들었던 프레임워크와 마찬가지로 더 엉성하게 설계된) 자체 프레임워크를 만들게 될 것입니다.</Trans>
@@ -114,7 +114,7 @@ These features are getting closer to being production-ready every day, and we've
 ### Next.js (App Router) {/*nextjs-app-router*/}
 
 **[Next.js's App Router](https://beta.nextjs.org/docs/getting-started) is a redesign of the Next.js APIs aiming to fulfill the React team’s full-stack architecture vision.** It lets you fetch data in asynchronous components that run on the server or even during the build.
-<Trans>[**Next.js의 앱 라우터](https://beta.nextjs.org/docs/getting-started)는 React 팀의 풀스택 아키텍처 비전을 실현하기 위해 Next.js API를 재설계한 것입니다.** 서버에서 실행되거나 빌드 중에도 비동기 컴포넌트에서 데이터를 가져올 수 있도록 해줍니다.</Trans>
+<Trans>[**Next.js의 앱 라우터](https://beta.nextjs.org/docs/getting-started)는 React 팀의 풀스택 아키텍처 비전을 실현하기 위해 Next.js API를 재설계한 것입니다.** 서버에서 실행되거나 빌드 중에도 비동기 컴포넌트에서 데이터를 페치할 수 있도록 해줍니다.</Trans>
 
 Next.js is maintained by [Vercel](https://vercel.com/). You can [deploy a Next.js app](https://nextjs.org/docs/deployment) to any Node.js or serverless hosting, or to your own server. Next.js also supports [static export](https://beta.nextjs.org/docs/configuring/static-export) which doesn't require a server.
 <Trans>Next.js는 [Vercel](https://vercel.com/)에서 유지 관리합니다. Next.js 앱을]([https://nextjs.org/docs/deployment](https://nextjs.org/docs/deployment)) 모든 Node.js 또는 서버리스 호스팅 또는 자체 서버에 배포할 수 있습니다. 정적 내보내기는 Next.js의 앱 라우터에서 지원하기로 [계획되어 있습니다.](https://beta.nextjs.org/docs/app-directory-roadmap#configuration)</Trans>
@@ -145,7 +145,7 @@ async function Talks({ confId }) {
   const talks = await db.Talks.findAll({ confId });
 
   // 2. Add any amount of rendering logic. It won't make your JavaScript bundle larger.
-  // 2. 원하는 만큼 렌더링 로직을 추가합니다. 자바스크립트 번들을 더 크게 만들지는 않습니다.
+  // 2. 원하는 만큼 렌더링 로직을 추가합니다. JavaScript 번들을 더 크게 만들지는 않습니다.
   const videos = talks.map(talk => talk.video);
 
   // 3. Pass the data down to the components that will run in the browser.
@@ -155,7 +155,7 @@ async function Talks({ confId }) {
 ```
 
 Next.js's App Router also integrates [data fetching with Suspense](/blog/2022/03/29/react-v18#suspense-in-data-frameworks). This lets you specify a loading state (like a skeleton placeholder) for different parts of your user interface directly in your React tree:
-<Trans>Next.js의 App Router는 데이터 불러오기를 통해 [데이터 페칭과 Suspense를 통합](/blog/2022/03/29/react-v18#suspense-in-data-frameworks)하기도 합니다.  이를 통해 사용자 인터페이스의 여러 부분에 대한 로딩 state(예: 스켈레톤 placeholder)를 React 트리에서 직접 지정할 수 있습니다.</Trans>
+<Trans>Next.js의 App Router는 [데이터 페칭과 Suspense](/blog/2022/03/29/react-v18#suspense-in-data-frameworks)를 통합하기도 합니다.  이를 통해 사용자 인터페이스의 여러 부분에 대한 로딩 state(예: 스켈레톤 placeholder)를 React 트리에서 직접 지정할 수 있습니다.</Trans>
 
 ```js
 <Suspense fallback={<TalksLoading />}>

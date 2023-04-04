@@ -22,11 +22,11 @@ Some of your components may need to control and synchronize with systems outside
 * [How to share logic between components](/learn/reusing-logic-with-custom-hooks)
 
 <TransBlock>
-* [재렌더링하지 않고 정보를 "기억"하는 방법](/learn/referencing-values-with-refs)
+* [리렌더링하지 않고 정보를 "기억"하는 방법](/learn/referencing-values-with-refs)
 * [React가 관리하는 DOM 엘리먼트에 접근하는 방법](/learn/manipulating-the-dom-with-refs)
 * [컴포넌트를 외부 시스템과 동기화하는 방법](/learn/synchronizing-with-effects)
 * [컴포넌트에서 불필요한 Effect를 제거하는 방법](/learn/you-might-not-need-an-effect)
-* [effect의 라이프사이클이 컴포넌트와 어떻게 다른지](/learn/lifecycle-of-reactive-effects)
+* [effect의 생명주기가 컴포넌트와 어떻게 다른지](/learn/lifecycle-of-reactive-effects)
 * [일부 값이 Effect를 다시 트리거하는 것을 방지하는 방법](/learn/separating-events-from-effects)
 * [Effect 재실행 빈도를 줄이는 방법](/learn/removing-effect-dependencies)
 * [컴포넌트 간 로직을 공유하는 방법](/learn/reusing-logic-with-custom-hooks)
@@ -364,7 +364,7 @@ Event handlers only re-run when you perform the same interaction again. Unlike e
 <Trans>이벤트 핸들러는 동일한 상호작용을 다시 수행할 때만 다시 실행됩니다. 이벤트 핸들러와 달리 Effect는 prop이나 state 변수처럼 읽은 값이 마지막 렌더링에서와 다른 경우 다시 동기화합니다. 때로는 두 가지 동작을 혼합하여 일부 값에는 반응하지만 다른 값에는 반응하지 않는 효과를 원할 수 있습니다.</Trans>
 
 All code inside Effects is *reactive.* It will run again if some reactive value it reads has changed due to a re-render. For example, this Effect will re-connect to the chat if either `roomId` or `theme` have changed:
-<Trans>Effect 내의 모든 코드는 *반응형*이며, 읽은 반응형 값이 재렌더링으로 인해 변경된 경우 다시 실행됩니다. 예를 들어, 다음의 Effect는 상호작용 후 `roomId` 또는 `theme`이 변경된 경우 채팅에 다시 연결됩니다:</Trans>
+<Trans>Effect 내의 모든 코드는 *반응형*이며, 읽은 반응형 값이 리렌더링으로 인해 변경된 경우 다시 실행됩니다. 예를 들어, 다음의 Effect는 상호작용 후 `roomId` 또는 `theme`이 변경된 경우 채팅에 다시 연결됩니다:</Trans>
 
 <Sandpack>
 
@@ -805,7 +805,7 @@ Read [**Removing Effect Dependencies**](/learn/removing-effect-dependencies) to 
 ## Reusing logic with custom Hooks<Trans>커스텀 훅으로 로직 재사용하기</Trans> {/*reusing-logic-with-custom-hooks*/}
 
 React comes with built-in Hooks like `useState`, `useContext`, and `useEffect`. Sometimes, you’ll wish that there was a Hook for some more specific purpose: for example, to fetch data, to keep track of whether the user is online, or to connect to a chat room. To do this, you can create your own Hooks for your application's needs.
-<Trans>React에는 `useState`, `useContext`, `useEffect`와 같은 훅이 내장되어 있습니다. 때로는 데이터를 불러오거나, 사용자가 온라인 상태인지 추적하거나, 채팅방에 연결하는 것과 같이 좀 더 구체적인 목적을 위한 훅이 있었으면 좋겠습니다. 이를 위해 애플리케이션의 필요에 맞는 고유한 훅을 만들 수 있습니다.</Trans>
+<Trans>React에는 `useState`, `useContext`, `useEffect`와 같은 훅이 내장되어 있습니다. 때로는 데이터를 페치하거나, 사용자가 온라인 상태인지 추적하거나, 채팅방에 연결하는 것과 같이 좀 더 구체적인 목적을 위한 훅이 있었으면 좋겠습니다. 이를 위해 애플리케이션의 필요에 맞는 고유한 훅을 만들 수 있습니다.</Trans>
 
 In this example, the `usePointerPosition` custom Hook tracks the cursor position, while `useDelayedValue` custom Hook returns a value that's "lagging behind" the value you passed by a certain number of milliseconds. Move the cursor over the sandbox preview area to see a moving trail of dots following the cursor:
 <Trans>이번 예제에서는 `usePointerPosition` 커스텀 훅은 커서 위치를 추적하고, `useDelayedValue` 커스텀 훅은 전달한 값보다 특정 밀리초만큼 '지연'된 값을 반환합니다. 샌드박스 미리보기 영역 위로 커서를 이동하면 커서를 따라 움직이는 점의 흔적을 확인할 수 있습니다:</Trans>

@@ -99,7 +99,7 @@ const [now, setNow] = useState(null);
 ```
 
 When the user presses "Start", you'll use [`setInterval`](https://developer.mozilla.org/docs/Web/API/setInterval) in order to update the time every 10 milliseconds:
-<Trans>사용자가 'Start'를 누르면 10 milliseconds마다 시간을 업데이트하기 위해 [`setInterval`](https://developer.mozilla.org/docs/Web/API/setInterval)을 사용하게 됩니다:</Trans>
+<Trans>사용자가 'Start'를 누르면 10밀리초마다 시간을 업데이트하기 위해 [`setInterval`](https://developer.mozilla.org/docs/Web/API/setInterval)을 사용하게 됩니다:</Trans>
 
 <Sandpack>
 
@@ -140,7 +140,7 @@ export default function Stopwatch() {
 </Sandpack>
 
 When the "Stop" button is pressed, you need to cancel the existing interval so that it stops updating the `now` state variable. You can do this by calling [`clearInterval`](https://developer.mozilla.org/en-US/docs/Web/API/clearInterval), but you need to give it the interval ID that was previously returned by the `setInterval` call when the user pressed Start. You need to keep the interval ID somewhere. **Since the interval ID is not used for rendering, you can keep it in a ref:**
-<Trans>"Stop" 버튼을 누르면 `now` state 변수의 업데이트를 중지하도록 기존 간격을 취소해야 합니다. 이 작업은 [`clearInterval`](https://developer.mozilla.org/en-US/docs/Web/API/clearInterval)을 호출하여 수행할 수 있지만, 사용자가 시작을 눌렀을 때 이전에 `setInterval` 호출에서 반환한 interval ID를 제공해야 합니다. interval ID를 어딘가에 보관해야 합니다. **interval ID는 렌더링에 사용되지 않으므로 ref에 보관할 수 있습니다**</Trans>
+<Trans>"Stop" 버튼을 누르면 `now` state 변수의 업데이트를 중지하도록 기존 interval을 취소해야 합니다. 이 작업은 [`clearInterval`](https://developer.mozilla.org/en-US/docs/Web/API/clearInterval)을 호출하여 수행할 수 있지만, 사용자가 시작을 눌렀을 때 이전에 `setInterval` 호출에서 반환한 interval ID를 제공해야 합니다. interval ID를 어딘가에 보관해야 합니다. **interval ID는 렌더링에 사용되지 않으므로 ref에 보관할 수 있습니다.**</Trans>
 
 <Sandpack>
 
@@ -331,10 +331,10 @@ console.log(ref.current); // 5
 ```
 
 This is because **the ref itself is a regular JavaScript object,** and so it behaves like one.
-<Trans>이는 **ref 자체가 일반 자바스크립트 객체이므로** 자바스크립트 객체처럼 동작하기 때문입니다.</Trans>
+<Trans>이는 **ref 자체가 일반 JavaScript 객체이므로** JavaScript 객체처럼 동작하기 때문입니다.</Trans>
 
 You also don't need to worry about [avoiding mutation](/learn/updating-objects-in-state) when you work with a ref. As long as the object you're mutating isn't used for rendering, React doesn't care what you do with the ref or its contents.
-<Trans>또한 ref로 작업할 때 [변이(mutation)를 피하는 것](/learn/updating-objects-in-state)에 대해 걱정할 필요가 없습니다. 변이하는 객체가 렌더링에 사용되지 않는 한, React는 ref나 그 콘텐츠로 무엇을 하든 상관하지 않습니다.</Trans>
+<Trans>또한 ref로 작업할 때 [변이를 피하고자](/learn/updating-objects-in-state) 조심할 필요가 없습니다. 변이하는 객체가 렌더링에 사용되지 않는 한, React는 ref나 그 콘텐츠로 무엇을 하든 상관하지 않습니다.</Trans>
 
 ## Refs and the DOM<Trans>Ref와 DOM</Trans> {/*refs-and-the-dom*/}
 
@@ -352,7 +352,7 @@ You can point a ref to any value. However, the most common use case for a ref is
 
 <TransBlock>
   - ref는 렌더링에 사용되지 않는 값을 유지하기 위한 탈출구입니다. 자주 필요하지 않습니다.
-  - ref는 `current`라는 단일 프로퍼티를 가진 일반 자바스크립트 객체로, 읽거나 설정할 수 있습니다.
+  - ref는 `current`라는 단일 프로퍼티를 가진 일반 JavaScript 객체로, 읽거나 설정할 수 있습니다.
   - `useRef` 훅을 호출하여 React에 ref를 제공하도록 요청할 수 있습니다.
   - state와 마찬가지로 ref를 사용하면 컴포넌트의 리렌더링 사이에 정보를 유지할 수 있습니다.
   - state와 달리 ref의 `current` 값을 설정해도 리렌더링이 트리거되지 않습니다.
@@ -371,7 +371,7 @@ Type a message and click "Send". You will notice there is a three second delay b
 <Hint>
 
 Regular variables like `let timeoutID` don't "survive" between re-renders because every render runs your component (and initializes its variables) from scratch. Should you keep the timeout ID somewhere else?
-<Trans>`let timeoutID`와 같은 일반 변수는 렌더링할 때마다 컴포넌트를 처음부터 실행하고 변수를 초기화하기 때문에 재렌더링 사이에 "살아남지" 못합니다. 타임아웃 ID를 다른 곳에 보관해야 할까요?</Trans>
+<Trans>`let timeoutID`와 같은 일반 변수는 렌더링할 때마다 컴포넌트를 처음부터 실행하고 변수를 초기화하기 때문에 리렌더링 사이에 "살아남지" 못합니다. 타임아웃 ID를 다른 곳에 보관해야 할까요?</Trans>
 
 </Hint>
 
@@ -477,7 +477,7 @@ export default function Chat() {
 </Solution>
 
 
-#### Fix a component failing to re-render<Trans>재렌더링되지 않는 문제 해결하기</Trans> {/*fix-a-component-failing-to-re-render*/}
+#### Fix a component failing to re-render<Trans>리렌더링되지 않는 문제 해결하기</Trans> {/*fix-a-component-failing-to-re-render*/}
 
 This button is supposed to toggle between showing "On" and "Off". However, it always shows "Off". What is wrong with this code? Fix it.
 <Trans>이 버튼은 "On와 "Off" 표시 사이를 전환해야 합니다. 그러나 항상 "꺼짐"으로 표시됩니다. 이 코드에 어떤 문제가 있나요? 수정하세요.</Trans>

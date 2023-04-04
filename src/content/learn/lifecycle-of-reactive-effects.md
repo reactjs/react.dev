@@ -6,7 +6,7 @@ translatedTitle: 반응형 Effect의 생명주기
 <Intro>
 
 Effects have a different lifecycle from components. Components may mount, update, or unmount. An Effect can only do two things: to start synchronizing something, and later to stop synchronizing it. This cycle can happen multiple times if your Effect depends on props and state that change over time. React provides a linter rule to check that you've specified your Effect's dependencies correctly. This keeps your Effect synchronized to the latest props and state.
-<Trans>Effect는 컴포넌트와 다른 라이프사이클을 가집니다. 컴포넌트는 마운트, 업데이트 또는 마운트 해제할 수 있습니다. Effect는 동기화를 시작하고 나중에 동기화를 중지하는 두 가지 작업만 할 수 있습니다. 이 사이클은 시간이 지남에 따라 변하는 props와 state에 의존하는 Effect의 경우 여러 번 발생할 수 있습니다. React는 Effect의 의존성을 올바르게 지정했는지 확인하는 린터 규칙을 제공합니다. 이렇게 하면 Effect가 최신 props와 state에 동기화됩니다.</Trans>
+<Trans>Effect는 컴포넌트와 다른 생명주기를 가집니다. 컴포넌트는 마운트, 업데이트 또는 마운트 해제할 수 있습니다. Effect는 동기화를 시작하고 나중에 동기화를 중지하는 두 가지 작업만 할 수 있습니다. 이 사이클은 시간이 지남에 따라 변하는 props와 state에 의존하는 Effect의 경우 여러 번 발생할 수 있습니다. React는 Effect의 의존성을 올바르게 지정했는지 확인하는 린터 규칙을 제공합니다. 이렇게 하면 Effect가 최신 props와 state에 동기화됩니다.</Trans>
 
 </Intro>
 
@@ -22,7 +22,7 @@ Effects have a different lifecycle from components. Components may mount, update
 - What to do when you disagree with the linter
 
 <TransBlock>
-- Effect의 라이프사이클이 컴포넌트의 라이프사이클과 다른 점
+- Effect의 생명주기가 컴포넌트의 생명주기와 다른 점
 - 각 개별 Effect를 분리해서 생각하는 방법
 - Effect를 다시 동기화해야 하는 시기와 그 이유
 - Effect의 의존성이 결정되는 방법
@@ -38,7 +38,7 @@ Effects have a different lifecycle from components. Components may mount, update
 ## The lifecycle of an Effect<Trans>Effect의 생명주기</Trans> {/*the-lifecycle-of-an-effect*/}
 
 Every React component goes through the same lifecycle:
-<Trans>모든 React 컴포넌트는 동일한 라이프사이클을 거칩니다:</Trans>
+<Trans>모든 React 컴포넌트는 동일한 생명주기를 거칩니다:</Trans>
 
 - A component _mounts_ when it's added to the screen.
 - A component _updates_ when it receives new props or state, usually in response to an interaction.
@@ -50,7 +50,7 @@ Every React component goes through the same lifecycle:
 </TransBlock>
 
 **It's a good way to think about components, but _not_ about Effects.** Instead, try to think about each Effect independently from your component's lifecycle. An Effect describes how to [synchronize an external system](/learn/synchronizing-with-effects) to the current props and state. As your code changes, synchronization will need to happen more or less often.
-<Trans>컴포넌트에 대해 생각하는 좋은 방법이지만 Effect에 대해서는 생각하지 않는 것이 좋습니다. 대신 각 Effect를 컴포넌트의 라이프사이클과 독립적으로 생각해보세요. Effect는 [외부 시스템을 현재 props 및 state에 동기화](/learn/synchronizing-with-effects)하는 방법을 설명합니다. 코드가 변경되면 이 동기화를 더 자주 또는 덜 자주 수행해야 합니다.</Trans>
+<Trans>컴포넌트에 대해 생각하는 좋은 방법이지만 Effect에 대해서는 생각하지 않는 것이 좋습니다. 대신 각 Effect를 컴포넌트의 생명주기와 독립적으로 생각해보세요. Effect는 [외부 시스템을 현재 props 및 state에 동기화](/learn/synchronizing-with-effects)하는 방법을 설명합니다. 코드가 변경되면 이 동기화를 더 자주 또는 덜 자주 수행해야 합니다.</Trans>
 
 To illustrate this point, consider this Effect connecting your component to a chat server:
 <Trans>이 점을 설명하기 위해 컴포넌트를 채팅 서버에 연결하는 Effect를 예로 들어보겠습니다:</Trans>
@@ -225,7 +225,7 @@ Let's recap everything that's happened from the `ChatRoom` component's perspecti
 </TransBlock>
 
 During each of these points in the component's lifecycle, your Effect did different things:
-<Trans>컴포넌트 라이프사이클의 각 시점에서 Effect는 서로 다른 작업을 수행했습니다:</Trans>
+<Trans>컴포넌트 생명주기의 각 시점에서 Effect는 서로 다른 작업을 수행했습니다:</Trans>
 
 1. Your Effect connected to the `"general"` room
 1. Your Effect disconnected from the `"general"` room and connected to the `"travel"` room
@@ -268,7 +268,7 @@ This code's structure might inspire you to see what happened as a sequence of no
 </TransBlock>
 
 Previously, you were thinking from the component's perspective. When you looked from the component's perspective, it was tempting to think of Effects as "callbacks" or "lifecycle events" that fire at a specific time like "after a render" or "before unmount". This way of thinking gets complicated very fast, so it's best to avoid.
-<Trans>이전에는 컴포넌트의 관점에서 생각했습니다. 컴포넌트의 관점에서 보면 Effect를 "렌더링 후" 또는 "마운트 해제 전"과 같은 특정 시점에 실행되는 "콜백" 또는 "라이프사이클 이벤트"로 생각하기 쉬웠습니다. 이러한 사고 방식은 매우 빠르게 복잡해지므로 피하는 것이 가장 좋습니다.</Trans>
+<Trans>이전에는 컴포넌트의 관점에서 생각했습니다. 컴포넌트의 관점에서 보면 Effect를 "렌더링 후" 또는 "마운트 해제 전"과 같은 특정 시점에 실행되는 "콜백" 또는 "생명주기 이벤트"로 생각하기 쉬웠습니다. 이러한 사고 방식은 매우 빠르게 복잡해지므로 피하는 것이 가장 좋습니다.</Trans>
 
 **Instead, always focus on a single start/stop cycle at a time. It shouldn't matter whether a component is mounting, updating, or unmounting. All you need to do is to describe how to start synchronization and how to stop it. If you do it well, your Effect will be resilient to being started and stopped as many times as it's needed.**
 <Trans>**대신 항상 한 번에 하나의 시작/중지 사이클에만 집중하세요. 컴포넌트를 마운트, 업데이트 또는 마운트 해제하는 것은 중요하지 않습니다. 동기화를 시작하는 방법과 중지하는 방법만 설명하면 됩니다. 이 작업을 잘 수행하면 필요한 횟수만큼 Effect를 시작하고 중지할 수 있는 탄력성을 확보할 수 있습니다.**</Trans>
@@ -469,7 +469,7 @@ Why doesn't `serverUrl` need to be a dependency?
 <Trans>`serverUrl`을 의존성에 지정할 필요가 없는 이유가 무엇일까요?</Trans>
 
 This is because the `serverUrl` never changes due to a re-render. It's always the same no matter how many times the component re-renders and why. Since `serverUrl` never changes, it wouldn't make sense to specify it as a dependency. After all, dependencies only do something when they change over time!
-<Trans>이는 재렌더링으로 인해 `serverUrl` 이 변경되지 않기 때문입니다. 컴포넌트가 어떤 이유로 몇 번이나 다시 렌더링하든 항상 동일합니다. `serverUrl` 은 절대 변하지 않으므로 의존성으로 지정하는 것은 의미가 없습니다. 결국, 의존성은 시간이 지남에 따라 변경될 때만 무언가를 수행합니다!</Trans>
+<Trans>이는 리렌더링으로 인해 `serverUrl` 이 변경되지 않기 때문입니다. 컴포넌트가 어떤 이유로 몇 번이나 다시 렌더링하든 항상 동일합니다. `serverUrl` 은 절대 변하지 않으므로 의존성으로 지정하는 것은 의미가 없습니다. 결국, 의존성은 시간이 지남에 따라 변경될 때만 무언가를 수행합니다!</Trans>
 
 On the other hand, `roomId` may be different on a re-render. **Props, state, and other values declared inside the component are _reactive_ because they're calculated during rendering and participate in the React data flow.**
 <Trans>반면 `roomId`는 다시 렌더링할 때 달라질 수 있습니다. **컴포넌트 내부에서 선언된 props, state 및 기타 값은 렌더링 중에 계산되고 React 데이터 흐름에 참여하기 때문에 *반응형*입니다.**</Trans>
@@ -684,7 +684,7 @@ function ChatRoom({ roomId, selectedServerUrl }) { // roomId is reactive
 ```
 
 In this example, `serverUrl` is not a prop or a state variable. It's a regular variable that you calculate during rendering. But it's calculated during rendering, so it can change due to a re-render. This is why it's reactive.
-<Trans>이 예제에서 `serverUrl`은 prop이나 state 변수가 아닙니다. 렌더링 중에 계산하는 일반 변수입니다. 하지만 렌더링 중에 계산되므로 재렌더링으로 인해 변경될 수 있습니다. 따라서 `serverUrl`은 반응형 변수입니다.</Trans>
+<Trans>이 예제에서 `serverUrl`은 prop이나 state 변수가 아닙니다. 렌더링 중에 계산하는 일반 변수입니다. 하지만 렌더링 중에 계산되므로 리렌더링으로 인해 변경될 수 있습니다. 따라서 `serverUrl`은 반응형 변수입니다.</Trans>
 
 **All values inside the component (including props, state, and variables in your component's body) are reactive. Any reactive value can change on a re-render, so you need to include reactive values as Effect's dependencies.**
 <Trans>**컴포넌트 내부의 모든 값(컴포넌트 본문의 props, state, 변수 포함)은 반응형입니다. 모든 반응형 값은 다시 렌더링할 때 변경될 수 있으므로 반응형 값을 Effect의 의존성으로 포함시켜야 합니다.**</Trans>
@@ -703,7 +703,7 @@ Mutable values (including global variables) aren't reactive.
 <Trans>**[`location.pathname`](https://developer.mozilla.org/en-US/docs/Web/API/Location/pathname)과 같은 변이 가능한 값은 의존성이 될 수 없습니다.** 이 값은 변이 가능하므로 React 렌더링 데이터 흐름 외부에서 언제든지 바뀔 수 있습니다. 이 값을 변경해도 컴포넌트가 다시 렌더링되지 않습니다. 따라서 이를 의존성에 지정하더라도 React는 이 값이 변경될 때 Effect를 다시 동기화해야 하는지 알 수 없습니다. 또한 렌더링 도중(의존성을 계산할 때) 변경 가능한 데이터를 읽는 것은 [렌더링의 순수성](https://react.dev/learn/keeping-components-pure)을 깨뜨리기 때문에 React의 규칙을 위반합니다. 대신, [`useSyncExternalStore`](/learn/you-might-not-need-an-effect#subscribing-to-an-external-store)를 사용하여 외부 변경 가능한 값을 읽고 구독해야 합니다.</Trans>
 
 **A mutable value like [`ref.current`](/reference/react/useRef#reference) or things you read from it also can't be a dependency.** The ref object returned by `useRef` itself can be a dependency, but its `current` property is intentionally mutable. It lets you [keep track of something without triggering a re-render.](/learn/referencing-values-with-refs) But since changing it doesn't trigger a re-render, it's not a reactive value, and React won't know to re-run your Effect when it changes.
-<Trans>[`ref.current`](/reference/react/useRef#reference)와 같이 변이 가능한 값 또는 이 값으로부터 읽은 것 역시 의존성이 될 수 없습니다. `useRef`가 반환하는 ref 객체 자체는 의존성이 될 수 있지만, `current` 프로퍼티는 의도적으로 변이 가능합니다. 이를 통해 [재렌더링을 트리거하지 않고도 무언가를 추적](/learn/referencing-values-with-refs)할 수 있습니다. 하지만 이를 변경하더라도 재렌더링을 트리거하지는 않기 때문에, 이는 반응형 값이 아니며, React는 이 값이 변경될 때 Effect를 다시 실행해야 할지 알 수 없습니다.</Trans>
+<Trans>[`ref.current`](/reference/react/useRef#reference)와 같이 변이 가능한 값 또는 이 값으로부터 읽은 것 역시 의존성이 될 수 없습니다. `useRef`가 반환하는 ref 객체 자체는 의존성이 될 수 있지만, `current` 프로퍼티는 의도적으로 변이 가능합니다. 이를 통해 [리렌더링을 트리거하지 않고도 무언가를 추적](/learn/referencing-values-with-refs)할 수 있습니다. 하지만 이를 변경하더라도 리렌더링을 트리거하지는 않기 때문에, 이는 반응형 값이 아니며, React는 이 값이 변경될 때 Effect를 다시 실행해야 할지 알 수 없습니다.</Trans>
 
 As you'll learn below on this page, a linter will check for these issues automatically.
 <Trans>이 페이지 아래에서 배우게 되겠지만, 린터는 이러한 문제를 자동으로 확인해 줍니다.</Trans>
@@ -813,7 +813,7 @@ Try this fix in the sandbox above. Verify that the linter error is gone, and the
 <Note>
 
 In some cases, React *knows* that a value never changes even though it's declared inside the component. For example, the [`set` function](/reference/react/useState#setstate) returned from `useState` and the ref object returned by [`useRef`](/reference/react/useRef) are *stable*--they are guaranteed to not change on a re-render. Stable values aren't reactive, so you may omit them from the list. Including them is allowed: they won't change, so it doesn't matter.
-<Trans>어떤 경우에는 컴포넌트 내부에서 값이 선언되더라도 절대 변하지 않는다는 것을 React가 알고 있습니다. 예를 들어, useState에서 반환된 [`설정자 함수`](/reference/react/useState#setstate)와 [`useRef`](/reference/react/useRef)에서 반환된 ref 객체는 재렌더링 시 변경되지 않도록 보장되는 *안정적인* 값입니다. 안정적인 값은 반응하지 않으므로 린터를 사용하면 목록에서 생략할 수 있습니다. 그러나 이러한 값을 포함하는 것은 허용됩니다. 변경되지 않으므로 상관없습니다.</Trans>
+<Trans>어떤 경우에는 컴포넌트 내부에서 값이 선언되더라도 절대 변하지 않는다는 것을 React가 알고 있습니다. 예를 들어, useState에서 반환된 [`설정자 함수`](/reference/react/useState#setstate)와 [`useRef`](/reference/react/useRef)에서 반환된 ref 객체는 리렌더링 시 변경되지 않도록 보장되는 *안정적인* 값입니다. 안정적인 값은 반응하지 않으므로 린터를 사용하면 목록에서 생략할 수 있습니다. 그러나 이러한 값을 포함하는 것은 허용됩니다. 변경되지 않으므로 상관없습니다.</Trans>
 
 </Note>
 
@@ -823,7 +823,7 @@ In the previous example, you've fixed the lint error by listing `roomId` and `se
 <Trans>이전 예제에서는 `roomId`와  `serverUrl` 를 의존성으로 나열하여 린트 오류를 수정했습니다.</Trans>
 
 **However, you could instead "prove" to the linter that these values aren't reactive values,** i.e. that they *can't* change as a result of a re-render. For example, if `serverUrl` and `roomId` don't depend on rendering and always have the same values, you can move them outside the component. Now they don't need to be dependencies:
-<Trans>**그러나 대신 이러한 값이 반응형 값이 아니라는 것, 즉 재렌더링의 결과로 변경될 수 없다는 것을 린터에 "증명"할 수 있습니다.** 예를 들어 `serverUrl`과 `roomId`가 렌더링에 의존하지 않고 항상 같은 값을 갖는다면 컴포넌트 외부로 옮길 수 있습니다. 이제 의존성이 될 필요가 없습니다:</Trans>
+<Trans>**그러나 대신 이러한 값이 반응형 값이 아니라는 것, 즉 리렌더링의 결과로 변경될 수 없다는 것을 린터에 "증명"할 수 있습니다.** 예를 들어 `serverUrl`과 `roomId`가 렌더링에 의존하지 않고 항상 같은 값을 갖는다면 컴포넌트 외부로 옮길 수 있습니다. 이제 의존성이 될 필요가 없습니다:</Trans>
 
 ```js {1,2,11}
 const serverUrl = 'https://localhost:1234'; // serverUrl is not reactive
@@ -908,7 +908,7 @@ On the [next](/learn/separating-events-from-effects) [pages](/learn/removing-eff
 
 <TransBlock>
 - 컴포넌트는 마운트, 업데이트, 마운트 해제할 수 있습니다.
-- 각 Effect는 주변 컴포넌트와 별도의 라이프사이클을 가집니다.
+- 각 Effect는 주변 컴포넌트와 별도의 생명주기를 가집니다.
 - 각 Effect는 *시작* 및 *중지* 할 수 있는 별도의 동기화 프로세스를 설명합니다.
 - Effect를 작성하고 읽을 때는 컴포넌트의 관점(마운트, 업데이트 또는 마운트 해제 방법)이 아니라 각 개별 Effect의 관점(동기화 시작 및 중지 방법)에서 생각해야 합니다.
 - 컴포넌트 본문 내부에 선언된 값은 "반응형"입니다.
@@ -1282,7 +1282,7 @@ However, for some reason, the `canMove` state variable inside `handleMove` appea
 <Hint>
 
 If you see a linter rule being suppressed, remove the suppression! That's where the mistakes usually are.
-<Trans>린터 규칙을 제한하는 줄이 보이면 제한을 제거하세요! 보통 이 부분에서 실수가 발생합니다.</Trans>
+<Trans>린터 규칙을 억제하는 줄이 보이면 억제를 제거하세요! 보통 이 부분에서 실수가 발생합니다.</Trans>
 
 </Hint>
 
@@ -1345,13 +1345,13 @@ body {
 <Solution>
 
 The problem with the original code was suppressing the dependency linter. If you remove the suppression, you'll see that this Effect depends on the `handleMove` function. This makes sense: `handleMove` is declared inside the component body, which makes it a reactive value. Every reactive value must be specified as a dependency, or it can potentially get stale over time!
-<Trans>원래 코드의 문제는 의존성 린터를 제한하는 것이었습니다. 제한사항을 제거하면 이 Effect가 `handleMove` 함수에 의존한다는 것을 알 수 있습니다. 이는 당연한 결과입니다. `handleMove`는 컴포넌트 본문 내부에서 선언되어 반응형 값이 되기 때문입니다. 모든 반응형 값은 의존성으로 지정해야 하며, 그렇지 않으면 시간이 지나면 낡아질 수 있습니다!</Trans>
+<Trans>원래 코드의 문제는 의존성 린터를 억제하는 것이었습니다. 억제를 제거하면 이 Effect가 `handleMove` 함수에 의존한다는 것을 알 수 있습니다. 이는 당연한 결과입니다. `handleMove`는 컴포넌트 본문 내부에서 선언되어 반응형 값이 되기 때문입니다. 모든 반응형 값은 의존성으로 지정해야 하며, 그렇지 않으면 시간이 지나면 낡아질 수 있습니다!</Trans>
 
 The author of the original code has "lied" to React by saying that the Effect does not depend (`[]`) on any reactive values. This is why React did not re-synchronize the Effect after `canMove` has changed (and `handleMove` with it). Because React did not re-synchronize the Effect, the `handleMove` attached as a listener is the `handleMove` function created during the initial render. During the initial render, `canMove` was `true`, which is why `handleMove` from the initial render will forever see that value.
 <Trans>원래 코드의 작성자는 Effect가 어떤 반응형 값에도 의존하지(`[]`) 않는다고 말함으로써 React에 "거짓말"을 했습니다. 이것이 바로 `canMove`가 변경된 후 React가 Effect를(`handleMove`도 함께) 다시 동기화하지 않은 이유입니다. React가 Effect를 다시 동기화하지 않았기 때문에 리스너로 첨부된 `handleMove`는 초기 렌더링 중에 생성된 `handleMove` 함수입니다. 초기 렌더링 동안 `canMove`는 `true`였기 때문에 초기 렌더링의 `handleMove`는 영원히 그 값을 보게 됩니다.</Trans>
 
 **If you never suppress the linter, you will never see problems with stale values.** There are a few different ways to solve this bug, but you should always start by removing the linter suppression. Then change the code to fix the lint error.
-<Trans>**린터를 제한하지 않으면 오래된 값으로 인한 문제가 발생하지 않습니다.** 이 버그를 해결하는 방법에는 몇 가지가 있지만 항상 린터 제한을 제거하는 것부터 시작해야 합니다. 그런 다음 코드를 변경하여 린트 오류를 수정합니다.</Trans>
+<Trans>**린터를 억제하지 않으면 오래된 값으로 인한 문제가 발생하지 않습니다.** 이 버그를 해결하는 방법에는 몇 가지가 있지만 항상 린터 억제를 제거하는 것부터 시작해야 합니다. 그런 다음 코드를 변경하여 린트 오류를 수정합니다.</Trans>
 
 You can change the Effect dependencies to `[handleMove]`, but since it's going to be a newly defined function for every render, you might as well remove dependencies array altogether. Then the Effect *will* re-synchronize after every re-render:
 <Trans>Effect 의존성을 `[handleMove]`로 변경할 수 있지만 렌더링할 때마다 새로 정의되는 함수가 될 것이므로 의존성 배열을 모두 제거하는 것이 좋습니다. 그러면 Effect가 다시 렌더링할 때마다 다시 동기화됩니다:</Trans>
@@ -1490,7 +1490,7 @@ Notice that initially, the console logs say the connection is not encrypted. Try
 <Hint>
 
 Suppressing the linter is always suspicious. Could this be a bug?
-<Trans>린터 규칙을 제한하는 것은 언제나 의심스럽습니다. 이것도 버그 일까요?</Trans>
+<Trans>린터 규칙을 억제하는 것은 언제나 의심스럽습니다. 이것도 버그 일까요?</Trans>
 
 </Hint>
 
@@ -1591,7 +1591,7 @@ label { display: block; margin-bottom: 10px; }
 <Solution>
 
 If you remove the linter suppression, you will see a lint error. The problem is that `createConnection` is a prop, so it's a reactive value. It can change over time! (And indeed, it should--when the user ticks the checkbox, the parent component passes a different value of the `createConnection` prop.) This is why it should be a dependency. Include it in the list to fix the bug:
-<Trans>린터 제한을 제거하면 린트 오류가 발생합니다. 문제는 `createConnection`이 prop이기 때문에 반응형 값이라는 것입니다. 시간이 지남에 따라 변경될 수 있습니다! (실제로 사용자가 체크박스를 선택하면 부모 컴포넌트가 다른 값의 `createConnection` prop을 전달합니다.) 실제로 그래야 합니다. 이것이 바로 의존성이어야 하는 이유입니다. 목록에 포함시켜 버그를 수정하세요:</Trans>
+<Trans>린터 억제를 제거하면 린트 오류가 발생합니다. 문제는 `createConnection`이 prop이기 때문에 반응형 값이라는 것입니다. 시간이 지남에 따라 변경될 수 있습니다! (실제로 사용자가 체크박스를 선택하면 부모 컴포넌트가 다른 값의 `createConnection` prop을 전달합니다.) 실제로 그래야 합니다. 이것이 바로 의존성이어야 하는 이유입니다. 목록에 포함시켜 버그를 수정하세요:</Trans>
 
 <Sandpack>
 

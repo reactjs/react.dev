@@ -752,7 +752,7 @@ In development, opacity will be set to `1`, then to `0`, and then to `1` again. 
 ### Fetching data<Trans>데이터 페칭하기</Trans> {/*fetching-data*/}
 
 If your Effect fetches something, the cleanup function should either [abort the fetch](https://developer.mozilla.org/en-US/docs/Web/API/AbortController) or ignore its result:
-<Trans>Effect가 무언가를 가져오면 클린업 함수는 [페치를 중단](https://developer.mozilla.org/en-US/docs/Web/API/AbortController)하거나 그 결과를 무시해야 합니다:</Trans>
+<Trans>Effect가 무언가를 페치하면 클린업 함수는 [페치를 중단](https://developer.mozilla.org/en-US/docs/Web/API/AbortController)하거나 그 결과를 무시해야 합니다:</Trans>
 
 ```js {2,6,13-15}
 useEffect(() => {
@@ -777,7 +777,7 @@ You can't "undo" a network request that already happened, but your cleanup funct
 <Trans>이미 발생한 네트워크 요청을 "실행 취소"할 수는 없지만 클린업 기능은 _더 이상 관련이 없는_ 페치가 애플리케이션에 계속 영향을 미치지 않도록 해야 합니다.만약`userId`가 `'Alice'`에서 `'Bob'`으로 변경되면 클린업은 `'Alice'` 응답이 `'Bob'` 이후에 도착하더라도 무시되도록 합니다.</Trans>
 
 **In development, you will see two fetches in the Network tab.** There is nothing wrong with that. With the approach above, the first Effect will immediately get cleaned up so its copy of the `ignore` variable will be set to `true`. So even though there is an extra request, it won't affect the state thanks to the `if (!ignore)` check.
-<Trans>**개발 중에는 네트워크 탭에 두 개의 가져오기가 표시됩니다.** 이는 아무 문제가 없습니다. 위의 접근 방식을 사용하면 첫 번째 Effect가 즉시 정리되므로 `ignore` 변수의 복사본이 `true`로 설정됩니다. 따라서 추가 요청이 있더라도 `if (!ignore)` 검사 덕분에 state에 영향을 미치지 않습니다.</Trans>
+<Trans>**개발 중에는 네트워크 탭에 두 개의 페치가 표시됩니다.** 이는 아무 문제가 없습니다. 위의 접근 방식을 사용하면 첫 번째 Effect가 즉시 정리되므로 `ignore` 변수의 복사본이 `true`로 설정됩니다. 따라서 추가 요청이 있더라도 `if (!ignore)` 검사 덕분에 state에 영향을 미치지 않습니다.</Trans>
 
 **In production, there will only be one request.** If the second request in development is bothering you, the best approach is to use a solution that deduplicates requests and caches their responses between components:
 <Trans>**프로덕션에서는 요청이 하나만 있습니다.** 개발 중인 두 번째 요청이 귀찮은 경우 가장 좋은 방법은 요청을 중복 제거하고 컴포넌트 간에 응답을 캐시하는 솔루션을 사용하는 것입니다.</Trans>
@@ -808,7 +808,7 @@ Writing `fetch` calls inside Effects is a [popular way to fetch data](https://ww
 <Trans>이것은 매우 인체 공학적이지 않습니다. [race conditions](https://maxrozen.com/race-conditions-fetching-data-react-with-useeffect)와 같은 버그가 발생하지 않는 방식으로 `fetch` 를 작성할 때 관련된 상용구 코드가 상당히 많습니다.</Trans>
 
 This list of downsides is not specific to React. It applies to fetching data on mount with any library. Like with routing, data fetching is not trivial to do well, so we recommend the following approaches:
-<Trans>이러한 단점들은 React에만 국한되지 않습니다. 모든 라이브러리를 사용하여 마운트 시 데이터를 페치하는 데 적용됩니다. 라우팅과 마찬가지로 데이터 페칭이 쉽지 않으므로 다음과 같은 접근 방식을 권장합니다.</Trans>
+<Trans>이러한 단점들은 React에만 국한되지 않습니다. 모든 라이브러리를 사용하여 마운트시 데이터를 페치하는 데 적용됩니다. 라우팅과 마찬가지로 데이터 페칭이 쉽지 않으므로 다음과 같은 접근 방식을 권장합니다.</Trans>
 
 - **If you use a [framework](/learn/start-a-new-react-project#production-grade-react-frameworks), use its built-in data fetching mechanism.** Modern React frameworks have integrated data fetching mechanisms that are efficient and don't suffer from the above pitfalls.
 <Trans>**[프레임워크](/learn/start-a-new-react-project#production-grade-react-frameworks)를 사용하는 경우 내장된 데이터 페칭 메커니즘을 사용하세요.** 최신 React 프레임워크에는 효율적이고 위의 위험을 겪지 않는 데이터 페칭 메커니즘이 통합되어 있습니다.</Trans>
@@ -1675,7 +1675,7 @@ Why does this happen? Fix the bug inside this Effect.
 <Hint>
 
 If an Effect fetches something asynchronously, it usually needs cleanup.
-<Trans>Effect가 비동기적으로 무언가를 가져오는 경우 일반적으로 클린업이 필요합니다.</Trans>
+<Trans>Effect가 비동기적으로 무언가를 페치하는 경우 일반적으로 클린업이 필요합니다.</Trans>
 
 </Hint>
 
@@ -1694,7 +1694,7 @@ To trigger the bug, things need to happen in this order:
 <TransBlock>
 - `'Bob'`을 선택하면 `fetchBio('Bob')`가 트리거됩니다.
 - `'Taylor'`를 선택하면 `fetchBio('Taylor')`가 트리거됩니다.
-- **`'Taylor'의 페칭이 `'Bob'을 불러오기 *전에* 완료됩니다.**
+- **`'Taylor'의 페칭이 `'Bob'을 페치하기 *전에* 완료됩니다.**
 - `'Taylor'` 렌더링의 Effect는 `setBio('this is Taylor’s bio')`를 호출합니다.
 - `'Bob'`의 페칭이 완료됩니다.
 - `'Bob'` 렌더링의 Effect는 `setBio('This is Bob's bio')`를 호출합니다.
@@ -1772,7 +1772,7 @@ Each render's Effect has its own `ignore` variable. Initially, the `ignore` vari
 
 - `'Bob'`을 선택하면 `fetchBio('Bob')`가 트리거됩니다.
 - `'Taylor'` 를 선택하면 `fetchBio('Taylor')` 가 발동되고 **이전 (Bob의) Effect가 정리됩니다**.
-- `'Taylor'`의 페칭이 '밥'을 불러오기 *전에* 완료됩니다.
+- `'Taylor'`의 페칭이 '밥'을 페치하기 *전에* 완료됩니다.
 - `'Taylor'` 렌더링의 Effect는 `setBio('This is Taylor’s bio')`를 호출합니다.
 - `'Bob'`의 페칭이 완료됩니다.
 - `'Bob'` 렌더링의 Effect는 `ignore` 플래그가 **`true`로 설정되었기 때문에 아무 작업도 수행하지 않습니다.**

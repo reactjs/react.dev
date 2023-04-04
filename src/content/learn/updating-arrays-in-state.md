@@ -1,5 +1,6 @@
 ---
 title: Updating Arrays in State
+translators: [고석영, 전시윤, 정재남, 이승효]
 ---
 
 <Intro>

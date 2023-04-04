@@ -1,6 +1,7 @@
 ---
 title: Writing Markup with JSX
 translatedTitle: JSX로 마크업 작성하기
+translators: [유한나라, 고석영, 서민택]
 ---
 
 <Intro>

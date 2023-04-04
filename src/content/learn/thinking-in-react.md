@@ -1,6 +1,7 @@
 ---
 title: Thinking in React
 translatedTitle: React로 사고하기
+translators: [김슬기, 정재남]
 ---
 
 <Intro>

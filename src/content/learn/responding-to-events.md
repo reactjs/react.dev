@@ -1,5 +1,6 @@
 ---
 title: Responding to Events
+translators: [최민정, 손한종]
 ---
 
 <Intro>

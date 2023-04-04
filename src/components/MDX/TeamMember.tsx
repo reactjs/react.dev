@@ -33,12 +33,9 @@ export function TeamMember({
   twitter,
   personal,
 }: TeamMemberProps) {
-  if (name == null || title == null || permalink == null || children == null) {
+  if (name == null || title == null || children == null) {
     throw new Error(
-      'Expected name, title, permalink, and children for ' + name ??
-        title ??
-        permalink ??
-        'unknown'
+      'Expected name, title, and children for ' + name ?? title ?? 'unknown'
     );
   }
   return (
@@ -55,7 +52,7 @@ export function TeamMember({
           <Image src={photo} layout="fill" objectFit="cover" alt={name} />
         </div>
         <div className="pl-0 sm:pl-6 basis-3/5 items-start">
-          <H3 className="mb-1 sm:my-0" id={permalink}>
+          <H3 className="mb-1 sm:my-0" id={permalink || name}>
             {name}
           </H3>
           {title && <div>{title}</div>}

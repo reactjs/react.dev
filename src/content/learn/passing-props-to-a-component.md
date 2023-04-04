@@ -1,5 +1,6 @@
 ---
 title: Passing Props to a Component
+translators: [전시윤, 박문하]
 ---
 
 <Intro>

@@ -1,5 +1,6 @@
 ---
 title: "State: A Component's Memory"
+translators: [고석영, 박문하]
 ---
 
 <Intro>

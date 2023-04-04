@@ -1,6 +1,7 @@
 ---
 title: Preserving and Resetting State
 translatedTitle: state 보존 및 재설정
+translators: [조성민, 고석영, 김아영, 정재남]
 ---
 
 <Intro>

@@ -1,6 +1,7 @@
 ---
 title: Escape Hatches
 translatedTitle: 탈출구
+translators: [정재남]
 ---
 
 <Intro>

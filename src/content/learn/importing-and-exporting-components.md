@@ -1,6 +1,7 @@
 ---
 title: Importing and Exporting Components
 translatedTitle: 컴포넌트 import 및 export
+translators: [정재남, 박문하, 최민정]
 ---
 
 <Intro>

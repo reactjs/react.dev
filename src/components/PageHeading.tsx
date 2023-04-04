@@ -7,19 +7,22 @@ import Tag from 'components/Tag';
 import {H1} from './MDX/Heading';
 import type {RouteTag, RouteItem} from './Layout/getRouteMeta';
 import Trans from './MDX/Trans';
+import Link from './MDX/Link';
 
 interface PageHeadingProps {
   title: string;
-  translatedTitle: string | undefined;
   status?: string;
   description?: string;
   tags?: RouteTag[];
   breadcrumbs: RouteItem[];
+  translatedTitle?: string;
+  translators?: string[];
 }
 
 function PageHeading({
   title,
   translatedTitle,
+  translators,
   status,
   description,
   tags = [],
@@ -34,6 +37,19 @@ function PageHeading({
           {translatedTitle && <Trans>{translatedTitle}</Trans>}
           {status ? <em>—{status}</em> : ''}
         </H1>
+        {translators?.length && (
+          <div className="text-right mt-4 mb-6 text-secondary">
+            <span>번역:</span>
+            {translators.map((t) => (
+              <Link
+                className="ml-2"
+                key={t}
+                href={`/community/translators#${t}`}>
+                {t}
+              </Link>
+            ))}
+          </div>
+        )}
         {description && (
           <p className="mt-4 mb-6 text-primary dark:text-primary-dark text-xl text-gray-90 leading-large">
             {description}

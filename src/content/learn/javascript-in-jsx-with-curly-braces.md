@@ -1,5 +1,6 @@
 ---
 title: JavaScript in JSX with Curly Braces
+translators: [강민혜, 유한나라]
 ---
 
 <Intro>

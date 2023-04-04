@@ -1,5 +1,6 @@
 ---
 title: Reacting to Input with State
+translators: [유한나라, 정재남]
 ---
 
 <Intro>

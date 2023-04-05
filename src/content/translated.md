@@ -32,6 +32,7 @@ last updated @ 2023-04-04 PM 18:00
 - [4-6. 이벤트와 Effect 분리하기 :: Separating Events from Effects](/learn/separating-events-from-effects)
 - [4-7. Effect 종속성 제거하기 :: Removing Effect Dependencies](/learn/removing-effect-dependencies)
 - [4-8. 커스텀 훅으로 로직 재사용하기 :: Reusing Logic with Custom Hooks](/learn/reusing-logic-with-custom-hooks)
+- [5-3. useDebugValue](/reference/react/useDebugValue)
 
 ## 전체 진행상황 {/*전체-진행상황*/}
 
@@ -82,7 +83,7 @@ O   | [4-8. 커스텀 훅으로 로직 재사용하기 :: Reusing Logic with Cus
 X   | [5. Hooks](/reference/react)
 X   | [5-1. useCallback](/reference/react/useCallback)
 X   | [5-2. useContext](/reference/react/useContext)
-X   | [5-3. useDebugValue](/reference/react/useDebugValue)
+O   | [5-3. useDebugValue](/reference/react/useDebugValue)
 X   | [5-4. useDeferredValue](/reference/react/useDeferredValue)
 X   | [5-5. useEffect](/reference/react/useEffect)
 X   | [5-6. useId](/reference/react/useId)

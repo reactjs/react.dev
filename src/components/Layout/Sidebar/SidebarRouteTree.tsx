@@ -2,7 +2,14 @@
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
 
-import {useRef, useLayoutEffect, Fragment} from 'react';
+import {
+  useRef,
+  useLayoutEffect,
+  Fragment,
+  useEffect,
+  useCallback,
+  useState,
+} from 'react';
 
 import cn from 'classnames';
 import {useRouter} from 'next/router';
@@ -78,6 +85,13 @@ export function SidebarRouteTree({
   const slug = useRouter().asPath.split(/[\?\#]/)[0];
   const pendingRoute = usePendingRoute();
   const currentRoutes = routeTree.routes as RouteItem[];
+  const [closed, setClosed] = useState(false);
+  const onArrowClick = useCallback((): void => setClosed((prev) => !prev), []);
+
+  useEffect(() => {
+    setClosed(false);
+  }, [slug]);
+
   return (
     <ul>
       {currentRoutes.map(
@@ -102,7 +116,8 @@ export function SidebarRouteTree({
             const isBreadcrumb =
               breadcrumbs.length > 1 &&
               breadcrumbs[breadcrumbs.length - 1].path === path;
-            const isExpanded = isForceExpanded || isBreadcrumb || selected;
+            const isExpanded =
+              (isForceExpanded || isBreadcrumb || selected) && !closed;
             listItem = (
               <li key={`${title}-${path}-${level}-heading`}>
                 <SidebarLink
@@ -111,6 +126,7 @@ export function SidebarRouteTree({
                   isPending={pendingRoute === path}
                   selected={selected}
                   level={level}
+                  onArrowClick={onArrowClick}
                   title={title}
                   wip={wip}
                   isExpanded={isExpanded}

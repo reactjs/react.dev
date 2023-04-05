@@ -1,6 +1,7 @@
 ---
 title: 'Reusing Logic with Custom Hooks'
 translatedTitle: 커스텀 훅으로 로직 재사용하기
+translators: [고석영, 최다인, 이지수, 정재남]
 ---
 
 <Intro>

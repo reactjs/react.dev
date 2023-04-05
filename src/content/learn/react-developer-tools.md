@@ -1,6 +1,7 @@
 ---
 title: React Developer Tools
 translatedTitle: React 개발자 도구
+translators: [정재남]
 ---
 
 <Intro>

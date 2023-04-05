@@ -1,6 +1,7 @@
 ---
 title: Add React to an Existing Project
 translatedTitle: 기존 프로젝트에 리액트 추가하기
+translators: [정재남, 이나령, 이상희, 강승훈, 유한나라]
 ---
 
 <Intro>

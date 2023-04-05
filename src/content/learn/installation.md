@@ -1,6 +1,7 @@
 ---
 title: Installation
 translatedTitle: 설치하기
+translators: [정재남]
 ---
 
 <Intro>

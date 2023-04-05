@@ -1,6 +1,7 @@
 ---
 title: Manipulating the DOM with Refs
 translatedTitle: ref로 DOM 조작하기
+translators: [서민택, 정현수, 정재남]
 ---
 
 <Intro>

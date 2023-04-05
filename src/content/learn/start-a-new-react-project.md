@@ -1,6 +1,7 @@
 ---
 title: Start a New React Project
 translatedTitle: 새 리액트 프로젝트 시작하기
+translators: [정재남, 이상희, 유한나라]
 ---
 
 <Intro>

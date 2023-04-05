@@ -19,7 +19,8 @@
     "tsc": "tsc --noEmit",
     "start": "next start",
     "postinstall": "patch-package && (is-ci || husky install .husky)",
-    "check-all": "npm-run-all prettier lint:fix tsc"
+    "check-all": "npm-run-all prettier lint:fix tsc",
+    "build-trans": "node ./src/content/community/translators/buildPage.js"
   },
   "dependencies": {
     "@codesandbox/sandpack-react": "1.15.5",

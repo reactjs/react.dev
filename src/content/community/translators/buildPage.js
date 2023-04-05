@@ -8,7 +8,10 @@ const data = JSON.parse(file);
 
 const results = [
   `---
-title: 번역한 사람들
+title: Translate Contributors
+translatedTitle: 번역한 사람들
+showToc: false
+showSurvey: false
 ---
 <Intro>
 </Intro>
@@ -26,7 +29,9 @@ data.forEach(({name, photo, github, twitter, personal, title, description}) =>
   ${github && `github="${github}"`}
   ${twitter && `twitter="${twitter}"`}
   ${personal && `personal="${personal}"`}
->${description}</TeamMember>
+>
+  ${description}
+</TeamMember>
 `)
 );
 

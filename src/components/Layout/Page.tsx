@@ -33,6 +33,8 @@ interface PageProps {
     description?: string;
     translatedTitle?: string;
     translators?: string[];
+    showToc?: boolean;
+    showSurvey?: boolean;
   };
   section: 'learn' | 'reference' | 'community' | 'blog' | 'home' | 'unknown';
 }
@@ -92,8 +94,8 @@ export function Page({children, toc, routeTree, meta, section}: PageProps) {
 
   let hasColumns = true;
   let showSidebar = true;
-  let showToc = true;
-  let showSurvey = true;
+  let showToc = meta.showToc ?? true;
+  let showSurvey = meta.showSurvey ?? true;
   if (isHomePage || isBlogIndex) {
     hasColumns = false;
     showSidebar = false;

@@ -6,14 +6,15 @@ import {useState, useRef, useEffect} from 'react';
 
 const TOP_OFFSET = 85;
 
-export function getHeaderAnchors(): HTMLAnchorElement[] {
+export function getHeaders(): HTMLHeadingElement[] {
   return Array.prototype.filter.call(
-    document.getElementsByClassName('mdx-header-anchor'),
+    document.getElementsByClassName('mdx-heading'),
     function (testElement) {
       return (
-        testElement.parentNode.nodeName === 'H1' ||
-        testElement.parentNode.nodeName === 'H2' ||
-        testElement.parentNode.nodeName === 'H3'
+        (testElement.nodeName === 'H1' ||
+          testElement.nodeName === 'H2' ||
+          testElement.nodeName === 'H3') &&
+        !!testElement.querySelector('.mdx-header-anchor')
       );
     }
   );
@@ -30,18 +31,18 @@ export function useTocHighlight() {
     function updateActiveLink() {
       const pageHeight = document.body.scrollHeight;
       const scrollPosition = window.scrollY + window.innerHeight;
-      const headersAnchors = getHeaderAnchors();
+      const headers = getHeaders();
 
       if (scrollPosition >= 0 && pageHeight - scrollPosition <= 0) {
         // Scrolled to bottom of page.
-        setCurrentIndex(headersAnchors.length - 1);
+        setCurrentIndex(headers.length - 1);
         return;
       }
 
       let index = -1;
-      while (index < headersAnchors.length - 1) {
-        const headerAnchor = headersAnchors[index + 1];
-        const {top} = headerAnchor.getBoundingClientRect();
+      while (index < headers.length - 1) {
+        const header = headers[index + 1];
+        const {top} = header.getBoundingClientRect();
 
         if (top >= TOP_OFFSET) {
           break;

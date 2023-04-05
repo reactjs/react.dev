@@ -1,5 +1,6 @@
 ---
 title: Conditional Rendering
+translators: [안예지, 정재남]
 ---
 
 <Intro>

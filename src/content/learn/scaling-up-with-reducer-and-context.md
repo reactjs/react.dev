@@ -1,6 +1,7 @@
 ---
 title: Scaling Up with Reducer and Context
 translatedTitle: Reducer와 Context로 확장하기
+translators: [고석영, 이상희, 정재남]
 ---
 
 <Intro>

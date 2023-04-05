@@ -1,5 +1,6 @@
 ---
 title: Keeping Components Pure
+translators: [정현수, 정재남]
 ---
 
 <Intro>

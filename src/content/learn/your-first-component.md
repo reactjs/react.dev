@@ -1,6 +1,7 @@
 ---
 title: Your First Component
 translatedTitle: 첫번째 컴포넌트
+translators: [정재남, 박문하, 유한나라]
 ---
 
 <Intro>

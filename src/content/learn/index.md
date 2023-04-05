@@ -1,6 +1,7 @@
 ---
 title: Quick Start
 translatedTitle: 빠른 시작
+translators: [정재남, 이상희, 이승효]
 ---
 
 <Intro>

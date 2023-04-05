@@ -1,6 +1,7 @@
 ---
 title: Referencing Values with Refs
 translatedTitle: ref로 값 참조하기
+translators: [조성민, 정재남]
 ---
 
 <Intro>

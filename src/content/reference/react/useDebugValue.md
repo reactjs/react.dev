@@ -1,5 +1,6 @@
 ---
 title: useDebugValue
+translators: [고석영, 이지수]
 ---
 
 <Intro>

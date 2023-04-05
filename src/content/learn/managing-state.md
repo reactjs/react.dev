@@ -1,5 +1,6 @@
 ---
 title: Managing State
+translators: [송윤지]
 ---
 
 <Intro>

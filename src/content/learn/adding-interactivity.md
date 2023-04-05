@@ -1,5 +1,6 @@
 ---
 title: Adding Interactivity
+translators: [정재남, 이승효, 조성민]
 ---
 
 <Intro>

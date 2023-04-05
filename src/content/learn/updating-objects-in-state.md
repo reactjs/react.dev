@@ -1,5 +1,6 @@
 ---
 title: Updating Objects in State
+translators: [안예지, 원주혜]
 ---
 
 <Intro>

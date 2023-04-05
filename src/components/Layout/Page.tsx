@@ -28,7 +28,14 @@ interface PageProps {
   children: React.ReactNode;
   toc: Array<TocItem>;
   routeTree: RouteItem;
-  meta: {title?: string; description?: string; translatedTitle?: string};
+  meta: {
+    title?: string;
+    description?: string;
+    translatedTitle?: string;
+    translators?: string[];
+    showToc?: boolean;
+    showSurvey?: boolean;
+  };
   section: 'learn' | 'reference' | 'community' | 'blog' | 'home' | 'unknown';
 }
 
@@ -41,6 +48,7 @@ export function Page({children, toc, routeTree, meta, section}: PageProps) {
   );
   const title = meta.title || route?.title || '';
   const translatedTitle = meta.translatedTitle || undefined;
+  const translators = meta.translators || undefined;
   const description = meta.description || route?.description || '';
   const isHomePage = cleanedPath === '/';
   const isBlogIndex = cleanedPath === '/blog';
@@ -58,6 +66,7 @@ export function Page({children, toc, routeTree, meta, section}: PageProps) {
           <PageHeading
             title={title}
             translatedTitle={translatedTitle}
+            translators={translators}
             description={description}
             tags={route?.tags}
             breadcrumbs={breadcrumbs}
@@ -85,8 +94,8 @@ export function Page({children, toc, routeTree, meta, section}: PageProps) {
 
   let hasColumns = true;
   let showSidebar = true;
-  let showToc = true;
-  let showSurvey = true;
+  let showToc = meta.showToc ?? true;
+  let showSurvey = meta.showSurvey ?? true;
   if (isHomePage || isBlogIndex) {
     hasColumns = false;
     showSidebar = false;

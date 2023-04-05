@@ -1,5 +1,6 @@
 ---
 title: Rendering Lists
+translators: [정재남, 최민정]
 ---
 
 <Intro>

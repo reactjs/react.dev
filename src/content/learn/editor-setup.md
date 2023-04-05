@@ -1,6 +1,7 @@
 ---
 title: Editor Setup
 translatedTitle: 편집기 설정
+translators: [정재남, 김혜원]
 ---
 
 <Intro>

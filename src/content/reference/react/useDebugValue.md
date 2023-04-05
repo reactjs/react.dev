@@ -5,7 +5,7 @@ title: useDebugValue
 <Intro>
 
 `useDebugValue` is a React Hook that lets you add a label to a custom Hook in [React DevTools.](/learn/react-developer-tools)
-<Trans>`useDebugValue` 는 [리액트 개발자 도구](/learn/react-developer-tools)에서 커스텀 훅에 레이블을 추가할 수 있는 리액트 훅입니다.</Trans>
+<Trans>`useDebugValue` 는 [React 개발자 도구](/learn/react-developer-tools)에서 커스텀 훅에 레이블을 추가해주는 React 훅입니다.</Trans>
 
 ```js
 useDebugValue(value, format?)
@@ -35,14 +35,17 @@ function useOnlineStatus() {
 ```
 
 [See more examples below.](#usage)
-[아래에서 더 많은 예를 참조하십시오.](#usage)
+<Trans>[아래에서 더 많은 예를 참조하십시오.](#usage)</Trans>
 
 #### Parameters <Trans>매개변수</Trans> {/*parameters*/}
 
 * `value`: The value you want to display in React DevTools. It can have any type.
-<Trans>`value`: 리액트 개발자 도구에서 표시하려는 값입니다. 모든 유형을 가질 수 있습니다.</Trans>
 * **optional** `format`: A formatting function. When the component is inspected, React DevTools will call the formatting function with the `value` as the argument, and then display the returned formatted value (which may have any type). If you don't specify the formatting function, the original `value` itself will be displayed.
-<Trans>optional `format`: 포매팅 함수. 컴포넌트가 검사할 때, 리액트 개발자 도구는 인수로 포매팅 함수를 호출한 다음 반환된 포매팅된 값(모든 유형을 가질 수 있음)을 표시합니다. 포매팅 함수를 지정하지 않으면, 원본 `value` 자체가 표시됩니다.</Trans>
+
+<TransBlock>
+- `value`: React 개발자 도구에서 표시하려는 값입니다. 모든 유형을 가질 수 있습니다.
+- **optional** `format`: 포매팅 함수. 컴포넌트가 검사할 때, React 개발자 도구는 인수로 포매팅 함수를 호출한 다음 반환된 포매팅된 값(모든 유형을 가질 수 있음)을 표시합니다. 포매팅 함수를 지정하지 않으면, 원본 `value` 자체가 표시됩니다.
+</TransBlock>
 
 #### Returns <Trans>반환값</Trans> {/*returns*/}
 
@@ -54,7 +57,7 @@ function useOnlineStatus() {
 ### Adding a label to a custom Hook <Trans>커스텀 훅에 레이블 추가</Trans> {/*adding-a-label-to-a-custom-hook*/}
 
 Call `useDebugValue` at the top level of your [custom Hook](/learn/reusing-logic-with-custom-hooks) to display a readable <CodeStep step={1}>debug value</CodeStep> for [React DevTools.](/learn/react-developer-tools)
-<Trans>[커스텀 훅](/learn/reusing-logic-with-custom-hooks)의 최상위 레벨에서 `useDebugValue`를 호출하여 리액트 개발자 도구가 읽을 수 있는 <CodeStep step={1}>디버그 값</CodeStep>을 표시합니다.</Trans>
+<Trans>[커스텀 훅](/learn/reusing-logic-with-custom-hooks)의 최상위 레벨에서 `useDebugValue`를 호출하여 React 개발자 도구가 읽을 수 있는 <CodeStep step={1}>디버그 값</CodeStep>을 표시합니다.</Trans>
 
 ```js [[1, 5, "isOnline ? 'Online' : 'Offline'"]]
 import { useDebugValue } from 'react';
@@ -122,14 +125,14 @@ Don't add debug values to every custom Hook. It's most valuable for custom Hooks
 ### Deferring formatting of a debug value <Trans>디버그 값의 형식 지정 연기</Trans> {/*deferring-formatting-of-a-debug-value*/}
 
 You can also pass a formatting function as the second argument to `useDebugValue`:
-<Trans>포매팅 함수의 두번째 인수로 useDebugValue 를 전달할 수 있습니다.</Trans>
+<Trans>`useDebugValue`의 두번째 인수에 포매팅 함수를 전달할 수도 있습니다.</Trans>
 
 ```js [[1, 1, "date", 18], [2, 1, "date.toDateString()"]]
 useDebugValue(date, date => date.toDateString());
 ```
 
 Your formatting function will receive the <CodeStep step={1}>debug value</CodeStep> as a parameter and should return a <CodeStep step={2}>formatted display value</CodeStep>. When your component is inspected, React DevTools will call this function and display its result.
-<Trans>포매팅 함수는 <CodeStep step={1}>디버그 값</CodeStep>을 매개변수로 받고 <CodeStep step={2}>포매팅 된 표시 값</CodeStep>을 반환해야 합니다. 컴포넌트가 검사할 때, 리액트 개발자 도구가 이 함수를 호출하고 그 결과를 표시합니다.</Trans>
+<Trans>포매팅 함수는 <CodeStep step={1}>디버그 값</CodeStep>을 매개변수로 받고 <CodeStep step={2}>변환된 값</CodeStep>을 반환해야 합니다. 컴포넌트가 검사할 때, React 개발자 도구가 이 함수를 호출하고 그 결과를 표시합니다.</Trans>
 
 This lets you avoid running potentially expensive formatting logic unless the component is actually inspected. For example, if `date` is a Date value, this avoids calling `toDateString()` on it for every render.
-<Trans>이렇게 하면 컴포넌트가 실제로 검사되지 않는 한 잠재적으로 비용이 많이 드는 포매팅 로직을 실행하지 않아도 됩니다. 예를 들어 `date`가 날짜 값인 경우, 컴포넌트를 렌더링 할 때마다 `toDateString()`을 호출하지 않습니다.</Trans>
+<Trans>이렇게 하면 컴포넌트를 실제로 조사하지 않는 한 비용이 많이 들 수 있는 포매팅 로직을 실행하지 않아도 됩니다. 예를 들어 `date`가 날짜 값인 경우, 컴포넌트를 렌더링 할 때마다 `toDateString()`을 호출하지 않습니다.</Trans>

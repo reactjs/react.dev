@@ -38,7 +38,7 @@ function PageHeading({
           {status ? <em>—{status}</em> : ''}
         </H1>
         {translators?.length && (
-          <div className="text-right mt-4 mb-6 text-secondary">
+          <div className="text-right mt-4 mb-6 text-secondary dark:text-secondary-dark">
             <span>번역:</span>
             {translators.map((t) => (
               <Link

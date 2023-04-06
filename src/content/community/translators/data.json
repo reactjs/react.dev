@@ -16,6 +16,14 @@
     "description": "당근마켓에서 디자인시스템 만들고 있는 프론트엔드 개발자입니다."
   },
   {
+    "name": "김아영",
+    "photo": "/images/translators/ayoung.jpg",
+    "github": "suhotang",
+    "title": "주니어 프론트엔드 개발자",
+    "personal": "https://ice-bear.tistory.com",
+    "description": "3년차 프론트엔드 개발자입니다.<br/>문제를 정의하고 차근차근 해결하나가는 과정을 좋아합니다.<br/>운동은 별로 안좋아하지만 산책은 즐겨합니다."
+  },
+  {
     "name": "테스트",
     "photo": "/images/team/gaearon.jpg",
     "github": "test",

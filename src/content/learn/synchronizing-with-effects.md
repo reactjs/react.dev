@@ -36,7 +36,7 @@ Before getting to Effects, you need to be familiar with two types of logic insid
 <Trans>Effect에 도달하기 전에 React 컴포넌트 내부의 두가지 유형의 논리에 익숙해져야 합니다.</Trans>
 
 - **Rendering code** (introduced in [Describing the UI](/learn/describing-the-ui)) lives at the top level of your component. This is where you take the props and state, transform them, and return the JSX you want to see on the screen. [Rendering code must be pure.](/learn/keeping-components-pure) Like a math formula, it should only _calculate_ the result, but not do anything else.
-  <Trans>**렌더링 코드**([UI 구성하기](/learn/describing-the-ui)에서 소개됨)는 컴포넌트의 최상위 레벨에 있습니다. 여기서 props와 state를 가져와 변환하고 회면에 표시할 JSX를 반환합니다. [렌더링 코드는 순수해야합니다.](/learn/keeping-components-pure) 수학 공식처럼 결과만 계산할 뿐 다른 작업은 수행하지 않습니다.</Trans>
+  <Trans>**렌더링 코드**([UI 구성하기](/learn/describing-the-ui)에서 소개됨)는 컴포넌트의 최상위 레벨에 있습니다. 여기서 props와 state를 가져와 변환하고 화면에 표시할 JSX를 반환합니다. [렌더링 코드는 순수해야합니다.](/learn/keeping-components-pure) 수학 공식처럼 결과만 계산할 뿐 다른 작업은 수행하지 않습니다.</Trans>
 
 - **Event handlers**(introduced in [Adding Interactivity](/learn/adding-interactivity)) are nested functions inside your components that *do* things rather than just calculate them. An event handler might update an input field, submit an HTTP POST request to buy a product, or navigate the user to another screen. Event handlers contain ["side effects"](https://en.wikipedia.org/wiki/Side_effect_(computer_science)) (they change the program's state) caused by a specific user action (for example, a button click or typing).
   <Trans>**이벤트 핸들러**([상호작용 추가하기](/learn/adding-interactivity)에서 소개됨)는 컴포넌트 내부에 있는 중첩된 함수로, 계산만 하는 것이 아니라 별도의 작업도 *수행*합니다. 이벤트 핸들러에서는 입력 필드를 업데이트하거나, HTTP POST요청을 제출하여 제품을 구매하거나, 사용자를 다른 화면으로 이동할 수 있습니다. 이벤트 핸들러에는 특정 사용자 작업(예:버튼 클릭 또는 입력)으로 인해 발생하는 ["사이드 이펙트"](https://en.wikipedia.org/wiki/Side_effect_(computer_science))(프로그램의 state를 변경함)가 포함되어 있습니다.</Trans>
@@ -69,7 +69,7 @@ To write an Effect, follow these three steps:
 2. **Specify the Effect dependencies.** Most Effects should only re-run *when needed* rather than after every render. For example, a fade-in animation should only trigger when a component appears. Connecting and disconnecting to a chat room should only happen when the component appears and disappears, or when the chat room changes. You will learn how to control this by specifying *dependencies.*
   <Trans>**Effect의 의존성을 명시합니다.** 대부분의 Effect는 렌더링 할 때마다가 아니라 *필요할 때만* 다시 실행해야 합니다. 예를 들어 페이드 인 애니메이션은 컴포넌트가 나타날 때만 발동되어야 합니다. 대화방 연결 및 해제는 컴포넌트가 나타났다가 사라지거나 대화방이 변경될 때만 발생해야합니다. *의존성*을 지정하여 이를 제어하는 방법은 이 글 아래에서 다룹니다.</Trans>
 3. **Add cleanup if needed.** Some Effects need to specify how to stop, undo, or clean up whatever they were doing. For example, "connect" needs "disconnect", "subscribe" needs "unsubscribe", and "fetch" needs either "cancel" or "ignore". You will learn how to do this by returning a *cleanup function*.
-  <Trans>**필요한 경우 클린업을 추가합니다.** 일부 Effect는 수행중이던 작업을 중지, 취소 또는 정리하는 방법을 명시해야합니다. 예를 들어 “connect”에는 “disconnect”가 필요하고 “subscribe”에는 “unsubscribe”가 필요하며 “fectch”에는 “cancel”또는 “ignore”가 필요합니다. 뒤에서 *클린업 함수*를 반환하여 이를 수행하는 방법은 이 글 아래에서 다룹니다.</Trans>
+  <Trans>**필요한 경우 클린업을 추가합니다.** 일부 Effect는 수행중이던 작업을 중지, 취소 또는 정리하는 방법을 명시해야합니다. 예를 들어 “connect”에는 “disconnect”가 필요하고 “subscribe”에는 “unsubscribe”가 필요하며 “fetch”에는 “cancel”또는 “ignore”가 필요합니다. 뒤에서 *클린업 함수*를 반환하여 이를 수행하는 방법은 이 글 아래에서 다룹니다.</Trans>
 
 Let's look at each of these steps in detail.
 <Trans>각 단계를 자세히 살펴보겠습니다.</Trans>
@@ -270,7 +270,7 @@ Effects should usually synchronize your components with an *external* system. If
 ### Step 2: Specify the Effect dependencies<Trans>Effect 의존성 지정하기</Trans> {/*step-2-specify-the-effect-dependencies*/}
 
 By default, Effects run after *every* render. Often, this is **not what you want:**
-<Trans>기본적으로 Effect는 *매번* 렌더링 후에 실행됩니다. 하지만 이를 **원하지 않는** 경우가 많습니다.</Trans>
+<Trans>기본적으로 Effect는 *매번* 렌더링 후에 실행됩니다. 하지만 이를 **원하지 않는** 경우가 있습니다.</Trans>
 
 - Sometimes, it's slow. Synchronizing with an external system is not always instant, so you might want to skip doing it unless it's necessary. For example, you don't want to reconnect to the chat server on every keystroke.
 
@@ -454,7 +454,7 @@ The dependency array can contain multiple dependencies. React will only skip re-
 <Trans>의존성 배열은 여러 개의 의존성을 포함할 수 있습니다. React는 지정한 *모든* 의존성의 값이 이전 렌더링 때와 정확히 동일한 경우에만 Effect의 재실행을 건너뜁니다. React는 [`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is) 비교를 사용해 의존성 값을 비교합니다. 자세한 내용은 [`useEffect`](/reference/react/useEffect#reference)를 참고하세요.</Trans>
 
 **Notice that you can't "choose" your dependencies.** You will get a lint error if the dependencies you specified don't match what React expects based on the code inside your Effect. This helps catch many bugs in your code. If you don't want some code to re-run, [*edit the Effect code itself* to not "need" that dependency.](/learn/lifecycle-of-reactive-effects#what-to-do-when-you-dont-want-to-re-synchronize)
-<Trans>**의존성을 "선택"할 수 없다는 점에 유의하세요.** 지정한 의존성들이 EFfect 내부의 코드를 기반으로 React가 예상하는 것과 일치하지 않으면 린트 오류가 발생합니다. 이는 코드에서 많은 버그를 잡는 데 도움이 됩니다. 일부 코드가 다시 실행되는 것을 원하지 않는다면, [해당 의존성을 "필요"하지 않도록 *Effect 코드 자체*를 편집하세요.](/learn/lifecycle-of-reactive-effects#what-to-do-when-you-dont-want-to-re-synchronize)</Trans>
+<Trans>**의존성을 "선택"할 수 없다는 점에 유의하세요.** 지정한 의존성들이 Effect 내부의 코드를 기반으로 React가 예상하는 것과 일치하지 않으면 lint 오류가 발생합니다. 이는 코드에서 많은 버그를 잡는 데 도움이 됩니다. 일부 코드가 다시 실행되는 것을 원하지 않는다면, [해당 의존성을 "필요"하지 않도록 *Effect 코드 자체*를 편집하세요.](/learn/lifecycle-of-reactive-effects#what-to-do-when-you-dont-want-to-re-synchronize)</Trans>
 
 <Pitfall>
 
@@ -503,7 +503,7 @@ function VideoPlayer({ src, isPlaying }) {
 ```
 
 This is because the `ref` object has a *stable identity:* React guarantees [you'll always get the same object](/reference/react/useRef#returns) from the same `useRef` call on every render. It never changes, so it will never by itself cause the Effect to re-run. Therefore, it does not matter whether you include it or not. Including it is fine too:
-<Trans>이는 `ref` 객체가 *안정적인 정체성*을 가지고 있기 때문입니다: React는 모든 렌더링에서 동일한 `useRef` 호출에서 [항상 동일한 객체를 얻을 수 있도록](/reference/react/useRef#returns) 보장합니다. 절대 변하지 않으므로 그 자체로 Effect가 다시 실행되지 않습니다. 따라서 포함 여부는 중요하지 않습니다. 포함해도 괜찮습니다:</Trans>
+<Trans>이는 `ref` 객체가 *안정적인 정체성*을 가지고 있기 때문입니다: React는 렌더링할 때마다 동일한 useRef 호출에서 [항상 동일한 객체를 얻을 수 있도록](/reference/react/useRef#returns) 보장합니다. 절대 변하지 않으므로 그 자체로 Effect가 다시 실행되지 않습니다. 따라서 포함 여부는 중요하지 않습니다. 포함해도 괜찮습니다:</Trans>
 
 ```js {9}
 function VideoPlayer({ src, isPlaying }) {
@@ -666,7 +666,7 @@ Now you get three console logs in development:
 <Trans>**이는 개발 단계에서 올바른 동작입니다.** 컴포넌트를 다시 마운트하면 React는 멀리 이동했다가 다시 돌아와도 코드가 깨지지 않는지 확인합니다. 연결을 끊었다가 다시 연결하는 것은 정확히 일어나야 하는 일입니다! 클린업을 잘 구현하면, Effect를 한 번 실행하는 것과 실행하고 클린업한 후 다시 실행하는 것 사이에 사용자가 체감할 수 있는 차이가 없어야 합니다. React가 개발 과정에서 코드에 버그가 있는지 검사하기 때문에 연결/해제 호출 쌍이 추가됩니다. 이것은 정상적인 현상이니 없애려고 하지 마세요!</Trans>
 
 **In production, you would only see `"✅ Connecting..."` printed once.** Remounting components only happens in development to help you find Effects that need cleanup. You can turn off [Strict Mode](/reference/react/StrictMode) to opt out of the development behavior, but we recommend keeping it on. This lets you find many bugs like the one above.
-<Trans>**프로덕션 환경에서는 `"✅ Connecting..."`이 한 번만 인쇄됩니다.** 컴포넌트를 다시 마운트하는 동작은 클린업이 필요한 Effect를 찾는 것을 돕기 위해 오직 개발 환경에서만 수행됩니다. [Strict Mode](/reference/react/StrictMode)를 해제하면 이같은 개발 동작을 없앨 수 있지만, 가능한 계속 켜두는 것을 추천합니다. 이를 통해 위와 같은 많은 버그를 찾을 수 있기 때문입니다.</Trans>
+<Trans>**상용 환경에서는 `"✅ Connecting..."`이 한 번만 인쇄됩니다.** 컴포넌트를 다시 마운트하는 동작은 클린업이 필요한 Effect를 찾는 것을 돕기 위해 오직 개발 환경에서만 수행됩니다. [Strict Mode](/reference/react/StrictMode)를 해제하면 이같은 개발 동작을 없앨 수 있지만, 가능한 계속 켜두는 것을 추천합니다. 이를 통해 위와 같은 많은 버그를 찾을 수 있기 때문입니다.</Trans>
 
 ## How to handle the Effect firing twice in development?<Trans>개발 환경에서 두 번씩 실행되는 Effect를 처리하는 방법은 무엇인가요?</Trans> {/*how-to-handle-the-effect-firing-twice-in-development*/}
 
@@ -885,7 +885,7 @@ Buying is not caused by rendering; it's caused by a specific interaction. It sho
 ```
 
 **This illustrates that if remounting breaks the logic of your application, this usually uncovers existing bugs.** From the user's perspective, visiting a page shouldn't be different from visiting it, clicking a link, and pressing Back. React verifies that your components abide by this principle by remounting them once in development.
-<Trans>**다시 마운트하면 애플리케이션의 로직이 깨지는 경우, 일반적으로 기존 버그를 발견할 수 있습니다.** 사용자 관점에서 페이지를 방문하는 것은 페이지를 방문하여 링크를 클릭하고 뒤로가기 버튼을 누르는 것과 다르지 않아야 합니다. React는 개발 단계에서 컴포넌트를 한 번 다시 마운트하여 이 원칙을 준수하는지 확인합니다.</Trans>
+<Trans>**다시 마운트하면 애플리케이션의 로직이 깨지는 경우, 일반적으로 기존 버그를 발견할 수 있습니다.** 사용자 관점에서 페이지를 방문하는 것은 페이지를 방문하여 링크를 클릭하고 뒤로가기 버튼을 누르는 것과 다르지 않아야 합니다. React는 개발 단계에서 컴포넌트를 다시 한 번 마운트하여 이 원칙을 준수하는지 확인합니다.</Trans>
 
 ## Putting it all together<Trans>한데 모으기</Trans> {/*putting-it-all-together*/}
 
@@ -951,7 +951,7 @@ You will see three logs at first: `Schedule "a" log`, `Cancel "a" log`, and `Sch
 <Trans>처음에는 `Schedule "a" log`, `Cancel "a" log`, `Schedule "a" log`의 세 가지 로그가 표시됩니다. 3초 후에 `a`라는 로그도 표시됩니다. 앞서 배운 것처럼 schedule/cancel 쌍이 한 번 더 출력되는 이유는 개발 환경에서 React가 클린업을 잘 구현했는지 확인하기 위해 컴포넌트를 다시 마운트하기 때문입니다.</Trans>
 
 Now edit the input to say `abc`. If you do it fast enough, you'll see `Schedule "ab" log` immediately followed by `Cancel "ab" log` and `Schedule "abc" log`. **React always cleans up the previous render's Effect before the next render's Effect.** This is why even if you type into the input fast, there is at most one timeout scheduled at a time. Edit the input a few times and watch the console to get a feel for how Effects get cleaned up.
-<Trans>이제 input을 편집하여 `abc`라고 입력하세요. 충분히 빨리 입력하면 `Schedule "ab" log`와 ``Cancel "ab" log`, `Schedule "abc" log`가 바로 표시될 것입니다. **React는 항상 다음 렌더링의 Effect 전에 이전 렌더링의 Effect를 클린업 합니다.** 따라서 입력을 빠르게 입력하더라도 한 번에 최대 한 번만 타임아웃이 예약됩니다. 입력을 몇 번 편집하고 콘솔을 보면서 Effect가 어떻게 클린업 되는지 느껴보세요.</Trans>
+<Trans>이제 input을 편집하여 `abc`라고 입력하세요. 충분히 빨리 입력하면 `Schedule "ab" log`와 `Cancel "ab" log`, `Schedule "abc" log`가 바로 표시될 것입니다. **React는 항상 다음 렌더링의 Effect 전에 이전 렌더링의 Effect를 클린업 합니다.** 따라서 입력을 빠르게 입력하더라도 한 번에 최대 한 번만 타임아웃이 예약됩니다. 입력을 몇 번 편집하고 콘솔을 보면서 Effect가 어떻게 클린업 되는지 느껴보세요.</Trans>
 
 Type something into the input and then immediately press "Unmount the component". Notice how unmounting cleans up the last render's Effect. Here, it clears the last timeout before it has a chance to fire.
 <Trans>입력에 무언가를 입력한 다음 즉시 "Unmount the component"를 눌러보세요. 마운트를 해제하면 마지막 렌더링의 Effect가 어떻게 클린업되는지 확인하세요. 여기서는 Effect가 실행 기회를 갖기 전에 마지막 타임아웃을 지웁니다.</Trans>

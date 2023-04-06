@@ -32,6 +32,17 @@ showSurvey: false
 </TeamMember>
 
 <TeamMember 
+  name="유한나라" 
+  title="프론트엔드 취준생"
+  photo="/images/translators/hannara.jpeg"
+  github="nara04040"
+  undefined
+  personal="https://nara04040.tistory.com/"
+>
+  프론트엔드를 공부하고있는 개발자 취준생입니다. 🤗 <br/> 저는 도전과 실패를 하며 배워가는 것을 좋아합니다! 🥳
+</TeamMember>
+
+<TeamMember 
   name="테스트" 
   title="프론트엔트 취준생"
   photo="/images/team/gaearon.jpg"

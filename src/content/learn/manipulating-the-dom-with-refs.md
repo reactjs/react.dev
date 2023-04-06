@@ -643,7 +643,7 @@ Try pressing "Toggle with setState" a few times. The message should disappear an
 <Sandpack>
 
 ```js
-import {useState, useRef} from 'react';
+import { useState, useRef } from 'react';
 
 export default function Counter() {
   const [show, setShow] = useState(true);

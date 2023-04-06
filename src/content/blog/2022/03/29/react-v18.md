@@ -123,7 +123,7 @@ Typically, for the best user experience, a single user input should result in bo
 
 
 ```js
-import {startTransition} from 'react';
+import { startTransition } from 'react';
 
 // Urgent: Show what was typed
 setInputValue(input);

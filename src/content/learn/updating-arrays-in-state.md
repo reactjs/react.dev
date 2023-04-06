@@ -549,7 +549,7 @@ artwork.seen = nextSeen; // Problem: mutates an existing item
 setMyList(myNextList);
 ```
 
-Although the `myNextList` array itself is new, the *items themselves* are the same as in the original `myList` array. So changing `artwork.seen` changes the *original* artwork item. That artwork item is also in `yourArtworks`, which causes the bug. Bugs like this can be difficult to think about, but thankfully they disappear if you avoid mutating state.
+Although the `myNextList` array itself is new, the *items themselves* are the same as in the original `myList` array. So changing `artwork.seen` changes the *original* artwork item. That artwork item is also in `yourList`, which causes the bug. Bugs like this can be difficult to think about, but thankfully they disappear if you avoid mutating state.
 
 **You can use `map` to substitute an old item with its updated version without mutation.**
 
@@ -681,7 +681,7 @@ export default function BucketList() {
   const [myList, updateMyList] = useImmer(
     initialList
   );
-  const [yourArtworks, updateYourList] = useImmer(
+  const [yourList, updateYourList] = useImmer(
     initialList
   );
 
@@ -712,7 +712,7 @@ export default function BucketList() {
         onToggle={handleToggleMyList} />
       <h2>Your list of art to see:</h2>
       <ItemList
-        artworks={yourArtworks}
+        artworks={yourList}
         onToggle={handleToggleYourList} />
     </>
   );

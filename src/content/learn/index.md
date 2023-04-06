@@ -313,6 +313,7 @@ Now you can declare a *state variable* inside your component:
 ```js
 function MyButton() {
   const [count, setCount] = useState(0);
+  // ...
 ```
 
 You’ll get two things from `useState`: the current state (`count`), and the function that lets you update it (`setCount`). You can give them any names, but the convention is to write `[something, setSomething]`.

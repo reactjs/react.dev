@@ -32,12 +32,12 @@ showSurvey: false
 </TeamMember>
 
 <TeamMember 
-  name="테스트" 
-  title="프론트엔트 취준생"
-  photo="/images/team/gaearon.jpg"
-  github="test"
+  name="서민택" 
+  title="프론트엔드 개발자"
+  photo="/images/translators/mtseo.jpg"
+  github="mtseo01"
   undefined
   undefined
 >
-  취업준비 어려워요. 아무말대잔치.<br/>줄바꿈은 이렇게<br/>[마크다운링크](www.youtube.com/c/feroy)<br/>**마크다운 강조** 다됩니다!!
+  제가 가진 기술과 전문성으로 많은 이들에게 좋은 영향을 주고 싶습니다.<br/>그리고 이것들이 동기부여가 되어 계속 발전하는 개발자가 되겠습니다.
 </TeamMember>

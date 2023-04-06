@@ -330,8 +330,8 @@ Click on the file labeled `styles.css` in the _Files_ section of CodeSandbox. Th
 Click on the file labeled `index.js` in the _Files_ section of CodeSandbox. You won't be editing this file during the tutorial but it is the bridge between the component you created in the `App.js` file and the web browser.
 
 ```jsx
-import {StrictMode} from 'react';
-import {createRoot} from 'react-dom/client';
+import { StrictMode } from 'react';
+import { createRoot } from 'react-dom/client';
 import './styles.css';
 
 import App from './App';

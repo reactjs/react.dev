@@ -65,7 +65,7 @@ React will attach to the HTML that exists inside the `domNode`, and take over ma
 Call `hydrate` to attach a <CodeStep step={1}>React component</CodeStep> into a server-rendered <CodeStep step={2}>browser DOM node</CodeStep>.
 
 ```js [[1, 3, "<App />"], [2, 3, "document.getElementById('root')"]]
-import {hydrate} from 'react-dom';
+import { hydrate } from 'react-dom';
 
 hydrate(<App />, document.getElementById('root'));
 ````
@@ -90,7 +90,7 @@ In apps fully built with React, **you will usually only hydrate one "root", once
 
 ```js index.js active
 import './styles.css';
-import {hydrate} from 'react-dom';
+import { hydrate } from 'react-dom';
 import App from './App.js';
 
 hydrate(<App />, document.getElementById('root'));
@@ -128,7 +128,7 @@ To silence hydration warnings on an element, add `suppressHydrationWarning={true
 
 ```js index.js
 import './styles.css';
-import {hydrate} from 'react-dom';
+import { hydrate } from 'react-dom';
 import App from './App.js';
 
 hydrate(<App />, document.getElementById('root'));
@@ -166,7 +166,7 @@ If you intentionally need to render something different on the server and the cl
 
 ```js index.js
 import './styles.css';
-import {hydrate} from 'react-dom';
+import { hydrate } from 'react-dom';
 import App from './App.js';
 
 hydrate(<App />, document.getElementById('root'));

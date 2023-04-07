@@ -479,8 +479,6 @@ The last timeout ID variable is shared between all `DebouncedButton` components.
 <Sandpack>
 
 ```js
-import { useState } from 'react';
-
 let timeoutID;
 
 function DebouncedButton({ onClick, children }) {
@@ -532,7 +530,7 @@ A variable like `timeoutID` is shared between all components. This is why clicki
 <Sandpack>
 
 ```js
-import { useState, useRef } from 'react';
+import { useRef } from 'react';
 
 function DebouncedButton({ onClick, children }) {
   const timeoutRef = useRef(null);

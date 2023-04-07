@@ -180,7 +180,7 @@ input, select { margin-right: 20px; }
 ## Reactive values and reactive logic <Trans>반응형 값 및 반응형 로직</Trans> {/*reactive-values-and-reactive-logic*/}
 
 Intuitively, you could say that event handlers are always triggered "manually", for example by clicking a button. Effects, on the other hand, are "automatic": they run and re-run as often as it's needed to stay synchronized.
-<Trans>직관적으로, 이벤트 핸들러는 버튼을 클릭하는 등 항상 “수동”으로 트리거된다고 말할 수 있습니다. 반면에 Effect는 "자동"으로 동기화 상태를 유지하는 데 필요한 만큼 자주 다시 실행됩니다.</Trans>
+<Trans>직관적으로, 이벤트 핸들러는 버튼을 클릭하는 등 항상 “수동”으로 발동시킨다고 말할 수 있습니다. 반면에 Effect는 "자동"으로 동기화 상태를 유지하는 데 필요한 만큼 자주 다시 실행됩니다.</Trans>
 
 There is a more precise way to think about this.
 <Trans>이에 대해 더 정확하게 생각할 수 있는 방법이 있습니다.</Trans>

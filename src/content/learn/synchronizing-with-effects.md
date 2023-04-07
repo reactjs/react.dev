@@ -45,7 +45,7 @@ Sometimes this isn't enough. Consider a `ChatRoom` component that must connect t
 <Trans>때로는 이것만으로는 충분하지 않을 수 있습니다. 화면에 표시될 때마다 채팅 서버에 연결해야 하는 `ChatRoom` 컴포넌트를 고려해 봅시다. 서버에 연결하는 것은 순수한 계산이 아니므로(사이드 이펙트) 렌더링 중에 발생할 수 없습니다. 그러나 `ChatRoom` 표시를 유발하는 클릭과 같은 특정한 단일 이벤트는 없습니다.</Trans>
 
 ***Effects* let you specify side effects that are caused by rendering itself, rather than by a particular event.** Sending a message in the chat is an *event* because it is directly caused by the user clicking a specific button. However, setting up a server connection is an *Effect* because it should happen no matter which interaction caused the component to appear. Effects run at the end of a [commit](/learn/render-and-commit) after the screen updates. This is a good time to synchronize the React components with some external system (like network or a third-party library).
-<Trans>***Effect*를 사용하면 특정 이벤트가 아닌 렌더링 자체로 인해 발생하는 사이드 이펙트를 명시할 수 있습니다.** 채팅에서 메시지를 보내는 것은 사용자가 특정 버튼을 클릭함으로써 직접적으로 발생하기 때문에 이벤트입니다. 그러나 서버 연결을 설정하는 것은 컴포넌트를 표시하게 만든 상호작용에 관계없이 발생해야 하기 때문에 하나의 Effect입니다. Effect는 화면 업데이트 후 [커밋](/learn/render-and-commit)이 끝날 때 실행됩니다. 이 때가 React 컴포넌트를 일부 외부 시스템(네트워크 또는 타사 라이브러리와 같은)과 동기화하기에 좋은 시기입니다.</Trans>
+<Trans>***Effect*를 사용하면 특정 이벤트가 아닌 렌더링 자체로 인해 발생하는 사이드 이펙트를 명시할 수 있습니다.** 채팅에서 메시지를 보내는 것은 사용자가 특정 버튼을 클릭함으로써 직접적으로 발생하기 때문에 이벤트입니다. 그러나 서버 연결을 설정하는 것은 컴포넌트를 표시하게 만든 상호작용에 관계없이 발생해야 하기 때문에 하나의 Effect입니다. Effect는 화면 업데이트 후 [커밋](/learn/render-and-commit)이 끝날 때 실행됩니다. 이 때가 React 컴포넌트를 일부 외부 시스템(네트워크 또는 서드파티 라이브러리와 같은)과 동기화하기에 좋은 시기입니다.</Trans>
 
 <Note>
 
@@ -745,7 +745,7 @@ useEffect(() => {
 ```
 
 In development, opacity will be set to `1`, then to `0`, and then to `1` again. This should have the same user-visible behavior as setting it to `1` directly, which is what would happen in production. If you use a third-party animation library with support for tweening, your cleanup function should reset the timeline to its initial state.
-<Trans>개발 과정에서 불투명도는 `1`이었다가, `0`이었다가, 다시 `1`로 설정됩니다. 이것은 상용 환경에서 `1`을 한 번만 설정하는 것과 체감상 동일합니다. 만약 트위닝을 지원하는 써드파티 애니메이션 라이브러리를 사용하는 경우라면, 클린업 함수에서 타임라인을 초기 state로 재설정해줘야 합니다.</Trans>
+<Trans>개발 과정에서 불투명도는 `1`이었다가, `0`이었다가, 다시 `1`로 설정됩니다. 이것은 상용 환경에서 `1`을 한 번만 설정하는 것과 체감상 동일합니다. 만약 트위닝을 지원하는 서드파티 애니메이션 라이브러리를 사용하는 경우라면, 클린업 함수에서 타임라인을 초기 state로 재설정해줘야 합니다.</Trans>
 
 ### Fetching data<Trans>데이터 페칭하기</Trans> {/*fetching-data*/}
 
@@ -1113,7 +1113,7 @@ When [Strict Mode](/reference/react/StrictMode) is on, React remounts every comp
 <TransBlock>
 
 - 이벤트와 달리 Effect는 특정 상호 작용이 아닌 렌더링 자체에 의해 발생합니다.
-- Effect를 사용하면 일부 외부 시스템(타사 API, 네트워크 등)과 컴포넌트를 동기화할 수 있습니다.
+- Effect를 사용하면 일부 외부 시스템(서드파티 API, 네트워크 등)과 컴포넌트를 동기화할 수 있습니다.
 - 기본적으로 Effect는 모든 렌더링 후에 실행됩니다(초기 렌더링 포함).
 - React는 모든 의존성이 마지막 렌더링 시점과 동일한 값을 갖는 경우 Effect를 건너뜁니다.
 - 의존성을 "선택"할 수는 없습니다. 그들은 Effect 내부의 코드에 의해 결정됩니다.

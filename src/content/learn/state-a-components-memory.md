@@ -208,9 +208,14 @@ import { sculptureList } from './data.js';
 
 export default function Gallery() {
   const [index, setIndex] = useState(0);
-
+  const hasNext = index < sculptureList.length - 1;
+  
   function handleClick() {
-    setIndex(index + 1);
+    if (hasNext) {
+      setIndex(index + 1);
+    } else {
+      setIndex(0);
+    }
   }
 
   let sculpture = sculptureList[index];
@@ -392,9 +397,14 @@ import { sculptureList } from './data.js';
 export default function Gallery() {
   const [index, setIndex] = useState(0);
   const [showMore, setShowMore] = useState(false);
+  const hasNext = index < sculptureList.length - 1;
 
   function handleNextClick() {
-    setIndex(index + 1);
+    if (hasNext) {
+      setIndex(index + 1);
+    } else {
+      setIndex(0);
+    }
   }
 
   function handleMoreClick() {
@@ -573,9 +583,14 @@ function Gallery() {
   // Each useState() call will get the next pair.
   const [index, setIndex] = useState(0);
   const [showMore, setShowMore] = useState(false);
+  const hasNext = index < sculptureList.length - 1;
 
   function handleNextClick() {
-    setIndex(index + 1);
+    if (hasNext) {
+      setIndex(index + 1);
+    } else {
+      setIndex(0);
+    }
   }
 
   function handleMoreClick() {
@@ -757,9 +772,14 @@ import { sculptureList } from './data.js';
 export default function Gallery() {
   const [index, setIndex] = useState(0);
   const [showMore, setShowMore] = useState(false);
+  const hasNext = index < sculptureList.length - 1;
 
   function handleNextClick() {
-    setIndex(index + 1);
+    if (hasNext) {
+      setIndex(index + 1);
+    } else {
+      setIndex(0);
+    }
   }
 
   function handleMoreClick() {

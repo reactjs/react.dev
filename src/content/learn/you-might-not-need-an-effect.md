@@ -443,7 +443,7 @@ function Game() {
   const [isGameOver, setIsGameOver] = useState(false);
 
   // 🔴 Avoid: Chains of Effects that adjust the state solely to trigger each other
-  // 🔴 이러지 마세요: 오직 서로를 트리거하기 위해서만 state를 조정하는 Effect 체인
+  // 🔴 이러지 마세요: 오직 서로를 발동시키기 위해서만 state를 조정하는 Effect 체인
   useEffect(() => {
     if (card !== null && card.gold) {
       setGoldCardCount(c => c + 1);
@@ -737,7 +737,7 @@ This is simpler and keeps the data flow predictable: the data flows down from th
 ### Subscribing to an external store<Trans>외부 스토어 구독하기</Trans> {/*subscribing-to-an-external-store*/}
 
 Sometimes, your components may need to subscribe to some data outside of the React state. This data could be from a third-party library or a built-in browser API. Since this data can change without React's knowledge, you need to manually subscribe your components to it. This is often done with an Effect, for example:
-<Trans>때로는 컴포넌트가 React state 외부의 일부 데이터를 구독해야 할 수도 있습니다. 써드파티 라이브러리나 내장 브라우저 API에서 데이터를 가져와야 할 수도 있습니다. 이 데이터는 React가 모르는 사이에 변경될 수도 있는데, 그럴 땐 수동으로 컴포넌트가 해당 데이터를 구독하도록 해야 합니다. 이 작업은 종종 Effect에서 수행합니다. 예를 들어:</Trans>
+<Trans>때로는 컴포넌트가 React state 외부의 일부 데이터를 구독해야 할 수도 있습니다. 서드파티 라이브러리나 내장 브라우저 API에서 데이터를 가져와야 할 수도 있습니다. 이 데이터는 React가 모르는 사이에 변경될 수도 있는데, 그럴 땐 수동으로 컴포넌트가 해당 데이터를 구독하도록 해야 합니다. 이 작업은 종종 Effect에서 수행합니다. 예를 들어:</Trans>
 
 ```js {2-18}
 function useOnlineStatus() {

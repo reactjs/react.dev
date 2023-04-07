@@ -15,7 +15,7 @@ React.
 <Note>
 
 This tutorial is designed for people who prefer to **learn by doing** and want to quickly try making something tangible. If you prefer learning each concept step by step, start with [Describing the UI.](/learn/describing-the-ui)
-<Trans>이 자습서는 **직접 해보면서 배우는 것**을 선호하고, 빠르게 무언가를 만들어 보고 싶은 분들을 위해 설계되었습니다. 각 개념을 단계별로 학습하는 것을 선호하신다면 [UI 설명](/learn/describing-the-ui)에서부터 시작하세요.</Trans>
+<Trans>이 자습서는 **직접 해보면서 배우는 것**을 선호하고, 빠르게 무언가를 만들어 보고 싶은 분들을 위해 설계되었습니다. 각 개념을 단계별로 학습하는 것을 선호하신다면 [UI 구성하기](/learn/describing-the-ui)부터 시작하세요.</Trans>
 </Note>
 
 The tutorial is divided into several sections:
@@ -324,7 +324,7 @@ In CodeSandbox you'll see three main sections:
 </TransBlock>
 
 The `App.js` file should be selected in the _Files_ section. The contents of that file in the _code editor_ should be:
-<Trans> _파일_ 섹션에서 `App.js` 파일을 선택하세요. _코드 편집기_ 에서 해당 파일의 내용이 있어야 합니다.</Trans>
+<Trans> _파일_ 섹션에서 `App.js` 파일을 선택하세요. _코드 편집기_ 에서 해당 파일의 내용이 있어야 합니다:</Trans>
 
 ```jsx
 export default function Square() {
@@ -418,6 +418,7 @@ You'll get this error:
 <ConsoleBlock level="error">
 
 /src/App.js: Adjacent JSX elements must be wrapped in an enclosing tag. Did you want a JSX fragment `<>...</>`?
+<Trans>/src/App.js: 인접한 JSX 요소는 둘러싸는 태그로 묶어야 합니다. JSX fragment `<>...</>`를 원하시나요?</Trans>
 
 </ConsoleBlock>
 
@@ -991,7 +992,7 @@ body {
 ### React Developer Tools<Trans>React 개발자 도구</Trans> {/*react-developer-tools*/}
 
 React DevTools let you check the props and the state of your React components. You can find the React DevTools tab at the bottom of the _browser_ section in CodeSandbox:
-<Trans>React 개발자 도구를 사용하면 props와 React 각 컴포넌트의 state를 확인할 수 있습니다. CodeSandBox의 _브라우저_ 섹션 하단에서 React 개발자 도구 탭을 찾을 수 있습니다.</Trans>
+<Trans>React 개발자 도구를 사용하면 props와 React 각 컴포넌트의 state를 확인할 수 있습니다. CodeSandBox의 _브라우저_ 섹션 하단에서 React 개발자 도구 탭을 찾을 수 있습니다:</Trans>
 
 ![React DevTools in CodeSandbox](../images/tutorial/codesandbox-devtools.png)
 
@@ -1003,7 +1004,7 @@ To inspect a particular component on the screen, use the button in the top left 
 <Note>
 
 For local development, React DevTools is available as a [Chrome](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=en), [Firefox](https://addons.mozilla.org/en-US/firefox/addon/react-devtools/), and [Edge](https://microsoftedge.microsoft.com/addons/detail/react-developer-tools/gpphkfbcpidddadnkolkpfckpihlkkil) browser extension. Install it, and the *Components* tab will appear in your browser Developer Tools for sites using React.
-<Trans>로컬 환경에서 개발하는 경우, React 개발자 도구는 [Chrome](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=en), [Firefox](https://addons.mozilla.org/en-US/firefox/addon/react-devtools/), 그리고 [Edge](https://microsoftedge.microsoft.com/addons/detail/react-developer-tools/gpphkfbcpidddadnkolkpfckpihlkkil) 브라우저의 확장 프로그램으로 사용할 수 있습니다. 설치 후 브라우저 개발자 도구에 React를 사용하는 사이트를 위한 **컴포넌트** 탭이 나타납니다.</Trans>
+<Trans>로컬 환경에서 개발하는 경우, React 개발자 도구는 [Chrome](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=en), [Firefox](https://addons.mozilla.org/en-US/firefox/addon/react-devtools/), 그리고 [Edge](https://microsoftedge.microsoft.com/addons/detail/react-developer-tools/gpphkfbcpidddadnkolkpfckpihlkkil) 브라우저의 확장 프로그램으로 사용할 수 있습니다. 설치 후 브라우저 개발자 도구에 React를 사용하는 사이트를 위한 **Components** 탭이 나타납니다.</Trans>
 
 </Note>
 
@@ -1191,7 +1192,7 @@ function Square({ value }) {
 ```
 
 Next, you'll add the `onSquareClick` function to the `Square` component's props:
-<Trans>다음으로, `Square` 컴포넌트의 props에 `onSquareClick` 함수를 추가합니다.</Trans>
+<Trans>다음으로, `Square` 컴포넌트의 props에 `onSquareClick` 함수를 추가합니다:</Trans>
 
 ```js {1}
 function Square({ value, onSquareClick }) {
@@ -1283,6 +1284,7 @@ Here is why this doesn't work. The `handleClick(0)` call will be a part of rende
 <ConsoleBlock level="error">
 
 Too many re-renders. React limits the number of renders to prevent an infinite loop.
+<Trans>재렌더링이 너무 많이 발생했습니다. 무한 루프를 방지하기 위해 React가 렌더링 횟수를 제한합니다.</Trans>
 
 </ConsoleBlock>
 
@@ -1499,7 +1501,7 @@ Immutability makes complex features much easier to implement. Later in this tuto
 <Trans>불변성을 사용하면 복잡한 기능을 훨씬 쉽게 구현할 수 있습니다. 우리는 이 자습서의 뒷부분에서 게임의 history를 검토하고 과거 동작으로 “돌아가기”할 수 있는 “시간 여행” 기능을 구현할 예정입니다. 특정 작업을 실행 취소하고 다시 실행하는 기능은 이 게임에만 국한된 것이 아닌 앱의 일반적인 요구사항 입니다. 직접적인 데이터 변경을 피하면 이전 버전의 데이터를 그대로 유지하여 나중에 재사용(또는 초기화) 할 수 있습니다.</Trans>
 
 There is also another benefit of immutability. By default, all child components re-render automatically when the state of a parent component changes. This includes even the child components that weren't affected by the change. Although re-rendering is not by itself noticeable to the user (you shouldn't actively try to avoid it!), you might want to skip re-rendering a part of the tree that clearly wasn't affected by it for performance reasons. Immutability makes it very cheap for components to compare whether their data has changed or not. You can learn more about how React chooses when to re-render a component in [the `memo` API reference](/reference/react/memo).
-<Trans>불변성을 사용하는 것의 또 다른 장점이 있습니다. 기본적으로 부모 컴포넌트의 state가 변경되면 모든 자식 컴포넌트가 자동으로 다시 렌더링됩니다. 여기에는 변경사항이 없는 자식 컴포넌트도 포함됩니다. 리렌더링 자체가 사용자에게 보여지는 것은 아니지만(적극적으로 피하려고 하는 것은 좋지 않습니다!), 우리는 성능상의 이유로 트리의 영향을 받지 않는 부분의 리렌더링을 피하고 싶습니다. 불변성을 사용하면 컴포넌트가 데이터의 변경 여부를 저렴한 비용으로 판단할 수 있습니다. 자세한 내용은 [the `memo` API reference](https://beta.reactjs.org/reference/react/memo) 문서에서 React가 컴포넌트 다시 렌더링하는 시점을 선택하는 방법에 대해 살펴볼 수 있습니다.</Trans>
+<Trans>불변성을 사용하는 것의 또 다른 장점이 있습니다. 기본적으로 부모 컴포넌트의 state가 변경되면 모든 자식 컴포넌트가 자동으로 다시 렌더링됩니다. 여기에는 변경사항이 없는 자식 컴포넌트도 포함됩니다. 리렌더링 자체가 사용자에게 보여지는 것은 아니지만(적극적으로 피하려고 하는 것은 좋지 않습니다!), 우리는 성능상의 이유로 트리의 영향을 받지 않는 부분의 리렌더링을 피하고 싶습니다. 불변성을 사용하면 컴포넌트가 데이터의 변경 여부를 저렴한 비용으로 판단할 수 있습니다. 자세한 내용은 [the `memo` API reference](/reference/react/memo) 문서에서 React가 컴포넌트 다시 렌더링하는 시점을 선택하는 방법에 대해 살펴볼 수 있습니다.</Trans>
 
 ### Taking turns<Trans>순서 정하기</Trans> {/*taking-turns*/}
 
@@ -1507,7 +1509,7 @@ It's now time to fix a major defect in this tic-tac-toe game: the "O"s cannot be
 <Trans>이제 이 틱택토 게임에서 “O”를 보드에 표시할 수 없다는 가장 큰 결함을 수정할 차례입니다.</Trans>
 
 You'll set the first move to be "X" by default. Let's keep track of this by adding another piece of state to the Board component:
-<Trans>기본적으로 첫 번째 이동을 “X”로 설정합니다. 이제 보드 컴포넌트에 또 다른 state를 추가하여 추적해 보겠습니다.</Trans>
+<Trans>기본적으로 첫 번째 이동을 “X”로 설정합니다. 이제 보드 컴포넌트에 또 다른 state를 추가하여 추적해 보겠습니다:</Trans>
 
 ```js {2}
 function Board() {
@@ -2037,7 +2039,7 @@ export default function Game() {
 ```
 
 Here, `[...history, nextSquares]` creates a new array that contains all the items in `history`, followed by `nextSquares`. (You can read the `...history` [*spread syntax*](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax) as "enumerate all the items in `history`".)
-<Trans>여기서 `[...history, nextSquares]`는 `history`에 있는 모든 항목을 포함하는 새 배열을 만들고 그 뒤에 `nextSquares`를 만듭니다. (`...history` *[스프레드 구문](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax)*을 "`history`의 모든 항목 열거"로 읽을 수 있습니다.)</Trans>
+<Trans>여기서 `[...history, nextSquares]`는 `history`에 있는 모든 항목을 포함하는 새 배열을 만들고 그 뒤에 `nextSquares`를 만듭니다. (`...history` [*스프레드 구문*](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax)을 "`history`의 모든 항목 열거"로 읽을 수 있습니다.)</Trans>
 
 For example, if `history` is `[[null,null,null], ["X",null,null]]` and `nextSquares` is `["X",null,"O"]`, then the new `[...history, nextSquares]` array will be `[[null,null,null], ["X",null,null], ["X",null,"O"]]`.
 <Trans>예를 들어, `history`가 `[[null,null,null], ["X",null,null]]`이고 `nextSquares`가 `["X",null,"O"]`라면 새로운 `[...history, nextSquares]` 배열은 `[[null,null,null], ["X",null,null], ["X",null,"O"]]`가 될 것입니다.</Trans>
@@ -2422,7 +2424,7 @@ body {
 </Sandpack>
 
 As you iterate through `history` array inside the function you passed to `map`, the `squares` argument goes through each element of `history`, and the `move` argument goes through each array index: `0`, `1`, `2`, …. (In most cases, you'd need the actual array elements, but to render a list of moves you will only need indexes.)
-<Trans>`map`으로 `history` 배열을 반복할 때 전달한 함수 내에서 `squares` 인수는 `history`의 각 요소를 통과하고, `move` 인수는 각 배열 인덱스를 통과합니다: `0`, `1`, `2`, .... (대부분의 경우 실제 배열 요소가 필요하지만, 이 경우에는 이동 목록을 렌더링하기 위해 `squares`를 사용하지 않습니다).</Trans>
+<Trans>`map`으로 `history` 배열을 반복할 때 전달한 함수 내에서 `squares` 인수는 `history`의 각 요소를 통과하고, `move` 인수는 각 배열 인덱스를 통과합니다: `0`, `1`, `2`, .... (대부분의 경우 실제 배열 요소가 필요하지만, 이 경우에는 이동 목록을 렌더링하기 위해 `squares`를 사용하지 않습니다.)</Trans>
 
 For each move in the tic-tac-toe game's history, you create a list item `<li>` which contains a button `<button>`. The button has an `onClick` handler which calls a function called `jumpTo` (that you haven't implemented yet).
 <Trans>틱택토 게임 history의 각 이동에 대해 버튼 `<button>`이 포함된 목록 항목 `<li>`을 생성합니다. 버튼에는 (아직 구현하지 않은) `jumpTo`라는 함수를 호출하는 `onClick` 핸들러가 있습니다.</Trans>
@@ -2462,30 +2464,30 @@ In addition to the updated counts, a human reading this would probably say that 
 ```
 
 When a list is re-rendered, React takes each list item's key and searches the previous list's items for a matching key. If the current list has a key that didn't exist before, React creates a component. If the current list is missing a key that existed in the previous list, React destroys the previous component. If two keys match, the corresponding component is moved.
-<Trans>리스트가 다시 렌더링되면, React는 각 리스트 항목의 key를 가져와서 이전 리스트의 항목에서 일치하는 키를 탐색합니다. 현재 리스트에서 이전에 존재하지 않았던 키가 있으면, React는 컴포넌트를 생성합니다. 만약 현재 리스트에 이전 리스트에 존재했던 키를 가지고 있지 않다면 React는 그 키를 가진 컴포넌트를 제거합니다. 두 키가 일치한다면 해당 컴포넌트는 이동합니다.</Trans>
+<Trans>리스트가 다시 렌더링되면, React는 각 리스트 항목의 key를 가져와서 이전 리스트의 항목에서 일치하는 key를 탐색합니다. 현재 리스트에서 이전에 존재하지 않았던 key가 있으면, React는 컴포넌트를 생성합니다. 만약 현재 리스트에 이전 리스트에 존재했던 key를 가지고 있지 않다면 React는 그 key를 가진 컴포넌트를 제거합니다. 두 key가 일치한다면 해당 컴포넌트는 이동합니다.</Trans>
 
 Keys tell React about the identity of each component, which allows React to maintain state between re-renders. If a component's key changes, the component will be destroyed and re-created with a new state.
-<Trans>키는 각 React로 하여금 각 컴포넌트를 구별할수 있도록하여, 컴포넌트가 다시 렌더링 될 때 React가 해당 컴포넌트의 state를 유지할 수 있게 합니다. 컴포넌트의 키가 변하면, 컴포넌트는 제거되고 새로운 state와 함께 다시 생성됩니다.</Trans>
+<Trans>key는 각 React로 하여금 각 컴포넌트를 구별할수 있도록하여, 컴포넌트가 다시 렌더링 될 때 React가 해당 컴포넌트의 state를 유지할 수 있게 합니다. 컴포넌트의 key가 변하면, 컴포넌트는 제거되고 새로운 state와 함께 다시 생성됩니다.</Trans>
 
 `key` is a special and reserved property in React. When an element is created, React extracts the `key` property and stores the key directly on the returned element. Even though `key` may look like it is passed as props, React automatically uses `key` to decide which components to update. There's no way for a component to ask what `key` its parent specified.
-<Trans>`key`는 React에서 특별하고 미리 지정된 프로퍼티입니다. 엘리먼트가 생성되면, React는 `key` 프로퍼티를 추출하여 반환되는 엘리먼트에 직접 키를 저장합니다. `key`가 props로 전달되는 것처럼 보일 수 있지만, React는 자동으로 `key`를 사용해 업데이트할 컴포넌트를 결정합니다. 부모가 지정한 키가 무엇인지 컴포넌트는 알 수 없습니다.</Trans>
+<Trans>`key`는 React에서 특별하고 미리 지정된 프로퍼티입니다. 엘리먼트가 생성되면, React는 `key` 프로퍼티를 추출하여 반환되는 엘리먼트에 직접 key를 저장합니다. `key`가 props로 전달되는 것처럼 보일 수 있지만, React는 자동으로 `key`를 사용해 업데이트할 컴포넌트를 결정합니다. 부모가 지정한 key가 무엇인지 컴포넌트는 알 수 없습니다.</Trans>
 
 **It's strongly recommended that you assign proper keys whenever you build dynamic lists.** If you don't have an appropriate key, you may want to consider restructuring your data so that you do.
-<Trans>**동적인 리스트를 만들 때마다 적절한 키를 할당하는 것을 강력하게 추천합니다**. 적절한 키가 없는 경우, 데이터를 재구성하는 것을 고려해보세요.</Trans>
+<Trans>**동적인 리스트를 만들 때마다 적절한 key를 할당하는 것을 강력하게 추천합니다**. 적절한 key가 없는 경우, 데이터를 재구성하는 것을 고려해보세요.</Trans>
 
 If no key is specified, React will report an error and use the array index as a key by default. Using the array index as a key is problematic when trying to re-order a list's items or inserting/removing list items. Explicitly passing `key={i}` silences the error but has the same problems as array indices and is not recommended in most cases.
-<Trans>키가 지정되지 않은 경우, React는 경고를 표시하며 배열의 인덱스를 기본 키로 사용합니다. 배열 인덱스를 키로 사용하면 리스트 항목의 순서를 바꾸거나 항목을 추가/제거 할 때 문제가 발생합니다. 명시적으로 `key={i}`를 전달하면 경고는 사라지지만 배열의 인덱스를 사용할 때와 동일한 문제가 발생하므로 대부분의 경우에 추천하지 않습니다.</Trans>
+<Trans>key가 지정되지 않은 경우, React는 경고를 표시하며 배열의 인덱스를 기본 key로 사용합니다. 배열 인덱스를 key로 사용하면 리스트 항목의 순서를 바꾸거나 항목을 추가/제거 할 때 문제가 발생합니다. 명시적으로 `key={i}`를 전달하면 경고는 사라지지만 배열의 인덱스를 사용할 때와 동일한 문제가 발생하므로 대부분의 경우에 추천하지 않습니다.</Trans>
 
 Keys do not need to be globally unique; they only need to be unique between components and their siblings.
-<Trans>키는 전역적으로 고유할 필요는 없으며 컴포넌트와 해당 컴포넌트의 형제 컴포넌트들 사이에서만 고유하면 됩니다.</Trans>
+<Trans>key는 전역적으로 고유할 필요는 없으며 컴포넌트와 해당 컴포넌트의 형제 컴포넌트들 사이에서만 고유하면 됩니다.</Trans>
 
 ### Implementing time travel<Trans>시간여행 구현하기</Trans> {/*implementing-time-travel*/}
 
 In the tic-tac-toe game's history, each past move has a unique ID associated with it: it's the sequential number of the move. Moves will never be re-ordered, deleted, or inserted in the middle, so it's safe to use the move index as a key.
-<Trans>틱택토 게임의 history에서 과거의 각 이동에는 해당 이동의 일련 번호인 고유 ID가 있습니다. 이동은 중간에 순서를 바꾸거나 삭제하거나 삽입할 수 없으므로 이동 인덱스를 키로 사용하는 것이 안전합니다.</Trans>
+<Trans>틱택토 게임의 history에서 과거의 각 이동에는 해당 이동의 일련 번호인 고유 ID가 있습니다. 이동은 중간에 순서를 바꾸거나 삭제하거나 삽입할 수 없으므로 이동 인덱스를 key로 사용하는 것이 안전합니다.</Trans>
 
 In the `Game` function, you can add the key as `<li key={move}>`, and if you reload the rendered game, React's "key" error should disappear:
-<Trans>`Game` 함수에서 `<li key={move}>`로 키를 추가할 수 있으며, 렌더링된 게임을 다시 로드하면 React의 "key" 에러가 사라질 것입니다:</Trans>
+<Trans>`Game` 함수에서 `<li key={move}>`로 key를 추가할 수 있으며, 렌더링된 게임을 다시 로드하면 React의 "key" 에러가 사라질 것입니다:</Trans>
 
 ```js {4}
 const moves = history.map((squares, move) => {
@@ -3138,4 +3140,3 @@ If you have extra time or want to practice your new React skills, here are some 
 
 Throughout this tutorial, you've touched on React concepts including elements, components, props, and state. Now that you've seen how these concepts work when building a game, check out [Thinking in React](/learn/thinking-in-react) to see how the same React concepts work when build an app's UI.
 <Trans>이 튜토리얼을 통해 엘리먼트, 컴포넌트, props, state를 포함한 React의 개념에 대해 살펴봤습니다. 이제 이러한 개념들이 게임을 만들 때 어떻게 작동하는지 보았으니, [Thinking in React](/learn/thinking-in-react)를 통해 앱의 UI를 만들 때 동일한 React 개념이 어떻게 작동하는지 확인해 보세요.</Trans>
-A

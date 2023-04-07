@@ -7,9 +7,9 @@ import Image from 'next/image';
 import {IconTwitter} from '../Icon/IconTwitter';
 import {IconGitHub} from '../Icon/IconGitHub';
 import {ExternalLink} from '../ExternalLink';
-import {IconNewPage} from 'components/Icon/IconNewPage';
 import {H3} from './Heading';
 import {IconLink} from 'components/Icon/IconLink';
+import Link from './Link';
 
 interface TeamMemberProps {
   name: string;
@@ -20,6 +20,7 @@ interface TeamMemberProps {
   twitter?: string;
   github?: string;
   personal?: string;
+  translated?: {title: string; translatedTitle?: string; url: string}[];
 }
 
 // TODO: good alt text for images/links
@@ -32,6 +33,7 @@ export function TeamMember({
   github,
   twitter,
   personal,
+  translated,
 }: TeamMemberProps) {
   if (name == null || title == null || children == null) {
     throw new Error(
@@ -88,6 +90,22 @@ export function TeamMember({
               </ExternalLink>
             )}
           </div>
+          {translated?.length && (
+            <details className="mt-4 translated-list">
+              <summary>번역한 페이지 목록</summary>
+              <ul className="bg-card dark:bg-card-dark">
+                {translated.map(({title, translatedTitle, url}) => (
+                  <li key={title}>
+                    <Link href={url}>
+                      {title}
+                      {translatedTitle && <b> | </b>}
+                      {translatedTitle}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </details>
+          )}
         </div>
       </div>
     </div>

@@ -1,5 +1,5 @@
 ---
-title: 'Removing Effect Dependencies'
+title: Removing Effect Dependencies
 translatedTitle: Effect 의존성 제거하기
 translators: [김아영, 최민정, 정재남]
 ---

@@ -1,5 +1,5 @@
 ---
-title: 'Tutorial: Tic-Tac-Toe'
+title: Tutorial: Tic-Tac-Toe
 translators: [이승효, 조성민, 정재남]
 ---
 

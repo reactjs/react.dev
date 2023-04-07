@@ -1,5 +1,6 @@
 ---
 title: State as a Snapshot
+translators: [안예지, 서민택, 유은미]
 ---
 
 <Intro>

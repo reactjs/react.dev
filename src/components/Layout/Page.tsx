@@ -28,18 +28,27 @@ interface PageProps {
   children: React.ReactNode;
   toc: Array<TocItem>;
   routeTree: RouteItem;
-  meta: {title?: string; description?: string};
+  meta: {
+    title?: string;
+    description?: string;
+    translatedTitle?: string;
+    translators?: string[];
+    showToc?: boolean;
+    showSurvey?: boolean;
+  };
   section: 'learn' | 'reference' | 'community' | 'blog' | 'home' | 'unknown';
 }
 
 export function Page({children, toc, routeTree, meta, section}: PageProps) {
   const {asPath} = useRouter();
   const cleanedPath = asPath.split(/[\?\#]/)[0];
-  const {route, nextRoute, prevRoute, breadcrumbs} = getRouteMeta(
+  const {route, nextRoute, prevRoute, breadcrumbs, order} = getRouteMeta(
     cleanedPath,
     routeTree
   );
   const title = meta.title || route?.title || '';
+  const translatedTitle = meta.translatedTitle || undefined;
+  const translators = meta.translators || undefined;
   const description = meta.description || route?.description || '';
   const isHomePage = cleanedPath === '/';
   const isBlogIndex = cleanedPath === '/blog';
@@ -56,6 +65,8 @@ export function Page({children, toc, routeTree, meta, section}: PageProps) {
           )}>
           <PageHeading
             title={title}
+            translatedTitle={translatedTitle}
+            translators={translators}
             description={description}
             tags={route?.tags}
             breadcrumbs={breadcrumbs}
@@ -83,8 +94,8 @@ export function Page({children, toc, routeTree, meta, section}: PageProps) {
 
   let hasColumns = true;
   let showSidebar = true;
-  let showToc = true;
-  let showSurvey = true;
+  let showToc = meta.showToc ?? true;
+  let showSurvey = meta.showSurvey ?? true;
   if (isHomePage || isBlogIndex) {
     hasColumns = false;
     showSidebar = false;
@@ -96,12 +107,18 @@ export function Page({children, toc, routeTree, meta, section}: PageProps) {
     showSidebar = false;
   }
 
+  let searchOrder;
+  if (section === 'learn' || (section === 'blog' && !isBlogIndex)) {
+    searchOrder = order;
+  }
+
   return (
     <>
       <Seo
-        title={title}
+        title={translatedTitle || title}
         isHomePage={isHomePage}
         image={`/images/og-` + section + '.png'}
+        searchOrder={searchOrder}
       />
       <SocialBanner />
       <TopNav
@@ -128,7 +145,9 @@ export function Page({children, toc, routeTree, meta, section}: PageProps) {
         {/* No fallback UI so need to be careful not to suspend directly inside. */}
         <Suspense fallback={null}>
           <main className="min-w-0 isolate">
-            <article className="break-words" key={asPath}>
+            <article
+              className="break-words font-normal text-primary dark:text-primary-dark"
+              key={asPath}>
               {content}
             </article>
             <div

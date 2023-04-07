@@ -1,5 +1,6 @@
 ---
 title: Updating Arrays in State
+translators: [고석영, 전시윤, 정재남, 이승효]
 ---
 
 <Intro>
@@ -562,7 +563,7 @@ setMyList(myList.map(artwork => {
     // No changes
     return artwork;
   }
-});
+}));
 ```
 
 Here, `...` is the object spread syntax used to [create a copy of an object.](/learn/updating-objects-in-state#copying-objects-with-the-spread-syntax)

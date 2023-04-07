@@ -1,5 +1,6 @@
 ---
 title: Sharing State Between Components
+translators: [송윤지, 김아영, 고석영]
 ---
 
 <Intro>

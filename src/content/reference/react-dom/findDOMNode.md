@@ -251,7 +251,7 @@ export default function AutoselectingInput() {
 
 </Sandpack>
 
-[Read more about manipulating the DOM with refs.](/learn/manipulating-the-dom-with-refs)
+[Read more about manipulating the DOM with Refs.](/learn/manipulating-the-dom-with-refs)
 
 ---
 

@@ -44,7 +44,7 @@ title="프론트엔드 개발자"
 <TeamMember 
   photo="/images/translators/hannara.jpeg"
 github="nara04040"
-personal="https://nara04040.tistory.com/"
+personal="nara04040.tistory.com/"
 title="프론트엔드 취준생"
   name="유한나라"
   translated={[{"title":"Add React to an Existing Project","translatedTitle":"기존 프로젝트에 리액트 추가하기","url":"/learn/add-react-to-an-existing-project"},{"title":"Describing the UI","translatedTitle":"UI 구성하기","url":"/learn/describing-the-ui"},{"title":"JavaScript in JSX with Curly Braces","url":"/learn/javascript-in-jsx-with-curly-braces"},{"title":"Reacting to Input with State","url":"/learn/reacting-to-input-with-state"},{"title":"Start a New React Project","translatedTitle":"새 리액트 프로젝트 시작하기","url":"/learn/start-a-new-react-project"},{"title":"Writing Markup with JSX","translatedTitle":"JSX로 마크업 작성하기","url":"/learn/writing-markup-with-jsx"},{"title":"Your First Component","translatedTitle":"첫번째 컴포넌트","url":"/learn/your-first-component"}]}
@@ -69,14 +69,14 @@ title="프론트엔드 취준생"
   name="최민정"
   translated={[{"title":"Choosing the State Structure","url":"/learn/choosing-the-state-structure"},{"title":"Importing and Exporting Components","translatedTitle":"컴포넌트 import 및 export","url":"/learn/importing-and-exporting-components"},{"title":"Removing Effect Dependencies","translatedTitle":"Effect 의존성 제거하기","url":"/learn/removing-effect-dependencies"},{"title":"Rendering Lists","url":"/learn/rendering-lists"},{"title":"Responding to Events","url":"/learn/responding-to-events"}]}
 >
-  취업준비 어려워요. 아무말대잔치.<br/>줄바꿈은 이렇게<br/>[마크다운링크](www.youtube.com/c/feroy)<br/>**마크다운 강조** 다됩니다!!
+  프론트엔드 개발을 하기까지 먼 길을 돌아왔습니다.<br/>새로운 도전을 두려워하지 않고, 매번 하고 싶은 걸 하며 삽니다.<br/>앞으로도 계속 그럴 예정입니다😆
 </TeamMember>
 
 <TeamMember 
   photo="/images/translators/ayoung.jpg"
 github="suhotang"
 title="주니어 프론트엔드 개발자"
-personal="https://ice-bear.tistory.com"
+personal="ice-bear.tistory.com"
   name="김아영"
   translated={[{"title":"Preserving and Resetting State","translatedTitle":"state 보존 및 재설정","url":"/learn/preserving-and-resetting-state"},{"title":"Removing Effect Dependencies","translatedTitle":"Effect 의존성 제거하기","url":"/learn/removing-effect-dependencies"},{"title":"Separating Events from Effects","translatedTitle":"이벤트와 Effect 분리하기","url":"/learn/separating-events-from-effects"},{"title":"Sharing State Between Components","url":"/learn/sharing-state-between-components"}]}
 >
@@ -88,9 +88,19 @@ personal="https://ice-bear.tistory.com"
 github="seunghoonKang"
 title="프론트엔트 취준생"
   name="강승훈"
-  translated={undefined}
+  translated={[{"title":"Add React to an Existing Project","translatedTitle":"기존 프로젝트에 리액트 추가하기","url":"/learn/add-react-to-an-existing-project"}]}
 >
   새로운 것을 배우는 데 관심이 많습니다.<br/>함께 무언가를 시도하며 함께 성장하는 것을 좋아합니다.
+</TeamMember>
+
+<TeamMember 
+  photo="/images/translators/hanjong.jpg"
+github="muroa96"
+title="주니어 개발자"
+  name="손한종"
+  translated={[{"title":"Responding to Events","url":"/learn/responding-to-events"},{"title":"Synchronizing with Effects","translatedTitle":"Effect와 동기화하기","url":"/learn/synchronizing-with-effects"}]}
+>
+  사람들에게 행복을 주는것이 목표인 개발자입니다.<br/>같이 성장하는것을 매우 좋아합니다.<br/>현재는 성장과 다양한 경험을 가장 중요한 가치관으로 보고 있습니다.<br/>최근에는 채력이 부족하다 생각해 열심히 운동중입니다.<br/>
 </TeamMember>
 
 <TeamMember 

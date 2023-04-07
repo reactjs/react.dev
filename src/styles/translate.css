@@ -81,3 +81,36 @@ nav[role='navigation'] .translate::before {
   bottom: 5px;
   border-left: 4px solid var(--docsearch-primary-color);
 }
+
+.translated-list {
+  position: relative;
+  cursor: pointer;
+}
+.translated-list summary::after {
+  content: ' [열기]';
+}
+.translated-list[open] summary::after {
+  content: ' [닫기]';
+}
+
+.translated-list > ul {
+  position: absolute;
+  top: 100%;
+  left: 10px;
+  width: calc(100% - 30px);
+  max-height: 230px;
+  padding: 15px;
+  z-index: 10;
+  box-shadow: rgba(100, 100, 111, 0.4) 0px 7px 29px 0px;
+  overflow-y: auto;
+  list-style-type: '- ';
+  padding-left: 25px;
+  line-height: 1.5;
+  cursor: default;
+}
+.translated-list li {
+  margin-top: 8px;
+}
+.translated-list li:first-of-type {
+  margin-top: 0;
+}

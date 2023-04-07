@@ -96,11 +96,7 @@ export function TeamMember({
               <ul className="bg-card dark:bg-card-dark">
                 {translated.map(({title, translatedTitle, url}) => (
                   <li key={title}>
-                    <Link href={url}>
-                      {title}
-                      {translatedTitle && <b> | </b>}
-                      {translatedTitle}
-                    </Link>
+                    <Link href={url}>{translatedTitle || title}</Link>
                   </li>
                 ))}
               </ul>

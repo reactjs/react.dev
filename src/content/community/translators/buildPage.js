@@ -27,6 +27,15 @@ showSurvey: false
 
 const memberTranslatedList = new Map();
 
+const removeQuote = (str) => {
+  const regex = str.startsWith("'")
+    ? /\'/g
+    : str.startsWith('"')
+    ? /\"/g
+    : null;
+  return regex ? str.replace(regex, '') : str;
+};
+
 paths
   .flatMap((pathname) =>
     fs
@@ -46,9 +55,10 @@ paths
   .forEach(({file, url}) => {
     let title, translatedTitle, translators;
     for (const line of file.split('\n').slice(0, 5)) {
-      const [key, val] = line.split(': ');
-      if (key === 'title') title = val;
-      else if (key === 'translatedTitle') translatedTitle = val;
+      const splicer = line.indexOf(': ');
+      const [key, val] = [line.slice(0, splicer), line.slice(splicer + 2)];
+      if (key === 'title') title = removeQuote(val);
+      else if (key === 'translatedTitle') translatedTitle = removeQuote(val);
       else if (key === 'translators')
         translators = val.slice(1, -1).split(', ');
     }

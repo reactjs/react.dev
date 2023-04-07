@@ -32,12 +32,12 @@ showSurvey: false
 </TeamMember>
 
 <TeamMember 
-  name="테스트" 
-  title="프론트엔트 취준생"
-  photo="/images/team/gaearon.jpg"
-  github="test"
+  name="최민정" 
+  title="프론트엔드 취준생"
+  photo="/images/translators/minjeong.jpg"
+  github="saiani1"
   undefined
   undefined
 >
-  취업준비 어려워요. 아무말대잔치.<br/>줄바꿈은 이렇게<br/>[마크다운링크](www.youtube.com/c/feroy)<br/>**마크다운 강조** 다됩니다!!
+  프론트엔드 개발을 하기까지 먼 길을 돌아왔습니다.<br/>새로운 도전을 두려워하지 않고, 매번 하고 싶은 걸 하며 삽니다.<br/>앞으로도 계속 그럴 예정입니다😆
 </TeamMember>

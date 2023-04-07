@@ -68,7 +68,7 @@ X   | [2-5. state 업데이트 큐 :: Queueing a Series of State Updates](/learn
 X   | [2-6. 객체 state 업데이트 :: Updating Objects in State](/learn/updating-objects-in-state) 
 X   | [2-7. 배열 state 업데이트 :: Updating Arrays in State](/learn/updating-arrays-in-state) 
 X   | [3. state 관리 :: Managing State](/learn/managing-state) 
-X   | [3-1. state로 입력에 반응하기 :: Reacting to Input with State](/learn/reacting-to-input-with-state) 
+O   | [3-1. state로 입력에 반응하기 :: Reacting to Input with State](/learn/reacting-to-input-with-state) 
 X   | [3-2. State 구조 선택 :: Choosing the State Structure](/learn/choosing-the-state-structure) 
 X   | [3-3. 컴포넌트 간 state 공유 :: Sharing State Between Components](/learn/sharing-state-between-components) 
 O   | [3-4. state 보존 및 재설정 :: Preserving and Resetting State](/learn/preserving-and-resetting-state) 

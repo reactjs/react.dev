@@ -524,7 +524,7 @@ Notice how `onClick={handleClick}` has no parentheses at the end! Do not _call_ 
 
 #### `onClick={handleClick()}`으로 전달했을 때 alert이 두 번 뜨는 현상 - @정재남 {/*onclickhandleclick으로-전달했을-때-alert이-두-번-뜨는-현상---정재남*/}
     
-이런 현상이 발생하는 이유는 `development 환경`에서  `<StrictMode>` 컴포넌트의 하위에 있는 컴포넌트가 처음 렌더될 때, React가 오류 검사 등을 위해 한 번 더 렌더링을 발동시키기 때문입니다. `production 환경`에서는 두 번 렌더링되는 현상은 발생하지 않을 것이니 안심하세요. 자세한 내용은 [`<StrictMode>`](/reference/react/StrictMode)에서 확인하세요.
+이런 현상이 발생하는 이유는 `development 환경`에서  `<StrictMode>` 컴포넌트의 하위에 있는 컴포넌트가 처음 렌더될 때, React가 오류 검사 등을 위해 한 번 더 렌더링을 촉발하기 때문입니다. `production 환경`에서는 두 번 렌더링되는 현상은 발생하지 않을 것이니 안심하세요. 자세한 내용은 [`<StrictMode>`](/reference/react/StrictMode)에서 확인하세요.
 </Extra>
 
 ## Updating the screen<Trans>화면 업데이트하기</Trans> {/*updating-the-screen*/}

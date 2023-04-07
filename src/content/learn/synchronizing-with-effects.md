@@ -42,7 +42,7 @@ Before getting to Effects, you need to be familiar with two types of logic insid
   <Trans>**이벤트 핸들러**([상호작용 추가하기](/learn/adding-interactivity)에서 소개됨)는 컴포넌트 내부에 있는 중첩된 함수로, 계산만 하는 것이 아니라 별도의 작업도 *수행*합니다. 이벤트 핸들러에서는 입력 필드를 업데이트하거나, HTTP POST요청을 제출하여 제품을 구매하거나, 사용자를 다른 화면으로 이동할 수 있습니다. 이벤트 핸들러에는 특정 사용자 작업(예:버튼 클릭 또는 입력)으로 인해 발생하는 ["사이드 이펙트"](https://en.wikipedia.org/wiki/Side_effect_(computer_science))(프로그램의 state를 변경함)가 포함되어 있습니다.</Trans>
 
 Sometimes this isn't enough. Consider a `ChatRoom` component that must connect to the chat server whenever it's visible on the screen. Connecting to a server is not a pure calculation (it's a side effect) so it can't happen during rendering. However, there is no single particular event like a click that causes `ChatRoom` to be displayed.
-<Trans>때로는 이것만으로는 충분하지 않을 수 있습니다. 화면에 표시될 때마다 채팅 서버에 연결해야 하는 `ChatRoom` 컴포넌트를 고려해 봅시다. 서버에 연결하는 것은 순수한 계산이 아니므로(사이드 이펙트) 렌더링 중에 발생할 수 없습니다. 그러나 `ChatRoom` 표시를 유발하는 클릭과 같은 특정한 단일 이벤트는 없습니다.</Trans>
+<Trans>때로는 이것만으로는 충분하지 않을 수 있습니다. 화면에 표시될 때마다 채팅 서버에 연결해야 하는 `ChatRoom` 컴포넌트를 고려해 봅시다. 서버에 연결하는 것은 순수한 계산이 아니므로(사이드 이펙트) 렌더링 중에 발생할 수 없습니다. 그러나 `ChatRoom` 표시를 촉발하는 클릭과 같은 특정한 단일 이벤트는 없습니다.</Trans>
 
 ***Effects* let you specify side effects that are caused by rendering itself, rather than by a particular event.** Sending a message in the chat is an *event* because it is directly caused by the user clicking a specific button. However, setting up a server connection is an *Effect* because it should happen no matter which interaction caused the component to appear. Effects run at the end of a [commit](/learn/render-and-commit) after the screen updates. This is a good time to synchronize the React components with some external system (like network or a third-party library).
 <Trans>***Effect*를 사용하면 특정 이벤트가 아닌 렌더링 자체로 인해 발생하는 사이드 이펙트를 명시할 수 있습니다.** 채팅에서 메시지를 보내는 것은 사용자가 특정 버튼을 클릭함으로써 직접적으로 발생하기 때문에 이벤트입니다. 그러나 서버 연결을 설정하는 것은 컴포넌트를 표시하게 만든 상호작용에 관계없이 발생해야 하기 때문에 하나의 Effect입니다. Effect는 화면 업데이트 후 [커밋](/learn/render-and-commit)이 끝날 때 실행됩니다. 이 때가 React 컴포넌트를 일부 외부 시스템(네트워크 또는 서드파티 라이브러리와 같은)과 동기화하기에 좋은 시기입니다.</Trans>
@@ -261,7 +261,7 @@ useEffect(() => {
 ```
 
 Effects run as a *result* of rendering. Setting state *triggers* rendering. Setting state immediately in an Effect is like plugging a power outlet into itself. The Effect runs, it sets the state, which causes a re-render, which causes the Effect to run, it sets the state again, this causes another re-render, and so on.
-<Trans>Effect는 렌더링의 *결과*로 실행됩니다. state를 설정하면 렌더링이 *발동*됩니다. Effect에서 즉시 state를 설정하는 것은 전원 콘센트를 꽂는 것과 같습니다. Effect가 실행되고, state를 설정하면 다시 렌더링이 발생하고, 다시 렌더링이 발생하면 Effect가 실행되고, 다시 state를 설정하면 또 다시 렌더링이 발생하는 식입니다.</Trans>
+<Trans>Effect는 렌더링의 *결과*로 실행됩니다. state를 설정하면 렌더링을 *촉발*합니다. Effect에서 즉시 state를 설정하는 것은 전원 콘센트를 꽂는 것과 같습니다. Effect가 실행되고, state를 설정하면 다시 렌더링이 발생하고, 다시 렌더링이 발생하면 Effect가 실행되고, 다시 state를 설정하면 또 다시 렌더링이 발생하는 식입니다.</Trans>
 
 Effects should usually synchronize your components with an *external* system. If there's no external system and you only want to adjust some state based on other state, [you might not need an Effect.](/learn/you-might-not-need-an-effect)
 <Trans>Effect는 보통 컴포넌트를 외부 시스템과 동기화해야 합니다. 외부 시스템이 없고 다른 state를 기반으로 일부 state만 조정하려는 경우 [Effect가 필요하지 않을 수 있습니다.](/learn/you-might-not-need-an-effect)</Trans>
@@ -736,7 +736,7 @@ If your Effect animates something in, the cleanup function should reset the anim
 useEffect(() => {
   const node = ref.current;
   node.style.opacity = 1; // Trigger the animation
-                          // 애니메이션 발동
+                          // 애니메이션 촉발
   return () => {
     node.style.opacity = 0; // Reset to the initial value
                             // 초기값으로 재설정

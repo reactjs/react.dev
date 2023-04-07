@@ -614,7 +614,7 @@ function ShippingForm({ country }) {
 ```
 
 Now the first Effect only re-runs if the `country` changes, while the second Effect re-runs when the `city` changes. You've separated them by purpose: two different things are synchronized by two separate Effects. Two separate Effects have two separate dependency lists, so they won't trigger each other unintentionally.
-<Trans>이제 첫 번째 Effect는 `country`가 변경될 때만 다시 실행되고, 두 번째 Effect는 `city`가 변경될 때 다시 실행됩니다. 목적에 따라 분리했으니, 서로 다른 두 가지가 두 개의 개별 Effect에 의해 동기화됩니다. 두 개의 개별 Effect에는 두 개의 개별 의존성 목록이 있으므로 의도치 않게 서로를 발동시키지 않습니다.</Trans>
+<Trans>이제 첫 번째 Effect는 `country`가 변경될 때만 다시 실행되고, 두 번째 Effect는 `city`가 변경될 때 다시 실행됩니다. 목적에 따라 분리했으니, 서로 다른 두 가지가 두 개의 개별 Effect에 의해 동기화됩니다. 두 개의 개별 Effect에는 두 개의 개별 의존성 목록이 있으므로 의도치 않게 서로를 촉발하지 않습니다.</Trans>
 
 The final code is longer than the original, but splitting these Effects is still correct. [Each Effect should represent an independent synchronization process.](/learn/lifecycle-of-reactive-effects#each-effect-represents-a-separate-synchronization-process) In this example, deleting one Effect doesn't break the other Effect's logic. This means they *synchronize different things,* and it's good to split them up. If you're concerned about duplication, you can improve this code by [extracting repetitive logic into a custom Hook.](/learn/reusing-logic-with-custom-hooks#when-to-use-custom-hooks)
 <Trans>최종 코드는 원본보다 길지만 Effect를 분할하는 것이 여전히 정확합니다. [각 Effect는 독립적인 동기화 프로세스를 나타내야 합니다.](/learn/lifecycle-of-reactive-effects#each-effect-represents-a-separate-synchronization-process) 이 예제에서는 한 Effect를 삭제해도 다른 Effect의 로직이 깨지지 않습니다. 즉, *서로 다른 것을 동기화*하므로 분할하는 것이 좋습니다. [중복이 걱정된다면 반복되는 로직을 커스텀 Hook으로 추출](/learn/reusing-logic-with-custom-hooks#when-to-use-custom-hooks)하여 이 코드를 개선할 수 있습니다.</Trans>

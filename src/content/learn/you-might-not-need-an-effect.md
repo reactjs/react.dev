@@ -335,7 +335,7 @@ function ProductPage({ product, addToCart }) {
 ```
 
 This Effect is unnecessary. It will also most likely cause bugs. For example, let's say that your app "remembers" the shopping cart between the page reloads. If you add a product to the cart once and refresh the page, the notification will appear again. It will keep appearing every time you refresh that product's page. This is because `product.isInCart` will already be `true` on the page load, so the Effect above will call `showNotification()`.
-<Trans>이 효과는 불필요합니다. 또한 버그를 유발할 가능성이 높습니다. 예를 들어 페이지가 새로고침 될 때마다 앱이 장바구니를 "기억"한다고 가정해 봅시다. 카트에 제품을 한 번 추가하고 페이지를 새로고침 하면 알림이 다시 표시됩니다. 또한 해당 제품 페이지를 새로고침할 때에도 여전히 알림이 계속 등장합니다. 이는 페이지를 불러올 때 `product.isInCart`가 이미 `true`이므로 위의 Effect가 `showNotification()`을 호출하기 때문입니다.</Trans>
+<Trans>이 효과는 불필요합니다. 또한 버그를 촉발할 가능성이 높습니다. 예를 들어 페이지가 새로고침 될 때마다 앱이 장바구니를 "기억"한다고 가정해 봅시다. 카트에 제품을 한 번 추가하고 페이지를 새로고침 하면 알림이 다시 표시됩니다. 또한 해당 제품 페이지를 새로고침할 때에도 여전히 알림이 계속 등장합니다. 이는 페이지를 불러올 때 `product.isInCart`가 이미 `true`이므로 위의 Effect가 `showNotification()`을 호출하기 때문입니다.</Trans>
 
 **When you're not sure whether some code should be in an Effect or in an event handler, ask yourself *why* this code needs to run. Use Effects only for code that should run *because* the component was displayed to the user.** In this example, the notification should appear because the user *pressed the button*, not because the page was displayed! Delete the Effect and put the shared logic into a function called from both event handlers:
 <Trans>**어떤 코드가 Effect에 있어야 하는지 이벤트 핸들러에 있어야 하는지 확실치 않은 경우, 이 코드가 실행되어야 하는 *이유*를 자문해 보세요. 컴포넌트가 사용자에게 표시되었기 *때문에* 실행되어야 하는 코드에만 Effect를 사용하세요.** 이 예제에서는 페이지가 표시되었기 때문이 아니라, 사용자가 버튼을 눌렀기 때문에 알림이 표시되어야 합니다! Effect를 삭제하고 공유 로직을 두 이벤트 핸들러에서 호출하는 함수에 넣으세요:</Trans>
@@ -443,7 +443,7 @@ function Game() {
   const [isGameOver, setIsGameOver] = useState(false);
 
   // 🔴 Avoid: Chains of Effects that adjust the state solely to trigger each other
-  // 🔴 이러지 마세요: 오직 서로를 발동시키기 위해서만 state를 조정하는 Effect 체인
+  // 🔴 이러지 마세요: 오직 서로를 촉발하기 위해서만 state를 조정하는 Effect 체인
   useEffect(() => {
     if (card !== null && card.gold) {
       setGoldCardCount(c => c + 1);

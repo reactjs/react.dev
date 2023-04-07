@@ -20,7 +20,7 @@ React uses a declarative way to manipulate the UI. Instead of manipulating indiv
 <TransBlock>
 * 선언형 UI 프로그래밍과 명령형 UI 프로그래밍의 차이점
 * 컴포넌트가 있을 수 있는 다양한 시각적 state를 열거하는 방법
-* 코드에서 다른 시각적 state 간의 변경을 발동하는 방법
+* 코드에서 다른 시각적 state 간의 변경을 촉발하는 방법
 </TransBlock>
 
 </YouWillLearn>
@@ -176,7 +176,7 @@ You've seen how to implement a form imperatively above. To better understand how
 
 <TransBlock>
 1. 컴포넌트의 다양한 시각적 상태를 **식별**합니다.
-2. 상태 변화를 유발하는 요소를 **파악**합니다.
+2. 상태 변화를 촉발하는 요소를 **파악**합니다.
 3. `useState`를 사용하여 메모리의 상태를 **표현**합니다.
 4. 비필수적인 state 변수를 **제거**합니다.
 5. 이벤트 핸들러를 **연결**하여 state를 설정합니다.
@@ -358,10 +358,10 @@ Pages like this are often called "living styleguides" or "storybooks".
 
 </DeepDive>
 
-### Step 2: Determine what triggers those state changes<Trans>상태 변경을 유발하는 요인 파악하기</Trans> {/*step-2-determine-what-triggers-those-state-changes*/}
+### Step 2: Determine what triggers those state changes<Trans>상태 변경을 촉발하는 요인 파악하기</Trans> {/*step-2-determine-what-triggers-those-state-changes*/}
 
 You can trigger state updates in response to two kinds of inputs:
-<Trans>두 종류의 입력에 대한 응답으로 상태 변경을 유발할 수 있습니다:</Trans>
+<Trans>두 종류의 입력에 대한 응답으로 상태 변경을 촉발할 수 있습니다:</Trans>
 
 * **Human inputs,** like clicking a button, typing in a field, navigating a link.
 * **Computer inputs,** like a network response arriving, a timeout completing, an image loading.
@@ -582,7 +582,7 @@ Although this code is longer than the original imperative example, it is much le
 * 선언형 프로그래밍은 UI를 세밀하게 관리(명령형)하지 않고 각 시각적 상태에 대해 UI를 기술하는 것을 의미합니다.
 * 컴포넌트를 개발할 때
   1. 모든 시각적 상태를 식별하세요.
-  2. 사람 및 컴퓨터가 상태 변화를 유발하는 요인을 결정하세요.
+  2. 사람 및 컴퓨터가 상태 변화를 촉발하는 요인을 결정하세요.
   3. `useState`로 상태를 모델링하세요.
   4. 버그와 모순을 피하려면 비필수적인 state를 제거하세요.
   5. 이벤트 핸들러를 연결하여 state를 설정하세요

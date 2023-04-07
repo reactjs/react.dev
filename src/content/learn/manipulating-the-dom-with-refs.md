@@ -105,7 +105,7 @@ To implement this:
 </TransBlock>
 
 While DOM manipulation is the most common use case for refs, the `useRef` Hook can be used for storing other things outside React, like timer IDs. Similarly to state, refs remain between renders. Refs are like state variables that don't trigger re-renders when you set them. Read about refs in [Referencing Values with Refs.](/learn/referencing-values-with-refs)
-<Trans>DOM 조작이 ref의 가장 일반적인 사용 사례이지만, `useRef` 훅은 timer ID와 같은 다른 것들을 React 외부에 저장하는 데 사용될 수 있습니다. state와 유사하게 ref는 렌더링 사이에 유지됩니다. ref는 state 변수와 비슷하지만 설정할 때 리렌더링을 발동시키지 않습니다. ref에 대한 자세한 내용은 [Refs로 값 참조하기](/learn/referencing-values-with-refs)에서 읽어보세요.</Trans>
+<Trans>DOM 조작이 ref의 가장 일반적인 사용 사례이지만, `useRef` 훅은 timer ID와 같은 다른 것들을 React 외부에 저장하는 데 사용될 수 있습니다. state와 유사하게 ref는 렌더링 사이에 유지됩니다. ref는 state 변수와 비슷하지만 설정할 때 리렌더링을 촉발하지 않습니다. ref에 대한 자세한 내용은 [Refs로 값 참조하기](/learn/referencing-values-with-refs)에서 읽어보세요.</Trans>
 
 ### Example: Scrolling to an element<Trans>예: element로 스크롤하기</Trans> {/*example-scrolling-to-an-element*/}
 

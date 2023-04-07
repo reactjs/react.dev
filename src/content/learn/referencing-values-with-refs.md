@@ -7,7 +7,7 @@ translators: [조성민, 정재남]
 <Intro>
 
 When you want a component to "remember" some information, but you don't want that information to [trigger new renders](/learn/render-and-commit), you can use a *ref*.
-<Trans>컴포넌트가 특정 정보를 '기억'하도록 하고 싶지만 해당 정보가 [새 렌더링을 발동](/learn/render-and-commit)시키지 않도록 하려는 경우 *ref*를 사용할 수 있습니다.</Trans>
+<Trans>컴포넌트가 특정 정보를 '기억'하도록 하고 싶지만 해당 정보가 [새 렌더링을 촉발](/learn/render-and-commit)하지 않도록 하려는 경우 *ref*를 사용할 수 있습니다.</Trans>
 
 </Intro>
 

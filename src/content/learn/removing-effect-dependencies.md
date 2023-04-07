@@ -824,7 +824,7 @@ Effect Events aren't reactive, so you don't need to specify them as dependencies
 #### Separating reactive and non-reactive code<Trans>반응형 코드와 비반응형 코드 분리</Trans> {/*separating-reactive-and-non-reactive-code*/}
 
 In this example, you want to log a visit every time `roomId` changes. You want to include the current `notificationCount` with every log, but you *don't* want a change to `notificationCount` to trigger a log event.
-<Trans>이 예제에서는 `roomId`가 변경될 때마다 방문을 기록하려고 합니다. 모든 로그에 현재 `notificationCount`를 포함하고 싶지만 `notificationCount` 변경으로 로그 이벤트가 트리거되는 것은 원하지 않습니다.</Trans>
+<Trans>이 예제에서는 `roomId`가 변경될 때마다 방문을 기록하려고 합니다. 모든 로그에 현재 `notificationCount`를 포함하고 싶지만 `notificationCount` 변경으로 로그 이벤트가 촉발하는 것은 원하지 않습니다.</Trans>
 
 The solution is again to split out the non-reactive code into an Effect Event:
 <Trans>해결책은 다시 비반응형 코드를 Effect 이벤트로 분리하는 것입니다:</Trans>

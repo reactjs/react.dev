@@ -207,7 +207,7 @@ Perhaps you're thinking refs seem less "strict" than state—you can mutate them
 | refs                                                             | state                                                                                                     |
 | ---------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
 | `useRef(initialValue)`는 `{ current: initialValue }`을 반환        | `useState(initialValue)`는 state 변수의 현재값과 state 설정자함수(`[value, setValue]`)를 반환                  |
-| 변경 시 리렌더링이 트리거되지 않음                                     | 변경 시 리렌더링을 트리거함                                                                                   |
+| 변경 시 리렌더링을 촉발하지 않음                                     | 변경 시 리렌더링을 촉발함                                                                                   |
 | Mutable— 렌더링 프로세스 외부에서 current 값을 수정하고 업데이트할 수 있음 | "Immutable"— state setting 함수를 사용하여 state 변수를 수정해 리렌더링을 대기열에 추가해야함                      |
 | 렌더링 중에는 `current` 값을 읽거나 쓰지 않아야 함                      | 언제든지 state를 읽을 수 있음. 각 렌더링에는 변경되지 않는 자체 state [snapshot](/learn/state-as-a-snapshot)이 있음 |
 </TransBlock>

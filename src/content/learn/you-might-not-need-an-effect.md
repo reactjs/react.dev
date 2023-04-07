@@ -485,7 +485,7 @@ One problem is that it is very inefficient: the component (and its children) hav
 <Trans>한 가지 문제는 매우 비효율적이라는 점입니다. 컴포넌트(및 그 자식들)은 체인의 각 `set` 호출 사이에 다시 렌더링해야 합니다. 위의 예시에서 최악의 경우(`setCard` → 렌더링 → `setGoldCardCount` → 렌더링 → `setRound` → 렌더링 → `setIsGameOver` → 렌더링)에는 하위 트리의 불필요한 리렌더링이 세 번이나 발생합니다.</Trans>
 
 Even if it weren't slow, as your code evolves, you will run into cases where the "chain" you wrote doesn't fit the new requirements. Imagine you are adding a way to step through the history of the game moves. You'd do it by updating each state variable to a value from the past. However, setting the `card` state to a value from the past would trigger the Effect chain again and change the data you're showing. Such code is often rigid and fragile.
-<Trans>속도가 느리지는 않더라도, 코드가 발전함에 따라 작성한 '체인'이 새로운 요구사항에 맞지 않는 경우가 발생할 수 있습니다. 게임 이동의 기록을 단계별로 살펴볼 수 있는 방법을 추가한다고 가정해 보겠습니다. 각 state 변수를 과거의 값으로 업데이트하여 이를 수행할 수 있습니다. 하지만 '카드' state를 과거의 값으로 설정하면 Effect 체인이 다시 트리거되고 표시되는 데이터가 변경됩니다. 이와 같은 코드는 종종 경직되고 취약합니다.</Trans>
+<Trans>속도가 느리지는 않더라도, 코드가 발전함에 따라 작성한 '체인'이 새로운 요구사항에 맞지 않는 경우가 발생할 수 있습니다. 게임 이동의 기록을 단계별로 살펴볼 수 있는 방법을 추가한다고 가정해 보겠습니다. 각 state 변수를 과거의 값으로 업데이트하여 이를 수행할 수 있습니다. 하지만 '카드' state를 과거의 값으로 설정하면 다시 Effect 체인이 촉발되고 표시되는 데이터가 변경됩니다. 이와 같은 코드는 종종 경직되고 취약합니다.</Trans>
 
 In this case, it's better to calculate what you can during rendering, and adjust the state in the event handler:
 <Trans>이 경우 렌더링 중에 가능한 것을 계산하고 이벤트 핸들러에서 state를 조정하는 것이 좋습니다:</Trans>

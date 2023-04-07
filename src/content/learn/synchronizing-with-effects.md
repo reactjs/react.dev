@@ -727,7 +727,7 @@ useEffect(() => {
 In development, your Effect will call `addEventListener()`, then immediately `removeEventListener()`, and then `addEventListener()` again with the same handler. So there would be only one active subscription at a time. This has the same user-visible behavior as calling `addEventListener()` once, as in production.
 <Trans>개발 중에 Effect는 `addEventListener()`를 호출한 다음 즉시 `removeEventListener()`를 호출합니다. 그런 다음 동일한 핸들러를 사용하여 다시 `addEventListener()`를 사용함으로써, 한 번에 하나의 구독만 활성화 되도록 합니다. 이는 상용 환경에서 `addEventListener()`를 한 번만 호출하는 것과 체감상 동일합니다.</Trans>
 
-### Triggering animations<Trans>애니메이션 발동시키기</Trans> {/*triggering-animations*/}
+### Triggering animations<Trans>애니메이션 촉발하기</Trans> {/*triggering-animations*/}
 
 If your Effect animates something in, the cleanup function should reset the animation to the initial values:
 <Trans>Effect가 무언가를 애니메이션하는 경우 클린업 함수는 애니메이션을 초기값으로 재설정해야 합니다.</Trans>

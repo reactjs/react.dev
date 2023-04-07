@@ -484,8 +484,7 @@ Notice this example doesn't quite work, yet! All the headings have the same size
 <Trans>이 예제는 아직 제대로 작동하지 않습니다! **context를 *사용*하고 있지만 아직 context를 *제공*하지 않았기 때문에** 모든 제목의 크기가 동일합니다. React는 어디서 그것을 가져와야 할지 모릅니다!</Trans>
 
 If you don't provide the context, React will use the default value you've specified in the previous step. In this example, you specified `1` as the argument to `createContext`, so `useContext(LevelContext)` returns `1`, setting all those headings to `<h1>`. Let's fix this problem by having each `Section` provide its own context.
-<Trans>context를 제공하지 않으면 React는 이전 단계에서 지정한 기본값을 사용합니다. 이 예제에서는 `createContext`의 인수로 `1`을 지정했기 때문에, `useContext(LevelContext)`는 `1`을 반환하고 모든 제목을 `<h1>`으로 설정합니다. </Trans>
-각 `Section`이 자체 context를 제공하도록 하여 이 문제를 해결해 보겠습니다.
+<Trans>context를 제공하지 않으면 React는 이전 단계에서 지정한 기본값을 사용합니다. 이 예제에서는 `createContext`의 인수로 `1`을 지정했기 때문에, `useContext(LevelContext)`는 `1`을 반환하고 모든 제목을 `<h1>`으로 설정합니다. 각 `Section`이 자체 context를 제공하도록 하여 이 문제를 해결해 보겠습니다.</Trans>
 
 ### Step 3: Provide the context<Trans>Step 3: context 제공하기</Trans> {/*step-3-provide-the-context*/}
 
@@ -905,8 +904,7 @@ In CSS, different properties like `color` and `background-color` don't override 
 ## Before you use context<Trans>context를 사용하기 전에</Trans> {/*before-you-use-context*/}
 
 Context is very tempting to use! However, this also means it's too easy to overuse it. **Just because you need to pass some props several levels deep doesn't mean you should put that information into context.**
-<Trans>context는 사용하기 매우 유혹적입니다! 그러나 이는 또한 너무 쉽게 남용될 수 있다는 의미이기도 합니다. </Trans>
-**props를 몇 단계 깊이 전달해야 한다고 해서 해당 정보를 context에 넣어야 한다는 의미는 아닙니다.**
+<Trans>context는 사용하기 매우 유혹적입니다! 그러나 이는 또한 너무 쉽게 남용될 수 있다는 의미이기도 합니다. **props를 몇 단계 깊이 전달해야 한다고 해서 해당 정보를 context에 넣어야 한다는 의미는 아닙니다.**</Trans>
 
 Here's a few alternatives you should consider before using context:
 <Trans>다음은 context를 사용하기 전에 고려해야 할 몇 가지 대안입니다:</Trans>

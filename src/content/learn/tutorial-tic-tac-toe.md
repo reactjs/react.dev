@@ -8,36 +8,32 @@ translators: [이승효, 조성민, 정재남]
 
 You will build a small tic-tac-toe game during this tutorial. This tutorial does not assume any existing React knowledge. The techniques you'll learn in the tutorial are fundamental to building any React app, and fully understanding it will give you a deep understanding of 
 React.
-<Trans>
-이 자습서에서는 작은 틱택토 게임을 만들 것입니다. 이 자습서는 현재 사용되는 React 지식을 전제로 하지 않습니다. 이 자습서에서 배우게 될 기술은 모든 React 앱을 빌드하는데 기본이 되는 기술이며, 이를 완전히 이해하면 React에 대해 깊이 이해할 수 있습니다.
-</Trans>
+<Trans>이 자습서에서는 작은 틱택토 게임을 만들 것입니다. 이 자습서는 현재 사용되는 React 지식을 전제로 하지 않습니다. 이 자습서에서 배우게 될 기술은 모든 React 앱을 빌드하는데 기본이 되는 기술이며, 이를 완전히 이해하면 React에 대해 깊이 이해할 수 있습니다.</Trans>
 
 </Intro>
 
 <Note>
 
 This tutorial is designed for people who prefer to **learn by doing** and want to quickly try making something tangible. If you prefer learning each concept step by step, start with [Describing the UI.](/learn/describing-the-ui)
-<Trans>
-이 자습서는 **직접 해보면서 배우는 것**을 선호하고, 빠르게 무언가를 만들어 보고 싶은 분들을 위해 설계되었습니다. 각 개념을 단계별로 학습하는 것을 선호하신다면 [UI 설명](/learn/describing-the-ui)에서부터 시작하세요.
-</Trans>
+<Trans>이 자습서는 **직접 해보면서 배우는 것**을 선호하고, 빠르게 무언가를 만들어 보고 싶은 분들을 위해 설계되었습니다. 각 개념을 단계별로 학습하는 것을 선호하신다면 [UI 설명](/learn/describing-the-ui)에서부터 시작하세요.</Trans>
 </Note>
 
 The tutorial is divided into several sections:
+<Trans>자습서는 여러 섹션으로 나뉩니다:</Trans>
 
 - [Setup for the tutorial](#setup-for-the-tutorial) will give you **a starting point** to follow the tutorial.
 - [Overview](#overview) will teach you **the fundamentals** of React: components, props, and state.
 - [Completing the game](#completing-the-game) will teach you **the most common techniques** in React development.
 - [Adding time travel](#adding-time-travel) will give you **a deeper insight** into the unique strengths of React.
-<TransBlock>
-자습서는 여러 섹션으로 나뉩니다:
 
+<TransBlock>
 - [자습을 위한 설정](#setup-for-the-tutorial)에서는 자습서를 따라가기 위한 **시작점**을 제공합니다.
 - [개요](#overview)에서는 React의 **핵심**을 배울 수 있습니다: components, props, and state
 - [게임 완성하기](#completing-the-game)에서는 React 개발에서 **가장 일반적인 기술**을 배울 수 있습니다.
 - [시간여행 추가하기](#adding-time-travel)에서는 React의 고유한 강점에 대해 **더 깊은 이해**를 얻을 수 있습니다.
 </TransBlock>
-### What are you building?<Trans>무엇을 만들까요?</Trans> {/*what-are-you-building*/}
 
+### What are you building?<Trans>무엇을 만들까요?</Trans> {/*what-are-you-building*/}
 
 In this tutorial, you'll build an interactive tic-tac-toe game with React.
 <Trans>이 자습서에서는 React로 대화형 틱택토 게임을 빌드해 볼 것입니다.</Trans>
@@ -284,20 +280,20 @@ body {
 <Note>
 
 You can also follow this tutorial using your local development environment. To do this, you need to:
+<Trans>로컬 개발 환경을 사용하여 이 자습서를 진행할 수도 있습니다. 이를 위해서는 다음을 수행하세요:</Trans>
 
 1. Install [Node.js](https://nodejs.org/en/)
-1. In the CodeSandbox tab you opened earlier, press the top-left corner button to open the menu, and then choose **File > Export to ZIP** in that menu to download an archive of the files locally
-1. Unzip the archive, then open a terminal and `cd` to the directory you unzipped
-1. Install the dependencies with `npm install`
-1. Run `npm start` to start a local server and follow the prompts to view the code running in a browser
-<TransBlock>
-로컬 개발 환경을 사용하여 이 자습서를 진행할 수도 있습니다. 이를 위해서는 다음을 수행하세요:
+2. In the CodeSandbox tab you opened earlier, press the top-left corner button to open the menu, and then choose **File > Export to ZIP** in that menu to download an archive of the files locally
+3. Unzip the archive, then open a terminal and `cd` to the directory you unzipped
+4. Install the dependencies with `npm install`
+5. Run `npm start` to start a local server and follow the prompts to view the code running in a browser
 
+<TransBlock>
 1. [Node.js](https://nodejs.org/en/)를 설치하세요.
-1. 앞서 연 CodeSandBox 탭에서 왼쪽 상단 모서리 버튼을 누르고 메뉴를 열어 해당 메뉴에서<br/>**File > Export To ZIP**을 선택하여 파일 아카이브를 로컬로 다운로드합니다.
-1. 아카이브의 압축을 푼 다음, 터미널을 열고 `cd`명령어를 사용해 압축을 푼 디렉터리로 이동합니다.
-1. `npm install`명령어를 이용해 의존성을 설치하세요.
-1. `npm start`명령어를 실행하여 로컬 서버를 시작하고 프롬프트에 따라 브라우저에서 실행 중인 코드를 확인하세요.
+2. 앞서 연 CodeSandBox 탭에서 왼쪽 상단 모서리 버튼을 누르고 메뉴를 열어 해당 메뉴에서 **File > Export To ZIP**을 선택하여 파일 아카이브를 로컬로 다운로드합니다.
+3. 아카이브의 압축을 푼 다음, 터미널을 열고 `cd`명령어를 사용해 압축을 푼 디렉터리로 이동합니다.
+4. `npm install`명령어를 이용해 의존성을 설치하세요.
+5. `npm start`명령어를 실행하여 로컬 서버를 시작하고 프롬프트에 따라 브라우저에서 실행 중인 코드를 확인하세요.
 </TransBlock>
 
 If you get stuck, don't let this stop you! Follow along online instead and try a local setup again later.
@@ -313,18 +309,18 @@ Now that you're set up, let's get an overview of React!
 ### Inspecting the starter code<Trans>초기 코드 살펴보기</Trans> {/*inspecting-the-starter-code*/}
 
 In CodeSandbox you'll see three main sections:
+<Trans>CodeSandbox에는 세 가지 주요 섹션이 있습니다:</Trans>
 
 ![CodeSandbox with starter code](../images/tutorial/react-starter-code-codesandbox.png)
 
 1. The _Files_ section with a list of files like `App.js`, `index.js`, `styles.css` and a folder called `public`
-1. The _code editor_ where you'll see the source code of your selected file
-1. The _browser_ section where you'll see how the code you've written will be displayed
-<TransBlock>
-CodeSandbox에는 세 가지 주요 섹션이 있습니다:
+2. The _code editor_ where you'll see the source code of your selected file
+3. The _browser_ section where you'll see how the code you've written will be displayed
 
+<TransBlock>
 1. `App.js`, `index.js`, `styles.css`와 같은 파일 목록이 있는 _파일 섹션_ 과 `public` 폴더가 있습니다.
-1. 선택한 파일의 소스 코드를 볼 수 있는 _코드 편집기_
-1. 작성한 코드가 어떻게 표시되는지 확인할 수 있는 _브라우저_ 섹션
+2. 선택한 파일의 소스 코드를 볼 수 있는 _코드 편집기_
+3. 작성한 코드가 어떻게 표시되는지 확인할 수 있는 _브라우저_ 섹션
 </TransBlock>
 
 The `App.js` file should be selected in the _Files_ section. The contents of that file in the _code editor_ should be:
@@ -347,9 +343,7 @@ Now let's have a look at the files in the starter code.
 #### `App.js` {/*appjs*/}
 
 The code in `App.js` creates a _component_. In React, a component is a piece of reusable code that represents a part of a user interface. Components are used to render, manage, and update the UI elements in your application. Let's look at the component line by line to see what's going on:
-<Trans>
-`App.js`의 코드는 _컴포넌트_ 를 생성합니다. React에서는 컴포넌트가 사용자 인터페이스의 일부를 표시하는 재사용 가능한 코드 조각입니다. 컴포넌트는 애플리케이션의 UI 앨리먼트를 렌더링, 관리, 업데이트하는 데 사용됩니다. 컴포넌트를 한 줄씩 살펴보면서 무슨 일이 일어나는지 살펴보겠습니다:
-</Trans>
+<Trans>`App.js`의 코드는 _컴포넌트_ 를 생성합니다. React에서는 컴포넌트가 사용자 인터페이스의 일부를 표시하는 재사용 가능한 코드 조각입니다. 컴포넌트는 애플리케이션의 UI 앨리먼트를 렌더링, 관리, 업데이트하는 데 사용됩니다. 컴포넌트를 한 줄씩 살펴보면서 무슨 일이 일어나는지 살펴보겠습니다:</Trans>
 
 ```js {1}
 export default function Square() {
@@ -358,9 +352,7 @@ export default function Square() {
 ```
 
 The first line defines a function called `Square`. The `export` JavaScript keyword makes this function accessible outside of this file. The `default` keyword tells other files using your code that it's the main function in your file.
-<Trans>
-첫 번째 줄은 `Square` 함수를 정의합니다. JavaScript의 `export` 키워드를 사용하면 이 함수를 파일 외부에서 접근할 수 있습니다. `default` 키워드는 코드를 사용하는 다른 파일에서 이 함수가 파일의 주요 함수임을 알려줍니다.
-</Trans>
+<Trans>첫 번째 줄은 `Square` 함수를 정의합니다. JavaScript의 `export` 키워드를 사용하면 이 함수를 파일 외부에서 접근할 수 있습니다. `default` 키워드는 코드를 사용하는 다른 파일에서 이 함수가 파일의 주요 함수임을 알려줍니다.</Trans>
 
 ```js {2}
 export default function Square() {
@@ -369,23 +361,17 @@ export default function Square() {
 ```
 
 The second line returns a button. The `return` JavaScript keyword means whatever comes after is returned as a value to the caller of the function. `<button>` is a *JSX element*. A JSX element is a combination of JavaScript code and HTML tags that describes what you'd like to display. `className="square"` is a button property or *prop* that tells CSS how to style the button. `X` is the text displayed inside of the button and `</button>` closes the JSX element to indicate that any following content shouldn't be placed inside the button.
-<Trans>
-두 번째 줄은 버튼을 반환합니다. JavaScript의 `return` 키워드는 뒤에 오는 모든 것이 함수 호출자에게 값으로 반환됨을 의미합니다. `<button>`은 *JSX 앨리먼트*입니다. JSX 앨리먼트는 JavaScript 코드와 HTML 태그들의 조합으로, 표시할 내용을 설명합니다. `className="square"`는 버튼 *prop* 또는 프로퍼티로, CSS에 버튼의 스타일을 지정하는 방법을 알려줍니다. `X`는 버튼 내부에 표시되는 텍스트이며, `</button>`은 JSX 앨리먼트를 닫아 버튼 내부에 다음 콘텐츠를 배치해서는 안 됨을 나타냅니다.
-</Trans>
+<Trans>두 번째 줄은 버튼을 반환합니다. JavaScript의 `return` 키워드는 뒤에 오는 모든 것이 함수 호출자에게 값으로 반환됨을 의미합니다. `<button>`은 *JSX 앨리먼트*입니다. JSX 앨리먼트는 JavaScript 코드와 HTML 태그들의 조합으로, 표시할 내용을 설명합니다. `className="square"`는 버튼 *prop* 또는 프로퍼티로, CSS에 버튼의 스타일을 지정하는 방법을 알려줍니다. `X`는 버튼 내부에 표시되는 텍스트이며, `</button>`은 JSX 앨리먼트를 닫아 버튼 내부에 다음 콘텐츠를 배치해서는 안 됨을 나타냅니다.</Trans>
 
 #### `styles.css` {/*stylescss*/}
 
 Click on the file labeled `styles.css` in the _Files_ section of CodeSandbox. This file defines the styles for your React app. The first two _CSS selectors_ (`*` and `body`) define the style of large parts of your app while the `.square` selector defines the style of any component where the `className` property is set to `square`. In your code, that would match the button from your Square component in the `App.js` file.
-<Trans>
-CodeSandBox의 _파일_ 섹션에서 `styles.css`라는 이름의 파일을 클릭하세요. 이 파일은 React 앱의 스타일을 정의합니다. 처음 두 개의 _CSS 선택자_ (`*`와 `body`)는 앱의 대부분의 스타일을 정의하고, `.square` 선택자는 `className` 프로퍼티가 `square`로 설정된 모든 컴포넌트의 스타일을 정의합니다. 코드에서는 `App.js` 파일의 사각형 컴포넌트의 버튼과 일치합니다.
-</Trans>
+<Trans>CodeSandBox의 _파일_ 섹션에서 `styles.css`라는 이름의 파일을 클릭하세요. 이 파일은 React 앱의 스타일을 정의합니다. 처음 두 개의 _CSS 선택자_ (`*`와 `body`)는 앱의 대부분의 스타일을 정의하고, `.square` 선택자는 `className` 프로퍼티가 `square`로 설정된 모든 컴포넌트의 스타일을 정의합니다. 코드에서는 `App.js` 파일의 사각형 컴포넌트의 버튼과 일치합니다.</Trans>
 
 #### `index.js` {/*indexjs*/}
 
 Click on the file labeled `index.js` in the _Files_ section of CodeSandbox. You won't be editing this file during the tutorial but it is the bridge between the component you created in the `App.js` file and the web browser.
-<Trans>
-CodeSandBox의 _파일_ 섹션에서 `index.js`라는 이름의 파일을 클릭하세요. 자습서를 진행하는 중에는 이 파일을 편집하지 않지만 이 파일은 `App.js` 파일에서 만든 컴포넌트와 웹 브라우저 사이의 다리 역할을 합니다.
-</Trans>
+<Trans>CodeSandBox의 _파일_ 섹션에서 `index.js`라는 이름의 파일을 클릭하세요. 자습서를 진행하는 중에는 이 파일을 편집하지 않지만 이 파일은 `App.js` 파일에서 만든 컴포넌트와 웹 브라우저 사이의 다리 역할을 합니다.</Trans>
 
 ```jsx
 import {StrictMode} from 'react';
@@ -396,13 +382,13 @@ import App from './App';
 ```
 
 Lines 1-5 brings all the necessary pieces together: 
+<Trans>1-5줄은 필요한 모든 조각들을 한 곳으로 모았습니다:</Trans>
 * React
 * React's library to talk to web browsers (React DOM)
 * the styles for your components
 * the component you created in `App.js`.
-<TransBlock>
-1-5줄은 필요한 모든 조각들을 한 곳으로 모았습니다: 
 
+<TransBlock>
 * React
 * 웹 브라우저와 상호작용하는 React의 라이브러리(React DOM)
 * 컴포넌트의 스타일
@@ -436,9 +422,7 @@ You'll get this error:
 </ConsoleBlock>
 
 React components need to return a single JSX element and not multiple adjacent JSX elements like two buttons. To fix this you can use *fragments* (`<>` and `</>`) to wrap multiple adjacent JSX elements like this:
-<Trans>
-React 컴포넌트는 두 개의 버튼처럼 인접한 여러 개의 JSX 앨리먼트가 아닌 단일 JSX 앨리먼트를 반환해야 합니다. 이 문제를 해결하려면 *fragments*(`<>` 와 `</>`)를 사용하여 다음과 같이 여러 개의 인접한 JSX 앨리먼트를 래핑할 수 있습니다:
-</Trans>
+<Trans>React 컴포넌트는 두 개의 버튼처럼 인접한 여러 개의 JSX 앨리먼트가 아닌 단일 JSX 앨리먼트를 반환해야 합니다. 이 문제를 해결하려면 *fragments*(`<>` 와 `</>`)를 사용하여 다음과 같이 여러 개의 인접한 JSX 앨리먼트를 래핑할 수 있습니다:</Trans>
 
 ```js {3-6}
 export default function Square() {
@@ -462,9 +446,7 @@ Great! Now you just need to copy-paste a few times to add nine squares and...
 ![nine x-filled squares in a line](../images/tutorial/nine-x-filled-squares.png)
 
 Oh no! The squares are all in a single line, not in a grid like you need for our board. To fix this you'll need to group your squares into rows with `div`s and add some CSS classes. While you're at it, you'll give each square a number to make sure you know where each square is displayed.
-<Trans>
-이런! 사각형이 모두 한 줄로 되어 있고 게임판에 필요한 격자가 아닙니다. 이 문제를 해결하려면 `div`를 사용하여 사각형을 행으로 그룹화하고 몇 가지 CSS 클래스를 추가해야 합니다. 이 과정에서 각 사각형에 번호를 부여하여 각 사각형이 표시되는 위치를 알 수 있도록 하겠습니다.
-</Trans>
+<Trans>이런! 사각형이 모두 한 줄로 되어 있고 게임판에 필요한 격자가 아닙니다. 이 문제를 해결하려면 `div`를 사용하여 사각형을 행으로 그룹화하고 몇 가지 CSS 클래스를 추가해야 합니다. 이 과정에서 각 사각형에 번호를 부여하여 각 사각형이 표시되는 위치를 알 수 있도록 하겠습니다.</Trans>
 
 In the `App.js` file, update the `Square` component to look like this:
 <Trans>`App.js` 파일에서 `Square` 컴포넌트를 다음과 같이 업데이트하세요:</Trans>
@@ -494,10 +476,8 @@ export default function Square() {
 ```
 
 The CSS defined in `styles.css` styles the divs with the `className` of `board-row`. Now that you've grouped your components into rows with the styled `div`s you have your tic-tac-toe board:
-<Trans>
-`styles.css`에 정의된 CSS는 `board-row`라는 `className`으로 지정된 div들의 스타일을 지정합니다. 이제 스타일된 `div`를 사용하여 컴포넌트를 행으로 그룹화하여 틱택토 보드를 완성했습니다:
-</Trans>
-<br/><br/>
+<Trans>`styles.css`에 정의된 CSS는 `board-row`라는 `className`으로 지정된 div들의 스타일을 지정합니다. 이제 스타일된 `div`를 사용하여 컴포넌트를 행으로 그룹화하여 틱택토 보드를 완성했습니다:</Trans>
+
 ![tic-tac-toe board filled with numbers 1 through 9](../images/tutorial/number-filled-board.png)
 
 But you now have a problem. Your component named `Square`, really isn't a square anymore. Let's fix that by changing the name to `Board`:
@@ -588,23 +568,17 @@ body {
 <Note>
 
 Psssst... That's a lot to type! It's okay to copy and paste code from this page. However, if you're up for a little challenge, we recommend only copying code that you've manually typed at least once yourself.
-<Trans>
-에휴… 입력할 내용이 많네요! 이 페이지에서 코드를 복사하여 붙여넣어도 괜찮습니다. 하지만 조금 더 도전해보고 싶다면 스스로 직접 입력한 코드만 복사하는 것을 권장합니다.
-</Trans>
+<Trans>에휴… 입력할 내용이 많네요! 이 페이지에서 코드를 복사하여 붙여넣어도 괜찮습니다. 하지만 조금 더 도전해보고 싶다면 스스로 직접 입력한 코드만 복사하는 것을 권장합니다.</Trans>
 
 </Note>
 
 ### Passing data through props<Trans>props를 통해 데이터 전달하기</Trans> {/*passing-data-through-props*/}
 
 Next, you'll want to change the value of a square from empty to "X" when the user clicks on the square. With how you've built the board so far you would need to copy-paste the code that updates the square nine times (once for each square you have)! Instead of copy-pasting, React's component architecture allows you to create a reusable component to avoid messy, duplicated code.
-<Trans>
-다음으로, 사용자가 사각형을 클릭할 때 사각형의 값을 비어있는 상태에서 “X”로 변경하고 싶을 것입니다. 지금까지 보드를 구축한 방식으로는 사각형을 업데이트하는 코드를 9번(각 사각형당 한번) 복사해서 붙여넣어야 합니다! 복사-붙여넣기 대신, React의 컴포넌트 아키텍처를 사용하면 재사용 가능한 컴포넌트를 만들어 지저분하고 중복된 코드를 피할 수 있습니다.
-</Trans>
+<Trans>다음으로, 사용자가 사각형을 클릭할 때 사각형의 값을 비어있는 상태에서 “X”로 변경하고 싶을 것입니다. 지금까지 보드를 구축한 방식으로는 사각형을 업데이트하는 코드를 9번(각 사각형당 한번) 복사해서 붙여넣어야 합니다! 복사-붙여넣기 대신, React의 컴포넌트 아키텍처를 사용하면 재사용 가능한 컴포넌트를 만들어 지저분하고 중복된 코드를 피할 수 있습니다.</Trans>
 
 First, you are going to copy the line defining your first square (`<button className="square">1</button>`) from your `Board` component into a new `Square` component:
-<Trans>
-먼저, `Board` 컴포넌트에서 첫 번째 사각형을 정의하는 줄(`<button className="square">1</button>`)을 새 `Square`에 복사하세요:
-</Trans>
+<Trans>먼저, `Board` 컴포넌트에서 첫 번째 사각형을 정의하는 줄(`<button className="square">1</button>`)을 새 `Square`에 복사하세요:</Trans>
 
 ```js {1-3}
 function Square() {
@@ -648,14 +622,12 @@ Note how unlike the browser `div`s, your own components `Board` and `Square` mus
 <Trans>브라우저의 `div`와 달리, 자체 컴포넌트인 `Board`와 `Square`는 대문자로 시작해야 한다는 점에 유의하세요.</Trans>
 
 Let's take a look:
-<Trans>한 번 게임판을 살펴보겠습니다:</Trans>
+<Trans>게임판을 살펴보겠습니다:</Trans>
 
 ![one-filled board](../images/tutorial/board-filled-with-ones.png)
 
 Oh no! You lost the numbered squares you had before. Now each square says "1". To fix this, you will use *props* to pass the value each square should have from the parent component (`Board`) to its child (`Square`).
-<Trans>
-이런! 이전에 가지고 있던 번호가 매겨진 사각형이 사라졌습니다. 이제 각 사각형은 “1”이라고 표시됩니다. 이 문제를 해결하려면, *props*를 사용하여 각 사각형이 가져야 할 값을 부모 컴포넌트(`Board`)에서 자식 컴포넌트(`Square`)로 전달합니다.
-</Trans>
+<Trans>이런! 이전에 가지고 있던 번호가 매겨진 사각형이 사라졌습니다. 이제 각 사각형은 “1”이라고 표시됩니다. 이 문제를 해결하려면, *props*를 사용하여 각 사각형이 가져야 할 값을 부모 컴포넌트(`Board`)에서 자식 컴포넌트(`Square`)로 전달합니다.</Trans>
 
 Update the `Square` component to read the `value` prop that you'll pass from the `Board`:
 <Trans>`Square`컴포넌트를 `Board`에서 전달할 prop `value` 를 읽도록 수정하세요:</Trans>
@@ -684,9 +656,7 @@ Oops, this is not what you wanted:
 ![value-filled board](../images/tutorial/board-filled-with-value.png)
 
 You wanted to render the JavaScript variable called `value` from your component, not the word "value". To "escape into JavaScript" from JSX, you need curly braces. Add curly braces around `value` in JSX like so:
-<Trans>
-컴포넌트에서 “value”라는 단어가 아닌 `value` 라는 JavaScript 변수를 렌더링 하고 싶었습니다. JSX에서 “JavaScript로 이스케이프”하려면, 중괄호가 필요합니다. JSX에서 `value` 주위에 중괄호를 다음과 같이 추가하세요:
-</Trans>
+<Trans>컴포넌트에서 “value”라는 단어가 아닌 `value` 라는 JavaScript 변수를 렌더링 하고 싶었습니다. JSX에서 “JavaScript로 이스케이프”하려면, 중괄호가 필요합니다. JSX에서 `value` 주위에 중괄호를 다음과 같이 추가하세요:</Trans>
 
 ```js {2}
 function Square({ value }) {
@@ -700,9 +670,7 @@ For now, you should see an empty board:
 ![empty board](../images/tutorial/empty-board.png)
 
 This is because the `Board` component hasn't passed the `value` prop to each `Square` component it renders yet. To fix it you'll add the `value` prop to each `Square` component rendered by the `Board` component:
-<Trans>
-이유는 `Board` 컴포넌트가 렌더링하는 각 `Square` 컴포넌트에 `value` prop를 아직 전달하지 않았기 때문입니다. 이 문제를 해결하려면 `Board` 컴포넌트가 렌더링하는 각 `Square` 컴포넌트에 `value` prop를 추가하면 됩니다:
-</Trans>
+<Trans>이유는 `Board` 컴포넌트가 렌더링하는 각 `Square` 컴포넌트에 `value` prop를 아직 전달하지 않았기 때문입니다. 이 문제를 해결하려면 `Board` 컴포넌트가 렌더링하는 각 `Square` 컴포넌트에 `value` prop를 추가하면 됩니다:</Trans>
 
 ```js {5-7,10-12,15-17}
 export default function Board() {
@@ -816,9 +784,7 @@ body {
 ### Making an interactive component<Trans>사용자와 상호작용하는 컴포넌트 만들기</Trans> {/*making-an-interactive-component*/}
 
 Let's fill the `Square` component with an `X` when you click it. Declare a function called `handleClick` inside of the `Square`. Then, add `onClick` to the props of the button JSX element returned from the `Square`:
-<Trans>
-이제 `Square` 컴포넌트를 클릭하면 `X`로 채워보겠습니다. `Square` 내부에 `handleClick`이라는 함수를 선언하세요. 그런 다음 `Square` 컴포넌트에서 반환된 버튼 JSX의 props에 `onClick`을 추가하세요:
-</Trans>
+<Trans>이제 `Square` 컴포넌트를 클릭하면 `X`로 채워보겠습니다. `Square` 내부에 `handleClick`이라는 함수를 선언하세요. 그런 다음 `Square` 컴포넌트에서 반환된 버튼 JSX의 props에 `onClick`을 추가하세요:</Trans>
 
 ```js {2-4,9}
 function Square({ value }) {
@@ -838,33 +804,23 @@ function Square({ value }) {
 ```
 
 If you click on a square now, you should see a log saying `"clicked!"` in the _Console_ tab at the bottom of the _Browser_ section in CodeSandbox. Clicking the square more than once will log `"clicked!"` again. Repeated console logs with the same message will not create more lines in the console. Instead, you will see an incrementing counter next to your first `"clicked!"` log.
-<Trans>
-이제 사각형을 클릭하면, CodeSandBox의 _브라우저_ 섹션에 있는 _콘솔_ 탭에 `"clicked!"` 라는 로그가 표시됩니다. 사각형을 한 번 이상 클릭하면 `"clicked!"` 라는 로그가 다시 생성됩니다. 동일한 메시지가 포함된 콘솔 로그를 반복해도 콘솔에 더 많은 줄이 생기지 않습니다. 대신 첫 번째 `"clicked!"` 로그 옆에 카운터가 증가하는 것을 볼 수 있습니다.
-</Trans>
+<Trans>이제 사각형을 클릭하면, CodeSandBox의 _브라우저_ 섹션에 있는 _콘솔_ 탭에 `"clicked!"` 라는 로그가 표시됩니다. 사각형을 한 번 이상 클릭하면 `"clicked!"` 라는 로그가 다시 생성됩니다. 동일한 메시지가 포함된 콘솔 로그를 반복해도 콘솔에 더 많은 줄이 생기지 않습니다. 대신 첫 번째 `"clicked!"` 로그 옆에 카운터가 증가하는 것을 볼 수 있습니다.</Trans>
 
 <Note>
 
 If you are following this tutorial using your local development environment, you need to open your browser's Console. For example, if you use the Chrome browser, you can view the Console with the keyboard shortcut **Shift + Ctrl + J** (on Windows/Linux) or **Option + ⌘ + J** (on macOS).
-<Trans>
-만약 로컬 개발 환경을 사용하여 이 자습서를 진행한다면, 브라우저의 콘솔을 열어야 합니다. 예를 들어 Chrome 브라우저를 사용하는 경우, 키보드 단축키 **Shift + Ctrl + J** (Windows/Linux 환경) 또는 **Option + ⌘ + J** (macOS 환경)를 사용하여 콘솔을 볼 수 있습니다.
-</Trans>
+<Trans>만약 로컬 개발 환경을 사용하여 이 자습서를 진행한다면, 브라우저의 콘솔을 열어야 합니다. 예를 들어 Chrome 브라우저를 사용하는 경우, 키보드 단축키 **Shift + Ctrl + J** (Windows/Linux 환경) 또는 **Option + ⌘ + J** (macOS 환경)를 사용하여 콘솔을 볼 수 있습니다.</Trans>
 
 </Note>
 
 As a next step, you want the Square component to "remember" that it got clicked, and fill it with an "X" mark. To "remember" things, components use *state*.
-<Trans>
-다음 단계로, 사각형 컴포넌트가 클릭된 것을 "기억"하고 "X" 표시로 채우기를 원합니다. 컴포넌트는 무언가 "기억"하기 위해 *state*를 사용합니다.
-</Trans>
+<Trans>다음 단계로, 사각형 컴포넌트가 클릭된 것을 "기억"하고 "X" 표시로 채우기를 원합니다. 컴포넌트는 무언가 "기억"하기 위해 *state*를 사용합니다.</Trans>
 
 React provides a special function called `useState` that you can call from your component to let it "remember" things. Let's store the current value of the `Square` in state, and change it when the `Square` is clicked.
-<Trans>
-React는 컴포넌트에서 호출하여 무언가를 "기억"할 수 있는 `useState`라는 특별한 함수를 제공합니다. `Square`의 현재 값을 state에 저장하고 `Square`가 클릭되면 값을 변경해보도록 하겠습니다.
-</Trans>
+<Trans>React는 컴포넌트에서 호출하여 무언가를 "기억"할 수 있는 `useState`라는 특별한 함수를 제공합니다. `Square`의 현재 값을 state에 저장하고 `Square`가 클릭되면 값을 변경해보도록 하겠습니다.</Trans>
 
 Import `useState` at the top of the file. Remove the `value` prop from the `Square` component. Instead, add a new line at the start of the `Square` that calls `useState`. Have it return a state variable called `value`:
-<Trans>
-파일 상단에서 `useState`를 추가하세요. 다음으로 사각형 컴포넌트에서 `value` prop을 제거하세요. 대신, `Square` 컴포넌트의 시작 부분에 `useState`를 호출하는 새 줄을 추가하세요. `value`라는 이름의 state 변수를 반환하도록 하세요:
-</Trans>
+<Trans>파일 상단에서 `useState`를 추가하세요. 다음으로 사각형 컴포넌트에서 `value` prop을 제거하세요. 대신, `Square` 컴포넌트의 시작 부분에 `useState`를 호출하는 새 줄을 추가하세요. `value`라는 이름의 state 변수를 반환하도록 하세요:</Trans>
 
 ```js {1,3,4}
 import { useState } from 'react';
@@ -877,14 +833,10 @@ function Square() {
 ```
 
 `value` stores the value and `setValue` is a function that can be used to change the value. The `null` passed to `useState` is used as the initial value for this state variable, so `value` here starts off equal to `null`.
-<Trans>
-`value`는 값을 저장하고 `setValue`는 값을 변경하는 데 사용하는 함수입니다. `useState`에 전달된 `null`은 이 state 변수의 초기값으로 사용되므로, 여기서 `value`는 `null`과 같습니다.
-</Trans>
+<Trans>`value`는 값을 저장하고 `setValue`는 값을 변경하는 데 사용하는 함수입니다. `useState`에 전달된 `null`은 이 state 변수의 초기값으로 사용되므로, 여기서 `value`는 `null`과 같습니다.</Trans>
 
 Since the `Square` component no longer accepts props anymore, you'll remove the `value` prop from all nine of the Square components created by the Board component:
-<Trans>
-`Square` 컴포넌트는 더 이상 props를 허용하지 않으므로, 보드 컴포넌트가 생성한 9개의 사각형 컴포넌트에서 `value` prop를 제거하겠습니다:
-</Trans>
+<Trans>`Square` 컴포넌트는 더 이상 props를 허용하지 않으므로, 보드 컴포넌트가 생성한 9개의 사각형 컴포넌트에서 `value` prop를 제거하겠습니다:</Trans>
 
 ```js {6-8,11-13,16-18}
 // ...
@@ -912,9 +864,7 @@ export default function Board() {
 ```
 
 Now you'll change `Square` to display an "X" when clicked. Replace the `console.log("clicked!");` event handler with `setValue('X');`. Now your `Square` component looks like this:
-<Trans>
-이제 `Square`가 클릭되었을 때 “X”를 표시하도록 변경하겠습니다. `console.log("clicked!");` 이벤트 핸들러를 `setValue('X');`로 변경하세요. 이제 `Square` 컴포넌트는 다음과 같습니다:
-</Trans>
+<Trans>이제 `Square`가 클릭되었을 때 “X”를 표시하도록 변경하겠습니다. `console.log("clicked!");` 이벤트 핸들러를 `setValue('X');`로 변경하세요. 이제 `Square` 컴포넌트는 다음과 같습니다:</Trans>
 
 ```js {5}
 function Square() {
@@ -936,17 +886,12 @@ function Square() {
 ```
 
 By calling this `set` function from an `onClick` handler, you're telling React to re-render that `Square` whenever its `<button>` is clicked. After the update, the `Square`'s `value` will be `'X'`, so you'll see the "X" on the game board. Click on any Square, and "X" should show up:
-<Trans>
-이 과정은 `onClick` 핸들러에서 `set` 함수를 호출하면, 우리는 React에게 `<button>`이 클릭될 때마다 `Square`를 다시 렌더링하도록 지시한 것입니다. 업데이트 후, `Square`의 `value`는 `'X'`가 되므로, 앞으로 게임보드에서 “X”를 볼 수 있습니다. 아무 정사각형이나 클릭하면 "X"가 표시됩니다:
-</Trans>
+<Trans>이 과정은 `onClick` 핸들러에서 `set` 함수를 호출하면, 우리는 React에게 `<button>`이 클릭될 때마다 `Square`를 다시 렌더링하도록 지시한 것입니다. 업데이트 후, `Square`의 `value`는 `'X'`가 되므로, 앞으로 게임보드에서 “X”를 볼 수 있습니다. 아무 정사각형이나 클릭하면 "X"가 표시됩니다:</Trans>
 
-<br/>
 ![adding xes to board](../images/tutorial/tictac-adding-x-s.gif)
 
 Each Square has its own state: the `value` stored in each Square is completely independent of the others. When you call a `set` function in a component, React automatically updates the child components inside too.
-<Trans>
-각 정사각형에는 고유한 state가 있습니다. 각 정사각형에 저장된 `값`은 다른 정사각형과 완전히 독립적입니다. 컴포넌트에서 `set` 함수를 호출하면 React는 그 안에 있는 자식 컴포넌트도 자동으로 업데이트합니다.
-</Trans>
+<Trans>각 정사각형에는 고유한 state가 있습니다. 각 정사각형에 저장된 `값`은 다른 정사각형과 완전히 독립적입니다. 컴포넌트에서 `set` 함수를 호출하면 React는 그 안에 있는 자식 컴포넌트도 자동으로 업데이트합니다.</Trans>
 
 After you've made the above changes, your code will look like this:
 <Trans>위의 변경사항을 적용한 코드는 다음과 같습니다:</Trans>
@@ -1058,9 +1003,7 @@ To inspect a particular component on the screen, use the button in the top left 
 <Note>
 
 For local development, React DevTools is available as a [Chrome](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=en), [Firefox](https://addons.mozilla.org/en-US/firefox/addon/react-devtools/), and [Edge](https://microsoftedge.microsoft.com/addons/detail/react-developer-tools/gpphkfbcpidddadnkolkpfckpihlkkil) browser extension. Install it, and the *Components* tab will appear in your browser Developer Tools for sites using React.
-<Trans>
-로컬 환경에서 개발하는 경우, React 개발자 도구는 [Chrome](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=en), [Firefox](https://addons.mozilla.org/en-US/firefox/addon/react-devtools/), 그리고 [Edge](https://microsoftedge.microsoft.com/addons/detail/react-developer-tools/gpphkfbcpidddadnkolkpfckpihlkkil) 브라우저의 확장 프로그램으로 사용할 수 있습니다. 설치 후 브라우저 개발자 도구에 React를 사용하는 사이트를 위한 **컴포넌트** 탭이 나타납니다.
-</Trans>
+<Trans>로컬 환경에서 개발하는 경우, React 개발자 도구는 [Chrome](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=en), [Firefox](https://addons.mozilla.org/en-US/firefox/addon/react-devtools/), 그리고 [Edge](https://microsoftedge.microsoft.com/addons/detail/react-developer-tools/gpphkfbcpidddadnkolkpfckpihlkkil) 브라우저의 확장 프로그램으로 사용할 수 있습니다. 설치 후 브라우저 개발자 도구에 React를 사용하는 사이트를 위한 **컴포넌트** 탭이 나타납니다.</Trans>
 
 </Note>
 
@@ -1504,13 +1447,13 @@ Now that your state handling is in the `Board` component, the parent `Board` com
 <Trans>이제 모든 state 관리는 `Board`에 있으므로, 부모 `Board` 컴포넌트는 자식 `Square` 컴포넌트가 올바르게 표시될 수 있도록 props를 전달합니다. `Square`를 클릭하면 자식 `Square` 컴포넌트가 부모 `Board` 컴포넌트에 보드의 state를 업데이트하도록 요청합니다. `Board`의 state가 변경되면, `Board` 컴포넌트와 모든 자식 `Square` 컴포넌트가 자동으로 다시 렌더링됩니다. `Board` 컴포넌트에 속한 모든 사각형의 state를 유지하면 나중에 승자를 결정할 수 있습니다..</Trans>
 
 Let's recap what happens when a user clicks the top left square on your board to add an `X` to it:
+<Trans>사용자가 보드의 왼쪽 상단 사각형을 클릭하여 X를 추가하면 어떤 일이 발생하는지 다시 한 번 정리해 보겠습니다:</Trans>
 
 1. Clicking on the upper left square runs the function that the `button` received as its `onClick` prop from the `Square`. The `Square` component received that function as its `onSquareClick` prop from the `Board`. The `Board` component defined that function directly in the JSX. It calls `handleClick` with an argument of `0`.
 1. `handleClick` uses the argument (`0`) to update the first element of the `squares` array from `null` to `X`.
 1. The `squares` state of the `Board` component was updated, so the `Board` and all of its children re-render. This causes the `value` prop of the `Square` component with index `0` to change from `null` to `X`.
-<TransBlock>
-사용자가 보드의 왼쪽 상단 사각형을 클릭하여 X를 추가하면 어떤 일이 발생하는지 다시 한 번 정리해 보겠습니다:
 
+<TransBlock>
 1. 왼쪽 상단 사각형을 클릭하면 `button`이 `Square`로부터 `onClick` prop로 받은 함수가 실행됩니다.
 1. `handleClick`은 인수(`0`)을 사용하여 `squares` 배열의 첫 번째 요소를 `null`에서 `X`로 업데이트합니다.
 1. `Board` 컴포넌트의 `squares` state가 업데이트되어, `Board`와 그 모든 자식이 다시 렌더링됩니다. 이로 인해 인덱스가 `0`인 `Square` 컴포넌트의 `value` prop가 `null`에서 `X`로 변경됩니다.
@@ -2750,12 +2693,12 @@ export default function Game() {
 ```
 
 You will now make two changes to the `Game`'s `handlePlay` function which is called when you click on a square.
+<Trans>이제 square를 클릭할 때 호출되는 `Game`의 `handlePlay` 함수 내용을 두 가지 변경합니다.</Trans>
 
 - If you "go back in time" and then make a new move from that point, you only want to keep the history up to that point. Instead of adding `nextSquares` after all items (`...` spread syntax) in `history`, you'll add it after all items in `history.slice(0, currentMove + 1)` so that you're only keeping that portion of the old history.
 - Each time a move is made, you need to update `currentMove` to point to the latest history entry.
-<TransBlock>
-이제 square를 클릭할 때 호출되는 `Game`의 `handlePlay` 함수 내용을 두 가지 변경합니다.
 
+<TransBlock>
 - "시간을 거슬러 올라가서" 그 시점에서 새로운 이동을 하는 경우 해당 시점까지의 히스토리만 유지하고 싶을 것입니다. `history`의 모든 항목(`...` 스프레드 구문) 뒤에 `nextSquares`를 추가하는 대신, `history.slice(0, currentMove + 1)`의 모든 항목 뒤에 추가하여 이전 history의 해당 부분만 유지하도록 할 수 있습니다.
 - 이동을 할 때마다 최신 history 항목을 가리키도록 `currentMove`를 업데이트해야 합니다.
 </TransBlock>
@@ -2989,12 +2932,14 @@ You no longer need the `xIsNext` state declaration or the calls to `setXIsNext`.
 ### Wrapping up<Trans>마무리</Trans> {/*wrapping-up*/}
 
 Congratulations! You've created a tic-tac-toe game that:
+<Trans>축하합니다! 여러분은 틱택토 게임을 만들었습니다:</Trans>
+
 - Lets you play tic-tac-toe,
 - Indicates when a player has won the game,
 - Stores a game's history as a game progresses,
 - Allows players to review a game's history and see previous versions of a game's board.
+
 <TransBlock>
-축하합니다! 여러분은 틱택토 게임을 만들었습니다:
 - 틱택토를 플레이합시다.
 - 플레이어가 게임에서 이겼을 때를 표시합니다.
 - 게임이 진행됨에 따라 게임 기록을 저장합니다.
@@ -3175,21 +3120,22 @@ body {
 </Sandpack>
 
 If you have extra time or want to practice your new React skills, here are some ideas for improvements that you could make to the tic-tac-toe game, listed in order of increasing difficulty:
+<Trans>시간이 남거나 새로운 React 기술을 연습하고 싶다면, 틱택토 게임을 개선할 수 있는 몇 가지 아이디어를 난이도가 낮은 것부터 순서대로 나열해 보았습니다:</Trans>
 
 1. For the current move only, show "You are at move #..." instead of a button.
-1. Rewrite `Board` to use two loops to make the squares instead of hardcoding them.
-1. Add a toggle button that lets you sort the moves in either ascending or descending order.
-1. When someone wins, highlight the three squares that caused the win (and when no one wins, display a message about the result being a draw).
-1. Display the location for each move in the format (row, col) in the move history list.
-<TransBlock>
-시간이 남거나 새로운 React 기술을 연습하고 싶다면, 틱택토 게임을 개선할 수 있는 몇 가지 아이디어를 난이도가 낮은 것부터 순서대로 나열해 보았습니다:
+2. Rewrite `Board` to use two loops to make the squares instead of hardcoding them.
+3. Add a toggle button that lets you sort the moves in either ascending or descending order.
+4. When someone wins, highlight the three squares that caused the win (and when no one wins, display a message about the result being a draw).
+5. Display the location for each move in the format (row, col) in the move history list.
 
+<TransBlock>
 1. 현재 이동에 대해서만 버튼 대신 "당신은 이동 #에 있습니다..."를 표시합니다.
-1. `Board`를 하드코딩하는 대신 두 개의 루프를 사용하여 사각형을 만들도록 다시 작성합니다.
-1. 동작을 오름차순 또는 내림차순으로 정렬할 수 있는 토글 버튼을 추가합니다.
-1. 누군가 승리하면 승리의 원인이 된 세 개의 사각형을 강조 표시합니다(아무도 승리하지 않은 경우 무승부라는 메시지가 표시됨).
-1. 이동 기록 목록에서 각 이동의 위치를 형식(열, 행)으로 표시합니다.
+2. `Board`를 하드코딩하는 대신 두 개의 루프를 사용하여 사각형을 만들도록 다시 작성합니다.
+3. 동작을 오름차순 또는 내림차순으로 정렬할 수 있는 토글 버튼을 추가합니다.
+4. 누군가 승리하면 승리의 원인이 된 세 개의 사각형을 강조 표시합니다(아무도 승리하지 않은 경우 무승부라는 메시지가 표시됨).
+5. 이동 기록 목록에서 각 이동의 위치를 형식(열, 행)으로 표시합니다.
 </TransBlock>
 
 Throughout this tutorial, you've touched on React concepts including elements, components, props, and state. Now that you've seen how these concepts work when building a game, check out [Thinking in React](/learn/thinking-in-react) to see how the same React concepts work when build an app's UI.
 <Trans>이 튜토리얼을 통해 엘리먼트, 컴포넌트, props, state를 포함한 React의 개념에 대해 살펴봤습니다. 이제 이러한 개념들이 게임을 만들 때 어떻게 작동하는지 보았으니, [Thinking in React](/learn/thinking-in-react)를 통해 앱의 UI를 만들 때 동일한 React 개념이 어떻게 작동하는지 확인해 보세요.</Trans>
+A

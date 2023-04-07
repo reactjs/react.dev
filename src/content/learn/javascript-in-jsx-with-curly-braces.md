@@ -480,9 +480,9 @@ To check that your fix worked, try changing the value of `imageSize` to `'b'`. T
 
 You can write it as `src={baseUrl + person.imageId + person.imageSize + '.jpg'}`.
 
-1. `{` opens the JavaScript expression
-2. `baseUrl + person.imageId + person.imageSize + '.jpg'` produces the correct URL string
-3. `}` closes the JavaScript expression
+1. `{` opens the JavaScript expression.
+2. `baseUrl + person.imageId + person.imageSize + '.jpg'` produces the correct URL string.
+3. `}` closes the JavaScript expression.
 
 <Sandpack>
 
@@ -525,7 +525,12 @@ body > div > div { padding: 20px; }
 
 </Sandpack>
 
-You can also move this expression into a separate function like `getImageUrl` below:
+You can also create a separate function that will return this expression when called.
+
+1. Define a function `getImageUrl` that will receive `person` object as its parameter.
+2. Make this function return a URL string that is made up of dynamic values extracted from the `person` object.
+3. To use this URL string, pass a function call with the `person` object as its argument to the `src` attribute between curly braces: `{getImageUrl(person)}`.
+
 
 <Sandpack>
 

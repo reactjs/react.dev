@@ -69,7 +69,7 @@ title="프론트엔드 취준생"
   name="최민정"
   translated={[{"title":"Choosing the State Structure","url":"/learn/choosing-the-state-structure"},{"title":"Importing and Exporting Components","translatedTitle":"컴포넌트 import 및 export","url":"/learn/importing-and-exporting-components"},{"title":"Removing Effect Dependencies","translatedTitle":"Effect 의존성 제거하기","url":"/learn/removing-effect-dependencies"},{"title":"Rendering Lists","url":"/learn/rendering-lists"},{"title":"Responding to Events","url":"/learn/responding-to-events"}]}
 >
-  프론트엔드 개발을 하기까지 먼 길을 돌아왔습니다.<br/>새로운 도전을 두려워하지 않고, 매번 하고 싶은 걸 하며 삽니다.<br/>앞으로도 계속 그럴 예정입니다😆
+  취업준비 어려워요. 아무말대잔치.<br/>줄바꿈은 이렇게<br/>[마크다운링크](www.youtube.com/c/feroy)<br/>**마크다운 강조** 다됩니다!!
 </TeamMember>
 
 <TeamMember 

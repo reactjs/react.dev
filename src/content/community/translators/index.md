@@ -84,6 +84,16 @@ personal="https://ice-bear.tistory.com"
 </TeamMember>
 
 <TeamMember 
+  photo="/images/translators/seunghoonKang.jpeg"
+github="seunghoonKang"
+title="프론트엔트 취준생"
+  name="강승훈"
+  translated={undefined}
+>
+  새로운 것을 배우는 데 관심이 많습니다.<br/>함께 무언가를 시도하며 함께 성장하는 것을 좋아합니다.
+</TeamMember>
+
+<TeamMember 
   photo="/images/team/gaearon.jpg"
 github="test"
 title="프론트엔트 취준생"

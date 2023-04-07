@@ -12,16 +12,6 @@
 
 3. `/src/content/community/translators` 폴더의 `data.json` 파일에서, 본인의 소개글을 작성해 주세요.
 
-4. 다음 명령을 내립니다.
-
-```bash
-/[your-own-branch-name]/> npm run build-trans
-
-# or
-
-/[your-own-branch-name]/> yarn run build-trans
-```
-
 4. 푸쉬하고, feature/translators 브랜치로 PR 올려주세요.
 
 ## PR 작성 규칙

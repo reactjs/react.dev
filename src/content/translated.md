@@ -3,7 +3,7 @@ title: 번역 진행상황
 ---
 
 <Intro>
-last updated @ 2023-04-04 PM 18:00
+last updated @ 2023-04-07 PM 01:00
 </Intro>
 
 ## 완료 페이지 {/*완료-페이지*/}
@@ -19,6 +19,10 @@ last updated @ 2023-04-04 PM 18:00
 - [1-1. 첫번째 컴포넌트 :: Your First Component](/learn/your-first-component)
 - [1-2. 컴포넌트 import 및 export :: Importing and Exporting Components](/learn/importing-and-exporting-components)
 - [1-3. JSX로 마크업 작성하기 :: Writing Markup with JSX](/learn/writing-markup-with-jsx)
+- [1-4. JSX에서 JavaScript 사용하기 :: JavaScript in JSX with Curly Braces](/learn/javascript-in-jsx-with-curly-braces) 
+- [1-5. 컴포넌트에 props 전달하기 :: Passing Props to a Component](/learn/passing-props-to-a-component) 
+- [1-6. 조건부 렌더링 :: Conditional Rendering](/learn/conditional-rendering) 
+- [3-1. state로 입력에 반응하기 :: Reacting to Input with State](/learn/reacting-to-input-with-state) 
 - [3-4. state 보존 및 재설정 :: Preserving and Resetting State](/learn/preserving-and-resetting-state)
 - [3-5. state 로직을 리듀서로 추출하기 :: Extracting State Logic into a Reducer](/learn/extracting-state-logic-into-a-reducer)
 - [3-6. 컨텍스트로 데이터를 깊게 전달하기 :: Passing Data Deeply with Context](/learn/passing-data-deeply-with-context)
@@ -50,9 +54,9 @@ O   | [1. UI 구성하기 :: Describing the UI](/learn/describing-the-ui)
 O   | [1-1. 첫번째 컴포넌트 :: Your First Component](/learn/your-first-component) 
 O   | [1-2. 컴포넌트 import 및 export :: Importing and Exporting Components](/learn/importing-and-exporting-components) 
 O   | [1-3. JSX로 마크업 작성하기 :: Writing Markup with JSX](/learn/writing-markup-with-jsx) 
-X   | [1-4. JSX에서 JavaScript 사용하기 :: JavaScript in JSX with Curly Braces](/learn/javascript-in-jsx-with-curly-braces) 
-X   | [1-5. 컴포넌트에 props 전달하기 :: Passing Props to a Component](/learn/passing-props-to-a-component) 
-X   | [1-6. 조건부 렌더링 :: Conditional Rendering](/learn/conditional-rendering) 
+O   | [1-4. JSX에서 JavaScript 사용하기 :: JavaScript in JSX with Curly Braces](/learn/javascript-in-jsx-with-curly-braces) 
+O   | [1-5. 컴포넌트에 props 전달하기 :: Passing Props to a Component](/learn/passing-props-to-a-component) 
+O   | [1-6. 조건부 렌더링 :: Conditional Rendering](/learn/conditional-rendering) 
 X   | [1-7. 목록 렌더링 :: Rendering Lists](/learn/rendering-lists) 
 X   | [1-8. 컴포넌트 순수성 유지 :: Keeping Components Pure](/learn/keeping-components-pure) 
 X   | [2. 상호작용 추가하기 :: Adding Interactivity](/learn/adding-interactivity) 

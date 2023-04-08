@@ -3,7 +3,7 @@ title: 번역 진행상황
 ---
 
 <Intro>
-last updated @ 2023-04-07 PM 01:00
+last updated @ 2023-04-08 PM 11:10
 </Intro>
 
 ## 완료 페이지 {/*완료-페이지*/}
@@ -23,6 +23,7 @@ last updated @ 2023-04-07 PM 01:00
 - [1-4. JSX에서 JavaScript 사용하기 :: JavaScript in JSX with Curly Braces](/learn/javascript-in-jsx-with-curly-braces) 
 - [1-5. 컴포넌트에 props 전달하기 :: Passing Props to a Component](/learn/passing-props-to-a-component) 
 - [1-6. 조건부 렌더링 :: Conditional Rendering](/learn/conditional-rendering) 
+- [1-7. 목록 렌더링 :: Rendering Lists](/learn/rendering-lists) 
 - [3-1. state로 입력에 반응하기 :: Reacting to Input with State](/learn/reacting-to-input-with-state) 
 - [3-4. state 보존 및 재설정 :: Preserving and Resetting State](/learn/preserving-and-resetting-state)
 - [3-5. state 로직을 리듀서로 추출하기 :: Extracting State Logic into a Reducer](/learn/extracting-state-logic-into-a-reducer)
@@ -58,7 +59,7 @@ O   | [1-3. JSX로 마크업 작성하기 :: Writing Markup with JSX](/learn/wri
 O   | [1-4. JSX에서 JavaScript 사용하기 :: JavaScript in JSX with Curly Braces](/learn/javascript-in-jsx-with-curly-braces) 
 O   | [1-5. 컴포넌트에 props 전달하기 :: Passing Props to a Component](/learn/passing-props-to-a-component) 
 O   | [1-6. 조건부 렌더링 :: Conditional Rendering](/learn/conditional-rendering) 
-X   | [1-7. 목록 렌더링 :: Rendering Lists](/learn/rendering-lists) 
+O   | [1-7. 목록 렌더링 :: Rendering Lists](/learn/rendering-lists) 
 X   | [1-8. 컴포넌트 순수성 유지 :: Keeping Components Pure](/learn/keeping-components-pure) 
 X   | [2. 상호작용 추가하기 :: Adding Interactivity](/learn/adding-interactivity) 
 X   | [2-1. 이벤트에 응답하기 :: Responding to Events](/learn/responding-to-events) 

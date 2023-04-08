@@ -9,6 +9,7 @@ last updated @ 2023-04-07 PM 01:00
 ## 완료 페이지 {/*완료-페이지*/}
 
 - [0-1. 빠른 시작 :: Quick Start](/learn)
+- [0-1-1. Tic-Tac-Toe 게임 :: Tic-Tac-Toe](/learn/tutorial-tic-tac-toe)
 - [0-1-2. React로 사고하기 :: Thinking in React](/learn/thinking-in-react)
 - [0-2. 설치하기 :: Installation](/learn/installation) 
 - [0-2-1. 새 리액트 프로젝트 시작하기 :: Start a New React Project](/learn/start-a-new-react-project)
@@ -43,7 +44,7 @@ last updated @ 2023-04-07 PM 01:00
 번역 | title
 :-: | ---
 O   | [0-1. 빠른 시작 :: Quick Start](/learn) 
-X   | [0-1-1. Tic-Tac-Toe 게임 :: Tic-Tac-Toe](/learn/tutorial-tic-tac-toe)
+O   | [0-1-1. Tic-Tac-Toe 게임 :: Tic-Tac-Toe](/learn/tutorial-tic-tac-toe)
 O   | [0-1-2. React로 사고하기 :: Thinking in React](/learn/thinking-in-react) 
 O   | [0-2. 설치하기 :: Installation](/learn/installation)  
 O   | [0-2-1. 새 리액트 프로젝트 시작하기 :: Start a New React Project](/learn/start-a-new-react-project) 

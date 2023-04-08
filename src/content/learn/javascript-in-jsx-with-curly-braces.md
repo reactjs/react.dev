@@ -525,11 +525,7 @@ body > div > div { padding: 20px; }
 
 </Sandpack>
 
-You can also create a separate function that will return this expression when called.
-
-1. Define a function `getImageUrl` that will receive `person` object as its parameter.
-2. Make this function return a URL string that is made up of dynamic values extracted from the `person` object.
-3. To use this URL string, pass a function call with the `person` object as its argument to the `src` attribute between curly braces: `{getImageUrl(person)}`.
+You can also create a separate function that returns this expression, then call it between curly braces, like `getImageUrl` below:
 
 
 <Sandpack>

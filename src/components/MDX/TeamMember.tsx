@@ -92,7 +92,9 @@ export function TeamMember({
           </div>
           {translated?.length && (
             <details className="mt-4 translated-list">
-              <summary>번역한 페이지 목록</summary>
+              <summary>
+                번역한 페이지 목록 <small>({translated?.length})</small>
+              </summary>
               <ul className="bg-card dark:bg-card-dark">
                 {translated.map(({title, translatedTitle, url}) => (
                   <li key={title}>

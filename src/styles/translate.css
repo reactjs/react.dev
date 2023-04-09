@@ -99,12 +99,12 @@ nav[role='navigation'] .translate::before {
   left: 10px;
   width: calc(100% - 30px);
   max-height: 230px;
-  padding: 15px;
+  padding: 15px 20px;
   z-index: 10;
   box-shadow: rgba(100, 100, 111, 0.4) 0px 7px 29px 0px;
   overflow-y: auto;
   list-style-type: '- ';
-  padding-left: 25px;
+  padding-left: 30px;
   line-height: 1.5;
   cursor: default;
 }

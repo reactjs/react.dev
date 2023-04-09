@@ -330,7 +330,7 @@ export default function TopNav({
                 </div>
                 <div className="flex">
                   <Link
-                    href="https://github.com/facebook/react/releases"
+                    href="https://github.com/roy-jung/react.dev.ko"
                     target="_blank"
                     rel="noreferrer noopener"
                     aria-label="Open on GitHub"

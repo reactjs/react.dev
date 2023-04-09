@@ -111,7 +111,7 @@ After you trigger a render, React calls your components to figure out what to di
 
 <TransBlock>
 - **첫 렌더링에서** React는 루트 컴포넌트를 호출합니다.
-- **이후 렌더링에서** React는 state 업데이트가 일어나 렌더링을 트리거한 함수 컴포넌트를 호출합니다.
+- **이후 렌더링에서** React는 state 업데이트에 의해 렌더링이 발동된 함수 컴포넌트를 호출합니다.
 </TransBlock>
 
 This process is recursive: if the updated component returns some other component, React will render _that_ component next, and if that component also returns something, it will render _that_ component next, and so on. The process will continue until there are no more nested components and React knows exactly what should be displayed on screen.

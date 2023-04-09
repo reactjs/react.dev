@@ -36,7 +36,7 @@ Some things on the screen update in response to user input. For example, clickin
 ## Responding to events<Trans>이벤트에 응답하기</Trans> {/*responding-to-events*/}
 
 React lets you add *event handlers* to your JSX. Event handlers are your own functions that will be triggered in response to user interactions like clicking, hovering, focusing on form inputs, and so on.
-<Trans>React를 사용하면 JSX에 이벤트 핸들러를 추가할 수 있습니다. 이벤트 핸들러는 클릭, 마우스오버, 양식 입력에 초점 맞추기 등과 같은 사용자 상호작용에 반응하여 트리거되는 자체 함수입니다.</Trans>
+<Trans>React를 사용하면 JSX에 이벤트 핸들러를 추가할 수 있습니다. 이벤트 핸들러는 클릭, 마우스오버, input에 초점 맞추기 등과 같은 사용자 상호작용에 반응하여 촉발되는 자체 함수입니다.</Trans>
 
 Built-in components like `<button>` only support built-in browser events like `onClick`. However, you can also create your own components, and give their event handler props any application-specific names that you like.
 <Trans>`<button>`과 같은 기본 제공 컴포넌트는 `onClick`과 같은 기본 제공 브라우저 이벤트만 지원합니다. 그러나 자체 컴포넌트를 생성하고 이벤트 핸들러 프롭에 원하는 애플리케이션별 이름을 지정할 수도 있습니다.</Trans>

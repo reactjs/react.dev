@@ -369,7 +369,7 @@ button { margin-right: 10px; }
 </Sandpack>
 
 Notice how the `App` component does not need to know *what* `Toolbar` will do with `onPlayMovie` or `onUploadImage`. That's an implementation detail of the `Toolbar`. Here, `Toolbar` passes them down as `onClick` handlers to its `Button`s, but it could later also trigger them on a keyboard shortcut. Naming props after app-specific interactions like `onPlayMovie` gives you the flexibility to change how they're used later.
-<Trans>`App` 컴포넌트는 `Toolbar`가 `onPlayMovie` 또는 `onUploadImage`로 어떤 작업을 수행할지 알 필요가 없다는 점을 주목하세요. 이것이 `Toolbar`의 구현 세부 사항입니다. 여기서 `Toolbar`는 `Button`에 `onClick` 핸들러로 전달하지만 나중에 키보드 단축키에서 트리거할 수도 있습니다. props의 이름을 `onPlayMovie`와 같은, 앱별 상호작용의 이름을 따서 지정하면 나중에 사용 방식을 유연하게 변경할 수 있습니다.</Trans>
+<Trans>`App` 컴포넌트는 `Toolbar`가 `onPlayMovie` 또는 `onUploadImage`로 어떤 작업을 수행할지 알 필요가 없다는 점을 주목하세요. 이것이 `Toolbar`의 구현 세부 사항입니다. 여기서 `Toolbar`는 `Button`에 `onClick` 핸들러로 전달하지만 나중에 키보드 단축키에서 촉발시킬 수도 있습니다. props의 이름을 `onPlayMovie`와 같은, 앱별 상호작용의 이름을 따서 지정하면 나중에 사용 방식을 유연하게 변경할 수 있습니다.</Trans>
 
 ## Event propagation<Trans>이벤트 전파</Trans> {/*event-propagation*/}
 

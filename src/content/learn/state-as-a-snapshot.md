@@ -91,7 +91,7 @@ Let's take a closer look at the relationship between state and rendering.
 ## Rendering takes a snapshot in time<Trans>렌더링은 그 시점의 스냅샷을 찍습니다</Trans> {/*rendering-takes-a-snapshot-in-time*/}
 
 ["Rendering"](/learn/render-and-commit#step-2-react-renders-your-components) means that React is calling your component, which is a function. The JSX you return from that function is like a snapshot of the UI in time. Its props, event handlers, and local variables were all calculated **using its state at the time of the render.**
-<Trans>["렌더링"](https://www.notion.so/2-3-Render-and-Commit-ecf4950ea19d485bbd5df75040dc59d4)이란 React가 컴포넌트, 즉 함수를 호출한다는 뜻입니다. 해당 함수에서 반환하는 JSX는 시간상 UI의 스냅샷과 같습니다. prop, 이벤트 핸들러, 로컬 변수는 모두 **렌더링 당시의 state를 사용해** 계산됩니다.</Trans>
+<Trans>["렌더링"](/learn/render-and-commit#step-2-react-renders-your-components)이란 React가 컴포넌트, 즉 함수를 호출한다는 뜻입니다. 해당 함수에서 반환하는 JSX는 시간상 UI의 스냅샷과 같습니다. prop, 이벤트 핸들러, 로컬 변수는 모두 **렌더링 당시의 state를 사용해** 계산됩니다.</Trans>
 
 Unlike a photograph or a movie frame, the UI "snapshot" you return is interactive. It includes logic like event handlers that specify what happens in response to inputs. React updates the screen to match this snapshot and connects the event handlers. As a result, pressing a button will trigger the click handler from your JSX.
 <Trans>사진이나 동영상 프레임과 달리 반환하는 UI '스냅샷'은 대화형입니다. 여기에는 입력에 대한 응답으로 어떤 일이 일어날지 지정하는 이벤트 핸들러와 같은 로직이 포함됩니다. 그러면 React는 이 스냅샷과 일치하도록 화면을 업데이트하고 이벤트 핸들러를 연결합니다. 결과적으로 버튼을 누르면 JSX에서 클릭 핸들러가 발동됩니다.</Trans>
@@ -127,15 +127,15 @@ As a component's memory, state is not like a regular variable that disappears af
 <IllustrationBlock sequential>
   <Illustration
     caption="You tell React to update the state" 
-    translated="리액트에게 state를 업데이트 하도록 명령"
+    translated="React에게 state를 업데이트 하도록 명령"
     src="/images/docs/illustrations/i_state-snapshot1.png" />
   <Illustration
     caption="React updates the state value" 
-    translated="리액트가 state값을 업데이트"
+    translated="React가 state값을 업데이트"
     src="/images/docs/illustrations/i_state-snapshot2.png" />
   <Illustration
     caption="React passes a snapshot of the state value into the component" 
-    translated="리액트가 state 값의 스냅샷을 컴포넌트에 보냄"
+    translated="React가 state 값의 스냅샷을 컴포넌트에 보냄"
     src="/images/docs/illustrations/i_state-snapshot3.png" />
 </IllustrationBlock>
 

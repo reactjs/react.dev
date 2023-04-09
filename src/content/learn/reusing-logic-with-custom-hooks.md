@@ -1258,7 +1258,7 @@ function useData(url) {
 ```
 
 Now you can replace both Effects in the `ShippingForm` components with calls to `useData`:
-<Trans>이제 `ShippingForm` 구성 요소의 두 효과를 모두 `useData` 호출로 바꿀 수 있습니다:</Trans>
+<Trans>이제 `ShippingForm` 컴포넌트의 두 효과를 모두 `useData` 호출로 바꿀 수 있습니다:</Trans>
 
 ```js {2,4}
 function ShippingForm({ country }) {
@@ -1507,7 +1507,7 @@ export function useOnlineStatus() {
 </Sandpack>
 
 Notice how **you didn't need to change any of the components** to make this migration:
-<Trans>이 마이그레이션을 위해 **구성 요소를 변경할 필요가 없다는 점**을 주목하세요:</Trans>
+<Trans>이 마이그레이션을 위해 **컴포넌트를 변경할 필요가 없다는 점**을 주목하세요:</Trans>
 
 ```js {2,7}
 function StatusBar() {

@@ -234,7 +234,7 @@ You can read it as *"if `isPacked` is true, then (`?`) render `name + ' ✔'`, o
 #### Are these two examples fully equivalent?<Trans>이 두 예제는 완전히 동일할까요?</Trans> {/*are-these-two-examples-fully-equivalent*/}
 
 If you're coming from an object-oriented programming background, you might assume that the two examples above are subtly different because one of them may create two different "instances" of `<li>`. But JSX elements aren't "instances" because they don't hold any internal state and aren't real DOM nodes. They're lightweight descriptions, like blueprints. So these two examples, in fact, *are* completely equivalent. [Preserving and Resetting State](/learn/preserving-and-resetting-state) goes into detail about how this works.
-<Trans>객체 지향 프로그래밍에 익숙하다면, 위의 두 예제 중 하나가 `<li>`의 서로 다른 두 "인스턴스"를 생성할 수 있기 때문에 미묘하게 다르다고 생각할 수 있습니다. 하지만 JSX 요소는 내부 상태를 보유하지 않고 실제 DOM 노드가 아니기 때문에 "인스턴스"가 아닙니다. 이는 청사진과 같은 가벼운 설명입니다. 이 두 예제는 사실 완전히 동등합니다. [state 보존 및 재설정](https://www.notion.so/3-4-state-Preserving-and-Resetting-State-85ee075b78ba4fe3869442b822d8b2f8)에서 작동 방식에 대해 자세히 설명합니다.</Trans>
+<Trans>객체 지향 프로그래밍에 익숙하다면, 위의 두 예제 중 하나가 `<li>`의 서로 다른 두 "인스턴스"를 생성할 수 있기 때문에 미묘하게 다르다고 생각할 수 있습니다. 하지만 JSX 요소는 내부 상태를 보유하지 않고 실제 DOM 노드가 아니기 때문에 "인스턴스"가 아닙니다. 이는 청사진과 같은 가벼운 설명입니다. 이 두 예제는 사실 완전히 동등합니다. [state 보존 및 재설정](/learn/preserving-and-resetting-state)에서 작동 방식에 대해 자세히 설명합니다.</Trans>
 
 </DeepDive>
 

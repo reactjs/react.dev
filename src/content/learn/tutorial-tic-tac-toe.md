@@ -1284,7 +1284,7 @@ Here is why this doesn't work. The `handleClick(0)` call will be a part of rende
 <ConsoleBlock level="error">
 
 Too many re-renders. React limits the number of renders to prevent an infinite loop.
-<Trans>재렌더링이 너무 많이 발생했습니다. 무한 루프를 방지하기 위해 React가 렌더링 횟수를 제한합니다.</Trans>
+<Trans>리렌더링이 너무 많이 발생했습니다. 무한 루프를 방지하기 위해 React가 렌더링 횟수를 제한합니다.</Trans>
 
 </ConsoleBlock>
 
@@ -1724,7 +1724,7 @@ function handleClick(i) {
 ```
 
 To let the players know when the game is over, you can display text such as "Winner: X" or "Winner: O". To do that you'll add a `status` section to the `Board` component. The status will display the winner if the game is over and if the game is ongoing you'll display which player's turn is next:
-<Trans>게임이 끝났을 때 플레이어에게 알리기 위해 "Winner: X" 또는 "Winner: O"라고 표기할 수 있습니다. 이렇게 하려면 `Board` 컴포넌트에 `status` 섹션을 추가하면 됩니다. 게임이 끝난 경우 상태는 승자를 표시하고 게임이 진행 중인 경우 다음 플레이어의 차례를 표시합니다:</Trans>
+<Trans>게임이 끝났을 때 플레이어에게 알리기 위해 "Winner: X" 또는 "Winner: O"라고 표기할 수 있습니다. 이렇게 하려면 `Board` 컴포넌트에 `status` 섹션을 추가하면 됩니다. 게임이 끝난 경우 status는 승자를 표시하고 게임이 진행 중인 경우 다음 플레이어의 차례를 표시합니다:</Trans>
 
 ```js {3-9,13}
 export default function Board() {

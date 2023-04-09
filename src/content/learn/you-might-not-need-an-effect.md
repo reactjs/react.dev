@@ -87,7 +87,7 @@ function Form() {
 ### Caching expensive calculations<Trans>고비용 계산 캐싱하기</Trans> {/*caching-expensive-calculations*/}
 
 This component computes `visibleTodos` by taking the `todos` it receives by props and filtering them according to the `filter` prop. You might feel tempted to store the result in state and update it from an Effect:
-<Trans>아래 컴포넌트는 props로 받은 `todos`를 `filter` prop에 따라 필터링하여 `visibleTodos`를 계산합니다. 이 결과를 state변수에 저장하고 Effect에서 업데이트하고 싶을 수도 있을 것입니다:</Trans>
+<Trans>아래 컴포넌트는 props로 받은 `todos`를 `filter` prop에 따라 필터링하여 `visibleTodos`를 계산합니다. 이 결과를 state 변수에 저장하고 Effect에서 업데이트하고 싶을 수도 있을 것입니다:</Trans>
 
 ```js {4-9}
 function TodoList({ todos, filter }) {

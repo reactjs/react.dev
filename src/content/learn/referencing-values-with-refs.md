@@ -30,7 +30,7 @@ When you want a component to "remember" some information, but you don't want tha
 ## Adding a ref to your component<Trans>컴포넌트에 ref 추가하기</Trans> {/*adding-a-ref-to-your-component*/}
 
 You can add a ref to your component by importing the `useRef` Hook from React:
-<Trans>리액트에서 `useRef` 훅을 가져와서 컴포넌트에 ref를 추가할 수 있습니다:</Trans>
+<Trans>React에서 `useRef` 훅을 가져와서 컴포넌트에 ref를 추가할 수 있습니다:</Trans>
 
 ```js
 import { useRef } from 'react';

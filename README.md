@@ -1,4 +1,4 @@
-# react-ko.vercel.app 리액트 공식문서 비공식 번역 사이트
+# react-ko.vercel.app | React 공식문서 비공식 번역 사이트
 
 [react.dev](https://react.dev/)를 fork하여 작성한 리파지토리입니다.  
 스터디그룹에서 한글 번역을 진행하고 있고,  

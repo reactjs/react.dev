@@ -37,7 +37,7 @@ React apps are made out of *components*. A component is a piece of the UI (user 
 <Trans>React 앱은 *컴포넌트*로 만들어집니다. 컴포넌트는 고유한 로직과 모양을 가진 UI(사용자 인터페이스)의 일부입니다. 컴포넌트는 버튼만큼 작을 수도 있고 전체 페이지만큼 클 수도 있습니다.</Trans>
 
 React components are JavaScript functions that return markup:
-<Trans>리액트 컴포넌트는 마크업을 반환하는 JavaScript 함수입니다:</Trans>
+<Trans>React 컴포넌트는 마크업을 반환하는 JavaScript 함수입니다:</Trans>
 
 ```js
 function MyButton() {

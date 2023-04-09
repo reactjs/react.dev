@@ -225,12 +225,14 @@ const IllustrationContext = React.createContext<{
 
 function Illustration({
   caption,
+  translated,
   src,
   alt,
   author,
   authorLink,
 }: {
   caption: string;
+  translated?: string;
   src: string;
   alt: string;
   author: string;
@@ -250,6 +252,7 @@ function Illustration({
         {caption ? (
           <figcaption className="text-center leading-tight mt-4">
             {caption}
+            {translated ? <Trans>{translated}</Trans> : null}
           </figcaption>
         ) : null}
       </figure>
@@ -282,6 +285,7 @@ function IllustrationBlock({
       {info.caption ? (
         <figcaption className="text-secondary dark:text-secondary-dark text-center leading-tight mt-4">
           {info.caption}
+          {info.translated ? <Trans>{info.translated}</Trans> : null}
         </figcaption>
       ) : null}
     </figure>

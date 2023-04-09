@@ -130,7 +130,7 @@
         },
         {
           "title": "Queueing a Series of State Updates",
-          "translatedTitle": "state 업데이트 큐",
+          "translatedTitle": "여러 state 업데이트를 큐에 담기",
           "path": "/learn/queueing-a-series-of-state-updates"
         },
         {

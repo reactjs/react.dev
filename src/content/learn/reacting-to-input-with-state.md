@@ -7,7 +7,7 @@ translators: [유한나라, 정재남]
 <Intro>
 
 React uses a declarative way to manipulate the UI. Instead of manipulating individual pieces of the UI directly, you describe the different states that your component can be in, and switch between them in response to the user input. This is similar to how designers think about the UI.
-<Trans>리액트는 선언적인 방식으로 UI를 조작합니다. 개별적인 UI를 직접 조작하는 것 대신에 컴포넌트 내부에 여러 state를 묘사하고 사용자의 입력에 따라 state를 변경합니다. 이는 디자이너가 UI를 바라보는 방식과 비슷합니다.</Trans>
+<Trans>React는 선언적인 방식으로 UI를 조작합니다. 개별적인 UI를 직접 조작하는 것 대신에 컴포넌트 내부에 여러 state를 묘사하고 사용자의 입력에 따라 state를 변경합니다. 이는 디자이너가 UI를 바라보는 방식과 비슷합니다.</Trans>
 
 </Intro>
 
@@ -455,7 +455,7 @@ Here are some questions you can ask about your state variables:
 
 <TransBlock>
 * **state가 모순을 야기하나요?** 예를 들어 `isTyping` 과 `isSubmitting`은 동시에 `true`일 수 없습니다. 이러한 모순은 일반적으로 state가 충분히 제약되지 않았음을 의미합니다. 두 boolean의 조합은 네 가지가 가능하지만 유효한 state는 세 가지뿐입니다. “불가능한” state를 제거하려면 세 가지 값을 하나의 status로 결합하면 됩니다: `'typing'`, `'submitting'`, `'success'`.
-* **다른 state변수에 이미 같은 정보가 있나요?** `isEmpty`와 `isTyping`은 동시에 `true`가 될 수 없습니다. 이를 각 state 변수로 분리하면 동기화되지 않아 버그가 발생할 위험이 있습니다. 다행히 `isEmpty`를 제거하고 대신 `answer.length === 0`으로 확인할 수 있습니다.
+* **다른 state 변수에 이미 같은 정보가 있나요?** `isEmpty`와 `isTyping`은 동시에 `true`가 될 수 없습니다. 이를 각 state 변수로 분리하면 동기화되지 않아 버그가 발생할 위험이 있습니다. 다행히 `isEmpty`를 제거하고 대신 `answer.length === 0`으로 확인할 수 있습니다.
 * **다른 state 변수를 뒤집으면 동일한 정보를 얻을 수 있나요?** `isError`는 `error !== null`을 대신 확인할 수 있기 때문에 필요하지 않습니다.
 </TransBlock>
 
@@ -1013,7 +1013,7 @@ Compare this solution to the original imperative code. How are they different?
 
 </Solution>
 
-#### Refactor the imperative solution without React<Trans>리액트 없이 명령형 솔루션 리팩터링하기</Trans> {/*refactor-the-imperative-solution-without-react*/}
+#### Refactor the imperative solution without React<Trans>React 없이 명령형 솔루션 리팩터링하기</Trans> {/*refactor-the-imperative-solution-without-react*/}
 
 Here is the original sandbox from the previous challenge, written imperatively without React:
 <Trans>다음은 이전 챌린지의 원본 샌드박스로, React 없이 명령형으로 작성되었습니다:</Trans>

@@ -1,6 +1,6 @@
 ---
 title: Start a New React Project
-translatedTitle: 새 리액트 프로젝트 시작하기
+translatedTitle: 새 React 프로젝트 시작하기
 translators: [정재남, 이상희, 유한나라]
 ---
 
@@ -82,7 +82,7 @@ Expo is maintained by [Expo (the company)](https://expo.dev/about). Building app
 
 <DeepDive>
 
-#### Can I use React without a framework?<Trans>프레임워크 없이 리액트를 사용할 수 있나요?</Trans> {/*can-i-use-react-without-a-framework*/}
+#### Can I use React without a framework?<Trans>프레임워크 없이 React를 사용할 수 있나요?</Trans> {/*can-i-use-react-without-a-framework*/}
 
 You can definitely use React without a framework--that's how you'd [use React for a part of your page.](/learn/add-react-to-an-existing-project#using-react-for-a-part-of-your-existing-page) **However, if you're building a new app or a site fully with React, we recommend using a framework.**
 <Trans>[페이지 일부에 React를 사용하는 방식](/learn/add-react-to-an-existing-project#using-react-for-a-part-of-your-existing-page)으로 프레임워크 없이도 React를 사용할 수 있습니다. **하지만 새 앱이나 사이트를 완전히 React로 구축하는 경우에는 프레임워크를 사용하는 것이 좋습니다.**</Trans>

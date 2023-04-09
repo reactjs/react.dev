@@ -66,6 +66,13 @@
     "description": "사람들에게 행복을 주는것이 목표인 개발자입니다.<br/>같이 성장하는것을 매우 좋아합니다.<br/>현재는 성장과 다양한 경험을 가장 중요한 가치관으로 보고 있습니다.<br/>최근에는 채력이 부족하다 생각해 열심히 운동중입니다.<br/>"
   },
   {
+    "name": "김혜원",
+    "photo": "/images/translators/hyewon.jpg",
+    "github": "hyew-kim",
+    "title": "프론트엔트 개발자",
+    "description": "새로운 사람들과 지식을 공유하고 개발얘기하는 것을 좋아합니다! 함께 성장해나가요ㅎㅎ"
+  },
+  {
     "name": "테스트",
     "photo": "/images/team/gaearon.jpg",
     "github": "test",

@@ -1,6 +1,6 @@
 ---
-title: 'Synchronizing with Effects'
-translatedTitle: 'Effect와 동기화하기'
+title: Synchronizing with Effects
+translatedTitle: Effect와 동기화하기
 translators: [손한종, 정재남, 최다인, 이지수, 고석영]
 ---
 

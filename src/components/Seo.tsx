@@ -13,6 +13,7 @@ export interface SeoProps {
   // jsonld?: JsonLDType | Array<JsonLDType>;
   children?: React.ReactNode;
   isHomePage: boolean;
+  searchOrder?: number;
 }
 
 export const Seo = withRouter(
@@ -23,6 +24,7 @@ export const Seo = withRouter(
     router,
     children,
     isHomePage,
+    searchOrder,
   }: SeoProps & {router: Router}) => {
     const pageTitle = isHomePage ? 'React' : title + ' – React';
     // Twitter's meta parser is not very good.
@@ -96,6 +98,9 @@ export const Seo = withRouter(
           name="google-site-verification"
           content="sIlAGs48RulR4DdP95YSWNKZIEtCqQmRjzn-Zq-CcD0"
         />
+        {searchOrder != null && (
+          <meta name="algolia-search-order" content={'' + searchOrder} />
+        )}
         <link
           rel="preload"
           href="/fonts/Source-Code-Pro-Regular.woff2"
@@ -134,6 +139,20 @@ export const Seo = withRouter(
         <link
           rel="preload"
           href="https://react.dev/fonts/Optimistic_Text_W_Bd.woff2"
+          as="font"
+          type="font/woff2"
+          crossOrigin="anonymous"
+        />
+        <link
+          rel="preload"
+          href="https://react.dev/fonts/Optimistic_Text_W_Rg.woff2"
+          as="font"
+          type="font/woff2"
+          crossOrigin="anonymous"
+        />
+        <link
+          rel="preload"
+          href="https://react.dev/fonts/Optimistic_Text_W_It.woff2"
           as="font"
           type="font/woff2"
           crossOrigin="anonymous"

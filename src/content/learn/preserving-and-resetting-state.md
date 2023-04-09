@@ -522,7 +522,7 @@ You might expect the state to reset when you tick checkbox, but it doesn't! This
 <Trans>checkbox를 선택하면 state가 재설정될 것으로 예상할 수 있지만 그렇지 않습니다! 이 **두 `<Counter />` 태그가 모두 같은 위치에 렌더링되기 때문입니다.** React는 함수에서 조건을 어디에 배치했는지 알지 못합니다. 단지 여러분이 반환하는 트리만 볼 수 있을 뿐입니다. </Trans>
 
 In both cases, the `App` component returns a `<div>` with `<Counter />` as a first child. To React, these two counters have the same "address": the first child of the first child of the root. This is how React matches them up between the previous and next renders, regardless of how you structure your logic.
-<Trans>두 경우 모두 `App` 컴포넌트는 `<Counter />`를 첫 번째 자식으로 가진 `<div>`를 반환합니다. 리액트에서 이 두 카운터는 루트의 첫 번째 자식의 첫 번째 자식이라는 동일한 "주소"를 갖습니다. React는 로직을 어떻게 구성하든 상관없이 이전 렌더링과 다음 렌더링 사이에서 이 방법으로 이들을 일치시킬 수 있습니다.</Trans>
+<Trans>두 경우 모두 `App` 컴포넌트는 `<Counter />`를 첫 번째 자식으로 가진 `<div>`를 반환합니다. React에서 이 두 카운터는 루트의 첫 번째 자식의 첫 번째 자식이라는 동일한 "주소"를 갖습니다. React는 로직을 어떻게 구성하든 상관없이 이전 렌더링과 다음 렌더링 사이에서 이 방법으로 이들을 일치시킬 수 있습니다.</Trans>
 
 </Pitfall>
 
@@ -998,7 +998,7 @@ There is also another, more generic, way to reset a component's state.
 <Trans>컴포넌트의 state를 재설정하는 더 일반적인 방법도 있습니다.</Trans>
 
 You might have seen `key`s when [rendering lists.](/learn/rendering-lists#keeping-list-items-in-order-with-key) Keys aren't just for lists! You can use keys to make React distinguish between any components. By default, React uses order within the parent ("first counter", "second counter") to discern between components. But keys let you tell React that this is not just a *first* counter, or a *second* counter, but a specific counter--for example, *Taylor's* counter. This way, React will know *Taylor's* counter wherever it appears in the tree!
-<Trans>[목록을 렌더링](https://www.notion.so/1-7-Rendering-Lists-25246ef00d14407fb113ea66961946b3)할 때 `key`를 본 적이 있을 것입니다. key는 목록에만 사용되는 것이 아닙니다! key를 사용해 React가 모든 컴포넌트를 구분하도록 할 수 있습니다. 기본적으로 React는 부모 내의 순서("첫 번째 counter", "두 번째 counter")를 사용해 컴포넌트를 구분합니다. 하지만 key를 사용하면 이것이 첫 번째 counter나 두 번째 counter가 아니라 특정 counter(예: Taylor의 counter)임을 React에 알릴 수 있습니다. 이렇게 하면 React는 테일러의 counter가 트리에 어디에 나타나든 알 수 있습니다!</Trans>
+<Trans>[목록을 렌더링](/learn/rendering-lists#keeping-list-items-in-order-with-key)할 때 `key`를 본 적이 있을 것입니다. key는 목록에만 사용되는 것이 아닙니다! key를 사용해 React가 모든 컴포넌트를 구분하도록 할 수 있습니다. 기본적으로 React는 부모 내의 순서("첫 번째 counter", "두 번째 counter")를 사용해 컴포넌트를 구분합니다. 하지만 key를 사용하면 이것이 첫 번째 counter나 두 번째 counter가 아니라 특정 counter(예: Taylor의 counter)임을 React에 알릴 수 있습니다. 이렇게 하면 React는 테일러의 counter가 트리에 어디에 나타나든 알 수 있습니다!</Trans>
 
 In this example, the two `<Counter />`s don't share state even though they appear in the same place in JSX:
 <Trans>다음 예제에서는 두 `<Counter />`가 JSX에서 같은 위치에 표시되지만 state를 공유하지 않습니다:</Trans>
@@ -1316,8 +1316,8 @@ In a real chat app, you'd probably want to recover the input state when the user
 
 <TransBlock>
 - 현재 채팅만 렌더링하는 것이 아니라 모든 채팅을 렌더링하되 다른 모든 채팅은 CSS로 숨길 수 있습니다. 채팅은 트리에서 제거되지 않으므로 로컬 state가 유지됩니다. 이 솔루션은 간단한 UI에 적합합니다. 하지만 숨겨진 트리가 크고 많은 DOM 노드를 포함하는 경우 속도가 매우 느려질 수 있습니다.
-- 부모 컴포넌트에서 각 수신자에 대한 보류 중인 메시지를 [state를 끌어올려서](https://www.notion.so/3-3-state-Sharing-State-Between-Components-84873ee0bb1a4a92bdc4c355d12d765c) 보관할 수 있습니다. 이렇게 하면 자식 컴포넌트가 제거되더라도 중요한 정보를 보관하는 것은 부모 컴포넌트이므로 문제가 되지 않습니다. 이것이 가장 일반적인 해결책입니다.
-- React state 외에 다른 소스를 사용할 수도 있습니다. 예를 들어 사용자가 실수로 페이지를 닫아도 메시지 초안이 유지되기를 원할 수 있습니다. 이를 구현하기 위해 `Chat` 컴포넌트가 `localStorage`에서 읽어서 state를 초기화하고 초안도 저장하도록 할 수 있습니다.
+- 부모 컴포넌트에서 각 수신자에 대한 보류 중인 메시지를 [state를 끌어올려서](/learn/sharing-state-between-components) 보관할 수 있습니다. 이렇게 하면 자식 컴포넌트가 제거되더라도 중요한 정보를 보관하는 것은 부모 컴포넌트이므로 문제가 되지 않습니다. 이것이 가장 일반적인 해결책입니다.
+- React state 외에 다른 소스를 사용할 수도 있습니다. 예를 들어 사용자가 실수로 페이지를 닫아도 메시지 초안이 유지되기를 원할 수 있습니다. 이를 구현하기 위해 `Chat` 컴포넌트가 [`localStorage`](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage)에서 읽어서 state를 초기화하고 초안도 저장하도록 할 수 있습니다.
 </TransBlock>
 
 No matter which strategy you pick, a chat _with Alice_ is conceptually distinct from a chat _with Bob_, so it makes sense to give a `key` to the `<Chat>` tree based on the current recipient.

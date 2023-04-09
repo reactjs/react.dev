@@ -1303,7 +1303,7 @@ This Effect sets up an interval that ticks every second. You've noticed somethin
 <Hint>
 
 It seems like this Effect's code depends on `count`. Is there some way to not need this dependency? There should be a way to update the `count` state based on its previous value without adding a dependency on that value.
-<Trans>이 Effect 코드가 `count`에 의존하는 것 같습니다. 이 의존성이 필요하지 않은 방법이 있을까요? 해당 값에 의존성을 추가하지 않고 이전 값을 기반으로 `count` 상태를 업데이트하는 방법이 있을 것입니다.</Trans>
+<Trans>이 Effect 코드가 `count`에 의존하는 것 같습니다. 이 의존성이 필요하지 않은 방법이 있을까요? 해당 값에 의존성을 추가하지 않고 이전 값을 기반으로 `count` state를 업데이트하는 방법이 있을 것입니다.</Trans>
 
 </Hint>
 

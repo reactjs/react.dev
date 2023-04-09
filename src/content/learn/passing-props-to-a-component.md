@@ -393,7 +393,7 @@ You can think of a component with a `children` prop as having a "hole" that can 
 ## How props change over time<Trans>시간에 따라 props가 변하는 방식</Trans> {/*how-props-change-over-time*/}
 
 The `Clock` component below receives two props from its parent component: `color` and `time`. (The parent component's code is omitted because it uses [state](/learn/state-a-components-memory), which we won't dive into just yet.)
-<Trans>아래의 `Clock` 컴포넌트는 부모 컴포넌트로부터 `color`와 `time`이라는 두 가지 props를 받습니다. (부모 컴포넌트의 코드는 아직 자세히 다루지 않을 [state](https://www.notion.so/2-2-State-State-A-Component-s-Memory-2b87b53046e14485883b0bf8036311f6)를 사용하기 때문에 생략합니다).</Trans>
+<Trans>아래의 `Clock` 컴포넌트는 부모 컴포넌트로부터 `color`와 `time`이라는 두 가지 props를 받습니다. (부모 컴포넌트의 코드는 아직 자세히 다루지 않을 [state](/learn/state-a-components-memory)를 사용하기 때문에 생략합니다).</Trans>
 
 Try changing the color in the select box below:
 <Trans>아래 select box의 색상을 바꿔보세요:</Trans>

@@ -254,7 +254,7 @@ Remove all the state setting logic. What you are left with are three event handl
 </TransBlock>
 
 Managing state with reducers is slightly different from directly setting state. Instead of telling React "what to do" by setting state, you specify "what the user just did" by dispatching "actions" from your event handlers. (The state update logic will live elsewhere!) So instead of "setting `tasks`" via an event handler, you're dispatching an "added/changed/deleted a task" action. This is more descriptive of the user's intent.
-<Trans>reducer를 사용한 state 관리는 state를 직접 설정하는 것과 약간 다릅니다. state를 설정하여 리액트에게 "무엇을 할 지"를 지시하는 대신, 이벤트 핸들러에서 "action"을 전달하여 "사용자가 방금 한 일"을 지정합니다. (state 업데이트 로직은 다른 곳에 있습니다!) 즉, 이벤트 핸들러를 통해 "`tasks`를 설정"하는 대신 "task를 추가/변경/삭제"하는 action을 전달하는 것입니다. 이러한 방식이 사용자의 의도를 더 명확하게 설명합니다.</Trans>
+<Trans>reducer를 사용한 state 관리는 state를 직접 설정하는 것과 약간 다릅니다. state를 설정하여 React에게 "무엇을 할 지"를 지시하는 대신, 이벤트 핸들러에서 "action"을 전달하여 "사용자가 방금 한 일"을 지정합니다. (state 업데이트 로직은 다른 곳에 있습니다!) 즉, 이벤트 핸들러를 통해 "`tasks`를 설정"하는 대신 "task를 추가/변경/삭제"하는 action을 전달하는 것입니다. 이러한 방식이 사용자의 의도를 더 명확하게 설명합니다.</Trans>
 
 ```js
 function handleAddTask(text) {
@@ -442,7 +442,7 @@ const sum = arr.reduce(
 ```
 
 The function you pass to `reduce` is known as a "reducer". It takes the _result so far_ and the _current item,_ then it returns the _next result._ React reducers are an example of the same idea: they take the _state so far_ and the _action_, and return the _next state._ In this way, they accumulate actions over time into state.
-<Trans>`reduce`로 넘기는 함수가 “reducer”로 알려져 있습니다. _지금까지의 결과_ 와 _현재의 아이템_ 을 가지고, _다음 결과_ 를 반환합니다. React reducer는 이 아이디어와 똑같은 예시입니다. 리액트 reducer도 _지금까지의 state_ 와 _action_ 을 가지고 _다음 state_ 를 반환합니다. 이런 방식으로 시간이 지나면서 action들을 state로 모으게 됩니다.</Trans>
+<Trans>`reduce`로 넘기는 함수가 “reducer”로 알려져 있습니다. _지금까지의 결과_ 와 _현재의 아이템_ 을 가지고, _다음 결과_ 를 반환합니다. React reducer는 이 아이디어와 똑같은 예시입니다. React reducer도 _지금까지의 state_ 와 _action_ 을 가지고 _다음 state_ 를 반환합니다. 이런 방식으로 시간이 지나면서 action들을 state로 모으게 됩니다.</Trans>
 
 You could even use the `reduce()` method with an `initialState` and an array of `actions` to calculate the final state by passing your reducer function to it:
 <Trans>심지어 `reduce()` 메서드를 `initialState`와 `actions` 배열을 사용해서 reducer로 최종 state를 계산할 수도 있습니다: </Trans>

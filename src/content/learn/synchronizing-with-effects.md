@@ -90,7 +90,7 @@ Then, call it at the top level of your component and put some code inside your E
 function MyComponent() {
   useEffect(() => {
     // Code here will run after *every* render
-    // 여기의 코드는 매 랜더링 후에 실행됩니다.
+    // 여기의 코드는 매 렌더링 후에 실행됩니다.
   });
   return <div />;
 }

@@ -73,6 +73,13 @@
     "description": "새로운 사람들과 지식을 공유하고 개발얘기하는 것을 좋아합니다! 함께 성장해나가요ㅎㅎ"
   },
   {
+    "name": "이지수",
+    "photo": "/images/translators/jisoolee.jpeg",
+    "github": "sue6e2",
+    "title": "프론트엔드 개발자",
+    "description": "2년차 프론트엔드 개발자입니다.<br/>새로운 것을 배우며 성장하는 것의 즐거움을 알고 작은 성취들로 하루하루 살아갑니다.<br/>코드만 잘짜는 것이 아니라 다양한 사람들과 소통하는 개발자가 되고싶습니다."
+  },
+  {
     "name": "테스트",
     "photo": "/images/team/gaearon.jpg",
     "github": "test",

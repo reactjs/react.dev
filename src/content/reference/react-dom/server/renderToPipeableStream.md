@@ -127,7 +127,7 @@ React will inject the [doctype](https://developer.mozilla.org/en-US/docs/Glossar
 On the client, your bootstrap script should [hydrate the entire `document` with a call to `hydrateRoot`:](/reference/react-dom/client/hydrateRoot#hydrating-an-entire-document)
 
 ```js [[1, 4, "<App />"]]
-import {hydrateRoot} from 'react-dom/client';
+import { hydrateRoot } from 'react-dom/client';
 import App from './App.js';
 
 hydrateRoot(document, <App />);
@@ -203,7 +203,7 @@ app.use('/', (request, response) => {
 In the example above, the `bootstrapScriptContent` option adds an extra inline `<script>` tag that sets the global `window.assetMap` variable on the client. This lets the client code read the same `assetMap`:
 
 ```js {4}
-import {hydrateRoot} from 'react-dom/client';
+import { hydrateRoot } from 'react-dom/client';
 import App from './App.js';
 
 hydrateRoot(document, <App assetMap={window.assetMap} />);

@@ -374,8 +374,8 @@ Click on the file labeled `index.js` in the _Files_ section of CodeSandbox. You 
 <Trans>CodeSandBox의 _파일_ 섹션에서 `index.js`라는 이름의 파일을 클릭하세요. 자습서를 진행하는 중에는 이 파일을 편집하지 않지만 이 파일은 `App.js` 파일에서 만든 컴포넌트와 웹 브라우저 사이의 다리 역할을 합니다.</Trans>
 
 ```jsx
-import {StrictMode} from 'react';
-import {createRoot} from 'react-dom/client';
+import { StrictMode } from 'react';
+import { createRoot } from 'react-dom/client';
 import './styles.css';
 
 import App from './App';

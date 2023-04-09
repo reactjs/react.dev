@@ -143,7 +143,7 @@ This is because JSX is stricter and has a few more rules than HTML! If you read 
 
 <Note>
 
-Most of the times, React's on-screen error messages will help you find where the problem is. Give them a read if you get stuck!
+Most of the time, React's on-screen error messages will help you find where the problem is. Give them a read if you get stuck!
 <Trans>대부분의 경우 React의 화면 오류 메세지는 문제가 있는 곳을 찾는 데 도움이 됩니다. 막혔을 때 읽어주세요!</Trans>
 
 </Note>

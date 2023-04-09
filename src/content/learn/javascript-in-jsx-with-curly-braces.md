@@ -7,7 +7,7 @@ translators: [강민혜, 유한나라, 정재남]
 <Intro>
 
 JSX lets you write HTML-like markup inside a JavaScript file, keeping rendering logic and content in the same place. Sometimes you will want to add a little JavaScript logic or reference a dynamic property inside that markup. In this situation, you can use curly braces in your JSX to open a window to JavaScript.
-<Trans>JSX를 사용하면 JavaScript 파일 내에 HTML과 유사한 마크업을 작성하여 렌더링 로직과 콘텐츠를 같은 위치에 유지할 수 있습니다. 때로는 마크업 안에 약간의 자바스크립트 로직을 추가하거나 동적 프로퍼티를 참조하고 싶을 때가 있습니다. 이 경우 JSX에서 중괄호를 사용하여 자바스크립트로 창을 열 수 있습니다.</Trans>
+<Trans>JSX를 사용하면 JavaScript 파일 내에 HTML과 유사한 마크업을 작성하여 렌더링 로직과 콘텐츠를 같은 위치에 유지할 수 있습니다. 때로는 마크업 안에 약간의 JavaScript 로직을 추가하거나 동적 프로퍼티를 참조하고 싶을 때가 있습니다. 이 경우 JSX에서 중괄호를 사용하여 JavaScript로 창을 열 수 있습니다.</Trans>
 
 </Intro>
 
@@ -81,12 +81,12 @@ export default function Avatar() {
 </Sandpack>
 
 Notice the difference between `className="avatar"`, which specifies an `"avatar"` CSS class name that makes the image round, and `src={avatar}` that reads the value of the JavaScript variable called `avatar`. That's because curly braces let you work with JavaScript right there in your markup!
-<Trans>이미지를 둥글게 만들어주는 `"avatar"` CSS 클래스명 `className="avatar"`와 아바타라는 자바스크립트 변수의 값을 읽는 `src={avatar}`의 차이점에 주목하세요. 중괄호를 사용하면 마크업에서 바로 자바스크립트로 작업할 수 있기 때문입니다!</Trans>
+<Trans>이미지를 둥글게 만들어주는 `"avatar"` CSS 클래스명 `className="avatar"`와 아바타라는 JavaScript 변수의 값을 읽는 `src={avatar}`의 차이점에 주목하세요. 중괄호를 사용하면 마크업에서 바로 JavaScript로 작업할 수 있기 때문입니다!</Trans>
 
-## Using curly braces: A window into the JavaScript world<Trans>중괄호 사용하기: 자바스크립트 세계를 들여다보는 창</Trans> {/*using-curly-braces-a-window-into-the-javascript-world*/}
+## Using curly braces: A window into the JavaScript world<Trans>중괄호 사용하기: JavaScript 세계를 들여다보는 창</Trans> {/*using-curly-braces-a-window-into-the-javascript-world*/}
 
 JSX is a special way of writing JavaScript. That means it’s possible to use JavaScript inside it—with curly braces `{ }`. The example below first declares a name for the scientist, `name`, then embeds it with curly braces inside the `<h1>`:
-<Trans>JSX는 자바스크립트를 작성하는 특별한 방법입니다. 그것은 즉,  중괄호 `{ }` 안에서 자바스크립트를 사용할 수 있다는 의미입니다. 아래 예시에서는 먼저 과학자의 이름인 `name` 을 선언한 다음 `<h1>`안에 중괄호와 함께 포함시켰습니다:</Trans>
+<Trans>JSX는 JavaScript를 작성하는 특별한 방법입니다. 그것은 즉,  중괄호 `{ }` 안에서 JavaScript를 사용할 수 있다는 의미입니다. 아래 예시에서는 먼저 과학자의 이름인 `name` 을 선언한 다음 `<h1>`안에 중괄호와 함께 포함시켰습니다:</Trans>
 
 <Sandpack>
 
@@ -177,7 +177,7 @@ Try changing the values of `backgroundColor` and `color`.
 <Trans>`backgroundColor` 와 `color` 의 값을 바꿔보세요.</Trans>
 
 You can really see the JavaScript object inside the curly braces when you write it like this:
-<Trans>이렇게 작성하면 중괄호 안에 자바스크립트 객체가 실제로 보이는 것을 확인할 수 있습니다:</Trans>
+<Trans>이렇게 작성하면 중괄호 안에 JavaScript 객체가 실제로 보이는 것을 확인할 수 있습니다:</Trans>
 
 ```js {2-5}
 <ul style={
@@ -198,7 +198,7 @@ Inline `style` properties are written in camelCase. For example, HTML `<ul style
 
 </Pitfall>
 
-## More fun with JavaScript objects and curly braces<Trans>자바스크립트 객체와 중괄호로 더 재미있게 즐기기</Trans> {/*more-fun-with-javascript-objects-and-curly-braces*/}
+## More fun with JavaScript objects and curly braces<Trans>JavaScript 객체와 중괄호로 더 재미있게 즐기기</Trans> {/*more-fun-with-javascript-objects-and-curly-braces*/}
 
 You can move several expressions into one object, and reference them in your JSX inside curly braces:
 <Trans>여러 표현식을 하나의 객체로 이동하여 중괄호 안에 있는 JSX에서 참조할 수 있습니다:</Trans>
@@ -538,9 +538,9 @@ You can write it as `src={baseUrl + person.imageId + person.imageSize + '.jpg'}`
 3. `}` closes the JavaScript expression
 
 <TransBlock>
-  1. `{`는 자바스크립트 표현식을 엽니다.
+  1. `{`는 JavaScript 표현식을 엽니다.
   2. '`baseUrl + person.imageId + person.imageSize + '.jpg'`는 올바른 URL 문자열을 생성합니다.
-  3. `}`는 자바스크립트 표현식을 닫습니다.
+  3. `}`는 JavaScript 표현식을 닫습니다.
 </TransBlock>
 
 <Sandpack>

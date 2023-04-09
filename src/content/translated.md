@@ -3,7 +3,7 @@ title: 번역 진행상황
 ---
 
 <Intro>
-last updated @ 2023-04-09 PM 15:00
+last updated @ 2023-04-09 PM 15:30
 </Intro>
 
 ## 전체 진행상황 {/*전체-진행상황*/}
@@ -60,7 +60,7 @@ X   | [5-4. useDeferredValue](/reference/react/useDeferredValue)
 X   | [5-5. useEffect](/reference/react/useEffect)
 X   | [5-6. useId](/reference/react/useId)
 X   | [5-7. useImperativeHandle](/reference/react/useImperativeHandle)
-X   | [5-8. useInsertionEffect](/reference/react/useInsertionEffect)
+O   | [5-8. useInsertionEffect](/reference/react/useInsertionEffect)
 X   | [5-9. useLayoutEffect](/reference/react/useLayoutEffect)
 X   | [5-10. useMemo](/reference/react/useMemo)
 X   | [5-11. useReducer](/reference/react/useReducer)

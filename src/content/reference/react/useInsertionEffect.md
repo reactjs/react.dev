@@ -47,7 +47,7 @@ function useCSS(rule) {
 ```
 
 [See more examples below.](#usage)
-<Trans>[더 많은 예시는 여기에서 확인하세요](#usage)</Trans>
+<Trans>[더 많은 예시는 여기에서 확인하세요.](#usage)</Trans>
 
 #### Parameters <Trans>매개변수</Trans> {/*parameters*/}
 
@@ -67,10 +67,11 @@ function useCSS(rule) {
 * Effects only run on the client. They don't run during server rendering.
 * You can't update state from inside `useInsertionEffect`.
 * By the time `useInsertionEffect` runs, refs are not attached yet, and DOM is not yet updated.
+
 <TransBlock>
-  - Effect는 클라이언트에서만 실행됩니다. 서버 렌더링 중에는 실행되지 않습니다.
-  - `useInsertionEffect` 내부에서는 state를 업데이트할 수 없습니다.
-  - `useInsertionEffect`가 실행될 때까지는 refs가 아직 첨부되지 않았고, DOM이 아직 업데이트되지 않았습니다.
+- Effect는 클라이언트에서만 실행됩니다. 서버 렌더링 중에는 실행되지 않습니다.
+- `useInsertionEffect` 내부에서는 state를 업데이트할 수 없습니다.
+- `useInsertionEffect`가 실행될 때까지는 refs가 아직 첨부되지 않았고, DOM이 아직 업데이트되지 않았습니다.
 </TransBlock>
 
 ---
@@ -98,10 +99,11 @@ Some teams prefer to author styles directly in JavaScript code instead of writin
 1. Static extraction to CSS files with a compiler
 2. Inline styles, e.g. `<div style={{ opacity: 1 }}>`
 3. Runtime injection of `<style>` tags
+
 <TransBlock>
-  1. 컴파일러를 사용하여 CSS 파일로 정적 추출
-  2. 인라인 스타일, 예: `<div style={{ opacity: 1 }}>`
-  3. 런타임에 `<style>` 태그 삽입
+1. 컴파일러를 사용하여 CSS 파일로 정적 추출
+2. 인라인 스타일, 예: `<div style={{ opacity: 1 }}>`
+3. 런타임에 `<style>` 태그 삽입
 </TransBlock>
 
 If you use CSS-in-JS, we recommend a combination of the first two approaches (CSS files for static styles, inline styles for dynamic styles). **We don't recommend runtime `<style>` tag injection for two reasons:**
@@ -169,7 +171,7 @@ function useCSS(rule) {
 #### How is this better than injecting styles during rendering or useLayoutEffect? <Trans>useInsertionEffect가 렌더링 중에 스타일을 주입하거나 useLayoutEffect를 사용하는 것보다 어떤 점이 더 나은가요?</Trans> {/*how-is-this-better-than-injecting-styles-during-rendering-or-uselayouteffect*/}
 
 If you insert styles during rendering and React is processing a [non-blocking update,](/reference/react/useTransition#marking-a-state-update-as-a-non-blocking-transition) the browser will recalculate the styles every single frame while rendering a component tree, which can be **extremely slow.**
-<Trans>렌더링 중에 스타일을 주입하고 React가 [비차단 업데이트](/reference/react/useTransition#marking-a-state-update-as-a-non-blocking-transition)를 처리하는 경우 브라우저는 컴포넌트 트리를 렌더링하는 동안 매 프레임마다 스타일을 다시 계산하므로 **매우 느릴 수 있습니다**</Trans>
+<Trans>렌더링 중에 스타일을 주입하고 React가 [비차단 업데이트](/reference/react/useTransition#marking-a-state-update-as-a-non-blocking-transition)를 처리하는 경우 브라우저는 컴포넌트 트리를 렌더링하는 동안 매 프레임마다 스타일을 다시 계산하므로 **매우 느릴 수 있습니다.**</Trans>
 
 `useInsertionEffect` is better than inserting styles during [`useLayoutEffect`](/reference/react/useLayoutEffect) or [`useEffect`](/reference/react/useEffect) because it ensures that by the time other Effects run in your components, the `<style>` tags have already been inserted. Otherwise, layout calculations in regular Effects would be wrong due to outdated styles.
 <Trans>`useInsertionEffect`는 다른 Effect 컴포넌트에서 실행될 때 `<style>` 태그가 이미 주입되어 있기 때문에 [`useLayoutEffect`](/reference/react/useLayoutEffect) 또는 [`useEffect`](/reference/react/useEffect) 중에 스타일을 주입하는 것보다 낫습니다. 그렇지 않으면 오래된 스타일로 인해 일반적인 Effect의 레이아웃 계산이 잘못될 수 있습니다.</Trans>

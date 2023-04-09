@@ -24,6 +24,7 @@ import DiagramGroup from './DiagramGroup';
 import SimpleCallout from './SimpleCallout';
 import TerminalBlock from './TerminalBlock';
 import YouWillLearnCard from './YouWillLearnCard';
+import Trans, {TransBlock} from './Trans';
 import {Challenges, Hint, Solution} from './Challenges';
 import {IconNavArrow} from '../Icon/IconNavArrow';
 import ButtonLink from 'components/ButtonLink';
@@ -173,8 +174,13 @@ function YouWillLearn({
   children: any;
   isChapter?: boolean;
 }) {
-  let title = isChapter ? 'In this chapter' : 'You will learn';
-  return <SimpleCallout title={title}>{children}</SimpleCallout>;
+  const title = isChapter ? 'In this chapter' : 'You will learn';
+  const translatedTitle = isChapter ? '이 챕터에서 다룰 내용' : '학습 내용';
+  return (
+    <SimpleCallout title={title} translatedTitle={translatedTitle}>
+      {children}
+    </SimpleCallout>
+  );
 }
 
 // TODO: typing.
@@ -219,12 +225,14 @@ const IllustrationContext = React.createContext<{
 
 function Illustration({
   caption,
+  translated,
   src,
   alt,
   author,
   authorLink,
 }: {
   caption: string;
+  translated?: string;
   src: string;
   alt: string;
   author: string;
@@ -244,6 +252,7 @@ function Illustration({
         {caption ? (
           <figcaption className="text-center leading-tight mt-4">
             {caption}
+            {translated ? <Trans>{translated}</Trans> : null}
           </figcaption>
         ) : null}
       </figure>
@@ -276,6 +285,7 @@ function IllustrationBlock({
       {info.caption ? (
         <figcaption className="text-secondary dark:text-secondary-dark text-center leading-tight mt-4">
           {info.caption}
+          {info.translated ? <Trans>{info.translated}</Trans> : null}
         </figcaption>
       ) : null}
     </figure>
@@ -396,6 +406,9 @@ export const MDXComponents = {
     title: string;
     excerpt: string;
   }) => <ExpandableExample {...props} type="DeepDive" />,
+  Extra: (props: {children: React.ReactNode; title: string}) => (
+    <ExpandableExample {...props} type="ExtraComment" />
+  ),
   Diagram,
   DiagramGroup,
   FullWidth({children}: {children: any}) {
@@ -420,6 +433,8 @@ export const MDXComponents = {
   Recap,
   Recipes,
   Sandpack,
+  Trans,
+  TransBlock,
   TeamMember,
   TerminalBlock,
   YouWillLearn,

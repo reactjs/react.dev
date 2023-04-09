@@ -614,7 +614,7 @@ function ShippingForm({ country }) {
 ```
 
 Now the first Effect only re-runs if the `country` changes, while the second Effect re-runs when the `city` changes. You've separated them by purpose: two different things are synchronized by two separate Effects. Two separate Effects have two separate dependency lists, so they won't trigger each other unintentionally.
-<Trans>이제 첫 번째 Effect는 `country`가 변경될 때만 다시 실행되고, 두 번째 Effect는 `city`가 변경될 때 다시 실행됩니다. 목적에 따라 분리했으니, 서로 다른 두 가지가 두 개의 개별 Effect에 의해 동기화됩니다. 두 개의 개별 Effect에는 두 개의 개별 의존성 목록이 있으므로 의도치 않게 서로를 트리거하지 않습니다.</Trans>
+<Trans>이제 첫 번째 Effect는 `country`가 변경될 때만 다시 실행되고, 두 번째 Effect는 `city`가 변경될 때 다시 실행됩니다. 목적에 따라 분리했으니, 서로 다른 두 가지가 두 개의 개별 Effect에 의해 동기화됩니다. 두 개의 개별 Effect에는 두 개의 개별 의존성 목록이 있으므로 의도치 않게 서로를 촉발하지 않습니다.</Trans>
 
 The final code is longer than the original, but splitting these Effects is still correct. [Each Effect should represent an independent synchronization process.](/learn/lifecycle-of-reactive-effects#each-effect-represents-a-separate-synchronization-process) In this example, deleting one Effect doesn't break the other Effect's logic. This means they *synchronize different things,* and it's good to split them up. If you're concerned about duplication, you can improve this code by [extracting repetitive logic into a custom Hook.](/learn/reusing-logic-with-custom-hooks#when-to-use-custom-hooks)
 <Trans>최종 코드는 원본보다 길지만 Effect를 분할하는 것이 여전히 정확합니다. [각 Effect는 독립적인 동기화 프로세스를 나타내야 합니다.](/learn/lifecycle-of-reactive-effects#each-effect-represents-a-separate-synchronization-process) 이 예제에서는 한 Effect를 삭제해도 다른 Effect의 로직이 깨지지 않습니다. 즉, *서로 다른 것을 동기화*하므로 분할하는 것이 좋습니다. [중복이 걱정된다면 반복되는 로직을 커스텀 Hook으로 추출](/learn/reusing-logic-with-custom-hooks#when-to-use-custom-hooks)하여 이 코드를 개선할 수 있습니다.</Trans>
@@ -824,7 +824,7 @@ Effect Events aren't reactive, so you don't need to specify them as dependencies
 #### Separating reactive and non-reactive code<Trans>반응형 코드와 비반응형 코드 분리</Trans> {/*separating-reactive-and-non-reactive-code*/}
 
 In this example, you want to log a visit every time `roomId` changes. You want to include the current `notificationCount` with every log, but you *don't* want a change to `notificationCount` to trigger a log event.
-<Trans>이 예제에서는 `roomId`가 변경될 때마다 방문을 기록하려고 합니다. 모든 로그에 현재 `notificationCount`를 포함하고 싶지만 `notificationCount` 변경으로 로그 이벤트가 트리거되는 것은 원하지 않습니다.</Trans>
+<Trans>이 예제에서는 `roomId`가 변경될 때마다 방문을 기록하려고 합니다. 모든 로그에 현재 `notificationCount`를 포함하고 싶지만 `notificationCount` 변경으로 로그 이벤트가 촉발하는 것은 원하지 않습니다.</Trans>
 
 The solution is again to split out the non-reactive code into an Effect Event:
 <Trans>해결책은 다시 비반응형 코드를 Effect 이벤트로 분리하는 것입니다:</Trans>
@@ -1303,7 +1303,7 @@ This Effect sets up an interval that ticks every second. You've noticed somethin
 <Hint>
 
 It seems like this Effect's code depends on `count`. Is there some way to not need this dependency? There should be a way to update the `count` state based on its previous value without adding a dependency on that value.
-<Trans>이 Effect 코드가 `count`에 의존하는 것 같습니다. 이 의존성이 필요하지 않은 방법이 있을까요? 해당 값에 의존성을 추가하지 않고 이전 값을 기반으로 `count` 상태를 업데이트하는 방법이 있을 것입니다.</Trans>
+<Trans>이 Effect 코드가 `count`에 의존하는 것 같습니다. 이 의존성이 필요하지 않은 방법이 있을까요? 해당 값에 의존성을 추가하지 않고 이전 값을 기반으로 `count` state를 업데이트하는 방법이 있을 것입니다.</Trans>
 
 </Hint>
 
@@ -1375,7 +1375,7 @@ Instead of reading `count` inside the Effect, you pass a `c => c + 1` instructio
 #### Fix a retriggering animation<Trans>애니메이션을 다시 트리거하는 현상 고치기</Trans> {/*fix-a-retriggering-animation*/}
 
 In this example, when you press "Show", a welcome message fades in. The animation takes a second. When you press "Remove", the welcome message immediately disappears. The logic for the fade-in animation is implemented in the `animation.js` file as plain JavaScript [animation loop.](https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame) You don't need to change that logic. You can treat it as a third-party library. Your Effect creates an instance of `FadeInAnimation` for the DOM node, and then calls `start(duration)` or `stop()` to control the animation. The `duration` is controlled by a slider. Adjust the slider and see how the animation changes.
-<Trans>이 예에서는 'Show'를 누르면 환영 메시지가 페이드인 합니다. 애니메이션은 1초 정도 걸립니다. "Remove"를 누르면 환영 메시지가 즉시 사라집니다. 페이드인 애니메이션의 로직은 animation.js 파일에서 일반 JavaScript 애니메이션 루프로 구현됩니다. 이 로직을 변경할 필요는 없습니다. 타사 라이브러리로 처리하면 됩니다. Effect는 DOM 노드에 대한 FadeInAnimation 인스턴스를 생성한 다음 start(duration) 또는 stop()을 호출하여 애니메이션을 제어합니다. duration은 슬라이더로 제어합니다. 슬라이더를 조정하여 애니메이션이 어떻게 변하는지 확인하세요.</Trans>
+<Trans>이 예에서는 'Show'를 누르면 환영 메시지가 페이드인 합니다. 애니메이션은 1초 정도 걸립니다. "Remove"를 누르면 환영 메시지가 즉시 사라집니다. 페이드인 애니메이션의 로직은 animation.js 파일에서 일반 JavaScript 애니메이션 루프로 구현됩니다. 이 로직을 변경할 필요는 없습니다. 서드파티 라이브러리로 처리하면 됩니다. Effect는 DOM 노드에 대한 FadeInAnimation 인스턴스를 생성한 다음 start(duration) 또는 stop()을 호출하여 애니메이션을 제어합니다. duration은 슬라이더로 제어합니다. 슬라이더를 조정하여 애니메이션이 어떻게 변하는지 확인하세요.</Trans>
 
 This code already works, but there is something you want to change. Currently, when you move the slider that controls the `duration` state variable, it retriggers the animation. Change the behavior so that the Effect does not "react" to the `duration` variable. When you press "Show", the Effect should use the current `duration` on the slider. However, moving the slider itself should not by itself retrigger the animation.
 <Trans>이 코드는 이미 작동하지만 변경하고 싶은 부분이 있습니다. 현재 duration state 변수를 제어하는 슬라이더를 움직이면 애니메이션이 다시 트리거됩니다. Effect가 duration 변수에 "반응"하지 않도록 동작을 변경하세요. "Show"를 누르면 Effect는 슬라이더의 현재 duration을 사용해야 합니다. 그러나 슬라이더를 움직이는 것만으로 애니메이션이 다시 트리거되어서는 안 됩니다.</Trans>
@@ -1647,7 +1647,7 @@ In this example, every time you press "Toggle theme", the chat re-connects. Why 
 <Trans>이 예에서는 'Toggle theme'을 누를 때마다 채팅이 다시 연결됩니다. 왜 이런 일이 발생하나요? 서버 URL을 편집하거나 다른 채팅방을 선택할 때만 채팅이 다시 연결되도록 실수를 수정하세요.</Trans>
 
 Treat `chat.js` as an external third-party library: you can consult it to check its API, but don't edit it.
-<Trans>`chat.js`를 외부 타사 라이브러리로 취급: API를 확인하기 위해 참조할 수는 있지만 편집해서는 안됩니다.</Trans>
+<Trans>`chat.js`를 외부 서드파티 라이브러리로 취급: API를 확인하기 위해 참조할 수는 있지만 편집해서는 안됩니다.</Trans>
 
 <Hint>
 

@@ -7,7 +7,7 @@ translators: [조성민, 정재남]
 <Intro>
 
 When you want a component to "remember" some information, but you don't want that information to [trigger new renders](/learn/render-and-commit), you can use a *ref*.
-<Trans>컴포넌트가 특정 정보를 '기억'하도록 하고 싶지만 해당 정보가 [새 렌더링을 트리거](/learn/render-and-commit)하지 않도록 하려는 경우 *ref*를 사용할 수 있습니다.</Trans>
+<Trans>컴포넌트가 특정 정보를 '기억'하도록 하고 싶지만 해당 정보가 [새 렌더링을 촉발](/learn/render-and-commit)하지 않도록 하려는 경우 *ref*를 사용할 수 있습니다.</Trans>
 
 </Intro>
 
@@ -30,7 +30,7 @@ When you want a component to "remember" some information, but you don't want tha
 ## Adding a ref to your component<Trans>컴포넌트에 ref 추가하기</Trans> {/*adding-a-ref-to-your-component*/}
 
 You can add a ref to your component by importing the `useRef` Hook from React:
-<Trans>리액트에서 `useRef` 훅을 가져와서 컴포넌트에 ref를 추가할 수 있습니다:</Trans>
+<Trans>React에서 `useRef` 훅을 가져와서 컴포넌트에 ref를 추가할 수 있습니다:</Trans>
 
 ```js
 import { useRef } from 'react';
@@ -207,7 +207,7 @@ Perhaps you're thinking refs seem less "strict" than state—you can mutate them
 | refs                                                             | state                                                                                                     |
 | ---------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
 | `useRef(initialValue)`는 `{ current: initialValue }`을 반환        | `useState(initialValue)`는 state 변수의 현재값과 state 설정자함수(`[value, setValue]`)를 반환                  |
-| 변경 시 리렌더링이 트리거되지 않음                                     | 변경 시 리렌더링을 트리거함                                                                                   |
+| 변경 시 리렌더링을 촉발하지 않음                                     | 변경 시 리렌더링을 촉발함                                                                                   |
 | Mutable— 렌더링 프로세스 외부에서 current 값을 수정하고 업데이트할 수 있음 | "Immutable"— state setting 함수를 사용하여 state 변수를 수정해 리렌더링을 대기열에 추가해야함                      |
 | 렌더링 중에는 `current` 값을 읽거나 쓰지 않아야 함                      | 언제든지 state를 읽을 수 있음. 각 렌더링에는 변경되지 않는 자체 state [snapshot](/learn/state-as-a-snapshot)이 있음 |
 </TransBlock>

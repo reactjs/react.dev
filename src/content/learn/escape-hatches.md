@@ -28,7 +28,7 @@ Some of your components may need to control and synchronize with systems outside
 * [컴포넌트를 외부 시스템과 동기화하는 방법](/learn/synchronizing-with-effects)
 * [컴포넌트에서 불필요한 Effect를 제거하는 방법](/learn/you-might-not-need-an-effect)
 * [effect의 생명주기가 컴포넌트와 어떻게 다른지](/learn/lifecycle-of-reactive-effects)
-* [일부 값이 Effect를 다시 트리거하는 것을 방지하는 방법](/learn/separating-events-from-effects)
+* [일부 값이 Effect를 다시 촉발하는 것을 방지하는 방법](/learn/separating-events-from-effects)
 * [Effect 재실행 빈도를 줄이는 방법](/learn/removing-effect-dependencies)
 * [컴포넌트 간 로직을 공유하는 방법](/learn/reusing-logic-with-custom-hooks)
 </TransBlock>
@@ -38,7 +38,7 @@ Some of your components may need to control and synchronize with systems outside
 ## Referencing values with Refs<Trans>ref로 값 참조하기</Trans> {/*referencing-values-with-refs*/}
 
 When you want a component to "remember" some information, but you don't want that information to [trigger new renders](/learn/render-and-commit), you can use a *ref*:
-<Trans>컴포넌트가 특정 정보를 '기억'하도록 하고 싶지만 해당 정보가 [새 렌더링을 트리거](/learn/render-and-commit)하지 않도록 하려는 경우 ref를 사용할 수 있습니다:</Trans>
+<Trans>컴포넌트가 특정 정보를 '기억'하도록 하고 싶지만 해당 정보가 [새 렌더링을 촉발](/learn/render-and-commit)하지 않도록 하려는 경우 ref를 사용할 수 있습니다:</Trans>
 
 ```js
 const ref = useRef(0);
@@ -633,7 +633,7 @@ Code inside Effect Events isn't reactive, so changing the `theme` no longer make
 <LearnMore path="/learn/separating-events-from-effects">
 
 Read [**Separating Events from Effects**](/learn/separating-events-from-effects) to learn how to prevent some values from re-triggering Effects.
-<Trans>[**이벤트와 Effect 분리하기**](/learn/separating-events-from-effects)를 읽고 일부 값이 Effect를 다시 트리거하는 것을 방지하는 방법을 알아보세요.</Trans>
+<Trans>[**이벤트와 Effect 분리하기**](/learn/separating-events-from-effects)를 읽고 일부 값이 Effect를 다시 촉발하는 것을 방지하는 방법을 알아보세요.</Trans>
 
 </LearnMore>
 

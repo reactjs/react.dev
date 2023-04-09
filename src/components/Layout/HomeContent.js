@@ -128,18 +128,22 @@ export function HomeContent() {
               'mt-4 mb-3 text-link dark:text-link-dark w-24 lg:w-28 self-center text-sm mr-0 flex origin-center transition-all ease-in-out'
             )}
           />
-          <h1 className="text-5xl font-display lg:text-6xl self-center flex font-semibold leading-snug text-primary dark:text-primary-dark">
-            React + ⍺ (비공식 한글 번역)
+          <h1 className="text-center text-5xl font-display lg:text-6xl font-semibold leading-snug text-primary dark:text-primary-dark">
+            React + ⍺
+            <br />
+            <p className="text-2xl">(비공식 한글 번역)</p>
           </h1>
-          <p className="text-4xl font-display max-w-lg md:max-w-full py-1 text-center text-secondary dark:text-primary-dark leading-snug self-center">
+          <p className="mt-5 text-3xl font-display max-w-lg md:max-w-full py-1 text-center text-secondary dark:text-primary-dark leading-snug self-center">
             <Link href="https://www.youtube.com/playlist?list=PLjQV3hketAJkh6BEl0n4PDS_2fBd0cS9v">
               FE재남
             </Link>
             의{' '}
             <Link href="https://github.com/roy-jung/react.dev.ko">
-              [리액트 공식문서 스터디 그룹]
+              [React 공식문서 스터디 그룹]
             </Link>
-            에서 번역 진행중입니다.
+            에서
+            <br />
+            번역 진행중입니다.
           </p>
           <div className="mt-5 self-center flex gap-2 w-full sm:w-auto flex-col sm:flex-row">
             <ButtonLink
@@ -274,7 +278,7 @@ export function HomeContent() {
               screen to match the new data.
               <br />
               <Trans>
-                리액트 컴포넌트는 데이터를 수신하고 화면에 표시되어야 할 내용을
+                React 컴포넌트는 데이터를 수신하고 화면에 표시되어야 할 내용을
                 화면으로 반환합니다. 상호작용에 대한 응답으로 새로운 데이터를
                 전달할 수 있습니다, 새로운 데이터를 전달할 수 있습니다. 그러면
                 React는 새로운 데이터와 일치하도록 화면을 업데이트합니다.

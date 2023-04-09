@@ -229,7 +229,7 @@ export default function Gallery() {
 ```
 
 The snippet above is [very slow and causes bugs.](/learn/preserving-and-resetting-state#different-components-at-the-same-position-reset-state) Instead, define every component at the top level:
-<Trans>위의 스니펫은 [매우 느리고 버그를 유발](/learn/preserving-and-resetting-state#different-components-at-the-same-position-reset-state)합니다. 대신 최상위 레벨에서 모든 컴포넌트를 정의하세요:</Trans>
+<Trans>위의 스니펫은 [매우 느리고 버그를 촉발](/learn/preserving-and-resetting-state#different-components-at-the-same-position-reset-state)합니다. 대신 최상위 레벨에서 모든 컴포넌트를 정의하세요:</Trans>
 
 ```js {5-8}
 export default function Gallery() {

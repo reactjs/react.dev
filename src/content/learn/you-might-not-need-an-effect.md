@@ -87,7 +87,7 @@ function Form() {
 ### Caching expensive calculations<Trans>고비용 계산 캐싱하기</Trans> {/*caching-expensive-calculations*/}
 
 This component computes `visibleTodos` by taking the `todos` it receives by props and filtering them according to the `filter` prop. You might feel tempted to store the result in state and update it from an Effect:
-<Trans>아래 컴포넌트는 props로 받은 `todos`를 `filter` prop에 따라 필터링하여 `visibleTodos`를 계산합니다. 이 결과를 state변수에 저장하고 Effect에서 업데이트하고 싶을 수도 있을 것입니다:</Trans>
+<Trans>아래 컴포넌트는 props로 받은 `todos`를 `filter` prop에 따라 필터링하여 `visibleTodos`를 계산합니다. 이 결과를 state 변수에 저장하고 Effect에서 업데이트하고 싶을 수도 있을 것입니다:</Trans>
 
 ```js {4-9}
 function TodoList({ todos, filter }) {
@@ -335,7 +335,7 @@ function ProductPage({ product, addToCart }) {
 ```
 
 This Effect is unnecessary. It will also most likely cause bugs. For example, let's say that your app "remembers" the shopping cart between the page reloads. If you add a product to the cart once and refresh the page, the notification will appear again. It will keep appearing every time you refresh that product's page. This is because `product.isInCart` will already be `true` on the page load, so the Effect above will call `showNotification()`.
-<Trans>이 효과는 불필요합니다. 또한 버그를 유발할 가능성이 높습니다. 예를 들어 페이지가 새로고침 될 때마다 앱이 장바구니를 "기억"한다고 가정해 봅시다. 카트에 제품을 한 번 추가하고 페이지를 새로고침 하면 알림이 다시 표시됩니다. 또한 해당 제품 페이지를 새로고침할 때에도 여전히 알림이 계속 등장합니다. 이는 페이지를 불러올 때 `product.isInCart`가 이미 `true`이므로 위의 Effect가 `showNotification()`을 호출하기 때문입니다.</Trans>
+<Trans>이 효과는 불필요합니다. 또한 버그를 촉발할 가능성이 높습니다. 예를 들어 페이지가 새로고침 될 때마다 앱이 장바구니를 "기억"한다고 가정해 봅시다. 카트에 제품을 한 번 추가하고 페이지를 새로고침 하면 알림이 다시 표시됩니다. 또한 해당 제품 페이지를 새로고침할 때에도 여전히 알림이 계속 등장합니다. 이는 페이지를 불러올 때 `product.isInCart`가 이미 `true`이므로 위의 Effect가 `showNotification()`을 호출하기 때문입니다.</Trans>
 
 **When you're not sure whether some code should be in an Effect or in an event handler, ask yourself *why* this code needs to run. Use Effects only for code that should run *because* the component was displayed to the user.** In this example, the notification should appear because the user *pressed the button*, not because the page was displayed! Delete the Effect and put the shared logic into a function called from both event handlers:
 <Trans>**어떤 코드가 Effect에 있어야 하는지 이벤트 핸들러에 있어야 하는지 확실치 않은 경우, 이 코드가 실행되어야 하는 *이유*를 자문해 보세요. 컴포넌트가 사용자에게 표시되었기 *때문에* 실행되어야 하는 코드에만 Effect를 사용하세요.** 이 예제에서는 페이지가 표시되었기 때문이 아니라, 사용자가 버튼을 눌렀기 때문에 알림이 표시되어야 합니다! Effect를 삭제하고 공유 로직을 두 이벤트 핸들러에서 호출하는 함수에 넣으세요:</Trans>
@@ -443,7 +443,7 @@ function Game() {
   const [isGameOver, setIsGameOver] = useState(false);
 
   // 🔴 Avoid: Chains of Effects that adjust the state solely to trigger each other
-  // 🔴 이러지 마세요: 오직 서로를 트리거하기 위해서만 state를 조정하는 Effect 체인
+  // 🔴 이러지 마세요: 오직 서로를 촉발하기 위해서만 state를 조정하는 Effect 체인
   useEffect(() => {
     if (card !== null && card.gold) {
       setGoldCardCount(c => c + 1);
@@ -485,7 +485,7 @@ One problem is that it is very inefficient: the component (and its children) hav
 <Trans>한 가지 문제는 매우 비효율적이라는 점입니다. 컴포넌트(및 그 자식들)은 체인의 각 `set` 호출 사이에 다시 렌더링해야 합니다. 위의 예시에서 최악의 경우(`setCard` → 렌더링 → `setGoldCardCount` → 렌더링 → `setRound` → 렌더링 → `setIsGameOver` → 렌더링)에는 하위 트리의 불필요한 리렌더링이 세 번이나 발생합니다.</Trans>
 
 Even if it weren't slow, as your code evolves, you will run into cases where the "chain" you wrote doesn't fit the new requirements. Imagine you are adding a way to step through the history of the game moves. You'd do it by updating each state variable to a value from the past. However, setting the `card` state to a value from the past would trigger the Effect chain again and change the data you're showing. Such code is often rigid and fragile.
-<Trans>속도가 느리지는 않더라도, 코드가 발전함에 따라 작성한 '체인'이 새로운 요구사항에 맞지 않는 경우가 발생할 수 있습니다. 게임 이동의 기록을 단계별로 살펴볼 수 있는 방법을 추가한다고 가정해 보겠습니다. 각 state 변수를 과거의 값으로 업데이트하여 이를 수행할 수 있습니다. 하지만 '카드' state를 과거의 값으로 설정하면 Effect 체인이 다시 트리거되고 표시되는 데이터가 변경됩니다. 이와 같은 코드는 종종 경직되고 취약합니다.</Trans>
+<Trans>속도가 느리지는 않더라도, 코드가 발전함에 따라 작성한 '체인'이 새로운 요구사항에 맞지 않는 경우가 발생할 수 있습니다. 게임 이동의 기록을 단계별로 살펴볼 수 있는 방법을 추가한다고 가정해 보겠습니다. 각 state 변수를 과거의 값으로 업데이트하여 이를 수행할 수 있습니다. 하지만 '카드' state를 과거의 값으로 설정하면 다시 Effect 체인이 촉발되고 표시되는 데이터가 변경됩니다. 이와 같은 코드는 종종 경직되고 취약합니다.</Trans>
 
 In this case, it's better to calculate what you can during rendering, and adjust the state in the event handler:
 <Trans>이 경우 렌더링 중에 가능한 것을 계산하고 이벤트 핸들러에서 state를 조정하는 것이 좋습니다:</Trans>
@@ -737,7 +737,7 @@ This is simpler and keeps the data flow predictable: the data flows down from th
 ### Subscribing to an external store<Trans>외부 스토어 구독하기</Trans> {/*subscribing-to-an-external-store*/}
 
 Sometimes, your components may need to subscribe to some data outside of the React state. This data could be from a third-party library or a built-in browser API. Since this data can change without React's knowledge, you need to manually subscribe your components to it. This is often done with an Effect, for example:
-<Trans>때로는 컴포넌트가 React state 외부의 일부 데이터를 구독해야 할 수도 있습니다. 써드파티 라이브러리나 내장 브라우저 API에서 데이터를 가져와야 할 수도 있습니다. 이 데이터는 React가 모르는 사이에 변경될 수도 있는데, 그럴 땐 수동으로 컴포넌트가 해당 데이터를 구독하도록 해야 합니다. 이 작업은 종종 Effect에서 수행합니다. 예를 들어:</Trans>
+<Trans>때로는 컴포넌트가 React state 외부의 일부 데이터를 구독해야 할 수도 있습니다. 서드파티 라이브러리나 내장 브라우저 API에서 데이터를 가져와야 할 수도 있습니다. 이 데이터는 React가 모르는 사이에 변경될 수도 있는데, 그럴 땐 수동으로 컴포넌트가 해당 데이터를 구독하도록 해야 합니다. 이 작업은 종종 Effect에서 수행합니다. 예를 들어:</Trans>
 
 ```js {2-18}
 function useOnlineStatus() {

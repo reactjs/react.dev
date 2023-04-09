@@ -1,6 +1,6 @@
 ---
-title: 'Separating Events from Effects'
-translatedTitle: '이벤트와 Effect 분리하기'
+title: Separating Events from Effects
+translatedTitle: 이벤트와 Effect 분리하기
 translators: [유은미, 전시윤, 김아영, 정재남]
 ---
 

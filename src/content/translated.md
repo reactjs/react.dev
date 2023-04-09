@@ -6,7 +6,7 @@ title: 번역 진행상황
 last updated @ 2023-04-09 PM 15:30
 </Intro>
 
-## Learn 진행상황 (done: 37 / total: 42) {/*learn*/}
+## Learn 진행상황 (done: 38 / total: 42) {/*learn*/}
 
 O/X | title
 :-: | :--
@@ -26,7 +26,7 @@ O   | [1-4. JSX에서 JavaScript 사용하기 :: JavaScript in JSX with Curly Br
 O   | [1-5. 컴포넌트에 props 전달하기 :: Passing Props to a Component](/learn/passing-props-to-a-component)
 O   | [1-6. 조건부 렌더링 :: Conditional Rendering](/learn/conditional-rendering)
 O   | [1-7. 목록 렌더링 :: Rendering Lists](/learn/rendering-lists)
-X   | [1-8. 컴포넌트 순수성 유지 :: Keeping Components Pure](/learn/keeping-components-pure)
+O   | [1-8. 컴포넌트 순수성 유지 :: Keeping Components Pure](/learn/keeping-components-pure)
 O   | [2. 상호작용 추가하기 :: Adding Interactivity](/learn/adding-interactivity)
 O   | [2-1. 이벤트에 응답하기 :: Responding to Events](/learn/responding-to-events)
 O   | [2-2. State: 컴포넌트의 메모리 :: State: A Component's Memory](/learn/state-a-components-memory)

@@ -356,7 +356,7 @@ You can point a ref to any value. However, the most common use case for a ref is
   - ref는 `current`라는 단일 프로퍼티를 가진 일반 JavaScript 객체로, 읽거나 설정할 수 있습니다.
   - `useRef` 훅을 호출하여 React에 ref를 제공하도록 요청할 수 있습니다.
   - state와 마찬가지로 ref를 사용하면 컴포넌트의 리렌더링 사이에 정보를 유지할 수 있습니다.
-  - state와 달리 ref의 `current` 값을 설정해도 리렌더링이 트리거되지 않습니다.
+  - state와 달리 ref의 `current` 값을 설정해도 리렌더링이 촉발되지 않습니다.
   - 렌더링 중에는 `ref.current`를 읽거나 쓰지 마세요. 이렇게 하면 컴포넌트를 예측하기 어렵습니다.
 </TransBlock>
 

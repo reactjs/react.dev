@@ -3,47 +3,8 @@ title: 번역 진행상황
 ---
 
 <Intro>
-last updated @ 2023-04-09 PM 14:00
+last updated @ 2023-04-09 PM 15:00
 </Intro>
-
-## 완료 페이지 {/*완료-페이지*/}
-
-- [0-1. 빠른 시작 :: Quick Start](/learn)
-- [0-1-1. Tic-Tac-Toe 게임 :: Tic-Tac-Toe](/learn/tutorial-tic-tac-toe)
-- [0-1-2. React로 사고하기 :: Thinking in React](/learn/thinking-in-react)
-- [0-2. 설치하기 :: Installation](/learn/installation) 
-- [0-2-1. 새 React 프로젝트 시작하기 :: Start a New React Project](/learn/start-a-new-react-project)
-- [0-2-2. 기존 프로젝트에 React 추가하기 :: Add React to an Existing Project](/learn/add-react-to-an-existing-project)
-- [0-2-3. 편집기 설정 :: Editor Setup](/learn/editor-setup)
-- [0-2-4. React 개발자 도구 :: React Developer Tools](/learn/react-developer-tools)
-- [1. UI 구성하기 :: Describing the UI](/learn/describing-the-ui)
-- [1-1. 첫번째 컴포넌트 :: Your First Component](/learn/your-first-component)
-- [1-2. 컴포넌트 import 및 export :: Importing and Exporting Components](/learn/importing-and-exporting-components)
-- [1-3. JSX로 마크업 작성하기 :: Writing Markup with JSX](/learn/writing-markup-with-jsx)
-- [1-4. JSX에서 JavaScript 사용하기 :: JavaScript in JSX with Curly Braces](/learn/javascript-in-jsx-with-curly-braces)
-- [1-5. 컴포넌트에 props 전달하기 :: Passing Props to a Component](/learn/passing-props-to-a-component)
-- [1-6. 조건부 렌더링 :: Conditional Rendering](/learn/conditional-rendering)
-- [1-7. 목록 렌더링 :: Rendering Lists](/learn/rendering-lists)
-- [2. 상호작용 추가하기 :: Adding Interactivity](/learn/adding-interactivity)
-- [2-2. State: 컴포넌트의 메모리 :: State: A Component's Memory](/learn/state-a-components-memory)
-- [2-3. 렌더링하고 커밋하기 :: Render and Commit](/learn/render-and-commit)
-- [2-4. 스냅샷으로서의 state :: State as a Snapshot](/learn/state-as-a-snapshot)
-- [2-1. 이벤트에 응답하기 :: Responding to Events](/learn/responding-to-events)
-- [3-1. state로 입력에 반응하기 :: Reacting to Input with State](/learn/reacting-to-input-with-state)
-- [3-4. state 보존 및 재설정 :: Preserving and Resetting State](/learn/preserving-and-resetting-state)
-- [3-5. state 로직을 리듀서로 추출하기 :: Extracting State Logic into a Reducer](/learn/extracting-state-logic-into-a-reducer)
-- [3-6. 컨텍스트로 데이터를 깊게 전달하기 :: Passing Data Deeply with Context](/learn/passing-data-deeply-with-context)
-- [3-7. Reducer와 Context로 확장하기 :: Scaling Up with Reducer and Context](/learn/scaling-up-with-reducer-and-context)
-- [4. 탈출구 :: Escape Hatches](/learn/escape-hatches)
-- [4-1. ref로 값 참조하기 :: Referencing Values with Refs](/learn/referencing-values-with-refs)
-- [4-2. ref로 DOM 조작하기 :: Manipulating the DOM with Refs ](/learn/manipulating-the-dom-with-refs)
-- [4-3. Effect와 동기화하기 :: Synchronizing with Effects](/learn/synchronizing-with-effects)
-- [4-4. Effect가 필요하지 않을 수도 있습니다 :: You Might Not Need an Effect](/learn/you-might-not-need-an-effect)
-- [4-5. 반응형 Effect의 생명주기 :: Lifecycle of Reactive Effects](/learn/lifecycle-of-reactive-effects)
-- [4-6. 이벤트와 Effect 분리하기 :: Separating Events from Effects](/learn/separating-events-from-effects)
-- [4-7. Effect 종속성 제거하기 :: Removing Effect Dependencies](/learn/removing-effect-dependencies)
-- [4-8. 커스텀 훅으로 로직 재사용하기 :: Reusing Logic with Custom Hooks](/learn/reusing-logic-with-custom-hooks)
-- [5-3. useDebugValue](/reference/react/useDebugValue)
 
 ## 전체 진행상황 {/*전체-진행상황*/}
 
@@ -71,7 +32,7 @@ O   | [2-1. 이벤트에 응답하기 :: Responding to Events](/learn/responding
 O   | [2-2. State: 컴포넌트의 메모리 :: State: A Component's Memory](/learn/state-a-components-memory)
 O   | [2-3. 렌더링하고 커밋하기 :: Render and Commit](/learn/render-and-commit)
 O   | [2-4. 스냅샷으로서의 state :: State as a Snapshot](/learn/state-as-a-snapshot)
-X   | [2-5. 여러 state 업데이트를 큐에 담기 :: Queueing a Series of State Updates](/learn/queueing-a-series-of-state-updates)
+O   | [2-5. 여러 state 업데이트를 큐에 담기 :: Queueing a Series of State Updates](/learn/queueing-a-series-of-state-updates)
 X   | [2-6. 객체 state 업데이트 :: Updating Objects in State](/learn/updating-objects-in-state)
 X   | [2-7. 배열 state 업데이트 :: Updating Arrays in State](/learn/updating-arrays-in-state)
 X   | [3. state 관리 :: Managing State](/learn/managing-state)

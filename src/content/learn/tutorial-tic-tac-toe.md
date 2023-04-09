@@ -2025,7 +2025,7 @@ What should `handlePlay` do when called? Remember that Board used to call `setSq
 <Trans>`handlePlay`가 호출되면 무엇을 해야 할까요? Board는 업데이트된 배열을 가지고 `setSquares`를 호출했지만, 이제는 업데이트된 `squares` 배열을 `onPlay`로 전달한다는걸 기억하세요.</Trans>
 
 The `handlePlay` function needs to update `Game`'s state to trigger a re-render, but you don't have a `setSquares` function that you can call any more--you're now using the `history` state variable to store this information. You'll want to update `history` by appending the updated `squares` array as a new history entry. You also want to toggle `xIsNext`, just as Board used to do:
-<Trans>`handlePlay` 함수는 re-render를 트리거하기 위해 `Game`의 state를 업데이트해야 하지만, 더 이상 호출할 수 있는 `setSquares` 함수가 없으며 대신 이 정보를 저장하기 위해 `history` state 변수를 사용하고 있습니다. 업데이트된 `squares` 배열을 새 히스토리 항목으로 추가하여 `history`를 업데이트하고 싶을 것입니다. 또한 Board에서 했던 것처럼 `xIsNext`를 토글하고 싶을 것입니다:</Trans>
+<Trans>`handlePlay` 함수는 re-render를 촉발시키기 위해 `Game`의 state를 업데이트해야 하지만, 더 이상 호출할 수 있는 `setSquares` 함수가 없으며 대신 이 정보를 저장하기 위해 `history` state 변수를 사용하고 있습니다. 업데이트된 `squares` 배열을 새 히스토리 항목으로 추가하여 `history`를 업데이트하고 싶을 것입니다. 또한 Board에서 했던 것처럼 `xIsNext`를 토글하고 싶을 것입니다:</Trans>
 
 ```js {4-5}
 export default function Game() {
@@ -2200,10 +2200,10 @@ Since you are recording the tic-tac-toe game's history, you can now display a li
 <Trans>이제 틱택토 게임의 history를 기록하므로, 플레이어에게 과거 이동 목록을 표시할 수 있습니다.</Trans>
 
 React elements like `<button>` are regular JavaScript objects; you can pass them around in your application. To render multiple items in React, you can use an array of React elements.
-<Trans>`<button>`과 같은 React 엘리먼트는 일반 자바스크립트 객체이므로 애플리케이션에서 전달할 수 있습니다. React에서 여러 엘리먼트를 렌더링하려면 React 엘리먼트 배열을 사용할 수 있습니다.</Trans>
+<Trans>`<button>`과 같은 React 엘리먼트는 일반 JavaScript 객체이므로 애플리케이션에서 전달할 수 있습니다. React에서 여러 엘리먼트를 렌더링하려면 React 엘리먼트 배열을 사용할 수 있습니다.</Trans>
 
 You already have an array of `history` moves in state, so now you need to transform it to an array of React elements. In JavaScript, to transform one array into another, you can use the [array `map` method:](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map)
-<Trans>이미 state에 이동 `history` 배열이 있으므로, 이를 React 엘리먼트 배열로 변환해야 합니다. 자바스크립트에서 한 배열을 다른 배열로 변환하려면 [array `map` 메서드](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map)를 사용하면 됩니다:</Trans>
+<Trans>이미 state에 이동 `history` 배열이 있으므로, 이를 React 엘리먼트 배열로 변환해야 합니다. JavaScript에서 한 배열을 다른 배열로 변환하려면 [array `map` 메서드](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map)를 사용하면 됩니다:</Trans>
 
 ```jsx
 [1, 2, 3].map((x) => x * 2) // [2, 4, 6]

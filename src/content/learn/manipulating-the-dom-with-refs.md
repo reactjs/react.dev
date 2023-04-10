@@ -84,7 +84,7 @@ While DOM manipulation is the most common use case for refs, the `useRef` Hook c
 
 ### Example: Scrolling to an element {/*example-scrolling-to-an-element*/}
 
-You can have more than a single ref in a component. In this example, there is a carousel of three images. Each button centers an image by calling the browser [`scrollIntoView()`](https://developer.mozilla.org/en-US/docs/Web/API/Element/scrollIntoView) method the corresponding DOM node:
+You can have more than a single ref in a component. In this example, there is a carousel of three images. Each button centers an image by calling the browser [`scrollIntoView()`](https://developer.mozilla.org/en-US/docs/Web/API/Element/scrollIntoView) method on the corresponding DOM node:
 
 <Sandpack>
 
@@ -643,7 +643,7 @@ Try pressing "Toggle with setState" a few times. The message should disappear an
 <Sandpack>
 
 ```js
-import {useState, useRef} from 'react';
+import { useState, useRef } from 'react';
 
 export default function Counter() {
   const [show, setShow] = useState(true);

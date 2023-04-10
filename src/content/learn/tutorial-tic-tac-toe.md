@@ -330,8 +330,8 @@ Click on the file labeled `styles.css` in the _Files_ section of CodeSandbox. Th
 Click on the file labeled `index.js` in the _Files_ section of CodeSandbox. You won't be editing this file during the tutorial but it is the bridge between the component you created in the `App.js` file and the web browser.
 
 ```jsx
-import {StrictMode} from 'react';
-import {createRoot} from 'react-dom/client';
+import { StrictMode } from 'react';
+import { createRoot } from 'react-dom/client';
 import './styles.css';
 
 import App from './App';
@@ -1522,7 +1522,7 @@ body {
 
 ### Declaring a winner {/*declaring-a-winner*/}
 
-Now that you show which player's turn is next, you should also show when the game is won and there are no more turns to make. To do this you'll add a helper function called `calculateWinner` that takes an array of 9 squares, checks for a winner and returns `'X'`, `'O'`, or `null` as appropriate. Don't worry too much about the `calculateWinner` function; it's not specific to React:
+Now that the players can take turns, you'll want to show when the game is won and there are no more turns to make. To do this you'll add a helper function called `calculateWinner` that takes an array of 9 squares, checks for a winner and returns `'X'`, `'O'`, or `null` as appropriate. Don't worry too much about the `calculateWinner` function; it's not specific to React:
 
 ```js App.js
 export default function Board() {
@@ -1582,7 +1582,7 @@ export default function Board() {
   }
 
   return (
-    <div>
+    <>
       <div className="status">{status}</div>
       <div className="board-row">
         // ...
@@ -2903,10 +2903,10 @@ body {
 
 If you have extra time or want to practice your new React skills, here are some ideas for improvements that you could make to the tic-tac-toe game, listed in order of increasing difficulty:
 
-1. For the current move only, show "You are at move #..." instead of a button
+1. For the current move only, show "You are at move #..." instead of a button.
 1. Rewrite `Board` to use two loops to make the squares instead of hardcoding them.
 1. Add a toggle button that lets you sort the moves in either ascending or descending order.
 1. When someone wins, highlight the three squares that caused the win (and when no one wins, display a message about the result being a draw).
-1. Display the location for each move in the format (col, row) in the move history list.
+1. Display the location for each move in the format (row, col) in the move history list.
 
 Throughout this tutorial, you've touched on React concepts including elements, components, props, and state. Now that you've seen how these concepts work when building a game, check out [Thinking in React](/learn/thinking-in-react) to see how the same React concepts work when build an app's UI.

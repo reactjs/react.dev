@@ -6,7 +6,7 @@
   "scripts": {
     "analyze": "ANALYZE=true next build",
     "dev": "next-remote-watch ./src/content",
-    "build": "next build && node ./scripts/downloadFonts.js",
+    "build": "next build && node --experimental-modules ./scripts/downloadFonts.mjs",
     "lint": "next lint",
     "lint:fix": "next lint --fix",
     "format:source": "prettier --config .prettierrc --write \"{plugins,src}/**/*.{js,ts,jsx,tsx,css}\"",
@@ -18,7 +18,7 @@
     "ci-check": "npm-run-all prettier:diff --parallel lint tsc lint-heading-ids",
     "tsc": "tsc --noEmit",
     "start": "next start",
-    "postinstall": "patch-package && (is-ci || (cd .. && husky install .husky))",
+    "postinstall": "patch-package && (is-ci || husky install .husky)",
     "check-all": "npm-run-all prettier lint:fix tsc"
   },
   "dependencies": {

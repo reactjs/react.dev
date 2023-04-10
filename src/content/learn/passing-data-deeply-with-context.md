@@ -336,7 +336,7 @@ export default function Heading({ children }) {
 }
 ```
 
-`useContext` is a Hook. Just like `useState` and `useReducer`, you can only call a Hook at the top level of a React component. **`useContext` tells React that the `Heading` component wants to read the `LevelContext`.**
+`useContext` is a Hook. Just like `useState` and `useReducer`, you can only call a Hook immediately inside a React component (not inside loops or conditions). **`useContext` tells React that the `Heading` component wants to read the `LevelContext`.**
 
 Now that the `Heading` component doesn't have a `level` prop, you don't need to pass the level prop to `Heading` in your JSX like this anymore:
 

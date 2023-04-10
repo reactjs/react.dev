@@ -27,7 +27,7 @@ Wrap elements in `<Fragment>` to group them together in situations where you nee
 
 #### Props {/*props*/}
 
-- **optional** `key`: Fragments declared with the explicit `<Fragment>` syntax may have [keys.](https://beta.reactjs.org/learn/rendering-lists#keeping-list-items-in-order-with-key)
+- **optional** `key`: Fragments declared with the explicit `<Fragment>` syntax may have [keys.](/learn/rendering-lists#keeping-list-items-in-order-with-key)
 
 #### Caveats {/*caveats*/}
 

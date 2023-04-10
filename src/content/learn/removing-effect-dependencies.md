@@ -611,7 +611,7 @@ function ChatRoom({ roomId }) {
 
 <Wip>
 
-This section describes an **experimental API that has not yet been released** in a stable vesion of React.
+This section describes an **experimental API that has not yet been released** in a stable version of React.
 
 </Wip>
 
@@ -803,6 +803,8 @@ const serverUrl = 'https://localhost:1234';
 function ChatRoom({ roomId }) {
   const [message, setMessage] = useState('');
 
+  // Temporarily disable the linter to demonstrate the problem
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const options = {
     serverUrl: serverUrl,
     roomId: roomId
@@ -1611,7 +1613,7 @@ label, button { display: block; margin-bottom: 5px; }
 
 Your Effect is re-running because it depends on the `options` object. Objects can be re-created unintentionally, you should try to avoid them as dependencies of your Effects whenever possible.
 
-The least invasive fix is to read `roomId` and `serverUrl` right outside the Effect, and then make the Effect depend on those primitive values (which can't change unintentionally). Inside the Effect, create an object and it pass to `createConnnection`:
+The least invasive fix is to read `roomId` and `serverUrl` right outside the Effect, and then make the Effect depend on those primitive values (which can't change unintentionally). Inside the Effect, create an object and it pass to `createConnection`:
 
 <Sandpack>
 

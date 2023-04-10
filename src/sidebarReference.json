@@ -7,28 +7,6 @@
       "sectionHeader": "react@18.2.0"
     },
     {
-      "title": "Components",
-      "path": "/reference/react/components",
-      "routes": [
-        {
-          "title": "<Fragment> (<>)",
-          "path": "/reference/react/Fragment"
-        },
-        {
-          "title": "<Profiler>",
-          "path": "/reference/react/Profiler"
-        },
-        {
-          "title": "<StrictMode>",
-          "path": "/reference/react/StrictMode"
-        },
-        {
-          "title": "<Suspense>",
-          "path": "/reference/react/Suspense"
-        }
-      ]
-    },
-    {
       "title": "Hooks",
       "path": "/reference/react",
       "routes": [
@@ -91,6 +69,28 @@
         {
           "title": "useTransition",
           "path": "/reference/react/useTransition"
+        }
+      ]
+    },
+    {
+      "title": "Components",
+      "path": "/reference/react/components",
+      "routes": [
+        {
+          "title": "<Fragment> (<>)",
+          "path": "/reference/react/Fragment"
+        },
+        {
+          "title": "<Profiler>",
+          "path": "/reference/react/Profiler"
+        },
+        {
+          "title": "<StrictMode>",
+          "path": "/reference/react/StrictMode"
+        },
+        {
+          "title": "<Suspense>",
+          "path": "/reference/react/Suspense"
         }
       ]
     },

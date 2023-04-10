@@ -30,6 +30,11 @@ May 10 - 12, 2023. In-person in Kraków, Poland + remote
 
 [Website](https://appjs.co) - [Twitter](https://twitter.com/appjsconf)
 
+### Chain React 2023 {/*chain-react-2023*/}
+May 17 - 19, 2023. Portland, OR, USA
+
+[Website](https://chainreactconf.com/) - [Twitter](https://twitter.com/ChainReactConf) - [Facebook](https://www.facebook.com/ChainReactConf/) - [Youtube](https://www.youtube.com/channel/UCwpSzVt7QpLDbCnPXqR97-g/playlists)
+
 ### Render(ATL) 2023 🍑 {/*renderatl-2023-*/}
 May 31 - June 2, 2023. Atlanta, GA, USA
 
@@ -54,6 +59,11 @@ June 27th, 2023. Tel Aviv, Israel
 July 07 & 08, 2023. Bangalore, India (In-person event)
 
 [Website](https://reactnexus.com/) - [Twitter](https://twitter.com/ReactNexus) - [Linkedin](https://www.linkedin.com/company/react-nexus) - [YouTube](https://www.youtube.com/reactify_in)
+
+### React On The Beach 2023 {/*react-on-the-beach-2023*/}
+September 07, 2023. Amsterdam, Netherlands (In-person event)
+
+[Website](https://reactonthebeach.com/) - [Twitter](https://twitter.com/reactonthebeach)
 
 ### React India 2023 {/*react-india-2023*/}
 Oct 5 - 7, 2023. In-person in Goa, India (hybrid event) + Oct 3 2023 - remote day 

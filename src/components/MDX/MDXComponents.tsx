@@ -374,20 +374,18 @@ function Image(allProps: any) {
   return (
     <div
       style={{
-        ...(!style ? {} : style),
-        ...(!width ? {} : {width: `${width}px`}),
-        ...(!height ? {} : {maxHeight: `${height}px`}),
+        ...(style ? style : {}),
+        ...(width ? {width: `${width}px`} : {}),
+        ...(height ? {maxHeight: `${height}px`} : {}),
       }}
-      className={
-        'relative max-w-[calc(min(700px,100%))] NextImageWrapper:!static'
-      }>
+      className="relative max-w-[calc(min(700px,100%))] next-image-wrapper:!static">
       <NextImage
         {...props}
         src={
           props?.src?.startsWith('/') ? props.src : props.src.replace('..', '')
         }
-        layout={'fill'}
-        className={'object-contain !w-full !relative !h-[unset]'}
+        layout="fill"
+        className="object-contain !w-full !relative !h-[unset]"
       />
     </div>
   );

@@ -1477,7 +1477,7 @@ Try adding `console.log('Resubscribing')` inside the Effect body and notice that
 <Trans>Effect 본문 안에 `console.log('재구독')`을 추가하면 이제 체크박스를 토글하거나(`canMove` 변경) 코드를 편집할 때만 재구독되는 것을 확인할 수 있습니다. 이는 항상 다시 구독하던 이전 접근 방식보다 더 나은 방법입니다.</Trans>
 
 You'll learn a more general approach to this type of problem in [Separating Events from Effects.](/learn/separating-events-from-effects)
-<Trans>이러한 유형의 문제에 대한 보다 일반적인 접근 방식은 [이벤트와 Effects 분리하기](/learn/separating-events-from-effects)에서 배울 수 있습니다.</Trans>
+<Trans>이러한 유형의 문제에 대한 보다 일반적인 접근 방식은 [이벤트와 Effect 분리하기](/learn/separating-events-from-effects)에서 배울 수 있습니다.</Trans>
 </Solution>
 
 #### Fix a connection switch <Trans>연결 스위치 조정</Trans> {/*fix-a-connection-switch*/}
@@ -2122,7 +2122,7 @@ label { display: block; margin-bottom: 10px; }
 </Sandpack>
 
 This code is a bit repetitive. However, that's not a good reason to combine it into a single Effect! If you did this, you'd have to combine both Effect's dependencies into one list, and then changing the planet would refetch the list of all planets. Effects are not a tool for code reuse.
-<Trans> 이 코드는 약간 반복적입니다. 하지만 그렇다고 해서 이를 하나의 Effect로 결합해야 하는 이유는 없습니다! 이렇게 하면 두 Effect의 의존성을 하나의 목록으로 결합한 다음 행성을 변경하면 모든 행성 목록을 다시 가져와야 합니다. Effects는 코드 재사용을 위한 도구가 아닙니다.</Trans>
+<Trans> 이 코드는 약간 반복적입니다. 하지만 그렇다고 해서 이를 하나의 Effect로 결합해야 하는 이유는 없습니다! 이렇게 하면 두 Effect의 의존성을 하나의 목록으로 결합한 다음 행성을 변경하면 모든 행성 목록을 다시 가져와야 합니다. Effect는 코드 재사용을 위한 도구가 아닙니다.</Trans>
 
 Instead, to reduce repetition, you can extract some logic into a custom Hook like `useSelectOptions` below:
 <Trans>대신, 반복을 줄이기 위해 아래의 `useSelectOptions`와 같은 커스텀 훅에 일부 로직을 추출할 수 있습니다:</Trans>
@@ -2286,7 +2286,7 @@ label { display: block; margin-bottom: 10px; }
 </Sandpack>
 
 Check the `useSelectOptions.js` tab in the sandbox to see how it works. Ideally, most Effects in your application should eventually be replaced by custom Hooks, whether written by you or by the community. Custom Hooks hide the synchronization logic, so the calling component doesn't know about the Effect. As you keep working on your app, you'll develop a palette of Hooks to choose from, and eventually you won't need to write Effects in your components very often.
-<Trans>샌드박스에서 `useSelectOptions.js` 탭을 확인하여 작동 방식을 확인하세요. 이상적으로는 애플리케이션에 있는 대부분의 Effects는 사용자가 직접 작성했든 커뮤니티에서 작성했든 결국 커스텀 훅으로 대체되어야 합니다. 커스텀 훅은 동기화 로직을 숨기므로 호출하는 컴포넌트는 Effect에 대해 알지 못합니다. 앱을 계속 개발하다 보면 선택할 수 있는 훅 팔레트를 개발하게 될 것이고, 결국에는 컴포넌트에 Effect를 자주 작성할 필요가 없게 될 것입니다.</Trans>
+<Trans>샌드박스에서 `useSelectOptions.js` 탭을 확인하여 작동 방식을 확인하세요. 이상적으로는 애플리케이션에 있는 대부분의 Effect는 사용자가 직접 작성했든 커뮤니티에서 작성했든 결국 커스텀 훅으로 대체되어야 합니다. 커스텀 훅은 동기화 로직을 숨기므로 호출하는 컴포넌트는 Effect에 대해 알지 못합니다. 앱을 계속 개발하다 보면 선택할 수 있는 훅 팔레트를 개발하게 될 것이고, 결국에는 컴포넌트에 Effect를 자주 작성할 필요가 없게 될 것입니다.</Trans>
 
 </Solution>
 

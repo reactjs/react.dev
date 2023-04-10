@@ -7,8 +7,10 @@ import {Html, Head, Main, NextScript} from 'next/document';
 const MyDocument = () => {
   //  @todo specify language in HTML?
   return (
-    <Html lang="en">
-      <Head />
+    <Html lang="ko">
+      <Head>
+        <meta charSet="utf-8" />
+      </Head>
       <body className="font-text font-medium antialiased text-lg bg-wash dark:bg-wash-dark text-secondary dark:text-secondary-dark leading-base">
         <script
           dangerouslySetInnerHTML={{

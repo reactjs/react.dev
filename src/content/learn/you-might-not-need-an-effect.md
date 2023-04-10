@@ -817,7 +817,7 @@ function SearchResults({ query }) {
 
   useEffect(() => {
     // 🔴 Avoid: Fetching without cleanup logic
-    // 🔴 이러지 마세요: 정리 로직 없이 fetch 수행
+    // 🔴 이러지 마세요: 클린업 없이 fetch 수행
     fetchResults(query, page).then(json => {
       setResults(json);
     });
@@ -936,7 +936,7 @@ In general, whenever you have to resort to writing Effects, keep an eye out for 
 - 컴포넌트가 *표시*되었기 때문에 실행해야 하는 코드는 Effect에 있어야 하고, 나머지는 이벤트에 있어야 합니다.
 - 여러 컴포넌트의 state를 업데이트해야 하는 경우 단일 이벤트에서 처리하는 것이 좋습니다.
 - 여러 컴포넌트에서 state 변수를 동기화하려고 할 때마다 state 끌어올리기를 고려하세요.
-- Effect로 데이터를 페치할 수 있지만, 경쟁 조건을 피하기 위해 정리 로직을 구현해야 합니다.
+- Effect로 데이터를 페치할 수 있지만, 경쟁 조건을 피하기 위해 클린업 로직을 구현해야 합니다.
 </TransBlock>
 </Recap>
 
@@ -1149,7 +1149,7 @@ In this example, filtering the todos was extracted into a separate function call
 <Trans>이 예제에서는 할 일 필터링이 `getVisibleTodos()`라는 별도의 함수로 추출되었습니다. 이 함수 안에는 `console.log()` 호출이 포함되어 있어 언제 호출되는지 알 수 있습니다. "활성 할 일만 표시"를 토글하면 `getVisibleTodos()`가 다시 실행되는 것을 확인할 수 있습니다. 이는 표시할 할 일을 토글하면 표시되는 할 일이 변경되기 때문에 예상되는 현상입니다.</Trans>
 
 Your task is to remove the Effect that recomputes the `visibleTodos` list in the `TodoList` component. However, you need to make sure that `getVisibleTodos()` does *not* re-run (and so does not print any logs) when you type into the input.
-<Trans>여러분의 임무는 `TodoList` 컴포넌트에서 `visibleTodos` 목록을 다시 계산하는 Effect를 제거하는 것입니다. 하지만 입력을 입력할 때 `getVisibleTodos()`가 다시 실행되지 않도록(따라서 로그를 인쇄하지 않도록) 해야 합니다.</Trans>
+<Trans>여러분의 임무는 `TodoList` 컴포넌트에서 `visibleTodos` 목록을 다시 계산하는 Effect를 제거하는 것입니다. 하지만 input에 타이핑하면 `getVisibleTodos()`가 다시 실행되지 않도록(따라서 로그를 인쇄하지 않도록) 해야 합니다.</Trans>
 
 <Hint>
 
@@ -1238,6 +1238,35 @@ input { margin-top: 10px; }
 
 </Sandpack>
 
+
+<Extra>
+#### 이 도전과제는 건너뛰세요. -@정재남 {/*wrong-challenge*/}
+
+문제의 요구사항은 "input에 타이핑하면 `getVisibleTodos()`가 다시 실행되지 않도록 할 것"입니다. 그런데 제공된 코드는 원래부터 input에 타이핑하더라도 `text` state만 변경되고 `getVisibleTodos()`는 호출되지 않고 있습니다. 따라서 코드가 문제 출제 의도에 따라 *(`text` 변경시에도 `getVisibleTodos()`가 호출됨)* 동작하게 하려면 다음과 같이 Effect에 `text` 의존성을 추가해야 할 것 같습니다.
+
+```js
+  // ...
+  useEffect(() => {
+    setVisibleTodos(getVisibleTodos(todos, showActive));
+  }, [text, todos, showActive]); // 'text' dependency 추가
+  // ...
+}
+```
+
+그러나 `text`는 해당 Effect내에서 전혀 사용되지 않습니다. 이는 [Effect의 의존성을 "선택"할 수 없다](/learn/removing-effect-dependencies#to-remove-a-dependency-prove-that-its-not-a-dependency)는 원칙에 배치되는 억지 예시에 지나지 않습니다. 또한 이렇게 하더라도 아래의 [solution]에서 `text`의 변경 여부에 대해 계속 언급하고 있는 것이 탐탁치 않습니다. text의 변경 여부는 `App.js`의 리렌더링을 트리거하고 이 때마다 `getVisibleTodos()`가 다시 호출되는 상황일 경우에만 신경쓸 가치가 있는거겠죠. `App.js`가 리렌더링될 때마다 `getVisibleTodos()`을 호출하도록 하려면, 이 내용을 `useEffect`가 아닌 컴포넌트 최상단으로 옮겨야 할 것입니다.
+
+```js
+export default function TodoList() {
+  const [todos, setTodos] = useState(initialTodos);
+  const [showActive, setShowActive] = useState(false);
+  const [text, setText] = useState('');
+  const visibleTodos = getVisibleTodos(todos, showActive); // useEffect 제거
+  // ...
+```
+
+그런데 이렇게까지 바꿔놓고 보면 이제는 챕터의 주제인 "Effect가 필요하지 않을 수도 있습니다"의 *도전과제*로서의 의미가 사라져 버립니다. 처음부터 `useEffect`를 쓰고 있지 않으니까요! **따라서 리액트팀이 이 도전과제의 문제를 인식하고 수정하기 전까지, 이 문제는 과감히 스킵해도 좋을 것 같습니다.**
+</Extra>
+
 <Solution>
 
 Remove the state variable and the Effect, and instead add a `useMemo` call to cache the result of calling `getVisibleTodos()`:
@@ -1323,7 +1352,7 @@ input { margin-top: 10px; }
 </Sandpack>
 
 With this change, `getVisibleTodos()` will be called only if `todos` or `showActive` change. Typing into the input only changes the `text` state variable, so it does not trigger a call to `getVisibleTodos()`.
-<Trans>이 변경으로 `todos` 또는 `showActive`가 변경된 경우에만 `getVisibleTodos()`가 호출됩니다. 입력을 입력하면 `text` state 변수만 변경되므로 `getVisibleTodos()` 호출을 촉발하지 않습니다.</Trans>
+<Trans>이 변경으로 `todos` 또는 `showActive`가 변경된 경우에만 `getVisibleTodos()`가 호출됩니다. input에 타이핑하면 `text` state 변수만 변경되므로 `getVisibleTodos()` 호출을 촉발하지 않습니다.</Trans>
 
 There is also another solution which does not need `useMemo`. Since the `text` state variable can't possibly affect the list of todos, you can extract the `NewTodo` form into a separate component, and move the `text` state variable inside of it:
 <Trans>`useMemo`가 필요 없는 또 다른 해결책도 있습니다. `text` state 변수가 할 일 목록에 영향을 줄 수 없기 때문에 `NewTodo` form을 별도의 컴포넌트로 추출하고 그 안에 `text` state 변수를 옮길 수 있습니다:</Trans>

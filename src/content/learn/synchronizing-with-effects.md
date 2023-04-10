@@ -54,12 +54,12 @@ Here and later in this text, capitalized "Effect" refers to the React-specific d
 
 </Note>
 
-## You might not need an Effect <Trans>Effect가 필요하지 않을 수 있습니다</Trans> {/*you-might-not-need-an-effect*/}
+## You might not need an Effect<Trans>Effect가 필요하지 않을 수도 있습니다</Trans> {/*you-might-not-need-an-effect*/}
 
 **Don't rush to add Effects to your components.** Keep in mind that Effects are typically used to "step out" of your React code and synchronize with some *external* system. This includes browser APIs, third-party widgets, network, and so on. If your Effect only adjusts some state based on other state, [you might not need an Effect.](/learn/you-might-not-need-an-effect)
-<Trans>**컴포넌트에 Effect를 추가하고자 서두르지 마세요.** Effect는 일반적으로 React 코드에서 벗어나 일부 *외부* 시스템과 동기화하는 데에 사용된다는 점을 명심하세요. 여기에는 브라우저 API, 서드파티 위젯, 네트워크 등이 포함됩니다. Effect가 다른 state를 기반으로 일부 state만을 조정하는 경우, [Effect가 필요하지 않을 수 있습니다.](/learn/you-might-not-need-an-effect)</Trans>
+<Trans>**컴포넌트에 Effect를 추가하고자 서두르지 마세요.** Effect는 일반적으로 React 코드에서 벗어나 일부 *외부* 시스템과 동기화하는 데에 사용된다는 점을 명심하세요. 여기에는 브라우저 API, 서드파티 위젯, 네트워크 등이 포함됩니다. Effect가 다른 state를 기반으로 일부 state만을 조정하는 경우, [Effect가 필요하지 않을 수도 있습니다.](/learn/you-might-not-need-an-effect)</Trans>
 
-## How to write an Effect <Trans>Effect 작성 방법</Trans> {/*how-to-write-an-effect*/}
+## How to write an Effect<Trans>Effect 작성 방법</Trans> {/*how-to-write-an-effect*/}
 
 To write an Effect, follow these three steps:
 <Trans>Effect를 작성하려면 다음 세 단계를 따르십시오.</Trans>
@@ -69,12 +69,12 @@ To write an Effect, follow these three steps:
 2. **Specify the Effect dependencies.** Most Effects should only re-run *when needed* rather than after every render. For example, a fade-in animation should only trigger when a component appears. Connecting and disconnecting to a chat room should only happen when the component appears and disappears, or when the chat room changes. You will learn how to control this by specifying *dependencies.*
   <Trans>**Effect의 의존성을 명시합니다.** 대부분의 Effect는 렌더링 할 때마다가 아니라 *필요할 때만* 다시 실행해야 합니다. 예를 들어 페이드 인 애니메이션은 컴포넌트가 나타날 때만 발동되어야 합니다. 대화방 연결 및 해제는 컴포넌트가 나타났다가 사라지거나 대화방이 변경될 때만 발생해야합니다. *의존성*을 지정하여 이를 제어하는 방법은 이 글 아래에서 다룹니다.</Trans>
 3. **Add cleanup if needed.** Some Effects need to specify how to stop, undo, or clean up whatever they were doing. For example, "connect" needs "disconnect", "subscribe" needs "unsubscribe", and "fetch" needs either "cancel" or "ignore". You will learn how to do this by returning a *cleanup function*.
-  <Trans>**필요한 경우 클린업을 추가합니다.** 일부 Effect는 수행중이던 작업을 중지, 취소 또는 정리하는 방법을 명시해야합니다. 예를 들어 “connect”에는 “disconnect”가 필요하고 “subscribe”에는 “unsubscribe”가 필요하며 “fetch”에는 “cancel”또는 “ignore”가 필요합니다. 뒤에서 *클린업 함수*를 반환하여 이를 수행하는 방법은 이 글 아래에서 다룹니다.</Trans>
+  <Trans>**필요한 경우 클린업을 추가합니다.** 일부 Effect는 수행중이던 작업을 중지, 취소 또는 정리하는 방법을 명시해야합니다. 예를 들어 “connect”에는 “disconnect”가 필요하고 “subscribe”에는 “unsubscribe”가 필요하며 “fetch”에는 “cancel”또는 “ignore”가 필요합니다. *클린업 함수*를 반환하여 이를 수행하는 방법은 이 글 아래에서 다룹니다.</Trans>
 
 Let's look at each of these steps in detail.
 <Trans>각 단계를 자세히 살펴보겠습니다.</Trans>
 
-### Step 1: Declare an Effect <Trans>Effect 선언하기</Trans> {/*step-1-declare-an-effect*/}
+### Step 1: Declare an Effect<Trans>Effect를 선언하세요</Trans> {/*step-1-declare-an-effect*/}
 
 To declare an Effect in your component, import the [`useEffect` Hook](/reference/react/useEffect) from React:
 <Trans>컴포넌트에 Effect를 선언하기 위해서 React에서 [`useEffect` 훅](/reference/react/useEffect)을 import합니다:</Trans>
@@ -264,16 +264,15 @@ Effects run as a *result* of rendering. Setting state *triggers* rendering. Sett
 <Trans>Effect는 렌더링의 *결과*로 실행됩니다. state를 설정하면 렌더링을 *촉발*합니다. Effect에서 즉시 state를 설정하는 것은 전원 콘센트를 꽂는 것과 같습니다. Effect가 실행되고, state를 설정하면 다시 렌더링이 발생하고, 다시 렌더링이 발생하면 Effect가 실행되고, 다시 state를 설정하면 또 다시 렌더링이 발생하는 식입니다.</Trans>
 
 Effects should usually synchronize your components with an *external* system. If there's no external system and you only want to adjust some state based on other state, [you might not need an Effect.](/learn/you-might-not-need-an-effect)
-<Trans>Effect는 보통 컴포넌트를 외부 시스템과 동기화해야 합니다. 외부 시스템이 없고 다른 state를 기반으로 일부 state만 조정하려는 경우 [Effect가 필요하지 않을 수 있습니다.](/learn/you-might-not-need-an-effect)</Trans>
+<Trans>Effect는 보통 컴포넌트를 외부 시스템과 동기화해야 합니다. 외부 시스템이 없고 다른 state를 기반으로 일부 state만 조정하려는 경우 [Effect가 필요하지 않을 수도 있습니다.](/learn/you-might-not-need-an-effect)</Trans>
 </Pitfall>
 
-### Step 2: Specify the Effect dependencies<Trans>Effect 의존성 지정하기</Trans> {/*step-2-specify-the-effect-dependencies*/}
+### Step 2: Specify the Effect dependencies<Trans>Effect 의존성을 지정하세요</Trans> {/*step-2-specify-the-effect-dependencies*/}
 
 By default, Effects run after *every* render. Often, this is **not what you want:**
-<Trans>기본적으로 Effect는 *매번* 렌더링 후에 실행됩니다. 하지만 이를 **원하지 않는** 경우가 있습니다.</Trans>
+<Trans>기본적으로 Effect는 *매번* 렌더링 후에 실행됩니다. 하지만 이를 **원하지 않는** 경우가 있습니다:</Trans>
 
 - Sometimes, it's slow. Synchronizing with an external system is not always instant, so you might want to skip doing it unless it's necessary. For example, you don't want to reconnect to the chat server on every keystroke.
-
 - Sometimes, it's wrong. For example, you don't want to trigger a component fade-in animation on every keystroke. The animation should only play once when the component appears for the first time.
 
 <TransBlock>
@@ -525,7 +524,7 @@ Omitting always-stable dependencies only works when the linter can "see" that th
 
 </DeepDive>
 
-### Step 3: Add cleanup if needed<Trans>필요한 경우 클린업 추가하기</Trans> {/*step-3-add-cleanup-if-needed*/}
+### Step 3: Add cleanup if needed<Trans>필요한 경우 클린업을 추가하세요</Trans> {/*step-3-add-cleanup-if-needed*/}
 
 Consider a different example. You're writing a `ChatRoom` component that needs to connect to the chat server when it appears. You are given a `createConnection()` API that returns an object with `connect()` and `disconnect()` methods. How do you keep the component connected while it is displayed to the user?
 <Trans>다른 예시를 살펴봅시다. 채팅 서버가 나타날 때 채팅 서버에 연결해야 하는 `ChatRoom` 컴포넌트를 작성하고 있다고 가정해 보겠습니다. `connect()` 와 `disconnect()` 메서드가 있는 객체를 반환하는 `createConnection()` API가 주어집니다. 컴포넌트가 사용자에게 표시되는 동안 어떻게 연결 상태를 유지할 수 있을까요?</Trans>
@@ -663,7 +662,7 @@ Now you get three console logs in development:
 3. `"✅ Connecting..."`
 
 **This is the correct behavior in development.** By remounting your component, React verifies that navigating away and back would not break your code. Disconnecting and then connecting again is exactly what should happen! When you implement the cleanup well, there should be no user-visible difference between running the Effect once vs running it, cleaning it up, and running it again. There's an extra connect/disconnect call pair because React is probing your code for bugs in development. This is normal--don't try to make it go away!
-<Trans>**이는 개발 단계에서 올바른 동작입니다.** 컴포넌트를 다시 마운트하면 React는 멀리 이동했다가 다시 돌아와도 코드가 깨지지 않는지 확인합니다. 연결을 끊었다가 다시 연결하는 것은 정확히 일어나야 하는 일입니다! 클린업을 잘 구현하면, Effect를 한 번 실행하는 것과 실행하고 클린업한 후 다시 실행하는 것 사이에 사용자가 체감할 수 있는 차이가 없어야 합니다. React가 개발 과정에서 코드에 버그가 있는지 검사하기 때문에 연결/해제 호출 쌍이 추가됩니다. 이것은 정상적인 현상이니 없애려고 하지 마세요!</Trans>
+<Trans>**이는 개발 단계에서 올바른 동작입니다.** 컴포넌트를 다시 마운트하면 React는 멀리 이동했다가 다시 돌아와도 코드가 깨지지 않는지 확인합니다. 연결을 끊었다가 다시 연결하는 것은 정확히 일어나야 하는 일입니다! 클린업을 잘 구현하면, Effect를 한 번 실행하는 것과 실행하고 정리한 후 다시 실행하는 것 사이에 사용자가 체감할 수 있는 차이가 없어야 합니다. React가 개발 과정에서 코드에 버그가 있는지 검사하기 때문에 연결/해제 호출 쌍이 추가됩니다. 이것은 정상적인 현상이니 없애려고 하지 마세요!</Trans>
 
 **In production, you would only see `"✅ Connecting..."` printed once.** Remounting components only happens in development to help you find Effects that need cleanup. You can turn off [Strict Mode](/reference/react/StrictMode) to opt out of the development behavior, but we recommend keeping it on. This lets you find many bugs like the one above.
 <Trans>**상용 환경에서는 `"✅ Connecting..."`이 한 번만 인쇄됩니다.** 컴포넌트를 다시 마운트하는 동작은 클린업이 필요한 Effect를 찾는 것을 돕기 위해 오직 개발 환경에서만 수행됩니다. [Strict Mode](/reference/react/StrictMode)를 해제하면 이같은 개발 동작을 없앨 수 있지만, 가능한 계속 켜두는 것을 추천합니다. 이를 통해 위와 같은 많은 버그를 찾을 수 있기 때문입니다.</Trans>
@@ -679,10 +678,10 @@ Usually, the answer is to implement the cleanup function.  The cleanup function 
 Most of the Effects you'll write will fit into one of the common patterns below.
 <Trans>작성하게 될 대부분의 Effect는 아래의 일반적인 패턴 중 하나에 해당합니다.</Trans>
 
-### Controlling non-React widgets<Trans>React가 아닌 위젯 제어</Trans> {/*controlling-non-react-widgets*/}
+### Controlling non-React widgets<Trans>React가 아닌 위젯 제어하기</Trans> {/*controlling-non-react-widgets*/}
 
 Sometimes you need to add UI widgets that aren't written to React. For example, let's say you're adding a map component to your page. It has a `setZoomLevel()` method, and you'd like to keep the zoom level in sync with a `zoomLevel` state variable in your React code. Your Effect would look similar to this:
-<Trans>때론 React에 작성되지 않은 UI 위젯을 추가해야 합니다. 예를 들어 페이지에 지도 컴포넌트를 추가한다고 가정해 보겠습니다. 여기에는 `setZoomLevel()` 메서드가 있으며, 확대/축소 수준을 React 코드의 `zoomLevel` state 변수와 동기화하고 싶습니다. Effect는 다음과 비슷할 것입니다:</Trans>
+<Trans>때론 React로 작성하지 않은 UI 위젯을 추가해야 하는 경우가 있습니다. 예를 들어 페이지에 지도 컴포넌트를 추가한다고 가정해 보겠습니다. 여기에는 `setZoomLevel()` 메서드가 있으며, 확대/축소 수준을 React 코드의 `zoomLevel` state 변수와 동기화하고 싶습니다. Effect는 다음과 비슷할 것입니다:</Trans>
 
 
 ```js
@@ -696,7 +695,7 @@ Note that there is no cleanup needed in this case. In development, React will ca
 <Trans>이 경우 클린업이 필요하지 않습니다. 개발 환경에서 React는 Effect를 두 번 호출하지만 동일한 값으로 `setZoomLevel`을 두 번 호출해도 아무 작업도 수행하지 않기 때문에 문제가 되지 않습니다. 약간 느릴 수는 있지만 상용 환경에서는 불필요하게 다시 마운트되지 않으므로 문제가 되지 않습니다.</Trans>
 
 Some APIs may not allow you to call them twice in a row. For example, the [`showModal`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLDialogElement/showModal) method of the built-in [`<dialog>`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLDialogElement) element throws if you call it twice. Implement the cleanup function and make it close the dialog:
-<Trans>일부 API는 연속으로 두 번 호출하는 것을 허용하지 않을 수 있습니다. 예를 들어 브라우저의 내장 요소인 [`<dialog>`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLDialogElement)의 [`showModal`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLDialogElement/showModal) 메서드는 두 번 호출하면 에러를 던집니다. 클린업 함수를 구현하고 대화 상자를 닫도록 합시다.</Trans>
+<Trans>일부 API는 연속으로 두 번 호출하는 것을 허용하지 않을 수 있습니다. 예를 들어 브라우저의 내장 요소인 [`<dialog>`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLDialogElement)의 [`showModal`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLDialogElement/showModal) 메서드는 두 번 호출하면 에러를 던집니다. 클린업 함수를 구현하고 대화 상자를 닫도록 합시다:</Trans>
 
 ```js {4}
 useEffect(() => {
@@ -778,7 +777,7 @@ You can't "undo" a network request that already happened, but your cleanup funct
 <Trans>**개발 환경에서는 네트워크 탭에 두 개의 페치가 표시됩니다.** 이는 아무 문제가 없습니다. 위의 접근 방식을 사용하면 첫 번째 Effect가 즉시 정리되므로, `ignore` 변수의 복사본이 `true`로 설정됩니다. 따라서 추가 요청이 있더라도 `if (!ignore)` 검사 덕분에 state에 영향을 미치지 않습니다.</Trans>
 
 **In production, there will only be one request.** If the second request in development is bothering you, the best approach is to use a solution that deduplicates requests and caches their responses between components:
-<Trans>**상용 환경에서는 요청이 하나만 있습니다.** 개발 중인 두 번째 요청이 귀찮은 경우 가장 좋은 방법은 요청을 중복 제거하고 컴포넌트 간에 응답을 캐시하는 솔루션을 사용하는 것입니다.</Trans>
+<Trans>**상용 환경에서는 요청이 하나만 있습니다.** 개발 중인 두 번째 요청이 귀찮은 경우 가장 좋은 방법은 요청을 중복 제거하고 컴포넌트 간에 응답을 캐시하는 솔루션을 사용하는 것입니다:</Trans>
 
 ```js
 function TodoList() {
@@ -794,7 +793,7 @@ This will not only improve the development experience, but also make your applic
 #### What are good alternatives to data fetching in Effects?<Trans>Effect에서 데이터를 페칭하는 것의 대안은 무엇입니까?</Trans> {/*what-are-good-alternatives-to-data-fetching-in-effects*/}
 
 Writing `fetch` calls inside Effects is a [popular way to fetch data](https://www.robinwieruch.de/react-hooks-fetch-data/), especially in fully client-side apps. This is, however, a very manual approach and it has significant downsides:
-<Trans>Effect 내에 `fetch` 호출을 작성하는 것은 특히 완전한 클라이언트 앱에서 [데이터를 페치하는 인기 있는 방법입니다.](https://www.robinwieruch.de/react-hooks-fetch-data/) 그러나 이것은 매우 수동적인 접근 방식이며 상당한 단점이 있습니다.</Trans>
+<Trans>Effect 내에 `fetch` 호출을 작성하는 것은 특히 클라이언트 측에서만 작성된 앱에서 [데이터를 페치하는 인기 있는 방법입니다.](https://www.robinwieruch.de/react-hooks-fetch-data/) 그러나 이것은 매우 수동적인 접근 방식이며 상당한 단점이 있습니다.</Trans>
 
 - **Effects don't run on the server.** This means that the initial server-rendered HTML will only include a loading state with no data. The client computer will have to download all JavaScript and render your app only to discover that now it needs to load the data. This is not very efficient.
 <Trans>**Effects는 서버에서 실행되지 않습니다.** 즉 초기 서버에서 렌더링되는 HTML에는 데이터가 없는 로딩 state만 포함됩니다. 클라이언트 컴퓨터는 모든 JavaScript를 다운로드하고 앱을 렌더링하고 나서야 비로소 데이터를 로드해야 한다는 사실을 발견해 냅니다. 이것은 그다지 효율적이지 않습니다.</Trans>
@@ -838,7 +837,7 @@ In development, `logVisit` will be called twice for every URL, so you might be t
 To debug the analytics events you're sending, you can deploy your app to a staging environment (which runs in production mode) or temporarily opt out of [Strict Mode](/reference/react/StrictMode) and its development-only remounting checks. You may also send analytics from the route change event handlers instead of Effects. For more precise analytics, [intersection observers](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API) can help track which components are in the viewport and how long they remain visible.
 <Trans>전송하는 분석 이벤트를 디버깅하려면 앱을 스테이징 환경(상용 모드에서 실행됨)에 배포하거나, [Strict Mode](/reference/react/StrictMode) 및 개발 전용의 중복 마운트 검사를 일시적으로 해제할 수 있습니다. Effect 대신 경로 변경 이벤트 핸들러에서 분석을 전송할 수도 있습니다. 보다 정확한 분석을 위해서는 [intersection observers](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API)를 활용하면 뷰포트에 어떤 컴포넌트가 있고 얼마나 오래 표시되는지를 추적하는 데 도움이 될 수 있습니다.</Trans>
 
-### Not an Effect: Initializing the application<Trans>Effect가 아님: 애플리케이션 초기화</Trans> {/*not-an-effect-initializing-the-application*/}
+### Not an Effect: Initializing the application<Trans>Effect가 아님: 애플리케이션 초기화하기</Trans> {/*not-an-effect-initializing-the-application*/}
 
 Some logic should only run once when the application starts. You can put it outside your components:
 <Trans>일부 로직은 애플리케이션이 시작될 때 한 번만 실행되어야 합니다. 이런 로직은 컴포넌트 외부에 넣을 수 있습니다:</Trans>
@@ -858,7 +857,7 @@ function App() {
 This guarantees that such logic only runs once after the browser loads the page.
 <Trans>이렇게 하면 위 로직은 브라우저가 페이지를 로드한 후 한 번만 실행됩니다.</Trans>
 
-### Not an Effect: Buying a product<Trans>Effect가 아님: 제품 구매</Trans> {/*not-an-effect-buying-a-product*/}
+### Not an Effect: Buying a product<Trans>Effect가 아님: 제품 구매하기</Trans> {/*not-an-effect-buying-a-product*/}
 
 Sometimes, even if you write a cleanup function, there's no way to prevent user-visible consequences of running the Effect twice. For example, maybe your Effect sends a POST request like buying a product:
 <Trans>클린업 함수를 작성하더라도 Effect를 두 번 실행함으로써 체감상 결과가 달라지는 것을 막을 방법이 없는 경우도 있습니다. 예를 들어 Effect가 제품 구매와 같은 POST 요청을 보낸다고 합시다.</Trans>
@@ -877,9 +876,10 @@ You wouldn't want to buy the product twice. However, this is also why you should
 Buying is not caused by rendering; it's caused by a specific interaction. It should run only when the user presses the button. **Delete the Effect and move your `/api/buy` request into the Buy button event handler:**
 <Trans>구매는 렌더링으로 인한 것이 아닙니다. 특정 상호 작용으로 인해 발생합니다. 사용자가 버튼을 누를 때만 실행되어야 합니다. **Effect를 삭제하고 `/api/buy` 요청을 구매 버튼 이벤트 핸들러로 이동합시다.**</Trans>
 
-```js {2-3}
+```js {2-4}
   function handleClick() {
     // ✅ Buying is an event because it is caused by a particular interaction.
+    // ✅ 구매는 특정 상호작용으로 인해 발생하므로 이벤트입니다.
     fetch('/api/buy', { method: 'POST' });
   }
 ```
@@ -893,7 +893,7 @@ This playground can help you "get a feel" for how Effects work in practice.
 <Trans>이 플레이그라운드를 통해 실제로 Effect가 어떻게 작동하는지 "느껴볼" 수 있습니다.</Trans>
 
 This example uses [`setTimeout`](https://developer.mozilla.org/en-US/docs/Web/API/setTimeout) to schedule a console log with the input text to appear three seconds after the Effect runs. The cleanup function cancels the pending timeout. Start by pressing "Mount the component":
-<Trans>이 예에서는 [`setTimeout`](https://developer.mozilla.org/en-US/docs/Web/API/setTimeout)을 사용하여 Effect가 실행되고 3초 뒤에 input 텍스트가 포함된 콘솔 로그를 표시하도록 예약합니다. 클린업 함수는 보류 중인 타임아웃을 취소합니다. "Mount the component"를 눌러보세요.</Trans>
+<Trans>이 예에서는 [`setTimeout`](https://developer.mozilla.org/en-US/docs/Web/API/setTimeout)을 사용하여 Effect가 실행되고 3초 뒤에 input 텍스트가 포함된 콘솔 로그를 표시하도록 예약합니다. 클린업 함수는 보류 중인 타임아웃을 취소합니다. "Mount the component"를 눌러보세요:</Trans>
 
 <Sandpack>
 
@@ -951,10 +951,10 @@ You will see three logs at first: `Schedule "a" log`, `Cancel "a" log`, and `Sch
 <Trans>처음에는 `Schedule "a" log`, `Cancel "a" log`, `Schedule "a" log`의 세 가지 로그가 표시됩니다. 3초 후에 `a`라는 로그도 표시됩니다. 앞서 배운 것처럼 schedule/cancel 쌍이 한 번 더 출력되는 이유는 개발 환경에서 React가 클린업을 잘 구현했는지 확인하기 위해 컴포넌트를 다시 마운트하기 때문입니다.</Trans>
 
 Now edit the input to say `abc`. If you do it fast enough, you'll see `Schedule "ab" log` immediately followed by `Cancel "ab" log` and `Schedule "abc" log`. **React always cleans up the previous render's Effect before the next render's Effect.** This is why even if you type into the input fast, there is at most one timeout scheduled at a time. Edit the input a few times and watch the console to get a feel for how Effects get cleaned up.
-<Trans>이제 input을 편집하여 `abc`라고 입력하세요. 충분히 빨리 입력하면 `Schedule "ab" log`와 `Cancel "ab" log`, `Schedule "abc" log`가 바로 표시될 것입니다. **React는 항상 다음 렌더링의 Effect 전에 이전 렌더링의 Effect를 클린업 합니다.** 따라서 입력을 빠르게 입력하더라도 한 번에 최대 한 번만 타임아웃이 예약됩니다. 입력을 몇 번 편집하고 콘솔을 보면서 Effect가 어떻게 클린업 되는지 느껴보세요.</Trans>
+<Trans>이제 input을 편집하여 `abc`라고 입력하세요. 충분히 빨리 입력하면 `Schedule "ab" log`와 `Cancel "ab" log`, `Schedule "abc" log`가 바로 표시될 것입니다. **React는 항상 다음 렌더링의 Effect 전에 이전 렌더링의 Effect를 정리합니다.** 따라서 입력을 빠르게 입력하더라도 한 번에 최대 한 번만 타임아웃이 예약됩니다. 입력을 몇 번 편집하고 콘솔을 보면서 Effect가 어떻게 정리되는지 느껴보세요.</Trans>
 
 Type something into the input and then immediately press "Unmount the component". Notice how unmounting cleans up the last render's Effect. Here, it clears the last timeout before it has a chance to fire.
-<Trans>입력에 무언가를 입력한 다음 즉시 "Unmount the component"를 눌러보세요. 마운트를 해제하면 마지막 렌더링의 Effect가 어떻게 클린업되는지 확인하세요. 여기서는 Effect가 실행 기회를 갖기 전에 마지막 타임아웃을 지웁니다.</Trans>
+<Trans>입력에 무언가를 입력한 다음 즉시 "Unmount the component"를 눌러보세요. 마운트를 해제하면 마지막 렌더링의 Effect가 어떻게 정리되는지 확인하세요. 여기서는 Effect가 실행 기회를 갖기 전에 마지막 타임아웃을 지웁니다.</Trans>
 
 Finally, edit the component above and comment out the cleanup function so that the timeouts don't get cancelled. Try typing `abcde` fast. What do you expect to happen in three seconds? Will `console.log(text)` inside the timeout print the *latest* `text` and produce five `abcde` logs? Give it a try to check your intuition!
 <Trans>마지막으로 위의 컴포넌트를 편집하고 타임아웃이 취소되지 않도록 클린업 함수를 주석 처리 해봅시다. `abcde`를 빠르게 입력해 보세요. 3초 후에 어떤 일이 일어날까요? 타임아웃 내의 `console.log(text)`가 *최신* `text`를 인쇄하고 5개의 `abcde` 로그를 생성할까요? 여러분의 직감을 확인해 보세요!</Trans>
@@ -967,7 +967,7 @@ Three seconds later, you should see a sequence of logs (`a`, `ab`, `abc`, `abcd`
 #### Each render has its own Effects<Trans>각 렌더링에는 고유한 Effect가 있습니다</Trans> {/*each-render-has-its-own-effects*/}
 
 You can think of `useEffect` as "attaching" a piece of behavior to the render output. Consider this Effect:
-<Trans>`useEffect`는 렌더링 출력물에 동작의 일부를 "첨부"하는 것으로 생각할 수 있습니다. 다음 Effect를 봅시다.</Trans>
+<Trans>`useEffect`는 렌더링 출력물에 동작의 일부를 "첨부"하는 것으로 생각할 수 있습니다. 다음 Effect를 봅시다:</Trans>
 
 ```js
 export default function ChatRoom({ roomId }) {
@@ -987,7 +987,7 @@ Let's see what exactly happens as the user navigates around the app.
 #### Initial render<Trans>초기 렌더링</Trans> {/*initial-render*/}
 
 The user visits `<ChatRoom roomId="general" />`. Let's [mentally substitute](/learn/state-as-a-snapshot#rendering-takes-a-snapshot-in-time) `roomId` with `'general'`:
-<Trans>사용자가 `<ChatRoom roomId="general" />`을 방문합니다. `roomId`를 `'general'`로 [임의로 대체](/learn/state-as-a-snapshot#rendering-takes-a-snapshot-in-time)해 보겠습니다.</Trans>
+<Trans>사용자가 `<ChatRoom roomId="general" />`을 방문합니다. `roomId`를 `'general'`로 [임의로 대체](/learn/state-as-a-snapshot#rendering-takes-a-snapshot-in-time)해 보겠습니다:</Trans>
 
 ```js
   // JSX for the first render (roomId = "general")
@@ -1081,7 +1081,7 @@ React compares `['travel']` from the third render with `['general']` from the se
 <Trans>React는 세 번째 렌더링의 `['travel']`을 두 번째 렌더링의 `['general']`과 비교합니다. 하나의 의존성이 다릅니다. `Object.is('travel', 'general')`는 `false`입니다. Effect는 건너뛸 수 없습니다.</Trans>
 
 **Before React can apply the Effect from the third render, it needs to clean up the last Effect that _did_ run.** The second render's Effect was skipped, so React needs to clean up the first render's Effect. If you scroll up to the first render, you'll see that its cleanup calls `disconnect()` on the connection that was created with `createConnection('general')`. This disconnects the app from the `'general'` chat room.
-<Trans>**React가 세 번째 렌더링에서 Effect를 적용하려면 _먼저_ 실행된 마지막 Effect를 클린업해야 합니다.** 두 번째 렌더링의 Effect를 건너뛰었으므로 React는 첫 번째 렌더링의 Effect를 클린업 합니다. 첫 번째 렌더링까지 스크롤하면 `createConnection('general')`으로 생성된 연결에서 클린업이 `disconnect()`를 호출하는 것을 볼 수 있습니다. 이렇게 하면 `'general'` 대화방에서 앱의 연결이 끊어집니다.</Trans>
+<Trans>**React가 세 번째 렌더링에서 Effect를 적용하려면 _먼저_ 실행된 마지막 Effect를 정리해야 합니다.** 두 번째 렌더링의 Effect를 건너뛰었으므로 React는 첫 번째 렌더링의 Effect를 정리합니다. 첫 번째 렌더링까지 스크롤하면 `createConnection('general')`으로 생성된 연결에서 클린업이 `disconnect()`를 호출하는 것을 볼 수 있습니다. 이렇게 하면 `'general'` 대화방에서 앱의 연결이 끊어집니다.</Trans>
 
 After that, React runs the third render's Effect. It connects to the `'travel'` chat room.
 <Trans>그 후 React는 세 번째 렌더링의 Effect를 실행합니다. `'travel'` 대화방으로 연결됩니다.</Trans>
@@ -1091,10 +1091,10 @@ After that, React runs the third render's Effect. It connects to the `'travel'` 
 Finally, let's say the user navigates away, and the `ChatRoom` component unmounts. React runs the last Effect's cleanup function. The last Effect was from the third render. The third render's cleanup destroys the `createConnection('travel')` connection. So the app disconnects from the `'travel'` room.
 <Trans>마지막으로 사용자가 다른 곳으로 이동하여 `ChatRoom` 컴포넌트가 마운트 해제되었다고 가정해 보겠습니다. React는 마지막 Effect의 클린업 함수를 실행합니다. 마지막 Effect는 세 번째 렌더링에서 가져온 것입니다. 세 번째 렌더링의 클린업은 `createConnection('travel')` 연결을 파괴합니다. 따라서 `'travel'` 방에서 앱의 연결이 끊어집니다.</Trans>
 
-#### Development-only behaviors<Trans>개발 전용 동작</Trans> {/*development-only-behaviors*/}
+#### Development-only behaviors<Trans>개발환경 전용 동작</Trans> {/*development-only-behaviors*/}
 
 When [Strict Mode](/reference/react/StrictMode) is on, React remounts every component once after mount (state and DOM are preserved). This [helps you find Effects that need cleanup](#step-3-add-cleanup-if-needed) and exposes bugs like race conditions early. Additionally, React will remount the Effects whenever you save a file in development. Both of these behaviors are development-only.
-<Trans>[Strict Mode](/reference/react/StrictMode)가 켜져 있으면 React는 마운트 후 모든 컴포넌트를 한 번 다시 마운트합니다(state 및 DOM이 보존됨). 이를 통해 [클린업이 필요한 Effect를 찾고](#step-3-add-cleanup-if-needed) 조건 경합과 같은 버그를 조기에 발견할 수 있습니다. 또한 React는 개발 중에 파일을 저장할 때마다 Effect를 다시 마운트합니다. 이러한 동작은 모두 개발 전용입니다.</Trans>
+<Trans>[Strict Mode](/reference/react/StrictMode)가 켜져 있으면 React는 마운트 후 모든 컴포넌트를 한 번 다시 마운트합니다(state 및 DOM이 보존됨). 이를 통해 [정리가 필요한 Effect를 찾고](#step-3-add-cleanup-if-needed) 조건 경합과 같은 버그를 조기에 발견할 수 있습니다. 또한 React는 개발 중에 파일을 저장할 때마다 Effect를 다시 마운트합니다. 이러한 동작은 모두 개발환경에서만 이뤄집니다.</Trans>
 
 </DeepDive>
 
@@ -1145,7 +1145,7 @@ export default function MyInput({ value, onChange }) {
   const ref = useRef(null);
 
   // TODO: This doesn't quite work. Fix it.
-  // ref.current.focus()    
+  // ref.current.focus()
 
   return (
     <input
@@ -1558,7 +1558,7 @@ When [Strict Mode](/reference/react/StrictMode) is on (like in the sandboxes on 
 <Trans>이 사이트의 샌드박스에서와 같이 [Strict Mode](/reference/react/StrictMode)가 켜져 있으면 React는 개발 환경에서 각 컴포넌트를 한 번씩 다시 마운트합니다. 이로 인해 interval이 두 번 설정되고, 매 초마다 카운터가 두 번 증가하는 것입니다.</Trans>
 
 However, React's behavior is not the *cause* of the bug: the bug already exists in the code. React's behavior makes the bug more noticeable. The real cause is that this Effect starts a process but doesn't provide a way to clean it up.
-<Trans>그러나 React의 동작은 버그의 *원인*이 아닙니다. 버그는 이미 코드에 존재합니다. React의 동작은 버그를 더 눈에 띄게 만듭니다. 진짜 원인은 이 Effect가 프로세스를 시작하지만 이를 클린업할 방법을 제공하지 않기 때문입니다.</Trans>
+<Trans>그러나 React의 동작은 버그의 *원인*이 아닙니다. 버그는 이미 코드에 존재합니다. React의 동작은 버그를 더 눈에 띄게 만듭니다. 진짜 원인은 이 Effect가 프로세스를 시작하지만 이를 정리할 방법을 제공하지 않기 때문입니다.</Trans>
 
 To fix this code, save the interval ID returned by `setInterval`, and implement a cleanup function with [`clearInterval`](https://developer.mozilla.org/en-US/docs/Web/API/clearInterval):
 <Trans>이 코드를 수정하려면 `setInterval`이 반환한 interval ID를 저장하고 [`clearInterval`](https://developer.mozilla.org/en-US/docs/Web/API/clearInterval)로 클린업 함수를 구현하세요:</Trans>
@@ -1766,7 +1766,7 @@ export async function fetchBio(person) {
 </Sandpack>
 
 Each render's Effect has its own `ignore` variable. Initially, the `ignore` variable is set to `false`. However, if an Effect gets cleaned up (such as when you select a different person), its `ignore` variable becomes `true`. So now it doesn't matter in which order the requests complete. Only the last person's Effect will have `ignore` set to `false`, so it will call `setBio(result)`. Past Effects have been cleaned up, so the `if (!ignore)` check will prevent them from calling `setBio`:
-<Trans>각 렌더링의 Effect에는 자체 `ignore` 변수가 있습니다. 처음에 `ignore` 변수는 `false`로 설정됩니다. 그러나 다른 인물을 선택하는 등 Effect가 클린업 되면 `ignore` 변수는 `true`가 됩니다. 따라서 이제 요청이 완료되는 순서는 중요하지 않습니다. 마지막 사람의 Effect만 `ignore`가 `false`로 설정되어 `setBio(result)`를 호출합니다. 과거의 Effect는 클린업 되었으므로 `if (!ignore)` 검사는 `setBio`를 호출하지 못하도록 합니다:</Trans>
+<Trans>각 렌더링의 Effect에는 자체 `ignore` 변수가 있습니다. 처음에 `ignore` 변수는 `false`로 설정됩니다. 그러나 다른 인물을 선택하는 등 Effect가 정리되면 `ignore` 변수는 `true`가 됩니다. 따라서 이제 요청이 완료되는 순서는 중요하지 않습니다. 마지막 사람의 Effect만 `ignore`가 `false`로 설정되어 `setBio(result)`를 호출합니다. 과거의 Effect는 정리되었으므로 `if (!ignore)` 검사는 `setBio`를 호출하지 못하도록 합니다:</Trans>
 
 - Selecting `'Bob'` triggers `fetchBio('Bob')`
 - Selecting `'Taylor'` triggers `fetchBio('Taylor')` **and cleans up the previous (Bob's) Effect**

@@ -53,7 +53,7 @@ jobs:
         id: fc
         with:
           issue-number: ${{ steps.get-comment-body.outputs.pr-number }}
-          body-includes: "<!-- __NEXTJS_BUNDLE -->"
+          body-includes: "<!-- __NEXTJS_BUNDLE_react-dev -->"
 
       - name: Create Comment
         uses: peter-evans/create-or-update-comment@v1.4.4

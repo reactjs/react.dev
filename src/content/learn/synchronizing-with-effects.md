@@ -1623,7 +1623,7 @@ In development, React will still remount your component once to verify that you'
 #### Fix fetching inside an Effect<Trans>Effect 내부의 페칭 수정하기</Trans> {/*fix-fetching-inside-an-effect*/}
 
 This component shows the biography for the selected person. It loads the biography by calling an asynchronous function `fetchBio(person)` on mount and whenever `person` changes. That asynchronous function returns a [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) which eventually resolves to a string. When fetching is done, it calls `setBio` to display that string under the select box.
-<Trans>이 컴포넌트는 선택한 인물의 약력을 표시합니다. 이 컴포넌트는 마운트 시 비동기 함수 `fetchBio(person)`를 호출하여 `person`이 변경될 때마다 약력을 로드합니다. 이 비동기 함수는 문자열을 resolve하는 [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)를 반환합니다. 페칭이 완료되면 `setBio`를 호출하여 선택 상자 아래에 해당 문자열을 표시합니다.</Trans>
+<Trans>이 컴포넌트는 선택한 인물의 약력을 표시합니다. 이 컴포넌트는 마운트 시 비동기 함수 `fetchBio(person)`를 호출하여 `person`이 변경될 때마다 약력을 로드합니다. 이 비동기 함수는 문자열을 resolve하는 [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)를 반환합니다. 페칭이 완료되면 `setBio`를 호출하여 셀렉트박스 아래에 해당 문자열을 표시합니다.</Trans>
 
 <Sandpack>
 

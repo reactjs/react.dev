@@ -477,7 +477,7 @@ export default function Form() {
 </Sandpack>
 
 In design systems, it is a common pattern for low-level components like buttons, inputs, and so on, to forward their refs to their DOM nodes. On the other hand, high-level components like forms, lists, or page sections usually won't expose their DOM nodes to avoid accidental dependencies on the DOM structure.
-<Trans>디자인 시스템에서 버튼, 입력 등과 같은 저수준 컴포넌트는 해당 ref를 DOM 노드로 전달하는 것이 일반적인 패턴입니다. 반면 양식, 목록 또는 페이지 섹션과 같은 상위 수준 컴포넌트는 일반적으로 DOM 구조에 대한 우발적 종속성을 피하기 위해 해당 DOM 노드를 노출하지 않습니다.</Trans>
+<Trans>디자인 시스템에서 버튼, 입력 등과 같은 저수준 컴포넌트는 해당 ref를 DOM 노드로 전달하는 것이 일반적인 패턴입니다. 반면 양식, 목록 또는 페이지 섹션과 같은 상위 수준 컴포넌트는 일반적으로 DOM 구조에 대한 우발적 의존성을 피하기 위해 해당 DOM 노드를 노출하지 않습니다.</Trans>
 
 <DeepDive>
 

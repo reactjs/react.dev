@@ -50,7 +50,7 @@ O   | [4-3. Effect와 동기화하기 :: Synchronizing with Effects](/learn/sync
 O   | [4-4. Effect가 필요하지 않을 수도 있습니다 :: You Might Not Need an Effect](/learn/you-might-not-need-an-effect)
 O   | [4-5. 반응형 Effect의 생명주기 :: Lifecycle of Reactive Effects](/learn/lifecycle-of-reactive-effects)
 O   | [4-6. 이벤트와 Effect 분리하기 :: Separating Events from Effects](/learn/separating-events-from-effects)
-O   | [4-7. Effect 종속성 제거하기 :: Removing Effect Dependencies](/learn/removing-effect-dependencies)
+O   | [4-7. Effect 의존성 제거하기 :: Removing Effect Dependencies](/learn/removing-effect-dependencies)
 O   | [4-8. 커스텀 훅으로 로직 재사용하기 :: Reusing Logic with Custom Hooks](/learn/reusing-logic-with-custom-hooks)
 
 ## Reference 진행상황 (done: 2 / total: 59) {/*reference*/}

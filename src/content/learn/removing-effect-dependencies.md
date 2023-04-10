@@ -523,7 +523,7 @@ This is a good example of [fetching data in an Effect.](/learn/you-might-not-nee
 <Trans>[Effect에서 데이터를 페칭하는](/learn/you-might-not-need-an-effect#fetching-data) 좋은 예시입니다. `country` props에 따라 `cities` state를 네트워크와 동기화하고 있습니다. `ShippingForm`이 표시되는 즉시 그리고 `country`가 변경될 때마다 (어떤 상호작용이 원인이든 상관없이) 데이터를 가져와야 하므로 이벤트 핸들러에서는 이 작업을 수행할 수 없습니다.</Trans>
 
 Now let's say you're adding a second select box for city areas, which should fetch the `areas` for the currently selected `city`. You might start by adding a second `fetch` call for the list of areas inside the same Effect:
-<Trans>이제 도시 지역에 대한 두 번째 선택 상자를 추가하여 현재 선택된 `city`의 `areas`을 페치한다고 가정해 보겠습니다. 동일한 Effect 내에 지역 목록에 대한 두 번째 `fetch` 호출을 추가하는 것으로 시작할 수 있습니다:</Trans>
+<Trans>이제 도시 지역에 대한 두 번째 셀렉트박스를 추가하여 현재 선택된 `city`의 `areas`을 페치한다고 가정해 보겠습니다. 동일한 Effect 내에 지역 목록에 대한 두 번째 `fetch` 호출을 추가하는 것으로 시작할 수 있습니다:</Trans>
 
 ```js {15-24,28}
 function ShippingForm({ country }) {

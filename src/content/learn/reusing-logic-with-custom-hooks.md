@@ -666,7 +666,7 @@ button { margin-left: 10px; }
 </Sandpack>
 
 When you change `serverUrl` or `roomId`, the Effect ["reacts" to your changes](/learn/lifecycle-of-reactive-effects#effects-react-to-reactive-values) and re-synchronizes. You can tell by the console messages that the chat re-connects every time that you change your Effect's dependencies.
-<Trans>`serverUrl` 혹은 `roomId` 를 변경할 때마다 Effect는 [변화에 “반응"](/learn/lifecycle-of-reactive-effects#effects-react-to-reactive-values)하고 재동기화 됩니다. Effect의 종속성을 변경할 때마다 채팅이 다시 연결된다는 것은 콘솔 메시지를 통해 알 수 있습니다.</Trans>
+<Trans>`serverUrl` 혹은 `roomId` 를 변경할 때마다 Effect는 [변화에 “반응"](/learn/lifecycle-of-reactive-effects#effects-react-to-reactive-values)하고 재동기화 됩니다. Effect의 의존성을 변경할 때마다 채팅이 다시 연결된다는 것은 콘솔 메시지를 통해 알 수 있습니다.</Trans>
 
 Now move the Effect's code into a custom Hook:
 <Trans>이제 Effect 코드를 커스텀 훅으로 옮깁니다:</Trans>
@@ -981,7 +981,7 @@ This will work, but there's one more improvement you can do when your custom Hoo
 <Trans>이 방법은 작동하지만 커스텀 Hook이 이벤트 핸들러를 수락할 때 한 가지 더 개선할 수 있습니다.</Trans>
 
 Adding a dependency on `onReceiveMessage` is not ideal because it will cause the chat to re-connect every time the component re-renders. [Wrap this event handler into an Effect Event to remove it from the dependencies:](/learn/removing-effect-dependencies#wrapping-an-event-handler-from-the-props)
-<Trans>`onReceiveMessage`에 종속성을 추가하면 컴포넌트가 다시 렌더링될 때마다 채팅이 다시 연결되므로 이상적이지 않습니다. [이 이벤트 핸들러를 Effect Event로 래핑하여 종속성에서 제거하세요:](/learn/removing-effect-dependencies#wrapping-an-event-handler-from-the-props)</Trans>
+<Trans>`onReceiveMessage`에 의존성을 추가하면 컴포넌트가 다시 렌더링될 때마다 채팅이 다시 연결되므로 이상적이지 않습니다. [이 이벤트 핸들러를 Effect Event로 래핑하여 의존성에서 제거하세요:](/learn/removing-effect-dependencies#wrapping-an-event-handler-from-the-props)</Trans>
 
 ```js {1,4,5,15,18}
 import { useEffect, useEffectEvent } from 'react';
@@ -1269,7 +1269,7 @@ function ShippingForm({ country }) {
 ```
 
 Extracting a custom Hook makes the data flow explicit. You feed the `url` in and you get the `data` out. By "hiding" your Effect inside `useData`, you also prevent someone working on the `ShippingForm` component from adding [unnecessary dependencies](/learn/removing-effect-dependencies) to it. With time, most of your app's Effects will be in custom Hooks.
-<Trans>커스텀 훅을 추출하면 데이터 흐름을 명시적으로 만들 수 있습니다. `url`을 입력하면 `data`를 가져올 수 있습니다. `useData` 안에 효과를 "숨기면" `ShippingForm` 컴포넌트에서 작업하는 사람이 [불필요한 종속성](/learn/removing-effect-dependencies)을 추가하는 것을 방지할 수 있습니다. 이상적으로는 시간이 지나면 앱의 효과 대부분이 커스텀 훅에 포함될 것입니다.</Trans>
+<Trans>커스텀 훅을 추출하면 데이터 흐름을 명시적으로 만들 수 있습니다. `url`을 입력하면 `data`를 가져올 수 있습니다. `useData` 안에 효과를 "숨기면" `ShippingForm` 컴포넌트에서 작업하는 사람이 [불필요한 의존성](/learn/removing-effect-dependencies)을 추가하는 것을 방지할 수 있습니다. 이상적으로는 시간이 지나면 앱의 효과 대부분이 커스텀 훅에 포함될 것입니다.</Trans>
 
 <DeepDive>
 
@@ -2162,7 +2162,7 @@ export function useCounter() {
 <Solution>
 
 Pass the `delay` to your Hook with `useCounter(delay)`. Then, inside the Hook, use `delay` instead of the hardcoded `1000` value. You'll need to add `delay` to your Effect's dependencies. This ensures that a change in `delay` will reset the interval.
-<Trans>`useCounter(delay)`로 `delay`를 훅에 전달합니다. 그런 다음 훅 내부에서 하드코딩된 `1000` 값 대신 `delay`를 사용합니다. Effect의 종속성에 `delay`를 추가해야 합니다. 이렇게 하면 `delay`가 변경되면 interval이 재설정됩니다.</Trans>
+<Trans>`useCounter(delay)`로 `delay`를 훅에 전달합니다. 그런 다음 훅 내부에서 하드코딩된 `1000` 값 대신 `delay`를 사용합니다. Effect의 의존성에 `delay`를 추가해야 합니다. 이렇게 하면 `delay`가 변경되면 interval이 재설정됩니다.</Trans>
 
 <Sandpack>
 
@@ -2333,7 +2333,7 @@ For some reason, the callback that updates the page background never runs. Add s
 ```
 
 Do the logs match what you expect to happen? If some of your Effects seem to re-synchronize unnecessarily, can you guess which dependency is causing that to happen? Is there some way to [remove that dependency](/learn/removing-effect-dependencies) from your Effect?
-<Trans>로그가 예상한 것과 일치하나요? 일부 Effect가 불필요하게 재동기화되는 것 같다면 어떤 종속성 때문에 그런 일이 발생하는지 짐작할 수 있나요? Effect에서 해당 [종속성을 제거](/learn/removing-effect-dependencies)할 수 있는 방법이 있나요?</Trans>
+<Trans>로그가 예상한 것과 일치하나요? 일부 Effect가 불필요하게 재동기화되는 것 같다면 어떤 의존성 때문에 그런 일이 발생하는지 짐작할 수 있나요? Effect에서 해당 [의존성을 제거](/learn/removing-effect-dependencies)할 수 있는 방법이 있나요?</Trans>
 
 After you fix the issue, you should expect the page background to update every two seconds.
 <Trans>문제를 해결한 후에는 페이지 배경이 2초마다 업데이트되어야 합니다.</Trans>
@@ -2341,7 +2341,7 @@ After you fix the issue, you should expect the page background to update every t
 <Hint>
 
 It looks like your `useInterval` Hook accepts an event listener as an argument. Can you think of some way to wrap that event listener so that it doesn't need to be a dependency of your Effect?
-<Trans>`useInterval` 훅이 이벤트 리스너를 인수로 받아들이는 것 같습니다. 이벤트 리스너가 Effect의 종속성이 될 필요가 없도록 이벤트 리스너를 감싸는 방법을 생각해낼 수 있을까요?</Trans>
+<Trans>`useInterval` 훅이 이벤트 리스너를 인수로 받아들이는 것 같습니다. 이벤트 리스너가 Effect의 의존성이 될 필요가 없도록 이벤트 리스너를 감싸는 방법을 생각해낼 수 있을까요?</Trans>
 
 </Hint>
 
@@ -2414,7 +2414,7 @@ Inside `useInterval`, wrap the tick callback into an Effect Event, as you did [e
 <Trans>`useInterval` 내에서 [이 페이지의 앞부분에서 한 것처럼](/learn/reusing-logic-with-custom-hook#passing-event-handlers-to-custom-hook) tick 콜백을 효과 이벤트에 래핑합니다.</Trans>
 
 This will allow you to omit `onTick` from dependencies of your Effect. The Effect won't re-synchronize on every re-render of the component, so the page background color change interval won't get reset every second before it has a chance to fire.
-<Trans>이렇게 하면 Effect의 종속성에서 `onTick`을 생략할 수 있습니다. 컴포넌트를 다시 렌더링할 때마다 Effect가 다시 동기화되지 않으므로 페이지 배경색 변경 간격이 매초마다 재설정되지 않고 실행될 수 있습니다.</Trans>
+<Trans>이렇게 하면 Effect의 의존성에서 `onTick`을 생략할 수 있습니다. 컴포넌트를 다시 렌더링할 때마다 Effect가 다시 동기화되지 않으므로 페이지 배경색 변경 간격이 매초마다 재설정되지 않고 실행될 수 있습니다.</Trans>
 
 With this change, both intervals work as expected and don't interfere with each other:
 <Trans>해당 변경으로 두 간격이 모두 예상대로 작동하며 서로 간섭하지 않습니다:</Trans>

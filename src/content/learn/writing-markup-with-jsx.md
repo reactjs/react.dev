@@ -250,7 +250,7 @@ For historical reasons, [`aria-*`](https://developer.mozilla.org/docs/Web/Access
 <Trans>역사적인 이유로 [`aria-*`](https://developer.mozilla.org/docs/Web/Accessibility/ARIA) 과 [`data-*`](https://developer.mozilla.org/docs/Learn/HTML/Howto/Use_data_attributes)의 어트리뷰트는 HTML에서와 동일하게 대시를 사용하여 작성합니다.</Trans>
 
 <Extra>
-#### 역사적인 이유? -@정재남 {/*역사적인-이유--정재남*/}
+#### 역사적인 이유? -@정재남 {/*historical-reason*/}
 
 https://stackoverflow.com/a/52489695
 

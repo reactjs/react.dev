@@ -109,7 +109,7 @@ React components are regular JavaScript functions, but **their names must start 
 <Trans>React 컴포넌트는 일반 JavaScript 함수이지만, **이름은 대문자로 시작해야 하며** 그렇지 않으면 작동하지 않습니다!</Trans>
 
 <Extra>
-#### 꼭 그렇지는 않습니다! {/*꼭-그렇지는-않습니다*/}
+#### 꼭 그렇지는 않습니다! -@정재남 {/*not_really*/}
 
 JSX 안에서는 반드시 대문자로 시작해야 하지만, 그밖의 상황에서는 무관합니다. [다양한 방법으로 컴포넌트 추가하기](/learn#add_component_in_various_ways)를 참고하세요.
 </Extra>

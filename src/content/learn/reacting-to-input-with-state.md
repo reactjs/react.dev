@@ -1,7 +1,7 @@
 ---
 title: Reacting to Input with State
 translatedTitle: state로 입력에 반응하기
-translators: [유한나라, 정재남]
+translators: [유한나라, 조성민, 정재남]
 ---
 
 <Intro>

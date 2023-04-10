@@ -1,7 +1,7 @@
 ---
 title: Extracting State Logic into a Reducer
 translatedTitle: State로직을 Reducer로 추출하기
-translators: [이승효, 고석영, 안예지]
+translators: [이승효, 고석영, 안예지, 원주혜]
 ---
 
 <Intro>

@@ -1,7 +1,7 @@
 ---
 title: You Might Not Need an Effect
 translatedTitle: Effect가 필요하지 않을 수도 있습니다
-translators: [안예지, 정재남]
+translators: [안예지, 박문하, 정재남]
 ---
 
 <Intro>

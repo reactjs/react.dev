@@ -1,7 +1,7 @@
 ---
 title: "State: A Component's Memory"
 translatedTitle: "State: 컴포넌트의 메모리"
-translators: [고석영, 박문하, 정재남]
+translators: [고석영, 박문하, 전시윤, 정재남]
 ---
 
 <Intro>

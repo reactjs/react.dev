@@ -649,7 +649,7 @@ body { margin: 0; padding: 0; height: 250px; }
 <Solution>
 
 This component has two visual states: when the image is active, and when the image is inactive:
-<Trans>이 구성 요소에는 이미지가 활성화된 경우와 비활성화된 경우의 두 가지 시각적 상태가 있습니다:</Trans>
+<Trans>이 컴포넌트에는 이미지가 활성화된 경우와 비활성화된 경우의 두 가지 시각적 상태가 있습니다:</Trans>
 
 * When the image is active, the CSS classes are `background` and `picture picture--active`.
 * When the image is inactive, the CSS classes are `background background--active` and `picture`.

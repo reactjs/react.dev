@@ -160,30 +160,32 @@ export function Page({children, toc, routeTree, meta, section}: PageProps) {
                   {
                     <hr className="max-w-7xl mx-auto border-border dark:border-border-dark" />
                   }
-                  {showSurvey && (
-                    <>
-                      <div className="flex flex-col items-center m-4 p-4">
-                        <p className="font-bold text-primary dark:text-primary-dark text-lg mb-4">
-                          How do you like these docs?
-                        </p>
-                        <div>
-                          <ButtonLink
-                            href="https://www.surveymonkey.co.uk/r/PYRPF3X"
-                            className="mt-1"
-                            type="primary"
-                            size="md"
-                            target="_blank">
-                            Take our survey!
-                            <IconNavArrow
-                              displayDirection="right"
-                              className="inline ml-1"
-                            />
-                          </ButtonLink>
+                  {
+                    /* showSurvey */ false && (
+                      <>
+                        <div className="flex flex-col items-center m-4 p-4">
+                          <p className="font-bold text-primary dark:text-primary-dark text-lg mb-4">
+                            How do you like these docs?
+                          </p>
+                          <div>
+                            <ButtonLink
+                              href="https://www.surveymonkey.co.uk/r/PYRPF3X"
+                              className="mt-1"
+                              type="primary"
+                              size="md"
+                              target="_blank">
+                              Take our survey!
+                              <IconNavArrow
+                                displayDirection="right"
+                                className="inline ml-1"
+                              />
+                            </ButtonLink>
+                          </div>
                         </div>
-                      </div>
-                      <hr className="max-w-7xl mx-auto border-border dark:border-border-dark" />
-                    </>
-                  )}
+                        <hr className="max-w-7xl mx-auto border-border dark:border-border-dark" />
+                      </>
+                    )
+                  }
                 </div>
               )}
               <div

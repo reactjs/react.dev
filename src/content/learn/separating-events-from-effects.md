@@ -1325,7 +1325,7 @@ button { margin: 10px; }
 </Sandpack>
 
 Since `onTick` is an Effect Event, the code inside it isn't reactive. The change to `increment` does not trigger any Effects.
-<Trans>`onTick`은 Effect 이벤트이므로 그 안의 코드는 반응하지 않습니다. `increment`로 변경해도 어떤 Effect도 트리거되지 않습니다.</Trans>
+<Trans>`onTick`은 Effect 이벤트이므로 그 안의 코드는 반응하지 않습니다. `increment`로 변경해도 어떤 Effect도 촉발되지 않습니다.</Trans>
 
 </Solution>
 

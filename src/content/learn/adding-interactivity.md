@@ -36,7 +36,7 @@ Some things on the screen update in response to user input. For example, clickin
 ## Responding to events<Trans>이벤트에 응답하기</Trans> {/*responding-to-events*/}
 
 React lets you add *event handlers* to your JSX. Event handlers are your own functions that will be triggered in response to user interactions like clicking, hovering, focusing on form inputs, and so on.
-<Trans>React를 사용하면 JSX에 이벤트 핸들러를 추가할 수 있습니다. 이벤트 핸들러는 클릭, 마우스오버, 양식 입력에 초점 맞추기 등과 같은 사용자 상호작용에 반응하여 트리거되는 자체 함수입니다.</Trans>
+<Trans>React를 사용하면 JSX에 이벤트 핸들러를 추가할 수 있습니다. 이벤트 핸들러는 클릭, 마우스오버, input에 초점 맞추기 등과 같은 사용자 상호작용에 반응하여 촉발되는 자체 함수입니다.</Trans>
 
 Built-in components like `<button>` only support built-in browser events like `onClick`. However, you can also create your own components, and give their event handler props any application-specific names that you like.
 <Trans>`<button>`과 같은 기본 제공 컴포넌트는 `onClick`과 같은 기본 제공 브라우저 이벤트만 지원합니다. 그러나 자체 컴포넌트를 생성하고 이벤트 핸들러 프롭에 원하는 애플리케이션별 이름을 지정할 수도 있습니다.</Trans>
@@ -113,9 +113,14 @@ import { sculptureList } from './data.js';
 export default function Gallery() {
   const [index, setIndex] = useState(0);
   const [showMore, setShowMore] = useState(false);
+  const hasNext = index < sculptureList.length - 1;
 
   function handleNextClick() {
-    setIndex(index + 1);
+    if (hasNext) {
+      setIndex(index + 1);
+    } else {
+      setIndex(0);
+    }
   }
 
   function handleMoreClick() {
@@ -261,7 +266,7 @@ Imagine that your components are cooks in the kitchen, assembling tasty dishes f
 3. **Committing** to the DOM (placing the order on the table)
 
 <TransBlock>
-  1. 렌더링 **트리거**(식당의 주문을 주방으로 전달)
+  1. 렌더링 **발동**(식당의 주문을 주방으로 전달)
   2. 컴포넌트 **렌더링**(주방에서 주문 준비)
   3. DOM에 **커밋**(테이블에 주문 배치)
 </TransBlock>
@@ -282,7 +287,7 @@ Read [**Render and Commit**](/learn/render-and-commit) to learn the lifecycle of
 ## State as a snapshot<Trans>스냅샷으로서의 state</Trans> {/*state-as-a-snapshot*/}
 
 Unlike regular JavaScript variables, React state behaves more like a snapshot. Setting it does not change the state variable you already have, but instead triggers a re-render. This can be surprising at first!
-<Trans>일반 자바스크립트 변수와 달리 React state는 스냅샷처럼 동작합니다. state 변수를 설정해도 이미 가지고 있는 state 변수는 변경되지 않고 대신 리렌더링됩니다. 처음에는 놀랄 수 있습니다!</Trans>
+<Trans>일반 JavaScript 변수와 달리 React state는 스냅샷처럼 동작합니다. state 변수를 설정해도 이미 가지고 있는 state 변수는 변경되지 않고 대신 리렌더링됩니다. 처음에는 놀랄 수 있습니다!</Trans>
 
 ```js
 console.log(count);  // 0
@@ -440,7 +445,7 @@ Read [**Queueing a Series of State Updates**](/learn/queueing-a-series-of-state-
 ## Updating objects in state<Trans>객체 state 업데이트</Trans> {/*updating-objects-in-state*/}
 
 State can hold any kind of JavaScript value, including objects. But you shouldn't change objects and arrays that you hold in the React state directly. Instead, when you want to update an object and array, you need to create a new one (or make a copy of an existing one), and then update the state to use that copy.
-<Trans>state는 객체를 포함한 모든 종류의 자바스크립트 값을 보유할 수 있습니다. 하지만 state에 있는 객체와 배열을 직접 변경해서는 안 됩니다. 대신 객체와 배열을 업데이트하려면 새 객체를 생성하거나 기존 객체의 복사본을 만든 다음 해당 복사본을 사용하도록 state를 업데이트해야 합니다.</Trans>
+<Trans>state는 객체를 포함한 모든 종류의 JavaScript 값을 보유할 수 있습니다. 하지만 state에 있는 객체와 배열을 직접 변경해서는 안 됩니다. 대신 객체와 배열을 업데이트하려면 새 객체를 생성하거나 기존 객체의 복사본을 만든 다음 해당 복사본을 사용하도록 state를 업데이트해야 합니다.</Trans>
 
 Usually, you will use the `...` spread syntax to copy objects and arrays that you want to change. For example, updating a nested object could look like this:
 <Trans>일반적으로 `...` 스프레드 구문을 사용하여 변경하려는 객체 및 배열을 복사합니다. 예를 들어 중첩된 객체를 업데이트하는 것은 다음과 같습니다:</Trans>
@@ -675,7 +680,7 @@ Read [**Updating Objects in State**](/learn/updating-objects-in-state) to learn 
 ## Updating arrays in state<Trans>배열 state 업데이트</Trans> {/*updating-arrays-in-state*/}
 
 Arrays are another type of mutable JavaScript objects you can store in state and should treat as read-only. Just like with objects, when you want to update an array stored in state, you need to create a new one (or make a copy of an existing one), and then set state to use the new array:
-<Trans>배열은 state에 저장할 수 있는 또 다른 유형의 변경 가능한 자바스크립트 객체이며 읽기 전용으로 취급해야 합니다. 객체와 마찬가지로 state에 저장된 배열을 업데이트하려면 새 배열을 생성하거나 기존 배열의 복사본을 만든 다음 새 배열을 사용하도록 state를 설정해야 합니다:</Trans>
+<Trans>배열은 state에 저장할 수 있는 또 다른 유형의 변경 가능한 JavaScript 객체이며 읽기 전용으로 취급해야 합니다. 객체와 마찬가지로 state에 저장된 배열을 업데이트하려면 새 배열을 생성하거나 기존 배열의 복사본을 만든 다음 새 배열을 사용하도록 state를 설정해야 합니다:</Trans>
 
 <Sandpack>
 

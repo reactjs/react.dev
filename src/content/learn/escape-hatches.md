@@ -343,7 +343,7 @@ button { margin-left: 10px; }
 </Sandpack>
 
 React provides a linter rule to check that you've specified your Effect's dependencies correctly. If you forget to specify `roomId` in the list of dependencies in the above example, the linter will find that bug automatically.
-<Trans>React는 이펙트의 종속성을 올바르게 지정했는지 확인하는 린터 규칙을 제공합니다. 위의 예시에서 종속성 목록에 `roomId`를 지정하는 것을 잊어버렸다면, 린터가 해당 버그를 자동으로 찾아낼 것입니다.</Trans>
+<Trans>React는 이펙트의 의존성을 올바르게 지정했는지 확인하는 린터 규칙을 제공합니다. 위의 예시에서 의존성 목록에 `roomId`를 지정하는 것을 잊어버렸다면, 린터가 해당 버그를 자동으로 찾아낼 것입니다.</Trans>
 
 <LearnMore path="/learn/lifecycle-of-reactive-effects">
 
@@ -637,10 +637,10 @@ Read [**Separating Events from Effects**](/learn/separating-events-from-effects)
 
 </LearnMore>
 
-## Removing Effect dependencies<Trans>Effect 종속성 제거하기</Trans> {/*removing-effect-dependencies*/}
+## Removing Effect dependencies<Trans>Effect 의존성 제거하기</Trans> {/*removing-effect-dependencies*/}
 
 When you write an Effect, the linter will verify that you've included every reactive value (like props and state) that the Effect reads in the list of your Effect's dependencies. This ensures that your Effect remains synchronized with the latest props and state of your component. Unnecessary dependencies may cause your Effect to run too often, or even create an infinite loop. The way you remove them depends on the case.
-<Trans>Effect를 작성할 때, Effect의 종속성 목록에서 Effect가 읽는 모든 반응형 값(예: prop 및 state)을 포함했는지 확인합니다. 이렇게 하면 Effect가 컴포넌트의 최신 prop 및 state와 동기화된 상태를 유지할 수 있습니다. 불필요한 종속성으로 인해 Effect가 너무 자주 실행되거나 무한 루프를 생성할 수도 있습니다. 종속성을 제거하는 방법은 경우에 따라 다릅니다.</Trans>
+<Trans>Effect를 작성할 때, Effect의 의존성 목록에서 Effect가 읽는 모든 반응형 값(예: prop 및 state)을 포함했는지 확인합니다. 이렇게 하면 Effect가 컴포넌트의 최신 prop 및 state와 동기화된 상태를 유지할 수 있습니다. 불필요한 의존성으로 인해 Effect가 너무 자주 실행되거나 무한 루프를 생성할 수도 있습니다. 의존성을 제거하는 방법은 경우에 따라 다릅니다.</Trans>
 
 For example, this Effect depends on the `options` object which gets re-created every time you edit the input:
 <Trans>예를 들어, 이 Effect는 사용자가 input을 편집할 때마다 다시 생성되는 `options` 객체에 의존합니다:</Trans>
@@ -794,12 +794,12 @@ button { margin-left: 10px; }
 </Sandpack>
 
 Notice that you didn't start by editing the dependency list to remove the `options` dependency. That would be wrong. Instead, you changed the surrounding code so that the dependency became *unnecessary.* Think of the dependency list as a list of all the reactive values used by your Effect's code. You don't intentionally choose what to put on that list. The list describes your code. To change the dependency list, change the code.
-<Trans>종속성 목록을 편집하여 `options` 종속성을 제거하는 것으로 시작하지 않았음을 알 수 있습니다. 이는 잘못된 방법일 수 있습니다. 대신 주변 코드를 변경함으로써 종속성을 *불필요하게* 만들었습니다. 종속성 목록을 Effect의 코드에서 사용하는 모든 반응형 값의 목록으로 생각하세요. 이 목록에 무엇을 넣을지는 의도적으로 선택하지 않습니다. 이 목록은 당신의 코드를 기술합니다. 종속성 목록을 변경하려면, 코드를 변경하세요.</Trans>
+<Trans>의존성 목록을 편집하여 `options` 의존성을 제거하는 것으로 시작하지 않았음을 알 수 있습니다. 이는 잘못된 방법일 수 있습니다. 대신 주변 코드를 변경함으로써 의존성을 *불필요하게* 만들었습니다. 의존성 목록을 Effect의 코드에서 사용하는 모든 반응형 값의 목록으로 생각하세요. 이 목록에 무엇을 넣을지는 의도적으로 선택하지 않습니다. 이 목록은 당신의 코드를 기술합니다. 의존성 목록을 변경하려면, 코드를 변경하세요.</Trans>
 
 <LearnMore path="/learn/removing-effect-dependencies">
 
 Read [**Removing Effect Dependencies**](/learn/removing-effect-dependencies) to learn how to make your Effect re-run less often.
-<Trans>[**Effect 종속성 제거하기**](/learn/removing-effect-dependencies)를 읽고 Effect의 재실행 빈도를 낮추는 방법을 알아보세요.</Trans>
+<Trans>[**Effect 의존성 제거하기**](/learn/removing-effect-dependencies)를 읽고 Effect의 재실행 빈도를 낮추는 방법을 알아보세요.</Trans>
 
 </LearnMore>
 

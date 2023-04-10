@@ -169,10 +169,10 @@ How you export your component dictates how you must import it. You will get an e
 
 | Syntax           | Export statement                           | Import statement                          |
 | -----------      | -----------                                | -----------                               |
-| Default  | `export default function Button() {}` | `import Button from './button.js';`     |
-| Named    | `export function Button() {}`         | `import { Button } from './button.js';` |
+| Default  | `export default function Button() {}` | `import Button from './Button.js';`     |
+| Named    | `export function Button() {}`         | `import { Button } from './Button.js';` |
 
-When you write a _default_ import, you can put any name you want after `import`. For example, you could write `import Banana from './button.js'` instead and it would still provide you with the same default export. In contrast, with named imports, the name has to match on both sides. That's why they are called _named_ imports!
+When you write a _default_ import, you can put any name you want after `import`. For example, you could write `import Banana from './Button.js'` instead and it would still provide you with the same default export. In contrast, with named imports, the name has to match on both sides. That's why they are called _named_ imports!
 <Trans>*default* import를 사용하는 경우 원한다면 `import` 단어 후에 다른 이름으로 값을 가져올 수 있습니다. 예를 들어 `import Banana from './button.js'` 라고 쓰더라도 같은 default export 값을 가져오게 됩니다. 반대로 named import를 사용할 때는 양쪽 파일에서 사용하고자 하는 값의 이름이 같아야 해서 *named* import라고 불립니다.</Trans>
 
 **People often use default exports if the file exports only one component, and use named exports if it exports multiple components and values.** Regardless of which coding style you prefer, always give meaningful names to your component functions and the files that contain them. Components without names, like `export default () => {}`, are discouraged because they make debugging harder.
@@ -316,8 +316,8 @@ You may use either a default or a named export for `Profile`, but make sure that
 
 | Syntax           | Export statement                           | Import statement                          |
 | -----------      | -----------                                | -----------                               |
-| Default  | `export default function Button() {}` | `import Button from './button.js';`     |
-| Named    | `export function Button() {}`         | `import { Button } from './button.js';` |
+| Default  | `export default function Button() {}` | `import Button from './Button.js';`     |
+| Named    | `export function Button() {}`         | `import { Button } from './Button.js';` |
 
 <Hint>
 

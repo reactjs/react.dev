@@ -237,7 +237,7 @@ export function HomeContent() {
               learning programming.
               <br />
               <Trans>
-                React 컴포넌트는 자바스크립트 함수입니다. 일부 콘텐츠를 조건부로
+                React 컴포넌트는 JavaScript 함수입니다. 일부 콘텐츠를 조건부로
                 표시하고 싶으신가요? <Code>if</Code> 문을 사용하세요. 목록을
                 표시하고 싶으신가요? 배열의 <Code>map()</Code>을 사용해 보세요.
                 React를 배우는 것은 프로그래밍을 배우는 것입니다.

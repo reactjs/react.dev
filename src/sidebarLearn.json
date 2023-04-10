@@ -226,7 +226,7 @@
         },
         {
           "title": "Removing Effect Dependencies",
-          "translatedTitle": "Effect 종속성 제거하기",
+          "translatedTitle": "Effect 의존성 제거하기",
           "path": "/learn/removing-effect-dependencies"
         },
         {

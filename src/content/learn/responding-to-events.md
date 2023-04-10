@@ -126,7 +126,7 @@ The difference is subtle. In the first example, the `handleClick` function is pa
 <Trans>차이점은 미묘합니다. 첫 번째 예시에서는 `handleClick` 함수가 `onClick` 이벤트 핸들러로 전달됩니다. 이렇게 하면 React가 이를 기억하고 사용자가 버튼을 클릭할 때만 함수를 호출하도록 지시합니다.</Trans>
 
 In the second example, the `()` at the end of `handleClick()` fires the function *immediately* during [rendering](/learn/render-and-commit), without any clicks. This is because JavaScript inside the [JSX `{` and `}`](/learn/javascript-in-jsx-with-curly-braces) executes right away.
-<Trans>두 번째 예시에서 `handleClick()`끝에 있는 `()`은 클릭 없이 [렌더링](/learn/render-and-commit) 중에 *즉시* 함수를 실행합니다. 이는 [JSX의 `{` 및 `}`](/learn/javascript-in-jsx-with-curly-braces) 내부의 자바스크립트가 바로 실행되기 때문입니다.</Trans>
+<Trans>두 번째 예시에서 `handleClick()`끝에 있는 `()`은 클릭 없이 [렌더링](/learn/render-and-commit) 중에 *즉시* 함수를 실행합니다. 이는 [JSX의 `{` 및 `}`](/learn/javascript-in-jsx-with-curly-braces) 내부의 JavaScript가 바로 실행되기 때문입니다.</Trans>
 
 When you write code inline, the same pitfall presents itself in a different way:
 <Trans>인라인으로 코드를 작성할 때는 동일한 함정이 다른 방식으로 나타납니다:</Trans>
@@ -369,7 +369,7 @@ button { margin-right: 10px; }
 </Sandpack>
 
 Notice how the `App` component does not need to know *what* `Toolbar` will do with `onPlayMovie` or `onUploadImage`. That's an implementation detail of the `Toolbar`. Here, `Toolbar` passes them down as `onClick` handlers to its `Button`s, but it could later also trigger them on a keyboard shortcut. Naming props after app-specific interactions like `onPlayMovie` gives you the flexibility to change how they're used later.
-<Trans>`App` 컴포넌트는 `Toolbar`가 `onPlayMovie` 또는 `onUploadImage`로 어떤 작업을 수행할지 알 필요가 없다는 점을 주목하세요. 이것이 `Toolbar`의 구현 세부 사항입니다. 여기서 `Toolbar`는 `Button`에 `onClick` 핸들러로 전달하지만 나중에 키보드 단축키에서 트리거할 수도 있습니다. props의 이름을 `onPlayMovie`와 같은, 앱별 상호작용의 이름을 따서 지정하면 나중에 사용 방식을 유연하게 변경할 수 있습니다.</Trans>
+<Trans>`App` 컴포넌트는 `Toolbar`가 `onPlayMovie` 또는 `onUploadImage`로 어떤 작업을 수행할지 알 필요가 없다는 점을 주목하세요. 이것이 `Toolbar`의 구현 세부 사항입니다. 여기서 `Toolbar`는 `Button`에 `onClick` 핸들러로 전달하지만 나중에 키보드 단축키에서 촉발시킬 수도 있습니다. props의 이름을 `onPlayMovie`와 같은, 앱별 상호작용의 이름을 따서 지정하면 나중에 사용 방식을 유연하게 변경할 수 있습니다.</Trans>
 
 ## Event propagation<Trans>이벤트 전파</Trans> {/*event-propagation*/}
 
@@ -481,7 +481,7 @@ When you click on a button:
 2. `Button`에 정의된 이 핸들러는 다음을 수행합니다:
     - 이벤트가 더 이상 버블링되지 않도록 `e.stopPropagation()`을 호출합니다.
     - `Toolbar` 컴포넌트에서 전달된 props인 `onClick`함수를 호출합니다.
-3. `Toolbar` 구성 요소에 정의된 이 함수는 버튼 자체의 경고를 표시합니다.
+3. `Toolbar` 컴포넌트에 정의된 이 함수는 버튼 자체의 경고를 표시합니다.
 4. 전파가 중지되었으므로 부모 `<div>`의 `onClick` 핸들러가 실행되지 않습니다.
 </TransBlock>
 

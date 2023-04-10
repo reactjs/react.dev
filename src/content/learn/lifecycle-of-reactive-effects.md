@@ -358,7 +358,7 @@ The first two logs are development-only. In development, React always remounts e
 
 **React verifies that your Effect can re-synchronize by forcing it to do that immediately in development.** This might remind you of opening a door and closing it an extra time to check if the door lock works. React starts and stops your Effect one extra time in development to check [you've implemented its cleanup well.](/learn/synchronizing-with-effects#how-to-handle-the-effect-firing-twice-in-development)
 
-<Trans>**개발 모드에서 React는 즉시 강제로 동기화를 수행하여 Effect가 다시 동기화될 수 있는지 확인합니다. 도어락이 작동하는지 확인하기 위해 문을 열었다가 한 번 더 닫는 것과 비슷합니다. React는 개발 중에 Effect를 한 번 더 시작하고 중지하여 [정리를 잘 구현했는지](/learn/synchronizing-with-effects#how-to-handle-the-effect-firing-twice-in-development) 확인합니다.</Trans>
+<Trans>**개발 모드에서 React는 즉시 강제로 동기화를 수행하여 Effect가 다시 동기화될 수 있는지 확인합니다. 도어락이 작동하는지 확인하기 위해 문을 열었다가 한 번 더 닫는 것과 비슷합니다. React는 개발 중에 Effect를 한 번 더 시작하고 중지하여 [클린업 함수를 잘 구현했는지](/learn/synchronizing-with-effects#how-to-handle-the-effect-firing-twice-in-development) 확인합니다.</Trans>
 
 The main reason your Effect will re-synchronize in practice is if some data it uses has changed. In the sandbox above, change the selected chat room. Notice how, when the `roomId` changes, your Effect re-synchronizes.
 <Trans>실제로 Effect가 다시 동기화되는 주된 이유는 Effect가 사용하는 일부 데이터가 변경된 경우입니다. 위의 샌드박스에서 선택한 채팅방을 변경해 보세요. `roomId`가 변경되면 Effect가 다시 동기화되는 것을 확인할 수 있습니다.</Trans>
@@ -1268,7 +1268,7 @@ body {
 </Sandpack>
 
 In both of these cases, `canMove` is a reactive variable that you read inside the Effect. This is why it must be specified in the list of Effect dependencies. This ensures that the Effect re-synchronizes after every change to its value.
-<Trans>이 두 경우 모두 `canMove`는 Effect 내부에서 읽는 반응형 변수입니다. 그렇기 때문에 이 변수를 Effect 종속성 목록에 지정해야 합니다. 이렇게 하면 값이 변경될 때마다 Effect가 다시 동기화됩니다.</Trans>
+<Trans>이 두 경우 모두 `canMove`는 Effect 내부에서 읽는 반응형 변수입니다. 그렇기 때문에 이 변수를 Effect 의존성 목록에 지정해야 합니다. 이렇게 하면 값이 변경될 때마다 Effect가 다시 동기화됩니다.</Trans>
 
 </Solution>
 
@@ -1486,7 +1486,7 @@ In this example, the chat service in `chat.js` exposes two different APIs: `crea
 <Trans>이 예제에서 `chat.js`의 채팅 서비스는 `createEncryptedConnection`과 `createUnencryptedConnection`이라는 두 개의 서로 다른 API를 노출합니다. 루트 `App` 컴포넌트는 사용자가 암호화 사용 여부를 선택할 수 있도록 한 다음, 해당 API 메서드를 하위 `ChatRoom` 컴포넌트에 `createConnection` prop으로 전달합니다.</Trans>
 
 Notice that initially, the console logs say the connection is not encrypted. Try toggling the checkbox on: nothing will happen. However, if you change the selected room after that, then the chat will reconnect *and* enable encryption (as you'll see from the console messages). This is a bug. Fix the bug so that toggling the checkbox *also* causes the chat to reconnect.
-<Trans>처음에는 콘솔 로그에 연결이 암호화되지 않았다고 표시됩니다. 확인란을 켜도 아무 일도 일어나지 않습니다. 하지만 그 후에 선택한 대화방을 변경하면 채팅이 다시 연결되고 콘솔 메시지에서 볼 수 있듯이 암호화가 활성화됩니다. 이것은 버그입니다. 확인란을 토글해도 채팅이 다시 연결되도록 버그를 수정했습니다.</Trans>
+<Trans>처음에는 콘솔 로그에 연결이 암호화되지 않았다고 표시됩니다. 확인란을 켜도 아무 일도 일어나지 않습니다. 하지만 그 후에 선택한 대화방을 변경하면 채팅이 다시 연결되고 콘솔 메시지에서 볼 수 있듯이 암호화가 활성화됩니다. 이것은 버그입니다. 확인란을 토글해도 채팅이 다시 연결되도록 버그를 수정하세요.</Trans>
 
 <Hint>
 
@@ -1788,13 +1788,13 @@ In this version, the `App` component passes a boolean prop instead of a function
 
 </Solution>
 
-#### Populate a chain of select boxes <Trans>선택 상자 체인 채우기</Trans> {/*populate-a-chain-of-select-boxes*/}
+#### Populate a chain of select boxes <Trans>셀렉트박스들 채우기</Trans> {/*populate-a-chain-of-select-boxes*/}
 
 In this example, there are two select boxes. One select box lets the user pick a planet. Another select box lets the user pick a place *on that planet.* The second box doesn't work yet. Your task is to make it show the places on the chosen planet.
-<Trans>이 예제에는 두 개의 선택 상자가 있습니다. 하나의 선택 상자에서 사용자는 행성을 선택할 수 있습니다. 다른 선택 상자는 사용자가 해당 행성의 장소를 선택할 수 있도록 합니다. 두 번째 상자는 아직 작동하지 않습니다. 여러분의 임무는 선택한 행성의 장소를 표시하도록 만드는 것입니다.</Trans>
+<Trans>이 예제에는 두 개의 셀렉트박스가 있습니다. 하나의 셀렉트박스에서 사용자는 행성을 선택할 수 있습니다. 다른 셀렉트박스는 사용자가 해당 행성의 장소를 선택할 수 있도록 합니다. 두 번째 상자는 아직 작동하지 않습니다. 여러분의 임무는 선택한 행성의 장소를 표시하도록 만드는 것입니다.</Trans>
 
 Look at how the first select box works. It populates the `planetList` state with the result from the `"/planets"` API call. The currently selected planet's ID is kept in the `planetId` state variable. You need to find where to add some additional code so that the `placeList` state variable is populated with the result of the `"/planets/" + planetId + "/places"` API call.
-<Trans>첫 번째 선택 상자의 작동 방식을 살펴보세요. 이 선택 상자는 "/planets" API 호출의 결과로 `planetList` state를 채웁니다. 현재 선택된 행성의 ID는 `planetId` state 변수에 보관됩니다. `placeList` state 변수가 "/planets/" + planetId + "/places" API 호출의 결과로 채워지도록 몇 가지 추가 코드를 추가할 위치를 찾아야 합니다.</Trans>
+<Trans>첫 번째 셀렉트박스의 작동 방식을 살펴보세요. 이 셀렉트박스는 `/planets` API 호출의 결과로 `planetList` state를 채웁니다. 현재 선택된 행성의 ID는 `planetId` state 변수에 보관됩니다. `placeList` state 변수가 `"/planets/" + planetId + "/places"` API 호출의 결과로 채워지도록 몇 가지 추가 코드를 추가할 위치를 찾아야 합니다.</Trans>
 
 If you implement this right, selecting a planet should populate the place list. Changing a planet should change the place list.
 <Trans>이 기능을 구현하면 행성을 선택하면 장소 목록이 채워집니다. 행성을 변경하면 장소 목록이 변경되어야 합니다.</Trans>
@@ -1955,8 +1955,8 @@ There are two independent synchronization processes:
 - The second select box is synchronized to the remote list of places for the current `planetId`.
 
 <TransBlock>
-- 첫 번째 선택 상자는 원격 행성 목록에 동기화됩니다.
-- 두 번째 선택 상자는 현재 `planetId`에 대한 원격 장소 목록과 동기화됩니다.
+- 첫 번째 셀렉트박스는 원격 행성 목록에 동기화됩니다.
+- 두 번째 셀렉트박스는 현재 `planetId`에 대한 원격 장소 목록과 동기화됩니다.
 </TransBlock>
 
 This is why it makes sense to describe them as two separate Effects. Here's an example of how you could do this:

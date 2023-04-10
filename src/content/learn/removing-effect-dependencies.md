@@ -523,7 +523,7 @@ This is a good example of [fetching data in an Effect.](/learn/you-might-not-nee
 <Trans>[Effect에서 데이터를 페칭하는](/learn/you-might-not-need-an-effect#fetching-data) 좋은 예시입니다. `country` props에 따라 `cities` state를 네트워크와 동기화하고 있습니다. `ShippingForm`이 표시되는 즉시 그리고 `country`가 변경될 때마다 (어떤 상호작용이 원인이든 상관없이) 데이터를 가져와야 하므로 이벤트 핸들러에서는 이 작업을 수행할 수 없습니다.</Trans>
 
 Now let's say you're adding a second select box for city areas, which should fetch the `areas` for the currently selected `city`. You might start by adding a second `fetch` call for the list of areas inside the same Effect:
-<Trans>이제 도시 지역에 대한 두 번째 선택 상자를 추가하여 현재 선택된 `city`의 `areas`을 페치한다고 가정해 보겠습니다. 동일한 Effect 내에 지역 목록에 대한 두 번째 `fetch` 호출을 추가하는 것으로 시작할 수 있습니다:</Trans>
+<Trans>이제 도시 지역에 대한 두 번째 셀렉트박스를 추가하여 현재 선택된 `city`의 `areas`을 페치한다고 가정해 보겠습니다. 동일한 Effect 내에 지역 목록에 대한 두 번째 `fetch` 호출을 추가하는 것으로 시작할 수 있습니다:</Trans>
 
 ```js {15-24,28}
 function ShippingForm({ country }) {
@@ -1372,13 +1372,13 @@ Instead of reading `count` inside the Effect, you pass a `c => c + 1` instructio
 
 </Solution>
 
-#### Fix a retriggering animation<Trans>애니메이션을 다시 트리거하는 현상 고치기</Trans> {/*fix-a-retriggering-animation*/}
+#### Fix a retriggering animation<Trans>애니메이션을 다시 촉발하는 현상 고치기</Trans> {/*fix-a-retriggering-animation*/}
 
 In this example, when you press "Show", a welcome message fades in. The animation takes a second. When you press "Remove", the welcome message immediately disappears. The logic for the fade-in animation is implemented in the `animation.js` file as plain JavaScript [animation loop.](https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame) You don't need to change that logic. You can treat it as a third-party library. Your Effect creates an instance of `FadeInAnimation` for the DOM node, and then calls `start(duration)` or `stop()` to control the animation. The `duration` is controlled by a slider. Adjust the slider and see how the animation changes.
 <Trans>이 예에서는 'Show'를 누르면 환영 메시지가 페이드인 합니다. 애니메이션은 1초 정도 걸립니다. "Remove"를 누르면 환영 메시지가 즉시 사라집니다. 페이드인 애니메이션의 로직은 animation.js 파일에서 일반 JavaScript 애니메이션 루프로 구현됩니다. 이 로직을 변경할 필요는 없습니다. 서드파티 라이브러리로 처리하면 됩니다. Effect는 DOM 노드에 대한 FadeInAnimation 인스턴스를 생성한 다음 start(duration) 또는 stop()을 호출하여 애니메이션을 제어합니다. duration은 슬라이더로 제어합니다. 슬라이더를 조정하여 애니메이션이 어떻게 변하는지 확인하세요.</Trans>
 
 This code already works, but there is something you want to change. Currently, when you move the slider that controls the `duration` state variable, it retriggers the animation. Change the behavior so that the Effect does not "react" to the `duration` variable. When you press "Show", the Effect should use the current `duration` on the slider. However, moving the slider itself should not by itself retrigger the animation.
-<Trans>이 코드는 이미 작동하지만 변경하고 싶은 부분이 있습니다. 현재 duration state 변수를 제어하는 슬라이더를 움직이면 애니메이션이 다시 트리거됩니다. Effect가 duration 변수에 "반응"하지 않도록 동작을 변경하세요. "Show"를 누르면 Effect는 슬라이더의 현재 duration을 사용해야 합니다. 그러나 슬라이더를 움직이는 것만으로 애니메이션이 다시 트리거되어서는 안 됩니다.</Trans>
+<Trans>이 코드는 이미 작동하지만 변경하고 싶은 부분이 있습니다. 현재 duration state 변수를 제어하는 슬라이더를 움직이면 애니메이션이 다시 촉발됩니다. Effect가 duration 변수에 "반응"하지 않도록 동작을 변경하세요. "Show"를 누르면 Effect는 슬라이더의 현재 duration을 사용해야 합니다. 그러나 슬라이더를 움직이는 것만으로 애니메이션이 다시 촉발되어서는 안 됩니다.</Trans>
 
 <Hint>
 
@@ -1637,7 +1637,7 @@ html, body { min-height: 300px; }
 </Sandpack>
 
 Effect Events like `onAppear` are not reactive, so you can read `duration` inside without retriggering the animation.
-<Trans>`onAppear`와 같은 Effect 이벤트는 반응형 이벤트가 아니므로 애니메이션을 다시 트리거하지 않고도 내부의 `duration`을 읽을 수 있습니다.</Trans>
+<Trans>`onAppear`와 같은 Effect 이벤트는 반응형 이벤트가 아니므로 애니메이션을 다시 촉발시키지 않고도 내부의 `duration`을 읽을 수 있습니다.</Trans>
 
 </Solution>
 
@@ -1955,7 +1955,7 @@ Don't change any code in `chat.js`. Other than that, you can change any code as 
 <Hint>
 
 You're passing down two functions: `onMessage` and `createConnection`. Both of them are created from scratch every time `App` re-renders. They are considered to be new values every time, which is why they re-trigger your Effect.
-<Trans>두 개의 함수를 전달하고 있습니다: `onMessage`와 `createConnection`입니다. 이 두 함수는 `App`이 다시 렌더링할 때마다 처음부터 새로 생성됩니다. 매번 새로운 값으로 간주되기 때문에 Effect를 다시 트리거합니다.</Trans>
+<Trans>두 개의 함수를 전달하고 있습니다: `onMessage`와 `createConnection`입니다. 이 두 함수는 `App`이 다시 렌더링할 때마다 처음부터 새로 생성됩니다. 매번 새로운 값으로 간주되기 때문에 Effect를 다시 촉발시킵니다.</Trans>
 
 One of these functions is an event handler. Do you know some way to call an event handler an Effect without "reacting" to the new values of the event handler function? That would come in handy!
 <Trans>이러한 함수 중 하나가 이벤트 핸들러입니다. 이벤트 핸들러 함수의 새 값에 '반응'하지 않고 이벤트 핸들러를 Effect로 호출하는 방법을 알고 계신가요? 유용할 것 같습니다!</Trans>
@@ -2199,7 +2199,7 @@ Unlike the `onMessage` prop, the `onReceiveMessage` Effect Event is not reactive
 <Trans>`onMessage` 프로퍼티와 달리 `onReceiveMessage` Effect 이벤트는 반응하지 않습니다. 그렇기 때문에 Effect의 의존성이 될 필요가 없습니다. 따라서 `onMessage`를 변경해도 채팅이 다시 연결되지 않습니다.</Trans>
 
 You can't do the same with `createConnection` because it *should* be reactive. You *want* the Effect to re-trigger if the user switches between an encrypted and an unencryption connection, or if the user switches the current room. However, because `createConnection` is a function, you can't check whether the information it reads has *actually* changed or not. To solve this, instead of passing `createConnection` down from the `App` component, pass the raw `roomId` and `isEncrypted` values:
-<Trans>반응형이어야 하기 때문에 'createConnection'으로는 동일한 작업을 수행할 수 없습니다. 사용자가 암호화 연결과 비암호화 연결 사이를 전환하거나 사용자가 현재 방을 전환하면 Effect가 다시 트리거되기를 원합니다. 하지만 `createConnection`은 함수이기 때문에 이 함수가 읽는 정보가 실제로 변경되었는지 여부를 확인할 수 없습니다. 이 문제를 해결하려면 `App` 컴포넌트에서 `createConnection`을 전달하는 대신 primitive 값인 `roomId` 및 `isEncrypted`를 전달하세요:</Trans>
+<Trans>반응형이어야 하기 때문에 'createConnection'으로는 동일한 작업을 수행할 수 없습니다. 사용자가 암호화 연결과 비암호화 연결 사이를 전환하거나 사용자가 현재 방을 전환하면 Effect가 다시 촉발되기를 원합니다. 하지만 `createConnection`은 함수이기 때문에 이 함수가 읽는 정보가 실제로 변경되었는지 여부를 확인할 수 없습니다. 이 문제를 해결하려면 `App` 컴포넌트에서 `createConnection`을 전달하는 대신 primitive 값인 `roomId` 및 `isEncrypted`를 전달하세요:</Trans>
 
 ```js {2-3}
       <ChatRoom

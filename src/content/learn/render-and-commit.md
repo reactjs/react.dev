@@ -7,7 +7,7 @@ translators: [박문하, 정재남]
 <Intro>
 
 Before your components are displayed on screen, they must be rendered by React. Understanding the steps in this process will help you think about how your code executes and explain its behavior.
-<Trans>컴포넌트를 화면에 표시하기 이전에 React에서 렌더링을 해야 합니다. 해당 과정의 단계를 이해하면 코드가 어떻게 실행되는지 이해할 수 있고 리액트 렌더링 동작에 관해 설명하는데 도움이 됩니다.</Trans>
+<Trans>컴포넌트를 화면에 표시하기 이전에 React에서 렌더링을 해야 합니다. 해당 과정의 단계를 이해하면 코드가 어떻게 실행되는지 이해할 수 있고 React 렌더링 동작에 관해 설명하는데 도움이 됩니다.</Trans>
 
 </Intro>
 
@@ -62,7 +62,7 @@ There are two reasons for a component to render:
 ### Initial render<Trans>첫 렌더링</Trans> {/*initial-render*/}
 
 When your app starts, you need to trigger the initial render. Frameworks and sandboxes sometimes hide this code, but it's done by calling [`createRoot`](/reference/react-dom/client/createRoot) with the target DOM node, and then calling its `render` method with your component:
-<Trans>앱을 시작하기 위해서는 첫 렌더링을 촉발시켜야 합니다. 프레임워크와 샌드박스가 때때로 코드를 숨기지만, 대상 DOM 노드로 [`createRoot`](/reference/react-dom/client/createRoot)를 호출한 다음 구성 요소로 `render` 메서드를 호출하면 됩니다.</Trans>
+<Trans>앱을 시작하기 위해서는 첫 렌더링을 촉발시켜야 합니다. 프레임워크와 샌드박스가 때때로 코드를 숨기지만, 대상 DOM 노드로 [`createRoot`](/reference/react-dom/client/createRoot)를 호출한 다음 컴포넌트로 `render` 메서드를 호출하면 됩니다.</Trans>
 
 <Sandpack>
 
@@ -93,7 +93,7 @@ Try commenting out the `root.render()` call and see the component disappear!
 ### Re-renders when state updates<Trans>state가 업데이트되면 리렌더링합니다</Trans> {/*re-renders-when-state-updates*/}
 
 Once the component has been initially rendered, you can trigger further renders by updating its state with the [`set` function.](/reference/react/useState#setstate) Updating your component's state automatically queues a render. (You can imagine these as a restaurant guest ordering tea, dessert, and all sorts of things after putting in their first order, depending on the state of their thirst or hunger.)
-<Trans>컴포넌트가 처음 렌더링되면 [`set` (설정자) 함수](/reference/react/useState#setstate)로 state를 업데이트하여 추가 렌더링을 트리거 시킬 수 있습니다. 컴포넌트의 state를 업데이트하면 자동으로 렌더링이 대기열에 추가됩니다. (이것은 식당에서 손님이 첫 주문 이후에 갈증이 나거나 배고파져서 차, 디저트 등을 추가로 주문하는 모습으로 상상해 볼 수 있습니다.)</Trans>
+<Trans>컴포넌트가 처음 렌더링되면 [`set` (설정자) 함수](/reference/react/useState#setstate)로 state를 업데이트하여 추가 렌더링을 촉발시킬 수 있습니다. 컴포넌트의 state를 업데이트하면 자동으로 렌더링이 대기열에 추가됩니다. (이것은 식당에서 손님이 첫 주문 이후에 갈증이 나거나 배고파져서 차, 디저트 등을 추가로 주문하는 모습으로 상상해 볼 수 있습니다.)</Trans>
 
 <IllustrationBlock sequential>
   <Illustration caption="State update..." alt="React as a server in a restaurant, serving a Card UI to the user, represented as a patron with a cursor for their head. They patron expresses they want a pink card, not a black one!" src="/images/docs/illustrations/i_rerender1.png" />
@@ -111,7 +111,7 @@ After you trigger a render, React calls your components to figure out what to di
 
 <TransBlock>
 - **첫 렌더링에서** React는 루트 컴포넌트를 호출합니다.
-- **이후 렌더링에서** React는 state 업데이트가 일어나 렌더링을 트리거한 함수 컴포넌트를 호출합니다.
+- **이후 렌더링에서** React는 state 업데이트에 의해 렌더링이 발동된 함수 컴포넌트를 호출합니다.
 </TransBlock>
 
 This process is recursive: if the updated component returns some other component, React will render _that_ component next, and if that component also returns something, it will render _that_ component next, and so on. The process will continue until there are no more nested components and React knows exactly what should be displayed on screen.
@@ -267,7 +267,7 @@ After rendering is done and React updated the DOM, the browser will repaint the 
 
 <TransBlock>
 - React 앱의 모든 화면 업데이트는 세 단계로 이루어집니다.
-    1. 트리거
+    1. 촉발
     2. 렌더링
     3. 커밋
 - Strict Mode를 사용하여 컴포넌트에서 실수를 찾을 수 있습니다.

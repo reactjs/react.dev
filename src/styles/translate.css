@@ -48,11 +48,13 @@ nav[role='navigation'] .translate::before {
   left: 3px;
   border-left-width: 3px;
 }
+
 .challenge-tab .translate {
   display: block;
   margin-top: -7px;
   margin-left: 1px;
 }
+.inline > .translate::before,
 .challenge-tab .translate::before {
   border-left-width: 3px;
   top: 5px;

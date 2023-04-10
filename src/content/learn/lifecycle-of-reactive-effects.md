@@ -163,7 +163,7 @@ At this point, you want React to do two things:
 
 <TransBlock>
 1. 이전 `roomId`와의 동기화 중지 (`"general"` 룸에서 연결 해제)
-2. 새 `roomId`와 동기화 시작 (`"travel"` 객실과 연결)
+2. 새 `roomId`와 동기화 시작 (`"travel"` 룸과 연결)
 </TransBlock>
 
 **Luckily, you've already taught React how to do both of these things!** Your Effect's body specifies how to start synchronizing, and your cleanup function specifies how to stop synchronizing. All that React needs to do now is to call them in the correct order and with the correct props and state. Let's see how exactly that happens.
@@ -265,7 +265,7 @@ This code's structure might inspire you to see what happened as a sequence of no
 <TransBlock>
 1. Effect가 `"general"` 방에 연결됨 (연결이 끊어질 때까지)
 2. Effect가 `"travel"` 방에 연결됨 (연결이 끊어질 때까지)
-3. Effect가 ``"music"` 방에 연결됨 (연결이 끊어질 때까지)
+3. Effect가 `"music"` 방에 연결됨 (연결이 끊어질 때까지)
 </TransBlock>
 
 Previously, you were thinking from the component's perspective. When you looked from the component's perspective, it was tempting to think of Effects as "callbacks" or "lifecycle events" that fire at a specific time like "after a render" or "before unmount". This way of thinking gets complicated very fast, so it's best to avoid.
@@ -358,7 +358,7 @@ The first two logs are development-only. In development, React always remounts e
 
 **React verifies that your Effect can re-synchronize by forcing it to do that immediately in development.** This might remind you of opening a door and closing it an extra time to check if the door lock works. React starts and stops your Effect one extra time in development to check [you've implemented its cleanup well.](/learn/synchronizing-with-effects#how-to-handle-the-effect-firing-twice-in-development)
 
-<Trans>**개발 모드에서 React는 즉시 강제로 동기화를 수행하여 Effect가 다시 동기화될 수 있는지 확인합니다. 도어락이 작동하는지 확인하기 위해 문을 열었다가 한 번 더 닫는 것과 비슷합니다. React는 개발 중에 Effect를 한 번 더 시작하고 중지하여 [클린업 함수를 잘 구현했는지](/learn/synchronizing-with-effects#how-to-handle-the-effect-firing-twice-in-development) 확인합니다.</Trans>
+<Trans>**개발 모드에서 React는 즉시 강제로 동기화를 수행하여 Effect가 다시 동기화될 수 있는지 확인합니다.** 도어락이 작동하는지 확인하기 위해 문을 열었다가 한 번 더 닫는 것과 비슷합니다. React는 개발 중에 Effect를 한 번 더 시작하고 중지하여 [클린업 함수를 잘 구현했는지](/learn/synchronizing-with-effects#how-to-handle-the-effect-firing-twice-in-development) 확인합니다.</Trans>
 
 The main reason your Effect will re-synchronize in practice is if some data it uses has changed. In the sandbox above, change the selected chat room. Notice how, when the `roomId` changes, your Effect re-synchronizes.
 <Trans>실제로 Effect가 다시 동기화되는 주된 이유는 Effect가 사용하는 일부 데이터가 변경된 경우입니다. 위의 샌드박스에서 선택한 채팅방을 변경해 보세요. `roomId`가 변경되면 Effect가 다시 동기화되는 것을 확인할 수 있습니다.</Trans>
@@ -704,7 +704,7 @@ Mutable values (including global variables) aren't reactive.
 <Trans>**[`location.pathname`](https://developer.mozilla.org/en-US/docs/Web/API/Location/pathname)과 같은 변이 가능한 값은 의존성이 될 수 없습니다.** 이 값은 변이 가능하므로 React 렌더링 데이터 흐름 외부에서 언제든지 바뀔 수 있습니다. 이 값을 변경해도 컴포넌트가 다시 렌더링되지 않습니다. 따라서 이를 의존성에 지정하더라도 React는 이 값이 변경될 때 Effect를 다시 동기화해야 하는지 알 수 없습니다. 또한 렌더링 도중(의존성을 계산할 때) 변경 가능한 데이터를 읽는 것은 [렌더링의 순수성](https://react.dev/learn/keeping-components-pure)을 깨뜨리기 때문에 React의 규칙을 위반합니다. 대신, [`useSyncExternalStore`](/learn/you-might-not-need-an-effect#subscribing-to-an-external-store)를 사용하여 외부 변경 가능한 값을 읽고 구독해야 합니다.</Trans>
 
 **A mutable value like [`ref.current`](/reference/react/useRef#reference) or things you read from it also can't be a dependency.** The ref object returned by `useRef` itself can be a dependency, but its `current` property is intentionally mutable. It lets you [keep track of something without triggering a re-render.](/learn/referencing-values-with-refs) But since changing it doesn't trigger a re-render, it's not a reactive value, and React won't know to re-run your Effect when it changes.
-<Trans>[`ref.current`](/reference/react/useRef#reference)와 같이 변이 가능한 값 또는 이 값으로부터 읽은 것 역시 의존성이 될 수 없습니다. `useRef`가 반환하는 ref 객체 자체는 의존성이 될 수 있지만, `current` 프로퍼티는 의도적으로 변이 가능합니다. 이를 통해 [리렌더링을 촉발하지 않고도 무언가를 추적](/learn/referencing-values-with-refs)할 수 있습니다. 하지만 이를 변경하더라도 리렌더링을 촉발하지는 않기 때문에, 이는 반응형 값이 아니며, React는 이 값이 변경될 때 Effect를 다시 실행해야 할지 알 수 없습니다.</Trans>
+<Trans>**[`ref.current`](/reference/react/useRef#reference)와 같이 변이 가능한 값 또는 이 값으로부터 읽은 것 역시 의존성이 될 수 없습니다.** `useRef`가 반환하는 ref 객체 자체는 의존성이 될 수 있지만, `current` 프로퍼티는 의도적으로 변이 가능합니다. 이를 통해 [리렌더링을 촉발하지 않고도 무언가를 추적](/learn/referencing-values-with-refs)할 수 있습니다. 하지만 이를 변경하더라도 리렌더링을 촉발하지는 않기 때문에, 이는 반응형 값이 아니며, React는 이 값이 변경될 때 Effect를 다시 실행해야 할지 알 수 없습니다.</Trans>
 
 As you'll learn below on this page, a linter will check for these issues automatically.
 <Trans>이 페이지 아래에서 배우게 되겠지만, 린터는 이러한 문제를 자동으로 확인해 줍니다.</Trans>
@@ -870,7 +870,7 @@ function ChatRoom() {
 <Trans>**Effect가 독립적인 동기화 프로세스를 나타내는지 확인하세요.** Effect가 아무것도 동기화하지 않는다면 [불필요한 것일 수 있습니다.](/learn/you-might-not-need-an-effect) 여러 개의 독립적인 것을 동기화하는 경우 [분할하세요.](#each-effect-represents-a-separate-synchronization-process)</Trans>
 
 * **If you want to read the latest value of props or state without "reacting" to it and re-synchronizing the Effect,** you can split your Effect into a reactive part (which you'll keep in the Effect) and a non-reactive part (which you'll extract into something called an _Effect Event_). [Read about separating Events from Effects.](/learn/separating-events-from-effects)
-<Trans>**'반응'하지 않고 Effect를 재동기화하지 않으면서** props나 state의 최신 값을 읽으려면, Effect를 반응하는 부분(Effect에 유지)과 반응하지 않는 부분(*Effect 이벤트*라는 것으로 추출)으로 분리할 수 있습니다. [이벤트와 Effect를 분리하는 방법에 대해 읽어보세요.](/learn/separating-events-from-effects)</Trans>
+<Trans>**'반응'하지 않고 Effect를 재동기화하지 않으면서 props나 state의 최신 값을 읽으려면,** Effect를 반응하는 부분(Effect에 유지)과 반응하지 않는 부분(*Effect 이벤트*라는 것으로 추출)으로 분리할 수 있습니다. [이벤트와 Effect를 분리하는 방법에 대해 읽어보세요.](/learn/separating-events-from-effects)</Trans>
 
 * **Avoid relying on objects and functions as dependencies.** If you create objects and functions during rendering and then read them from an Effect, they will be different on every render. This will cause your Effect to re-synchronize every time. [Read more about removing unnecessary dependencies from Effects.](/learn/removing-effect-dependencies)
 <Trans>**객체와 함수를 의존성으로 사용하지 마세요.** 렌더링 중에 오브젝트와 함수를 생성한 다음 Effect에서 읽으면 렌더링할 때마다 오브젝트와 함수가 달라집니다. 그러면 매번 Effect를 다시 동기화해야 합니다. [Effect에서 불필요한 의존성을 제거하는 방법에 대해 읽어보세요.](/learn/removing-effect-dependencies)</Trans>
@@ -878,7 +878,7 @@ function ChatRoom() {
 <Pitfall>
 
 The linter is your friend, but its powers are limited. The linter only knows when the dependencies are *wrong*. It doesn't know *the best* way to solve each case. If the linter suggests a dependency, but adding it causes a loop, it doesn't mean the linter should be ignored. You need to change the code inside (or outside) the Effect so that that value isn't reactive and doesn't *need* to be a dependency.
-<Trans>린터는 여러분의 친구이지만 그 힘은 제한되어 있습니다. 린터는 의존성이 잘못되었을 때만 알 수 있습니다. 각 사례를 해결하는 최선의 방법은 알지 못합니다. 만약 린터가 의존성을 제안하지만 이를 추가하면 루프가 발생한다고 해서 링터를 무시해야 한다는 의미는 아닙니다. 해당 값이 반응적이지 않고 의존성이 될 필요가 없도록 Effect 내부(또는 외부)의 코드를 변경해야 한다는 뜻입니다.</Trans>
+<Trans>린터는 여러분의 친구이지만 그 힘은 제한되어 있습니다. 린터는 의존성이 잘못되었을 때만 알 수 있습니다. 각 사례를 해결하는 최선의 방법은 알지 못합니다. 만약 린터가 의존성을 제안하지만 이를 추가하면 루프가 발생한다고 해서 린터를 무시해야 한다는 의미는 아닙니다. 해당 값이 반응적이지 않고 의존성이 될 필요가 없도록 Effect 내부(또는 외부)의 코드를 변경해야 한다는 뜻입니다.</Trans>
 
 If you have an existing codebase, you might have some Effects that suppress the linter like this:
 <Trans>기존 코드베이스가 있는 경우 이와 같이 린터를 억제하는 Effect가 있을 수 있습니다:</Trans>
@@ -1087,10 +1087,10 @@ button { margin-left: 10px; }
 #### Switch synchronization on and off <Trans>동기화를 껐다 켜보세요.</Trans> {/*switch-synchronization-on-and-off*/}
 
 In this example, an Effect subscribes to the window [`pointermove`](https://developer.mozilla.org/en-US/docs/Web/API/Element/pointermove_event) event to move a pink dot on the screen. Try hovering over the preview area (or touching the screen if you're on a mobile device), and see how the pink dot follows your movement.
-<Trans>이번 예제에서는 Effect가 윈도우의 [`poinermove`](https://developer.mozilla.org/en-US/docs/Web/API/Element/pointermove_event) 이벤트를 구독하여 화면에서 분홍색 점을 이동합니다. 미리 보기 영역 위로 마우스를 가져가서(또는 모바일 장치에서 화면을 터치하여) 분홍색 점이 어떻게 움직이는지 확인해 보세요.</Trans>
+<Trans>이번 예제에서는 Effect가 윈도우의 [`pointermove`](https://developer.mozilla.org/en-US/docs/Web/API/Element/pointermove_event) 이벤트를 구독하여 화면에서 분홍색 점을 이동합니다. 미리 보기 영역 위로 마우스를 가져가서(또는 모바일 장치에서 화면을 터치하여) 분홍색 점이 어떻게 움직이는지 확인해 보세요.</Trans>
 
 There is also a checkbox. Ticking the checkbox toggles the `canMove` state variable, but this state variable is not used anywhere in the code. Your task is to change the code so that when `canMove` is `false` (the checkbox is ticked off), the dot should stop moving. After you toggle the checkbox back on (and set `canMove` to `true`), the box should follow the movement again. In other words, whether the dot can move or not should stay synchronized to whether the checkbox is checked.
-<Trans>체크박스도 있습니다. 확인란을 선택하면 `canMove` state 변수가 토글되지만, 이 state 변수는 코드의 어느 곳에서도 사용되지 않습니다. 여러분의 임무는 `canMove`가 거짓일 때(체크박스가 체크된 상태) 점의 이동이 중지되도록 코드를 변경하는 것입니다. 확인란을 다시 켜고 `canMove`를 true로 설정하면 상자가 다시 움직여야 합니다. 즉, 도트가 움직일 수 있는지 여부는 확인란의 체크 여부와 동기화를 유지해야 합니다.</Trans>
+<Trans>체크박스도 있습니다. 확인란을 선택하면 `canMove` state 변수가 토글되지만, 이 state 변수는 코드의 어느 곳에서도 사용되지 않습니다. 여러분의 임무는 `canMove`가 거짓일 때 (체크박스가 체크된 상태), 점의 이동이 중지되도록 코드를 변경하는 것입니다. 확인란을 다시 켜고 (`canMove`를 `true`로 설정하면), 상자가 다시 움직여야 합니다. 즉, 도트가 움직일 수 있는지 여부는 확인란의 체크 여부와 동기화를 유지해야 합니다.</Trans>
 
 <Hint>
 
@@ -1154,7 +1154,7 @@ body {
 <Solution>
 
 One solution is to wrap the `setPosition` call into an `if (canMove) { ... }` condition:
-<Trans>한 가지 해결책은 `setPosition` 호출을 `if (canMove) { ... }`</Trans>
+<Trans>한 가지 해결책은 `setPosition` 호출을 `if (canMove) { ... }` 조건으로 감싸는 것입니다.</Trans>
 
 <Sandpack>
 
@@ -1268,7 +1268,7 @@ body {
 </Sandpack>
 
 In both of these cases, `canMove` is a reactive variable that you read inside the Effect. This is why it must be specified in the list of Effect dependencies. This ensures that the Effect re-synchronizes after every change to its value.
-<Trans>이 두 경우 모두 `canMove`는 Effect 내부에서 읽는 반응형 변수입니다. 그렇기 때문에 이 변수를 Effect 의존성 목록에 지정해야 합니다. 이렇게 하면 값이 변경될 때마다 Effect가 다시 동기화됩니다.</Trans>
+<Trans>이 두 경우 모두 `canMove`는 Effect 내부에서 읽는 반응형 변수입니다. 이것이 Effect 의존성 목록에 지정되어야 하는 이유입니다. 이렇게 하면 값이 변경될 때마다 Effect가 다시 동기화됩니다.</Trans>
 
 </Solution>
 
@@ -1413,7 +1413,7 @@ body {
 </Sandpack>
 
 This solution works, but it's not ideal. If you put `console.log('Resubscribing')` inside the Effect, you'll notice that it resubscribes after every re-render. Resubscribing is fast, but it would still be nice to avoid doing it so often.
-<Trans>이 해결책은 Effect가 있지만 이상적이지는 않습니다. Effect 안에 `console.log('재구독')`을 넣으면 렌더링할 때마다 재구독하는 것을 확인할 수 있습니다. 재구독은 빠르지만, 너무 자주 재구독하는 것은 피하는 것이 좋습니다.</Trans>
+<Trans>이 솔루션은 효과가 있지만 이상적이지는 않습니다. Effect 안에 `console.log('재구독')`을 넣으면 렌더링할 때마다 재구독하는 것을 확인할 수 있습니다. 재구독은 빠르지만, 너무 자주 재구독하는 것은 피하는 것이 좋습니다.</Trans>
 
 A better fix would be to move the `handleMove` function *inside* the Effect. Then `handleMove` won't be a reactive value, and so your Effect won't depend on a function. Instead, it will need to depend on `canMove` which your code now reads from inside the Effect. This matches the behavior you wanted, since your Effect will now stay synchronized with the value of `canMove`:
 <Trans>더 나은 수정 방법은 `handleMove` 함수를 Effect 내부로 이동하는 것입니다. 그러면 `handleMove`가 반응형 값이 아니므로 Effect가 함수에 의존하지 않습니다. 대신, 이제 코드가 Effect 내부에서 읽는 `canMove`에 의존해야 합니다. 이제 Effect가 `canMove` 값과 동기화를 유지하므로 원하는 동작과 일치합니다:</Trans>
@@ -1477,7 +1477,7 @@ Try adding `console.log('Resubscribing')` inside the Effect body and notice that
 <Trans>Effect 본문 안에 `console.log('재구독')`을 추가하면 이제 체크박스를 토글하거나(`canMove` 변경) 코드를 편집할 때만 재구독되는 것을 확인할 수 있습니다. 이는 항상 다시 구독하던 이전 접근 방식보다 더 나은 방법입니다.</Trans>
 
 You'll learn a more general approach to this type of problem in [Separating Events from Effects.](/learn/separating-events-from-effects)
-<Trans>이러한 유형의 문제에 대한 보다 일반적인 접근 방식은 [이벤트와 Effect 분리하기](/learn/separating-events-from-effects)에서 배울 수 있습니다.</Trans>
+<Trans>이러한 유형의 문제에 대한 보다 일반적인 접근 방식은 [이벤트와 Effects 분리하기](/learn/separating-events-from-effects)에서 배울 수 있습니다.</Trans>
 </Solution>
 
 #### Fix a connection switch <Trans>연결 스위치 조정</Trans> {/*fix-a-connection-switch*/}
@@ -1794,7 +1794,7 @@ In this example, there are two select boxes. One select box lets the user pick a
 <Trans>이 예제에는 두 개의 셀렉트박스가 있습니다. 하나의 셀렉트박스에서 사용자는 행성을 선택할 수 있습니다. 다른 셀렉트박스는 사용자가 해당 행성의 장소를 선택할 수 있도록 합니다. 두 번째 상자는 아직 작동하지 않습니다. 여러분의 임무는 선택한 행성의 장소를 표시하도록 만드는 것입니다.</Trans>
 
 Look at how the first select box works. It populates the `planetList` state with the result from the `"/planets"` API call. The currently selected planet's ID is kept in the `planetId` state variable. You need to find where to add some additional code so that the `placeList` state variable is populated with the result of the `"/planets/" + planetId + "/places"` API call.
-<Trans>첫 번째 셀렉트박스의 작동 방식을 살펴보세요. 이 셀렉트박스는 `/planets` API 호출의 결과로 `planetList` state를 채웁니다. 현재 선택된 행성의 ID는 `planetId` state 변수에 보관됩니다. `placeList` state 변수가 `"/planets/" + planetId + "/places"` API 호출의 결과로 채워지도록 몇 가지 추가 코드를 추가할 위치를 찾아야 합니다.</Trans>
+<Trans>첫 번째 셀렉트박스의 작동 방식을 살펴보세요. 이 셀렉트박스는 `"/planets"` API 호출의 결과로 `planetList` state를 채웁니다. 현재 선택된 행성의 ID는 `planetId` state 변수에 보관됩니다. `placeList` state 변수가 `"/planets/" + planetId + "/places"` API 호출의 결과로 채워지도록 몇 가지 추가 코드를 추가할 위치를 찾아야 합니다.</Trans>
 
 If you implement this right, selecting a planet should populate the place list. Changing a planet should change the place list.
 <Trans>이 기능을 구현하면 행성을 선택하면 장소 목록이 채워집니다. 행성을 변경하면 장소 목록이 변경되어야 합니다.</Trans>
@@ -2122,7 +2122,7 @@ label { display: block; margin-bottom: 10px; }
 </Sandpack>
 
 This code is a bit repetitive. However, that's not a good reason to combine it into a single Effect! If you did this, you'd have to combine both Effect's dependencies into one list, and then changing the planet would refetch the list of all planets. Effects are not a tool for code reuse.
-<Trans> 이 코드는 약간 반복적입니다. 하지만 그렇다고 해서 이를 하나의 Effect로 결합해야 하는 이유는 없습니다! 이렇게 하면 두 Effect의 의존성을 하나의 목록으로 결합한 다음 행성을 변경하면 모든 행성 목록을 다시 가져와야 합니다. Effect는 코드 재사용을 위한 도구가 아닙니다.</Trans>
+<Trans> 이 코드는 약간 반복적입니다. 하지만 그렇다고 해서 이를 하나의 Effect로 결합해야 하는 이유는 없습니다! 이렇게 하면 두 Effect의 의존성을 하나의 목록으로 결합한 다음 행성을 변경하면 모든 행성 목록을 다시 가져와야 합니다. Effects는 코드 재사용을 위한 도구가 아닙니다.</Trans>
 
 Instead, to reduce repetition, you can extract some logic into a custom Hook like `useSelectOptions` below:
 <Trans>대신, 반복을 줄이기 위해 아래의 `useSelectOptions`와 같은 커스텀 훅에 일부 로직을 추출할 수 있습니다:</Trans>
@@ -2286,7 +2286,7 @@ label { display: block; margin-bottom: 10px; }
 </Sandpack>
 
 Check the `useSelectOptions.js` tab in the sandbox to see how it works. Ideally, most Effects in your application should eventually be replaced by custom Hooks, whether written by you or by the community. Custom Hooks hide the synchronization logic, so the calling component doesn't know about the Effect. As you keep working on your app, you'll develop a palette of Hooks to choose from, and eventually you won't need to write Effects in your components very often.
-<Trans>샌드박스에서 `useSelectOptions.js` 탭을 확인하여 작동 방식을 확인하세요. 이상적으로는 애플리케이션에 있는 대부분의 Effect는 사용자가 직접 작성했든 커뮤니티에서 작성했든 결국 커스텀 훅으로 대체되어야 합니다. 커스텀 훅은 동기화 로직을 숨기므로 호출하는 컴포넌트는 Effect에 대해 알지 못합니다. 앱을 계속 개발하다 보면 선택할 수 있는 훅 팔레트를 개발하게 될 것이고, 결국에는 컴포넌트에 Effect를 자주 작성할 필요가 없게 될 것입니다.</Trans>
+<Trans>샌드박스에서 `useSelectOptions.js` 탭을 확인하여 작동 방식을 확인하세요. 이상적으로는 애플리케이션에 있는 대부분의 Effects는 사용자가 직접 작성했든 커뮤니티에서 작성했든 결국 커스텀 훅으로 대체되어야 합니다. 커스텀 훅은 동기화 로직을 숨기므로 호출하는 컴포넌트는 Effect에 대해 알지 못합니다. 앱을 계속 개발하다 보면 선택할 수 있는 훅 팔레트를 개발하게 될 것이고, 결국에는 컴포넌트에 Effect를 자주 작성할 필요가 없게 될 것입니다.</Trans>
 
 </Solution>
 

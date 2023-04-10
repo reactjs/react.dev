@@ -89,10 +89,12 @@ nav[role='navigation'] .translate::before {
   cursor: pointer;
 }
 .translated-list summary::after {
-  content: ' [열기]';
+  content: '[open]';
+  margin-left: 6px;
+  font-size: 0.9em;
 }
 .translated-list[open] summary::after {
-  content: ' [닫기]';
+  content: '[close]';
 }
 
 .translated-list > ul {
@@ -100,10 +102,11 @@ nav[role='navigation'] .translate::before {
   top: 100%;
   left: 10px;
   width: calc(100% - 30px);
-  max-height: 230px;
+  max-height: 350px;
   padding: 15px 20px;
   z-index: 10;
-  box-shadow: rgba(100, 100, 111, 0.4) 0px 7px 29px 0px;
+  box-shadow: var(--docsearch-searchbox-shadow),
+    0px 7px 20px 0px rgba(100, 100, 111, 0.3);
   overflow-y: auto;
   list-style-type: '- ';
   padding-left: 30px;
@@ -115,4 +118,7 @@ nav[role='navigation'] .translate::before {
 }
 .translated-list li:first-of-type {
   margin-top: 0;
+}
+.translated-list a {
+  color: inherit !important;
 }

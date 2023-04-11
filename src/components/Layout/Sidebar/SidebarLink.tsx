@@ -21,7 +21,8 @@ interface SidebarLinkProps {
   isBreadcrumb?: boolean;
   hideArrow?: boolean;
   isPending: boolean;
-  handleClick: (href: string) => void;
+  handleClick: (href: string | undefined) => void;
+  isRoutesInSlug?: boolean;
 }
 
 export function SidebarLink({
@@ -35,6 +36,7 @@ export function SidebarLink({
   hideArrow,
   isPending,
   handleClick,
+  isRoutesInSlug = false,
 }: SidebarLinkProps) {
   const ref = useRef<HTMLAnchorElement>(null);
 
@@ -48,6 +50,23 @@ export function SidebarLink({
     }
   }, [ref, selected]);
 
+  const handleArrowClick = (
+    event: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ): void => {
+    if (isExpanded && isRoutesInSlug) {
+      event.preventDefault();
+      handleClick(undefined);
+    } else {
+      handleClick(href);
+    }
+  };
+
+  const handleTitleClick = (): void => {
+    if (!isRoutesInSlug) {
+      handleClick(href);
+    }
+  };
+
   let target = '';
   if (href.startsWith('https://')) {
     target = '_blank';
@@ -59,7 +78,7 @@ export function SidebarLink({
         title={title}
         target={target}
         aria-current={selected ? 'page' : undefined}
-        onClick={() => handleClick(href)}
+        onClick={handleTitleClick}
         className={cn(
           'p-2 pr-2 w-full rounded-none lg:rounded-r-2xl text-left hover:bg-gray-5 dark:hover:bg-gray-80 relative flex items-center justify-between',
           {
@@ -87,7 +106,10 @@ export function SidebarLink({
             className={cn('pr-1', {
               'text-link dark:text-link-dark': isExpanded,
               'text-tertiary dark:text-tertiary-dark': !isExpanded,
-            })}>
+            })}
+            onClick={(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) =>
+              handleArrowClick(e)
+            }>
             <IconNavArrow displayDirection={isExpanded ? 'down' : 'right'} />
           </span>
         )}

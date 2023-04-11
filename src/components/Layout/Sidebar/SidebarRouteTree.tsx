@@ -78,10 +78,12 @@ export function SidebarRouteTree({
   const slug = useRouter().asPath.split(/[\?\#]/)[0];
   const pendingRoute = usePendingRoute();
   const currentRoutes = routeTree.routes as RouteItem[];
-  const [openSidebarPath, setOpenSidebarPath] = useState<string>(slug);
+  const [openSidebarPath, setOpenSidebarPath] = useState<string | undefined>(
+    slug
+  );
 
-  const handleClick = (path: string): void => {
-    setOpenSidebarPath(path === openSidebarPath && openSidebarPath ? '' : path);
+  const handleClick = (path: string | undefined): void => {
+    setOpenSidebarPath(path === openSidebarPath ? undefined : path);
   };
 
   return (
@@ -111,6 +113,9 @@ export function SidebarRouteTree({
             const isExpanded =
               (isForceExpanded || isBreadcrumb || selected) &&
               openSidebarPath === path;
+            const isRoutesInSlug = routes.some(
+              (route) => route.path === slug || route.path === path
+            );
             listItem = (
               <li key={`${title}-${path}-${level}-heading`}>
                 <SidebarLink
@@ -125,6 +130,7 @@ export function SidebarRouteTree({
                   isBreadcrumb={isBreadcrumb}
                   hideArrow={isForceExpanded}
                   handleClick={handleClick}
+                  isRoutesInSlug={isRoutesInSlug}
                 />
                 <CollapseWrapper duration={250} isExpanded={isExpanded}>
                   <SidebarRouteTree

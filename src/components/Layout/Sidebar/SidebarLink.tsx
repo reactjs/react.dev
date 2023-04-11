@@ -18,7 +18,6 @@ interface SidebarLinkProps {
   wip: boolean | undefined;
   icon?: React.ReactNode;
   isExpanded?: boolean;
-  isBreadcrumb?: boolean;
   hideArrow?: boolean;
   isPending: boolean;
   handleClick: (href: string | undefined) => void;
@@ -32,7 +31,6 @@ export function SidebarLink({
   wip,
   level,
   isExpanded,
-  isBreadcrumb,
   hideArrow,
   isPending,
   handleClick,
@@ -56,8 +54,6 @@ export function SidebarLink({
     if (isExpanded && isRoutesInSlug) {
       event.preventDefault();
       handleClick(undefined);
-    } else {
-      handleClick(href);
     }
   };
 

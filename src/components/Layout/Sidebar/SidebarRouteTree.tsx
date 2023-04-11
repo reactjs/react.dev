@@ -113,9 +113,9 @@ export function SidebarRouteTree({
             const isExpanded =
               (isForceExpanded || isBreadcrumb || selected) &&
               openSidebarPath === path;
-            const isRoutesInSlug = routes.some(
-              (route) => route.path === slug || route.path === path
-            );
+            const isRoutesInSlug =
+              routes.some((route) => route.path === slug) &&
+              openSidebarPath === path;
             listItem = (
               <li key={`${title}-${path}-${level}-heading`}>
                 <SidebarLink
@@ -127,7 +127,6 @@ export function SidebarRouteTree({
                   title={title}
                   wip={wip}
                   isExpanded={isExpanded}
-                  isBreadcrumb={isBreadcrumb}
                   hideArrow={isForceExpanded}
                   handleClick={handleClick}
                   isRoutesInSlug={isRoutesInSlug}

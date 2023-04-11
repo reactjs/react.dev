@@ -118,6 +118,13 @@
     "description": "꿈도 많고 하고 싶은 것도 많은 개발자입니다.<br/>작고 소소하지만 꾸준한 성취를 쌓아가며 성장합니다.🌱"
   },
   {
+    "name": "방재정 ",
+    "photo": "/images/translators/_m_jaejeong.jpg",
+    "github": "bggbr",
+    "title": "소프트웨어 엔지니어",
+    "description": "개발 공부를 하며 작은 성공을 쌓아가는 것을 좋아합니다.<br/> 좋은 아이디어로 사람들에게 편리함을 주는 것이 목표입니다."
+  },
+  {
     "name": "테스트",
     "photo": "/images/team/gaearon.jpg",
     "github": "test",

@@ -838,7 +838,7 @@ Read [**Updating Arrays in State**](/learn/updating-arrays-in-state) to learn ho
 
 </LearnMore>
 
-## What's next? {/*whats-next*/}
+## What's next?<Trans>다음 단계</Trans> {/*whats-next*/}
 
 Head over to [Responding to Events](/learn/responding-to-events) to start reading this chapter page by page!
 <Trans>[이벤트에 응답하기](/learn/responding-to-events)로 이동하여 이 챕터를 한 페이지씩 읽어보세요!</Trans>

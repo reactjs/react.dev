@@ -109,7 +109,7 @@ React components are regular JavaScript functions, but **their names must start 
 <Trans>React 컴포넌트는 일반 JavaScript 함수이지만, **이름은 대문자로 시작해야 하며** 그렇지 않으면 작동하지 않습니다!</Trans>
 
 <Extra>
-#### 꼭 그렇지는 않습니다! {/*꼭-그렇지는-않습니다*/}
+#### 꼭 그렇지는 않습니다! -@정재남 {/*not_really*/}
 
 JSX 안에서는 반드시 대문자로 시작해야 하지만, 그밖의 상황에서는 무관합니다. [다양한 방법으로 컴포넌트 추가하기](/learn#add_component_in_various_ways)를 참고하세요.
 </Extra>
@@ -118,7 +118,7 @@ JSX 안에서는 반드시 대문자로 시작해야 하지만, 그밖의 상황
 ### Step 3: Add markup<Trans>마크업 추가하기</Trans> {/*step-3-add-markup*/}
 
 The component returns an `<img />` tag with `src` and `alt` attributes. `<img />` is written like HTML, but it is actually JavaScript under the hood! This syntax is called [JSX](/learn/writing-markup-with-jsx), and it lets you embed markup inside JavaScript.
-<Trans>이 컴포넌트는 `src` 및 `alt` 속성을 가진 `<img />` 태그를 반환합니다. `<img />` 는 HTML처럼 작성되었지만 실제로는 JavaScript입니다! 이 구문을 [JSX](https://beta.reactjs.org/learn/writing-markup-with-jsx)라고 하며, JavaScript 안에 마크업을 삽입할 수 있습니다.</Trans>
+<Trans>이 컴포넌트는 `src` 및 `alt` 속성을 가진 `<img />` 태그를 반환합니다. `<img />` 는 HTML처럼 작성되었지만 실제로는 JavaScript입니다! 이 구문을 [JSX](/learn/writing-markup-with-jsx)라고 하며, JavaScript 안에 마크업을 삽입할 수 있습니다.</Trans>
 
 Return statements can be written all on one line, as in this component:
 <Trans>반환문은 이 컴포넌트에서처럼 한 줄에 모두 작성할 수 있습니다:</Trans>
@@ -261,7 +261,7 @@ Most React apps use components all the way down. This means that you won't only 
 <Trans>[React 기반 프레임워크들](/learn/start-a-new-react-project)은 이를 한 단계 더 발전시킵니다. 빈 HTML 파일을 사용하고 React가 JavaScript로 페이지 관리를 "대행"하도록 하는 대신, React 컴포넌트에서 HTML을 자동으로 생성하기*도* 합니다. 이를 통해 JavaScript 코드가 로드되기 전에 앱에서 일부 콘텐츠를 표시할 수 있습니다.</Trans>
 
 Still, many websites only use React to [add interactivity to existing HTML pages.](/learn/add-react-to-an-existing-project#using-react-for-a-part-of-your-existing-page) They have many root components instead of a single one for the entire page. You can use as much—or as little—React as you need.
-<Trans>그렇지만 여전히 많은 웹사이트는 React를 [약간의 상호작용을 추가하는 용도로만](https://beta.reactjs.org/learn/add-react-to-a-website) 사용합니다. 이러한 웹사이트에는 전체 페이지에 하나의 root 컴포넌트가 아닌 여러 개의 root 컴포넌트가 있습니다. 필요한 만큼 React를 많이 또는 적게 사용할 수 있습니다.</Trans>
+<Trans>그렇지만 여전히 많은 웹사이트는 React를 [약간의 상호작용을 추가하는 용도로만](/learn/add-react-to-an-existing-project#using-react-for-a-part-of-your-existing-page) 사용합니다. 이러한 웹사이트에는 전체 페이지에 하나의 root 컴포넌트가 아닌 여러 개의 root 컴포넌트가 있습니다. 필요한 만큼 React를 많이 또는 적게 사용할 수 있습니다.</Trans>
 
 </DeepDive>
 

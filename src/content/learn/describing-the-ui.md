@@ -544,9 +544,10 @@ Read **[Keeping Components Pure](/learn/keeping-components-pure)** to learn how 
 <Trans>컴포넌트를 순수하고 예측 가능한 함수로 작성하는 방법을 알아보려면 [**컴포넌트 순수성 유지**](/learn/keeping-components-pure)를 읽어보세요.</Trans>
 </LearnMore>
 
-## What's next? <Trans>다음 단계</Trans> {/*whats-next*/}
+## What's next?<Trans>다음 단계</Trans> {/*whats-next*/}
 
 Head over to [Your First Component](/learn/your-first-component) to start reading this chapter page by page!
- <Trans>[첫 번째 컴포넌트](/learn/your-first-component)로 이동하여 이 챕터를 한 페이지씩 읽어보세요!</Trans>
+<Trans>[첫 번째 컴포넌트](/learn/your-first-component)로 이동하여 이 챕터를 한 페이지씩 읽어보세요!</Trans>
+
 Or, if you're already familiar with these topics, why not read about [Adding Interactivity](/learn/adding-interactivity)?
- <Trans>또는 이러한 주제에 이미 익숙하다면 [상호작용 추가하기](/learn/adding-interactivity)를 읽어보는 것은 어떨까요?</Trans>
+<Trans>또는 이러한 주제에 이미 익숙하다면 [상호작용 추가하기](/learn/adding-interactivity)를 읽어보는 것은 어떨까요?</Trans>

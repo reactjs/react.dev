@@ -73,9 +73,9 @@ With an event handler, you can be sure that `sendMessage(message)` will *only* r
 <Trans>이벤트 핸들러를 사용하면 사용자가 버튼을 누를 때만 `sendMessage(message)` 가 실행된다는 것을 확신할 수 있습니다.</Trans>
 
 ### Effects run whenever synchronization is needed <Trans>Effect는 동기화가 필요할 때마다 실행됩니다</Trans> {/*effects-run-whenever-synchronization-is-needed*/}
-s
+
 Recall that you also need to keep the component connected to the chat room. Where does that code go?
-<Trans>컴포넌트를 채팅방에 연결한 상태로 유지해야 합니다. 이 코드는 어디에 넣어야 할까요?</Trans>
+<Trans>컴포넌트는 채팅방에 연결한 상태로 유지해야 합니다. 그러기 위한 코드는 어디에 있어야 할까요?</Trans>
 
 The *reason* to run this code is not some particular interaction. It doesn't matter why or how the user navigated to the chat room screen. Now that they're looking at it and could interact with it, the component needs to stay connected to the selected chat server. Even if the chat room component was the initial screen of your app, and the user has not performed any interactions at all, you would *still* need to connect. This is why it's an Effect:
 <Trans> 코드를 실행해야 하는 *이유*는 특정 상호 작용이 아닙니다. 사용자가 채팅방 화면으로 이동한 이유나 방법은 중요하지 않습니다. 사용자들이 채팅방 화면을 보고 상호작용 할 수 있어야하기 때문에, 컴포넌트는 선택한 채팅 서버에 계속 연결되어 있어야 합니다. 앱의 초기 화면이 채팅방 컴포넌트이고, 사용자가 어떤 상호작용도 수행하지 않았더라도 *여전히* 채팅 서버에 연결되어야 합니다. 이것이 바로 Effect인 이유입니다:</Trans>

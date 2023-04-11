@@ -92,7 +92,7 @@ export default function MyApp() {
 
 <Extra>
 
-#### 다양한 방법으로 컴포넌트 추가하기 - @이승효 {/*add_component_in_various_ways*/}
+#### 다양한 방법으로 컴포넌트 추가하기 -@이승효 {/*add_component_in_various_ways*/}
 
 React 컴포넌트는 항상 대문자로 시작해야 하지만, 함수명이 대문자일 필요는 없습니다. **그러나 JSX 안에서 컴포넌트가 사용될 때에는 반드시 대문자로 시작해야 한다는 것에 유의하세요.** 
 
@@ -378,7 +378,7 @@ All of these approaches also work for conditionally specifying attributes. If yo
 <Trans>이 모든 접근 방식은 조건부로 속성을 지정할 때도 작동합니다. 이러한 JavaScript 구문에 익숙하지 않다면 항상 `if...else`를 사용하는 것으로 시작할 수 있습니다.</Trans>
 
 <Extra>
-#### 논리 연산자 `&&`를 이용한 조건부 렌더링 시 주의사항 - @이승효 {/*논리-연산자-를-이용한-조건부-렌더링-시-주의사항---이승효*/}
+#### 논리 연산자 `&&`를 이용한 조건부 렌더링 시 주의사항 -@이승효 {/*pitfall_for_operator_with_number*/}
 
 <Sandpack>
 
@@ -522,7 +522,7 @@ Notice how `onClick={handleClick}` has no parentheses at the end! Do not _call_ 
 
 <Extra>
 
-#### `onClick={handleClick()}`으로 전달했을 때 alert이 두 번 뜨는 현상 - @정재남 {/*onclickhandleclick으로-전달했을-때-alert이-두-번-뜨는-현상---정재남*/}
+#### `onClick={handleClick()}`으로 전달했을 때 alert이 두 번 뜨는 현상 -@정재남 {/*why_alert_show_twice*/}
     
 이런 현상이 발생하는 이유는 `development 환경`에서  `<StrictMode>` 컴포넌트의 하위에 있는 컴포넌트가 처음 렌더될 때, React가 오류 검사 등을 위해 한 번 더 렌더링을 촉발하기 때문입니다. `production 환경`에서는 두 번 렌더링되는 현상은 발생하지 않을 것이니 안심하세요. 자세한 내용은 [`<StrictMode>`](/reference/react/StrictMode)에서 확인하세요.
 </Extra>

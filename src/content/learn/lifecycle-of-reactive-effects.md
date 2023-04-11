@@ -1,7 +1,7 @@
 ---
 title: Lifecycle of Reactive Effects
 translatedTitle: 반응형 Effect의 생명주기
-translators: [유은미, 이도원, 정재남]
+translators: [유은미, 이도원, 정재남, 강승훈]
 ---
 
 <Intro>

@@ -900,7 +900,7 @@ Read [**Reusing Logic with Custom Hooks**](/learn/reusing-logic-with-custom-hook
 
 </LearnMore>
 
-## What's next? {/*whats-next*/}
+## What's next?<Trans>다음 단계</Trans> {/*whats-next*/}
 
 Head over to [Referencing Values with Refs](/learn/referencing-values-with-refs) to start reading this chapter page by page!
 <Trans>[ref로 값 참조하기](/learn/referencing-values-with-refs)로 이동하여 이 챕터를 한 페이지씩 읽어보세요!</Trans>

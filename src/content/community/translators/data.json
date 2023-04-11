@@ -97,6 +97,13 @@
     "description": "좋은 UI와 UX를 기술적으로 풀어내는 프론트엔드 개발자입니다.<br/>협업을 통해 성장하고 성취하는 것을 즐기고 있습니다.🥰"
   },
   {
+    "name": "전시윤",
+    "photo": "/images/team/siyoon.jpg",
+    "github": "cue28",
+    "title": "프론트엔트 개발자",
+    "description": "세상을 더 경제적이고, 편리하게 만들어주는 아이디어를 현실화시키는 과정을 즐기며 개발을 하고 있습니다."
+  },
+  {
     "name": "테스트",
     "photo": "/images/team/gaearon.jpg",
     "github": "test",

@@ -1,7 +1,7 @@
 ---
 title: Conditional Rendering
 translatedTitle: 조건부 렌더링
-translators: [안예지, 정재남]
+translators: [안예지, 이나령, 정재남]
 ---
 
 <Intro>

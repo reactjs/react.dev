@@ -1,7 +1,7 @@
 ---
 title: Render and Commit
 translatedTitle: 렌더링하고 커밋하기
-translators: [박문하, 정재남]
+translators: [박문하, 강승훈, 김아영, 정재남]
 ---
 
 <Intro>

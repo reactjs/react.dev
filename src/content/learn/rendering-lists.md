@@ -1,7 +1,7 @@
 ---
 title: Rendering Lists
 translatedTitle: 목록 렌더링
-translators: [최민정, 강승훈, 정재남]
+translators: [최민정, 강승훈, 이도원, 정재남]
 ---
 
 <Intro>

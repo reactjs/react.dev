@@ -1,7 +1,7 @@
 ---
 title: State as a Snapshot
 translatedTitle: 스냅샷으로서의 state
-translators: [안예지, 서민택, 유은미, 정재남]
+translators: [안예지, 서민택, 유은미, 손한종, 원주혜, 정재남]
 ---
 
 <Intro>

@@ -1,7 +1,7 @@
 ---
 title: Queueing a Series of State Updates
 translatedTitle: 여러 state 업데이트를 큐에 담기
-translators: [전시윤, 정재남]
+translators: [전시윤, 이언호, 정재남]
 ---
 
 <Intro>

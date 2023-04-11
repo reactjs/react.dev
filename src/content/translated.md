@@ -6,7 +6,7 @@ title: 번역 진행상황
 last updated @ 2023-04-09 PM 15:30
 </Intro>
 
-## Learn 진행상황 (done: 38 / total: 42) {/*learn*/}
+## Learn 진행상황 (done: 39 / total: 42) {/*learn*/}
 
 O/X | title
 :-: | :--
@@ -35,7 +35,7 @@ O   | [2-4. 스냅샷으로서의 state :: State as a Snapshot](/learn/state-as-
 O   | [2-5. 여러 state 업데이트를 큐에 담기 :: Queueing a Series of State Updates](/learn/queueing-a-series-of-state-updates)
 X   | [2-6. 객체 state 업데이트 :: Updating Objects in State](/learn/updating-objects-in-state)
 O   | [2-7. 배열 state 업데이트 :: Updating Arrays in State](/learn/updating-arrays-in-state)
-X   | [3. state 관리 :: Managing State](/learn/managing-state)
+O   | [3. state 관리 :: Managing State](/learn/managing-state)
 O   | [3-1. state로 입력에 반응하기 :: Reacting to Input with State](/learn/reacting-to-input-with-state)
 X   | [3-2. State 구조 선택 :: Choosing the State Structure](/learn/choosing-the-state-structure)
 X   | [3-3. 컴포넌트 간 state 공유 :: Sharing State Between Components](/learn/sharing-state-between-components)

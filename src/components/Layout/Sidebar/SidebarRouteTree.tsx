@@ -2,7 +2,7 @@
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
 
-import {useRef, useLayoutEffect, Fragment} from 'react';
+import {useRef, useLayoutEffect, Fragment, useState} from 'react';
 
 import cn from 'classnames';
 import {useRouter} from 'next/router';
@@ -78,6 +78,12 @@ export function SidebarRouteTree({
   const slug = useRouter().asPath.split(/[\?\#]/)[0];
   const pendingRoute = usePendingRoute();
   const currentRoutes = routeTree.routes as RouteItem[];
+  const [openSidebarPath, setOpenSidebarPath] = useState<string>(slug);
+
+  const handleClick = (path: string): void => {
+    setOpenSidebarPath(path === openSidebarPath && openSidebarPath ? '' : path);
+  };
+
   return (
     <ul>
       {currentRoutes.map(
@@ -102,7 +108,9 @@ export function SidebarRouteTree({
             const isBreadcrumb =
               breadcrumbs.length > 1 &&
               breadcrumbs[breadcrumbs.length - 1].path === path;
-            const isExpanded = isForceExpanded || isBreadcrumb || selected;
+            const isExpanded =
+              (isForceExpanded || isBreadcrumb || selected) &&
+              openSidebarPath === path;
             listItem = (
               <li key={`${title}-${path}-${level}-heading`}>
                 <SidebarLink
@@ -116,6 +124,7 @@ export function SidebarRouteTree({
                   isExpanded={isExpanded}
                   isBreadcrumb={isBreadcrumb}
                   hideArrow={isForceExpanded}
+                  handleClick={handleClick}
                 />
                 <CollapseWrapper duration={250} isExpanded={isExpanded}>
                   <SidebarRouteTree
@@ -138,6 +147,7 @@ export function SidebarRouteTree({
                   level={level}
                   title={title}
                   wip={wip}
+                  handleClick={handleClick}
                 />
               </li>
             );

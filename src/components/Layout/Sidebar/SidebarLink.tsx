@@ -21,6 +21,7 @@ interface SidebarLinkProps {
   isBreadcrumb?: boolean;
   hideArrow?: boolean;
   isPending: boolean;
+  handleClick: (href: string) => void;
 }
 
 export function SidebarLink({
@@ -33,6 +34,7 @@ export function SidebarLink({
   isBreadcrumb,
   hideArrow,
   isPending,
+  handleClick,
 }: SidebarLinkProps) {
   const ref = useRef<HTMLAnchorElement>(null);
 
@@ -57,6 +59,7 @@ export function SidebarLink({
         title={title}
         target={target}
         aria-current={selected ? 'page' : undefined}
+        onClick={() => handleClick(href)}
         className={cn(
           'p-2 pr-2 w-full rounded-none lg:rounded-r-2xl text-left hover:bg-gray-5 dark:hover:bg-gray-80 relative flex items-center justify-between',
           {

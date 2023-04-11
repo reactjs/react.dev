@@ -1,6 +1,6 @@
 ---
 title: Updating Arrays in State
-translatedTitle: 정재남
+translatedTitle: 배열 state 업데이트
 translators: [고석영, 전시윤, 김아영, 이승효, 이나령, 정재남]
 ---
 

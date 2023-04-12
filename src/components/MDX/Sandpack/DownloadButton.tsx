@@ -3,7 +3,7 @@
  */
 
 import {useSyncExternalStore} from 'react';
-import {useSandpack} from '@codesandbox/sandpack-react';
+import {useSandpack} from '@codesandbox/sandpack-react/unstyled';
 import {IconDownload} from '../../Icon/IconDownload';
 export interface DownloadButtonProps {}
 

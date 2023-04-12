@@ -36,10 +36,6 @@ const nextConfig = {
     const {IgnorePlugin, NormalModuleReplacementPlugin} = require('webpack');
     config.plugins.push(
       new NormalModuleReplacementPlugin(
-        /^@stitches\/core$/,
-        require.resolve('./src/utils/emptyShim.js')
-      ),
-      new NormalModuleReplacementPlugin(
         /^raf$/,
         require.resolve('./src/utils/rafShim.js')
       ),

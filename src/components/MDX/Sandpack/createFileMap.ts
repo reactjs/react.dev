@@ -2,7 +2,7 @@
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
 
-import type {SandpackFile} from '@codesandbox/sandpack-react';
+import type {SandpackFile} from '@codesandbox/sandpack-react/unstyled';
 
 export const createFileMap = (codeSnippets: any) => {
   return codeSnippets.reduce(

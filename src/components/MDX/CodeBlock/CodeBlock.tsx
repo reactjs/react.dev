@@ -3,11 +3,14 @@
  */
 
 import cn from 'classnames';
-import {highlightTree, HighlightStyle, tags} from '@codemirror/highlight';
+import {HighlightStyle} from '@codemirror/language';
+import {highlightTree} from '@lezer/highlight';
 import {javascript} from '@codemirror/lang-javascript';
 import {html} from '@codemirror/lang-html';
 import {css} from '@codemirror/lang-css';
 import rangeParser from 'parse-numeric-range';
+import {tags} from '@lezer/highlight';
+
 import {CustomTheme} from '../Sandpack/Themes';
 
 interface InlineHighlight {
@@ -52,7 +55,7 @@ const CodeBlock = function CodeBlock({
   let tokenStarts = new Map();
   let tokenEnds = new Map();
   const highlightTheme = getSyntaxHighlight(CustomTheme);
-  highlightTree(tree, highlightTheme.match, (from, to, className) => {
+  highlightTree(tree, highlightTheme, (from, to, className) => {
     tokenStarts.set(from, className);
     tokenEnds.set(to, className);
   });

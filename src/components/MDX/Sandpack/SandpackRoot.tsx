@@ -4,7 +4,7 @@
 
 import {Children, useState} from 'react';
 import * as React from 'react';
-import {SandpackProvider} from '@codesandbox/sandpack-react';
+import {SandpackProvider} from '@codesandbox/sandpack-react/unstyled';
 import {SandpackLogLevel} from '@codesandbox/sandpack-client';
 import {CustomPreset} from './CustomPreset';
 import {createFileMap} from './createFileMap';

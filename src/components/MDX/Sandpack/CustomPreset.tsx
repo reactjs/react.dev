@@ -9,7 +9,7 @@ import {
   SandpackCodeEditor,
   // SandpackReactDevTools,
   SandpackLayout,
-} from '@codesandbox/sandpack-react';
+} from '@codesandbox/sandpack-react/unstyled';
 import cn from 'classnames';
 
 import {IconChevron} from 'components/Icon/IconChevron';

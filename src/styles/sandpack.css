@@ -549,20 +549,6 @@ html.dark .sandpack--playground .sp-overlay {
 }
 
 /**
- * Integrations: React devtools inline
- */
-.sandpack .sp-devtools {
-  border-bottom-left-radius: 0.5rem;
-  border-bottom-right-radius: 0.5rem;
-  overflow: hidden;
-}
-
-.sandpack .sp-wrapper .sp-layout-devtools {
-  border-bottom-left-radius: 0;
-  border-bottom-right-radius: 0;
-}
-
-/**
  * Overwrite inline sty
  */
 .sandpack .sp-devtools > div {

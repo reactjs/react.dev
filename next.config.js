@@ -14,9 +14,7 @@ const nextConfig = {
     legacyBrowsers: false,
     browsersListForSwc: true,
   },
-  env: {
-    SANDPACK_BARE_COMPONENTS: process.env.SANDPACK_BARE_COMPONENTS,
-  },
+  env: {},
   webpack: (config, {dev, isServer, ...options}) => {
     if (process.env.ANALYZE) {
       const {BundleAnalyzerPlugin} = require('webpack-bundle-analyzer');

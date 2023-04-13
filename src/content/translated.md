@@ -33,7 +33,7 @@ O   | [2-2. State: 컴포넌트의 메모리 :: State: A Component's Memory](/le
 O   | [2-3. 렌더링하고 커밋하기 :: Render and Commit](/learn/render-and-commit)
 O   | [2-4. 스냅샷으로서의 state :: State as a Snapshot](/learn/state-as-a-snapshot)
 O   | [2-5. 여러 state 업데이트를 큐에 담기 :: Queueing a Series of State Updates](/learn/queueing-a-series-of-state-updates)
-X   | [2-6. 객체 state 업데이트 :: Updating Objects in State](/learn/updating-objects-in-state)
+O   | [2-6. 객체 state 업데이트 :: Updating Objects in State](/learn/updating-objects-in-state)
 O   | [2-7. 배열 state 업데이트 :: Updating Arrays in State](/learn/updating-arrays-in-state)
 O   | [3. state 관리 :: Managing State](/learn/managing-state)
 O   | [3-1. state로 입력에 반응하기 :: Reacting to Input with State](/learn/reacting-to-input-with-state)

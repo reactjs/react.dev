@@ -448,7 +448,7 @@ State can hold any kind of JavaScript value, including objects. But you shouldn'
 <Trans>state는 객체를 포함한 모든 종류의 JavaScript 값을 보유할 수 있습니다. 하지만 state에 있는 객체와 배열을 직접 변경해서는 안 됩니다. 대신 객체와 배열을 업데이트하려면 새 객체를 생성하거나 기존 객체의 복사본을 만든 다음 해당 복사본을 사용하도록 state를 업데이트해야 합니다.</Trans>
 
 Usually, you will use the `...` spread syntax to copy objects and arrays that you want to change. For example, updating a nested object could look like this:
-<Trans>일반적으로 `...` 스프레드 구문을 사용하여 변경하려는 객체 및 배열을 복사합니다. 예를 들어 중첩된 객체를 업데이트하는 것은 다음과 같습니다:</Trans>
+<Trans>일반적으로 `...` 전개 구문을 사용하여 변경하려는 객체 및 배열을 복사합니다. 예를 들어 중첩된 객체를 업데이트하는 것은 다음과 같습니다:</Trans>
 
 <Sandpack>
 

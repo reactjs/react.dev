@@ -389,7 +389,7 @@ This counter was supposed to increment every second by the amount configurable w
 <Trans>이 카운터는 두 개의 버튼으로 설정할 수 있는 양만큼 매초마다 증가해야 합니다. 하지만 이 Effect가 아무 것도 종속하지 않는다고 React에 "거짓말"을 했기 때문에, React는 초기 렌더링에서 계속 `onTick` 함수를 사용합니다. [이 렌더링에서](/learn/state-as-a-snapshot#rendering-takes-a-snapshot-in-time) 카운트는 `0`이었고 증가분은 `1`이었습니다. 그래서 이 렌더링의 `onTick`은 항상 매초마다 `setCount(0 + 1)`을 호출하고 항상 `1`이 표시됩니다. 이와 같은 버그는 여러 컴포넌트에 분산되어 있을 때 수정하기가 더 어렵습니다.</Trans>
 
 There's always a better solution than ignoring the linter! To fix this code, you need to add `onTick` to the dependency list. (To ensure the interval is only setup once, [make `onTick` an Effect Event.](/learn/separating-events-from-effects#reading-latest-props-and-state-with-effect-events))
-<Trans>린터를 무시하는 것보다 더 좋은 해결책은 항상 있습니다! 이 코드를 수정하려면 의존성 목록에 `onTick`을 추가해야 합니다. (interval을 한 번만 설정하려면 [onTick을 Effect 이벤트로 만드세요.](/learn/separating-events-from-effects#reading-latest-props-and-state-with-effect-events))</Trans>
+<Trans>린터를 무시하는 것보다 더 좋은 해결책은 항상 있습니다! 이 코드를 수정하려면 의존성 목록에 `onTick`을 추가해야 합니다. (interval을 한 번만 설정하려면 [onTick을 Effect Event로 만드세요.](/learn/separating-events-from-effects#reading-latest-props-and-state-with-effect-events))</Trans>
 
 **We recommend treating the dependency lint error as a compilation error. If you don't suppress it, you will never see bugs like this.** The rest of this page documents the alternatives for this and other cases.
 <Trans>**의존성 린트 오류는 컴파일 오류로 처리하는 것이 좋습니다. 이를 억제하지 않으면 이와 같은 버그가 발생하지 않습니다.** 이 페이지의 나머지 부분에서는 이 경우와 다른 경우에 대한 대안을 설명합니다.</Trans>
@@ -734,7 +734,7 @@ The problem is that every time `isMuted` changes (for example, when the user pre
 <Trans>문제는 (사용자가 'Muted' 토글을 누르는 등) `isMuted`가 변경될 때마다 Effect가 다시 동기화되고 채팅에 다시 연결된다는 점입니다. 이는 바람직한 사용자 경험이 아닙니다! (이 예에서는 린터를 비활성화해도 작동하지 않습니다. 그렇게 하면 `isMuted`가 이전 값으로 '고착'됩니다.)</Trans>
 
 To solve this problem, you need to extract the logic that shouldn't be reactive out of the Effect. You don't want this Effect to "react" to the changes in `isMuted`. [Move this non-reactive piece of logic into an Effect Event:](/learn/separating-events-from-effects#declaring-an-effect-event)
-<Trans>이 문제를 해결하려면 Effect에서 반응해서는 안 되는 로직을 추출해야 합니다. 이 Effect가 `isMuted`의 변경에 "반응"하지 않기를 원합니다. [이 비반응 로직을 Effect 이벤트로 옮기면 됩니다](/learn/separating-events-from-effects#declaring-an-effect-event):</Trans>
+<Trans>이 문제를 해결하려면 Effect에서 반응해서는 안 되는 로직을 추출해야 합니다. 이 Effect가 `isMuted`의 변경에 "반응"하지 않기를 원합니다. [이 비반응 로직을 Effect Event로 옮기면 됩니다](/learn/separating-events-from-effects#declaring-an-effect-event):</Trans>
 
 ```js {1,7-12,18,21}
 import { useState, useEffect, useEffectEvent } from 'react';
@@ -762,7 +762,7 @@ function ChatRoom({ roomId }) {
 ```
 
 Effect Events let you split an Effect into reactive parts (which should "react" to reactive values like `roomId` and their changes) and non-reactive parts (which only read their latest values, like `onMessage` reads `isMuted`). **Now that you read `isMuted` inside an Effect Event, it doesn't need to be a dependency of your Effect.** As a result, the chat won't re-connect when you toggle the "Muted" setting on and off, solving the original issue!
-<Trans>Effect 이벤트를 사용하면 Effect를 반응형 부분(`roomId`와 같은 반응형 값과 그 변경에 "반응"해야 하는)과 비반응형 부분(`onMessage`가 `isMuted`를 읽는 것처럼 최신 값만 읽는)으로 나눌 수 있습니다. **이제 Effect 이벤트 내에서 `isMuted`를 읽었으므로 Effect의 의존성이 될 필요가 없습니다.** 그 결과, "Muted" 설정을 켜고 끌 때 채팅이 다시 연결되지 않아 원래 문제가 해결되었습니다!</Trans>
+<Trans>Effect Event를 사용하면 Effect를 반응형 부분(`roomId`와 같은 반응형 값과 그 변경에 "반응"해야 하는)과 비반응형 부분(`onMessage`가 `isMuted`를 읽는 것처럼 최신 값만 읽는)으로 나눌 수 있습니다. **이제 Effect Event 내에서 `isMuted`를 읽었으므로 Effect의 의존성이 될 필요가 없습니다.** 그 결과, "Muted" 설정을 켜고 끌 때 채팅이 다시 연결되지 않아 원래 문제가 해결되었습니다!</Trans>
 
 #### Wrapping an event handler from the props<Trans>props를 이벤트 핸들러로 감싸기</Trans> {/*wrapping-an-event-handler-from-the-props*/}
 
@@ -797,7 +797,7 @@ Suppose that the parent component passes a *different* `onReceiveMessage` functi
 ```
 
 Since `onReceiveMessage` is a dependency, it would cause the Effect to re-synchronize after every parent re-render. This would make it re-connect to the chat. To solve this, wrap the call in an Effect Event:
-<Trans>`onReceiveMessage`는 의존성이므로 부모가 리렌더링할 때마다 Effect가 다시 동기화됩니다. 그러면 채팅에 다시 연결됩니다. 이 문제를 해결하려면 호출을 Effect 이벤트로 감싸세요:</Trans>
+<Trans>`onReceiveMessage`는 의존성이므로 부모가 리렌더링할 때마다 Effect가 다시 동기화됩니다. 그러면 채팅에 다시 연결됩니다. 이 문제를 해결하려면 호출을 Effect Event로 감싸세요:</Trans>
 
 ```js {4-6,12,15}
 function ChatRoom({ roomId, onReceiveMessage }) {
@@ -819,7 +819,7 @@ function ChatRoom({ roomId, onReceiveMessage }) {
 ```
 
 Effect Events aren't reactive, so you don't need to specify them as dependencies. As a result, the chat will no longer re-connect even if the parent component passes a function that's different on every re-render.
-<Trans>Effect 이벤트는 반응하지 않으므로 의존성으로 지정할 필요가 없습니다. 그 결과, 부모 컴포넌트가 리렌더링할 때마다 다른 함수를 전달하더라도 채팅이 더 이상 다시 연결되지 않습니다.</Trans>
+<Trans>Effect Event는 반응하지 않으므로 의존성으로 지정할 필요가 없습니다. 그 결과, 부모 컴포넌트가 리렌더링할 때마다 다른 함수를 전달하더라도 채팅이 더 이상 다시 연결되지 않습니다.</Trans>
 
 #### Separating reactive and non-reactive code<Trans>반응형 코드와 비반응형 코드 분리</Trans> {/*separating-reactive-and-non-reactive-code*/}
 
@@ -827,7 +827,7 @@ In this example, you want to log a visit every time `roomId` changes. You want t
 <Trans>이 예제에서는 `roomId`가 변경될 때마다 방문을 기록하려고 합니다. 모든 로그에 현재 `notificationCount`를 포함하고 싶지만 `notificationCount` 변경으로 로그 이벤트가 촉발하는 것은 원하지 않습니다.</Trans>
 
 The solution is again to split out the non-reactive code into an Effect Event:
-<Trans>해결책은 다시 비반응형 코드를 Effect 이벤트로 분리하는 것입니다:</Trans>
+<Trans>해결책은 다시 비반응형 코드를 Effect Event로 분리하는 것입니다:</Trans>
 
 ```js {2-4,7}
 function Chat({ roomId, notificationCount }) {
@@ -843,7 +843,7 @@ function Chat({ roomId, notificationCount }) {
 ```
 
 You want your logic to be reactive with regards to `roomId`, so you read `roomId` inside of your Effect. However, you don't want a change to `notificationCount` to log an extra visit, so you read `notificationCount` inside of the Effect Event. [Learn more about reading the latest props and state from Effects using Effect Events.](/learn/separating-events-from-effects#reading-latest-props-and-state-with-effect-events)
-<Trans>로직이 `roomId`와 관련하여 반응하기를 원하므로 Effect 내부에서 `roomId`를 읽습니다. 그러나 `notificationCount`를 변경하여 추가 방문을 기록하는 것은 원하지 않으므로 Effect 이벤트 내부에서 `notificationCount`를 읽습니다. [Effect 이벤트를 사용하여 효과에서 최신 props과 state를 읽는 방법에 대해 자세히 알아보세요.](/learn/separating-events-from-effects#reading-latest-props-and-state-with-effect-events)</Trans>
+<Trans>로직이 `roomId`와 관련하여 반응하기를 원하므로 Effect 내부에서 `roomId`를 읽습니다. 그러나 `notificationCount`를 변경하여 추가 방문을 기록하는 것은 원하지 않으므로 Effect Event 내부에서 `notificationCount`를 읽습니다. [Effect Event를 사용하여 효과에서 최신 props과 state를 읽는 방법에 대해 자세히 알아보세요.](/learn/separating-events-from-effects#reading-latest-props-and-state-with-effect-events)</Trans>
 
 ### Does some reactive value change unintentionally?<Trans>일부 반응형 값이 의도치 않게 변경되나요?</Trans> {/*does-some-reactive-value-change-unintentionally*/}
 
@@ -1264,7 +1264,7 @@ function ChatRoom({ getOptions }) {
 ```
 
 This only works for [pure](/learn/keeping-components-pure) functions because they are safe to call during rendering. If your function is an event handler, but you don't want its changes to re-synchronize your Effect, [wrap it into an Effect Event instead.](#do-you-want-to-read-a-value-without-reacting-to-its-changes)
-<Trans>이는 렌더링 중에 호출해도 안전하므로 [순수](/learn/keeping-components-pure) 함수에서만 작동합니다. 함수가 이벤트 핸들러이지만 변경 사항으로 인해 Effect가 다시 동기화되는 것을 원하지 않는 경우, [대신 Effect 이벤트로 함수를 감싸세요.](#do-you-want-to-read-a-value-without-reacting-to-its-changes)</Trans>
+<Trans>이는 렌더링 중에 호출해도 안전하므로 [순수](/learn/keeping-components-pure) 함수에서만 작동합니다. 함수가 이벤트 핸들러이지만 변경 사항으로 인해 Effect가 다시 동기화되는 것을 원하지 않는 경우, [대신 Effect Event로 함수를 감싸세요.](#do-you-want-to-read-a-value-without-reacting-to-its-changes)</Trans>
 
 <Recap>
 
@@ -1286,7 +1286,7 @@ This only works for [pure](/learn/keeping-components-pure) functions because the
 - 특정 상호작용에 대한 응답으로 일부 코드가 실행되어야 하는 경우 해당 코드를 이벤트 핸들러로 이동하세요.
 - Effect의 다른 부분이 다른 이유로 다시 실행되어야 하는 경우 여러 개의 Effect로 분할하세요.
 - 이전 state를 기반으로 일부 state를 업데이트하려면 업데이터 함수를 전달하세요.
-- "반응"하지 않고 최신 값을 읽으려면 Effect에서 Effect 이벤트를 추출하세요.
+- "반응"하지 않고 최신 값을 읽으려면 Effect에서 Effect Event를 추출하세요.
 - JavaScript에서 객체와 함수는 서로 다른 시간에 생성된 경우 서로 다른 것으로 간주됩니다.
 - 객체와 함수의 의존성을 피하세요. 컴포넌트 외부나 Effect 내부로 이동하세요.
 </TransBlock>
@@ -1637,7 +1637,7 @@ html, body { min-height: 300px; }
 </Sandpack>
 
 Effect Events like `onAppear` are not reactive, so you can read `duration` inside without retriggering the animation.
-<Trans>`onAppear`와 같은 Effect 이벤트는 반응형 이벤트가 아니므로 애니메이션을 다시 촉발시키지 않고도 내부의 `duration`을 읽을 수 있습니다.</Trans>
+<Trans>`onAppear`와 같은 Effect Event는 반응형 이벤트가 아니므로 애니메이션을 다시 촉발시키지 않고도 내부의 `duration`을 읽을 수 있습니다.</Trans>
 
 </Solution>
 
@@ -2183,7 +2183,7 @@ In the original example, toggling the theme caused different `onMessage` and `cr
 <Trans>원래 예제에서는 테마를 변경하면 다른 `onMessage` 및 `createConnection` 함수가 생성되어 전달되었습니다. Effect가 이러한 함수에 의존했기 때문에 테마를 전환할 때마다 채팅이 다시 연결되었습니다.</Trans>
 
 To fix the problem with `onMessage`, you needed to wrap it into an Effect Event:
-<Trans>`message`의 문제를 해결하려면 `onMessage`를 Effect 이벤트로 래핑해야 했습니다:</Trans>
+<Trans>`message`의 문제를 해결하려면 `onMessage`를 Effect Event로 래핑해야 했습니다:</Trans>
 
 ```js {1,2,6}
 export default function ChatRoom({ roomId, createConnection, onMessage }) {
@@ -2196,7 +2196,7 @@ export default function ChatRoom({ roomId, createConnection, onMessage }) {
 ```
 
 Unlike the `onMessage` prop, the `onReceiveMessage` Effect Event is not reactive. This is why it doesn't need to be a dependency of your Effect. As a result, changes to `onMessage` won't cause the chat to re-connect.
-<Trans>`onMessage` 프로퍼티와 달리 `onReceiveMessage` Effect 이벤트는 반응하지 않습니다. 그렇기 때문에 Effect의 의존성이 될 필요가 없습니다. 따라서 `onMessage`를 변경해도 채팅이 다시 연결되지 않습니다.</Trans>
+<Trans>`onMessage` 프로퍼티와 달리 `onReceiveMessage` Effect Event는 반응하지 않습니다. 그렇기 때문에 Effect의 의존성이 될 필요가 없습니다. 따라서 `onMessage`를 변경해도 채팅이 다시 연결되지 않습니다.</Trans>
 
 You can't do the same with `createConnection` because it *should* be reactive. You *want* the Effect to re-trigger if the user switches between an encrypted and an unencryption connection, or if the user switches the current room. However, because `createConnection` is a function, you can't check whether the information it reads has *actually* changed or not. To solve this, instead of passing `createConnection` down from the `App` component, pass the raw `roomId` and `isEncrypted` values:
 <Trans>반응형이어야 하기 때문에 'createConnection'으로는 동일한 작업을 수행할 수 없습니다. 사용자가 암호화 연결과 비암호화 연결 사이를 전환하거나 사용자가 현재 방을 전환하면 Effect가 다시 촉발되기를 원합니다. 하지만 `createConnection`은 함수이기 때문에 이 함수가 읽는 정보가 실제로 변경되었는지 여부를 확인할 수 없습니다. 이 문제를 해결하려면 `App` 컴포넌트에서 `createConnection`을 전달하는 대신 primitive 값인 `roomId` 및 `isEncrypted`를 전달하세요:</Trans>

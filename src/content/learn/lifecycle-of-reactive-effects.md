@@ -870,7 +870,7 @@ function ChatRoom() {
 <Trans>**Effect가 독립적인 동기화 프로세스를 나타내는지 확인하세요.** Effect가 아무것도 동기화하지 않는다면 [불필요한 것일 수 있습니다.](/learn/you-might-not-need-an-effect) 여러 개의 독립적인 것을 동기화하는 경우 [분할하세요.](#each-effect-represents-a-separate-synchronization-process)</Trans>
 
 * **If you want to read the latest value of props or state without "reacting" to it and re-synchronizing the Effect,** you can split your Effect into a reactive part (which you'll keep in the Effect) and a non-reactive part (which you'll extract into something called an _Effect Event_). [Read about separating Events from Effects.](/learn/separating-events-from-effects)
-<Trans>**'반응'하지 않고 Effect를 재동기화하지 않으면서 props나 state의 최신 값을 읽으려면,** Effect를 반응하는 부분(Effect에 유지)과 반응하지 않는 부분(*Effect 이벤트*라는 것으로 추출)으로 분리할 수 있습니다. [이벤트와 Effect를 분리하는 방법에 대해 읽어보세요.](/learn/separating-events-from-effects)</Trans>
+<Trans>**'반응'하지 않고 Effect를 재동기화하지 않으면서 props나 state의 최신 값을 읽으려면,** Effect를 반응하는 부분(Effect에 유지)과 반응하지 않는 부분(*Effect Event*라는 것으로 추출)으로 분리할 수 있습니다. [이벤트와 Effect를 분리하는 방법에 대해 읽어보세요.](/learn/separating-events-from-effects)</Trans>
 
 * **Avoid relying on objects and functions as dependencies.** If you create objects and functions during rendering and then read them from an Effect, they will be different on every render. This will cause your Effect to re-synchronize every time. [Read more about removing unnecessary dependencies from Effects.](/learn/removing-effect-dependencies)
 <Trans>**객체와 함수를 의존성으로 사용하지 마세요.** 렌더링 중에 오브젝트와 함수를 생성한 다음 Effect에서 읽으면 렌더링할 때마다 오브젝트와 함수가 달라집니다. 그러면 매번 Effect를 다시 동기화해야 합니다. [Effect에서 불필요한 의존성을 제거하는 방법에 대해 읽어보세요.](/learn/removing-effect-dependencies)</Trans>

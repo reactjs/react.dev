@@ -176,6 +176,16 @@ title="프론트엔트 개발자"
 </TeamMember>
 
 <TeamMember 
+  photo="/images/translators/_m_jaejeong.jpg"
+github="bggbr"
+title="소프트웨어 엔지니어"
+  name="방재정 "
+  translated={undefined}
+>
+  개발 공부를 하며 작은 성공을 쌓아가는 것을 좋아합니다.<br/> 좋은 아이디어로 사람들에게 편리함을 주는 것이 목표입니다.
+</TeamMember>
+
+<TeamMember 
   photo="/images/team/gaearon.jpg"
 github="test"
 title="프론트엔트 취준생"

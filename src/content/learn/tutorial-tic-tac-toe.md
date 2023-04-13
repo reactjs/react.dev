@@ -2039,7 +2039,7 @@ export default function Game() {
 ```
 
 Here, `[...history, nextSquares]` creates a new array that contains all the items in `history`, followed by `nextSquares`. (You can read the `...history` [*spread syntax*](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax) as "enumerate all the items in `history`".)
-<Trans>여기서 `[...history, nextSquares]`는 `history`에 있는 모든 항목을 포함하는 새 배열을 만들고 그 뒤에 `nextSquares`를 만듭니다. (`...history` [*스프레드 구문*](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax)을 "`history`의 모든 항목 열거"로 읽을 수 있습니다.)</Trans>
+<Trans>여기서 `[...history, nextSquares]`는 `history`에 있는 모든 항목을 포함하는 새 배열을 만들고 그 뒤에 `nextSquares`를 만듭니다. (`...history` [*전개 구문*](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax)을 "`history`의 모든 항목 열거"로 읽을 수 있습니다.)</Trans>
 
 For example, if `history` is `[[null,null,null], ["X",null,null]]` and `nextSquares` is `["X",null,"O"]`, then the new `[...history, nextSquares]` array will be `[[null,null,null], ["X",null,null], ["X",null,"O"]]`.
 <Trans>예를 들어, `history`가 `[[null,null,null], ["X",null,null]]`이고 `nextSquares`가 `["X",null,"O"]`라면 새로운 `[...history, nextSquares]` 배열은 `[[null,null,null], ["X",null,null], ["X",null,"O"]]`가 될 것입니다.</Trans>
@@ -2701,7 +2701,7 @@ You will now make two changes to the `Game`'s `handlePlay` function which is cal
 - Each time a move is made, you need to update `currentMove` to point to the latest history entry.
 
 <TransBlock>
-- "시간을 거슬러 올라가서" 그 시점에서 새로운 이동을 하는 경우 해당 시점까지의 히스토리만 유지하고 싶을 것입니다. `history`의 모든 항목(`...` 스프레드 구문) 뒤에 `nextSquares`를 추가하는 대신, `history.slice(0, currentMove + 1)`의 모든 항목 뒤에 추가하여 이전 history의 해당 부분만 유지하도록 할 수 있습니다.
+- "시간을 거슬러 올라가서" 그 시점에서 새로운 이동을 하는 경우 해당 시점까지의 히스토리만 유지하고 싶을 것입니다. `history`의 모든 항목(`...` 전개 구문) 뒤에 `nextSquares`를 추가하는 대신, `history.slice(0, currentMove + 1)`의 모든 항목 뒤에 추가하여 이전 history의 해당 부분만 유지하도록 할 수 있습니다.
 - 이동을 할 때마다 최신 history 항목을 가리키도록 `currentMove`를 업데이트해야 합니다.
 </TransBlock>
 

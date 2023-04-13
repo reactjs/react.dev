@@ -109,7 +109,7 @@ button { margin-left: 5px; }
 </Sandpack>
 
 Instead, create a *new* array which contains the existing items *and* a new item at the end. There are multiple ways to do this, but the easiest one is to use the `...` [array spread](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax#spread_in_array_literals) syntax:
-<Trans>대신 기존 항목과 끝에 새 항목을 포함하는 *새 배열*을 만드세요 이 작업을 수행하는 방법은 여러 가지가 있지만 가장 쉬운 방법은 `...` [배열 스프레드 구문](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Operators/Spread_syntax)을 사용하는 것입니다:</Trans>
+<Trans>대신 기존 항목과 끝에 새 항목을 포함하는 *새 배열*을 만드세요 이 작업을 수행하는 방법은 여러 가지가 있지만 가장 쉬운 방법은 `...` [배열 전개 구문](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Operators/Spread_syntax)을 사용하는 것입니다:</Trans>
 
 ```js
 setArtists( // Replace the state
@@ -164,7 +164,7 @@ button { margin-left: 5px; }
 </Sandpack>
 
 The array spread syntax also lets you prepend an item by placing it *before* the original `...artists`:
-<Trans>배열 스프레드 구문을 사용하면 항목을 원본 배열 `...artists` *앞*에 배치하여 항목을 추가할 수도 있습니다:</Trans>
+<Trans>배열 전개 구문을 사용하면 항목을 원본 배열 `...artists` *앞*에 배치하여 항목을 추가할 수도 있습니다:</Trans>
 
 ```js
 setArtists([
@@ -174,7 +174,7 @@ setArtists([
 ```
 
 In this way, spread can do the job of both `push()` by adding to the end of an array and `unshift()` by adding to the beginning of an array. Try it in the sandbox above!
-<Trans>이런 식으로 스프레드 구문은 배열의 끝에 추가하는 `push()`와 배열의 시작 부분에 추가하는 `unshift()`의 기능을 모두 수행할 수 있습니다. 위의 샌드박스에서 사용해 보세요!</Trans>
+<Trans>이런 식으로 전개 구문은 배열의 끝에 추가하는 `push()`와 배열의 시작 부분에 추가하는 `unshift()`의 기능을 모두 수행할 수 있습니다. 위의 샌드박스에서 사용해 보세요!</Trans>
 
 ### Removing from an array<Trans>배열에서 제거하기</Trans> {/*removing-from-an-array*/}
 
@@ -366,7 +366,7 @@ button { margin: 5px; }
 ### Inserting into an array<Trans>배열에 삽입하기</Trans> {/*inserting-into-an-array*/}
 
 Sometimes, you may want to insert an item at a particular position that's neither at the beginning nor at the end. To do this, you can use the `...` array spread syntax together with the `slice()` method. The `slice()` method lets you cut a "slice" of the array. To insert an item, you will create an array that spreads the slice _before_ the insertion point, then the new item, and then the rest of the original array.
-<Trans>때로는 시작도 끝도 아닌 특정 위치에 항목을 삽입하고 싶을 때가 있습니다. 이를 위해 `...` 배열 스프레드 구문과 `slice()` 메서드를 함께 사용할 수 있습니다. `slice()` 메서드를 사용하면 배열의 "조각"을 잘라낼 수 있습니다. 항목을 삽입하려면 삽입 지점 *앞에* slice를 spread한 다음 새 항목과 나머지 원래 배열을 펼치는 배열을 만듭니다.</Trans>
+<Trans>때로는 시작도 끝도 아닌 특정 위치에 항목을 삽입하고 싶을 때가 있습니다. 이를 위해 `...` 배열 전개 구문과 `slice()` 메서드를 함께 사용할 수 있습니다. `slice()` 메서드를 사용하면 배열의 "조각"을 잘라낼 수 있습니다. 항목을 삽입하려면 삽입 지점 *앞에* slice를 spread한 다음 새 항목과 나머지 원래 배열을 펼치는 배열을 만듭니다.</Trans>
 
 In this example, the Insert button always inserts at the index `1`:
 <Trans>이 예에서 삽입 버튼은 항상 인덱스 `1`에 삽입됩니다:</Trans>
@@ -432,7 +432,7 @@ button { margin-left: 5px; }
 ### Making other changes to an array<Trans>배열에 다른 변경 사항 적용하기 </Trans> {/*making-other-changes-to-an-array*/}
 
 There are some things you can't do with the spread syntax and non-mutating methods like `map()` and `filter()` alone. For example, you may want to reverse or sort an array. The JavaScript `reverse()` and `sort()` methods are mutating the original array, so you can't use them directly.
-<Trans>스프레드 구문과 `map()` 및 `filter()`와 같은 비변이 메서드만으로는 할 수 없는 일이 몇 가지 있습니다. 예를 들어 배열을 반전시키거나 정렬하고 싶을 수 있습니다. JavaScript `reverse()` 및 `sort()` 메서드는 원래 배열을 변이하므로 직접 사용할 수 없습니다.</Trans>
+<Trans>전개 구문과 `map()` 및 `filter()`와 같은 비변이 메서드만으로는 할 수 없는 일이 몇 가지 있습니다. 예를 들어 배열을 반전시키거나 정렬하고 싶을 수 있습니다. JavaScript `reverse()` 및 `sort()` 메서드는 원래 배열을 변이하므로 직접 사용할 수 없습니다.</Trans>
 
 **However, you can copy the array first, and then make changes to it.**
 <Trans>대신, **배열을 먼저 복사한 다음 변이하면 됩니다.**</Trans>
@@ -479,7 +479,7 @@ export default function List() {
 </Sandpack>
 
 Here, you use the `[...list]` spread syntax to create a copy of the original array first. Now that you have a copy, you can use mutating methods like `nextList.reverse()` or `nextList.sort()`, or even assign individual items with `nextList[0] = "something"`.
-<Trans>여기서는 `[...list]` 스프레드 구문을 사용하여 먼저 원본 배열의 복사본을 만듭니다. 이제 복사본이 생겼으므로 `nextList.reverse()` 또는 `nextList.sort()`와 같은 변이 메서드를 사용하거나 `nextList[0] = "something"`으로 개별 항목을 할당할 수도 있습니다.</Trans>
+<Trans>여기서는 `[...list]` 전개 구문을 사용하여 먼저 원본 배열의 복사본을 만듭니다. 이제 복사본이 생겼으므로 `nextList.reverse()` 또는 `nextList.sort()`와 같은 변이 메서드를 사용하거나 `nextList[0] = "something"`으로 개별 항목을 할당할 수도 있습니다.</Trans>
 
 However, **even if you copy an array, you can't mutate existing items _inside_ of it directly.** This is because copying is shallow--the new array will contain the same items as the original one. So if you modify an object inside the copied array, you are mutating the existing state. For example, code like this is a problem.
 <Trans>그러나 **배열을 복사하더라도 배열 내부의 기존 항목을 직접 변이할 수는 없습니다.** 이는 얕은 복사가 이루어져 새 배열에는 원래 배열과 동일한 항목이 포함되기 때문입니다. 따라서 복사된 배열 내부의 객체를 수정하면 기존 state를 변이하는 것입니다. 예를 들어 다음과 같은 코드가 문제가 됩니다.</Trans>
@@ -611,7 +611,7 @@ setMyList(myList.map(artwork => {
 ```
 
 Here, `...` is the object spread syntax used to [create a copy of an object.](/learn/updating-objects-in-state#copying-objects-with-the-spread-syntax)
-<Trans>여기서 `...`는 [객체의 복사본을 만드는 데 사용](/learn/updating-objects-in-state#copying-objects-with-the-spread-syntax)되는 객체 스프레드 구문입니다.</Trans>
+<Trans>여기서 `...`는 [객체의 복사본을 만드는 데 사용](/learn/updating-objects-in-state#copying-objects-with-the-spread-syntax)되는 객체 전개 구문입니다.</Trans>
 
 With this approach, none of the existing state items are being mutated, and the bug is fixed:
 <Trans>이 접근 방식을 사용하면 기존 state 항목이 변이되지 않으며 버그가 수정됩니다:</Trans>
@@ -845,7 +845,7 @@ Behind the scenes, Immer always constructs the next state from scratch according
 <TransBlock>
 - 배열을 state에 넣을 수는 있지만 변경할 수는 없습니다.
 - 배열을 변이하는 대신 배열의 *새로운* 버전을 생성하고 state를 업데이트하세요.
-- 배열 스프레드 구문 `[...arr, newItem]`을 사용하여 새 항목으로 배열을 만들 수 있습니다.
+- 배열 전개 구문 `[...arr, newItem]`을 사용하여 새 항목으로 배열을 만들 수 있습니다.
 - `filter()` 및 `map()`을 사용하여 필터링되거나 변형된 항목으로 새 배열을 만들 수 있습니다.
 - Immer를 사용하면 코드를 간결하게 유지할 수 있습니다.
 </TransBlock>
@@ -915,7 +915,7 @@ button { margin: 5px; }
 <Solution>
 
 You can use the `map` function to create a new array, and then use the `...` object spread syntax to create a copy of the changed object for the new array:
-<Trans>`map` 함수를 사용하여 새 배열을 만든 다음 `...` 객체 스프레드 구문을 사용하여 새 배열에 대한 변경된 객체의 복사본을 만들 수 있습니다:</Trans>
+<Trans>`map` 함수를 사용하여 새 배열을 만든 다음 `...` 객체 전개 구문을 사용하여 새 배열에 대한 변경된 객체의 복사본을 만들 수 있습니다:</Trans>
 
 <Sandpack>
 
@@ -1312,7 +1312,7 @@ ul, li { margin: 0; padding: 0; }
 <Solution>
 
 In `handleAddTodo`, you can use the array spread syntax. In `handleChangeTodo`, you can create a new array with `map`. In `handleDeleteTodo`, you can create a new array with `filter`. Now the list works correctly:
-<Trans>`handleAddTodo`에서는 배열 스프레드 구문을 사용할 수 있습니다. `handleChangeTodo`에서는 `map`으로 새 배열을 만들 수 있습니다. `handleDeleteTodo`에서는 `filter`로 새 배열을 만들 수 있습니다. 이제 목록이 올바르게 작동합니다:</Trans>
+<Trans>`handleAddTodo`에서는 배열 전개 구문을 사용할 수 있습니다. `handleChangeTodo`에서는 `map`으로 새 배열을 만들 수 있습니다. `handleDeleteTodo`에서는 `filter`로 새 배열을 만들 수 있습니다. 이제 목록이 올바르게 작동합니다:</Trans>
 
 <Sandpack>
 

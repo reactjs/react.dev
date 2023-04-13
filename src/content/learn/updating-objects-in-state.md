@@ -7,7 +7,7 @@ translators: [안예지, 원주혜, 고석영]
 <Intro>
 
 State can hold any kind of JavaScript value, including objects. But you shouldn't change objects that you hold in the React state directly. Instead, when you want to update an object, you need to create a new one (or make a copy of an existing one), and then set the state to use that copy.
-<Trans>state는 객체를 포함해서, 어떤 종류의 자바스크립트 값이든 저장할 수 있습니다. 하지만 React state에 있는 객체를 직접 변이해서는 안 됩니다. 대신 객체를 업데이트하려면 새 객체를 생성하거나 기존 객체의 복사본을 만든 다음 해당 복사본을 사용하도록 state를 설정해야 합니다.</Trans>
+<Trans>state는 객체를 포함해서, 어떤 종류의 자바스크립트 값이든 저장할 수 있습니다. 하지만 React state에 있는 객체를 직접 변이해서는 안 됩니다. 대신 객체를 업데이트하려면 새 객체를 생성하고(혹은 기존 객체의 복사본을 만들고), 해당 복사본을 사용하도록 state를 설정해야 합니다.</Trans>
 
 </Intro>
 
@@ -46,14 +46,14 @@ The `x` state changed from `0` to `5`, but the _number `0` itself_ did not chang
 <Trans>`x` state가 `0`에서 `5`로 변경 되었지만 숫자 `0` 자체는 변경되지 않았습니다. JavaScript에서는 숫자, 문자열, 불리언과 같은 내장된 원시 자료형 값을 변경할 수 없습니다.</Trans>
 
 Now consider an object in state:
-<Trans>이제, 한 객체의 state를 살펴봅시다:</Trans>
+<Trans>객체 state를 살펴봅시다:</Trans>
 
 ```js
 const [position, setPosition] = useState({ x: 0, y: 0 });
 ```
 
 Technically, it is possible to change the contents of _the object itself_. **This is called a mutation:**
-<Trans>기술적으로 *객체 자체*의 내용을 변경하는 것은 가능합니다. **이를 변이(mutation)이라고 합니다:**</Trans>
+<Trans>기술적으로 *객체 자체*의 내용을 변경하는 것은 가능합니다. **이를 변이(mutation)라고 합니다:**</Trans>
 
 ```js
 position.x = 5;
@@ -229,7 +229,7 @@ Mutation is only a problem when you change *existing* objects that are already i
 
 </DeepDive>  
 
-## Copying objects with the spread syntax <Trans>스프레드 문법을 사용하여 객체 복사하기</Trans> {/*copying-objects-with-the-spread-syntax*/}
+## Copying objects with the spread syntax <Trans>전개 구문을 사용하여 객체 복사하기</Trans> {/*copying-objects-with-the-spread-syntax*/}
 
 In the previous example, the `position` object is always created fresh from the current cursor position. But often, you will want to include *existing* data as a part of the new object you're creating. For example, you may want to update *only one* field in a form, but keep the previous values for all other fields.
 <Trans>이전 예제에서 `position` 객체는 항상 현재 커서 위치에서 새로 만들어졌습니다. 그러나 종종 *기존* 데이터를 새로 만드는 객체의 일부로 포함시키고 싶을 때가 있습니다. 예를 들어 form에 있는 *하나의* 필드만 업데이트하고 다른 모든 필드는 이전 값을 유지하고 싶을 수 있습니다.</Trans>
@@ -321,7 +321,7 @@ setPerson({
 ```
 
 You can use the `...` [object spread](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax#spread_in_object_literals) syntax so that you don't need to copy every property separately.
-<Trans>모든 속성을 개별적으로 복사할 필요가 없도록 [`...` 객체 스프레드 문법](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Operators/Spread_syntax)을 사용할 수 있습니다.</Trans>
+<Trans>모든 속성을 개별적으로 복사할 필요가 없도록 [`...` 객체 전개 구문](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Operators/Spread_syntax)을 사용할 수 있습니다.</Trans>
 
 ```js
 setPerson({
@@ -412,7 +412,7 @@ input { margin-left: 5px; margin-bottom: 5px; }
 </Sandpack>
 
 Note that the `...` spread syntax is "shallow"--it only copies things one level deep. This makes it fast, but it also means that if you want to update a nested property, you'll have to use it more than once. 
-<Trans>`...` 스프레드 구문은 "얕은" 구문으로, 한 단계 깊이만 복사한다는 점에 유의하세요. 속도는 빠르지만 중첩된 프로퍼티를 업데이트하려면 두 번 이상 사용해야 한다는 뜻이기도 합니다.</Trans>
+<Trans>`...` 전개 구문은 "얕은" 구문으로, 한 단계 깊이만 복사한다는 점에 유의하세요. 속도는 빠르지만 중첩된 프로퍼티를 업데이트하려면 두 번 이상 사용해야 한다는 뜻이기도 합니다.</Trans>
 
 <DeepDive>
 
@@ -707,7 +707,7 @@ If you were to mutate `obj3.artwork.city`, it would affect both `obj2.artwork.ci
 ### Write concise update logic with Immer <Trans>Immer로 간결한 업데이트 로직 작성</Trans> {/*write-concise-update-logic-with-immer*/}
 
 If your state is deeply nested, you might want to consider [flattening it.](/learn/choosing-the-state-structure#avoid-deeply-nested-state) But, if you don't want to change your state structure, you might prefer a shortcut to nested spreads. [Immer](https://github.com/immerjs/use-immer) is a popular library that lets you write using the convenient but mutating syntax and takes care of producing the copies for you. With Immer, the code you write looks like you are "breaking the rules" and mutating an object:
-<Trans>state가 깊게 중첩된 경우 그것을 펼치는 것을 고려할 수 있습니다. 하지만 state 구조를 변경하고 싶지 않다면 중첩된 스프레드보다 지름길을 선호할 수 있습니다. Immer는 변이 구문을 사용하여 작성하더라도 자동으로 사본을 생성해주는 편리한 인기 라이브러리입니다. Immer를 사용하면 작성하는 코드가 "규칙을 깨고" 객체를 변이하는 것처럼 보입니다:</Trans>
+<Trans>state가 깊게 중첩된 경우 그것을 [평평하게 만드는 것](/learn/choosing-the-state-structure#avoid-deeply-nested-state)을 고려할 수 있습니다. 하지만 state 구조를 변경하고 싶지 않다면 중첩된 전개 구문보다 더 간편한 방법을 선호할 수 있습니다. [Immer](https://github.com/immerjs/use-immer)는 변이 구문을 사용하여 작성하더라도 자동으로 사본을 생성해주는 편리한 인기 라이브러리입니다. Immer를 사용하면 작성하는 코드가 "규칙을 깨고" 객체를 변이하는 것처럼 보입니다:</Trans>
 
 ```js
 updatePerson(draft => {
@@ -724,6 +724,7 @@ But unlike a regular mutation, it doesn't overwrite the past state!
 
 The `draft` provided by Immer is a special type of object, called a [Proxy](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy), that "records" what you do with it. This is why you can mutate it freely as much as you like! Under the hood, Immer figures out which parts of the `draft` have been changed, and produces a completely new object that contains your edits.
 
+<Trans>Immer에서 제공하는 `draft`는 [프록시](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy)라는 특수한 유형의 객체로, 사용자가 수행하는 작업을 "기록"합니다. 그렇기 때문에 원하는 만큼 자유롭게 수정할 수 있습니다! Immer는 내부적으로 `draft`의 어떤 부분이 변경되었는지 파악하고 편집 내용이 포함된 완전히 새로운 객체를 생성합니다.</Trans>
 </DeepDive>
 
 To try Immer:
@@ -731,6 +732,7 @@ To try Immer:
 
 1. Run `npm install use-immer` to add Immer as a dependency
 2. Then replace `import { useState } from 'react'` with `import { useImmer } from 'use-immer'`
+
 <TransBlock>
   1. `npm install use-immer`를 실행하여 Immer를 종속성으로 추가합니다.
   2. 그런 다음 `import { useState } from 'react'`를 `import { useImmer } from 'use-immer'`로 바꿉니다.
@@ -861,25 +863,19 @@ There are a few reasons:
 <Trans>몇 가지 이유가 있습니다:</Trans>
 
 * **Debugging:** If you use `console.log` and don't mutate state, your past logs won't get clobbered by the more recent state changes. So you can clearly see how state has changed between renders.
-<TransBlock>
-  - **디버깅**: console.log를 사용하고 state를 변이하지 않으면, 과거의 기록이 최근 state 변이에 의해 지워지지 않습니다. 따라서 렌더링 사이에 state가 어떻게 변경되었는지 명확하게 확인할 수 있습니다.
-</TransBlock>
+<Trans>**디버깅**: console.log를 사용하고 state를 변이하지 않으면, 과거의 기록이 최근 state 변이에 의해 지워지지 않습니다. 따라서 렌더링 사이에 state가 어떻게 변경되었는지 명확하게 확인할 수 있습니다.</Trans>
+
 * **Optimizations:** Common React [optimization strategies](/reference/react/memo) rely on skipping work if previous props or state are the same as the next ones. If you never mutate state, it is very fast to check whether there were any changes. If `prevObj === obj`, you can be sure that nothing could have changed inside of it.
-<TransBlock>
-  - **최적화**: 일반적인 React [최적화 전략](/reference/react/memo)은 이전 프로퍼티나 state가 다음 프로퍼티나 state와 동일한 경우 작업을 건너뛰는 것에 의존합니다. state를 변이하지 않는다면 변경이 있었는지 확인하는 것이 매우 빠릅니다. 만약 `prevObj === obj` 라면, 내부에 변경된 것이 없다는 것을 확신할 수 있습니다.
-</TransBlock>
+<Trans>**최적화**: 일반적인 React [최적화 전략](/reference/react/memo)은 이전 프로퍼티나 state가 다음 프로퍼티나 state와 동일한 경우 작업을 건너뛰는 것에 의존합니다. state를 변이하지 않는다면 변경이 있었는지 확인하는 것이 매우 빠릅니다. 만약 `prevObj === obj` 라면, 내부에 변경된 것이 없다는 것을 확신할 수 있습니다.</Trans>
+
 * **New Features:** The new React features we're building rely on state being [treated like a snapshot.](/learn/state-as-a-snapshot) If you're mutating past versions of state, that may prevent you from using the new features.
-<TransBlock>
-  - **새로운 기능**: 우리가 개발 중인 새로운 React 기능은 state가 [스냅샷처럼 취급](/learn/state-as-a-snapshot)되는 것에 의존합니다. 과거 버전의 state를 변이하는 경우 새로운 기능을 사용하지 못할 수 있습니다.
-</TransBlock>
+<Trans>**새로운 기능**: 우리가 개발 중인 새로운 React 기능은 state가 [스냅샷처럼 취급](/learn/state-as-a-snapshot)되는 것에 의존합니다. 과거 버전의 state를 변이하는 경우 새로운 기능을 사용하지 못할 수 있습니다.</Trans>
+
 * **Requirement Changes:** Some application features, like implementing Undo/Redo, showing a history of changes, or letting the user reset a form to earlier values, are easier to do when nothing is mutated. This is because you can keep past copies of state in memory, and reuse them when appropriate. If you start with a mutative approach, features like this can be difficult to add later on.
-<TransBlock>
-  - **요구 사항 변경**: 실행 취소/다시 실행 구현, 변경 내역 표시, 사용자가 양식을 이전 값으로 재설정할 수 있도록 하는 것과 같은 일부 애플리케이션 기능은 아무것도 변이되지 않은  state에서 더 쉽게 수행할 수 있습니다. 과거의 state 복사본을 메모리에 보관하고 필요할 때 재사용할 수 있기 때문입니다. 변경 접근 방식으로 시작하면 나중에 이와 같은 기능을 추가하기 어려울 수 있습니다.
-</TransBlock>
+<Trans>**요구 사항 변경**: 실행 취소/다시 실행 구현, 변경 내역 표시, 사용자가 양식을 이전 값으로 재설정할 수 있도록 하는 것과 같은 일부 애플리케이션 기능은 아무것도 변이되지 않은  state에서 더 쉽게 수행할 수 있습니다. 과거의 state 복사본을 메모리에 보관하고 필요할 때 재사용할 수 있기 때문입니다. 변경 접근 방식으로 시작하면 나중에 이와 같은 기능을 추가하기 어려울 수 있습니다.</Trans>
+
 * **Simpler Implementation:** Because React does not rely on mutation, it does not need to do anything special with your objects. It does not need to hijack their properties, always wrap them into Proxies, or do other work at initialization as many "reactive" solutions do. This is also why React lets you put any object into state--no matter how large--without additional performance or correctness pitfalls.
-<TransBlock>
-  - 더 간단한 구현: React는 변이에 의존하지 않기 때문에 객체에 특별한 작업을 할 필요가 없습니다. 많은 "반응형" 솔루션처럼 프로퍼티를 가로채거나, 항상 프록시로 래핑하거나, 초기화할 때 다른 작업을 할 필요가 없습니다. 이것이 바로 React를 사용하면 추가 성능이나 정확성의 함정 없이 아무리 큰 객체라도 state에 넣을 수 있는 이유이기도 합니다.
-</TransBlock>
+<Trans>더 간단한 구현: React는 변이에 의존하지 않기 때문에 객체에 특별한 작업을 할 필요가 없습니다. 많은 "반응형" 솔루션처럼 프로퍼티를 가로채거나, 항상 프록시로 래핑하거나, 초기화할 때 다른 작업을 할 필요가 없습니다. 이것이 바로 React를 사용하면 추가 성능이나 정확성의 함정 없이 아무리 큰 객체라도 state에 넣을 수 있는 이유이기도 합니다.</Trans>
 
 In practice, you can often "get away" with mutating state in React, but we strongly advise you not to do that so that you can use new React features developed with this approach in mind. Future contributors and perhaps even your future self will thank you!
 <Trans>실제로는 React에서 state를 변이해서라도 잘 "빠져나갈" 수 있겠지만, state의 불변성을 유지하는 접근 방식을 염두에 두고 개발된 새로운 React 기능을 잘 사용할 수 있기 위해서, 그렇게 하지 말 것을 강력히 권장합니다. 미래의 기여자들과 여러분의 미래의 자신도 고마워할 것입니다!</Trans>
@@ -899,8 +895,8 @@ In practice, you can often "get away" with mutating state in React, but we stron
   - React의 모든 state를 불변으로 취급하세요.
   - state에 객체를 저장하면 객체를 변이해도 렌더링이 트리거되지 않고 이전 렌더링 "스냅샷"의 state가 변경됩니다.
   - 객체를 변이하는 대신 객체의 *새로운* 버전을 생성하고 state를 설정하여 다시 렌더링을 트리거하세요.
-  - 객체 스프레드 문법 `{...obj, something: 'newValue'}`를 사용하여 객체 사본을 만들 수 있습니다.
-  - 스프레드 문법은 한 수준 깊이만 복사하는 얕은 구문입니다.
+  - 객체 전개 구문 `{...obj, something: 'newValue'}`를 사용하여 객체 사본을 만들 수 있습니다.
+  - 전개 구문은 한 수준 깊이만 복사하는 얕은 구문입니다.
   - 중첩된 객체를 업데이트하려면 업데이트하려는 위치에서 가장 위쪽까지 복사본을 만들어야 합니다.
   - 반복적인 코드 복사를 줄이려면 Immer를 사용하세요.
 </TransBlock>
@@ -1078,7 +1074,7 @@ Find the bug and fix it.
 <Hint>
 
 If something unexpected changes, there is a mutation. Find the mutation in `App.js` and fix it.
-<Trans>예기치 않은 변경 사항이 있으면 변이가 있는 것입니다. `App.js`에서 변이를 찾아 수정합니다.</Trans>
+<Trans>예기치 않은 변경 사항이 있으면 변이가 있는 것입니다. `App.js`에서 변이를 찾아 수정하세요.</Trans>
 
 </Hint>
 
@@ -1232,7 +1228,7 @@ The problem was in the mutation inside `handleMove`. It mutated `shape.position`
 <Trans>문제는 `handleMove` 내부의 변이에 있었습니다. `shape.position`를 변이했지만 `initialPosition`이 가리키는 객체와 동일한 객체입니다. 이것이 도형과 배경이 모두 움직이는 이유입니다. (변이이기 때문에 관련 없는 업데이트(색상 변경)가 재렌더링을 촉발할 때까지 변경 사항이 화면에 반영되지 않습니다).</Trans>
 
 The fix is to remove the mutation from `handleMove`, and use the spread syntax to copy the shape. Note that `+=` is a mutation, so you need to rewrite it to use a regular `+` operation.
-<Trans>수정 방법은 `handleMove`에서 변이를 제거하고 스프레드 구문을 사용하여 모양을 복사하는 것입니다. 참고로 `+=`는 변이이므로 일반 `+` 연산을 사용하려면 다시 작성해야 합니다.</Trans>
+<Trans>수정 방법은 `handleMove`에서 변이를 제거하고 전개 구문을 사용하여 모양을 복사하는 것입니다. 참고로 `+=`는 변이이므로 일반 `+` 연산을 사용하려면 다시 작성해야 합니다.</Trans>
 
 <Sandpack>
 

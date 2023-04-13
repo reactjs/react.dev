@@ -6,7 +6,7 @@ title: 번역 진행상황
 last updated @ 2023-04-09 PM 15:30
 </Intro>
 
-## Learn 진행상황 (done: 39 / total: 42) {/*learn*/}
+## Learn 진행상황 (done: 40 / total: 42) {/*learn*/}
 
 O/X | title
 :-: | :--

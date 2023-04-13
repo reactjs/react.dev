@@ -1944,10 +1944,10 @@ Sticking to primitive props where possible makes it easier to optimize your comp
 #### Fix a reconnecting chat, again<Trans>다시, 채팅 재연결 문제 수정하기</Trans> {/*fix-a-reconnecting-chat-again*/}
 
 This example connects to the chat either with or without encryption. Toggle the checkbox and notice the different messages in the console when the encryption is on and off. Try changing the room. Then, try toggling the theme. When you're connected to a chat room, you will receive new messages every few seconds. Verify that their color matches the theme you've picked.
-<Trans>이 예는 encryption를 사용하거나 사용하지 않고 채팅에 연결합니다. checkbox를 토글하면 암호화가 켜져 있을 때와 꺼져 있을 때 콘솔에 표시되는 메시지가 달라지는 것을 확인할 수 있습니다. 채팅방을 변경해 보세요. 그런 다음 theme를 토글해 보세요. 채팅방에 연결되면 몇 초마다 새 메시지를 받게 됩니다. 메시지의 색상이 선택한 테마와 일치하는지 확인합니다.</Trans>
+<Trans>이 예는 encryption를 사용하거나 사용하지 않고 채팅에 연결합니다. checkbox를 토글하면 암호화가 켜져 있을 때와 꺼져 있을 때 콘솔에 표시되는 메시지가 달라지는 것을 확인할 수 있습니다. 채팅방을 변경해 보세요. 그런 다음 theme를 토글해 보세요. 채팅방에 연결되면 몇 초마다 새 메시지를 받게 됩니다. 메시지의 색상이 선택한 테마와 일치하는지 확인하세요.</Trans>
 
 In this example, the chat re-connects every time you try to change the theme. Fix this. After the fix, changing the theme should not re-connect the chat, but toggling encryption settings or changing the room should re-connect.
-<Trans>이 예에서는 theme를 변경하려고 할 때마다 채팅이 다시 연결됩니다. 이 문제를 수정합니다. 수정 후 theme를 변경해도 채팅이 다시 연결되지 않지만, encryption설정을 토글하거나 채팅방을 변경하면 다시 연결됩니다.</Trans>
+<Trans>이 예에서는 theme를 변경하려고 할 때마다 채팅이 다시 연결됩니다. 이 문제를 수정하세요. 수정 후 theme를 변경해도 채팅이 다시 연결되지 않지만, encryption설정을 토글하거나 채팅방을 변경하면 다시 연결됩니다.</Trans>
 
 Don't change any code in `chat.js`. Other than that, you can change any code as long as it results in the same behavior. For example, you may find it helpful to change which props are being passed down.
 <Trans>`chat.js`의 코드를 변경하지 마세요. 그 외에는 동일한 동작을 초래하는 한 어떤 코드든 변경할 수 있습니다. 예를 들어 어떤 props이 전달되는지를 확인하고 변경하는 것이 도움이 될 수 있습니다.</Trans>
@@ -2177,7 +2177,7 @@ label, button { display: block; margin-bottom: 5px; }
 <Solution>
 
 There's more than one correct way to solve this, but here is one possible solution.
-<Trans>이 문제를 해결하는 올바른 방법은 여러 가지가 있지만, 여기 한 가지 가능한 해결책이 있습니다.</Trans>
+<Trans>이 문제를 해결하는 올바른 방법은 여러 가지가 있는데, 그 중 한 가지 해결책을 소개합니다.</Trans>
 
 In the original example, toggling the theme caused different `onMessage` and `createConnection` functions to be created and passed down. Since the Effect depended on these functions, the chat would re-connect every time you toggle the theme.
 <Trans>원래 예제에서는 테마를 변경하면 다른 `onMessage` 및 `createConnection` 함수가 생성되어 전달되었습니다. Effect가 이러한 함수에 의존했기 때문에 테마를 전환할 때마다 채팅이 다시 연결되었습니다.</Trans>

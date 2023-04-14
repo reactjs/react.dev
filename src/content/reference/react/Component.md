@@ -810,7 +810,7 @@ If you define `UNSAFE_componentWillReceiveProps`, React will call it when the co
 - If you need to **"reset" some state when a prop changes,** consider either making a component [fully controlled](https://legacy.reactjs.org/blog/2018/06/07/you-probably-dont-need-derived-state.html#recommendation-fully-controlled-component) or [fully uncontrolled with a key](https://legacy.reactjs.org/blog/2018/06/07/you-probably-dont-need-derived-state.html#recommendation-fully-uncontrolled-component-with-a-key) instead.
 - If you need to **"adjust" some state when a prop changes,** check whether you can compute all the necessary information from props alone during rendering. If you can't, use [`static getDerivedStateFromProps`](/reference/react/Component#static-getderivedstatefromprops) instead.
 
-[See examples of migrating away from unsafe lifecycles.](/blog/2018/03/27/update-on-async-rendering#updating-state-based-on-props)
+[See examples of migrating away from unsafe lifecycles.](https://legacy.reactjs.org/blog/2018/03/27/update-on-async-rendering.html#updating-state-based-on-props)
 
 #### Parameters {/*unsafe_componentwillreceiveprops-parameters*/}
 

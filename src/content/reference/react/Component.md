@@ -775,7 +775,7 @@ If you define `UNSAFE_componentWillMount`, React will call it immediately after 
 - To initialize state, declare [`state`](#state) as a class field or set `this.state` inside the [`constructor`.](#constructor)
 - If you need to run a side effect or set up a subscription, move that logic to [`componentDidMount`](#componentdidmount) instead.
 
-[See examples of migrating away from unsafe lifecycles.](/blog/2018/03/27/update-on-async-rendering#examples)
+[See examples of migrating away from unsafe lifecycles.](https://legacy.reactjs.org/blog/2018/03/27/update-on-async-rendering.html#examples)
 
 #### Parameters {/*unsafe_componentwillmount-parameters*/}
 
@@ -847,7 +847,7 @@ If you define `UNSAFE_componentWillUpdate`, React will call it before rendering 
 - If you need to run a side effect (for example, fetch data, run an animation, or reinitialize a subscription) in response to prop or state changes, move that logic to [`componentDidUpdate`](#componentdidupdate) instead.
 - If you need to read some information from the DOM (for example, to save the current scroll position) so that you can use it in [`componentDidUpdate`](#componentdidupdate) later, read it inside [`getSnapshotBeforeUpdate`](#getsnapshotbeforeupdate) instead.
 
-[See examples of migrating away from unsafe lifecycles.](/blog/2018/03/27/update-on-async-rendering#examples)
+[See examples of migrating away from unsafe lifecycles.](https://legacy.reactjs.org/blog/2018/03/27/update-on-async-rendering.html#examples)
 
 #### Parameters {/*unsafe_componentwillupdate-parameters*/}
 

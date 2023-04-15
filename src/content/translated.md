@@ -53,7 +53,7 @@ O   | [4-6. 이벤트와 Effect 분리하기 :: Separating Events from Effects](
 O   | [4-7. Effect 의존성 제거하기 :: Removing Effect Dependencies](/learn/removing-effect-dependencies)
 O   | [4-8. 커스텀 훅으로 로직 재사용하기 :: Reusing Logic with Custom Hooks](/learn/reusing-logic-with-custom-hooks)
 
-## Reference<Trans>참조</Trans> 진행상황 (done: 2 / total: 59) {/*reference*/}
+## Reference<Trans>참조</Trans> 진행상황 (done: 3 / total: 59) {/*reference*/}
 
 O/X | title | | O/X | title
 :-: | :-- | --- | :-: | :--
@@ -61,7 +61,7 @@ X   | [5. Hooks](/reference/react) | | X   | [8-3. `<option>`](/reference/react-
 X   | [5-1. useCallback](/reference/react/useCallback) | | X   | [8-4. `<progress>`](/reference/react-dom/components/progress)
 X   | [5-2. useContext](/reference/react/useContext) | | X   | [8-5. `<select>`](/reference/react-dom/components/select)
 O   | [5-3. useDebugValue](/reference/react/useDebugValue) | | X   | [8-6. `<textarea>`](/reference/react-dom/components/textarea)
-X   | [5-4. useDeferredValue](/reference/react/useDeferredValue) | | X   | [9. APIs](/reference/react-dom)
+O   | [5-4. useDeferredValue](/reference/react/useDeferredValue) | | X   | [9. APIs](/reference/react-dom)
 X   | [5-5. useEffect](/reference/react/useEffect) | | X   | [9-1. createPortal](/reference/react-dom/createPortal)
 X   | [5-6. useId](/reference/react/useId) | | X   | [9-2. flushSync](/reference/react-dom/flushSync)
 X   | [5-7. useImperativeHandle](/reference/react/useImperativeHandle) | | X   | [9-3. findDOMNode](/reference/react-dom/findDOMNode)

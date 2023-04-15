@@ -83,3 +83,7 @@ nav[role='navigation'] .translate::before {
   bottom: 5px;
   border-left: 4px solid var(--docsearch-primary-color);
 }
+
+.list-disc .translate {
+  margin-left: 6px;
+}

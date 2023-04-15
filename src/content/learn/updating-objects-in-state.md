@@ -1053,7 +1053,7 @@ input { margin-left: 5px; margin-bottom: 5px; }
 </Sandpack>
 
 The problem with `handlePlusClick` was that it mutated the `player` object. As a result, React did not know that there's a reason to re-render, and did not update the score on the screen. This is why, when you edited the first name, the state got updated, triggering a re-render which _also_ updated the score on the screen.
-<Trans>`handlePlusClick`의 문제는 `player` 객체를 변이시켰다는 것입니다. 그 결과 React는 다시 렌더링해야 할 이유가 있다는 것을 감지하지 못하고, 화면에 점수를 업데이트하지 않습니다. 그래서 first name을 수정했을 때 state가 업데이트되어 재렌더링을 촉발하고 화면의 점수 _또한_ 업데이트되었습니다.</Trans>
+<Trans>`handlePlusClick`의 문제는 `player` 객체를 변이시켰다는 것입니다. 그 결과 React는 다시 렌더링해야 할 이유가 있다는 것을 감지하지 못하고, 화면에 점수를 업데이트하지 않습니다. 그래서 first name을 수정했을 때 state가 업데이트되어 리렌더링을 촉발하고 화면의 점수 _또한_ 업데이트되었습니다.</Trans>
 
 The problem with `handleLastNameChange` was that it did not copy the existing `...player` fields into the new object. This is why the score got lost after you edited the last name.
 <Trans>`handleLastNameChange`은 기존 `...player` 필드를 새 객체에 복사하지 않고 있습니다. 이것이 last name을 편집한 후 점수가 잃은 이유입니다.</Trans>
@@ -1225,7 +1225,7 @@ select { margin-bottom: 10px; }
 <Solution>
 
 The problem was in the mutation inside `handleMove`. It mutated `shape.position`, but that's the same object that `initialPosition` points at. This is why both the shape and the background move. (It's a mutation, so the change doesn't reflect on the screen until an unrelated update--the color change--triggers a re-render.)
-<Trans>문제는 `handleMove` 내부의 변이에 있었습니다. `shape.position`를 변이했지만 `initialPosition`이 가리키는 객체와 동일한 객체입니다. 이것이 도형과 배경이 모두 움직이는 이유입니다. (변이이기 때문에 관련 없는 업데이트(색상 변경)가 재렌더링을 촉발할 때까지 변경 사항이 화면에 반영되지 않습니다).</Trans>
+<Trans>문제는 `handleMove` 내부의 변이에 있었습니다. `shape.position`를 변이했지만 `initialPosition`이 가리키는 객체와 동일한 객체입니다. 이것이 도형과 배경이 모두 움직이는 이유입니다. (변이이기 때문에 관련 없는 업데이트(색상 변경)가 리렌더링을 촉발할 때까지 변경 사항이 화면에 반영되지 않습니다).</Trans>
 
 The fix is to remove the mutation from `handleMove`, and use the spread syntax to copy the shape. Note that `+=` is a mutation, so you need to rewrite it to use a regular `+` operation.
 <Trans>수정 방법은 `handleMove`에서 변이를 제거하고 전개 구문을 사용하여 모양을 복사하는 것입니다. 참고로 `+=`는 변이이므로 일반 `+` 연산을 사용하려면 다시 작성해야 합니다.</Trans>

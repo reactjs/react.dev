@@ -7,7 +7,7 @@ translators: [유은미, 전시윤, 김아영, 정재남]
 <Intro>
 
 Event handlers only re-run when you perform the same interaction again. Unlike event handlers, Effects re-synchronize if some value they read, like a prop or a state variable, is different from what it was during the last render. Sometimes, you also want a mix of both behaviors: an Effect that re-runs in response to some values but not others. This page will teach you how to do that.
-<Trans>이벤트 핸들러 같은 상호 작용을 다시 수행할 때만 다시 실행됩니다. 이벤트 핸들러와 달리, Effect는 prop 또는 state 변수와 같은 일부 값을 마지막 렌더링 때와 다른 값으로 읽게 되면 다시 동기화됩니다. 때로는 일부 값에 대한 응답으로 다시 실행되는 Effect와 그렇지 않은 Effect의 혼합이 필요할 때도 있습니다. 이 페이지에서는 이를 어떻게 수행할 수 있는지 알려드립니다.</Trans>
+<Trans>이벤트 핸들러는 같은 상호 작용을 다시 수행할 때만 다시 실행됩니다. 이벤트 핸들러와 달리, Effect는 prop 또는 state 변수와 같은 일부 값을 마지막 렌더링 때와 다른 값으로 읽게 되면 다시 동기화됩니다. 때로는 일부 값에 대한 응답으로 다시 실행되는 Effect와 그렇지 않은 Effect의 혼합이 필요할 때도 있습니다. 이 페이지에서는 이를 어떻게 수행할 수 있는지 알려드립니다.</Trans>
 
 </Intro>
 

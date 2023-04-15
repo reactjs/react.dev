@@ -16,7 +16,7 @@ const SomeContext = createContext(defaultValue)
 
 ---
 
-## Reference {/*reference*/}
+## Reference<Trans>참조</Trans> {/*reference*/}
 
 ### `createContext(defaultValue)` {/*createcontext*/}
 
@@ -30,11 +30,11 @@ const ThemeContext = createContext('light');
 
 [See more examples below.](#usage)
 
-#### Parameters {/*parameters*/}
+#### Parameters<Trans>매개변수</Trans> {/*parameters*/}
 
 * `defaultValue`: The value that you want the context to have when there is no matching context provider in the tree above the component that reads context. If you don't have any meaningful default value, specify `null`. The default value is meant as a "last resort" fallback. It is static and never changes over time.
 
-#### Returns {/*returns*/}
+#### Returns<Trans>반환값</Trans> {/*returns*/}
 
 `createContext` returns a context object.
 
@@ -100,7 +100,7 @@ function Button() {
 
 ---
 
-## Usage {/*usage*/}
+## Usage<Trans>사용법</Trans> {/*usage*/}
 
 ### Creating context {/*creating-context*/}
 
@@ -200,7 +200,7 @@ This works similar to [importing and exporting components.](/learn/importing-and
 
 ---
 
-## Troubleshooting {/*troubleshooting*/}
+## Troubleshooting<Trans>문제 해결</Trans> {/*troubleshooting*/}
 
 ### I can't find a way to change the context value {/*i-cant-find-a-way-to-change-the-context-value*/}
 

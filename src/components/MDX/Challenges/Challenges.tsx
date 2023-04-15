@@ -16,6 +16,7 @@ interface ChallengesProps {
   children: React.ReactElement[];
   isRecipes?: boolean;
   titleText?: string;
+  translatedTitle?: string;
   titleId?: string;
   noTitle?: boolean;
 }
@@ -80,6 +81,7 @@ export function Challenges({
   isRecipes,
   noTitle,
   titleText = isRecipes ? 'Try out some examples' : 'Try out some challenges',
+  translatedTitle = '',
   titleId = isRecipes ? 'examples' : 'challenges',
 }: ChallengesProps) {
   const challenges = parseChallengeContents(children);
@@ -134,7 +136,10 @@ export function Challenges({
                   : 'text-3xl text-link'
               )}>
               {titleText}
-              <Trans>{isRecipes ? '예제를 풀어보세요' : '도전 과제'}</Trans>
+              <Trans>
+                {translatedTitle ||
+                  (isRecipes ? '예제를 풀어보세요' : '도전 과제')}
+              </Trans>
             </Heading>
           )}
           {totalChallenges > 1 && (

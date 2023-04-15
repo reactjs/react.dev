@@ -35,7 +35,7 @@ const variantMap = {
       'linear-gradient(rgba(245, 249, 248, 0), rgba(245, 249, 248, 1)',
   },
   pitfall: {
-    title: 'Pitfall',
+    title: 'Pitfall | 함정',
     Icon: IconPitfall,
     containerClasses: 'bg-yellow-5 dark:bg-yellow-60 dark:bg-opacity-20',
     textColor: 'text-yellow-50 dark:text-yellow-40',
@@ -43,7 +43,7 @@ const variantMap = {
       'linear-gradient(rgba(249, 247, 243, 0), rgba(249, 247, 243, 1)',
   },
   wip: {
-    title: 'Under Construction',
+    title: 'Under Construction | 작업중',
     Icon: IconNote,
     containerClasses: 'bg-yellow-5 dark:bg-yellow-60 dark:bg-opacity-20',
     textColor: 'text-yellow-50 dark:text-yellow-40',

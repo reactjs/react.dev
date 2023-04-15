@@ -223,7 +223,7 @@ Effects are an escape hatch from the React paradigm. They let you "step outside"
 <Trans>Effect는 React 패러다임에서 벗어날 수 있는 탈출구입니다. 이를 통해 React의 "외부"로 나가서 컴포넌트를 외부 시스템과 동기화할 수 있습니다. 외부 시스템이 관여하지 않는 경우(예: 일부 prop이나 state가 변경될 때 컴포넌트의 state를 업데이트하려는 경우)에는 Effect가 필요하지 않습니다. 불필요한 Effect를 제거하면 코드를 더 쉽게 따라갈 수 있고, 실행 속도가 빨라지며, 오류 발생 가능성이 줄어듭니다.</Trans>
 
 There are two common cases in which you don't need Effects:
-<Trans>이펙트가 필요하지 않은 일반적인 경우는 두 가지가 있습니다:</Trans>
+<Trans>Effect가 필요하지 않은 일반적인 경우는 두 가지가 있습니다:</Trans>
 
 - **You don't need Effects to transform data for rendering.**
 - **You don't need Effects to handle user events.**
@@ -279,7 +279,7 @@ Effects have a different lifecycle from components. Components may mount, update
 <Trans>Effect는 컴포넌트와 다른 생명주기를 가집니다. 컴포넌트는 마운트, 업데이트 또는 언마운트할 수 있습니다. 반면 Effect는 동기화를 시작하거나 동기화를 중지하는 두 가지 작업만 할 수 있습니다. Effect가 시간에 따라 변하는 prop 및 state에 의존하는 경우 이 주기는 여러 번 발생할 수 있습니다.</Trans>
 
 This Effect depends on the value of the `roomId` prop. Props are *reactive values,* which means they can change on a re-render. Notice that the Effect *re-synchronizes* (and re-connects to the server) if `roomId` changes:
-<Trans>아래 예시의 Effect는 `roomId` prop의 값에 따라 달라집니다. Prop은 *반응형 값*이므로 다시 렌더링할 때 변경될 수 있습니다. `roomId`가 변경되면 이펙트가 *재동기화*(및 서버 재연결)됩니다:</Trans>
+<Trans>아래 예시의 Effect는 `roomId` prop의 값에 따라 달라집니다. Prop은 *반응형 값*이므로 다시 렌더링할 때 변경될 수 있습니다. `roomId`가 변경되면 Effect가 *재동기화*(및 서버 재연결)됩니다:</Trans>
 
 <Sandpack>
 
@@ -343,12 +343,12 @@ button { margin-left: 10px; }
 </Sandpack>
 
 React provides a linter rule to check that you've specified your Effect's dependencies correctly. If you forget to specify `roomId` in the list of dependencies in the above example, the linter will find that bug automatically.
-<Trans>React는 이펙트의 의존성을 올바르게 지정했는지 확인하는 린터 규칙을 제공합니다. 위의 예시에서 의존성 목록에 `roomId`를 지정하는 것을 잊어버렸다면, 린터가 해당 버그를 자동으로 찾아낼 것입니다.</Trans>
+<Trans>React는 Effect의 의존성을 올바르게 지정했는지 확인하는 린터 규칙을 제공합니다. 위의 예시에서 의존성 목록에 `roomId`를 지정하는 것을 잊어버렸다면, 린터가 해당 버그를 자동으로 찾아낼 것입니다.</Trans>
 
 <LearnMore path="/learn/lifecycle-of-reactive-effects">
 
 Read [**Lifecycle of Reactive Events**](/learn/lifecycle-of-reactive-effects) to learn how an Effect's lifecycle is different from a component's.
-<Trans>이펙트의 생명주기가 컴포넌트와 어떻게 다른지 알아보려면 [**반응형 Effect의 생명주기**](/learn/lifecycle-of-reactive-effects)를 읽어보세요.</Trans>
+<Trans>Effect의 생명주기가 컴포넌트와 어떻게 다른지 알아보려면 [**반응형 Effect의 생명주기**](/learn/lifecycle-of-reactive-effects)를 읽어보세요.</Trans>
 
 </LearnMore>
 
@@ -628,7 +628,7 @@ label { display: block; margin-top: 10px; }
 </Sandpack>
 
 Code inside Effect Events isn't reactive, so changing the `theme` no longer makes your Effect re-connect.
-<Trans>이벤트 함수 내부의 코드는 반응형 코드가 아니므로 `theme`를 변경해도 더 이상 이펙트가 다시 연결되지 않습니다.</Trans>
+<Trans>이벤트 함수 내부의 코드는 반응형 코드가 아니므로 `theme`를 변경해도 더 이상 Effect가 다시 연결되지 않습니다.</Trans>
 
 <LearnMore path="/learn/separating-events-from-effects">
 

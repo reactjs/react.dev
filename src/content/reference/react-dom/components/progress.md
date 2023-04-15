@@ -16,7 +16,7 @@ The [built-in browser `<progress>` component](https://developer.mozilla.org/en-U
 
 ---
 
-## Reference {/*reference*/}
+## Reference<Trans>참조</Trans> {/*reference*/}
 
 ### `<progress>` {/*progress*/}
 
@@ -39,7 +39,7 @@ Additionally, `<progress>` supports these props:
 
 ---
 
-## Usage {/*usage*/}
+## Usage<Trans>사용법</Trans> {/*usage*/}
 
 ### Controlling a progress indicator {/*controlling-a-progress-indicator*/}
 

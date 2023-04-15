@@ -16,7 +16,7 @@ const [state, setState] = useState(initialState);
 
 ---
 
-## Reference {/*reference*/}
+## Reference<Trans>참조</Trans> {/*reference*/}
 
 ### `useState(initialState)` {/*usestate*/}
 
@@ -36,19 +36,19 @@ The convention is to name state variables like `[something, setSomething]` using
 
 [See more examples below.](#usage)
 
-#### Parameters {/*parameters*/}
+#### Parameters<Trans>매개변수</Trans> {/*parameters*/}
 
 * `initialState`: The value you want the state to be initially. It can be a value of any type, but there is a special behavior for functions. This argument is ignored after the initial render.
   * If you pass a function as `initialState`, it will be treated as an _initializer function_. It should be pure, should take no arguments, and should return a value of any type. React will call your initializer function when initializing the component, and store its return value as the initial state. [See an example below.](#avoiding-recreating-the-initial-state)
 
-#### Returns {/*returns*/}
+#### Returns<Trans>반환값</Trans> {/*returns*/}
 
 `useState` returns an array with exactly two values:
 
 1. The current state. During the first render, it will match the `initialState` you have passed.
 2. The [`set` function](#setstate) that lets you update the state to a different value and trigger a re-render.
 
-#### Caveats {/*caveats*/}
+#### Caveats<Trans>주의사항</Trans> {/*caveats*/}
 
 * `useState` is a Hook, so you can only call it **at the top level of your component** or your own Hooks. You can't call it inside loops or conditions. If you need that, extract a new component and move the state into it.
 * In Strict Mode, React will **call your initializer function twice** in order to [help you find accidental impurities.](#my-initializer-or-updater-function-runs-twice) This is development-only behavior and does not affect production. If your initializer function is pure (as it should be), this should not affect the behavior. The result from one of the calls will be ignored.
@@ -68,16 +68,16 @@ function handleClick() {
   // ...
 ```
 
-#### Parameters {/*setstate-parameters*/}
+#### Parameters<Trans>매개변수</Trans> {/*setstate-parameters*/}
 
 * `nextState`: The value that you want the state to be. It can be a value of any type, but there is a special behavior for functions.
   * If you pass a function as `nextState`, it will be treated as an _updater function_. It must be pure, should take the pending state as its only argument, and should return the next state. React will put your updater function in a queue and re-render your component. During the next render, React will calculate the next state by applying all of the queued updaters to the previous state. [See an example below.](#updating-state-based-on-the-previous-state)
 
-#### Returns {/*setstate-returns*/}
+#### Returns<Trans>반환값</Trans> {/*setstate-returns*/}
 
 `set` functions do not have a return value.
 
-#### Caveats {/*setstate-caveats*/}
+#### Caveats<Trans>주의사항</Trans> {/*setstate-caveats*/}
 
 * The `set` function **only updates the state variable for the *next* render**. If you read the state variable after calling the `set` function, [you will still get the old value](#ive-updated-the-state-but-logging-gives-me-the-old-value) that was on the screen before your call.
 
@@ -91,7 +91,7 @@ function handleClick() {
 
 ---
 
-## Usage {/*usage*/}
+## Usage<Trans>사용법</Trans> {/*usage*/}
 
 ### Adding state to a component {/*adding-state-to-a-component*/}
 
@@ -1144,7 +1144,7 @@ This pattern can be hard to understand and is usually best avoided. However, it'
 
 ---
 
-## Troubleshooting {/*troubleshooting*/}
+## Troubleshooting<Trans>문제 해결</Trans> {/*troubleshooting*/}
 
 ### I've updated the state, but logging gives me the old value {/*ive-updated-the-state-but-logging-gives-me-the-old-value*/}
 

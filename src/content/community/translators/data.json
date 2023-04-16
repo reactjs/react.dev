@@ -125,6 +125,13 @@
     "description": "개발 공부를 하며 작은 성공을 쌓아가는 것을 좋아합니다.<br/> 좋은 아이디어로 사람들에게 편리함을 주는 것이 목표입니다."
   },
   {
+    "name": "유은미",
+    "photo": "/images/translators/_m_eunmiyoo.jpg",
+    "github": "lenayoo",
+    "title": "프론트엔드 개발자",
+    "description": "노마드 생활을 꿈꾸며 개발을 배웠는데, 그 보다 더 넓은 세상을 배워가는 주니어 개발자 입니다.<br/>올해에는 조금 더 부지런히 배우고 폭풍 성장하는 것이 목표입니다😊"
+  },
+  {
     "name": "테스트",
     "photo": "/images/team/gaearon.jpg",
     "github": "test",

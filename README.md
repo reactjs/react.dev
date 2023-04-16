@@ -29,7 +29,9 @@
 
 5. 깃헙에서 `New Pull Request`를 하세요.
 
-| 1. base repository:<br/> **"roy-jung/react.dev.ko"** 선택 | 2. 다시 base:<br/> **feature/translators** 선택 | 3. compare:<br/> 작업한 브랜치를 선택 |
+   1. base repository: **"roy-jung/react.dev.ko"** 선택
+   2. 다시 base: **feature/translators** 선택
+   3. compare: 작업한 브랜치를 선택
 
 ## PR 작성 규칙
 

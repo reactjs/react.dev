@@ -98,7 +98,7 @@
   },
   {
     "name": "안예지",
-    "photo": "/images/translators/_m_yaeji.jpg",
+    "photo": "/images/translators/_m_sungmin.jpeg",
     "github": "reeseo3o",
     "title": "프론트엔드 개발자",
     "description": "개발을 하면서 재미와 성취감을 제대로 느끼고 있는 주니어입니다.<br/>이 흐름을 가지고 꾸준히 앞으로 나아가 보겠습니다."
@@ -125,10 +125,10 @@
     "description": "개발 공부를 하며 작은 성공을 쌓아가는 것을 좋아합니다.<br/> 좋은 아이디어로 사람들에게 편리함을 주는 것이 목표입니다."
   },
   {
-    "name": "테스트",
-    "photo": "/images/team/gaearon.jpg",
-    "github": "test",
-    "title": "프론트엔트 취준생",
-    "description": "취업준비 어려워요. 아무말대잔치.<br/>줄바꿈은 이렇게<br/>[마크다운링크](www.youtube.com/c/feroy)<br/>**마크다운 강조** 다됩니다!!"
+    "name": "조성민",
+    "photo": "/images/translators/_m_sungmin.jpeg",
+    "github": "HelloMandu",
+    "title": "프론트엔드 개발자",
+    "description": "프론트엔드 개발자 조성민입니다.<br/> Interface, Type System Enthusiast 입니다."
   }
 ]

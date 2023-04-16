@@ -7,7 +7,7 @@ translators: [유은미, 전시윤, 김아영, 정재남]
 <Intro>
 
 Event handlers only re-run when you perform the same interaction again. Unlike event handlers, Effects re-synchronize if some value they read, like a prop or a state variable, is different from what it was during the last render. Sometimes, you also want a mix of both behaviors: an Effect that re-runs in response to some values but not others. This page will teach you how to do that.
-<Trans>이벤트 핸들러 같은 상호 작용을 다시 수행할 때만 다시 실행됩니다. 이벤트 핸들러와 달리, Effect는 prop 또는 state 변수와 같은 일부 값을 마지막 렌더링 때와 다른 값으로 읽게 되면 다시 동기화됩니다. 때로는 일부 값에 대한 응답으로 다시 실행되는 Effect와 그렇지 않은 Effect의 혼합이 필요할 때도 있습니다. 이 페이지에서는 이를 어떻게 수행할 수 있는지 알려드립니다.</Trans>
+<Trans>이벤트 핸들러는 같은 상호 작용을 다시 수행할 때만 다시 실행됩니다. 이벤트 핸들러와 달리, Effect는 prop 또는 state 변수와 같은 일부 값을 마지막 렌더링 때와 다른 값으로 읽게 되면 다시 동기화됩니다. 때로는 일부 값에 대한 응답으로 다시 실행되는 Effect와 그렇지 않은 Effect의 혼합이 필요할 때도 있습니다. 이 페이지에서는 이를 어떻게 수행할 수 있는지 알려드립니다.</Trans>
 
 </Intro>
 
@@ -22,8 +22,8 @@ Event handlers only re-run when you perform the same interaction again. Unlike e
 * 이벤트 핸들러와 Effect 중에서 선택하는 방법
 * Effect는 반응형이고 이벤트 핸들러는 반응형이 아닌 이유
 * Effect 코드의 일부가 반응하지 않기를 원할 때 해야 할 일
-* Effect 이벤트란 무엇이며 Effect에서 추출하는 방법
-* Effect 이벤트를 사용하여 Effect에서 최신 props 및 state를 읽는 방법
+* Effect Event란 무엇이며 Effect에서 추출하는 방법
+* Effect Event를 사용하여 Effect에서 최신 props 및 state를 읽는 방법
 </TransBlock>
 
 </YouWillLearn>
@@ -444,7 +444,7 @@ In other words, you *don't* want this line to be reactive, even though it is ins
 You need a way to separate this non-reactive logic from the reactive Effect around it.
 <Trans>이 비반응형 로직을 주변의 반응형 Effect로부터 분리할 수 있는 방법이 필요합니다.</Trans>
 
-### Declaring an Effect Event<Trans>Effect 이벤트 선언하기</Trans> {/*declaring-an-effect-event*/}
+### Declaring an Effect Event<Trans>Effect Event 선언하기</Trans> {/*declaring-an-effect-event*/}
 
 <Wip>
 
@@ -629,7 +629,7 @@ label { display: block; margin-top: 10px; }
 You can think of Effect Events as being very similar to event handlers. The main difference is that event handlers run in response to a user interactions, whereas Effect Events are triggered by you from Effects. Effect Events let you "break the chain" between the reactivity of Effects and code that should not be reactive.
 <Trans>Effect Event는 이벤트 핸들러와 매우 유사하다고 생각할 수 있습니다. 가장 큰 차이점은 이벤트 핸들러는 사용자 상호작용에 대한 응답으로 실행되는 반면, Effect Event는 Effect에서 사용자가 촉발한다는 점입니다. Effect Event를 사용하면 Effect의 반응성과 반응형으로 동작해서는 안 되는 코드 사이의 "사슬을 끊을 수 있습니다".</Trans>
 
-### Reading latest props and state with Effect Events <Trans>Effect 이벤트로 최신 props 및 state 읽기</Trans> {/*reading-latest-props-and-state-with-effect-events*/}
+### Reading latest props and state with Effect Events <Trans>Effect Event로 최신 props 및 state 읽기</Trans> {/*reading-latest-props-and-state-with-effect-events*/}
 
 <Wip>
 
@@ -715,10 +715,10 @@ function Page({ url }) {
 ```
 
 Here, `onVisit` is an Effect Event. The code inside it isn't reactive. This is why you can use `numberOfItems` (or any other reactive value!) without worrying that it will cause the surrounding code to re-execute on changes.
-<Trans>여기서 `onVisit`는 Effect 이벤트입니다. 그 안의 코드는 반응형이 아닙니다. 그렇기 때문에 변경 시 주변 코드가 다시 실행될 것을 걱정할 필요 없이 `numberOfItems`(또는 다른 반응형 값!)를 사용할 수 있습니다.</Trans>
+<Trans>여기서 `onVisit`는 Effect Event입니다. 그 안의 코드는 반응형이 아닙니다. 그렇기 때문에 변경 시 주변 코드가 다시 실행될 것을 걱정할 필요 없이 `numberOfItems`(또는 다른 반응형 값!)를 사용할 수 있습니다.</Trans>
 
 On the other hand, the Effect itself remains reactive. Code inside the Effect uses the `url` prop, so the Effect will re-run after every re-render with a different `url`. This, in turn, will call the `onVisit` Effect Event.
-<Trans>반면에 Effect 자체는 반응형으로 유지됩니다. Effect 내부의 코드는 `url` prop을 사용하므로, Effect는 다른 `url`로 다시 렌더링할 때마다 다시 실행됩니다. 그러면 `onVisit` Effect 이벤트가 호출됩니다.</Trans>
+<Trans>반면에 Effect 자체는 반응형으로 유지됩니다. Effect 내부의 코드는 `url` prop을 사용하므로, Effect는 다른 `url`로 다시 렌더링할 때마다 다시 실행됩니다. 그러면 `onVisit` Effect Event가 호출됩니다.</Trans>
 
 As a result, you will call `logVisit` for every change to the `url`, and always read the latest `numberOfItems`. However, if `numberOfItems` changes on its own, this will not cause any of the code to re-run.
 <Trans>결과적으로 `url`이 변경될 때마다 `logVisit`을 호출하고 항상 최신`numberOfItems`를 읽게 됩니다. 그러나 `numberOfItems`가 자체적으로 변경되면 코드가 다시 실행되지 않습니다.</Trans>
@@ -738,7 +738,7 @@ You might be wondering if you could call `onVisit()` with no arguments, and read
 ```
 
 This would work, but it's better to pass this `url` to the Effect Event explicitly. **By passing `url` as an argument to your Effect Event, you are saying that visiting a page with a different `url` constitutes a separate "event" from the user's perspective.** The `visitedUrl` is a *part* of the "event" that happened:
-<Trans>이 방법도 작동하지만 이 `url`을 Effect 이벤트에 명시적으로 전달하는 것이 좋습니다. Effect 이벤트에 인자로 `url`을 전달하면 다른 `url`을 가진 페이지를 방문하는 것이 사용자 관점에서 별도의 "이벤트"를 구성한다는 의미입니다. `visitedUrl` 은 발생한 “이벤트”의 일부입니다:</Trans>
+<Trans>이 방법도 작동하지만 이 `url`을 Effect Event에 명시적으로 전달하는 것이 좋습니다. Effect Event에 인자로 `url`을 전달하면 다른 `url`을 가진 페이지를 방문하는 것이 사용자 관점에서 별도의 "이벤트"를 구성한다는 의미입니다. `visitedUrl` 은 발생한 “이벤트”의 일부입니다:</Trans>
 
 ```js {1-2,6}
   const onVisit = useEffectEvent(visitedUrl => {
@@ -751,7 +751,7 @@ This would work, but it's better to pass this `url` to the Effect Event explicit
 ```
 
 Since your Effect Event explicitly "asks" for the `visitedUrl`, now you can't accidentally remove `url` from the Effect's dependencies. If you remove the `url` dependency (causing distinct page visits to be counted as one), the linter will warn you about it. You want `onVisit` to be reactive with regards to the `url`, so instead of reading the `url` inside (where it wouldn't be reactive), you pass it *from* your Effect.
-<Trans>Effect 이벤트가 명시적으로 `visitedUrl`을 "요청"하기 때문에 이제 Effect의 의존성에서 실수로 `url`을 제거할 수 없습니다. `url` 의존성을 제거하면(별개의 페이지 방문이 하나로 계산되게 함) linter에서 이에 대해 경고합니다. `onVisit`이 `url`에 대해 반응하기를 원한다면, (반응하지 않는) Effect 이벤트 내부에서 `url`을 읽는 대신 Effect에서 `url`을 *전달*합니다.</Trans>
+<Trans>Effect Event가 명시적으로 `visitedUrl`을 "요청"하기 때문에 이제 Effect의 의존성에서 실수로 `url`을 제거할 수 없습니다. `url` 의존성을 제거하면(별개의 페이지 방문이 하나로 계산되게 함) linter에서 이에 대해 경고합니다. `onVisit`이 `url`에 대해 반응하기를 원한다면, (반응하지 않는) Effect Event 내부에서 `url`을 읽는 대신 Effect에서 `url`을 *전달*합니다.</Trans>
 
 This becomes especially important if there is some asynchronous logic inside the Effect:
 <Trans>이는 Effect 내부에 비동기 로직이 있는 경우 특히 중요합니다:</Trans>
@@ -946,14 +946,14 @@ body {
 </Sandpack>
 
 This doesn't mean that `useEffectEvent` is *always* the correct solution. You should only apply it to the lines of code that you don't want to be reactive. In the above sandbox, you didn't want the Effect's code to be reactive with regards to `canMove`. That's why it made sense to extract an Effect Event.
-<Trans>그렇다고 해서 `useEffectEvent`가 항상 올바른 해결책이라는 의미는 아닙니다. 반응하지 않으려는 코드 줄에만 적용해야 합니다. 위의 샌드박스에서는 `canMove`와 관련하여 Effect의 코드가 반응하는 것을 원하지 않았습니다. 그렇기 때문에 Effect 이벤트를 추출하는 것이 합리적입니다.</Trans>
+<Trans>그렇다고 해서 `useEffectEvent`가 항상 올바른 해결책이라는 의미는 아닙니다. 반응하지 않으려는 코드 줄에만 적용해야 합니다. 위의 샌드박스에서는 `canMove`와 관련하여 Effect의 코드가 반응하는 것을 원하지 않았습니다. 그렇기 때문에 Effect Event를 추출하는 것이 합리적입니다.</Trans>
 
 Read [Removing Effect Dependencies](/learn/removing-effect-dependencies) for other correct alternatives to suppressing the linter.
 <Trans>Linter를 억제하는 다른 올바른 대안에 대해서는 [Effect 의존성 제거하기](https://react.dev/learn/removing-effect-dependencies)를 읽어보세요.</Trans>
 
 </DeepDive>
 
-### Limitations of Effect Events<Trans>Effect 이벤트의 제한사항</Trans> {/*limitations-of-effect-events*/}
+### Limitations of Effect Events<Trans>Effect Event의 제한사항</Trans> {/*limitations-of-effect-events*/}
 
 <Wip>
 This section describes an **experimental API that has not yet been released** in a stable version of React.
@@ -961,7 +961,7 @@ This section describes an **experimental API that has not yet been released** in
 </Wip>
 
 Effect Events are very limited in how you can use them:
-<Trans>Effect 이벤트는 사용할 수 있는 방법이 매우 제한적입니다:</Trans>
+<Trans>Effect Event는 사용할 수 있는 방법이 매우 제한적입니다:</Trans>
 
 * **Only call them from inside Effects.**
 * **Never pass them to other components or Hooks.**
@@ -971,7 +971,7 @@ Effect Events are very limited in how you can use them:
 </TransBlock>
 
 For example, don't declare and pass an Effect Event like this:
-<Trans>예를 들어, 다음과 같이 Effect 이벤트를 선언하고 전달하지 마세요:</Trans>
+<Trans>예를 들어, 다음과 같이 Effect Event를 선언하고 전달하지 마세요:</Trans>
 
 
 ```js {4-6,8}
@@ -1000,7 +1000,7 @@ function useTimer(callback, delay) {
 ```
 
 Instead, always declare Effect Events directly next to the Effects that use them:
-<Trans>대신 항상 Effect 이벤트를 사용하는 Effect 바로 옆에 Effect 이벤트를 선언하세요:</Trans>
+<Trans>대신 항상 Effect Event를 사용하는 Effect 바로 옆에 Effect Event를 선언하세요:</Trans>
 
 ```js {10-12,16,21}
 function Timer() {
@@ -1028,7 +1028,7 @@ function useTimer(callback, delay) {
 ```
 
 Effect Events are non-reactive "pieces" of your Effect code. They should be next to the Effect using them.
-<Trans>Effect 이벤트는 Effect 코드의 비반응성 "조각"입니다. Effect 이벤트는 이를 사용하는 Effect 옆에 있어야 합니다.</Trans>
+<Trans>Effect Event는 Effect 코드의 비반응성 "조각"입니다. Effect Event는 이를 사용하는 Effect 옆에 있어야 합니다.</Trans>
 
 <Recap>
 
@@ -1044,9 +1044,9 @@ Effect Events are non-reactive "pieces" of your Effect code. They should be next
 - Effect는 동기화가 필요할 때마다 실행됩니다.
 - 이벤트 핸들러 내부의 로직은 반응형이 아닙니다.
 - Effect 내부의 로직은 반응적입니다.
-- 비반응적 로직을 Effect에서 Effect 이벤트로 이동할 수 있습니다.
-- Effect 내부에서만 Effect 이벤트를 호출하세요.
-- Effect 이벤트를 다른 컴포넌트나 Hook에 전달하지 마세요.
+- 비반응적 로직을 Effect에서 Effect Event로 이동할 수 있습니다.
+- Effect 내부에서만 Effect Event를 호출하세요.
+- Effect Event를 다른 컴포넌트나 Hook에 전달하지 마세요.
 </TransBlock>
 </Recap>
 
@@ -1255,7 +1255,7 @@ The issue is that the code inside the Effect uses the `increment` state variable
 <Trans>문제는 Effect 내부의 코드가 `increment` state 변수를 사용한다는 것입니다. 이 변수는 Effect의 종속 변수이기 때문에 '증가'를 변경할 때마다 Effect가 다시 동기화되고 이로 인해 interval이 지워집니다. Effect가 발사될 기회를 갖기 전에 매번 interval을 지우면 타이머가 멈춘 것처럼 보일 것입니다.</Trans>
 
 To solve the issue, extract an `onTick` Effect Event from the Effect:
-<Trans>이 문제를 해결하려면 Effect에서 `onTick` Effect 이벤트를 추출하세요:</Trans>
+<Trans>이 문제를 해결하려면 Effect에서 `onTick` Effect Event를 추출하세요:</Trans>
 <Sandpack>
 
 ```json package.json hidden
@@ -1325,7 +1325,7 @@ button { margin: 10px; }
 </Sandpack>
 
 Since `onTick` is an Effect Event, the code inside it isn't reactive. The change to `increment` does not trigger any Effects.
-<Trans>`onTick`은 Effect 이벤트이므로 그 안의 코드는 반응하지 않습니다. `increment`로 변경해도 어떤 Effect도 촉발되지 않습니다.</Trans>
+<Trans>`onTick`은 Effect Event이므로 그 안의 코드는 반응하지 않습니다. `increment`로 변경해도 어떤 Effect도 촉발되지 않습니다.</Trans>
 
 </Solution>
 
@@ -1337,7 +1337,7 @@ In this example, you can customize the interval delay. It's stored in a `delay` 
 <Hint>
 
 Code inside Effect Events is not reactive. Are there cases in which you would _want_ the `setInterval` call to re-run?
-<Trans>Effect 이벤트 내부의 코드는 반응하지 않습니다. `setInterval` 호출이 다시 실행되기를 _원하는_ 경우가 있나요?</Trans>
+<Trans>Effect Event 내부의 코드는 반응하지 않습니다. `setInterval` 호출이 다시 실행되기를 _원하는_ 경우가 있나요?</Trans>
 
 </Hint>
 
@@ -1427,7 +1427,7 @@ button { margin: 10px; }
 <Solution>
 
 The problem with the above example is that it extracted an Effect Event called `onMount` without considering what the code should actually be doing. You should only extract Effect Events for a specific reason: when you want to make a part of your code non-reactive. However, the `setInterval` call *should* be reactive with respect to the `delay` state variable. If the `delay` changes, you want to set up the interval from scratch! To fix this code, pull all the reactive code back inside the Effect:
-<Trans>위 예제의 문제점은 코드가 실제로 수행해야 할 작업을 고려하지 않고 `onMount`라는 Effect 이벤트를 추출했다는 것입니다. Effect 이벤트는 특정 이유, 즉 코드의 일부를 비반응적으로 만들고자 할 때만 추출해야 합니다. 하지만 `setInterval` 호출은 `delay` state 변수에 대해 반응형이어야 합니다. `delay`가 변경되면 간격을 처음부터 다시 설정하고 싶을 것입니다! 이 코드를 수정하려면 모든 반응형 코드를 Effect 내부로 다시 가져와야 합니다:</Trans>
+<Trans>위 예제의 문제점은 코드가 실제로 수행해야 할 작업을 고려하지 않고 `onMount`라는 Effect Event를 추출했다는 것입니다. Effect Event는 특정 이유, 즉 코드의 일부를 비반응적으로 만들고자 할 때만 추출해야 합니다. 하지만 `setInterval` 호출은 `delay` state 변수에 대해 반응형이어야 합니다. `delay`가 변경되면 간격을 처음부터 다시 설정하고 싶을 것입니다! 이 코드를 수정하려면 모든 반응형 코드를 Effect 내부로 다시 가져와야 합니다:</Trans>
 
 <Sandpack>
 
@@ -1508,7 +1508,7 @@ button { margin: 10px; }
 </Sandpack>
 
 In general, you should be suspicious of functions like `onMount` that focus on the *timing* rather than the *purpose* of a piece of code. It may feel "more descriptive" at first but it obscures your intent. As a rule of thumb, Effect Events should correspond to something that happens from the *user's* perspective. For example, `onMessage`, `onTick`, `onVisit`, or `onConnected` are good Effect Event names. Code inside them would likely not need to be reactive. On the other hand, `onMount`, `onUpdate`, `onUnmount`, or `onAfterRender` are so generic that it's easy to accidentally put code that *should* be reactive into them. This is why you should name your Effect Events after *what the user thinks has happened,* not when some code happened to run.
-<Trans>일반적으로 코드의 '목적'이 아닌 '타이밍'에 초점을 맞추는 'onMount'와 같은 함수는 의심해봐야 합니다. 처음에는 "더 설명적"이라고 느껴질 수 있지만 의도를 모호하게 만들 수 있습니다. 경험상 Effect 이벤트는 *사용자* 관점에서 일어나는 일과 일치해야 합니다. 예를 들어 `onMessage`, `onTick`, `onVisit`, `onConnected` 등이 좋은 Effect 이벤트 이름입니다. 그 안에 있는 코드는 반응형일 필요가 없을 가능성이 높습니다. 반면에 `onMount`, `onUpdate`, `onUnmount`, `onAfterRender`는 너무 일반적이어서 반응형이어야 하는 코드를 실수로 넣기 쉽습니다. 그렇기 때문에 Effect 이벤트의 이름을 코드가 실행된 시점이 아니라 *사용자가 생각하기에 어떤 일이 일어났다고 생각하는 시점*의 이름을 따서 지어야 합니다.</Trans>
+<Trans>일반적으로 코드의 '목적'이 아닌 '타이밍'에 초점을 맞추는 'onMount'와 같은 함수는 의심해봐야 합니다. 처음에는 "더 설명적"이라고 느껴질 수 있지만 의도를 모호하게 만들 수 있습니다. 경험상 Effect Event는 *사용자* 관점에서 일어나는 일과 일치해야 합니다. 예를 들어 `onMessage`, `onTick`, `onVisit`, `onConnected` 등이 좋은 Effect Event 이름입니다. 그 안에 있는 코드는 반응형일 필요가 없을 가능성이 높습니다. 반면에 `onMount`, `onUpdate`, `onUnmount`, `onAfterRender`는 너무 일반적이어서 반응형이어야 하는 코드를 실수로 넣기 쉽습니다. 그렇기 때문에 Effect Event의 이름을 코드가 실행된 시점이 아니라 *사용자가 생각하기에 어떤 일이 일어났다고 생각하는 시점*의 이름을 따서 지어야 합니다.</Trans>
 </Solution>
 
 #### Fix a delayed notification <Trans>delay된 알림 수정</Trans> {/*fix-a-delayed-notification*/}
@@ -1525,7 +1525,7 @@ Fix it so that when you switch from "general" to "travel" and then to "music" ve
 <Hint>
 
 Your Effect knows which room it connected to. Is there any information that you might want to pass to your Effect Event?
-<Trans>Effect는 어느 방에 연결했는지 알고 있습니다. Effect 이벤트에 전달하고 싶은 정보가 있나요?</Trans>
+<Trans>Effect는 어느 방에 연결했는지 알고 있습니다. Effect Event에 전달하고 싶은 정보가 있나요?</Trans>
 
 </Hint>
 
@@ -1665,13 +1665,13 @@ label { display: block; margin-top: 10px; }
 <Solution>
 
 Inside your Effect Event, `roomId` is the value *at the time Effect Event was called.*
-<Trans>Effect 이벤트 내에서 `roomId`는 *Effect 이벤트가 호출된 시점*의 값입니다.</Trans>
+<Trans>Effect Event 내에서 `roomId`는 *Effect Event가 호출된 시점*의 값입니다.</Trans>
 
 Your Effect Event is called with a two second delay. If you're quickly switching from the travel to the music room, by the time the travel room's notification shows, `roomId` is already `"music"`. This is why both notifications say "Welcome to music".
-<Trans>Effect 이벤트는 2초의 지연을 두고 호출됩니다. 여행 방에서 음악 방으로 빠르게 전환하는 경우 여행 방의 알림이 표시될 때쯤이면 `roomId`는 이미 `music`입니다. 이것이 두 알림 모두 "Welcome to music"라고 표시되는 이유입니다.</Trans>
+<Trans>Effect Event는 2초의 지연을 두고 호출됩니다. 여행 방에서 음악 방으로 빠르게 전환하는 경우 여행 방의 알림이 표시될 때쯤이면 `roomId`는 이미 `music`입니다. 이것이 두 알림 모두 "Welcome to music"라고 표시되는 이유입니다.</Trans>
 
 To fix the issue, instead of reading the *latest* `roomId` inside the Effect Event, make it a parameter of your Effect Event, like `connectedRoomId` below. Then pass `roomId` from your Effect by calling `onConnected(roomId)`:
-<Trans>이 문제를 해결하려면 Effect 이벤트 내부의 *최신* `roomId`를 읽는 대신 아래의 `connectedRoomId`와 같이 Effect 이벤트의 매개 변수로 만드세요. 그런 다음 `onConnected(roomId)`를 호출하여 Effect에서 `roomId`를 전달하세요:</Trans>
+<Trans>이 문제를 해결하려면 Effect Event 내부의 *최신* `roomId`를 읽는 대신 아래의 `connectedRoomId`와 같이 Effect Event의 매개 변수로 만드세요. 그런 다음 `onConnected(roomId)`를 호출하여 Effect에서 `roomId`를 전달하세요:</Trans>
 <Sandpack>
 
 ```json package.json hidden

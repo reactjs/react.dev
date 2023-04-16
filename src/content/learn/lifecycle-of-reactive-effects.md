@@ -870,7 +870,7 @@ function ChatRoom() {
 <Trans>**Effect가 독립적인 동기화 프로세스를 나타내는지 확인하세요.** Effect가 아무것도 동기화하지 않는다면 [불필요한 것일 수 있습니다.](/learn/you-might-not-need-an-effect) 여러 개의 독립적인 것을 동기화하는 경우 [분할하세요.](#each-effect-represents-a-separate-synchronization-process)</Trans>
 
 * **If you want to read the latest value of props or state without "reacting" to it and re-synchronizing the Effect,** you can split your Effect into a reactive part (which you'll keep in the Effect) and a non-reactive part (which you'll extract into something called an _Effect Event_). [Read about separating Events from Effects.](/learn/separating-events-from-effects)
-<Trans>**'반응'하지 않고 Effect를 재동기화하지 않으면서 props나 state의 최신 값을 읽으려면,** Effect를 반응하는 부분(Effect에 유지)과 반응하지 않는 부분(*Effect 이벤트*라는 것으로 추출)으로 분리할 수 있습니다. [이벤트와 Effect를 분리하는 방법에 대해 읽어보세요.](/learn/separating-events-from-effects)</Trans>
+<Trans>**'반응'하지 않고 Effect를 재동기화하지 않으면서 props나 state의 최신 값을 읽으려면,** Effect를 반응하는 부분(Effect에 유지)과 반응하지 않는 부분(*Effect Event*라는 것으로 추출)으로 분리할 수 있습니다. [이벤트와 Effect를 분리하는 방법에 대해 읽어보세요.](/learn/separating-events-from-effects)</Trans>
 
 * **Avoid relying on objects and functions as dependencies.** If you create objects and functions during rendering and then read them from an Effect, they will be different on every render. This will cause your Effect to re-synchronize every time. [Read more about removing unnecessary dependencies from Effects.](/learn/removing-effect-dependencies)
 <Trans>**객체와 함수를 의존성으로 사용하지 마세요.** 렌더링 중에 오브젝트와 함수를 생성한 다음 Effect에서 읽으면 렌더링할 때마다 오브젝트와 함수가 달라집니다. 그러면 매번 Effect를 다시 동기화해야 합니다. [Effect에서 불필요한 의존성을 제거하는 방법에 대해 읽어보세요.](/learn/removing-effect-dependencies)</Trans>
@@ -1477,7 +1477,7 @@ Try adding `console.log('Resubscribing')` inside the Effect body and notice that
 <Trans>Effect 본문 안에 `console.log('재구독')`을 추가하면 이제 체크박스를 토글하거나(`canMove` 변경) 코드를 편집할 때만 재구독되는 것을 확인할 수 있습니다. 이는 항상 다시 구독하던 이전 접근 방식보다 더 나은 방법입니다.</Trans>
 
 You'll learn a more general approach to this type of problem in [Separating Events from Effects.](/learn/separating-events-from-effects)
-<Trans>이러한 유형의 문제에 대한 보다 일반적인 접근 방식은 [이벤트와 Effects 분리하기](/learn/separating-events-from-effects)에서 배울 수 있습니다.</Trans>
+<Trans>이러한 유형의 문제에 대한 보다 일반적인 접근 방식은 [이벤트와 Effect 분리하기](/learn/separating-events-from-effects)에서 배울 수 있습니다.</Trans>
 </Solution>
 
 #### Fix a connection switch <Trans>연결 스위치 조정</Trans> {/*fix-a-connection-switch*/}
@@ -2122,7 +2122,7 @@ label { display: block; margin-bottom: 10px; }
 </Sandpack>
 
 This code is a bit repetitive. However, that's not a good reason to combine it into a single Effect! If you did this, you'd have to combine both Effect's dependencies into one list, and then changing the planet would refetch the list of all planets. Effects are not a tool for code reuse.
-<Trans> 이 코드는 약간 반복적입니다. 하지만 그렇다고 해서 이를 하나의 Effect로 결합해야 하는 이유는 없습니다! 이렇게 하면 두 Effect의 의존성을 하나의 목록으로 결합한 다음 행성을 변경하면 모든 행성 목록을 다시 가져와야 합니다. Effects는 코드 재사용을 위한 도구가 아닙니다.</Trans>
+<Trans> 이 코드는 약간 반복적입니다. 하지만 그렇다고 해서 이를 하나의 Effect로 결합해야 하는 이유는 없습니다! 이렇게 하면 두 Effect의 의존성을 하나의 목록으로 결합한 다음 행성을 변경하면 모든 행성 목록을 다시 가져와야 합니다. Effect는 코드 재사용을 위한 도구가 아닙니다.</Trans>
 
 Instead, to reduce repetition, you can extract some logic into a custom Hook like `useSelectOptions` below:
 <Trans>대신, 반복을 줄이기 위해 아래의 `useSelectOptions`와 같은 커스텀 훅에 일부 로직을 추출할 수 있습니다:</Trans>
@@ -2286,7 +2286,7 @@ label { display: block; margin-bottom: 10px; }
 </Sandpack>
 
 Check the `useSelectOptions.js` tab in the sandbox to see how it works. Ideally, most Effects in your application should eventually be replaced by custom Hooks, whether written by you or by the community. Custom Hooks hide the synchronization logic, so the calling component doesn't know about the Effect. As you keep working on your app, you'll develop a palette of Hooks to choose from, and eventually you won't need to write Effects in your components very often.
-<Trans>샌드박스에서 `useSelectOptions.js` 탭을 확인하여 작동 방식을 확인하세요. 이상적으로는 애플리케이션에 있는 대부분의 Effects는 사용자가 직접 작성했든 커뮤니티에서 작성했든 결국 커스텀 훅으로 대체되어야 합니다. 커스텀 훅은 동기화 로직을 숨기므로 호출하는 컴포넌트는 Effect에 대해 알지 못합니다. 앱을 계속 개발하다 보면 선택할 수 있는 훅 팔레트를 개발하게 될 것이고, 결국에는 컴포넌트에 Effect를 자주 작성할 필요가 없게 될 것입니다.</Trans>
+<Trans>샌드박스에서 `useSelectOptions.js` 탭을 확인하여 작동 방식을 확인하세요. 이상적으로는 애플리케이션에 있는 대부분의 Effect는 사용자가 직접 작성했든 커뮤니티에서 작성했든 결국 커스텀 훅으로 대체되어야 합니다. 커스텀 훅은 동기화 로직을 숨기므로 호출하는 컴포넌트는 Effect에 대해 알지 못합니다. 앱을 계속 개발하다 보면 선택할 수 있는 훅 팔레트를 개발하게 될 것이고, 결국에는 컴포넌트에 Effect를 자주 작성할 필요가 없게 될 것입니다.</Trans>
 
 </Solution>
 

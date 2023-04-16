@@ -60,6 +60,9 @@ nav[role='navigation'] .translate::before {
   top: 5px;
   bottom: 5px;
 }
+.list-disc .translate {
+  margin-left: 6px;
+}
 
 .translate-block {
   position: relative;

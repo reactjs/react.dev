@@ -6,7 +6,7 @@ title: 번역 진행상황
 last updated @ 2023-04-09 PM 15:30
 </Intro>
 
-## Learn 진행상황 (done: 39 / total: 42) {/*learn*/}
+## Learn 진행상황 (done: 40 / total: 42) {/*learn*/}
 
 O/X | title
 :-: | :--
@@ -33,7 +33,7 @@ O   | [2-2. State: 컴포넌트의 메모리 :: State: A Component's Memory](/le
 O   | [2-3. 렌더링하고 커밋하기 :: Render and Commit](/learn/render-and-commit)
 O   | [2-4. 스냅샷으로서의 state :: State as a Snapshot](/learn/state-as-a-snapshot)
 O   | [2-5. 여러 state 업데이트를 큐에 담기 :: Queueing a Series of State Updates](/learn/queueing-a-series-of-state-updates)
-X   | [2-6. 객체 state 업데이트 :: Updating Objects in State](/learn/updating-objects-in-state)
+O   | [2-6. 객체 state 업데이트 :: Updating Objects in State](/learn/updating-objects-in-state)
 O   | [2-7. 배열 state 업데이트 :: Updating Arrays in State](/learn/updating-arrays-in-state)
 O   | [3. state 관리 :: Managing State](/learn/managing-state)
 O   | [3-1. state로 입력에 반응하기 :: Reacting to Input with State](/learn/reacting-to-input-with-state)
@@ -53,7 +53,7 @@ O   | [4-6. 이벤트와 Effect 분리하기 :: Separating Events from Effects](
 O   | [4-7. Effect 의존성 제거하기 :: Removing Effect Dependencies](/learn/removing-effect-dependencies)
 O   | [4-8. 커스텀 훅으로 로직 재사용하기 :: Reusing Logic with Custom Hooks](/learn/reusing-logic-with-custom-hooks)
 
-## Reference 진행상황 (done: 2 / total: 59) {/*reference*/}
+## Reference<Trans>참조</Trans> 진행상황 (done: 3 / total: 59) {/*reference*/}
 
 O/X | title | | O/X | title
 :-: | :-- | --- | :-: | :--
@@ -61,7 +61,7 @@ X   | [5. Hooks](/reference/react) | | X   | [8-3. `<option>`](/reference/react-
 X   | [5-1. useCallback](/reference/react/useCallback) | | X   | [8-4. `<progress>`](/reference/react-dom/components/progress)
 X   | [5-2. useContext](/reference/react/useContext) | | X   | [8-5. `<select>`](/reference/react-dom/components/select)
 O   | [5-3. useDebugValue](/reference/react/useDebugValue) | | X   | [8-6. `<textarea>`](/reference/react-dom/components/textarea)
-X   | [5-4. useDeferredValue](/reference/react/useDeferredValue) | | X   | [9. APIs](/reference/react-dom)
+O   | [5-4. useDeferredValue](/reference/react/useDeferredValue) | | X   | [9. APIs](/reference/react-dom)
 X   | [5-5. useEffect](/reference/react/useEffect) | | X   | [9-1. createPortal](/reference/react-dom/createPortal)
 X   | [5-6. useId](/reference/react/useId) | | X   | [9-2. flushSync](/reference/react-dom/flushSync)
 X   | [5-7. useImperativeHandle](/reference/react/useImperativeHandle) | | X   | [9-3. findDOMNode](/reference/react-dom/findDOMNode)

@@ -130,5 +130,12 @@
     "github": "HelloMandu",
     "title": "프론트엔드 개발자",
     "description": "프론트엔드 개발자 조성민입니다.<br/> Interface, Type System Enthusiast 입니다."
+  },
+  {
+    "name": "테스트",
+    "photo": "/images/team/gaearon.jpg",
+    "github": "test",
+    "title": "프론트엔트 취준생",
+    "description": "취업준비 어려워요. 아무말대잔치.<br/>줄바꿈은 이렇게<br/>[마크다운링크](www.youtube.com/c/feroy)<br/>**마크다운 강조** 다됩니다!!"
   }
 ]

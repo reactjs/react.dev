@@ -6,13 +6,30 @@
 
 ## 자기소개 추가하기
 
-1. `feature/translators` 브랜치를 기준으로 작업합니다.
+1. `feature/translators` 브랜치를 기준으로 로컬 브랜치를 만듭니다.
+   _[your-own-branch-name] 부분에 원하는 이름을 넣으세요. 대괄호(`[ ]`)는 없어야 합니다._
 
-2. 적당한 크기의 이미지를 `/public/images/translators` 폴더에 올려주세요.
+```bash
+/develop/> git pull origin develop
+/develop/> git switch -c "[your-own-branch-name]"
+```
+
+2. 적당한 크기의 이미지를 `/public/images/translators` 폴더에 올려주세요.  
+   파일명 앞에 `_m_`이 붙은 파일들은 나중에 이미지최적화를 마친 파일이고, prefix가 없는 파일들이 원본 파일입니다. 여러분은 원본 파일만 올려주시면 됩니다.
 
 3. `/src/content/community/translators` 폴더의 `data.json` 파일에서, 본인의 소개글을 작성해 주세요.
 
-4. 푸쉬하고, feature/translators 브랜치로 PR 올려주세요.
+4. 작업을 마치면 해당 브랜치를 `push`합니다.
+
+```bash
+/[your-own-branch-name]/> git add .
+/[your-own-branch-name]/> git commit -m "커밋메시지 자유롭게 작성"
+/[your-own-branch-name]/> git push origin [your-own-branch-name]
+```
+
+5. 깃헙에서 `New Pull Request`를 하세요.
+
+| 1. base repository:<br/> **"roy-jung/react.dev.ko"** 선택 | 2. 다시 base:<br/> **feature/translators** 선택 | 3. compare:<br/> 작업한 브랜치를 선택 |
 
 ## PR 작성 규칙
 

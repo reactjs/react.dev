@@ -191,15 +191,18 @@ button { margin-left: 10px; }
 Notice that you can't "choose" the dependencies of your Effect. Every <CodeStep step={2}>reactive value</CodeStep> used by your Effect's code must be declared in your dependency list. The dependency list is determined by the surrounding code:
 <Trans>Effect의 의존성을 "선택"할 수 없다는 점에 유의하세요. Effect의 코드에서 사용되는 모든 <CodeStep step={2}>반응형 값</CodeStep>은 의존성 목록에 선언되어야 합니다. 의존성 목록은 주변 코드에 의해 결정됩니다:</Trans>
 
-```js [[2, 3, "roomId"], [2, 5, "roomId"], [2, 8, "roomId"]]
+```js [[2, 3, "roomId"], [2, 6, "roomId"], [2, 10, "roomId"]]
 const serverUrl = 'https://localhost:1234';
 
 function ChatRoom({ roomId }) { // This is a reactive value
+                                 // roomId는 반응형 값임
   useEffect(() => {
     const connection = createConnection(serverUrl, roomId); // This Effect reads that reactive value
+                                                             // 이 Effect는 반응형값을 읽음
     connection.connect();
     return () => connection.disconnect();
   }, [roomId]); // ✅ So you must specify that reactive value as a dependency of your Effect
+                 // ✅ 그러므로 해당 반응형 값을 Effect의 의존성 목록에 추가해야함
   // ...
 }
 ```
@@ -226,9 +229,10 @@ And the linter would be right! Since `roomId` may change over time, this would i
 **To remove a dependency, "prove" to the linter that it *doesn't need* to be a dependency.** For example, you can move `roomId` out of your component to prove that it's not reactive and won't change on re-renders:
 <Trans>**의존성을 제거하려면 해당 컴포넌트가 의존성이 될 *필요가 없다는 것*을 린터에 "증명"하세요.** 예를 들어, `roomId`를 컴포넌트 밖으로 이동시켜도 반응하지 않고 리렌더링 시에도 변경되지 않음을 증명할 수 있습니다:</Trans>
 
-```js {2,9}
+```js {2,10}
 const serverUrl = 'https://localhost:1234';
 const roomId = 'music'; // Not a reactive value anymore
+                        // 더이상 반응형 값이 아님
 
 function ChatRoom() {
   useEffect(() => {
@@ -1375,10 +1379,10 @@ Instead of reading `count` inside the Effect, you pass a `c => c + 1` instructio
 #### Fix a retriggering animation<Trans>애니메이션을 다시 촉발하는 현상 고치기</Trans> {/*fix-a-retriggering-animation*/}
 
 In this example, when you press "Show", a welcome message fades in. The animation takes a second. When you press "Remove", the welcome message immediately disappears. The logic for the fade-in animation is implemented in the `animation.js` file as plain JavaScript [animation loop.](https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame) You don't need to change that logic. You can treat it as a third-party library. Your Effect creates an instance of `FadeInAnimation` for the DOM node, and then calls `start(duration)` or `stop()` to control the animation. The `duration` is controlled by a slider. Adjust the slider and see how the animation changes.
-<Trans>이 예에서는 'Show'를 누르면 환영 메시지가 페이드인 합니다. 애니메이션은 1초 정도 걸립니다. "Remove"를 누르면 환영 메시지가 즉시 사라집니다. 페이드인 애니메이션의 로직은 animation.js 파일에서 일반 JavaScript 애니메이션 루프로 구현됩니다. 이 로직을 변경할 필요는 없습니다. 서드파티 라이브러리로 처리하면 됩니다. Effect는 DOM 노드에 대한 FadeInAnimation 인스턴스를 생성한 다음 start(duration) 또는 stop()을 호출하여 애니메이션을 제어합니다. duration은 슬라이더로 제어합니다. 슬라이더를 조정하여 애니메이션이 어떻게 변하는지 확인하세요.</Trans>
+<Trans>이 예에서는 'Show'를 누르면 환영 메시지가 페이드인 합니다. 애니메이션은 1초 정도 걸립니다. "Remove"를 누르면 환영 메시지가 즉시 사라집니다. 페이드인 애니메이션의 로직은 animation.js 파일에서 일반 JavaScript 애니메이션 루프로 구현됩니다. 이 로직을 변경할 필요는 없습니다. 서드파티 라이브러리로 처리하면 됩니다. Effect는 DOM 노드에 대한 FadeInAnimation 인스턴스를 생성한 다음 `start(duration)` 또는 `stop()`을 호출하여 애니메이션을 제어합니다. duration은 슬라이더로 제어합니다. 슬라이더를 조정하여 애니메이션이 어떻게 변하는지 확인하세요.</Trans>
 
 This code already works, but there is something you want to change. Currently, when you move the slider that controls the `duration` state variable, it retriggers the animation. Change the behavior so that the Effect does not "react" to the `duration` variable. When you press "Show", the Effect should use the current `duration` on the slider. However, moving the slider itself should not by itself retrigger the animation.
-<Trans>이 코드는 이미 작동하지만 변경하고 싶은 부분이 있습니다. 현재 duration state 변수를 제어하는 슬라이더를 움직이면 애니메이션이 다시 촉발됩니다. Effect가 duration 변수에 "반응"하지 않도록 동작을 변경하세요. "Show"를 누르면 Effect는 슬라이더의 현재 duration을 사용해야 합니다. 그러나 슬라이더를 움직이는 것만으로 애니메이션이 다시 촉발되어서는 안 됩니다.</Trans>
+<Trans>이 코드는 이미 작동하지만 변경하고 싶은 부분이 있습니다. 현재 `duration` state 변수를 제어하는 슬라이더를 움직이면 애니메이션이 다시 촉발됩니다. Effect가 `duration` 변수에 "반응"하지 않도록 동작을 변경하세요. "Show"를 누르면 Effect는 슬라이더의 현재 `duration을` 사용해야 합니다. 그러나 슬라이더를 움직이는 것만으로 애니메이션이 다시 촉발되어서는 안 됩니다.</Trans>
 
 <Hint>
 
@@ -1961,7 +1965,7 @@ One of these functions is an event handler. Do you know some way to call an even
 <Trans>이러한 함수 중 하나가 이벤트 핸들러입니다. 이벤트 핸들러 함수의 새 값에 '반응'하지 않고 이벤트 핸들러를 Effect로 호출하는 방법을 알고 계신가요? 유용할 것 같습니다!</Trans>
 
 Another of these functions only exists to pass some state to an imported API method. Is this function really necessary? What is the essential information that's being passed down? You might need to move some imports from `App.js` to `ChatRoom.js`.
-<Trans>이러한 함수 중 다른 함수는 가져온 API 메서드에 일부 state를 전달하기 위해서만 존재합니다. 이 함수가 정말 필요한가요? 전달되는 필수 정보는 무엇인가요? 일부 imports를 `App.js`에서 `ChatRoom.js`로 옮겨야 할 수도 있습니다.</Trans>
+<Trans>이러한 함수 중 다른 함수는 가져온 API 메서드에 일부 state를 전달하기 위해서만 존재합니다. 이 함수가 정말 필요한가요? 전달되는 필수 정보는 무엇인가요? 일부 import를 `App.js`에서 `ChatRoom.js`로 옮겨야 할 수도 있습니다.</Trans>
 
 </Hint>
 
@@ -2199,7 +2203,7 @@ Unlike the `onMessage` prop, the `onReceiveMessage` Effect Event is not reactive
 <Trans>`onMessage` 프로퍼티와 달리 `onReceiveMessage` Effect Event는 반응하지 않습니다. 그렇기 때문에 Effect의 의존성이 될 필요가 없습니다. 따라서 `onMessage`를 변경해도 채팅이 다시 연결되지 않습니다.</Trans>
 
 You can't do the same with `createConnection` because it *should* be reactive. You *want* the Effect to re-trigger if the user switches between an encrypted and an unencryption connection, or if the user switches the current room. However, because `createConnection` is a function, you can't check whether the information it reads has *actually* changed or not. To solve this, instead of passing `createConnection` down from the `App` component, pass the raw `roomId` and `isEncrypted` values:
-<Trans>반응형이어야 하기 때문에 'createConnection'으로는 동일한 작업을 수행할 수 없습니다. 사용자가 암호화 연결과 비암호화 연결 사이를 전환하거나 사용자가 현재 방을 전환하면 Effect가 다시 촉발되기를 원합니다. 하지만 `createConnection`은 함수이기 때문에 이 함수가 읽는 정보가 실제로 변경되었는지 여부를 확인할 수 없습니다. 이 문제를 해결하려면 `App` 컴포넌트에서 `createConnection`을 전달하는 대신 primitive 값인 `roomId` 및 `isEncrypted`를 전달하세요:</Trans>
+<Trans>반응형이어야 하기 때문에 `createConnection`으로는 동일한 작업을 수행할 수 없습니다. 사용자가 암호화 연결과 비암호화 연결 사이를 전환하거나 사용자가 현재 방을 전환하면 Effect가 다시 촉발되기를 원합니다. 하지만 `createConnection`은 함수이기 때문에 이 함수가 읽는 정보가 실제로 변경되었는지 여부를 확인할 수 없습니다. 이 문제를 해결하려면 `App` 컴포넌트에서 `createConnection`을 전달하는 대신 원시값인 `roomId` 및 `isEncrypted`를 전달하세요:</Trans>
 
 ```js {2-3}
       <ChatRoom

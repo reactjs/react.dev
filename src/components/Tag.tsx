@@ -5,7 +5,16 @@
 import cn from 'classnames';
 import type {RouteTag} from './Layout/getRouteMeta';
 
-const variantMap = {
+type Variant = {
+  name: string;
+  classes: string;
+};
+
+type VariantMap = {
+  [key: string]: Variant;
+};
+
+const variantMap: VariantMap = {
   foundation: {
     name: 'Foundation',
     classes: 'bg-yellow-50 text-white',

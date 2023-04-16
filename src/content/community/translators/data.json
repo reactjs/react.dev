@@ -132,6 +132,13 @@
     "description": "깊이있게 배우고자 노력하고 더 깊이 배우는걸 좋아합니다.<br/>하고싶은게 너무나도 많습니다! 하고싶은걸 하나씩 만들어가보고싶습니다.🤗<br/> 취미가 뭐에요? 라고 물으신다면 좋은사람들과 좋은시간을 보내는것이라 말하고싶습니다🤭<br/> 리액트스터디로 좋은사람들과 만나 좋은일을 함께해서 너무 좋습니다!"
   },
   {
+    "name": "조성민",
+    "photo": "/images/translators/_m_sungmin.jpeg",
+    "github": "HelloMandu",
+    "title": "프론트엔드 개발자",
+    "description": "프론트엔드 개발자 조성민입니다.<br/> Interface, Type System Enthusiast 입니다."
+  },
+  {
     "name": "테스트",
     "photo": "/images/team/gaearon.jpg",
     "github": "test",

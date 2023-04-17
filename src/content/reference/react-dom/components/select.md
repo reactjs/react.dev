@@ -33,6 +33,7 @@ To display a select box, render the [built-in browser `<select>`](https://develo
 ```
 
 [See more examples below.](#usage)
+<Trans>[아래에서 더 많은 예를 확인하세요.](#usage)</Trans>
 
 #### Props {/*props*/}
 

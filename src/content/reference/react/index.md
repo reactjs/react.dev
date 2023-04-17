@@ -6,7 +6,7 @@ translators: [정재남, 유은미, 고석영]
 <Intro>
 
 *Hooks* let you use different React features from your components. You can either use the built-in Hooks or combine them to build your own. This page lists all built-in Hooks in React.
-<Trans>*훅*을 사용하면 컴포넌트에서 다양한 React 기능을 사용할 수 있습니다. 내장 훅을 사용하거나 조합하여 자신만의 훅을 만들 수 있습니다. 이 페이지에는 React에 내장된 모든 훅이 나열되어 있습니다.</Trans>
+<Trans>*훅*을 사용하면 컴포넌트에서 다양한 React 기능을 사용할 수 있습니다. 내장 훅을 사용하거나 조합하여 자신만의 훅을 만들 수도 있습니다. 이 페이지에는 React에 내장된 모든 훅이 나열되어 있습니다.</Trans>
 
 </Intro>
 

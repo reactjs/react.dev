@@ -173,17 +173,17 @@
         },
         {
           "title": "Extracting State Logic into a Reducer",
-          "translatedTitle": "state 로직을 리듀서로 추출하기",
+          "translatedTitle": "state 로직을 reducer로 추출하기",
           "path": "/learn/extracting-state-logic-into-a-reducer"
         },
         {
           "title": "Passing Data Deeply with Context",
-          "translatedTitle": "컨텍스트로 데이터를 깊게 전달하기",
+          "translatedTitle": "context로 데이터 깊숙이 전달하기",
           "path": "/learn/passing-data-deeply-with-context"
         },
         {
           "title": "Scaling Up with Reducer and Context",
-          "translatedTitle": "리듀서와 컨텍스트로 확장하기",
+          "translatedTitle": "reducer와 context로 확장하기",
           "path": "/learn/scaling-up-with-reducer-and-context"
         }
       ]

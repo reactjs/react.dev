@@ -45,6 +45,7 @@ class Greeting extends Component {
 Only the `render` method is required, other methods are optional.
 
 [See more examples below.](#usage)
+<Trans>[아래에서 더 많은 예를 확인하세요.](#usage)</Trans>
 
 ---
 

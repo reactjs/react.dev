@@ -3,7 +3,7 @@ title: 번역 진행상황
 ---
 
 <Intro>
-last updated @ 2023-04-09 PM 15:30
+last updated @ 2023-04-17 PM 18:30
 </Intro>
 
 ## Learn 진행상황 (done: 40 / total: 42) {/*learn*/}

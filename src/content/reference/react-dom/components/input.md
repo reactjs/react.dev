@@ -27,6 +27,7 @@ To display an input, render the [built-in browser `<input>`](https://developer.m
 ```
 
 [See more examples below.](#usage)
+<Trans>[아래에서 더 많은 예를 확인하세요.](#usage)</Trans>
 
 #### Props {/*props*/}
 

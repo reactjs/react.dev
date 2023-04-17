@@ -38,6 +38,7 @@ It returns the snapshot of the data in the store. You need to pass two functions
 2. The `getSnapshot` function should read a snapshot of the data from the store.
 
 [See more examples below.](#usage)
+<Trans>[아래에서 더 많은 예를 확인하세요.](#usage)</Trans>
 
 #### Parameters<Trans>매개변수</Trans> {/*parameters*/}
 

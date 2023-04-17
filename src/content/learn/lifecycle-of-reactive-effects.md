@@ -667,7 +667,7 @@ Props and state aren't the only reactive values. Values that you calculate from 
 <Trans>props와 state만 반응형 값인 것은 아닙니다. 이들로부터 계산하는 값들 역시 반응형입니다. props나 state가 변경되면 컴포넌트가 다시 렌더링되고 그로부터 계산된 값도 변경됩니다. 그렇기 때문에 Effect가 사용하는 컴포넌트 본문의 모든 변수는 Effect 의존성 목록에 있어야 합니다.</Trans>
 
 Let's say that the user can pick a chat server in the dropdown, but they can also configure a default server in settings. Suppose you've already put the settings state in a [context](/learn/scaling-up-with-reducer-and-context) so you read the `settings` from that context. Now you calculate the `serverUrl` based on the selected server from props and the default server:
-<Trans>사용자가 드롭다운에서 채팅 서버를 선택할 수도 있고, 설정에서 기본 서버를 구성할 수도 있다고 가정해 봅시다. 이미 `settings` state를 [컨텍스트](/learn/scaling-up-with-reducer-and-context)에 넣어서 해당 컨텍스트에서 읽었다고 가정해 보겠습니다. 이제 props에서 선택한 서버와 컨텍스트에서 기본 서버를 기준으로 `serverUrl`을 계산합니다:</Trans>
+<Trans>사용자가 드롭다운에서 채팅 서버를 선택할 수도 있고, 설정에서 기본 서버를 구성할 수도 있다고 가정해 봅시다. 이미 `settings` state를 [context](/learn/scaling-up-with-reducer-and-context)에 넣어서 해당 context에서 읽었다고 가정해 보겠습니다. 이제 props에서 선택한 서버와 context에서 기본 서버를 기준으로 `serverUrl`을 계산합니다:</Trans>
 
 ```js {3,5,10}
 function ChatRoom({ roomId, selectedServerUrl }) { // roomId is reactive

@@ -1,6 +1,6 @@
 ---
 title: Passing Data Deeply with Context
-translatedTitle: Context로 데이터 깊게 전달하기
+translatedTitle: context로 데이터 깊숙이 전달하기
 translators: [이승효, 서민택, 이도원]
 ---
 

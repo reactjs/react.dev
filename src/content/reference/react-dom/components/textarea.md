@@ -27,6 +27,7 @@ To display a text area, render the [built-in browser `<textarea>`](https://devel
 ```
 
 [See more examples below.](#usage)
+<Trans>[아래에서 더 많은 예를 확인하세요.](#usage)</Trans>
 
 #### Props {/*props*/}
 

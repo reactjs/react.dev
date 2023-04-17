@@ -146,6 +146,13 @@
     "description": "노마드 생활을 꿈꾸며 개발을 배웠는데, 그 보다 더 넓은 세상을 배워가는 주니어 개발자 입니다.<br/>올해에는 조금 더 부지런히 배우고 폭풍 성장하는 것이 목표입니다😊"
   },
   {
+    "name": "이승효",
+    "photo": "/images/translators/seunghyoLee.jpg",
+    "github": "bingwer",
+    "title": "주니어 프론트엔드 개발자",
+    "description": "🏃‍♂️ 매일 성장하고 싶은 주니어 프론트엔드 개발자 입니다.<br/>💻 좋은 사용자 경험을 제공하고 싶습니다.<br/>🤔 좋은 코드에 대해 함께 고민하고 토론하고 싶습니다.<br/>👬 함께 일하기 좋은 동료가 되고 싶습니다."
+  },
+  {
     "name": "테스트",
     "photo": "/images/team/gaearon.jpg",
     "github": "test",

@@ -21,6 +21,7 @@ All built-in browser components, such as [`<div>`](https://developer.mozilla.org
 ```
 
 [See more examples below.](#usage)
+<Trans>[아래에서 더 많은 예를 확인하세요.](#usage)</Trans>
 
 #### Props {/*common-props*/}
 

@@ -16,7 +16,7 @@ const MemoizedComponent = memo(SomeComponent, arePropsEqual?)
 
 ---
 
-## Reference {/*reference*/}
+## Reference<Trans>참조</Trans> {/*reference*/}
 
 ### `memo(Component, arePropsEqual?)` {/*memo*/}
 
@@ -31,20 +31,21 @@ const SomeComponent = memo(function SomeComponent(props) {
 ```
 
 [See more examples below.](#usage)
+<Trans>[아래에서 더 많은 예를 확인하세요.](#usage)</Trans>
 
-#### Parameters {/*parameters*/}
+#### Parameters<Trans>매개변수</Trans> {/*parameters*/}
 
 * `Component`: The component that you want to memoize. The `memo` does not modify this component, but returns a new, memoized component instead. Any valid React component, including functions and [`forwardRef`](/reference/react/forwardRef) components, is accepted.
 
 * **optional** `arePropsEqual`: A function that accepts two arguments: the component's previous props, and its new props. It should return `true` if the old and new props are equal: that is, if the component will render the same output and behave in the same way with the new props as with the old. Otherwise it should return `false`. Usually, you will not specify this function. By default, React will compare each prop with [`Object.is`.](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is)
 
-#### Returns {/*returns*/}
+#### Returns<Trans>반환값</Trans> {/*returns*/}
 
 `memo` returns a new React component. It behaves the same as the component provided to `memo` except that React will not always re-render it when its parent is being re-rendered unless its props have changed.
 
 ---
 
-## Usage {/*usage*/}
+## Usage<Trans>사용법</Trans> {/*usage*/}
 
 ### Skipping re-rendering when props are unchanged {/*skipping-re-rendering-when-props-are-unchanged*/}
 
@@ -357,7 +358,7 @@ Avoid doing deep equality checks inside `arePropsEqual` unless you are 100% sure
 
 ---
 
-## Troubleshooting {/*troubleshooting*/}
+## Troubleshooting<Trans>문제 해결</Trans> {/*troubleshooting*/}
 ### My component re-renders when a prop is an object, array, or function {/*my-component-rerenders-when-a-prop-is-an-object-or-array*/}
 
 React compares old and new props by shallow equality: that is, it considers whether each new prop is reference-equal to the old prop. If you create a new object or array each time the parent is re-rendered, even if the individual elements are each the same, React will still consider it to be changed. Similarly, if you create a new function when rendering the parent component, React will consider it to have changed even if the function has the same definition. To avoid this, [simplify props or memoize props in the parent component](#minimizing-props-changes).

@@ -16,7 +16,7 @@ const SomeComponent = forwardRef(render)
 
 ---
 
-## Reference {/*reference*/}
+## Reference<Trans>참조</Trans> {/*reference*/}
 
 ### `forwardRef(render)` {/*forwardref*/}
 
@@ -31,16 +31,17 @@ const MyInput = forwardRef(function MyInput(props, ref) {
 ```
 
 [See more examples below.](#usage)
+<Trans>[아래에서 더 많은 예를 확인하세요.](#usage)</Trans>
 
-#### Parameters {/*parameters*/}
+#### Parameters<Trans>매개변수</Trans> {/*parameters*/}
 
 * `render`: The render function for your component. React calls this function with the props and `ref` that your component received from its parent. The JSX you return will be the output of your component.
 
-#### Returns {/*returns*/}
+#### Returns<Trans>반환값</Trans> {/*returns*/}
 
 `forwardRef` returns a React component that you can render in JSX. Unlike React components defined as plain functions, a component returned by `forwardRef` is also able to receive a `ref` prop.
 
-#### Caveats {/*caveats*/}
+#### Caveats<Trans>주의사항</Trans> {/*caveats*/}
 
 * In Strict Mode, React will **call your render function twice** in order to [help you find accidental impurities.](#my-initializer-or-updater-function-runs-twice) This is development-only behavior and does not affect production. If your render function is pure (as it should be), this should not affect the logic of your component. The result from one of the calls will be ignored.
 
@@ -62,19 +63,19 @@ const MyInput = forwardRef(function MyInput(props, ref) {
 });
 ```
 
-#### Parameters {/*render-parameters*/}
+#### Parameters<Trans>매개변수</Trans> {/*render-parameters*/}
 
 * `props`: The props passed by the parent component.
 
 * `ref`:  The `ref` attribute passed by the parent component. The `ref` can be an object or a function. If the parent component has not passed a ref, it will be `null`. You should either pass the `ref` you receive to another component, or pass it to [`useImperativeHandle`.](/reference/react/useImperativeHandle)
 
-#### Returns {/*render-returns*/}
+#### Returns<Trans>반환값</Trans> {/*render-returns*/}
 
 `forwardRef` returns a React component that you can render in JSX. Unlike React components defined as plain functions, the component returned by `forwardRef` is able to take a `ref` prop.
 
 ---
 
-## Usage {/*usage*/}
+## Usage<Trans>사용법</Trans> {/*usage*/}
 
 ### Exposing a DOM node to the parent component {/*exposing-a-dom-node-to-the-parent-component*/}
 
@@ -475,7 +476,7 @@ input {
 
 ---
 
-## Troubleshooting {/*troubleshooting*/}
+## Troubleshooting<Trans>문제 해결</Trans> {/*troubleshooting*/}
 
 ### My component is wrapped in `forwardRef`, but the `ref` to it is always `null` {/*my-component-is-wrapped-in-forwardref-but-the-ref-to-it-is-always-null*/}
 

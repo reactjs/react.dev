@@ -18,7 +18,7 @@ useDebugValue(value, format?)
 
 ---
 
-## Reference <Trans>참조</Trans> {/*reference*/}
+## Reference<Trans>참조</Trans> {/*reference*/}
 
 ### `useDebugValue(value, format?)` {/*usedebugvalue*/}
 
@@ -36,9 +36,10 @@ function useOnlineStatus() {
 ```
 
 [See more examples below.](#usage)
+<Trans>[아래에서 더 많은 예를 확인하세요.](#usage)</Trans>
 <Trans>[아래에서 더 많은 예를 참조하십시오.](#usage)</Trans>
 
-#### Parameters <Trans>매개변수</Trans> {/*parameters*/}
+#### Parameters<Trans>매개변수</Trans> {/*parameters*/}
 
 * `value`: The value you want to display in React DevTools. It can have any type.
 * **optional** `format`: A formatting function. When the component is inspected, React DevTools will call the formatting function with the `value` as the argument, and then display the returned formatted value (which may have any type). If you don't specify the formatting function, the original `value` itself will be displayed.
@@ -48,12 +49,12 @@ function useOnlineStatus() {
 - **optional** `format`: 포매팅 함수. 컴포넌트가 검사할 때, React 개발자 도구는 인수로 포매팅 함수를 호출한 다음 반환된 포매팅된 값(모든 유형을 가질 수 있음)을 표시합니다. 포매팅 함수를 지정하지 않으면, 원본 `value` 자체가 표시됩니다.
 </TransBlock>
 
-#### Returns <Trans>반환값</Trans> {/*returns*/}
+#### Returns<Trans>반환값</Trans> {/*returns*/}
 
 `useDebugValue` does not return anything.
 <Trans>`useDebugValue`는 아무것도 반환하지 않습니다.</Trans>
 
-## Usage <Trans>사용법</Trans> {/*usage*/}
+## Usage<Trans>사용법</Trans> {/*usage*/}
 
 ### Adding a label to a custom Hook <Trans>커스텀 훅에 레이블 추가</Trans> {/*adding-a-label-to-a-custom-hook*/}
 

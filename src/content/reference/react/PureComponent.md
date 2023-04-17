@@ -26,7 +26,7 @@ class Greeting extends PureComponent {
 
 ---
 
-## Reference {/*reference*/}
+## Reference<Trans>참조</Trans> {/*reference*/}
 
 ### `PureComponent` {/*purecomponent*/}
 
@@ -46,10 +46,11 @@ class Greeting extends PureComponent {
 
 
 [See more examples below.](#usage)
+<Trans>[아래에서 더 많은 예를 확인하세요.](#usage)</Trans>
 
 ---
 
-## Usage {/*usage*/}
+## Usage<Trans>사용법</Trans> {/*usage*/}
 
 ### Skipping unnecessary re-renders for class components {/*skipping-unnecessary-re-renders-for-class-components*/}
 

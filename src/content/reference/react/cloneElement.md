@@ -48,9 +48,9 @@ console.log(clonedElement); // <Row title="Cabbage">Goodbye</Row>
 ```
 
 [See more examples below.](#usage)
-<Trans>[아래에서 더 많은 예제를 참고하세요.](#usage)</Trans>
+<Trans>[아래에서 더 많은 예를 확인하세요.](#usage)</Trans>
 
-#### Parameters<Trans>파라미터</Trans> {/*parameters*/}
+#### Parameters<Trans>매개변수</Trans> {/*parameters*/}
 
 * `element`: The `element` argument must be a valid React element. For example, it could be a JSX node like `<Something />`, the result of calling [`createElement`](/reference/react/createElement), or the result of another `cloneElement` call.
 <Trans>
@@ -67,7 +67,7 @@ console.log(clonedElement); // <Row title="Cabbage">Goodbye</Row>
 * **선택적인** `...children` : 0개 이상의 자식 노드. 자식 노드는 React 엘리먼트, 문자열, 숫자, [portals](/reference/react-dom/createPortal), 빈 노드(`null`, `undefined`, `true`, `false`), React 노드의 배열을 포함한 모든 React 노드가 될 수 있습니다. `...children` 인수를 전달하지 않으면 원래의 `element.props.children`이 보존됩니다.
 </Trans>
 
-#### Returns<Trans>반환</Trans> {/*returns*/}
+#### Returns<Trans>반환값</Trans> {/*returns*/}
 
 `cloneElement` returns a React element object with a few properties:
 
@@ -88,7 +88,7 @@ console.log(clonedElement); // <Row title="Cabbage">Goodbye</Row>
 Usually, you'll return the element from your component or make it a child of another element. Although you may read the element's properties, it's best to treat every element as opaque after it's created, and only render it.
 <Trans>일반적으로 컴포넌트에서 엘리먼트를 반환하거나 다른 엘리먼트의 자식으로 만듭니다. 엘리먼트의 프로퍼티를 읽을 수는 있지만, 생성된 후에는 모든 엘리먼트를 불투명하게 처리하고 렌더링만 하는 것이 가장 좋습니다.</Trans>
 
-#### Caveats<Trans>경고</Trans> {/*caveats*/}
+#### Caveats<Trans>주의사항</Trans> {/*caveats*/}
 
 * Cloning an element **does not modify the original element.**
 <Trans>
@@ -107,7 +107,7 @@ Usually, you'll return the element from your component or make it a child of ano
 
 ---
 
-## Usage<Trans>용법</Trans> {/*usage*/}
+## Usage<Trans>사용법</Trans> {/*usage*/}
 
 ### Overriding props of an element<Trans>엘리먼트의 props 재정의</Trans> {/*overriding-props-of-an-element*/}
 

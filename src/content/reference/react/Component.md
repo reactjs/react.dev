@@ -26,7 +26,7 @@ class Greeting extends Component {
 
 ---
 
-## Reference {/*reference*/}
+## Reference<Trans>참조</Trans> {/*reference*/}
 
 ### `Component` {/*component*/}
 
@@ -45,6 +45,7 @@ class Greeting extends Component {
 Only the `render` method is required, other methods are optional.
 
 [See more examples below.](#usage)
+<Trans>[아래에서 더 많은 예를 확인하세요.](#usage)</Trans>
 
 ---
 
@@ -186,15 +187,15 @@ class Counter extends Component {
 
 A constructor should not contain any side effects or subscriptions.
 
-#### Parameters {/*constructor-parameters*/}
+#### Parameters<Trans>매개변수</Trans> {/*constructor-parameters*/}
 
 * `props`: The component's initial props.
 
-#### Returns {/*constructor-returns*/}
+#### Returns<Trans>반환값</Trans> {/*constructor-returns*/}
 
 `constructor` should not return anything.
 
-#### Caveats {/*constructor-caveats*/}
+#### Caveats<Trans>주의사항</Trans> {/*constructor-caveats*/}
 
 * Do not run any side effects or subscriptions in the constructor. Instead, use [`componentDidMount`](#componentdidmount) for that.
 
@@ -222,17 +223,17 @@ Typically, it is used together with [`static getDerivedStateFromError`](#static-
 
 [See an example.](#catching-rendering-errors-with-an-error-boundary)
 
-#### Parameters {/*componentdidcatch-parameters*/}
+#### Parameters<Trans>매개변수</Trans> {/*componentdidcatch-parameters*/}
 
 * `error`: The error that was thrown. In practice, it will usually be an instance of [`Error`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error) but this is not guaranteed because JavaScript allows to [`throw`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/throw) any value, including strings or even `null`.
 
 * `info`: An object containing additional information about the error. Its `componentStack` field contains a stack trace with the component that threw, as well as the names and source locations of all its parent components. In production, the component names will be minified. If you set up production error reporting, you can decode the component stack using sourcemaps the same way as you would do for regular JavaScript error stacks.
 
-#### Returns {/*componentdidcatch-returns*/}
+#### Returns<Trans>반환값</Trans> {/*componentdidcatch-returns*/}
 
 `componentDidCatch` should not return anything.
 
-#### Caveats {/*componentdidcatch-caveats*/}
+#### Caveats<Trans>주의사항</Trans> {/*componentdidcatch-caveats*/}
 
 * In the past, it was common to call `setState` inside `componentDidCatch` in order to update the UI and display the fallback error message. This is deprecated in favor of defining [`static getDerivedStateFromError`.](#static-getderivedstatefromerror)
 
@@ -282,15 +283,15 @@ class ChatRoom extends Component {
 
 [See more examples.](#adding-lifecycle-methods-to-a-class-component)
 
-#### Parameters {/*componentdidmount-parameters*/}
+#### Parameters<Trans>매개변수</Trans> {/*componentdidmount-parameters*/}
 
 `componentDidMount` does not take any parameters.
 
-#### Returns {/*componentdidmount-returns*/}
+#### Returns<Trans>반환값</Trans> {/*componentdidmount-returns*/}
 
 `componentDidMount` should not return anything.
 
-#### Caveats {/*componentdidmount-caveats*/}
+#### Caveats<Trans>주의사항</Trans> {/*componentdidmount-caveats*/}
 
 - When [Strict Mode](/reference/react/StrictMode) is on, in development React will call `componentDidMount`, then immediately call [`componentWillUnmount`,](#componentwillunmount) and then call `componentDidMount` again. This helps you notice if you forgot to implement `componentWillUnmount` or if its logic doesn't fully "mirror" what `componentDidMount` does.
 
@@ -343,7 +344,7 @@ class ChatRoom extends Component {
 [See more examples.](#adding-lifecycle-methods-to-a-class-component)
 
 
-#### Parameters {/*componentdidupdate-parameters*/}
+#### Parameters<Trans>매개변수</Trans> {/*componentdidupdate-parameters*/}
 
 * `prevProps`: Props before the update. Compare `prevProps` to [`this.props`](#props) to determine what changed.
 
@@ -351,11 +352,11 @@ class ChatRoom extends Component {
 
 * `snapshot`: If you implemented [`getSnapshotBeforeUpdate`](#getsnapshotbeforeupdate), `snapshot` will contain the value you returned from that method. Otherwise, it will be `undefined`.
 
-#### Returns {/*componentdidupdate-returns*/}
+#### Returns<Trans>반환값</Trans> {/*componentdidupdate-returns*/}
 
 `componentDidUpdate` should not return anything.
 
-#### Caveats {/*componentdidupdate-caveats*/}
+#### Caveats<Trans>주의사항</Trans> {/*componentdidupdate-caveats*/}
 
 - `componentDidUpdate` will not get called if [`shouldComponentUpdate`](#shouldcomponentupdate) is defined and returns `false`.
 
@@ -444,15 +445,15 @@ class ChatRoom extends Component {
 
 [See more examples.](#adding-lifecycle-methods-to-a-class-component)
 
-#### Parameters {/*componentwillunmount-parameters*/}
+#### Parameters<Trans>매개변수</Trans> {/*componentwillunmount-parameters*/}
 
 `componentWillUnmount` does not take any parameters.
 
-#### Returns {/*componentwillunmount-returns*/}
+#### Returns<Trans>반환값</Trans> {/*componentwillunmount-returns*/}
 
 `componentWillUnmount` should not return anything.
 
-#### Caveats {/*componentwillunmount-caveats*/}
+#### Caveats<Trans>주의사항</Trans> {/*componentwillunmount-caveats*/}
 
 - When [Strict Mode](/reference/react/StrictMode) is on, in development React will call [`componentDidMount`,](#componentdidmount) then immediately call `componentWillUnmount`, and then call `componentDidMount` again. This helps you notice if you forgot to implement `componentWillUnmount` or if its logic doesn't fully "mirror" what `componentDidMount` does.
 
@@ -474,15 +475,15 @@ Usually, this is not necessary. If your component's [`render`](#render) method o
 
 Try to avoid all uses of `forceUpdate` and only read from `this.props` and `this.state` in `render`.
 
-#### Parameters {/*forceupdate-parameters*/}
+#### Parameters<Trans>매개변수</Trans> {/*forceupdate-parameters*/}
 
 * **optional** `callback` If specified, React will call the `callback` you've provided after the update is committed.
 
-#### Returns {/*forceupdate-returns*/}
+#### Returns<Trans>반환값</Trans> {/*forceupdate-returns*/}
 
 `forceUpdate` does not return anything.
 
-#### Caveats {/*forceupdate-caveats*/}
+#### Caveats<Trans>주의사항</Trans> {/*forceupdate-caveats*/}
 
 - If you call `forceUpdate`, React will re-render without calling [`shouldComponentUpdate`.](#shouldcomponentupdate)
 
@@ -549,17 +550,17 @@ class ScrollingList extends React.Component {
 
 In the above example, it is important to read the `scrollHeight` property directly in `getSnapshotBeforeUpdate`. It is not safe to read it in [`render`](#render), [`UNSAFE_componentWillReceiveProps`](#unsafe_componentwillreceiveprops), or [`UNSAFE_componentWillUpdate`](#unsafe_componentwillupdate) because there is a potential time gap between these methods getting called and React updating the DOM.
 
-#### Parameters {/*getsnapshotbeforeupdate-parameters*/}
+#### Parameters<Trans>매개변수</Trans> {/*getsnapshotbeforeupdate-parameters*/}
 
 * `prevProps`: Props before the update. Compare `prevProps` to [`this.props`](#props) to determine what changed.
 
 * `prevState`: State before the update. Compare `prevState` to [`this.state`](#state) to determine what changed.
 
-#### Returns {/*getsnapshotbeforeupdate-returns*/}
+#### Returns<Trans>반환값</Trans> {/*getsnapshotbeforeupdate-returns*/}
 
 You should return a snapshot value of any type that you'd like, or `null`. The value you returned will be passed as the third argument to [`componentDidUpdate`.](#componentdidupdate)
 
-#### Caveats {/*getsnapshotbeforeupdate-caveats*/}
+#### Caveats<Trans>주의사항</Trans> {/*getsnapshotbeforeupdate-caveats*/}
 
 - `getSnapshotBeforeUpdate` will not get called if [`shouldComponentUpdate`](#shouldcomponentupdate) is defined and returns `false`.
 
@@ -591,17 +592,17 @@ React may call `render` at any moment, so you shouldn't assume that it runs at a
 
 You should write the `render` method as a pure function, meaning that it should return the same result if props, state, and context are the same. It also shouldn't contain side effects (like setting up subscriptions) or interact with the browser APIs. Side effects should happen either in event handlers or methods like [`componentDidMount`.](#componentdidmount)
 
-#### Parameters {/*render-parameters*/}
+#### Parameters<Trans>매개변수</Trans> {/*render-parameters*/}
 
 * `prevProps`: Props before the update. Compare `prevProps` to [`this.props`](#props) to determine what changed.
 
 * `prevState`: State before the update. Compare `prevState` to [`this.state`](#state) to determine what changed.
 
-#### Returns {/*render-returns*/}
+#### Returns<Trans>반환값</Trans> {/*render-returns*/}
 
 `render` can return any valid React node. This includes React elements such as `<div />`, strings, numbers, [portals](/reference/react-dom/createPortal), empty nodes (`null`, `undefined`, `true`, and `false`), and arrays of React nodes.
 
-#### Caveats {/*render-caveats*/}
+#### Caveats<Trans>주의사항</Trans> {/*render-caveats*/}
 
 - `render` should be written as a pure function of props, state, and context. It should not have side effects.
 
@@ -675,7 +676,7 @@ You can also pass a function to `setState`. It lets you update state based on th
 
 You don't have to do this, but it's handy if you want to update state multiple times during the same event.
 
-#### Parameters {/*setstate-parameters*/}
+#### Parameters<Trans>매개변수</Trans> {/*setstate-parameters*/}
 
 * `nextState`: Either an object or a function.
   * If you pass an object as `nextState`, it will be shallowly merged into `this.state`.
@@ -683,11 +684,11 @@ You don't have to do this, but it's handy if you want to update state multiple t
 
 * **optional** `callback`: If specified, React will call the `callback` you've provided after the update is committed.
 
-#### Returns {/*setstate-returns*/}
+#### Returns<Trans>반환값</Trans> {/*setstate-returns*/}
 
 `setState` does not return anything.
 
-#### Caveats {/*setstate-caveats*/}
+#### Caveats<Trans>주의사항</Trans> {/*setstate-caveats*/}
 
 - Think of `setState` as a *request* rather than an immediate command to update the component. When multiple components update their state in response to an event, React will batch their updates and re-render them together in a single pass at the end of the event. In the rare case that you need to force a particular state update to be applied synchronously, you may wrap it in [`flushSync`,](/reference/react-dom/flushSync) but this may hurt performance.
 
@@ -736,19 +737,19 @@ class Rectangle extends Component {
 
 React calls `shouldComponentUpdate` before rendering when new props or state are being received. Defaults to `true`. This method is not called for the initial render or when [`forceUpdate`](#forceupdate) is used.
 
-#### Parameters {/*shouldcomponentupdate-parameters*/}
+#### Parameters<Trans>매개변수</Trans> {/*shouldcomponentupdate-parameters*/}
 
 - `nextProps`: The next props that the component is about to render with. Compare `nextProps` to [`this.props`](#props) to determine what changed.
 - `nextState`: The next state that the component is about to render with. Compare `nextState` to [`this.state`](#props) to determine what changed.
 - `nextContext`: The next context that the component is about to render with. Compare `nextContext` to [`this.context`](#context) to determine what changed. Only available if you specify [`static contextType`](#static-contexttype) (modern) or [`static contextTypes`](#static-contexttypes) (legacy).
 
-#### Returns {/*shouldcomponentupdate-returns*/}
+#### Returns<Trans>반환값</Trans> {/*shouldcomponentupdate-returns*/}
 
 Return `true` if you want the component to re-render. That's the default behavior.
 
 Return `false` to tell React that re-rendering can be skipped.
 
-#### Caveats {/*shouldcomponentupdate-caveats*/}
+#### Caveats<Trans>주의사항</Trans> {/*shouldcomponentupdate-caveats*/}
 
 - This method *only* exists as a performance optimization. If your component breaks without it, fix that first. 
 
@@ -777,15 +778,15 @@ If you define `UNSAFE_componentWillMount`, React will call it immediately after 
 
 [See examples of migrating away from unsafe lifecycles.](/blog/2018/03/27/update-on-async-rendering#examples)
 
-#### Parameters {/*unsafe_componentwillmount-parameters*/}
+#### Parameters<Trans>매개변수</Trans> {/*unsafe_componentwillmount-parameters*/}
 
 `UNSAFE_componentWillMount` does not take any parameters.
 
-#### Returns {/*unsafe_componentwillmount-returns*/}
+#### Returns<Trans>반환값</Trans> {/*unsafe_componentwillmount-returns*/}
 
 `UNSAFE_componentWillMount` should not return anything.
 
-#### Caveats {/*unsafe_componentwillmount-caveats*/}
+#### Caveats<Trans>주의사항</Trans> {/*unsafe_componentwillmount-caveats*/}
 
 - `UNSAFE_componentWillMount` will not get called if the component implements [`static getDerivedStateFromProps`](getDerivedStateFromProps) or [`getSnapshotBeforeUpdate`.](#getsnapshotbeforeupdate)
 
@@ -812,16 +813,16 @@ If you define `UNSAFE_componentWillReceiveProps`, React will call it when the co
 
 [See examples of migrating away from unsafe lifecycles.](/blog/2018/03/27/update-on-async-rendering#updating-state-based-on-props)
 
-#### Parameters {/*unsafe_componentwillreceiveprops-parameters*/}
+#### Parameters<Trans>매개변수</Trans> {/*unsafe_componentwillreceiveprops-parameters*/}
 
 - `nextProps`: The next props that the component is about to receive from its parent component. Compare `nextProps` to [`this.props`](#props) to determine what changed.
 - `nextContext`: The next props that the component is about to receive from the closest provider. Compare `nextContext` to [`this.context`](#context) to determine what changed. Only available if you specify [`static contextType`](#static-contexttype) (modern) or [`static contextTypes`](#static-contexttypes) (legacy).
 
-#### Returns {/*unsafe_componentwillreceiveprops-returns*/}
+#### Returns<Trans>반환값</Trans> {/*unsafe_componentwillreceiveprops-returns*/}
 
 `UNSAFE_componentWillReceiveProps` should not return anything.
 
-#### Caveats {/*unsafe_componentwillreceiveprops-caveats*/}
+#### Caveats<Trans>주의사항</Trans> {/*unsafe_componentwillreceiveprops-caveats*/}
 
 - `UNSAFE_componentWillReceiveProps` will not get called if the component implements [`static getDerivedStateFromProps`](getDerivedStateFromProps) or [`getSnapshotBeforeUpdate`.](#getsnapshotbeforeupdate)
 
@@ -849,16 +850,16 @@ If you define `UNSAFE_componentWillUpdate`, React will call it before rendering 
 
 [See examples of migrating away from unsafe lifecycles.](/blog/2018/03/27/update-on-async-rendering#examples)
 
-#### Parameters {/*unsafe_componentwillupdate-parameters*/}
+#### Parameters<Trans>매개변수</Trans> {/*unsafe_componentwillupdate-parameters*/}
 
 - `nextProps`: The next props that the component is about to render with. Compare `nextProps` to [`this.props`](#props) to determine what changed.
 - `nextState`: The next state that the component is about to render with. Compare `nextState` to [`this.state`](#state) to determine what changed.
 
-#### Returns {/*unsafe_componentwillupdate-returns*/}
+#### Returns<Trans>반환값</Trans> {/*unsafe_componentwillupdate-returns*/}
 
 `UNSAFE_componentWillUpdate` should not return anything.
 
-#### Caveats {/*unsafe_componentwillupdate-caveats*/}
+#### Caveats<Trans>주의사항</Trans> {/*unsafe_componentwillupdate-caveats*/}
 
 - `UNSAFE_componentWillUpdate` will not get called if [`shouldComponentUpdate`](#shouldcomponentupdate) is defined and returns `false`.
 
@@ -986,15 +987,15 @@ Typically, it is used together with [`componentDidCatch`](#componentDidCatch) wh
 
 [See an example.](#catching-rendering-errors-with-an-error-boundary)
 
-#### Parameters {/*static-getderivedstatefromerror-parameters*/}
+#### Parameters<Trans>매개변수</Trans> {/*static-getderivedstatefromerror-parameters*/}
 
 * `error`: The error that was thrown. In practice, it will usually be an instance of [`Error`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error) but this is not guaranteed because JavaScript allows to [`throw`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/throw) any value, including strings or even `null`.
 
-#### Returns {/*static-getderivedstatefromerror-returns*/}
+#### Returns<Trans>반환값</Trans> {/*static-getderivedstatefromerror-returns*/}
 
 `static getDerivedStateFromError` should return the state telling the component to display the error message.
 
-#### Caveats {/*static-getderivedstatefromerror-caveats*/}
+#### Caveats<Trans>주의사항</Trans> {/*static-getderivedstatefromerror-caveats*/}
 
 * `static getDerivedStateFromError` should be a pure function. If you want to perform a side effect (for example, to call an analytics service), you need to also implement [`componentDidCatch`.](#componentdidcatch)
 
@@ -1048,16 +1049,16 @@ Deriving state leads to verbose code and makes your components difficult to thin
 
 </Pitfall>
 
-#### Parameters {/*static-getderivedstatefromprops-parameters*/}
+#### Parameters<Trans>매개변수</Trans> {/*static-getderivedstatefromprops-parameters*/}
 
 - `props`: The next props that the component is about to render with.
 - `state`: The next state that the component is about to render with.
 
-#### Returns {/*static-getderivedstatefromprops-returns*/}
+#### Returns<Trans>반환값</Trans> {/*static-getderivedstatefromprops-returns*/}
 
 `static getDerivedStateFromProps` return an object to update the state, or `null` to update nothing.
 
-#### Caveats {/*static-getderivedstatefromprops-caveats*/}
+#### Caveats<Trans>주의사항</Trans> {/*static-getderivedstatefromprops-caveats*/}
 
 - This method is fired on *every* render, regardless of the cause. This is different from [`UNSAFE_componentWillReceiveProps`](#unsafe_cmoponentwillreceiveprops), which only fires when the parent causes a re-render and not as a result of a local `setState`.
 
@@ -1071,7 +1072,7 @@ Implementing `static getDerivedStateFromProps` in a class component is equivalen
 
 ---
 
-## Usage {/*usage*/}
+## Usage<Trans>사용법</Trans> {/*usage*/}
 
 ### Defining a class component {/*defining-a-class-component*/}
 

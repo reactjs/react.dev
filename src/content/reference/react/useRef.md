@@ -16,7 +16,7 @@ const ref = useRef(initialValue)
 
 ---
 
-## Reference {/*reference*/}
+## Reference<Trans>참조</Trans> {/*reference*/}
 
 ### `useRef(initialValue)` {/*useref*/}
 
@@ -32,12 +32,13 @@ function MyComponent() {
 ```
 
 [See more examples below.](#usage)
+<Trans>[아래에서 더 많은 예를 확인하세요.](#usage)</Trans>
 
-#### Parameters {/*parameters*/}
+#### Parameters<Trans>매개변수</Trans> {/*parameters*/}
 
 * `initialValue`: The value you want the ref object's `current` property to be initially. It can be a value of any type. This argument is ignored after the initial render.
 
-#### Returns {/*returns*/}
+#### Returns<Trans>반환값</Trans> {/*returns*/}
 
 `useRef` returns an object with a single property:
 
@@ -45,7 +46,7 @@ function MyComponent() {
 
 On the next renders, `useRef` will return the same object.
 
-#### Caveats {/*caveats*/}
+#### Caveats<Trans>주의사항</Trans> {/*caveats*/}
 
 * You can mutate the `ref.current` property. Unlike state, it is mutable. However, if it holds an object that is used for rendering (for example, a piece of your state), then you shouldn't mutate that object.
 * When you change the `ref.current` property, React does not re-render your component. React is not aware of when you change it because a ref is a plain JavaScript object.
@@ -54,7 +55,7 @@ On the next renders, `useRef` will return the same object.
 
 ---
 
-## Usage {/*usage*/}
+## Usage<Trans>사용법</Trans> {/*usage*/}
 
 ### Referencing a value with a ref {/*referencing-a-value-with-a-ref*/}
 
@@ -538,7 +539,7 @@ Here, the `playerRef` itself is nullable. However, you should be able to convinc
 
 ---
 
-## Troubleshooting {/*troubleshooting*/}
+## Troubleshooting<Trans>문제 해결</Trans> {/*troubleshooting*/}
 
 ### I can't get a ref to a custom component {/*i-cant-get-a-ref-to-a-custom-component*/}
 

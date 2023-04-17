@@ -16,7 +16,7 @@ const [isPending, startTransition] = useTransition()
 
 ---
 
-## Reference {/*reference*/}
+## Reference<Trans>참조</Trans> {/*reference*/}
 
 ### `useTransition()` {/*usetransition*/}
 
@@ -32,12 +32,13 @@ function TabContainer() {
 ```
 
 [See more examples below.](#usage)
+<Trans>[아래에서 더 많은 예를 확인하세요.](#usage)</Trans>
 
-#### Parameters {/*parameters*/}
+#### Parameters<Trans>매개변수</Trans> {/*parameters*/}
 
 `useTransition` does not take any parameters.
 
-#### Returns {/*returns*/}
+#### Returns<Trans>반환값</Trans> {/*returns*/}
 
 `useTransition` returns an array with exactly two items:
 
@@ -64,15 +65,15 @@ function TabContainer() {
 }
 ```
 
-#### Parameters {/*starttransition-parameters*/}
+#### Parameters<Trans>매개변수</Trans> {/*starttransition-parameters*/}
 
 * `scope`: A function that updates some state by calling one or more [`set` functions.](/reference/react/useState#setstate) React immediately calls `scope` with no parameters and marks all state updates scheduled synchronously during the `scope` function call as transitions. They will be [non-blocking](#marking-a-state-update-as-a-non-blocking-transition) and [will not display unwanted loading indicators.](#preventing-unwanted-loading-indicators)
 
-#### Returns {/*starttransition-returns*/}
+#### Returns<Trans>반환값</Trans> {/*starttransition-returns*/}
 
 `startTransition` does not return anything.
 
-#### Caveats {/*starttransition-caveats*/}
+#### Caveats<Trans>주의사항</Trans> {/*starttransition-caveats*/}
 
 * `useTransition` is a Hook, so it can only be called inside components or custom Hooks. If you need to start a transition somewhere else (for example, from a data library), call the standalone [`startTransition`](/reference/react/startTransition) instead.
 
@@ -88,7 +89,7 @@ function TabContainer() {
 
 ---
 
-## Usage {/*usage*/}
+## Usage<Trans>사용법</Trans> {/*usage*/}
 
 ### Marking a state update as a non-blocking transition {/*marking-a-state-update-as-a-non-blocking-transition*/}
 
@@ -1501,7 +1502,7 @@ main {
 
 ---
 
-## Troubleshooting {/*troubleshooting*/}
+## Troubleshooting<Trans>문제 해결</Trans> {/*troubleshooting*/}
 
 ### Updating an input in a transition doesn't work {/*updating-an-input-in-a-transition-doesnt-work*/}
 

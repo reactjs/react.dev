@@ -24,7 +24,7 @@ hydrate(reactNode, domNode, callback?)
 
 ---
 
-## Reference {/*reference*/}
+## Reference<Trans>참조</Trans> {/*reference*/}
 
 ### `hydrate(reactNode, domNode, callback?)` {/*hydrate*/}
 
@@ -39,8 +39,9 @@ hydrate(reactNode, domNode);
 React will attach to the HTML that exists inside the `domNode`, and take over managing the DOM inside it. An app fully built with React will usually only have one `hydrate` call with its root component.
 
 [See more examples below.](#usage)
+<Trans>[아래에서 더 많은 예를 확인하세요.](#usage)</Trans>
 
-#### Parameters {/*parameters*/}
+#### Parameters<Trans>매개변수</Trans> {/*parameters*/}
 
 * `reactNode`: The "React node" used to render the existing HTML. This will usually be a piece of JSX like `<App />` which was rendered with a `ReactDOM Server` method such as `renderToString(<App />)` in React 17.
 
@@ -48,11 +49,11 @@ React will attach to the HTML that exists inside the `domNode`, and take over ma
 
 * **optional**: `callback`: A function. If passed, React will call it after your component is hydrated.
 
-#### Returns {/*returns*/}
+#### Returns<Trans>반환값</Trans> {/*returns*/}
 
 `hydrate` returns null.
 
-#### Caveats {/*caveats*/}
+#### Caveats<Trans>주의사항</Trans> {/*caveats*/}
 * `hydrate` expects the rendered content to be identical with the server-rendered content. React can patch up differences in text content, but you should treat mismatches as bugs and fix them.
 * In development mode, React warns about mismatches during hydration. There are no guarantees that attribute differences will be patched up in case of mismatches. This is important for performance reasons because in most apps, mismatches are rare, and so validating all markup would be prohibitively expensive.
 * You'll likely have only one `hydrate` call in your app. If you use a framework, it might do this call for you.
@@ -60,7 +61,7 @@ React will attach to the HTML that exists inside the `domNode`, and take over ma
 
 ---
 
-## Usage {/*usage*/}
+## Usage<Trans>사용법</Trans> {/*usage*/}
 
 Call `hydrate` to attach a <CodeStep step={1}>React component</CodeStep> into a server-rendered <CodeStep step={2}>browser DOM node</CodeStep>.
 

@@ -146,6 +146,13 @@
     "description": "노마드 생활을 꿈꾸며 개발을 배웠는데, 그 보다 더 넓은 세상을 배워가는 주니어 개발자 입니다.<br/>올해에는 조금 더 부지런히 배우고 폭풍 성장하는 것이 목표입니다😊"
   },
   {
+    "name": "이도원",
+    "photo": "/images/translators/_m_dowon.jpeg",
+    "github": "2dowon",
+    "title": "프론트엔드 개발자",
+    "description": "효율적이면서도 심플하고 예쁘게 보이는 것을 좋아합니다.<br/>좋아하는 것을 더 많이 하고 싶어서 해야하는 것을 잘하고 싶습니다.</br>지금은 그게 리액트인 것 같아, 스터디에 참여하게 되었습니다!"
+  },
+  {
     "name": "테스트",
     "photo": "/images/team/gaearon.jpg",
     "github": "test",

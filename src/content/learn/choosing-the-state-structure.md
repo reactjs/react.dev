@@ -1,7 +1,7 @@
 ---
 title: Choosing the State Structure
 translatedTitle: State 구조 선택
-translators: [송윤지, 최민정]
+translators: [송윤지, 최민정, 김아영]
 ---
 
 <Intro>
@@ -18,8 +18,8 @@ Structuring state well can make a difference between a component that is pleasan
 * How to fix common issues with the state structure
 
 <TransBlock>
-* 단일 state 변수와 다중 state 변수를 사용해야 하는 경우
-* state 정리 시 피해야 할 사항
+* 단일 state 변수를 사용해야 하는 경우 vs. 다중 state 변수를 사용해야 하는 경우
+* state 정리시 피해야 할 사항
 * state 구조와 관련된 일반적인 문제를 해결하는 방법
 </TransBlock>
 
@@ -28,7 +28,7 @@ Structuring state well can make a difference between a component that is pleasan
 ## Principles for structuring state<Trans>state 구조화 원칙</Trans> {/*principles-for-structuring-state*/}
 
 When you write a component that holds some state, you'll have to make choices about how many state variables to use and what the shape of their data should be. While it's possible to write correct programs even with a suboptimal state structure, there are a few principles that can guide you to make better choices:
-<Trans>어떤 state를 보유하는 컴포넌트를 작성할 때는 얼마나 많은 state 변수를 사용할지, 데이터의 모양은 어떻게 할지에 대해 선택해야 합니다. 차선책으로 state 구조를 사용하더라도 올바른 프로그램을 작성할 수 있지만, 더 나은 선택을 할 수 있도록 안내하는 몇 가지 원칙이 있습니다:</Trans>
+<Trans>어떤 state를 보유하는 컴포넌트를 작성할 때엔 얼마나 많은 state 변수를 사용할지, 데이터의 모양은 어떻게 할지에 대해 선택해야 합니다. 최적화되지 않은 state 구조를 사용하더라도 올바른 프로그램을 작성할 수 있지만, 더 나은 선택을 할 수 있도록 안내하는 몇 가지 원칙이 있습니다:</Trans>
 
 1. **Group related state.** If you always update two or more state variables at the same time, consider merging them into a single state variable.
 2. **Avoid contradictions in state.** When the state is structured in a way that several pieces of state may contradict and "disagree" with each other, you leave room for mistakes. Try to avoid this.
@@ -123,7 +123,7 @@ Another case where you'll group data into an object or an array is when you don'
 <Pitfall>
 
 If your state variable is an object, remember that [you can't update only one field in it](/learn/updating-objects-in-state) without explicitly copying the other fields. For example, you can't do `setPosition({ x: 100 })` in the above example because it would not have the `y` property at all! Instead, if you wanted to set `x` alone, you would either do `setPosition({ ...position, x: 100 })`, or split them into two state variables and do `setX(100)`.
-<Trans>state 변수가 객체인 경우 다른 필드를 명시적으로 복사하지 않고는 [그 안의 한 필드만 업데이트할 수 없다는 점](/learn/updating-objects-in-state)을 기억하세요. 예를 들어, 위 예제에서는 `y` 속성이 전혀 없기 때문에 `setPosition({ x: 100 })`을 수행할 수 없습니다! 대신 `x`만 설정하려면 `setPosition({ ...position, x: 100 })`을 수행하거나 두 개의 state 변수로 분할하여 `setX(100)`을 수행해야 합니다.</Trans>
+<Trans>state 변수가 객체인 경우 다른 필드를 명시적으로 복사하지 않고는 [그 안의 한 필드만 업데이트할 수는 없다](/learn/updating-objects-in-state)는 점을 기억하세요. 예를 들어, 위 예제에서는 `y` 속성이 전혀 없기 때문에 `setPosition({ x: 100 })`을 수행할 수 없습니다! 대신 `x`만 설정하려면 `setPosition({ ...position, x: 100 })`을 수행하거나 두 개의 state 변수로 분할하여 `setX(100)`을 수행해야 합니다.</Trans>
 
 </Pitfall>
 
@@ -384,7 +384,7 @@ As a result, the change handlers don't need to do anything special to update it.
 #### Don't mirror props in state<Trans>props를 state에 그대로 미러링하지 마세요</Trans> {/*don-t-mirror-props-in-state*/}
 
 A common example of redundant state is code like this:
-<Trans>중복 state의 일반적인 예는 다음과 같은 코드입니다:</Trans>
+<Trans>다음 코드는 중복 state의 일반적인 예시입니다:</Trans>
 
 ```js
 function Message({ messageColor }) {
@@ -395,7 +395,7 @@ Here, a `color` state variable is initialized to the `messageColor` prop. The pr
 <Trans>여기서 `color` state 변수는 `messageColor` props로 초기화됩니다. 문제는 **부모 컴포넌트가 나중에 다른 `messageColor` 값(예: `blue` 대신 `red`)을 전달하면 `color` state 변수가 업데이트되지 않는다는 것입니다!** state는 첫 번째 렌더링 중에만 초기화됩니다.</Trans>
 
 This is why "mirroring" some prop in a state variable can lead to confusion. Instead, use the `messageColor` prop directly in your code. If you want to give it a shorter name, use a constant:
-<Trans>그렇기 때문에 state 변수에 일부 prop을 '미러링'하면 혼란을 초래할 수 있습니다. 대신 코드에서 `messageColor` 프로퍼티를 직접 사용하세요. 더 짧은 이름을 지정하려면 상수를 사용하세요:</Trans>
+<Trans>그렇기 때문에 state 변수에 일부 prop을 '미러링'하면 혼란을 초래할 수 있습니다. 대신 코드에서 `messageColor` prop을 직접 사용하세요. 더 짧은 이름을 지정하려면 상수를 사용하세요:</Trans>
 
 ```js
 function Message({ messageColor }) {
@@ -605,7 +605,7 @@ button { margin-top: 10px; }
 <Trans>또는 선택한 인덱스를 state로 유지할 수도 있습니다.</Trans>
 
 The state used to be duplicated like this:
-<Trans>이전에는 state가 이렇게 복제되었습니다.</Trans>
+<Trans>이전에는 state가 이렇게 복제되었습니다:</Trans>
 
 * `items = [{ id: 0, title: 'pretzels'}, ...]`
 * `selectedItem = {id: 0, title: 'pretzels'}`
@@ -875,7 +875,7 @@ Now let's say you want to add a button to delete a place you've already visited.
 <Trans>이제 이미 방문한 장소를 삭제하는 버튼을 추가하고 싶다고 가정해 보겠습니다. 어떻게 해야 할까요? [중첩된 state를 업데이트](/learn/updating-objects-in-state#updating-a-nested-object)하려면 변경된 부분부터 위쪽까지 개체의 복사본을 만들어야 합니다. 깊게 중첩된 장소를 삭제하려면 해당 장소의 상위 장소 체인 전체를 복사해야 합니다. 이러한 코드는 매우 장황할 수 있습니다.</Trans>
 
 **If the state is too nested to update easily, consider making it "flat".** Here is one way you can restructure this data. Instead of a tree-like structure where each `place` has an array of *its child places*, you can have each place hold an array of *its child place IDs*. Then store a mapping from each place ID to the corresponding place.
-<Trans>**state가 너무 중첩되어 쉽게 업데이트할 수 없는 경우 “flat”하게 만드는 것을 고려해 보세요.** 다음은 이 데이터를 재구성할 수 있는 한 가지 방법입니다. 각 `place`가 하위 place의 배열을 갖는 트리 구조 대신, 각 place가 자식 *place ID*의 배열을 보유하도록 할 수 있습니다. 그런 다음 각 place ID에서 해당 place로의 매핑을 저장합니다.</Trans>
+<Trans>**state가 너무 깊게 중첩되어 업데이트하기 어려운 경우 “flat”하게 만드는 것을 고려해 보세요.** 다음은 이 데이터를 재구성할 수 있는 한 가지 방법입니다. 각 `place`가 하위 place의 배열을 갖는 트리 구조 대신, 각 place가 자식 *place ID*의 배열을 보유하도록 할 수 있습니다. 그런 다음 각 place ID에서 해당 place로의 매핑을 저장합니다.</Trans>
 
 This data restructuring might remind you of seeing a database table:
 <Trans>이 데이터 재구성은 데이터베이스 테이블을 떠올리게 할 수 있습니다:</Trans>
@@ -1189,11 +1189,11 @@ export const initialTravelPlan = {
 <Trans>**이제 state가 "flat"("정규화"라고도 함)해졌으므로 중첩된 항목을 업데이트하는 것이 더 쉬워졌습니다.**</Trans>
 
 In order to remove a place now, you only need to update two levels of state:
+<Trans>지금 장소를 제거하려면 두 단계의 state만 업데이트하면 됩니다:</Trans>
+
 - The updated version of its *parent* place should exclude the removed ID from its `childIds` array.
 - The updated version of the root "table" object should include the updated version of the parent place.
-
 <TransBlock>
-지금 장소를 제거하려면 두 단계의 state만 업데이트하면 됩니다:
 - 부모 장소의 업데이트된 버전은 제거된 ID를 `childIds` 배열에서 제외해야 합니다.
 - 루트 '테이블' 객체의 업데이트된 버전에는 상위 위치의 업데이트된 버전이 포함되어야 합니다.
 </TransBlock>
@@ -1545,7 +1545,7 @@ You can nest state as much as you like, but making it "flat" can solve numerous 
 #### Improving memory usage<Trans>메모리 사용량 개선하기</Trans> {/*improving-memory-usage*/}
 
 Ideally, you would also remove the deleted items (and their children!) from the "table" object to improve memory usage. This version does that. It also [uses Immer](/learn/updating-objects-in-state#write-concise-update-logic-with-immer) to make the update logic more concise.
-<Trans>이상적으로는 '테이블' 객체에서 삭제된 항목(및 그 하위 항목!)도 제거하여 메모리 사용량을 개선하는 것이 좋습니다. 이 버전은 그렇게 합니다. 또한 Immer를 사용하여 업데이트 로직을 더욱 간결하게 만들었습니다.</Trans>
+<Trans>이상적으로는 '테이블' 객체에서 삭제된 항목(및 그 하위 항목!)도 제거하여 메모리 사용량을 개선하는 것이 좋습니다. 이 버전은 그렇게 합니다. 또한 [Immer를 사용](/learn/updating-objects-in-state#write-concise-update-logic-with-immer)하여 업데이트 로직을 더욱 간결하게 만들었습니다.</Trans>
 
 <Sandpack>
 
@@ -1933,7 +1933,7 @@ Sometimes, you can also reduce state nesting by moving some of the nested state 
 #### Fix a component that's not updating<Trans>업데이트되지 않는 컴포넌트 수정하기</Trans> {/*fix-a-component-thats-not-updating*/}
 
 This `Clock` component receives two props: `color` and `time`. When you select a different color in the select box, the `Clock` component receives a different `color` prop from its parent component. However, for some reason, the displayed color doesn't update. Why? Fix the problem.
-<Trans>이 Clock 컴포넌트는 color과 time이라는 두 가지 props를 받습니다. 선택 상자에서 다른 색상을 선택하면 Clock 컴포넌트는 부모 컴포넌트에서 다른 색상의 props를 받습니다. 하지만 어떤 이유에서인지 표시된 색상이 업데이트되지 않습니다. 왜 그럴까요? 문제를 해결하세요.</Trans>
+<Trans>이 `Clock` 컴포넌트는 `color`와 `time`이라는 두 가지 prop을 받습니다. 선택 상자에서 다른 색상을 선택하면 `Clock` 컴포넌트는 부모 컴포넌트에서 다른 `color` prop을 받습니다. 하지만 어떤 이유에서인지 표시된 색상이 업데이트되지 않습니다. 왜 그럴까요? 문제를 해결하세요.</Trans>
 
 <Sandpack>
 
@@ -1989,7 +1989,7 @@ export default function App() {
 <Solution>
 
 The issue is that this component has `color` state initialized with the initial value of the `color` prop. But when the `color` prop changes, this does not affect the state variable! So they get out of sync. To fix this issue, remove the state variable altogether, and use the `color` prop directly.
-<Trans>문제는 이 컴포넌트에는 `color` 프로퍼티의 초기값으로 초기화된 `color` 상태가 있다는 것입니다. 하지만 `color` 프로퍼티가 변경되면 state 변수에 영향을 주지 않습니다! 그래서 동기화되지 않습니다. 이 문제를 해결하려면 state 변수를 모두 제거하고 `color` 프로퍼티를 직접 사용하세요.</Trans>
+<Trans>문제는 이 컴포넌트에는 `color` prop의 초기값으로 초기화된 `color` state가 있다는 것입니다. `color` prop이 변경되어도 state 변수에 영향을 주지 않습니다! 그래서 동기화되지 않습니다. 이 문제를 해결하려면 state 변수를 모두 제거하고 `color` prop을 직접 사용하세요.</Trans>
 
 <Sandpack>
 
@@ -2042,7 +2042,7 @@ export default function App() {
 </Sandpack>
 
 Or, using the destructuring syntax:
-<Trans>또는, 디스트럭처링 구문을 사용합니다:</Trans>
+<Trans>또는, 구조분해 구문을 사용하세요:</Trans>
 
 <Sandpack>
 
@@ -2387,7 +2387,7 @@ Notice how the event handlers are only concerned with calling `setItems` after t
 #### Fix the disappearing selection<Trans>사라지는 선택 항목 수정</Trans> {/*fix-the-disappearing-selection*/}
 
 There is a list of `letters` in state. When you hover or focus a particular letter, it gets highlighted. The currently highlighted letter is stored in the `highlightedLetter` state variable. You can "star" and "unstar" individual letters, which updates the `letters` array in state.
-<Trans>state에 letters 목록이 있습니다. 특정 문자를 가리키거나 초점을 맞추면 해당 문자가 강조 표시됩니다. 현재 강조 표시된 문자는 highlightedLetter state 변수에 저장됩니다. 개별 문자에 "별표"를 표시하거나 "별표 해제"하면 state의 letters 배열이 업데이트됩니다.</Trans>
+<Trans>state에 `letters` 목록이 있습니다. 특정 문자를 가리키거나 초점을 맞추면 해당 문자가 강조 표시됩니다. 현재 강조 표시된 문자는 `highlightedLetter` state 변수에 저장됩니다. 개별 문자에 "별표"를 표시하거나 "별표 해제"하면 state의 `letters` 배열이 업데이트됩니다.</Trans>
 
 This code works, but there is a minor UI glitch. When you press "Star" or "Unstar", the highlighting disappears for a moment. However, it reappears as soon as you move your pointer or switch to another letter with keyboard. Why is this happening? Fix it so that the highlighting doesn't disappear after the button click.
 <Trans>이 코드는 작동하지만 사소한 UI 결함이 있습니다. "별표" 또는 "별표 해제"를 누르면 강조 표시가 잠시 사라집니다. 그러나 포인터를 움직이거나 키보드로 다른 문자로 전환하면 바로 다시 나타납니다. 왜 이런 일이 발생하나요? 버튼 클릭 후 강조 표시가 사라지지 않도록 수정하세요.</Trans>
@@ -2501,7 +2501,7 @@ The problem is that you're holding the letter object in `highlightedLetter`. But
 <Trans>문제는 문자 객체를 `highlightedLetter`에 보관하고 있다는 것입니다. 하지만 `letters` 배열에도 동일한 정보를 보유하고 있습니다. 따라서 state에 중복이 있습니다! 버튼 클릭 후 `letters` 배열을 업데이트하면 `highlightedLetter`와는 다른 새로운 문자 객체가 만들어집니다. 그래서 `highlightedLetter === letter` 체크가 `false`가 되고 강조 표시가 사라집니다. 다음에 포인터가 움직일 때 `setHighlightedLetter`를 호출하면 다시 나타납니다.</Trans>
 
 To fix the issue, remove the duplication from state. Instead of storing *the letter itself* in two places, store the `highlightedId` instead. Then you can check `isHighlighted` for each letter with `letter.id === highlightedId`, which will work even if the `letter` object has changed since the last render.
-<Trans>문제를 해결하려면 state에서 중복을 제거하세요. 문자 자체를 두 곳에 저장하는 대신 '강조 표시된 ID'를 저장하세요. 그런 다음 `letter.id === highlightedId`를 사용하여 각 문자에 대해 `isHighlighted`를 확인할 수 있으며, 이는 마지막 렌더링 이후 `letter` 객체가 변경된 경우에도 작동합니다.</Trans>
+<Trans>문제를 해결하려면 state에서 중복을 제거하세요. *문자 자체*를 두 곳에 저장하는 대신 `highlitedId`를 저장하세요. 그런 다음 `letter.id === highlightedId`를 사용하여 각 문자에 대해 `isHighlighted`를 확인할 수 있으며, 이는 마지막 렌더링 이후 `letter` 객체가 변경된 경우에도 작동합니다.</Trans>
 
 <Sandpack>
 
@@ -2611,10 +2611,10 @@ li { border-radius: 5px; }
 #### Implement multiple selection<Trans>다중 선택 구현</Trans> {/*implement-multiple-selection*/}
 
 In this example, each `Letter` has an `isSelected` prop and an `onToggle` handler that marks it as selected. This works, but the state is stored as a `selectedId` (either `null` or an ID), so only one letter can get selected at any given time.
-<Trans>이 예시에서 각 Letter에는 선택된 것으로 표시하는 isSelected prop과 onToggle 핸들러가 있습니다. 이 방법은 작동하지만 state는 selectedId(null 또는 ID)로 저장되므로 주어진 시간에 하나의 문자만 선택될 수 있습니다.</Trans>
+<Trans>이 예시에서 각 `Letter`에는 선택된 것으로 표시하는 `isSelected` prop과 `onToggle` 핸들러가 있습니다. 이 방법은 작동하지만 state는 `selectedId`(`null` 또는 ID)로 저장되므로 주어진 시간에 하나의 문자만 선택될 수 있습니다.</Trans>
 
 Change the state structure to support multiple selection. (How would you structure it? Think about this before writing the code.) Each checkbox should become independent from the others. Clicking a selected letter should uncheck it. Finally, the footer should show the correct number of the selected items.
-<Trans>다중 선택을 지원하도록 state 구조를 변경합니다. (어떻게 구조화할까요? 코드를 작성하기 전에 생각해 보세요.) 각 확인란은 다른 확인란과 독립적이어야 합니다. 선택한 문자를 클릭하면 선택이 해제되어야 합니다. 마지막으로 푸터에 선택한 항목의 정확한 개수가 표시되어야 합니다.</Trans>
+<Trans>다중 선택을 지원하도록 state 구조를 변경합시다. (어떻게 구조화할까요? 코드를 작성하기 전에 생각해 보세요.) 각 확인란은 다른 확인란과 독립적이어야 합니다. 선택한 문자를 클릭하면 선택이 해제되어야 합니다. 마지막으로 푸터에 선택한 항목의 정확한 개수가 표시되어야 합니다.</Trans>
 
 <Hint>
 
@@ -2721,7 +2721,7 @@ label { width: 100%; padding: 5px; display: inline-block; }
 <Solution>
 
 Instead of a single `selectedId`, keep a `selectedIds` *array* in state. For example, if you select the first and the last letter, it would contain `[0, 2]`. When nothing is selected, it would be an empty `[]` array:
-<Trans>단일 `selectedId` 대신 `selectedIds` *배열*을 상태로 유지합니다. 예를 들어 첫 번째 문자와 마지막 문자를 선택하면 `[0, 2]`가 포함됩니다. 아무것도 선택하지 않으면 빈 `[]` 배열이 됩니다:</Trans>
+<Trans>단일 `selectedId` 대신 `selectedIds` *배열*을 state로 유지합니다. 예를 들어 첫 번째 문자와 마지막 문자를 선택하면 `[0, 2]`가 포함됩니다. 아무것도 선택하지 않으면 빈 `[]` 배열이 됩니다:</Trans>
 
 <Sandpack>
 

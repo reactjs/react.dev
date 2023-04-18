@@ -22,7 +22,7 @@ const deployedTranslations = [
   // We'll add more languages when they have enough content.
 ];
 
-function getDomain(languageCode) {
+function getDomain(languageCode: string): string {
   const subdomain = languageCode === 'en' ? '' : languageCode + '.';
   return subdomain + 'react.dev';
 }

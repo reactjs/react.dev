@@ -792,7 +792,7 @@ This may look like a React error, but really React is pointing out a bug in your
 <Trans>이것은 React 오류처럼 보일 수 있지만 실제로는 코드의 버그를 지적하는 것입니다. `roomId`와  `serverUrl`은 시간이 지남에 따라 변경될 수 있지만, 변경 시 Effect를 다시 동기화하는 것을 잊어버리고 있습니다. 결과적으로 사용자가 UI에서 다른 값을 선택한 후에도 초기 `roomId` 와  `serverUrl`에 연결된 상태로 유지됩니다.</Trans>
 
 To fix the bug, follow the linter's suggestion to specify `roomId` and `serverUrl` as dependencies of your Effect:
-<Trans>버그를 수정하려면 린터의 제안에 따라 Effect의 종속 요소로 `roomId` 및 `serverUrl`을 지정하세요:</Trans>
+<Trans>버그를 수정하려면 린터의 제안에 따라 Effect의 의존성 요소로 `roomId` 및 `serverUrl`을 지정하세요:</Trans>
 
 ```js {9}
 function ChatRoom({ roomId }) { // roomId is reactive
@@ -809,7 +809,7 @@ function ChatRoom({ roomId }) { // roomId is reactive
 ```
 
 Try this fix in the sandbox above. Verify that the linter error is gone, and the chat re-connects when needed.
-<Trans>버그를 수정하려면 린터의 제안에 따라 Effect의 종속 요소로 roomId 및 serverUrl을 지정하세요:</Trans>
+<Trans>위의 샌드박스에서 이 수정 방법을 시도해 보세요. 지연 오류가 사라지고 필요할 때 채팅이 다시 연결되는지 확인하세요.</Trans>
 
 <Note>
 

@@ -325,7 +325,7 @@ useEffect(() => {
 ```
 
 **When dependencies don't match the code, there is a very high risk of introducing bugs.** By suppressing the linter, you "lie" to React about the values your Effect depends on.
-<Trans>**의존성이 코드와 일치하지 않으면 버그가 발생할 위험이 매우 높습니다.** 린터를 억제하면 Effect가 종속하는 값에 대해 React에 "거짓말"을 하게 됩니다.</Trans>
+<Trans>**의존성이 코드와 일치하지 않으면 버그가 발생할 위험이 매우 높습니다.** 린터를 억제하면 Effect가 의존하는 값에 대해 React에 "거짓말"을 하게 됩니다.</Trans>
 
 Instead, use the techniques below.
 <Trans>대신 다음에 소개할 기술을 사용하세요.</Trans>
@@ -390,7 +390,7 @@ Let's say that you wanted to run the Effect "only on mount". You've read that [e
 <Trans>"마운트할 때만" Effect를 실행하고 싶다고 가정해 봅시다. [빈(`[]`) 의존성](/learn/lifecycle-of-reactive-effects#what-an-effect-with-empty-dependencies-means)이 그렇게 한다는 것을 읽었으므로 린터를 무시하고 `[]` 의존성을 강제로 지정하기로 결정했습니다.</Trans>
 
 This counter was supposed to increment every second by the amount configurable with the two buttons. However, since you "lied" to React that this Effect doesn't depend on anything, React forever keeps using the `onTick` function from the initial render. [During that render,](/learn/state-as-a-snapshot#rendering-takes-a-snapshot-in-time) `count` was `0` and `increment` was `1`. This is why `onTick` from that render always calls `setCount(0 + 1)` every second, and you always see `1`. Bugs like this are harder to fix when they're spread across multiple components.
-<Trans>이 카운터는 두 개의 버튼으로 설정할 수 있는 양만큼 매초마다 증가해야 합니다. 하지만 이 Effect가 아무 것도 종속하지 않는다고 React에 "거짓말"을 했기 때문에, React는 초기 렌더링에서 계속 `onTick` 함수를 사용합니다. [이 렌더링에서](/learn/state-as-a-snapshot#rendering-takes-a-snapshot-in-time) 카운트는 `0`이었고 증가분은 `1`이었습니다. 그래서 이 렌더링의 `onTick`은 항상 매초마다 `setCount(0 + 1)`을 호출하고 항상 `1`이 표시됩니다. 이와 같은 버그는 여러 컴포넌트에 분산되어 있을 때 수정하기가 더 어렵습니다.</Trans>
+<Trans>이 카운터는 두 개의 버튼으로 설정할 수 있는 양만큼 매초마다 증가해야 합니다. 하지만 이 Effect가 아무 것도 의존하지 않는다고 React에 "거짓말"을 했기 때문에, React는 초기 렌더링에서 계속 `onTick` 함수를 사용합니다. [이 렌더링에서](/learn/state-as-a-snapshot#rendering-takes-a-snapshot-in-time) 카운트는 `0`이었고 증가분은 `1`이었습니다. 그래서 이 렌더링의 `onTick`은 항상 매초마다 `setCount(0 + 1)`을 호출하고 항상 `1`이 표시됩니다. 이와 같은 버그는 여러 컴포넌트에 분산되어 있을 때 수정하기가 더 어렵습니다.</Trans>
 
 There's always a better solution than ignoring the linter! To fix this code, you need to add `onTick` to the dependency list. (To ensure the interval is only setup once, [make `onTick` an Effect Event.](/learn/separating-events-from-effects#reading-latest-props-and-state-with-effect-events))
 <Trans>린터를 무시하는 것보다 더 좋은 해결책은 항상 있습니다! 이 코드를 수정하려면 의존성 목록에 `onTick`을 추가해야 합니다. (interval을 한 번만 설정하려면 [onTick을 Effect Event로 만드세요.](/learn/separating-events-from-effects#reading-latest-props-and-state-with-effect-events))</Trans>
@@ -681,7 +681,7 @@ function ChatRoom({ roomId }) {
 ```
 
 **Notice how your Effect does not read the `messages` variable at all now.** You only need to pass an updater function like `msgs => [...msgs, receivedMessage]`. React [puts your updater function in a queue](/learn/queueing-a-series-of-state-updates) and will provide the `msgs` argument to it during the next render. This is why the Effect itself doesn't need to depend on `messages` anymore. As a result of this fix, receiving a chat message will no longer make the chat re-connect.
-<Trans>**이제 Effect가 `messages` 변수를 전혀 읽지 않는 것을 알 수 있습니다.** `msgs => [...msgs, receivedMessage]`와 같은 업데이터 함수만 전달하면 됩니다. React는 [업데이터 함수를 대기열에 넣고](/learn/queueing-a-series-of-state-updates) 다음 렌더링 중에 `msgs` 인수를 제공합니다. 이 때문에 Effect 자체는 더 이상 `messages`에 종속할 필요가 없습니다. 이 수정으로 인해 채팅 메시지를 수신해도 더 이상 채팅이 다시 연결되지 않습니다.</Trans>
+<Trans>**이제 Effect가 `messages` 변수를 전혀 읽지 않는 것을 알 수 있습니다.** `msgs => [...msgs, receivedMessage]`와 같은 업데이터 함수만 전달하면 됩니다. React는 [업데이터 함수를 대기열에 넣고](/learn/queueing-a-series-of-state-updates) 다음 렌더링 중에 `msgs` 인수를 제공합니다. 이 때문에 Effect 자체는 더 이상 `messages`에 의존할 필요가 없습니다. 이 수정으로 인해 채팅 메시지를 수신해도 더 이상 채팅이 다시 연결되지 않습니다.</Trans>
 
 ### Do you want to read a value without "reacting" to its changes?<Trans>값의 변경에 '반응'하지 않고 값을 읽고 싶으신가요?</Trans> {/*do-you-want-to-read-a-value-without-reacting-to-its-changes*/}
 
@@ -988,7 +988,7 @@ This is why, whenever possible, you should try to avoid objects and functions as
 #### Move static objects and functions outside your component<Trans>정적 객체와 함수를 컴포넌트 외부로 이동</Trans> {/*move-static-objects-and-functions-outside-your-component*/}
 
 If the object does not depend on any props and state, you can move that object outside your component:
-<Trans>객체가 props 및 state에 종속하지 않는 경우 해당 객체를 컴포넌트 외부로 이동할 수 있습니다:</Trans>
+<Trans>객체가 props 및 state에 의존하지 않는 경우 해당 객체를 컴포넌트 외부로 이동할 수 있습니다:</Trans>
 
 ```js {1-4,13}
 const options = {
@@ -1229,7 +1229,7 @@ function ChatRoom({ options }) {
 ```
 
 The logic gets a little repetitive (you read some values from an object outside an Effect, and then create an object with the same values inside the Effect). But it makes it very explicit what information your Effect *actually* depends on. If an object is re-created unintentionally by the parent component, the chat would not re-connect. However, if `options.roomId` or `options.serverUrl` really are different, the chat would re-connect.
-<Trans>로직은 약간 반복적입니다 (Effect 외부의 객체에서 일부 값을 읽은 다음 Effect 내부에 동일한 값을 가진 객체를 만듭니다). 하지만 Effect가 실제로 어떤 정보에 종속하는지 매우 명확하게 알 수 있습니다. 부모 컴포넌트에 의해 의도치 않게 객체가 다시 생성된 경우 채팅이 다시 연결되지 않습니다. 하지만 `options.roomId` 또는 `options.serverUrl`이 실제로 다른 경우 채팅이 다시 연결됩니다.</Trans>
+<Trans>로직은 약간 반복적입니다 (Effect 외부의 객체에서 일부 값을 읽은 다음 Effect 내부에 동일한 값을 가진 객체를 만듭니다). 하지만 Effect가 실제로 어떤 정보에 의존하는지 매우 명확하게 알 수 있습니다. 부모 컴포넌트에 의해 의도치 않게 객체가 다시 생성된 경우 채팅이 다시 연결되지 않습니다. 하지만 `options.roomId` 또는 `options.serverUrl`이 실제로 다른 경우 채팅이 다시 연결됩니다.</Trans>
 
 #### Calculate primitive values from functions<Trans>함수에서 원시값 계산</Trans> {/*calculate-primitive-values-from-functions*/}
 
@@ -1751,7 +1751,7 @@ label, button { display: block; margin-bottom: 5px; }
 <Solution>
 
 Your Effect is re-running because it depends on the `options` object. Objects can be re-created unintentionally, you should try to avoid them as dependencies of your Effects whenever possible.
-<Trans>Effect가 `options` 객체에 의존하기 때문에 다시 실행되고 있습니다. 객체는 의도치 않게 다시 생성될 수 있으므로 가능하면 Effect의 종속 요소로 지정하지 않도록 해야 합니다.</Trans>
+<Trans>Effect가 `options` 객체에 의존하기 때문에 다시 실행되고 있습니다. 객체는 의도치 않게 다시 생성될 수 있으므로 가능하면 Effect의 의존성 요소로 지정하지 않도록 해야 합니다.</Trans>
 
 The least invasive fix is to read `roomId` and `serverUrl` right outside the Effect, and then make the Effect depend on those primitive values (which can't change unintentionally). Inside the Effect, create an object and it pass to `createConnection`:
 <Trans>가장 덜 공격적인 수정 방법은 Effect 외부에서 `roomId`와 `serverUrl`을 읽은 다음 Effect가 이러한 기본 값에 의존하도록 만드는 것입니다(의도치 않게 변경할 수 없음). Effect 내부에서 객체를 생성하면 `createConnection`으로 전달됩니다:</Trans>

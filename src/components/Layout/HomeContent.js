@@ -147,12 +147,20 @@ export function HomeContent() {
           </p>
           <div className="mt-5 self-center flex gap-2 w-full sm:w-auto flex-col sm:flex-row">
             <ButtonLink
+              href={'/community/translators'}
+              type="secondary"
+              size="lg"
+              className="w-full sm:w-auto justify-center"
+              label="translators">
+              번역한 사람들
+            </ButtonLink>
+            <ButtonLink
               href={'/translated'}
               type="primary"
               size="lg"
               className="w-full sm:w-auto justify-center"
-              label="Learn React">
-              번역 진행상황 보기
+              label="progress">
+              번역 진행상황
             </ButtonLink>
           </div>
           <br />

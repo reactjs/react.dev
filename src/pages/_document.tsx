@@ -3,11 +3,11 @@
  */
 
 import {Html, Head, Main, NextScript} from 'next/document';
+import {siteConfig} from '../siteConfig';
 
 const MyDocument = () => {
-  //  @todo specify language in HTML?
   return (
-    <Html lang="ko">
+    <Html lang={siteConfig.languageCode}>
       <Head>
         <meta charSet="utf-8" />
       </Head>

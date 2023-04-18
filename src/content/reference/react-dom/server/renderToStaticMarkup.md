@@ -31,7 +31,7 @@ const html = renderToStaticMarkup(<Page />);
 It will produce non-interactive HTML output of your React components.
 
 [See more examples below.](#usage)
-<Trans>[아래에서 더 많은 예를 확인하세요.](#usage)</Trans>
+<Trans>[아래에서 더 많은 예시를 확인하세요.](#usage)</Trans>
 
 #### Parameters<Trans>매개변수</Trans> {/*parameters*/}
 

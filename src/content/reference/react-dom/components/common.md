@@ -21,7 +21,7 @@ All built-in browser components, such as [`<div>`](https://developer.mozilla.org
 ```
 
 [See more examples below.](#usage)
-<Trans>[아래에서 더 많은 예를 확인하세요.](#usage)</Trans>
+<Trans>[아래에서 더 많은 예시를 확인하세요.](#usage)</Trans>
 
 #### Props {/*common-props*/}
 
@@ -327,8 +327,8 @@ An event handler type for the [CSS animation](https://developer.mozilla.org/en-U
 ```js
 <div
   onAnimationStart={e => console.log('onAnimationStart')}
-  onAnimationIteration={e => console.log('onAnimationStart')}
-  onAnimationEnd={e => console.log('onAnimationStart')}
+  onAnimationIteration={e => console.log('onAnimationIteration')}
+  onAnimationEnd={e => console.log('onAnimationEnd')}
 />
 ```
 

@@ -2,7 +2,7 @@
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
 
-export const siteConfig = {
+exports.siteConfig = {
   // --------------------------------------
   // Translations should replace this line:
   languageCode: 'en',

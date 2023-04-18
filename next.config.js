@@ -2,6 +2,8 @@
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
 
+const siteConfig = require('./src/siteConfig').siteConfig;
+
 /**
  * @type {import('next').NextConfig}
  **/
@@ -9,10 +11,21 @@ const nextConfig = {
   pageExtensions: ['jsx', 'js', 'ts', 'tsx', 'mdx', 'md'],
   reactStrictMode: true,
   experimental: {
-    plugins: true,
     scrollRestoration: true,
     legacyBrowsers: false,
     browsersListForSwc: true,
+  },
+  redirects() {
+    const languageCode = siteConfig.languageCode;
+    const subdomain = languageCode === 'en' ? '' : languageCode + '.';
+    return [
+      {
+        // Assume all *.html links are legacy site URLs.
+        source: '/:path*(\\.html)',
+        destination: `https://${subdomain}legacy.reactjs.org/:path*.html`,
+        permanent: false,
+      },
+    ];
   },
   env: {
     SANDPACK_BARE_COMPONENTS: process.env.SANDPACK_BARE_COMPONENTS,

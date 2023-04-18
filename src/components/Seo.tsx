@@ -55,13 +55,13 @@ export const Seo = withRouter(
         <link
           rel="alternate"
           href={canonicalUrl.replace(siteDomain, getDomain('en'))}
-          hreflang="x-default"
+          hrefLang="x-default"
         />
         {deployedTranslations.map((languageCode) => (
           <link
             key={'alt-' + languageCode}
             rel="alternate"
-            hreflang={languageCode}
+            hrefLang={languageCode}
             href={canonicalUrl.replace(siteDomain, getDomain(languageCode))}
           />
         ))}

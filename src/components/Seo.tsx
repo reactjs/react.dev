@@ -17,6 +17,16 @@ export interface SeoProps {
   searchOrder?: number;
 }
 
+const deployedTranslations = [
+  'en',
+  // We'll add more languages when they have enough content.
+];
+
+function getDomain(languageCode) {
+  const subdomain = languageCode === 'en' ? '' : languageCode + '.';
+  return subdomain + 'react.dev';
+}
+
 export const Seo = withRouter(
   ({
     title,
@@ -27,6 +37,10 @@ export const Seo = withRouter(
     isHomePage,
     searchOrder,
   }: SeoProps & {router: Router}) => {
+    const siteDomain = getDomain(siteConfig.languageCode);
+    const canonicalUrl = `https://${siteDomain}${
+      router.asPath.split(/[\?\#]/)[0]
+    }`;
     const pageTitle = isHomePage ? 'React' : title + ' – React';
     // Twitter's meta parser is not very good.
     const twitterTitle = pageTitle.replace(/[<>]/g, '');
@@ -37,15 +51,23 @@ export const Seo = withRouter(
         {description != null && (
           <meta name="description" key="description" content={description} />
         )}
+        <link rel="canonical" href={canonicalUrl} />
+        <link
+          rel="alternate"
+          href={canonicalUrl.replace(siteDomain, getDomain('en'))}
+          hreflang="x-default"
+        />
+        {deployedTranslations.map((languageCode) => (
+          <link
+            key={'alt-' + languageCode}
+            rel="alternate"
+            hreflang={languageCode}
+            href={canonicalUrl.replace(siteDomain, getDomain(languageCode))}
+          />
+        ))}
         <meta property="fb:app_id" content="623268441017527" />
         <meta property="og:type" key="og:type" content="website" />
-        <meta
-          property="og:url"
-          key="og:url"
-          content={`https://${siteConfig.domain}${
-            router.asPath.split(/[\?\#]/)[0]
-          }`}
-        />
+        <meta property="og:url" key="og:url" content={canonicalUrl} />
         {title != null && (
           <meta property="og:title" content={pageTitle} key="og:title" />
         )}
@@ -59,7 +81,7 @@ export const Seo = withRouter(
         <meta
           property="og:image"
           key="og:image"
-          content={`https://${siteConfig.domain}${image}`}
+          content={`https://${siteDomain}${image}`}
         />
         <meta
           name="twitter:card"
@@ -85,7 +107,7 @@ export const Seo = withRouter(
         <meta
           name="twitter:image"
           key="twitter:image"
-          content={`https://${siteConfig.domain}${image}`}
+          content={`https://${siteDomain}${image}`}
         />
         <meta
           name="google-site-verification"

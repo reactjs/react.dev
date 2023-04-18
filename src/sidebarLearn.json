@@ -163,7 +163,7 @@
         },
         {
           "title": "Sharing State Between Components",
-          "translatedTitle": "컴포넌트 간 state 공유",
+          "translatedTitle": "컴포넌트 간의 state 공유",
           "path": "/learn/sharing-state-between-components"
         },
         {

@@ -7,9 +7,9 @@ import Image from 'next/image';
 import {IconTwitter} from '../Icon/IconTwitter';
 import {IconGitHub} from '../Icon/IconGitHub';
 import {ExternalLink} from '../ExternalLink';
-import {IconNewPage} from 'components/Icon/IconNewPage';
 import {H3} from './Heading';
 import {IconLink} from 'components/Icon/IconLink';
+import Link from './Link';
 
 interface TeamMemberProps {
   name: string;
@@ -20,6 +20,7 @@ interface TeamMemberProps {
   twitter?: string;
   github?: string;
   personal?: string;
+  translated?: {title: string; translatedTitle?: string; url: string}[];
 }
 
 // TODO: good alt text for images/links
@@ -32,13 +33,11 @@ export function TeamMember({
   github,
   twitter,
   personal,
+  translated,
 }: TeamMemberProps) {
-  if (name == null || title == null || permalink == null || children == null) {
+  if (name == null || title == null || children == null) {
     throw new Error(
-      'Expected name, title, permalink, and children for ' + name ??
-        title ??
-        permalink ??
-        'unknown'
+      'Expected name, title, and children for ' + name ?? title ?? 'unknown'
     );
   }
   return (
@@ -55,7 +54,7 @@ export function TeamMember({
           <Image src={photo} layout="fill" objectFit="cover" alt={name} />
         </div>
         <div className="pl-0 sm:pl-6 basis-3/5 items-start">
-          <H3 className="mb-1 sm:my-0" id={permalink}>
+          <H3 className="mb-1 sm:my-0" id={permalink || name}>
             {name}
           </H3>
           {title && <div>{title}</div>}
@@ -91,6 +90,20 @@ export function TeamMember({
               </ExternalLink>
             )}
           </div>
+          {translated?.length && (
+            <details className="mt-4 translated-list">
+              <summary>
+                번역한 페이지 <small>({translated?.length})</small>
+              </summary>
+              <ul className="bg-card dark:bg-card-dark">
+                {translated.map(({title, translatedTitle, url}) => (
+                  <li key={title}>
+                    <Link href={url}>{translatedTitle || title}</Link>
+                  </li>
+                ))}
+              </ul>
+            </details>
+          )}
         </div>
       </div>
     </div>

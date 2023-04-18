@@ -7,7 +7,7 @@ translators: [안예지, 원주혜, 고석영]
 <Intro>
 
 State can hold any kind of JavaScript value, including objects. But you shouldn't change objects that you hold in the React state directly. Instead, when you want to update an object, you need to create a new one (or make a copy of an existing one), and then set the state to use that copy.
-<Trans>state는 객체를 포함해서, 어떤 종류의 자바스크립트 값이든 저장할 수 있습니다. 하지만 React state에 있는 객체를 직접 변이해서는 안 됩니다. 대신 객체를 업데이트하려면 새 객체를 생성하고(혹은 기존 객체의 복사본을 만들고), 해당 복사본을 사용하도록 state를 설정해야 합니다.</Trans>
+<Trans>state는 객체를 포함해서, 어떤 종류의 JavaScript 값이든 저장할 수 있습니다. 하지만 React state에 있는 객체를 직접 변이해서는 안 됩니다. 대신 객체를 업데이트하려면 새 객체를 생성하고(혹은 기존 객체의 복사본을 만들고), 해당 복사본을 사용하도록 state를 설정해야 합니다.</Trans>
 
 </Intro>
 
@@ -225,7 +225,7 @@ setPosition({
 ```
 
 Mutation is only a problem when you change *existing* objects that are already in state. Mutating an object you've just created is okay because *no other code references it yet.* Changing it isn't going to accidentally impact something that depends on it. This is called a "local mutation". You can even do local mutation [while rendering.](/learn/keeping-components-pure#local-mutation-your-components-little-secret) Very convenient and completely okay!
-<Trans>변이는 이미 state가 있는 *기존* 객체를 변경할 때만 문제가 됩니다. 방금 생성한 객체를 변경해도 *다른 코드가 아직 참조하지 않으므로* 괜찮습니다. 객체를 변경해도 해당 객체에 종속된 다른 객체에 실수로 영향을 미치지 않습니다. 이를 "지역 변이(local mutation)"라고 합니다. [렌더링하는 동안에도](/learn/keeping-components-pure#local-mutation-your-components-little-secret) 지역 변이를 수행할 수 있습니다. 매우 편리하고 완전 괜찮습니다!</Trans>
+<Trans>변이는 이미 state가 있는 *기존* 객체를 변경할 때만 문제가 됩니다. 방금 생성한 객체를 변경해도 *다른 코드가 아직 참조하지 않으므로* 괜찮습니다. 객체를 변경해도 해당 객체에 의존하는 다른 객체에 실수로 영향을 미치지 않습니다. 이를 "지역 변이(local mutation)"라고 합니다. [렌더링하는 동안에도](/learn/keeping-components-pure#local-mutation-your-components-little-secret) 지역 변이를 수행할 수 있습니다. 매우 편리하고 완전 괜찮습니다!</Trans>
 
 </DeepDive>  
 
@@ -734,7 +734,7 @@ To try Immer:
 2. Then replace `import { useState } from 'react'` with `import { useImmer } from 'use-immer'`
 
 <TransBlock>
-  1. `npm install use-immer`를 실행하여 Immer를 종속성으로 추가합니다.
+  1. `npm install use-immer`를 실행하여 Immer를 의존성으로 추가합니다.
   2. 그런 다음 `import { useState } from 'react'`를 `import { useImmer } from 'use-immer'`로 바꿉니다.
 </TransBlock>
 

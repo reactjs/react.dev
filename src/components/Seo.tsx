@@ -5,6 +5,7 @@
 import * as React from 'react';
 import Head from 'next/head';
 import {withRouter, Router} from 'next/router';
+import {siteConfig} from '../siteConfig';
 
 export interface SeoProps {
   title: string;
@@ -14,6 +15,16 @@ export interface SeoProps {
   children?: React.ReactNode;
   isHomePage: boolean;
   searchOrder?: number;
+}
+
+const deployedTranslations = [
+  'en',
+  // We'll add more languages when they have enough content.
+];
+
+function getDomain(languageCode: string): string {
+  const subdomain = languageCode === 'en' ? '' : languageCode + '.';
+  return subdomain + 'react.dev';
 }
 
 export const Seo = withRouter(
@@ -26,29 +37,37 @@ export const Seo = withRouter(
     isHomePage,
     searchOrder,
   }: SeoProps & {router: Router}) => {
+    const siteDomain = getDomain(siteConfig.languageCode);
+    const canonicalUrl = `https://${siteDomain}${
+      router.asPath.split(/[\?\#]/)[0]
+    }`;
     const pageTitle = isHomePage ? 'React' : title + ' – React';
     // Twitter's meta parser is not very good.
     const twitterTitle = pageTitle.replace(/[<>]/g, '');
     return (
       <Head>
-        {/* DEFAULT */}
-
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-
         {title != null && <title key="title">{pageTitle}</title>}
         {description != null && (
           <meta name="description" key="description" content={description} />
         )}
-        {/* <link rel="icon" type="image/x-icon" href={favicon} />
-      <link rel="apple-touch-icon" href={favicon} />  @todo favicon */}
-        <meta property="fb:app_id" content="623268441017527" />
-        {/* OPEN GRAPH */}
-        <meta property="og:type" key="og:type" content="website" />
-        <meta
-          property="og:url"
-          key="og:url"
-          content={`https://react.dev${router.asPath.split(/[\?\#]/)[0]}`}
+        <link rel="canonical" href={canonicalUrl} />
+        <link
+          rel="alternate"
+          href={canonicalUrl.replace(siteDomain, getDomain('en'))}
+          hrefLang="x-default"
         />
+        {deployedTranslations.map((languageCode) => (
+          <link
+            key={'alt-' + languageCode}
+            rel="alternate"
+            hrefLang={languageCode}
+            href={canonicalUrl.replace(siteDomain, getDomain(languageCode))}
+          />
+        ))}
+        <meta property="fb:app_id" content="623268441017527" />
+        <meta property="og:type" key="og:type" content="website" />
+        <meta property="og:url" key="og:url" content={canonicalUrl} />
         {title != null && (
           <meta property="og:title" content={pageTitle} key="og:title" />
         )}
@@ -59,14 +78,11 @@ export const Seo = withRouter(
             content={description}
           />
         )}
-
         <meta
           property="og:image"
           key="og:image"
-          content={`https://react.dev${image}`}
+          content={`https://${siteDomain}${image}`}
         />
-
-        {/* TWITTER */}
         <meta
           name="twitter:card"
           key="twitter:card"
@@ -88,11 +104,10 @@ export const Seo = withRouter(
             content={description}
           />
         )}
-
         <meta
           name="twitter:image"
           key="twitter:image"
-          content={`https://react.dev${image}`}
+          content={`https://${siteDomain}${image}`}
         />
         <meta
           name="google-site-verification"

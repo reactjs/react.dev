@@ -4,8 +4,9 @@
 
 exports.siteConfig = {
   // --------------------------------------
-  // Translations should replace this line:
+  // Translations should replace these lines:
   languageCode: 'en',
+  hasLegacySite: true,
   // --------------------------------------
   copyright: `Copyright © ${new Date().getFullYear()} Facebook Inc. All Rights Reserved.`,
   repoUrl: 'https://github.com/facebook/react',

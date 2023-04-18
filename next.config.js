@@ -16,8 +16,12 @@ const nextConfig = {
     browsersListForSwc: true,
   },
   redirects() {
+    const redirects = [];
     const languageCode = siteConfig.languageCode;
-    const subdomain = languageCode === 'en' ? '' : languageCode + '.';
+    const subdomain =
+      languageCode === 'en' || !siteConfig.hasLegacySite
+        ? ''
+        : languageCode + '.';
     return [
       {
         // Assume all *.html links are legacy site URLs.

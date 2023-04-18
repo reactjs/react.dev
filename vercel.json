@@ -85,11 +85,6 @@
       "permanent": false
     },
     {
-      "source": "/:path*(\\.html)",
-      "destination": "https://legacy.reactjs.org/:path*.html",
-      "permanent": false
-    },
-    {
       "source": "/tips/controlled-input-null-value.html",
       "destination": "/reference/react-dom/components/input#im-getting-an-error-a-component-is-changing-an-uncontrolled-input-to-be-controlled",
       "permanent": false

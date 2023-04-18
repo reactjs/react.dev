@@ -16,7 +16,7 @@ const cachedValue = useMemo(calculateValue, dependencies)
 
 ---
 
-## Reference {/*reference*/}
+## Reference<Trans>참조</Trans> {/*reference*/}
 
 ### `useMemo(calculateValue, dependencies)` {/*usememo*/}
 
@@ -35,20 +35,21 @@ function TodoList({ todos, tab }) {
 ```
 
 [See more examples below.](#usage)
+<Trans>[아래에서 더 많은 예를 확인하세요.](#usage)</Trans>
 
-#### Parameters {/*parameters*/}
+#### Parameters<Trans>매개변수</Trans> {/*parameters*/}
 
 * `calculateValue`: The function calculating the value that you want to cache. It should be pure, should take no arguments, and should return a value of any type. React will call your function during the initial render. On next renders, React will return the same value again if the `dependencies` have not changed since the last render. Otherwise, it will call `calculateValue`, return its result, and store it so it can be reused later.
 
 * `dependencies`: The list of all reactive values referenced inside of the `calculateValue` code. Reactive values include props, state, and all the variables and functions declared directly inside your component body. If your linter is [configured for React](/learn/editor-setup#linting), it will verify that every reactive value is correctly specified as a dependency. The list of dependencies must have a constant number of items and be written inline like `[dep1, dep2, dep3]`. React will compare each dependency with its previous value using the [`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is) comparison.
 
-#### Returns {/*returns*/}
+#### Returns<Trans>반환값</Trans> {/*returns*/}
 
 On the initial render, `useMemo` returns the result of calling `calculateValue` with no arguments.
 
 During next renders, it will either return an already stored value from the last render (if the dependencies haven't changed), or call `calculateValue` again, and return the result that `calculateValue` has returned.
 
-#### Caveats {/*caveats*/}
+#### Caveats<Trans>주의사항</Trans> {/*caveats*/}
 
 * `useMemo` is a Hook, so you can only call it **at the top level of your component** or your own Hooks. You can't call it inside loops or conditions. If you need that, extract a new component and move the state into it.
 * In Strict Mode, React will **call your calculation function twice** in order to [help you find accidental impurities.](#my-calculation-runs-twice-on-every-re-render) This is development-only behavior and does not affect production. If your calculation function is pure (as it should be), this should not affect your logic. The result from one of the calls will be ignored.
@@ -62,7 +63,7 @@ Caching return values like this is also known as [*memoization*,](https://en.wik
 
 ---
 
-## Usage {/*usage*/}
+## Usage<Trans>사용법</Trans> {/*usage*/}
 
 ### Skipping expensive recalculations {/*skipping-expensive-recalculations*/}
 
@@ -165,7 +166,7 @@ If a specific interaction still feels laggy, [use the React Developer Tools prof
 
 </DeepDive>
 
-<Recipes titleText="The difference between useMemo and calculating a value directly" titleId="examples-recalculation">
+<Recipes titleText="The difference between useMemo and calculating a value directly" titleId="examples-recalculation" translatedTitle="useMemo와 값을 직접 계산하는 것의 차이점">
 
 #### Skipping recalculation with `useMemo` {/*skipping-recalculation-with-usememo*/}
 
@@ -639,7 +640,7 @@ Manually wrapping JSX nodes into `useMemo` is not convenient. For example, you c
 
 </DeepDive>
 
-<Recipes titleText="The difference between skipping re-renders and always re-rendering" titleId="examples-rerendering">
+<Recipes titleText="The difference between skipping re-renders and always re-rendering" titleId="examples-rerendering" translatedTitle="리렌더링을 건너뛰는 것과 항상 리렌더링하는 것의 차이점">
 
 #### Skipping re-rendering with `useMemo` and `memo` {/*skipping-re-rendering-with-usememo-and-memo*/}
 
@@ -1156,7 +1157,7 @@ The two examples above are completely equivalent. The only benefit to `useCallba
 
 ---
 
-## Troubleshooting {/*troubleshooting*/}
+## Troubleshooting<Trans>문제 해결</Trans> {/*troubleshooting*/}
 
 ### My calculation runs twice on every re-render {/*my-calculation-runs-twice-on-every-re-render*/}
 

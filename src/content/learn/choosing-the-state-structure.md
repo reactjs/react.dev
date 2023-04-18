@@ -1,5 +1,6 @@
 ---
 title: Choosing the State Structure
+translators: [송윤지, 최민정]
 ---
 
 <Intro>

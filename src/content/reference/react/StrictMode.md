@@ -20,7 +20,7 @@ title: <StrictMode>
 
 ---
 
-## Reference {/*reference*/}
+## Reference<Trans>참조</Trans> {/*reference*/}
 
 ### `<StrictMode>` {/*strictmode*/}
 
@@ -39,6 +39,7 @@ root.render(
 ```
 
 [See more examples below.](#usage)
+<Trans>[아래에서 더 많은 예를 확인하세요.](#usage)</Trans>
 
 Strict Mode enables the following development-only behaviors:
 
@@ -50,13 +51,13 @@ Strict Mode enables the following development-only behaviors:
 
 `StrictMode` accepts no props.
 
-#### Caveats {/*caveats*/}
+#### Caveats<Trans>주의사항</Trans> {/*caveats*/}
 
 * There is no way to opt out of Strict Mode inside a tree wrapped in `<StrictMode>`. This gives you confidence that all components inside `<StrictMode>` are checked. If two teams working on a product disagree whether they find the checks valuable, they need to either reach consensus or move `<StrictMode>` down in the tree.
 
 ---
 
-## Usage {/*usage*/}
+## Usage<Trans>사용법</Trans> {/*usage*/}
 
 ### Enabling Strict Mode for entire app {/*enabling-strict-mode-for-entire-app*/}
 

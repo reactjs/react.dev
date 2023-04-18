@@ -2,7 +2,7 @@
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
 
-import {Fragment, useMemo} from 'react';
+import {Fragment, useEffect, useMemo} from 'react';
 import {useRouter} from 'next/router';
 import {MDXComponents} from 'components/MDX/MDXComponents';
 import {Page} from 'components/Layout/Page';
@@ -38,6 +38,27 @@ export default function Layout({content, toc, meta}) {
       routeTree = sidebarBlog;
       break;
   }
+
+  useEffect(() => {
+    if (meta.translatedTitle !== '번역한 사람들') return;
+    const details = Array.from(document.querySelectorAll('details'));
+    const closeOtherDetails = (e) => {
+      if (!e.target.attributes.open) return;
+      details.forEach((elem) => {
+        if (e.target !== elem) elem.removeAttribute('open');
+      });
+    };
+    details.forEach((elem) => {
+      elem.addEventListener('toggle', closeOtherDetails);
+    });
+
+    return () => {
+      details.forEach((elem) => {
+        elem.removeEventListener('toggle', closeOtherDetails);
+      });
+    };
+  }, [meta]);
+
   return (
     <Page toc={parsedToc} routeTree={routeTree} meta={meta} section={section}>
       {parsedContent}

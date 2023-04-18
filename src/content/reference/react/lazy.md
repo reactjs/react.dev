@@ -16,7 +16,7 @@ const SomeComponent = lazy(load)
 
 ---
 
-## Reference {/*reference*/}
+## Reference<Trans>참조</Trans> {/*reference*/}
 
 ### `lazy(load)` {/*lazy*/}
 
@@ -29,12 +29,13 @@ const MarkdownPreview = lazy(() => import('./MarkdownPreview.js'));
 ```
 
 [See more examples below.](#usage)
+<Trans>[아래에서 더 많은 예를 확인하세요.](#usage)</Trans>
 
-#### Parameters {/*parameters*/}
+#### Parameters<Trans>매개변수</Trans> {/*parameters*/}
 
 * `load`: A function that returns a [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) or another *thenable* (a Promise-like object with a `then` method). React will not call `load` until the first time you attempt to render the returned component. After React first calls `load`, it will wait for it to resolve, and then render the resolved value as a React component. Both the returned Promise and the Promise's resolved value will be cached, so React will not call `load` more than once. If the Promise rejects, React will `throw` the rejection reason for the nearest Error Boundary to handle.
 
-#### Returns {/*returns*/}
+#### Returns<Trans>반환값</Trans> {/*returns*/}
 
 `lazy` returns a React component you can render in your tree. While the code for the lazy component is still loading, attempting to render it will *suspend.* Use [`<Suspense>`](/reference/react/Suspense) to display a loading indicator while it's loading.
 
@@ -42,17 +43,17 @@ const MarkdownPreview = lazy(() => import('./MarkdownPreview.js'));
 
 ### `load` function {/*load*/}
 
-#### Parameters {/*load-parameters*/}
+#### Parameters<Trans>매개변수</Trans> {/*load-parameters*/}
 
 `load` receives no parameters.
 
-#### Returns {/*load-returns*/}
+#### Returns<Trans>반환값</Trans> {/*load-returns*/}
 
 You need to return a [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) or some other *thenable* (a Promise-like object with a `then` method). It needs to eventually resolve to a valid React component type, such as a function, [`memo`](/reference/react/memo), or a [`forwardRef`](/reference/react/forwardRef) component.
 
 ---
 
-## Usage {/*usage*/}
+## Usage<Trans>사용법</Trans> {/*usage*/}
 
 ### Lazy-loading components with Suspense {/*suspense-for-code-splitting*/}
 
@@ -181,7 +182,7 @@ This demo loads with an artificial delay. The next time you untick and tick the 
 
 ---
 
-## Troubleshooting {/*troubleshooting*/}
+## Troubleshooting<Trans>문제 해결</Trans> {/*troubleshooting*/}
 
 ### My `lazy` component's state gets reset unexpectedly {/*my-lazy-components-state-gets-reset-unexpectedly*/}
 

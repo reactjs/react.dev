@@ -22,7 +22,7 @@ const clonedElement = cloneElement(element, props, ...children)
 
 ---
 
-## Reference {/*reference*/}
+## Reference<Trans>참조</Trans> {/*reference*/}
 
 ### `cloneElement(element, props, ...children)` {/*cloneelement*/}
 
@@ -44,8 +44,9 @@ console.log(clonedElement); // <Row title="Cabbage">Goodbye</Row>
 ```
 
 [See more examples below.](#usage)
+<Trans>[아래에서 더 많은 예를 확인하세요.](#usage)</Trans>
 
-#### Parameters {/*parameters*/}
+#### Parameters<Trans>매개변수</Trans> {/*parameters*/}
 
 * `element`: The `element` argument must be a valid React element. For example, it could be a JSX node like `<Something />`, the result of calling [`createElement`](/reference/react/createElement), or the result of another `cloneElement` call.
 
@@ -53,7 +54,7 @@ console.log(clonedElement); // <Row title="Cabbage">Goodbye</Row>
 
 * **optional** `...children`: Zero or more child nodes. They can be any React nodes, including React elements, strings, numbers, [portals](/reference/react-dom/createPortal), empty nodes (`null`, `undefined`, `true`, and `false`), and arrays of React nodes. If you don't pass any `...children` arguments, the original `element.props.children` will be preserved.
 
-#### Returns {/*returns*/}
+#### Returns<Trans>반환값</Trans> {/*returns*/}
 
 `cloneElement` returns a React element object with a few properties:
 
@@ -64,7 +65,7 @@ console.log(clonedElement); // <Row title="Cabbage">Goodbye</Row>
 
 Usually, you'll return the element from your component or make it a child of another element. Although you may read the element's properties, it's best to treat every element as opaque after it's created, and only render it.
 
-#### Caveats {/*caveats*/}
+#### Caveats<Trans>주의사항</Trans> {/*caveats*/}
 
 * Cloning an element **does not modify the original element.**
 
@@ -74,7 +75,7 @@ Usually, you'll return the element from your component or make it a child of ano
 
 ---
 
-## Usage {/*usage*/}
+## Usage<Trans>사용법</Trans> {/*usage*/}
 
 ### Overriding props of an element {/*overriding-props-of-an-element*/}
 

@@ -9,11 +9,13 @@ import * as React from 'react';
 import cn from 'classnames';
 import {IconNavArrow} from 'components/Icon/IconNavArrow';
 import Link from 'next/link';
+import Trans from 'components/MDX/Trans';
 
 interface SidebarLinkProps {
   href: string;
   selected?: boolean;
   title: string;
+  translatedTitle?: string;
   level: number;
   wip: boolean | undefined;
   icon?: React.ReactNode;
@@ -26,6 +28,7 @@ export function SidebarLink({
   href,
   selected = false,
   title,
+  translatedTitle,
   wip,
   level,
   isExpanded,
@@ -75,7 +78,13 @@ export function SidebarLink({
           className={cn({
             'text-gray-400 dark:text-gray-500': wip,
           })}>
-          {title}
+          {title}{' '}
+          {!!translatedTitle && (
+            <>
+              <br />
+              <Trans>{translatedTitle}</Trans>
+            </>
+          )}
         </span>
         {isExpanded != null && !hideArrow && (
           <span

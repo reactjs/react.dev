@@ -5,7 +5,7 @@
 exports.siteConfig = {
   // --------------------------------------
   // Translations should replace these lines:
-  languageCode: 'en',
+  languageCode: 'ko',
   hasLegacySite: true,
   // --------------------------------------
   copyright: `Copyright © ${new Date().getFullYear()} Facebook Inc. All Rights Reserved.`,

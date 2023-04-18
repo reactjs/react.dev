@@ -15,7 +15,7 @@ import {useEffect, useRef, useState} from 'react';
 interface ExpandableExampleProps {
   children: React.ReactNode;
   excerpt?: string;
-  type: 'DeepDive' | 'Example';
+  type: 'DeepDive' | 'Example' | 'ExtraComment';
 }
 
 function ExpandableExample({children, excerpt, type}: ExpandableExampleProps) {
@@ -26,6 +26,7 @@ function ExpandableExample({children, excerpt, type}: ExpandableExampleProps) {
   }
   const isDeepDive = type === 'DeepDive';
   const isExample = type === 'Example';
+  const isExtra = type === 'ExtraComment';
   const id = children[0].props.id;
 
   const {asPath} = useRouter();
@@ -50,7 +51,8 @@ function ExpandableExample({children, excerpt, type}: ExpandableExampleProps) {
         'my-12 rounded-2xl shadow-inner-border dark:shadow-inner-border-dark relative',
         {
           'dark:bg-opacity-20 dark:bg-purple-60 bg-purple-5': isDeepDive,
-          'dark:bg-opacity-20 dark:bg-yellow-60 bg-yellow-5': isExample,
+          'dark:bg-opacity-20 dark:bg-yellow-60 bg-yellow-5':
+            isExample || isExtra,
         }
       )}>
       <summary
@@ -66,18 +68,18 @@ function ExpandableExample({children, excerpt, type}: ExpandableExampleProps) {
         <h5
           className={cn('mb-4 uppercase font-bold flex items-center text-sm', {
             'dark:text-purple-30 text-purple-50': isDeepDive,
-            'dark:text-yellow-30 text-yellow-60': isExample,
+            'dark:text-yellow-30 text-yellow-60': isExample || isExtra,
           })}>
           {isDeepDive && (
             <>
               <IconDeepDive className="inline mr-2 dark:text-purple-30 text-purple-40" />
-              Deep Dive
+              Deep Dive | 심층 탐구
             </>
           )}
-          {isExample && (
+          {(isExample || isExtra) && (
             <>
               <IconCodeBlock className="inline mr-2 dark:text-yellow-30 text-yellow-50" />
-              Example
+              {isExample ? 'Example' : 'Extra Comment'}
             </>
           )}
         </h5>
@@ -95,7 +97,7 @@ function ExpandableExample({children, excerpt, type}: ExpandableExampleProps) {
             'bg-purple-50 border-purple-50 hover:bg-purple-40 focus:bg-purple-50 active:bg-purple-50':
               isDeepDive,
             'bg-yellow-50 border-yellow-50 hover:bg-yellow-40 focus:bg-yellow-50 active:bg-yellow-50':
-              isExample,
+              isExample || isExtra,
           })}
           onClick={() => setIsExpanded((current) => !current)}>
           <span className="mr-1">
@@ -107,7 +109,7 @@ function ExpandableExample({children, excerpt, type}: ExpandableExampleProps) {
       <div
         className={cn('p-8 border-t', {
           'dark:border-purple-60 border-purple-10 ': isDeepDive,
-          'dark:border-yellow-60 border-yellow-50': isExample,
+          'dark:border-yellow-60 border-yellow-50': isExample || isExtra,
         })}>
         {children.slice(1)}
       </div>

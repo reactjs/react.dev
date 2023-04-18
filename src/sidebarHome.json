@@ -8,10 +8,12 @@
     },
     {
       "title": "Quick Start",
+      "translatedTitle": "빠른 시작",
       "path": "/learn"
     },
     {
       "title": "Installation",
+      "translatedTitle": "설치하기",
       "path": "/learn/installation"
     },
     {
@@ -20,18 +22,22 @@
     },
     {
       "title": "Describing the UI",
+      "translatedTitle": "UI 구성하기",
       "path": "/learn/describing-the-ui"
     },
     {
       "title": "Adding Interactivity",
+      "translatedTitle": "상호작용 추가하기",
       "path": "/learn/adding-interactivity"
     },
     {
       "title": "Managing State",
+      "translatedTitle": "state 관리",
       "path": "/learn/managing-state"
     },
     {
       "title": "Escape Hatches",
+      "translatedTitle": "탈출구",
       "path": "/learn/escape-hatches"
     },
     {

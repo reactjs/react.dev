@@ -5,13 +5,20 @@
 import * as React from 'react';
 import cn from 'classnames';
 import {H3} from './Heading';
+import Trans from './Trans';
 
 interface SimpleCalloutProps {
   title: string;
+  translatedTitle?: string;
   children: React.ReactNode;
   className?: string;
 }
-function SimpleCallout({title, children, className}: SimpleCalloutProps) {
+function SimpleCallout({
+  title,
+  translatedTitle,
+  children,
+  className,
+}: SimpleCalloutProps) {
   return (
     <div
       className={cn(
@@ -22,6 +29,7 @@ function SimpleCallout({title, children, className}: SimpleCalloutProps) {
         className="text-primary dark:text-primary-dark mt-0 mb-3 leading-tight"
         isPageAnchor={false}>
         {title}
+        {translatedTitle && <Trans>{translatedTitle}</Trans>}
       </H3>
       {children}
     </div>

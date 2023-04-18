@@ -16,7 +16,7 @@ The [built-in browser `<textarea>` component](https://developer.mozilla.org/en-U
 
 ---
 
-## Reference {/*reference*/}
+## Reference<Trans>참조</Trans> {/*reference*/}
 
 ### `<textarea>` {/*textarea*/}
 
@@ -27,6 +27,7 @@ To display a text area, render the [built-in browser `<textarea>`](https://devel
 ```
 
 [See more examples below.](#usage)
+<Trans>[아래에서 더 많은 예를 확인하세요.](#usage)</Trans>
 
 #### Props {/*props*/}
 
@@ -67,7 +68,7 @@ These `<textarea>` props are relevant both for uncontrolled and controlled text 
 * [`rows`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea#attr-rows): A number. Specifies the default height in average character heights. Defaults to `2`.
 * [`wrap`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea#attr-wrap): Either `'hard'`, `'soft'`, or `'off'`. Specifies how the text should be wrapped when submitting a form.
 
-#### Caveats {/*caveats*/}
+#### Caveats<Trans>주의사항</Trans> {/*caveats*/}
 
 - Passing children like `<textarea>something</textarea>` is not allowed. [Use `defaultValue` for initial content.](#providing-an-initial-value-for-a-text-area)
 - If a text area receives a string `value` prop, it will be [treated as controlled.](#controlling-a-text-area-with-a-state-variable)
@@ -77,7 +78,7 @@ These `<textarea>` props are relevant both for uncontrolled and controlled text 
 
 ---
 
-## Usage {/*usage*/}
+## Usage<Trans>사용법</Trans> {/*usage*/}
 
 ### Displaying a text area {/*displaying-a-text-area*/}
 
@@ -336,7 +337,7 @@ textarea { display: block; margin-top: 5px; margin-bottom: 10px; }
 
 ---
 
-## Troubleshooting {/*troubleshooting*/}
+## Troubleshooting<Trans>문제 해결</Trans> {/*troubleshooting*/}
 
 ### My text area doesn't update when I type into it {/*my-text-area-doesnt-update-when-i-type-into-it*/}
 

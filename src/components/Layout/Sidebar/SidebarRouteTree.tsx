@@ -82,7 +82,16 @@ export function SidebarRouteTree({
     <ul>
       {currentRoutes.map(
         (
-          {path, title, routes, wip, heading, hasSectionHeader, sectionHeader},
+          {
+            path,
+            title,
+            translatedTitle,
+            routes,
+            wip,
+            heading,
+            hasSectionHeader,
+            sectionHeader,
+          },
           index
         ) => {
           const selected = slug === path;
@@ -112,6 +121,7 @@ export function SidebarRouteTree({
                   selected={selected}
                   level={level}
                   title={title}
+                  translatedTitle={translatedTitle}
                   wip={wip}
                   isExpanded={isExpanded}
                   hideArrow={isForceExpanded}
@@ -136,6 +146,7 @@ export function SidebarRouteTree({
                   selected={selected}
                   level={level}
                   title={title}
+                  translatedTitle={translatedTitle}
                   wip={wip}
                 />
               </li>

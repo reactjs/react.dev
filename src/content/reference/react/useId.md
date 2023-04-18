@@ -23,7 +23,7 @@ const id = useId()
 ### `useId()` {/*useid*/}
 
 Call `useId` at the top level of your component to generate a unique ID:
-<Trans>`useId`는 컴포넌트의 최상위 수준에서 호출하여 고유한 ID를 생성합니다.</Trans>
+<Trans>`useId`는 컴포넌트의 최상위 수준에서 호출하여 고유한 ID를 생성합니다:</Trans>
 
 ```js
 import { useId } from 'react';
@@ -34,7 +34,7 @@ function PasswordField() {
 ```
 
 [See more examples below.](#usage)
-<Trans>[아래에서 더 많은 예를 확인하세요.](#usage)</Trans>
+<Trans>[아래에서 더 많은 예시를 확인하세요.](#usage)</Trans>
 
 #### Parameters<Trans>매개변수</Trans> {/*parameters*/}
 
@@ -93,10 +93,10 @@ You can then pass the <CodeStep step={1}>generated ID</CodeStep> to different at
 <Trans>**유용한 경우를 알아보기 위해 예제를 살펴보겠습니다.**</Trans>
 
 [HTML accessibility attributes](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA) like [`aria-describedby`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-describedby) let you specify that two tags are related to each other. For example, you can specify that an element (like an input) is described by another element (like a paragraph).
-<Trans>[`aria-describedby`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-describedby)와 같은 [HTML 접근성 속성](https://developer.mozilla.org/ko/docs/Web/Accessibility/ARIA) 은 두 태그가 서로 연관되어 있음을 알 수 있습니다. 예를 들어, input과 같은 요소를 문단과 같은 요소에 의해 설명되도록 지정할 수 있습니다.</Trans>
+<Trans>[`aria-describedby`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-describedby)와 같은 [HTML 접근성 속성](https://developer.mozilla.org/ko/docs/Web/Accessibility/ARIA) 은 두 태그가 서로 연관되어 있음을 알 수 있습니다. 예를 들어 한 요소(input 등)에 대한 설명을 다른 요소(문단 등)가 대신하도록 지정할 수 있습니다.</Trans>
 
 In regular HTML, you would write it like this:
-<Trans>일반 HTML에서는 다음과 같이 작성합니다.</Trans>
+<Trans>일반 HTML에서는 다음과 같이 작성합니다:</Trans>
 
 ```html {5,8}
 <label>
@@ -112,7 +112,7 @@ In regular HTML, you would write it like this:
 ```
 
 However, hardcoding IDs like this is not a good practice in React. A component may be rendered more than once on the page--but IDs have to be unique! Instead of hardcoding an ID, generate a unique ID with `useId`:
-<Trans>그러나, ID를 하드 코딩하는 것은 React에서 좋은 방법은 아닙니다. 컴포넌트는 페이지에서 두 번 이상 렌더링될 수 있지만 ID는 고유해야합니다! ID를 하드 코딩하는 대신, `useId`를 생성합니다.</Trans>
+<Trans>그러나 ID를 하드코딩하는 것은 React에서 좋은 방법은 아닙니다. 컴포넌트는 페이지에서 두 번 이상 렌더링될 수 있지만 ID는 고유해야합니다! ID를 하드코딩하는 대신, `useId`로 고유한 ID를 생성하세요:</Trans>
 
 ```js {4,11,14}
 import { useId } from 'react';
@@ -137,7 +137,7 @@ function PasswordField() {
 ```
 
 Now, even if `PasswordField` appears multiple times on the screen, the generated IDs won't clash.
-<Trans>이제, `PasswordField`가 화면에 여러번 나타나도, 생성된 ID가 충돌되지 않습니다.</Trans>
+<Trans>이제 `PasswordField`가 화면에 여러번 나타나도 생성된 ID가 충돌하지 않습니다.</Trans>
 
 <Sandpack>
 
@@ -195,19 +195,16 @@ With [server rendering](/reference/react-dom/server), **`useId` requires an iden
 #### Why is useId better than an incrementing counter? <Trans>중복 카운터보다 useId가 더 나은 이유는 무엇일까?</Trans> {/*why-is-useid-better-than-an-incrementing-counter*/}
 
 You might be wondering why `useId` is better than incrementing a global variable like `nextId++`.
-<Trans>`useId` 가 `nextId++` 와 같은 전역 변수를 증가시키는 것보다 왜 더 나은지 궁금할 것입니다.</Trans>
+<Trans>`useId` 가 `nextId++`처럼 전역 변수를 증가시키는 것보다 무엇이 더 나은지 궁금할 수 있습니다.</Trans>
 
 The primary benefit of `useId` is that React ensures that it works with [server rendering.](/reference/react-dom/server) During server rendering, your components generate HTML output. Later, on the client, [hydration](/reference/react-dom/client/hydrateRoot) attaches your event handlers to the generated HTML. For hydration to work, the client output must match the server HTML.
-<Trans>`useId` 의 주요 이점은 React가 서버 렌더링과 함께 작동하도록 보장한다는 것입니다. [서버 렌더링](/reference/react-dom/server) 중에 컴포넌트는 HTML 출력을 생성합니다. 나중에 클라이언트에서 [hydration](/reference/react-dom/client/hydrateRoot)가 붙여진 이벤트 핸들러를 생성된 HTML에 연결합니다. hydration이 작동하려면, 클라이언트 출력이 서버 HTML과 일치해야 합니다.</Trans>
-
+<Trans>`useId` 의 주요 이점은 React가 서버 렌더링과 함께 작동하도록 보장한다는 것입니다. [서버 렌더링](/reference/react-dom/server) 중에 컴포넌트는 HTML 출력을 생성합니다. 이후 클라이언트에서 [hydration](/reference/react-dom/client/hydrateRoot)이 붙여진 이벤트 핸들러를 생성된 HTML에 연결합니다. hydration이 작동하려면 클라이언트의 출력물이 서버 HTML과 일치해야 합니다.</Trans>
 
 This is very difficult to guarantee with an incrementing counter because the order in which the client components are hydrated may not match the order in which the server HTML was emitted. By calling `useId`, you ensure that hydration will work, and the output will match between the server and the client.
-<Trans>클라이언트 컴포넌트가 hydration이 되는 순서가 서버 HTML이 생성된 순서와 일치하지 않을 수 있기 때문에 증가 카운터로는 이를 보장하기가 매우 어렵습니다. `useId`를 호출하여  hydration이 작동하고 출력이 서버와 클라이언트 간에 일치하는지 확인합니다.</Trans>
-
+<Trans>클라이언트 컴포넌트가 hydration 되는 순서가 서버 HTML이 생성된 순서와 일치하지 않을 수 있기 때문에, 증가 카운터로는 이를 보장하기가 매우 어렵습니다. `useId`를 호출하면 hydration이 작동하고, 서버와 클라이언트의 출력물이 서로 일치하는지 확인할 수 있습니다.</Trans>
 
 Inside React, `useId` is generated from the "parent path" of the calling component. This is why, if the client and the server tree are the same, the "parent path" will match up regardless of rendering order.
-<Trans>내부 React는 `useId` 호출 컴포넌트의 "부모 경로"에서 생성됩니다. 이것이 클라이언트와 서버 트리가 같으면 렌더링 순서에 관계없이 "부모 경로"가 일치하는 이유입니다.</Trans>
-
+<Trans>React 내부에서 `useId`는 호출한 컴포넌트의 "부모 경로"에서 생성됩니다. 그렇기 때문에 클라이언트와 서버 트리가 동일하면 렌더링 순서와 상관 없이 "부모 경로"가 일치하게 되므로, `useId` 역시 일치할 것입니다.</Trans>
 
 </DeepDive>
 

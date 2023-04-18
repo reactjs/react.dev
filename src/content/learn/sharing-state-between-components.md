@@ -1,6 +1,6 @@
 ---
 title: Sharing State Between Components
-translatedTitle: 컴포넌트 간 state 공유
+translatedTitle: 컴포넌트 간의 state 공유
 translators: [송윤지, 김아영, 고석영]
 ---
 
@@ -25,7 +25,7 @@ Sometimes, you want the state of two components to always change together. To do
 ## Lifting state up by example<Trans>예제로 알아보는 state 끌어올리기</Trans> {/*lifting-state-up-by-example*/}
 
 In this example, a parent `Accordion` component renders two separate `Panel`s:
-<Trans>이 예제에서는 부모 컴포넌트인 `Accordion` 컴포넌트가 두 개의 Panel 컴포넌트를 렌더링합니다.</Trans>
+<Trans>이 예제에서는 부모 컴포넌트인 `Accordion` 컴포넌트가 두 개의 `Panel` 컴포넌트를 렌더링합니다.</Trans>
 
 * `Accordion`
   - `Panel`
@@ -106,13 +106,13 @@ Clicking either `Panel`'s button will only update that `Panel`'s `isActive` stat
 <Trans>**그러나 이제 한 번에 하나의 패널만 열리도록 변경하려고 합니다.** 설계에 따르면, 두 번째 패널을 열기 위해선 첫 번째 패널을 닫아야 합니다. 어떻게 해야 할까요?</Trans>
 
 To coordinate these two panels, you need to "lift their state up" to a parent component in three steps:
+<Trans>이 두 패널을 조정하려면 세 단계에 걸쳐 부모 컴포넌트로 “state를 끌어올려야” 합니다:</Trans>
 
 1. **Remove** state from the child components.
 2. **Pass** hardcoded data from the common parent.
 3. **Add** state to the common parent and pass it down together with the event handlers.
 
 <TransBlock>
-이 두 패널을 조정하려면 세 단계에 걸쳐 부모 컴포넌트로 “state를 끌어올려야” 합니다:
 1. 자식 컴포넌트에서 state를 **제거**합니다.
 2. 공통 부모 컴포넌트에 하드 코딩된 데이터를 **전달**합니다.
 3. 공통 부모 컴포넌트에 state를 **추가**하고 이벤트 핸들러와 함께 전달합니다.
@@ -124,14 +124,14 @@ This will allow the `Accordion` component to coordinate both `Panel`s and only e
 ### Step 1: Remove state from the child components<Trans>자식 컴포넌트에서 state 제거</Trans> {/*step-1-remove-state-from-the-child-components*/}
 
 You will give control of the `Panel`'s `isActive` to its parent component. This means that the parent component will pass `isActive` to `Panel` as a prop instead. Start by **removing this line** from the `Panel` component:
-<Trans>부모 컴포넌트에 `Panel`의 `isActive`를 제어할 수 있는 권한을 부여합니다. 즉, 부모 컴포넌트가 `isActive`를 `Panel`에 prop으로 대신 전달하게 됩니다. 먼저 `Panel` 컴포넌트에서 다음 **줄을 제거하세요:**</Trans>
+<Trans>부모 컴포넌트에 `Panel`의 `isActive`를 제어할 수 있는 권한을 부여합니다. 즉, 부모 컴포넌트가 `isActive`를 `Panel`에 prop으로 대신 전달하게 됩니다. 먼저 `Panel` 컴포넌트에서 **다음 줄을 제거하세요:**</Trans>
 
 ```js
 const [isActive, setIsActive] = useState(false);
 ```
 
 And instead, add `isActive` to the `Panel`'s list of props:
-<Trans>대신에, `Panel`의 props 목록에 `isActive`를 추가합니다:</Trans>
+<Trans>대신 `Panel`의 props 목록에 `isActive`를 추가하세요:</Trans>
 
 ```js
 function Panel({ title, children, isActive }) {
@@ -143,19 +143,14 @@ Now the `Panel`'s parent component can *control* `isActive` by [passing it down 
 ### Step 2: Pass hardcoded data from the common parent<Trans>공통 부모에 하드 코딩된 데이터 전달하기</Trans> {/*step-2-pass-hardcoded-data-from-the-common-parent*/}
 
 To lift state up, you must locate the closest common parent component of *both* of the child components that you want to coordinate:
+<Trans>state를 끌어올리려면 조정하려는 *두* 자식 컴포넌트의 가장 가까운 공통 부모 컴포넌트를 찾아야 합니다:</Trans>
 
-* `Accordion` *(closest common parent)*
+* `Accordion` *(closest common parent)* <Trans>*(가장 가까운 공통 부모)*</Trans>
   - `Panel`
   - `Panel`
-<TransBlock>
-state를 끌어올리려면 조정하려는 *두* 자식 컴포넌트의 가장 가까운 공통 부모 컴포넌트를 찾아야 합니다:
-- `Accordion` *(가장 가까운 공통 부모)*
-  - `Panel`
-  - `Panel`
-</TransBlock>
 
 In this example, it's the `Accordion` component. Since it's above both panels and can control their props, it will become the "source of truth" for which panel is currently active. Make the `Accordion` component pass a hardcoded value of `isActive` (for example, `true`) to both panels:
-<Trans>예제에서 가장 가까운 공통 부모는 `Accordion` 컴포넌트입니다. 두 패널 위에 있고 props를 제어할 수 있으므로 현재 어떤 패널이 활성화되어 있는지에 대한 “source of truth”가 됩니다. `Accordion` 컴포넌트가 두 패널 모두에 하드 코딩된 `isActive` 값(예를 들면, `true`)을 전달하도록 합니다:</Trans>
+<Trans>예제에서 가장 가까운 공통 부모는 `Accordion` 컴포넌트입니다. 두 패널 위에 있고 props를 제어할 수 있으므로 현재 어떤 패널이 활성화되어 있는지에 대한 “진실 공급원(source of truth)”이 됩니다. `Accordion` 컴포넌트가 두 패널 모두에 하드 코딩된 `isActive` 값(예: `true`)을 전달하도록 합니다:</Trans>
 
 <Sandpack>
 
@@ -356,7 +351,7 @@ Your app will change as you work on it. It is common that you will move state do
 <Trans>앱은 작업하면서 계속 변경됩니다. 각 state의 “위치”를 파악하는 동안 state를 아래로 이동하거나 백업하는 것이 일반적입니다. 이 모든 것이 과정의 일부입니다!</Trans>
 
 To see what this feels like in practice with a few more components, read [Thinking in React.](/learn/thinking-in-react)
-<Trans>몇 가지 컴포넌트를 사용해 실제로 어떤 느낌인지 알아보려면 [React로 사고하기](https://www.notion.so/3-React-Thinking-in-React-863ae867540d44aa909f8048b7afdbe7)를 읽어보세요.</Trans>
+<Trans>몇 가지 컴포넌트를 사용해 실제로 어떤 느낌인지 알아보려면 [React로 사고하기](/learn/thinking-in-react)를 읽어보세요.</Trans>
 
 <Recap>
 

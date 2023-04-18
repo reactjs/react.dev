@@ -250,7 +250,7 @@ Read [**Choosing the State Structure**](/learn/choosing-the-state-structure) to 
 
 </LearnMore>
 
-## Sharing state between components<Trans>컴포넌트 간 state 공유</Trans> {/*sharing-state-between-components*/}
+## Sharing state between components<Trans>컴포넌트 간의 state 공유</Trans> {/*sharing-state-between-components*/}
 
 Sometimes, you want the state of two components to always change together. To do it, remove state from both of them, move it to their closest common parent, and then pass it down to them via props. This is known as "lifting state up", and it's one of the most common things you will do writing React code.
 <Trans>때로는 두 컴포넌트의 state가 항상 함께 변경되기를 원할 때가 있습니다. 이렇게 하려면 두 컴포넌트에서 state를 제거하고 가장 가까운 공통 부모로 이동한 다음 프로퍼티를 통해 전달하면 됩니다. 이를 "state 올리기"라고 하며, React 코드를 작성할 때 가장 흔히 하는 작업 중 하나입니다.</Trans>
@@ -320,7 +320,7 @@ h3, p { margin: 5px 0px; }
 <LearnMore path="/learn/sharing-state-between-components">
 
 Read [**Sharing State Between Components**](/learn/sharing-state-between-components) to learn how to lift state up and keep components in sync.
-<Trans>[**컴포넌트 간 state 공유**](/learn/sharing-state-between-components)를 읽고 state를 올리고 컴포넌트의 동기화를 유지하는 방법을 알아보세요.</Trans>
+<Trans>[**컴포넌트 간의 state 공유**](/learn/sharing-state-between-components)를 읽고 state를 올리고 컴포넌트의 동기화를 유지하는 방법을 알아보세요.</Trans>
 
 </LearnMore>
 

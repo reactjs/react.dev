@@ -92,12 +92,12 @@ nav[role='navigation'] .translate::before {
   cursor: pointer;
 }
 .translated-list summary::after {
-  content: '[open]';
+  content: '[열기]';
   margin-left: 6px;
   font-size: 0.9em;
 }
 .translated-list[open] summary::after {
-  content: '[close]';
+  content: '[닫기]';
 }
 
 .translated-list > ul {

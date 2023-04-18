@@ -71,14 +71,27 @@ paths
       });
   });
 
-JSON.parse(fs.readFileSync(path.resolve(__dirname, 'data.json'))).forEach(
-  ({description, name, ...props}) => {
-    const prop = [];
-    Object.entries(props).map(([key, val]) => {
-      if (val) prop.push(`${key}="${val}"`);
-    });
-    const translated = memberTranslatedList.get(name);
-    results.push(`
+const data = JSON.parse(fs.readFileSync(path.resolve(__dirname, 'data.json')));
+
+if (process.argv[process.argv.length - 1] === '--shuffle') {
+  const jn = data.shift();
+  data.sort(() => Math.random() - 0.5);
+  data.unshift(jn);
+
+  fs.writeFileSync(
+    path.resolve(__dirname, 'data.json'),
+    JSON.stringify(data),
+    'utf8'
+  );
+}
+
+data.forEach(({description, name, ...props}) => {
+  const prop = [];
+  Object.entries(props).map(([key, val]) => {
+    if (val) prop.push(`${key}="${val}"`);
+  });
+  const translated = memberTranslatedList.get(name);
+  results.push(`
 <TeamMember 
   ${prop.join('\n')}
   name="${name}"
@@ -87,7 +100,6 @@ JSON.parse(fs.readFileSync(path.resolve(__dirname, 'data.json'))).forEach(
   ${description}
 </TeamMember>
 `);
-  }
-);
+});
 
 fs.writeFileSync(path.resolve(__dirname, 'index.md'), results.join(''));

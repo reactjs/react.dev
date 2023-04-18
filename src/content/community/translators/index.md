@@ -48,7 +48,7 @@ github="suhotang"
 title="주니어 프론트엔드 개발자"
 personal="ice-bear.tistory.com"
   name="김아영"
-  translated={[{"title":"Preserving and Resetting State","translatedTitle":"state 보존 및 재설정","url":"/learn/preserving-and-resetting-state"},{"title":"Removing Effect Dependencies","translatedTitle":"Effect 의존성 제거하기","url":"/learn/removing-effect-dependencies"},{"title":"Render and Commit","translatedTitle":"렌더링하고 커밋하기","url":"/learn/render-and-commit"},{"title":"Separating Events from Effects","translatedTitle":"이벤트와 Effect 분리하기","url":"/learn/separating-events-from-effects"},{"title":"Sharing State Between Components","url":"/learn/sharing-state-between-components"},{"title":"Updating Arrays in State","translatedTitle":"배열 state 업데이트","url":"/learn/updating-arrays-in-state"}]}
+  translated={[{"title":"Choosing the State Structure","translatedTitle":"State 구조 선택","url":"/learn/choosing-the-state-structure"},{"title":"Preserving and Resetting State","translatedTitle":"state 보존 및 재설정","url":"/learn/preserving-and-resetting-state"},{"title":"Removing Effect Dependencies","translatedTitle":"Effect 의존성 제거하기","url":"/learn/removing-effect-dependencies"},{"title":"Render and Commit","translatedTitle":"렌더링하고 커밋하기","url":"/learn/render-and-commit"},{"title":"Separating Events from Effects","translatedTitle":"이벤트와 Effect 분리하기","url":"/learn/separating-events-from-effects"},{"title":"Sharing State Between Components","translatedTitle":"컴포넌트 간의 state 공유","url":"/learn/sharing-state-between-components"},{"title":"Updating Arrays in State","translatedTitle":"배열 state 업데이트","url":"/learn/updating-arrays-in-state"}]}
 >
   3년차 프론트엔드 개발자입니다.<br/>문제를 정의하고 차근차근 해결하나가는 과정을 좋아합니다.<br/>운동은 별로 안좋아하지만 산책은 즐겨합니다.
 </TeamMember>
@@ -108,7 +108,7 @@ title="프론트엔트 취준생"
 github="bingwer"
 title="주니어 프론트엔드 개발자"
   name="이승효"
-  translated={[{"title":"Adding Interactivity","translatedTitle":"상호작용 추가하기","url":"/learn/adding-interactivity"},{"title":"Extracting State Logic into a Reducer","translatedTitle":"State로직을 Reducer로 추출하기","url":"/learn/extracting-state-logic-into-a-reducer"},{"title":"Quick Start","translatedTitle":"빠른 시작","url":"/learn/index"},{"title":"Passing Data Deeply with Context","translatedTitle":"context로 데이터 깊숙이 전달하기","url":"/learn/passing-data-deeply-with-context"},{"title":"Tutorial: Tic-Tac-Toe","translatedTitle":"자습서: 틱택토 게임","url":"/learn/tutorial-tic-tac-toe"},{"title":"Updating Arrays in State","translatedTitle":"배열 state 업데이트","url":"/learn/updating-arrays-in-state"}]}
+  translated={[{"title":"Adding Interactivity","translatedTitle":"상호작용 추가하기","url":"/learn/adding-interactivity"},{"title":"Extracting State Logic into a Reducer","translatedTitle":"State로직을 Reducer로 추출하기","url":"/learn/extracting-state-logic-into-a-reducer"},{"title":"Quick Start","translatedTitle":"빠른 시작","url":"/learn/index"},{"title":"Passing Data Deeply with Context","translatedTitle":"context로 데이터 깊숙이 전달하기","url":"/learn/passing-data-deeply-with-context"},{"title":"Tutorial: Tic-Tac-Toe","translatedTitle":"자습서: 틱택토 게임","url":"/learn/tutorial-tic-tac-toe"},{"title":"Updating Arrays in State","translatedTitle":"배열 state 업데이트","url":"/learn/updating-arrays-in-state"},{"title":"cloneElement","url":"/reference/react/cloneElement"}]}
 >
   🏃‍♂️ 매일 성장하고 싶은 주니어 프론트엔드 개발자 입니다.<br/>💻 좋은 사용자 경험을 제공하고 싶습니다.<br/>🤔 좋은 코드에 대해 함께 고민하고 토론하고 싶습니다.<br/>👬 함께 일하기 좋은 동료가 되고 싶습니다.
 </TeamMember>
@@ -128,7 +128,7 @@ title="프론트엔드 개발자"
 github="seunghoonKang"
 title="프론트엔트 취준생"
   name="강승훈"
-  translated={[{"title":"Add React to an Existing Project","translatedTitle":"기존 프로젝트에 React 추가하기","url":"/learn/add-react-to-an-existing-project"},{"title":"Lifecycle of Reactive Effects","translatedTitle":"반응형 Effect의 생명주기","url":"/learn/lifecycle-of-reactive-effects"},{"title":"Render and Commit","translatedTitle":"렌더링하고 커밋하기","url":"/learn/render-and-commit"},{"title":"Rendering Lists","translatedTitle":"목록 렌더링","url":"/learn/rendering-lists"},{"title":"useImperativeHandle","url":"/reference/react/useImperativeHandle"}]}
+  translated={[{"title":"Add React to an Existing Project","translatedTitle":"기존 프로젝트에 React 추가하기","url":"/learn/add-react-to-an-existing-project"},{"title":"Lifecycle of Reactive Effects","translatedTitle":"반응형 Effect의 생명주기","url":"/learn/lifecycle-of-reactive-effects"},{"title":"Render and Commit","translatedTitle":"렌더링하고 커밋하기","url":"/learn/render-and-commit"},{"title":"Rendering Lists","translatedTitle":"목록 렌더링","url":"/learn/rendering-lists"},{"title":"useCallback","url":"/reference/react/useCallback"},{"title":"useImperativeHandle","url":"/reference/react/useImperativeHandle"}]}
 >
   새로운 것을 배우는 데 관심이 많습니다.<br/>함께 무언가를 시도하며 함께 성장하는 것을 좋아합니다.
 </TeamMember>
@@ -138,7 +138,7 @@ title="프론트엔트 취준생"
 github="cue28"
 title="프론트엔트 개발자"
   name="전시윤"
-  translated={[{"title":"Passing Props to a Component","translatedTitle":"컴포넌트에 props 전달하기","url":"/learn/passing-props-to-a-component"},{"title":"Queueing a Series of State Updates","translatedTitle":"여러 state 업데이트를 큐에 담기","url":"/learn/queueing-a-series-of-state-updates"},{"title":"Separating Events from Effects","translatedTitle":"이벤트와 Effect 분리하기","url":"/learn/separating-events-from-effects"},{"title":"State: A Component's Memory","translatedTitle":"State: 컴포넌트의 메모리","url":"/learn/state-a-components-memory"},{"title":"Updating Arrays in State","translatedTitle":"배열 state 업데이트","url":"/learn/updating-arrays-in-state"}]}
+  translated={[{"title":"Passing Props to a Component","translatedTitle":"컴포넌트에 props 전달하기","url":"/learn/passing-props-to-a-component"},{"title":"Queueing a Series of State Updates","translatedTitle":"여러 state 업데이트를 큐에 담기","url":"/learn/queueing-a-series-of-state-updates"},{"title":"Separating Events from Effects","translatedTitle":"이벤트와 Effect 분리하기","url":"/learn/separating-events-from-effects"},{"title":"State: A Component's Memory","translatedTitle":"State: 컴포넌트의 메모리","url":"/learn/state-a-components-memory"},{"title":"Updating Arrays in State","translatedTitle":"배열 state 업데이트","url":"/learn/updating-arrays-in-state"},{"title":"useCallback","url":"/reference/react/useCallback"},{"title":"useId","url":"/reference/react/useId"}]}
 >
   세상을 더 경제적이고, 편리하게 만들어주는 아이디어를<br/>현실화시키는 과정을 즐기며 개발을 하고 있습니다.
 </TeamMember>
@@ -189,7 +189,7 @@ title="프론트엔드 취준생"
 github="himyne"
 title="프론트엔드 취준생"
   name="강민혜"
-  translated={[{"title":"JavaScript in JSX with Curly Braces","translatedTitle":"JSX에서 JavaScript 사용하기","url":"/learn/javascript-in-jsx-with-curly-braces"}]}
+  translated={[{"title":"JavaScript in JSX with Curly Braces","translatedTitle":"JSX에서 JavaScript 사용하기","url":"/learn/javascript-in-jsx-with-curly-braces"},{"title":"useCallback","url":"/reference/react/useCallback"}]}
 >
   코딩이 재밌어서 즐겁고 행복하게 취준하는 취준생입니다.<br />일상생활에서 오는 불편함을 개발로 해결해내는 것을 매우 좋아합니다.
 </TeamMember>
@@ -199,7 +199,7 @@ title="프론트엔드 취준생"
 github="saiani1"
 title="프론트엔드 취준생"
   name="최민정"
-  translated={[{"title":"Choosing the State Structure","url":"/learn/choosing-the-state-structure"},{"title":"Importing and Exporting Components","translatedTitle":"컴포넌트 import 및 export","url":"/learn/importing-and-exporting-components"},{"title":"Removing Effect Dependencies","translatedTitle":"Effect 의존성 제거하기","url":"/learn/removing-effect-dependencies"},{"title":"Rendering Lists","translatedTitle":"목록 렌더링","url":"/learn/rendering-lists"},{"title":"Responding to Events","translatedTitle":"이벤트에 응답하기","url":"/learn/responding-to-events"}]}
+  translated={[{"title":"Choosing the State Structure","translatedTitle":"State 구조 선택","url":"/learn/choosing-the-state-structure"},{"title":"Importing and Exporting Components","translatedTitle":"컴포넌트 import 및 export","url":"/learn/importing-and-exporting-components"},{"title":"Removing Effect Dependencies","translatedTitle":"Effect 의존성 제거하기","url":"/learn/removing-effect-dependencies"},{"title":"Rendering Lists","translatedTitle":"목록 렌더링","url":"/learn/rendering-lists"},{"title":"Responding to Events","translatedTitle":"이벤트에 응답하기","url":"/learn/responding-to-events"}]}
 >
   프론트엔드 개발을 하기까지 먼 길을 돌아왔습니다.<br/>새로운 도전을 두려워하지 않고, 매번 하고 싶은 걸 하며 삽니다.<br/>앞으로도 계속 그럴 예정입니다😆
 </TeamMember>
@@ -252,7 +252,7 @@ github="samseburn"
 twitter="samsebuns"
 title="프론트엔트 개발자"
   name="고석영"
-  translated={[{"title":"Extracting State Logic into a Reducer","translatedTitle":"State로직을 Reducer로 추출하기","url":"/learn/extracting-state-logic-into-a-reducer"},{"title":"Keeping Components Pure","translatedTitle":"컴포넌트 순수성 유지","url":"/learn/keeping-components-pure"},{"title":"Preserving and Resetting State","translatedTitle":"state 보존 및 재설정","url":"/learn/preserving-and-resetting-state"},{"title":"Reusing Logic with Custom Hooks","translatedTitle":"커스텀 훅으로 로직 재사용하기","url":"/learn/reusing-logic-with-custom-hooks"},{"title":"Scaling Up with Reducer and Context","translatedTitle":"Reducer와 Context로 확장하기","url":"/learn/scaling-up-with-reducer-and-context"},{"title":"Sharing State Between Components","url":"/learn/sharing-state-between-components"},{"title":"State: A Component's Memory","translatedTitle":"State: 컴포넌트의 메모리","url":"/learn/state-a-components-memory"},{"title":"Synchronizing with Effects","translatedTitle":"Effect와 동기화하기","url":"/learn/synchronizing-with-effects"},{"title":"Updating Arrays in State","translatedTitle":"배열 state 업데이트","url":"/learn/updating-arrays-in-state"},{"title":"Updating Objects in State","translatedTitle":"객체 state 업데이트","url":"/learn/updating-objects-in-state"},{"title":"Writing Markup with JSX","translatedTitle":"JSX로 마크업 작성하기","url":"/learn/writing-markup-with-jsx"},{"title":"Built-in React Hooks","url":"/reference/react/index"},{"title":"useContext","url":"/reference/react/useContext"},{"title":"useDebugValue","url":"/reference/react/useDebugValue"},{"title":"useImperativeHandle","url":"/reference/react/useImperativeHandle"},{"title":"useInsertionEffect","url":"/reference/react/useInsertionEffect"}]}
+  translated={[{"title":"Extracting State Logic into a Reducer","translatedTitle":"State로직을 Reducer로 추출하기","url":"/learn/extracting-state-logic-into-a-reducer"},{"title":"Keeping Components Pure","translatedTitle":"컴포넌트 순수성 유지","url":"/learn/keeping-components-pure"},{"title":"Preserving and Resetting State","translatedTitle":"state 보존 및 재설정","url":"/learn/preserving-and-resetting-state"},{"title":"Reusing Logic with Custom Hooks","translatedTitle":"커스텀 훅으로 로직 재사용하기","url":"/learn/reusing-logic-with-custom-hooks"},{"title":"Scaling Up with Reducer and Context","translatedTitle":"Reducer와 Context로 확장하기","url":"/learn/scaling-up-with-reducer-and-context"},{"title":"Sharing State Between Components","translatedTitle":"컴포넌트 간의 state 공유","url":"/learn/sharing-state-between-components"},{"title":"State: A Component's Memory","translatedTitle":"State: 컴포넌트의 메모리","url":"/learn/state-a-components-memory"},{"title":"Synchronizing with Effects","translatedTitle":"Effect와 동기화하기","url":"/learn/synchronizing-with-effects"},{"title":"Updating Arrays in State","translatedTitle":"배열 state 업데이트","url":"/learn/updating-arrays-in-state"},{"title":"Updating Objects in State","translatedTitle":"객체 state 업데이트","url":"/learn/updating-objects-in-state"},{"title":"Writing Markup with JSX","translatedTitle":"JSX로 마크업 작성하기","url":"/learn/writing-markup-with-jsx"},{"title":"Built-in React Hooks","url":"/reference/react/index"},{"title":"useCallback","url":"/reference/react/useCallback"},{"title":"useContext","url":"/reference/react/useContext"},{"title":"useDebugValue","url":"/reference/react/useDebugValue"},{"title":"useId","url":"/reference/react/useId"},{"title":"useImperativeHandle","url":"/reference/react/useImperativeHandle"},{"title":"useInsertionEffect","url":"/reference/react/useInsertionEffect"}]}
 >
   누구에게나 열려있는 웹의 가치를 믿습니다.<br/>이를 토대로 보다 나은 세상을 만드는 서비스에 관심이 많습니다.<br/>도서관에서 책 읽는 것을 좋아합니다.
 </TeamMember>

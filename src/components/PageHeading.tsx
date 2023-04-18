@@ -44,9 +44,7 @@ function PageHeading({
               <Link
                 className="ml-2"
                 key={t}
-                href="#"
-                // href={`/community/translators#${t}`}
-              >
+                href={`/community/translators#${t}`}>
                 {t}
               </Link>
             ))}

@@ -6,8 +6,8 @@ translators: [유한나라, 조성민, 정재남]
 
 <Intro>
 
-React uses a declarative way to manipulate the UI. Instead of manipulating individual pieces of the UI directly, you describe the different states that your component can be in, and switch between them in response to the user input. This is similar to how designers think about the UI.
-<Trans>React는 선언적인 방식으로 UI를 조작합니다. 개별적인 UI를 직접 조작하는 것 대신에 컴포넌트 내부에 여러 state를 묘사하고 사용자의 입력에 따라 state를 변경합니다. 이는 디자이너가 UI를 바라보는 방식과 비슷합니다.</Trans>
+React provides a declarative way to manipulate the UI. Instead of manipulating individual pieces of the UI directly, you describe the different states that your component can be in, and switch between them in response to the user input. This is similar to how designers think about the UI.
+<Trans>React는 UI를 조작하는 선언적인 방법을 제공합니다. UI를 개별적으로 직접 조작하는 대신 컴포넌트가 있을 수 있는 다양한 상태를 기술하고, 사용자 입력에 반응하여 각 상태들 사이를 전환합니다. 이는 디자이너가 UI를 바라보는 방식과 유사합니다.</Trans>
 
 </Intro>
 
@@ -30,8 +30,8 @@ React uses a declarative way to manipulate the UI. Instead of manipulating indiv
 When you design UI interactions, you probably think about how the UI *changes* in response to user actions. Consider a form that lets the user submit an answer:
 <Trans>UI인터렉션을 디자인할 때 사용자의 행동에 따라 UI가 어떻게 변하는지에 대해서 생각해 보셨을 것입니다. 사용자가 답변을 제출할 수 있는 양식을 생각해 봅시다.</Trans>
 
-* When you type something into a form, the "Submit" button **becomes enabled.**
-* When you press "Submit", both form and the button **become disabled,** and a spinner **appears.**
+* When you type something into the form, the "Submit" button **becomes enabled.**
+* When you press "Submit", both the form and the button **become disabled,** and a spinner **appears.**
 * If the network request succeeds, the form **gets hidden,** and the "Thank you" message **appears.**
 * If the network request fails, an error message **appears,** and the form **becomes enabled** again.
 

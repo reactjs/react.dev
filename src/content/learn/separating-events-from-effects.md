@@ -862,7 +862,7 @@ body {
 
 
 The problem with this code is in suppressing the dependency linter. If you remove the suppression, you'll see that this Effect should depend on the `handleMove` function. This makes sense: `handleMove` is declared inside the component body, which makes it a reactive value. Every reactive value must be specified as a dependency, or it can potentially get stale over time!
-<Trans>이 코드의 문제는 의존성 Linter를 억제하는 데 있습니다. 억제를 제거하면 이 Effect가 `handleMove` 함수에 종속되어야 한다는 것을 알 수 있습니다. `handleMove` 는 컴포넌트 본문 내부에서 선언되어 반응형 값이 되기 때문입니다. 모든 반응형 값은 의존성으로 지정해야 하며, 그렇지 않으면 시간이 지나 낡을 수 있습니다!</Trans>
+<Trans>이 코드의 문제는 의존성 Linter를 억제하는 데 있습니다. 억제를 제거하면 이 Effect가 `handleMove` 함수에 의존해야 한다는 것을 알 수 있습니다. `handleMove` 는 컴포넌트 본문 내부에서 선언되어 반응형 값이 되기 때문입니다. 모든 반응형 값은 의존성으로 지정해야 하며, 그렇지 않으면 시간이 지나 낡을 수 있습니다!</Trans>
 
 The author of the original code has "lied" to React by saying that the Effect does not depend (`[]`) on any reactive values. This is why React did not re-synchronize the Effect after `canMove` has changed (and `handleMove` with it). Because React did not re-synchronize the Effect, the `handleMove` attached as a listener is the `handleMove` function created during the initial render. During the initial render, `canMove` was `true`, which is why `handleMove` from the initial render will forever see that value.
 <Trans>원래 코드의 작성자는 Effect가 어떤 반응형 값에도 의존하지(`[]`) 않는다고 말함으로써 React에 "거짓말"을 했습니다. 이것이 바로 `canMove`가 변경된 후 React가 Effect를 다시 동기화하지 않은 이유입니다(그리고 `handleMove`도 함께). React가 Effect를 다시 동기화하지 않았기 때문에 리스너로 첨부된 `handleMove`는 초기 렌더링 중에 생성된 `handleMove` 함수입니다. 초기 렌더링 중에 `canMove`는 `true`였기 때문에 초기 렌더링의 `handleMove`는 영원히 그 값을 보게 됩니다.</Trans>
@@ -1252,7 +1252,7 @@ button { margin: 10px; }
 <Solution>
 
 The issue is that the code inside the Effect uses the `increment` state variable. Since it's a dependency of your Effect, every change to `increment` causes the Effect to re-synchronize, which causes the interval to clear. If you keep clearing the interval every time before it has a chance to fire, it will appear as if the timer has stalled.
-<Trans>문제는 Effect 내부의 코드가 `increment` state 변수를 사용한다는 것입니다. 이 변수는 Effect의 종속 변수이기 때문에 '증가'를 변경할 때마다 Effect가 다시 동기화되고 이로 인해 interval이 지워집니다. Effect가 발사될 기회를 갖기 전에 매번 interval을 지우면 타이머가 멈춘 것처럼 보일 것입니다.</Trans>
+<Trans>문제는 Effect 내부의 코드가 `increment` state 변수를 사용한다는 것입니다. 이 변수는 Effect의 의존 변수이기 때문에 '증가'를 변경할 때마다 Effect가 다시 동기화되고 이로 인해 interval이 지워집니다. Effect가 발사될 기회를 갖기 전에 매번 interval을 지우면 타이머가 멈춘 것처럼 보일 것입니다.</Trans>
 
 To solve the issue, extract an `onTick` Effect Event from the Effect:
 <Trans>이 문제를 해결하려면 Effect에서 `onTick` Effect Event를 추출하세요:</Trans>

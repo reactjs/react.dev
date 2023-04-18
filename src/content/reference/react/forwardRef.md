@@ -31,7 +31,7 @@ const MyInput = forwardRef(function MyInput(props, ref) {
 ```
 
 [See more examples below.](#usage)
-<Trans>[아래에서 더 많은 예를 확인하세요.](#usage)</Trans>
+<Trans>[아래에서 더 많은 예시를 확인하세요.](#usage)</Trans>
 
 #### Parameters<Trans>매개변수</Trans> {/*parameters*/}
 
@@ -132,7 +132,7 @@ function Form() {
 }
 ```
 
-This `Form` component [passes a ref](/reference/useref#manipulating-the-dom-with-a-ref) to `MyInput`. The `MyInput` component *forwards* that ref to the `<input>` browser tag. As a result, the `Form` component can access that `<input>` DOM node and call [`focus()`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/focus) on it.
+This `Form` component [passes a ref](/reference/react/useRef#manipulating-the-dom-with-a-ref) to `MyInput`. The `MyInput` component *forwards* that ref to the `<input>` browser tag. As a result, the `Form` component can access that `<input>` DOM node and call [`focus()`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/focus) on it.
 
 Keep in mind that exposing a ref to the DOM node inside your component makes it harder to change your component's internals later. You will typically expose DOM nodes from reusable low-level components like buttons or text inputs, but you won't do it for application-level components like an avatar or a comment.
 

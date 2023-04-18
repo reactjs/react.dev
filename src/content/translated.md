@@ -3,10 +3,45 @@ title: 번역 진행상황
 ---
 
 <Intro>
-last updated @ 2023-04-17 PM 18:30
+last updated @ 2023-04-17 PM 20:30
 </Intro>
 
-## Learn 진행상황 (done: 40 / total: 42) {/*learn*/}
+## Reference 진행상황 (done: 8 / total: 59) {/*reference*/}
+
+O/X | title | | O/X | title
+:-: | :-- | --- | :-: | :--
+O   | [5. Hooks](/reference/react) | | X   | [8-3. `<option>`](/reference/react-dom/components/option)
+O   | [5-1. useCallback](/reference/react/useCallback) | | X   | [8-4. `<progress>`](/reference/react-dom/components/progress)
+O   | [5-2. useContext](/reference/react/useContext) | | X   | [8-5. `<select>`](/reference/react-dom/components/select)
+O   | [5-3. useDebugValue](/reference/react/useDebugValue) | | X   | [8-6. `<textarea>`](/reference/react-dom/components/textarea)
+O   | [5-4. useDeferredValue](/reference/react/useDeferredValue) | | X   | [9. APIs](/reference/react-dom)
+X   | [5-5. useEffect](/reference/react/useEffect) | | X   | [9-1. createPortal](/reference/react-dom/createPortal)
+X   | [5-6. useId](/reference/react/useId) | | X   | [9-2. flushSync](/reference/react-dom/flushSync)
+O   | [5-7. useImperativeHandle](/reference/react/useImperativeHandle) | | X   | [9-3. findDOMNode](/reference/react-dom/findDOMNode)
+O   | [5-8. useInsertionEffect](/reference/react/useInsertionEffect) | | X   | [9-4. hydrate](/reference/react-dom/hydrate)
+X   | [5-9. useLayoutEffect](/reference/react/useLayoutEffect) | | X   | [9-5. render](/reference/react-dom/render)
+X   | [5-10. useMemo](/reference/react/useMemo) | | X   | [9-6. unmountComponentAtNode](/reference/react-dom/unmountComponentAtNode)
+X   | [5-11. useReducer](/reference/react/useReducer) | | X   | [10. Client APIs](/reference/react-dom/client)
+X   | [5-12. useRef](/reference/react/useRef) | | X   | [10-1. createRoot](/reference/react-dom/client/createRoot)
+X   | [5-13. useState](/reference/react/useState) | | X   | [10-2. hydrateRoot](/reference/react-dom/client/hydrateRoot)
+X   | [5-14. useSyncExternalStore](/reference/react/useSyncExternalStore) | | X   | [11. Server APIs](/reference/react-dom/server)
+X   | [5-15. useTransition](/reference/react/useTransition) | | X   | [11-1. renderToNodeStream](/reference/react-dom/server/renderToNodeStream)
+X   | [6. Components](/reference/react/Components) | | X   | [11-2. renderToPipeableStream](/reference/react-dom/server/renderToPipeableStream)
+X   | [6-1. `<Fragment>` (`<>`)](/reference/react/Fragment) | | X   | [11-3. renderToStaticMarkup](/reference/react-dom/server/renderToStaticMarkup)
+X   | [6-2. `<Profiler>`](/reference/react/Profiler) | | X   | [11-4. renderToStaticNodeStream](/reference/react-dom/server/renderToStaticNodeStream)
+X   | [6-3. `<StrictMode>`](/reference/react/StrictMode) | | X   | [11-5. renderToString](/reference/react-dom/server/renderToString)
+X   | [6-4. `<Suspense>`](/reference/react/Suspense) | | X   | [12. Legacy APIs](/reference/react/legacy)
+X   | [7. APIs](/reference/react/apis) | | X   | [12-1. Children](/reference/react/Children)
+X   | [7-1. createContext](/reference/react/createContext) | | O   | [12-2. cloneElement](/reference/react/cloneElement)
+X   | [7-2. forwardRef](/reference/react/forwardRef) | | X   | [12-3. Component](/reference/react/Component)
+X   | [7-3. lazy](/reference/react/lazy) | | X   | [12-4. createElement](/reference/react/createElement)
+X   | [7-4. memo](/reference/react/memo) | | X   | [12-5. createFactory](/reference/react/createFactory)
+X   | [7-5. startTransition](/reference/react/startTransition) | | X   | [12-6. createRef](/reference/react/createRef)
+X   | [8. Components](/reference/react-dom/components) | | X   | [12-7. isValidElement](/reference/react/isValidElement)
+X   | [8-1. Common (e.g. `<div>`)](/reference/react-dom/components/common) | | X   | [12-8. PureComponent](/reference/react/PureComponent)
+X   | [8-2. `<input>`](/reference/react-dom/components/input) | | | 
+
+## Learn - 전체 번역 완료 (done: 42 / total: 42) {/*learn*/}
 
 O/X | title
 :-: | :--
@@ -37,8 +72,8 @@ O   | [2-6. 객체 state 업데이트 :: Updating Objects in State](/learn/updat
 O   | [2-7. 배열 state 업데이트 :: Updating Arrays in State](/learn/updating-arrays-in-state)
 O   | [3. state 관리 :: Managing State](/learn/managing-state)
 O   | [3-1. state로 입력에 반응하기 :: Reacting to Input with State](/learn/reacting-to-input-with-state)
-X   | [3-2. State 구조 선택 :: Choosing the State Structure](/learn/choosing-the-state-structure)
-X   | [3-3. 컴포넌트 간 state 공유 :: Sharing State Between Components](/learn/sharing-state-between-components)
+O   | [3-2. State 구조 선택 :: Choosing the State Structure](/learn/choosing-the-state-structure)
+O   | [3-3. 컴포넌트 간의 state 공유 :: Sharing State Between Components](/learn/sharing-state-between-components)
 O   | [3-4. state 보존 및 재설정 :: Preserving and Resetting State](/learn/preserving-and-resetting-state)
 O   | [3-5. state 로직을 reducer로 추출하기 :: Extracting State Logic into a Reducer](/learextracting-state-logic-into-a-reducer)
 O   | [3-6. context로 데이터 깊숙이 전달하기 :: Passing Data Deeply with Context](/learn/passing-data-deeply-with-context)
@@ -52,38 +87,3 @@ O   | [4-5. 반응형 Effect의 생명주기 :: Lifecycle of Reactive Effects](/
 O   | [4-6. 이벤트와 Effect 분리하기 :: Separating Events from Effects](/learn/separating-events-from-effects)
 O   | [4-7. Effect 의존성 제거하기 :: Removing Effect Dependencies](/learn/removing-effect-dependencies)
 O   | [4-8. 커스텀 훅으로 로직 재사용하기 :: Reusing Logic with Custom Hooks](/learn/reusing-logic-with-custom-hooks)
-
-## Reference<Trans>참조</Trans> 진행상황 (done: 7 / total: 59) {/*reference*/}
-
-O/X | title | | O/X | title
-:-: | :-- | --- | :-: | :--
-O   | [5. Hooks](/reference/react) | | X   | [8-3. `<option>`](/reference/react-dom/components/option)
-X   | [5-1. useCallback](/reference/react/useCallback) | | X   | [8-4. `<progress>`](/reference/react-dom/components/progress)
-O   | [5-2. useContext](/reference/react/useContext) | | X   | [8-5. `<select>`](/reference/react-dom/components/select)
-O   | [5-3. useDebugValue](/reference/react/useDebugValue) | | X   | [8-6. `<textarea>`](/reference/react-dom/components/textarea)
-O   | [5-4. useDeferredValue](/reference/react/useDeferredValue) | | X   | [9. APIs](/reference/react-dom)
-X   | [5-5. useEffect](/reference/react/useEffect) | | X   | [9-1. createPortal](/reference/react-dom/createPortal)
-O   | [5-6. useId](/reference/react/useId) | | X   | [9-2. flushSync](/reference/react-dom/flushSync)
-O   | [5-7. useImperativeHandle](/reference/react/useImperativeHandle) | | X   | [9-3. findDOMNode](/reference/react-dom/findDOMNode)
-O   | [5-8. useInsertionEffect](/reference/react/useInsertionEffect) | | X   | [9-4. hydrate](/reference/react-dom/hydrate)
-X   | [5-9. useLayoutEffect](/reference/react/useLayoutEffect) | | X   | [9-5. render](/reference/react-dom/render)
-X   | [5-10. useMemo](/reference/react/useMemo) | | X   | [9-6. unmountComponentAtNode](/reference/react-dom/unmountComponentAtNode)
-X   | [5-11. useReducer](/reference/react/useReducer) | | X   | [10. Client APIs](/reference/react-dom/client)
-X   | [5-12. useRef](/reference/react/useRef) | | X   | [10-1. createRoot](/reference/react-dom/client/createRoot)
-X   | [5-13. useState](/reference/react/useState) | | X   | [10-2. hydrateRoot](/reference/react-dom/client/hydrateRoot)
-X   | [5-14. useSyncExternalStore](/reference/react/useSyncExternalStore) | | X   | [11. Server APIs](/reference/react-dom/server)
-X   | [5-15. useTransition](/reference/react/useTransition) | | X   | [11-1. renderToNodeStream](/reference/react-dom/server/renderToNodeStream)
-X   | [6. Components](/reference/react/Components) | | X   | [11-2. renderToPipeableStream](/reference/react-dom/server/renderToPipeableStream)
-X   | [6-1. `<Fragment>` (`<>`)](/reference/react/Fragment) | | X   | [11-3. renderToStaticMarkup](/reference/react-dom/server/renderToStaticMarkup)
-X   | [6-2. `<Profiler>`](/reference/react/Profiler) | | X   | [11-4. renderToStaticNodeStream](/reference/react-dom/server/renderToStaticNodeStream)
-X   | [6-3. `<StrictMode>`](/reference/react/StrictMode) | | X   | [11-5. renderToString](/reference/react-dom/server/renderToString)
-X   | [6-4. `<Suspense>`](/reference/react/Suspense) | | X   | [12. Legacy APIs](/reference/react/legacy)
-X   | [7. APIs](/reference/react/apis) | | X   | [12-1. Children](/reference/react/Children)
-X   | [7-1. createContext](/reference/react/createContext) | | X   | [12-2. cloneElement](/reference/react/cloneElement)
-X   | [7-2. forwardRef](/reference/react/forwardRef) | | X   | [12-3. Component](/reference/react/Component)
-X   | [7-3. lazy](/reference/react/lazy) | | X   | [12-4. createElement](/reference/react/createElement)
-X   | [7-4. memo](/reference/react/memo) | | X   | [12-5. createFactory](/reference/react/createFactory)
-X   | [7-5. startTransition](/reference/react/startTransition) | | X   | [12-6. createRef](/reference/react/createRef)
-X   | [8. Components](/reference/react-dom/components) | | X   | [12-7. isValidElement](/reference/react/isValidElement)
-X   | [8-1. Common (e.g. `<div>`)](/reference/react-dom/components/common) | | X   | [12-8. PureComponent](/reference/react/PureComponent)
-X   | [8-2. `<input>`](/reference/react-dom/components/input) | | | 

@@ -27,7 +27,7 @@ To display a progress indicator, render the [built-in browser `<progress>`](http
 ```
 
 [See more examples below.](#usage)
-<Trans>[아래에서 더 많은 예를 확인하세요.](#usage)</Trans>
+<Trans>[아래에서 더 많은 예시를 확인하세요.](#usage)</Trans>
 
 #### Props {/*props*/}
 

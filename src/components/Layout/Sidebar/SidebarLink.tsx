@@ -20,7 +20,6 @@ interface SidebarLinkProps {
   wip: boolean | undefined;
   icon?: React.ReactNode;
   isExpanded?: boolean;
-  isBreadcrumb?: boolean;
   hideArrow?: boolean;
   isPending: boolean;
 }
@@ -33,7 +32,6 @@ export function SidebarLink({
   wip,
   level,
   isExpanded,
-  isBreadcrumb,
   hideArrow,
   isPending,
 }: SidebarLinkProps) {

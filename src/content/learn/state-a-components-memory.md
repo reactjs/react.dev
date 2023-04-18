@@ -965,7 +965,7 @@ Also notice how the `Page` component doesn't "know" anything about the `Gallery`
 <Trans>`Page` 컴포넌트는 `Gallery`의 state뿐 아니라 심지어 state가 있는지 여부조차 전혀 "알지 못한다"는 점도 주목하세요. props와 달리 **state는 이를 선언하는 컴포넌트 외에는 완전히 비공개이며, 부모 컴포넌트는 이를 변경할 수 없습니다.** 따라서 다른 컴포넌트에 영향을 주지 않고 state를 추가하거나 제거할 수 있습니다.</Trans>
 
 What if you wanted both galleries to keep their states in sync? The right way to do it in React is to *remove* state from child components and add it to their closest shared parent. The next few pages will focus on organizing state of a single component, but we will return to this topic in [Sharing State Between Components.](/learn/sharing-state-between-components)
-<Trans>두 Gallery 컴포넌트의 state를 동기화하려면 어떻게 해야 할까요? React에서 이를 수행하는 올바른 방법은 자식 컴포넌트에서 state를 *제거*하고 가장 가까운 공유 부모 컴포넌트에 추가하는 것입니다. 다음 몇 페이지는 단일 컴포넌트의 state를 구성하는 데 초점을 맞추겠지만, 이 주제는 [컴포넌트 간 state 공유](/learn/sharing-state-between-components)에서 다시 다룰 것입니다.</Trans>
+<Trans>두 Gallery 컴포넌트의 state를 동기화하려면 어떻게 해야 할까요? React에서 이를 수행하는 올바른 방법은 자식 컴포넌트에서 state를 *제거*하고 가장 가까운 공유 부모 컴포넌트에 추가하는 것입니다. 다음 몇 페이지는 단일 컴포넌트의 state를 구성하는 데 초점을 맞추겠지만, 이 주제는 [컴포넌트 간의 state 공유](/learn/sharing-state-between-components)에서 다시 다룰 것입니다.</Trans>
 
 <Recap>
 

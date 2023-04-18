@@ -19,6 +19,8 @@ export interface SeoProps {
 
 const deployedTranslations = [
   'en',
+  'zh-hans',
+  'es',
   // We'll add more languages when they have enough content.
 ];
 

@@ -1,5 +1,5 @@
 ---
-title: Translate Contributors
+title: Translation Contributors
 translatedTitle: 번역한 사람들
 showToc: false
 showSurvey: false

@@ -139,7 +139,7 @@ A React node can be:
 <TransBlock>
 React 노드는 다음과 같습니다:
  
-- `<div />` 또는 `createElement('div')`로 생성된 React 엘리먼트입니다.
+- `<div />` 또는 `createElement('div')`로 생성된 React 엘리먼트
 - [`createPortal`](https://react.dev/reference/react-dom/createPortal)로 생성한 포털
 - 문자열
 - 숫자

@@ -70,7 +70,7 @@ On the next renders, `useRef` will return the same object.
 ### Referencing a value with a ref <Trans>ref로 값 참조하기</Trans> {/*referencing-a-value-with-a-ref*/}
 
 Call `useRef` at the top level of your component to declare one or more [refs.](/learn/referencing-values-with-refs)
-컴포넌트의 최상위 레벨에서 `useRef`를 호출하여 하나 이상의 [ref](https://react.dev/learn/referencing-values-with-refs)를 선언합니다.
+<Trans>컴포넌트의 최상위 레벨에서 `useRef`를 호출하여 하나 이상의 [ref](https://react.dev/learn/referencing-values-with-refs)를 선언합니다.</Trans>
 
 ```js [[1, 4, "intervalRef"], [3, 4, "0"]]
 import { useRef } from 'react';
@@ -81,14 +81,14 @@ function Stopwatch() {
 ```
 
 `useRef` returns a <CodeStep step={1}>ref object</CodeStep> with a single <CodeStep step={2}>`current` property</CodeStep> initially set to the <CodeStep step={3}>initial value</CodeStep> you provided.
-`useRef`는 처음에 제공한 <CodeStep step={3}>초기값</CodeStep>으로 설정된 단일 <CodeStep step={2}>`current` 프로퍼티</CodeStep>가 있는 <CodeStep step={1}>ref 객체</CodeStep>를 반환합니다.
+<Trans>`useRef`는 처음에 제공한 <CodeStep step={3}>초기값</CodeStep>으로 설정된 단일 <CodeStep step={2}>`current` 프로퍼티</CodeStep>가 있는 <CodeStep step={1}>ref 객체</CodeStep>를 반환합니다.</Trans>
 
 On the next renders, `useRef` will return the same object. You can change its `current` property to store information and read it later. This might remind you of [state](/reference/react/useState), but there is an important difference.
-다음 렌더링에서 `useRef`는 동일한 객체를 반환합니다. 정보를 저장하고 나중에 읽도록 `current` 속성을 변경할 수 있습니다. [state](/reference/react/useState)를 떠올리실 수도 있지만, 중요한 차이점이 있습니다.
+<Trans>다음 렌더링에서 `useRef`는 동일한 객체를 반환합니다. 정보를 저장하고 나중에 읽도록 `current` 속성을 변경할 수 있습니다. [state](/reference/react/useState)를 떠올리실 수도 있지만, 중요한 차이점이 있습니다.</Trans>
 
 
 **Changing a ref does not trigger a re-render.** This means refs are perfect for storing information that doesn't affect the visual output of your component. For example, if you need to store an [interval ID](https://developer.mozilla.org/en-US/docs/Web/API/setInterval) and retrieve it later, you can put it in a ref. To update the value inside the ref, you need to manually change its <CodeStep step={2}>`current` property</CodeStep>:
-**ref를 변경해도 재렌더링을 촉발하지 않습니다.** 즉, ref는 컴포넌트의 시각적 출력에 영향을 미치지 않는 정보를 저장하는 데 적합합니다. 예를 들어 [interval ID](https://developer.mozilla.org/en-US/docs/Web/API/setInterval)를 저장했다가 나중에 불러와야 하는 경우 ref에 넣을 수 있습니다. ref 내부의 값을 업데이트하려면 <CodeStep step={2}>`current` 프로퍼티</CodeStep>를 수동으로 변경해야 합니다:
+<Trans>**ref를 변경해도 재렌더링을 촉발하지 않습니다.** 즉, ref는 컴포넌트의 시각적 출력에 영향을 미치지 않는 정보를 저장하는 데 적합합니다. 예를 들어 [interval ID](https://developer.mozilla.org/en-US/docs/Web/API/setInterval)를 저장했다가 나중에 불러와야 하는 경우 ref에 넣을 수 있습니다. ref 내부의 값을 업데이트하려면 <CodeStep step={2}>`current` 프로퍼티</CodeStep>를 수동으로 변경해야 합니다:</Trans>
 
 ```js [[2, 5, "intervalRef.current"]]
 function handleStartClick() {
@@ -100,7 +100,7 @@ function handleStartClick() {
 ```
 
 Later, you can read that interval ID from the ref so that you can call [clear that interval](https://developer.mozilla.org/en-US/docs/Web/API/clearInterval):
-나중에 ref에서 해당 interval ID를 읽어 [interval 지우기](https://developer.mozilla.org/en-US/docs/Web/API/clearInterval)를 호출할 수 있습니다:
+<Trans>나중에 ref에서 해당 interval ID를 읽어 [interval 지우기](https://developer.mozilla.org/en-US/docs/Web/API/clearInterval)를 호출할 수 있습니다:</Trans>
 
 ```js [[2, 2, "intervalRef.current"]]
 function handleStopClick() {

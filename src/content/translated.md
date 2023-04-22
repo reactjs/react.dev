@@ -6,7 +6,7 @@ title: 번역 진행상황
 last updated @ 2023-04-20 00:00
 </Intro>
 
-## Reference 진행상황 (done: 9 / total: 59) {/*reference*/}
+## Reference 진행상황 (done: 10 / total: 59) {/*reference*/}
 
 O/X | title | | O/X | title
 :-: | :-- | --- | :-: | :--
@@ -37,7 +37,7 @@ X   | [7-2. forwardRef](/reference/react/forwardRef) | | X   | [12-3. Component]
 X   | [7-3. lazy](/reference/react/lazy) | | X   | [12-4. createElement](/reference/react/createElement)
 X   | [7-4. memo](/reference/react/memo) | | X   | [12-5. createFactory](/reference/react/createFactory)
 X   | [7-5. startTransition](/reference/react/startTransition) | | X   | [12-6. createRef](/reference/react/createRef)
-X   | [8. Components](/reference/react-dom/components) | | X   | [12-7. isValidElement](/reference/react/isValidElement)
+X   | [8. Components](/reference/react-dom/components) | | O   | [12-7. isValidElement](/reference/react/isValidElement)
 X   | [8-1. Common (e.g. `<div>`)](/reference/react-dom/components/common) | | O   | [12-8. PureComponent](/reference/react/PureComponent)
 X   | [8-2. `<input>`](/reference/react-dom/components/input) | | | 
 

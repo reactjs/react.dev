@@ -55,7 +55,7 @@ const ref = useRef(0);
 <Illustration src="/images/docs/illustrations/i_ref.png" alt="An arrow with 'current' written on it stuffed into a pocket with 'ref' written on it." />
 
 You can access the current value of that ref through the `ref.current` property. This value is intentionally mutable, meaning you can both read and write to it. It's like a secret pocket of your component that React doesn't track. (This is what makes it an "escape hatch" from React's one-way data flow--more on that below!)
-<Trans>`ref.current` 속성을 통해 해당 ref의 현재 값에 액세스할 수 있습니다. 이 값은 의도적으로 변경 가능하므로 읽기와 쓰기가 모두 가능합니다. React가 추적하지 않는 컴포넌트의 비밀 주머니와 같습니다. (이것이 바로 React의 단방향 데이터 흐름에서 "탈출구"가 되는 이유입니다. 아래에서 자세히 설명합니다!)</Trans>
+<Trans>`ref.current` 속성을 통해 해당 ref의 현재 값에 액세스할 수 있습니다. 이 값은 의도적으로 변이 가능하므로 읽기와 쓰기가 모두 가능합니다. React가 추적하지 않는 컴포넌트의 비밀 주머니와 같습니다. (이것이 바로 React의 단방향 데이터 흐름에서 "탈출구"가 되는 이유입니다. 아래에서 자세히 설명합니다!)</Trans>
 
 Here, a button will increment `ref.current` on every click:
 <Trans>여기서 버튼은 클릭할 때마다 `ref.current`를 증가시킵니다:</Trans>

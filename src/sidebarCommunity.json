@@ -12,6 +12,10 @@
       "skipBreadcrumb": true,
       "routes": [
         {
+          "title": "Contribute to React",
+          "path": "/community/contribute"
+        },
+        {
           "title": "React Conferences",
           "path": "/community/conferences"
         },

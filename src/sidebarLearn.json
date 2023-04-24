@@ -8,36 +8,44 @@
     },
     {
       "title": "Quick Start",
+      "translatedTitle": "빠른 시작",
       "path": "/learn",
       "routes": [
         {
           "title": "Tutorial: Tic-Tac-Toe",
+          "translatedTitle": "자습서: 틱택토 게임",
           "path": "/learn/tutorial-tic-tac-toe"
         },
         {
           "title": "Thinking in React",
+          "translatedTitle": "React로 사고하기",
           "path": "/learn/thinking-in-react"
         }
       ]
     },
     {
       "title": "Installation",
+      "translatedTitle": "설치하기",
       "path": "/learn/installation",
       "routes": [
         {
           "title": "Start a New React Project",
+          "translatedTitle": "새 React 프로젝트 시작하기",
           "path": "/learn/start-a-new-react-project"
         },
         {
           "title": "Add React to an Existing Project",
+          "translatedTitle": "기존 프로젝트에 React 추가하기",
           "path": "/learn/add-react-to-an-existing-project"
         },
         {
           "title": "Editor Setup",
+          "translatedTitle": "편집기 설정",
           "path": "/learn/editor-setup"
         },
         {
           "title": "React Developer Tools",
+          "translatedTitle": "React 개발자 도구",
           "path": "/learn/react-developer-tools"
         }
       ]
@@ -48,148 +56,182 @@
     },
     {
       "title": "Describing the UI",
+      "translatedTitle": "UI 구성하기",
       "tags": [],
       "path": "/learn/describing-the-ui",
       "routes": [
         {
           "title": "Your First Component",
+          "translatedTitle": "첫번째 컴포넌트",
           "path": "/learn/your-first-component"
         },
         {
           "title": "Importing and Exporting Components",
+          "translatedTitle": "컴포넌트 import 및 export",
           "path": "/learn/importing-and-exporting-components"
         },
         {
           "title": "Writing Markup with JSX",
+          "translatedTitle": "JSX로 마크업 작성하기",
           "path": "/learn/writing-markup-with-jsx"
         },
         {
           "title": "JavaScript in JSX with Curly Braces",
+          "translatedTitle": "JSX에서 JavaScript 사용하기",
           "path": "/learn/javascript-in-jsx-with-curly-braces"
         },
         {
           "title": "Passing Props to a Component",
+          "translatedTitle": "컴포넌트에 props 전달하기",
           "path": "/learn/passing-props-to-a-component"
         },
         {
           "title": "Conditional Rendering",
+          "translatedTitle": "조건부 렌더링",
           "path": "/learn/conditional-rendering"
         },
         {
           "title": "Rendering Lists",
+          "translatedTitle": "목록 렌더링",
           "path": "/learn/rendering-lists"
         },
         {
           "title": "Keeping Components Pure",
+          "translatedTitle": "컴포넌트 순수성 유지",
           "path": "/learn/keeping-components-pure"
         }
       ]
     },
     {
       "title": "Adding Interactivity",
+      "translatedTitle": "상호작용 추가하기",
       "path": "/learn/adding-interactivity",
       "tags": [],
       "routes": [
         {
           "title": "Responding to Events",
+          "translatedTitle": "이벤트에 응답하기",
           "path": "/learn/responding-to-events"
         },
         {
           "title": "State: A Component's Memory",
+          "translatedTitle": "state: 컴포넌트의 메모리",
           "path": "/learn/state-a-components-memory"
         },
         {
           "title": "Render and Commit",
+          "translatedTitle": "렌더링하고 커밋하기",
           "path": "/learn/render-and-commit"
         },
         {
           "title": "State as a Snapshot",
+          "translatedTitle": "스냅샷으로서의 state",
           "path": "/learn/state-as-a-snapshot"
         },
         {
           "title": "Queueing a Series of State Updates",
+          "translatedTitle": "여러 state 업데이트를 큐에 담기",
           "path": "/learn/queueing-a-series-of-state-updates"
         },
         {
           "title": "Updating Objects in State",
+          "translatedTitle": "객체 state 업데이트",
           "path": "/learn/updating-objects-in-state"
         },
         {
           "title": "Updating Arrays in State",
+          "translatedTitle": "배열 state 업데이트",
           "path": "/learn/updating-arrays-in-state"
         }
       ]
     },
     {
       "title": "Managing State",
+      "translatedTitle": "state 관리",
       "path": "/learn/managing-state",
       "tags": ["intermediate"],
       "routes": [
         {
           "title": "Reacting to Input with State",
+          "translatedTitle": "state로 입력에 반응하기",
           "path": "/learn/reacting-to-input-with-state"
         },
         {
           "title": "Choosing the State Structure",
+          "translatedTitle": "state 구조 선택",
           "path": "/learn/choosing-the-state-structure"
         },
         {
           "title": "Sharing State Between Components",
+          "translatedTitle": "컴포넌트 간의 state 공유",
           "path": "/learn/sharing-state-between-components"
         },
         {
           "title": "Preserving and Resetting State",
+          "translatedTitle": "state 보존 및 재설정",
           "path": "/learn/preserving-and-resetting-state"
         },
         {
           "title": "Extracting State Logic into a Reducer",
+          "translatedTitle": "state 로직을 reducer로 추출하기",
           "path": "/learn/extracting-state-logic-into-a-reducer"
         },
         {
           "title": "Passing Data Deeply with Context",
+          "translatedTitle": "context로 데이터 깊숙이 전달하기",
           "path": "/learn/passing-data-deeply-with-context"
         },
         {
           "title": "Scaling Up with Reducer and Context",
+          "translatedTitle": "reducer와 context로 확장하기",
           "path": "/learn/scaling-up-with-reducer-and-context"
         }
       ]
     },
     {
       "title": "Escape Hatches",
+      "translatedTitle": "탈출구",
       "path": "/learn/escape-hatches",
       "tags": ["advanced"],
       "routes": [
         {
           "title": "Referencing Values with Refs",
+          "translatedTitle": "ref로 값 참조하기",
           "path": "/learn/referencing-values-with-refs"
         },
         {
           "title": "Manipulating the DOM with Refs",
+          "translatedTitle": "ref로 DOM 조작하기",
           "path": "/learn/manipulating-the-dom-with-refs"
         },
         {
           "title": "Synchronizing with Effects",
+          "translatedTitle": "Effect와 동기화하기",
           "path": "/learn/synchronizing-with-effects"
         },
         {
           "title": "You Might Not Need an Effect",
+          "translatedTitle": "Effect가 필요하지 않을 수도 있습니다",
           "path": "/learn/you-might-not-need-an-effect"
         },
         {
           "title": "Lifecycle of Reactive Effects",
+          "translatedTitle": "반응형 Effect의 생명주기",
           "path": "/learn/lifecycle-of-reactive-effects"
         },
         {
           "title": "Separating Events from Effects",
+          "translatedTitle": "이벤트와 Effect 분리하기",
           "path": "/learn/separating-events-from-effects"
         },
         {
           "title": "Removing Effect Dependencies",
-          "path": "/learn/removing-effect-dependencies"              
+          "translatedTitle": "Effect 의존성 제거하기",
+          "path": "/learn/removing-effect-dependencies"
         },
         {
           "title": "Reusing Logic with Custom Hooks",
+          "translatedTitle": "커스텀훅으로 로직 재사용하기",
           "path": "/learn/reusing-logic-with-custom-hooks"
         }
       ]

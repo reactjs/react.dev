@@ -23,6 +23,7 @@ export function Challenge({
   isRecipes,
   totalChallenges,
   currentChallenge,
+  currentChallenge: {name, order},
   hasNextChallenge,
   handleClickNextChallenge,
 }: ChallengeProps) {
@@ -43,18 +44,20 @@ export function Challenge({
     setShowSolution((solution) => !solution);
   };
 
+  const prefix = `${
+    isRecipes ? 'Example' : 'Challenge'
+  } ${order} of ${totalChallenges}`;
+  const newName = Array.isArray(name)
+    ? [`${prefix}: `, ...name]
+    : `${prefix}: ${name}`;
+
   return (
     <div className="p-5 sm:py-8 sm:px-8">
       <div>
         <H4
           className="text-xl text-primary dark:text-primary-dark mb-2 mt-0 font-medium"
           id={currentChallenge.id}>
-          <div className="font-bold block md:inline">
-            {isRecipes ? 'Example' : 'Challenge'} {currentChallenge.order} of{' '}
-            {totalChallenges}
-            <span className="text-primary dark:text-primary-dark">: </span>
-          </div>
-          {currentChallenge.name}
+          {newName}
         </H4>
         {currentChallenge.content}
       </div>

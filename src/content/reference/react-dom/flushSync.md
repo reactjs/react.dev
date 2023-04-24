@@ -22,7 +22,7 @@ flushSync(callback)
 
 ---
 
-## Reference {/*reference*/}
+## Reference<Trans>참조</Trans> {/*reference*/}
 
 ### `flushSync(callback)` {/*flushsync*/}
 
@@ -39,17 +39,18 @@ flushSync(() => {
 Most of the time, `flushSync` can be avoided. Use `flushSync` as last resort.
 
 [See more examples below.](#usage)
+<Trans>[아래에서 더 많은 예시를 확인하세요.](#usage)</Trans>
 
-#### Parameters {/*parameters*/}
+#### Parameters<Trans>매개변수</Trans> {/*parameters*/}
 
 
 * `callback`: A function. React will immediately call this callback and flush any updates it contains synchronously. It may also flush any pending updates, or Effects, or updates inside of Effects. If an update suspends as a result of this `flushSync` call, the fallbacks may be re-shown.
 
-#### Returns {/*returns*/}
+#### Returns<Trans>반환값</Trans> {/*returns*/}
 
 `flushSync` returns `undefined`.
 
-#### Caveats {/*caveats*/}
+#### Caveats<Trans>주의사항</Trans> {/*caveats*/}
 
 * `flushSync` can significantly hurt performance. Use sparingly.
 * `flushSync` may force pending Suspense boundaries to show their `fallback` state.
@@ -58,7 +59,7 @@ Most of the time, `flushSync` can be avoided. Use `flushSync` as last resort.
 
 ---
 
-## Usage {/*usage*/}
+## Usage<Trans>사용법</Trans> {/*usage*/}
 
 ### Flushing updates for third-party integrations {/*flushing-updates-for-third-party-integrations*/}
 

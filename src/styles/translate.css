@@ -1,0 +1,127 @@
+.translate {
+  display: inline-block;
+  position: relative;
+  padding-left: 14px;
+}
+.translate::before {
+  content: '';
+  position: absolute;
+  left: 2px;
+  top: 0.2em;
+  bottom: 0.2em;
+  border-left: 4px solid var(--docsearch-primary-color);
+}
+
+h1 > strong,
+h2 > strong,
+h3 > strong,
+h4 > strong,
+h5 > strong,
+h6 > strong {
+  display: block;
+}
+
+h1 > .translate {
+  padding-left: 20px;
+}
+h1 > .translate::before {
+  left: 4px;
+  border-left-width: 6px;
+}
+
+h2 > .translate {
+  padding-left: 19px;
+}
+h2 > .translate::before {
+  left: 3px;
+  border-left-width: 5px;
+}
+
+nav[role='navigation'] {
+  line-height: 1.4;
+}
+nav[role='navigation'] .translate {
+  display: block;
+  padding-left: 11px;
+}
+nav[role='navigation'] .translate::before {
+  left: 3px;
+  border-left-width: 3px;
+}
+
+.challenge-tab .translate {
+  display: block;
+  margin-top: -7px;
+  margin-left: 1px;
+}
+.inline > .translate::before,
+.challenge-tab .translate::before {
+  border-left-width: 3px;
+  top: 5px;
+  bottom: 5px;
+}
+.list-disc .translate {
+  margin-left: 6px;
+}
+
+.translate-block {
+  position: relative;
+  padding-left: 14px;
+  margin-top: -0.5rem;
+}
+.translate-block > ul {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+.translate-block > *:first-of-type {
+  margin-top: 0;
+}
+.translate-block::before {
+  content: '';
+  position: absolute;
+  display: inline-block;
+  vertical-align: middle;
+  left: 2px;
+  top: 5px;
+  bottom: 5px;
+  border-left: 4px solid var(--docsearch-primary-color);
+}
+
+.translated-list {
+  position: relative;
+  cursor: pointer;
+}
+.translated-list summary::after {
+  content: '[열기]';
+  margin-left: 6px;
+  font-size: 0.9em;
+}
+.translated-list[open] summary::after {
+  content: '[닫기]';
+}
+
+.translated-list > ul {
+  position: absolute;
+  top: 100%;
+  left: 10px;
+  width: calc(100% - 30px);
+  max-height: 350px;
+  padding: 15px 20px;
+  z-index: 10;
+  box-shadow: var(--docsearch-searchbox-shadow),
+    0px 7px 20px 0px rgba(100, 100, 111, 0.3);
+  overflow-y: auto;
+  list-style-type: '- ';
+  padding-left: 30px;
+  line-height: 1.5;
+  cursor: default;
+}
+.translated-list li {
+  margin-top: 8px;
+}
+.translated-list li:first-of-type {
+  margin-top: 0;
+}
+.translated-list a {
+  color: inherit !important;
+}

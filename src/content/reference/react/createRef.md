@@ -25,7 +25,7 @@ class MyInput extends Component {
 
 ---
 
-## Reference {/*reference*/}
+## Reference<Trans>참조</Trans> {/*reference*/}
 
 ### `createRef()` {/*createref*/}
 
@@ -41,18 +41,19 @@ class MyComponent extends Component {
 ```
 
 [See more examples below.](#usage)
+<Trans>[아래에서 더 많은 예시를 확인하세요.](#usage)</Trans>
 
-#### Parameters {/*parameters*/}
+#### Parameters<Trans>매개변수</Trans> {/*parameters*/}
 
 `createRef` takes no parameters.
 
-#### Returns {/*returns*/}
+#### Returns<Trans>반환값</Trans> {/*returns*/}
 
 `createRef` returns an object with a single property:
 
 * `current`: Initially, it's set to the `null`. You can later set it to something else. If you pass the ref object to React as a `ref` attribute to a JSX node, React will set its `current` property.
 
-#### Caveats {/*caveats*/}
+#### Caveats<Trans>주의사항</Trans> {/*caveats*/}
 
 * `createRef` always returns a *different* object. It's equivalent to writing `{ current: null }` yourself.
 * In a function component, you probably want [`useRef`](/reference/react/useRef) instead which always returns the same object.
@@ -60,7 +61,7 @@ class MyComponent extends Component {
 
 ---
 
-## Usage {/*usage*/}
+## Usage<Trans>사용법</Trans> {/*usage*/}
 
 ### Declaring a ref in a class component {/*declaring-a-ref-in-a-class-component*/}
 

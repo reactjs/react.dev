@@ -317,6 +317,7 @@ export function Footer() {
           <FooterLink href="/community/docs-contributors">
             Docs Contributors
           </FooterLink>
+          <FooterLink href="/community/translators">번역한 사람들</FooterLink>
           <FooterLink href="/community/acknowledgements">
             Acknowledgements
           </FooterLink>

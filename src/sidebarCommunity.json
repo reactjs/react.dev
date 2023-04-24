@@ -32,6 +32,11 @@
           "path": "/community/docs-contributors"
         },
         {
+          "title": "Translation Contributors",
+          "translatedTitle": "번역한 사람들",
+          "path": "/community/translators"
+        },
+        {
           "title": "Acknowledgements",
           "path": "/community/acknowledgements"
         },

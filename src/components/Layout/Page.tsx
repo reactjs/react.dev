@@ -28,7 +28,14 @@ interface PageProps {
   children: React.ReactNode;
   toc: Array<TocItem>;
   routeTree: RouteItem;
-  meta: {title?: string; description?: string};
+  meta: {
+    title?: string;
+    description?: string;
+    translatedTitle?: string;
+    translators?: string[];
+    showToc?: boolean;
+    showSurvey?: boolean;
+  };
   section: 'learn' | 'reference' | 'community' | 'blog' | 'home' | 'unknown';
 }
 
@@ -40,6 +47,8 @@ export function Page({children, toc, routeTree, meta, section}: PageProps) {
     routeTree
   );
   const title = meta.title || route?.title || '';
+  const translatedTitle = meta.translatedTitle || undefined;
+  const translators = meta.translators || undefined;
   const description = meta.description || route?.description || '';
   const isHomePage = cleanedPath === '/';
   const isBlogIndex = cleanedPath === '/blog';
@@ -56,6 +65,8 @@ export function Page({children, toc, routeTree, meta, section}: PageProps) {
           )}>
           <PageHeading
             title={title}
+            translatedTitle={translatedTitle}
+            translators={translators}
             description={description}
             tags={route?.tags}
             breadcrumbs={breadcrumbs}
@@ -83,8 +94,8 @@ export function Page({children, toc, routeTree, meta, section}: PageProps) {
 
   let hasColumns = true;
   let showSidebar = true;
-  let showToc = true;
-  let showSurvey = true;
+  let showToc = meta.showToc ?? true;
+  let showSurvey = meta.showSurvey ?? true;
   if (isHomePage || isBlogIndex) {
     hasColumns = false;
     showSidebar = false;
@@ -104,7 +115,7 @@ export function Page({children, toc, routeTree, meta, section}: PageProps) {
   return (
     <>
       <Seo
-        title={title}
+        title={translatedTitle || title}
         isHomePage={isHomePage}
         image={`/images/og-` + section + '.png'}
         searchOrder={searchOrder}
@@ -149,30 +160,32 @@ export function Page({children, toc, routeTree, meta, section}: PageProps) {
                   {
                     <hr className="max-w-7xl mx-auto border-border dark:border-border-dark" />
                   }
-                  {showSurvey && (
-                    <>
-                      <div className="flex flex-col items-center m-4 p-4">
-                        <p className="font-bold text-primary dark:text-primary-dark text-lg mb-4">
-                          How do you like these docs?
-                        </p>
-                        <div>
-                          <ButtonLink
-                            href="https://www.surveymonkey.co.uk/r/PYRPF3X"
-                            className="mt-1"
-                            type="primary"
-                            size="md"
-                            target="_blank">
-                            Take our survey!
-                            <IconNavArrow
-                              displayDirection="right"
-                              className="inline ml-1"
-                            />
-                          </ButtonLink>
+                  {
+                    /* showSurvey */ false && (
+                      <>
+                        <div className="flex flex-col items-center m-4 p-4">
+                          <p className="font-bold text-primary dark:text-primary-dark text-lg mb-4">
+                            How do you like these docs?
+                          </p>
+                          <div>
+                            <ButtonLink
+                              href="https://www.surveymonkey.co.uk/r/PYRPF3X"
+                              className="mt-1"
+                              type="primary"
+                              size="md"
+                              target="_blank">
+                              Take our survey!
+                              <IconNavArrow
+                                displayDirection="right"
+                                className="inline ml-1"
+                              />
+                            </ButtonLink>
+                          </div>
                         </div>
-                      </div>
-                      <hr className="max-w-7xl mx-auto border-border dark:border-border-dark" />
-                    </>
-                  )}
+                        <hr className="max-w-7xl mx-auto border-border dark:border-border-dark" />
+                      </>
+                    )
+                  }
                 </div>
               )}
               <div

@@ -27,7 +27,7 @@ const mappedChildren = Children.map(children, child =>
 
 ---
 
-## Reference {/*reference*/}
+## Reference<Trans>참조</Trans> {/*reference*/}
 
 ### `Children.count(children)` {/*children-count*/}
 
@@ -48,15 +48,15 @@ function RowList({ children }) {
 
 [See more examples below.](#counting-children)
 
-#### Parameters {/*children-count-parameters*/}
+#### Parameters<Trans>매개변수</Trans> {/*children-count-parameters*/}
 
 * `children`: The value of the [`children` prop](/learn/passing-props-to-a-component#passing-jsx-as-children) received by your component.
 
-#### Returns {/*children-count-returns*/}
+#### Returns<Trans>반환값</Trans> {/*children-count-returns*/}
 
 The number of nodes inside these `children`.
 
-#### Caveats {/*children-count-caveats*/}
+#### Caveats<Trans>주의사항</Trans> {/*children-count-caveats*/}
 
 - Empty nodes (`null`, `undefined`, and Booleans), strings, numbers, and [React elements](/reference/react/createElement) count as individual nodes. Arrays don't count as individual nodes, but their children do. **The traversal does not go deeper than React elements:** they don't get rendered, and their children aren't traversed. [Fragments](/reference/react/Fragment) don't get traversed.
 
@@ -80,17 +80,17 @@ function SeparatorList({ children }) {
 
 [See more examples below.](#running-some-code-for-each-child)
 
-#### Parameters {/*children-foreach-parameters*/}
+#### Parameters<Trans>매개변수</Trans> {/*children-foreach-parameters*/}
 
 * `children`: The value of the [`children` prop](/learn/passing-props-to-a-component#passing-jsx-as-children) received by your component.
 * `fn`: The function you want to run for each child, similar to the [array `forEach` method](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach) callback. It will be called with the child as the first argument and its index as the second argument. The index starts at `0` and increments on each call.
 * **optional** `thisArg`: The [`this` value](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/this) with which the `fn` function should be called. If omitted, it's `undefined`.
 
-#### Returns {/*children-foreach-returns*/}
+#### Returns<Trans>반환값</Trans> {/*children-foreach-returns*/}
 
 `Children.forEach` returns `undefined`.
 
-#### Caveats {/*children-foreach-caveats*/}
+#### Caveats<Trans>주의사항</Trans> {/*children-foreach-caveats*/}
 
 - Empty nodes (`null`, `undefined`, and Booleans), strings, numbers, and [React elements](/reference/react/createElement) count as individual nodes. Arrays don't count as individual nodes, but their children do. **The traversal does not go deeper than React elements:** they don't get rendered, and their children aren't traversed. [Fragments](/reference/react/Fragment) don't get traversed.
 
@@ -118,19 +118,19 @@ function RowList({ children }) {
 
 [See more examples below.](#transforming-children)
 
-#### Parameters {/*children-map-parameters*/}
+#### Parameters<Trans>매개변수</Trans> {/*children-map-parameters*/}
 
 * `children`: The value of the [`children` prop](/learn/passing-props-to-a-component#passing-jsx-as-children) received by your component.
 * `fn`: The mapping function, similar to the [array `map` method](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) callback. It will be called with the child as the first argument and its index as the second argument. The index starts at `0` and increments on each call. You need to return a React node from this function. This may be an empty node (`null`, `undefined`, or a Boolean), a string, a number, a React element, or an array of other React nodes.
 * **optional** `thisArg`: The [`this` value](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/this) with which the `fn` function should be called. If omitted, it's `undefined`.
 
-#### Returns {/*children-map-returns*/}
+#### Returns<Trans>반환값</Trans> {/*children-map-returns*/}
 
 If `children` is `null` or `undefined`, returns the same value.
 
 Otherwise, returns a flat array consisting of the nodes you've returned from the `fn` function. The returned array will contain all nodes you returned except for `null` and `undefined`.
 
-#### Caveats {/*children-map-caveats*/}
+#### Caveats<Trans>주의사항</Trans> {/*children-map-caveats*/}
 
 - Empty nodes (`null`, `undefined`, and Booleans), strings, numbers, and [React elements](/reference/react/createElement) count as individual nodes. Arrays don't count as individual nodes, but their children do. **The traversal does not go deeper than React elements:** they don't get rendered, and their children aren't traversed. [Fragments](/reference/react/Fragment) don't get traversed.
 
@@ -149,17 +149,17 @@ function Box({ children }) {
   // ...
 ```
 
-#### Parameters {/*children-only-parameters*/}
+#### Parameters<Trans>매개변수</Trans> {/*children-only-parameters*/}
 
 * `children`: The value of the [`children` prop](/learn/passing-props-to-a-component#passing-jsx-as-children) received by your component.
 
-#### Returns {/*children-only-returns*/}
+#### Returns<Trans>반환값</Trans> {/*children-only-returns*/}
 
 If `children` [is a valid element,](/reference/react/isValidElement) returns that element.
 
 Otherwise, throws an error.
 
-#### Caveats {/*children-only-caveats*/}
+#### Caveats<Trans>주의사항</Trans> {/*children-only-caveats*/}
 
 - This method always **throws if you pass an array (such as the return value of `Children.map`) as `children`.** In other words, it enforces that `children` is a single React element, not that it's an array with a single element.
 
@@ -178,21 +178,21 @@ export default function ReversedList({ children }) {
   // ...
 ```
 
-#### Parameters {/*children-toarray-parameters*/}
+#### Parameters<Trans>매개변수</Trans> {/*children-toarray-parameters*/}
 
 * `children`: The value of the [`children` prop](/learn/passing-props-to-a-component#passing-jsx-as-children) received by your component.
 
-#### Returns {/*children-toarray-returns*/}
+#### Returns<Trans>반환값</Trans> {/*children-toarray-returns*/}
 
 Returns a flat array of elements in `children`.
 
-#### Caveats {/*children-toarray-caveats*/}
+#### Caveats<Trans>주의사항</Trans> {/*children-toarray-caveats*/}
 
 - Empty nodes (`null`, `undefined`, and Booleans) will be omitted in the returned array. **The returned elements' keys will be calculated from the original elements' keys and their level of nesting and position.** This ensures that flattening the array does not introduce changes in behavior.
 
 ---
 
-## Usage {/*usage*/}
+## Usage<Trans>사용법</Trans> {/*usage*/}
 
 ### Transforming children {/*transforming-children*/}
 
@@ -931,7 +931,7 @@ This is another example of how parent and child components can cooperate without
 
 ---
 
-## Troubleshooting {/*troubleshooting*/}
+## Troubleshooting<Trans>문제 해결</Trans> {/*troubleshooting*/}
 
 ### I pass a custom component, but the `Children` methods don't show its render result {/*i-pass-a-custom-component-but-the-children-methods-dont-show-its-render-result*/}
 

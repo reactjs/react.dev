@@ -3,10 +3,10 @@ title: 번역 진행상황
 ---
 
 <Intro>
-last updated @ 2023-04-24 12:00
+last updated @ 2023-04-24 13:30
 </Intro>
 
-## Reference 진행상황 (done: 12 / total: 59) {/*reference*/}
+## Reference 진행상황 (done: 13 / total: 59) {/*reference*/}
 
 | O/X | title                                                                |     | O/X | title                                                                                  |
 | :-: | :------------------------------------------------------------------- | :-- | :-: | :------------------------------------------------------------------------------------- |
@@ -21,7 +21,7 @@ last updated @ 2023-04-24 12:00
 |  O  | [5-8. useInsertionEffect](/reference/react/useInsertionEffect)       |     |  X  | [9-4. hydrate](/reference/react-dom/hydrate)                                           |
 |  O  | [5-9. useLayoutEffect](/reference/react/useLayoutEffect)             |     |  X  | [9-5. render](/reference/react-dom/render)                                             |
 |  X  | [5-10. useMemo](/reference/react/useMemo)                            |     |  X  | [9-6. unmountComponentAtNode](/reference/react-dom/unmountComponentAtNode)             |
-|  X  | [5-11. useReducer](/reference/react/useReducer)                      |     |  X  | [10. Client APIs](/reference/react-dom/client)                                         |
+|  O  | [5-11. useReducer](/reference/react/useReducer)                      |     |  X  | [10. Client APIs](/reference/react-dom/client)                                         |
 |  O  | [5-12. useRef](/reference/react/useRef)                              |     |  X  | [10-1. createRoot](/reference/react-dom/client/createRoot)                             |
 |  O  | [5-13. useState](/reference/react/useState)                          |     |  X  | [10-2. hydrateRoot](/reference/react-dom/client/hydrateRoot)                           |
 |  X  | [5-14. useSyncExternalStore](/reference/react/useSyncExternalStore)  |     |  X  | [11. Server APIs](/reference/react-dom/server)                                         |

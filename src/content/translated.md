@@ -3,10 +3,10 @@ title: 번역 진행상황
 ---
 
 <Intro>
-last updated @ 2023-04-24 13:30
+last updated @ 2023-04-24 13:50
 </Intro>
 
-## Reference 진행상황 (done: 13 / total: 59) {/*reference*/}
+## Reference 진행상황 (done: 14 / total: 59) {/*reference*/}
 
 | O/X | title                                                                |     | O/X | title                                                                                  |
 | :-: | :------------------------------------------------------------------- | :-- | :-: | :------------------------------------------------------------------------------------- |
@@ -25,7 +25,7 @@ last updated @ 2023-04-24 13:30
 |  O  | [5-12. useRef](/reference/react/useRef)                              |     |  X  | [10-1. createRoot](/reference/react-dom/client/createRoot)                             |
 |  O  | [5-13. useState](/reference/react/useState)                          |     |  X  | [10-2. hydrateRoot](/reference/react-dom/client/hydrateRoot)                           |
 |  X  | [5-14. useSyncExternalStore](/reference/react/useSyncExternalStore)  |     |  X  | [11. Server APIs](/reference/react-dom/server)                                         |
-|  X  | [5-15. useTransition](/reference/react/useTransition)                |     |  X  | [11-1. renderToNodeStream](/reference/react-dom/server/renderToNodeStream)             |
+|  O  | [5-15. useTransition](/reference/react/useTransition)                |     |  X  | [11-1. renderToNodeStream](/reference/react-dom/server/renderToNodeStream)             |
 |  X  | [6. Components](/reference/react/Components)                         |     |  X  | [11-2. renderToPipeableStream](/reference/react-dom/server/renderToPipeableStream)     |
 |  X  | [6-1. `<Fragment>` (`<>`)](/reference/react/Fragment)                |     |  X  | [11-3. renderToStaticMarkup](/reference/react-dom/server/renderToStaticMarkup)         |
 |  X  | [6-2. `<Profiler>`](/reference/react/Profiler)                       |     |  X  | [11-4. renderToStaticNodeStream](/reference/react-dom/server/renderToStaticNodeStream) |

@@ -13,13 +13,13 @@ import sidebarCommunity from '../sidebarCommunity.json';
 import sidebarBlog from '../sidebarBlog.json';
 
 const routeTreeList = {
-  "unknown": sidebarHome,
-  "learn": sidebarLearn,
-  'reference': sidebarReference,
-  'community': sidebarCommunity,
-  'blog': sidebarBlog,
-  'home': <></>
-}
+  warnings: sidebarHome,
+  learn: sidebarLearn,
+  reference: sidebarReference,
+  community: sidebarCommunity,
+  blog: sidebarBlog,
+  home: <></>,
+};
 
 export default function Layout({content, toc, meta}) {
   const parsedContent = useMemo(
@@ -37,13 +37,11 @@ export default function Layout({content, toc, meta}) {
 }
 
 function useActiveSection() {
-  const { asPath } = useRouter();
+  const {asPath} = useRouter();
   const cleanedPath = asPath.split(/[\?\#]/)[0];
-  const splitedPath = cleanedPath.split()[0]
-  const path = splitedPath === "/"
-    ?
-    "home"
-    : splitedPath.replace(/\//, "").split(/\//)[0];
+  const splitedPath = cleanedPath.split()[0];
+  const path =
+    splitedPath === '/' ? 'home' : splitedPath.replace(/\//, '').split(/\//)[0];
 
   return path;
 }

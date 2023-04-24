@@ -3,7 +3,6 @@
   "path": "/reference/react",
   "routes": [
     {
-      "hasSectionHeader": true,
       "sectionHeader": "react@18.2.0"
     },
     {
@@ -11,64 +10,82 @@
       "path": "/reference/react",
       "routes": [
         {
-          "title": "useCallback",
-          "path": "/reference/react/useCallback"
-        },
-        {
-          "title": "useContext",
-          "path": "/reference/react/useContext"
-        },
-        {
-          "title": "useDebugValue",
-          "path": "/reference/react/useDebugValue"
-        },
-        {
-          "title": "useDeferredValue",
-          "path": "/reference/react/useDeferredValue"
-        },
-        {
-          "title": "useEffect",
-          "path": "/reference/react/useEffect"
-        },
-        {
-          "title": "useId",
-          "path": "/reference/react/useId"
-        },
-        {
-          "title": "useImperativeHandle",
-          "path": "/reference/react/useImperativeHandle"
-        },
-        {
-          "title": "useInsertionEffect",
-          "path": "/reference/react/useInsertionEffect"
-        },
-        {
-          "title": "useLayoutEffect",
-          "path": "/reference/react/useLayoutEffect"
-        },
-        {
-          "title": "useMemo",
-          "path": "/reference/react/useMemo"
-        },
-        {
-          "title": "useReducer",
-          "path": "/reference/react/useReducer"
-        },
-        {
-          "title": "useRef",
-          "path": "/reference/react/useRef"
+          "sectionHeader": "State Hooks"
         },
         {
           "title": "useState",
           "path": "/reference/react/useState"
         },
         {
-          "title": "useSyncExternalStore",
-          "path": "/reference/react/useSyncExternalStore"
+          "title": "useReducer",
+          "path": "/reference/react/useReducer"
+        },
+        {
+          "sectionHeader": "Context Hooks"
+        },
+        {
+          "title": "useContext",
+          "path": "/reference/react/useContext"
+        },
+        {
+          "sectionHeader": "Ref Hooks"
+        },
+        {
+          "title": "useRef",
+          "path": "/reference/react/useRef"
+        },
+        {
+          "title": "useImperativeHandle",
+          "path": "/reference/react/useImperativeHandle"
+        },
+        {
+          "sectionHeader": "Effect Hooks"
+        },
+        {
+          "title": "useEffect",
+          "path": "/reference/react/useEffect"
+        },
+        {
+          "title": "useLayoutEffect",
+          "path": "/reference/react/useLayoutEffect"
+        },
+        {
+          "title": "useInsertionEffect",
+          "path": "/reference/react/useInsertionEffect"
+        },
+        {
+          "sectionHeader": "Performance Hooks"
+        },
+        {
+          "title": "useMemo",
+          "path": "/reference/react/useMemo"
+        },
+        {
+          "title": "useCallback",
+          "path": "/reference/react/useCallback"
         },
         {
           "title": "useTransition",
           "path": "/reference/react/useTransition"
+        },
+        {
+          "title": "useDeferredValue",
+          "path": "/reference/react/useDeferredValue"
+        },
+        {
+          "sectionHeader": "Other Hooks"
+        },
+        {
+          "title": "useDebugValue",
+          "path": "/reference/react/useDebugValue"
+        },
+        {
+          "title": "useId",
+          "path": "/reference/react/useId"
+        },
+        {
+          "title": "useSyncExternalStore",
+          "path": "/reference/react/useSyncExternalStore"
         }
       ]
     },
@@ -121,7 +138,6 @@
       ]
     },
     {
-      "hasSectionHeader": true,
       "sectionHeader": "react-dom@18.2.0"
     },
     {
@@ -167,6 +183,9 @@
           "path": "/reference/react-dom/flushSync"
         },
         {
+          "sectionHeader": "deprecated"
+        },
+        {
           "title": "findDOMNode",
           "path": "/reference/react-dom/findDOMNode"
         },
@@ -203,33 +222,44 @@
       "path": "/reference/react-dom/server",
       "routes": [
         {
-          "title": "renderToNodeStream",
-          "path": "/reference/react-dom/server/renderToNodeStream"
+          "sectionHeader": "for Node.js Streams"
         },
         {
           "title": "renderToPipeableStream",
           "path": "/reference/react-dom/server/renderToPipeableStream"
         },
         {
+          "title": "renderToStaticNodeStream",
+          "path": "/reference/react-dom/server/renderToStaticNodeStream"
+        },
+        {
+          "sectionHeader": "for Web Streams"
+        },
+        {
           "title": "renderToReadableStream",
           "path": "/reference/react-dom/server/renderToReadableStream"
+        },
+        {
+          "sectionHeader": "for non-streaming environments"
         },
         {
           "title": "renderToStaticMarkup",
           "path": "/reference/react-dom/server/renderToStaticMarkup"
         },
         {
-          "title": "renderToStaticNodeStream",
-          "path": "/reference/react-dom/server/renderToStaticNodeStream"
-        },
-        {
           "title": "renderToString",
           "path": "/reference/react-dom/server/renderToString"
+        },
+        {
+          "sectionHeader": "deprecated"
+        },
+        {
+          "title": "renderToNodeStream",
+          "path": "/reference/react-dom/server/renderToNodeStream"
         }
       ]
     },
     {
-      "hasSectionHeader": true,
       "sectionHeader": "Legacy APIs"
     },
     {
@@ -249,10 +279,6 @@
           "path": "/reference/react/Component"
         },
         {
-          "title": "createElement",
-          "path": "/reference/react/createElement"
-        },
-        {
           "title": "createFactory",
           "path": "/reference/react/createFactory"
         },
@@ -267,6 +293,13 @@
         {
           "title": "PureComponent",
           "path": "/reference/react/PureComponent"
+        },
+        {
+          "sectionHeader": "deprecated"
+        },
+        {
+          "title": "createElement",
+          "path": "/reference/react/createElement"
         }
       ]
     }

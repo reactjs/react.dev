@@ -1197,7 +1197,7 @@ Reducers must be pure, so they shouldn't mutate state. But Immer provides you wi
 #### Dispatch actions from event handlers<Trans>이벤트 핸들러에서 action을 dispatch하기</Trans> {/*dispatch-actions-from-event-handlers*/}
 
 Currently, the event handlers in `ContactList.js` and `Chat.js` have `// TODO` comments. This is why typing into the input doesn't work, and clicking on the buttons doesn't change the selected recipient.
-<Trans>현재 `ContactList.js`와 `Chat.js`의 이벤트 핸들러에는 `// TODO` 주석이 있습니다. 이 때문에 입력을 입력해도 작동하지 않고 버튼을 클릭해도 선택한 수신자가 변경되지 않습니다.</Trans>
+<Trans>현재 `ContactList.js`와 `Chat.js`의 이벤트 핸들러에는 `// TODO` 주석이 있습니다. 이 때문에 input에 타이핑해도 작동하지 않고 버튼을 클릭해도 선택한 수신자가 변경되지 않습니다.</Trans>
 
 Replace these two `// TODO`s with the code to `dispatch` the corresponding actions. To see the expected shape and the type of the actions, check the reducer in `messengerReducer.js`. The reducer is already written so you won't need to change it. You only need to dispatch the actions in `ContactList.js` and `Chat.js`.
 <Trans>두 개의 `// TODO`를 해당 작업을 `dispatch`하는 코드로 바꾸세요. 예상되는 모양과 action의 유형을 확인하려면 messengerReducer.js에서 reducer를 확인하세요. reducer는 이미 작성되어 있으므로 변경할 필요가 없습니다. `ContactList.js`와 `Chat.js`에서 action을 전달하기만 하면 됩니다.</Trans>

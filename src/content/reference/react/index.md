@@ -18,7 +18,7 @@ translators: [정재남, 유은미, 고석영]
 <Trans>*State*를 사용하면 컴포넌트가 사용자 입력과 같은 정보를 ["기억"할 수 있습니다.](/learn/state-a-components-memory) 예를 들어, form 컴포넌트는 state를 사용하여 입력 값을 저장하고, 이미지 갤러리 컴포넌트는 state를 사용하여 선택한 이미지의 인덱스를 저장할 수 있습니다.</Trans>
 
 To add state to a component, use one of these Hooks:
-<Trans>컴포넌트에 state를 추가하려면 다음 Hook 중 하나를 사용합니다:</Trans>
+<Trans>컴포넌트에 state를 추가하려면 다음 훅 중 하나를 사용합니다:</Trans>
 
 * [`useState`](/reference/react/useState) declares a state variable that you can update directly.
 * [`useReducer`](/reference/react/useReducer) declares a state variable with the update logic inside a [reducer function.](/learn/extracting-state-logic-into-a-reducer)
@@ -111,10 +111,10 @@ There are two rarely used variations of `useEffect` with differences in timing:
 ## Performance Hooks {/*performance-hooks*/}
 
 A common way to optimize re-rendering performance is to skip unnecessary work. For example, you can tell React to reuse a cached calculation or to skip a re-render if the data has not changed since the previous render.
-<Trans>재렌더링 성능을 최적화하는 일반적인 방법은 불필요한 작업을 건너뛰는 것입니다. 예를 들어, 캐시된 계산을 재사용하거나 이전 렌더링 이후 데이터가 변경되지 않은 경우 재렌더링을 건너뛰도록 React에 지시할 수 있습니다.</Trans>
+<Trans>리렌더링 성능을 최적화하는 일반적인 방법은 불필요한 작업을 건너뛰는 것입니다. 예를 들어, 캐시된 계산을 재사용하거나 이전 렌더링 이후 데이터가 변경되지 않은 경우 리렌더링을 건너뛰도록 React에 지시할 수 있습니다.</Trans>
 
 To skip calculations and unnecessary re-rendering, use one of these Hooks:
-<Trans>계산과 불필요한 재렌더링을 건너뛰려면 다음 Hook 중 하나를 사용하세요:</Trans>
+<Trans>계산과 불필요한 리렌더링을 건너뛰려면 다음 훅 중 하나를 사용하세요:</Trans>
 
 - [`useMemo`](/reference/react/useMemo) lets you cache the result of an expensive calculation.
 - [`useCallback`](/reference/react/useCallback) lets you cache a function definition before passing it down to an optimized component.
@@ -134,7 +134,7 @@ Sometimes, you can't skip re-rendering because the screen actually needs to upda
 <Trans>화면이 실제로 업데이트되어야 하기 때문에 렌더링을 건너뛸 수 없는 경우도 있습니다. 이 경우 입력 입력과 같이 동기화되어야 하는 차단 업데이트와 차트 업데이트와 같이 사용자 인터페이스를 차단할 필요가 없는 비차단 업데이트를 분리하여 성능을 향상시킬 수 있습니다.</Trans>
 
 To prioritize rendering, use one of these Hooks:
-<Trans>렌더링 우선순위를 지정하려면 다음 Hook 중 하나를 사용합니다:</Trans>
+<Trans>렌더링 우선순위를 지정하려면 다음 훅 중 하나를 사용합니다:</Trans>
 
 - [`useTransition`](/reference/react/useTransition) lets you mark a state transition as non-blocking and allow other updates to interrupt it.
 - [`useDeferredValue`](/reference/react/useDeferredValue) lets you defer updating a non-critical part of the UI and let other parts update first.

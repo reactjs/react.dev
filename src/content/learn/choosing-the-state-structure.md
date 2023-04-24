@@ -40,7 +40,7 @@ When you write a component that holds some state, you'll have to make choices ab
 1. **관련 state를 그룹화합니다.** 항상 두 개 이상의 state 변수를 동시에 업데이트하는 경우 단일 state 변수로 병합하는 것이 좋습니다.
 2. **state의 모순을 피하세요.** 여러 state 조각이 서로 모순되거나 '불일치'할 수 있는 방식으로 state를 구성하면 실수가 발생할 여지가 생깁니다. 이를 피하세요.
 3. **불필요한 state를 피하세요.** 렌더링 중에 컴포넌트의 props나 기존 state 변수에서 일부 정보를 계산할 수 있다면 해당 정보를 해당 컴포넌트의 state에 넣지 않아야 합니다.
-4. **state 중복을 피하세요.** 동일한 데이터가 여러 state 변수 간에 또는 중첩된 개체 내에 중복되면 동기화 state를 유지하기가 어렵습니다. 가능하면 중복을 줄이세요.
+4. **state 중복을 피하세요.** 동일한 데이터가 여러 state 변수 간에 또는 중첩된 객체 내에 중복되면 동기화 state를 유지하기가 어렵습니다. 가능하면 중복을 줄이세요.
 5. **깊게 중첩된 state는 피하세요.** 깊게 계층화된 state는 업데이트하기 쉽지 않습니다. 가능하면 state를 평평한 방식으로 구성하는 것이 좋습니다.
 </TransBlock>
 
@@ -872,7 +872,7 @@ export const initialTravelPlan = {
 </Sandpack>
 
 Now let's say you want to add a button to delete a place you've already visited. How would you go about it? [Updating nested state](/learn/updating-objects-in-state#updating-a-nested-object) involves making copies of objects all the way up from the part that changed. Deleting a deeply nested place would involve copying its entire parent place chain. Such code can be very verbose.
-<Trans>이제 이미 방문한 장소를 삭제하는 버튼을 추가하고 싶다고 가정해 보겠습니다. 어떻게 해야 할까요? [중첩된 state를 업데이트](/learn/updating-objects-in-state#updating-a-nested-object)하려면 변경된 부분부터 위쪽까지 개체의 복사본을 만들어야 합니다. 깊게 중첩된 장소를 삭제하려면 해당 장소의 상위 장소 체인 전체를 복사해야 합니다. 이러한 코드는 매우 장황할 수 있습니다.</Trans>
+<Trans>이제 이미 방문한 장소를 삭제하는 버튼을 추가하고 싶다고 가정해 보겠습니다. 어떻게 해야 할까요? [중첩된 state를 업데이트](/learn/updating-objects-in-state#updating-a-nested-object)하려면 변경된 부분부터 위쪽까지 객체의 복사본을 만들어야 합니다. 깊게 중첩된 장소를 삭제하려면 해당 장소의 상위 장소 체인 전체를 복사해야 합니다. 이러한 코드는 매우 장황할 수 있습니다.</Trans>
 
 **If the state is too nested to update easily, consider making it "flat".** Here is one way you can restructure this data. Instead of a tree-like structure where each `place` has an array of *its child places*, you can have each place hold an array of *its child place IDs*. Then store a mapping from each place ID to the corresponding place.
 <Trans>**state가 너무 깊게 중첩되어 업데이트하기 어려운 경우 “flat”하게 만드는 것을 고려해 보세요.** 다음은 이 데이터를 재구성할 수 있는 한 가지 방법입니다. 각 `place`가 하위 place의 배열을 갖는 트리 구조 대신, 각 place가 자식 *place ID*의 배열을 보유하도록 할 수 있습니다. 그런 다음 각 place ID에서 해당 place로의 매핑을 저장합니다.</Trans>
@@ -1922,7 +1922,7 @@ Sometimes, you can also reduce state nesting by moving some of the nested state 
 * state를 업데이트할 때 실수할 가능성을 줄이는 방식으로 state를 구성하세요.
 * 동기화 state를 유지할 필요가 없도록 불필요 및 중복 state를 피하세요.
 * 특별히 업데이트를 막으려는 경우가 아니라면 props를 state에 넣지 마세요.
-* 선택과 같은 UI 패턴의 경우 개체 자체 대신 ID 또는 인덱스를 state로 유지합니다.
+* 선택과 같은 UI 패턴의 경우 객체 자체 대신 ID 또는 인덱스를 state로 유지합니다.
 * 깊게 중첩된 state를 업데이트하는 것이 복잡하다면 state를 평평하게 만들어 보세요.
 </TransBlock>
 

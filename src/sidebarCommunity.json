@@ -12,11 +12,6 @@
       "skipBreadcrumb": true,
       "routes": [
         {
-          "title": "Translate Contributors",
-          "translatedTitle": "번역한 사람들",
-          "path": "/community/translators"
-        },
-        {
           "title": "React Conferences",
           "path": "/community/conferences"
         },
@@ -35,6 +30,11 @@
         {
           "title": "Docs Contributors",
           "path": "/community/docs-contributors"
+        },
+        {
+          "title": "Translation Contributors",
+          "translatedTitle": "번역한 사람들",
+          "path": "/community/translators"
         },
         {
           "title": "Acknowledgements",

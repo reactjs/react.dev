@@ -882,7 +882,7 @@ This object is declared in the component body, so it's a [reactive value.](/lear
 ```
 
 It is important to declare it as a dependency! This ensures, for example, that if the `roomId` changes, your Effect will re-connect to the chat with the new `options`. However, there is also a problem with the code above. To see it, try typing into the input in the sandbox below, and watch what happens in the console:
-<Trans>의존성으로 선언하는 것이 중요합니다! 이렇게 하면 예를 들어 `roomId`가 변경되면 Effect가 새 `options`으로 채팅에 다시 연결됩니다. 하지만 위 코드에도 문제가 있습니다. 이를 확인하려면 아래 샌드박스에 입력을 입력하고 콘솔에서 어떤 일이 발생하는지 살펴보세요:</Trans>
+<Trans>의존성으로 선언하는 것이 중요합니다! 이렇게 하면 예를 들어 `roomId`가 변경되면 Effect가 새 `options`으로 채팅에 다시 연결됩니다. 하지만 위 코드에도 문제가 있습니다. 이를 확인하려면 아래 샌드박스의 input에 타이핑하고 콘솔에서 어떤 일이 발생하는지 살펴보세요:</Trans>
 
 <Sandpack>
 

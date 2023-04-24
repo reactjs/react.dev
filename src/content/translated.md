@@ -22,7 +22,7 @@ O   | [5-8. useInsertionEffect](/reference/react/useInsertionEffect) | | X   | [
 O   | [5-9. useLayoutEffect](/reference/react/useLayoutEffect) | | X   | [9-5. render](/reference/react-dom/render)
 X   | [5-10. useMemo](/reference/react/useMemo) | | X   | [9-6. unmountComponentAtNode](/reference/react-dom/unmountComponentAtNode)
 X   | [5-11. useReducer](/reference/react/useReducer) | | X   | [10. Client APIs](/reference/react-dom/client)
-X   | [5-12. useRef](/reference/react/useRef) | | X   | [10-1. createRoot](/reference/react-dom/client/createRoot)
+O   | [5-12. useRef](/reference/react/useRef) | | X   | [10-1. createRoot](/reference/react-dom/client/createRoot)
 O   | [5-13. useState](/reference/react/useState) | | X   | [10-2. hydrateRoot](/reference/react-dom/client/hydrateRoot)
 X   | [5-14. useSyncExternalStore](/reference/react/useSyncExternalStore) | | X   | [11. Server APIs](/reference/react-dom/server)
 X   | [5-15. useTransition](/reference/react/useTransition) | | X   | [11-1. renderToNodeStream](/reference/react-dom/server/renderToNodeStream)

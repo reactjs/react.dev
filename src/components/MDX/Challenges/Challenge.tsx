@@ -47,13 +47,9 @@ export function Challenge({
   const prefix = `${
     isRecipes ? 'Example' : 'Challenge'
   } ${order} of ${totalChallenges}`;
-  let newName;
-  if (Array.isArray(name)) {
-    newName = [...name];
-    newName[0] = `${prefix}: ${newName[0]}`;
-  } else {
-    newName = `${prefix}: ${name}`;
-  }
+  const newName = Array.isArray(name)
+    ? [`${prefix}: `, ...name]
+    : `${prefix}: ${name}`;
 
   return (
     <div className="p-5 sm:py-8 sm:px-8">

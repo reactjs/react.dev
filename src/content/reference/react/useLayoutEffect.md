@@ -12,7 +12,7 @@ translators: [최다인, 고석영, 이나령]
 <Intro>
 
 `useLayoutEffect` is a version of [`useEffect`](/reference/react/useEffect) that fires before the browser repaints the screen.
-<Trans>`useLayoutEffect`는 브라우저가 화면을 다시 채우기 전에 실행되는 [`useEffect`](/reference/react/useEffect) 중 하나입니다.</Trans>
+<Trans>`useLayoutEffect`는 브라우저가 화면을 다시 채우기 전에 실행되는 버전의 [`useEffect`](/reference/react/useEffect)입니다.</Trans>
 ```js
 useLayoutEffect(setup, dependencies?)
 ```
@@ -51,10 +51,10 @@ function Tooltip() {
 #### Parameters<Trans>매개변수</Trans> {/*parameters*/}
 
 * `setup`: The function with your Effect's logic. Your setup function may also optionally return a *cleanup* function. Before your component is first added to the DOM, React will run your setup function. After every re-render with changed dependencies, React will first run the cleanup function (if you provided it) with the old values, and then run your setup function with the new values. Before your component is removed from the DOM, React will run your cleanup function one last time.
-<Trans>`setup`: Effect의 로직이 포함된 함수입니다. 셋업 함수는 선택적으로 *클린업* 함수를 반환할 수도 있습니다. 컴포넌트가 DOM에 처음 추가되기 전에 React는 셋업 함수를 실행합니다. 변경된 의존성으로 다시 렌더링할 때마다 React는 먼저 이전 값으로 셋업 함수를 실행한 다음(제공한 경우) 새 값으로 셋업 함수를 실행합니다. 컴포넌트가 DOM에서 제거되기 전에 React는 마지막으로 셋업 함수를 한 번 더 실행합니다.</Trans>
+<Trans>`setup`: Effect의 로직이 포함된 함수입니다. 셋업 함수는 선택적으로 *클린업* 함수를 반환할 수 있습니다. 컴포넌트가 DOM에 처음 추가되기 전에 React는 셋업 함수를 실행합니다. 변경된 의존성으로 다시 렌더링할 때마다 React는 (클린업 함수를 정의한 경우) 먼저 이전 값으로 클린업 함수를 실행한 다음, 새 값으로 셋업 함수를 실행합니다. 컴포넌트가 DOM에서 제거되기 전에 React는 마지막으로 셋업 함수를 한 번 더 실행합니다.</Trans>
 
 * **optional** `dependencies`: The list of all reactive values referenced inside of the `setup` code. Reactive values include props, state, and all the variables and functions declared directly inside your component body. If your linter is [configured for React](/learn/editor-setup#linting), it will verify that every reactive value is correctly specified as a dependency. The list of dependencies must have a constant number of items and be written inline like `[dep1, dep2, dep3]`. React will compare each dependency with its previous value using the [`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is) comparison. If you omit this argument, your Effect will re-run after every re-render of the component.
-<Trans>**optional** `dependencies`:  `setup` 코드 내에서 참조된 모든 반응형 값의 목록입니다. 반응형 값에는 props, state, 컴포넌트 본문 내부에서 직접 선언된 모든 변수와 함수가 포함됩니다. 린터가 [React용으로 설정된](/learn/editor-setup#linting) 경우, 모든 반응형 값이 의존성으로 올바르게 지정되었는지 확인합니다. 의존성 목록은 일정한 수의 항목을 가져야 하며 `[dep1, dep2, dep3]`와 같이 인라인으로 작성해야 합니다. React는 [`Object.is`](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Object/is) 비교를 사용하여 각 의존성을 이전 값과 비교합니다. 이 인수를 생략하면 컴포넌트를 다시 렌더링할 때마다 Effect가 다시 실행됩니다.</Trans>
+<Trans>**optional** `dependencies`:  `setup` 코드 내에서 참조된 모든 반응형 값의 목록입니다. 반응형 값에는 props, state, 컴포넌트 본문 내부에서 직접 선언된 모든 변수와 함수가 포함됩니다. 린터가 [React용으로 설정된 경우](/learn/editor-setup#linting), 모든 반응형 값이 의존성으로 올바르게 지정되었는지 확인합니다. 의존성 목록은 일정한 수의 항목을 가져야 하며 `[dep1, dep2, dep3]`와 같이 인라인으로 작성해야 합니다. React는 [`Object.is`](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Object/is) 비교를 사용하여 각 의존성을 이전 값과 비교합니다. 이 인수를 생략하면 컴포넌트를 다시 렌더링할 때마다 Effect가 다시 실행됩니다.</Trans>
 #### Returns<Trans>반환값</Trans> {/*returns*/}
 
 `useLayoutEffect` returns `undefined`.
@@ -68,10 +68,10 @@ function Tooltip() {
 <Trans>Strict Mode가 켜져 있으면 React는 첫 번째 실제 셋업 전에 **개발 전용 셋업+클린업 사이클**을 한 번 더 실행합니다. 이는 클린업 로직이 셋업 로직을 "미러링"하고 설정이 수행 중인 모든 작업을 중지하거나 취소하는지 확인하는 스트레스 테스트입니다. 문제가 발생하면 [클린업 함수를 구현하세요.](/learn/synchronizing-with-effects#how-to-handle-the-effect-firing-twice-in-development)</Trans>
 
 * If some of your dependencies are objects or functions defined inside the component, there is a risk that they will **cause the Effect to re-run more often than needed.** To fix this, remove unnecessary [object](/reference/react/useEffect#removing-unnecessary-object-dependencies) and [function](/reference/react/useEffect#removing-unnecessary-function-dependencies) dependencies. You can also [extract state updates](/reference/react/useEffect#updating-state-based-on-previous-state-from-an-effect) and [non-reactive logic](/reference/react/useEffect#reading-the-latest-props-and-state-from-an-effect) outside of your Effect.
-<Trans>의존성 중 일부가 컴포넌트 내부에 정의된 객체 또는 함수인 경우, **Effect가 필요 이상으로 자주 다시 실행될 위험이 있습니다.** 이 문제를 해결하려면 불필요한 [객체](/reference/react/useEffect#removing-unnecessary-object-dependencies) 및 [함수](/reference/react/useEffect#removing-unnecessary-function-dependencies) 의존성을 제거하세요. 또한 Effect 외부에서 [state 업데이트](/reference/react/useEffect#updating-state-based-on-previous-state-from-an-effect)와 [비반응성 로직](/reference/react/useEffect#reading-the-latest-props-and-state-from-an-effect)을 추출할 수도 있습니다.</Trans>
+<Trans>의존성 중 일부가 컴포넌트 내부에 정의된 객체 또는 함수인 경우, **Effect가 필요 이상으로 자주 다시 실행될 위험이 있습니다.** 이 문제를 해결하려면 불필요한 [객체](/reference/react/useEffect#removing-unnecessary-object-dependencies) 및 [함수](/reference/react/useEffect#removing-unnecessary-function-dependencies) 의존성을 제거하세요. 또한 Effect 외부에서 [state 업데이트](/reference/react/useEffect#updating-state-based-on-previous-state-from-an-effect)와 [비반응형 로직](/reference/react/useEffect#reading-the-latest-props-and-state-from-an-effect)을 추출할 수도 있습니다.</Trans>
 
 * Effects **only run on the client.** They don't run during server rendering.
-<Trans>Effect는 **클라이언트에서만 실행됩니다.** 서버 렌더링 중에는 실행되지 않습니다.</Trans>
+<Trans>LayoutEffect는 **클라이언트에서만 실행됩니다.** 서버 렌더링 중에는 실행되지 않습니다.</Trans>
 
 * The code inside `useLayoutEffect` and all state updates scheduled from it **block the browser from repainting the screen.** When used excessively, this makes your app slow. When possible, prefer [`useEffect`.](/reference/react/useEffect)
 <Trans>`useLayoutEffect` 내부의 코드와 여기에서 예약된 모든 상태 업데이트는 **브라우저가 화면을 다시 그리는 것을 차단합니다.** 과도하게 사용하면 앱이 느려집니다. 가급적이면 [`useEffect`](/reference/react/useEffect)를 사용하세요.</Trans>
@@ -86,7 +86,7 @@ Most components don't need to know their position and size on the screen to deci
 <Trans>대부분의 컴포넌트는 무엇을 렌더링할지 결정하기 위해 화면에서의 위치와 크기를 알 필요가 없습니다. 일부 JSX만 반환하기 때문입니다. 그런 다음 브라우저는 해당 컴포넌트의 *레이아웃*(위치 및 크기)을 계산하고 화면을 다시 그립니다.</Trans>
 
 Sometimes, that's not enough. Imagine a tooltip that appears next to some element on hover. If there's enough space, the tooltip should appear above the element, but if it doesn't fit, it should appear below. In order to render the tooltip at the right final position, you need to know its height (i.e. whether it fits at the top).
-<Trans>때로는 그것만으로는 충분하지 않습니다. 마우스오버 시 요소 옆에 툴팁이 표시된다고 상상해 보세요. 공간이 충분하면 툴팁이 요소 위에 표시되어야 하지만, 공간이 충분하지 않으면 아래에 표시되어야 합니다. 툴팁을 올바른 최종 위치에 렌더링하려면 툴팁의 높이(즉, 상단에 맞는지 여부)를 알아야 합니다.</Trans>
+<Trans>때론 그것만으로는 충분하지 않을 수 있습니다. 마우스오버 시 요소 옆에 툴팁을 표시하는 것을 상상해 보세요. 공간이 충분하면 툴팁이 요소 위에 표시되어야 하지만, 공간이 충분하지 않으면 아래에 표시되어야 합니다. 툴팁을 올바른 최종 위치에 렌더링하려면 툴팁의 높이(즉 상단에 표시하기에 충분한지 여부)를 알아야 합니다.</Trans>
 
 To do this, you need to render in two passes:
 <Trans>이렇게 하려면 두 번의 패스로 렌더링해야 합니다:</Trans>
@@ -101,7 +101,7 @@ To do this, you need to render in two passes:
 </TransBlock>
 
 **All of this needs to happen before the browser repaints the screen.** You don't want the user to see the tooltip moving. Call `useLayoutEffect` to perform the layout measurements before the browser repaints the screen:
-<Trans>**이 모든 작업은 브라우저가 화면을 다시 그리기 전에 이루어져야 합니다.** 사용자가 툴팁이 움직이는 것을 보지 않기를 원합니다. 브라우저가 화면을 다시 칠하기 전에 `useLayoutEffect`를 호출하여 레이아웃 측정을 수행합니다:</Trans>
+<Trans>**이 모든 작업은 브라우저가 화면을 다시 그리기 전에 이루어져야 합니다.** 사용자가 툴팁이 움직이는 것을 보지 않기를 원합니다. 브라우저가 화면을 다시 그리기 전에 `useLayoutEffect`를 호출하여 레이아웃 측정을 수행합니다:</Trans>
 
 ```js {6-10}
 function Tooltip() {
@@ -282,14 +282,14 @@ export default function TooltipContainer({ children, x, y, contentRef }) {
 </Sandpack>
 
 Notice that even though the `Tooltip` component has to render in two passes (first, with `tooltipHeight` initialized to `0` and then with the real measured height), you only see the final result. This is why you need `useLayoutEffect` instead of [`useEffect`](/reference/react/useEffect) for this example. Let's look at the difference in detail below.
-<Trans>`Tooltip` 컴포넌트가 두 번의 패스로 렌더링되어야 하지만(먼저 `tooltipHeight`를 0으로 초기화한 다음 실제 측정된 높이로), 최종 결과만 볼 수 있다는 점에 유의하세요. 이 예제에서는 [`useEffect`](/reference/react/useEffect) 대신 `useLayoutEffect`가 필요한 이유입니다. 아래에서 차이점을 자세히 살펴보겠습니다.</Trans>
+<Trans>`Tooltip` 컴포넌트가 두 번의 패스로 렌더링되어야 하지만(먼저 `tooltipHeight`를 0으로 초기화한 다음 실제 측정된 높이로), 최종 결과만 볼 수 있다는 점에 유의하세요. 이 예제에서 [`useEffect`](/reference/react/useEffect) 대신 `useLayoutEffect`가 필요한 이유입니다. 아래에서 차이점을 자세히 살펴보겠습니다.</Trans>
 
-<Recipes titleText="useLayoutEffect vs useEffect" titleId="examples">
+<Recipes titleText="useLayoutEffect vs useEffect" titleId="examples" translatedTitle="">
 
-#### `useLayoutEffect` blocks the browser from repainting <Trans>`useLayoutEffect`는 브라우저가 다시 그리는 것을 차단합니다.</Trans> {/*uselayouteffect-blocks-the-browser-from-repainting*/}
+#### `useLayoutEffect` blocks the browser from repainting <Trans>`useLayoutEffect`는 브라우저가 다시 그리는 것을 차단합니다</Trans> {/*uselayouteffect-blocks-the-browser-from-repainting*/}
 
 React guarantees that the code inside `useLayoutEffect` and any state updates scheduled inside it will be processed **before the browser repaints the screen.** This lets you render the tooltip, measure it, and re-render the tooltip again without the user noticing the first extra render. In other words, `useLayoutEffect` blocks the browser from painting.
-<Trans>React는 브라우저가 화면을 다시 그리기 전에 `useLayoutEffect` 내부의 코드와 그 안에서 예약된 모든 state 업데이트가 처리되도록 보장합니다. 이를 통해 사용자가 첫 번째 추가 렌더링을 눈치채지 못한 채 툴팁을 렌더링하고 측정한 후 다시 툴팁을 렌더링할 수 있습니다. 즉, `useLayoutEffect`는 브라우저의 페인팅을 차단합니다.</Trans>
+<Trans>React는 브라우저가 화면을 다시 그리기 전에 `useLayoutEffect` 내부의 코드와 그 안에서 예약된 모든 state 업데이트가 처리되도록 보장합니다. 이를 통해 사용자가 첫 번째 리렌더링을 눈치채지 못하게 한 상태에서 툴팁을 렌더링하고, 측정한 후, 다시 툴팁을 렌더링하게 해줍니다. 즉, `useLayoutEffect`는 브라우저의 페인팅을 차단합니다.</Trans>
 
 <Sandpack>
 
@@ -434,10 +434,10 @@ export default function TooltipContainer({ children, x, y, contentRef }) {
 
 <Solution />
 
-#### `useEffect` does not block the browser <Trans>`useEffect`는 브라우저를 차단하지 않습니다.</Trans> {/*useeffect-does-not-block-the-browser*/}
+#### `useEffect` does not block the browser <Trans>`useEffect`는 브라우저를 차단하지 않습니다</Trans> {/*useeffect-does-not-block-the-browser*/}
 
 Here is the same example, but with [`useEffect`](/reference/react/useEffect) instead of `useLayoutEffect`. If you're on a slower device, you might notice that sometimes the tooltip "flickers" and you briefly see its initial position before the corrected position.
-<Trans>다음은 동일한 예시이지만 `useLayoutEffect`대신 [`useEffect`](/reference/react/useEffect)를 사용한 예시입니다. 속도가 느린 기기를 사용하는 경우 가끔 툴팁이 "깜박거리고" 수정된 위치 이전에 초기 위치가 잠깐 표시되는 것을 볼 수 있습니다.</Trans>
+<Trans>다음은 동일한 예시이지만 `useLayoutEffect`대신 [`useEffect`](/reference/react/useEffect)를 사용했습니다. 속도가 느린 기기를 사용하는 경우 가끔 툴팁이 "깜박거리고" 수정된 위치 이전에 초기 위치가 잠깐 표시되는 것을 볼 수 있습니다.</Trans>
 
 <Sandpack>
 
@@ -748,7 +748,7 @@ Rendering in two passes and blocking the browser hurts performance. Try to avoid
 
 ## Troubleshooting<Trans>문제 해결</Trans> {/*troubleshooting*/}
 
-### I'm getting an error: "`useLayoutEffect` does nothing on the server" <Trans>오류가 발생합니다: "`useLayoutEffect`가 서버에서 아무것도 수행하지 않습니다."</Trans> {/*im-getting-an-error-uselayouteffect-does-nothing-on-the-server*/}
+### I'm getting an error: “`useLayoutEffect` does nothing on the serverˮ <Trans>오류가 발생합니다: “`useLayoutEffect`가 서버에서 아무것도 수행하지 않습니다ˮ</Trans> {/*im-getting-an-error-uselayouteffect-does-nothing-on-the-server*/}
 
 The purpose of `useLayoutEffect` is to let your component [use layout information for rendering:](#measuring-layout-before-the-browser-repaints-the-screen)
 <Trans>`useLayoutEffect`의 목적은 컴포넌트가 [렌더링에 레이아웃 정보를 사용하도록 하는 것](#measuring-layout-before-the-browser-repaints-the-screen)입니다:</Trans>
@@ -766,10 +766,10 @@ When you or your framework uses [server rendering](/reference/react-dom/server),
 <Trans>사용자 또는 프레임워크가 [서버 렌더링](reference/react-dom/server)을 사용하는 경우, React 앱은 초기 렌더링을 위해 서버의 HTML로 렌더링됩니다. 이를 통해 JavaScript 코드가 로드되기 전에 초기 HTML을 표시할 수 있습니다.</Trans>
 
 The problem is that on the server, there is no layout information.
-<Trans>문제는 서버에 레이아웃 정보가 없다는 것입니다.</Trans>
+<Trans>문제는 서버에는 레이아웃 정보가 없다는 것입니다.</Trans>
 
 In the [earlier example](#measuring-layout-before-the-browser-repaints-the-screen), the `useLayoutEffect` call in the `Tooltip` component lets it position itself correctly (either above or below content) depending on the content height. If you tried to render `Tooltip` as a part of the initial server HTML, this would be impossible to determine. On the server, there is no layout yet! So, even if you rendered it on the server, its position would "jump" on the client after the JavaScript loads and runs.
-<Trans>[앞선 예시](#measuring-layout-before-the-browser-repaints-the-screen)에서 `Tooltip` 컴포넌트의 `useLayoutEffect` 호출은 콘텐츠 높이에 따라 콘텐츠 위 또는 아래에 올바르게 배치되도록 합니다. 초기 서버 HTML의 일부로 `Tooltip`을 렌더링하려고 하면 이를 확인할 수 없습니다. 서버에는 아직 레이아웃이 없습니다! 따라서 서버에서 렌더링하더라도 JavaScript가 로드되고 실행된 후 클라이언트에서 그 위치가 "점프"됩니다.</Trans>
+<Trans>[이전 예시](#measuring-layout-before-the-browser-repaints-the-screen)에서 `Tooltip` 컴포넌트의 `useLayoutEffect` 호출은 콘텐츠 높이에 따라 콘텐츠 위 또는 아래에 올바르게 배치되도록 합니다. 초기 서버 HTML의 일부로 `Tooltip`을 렌더링하려고 하면 이를 확인할 수 없습니다. 서버에는 아직 레이아웃이 없습니다! 따라서 서버에서 렌더링하더라도 JavaScript가 로드되고 실행된 후 클라이언트에서 그 위치가 "점프"됩니다.</Trans>
 
 Usually, components that rely on layout information don't need to render on the server anyway. For example, it probably doesn't make sense to show a `Tooltip` during the initial render. It is triggered by a client interaction.
 <Trans>일반적으로 레이아웃 정보에 의존하는 컴포넌트는 서버에서 렌더링할 필요가 없습니다. 예를 들어, 초기 렌더링 중에 `Tooltip`을 표시하는 것은 의미가 없을 수 있습니다. 이는 클라이언트 상호작용에 의해 촉발됩니다.</Trans>
@@ -788,6 +788,3 @@ However, if you're running into this problem, you have a few different options:
 
 - If you synchronize your component with an external data store and rely on `useLayoutEffect` for different reasons than measuring layout, consider [`useSyncExternalStore`](/reference/react/useSyncExternalStore) instead which [supports server rendering.](/reference/react/useSyncExternalStore#adding-support-for-server-rendering)
 <Trans>컴포넌트를 외부 데이터 저장소와 동기화하고 레이아웃 측정이 아닌 다른 이유로 `useLayoutEffect`에 의존하는 경우, 대신 [서버 렌더링을 지원하는](/reference/react/useSyncExternalStore#adding-support-for-server-rendering) [`useSyncExternalStore`](/reference/react/useSyncExternalStore)를 고려하세요.</Trans>
-
-
-

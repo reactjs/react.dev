@@ -1162,7 +1162,7 @@ In most cases, you don't need this:
 <Trans>**필요한 값을 현재 props나 다른 state에서 모두 계산할 수 있는 경우, [중복되는 state를 모두 제거하세요](#resetting-state-with-a-key)**. 너무 자주 재계산하는 것이 걱정된다면, [`useMemo` 훅](#resetting-state-with-a-key)을 사용하면 도움이 될 수 있습니다.</Trans>
 
 * If you want to reset the entire component tree's state, [pass a different `key` to your component.](#resetting-state-with-a-key)
-<Trans>전체 컴포넌트 트리의 state를 재설정하려면 [컴포넌트에 다른 `key`를 전달하세요](https://www.notion.so/useState-35d982e6f31144afb9a6f60d9c419d6f).</Trans>
+<Trans>전체 컴포넌트 트리의 state를 재설정하려면 [컴포넌트에 다른 `key`를 전달하세요](#resetting-state-with-a-key).</Trans>
 
 * If you can, update all the relevant state in the event handlers.
 <Trans>가능하다면 이벤트 핸들러의 모든 관련 state를 업데이트하세요.</Trans>

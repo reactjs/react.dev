@@ -794,7 +794,7 @@ However, this only helps if the `SlowList` props are *the same* as during the pr
 <Trans>하지만 이는 `SlowList` props가 이전 렌더링 때와 동일한 경우에만 도움이 됩니다. 지금 직면하고 있는 문제는 props가 다를 때, 그리고 실제로 다른 시각적 출력을 표시해야 할 때 속도가 느리다는 것입니다.</Trans>
 
 Concretely, the main performance problem is that whenever you type into the input, the `SlowList` receives new props, and re-rendering its entire tree makes the typing feel janky. In this case, `useDeferredValue` lets you prioritize updating the input (which must be fast) over updating the result list (which is allowed to be slower):
-<Trans>구체적으로, 주요 성능 문제는 입력을 입력할 때마다 `SlowList`가 새로운 props을 수신하고 전체 트리를 다시 렌더링하면 타이핑이 끊기는 느낌이 든다는 것입니다. 이 경우 `useDeferredValue`를 사용하면 결과 목록 업데이트(느려도 됨)보다 입력 업데이트(빨라야 함)의 우선순위를 지정할 수 있습니다:</Trans>
+<Trans>구체적으로, 주요 성능 문제는 input에 타이핑할 때마다 `SlowList`가 새로운 props을 수신하고 전체 트리를 다시 렌더링하면 타이핑이 끊기는 느낌이 든다는 것입니다. 이 경우 `useDeferredValue`를 사용하면 결과 목록 업데이트(느려도 됨)보다 입력 업데이트(빨라야 함)의 우선순위를 지정할 수 있습니다:</Trans>
 
 ```js {3,7}
 function App() {

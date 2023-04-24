@@ -12,6 +12,15 @@ import sidebarReference from '../sidebarReference.json';
 import sidebarCommunity from '../sidebarCommunity.json';
 import sidebarBlog from '../sidebarBlog.json';
 
+const routeTreeList = {
+  "unknown": sidebarHome,
+  "learn": sidebarLearn,
+  'reference': sidebarReference,
+  'community': sidebarCommunity,
+  'blog': sidebarBlog,
+  'home': <></>
+}
+
 export default function Layout({content, toc, meta}) {
   const parsedContent = useMemo(
     () => JSON.parse(content, reviveNodeOnClient),
@@ -19,25 +28,7 @@ export default function Layout({content, toc, meta}) {
   );
   const parsedToc = useMemo(() => JSON.parse(toc, reviveNodeOnClient), [toc]);
   const section = useActiveSection();
-  let routeTree;
-  switch (section) {
-    case 'home':
-    case 'unknown':
-      routeTree = sidebarHome;
-      break;
-    case 'learn':
-      routeTree = sidebarLearn;
-      break;
-    case 'reference':
-      routeTree = sidebarReference;
-      break;
-    case 'community':
-      routeTree = sidebarCommunity;
-      break;
-    case 'blog':
-      routeTree = sidebarBlog;
-      break;
-  }
+  const routeTree = routeTreeList[section];
   return (
     <Page toc={parsedToc} routeTree={routeTree} meta={meta} section={section}>
       {parsedContent}
@@ -46,21 +37,15 @@ export default function Layout({content, toc, meta}) {
 }
 
 function useActiveSection() {
-  const {asPath} = useRouter();
+  const { asPath } = useRouter();
   const cleanedPath = asPath.split(/[\?\#]/)[0];
-  if (cleanedPath === '/') {
-    return 'home';
-  } else if (cleanedPath.startsWith('/reference')) {
-    return 'reference';
-  } else if (asPath.startsWith('/learn')) {
-    return 'learn';
-  } else if (asPath.startsWith('/community')) {
-    return 'community';
-  } else if (asPath.startsWith('/blog')) {
-    return 'blog';
-  } else {
-    return 'unknown';
-  }
+  const splitedPath = cleanedPath.split()[0]
+  const path = splitedPath === "/"
+    ?
+    "home"
+    : splitedPath.replace(/\//, "").split(/\//)[0];
+
+  return path;
 }
 
 // Deserialize a client React tree from JSON.

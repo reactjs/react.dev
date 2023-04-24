@@ -147,9 +147,9 @@ export default function TopNav({
   const [isScrolled, setIsScrolled] = useState(false);
 
   // HACK. Fix up the data structures instead.
-  if ((routeTree as any).routes.length === 1) {
-    routeTree = (routeTree as any).routes[0];
-  }
+  // if ((routeTree as any).routes.length === 1) {
+  //   routeTree = (routeTree as any).routes[0];
+  // }
 
   // While the overlay is open, disable body scroll.
   useEffect(() => {

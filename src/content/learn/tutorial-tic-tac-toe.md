@@ -330,8 +330,8 @@ Click on the file labeled `styles.css` in the _Files_ section of CodeSandbox. Th
 Click on the file labeled `index.js` in the _Files_ section of CodeSandbox. You won't be editing this file during the tutorial but it is the bridge between the component you created in the `App.js` file and the web browser.
 
 ```jsx
-import {StrictMode} from 'react';
-import {createRoot} from 'react-dom/client';
+import { StrictMode } from 'react';
+import { createRoot } from 'react-dom/client';
 import './styles.css';
 
 import App from './App';
@@ -1522,7 +1522,7 @@ body {
 
 ### Declaring a winner {/*declaring-a-winner*/}
 
-Now that you show which player's turn is next, you should also show when the game is won and there are no more turns to make. To do this you'll add a helper function called `calculateWinner` that takes an array of 9 squares, checks for a winner and returns `'X'`, `'O'`, or `null` as appropriate. Don't worry too much about the `calculateWinner` function; it's not specific to React:
+Now that the players can take turns, you'll want to show when the game is won and there are no more turns to make. To do this you'll add a helper function called `calculateWinner` that takes an array of 9 squares, checks for a winner and returns `'X'`, `'O'`, or `null` as appropriate. Don't worry too much about the `calculateWinner` function; it's not specific to React:
 
 ```js App.js
 export default function Board() {
@@ -1582,7 +1582,7 @@ export default function Board() {
   }
 
   return (
-    <div>
+    <>
       <div className="status">{status}</div>
       <div className="board-row">
         // ...

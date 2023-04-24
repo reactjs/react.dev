@@ -52,7 +52,7 @@ const variantMap = {
   },
 };
 
-function ExpandableCallout({children, type}: ExpandableCalloutProps) {
+function ExpandableCallout({children, type = 'note'}: ExpandableCalloutProps) {
   const contentRef = useRef<HTMLDivElement>(null);
   const variant = variantMap[type];
 
@@ -77,9 +77,5 @@ function ExpandableCallout({children, type}: ExpandableCalloutProps) {
     </div>
   );
 }
-
-ExpandableCallout.defaultProps = {
-  type: 'note',
-};
 
 export default ExpandableCallout;

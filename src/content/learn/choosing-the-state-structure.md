@@ -829,12 +829,11 @@ import { initialTravelPlan } from './places.js';
 function PlaceTree({ id, placesById }) {
   const place = placesById[id];
   const childIds = place.childIds;
-   const isChildIdPresent = childIds && childIds.length > 0 
   return (
     <li>
       {place.title}
-      {
-      isChildIdPresent && <ol>
+      {childIds.length > 0 && (
+        <ol>
           {childIds.map(childId => (
             <PlaceTree
               key={childId}
@@ -843,7 +842,7 @@ function PlaceTree({ id, placesById }) {
             />
           ))}
         </ol>
-      }
+      )}
     </li>
   );
 }

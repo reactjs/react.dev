@@ -3,10 +3,10 @@ title: 번역 진행상황
 ---
 
 <Intro>
-last updated @ 2023-04-20 00:00
+last updated @ 2023-04-24 12:00
 </Intro>
 
-## Reference 진행상황 (done: 10 / total: 59) {/*reference*/}
+## Reference 진행상황 (done: 12 / total: 59) {/*reference*/}
 
 O/X | title | | O/X | title
 :-: | :-- | --- | :-: | :--
@@ -19,7 +19,7 @@ X   | [5-5. useEffect](/reference/react/useEffect) | | X   | [9-1. createPortal]
 X   | [5-6. useId](/reference/react/useId) | | X   | [9-2. flushSync](/reference/react-dom/flushSync)
 O   | [5-7. useImperativeHandle](/reference/react/useImperativeHandle) | | X   | [9-3. findDOMNode](/reference/react-dom/findDOMNode)
 O   | [5-8. useInsertionEffect](/reference/react/useInsertionEffect) | | X   | [9-4. hydrate](/reference/react-dom/hydrate)
-X   | [5-9. useLayoutEffect](/reference/react/useLayoutEffect) | | X   | [9-5. render](/reference/react-dom/render)
+O   | [5-9. useLayoutEffect](/reference/react/useLayoutEffect) | | X   | [9-5. render](/reference/react-dom/render)
 X   | [5-10. useMemo](/reference/react/useMemo) | | X   | [9-6. unmountComponentAtNode](/reference/react-dom/unmountComponentAtNode)
 X   | [5-11. useReducer](/reference/react/useReducer) | | X   | [10. Client APIs](/reference/react-dom/client)
 X   | [5-12. useRef](/reference/react/useRef) | | X   | [10-1. createRoot](/reference/react-dom/client/createRoot)

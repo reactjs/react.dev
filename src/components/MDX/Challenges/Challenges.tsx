@@ -138,9 +138,8 @@ export function Challenges({
               {titleText}
               {translatedTitle !== '' && (
                 <Trans>
-                  {translatedTitle || isRecipes
-                    ? '예제를 풀어보세요'
-                    : '도전 과제'}
+                  {translatedTitle ||
+                    (isRecipes ? '예제를 풀어보세요' : '도전 과제')}
                 </Trans>
               )}
             </Heading>

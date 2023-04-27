@@ -125,7 +125,7 @@ This code modifies the object assigned to `position` from [the previous render.]
 <Trans>이 코드는 [이전 렌더링](/learn/state-as-a-snapshot#rendering-takes-a-snapshot-in-time)에서 `position`에 할당된 객체를 수정합니다. 하지만 state 설정자 함수를 사용하지 않으면 React는 객체가 변이되었다는 사실을 알지 못합니다. 그래서 React는 아무 반응도 하지 않습니다. 이미 음식을 다 먹은 후에 주문을 바꾸려고 하는 것과 같습니다. state 변이는 경우에 따라 작동할 수 있지만 권장하지 않습니다. 렌더링에서 접근할 수 있는 state 값은 읽기 전용으로 취급해야 합니다.</Trans>
 
 To actually [trigger a re-render](/learn/state-as-a-snapshot#setting-state-triggers-renders) in this case, **create a *new* object and pass it to the state setting function:**
-<Trans>이 경우 실제로 [리렌더링을 트리거](/learn/state-as-a-snapshot#setting-state-triggers-renders)하려면 **새 객체를 생성하고 state 설정자 함수에 전달**하세요:</Trans>
+<Trans>이 경우 실제로 [리렌더링을 촉발](/learn/state-as-a-snapshot#setting-state-triggers-renders)하려면 **새 객체를 생성하고 state 설정자 함수에 전달**하세요:</Trans>
 
 ```js
 onPointerMove={e => {
@@ -893,8 +893,8 @@ In practice, you can often "get away" with mutating state in React, but we stron
 * To reduce repetitive copying code, use Immer.
 <TransBlock>
   - React의 모든 state를 불변으로 취급하세요.
-  - state에 객체를 저장하면 객체를 변이해도 렌더링이 트리거되지 않고 이전 렌더링 "스냅샷"의 state가 변경됩니다.
-  - 객체를 변이하는 대신 객체의 *새로운* 버전을 생성하고 state를 설정하여 다시 렌더링을 트리거하세요.
+  - state에 객체를 저장하면 객체를 변이해도 렌더링을 촉발하지 않고 이전 렌더링 "스냅샷"의 state가 변경됩니다.
+  - 객체를 변이하는 대신 객체의 *새로운* 버전을 생성하고 state를 설정하여 다시 렌더링을 촉발하세요.
   - 객체 전개 구문 `{...obj, something: 'newValue'}`를 사용하여 객체 사본을 만들 수 있습니다.
   - 전개 구문은 한 수준 깊이만 복사하는 얕은 구문입니다.
   - 중첩된 객체를 업데이트하려면 업데이트하려는 위치에서 가장 위쪽까지 복사본을 만들어야 합니다.

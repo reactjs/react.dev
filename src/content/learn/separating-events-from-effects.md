@@ -263,7 +263,7 @@ From the user's perspective, **a change to the `roomId` *does* mean that they wa
 Effects are reactive, so `createConnection(serverUrl, roomId)` and `connection.connect()` will run for every distinct value of `roomId`. Your Effect keeps the chat connection synchronized to the currently selected room.
 <Trans>Effect는 반응형이므로 `createConnection(serverUrl, roomId)` 및 `connection.connect()` 코드는 `roomId`의 모든 고유값에 대해 실행됩니다. Effect는 현재 선택된 방에 따라 채팅 연결을 동기화합니다.</Trans>
 
-## Extracting non-reactive logic out of Effects <Trans>Effect에서 비반응성 로직 추출하기</Trans> {/*extracting-non-reactive-logic-out-of-effects*/}
+## Extracting non-reactive logic out of Effects <Trans>Effect에서 비반응형 로직 추출하기</Trans> {/*extracting-non-reactive-logic-out-of-effects*/}
 
 Things get more tricky when you want to mix reactive logic with non-reactive logic.
 <Trans>반응형 로직과 비반응형 로직을 함께 사용하려는 경우 상황이 더 까다로워집니다.</Trans>
@@ -449,7 +449,7 @@ You need a way to separate this non-reactive logic from the reactive Effect arou
 <Wip>
 
 This section describes an **experimental API that has not yet been released** in a stable version of React.
-<Trans>이 섹션에서는 **아직 안정된 버전의 React로 출시되지 않은 실험적인 API**에 대해 설명합니다.</Trans>
+<Trans>이 섹션에서는 아직 안정된 버전의 React로 **출시되지 않은 실험적인 API**에 대해 설명합니다.</Trans>
 
 </Wip>
 
@@ -634,7 +634,7 @@ You can think of Effect Events as being very similar to event handlers. The main
 <Wip>
 
 This section describes an **experimental API that has not yet been released** in a stable version of React.
-<Trans>이 섹션에서는 **아직 안정된 버전의 React로 출시되지 않은 실험적인 API**에 대해 설명합니다.</Trans>
+<Trans>이 섹션에서는 아직 안정된 버전의 React로 **출시되지 않은 실험적인 API**에 대해 설명합니다.</Trans>
 
 </Wip>
 
@@ -957,7 +957,7 @@ Read [Removing Effect Dependencies](/learn/removing-effect-dependencies) for oth
 
 <Wip>
 This section describes an **experimental API that has not yet been released** in a stable version of React.
-<Trans>이 섹션에서는 **아직 안정된 버전의 React로 출시되지 않은 실험적인 API**에 대해 설명합니다.</Trans>
+<Trans>이 섹션에서는 아직 안정된 버전의 React로 **출시되지 않은 실험적인 API**에 대해 설명합니다.</Trans>
 </Wip>
 
 Effect Events are very limited in how you can use them:
@@ -1028,7 +1028,7 @@ function useTimer(callback, delay) {
 ```
 
 Effect Events are non-reactive "pieces" of your Effect code. They should be next to the Effect using them.
-<Trans>Effect Event는 Effect 코드의 비반응성 "조각"입니다. Effect Event는 이를 사용하는 Effect 옆에 있어야 합니다.</Trans>
+<Trans>Effect Event는 Effect 코드의 비반응형 "조각"입니다. Effect Event는 이를 사용하는 Effect 옆에 있어야 합니다.</Trans>
 
 <Recap>
 

@@ -1398,7 +1398,7 @@ You can think of `TasksProvider` as a part of the screen that knows how to deal 
 <Note>
 
 Functions like `useTasks` and `useTasksDispatch` are called *[Custom Hooks.](/learn/reusing-logic-with-custom-hooks)* Your function is considered a custom Hook if its name starts with `use`. This lets you use other Hooks, like `useContext`, inside it.
-<Trans>`useTasks`와 `useTasksDispatch` 같은 함수들을 *[사용자 정의 훅](/learn/reusing-logic-with-custom-hooks)* 이라고 합니다. 이름이 `use`로 시작되는 함수들은 사용자 정의 훅입니다. 사용자 정의 훅 안에서도 `useContext` 등 다른 Hook을 사용할 수 있습니다.</Trans>
+<Trans>`useTasks`와 `useTasksDispatch` 같은 함수들을 *[커스텀 훅](/learn/reusing-logic-with-custom-hooks)* 이라고 합니다. 이름이 `use`로 시작되는 함수들은 커스텀 훅입니다. 커스텀 훅 안에서도 `useContext` 등 다른 Hook을 사용할 수 있습니다.</Trans>
 
 </Note>
 

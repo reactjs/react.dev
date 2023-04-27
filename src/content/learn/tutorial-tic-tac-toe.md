@@ -423,7 +423,7 @@ You'll get this error:
 </ConsoleBlock>
 
 React components need to return a single JSX element and not multiple adjacent JSX elements like two buttons. To fix this you can use *fragments* (`<>` and `</>`) to wrap multiple adjacent JSX elements like this:
-<Trans>React 컴포넌트는 두 개의 버튼처럼 인접한 여러 개의 JSX 앨리먼트가 아닌 단일 JSX 앨리먼트를 반환해야 합니다. 이 문제를 해결하려면 *fragments*(`<>` 와 `</>`)를 사용하여 다음과 같이 여러 개의 인접한 JSX 앨리먼트를 래핑할 수 있습니다:</Trans>
+<Trans>React 컴포넌트는 두 개의 버튼처럼 인접한 여러 개의 JSX 앨리먼트가 아닌 단일 JSX 앨리먼트를 반환해야 합니다. 이 문제를 해결하려면 *fragments*(`<>` 와 `</>`)를 사용하여 다음과 같이 여러 개의 인접한 JSX 앨리먼트를 감쌀 수 있습니다:</Trans>
 
 ```js {3-6}
 export default function Square() {

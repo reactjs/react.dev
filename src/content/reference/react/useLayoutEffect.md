@@ -62,7 +62,7 @@ function Tooltip() {
 #### Caveats<Trans>주의사항</Trans> {/*caveats*/}
 
 * `useLayoutEffect` is a Hook, so you can only call it **at the top level of your component** or your own Hooks. You can't call it inside loops or conditions. If you need that, extract a component and move the Effect there.
-<Trans>`useLayoutEffect`는 훅이므로 **컴포넌트의 최상위 레벨** 또는 자체 훅에서만 호출할 수 있습니다. 루프나 조건 내부에서는 호출할 수 없습니다. 필요하다면 컴포넌트를 추출하고 Effect를 그곳으로 이동하세요.</Trans>
+<Trans>`useLayoutEffect`는 훅이므로 **컴포넌트의 최상위 레벨** 또는 자체 훅에서만 호출할 수 있습니다. 반복문이나 조건문 내부에서는 호출할 수 없습니다. 필요하다면 컴포넌트를 추출하고 Effect를 그곳으로 이동하세요.</Trans>
 
 * When Strict Mode is on, React will **run one extra development-only setup+cleanup cycle** before the first real setup. This is a stress-test that ensures that your cleanup logic "mirrors" your setup logic and that it stops or undoes whatever the setup is doing. If this causes a problem, [implement the cleanup function.](/learn/synchronizing-with-effects#how-to-handle-the-effect-firing-twice-in-development)
 <Trans>Strict Mode가 켜져 있으면 React는 첫 번째 실제 셋업 전에 **개발 전용 셋업+클린업 사이클**을 한 번 더 실행합니다. 이는 클린업 로직이 셋업 로직을 "미러링"하고 설정이 수행 중인 모든 작업을 중지하거나 취소하는지 확인하는 스트레스 테스트입니다. 문제가 발생하면 [클린업 함수를 구현하세요.](/learn/synchronizing-with-effects#how-to-handle-the-effect-firing-twice-in-development)</Trans>

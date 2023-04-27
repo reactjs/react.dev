@@ -92,7 +92,7 @@ function TabContainer() {
 <Trans>`useTransition`은 훅이므로 컴포넌트나 커스텀 훅 내부에서만 호출할 수 있습니다. 다른 곳(예: 데이터 라이브러리)에서 트랜지션을 시작해야 하는 경우, 대신 독립형 [`startTransition`](/reference/react/startTransition)을 호출하세요.</Trans>
 
 * You can wrap an update into a transition only if you have access to the `set` function of that state. If you want to start a transition in response to some prop or a custom Hook value, try [`useDeferredValue`](/reference/react/useDeferredValue) instead.
-<Trans>해당 state의 `set` 함수에 접근할 수 있는 경우에만 업데이트를 트랜지션으로 래핑할 수 있습니다. 일부 prop이나 커스텀 훅 값에 대한 응답으로 트랜지션을 시작하려면, 대신 [`useDeferredValue`](/reference/react/useDeferredValue)를 사용해보세요.</Trans>
+<Trans>해당 state의 `set` 함수에 접근할 수 있는 경우에만 업데이트를 트랜지션으로 감쌀 수 있습니다. 일부 prop이나 커스텀 훅 값에 대한 응답으로 트랜지션을 시작하려면, 대신 [`useDeferredValue`](/reference/react/useDeferredValue)를 사용해보세요.</Trans>
 
 * The function you pass to `startTransition` must be synchronous. React immediately executes this function, marking all state updates that happen while it executes as transitions. If you try to perform more state updates later (for example, in a timeout), they won't be marked as transitions.
 <Trans>`startTransition`에 전달하는 함수는 동기식이어야 합니다. React는 이 함수를 즉시 실행하여, 실행하는 동안 발생하는 모든 state 업데이트를 트랜지션으로 표시합니다. 나중에 더 많은 state 업데이트를 수행하려고 하면(예: 타임아웃), 트랜지션으로 표시되지 않습니다.</Trans>
@@ -446,7 +446,7 @@ b { display: inline-block; margin-right: 10px; }
 ### Updating the parent component in a transition<Trans>트랜지션에서 상위 컴포넌트 업데이트하기</Trans> {/*updating-the-parent-component-in-a-transition*/}
 
 You can update a parent component's state from the `useTransition` call, too. For example, this `TabButton` component wraps its `onClick` logic in a transition:
-<Trans>`useTransition` 호출에서도 부모 컴포넌트의 state를 업데이트할 수 있습니다. 예를 들어, 이 `TabButton` 컴포넌트는 `onClick` 로직을 트랜지션으로 래핑합니다:</Trans>
+<Trans>`useTransition` 호출에서도 부모 컴포넌트의 state를 업데이트할 수 있습니다. 예를 들어, 이 `TabButton` 컴포넌트는 `onClick` 로직을 트랜지션으로 감쌉니다:</Trans>
 
 ```js {8-10}
 export default function TabButton({ children, isActive, onClick }) {
@@ -1547,7 +1547,7 @@ main {
 <Note>
 
 [Suspense-enabled](/reference/react/Suspense) routers are expected to wrap the navigation updates into transitions by default.
-<Trans>[Suspense-enabled](/reference/react/Suspense) 라우터는 기본적으로 네비게이션 업데이트를 트랜지션으로 래핑할 것으로 예상됩니다.</Trans>
+<Trans>[Suspense-enabled](/reference/react/Suspense) 라우터는 기본적으로 네비게이션 업데이트를 트랜지션으로 감쌀 것으로 예상됩니다.</Trans>
 
 </Note>
 
@@ -1589,7 +1589,7 @@ This is because transitions are non-blocking, but updating an input in response 
 ### React doesn't treat my state update as a transition<Trans>React가 state 업데이트를 트랜지션으로 처리하지 않습니다.</Trans> {/*react-doesnt-treat-my-state-update-as-a-transition*/}
 
 When you wrap a state update in a transition, make sure that it happens *during* the `startTransition` call:
-<Trans>state 업데이트를 트랜지션으로 래핑할 때는 `startTransition` 호출 중 state 업데이트가 발생해야 합니다:</Trans>
+<Trans>state 업데이트를 트랜지션으로 감쌀 때는 `startTransition` 호출 중 state 업데이트가 발생해야 합니다:</Trans>
 
 ```js
 startTransition(() => {

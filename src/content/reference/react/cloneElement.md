@@ -441,7 +441,7 @@ export const HighlightContext = createContext(false);
 ```
 
 Your `List` component can wrap every item it renders into a `HighlightContext` provider:
-<Trans>`List` 컴포넌트는 렌더링하는 모든 항목을 `HighlightContext` provider로 래핑할 수 있습니다:</Trans>
+<Trans>`List` 컴포넌트는 렌더링하는 모든 항목을 `HighlightContext` provider로 감쌀 수 있습니다:</Trans>
 
 ```js {8,10}
 export default function List({ items, renderItem }) {
@@ -595,10 +595,10 @@ button {
 
 ---
 
-### Extracting logic into a custom Hook<Trans>로직을 사용자 정의 Hook으로 추출하기</Trans> {/*extracting-logic-into-a-custom-hook*/}
+### Extracting logic into a custom Hook<Trans>로직을 커스텀 훅으로 추출하기</Trans> {/*extracting-logic-into-a-custom-hook*/}
 
 Another approach you can try is to extract the "non-visual" logic into your own Hook, and use the information returned by your Hook to decide what to render. For example, you could write a `useList` custom Hook like this:
-<Trans>시도해 볼 수 있는 또 다른 접근 방식은 "비시각적" 로직을 자신만의 Hook으로 추출하고, Hook에서 반환된 정보를 사용하여 렌더링할 내용을 결정하는 것입니다. 예를 들어, 다음과 같이 사용자 정의 Hook `useList`를 작성할 수 있습니다:</Trans>
+<Trans>시도해 볼 수 있는 또 다른 접근 방식은 "비시각적" 로직을 자신만의 Hook으로 추출하고, Hook에서 반환된 정보를 사용하여 렌더링할 내용을 결정하는 것입니다. 예를 들어, 다음과 같이 커스텀 훅 `useList`를 작성할 수 있습니다:</Trans>
 
 ```js
 import { useState } from 'react';
@@ -642,7 +642,7 @@ export default function App() {
 ```
 
 The data flow is explicit, but the state is inside the `useList` custom Hook that you can use from any component:
-<Trans>데이터 흐름은 명시적이지만 state는 모든 컴포넌트에서 사용할 수 있는 사용자 정의 Hook `useList` 안에 있습니다:</Trans>
+<Trans>데이터 흐름은 명시적이지만 state는 모든 컴포넌트에서 사용할 수 있는 커스텀 훅 `useList` 안에 있습니다:</Trans>
 
 <Sandpack>
 

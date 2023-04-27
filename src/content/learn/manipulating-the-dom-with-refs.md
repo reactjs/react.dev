@@ -634,7 +634,7 @@ listRef.current.lastChild.scrollIntoView();
 ```
 
 This will instruct React to update the DOM synchronously right after the code wrapped in `flushSync` executes. As a result, the last todo will already be in the DOM by the time you try to scroll to it:
-<Trans>이렇게 하면 `flushSync`로 감싸진 코드가 실행된 직후 React가 DOM을 동기적으로 업데이트하도록 지시합니다. 그 결과 스크롤을 시도할 때 DOM에 이미 마지막 할 일이 있을 것입니다:</Trans>
+<Trans>이렇게 하면 `flushSync`로 감싼 코드가 실행된 직후 React가 DOM을 동기적으로 업데이트하도록 지시합니다. 그 결과 스크롤을 시도할 때 DOM에 이미 마지막 할 일이 있을 것입니다:</Trans>
 
 <Sandpack>
 

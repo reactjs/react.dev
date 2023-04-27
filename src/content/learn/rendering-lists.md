@@ -827,7 +827,7 @@ img { width: 100px; height: 100px; border-radius: 50%; }
 </Sandpack>
 
 A very attentive reader might notice that with two `filter` calls, we check each person's profession twice. Checking a property is very fast, so in this example it's fine. If your logic was more expensive than that, you could replace the `filter` calls with a loop that manually constructs the arrays and checks each person once.
-<Trans>세심한 독자라면 두 번의 `filter` 호출을 통해 각 사람의 직업을 두 번 확인한다는 사실을 알아차릴 수 있습니다. 프로퍼티 확인은 매우 빠르기 때문에 이 예제에서는 괜찮습니다. 로직이 이보다 더 비싸다면 `filter` 호출을 수동으로 배열을 구성하고 각 사람을 한 번씩 확인하는 루프로 대체할 수 있습니다.</Trans>
+<Trans>세심한 독자라면 두 번의 `filter` 호출을 통해 각 사람의 직업을 두 번 확인한다는 사실을 알아차릴 수 있습니다. 프로퍼티 확인은 매우 빠르기 때문에 이 예제에서는 괜찮습니다. 로직이 이보다 더 비싸다면 `filter` 호출을 수동으로 배열을 구성하고 각 사람을 한 번씩 확인하는 반복문으로 대체할 수 있습니다.</Trans>
 
 In fact, if `people` never change, you could move this code out of your component. From React's perspective, all that matters is that you give it an array of JSX nodes in the end. It doesn't care how you produce that array:
 <Trans>사실, `people`이 절대 변하지 않는다면 이 코드를 컴포넌트 밖으로 옮길 수 있습니다. React의 관점에서, 중요한 것은 결국 JSX 노드 배열을 제공한다는 것입니다. 그 배열을 어떻게 생성하는지는 중요하지 않습니다:</Trans>
@@ -1220,13 +1220,13 @@ hr {
 
 <Hint>
 You'll either need to convert `map` to a manual loop, or use a fragment.
-<Trans>`map`을 수동 루프로 변환하거나 fragment를 사용해야 합니다.</Trans>
+<Trans>`map`을 수동 반복문으로 변환하거나 fragment를 사용해야 합니다.</Trans>
 </Hint>
 
 <Solution>
 
 You can write a manual loop, inserting `<hr />` and `<p>...</p>` into the output array as you go:
-<Trans>`<hr />` 및 `<p>...</p>`를 출력 배열에 삽입하여 수동 루프를 작성할 수 있습니다:</Trans>
+<Trans>`<hr />` 및 `<p>...</p>`를 출력 배열에 삽입하여 수동 반복문을 작성할 수 있습니다:</Trans>
 
 <Sandpack>
 

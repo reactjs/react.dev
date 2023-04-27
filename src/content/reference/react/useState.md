@@ -1356,7 +1356,7 @@ This is expected and shouldn't break your code.
 <Trans>이는 정상적인 현상이며, 이로 인해 코드가 손상되지 않아야 합니다.</Trans>
 
 This **development-only** behavior helps you [keep components pure.](/learn/keeping-components-pure) React uses the result of one of the calls, and ignores the result of the other call. As long as your component, initializer, and updater functions are pure, this shouldn't affect your logic. However, if they are accidentally impure, this helps you notice the mistakes.
-<Trans>이 **개발 환경 전용** 동작은 [컴포넌트를 순수하게 유지](/learn/keeping-components-pure)하는 데 도움이 됩니다. React는 호출 중 하나의 결과를 사용하고 다른 호출의 결과는 무시합니다. 컴포넌트, 초기화 함수, 업데이터 함수가 순수하다면 이 동작이 로직에 영향을 미치지 않습니다. 그러나 의도치 않게 순수하지 않을 경우 실수를 알아차리는 데 도움이 됩니다.</Trans>
+<Trans>이 **개발 환경 전용** 동작은 [컴포넌트를 순수하게 유지](/learn/keeping-components-pure)하는 데 도움이 됩니다. React는 호출 중 하나의 결과를 사용하고 다른 호출의 결과는 무시합니다. 컴포넌트, 초기화 함수, 업데이터 함수가 순수하다면 이 동작이 로직에 영향을 미치지 않습니다. 반면 의도치 않게 순수하지 않을 경우에는 실수를 알아차리는 데 도움이 됩니다.</Trans>
 
 For example, this impure updater function mutates an array in state:
 <Trans>예를 들어 순수하지 않은 업데이터 함수는 state의 배열을 다음과 같이 변이합니다:</Trans>

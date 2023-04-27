@@ -326,8 +326,8 @@ An event handler type for the [CSS animation](https://developer.mozilla.org/en-U
 ```js
 <div
   onAnimationStart={e => console.log('onAnimationStart')}
-  onAnimationIteration={e => console.log('onAnimationStart')}
-  onAnimationEnd={e => console.log('onAnimationStart')}
+  onAnimationIteration={e => console.log('onAnimationIteration')}
+  onAnimationEnd={e => console.log('onAnimationEnd')}
 />
 ```
 

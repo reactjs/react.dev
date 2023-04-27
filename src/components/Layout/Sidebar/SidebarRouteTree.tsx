@@ -87,7 +87,7 @@ export function SidebarRouteTree({
         ) => {
           const selected = slug === path;
           let listItem = null;
-          if (!path || !path || heading) {
+          if (!path || heading) {
             // if current route item has no path and children treat it as an API sidebar heading
             listItem = (
               <SidebarRouteTree
@@ -114,7 +114,6 @@ export function SidebarRouteTree({
                   title={title}
                   wip={wip}
                   isExpanded={isExpanded}
-                  isBreadcrumb={isBreadcrumb}
                   hideArrow={isForceExpanded}
                 />
                 <CollapseWrapper duration={250} isExpanded={isExpanded}>

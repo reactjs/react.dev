@@ -156,7 +156,7 @@ Transitions let you keep the user interface updates responsive even on slow devi
 <Trans>트랜지션을 사용하면 느린 디바이스에서도 사용자 인터페이스 업데이트의 반응성을 유지할 수 있습니다.</Trans>
 
 With a transition, your UI stays responsive in the middle of a re-render. For example, if the user clicks a tab but then change their mind and click another tab, they can do that without waiting for the first re-render to finish.
-<Trans>트랜지션을 사용하면 재렌더링 도중에도 UI가 반응성을 유지합니다. 예를 들어 사용자가 탭을 클릭했다가 마음이 바뀌어 다른 탭을 클릭하면 첫 번째 리렌더링이 완료될 때까지 기다릴 필요 없이 다른 탭을 클릭할 수 있습니다.</Trans>
+<Trans>트랜지션을 사용하면 리렌더링 도중에도 UI가 반응성을 유지합니다. 예를 들어 사용자가 탭을 클릭했다가 마음이 바뀌어 다른 탭을 클릭하면 첫 번째 리렌더링이 완료될 때까지 기다릴 필요 없이 다른 탭을 클릭할 수 있습니다.</Trans>
 
 <Recipes titleText="The difference between useTransition and regular state updates" titleId="examples" translatedTitle="useTransition과 일반 state 업데이트의 차이점">
 
@@ -1581,7 +1581,7 @@ This is because transitions are non-blocking, but updating an input in response 
 
 <TransBlock>
 1. input의 (항상 동기적으로 업데이트되는) state와 트랜지션 실행시 업데이트할 state 변수를 각각 선언할 수 있습니다. 이를 통해 동기 state를 사용하여 input을 제어하고, (input보다 "지연"되는) 트랜지션 state 변수를 나머지 렌더링 로직에 전달할 수 있습니다.
-2. 또는 하나의 state 변수를 가지고, 실제 값보다 "지연"되는 [`useDeferredValue`](/reference/react/useDeferredValue)를 추가할 수 있습니다. 그러면 논블로킹 리렌더가 새로운 값을 자동으로 "따라잡기" 위해 트리거됩니다.
+2. 또는 하나의 state 변수를 가지고, 실제 값보다 "지연"되는 [`useDeferredValue`](/reference/react/useDeferredValue)를 추가할 수 있습니다. 그러면 새로운 값을 자동으로 "따라잡기" 위해 논블로킹 리렌더를 촉발합니다.
 </TransBlock>
 
 ---

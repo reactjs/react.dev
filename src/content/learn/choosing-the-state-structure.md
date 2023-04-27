@@ -377,7 +377,7 @@ const fullName = firstName + ' ' + lastName;
 ```
 
 As a result, the change handlers don't need to do anything special to update it. When you call `setFirstName` or `setLastName`, you trigger a re-render, and then the next `fullName` will be calculated from the fresh data.
-<Trans>따라서 변경 핸들러는 이를 업데이트하기 위해 특별한 작업을 수행할 필요가 없습니다. `setFirstName` 또는 `setLastName`을 호출하면 다시 렌더링이 트리거되고 다음 `fullName`이 새 데이터에서 계산됩니다.</Trans>
+<Trans>따라서 변경 핸들러는 이를 업데이트하기 위해 특별한 작업을 수행할 필요가 없습니다. `setFirstName` 또는 `setLastName`을 호출하면 다시 렌더링을 촉발하고 다음 `fullName`이 새 데이터에서 계산됩니다.</Trans>
 
 <DeepDive>
 
@@ -620,7 +620,7 @@ The duplication is gone, and you only keep the essential state!
 <Trans>중복은 사라지고 필수 state만 유지됩니다!</Trans>
 
 Now if you edit the *selected* item, the message below will update immediately. This is because `setItems` triggers a re-render, and `items.find(...)` would find the item with the updated title. You didn't need to hold *the selected item* in state, because only the *selected ID* is essential. The rest could be calculated during render.
-<Trans>이제 *선택한* 항목을 편집하면 아래 메시지가 즉시 업데이트됩니다. 이는 `setItems`가 리렌더링을 트리거하고 `items.find(...)`가 업데이트된 제목의 항목을 찾기 때문입니다. *선택한 ID*만 필수적이므로 *선택한 항목*을 state로 유지할 필요가 없습니다. 나머지는 렌더링 중에 계산할 수 있습니다.</Trans>
+<Trans>이제 *선택한* 항목을 편집하면 아래 메시지가 즉시 업데이트됩니다. 이는 `setItems`가 리렌더링을 촉발하고 `items.find(...)`가 업데이트된 제목의 항목을 찾기 때문입니다. *선택한 ID*만 필수적이므로 *선택한 항목*을 state로 유지할 필요가 없습니다. 나머지는 렌더링 중에 계산할 수 있습니다.</Trans>
 
 ## Avoid deeply nested state<Trans>깊게 중첩된 state는 피하세요</Trans> {/*avoid-deeply-nested-state*/}
 

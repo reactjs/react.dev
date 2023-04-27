@@ -36,7 +36,7 @@ As your application grows, it helps to be more intentional about how your state 
 ## Reacting to input with state<Trans>state로 입력에 반응하기</Trans> {/*reacting-to-input-with-state*/}
 
 With React, you won't modify the UI from code directly. For example, you won't write commands like "disable the button", "enable the button", "show the success message", etc. Instead, you will describe the UI you want to see for the different visual states of your component ("initial state", "typing state", "success state"), and then trigger the state changes in response to user input. This is similar to how designers think about UI.
-<Trans>React를 사용하면 코드에서 UI를 직접 수정하지 않습니다. 예를 들어 "버튼 비활성화", "버튼 활성화", "성공 메시지 표시" 등과 같은 명령을 작성하지 않습니다. 대신 컴포넌트의 다양한 시각적 state('초기 state', '입력 state', '성공 state')별로 표시하려는 UI를 구현한 다음, 사용자 입력에 대한 응답으로 state 변경을 트리거합니다. 이는 디자이너가 UI에 대해 생각하는 방식과 유사합니다.</Trans>
+<Trans>React를 사용하면 코드에서 UI를 직접 수정하지 않습니다. 예를 들어 "버튼 비활성화", "버튼 활성화", "성공 메시지 표시" 등과 같은 명령을 작성하지 않습니다. 대신 컴포넌트의 다양한 시각적 state('초기 state', '입력 state', '성공 state')별로 표시하려는 UI를 구현한 다음, 사용자 입력에 대한 응답으로 state 변경을 촉발합니다. 이는 디자이너가 UI에 대해 생각하는 방식과 유사합니다.</Trans>
 
 Here is a quiz form built using React. Note how it uses the `status` state variable to determine whether to enable or disable the submit button, and whether to show the success message instead.
 <Trans>다음은 React를 사용해 만든 퀴즈 폼입니다. `status` 변수를 사용하여 제출 버튼의 활성화 또는 비활성화 여부와 성공 메시지를 대신 표시할지 말지 여부를 결정하는 방법에 주목하세요.</Trans>

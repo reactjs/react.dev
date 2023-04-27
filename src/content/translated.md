@@ -15,7 +15,7 @@ last updated @ 2023-04-26 16:00
 |  ✅  | [5-2. useContext](/reference/react/useContext)                       |  ▢  | [8-5. `<select>`](/reference/react-dom/components/select)                              |
 |  ✅  | [5-3. useDebugValue](/reference/react/useDebugValue)                 |  ▢  | [8-6. `<textarea>`](/reference/react-dom/components/textarea)                          |
 |  ✅  | [5-4. useDeferredValue](/reference/react/useDeferredValue)           |  ▢  | [9. APIs](/reference/react-dom)                                                        |
-|  ▢  | [5-5. useEffect](/reference/react/useEffect)                         |  ▢  | [9-1. createPortal](/reference/react-dom/createPortal)                                 |
+|  ✅  | [5-5. useEffect](/reference/react/useEffect)                         |  ▢  | [9-1. createPortal](/reference/react-dom/createPortal)                                 |
 |  ✅  | [5-6. useId](/reference/react/useId)                                 |  ▢  | [9-2. flushSync](/reference/react-dom/flushSync)                                       |
 |  ✅  | [5-7. useImperativeHandle](/reference/react/useImperativeHandle)     |  ▢  | [9-3. findDOMNode](/reference/react-dom/findDOMNode)                                   |
 |  ✅  | [5-8. useInsertionEffect](/reference/react/useInsertionEffect)       |  ▢  | [9-4. hydrate](/reference/react-dom/hydrate)                                           |

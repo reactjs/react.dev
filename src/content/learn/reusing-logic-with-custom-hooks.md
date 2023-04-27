@@ -915,7 +915,7 @@ Every time your `ChatRoom` component re-renders, it passes the latest `roomId` a
 <Wip>
 
 This section describes an **experimental API that has not yet been released** in a stable version of React.
-<Trans>이 섹션에서는 **아직 React에 추가되지 않은 실험적인 API**에 대해 설명하며, 아직 사용할 수 없습니다.</Trans>
+<Trans>이 섹션에서는 아직 안정된 버전의 React로 **출시되지 않은 실험적인 API**에 대해 설명합니다.</Trans>
 
 </Wip>
 

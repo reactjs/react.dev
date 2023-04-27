@@ -1253,7 +1253,7 @@ input { margin-top: 10px; }
 }
 ```
 
-그러나 `text`는 해당 Effect내에서 전혀 사용되지 않습니다. 이는 [Effect의 의존성을 "선택"할 수 없다](/learn/removing-effect-dependencies#to-remove-a-dependency-prove-that-its-not-a-dependency)는 원칙에 배치되는 억지 예시에 지나지 않습니다. 또한 이렇게 하더라도 아래의 [solution]에서 `text`의 변경 여부에 대해 계속 언급하고 있는 것이 탐탁치 않습니다. text의 변경 여부는 `App.js`의 리렌더링을 트리거하고 이 때마다 `getVisibleTodos()`가 다시 호출되는 상황일 경우에만 신경쓸 가치가 있는거겠죠. `App.js`가 리렌더링될 때마다 `getVisibleTodos()`을 호출하도록 하려면, 이 내용을 `useEffect`가 아닌 컴포넌트 최상단으로 옮겨야 할 것입니다.
+그러나 `text`는 해당 Effect내에서 전혀 사용되지 않습니다. 이는 [Effect의 의존성을 "선택"할 수 없다](/learn/removing-effect-dependencies#to-remove-a-dependency-prove-that-its-not-a-dependency)는 원칙에 배치되는 억지 예시에 지나지 않습니다. 또한 이렇게 하더라도 아래의 [solution]에서 `text`의 변경 여부에 대해 계속 언급하고 있는 것이 탐탁치 않습니다. text의 변경 여부는 `App.js`의 리렌더링을 촉발하고 이 때마다 `getVisibleTodos()`가 다시 호출되는 상황일 경우에만 신경쓸 가치가 있는거겠죠. `App.js`가 리렌더링될 때마다 `getVisibleTodos()`을 호출하도록 하려면, 이 내용을 `useEffect`가 아닌 컴포넌트 최상단으로 옮겨야 할 것입니다.
 
 ```js
 export default function TodoList() {

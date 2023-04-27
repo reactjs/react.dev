@@ -8,7 +8,7 @@ translators: [이승효, 조성민, 정재남]
   style={{aspectRatio: 1.7778, width: '100%'}} 
   src="https://www.youtube.com/embed/playlist?list=PLjQV3hketAJkh6BEl0n4PDS_2fBd0cS9v&index=3"
   title="YouTube video player" 
-  frameborder="0" 
+  frameBorder="0" 
 />
   
 <Intro>
@@ -1019,7 +1019,7 @@ For local development, React DevTools is available as a [Chrome](https://chrome.
   style={{aspectRatio: 1.7778, width: '100%'}} 
   src="https://www.youtube.com/embed/playlist?list=PLjQV3hketAJkh6BEl0n4PDS_2fBd0cS9v&index=4"
   title="YouTube video player" 
-  frameborder="0" 
+  frameBorder="0" 
 />
 
 ## Completing the game<Trans>게임 완성하기</Trans> {/*completing-the-game*/}
@@ -1896,7 +1896,7 @@ body {
   style={{aspectRatio: 1.7778, width: '100%'}} 
   src="https://www.youtube.com/embed/playlist?list=PLjQV3hketAJkh6BEl0n4PDS_2fBd0cS9v&index=5"
   title="YouTube video player" 
-  frameborder="0" 
+  frameBorder="0" 
 />
 
 ## Adding time travel<Trans>시간여행 추가하기</Trans> {/*adding-time-travel*/}

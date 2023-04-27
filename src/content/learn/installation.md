@@ -8,7 +8,7 @@ translators: [정재남]
   style={{aspectRatio: 1.7778, width: '100%'}} 
   src="https://www.youtube.com/embed/playlist?list=PLjQV3hketAJkh6BEl0n4PDS_2fBd0cS9v&index=1"
   title="YouTube video player" 
-  frameborder="0" 
+  frameBorder="0" 
 />
 
 <Intro>

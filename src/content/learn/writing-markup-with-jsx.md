@@ -8,7 +8,7 @@ translators: [유한나라, 고석영, 서민택]
   style={{aspectRatio: 1.7778, width: '100%'}} 
   src="https://www.youtube.com/embed/playlist?list=PLjQV3hketAJkh6BEl0n4PDS_2fBd0cS9v&index=9"
   title="YouTube video player" 
-  frameborder="0" 
+  frameBorder="0" 
 />
 
 <Intro>

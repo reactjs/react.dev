@@ -1,7 +1,7 @@
 /*
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
-
+import Giscus from '@giscus/react';
 import {Suspense} from 'react';
 import * as React from 'react';
 import {useRouter} from 'next/router';
@@ -11,8 +11,6 @@ import {Toc} from './Toc';
 import SocialBanner from '../SocialBanner';
 import {DocsPageFooter} from 'components/DocsFooter';
 import {Seo} from 'components/Seo';
-import ButtonLink from 'components/ButtonLink';
-import {IconNavArrow} from 'components/Icon/IconNavArrow';
 import PageHeading from 'components/PageHeading';
 import {getRouteMeta} from './getRouteMeta';
 import {TocContext} from '../MDX/TocContext';
@@ -52,6 +50,8 @@ export function Page({children, toc, routeTree, meta, section}: PageProps) {
   const description = meta.description || route?.description || '';
   const isHomePage = cleanedPath === '/';
   const isBlogIndex = cleanedPath === '/blog';
+  const isMainArticle =
+    cleanedPath.startsWith('/learn') || cleanedPath.startsWith('/reference');
 
   let content;
   if (isHomePage) {
@@ -149,7 +149,27 @@ export function Page({children, toc, routeTree, meta, section}: PageProps) {
               className="break-words font-normal text-primary dark:text-primary-dark"
               key={asPath}>
               {content}
+
+              {isMainArticle && (
+                <div className="mx-auto w-full px-5 sm:px-12 md:px-12 pt-10">
+                  <Giscus
+                    repo="roy-jung/react.dev.ko"
+                    repoId="R_kgDOJP6DbQ"
+                    category="Announcements"
+                    categoryId="DIC_kwDOJP6Dbc4CWGHq"
+                    mapping="pathname"
+                    strict="0"
+                    reactionsEnabled="1"
+                    emitMetadata="0"
+                    inputPosition="top"
+                    theme="light"
+                    lang="ko"
+                    loading="lazy"
+                  />
+                </div>
+              )}
             </article>
+
             <div
               className={cn(
                 'self-stretch w-full',
@@ -157,11 +177,8 @@ export function Page({children, toc, routeTree, meta, section}: PageProps) {
               )}>
               {!isHomePage && (
                 <div className="mx-auto w-full px-5 sm:px-12 md:px-12 pt-10 md:pt-12 lg:pt-10">
-                  {
-                    <hr className="max-w-7xl mx-auto border-border dark:border-border-dark" />
-                  }
-                  {
-                    /* showSurvey */ false && (
+                  <hr className="max-w-7xl mx-auto border-border dark:border-border-dark" />
+                  {/* showSurvey && (
                       <>
                         <div className="flex flex-col items-center m-4 p-4">
                           <p className="font-bold text-primary dark:text-primary-dark text-lg mb-4">
@@ -184,8 +201,7 @@ export function Page({children, toc, routeTree, meta, section}: PageProps) {
                         </div>
                         <hr className="max-w-7xl mx-auto border-border dark:border-border-dark" />
                       </>
-                    )
-                  }
+                    ) */}
                 </div>
               )}
               <div

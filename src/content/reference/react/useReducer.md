@@ -62,7 +62,7 @@ function MyComponent() {
 
 <TransBlock>
   1. 현재 state. 첫 번째 렌더링 중에는 `init(initialArg)` 또는 (`init`이 없는 경우) `initialArg`로 설정됩니다.
-  2. state를 다른 값으로 업데이트하고 재렌더링을 트리거할 수 있는 [`dispatch` function](#dispatch).
+  2. state를 다른 값으로 업데이트하고 리렌더링을 촉발할 수 있는 [`dispatch` function](#dispatch).
 </TransBlock>
 
 #### Caveats<Trans>주의사항</Trans> {/*caveats*/}
@@ -80,7 +80,7 @@ function MyComponent() {
 ### `dispatch` function {/*dispatch*/}
 
 The `dispatch` function returned by `useReducer` lets you update the state to a different value and trigger a re-render. You need to pass the action as the only argument to the `dispatch` function:
-<Trans>`useReducer` 가 반환하는 `dispatch` 함수를 사용하면 state를 다른 값으로 업데이트하고 다시 렌더링을 트리거할 수 있습니다. `dispatch` 함수에 유일한 인수로 액션을 전달해야 합니다:</Trans>
+<Trans>`useReducer` 가 반환하는 `dispatch` 함수를 사용하면 state를 다른 값으로 업데이트하고 다시 렌더링을 촉발할 수 있습니다. `dispatch` 함수에 유일한 인수로 액션을 전달해야 합니다:</Trans>
 
 ```js
 const [state, dispatch] = useReducer(reducer, { age: 42 });

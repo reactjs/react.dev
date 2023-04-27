@@ -688,7 +688,7 @@ function ChatRoom({ roomId }) {
 <Wip>
 
 This section describes an **experimental API that has not yet been released** in a stable version of React.
-<Trans>이 섹션에서는 **아직 안정된 버전의 React로 출시되지 않은 실험적인 API**에 대해 설명합니다.</Trans>
+<Trans>이 섹션에서는 아직 안정된 버전의 React로 **출시되지 않은 실험적인 API**에 대해 설명합니다.</Trans>
 
 </Wip>
 

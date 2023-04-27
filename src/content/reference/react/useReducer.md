@@ -71,7 +71,7 @@ function MyComponent() {
 * In Strict Mode, React will **call your reducer and initializer twice** in order to [help you find accidental impurities.](#my-reducer-or-initializer-function-runs-twice) This is development-only behavior and does not affect production. If your reducer and initializer are pure (as they should be), this should not affect your logic. The result from one of the calls is ignored.
 
 <TransBlock>
-- `useReducer` 는 훅이므로 **구성 요소의 최상위 레벨** 또는 자체 훅에서만 호출할 수 있습니다. 루프나 조건 내부에서는 호출할 수 없습니다. 필요하다면 새 컴포넌트를 추출하고 state를 그 안으로 옮기세요.
+- `useReducer` 는 훅이므로 **구성 요소의 최상위 레벨** 또는 자체 훅에서만 호출할 수 있습니다. 반복문이나 조건문 내부에서는 호출할 수 없습니다. 필요하다면 새 컴포넌트를 추출하고 state를 그 안으로 옮기세요.
 - Strict Mode에서 React는 [의도치 않은 불순물을 찾기 위해](#my-reducer-or-initializer-function-runs-twice) **reducer와 초기화 함수를 두 번 호출**합니다. 이는 개발 전용 동작이며 상용 환경에서는 영향을 미치지 않습니다. reducer와 초기화 함수가 순수하다면(그래야만 합니다) 컴포넌트의 로직에 영향을 미치지 않습니다. 호출 중 하나의 결과는 무시됩니다.
 </TransBlock>
 

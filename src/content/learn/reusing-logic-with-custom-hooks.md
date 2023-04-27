@@ -981,7 +981,7 @@ This will work, but there's one more improvement you can do when your custom Hoo
 <Trans>이 방법은 작동하지만 커스텀 Hook이 이벤트 핸들러를 수락할 때 한 가지 더 개선할 수 있습니다.</Trans>
 
 Adding a dependency on `onReceiveMessage` is not ideal because it will cause the chat to re-connect every time the component re-renders. [Wrap this event handler into an Effect Event to remove it from the dependencies:](/learn/removing-effect-dependencies#wrapping-an-event-handler-from-the-props)
-<Trans>`onReceiveMessage`에 의존성을 추가하면 컴포넌트가 다시 렌더링될 때마다 채팅이 다시 연결되므로 이상적이지 않습니다. [이 이벤트 핸들러를 Effect Event로 래핑하여 의존성에서 제거하세요:](/learn/removing-effect-dependencies#wrapping-an-event-handler-from-the-props)</Trans>
+<Trans>`onReceiveMessage`에 의존성을 추가하면 컴포넌트가 다시 렌더링될 때마다 채팅이 다시 연결되므로 이상적이지 않습니다. [이 이벤트 핸들러를 Effect Event로 감싸 의존성에서 제거하세요:](/learn/removing-effect-dependencies#wrapping-an-event-handler-from-the-props)</Trans>
 
 ```js {1,4,5,15,18}
 import { useEffect, useEffectEvent } from 'react';
@@ -1522,7 +1522,7 @@ function SaveButton() {
 ```
 
 This is another reason for why wrapping Effects in custom Hooks is often beneficial:
-<Trans>이것이 커스텀 훅으로 효과를 래핑하는 것이 종종 유익한 또 다른 이유입니다:</Trans>
+<Trans>이것이 종종 커스텀 훅으로 Effect를 감싸는 것이 좋은 또 다른 이유입니다:</Trans>
 
 1. You make the data flow to and from your Effects very explicit.
 2. You let your components focus on the intent rather than on the exact implementation of your Effects.
@@ -2023,7 +2023,7 @@ Sometimes, you don't even need a Hook!
 - 반응형 값을 한 훅에서 다른 훅으로 전달할 수 있으며 최신 state로 유지됩니다.
 - 컴포넌트가 다시 렌더링될 때마다 모든 훅이 다시 실행됩니다.
 - 커스텀 훅의 코드는 컴포넌트의 코드와 같이 순수해야 합니다.
-- 커스텀 훅이 수신한 이벤트 핸들러를 Effect Event로 래핑하세요.
+- 커스텀 훅이 수신한 이벤트 핸들러를 Effect Event로 감싸세요.
 - `useMount`와 같은 커스텀 훅을 만들지 마세요. 용도를 명확히 하세요.
 - 코드의 경계를 어디에서 어떻게 선택할지는 여러분이 결정할 수 있습니다.
 </TransBlock>
@@ -2411,7 +2411,7 @@ export function useInterval(onTick, delay) {
 <Solution>
 
 Inside `useInterval`, wrap the tick callback into an Effect Event, as you did [earlier on this page.](/learn/reusing-logic-with-custom-hooks#passing-event-handlers-to-custom-hooks)
-<Trans>`useInterval` 내에서 [이 페이지의 앞부분에서 한 것처럼](/learn/reusing-logic-with-custom-hook#passing-event-handlers-to-custom-hook) tick 콜백을 효과 이벤트에 래핑합니다.</Trans>
+<Trans>`useInterval` 내에서 [이 페이지의 앞부분에서 한 것처럼](/learn/reusing-logic-with-custom-hook#passing-event-handlers-to-custom-hook) tick 콜백을 Effect Event로 감싸세요.</Trans>
 
 This will allow you to omit `onTick` from dependencies of your Effect. The Effect won't re-synchronize on every re-render of the component, so the page background color change interval won't get reset every second before it has a chance to fire.
 <Trans>이렇게 하면 Effect의 의존성에서 `onTick`을 생략할 수 있습니다. 컴포넌트를 다시 렌더링할 때마다 Effect가 다시 동기화되지 않으므로 페이지 배경색 변경 간격이 매초마다 재설정되지 않고 실행될 수 있습니다.</Trans>

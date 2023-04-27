@@ -156,7 +156,7 @@ function TodoList({ todos, filter }) {
 <Trans>**이렇게 하면 `todos`나 `filter`가 변경되지 않는 한 내부 함수가 다시 실행되지 않기를 원한다는 것을 React에 알립니다.** 그러면 React는 초기 렌더링 중에 `getFilteredTodos()`의 반환값을 기억합니다. 그 다음부터는 렌더링 중에 할 일이나 필터가 다른지 확인합니다. 지난번과 동일하다면 `useMemo`는 마지막으로 저장한 결과를 반환합니다. 같지 않다면, React는 내부 함수를 다시 호출하고 그 결과를 저장합니다.</Trans>
 
 The function you wrap in [`useMemo`](/reference/react/useMemo) runs during rendering, so this only works for [pure calculations.](/learn/keeping-components-pure)
-<Trans>[`useMemo`](/reference/react/useMemo)로 래핑하는 함수는 렌더링 중에 실행되므로, [순수 계산](/learn/keeping-components-pure)에만 작동합니다.</Trans>
+<Trans>[`useMemo`](/reference/react/useMemo)로 감싸는 함수는 렌더링 중에 실행되므로, [순수 계산](/learn/keeping-components-pure)에만 작동합니다.</Trans>
 
 <DeepDive>
 

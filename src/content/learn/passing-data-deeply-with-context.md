@@ -502,7 +502,7 @@ export default function Section({ children }) {
 ```
 
 **Wrap them with a context provider** to provide the `LevelContext` to them:
-<Trans>**context provider로 래핑**하여 `LevelContext`를 제공하세요:</Trans>
+<Trans>**context provider로 감싸** `LevelContext`를 제공하세요:</Trans>
 
 ```js {1,6,8}
 import { LevelContext } from './LevelContext.js';
@@ -616,7 +616,7 @@ It's the same result as the original code, but you did not need to pass the `lev
 
 <TransBlock>
 1. `level` prop을 `<Section>`에 전달합니다.
-2. `Section`은 section의 children을 `<LevelContext.Provider value={level}>`로 래핑합니다.
+2. `Section`은 section의 children을 `<LevelContext.Provider value={level}>`로 감쌉니다.
 3. `Heading`은 `useContext(LevelContext)`를 사용하여 위의 `LevelContext`값에 가장 가까운 값을 요청합니다.
 </TransBlock>
 
@@ -749,7 +749,7 @@ export const LevelContext = createContext(0);
 </Sandpack>
 
 Now both `Heading` and `Section` read the `LevelContext` to figure out how "deep" they are. And the `Section` wraps its children into the `LevelContext` to specify that anything inside of it is at a "deeper" level.
-<Trans>이제 `Heading`과 `Section`은 모두 `LevelContext`를 읽어 얼마나 "깊은" 수준인지 파악합니다. 그리고 `Section`은 그 children을 `LevelContext`로 래핑하여 그 안에 있는 모든 것이 "더 깊은" level에 있음을 지정합니다.</Trans>
+<Trans>이제 `Heading`과 `Section`은 모두 `LevelContext`를 읽어 얼마나 "깊은" 수준인지 파악합니다. 그리고 `Section`은 그 children을 `LevelContext`로 감싸 그 안에 있는 모든 것이 "더 깊은" level에 있음을 지정합니다.</Trans>
 
 <Note>
 

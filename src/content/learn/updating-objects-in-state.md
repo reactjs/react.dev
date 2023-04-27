@@ -875,7 +875,7 @@ There are a few reasons:
 <Trans>**요구 사항 변경**: 실행 취소/다시 실행 구현, 변경 내역 표시, 사용자가 양식을 이전 값으로 재설정할 수 있도록 하는 것과 같은 일부 애플리케이션 기능은 아무것도 변이되지 않은  state에서 더 쉽게 수행할 수 있습니다. 과거의 state 복사본을 메모리에 보관하고 필요할 때 재사용할 수 있기 때문입니다. 변경 접근 방식으로 시작하면 나중에 이와 같은 기능을 추가하기 어려울 수 있습니다.</Trans>
 
 * **Simpler Implementation:** Because React does not rely on mutation, it does not need to do anything special with your objects. It does not need to hijack their properties, always wrap them into Proxies, or do other work at initialization as many "reactive" solutions do. This is also why React lets you put any object into state--no matter how large--without additional performance or correctness pitfalls.
-<Trans>더 간단한 구현: React는 변이에 의존하지 않기 때문에 객체에 특별한 작업을 할 필요가 없습니다. 많은 "반응형" 솔루션처럼 프로퍼티를 가로채거나, 항상 프록시로 래핑하거나, 초기화할 때 다른 작업을 할 필요가 없습니다. 이것이 바로 React를 사용하면 추가 성능이나 정확성의 함정 없이 아무리 큰 객체라도 state에 넣을 수 있는 이유이기도 합니다.</Trans>
+<Trans>더 간단한 구현: React는 변이에 의존하지 않기 때문에 객체에 특별한 작업을 할 필요가 없습니다. 많은 "반응형" 솔루션처럼 프로퍼티를 가로채거나, 항상 프록시로 감싸거나, 초기화할 때 다른 작업을 할 필요가 없습니다. 이것이 바로 React를 사용하면 추가 성능이나 정확성의 함정 없이 아무리 큰 객체라도 state에 넣을 수 있는 이유이기도 합니다.</Trans>
 
 In practice, you can often "get away" with mutating state in React, but we strongly advise you not to do that so that you can use new React features developed with this approach in mind. Future contributors and perhaps even your future self will thank you!
 <Trans>실제로는 React에서 state를 변이해서라도 잘 "빠져나갈" 수 있겠지만, state의 불변성을 유지하는 접근 방식을 염두에 두고 개발된 새로운 React 기능을 잘 사용할 수 있기 위해서, 그렇게 하지 말 것을 강력히 권장합니다. 미래의 기여자들과 여러분의 미래의 자신도 고마워할 것입니다!</Trans>

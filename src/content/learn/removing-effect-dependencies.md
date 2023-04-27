@@ -20,7 +20,7 @@ When you write an Effect, the linter will verify that you've included every reac
 - Why suppressing the dependency linter is dangerous, and what to do instead
 
 <TransBlock>
-- 무한 Effect 의존성 루프를 수정하는 방법
+- Effect 의존성 무한 루프를 수정하는 방법
 - 의존성을 제거하고자 할 때 해야 할 일
 - Effect에 "반응"하지 않고 Effect에서 값을 읽는 방법
 - 객체와 함수 의존성을 피하는 방법과 이유
@@ -2187,7 +2187,7 @@ In the original example, toggling the theme caused different `onMessage` and `cr
 <Trans>원래 예제에서는 테마를 변경하면 다른 `onMessage` 및 `createConnection` 함수가 생성되어 전달되었습니다. Effect가 이러한 함수에 의존했기 때문에 테마를 전환할 때마다 채팅이 다시 연결되었습니다.</Trans>
 
 To fix the problem with `onMessage`, you needed to wrap it into an Effect Event:
-<Trans>`message`의 문제를 해결하려면 `onMessage`를 Effect Event로 래핑해야 했습니다:</Trans>
+<Trans>`message`의 문제를 해결하려면 `onMessage`를 Effect Event로 감싸야 했습니다:</Trans>
 
 ```js {1,2,6}
 export default function ChatRoom({ roomId, createConnection, onMessage }) {

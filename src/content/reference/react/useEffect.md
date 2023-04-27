@@ -62,7 +62,7 @@ function ChatRoom({ roomId }) {
 #### Caveats<Trans>주의사항</Trans> {/*caveats*/}
 
 * `useEffect` is a Hook, so you can only call it **at the top level of your component** or your own Hooks. You can't call it inside loops or conditions. If you need that, extract a new component and move the state into it.
-<Trans>`useEffect`는 훅이므로 **컴포넌트의 최상위 레벨 또는 자체 훅**에서만 호출할 수 있습니다. 루프나 조건문 내부에서는 호출할 수 없습니다. 필요한 경우 새 컴포넌트를 추출하고 state를 그 안으로 옮기세요.</Trans>
+<Trans>`useEffect`는 훅이므로 **컴포넌트의 최상위 레벨 또는 자체 훅**에서만 호출할 수 있습니다.반복문이나 조건문 내부에서는 호출할 수 없습니다. 필요한 경우 새 컴포넌트를 추출하고 state를 그 안으로 옮기세요.</Trans>
 
 * If you're **not trying to synchronize with some external system,** [you probably don't need an Effect.](/learn/you-might-not-need-an-effect)
 <Trans>**외부 시스템과 동기화하려는 목적이 아니라면** [Effect가 필요하지 않을지도 모릅니다.](/learn/you-might-not-need-an-effect)</Trans>

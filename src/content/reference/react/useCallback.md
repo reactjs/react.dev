@@ -189,7 +189,7 @@ function ProductPage({ productId, referrer, theme }) {
 ```
 
 **By wrapping `handleSubmit` in `useCallback`, you ensure that it's the *same* function between the re-renders** (until dependencies change). You don't *have to* wrap a function in `useCallback` unless you do it for some specific reason. In this example, the reason is that you pass it to a component wrapped in [`memo`,](/reference/react/memo) and this lets it skip re-rendering. There are other reasons you might need `useCallback` which are described further on this page.
-<Trans>**`handleSubmit`을 `useCallback`으로 감싸면, 리렌더링 사이에 *동일한* 함수가 되도록 할 수 있습니다**(의존성이 변경될때까지). 특별한 이유가 없는 한 함수를 `useCallback`으로 래핑할 필요는 없습니다. [`memo`](/reference/react/memo)로 래핑된 컴포넌트에 함수를 전달하면 이로 인해 리렌더링을 건너뛸 수 있게 되기 때문입니다. `useCallback`이 필요한 다른 이유들은 이 페이지 하단에 더 자세히 설명되어 있습니다.</Trans>
+<Trans>**`handleSubmit`을 `useCallback`으로 감싸면, 리렌더링 사이에 *동일한* 함수가 되도록 할 수 있습니다**(의존성이 변경될때까지). 특별한 이유가 없는 한 함수를 `useCallback`으로 감쌀 필요는 없습니다. [`memo`](/reference/react/memo)로 감싼 컴포넌트에 함수를 전달하면 이로 인해 리렌더링을 건너뛸 수 있게 되기 때문입니다. `useCallback`이 필요한 다른 이유들은 이 페이지 하단에 더 자세히 설명되어 있습니다.</Trans>
 
 <Note>
 
@@ -266,8 +266,8 @@ Caching a function with `useCallback`  is only valuable in a few cases:
 - You pass it as a prop to a component wrapped in [`memo`.](/reference/react/memo) You want to skip re-rendering if the value hasn't changed. Memoization lets your component re-render only if dependencies changed.
 - The function you're passing is later used as a dependency of some Hook. For example, another function wrapped in `useCallback` depends on it, or you depend on this function from [`useEffect.`](/reference/react/useEffect)
 <TransBlock>
-- [`memo`](/reference/react/memo)로 래핑된 컴포넌트에 prop으로 전달합니다. 값이 변경되지 않았다면 렌더링을 건너뛰고 싶을 것입니다. 메모이제이션을 사용하면 의존성이 변경된 경우에만 컴포넌트를 리렌더링할 수 있습니다.
-- 전달한 함수는 나중에 일부 Hook의 의존성으로 사용됩니다. 예를 들어, `useCallback`으로 래핑된 다른 함수가 이 함수에 의존하거나, `useEffect`에서 이 함수에 의존할 수 있습니다.
+- [`memo`](/reference/react/memo)로 감싼 컴포넌트에 prop으로 전달합니다. 값이 변경되지 않았다면 렌더링을 건너뛰고 싶을 것입니다. 메모이제이션을 사용하면 의존성이 변경된 경우에만 컴포넌트를 리렌더링할 수 있습니다.
+- 전달한 함수는 나중에 일부 Hook의 의존성으로 사용됩니다. 예를 들어, `useCallback`으로 감싼 다른 함수가 이 함수에 의존하거나, `useEffect`에서 이 함수에 의존할 수 있습니다.
 </TransBlock>
 
 There is no benefit to wrapping a function in `useCallback` in other cases. There is no significant harm to doing that either, so some teams choose to not think about individual cases, and memoize as much as possible. The downside is that code becomes less readable. Also, not all memoization is effective: a single value that's "always new" is enough to break memoization for an entire component.
@@ -806,7 +806,7 @@ This creates a problem. [Every reactive value must be declared as a dependency o
 ```
 
 To solve this, you can wrap the function you need to call from an Effect into `useCallback`:
-<Trans>이 문제를 해결하려면 Effect에서 호출해야 하는 함수를 `useCallback`으로 래핑하면 됩니다:</Trans>
+<Trans>이 문제를 해결하려면 Effect에서 호출해야 하는 함수를 `useCallback`으로 감싸면 됩니다:</Trans>
 
 ```js {4-9,16}
 function ChatRoom({ roomId }) {

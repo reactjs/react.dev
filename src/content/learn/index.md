@@ -624,7 +624,7 @@ Functions starting with `use` are called *Hooks*. `useState` is a built-in Hook 
 <Trans>`use`로 시작하는 함수를 *훅(Hook)*이라고 합니다. `useState`는 React에서 제공하는 빌트인 훅입니다. 다른 내장 훅은 [React API reference](/reference/react)에서 찾을 수 있으며, 기존의 훅을 조합하여 자신만의 훅을 작성할 수도 있습니다.</Trans>
 
 Hooks are more restrictive than other functions. You can only call Hooks *at the top* of your components (or other Hooks). If you want to use `useState` in a condition or a loop, extract a new component and put it there.
-<Trans>훅은 일반 함수보다 더 제한적입니다. 컴포넌트(또는 다른 훅)의 *최상위 레벨*에서만 훅을 호출할 수 있습니다. 조건이나 루프에서 `useState`를 사용하려면 새 컴포넌트를 추출하여 거기에 넣어야 합니다.</Trans>
+<Trans>훅은 일반 함수보다 더 제한적입니다. 컴포넌트(또는 다른 훅)의 *최상위 레벨*에서만 훅을 호출할 수 있습니다. 조건문이나 반복문에서 `useState`를 사용하고 싶다면, 대신 새로운 컴포넌트를 추출하고 그 컴포넌트에 작성하세요.</Trans>
 
 ## Sharing data between components<Trans>컴포넌트 간 데이터 공유하기</Trans> {/*sharing-data-between-components*/}
 

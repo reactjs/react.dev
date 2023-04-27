@@ -381,7 +381,7 @@ State is just one of those features, but you will meet the other Hooks later.
 <Pitfall>
 
 **Hooks—functions starting with `use`—can only be called at the top level of your components or [your own Hooks.](/learn/reusing-logic-with-custom-hooks)** You can't call Hooks inside conditions, loops, or other nested functions. Hooks are functions, but it's helpful to think of them as unconditional declarations about your component's needs. You "use" React features at the top of your component similar to how you "import" modules at the top of your file.
-<Trans>**훅(`use`로 시작하는 함수)은 “컴포넌트의 최상위 레벨” (최상위 컴포넌트 아님) 또는 [커스텀 훅](/learn/reusing-logic-with-custom-hooks)에서만 호출할 수 있습니다.** 조건, 루프 또는 기타 중첩된 함수 내부에서는 훅을 호출할 수 없습니다. 훅은 함수이지만 컴포넌트의 필요에 대한 무조건적인 선언으로 생각하면 도움이 됩니다. 파일 상단에서 모듈을 "import"하는 것과 유사하게 컴포넌트 상단에서 React 기능을 "사용"합니다.</Trans>
+<Trans>**훅(`use`로 시작하는 함수)은 “컴포넌트의 최상위 레벨” (최상위 컴포넌트 아님) 또는 [커스텀 훅](/learn/reusing-logic-with-custom-hooks)에서만 호출할 수 있습니다.** 조건문, 반복문 또는 기타 중첩된 함수 내부에서는 훅을 호출할 수 없습니다. 훅은 함수이지만 컴포넌트의 필요에 대한 무조건적인 선언으로 생각하면 도움이 됩니다. 파일 상단에서 모듈을 "import"하는 것과 유사하게 컴포넌트 상단에서 React 기능을 "사용"합니다.</Trans>
 
 </Pitfall>
 

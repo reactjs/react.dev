@@ -158,7 +158,7 @@ export function Page({children, toc, routeTree, meta, section}: PageProps) {
                     category="Announcements"
                     categoryId="DIC_kwDOJP6Dbc4CWGHq"
                     mapping="pathname"
-                    strict="0"
+                    strict="1"
                     reactionsEnabled="1"
                     emitMetadata="0"
                     inputPosition="top"

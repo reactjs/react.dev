@@ -4,6 +4,13 @@ translatedTitle: 컴포넌트 import 및 export
 translators: [정재남, 박문하, 최민정]
 ---
 
+<iframe 
+  style={{aspectRatio: 1.7778, width: '100%'}} 
+  src="https://www.youtube.com/embed/playlist?list=PLjQV3hketAJkh6BEl0n4PDS_2fBd0cS9v&index=8"
+  title="YouTube video player" 
+  frameborder="0" 
+/>
+
 <Intro>
 
 The magic of components lies in their reusability: you can create components that are composed of other components. But as you nest more and more components, it often makes sense to start splitting them into different files. This lets you keep your files easy to scan and reuse components in more places.

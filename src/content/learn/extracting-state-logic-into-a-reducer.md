@@ -4,6 +4,13 @@ translatedTitle: State로직을 Reducer로 추출하기
 translators: [이승효, 고석영, 안예지, 원주혜]
 ---
 
+<iframe 
+  style={{aspectRatio: 1.7778, width: '100%'}} 
+  src="https://www.youtube.com/embed/playlist?list=PLjQV3hketAJkh6BEl0n4PDS_2fBd0cS9v&index=27"
+  title="YouTube video player" 
+  frameborder="0" 
+/>
+
 <Intro>
 
 Components with many state updates spread across many event handlers can get overwhelming. For these cases, you can consolidate all the state update logic outside your component in a single function, called a _reducer_.

@@ -4,6 +4,13 @@ translatedTitle: Reducer와 Context로 확장하기
 translators: [고석영, 이상희, 정재남]
 ---
 
+<iframe 
+  style={{aspectRatio: 1.7778, width: '100%'}} 
+  src="https://www.youtube.com/embed/playlist?list=PLjQV3hketAJkh6BEl0n4PDS_2fBd0cS9v&index=29"
+  title="YouTube video player" 
+  frameborder="0" 
+/>
+
 <Intro>
 
 Reducers let you consolidate a component's state update logic. Context lets you pass information deep down to other components. You can combine reducers and context together to manage state of a complex screen.

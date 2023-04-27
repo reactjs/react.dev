@@ -4,6 +4,13 @@ translatedTitle: state로 입력에 반응하기
 translators: [유한나라, 조성민, 정재남]
 ---
 
+<iframe 
+  style={{aspectRatio: 1.7778, width: '100%'}} 
+  src="https://www.youtube.com/embed/playlist?list=PLjQV3hketAJkh6BEl0n4PDS_2fBd0cS9v&index=22"
+  title="YouTube video player" 
+  frameborder="0" 
+/>
+
 <Intro>
 
 React provides a declarative way to manipulate the UI. Instead of manipulating individual pieces of the UI directly, you describe the different states that your component can be in, and switch between them in response to the user input. This is similar to how designers think about the UI.

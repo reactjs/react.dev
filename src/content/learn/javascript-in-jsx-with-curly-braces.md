@@ -4,6 +4,13 @@ translatedTitle: JSX에서 JavaScript 사용하기
 translators: [강민혜, 유한나라, 정재남]
 ---
 
+<iframe 
+  style={{aspectRatio: 1.7778, width: '100%'}} 
+  src="https://www.youtube.com/embed/playlist?list=PLjQV3hketAJkh6BEl0n4PDS_2fBd0cS9v&index=10"
+  title="YouTube video player" 
+  frameborder="0" 
+/>
+
 <Intro>
 
 JSX lets you write HTML-like markup inside a JavaScript file, keeping rendering logic and content in the same place. Sometimes you will want to add a little JavaScript logic or reference a dynamic property inside that markup. In this situation, you can use curly braces in your JSX to open a window to JavaScript.

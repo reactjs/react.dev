@@ -4,6 +4,13 @@ translatedTitle: 스냅샷으로서의 state
 translators: [안예지, 서민택, 유은미, 손한종, 원주혜, 정재남]
 ---
 
+<iframe 
+  style={{aspectRatio: 1.7778, width: '100%'}} 
+  src="https://www.youtube.com/embed/playlist?list=PLjQV3hketAJkh6BEl0n4PDS_2fBd0cS9v&index=18"
+  title="YouTube video player" 
+  frameborder="0" 
+/>
+
 <Intro>
 
 State variables might look like regular JavaScript variables that you can read and write to. However, state behaves more like a snapshot. Setting it does not change the state variable you already have, but instead triggers a re-render.

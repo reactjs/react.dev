@@ -2215,7 +2215,7 @@ export function useCounter(delay) {
 #### Extract `useInterval` out of `useCounter`<Trans>`useCounter`에서 `useInterval` 추출하기</Trans> {/*extract-useinterval-out-of-usecounter*/}
 
 Currently, your `useCounter` Hook does two things. It sets up an interval, and it also increments a state variable on every interval tick. Split out the logic that sets up the interval into a separate Hook called `useInterval`. It should take two arguments: the `onTick` callback, and the `delay`. After this change, your `useCounter` implementation should look like this:
-<Trans>현재 사용 중인 `useCounter` 훅은 두 가지 작업을 수행합니다. interval을 설정하고 간격이 tick 될 때마다 state 변수를 증가시킵니다. interval을 설정하는 로직을 `useInterval`이라는 별도의 훅으로 분리하세요. 이 훅은 `onTick` 과`delay` 라는 두 개의 인수를 받아야 합니다. 이렇게 변경하면 `useCounter`구현은 다음과 같이 보일 것입니다:</Trans>
+<Trans>현재 사용 중인 `useCounter` 훅은 두 가지 작업을 수행합니다. interval을 설정하고 매 tick마다 state 변수를 증가시킵니다. interval을 설정하는 로직을 `useInterval`이라는 별도의 훅으로 분리하세요. 이 훅은 `onTick` 과`delay` 라는 두 개의 인수를 받아야 합니다. 이렇게 변경하면 `useCounter`구현은 다음과 같이 보일 것입니다:</Trans>
 
 ```js
 export function useCounter(delay) {
@@ -2266,7 +2266,7 @@ export function useCounter(delay) {
 <Solution>
 
 The logic inside `useInterval` should set up and clear the interval. It doesn't need to do anything else.
-<Trans>`useInterval` 내부의 로직에서 간격을 설정하고 지워야 합니다. 다른 작업은 할 필요가 없습니다.</Trans>
+<Trans>`useInterval` 내부에서 interval을 설정하고 지워야 합니다. 다른 작업은 할 필요가 없습니다.</Trans>
 
 <Sandpack>
 
@@ -2414,10 +2414,10 @@ Inside `useInterval`, wrap the tick callback into an Effect Event, as you did [e
 <Trans>`useInterval` 내에서 [이 페이지의 앞부분에서 한 것처럼](/learn/reusing-logic-with-custom-hook#passing-event-handlers-to-custom-hook) tick 콜백을 Effect Event로 감싸세요.</Trans>
 
 This will allow you to omit `onTick` from dependencies of your Effect. The Effect won't re-synchronize on every re-render of the component, so the page background color change interval won't get reset every second before it has a chance to fire.
-<Trans>이렇게 하면 Effect의 의존성에서 `onTick`을 생략할 수 있습니다. 컴포넌트를 다시 렌더링할 때마다 Effect가 다시 동기화되지 않으므로 페이지 배경색 변경 간격이 매초마다 재설정되지 않고 실행될 수 있습니다.</Trans>
+<Trans>이렇게 하면 Effect의 의존성에서 `onTick`을 생략할 수 있습니다. 컴포넌트를 다시 렌더링할 때마다 Effect가 다시 동기화되지 않으므로, 페이지 배경색을 변경하는 interval이 매초마다 재설정되지 않고 그대로 유지될 수 있습니다.</Trans>
 
 With this change, both intervals work as expected and don't interfere with each other:
-<Trans>해당 변경으로 두 간격이 모두 예상대로 작동하며 서로 간섭하지 않습니다:</Trans>
+<Trans>해당 변경으로 두 interval이 모두 예상대로 작동하며 서로 간섭하지 않습니다:</Trans>
 
 <Sandpack>
 

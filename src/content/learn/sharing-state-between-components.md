@@ -4,6 +4,13 @@ translatedTitle: 컴포넌트 간의 state 공유
 translators: [송윤지, 김아영, 고석영]
 ---
 
+<iframe 
+  style={{aspectRatio: 1.7778, width: '100%'}} 
+  src="https://www.youtube.com/embed/playlist?list=PLjQV3hketAJkh6BEl0n4PDS_2fBd0cS9v&index=25"
+  title="YouTube video player" 
+  frameborder="0" 
+/>
+
 <Intro>
 
 Sometimes, you want the state of two components to always change together. To do it, remove state from both of them, move it to their closest common parent, and then pass it down to them via props. This is known as *lifting state up,* and it's one of the most common things you will do writing React code.

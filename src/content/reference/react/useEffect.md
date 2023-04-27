@@ -89,7 +89,7 @@ function ChatRoom({ roomId }) {
 ### Connecting to an external system<Trans>외부 시스템에 연결하기</Trans> {/*connecting-to-an-external-system*/}
 
 Some components need to stay connected to the network, some browser API, or a third-party library, while they are displayed on the page. These systems aren't controlled by React, so they are called *external.*
-<Trans>때로는 컴포넌트가 페이지에 표시되는 동안 네트워크, 일부 브라우저 API 또는 타사 라이브러리에 연결 상태를 유지해야 할 수도 있습니다. 이러한 시스템은 React에서 제어되지 않으므로 *외부(external)*라고 합니다.</Trans>
+<Trans>때로는 컴포넌트가 페이지에 표시되는 동안 네트워크, 일부 브라우저 API 또는 타사 라이브러리에 연결 상태를 유지해야 할 수도 있습니다. 이러한 시스템은 React에서 제어되지 않으므로 *외부(external)* 라고 합니다.</Trans>
 
 To [connect your component to some external system,](/learn/synchronizing-with-effects) call `useEffect` at the top level of your component:
 <Trans>[컴포넌트를 외부 시스템에 연결하려면](/learn/synchronizing-with-effects) 컴포넌트의 최상위 레벨에서 `useEffect`를 호출하세요:</Trans>
@@ -1564,7 +1564,7 @@ body {
 </Sandpack>
 
 Now that you're passing `c => c + 1` instead of `count + 1`, [your Effect no longer needs to depend on `count`.](/learn/removing-effect-dependencies#are-you-reading-some-state-to-calculate-the-next-state) As a result of this fix, it won't need to cleanup and setup the interval again every time the `count` changes.
-<Trans>이제 `count + 1`대신 `c => c + 1`을 전달하므로 [Effect는 더 이상 `count`에 의존할 필요가 없습니다.](/learn/removing-effect-dependencies#are-you-reading-some-state-to-calculate-the-next-state) 이 수정으로 `count`가 변경될 때마다 간격을 다시 클린업하고 셋업할 필요가 없습니다.</Trans>
+<Trans>이제 `count + 1`대신 `c => c + 1`을 전달하므로 [Effect는 더 이상 `count`에 의존할 필요가 없습니다.](/learn/removing-effect-dependencies#are-you-reading-some-state-to-calculate-the-next-state) 이 수정으로 `count`가 변경될 때마다 interval을 다시 클린업하고 셋업할 필요가 없습니다.</Trans>
 
 ---
 

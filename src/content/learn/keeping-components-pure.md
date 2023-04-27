@@ -4,6 +4,13 @@ translatedTitle: 컴포넌트 순수성 유지
 translators: [정현수, 정재남, 고석영]
 ---
 
+<iframe 
+  style={{aspectRatio: 1.7778, width: '100%'}} 
+  src="https://www.youtube.com/embed/playlist?list=PLjQV3hketAJkh6BEl0n4PDS_2fBd0cS9v&index=14"
+  title="YouTube video player" 
+  frameborder="0" 
+/>
+
 <Intro>
 
 Some JavaScript functions are *pure.* Pure functions only perform a calculation and nothing more. By strictly only writing your components as pure functions, you can avoid an entire class of baffling bugs and unpredictable behavior as your codebase grows. To get these benefits, though, there are a few rules you must follow.

@@ -4,6 +4,13 @@ translatedTitle: 설치하기
 translators: [정재남]
 ---
 
+<iframe 
+  style={{aspectRatio: 1.7778, width: '100%'}} 
+  src="https://www.youtube.com/embed/playlist?list=PLjQV3hketAJkh6BEl0n4PDS_2fBd0cS9v&index=1"
+  title="YouTube video player" 
+  frameborder="0" 
+/>
+
 <Intro>
 
 React has been designed from the start for gradual adoption. You can use as little or as much React as you need. Whether you want to get a taste of React, add some interactivity to an HTML page, or start a complex React-powered app, this section will help you get started.

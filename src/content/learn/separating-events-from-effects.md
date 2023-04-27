@@ -1427,7 +1427,7 @@ button { margin: 10px; }
 <Solution>
 
 The problem with the above example is that it extracted an Effect Event called `onMount` without considering what the code should actually be doing. You should only extract Effect Events for a specific reason: when you want to make a part of your code non-reactive. However, the `setInterval` call *should* be reactive with respect to the `delay` state variable. If the `delay` changes, you want to set up the interval from scratch! To fix this code, pull all the reactive code back inside the Effect:
-<Trans>위 예제의 문제점은 코드가 실제로 수행해야 할 작업을 고려하지 않고 `onMount`라는 Effect Event를 추출했다는 것입니다. Effect Event는 특정 이유, 즉 코드의 일부를 비반응적으로 만들고자 할 때만 추출해야 합니다. 하지만 `setInterval` 호출은 `delay` state 변수에 대해 반응형이어야 합니다. `delay`가 변경되면 간격을 처음부터 다시 설정하고 싶을 것입니다! 이 코드를 수정하려면 모든 반응형 코드를 Effect 내부로 다시 가져와야 합니다:</Trans>
+<Trans>위 예제의 문제점은 코드가 실제로 수행해야 할 작업을 고려하지 않고 `onMount`라는 Effect Event를 추출했다는 것입니다. Effect Event는 특정 이유, 즉 코드의 일부를 비반응적으로 만들고자 할 때만 추출해야 합니다. 하지만 `setInterval` 호출은 `delay` state 변수에 대해 반응형이어야 합니다. `delay`가 변경되면 interval을 처음부터 다시 설정하고 싶을 것입니다! 이 코드를 수정하려면 모든 반응형 코드를 Effect 내부로 다시 가져와야 합니다:</Trans>
 
 <Sandpack>
 

@@ -4,6 +4,13 @@ translatedTitle: "State: 컴포넌트의 메모리"
 translators: [고석영, 박문하, 전시윤, 정재남]
 ---
 
+<iframe 
+  style={{aspectRatio: 1.7778, width: '100%'}} 
+  src="https://www.youtube.com/embed/playlist?list=PLjQV3hketAJkh6BEl0n4PDS_2fBd0cS9v&index=16"
+  title="YouTube video player" 
+  frameborder="0" 
+/>
+
 <Intro>
 
 Components often need to change what's on the screen as a result of an interaction. Typing into the form should update the input field, clicking "next" on an image carousel should change which image is displayed, clicking "buy" should put a product in the shopping cart. Components need to "remember" things: the current input value, the current image, the shopping cart. In React, this kind of component-specific memory is called *state*.

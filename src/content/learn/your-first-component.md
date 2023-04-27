@@ -4,6 +4,13 @@ translatedTitle: 첫번째 컴포넌트
 translators: [정재남, 박문하, 유한나라]
 ---
 
+<iframe 
+  style={{aspectRatio: 1.7778, width: '100%'}} 
+  src="https://www.youtube.com/embed/playlist?list=PLjQV3hketAJkh6BEl0n4PDS_2fBd0cS9v&index=7"
+  title="YouTube video player" 
+  frameborder="0" 
+/>
+
 <Intro>
 
 *Components* are one of the core concepts of React. They are the foundation upon which you build user interfaces (UI), which makes them the perfect place to start your React journey!

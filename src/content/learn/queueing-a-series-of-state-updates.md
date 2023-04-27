@@ -4,6 +4,13 @@ translatedTitle: 여러 state 업데이트를 큐에 담기
 translators: [전시윤, 이언호, 정재남]
 ---
 
+<iframe 
+  style={{aspectRatio: 1.7778, width: '100%'}} 
+  src="https://www.youtube.com/embed/playlist?list=PLjQV3hketAJkh6BEl0n4PDS_2fBd0cS9v&index=19"
+  title="YouTube video player" 
+  frameborder="0" 
+/>
+
 <Intro>
 
 Setting a state variable will queue another render. But sometimes you might want to perform multiple operations on the value before queueing the next render. To do this, it helps to understand how React batches state updates.

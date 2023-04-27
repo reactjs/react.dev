@@ -4,6 +4,13 @@ translatedTitle: 렌더링하고 커밋하기
 translators: [박문하, 강승훈, 김아영, 정재남]
 ---
 
+<iframe 
+  style={{aspectRatio: 1.7778, width: '100%'}} 
+  src="https://www.youtube.com/embed/playlist?list=PLjQV3hketAJkh6BEl0n4PDS_2fBd0cS9v&index=17"
+  title="YouTube video player" 
+  frameborder="0" 
+/>
+
 <Intro>
 
 Before your components are displayed on screen, they must be rendered by React. Understanding the steps in this process will help you think about how your code executes and explain its behavior.

@@ -4,6 +4,13 @@ translatedTitle: 이벤트에 응답하기
 translators: [최민정, 손한종, 정재남]
 ---
 
+<iframe 
+  style={{aspectRatio: 1.7778, width: '100%'}} 
+  src="https://www.youtube.com/embed/playlist?list=PLjQV3hketAJkh6BEl0n4PDS_2fBd0cS9v&index=15"
+  title="YouTube video player" 
+  frameborder="0" 
+/>
+
 <Intro>
 
 React lets you add *event handlers* to your JSX. Event handlers are your own functions that will be triggered in response to interactions like clicking, hovering, focusing form inputs, and so on.

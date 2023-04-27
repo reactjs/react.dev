@@ -4,6 +4,13 @@ translatedTitle: 객체 state 업데이트
 translators: [안예지, 원주혜, 고석영]
 ---
 
+<iframe 
+  style={{aspectRatio: 1.7778, width: '100%'}} 
+  src="https://www.youtube.com/embed/playlist?list=PLjQV3hketAJkh6BEl0n4PDS_2fBd0cS9v&index=20"
+  title="YouTube video player" 
+  frameborder="0" 
+/>
+
 <Intro>
 
 State can hold any kind of JavaScript value, including objects. But you shouldn't change objects that you hold in the React state directly. Instead, when you want to update an object, you need to create a new one (or make a copy of an existing one), and then set the state to use that copy.

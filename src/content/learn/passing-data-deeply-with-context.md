@@ -4,6 +4,13 @@ translatedTitle: context로 데이터 깊숙이 전달하기
 translators: [이승효, 서민택, 이도원]
 ---
 
+<iframe 
+  style={{aspectRatio: 1.7778, width: '100%'}} 
+  src="https://www.youtube.com/embed/playlist?list=PLjQV3hketAJkh6BEl0n4PDS_2fBd0cS9v&index=28"
+  title="YouTube video player" 
+  frameborder="0" 
+/>
+
 <Intro>
 
 Usually, you will pass information from a parent component to a child component via props. But passing props can become verbose and inconvenient if you have to pass them through many components in the middle, or if many components in your app need the same information. *Context* lets the parent component make some information available to any component in the tree below it—no matter how deep—without passing it explicitly through props.

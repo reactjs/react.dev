@@ -4,6 +4,13 @@ translatedTitle: state 보존 및 재설정
 translators: [조성민, 고석영, 김아영, 정재남]
 ---
 
+<iframe 
+  style={{aspectRatio: 1.7778, width: '100%'}} 
+  src="https://www.youtube.com/embed/playlist?list=PLjQV3hketAJkh6BEl0n4PDS_2fBd0cS9v&index=26"
+  title="YouTube video player" 
+  frameborder="0" 
+/>
+
 <Intro>
 
 State is isolated between components. React keeps track of which state belongs to which component based on their place in the UI tree. You can control when to preserve state and when to reset it between re-renders.

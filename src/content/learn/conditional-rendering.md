@@ -4,6 +4,13 @@ translatedTitle: 조건부 렌더링
 translators: [안예지, 이나령, 정재남]
 ---
 
+<iframe 
+  style={{aspectRatio: 1.7778, width: '100%'}} 
+  src="https://www.youtube.com/embed/playlist?list=PLjQV3hketAJkh6BEl0n4PDS_2fBd0cS9v&index=12"
+  title="YouTube video player" 
+  frameborder="0" 
+/>
+
 <Intro>
 
 Your components will often need to display different things depending on different conditions. In React, you can conditionally render JSX using JavaScript syntax like `if` statements, `&&`, and `? :` operators.

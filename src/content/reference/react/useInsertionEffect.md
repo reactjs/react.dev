@@ -63,7 +63,7 @@ function useCSS(rule) {
 `useInsertionEffect` returns `undefined`.
 <Trans>`useInsertionEffect`는 `undefined`를 반환합니다.</Trans>
 
-#### Caveats<Trans>주의사항</Trans> <Trans>주의 사항</Trans> {/*caveats*/}
+#### Caveats<Trans>주의사항</Trans> {/*caveats*/}
 
 * Effects only run on the client. They don't run during server rendering.
 * You can't update state from inside `useInsertionEffect`.

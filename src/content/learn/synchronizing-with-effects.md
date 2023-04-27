@@ -4,6 +4,13 @@ translatedTitle: Effect와 동기화하기
 translators: [손한종, 정재남, 최다인, 이지수, 고석영]
 ---
 
+<iframe 
+  style={{aspectRatio: 1.7778, width: '100%'}} 
+  src="https://www.youtube.com/embed/playlist?list=PLjQV3hketAJkh6BEl0n4PDS_2fBd0cS9v&index=32"
+  title="YouTube video player" 
+  frameborder="0" 
+/>
+
 <Intro>
 
 Some components need to synchronize with external systems. For example, you might want to control a non-React component based on the React state, set up a server connection, or send an analytics log when a component appears on the screen. *Effects* let you run some code after rendering so that you can synchronize your component with some system outside of React.

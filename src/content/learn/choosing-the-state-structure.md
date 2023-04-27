@@ -4,6 +4,13 @@ translatedTitle: State 구조 선택
 translators: [송윤지, 최민정, 김아영]
 ---
 
+<iframe 
+  style={{aspectRatio: 1.7778, width: '100%'}} 
+  src="https://www.youtube.com/embed/playlist?list=PLjQV3hketAJkh6BEl0n4PDS_2fBd0cS9v&index=24"
+  title="YouTube video player" 
+  frameborder="0" 
+/>
+
 <Intro>
 
 Structuring state well can make a difference between a component that is pleasant to modify and debug, and one that is a constant source of bugs. Here are some tips you should consider when structuring state.

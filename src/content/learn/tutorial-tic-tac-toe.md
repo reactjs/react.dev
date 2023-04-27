@@ -4,6 +4,13 @@ translatedTitle: '자습서: 틱택토 게임'
 translators: [이승효, 조성민, 정재남]
 ---
 
+<iframe 
+  style={{aspectRatio: 1.7778, width: '100%'}} 
+  src="https://www.youtube.com/embed/playlist?list=PLjQV3hketAJkh6BEl0n4PDS_2fBd0cS9v&index=3"
+  title="YouTube video player" 
+  frameborder="0" 
+/>
+  
 <Intro>
 
 You will build a small tic-tac-toe game during this tutorial. This tutorial does not assume any existing React knowledge. The techniques you'll learn in the tutorial are fundamental to building any React app, and fully understanding it will give you a deep understanding of 
@@ -1008,6 +1015,13 @@ For local development, React DevTools is available as a [Chrome](https://chrome.
 
 </Note>
 
+<iframe 
+  style={{aspectRatio: 1.7778, width: '100%'}} 
+  src="https://www.youtube.com/embed/playlist?list=PLjQV3hketAJkh6BEl0n4PDS_2fBd0cS9v&index=4"
+  title="YouTube video player" 
+  frameborder="0" 
+/>
+
 ## Completing the game<Trans>게임 완성하기</Trans> {/*completing-the-game*/}
 
 By this point, you have all the basic building blocks for your tic-tac-toe game. To have a complete game, you now need to alternate placing "X"s and "O"s on the board, and you need a way to determine a winner.
@@ -1877,6 +1891,13 @@ body {
 ```
 
 </Sandpack>
+
+<iframe 
+  style={{aspectRatio: 1.7778, width: '100%'}} 
+  src="https://www.youtube.com/embed/playlist?list=PLjQV3hketAJkh6BEl0n4PDS_2fBd0cS9v&index=5"
+  title="YouTube video player" 
+  frameborder="0" 
+/>
 
 ## Adding time travel<Trans>시간여행 추가하기</Trans> {/*adding-time-travel*/}
 

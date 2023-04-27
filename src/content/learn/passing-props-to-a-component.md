@@ -4,6 +4,13 @@ translatedTitle: 컴포넌트에 props 전달하기
 translators: [전시윤, 박문하, 정재남]
 ---
 
+<iframe 
+  style={{aspectRatio: 1.7778, width: '100%'}} 
+  src="https://www.youtube.com/embed/playlist?list=PLjQV3hketAJkh6BEl0n4PDS_2fBd0cS9v&index=11"
+  title="YouTube video player" 
+  frameborder="0" 
+/>
+
 <Intro>
 
 React components use *props* to communicate with each other. Every parent component can pass some information to its child components by giving them props. Props might remind you of HTML attributes, but you can pass any JavaScript value through them, including objects, arrays, and functions.

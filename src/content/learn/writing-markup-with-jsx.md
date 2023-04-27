@@ -4,6 +4,13 @@ translatedTitle: JSX로 마크업 작성하기
 translators: [유한나라, 고석영, 서민택]
 ---
 
+<iframe 
+  style={{aspectRatio: 1.7778, width: '100%'}} 
+  src="https://www.youtube.com/embed/playlist?list=PLjQV3hketAJkh6BEl0n4PDS_2fBd0cS9v&index=9"
+  title="YouTube video player" 
+  frameborder="0" 
+/>
+
 <Intro>
 
 *JSX* is a syntax extension for JavaScript that lets you write HTML-like markup inside a JavaScript file. Although there are other ways to write components, most React developers prefer the conciseness of JSX, and most codebases use it.

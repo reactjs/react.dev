@@ -4,6 +4,13 @@ translatedTitle: 배열 state 업데이트
 translators: [고석영, 전시윤, 김아영, 이승효, 이나령, 정재남]
 ---
 
+<iframe 
+  style={{aspectRatio: 1.7778, width: '100%'}} 
+  src="https://www.youtube.com/embed/playlist?list=PLjQV3hketAJkh6BEl0n4PDS_2fBd0cS9v&index=21"
+  title="YouTube video player" 
+  frameborder="0" 
+/>
+
 <Intro>
 
 Arrays are mutable in JavaScript, but you should treat them as immutable when you store them in state. Just like with objects, when you want to update an array stored in state, you need to create a new one (or make a copy of an existing one), and then set state to use the new array.

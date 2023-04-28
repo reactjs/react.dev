@@ -1126,7 +1126,7 @@ To memoize a function with `useMemo`, your calculation function would have to re
 export default function Page({ productId, referrer }) {
   const handleSubmit = useMemo(() => {
     return (orderDetails) => {
-      post('/product/' + product.id + '/buy', {
+      post('/product/' + productId + '/buy', {
         referrer,
         orderDetails
       });
@@ -1142,7 +1142,7 @@ This looks clunky! **Memoizing functions is common enough that React has a built
 ```js {2,7}
 export default function Page({ productId, referrer }) {
   const handleSubmit = useCallback((orderDetails) => {
-    post('/product/' + product.id + '/buy', {
+    post('/product/' + productId + '/buy', {
       referrer,
       orderDetails
     });

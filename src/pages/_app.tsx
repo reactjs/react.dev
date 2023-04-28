@@ -2,32 +2,33 @@
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
 
-import {useEffect} from 'react';
 import {AppProps} from 'next/app';
-import {useRouter} from 'next/router';
-import {ga} from '../utils/analytics';
 
 import '@docsearch/css';
 import '../styles/algolia.css';
 import '../styles/index.css';
 import '../styles/sandpack.css';
 import '../styles/translate.css';
+import {useSetTheme} from 'jotai/theme';
 
-/* if (typeof window !== 'undefined') {
-  if (process.env.NODE_ENV === 'production') {
-    ga('create', process.env.NEXT_PUBLIC_GA_TRACKING_ID, 'auto');
-    ga('send', 'pageview');
-  }
-  const terminationEvent = 'onpagehide' in window ? 'pagehide' : 'unload';
-  window.addEventListener(terminationEvent, function () {
-    ga('send', 'timing', 'JS Dependencies', 'unload');
-  });
-} */
+let initiated = false;
 
 export default function MyApp({Component, pageProps}: AppProps) {
-  const router = useRouter();
+  const setTheme = useSetTheme();
 
-  useEffect(() => {
+  if (typeof window !== 'undefined' && !initiated) {
+    const darkQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    setTheme('');
+    darkQuery.addEventListener('change', function (e) {
+      setTheme(e.matches ? 'dark' : 'light');
+    });
+
+    document.documentElement.classList.add(
+      window.navigator.platform.includes('Mac')
+        ? 'platform-mac'
+        : 'platform-win'
+    );
+
     // Taken from StackOverflow. Trying to detect both Safari desktop and mobile.
     const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
     if (isSafari) {
@@ -40,19 +41,9 @@ export default function MyApp({Component, pageProps}: AppProps) {
       // For other browsers, let Next.js set scrollRestoration to 'manual'.
       // It seems to work better for Chrome and Firefox which don't animate the back swipe.
     }
-  }, []);
 
-  /* useEffect(() => {
-    const handleRouteChange = (url: string) => {
-      const cleanedUrl = url.split(/[\?\#]/)[0];
-      ga('set', 'page', cleanedUrl);
-      ga('send', 'pageview');
-    };
-    router.events.on('routeChangeComplete', handleRouteChange);
-    return () => {
-      router.events.off('routeChangeComplete', handleRouteChange);
-    };
-  }, [router.events]); */
+    initiated = true;
+  }
 
   return <Component {...pageProps} />;
 }

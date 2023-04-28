@@ -19,6 +19,7 @@ import type {RouteItem} from 'components/Layout/getRouteMeta';
 import {HomeContent} from './HomeContent';
 import {TopNav} from './TopNav';
 import cn from 'classnames';
+import {useTheme} from 'jotai/theme';
 
 import(/* webpackPrefetch: true */ '../MDX/CodeBlock/CodeBlock');
 
@@ -39,6 +40,8 @@ interface PageProps {
 
 export function Page({children, toc, routeTree, meta, section}: PageProps) {
   const {asPath} = useRouter();
+  const theme = useTheme();
+
   const cleanedPath = asPath.split(/[\?\#]/)[0];
   const {route, nextRoute, prevRoute, breadcrumbs, order} = getRouteMeta(
     cleanedPath,
@@ -162,7 +165,7 @@ export function Page({children, toc, routeTree, meta, section}: PageProps) {
                     reactionsEnabled="1"
                     emitMetadata="0"
                     inputPosition="top"
-                    theme="light"
+                    theme={theme}
                     lang="ko"
                     loading="lazy"
                   />

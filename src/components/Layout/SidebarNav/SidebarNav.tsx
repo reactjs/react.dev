@@ -5,16 +5,8 @@
 import {Suspense} from 'react';
 import * as React from 'react';
 import cn from 'classnames';
-import {Feedback} from '../Feedback';
 import {SidebarRouteTree} from '../Sidebar/SidebarRouteTree';
 import type {RouteItem} from '../getRouteMeta';
-
-declare global {
-  interface Window {
-    __theme: string;
-    __setPreferredTheme: (theme: string) => void;
-  }
-}
 
 export default function SidebarNav({
   routeTree,

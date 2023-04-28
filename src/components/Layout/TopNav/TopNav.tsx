@@ -15,7 +15,6 @@ import cn from 'classnames';
 import NextLink from 'next/link';
 import {useRouter} from 'next/router';
 import {disableBodyScroll, enableBodyScroll} from 'body-scroll-lock';
-
 import {IconClose} from 'components/Icon/IconClose';
 import {IconHamburger} from 'components/Icon/IconHamburger';
 import {IconSearch} from 'components/Icon/IconSearch';
@@ -24,14 +23,7 @@ import {Logo} from '../../Logo';
 import {Feedback} from '../Feedback';
 import {SidebarRouteTree} from '../Sidebar/SidebarRouteTree';
 import type {RouteItem} from '../getRouteMeta';
-import {SidebarLink} from '../Sidebar';
-
-declare global {
-  interface Window {
-    __theme: string;
-    __setPreferredTheme: (theme: string) => void;
-  }
-}
+import {useSetTheme} from 'jotai/theme';
 
 const darkIcon = (
   <svg
@@ -141,6 +133,8 @@ export default function TopNav({
   breadcrumbs: RouteItem[];
   section: 'learn' | 'reference' | 'community' | 'blog' | 'home' | 'unknown';
 }) {
+  const setTheme = useSetTheme();
+
   const [isOpen, setIsOpen] = useState(false);
   const scrollParentRef = useRef<HTMLDivElement>(null);
   const {asPath} = useRouter();
@@ -310,9 +304,7 @@ export default function TopNav({
                   <button
                     type="button"
                     aria-label="Use Dark Mode"
-                    onClick={() => {
-                      window.__setPreferredTheme('dark');
-                    }}
+                    onClick={() => setTheme('dark')}
                     className="active:scale-95 transition-transform flex w-12 h-12 rounded-full items-center justify-center hover:bg-primary/5 hover:dark:bg-primary-dark/5 outline-link">
                     {darkIcon}
                   </button>
@@ -321,9 +313,7 @@ export default function TopNav({
                   <button
                     type="button"
                     aria-label="Use Light Mode"
-                    onClick={() => {
-                      window.__setPreferredTheme('light');
-                    }}
+                    onClick={() => setTheme('light')}
                     className="active:scale-95 transition-transform flex w-12 h-12 rounded-full items-center justify-center hover:bg-primary/5 hover:dark:bg-primary-dark/5 outline-link">
                     {lightIcon}
                   </button>

@@ -978,6 +978,34 @@ Defining `defaultProps` in class components is similar to using [default values]
 
 ---
 
+### `static propTypes` {/*static-proptypes*/}
+
+You can define `static propTypes` together with the [`prop-types`](https://www.npmjs.com/package/prop-types) library to declare the types of the props accepted by your component. These types will be checked during rendering and in development only.
+
+```js
+import PropTypes from 'prop-types';
+
+class Greeting extends React.Component {
+  static propTypes = {
+    name: PropTypes.string
+  };
+
+  render() {
+    return (
+      <h1>Hello, {this.props.name}</h1>
+    );
+  }
+}
+```
+
+<Note>
+
+We recommend using [TypeScript](https://www.typescriptlang.org/) instead of checking prop types at runtime.
+
+</Note>
+
+---
+
 ### `static getDerivedStateFromError(error)` {/*static-getderivedstatefromerror*/}
 
 If you define `static getDerivedStateFromError`, React will call it when a child component (including distant children) throws an error during rendering. This lets you display an error message instead of clearing the UI.

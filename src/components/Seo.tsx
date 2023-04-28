@@ -42,7 +42,7 @@ function getDomain(languageCode: string): string {
 export const Seo = withRouter(
   ({
     title,
-    description = 'The library for web and native user interfaces',
+    description = 'blabla bla',
     image = '/images/og-default.png',
     router,
     children,

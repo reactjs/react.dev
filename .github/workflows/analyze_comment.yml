@@ -51,4 +51,5 @@ jobs:
         uses: marocchino/sticky-pull-request-comment@v2
         with:
           header: next-bundle-analysis
+          number: ${{ steps.get-comment-body.outputs.pr-number }}
           message: ${{ steps.get-comment-body.outputs.body }}

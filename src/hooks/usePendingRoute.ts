@@ -10,11 +10,11 @@ const usePendingRoute = () => {
   const [pendingRoute, setPendingRoute] = useState<string | null>(null);
   const currentRoute = useRef<string | null>(null);
   useEffect(() => {
-    let routeTransitionTimer: any = null;
+    let routeTransitionTimer: number;
 
     const handleRouteChangeStart = (url: string) => {
       clearTimeout(routeTransitionTimer);
-      routeTransitionTimer = setTimeout(() => {
+      routeTransitionTimer = window.setTimeout(() => {
         if (currentRoute.current !== url) {
           currentRoute.current = url;
           setPendingRoute(url);

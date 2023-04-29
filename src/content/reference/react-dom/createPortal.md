@@ -24,7 +24,7 @@ title: createPortal
 
 ### `createPortal(children, domNode, key?)` {/*createportal*/}
 
-To create a portal, call `createPortal`, passing some JSX, the DOM node where it should be rendered, and an optional key:
+To create a portal, call `createPortal`, passing some JSX and the DOM node where it should be rendered:
 
 ```js
 import { createPortal } from 'react-dom';

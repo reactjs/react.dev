@@ -12,7 +12,7 @@ Some things on the screen update in response to user input. For example, clickin
 
 * [How to handle user-initiated events](/learn/responding-to-events)
 * [How to make components "remember" information with state](/learn/state-a-components-memory)
-* [How React updates the UI in two phases](/learn/render-and-commit)
+* [How React updates the UI in three phases](/learn/render-and-commit)
 * [Why state doesn't update right after you change it](/learn/state-as-a-snapshot)
 * [How to queue multiple state updates](/learn/queueing-a-series-of-state-updates)
 * [How to update an object in state](/learn/updating-objects-in-state)

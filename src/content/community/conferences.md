@@ -60,11 +60,6 @@ August 17 & 18, 2023. Salt Lake City, UT, USA
 
 [Website](https://www.reactrally.com/) - [Twitter](https://twitter.com/ReactRally) - [Instagram](https://www.instagram.com/reactrally/)
 
-### React On The Beach 2023 {/*react-on-the-beach-2023*/}
-September 07, 2023. Amsterdam, Netherlands (In-person event)
-
-[Website](https://reactonthebeach.com/) - [Twitter](https://twitter.com/reactonthebeach)
-
 ### React India 2023 {/*react-india-2023*/}
 Oct 5 - 7, 2023. In-person in Goa, India (hybrid event) + Oct 3 2023 - remote day
 

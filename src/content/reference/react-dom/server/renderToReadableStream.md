@@ -26,7 +26,7 @@ This API depends on [Web Streams.](https://developer.mozilla.org/en-US/docs/Web/
 
 ### `renderToReadableStream(reactNode, options?)` {/*rendertoreadablestream*/}
 
-Call `renderToReadableStream` to render your React tree as HTML into a [Node.js Stream.](https://nodejs.org/api/stream.html#writable-streams)
+Call `renderToReadableStream` to render your React tree as HTML into a [Readable Web Stream.](https://developer.mozilla.org/en-US/docs/Web/API/ReadableStream)
 
 ```js
 import { renderToReadableStream } from 'react-dom/server';

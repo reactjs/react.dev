@@ -1,6 +1,6 @@
 ---
 title: <Fragment> (<>...</>)
-translators: []
+translators: [이지수, 고석영]
 ---
 
 <Intro>

@@ -6,7 +6,7 @@ title: 번역 진행상황
 last updated @ 2023-05-03 16:10
 </Intro>
 
-## Reference - 진행중 (done: 20 / total: 59) {/*reference*/}
+## Reference - 진행중 (done: 21 / total: 59) {/*reference*/}
 
 |     | title                                                                |     | title                                                                                  |
 | :-: | :------------------------------------------------------------------- | :-: | :------------------------------------------------------------------------------------- |
@@ -27,7 +27,7 @@ last updated @ 2023-05-03 16:10
 |  ▢  | [5-14. useSyncExternalStore](/reference/react/useSyncExternalStore)  |  ▢  | [11. Server APIs](/reference/react-dom/server)                                         |
 |  ✅  | [5-15. useTransition](/reference/react/useTransition)                |  ▢  | [11-1. renderToNodeStream](/reference/react-dom/server/renderToNodeStream)             |
 |  ✅  | [6. Components](/reference/react/components)                         |  ▢  | [11-2. renderToPipeableStream](/reference/react-dom/server/renderToPipeableStream)     |
-|  ▢  | [6-1. `<Fragment>` (`<>`)](/reference/react/Fragment)                |  ▢  | [11-3. renderToStaticMarkup](/reference/react-dom/server/renderToStaticMarkup)         |
+|  ✅  | [6-1. `<Fragment>` (`<>`)](/reference/react/Fragment)                |  ▢  | [11-3. renderToStaticMarkup](/reference/react-dom/server/renderToStaticMarkup)         |
 |  ▢  | [6-2. `<Profiler>`](/reference/react/Profiler)                       |  ▢  | [11-4. renderToStaticNodeStream](/reference/react-dom/server/renderToStaticNodeStream) |
 |  ▢  | [6-3. `<StrictMode>`](/reference/react/StrictMode)                   |  ▢  | [11-5. renderToString](/reference/react-dom/server/renderToString)                     |
 |  ▢  | [6-4. `<Suspense>`](/reference/react/Suspense)                       |  ▢  | [12. Legacy APIs](/reference/react/legacy)                                             |

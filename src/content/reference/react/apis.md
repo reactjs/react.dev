@@ -1,6 +1,5 @@
 ---
 title: Built-in React APIs
-translatedTitle: 기본으로 제공되는 React API
 translators: [이나령]
 ---
 

@@ -1186,13 +1186,14 @@ async function Talks({ confId }) {
 
 function useNestedScrollLock(ref) {
   useEffect(() => {
+    let node = ref.current;
     let isLocked = false;
     let lastScroll = performance.now();
 
     function handleScroll() {
       if (!isLocked) {
         isLocked = true;
-        ref.current.style.pointerEvents = 'none';
+        node.style.pointerEvents = 'none';
       }
       lastScroll = performance.now();
     }
@@ -1200,7 +1201,7 @@ function useNestedScrollLock(ref) {
     function updateLock() {
       if (isLocked && performance.now() - lastScroll > 150) {
         isLocked = false;
-        ref.current.style.pointerEvents = '';
+        node.style.pointerEvents = '';
       }
     }
 

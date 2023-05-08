@@ -1,6 +1,6 @@
 ---
 title: <Suspense>
-translators: [이승효, 정재남]
+translators: [이승효, 이나령, 고석영, 정재남]
 ---
 
 <Intro>

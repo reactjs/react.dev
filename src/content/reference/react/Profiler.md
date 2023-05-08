@@ -6,7 +6,7 @@ translators: [안예지, 고석영]
 <Intro>
 
 `<Profiler>` lets you measure rendering performance of a React tree programmatically.
-<Trans>`<Profiler>` 를 사용하면 프로그래밍 방식으로 React 트리의 렌더링 성능을 측정할 수 있습니다.</Trans>
+<Trans>`<Profiler>`를 사용하면 프로그램적으로 React 트리의 렌더링 성능을 측정할 수 있습니다.</Trans>
 
 ```js
 <Profiler id="App" onRender={onRender}>
@@ -45,19 +45,19 @@ Wrap a component tree in a `<Profiler>` to measure its rendering performance.
 #### Caveats<Trans>주의사항</Trans> {/*caveats*/}
 
 * Profiling adds some additional overhead, so **it is disabled in the production build by default.** To opt into production profiling, you need to enable a [special production build with profiling enabled.](https://fb.me/react-profiling)
-<Trans>프로파일링은 약간의 오버헤드를 추가하므로 **프로덕션 빌드에서는 기본적으로 비활성화되어 있습니다.** 프로덕션 프로파일링을 사용하려면 [프로파일링이 활성화된 특수 프로덕션 빌드](https://fb.me/react-profiling)를 활성화해야 합니다.</Trans>
+<Trans>프로파일링은 약간의 오버헤드를 추가하므로 **상용 빌드에서는 기본적으로 비활성화되어 있습니다.** 상용 환경에서 프로파일링을 사용하려면 [프로파일링이 활성화된 특수 상용 빌드](https://fb.me/react-profiling)를 활성화해야 합니다.</Trans>
 
 ---
 
 ### `onRender` callback <Trans>`onRender` 콜백</Trans> {/*onrender-callback*/}
 
 React will call your `onRender` callback with information about what was rendered.
-<Trans>React는 렌더링된 내용에 대한 정보와 함께 onRender 콜백을 호출합니다.</Trans>
+<Trans>React는 렌더링된 내용에 대한 정보와 함께 `onRender` 콜백을 호출합니다.</Trans>
 
 ```js
 function onRender(id, phase, actualDuration, baseDuration, startTime, commitTime) {
   // Aggregate or log render timings...
-  // 렌더링 타이밍 집계 또는 기록...
+  // 렌더링 타이밍을 집계하거나 로그를 남깁니다...
 }
 ```
 
@@ -67,25 +67,25 @@ function onRender(id, phase, actualDuration, baseDuration, startTime, commitTime
 <Trans>`id`: 방금 커밋한 `<Profiler>` 트리의 `id` 문자열 prop입니다. 여러 프로파일러를 사용하는 경우 트리의 어느 부분이 커밋되었는지 식별할 수 있습니다.</Trans>
 
 * `phase`: `"mount"`, `"update"` or `"nested-update"`. This lets you know whether the tree has just been mounted for the first time or re-rendered due to a change in props, state, or hooks.
-<Trans>`phase`: `"mount"`,`"update"` 혹은 `"nested-update"`. 이를 통해 트리가 처음 마운트되었는지 또는 props,state 또는 훅의 변경으로 인해 다시 렌더링되었는지 알 수 있습니다.</Trans>
+<Trans>`phase`: `"mount"`,`"update"` 혹은 `"nested-update"`. 이를 통해 트리가 처음 마운트되었거나, props, state 또는 훅의 변경으로 인해 다시 렌더링되었는지 알 수 있습니다.</Trans>
 
 * `actualDuration`: The number of milliseconds spent rendering the `<Profiler>` and its descendants for the current update. This indicates how well the subtree makes use of memoization (e.g. [`memo`](/reference/react/memo) and [`useMemo`](/reference/react/useMemo)). Ideally this value should decrease significantly after the initial mount as many of the descendants will only need to re-render if their specific props change.
-<Trans>`actualDuration`: 현재 업데이트에 대해 `<Profiler>` 와 그 하위 클래스를 렌더링하는 데 걸린 시간(밀리초)입니다. 이 값은 하위 트리가 메모이제이션 (e.g. [`memo`](/reference/react/memo)와 [`useMemo`](/reference/react/useMemo))을 얼마나 잘 사용하는지를 나타냅니다. 이상적으로 이 값은 최초 마운트 이후에는 크게 감소해야 하는데, 많은 자손이 특정 props가 변경되는 경우에만 다시 렌더링하면 되기 때문입니다. </Trans>
+<Trans>`actualDuration`: 현재 업데이트에 대해 `<Profiler>` 및 하위 컴포넌트들을 렌더링하는 데 걸린 시간(밀리초)입니다. 이 값은 하위 트리가 메모이제이션(예: [`memo`](/reference/react/memo), [`useMemo`](/reference/react/useMemo))을 얼마나 잘 사용하는지를 나타냅니다. 많은 자손들은 특정 props가 변경되는 경우에만 다시 렌더링하면 되므로, 이상적으로 이 값은 최초 마운트 이후에는 크게 감소해야 합니다.</Trans>
 
 * `baseDuration`: The number of milliseconds estimating how much time it would take to re-render the entire `<Profiler>` subtree without any optimizations. It is calculated by summing up the most recent render durations of each component in the tree. This value estimates a worst-case cost of rendering (e.g. the initial mount or a tree with no memoization). Compare `actualDuration` against it to see if memoization is working.
-<Trans>`baseDuration`: 최적화 없이 전체  `<Profiler>` 하위 트리를 다시 렌더링하는 데 걸리는 시간을 추정하는 밀리초 수입니다. 트리에 있는 각 컴포넌트의 가장 최근 렌더링 시간을 합산하여 계산됩니다. 이 값은 최악의 렌더링 비용(예: 초기 마운트 또는 메모화가 없는 트리)을 추정합니다. `actualDuration`과 비교하여 메모화가 작동하는지 확인합니다. </Trans>
+<Trans>`baseDuration`: 최적화 없이 전체  `<Profiler>` 하위 트리를 다시 렌더링하는 데 걸리는 시간을 추정한 값(밀리초)입니다. 트리에 있는 각 컴포넌트의 가장 최근 렌더링 시간을 합산하여 계산합니다. 이 값은 최악의 렌더링 비용(예: 초기 마운트 또는 메모화가 없는 트리)을 추정합니다. `actualDuration`과 비교하여 메모화가 잘 작동하는지 확인하세요. </Trans>
 
 * `startTime`: A numeric timestamp for when React began rendering the current update.
 <Trans>`startTime`: React가 현재 업데이트 렌더링을 시작한 시점에 대한 숫자 타임스탬프입니다. </Trans>
 
 * `endTime`: A numeric timestamp for when React committed the current update. This value is shared between all profilers in a commit, enabling them to be grouped if desirable.
-<Trans>`endTime`: React가 현재 업데이트를 커밋한 시점에 대한 숫자 타임스탬프입니다. 이 값은 커밋의 모든 프로파일러 간에 공유되므로 원하는 경우 그룹화할 수 있습니다.</Trans>
+<Trans>`endTime`: React가 현재 업데이트를 커밋한 시점의 타임스탬프입니다. 이 값은 커밋의 모든 프로파일러 간에 공유되므로 원하는 경우 그룹화할 수 있습니다.</Trans>
 
 ---
 
 ## Usage<Trans>사용법</Trans> {/*usage*/}
 
-### Measuring rendering performance programmatically <Trans>프로그래밍 방식으로 렌더링 성능 측정하기</Trans> {/*measuring-rendering-performance-programmatically*/}
+### Measuring rendering performance programmatically <Trans>프로그램적으로 렌더링 성능 측정하기</Trans> {/*measuring-rendering-performance-programmatically*/}
 
 Wrap the `<Profiler>` component around a React tree to measure its rendering performance.
 <Trans>React 트리에 `<Profiler>` 컴포넌트를 감싸서 렌더링 성능을 측정합니다.</Trans>
@@ -100,19 +100,19 @@ Wrap the `<Profiler>` component around a React tree to measure its rendering per
 ```
 
 It requires two props: an `id` (string) and an `onRender` callback (function) which React calls any time a component within the tree "commits" an update.
-<Trans>트리 내의 컴포넌트가 업데이트를 '커밋'할 때마다 React가 호출하는 `id`(문자열)와 `onRender`콜백(함수)이라는 두 가지 prop이 필요합니다.</Trans>
+<Trans>트리 내의 컴포넌트가 업데이트를 '커밋'할 때마다 React가 호출하는 `id`(문자열)와 `onRender`콜백(함수)의 두 가지 prop이 필요합니다.</Trans>
 
 <Pitfall>
 
 Profiling adds some additional overhead, so **it is disabled in the production build by default.** To opt into production profiling, you need to enable a [special production build with profiling enabled.](https://fb.me/react-profiling)
-<Trans>프로파일링은 약간의 오버헤드를 추가하므로 **프로덕션 빌드에서는 기본적으로 비활성화되어 있습니다.** 프로덕션 프로파일링을 사용하려면 [프로파일링이 활성화된 특수 프로덕션 빌드](https://fb.me/react-profiling)를 사용하도록 설정해야 합니다.</Trans>
+<Trans>프로파일링은 약간의 오버헤드를 추가하므로 **상용 빌드에서는 기본적으로 비활성화되어 있습니다.** 상용 프로파일링을 사용하려면 [프로파일링이 활성화된 특수 상용 빌드](https://fb.me/react-profiling)를 사용하도록 설정해야 합니다.</Trans>
 
 </Pitfall>
 
 <Note>
 
 `<Profiler>` lets you gather measurements programmatically. If you're looking for an interactive profiler, try the Profiler tab in [React Developer Tools](/learn/react-developer-tools). It exposes similar functionality as a browser extension.
-<Trans>`<Profiler>` 를 사용하면 프로그래밍 방식으로 측정값을 수집할 수 있습니다. 대화형 프로파일러를 찾고 있다면 [React 개발자 도구](/learn/react-developer-tools)의 프로파일러 탭을 사용해 보세요. 브라우저 확장 프로그램과 유사한 기능을 노출합니다.</Trans>
+<Trans>`<Profiler>`를 사용하면 프로그램적으로 측정값을 수집할 수 있습니다. 대화형 프로파일러를 찾고 있다면 [React 개발자 도구](/learn/react-developer-tools)의 프로파일러 탭을 사용해 보세요. 브라우저 확장 프로그램과 유사한 기능을 노출합니다.</Trans>
 
 </Note>
 

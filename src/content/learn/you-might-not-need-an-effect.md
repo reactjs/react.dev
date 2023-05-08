@@ -189,7 +189,7 @@ Keep in mind that your machine is probably faster than your users' so it's a goo
 <Trans>컴퓨터가 사용자보다 빠를 수 있으므로 인위적으로 속도 저하를 일으켜서 성능을 테스트하는 것도 좋은 생각입니다. 예를 들어 Chrome에서는 [CPU 스로틀링](https://developer.chrome.com/blog/new-in-devtools-61/#throttling) 옵션을 제공합니다.</Trans>
 
 Also note that measuring performance in development will not give you the most accurate results. (For example, when [Strict Mode](/reference/react/StrictMode) is on, you will see each component render twice rather than once.) To get the most accurate timings, build your app for production and test it on a device like your users have.
-<Trans>또한 개발 중에 성능을 측정하는 것은 정확한 결과를 제공하지는 않는다는 점에 유의하세요. (예를 들어 [Strict Mode](/reference/react/StrictMode)를 켜면, 각 컴포넌트가 한 번이 아닌 두 번씩 렌더링되는 것을 볼 수 있습니다.) 가장 정확한 타이밍을 얻으려면 프로덕션용 앱을 빌드하고 사용자가 사용하는 것과 동일한 기기에서 테스트하세요.</Trans>
+<Trans>또한 개발 중에 성능을 측정하는 것은 정확한 결과를 제공하지는 않는다는 점에 유의하세요. (예를 들어 [Strict Mode](/reference/react/StrictMode)를 켜면, 각 컴포넌트가 한 번이 아닌 두 번씩 렌더링되는 것을 볼 수 있습니다.) 가장 정확한 타이밍을 얻으려면 상용 앱을 빌드하고 사용자가 사용하는 것과 동일한 기기에서 테스트하세요.</Trans>
 
 </DeepDive>
 
@@ -557,7 +557,7 @@ However, you'll quickly discover that it [runs twice in development.](/learn/syn
 <Trans>그러나 이 함수가 [개발 중에 두 번 실행된다는 것](/learn/synchronizing-with-effects#how-to-handle-the-effect-firing-twice-in-development)을 금방 알게 될 것입니다. 이 함수는 두 번 호출되도록 설계되지 않았기 때문에 인증 토큰이 무효화되는 등의 문제가 발생할 수 있습니다. 일반적으로 컴포넌트는 다시 마운트할 때 복원력이 있어야 합니다. 여기에는 최상위 `App` 컴포넌트도 포함됩니다.</Trans>
 
 Although it may not ever get remounted in practice in production, following the same constraints in all components makes it easier to move and reuse code. If some logic must run *once per app load* rather than *once per component mount*, add a top-level variable to track whether it has already executed:
-<Trans>프로덕션 환경에서는 실제로 다시 마운트되지 않을 수 있지만, 모든 컴포넌트에서 동일한 제약 조건을 따르면 코드를 이동하고 재사용하기가 더 쉬워집니다. 일부 로직이 *컴포넌트 마운트당 한 번*이 아니라 *앱 로드당 한 번* 실행되어야 하는 경우, 최상위 변수를 추가하여 이미 실행되었는지 여부를 추적하세요:</Trans>
+<Trans>상용 환경에서는 실제로 다시 마운트되지 않을 수 있지만, 모든 컴포넌트에서 동일한 제약 조건을 따르면 코드를 이동하고 재사용하기가 더 쉬워집니다. 일부 로직이 *컴포넌트 마운트당 한 번*이 아니라 *앱 로드당 한 번* 실행되어야 하는 경우, 최상위 변수를 추가하여 이미 실행되었는지 여부를 추적하세요:</Trans>
 
 ```js {1,5-6,11}
 let didInit = false;

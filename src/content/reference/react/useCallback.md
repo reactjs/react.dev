@@ -722,7 +722,7 @@ Quite often, code without memoization works fine. If your interactions are fast 
 <Trans>종종 메모이제이션 없이도 코드가 잘 작동하는 경우가 많습니다. 인터랙션이 충분히 빠르다면 메모이제이션이 필요하지 않습니다.</Trans>
 
 Keep in mind that you need to run React in production mode, disable [React Developer Tools](/learn/react-developer-tools), and use devices similar to the ones your app's users have in order to get a realistic sense of what's actually slowing down your app.
-<Trans>실제로 앱의 속도를 저하시키는 요인을 현실적으로 파악하려면 프로덕션 모드에서 React를 실행하고 [React 개발자 도구](/learn/react-developer-tools)를 비활성화하여 앱 사용자가 사용하는 것과 유사한 기기를 사용해야 한다는 점을 기억하세요.</Trans>
+<Trans>실제로 앱의 속도를 저하시키는 요인을 현실적으로 파악하려면 상용 환경에서 React를 실행하고 [React 개발자 도구](/learn/react-developer-tools)를 비활성화하여 앱 사용자가 사용하는 것과 유사한 기기를 사용해야 한다는 점을 기억하세요.</Trans>
 
 <Solution />
 

@@ -1623,7 +1623,7 @@ body {
 </Sandpack>
 
 In development, React will still remount your component once to verify that you've implemented cleanup well. So there will be a `setInterval` call, immediately followed by `clearInterval`, and `setInterval` again. In production, there will be only one `setInterval` call. The user-visible behavior in both cases is the same: the counter increments once per second.
-<Trans>개발 모드에서 React는 클린업을 잘 구현했는지 확인하기 위해 컴포넌트를 한 번 다시 마운트합니다. 따라서 `setInterval` 호출이 있고, 바로 뒤에 `clearInterval`이 있고, 다시 `setInterval`이 호출됩니다. 프로덕션 환경에서는 `setInterval` 호출이 하나만 있을 것입니다. 두 경우 모두 사용자가 볼 수 있는 동작은 동일합니다. 카운터가 초당 한 번씩 증가합니다.</Trans>
+<Trans>개발 모드에서 React는 클린업을 잘 구현했는지 확인하기 위해 컴포넌트를 한 번 다시 마운트합니다. 따라서 `setInterval` 호출이 있고, 바로 뒤에 `clearInterval`이 있고, 다시 `setInterval`이 호출됩니다. 상용 환경에서는 `setInterval` 호출이 하나만 있을 것입니다. 두 경우 모두 사용자가 볼 수 있는 동작은 동일합니다. 카운터가 초당 한 번씩 증가합니다.</Trans>
 
 </Solution>
 

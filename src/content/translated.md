@@ -3,7 +3,7 @@ title: 번역 진행상황
 ---
 
 <Intro>
-last updated @ 2023-05-03 16:10
+last updated @ 2023-05-08 11:10
 </Intro>
 
 ## Reference - 진행중 (done: 24 / total: 59) {/*reference*/}

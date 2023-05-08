@@ -58,7 +58,7 @@ They don't know where you want to go, they just follow your commands. (And if yo
 <Trans>운전자는 사용자가 어디로 가고 싶은지 모른 채 명령만 따를 뿐입니다. (지시를 잘못 내리면 엉뚱한 곳에 가게 됩니다!) 컴퓨터에게 스피너부터 버튼까지 각 요소에 “명령”을 내려 컴퓨터에 *어떻게* UI를 업데이트할 내용을 지시해야 하므로, 이를 *명령형*이라고 부릅니다.</Trans>
 
 In this example of imperative UI programming, the form is built *without* React. It only uses the browser [DOM](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model):
-<Trans>다음 명령형 UI 프로그래밍 예시에서 form은 React를 사용하지 않고 작성되었습니다. 대신 내장된 브라우저의 [DOM](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model)을 사용합니다:</Trans>
+<Trans>다음 명령형 UI 프로그래밍 예시에서 form은 React를 사용하지 않고 작성되었습니다. 대신 브라우저의 빌트인 [DOM](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model)을 사용합니다:</Trans>
 
 
 <Sandpack>

@@ -282,7 +282,7 @@ Here, the `Toolbar` component renders a `PlayButton` and an `UploadButton`:
 </TransBlock>
 
 Finally, your `Button` component accepts a prop called `onClick`. It passes that prop directly to the built-in browser `<button>` with `onClick={onClick}`. This tells React to call the passed function on click.
-<Trans>마지막으로 `Button` 컴포넌트는 `onClick`이라는 prop을 받습니다. 해당 prop을 내장 브라우저의 `<button>`으로 직접 전달하며, `onClick={onClick}`을 사용합니다. 이는 클릭 시 전달된 함수를 호출하도록 React에 지시합니다.</Trans>
+<Trans>마지막으로 `Button` 컴포넌트는 `onClick`이라는 prop을 받습니다. 해당 prop을 브라우저의 빌트인 `<button>`으로 직접 전달하며, `onClick={onClick}`을 사용합니다. 이는 클릭 시 전달된 함수를 호출하도록 React에 지시합니다.</Trans>
 
 If you use a [design system](https://uxdesign.cc/everything-you-need-to-know-about-design-systems-54b109851969), it's common for components like buttons to contain styling but not specify behavior. Instead, components like `PlayButton` and `UploadButton` will pass event handlers down.
 <Trans>[디자인 시스템](https://uxdesign.cc/everything-you-need-to-know-about-design-systems-54b109851969)을 사용하는 경우, 버튼 같은 컴포넌트에 스타일링은 포함하지만 동작을 지정하지 않는 것이 일반적입니다. 대신 `PlayButton` 및 `UploadButton`과 같은 컴포넌트는 이벤트 핸들러를 전달합니다.</Trans>

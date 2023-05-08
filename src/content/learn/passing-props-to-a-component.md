@@ -295,7 +295,7 @@ This forwards all of `Profile`'s props to the `Avatar` without listing each of t
 ## Passing JSX as children<Trans>자식을 JSX로 전달하기</Trans> {/*passing-jsx-as-children*/}
 
 It is common to nest built-in browser tags:
-<Trans>내장된 브라우저 태그는 중첩하는 것이 일반적입니다:</Trans>
+<Trans>브라우저 빌트인 태그는 중첩하는 것이 일반적입니다:</Trans>
 
 ```js
 <div>

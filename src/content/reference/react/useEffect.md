@@ -549,7 +549,7 @@ export default function Box() {
 ### Wrapping Effects in custom Hooks<Trans>커스텀 훅으로 Effect 감싸기</Trans> {/*wrapping-effects-in-custom-hooks*/}
 
 Effects are an ["escape hatch":](/learn/escape-hatches) you use them when you need to "step outside React" and when there is no better built-in solution for your use case. If you find yourself often needing to manually write Effects, it's usually a sign that you need to extract some [custom Hooks](/learn/reusing-logic-with-custom-hooks) for common behaviors your components rely on.
-<Trans>Effect는 ["탈출구"](/learn/escape-hatches)입니다: "React를 벗어나야 할 때", 또는 더 나은 내장 솔루션이 없을 때 사용합니다. Effect를 수동으로 작성해야 하는 경우가 자주 발생한다면 이는 컴포넌트가 의존하는 일반적인 동작에 대한 [커스텀 훅](/learn/reusing-logic-with-custom-hooks)을 추출해야 한다는 신호일 수 있습니다.</Trans>
+<Trans>Effect는 ["탈출구"](/learn/escape-hatches)입니다: "React를 벗어나야 할 때", 또는 더 나은 빌트인 솔루션이 없을 때 사용합니다. Effect를 수동으로 작성해야 하는 경우가 자주 발생한다면 이는 컴포넌트가 의존하는 일반적인 동작에 대한 [커스텀 훅](/learn/reusing-logic-with-custom-hooks)을 추출해야 한다는 신호일 수 있습니다.</Trans>
 
 For example, this `useChatRoom` custom Hook "hides" the logic of your Effect behind a more declarative API:
 <Trans>예를 들어, 이 `useChatRoom` 커스텀 훅은 Effect의 로직을 보다 선언적인 API 뒤에 "숨깁니다":</Trans>
@@ -1118,7 +1118,7 @@ This list of downsides is not specific to React. It applies to fetching data on 
 <Trans>이러한 단점들은 React에만 국한된 것은 아닙니다. 마운트 시점의 데이터 페칭에 대해서는 어떤 라이브러리에서나 마찬가지입니다. 라우팅과 마찬가지로 데이터 페칭도 제대로 수행하기가 쉽지 않으므로 다음과 같은 접근 방식을 권장합니다:</Trans>
 
 - **If you use a [framework](/learn/start-a-new-react-project#production-grade-react-frameworks), use its built-in data fetching mechanism.** Modern React frameworks have integrated data fetching mechanisms that are efficient and don't suffer from the above pitfalls.
-<Trans>**[framework](/learn/start-a-new-react-project#production-grade-react-frameworks)를 사용하는 경우, 프레임워크에 내장된 데이터 페칭 메커니즘을 사용하세요.** 최신 React 프레임워크는 효율적이고 위의 함정이 발생하지 않는 통합 데이터 페칭 메커니즘을 갖추고 있습니다.</Trans>
+<Trans>**[framework](/learn/start-a-new-react-project#production-grade-react-frameworks)를 사용하는 경우, 프레임워크 빌트인 데이터 페칭 메커니즘을 사용하세요.** 최신 React 프레임워크는 효율적이고 위의 함정이 발생하지 않는 통합 데이터 페칭 메커니즘을 갖추고 있습니다.</Trans>
 
 - **Otherwise, consider using or building a client-side cache.** Popular open source solutions include [React Query](https://react-query.tanstack.com/), [useSWR](https://swr.vercel.app/), and [React Router 6.4+.](https://beta.reactrouter.com/en/main/start/overview) You can build your own solution too, in which case you would use Effects under the hood but also add logic for deduplicating requests, caching responses, and avoiding network waterfalls (by preloading data or hoisting data requirements to routes).
 <Trans>**그게 아니라면 clinet-side 캐시를 사용하거나 구축하는 것을 고려하세요.** 인기있는 오픈 소스 솔루션으로는 [React Query](https://react-query.tanstack.com/), [useSWR](https://swr.vercel.app/), [React Router 6.4+](https://beta.reactrouter.com/en/main/start/overview) 등이 있습니다. 자체 솔루션을 구축할 수도 있는데, 이 경우 내부적으로는 Effect를 사용하되 요청 중복 제거, 응답 캐시, 네트워크 워터폴 방지(데이터를 미리 로드하거나 라우트에 데이터 요구 사항을 올려서) 논리를 추가할 수 있습니다.</Trans>

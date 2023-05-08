@@ -42,7 +42,7 @@ There are two common cases in which you don't need Effects:
 <Trans>**사용자 이벤트를 처리하는 데에 Effect는 필요하지 않습니다.** 예를 들어 사용자가 제품을 구매할 때 `/api/buy` POST 요청을 전송하고 알림을 표시하고 싶다고 합시다. 구매 버튼 클릭 이벤트 핸들러에서는 정확히 어떤 일이 일어났는지 알 수 있습니다. 반면 Effect는 사용자가 무엇을 했는지(예: 어떤 버튼을 클릭했는지)를 알 수 없습니다. 그렇기 때문에 일반적으로 사용자 이벤트를 해당 이벤트 핸들러에서 처리합니다.</Trans>
 
 You *do* need Effects to [synchronize](/learn/synchronizing-with-effects#what-are-effects-and-how-are-they-different-from-events) with external systems. For example, you can write an Effect that keeps a jQuery widget synchronized with the React state. You can also fetch data with Effects: for example, you can synchronize the search results with the current search query. Keep in mind that modern [frameworks](/learn/start-a-new-react-project#production-grade-react-frameworks) provide more efficient built-in data fetching mechanisms than writing Effects directly in your components.
-<Trans>한편 외부 시스템과 [동기화](/learn/synchronizing-with-effects#what-are-effects-and-how-are-they-different-from-events)하려면 Effect가 *필요*합니다. 예를 들어 jQuery 위젯을 React state와 동기화하는 Effect를 작성할 수 있습니다. 또한 검색 결과를 현재의 검색 쿼리와 동기화하기 위해 데이터 요청을 Effect로 처리할 수 있습니다. 최신 [프레임워크](/learn/start-a-new-react-project#building-with-a-full-featured-framework)는 컴포넌트에 직접 Effects를 작성하는 것보다 더 효율적인 내장 데이터 페칭 메커니즘을 제공한다는 점을 명심하세요.</Trans>
+<Trans>한편 외부 시스템과 [동기화](/learn/synchronizing-with-effects#what-are-effects-and-how-are-they-different-from-events)하려면 Effect가 *필요*합니다. 예를 들어 jQuery 위젯을 React state와 동기화하는 Effect를 작성할 수 있습니다. 또한 검색 결과를 현재의 검색 쿼리와 동기화하기 위해 데이터 요청을 Effect로 처리할 수 있습니다. 최신 [프레임워크](/learn/start-a-new-react-project#building-with-a-full-featured-framework)는 컴포넌트에 직접 Effects를 작성하는 것보다 더 효율적인 빌트인 데이터 페칭 메커니즘을 제공한다는 점을 명심하세요.</Trans>
 
 To help you gain the right intuition, let's look at some common concrete examples!
 <Trans>올바른 직관을 얻기 위해 몇 가지 일반적인 구체적인 예를 살펴봅시다!</Trans>
@@ -737,7 +737,7 @@ This is simpler and keeps the data flow predictable: the data flows down from th
 ### Subscribing to an external store<Trans>외부 스토어 구독하기</Trans> {/*subscribing-to-an-external-store*/}
 
 Sometimes, your components may need to subscribe to some data outside of the React state. This data could be from a third-party library or a built-in browser API. Since this data can change without React's knowledge, you need to manually subscribe your components to it. This is often done with an Effect, for example:
-<Trans>때로는 컴포넌트가 React state 외부의 일부 데이터를 구독해야 할 수도 있습니다. 서드파티 라이브러리나 내장 브라우저 API에서 데이터를 가져와야 할 수도 있습니다. 이 데이터는 React가 모르는 사이에 변경될 수도 있는데, 그럴 땐 수동으로 컴포넌트가 해당 데이터를 구독하도록 해야 합니다. 이 작업은 종종 Effect에서 수행합니다. 예를 들어:</Trans>
+<Trans>때로는 컴포넌트가 React state 외부의 일부 데이터를 구독해야 할 수도 있습니다. 서드파티 라이브러리나 브라우저 빌트인 API에서 데이터를 가져와야 할 수도 있습니다. 이 데이터는 React가 모르는 사이에 변경될 수도 있는데, 그럴 땐 수동으로 컴포넌트가 해당 데이터를 구독하도록 해야 합니다. 이 작업은 종종 Effect에서 수행합니다. 예를 들어:</Trans>
 
 ```js {2-18}
 function useOnlineStatus() {
@@ -785,7 +785,7 @@ function subscribe(callback) {
 
 function useOnlineStatus() {
   // ✅ Good: Subscribing to an external store with a built-in Hook
-  // ✅ 좋습니다: 내장 훅에서 외부 store 구독
+  // ✅ 좋습니다: 빌트인 훅에서 외부 store 구독
   return useSyncExternalStore(
     subscribe, // React won't resubscribe for as long as you pass the same function
                // React는 동일한 함수를 전달하는 한 다시 구독하지 않음
@@ -875,7 +875,7 @@ Handling race conditions is not the only difficulty with implementing data fetch
 <Trans>데이터 페칭을 구현할 때 경합 조건을 처리하는 것만 어려운 것은 아닙니다. 응답을 캐시하는 방법(사용자가 Back을 클릭하고면 스피너 대신 이전 화면을 즉시 볼 수 있도록), 서버에서 페치하는 방법(초기 서버 렌더링 HTML에 스피너 대신 가져온 콘텐츠가 포함되도록), 네트워크 워터폴을 피하는 방법(데이터를 페치해야 하는 하위 컴포넌트가 시작하기 전에 위의 모든 부모가 데이터 페치를 완료할 때까지 기다릴 필요가 없도록) 등도 고려해볼 사항입니다. </Trans>
 
 **These issues apply to any UI library, not just React. Solving them is not trivial, which is why modern [frameworks](/learn/start-a-new-react-project#production-grade-react-frameworks) provide more efficient built-in data fetching mechanisms than fetching data in Effects.**
-<Trans>**이런 문제는 React뿐만 아니라 모든 UI 라이브러리에 적용됩니다. 이러한 문제를 해결하는 것은 간단하지 않기 때문에 최신 [프레임워크](/learn/start-a-new-react-project#building-with-a-full-featured-framework)들은 컴포넌트에서 직접 Effect를 작성하는 것보다 더 효율적인 내장 데이터 페칭 메커니즘을 제공합니다.**</Trans>
+<Trans>**이런 문제는 React뿐만 아니라 모든 UI 라이브러리에 적용됩니다. 이러한 문제를 해결하는 것은 간단하지 않기 때문에 최신 [프레임워크](/learn/start-a-new-react-project#building-with-a-full-featured-framework)들은 컴포넌트에서 직접 Effect를 작성하는 것보다 더 효율적인 빌트인 데이터 페칭 메커니즘을 제공합니다.**</Trans>
 
 If you don't use a framework (and don't want to build your own) but would like to make data fetching from Effects more ergonomic, consider extracting your fetching logic into a custom Hook like in this example:
 <Trans>프레임워크를 사용하지 않고(또한 직접 만들고 싶지 않고) Effect에서 데이터 페칭을 보다 인체공학적으로 만들고 싶다면, 다음 예시처럼 페칭 로직을 커스텀 훅으로 추출하는 것을 고려해 보세요:</Trans>
@@ -912,7 +912,7 @@ function useData(url) {
 ```
 
 You'll likely also want to add some logic for error handling and to track whether the content is loading. You can build a Hook like this yourself or use one of the many solutions already available in the React ecosystem. **Although this alone won't be as efficient as using a framework's built-in data fetching mechanism, moving the data fetching logic into a custom Hook will make it easier to adopt an efficient data fetching strategy later.**
-<Trans>또한 오류 처리와 콘텐츠 로딩 여부를 추적하기 위한 로직을 추가하고 싶을 것입니다. 이와 같은 훅을 직접 빌드하거나 React 에코시스템에서 이미 사용 가능한 많은 솔루션 중 하나를 사용할 수 있습니다. **이 방법만으로는 프레임워크에 내장된 데이터 페칭 메커니즘을 사용하는 것만큼 효율적이지는 않겠지만, 데이터 페칭 로직을 커스텀 훅으로 옮기면 나중에 효율적인 데이터 페칭 전략을 채택하기가 더 쉬워집니다.**</Trans>
+<Trans>또한 오류 처리와 콘텐츠 로딩 여부를 추적하기 위한 로직을 추가하고 싶을 것입니다. 이와 같은 훅을 직접 빌드하거나 React 에코시스템에서 이미 사용 가능한 많은 솔루션 중 하나를 사용할 수 있습니다. **이 방법만으로는 프레임워크 빌트인 데이터 페칭 메커니즘을 사용하는 것만큼 효율적이지는 않겠지만, 데이터 페칭 로직을 커스텀 훅으로 옮기면 나중에 효율적인 데이터 페칭 전략을 채택하기가 더 쉬워집니다.**</Trans>
 
 In general, whenever you have to resort to writing Effects, keep an eye out for when you can extract a piece of functionality into a custom Hook with a more declarative and purpose-built API like `useData` above. The fewer raw `useEffect` calls you have in your components, the easier you will find to maintain your application.
 <Trans>일반적으로 Effects를 작성해야 할 때마다 위의 `useData`와 같이 좀 더 선언적이고 목적에 맞게 만들어진 API를 사용하여 기능을 커스텀 훅으로 추출할 수 있는지 잘 살펴보세요. 컴포넌트에서 원시 `useEffect` 호출이 적을수록 애플리케이션을 유지 관리하기가 더 쉬워집니다.</Trans>

@@ -2605,9 +2605,10 @@ Replacing visible UI with a fallback creates a jarring user experience. This can
 To prevent this from happening, [mark the update as non-urgent using `startTransition`](#preventing-already-revealed-content-from-hiding). During a transition, React will wait until enough data has loaded to prevent an unwanted fallback from appearing:
 <Trans>이런 일이 발생하지 않도록 하려면 [`startTransition`을 사용하여 업데이트를 긴급하지 않은 것으로 표시](#preventing-already-revealed-content-from-hiding)하세요. 트랜지션이 진행되는 동안 React는 원치 않는 폴백이 나타나지 않기에 충분한 데이터가 로드될 때까지 기다립니다:</Trans>
 
-```js {2-3,5}
+```js {2-4,6}
 function handleNextPageClick() {
   // If this update suspends, don't hide the already displayed content
+  // 이 업데이트가 일시 중단되어도 이미 표시된 콘텐츠를 숨기지 않습니다
   startTransition(() => {
     setCurrentPage(currentPage + 1);
   });

@@ -756,7 +756,7 @@ b { display: inline-block; margin-right: 10px; }
 ### Preventing unwanted loading indicators<Trans>원치 않는 로딩 표시 방지하기</Trans> {/*preventing-unwanted-loading-indicators*/}
 
 In this example, the `PostsTab` component fetches some data using a [Suspense-enabled](/reference/react/Suspense) data source. When you click the "Posts" tab, the `PostsTab` component *suspends*, causing the closest loading fallback to appear:
-<Trans>이 예제에서 `PostsTab` 컴포넌트는 [Suspense-enabled](/reference/react/Suspense) 데이터 소스를 사용하여 일부 데이터를 가져옵니다. "Posts" 탭을 클릭하면 `PostsTab` 컴포넌트가 *중단*되어 가장 가까운 로딩 fallback이 나타납니다:</Trans>
+<Trans>이 예제에서 `PostsTab` 컴포넌트는 [Suspense가 도입된](/reference/react/Suspense) 데이터 소스를 사용하여 일부 데이터를 가져옵니다. "Posts" 탭을 클릭하면 `PostsTab` 컴포넌트가 *중단*되어 가장 가까운 로딩 fallback이 나타납니다:</Trans>
 
 <Sandpack>
 
@@ -1148,7 +1148,7 @@ Transitions will only "wait" long enough to avoid hiding *already revealed* cont
 
 ---
 
-### Building a Suspense-enabled router<Trans>Suspense-enabled 라우터 구축하기</Trans> {/*building-a-suspense-enabled-router*/}
+### Building a Suspense-enabled router<Trans>Suspense가 도입된 라우터 구축하기</Trans> {/*building-a-suspense-enabled-router*/}
 
 If you're building a React framework or a router, we recommend marking page navigations as transitions.
 <Trans>React 프레임워크나 라우터를 구축하는 경우 페이지 네비게이션을 트랜지션으로 표시하는 것이 좋습니다.</Trans>
@@ -1555,7 +1555,7 @@ main {
 <Note>
 
 [Suspense-enabled](/reference/react/Suspense) routers are expected to wrap the navigation updates into transitions by default.
-<Trans>[Suspense-enabled](/reference/react/Suspense) 라우터는 기본적으로 네비게이션 업데이트를 트랜지션으로 감쌀 것으로 예상됩니다.</Trans>
+<Trans>[Suspense가 도입된](/reference/react/Suspense) 라우터는 기본적으로 네비게이션 업데이트를 트랜지션으로 감싸고 있을 것이라고 간주합니다.</Trans>
 
 </Note>
 

@@ -109,7 +109,7 @@ title="프론트엔드 취준생"
 github="junghyeonsu"
 title="당근마켓 프론트엔드 개발자"
   name="정현수"
-  translated={[{"title":"Keeping Components Pure","translatedTitle":"컴포넌트 순수성 유지","url":"/learn/keeping-components-pure"},{"title":"Manipulating the DOM with Refs","translatedTitle":"ref로 DOM 조작하기","url":"/learn/manipulating-the-dom-with-refs"}]}
+  translated={[{"title":"Keeping Components Pure","translatedTitle":"컴포넌트 순수성 유지","url":"/learn/keeping-components-pure"},{"title":"Manipulating the DOM with Refs","translatedTitle":"ref로 DOM 조작하기","url":"/learn/manipulating-the-dom-with-refs"},{"title":"useSyncExternalStore","url":"/reference/react/useSyncExternalStore"}]}
 >
   당근마켓에서 디자인시스템 만들고 있는 프론트엔드 개발자입니다.
 </TeamMember>
@@ -201,7 +201,7 @@ title="프론트엔드 개발자"
 github="himyne"
 title="프론트엔드 취준생"
   name="강민혜"
-  translated={[{"title":"JavaScript in JSX with Curly Braces","translatedTitle":"JSX에서 JavaScript 사용하기","url":"/learn/javascript-in-jsx-with-curly-braces"},{"title":"useCallback","url":"/reference/react/useCallback"}]}
+  translated={[{"title":"JavaScript in JSX with Curly Braces","translatedTitle":"JSX에서 JavaScript 사용하기","url":"/learn/javascript-in-jsx-with-curly-braces"},{"title":"useCallback","url":"/reference/react/useCallback"},{"title":"useSyncExternalStore","url":"/reference/react/useSyncExternalStore"}]}
 >
   코딩이 재밌어서 즐겁고 행복하게 취준하는 취준생입니다.<br />일상생활에서 오는 불편함을 개발로 해결해내는 것을 매우 좋아합니다.
 </TeamMember>

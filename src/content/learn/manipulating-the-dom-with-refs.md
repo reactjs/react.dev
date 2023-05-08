@@ -14,7 +14,7 @@ translators: [서민택, 정현수, 정재남]
 <Intro>
 
 React automatically updates the [DOM](https://developer.mozilla.org/docs/Web/API/Document_Object_Model/Introduction) to match your render output, so your components won't often need to manipulate it. However, sometimes you might need access to the DOM elements managed by React--for example, to focus a node, scroll to it, or measure its size and position. There is no built-in way to do those things in React, so you will need a *ref* to the DOM node.
-<Trans>React는 렌더링 출력과 일치하도록 [DOM](https://developer.mozilla.org/docs/Web/API/Document_Object_Model/Introduction)을 자동으로 업데이트하므로 컴포넌트가 자주 조작할 필요가 없습니다. 하지만 때로는 노드에 포커스를 맞추거나 스크롤하거나 크기와 위치를 측정하기 위해 React가 관리하는 DOM 요소에 접근해야 할 수도 있습니다. React에는 이러한 작업을 수행할 수 있는 내장된 방법이 없으므로 DOM 노드에 대한 *ref*가 필요합니다.</Trans>
+<Trans>React는 렌더링 출력과 일치하도록 [DOM](https://developer.mozilla.org/docs/Web/API/Document_Object_Model/Introduction)을 자동으로 업데이트하므로 컴포넌트가 자주 조작할 필요가 없습니다. 하지만 때로는 노드에 포커스를 맞추거나 스크롤하거나 크기와 위치를 측정하기 위해 React가 관리하는 DOM 요소에 접근해야 할 수도 있습니다. React에는 이러한 작업을 수행할 수 있는 빌트인된 방법이 없으므로 DOM 노드에 대한 *ref*가 필요합니다.</Trans>
 
 </Intro>
 
@@ -58,7 +58,7 @@ Finally, pass it to the DOM node as the `ref` attribute:
 ```
 
 The `useRef` Hook returns an object with a single property called `current`. Initially, `myRef.current` will be `null`. When React creates a DOM node for this `<div>`, React will put a reference to this node into `myRef.current`. You can then access this DOM node from your [event handlers](/learn/responding-to-events) and use the built-in [browser APIs](https://developer.mozilla.org/docs/Web/API/Element) defined on it.
-<Trans>이 `useRef` 훅은 `current` 라고 하는 프로퍼티가 포함된 객체를 반환합니다. 처음에는 `myRef.current` 는 `null` 이 될 것입니다. React가 이 `<div>`에 대한 DOM 노드를 생성하면, React는 이 노드에 대한 참조를 `myRef.current`에 넣습니다. 그런 다음 [이벤트 핸들러](/learn/responding-to-events)에서 이 DOM 노드에 액세스하고 여기에 정의된 내장 [브라우저 API](https://developer.mozilla.org/docs/Web/API/Element)를 사용할 수 있습니다.</Trans>
+<Trans>이 `useRef` 훅은 `current` 라고 하는 프로퍼티가 포함된 객체를 반환합니다. 처음에는 `myRef.current` 는 `null` 이 될 것입니다. React가 이 `<div>`에 대한 DOM 노드를 생성하면, React는 이 노드에 대한 참조를 `myRef.current`에 넣습니다. 그런 다음 [이벤트 핸들러](/learn/responding-to-events)에서 이 DOM 노드에 액세스하고 여기에 정의된 빌트인 [브라우저 API](https://developer.mozilla.org/docs/Web/API/Element)를 사용할 수 있습니다.</Trans>
 
 ```js
 // You can use any browser APIs, for example:
@@ -383,7 +383,7 @@ This lets you read individual DOM nodes from the Map later.
 ## Accessing another component's DOM nodes<Trans>다른 컴포넌트의 DOM 노드에 접근하기</Trans> {/*accessing-another-components-dom-nodes*/}
 
 When you put a ref on a built-in component that outputs a browser element like `<input />`, React will set that ref's `current` property to the corresponding DOM node (such as the actual `<input />` in the browser).
-<Trans>`<input />`과 같은 브라우저 엘리먼트를 출력하는 내장 컴포넌트에 ref를 넣으면, React는 해당 ref의 `current` 프로퍼티를 해당 DOM 노드(예: 브라우저의 실제 `<input />`)로 설정합니다.</Trans>
+<Trans>`<input />`과 같은 브라우저 엘리먼트를 출력하는 빌트인 컴포넌트에 ref를 넣으면, React는 해당 ref의 `current` 프로퍼티를 해당 DOM 노드(예: 브라우저의 실제 `<input />`)로 설정합니다.</Trans>
 
 However, if you try to put a ref on **your own** component, like `<MyInput />`, by default you will get `null`. Here is an example demonstrating it. Notice how clicking the button **does not** focus the input:
 <Trans>그러나 `<MyInput />`과 같은 **여러분이 만든** 컴포넌트에 ref를 넣으려고 하면 기본적으로 `null`이 반환됩니다. 다음은 이를 보여주는 예시입니다. 버튼을 클릭해도 입력에 초점이 맞춰지지 **않는** 것을 확인할 수 있습니다:</Trans>
@@ -824,7 +824,7 @@ button { display: block; margin-bottom: 20px; }
 </Sandpack>
 
 For an extra challenge, keep the "Play" button in sync with whether the video is playing even if the user right-clicks the video and plays it using the built-in browser media controls. You might want to listen to `onPlay` and `onPause` on the video to do that.
-<Trans>추가 과제를 수행하려면, 사용자가 동영상을 마우스 오른쪽 버튼으로 클릭하여 브라우저의 내장 미디어 컨트롤로 재생하더라도 동영상이 재생중인지 여부와 '재생' 버튼이 동기화되도록 유지하세요. 이를 위해 동영상에서 `onPlay` 및 `onPause` 기능을 사용하는게 좋을 것입니다.</Trans>
+<Trans>추가 과제를 수행하려면, 사용자가 동영상을 마우스 오른쪽 버튼으로 클릭하여 브라우저의 빌트인 미디어 컨트롤로 재생하더라도 동영상이 재생중인지 여부와 '재생' 버튼이 동기화되도록 유지하세요. 이를 위해 동영상에서 `onPlay` 및 `onPause` 기능을 사용하는게 좋을 것입니다.</Trans>
 
 <Solution>
 
@@ -879,7 +879,7 @@ button { display: block; margin-bottom: 20px; }
 </Sandpack>
 
 In order to handle the built-in browser controls, you can add `onPlay` and `onPause` handlers to the `<video>` element and call `setIsPlaying` from them. This way, if the user plays the video using the browser controls, the state will adjust accordingly.
-<Trans>브라우저 내장 컨트롤을 처리하기 위해 `<video>` 요소에 `onPlay` 및 `onPause` 핸들러를 추가하고, 이 핸들러에서 `setIsPlaying`을 호출하면 됩니다. 이렇게 하면 사용자가 브라우저 컨트롤을 사용하여 동영상을 재생하면 그에 따라 state가 조정됩니다.</Trans>
+<Trans>브라우저 빌트인 컨트롤을 처리하기 위해 `<video>` 요소에 `onPlay` 및 `onPause` 핸들러를 추가하고, 이 핸들러에서 `setIsPlaying`을 호출하면 됩니다. 이렇게 하면 사용자가 브라우저 컨트롤을 사용하여 동영상을 재생하면 그에 따라 state가 조정됩니다.</Trans>
 
 </Solution>
 

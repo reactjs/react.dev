@@ -1481,7 +1481,7 @@ In the end the user sees that the upper left square has changed from empty to ha
 <Note>
 
 The DOM `<button>` element's `onClick` attribute has a special meaning to React because it is a built-in component. For custom components like Square, the naming is up to you. You could give any name to the `Square`'s `onSquareClick` prop or `Board`'s `handleClick` function, and the code would work the same. In React, it's conventional to use `onSomething` names for props which represent events and `handleSomething` for the function definitions which handle those events.
-<Trans> DOM `<button>` 엘리먼트의 `onClick` 어트리뷰트는 내장 컴포넌트이기 때문에 React에서 특별한 의미를 갖습니다. 사용자 정의 컴포넌트, 예를 들어 사각형과 같은 경우, 이름은 사용자가 원하는 대로 지을 수 있습니다. `Square`의 `onSquareClick` prop나 `Board`의 `handleClick` 함수에 어떠한 이름을 붙여도 코드는 동일하게 작동합니다. React에서는 이벤트를 나타내는 prop에는 `on[Event]` 이름을 사용하고 이벤트를 처리하는 함수 정의에는 `handle[Event]`를 사용하는 것이 관례입니다.</Trans>
+<Trans> DOM `<button>` 엘리먼트의 `onClick` 어트리뷰트는 빌트인 컴포넌트이기 때문에 React에서 특별한 의미를 갖습니다. 사용자 정의 컴포넌트, 예를 들어 사각형과 같은 경우, 이름은 사용자가 원하는 대로 지을 수 있습니다. `Square`의 `onSquareClick` prop나 `Board`의 `handleClick` 함수에 어떠한 이름을 붙여도 코드는 동일하게 작동합니다. React에서는 이벤트를 나타내는 prop에는 `on[Event]` 이름을 사용하고 이벤트를 처리하는 함수 정의에는 `handle[Event]`를 사용하는 것이 관례입니다.</Trans>
 
 </Note>
 

@@ -627,7 +627,7 @@ Notice how each button "remembers" its own `count` state and doesn't affect othe
 ## Using Hooks<Trans>훅 사용하기</Trans> {/*using-hooks*/}
 
 Functions starting with `use` are called *Hooks*. `useState` is a built-in Hook provided by React. You can find other built-in Hooks in the [API reference.](/reference/react) You can also write your own Hooks by combining the existing ones.
-<Trans>`use`로 시작하는 함수를 *훅(Hook)*이라고 합니다. `useState`는 React에서 제공하는 빌트인 훅입니다. 다른 내장 훅은 [React API reference](/reference/react)에서 찾을 수 있으며, 기존의 훅을 조합하여 자신만의 훅을 작성할 수도 있습니다.</Trans>
+<Trans>`use`로 시작하는 함수를 *훅(Hook)*이라고 합니다. `useState`는 React에서 제공하는 빌트인 훅입니다. 다른 빌트인 훅은 [React API reference](/reference/react)에서 찾을 수 있으며, 기존의 훅을 조합하여 자신만의 훅을 작성할 수도 있습니다.</Trans>
 
 Hooks are more restrictive than other functions. You can only call Hooks *at the top* of your components (or other Hooks). If you want to use `useState` in a condition or a loop, extract a new component and put it there.
 <Trans>훅은 일반 함수보다 더 제한적입니다. 컴포넌트(또는 다른 훅)의 *최상위 레벨*에서만 훅을 호출할 수 있습니다. 조건문이나 반복문에서 `useState`를 사용하고 싶다면, 대신 새로운 컴포넌트를 추출하고 그 컴포넌트에 작성하세요.</Trans>
@@ -711,7 +711,7 @@ function MyButton() {
 ```
 
 Then, *pass the state down* from `MyApp` to each `MyButton`, together with the shared click handler. You can pass information to `MyButton` using the JSX curly braces, just like you previously did with built-in tags like `<img>`:
-<Trans>그런 다음 `MyApp`에서 각 `MyButton`으로 공유 클릭 핸들러와 함께 state를 *전달*합니다. 이전에 `img>`와 같은 내장 태그에서 했던 것처럼 JSX 중괄호를 사용하여 `MyButton`에 정보를 전달할 수 있습니다:</Trans>
+<Trans>그런 다음 `MyApp`에서 각 `MyButton`으로 공유 클릭 핸들러와 함께 state를 *전달*합니다. 이전에 `<img>`와 같은 빌트인 태그에서 했던 것처럼 JSX 중괄호를 사용하여 `MyButton`에 정보를 전달할 수 있습니다:</Trans>
 
 ```js {11-12}
 export default function MyApp() {

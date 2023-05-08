@@ -160,6 +160,7 @@ Perform the interaction you're measuring (for example, typing into the input). Y
 console.time('filter array');
 const visibleTodos = useMemo(() => {
   return filterTodos(todos, tab); // Skipped if todos and tab haven't changed
+                                  // todos 및 tab이 모두 변경되지 않으면 건너뜁니다
 }, [todos, tab]);
 console.timeEnd('filter array');
 ```
@@ -191,7 +192,7 @@ Optimizing with `useMemo`  is only valuable in a few cases:
 
 <TransBlock>
 - `useMemo`에 넣는 계산이 눈에 띄게 느리고 의존성이 거의 변하지 않는 경우.
-- [`memo`](/reference/react/memo)로 감싼 컴포넌트에 prop으로 전달하는 경우. 값이 변경되지 않은 경우 리렌더링을 건너뛰고 싶을 수 있습니다. 메모화를 사용하면 의존성이 동일하지 않은 경우에만 컴포넌트를 다시 렌더링할 수 있습니다.
+- [`memo`](/reference/react/memo)로 감싼 컴포넌트에 prop으로 전달하는 경우. 값이 변경되지 않은 경우 리렌더링을 건너뛰고 싶을 수 있습니다. 메모화하면 의존성이 동일하지 않은 경우에만 컴포넌트를 다시 렌더링할 수 있습니다.
 - 전달한 값은 나중에 어떤 훅의 의존성으로 사용될 것입니다. 예를 들어 또다른 `useMemo` 또는 `useEffect`에서 이 값에 의존하고 있을 수 있습니다.
 </TransBlock>
 
@@ -208,7 +209,7 @@ There is no benefit to wrapping a calculation in `useMemo` in other cases. There
 <Trans>로컬 상태를 선호하고 필요 이상으로 [상태를 끌어올리지](/learn/sharing-state-between-components) 마세요. 예를 들어, 양식과 같이 일시적인 상태나 항목이 트리의 맨 위에 있는지 또는 전역 상태 라이브러리에 있는지 여부는 유지하지 마세요.</Trans>
 
 3. Keep your [rendering logic pure.](/learn/keeping-components-pure) If re-rendering a component causes a problem or produces some noticeable visual artifact, it's a bug in your component! Fix the bug instead of adding memoization.
-<Trans>[렌더링 로직을 순수하게](/learn/keeping-components-pure) 유지하세요. 컴포넌트를 다시 렌더링했을 때 문제가 발생하거나 눈에 띄는 시각적 아티팩트가 생성된다면 컴포넌트에 버그가 있는 것입니다! 메모화를 추가하는 대신 버그를 수정하세요.</Trans>
+<Trans>[렌더링 로직을 순수하게](/learn/keeping-components-pure) 유지하세요. 컴포넌트를 다시 렌더링했을 때 문제가 발생하거나 눈에 띄는 시각적 아티팩트가 생성된다면 컴포넌트에 버그가 있는 것입니다! 메모화하는 대신 버그를 수정하세요.</Trans>
 
 4. Avoid [unnecessary Effects that update state.](/learn/you-might-not-need-an-effect) Most performance problems in React apps are caused by chains of updates originating from Effects that cause your components to render over and over.
 <Trans>[상태를 업데이트하는 불필요한 Effect](/learn/you-might-not-need-an-effect)를 피하세요. React 앱의 대부분의 성능 문제는 컴포넌트를 반복해서 렌더링하게 만드는 효과에서 발생하는 업데이트 체인으로 인해 발생합니다.</Trans>
@@ -217,7 +218,7 @@ There is no benefit to wrapping a calculation in `useMemo` in other cases. There
 <Trans>Effect에서 불필요한 의존성을 제거하세요. 예를 들어, 메모화 대신 일부 오브젝트나 함수를 효과 내부나 컴포넌트 외부로 이동하는 것이 더 간단할 때가 많습니다.</Trans>
 
 If a specific interaction still feels laggy, [use the React Developer Tools profiler](https://legacy.reactjs.org/blog/2018/09/10/introducing-the-react-profiler.html) to see which components would benefit the most from memoization, and add memoization where needed. These principles make your components easier to debug and understand, so it's good to follow them in any case. In the long term, we're researching [doing granular memoization automatically](https://www.youtube.com/watch?v=lGEMwh32soc) to solve this once and for all.
-<Trans>특정 인터렉션이 여전히 느리게 느껴진다면 [React 개발자 도구 profiler](https://legacy.reactjs.org/blog/2018/09/10/introducing-the-react-profiler.html)를 사용해 어떤 컴포넌트가 메모화를 통해 가장 큰 이점을 얻을 수 있는지 확인하고 필요한 경우 메모화를 추가하세요. 이러한 원칙은 컴포넌트를 더 쉽게 디버깅하고 이해할 수 있게 해주므로 어떤 경우든 이 원칙을 따르는 것이 좋습니다. 장기적으로는 이 문제를 완전히 해결하기 위해 세분화된 메모화를 자동으로 수행하는 방법을 연구하고 있습니다.</Trans>
+<Trans>특정 인터렉션이 여전히 느리게 느껴진다면 [React 개발자 도구 profiler](https://legacy.reactjs.org/blog/2018/09/10/introducing-the-react-profiler.html)를 사용해 어떤 컴포넌트가 메모화를 통해 가장 큰 이점을 얻을 수 있는지 확인하고 필요한 경우 메모화 하세요. 이러한 원칙은 컴포넌트를 더 쉽게 디버깅하고 이해할 수 있게 해주므로 어떤 경우든 이 원칙을 따르는 것이 좋습니다. 장기적으로는 이 문제를 완전히 해결하기 위해 세분화된 메모화를 자동으로 수행하는 방법을 연구하고 있습니다.</Trans>
 
 </DeepDive>
 
@@ -645,13 +646,15 @@ const List = memo(function List({ items }) {
 **With this change, `List` will skip re-rendering if all of its props are the *same* as on the last render.** This is where caching the calculation becomes important! Imagine that you calculated `visibleTodos` without `useMemo`:
 <Trans>이 변경으로 인해 **`List`는 모든 prop이 이전 렌더링과 같은 경우에는 리렌더링을 건너뛸 것입니다.** 이는 캐싱 계산이 중요해지는 부분입니다! `useMemo`를 사용하지 않고 `visibleTodos`를 계산했다고 상상해 보세요:</Trans>
 
-```js {2-3,6-7}
+```js {2-4,7-9}
 export default function TodoList({ todos, tab, theme }) {
   // Every time the theme changes, this will be a different array...
+  // theme가 변경될 때마다 매번 다른 배열이 됩니다...
   const visibleTodos = filterTodos(todos, tab);
   return (
     <div className={theme}>
       {/* ... so List's props will never be the same, and it will re-render every time */}
+      {/* ... List의 prop은 절대로 같을 수 없으므로, 매번 리렌더링할 것입니다 */}
       <List items={visibleTodos} />
     </div>
   );
@@ -661,16 +664,19 @@ export default function TodoList({ todos, tab, theme }) {
 **In the above example, the `filterTodos` function always creates a *different* array,** similar to how the `{}` object literal always creates a new object. Normally, this wouldn't be a problem, but it means that `List` props will never be the same, and your [`memo`](/reference/react/memo) optimization won't work. This is where `useMemo` comes in handy:
 <Trans>**위 예제에서는 `filterTodos` 함수가 항상 *다른* 배열을 생성합니다.** 이는 `{}` 객체 리터럴이 항상 새로운 객체를 생성하는 것과 비슷합니다. 이는 일반적으로는 문제가 되지 않지만, `List`의 prop은 결코 같은 값을 가질 수 없고, 따라서 [`memo`](/reference/react/memo) 최적화도 작동하지 않음을 의미합니다. 바로 이럴 때 `useMemo`가 유용합니다:</Trans>
 
-```js {2-3,5,9-10}
+```js {2-4,6-7,11-13}
 export default function TodoList({ todos, tab, theme }) {
   // Tell React to cache your calculation between re-renders...
+  // 리렌더링 사이에 계산 결과를 캐싱하도록 합니다...
   const visibleTodos = useMemo(
     () => filterTodos(todos, tab),
     [todos, tab] // ...so as long as these dependencies don't change...
+                 // ...따라서 여기의 의존성이 변경되지 않는다면 ...
   );
   return (
     <div className={theme}>
       {/* ...List will receive the same props and can skip re-rendering */}
+      {/* ...List는 같은 props를 전달받게 되어 리렌더링을 건너뛸 수 있게 됩니다 */}
       <List items={visibleTodos} />
     </div>
   );
@@ -1151,6 +1157,7 @@ function Dropdown({ allItems, text }) {
   const visibleItems = useMemo(() => {
     return searchItems(allItems, searchOptions);
   }, [allItems, searchOptions]); // 🚩 Caution: Dependency on an object created in the component body
+                                 // 🚩 주의: 컴포넌트 내부에서 생성한 객체 의존성
   // ...
 ```
 
@@ -1160,15 +1167,17 @@ Depending on an object like this defeats the point of memoization. When a compon
 To fix this, you could memoize the `searchOptions` object *itself* before passing it as a dependency:
 <Trans>이 문제를 해결하려면 `searchOptions` 객체를 의존성으로 전달하기 전에 *객체 자체*를 메모화할 수 있습니다:</Trans>
 
-```js {2-4}
+```js {2-5}
 function Dropdown({ allItems, text }) {
   const searchOptions = useMemo(() => {
     return { matchMode: 'whole-word', text };
   }, [text]); // ✅ Only changes when text changes
+              // ✅ text 변경시에만 변경됨
 
   const visibleItems = useMemo(() => {
     return searchItems(allItems, searchOptions);
   }, [allItems, searchOptions]); // ✅ Only changes when allItems or searchOptions changes
+                                 // ✅ allItems 또는 searchOptions 변경시에만 변경됨
   // ...
 ```
 
@@ -1181,6 +1190,7 @@ function Dropdown({ allItems, text }) {
     const searchOptions = { matchMode: 'whole-word', text };
     return searchItems(allItems, searchOptions);
   }, [allItems, text]); // ✅ Only changes when allItems or text changes
+                        // ✅ allItems 또는 text 변경시에만 변경됨
   // ...
 ```
 
@@ -1256,12 +1266,14 @@ The two examples above are completely equivalent. The only benefit to `useCallba
 In [Strict Mode](/reference/react/StrictMode), React will call some of your functions twice instead of once:
 <Trans>[Strict Mode](/reference/react/StrictMode)에서는 React가 일부 함수를 한 번이 아닌 두 번 호출합니다:</Trans>
 
-```js {2,5,6}
+```js {2-3,6-8}
 function TodoList({ todos, tab }) {
   // This component function will run twice for every render.
+  // 이 컴포넌트 함수는 매 렌더링시마다 두 번 호출됩니다.
 
   const visibleTodos = useMemo(() => {
     // This calculation will run twice if any of the dependencies change.
+    // 이 계산은 의존성 변경시마다 두 번씩 실행됩니다.
     return filterTodos(todos, tab);
   }, [todos, tab]);
 
@@ -1277,9 +1289,10 @@ This **development-only** behavior helps you [keep components pure.](/learn/keep
 For example, this impure calculation function mutates an array you received as a prop:
 <Trans>예를 들어 순수하지 않게 계산된 함수는 prop으로 받은 배열을 변이합니다:</Trans>
 
-```js {2-3}
+```js {2-4}
   const visibleTodos = useMemo(() => {
     // 🚩 Mistake: mutating a prop
+    // 🚩 실수: prop 변이
     todos.push({ id: 'last', text: 'Go for a walk!' });
     const filtered = filterTodos(todos, tab);
     return filtered;
@@ -1289,10 +1302,11 @@ For example, this impure calculation function mutates an array you received as a
 React calls your function twice, so you'd notice the todo is added twice. Your calculation shouldn't change any existing objects, but it's okay to change any *new* objects you created during the calculation. For example, if the `filterTodos` function always returns a *different* array, you can mutate *that* array instead:
 <Trans>React는 함수를 두 번 호출하므로 할 일이 두 번 추가되었음을 알 수 있습니다. 계산은 기존 객체를 변경해서는 안 되지만, 계산 중에 생성한 *새* 객체를 변경하는 것은 괜찮습니다. 예를 들어 `filterTodos` 함수가 항상 *다른* 배열을 반환하는 경우, 해당 배열을 변이할 수 있습니다:</Trans>
 
-```js {3,4}
+```js {3-5}
   const visibleTodos = useMemo(() => {
     const filtered = filterTodos(todos, tab);
     // ✅ Correct: mutating an object you created during the calculation
+    // ✅ 올바름: 계산 중에 생성한 객체의 변이
     filtered.push({ id: 'last', text: 'Go for a walk!' });
     return filtered;
   }, [todos, tab]);
@@ -1311,8 +1325,9 @@ Also, check out the guides on [updating objects](/learn/updating-objects-in-stat
 This code doesn't work:
 <Trans>이 코드는 작동하지 않습니다:</Trans>
 
-```js {1-2,5}
+```js {1-3,6}
   // 🔴 You can't return an object from an arrow function with () => {
+  // 🔴 화살표 함수에서 () => { 만으로는 객체를 리턴할 수 없습니다.
   const searchOptions = useMemo(() => {
     matchMode: 'whole-word',
     text: text
@@ -1322,8 +1337,9 @@ This code doesn't work:
 In JavaScript, `() => {` starts the arrow function body, so the `{` brace is not a part of your object. This is why it doesn't return an object, and leads to mistakes. You could fix it by adding parentheses like `({` and `})`:
 <Trans>자바스크립트에서 `() => {`는 화살표 함수 본문을 시작하므로 `{` 중괄호는 객체의 일부가 아닙니다. 이 때문에 객체를 반환하지 않고 실수가 발생합니다. `({`와 `})`로 괄호를 추가하면 이 문제를 해결할 수 있습니다:</Trans>
 
-```js {1-2,5}
+```js {1-3,6}
   // This works, but is easy for someone to break again
+  // 이 코드는 작동하지만, 누군가에 의해 다시 꺠지기 쉽습니다
   const searchOptions = useMemo(() => ({
     matchMode: 'whole-word',
     text: text
@@ -1338,6 +1354,7 @@ To avoid this mistake, write a `return` statement explicitly:
 
 ```js {1-3,6-7}
   // ✅ This works and is explicit
+  // ✅ 이 코드는 작동하며 명시적입니다
   const searchOptions = useMemo(() => {
     return {
       matchMode: 'whole-word',
@@ -1356,9 +1373,10 @@ Make sure you've specified the dependency array as a second argument!
 If you forget the dependency array, `useMemo` will re-run the calculation every time:
 <Trans>의존성 배열을 잊어버렸을 경우, `useMemo`는 매번 계산을 다시 실행합니다:</Trans>
 
-```js {2-3}
+```js {2-4}
 function TodoList({ todos, tab }) {
   // 🔴 Recalculates every time: no dependency array
+  // 🔴 매 번 재계산: 의존성 배열이 없음
   const visibleTodos = useMemo(() => filterTodos(todos, tab));
   // ...
 ```
@@ -1366,9 +1384,10 @@ function TodoList({ todos, tab }) {
 This is the corrected version passing the dependency array as a second argument:
 <Trans>다음은 의존성 배열을 두 번째 인수로 전달하는 수정된 버전입니다:</Trans>
 
-```js {2-3}
+```js {2-4}
 function TodoList({ todos, tab }) {
   // ✅ Does not recalculate unnecessarily
+  // ✅ 불필요하게 재계산하지 않음
   const visibleTodos = useMemo(() => filterTodos(todos, tab), [todos, tab]);
   // ...
 ```
@@ -1386,8 +1405,11 @@ You can then right-click on the arrays from different re-renders in the console 
 
 ```js
 Object.is(temp1[0], temp2[0]); // Is the first dependency the same between the arrays?
+                               // 각 배열의 첫번째 의존성이 동일한가?
 Object.is(temp1[1], temp2[1]); // Is the second dependency the same between the arrays?
+                               // 각 배열의 두번째 의존성이 동일한가?
 Object.is(temp1[2], temp2[2]); // ... and so on for every dependency ...
+                               // ... 나머지 모든 의존성에 대해 반복 ...
 ```
 
 When you find which dependency breaks memoization, either find a way to remove it, or [memoize it as well.](#memoizing-a-dependency-of-another-hook)
@@ -1400,12 +1422,13 @@ When you find which dependency breaks memoization, either find a way to remove i
 Suppose the `Chart` component is wrapped in [`memo`](/reference/react/memo). You want to skip re-rendering every `Chart` in the list when the `ReportList` component re-renders. However, you can't call `useMemo` in a loop:
 <Trans>`Chart` 컴포넌트가 [`memo`](/reference/react/memo)로 감싸져 있다고 가정해 봅시다. `ReportList` 컴포넌트가 리렌더링할 때 목록의 모든 차트를 리렌더링하는 것을 건너뛰고 싶을 수 있습니다. 하지만 `useMemo`를 루프 안에서 호출할 수는 없습니다:</Trans>
 
-```js {5-11}
+```js {5-12}
 function ReportList({ items }) {
   return (
     <article>
       {items.map(item => {
         // 🔴 You can't call useMemo in a loop like this:
+        // 🔴 루프 안에서는 useMemo를 호출할 수 없습니다:
         const data = useMemo(() => calculateReport(item), [item]);
         return (
           <figure key={item.id}>
@@ -1421,7 +1444,7 @@ function ReportList({ items }) {
 Instead, extract a component for each item and memoize data for individual items:
 <Trans>대신, 각 항목에 대한 컴포넌트를 추출하고 개별 항목에 대한 데이터를 메모화하세요:</Trans>
 
-```js {5,12-18}
+```js {5,12-19}
 function ReportList({ items }) {
   return (
     <article>
@@ -1434,6 +1457,7 @@ function ReportList({ items }) {
 
 function Report({ item }) {
   // ✅ Call useMemo at the top level:
+  // ✅ useMemo는 컴포넌트 최상단에서 호출하세요:
   const data = useMemo(() => calculateReport(item), [item]);
   return (
     <figure>

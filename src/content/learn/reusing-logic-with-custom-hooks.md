@@ -7,7 +7,7 @@ translators: [고석영, 유은미, 정재남]
 <Intro>
 
 React comes with several built-in Hooks like `useState`, `useContext`, and `useEffect`. Sometimes, you'll wish that there was a Hook for some more specific purpose: for example, to fetch data, to keep track of whether the user is online, or to connect to a chat room. You might not find these Hooks in React, but you can create your own Hooks for your application's needs.
-<Trans>React에는 `useState`, `useContext`, `useEffect`와 같은 몇 가지 내장 훅이 있습니다. 때로는 데이터를 페치하거나, 사용자가 온라인 상태인지 추적하거나, 채팅방에 연결하는 등 좀 더 구체적인 목적을 위한 훅이 있었으면 좋겠다는 생각을 할 수 있습니다. React에서 이러한 훅을 찾지 못할 수도 있지만 애플리케이션의 필요에 따라 자신만의 훅을 만들 수 있습니다.</Trans>
+<Trans>React에는 `useState`, `useContext`, `useEffect`와 같은 몇 가지 빌트인 훅이 있습니다. 때로는 데이터를 페치하거나, 사용자가 온라인 상태인지 추적하거나, 채팅방에 연결하는 등 좀 더 구체적인 목적을 위한 훅이 있었으면 좋겠다는 생각을 할 수 있습니다. React에서 이러한 훅을 찾지 못할 수도 있지만 애플리케이션의 필요에 따라 자신만의 훅을 만들 수 있습니다.</Trans>
 
 </Intro>
 
@@ -147,7 +147,7 @@ function SaveButton() {
 ```
 
 Although there is no such built-in Hook, you can write it yourself. Declare a function called `useOnlineStatus` and move all the duplicated code into it from the components you wrote earlier:
-<Trans>이러한 내장 훅은 없지만, 직접 만들 수 있습니다.`useOnlineStatus` 이라는 함수를 선언하고 앞서 작성한 컴포넌트에서 중복된 코드를 모두 이 함수로 옮깁니다.</Trans>
+<Trans>이러한 빌트인 훅은 없지만, 직접 만들 수 있습니다.`useOnlineStatus` 이라는 함수를 선언하고 앞서 작성한 컴포넌트에서 중복된 코드를 모두 이 함수로 옮깁니다.</Trans>
 
 ```js {2-16}
 function useOnlineStatus() {
@@ -244,7 +244,7 @@ When you extract logic into custom Hooks, you can hide the gnarly details of how
 ### Hook names always start with `use`<Trans>훅의 이름은 언제나 `use`로 시작됩니다.</Trans> {/*hook-names-always-start-with-use*/}
 
 React applications are built from components. Components are built from Hooks, whether built-in or custom. You'll likely often use custom Hooks created by others, but occasionally you might write one yourself!
-<Trans>React 애플리케이션은 컴포넌트로 빌드됩니다. 컴포넌트는 내장된 것이든 커스텀이든 상관없이 훅으로 빌드됩니다. 다른 사람이 만든 커스텀 훅을 사용하는 경우가 많지만, 가끔은 직접 작성할 수도 있습니다!</Trans>
+<Trans>React 애플리케이션은 컴포넌트로 빌드됩니다. 컴포넌트는 빌트인이든 커스텀이든 상관없이 훅으로 빌드됩니다. 다른 사람이 만든 커스텀 훅을 사용하는 경우가 많지만, 가끔은 직접 작성할 수도 있습니다!</Trans>
 
 You must follow these naming conventions:
 <Trans>이때는 다음 명명 규칙을 따라야 합니다:</Trans>
@@ -254,7 +254,7 @@ You must follow these naming conventions:
 
 <TransBlock>
 1. **React 컴포넌트 이름은** `StatusBar`나 `SaveButton`과 같이 **대문자로 시작해야 합니다.** 또한 React 컴포넌트는 JSX와 같이 React가 표시하는 방법을 알고 있는 것을 반환해야 합니다.
-2. **훅의 이름은** [`useState`](/reference/react/useState)(내장)이나 `useOnlineStatus`(커스텀)처럼 **`use`로 시작**해야 하고, 그 다음의 첫글자는 대문자여야 합니다. 훅은 임의의 값을 반환할 수 있습니다.
+2. **훅의 이름은** [`useState`](/reference/react/useState)(빌트인)이나 `useOnlineStatus`(커스텀)처럼 **`use`로 시작**해야 하고, 그 다음의 첫글자는 대문자여야 합니다. 훅은 임의의 값을 반환할 수 있습니다.
 </TransBlock>
 
 This convention guarantees that you can always look at a component and know where its state, Effects, and other React features might "hide". For example, if you see a `getColor()` function call inside your component, you can be sure that it can't possibly contain React state inside because its name doesn't start with `use`. However, a function call like `useOnlineStatus()` will most likely contain calls to other Hooks inside!
@@ -1185,7 +1185,7 @@ You don't need to extract a custom Hook for every little duplicated bit of code.
 <Trans>중복되는 모든 코드에 대해 커스텀 훅을 추출할 필요는 없습니다. 약간의 중복은 괜찮습니다. 예를 들어, 앞서처럼 단일 `useState` 호출을 감싸기 위해 `useFormInput` 훅을 추출하는 것은 불필요할 수 있습니다.</Trans>
 
 However, whenever you write an Effect, consider whether it would be clearer to also wrap it in a custom Hook. [You shouldn't need Effects very often,](/learn/you-might-not-need-an-effect) so if you're writing one, it means that you need to "step outside React" to synchronize with some external system or to do something that React doesn't have a built-in API for. Wrapping it into a custom Hook lets you precisely communicate your intent and how the data flows through it.
-<Trans>하지만 Effect를 작성할 때마다 커스텀 훅으로 감싸는 것이 더 명확할지 고려하세요. [Effect는 자주 필요하지 않으므로,](/learn/you-might-not-need-an-effect) 만약 Effect를 작성한다면 외부 시스템과 동기화하거나 React에 내장된 API가 없는 작업을 수행하기 위해 "React 외부로 나가야 한다"는 뜻입니다. Effect를 커스텀 훅으로 감싸면 의도와 데이터 흐름 방식을 정확하게 전달할 수 있습니다.</Trans>
+<Trans>하지만 Effect를 작성할 때마다 커스텀 훅으로 감싸는 것이 더 명확할지 고려하세요. [Effect는 자주 필요하지 않으므로,](/learn/you-might-not-need-an-effect) 만약 Effect를 작성한다면 외부 시스템과 동기화하거나 React에 빌트인 API가 없는 작업을 수행하기 위해 "React 외부로 나가야 한다"는 뜻입니다. Effect를 커스텀 훅으로 감싸면 의도와 데이터 흐름 방식을 정확하게 전달할 수 있습니다.</Trans>
 
 For example, consider a `ShippingForm` component that displays two dropdowns: one shows the list of cities, and another shows the list of areas in the selected city. You might start with some code that looks like this:
 <Trans>예를 들어, 도시 목록을 표시하는 드롭다운과 선택한 도시의 지역 목록을 표시하는 드롭다운 두 개를 표시하는 `ShippingForm` 컴포넌트를 생각해 봅시다. 다음과 같은 코드로 시작할 수 있습니다:</Trans>
@@ -1377,7 +1377,7 @@ function ChatRoom({ roomId }) {
 ### Custom Hooks help you migrate to better patterns<Trans>커스텀 훅은 더 나은 패턴으로 마이그레이션하는데 도움을 줍니다.</Trans> {/*custom-hooks-help-you-migrate-to-better-patterns*/}
 
 Effects are an ["escape hatch"](/learn/escape-hatches): you use them when you need to "step outside React" and when there is no better built-in solution for your use case. With time, the React team's goal is to reduce the number of the Effects in your app to the minimum by providing more specific solutions to more specific problems. Wrapping your Effects in custom Hooks makes it easier to upgrade your code when these solutions become available.
-<Trans>Effect는 ["탈출구"](/learn/escape-hatches):입니다. "React를 벗어나야 할 때", 그리고 사용 사례에 더 나은 내장 솔루션이 없을 때 사용합니다. 시간이 지남에 따라 React 팀의 목표는 더 구체적인 문제에 대한 더 구체적인 솔루션을 제공함으로써 앱에서 Effect의 수를 최소한으로 줄이는 것입니다. 효과를 커스텀 훅으로 감싸면 이러한 솔루션이 제공될 때 코드를 더 쉽게 업그레이드할 수 있습니다.</Trans>
+<Trans>Effect는 ["탈출구"](/learn/escape-hatches):입니다. "React를 벗어나야 할 때", 그리고 사용 사례에 더 나은 빌트인 솔루션이 없을 때 사용합니다. 시간이 지남에 따라 React 팀의 목표는 더 구체적인 문제에 대한 더 구체적인 솔루션을 제공함으로써 앱에서 Effect의 수를 최소한으로 줄이는 것입니다. 효과를 커스텀 훅으로 감싸면 이러한 솔루션이 제공될 때 코드를 더 쉽게 업그레이드할 수 있습니다.</Trans>
 
 Let's return to this example:
 <Trans>이 예제로 돌아가 보겠습니다:</Trans>
@@ -1538,7 +1538,7 @@ Similar to a [design system,](https://uxdesign.cc/everything-you-need-to-know-ab
 
 <DeepDive>
 
-#### Will React provide any built-in solution for data fetching?<Trans>React는 데이터 페칭을 위해 내장 솔루션을 제공할건가요?</Trans> {/*will-react-provide-any-built-in-solution-for-data-fetching*/}
+#### Will React provide any built-in solution for data fetching?<Trans>React는 데이터 페칭을 위해 빌트인 솔루션을 제공할건가요?</Trans> {/*will-react-provide-any-built-in-solution-for-data-fetching*/}
 
 We're still working out the details, but we expect that in the future, you'll write data fetching like this:
 <Trans>아직 세부 사항을 작업 중이지만, 앞으로는 다음과 같이 데이터 페칭을 할 수 있을 것으로 예상합니다:</Trans>

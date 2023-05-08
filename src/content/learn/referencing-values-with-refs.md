@@ -295,7 +295,7 @@ During the first render, `useRef` returns `{ current: initialValue }`. This obje
 <Trans>첫 번째 렌더링 중에 `useRef` 는  `{ current: initialValue }`를 반환합니다. 이 객체는 React에 의해 저장되므로 다음 렌더링 중에 동일한 객체가 반환됩니다. 이 예제에서 state setter가 어떻게 사용되지 않는지 주목하세요. `useRef`는 항상 동일한 객체를 반환해야 하기 때문에 불필요합니다!</Trans>
 
 React provides a built-in version of `useRef` because it is common enough in practice. But you can think of it as a regular state variable without a setter. If you're familiar with object-oriented programming, refs might remind you of instance fields--but instead of `this.something` you write `somethingRef.current`.
-<Trans>React는 충분히 일반적인 상황이라 판단하고 내장된 버전의 `useRef`를 제공합니다. ref를 설정자가 없는 일반 state 변수라고 생각하면 됩니다. 객체지향 프로그래밍에 익숙하다면 인스턴스 필드를 떠올릴 수 있는데, `this.something` 대신 `somethingRef.current`를 사용하면 됩니다.</Trans>
+<Trans>React는 충분히 일반적인 상황이라 판단하고 빌트인 버전의 `useRef`를 제공합니다. ref를 설정자가 없는 일반 state 변수라고 생각하면 됩니다. 객체지향 프로그래밍에 익숙하다면 인스턴스 필드를 떠올릴 수 있는데, `this.something` 대신 `somethingRef.current`를 사용하면 됩니다.</Trans>
 
 </DeepDive>
 

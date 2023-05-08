@@ -6,7 +6,7 @@ translators: [정재남, 유은미, 고석영]
 <Intro>
 
 *Hooks* let you use different React features from your components. You can either use the built-in Hooks or combine them to build your own. This page lists all built-in Hooks in React.
-<Trans>*훅*을 사용하면 컴포넌트에서 다양한 React 기능을 사용할 수 있습니다. 내장 훅을 사용하거나 조합하여 자신만의 훅을 만들 수도 있습니다. 이 페이지에는 React에 내장된 모든 훅이 나열되어 있습니다.</Trans>
+<Trans>*훅*을 사용하면 컴포넌트에서 다양한 React 기능을 사용할 수 있습니다. 빌트인 훅을 사용하거나 조합하여 자신만의 훅을 만들 수도 있습니다. 이 페이지에는 모든 React 빌트인 훅이 나열되어 있습니다.</Trans>
 
 </Intro>
 
@@ -56,7 +56,7 @@ function Button() {
 ## Ref Hooks {/*ref-hooks*/}
 
 *Refs* let a component [hold some information that isn't used for rendering,](/learn/referencing-values-with-refs) like a DOM node or a timeout ID. Unlike with state, updating a ref does not re-render your component. Refs are an "escape hatch" from the React paradigm. They are useful when you need to work with non-React systems, such as the built-in browser APIs.
-<Trans>*ref*는 컴포넌트가 DOM 노드나 timeout ID와 같이 [렌더링에 사용되지 않는 일부 정보를 보유할 수 있게](/learn/referencing-values-with-refs) 해줍니다. state와 달리 ref를 업데이트해도 컴포넌트가 다시 렌더링되지는 않습니다. ref는 React 패러다임에서 "탈출구"입니다. 내장된 브라우저 API와 같이 React가 아닌 시스템에서 작업해야 할 때 유용합니다.</Trans>
+<Trans>*ref*는 컴포넌트가 DOM 노드나 timeout ID와 같이 [렌더링에 사용되지 않는 일부 정보를 보유할 수 있게](/learn/referencing-values-with-refs) 해줍니다. state와 달리 ref를 업데이트해도 컴포넌트가 다시 렌더링되지는 않습니다. ref는 React 패러다임에서 "탈출구"입니다. 브라우저 빌트인 API와 같이 React가 아닌 시스템에서 작업해야 할 때 유용합니다.</Trans>
 
 * [`useRef`](/reference/react/useRef) declares a ref. You can hold any value in it, but most often it's used to hold a DOM node.
 * [`useImperativeHandle`](/reference/react/useImperativeHandle) lets you customize the ref exposed by your component. This is rarely used.

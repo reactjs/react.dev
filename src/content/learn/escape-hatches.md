@@ -84,7 +84,7 @@ Read [**Referencing Values with Refs**](/learn/referencing-values-with-refs) to 
 ## Manipulating the DOM with Refs<Trans>ref로 DOM 조작하기</Trans> {/*manipulating-the-dom-with-refs*/}
 
 React automatically updates the DOM to match your render output, so your components won't often need to manipulate it. However, sometimes you might need access to the DOM elements managed by React—for example, to focus a node, scroll to it, or measure its size and position. There is no built-in way to do those things in React, so you will need a ref to the DOM node. For example, clicking the button will focus the input using a ref:
-<Trans>React는 렌더링 출력과 일치하도록 DOM을 자동으로 업데이트하므로 컴포넌트에서 자주 조작할 필요가 없습니다. 하지만 때로는 노드에 포커스를 맞추거나 스크롤하거나 크기와 위치를 측정하기 위해 React가 관리하는 DOM 요소에 접근해야 할 수도 있습니다. React에는 이러한 작업을 수행할 수 있는 내장된 방법이 없으므로 DOM 노드에 대한 ref(참조)가 필요합니다. 예를 들어 버튼을 클릭하면 ref를 사용해 입력에 포커스를 맞춥니다:</Trans>
+<Trans>React는 렌더링 출력과 일치하도록 DOM을 자동으로 업데이트하므로 컴포넌트에서 자주 조작할 필요가 없습니다. 하지만 때로는 노드에 포커스를 맞추거나 스크롤하거나 크기와 위치를 측정하기 위해 React가 관리하는 DOM 요소에 접근해야 할 수도 있습니다. React에는 이러한 작업을 수행할 수 있는 빌트인된 방법이 없으므로 DOM 노드에 대한 ref(참조)가 필요합니다. 예를 들어 버튼을 클릭하면 ref를 사용해 입력에 포커스를 맞춥니다:</Trans>
 
 <Sandpack>
 
@@ -806,7 +806,7 @@ Read [**Removing Effect Dependencies**](/learn/removing-effect-dependencies) to 
 ## Reusing logic with custom Hooks<Trans>커스텀 훅으로 로직 재사용하기</Trans> {/*reusing-logic-with-custom-hooks*/}
 
 React comes with built-in Hooks like `useState`, `useContext`, and `useEffect`. Sometimes, you’ll wish that there was a Hook for some more specific purpose: for example, to fetch data, to keep track of whether the user is online, or to connect to a chat room. To do this, you can create your own Hooks for your application's needs.
-<Trans>React에는 `useState`, `useContext`, `useEffect`와 같은 훅이 내장되어 있습니다. 때로는 데이터를 페치하거나, 사용자가 온라인 상태인지 추적하거나, 채팅방에 연결하는 것과 같이 좀 더 구체적인 목적을 위한 훅이 있었으면 좋겠습니다. 이를 위해 애플리케이션의 필요에 맞는 고유한 훅을 만들 수 있습니다.</Trans>
+<Trans>React에는 `useState`, `useContext`, `useEffect`와 같은 훅이 빌트인되어 있습니다. 때로는 데이터를 페치하거나, 사용자가 온라인 상태인지 추적하거나, 채팅방에 연결하는 것과 같이 좀 더 구체적인 목적을 위한 훅이 있었으면 좋겠습니다. 이를 위해 애플리케이션의 필요에 맞는 고유한 훅을 만들 수 있습니다.</Trans>
 
 In this example, the `usePointerPosition` custom Hook tracks the cursor position, while `useDelayedValue` custom Hook returns a value that's "lagging behind" the value you passed by a certain number of milliseconds. Move the cursor over the sandbox preview area to see a moving trail of dots following the cursor:
 <Trans>이번 예제에서는 `usePointerPosition` 커스텀 훅은 커서 위치를 추적하고, `useDelayedValue` 커스텀 훅은 전달한 값보다 특정 밀리초만큼 '지연'된 값을 반환합니다. 샌드박스 미리보기 영역 위로 커서를 이동하면 커서를 따라 움직이는 점의 흔적을 확인할 수 있습니다:</Trans>

@@ -35,7 +35,7 @@ Other popular text editors used in the React community include:
 
 <TransBlock>
   - [웹스톰](https://www.jetbrains.com/webstorm/)은 JavaScript를 위해 특별히 설계된 통합 개발 환경입니다.
-  - [Sublime Text](https://www.sublimetext.com/)는 JSX와 TypeScript를 지원하며, [구문 강조](https://stackoverflow.com/a/70960574/458193) 및 자동 완성 기능이 내장되어 있습니다.
+  - [Sublime Text](https://www.sublimetext.com/)는 JSX와 TypeScript를 지원하며, [구문 강조](https://stackoverflow.com/a/70960574/458193) 및 자동완성 기능이 빌트인되어 있습니다.
   - [Vim](https://www.vim.org/)은 모든 종류의 텍스트를 매우 효율적으로 생성하고 변경할 수 있도록 고도로 구성 가능한 텍스트 편집기입니다. 대부분의 UNIX 시스템과 Apple OS X에 "vi"로 포함되어 있습니다.
 </TransBlock>
 

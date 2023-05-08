@@ -50,7 +50,7 @@ setX(5);
 ```
 
 The `x` state changed from `0` to `5`, but the _number `0` itself_ did not change. It's not possible to make any changes to the built-in primitive values like numbers, strings, and booleans in JavaScript.
-<Trans>`x` state가 `0`에서 `5`로 변경 되었지만 숫자 `0` 자체는 변경되지 않았습니다. JavaScript에서는 숫자, 문자열, 불리언과 같은 내장된 원시 자료형 값을 변경할 수 없습니다.</Trans>
+<Trans>`x` state가 `0`에서 `5`로 변경 되었지만 숫자 `0` 자체는 변경되지 않았습니다. JavaScript에서는 숫자, 문자열, 불리언과 같은 빌트인 원시 자료형 값을 변경할 수 없습니다.</Trans>
 
 Now consider an object in state:
 <Trans>객체 state를 살펴봅시다:</Trans>

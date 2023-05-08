@@ -62,7 +62,7 @@ During subsequent renders, it will either return an already stored `fn`  functio
 <Trans>`useCallback`은 Hook이므로 컴포넌트의 **최상위 레벨이나 자체 Hook에서만 호출할 수 있습니다.** 반복문이나 조건문 내부에서는 호출할 수 없습니다. 필요한 경우 새로운 컴포넌트로 추출하고 state를 그 안으로 옮기세요.</Trans>
 
 * React **will not throw away the cached function unless there is a specific reason to do that.** For example, in development, React throws away the cache when you edit the file of your component. Both in development and in production, React will throw away the cache if your component suspends during the initial mount. In the future, React may add more features that take advantage of throwing away the cache--for example, if React adds built-in support for virtualized lists in the future, it would make sense to throw away the cache for items that scroll out of the virtualized table viewport. This should match your expectations if you rely on `useCallback` as a performance optimization. Otherwise, a [state variable](/reference/react/useState#im-trying-to-set-state-to-a-function-but-it-gets-called-instead) or a [ref](/reference/react/useRef#avoiding-recreating-the-ref-contents) may be more appropriate.
-<Trans>React는 **특별한 이유가 없는 한 캐시된 함수를 버리지 않습니다.** 예를 들어, 개발 단계에서 컴포넌트의 파일을 수정할 때 React는 캐시를 버립니다. React는 개발 중이든 생산 중이든 초기 마운트 중에 컴포넌트가 일시 중단되면 캐시를 버립니다. 향후 React는 캐시를 버리는 것의 이점을 취하는 더 많은 기능을 추가할 수 있습니다. 예를 들어, 향후 React에 가상화된 목록에 대한 내장된 지원이 추가되면 가상화된 테이블 뷰포트에서 스크롤되는 항목에 대한 캐시도 버리는 것도 이해가 될 것입니다. 성능 최적화를 위해 `useCallback`에 의존하는 경우 기대에 부합할 것입니다. 그렇지 않은 경우 [state](/reference/react/useState#im-trying-to-set-state-to-a-function-but-it-gets-called-instead) 변수나 [ref](/reference/react/useRef#avoiding-recreating-the-ref-contents)가 더 적합할 수 있습니다.</Trans>
+<Trans>React는 **특별한 이유가 없는 한 캐시된 함수를 버리지 않습니다.** 예를 들어, 개발 단계에서 컴포넌트의 파일을 수정할 때 React는 캐시를 버립니다. React는 개발 중이든 생산 중이든 초기 마운트 중에 컴포넌트가 일시 중단되면 캐시를 버립니다. 향후 React는 캐시를 버리는 것의 이점을 취하는 더 많은 기능을 추가할 수 있습니다. 예를 들어, 향후 React에 가상화된 목록에 대한 빌트인 지원이 추가되면 가상화된 테이블 뷰포트에서 스크롤되는 항목에 대한 캐시도 버리는 것도 이해가 될 것입니다. 성능 최적화를 위해 `useCallback`에 의존하는 경우 기대에 부합할 것입니다. 그렇지 않은 경우 [state](/reference/react/useState#im-trying-to-set-state-to-a-function-but-it-gets-called-instead) 변수나 [ref](/reference/react/useRef#avoiding-recreating-the-ref-contents)가 더 적합할 수 있습니다.</Trans>
 
 ---
 
@@ -169,19 +169,19 @@ function ProductPage({ productId, referrer, theme }) {
 ```js {2,3,4,9,10,14-16}
 function ProductPage({ productId, referrer, theme }) {
   // Tell React to cache your function between re-renders...
-  // 리렌더링 사이에 함수를 캐시하도록 React에 지시하세요...
+  // 리렌더링 사이에 함수를 캐싱하도록 지시합니다...
   const handleSubmit = useCallback((orderDetails) => {
     post('/product/' + productId + '/buy', {
       referrer,
       orderDetails,
     });
   }, [productId, referrer]); // ...so as long as these dependencies don't change...
-  // ...이 의존성이 변경되지 않는 한...
+                             // ...따라서 이 의존성이 변경되지 않는 한...
 
   return (
     <div className={theme}>
       {/* ...ShippingForm will receive the same props and can skip re-rendering */}
-      {/* ...ShippingForm은 동일한 props를 받으며 리렌더링을 건너뛸 수 있습니다.*/}
+      {/* ...ShippingForm은 동일한 props를 받으므로 리렌더링을 건너뛸 수 있습니다.*/}
       <ShippingForm onSubmit={handleSubmit} />
     </div>
   );
@@ -205,17 +205,19 @@ function ProductPage({ productId, referrer, theme }) {
 You will often see [`useMemo`](/reference/react/useMemo) alongside `useCallback`. They are both useful when you're trying to optimize a child component. They let you [memoize](https://en.wikipedia.org/wiki/Memoization) (or, in other words, cache) something you're passing down:
 <Trans>[`useMemo`](/reference/react/useMemo)와 함께 `useCallback` 이 자주 사용되는 것을 볼 수 있습니다. 자식 컴포넌트를 최적화하려고 할 때, 두 가지 모두 유용합니다. 전달하는 값을 [memoize](https://en.wikipedia.org/wiki/Memoization)(캐시)할 수 있게 해줍니다.</Trans>
 
-```js {6-8,10-15,19}
+```js {6-9,11-17,21}
 import { useMemo, useCallback } from 'react';
 
 function ProductPage({ productId, referrer }) {
   const product = useData('/product/' + productId);
 
-  const requirements = useMemo(() => { // Calls your function and caches its result 함수를 호출하고 그 결과를 캐시합니다.
+  const requirements = useMemo(() => { // Calls your function and caches its result
+                                       // 함수를 호출하고 그 결과를 캐시합니다.
     return computeRequirements(product);
   }, [product]);
 
-  const handleSubmit = useCallback((orderDetails) => { // Caches your function itself 함수 자체를 캐시합니다.
+  const handleSubmit = useCallback((orderDetails) => { // Caches your function itself
+                                                       // 함수 자체를 캐시합니다.
     post('/product/' + productId + '/buy', {
       referrer,
       orderDetails,
@@ -242,7 +244,8 @@ If you're already familiar with [`useMemo`,](/reference/react/useMemo) you might
 <Trans>[`useMemo`](/reference/react/useMemo)에 이미 익숙하다면 `useCallback`을 이렇게 생각하면 도움이 될 수 있습니다:</Trans>
 
 ```js
-// Simplified implementation (inside React) 간소화된 구현체(리액트에서) 
+// Simplified implementation (inside React)
+// 간소화된 구현체 (리액트 내부)
 function useCallback(fn, dependencies) {
   return useMemo(() => fn, dependencies);
 }
@@ -258,7 +261,7 @@ function useCallback(fn, dependencies) {
 #### Should you add useCallback everywhere? {/*should-you-add-usecallback-everywhere*/}<Trans>useCallback을 모든 곳에 추가해야 하나요?</Trans> {/*should-you-add-usecallback-everywhere-should-you-add-usecallback-everywheretransusecallback을-모든-곳에-추가해야-하나요trans*/}
 
 If your app is like this site, and most interactions are coarse (like replacing a page or an entire section), memoization is usually unnecessary. On the other hand, if your app is more like a drawing editor, and most interactions are granular (like moving shapes), then you might find memoization very helpful.
-<Trans>이 사이트와 같이 대부분의 인터랙션이 투박한 앱의 경우(페이지 또는 전체 섹션 교체 등) 일반적으로 메모이제이션이 필요하지 않습니다. 반면 앱이 그림 편집기 처럼 대부분의 인터랙션이 도형 이동 처럼 세분화되어 있다면 메모이제이션이 매우 유용할 수 있습니다.</Trans> 
+<Trans>이 사이트와 같이 대부분의 인터랙션이 투박한 앱의 경우(페이지 또는 전체 섹션 교체 등) 일반적으로 메모화는 필요하지 않습니다. 반면 앱이 그림 편집기 처럼 대부분의 인터랙션이 도형 이동 처럼 세분화되어 있다면 메모화가 매우 유용할 수 있습니다.</Trans> 
 
 Caching a function with `useCallback`  is only valuable in a few cases:
 <Trans>`useCallback`으로 함수를 캐싱하는 것은 몇 가지 경우에만 유용합니다:</Trans>
@@ -266,18 +269,18 @@ Caching a function with `useCallback`  is only valuable in a few cases:
 - You pass it as a prop to a component wrapped in [`memo`.](/reference/react/memo) You want to skip re-rendering if the value hasn't changed. Memoization lets your component re-render only if dependencies changed.
 - The function you're passing is later used as a dependency of some Hook. For example, another function wrapped in `useCallback` depends on it, or you depend on this function from [`useEffect.`](/reference/react/useEffect)
 <TransBlock>
-- [`memo`](/reference/react/memo)로 감싼 컴포넌트에 prop으로 전달합니다. 값이 변경되지 않았다면 렌더링을 건너뛰고 싶을 것입니다. 메모이제이션을 사용하면 의존성이 변경된 경우에만 컴포넌트를 리렌더링할 수 있습니다.
+- [`memo`](/reference/react/memo)로 감싼 컴포넌트에 prop으로 전달합니다. 값이 변경되지 않았다면 렌더링을 건너뛰고 싶을 것입니다. 메모화를 사용하면 의존성이 변경된 경우에만 컴포넌트를 리렌더링할 수 있습니다.
 - 전달한 함수는 나중에 일부 Hook의 의존성으로 사용됩니다. 예를 들어, `useCallback`으로 감싼 다른 함수가 이 함수에 의존하거나, `useEffect`에서 이 함수에 의존할 수 있습니다.
 </TransBlock>
 
 There is no benefit to wrapping a function in `useCallback` in other cases. There is no significant harm to doing that either, so some teams choose to not think about individual cases, and memoize as much as possible. The downside is that code becomes less readable. Also, not all memoization is effective: a single value that's "always new" is enough to break memoization for an entire component.
-<Trans>다른 경우에는 함수를 `useCallback`으로 감싸는 것이 이득이 없습니다. 그렇게 한다고 해서 크게 해가 되는 것도 아니기 때문에 일부 팀에서는 개별 사례에 대해 생각하지 않고 가능한 한 많이 메모하는 방식을 선택하기도 합니다. 단점은 코드 가독성이 떨어진다는 것입니다. 또한 모든 메모이제이션이 효과적인 것은 아닙니다. "항상 새로운" 단일 값만으로도 전체 컴포넌트에 대한 메모이제이션이 깨질 수 있습니다.</Trans>
+<Trans>다른 경우에는 함수를 `useCallback`으로 감싸는 것이 이득이 없습니다. 그렇게 한다고 해서 크게 해가 되는 것도 아니기 때문에 일부 팀에서는 개별 사례에 대해 생각하지 않고 가능한 한 많이 메모하는 방식을 선택하기도 합니다. 단점은 코드 가독성이 떨어진다는 것입니다. 또한 모든 메모화가 효과적인 것은 아닙니다. "항상 새로운" 단일 값만으로도 전체 컴포넌트에 대한 메모화가 깨질 수 있습니다.</Trans>
 
 Note that `useCallback` does not prevent *creating* the function. You're always creating a function (and that's fine!), but React ignores it and gives you back a cached function if nothing changed.
 <Trans>`useCallback`이 함수 생성을 막지 않는다는 것을 기억하세요. 여러분은 항상 함수를 생성하지만(그리고 그것은 괜찮습니다!), React는 변경된 것이 없다면 이를 무시하고 캐시된 함수를 반환합니다.</Trans>
 
 **In practice, you can make a lot of memoization unnecessary by following a few principles:**
-<Trans>사실, 다음 몇 가지 원칙을 따르면 많은 메모이제이션을 불필요하게 만들 수 있습니다:</Trans>
+<Trans>사실, 다음 몇 가지 원칙을 따르면 많은 메모화를 불필요하게 만들 수 있습니다:</Trans>
 
 1. When a component visually wraps other components, let it [accept JSX as children.](/learn/passing-props-to-a-component#passing-jsx-as-children) Then, if the wrapper component updates its own state, React knows that its children don't need to re-render.
 <Trans>컴포넌트가 다른 컴포넌트를 시각적으로 감쌀 때 [JSX를 자식으로 받아들이도록 하세요.](/learn/passing-props-to-a-component#passing-jsx-as-children) 그러면 래퍼 컴포넌트가 자신의 state를 업데이트 하더라도 React는 자식 컴포넌트가 리렌더링할 필요가 없다는 것을 알 수 있습니다.</Trans>
@@ -286,16 +289,16 @@ Note that `useCallback` does not prevent *creating* the function. You're always 
 <Trans>로컬 state를 선호하고 필요 이상으로 [state를 끌어올리지](/learn/sharing-state-between-components) 마세요. 트리 상단 또는 전역 상태 라이브러리에 폼(form)이나 아이템(item)의 호버(hover) 상태와 같은 일시적인 state를 유지하지 마세요.</Trans>
 
 3. Keep your [rendering logic pure.](/learn/keeping-components-pure) If re-rendering a component causes a problem or produces some noticeable visual artifact, it's a bug in your component! Fix the bug instead of adding memoization.
-<Trans>[렌더링 로직을 순수하게](/learn/keeping-components-pure) 유지하세요. 만약 컴포넌트를 리렌더링했을 때 문제가 발생하거나 눈에 띄는 시각적 아티팩트가 생성된다면 컴포넌트에 버그가 있는 것입니다! 메모이제이션을 추가하는 대신 버그를 수정하세요.</Trans>
+<Trans>[렌더링 로직을 순수하게](/learn/keeping-components-pure) 유지하세요. 만약 컴포넌트를 리렌더링했을 때 문제가 발생하거나 눈에 띄는 시각적 아티팩트가 생성된다면 컴포넌트에 버그가 있는 것입니다! 메모화를 추가하는 대신 버그를 수정하세요.</Trans>
 
 4. Avoid [unnecessary Effects that update state.](/learn/you-might-not-need-an-effect) Most performance problems in React apps are caused by chains of updates originating from Effects that cause your components to render over and over.
 <Trans>[state를 업데이트하는 불필요한 Effect](/learn/you-might-not-need-an-effect)를 피하세요. React 앱에서 대부분의 성능 문제는 컴포넌트를 반복적으로 렌더링하게 하는 Effect의 업데이트 체인으로 인해 발생합니다.</Trans>
 
 5. Try to [remove unnecessary dependencies from your Effects.](/learn/removing-effect-dependencies) For example, instead of memoization, it's often simpler to move some object or a function inside an Effect or outside the component.
-<Trans>Effect에서 불필요한 의존성을 제거하세요. 예를 들어 메모이제이션 대신 일부 겍체나 함수를 Effect 내부나 컴포넌트 외부로 이동하는 것이 더 간단할 때가 많습니다.</Trans>
+<Trans>Effect에서 불필요한 의존성을 제거하세요. 예를 들어 메모화 대신 일부 겍체나 함수를 Effect 내부나 컴포넌트 외부로 이동하는 것이 더 간단할 때가 많습니다.</Trans>
 
 If a specific interaction still feels laggy, [use the React Developer Tools profiler](https://legacy.reactjs.org/blog/2018/09/10/introducing-the-react-profiler.html) to see which components benefit the most from memoization, and add memoization where needed. These principles make your components easier to debug and understand, so it's good to follow them in any case. In long term, we're researching [doing memoization automatically](https://www.youtube.com/watch?v=lGEMwh32soc) to solve this once and for all.
-<Trans>특정 인터랙션이 여전히 느리게 느껴진다면 [React 개발자 도구 프로파일러를 사용](/blog/2018/09/10/introducing-the-react-profiler.html)해 어떤 컴포넌트가 메모이제이션의 이점을 가장 많이 누리는지 확인하고, 필요한 경우 메모이제이션을 추가하세요. 이러한 원칙은 컴포넌트를 더 쉽게 디버깅하고 이해할 수 있게 해주므로 어떤 경우든 이 원칙을 따르는 것이 좋습니다. 장기적으로는 이 문제를 완전히 해결하기 위해 [메모이제이션을 자동으로 수행](https://www.youtube.com/watch?v=lGEMwh32soc)하는 방법을 연구하고 있습니다.</Trans>
+<Trans>특정 인터랙션이 여전히 느리게 느껴진다면 [React 개발자 도구 프로파일러를 사용](/blog/2018/09/10/introducing-the-react-profiler.html)해 어떤 컴포넌트가 메모화의 이점을 가장 많이 누리는지 확인하고, 필요한 경우 메모화를 추가하세요. 이러한 원칙은 컴포넌트를 더 쉽게 디버깅하고 이해할 수 있게 해주므로 어떤 경우든 이 원칙을 따르는 것이 좋습니다. 장기적으로는 이 문제를 완전히 해결하기 위해 [메모화를 자동으로 수행](https://www.youtube.com/watch?v=lGEMwh32soc)하는 방법을 연구하고 있습니다.</Trans>
 
 </DeepDive>
 
@@ -719,7 +722,7 @@ button[type="button"] {
 
 
 Quite often, code without memoization works fine. If your interactions are fast enough, you don't need memoization.
-<Trans>종종 메모이제이션 없이도 코드가 잘 작동하는 경우가 많습니다. 인터랙션이 충분히 빠르다면 메모이제이션이 필요하지 않습니다.</Trans>
+<Trans>종종 메모화 없이도 코드가 잘 작동하는 경우가 많습니다. 인터랙션이 충분히 빠르다면 메모화가 필요하지 않습니다.</Trans>
 
 Keep in mind that you need to run React in production mode, disable [React Developer Tools](/learn/react-developer-tools), and use devices similar to the ones your app's users have in order to get a realistic sense of what's actually slowing down your app.
 <Trans>실제로 앱의 속도를 저하시키는 요인을 현실적으로 파악하려면 상용 환경에서 React를 실행하고 [React 개발자 도구](/learn/react-developer-tools)를 비활성화하여 앱 사용자가 사용하는 것과 유사한 기기를 사용해야 한다는 점을 기억하세요.</Trans>
@@ -752,7 +755,7 @@ function TodoList() {
 You'll usually want memoized functions to have as few dependencies as possible. When you read some state only to calculate the next state, you can remove that dependency by passing an [updater function](/reference/react/useState#updating-state-based-on-the-previous-state) instead:
 <Trans>일반적으로 메모화된 함수는 가능한 적은 의존성을 갖기를 원할 것입니다. 다음 state를 계산하기 위해 일부 state만 읽어야 하는 경우, 대신 [업데이터 함수](/reference/react/useState#updating-state-based-on-the-previous-state)를 전달하여 해당 의존성을 제거할 수 있습니다:</Trans>
 
-```js {6,7}
+```js {6-8}
 function TodoList() {
   const [todos, setTodos] = useState([]);
 
@@ -760,6 +763,7 @@ function TodoList() {
     const newTodo = { id: nextId++, text };
     setTodos(todos => [...todos, newTodo]);
   }, []); // ✅ No need for the todos dependency 
+          // ✅ todos에 대한 의존성이 필요하지 않음
   // ...
 ```
 
@@ -795,20 +799,21 @@ This creates a problem. [Every reactive value must be declared as a dependency o
 <Trans>이로 인해 문제가 발생합니다. [모든 반응형 값은 Effect의 의존성으로 선언해야 합니다.](/learn/lifecycle-of-reactive-effects#react-verifies-that-you-specified-every-reactive-value-as-a-dependency) 그러나 `createOptions`를 의존성으로 선언하면 Effect가 채팅방에 계속 재연결하게 됩니다:</Trans>
 
 
-```js {6}
+```js {6-7}
   useEffect(() => {
     const options = createOptions();
     const connection = createConnection();
     connection.connect();
     return () => connection.disconnect();
   }, [createOptions]); // 🔴 Problem: This dependency changes on every render
+                       // 🔴 문제: 이 의존성은 렌더링시마다 변경됨
   // ...
 ```
 
 To solve this, you can wrap the function you need to call from an Effect into `useCallback`:
 <Trans>이 문제를 해결하려면 Effect에서 호출해야 하는 함수를 `useCallback`으로 감싸면 됩니다:</Trans>
 
-```js {4-9,16}
+```js {4-10,17-18}
 function ChatRoom({ roomId }) {
   const [message, setMessage] = useState(''); 
 
@@ -818,6 +823,7 @@ function ChatRoom({ roomId }) {
       roomId: roomId
     };
   }, [roomId]); // ✅ Only changes when roomId changes
+                // ✅ roomId 변경시에만 변경됨
 
   useEffect(() => {
     const options = createOptions();
@@ -825,18 +831,20 @@ function ChatRoom({ roomId }) {
     connection.connect();
     return () => connection.disconnect();
   }, [createOptions]); // ✅ Only changes when createOptions changes
+                       // ✅ createOptions 변경시에만 변경됨
   // ...
 ```
 
 This ensures that the `createOptions` function is the same between re-renders if the `roomId` is the same. **However, it's even better to remove the need for a function dependency.** Move your function *inside* the Effect:
 <Trans>이렇게 하면 `roomId`가 동일한 경우 리렌더링 사이에 `createOptions` 함수가 동일하게 적용됩니다. **하지만 함수 의존성을 없애는 편이 더 좋습니다.** 함수를 Effect *내부*로 이동하세요:</Trans>
 
-```js {5-10,16}
+```js {5-11,17-18}
 function ChatRoom({ roomId }) {
   const [message, setMessage] = useState('');
 
   useEffect(() => {
     function createOptions() { // ✅ No need for useCallback or function dependencies!
+                               // ✅ useCallback이나 함수에 대한 의존성이 필요하지 않음!
       return {
         serverUrl: 'https://localhost:1234',
         roomId: roomId
@@ -848,6 +856,7 @@ function ChatRoom({ roomId }) {
     connection.connect();
     return () => connection.disconnect();
   }, [roomId]); // ✅ Only changes when roomId changes
+                // ✅ roomId 변경시에만 변경됨
   // ...
 ```
 
@@ -895,7 +904,7 @@ Make sure you've specified the dependency array as a second argument!
 If you forget the dependency array, `useCallback` will return a new function every time:
 <Trans>의존성 배열을 잊어버린 경우 `useCallback`은 매번 새로운 함수를 반환합니다:</Trans>
 
-```js {7}
+```js {7-8}
 function ProductPage({ productId, referrer }) {
   const handleSubmit = useCallback((orderDetails) => {
     post('/product/' + productId + '/buy', {
@@ -903,13 +912,14 @@ function ProductPage({ productId, referrer }) {
       orderDetails,
     });
   }); // 🔴 Returns a new function every time: no dependency array
+      // 🔴 매 번 새 함수를 반환함: 의존성 배열이 없음
   // ...
 ```
 
 This is the corrected version passing the dependency array as a second argument:
 <Trans>다음은 의존성 배열을 두 번째 인수로 전달하는 수정된 버전입니다:</Trans>
 
-```js {7}
+```js {7-8}
 function ProductPage({ productId, referrer }) {
   const handleSubmit = useCallback((orderDetails) => {
     post('/product/' + productId + '/buy', {
@@ -917,6 +927,7 @@ function ProductPage({ productId, referrer }) {
       orderDetails,
     });
   }, [productId, referrer]); // ✅ Does not return a new function unnecessarily
+                             // ✅ 불필요하게 새 함수를 반환하지 않음
   // ...
 ```
 
@@ -936,15 +947,15 @@ You can then right-click on the arrays from different re-renders in the console 
 
 ```js
 Object.is(temp1[0], temp2[0]); // Is the first dependency the same between the arrays?
-                               // 각 배열들의 첫번째 의존성이 동일한가?
+                               // 각 배열의 첫번째 의존성이 동일한가?
 Object.is(temp1[1], temp2[1]); // Is the second dependency the same between the arrays?
-                               // 각 배열들의 두번째 의존성이 동일한가?
+                               // 각 배열의 두번째 의존성이 동일한가?
 Object.is(temp1[2], temp2[2]); // ... and so on for every dependency ...
                                // ... 나머지 모든 의존성에 대해 반복 ...
 ```
 
 When you find which dependency is breaking memoization, either find a way to remove it, or [memoize it as well.](/reference/react/useMemo#memoizing-a-dependency-of-another-hook)
-<Trans>어떤 의존성이 메모이제이션을 방해하는지 찾았다면 그 의존성을 제거할 방법을 찾거나 해당 의존성도 [메모이제이션을 하면 됩니다](/reference/react/useMemo#memoizing-a-dependency-of-another-hook).</Trans>
+<Trans>어떤 의존성이 메모화를 방해하는지 찾았다면, 그 의존성을 제거할 방법을 찾거나 해당 의존성도 [메모화하면 됩니다](/reference/react/useMemo#memoizing-a-dependency-of-another-hook).</Trans>
 
 ---
 
@@ -953,12 +964,13 @@ When you find which dependency is breaking memoization, either find a way to rem
 Suppose the `Chart` component is wrapped in [`memo`](/reference/react/memo). You want to skip re-rendering every `Chart` in the list when the `ReportList` component re-renders. However, you can't call `useCallback` in a loop:
 <Trans>`Chart` 컴포넌트가 [`memo`](/reference/react/memo)로 감싸져 있다고 가정해 봅시다. `ReportList` 컴포넌트가 리렌더링할 때 목록의 모든 `Chart`를 리렌더링하는 것을 건너뛰고 싶을 수 있습니다. 그러나 반복문에서는 `useCallback`을 호출할 수 없습니다:</Trans>
 
-```js {5-14}
+```js {5-15}
 function ReportList({ items }) {
   return (
     <article>
       {items.map(item => {
         // 🔴 You can't call useCallback in a loop like this:
+        // 🔴 useCallback는 루프 안에서 호출할 수 없습니다:
         const handleClick = useCallback(() => {
           sendReport(item)
         }, [item]);
@@ -977,7 +989,7 @@ function ReportList({ items }) {
 Instead, extract a component for an individual item, and put `useCallback` there:
 <Trans>대신 개별 항목에 대한 컴포넌트를 추출하고 거기에 `useCallback`을 넣으세요:</Trans>
 
-```js {5,12-21}
+```js {5,12-22}
 function ReportList({ items }) {
   return (
     <article>
@@ -990,6 +1002,7 @@ function ReportList({ items }) {
 
 function Report({ item }) {
   // ✅ Call useCallback at the top level:
+  // ✅ useCallback은 컴포넌트의 최상위 레벨에서 호출하세요:
   const handleClick = useCallback(() => {
     sendReport(item)
   }, [item]);

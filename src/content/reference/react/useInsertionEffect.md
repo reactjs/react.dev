@@ -6,7 +6,7 @@ translators: [고석영]
 <Pitfall>
 
 `useInsertionEffect` is for CSS-in-JS library authors. Unless you are working on a CSS-in-JS library and need a place to inject the styles, you probably want [`useEffect`](/reference/react/useEffect) or [`useLayoutEffect`](/reference/react/useLayoutEffect) instead.
-<Trans>`useInsertionEffect`는 CSS-in-JS 라이브러리 작성자를 위한 훅입니다. CSS-in-JS 라이브러리에서 작업 중이고 스타일을 주입할 위치가 필요하다면 [`useEffect`](/reference/react/useEffect)를 사용하거나 [`useLayoutEffect`](/reference/react/useLayoutEffect)를 대신 사용할 수 있습니다. </Trans>
+<Trans>`useInsertionEffect`는 CSS-in-JS 라이브러리 작성자를 위한 훅입니다. CSS-in-JS 라이브러리에서 작업 중에 스타일을 주입하고자 하는 경우가 아니라면, [`useEffect`](/reference/react/useEffect)나 [`useLayoutEffect`](/reference/react/useLayoutEffect)가 더 나을 수 있습니다. </Trans>
 
 </Pitfall>
 

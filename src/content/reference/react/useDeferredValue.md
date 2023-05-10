@@ -531,7 +531,7 @@ You can think of it as happening in two steps:
 <Trans>두 단계로 진행된다고 생각하면 됩니다:</Trans>
 
 1. **First, React re-renders with the new `query` (`"ab"`) but with the old `deferredQuery` (still `"a")`.** The `deferredQuery` value, which you pass to the result list, is *deferred:* it "lags behind" the `query` value.
-<Trans>**먼저, React는 새로운 `query`(`"ab"`)가 아닌 이전 `deferredQuery`(여전히 `"a"`)로 다시 렌더링합니다.** 결과 목록에 전달하는 `deferredQuery` 값은 `query` 값보다 "지연"된 상태입니다.</Trans>
+<Trans>**먼저, React는 새로운 `query`(`"ab"`)가 아닌 이전 `deferredQuery`(여전히 `"a"`)로 다시 렌더링합니다.** 결과 목록에 전달하는 `deferredQuery` 값은 "지연"된 `query` 값입니다.</Trans>
 
 2. **In background, React tries to re-render with *both* `query` and `deferredQuery` updated to `"ab"`.** If this re-render completes, React will show it on the screen. However, if it suspends (the results for `"ab"` have not loaded yet), React will abandon this rendering attempt, and retry this re-render again after the data has loaded. The user will keep seeing the stale deferred value until the data is ready.
 <Trans>**백그라운드에서 React는 `query`와 `deferredQuery`를 모두 `"ab"`로 업데이트한 상태로 리렌더링을 시도합니다.** 이 리렌더링이 완료되면 React는 이를 화면에 표시합니다. 그러나 일시 중단되면(`"ab"`에 대한 결과가 아직 로드되지 않은 경우) React는 이 렌더링 시도를 포기하고 데이터가 로드된 후 이 리렌더링을 다시 시도합니다. 사용자는 데이터가 준비될 때까지 오래된 '지연된 값'을 계속 보게 됩니다.</Trans>
@@ -998,7 +998,7 @@ While these techniques are helpful in some cases, `useDeferredValue` is better s
 <Trans>이 기법들은 경우에 따라 유용하지만, `useDeferredValue`는 React 자체와 깊게 통합되어 있고 사용자의 기기에 맞게 조정되기 때문에 렌더링을 최적화하는 데 더 적합합니다.</Trans>
 
 Unlike debouncing or throttling, it doesn't require choosing any fixed delay. If the user's device is fast (e.g. powerful laptop), the deferred re-render would happen almost immediately and wouldn't be noticeable. If the user's device is slow, the list would "lag behind" the input proportionally to how slow the device is.
-<Trans>debouncing이나 throttling과 달리 고정된 지연을 선택할 필요가 없습니다. 사용자의 기기가 빠른 경우(예: 고성능 노트북) 지연된 리렌더링은 거의 즉시 발생하며 눈에 띄지 않을 것입니다. 사용자의 기기가 느린 경우, 기기 속도에 비례하여 목록이 입력에 '지연'됩니다.</Trans>
+<Trans>debouncing이나 throttling과 달리 고정된 지연을 선택할 필요가 없습니다. 사용자의 기기가 빠른 경우(예: 고성능 노트북) 지연된 리렌더링은 거의 즉시 발생하며 눈에 띄지 않을 것입니다. 사용자의 기기가 느린 경우, 기기 속도에 비례하여 목록이 input에 '지연'됩니다.</Trans>
 
 Also, unlike with debouncing or throttling, deferred re-renders done by `useDeferredValue` are interruptible by default. This means that if React is in the middle of re-rendering a large list, but the user makes another keystroke, React will abandon that re-render, handle the keystroke, and then start rendering in background again. By contrast, debouncing and throttling still produce a janky experience because they're *blocking:* they merely postpone the moment when rendering blocks the keystroke.
 <Trans>또한 debouncing이나 throttling과 달리 `useDeferredValue`에 의해 수행되는 지연된 리렌더링은 기본적으로 중단 가능합니다. 즉, React가 큰 목록을 다시 렌더링하는 도중에 사용자가 다른 키 입력을 하면 React는 해당 리렌더링을 중단하고 키 입력을 처리한 다음 백그라운드에서 다시 렌더링을 시작합니다. 반면 debouncing과 throttling은 렌더링이 키 입력을 차단하는 순간을 연기할 뿐이므로 여전히 불안정한 경험을 만들어냅니다.</Trans>

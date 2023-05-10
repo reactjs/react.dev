@@ -617,7 +617,7 @@ Absolutely! Event handlers are the best place for side effects.
 <Trans>물론입니다! 이벤트 핸들러는 부작용이 가장 많이 발생하는 곳입니다.</Trans>
 
 Unlike rendering functions, event handlers don't need to be [pure](/learn/keeping-components-pure), so it's a great place to *change* something—for example, change an input's value in response to typing, or change a list in response to a button press. However, in order to change some information, you first need some way to store it. In React, this is done by using [state, a component's memory.](/learn/state-a-components-memory) You will learn all about it on the next page.
-<Trans>렌더링 함수와 달리 이벤트 핸들러는 [순수](/learn/keeping-components-pure)할 필요가 없으므로 입력에 대한 응답으로 입력 값을 변경하거나 버튼 누름에 대한 응답으로 목록을 변경하는 등 무언가를 변경하기에 좋은 곳입니다. 하지만 일부 정보를 변경하려면 먼저 정보를 저장할 방법이 필요합니다. React에서는 [컴포넌트의 메모리인 state](/learn/state-a-components-memory)를 사용해 이 작업을 수행합니다. 다음 페이지에서 이에 대한 모든 것을 배우게 될 것입니다.</Trans>
+<Trans>렌더링 함수와 달리 이벤트 핸들러는 [순수](/learn/keeping-components-pure)할 필요가 없으므로 타이핑에 대한 응답으로 input 값을 변경하거나 버튼 누름에 대한 응답으로 목록을 변경하는 등 무언가를 변경하기에 좋은 곳입니다. 하지만 일부 정보를 변경하려면 먼저 정보를 저장할 방법이 필요합니다. React에서는 [컴포넌트의 메모리인 state](/learn/state-a-components-memory)를 사용해 이 작업을 수행합니다. 다음 페이지에서 이에 대한 모든 것을 배우게 될 것입니다.</Trans>
 
 <Recap>
 

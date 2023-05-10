@@ -39,7 +39,7 @@ const MyInput = forwardRef(function MyInput(props, ref) {
 #### Parameters<Trans>매개변수</Trans> {/*parameters*/}
 
 * `render`: The render function for your component. React calls this function with the props and `ref` that your component received from its parent. The JSX you return will be the output of your component.
-<Trans>`render`: 컴포넌트의 렌더링 함수입니다. React는 컴포넌트가 부모로부터 받은 props와 `ref`를 가지고 이 함수를 호출합니다. 반환하는 JSX는 컴포넌트의 출력이 됩니다.</Trans>
+<Trans>`render`: 컴포넌트의 렌더링 함수입니다. React는 컴포넌트가 부모로부터 받은 props와 `ref`를 가지고 이 함수를 호출합니다. 반환하는 JSX는 컴포넌트의 결과물이 됩니다.</Trans>
 
 #### Returns<Trans>반환값</Trans> {/*returns*/}
 
@@ -49,14 +49,14 @@ const MyInput = forwardRef(function MyInput(props, ref) {
 #### Caveats<Trans>주의사항</Trans> {/*caveats*/}
 
 * In Strict Mode, React will **call your render function twice** in order to [help you find accidental impurities.](#my-initializer-or-updater-function-runs-twice) This is development-only behavior and does not affect production. If your render function is pure (as it should be), this should not affect the logic of your component. The result from one of the calls will be ignored.
-<Trans>Strict Mode에서 React는 [실수로 발생한 불순물을 찾기 위해](#my-initializer-or-updater-function-runs-twice) 렌더 함수를 **두 번** 호출합니다. 이는 개발 환경 전용 동작이며 상용 환경에는 영향을 주지 않습니다. 렌더링 함수가 순수하다면(그래야만 하는 것처럼) 컴포넌트의 로직에 영향을 미치지 않을 것입니다. 호출 중 하나의 결과는 무시됩니다.</Trans>
+<Trans>Strict Mode에서 React는 [실수로 발생한 불순물을 찾기 위해](#my-initializer-or-updater-function-runs-twice) 렌더 함수를 **두 번** 호출합니다. 이는 개발 환경 전용 동작이며 상용 환경에는 영향을 주지 않습니다. 렌더링 함수가 순수하다면(그래야 합니다) 컴포넌트의 로직에 영향을 미치지 않을 것입니다. 호출 중 하나의 결과는 무시됩니다.</Trans>
 
 ---
 
 ### `render` function <Trans>`render` 함수</Trans> {/*render-function*/}
 
 `forwardRef` accepts a render function as an argument. React calls this function with `props` and `ref`:
-<Trans>`forwardRef`는 렌더링 함수를 인자로 받습니다. React는 이 함수를 `props`와 `ref`로 호출합니다:</Trans>
+<Trans>`forwardRef`는 렌더링 함수를 인자로 받습니다. React는 `props` 및 `ref`와 함께 이 함수를 호출합니다:</Trans>
 
 ```js
 const MyInput = forwardRef(function MyInput(props, ref) {
@@ -106,7 +106,7 @@ const MyInput = forwardRef(function MyInput(props, ref) {
 ```
 
 You will receive a <CodeStep step={1}>ref</CodeStep> as the second argument after props. Pass it to the DOM node that you want to expose:
-props 다음에 두 번째 인자로 <CodeStep step={1}>ref</CodeStep>를 받게 됩니다. 이를 노출하려는 DOM 노드에 전달합니다:
+<Trans>props 다음에 두 번째 인자로 <CodeStep step={1}>ref</CodeStep>를 받게 됩니다. 이를 노출하려는 DOM 노드에 전달합니다:</Trans>
 
 ```js {8} [[1, 3, "ref"], [1, 8, "ref", 30]]
 import { forwardRef } from 'react';
@@ -148,14 +148,14 @@ This `Form` component [passes a ref](/reference/react/useRef#manipulating-the-do
 <Trans>이 `Form` 컴포넌트는 `MyInput`에 대한 [ref를 전달](/reference/react/useRef#manipulating-the-dom-with-a-ref)합니다. `MyInput` 컴포넌트는 해당 ref를 `<input>` 브라우저 태그에 전달합니다. 그 결과 `Form` 컴포넌트는 해당 `<input>` DOM 노드에 접근하여 이 노드에서 [`focus()`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/focus)를 호출할 수 있습니다.</Trans>
 
 Keep in mind that exposing a ref to the DOM node inside your component makes it harder to change your component's internals later. You will typically expose DOM nodes from reusable low-level components like buttons or text inputs, but you won't do it for application-level components like an avatar or a comment.
-<Trans>컴포넌트 내부의 DOM 노드에 대한 ref를 노출하면 나중에 컴포넌트의 내부를 변경하기가 더 어려워진다는 점에 유의하세요. 일반적으로 버튼이나 텍스트 input과 같이 재사용 가능한 로우 레벨 컴포넌트에서 DOM 노드를 노출하지만 아바타나 댓글 같은 애플리케이션 레벨 컴포넌트에서는 노출하지 않습니다.</Trans>
+<Trans>컴포넌트 내부의 DOM 노드에 대한 ref를 노출하면 나중에 컴포넌트의 내부를 변경하기가 더 어려워진다는 점에 유의하세요. 일반적으로 버튼이나 텍스트 input과 같이 재사용 가능한 저수준 컴포넌트에서 DOM 노드를 노출하지만, 아바타나 댓글 같은 애플리케이션 레벨의 컴포넌트에서는 노출하고 싶지 않을 것입니다.</Trans>
 
-<Recipes title="Examples of forwarding a ref">
+<Recipes titleText="Examples of forwarding a ref" translatedTitle="ref 포워딩 예시">
 
 #### Focusing a text input <Trans>텍스트 input에 초점 맞추기</Trans> {/*focusing-a-text-input*/}
 
 Clicking the button will focus the input. The `Form` component defines a ref and passes it to the `MyInput` component. The `MyInput` component forwards that ref to the browser `<input>`. This lets the `Form` component focus the `<input>`.
-<Trans>버튼을 클릭하면 입력에 초점이 맞춰집니다. `Form` 컴포넌트는 ref를 정의하고 이를 `MyInput` 컴포넌트로 전달합니다. `MyInput` 컴포넌트는 해당 ref를 브라우저 `<input>`으로 전달합니다. 이렇게 하면 `Form` 컴포넌트가 `<input>`에 포커스를 맞출 수 있습니다.</Trans>
+<Trans>버튼을 클릭하면 input에 초점이 맞춰집니다. `Form` 컴포넌트는 ref를 정의하고 이를 `MyInput` 컴포넌트로 전달합니다. `MyInput` 컴포넌트는 해당 ref를 브라우저 `<input>`으로 전달합니다. 이렇게 하면 `Form` 컴포넌트가 `<input>`에 포커스를 맞출 수 있습니다.</Trans>
 
 <Sandpack>
 
@@ -496,7 +496,7 @@ input {
 <Trans>**ref를 과도하게 사용하지 마세요**. 노드로 스크롤하기, 노드에 초점 맞추기, 애니메이션 트리거하기, 텍스트 선택하기 등 prop으로 표현할 수 없는 필수적인 동작에만 ref를 사용해야 합니다.</Trans>
 
 **If you can express something as a prop, you should not use a ref.** For example, instead of exposing an imperative handle like `{ open, close }` from a `Modal` component, it is better to take `isOpen` as a prop like `<Modal isOpen={isOpen} />`. [Effects](/learn/synchronizing-with-effects) can help you expose imperative behaviors via props.
-<Trans>**prop으로 무언가를 표현할 수 있다면 ref를 사용해서는 안 됩니다.** 예를 들어 `Modal` 컴포넌트에서 `{ open, close }`와 같은 명령형 핸들을 노출하는 대신 `<Modal isOpen = {isOpen} />` 와 같이 prop `isOpen`을 사용하는 것이 더 좋습니다. [Effect](/learn/synchronizing-with-effects)는 props를 통해 명령형 동작을 노출하는 데 도움이 될 수 있습니다.</Trans>
+<Trans>**prop으로 무언가를 표현할 수 있다면 ref를 사용해서는 안 됩니다.** 예를 들어 `Modal` 컴포넌트에서 `{ open, close }`와 같은 명령형 핸들을 노출하는 대신 `<Modal isOpen={isOpen} />`과 같이 prop `isOpen`을 사용하는 것이 더 좋습니다. [Effect](/learn/synchronizing-with-effects)는 props를 통해 명령형 동작을 노출하는 데 도움이 될 수 있습니다.</Trans>
 
 </Pitfall>
 
@@ -504,7 +504,7 @@ input {
 
 ## Troubleshooting<Trans>문제 해결</Trans> {/*troubleshooting*/}
 
-### My component is wrapped in `forwardRef`, but the `ref` to it is always `null` <Trans>컴포넌트가 forwardRef로 감싸져 있지만, 컴포넌트의 ref는 항상 null입니다.</Trans> {/*my-component-is-wrapped-in-forwardref-but-the-ref-to-it-is-always-null*/}
+### My component is wrapped in `forwardRef`, but the `ref` to it is always `null` <Trans>컴포넌트가 `forwardRef`로 감싸져 있지만, 컴포넌트의 `ref`는 항상 `null`입니다.</Trans> {/*my-component-is-wrapped-in-forwardref-but-the-ref-to-it-is-always-null*/}
 
 This usually means that you forgot to actually use the `ref` that you received.
 <Trans>이는 일반적으로 받은 `ref` 를 실제로 사용하는 것을 잊어버렸음을 의미합니다.</Trans>

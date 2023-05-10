@@ -310,7 +310,7 @@ Now there is no need to "adjust" the state at all. If the item with the selected
 ### Sharing logic between event handlers<Trans>이벤트 핸들러 간 로직 공유</Trans> {/*sharing-logic-between-event-handlers*/}
 
 Let's say you have a product page with two buttons (Buy and Checkout) that both let you buy that product. You want to show a notification whenever the user puts the product in the cart. Calling `showNotification()` in both buttons' click handlers feels repetitive so you might be tempted to place this logic in an Effect:
-<Trans>해당 제품을 구매할 수 있는 두 개의 버튼(구매 및 결제)이 있는 제품 페이지가 있다고 합시다. 사용자가 제품을 장바구니에 넣을 때마다 알림을 표시하고 싶습니다. 두 버튼의 클릭 핸들러에 모두 `showNotification()` 호출을 추가하는 것은 반복적으로 느껴지므로 이 로직을 효과에 배치하고 싶을 수 있습니다:</Trans>
+<Trans>해당 제품을 구매할 수 있는 두 개의 버튼(구매 및 결제)이 있는 제품 페이지가 있다고 합시다. 사용자가 제품을 장바구니에 넣을 때마다 알림을 표시하고 싶습니다. 두 버튼의 클릭 핸들러에 모두 `showNotification()` 호출을 추가하는 것은 반복적으로 느껴지므로 이 로직을 Effect에 배치하고 싶을 수 있습니다:</Trans>
 
 ```js {2-8}
 function ProductPage({ product, addToCart }) {
@@ -335,7 +335,7 @@ function ProductPage({ product, addToCart }) {
 ```
 
 This Effect is unnecessary. It will also most likely cause bugs. For example, let's say that your app "remembers" the shopping cart between the page reloads. If you add a product to the cart once and refresh the page, the notification will appear again. It will keep appearing every time you refresh that product's page. This is because `product.isInCart` will already be `true` on the page load, so the Effect above will call `showNotification()`.
-<Trans>이 효과는 불필요합니다. 또한 버그를 촉발할 가능성이 높습니다. 예를 들어 페이지가 새로고침 될 때마다 앱이 장바구니를 "기억"한다고 가정해 봅시다. 카트에 제품을 한 번 추가하고 페이지를 새로고침 하면 알림이 다시 표시됩니다. 또한 해당 제품 페이지를 새로고침할 때에도 여전히 알림이 계속 등장합니다. 이는 페이지를 불러올 때 `product.isInCart`가 이미 `true`이므로 위의 Effect가 `showNotification()`을 호출하기 때문입니다.</Trans>
+<Trans>이 Effect는 불필요합니다. 또한 버그를 촉발할 가능성이 높습니다. 예를 들어 페이지가 새로고침 될 때마다 앱이 장바구니를 "기억"한다고 가정해 봅시다. 카트에 제품을 한 번 추가하고 페이지를 새로고침 하면 알림이 다시 표시됩니다. 또한 해당 제품 페이지를 새로고침할 때에도 여전히 알림이 계속 등장합니다. 이는 페이지를 불러올 때 `product.isInCart`가 이미 `true`이므로 위의 Effect가 `showNotification()`을 호출하기 때문입니다.</Trans>
 
 **When you're not sure whether some code should be in an Effect or in an event handler, ask yourself *why* this code needs to run. Use Effects only for code that should run *because* the component was displayed to the user.** In this example, the notification should appear because the user *pressed the button*, not because the page was displayed! Delete the Effect and put the shared logic into a function called from both event handlers:
 <Trans>**어떤 코드가 Effect에 있어야 하는지 이벤트 핸들러에 있어야 하는지 확실치 않은 경우, 이 코드가 실행되어야 하는 *이유*를 자문해 보세요. 컴포넌트가 사용자에게 표시되었기 *때문에* 실행되어야 하는 코드에만 Effect를 사용하세요.** 이 예제에서는 페이지가 표시되었기 때문이 아니라, 사용자가 버튼을 눌렀기 때문에 알림이 표시되어야 합니다! Effect를 삭제하고 공유 로직을 두 이벤트 핸들러에서 호출하는 함수에 넣으세요:</Trans>
@@ -362,7 +362,7 @@ function ProductPage({ product, addToCart }) {
 ```
 
 This both removes the unnecessary Effect and fixes the bug.
-<Trans>이렇게 하면 불필요한 효과가 제거되고 버그가 수정됩니다.</Trans>
+<Trans>이렇게 하면 불필요한 Effect가 제거되고 버그가 수정됩니다.</Trans>
 
 ### Sending a POST request<Trans>POST요청 보내기</Trans> {/*sending-a-post-request*/}
 
@@ -404,7 +404,7 @@ The analytics POST request should remain in an Effect. This is because the _reas
 <Trans>분석 POST 요청은 Effect에 남아 있어야 합니다. 분석 이벤트를 전송하는 *이유*는 form이 표시되었기 때문입니다. (개발 모드에서는 두 번 발생하는데, 이를 처리하는 방법은 [여기](/learn/synchronizing-with-effects#sending-analytics)를 참조하세요).</Trans>
 
 However, the `/api/register` POST request is not caused by the form being _displayed_. You only want to send the request at one specific moment in time: when the user presses the button. It should only ever happen _on that particular interaction_. Delete the second Effect and move that POST request into the event handler:
-<Trans>그러나 `/api/register` POST 요청은 form이 *표시*되어서 발생하는 것이 아닙니다. 특정 시점, 즉 사용자가 버튼을 누를 때만 요청을 보내고 싶을 것입니다. 이 요청은 *해당 상호작용에서만 발생*해야 합니다. 두 번째 효과를 삭제하고 해당 POST 요청을 이벤트 핸들러로 이동합니다:</Trans>
+<Trans>그러나 `/api/register` POST 요청은 form이 *표시*되어서 발생하는 것이 아닙니다. 특정 시점, 즉 사용자가 버튼을 누를 때만 요청을 보내고 싶을 것입니다. 이 요청은 *해당 상호작용에서만 발생*해야 합니다. 두 번째 Effect를 삭제하고 해당 POST 요청을 이벤트 핸들러로 이동합니다:</Trans>
 
 ```js {13-15}
 function Form() {

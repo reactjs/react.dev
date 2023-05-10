@@ -429,7 +429,7 @@ There's some repetitive logic for each form field:
 <TransBlock>
 1. state(`firstName` 및 `lastName`)가 있습니다.
 2. 변경 핸들러(`handleFirstNameChange` 및 `handleLastNameChange`)가 있습니다.
-3. 해당 입력에 대한 `value` 및 `onChange` 속성을 지정하는 JSX 조각이 있습니다.
+3. 해당 input에 대한 `value` 및 `onChange` 속성을 지정하는 JSX 조각이 있습니다.
 </TransBlock>
 
 You can extract the repetitive logic into this `useFormInput` custom Hook:
@@ -908,7 +908,7 @@ export default function ChatRoom({ roomId }) {
 ```
 
 Every time your `ChatRoom` component re-renders, it passes the latest `roomId` and `serverUrl` to your Hook. This is why your Effect re-connects to the chat whenever their values are different after a re-render. (If you ever worked with audio or video processing software, chaining Hooks like this might remind you of chaining visual or audio effects. It's as if the output of `useState` "feeds into" the input of the `useChatRoom`.)
-<Trans>`ChatRoom` 컴포넌트가 다시 렌더링할 때마다 최신 `roomId`와`serverUrl`을 Hook에 전달합니다. 이것이 바로 리렌더링 후 값이 달라질 때마다 Effect가 채팅에 다시 연결되는 이유입니다. (음악 처리 소프트웨어로 작업해 본 적이 있다면 이런 식으로 Hook을 연결하면 리버브나 코러스 추가와 같이 여러 오디오 효과를 연결하는 것을 떠올릴 수 있습니다. 마치 `useState`의 출력이 `useChatRoom`의 입력에 '피드' 되는 것과 같습니다.)</Trans>
+<Trans>`ChatRoom` 컴포넌트가 다시 렌더링할 때마다 최신 `roomId`와`serverUrl`을 Hook에 전달합니다. 이것이 바로 리렌더링 후 값이 달라질 때마다 Effect가 채팅에 다시 연결되는 이유입니다. (음악 처리 소프트웨어로 작업해 본 적이 있다면 이런 식으로 Hook을 연결하면 리버브나 코러스 추가와 같이 여러 오디오 효과를 연결하는 것을 떠올릴 수 있습니다. 마치 `useState`의 출력이 `useChatRoom`의 input에 '피드' 되는 것과 같습니다.)</Trans>
 
 ### Passing event handlers to custom Hooks<Trans>커스텀훅에게 이벤트 핸들러 전달하기</Trans> {/*passing-event-handlers-to-custom-hooks*/}
 
@@ -1233,7 +1233,7 @@ function ShippingForm({ country }) {
 ```
 
 Although this code is quite repetitive, [it's correct to keep these Effects separate from each other.](/learn/removing-effect-dependencies#is-your-effect-doing-several-unrelated-things) They synchronize two different things, so you shouldn't merge them into one Effect. Instead, you can simplify the `ShippingForm` component above by extracting the common logic between them into your own `useData` Hook:
-<Trans>이 코드는 상당히 반복적이지만 이러한 효과는 [서로 분리하여 유지하는 것이 맞습니다.](/learn/removing-effect-dependencies#is-your-effect-doing-several-unrelated-things) 서로 다른 두 가지를 동기화하므로 하나의 Effect로 병합해서는 안 됩니다. 대신, 위의 `ShippingForm` 컴포넌트 사이의 공통 로직을 자체 `useData` 훅으로 추출하여 단순화할 수 있습니다:</Trans>
+<Trans>이 코드는 상당히 반복적이지만 이러한 Effect는 [서로 분리하여 유지하는 것이 맞습니다.](/learn/removing-effect-dependencies#is-your-effect-doing-several-unrelated-things) 서로 다른 두 가지를 동기화하므로 하나의 Effect로 병합해서는 안 됩니다. 대신, 위의 `ShippingForm` 컴포넌트 사이의 공통 로직을 자체 `useData` 훅으로 추출하여 단순화할 수 있습니다:</Trans>
 
 ```js {2-18}
 function useData(url) {
@@ -1258,7 +1258,7 @@ function useData(url) {
 ```
 
 Now you can replace both Effects in the `ShippingForm` components with calls to `useData`:
-<Trans>이제 `ShippingForm` 컴포넌트의 두 효과를 모두 `useData` 호출로 바꿀 수 있습니다:</Trans>
+<Trans>이제 `ShippingForm` 컴포넌트의 두 Effect를 모두 `useData` 호출로 바꿀 수 있습니다:</Trans>
 
 ```js {2,4}
 function ShippingForm({ country }) {
@@ -1269,7 +1269,7 @@ function ShippingForm({ country }) {
 ```
 
 Extracting a custom Hook makes the data flow explicit. You feed the `url` in and you get the `data` out. By "hiding" your Effect inside `useData`, you also prevent someone working on the `ShippingForm` component from adding [unnecessary dependencies](/learn/removing-effect-dependencies) to it. With time, most of your app's Effects will be in custom Hooks.
-<Trans>커스텀 훅을 추출하면 데이터 흐름을 명시적으로 만들 수 있습니다. `url`을 입력하면 `data`를 가져올 수 있습니다. `useData` 안에 효과를 "숨기면" `ShippingForm` 컴포넌트에서 작업하는 사람이 [불필요한 의존성](/learn/removing-effect-dependencies)을 추가하는 것을 방지할 수 있습니다. 이상적으로는 시간이 지나면 앱의 효과 대부분이 커스텀 훅에 포함될 것입니다.</Trans>
+<Trans>커스텀 훅을 추출하면 데이터 흐름을 명시적으로 만들 수 있습니다. `url`을 입력하면 `data`를 가져올 수 있습니다. `useData` 안에 Effect를 "숨기면" `ShippingForm` 컴포넌트에서 작업하는 사람이 [불필요한 의존성](/learn/removing-effect-dependencies)을 추가하는 것을 방지할 수 있습니다. 이상적으로는 시간이 지나면 앱의 Effect 대부분이 커스텀 훅에 포함될 것입니다.</Trans>
 
 <DeepDive>
 
@@ -1377,7 +1377,7 @@ function ChatRoom({ roomId }) {
 ### Custom Hooks help you migrate to better patterns<Trans>커스텀 훅은 더 나은 패턴으로 마이그레이션하는데 도움을 줍니다.</Trans> {/*custom-hooks-help-you-migrate-to-better-patterns*/}
 
 Effects are an ["escape hatch"](/learn/escape-hatches): you use them when you need to "step outside React" and when there is no better built-in solution for your use case. With time, the React team's goal is to reduce the number of the Effects in your app to the minimum by providing more specific solutions to more specific problems. Wrapping your Effects in custom Hooks makes it easier to upgrade your code when these solutions become available.
-<Trans>Effect는 ["탈출구"](/learn/escape-hatches):입니다. "React를 벗어나야 할 때", 그리고 사용 사례에 더 나은 빌트인 솔루션이 없을 때 사용합니다. 시간이 지남에 따라 React 팀의 목표는 더 구체적인 문제에 대한 더 구체적인 솔루션을 제공함으로써 앱에서 Effect의 수를 최소한으로 줄이는 것입니다. 효과를 커스텀 훅으로 감싸면 이러한 솔루션이 제공될 때 코드를 더 쉽게 업그레이드할 수 있습니다.</Trans>
+<Trans>Effect는 ["탈출구"](/learn/escape-hatches):입니다. "React를 벗어나야 할 때", 그리고 사용 사례에 더 나은 빌트인 솔루션이 없을 때 사용합니다. 시간이 지남에 따라 React 팀의 목표는 더 구체적인 문제에 대한 더 구체적인 솔루션을 제공함으로써 앱에서 Effect의 수를 최소한으로 줄이는 것입니다. Effect를 커스텀 훅으로 감싸면 이러한 솔루션이 제공될 때 코드를 더 쉽게 업그레이드할 수 있습니다.</Trans>
 
 Let's return to this example:
 <Trans>이 예제로 돌아가 보겠습니다:</Trans>
@@ -1529,12 +1529,12 @@ This is another reason for why wrapping Effects in custom Hooks is often benefic
 3. When React adds new features, you can remove those Effects without changing any of your components.
 <TransBlock>
 1. Effect와의 데이터 흐름을 매우 명확하게 만들 수 있습니다.
-2. 컴포넌트가 효과의 정확한 구현보다는 의도에 집중할 수 있습니다.
-3. React가 새로운 기능을 추가할 때 컴포넌트를 변경하지 않고도 해당 효과를 제거할 수 있습니다.
+2. 컴포넌트가 Effect의 정확한 구현보다는 의도에 집중할 수 있습니다.
+3. React가 새로운 기능을 추가할 때 컴포넌트를 변경하지 않고도 해당 Effect를 제거할 수 있습니다.
 </TransBlock>
 
 Similar to a [design system,](https://uxdesign.cc/everything-you-need-to-know-about-design-systems-54b109851969) you might find it helpful to start extracting common idioms from your app's components into custom Hooks. This will keep your components' code focused on the intent, and let you avoid writing raw Effects very often. Many excellent custom Hooks are maintained by the React community.
-<Trans>[디자인 시스템](https://uxdesign.cc/everything-you-need-to-know-about-design-systems-54b109851969)과 유사하게 앱의 컴포넌트에서 공통된 관용구를 추출하여 커스텀 훅으로 만드는 것이 도움이 될 수 있습니다. 이렇게 하면 컴포넌트의 코드가 의도에 집중할 수 있고, 원시 효과를 자주 작성하는 것을 피할 수 있습니다. React 커뮤니티에서 관리하고 있는 훌륭한 커스텀 훅도 많이 있습니다.</Trans>
+<Trans>[디자인 시스템](https://uxdesign.cc/everything-you-need-to-know-about-design-systems-54b109851969)과 유사하게 앱의 컴포넌트에서 공통된 관용구를 추출하여 커스텀 훅으로 만드는 것이 도움이 될 수 있습니다. 이렇게 하면 컴포넌트의 코드가 의도에 집중할 수 있고, 원시 Effect를 자주 작성하는 것을 피할 수 있습니다. React 커뮤니티에서 관리하고 있는 훌륭한 커스텀 훅도 많이 있습니다.</Trans>
 
 <DeepDive>
 
@@ -1561,7 +1561,7 @@ If you use custom Hooks like `useData` above in your app, it will require fewer 
 ### There is more than one way to do it<Trans>여러가지 방법이 있습니다</Trans> {/*there-is-more-than-one-way-to-do-it*/}
 
 Let's say you want to implement a fade-in animation *from scratch* using the browser [`requestAnimationFrame`](https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame) API. You might start with an Effect that sets up an animation loop. During each frame of the animation, you could change the opacity of the DOM node you [hold in a ref](/learn/manipulating-the-dom-with-refs) until it reaches `1`. Your code might start like this:
-<Trans>브라우저 요청 [`requestAnimationFrame`](https://developer.mozilla.org/ko/docs/Web/API/window/requestAnimationFrame) API를 사용하여 페이드인 애니메이션을 *처음부터* 구현한다고 가정해 보겠습니다. 애니메이션 루프를 설정하는 효과로 시작할 수 있습니다. 애니메이션의 각 프레임 동안 [ref로 유지하는](/learn/manipulating-the-dom-with-refs) DOM 노드의 불투명도를 `1`에 도달할 때까지 변경할 수 있습니다. 코드는 다음과 같이 시작할 수 있습니다:</Trans>
+<Trans>브라우저 요청 [`requestAnimationFrame`](https://developer.mozilla.org/ko/docs/Web/API/window/requestAnimationFrame) API를 사용하여 페이드인 애니메이션을 *처음부터* 구현한다고 가정해 보겠습니다. 애니메이션 루프를 설정하는 Effect로 시작할 수 있습니다. 애니메이션의 각 프레임 동안 [ref로 유지하는](/learn/manipulating-the-dom-with-refs) DOM 노드의 불투명도를 `1`에 도달할 때까지 변경할 수 있습니다. 코드는 다음과 같이 시작할 수 있습니다:</Trans>
 
 <Sandpack>
 
@@ -1944,7 +1944,7 @@ html, body { min-height: 300px; }
 </Sandpack>
 
 Effects let you connect React to external systems. The more coordination between Effects is needed (for example, to chain multiple animations), the more it makes sense to extract that logic out of Effects and Hooks *completely* like in the sandbox above. Then, the code you extracted *becomes* the "external system". This lets your Effects stay simple because they only need to send messages to the system you've moved outside React.
-<Trans>Effects를 사용하면 React를 외부 시스템에 연결할 수 있습니다. 예를 들어 여러 애니메이션을 체인으로 연결하기 위해 효과 간의 조정이 더 많이 필요할수록 위의 샌드박스에서처럼 효과와 훅에서 해당 로직을 완전히 추출하는 것이 더 합리적입니다. 그러면 추출한 코드가 "외부 시스템"이 됩니다. 이렇게 하면 React 외부로 이동한 시스템으로 메시지를 보내기만 하면 되기 때문에 Effects를 단순하게 유지할 수 있습니다.</Trans>
+<Trans>Effects를 사용하면 React를 외부 시스템에 연결할 수 있습니다. 예를 들어 여러 애니메이션을 체인으로 연결하기 위해 Effect 간의 조정이 더 많이 필요할수록 위의 샌드박스에서처럼 Effect와 훅에서 해당 로직을 완전히 추출하는 것이 더 합리적입니다. 그러면 추출한 코드가 "외부 시스템"이 됩니다. 이렇게 하면 React 외부로 이동한 시스템으로 메시지를 보내기만 하면 되기 때문에 Effects를 단순하게 유지할 수 있습니다.</Trans>
 
 The examples above assume that the fade-in logic needs to be written in JavaScript. However, this particular fade-in animation is both simpler and much more efficient to implement with a plain [CSS Animation:](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Animations/Using_CSS_animations)
 <Trans>위의 예시에서는 페이드인 로직이 JavaScript로 작성되어야 한다고 가정했습니다. 하지만 이 특정 페이드인 애니메이션은 일반 [CSS 애니메이션](https://developer.mozilla.org/ko/docs/Web/CSS/CSS_Animations/Using_CSS_animations)으로 구현하는 것이 더 간단하고 훨씬 더 효율적입니다:</Trans>

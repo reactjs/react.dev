@@ -84,7 +84,7 @@ Read [**Referencing Values with Refs**](/learn/referencing-values-with-refs) to 
 ## Manipulating the DOM with Refs<Trans>ref로 DOM 조작하기</Trans> {/*manipulating-the-dom-with-refs*/}
 
 React automatically updates the DOM to match your render output, so your components won't often need to manipulate it. However, sometimes you might need access to the DOM elements managed by React—for example, to focus a node, scroll to it, or measure its size and position. There is no built-in way to do those things in React, so you will need a ref to the DOM node. For example, clicking the button will focus the input using a ref:
-<Trans>React는 렌더링 출력과 일치하도록 DOM을 자동으로 업데이트하므로 컴포넌트에서 자주 조작할 필요가 없습니다. 하지만 때로는 노드에 포커스를 맞추거나 스크롤하거나 크기와 위치를 측정하기 위해 React가 관리하는 DOM 요소에 접근해야 할 수도 있습니다. React에는 이러한 작업을 수행할 수 있는 빌트인된 방법이 없으므로 DOM 노드에 대한 ref(참조)가 필요합니다. 예를 들어 버튼을 클릭하면 ref를 사용해 입력에 포커스를 맞춥니다:</Trans>
+<Trans>React는 렌더링 출력과 일치하도록 DOM을 자동으로 업데이트하므로 컴포넌트에서 자주 조작할 필요가 없습니다. 하지만 때로는 노드에 포커스를 맞추거나 스크롤하거나 크기와 위치를 측정하기 위해 React가 관리하는 DOM 요소에 접근해야 할 수도 있습니다. React에는 이러한 작업을 수행할 수 있는 빌트인된 방법이 없으므로 DOM 노드에 대한 ref(참조)가 필요합니다. 예를 들어 버튼을 클릭하면 ref를 사용해 input에 초점을 맞춥니다:</Trans>
 
 <Sandpack>
 
@@ -362,7 +362,7 @@ This section describes an **experimental API that has not yet been released** in
 </Wip>
 
 Event handlers only re-run when you perform the same interaction again. Unlike event handlers, Effects re-synchronize if any of the values they read, like props or state, are different than during last render. Sometimes, you want a mix of both behaviors: an Effect that re-runs in response to some values but not others.
-<Trans>이벤트 핸들러는 동일한 상호작용을 다시 수행할 때만 다시 실행됩니다. 이벤트 핸들러와 달리 Effect는 prop이나 state 변수처럼 읽은 값이 마지막 렌더링에서와 다른 경우 다시 동기화합니다. 때로는 두 가지 동작을 혼합하여 일부 값에는 반응하지만 다른 값에는 반응하지 않는 효과를 원할 수 있습니다.</Trans>
+<Trans>이벤트 핸들러는 동일한 상호작용을 다시 수행할 때만 다시 실행됩니다. 이벤트 핸들러와 달리 Effect는 prop이나 state 변수처럼 읽은 값이 마지막 렌더링에서와 다른 경우 다시 동기화합니다. 때로는 두 가지 동작을 혼합하여 일부 값에는 반응하지만 다른 값에는 반응하지 않는 Effect를 원할 수 있습니다.</Trans>
 
 All code inside Effects is *reactive.* It will run again if some reactive value it reads has changed due to a re-render. For example, this Effect will re-connect to the chat if either `roomId` or `theme` have changed:
 <Trans>Effect 내의 모든 코드는 *반응형*이며, 읽은 반응형 값이 리렌더링으로 인해 변경된 경우 다시 실행됩니다. 예를 들어, 다음의 Effect는 상호작용 후 `roomId` 또는 `theme`이 변경된 경우 채팅에 다시 연결됩니다:</Trans>
@@ -494,7 +494,7 @@ label { display: block; margin-top: 10px; }
 </Sandpack>
 
 This is not ideal. You want to re-connect to the chat only if the `roomId` has changed. Switching the `theme` shouldn't re-connect to the chat! Move the code reading `theme` out of your Effect into an *Effect Event*:
-<Trans>이것은 이상적이지 않습니다. `roomId`가 변경된 경우에만 채팅에 다시 연결하고 싶습니다. `theme`를 전환해도 채팅에 다시 연결되지 않아야 합니다! `theme`를 읽는 코드를 효과에서 *Effect Event*로 옮기세요:</Trans>
+<Trans>이것은 이상적이지 않습니다. `roomId`가 변경된 경우에만 채팅에 다시 연결하고 싶습니다. `theme`를 전환해도 채팅에 다시 연결되지 않아야 합니다! `theme`를 읽는 코드를 Effect에서 *Effect Event*로 옮기세요:</Trans>
 
 <Sandpack>
 

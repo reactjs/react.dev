@@ -492,7 +492,7 @@ In this example, the `SearchBar` has its own `query` state that controls the tex
 <Trans>예제에서 `SearchBar`에는 텍스트 입력창을 제어하는 자체 `query` state가 있습니다. 부모인 `FilterableList` 컴포넌트는 항목의 `List`를 표시하지만 검색 쿼리는 고려하지 않습니다.</Trans>
 
 Use the `filterItems(foods, query)` function to filter the list according to the search query. To test your changes, verify that typing "s" into the input filters down the list to "Sushi", "Shish kebab", and "Dim sum".
-<Trans>검색 쿼리에 따라 목록을 필터링하려면 `filterItems(foods, query)` 함수를 사용합니다. 변경 사항을 테스트하려면, 입력에 "s"를 입력하면 목록이 “Sushi”, “Shish kebab”, “Dim sum”으로 필터링되는지 확인합니다.</Trans>
+<Trans>검색 쿼리에 따라 목록을 필터링하려면 `filterItems(foods, query)` 함수를 사용합니다. 변경 사항을 테스트하려면, input에 "s"를 입력하면 목록이 “Sushi”, “Shish kebab”, “Dim sum”으로 필터링되는지 확인합니다.</Trans>
 
 Note that `filterItems` is already implemented and imported so you don't need to write it yourself!
 <Trans>`filterItems`는 이미 구현되어 import 되어 있으므로 직접 작성할 필요가 없습니다!</Trans>

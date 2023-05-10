@@ -756,7 +756,7 @@ b { display: inline-block; margin-right: 10px; }
 ### Preventing unwanted loading indicators<Trans>원치 않는 로딩 표시 방지하기</Trans> {/*preventing-unwanted-loading-indicators*/}
 
 In this example, the `PostsTab` component fetches some data using a [Suspense-enabled](/reference/react/Suspense) data source. When you click the "Posts" tab, the `PostsTab` component *suspends*, causing the closest loading fallback to appear:
-<Trans>이 예제에서 `PostsTab` 컴포넌트는 [Suspense가 도입된](/reference/react/Suspense) 데이터 소스를 사용하여 일부 데이터를 가져옵니다. "Posts" 탭을 클릭하면 `PostsTab` 컴포넌트가 *중단*되어 가장 가까운 로딩 fallback이 나타납니다:</Trans>
+<Trans>이 예제에서 `PostsTab` 컴포넌트는 [Suspense가 도입된](/reference/react/Suspense) 데이터 소스를 사용하여 일부 데이터를 가져옵니다. "Posts" 탭을 클릭하면 `PostsTab` 컴포넌트가 *중단*되어 가장 가까운 로딩 폴백이 나타납니다:</Trans>
 
 <Sandpack>
 
@@ -1582,7 +1582,7 @@ return <input value={text} onChange={handleChange} />;
 ```
 
 This is because transitions are non-blocking, but updating an input in response to the change event should happen synchronously. If you want to run a transition in response to typing, you have two options:
-<Trans>이는 트랜지션은 논블로킹이지만 변경 이벤트에 대한 응답으로 input을 업데이트하는 것은 동기적으로 이루어져야 하기 때문입니다. 입력에 대한 응답으로 트랜지션을 실행하려면 두 가지 옵션이 있습니다:</Trans>
+<Trans>이는 트랜지션은 논블로킹이지만 변경 이벤트에 대한 응답으로 input을 업데이트하는 것은 동기적으로 이루어져야 하기 때문입니다. input에 대한 응답으로 트랜지션을 실행하려면 두 가지 옵션이 있습니다:</Trans>
 
 1. You can declare two separate state variables: one for the input state (which always updates synchronously), and one that you will update in a transition. This lets you control the input using the synchronous state, and pass the transition state variable (which will "lag behind" the input) to the rest of your rendering logic.
 2. Alternatively, you can have one state variable, and add [`useDeferredValue`](/reference/react/useDeferredValue) which will "lag behind" the real value. It will trigger non-blocking re-renders to "catch up" with the new value automatically.

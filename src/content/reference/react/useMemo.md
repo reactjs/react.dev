@@ -200,14 +200,14 @@ There is no benefit to wrapping a calculation in `useMemo` in other cases. There
 <Trans>그밖의 경우에는 계산을 `useMemo`로 감싸는 것에 이득이 없습니다. 그렇다고 해서 크게 해가 되는 것도 아니기 때문에 일부 팀에서는 개별 사례에 대해 생각하지 않고 가능한 한 많이 메모하는 방식을 선택하기도 합니다. 이 접근 방식의 단점은 코드 가독성이 떨어진다는 것입니다. 또한 모든 메모화가 효과적인 것은 아닙니다. "항상 새로운" 단일 값만으로도 전체 컴포넌트에 대한 메모화가 깨질 수 있습니다.</Trans>
 
 **In practice, you can make a lot of memoization unnecessary by following a few principles:**
+
 <Trans>**실제로 몇 가지 원칙을 따르면 많은 메모화가 불필요해질 수 있습니다:**</Trans>
 
 1. When a component visually wraps other components, let it [accept JSX as children.](/learn/passing-props-to-a-component#passing-jsx-as-children) This way, when the wrapper component updates its own state, React knows that its children don't need to re-render.
-<Trans>컴포넌트가 다른 컴포넌트를 시각적으로 감쌀 때 JSX를 자식으로 받아들이도록 하세요. 이렇게 하면 wrapper 컴포넌트가 자체 state를 업데이트할 때 React는 그 자식 컴포넌트가 다시 렌더링할 필요가 없다는 것을 알 수 있습니다.</Trans>
+<Trans>컴포넌트가 다른 컴포넌트를 시각적으로 감쌀 때 [JSX를 자식으로 받아들이도록 하세요](/learn/passing-props-to-a-component#passing-jsx-as-children). 이렇게 하면 wrapper 컴포넌트가 자체 state를 업데이트할 때 React는 그 자식 컴포넌트가 다시 렌더링할 필요가 없다는 것을 알 수 있습니다.</Trans>
 
 2. Prefer local state and don't [lift state up](/learn/sharing-state-between-components) any further than necessary. For example, don't keep transient state like forms and whether an item is hovered at the top of your tree or in a global state library.
-<Trans>로컬 state를 선호하고 필요 이상으로 [state를 끌어올리지](/learn/sharing-state-between-components) 마세요. 예를 들어 폼이나 어떤 항목의 hover 여부와 같이 일시적인 state를 
-트리의 최상단이나 전역 상태 라이브러리에 두지 마세요.</Trans>
+<Trans>로컬 state를 선호하고 필요 이상으로 [state를 끌어올리지](/learn/sharing-state-between-components) 마세요. 예를 들어, 최상위 트리나 전역 state 라이브러리에 폼이나 아이템이 호버되었는지와 같은 일시적 state를 두지 마세요.</Trans>
 
 3. Keep your [rendering logic pure.](/learn/keeping-components-pure) If re-rendering a component causes a problem or produces some noticeable visual artifact, it's a bug in your component! Fix the bug instead of adding memoization.
 <Trans>[렌더링 로직을 순수하게](/learn/keeping-components-pure) 유지하세요. 컴포넌트를 다시 렌더링했을 때 문제가 발생하거나 눈에 띄는 시각적 아티팩트가 생성된다면 컴포넌트에 버그가 있는 것입니다! 메모화하는 대신 버그를 수정하세요.</Trans>
@@ -216,10 +216,10 @@ There is no benefit to wrapping a calculation in `useMemo` in other cases. There
 <Trans>[state를 업데이트하는 불필요한 Effect](/learn/you-might-not-need-an-effect)를 피하세요. React 앱의 대부분의 성능 문제는 컴포넌트를 반복해서 렌더링하게 만드는 Effect에서 발생하는 업데이트 체인으로 인해 발생합니다.</Trans>
 
 5. Try to [remove unnecessary dependencies from your Effects.](/learn/removing-effect-dependencies) For example, instead of memoization, it's often simpler to move some object or a function inside an Effect or outside the component.
-<Trans>Effect에서 불필요한 의존성을 제거하세요. 예를 들어, 메모화 대신 일부 오브젝트나 함수를 Effect 내부나 컴포넌트 외부로 이동하는 것이 더 간단할 때가 많습니다.</Trans>
+<Trans>[Effect에서 불필요한 의존성을 제거](/learn/removing-effect-dependencies)하세요. 예를 들어, 메모화 대신 일부 오브젝트나 함수를 Effect 내부나 컴포넌트 외부로 이동하는 것이 더 간단할 때가 많습니다.</Trans>
 
 If a specific interaction still feels laggy, [use the React Developer Tools profiler](https://legacy.reactjs.org/blog/2018/09/10/introducing-the-react-profiler.html) to see which components would benefit the most from memoization, and add memoization where needed. These principles make your components easier to debug and understand, so it's good to follow them in any case. In the long term, we're researching [doing granular memoization automatically](https://www.youtube.com/watch?v=lGEMwh32soc) to solve this once and for all.
-<Trans>특정 인터렉션이 여전히 느리게 느껴진다면 [React 개발자 도구 profiler](https://legacy.reactjs.org/blog/2018/09/10/introducing-the-react-profiler.html)를 사용해 어떤 컴포넌트가 메모화를 통해 가장 큰 이점을 얻을 수 있는지 확인하고 필요한 경우 메모화 하세요. 이러한 원칙은 컴포넌트를 더 쉽게 디버깅하고 이해할 수 있게 해주므로 어떤 경우든 이 원칙을 따르는 것이 좋습니다. 장기적으로는 이 문제를 완전히 해결하기 위해 세분화된 메모화를 자동으로 수행하는 방법을 연구하고 있습니다.</Trans>
+<Trans>특정 인터렉션이 여전히 느리게 느껴진다면 [React 개발자 도구 profiler](https://legacy.reactjs.org/blog/2018/09/10/introducing-the-react-profiler.html)를 사용해 어떤 컴포넌트가 메모화를 통해 가장 큰 이점을 얻을 수 있는지 확인하고 필요한 경우 메모화 하세요. 이러한 원칙은 컴포넌트를 더 쉽게 디버깅하고 이해할 수 있게 해주므로 어떤 경우든 이 원칙을 따르는 것이 좋습니다. 장기적으로는 이 문제를 완전히 해결하기 위해 [세분화된 메모화를 자동으로 수행하는 방법](https://www.youtube.com/watch?v=lGEMwh32soc)을 연구하고 있습니다.</Trans>
 
 </DeepDive>
 

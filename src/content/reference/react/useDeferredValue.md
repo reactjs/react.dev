@@ -981,7 +981,7 @@ This optimization requires `SlowList` to be wrapped in [`memo`.](/reference/reac
 
 <DeepDive>
 
-#### How is deferring a value different from debouncing and throttling?<Trans>값을 연기하는 것은 debounce 및 throttling과 어떻게 다른가요?</Trans> {/*how-is-deferring-a-value-different-from-debouncing-and-throttling*/}
+#### How is deferring a value different from debouncing and throttling?<Trans>값을 연기하는 것은 디바운스 및 쓰로틀과 어떤 점이 다른가요?</Trans> {/*how-is-deferring-a-value-different-from-debouncing-and-throttling*/}
 
 There are two common optimization techniques you might have used before in this scenario:
 <Trans>이 시나리오에서 이전에 사용했을 수 있는 두 가지 일반적인 최적화 기법이 있습니다:</Trans>
@@ -990,19 +990,19 @@ There are two common optimization techniques you might have used before in this 
 - *Throttling* means you'd update the list every once in a while (e.g. at most once a second).
 
 <TransBlock>
-- *Debouncing*은 사용자가 타이핑을 멈출 때까지(예: 1초 동안) 기다렸다가 목록을 업데이트하는 것을 의미합니다.
-- *Throttling*은 가끔씩(예: 최대 1초에 한 번) 목록을 업데이트하는 것을 의미합니다.
+- *디바운스*는 사용자가 타이핑을 멈출 때까지(예: 1초 동안) 기다렸다가 목록을 업데이트하는 것을 의미합니다.
+- *쓰로틀*은 가끔씩(예: 최대 1초에 한 번) 목록을 업데이트하는 것을 의미합니다.
 </TransBlock>
 
 While these techniques are helpful in some cases, `useDeferredValue` is better suited to optimizing rendering because it is deeply integrated with React itself and adapts to the user's device.
 <Trans>이 기법들은 경우에 따라 유용하지만, `useDeferredValue`는 React 자체와 깊게 통합되어 있고 사용자의 기기에 맞게 조정되기 때문에 렌더링을 최적화하는 데 더 적합합니다.</Trans>
 
 Unlike debouncing or throttling, it doesn't require choosing any fixed delay. If the user's device is fast (e.g. powerful laptop), the deferred re-render would happen almost immediately and wouldn't be noticeable. If the user's device is slow, the list would "lag behind" the input proportionally to how slow the device is.
-<Trans>debouncing이나 throttling과 달리 고정된 지연을 선택할 필요가 없습니다. 사용자의 기기가 빠른 경우(예: 고성능 노트북) 지연된 리렌더링은 거의 즉시 발생하며 눈에 띄지 않을 것입니다. 사용자의 기기가 느린 경우, 기기 속도에 비례하여 목록이 input에 '지연'됩니다.</Trans>
+<Trans>디바운스나 쓰로틀과 달리 고정된 지연을 선택할 필요가 없습니다. 사용자의 기기가 빠른 경우(예: 고성능 노트북) 지연된 리렌더링은 거의 즉시 발생하며 눈에 띄지 않을 것입니다. 사용자의 기기가 느린 경우, 기기 속도에 비례하여 목록이 input에 '지연'됩니다.</Trans>
 
 Also, unlike with debouncing or throttling, deferred re-renders done by `useDeferredValue` are interruptible by default. This means that if React is in the middle of re-rendering a large list, but the user makes another keystroke, React will abandon that re-render, handle the keystroke, and then start rendering in background again. By contrast, debouncing and throttling still produce a janky experience because they're *blocking:* they merely postpone the moment when rendering blocks the keystroke.
-<Trans>또한 debouncing이나 throttling과 달리 `useDeferredValue`에 의해 수행되는 지연된 리렌더링은 기본적으로 중단 가능합니다. 즉, React가 큰 목록을 다시 렌더링하는 도중에 사용자가 다른 키 입력을 하면 React는 해당 리렌더링을 중단하고 키 입력을 처리한 다음 백그라운드에서 다시 렌더링을 시작합니다. 반면 debouncing과 throttling은 렌더링이 키 입력을 차단하는 순간을 연기할 뿐이므로 여전히 불안정한 경험을 만들어냅니다.</Trans>
+<Trans>또한 디바운스나 쓰로틀과 달리 `useDeferredValue`에 의해 수행되는 지연된 리렌더링은 기본적으로 중단 가능합니다. 즉, React가 큰 목록을 다시 렌더링하는 도중에 사용자가 다른 키 입력을 하면 React는 해당 리렌더링을 중단하고 키 입력을 처리한 다음 백그라운드에서 다시 렌더링을 시작합니다. 반면 디바운스와 쓰로틀은 렌더링이 키 입력을 차단하는 순간을 연기할 뿐이므로 여전히 불안정한 경험을 만들어냅니다.</Trans>
 
 If the work you're optimizing doesn't happen during rendering, debouncing and throttling are still useful. For example, they can let you fire fewer network requests. You can also use these techniques together.
-<Trans>최적화하려는 작업이 렌더링 중에 발생하지 않는 경우에도 debouncing과 throttling은 여전히 유용합니다. 예를 들어 debouncing과 throttling을 사용하면 네트워크 요청을 더 적게 실행할 수 있습니다. 이러한 기술을 함께 사용할 수도 있습니다.</Trans>
+<Trans>최적화하려는 작업이 렌더링 중에 발생하지 않는 경우에도 디바운스 및 쓰로틀은 여전히 유용합니다. 예를 들어 디바운스나 쓰로틀을 사용하면 네트워크 요청을 더 적게 실행할 수 있습니다. 이러한 기술을 함께 사용할 수도 있습니다.</Trans>
 </DeepDive>

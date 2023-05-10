@@ -6,7 +6,7 @@ title: 번역 진행상황
 last updated @ 2023-05-08 11:10
 </Intro>
 
-## Reference - 진행중 (done: 24 / total: 59) {/*reference*/}
+## Reference - 진행중 (done: 25 / total: 59) {/*reference*/}
 
 |     | title                                                                |     | title                                                                                  |
 | :-: | :------------------------------------------------------------------- | :-: | :------------------------------------------------------------------------------------- |
@@ -24,7 +24,7 @@ last updated @ 2023-05-08 11:10
 |  ✅  | [5-11. useReducer](/reference/react/useReducer)                      |  ▢  | [10. Client APIs](/reference/react-dom/client)                                         |
 |  ✅  | [5-12. useRef](/reference/react/useRef)                              |  ▢  | [10-1. createRoot](/reference/react-dom/client/createRoot)                             |
 |  ✅  | [5-13. useState](/reference/react/useState)                          |  ▢  | [10-2. hydrateRoot](/reference/react-dom/client/hydrateRoot)                           |
-|  ▢  | [5-14. useSyncExternalStore](/reference/react/useSyncExternalStore)  |  ▢  | [11. Server APIs](/reference/react-dom/server)                                         |
+|  ✅  | [5-14. useSyncExternalStore](/reference/react/useSyncExternalStore)  |  ▢  | [11. Server APIs](/reference/react-dom/server)                                         |
 |  ✅  | [5-15. useTransition](/reference/react/useTransition)                |  ▢  | [11-1. renderToNodeStream](/reference/react-dom/server/renderToNodeStream)             |
 |  ✅  | [6. Components](/reference/react/components)                         |  ▢  | [11-2. renderToPipeableStream](/reference/react-dom/server/renderToPipeableStream)     |
 |  ✅  | [6-1. `<Fragment>` (`<>`)](/reference/react/Fragment)                |  ▢  | [11-3. renderToStaticMarkup](/reference/react-dom/server/renderToStaticMarkup)         |

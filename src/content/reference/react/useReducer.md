@@ -23,7 +23,7 @@ const [state, dispatch] = useReducer(reducer, initialArg, init?)
 ### `useReducer(reducer, initialArg, init?)` {/*usereducer*/}
 
 Call `useReducer` at the top level of your component to manage its state with a [reducer.](/learn/extracting-state-logic-into-a-reducer)
-<Trans>컴포넌트의 최상위 레벨에서 `useReducer`를 호출하여 [reducer](/learn/extracting-state-logic-into-a-reducer)를 통해 상태를 관리하세요.</Trans>
+<Trans>컴포넌트의 최상위 레벨에서 `useReducer`를 호출하여 [reducer](/learn/extracting-state-logic-into-a-reducer)를 통해 state를 관리하세요.</Trans>
 
 ```js
 import { useReducer } from 'react';
@@ -47,9 +47,9 @@ function MyComponent() {
 * **optional** `init`: The initializer function that should return the initial state. If it's not specified, the initial state is set to `initialArg`. Otherwise, the initial state is set to the result of calling `init(initialArg)`.
 
 <TransBlock>
-- `reducer`: state가 업데이트되는 방식을 지정하는 reducer 함수입니다. 순수 함수여야 하며, 상태와 액션을 인자로 받아야 하고, 다음 state를 반환해야 합니다. state와 액션은 어떤 유형이든 가능합니다.
-- `initialArg`:   초기 state가 계산되는 값입니다. 모든 유형의 값일 수 있습니다. 이 값에서 초기 state를 계산하는 방법은 다음 `init` 인자에 따라 달라집니다.
-- **선택적** `init`: 초기 상태 계산 방법을 지정하는 초기화 함수입니다. 이것을 지정하지 않으면 초기 state는 `initialArg`로 설정됩니다. 그렇지 않으면 초기 state는 `init(initialArg)`를 호출한 결과로 설정됩니다.
+- `reducer`: state가 업데이트되는 방식을 지정하는 reducer 함수입니다. 순수 함수여야 하며, state와 액션을 인자로 받아야 하고, 다음 state를 반환해야 합니다. state와 액션은 어떤 유형이든 가능합니다.
+- `initialArg`: 초기 state가 계산되는 값입니다. 모든 유형의 값일 수 있습니다. 이 값에서 초기 state를 계산하는 방법은 다음 `init` 인자에 따라 달라집니다.
+- **선택적** `init`: 초기 state 계산 방법을 지정하는 초기화 함수입니다. 이것을 지정하지 않으면 초기 state는 `initialArg`로 설정됩니다. 그렇지 않으면 초기 state는 `init(initialArg)`를 호출한 결과로 설정됩니다.
 </TransBlock>
 
 #### Returns<Trans>반환값</Trans> {/*returns*/}
@@ -72,7 +72,7 @@ function MyComponent() {
 
 <TransBlock>
 - `useReducer` 는 훅이므로 **구성 요소의 최상위 레벨** 또는 자체 훅에서만 호출할 수 있습니다. 반복문이나 조건문 내부에서는 호출할 수 없습니다. 필요하다면 새 컴포넌트를 추출하고 state를 그 안으로 옮기세요.
-- Strict Mode에서 React는 [의도치 않은 불순물을 찾기 위해](#my-reducer-or-initializer-function-runs-twice) **reducer와 초기화 함수를 두 번 호출**합니다. 이는 개발 전용 동작이며 상용 환경에서는 영향을 미치지 않습니다. reducer와 초기화 함수가 순수하다면(그래야만 합니다) 컴포넌트의 로직에 영향을 미치지 않습니다. 호출 중 하나의 결과는 무시됩니다.
+- Strict Mode에서 React는 [의도치 않은 불순물을 찾기 위해](#my-reducer-or-initializer-function-runs-twice) **reducer와 초기화 함수를 두 번 호출**합니다. 이는 개발 전용 동작이며 상용 환경에서는 영향을 미치지 않습니다. reducer와 초기화 함수가 순수하다면(그래야 합니다) 컴포넌트의 로직에 영향을 미치지 않습니다. 호출 중 하나의 결과는 무시됩니다.
 </TransBlock>
 
 ---
@@ -157,7 +157,7 @@ function handleClick() {
 ```
 
 React will pass the current state and the action to your <CodeStep step={4}>reducer function</CodeStep>. Your reducer will calculate and return the next state. React will store that next state, render your component with it, and update the UI.
-<Trans>React는 현재 상태와 액션을 <CodeStep step={4}>reducer 함수</CodeStep>에 전달합니다. Reducer는 다음 state를 계산하고 반환합니다. React는 다음 state를 저장하고, 컴포넌트를 렌더링하고, UI를 업데이트합니다.</Trans>
+<Trans>React는 현재 state와 액션을 <CodeStep step={4}>reducer 함수</CodeStep>에 전달합니다. Reducer는 다음 state를 계산하고 반환합니다. React는 다음 state를 저장하고, 컴포넌트를 렌더링하고, UI를 업데이트합니다.</Trans>
 
 <Sandpack>
 
@@ -808,9 +808,9 @@ Notice that you’re passing `createInitialState`, which is the *function itself
 <Trans>함수를 호출한 결과인 `createInitialState()`가 아니라 함수 자체인 `createInitialState`를 전달하고 있다는 점에 유의하세요. 이렇게 하면 초기화 후에는 초기 state가 다시 생성되지 않습니다.</Trans>
 
 In the above example, `createInitialState` takes a `username` argument. If your initializer doesn't need any information to compute the initial state, you may pass `null` as the second argument to `useReducer`.
-<Trans>위의 예에서 `createInitialState` 는 `username`  인수를 받습니다. 초기화 함수가 초기 상태를 계산하는 데 아무런 정보가 필요하지 않은 경우, `useReducer`의 두 번째 인수로 `null` 을 전달할 수 있습니다.</Trans>
+<Trans>위의 예에서 `createInitialState` 는 `username`  인수를 받습니다. 초기화 함수가 초기 state를 계산하는 데 아무런 정보가 필요하지 않은 경우, `useReducer`의 두 번째 인수로 `null` 을 전달할 수 있습니다.</Trans>
 
-<Recipes titleText="The difference between passing an initializer and passing the initial state directly" titleId="examples-initializer" translatedTitle="초기화 함수를 전달하는 것과 초기 상태를 직접 전달하는 것의 차이점">
+<Recipes titleText="The difference between passing an initializer and passing the initial state directly" titleId="examples-initializer" translatedTitle="초기화 함수를 전달하는 것과 초기 state를 직접 전달하는 것의 차이점">
 
 #### Passing the initializer function<Trans>초기화 함수 전달하기</Trans> {/*passing-the-initializer-function*/}
 
@@ -1014,7 +1014,7 @@ function handleClick() {
 ```
 
 This is because [states behaves like a snapshot.](/learn/state-as-a-snapshot) Updating state requests another render with the new state value, but does not affect the `state` JavaScript variable in your already-running event handler.
-<Trans>[state는 스냅샷처럼 동작](/learn/state-as-a-snapshot)하기 때문입니다. state를 업데이트하면 새 state 값으로 다른 렌더링을 요청하지만 이미 실행 중인 이벤트 핸들러의 상태 JavaScript 변수에는 영향을 미치지 않습니다.</Trans>
+<Trans>[state는 스냅샷처럼 동작](/learn/state-as-a-snapshot)하기 때문입니다. state를 업데이트하면 새 state 값으로 다른 렌더링을 요청하지만 이미 실행 중인 이벤트 핸들러의 `state` JavaScript 변수에는 영향을 미치지 않습니다.</Trans>
 
 If you need to guess the next state value, you can calculate it manually by calling the reducer yourself:
 <Trans>다음 state 값을 추측해야 하는 경우 reducer를 직접 호출하여 수동으로 계산할 수 있습니다:</Trans>

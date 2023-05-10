@@ -1315,7 +1315,7 @@ Notice how `hasPrev` and `hasNext` are used *both* for the returned JSX and insi
 #### Fix stuck form inputs<Trans>input 입력 불가 문제 해결</Trans> {/*fix-stuck-form-inputs*/}
 
 When you type into the input fields, nothing appears. It's like the input values are "stuck" with empty strings. The `value` of the first `<input>` is set to always match the `firstName` variable, and the `value` for the second `<input>` is set to always match the `lastName` variable. This is correct. Both inputs have `onChange` event handlers, which try to update the variables based on the latest user input (`e.target.value`). However, the variables don't seem to "remember" their values between re-renders. Fix this by using state variables instead.
-<Trans>입력 필드에 타이핑해도 아무것도 나타나지 않습니다. 마치 입력 값이 빈 문자열로 "멈춘" 것 같습니다. 첫 번째 `<input>`의 `value`는 항상 `firstName` 변수와 일치하도록 설정되며, 두 번째 `<input>`의 `value`는 항상 `lastName` 변수와 일치하도록 설정됩니다. 이것은 올바릅니다. 두 입력 필드 모두 `onChange` 이벤트 핸들러가 있으며, 최신 사용자 입력에 따라 변수를 업데이트하려고 시도합니다 (`e.target.value`). 그러나 변수는 다시 렌더링되는 동안 값이 "기억"되지 않는 것 같습니다. state 변수를 사용하여 이 문제를 해결하십시오.</Trans>
+<Trans>입력 필드에 타이핑해도 아무것도 나타나지 않습니다. 마치 입력 값이 빈 문자열로 "멈춘" 것 같습니다. 첫 번째 `<input>`의 `value`는 항상 `firstName` 변수와 일치하도록 설정되며, 두 번째 `<input>`의 `value`는 항상 `lastName` 변수와 일치하도록 설정됩니다. 이것은 올바릅니다. 두 입력 필드 모두 `onChange` 이벤트 핸들러가 있으며, 최신 사용자 입력(`e.target.value`)에 따라 변수를 업데이트하려고 시도합니다. 그러나 변수는 다시 렌더링되는 동안 값이 "기억"되지 않는 것 같습니다. state 변수를 사용하여 이 문제를 해결하십시오.</Trans>
 
 <Sandpack>
 

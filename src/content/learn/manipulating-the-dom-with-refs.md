@@ -66,7 +66,7 @@ The `useRef` Hook returns an object with a single property called `current`. Ini
 myRef.current.scrollIntoView();
 ```
 
-### Example: Focusing a text input<Trans>예: 텍스트 입력에 초점 맞추기</Trans> {/*example-focusing-a-text-input*/}
+### Example: Focusing a text input<Trans>예: 텍스트 input에 초점 맞추기</Trans> {/*example-focusing-a-text-input*/}
 
 In this example, clicking the button will focus the input:
 <Trans>이 예제에서는 버튼을 클릭하면 input에 초점이 맞춰집니다:</Trans>
@@ -386,7 +386,7 @@ When you put a ref on a built-in component that outputs a browser element like `
 <Trans>`<input />`과 같은 브라우저 엘리먼트를 출력하는 빌트인 컴포넌트에 ref를 넣으면, React는 해당 ref의 `current` 프로퍼티를 해당 DOM 노드(예: 브라우저의 실제 `<input />`)로 설정합니다.</Trans>
 
 However, if you try to put a ref on **your own** component, like `<MyInput />`, by default you will get `null`. Here is an example demonstrating it. Notice how clicking the button **does not** focus the input:
-<Trans>그러나 `<MyInput />`과 같은 **여러분이 만든** 컴포넌트에 ref를 넣으려고 하면 기본적으로 `null`이 반환됩니다. 다음은 이를 보여주는 예시입니다. 버튼을 클릭해도 입력에 초점이 맞춰지지 **않는** 것을 확인할 수 있습니다:</Trans>
+<Trans>그러나 `<MyInput />`과 같은 **여러분이 만든** 컴포넌트에 ref를 넣으려고 하면 기본적으로 `null`이 반환됩니다. 다음은 이를 보여주는 예시입니다. 버튼을 클릭해도 input에 초점이 맞춰지지 **않는** 것을 확인할 수 있습니다:</Trans>
 
 <Sandpack>
 

@@ -961,7 +961,7 @@ Now edit the input to say `abc`. If you do it fast enough, you'll see `Schedule 
 <Trans>이제 input을 편집하여 `abc`라고 입력하세요. 충분히 빨리 입력하면 `Schedule "ab" log`와 `Cancel "ab" log`, `Schedule "abc" log`가 바로 표시될 것입니다. **React는 항상 다음 렌더링의 Effect 전에 이전 렌더링의 Effect를 정리합니다.** 따라서 입력을 빠르게 입력하더라도 한 번에 최대 한 번만 타임아웃이 예약됩니다. 입력을 몇 번 편집하고 콘솔을 보면서 Effect가 어떻게 정리되는지 느껴보세요.</Trans>
 
 Type something into the input and then immediately press "Unmount the component". Notice how unmounting cleans up the last render's Effect. Here, it clears the last timeout before it has a chance to fire.
-<Trans>입력에 무언가를 입력한 다음 즉시 "Unmount the component"를 눌러보세요. 마운트를 해제하면 마지막 렌더링의 Effect가 어떻게 정리되는지 확인하세요. 여기서는 Effect가 실행 기회를 갖기 전에 마지막 타임아웃을 지웁니다.</Trans>
+<Trans>input에 무언가를 입력한 다음 즉시 "Unmount the component"를 눌러보세요. 마운트를 해제하면 마지막 렌더링의 Effect가 어떻게 정리되는지 확인하세요. 여기서는 Effect가 실행 기회를 갖기 전에 마지막 타임아웃을 지웁니다.</Trans>
 
 Finally, edit the component above and comment out the cleanup function so that the timeouts don't get cancelled. Try typing `abcde` fast. What do you expect to happen in three seconds? Will `console.log(text)` inside the timeout print the *latest* `text` and produce five `abcde` logs? Give it a try to check your intuition!
 <Trans>마지막으로 위의 컴포넌트를 편집하고 타임아웃이 취소되지 않도록 클린업 함수를 주석 처리 해봅시다. `abcde`를 빠르게 입력해 보세요. 3초 후에 어떤 일이 일어날까요? 타임아웃 내의 `console.log(text)`가 *최신* `text`를 인쇄하고 5개의 `abcde` 로그를 생성할까요? 여러분의 직감을 확인해 보세요!</Trans>
@@ -1221,7 +1221,7 @@ To verify that your solution works, press "Show form" and verify that the input 
 <Trans>솔루션이 작동하는지 확인하려면 "Show form"을 누르고 입력이 포커스를 받는지를 확인하세요(강조 표시되고 커서가 내부에 위치함). "Hide form"를 누르고, 다시 "Show form"를 누르세요. 입력이 다시 강조 표시되는지 확인하세요.</Trans>
 
 `MyInput` should only focus _on mount_ rather than after every render. To verify that the behavior is right, press "Show form" and then repeatedly press the "Make it uppercase" checkbox. Clicking the checkbox should _not_ focus the input above it.
-<Trans>`MyInput`은 모든 렌더링 이후가 아니라 _마운트에만_ 집중해야 합니다. 동작이 올바른지 확인하려면 "Show form"을 누른 다음 "Make it uppercase" 확인란을 반복해서 누릅니다. 확인란을 클릭해도 위의 입력에 초점이 맞춰지지 _않아야_ 합니다.</Trans>
+<Trans>`MyInput`은 모든 렌더링 이후가 아니라 _마운트에만_ 집중해야 합니다. 동작이 올바른지 확인하려면 "Show form"을 누른 다음 "Make it uppercase" 확인란을 반복해서 누릅니다. 확인란을 클릭해도 위의 input에 초점이 맞춰지지 _않아야_ 합니다.</Trans>
 
 <Solution>
 

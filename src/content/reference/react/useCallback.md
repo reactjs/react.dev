@@ -59,7 +59,7 @@ During subsequent renders, it will either return an already stored `fn`  functio
 #### Caveats<Trans>주의 사항</Trans> {/*caveats*/}
 
 * `useCallback` is a Hook, so you can only call it **at the top level of your component** or your own Hooks. You can't call it inside loops or conditions. If you need that, extract a new component and move the state into it.
-<Trans>`useCallback`은 Hook이므로 컴포넌트의 **최상위 레벨이나 자체 Hook에서만 호출할 수 있습니다.** 반복문이나 조건문 내부에서는 호출할 수 없습니다. 필요한 경우 새로운 컴포넌트로 추출하고 state를 그 안으로 옮기세요.</Trans>
+<Trans>`useCallback`은 훅이므로 컴포넌트의 **최상위 레벨이나 자체 훅에서만 호출할 수 있습니다.** 반복문이나 조건문 내부에서는 호출할 수 없습니다. 필요한 경우 새로운 컴포넌트로 추출하고 state를 그 안으로 옮기세요.</Trans>
 
 * React **will not throw away the cached function unless there is a specific reason to do that.** For example, in development, React throws away the cache when you edit the file of your component. Both in development and in production, React will throw away the cache if your component suspends during the initial mount. In the future, React may add more features that take advantage of throwing away the cache--for example, if React adds built-in support for virtualized lists in the future, it would make sense to throw away the cache for items that scroll out of the virtualized table viewport. This should match your expectations if you rely on `useCallback` as a performance optimization. Otherwise, a [state variable](/reference/react/useState#im-trying-to-set-state-to-a-function-but-it-gets-called-instead) or a [ref](/reference/react/useRef#avoiding-recreating-the-ref-contents) may be more appropriate.
 <Trans>React는 **특별한 이유가 없는 한 캐시된 함수를 버리지 않습니다.** 예를 들어, 개발 단계에서 컴포넌트의 파일을 수정할 때 React는 캐시를 버립니다. React는 개발 중이든 생산 중이든 초기 마운트 중에 컴포넌트가 일시 중단되면 캐시를 버립니다. 향후 React는 캐시를 버리는 것의 이점을 취하는 더 많은 기능을 추가할 수 있습니다. 예를 들어, 향후 React에 가상화된 목록에 대한 빌트인 지원이 추가되면 가상화된 테이블 뷰포트에서 스크롤되는 항목에 대한 캐시도 버리는 것도 이해가 될 것입니다. 성능 최적화를 위해 `useCallback`에 의존하는 경우 기대에 부합할 것입니다. 그렇지 않은 경우 [state](/reference/react/useState#im-trying-to-set-state-to-a-function-but-it-gets-called-instead) 변수나 [ref](/reference/react/useRef#avoiding-recreating-the-ref-contents)가 더 적합할 수 있습니다.</Trans>
@@ -270,7 +270,7 @@ Caching a function with `useCallback`  is only valuable in a few cases:
 - The function you're passing is later used as a dependency of some Hook. For example, another function wrapped in `useCallback` depends on it, or you depend on this function from [`useEffect.`](/reference/react/useEffect)
 <TransBlock>
 - [`memo`](/reference/react/memo)로 감싼 컴포넌트에 prop으로 전달합니다. 값이 변경되지 않았다면 렌더링을 건너뛰고 싶을 것입니다. 메모화를 사용하면 의존성이 변경된 경우에만 컴포넌트를 리렌더링할 수 있습니다.
-- 전달한 함수는 나중에 일부 Hook의 의존성으로 사용됩니다. 예를 들어, `useCallback`으로 감싼 다른 함수가 이 함수에 의존하거나, `useEffect`에서 이 함수에 의존할 수 있습니다.
+- 전달한 함수는 나중에 일부 훅의 의존성으로 사용됩니다. 예를 들어, `useCallback`으로 감싼 다른 함수가 이 함수에 의존하거나, `useEffect`에서 이 함수에 의존할 수 있습니다.
 </TransBlock>
 
 There is no benefit to wrapping a function in `useCallback` in other cases. There is no significant harm to doing that either, so some teams choose to not think about individual cases, and memoize as much as possible. The downside is that code becomes less readable. Also, not all memoization is effective: a single value that's "always new" is enough to break memoization for an entire component.
@@ -772,7 +772,7 @@ Here, instead of making `todos` a dependency and reading it inside, you pass an 
 
 ---
 
-### Preventing an Effect from firing too often<Trans>이펙트가 너무 자주 발동되지 않도록 하기</Trans> {/*preventing-an-effect-from-firing-too-often*/}
+### Preventing an Effect from firing too often<Trans>Effect가 너무 자주 발동되지 않도록 하기</Trans> {/*preventing-an-effect-from-firing-too-often*/}
 
 Sometimes, you might want to call a function from inside an [Effect:](/learn/synchronizing-with-effects)
 <Trans>때론 [Effect](/learn/synchronizing-with-effects) 내부에서 함수를 호출하고 싶은 경우가 있습니다:</Trans>
@@ -890,7 +890,7 @@ function useRouter() {
 ```
 
 This ensures that the consumers of your Hook can optimize their own code when needed.
-<Trans>이렇게 하면 Hook의 소비자가 필요할 때 자신의 코드를 최적화할 수 있습니다.</Trans>
+<Trans>이렇게 하면 훅의 소비자가 필요할 때 자신의 코드를 최적화할 수 있습니다.</Trans>
 
 ---
 

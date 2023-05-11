@@ -3,10 +3,10 @@ title: 번역 진행상황
 ---
 
 <Intro>
-last updated @ 2023-05-11 09:45
+last updated @ 2023-05-11 09:50
 </Intro>
 
-## Reference - 진행중 (done: 26 / total: 59) {/*reference*/}
+## Reference - 진행중 (done: 28 / total: 59) {/*reference*/}
 
 |     | title                                                                |     | title                                                                                  |
 | :-: | :------------------------------------------------------------------- | :-: | :------------------------------------------------------------------------------------- |
@@ -33,9 +33,9 @@ last updated @ 2023-05-11 09:45
 |  ✅  | [6-4. `<Suspense>`](/reference/react/Suspense)                       |  ▢  | [12. Legacy APIs](/reference/react/legacy)                                             |
 |  ✅  | [7. APIs](/reference/react/apis)                                     |  ▢  | [12-1. Children](/reference/react/Children)                                            |
 |  ▢  | [7-1. createContext](/reference/react/createContext)                 |  ✅  | [12-2. cloneElement](/reference/react/cloneElement)                                    |
-|  ▢  | [7-2. forwardRef](/reference/react/forwardRef)                       |  ▢  | [12-3. Component](/reference/react/Component)                                          |
+|  ✅  | [7-2. forwardRef](/reference/react/forwardRef)                       |  ▢  | [12-3. Component](/reference/react/Component)                                          |
 |  ▢  | [7-3. lazy](/reference/react/lazy)                                   |  ▢  | [12-4. createElement](/reference/react/createElement)                                  |
-|  ▢  | [7-4. memo](/reference/react/memo)                                   |  ▢  | [12-5. createFactory](/reference/react/createFactory)                                  |
+|  ✅  | [7-4. memo](/reference/react/memo)                                   |  ▢  | [12-5. createFactory](/reference/react/createFactory)                                  |
 |  ▢  | [7-5. startTransition](/reference/react/startTransition)             |  ▢  | [12-6. createRef](/reference/react/createRef)                                          |
 |  ▢  | [8. Components](/reference/react-dom/components)                     |  ✅  | [12-7. isValidElement](/reference/react/isValidElement)                                |
 |  ▢  | [8-1. Common (e.g. `<div>`)](/reference/react-dom/components/common) |  ✅  | [12-8. PureComponent](/reference/react/PureComponent)                                  |

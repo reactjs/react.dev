@@ -65,7 +65,7 @@ The convention is to name state variables like `[something, setSomething]` using
 * `useState` is a Hook, so you can only call it **at the top level of your component** or your own Hooks. You can't call it inside loops or conditions. If you need that, extract a new component and move the state into it.
 <Trans>`useState`는 훅이므로 **컴포넌트의 최상위 레벨이나** 직접 만든 훅에서만 호출할 수 있습니다. 반복문이나 조건문 안에서는 호출할 수 없습니다. 필요한 경우 새 컴포넌트를 추출하고 state를 그 안으로 옮기세요.</Trans>
 * In Strict Mode, React will **call your initializer function twice** in order to [help you find accidental impurities.](#my-initializer-or-updater-function-runs-twice) This is development-only behavior and does not affect production. If your initializer function is pure (as it should be), this should not affect the behavior. The result from one of the calls will be ignored.
-<Trans>Strict Mode에서 React는 [의도치 않은 불순물을 찾기 위해](#my-initializer-or-updater-function-runs-twice) **초기화 함수를 두 번 호출합니다.** 이는 개발 환경 전용 동작이며 상용 환경에는 영향을 미치지 않습니다. 초기화 함수가 순수하다면(그래야만 합니다) 동작에 영향을 미치지 않습니다. 호출 중 하나의 결과는 무시됩니다.</Trans>
+<Trans>Strict Mode에서 React는 [의도치 않은 불순물을 찾기 위해](#my-initializer-or-updater-function-runs-twice) **초기화 함수를 두 번 호출합니다.** 이는 개발 환경 전용 동작이며 상용 환경에는 영향을 미치지 않습니다. 초기화 함수가 순수하다면(그래야 합니다) 동작에 영향을 미치지 않습니다. 호출 중 하나의 결과는 무시됩니다.</Trans>
 
 ---
 
@@ -113,7 +113,7 @@ function handleClick() {
 
 
 * In Strict Mode, React will **call your updater function twice** in order to [help you find accidental impurities.](#my-initializer-or-updater-function-runs-twice) This is development-only behavior and does not affect production. If your updater function is pure (as it should be), this should not affect the behavior. The result from one of the calls will be ignored.
-<Trans>Strict Mode에서 React는 [의도치않은 불순물을 찾기 위해](#my-initializer-or-updater-function-runs-twice) **업데이터 함수를 두 번 호출합니다**. 이는 개발 환경 전용 동작이며 상용 환경에는 영향을 미치지 않습니다. 만약 업데이터 함수가 순수하다면(그래야만 합니다), 이것은 동작에 영향을 미치지 않습니다. 호출 중 하나의 결과는 무시됩니다.</Trans>
+<Trans>Strict Mode에서 React는 [의도치않은 불순물을 찾기 위해](#my-initializer-or-updater-function-runs-twice) **업데이터 함수를 두 번 호출합니다**. 이는 개발 환경 전용 동작이며 상용 환경에는 영향을 미치지 않습니다. 만약 업데이터 함수가 순수하다면(그래야 합니다), 이것은 동작에 영향을 미치지 않습니다. 호출 중 하나의 결과는 무시됩니다.</Trans>
 
 ---
 
@@ -982,7 +982,7 @@ Notice that you’re passing `createInitialTodos`, which is the *function itself
 React may [call your initializers twice](#my-initializer-or-updater-function-runs-twice) in development to verify that they are [pure.](/learn/keeping-components-pure)
 <Trans>개발 환경에서는 React가 초기화 함수가 [순수](#my-initializer-or-updater-function-runs-twice)한지 확인하기 위해 [초기화 함수를 두 번 호출](/learn/keeping-components-pure)할 수 있습니다.</Trans>
 
-<Recipes titleText="The difference between passing an initializer and passing the initial state directly" titleId="examples-initializer" translatedTitle="초기화 함수를 전달하는 것과 초기 상태를 직접 전달하는 것의 차이점">
+<Recipes titleText="The difference between passing an initializer and passing the initial state directly" titleId="examples-initializer" translatedTitle="초기화 함수를 전달하는 것과 초기 state를 직접 전달하는 것의 차이점">
 
 #### Passing the initializer function <Trans>초기화 함수 전달하기</Trans> {/*passing-the-initializer-function*/}
 

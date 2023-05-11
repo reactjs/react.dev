@@ -847,7 +847,7 @@ function Chat({ roomId, notificationCount }) {
 ```
 
 You want your logic to be reactive with regards to `roomId`, so you read `roomId` inside of your Effect. However, you don't want a change to `notificationCount` to log an extra visit, so you read `notificationCount` inside of the Effect Event. [Learn more about reading the latest props and state from Effects using Effect Events.](/learn/separating-events-from-effects#reading-latest-props-and-state-with-effect-events)
-<Trans>로직이 `roomId`와 관련하여 반응하기를 원하므로 Effect 내부에서 `roomId`를 읽습니다. 그러나 `notificationCount`를 변경하여 추가 방문을 기록하는 것은 원하지 않으므로 Effect Event 내부에서 `notificationCount`를 읽습니다. [Effect Event를 사용하여 효과에서 최신 props과 state를 읽는 방법에 대해 자세히 알아보세요.](/learn/separating-events-from-effects#reading-latest-props-and-state-with-effect-events)</Trans>
+<Trans>로직이 `roomId`와 관련하여 반응하기를 원하므로 Effect 내부에서 `roomId`를 읽습니다. 그러나 `notificationCount`를 변경하여 추가 방문을 기록하는 것은 원하지 않으므로 Effect Event 내부에서 `notificationCount`를 읽습니다. [Effect Event를 사용하여 Effect에서 최신 props과 state를 읽는 방법에 대해 자세히 알아보세요.](/learn/separating-events-from-effects#reading-latest-props-and-state-with-effect-events)</Trans>
 
 ### Does some reactive value change unintentionally?<Trans>일부 반응형 값이 의도치 않게 변경되나요?</Trans> {/*does-some-reactive-value-change-unintentionally*/}
 

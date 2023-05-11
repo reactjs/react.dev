@@ -74,7 +74,7 @@ function Tooltip() {
 <Trans>LayoutEffect는 **클라이언트에서만 실행됩니다.** 서버 렌더링 중에는 실행되지 않습니다.</Trans>
 
 * The code inside `useLayoutEffect` and all state updates scheduled from it **block the browser from repainting the screen.** When used excessively, this makes your app slow. When possible, prefer [`useEffect`.](/reference/react/useEffect)
-<Trans>`useLayoutEffect` 내부의 코드와 여기에서 예약된 모든 상태 업데이트는 **브라우저가 화면을 다시 그리는 것을 차단합니다.** 과도하게 사용하면 앱이 느려집니다. 가급적이면 [`useEffect`](/reference/react/useEffect)를 사용하세요.</Trans>
+<Trans>`useLayoutEffect` 내부의 코드와 여기에서 예약된 모든 state 업데이트는 **브라우저가 화면을 다시 그리는 것을 차단합니다.** 과도하게 사용하면 앱이 느려집니다. 가급적이면 [`useEffect`](/reference/react/useEffect)를 사용하세요.</Trans>
 
 ---
 

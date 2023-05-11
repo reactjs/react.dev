@@ -6,7 +6,7 @@ translators: [이나령]
 <Intro>
 
 The [built-in browser `<progress>` component](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/progress) lets you render a progress indicator.
-<Trans>[기본 제공 브라우저 `<progress>` 컴포넌트](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/progress)를 사용하면 진행률 표시기를 렌더링할 수 있습니다.
+<Trans>[빌트인 브라우저 `<progress>` 컴포넌트](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/progress)를 사용하면 진행률 표시기를 렌더링할 수 있습니다.
 
 </Trans>
 
@@ -26,7 +26,7 @@ The [built-in browser `<progress>` component](https://developer.mozilla.org/en-U
 ### `<progress>` {/*progress*/}
 
 To display a progress indicator, render the [built-in browser `<progress>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/progress) component.
-<Trans>진행률 표시기를 렌더링하려면 [기본 제공 브라우저 `<progress>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/progress) 컴포넌트를 렌더링합니다.</Trans>
+<Trans>진행률 표시기를 렌더링하려면 [빌트인 브라우저 `<progress>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/progress) 컴포넌트를 렌더링합니다.</Trans>
 
 
 ```js

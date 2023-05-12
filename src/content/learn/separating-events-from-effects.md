@@ -239,7 +239,7 @@ function ChatRoom({ roomId, theme }) {
     });
     connection.connect();
     // ...
-````
+```
 
 However, `theme` is a reactive value (it can change as a result of re-rendering), and [every reactive value read by an Effect must be declared as its dependency.](/learn/lifecycle-of-reactive-effects#react-verifies-that-you-specified-every-reactive-value-as-a-dependency) Now you have to specify `theme` as a dependency of your Effect:
 
@@ -256,7 +256,7 @@ function ChatRoom({ roomId, theme }) {
     };
   }, [roomId, theme]); // ✅ All dependencies declared
   // ...
-````
+```
 
 Play with this example and see if you can spot the problem with this user experience:
 
@@ -416,7 +416,7 @@ function ChatRoom({ roomId, theme }) {
     showNotification('Connected!', theme);
   });
   // ...
-````
+```
 
 Here, `onConnected` is called an *Effect Event.* It's a part of your Effect logic, but it behaves a lot more like an event handler. The logic inside it is not reactive, and it always "sees" the latest values of your props and state.
 

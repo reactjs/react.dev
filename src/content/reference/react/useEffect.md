@@ -531,7 +531,7 @@ function ChatRoom({ roomId }) {
     serverUrl: serverUrl
   });
   // ...
-````
+```
 
 There are also many excellent custom Hooks for every purpose available in the React ecosystem.
 

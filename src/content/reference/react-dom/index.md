@@ -21,7 +21,7 @@ These APIs can be imported from your components. They are rarely used:
 * [`flushSync`](/reference/react-dom/flushSync) lets you force React to flush a state update and update the DOM synchronously.
 <TransBlock>
 * [`createPortal`](/reference/react-dom/createPortal)을 사용하면 DOM 트리의 다른 부분에 자식 컴포넌트를 렌더링할 수 있습니다.
-* [`flushSync`](/reference/react-dom/flushSync)를 사용하면 리액트가 state 업데이트를 강제로 플러시?하고 DOM을 동기적으로 업데이트할 수 있습니다.</TransBlock>
+* [`flushSync`](/reference/react-dom/flushSync)를 사용하면 리액트가 state 업데이트를 강제로 플러시(메모리등을 강제로 처리하여 비워냄)하고 DOM을 동기적으로 업데이트할 수 있습니다.</TransBlock>
 
 ---
 

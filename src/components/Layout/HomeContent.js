@@ -267,7 +267,7 @@ export function HomeContent() {
         <Section background="left-card">
           <div className="mx-auto flex flex-col w-full">
             <div className="mx-auto max-w-4xl lg:text-center items-center px-5 flex flex-col">
-              <Header>Use the best from every platform</Header>
+              <Header>Leverage the optimum features from each platform.</Header>
               <Para>
                 People love web and native apps for different reasons. React
                 lets you build both web apps and native apps using the same

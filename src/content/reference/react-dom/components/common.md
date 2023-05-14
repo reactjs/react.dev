@@ -16,7 +16,7 @@ All built-in browser components, such as [`<div>`](https://developer.mozilla.org
 
 ## Reference<Trans>참조</Trans> {/*reference*/}
 
-### Common components (e.g. `<div>`) {/*common*/}
+### Common components (e.g. `<div>`) <Trans>기본 컴포넌트 (예: `<div>`)</Trans> {/*common*/}
 
 ```js
 <div className="wrapper">Some content</div>
@@ -601,11 +601,10 @@ These events fire for resources like [`<audio>`](https://developer.mozilla.org/e
 #### Caveats<Trans>주의사항</Trans> {/*common-caveats*/}
 
 - You cannot pass both `children` and `dangerouslySetInnerHTML` at the same time.
+<Trans>`children`과 `dangerouslySetInnerHTML`을 동시에 전달할 수 없습니다.</Trans>
+
 - Some events (like `onAbort` and `onLoad`) don't bubble in the browser, but bubble in React.
-<TransBlock>
-  - `children`과 `dangerouslySetInnerHTML`을 동시에 전달할 수 없습니다.
-  - 일부 이벤트(예: `onAbort` 및 `onLoad`)는 브라우저에서는 버블링되지 않지만 React에서는 버블링됩니다.
-</TransBlock>
+<Trans>일부 이벤트(예: `onAbort` 및 `onLoad`)는 브라우저에서는 버블링되지 않지만 React에서는 버블링됩니다.</Trans>
 
 ---
 
@@ -629,7 +628,7 @@ React will also call your `ref` callback whenever you pass a *different* `ref` c
 #### Parameters<Trans>매개변수</Trans> {/*ref-callback-parameters*/}
 
 * `node`: A DOM node or `null`. React will pass you the DOM node when the ref gets attached, and `null` when the ref gets detached. Unless you pass the same function reference for the `ref` callback on every render, the callback will get temporarily detached and re-attached during ever re-render of the component.
-<Trans>`node`: DOM 노드 또는 `null`. React는 ref가 연결될 때 DOM 노드를 전달하고, ref가 분리될 때 `null`을 전달합니다. 모든 렌더링에서 `ref` 콜백에 대해 동일한 함수 참조를 전달하지 않는 한, 컴포넌트를 다시 렌더링할 때마다 콜백이 일시적으로 분리되었다가 다시 연결됩니다.</Trans>
+<Trans dedent>`node`: DOM 노드 또는 `null`. React는 ref가 연결될 때 DOM 노드를 전달하고, ref가 분리될 때 `null`을 전달합니다. 모든 렌더링에서 `ref` 콜백에 대해 동일한 함수 참조를 전달하지 않는 한, 컴포넌트를 다시 렌더링할 때마다 콜백이 일시적으로 분리되었다가 다시 연결됩니다.</Trans>
 #### Returns<Trans>반환값</Trans> {/*returns*/}
 
 Do not return anything from the `ref` callback.
@@ -661,29 +660,34 @@ React event objects implement some of the standard [`Event`](https://developer.m
 <Trans>React 이벤트 객체는 표준 [`Event`](https://developer.mozilla.org/en-US/docs/Web/API/Event) 프로퍼티 중 일부를 구현합니다:</Trans>
 
 * [`bubbles`](https://developer.mozilla.org/en-US/docs/Web/API/Event/bubbles): A boolean. Returns whether the event bubbles through the DOM. 
+<Trans>[`bubbles`](https://developer.mozilla.org/en-US/docs/Web/API/Event/bubbles) : 불리언. 이벤트가 DOM을 통해 버블을 발생시킬지 여부를 반환합니다.</Trans>
+
 * [`cancelable`](https://developer.mozilla.org/en-US/docs/Web/API/Event/cancelable): A boolean. Returns whether the event can be canceled.
+<Trans>[`cancelable`](https://developer.mozilla.org/en-US/docs/Web/API/Event/cancelable): 불리언. 이벤트를 취소할 수 있는지 여부를 반환합니다.</Trans>
+
 * [`currentTarget`](https://developer.mozilla.org/en-US/docs/Web/API/Event/currentTarget): A DOM node. Returns the node to which the current handler is attached in the React tree.
+<Trans>[`currentTarget`](https://developer.mozilla.org/en-US/docs/Web/API/Event/currentTarget): DOM 노드. React 트리에서 현재 핸들러가 연결된 노드를 반환합니다.</Trans>
+
 * [`defaultPrevented`](https://developer.mozilla.org/en-US/docs/Web/API/Event/defaultPrevented): A boolean. Returns whether `preventDefault` was called.
+<Trans>[`defaultPrevented`](https://developer.mozilla.org/en-US/docs/Web/API/Event/defaultPrevented): 불리언. preventDefault`가 호출되었는지 여부를 반환합니다.</Trans>
+
 * [`eventPhase`](https://developer.mozilla.org/en-US/docs/Web/API/Event/eventPhase): A number. Returns which phase the event is currently in.
+<Trans>[`eventPhase`](https://developer.mozilla.org/en-US/docs/Web/API/Event/eventPhase): 숫자. 이벤트가 현재 어떤 단계에 있는지 반환합니다.</Trans>
+
 * [`isTrusted`](https://developer.mozilla.org/en-US/docs/Web/API/Event/isTrusted): A boolean. Returns whether the event was initiated by user.
+<Trans>[`isTrusted`](https://developer.mozilla.org/en-US/docs/Web/API/Event/isTrusted): 불리언. 이벤트가 사용자에 의해 시작되었는지 여부를 반환합니다.</Trans>
+
 * [`target`](https://developer.mozilla.org/en-US/docs/Web/API/Event/target): A DOM node. Returns the node on which the event has occurred (which could be a distant child).
+<Trans>[`target`](https://developer.mozilla.org/en-US/docs/Web/API/Event/target): DOM 노드. 이벤트가 발생한 노드(먼 자식일 수 있음)를 반환합니다.</Trans>
+
 * [`timeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/Event/timeStamp): A number. Returns the time when the event occurred.
-<TransBlock> 
-- [`bubbles`](https://developer.mozilla.org/en-US/docs/Web/API/Event/bubbles) : 불리언. 이벤트가 DOM을 통해 버블을 발생시킬지 여부를 반환합니다.
-- [`cancelable`](https://developer.mozilla.org/en-US/docs/Web/API/Event/cancelable): 불리언. 이벤트를 취소할 수 있는지 여부를 반환합니다.
-- [`currentTarget`](https://developer.mozilla.org/en-US/docs/Web/API/Event/currentTarget): DOM 노드. React 트리에서 현재 핸들러가 연결된 노드를 반환합니다.
-- [`defaultPrevented`](https://developer.mozilla.org/en-US/docs/Web/API/Event/defaultPrevented): 불리언. preventDefault`가 호출되었는지 여부를 반환합니다.
-- [`eventPhase`](https://developer.mozilla.org/en-US/docs/Web/API/Event/eventPhase): 숫자. 이벤트가 현재 어떤 단계에 있는지 반환합니다.
-- [`isTrusted`](https://developer.mozilla.org/en-US/docs/Web/API/Event/isTrusted): 불리언. 이벤트가 사용자에 의해 시작되었는지 여부를 반환합니다.
-- [`target`](https://developer.mozilla.org/en-US/docs/Web/API/Event/target): DOM 노드. 이벤트가 발생한 노드(먼 자식일 수 있음)를 반환합니다.
-- [`timeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/Event/timeStamp): 숫자. 이벤트가 발생한 시간을 반환합니다.
-</TransBlock>
+<Trans>[`timeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/Event/timeStamp): 숫자. 이벤트가 발생한 시간을 반환합니다.</Trans>
 
 Additionally, React event objects provide these properties:
 <Trans>또한 React 이벤트 객체는 이러한 프로퍼티를 제공합니다:</Trans>
 
 * `nativeEvent`: A DOM [`Event`](https://developer.mozilla.org/en-US/docs/Web/API/Event). The original browser event object.
-<Trans>`nativeEvent`: DOM [`Event`](https://developer.mozilla.org/en-US/docs/Web/API/Event). 원본 브라우저 이벤트 객체입니다.</Trans>
+<Trans dedent>`nativeEvent`: DOM [`Event`](https://developer.mozilla.org/en-US/docs/Web/API/Event). 원본 브라우저 이벤트 객체입니다.</Trans>
  
 #### Methods <Trans>메소드</Trans> {/*react-event-object-methods*/}
 
@@ -691,30 +695,30 @@ React event objects implement some of the standard [`Event`](https://developer.m
 <Trans>React 이벤트 객체는 표준 [`Event`](https://developer.mozilla.org/ko/docs/Web/API/Event) 메서드 중 일부를 구현합니다:</Trans>
 
 * [`preventDefault()`](https://developer.mozilla.org/en-US/docs/Web/API/Event/preventDefault): Prevents the default browser action for the event.
+<Trans>[`preventDefault()`](https://developer.mozilla.org/en-US/docs/Web/API/Event/preventDefault): 이벤트에 대한 기본 브라우저 액션을 방지합니다.</Trans>
+
 * [`stopPropagation()`](https://developer.mozilla.org/en-US/docs/Web/API/Event/stopPropagation): Stops the event propagation through the React tree.
-<TransBlock>
-  - [`preventDefault()`](https://developer.mozilla.org/en-US/docs/Web/API/Event/preventDefault): 이벤트에 대한 기본 브라우저 액션을 방지합니다.
-  - [`stopPropagation()`](https://developer.mozilla.org/en-US/docs/Web/API/Event/stopPropagation): React 트리를 통한 이벤트 전파를 중지합니다.
-</TransBlock>
+<Trans>[`stopPropagation()`](https://developer.mozilla.org/en-US/docs/Web/API/Event/stopPropagation): React 트리를 통한 이벤트 전파를 중지합니다.</Trans>
 
 Additionally, React event objects provide these methods:
 <Trans>또한 React 이벤트 객체는 이러한 메서드를 제공합니다:</Trans>
 
 * `isDefaultPrevented()`: Returns a boolean value indicating whether `preventDefault` was called.
+<Trans>`isDefaultPrevented()`: `preventDefault`가 호출되었는지 여부를 나타내는 부울 값을 반환합니다.</Trans>
+
 * `isPropagationStopped()`: Returns a boolean value indicating whether `stopPropagation` was called.
+<Trans>`isPropagationStopped()`: `stopPropagation`가 호출되었는지 여부를 나타내는 부울 값을 반환합니다.</Trans>
+
 * `persist()`: Not used with React DOM. With React Native, call this to read event's properties after the event.
+<Trans>`persist()`: React DOM에서는 사용되지 않습니다. React Native에서는 이벤트 이후 이벤트의 프로퍼티를 읽으려면 이 함수를 호출합니다.</Trans>
+
 * `isPersistent()`: Not used with React DOM. With React Native, returns whether `persist` has been called.
-<TransBlock>
-  - `isDefaultPrevented()`: `preventDefault`가 호출되었는지 여부를 나타내는 부울 값을 반환합니다.
-  - `isPropagationStopped()`: `stopPropagation`가 호출되었는지 여부를 나타내는 부울 값을 반환합니다.
-  - `persist()`: React DOM에서는 사용되지 않습니다. React Native에서는 이벤트 이후 이벤트의 프로퍼티를 읽으려면 이 함수를 호출합니다.
-  - `isPersistent()`: React DOM에서는 사용되지 않습니다. React Native에서는 `persist`가 호출되었는지 여부를 반환합니다.
-</TransBlock>
+<Trans>`isPersistent()`: React DOM에서는 사용되지 않습니다. React Native에서는 `persist`가 호출되었는지 여부를 반환합니다.</Trans>
 
 #### Caveats<Trans>주의사항</Trans> {/*react-event-object-caveats*/}
 
 * The values of `currentTarget`, `eventPhase`, `target`, and `type` reflect the values your React code expects. Under the hood, React attaches event handlers at the root, but this is not reflected in React event objects. For example, `e.currentTarget` may not be the same as the underlying `e.nativeEvent.currentTarget`. For polyfilled events, `e.type` (React event type) may differ from `e.nativeEvent.type` (underlying type).
-<Trans>`currentTarget`, `eventPhase`, `target`, `type`의 값은 React 코드가 기대하는 값을 반영합니다. 내부적으로 React는 이벤트 핸들러를 루트에 첨부하지만, 이는 React 이벤트 객체에는 반영되지 않습니다. 예를 들어, `e.currentTarget`은 기본 `e.nativeEvent.currentTarget`과 같지 않을 수 있습니다. 폴리필 이벤트의 경우, `e.type`(React 이벤트 타입)이 `e.nativeEvent.type`(기본 타입)과 다를 수 있습니다.</Trans>
+<Trans dedent>`currentTarget`, `eventPhase`, `target`, `type`의 값은 React 코드가 기대하는 값을 반영합니다. 내부적으로 React는 이벤트 핸들러를 루트에 첨부하지만, 이는 React 이벤트 객체에는 반영되지 않습니다. 예를 들어, `e.currentTarget`은 기본 `e.nativeEvent.currentTarget`과 같지 않을 수 있습니다. 폴리필 이벤트의 경우, `e.type`(React 이벤트 타입)이 `e.nativeEvent.type`(기본 타입)과 다를 수 있습니다.</Trans>
 
 ---
 
@@ -734,7 +738,7 @@ An event handler type for the [CSS animation](https://developer.mozilla.org/en-U
 #### Parameters<Trans>매개변수</Trans> {/*animationevent-handler-parameters*/}
 
 * `e`: A [React event object](#react-event-object) with these extra [`AnimationEvent`](https://developer.mozilla.org/en-US/docs/Web/API/AnimationEvent) properties:
-<Trans>`e`: 추가 [`AnimationEvent`](https://developer.mozilla.org/ko/docs/Web/API/AnimationEvent) 속성을 가진 [React 이벤트 객체](#react-event-object)입니다:</Trans>
+<Trans dedent>`e`: 추가 [`AnimationEvent`](https://developer.mozilla.org/ko/docs/Web/API/AnimationEvent) 속성을 가진 [React 이벤트 객체](#react-event-object)입니다:</Trans>
 
   * [`animationName`](https://developer.mozilla.org/en-US/docs/Web/API/AnimationEvent/animationName)
   * [`elapsedTime`](https://developer.mozilla.org/en-US/docs/Web/API/AnimationEvent/elapsedTime)
@@ -758,7 +762,7 @@ An event handler type for the [Clipboard API](https://developer.mozilla.org/en-U
 #### Parameters<Trans>매개변수</Trans> {/*clipboadevent-handler-parameters*/}
 
 * `e`: A [React event object](#react-event-object) with these extra [`ClipboardEvent`](https://developer.mozilla.org/en-US/docs/Web/API/ClipboardEvent) properties:
-<Trans>`e`: 추가 [`ClipboardEvent`](https://developer.mozilla.org/ko/docs/Web/API/ClipboardEvent) 속성을 가진 [React 이벤트 객체](#react-event-object)입니다:</Trans>
+<Trans dedent>`e`: 추가 [`ClipboardEvent`](https://developer.mozilla.org/ko/docs/Web/API/ClipboardEvent) 속성을 가진 [React 이벤트 객체](#react-event-object)입니다:</Trans>
 
   * [`clipboardData`](https://developer.mozilla.org/en-US/docs/Web/API/ClipboardEvent/clipboardData)
 
@@ -780,7 +784,7 @@ An event handler type for the [input method editor (IME)](https://developer.mozi
 #### Parameters<Trans>매개변수</Trans> {/*compositionevent-handler-parameters*/}
 
 * `e`: A [React event object](#react-event-object) with these extra [`CompositionEvent`](https://developer.mozilla.org/en-US/docs/Web/API/CompositionEvent) properties:
-<Trans>`e`: 추가 [`CompositionEvent`](https://developer.mozilla.org/en-US/docs/Web/API/CompositionEvent) 속성을 가진 [React 이벤트 객체](#react-event-object)입니다:</Trans>
+<Trans dedent>`e`: 추가 [`CompositionEvent`](https://developer.mozilla.org/en-US/docs/Web/API/CompositionEvent) 속성을 가진 [React 이벤트 객체](#react-event-object)입니다:</Trans>
 
   * [`data`](https://developer.mozilla.org/en-US/docs/Web/API/CompositionEvent/data)
 
@@ -815,7 +819,7 @@ An event handler type for the [HTML Drag and Drop API](https://developer.mozilla
 #### Parameters<Trans>매개변수</Trans> {/*dragevent-handler-parameters*/}
 
 * `e`: A [React event object](#react-event-object) with these extra [`DragEvent`](https://developer.mozilla.org/en-US/docs/Web/API/DragEvent) properties:
-<Trans>`e`: 추가 [`DragEvent`](https://developer.mozilla.org/en-US/docs/Web/API/DragEvent) 속성을 가진 [React 이벤트 객체](#react-event-object)입니다:</Trans>
+<Trans dedent>`e`: 추가 [`DragEvent`](https://developer.mozilla.org/en-US/docs/Web/API/DragEvent) 속성을 가진 [React 이벤트 객체](#react-event-object)입니다:</Trans>
 
   * [`dataTransfer`](https://developer.mozilla.org/en-US/docs/Web/API/DragEvent/dataTransfer)
 
@@ -865,7 +869,7 @@ An event handler type for the focus events.
 #### Parameters<Trans>매개변수</Trans> {/*focusevent-handler-parameters*/}
 
 * `e`: A [React event object](#react-event-object) with these extra [`FocusEvent`](https://developer.mozilla.org/en-US/docs/Web/API/FocusEvent) properties:
-<Trans>`e`: 추가 [`FocusEvent`](https://developer.mozilla.org/en-US/docs/Web/API/FocusEvent) 속성을 가진 [React 이벤트 객체](#react-event-object)입니다:</Trans>
+<Trans dedent>`e`: 추가 [`FocusEvent`](https://developer.mozilla.org/en-US/docs/Web/API/FocusEvent) 속성을 가진 [React 이벤트 객체](#react-event-object)입니다:</Trans>
 
   * [`relatedTarget`](https://developer.mozilla.org/en-US/docs/Web/API/FocusEvent/relatedTarget)
 
@@ -884,8 +888,8 @@ An event handler type for generic events.
 
 #### Parameters<Trans>매개변수</Trans> {/*event-handler-parameters*/}
 
-* `e`: A [React event object](#react-event-object) with no additional properties.
-<Trans>`e`: 추가 프로퍼티가 없는 [React 이벤트 객체](#react-event-object)입니다.</Trans>
+* `e`: A [React event object](#react-event-object) with no additional properties.  
+<Trans dedent>`e`: 추가 프로퍼티가 없는 [React 이벤트 객체](#react-event-object)입니다.</Trans>
 
 ---
 
@@ -901,7 +905,7 @@ An event handler type for the `onBeforeInput` event.
 #### Parameters<Trans>매개변수</Trans> {/*inputevent-handler-parameters*/}
 
 * `e`: A [React event object](#react-event-object) with these extra [`InputEvent`](https://developer.mozilla.org/en-US/docs/Web/API/InputEvent) properties:
-<Trans>`e`: 추가 [`InputEvent`](https://developer.mozilla.org/en-US/docs/Web/API/InputEvent) 프로퍼티가 있는 [React 이벤트 객체](#react-event-object)입니다:</Trans>
+<Trans dedent>`e`: 추가 [`InputEvent`](https://developer.mozilla.org/en-US/docs/Web/API/InputEvent) 프로퍼티가 있는 [React 이벤트 객체](#react-event-object)입니다:</Trans>
 
   * [`data`](https://developer.mozilla.org/en-US/docs/Web/API/InputEvent/data)
 
@@ -925,7 +929,7 @@ An event handler type for keyboard events.
 #### Parameters<Trans>매개변수</Trans> {/*keyboardevent-handler-parameters*/}
 
 * `e`: A [React event object](#react-event-object) with these extra [`KeyboardEvent`](https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent) properties:
-<Trans>`e`: 추가 [`KeyboardEvent`](https://developer.mozilla.org/ko/docs/Web/API/KeyboardEvent) 속성을 가진 [React 이벤트 객체](#react-event-object)입니다:</Trans>
+<Trans dedent>`e`: 추가 [`KeyboardEvent`](https://developer.mozilla.org/ko/docs/Web/API/KeyboardEvent) 속성을 가진 [React 이벤트 객체](#react-event-object)입니다:</Trans>
 
   * [`altKey`](https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/altKey)
   * [`charCode`](https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/charCode)
@@ -971,7 +975,7 @@ An event handler type for mouse events.
 #### Parameters<Trans>매개변수</Trans> {/*mouseevent-handler-parameters*/}
 
 * `e`: A [React event object](#react-event-object) with these extra [`MouseEvent`](https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent) properties:
-<Trans>`e`: 추가 [`MouseEvent`](https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent) 속성을 가진 [React 이벤트 객체](#react-event-object)입니다:</Trans>
+<Trans dedent>`e`: 추가 [`MouseEvent`](https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent) 속성을 가진 [React 이벤트 객체](#react-event-object)입니다:</Trans>
 
   * [`altKey`](https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent/altKey)
   * [`button`](https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent/button)
@@ -1019,7 +1023,7 @@ An event handler type for [pointer events.](https://developer.mozilla.org/en-US/
 #### Parameters<Trans>매개변수</Trans> {/*pointerevent-handler-parameters*/}
 
 * `e`: A [React event object](#react-event-object) with these extra [`PointerEvent`](https://developer.mozilla.org/en-US/docs/Web/API/PointerEvent) properties:
-<Trans>`e`: 추가 [`PointerEvent`](https://developer.mozilla.org/en-US/docs/Web/API/PointerEvent) 속성을 가진 [React 이벤트 객체](#react-event-object)입니다:</Trans>
+<Trans dedent>`e`: 추가 [`PointerEvent`](https://developer.mozilla.org/en-US/docs/Web/API/PointerEvent) 속성을 가진 [React 이벤트 객체](#react-event-object)입니다:</Trans>
 
   * [`height`](https://developer.mozilla.org/en-US/docs/Web/API/PointerEvent/height)
   * [`isPrimary`](https://developer.mozilla.org/en-US/docs/Web/API/PointerEvent/isPrimary)
@@ -1077,7 +1081,7 @@ An event handler type for [touch events.](https://developer.mozilla.org/en-US/do
 #### Parameters<Trans>매개변수</Trans> {/*touchevent-handler-parameters*/}
 
 * `e`: A [React event object](#react-event-object) with these extra [`TouchEvent`](https://developer.mozilla.org/en-US/docs/Web/API/TouchEvent) properties:
-<Trans>`e`: 추가 [`TouchEvent`](https://developer.mozilla.org/ko/docs/Web/API/TouchEvent) 속성을 가진 [React 이벤트 객체](#react-event-object)입니다:</Trans>
+<Trans dedent>`e`: 추가 [`TouchEvent`](https://developer.mozilla.org/ko/docs/Web/API/TouchEvent) 속성을 가진 [React 이벤트 객체](#react-event-object)입니다:</Trans>
 
   * [`altKey`](https://developer.mozilla.org/en-US/docs/Web/API/TouchEvent/altKey)
   * [`ctrlKey`](https://developer.mozilla.org/en-US/docs/Web/API/TouchEvent/ctrlKey)
@@ -1110,7 +1114,7 @@ An event handler type for the CSS transition events.
 #### Parameters<Trans>매개변수</Trans> {/*transitionevent-handler-parameters*/}
 
 * `e`: A [React event object](#react-event-object) with these extra [`TransitionEvent`](https://developer.mozilla.org/en-US/docs/Web/API/TransitionEvent) properties:
-<Trans>`e`: 추가 [`TransitionEvent`](https://developer.mozilla.org/en-US/docs/Web/API/TransitionEvent) 속성을 가진 [React 이벤트 객체](#react-event-object)입니다:</Trans>
+<Trans dedent>`e`: 추가 [`TransitionEvent`](https://developer.mozilla.org/en-US/docs/Web/API/TransitionEvent) 속성을 가진 [React 이벤트 객체](#react-event-object)입니다:</Trans>
 
   * [`elapsedTime`](https://developer.mozilla.org/en-US/docs/Web/API/TransitionEvent/elapsedTime)
   * [`propertyName`](https://developer.mozilla.org/en-US/docs/Web/API/TransitionEvent/propertyName)
@@ -1132,7 +1136,7 @@ An event handler type for generic UI events.
 #### Parameters<Trans>매개변수</Trans> {/*uievent-handler-parameters*/}
 
 * `e`: A [React event object](#react-event-object) with these extra [`UIEvent`](https://developer.mozilla.org/en-US/docs/Web/API/UIEvent) properties:
-<Trans>`e`: 추가 [`UIEvent`](https://developer.mozilla.org/en-US/docs/Web/API/UIEvent) 속성을 가진 [React 이벤트 객체](#react-event-object)입니다:</Trans>
+<Trans dedent>`e`: 추가 [`UIEvent`](https://developer.mozilla.org/en-US/docs/Web/API/UIEvent) 속성을 가진 [React 이벤트 객체](#react-event-object)입니다:</Trans>
 
   * [`detail`](https://developer.mozilla.org/en-US/docs/Web/API/UIEvent/detail)
   * [`view`](https://developer.mozilla.org/en-US/docs/Web/API/UIEvent/view)
@@ -1153,7 +1157,7 @@ An event handler type for the `onWheel` event.
 #### Parameters<Trans>매개변수</Trans> {/*wheelevent-handler-parameters*/}
 
 * `e`: A [React event object](#react-event-object) with these extra [`WheelEvent`](https://developer.mozilla.org/en-US/docs/Web/API/WheelEvent) properties:
-<Trans>`e`: 추가 [`WheelEvent`](https://developer.mozilla.org/en-US/docs/Web/API/WheelEvent) 속성을 가진 [React 이벤트 객체](#react-event-object)입니다:</Trans>
+<Trans dedent>`e`: 추가 [`WheelEvent`](https://developer.mozilla.org/en-US/docs/Web/API/WheelEvent) 속성을 가진 [React 이벤트 객체](#react-event-object)입니다:</Trans>
 
   * [`deltaMode`](https://developer.mozilla.org/en-US/docs/Web/API/WheelEvent/deltaMode)
   * [`deltaX`](https://developer.mozilla.org/en-US/docs/Web/API/WheelEvent/deltaX)
@@ -1281,7 +1285,7 @@ For example, `className={'row ' + (isSelected ? 'selected': '')}` will produce e
 <Trans>예를 들어, `className={'row ' + (isSelected ? 'selected': '')}`는 `isSelected`가 `true`인지 여부에 따라 `className="row"` 또는 `className="row selected"`를 생성합니다.</Trans>
 
 To make this more readable, you can use a tiny helper library like [`classnames`:](https://github.com/JedWatson/classnames)
-<Trans>이를 더 읽기 쉽게 만들려면 [`classnames`:](https://github.com/JedWatson/classnames)와 같은 작은 헬퍼 라이브러리를 사용할 수 있습니다.</Trans>
+<Trans>이를 더 읽기 쉽게 만들려면 [`classnames`](https://github.com/JedWatson/classnames)와 같은 작은 헬퍼 라이브러리를 사용할 수 있습니다:</Trans>
 
 ```js
 import cn from 'classnames';
@@ -1384,7 +1388,7 @@ return <div dangerouslySetInnerHTML={markup} />;
 ```
 
 **This is dangerous. As with the underlying DOM [`innerHTML`](https://developer.mozilla.org/en-US/docs/Web/API/Element/innerHTML) property, you must exercise extreme caution! Unless the markup is coming from a completely trusted source, it is trivial to introduce an [XSS](https://en.wikipedia.org/wiki/Cross-site_scripting) vulnerability this way.**
-<Trans>**이렇게 작성하는 것은 위험합니다. 기본 DOM [`innerHTML`](https://developer.mozilla.org/ko/docs/Web/API/Element/innerHTML) 속성과 마찬가지로 극도의 주의를 기울여야 합니다! 마크업이 완전히 신뢰할 수 있는 출처에서 제공되지 않는 한, 이런 식으로 [XSS](https://ko.wikipedia.org/wiki/Cross-site_scripting) 취약점을 도입하는 것은 사소한 일입니다.**</Trans>
+<Trans>**이렇게 작성하는 것은 위험합니다. 기본 DOM [`innerHTML`](https://developer.mozilla.org/ko/docs/Web/API/Element/innerHTML) 속성과 마찬가지로 극도의 주의를 기울여야 합니다! 마크업이 완전히 신뢰할 수 있는 출처에서 제공되지 않는 한, 이런 식으로 [XSS](https://ko.wikipedia.org/wiki/Cross-site_scripting) 취약점을 도입하는 것은 위험한 일입니다.**</Trans>
 
 For example, if you use a Markdown library that converts Markdown to HTML, you trust that its parser doesn't contain bugs, and the user only sees their own input, you can display the resulting HTML like this:
 <Trans>예를 들어, 마크다운을 HTML로 변환하는 마크다운 라이브러리를 사용하는 경우 해당 파서에 버그가 없고 사용자가 자신의 입력만 볼 수 있다고 믿는다면 다음과 같이 결과 HTML을 표시할 수 있습니다:</Trans>
@@ -1472,7 +1476,7 @@ export default function MarkdownPreview() {
 ```
 
 The code embedded in the HTML will run. A hacker could use this security hole to steal user information or to perform actions on their behalf. **Only use `dangerouslySetInnerHTML` with trusted and sanitized data.**
-<Trans>HTML에 포함된 코드가 실행됩니다. 해커는 이 보안 허점을 이용해 사용자 정보를 훔치거나 사용자 대신 작업을 수행할 수 있습니다. **신뢰할 수 있고 위생 처리된 데이터와 함께 `dangerouslySetInnerHTML`만 사용하세요.**</Trans>
+<Trans>HTML에 포함된 코드가 실행됩니다. 해커는 이 보안 허점을 이용해 사용자 정보를 훔치거나 사용자 대신 작업을 수행할 수 있습니다. **신뢰할 수 있는 위생 처리된 데이터에 대해서만 `dangerouslySetInnerHTML`를 사용하세요.**</Trans>
 
 ---
 

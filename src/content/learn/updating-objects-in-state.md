@@ -219,7 +219,7 @@ const nextPosition = {};
 nextPosition.x = e.clientX;
 nextPosition.y = e.clientY;
 setPosition(nextPosition);
-````
+```
 
 In fact, it is completely equivalent to writing this:
 <Trans>사실 이렇게 작성하는 것과 완전히 동일합니다:</Trans>

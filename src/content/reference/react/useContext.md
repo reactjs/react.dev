@@ -1,6 +1,6 @@
 ---
 title: useContext
-translators: [서민택, 고석영]
+translators: [서민택, 고석영, 이나령]
 ---
 
 <Intro>

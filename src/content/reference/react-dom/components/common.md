@@ -64,13 +64,13 @@ These standard DOM props are also supported for all built-in components:
 <Trans>[`className`](https://developer.mozilla.org/en-US/docs/Web/API/Element/className): 문자열. 엘리먼트의 CSS 클래스 이름을 지정합니다. [CSS 스타일 적용에 대해 자세히 알아보세요.](/reference/react-dom/components/common#applying-css-styles)</Trans>
 
 * [`contentEditable`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/contenteditable): A boolean. If `true`, the browser lets the user edit the rendered element directly. This is used to implement rich text input libraries like [Lexical.](https://lexical.dev/) React warns if you try to pass React children to an element with `contentEditable={true}` because React will not be able to update its content after user edits.
-<Trans>[`contentEditable`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/contenteditable)`: 불리언. `true`이면 브라우저는 사용자가 렌더링된 엘리먼트를 직접 편집할 수 있도록 허용합니다. 이것은 [Lexical.](<https://lexical.dev/>)과 같은 리치 텍스트 입력 라이브러리를 구현하는 데 사용됩니다. React는 사용자가 편집한 후에 React가 그 내용을 업데이트할 수 없기 때문에 `contentEditable={true}`가 있는 엘리먼트에 React 자식을 전달하려고 하면 경고를 표시합니다.</Trans>
+<Trans>[`contentEditable`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/contenteditable): 불리언. `true`이면 브라우저는 사용자가 렌더링된 엘리먼트를 직접 편집할 수 있도록 허용합니다. 이것은 [Lexical.](<https://lexical.dev/>)과 같은 리치 텍스트 입력 라이브러리를 구현하는 데 사용됩니다. React는 사용자가 편집한 후에 React가 그 내용을 업데이트할 수 없기 때문에 `contentEditable={true}`가 있는 엘리먼트에 React 자식을 전달하려고 하면 경고를 표시합니다.</Trans>
 
 * [`data-*`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/data-*): Data attributes let you attach some string data to the element, for example `data-fruit="banana"`. In React, they are not commonly used because you would usually read data from props or state instead.
 <Trans>[`data-*`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/data-*): 데이터 속성을 사용하면 엘리먼트에 일부 문자열 데이터를 첨부할 수 있습니다(예: `data-fruit="banana"`). React에서는 일반적으로 프로퍼티나 state에서 데이터를 읽어오기 때문에 일반적으로 사용되지는 않습니다.</Trans>
 
 * [`dir`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/dir): Either `'ltr'` or `'rtl'`. Specifies the text direction of the element.
-<Trans>[`dir`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/dir): 'ltr'`또는`'rtl'`. 엘리먼트의 텍스트 방향을 지정합니다.</Trans>
+<Trans>[`dir`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/dir): `'ltr'` 또는 `'rtl'`. 엘리먼트의 텍스트 방향을 지정합니다.</Trans>
 
 * [`draggable`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/draggable): A boolean. Specifies whether the element is draggable. Part of [HTML Drag and Drop API.](https://developer.mozilla.org/en-US/docs/Web/API/HTML_Drag_and_Drop_API)
 <Trans>[`draggable`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/draggable): 불리언. 엘리먼트를 드래그할 수 있는지 여부를 지정합니다. HTML 드래그 앤 드롭 API의 일부입니다.</Trans>
@@ -79,25 +79,25 @@ These standard DOM props are also supported for all built-in components:
 <Trans>[`enterKeyHint`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/enterKeyHint): 문자열. 가상 키보드의 엔터 키에 표시할 동작을 지정합니다.</Trans>
 
 * [`htmlFor`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLLabelElement/htmlFor): A string. For [`<label>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/label) and [`<output>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/output), lets you [associate the label with some control.](/reference/react-dom/components/input#providing-a-label-for-an-input) Same as [`for` HTML attribute.](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/for) React uses the standard DOM property names (`htmlFor`) instead of HTML attribute names.
-<Trans>[`htmlFor`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLLabelElement/htmlFor): 문자열. [`<label>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/label) 및 [`<output>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/output)의 경우, 레이블을 일부 컨트롤과 연결할 수 있습니다. [`for`](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/for)` HTML 속성과 동일합니다. React는 HTML 속성의 이름 대신 표준 DOM 프로퍼티 이름(`htmlFor`)을 사용합니다.</Trans>
+<Trans>[`htmlFor`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLLabelElement/htmlFor): 문자열. [`<label>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/label) 및 [`<output>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/output)의 경우, [레이블을 일부 컨트롤과 연결할 수 있습니다.](/reference/react-dom/components/input#providing-a-label-for-an-input) [`for` HTML 속성](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/for)과 동일합니다. React는 HTML 속성의 이름 대신 표준 DOM 프로퍼티 이름(`htmlFor`)을 사용합니다.</Trans>
 
 * [`hidden`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/hidden): A boolean or a string. Specifies whether the element should be hidden.
-<Trans>[`hidden`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/hidden)`: 불리언 또는 문자열. 엘리먼트의 숨김 여부를 지정합니다.</Trans>
+<Trans>[`hidden`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/hidden): 불리언 또는 문자열. 엘리먼트의 숨김 여부를 지정합니다.</Trans>
 
 * [`id`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/id): A string. Specifies a unique identifier for this element, which can be used to find it later or connect it with other elements. Generate it with [`useId`](/reference/react/useId) to avoid clashes between multiple instances of the same component.
-<Trans>[`id`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/id)`: 문자열. 나중에 찾거나 다른 엘리먼트와 연결하는 데 사용할 수 있는 이 엘리먼트의 고유 식별자를 지정합니다. 동일한 컴포넌트의 여러 인스턴스 간의 충돌을 방지하려면 `useId`로 생성합니다.</Trans>
+<Trans>[`id`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/id): 문자열. 나중에 찾거나 다른 엘리먼트와 연결하는 데 사용할 수 있는 이 엘리먼트의 고유 식별자를 지정합니다. 동일한 컴포넌트의 여러 인스턴스 간의 충돌을 방지하려면 `useId`로 생성합니다.</Trans>
 
 * [`is`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/is): A string. If specified, the component will behave like a [custom element.](/reference/react-dom/components#custom-html-elements)
-<Trans>[`is`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/is)`: 문자열. 지정하면 컴포넌트가 커스텀 엘리먼트처럼 작동합니다.</Trans>
+<Trans>[`is`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/is): 문자열. 지정하면 컴포넌트가 커스텀 엘리먼트처럼 작동합니다.</Trans>
 
 * [`inputMode`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/inputmode): A string. Specifies what kind of keyboard to display (for example, text, number or telephone).
-<Trans>[`inputMode`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/inputmode)`: 문자열. 표시할 키보드의 종류(예: 텍스트, 숫자 또는 전화)를 지정합니다.</Trans>
+<Trans>[`inputMode`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/inputmode): 문자열. 표시할 키보드의 종류(예: 텍스트, 숫자 또는 전화)를 지정합니다.</Trans>
 
 * [`itemProp`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/itemprop): A string. Specifies which property the element represents for structured data crawlers.
-<Trans>[`itemProp`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/itemprop)`: 문자열입니다. 구조화된 데이터 크롤러에 대해 엘리먼트가 나타내는 속성을 지정합니다.</Trans>
+<Trans>[`itemProp`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/itemprop): 문자열입니다. 구조화된 데이터 크롤러에 대해 엘리먼트가 나타내는 속성을 지정합니다.</Trans>
 
 * [`lang`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/lang): A string. Specifies the language of the element.
-<Trans>[`lang`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/lang)`: 문자열입니다. 엘리먼트의 언어를 지정합니다.</Trans>
+<Trans>[`lang`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/lang): 문자열입니다. 엘리먼트의 언어를 지정합니다.</Trans>
 
 * [`onAnimationEnd`](https://developer.mozilla.org/en-US/docs/Web/API/Element/animationend_event): An [`AnimationEvent` handler](#animationevent-handler) function. Fires when a CSS animation completes.
 <Trans>[`onAnimationEnd`](https://developer.mozilla.org/en-US/docs/Web/API/Element/animationend_event): [`AnimationEvent` 핸들러](#animationevent-handler) 함수. CSS 애니메이션 종료시 호출됩니다.</Trans>
@@ -602,50 +602,63 @@ These events fire for resources like [`<audio>`](https://developer.mozilla.org/e
 
 - You cannot pass both `children` and `dangerouslySetInnerHTML` at the same time.
 - Some events (like `onAbort` and `onLoad`) don't bubble in the browser, but bubble in React.
+<TransBlock>
+  - `children`과 `dangerouslySetInnerHTML`을 동시에 전달할 수 없습니다.
+  - 일부 이벤트(예: `onAbort` 및 `onLoad`)는 브라우저에서는 버블링되지 않지만 React에서는 버블링됩니다.
+</TransBlock>
 
 ---
 
-### `ref` callback function {/*ref-callback*/}
+### `ref` callback function <Trans>`ref` 콜백 함수</Trans> {/*ref-callback*/}
 
 Instead of a ref object (like the one returned by [`useRef`](/reference/react/useRef#manipulating-the-dom-with-a-ref)), you may pass a function to the `ref` attribute.
+<Trans>ref 객체(예: [`useRef`](/reference/react/useRef#manipulating-the-dom-with-a-ref)에서 반환하는 객체) 대신 `ref` 속성에 함수를 전달할 수 있습니다.</Trans>
 
 ```js
 <div ref={(node) => console.log(node)} />
 ```
 
 [See an example of using the `ref` callback.](/learn/manipulating-the-dom-with-refs#how-to-manage-a-list-of-refs-using-a-ref-callback)
+<Trans>[`ref` 콜백 사용 예시를 확인하세요.](/learn/manipulating-the-dom-with-refs#how-to-manage-a-list-of-refs-using-a-ref-callback)</Trans>
 
 When the `<div>` DOM node is added to the screen, React will call your `ref` callback with the DOM `node` as the argument. When that `<div>` DOM node is removed, React will call your `ref` callback with `null`.
+<Trans>`<div>` DOM 노드가 화면에 추가되면 React는 DOM `node`를 인수로 사용하여 `ref` 콜백을 호출합니다. 해당 `<div>` DOM 노드가 제거되면 React는 `null`로 `ref` 콜백을 호출합니다.</Trans>
 
 React will also call your `ref` callback whenever you pass a *different* `ref` callback. In the above example, `(node) => { ... }` is a different function on every render. When your component re-renders, the *previous* function will be called with `null` as the argument, and the *next* function will be called with the DOM node.
-
+<Trans>React는 또한 *다른* `ref` 콜백을 전달할 때마다 `ref` 콜백을 호출합니다. 위의 예에서 `(node) => { ... }`는 렌더링할 때마다 다른 기능입니다. 이것이 컴포넌트가 다시 렌더링될 때 `null`을 인자로 사용하여 *previous* 함수가 호출되고 DOM 노드로 *next* 함수가 호출되는 이유입니다.</Trans>
 #### Parameters<Trans>매개변수</Trans> {/*ref-callback-parameters*/}
 
 * `node`: A DOM node or `null`. React will pass you the DOM node when the ref gets attached, and `null` when the ref gets detached. Unless you pass the same function reference for the `ref` callback on every render, the callback will get temporarily detached and re-attached during ever re-render of the component.
-
+<Trans>`node`: DOM 노드 또는 `null`. React는 ref가 연결될 때 DOM 노드를 전달하고, ref가 분리될 때 `null`을 전달합니다. 모든 렌더링에서 `ref` 콜백에 대해 동일한 함수 참조를 전달하지 않는 한, 컴포넌트를 다시 렌더링할 때마다 콜백이 일시적으로 분리되었다가 다시 연결됩니다.</Trans>
 #### Returns<Trans>반환값</Trans> {/*returns*/}
 
 Do not return anything from the `ref` callback.
+<Trans>`ref` 콜백에서 아무것도 반환하지 않습니다.</Trans>
 
 ---
 
-### React event object {/*react-event-object*/}
+### React event object <Trans>React 이벤트 객체</Trans> {/*react-event-object*/}
 
 Your event handlers will receive a *React event object.* It is also sometimes known as a "synthetic event".
+<Trans>이벤트 핸들러는 *React 이벤트 객체*를 받게 되며, "합성 이벤트"라고도 합니다.</Trans>
 
 ```js
 <button onClick={e => {
   console.log(e); // React event object
+                  // React 이벤트 객체
 }} />
 ```
 
 It conforms to the same standard as the underlying DOM events, but fixes some browser inconsistencies.
+<Trans>기본 DOM 이벤트와 동일한 표준을 준수하지만 일부 브라우저 불일치를 수정합니다.</Trans>
 
 Some React events do not map directly to the browser's native events. For example in `onMouseLeave`, `e.nativeEvent` will point to a `mouseout` event. The specific mapping is not part of the public API and may change in the future. If you need the underlying browser event for some reason, read it from `e.nativeEvent`.
+<Trans>일부 React 이벤트는 브라우저의 네이티브 이벤트에 직접 매핑되지 않습니다. 예를 들어 `onMouseLeave`에서 `e.nativeEvent`는 `mouseout` 이벤트를 가리킵니다. 특정 매핑은 공개 API의 일부가 아니며 향후 변경될 수 있습니다. 어떤 이유로 기본 브라우저 이벤트가 필요한 경우 `e.nativeEvent`에서 읽어오세요.</Trans>
 
-#### Properties {/*react-event-object-properties*/}
+#### Properties <Trans>프로퍼티</Trans> {/*react-event-object-properties*/}
 
 React event objects implement some of the standard [`Event`](https://developer.mozilla.org/en-US/docs/Web/API/Event) properties:
+<Trans>React 이벤트 객체는 표준 [`Event`](https://developer.mozilla.org/en-US/docs/Web/API/Event) 프로퍼티 중 일부를 구현합니다:</Trans>
 
 * [`bubbles`](https://developer.mozilla.org/en-US/docs/Web/API/Event/bubbles): A boolean. Returns whether the event bubbles through the DOM. 
 * [`cancelable`](https://developer.mozilla.org/en-US/docs/Web/API/Event/cancelable): A boolean. Returns whether the event can be canceled.
@@ -655,34 +668,60 @@ React event objects implement some of the standard [`Event`](https://developer.m
 * [`isTrusted`](https://developer.mozilla.org/en-US/docs/Web/API/Event/isTrusted): A boolean. Returns whether the event was initiated by user.
 * [`target`](https://developer.mozilla.org/en-US/docs/Web/API/Event/target): A DOM node. Returns the node on which the event has occurred (which could be a distant child).
 * [`timeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/Event/timeStamp): A number. Returns the time when the event occurred.
+<TransBlock> 
+- [`bubbles`](https://developer.mozilla.org/en-US/docs/Web/API/Event/bubbles) : 불리언. 이벤트가 DOM을 통해 버블을 발생시킬지 여부를 반환합니다.
+- [`cancelable`](https://developer.mozilla.org/en-US/docs/Web/API/Event/cancelable): 불리언. 이벤트를 취소할 수 있는지 여부를 반환합니다.
+- [`currentTarget`](https://developer.mozilla.org/en-US/docs/Web/API/Event/currentTarget): DOM 노드. React 트리에서 현재 핸들러가 연결된 노드를 반환합니다.
+- [`defaultPrevented`](https://developer.mozilla.org/en-US/docs/Web/API/Event/defaultPrevented): 불리언. preventDefault`가 호출되었는지 여부를 반환합니다.
+- [`eventPhase`](https://developer.mozilla.org/en-US/docs/Web/API/Event/eventPhase): 숫자. 이벤트가 현재 어떤 단계에 있는지 반환합니다.
+- [`isTrusted`](https://developer.mozilla.org/en-US/docs/Web/API/Event/isTrusted): 불리언. 이벤트가 사용자에 의해 시작되었는지 여부를 반환합니다.
+- [`target`](https://developer.mozilla.org/en-US/docs/Web/API/Event/target): DOM 노드. 이벤트가 발생한 노드(먼 자식일 수 있음)를 반환합니다.
+- [`timeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/Event/timeStamp): 숫자. 이벤트가 발생한 시간을 반환합니다.
+</TransBlock>
 
 Additionally, React event objects provide these properties:
+<Trans>또한 React 이벤트 객체는 이러한 프로퍼티를 제공합니다:</Trans>
 
 * `nativeEvent`: A DOM [`Event`](https://developer.mozilla.org/en-US/docs/Web/API/Event). The original browser event object.
-
-#### Methods {/*react-event-object-methods*/}
+<Trans>`nativeEvent`: DOM [`Event`](https://developer.mozilla.org/en-US/docs/Web/API/Event). 원본 브라우저 이벤트 객체입니다.</Trans>
+ 
+#### Methods <Trans>메소드</Trans> {/*react-event-object-methods*/}
 
 React event objects implement some of the standard [`Event`](https://developer.mozilla.org/en-US/docs/Web/API/Event) methods:
+<Trans>React 이벤트 객체는 표준 [`Event`](https://developer.mozilla.org/ko/docs/Web/API/Event) 메서드 중 일부를 구현합니다:</Trans>
 
 * [`preventDefault()`](https://developer.mozilla.org/en-US/docs/Web/API/Event/preventDefault): Prevents the default browser action for the event.
 * [`stopPropagation()`](https://developer.mozilla.org/en-US/docs/Web/API/Event/stopPropagation): Stops the event propagation through the React tree.
+<TransBlock>
+  - [`preventDefault()`](https://developer.mozilla.org/en-US/docs/Web/API/Event/preventDefault): 이벤트에 대한 기본 브라우저 액션을 방지합니다.
+  - [`stopPropagation()`](https://developer.mozilla.org/en-US/docs/Web/API/Event/stopPropagation): React 트리를 통한 이벤트 전파를 중지합니다.
+</TransBlock>
 
 Additionally, React event objects provide these methods:
+<Trans>또한 React 이벤트 객체는 이러한 메서드를 제공합니다:</Trans>
 
 * `isDefaultPrevented()`: Returns a boolean value indicating whether `preventDefault` was called.
 * `isPropagationStopped()`: Returns a boolean value indicating whether `stopPropagation` was called.
 * `persist()`: Not used with React DOM. With React Native, call this to read event's properties after the event.
 * `isPersistent()`: Not used with React DOM. With React Native, returns whether `persist` has been called.
+<TransBlock>
+  - `isDefaultPrevented()`: `preventDefault`가 호출되었는지 여부를 나타내는 부울 값을 반환합니다.
+  - `isPropagationStopped()`: `stopPropagation`가 호출되었는지 여부를 나타내는 부울 값을 반환합니다.
+  - `persist()`: React DOM에서는 사용되지 않습니다. React Native에서는 이벤트 이후 이벤트의 프로퍼티를 읽으려면 이 함수를 호출합니다.
+  - `isPersistent()`: React DOM에서는 사용되지 않습니다. React Native에서는 `persist`가 호출되었는지 여부를 반환합니다.
+</TransBlock>
 
 #### Caveats<Trans>주의사항</Trans> {/*react-event-object-caveats*/}
 
 * The values of `currentTarget`, `eventPhase`, `target`, and `type` reflect the values your React code expects. Under the hood, React attaches event handlers at the root, but this is not reflected in React event objects. For example, `e.currentTarget` may not be the same as the underlying `e.nativeEvent.currentTarget`. For polyfilled events, `e.type` (React event type) may differ from `e.nativeEvent.type` (underlying type).
+<Trans>`currentTarget`, `eventPhase`, `target`, `type`의 값은 React 코드가 기대하는 값을 반영합니다. 내부적으로 React는 이벤트 핸들러를 루트에 첨부하지만, 이는 React 이벤트 객체에는 반영되지 않습니다. 예를 들어, `e.currentTarget`은 기본 `e.nativeEvent.currentTarget`과 같지 않을 수 있습니다. 폴리필 이벤트의 경우, `e.type`(React 이벤트 타입)이 `e.nativeEvent.type`(기본 타입)과 다를 수 있습니다.</Trans>
 
 ---
 
-### `AnimationEvent` handler function {/*animationevent-handler*/}
+### `AnimationEvent` handler function <Trans>`AnimationEvent` 핸들러 함수</Trans> {/*animationevent-handler*/}
 
 An event handler type for the [CSS animation](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Animations/Using_CSS_animations) events.
+<Trans>[CSS 애니메이션](https://developer.mozilla.org/ko/docs/Web/CSS/CSS_Animations/Using_CSS_animations) 이벤트에 대한 이벤트 핸들러 유형입니다.</Trans>
 
 ```js
 <div
@@ -695,15 +734,18 @@ An event handler type for the [CSS animation](https://developer.mozilla.org/en-U
 #### Parameters<Trans>매개변수</Trans> {/*animationevent-handler-parameters*/}
 
 * `e`: A [React event object](#react-event-object) with these extra [`AnimationEvent`](https://developer.mozilla.org/en-US/docs/Web/API/AnimationEvent) properties:
+<Trans>`e`: 추가 [`AnimationEvent`](https://developer.mozilla.org/ko/docs/Web/API/AnimationEvent) 속성을 가진 [React 이벤트 객체](#react-event-object)입니다:</Trans>
+
   * [`animationName`](https://developer.mozilla.org/en-US/docs/Web/API/AnimationEvent/animationName)
   * [`elapsedTime`](https://developer.mozilla.org/en-US/docs/Web/API/AnimationEvent/elapsedTime)
   * [`pseudoElement`](https://developer.mozilla.org/en-US/docs/Web/API/AnimationEvent)
 
 ---
 
-### `ClipboardEvent` handler function {/*clipboadevent-handler*/}
+### `ClipboardEvent` handler function <Trans>`ClipboardEvent` 핸들러 함수</Trans> {/*clipboadevent-handler*/}
 
 An event handler type for the [Clipboard API](https://developer.mozilla.org/en-US/docs/Web/API/Clipboard_API) events.
+<Trans>[Clipboard API](https://developer.mozilla.org/ko/docs/Web/API/Clipboard_API) 이벤트에 대한 이벤트 핸들러 유형입니다.</Trans>
 
 ```js
 <input
@@ -716,14 +758,16 @@ An event handler type for the [Clipboard API](https://developer.mozilla.org/en-U
 #### Parameters<Trans>매개변수</Trans> {/*clipboadevent-handler-parameters*/}
 
 * `e`: A [React event object](#react-event-object) with these extra [`ClipboardEvent`](https://developer.mozilla.org/en-US/docs/Web/API/ClipboardEvent) properties:
+<Trans>`e`: 추가 [`ClipboardEvent`](https://developer.mozilla.org/ko/docs/Web/API/ClipboardEvent) 속성을 가진 [React 이벤트 객체](#react-event-object)입니다:</Trans>
 
   * [`clipboardData`](https://developer.mozilla.org/en-US/docs/Web/API/ClipboardEvent/clipboardData)
 
 ---
 
-### `CompositionEvent` handler function {/*compositionevent-handler*/}
+### `CompositionEvent` handler function <Trans>`CompositionEvent` 핸들러 함수</Trans> {/*compositionevent-handler*/}
 
 An event handler type for the [input method editor (IME)](https://developer.mozilla.org/en-US/docs/Glossary/Input_method_editor) events.
+<Trans>[input method editor (IME)](https://developer.mozilla.org/en-US/docs/Glossary/Input_method_editor) 이벤트에 대한 이벤트 핸들러 유형입니다.</Trans>
 
 ```js
 <input
@@ -736,13 +780,16 @@ An event handler type for the [input method editor (IME)](https://developer.mozi
 #### Parameters<Trans>매개변수</Trans> {/*compositionevent-handler-parameters*/}
 
 * `e`: A [React event object](#react-event-object) with these extra [`CompositionEvent`](https://developer.mozilla.org/en-US/docs/Web/API/CompositionEvent) properties:
+<Trans>`e`: 추가 [`CompositionEvent`](https://developer.mozilla.org/en-US/docs/Web/API/CompositionEvent) 속성을 가진 [React 이벤트 객체](#react-event-object)입니다:</Trans>
+
   * [`data`](https://developer.mozilla.org/en-US/docs/Web/API/CompositionEvent/data)
 
 ---
 
-### `DragEvent` handler function {/*dragevent-handler*/}
+### `DragEvent` handler function <Trans>`DragEvent` 핸들러 함수</Trans> {/*dragevent-handler*/}
 
 An event handler type for the [HTML Drag and Drop API](https://developer.mozilla.org/en-US/docs/Web/API/HTML_Drag_and_Drop_API) events.
+<Trans>[HTML Drag and Drop API](https://developer.mozilla.org/ko/docs/Web/API/HTML_Drag_and_Drop_API) 이벤트에 대한 이벤트 핸들러 유형입니다.</Trans>
 
 ```js
 <>
@@ -768,9 +815,12 @@ An event handler type for the [HTML Drag and Drop API](https://developer.mozilla
 #### Parameters<Trans>매개변수</Trans> {/*dragevent-handler-parameters*/}
 
 * `e`: A [React event object](#react-event-object) with these extra [`DragEvent`](https://developer.mozilla.org/en-US/docs/Web/API/DragEvent) properties:
+<Trans>`e`: 추가 [`DragEvent`](https://developer.mozilla.org/en-US/docs/Web/API/DragEvent) 속성을 가진 [React 이벤트 객체](#react-event-object)입니다:</Trans>
+
   * [`dataTransfer`](https://developer.mozilla.org/en-US/docs/Web/API/DragEvent/dataTransfer)
 
   It also includes the inherited [`MouseEvent`](https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent) properties:
+  <Trans>상속된 [`MouseEvent`](https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent) 속성도 포함됩니다:</Trans>
 
   * [`altKey`](https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent/altKey)
   * [`button`](https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent/button)
@@ -790,15 +840,17 @@ An event handler type for the [HTML Drag and Drop API](https://developer.mozilla
   * [`shiftKey`](https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent/shiftKey)
 
   It also includes the inherited [`UIEvent`](https://developer.mozilla.org/en-US/docs/Web/API/UIEvent) properties:
+  <Trans>상속된 [`UIEvent`](https://developer.mozilla.org/en-US/docs/Web/API/UIEvent) 속성도 포함됩니다:</Trans>
 
   * [`detail`](https://developer.mozilla.org/en-US/docs/Web/API/UIEvent/detail)
   * [`view`](https://developer.mozilla.org/en-US/docs/Web/API/UIEvent/view)
 
 ---
 
-### `FocusEvent` handler function {/*focusevent-handler*/}
+### `FocusEvent` handler function <Trans>`FocusEvent` 핸들러 함수</Trans> {/*focusevent-handler*/}
 
 An event handler type for the focus events.
+<Trans>포커스 이벤트에 대한 이벤트 핸들러 유형입니다.</Trans>
 
 ```js
 <input
@@ -808,32 +860,39 @@ An event handler type for the focus events.
 ```
 
 [See an example.](#handling-focus-events)
+<Trans>[예시를 확인하세요.](#handling-focus-events)</Trans>
 
 #### Parameters<Trans>매개변수</Trans> {/*focusevent-handler-parameters*/}
 
 * `e`: A [React event object](#react-event-object) with these extra [`FocusEvent`](https://developer.mozilla.org/en-US/docs/Web/API/FocusEvent) properties:
+<Trans>`e`: 추가 [`FocusEvent`](https://developer.mozilla.org/en-US/docs/Web/API/FocusEvent) 속성을 가진 [React 이벤트 객체](#react-event-object)입니다:</Trans>
+
   * [`relatedTarget`](https://developer.mozilla.org/en-US/docs/Web/API/FocusEvent/relatedTarget)
 
   It also includes the inherited [`UIEvent`](https://developer.mozilla.org/en-US/docs/Web/API/UIEvent) properties:
+  <Trans>상속된 [`UIEvent`](https://developer.mozilla.org/en-US/docs/Web/API/UIEvent) 속성도 포함됩니다:</Trans>
 
   * [`detail`](https://developer.mozilla.org/en-US/docs/Web/API/UIEvent/detail)
   * [`view`](https://developer.mozilla.org/en-US/docs/Web/API/UIEvent/view)
 
 ---
 
-### `Event` handler function {/*event-handler*/}
+### `Event` handler function <Trans>`Event` 핸들러 함수</Trans> {/*event-handler*/}
 
 An event handler type for generic events.
+<Trans>일반 이벤트를 위한 이벤트 핸들러 유형입니다.</Trans>
 
 #### Parameters<Trans>매개변수</Trans> {/*event-handler-parameters*/}
 
 * `e`: A [React event object](#react-event-object) with no additional properties.
+<Trans>`e`: 추가 프로퍼티가 없는 [React 이벤트 객체](#react-event-object)입니다.</Trans>
 
 ---
 
-### `InputEvent` handler function {/*inputevent-handler*/}
+### `InputEvent` handler function <Trans>`InputEvent` 핸들러 함수</Trans> {/*inputevent-handler*/}
 
 An event handler type for the `onBeforeInput` event.
+<Trans>`onBeforeInput` 이벤트에 대한 이벤트 핸들러 유형입니다.</Trans>
 
 ```js
 <input onBeforeInput={e => console.log('onBeforeInput')} />
@@ -842,13 +901,16 @@ An event handler type for the `onBeforeInput` event.
 #### Parameters<Trans>매개변수</Trans> {/*inputevent-handler-parameters*/}
 
 * `e`: A [React event object](#react-event-object) with these extra [`InputEvent`](https://developer.mozilla.org/en-US/docs/Web/API/InputEvent) properties:
+<Trans>`e`: 추가 [`InputEvent`](https://developer.mozilla.org/en-US/docs/Web/API/InputEvent) 프로퍼티가 있는 [React 이벤트 객체](#react-event-object)입니다:</Trans>
+
   * [`data`](https://developer.mozilla.org/en-US/docs/Web/API/InputEvent/data)
 
 ---
 
-### `KeyboardEvent` handler function {/*keyboardevent-handler*/}
+### `KeyboardEvent` handler function <Trans>`KeyboardEvent` 핸들러 함수</Trans> {/*keyboardevent-handler*/}
 
 An event handler type for keyboard events.
+<Trans>키보드 이벤트를 위한 이벤트 핸들러 유형입니다.</Trans>
 
 ```js
 <input
@@ -858,10 +920,13 @@ An event handler type for keyboard events.
 ```
 
 [See an example.](#handling-keyboard-events)
+<Trans>[예시를 확인하세요.](#handling-keyboard-events)</Trans>
 
 #### Parameters<Trans>매개변수</Trans> {/*keyboardevent-handler-parameters*/}
 
 * `e`: A [React event object](#react-event-object) with these extra [`KeyboardEvent`](https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent) properties:
+<Trans>`e`: 추가 [`KeyboardEvent`](https://developer.mozilla.org/ko/docs/Web/API/KeyboardEvent) 속성을 가진 [React 이벤트 객체](#react-event-object)입니다:</Trans>
+
   * [`altKey`](https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/altKey)
   * [`charCode`](https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/charCode)
   * [`code`](https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/code)
@@ -877,15 +942,17 @@ An event handler type for keyboard events.
   * [`which`](https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/which)
 
   It also includes the inherited [`UIEvent`](https://developer.mozilla.org/en-US/docs/Web/API/UIEvent) properties:
+  <Trans>상속된 [`UIEvent`](https://developer.mozilla.org/en-US/docs/Web/API/UIEvent) 속성도 포함됩니다:</Trans>
 
   * [`detail`](https://developer.mozilla.org/en-US/docs/Web/API/UIEvent/detail)
   * [`view`](https://developer.mozilla.org/en-US/docs/Web/API/UIEvent/view)
 
 ---
 
-### `MouseEvent` handler function {/*mouseevent-handler*/}
+### `MouseEvent` handler function <Trans>`MouseEvent` 핸들러 함수</Trans> {/*mouseevent-handler*/}
 
 An event handler type for mouse events.
+<Trans>마우스 이벤트에 대한 이벤트 핸들러 유형입니다.</Trans>
 
 ```js
 <div
@@ -899,10 +966,13 @@ An event handler type for mouse events.
 ```
 
 [See an example.](#handling-mouse-events)
+<Trans>[예시를 확인하세요.](#handling-mouse-events)</Trans>
 
 #### Parameters<Trans>매개변수</Trans> {/*mouseevent-handler-parameters*/}
 
 * `e`: A [React event object](#react-event-object) with these extra [`MouseEvent`](https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent) properties:
+<Trans>`e`: 추가 [`MouseEvent`](https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent) 속성을 가진 [React 이벤트 객체](#react-event-object)입니다:</Trans>
+
   * [`altKey`](https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent/altKey)
   * [`button`](https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent/button)
   * [`buttons`](https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent/buttons)
@@ -921,15 +991,17 @@ An event handler type for mouse events.
   * [`shiftKey`](https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent/shiftKey)
 
   It also includes the inherited [`UIEvent`](https://developer.mozilla.org/en-US/docs/Web/API/UIEvent) properties:
+  <Trans>상속된 [`UIEvent`](https://developer.mozilla.org/en-US/docs/Web/API/UIEvent) 속성도 포함됩니다:</Trans>
 
   * [`detail`](https://developer.mozilla.org/en-US/docs/Web/API/UIEvent/detail)
   * [`view`](https://developer.mozilla.org/en-US/docs/Web/API/UIEvent/view)
 
 ---
 
-### `PointerEvent` handler function {/*pointerevent-handler*/}
+### `PointerEvent` handler function <Trans>`PointerEvent` 핸들러 함수</Trans> {/*pointerevent-handler*/}
 
 An event handler type for [pointer events.](https://developer.mozilla.org/en-US/docs/Web/API/Pointer_events)
+<Trans>[포인터 이벤트](https://developer.mozilla.org/en-US/docs/Web/API/Pointer_events)에 대한 이벤트 핸들러 유형입니다.</Trans>
 
 ```js
 <div
@@ -942,10 +1014,13 @@ An event handler type for [pointer events.](https://developer.mozilla.org/en-US/
 ```
 
 [See an example.](#handling-pointer-events)
+<Trans>[예시를 확인하세요.](#handling-pointer-events)</Trans>
 
 #### Parameters<Trans>매개변수</Trans> {/*pointerevent-handler-parameters*/}
 
 * `e`: A [React event object](#react-event-object) with these extra [`PointerEvent`](https://developer.mozilla.org/en-US/docs/Web/API/PointerEvent) properties:
+<Trans>`e`: 추가 [`PointerEvent`](https://developer.mozilla.org/en-US/docs/Web/API/PointerEvent) 속성을 가진 [React 이벤트 객체](#react-event-object)입니다:</Trans>
+
   * [`height`](https://developer.mozilla.org/en-US/docs/Web/API/PointerEvent/height)
   * [`isPrimary`](https://developer.mozilla.org/en-US/docs/Web/API/PointerEvent/isPrimary)
   * [`pointerId`](https://developer.mozilla.org/en-US/docs/Web/API/PointerEvent/pointerId)
@@ -958,6 +1033,7 @@ An event handler type for [pointer events.](https://developer.mozilla.org/en-US/
   * [`width`](https://developer.mozilla.org/en-US/docs/Web/API/PointerEvent/width)
 
   It also includes the inherited [`MouseEvent`](https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent) properties:
+  <Trans>상속된 [`MouseEvent`](https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent) 속성도 포함됩니다:</Trans>
 
   * [`altKey`](https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent/altKey)
   * [`button`](https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent/button)
@@ -977,15 +1053,17 @@ An event handler type for [pointer events.](https://developer.mozilla.org/en-US/
   * [`shiftKey`](https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent/shiftKey)
 
   It also includes the inherited [`UIEvent`](https://developer.mozilla.org/en-US/docs/Web/API/UIEvent) properties:
+  <Trans>상속된 [`UIEvent`](https://developer.mozilla.org/en-US/docs/Web/API/UIEvent) 속성도 포함됩니다:</Trans>
 
   * [`detail`](https://developer.mozilla.org/en-US/docs/Web/API/UIEvent/detail)
   * [`view`](https://developer.mozilla.org/en-US/docs/Web/API/UIEvent/view)
 
 ---
 
-### `TouchEvent` handler function {/*touchevent-handler*/}
+### `TouchEvent` handler function <Trans>`TouchEvent` 핸들러 함수</Trans> {/*touchevent-handler*/}
 
 An event handler type for [touch events.](https://developer.mozilla.org/en-US/docs/Web/API/Touch_events)
+<Trans>[터치 이벤트](https://developer.mozilla.org/ko/docs/Web/API/Touch_events)에 대한 이벤트 핸들러 유형입니다.</Trans>
 
 ```js
 <div
@@ -999,6 +1077,8 @@ An event handler type for [touch events.](https://developer.mozilla.org/en-US/do
 #### Parameters<Trans>매개변수</Trans> {/*touchevent-handler-parameters*/}
 
 * `e`: A [React event object](#react-event-object) with these extra [`TouchEvent`](https://developer.mozilla.org/en-US/docs/Web/API/TouchEvent) properties:
+<Trans>`e`: 추가 [`TouchEvent`](https://developer.mozilla.org/ko/docs/Web/API/TouchEvent) 속성을 가진 [React 이벤트 객체](#react-event-object)입니다:</Trans>
+
   * [`altKey`](https://developer.mozilla.org/en-US/docs/Web/API/TouchEvent/altKey)
   * [`ctrlKey`](https://developer.mozilla.org/en-US/docs/Web/API/TouchEvent/ctrlKey)
   * [`changedTouches`](https://developer.mozilla.org/en-US/docs/Web/API/TouchEvent/changedTouches)
@@ -1009,15 +1089,17 @@ An event handler type for [touch events.](https://developer.mozilla.org/en-US/do
   * [`targetTouches`](https://developer.mozilla.org/en-US/docs/Web/API/TouchEvent/targetTouches)
   
   It also includes the inherited [`UIEvent`](https://developer.mozilla.org/en-US/docs/Web/API/UIEvent) properties:
+  <Trans>상속된 [`UIEvent`](https://developer.mozilla.org/en-US/docs/Web/API/UIEvent) 속성도 포함됩니다:</Trans>
 
   * [`detail`](https://developer.mozilla.org/en-US/docs/Web/API/UIEvent/detail)
   * [`view`](https://developer.mozilla.org/en-US/docs/Web/API/UIEvent/view)
 
 ---
 
-### `TransitionEvent` handler function {/*transitionevent-handler*/}
+### `TransitionEvent` handler function <Trans>`TransitionEvent` 핸들러 함수</Trans> {/*transitionevent-handler*/}
 
 An event handler type for the CSS transition events.
+<Trans>CSS 트랜지션 이벤트에 대한 이벤트 핸들러 유형입니다.</Trans>
 
 ```js
 <div
@@ -1028,15 +1110,18 @@ An event handler type for the CSS transition events.
 #### Parameters<Trans>매개변수</Trans> {/*transitionevent-handler-parameters*/}
 
 * `e`: A [React event object](#react-event-object) with these extra [`TransitionEvent`](https://developer.mozilla.org/en-US/docs/Web/API/TransitionEvent) properties:
+<Trans>`e`: 추가 [`TransitionEvent`](https://developer.mozilla.org/en-US/docs/Web/API/TransitionEvent) 속성을 가진 [React 이벤트 객체](#react-event-object)입니다:</Trans>
+
   * [`elapsedTime`](https://developer.mozilla.org/en-US/docs/Web/API/TransitionEvent/elapsedTime)
   * [`propertyName`](https://developer.mozilla.org/en-US/docs/Web/API/TransitionEvent/propertyName)
   * [`pseudoElement`](https://developer.mozilla.org/en-US/docs/Web/API/TransitionEvent/pseudoElement)
 
 ---
 
-### `UIEvent` handler function {/*uievent-handler*/}
+### `UIEvent` handler function <Trans>`UIEvent` 핸들러 함수</Trans> {/*uievent-handler*/}
 
 An event handler type for generic UI events.
+<Trans>일반 UI 이벤트를 위한 이벤트 핸들러 유형입니다.</Trans>
 
 ```js
 <div
@@ -1047,14 +1132,17 @@ An event handler type for generic UI events.
 #### Parameters<Trans>매개변수</Trans> {/*uievent-handler-parameters*/}
 
 * `e`: A [React event object](#react-event-object) with these extra [`UIEvent`](https://developer.mozilla.org/en-US/docs/Web/API/UIEvent) properties:
+<Trans>`e`: 추가 [`UIEvent`](https://developer.mozilla.org/en-US/docs/Web/API/UIEvent) 속성을 가진 [React 이벤트 객체](#react-event-object)입니다:</Trans>
+
   * [`detail`](https://developer.mozilla.org/en-US/docs/Web/API/UIEvent/detail)
   * [`view`](https://developer.mozilla.org/en-US/docs/Web/API/UIEvent/view)
 
 ---
 
-### `WheelEvent` handler function {/*wheelevent-handler*/}
+### `WheelEvent` handler function <Trans>`WheelEvent` 핸들러 함수</Trans> {/*wheelevent-handler*/}
 
 An event handler type for the `onWheel` event.
+<Trans>`onWheel` 이벤트에 대한 이벤트 핸들러 유형입니다.</Trans>
 
 ```js
 <div
@@ -1065,6 +1153,8 @@ An event handler type for the `onWheel` event.
 #### Parameters<Trans>매개변수</Trans> {/*wheelevent-handler-parameters*/}
 
 * `e`: A [React event object](#react-event-object) with these extra [`WheelEvent`](https://developer.mozilla.org/en-US/docs/Web/API/WheelEvent) properties:
+<Trans>`e`: 추가 [`WheelEvent`](https://developer.mozilla.org/en-US/docs/Web/API/WheelEvent) 속성을 가진 [React 이벤트 객체](#react-event-object)입니다:</Trans>
+
   * [`deltaMode`](https://developer.mozilla.org/en-US/docs/Web/API/WheelEvent/deltaMode)
   * [`deltaX`](https://developer.mozilla.org/en-US/docs/Web/API/WheelEvent/deltaX)
   * [`deltaY`](https://developer.mozilla.org/en-US/docs/Web/API/WheelEvent/deltaY)
@@ -1072,6 +1162,7 @@ An event handler type for the `onWheel` event.
 
 
   It also includes the inherited [`MouseEvent`](https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent) properties:
+  <Trans>상속된 [`MouseEvent`](https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent) 속성도 포함됩니다:</Trans>
 
   * [`altKey`](https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent/altKey)
   * [`button`](https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent/button)
@@ -1091,6 +1182,7 @@ An event handler type for the `onWheel` event.
   * [`shiftKey`](https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent/shiftKey)
 
   It also includes the inherited [`UIEvent`](https://developer.mozilla.org/en-US/docs/Web/API/UIEvent) properties:
+  <Trans>상속된 [`UIEvent`](https://developer.mozilla.org/en-US/docs/Web/API/UIEvent) 속성도 포함됩니다:</Trans>
 
   * [`detail`](https://developer.mozilla.org/en-US/docs/Web/API/UIEvent/detail)
   * [`view`](https://developer.mozilla.org/en-US/docs/Web/API/UIEvent/view)
@@ -1099,15 +1191,17 @@ An event handler type for the `onWheel` event.
 
 ## Usage<Trans>사용법</Trans> {/*usage*/}
 
-### Applying CSS styles {/*applying-css-styles*/}
+### Applying CSS styles <Trans>CSS 스타일 적용하기</Trans> {/*applying-css-styles*/}
 
 In React, you specify a CSS class with [`className`.](https://developer.mozilla.org/en-US/docs/Web/API/Element/className) It works like the `class` attribute in HTML:
+<Trans>React에서는 [`className`](https://developer.mozilla.org/ko/docs/Web/API/Element/className)으로 CSS 클래스를 지정합니다. HTML의 `class` 속성처럼 작동합니다:</Trans>
 
 ```js
 <img className="avatar" />
 ```
 
 Then you write the CSS rules for it in a separate CSS file:
+<Trans>그런 다음 별도의 CSS 파일에 해당 CSS 규칙을 작성합니다:</Trans>
 
 ```css
 /* In your CSS */
@@ -1117,8 +1211,10 @@ Then you write the CSS rules for it in a separate CSS file:
 ```
 
 React does not prescribe how you add CSS files. In the simplest case, you'll add a [`<link>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/link) tag to your HTML. If you use a build tool or a framework, consult its documentation to learn how to add a CSS file to your project.
+<Trans>React는 CSS 파일을 추가하는 방법을 규정하지 않습니다. 가장 간단한 경우 HTML에 [`<link>`](https://developer.mozilla.org/ko/docs/Web/HTML/Element/link) 태그를 추가하면 됩니다. 빌드 도구나 프레임워크를 사용하는 경우 해당 문서를 참조하여 프로젝트에 CSS 파일을 추가하는 방법을 알아보세요.</Trans>
 
 Sometimes, the style values depend on data. Use the `style` attribute to pass some styles dynamically:
+<Trans>때때로 스타일 값은 데이터에 따라 달라집니다. `style` 속성을 사용하여 일부 스타일을 동적으로 전달할 수 있습니다:</Trans>
 
 ```js {3-6}
 <img
@@ -1132,6 +1228,7 @@ Sometimes, the style values depend on data. Use the `style` attribute to pass so
 
 
 In the above example, `style={{}}` is not a special syntax, but a regular `{}` object inside the `style={ }` [JSX curly braces.](/learn/javascript-in-jsx-with-curly-braces) We recommend only using the `style` attribute when your styles depend on JavaScript variables.
+<Trans>위 예시에서 `style={{}}`은 특별한 구문이 아니라 `style={ }` [JSX 중괄호](/learn/javascript-in-jsx-with-curly-braces) 안에 있는 일반 `{}` 객체입니다. 스타일이 자바스크립트 변수에 의존하는 경우에만 `style` 속성을 사용하는 것이 좋습니다.</Trans>
 
 <Sandpack>
 
@@ -1175,13 +1272,16 @@ export default function Avatar({ user }) {
 
 <DeepDive>
 
-#### How to apply multiple CSS classes conditionally? {/*how-to-apply-multiple-css-classes-conditionally*/}
+#### How to apply multiple CSS classes conditionally? <Trans>여러 CSS 클래스를 조건부로 적용하는 방법은 무엇인가요?</Trans> {/*how-to-apply-multiple-css-classes-conditionally*/}
 
 To apply CSS classes conditionally, you need to produce the `className` string yourself using JavaScript.
+<Trans>조건부로 CSS 클래스를 적용하려면 JavaScript를 사용하여 `className` 문자열을 직접 생성해야 합니다.</Trans>
 
 For example, `className={'row ' + (isSelected ? 'selected': '')}` will produce either `className="row"` or `className="row selected"` depending on whether `isSelected` is `true`.
+<Trans>예를 들어, `className={'row ' + (isSelected ? 'selected': '')}`는 `isSelected`가 `true`인지 여부에 따라 `className="row"` 또는 `className="row selected"`를 생성합니다.</Trans>
 
 To make this more readable, you can use a tiny helper library like [`classnames`:](https://github.com/JedWatson/classnames)
+<Trans>이를 더 읽기 쉽게 만들려면 [`classnames`:](https://github.com/JedWatson/classnames)와 같은 작은 헬퍼 라이브러리를 사용할 수 있습니다.</Trans>
 
 ```js
 import cn from 'classnames';
@@ -1196,6 +1296,7 @@ function Row({ isSelected }) {
 ```
 
 It is especially convenient if you have multiple conditional classes:
+<Trans>조건부 클래스가 여러 개 있는 경우 특히 편리합니다:</Trans>
 
 ```js
 import cn from 'classnames';
@@ -1217,11 +1318,13 @@ function Row({ isSelected, size }) {
 
 ---
 
-### Manipulating a DOM node with a ref {/*manipulating-a-dom-node-with-a-ref*/}
+### Manipulating a DOM node with a ref <Trans>ref로 DOM 노드 조작하기</Trans> {/*manipulating-a-dom-node-with-a-ref*/}
 
 Sometimes, you'll need to get the browser DOM node associated with a tag in JSX. For example, if you want to focus an `<input>` when a button is clicked, you need to call [`focus()`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/focus) on the browser `<input>` DOM node.
+<Trans>때로는 JSX에서 태그와 연결된 브라우저 DOM 노드를 가져와야 할 수도 있습니다. 예를 들어 버튼이 클릭될 때 `<input>`에 포커스를 맞추려면 브라우저 `<input>` DOM 노드에서 [`focus()`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/focus)를 호출해야 합니다.</Trans>
 
 To obtain the browser DOM node for a tag, [declare a ref](/reference/react/useRef) and pass it as the `ref` attribute to that tag:
+<Trans>태그에 대한 브라우저 DOM 노드를 가져오려면 [ref 선언하기](/reference/react/useRef)를 통해 해당 태그에 `ref` 속성으로 전달합니다:</Trans>
 
 ```js {7}
 import { useRef } from 'react';
@@ -1235,6 +1338,7 @@ export default function Form() {
 ```
 
 React will put the DOM node into `inputRef.current` after it's been rendered to the screen.
+<Trans>React는 DOM 노드가 화면에 렌더링된 후 `inputRef.current`에 넣습니다.</Trans>
 
 <Sandpack>
 
@@ -1262,14 +1366,17 @@ export default function Form() {
 </Sandpack>
 
 Read more about [manipulating DOM with refs](/learn/manipulating-the-dom-with-refs) and [check out more examples.](/reference/react/useRef#examples-dom)
+<Trans>[ref로 DOM 조작하기](/learn/manipulating-the-dom-with-refs)와 [더 많은 예시](/reference/react/useRef#examples-dom)를 확인해보세요.</Trans>
 
 For more advanced use cases, the `ref` attribute also accepts a [callback function.](#ref-callback)
+<Trans>고급 사용 사례의 경우, `ref` 속성은 [콜백 함수](#ref-callback)도 허용합니다.</Trans>
 
 ---
 
-### Dangerously setting the inner HTML {/*dangerously-setting-the-inner-html*/}
+### Dangerously setting the inner HTML <Trans>내부 HTML을 위험하게 설정하는 경우</Trans> {/*dangerously-setting-the-inner-html*/}
 
 You can pass a raw HTML string to an element like so:
+<Trans>다음과 같이 원본 HTML 문자열을 요소에 전달할 수 있습니다:</Trans>
 
 ```js
 const markup = { __html: '<p>some raw html</p>' };
@@ -1277,8 +1384,10 @@ return <div dangerouslySetInnerHTML={markup} />;
 ```
 
 **This is dangerous. As with the underlying DOM [`innerHTML`](https://developer.mozilla.org/en-US/docs/Web/API/Element/innerHTML) property, you must exercise extreme caution! Unless the markup is coming from a completely trusted source, it is trivial to introduce an [XSS](https://en.wikipedia.org/wiki/Cross-site_scripting) vulnerability this way.**
+<Trans>**이렇게 작성하는 것은 위험합니다. 기본 DOM [`innerHTML`](https://developer.mozilla.org/ko/docs/Web/API/Element/innerHTML) 속성과 마찬가지로 극도의 주의를 기울여야 합니다! 마크업이 완전히 신뢰할 수 있는 출처에서 제공되지 않는 한, 이런 식으로 [XSS](https://ko.wikipedia.org/wiki/Cross-site_scripting) 취약점을 도입하는 것은 사소한 일입니다.**</Trans>
 
 For example, if you use a Markdown library that converts Markdown to HTML, you trust that its parser doesn't contain bugs, and the user only sees their own input, you can display the resulting HTML like this:
+<Trans>예를 들어, 마크다운을 HTML로 변환하는 마크다운 라이브러리를 사용하는 경우 해당 파서에 버그가 없고 사용자가 자신의 입력만 볼 수 있다고 믿는다면 다음과 같이 결과 HTML을 표시할 수 있습니다:</Trans>
 
 <Sandpack>
 
@@ -1347,6 +1456,7 @@ textarea { display: block; margin-top: 5px; margin-bottom: 10px; }
 </Sandpack>
 
 To see why rendering arbitrary HTML is dangerous, replace the code above with this:
+<Trans>임의의 HTML을 렌더링하는 것이 왜 위험한지 알아보려면 위의 코드를 다음과 같이 바꾸세요:</Trans>
 
 ```js {1-4,7,8}
 const post = {
@@ -1362,12 +1472,14 @@ export default function MarkdownPreview() {
 ```
 
 The code embedded in the HTML will run. A hacker could use this security hole to steal user information or to perform actions on their behalf. **Only use `dangerouslySetInnerHTML` with trusted and sanitized data.**
+<Trans>HTML에 포함된 코드가 실행됩니다. 해커는 이 보안 허점을 이용해 사용자 정보를 훔치거나 사용자 대신 작업을 수행할 수 있습니다. **신뢰할 수 있고 위생 처리된 데이터와 함께 `dangerouslySetInnerHTML`만 사용하세요.**</Trans>
 
 ---
 
-### Handling mouse events {/*handling-mouse-events*/}
+### Handling mouse events <Trans>마우스 이벤트 처리하기</Trans> {/*handling-mouse-events*/}
 
 This example shows some common [mouse events](#mouseevent-handler) and when they fire.
+<Trans>이 예시는 몇 가지 일반적인 [마우스 이벤트](#mouseevent-handler)와 이벤트 발생 시점을 보여줍니다.</Trans>
 
 <Sandpack>
 
@@ -1412,9 +1524,10 @@ input { margin-left: 10px; }
 
 ---
 
-### Handling pointer events {/*handling-pointer-events*/}
+### Handling pointer events <Trans>포인터 이벤트 처리하기</Trans> {/*handling-pointer-events*/}
 
 This example shows some common [pointer events](#pointerevent-handler) and when they fire.
+<Trans>이 예시는 몇 가지 일반적인 [포인터 이벤트](#pointerevent-handler)와 이벤트 발생 시점을 보여줍니다.</Trans>
 
 <Sandpack>
 
@@ -1460,9 +1573,10 @@ input { margin-left: 10px; }
 
 ---
 
-### Handling focus events {/*handling-focus-events*/}
+### Handling focus events <Trans>포커스 이벤트 처리하기</Trans> {/*handling-focus-events*/}
 
 In React, [focus events](#focusevent-handler) bubble. You can use the `currentTarget` and `relatedTarget` to differentiate if the focusing or blurring events originated from outside of the parent element. The example shows how to detect focusing a child, focusing the parent element, and how to detect focus entering or leaving the whole subtree.
+<Trans>React에는 [포커스 이벤트](#focusevent-handler) 버블이 있습니다. `currentTarget` 와 `relatedTarget`을 사용하여 포커싱 또는 블러링 이벤트가 부모 엘리먼트 외부에서 발생했는지 구분할 수 있습니다. 이 예는 자식 요소 포커싱, 부모 요소 포커싱, 전체 하위 트리에 들어오고 나가는 포커스를 감지하는 방법을 보여줍니다.</Trans>
 
 <Sandpack>
 
@@ -1516,9 +1630,10 @@ input { margin-left: 10px; }
 
 ---
 
-### Handling keyboard events {/*handling-keyboard-events*/}
+### Handling keyboard events <Trans>키보드 이벤트 처리하기</Trans> {/*handling-keyboard-events*/}
 
 This example shows some common [keyboard events](#keyboardevent-handler) and when they fire.
+<Trans>이 예는 몇 가지 일반적인 [키보드 이벤트](#keyboardevent-handler)와 이벤트 발생 시점을 보여줍니다.</Trans>
 
 <Sandpack>
 

@@ -1,11 +1,13 @@
 ---
 title: "Common components (e.g. <div>)"
+translatedTitle: "기본 컴포넌트 (예: <div>)"
+translators: [고석영, 정재남]
 ---
 
 <Intro>
 
 All built-in browser components, such as [`<div>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/div), support some common props and events.
-
+> [`<div>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/div)와 같은 모든 브라우저 빌트인 컴포넌트는 몇 가지 일반적인 props와 이벤트를 지원합니다.
 </Intro>
 
 <InlineToc />
@@ -26,217 +28,575 @@ All built-in browser components, such as [`<div>`](https://developer.mozilla.org
 #### Props {/*common-props*/}
 
 These special React props are supported for all built-in components:
+> 아래의 특별한 React props는 모든 빌트인 컴포넌트에서 지원됩니다:
 
 * `children`: A React node (an element, a string, a number, [a portal,](/reference/react-dom/createPortal) an empty node like `null`, `undefined` and booleans, or an array of other React nodes). Specifies the content inside the component. When you use JSX, you will usually specify the `children` prop implicitly by nesting tags like `<div><span /></div>`.
+> `children`: React 노드(요소, 문자열, 숫자, portal, null, undefined 및 boolean과 같은 빈 노드 또는 기타 React 노드의 배열). 컴포넌트 내부의 콘텐츠를 지정합니다. JSX를 사용할 때 일반적으로 `<div><span /></div>`와 같은 태그를 중첩하여 암묵적으로 `children` prop을 지정합니다.
 
 * `dangerouslySetInnerHTML`: An object of the form `{ __html: '<p>some html</p>' }` with a raw HTML string inside. Overrides the [`innerHTML`](https://developer.mozilla.org/en-US/docs/Web/API/Element/innerHTML) property of the DOM node and displays the passed HTML inside. This should be used with extreme caution! If the HTML inside isn't trusted (for example, if it's based on user data), you risk introducing an [XSS](https://en.wikipedia.org/wiki/Cross-site_scripting) vulnerability. [Read more about using `dangerouslySetInnerHTML`.](#dangerously-setting-the-inner-html)
+> `dangerouslySetInnerHTML`: 내부에 원시 HTML 문자열이 있는 `{ __html: '<p>일부 html</p>' }` 형식의 객체로, 내부에 원시 HTML 문자열이 있습니다. DOM 노드의 `[innerHTML]` 속성을 재정의하고 전달된 HTML을 내부에 표시합니다. 이 함수는 매우 주의해서 사용해야 합니다! 내부 HTML을 신뢰할 수 없는 경우(예: 사용자 데이터를 기반으로 하는 경우) [XSS](https://en.wikipedia.org/wiki/Cross-site_scripting) 취약점이 발생할 위험이 있습니다. `[dangerouslySetInnerHTML` 사용에 대해 자세히 알아보세요.](https://beta.reactjs.org/reference/react-dom/components/common#dangerously-setting-the-inner-html)
 
 * `ref`: A ref object from [`useRef`](/reference/react/useRef) or [`createRef`](/reference/react/createRef), or a [`ref` callback function,](#ref-callback) or a string for [legacy refs.](https://reactjs.org/docs/refs-and-the-dom.html#legacy-api-string-refs) Your ref will be filled with the DOM element for this node. [Read more about manipulating the DOM with Refs.](#manipulating-a-dom-node-with-a-ref)
+> `ref`: `useRef`또는[`createRef`](https://beta.reactjs.org/reference/react/createRef)의 참조 객체, [`ref` 콜백 함수,](https://beta.reactjs.org/reference/react-dom/components/common#ref-callback) 또는 레거시 ref에 대한 문자열. ref는 이 노드의 DOM 요소로 채워집니다. [ref로 DOM을 조작하는 방법에 대해 자세히 알아보기.](https://beta.reactjs.org/reference/react-dom/components/common#manipulating-a-dom-node-with-a-ref)
 
 * `suppressContentEditableWarning`: A boolean. If `true`, suppresses the warning that React shows for elements that both have `children` and `contentEditable={true}` (which normally do not work together). Use this if you're building a text input library that manages the `contentEditable` content manually.
+> `suppressContentEditableWarning`: 불리언입니다. `true`이면, 일반적으로 함께 작동하지 않는 (일반적으로 함께 작동하지 않는) `children`과 `contentEditable={true}`가 모두 있는 엘리먼트에 대해 React가 표시하는 경고를 억제합니다. 이 값을 사용하면 `contentEditable` 콘텐츠를 수동으로 관리하는 텍스트 입력 라이브러리를 빌드할 때 사용합니다.
 
 * `suppressHydrationWarning`: A boolean. If you use [server rendering,](/reference/react-dom/server) normally there is a warning when the server and the client render different content. In some rare cases (like timestamps), it is very hard or impossible to guarantee an exact match. If you set `suppressHydrationWarning` to `true`, React will not warn you about mismatches in the attributes and the content of that element. It only works one level deep, and is intended to be used as an escape hatch. Don't overuse it. [Read about suppressing hydration errors.](/reference/react-dom/client/hydrateRoot#suppressing-unavoidable-hydration-mismatch-errors)
+> `suppressHydrationWarning`: 불리언입니다. 서버 렌더링을 사용하는 경우 일반적으로 서버와 클라이언트가 서로 다른 콘텐츠를 렌더링할 때 경고가 표시됩니다. 타임스탬프와 같은 일부 드문 경우에서는 정확한 일치를 보장하기가 매우 어렵거나 불가능합니다. `suppressHydrationWarning`을 `true`로 설정하면 React는 해당 엘리먼트의 속성과 콘텐츠가 일치하지 않을 때 경고하지 않습니다. 이는 한 단계 깊이에서만 작동하며, 탈출구로 사용하기 위한 것입니다. 과도하게 사용하지 마세요. [수화 오류 억제에 대해 자세히 알아보기](https://beta.reactjs.org/reference/react-dom/client/hydrateRoot#suppressing-unavoidable-hydration-mismatch-errors)
 
 * `style`: An object with CSS styles, for example `{ fontWeight: 'bold', margin: 20 }`. Similarly to the DOM [`style`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/style) property, the CSS property names need to be written as `camelCase`, for example `fontWeight` instead of `font-weight`. You can pass strings or numbers as values. If you pass a number, like `width: 100`, React will automatically append `px` ("pixels") to the value unless it's a [unitless property.](https://github.com/facebook/react/blob/81d4ee9ca5c405dce62f64e61506b8e155f38d8d/packages/react-dom-bindings/src/shared/CSSProperty.js#L8-L57) We recommend using `style` only for dynamic styles where you don't know the style values ahead of time. In other cases, applying plain CSS classes with `className` is more efficient. [Read more about `className` and `style`.](#applying-css-styles)
+> `style`: CSS 스타일이 있는 객체(예: `{ fontWeight: 'bold', margin: 20 }`). DOM `style`프로퍼티와 마찬가지로 CSS 프로퍼티 이름도`font-weight`대신`fontWeight`와 같이 `camelCase`로 작성해야 합니다. 문자열이나 숫자를 값으로 전달할 수 있습니다. `width: 100`과 같이 숫자를 전달하면 React는 단위가 없는 프로퍼티가 아니라면 값에 자동으로 `px`("픽셀")를 추가합니다. 스타일 값을 미리 알 수 없는 동적 스타일에만 `style`을 사용하는 것을 권장합니다. 그 외의 경우에는 `className`과 함께 일반 CSS 클래스를 적용하는 것이 더 효율적입니다. [클래스명`과](https://beta.reactjs.org/reference/react-dom/components/common#applying-css-styles) `style`[로 CSS를 적용하는 방법에 대해 자세히 알아보세요.](https://beta.reactjs.org/reference/react-dom/components/common#applying-css-styles)
 
 These standard DOM props are also supported for all built-in components:
+> 아래의 표준 DOM props는 모든 빌트인 컴포넌트에서도 지원됩니다:
 
 * [`accessKey`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/accesskey): A string. Specifies a keyboard shortcut for the element. [Not generally recommended.](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/accesskey#accessibility_concerns)
+> `[accessKey](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/accesskey)`: 문자열입니다. 요소의 키보드 단축키를 지정합니다. [일반적으로 권장하지 않습니다.](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/accesskey#accessibility_concerns)
+
 * [`aria-*`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes): ARIA attributes let you specify the accessibility tree information for this element. See [ARIA attributes](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes) for a complete reference. In React, all ARIA attribute names are exactly the same as in HTML.
+> `[aria-*](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes)`: ARIA 속성을 사용하면 이 요소에 대한 접근성 트리 정보를 지정할 수 있습니다. 전체 참조는 [ARIA attributes](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes)를 참조하세요. React에서 모든 ARIA 어트리뷰트 이름은 HTML에서와 완전히 동일합니다.
+
 * [`autoCapitalize`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/autocapitalize): A string. Specifies whether and how the user input should be capitalized.
+> `[autoCapitalize](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/autocapitalize)`: 문자열. 사용자 입력을 대문자로 표시할지 여부와 방법을 지정합니다.
+
 * [`className`](https://developer.mozilla.org/en-US/docs/Web/API/Element/className): A string. Specifies the element's CSS class name. [Read more about applying CSS styles.](#applying-css-styles)
+> `[className](https://developer.mozilla.org/en-US/docs/Web/API/Element/className)`: 문자열입니다. 요소의 CSS 클래스 이름을 지정합니다. [CSS 스타일 적용에 대해 자세히 알아보기](https://beta.reactjs.org/reference/react-dom/components/common#applying-css-styles)
+
 * [`contentEditable`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/contenteditable): A boolean. If `true`, the browser lets the user edit the rendered element directly. This is used to implement rich text input libraries like [Lexical.](https://lexical.dev/) React warns if you try to pass React children to an element with `contentEditable={true}` because React will not be able to update its content after user edits.
+> `[contentEditable](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/contenteditable)`: 부울입니다. `true`이면 브라우저는 사용자가 렌더링된 요소를 직접 편집할 수 있도록 허용합니다. 이것은 [Lexical.](<https://lexical.dev/>)과 같은 리치 텍스트 입력 라이브러리를 구현하는 데 사용됩니다. React는 사용자가 편집한 후에 React가 그 내용을 업데이트할 수 없기 때문에 `contentEditable={true}`가 있는 엘리먼트에 React 자식을 전달하려고 하면 경고를 표시합니다.
+
 * [`data-*`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/data-*): Data attributes let you attach some string data to the element, for example `data-fruit="banana"`. In React, they are not commonly used because you would usually read data from props or state instead.
+> `[data-*](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/data-*)`: 데이터 속성을 사용하면 요소에 일부 문자열 데이터를 첨부할 수 있습니다(예: `data-fruit="banana"`). React에서는 일반적으로 프로퍼티나 state에서 데이터를 읽어오기 때문에 일반적으로 사용되지는 않습니다.
+
 * [`dir`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/dir): Either `'ltr'` or `'rtl'`. Specifies the text direction of the element.
+> `[dir](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/dir)`: 'ltr'`또는`'rtl'`. 요소의 텍스트 방향을 지정합니다.
+
 * [`draggable`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/draggable): A boolean. Specifies whether the element is draggable. Part of [HTML Drag and Drop API.](https://developer.mozilla.org/en-US/docs/Web/API/HTML_Drag_and_Drop_API)
+> [`draggable`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/draggable): 불리언. 요소를 드래그할 수 있는지 여부를 지정합니다. HTML 드래그 앤 드롭 API의 일부입니다.
+
 * [`enterKeyHint`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/enterKeyHint): A string. Specifies which action to present for the enter key on virtual keyboards.
+> [`enterKeyHint`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/enterKeyHint): 문자열. 가상 키보드의 엔터 키에 표시할 동작을 지정합니다.
+
 * [`htmlFor`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLLabelElement/htmlFor): A string. For [`<label>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/label) and [`<output>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/output), lets you [associate the label with some control.](/reference/react-dom/components/input#providing-a-label-for-an-input) Same as [`for` HTML attribute.](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/for) React uses the standard DOM property names (`htmlFor`) instead of HTML attribute names.
+> `[htmlFor](https://developer.mozilla.org/en-US/docs/Web/API/HTMLLabelElement/htmlFor)`: 문자열. `[<label>](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/label)` 및 `[<output>](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/output)`의 경우, 레이블을 일부 컨트롤과 연결할 수 있습니다. `[for](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/for)` HTML 속성과 동일합니다. React는 HTML 속성의 이름 대신 표준 DOM 프로퍼티 이름(`htmlFor`)을 사용합니다.
+
 * [`hidden`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/hidden): A boolean or a string. Specifies whether the element should be hidden.
+> `[hidden](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/hidden)`: 불리언 또는 문자열. 요소의 숨김 여부를 지정합니다.
+
 * [`id`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/id): A string. Specifies a unique identifier for this element, which can be used to find it later or connect it with other elements. Generate it with [`useId`](/reference/react/useId) to avoid clashes between multiple instances of the same component.
+> `[id](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/id)`: 문자열. 나중에 찾거나 다른 요소와 연결하는 데 사용할 수 있는 이 요소의 고유 식별자를 지정합니다. 동일한 컴포넌트의 여러 인스턴스 간의 충돌을 방지하려면 `useId`로 생성합니다.
+
 * [`is`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/is): A string. If specified, the component will behave like a [custom element.](/reference/react-dom/components#custom-html-elements)
+> `[is](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/is)`: 문자열. 지정하면 컴포넌트가 커스텀 요소처럼 작동합니다.
+
 * [`inputMode`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/inputmode): A string. Specifies what kind of keyboard to display (for example, text, number or telephone).
+> `[inputMode](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/inputmode)`: 문자열. 표시할 키보드의 종류(예: 텍스트, 숫자 또는 전화)를 지정합니다.
+
 * [`itemProp`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/itemprop): A string. Specifies which property the element represents for structured data crawlers.
+> `[itemProp](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/itemprop)`: 문자열입니다. 구조화된 데이터 크롤러에 대해 요소가 나타내는 속성을 지정합니다.
+
 * [`lang`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/lang): A string. Specifies the language of the element.
+> `[lang](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/lang)`: 문자열입니다. 요소의 언어를 지정합니다.
+
 * [`onAnimationEnd`](https://developer.mozilla.org/en-US/docs/Web/API/Element/animationend_event): An [`AnimationEvent` handler](#animationevent-handler) function. Fires when a CSS animation completes.
+> [`onAnimationEnd`](https://developer.mozilla.org/en-US/docs/Web/API/Element/animationend_event): [`AnimationEvent` 핸들러](#animationevent-handler) 함수. CSS 애니메이션 종료시 호출됩니다.
+
 * `onAnimationEndCapture`: A version of `onAnimationEnd` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
+> `onAnimationEndCapture`: [캡쳐 단계](/learn/responding-to-events#capture-phase-events)에서 실행되는 버전의 `onAnimationEnd`입니다.
+
 * [`onAnimationIteration`](https://developer.mozilla.org/en-US/docs/Web/API/Element/animationiteration_event): An [`AnimationEvent` handler](#animationevent-handler) function. Fires when an iteration of a CSS animation ends, and another one begins.
+> [`onAnimationIteration`](https://developer.mozilla.org/en-US/docs/Web/API/Element/animationiteration_event): [`AnimationEvent` 핸들러](#animationevent-handler) 함수. CSS 애니메이션의 이터레이션 종료시 및 다른 이터레이션 시작시 호출됩니다.
+
 * `onAnimationIterationCapture`: A version of `onAnimationIteration` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
+> `onAnimationIterationCapture`: [캡쳐 단계](/learn/responding-to-events#capture-phase-events)에서 실행되는 버전의 `onAnimationIteration`입니다.
+
 * [`onAnimationStart`](https://developer.mozilla.org/en-US/docs/Web/API/Element/animationstart_event): An [`AnimationEvent` handler](#animationevent-handler) function. Fires when a CSS animation starts.
+> [`onAnimationStart`](https://developer.mozilla.org/en-US/docs/Web/API/Element/animationstart_event): [`AnimationEvent` 핸들러](#animationevent-handler) 함수. CSS 애니메이션 시작시 호출됩니다.
+
 * `onAnimationStartCapture`: `onAnimationStart`, but fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
+> `onAnimationStartCapture`: [캡쳐 단계](/learn/responding-to-events#capture-phase-events)에서 실행되는 버전의 `onAnimationStart`입니다.
+
 * [`onAuxClick`](https://developer.mozilla.org/en-US/docs/Web/API/Element/auxclick_event): A [`MouseEvent` handler](#mouseevent-handler) function. Fires when a non-primary pointer button was clicked.
+> [`onAuxClick`](https://developer.mozilla.org/en-US/docs/Web/API/Element/auxclick_event): [`MouseEvent` 핸들러](#mouseevent-handler) 함수. 비주요 버튼 클릭시 호출됩니다.
+
 * `onAuxClickCapture`: A version of `onAuxClick` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
+> `onAuxClickCapture`: [캡쳐 단계](/learn/responding-to-events#capture-phase-events)에서 실행되는 버전의 `onAuxClick`입니다.
+
 * `onBeforeInput`: An [`InputEvent` handler](#inputevent-handler) function. Fires before the value of an editable element is modified. React does *not* yet use the native [`beforeinput`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/beforeinput_event) event, and instead attempts to polyfill it using other events.
+> `onBeforeInput`: [`InputEvent` 핸들러](#inputevent-handler) 함수. 편집 가능한 엘리먼트가 수정되기 전에 호출됩니다. React는 아직 native [`beforeinput`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/beforeinput_event) 이벤트를 사용하지 않으며, 대신 다른 이벤트를 폴리필하여 구현하고 있습니다.
+
 * `onBeforeInputCapture`: A version of `onBeforeInput` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
+> `onBeforeInputCapture`: [캡쳐 단계](/learn/responding-to-events#capture-phase-events)에서 실행되는 버전의 `onBeforeInput`입니다.
+
 * `onBlur`: A [`FocusEvent` handler](#focusevent-handler) function. Fires when an element lost focus. Unlike the built-in browser [`blur`](https://developer.mozilla.org/en-US/docs/Web/API/Element/blur_event) event, in React the `onBlur` event bubbles.
+> `onBlur`: A [`FocusEvent` 핸들러](#focusevent-handler) 함수. 엘리먼트가 초점을 잃을 때 호출됩니다. 브라우저 빌트인 [`blur`](https://developer.mozilla.org/en-US/docs/Web/API/Element/blur_event) 이벤트와 달리, React의 `onBlur` 이벤트는 버블링이 발생합니다.
+
 * `onBlurCapture`: A version of `onBlur` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
+> `onBlurCapture`: [캡쳐 단계](/learn/responding-to-events#capture-phase-events)에서 실행되는 버전의 `onBlur`입니다.
+
 * [`onClick`](https://developer.mozilla.org/en-US/docs/Web/API/Element/click_event): A [`MouseEvent` handler](#mouseevent-handler) function. Fires when the primary button was clicked on the pointing device.
+> [`onClick`](https://developer.mozilla.org/en-US/docs/Web/API/Element/click_event): [`MouseEvent` 핸들러](#mouseevent-handler) 함수. 포인팅 다비아스에서 주요 버튼 클릭시 호출됩니다.
+
 * `onClickCapture`: A version of `onClick` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
+> `onClickCapture`: [캡쳐 단계](/learn/responding-to-events#capture-phase-events)에서 실행되는 버전의 `onClick` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
+
 * [`onCompositionStart`](https://developer.mozilla.org/en-US/docs/Web/API/Element/compositionstart_event): A [`CompositionEvent` handler](#compositionevent-handler) function. Fires when an [input method editor](https://developer.mozilla.org/en-US/docs/Glossary/Input_method_editor) starts a new composition session.
+> [`onCompositionStart`](https://developer.mozilla.org/en-US/docs/Web/API/Element/compositionstart_event): [`CompositionEvent` 핸들러](#compositionevent-handler) 함수. [input method editor(IME)](https://developer.mozilla.org/en-US/docs/Glossary/Input_method_editor)가 새 조합 세션을 시작할 때 호출됩니다.
+
 * `onCompositionStartCapture`: A version of `onCompositionStart` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
+> `onCompositionStartCapture`: [캡쳐 단계](/learn/responding-to-events#capture-phase-events)에서 실행되는 버전의 `onCompositionStart`입니다.
+
 * [`onCompositionEnd`](https://developer.mozilla.org/en-US/docs/Web/API/Element/compositionend_event): A [`CompositionEvent` handler](#compositionevent-handler) function. Fires when an [input method editor](https://developer.mozilla.org/en-US/docs/Glossary/Input_method_editor) completes or cancels a composition session.
+> [`onCompositionEnd`](https://developer.mozilla.org/en-US/docs/Web/API/Element/compositionend_event): [`CompositionEvent` 핸들러](#compositionevent-handler) 함수. [IME](https://developer.mozilla.org/en-US/docs/Glossary/Input_method_editor)가 세션을 종료 또는 취소할 때 호출됩니다.
+
 * `onCompositionEndCapture`: A version of `onCompositionEnd` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
+> `onCompositionEndCapture`: [캡쳐 단계](/learn/responding-to-events#capture-phase-events)에서 실행되는 버전의 `onCompositionEnd`입니다.
+
 * [`onCompositionUpdate`](https://developer.mozilla.org/en-US/docs/Web/API/Element/compositionupdate_event): A [`CompositionEvent` handler](#compositionevent-handler) function. Fires when an [input method editor](https://developer.mozilla.org/en-US/docs/Glossary/Input_method_editor) receives a new character.
+> [`onCompositionUpdate`](https://developer.mozilla.org/en-US/docs/Web/API/Element/compositionupdate_event): A [`CompositionEvent` 핸들러](#compositionevent-handler) 함수. [IME](https://developer.mozilla.org/en-US/docs/Glossary/Input_method_editor)가 새 문자를 수신할 때 호출됩니다.
+
 * `onCompositionUpdateCapture`: A version of `onCompositionUpdate` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
+> `onCompositionUpdateCapture`:[캡쳐 단계](/learn/responding-to-events#capture-phase-events)에서 실행되는 버전의 `onCompositionUpdate` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
+
 * [`onContextMenu`](https://developer.mozilla.org/en-US/docs/Web/API/Element/contextmenu_event): A [`MouseEvent` handler](#mouseevent-handler) function. Fires when the user tries to open a context menu.
+> [`onContextMenu`](https://developer.mozilla.org/en-US/docs/Web/API/Element/contextmenu_event): [`MouseEvent` 핸들러](#mouseevent-handler) 함수. 사용자가 컨텍스트 메뉴를 열고자 할 때 호출됩니다.
+
 * `onContextMenuCapture`: A version of `onContextMenu` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
+> `onContextMenuCapture`: [캡쳐 단계](/learn/responding-to-events#capture-phase-events)에서 실행되는 버전의 `onContextMenu` 입니다.
+
 * [`onCopy`](https://developer.mozilla.org/en-US/docs/Web/API/Element/copy_event): A [`ClipboardEvent` handler](#clipboardevent-handler) function. Fires when the user tries to copy something into the clipboard.
+> [`onCopy`](https://developer.mozilla.org/en-US/docs/Web/API/Element/copy_event): A [`ClipboardEvent` 핸들러](#clipboardevent-handler) 함수. 사용자가 무언가를 클립보드로 복사하려고 할 때 호출됩니다.
+
 * `onCopyCapture`: A version of `onCopy` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
+> `onCopyCapture`: [캡쳐 단계](/learn/responding-to-events#capture-phase-events)에서 실행되는 버전의 `onCopy` 입니다.
+
 * [`onCut`](https://developer.mozilla.org/en-US/docs/Web/API/Element/cut_event): A [`ClipboardEvent` handler](#clipboardevent-handler) function. Fires when the user tries to cut something into the clipboard.
+> [`onCut`](https://developer.mozilla.org/en-US/docs/Web/API/Element/cut_event): [`ClipboardEvent` 핸들러](#clipboardevent-handler) 함수. 사용자가 클립보드에서 무언가를 잘라내고자 할 때 호출됩니다.
+
 * `onCutCapture`: A version of `onCut` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
+> `onCutCapture`: [캡쳐 단계](/learn/responding-to-events#capture-phase-events)에서 실행되는 버전의 `onCut` 입니다.
+
 * `onDoubleClick`: A [`MouseEvent` handler](#mouseevent-handler) function. Fires when the user clicks twice. Corresponds to the browser [`dblclick` event.](https://developer.mozilla.org/en-US/docs/Web/API/Element/dblclick_event)
+> `onDoubleClick`: [`MouseEvent` 핸들러](#mouseevent-handler) 함수. 사용자가 두 번 클릭할 때 호출됩니다. 브라우저의 [`dblclick` event](https://developer.mozilla.org/en-US/docs/Web/API/Element/dblclick_event)에 해당합니다.
+
 * `onDoubleClickCapture`: A version of `onDoubleClick` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
+> `onDoubleClickCapture`: [캡쳐 단계](/learn/responding-to-events#capture-phase-events)에서 실행되는 버전의 `onDoubleClick` 입니다.
+
 * [`onDrag`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/drag_event): A [`DragEvent` handler](#dragevent-handler) function. Fires while the user is dragging something. 
+> [`onDrag`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/drag_event): [`DragEvent` 핸들러](#dragevent-handler) 함수. 사용자가 무언가를 드래그하는 동안 호출됩니다.
+
 * `onDragCapture`: A version of `onDrag` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
+> `onDragCapture`: [캡쳐 단계](/learn/responding-to-events#capture-phase-events)에서 실행되는 버전의 `onDrag` 입니다.
+
 * [`onDragEnd`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/dragend_event): A [`DragEvent` handler](#dragevent-handler) function. Fires when the user stops dragging something. 
+> [`onDragEnd`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/dragend_event): [`DragEvent` 핸들러](#dragevent-handler) 함수. 사용자가 드래그를 멈출 때 호춣됩니다.
+
 * `onDragEndCapture`: A version of `onDragEnd` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
+> `onDragEndCapture`: [캡쳐 단계](/learn/responding-to-events#capture-phase-events)에서 실행되는 버전의 `onDragEnd` 입니다.
+
 * [`onDragEnter`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/dragenter_event): A [`DragEvent` handler](#dragevent-handler) function. Fires when the dragged content enters a valid drop target. 
+> [`onDragEnter`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/dragenter_event): A [`DragEvent` 핸들러](#dragevent-handler) 함수. 드래그중인 컨텐트가 유효한 드롭 대상에 진입시 호출됩니다.
+
 * `onDragEnterCapture`: A version of `onDragEnter` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
+> `onDragEnterCapture`: [캡쳐 단계](/learn/responding-to-events#capture-phase-events)에서 실행되는 버전의 `onDragEnter` 입니다.
+
 * [`onDragOver`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/dragover_event): A [`DragEvent` handler](#dragevent-handler) function. Fires on a valid drop target while the dragged content is dragged over it. You must call `e.preventDefault()` here to allow dropping.
+> [`onDragOver`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/dragover_event): [`DragEvent` 핸들러](#dragevent-handler) 함수. 컨텐트가 유효한 드롭 대상 위에서 드래그중인 동안 호출됩니다. 드롭을 허용하려면 `e.preventDefault()`를 호출해야 합니다.
+
 * `onDragOverCapture`: A version of `onDragOver` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
+> `onDragOverCapture`: [캡쳐 단계](/learn/responding-to-events#capture-phase-events)에서 실행되는 버전의 `onDragOver` 입니다.
+
 * [`onDragStart`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/dragstart_event): A [`DragEvent` handler](#dragevent-handler) function. Fires when the user starts dragging an element.
+> [`onDragStart`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/dragstart_event): [`DragEvent` 핸들러](#dragevent-handler) 함수. 사용자가 엘리먼트를 드래그하기 시작할 때 호출됩니다.
+
 * `onDragStartCapture`: A version of `onDragStart` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
+> `onDragStartCapture`: [캡쳐 단계](/learn/responding-to-events#capture-phase-events)에서 실행되는 버전의 `onDragStart` 입니다.
+
 * [`onDrop`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/drop_event): A [`DragEvent` handler](#dragevent-handler) function. Fires when something is dropped on a valid drop target.
+> [`onDrop`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/drop_event): [`DragEvent` 핸들러](#dragevent-handler) 함수. 유효한 드롭 대상에 드롭할 때 호출됩니다.
+
 * `onDropCapture`: A version of `onDrop` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
+> `onDropCapture`: [캡쳐 단계](/learn/responding-to-events#capture-phase-events)에서 실행되는 버전의 `onDrop` 입니다.
+
 * `onFocus`: A [`FocusEvent` handler](#focusevent-handler) function. Fires when an element lost focus. Unlike the built-in browser [`focus`](https://developer.mozilla.org/en-US/docs/Web/API/Element/focus_event) event, in React the `onFocus` event bubbles.
+> `onFocus`: [`FocusEvent` 핸들러](#focusevent-handler) 함수. 엘리먼트가 초점을 잃을 때 호출됩니다. 브라우저 빌트인 [`focus`](https://developer.mozilla.org/en-US/docs/Web/API/Element/focus_event)와 달리, 리액트의 `onFocus` 이벤트는 버블링이 발생합니다.
+
 * `onFocusCapture`: A version of `onFocus` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
+> `onFocusCapture`: [캡쳐 단계](/learn/responding-to-events#capture-phase-events)에서 실행되는 버전의 `onFocus` 입니다.
+
 * [`onGotPointerCapture`](https://developer.mozilla.org/en-US/docs/Web/API/Element/gotpointercapture_event): A [`PointerEvent` handler](#pointerevent-handler) function. Fires when an element programmatically captures a pointer.
+> [`onGotPointerCapture`](https://developer.mozilla.org/en-US/docs/Web/API/Element/gotpointercapture_event): [`PointerEvent` 핸들러](#pointerevent-handler) 함수. 엘리먼트가 프로그램적으로 포인터를 캡쳐할 때 호출됩니다.
+
 * `onGotPointerCaptureCapture`: A version of `onGotPointerCapture` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
+> `onGotPointerCaptureCapture`: [캡쳐 단계](/learn/responding-to-events#capture-phase-events)에서 실행되는 버전의 `onGotPointerCapture` 입니다.
+
 * [`onKeyDown`](https://developer.mozilla.org/en-US/docs/Web/API/Element/keydown_event): A [`KeyboardEvent` handler](#pointerevent-handler) function. Fires when a key is pressed.
+> [`onKeyDown`](https://developer.mozilla.org/en-US/docs/Web/API/Element/keydown_event): [`KeyboardEvent` 핸들러](#pointerevent-handler) 함수. 키가 눌릴 때 호출됩니다.
+
 * `onKeyDownCapture`: A version of `onKeyDown` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
+> `onKeyDownCapture`: [캡쳐 단계](/learn/responding-to-events#capture-phase-events)에서 실행되는 버전의 `onKeyDown` 입니다.
+
 * [`onKeyPress`](https://developer.mozilla.org/en-US/docs/Web/API/Element/keypress_event): A [`KeyboardEvent` handler](#pointerevent-handler) function. Deprecated. Use `onKeyDown` or `onBeforeInput` instead.
+> [`onKeyPress`](https://developer.mozilla.org/en-US/docs/Web/API/Element/keypress_event): [`KeyboardEvent` 핸들러](#pointerevent-handler) 함수. 지원중단되었습니다. `onKeyDown` 또는 `onBeforeInput`를 대신 사용하세요.
+
 * `onKeyPressCapture`: A version of `onKeyPress` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
+> `onKeyPressCapture`: [캡쳐 단계](/learn/responding-to-events#capture-phase-events)에서 실행되는 버전의 `onKeyPress` 입니다.
+
 * [`onKeyUp`](https://developer.mozilla.org/en-US/docs/Web/API/Element/keyup_event): A [`KeyboardEvent` handler](#pointerevent-handler) function. Fires when a key is released.
+> [`onKeyUp`](https://developer.mozilla.org/en-US/docs/Web/API/Element/keyup_event): [`KeyboardEvent` 핸들러](#pointerevent-handler) 함수. 키를 놓을 때 호출됩니다.
+
 * `onKeyUpCapture`: A version of `onKeyUp` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
+> `onKeyUpCapture`: [캡쳐 단계](/learn/responding-to-events#capture-phase-events)에서 실행되는 버전의 `onKeyUp` 입니다.
+
 * [`onLostPointerCapture`](https://developer.mozilla.org/en-US/docs/Web/API/Element/lostpointercapture_event): A [`PointerEvent` handler](#pointerevent-handler) function. Fires when an element stops capturing a pointer.
+> [`onLostPointerCapture`](https://developer.mozilla.org/en-US/docs/Web/API/Element/lostpointercapture_event): [`PointerEvent` 핸들러](#pointerevent-handler) 함수. 엘리먼트가 포인터 캡쳐를 중지할 때 호출됩니다.
+
 * `onLostPointerCaptureCapture`: A version of `onLostPointerCapture` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
+> `onLostPointerCaptureCapture`: [캡쳐 단계](/learn/responding-to-events#capture-phase-events)에서 실행되는 버전의 `onLostPointerCapture` 입니다.
+
 * [`onMouseDown`](https://developer.mozilla.org/en-US/docs/Web/API/Element/mousedown_event): A [`MouseEvent` handler](#mouseevent-handler) function. Fires when the pointer is pressed down.
+> [`onMouseDown`](https://developer.mozilla.org/en-US/docs/Web/API/Element/mousedown_event): [`MouseEvent` 핸들러](#mouseevent-handler) 함수. 포인터가
+Fires when the pointer is pressed down.
+
 * `onMouseDownCapture`: A version of `onMouseDown` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
+> `onMouseDownCapture`: [캡쳐 단계](/learn/responding-to-events#capture-phase-events)에서 실행되는 버전의 `onMouseDown` 입니다.
+
 * [`onMouseEnter`](https://developer.mozilla.org/en-US/docs/Web/API/Element/mouseenter_event): A [`MouseEvent` handler](#mouseevent-handler) function. Fires when the pointer moves inside an element. Does not have a capture phase. Instead, `onMouseLeave` and `onMouseEnter` propagate from the element being left to the one being entered.
+> [`onMouseEnter`](https://developer.mozilla.org/en-US/docs/Web/API/Element/mouseenter_event): [`MouseEvent` 핸들러](#mouseevent-handler) 함수. Fires when the pointer moves inside an element. Does not have a capture phase. Instead, `onMouseLeave` and `onMouseEnter` propagate from the element being left to the one being entered.
+
 * [`onMouseLeave`](https://developer.mozilla.org/en-US/docs/Web/API/Element/mouseleave_event): A [`MouseEvent` handler](#mouseevent-handler) function. Fires when the pointer moves outside an element. Does not have a capture phase. Instead, `onMouseLeave` and `onMouseEnter` propagate from the element being left to the one being entered.
+> [`onMouseLeave`](https://developer.mozilla.org/en-US/docs/Web/API/Element/mouseleave_event): [`MouseEvent` 핸들러](#mouseevent-handler) 함수. Fires when the pointer moves outside an element. Does not have a capture phase. Instead, `onMouseLeave` and `onMouseEnter` propagate from the element being left to the one being entered.
+
 * [`onMouseMove`](https://developer.mozilla.org/en-US/docs/Web/API/Element/mousemove_event): A [`MouseEvent` handler](#mouseevent-handler) function. Fires when the pointer changes coordinates.
+> [`onMouseMove`](https://developer.mozilla.org/en-US/docs/Web/API/Element/mousemove_event): [`MouseEvent` 핸들러](#mouseevent-handler) 함수. Fires when the pointer changes coordinates.
+
 * `onMouseMoveCapture`: A version of `onMouseMove` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
+> `onMouseMoveCapture`: [캡쳐 단계](/learn/responding-to-events#capture-phase-events)에서 실행되는 버전의 `onMouseMove` 입니다.
+
 * [`onMouseOut`](https://developer.mozilla.org/en-US/docs/Web/API/Element/mouseout_event): A [`MouseEvent` handler](#mouseevent-handler) function. Fires when the pointer moves outside an element, or if it moves into a child element.
+> [`onMouseOut`](https://developer.mozilla.org/en-US/docs/Web/API/Element/mouseout_event): [`MouseEvent` 핸들러](#mouseevent-handler) 함수. Fires when the pointer moves outside an element, or if it moves into a child element.
+
 * `onMouseOutCapture`: A version of `onMouseOut` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
+> `onMouseOutCapture`: [캡쳐 단계](/learn/responding-to-events#capture-phase-events)에서 실행되는 버전의 `onMouseOut` 입니다.
+
 * [`onMouseUp`](https://developer.mozilla.org/en-US/docs/Web/API/Element/mouseup_event): A [`MouseEvent` handler](#mouseevent-handler) function. Fires when the pointer is released.
+> [`onMouseUp`](https://developer.mozilla.org/en-US/docs/Web/API/Element/mouseup_event): [`MouseEvent` 핸들러](#mouseevent-handler) 함수. Fires when the pointer is released.
+
 * `onMouseUpCapture`: A version of `onMouseUp` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
+> `onMouseUpCapture`: [캡쳐 단계](/learn/responding-to-events#capture-phase-events)에서 실행되는 버전의 `onMouseUp` 입니다.
+
 * [`onPointerCancel`](https://developer.mozilla.org/en-US/docs/Web/API/Element/pointercancel_event): A [`PointerEvent` handler](#pointerevent-handler) function. Fires when the browser cancels a pointer interaction.
+> [`onPointerCancel`](https://developer.mozilla.org/en-US/docs/Web/API/Element/pointercancel_event): [`PointerEvent` 핸들러](#pointerevent-handler) 함수. Fires when the browser cancels a pointer interaction.
+
 * `onPointerCancelCapture`: A version of `onPointerCancel` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
+> `onPointerCancelCapture`: [캡쳐 단계](/learn/responding-to-events#capture-phase-events)에서 실행되는 버전의 `onPointerCancel` 입니다.
+
 * [`onPointerDown`](https://developer.mozilla.org/en-US/docs/Web/API/Element/pointerdown_event): A [`PointerEvent` handler](#pointerevent-handler) function. Fires when a pointer becomes active.
+> [`onPointerDown`](https://developer.mozilla.org/en-US/docs/Web/API/Element/pointerdown_event): [`PointerEvent` 핸들러](#pointerevent-handler) 함수. Fires when a pointer becomes active.
+
 * `onPointerDownCapture`: A version of `onPointerDown` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
+> `onPointerDownCapture`: [캡쳐 단계](/learn/responding-to-events#capture-phase-events)에서 실행되는 버전의 `onPointerDown` 입니다.
+
 * [`onPointerEnter`](https://developer.mozilla.org/en-US/docs/Web/API/Element/pointerenter_event): A [`PointerEvent` handler](#pointerevent-handler) function. Fires when a pointer moves inside an element. Does not have a capture phase. Instead, `onPointerLeave` and `onPointerEnter` propagate from the element being left to the one being entered.
+> [`onPointerEnter`](https://developer.mozilla.org/en-US/docs/Web/API/Element/pointerenter_event): [`PointerEvent` 핸들러](#pointerevent-handler) 함수. Fires when a pointer moves inside an element. Does not have a capture phase. Instead, `onPointerLeave` and `onPointerEnter` propagate from the element being left to the one being entered.
+
 * [`onPointerLeave`](https://developer.mozilla.org/en-US/docs/Web/API/Element/pointerleave_event): A [`PointerEvent` handler](#pointerevent-handler) function. Fires when a pointer moves outside an element. Does not have a capture phase. Instead, `onPointerLeave` and `onPointerEnter` propagate from the element being left to the one being entered.
+> [`onPointerLeave`](https://developer.mozilla.org/en-US/docs/Web/API/Element/pointerleave_event): [`PointerEvent` 핸들러](#pointerevent-handler) 함수. Fires when a pointer moves outside an element. Does not have a capture phase. Instead, `onPointerLeave` and `onPointerEnter` propagate from the element being left to the one being entered.
+
 * [`onPointerMove`](https://developer.mozilla.org/en-US/docs/Web/API/Element/pointermove_event): A [`PointerEvent` handler](#pointerevent-handler) function. Fires when a pointer changes coordinates.
+> [`onPointerMove`](https://developer.mozilla.org/en-US/docs/Web/API/Element/pointermove_event): [`PointerEvent` 핸들러](#pointerevent-handler) 함수. Fires when a pointer changes coordinates.
+
 * `onPointerMoveCapture`: A version of `onPointerMove` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
+> `onPointerMoveCapture`: [캡쳐 단계](/learn/responding-to-events#capture-phase-events)에서 실행되는 버전의 `onPointerMove` 입니다.
+
 * [`onPointerOut`](https://developer.mozilla.org/en-US/docs/Web/API/Element/pointerout_event): A [`PointerEvent` handler](#pointerevent-handler) function. Fires when a pointer moves outside an element, if the pointer interaction is cancelled, and [a few other reasons.](https://developer.mozilla.org/en-US/docs/Web/API/Element/pointerout_event)
+> [`onPointerOut`](https://developer.mozilla.org/en-US/docs/Web/API/Element/pointerout_event): [`PointerEvent` 핸들러](#pointerevent-handler) 함수. Fires when a pointer moves outside an element, if the pointer interaction is cancelled, and [a few other reasons.](https://developer.mozilla.org/en-US/docs/Web/API/Element/pointerout_event)
+
 * `onPointerOutCapture`: A version of `onPointerOut` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
+> `onPointerOutCapture`: [캡쳐 단계](/learn/responding-to-events#capture-phase-events)에서 실행되는 버전의 `onPointerOut` 입니다.
+
 * [`onPointerUp`](https://developer.mozilla.org/en-US/docs/Web/API/Element/pointerup_event): A [`PointerEvent` handler](#pointerevent-handler) function. Fires when a pointer is no longer active.
+> [`onPointerUp`](https://developer.mozilla.org/en-US/docs/Web/API/Element/pointerup_event): [`PointerEvent` 핸들러](#pointerevent-handler) 함수. Fires when a pointer is no longer active.
+
 * `onPointerUpCapture`: A version of `onPointerUp` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
+> `onPointerUpCapture`: [캡쳐 단계](/learn/responding-to-events#capture-phase-events)에서 실행되는 버전의 `onPointerUp` 입니다.
+
 * [`onPaste`](https://developer.mozilla.org/en-US/docs/Web/API/Element/paste_event): A [`ClipboardEvent` handler](#clipboardevent-handler) function. Fires when the user tries to paste something from the clipboard.
+> [`onPaste`](https://developer.mozilla.org/en-US/docs/Web/API/Element/paste_event): [`ClipboardEvent` 핸들러](#clipboardevent-handler) 함수. Fires when the user tries to paste something from the clipboard.
+
 * `onPasteCapture`: A version of `onPaste` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
+> `onPasteCapture`: [캡쳐 단계](/learn/responding-to-events#capture-phase-events)에서 실행되는 버전의 `onPaste` 입니다.
+
 * [`onScroll`](https://developer.mozilla.org/en-US/docs/Web/API/Element/scroll_event): An [`Event` handler](#event-handler) function. Fires when an element has been scrolled. This event does not bubble.
+> [`onScroll`](https://developer.mozilla.org/en-US/docs/Web/API/Element/scroll_event): [`Event` 핸들러](#event-handler) 함수. Fires when an element has been scrolled. This event does not bubble.
+
 * `onScrollCapture`: A version of `onScroll` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
+> `onScrollCapture`: [캡쳐 단계](/learn/responding-to-events#capture-phase-events)에서 실행되는 버전의 `onScroll` 입니다.
+
 * [`onSelect`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/select_event): An [`Event` handler](#event-handler) function. Fires after the selection inside an editable element like an input changes. React extends the `onSelect` event to work for `contentEditable={true}` elements as well. In addition, React extends it to fire for empty selection and on edits (which may affect the selection).
+> [`onSelect`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/select_event): [`Event` 핸들러](#event-handler) 함수. Fires after the selection inside an editable element like an input changes. React extends the `onSelect` event to work for `contentEditable={true}` elements as well. In addition, React extends it to fire for empty selection and on edits (which may affect the selection).
+
 * `onSelectCapture`: A version of `onSelect` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
+> `onSelectCapture`: [캡쳐 단계](/learn/responding-to-events#capture-phase-events)에서 실행되는 버전의 `onSelect` 입니다.
+
 * [`onTouchCancel`](https://developer.mozilla.org/en-US/docs/Web/API/Element/touchcancel_event): A [`TouchEvent` handler](#touchevent-handler) function. Fires when the browser cancels a touch interaction.
+> [`onTouchCancel`](https://developer.mozilla.org/en-US/docs/Web/API/Element/touchcancel_event): [`TouchEvent` 핸들러](#touchevent-handler) function. Fires when the browser cancels a touch interaction.
+
 * `onTouchCancelCapture`: A version of `onTouchCancel` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
+> `onTouchCancelCapture`: [캡쳐 단계](/learn/responding-to-events#capture-phase-events)에서 실행되는 버전의 `onTouchCancel` 입니다.
+
 * [`onTouchEnd`](https://developer.mozilla.org/en-US/docs/Web/API/Element/touchend_event): A [`TouchEvent` handler](#touchevent-handler) function. Fires when one or more touch points are removed.
+> [`onTouchEnd`](https://developer.mozilla.org/en-US/docs/Web/API/Element/touchend_event): [`TouchEvent` 핸들러](#touchevent-handler) function. Fires when one or more touch points are removed.
+
 * `onTouchEndCapture`: A version of `onTouchEnd` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
+> `onTouchEndCapture`: [캡쳐 단계](/learn/responding-to-events#capture-phase-events)에서 실행되는 버전의 `onTouchEnd` 입니다.
+
 * [`onTouchMove`](https://developer.mozilla.org/en-US/docs/Web/API/Element/touchmove_event): A [`TouchEvent` handler](#touchevent-handler) function. Fires one or more touch points are moved.
+> [`onTouchMove`](https://developer.mozilla.org/en-US/docs/Web/API/Element/touchmove_event): [`TouchEvent` 핸들러](#touchevent-handler) function. Fires one or more touch points are moved.
+
 * `onTouchMoveCapture`: A version of `onTouchMove` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
+> `onTouchMoveCapture`: [캡쳐 단계](/learn/responding-to-events#capture-phase-events)에서 실행되는 버전의 `onTouchMove` 입니다.
+
 * [`onTouchStart`](https://developer.mozilla.org/en-US/docs/Web/API/Element/touchstart_event): A [`TouchEvent` handler](#touchevent-handler) function. Fires when one or more touch points are placed.
+> [`onTouchStart`](https://developer.mozilla.org/en-US/docs/Web/API/Element/touchstart_event): [`TouchEvent` 핸들러](#touchevent-handler) function. Fires when one or more touch points are placed.
+
 * `onTouchStartCapture`: A version of `onTouchStart` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
+> `onTouchStartCapture`: [캡쳐 단계](/learn/responding-to-events#capture-phase-events)에서 실행되는 버전의 `onTouchStart` 입니다.
+
 * [`onTransitionEnd`](https://developer.mozilla.org/en-US/docs/Web/API/Element/transitionend_event): A [`TransitionEvent` handler](#transitionevent-handler) function. Fires when a CSS transition completes.
+> [`onTransitionEnd`](https://developer.mozilla.org/en-US/docs/Web/API/Element/transitionend_event): [`TransitionEvent` 핸들러](#transitionevent-handler) function. Fires when a CSS transition completes.
+
 * `onTransitionEndCapture`: A version of `onTransitionEnd` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
+> `onTransitionEndCapture`: [캡쳐 단계](/learn/responding-to-events#capture-phase-events)에서 실행되는 버전의 `onTransitionEnd` 입니다.
+
 * [`onWheel`](https://developer.mozilla.org/en-US/docs/Web/API/Element/wheel_event): A [`WheelEvent` handler](#wheelevent-handler) function. Fires when the user rotates a wheel button.
+> [`onWheel`](https://developer.mozilla.org/en-US/docs/Web/API/Element/wheel_event): [`WheelEvent` 핸들러](#wheelevent-handler) function. Fires when the user rotates a wheel button.
+
 * `onWheelCapture`: A version of `onWheel` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
+> `onWheelCapture`: [캡쳐 단계](/learn/responding-to-events#capture-phase-events)에서 실행되는 버전의 `onWheel` 입니다.
+
 * [`role`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles): A string. Specifies the element role explicitly for assistive technologies.
+> [`role`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles): A string. Specifies the element role explicitly for assistive technologies.
 nt.
+
 * [`slot`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles): A string. Specifies the slot name when using shadow DOM. In React, an equivalent pattern is typically achieved by passing JSX as props, for example `<Layout left={<Sidebar />} right={<Content />} />`.
+> [`slot`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles): A string. Specifies the slot name when using shadow DOM. In React, an equivalent pattern is typically achieved by passing JSX as props, for example `<Layout left={<Sidebar />} right={<Content />} />`.
+
 * [`spellCheck`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/spellcheck): A boolean or null. If explicitly set to `true` or `false`, enables or disables spellchecking.
+> [`spellCheck`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/spellcheck): A boolean or null. If explicitly set to `true` or `false`, enables or disables spellchecking.
+
 * [`tabIndex`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex): A number. Overrides the default Tab button behavior. [Avoid using values other than `-1` and `0`.](https://www.tpgi.com/using-the-tabindex-attribute/)
+> [`tabIndex`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex): A number. Overrides the default Tab button behavior. [Avoid using values other than `-1` and `0`.](https://www.tpgi.com/using-the-tabindex-attribute/)
+
 * [`title`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/title): A string. Specifies the tooltip text for the element.
+> [`title`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/title): A string. Specifies the tooltip text for the element.
+
 * [`translate`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/translate): Either `'yes'` or `'no'`. Passing `'no'` excludes the element content from being translated.
+> [`translate`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/translate): Either `'yes'` or `'no'`. Passing `'no'` excludes the element content from being translated.
 
 You can also pass custom attributes as props, for example `mycustomprop="someValue".` This can be useful when integrating with third-party libraries. The custom attribute name must be lowercase and must not start with `on`. The value will be converted to a string. If you pass `null` or `undefined`, the custom attribute will be removed.
 
 These events fire only for the [`<form>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form) elements:
 
+
 * [`onReset`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLFormElement/reset_event): An [`Event` handler](#event-handler) function. Fires when a form gets reset.
+> [`onReset`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLFormElement/reset_event): [`Event` 핸들러](#event-handler) 함수. Fires when a form gets reset.
+
 * `onResetCapture`: A version of `onReset` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
+> `onResetCapture`: [캡쳐 단계](/learn/responding-to-events#capture-phase-events)에서 실행되는 버전의 `onReset` 입니다.
+
 * [`onSubmit`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLFormElement/submit_event): An [`Event` handler](#event-handler) function. Fires when a form gets submitted.
+> [`onSubmit`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLFormElement/submit_event): [`Event` 핸들러](#event-handler) 함수. Fires when a form gets submitted.
+
 * `onSubmitCapture`: A version of `onSubmit` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
+> `onSubmitCapture`: [캡쳐 단계](/learn/responding-to-events#capture-phase-events)에서 실행되는 버전의 `onSubmit` 입니다.
 
 These events fire only for the [`<dialog>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dialog) elements. Unlike browser events, they bubble in React:
 
+
 * [`onCancel`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLDialogElement/cancel_event): An [`Event` handler](#event-handler) function. Fires when the user tries to dismiss the dialog.
+> [`onCancel`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLDialogElement/cancel_event): [`Event` 핸들러](#event-handler) 함수. Fires when the user tries to dismiss the dialog.
+
 * `onCancelCapture`: A version of `onCancel` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-capture-phase-events)
+> `onCancelCapture`: [캡쳐 단계](/learn/responding-to-events#capture-phase-events)에서 실행되는 버전의 `onCancel` 입니다.
+
 * [`onClose`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLDialogElement/close_event): An [`Event` handler](#event-handler) function. Fires when a dialog has been closed.
+> [`onClose`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLDialogElement/close_event): [`Event` 핸들러](#event-handler) 함수. Fires when a dialog has been closed.
+
 * `onCloseCapture`: A version of `onClose` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
+> `onCloseCapture`: [캡쳐 단계](/learn/responding-to-events#capture-phase-events)에서 실행되는 버전의 `onClose` 입니다.
 
 These events fire only for the [`<details>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/details) elements. Unlike browser events, they bubble in React:
 
+
 * [`onToggle`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLDetailsElement/toggle_event): An [`Event` handler](#event-handler) function. Fires when the user toggles the details.
+> [`onToggle`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLDetailsElement/toggle_event): [`Event` 핸들러](#event-handler) 함수. Fires when the user toggles the details.
+
 * `onToggleCapture`: A version of `onToggle` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-capture-phase-events)
+> `onToggleCapture`: [캡쳐 단계](/learn/responding-to-events#capture-phase-events)에서 실행되는 버전의 `onToggle` 입니다.
 
 These events fire for [`<img>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img), [`<iframe>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe), [`<object>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/object), [`<embed>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/embed), [`<link>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/link), and [SVG `<image>`](https://developer.mozilla.org/en-US/docs/Web/SVG/Tutorial/SVG_Image_Tag) elements. Unlike browser events, they bubble in React:
 
+
 * `onLoad`: An [`Event` handler](#event-handler) function. Fires when the resource has loaded.
+> `onLoad`: [`Event` 핸들러](#event-handler) 함수. Fires when the resource has loaded.
+
 * `onLoadCapture`: A version of `onLoad` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
+> `onLoadCapture`: [캡쳐 단계](/learn/responding-to-events#capture-phase-events)에서 실행되는 버전의 `onLoad` 입니다.
+
 * [`onError`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/error_event): An [`Event` handler](#event-handler) function. Fires when the resource could not be loaded.
+> [`onError`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/error_event): [`Event` 핸들러](#event-handler) 함수. Fires when the resource could not be loaded.
+
 * `onErrorCapture`: A version of `onError` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
+> `onErrorCapture`: [캡쳐 단계](/learn/responding-to-events#capture-phase-events)에서 실행되는 버전의 `onError` 입니다.
 
 These events fire for resources like [`<audio>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/audio) and [`<video>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/video). Unlike browser events, they bubble in React:
 
+
 * [`onAbort`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/abort_event): An [`Event` handler](#event-handler) function. Fires when the resource has not fully loaded, but not due to an error.
+> [`onAbort`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/abort_event): [`Event` 핸들러](#event-handler) 함수. Fires when the resource has not fully loaded, but not due to an error.
+
 * `onAbortCapture`: A version of `onAbort` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
+> `onAbortCapture`: [캡쳐 단계](/learn/responding-to-events#capture-phase-events)에서 실행되는 버전의 `onAbort` 입니다.
+
 * [`onCanPlay`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/canplay_event): An [`Event` handler](#event-handler) function. Fires when there's enough data to start playing, but not enough to play to the end without buffering.
+> [`onCanPlay`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/canplay_event): [`Event` 핸들러](#event-handler) 함수. Fires when there's enough data to start playing, but not enough to play to the end without buffering.
+
 * `onCanPlayCapture`: A version of `onCanPlay` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
+> `onCanPlayCapture`: [캡쳐 단계](/learn/responding-to-events#capture-phase-events)에서 실행되는 버전의 `onCanPlay` 입니다.
+
 * [`onCanPlayThrough`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/canplaythrough_event): An [`Event` handler](#event-handler) function. Fires when there's enough data that it's likely possible to start playing without buffering until the end.
+> [`onCanPlayThrough`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/canplaythrough_event): [`Event` 핸들러](#event-handler) 함수. Fires when there's enough data that it's likely possible to start playing without buffering until the end.
+
 * `onCanPlayThroughCapture`: A version of `onCanPlayThrough` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
+> `onCanPlayThroughCapture`: [캡쳐 단계](/learn/responding-to-events#capture-phase-events)에서 실행되는 버전의 `onCanPlayThrough` 입니다.
+
 * [`onDurationChange`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/durationchange_event): An [`Event` handler](#event-handler) function. Fires when the media duration has updated.
+> [`onDurationChange`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/durationchange_event): [`Event` 핸들러](#event-handler) 함수. Fires when the media duration has updated.
+
 * `onDurationChangeCapture`: A version of `onDurationChange` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
+> `onDurationChangeCapture`: [캡쳐 단계](/learn/responding-to-events#capture-phase-events)에서 실행되는 버전의 `onDurationChange` 입니다.
+
 * [`onEmptied`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/emptied_event): An [`Event` handler](#event-handler) function. Fires when the media has become empty.
+> [`onEmptied`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/emptied_event): [`Event` 핸들러](#event-handler) 함수. Fires when the media has become empty.
+
 * `onEmptiedCapture`: A version of `onEmptied` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
+> `onEmptiedCapture`: [캡쳐 단계](/learn/responding-to-events#capture-phase-events)에서 실행되는 버전의 `onEmptied` 입니다.
+
 * [`onEncrypted`](https://w3c.github.io/encrypted-media/#dom-evt-encrypted): An [`Event` handler](#event-handler) function. Fires when the browser encounters encrypted media.
+> [`onEncrypted`](https://w3c.github.io/encrypted-media/#dom-evt-encrypted): [`Event` 핸들러](#event-handler) 함수. Fires when the browser encounters encrypted media.
+
 * `onEncryptedCapture`: A version of `onEncrypted` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
+> `onEncryptedCapture`: [캡쳐 단계](/learn/responding-to-events#capture-phase-events)에서 실행되는 버전의 `onEncrypted` 입니다.
+
 * [`onEnded`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/ended_event): An [`Event` handler](#event-handler) function. Fires when the playback stops because there's nothing left to play.
+> [`onEnded`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/ended_event): [`Event` 핸들러](#event-handler) 함수. Fires when the playback stops because there's nothing left to play.
+
 * `onEndedCapture`: A version of `onEnded` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
+> `onEndedCapture`: [캡쳐 단계](/learn/responding-to-events#capture-phase-events)에서 실행되는 버전의 `onEnded` 입니다.
+
 * [`onError`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/error_event): An [`Event` handler](#event-handler) function. Fires when the resource could not be loaded.
+> [`onError`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/error_event): [`Event` 핸들러](#event-handler) 함수. Fires when the resource could not be loaded.
+
 * `onErrorCapture`: A version of `onError` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
+> `onErrorCapture`: [캡쳐 단계](/learn/responding-to-events#capture-phase-events)에서 실행되는 버전의 `onError` 입니다.
+
 * [`onLoadedData`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/loadeddata_event): An [`Event` handler](#event-handler) function. Fires when the current playback frame has loaded.
+> [`onLoadedData`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/loadeddata_event): [`Event` 핸들러](#event-handler) 함수. Fires when the current playback frame has loaded.
+
 * `onLoadedDataCapture`: A version of `onLoadedData` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
+> `onLoadedDataCapture`: [캡쳐 단계](/learn/responding-to-events#capture-phase-events)에서 실행되는 버전의 `onLoadedData` 입니다.
+
 * [`onLoadedMetadata`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/loadedmetadata_event): An [`Event` handler](#event-handler) function. Fires when metadata has loaded.
+> [`onLoadedMetadata`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/loadedmetadata_event): [`Event` 핸들러](#event-handler) 함수. Fires when metadata has loaded.
+
 * `onLoadedMetadataCapture`: A version of `onLoadedMetadata` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
+> `onLoadedMetadataCapture`: [캡쳐 단계](/learn/responding-to-events#capture-phase-events)에서 실행되는 버전의 `onLoadedMetadata` 입니다.
+
 * [`onLoadStart`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/loadstart_event): An [`Event` handler](#event-handler) function. Fires when the browser started loading the resource.
+> [`onLoadStart`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/loadstart_event): [`Event` 핸들러](#event-handler) 함수. Fires when the browser started loading the resource.
+
 * `onLoadStartCapture`: A version of `onLoadStart` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
+> `onLoadStartCapture`: [캡쳐 단계](/learn/responding-to-events#capture-phase-events)에서 실행되는 버전의 `onLoadStart` 입니다.
+
 * [`onPause`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/pause_event): An [`Event` handler](#event-handler) function. Fires when the media was paused.
+> [`onPause`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/pause_event): [`Event` 핸들러](#event-handler) 함수. Fires when the media was paused.
+
 * `onPauseCapture`: A version of `onPause` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
+> `onPauseCapture`: [캡쳐 단계](/learn/responding-to-events#capture-phase-events)에서 실행되는 버전의 `onPause` 입니다.
+
 * [`onPlay`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/play_event): An [`Event` handler](#event-handler) function. Fires when the media is no longer paused.
+> [`onPlay`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/play_event): [`Event` 핸들러](#event-handler) 함수. Fires when the media is no longer paused.
+
 * `onPlayCapture`: A version of `onPlay` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
+> `onPlayCapture`: [캡쳐 단계](/learn/responding-to-events#capture-phase-events)에서 실행되는 버전의 `onPlay` 입니다.
+
 * [`onPlaying`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/playing_event): An [`Event` handler](#event-handler) function. Fires when the media starts or restarts playing.
+> [`onPlaying`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/playing_event): [`Event` 핸들러](#event-handler) 함수. Fires when the media starts or restarts playing.
+
 * `onPlayingCapture`: A version of `onPlaying` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
+> `onPlayingCapture`: [캡쳐 단계](/learn/responding-to-events#capture-phase-events)에서 실행되는 버전의 `onPlaying` 입니다.
+
 * [`onProgress`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/progress_event): An [`Event` handler](#event-handler) function. Fires periodically while the resource is loading.
+> [`onProgress`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/progress_event): [`Event` 핸들러](#event-handler) 함수. Fires periodically while the resource is loading.
+
 * `onProgressCapture`: A version of `onProgress` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
+> `onProgressCapture`: [캡쳐 단계](/learn/responding-to-events#capture-phase-events)에서 실행되는 버전의 `onProgress` 입니다.
+
 * [`onRateChange`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/ratechange_event): An [`Event` handler](#event-handler) function. Fires when playback rate changes.
+> [`onRateChange`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/ratechange_event): [`Event` 핸들러](#event-handler) 함수. Fires when playback rate changes.
+
 * `onRateChangeCapture`: A version of `onRateChange` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
+> `onRateChangeCapture`: [캡쳐 단계](/learn/responding-to-events#capture-phase-events)에서 실행되는 버전의 `onRateChange` 입니다.
+
 * `onResize`: An [`Event` handler](#event-handler) function. Fires when video changes size.
+> `onResize`: [`Event` 핸들러](#event-handler) 함수. Fires when video changes size.
+
 * `onResizeCapture`: A version of `onResize` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
+> `onResizeCapture`: [캡쳐 단계](/learn/responding-to-events#capture-phase-events)에서 실행되는 버전의 `onResize` 입니다.
+
 * [`onSeeked`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/seeked_event): An [`Event` handler](#event-handler) function. Fires when a seek operation completes.
+> [`onSeeked`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/seeked_event): [`Event` 핸들러](#event-handler) 함수. Fires when a seek operation completes.
+
 * `onSeekedCapture`: A version of `onSeeked` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
+> `onSeekedCapture`: [캡쳐 단계](/learn/responding-to-events#capture-phase-events)에서 실행되는 버전의 `onSeeked` 입니다.
+
 * [`onSeeking`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/seeking_event): An [`Event` handler](#event-handler) function. Fires when a seek operation starts.
+> [`onSeeking`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/seeking_event): [`Event` 핸들러](#event-handler) 함수. Fires when a seek operation starts.
+
 * `onSeekingCapture`: A version of `onSeeking` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
+> `onSeekingCapture`: [캡쳐 단계](/learn/responding-to-events#capture-phase-events)에서 실행되는 버전의 `onSeeking` 입니다.
+
 * [`onStalled`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/stalled_event): An [`Event` handler](#event-handler) function. Fires when the browser is waiting for data but it keeps not loading.
+> [`onStalled`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/stalled_event): [`Event` 핸들러](#event-handler) 함수. Fires when the browser is waiting for data but it keeps not loading.
+
 * `onStalledCapture`: A version of `onStalled` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
+> `onStalledCapture`: [캡쳐 단계](/learn/responding-to-events#capture-phase-events)에서 실행되는 버전의 `onStalled` 입니다.
+
 * [`onSuspend`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/suspend_event): An [`Event` handler](#event-handler) function. Fires when loading the resource was suspended.
+> [`onSuspend`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/suspend_event): [`Event` 핸들러](#event-handler) 함수. Fires when loading the resource was suspended.
+
 * `onSuspendCapture`: A version of `onSuspend` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
+> `onSuspendCapture`: [캡쳐 단계](/learn/responding-to-events#capture-phase-events)에서 실행되는 버전의 `onSuspend` 입니다.
+
 * [`onTimeUpdate`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/timeupdate_event): An [`Event` handler](#event-handler) function. Fires when the current playback time updates.
+> [`onTimeUpdate`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/timeupdate_event): [`Event` 핸들러](#event-handler) 함수. Fires when the current playback time updates.
+
 * `onTimeUpdateCapture`: A version of `onTimeUpdate` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
+> `onTimeUpdateCapture`: [캡쳐 단계](/learn/responding-to-events#capture-phase-events)에서 실행되는 버전의 `onTimeUpdate` 입니다.
+
 * [`onVolumeChange`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/volumechange_event): An [`Event` handler](#event-handler) function. Fires when the volume has changed.
+> [`onVolumeChange`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/volumechange_event): An [`Event` handler](#event-handler) function. Fires when the volume has changed.
+
 * `onVolumeChangeCapture`: A version of `onVolumeChange` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
+> `onVolumeChangeCapture`: [캡쳐 단계](/learn/responding-to-events#capture-phase-events)에서 실행되는 버전의 `onVolumeChange` 입니다.
+
 * [`onWaiting`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/waiting_event): An [`Event` handler](#event-handler) function. Fires when the playback stopped due to temporary lack of data.
+> [`onWaiting`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/waiting_event): [`Event` 핸들러](#event-handler) 함수. Fires when the playback stopped due to temporary lack of data.
+
 * `onWaitingCapture`: A version of `onWaiting` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
+> `onWaitingCapture`: [캡쳐 단계](/learn/responding-to-events#capture-phase-events)에서 실행되는 버전의 `onWaiting` 입니다.
 
 #### Caveats<Trans>주의사항</Trans> {/*common-caveats*/}
 

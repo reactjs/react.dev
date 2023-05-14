@@ -465,7 +465,7 @@ With this approach, `Row` does not need to receive an `isHighlighted` prop at al
 export default function Row({ title }) {
   const isHighlighted = useContext(HighlightContext);
   // ...
-````
+```
 
 This allows the calling component to not know or worry about passing `isHighlighted` to `<Row>`:
 <Trans>이렇게 하면 호출 컴포넌트가 `<Row>`에 `isHighlighted`를 전달하는 것에 대해 알 필요도 없고, 걱정하지 않아도 됩니다:</Trans>

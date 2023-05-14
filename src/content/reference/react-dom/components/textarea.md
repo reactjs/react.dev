@@ -96,7 +96,7 @@ These `<textarea>` props are relevant both for uncontrolled and controlled text 
 <Trans>`onInputCapture`: [캡쳐 단계](https://beta.reactjs.org/learn/responding-to-events#capture-phase-events)에 실행되는 버전의 `onInput`입니다.</Trans>
 
 * [`onInvalid`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/invalid_event): An [`Event` handler](/reference/react-dom/components/common#event-handler) function. Fires if an input fails validation on form submit. Unlike the built-in `invalid` event, the React `onInvalid` event bubbles.
-<Trans>[`onInvalid`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/invalid_event): [이벤트 핸들러](https://beta.reactjs.org/reference/react-dom/components/common#event-handler). 폼 제출시 유효성 검사에 실패하면 발생합니다. 빌트인 `invalid` 이벤트와는 달리, 리액트 `onInvalid` 이벤트는 버블링이 발생합니다.</Trans>
+<Trans>[`onInvalid`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/invalid_event): [이벤트 핸들러](https://beta.reactjs.org/reference/react-dom/components/common#event-handler). 폼 제출시 유효성 검사에 실패하면 발생합니다. 빌트인 `invalid` 이벤트와는 달리, 리액트 `onInvalid` 이벤트는 버블이 발생합니다.</Trans>
 
 * `onInvalidCapture`: A version of `onInvalid` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
 <Trans>`onInvalidCapture`: [캡쳐 단계](https://beta.reactjs.org/learn/responding-to-events#capture-phase-events)에 실행되는 버전의 `onInvalid`입니다.</Trans>

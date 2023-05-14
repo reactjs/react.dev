@@ -38,7 +38,7 @@ jobs:
       # Here's the first place where next-bundle-analysis' own script is used
       # This step pulls the raw bundle stats for the current bundle
       - name: Analyze bundle
-        run: npx -p nextjs-bundle-analysis report
+        run: npx -p nextjs-bundle-analysis@0.5.0 report
 
       - name: Upload bundle
         uses: actions/upload-artifact@v2

@@ -3,10 +3,10 @@ title: 번역 진행상황
 ---
 
 <Intro>
-last updated @ 2023-05-11 13:50
+last updated @ 2023-05-12 11:30
 </Intro>
 
-## Reference - 진행중 (done: 29 / total: 59) {/*reference*/}
+## Reference - 진행중 (done: 30 / total: 59) {/*reference*/}
 
 |     | title                                                                |     | title                                                                                  |
 | :-: | :------------------------------------------------------------------- | :-: | :------------------------------------------------------------------------------------- |
@@ -14,7 +14,7 @@ last updated @ 2023-05-11 13:50
 |  ✅  | [5-1. useCallback](/reference/react/useCallback)                     |  ✅  | [8-4. `<progress>`](/reference/react-dom/components/progress)                          |
 |  ✅  | [5-2. useContext](/reference/react/useContext)                       |  ▢  | [8-5. `<select>`](/reference/react-dom/components/select)                              |
 |  ✅  | [5-3. useDebugValue](/reference/react/useDebugValue)                 |  ▢  | [8-6. `<textarea>`](/reference/react-dom/components/textarea)                          |
-|  ✅  | [5-4. useDeferredValue](/reference/react/useDeferredValue)           |  ▢  | [9. APIs](/reference/react-dom)                                                        |
+|  ✅  | [5-4. useDeferredValue](/reference/react/useDeferredValue)           |  ✅  | [9. APIs](/reference/react-dom)                                                        |
 |  ✅  | [5-5. useEffect](/reference/react/useEffect)                         |  ▢  | [9-1. createPortal](/reference/react-dom/createPortal)                                 |
 |  ✅  | [5-6. useId](/reference/react/useId)                                 |  ▢  | [9-2. flushSync](/reference/react-dom/flushSync)                                       |
 |  ✅  | [5-7. useImperativeHandle](/reference/react/useImperativeHandle)     |  ▢  | [9-3. findDOMNode](/reference/react-dom/findDOMNode)                                   |

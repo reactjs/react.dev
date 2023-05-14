@@ -704,8 +704,8 @@ export default function PackingList() {
 Note that you must write `importance > 0 && ...` rather than `importance && ...` so that if the `importance` is `0`, `0` isn't rendered as the result!
 <Trans>`importance`가 `0`인 경우 `0`이 결과로 렌더링되지 않도록, `importance && ...`가 아닌 `importance > 0 && ...`를 작성해야 한다는 점에 유의하세요!</Trans>
 
-In this solution, two separate conditions are used to insert a space between then name and the importance label. Alternatively, you could use a fragment with a leading space: `importance > 0 && <> <i>...</i></>` or add a space immediately inside the `<i>`:  `importance > 0 && <i> ...</i>`.
-<Trans>이 솔루션에서는 별개의 두 조건을 사용하여 이름과 importance 레이블 사이에 공백을 삽입했습니다. 혹은 선행 공백이 있는 조각을 사용할 수도 있습니다: `importance > 0 && <> <i>...</i></>`도 좋고, 또는 `<i>` 안에 곧바로 공백을 추가할 수도 있습니다: `importance > 0 && <i> ...</i>`.</Trans>
+In this solution, two separate conditions are used to insert a space between the name and the importance label. Alternatively, you could use a fragment with a leading space: `importance > 0 && <> <i>...</i></>` or add a space immediately inside the `<i>`:  `importance > 0 && <i> ...</i>`.
+<Trans>이 솔루션에서는 이름과 importance 레이블 사이에 공백을 삽입하기 위해 별개의 두 조건을 사용합니다. 또는 선행 공백이 있는 조각을 사용할 수도 있습니다: `importance > 0 && <><i>...</i></>`도 좋고, 또는 `<i>` 안에 곧바로 공백을 추가할 수도 있습니다: `importance > 0 && <i> ...</i>`.</Trans>
 
 </Solution>
 

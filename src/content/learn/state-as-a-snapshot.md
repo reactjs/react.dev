@@ -420,8 +420,8 @@ But what if you wanted to read the latest state before a re-render? You'll want 
 
 #### Implement a traffic light<Trans>신호등 구현하기</Trans> {/*implement-a-traffic-light*/}
 
-Here is a crosswalk light component that toggles on when the button is pressed:
-<Trans>다음은 버튼을 누르면 켜지는 횡단보도 조명 컴포넌트입니다:</Trans>
+Here is a crosswalk light component that toggles when the button is pressed:
+<Trans>다음은 버튼을 누르면 토글되는 횡단보도 조명 컴포넌트입니다:</Trans>
 
 <Sandpack>
 

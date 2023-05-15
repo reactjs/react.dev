@@ -1,6 +1,6 @@
 ---
 title: "<textarea>"
-translators: [유은미, 정재남]
+translators: [유은미, 고석영, 정재남]
 ---
 
 <Intro>

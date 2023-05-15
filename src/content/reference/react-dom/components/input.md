@@ -1,6 +1,6 @@
 ---
 title: "<input>"
-translators: [류재준, 정재남]
+translators: [류재준, 정재남, 고석영]
 ---
 
 <Intro>
@@ -182,19 +182,26 @@ These `<input>` props are relevant both for uncontrolled and controlled inputs:
 #### Caveats<Trans>주의사항</Trans> {/*caveats*/}
 
 - Checkboxes need `checked` (or `defaultChecked`), not `value` (or `defaultValue`).
+<Trans>체크박스는 `value`(또는 `defaultValue`)가 아닌 `checked`(또는 `defaultChecked`)가 필요합니다.</Trans>
 - If a text input receives a string `value` prop, it will be [treated as controlled.](#controlling-an-input-with-a-state-variable)
+<Trans>텍스트 input이 문자열 `value` prop을 받으면 [제어된 것으로 처리됩니다.](#controlling-an-input-with-a-state-variable).</Trans>
 - If a checkbox or a radio button receives a boolean `checked` prop, it will be [treated as controlled.](#controlling-an-input-with-a-state-variable)
+<Trans>체크박스나 라디오 버튼이 불리언 `checked` prop을 받으면 [제어된 것으로 처리됩니다.](#controlling-an-input-with-a-state-variable).</Trans>
 - An input can't be both controlled and uncontrolled at the same time.
+<Trans>input은 동시에 제어되거나 제어되지 않을 수 없습니다.</Trans>
 - An input cannot switch between being controlled or uncontrolled over its lifetime.
+<Trans>input은 수명 동안 제어되거나 제어되지 않는 상태로 전환될 수 없습니다.</Trans>
 - Every controlled input needs an `onChange` event handler that synchronously updates its backing value.
+<Trans>제어되는 모든 입력에는 `onChange` 이벤트 핸들러가 필요하며, 이 핸들러는 지원 값을 동기적으로 업데이트합니다.</Trans>
 
 ---
 
 ## Usage<Trans>사용법</Trans> {/*usage*/}
 
-### Displaying inputs of different types {/*displaying-inputs-of-different-types*/}
+### Displaying inputs of different types<Trans>다양한 유형의 input 표시하기</Trans> {/*displaying-inputs-of-different-types*/}
 
 To display an input, render an `<input>` component. By default, it will be a text input. You can pass `type="checkbox"` for a checkbox, `type="radio"` for a radio button, [or one of the other input types.](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#input_types)
+<Trans>input을 표시하려면 `<input>` 컴포넌트를 렌더링합니다. 기본적으로 텍스트 input이 됩니다. 체크박스의 경우 `type="checkbox"`, 라디오 버튼의 경우 `type="radio"` [또는 다른 input 유형 중 하나를 전달할 수 있습니다.](https://developer.mozilla.org/ko/docs/Web/HTML/Element/input#input_types)</Trans>
 
 <Sandpack>
 
@@ -239,11 +246,13 @@ input { margin: 5px; }
 
 ---
 
-### Providing a label for an input {/*providing-a-label-for-an-input*/}
+### Providing a label for an input <Trans>input에 대한 label 제공하기</Trans> {/*providing-a-label-for-an-input*/}
 
 Typically, you will place every `<input>` inside a [`<label>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/label) tag. This tells the browser that this label is associated with that input. When the user clicks the label, the browser will automatically focus the input. It's also essential for accessibility: a screen reader will announce the label caption when the user focuses the associated input.
+<Trans>일반적으로 모든 `<input>`은 [`<label>`](https://developer.mozilla.org/ko/docs/Web/HTML/Element/label) 태그 안에 배치됩니다. 이는 이 label이 해당 input과 연결되어 있음을 브라우저에 알려줍니다. 사용자가 label을 클릭하면 브라우저가 자동으로 input에 초점을 맞춥니다. 이는 접근성 측면에서도 필수적입니다: 사용자가 관련 input에 초점을 맞추면 스크린 리더가 label 캡션을 알립니다.</Trans>
 
 If you can't nest `<input>` into a `<label>`, associate them by passing the same ID to `<input id>` and [`<label htmlFor>`.](https://developer.mozilla.org/en-US/docs/Web/API/HTMLLabelElement/htmlFor) To avoid conflicts between multiple instances of one component, generate such an ID with [`useId`.](/reference/react/useId)
+<Trans>`<input>`을 `<label>`에 중첩할 수 없는 경우 동일한 ID를 `<input id>` 및 [`<label htmlFor>`.](https://developer.mozilla.org/en-US/docs/Web/API/HTMLLabelElement/htmlFor)에 전달하여 연결합니다. 한 컴포넌트의 여러 인스턴스 간에 충돌을 피하려면 [`useId`](/reference/react/useId)를 사용하여 이러한 ID를 생성하십시오.</Trans>
 
 <Sandpack>
 
@@ -274,9 +283,10 @@ input { margin: 5px; }
 
 ---
 
-### Providing an initial value for an input {/*providing-an-initial-value-for-an-input*/}
+### Providing an initial value for an input<Trans>input에 대한 초기값 제공하기</Trans> {/*providing-an-initial-value-for-an-input*/}
 
 You can optionally specify the initial value for any input. Pass it as the `defaultValue` string for text inputs. Checkboxes and radio buttons should specify the initial value with the `defaultChecked` boolean instead.
+<Trans>선택적으로 모든 input의 초기값을 지정할 수 있습니다. 텍스트 input의 경우 `defaultValue` 문자열로 전달합니다. 체크박스와 라디오 버튼은 불리언 타입인 `defaultChecked`으로 초기값을 대신 지정해야 합니다.</Trans>
 
 <Sandpack>
 
@@ -326,25 +336,31 @@ input { margin: 5px; }
 
 ---
 
-### Reading the input values when submitting a form {/*reading-the-input-values-when-submitting-a-form*/}
+### Reading the input values when submitting a form<Trans>form 제출 시 input 값 읽기</Trans> {/*reading-the-input-values-when-submitting-a-form*/}
 
 Add a [`<form>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form) around your inputs with a [`<button type="submit">`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button) inside. It will call your `<form onSubmit>` event handler. By default, the browser will send the form data to the current URL and refresh the page. You can override that behavior by calling `e.preventDefault()`. Read the form data with [`new FormData(e.target)`](https://developer.mozilla.org/en-US/docs/Web/API/FormData).
+<Trans>input 주위에 [`<form>`](https://developer.mozilla.org/ko/docs/Web/HTML/Element/form)을 추가하고 그 안에 [`<button type="submit">`](https://developer.mozilla.org/ko/docs/Web/HTML/Element/button)을 추가합니다. 그러면 `<form onSubmit>` 이벤트 핸들러가 호출됩니다. 기본적으로 브라우저는 form 데이터를 현재 URL로 전송하고 페이지를 새로 고칩니다. `e.preventDefault()`를 호출하여 이 동작을 재정의할 수 있습니다. [`new FormData(e.target)`](https://developer.mozilla.org/ko/docs/Web/API/FormData)로 form 데이터를 읽습니다.</Trans>
+
 <Sandpack>
 
 ```js
 export default function MyForm() {
   function handleSubmit(e) {
     // Prevent the browser from reloading the page
+    // 브라우저에서 페이지 리로드 방지
     e.preventDefault();
 
     // Read the form data
+    // form 데이터 읽기
     const form = e.target;
     const formData = new FormData(form);
 
     // You can pass formData as a fetch body directly:
+    // formData를 페치 본문으로 직접 전달할 수 있습니다:
     fetch('/some-api', { method: form.method, body: formData });
 
     // Or you can work with it as a plain object:
+    // 또는 일반 객체로 작업할 수도 있습니다:
     const formJson = Object.fromEntries(formData.entries());
     console.log(formJson);
   }
@@ -383,37 +399,45 @@ input { margin: 5px; }
 <Note>
 
 Give a `name` to every `<input>`, for example `<input name="firstName" defaultValue="Taylor" />`. The `name` you specified will be used as a key in the form data, for example `{ firstName: "Taylor" }`.
+<Trans>모든 `<input>`에 `name`을 지정합니다(예: `<input name="firstName" defaultValue="Taylor" />`). 지정한 `name`은 form 데이터에서 키로 사용됩니다(예: `{ firstName: "Taylor" }`).</Trans>
 
 </Note>
 
 <Pitfall>
 
 By default, *any* `<button>` inside a `<form>` will submit it. This can be surprising! If you have your own custom `Button` React component, consider returning [`<button type="button">`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/button) instead of `<button>`. Then, to be explicit, use `<button type="submit">` for buttons that *are* supposed to submit the form.
+<Trans>기본적으로 `<form>`안에 있는 *모든* `<button>`이 제출됩니다. 의외일 수 있습니다!! 커스텀 `Button` React 컴포넌트가 있는 경우 `<button>` 대신 [`<button type="button">`](https://developer.mozilla.org/ko/docs/Web/HTML/Element/input/button)을 반환하는 것을 고려하세요. 그런 다음 form을 제출해야 *하는* 버튼에 `<button type="submit">`을 사용하세요.</Trans>
 
 </Pitfall>
 
 ---
 
-### Controlling an input with a state variable {/*controlling-an-input-with-a-state-variable*/}
+### Controlling an input with a state variable<Trans>state 변수로 input 제어하기</Trans> {/*controlling-an-input-with-a-state-variable*/}
 
 An input like `<input />` is *uncontrolled.* Even if you [pass an initial value](#providing-an-initial-value-for-an-input) like `<input defaultValue="Initial text" />`, your JSX only specifies the initial value. It does not control what the value should be right now.
+<Trans>`<input />`과 같은 input은 *제어되지 않습니다.* `<input defaultValue="Initial text" />`와 같이 [초기값을 전달](#providing-an-initial-value-for-an-input)하더라도 JSX는 초기값만 지정합니다. 현재 값이 무엇이어야 하는지는 제어하지 않습니다.</Trans>
 
 **To render a _controlled_ input, pass the `value` prop to it (or `checked` for checkboxes and radios).** React will force the input to always have the `value` you passed. Usually, you would do this by declaring a [state variable:](/reference/react/useState)
+<Trans>**_제어된_input을 렌더링하려면 `value` prop을 전달하세요(체크박스와 라디오의 경우 `checked`).** React는 입력이 항상 전달한 `value`를 갖도록 강제합니다. 보통은 [state 변수](/reference/react/useState)를 선언하여 이를 수행합니다.</Trans>
 
 ```js {2,6,7}
 function Form() {
   const [firstName, setFirstName] = useState(''); // Declare a state variable...
+                                                  // state 변수 정의...
   // ...
   return (
     <input
       value={firstName} // ...force the input's value to match the state variable...
+                        // ...input값이 state 변수와 일치하도록 강제...
       onChange={e => setFirstName(e.target.value)} // ... and update the state variable on any edits!
+                                                   // ... 그리고 수정할 때마다 state 변수를 업데이트하세요!
     />
   );
 }
 ```
 
 A controlled input makes sense if you needed state anyway--for example, to re-render your UI on every edit:
+<Trans>예를 들어 편집할 때마다 UI를 다시 렌더링해야 하는 경우와 같이 어차피 state가 필요할 때, 제어 input이 적합합니다:</Trans>
 
 ```js {2,9}
 function Form() {
@@ -429,6 +453,7 @@ function Form() {
 ```
 
 It's also useful if you want to offer multiple ways to adjust the input state (for example, by clicking a button):
+<Trans>버튼을 클릭하는 등 다양한 방법으로 input state를 조정하는 기능을 제공하려는 경우에도 유용합니다:</Trans>
 
 ```js {3-4,10-11,14}
 function Form() {
@@ -450,6 +475,7 @@ function Form() {
 ```
 
 The `value` you pass to controlled components should not be `undefined` or `null`. If you need the initial value to be empty (such as with the `firstName` field below), initialize your state variable to an empty string (`''`).
+<Trans>제어되는 컴포넌트에 전달하는 `value`는 `undefined` 또는 `null`이어서는 안 됩니다. 초기값을 비워야 하는 경우(아래의 `firstName` 필드와 같이) state 변수를 빈 문자열(`''`)로 초기화하세요.</Trans>
 
 <Sandpack>
 
@@ -502,16 +528,19 @@ p { font-weight: bold; }
 <Pitfall>
 
 **If you pass `value` without `onChange`, it will be impossible to type into the input.** When you control an input by passing some `value` to it, you *force* it to always have the value you passed. So if you pass a state variable as a `value` but forget to update that state variable synchronously during the `onChange` event handler, React will revert the input after every keystroke back to the `value` that you specified.
+<Trans>**`onChange` 없이 `value`를 전달하면 input에 입력이 불가능합니다.** 어떤 `value`를 전달해서 input을 제어하면 항상 전달한 값을 갖도록 *강제*하게 됩니다. 따라서 state 변수를 `value`로 전달했지만 `onChange` 이벤트 핸들러에서 해당 state 변수를 동기적으로 업데이트하는 것을 잊어버린 경우, React는 모든 키 입력 후 input을 사용자가 지정한 `value`로 되돌립니다.</Trans>
 
 </Pitfall>
 
 ---
 
-### Optimizing re-rendering on every keystroke {/*optimizing-re-rendering-on-every-keystroke*/}
+### Optimizing re-rendering on every keystroke<Trans>모든 키 입력 리렌더링 최적화하기</Trans> {/*optimizing-re-rendering-on-every-keystroke*/}
 
 When you use a controlled input, you set the state on every keystroke. If the component containing your state re-renders a large tree, this can get slow. There's a few ways you can optimize re-rendering performance.
+<Trans>제어 input을 사용할 때는 모든 키 입력에 state를 설정합니다. state가 포함된 컴포넌트가 큰 트리를 다시 렌더링하면 속도가 느려질 수 있습니다. 리렌더링 성능을 최적화할 수 있는 몇 가지 방법이 있습니다.</Trans>
 
 For example, suppose you start with a form that re-renders all page content on every keystroke:
+<Trans>예를 들어 모든 키 입력 시 모든 페이지 콘텐츠를 다시 렌더링하는 form으로 시작한다고 가정해 보겠습니다:</Trans>
 
 ```js {5-8}
 function App() {
@@ -528,6 +557,7 @@ function App() {
 ```
 
 Since `<PageContent />` doesn't rely on the input state, you can move the input state into its own component:
+<Trans>`PageContent />`는 input state에 의존하지 않으므로 input state를 자체 컴포넌트로 이동할 수 있습니다:</Trans>
 
 ```js {4,10-17}
 function App() {
@@ -550,8 +580,10 @@ function SignupForm() {
 ```
 
 This significantly improves performance because now only `SignupForm` re-renders on every keystroke.
+<Trans>이제 모든 키 입력에 대해 `SignupForm`만 리렌더링하므로 성능이 크게 향상됩니다.</Trans>
 
 If there is no way to avoid re-rendering (for example, if `PageContent` depends on the search input's value), [`useDeferredValue`](/reference/react/useDeferredValue#deferring-re-rendering-for-a-part-of-the-ui) lets you keep the controlled input responsive even in the middle of a large re-render.
+<Trans>리렌더링을 피할 방법이 없는 경우(예: `PageContent`가 검색 input 값에 의존하는 경우), [`useDeferredValue`](/reference/react/useDeferredValue#deferring-re-rendering-for-a-part-of-the-ui)를 사용하면 대규모 리렌더링 중에도 제어된 input의 반응성을 유지할 수 있습니다.</Trans>
 
 ---
 

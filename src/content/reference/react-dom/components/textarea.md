@@ -39,10 +39,10 @@ To display a text area, render the [built-in browser `<textarea>`](https://devel
 <Trans>`<textarea>`는 모든 [공통 엘리먼트의 props](/reference/react-dom/components/common#props)를 지원합니다.</Trans>
 
 You can [make a text area controlled](#controlling-a-text-area-with-a-state-variable) by passing a `value` prop:
-<Trans>`value` prop을 전달함으로써 [이를 제어컴포넌트가 되게 할 수 있습니다](#controlling-a-text-area-with-a-state-variable):</Trans>
+<Trans>`value` prop을 전달함으로써 [이를 제어 컴포넌트가 되게 할 수 있습니다](#controlling-a-text-area-with-a-state-variable):</Trans>
 
 * `value`: A string. Controls the text inside the text area.  
-<Trans>`value`: 문자열 값. textarea 내부의 텍스트를 제어합니다.</Trans>
+<Trans outdent>`value`: 문자열 값. textarea 내부의 텍스트를 제어합니다.</Trans>
 
 When you pass `value`, you must also pass an `onChange` handler that updates the passed value.
 <Trans>`value`를 전달할 때는 전달된 value를 업데이트 하는 `onChange` 핸들러도 함께 전달해야 합니다. </Trans>
@@ -51,7 +51,7 @@ If your `<textarea>` is uncontrolled, you may pass the `defaultValue` prop inste
 <Trans>`<textarea>`가 비제어 컴포넌트인 경우에는, 대신 `defaultValue`를 전달할 수 있습니다:</Trans>
 
 * `defaultValue`: A string. Specifies [the initial value](#providing-an-initial-value-for-a-text-area) for a text area.
-<Trans>`defaultValue`: 문자열 값. textarea의 [초기값](#providing-an-initial-value-for-a-text-area)을 지정합니다.</Trans>
+<Trans outdent>`defaultValue`: 문자열 값. textarea의 [초기값](#providing-an-initial-value-for-a-text-area)을 지정합니다.</Trans>
 
 These `<textarea>` props are relevant both for uncontrolled and controlled text areas:
 <Trans>다음 `<textarea>` prop들은 비제어 및 제어 컴포넌트 모두에 영향을 미칩니다:</Trans>
@@ -72,7 +72,7 @@ These `<textarea>` props are relevant both for uncontrolled and controlled text 
 <Trans>[`disabled`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea#attr-disabled): 불리언. `true`일 경우, 입력이 비활성화되고 회색으로 표시됩니다.</Trans>
 
 * [`form`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea#attr-form): A string. Specifies the `id` of the `<form>` this input belongs to. If omitted, it's the closest parent form.
-<Trans>[`form`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea#attr-form): 문자열. 이 textarea가 속한 `<form>`의 `id`를 지정합니다. 생략하면 가장 가까운 상위 폼이 됩니다.</Trans>
+<Trans>[`form`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea#attr-form): 문자열. 이 textarea가 속한 `<form>`의 `id`를 지정합니다. 생략하면 가장 가까운 상위 form이 됩니다.</Trans>
 
 * [`maxLength`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea#attr-maxlength): A number. Specifies the maximum length of text.
 <Trans>[`maxLength`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea#attr-maxlength): 숫자. 텍스트의 최대 길이를 지정합니다.</Trans>
@@ -81,31 +81,31 @@ These `<textarea>` props are relevant both for uncontrolled and controlled text 
 <Trans>[`minLength`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea#attr-minlength): 숫자. 텍스트의 최소 길이를 지정합니다.</Trans>
 
 * [`name`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#name): A string. Specifies the name for this input that's [submitted with the form.](#reading-the-textarea-value-when-submitting-a-form)
-<Trans>[`name`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#name): 문자열. [폼 제출시](https://beta.reactjs.org/reference/react-dom/components/textarea#reading-the-textarea-value-when-submitting-a-form) 해당 textarea의 이름을 지정합니다.</Trans>
+<Trans>[`name`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#name): 문자열. [form 제출시](#reading-the-textarea-value-when-submitting-a-form) 해당 textarea의 이름을 지정합니다.</Trans>
 
 * `onChange`: An [`Event` handler](/reference/react-dom/components/common#event-handler) function. Required for [controlled text areas.](#controlling-a-text-area-with-a-state-variable) Fires immediately when the input's value is changed by the user (for example, it fires on every keystroke). Behaves like the browser [`input` event.](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/input_event)
-<Trans>`onChange`:  [이벤트 핸들러](https://beta.reactjs.org/reference/react-dom/components/common#event-handler). [제어 컴포넌트](https://beta.reactjs.org/reference/react-dom/components/textarea#controlling-a-text-area-with-a-state-variable)로 사용할 때 필요합니다. 사용자에 의해 입력 값이 변경되는 즉시 실행됩니다. (예: 각 키 입력시 실행됨). 브라우저의 [`input` event](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/input_event)와 동일하게 동작합니다.</Trans>
+<Trans>`onChange`:  [이벤트 핸들러](/reference/react-dom/components/common#event-handler). [제어 컴포넌트](#controlling-a-text-area-with-a-state-variable)로 사용할 때 필요합니다. 사용자에 의해 입력 값이 변경되는 즉시 실행됩니다. (예: 각 키 입력시 실행됨). 브라우저의 [`input` event](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/input_event)와 동일하게 동작합니다.</Trans>
 
 * `onChangeCapture`: A version of `onChange` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-<Trans>`onChangeCapture`: [캡쳐 단계](https://beta.reactjs.org/learn/responding-to-events#capture-phase-events)에 실행되는 버전의 `onChange`입니다.</Trans>
+<Trans>`onChangeCapture`: [캡쳐 단계](/learn/responding-to-events#capture-phase-events)에 실행되는 버전의 `onChange`입니다.</Trans>
 
 * [`onInput`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/input_event): An [`Event` handler](/reference/react-dom/components/common#event-handler) function. function. Fires immediately when the value is changed by the user. For historical reasons, in React it is idiomatic to use `onChange` instead which works similarly.
-<Trans>[`onInput`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/input_event): [이벤트 핸들러](https://beta.reactjs.org/reference/react-dom/components/common#event-handler). 사용자에 의해 값이 변결될 때마다 즉시 실행됩니다. 역사적인 이유로, 리액트에서는 일반적으로 비슷하게 작동하는 `onChange`를 대신 사용합니다.</Trans>
+<Trans>[`onInput`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/input_event): [이벤트 핸들러](/reference/react-dom/components/common#event-handler). 사용자에 의해 값이 변경될 때마다 즉시 실행됩니다. 역사적인 이유로, 리액트에서는 일반적으로 비슷하게 작동하는 `onChange`를 대신 사용합니다.</Trans>
 
 * `onInputCapture`: A version of `onInput` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-<Trans>`onInputCapture`: [캡쳐 단계](https://beta.reactjs.org/learn/responding-to-events#capture-phase-events)에 실행되는 버전의 `onInput`입니다.</Trans>
+<Trans>`onInputCapture`: [캡쳐 단계](/learn/responding-to-events#capture-phase-events)에 실행되는 버전의 `onInput`입니다.</Trans>
 
 * [`onInvalid`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/invalid_event): An [`Event` handler](/reference/react-dom/components/common#event-handler) function. Fires if an input fails validation on form submit. Unlike the built-in `invalid` event, the React `onInvalid` event bubbles.
-<Trans>[`onInvalid`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/invalid_event): [이벤트 핸들러](https://beta.reactjs.org/reference/react-dom/components/common#event-handler). 폼 제출시 유효성 검사에 실패하면 발생합니다. 빌트인 `invalid` 이벤트와는 달리, 리액트 `onInvalid` 이벤트는 버블이 발생합니다.</Trans>
+<Trans>[`onInvalid`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/invalid_event): [이벤트 핸들러](/reference/react-dom/components/common#event-handler). form 제출시 유효성 검사에 실패하면 발생합니다. 빌트인 `invalid` 이벤트와는 달리, 리액트 `onInvalid` 이벤트는 버블이 발생합니다.</Trans>
 
 * `onInvalidCapture`: A version of `onInvalid` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-<Trans>`onInvalidCapture`: [캡쳐 단계](https://beta.reactjs.org/learn/responding-to-events#capture-phase-events)에 실행되는 버전의 `onInvalid`입니다.</Trans>
+<Trans>`onInvalidCapture`: [캡쳐 단계](/learn/responding-to-events#capture-phase-events)에 실행되는 버전의 `onInvalid`입니다.</Trans>
 
 * [`onSelect`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLTextAreaElement/select_event): An [`Event` handler](/reference/react-dom/components/common#event-handler) function. Fires after the selection inside the `<textarea>` changes. React extends the `onSelect` event to also fire for empty selection and on edits (which may affect the selection).
-<Trans>[`onSelect`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLTextAreaElement/select_event): [이벤트 핸들러](https://beta.reactjs.org/reference/react-dom/components/common#event-handler). `<textarea>`의 내부 선택 영역이 변경되면 발생합니다. 리액트는 비어있는 선택과 (선택에 영향을 줄 수 있는) 편집에 대해서도  `onSelect` 이벤트가 발동되도록 확장했습니다.</Trans>
+<Trans>[`onSelect`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLTextAreaElement/select_event): [이벤트 핸들러](/reference/react-dom/components/common#event-handler). `<textarea>`의 내부 선택 영역이 변경되면 발생합니다. 리액트는 비어있는 선택과 (선택에 영향을 줄 수 있는) 편집에 대해서도  `onSelect` 이벤트가 발동되도록 확장했습니다.</Trans>
 
 * `onSelectCapture`: A version of `onSelect` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-<Trans>`onSelectCapture`: [캡쳐 단계](https://beta.reactjs.org/learn/responding-to-events#capture-phase-events)에 실행되는 버전의 `onSelect`입니다.</Trans>
+<Trans>`onSelectCapture`: [캡쳐 단계](/learn/responding-to-events#capture-phase-events)에 실행되는 버전의 `onSelect`입니다.</Trans>
 
 * [`placeholder`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea#attr-placeholder): A string. Displayed in a dimmed color when the text area value is empty.
 <Trans>[`placeholder`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea#attr-placeholder): 문자열. 입력 값이 비어 있을 때 희미한 색상으로 표시됩니다.</Trans>
@@ -114,13 +114,13 @@ These `<textarea>` props are relevant both for uncontrolled and controlled text 
 <Trans>[`readOnly`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea#attr-readonly): 불리언.  `true` 일 경우 유저는 textarea을 수정할 수 없습니다.</Trans>
 
 * [`required`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea#attr-required): A boolean. If `true`, the value must be provided for the form to submit.
-<Trans>[`required`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea#attr-required): 불리언. `true`일 경우 폼 제출시 값이 있어야 합니다.</Trans>
+<Trans>[`required`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea#attr-required): 불리언. `true`일 경우 form 제출시 값이 있어야 합니다.</Trans>
 
 * [`rows`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea#attr-rows): A number. Specifies the default height in average character heights. Defaults to `2`.
 <Trans>[`rows`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea#attr-rows): 숫자. 표준 문자 높이를 기준으로 기본 줄 수를 지정합니다. 기본 값은 `2`입니다.</Trans>
 
 * [`wrap`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea#attr-wrap): Either `'hard'`, `'soft'`, or `'off'`. Specifies how the text should be wrapped when submitting a form.
-<Trans>[`wrap`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea#attr-wrap): `'hard'`, `'soft'`, 혹은`'off'`. 폼 제출시 텍스트를 어떻게 줄바꿈할지를 지정합니다.</Trans>
+<Trans>[`wrap`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea#attr-wrap): `'hard'`, `'soft'`, 혹은`'off'`. form 제출시 텍스트를 어떻게 줄바꿈할지를 지정합니다.</Trans>
 
 #### Caveats<Trans>주의사항</Trans> {/*caveats*/}
 
@@ -253,10 +253,10 @@ Unlike in HTML, passing initial text like `<textarea>Some content</textarea>` is
 
 ---
 
-### Reading the text area value when submitting a form<Trans>폼 제출시 textarea 값 읽기</Trans> {/*reading-the-text-area-value-when-submitting-a-form*/}
+### Reading the text area value when submitting a form<Trans>form 제출시 textarea 값 읽기</Trans> {/*reading-the-text-area-value-when-submitting-a-form*/}
 
 Add a [`<form>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form) around your textarea with a [`<button type="submit">`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button) inside. It will call your `<form onSubmit>` event handler. By default, the browser will send the form data to the current URL and refresh the page. You can override that behavior by calling `e.preventDefault()`. Read the form data with [`new FormData(e.target)`](https://developer.mozilla.org/en-US/docs/Web/API/FormData).
-<Trans>textarea 주위에 [`<form>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form)을 추가하고, 폼 안에 [`<button type="submit">`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button)를 넣으세요. 그러면 `<form onSubmit>` 이벤트 핸들러가 호출됩니다. 기본적으로 브라우저는 폼 데이터를 현재 URL로 전송하고 페이지를 새로고침 합니다. `e.preventDefault()`를 호출하여 이 동작을 재 정의할 수 있습니다. 폼 데이터를 읽으려면 [`new FormData(e.target)`](https://developer.mozilla.org/en-US/docs/Web/API/FormData)를 사용하세요.</Trans>
+<Trans>textarea 주위에 [`<form>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form)을 추가하고, form 안에 [`<button type="submit">`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button)를 넣으세요. 그러면 `<form onSubmit>` 이벤트 핸들러가 호출됩니다. 기본적으로 브라우저는 form 데이터를 현재 URL로 전송하고 페이지를 새로고침 합니다. `e.preventDefault()`를 호출하여 이 동작을 재 정의할 수 있습니다. form 데이터를 읽으려면 [`new FormData(e.target)`](https://developer.mozilla.org/en-US/docs/Web/API/FormData)를 사용하세요.</Trans>
 
 <Sandpack>
 
@@ -310,14 +310,14 @@ input { margin: 5px; }
 <Note>
 
 Give a `name` to your `<textarea>`, for example `<textarea name="postContent" />`. The `name` you specified will be used as a key in the form data, for example `{ postContent: "Your post" }`.
-<Trans>`<textarea name="postContent" />`와 같이 `<textarea>`에 `name`를 지정하세요. 이렇게 지정한 `name`은 `{ postContent: "Your post" }`와 같이 폼 데이터의 키로 사용될 것입니다.</Trans>
+<Trans>`<textarea name="postContent" />`와 같이 `<textarea>`에 `name`를 지정하세요. 이렇게 지정한 `name`은 `{ postContent: "Your post" }`와 같이 form 데이터의 키로 사용될 것입니다.</Trans>
 
 </Note>
 
 <Pitfall>
 
 By default, *any* `<button>` inside a `<form>` will submit it. This can be surprising! If you have your own custom `Button` React component, consider returning [`<button type="button">`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/button) instead of `<button>`. Then, to be explicit, use `<button type="submit">` for buttons that *are* supposed to submit the form.
-<Trans>기본적으로 `<form>` 안의 어떠한 `<button>`이든 클릭시 제출될 것입니다. 이러한 동작이 당황스러울 수 있습니다! 사용자정의 `Button` 리액트 컴포넌트를 사용하고 있다면 `<button>` 대신 [`<button type="button">`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/button)로 작성하는 것을 고려하세요. 다음 폼 제출 버튼에는 [`<button type="submit">`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/button)`을 명확하게 표시하세요.</Trans>
+<Trans>기본적으로 `<form>` 안의 어떠한 `<button>`이든 클릭시 제출될 것입니다. 이러한 동작이 당황스러울 수 있습니다! 사용자정의 `Button` 리액트 컴포넌트를 사용하고 있다면 `<button>` 대신 [`<button type="button">`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/button)로 작성하는 것을 고려하세요. 다음 form 제출 버튼에는 [`<button type="submit">`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/button)`을 명확하게 표시하세요.</Trans>
 
 </Pitfall>
 
@@ -326,19 +326,22 @@ By default, *any* `<button>` inside a `<form>` will submit it. This can be surpr
 ### Controlling a text area with a state variable <Trans>state 변수를 사용하여 textarea 제어하기</Trans> {/*controlling-a-text-area-with-a-state-variable*/}
 
 A text area like `<textarea />` is *uncontrolled.* Even if you [pass an initial value](#providing-an-initial-value-for-a-text-area) like `<textarea defaultValue="Initial text" />`, your JSX only specifies the initial value, not the value right now.
-<Trans>`<textarea />`는 기본적으로 비제어 컴포넌트입니다. `<textarea defaultValue="Initial text" />`와 같이 초기값을 전달하더라도, JSX는 초기값만을 지정할 뿐, 현재값은 지정하지 않습니다.</Trans>
+<Trans>`<textarea />`는 기본적으로 비제어 컴포넌트입니다. `<textarea defaultValue="Initial text" />`와 같이 [초기값을 전달](#providing-an-initial-value-for-a-text-area)하더라도, JSX는 초기값만을 지정할 뿐, 현재값은 지정하지 않습니다.</Trans>
 
 **To render a _controlled_ text area, pass the `value` prop to it.** React will force the text area to always have the `value` you passed. Typically, you will control a text area by declaring a [state variable:](/reference/react/useState)
 <Trans>**_제어_ 컴포넌트로 렌더링하기 위해서는 `value` prop을 전달하세요.** 리액트는 textarea가 항상 전달한 `value`를 사용하도록 강제합니다. 일반적으로 [state 변수](https://beta.reactjs.org/reference/react/useState)로 textarea를 제어합니다.</Trans>
 
-```js {2,6,7}
+```js {2-3,7-10}
 function NewPost() {
   const [postContent, setPostContent] = useState(''); // Declare a state variable...
+                                                      // state 변수 정의...
   // ...
   return (
     <textarea
       value={postContent} // ...force the input's value to match the state variable...
+                          // ...input값이 state 변수와 일치하도록 강제...
       onChange={e => setPostContent(e.target.value)} // ... and update the state variable on any edits!
+                                                     // ... 그리고 수정할 때마다 state 변수를 업데이트하세요!
     />
   );
 }
@@ -430,7 +433,7 @@ If you render a text area with `value` but no `onChange`, you will see an error 
 <ConsoleBlock level="error">
 
 You provided a `value` prop to a form field without an `onChange` handler. This will render a read-only field. If the field should be mutable use `defaultValue`. Otherwise, set either `onChange` or `readOnly`.
-<Trans>폼 필드에 `value` 프로퍼티만 제공하고 `onChange` 핸들러는 제공하지 않았습니다. 이런 경우 읽기전용 필드가 렌더링됩니다. 필드가 변경 가능해야 하는 경우 `defaultValue`를 사용하십시오. 그렇지 않으면 `onChange` 또는 `readOnly`를 설정하세요.</Trans>
+<Trans>form 필드에 `value` 프로퍼티만 제공하고 `onChange` 핸들러는 제공하지 않았습니다. 이런 경우 읽기전용 필드가 렌더링됩니다. 필드가 변경 가능해야 하는 경우 `defaultValue`를 사용하십시오. 그렇지 않으면 `onChange` 또는 `readOnly`를 설정하세요.</Trans>
 
 </ConsoleBlock>
 
@@ -466,7 +469,7 @@ If the value is intentionally read-only, add a `readOnly` prop to suppress the e
 ### My text area caret jumps to the beginning on every keystroke<Trans>키를 누를 때마다 커서가 처음으로 이동합니다</Trans> {/*my-text-area-caret-jumps-to-the-beginning-on-every-keystroke*/}
 
 If you [control a text area,](#controlling-a-text-area-with-a-state-variable) you must update its state variable to the text area's value from the DOM during `onChange`.
-<Trans>[제어 textarea]((#controlling-a-text-area-with-a-state-variable)의 경우 `onChange` 중에 state 변수를 DOM의 값으로 업데이트해야 합니다.</Trans>
+<Trans>[제어 textarea](#controlling-a-text-area-with-a-state-variable)의 경우 `onChange` 중에 state 변수를 DOM의 값으로 업데이트해야 합니다.</Trans>
 
 You can't update it to something other than `e.target.value`:
 <Trans>`e.target.value`가 아닌 다른 값으로 업데이트할 수 없습니다:</Trans>

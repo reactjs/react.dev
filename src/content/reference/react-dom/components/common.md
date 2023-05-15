@@ -34,19 +34,19 @@ These special React props are supported for all built-in components:
 <Trans>`children`: React 노드(엘리먼트, 문자열, 숫자, portal, null, undefined 및 boolean과 같은 빈 노드 또는 기타 React 노드의 배열). 컴포넌트 내부의 콘텐츠를 지정합니다. JSX를 사용할 때 일반적으로 `<div><span /></div>`와 같은 태그를 중첩하여 암묵적으로 `children` prop을 지정합니다.</Trans>
 
 * `dangerouslySetInnerHTML`: An object of the form `{ __html: '<p>some html</p>' }` with a raw HTML string inside. Overrides the [`innerHTML`](https://developer.mozilla.org/en-US/docs/Web/API/Element/innerHTML) property of the DOM node and displays the passed HTML inside. This should be used with extreme caution! If the HTML inside isn't trusted (for example, if it's based on user data), you risk introducing an [XSS](https://en.wikipedia.org/wiki/Cross-site_scripting) vulnerability. [Read more about using `dangerouslySetInnerHTML`.](#dangerously-setting-the-inner-html)
-<Trans>`dangerouslySetInnerHTML`: 내부에 원시 HTML 문자열이 있는 `{ __html: '<p>일부 html</p>' }` 형식의 객체로, 내부에 원시 HTML 문자열이 있습니다. DOM 노드의 [`innerHTML`]` 속성을 재정의하고 전달된 HTML을 내부에 표시합니다. 이 함수는 매우 주의해서 사용해야 합니다! 내부 HTML을 신뢰할 수 없는 경우(예: 사용자 데이터를 기반으로 하는 경우) [XSS](https://en.wikipedia.org/wiki/Cross-site_scripting) 취약점이 발생할 위험이 있습니다. [`dangerouslySetInnerHTML` 사용에 대해 자세히 알아보세요.](/reference/react-dom/components/common#dangerously-setting-the-inner-html)</Trans>
+<Trans>`dangerouslySetInnerHTML`: 내부에 원시 HTML 문자열이 있는 `{ __html: '<p>일부 html</p>' }` 형식의 객체로, 내부에 원시 HTML 문자열이 있습니다. DOM 노드의 [`innerHTML`](https://developer.mozilla.org/en-US/docs/Web/API/Element/innerHTML) 속성을 재정의하고 전달된 HTML을 내부에 표시합니다. 이 함수는 매우 주의해서 사용해야 합니다! 내부 HTML을 신뢰할 수 없는 경우(예: 사용자 데이터를 기반으로 하는 경우) [XSS](https://en.wikipedia.org/wiki/Cross-site_scripting) 취약점이 발생할 위험이 있습니다. [`dangerouslySetInnerHTML` 사용에 대해 자세히 알아보세요.](/reference/react-dom/components/common#dangerously-setting-the-inner-html)</Trans>
 
 * `ref`: A ref object from [`useRef`](/reference/react/useRef) or [`createRef`](/reference/react/createRef), or a [`ref` callback function,](#ref-callback) or a string for [legacy refs.](https://reactjs.org/docs/refs-and-the-dom.html#legacy-api-string-refs) Your ref will be filled with the DOM element for this node. [Read more about manipulating the DOM with Refs.](#manipulating-a-dom-node-with-a-ref)
-<Trans>`ref`: `useRef`또는[`createRef`](/reference/react/createRef)의 참조 객체, [`ref` 콜백 함수,](/reference/react-dom/components/common#ref-callback) 또는 레거시 ref에 대한 문자열. ref는 이 노드의 DOM 엘리먼트로 채워집니다. [ref로 DOM을 조작하는 방법에 대해 자세히 알아보세요.](/reference/react-dom/components/common#manipulating-a-dom-node-with-a-ref)</Trans>
+<Trans>`ref`: [`useRef`](/reference/react/useRef) 또는 [`createRef`](/reference/react/createRef)의 참조 객체, [`ref` 콜백 함수](#ref-callback), 또는 [레거시 ref](https://reactjs.org/docs/refs-and-the-dom.html#legacy-api-string-refs)에 대한 문자열. ref는 이 노드의 DOM 엘리먼트로 채워집니다. [ref로 DOM을 조작하는 방법에 대해 자세히 알아보세요.](/reference/react-dom/components/common#manipulating-a-dom-node-with-a-ref)</Trans>
 
 * `suppressContentEditableWarning`: A boolean. If `true`, suppresses the warning that React shows for elements that both have `children` and `contentEditable={true}` (which normally do not work together). Use this if you're building a text input library that manages the `contentEditable` content manually.
 <Trans>`suppressContentEditableWarning`: 불리언. `true`이면, 일반적으로 함께 작동하지 않는 (일반적으로 함께 작동하지 않는) `children`과 `contentEditable={true}`가 모두 있는 엘리먼트에 대해 React가 표시하는 경고를 억제합니다. 이 값을 사용하면 `contentEditable` 콘텐츠를 수동으로 관리하는 텍스트 입력 라이브러리를 빌드할 때 사용합니다.</Trans>
 
 * `suppressHydrationWarning`: A boolean. If you use [server rendering,](/reference/react-dom/server) normally there is a warning when the server and the client render different content. In some rare cases (like timestamps), it is very hard or impossible to guarantee an exact match. If you set `suppressHydrationWarning` to `true`, React will not warn you about mismatches in the attributes and the content of that element. It only works one level deep, and is intended to be used as an escape hatch. Don't overuse it. [Read about suppressing hydration errors.](/reference/react-dom/client/hydrateRoot#suppressing-unavoidable-hydration-mismatch-errors)
-<Trans>`suppressHydrationWarning`: 불리언입니다. 서버 렌더링을 사용하는 경우 일반적으로 서버와 클라이언트가 서로 다른 콘텐츠를 렌더링할 때 경고가 표시됩니다. 타임스탬프와 같은 일부 드문 경우에서는 정확한 일치를 보장하기가 매우 어렵거나 불가능합니다. `suppressHydrationWarning`을 `true`로 설정하면 React는 해당 엘리먼트의 속성과 콘텐츠가 일치하지 않을 때 경고하지 않습니다. 이는 한 단계 깊이에서만 작동하며, 탈출구로 사용하기 위한 것입니다. 과도하게 사용하지 마세요. [수화 오류 억제에 대해 자세히 알아보기](/reference/react-dom/client/hydrateRoot#suppressing-unavoidable-hydration-mismatch-errors)</Trans>
+<Trans>`suppressHydrationWarning`: 불리언입니다. [서버 렌더링](/reference/react-dom/server)을 사용하는 경우 일반적으로 서버와 클라이언트가 서로 다른 콘텐츠를 렌더링할 때 경고가 표시됩니다. 타임스탬프와 같은 일부 드문 경우에서는 정확한 일치를 보장하기가 매우 어렵거나 불가능합니다. `suppressHydrationWarning`을 `true`로 설정하면 React는 해당 엘리먼트의 속성과 콘텐츠가 일치하지 않을 때 경고하지 않습니다. 이는 한 단계 깊이에서만 작동하며, 탈출구로 사용하기 위한 것입니다. 과도하게 사용하지 마세요. [hydration 오류 억제에 대해 자세히 알아보세요.](/reference/react-dom/client/hydrateRoot#suppressing-unavoidable-hydration-mismatch-errors)</Trans>
 
 * `style`: An object with CSS styles, for example `{ fontWeight: 'bold', margin: 20 }`. Similarly to the DOM [`style`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/style) property, the CSS property names need to be written as `camelCase`, for example `fontWeight` instead of `font-weight`. You can pass strings or numbers as values. If you pass a number, like `width: 100`, React will automatically append `px` ("pixels") to the value unless it's a [unitless property.](https://github.com/facebook/react/blob/81d4ee9ca5c405dce62f64e61506b8e155f38d8d/packages/react-dom-bindings/src/shared/CSSProperty.js#L8-L57) We recommend using `style` only for dynamic styles where you don't know the style values ahead of time. In other cases, applying plain CSS classes with `className` is more efficient. [Read more about `className` and `style`.](#applying-css-styles)
-<Trans>`style`: CSS 스타일이 있는 객체(예: `{ fontWeight: 'bold', margin: 20 }`). DOM [`style`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/style) 프로퍼티와 마찬가지로 CSS 프로퍼티 이름도`font-weight`대신`fontWeight`와 같이 `camelCase`로 작성해야 합니다. 문자열이나 숫자를 값으로 전달할 수 있습니다. `width: 100`과 같이 숫자를 전달하면 React는 단위가 없는 프로퍼티가 아니라면 값에 자동으로 `px`("픽셀")를 추가합니다. 스타일 값을 미리 알 수 없는 동적 스타일에만 `style`을 사용하는 것을 권장합니다. 그 외의 경우에는 `className`과 함께 일반 CSS 클래스를 적용하는 것이 더 효율적입니다. [`className`과 `style`로 CSS를 적용하는 방법에 대해 자세히 알아보세요.](#applying-css-styles)</Trans>
+<Trans>`style`: CSS 스타일이 있는 객체(예: `{ fontWeight: 'bold', margin: 20 }`). DOM [`style`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/style) 프로퍼티와 마찬가지로 CSS 프로퍼티 이름도`font-weight` 대신 `fontWeight`와 같이 `camelCase`로 작성해야 합니다. 문자열이나 숫자를 값으로 전달할 수 있습니다. `width: 100`과 같이 숫자를 전달하면 React는 [단위가 없는 프로퍼티](https://github.com/facebook/react/blob/81d4ee9ca5c405dce62f64e61506b8e155f38d8d/packages/react-dom-bindings/src/shared/CSSProperty.js#L8-L57)가 아니라면 값에 자동으로 `px`("픽셀")를 추가합니다. 스타일 값을 미리 알 수 없는 동적 스타일에만 `style`을 사용하는 것을 권장합니다. 그 외의 경우에는 `className`과 함께 일반 CSS 클래스를 적용하는 것이 더 효율적입니다. [`className`과 `style`로 CSS를 적용하는 방법에 대해 자세히 알아보세요.](#applying-css-styles)</Trans>
 
 These standard DOM props are also supported for all built-in components:
 <Trans>아래의 표준 DOM props는 모든 빌트인 컴포넌트에서도 지원됩니다:</Trans>
@@ -64,7 +64,7 @@ These standard DOM props are also supported for all built-in components:
 <Trans>[`className`](https://developer.mozilla.org/en-US/docs/Web/API/Element/className): 문자열. 엘리먼트의 CSS 클래스 이름을 지정합니다. [CSS 스타일 적용에 대해 자세히 알아보세요.](/reference/react-dom/components/common#applying-css-styles)</Trans>
 
 * [`contentEditable`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/contenteditable): A boolean. If `true`, the browser lets the user edit the rendered element directly. This is used to implement rich text input libraries like [Lexical.](https://lexical.dev/) React warns if you try to pass React children to an element with `contentEditable={true}` because React will not be able to update its content after user edits.
-<Trans>[`contentEditable`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/contenteditable): 불리언. `true`이면 브라우저는 사용자가 렌더링된 엘리먼트를 직접 편집할 수 있도록 허용합니다. 이것은 [Lexical.](<https://lexical.dev/>)과 같은 리치 텍스트 입력 라이브러리를 구현하는 데 사용됩니다. React는 사용자가 편집한 후에 React가 그 내용을 업데이트할 수 없기 때문에 `contentEditable={true}`가 있는 엘리먼트에 React 자식을 전달하려고 하면 경고를 표시합니다.</Trans>
+<Trans>[`contentEditable`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/contenteditable): 불리언. `true`이면 브라우저는 사용자가 렌더링된 엘리먼트를 직접 편집할 수 있도록 허용합니다. 이것은 [Lexical](<https://lexical.dev/>)과 같은 리치 텍스트 입력 라이브러리를 구현하는 데 사용됩니다. React는 사용자가 편집한 후에 React가 그 내용을 업데이트할 수 없기 때문에 `contentEditable={true}`가 있는 엘리먼트에 React 자식을 전달하려고 하면 경고를 표시합니다.</Trans>
 
 * [`data-*`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/data-*): Data attributes let you attach some string data to the element, for example `data-fruit="banana"`. In React, they are not commonly used because you would usually read data from props or state instead.
 <Trans>[`data-*`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/data-*): 데이터 속성을 사용하면 엘리먼트에 일부 문자열 데이터를 첨부할 수 있습니다(예: `data-fruit="banana"`). React에서는 일반적으로 프로퍼티나 state에서 데이터를 읽어오기 때문에 일반적으로 사용되지는 않습니다.</Trans>
@@ -73,7 +73,7 @@ These standard DOM props are also supported for all built-in components:
 <Trans>[`dir`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/dir): `'ltr'` 또는 `'rtl'`. 엘리먼트의 텍스트 방향을 지정합니다.</Trans>
 
 * [`draggable`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/draggable): A boolean. Specifies whether the element is draggable. Part of [HTML Drag and Drop API.](https://developer.mozilla.org/en-US/docs/Web/API/HTML_Drag_and_Drop_API)
-<Trans>[`draggable`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/draggable): 불리언. 엘리먼트를 드래그할 수 있는지 여부를 지정합니다. HTML 드래그 앤 드롭 API의 일부입니다.</Trans>
+<Trans>[`draggable`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/draggable): 불리언. 엘리먼트를 드래그할 수 있는지 여부를 지정합니다. [HTML 드래그 앤 드롭 API](https://developer.mozilla.org/en-US/docs/Web/API/HTML_Drag_and_Drop_API)의 일부입니다.</Trans>
 
 * [`enterKeyHint`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/enterKeyHint): A string. Specifies which action to present for the enter key on virtual keyboards.
 <Trans>[`enterKeyHint`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/enterKeyHint): 문자열. 가상 키보드의 엔터 키에 표시할 동작을 지정합니다.</Trans>
@@ -85,10 +85,10 @@ These standard DOM props are also supported for all built-in components:
 <Trans>[`hidden`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/hidden): 불리언 또는 문자열. 엘리먼트의 숨김 여부를 지정합니다.</Trans>
 
 * [`id`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/id): A string. Specifies a unique identifier for this element, which can be used to find it later or connect it with other elements. Generate it with [`useId`](/reference/react/useId) to avoid clashes between multiple instances of the same component.
-<Trans>[`id`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/id): 문자열. 나중에 찾거나 다른 엘리먼트와 연결하는 데 사용할 수 있는 이 엘리먼트의 고유 식별자를 지정합니다. 동일한 컴포넌트의 여러 인스턴스 간의 충돌을 방지하려면 `useId`로 생성합니다.</Trans>
+<Trans>[`id`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/id): 문자열. 나중에 찾거나 다른 엘리먼트와 연결하는 데 사용할 수 있는 이 엘리먼트의 고유 식별자를 지정합니다. 동일한 컴포넌트의 여러 인스턴스 간의 충돌을 방지하려면 [`useId`](/reference/react/useId)로 생성합니다.</Trans>
 
 * [`is`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/is): A string. If specified, the component will behave like a [custom element.](/reference/react-dom/components#custom-html-elements)
-<Trans>[`is`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/is): 문자열. 지정하면 컴포넌트가 커스텀 엘리먼트처럼 작동합니다.</Trans>
+<Trans>[`is`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/is): 문자열. 지정하면 컴포넌트가 [커스텀 엘리먼트](/reference/react-dom/components#custom-html-elements)처럼 작동합니다.</Trans>
 
 * [`inputMode`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/inputmode): A string. Specifies what kind of keyboard to display (for example, text, number or telephone).
 <Trans>[`inputMode`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/inputmode): 문자열. 표시할 키보드의 종류(예: 텍스트, 숫자 또는 전화)를 지정합니다.</Trans>
@@ -1462,14 +1462,16 @@ textarea { display: block; margin-top: 5px; margin-bottom: 10px; }
 To see why rendering arbitrary HTML is dangerous, replace the code above with this:
 <Trans>임의의 HTML을 렌더링하는 것이 왜 위험한지 알아보려면 위의 코드를 다음과 같이 바꾸세요:</Trans>
 
-```js {1-4,7,8}
+```js {1-5,8-10}
 const post = {
   // Imagine this content is stored in the database.
+  // 이 콘텐츠가 데이터베이스에 저장되어 있다고 가정해 보겠습니다.
   content: `<img src="" onerror='alert("you were hacked")'>`
 };
 
 export default function MarkdownPreview() {
   // 🔴 SECURITY HOLE: passing untrusted input to dangerouslySetInnerHTML
+  // 🔴 보안 허점: 신뢰할 수 없는 input을 위험하게 dangerouslySetInnerHTML로 전달합니다.
   const markup = { __html: post.content };
   return <div dangerouslySetInnerHTML={markup} />;
 }
@@ -1597,6 +1599,7 @@ export default function FocusExample() {
         }
         if (!e.currentTarget.contains(e.relatedTarget)) {
           // Not triggered when swapping focus between children
+          // 자식 간에 포커스를 바꿀 때는 트리거되지 않습니다.
           console.log('focus entered parent');
         }
       }}
@@ -1608,6 +1611,7 @@ export default function FocusExample() {
         }
         if (!e.currentTarget.contains(e.relatedTarget)) {
           // Not triggered when swapping focus between children
+          // 자식 간에 포커스를 바꿀 때는 트리거되지 않습니다.
           console.log('focus left parent');
         }
       }}

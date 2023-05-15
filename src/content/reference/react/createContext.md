@@ -38,7 +38,7 @@ const ThemeContext = createContext('light');
 #### Parameters<Trans>매개변수</Trans> {/*parameters*/}
 
 * `defaultValue`: The value that you want the context to have when there is no matching context provider in the tree above the component that reads context. If you don't have any meaningful default value, specify `null`. The default value is meant as a "last resort" fallback. It is static and never changes over time.
-<Trans dedent>`defaultValue`: 컨텍스트를 읽는 컴포넌트 상위 트리에 일치하는 컨텍스트 provider가 없을 때 이 컨텍스트가 갖도록 할 값입니다. 의미 있는 기본값이 없다면 `null`을 지정하세요. 기본값은 "가장 마지막 수단"으로 사용됩니다. 기본값은 정적이며 시간이 지나도 절대 변경되지 않습니다.</Trans>
+<Trans outdent>`defaultValue`: 컨텍스트를 읽는 컴포넌트 상위 트리에 일치하는 컨텍스트 provider가 없을 때 이 컨텍스트가 갖도록 할 값입니다. 의미 있는 기본값이 없다면 `null`을 지정하세요. 기본값은 "가장 마지막 수단"으로 사용됩니다. 기본값은 정적이며 시간이 지나도 절대 변경되지 않습니다.</Trans>
 
 #### Returns<Trans>반환값</Trans> {/*returns*/}
 
@@ -77,7 +77,7 @@ function App() {
 #### Props {/*provider-props*/}
 
 * `value`: The value that you want to pass to all the components reading this context inside this provider, no matter how deep. The context value can be of any type. A component calling [`useContext(SomeContext)`](/reference/react/useContext) inside of the provider receives the `value` of the innermost corresponding context provider above it.
-<Trans dedent>`value` : 이 값은 해당 provider 내에서 이 컨텍스트를 읽는 모든 컴포넌트에 전달하려는 값으로, 깊이에 상관없이 전달할 수 있습니다. 컨텍스트 값은 모든 타입이 될 수 있습니다. provider 내부에서 [`useContext(SomeContext)`](/reference/react/useContext)를 호출하는 컴포넌트는 그 위에 있는 가장 안쪽에 해당하는 컨텍스트 provider의 `value`를 받습니다.</Trans>
+<Trans outdent>`value` : 이 값은 해당 provider 내에서 이 컨텍스트를 읽는 모든 컴포넌트에 전달하려는 값으로, 깊이에 상관없이 전달할 수 있습니다. 컨텍스트 값은 모든 타입이 될 수 있습니다. provider 내부에서 [`useContext(SomeContext)`](/reference/react/useContext)를 호출하는 컴포넌트는 그 위에 있는 가장 안쪽에 해당하는 컨텍스트 provider의 `value`를 받습니다.</Trans>
 
 ---
 
@@ -113,7 +113,7 @@ function Button() {
 #### Props {/*consumer-props*/}
 
 * `children`: A function. React will call the function you pass with the current context value determined by the same algorithm as [`useContext()`](/reference/react/useContext) does, and render the result you return from this function. React will also re-run this function and update the UI whenever the context from the parent components changes.
-<Trans dedent>`자식요소` : 함수입니다. React는 [`useContext()`](/reference/react/useContext)와 동일한 알고리즘에 의해 결정된 현재 컨텍스트 값으로 전달한 함수를 호출하고, 이 함수에서 반환한 결과를 렌더링합니다. 또한 React는 부모 컴포넌트의 컨텍스트가 변경될 때마다 이 함수를 다시 실행하고 UI를 업데이트합니다.</Trans>
+<Trans outdent>`자식요소` : 함수입니다. React는 [`useContext()`](/reference/react/useContext)와 동일한 알고리즘에 의해 결정된 현재 컨텍스트 값으로 전달한 함수를 호출하고, 이 함수에서 반환한 결과를 렌더링합니다. 또한 React는 부모 컴포넌트의 컨텍스트가 변경될 때마다 이 함수를 다시 실행하고 UI를 업데이트합니다.</Trans>
 
 ---
 

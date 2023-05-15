@@ -453,7 +453,7 @@ If you want [to control this text area with a state variable,](#controlling-a-te
 ```
 
 If the value is intentionally read-only, add a `readOnly` prop to suppress the error:
-의도적으로 값을 읽기전용으로 하고자 하는 경우, `readOnly` prop을 추가하여 에러를 억제하세요:
+<Trans>의도적으로 값을 읽기전용으로 하고자 하는 경우, `readOnly` prop을 추가하여 에러를 억제하세요:</Trans>
 
 ```js
 // ✅ Good: readonly controlled text area without on change
@@ -463,13 +463,13 @@ If the value is intentionally read-only, add a `readOnly` prop to suppress the e
 
 ---
 
-### My text area caret jumps to the beginning on every keystroke<Trans>키 입력시마다 textarea 캐럿이 처음 위치로 점프합니다</Trans> {/*my-text-area-caret-jumps-to-the-beginning-on-every-keystroke*/}
+### My text area caret jumps to the beginning on every keystroke<Trans>키를 누를 때마다 커서가 처음으로 이동합니다</Trans> {/*my-text-area-caret-jumps-to-the-beginning-on-every-keystroke*/}
 
 If you [control a text area,](#controlling-a-text-area-with-a-state-variable) you must update its state variable to the text area's value from the DOM during `onChange`.
-[제어 textarea]((#controlling-a-text-area-with-a-state-variable)의 경우 `onChange` 중에 state 변수를 DOM의 값으로 업데이트해야 합니다.
+<Trans>[제어 textarea]((#controlling-a-text-area-with-a-state-variable)의 경우 `onChange` 중에 state 변수를 DOM의 값으로 업데이트해야 합니다.</Trans>
 
 You can't update it to something other than `e.target.value`:
-`e.target.value`가 아닌 다른 값으로 업데이트할 수 없습니다:
+<Trans>`e.target.value`가 아닌 다른 값으로 업데이트할 수 없습니다:</Trans>
 
 ```js
 function handleChange(e) {
@@ -504,7 +504,7 @@ function handleChange(e) {
 ```
 
 If this doesn't fix the problem, it's possible that the text area gets removed and re-added from the DOM on every keystroke. This can happen if you're accidentally [resetting state](/learn/preserving-and-resetting-state) on every re-render. For example, this can happen if the text area or one of its parents always receives a different `key` attribute, or if you nest component definitions (which is not allowed in React and causes the "inner" component to remount on every render).
-<Trans>이렇게 해도 문제가 해결되지 않는다면, 키 입력 시마다 textarea이 DOM에서 제거되었다가 다시 추가되는 상황일 수 있습니다. 렌더링할 때마다 실수로 상태를 재설정하는 경우 이런 문제가 발생할 수 있습니다. 예를 들어 textarea 또는 그 부모 중 하나가 항상 다른 `key` 속성을 받거나 컴포넌트 정의를 중첩하는 경우(React에서는 허용되지 않으며 렌더링할 때마다 "내부" 컴포넌트가 다시 마운트됩니다), 이런 일이 발생할 수 있습니다.</Trans>
+<Trans>이렇게 해도 문제가 해결되지 않는다면, 키 입력 시마다 textarea이 DOM에서 제거되었다가 다시 추가되는 상황일 수 있습니다. 렌더링할 때마다 실수로 state를 재설정하는 경우 이런 문제가 발생할 수 있습니다. 예를 들어 textarea 또는 그 부모 중 하나가 항상 다른 `key` 속성을 받거나, 컴포넌트 정의를 중첩하는 경우(React에서는 허용되지 않으며, 렌더링할 때마다 "내부" 컴포넌트가 다시 마운트됩니다), 이런 일이 발생할 수 있습니다.</Trans>
 
 
 ---
@@ -516,7 +516,7 @@ If you provide a `value` to the component, it must remain a string throughout it
 <Trans>컴포넌트에 `value` 를 제공하는 경우, 그 값은 생명주기 동안 계속 문자열로 유지되어야 합니다.</Trans>
 
 You cannot pass `value={undefined}` first and later pass `value="some string"` because React won't know whether you want the component to be uncontrolled or controlled. A controlled component should always receive a string `value`, not `null` or `undefined`.
-<Trans>React는 컴포넌트를 비제어 상태로 둘지 제어 상태로 둘지 알 수 없기 때문에, `value={undefined}`를 먼저 전달하고 나중에 `value="some string"`을 전달할 수 없습니다. 제어 컴포넌트는 항상 `null` 이나 `undefined`가 아닌 문자열 `value`를 받아야 합니다.</Trans>
+<Trans>React는 컴포넌트를 비제어 상태로 둘지 제어 상태로 둘지 알 수 없기 때문에, `value={undefined}`를 먼저 전달하고 나중에 `value="some string"`을 전달할 수 없습니다. 제어 컴포넌트는 항상 `null`이나 `undefined`가 아닌 문자열 `value`를 받아야 합니다.</Trans>
 
 If your `value` is coming from an API or a state variable, it might be initialized to `null` or `undefined`. In that case, either set it to an empty string (`''`) initially, or pass `value={someValue ?? ''}` to ensure `value` is a string.
 <Trans>`value`를 API나 state 변수에서 가져오는 경우, `null` 또는 `undefined`으로 초기화될 수 있습니다. 이 경우 처음에 빈 문자열(`''`)로 설정하거나 `value={someValue ?? ''}`를 전달하여 `value`에 문자열이 오도록 보장하세요.</Trans>

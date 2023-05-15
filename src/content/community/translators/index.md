@@ -36,7 +36,7 @@ title="프론트엔트 취준생"
 github="devryyeong"
 title="프론트엔트 개발자"
   name="이나령"
-  translated={[{"title":"Add React to an Existing Project","translatedTitle":"기존 프로젝트에 React 추가하기","url":"/learn/add-react-to-an-existing-project"},{"title":"Conditional Rendering","translatedTitle":"조건부 렌더링","url":"/learn/conditional-rendering"},{"title":"Updating Arrays in State","translatedTitle":"배열 state 업데이트","url":"/learn/updating-arrays-in-state"},{"title":"<Suspense>","url":"/reference/react/Suspense"},{"title":"Built-in React APIs","url":"/reference/react/apis"},{"title":"useContext","url":"/reference/react/useContext"},{"title":"useLayoutEffect","url":"/reference/react/useLayoutEffect"},{"title":"useMemo","url":"/reference/react/useMemo"},{"title":"<progress>","url":"/reference/react-dom/components/progress"},{"title":"React DOM APIs","url":"/reference/react-dom/index"}]}
+  translated={[{"title":"Add React to an Existing Project","translatedTitle":"기존 프로젝트에 React 추가하기","url":"/learn/add-react-to-an-existing-project"},{"title":"Conditional Rendering","translatedTitle":"조건부 렌더링","url":"/learn/conditional-rendering"},{"title":"Updating Arrays in State","translatedTitle":"배열 state 업데이트","url":"/learn/updating-arrays-in-state"},{"title":"<Suspense>","url":"/reference/react/Suspense"},{"title":"Built-in React APIs","url":"/reference/react/apis"},{"title":"createContext","url":"/reference/react/createContext"},{"title":"useContext","url":"/reference/react/useContext"},{"title":"useLayoutEffect","url":"/reference/react/useLayoutEffect"},{"title":"useMemo","url":"/reference/react/useMemo"},{"title":"<progress>","url":"/reference/react-dom/components/progress"},{"title":"React DOM APIs","url":"/reference/react-dom/index"}]}
 >
   꿈도 많고 하고 싶은 것도 많은 개발자입니다.<br/>작고 소소하지만 꾸준한 성취를 쌓아가며 성장합니다.🌱
 </TeamMember>
@@ -211,7 +211,7 @@ twitter="ryungom"
 personal="ryungom.tistory.com"
 title="프론트엔트 개발자"
   name="류재준"
-  translated={undefined}
+  translated={[{"title":"createContext","url":"/reference/react/createContext"}]}
 >
   사회에 이바지되는 개발을 꿈꾸는 주니어 프론트엔드 개발자입니다.🙌<br />또한 코드의 바다에 사정없이 메쳐지는 소중한 저의 코드를 애정합니다.🥋
 </TeamMember>

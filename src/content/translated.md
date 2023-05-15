@@ -3,10 +3,10 @@ title: 번역 진행상황
 ---
 
 <Intro>
-last updated @ 2023-05-15 10:00
+last updated @ 2023-05-15 01:00
 </Intro>
 
-## Reference - 진행중 (done: 34 / total: 59) {/*reference*/}
+## Reference - 진행중 (done: 35 / total: 59) {/*reference*/}
 
 |     | title                                                                |     | title                                                                                  |
 | :-: | :------------------------------------------------------------------- | :-: | :------------------------------------------------------------------------------------- |
@@ -32,7 +32,7 @@ last updated @ 2023-05-15 10:00
 |  ✅  | [6-3. `<StrictMode>`](/reference/react/StrictMode)                   |  ▢  | [11-5. renderToString](/reference/react-dom/server/renderToString)                     |
 |  ✅  | [6-4. `<Suspense>`](/reference/react/Suspense)                       |  ▢  | [12. Legacy APIs](/reference/react/legacy)                                             |
 |  ✅  | [7. APIs](/reference/react/apis)                                     |  ▢  | [12-1. Children](/reference/react/Children)                                            |
-|  ▢  | [7-1. createContext](/reference/react/createContext)                 |  ✅  | [12-2. cloneElement](/reference/react/cloneElement)                                    |
+|  ✅  | [7-1. createContext](/reference/react/createContext)                 |  ✅  | [12-2. cloneElement](/reference/react/cloneElement)                                    |
 |  ✅  | [7-2. forwardRef](/reference/react/forwardRef)                       |  ▢  | [12-3. Component](/reference/react/Component)                                          |
 |  ✅  | [7-3. lazy](/reference/react/lazy)                                   |  ▢  | [12-4. createElement](/reference/react/createElement)                                  |
 |  ✅  | [7-4. memo](/reference/react/memo)                                   |  ▢  | [12-5. createFactory](/reference/react/createFactory)                                  |

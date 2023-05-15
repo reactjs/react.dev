@@ -628,7 +628,7 @@ React will also call your `ref` callback whenever you pass a *different* `ref` c
 #### Parameters<Trans>매개변수</Trans> {/*ref-callback-parameters*/}
 
 * `node`: A DOM node or `null`. React will pass you the DOM node when the ref gets attached, and `null` when the ref gets detached. Unless you pass the same function reference for the `ref` callback on every render, the callback will get temporarily detached and re-attached during ever re-render of the component.
-<Trans dedent>`node`: DOM 노드 또는 `null`. React는 ref가 연결될 때 DOM 노드를 전달하고, ref가 분리될 때 `null`을 전달합니다. 모든 렌더링에서 `ref` 콜백에 대해 동일한 함수 참조를 전달하지 않는 한, 컴포넌트를 다시 렌더링할 때마다 콜백이 일시적으로 분리되었다가 다시 연결됩니다.</Trans>
+<Trans outdent>`node`: DOM 노드 또는 `null`. React는 ref가 연결될 때 DOM 노드를 전달하고, ref가 분리될 때 `null`을 전달합니다. 모든 렌더링에서 `ref` 콜백에 대해 동일한 함수 참조를 전달하지 않는 한, 컴포넌트를 다시 렌더링할 때마다 콜백이 일시적으로 분리되었다가 다시 연결됩니다.</Trans>
 #### Returns<Trans>반환값</Trans> {/*returns*/}
 
 Do not return anything from the `ref` callback.
@@ -687,7 +687,7 @@ Additionally, React event objects provide these properties:
 <Trans>또한 React 이벤트 객체는 이러한 프로퍼티를 제공합니다:</Trans>
 
 * `nativeEvent`: A DOM [`Event`](https://developer.mozilla.org/en-US/docs/Web/API/Event). The original browser event object.
-<Trans dedent>`nativeEvent`: DOM [`Event`](https://developer.mozilla.org/en-US/docs/Web/API/Event). 원본 브라우저 이벤트 객체입니다.</Trans>
+<Trans outdent>`nativeEvent`: DOM [`Event`](https://developer.mozilla.org/en-US/docs/Web/API/Event). 원본 브라우저 이벤트 객체입니다.</Trans>
  
 #### Methods <Trans>메소드</Trans> {/*react-event-object-methods*/}
 
@@ -718,7 +718,7 @@ Additionally, React event objects provide these methods:
 #### Caveats<Trans>주의사항</Trans> {/*react-event-object-caveats*/}
 
 * The values of `currentTarget`, `eventPhase`, `target`, and `type` reflect the values your React code expects. Under the hood, React attaches event handlers at the root, but this is not reflected in React event objects. For example, `e.currentTarget` may not be the same as the underlying `e.nativeEvent.currentTarget`. For polyfilled events, `e.type` (React event type) may differ from `e.nativeEvent.type` (underlying type).
-<Trans dedent>`currentTarget`, `eventPhase`, `target`, `type`의 값은 React 코드가 기대하는 값을 반영합니다. 내부적으로 React는 이벤트 핸들러를 루트에 첨부하지만, 이는 React 이벤트 객체에는 반영되지 않습니다. 예를 들어, `e.currentTarget`은 기본 `e.nativeEvent.currentTarget`과 같지 않을 수 있습니다. 폴리필 이벤트의 경우, `e.type`(React 이벤트 타입)이 `e.nativeEvent.type`(기본 타입)과 다를 수 있습니다.</Trans>
+<Trans outdent>`currentTarget`, `eventPhase`, `target`, `type`의 값은 React 코드가 기대하는 값을 반영합니다. 내부적으로 React는 이벤트 핸들러를 루트에 첨부하지만, 이는 React 이벤트 객체에는 반영되지 않습니다. 예를 들어, `e.currentTarget`은 기본 `e.nativeEvent.currentTarget`과 같지 않을 수 있습니다. 폴리필 이벤트의 경우, `e.type`(React 이벤트 타입)이 `e.nativeEvent.type`(기본 타입)과 다를 수 있습니다.</Trans>
 
 ---
 
@@ -738,7 +738,7 @@ An event handler type for the [CSS animation](https://developer.mozilla.org/en-U
 #### Parameters<Trans>매개변수</Trans> {/*animationevent-handler-parameters*/}
 
 * `e`: A [React event object](#react-event-object) with these extra [`AnimationEvent`](https://developer.mozilla.org/en-US/docs/Web/API/AnimationEvent) properties:
-<Trans dedent>`e`: 추가 [`AnimationEvent`](https://developer.mozilla.org/ko/docs/Web/API/AnimationEvent) 속성을 가진 [React 이벤트 객체](#react-event-object)입니다:</Trans>
+<Trans outdent>`e`: 추가 [`AnimationEvent`](https://developer.mozilla.org/ko/docs/Web/API/AnimationEvent) 속성을 가진 [React 이벤트 객체](#react-event-object)입니다:</Trans>
 
   * [`animationName`](https://developer.mozilla.org/en-US/docs/Web/API/AnimationEvent/animationName)
   * [`elapsedTime`](https://developer.mozilla.org/en-US/docs/Web/API/AnimationEvent/elapsedTime)
@@ -762,7 +762,7 @@ An event handler type for the [Clipboard API](https://developer.mozilla.org/en-U
 #### Parameters<Trans>매개변수</Trans> {/*clipboadevent-handler-parameters*/}
 
 * `e`: A [React event object](#react-event-object) with these extra [`ClipboardEvent`](https://developer.mozilla.org/en-US/docs/Web/API/ClipboardEvent) properties:
-<Trans dedent>`e`: 추가 [`ClipboardEvent`](https://developer.mozilla.org/ko/docs/Web/API/ClipboardEvent) 속성을 가진 [React 이벤트 객체](#react-event-object)입니다:</Trans>
+<Trans outdent>`e`: 추가 [`ClipboardEvent`](https://developer.mozilla.org/ko/docs/Web/API/ClipboardEvent) 속성을 가진 [React 이벤트 객체](#react-event-object)입니다:</Trans>
 
   * [`clipboardData`](https://developer.mozilla.org/en-US/docs/Web/API/ClipboardEvent/clipboardData)
 
@@ -784,7 +784,7 @@ An event handler type for the [input method editor (IME)](https://developer.mozi
 #### Parameters<Trans>매개변수</Trans> {/*compositionevent-handler-parameters*/}
 
 * `e`: A [React event object](#react-event-object) with these extra [`CompositionEvent`](https://developer.mozilla.org/en-US/docs/Web/API/CompositionEvent) properties:
-<Trans dedent>`e`: 추가 [`CompositionEvent`](https://developer.mozilla.org/en-US/docs/Web/API/CompositionEvent) 속성을 가진 [React 이벤트 객체](#react-event-object)입니다:</Trans>
+<Trans outdent>`e`: 추가 [`CompositionEvent`](https://developer.mozilla.org/en-US/docs/Web/API/CompositionEvent) 속성을 가진 [React 이벤트 객체](#react-event-object)입니다:</Trans>
 
   * [`data`](https://developer.mozilla.org/en-US/docs/Web/API/CompositionEvent/data)
 
@@ -819,7 +819,7 @@ An event handler type for the [HTML Drag and Drop API](https://developer.mozilla
 #### Parameters<Trans>매개변수</Trans> {/*dragevent-handler-parameters*/}
 
 * `e`: A [React event object](#react-event-object) with these extra [`DragEvent`](https://developer.mozilla.org/en-US/docs/Web/API/DragEvent) properties:
-<Trans dedent>`e`: 추가 [`DragEvent`](https://developer.mozilla.org/en-US/docs/Web/API/DragEvent) 속성을 가진 [React 이벤트 객체](#react-event-object)입니다:</Trans>
+<Trans outdent>`e`: 추가 [`DragEvent`](https://developer.mozilla.org/en-US/docs/Web/API/DragEvent) 속성을 가진 [React 이벤트 객체](#react-event-object)입니다:</Trans>
 
   * [`dataTransfer`](https://developer.mozilla.org/en-US/docs/Web/API/DragEvent/dataTransfer)
 
@@ -869,7 +869,7 @@ An event handler type for the focus events.
 #### Parameters<Trans>매개변수</Trans> {/*focusevent-handler-parameters*/}
 
 * `e`: A [React event object](#react-event-object) with these extra [`FocusEvent`](https://developer.mozilla.org/en-US/docs/Web/API/FocusEvent) properties:
-<Trans dedent>`e`: 추가 [`FocusEvent`](https://developer.mozilla.org/en-US/docs/Web/API/FocusEvent) 속성을 가진 [React 이벤트 객체](#react-event-object)입니다:</Trans>
+<Trans outdent>`e`: 추가 [`FocusEvent`](https://developer.mozilla.org/en-US/docs/Web/API/FocusEvent) 속성을 가진 [React 이벤트 객체](#react-event-object)입니다:</Trans>
 
   * [`relatedTarget`](https://developer.mozilla.org/en-US/docs/Web/API/FocusEvent/relatedTarget)
 
@@ -889,7 +889,7 @@ An event handler type for generic events.
 #### Parameters<Trans>매개변수</Trans> {/*event-handler-parameters*/}
 
 * `e`: A [React event object](#react-event-object) with no additional properties.  
-<Trans dedent>`e`: 추가 프로퍼티가 없는 [React 이벤트 객체](#react-event-object)입니다.</Trans>
+<Trans outdent>`e`: 추가 프로퍼티가 없는 [React 이벤트 객체](#react-event-object)입니다.</Trans>
 
 ---
 
@@ -905,7 +905,7 @@ An event handler type for the `onBeforeInput` event.
 #### Parameters<Trans>매개변수</Trans> {/*inputevent-handler-parameters*/}
 
 * `e`: A [React event object](#react-event-object) with these extra [`InputEvent`](https://developer.mozilla.org/en-US/docs/Web/API/InputEvent) properties:
-<Trans dedent>`e`: 추가 [`InputEvent`](https://developer.mozilla.org/en-US/docs/Web/API/InputEvent) 프로퍼티가 있는 [React 이벤트 객체](#react-event-object)입니다:</Trans>
+<Trans outdent>`e`: 추가 [`InputEvent`](https://developer.mozilla.org/en-US/docs/Web/API/InputEvent) 프로퍼티가 있는 [React 이벤트 객체](#react-event-object)입니다:</Trans>
 
   * [`data`](https://developer.mozilla.org/en-US/docs/Web/API/InputEvent/data)
 
@@ -929,7 +929,7 @@ An event handler type for keyboard events.
 #### Parameters<Trans>매개변수</Trans> {/*keyboardevent-handler-parameters*/}
 
 * `e`: A [React event object](#react-event-object) with these extra [`KeyboardEvent`](https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent) properties:
-<Trans dedent>`e`: 추가 [`KeyboardEvent`](https://developer.mozilla.org/ko/docs/Web/API/KeyboardEvent) 속성을 가진 [React 이벤트 객체](#react-event-object)입니다:</Trans>
+<Trans outdent>`e`: 추가 [`KeyboardEvent`](https://developer.mozilla.org/ko/docs/Web/API/KeyboardEvent) 속성을 가진 [React 이벤트 객체](#react-event-object)입니다:</Trans>
 
   * [`altKey`](https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/altKey)
   * [`charCode`](https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/charCode)
@@ -975,7 +975,7 @@ An event handler type for mouse events.
 #### Parameters<Trans>매개변수</Trans> {/*mouseevent-handler-parameters*/}
 
 * `e`: A [React event object](#react-event-object) with these extra [`MouseEvent`](https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent) properties:
-<Trans dedent>`e`: 추가 [`MouseEvent`](https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent) 속성을 가진 [React 이벤트 객체](#react-event-object)입니다:</Trans>
+<Trans outdent>`e`: 추가 [`MouseEvent`](https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent) 속성을 가진 [React 이벤트 객체](#react-event-object)입니다:</Trans>
 
   * [`altKey`](https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent/altKey)
   * [`button`](https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent/button)
@@ -1023,7 +1023,7 @@ An event handler type for [pointer events.](https://developer.mozilla.org/en-US/
 #### Parameters<Trans>매개변수</Trans> {/*pointerevent-handler-parameters*/}
 
 * `e`: A [React event object](#react-event-object) with these extra [`PointerEvent`](https://developer.mozilla.org/en-US/docs/Web/API/PointerEvent) properties:
-<Trans dedent>`e`: 추가 [`PointerEvent`](https://developer.mozilla.org/en-US/docs/Web/API/PointerEvent) 속성을 가진 [React 이벤트 객체](#react-event-object)입니다:</Trans>
+<Trans outdent>`e`: 추가 [`PointerEvent`](https://developer.mozilla.org/en-US/docs/Web/API/PointerEvent) 속성을 가진 [React 이벤트 객체](#react-event-object)입니다:</Trans>
 
   * [`height`](https://developer.mozilla.org/en-US/docs/Web/API/PointerEvent/height)
   * [`isPrimary`](https://developer.mozilla.org/en-US/docs/Web/API/PointerEvent/isPrimary)
@@ -1081,7 +1081,7 @@ An event handler type for [touch events.](https://developer.mozilla.org/en-US/do
 #### Parameters<Trans>매개변수</Trans> {/*touchevent-handler-parameters*/}
 
 * `e`: A [React event object](#react-event-object) with these extra [`TouchEvent`](https://developer.mozilla.org/en-US/docs/Web/API/TouchEvent) properties:
-<Trans dedent>`e`: 추가 [`TouchEvent`](https://developer.mozilla.org/ko/docs/Web/API/TouchEvent) 속성을 가진 [React 이벤트 객체](#react-event-object)입니다:</Trans>
+<Trans outdent>`e`: 추가 [`TouchEvent`](https://developer.mozilla.org/ko/docs/Web/API/TouchEvent) 속성을 가진 [React 이벤트 객체](#react-event-object)입니다:</Trans>
 
   * [`altKey`](https://developer.mozilla.org/en-US/docs/Web/API/TouchEvent/altKey)
   * [`ctrlKey`](https://developer.mozilla.org/en-US/docs/Web/API/TouchEvent/ctrlKey)
@@ -1114,7 +1114,7 @@ An event handler type for the CSS transition events.
 #### Parameters<Trans>매개변수</Trans> {/*transitionevent-handler-parameters*/}
 
 * `e`: A [React event object](#react-event-object) with these extra [`TransitionEvent`](https://developer.mozilla.org/en-US/docs/Web/API/TransitionEvent) properties:
-<Trans dedent>`e`: 추가 [`TransitionEvent`](https://developer.mozilla.org/en-US/docs/Web/API/TransitionEvent) 속성을 가진 [React 이벤트 객체](#react-event-object)입니다:</Trans>
+<Trans outdent>`e`: 추가 [`TransitionEvent`](https://developer.mozilla.org/en-US/docs/Web/API/TransitionEvent) 속성을 가진 [React 이벤트 객체](#react-event-object)입니다:</Trans>
 
   * [`elapsedTime`](https://developer.mozilla.org/en-US/docs/Web/API/TransitionEvent/elapsedTime)
   * [`propertyName`](https://developer.mozilla.org/en-US/docs/Web/API/TransitionEvent/propertyName)
@@ -1136,7 +1136,7 @@ An event handler type for generic UI events.
 #### Parameters<Trans>매개변수</Trans> {/*uievent-handler-parameters*/}
 
 * `e`: A [React event object](#react-event-object) with these extra [`UIEvent`](https://developer.mozilla.org/en-US/docs/Web/API/UIEvent) properties:
-<Trans dedent>`e`: 추가 [`UIEvent`](https://developer.mozilla.org/en-US/docs/Web/API/UIEvent) 속성을 가진 [React 이벤트 객체](#react-event-object)입니다:</Trans>
+<Trans outdent>`e`: 추가 [`UIEvent`](https://developer.mozilla.org/en-US/docs/Web/API/UIEvent) 속성을 가진 [React 이벤트 객체](#react-event-object)입니다:</Trans>
 
   * [`detail`](https://developer.mozilla.org/en-US/docs/Web/API/UIEvent/detail)
   * [`view`](https://developer.mozilla.org/en-US/docs/Web/API/UIEvent/view)
@@ -1157,7 +1157,7 @@ An event handler type for the `onWheel` event.
 #### Parameters<Trans>매개변수</Trans> {/*wheelevent-handler-parameters*/}
 
 * `e`: A [React event object](#react-event-object) with these extra [`WheelEvent`](https://developer.mozilla.org/en-US/docs/Web/API/WheelEvent) properties:
-<Trans dedent>`e`: 추가 [`WheelEvent`](https://developer.mozilla.org/en-US/docs/Web/API/WheelEvent) 속성을 가진 [React 이벤트 객체](#react-event-object)입니다:</Trans>
+<Trans outdent>`e`: 추가 [`WheelEvent`](https://developer.mozilla.org/en-US/docs/Web/API/WheelEvent) 속성을 가진 [React 이벤트 객체](#react-event-object)입니다:</Trans>
 
   * [`deltaMode`](https://developer.mozilla.org/en-US/docs/Web/API/WheelEvent/deltaMode)
   * [`deltaX`](https://developer.mozilla.org/en-US/docs/Web/API/WheelEvent/deltaX)

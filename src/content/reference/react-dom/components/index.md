@@ -268,15 +268,26 @@ Namespaced attributes also have to be written without the colon:
 <Trans>네임스페이스 속성은 콜론(:) 없이 작성해야 합니다:</Trans>
 
 * `xlink:actuate` becomes `xlinkActuate`.
+<Trans>`xlink:actuate`는 `xlinkActuate`가 됩니다.</Trans>
 * `xlink:arcrole` becomes `xlinkArcrole`.
+<Trans>`xlink:arcrole`는 `xlinkArcrole`가 됩니다.</Trans>
 * `xlink:href` becomes `xlinkHref`.
+<Trans>`xlink:href`는 `xlinkHref`가 됩니다.</Trans>
 * `xlink:role` becomes `xlinkRole`.
+<Trans>`xlink:role`는 `xlinkRole`가 됩니다.</Trans>
 * `xlink:show` becomes `xlinkShow`.
+<Trans>`xlink:show`는 `xlinkShow`가 됩니다.</Trans>
 * `xlink:title` becomes `xlinkTitle`.
+<Trans>`xlink:title`는 `xlinkTitle`가 됩니다.</Trans>
 * `xlink:type` becomes `xlinkType`.
+<Trans>`xlink:type`는 `xlinkType`가 됩니다.</Trans>
 * `xml:base` becomes `xmlBase`.
+<Trans>`xml:base`는 `xmlBase`가 됩니다.</Trans>
 * `xml:lang` becomes `xmlLang`.
+<Trans>`xml:lang`는 `xmlLang`가 됩니다.</Trans>
 * `xml:space` becomes `xmlSpace`.
+<Trans>`xml:space`는 `xmlSpace`가 됩니다.</Trans>
 * `xmlns:xlink` becomes `xmlnsXlink`.
+<Trans>`xmlns:xlink`는 `xmlnsXlink`가 됩니다.</Trans>
 
 </Note>

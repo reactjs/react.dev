@@ -1,6 +1,6 @@
 ---
 title: useContext
-translators: [서민택, 고석영]
+translators: [서민택, 고석영, 이나령]
 ---
 
 <Intro>
@@ -44,7 +44,7 @@ function MyComponent() {
 #### Returns<Trans>반환값</Trans> {/*returns*/}
 
 `useContext` returns the context value for the calling component. It is determined as the `value` passed to the closest `SomeContext.Provider` above the calling component in the tree. If there is no such provider, then the returned value will be the `defaultValue` you have passed to [`createContext`](/reference/react/createContext) for that context. The returned value is always up-to-date. React automatically re-renders components that read some context if it changes.
-<Trans>`useContext`는 호출하는 컴포넌트에 대한 context 값을 반환합니다. 이 값은 호출한 컴포넌트에서 트리상 위에 있는 가장 가까운 `SomeContext.Provider`에 전달된 `value`입니다. 이러한 공급자가 없는 경우 반환되는 값은 해당 context에 대해 [`createContext`](/reference/react/createContext)에 전달한 `defaultValue`가 됩니다. 반환된 값은 항상 최신 값입니다. React는 context가 변경되면 context를 읽는 컴포넌트를 자동으로 리렌더링합니다.</Trans>
+<Trans>`useContext`는 호출하는 컴포넌트에 대한 context 값을 반환합니다. 이 값은 호출한 컴포넌트에서 트리상 위에 있는 가장 가까운 `SomeContext.Provider`에 전달된 `value`입니다. 이러한 provider가 없는 경우 반환되는 값은 해당 context에 대해 [`createContext`](/reference/react/createContext)에 전달한 `defaultValue`가 됩니다. 반환된 값은 항상 최신 값입니다. React는 context가 변경되면 context를 읽는 컴포넌트를 자동으로 리렌더링합니다.</Trans>
 
 #### Caveats<Trans>주의사항</Trans> {/*caveats*/}
 

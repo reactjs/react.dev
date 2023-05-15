@@ -182,7 +182,7 @@ function emitChange() {
 <Note>
 
 When possible, we recommend using built-in React state with [`useState`](/reference/react/useState) and [`useReducer`](/reference/react/useReducer) instead. The `useSyncExternalStore` API is mostly useful if you need to integrate with existing non-React code.
-<Trans>가능하면 내장된 React state를 [`useState`](/reference/react/useState) 및 [`useReducer`](/reference/react/useReducer)와 함께 사용하는 것이 좋습니다. `useSyncExternalStore` API는 주로 기존의 비 React 코드와 통합해야 할 때 유용합니다.</Trans>
+<Trans>가능하면 React 빌트인 state를 [`useState`](/reference/react/useState) 및 [`useReducer`](/reference/react/useReducer)와 함께 사용하는 것이 좋습니다. `useSyncExternalStore` API는 주로 기존의 비 React 코드와 통합해야 할 때 유용합니다.</Trans>
 
 </Note>
 

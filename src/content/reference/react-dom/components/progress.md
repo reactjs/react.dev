@@ -1,14 +1,12 @@
 ---
 title: "<progress>"
-translators: [이나령]
+translators: [이나령, 고석영]
 ---
 
 <Intro>
 
 The [built-in browser `<progress>` component](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/progress) lets you render a progress indicator.
-<Trans>[빌트인 브라우저 `<progress>` 컴포넌트](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/progress)를 사용하면 진행률 표시기를 렌더링할 수 있습니다.
-
-</Trans>
+<Trans>[브라우저 빌트인 `<progress>` 컴포넌트](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/progress)를 사용하면 진행률 표시기를 렌더링할 수 있습니다.</Trans>
 
 
 ```js
@@ -26,7 +24,7 @@ The [built-in browser `<progress>` component](https://developer.mozilla.org/en-U
 ### `<progress>` {/*progress*/}
 
 To display a progress indicator, render the [built-in browser `<progress>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/progress) component.
-<Trans>진행률 표시기를 렌더링하려면 [빌트인 브라우저 `<progress>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/progress) 컴포넌트를 렌더링합니다.</Trans>
+<Trans>진행률 표시기를 렌더링하려면 [브라우저 빌트인 `<progress>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/progress) 컴포넌트를 렌더링합니다.</Trans>
 
 
 ```js
@@ -43,13 +41,15 @@ To display a progress indicator, render the [built-in browser `<progress>`](http
 
 
 Additionally, `<progress>` supports these props:
+<Trans>또한 `<progress>`는 다음 props를 지원합니다:</Trans>
 
 * [`max`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/progress#attr-max): A number. Specifies the maximum `value`. Defaults to `1`.
 * [`value`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/progress#attr-value): A number between `0` and `max`, or `null` for intermedinate progress. Specifies how much was done.
-<TransBlock>또한 `<progress>`는 이러한 props를 지원합니다:
 
+<TransBlock>
 * [`max`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/progress#attr-max): 숫자. 최대값을 지정합니다. 기본값은 `1`입니다.
-* [`value`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/progress#attr-value): `0`에서 `max` 사이의 숫자이거나 중간 진행률의 경우 `null`입니다. 수행한 작업의 양을 지정합니다.</TransBlock>
+* [`value`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/progress#attr-value): `0`에서 `max` 사이의 숫자이거나 중간 진행률의 경우 `null`입니다. 수행한 작업의 양을 지정합니다.
+</TransBlock>
 
 
 ---

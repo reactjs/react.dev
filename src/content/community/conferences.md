@@ -10,11 +10,6 @@ Do you know of a local React.js conference? Add it here! (Please keep the list c
 
 ## Upcoming Conferences {/*upcoming-conferences*/}
 
-### React Miami 2023 {/*react-miami-2023*/}
-April 20 - 21, 2023. Miami, FL, USA
-
-[Website](https://www.reactmiami.com/) - [Twitter](https://twitter.com/ReactMiamiConf)
-
 ### Reactathon 2023 {/*reactathon-2023*/}
 May 2 - 3, 2023. San Francisco, CA, USA
 
@@ -65,11 +60,6 @@ August 17 & 18, 2023. Salt Lake City, UT, USA
 
 [Website](https://www.reactrally.com/) - [Twitter](https://twitter.com/ReactRally) - [Instagram](https://www.instagram.com/reactrally/)
 
-### React On The Beach 2023 {/*react-on-the-beach-2023*/}
-September 07, 2023. Amsterdam, Netherlands (In-person event)
-
-[Website](https://reactonthebeach.com/) - [Twitter](https://twitter.com/reactonthebeach)
-
 ### React India 2023 {/*react-india-2023*/}
 Oct 5 - 7, 2023. In-person in Goa, India (hybrid event) + Oct 3 2023 - remote day
 
@@ -91,6 +81,11 @@ December 8 & 12, 2023. In-person in Berlin, Germany + remote first interactivity
 [Website](https://reactday.berlin) - [Twitter](https://twitter.com/reactdayberlin) - [Facebook](https://www.facebook.com/reactdayberlin/) - [Videos](https://portal.gitnation.org/events/react-day-berlin-2023)
 
 ## Past Conferences {/*past-conferences*/}
+
+### React Miami 2023 {/*react-miami-2023*/}
+April 20 - 21, 2023. Miami, FL, USA
+
+[Website](https://www.reactmiami.com/) - [Twitter](https://twitter.com/ReactMiamiConf)
 
 ### React Day Berlin 2022 {/*react-day-berlin-2022*/}
 December 2, 2022. In-person in Berlin, Germany + remote (hybrid event)

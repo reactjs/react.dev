@@ -1,11 +1,14 @@
 import * as React from 'react';
 
 interface TransProps {
+  outdent?: boolean;
   children: React.ReactNode;
 }
 
-function Trans({children}: TransProps) {
-  return <span className="translate">{children}</span>;
+function Trans({outdent = false, children}: TransProps) {
+  return (
+    <span className={`translate${outdent ? ' outdent' : ''}`}>{children}</span>
+  );
 }
 
 export function TransBlock({children}: TransProps) {

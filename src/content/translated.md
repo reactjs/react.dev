@@ -10,10 +10,10 @@ last updated @ 2023-05-15 23:30
 
 |     | title                                                                |     | title                                                                                  |
 | :-: | :------------------------------------------------------------------- | :-: | :------------------------------------------------------------------------------------- |
-|  ✅  | [5. Hooks](/reference/react)                                         |  ▢  | [8-3. `<option>`](/reference/react-dom/components/option)                              |
+|  ✅  | [5. Hooks](/reference/react)                                         |  ✅  | [8-3. `<option>`](/reference/react-dom/components/option)                              |
 |  ✅  | [5-1. useCallback](/reference/react/useCallback)                     |  ✅  | [8-4. `<progress>`](/reference/react-dom/components/progress)                          |
 |  ✅  | [5-2. useContext](/reference/react/useContext)                       |  ▢  | [8-5. `<select>`](/reference/react-dom/components/select)                              |
-|  ✅  | [5-3. useDebugValue](/reference/react/useDebugValue)                 |  ▢  | [8-6. `<textarea>`](/reference/react-dom/components/textarea)                          |
+|  ✅  | [5-3. useDebugValue](/reference/react/useDebugValue)                 |  ✅  | [8-6. `<textarea>`](/reference/react-dom/components/textarea)                          |
 |  ✅  | [5-4. useDeferredValue](/reference/react/useDeferredValue)           |  ▢  | [9. APIs](/reference/react-dom)                                                        |
 |  ✅  | [5-5. useEffect](/reference/react/useEffect)                         |  ▢  | [9-1. createPortal](/reference/react-dom/createPortal)                                 |
 |  ✅  | [5-6. useId](/reference/react/useId)                                 |  ▢  | [9-2. flushSync](/reference/react-dom/flushSync)                                       |
@@ -21,7 +21,7 @@ last updated @ 2023-05-15 23:30
 |  ✅  | [5-8. useInsertionEffect](/reference/react/useInsertionEffect)       |  ▢  | [9-4. hydrate](/reference/react-dom/hydrate)                                           |
 |  ✅  | [5-9. useLayoutEffect](/reference/react/useLayoutEffect)             |  ▢  | [9-5. render](/reference/react-dom/render)                                             |
 |  ✅  | [5-10. useMemo](/reference/react/useMemo)                            |  ▢  | [9-6. unmountComponentAtNode](/reference/react-dom/unmountComponentAtNode)             |
-|  ✅  | [5-11. useReducer](/reference/react/useReducer)                      |  ▢  | [10. Client APIs](/reference/react-dom/client)                                         |
+|  ✅  | [5-11. useReducer](/reference/react/useReducer)                      |  ✅  | [10. Client APIs](/reference/react-dom/client)                                         |
 |  ✅  | [5-12. useRef](/reference/react/useRef)                              |  ▢  | [10-1. createRoot](/reference/react-dom/client/createRoot)                             |
 |  ✅  | [5-13. useState](/reference/react/useState)                          |  ✅  | [10-2. hydrateRoot](/reference/react-dom/client/hydrateRoot)                           |
 |  ✅  | [5-14. useSyncExternalStore](/reference/react/useSyncExternalStore)  |  ▢  | [11. Server APIs](/reference/react-dom/server)                                         |
@@ -32,14 +32,14 @@ last updated @ 2023-05-15 23:30
 |  ✅  | [6-3. `<StrictMode>`](/reference/react/StrictMode)                   |  ▢  | [11-5. renderToString](/reference/react-dom/server/renderToString)                     |
 |  ✅  | [6-4. `<Suspense>`](/reference/react/Suspense)                       |  ▢  | [12. Legacy APIs](/reference/react/legacy)                                             |
 |  ✅  | [7. APIs](/reference/react/apis)                                     |  ▢  | [12-1. Children](/reference/react/Children)                                            |
-|  ▢  | [7-1. createContext](/reference/react/createContext)                 |  ✅  | [12-2. cloneElement](/reference/react/cloneElement)                                    |
+|  ✅  | [7-1. createContext](/reference/react/createContext)                 |  ✅  | [12-2. cloneElement](/reference/react/cloneElement)                                    |
 |  ✅  | [7-2. forwardRef](/reference/react/forwardRef)                       |  ▢  | [12-3. Component](/reference/react/Component)                                          |
-|  ▢  | [7-3. lazy](/reference/react/lazy)                                   |  ▢  | [12-4. createElement](/reference/react/createElement)                                  |
+|  ✅  | [7-3. lazy](/reference/react/lazy)                                   |  ▢  | [12-4. createElement](/reference/react/createElement)                                  |
 |  ✅  | [7-4. memo](/reference/react/memo)                                   |  ▢  | [12-5. createFactory](/reference/react/createFactory)                                  |
-|  ▢  | [7-5. startTransition](/reference/react/startTransition)             |  ▢  | [12-6. createRef](/reference/react/createRef)                                          |
-|  ▢  | [8. Components](/reference/react-dom/components)                     |  ✅  | [12-7. isValidElement](/reference/react/isValidElement)                                |
-|  ▢  | [8-1. Common (e.g. `<div>`)](/reference/react-dom/components/common) |  ✅  | [12-8. PureComponent](/reference/react/PureComponent)                                  |
-|  ▢  | [8-2. `<input>`](/reference/react-dom/components/input)              |     |                                                                                        |
+|  ✅  | [7-5. startTransition](/reference/react/startTransition)             |  ▢  | [12-6. createRef](/reference/react/createRef)                                          |
+|  ✅  | [8. Components](/reference/react-dom/components)                     |  ✅  | [12-7. isValidElement](/reference/react/isValidElement)                                |
+|  ✅  | [8-1. Common (e.g. `<div>`)](/reference/react-dom/components/common) |  ✅  | [12-8. PureComponent](/reference/react/PureComponent)                                  |
+|  ✅  | [8-2. `<input>`](/reference/react-dom/components/input)              |     |                                                                                        |
 
 ## Learn - 전체 번역 완료 (done: 42 / total: 42) {/*learn*/}
 

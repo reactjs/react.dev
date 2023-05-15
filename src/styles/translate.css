@@ -37,6 +37,10 @@ h2 > .translate::before {
   border-left-width: 5px;
 }
 
+a > .translate {
+  margin-left: 6px;
+}
+
 nav[role='navigation'] {
   line-height: 1.4;
 }
@@ -60,8 +64,10 @@ nav[role='navigation'] .translate::before {
   top: 5px;
   bottom: 5px;
 }
-.list-disc .translate {
-  margin-left: 6px;
+.list-disc li > p:only-child .translate,
+.translate.outdent {
+  margin-left: -16px;
+  padding-left: 16px;
 }
 
 .translate-block {

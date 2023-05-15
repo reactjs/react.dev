@@ -47,7 +47,7 @@ function TabContainer() {
 
 * `scope`: A function that updates some state by calling one or more [`set` functions.](/reference/react/useState#setstate) React immediately calls `scope` with no parameters and marks all state updates scheduled synchronously during the `scope` function call as transitions. They will be [non-blocking](/reference/react/useTransition#marking-a-state-update-as-a-non-blocking-transition) and [will not display unwanted loading indicators.](/reference/react/useTransition#preventing-unwanted-loading-indicators)
 (#marking-a-state-update-as-a-non-blocking-transition) and [will not display unwanted loading indicators.](#preventing-unwanted-loading-indicators)
-<Trans>`scope`: 하나 이상의 [`set` 함수를 호출하여 일부 state를 업데이트하는 함수.](/reference/react/useState#setstate) React는 매개변수 없이 `scope`를 즉시 호출하고 `scope` 함수 호출 중에 동기적으로 예약된 모든 state 업데이트를 트랜지션으로 표시합니다. 이는 [논블로킹](#marking-a-state-update-as-non-blocking-transition)이고, [원치 않는 로딩을 표시하지 않을 것입니다.](#preventing-unwanted-loading-indicators)</Trans>
+<Trans outdent>`scope`: 하나 이상의 [`set` 함수를 호출하여 일부 state를 업데이트하는 함수.](/reference/react/useState#setstate) React는 매개변수 없이 `scope`를 즉시 호출하고 `scope` 함수 호출 중에 동기적으로 예약된 모든 state 업데이트를 트랜지션으로 표시합니다. 이는 [논블로킹](#marking-a-state-update-as-non-blocking-transition)이고, [원치 않는 로딩을 표시하지 않을 것입니다.](#preventing-unwanted-loading-indicators)</Trans>
 
 #### Returns<Trans>반환값</Trans> {/*returns*/}
 
@@ -78,7 +78,7 @@ function TabContainer() {
 
 ## Usage<Trans>사용법</Trans> {/*usage*/}
 
-### Marking a state update as a non-blocking transition<Trans>>state 업데이트를 논블로킹 트랜지션으로 표시하기</Trans> {/*marking-a-state-update-as-a-non-blocking-transition*/}
+### Marking a state update as a non-blocking transition<Trans>state 업데이트를 논블로킹 트랜지션으로 표시하기</Trans> {/*marking-a-state-update-as-a-non-blocking-transition*/}
 
 You can mark a state update as a *transition* by wrapping it in a `startTransition` call:
 <Trans>state 업데이트는 `startTransition` 호출로 감싸 *트랜지션*으로 표시할 수 있습니다:</Trans>
@@ -106,8 +106,8 @@ With a transition, your UI stays responsive in the middle of a re-render. For ex
 
 <Note>
 `startTransition` is very similar to [`useTransition`](/reference/react/useTransition), except that it does not provide the `isPending` flag to track whether a transition is ongoing. You can call `startTransition` when `useTransition` is not available. For example, `startTransition` works outside components, such as from a data library.
-`startTransition`은 트랜지션이 진행 중인지 여부를 추적하기 위한 `isPending` 플래그를 제공하지 않는다는 점을 제외하면 [`useTransition`](/reference/react/useTransition)과 매우 유사합니다. `useTransition`을 사용할 수 없을 때 `startTransition`을 호출할 수 있습니다. 예를들어, `startTransition`은 데이터 라이브러리와 같은 외부 컴포넌트에서 작동합니다.
+<Trans>`startTransition`은 트랜지션이 진행 중인지 여부를 추적하기 위한 `isPending` 플래그를 제공하지 않는다는 점을 제외하면 [`useTransition`](/reference/react/useTransition)과 매우 유사합니다. `useTransition`을 사용할 수 없을 때 `startTransition`을 호출할 수 있습니다. 예를들어, `startTransition`은 데이터 라이브러리와 같은 외부 컴포넌트에서 작동합니다.</Trans>
 
 [Learn about transitions and see examples on the `useTransition` page.](/reference/react/useTransition)
-[`useTransition` 페이지에서 트랜지션에 대해 자세히 알아보고 예제를 확인하세요.](/reference/react/useTransition)
+<Trans>[`useTransition` 페이지에서 트랜지션에 대해 자세히 알아보고 예제를 확인하세요.](/reference/react/useTransition)</Trans>
 </Note>

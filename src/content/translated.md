@@ -3,7 +3,7 @@ title: 번역 진행상황
 ---
 
 <Intro>
-last updated @ 2023-05-15 17:00
+last updated @ 2023-05-15 23:20
 </Intro>
 
 ## Reference - 진행중 (done: 37 / total: 59) {/*reference*/}
@@ -19,7 +19,7 @@ last updated @ 2023-05-15 17:00
 |  ✅  | [5-6. useId](/reference/react/useId)                                 |  ▢  | [9-2. flushSync](/reference/react-dom/flushSync)                                       |
 |  ✅  | [5-7. useImperativeHandle](/reference/react/useImperativeHandle)     |  ▢  | [9-3. findDOMNode](/reference/react-dom/findDOMNode)                                   |
 |  ✅  | [5-8. useInsertionEffect](/reference/react/useInsertionEffect)       |  ▢  | [9-4. hydrate](/reference/react-dom/hydrate)                                           |
-|  ✅  | [5-9. useLayoutEffect](/reference/react/useLayoutEffect)             |  ▢  | [9-5. render](/reference/react-dom/render)                                             |
+|  ✅  | [5-9. useLayoutEffect](/reference/react/useLayoutEffect)             |  ✅  | [9-5. render](/reference/react-dom/render)                                             |
 |  ✅  | [5-10. useMemo](/reference/react/useMemo)                            |  ▢  | [9-6. unmountComponentAtNode](/reference/react-dom/unmountComponentAtNode)             |
 |  ✅  | [5-11. useReducer](/reference/react/useReducer)                      |  ✅  | [10. Client APIs](/reference/react-dom/client)                                         |
 |  ✅  | [5-12. useRef](/reference/react/useRef)                              |  ▢  | [10-1. createRoot](/reference/react-dom/client/createRoot)                             |

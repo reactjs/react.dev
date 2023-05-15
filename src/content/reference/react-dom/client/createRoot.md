@@ -82,7 +82,7 @@ An app fully built with React will usually only have one `createRoot` call for i
 ### `root.render(reactNode)` {/*root-render*/}
 
 Call `root.render` to display a piece of [JSX](/learn/writing-markup-with-jsx) ("React node") into the React root's browser DOM node.
-<Trans>root.render를 호출하여 [JSX](/learn/writing-markup-with-jsx) 조각("React 노드")을 React 루트의 브라우저 DOM 노드에 표시합니다.</Trans>
+<Trans>`root.render`를 호출하여 [JSX](/learn/writing-markup-with-jsx) 조각("React 노드")을 React 루트의 브라우저 DOM 노드에 표시합니다.</Trans>
 
 ```js
 root.render(<App />);
@@ -143,25 +143,34 @@ Calling `root.unmount` will unmount all the components in the root and "detach" 
 #### Parameters<Trans>매개변수</Trans> {/*root-unmount-parameters*/}
 
 `root.unmount` does not accept any parameters.
-
+<Trans>`root.unmount` 는 어떠한 매개변수도 허용하지 않습니다.</Trans>
 
 #### Returns<Trans>반환값</Trans> {/*root-unmount-returns*/}
 
 `root.unmount` returns `undefined`.
+<Trans>`root.render` 는 undefined를 반환합니다.</Trans>
+
 
 #### Caveats<Trans>주의사항</Trans> {/*root-unmount-caveats*/}
 
 * Calling `root.unmount` will unmount all the components in the tree and "detach" React from the root DOM node.
+<Trans>
+* `root.unmount`를 호출하면 트리의 모든 컴포넌트가 unmount되고 루트 DOM 노드에서 React가 "분리"됩니다.
+</Trans>
 
 * Once you call `root.unmount` you cannot call `root.render` again on the same root. Attempting to call `root.render` on an unmounted root will throw a "Cannot update an unmounted root" error. However, you can create a new root for the same DOM node after the previous root for that node has been unmounted.
+<Trans>
+* `root.unmount`를 호출한 후에는 같은 루트에서 `root.render`를 다시 호출할 수 없습니다. unmount된 루트에서 `root.render`를 호출하려고 하면 "unmount된 root를 업데이트할 수 없습니다." 오류가 발생합니다. 그러나 해당 노드의 이전 루트가 unmount된 후 동일한 DOM 노드에 대한 새 루트를 만들 수 있습니다.
+</Trans>
 
 ---
 
 ## Usage<Trans>사용법</Trans> {/*usage*/}
 
-### Rendering an app fully built with React {/*rendering-an-app-fully-built-with-react*/}
+### Rendering an app fully built with React<Trans>React로 완전히 빌드된 앱 렌더링하기</Trans> {/*rendering-an-app-fully-built-with-react*/}
 
 If your app is fully built with React, create a single root for your entire app.
+<Trans>앱이 React로 완전히 빌드된 경우 전체 앱에 대해 단일 루트를 생성하세요.</Trans>
 
 ```js [[1, 3, "document.getElementById('root')"], [2, 4, "<App />"]]
 import { createRoot } from 'react-dom/client';
@@ -174,6 +183,12 @@ Usually, you only need to run this code once at startup. It will:
 
 1. Find the <CodeStep step={1}>browser DOM node</CodeStep> defined in your HTML.
 2. Display the <CodeStep step={2}>React component</CodeStep> for your app inside.
+<TransBlock>
+일반적으로 이 코드는 시작할 때 한 번만 실행하면 됩니다. 
+
+1. HTML에 정의된 <CodeStep step={1}>브라우저 DOM 노드</CodeStep>를 찾습니다.
+2. 그 안에 앱의 <CodeStep step={2}>React 컴포넌트</CodeStep>를 표시합니다.
+</TransBlock>
 
 <Sandpack>
 
@@ -222,34 +237,41 @@ function Counter() {
 </Sandpack>
 
 **If your app is fully built with React, you shouldn't need to create any more roots, or to call [`root.render`](#root-render) again.** 
+<Trans>**앱이 React로 완전히 빌드된 경우, 더 이상 루트를 만들거나 [`root.render`](#root-render)를 다시 호출할 필요가 없습니다.**</Trans>
 
 From this point on, React will manage the DOM of your entire app. To add more components, [nest them inside the `App` component.](/learn/importing-and-exporting-components) When you need to update the UI, each of your components can do this by [using state.](/reference/react/useState) When you need to display extra content like a modal or a tooltip outside the DOM node, [render it with a portal.](/reference/react-dom/createPortal)
+<Trans>이 시점부터 React는 전체 앱의 DOM을 관리합니다. 컴포넌트를 더 추가하려면[ `App` 컴포넌트 안에 중첩](/learn/importing-and-exporting-components)시키세요. UI를 업데이트해야 할 때 각 컴포넌트는 [state를 사용해](/reference/react/useState) 이를 수행할 수 있습니다. 모달이나 툴팁과 같은 추가 콘텐츠를 DOM 노드 외부에 표시해야 하는 경우 [portal로 렌더링](/reference/react-dom/createPortal)합니다.</Trans>
 
 <Note>
 
 When your HTML is empty, the user sees a blank page until the app's JavaScript code loads and runs:
+<Trans>HTML이 비어 있으면 앱의 자바스크립트 코드가 로드되고 실행될 때까지 사용자에게 빈 페이지가 표시됩니다:</Trans>
 
 ```html
 <div id="root"></div>
 ```
 
 This can feel very slow! To solve this, you can generate the initial HTML from your components [on the server or during the build.](/reference/react-dom/server) Then your visitors can read text, see images, and click links before any of the JavaScript code loads. We recommend [using a framework](/learn/start-a-new-react-project#production-grade-react-frameworks) that does this optimization out of the box. Depending on when it runs, this is called *server-side rendering (SSR)* or *static site generation (SSG).*
+<Trans>이것은 매우 느리게 느껴질 수 있습니다! 이 문제를 해결하기 위해 [서버에서 또는 빌드 중에](/reference/react-dom/server) 컴포넌트로부터 초기 HTML을 생성할 수 있습니다. 그러면 방문자는 자바스크립트 코드가 로드되기 전에 텍스트를 읽고, 이미지를 보고, 링크를 클릭할 수 있습니다. 이 최적화를 기본적으로 수행하는 [프레임워크를 사용하는 것](/learn/start-a-new-react-project#production-grade-react-frameworks)이 좋습니다. 실행 시점에 따라 이를 *서버 측 렌더링(SSR)* 또는 *정적 사이트 생성(SSG)* 이라고 합니다.</Trans>
 
 </Note>
 
 <Pitfall>
 
 **Apps using server rendering or static generation must call [`hydrateRoot`](/reference/react-dom/client/hydrateRoot) instead of `createRoot`.** React will then *hydrate* (reuse) the DOM nodes from your HTML instead of destroying and re-creating them.
+<Trans>**서버 렌더링이나 정적 생성을 사용하는 앱은 `createRoot` 대신 [`hydrateRoot`](/reference/react-dom/client/hydrateRoot)를 호출해야 합니다.** 그러면 React는 DOM 노드를 파괴하고 다시 생성하는 대신 HTML으로부터 hydrate (재사용)합니다.</Trans>
 
 </Pitfall>
 
 ---
 
-### Rendering a page partially built with React {/*rendering-a-page-partially-built-with-react*/}
+### Rendering a page partially built with React<Trans>React로 부분적으로 빌드된 페이지 렌더링하기</Trans> {/*rendering-a-page-partially-built-with-react*/}
 
 If your page [isn't fully built with React](/learn/add-react-to-an-existing-project#using-react-for-a-part-of-your-existing-page), you can call `createRoot` multiple times to create a root for each top-level piece of UI managed by React. You can display different content in each root by calling [`root.render`.](#root-render)
+<Trans>페이지가 [React로 완전히 빌드되지 않은 경우](/learn/add-react-to-an-existing-project#using-react-for-a-part-of-your-existing-page), `createRoot`를 여러 번 호출하여 React가 관리하는 각 최상위 UI에 대한 루트를 생성할 수 있습니다.[`root.render`](#root-render)를 호출하여 각 루트에 다른 콘텐츠를 표시할 수 있습니다.</Trans>
 
 Here, two different React components are rendered into two DOM nodes defined in the `index.html` file:
+<Trans>여기서는 서로 다른 두 개의 React 컴포넌트가 `index.html` 파일에 정의된 두 개의 DOM 노드에 렌더링됩니다:</Trans>
 
 <Sandpack>
 
@@ -324,6 +346,7 @@ nav ul li { display: inline-block; margin-right: 20px; }
 </Sandpack>
 
 You could also create a new DOM node with [`document.createElement()`](https://developer.mozilla.org/en-US/docs/Web/API/Document/createElement) and add it to the document manually.
+<Trans>[`document.createElement()`](https://developer.mozilla.org/en-US/docs/Web/API/Document/createElement)를 사용하여 새 DOM 노드를 생성하고 문서에 수동으로 추가할 수도 있습니다.</Trans>
 
 ```js
 const domNode = document.createElement('div');
@@ -333,18 +356,21 @@ document.body.appendChild(domNode); // You can add it anywhere in the document
 ```
 
 To remove the React tree from the DOM node and clean up all the resources used by it, call [`root.unmount`.](#root-unmount)
+<Trans>DOM 노드에서 React 트리를 제거하고 이 트리가 사용하는 모든 리소스를 정리하려면 [`root.unmount`](#root-unmount)를 호출하세요.</Trans>
 
 ```js
 root.unmount();
 ```
 
 This is mostly useful if your React components are inside an app written in a different framework.
+<Trans>이 기능은 React 컴포넌트가 다른 프레임워크로 작성된 앱 내부에 있는 경우에 주로 유용합니다.</Trans>
 
 ---
 
-### Updating a root component {/*updating-a-root-component*/}
+### Updating a root component<Trans>루트 컴포넌트 업데이트</Trans> {/*updating-a-root-component*/}
 
 You can call `render` more than once on the same root. As long as the component tree structure matches up with what was previously rendered, React will [preserve the state.](/learn/preserving-and-resetting-state) Notice how you can type in the input, which means that the updates from repeated `render` calls every second in this example are not destructive:
+<Trans>같은 루트에서 `render`를 두 번 이상 호출할 수 있습니다. 컴포넌트 트리 구조가 이전에 렌더링된 것과 일치하는 한, React는 [state를 보존](/learn/preserving-and-resetting-state)합니다. 이 예제에서 매초마다 반복되는 `render` 호출로 인한 업데이트가 파괴적이지 않다는 것을 의미하는 입력을 어떻게 입력할 수 있는지 주목하세요:</Trans>
 
 <Sandpack>
 
@@ -376,6 +402,7 @@ export default function App({counter}) {
 </Sandpack>
 
 It is uncommon to call `render` multiple times. Usually, your components will [update state](/reference/react/useState) instead.
+<Trans>`render`를여러 번 호출하는 경우는 흔하지 않습니다. 일반적으로 컴포넌트가 대신 [state를 업데이트](/reference/react/useState)합니다.</Trans>
 
 ---
 ## Troubleshooting<Trans>문제 해결</Trans> {/*troubleshooting*/}
@@ -383,6 +410,7 @@ It is uncommon to call `render` multiple times. Usually, your components will [u
 ### I've created a root, but nothing is displayed {/*ive-created-a-root-but-nothing-is-displayed*/}
 
 Make sure you haven't forgotten to actually *render* your app into the root:
+<Trans>실제로 앱을 루트에 **렌더링**하는 것을 잊지 않았는지 확인하세요:</Trans>
 
 ```js {5}
 import { createRoot } from 'react-dom/client';
@@ -393,14 +421,17 @@ root.render(<App />);
 ```
 
 Until you do that, nothing is displayed.
+<Trans>거기까지 진행했음에도 아무것도 표시되지 않았습니다.</Trans>
 
 ---
 
-### I'm getting an error: "Target container is not a DOM element" {/*im-getting-an-error-target-container-is-not-a-dom-element*/}
+### I'm getting an error: "Target container is not a DOM element"<Trans>"대상 컨테이너가 DOM 앨리먼트가 아닙니다" 오류가 발생합니다.</Trans> {/*im-getting-an-error-target-container-is-not-a-dom-element*/}
 
 This error means that whatever you're passing to `createRoot` is not a DOM node.
+<Trans>이 오류는 `createRoot`에 전달하는 것이 DOM 노드가 아니라는 것을 의미합니다. </Trans>
 
 If you're not sure what's happening, try logging it:
+<Trans>무슨 일이 발생했는지 확실하지 않은 경우 로깅을 시도해 보세요:</Trans>
 
 ```js {2}
 const domNode = document.getElementById('root');
@@ -410,19 +441,27 @@ root.render(<App />);
 ```
 
 For example, if `domNode` is `null`, it means that [`getElementById`](https://developer.mozilla.org/en-US/docs/Web/API/Document/getElementById) returned `null`. This will happen if there is no node in the document with the given ID at the time of your call. There may be a few reasons for it:
+<Trans>예를 들어 `domNode`가 `null`이면 [`getElementById`](https://developer.mozilla.org/ko/docs/Web/API/Document/getElementById) 가 `null`을 반환했음을 의미합니다. 이는 호출 시점에 문서에 지정된 ID를 가진 노드가 없는 경우에 발생합니다. 몇 가지 이유가 있을 수 있습니다.</Trans>
 
 1. The ID you're looking for might differ from the ID you used in the HTML file. Check for typos!
 2. Your bundle's `<script>` tag cannot "see" any DOM nodes that appear *after* it in the HTML.
+<TransBlock>
+1. 찾고자 하는 ID가 HTML 파일에서 사용한 ID와 다를 수 있습니다. 오타가 있는지 확인하세요!
+2. 번들의 `<script>` 태그는 HTML에서 그 뒤에 나타나는 DOM 노드를 "볼" 수 없습니다.
+</TransBlock>
 
 Another common way to get this error is to write `createRoot(<App />)` instead of `createRoot(domNode)`.
+<Trans>이 오류는 ` createRoot(domNode)` 대신 `createRoot(<App />)`로 작성했을 때 흔히 발생합니다.</Trans>
 
 ---
 
-### I'm getting an error: "Functions are not valid as a React child." {/*im-getting-an-error-functions-are-not-valid-as-a-react-child*/}
+### I'm getting an error: "Functions are not valid as a React child."<Trans>"함수가 React 자식으로서 유효하지 않습니다" 오류가 발생합니다.</Trans> {/*im-getting-an-error-functions-are-not-valid-as-a-react-child*/}
 
 This error means that whatever you're passing to `root.render` is not a React component.
+<Trans>이 오류는 `root.render`에 전달하는 것이 React 컴포넌트가 아니라는 것을 의미합니다.</Trans>
 
 This may happen if you call `root.render` with `Component` instead of `<Component />`:
+<Trans>이 오류는 `<Component />` 대신 `Component`로 `root.render`를 호출할 때 발생할 수 있습니다:</Trans>
 
 ```js {2,5}
 // 🚩 Wrong: App is a function, not a Component.
@@ -433,6 +472,7 @@ root.render(<App />);
 ````
 
 Or if you pass a function to `root.render`, instead of the result of calling it:
+<Trans> 또는 함수를 호출한 결과 대신 `root.render`에 함수를 전달했을 때도 발생할 수 있습니다:</Trans>
 
 ```js {2,5}
 // 🚩 Wrong: createApp is a function, not a component.
@@ -444,11 +484,13 @@ root.render(createApp());
 
 ---
 
-### My server-rendered HTML gets re-created from scratch {/*my-server-rendered-html-gets-re-created-from-scratch*/}
+### My server-rendered HTML gets re-created from scratch<Trans>서버에서 렌더링된 HTML이 처음부터 다시 생성됩니다.</Trans> {/*my-server-rendered-html-gets-re-created-from-scratch*/}
 
 If your app is server-rendered and includes the initial HTML generated by React, you might notice that creating a root and calling `root.render` deletes all that HTML, and then re-creates all the DOM nodes from scratch. This can be slower, resets focus and scroll positions, and may lose other user input.
+<Trans>앱이 서버 렌더링되고 React에서 생성된 초기 HTML을 포함하는 경우, 루트를 생성하고 `root.render`를 호출하면 모든 HTML이 삭제되고 모든 DOM 노드가 처음부터 다시 생성되는 것을 볼 수 있습니다. 이렇게 하면 속도가 느려지고 포커스와 스크롤 위치가 재설정되며 다른 사용자 입력이 손실될 수 있습니다.</Trans>
 
 Server-rendered apps must use [`hydrateRoot`](/reference/react-dom/client/hydrateRoot) instead of `createRoot`:
+<Trans>서버 렌더링 앱은 `createRoot` 대신 [`hydrateRoot`](/reference/react-dom/client/hydrateRoot)를 사용해야 합니다:</Trans>
 
 ```js {1,4-7}
 import { hydrateRoot } from 'react-dom/client';
@@ -461,3 +503,4 @@ hydrateRoot(
 ```
 
 Note that its API is different. In particular, usually there will be no further `root.render` call.
+<Trans>API가 다르다는 점에 유의하세요. 특히 일반적으로 더 이상 `root.render`를 호출하지 않습니다.</Trans>

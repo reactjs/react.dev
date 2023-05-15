@@ -183,14 +183,19 @@ These `<input>` props are relevant both for uncontrolled and controlled inputs:
 
 - Checkboxes need `checked` (or `defaultChecked`), not `value` (or `defaultValue`).
 <Trans>체크박스는 `value`(또는 `defaultValue`)가 아닌 `checked`(또는 `defaultChecked`)가 필요합니다.</Trans>
+
 - If a text input receives a string `value` prop, it will be [treated as controlled.](#controlling-an-input-with-a-state-variable)
 <Trans>텍스트 input이 문자열 `value` prop을 받으면 [제어된 것으로 처리됩니다.](#controlling-an-input-with-a-state-variable).</Trans>
+
 - If a checkbox or a radio button receives a boolean `checked` prop, it will be [treated as controlled.](#controlling-an-input-with-a-state-variable)
 <Trans>체크박스나 라디오 버튼이 불리언 `checked` prop을 받으면 [제어된 것으로 처리됩니다.](#controlling-an-input-with-a-state-variable).</Trans>
+
 - An input can't be both controlled and uncontrolled at the same time.
 <Trans>input은 동시에 제어되거나 제어되지 않을 수 없습니다.</Trans>
+
 - An input cannot switch between being controlled or uncontrolled over its lifetime.
 <Trans>input은 수명 동안 제어되거나 제어되지 않는 상태로 전환될 수 없습니다.</Trans>
+
 - Every controlled input needs an `onChange` event handler that synchronously updates its backing value.
 <Trans>제어되는 모든 입력에는 `onChange` 이벤트 핸들러가 필요하며, 이 핸들러는 지원 값을 동기적으로 업데이트합니다.</Trans>
 
@@ -399,14 +404,14 @@ input { margin: 5px; }
 <Note>
 
 Give a `name` to every `<input>`, for example `<input name="firstName" defaultValue="Taylor" />`. The `name` you specified will be used as a key in the form data, for example `{ firstName: "Taylor" }`.
-<Trans>모든 `<input>`에 `name`을 지정합니다(예: `<input name="firstName" defaultValue="Taylor" />`). 지정한 `name`은 form 데이터에서 키로 사용됩니다(예: `{ firstName: "Taylor" }`).</Trans>
+<Trans>모든 `<input>`에 `name`을 지정하세요(예: `<input name="firstName" defaultValue="Taylor" />`). 지정한 `name`은 form 데이터에서 키로 사용됩니다(예: `{ firstName: "Taylor" }`).</Trans>
 
 </Note>
 
 <Pitfall>
 
 By default, *any* `<button>` inside a `<form>` will submit it. This can be surprising! If you have your own custom `Button` React component, consider returning [`<button type="button">`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/button) instead of `<button>`. Then, to be explicit, use `<button type="submit">` for buttons that *are* supposed to submit the form.
-<Trans>기본적으로 `<form>`안에 있는 *모든* `<button>`이 제출됩니다. 의외일 수 있습니다!! 커스텀 `Button` React 컴포넌트가 있는 경우 `<button>` 대신 [`<button type="button">`](https://developer.mozilla.org/ko/docs/Web/HTML/Element/input/button)을 반환하는 것을 고려하세요. 그런 다음 form을 제출해야 *하는* 버튼에 `<button type="submit">`을 사용하세요.</Trans>
+<Trans>기본적으로 `<form>`안에 있는 *모든* `<button>`은 제출됩니다. 의외일 수 있습니다! 커스텀 `Button` React 컴포넌트가 있는 경우 `<button>` 대신 [`<button type="button">`](https://developer.mozilla.org/ko/docs/Web/HTML/Element/input/button)을 반환하는 것을 고려하세요. 그런 다음 form을 제출해야 *하는* 버튼에 `<button type="submit">`을 사용하세요.</Trans>
 
 </Pitfall>
 
@@ -418,7 +423,7 @@ An input like `<input />` is *uncontrolled.* Even if you [pass an initial value]
 <Trans>`<input />`과 같은 input은 *제어되지 않습니다.* `<input defaultValue="Initial text" />`와 같이 [초기값을 전달](#providing-an-initial-value-for-an-input)하더라도 JSX는 초기값만 지정합니다. 현재 값이 무엇이어야 하는지는 제어하지 않습니다.</Trans>
 
 **To render a _controlled_ input, pass the `value` prop to it (or `checked` for checkboxes and radios).** React will force the input to always have the `value` you passed. Usually, you would do this by declaring a [state variable:](/reference/react/useState)
-<Trans>**_제어된_input을 렌더링하려면 `value` prop을 전달하세요(체크박스와 라디오의 경우 `checked`).** React는 입력이 항상 전달한 `value`를 갖도록 강제합니다. 보통은 [state 변수](/reference/react/useState)를 선언하여 이를 수행합니다.</Trans>
+<Trans>**_제어된_ input을 렌더링하려면 `value` prop을 전달하세요(체크박스와 라디오의 경우 `checked`).** React는 입력이 항상 전달한 `value`를 갖도록 강제합니다. 보통은 [state 변수](/reference/react/useState)를 선언하여 이를 수행합니다.</Trans>
 
 ```js {2,6,7}
 function Form() {
@@ -437,7 +442,7 @@ function Form() {
 ```
 
 A controlled input makes sense if you needed state anyway--for example, to re-render your UI on every edit:
-<Trans>예를 들어 편집할 때마다 UI를 다시 렌더링해야 하는 경우와 같이 어차피 state가 필요할 때, 제어 input이 적합합니다:</Trans>
+<Trans>어차피 state가 필요한 경우(예: 편집할 때마다 UI를 다시 렌더링해야 하는 경우) 제어 input이 적합합니다:</Trans>
 
 ```js {2,9}
 function Form() {
@@ -453,7 +458,7 @@ function Form() {
 ```
 
 It's also useful if you want to offer multiple ways to adjust the input state (for example, by clicking a button):
-<Trans>버튼을 클릭하는 등 다양한 방법으로 input state를 조정하는 기능을 제공하려는 경우에도 유용합니다:</Trans>
+<Trans>다양한 방법으로 input state를 조정하는 기능을 제공하려는 경우(예: 버튼을 클릭하는 등)에도 유용합니다:</Trans>
 
 ```js {3-4,10-11,14}
 function Form() {
@@ -475,7 +480,7 @@ function Form() {
 ```
 
 The `value` you pass to controlled components should not be `undefined` or `null`. If you need the initial value to be empty (such as with the `firstName` field below), initialize your state variable to an empty string (`''`).
-<Trans>제어되는 컴포넌트에 전달하는 `value`는 `undefined` 또는 `null`이어서는 안 됩니다. 초기값을 비워야 하는 경우(아래의 `firstName` 필드와 같이) state 변수를 빈 문자열(`''`)로 초기화하세요.</Trans>
+<Trans>제어 컴포넌트에 전달하는 `value`는 `undefined` 또는 `null`이어서는 안됩니다. 초기값을 비워야 하는 경우(아래의 `firstName` 필드와 같이) state 변수를 빈 문자열(`''`)로 초기화하세요.</Trans>
 
 <Sandpack>
 

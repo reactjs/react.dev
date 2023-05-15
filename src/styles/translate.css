@@ -65,7 +65,7 @@ nav[role='navigation'] .translate::before {
   bottom: 5px;
 }
 .list-disc li > p:only-child .translate,
-.translate.dedent {
+.translate.outdent {
   margin-left: -16px;
   padding-left: 16px;
 }

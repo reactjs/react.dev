@@ -1,13 +1,13 @@
 import * as React from 'react';
 
 interface TransProps {
-  dedent?: boolean;
+  outdent?: boolean;
   children: React.ReactNode;
 }
 
-function Trans({dedent = false, children}: TransProps) {
+function Trans({outdent = false, children}: TransProps) {
   return (
-    <span className={`translate${dedent ? ' dedent' : ''}`}>{children}</span>
+    <span className={`translate${outdent ? ' outdent' : ''}`}>{children}</span>
   );
 }
 

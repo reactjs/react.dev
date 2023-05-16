@@ -26,12 +26,6 @@ React lets you add *event handlers* to your JSX. Event handlers are your own fun
 
 Built-in components like `<button>` only support built-in browser events like `onClick`. However, you can also create your own components, and give their event handler props any application-specific names that you like.
 
-<Note>
-
-When you create your own components, make sure to use the built in `<button>` html tag and html attributes for `onClick` handlers instead of `<div>`.  This makes it more accessible for assistive technology users to understand and use the elements in the intended way. Learn more why this matters [here](https://www.w3.org/WAI/ARIA/apg/about/aria-basics/#whatareaccessibilitysemantics?).
-
-</Note>
-
 <Sandpack>
 
 ```js

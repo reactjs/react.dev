@@ -6,7 +6,7 @@ translators: [손한종, 정재남]
 <Intro>
 
 `useReducer` is a React Hook that lets you add a [reducer](/learn/extracting-state-logic-into-a-reducer) to your component.
-<Trans>`useReducer` 는 컴포넌트에  [reducer](/learn/extracting-state-logic-into-a-reducer)를 추가할 수 있는 리액트입니다.</Trans>
+<Trans>`useReducer` 는 컴포넌트에  [reducer](/learn/extracting-state-logic-into-a-reducer)를 추가할 수 있는 React입니다.</Trans>
 
 ```js
 const [state, dispatch] = useReducer(reducer, initialArg, init?)

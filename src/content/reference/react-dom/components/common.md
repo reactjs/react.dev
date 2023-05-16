@@ -220,7 +220,7 @@ These standard DOM props are also supported for all built-in components:
 <Trans>`onDropCapture`: [캡쳐 단계](/learn/responding-to-events#capture-phase-events)에서 실행되는 버전의 `onDrop` 입니다.</Trans>
 
 * `onFocus`: A [`FocusEvent` handler](#focusevent-handler) function. Fires when an element lost focus. Unlike the built-in browser [`focus`](https://developer.mozilla.org/en-US/docs/Web/API/Element/focus_event) event, in React the `onFocus` event bubbles.
-<Trans>`onFocus`: [`FocusEvent` 핸들러](#focusevent-handler) 함수. 엘리먼트가 초점을 잃을 때 호출됩니다. 브라우저 빌트인 [`focus`](https://developer.mozilla.org/en-US/docs/Web/API/Element/focus_event)와 달리, 리액트의 `onFocus` 이벤트는 버블이 발생합니다.</Trans>
+<Trans>`onFocus`: [`FocusEvent` 핸들러](#focusevent-handler) 함수. 엘리먼트가 초점을 잃을 때 호출됩니다. 브라우저 빌트인 [`focus`](https://developer.mozilla.org/en-US/docs/Web/API/Element/focus_event)와 달리, React의 `onFocus` 이벤트는 버블이 발생합니다.</Trans>
 
 * `onFocusCapture`: A version of `onFocus` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
 <Trans>`onFocusCapture`: [캡쳐 단계](/learn/responding-to-events#capture-phase-events)에서 실행되는 버전의 `onFocus` 입니다.</Trans>

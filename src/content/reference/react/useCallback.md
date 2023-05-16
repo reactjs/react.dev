@@ -104,7 +104,7 @@ On the initial render, the <CodeStep step={3}>returned function</CodeStep> you'l
 <Trans>초기 렌더링 시에는 `useCallback`에서 <CodeStep step={3}>반환되는 함수</CodeStep>는 처음에 전달했던 함수입니다.</Trans>
 
 On the following renders, React will compare the <CodeStep step={2}>dependencies</CodeStep> with the dependencies you passed during the previous render. If none of the dependencies have changed (compared with [`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is)), `useCallback` will return the same function as before. Otherwise, `useCallback` will return the function you passed on *this* render.
-<Trans>다음 렌더링부터는, 리액트는 이전 렌더링에서 전달된 <CodeStep step={2}>의존성</CodeStep>과 비교합니다. 만약 의존성 중 변경된 것이 없다면([Object.is](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is)로 비교), `useCallback`은 이전과 같은 함수를 반환합니다. 그렇지 않으면 `useCallback`은 *이번* 렌더링에서 전달한 함수를 반환합니다.</Trans>
+<Trans>다음 렌더링부터는, React는 이전 렌더링에서 전달된 <CodeStep step={2}>의존성</CodeStep>과 비교합니다. 만약 의존성 중 변경된 것이 없다면([Object.is](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is)로 비교), `useCallback`은 이전과 같은 함수를 반환합니다. 그렇지 않으면 `useCallback`은 *이번* 렌더링에서 전달한 함수를 반환합니다.</Trans>
 
 In other words, `useCallback` caches a function between re-renders until its dependencies change.
 <Trans>즉, `useCallback`은 의존성이 변경되기 전까지는 리렌더링에 대해 함수를 캐시합니다.</Trans>
@@ -245,7 +245,7 @@ If you're already familiar with [`useMemo`,](/reference/react/useMemo) you might
 
 ```js
 // Simplified implementation (inside React)
-// 간소화된 구현체 (리액트 내부)
+// 간소화된 구현체 (React 내부)
 function useCallback(fn, dependencies) {
   return useMemo(() => fn, dependencies);
 }

@@ -21,7 +21,7 @@ These APIs can be imported from your components. They are rarely used:
 * [`flushSync`](/reference/react-dom/flushSync) lets you force React to flush a state update and update the DOM synchronously.
 <TransBlock>
 * [`createPortal`](/reference/react-dom/createPortal)을 사용하면 DOM 트리의 다른 부분에 자식 컴포넌트를 렌더링할 수 있습니다.
-* [`flushSync`](/reference/react-dom/flushSync)를 사용하면 리액트가 state 업데이트를 강제로 플러시(메모리등을 강제로 처리하여 비워냄)하고 DOM을 동기적으로 업데이트할 수 있습니다.
+* [`flushSync`](/reference/react-dom/flushSync)를 사용하면 React가 state 업데이트를 강제로 플러시(메모리등을 강제로 처리하여 비워냄)하고 DOM을 동기적으로 업데이트할 수 있습니다.
 </TransBlock>
 
 ---
@@ -29,13 +29,13 @@ These APIs can be imported from your components. They are rarely used:
 ## Entry points <Trans>진입점</Trans> {/*entry-points*/}
 
 The `react-dom` package provides two additional entry points:
-<Trans>리액트 DOM 패키지는 두 개의 추가 진입점을 제공합니다:</Trans>
+<Trans>React DOM 패키지는 두 개의 추가 진입점을 제공합니다:</Trans>
 
 * [`react-dom/client`](/reference/react-dom/client) contains APIs to render React components on the client (in the browser).
 * [`react-dom/server`](/reference/react-dom/server) contains APIs to render React components on the server.
 <TransBlock>
-* [`react-dom/client`](/reference/react-dom/client) 에는 클라이언트(브라우저)에서 리액트 컴포넌트를 렌더링하기 위한 API가 포함되어 있습니다.
-* [`react-dom/server`](/reference/react-dom/server) 에는 서버에서 리액트 컴포넌트를 렌더링하기 위한 API가 포함되어 있습니다.
+* [`react-dom/client`](/reference/react-dom/client) 에는 클라이언트(브라우저)에서 React 컴포넌트를 렌더링하기 위한 API가 포함되어 있습니다.
+* [`react-dom/server`](/reference/react-dom/server) 에는 서버에서 React 컴포넌트를 렌더링하기 위한 API가 포함되어 있습니다.
 </TransBlock>
 
 ---
@@ -45,7 +45,7 @@ The `react-dom` package provides two additional entry points:
 <Deprecated>
 
 These APIs will be removed in a future major version of React.
-<Trans>다음 API들은 향후 리액트의 메인 버전에서 삭제될 예정입니다.</Trans>
+<Trans>다음 API들은 향후 React의 메인 버전에서 삭제될 예정입니다.</Trans>
 
 </Deprecated>
 

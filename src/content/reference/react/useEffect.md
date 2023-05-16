@@ -838,7 +838,7 @@ export function useIntersectionObserver(ref) {
 
 ---
 
-### Controlling a non-React widget<Trans>리액트가 아닌 위젯 제어하기</Trans> {/*controlling-a-non-react-widget*/}
+### Controlling a non-React widget<Trans>React가 아닌 위젯 제어하기</Trans> {/*controlling-a-non-react-widget*/}
 
 Sometimes, you want to keep an external system synchronized to some prop or state of your component.
 <Trans>외부 시스템을 컴포넌트의 특정 prop이나 state와 동기화하고 싶을 때가 있습니다.</Trans>

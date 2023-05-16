@@ -18,7 +18,7 @@ interface ExpandableCalloutProps {
 
 const variantMap = {
   deprecated: {
-    title: 'Deprecated',
+    title: 'Deprecated | 지원 중단',
     Icon: IconWarning,
     containerClasses: 'bg-red-5 dark:bg-red-60 dark:bg-opacity-20',
     textColor: 'text-red-50 dark:text-red-40',

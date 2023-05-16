@@ -1,37 +1,8 @@
-# react-ko.vercel.app | React 공식문서 비공식 번역 사이트
+# react-ko.dev | React 비공식 한글번역 사이트
 
 [react.dev](https://react.dev/)를 fork하여 작성한 리파지토리입니다.  
 스터디그룹에서 한글 번역을 진행하고 있고,  
 유튜브 [FE재남](https://www.youtube.com/playlist?list=PLjQV3hketAJkh6BEl0n4PDS_2fBd0cS9v)에 스터디 영상을 공개하고 있습니다.
-
-## 자기소개 추가하기
-
-1. `feature/translators` 브랜치를 기준으로 로컬 브랜치를 만듭니다.
-   _[your-own-branch-name] 부분에 원하는 이름을 넣으세요. 대괄호(`[ ]`)는 없어야 합니다._
-
-```bash
-/develop/> git pull origin develop
-/develop/> git switch -c "[your-own-branch-name]"
-```
-
-2. 적당한 크기의 이미지를 `/public/images/translators` 폴더에 올려주세요.  
-   파일명 앞에 `_m_`이 붙은 파일들은 나중에 이미지최적화를 마친 파일이고, prefix가 없는 파일들이 원본 파일입니다. 여러분은 원본 파일만 올려주시면 됩니다.
-
-3. `/src/content/community/translators` 폴더의 `data.json` 파일에서, 본인의 소개글을 작성해 주세요.
-
-4. 작업을 마치면 해당 브랜치를 `push`합니다.
-
-```bash
-/[your-own-branch-name]/> git add .
-/[your-own-branch-name]/> git commit -m "커밋메시지 자유롭게 작성"
-/[your-own-branch-name]/> git push origin [your-own-branch-name]
-```
-
-5. 깃헙에서 `New Pull Request`를 하세요.
-
-   1. base repository: **"roy-jung/react.dev.ko"** 선택
-   2. 다시 base: **feature/translators** 선택
-   3. compare: 작업한 브랜치를 선택
 
 ## PR 작성 규칙
 
@@ -121,6 +92,7 @@ Reducers let you consolidate a component's state update logic. Context lets you 
 ```markdown
 - **Code size:** Generally, with `useState` you have to write less code upfront. With `useReducer`, you have to write both a reducer function _and_ dispatch actions. However, `useReducer` can help cut down on the code if many event handlers modify state in a similar way.
   <Trans>**코드 크기:** 일반적으로 `useState`를 사용하면 미리 작성해야 하는 코드가 줄어듭니다. `useReducer`를 사용하면 reducer 함수 _와_ action을 전달하는 부분 모두 작성해야 합니다. 하지만 많은 이벤트 핸들러가 비슷한 방식으로 state를 업데이트하는 경우 `useReducer`를 사용하면 코드를 줄이는 데 도움이 될 수 있습니다.</Trans>
+
 - **Readability:** `useState` is very easy to read when the state updates are simple. When they get more complex, they can bloat your component's code and make it difficult to scan. In this case, `useReducer` lets you cleanly separate the _how_ of update logic from the _what happened_ of event handlers.
   <Trans>**가독성:** `useState`로 간단한 state를 업데이트 하는 경우 가독성이 좋습니다. 그렇지만 state의 구조가 더욱 복잡해지면, 컴포넌트의 코드의 양이 부풀어 오르고 한눈에 읽기 어려워질 수 있습니다. 이 경우 `useReducer`를 사용하면 업데이트 로직이 _어떻게 동작_ 하는지와 이벤트 핸들러를 통해 _무엇이 일어났는지_ 를 깔끔하게 분리할 수 있습니다.</Trans>
 ```
@@ -132,7 +104,6 @@ Reducers let you consolidate a component's state update logic. Context lets you 
 #### 다양한 방법으로 컴포넌트 추가하기 -@이승효 {/*add_component_in_various_ways*/}
 
 React 컴포넌트는 항상 대문자로 시작해야 하지만, 함수명이 대문자일 필요는 없습니다. **그러나 JSX 안에서 컴포넌트가 사용될 때에는 반드시 대문자로 시작해야 한다는 것에 유의하세요.**
-
 </Extra>
 ```
 

@@ -31,19 +31,19 @@ These special React props are supported for all built-in components:
 <Trans>아래의 특별한 React props는 모든 빌트인 컴포넌트에서 지원됩니다:</Trans>
 
 * `children`: A React node (an element, a string, a number, [a portal,](/reference/react-dom/createPortal) an empty node like `null`, `undefined` and booleans, or an array of other React nodes). Specifies the content inside the component. When you use JSX, you will usually specify the `children` prop implicitly by nesting tags like `<div><span /></div>`.
-<Trans>`children`: React 노드(엘리먼트, 문자열, 숫자, portal, null, undefined 및 boolean과 같은 빈 노드 또는 기타 React 노드의 배열). 컴포넌트 내부의 콘텐츠를 지정합니다. JSX를 사용할 때 일반적으로 `<div><span /></div>`와 같은 태그를 중첩하여 암묵적으로 `children` prop을 지정합니다.</Trans>
+<Trans>`children`: React 노드(엘리먼트, 문자열, 숫자, [portal](/reference/react-dom/createPortal), `null`, `undefined` 및 boolean과 같은 빈 노드 또는 기타 React 노드의 배열). 컴포넌트 내부의 콘텐츠를 지정합니다. JSX를 사용할 때 일반적으로 `<div><span /></div>`와 같은 태그를 중첩하여 암묵적으로 `children` prop을 지정합니다.</Trans>
 
 * `dangerouslySetInnerHTML`: An object of the form `{ __html: '<p>some html</p>' }` with a raw HTML string inside. Overrides the [`innerHTML`](https://developer.mozilla.org/en-US/docs/Web/API/Element/innerHTML) property of the DOM node and displays the passed HTML inside. This should be used with extreme caution! If the HTML inside isn't trusted (for example, if it's based on user data), you risk introducing an [XSS](https://en.wikipedia.org/wiki/Cross-site_scripting) vulnerability. [Read more about using `dangerouslySetInnerHTML`.](#dangerously-setting-the-inner-html)
 <Trans>`dangerouslySetInnerHTML`: 내부에 원시 HTML 문자열이 있는 `{ __html: '<p>일부 html</p>' }` 형식의 객체로, 내부에 원시 HTML 문자열이 있습니다. DOM 노드의 [`innerHTML`](https://developer.mozilla.org/en-US/docs/Web/API/Element/innerHTML) 속성을 재정의하고 전달된 HTML을 내부에 표시합니다. 이 함수는 매우 주의해서 사용해야 합니다! 내부 HTML을 신뢰할 수 없는 경우(예: 사용자 데이터를 기반으로 하는 경우) [XSS](https://en.wikipedia.org/wiki/Cross-site_scripting) 취약점이 발생할 위험이 있습니다. [`dangerouslySetInnerHTML` 사용에 대해 자세히 알아보세요.](/reference/react-dom/components/common#dangerously-setting-the-inner-html)</Trans>
 
 * `ref`: A ref object from [`useRef`](/reference/react/useRef) or [`createRef`](/reference/react/createRef), or a [`ref` callback function,](#ref-callback) or a string for [legacy refs.](https://reactjs.org/docs/refs-and-the-dom.html#legacy-api-string-refs) Your ref will be filled with the DOM element for this node. [Read more about manipulating the DOM with Refs.](#manipulating-a-dom-node-with-a-ref)
-<Trans>`ref`: [`useRef`](/reference/react/useRef) 또는 [`createRef`](/reference/react/createRef)의 참조 객체, [`ref` 콜백 함수](#ref-callback), 또는 [레거시 ref](https://reactjs.org/docs/refs-and-the-dom.html#legacy-api-string-refs)에 대한 문자열. ref는 이 노드의 DOM 엘리먼트로 채워집니다. [ref로 DOM을 조작하는 방법에 대해 자세히 알아보세요.](/reference/react-dom/components/common#manipulating-a-dom-node-with-a-ref)</Trans>
+<Trans>`ref`: `useRef`또는[`createRef`](/reference/react/createRef)의 ref 객체, [`ref` 콜백 함수,](/reference/react-dom/components/common#ref-callback) 또는 레거시 ref에 대한 문자열. ref는 이 노드의 DOM 엘리먼트로 채워집니다. [ref로 DOM을 조작하는 방법에 대해 자세히 알아보세요.](/reference/react-dom/components/common#manipulating-a-dom-node-with-a-ref)</Trans>
 
 * `suppressContentEditableWarning`: A boolean. If `true`, suppresses the warning that React shows for elements that both have `children` and `contentEditable={true}` (which normally do not work together). Use this if you're building a text input library that manages the `contentEditable` content manually.
 <Trans>`suppressContentEditableWarning`: 불리언. `true`이면, 일반적으로 함께 작동하지 않는 (일반적으로 함께 작동하지 않는) `children`과 `contentEditable={true}`가 모두 있는 엘리먼트에 대해 React가 표시하는 경고를 억제합니다. 이 값을 사용하면 `contentEditable` 콘텐츠를 수동으로 관리하는 텍스트 입력 라이브러리를 빌드할 때 사용합니다.</Trans>
 
 * `suppressHydrationWarning`: A boolean. If you use [server rendering,](/reference/react-dom/server) normally there is a warning when the server and the client render different content. In some rare cases (like timestamps), it is very hard or impossible to guarantee an exact match. If you set `suppressHydrationWarning` to `true`, React will not warn you about mismatches in the attributes and the content of that element. It only works one level deep, and is intended to be used as an escape hatch. Don't overuse it. [Read about suppressing hydration errors.](/reference/react-dom/client/hydrateRoot#suppressing-unavoidable-hydration-mismatch-errors)
-<Trans>`suppressHydrationWarning`: 불리언입니다. [서버 렌더링](/reference/react-dom/server)을 사용하는 경우 일반적으로 서버와 클라이언트가 서로 다른 콘텐츠를 렌더링할 때 경고가 표시됩니다. 타임스탬프와 같은 일부 드문 경우에서는 정확한 일치를 보장하기가 매우 어렵거나 불가능합니다. `suppressHydrationWarning`을 `true`로 설정하면 React는 해당 엘리먼트의 속성과 콘텐츠가 일치하지 않을 때 경고하지 않습니다. 이는 한 단계 깊이에서만 작동하며, 탈출구로 사용하기 위한 것입니다. 과도하게 사용하지 마세요. [hydration 오류 억제에 대해 자세히 알아보세요.](/reference/react-dom/client/hydrateRoot#suppressing-unavoidable-hydration-mismatch-errors)</Trans>
+<Trans>`suppressHydrationWarning`: 불리언. [서버 렌더링](/reference/react-dom/server)을 사용하는 경우 일반적으로 서버와 클라이언트가 서로 다른 콘텐츠를 렌더링할 때 경고가 표시됩니다. 타임스탬프와 같은 일부 드문 경우에서는 정확한 일치를 보장하기가 매우 어렵거나 불가능합니다. `suppressHydrationWarning`을 `true`로 설정하면 React는 해당 엘리먼트의 속성과 콘텐츠가 일치하지 않을 때 경고하지 않습니다. 이는 한 단계 깊이에서만 작동하며, 탈출구로 사용하기 위한 것입니다. 과도하게 사용하지 마세요. [hydration 오류 억제에 대해 자세히 알아보세요.](/reference/react-dom/client/hydrateRoot#suppressing-unavoidable-hydration-mismatch-errors)</Trans>
 
 * `style`: An object with CSS styles, for example `{ fontWeight: 'bold', margin: 20 }`. Similarly to the DOM [`style`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/style) property, the CSS property names need to be written as `camelCase`, for example `fontWeight` instead of `font-weight`. You can pass strings or numbers as values. If you pass a number, like `width: 100`, React will automatically append `px` ("pixels") to the value unless it's a [unitless property.](https://github.com/facebook/react/blob/81d4ee9ca5c405dce62f64e61506b8e155f38d8d/packages/react-dom-bindings/src/shared/CSSProperty.js#L8-L57) We recommend using `style` only for dynamic styles where you don't know the style values ahead of time. In other cases, applying plain CSS classes with `className` is more efficient. [Read more about `className` and `style`.](#applying-css-styles)
 <Trans>`style`: CSS 스타일이 있는 객체(예: `{ fontWeight: 'bold', margin: 20 }`). DOM [`style`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/style) 프로퍼티와 마찬가지로 CSS 프로퍼티 이름도`font-weight` 대신 `fontWeight`와 같이 `camelCase`로 작성해야 합니다. 문자열이나 숫자를 값으로 전달할 수 있습니다. `width: 100`과 같이 숫자를 전달하면 React는 [단위가 없는 프로퍼티](https://github.com/facebook/react/blob/81d4ee9ca5c405dce62f64e61506b8e155f38d8d/packages/react-dom-bindings/src/shared/CSSProperty.js#L8-L57)가 아니라면 값에 자동으로 `px`("픽셀")를 추가합니다. 스타일 값을 미리 알 수 없는 동적 스타일에만 `style`을 사용하는 것을 권장합니다. 그 외의 경우에는 `className`과 함께 일반 CSS 클래스를 적용하는 것이 더 효율적입니다. [`className`과 `style`로 CSS를 적용하는 방법에 대해 자세히 알아보세요.](#applying-css-styles)</Trans>
@@ -55,7 +55,7 @@ These standard DOM props are also supported for all built-in components:
 <Trans>[`accessKey`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/accesskey): 문자열. 엘리먼트의 키보드 단축키를 지정합니다. [일반적으로 권장하지 않습니다.](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/accesskey#accessibility_concerns)</Trans>
 
 * [`aria-*`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes): ARIA attributes let you specify the accessibility tree information for this element. See [ARIA attributes](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes) for a complete reference. In React, all ARIA attribute names are exactly the same as in HTML.
-<Trans>[`aria-*`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes): ARIA 속성을 사용하면 이 엘리먼트에 대한 접근성 트리 정보를 지정할 수 있습니다. 전체 참조는 [ARIA attributes](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes)를 참조하세요. React에서 모든 ARIA 어트리뷰트 이름은 HTML에서와 완전히 동일합니다.</Trans>
+<Trans>[`aria-*`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes): ARIA 속성을 사용하면 이 엘리먼트에 대한 접근성 트리 정보를 지정할 수 있습니다. 전체 내용은 [ARIA attributes](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes)를 참조하세요. React에서 모든 ARIA 어트리뷰트 이름은 HTML에서와 완전히 동일합니다.</Trans>
 
 * [`autoCapitalize`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/autocapitalize): A string. Specifies whether and how the user input should be capitalized.
 <Trans>[`autoCapitalize`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/autocapitalize): 문자열. 사용자 입력을 대문자로 표시할지 여부와 방법을 지정합니다.</Trans>
@@ -136,7 +136,7 @@ These standard DOM props are also supported for all built-in components:
 <Trans>`onBlurCapture`: [캡쳐 단계](/learn/responding-to-events#capture-phase-events)에서 실행되는 버전의 `onBlur`입니다.</Trans>
 
 * [`onClick`](https://developer.mozilla.org/en-US/docs/Web/API/Element/click_event): A [`MouseEvent` handler](#mouseevent-handler) function. Fires when the primary button was clicked on the pointing device.
-<Trans>[`onClick`](https://developer.mozilla.org/en-US/docs/Web/API/Element/click_event): [`MouseEvent` 핸들러](#mouseevent-handler) 함수. 포인팅 다비아스에서 주요 버튼 클릭시 호출됩니다.</Trans>
+<Trans>[`onClick`](https://developer.mozilla.org/en-US/docs/Web/API/Element/click_event): [`MouseEvent` 핸들러](#mouseevent-handler) 함수. 포인팅 디바이스에서 주요 버튼 클릭시 호출됩니다.</Trans>
 
 * `onClickCapture`: A version of `onClick` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
 <Trans>`onClickCapture`: [캡쳐 단계](/learn/responding-to-events#capture-phase-events)에서 실행되는 버전의 `onClick` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)</Trans>
@@ -220,7 +220,7 @@ These standard DOM props are also supported for all built-in components:
 <Trans>`onDropCapture`: [캡쳐 단계](/learn/responding-to-events#capture-phase-events)에서 실행되는 버전의 `onDrop` 입니다.</Trans>
 
 * `onFocus`: A [`FocusEvent` handler](#focusevent-handler) function. Fires when an element lost focus. Unlike the built-in browser [`focus`](https://developer.mozilla.org/en-US/docs/Web/API/Element/focus_event) event, in React the `onFocus` event bubbles.
-<Trans>`onFocus`: [`FocusEvent` 핸들러](#focusevent-handler) 함수. 엘리먼트가 초점을 잃을 때 호출됩니다. 브라우저 빌트인 [`focus`](https://developer.mozilla.org/en-US/docs/Web/API/Element/focus_event)와 달리, 리액트의 `onFocus` 이벤트는 버블이 발생합니다.</Trans>
+<Trans>`onFocus`: [`FocusEvent` 핸들러](#focusevent-handler) 함수. 엘리먼트가 초점을 잃을 때 호출됩니다. 브라우저 빌트인 [`focus`](https://developer.mozilla.org/en-US/docs/Web/API/Element/focus_event)와 달리, React의 `onFocus` 이벤트는 버블이 발생합니다.</Trans>
 
 * `onFocusCapture`: A version of `onFocus` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
 <Trans>`onFocusCapture`: [캡쳐 단계](/learn/responding-to-events#capture-phase-events)에서 실행되는 버전의 `onFocus` 입니다.</Trans>
@@ -649,7 +649,7 @@ Your event handlers will receive a *React event object.* It is also sometimes kn
 ```
 
 It conforms to the same standard as the underlying DOM events, but fixes some browser inconsistencies.
-<Trans>기본 DOM 이벤트와 동일한 표준을 준수하지만 일부 브라우저 불일치를 수정합니다.</Trans>
+<Trans>기본 DOM 이벤트와 동일한 표준을 준수하지만 일부 브라우저 간의 불일치를 수정합니다.</Trans>
 
 Some React events do not map directly to the browser's native events. For example in `onMouseLeave`, `e.nativeEvent` will point to a `mouseout` event. The specific mapping is not part of the public API and may change in the future. If you need the underlying browser event for some reason, read it from `e.nativeEvent`.
 <Trans>일부 React 이벤트는 브라우저의 네이티브 이벤트에 직접 매핑되지 않습니다. 예를 들어 `onMouseLeave`에서 `e.nativeEvent`는 `mouseout` 이벤트를 가리킵니다. 특정 매핑은 공개 API의 일부가 아니며 향후 변경될 수 있습니다. 어떤 이유로 기본 브라우저 이벤트가 필요한 경우 `e.nativeEvent`에서 읽어오세요.</Trans>

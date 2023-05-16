@@ -42,7 +42,7 @@ They are special in React because passing the `value` prop to them makes them [*
 ## All HTML components<Trans>다른 모든 HTML 컴포넌트들</Trans> {/*all-html-components*/}
 
 React supports all built-in browser HTML components. This includes:
-<Trans>리액트는 모든 브라우저 빌트인 HTML 컴포넌트를 지원합니다. 여기에는 다음이 포함됩니다:</Trans>
+<Trans>React는 모든 브라우저 빌트인 HTML 컴포넌트를 지원합니다. 여기에는 다음이 포함됩니다:</Trans>
 
 * [`<aside>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/aside)
 * [`<audio>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/audio)

@@ -67,10 +67,13 @@ React will attach to the HTML that exists inside the `domNode`, and take over ma
 #### Caveats<Trans>주의사항</Trans> {/*caveats*/}
 * `hydrate` expects the rendered content to be identical with the server-rendered content. React can patch up differences in text content, but you should treat mismatches as bugs and fix them.
 <Trans>`hydrate` 는 렌더링된 콘텐츠가 서버에서 렌더링된 콘텐츠와 동일할 것으로 기대합니다. React는 텍스트 콘텐츠의 차이를 해결할 수 있지만, 불일치를 버그로 간주하고 수정해야 합니다.</Trans>
+
 * In development mode, React warns about mismatches during hydration. There are no guarantees that attribute differences will be patched up in case of mismatches. This is important for performance reasons because in most apps, mismatches are rare, and so validating all markup would be prohibitively expensive.
 <Trans>개발 환경에서 React는 hydration 중에 불일치에 대해 경고합니다. 불일치 시 속성 차이가 해결될 것이라는 보장은 없습니다. 이는 성능 상의 이유로 중요한데, 대부분의 앱에서 불일치는 드물기 때문에 모든 마크업의 유효성을 검사하는 데 엄청난 비용이 들기 때문입니다.</Trans>
+
 * You'll likely have only one `hydrate` call in your app. If you use a framework, it might do this call for you.
 <Trans>앱에 `hydrate` 호출이 하나만 있을 가능성이 높습니다. 프레임워크를 사용하는 경우 프레임워크가 이 호출을 대신 수행할 수 있습니다.</Trans>
+
 * If your app is client-rendered with no HTML rendered already, using `hydrate()` is not supported. Use [render()](/reference/react-dom/render) (for React 17 and below) or [createRoot()](/reference/react-dom/client/createRoot) (for React 18+) instead.
 <Trans>앱이 이미 렌더링된 HTML 없이 클라이언트로 렌더링되는 경우 `hydrate()` 사용은 지원되지 않습니다. 대신 [render()](/reference/react-dom/render) (React 17 이하 버전) 또는 [createRoot()](/reference/react-dom/client/createRoot) (React 18 이상 버전)를 사용하세요.</Trans>
 
@@ -90,10 +93,10 @@ hydrate(<App />, document.getElementById('root'));
 Using `hydrate()` to render a client-only app (an app without server-rendered HTML) is not supported. Use [`render()`](/reference/react-dom/render) (in React 17 and below) or [`createRoot()`](/reference/react-dom/client/createRoot) (in React 18+) instead.
 <Trans>클라이언트 전용 앱(서버 렌더링 HTML이 없는 앱)을 렌더링하는 데 `hydrate()`를 사용하는 것은 지원되지 않습니다. 대신 [`render()`](https://react.dev/reference/react-dom/render) (React 17 이하 버전) 또는 [`createRoot()`](https://react.dev/reference/react-dom/client/createRoot) (React 18 이상 버전)를 사용하세요.</Trans>
 
-### Hydrating server-rendered HTML <Trans>서버 렌더링 HTML hydrating</Trans> {/*hydrating-server-rendered-html*/}
+### Hydrating server-rendered HTML <Trans>서버에서 렌더링된 HTML hydrate하기</Trans> {/*hydrating-server-rendered-html*/}
 
 In React, "hydration" is how React "attaches" to existing HTML that was already rendered by React in a server environment. During hydration, React will attempt to attach event listeners to the existing markup and take over rendering the app on the client.
-<Trans>React에서 “hydration”은 서버 환경에서 React가 이미 렌더링한 기존 HTML에 React가 “연결”하는 방식입니다. hydration이 진행되는 동안 React는 기존 마크업에 이벤트 리스너를 연결하고 클라이언트에서 앱 렌더링을 이어받으려고 시도합니다.</Trans>
+<Trans>React에서 “hydration”은 서버 환경에서 이미 렌더링한 기존 HTML에 “연결”하는 방식입니다. hydration이 진행되는 동안 React는 기존 마크업에 이벤트 리스너를 연결하고 클라이언트에서 앱 렌더링을 이어받으려고 시도합니다.</Trans>
 
 In apps fully built with React, **you will usually only hydrate one "root", once at startup for your entire app**.
 <Trans>React로 완전히 빌드된 앱에서는 **일반적으로 전체 앱의 시작 시 한 번, 하나의 "root"에만 hydrate합니다.**</Trans>
@@ -138,7 +141,7 @@ If a single element’s attribute or text content is unavoidably different betwe
 <Trans>단일 요소의 속성 또는 텍스트 콘텐츠가 서버와 클라이언트 간에 불가피하게 다른 경우(예: 타임스탬프), hydration 불일치 경고를 표시하지 않을 수 있습니다.</Trans>
 
 To silence hydration warnings on an element, add `suppressHydrationWarning={true}`:
-<Trans>요소에서 hydration 경고를 표시하지 않도록 설정하려면 `suppressHydrationWarning={true}`를 추가합니다:</Trans>
+<Trans>요소에서 hydration 경고를 표시하지 않도록 설정하려면 `suppressHydrationWarning={true}`를 추가하세요:</Trans>
 
 <Sandpack>
 
@@ -177,8 +180,8 @@ This only works one level deep, and is intended to be an escape hatch. Don’t o
 
 ### Handling different client and server content <Trans>서로 다른 클라이언트 및 서버 콘텐츠 처리</Trans> {/*handling-different-client-and-server-content*/}
 
-If you intentionally need to render something different on the server and the client, you can do a two-pass rendering. Components that render something different on the client can read a [state variable](/reference/react/useState) like `isClient`, which you can set to `true` in an [effect](/reference/react/useEffect):
-<Trans>서버와 클라이언트에서 의도적으로 다른 것을 렌더링해야 하는 경우 투패스 렌더링을 수행할 수 있습니다. 클라이언트에서 다른 것을 렌더링하는 컴포넌트는 `isClient`와 같은 [state 변수](/reference/react/useState)를 읽을 수 있으며, 이를 [effect](/reference/react/useEffect)에서 `true`로 설정할 수 있습니다:</Trans>
+If you intentionally need to render something different on the server and the client, you can do a two-pass rendering. Components that render something different on the client can read a [state variable](/reference/react/useState) like `isClient`, which you can set to `true` in an [Effect](/reference/react/useEffect):
+<Trans>서버와 클라이언트에서 의도적으로 다른 것을 렌더링해야 하는 경우 투패스 렌더링을 수행할 수 있습니다. 클라이언트에서 다른 것을 렌더링하는 컴포넌트는 `isClient`와 같은 [state 변수](/reference/react/useState)를 읽을 수 있으며, 이를 [Effect](/reference/react/useEffect)에서 `true`로 설정할 수 있습니다:</Trans>
 
 <Sandpack>
 

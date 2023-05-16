@@ -81,31 +81,31 @@ These `<textarea>` props are relevant both for uncontrolled and controlled text 
 <Trans>[`minLength`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea#attr-minlength): 숫자. 텍스트의 최소 길이를 지정합니다.</Trans>
 
 * [`name`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#name): A string. Specifies the name for this input that's [submitted with the form.](#reading-the-textarea-value-when-submitting-a-form)
-<Trans>[`name`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#name): 문자열. [폼 제출시](https://beta.reactjs.org/reference/react-dom/components/textarea#reading-the-textarea-value-when-submitting-a-form) 해당 textarea의 이름을 지정합니다.</Trans>
+<Trans>[`name`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#name): 문자열. [폼 제출시](#reading-the-textarea-value-when-submitting-a-form) 해당 textarea의 이름을 지정합니다.</Trans>
 
 * `onChange`: An [`Event` handler](/reference/react-dom/components/common#event-handler) function. Required for [controlled text areas.](#controlling-a-text-area-with-a-state-variable) Fires immediately when the input's value is changed by the user (for example, it fires on every keystroke). Behaves like the browser [`input` event.](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/input_event)
-<Trans>`onChange`:  [이벤트 핸들러](https://beta.reactjs.org/reference/react-dom/components/common#event-handler). [제어 컴포넌트](https://beta.reactjs.org/reference/react-dom/components/textarea#controlling-a-text-area-with-a-state-variable)로 사용할 때 필요합니다. 사용자에 의해 입력 값이 변경되는 즉시 실행됩니다. (예: 각 키 입력시 실행됨). 브라우저의 [`input` event](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/input_event)와 동일하게 동작합니다.</Trans>
+<Trans>`onChange`:  [이벤트 핸들러](reference/react-dom/components/common#event-handler). [제어 컴포넌트](#controlling-a-text-area-with-a-state-variable)로 사용할 때 필요합니다. 사용자에 의해 입력 값이 변경되는 즉시 실행됩니다. (예: 각 키 입력시 실행됨). 브라우저의 [`input` event](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/input_event)와 동일하게 동작합니다.</Trans>
 
 * `onChangeCapture`: A version of `onChange` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-<Trans>`onChangeCapture`: [캡쳐 단계](https://beta.reactjs.org/learn/responding-to-events#capture-phase-events)에 실행되는 버전의 `onChange`입니다.</Trans>
+<Trans>`onChangeCapture`: [캡쳐 단계](learn/responding-to-events#capture-phase-events)에 실행되는 버전의 `onChange`입니다.</Trans>
 
 * [`onInput`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/input_event): An [`Event` handler](/reference/react-dom/components/common#event-handler) function. function. Fires immediately when the value is changed by the user. For historical reasons, in React it is idiomatic to use `onChange` instead which works similarly.
-<Trans>[`onInput`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/input_event): [이벤트 핸들러](https://beta.reactjs.org/reference/react-dom/components/common#event-handler). 사용자에 의해 값이 변결될 때마다 즉시 실행됩니다. 역사적인 이유로, 리액트에서는 일반적으로 비슷하게 작동하는 `onChange`를 대신 사용합니다.</Trans>
+<Trans>[`onInput`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/input_event): [이벤트 핸들러](reference/react-dom/components/common#event-handler). 사용자에 의해 값이 변결될 때마다 즉시 실행됩니다. 역사적인 이유로, 리액트에서는 일반적으로 비슷하게 작동하는 `onChange`를 대신 사용합니다.</Trans>
 
 * `onInputCapture`: A version of `onInput` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-<Trans>`onInputCapture`: [캡쳐 단계](https://beta.reactjs.org/learn/responding-to-events#capture-phase-events)에 실행되는 버전의 `onInput`입니다.</Trans>
+<Trans>`onInputCapture`: [캡쳐 단계](learn/responding-to-events#capture-phase-events)에 실행되는 버전의 `onInput`입니다.</Trans>
 
 * [`onInvalid`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/invalid_event): An [`Event` handler](/reference/react-dom/components/common#event-handler) function. Fires if an input fails validation on form submit. Unlike the built-in `invalid` event, the React `onInvalid` event bubbles.
-<Trans>[`onInvalid`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/invalid_event): [이벤트 핸들러](https://beta.reactjs.org/reference/react-dom/components/common#event-handler). 폼 제출시 유효성 검사에 실패하면 발생합니다. 빌트인 `invalid` 이벤트와는 달리, 리액트 `onInvalid` 이벤트는 버블이 발생합니다.</Trans>
+<Trans>[`onInvalid`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/invalid_event): [이벤트 핸들러](reference/react-dom/components/common#event-handler). 폼 제출시 유효성 검사에 실패하면 발생합니다. 빌트인 `invalid` 이벤트와는 달리, 리액트 `onInvalid` 이벤트는 버블이 발생합니다.</Trans>
 
 * `onInvalidCapture`: A version of `onInvalid` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-<Trans>`onInvalidCapture`: [캡쳐 단계](https://beta.reactjs.org/learn/responding-to-events#capture-phase-events)에 실행되는 버전의 `onInvalid`입니다.</Trans>
+<Trans>`onInvalidCapture`: [캡쳐 단계](learn/responding-to-events#capture-phase-events)에 실행되는 버전의 `onInvalid`입니다.</Trans>
 
 * [`onSelect`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLTextAreaElement/select_event): An [`Event` handler](/reference/react-dom/components/common#event-handler) function. Fires after the selection inside the `<textarea>` changes. React extends the `onSelect` event to also fire for empty selection and on edits (which may affect the selection).
-<Trans>[`onSelect`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLTextAreaElement/select_event): [이벤트 핸들러](https://beta.reactjs.org/reference/react-dom/components/common#event-handler). `<textarea>`의 내부 선택 영역이 변경되면 발생합니다. 리액트는 비어있는 선택과 (선택에 영향을 줄 수 있는) 편집에 대해서도  `onSelect` 이벤트가 발동되도록 확장했습니다.</Trans>
+<Trans>[`onSelect`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLTextAreaElement/select_event): [이벤트 핸들러](reference/react-dom/components/common#event-handler). `<textarea>`의 내부 선택 영역이 변경되면 발생합니다. 리액트는 비어있는 선택과 (선택에 영향을 줄 수 있는) 편집에 대해서도  `onSelect` 이벤트가 발동되도록 확장했습니다.</Trans>
 
 * `onSelectCapture`: A version of `onSelect` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
-<Trans>`onSelectCapture`: [캡쳐 단계](https://beta.reactjs.org/learn/responding-to-events#capture-phase-events)에 실행되는 버전의 `onSelect`입니다.</Trans>
+<Trans>`onSelectCapture`: [캡쳐 단계](learn/responding-to-events#capture-phase-events)에 실행되는 버전의 `onSelect`입니다.</Trans>
 
 * [`placeholder`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea#attr-placeholder): A string. Displayed in a dimmed color when the text area value is empty.
 <Trans>[`placeholder`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea#attr-placeholder): 문자열. 입력 값이 비어 있을 때 희미한 색상으로 표시됩니다.</Trans>
@@ -178,7 +178,7 @@ Typically, you will place every `<textarea>` inside a [`<label>`](https://develo
 <Trans>흔히 `<textarea>`를 `<label>` 태그 안에 위치시킵니다. 이렇게 하면 해당 label이 textarea와 연결되어 있음을 의미하게 됩니다. 사용자가 label을 클릭하면 브라우저가 textarea에 초점을 맞춥니다. 스크린 리더는 사용자가 textarea에 초점을 맞추면 label 캡션을 읽어주므로, 접근성을 위해서도 이렇게 하는 것이 필수적입니다.</Trans>
 
 If you can't nest `<textarea>` into a `<label>`, associate them by passing the same ID to `<textarea id>` and [`<label htmlFor>`.](https://developer.mozilla.org/en-US/docs/Web/API/HTMLLabelElement/htmlFor) To avoid conflicts between instances of one component, generate such an ID with [`useId`.](/reference/react/useId)
-<Trans>`<textarea>`를 `<label>`에 중첩시킬 수 없는 경우에는, `<textarea id>`와 [`<label htmlFor>`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLLabelElement/htmlFor)에 동일한 ID를 전달하여 연결하세요. 한 컴포넌트에서 여러 인스턴스간의 충돌을 피하기 위해서는 다음과 같이 [`useId`](https://beta.reactjs.org/reference/react/useId)로 ID를 생성하세요.</Trans>
+<Trans>`<textarea>`를 `<label>`에 중첩시킬 수 없는 경우에는, `<textarea id>`와 [`<label htmlFor>`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLLabelElement/htmlFor)에 동일한 ID를 전달하여 연결하세요. 한 컴포넌트에서 여러 인스턴스간의 충돌을 피하기 위해서는 다음과 같이 [`useId`](reference/react/useId)로 ID를 생성하세요.</Trans>
 
 
 <Sandpack>
@@ -329,7 +329,7 @@ A text area like `<textarea />` is *uncontrolled.* Even if you [pass an initial 
 <Trans>`<textarea />`는 기본적으로 비제어 컴포넌트입니다. `<textarea defaultValue="Initial text" />`와 같이 초기값을 전달하더라도, JSX는 초기값만을 지정할 뿐, 현재값은 지정하지 않습니다.</Trans>
 
 **To render a _controlled_ text area, pass the `value` prop to it.** React will force the text area to always have the `value` you passed. Typically, you will control a text area by declaring a [state variable:](/reference/react/useState)
-<Trans>**_제어_ 컴포넌트로 렌더링하기 위해서는 `value` prop을 전달하세요.** 리액트는 textarea가 항상 전달한 `value`를 사용하도록 강제합니다. 일반적으로 [state 변수](https://beta.reactjs.org/reference/react/useState)로 textarea를 제어합니다.</Trans>
+<Trans>**_제어_ 컴포넌트로 렌더링하기 위해서는 `value` prop을 전달하세요.** 리액트는 textarea가 항상 전달한 `value`를 사용하도록 강제합니다. 일반적으로 [state 변수](reference/react/useState)로 textarea를 제어합니다.</Trans>
 
 ```js {2,6,7}
 function NewPost() {

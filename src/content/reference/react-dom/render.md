@@ -54,7 +54,7 @@ An app fully built with React will usually only have one `render` call with its 
 #### Parameters<Trans>매개변수</Trans> {/*parameters*/}
 
 * `reactNode`: A *React node* that you want to display. This will usually be a piece of JSX like `<App />`, but you can also pass a React element constructed with [`createElement()`](/reference/react/createElement), a string, a number, `null`, or `undefined`. 
-<Trans>`reactNode`: 표시하려는 *React 노드*. 일반적으로 `<App />`과 같은 JSX 조각이 되지만, [`createElement()`](/reference/react/createElement), 문자열, 숫자, `null`, `undefined` 등으로 구성된 React 엘리먼트를 전달할 수도 있습니다.</Trans>
+<Trans>`reactNode`: 표시하려는 *React 노드*. 일반적으로 `<App />`과 같은 JSX 조각이지만, [`createElement()`](/reference/react/createElement)로 만든 React 엘리먼트나 문자열, 숫자, `null`, `undefined` 등을 전달할 수도 있습니다.</Trans>
 
 * `domNode`: A [DOM element.](https://developer.mozilla.org/en-US/docs/Web/API/Element) React will display the `reactNode` you pass inside this DOM element. From this moment, React will manage the DOM inside the `domNode` and update it when your React tree changes.
 <Trans>`domNode`: [DOM 엘리먼트](https://developer.mozilla.org/en-US/docs/Web/API/Element). React는 이 DOM 엘리먼트 안에 전달한 `reactNode`를 표시합니다. 이 순간부터 React는 `domNode` 내부의 DOM을 관리하고 React 트리가 변경되면 이를 업데이트합니다.</Trans>

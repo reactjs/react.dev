@@ -185,10 +185,10 @@ These `<input>` props are relevant both for uncontrolled and controlled inputs:
 <Trans>체크박스는 `value`(또는 `defaultValue`)가 아닌 `checked`(또는 `defaultChecked`)가 필요합니다.</Trans>
 
 - If a text input receives a string `value` prop, it will be [treated as controlled.](#controlling-an-input-with-a-state-variable)
-<Trans>텍스트 input이 문자열 `value` prop을 받으면 [제어된 것으로 처리됩니다.](#controlling-an-input-with-a-state-variable).</Trans>
+<Trans>텍스트 input이 문자열 `value` prop을 받으면 [제어된 것으로 처리됩니다.](#controlling-an-input-with-a-state-variable)</Trans>
 
 - If a checkbox or a radio button receives a boolean `checked` prop, it will be [treated as controlled.](#controlling-an-input-with-a-state-variable)
-<Trans>체크박스나 라디오 버튼이 불리언 `checked` prop을 받으면 [제어된 것으로 처리됩니다.](#controlling-an-input-with-a-state-variable).</Trans>
+<Trans>체크박스나 라디오 버튼이 불리언 `checked` prop을 받으면 [제어된 것으로 처리됩니다.](#controlling-an-input-with-a-state-variable)</Trans>
 
 - An input can't be both controlled and uncontrolled at the same time.
 <Trans>input은 동시에 제어되거나 제어되지 않을 수 없습니다.</Trans>
@@ -425,7 +425,7 @@ An input like `<input />` is *uncontrolled.* Even if you [pass an initial value]
 **To render a _controlled_ input, pass the `value` prop to it (or `checked` for checkboxes and radios).** React will force the input to always have the `value` you passed. Usually, you would do this by declaring a [state variable:](/reference/react/useState)
 <Trans>**_제어된_ input을 렌더링하려면 `value` prop을 전달하세요(체크박스와 라디오의 경우 `checked`).** React는 입력이 항상 전달한 `value`를 갖도록 강제합니다. 보통은 [state 변수](/reference/react/useState)를 선언하여 이를 수행합니다.</Trans>
 
-```js {2,6,7}
+```js {2-3,7-10}
 function Form() {
   const [firstName, setFirstName] = useState(''); // Declare a state variable...
                                                   // state 변수 정의...
@@ -735,7 +735,7 @@ function handleChange(e) {
 ```
 
 If this doesn't fix the problem, it's possible that the input gets removed and re-added from the DOM on every keystroke. This can happen if you're accidentally [resetting state](/learn/preserving-and-resetting-state) on every re-render, for example if the input or one of its parents always receives a different `key` attribute, or if you nest component function definitions (which is not supported and causes the "inner" component to always be considered a different tree).
-<Trans>이렇게 해도 문제가 해결되지 않는다면, 키 입력 시마다 input이 DOM에서 제거되었다가 다시 추가되는 상황일 수 있습니다. 렌더링할 때마다 실수로 state를 재설정하는 경우 이런 문제가 발생할 수 있습니다. 예를 들어 input 또는 그 부모 중 하나가 항상 다른 `key` 속성을 받거나, 컴포넌트 정의를 중첩하는 경우(React에서는 허용되지 않으며, 렌더링할 때마다 "내부" 컴포넌트가 다시 마운트됩니다), 이런 일이 발생할 수 있습니다.</Trans>
+<Trans>이렇게 해도 문제가 해결되지 않는다면, 키 입력 시마다 input이 DOM에서 제거되었다가 다시 추가되는 상황일 수 있습니다. 렌더링할 때마다 실수로 [state를 재설정](/learn/preserving-and-resetting-state)하는 경우 이런 문제가 발생할 수 있습니다. 예를 들어 input 또는 그 부모 중 하나가 항상 다른 `key` 속성을 받거나, 컴포넌트 정의를 중첩하는 경우(React에서는 허용되지 않으며, 렌더링할 때마다 "내부" 컴포넌트가 다시 마운트됩니다), 이런 일이 발생할 수 있습니다.</Trans>
 
 ---
 

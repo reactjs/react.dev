@@ -3,10 +3,10 @@ title: 번역 진행상황
 ---
 
 <Intro>
-last updated @ 2023-05-16 11:00
+last updated @ 2023-05-17 01:00
 </Intro>
 
-## Reference - 진행중 (done: 41 / total: 59) {/*reference*/}
+## Reference - 진행중 (done: 43 / total: 59) {/*reference*/}
 
 |     | title                                                                |     | title                                                                                  |
 | :-: | :------------------------------------------------------------------- | :-: | :------------------------------------------------------------------------------------- |
@@ -22,12 +22,12 @@ last updated @ 2023-05-16 11:00
 |  ✅  | [5-9. useLayoutEffect](/reference/react/useLayoutEffect)             |  ✅  | [9-5. render](/reference/react-dom/render)                                             |
 |  ✅  | [5-10. useMemo](/reference/react/useMemo)                            |  ▢  | [9-6. unmountComponentAtNode](/reference/react-dom/unmountComponentAtNode)             |
 |  ✅  | [5-11. useReducer](/reference/react/useReducer)                      |  ✅  | [10. Client APIs](/reference/react-dom/client)                                         |
-|  ✅  | [5-12. useRef](/reference/react/useRef)                              |  ▢  | [10-1. createRoot](/reference/react-dom/client/createRoot)                             |
+|  ✅  | [5-12. useRef](/reference/react/useRef)                              |  ✅  | [10-1. createRoot](/reference/react-dom/client/createRoot)                             |
 |  ✅  | [5-13. useState](/reference/react/useState)                          |  ✅  | [10-2. hydrateRoot](/reference/react-dom/client/hydrateRoot)                           |
 |  ✅  | [5-14. useSyncExternalStore](/reference/react/useSyncExternalStore)  |  ▢  | [11. Server APIs](/reference/react-dom/server)                                         |
 |  ✅  | [5-15. useTransition](/reference/react/useTransition)                |  ▢  | [11-1. renderToNodeStream](/reference/react-dom/server/renderToNodeStream)             |
 |  ✅  | [6. Components](/reference/react/components)                         |  ▢  | [11-2. renderToPipeableStream](/reference/react-dom/server/renderToPipeableStream)     |
-|  ✅  | [6-1. `<Fragment>` (`<>`)](/reference/react/Fragment)                |  ▢  | [11-3. renderToStaticMarkup](/reference/react-dom/server/renderToStaticMarkup)         |
+|  ✅  | [6-1. `<Fragment>` (`<>`)](/reference/react/Fragment)                |  ✅  | [11-3. renderToStaticMarkup](/reference/react-dom/server/renderToStaticMarkup)         |
 |  ✅  | [6-2. `<Profiler>`](/reference/react/Profiler)                       |  ▢  | [11-4. renderToStaticNodeStream](/reference/react-dom/server/renderToStaticNodeStream) |
 |  ✅  | [6-3. `<StrictMode>`](/reference/react/StrictMode)                   |  ▢  | [11-5. renderToString](/reference/react-dom/server/renderToString)                     |
 |  ✅  | [6-4. `<Suspense>`](/reference/react/Suspense)                       |  ▢  | [12. Legacy APIs](/reference/react/legacy)                                             |

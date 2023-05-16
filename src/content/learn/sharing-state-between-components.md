@@ -14,7 +14,7 @@ translators: [송윤지, 김아영, 고석영]
 <Intro>
 
 Sometimes, you want the state of two components to always change together. To do it, remove state from both of them, move it to their closest common parent, and then pass it down to them via props. This is known as *lifting state up,* and it's one of the most common things you will do writing React code.
-<Trans>때로는 두 컴포넌트의 state가 항상 함께 변경되기를 원할 때가 있습니다. 그렇게 하려면 두 컴포넌트에서 state를 제거하고 가장 가까운 공통 부모로 이동한 다음 props를 통해 전달하면 됩니다. 이를 state 끌어올리기라고 하며, 리액트 코드를 작성할 때 가장 흔히 하는 작업 중 하나입니다.</Trans>
+<Trans>때로는 두 컴포넌트의 state가 항상 함께 변경되기를 원할 때가 있습니다. 그렇게 하려면 두 컴포넌트에서 state를 제거하고 가장 가까운 공통 부모로 이동한 다음 props를 통해 전달하면 됩니다. 이를 state 끌어올리기라고 하며, React 코드를 작성할 때 가장 흔히 하는 작업 중 하나입니다.</Trans>
 
 </Intro>
 
@@ -349,7 +349,7 @@ When writing a component, consider which information in it should be controlled 
 ## A single source of truth for each state<Trans>각 state의 단일 진실 공급원(SSOT)</Trans> {/*a-single-source-of-truth-for-each-state*/}
 
 In a React application, many components will have their own state. Some state may "live" close to the leaf components (components at the bottom of the tree) like inputs. Other state may "live" closer to the top of the app. For example, even client-side routing libraries are usually implemented by storing the current route in the React state, and passing it down by props!
-<Trans>리액트 애플리케이션(이하 앱)에서 많은 컴포넌트는 고유한 state를 가지고 있습니다. 일부 state는 입력값과 같이 [leaf 컴포넌트](https://stackoverflow.com/questions/65278395/what-do-you-mean-by-leaf-components-in-react)(트리의 맨 아래에 있는 컴포넌트)에 가깝게 "위치" 할 수 있습니다. 다른 state는 앱의 상단에 더 가깝게 “위치" 할 수 있습니다. 예를 들어, 클라이언트 측 라우팅 라이브러리도 일반적으로 현재 경로를 리액트 state에 저장하고 props를 통해 전달하는 방식으로 구현됩니다!</Trans>
+<Trans>React 애플리케이션(이하 앱)에서 많은 컴포넌트는 고유한 state를 가지고 있습니다. 일부 state는 입력값과 같이 [leaf 컴포넌트](https://stackoverflow.com/questions/65278395/what-do-you-mean-by-leaf-components-in-react)(트리의 맨 아래에 있는 컴포넌트)에 가깝게 "위치" 할 수 있습니다. 다른 state는 앱의 상단에 더 가깝게 “위치" 할 수 있습니다. 예를 들어, 클라이언트 측 라우팅 라이브러리도 일반적으로 현재 경로를 React state에 저장하고 props를 통해 전달하는 방식으로 구현됩니다!</Trans>
 
 **For each unique piece of state, you will choose the component that "owns" it.** This principle is also known as having a ["single source of truth".](https://en.wikipedia.org/wiki/Single_source_of_truth) It doesn't mean that all state lives in one place--but that for _each_ piece of state, there is a _specific_ component that holds that piece of information. Instead of duplicating shared state between components, *lift it up* to their common shared parent, and *pass it down* to the children that need it.
 <Trans>**각 고유한 state들에 대해 해당 state를 "소유"하는 컴포넌트를 선택하게 됩니다.** 이 원칙은 "[단일 진실 공급원](https://en.wikipedia.org/wiki/Single_source_of_truth)"이라고도 합니다. 이는 모든 state가 한 곳에 있다는 뜻이 아니라, 각 state마다 해당 정보를 소유하는 특정 컴포넌트가 있다는 뜻입니다. 컴포넌트 간에 공유하는 state를 복제하는 대신 공통으로 공유하는 부모로 *끌어올려서* 필요한 자식에게 전달합니다.</Trans>

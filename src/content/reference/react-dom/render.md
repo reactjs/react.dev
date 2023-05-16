@@ -6,17 +6,17 @@ translators: [이나령]
 <Deprecated>
 
 This API will be removed in a future major version of React.
-<Trans>이 API는 향후 React의 메인 버전에서 제거될 예정입니다.</Trans>
+<Trans>이 API는 향후 React의 주요 버전에서 제거될 예정입니다.</Trans>
 
 In React 18, `render` was replaced by [`createRoot`.](/reference/react-dom/client/createRoot) Using `render` in React 18 will warn that your app will behave as if it’s running React 17. Learn more [here.](/blog/2022/03/08/react-18-upgrade-guide#updates-to-client-rendering-apis)
-<Trans>React 18에서 `render`는 [`createRoot`.](/reference/react-dom/client/createRoot)로 대체되었습니다. React 18에서 `render`를 사용하면 앱이 React 17을 실행하는 것처럼 동작한다는 경고가 표시됩니다. 여기(/blog/2022/03/08/react-18-upgrade-guide#updates-to-client-rendering-apis)에서 자세히 알아보세요.</Trans>
+<Trans>React 18에서 `render`는 [`createRoot`](/reference/react-dom/client/createRoot)로 대체되었습니다. React 18에서 `render`를 사용하면 앱이 React 17처럼 동작한다는 경고가 표시됩니다. [여기](/blog/2022/03/08/react-18-upgrade-guide#updates-to-client-rendering-apis)에서 자세히 알아보세요.</Trans>
 
 </Deprecated>
 
 <Intro>
 
 `render` renders a piece of [JSX](/learn/writing-markup-with-jsx) ("React node") into a browser DOM node.
-<Trans>`render` 는 [JSX](/learn/writing-markup-with-jsx) 조각("리액트 노드")을 브라우저 DOM 노드로 렌더링합니다.</Trans>
+<Trans>`render` 는 [JSX](/learn/writing-markup-with-jsx) 조각("React 노드")을 브라우저 DOM 노드로 렌더링합니다.</Trans>
 
 ```js
 render(reactNode, domNode, callback?)
@@ -33,7 +33,7 @@ render(reactNode, domNode, callback?)
 ### `render(reactNode, domNode, callback?)` {/*render*/}
 
 Call `render` to display a React component inside a browser DOM element.
-<Trans>`render`를 호출하여 브라우저 DOM 엘리먼트 안에 리액트 컴포넌트를 표시합니다.</Trans>
+<Trans>`render`를 호출하여 브라우저 DOM 엘리먼트 안에 React 컴포넌트를 표시합니다.</Trans>
 
 ```js
 import { render } from 'react-dom';
@@ -43,10 +43,10 @@ render(<App />, domNode);
 ```
 
 React will display `<App />` in the `domNode`, and take over managing the DOM inside it.
-<Trans>리액트는 `domNode`에 `<App />`을 표시하고 그 안에 있는 DOM을 관리합니다.</Trans>
+<Trans>React는 `domNode`에 `<App />`을 표시하고 그 안에 있는 DOM을 관리합니다.</Trans>
 
-An app fully built with React will usually only have one `render` call with its root component.  A page that uses "sprinkles" of React for parts of the page may have as many `render` calls as needed.
-<Trans>리액트로 완전히 빌드된 앱은 일반적으로 루트 컴포넌트에 `render`호출이 하나만 있습니다. 페이지의 일부에 리액트를 "뿌려서" 사용하는 페이지에는 필요한 만큼의 `render`호출이 있을 수 있습니다.</Trans>
+An app fully built with React will usually only have one `render` call with its root component. A page that uses "sprinkles" of React for parts of the page may have as many `render` calls as needed.
+<Trans>React로 완전히 빌드된 앱은 일반적으로 루트 컴포넌트에 `render`호출이 하나만 있습니다. 페이지의 일부에 React를 "뿌려서" 사용하는 페이지에는 `render`호출이 필요한 만큼 많이 있을 수도 있습니다.</Trans>
 
 [See more examples below.](#usage)
 <Trans>[아래에서 더 많은 예시를 확인하세요.](#usage)</Trans>
@@ -54,40 +54,39 @@ An app fully built with React will usually only have one `render` call with its 
 #### Parameters<Trans>매개변수</Trans> {/*parameters*/}
 
 * `reactNode`: A *React node* that you want to display. This will usually be a piece of JSX like `<App />`, but you can also pass a React element constructed with [`createElement()`](/reference/react/createElement), a string, a number, `null`, or `undefined`. 
-<Trans>`reactNode`: 표시하려는 *리액트 노드*입니다. 일반적으로 `<App />`과 같은 JSX 조각이 되지만, [`createElement()`](/reference/react/createElement)로 구성된 리액트 엘리먼트, 문자열, 숫자, null 또는 정의되지 않은 엘리먼트를 전달할 수도 있습니다.</Trans>
+<Trans>`reactNode`: 표시하려는 *React 노드*. 일반적으로 `<App />`과 같은 JSX 조각이 되지만, [`createElement()`](/reference/react/createElement), 문자열, 숫자, `null`, `undefined` 등으로 구성된 React 엘리먼트를 전달할 수도 있습니다.</Trans>
 
 * `domNode`: A [DOM element.](https://developer.mozilla.org/en-US/docs/Web/API/Element) React will display the `reactNode` you pass inside this DOM element. From this moment, React will manage the DOM inside the `domNode` and update it when your React tree changes.
-<Trans>`domNode`: DOM 엘리먼트(https://developer.mozilla.org/en-US/docs/Web/API/Element)입니다. 리액트는 이 DOM 엘리먼트 안에 전달한 `reactNode`를 표시합니다. 이 순간부터 리액트는 `domNode` 내부의 DOM을 관리하고 리액트 트리가 변경되면 이를 업데이트합니다.</Trans>
+<Trans>`domNode`: [DOM 엘리먼트](https://developer.mozilla.org/en-US/docs/Web/API/Element). React는 이 DOM 엘리먼트 안에 전달한 `reactNode`를 표시합니다. 이 순간부터 React는 `domNode` 내부의 DOM을 관리하고 React 트리가 변경되면 이를 업데이트합니다.</Trans>
 
 * **optional** `callback`: A function. If passed, React will call it after your component is placed into the DOM.
-<Trans>**선택적** `callback`: 함수입니다. 전달되면 리액트는 컴포넌트가 DOM에 배치된 후에 호출합니다.</Trans>
-
+<Trans>**선택적** `callback`: 함수. React는 컴포넌트가 DOM에 배치된 후에 이 함수를 호출합니다.</Trans>
 
 #### Returns<Trans>반환값</Trans> {/*returns*/}
 
 `render` usually returns `null`. However, if the `reactNode` you pass is a *class component*, then it will return an instance of that component.
-<Trans>`render`는 보통 `null`을 반환합니다. 하지만 전달한 `reactNode`가 클래스 컴포넌트인 경우 해당 컴포넌트의 인스턴스를 반환합니다.</Trans>
+<Trans>`render`는 보통 `null`을 반환합니다. 다만 전달한 `reactNode`가 *클래스 컴포넌트*인 경우에는 해당 컴포넌트의 인스턴스를 반환합니다.</Trans>
 
 #### Caveats<Trans>주의사항</Trans> {/*caveats*/}
 
 * In React 18, `render` was replaced by [`createRoot`.](/reference/react-dom/client/createRoot) Please use `createRoot` for React 18 and beyond.
-<Trans>React 18에서는 `render`가 [`createRoot`.](/reference/react-dom/client/createRoot)로 대체되었습니다. React 18 이상에서는 `createRoot`를 사용하세요.</Trans>
+<Trans>React 18에서는 `render`가 [`createRoot`](/reference/react-dom/client/createRoot)로 대체되었습니다. React 18 이상에서는 `createRoot`를 사용하세요.</Trans>
 
 * The first time you call `render`, React will clear all the existing HTML content inside the `domNode` before rendering the React component into it. If your `domNode` contains HTML generated by React on the server or during the build, use [`hydrate()`](/reference/react-dom/hydrate) instead, which attaches the event handlers to the existing HTML.
-<Trans>`render`를 처음 호출할 때 리액트는 `domNode` 내부의 모든 기존 HTML 콘텐츠를 지운 후 리액트 컴포넌트를 렌더링합니다. 서버에서나 빌드 중에 리액트에 의해 생성된 HTML이 `domNode`에 포함된 경우, 이벤트 핸들러를 기존 HTML에 첨부하는 [`hydrate()`](/reference/react-dom/hydrate)를 대신 사용하세요.</Trans>
+<Trans>`render`를 처음 호출할 때 React는 `domNode` 내부의 모든 기존 HTML 콘텐츠를 지운 후 React 컴포넌트를 렌더링합니다. 서버에서나 빌드 중에 React에 의해 생성된 HTML이 `domNode`에 포함된 경우, 대신 이벤트 핸들러를 기존 HTML에 첨부해주는 [`hydrate()`](/reference/react-dom/hydrate)를 사용하세요.</Trans>
 
 * If you call `render` on the same `domNode` more than once, React will update the DOM as necessary to reflect the latest JSX you passed. React will decide which parts of the DOM can be reused and which need to be recreated by ["matching it up"](/learn/preserving-and-resetting-state) with the previously rendered tree. Calling `render` on the same `domNode` again is similar to calling the [`set` function](/reference/react/useState#setstate) on the root component: React avoids unnecessary DOM updates.
-<Trans>동일한 `domNode`에서 `render`를 두 번 이상 호출하면 리액트는 전달한 최신 JSX를 반영하기 위해 필요에 따라 DOM을 업데이트합니다. 리액트는 이전에 렌더링된 트리와 ["매칭"](/learn/preserving-and-resetting-state)하여 재사용할 수 있는 부분과 다시 만들어야 하는 부분을 결정합니다. 동일한 `domNode`에서 `render`를 다시 호출하는 것은 루트 컴포넌트에서 [`set` 함수](/reference/react/useState#setstate)를 호출하는 것과 유사합니다: 리액트는 불필요한 DOM 업데이트를 피합니다.</Trans>
+<Trans>동일한 `domNode`에서 `render`를 두 번 이상 호출하면 React는 전달한 최신 JSX를 반영하기 위해 필요에 따라 DOM을 업데이트합니다. React는 이전에 렌더링된 트리와 ["매칭"](/learn/preserving-and-resetting-state)하여 재사용할 수 있는 부분과 다시 만들어야 하는 부분을 결정합니다. 동일한 `domNode`에서 `render`를 다시 호출하면, 루트 컴포넌트에서 [`set` 함수](/reference/react/useState#setstate)를 호출하는 것과 비슷하게 불필요한 DOM 업데이트를 하지 않습니다.</Trans>
 
 * If your app is fully built with React, you'll likely have only one `render` call in your app. (If you use a framework, it might do this call for you.) When you want to render a piece of JSX in a different part of the DOM tree that isn't a child of your component (for example, a modal or a tooltip), use [`createPortal`](/reference/react-dom/createPortal) instead of `render`.
-<Trans>앱이 리액트로 완전히 빌드된 경우, 앱에 `render` 호출이 한 번만 있을 가능성이 높습니다. (프레임워크를 사용하는 경우 프레임워크가 이 호출을 대신 수행할 수 있습니다.) 컴포넌트의 자식이 아닌 DOM 트리의 다른 부분(예: 모달 또는 툴팁)에서 JSX 조각을 렌더링하려는 경우 `render` 대신 [`createPortal`](/reference/react-dom/createPortal)을 사용합니다.</Trans>
+<Trans>앱이 React로 완전히 빌드된 경우, 앱에 `render` 호출이 한 번만 있을 가능성이 높습니다. (프레임워크를 사용하는 경우 프레임워크가 이 호출을 대신 수행할 수 있습니다.) 컴포넌트의 자식이 아닌 DOM 트리의 다른 부분(예: 모달 또는 툴팁)에서 JSX 조각을 렌더링하려는 경우 `render` 대신 [`createPortal`](/reference/react-dom/createPortal)을 사용하세요.</Trans>
 
 ---
 
 ## Usage<Trans>사용법</Trans> {/*usage*/}
 
 Call `render` to display a <CodeStep step={1}>React component</CodeStep> inside a <CodeStep step={2}>browser DOM node</CodeStep>.
-<Trans>`render`를 호출하여 브라우저 DOM 노드 안에 리액트 컴포넌트를 표시합니다.</Trans>
+<Trans>`render`를 호출하여 브라우저 DOM 노드 안에 React 컴포넌트를 표시하세요.</Trans>
 
 ```js [[1, 4, "<App />"], [2, 4, "document.getElementById('root')"]]
 import { render } from 'react-dom';
@@ -99,7 +98,7 @@ render(<App />, document.getElementById('root'));
 ### Rendering the root component<Trans>루트 컴포넌트 렌더링</Trans> {/*rendering-the-root-component*/}
 
 In apps fully built with React, **you will usually only do this once at startup**--to render the "root" component.
-<Trans>리액트로 완전히 빌드된 앱에서는 일반적으로 시작할 때 "루트" 컴포넌트를 렌더링하기 위해 **이 작업을 한 번만 수행합니다.**</Trans>
+<Trans>React로 완전히 빌드된 앱에서는, 초기화시 "루트" 컴포넌트를 렌더링하기 위해 **일반적으로 이 작업을 한 번만 수행합니다.**</Trans>
 
 <Sandpack>
 
@@ -120,14 +119,14 @@ export default function App() {
 </Sandpack>
 
 Usually you shouldn't need to call `render` again or to call it in more places. From this point on, React will be managing the DOM of your application. To update the UI, your components will [use state.](/reference/react/useState)
-<Trans>일반적으로 `render` 를 다시 호출하거나 더 많은 위치에서 호출할 필요가 없습니다. 이 시점부터 리액트는 애플리케이션의 DOM을 관리하게 됩니다. UI를 업데이트하기 위해 컴포넌트는 [state를 사용합니다.](/reference/react/useState)</Trans>
+<Trans>일반적으로 `render` 를 다시 호출하거나 더 많은 위치에서 호출할 필요는 없습니다. 이 시점부터 React는 애플리케이션의 DOM을 관리하게 됩니다. UI를 업데이트하기 위해 컴포넌트는 [state를 사용합니다.](/reference/react/useState)</Trans>
 
 ---
 
-### Rendering multiple roots<Trans>여러개의 루트 렌더링</Trans> {/*rendering-multiple-roots*/}
+### Rendering multiple roots<Trans>여러개의 루트 렌더링하기</Trans> {/*rendering-multiple-roots*/}
 
 If your page [isn't fully built with React](/learn/add-react-to-an-existing-project#using-react-for-a-part-of-your-existing-page), call `render` for each top-level piece of UI managed by React.
-<Trans>페이지가 [리액트로 완전히 빌드되지 않은 경우](/learn/add-react-to-an-existing-project#using-react-for-a-part-of-your-existing-page), 리액트가 관리하는 각 최상위 UI에 대해 `render` 를 호출하세요.</Trans>
+<Trans>페이지가 [React로 완전히 빌드되지 않은 경우](/learn/add-react-to-an-existing-project#using-react-for-a-part-of-your-existing-page), React가 관리하는 각 최상위 UI에 대해 `render`를 호출하세요.</Trans>
 
 <Sandpack>
 
@@ -198,14 +197,14 @@ nav ul li { display: inline-block; margin-right: 20px; }
 </Sandpack>
 
 You can destroy the rendered trees with [`unmountComponentAtNode()`.](/reference/react-dom/unmountComponentAtNode)
-<Trans>렌더링된 트리는 [`unmountComponentAtNode()`.](/reference/react-dom/unmountComponentAtNode)로 파괴할 수 있습니다.</Trans>
+<Trans>렌더링된 트리는 [`unmountComponentAtNode()`](/reference/react-dom/unmountComponentAtNode)로 파괴할 수 있습니다.</Trans>
 
 ---
 
-### Updating the rendered tree<Trans>렌더링된 트리 업데이트</Trans>{/*updating-the-rendered-tree*/}
+### Updating the rendered tree<Trans>렌더링된 트리 업데이트하기</Trans> {/*updating-the-rendered-tree*/}
 
 You can call `render` more than once on the same DOM node. As long as the component tree structure matches up with what was previously rendered, React will [preserve the state.](/learn/preserving-and-resetting-state) Notice how you can type in the input, which means that the updates from repeated `render` calls every second are not destructive:
-<Trans>동일한 DOM 노드에서 `render`를 두 번 이상 호출할 수 있습니다. 컴포넌트 트리 구조가 이전에 렌더링된 것과 일치하는 한, 리액트는 [그 state를 유지합니다.](/learn/preserving-and-resetting-state) 입력을 입력하는 방법에 주목하십시오. 즉, 매초마다 반복되는 `render` 호출로 인한 업데이트가 손상되지 않습니다:</Trans>
+<Trans>동일한 DOM 노드에서 `render`를 두 번 이상 호출할 수도 있습니다. 컴포넌트 트리 구조가 이전에 렌더링된 것과 일치하는 한, React는 [그 state를 유지합니다.](/learn/preserving-and-resetting-state) input에 타이핑하더라도 매초마다 반복되는 `render` 호출로 인해 업데이트가 손상되지 않는 것을 확인해 보세요:</Trans>
 
 <Sandpack>
 

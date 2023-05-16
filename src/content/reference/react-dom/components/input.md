@@ -135,7 +135,7 @@ These `<input>` props are relevant both for uncontrolled and controlled inputs:
 <Trans>`onChangeCapture`: [캡쳐 단계](/learn/responding-to-events#capture-phase-events)에서 실행되는 버전의 `onChange` 입니다.</Trans>
 
 * [`onInput`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/input_event): An [`Event` handler](/reference/react-dom/components/common#event-handler) function. Fires immediately when the value is changed by the user. For historical reasons, in React it is idiomatic to use `onChange` instead which works similarly.
-<Trans>[`onInput`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/input_event): [`Event` 핸들러](/reference/react-dom/components/common#event-handler) 함수. 사용자가 값을 변경하면 즉시 호출됩니다. 역사적인 이유로 React에서는 비슷한 방시긍로 작동하는 `onChange`를 대신 사용하는 것이 일반적입니다.</Trans>
+<Trans>[`onInput`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/input_event): [`Event` 핸들러](/reference/react-dom/components/common#event-handler) 함수. 사용자가 값을 변경하면 즉시 호출됩니다. 역사적인 이유로 React에서는 비슷한 방식으로 작동하는 `onChange`를 대신 사용하는 것이 일반적입니다.</Trans>
 
 * `onInputCapture`: A version of `onInput` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
 <Trans>`onInputCapture`: [캡쳐 단계](/learn/responding-to-events#capture-phase-events)에서 실행되는 버전의 `onInput` 입니다.</Trans>

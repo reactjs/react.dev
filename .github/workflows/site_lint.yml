@@ -11,14 +11,14 @@ jobs:
   lint:
     runs-on: ubuntu-latest
 
-    name: Lint on node 12.x and ubuntu-latest
+    name: Lint on node 20.x and ubuntu-latest
 
     steps:
       - uses: actions/checkout@v1
-      - name: Use Node.js 12.x
+      - name: Use Node.js 20.x
         uses: actions/setup-node@v1
         with:
-          node-version: 12.x
+          node-version: 20.x
 
       - name: Install deps and build (with cache)
         uses: bahmutov/npm-install@v1.7.10

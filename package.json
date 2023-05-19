@@ -32,12 +32,12 @@
     "debounce": "^1.2.1",
     "ga-lite": "^2.1.4",
     "github-slugger": "^1.3.0",
-    "next": "12.3.2-canary.7",
+    "next": "^13.4.1",
     "next-remote-watch": "^1.0.0",
     "parse-numeric-range": "^1.2.0",
-    "react": "0.0.0-experimental-cb5084d1c-20220924",
+    "react": "^0.0.0-experimental-16d053d59-20230506",
     "react-collapsed": "npm:@gaearon/react-collapsed@3.1.0-forked.1",
-    "react-dom": "0.0.0-experimental-cb5084d1c-20220924",
+    "react-dom": "^0.0.0-experimental-16d053d59-20230506",
     "remark-frontmatter": "^4.0.1",
     "remark-gfm": "^3.0.1"
   },
@@ -98,7 +98,7 @@
     "webpack-bundle-analyzer": "^4.5.0"
   },
   "engines": {
-    "node": ">=12.x"
+    "node": "^16.8.0 || ^18.0.0 || ^19.0.0 || ^20.0.0"
   },
   "nextBundleAnalysis": {
     "budget": null,

@@ -22,11 +22,7 @@ export interface SearchProps {
 }
 
 function Hit({hit, children}: any) {
-  return (
-    <Link href={hit.url.replace()}>
-      <a>{children}</a>
-    </Link>
-  );
+  return <Link href={hit.url.replace()}>{children}</Link>;
 }
 
 // Copy-pasted from @docsearch/react to avoid importing the whole bundle.

@@ -31,7 +31,7 @@ Then, use it to declare a ref inside your component:
 const myRef = useRef(null);
 ```
 
-Finally, pass it to the DOM node as the `ref` attribute:
+Finally, pass it to a JSX element as the `ref` attribute:
 
 ```js
 <div ref={myRef}>

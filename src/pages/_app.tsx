@@ -14,7 +14,7 @@ import '../styles/sandpack.css';
 
 if (typeof window !== 'undefined') {
   if (process.env.NODE_ENV === 'production') {
-    ga('create', process.env.NEXT_PUBLIC_GA_TRACKING_ID, 'auto');
+    ga('create', 'G-Q6QK93W310', 'auto');
     ga('send', 'pageview');
   }
   const terminationEvent = 'onpagehide' in window ? 'pagehide' : 'unload';

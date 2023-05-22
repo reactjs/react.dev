@@ -76,7 +76,7 @@ Expo is maintained by [Expo (the company)](https://expo.dev/about). Building app
 
 <DeepDive>
 
-#### Can I use React without a framework? {/*can-i-use-react-without-a-framework*/}
+#### Should I use React with a framework? {/*should-i-use-react-with-a-framework*/}
 
 You can definitely use React without a framework--that's how you'd [use React for a part of your page.](/learn/add-react-to-an-existing-project#using-react-for-a-part-of-your-existing-page) **However, if you're building a new app or a site fully with React, we recommend using a framework.**
 

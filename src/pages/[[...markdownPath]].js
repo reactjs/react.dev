@@ -11,7 +11,7 @@ import sidebarLearn from '../sidebarLearn.json';
 import sidebarReference from '../sidebarReference.json';
 import sidebarCommunity from '../sidebarCommunity.json';
 import sidebarBlog from '../sidebarBlog.json';
-import imgPath from 'path';
+import nodePath from 'path';
 
 export default function Layout({content, toc, meta}) {
   const parsedContent = useMemo(
@@ -235,7 +235,7 @@ export async function getStaticProps(context) {
         const src = val?.props?.src;
         res = src
           ? imageSize(
-              imgPath.join(process.cwd(), 'public', src.replace('..', ''))
+              nodePath.join(process.cwd(), 'public', src.replace('..', ''))
             )
           : undefined;
       }

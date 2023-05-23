@@ -1186,13 +1186,14 @@ async function Talks({ confId }) {
 
 function useNestedScrollLock(ref) {
   useEffect(() => {
+    let node = ref.current;
     let isLocked = false;
     let lastScroll = performance.now();
 
     function handleScroll() {
       if (!isLocked) {
         isLocked = true;
-        ref.current.style.pointerEvents = 'none';
+        node.style.pointerEvents = 'none';
       }
       lastScroll = performance.now();
     }
@@ -1200,7 +1201,7 @@ function useNestedScrollLock(ref) {
     function updateLock() {
       if (isLocked && performance.now() - lastScroll > 150) {
         isLocked = false;
-        ref.current.style.pointerEvents = '';
+        node.style.pointerEvents = '';
       }
     }
 
@@ -1274,7 +1275,7 @@ function BrowserChrome({children, hasPulse, hasRefresh, domain, path}) {
     <div className="mx-auto max-w-3xl shadow-nav dark:shadow-nav-dark relative overflow-hidden w-full dark:border-opacity-10 rounded-2xl">
       <div className="w-full h-14 rounded-t-2xl shadow-outer-border backdrop-filter overflow-hidden backdrop-blur-lg backdrop-saturate-200 bg-white bg-opacity-90 z-10 absolute top-0 px-3 gap-2 flex flex-row items-center">
         <div className="select-none h-8 relative bg-gray-30/20 text-sm text-tertiary text-center rounded-full w-full flex-row flex space-between items-center">
-          <div className="h-4 w-6" />
+          {hasRefresh && <div className="h-4 w-6" />}
           <div className="w-full leading-snug flex flex-row items-center justify-center">
             <svg
               className="text-tertiary mr-1 opacity-60"

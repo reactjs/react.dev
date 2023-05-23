@@ -133,7 +133,7 @@ import { createRoot } from 'react-dom/client';
 
 const root = createRoot(document.getElementById('root'));
 root.render(<App />);
-````
+```
 
 Usually, you only need to run this code once at startup. It will:
 
@@ -395,7 +395,7 @@ root.render(App);
 
 // ✅ Correct: <App /> is a component.
 root.render(<App />);
-````
+```
 
 Or if you pass a function to `root.render`, instead of the result of calling it:
 

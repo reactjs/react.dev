@@ -763,7 +763,7 @@ function ItemList({ artworks, onToggle }) {
 
 </Sandpack>
 
-Note how with Immer, **mutation like `artwork.seen = nextSeen` is now okay:**
+Note how with Immer, a **mutation like `artwork.seen = nextSeen` is now okay:**
 
 ```js
 updateYourList(draft => {

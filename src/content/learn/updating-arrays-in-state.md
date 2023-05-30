@@ -766,7 +766,7 @@ function ItemList({ artworks, onToggle }) {
 Note how with Immer, **mutation like `artwork.seen = nextSeen` is now okay:**
 
 ```js
-updateMyTodos(draft => {
+updateYourList(draft => {
   const artwork = draft.find(a => a.id === artworkId);
   artwork.seen = nextSeen;
 });

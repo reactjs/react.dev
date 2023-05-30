@@ -196,6 +196,7 @@ ul {
   margin: 0;
   list-style-type: none;
   height: 100%;
+  overflow: auto;
 }
 
 li {
@@ -283,6 +284,7 @@ ul {
   margin: 0;
   list-style-type: none;
   height: 100%;
+  overflow: auto;
 }
 
 li {
@@ -377,6 +379,7 @@ ul {
   margin: 0;
   list-style-type: none;
   height: 100%;
+  overflow: auto;
 }
 
 li {
@@ -467,6 +470,7 @@ ul {
   margin: 0;
   list-style-type: none;
   height: 100%;
+  overflow: auto;
 }
 
 li {

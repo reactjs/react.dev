@@ -26,7 +26,7 @@ useLayoutEffect(setup, dependencies?)
 
 ### `useLayoutEffect(setup, dependencies?)` {/*useinsertioneffect*/}
 
-Call `useLayoutEffect` perform the layout measurements before the browser repaints the screen:
+Call `useLayoutEffect` to perform the layout measurements before the browser repaints the screen:
 
 ```js
 import { useState, useRef, useLayoutEffect } from 'react';

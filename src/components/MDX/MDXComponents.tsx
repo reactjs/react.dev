@@ -54,7 +54,7 @@ function CodeStep({children, step}: {children: any; step: number}) {
 }
 
 const P = (p: JSX.IntrinsicElements['p']) => (
-  <p className="whitespace-pre-wrap my-4" {...p} />
+  <p className="my-4 whitespace-pre-wrap" {...p} />
 );
 
 const Strong = (strong: JSX.IntrinsicElements['strong']) => (
@@ -62,17 +62,17 @@ const Strong = (strong: JSX.IntrinsicElements['strong']) => (
 );
 
 const OL = (p: JSX.IntrinsicElements['ol']) => (
-  <ol className="ml-6 my-3 list-decimal" {...p} />
+  <ol className="my-3 ml-6 list-decimal" {...p} />
 );
 const LI = (p: JSX.IntrinsicElements['li']) => (
-  <li className="leading-relaxed mb-1" {...p} />
+  <li className="mb-1 leading-relaxed" {...p} />
 );
 const UL = (p: JSX.IntrinsicElements['ul']) => (
-  <ul className="ml-6 my-3 list-disc" {...p} />
+  <ul className="my-3 ml-6 list-disc" {...p} />
 );
 
 const Divider = () => (
-  <hr className="my-6 block border-b border-t-0 border-border dark:border-border-dark" />
+  <hr className="block my-6 border-t-0 border-b border-border dark:border-border-dark" />
 );
 const Wip = ({children}: {children: React.ReactNode}) => (
   <ExpandableCallout type="wip">{children}</ExpandableCallout>
@@ -93,9 +93,9 @@ const Blockquote = ({
 }: JSX.IntrinsicElements['blockquote']) => {
   return (
     <blockquote
-      className="mdx-blockquote py-4 px-8 my-8 shadow-inner-border dark:shadow-inner-border-dark bg-highlight dark:bg-highlight-dark bg-opacity-50 rounded-2xl leading-6 flex relative"
+      className="relative flex px-8 py-4 my-8 leading-6 bg-opacity-50 mdx-blockquote shadow-inner-border dark:shadow-inner-border-dark bg-highlight dark:bg-highlight-dark rounded-2xl"
       {...props}>
-      <span className="block relative">{children}</span>
+      <span className="relative block">{children}</span>
     </blockquote>
   );
 };
@@ -110,9 +110,9 @@ function LearnMore({
 }) {
   return (
     <>
-      <section className="p-8 mt-16 mb-16 flex flex-row shadow-inner-border dark:shadow-inner-border-dark justify-between items-center bg-card dark:bg-card-dark rounded-2xl">
+      <section className="flex flex-row items-center justify-between p-8 mt-16 mb-16 shadow-inner-border dark:shadow-inner-border-dark bg-card dark:bg-card-dark rounded-2xl">
         <div className="flex-col">
-          <h2 className="text-primary font-display dark:text-primary-dark font-bold text-2xl leading-tight">
+          <h2 className="text-2xl font-bold leading-tight text-primary font-display dark:text-primary-dark">
             Ready to learn this topic?
           </h2>
           {children}
@@ -191,7 +191,7 @@ function AuthorCredit({
 }) {
   return (
     <div className="sr-only group-hover:not-sr-only group-focus-within:not-sr-only hover:sr-only">
-      <p className="bg-card dark:bg-card-dark text-center text-sm text-secondary dark:text-secondary-dark leading-tight dark:text-secondary-dark p-2 rounded-lg absolute left-1/2 -top-4 -translate-x-1/2 -translate-y-full group-hover:flex group-hover:opacity-100 after:content-[''] after:absolute after:left-1/2 after:top-[95%] after:-translate-x-1/2 after:border-8 after:border-x-transparent after:border-b-transparent after:border-t-card after:dark:border-t-card-dark opacity-0 transition-opacity duration-300">
+      <p className="bg-card dark:bg-card-dark text-center text-sm text-secondary dark:text-secondary-dark leading-tight p-2 rounded-lg absolute left-1/2 -top-4 -translate-x-1/2 -translate-y-full group-hover:flex group-hover:opacity-100 after:content-[''] after:absolute after:left-1/2 after:top-[95%] after:-translate-x-1/2 after:border-8 after:border-x-transparent after:border-b-transparent after:border-t-card after:dark:border-t-card-dark opacity-0 transition-opacity duration-300">
         <cite>
           Illustrated by{' '}
           {authorLink ? (
@@ -233,8 +233,8 @@ function Illustration({
   const {isInBlock} = React.useContext(IllustrationContext);
 
   return (
-    <div className="relative group before:absolute before:-inset-y-16 before:inset-x-0 my-16 mx-0 2xl:mx-auto max-w-4xl 2xl:max-w-6xl">
-      <figure className="my-8 flex justify-center">
+    <div className="relative max-w-4xl mx-0 my-16 group before:absolute before:-inset-y-16 before:inset-x-0 2xl:mx-auto 2xl:max-w-6xl">
+      <figure className="flex justify-center my-8">
         <img
           src={src}
           alt={alt}
@@ -242,7 +242,7 @@ function Illustration({
           className="bg-white rounded-lg"
         />
         {caption ? (
-          <figcaption className="text-center leading-tight mt-4">
+          <figcaption className="mt-4 leading-tight text-center">
             {caption}
           </figcaption>
         ) : null}
@@ -270,11 +270,11 @@ function IllustrationBlock({
   );
   const images = imageInfos.map((info, index) => (
     <figure key={index}>
-      <div className="bg-white rounded-lg p-4 flex-1 flex xl:p-6 justify-center items-center my-4">
+      <div className="flex items-center justify-center flex-1 p-4 my-4 bg-white rounded-lg xl:p-6">
         <img src={info.src} alt={info.alt} height={info.height} />
       </div>
       {info.caption ? (
-        <figcaption className="text-secondary dark:text-secondary-dark text-center leading-tight mt-4">
+        <figcaption className="mt-4 leading-tight text-center text-secondary dark:text-secondary-dark">
           {info.caption}
         </figcaption>
       ) : null}
@@ -282,9 +282,9 @@ function IllustrationBlock({
   ));
   return (
     <IllustrationContext.Provider value={isInBlockTrue}>
-      <div className="relative group before:absolute before:-inset-y-16 before:inset-x-0 my-16 mx-0 2xl:mx-auto max-w-4xl 2xl:max-w-6xl">
+      <div className="relative max-w-4xl mx-0 my-16 group before:absolute before:-inset-y-16 before:inset-x-0 2xl:mx-auto 2xl:max-w-6xl">
         {sequential ? (
-          <ol className="mdx-illustration-block flex">
+          <ol className="flex mdx-illustration-block">
             {images.map((x: any, i: number) => (
               <li className="flex-1" key={i}>
                 {x}

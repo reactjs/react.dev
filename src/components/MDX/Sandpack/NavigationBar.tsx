@@ -90,6 +90,7 @@ export function NavigationBar({providedFiles}: {providedFiles: Array<string>}) {
     } else {
       return;
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isMultiFile]);
 
   const handleReset = () => {
@@ -111,8 +112,8 @@ export function NavigationBar({providedFiles}: {providedFiles: Array<string>}) {
   };
 
   return (
-    <div className="bg-wash dark:bg-card-dark flex justify-between items-center relative z-10 border-b border-border dark:border-border-dark rounded-t-lg text-lg">
-      <div className="flex-1 grow min-w-0 px-4 lg:px-6">
+    <div className="relative z-10 flex items-center justify-between text-lg border-b rounded-t-lg bg-wash dark:bg-card-dark border-border dark:border-border-dark">
+      <div className="flex-1 min-w-0 px-4 grow lg:px-6">
         <Listbox value={activeFile} onChange={setActiveFile}>
           <div ref={containerRef}>
             <div className="relative overflow-hidden">
@@ -177,7 +178,7 @@ export function NavigationBar({providedFiles}: {providedFiles: Array<string>}) {
         </Listbox>
       </div>
       <div
-        className="px-3 flex items-center justify-end text-right"
+        className="flex items-center justify-end px-3 text-right"
         translate="yes">
         <DownloadButton providedFiles={providedFiles} />
         <ResetButton onReset={handleReset} />

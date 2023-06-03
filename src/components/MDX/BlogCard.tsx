@@ -18,15 +18,15 @@ function BlogCard({title, badge, date, icon, url, children}: BlogCardProps) {
   return (
     <Link
       href={url as string}
-      className="block h-full w-full rounded-2xl outline-none focus:outline-none focus-visible:outline focus-visible:outline-link focus:outline-offset-2 focus-visible:dark:focus:outline-link-dark">
-      <div className="justify-between p-5 sm:p-5 cursor-pointer w-full h-full flex flex-col flex-1 shadow-secondary-button-stroke dark:shadow-secondary-button-stroke-dark hover:bg-gray-40/5 active:bg-gray-40/10  hover:dark:bg-gray-60/5 active:dark:bg-gray-60/10 rounded-2xl text-xl text-primary dark:text-primary-dark leading-relaxed">
-        <div className="flex flex-row gap-3 w-full">
-          <h2 className="font-semibold flex-1 text-2xl lg:text-3xl hover:underline leading-snug mb-4">
+      className="block w-full h-full outline-none rounded-2xl focus:outline-none focus-visible:outline focus-visible:outline-link focus:outline-offset-2 focus-visible:dark:focus:outline-link-dark">
+      <div className="flex flex-col justify-between flex-1 w-full h-full p-5 text-xl leading-relaxed cursor-pointer sm:p-5 shadow-secondary-button-stroke dark:shadow-secondary-button-stroke-dark hover:bg-gray-40/5 active:bg-gray-40/10 hover:dark:bg-gray-60/5 active:dark:bg-gray-60/10 rounded-2xl text-primary dark:text-primary-dark">
+        <div className="flex flex-row w-full gap-3">
+          <h2 className="flex-1 mb-4 text-2xl font-semibold leading-snug lg:text-3xl hover:underline">
             {title}
           </h2>
         </div>
         <div>
-          <div className="flex flex-row justify-start gap-2 items-center text-base text-tertiary dark:text-tertiary-dark">
+          <div className="flex flex-row items-center justify-start gap-2 text-base text-tertiary dark:text-tertiary-dark">
             {icon === 'labs' && (
               <svg
                 className="w-6 h-6 text-tertiary dark:text-tertiary-dark"
@@ -57,7 +57,7 @@ function BlogCard({title, badge, date, icon, url, children}: BlogCardProps) {
             )}
             {date}
             {badge ? (
-              <div className="h-fit px-1 bg-highlight dark:bg-highlight-dark rounded uppercase text-link dark:text-link-dark font-bold tracking-wide text-xs whitespace-nowrap">
+              <div className="px-1 text-xs font-bold tracking-wide uppercase rounded h-fit bg-highlight dark:bg-highlight-dark text-link dark:text-link-dark whitespace-nowrap">
                 New
               </div>
             ) : null}
@@ -66,7 +66,7 @@ function BlogCard({title, badge, date, icon, url, children}: BlogCardProps) {
             {children}
           </span>
           {children != null && (
-            <div className="text-link text-base dark:text-link-dark hover:underline mt-4">
+            <div className="mt-4 text-base text-link dark:text-link-dark hover:underline">
               Read more
             </div>
           )}

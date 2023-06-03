@@ -24,8 +24,6 @@ import {Logo} from '../../Logo';
 import {Feedback} from '../Feedback';
 import {SidebarRouteTree} from '../Sidebar/SidebarRouteTree';
 import type {RouteItem} from '../getRouteMeta';
-import {SidebarLink} from '../Sidebar';
-
 declare global {
   interface Window {
     __theme: string;
@@ -98,7 +96,7 @@ function Link({
   return (
     <NextLink
       href={`${href}`}
-      className="inline text-primary dark:text-primary-dark hover:text-link hover:dark:text-link-dark border-b border-link border-opacity-0 hover:border-opacity-100 duration-100 ease-in transition leading-normal"
+      className="inline leading-normal transition duration-100 ease-in border-b border-opacity-0 text-primary dark:text-primary-dark hover:text-link hover:dark:text-link-dark border-link hover:border-opacity-100"
       {...props}>
       {children}
     </NextLink>
@@ -234,8 +232,8 @@ export default function TopNav({
             'duration-300 backdrop-filter backdrop-blur-lg backdrop-saturate-200 transition-shadow bg-opacity-90 items-center w-full flex justify-between bg-wash dark:bg-wash-dark dark:bg-opacity-95 px-1.5 lg:pr-5 lg:pl-4 z-50',
             {'dark:shadow-nav-dark shadow-nav': isScrolled || isOpen}
           )}>
-          <div className="h-16 w-full gap-0 sm:gap-3 flex items-center justify-between">
-            <div className="3xl:flex-1 flex flex-row ">
+          <div className="flex items-center justify-between w-full h-16 gap-0 sm:gap-3">
+            <div className="flex flex-row 3xl:flex-1 ">
               <button
                 type="button"
                 aria-label="Menu"
@@ -248,7 +246,7 @@ export default function TopNav({
                 )}>
                 {isOpen ? <IconClose /> : <IconHamburger />}
               </button>
-              <div className="3xl:flex-1 flex align-center">
+              <div className="flex 3xl:flex-1 align-center">
                 <NextLink
                   href="/"
                   className={`active:scale-95 overflow-hidden transition-transform relative items-center text-primary dark:text-primary-dark p-1 whitespace-nowrap outline-link rounded-full 3xl:rounded-xl inline-flex text-lg font-normal gap-2`}>
@@ -261,7 +259,7 @@ export default function TopNav({
                 </NextLink>
               </div>
             </div>
-            <div className="hidden md:flex flex-1 justify-center items-center w-full 3xl:w-auto 3xl:shrink-0 3xl:justify-center">
+            <div className="items-center justify-center flex-1 hidden w-full md:flex 3xl:w-auto 3xl:shrink-0 3xl:justify-center">
               <button
                 type="button"
                 className={cn(
@@ -270,7 +268,7 @@ export default function TopNav({
                 onClick={onOpenSearch}>
                 <IconSearch className="mr-3 align-middle text-gray-30 shrink-0 group-betterhover:hover:text-gray-70" />
                 Search
-                <span className="ml-auto hidden sm:flex item-center mr-1">
+                <span className="hidden ml-auto mr-1 sm:flex item-center">
                   <Kbd data-platform="mac">⌘</Kbd>
                   <Kbd data-platform="win" wide>
                     Ctrl
@@ -302,9 +300,9 @@ export default function TopNav({
                   <button
                     aria-label="Search"
                     type="button"
-                    className="active:scale-95 transition-transform flex md:hidden w-12 h-12 rounded-full items-center justify-center hover:bg-secondary-button hover:dark:bg-secondary-button-dark outline-link"
+                    className="flex items-center justify-center w-12 h-12 transition-transform rounded-full active:scale-95 md:hidden hover:bg-secondary-button hover:dark:bg-secondary-button-dark outline-link"
                     onClick={onOpenSearch}>
-                    <IconSearch className="align-middle w-5 h-5" />
+                    <IconSearch className="w-5 h-5 align-middle" />
                   </button>
                 </div>
                 <div className="flex dark:hidden">
@@ -314,7 +312,7 @@ export default function TopNav({
                     onClick={() => {
                       window.__setPreferredTheme('dark');
                     }}
-                    className="active:scale-95 transition-transform flex w-12 h-12 rounded-full items-center justify-center hover:bg-primary/5 hover:dark:bg-primary-dark/5 outline-link">
+                    className="flex items-center justify-center w-12 h-12 transition-transform rounded-full active:scale-95 hover:bg-primary/5 hover:dark:bg-primary-dark/5 outline-link">
                     {darkIcon}
                   </button>
                 </div>
@@ -325,7 +323,7 @@ export default function TopNav({
                     onClick={() => {
                       window.__setPreferredTheme('light');
                     }}
-                    className="active:scale-95 transition-transform flex w-12 h-12 rounded-full items-center justify-center hover:bg-primary/5 hover:dark:bg-primary-dark/5 outline-link">
+                    className="flex items-center justify-center w-12 h-12 transition-transform rounded-full active:scale-95 hover:bg-primary/5 hover:dark:bg-primary-dark/5 outline-link">
                     {lightIcon}
                   </button>
                 </div>
@@ -335,7 +333,7 @@ export default function TopNav({
                     target="_blank"
                     rel="noreferrer noopener"
                     aria-label="Open on GitHub"
-                    className="active:scale-95 transition-transform flex w-12 h-12 rounded-full items-center justify-center hover:bg-primary/5 hover:dark:bg-primary-dark/5 outline-link">
+                    className="flex items-center justify-center w-12 h-12 transition-transform rounded-full active:scale-95 hover:bg-primary/5 hover:dark:bg-primary-dark/5 outline-link">
                     {githubIcon}
                   </Link>
                 </div>
@@ -356,7 +354,7 @@ export default function TopNav({
               <nav
                 role="navigation"
                 style={{'--bg-opacity': '.2'} as React.CSSProperties} // Need to cast here because CSS vars aren't considered valid in TS types (cuz they could be anything)
-                className="w-full lg:h-auto grow pr-0 lg:pr-5 pt-4 lg:py-6 md:pt-4 lg:pt-4 scrolling-touch scrolling-gpu">
+                className="w-full pt-4 pr-0 scrolling-touch lg:h-auto grow lg:pr-5 lg:py-6 md:pt-4 lg:pt-4 scrolling-gpu">
                 {/* No fallback UI so need to be careful not to suspend directly inside. */}
                 <Suspense fallback={null}>
                   <div className="pl-3 xs:pl-5 xs:gap-0.5 xs:text-base overflow-x-auto flex flex-row lg:hidden text-base font-bold text-secondary dark:text-secondary-dark">
@@ -379,7 +377,7 @@ export default function TopNav({
                   </div>
                   <div
                     role="separator"
-                    className="ml-5 mt-4 mb-2 border-b border-border dark:border-border-dark"
+                    className="mt-4 mb-2 ml-5 border-b border-border dark:border-border-dark"
                   />
                   <SidebarRouteTree
                     // Don't share state between the desktop and mobile versions.

@@ -54,7 +54,7 @@ export const CustomPreset = memo(function CustomPreset({
 
 const SandboxShell = memo(function SandboxShell({
   showDevTools,
-  onDevToolsLoad,
+  //onDevToolsLoad,
   devToolsLoaded,
   providedFiles,
   lintErrors,
@@ -74,7 +74,7 @@ const SandboxShell = memo(function SandboxShell({
   return (
     <>
       <div
-        className="shadow-lg dark:shadow-lg-dark rounded-lg"
+        className="rounded-lg shadow-lg dark:shadow-lg-dark"
         ref={containerRef}
         style={{
           contain: 'content',
@@ -95,7 +95,7 @@ const SandboxShell = memo(function SandboxShell({
           {(isExpandable || isExpanded) && (
             <button
               translate="yes"
-              className="sandpack-expand flex text-base justify-between dark:border-card-dark bg-wash dark:bg-card-dark items-center z-10 p-1 w-full order-2 xl:order-last border-b-1 relative top-0"
+              className="relative top-0 z-10 flex items-center justify-between order-2 w-full p-1 text-base sandpack-expand dark:border-card-dark bg-wash dark:bg-card-dark xl:order-last border-b-1"
               onClick={() => {
                 const nextIsExpanded = !isExpanded;
                 flushSync(() => {

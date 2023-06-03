@@ -33,6 +33,7 @@ const usePendingRoute = () => {
       events.off('routeChangeComplete', handleRouteChangeComplete);
       clearTimeout(routeTransitionTimer);
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return pendingRoute;

@@ -26,7 +26,7 @@ import {IconSearch} from 'components/Icon/IconSearch';
 import {Logo} from 'components/Logo';
 import Link from 'components/MDX/Link';
 import CodeBlock from 'components/MDX/CodeBlock';
-import {IconNavArrow} from 'components/Icon/IconNavArrow';
+//import {IconNavArrow} from 'components/Icon/IconNavArrow';
 import {ExternalLink} from 'components/ExternalLink';
 import sidebarBlog from '../../sidebarBlog.json';
 
@@ -44,7 +44,7 @@ function Section({children, background = null}) {
       style={{
         contain: 'content',
       }}>
-      <div className="flex-col gap-2 flex grow w-full my-20 lg:my-32 mx-auto items-center">
+      <div className="flex flex-col items-center w-full gap-2 mx-auto my-20 grow lg:my-32">
         {children}
       </div>
     </div>
@@ -53,7 +53,7 @@ function Section({children, background = null}) {
 
 function Header({children}) {
   return (
-    <h2 className="leading-xl font-display text-primary dark:text-primary-dark font-semibold text-5xl lg:text-6xl -mt-4 mb-7 w-full max-w-3xl lg:max-w-xl">
+    <h2 className="w-full max-w-3xl -mt-4 text-5xl font-semibold leading-xl font-display text-primary dark:text-primary-dark lg:text-6xl mb-7 lg:max-w-xl">
       {children}
     </h2>
   );
@@ -61,23 +61,23 @@ function Header({children}) {
 
 function Para({children}) {
   return (
-    <p className="max-w-3xl mx-auto text-lg lg:text-xl text-secondary dark:text-secondary-dark leading-normal">
+    <p className="max-w-3xl mx-auto text-lg leading-normal lg:text-xl text-secondary dark:text-secondary-dark">
       {children}
     </p>
   );
 }
 
-function Left({children}) {
-  return (
-    <div className="px-5 lg:px-0 max-w-4xl lg:text-left text-white text-opacity-80">
-      {children}
-    </div>
-  );
-}
+// function Left({children}) {
+//   return (
+//     <div className="max-w-4xl px-5 text-white lg:px-0 lg:text-left text-opacity-80">
+//       {children}
+//     </div>
+//   );
+// }
 
 function Center({children}) {
   return (
-    <div className="px-5 lg:px-0 max-w-4xl lg:text-center text-white text-opacity-80 flex flex-col items-center justify-center">
+    <div className="flex flex-col items-center justify-center max-w-4xl px-5 text-white lg:px-0 lg:text-center text-opacity-80">
       {children}
     </div>
   );
@@ -85,7 +85,7 @@ function Center({children}) {
 
 function FullBleed({children}) {
   return (
-    <div className="max-w-7xl mx-auto flex flex-col w-full">{children}</div>
+    <div className="flex flex-col w-full mx-auto max-w-7xl">{children}</div>
   );
 }
 
@@ -102,6 +102,7 @@ function CurrentTime() {
   useEffect(() => {
     const timeout = setTimeout(forceUpdate, nextMinute - Date.now());
     return () => clearTimeout(timeout);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [date]);
   return <span suppressHydrationWarning>{currentTime}</span>;
 }
@@ -121,24 +122,24 @@ export function HomeContent() {
   return (
     <>
       <div className="pl-0">
-        <div className="mx-5 mt-12 lg:mt-24 mb-20 lg:mb-32 flex flex-col justify-center">
+        <div className="flex flex-col justify-center mx-5 mt-12 mb-20 lg:mt-24 lg:mb-32">
           <Logo
             className={cn(
               'mt-4 mb-3 text-link dark:text-link-dark w-24 lg:w-28 self-center text-sm mr-0 flex origin-center transition-all ease-in-out'
             )}
           />
-          <h1 className="text-5xl font-display lg:text-6xl self-center flex font-semibold leading-snug text-primary dark:text-primary-dark">
+          <h1 className="flex self-center text-5xl font-semibold leading-snug font-display lg:text-6xl text-primary dark:text-primary-dark">
             React
           </h1>
-          <p className="text-4xl font-display max-w-lg md:max-w-full py-1 text-center text-secondary dark:text-primary-dark leading-snug self-center">
+          <p className="self-center max-w-lg py-1 text-4xl leading-snug text-center font-display md:max-w-full text-secondary dark:text-primary-dark">
             The library for web and native user interfaces
           </p>
-          <div className="mt-5 self-center flex gap-2 w-full sm:w-auto flex-col sm:flex-row">
+          <div className="flex flex-col self-center w-full gap-2 mt-5 sm:w-auto sm:flex-row">
             <ButtonLink
               href={'/learn'}
               type="primary"
               size="lg"
-              className="w-full sm:w-auto justify-center"
+              className="justify-center w-full sm:w-auto"
               label="Learn React">
               Learn React
             </ButtonLink>
@@ -146,7 +147,7 @@ export function HomeContent() {
               href={'/reference/react'}
               type="secondary"
               size="lg"
-              className="w-full sm:w-auto justify-center"
+              className="justify-center w-full sm:w-auto"
               label="API Reference">
               API Reference
             </ButtonLink>
@@ -265,8 +266,8 @@ export function HomeContent() {
           </Center>
         </Section>
         <Section background="left-card">
-          <div className="mx-auto flex flex-col w-full">
-            <div className="mx-auto max-w-4xl lg:text-center items-center px-5 flex flex-col">
+          <div className="flex flex-col w-full mx-auto">
+            <div className="flex flex-col items-center max-w-4xl px-5 mx-auto lg:text-center">
               <Header>Use the best from every platform</Header>
               <Para>
                 People love web and native apps for different reasons. React
@@ -275,20 +276,20 @@ export function HomeContent() {
                 your interfaces feel just right on every platform.
               </Para>
             </div>
-            <div className="max-w-7xl mx-auto flex flex-col lg:flex-row mt-16 mb-20 lg:mb-28 px-5 gap-20 lg:gap-5">
-              <div className="relative lg:w-6/12 flex">
-                <div className="absolute -bottom-8 lg:-bottom-10 z-10 w-full">
+            <div className="flex flex-col gap-20 px-5 mx-auto mt-16 mb-20 max-w-7xl lg:flex-row lg:mb-28 lg:gap-5">
+              <div className="relative flex lg:w-6/12">
+                <div className="absolute z-10 w-full -bottom-8 lg:-bottom-10">
                   <WebIcons />
                 </div>
                 <BrowserChrome hasRefresh={false} domain="example.com">
                   <div className="relative overflow-hidden">
                     <div className="absolute inset-0 bg-gradient-right" />
-                    <div className="bg-wash relative h-14 w-full" />
-                    <div className="relative flex items-start justify-center flex-col flex-1 pb-16 pt-5 gap-3 px-5 lg:px-10 lg:pt-8">
-                      <h4 className="leading-tight text-primary font-semibold text-3xl lg:text-4xl">
+                    <div className="relative w-full bg-wash h-14" />
+                    <div className="relative flex flex-col items-start justify-center flex-1 gap-3 px-5 pt-5 pb-16 lg:px-10 lg:pt-8">
+                      <h4 className="text-3xl font-semibold leading-tight text-primary lg:text-4xl">
                         Stay true to the web
                       </h4>
-                      <p className="lg:text-xl leading-normal text-secondary">
+                      <p className="leading-normal lg:text-xl text-secondary">
                         People expect web app pages to load fast. On the server,
                         React lets you start streaming HTML while you’re still
                         fetching data, progressively filling in the remaining
@@ -300,15 +301,15 @@ export function HomeContent() {
                   </div>
                 </BrowserChrome>
               </div>
-              <div className="relative lg:w-6/12 flex">
-                <div className="absolute -bottom-8 lg:-bottom-10 z-10 w-full">
+              <div className="relative flex lg:w-6/12">
+                <div className="absolute z-10 w-full -bottom-8 lg:-bottom-10">
                   <NativeIcons />
                 </div>
-                <figure className="mx-auto max-w-3xl h-auto">
+                <figure className="h-auto max-w-3xl mx-auto">
                   <div className="p-2.5 bg-gray-95 dark:bg-black rounded-2xl shadow-nav dark:shadow-nav-dark">
-                    <div className="bg-gradient-right dark:bg-gradient-right-dark px-3 sm:px-3 pb-12 lg:pb-20 rounded-lg overflow-hidden">
+                    <div className="px-3 pb-12 overflow-hidden rounded-lg bg-gradient-right dark:bg-gradient-right-dark sm:px-3 lg:pb-20">
                       <div className="select-none w-full h-14 flex flex-row items-start pt-3 -mb-2.5 justify-between text-tertiary dark:text-tertiary-dark">
-                        <span className="uppercase tracking-wide leading-none font-bold text-sm text-tertiary dark:text-tertiary-dark">
+                        <span className="text-sm font-bold leading-none tracking-wide uppercase text-tertiary dark:text-tertiary-dark">
                           <CurrentTime />
                         </span>
                         <div className="gap-2 flex -mt-0.5">
@@ -371,10 +372,10 @@ export function HomeContent() {
                         </div>
                       </div>
                       <div className="flex flex-col items-start justify-center pt-0 gap-3 px-2.5 lg:pt-8 lg:px-8">
-                        <h4 className="leading-tight text-primary dark:text-primary-dark font-semibold text-3xl lg:text-4xl">
+                        <h4 className="text-3xl font-semibold leading-tight text-primary dark:text-primary-dark lg:text-4xl">
                           Go truly native
                         </h4>
-                        <p className="h-full lg:text-xl text-secondary dark:text-secondary-dark leading-normal">
+                        <p className="h-full leading-normal lg:text-xl text-secondary dark:text-secondary-dark">
                           People expect native apps to look and feel like their
                           platform.{' '}
                           <Link href="https://reactnative.dev">
@@ -394,7 +395,7 @@ export function HomeContent() {
                 </figure>
               </div>
             </div>
-            <div className="px-5 lg:px-0 max-w-4xl mx-auto lg:text-center text-secondary dark:text-secondary-dark">
+            <div className="max-w-4xl px-5 mx-auto lg:px-0 lg:text-center text-secondary dark:text-secondary-dark">
               <Para>
                 With React, you can be a web <i>and</i> a native developer. Your
                 team can ship to many platforms without sacrificing the user
@@ -411,9 +412,9 @@ export function HomeContent() {
         </Section>
 
         <Section background="right-card">
-          <div className="max-w-7xl mx-auto flex flex-col lg:flex-row px-5">
-            <div className="max-w-3xl lg:max-w-7xl gap-5 flex flex-col lg:flex-row lg:px-5">
-              <div className="w-full lg:w-6/12 max-w-3xl flex flex-col items-start justify-start lg:pl-5 lg:pr-10">
+          <div className="flex flex-col px-5 mx-auto max-w-7xl lg:flex-row">
+            <div className="flex flex-col max-w-3xl gap-5 lg:max-w-7xl lg:flex-row lg:px-5">
+              <div className="flex flex-col items-start justify-start w-full max-w-3xl lg:w-6/12 lg:pl-5 lg:pr-10">
                 <Header>Upgrade when the future is ready</Header>
                 <Para>
                   React approaches changes with care. Every React commit is
@@ -428,7 +429,7 @@ export function HomeContent() {
                     for taking a research idea into production. Only proven
                     approaches become a part of React.
                   </Para>
-                  <div className="hidden lg:flex justify-start w-full">
+                  <div className="justify-start hidden w-full lg:flex">
                     <CTA color="gray" icon="news" href="/blog">
                       Read more React news
                     </CTA>
@@ -436,11 +437,11 @@ export function HomeContent() {
                 </div>
               </div>
               <div className="w-full lg:w-6/12">
-                <p className="uppercase tracking-wide font-bold text-sm text-tertiary dark:text-tertiary-dark flex flex-row gap-2 items-center mt-5 lg:-mt-2 w-full">
+                <p className="flex flex-row items-center w-full gap-2 mt-5 text-sm font-bold tracking-wide uppercase text-tertiary dark:text-tertiary-dark lg:-mt-2">
                   <IconChevron />
                   Latest React News
                 </p>
-                <div className="flex-col sm:flex-row flex-wrap flex gap-5 text-left my-5">
+                <div className="flex flex-col flex-wrap gap-5 my-5 text-left sm:flex-row">
                   <div className="flex-1 min-w-[40%]">
                     <BlogCard {...recentPosts[0]} />
                   </div>
@@ -454,7 +455,7 @@ export function HomeContent() {
                     <BlogCard {...recentPosts[3]} />
                   </div>
                 </div>
-                <div className="flex lg:hidden justify-start w-full">
+                <div className="flex justify-start w-full lg:hidden">
                   <CTA color="gray" icon="news" href="/blog">
                     Read more React news
                   </CTA>
@@ -466,7 +467,7 @@ export function HomeContent() {
 
         <Section background="left-card">
           <div className="w-full">
-            <div className="mx-auto flex flex-col max-w-4xl">
+            <div className="flex flex-col max-w-4xl mx-auto">
               <Center>
                 <Header>
                   Join a community <br className="hidden lg:inline" />
@@ -480,7 +481,7 @@ export function HomeContent() {
               </Center>
             </div>
             <CommunityGallery />
-            <div className="mx-auto flex flex-col max-w-4xl">
+            <div className="flex flex-col max-w-4xl mx-auto">
               <Center>
                 <Para>
                   This is why React is more than a library, an architecture, or
@@ -495,8 +496,8 @@ export function HomeContent() {
             </div>
           </div>
 
-          <div className="mt-20 px-5 lg:px-0 mb-6 max-w-4xl text-center text-opacity-80">
-            <Logo className="text-link dark:text-link-dark w-24 lg:w-28 mb-10 lg:mb-8 mt-12 h-auto mx-auto self-start" />
+          <div className="max-w-4xl px-5 mt-20 mb-6 text-center lg:px-0 text-opacity-80">
+            <Logo className="self-start w-24 h-auto mx-auto mt-12 mb-10 text-link dark:text-link-dark lg:w-28 lg:mb-8" />
             <Header>
               Welcome to the <br className="" />
               React community
@@ -644,7 +645,7 @@ function CTA({children, icon, href}) {
           fill="currentColor"
         />
         <path
-          className="opacity-0 ease-in-out transition-opacity group-hover:opacity-100"
+          className="transition-opacity ease-in-out opacity-0 group-hover:opacity-100"
           d="M60 36.0273C60 37.6842 58.6569 39.0273 57 39.0273H15C13.3431 39.0273 12 37.6842 12 36.0273C12 34.3704 13.3431 33.0273 15 33.0273H57C58.6569 33.0273 60 34.3704 60 36.0273Z"
           fill="currentColor"
         />
@@ -744,9 +745,9 @@ function CommunityGallery() {
   return (
     <div
       ref={ref}
-      className="relative flex overflow-x-hidden overflow-y-visible w-auto">
+      className="relative flex w-auto overflow-x-hidden overflow-y-visible">
       <div
-        className="w-full py-12 lg:py-20 whitespace-nowrap flex flex-row animate-marquee lg:animate-large-marquee"
+        className="flex flex-row w-full py-12 lg:py-20 whitespace-nowrap animate-marquee lg:animate-large-marquee"
         style={{
           animationPlayState: shouldPlay ? 'running' : 'paused',
         }}>
@@ -754,7 +755,7 @@ function CommunityGallery() {
       </div>
       <div
         aria-hidden="true"
-        className="w-full absolute top-0 py-12 lg:py-20 whitespace-nowrap flex flex-row animate-marquee2 lg:animate-large-marquee2"
+        className="absolute top-0 flex flex-row w-full py-12 lg:py-20 whitespace-nowrap animate-marquee2 lg:animate-large-marquee2"
         style={{
           animationPlayState: shouldPlay ? 'running' : 'paused',
         }}>
@@ -831,14 +832,15 @@ function ExampleLayout({
         .filter((s) => s !== null);
       setOverlayStyles(nextOverlayStyles);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [activeArea]);
   return (
-    <div className="lg:pl-10 lg:pr-5 w-full">
-      <div className="mt-12 mb-2 lg:my-16 max-w-7xl mx-auto flex flex-col w-full lg:rounded-2xl lg:bg-card lg:dark:bg-card-dark">
+    <div className="w-full lg:pl-10 lg:pr-5">
+      <div className="flex flex-col w-full mx-auto mt-12 mb-2 lg:my-16 max-w-7xl lg:rounded-2xl lg:bg-card lg:dark:bg-card-dark">
         <div className="flex-col gap-0 lg:gap-5 lg:rounded-2xl lg:bg-gray-10 lg:dark:bg-gray-70 shadow-inner-border dark:shadow-inner-border-dark lg:flex-row flex grow w-full mx-auto items-center bg-cover bg-center lg:bg-right lg:bg-[length:60%_100%] bg-no-repeat bg-meta-gradient dark:bg-meta-gradient-dark">
-          <div className="lg:-m-5 h-full shadow-nav dark:shadow-nav-dark lg:rounded-2xl bg-wash dark:bg-gray-95 w-full flex grow flex-col">
-            <div className="w-full bg-card dark:bg-wash-dark lg:rounded-t-2xl border-b border-black/5 dark:border-white/5">
-              <h3 className="text-sm my-1 mx-5 text-tertiary dark:text-tertiary-dark select-none">
+          <div className="flex flex-col w-full h-full lg:-m-5 shadow-nav dark:shadow-nav-dark lg:rounded-2xl bg-wash dark:bg-gray-95 grow">
+            <div className="w-full border-b bg-card dark:bg-wash-dark lg:rounded-t-2xl border-black/5 dark:border-white/5">
+              <h3 className="mx-5 my-1 text-sm select-none text-tertiary dark:text-tertiary-dark">
                 {filename}
               </h3>
             </div>
@@ -856,7 +858,7 @@ function ExampleLayout({
               {overlayStyles.map((styles, i) => (
                 <div
                   key={i}
-                  className="top-0 left-0 bg-blue-30/5 border-2 border-link dark:border-link-dark absolute rounded-lg"
+                  className="absolute top-0 left-0 border-2 rounded-lg bg-blue-30/5 border-link dark:border-link-dark"
                   style={styles}
                 />
               ))}
@@ -1090,10 +1092,10 @@ function SearchableVideoList({ videos }) {
             noPadding={true}
             contentMarginTop="72px"
             height="30rem">
-            <h1 className="mx-4 mb-1 font-bold text-3xl text-primary">
+            <h1 className="mx-4 mb-1 text-3xl font-bold text-primary">
               React Videos
             </h1>
-            <p className="mx-4 mb-0 leading-snug text-secondary text-xl">
+            <p className="mx-4 mb-0 text-xl leading-snug text-secondary">
               A brief history of React
             </p>
             <div className="px-4 pb-4">
@@ -1211,6 +1213,7 @@ function useNestedScrollLock(ref) {
       window.removeEventListener('scroll', handleScroll);
       clearInterval(interval);
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 }
 
@@ -1220,7 +1223,7 @@ function ExamplePanel({
   noShadow,
   height,
   contentMarginTop,
-  activeArea,
+  // activeArea,
 }) {
   return (
     <div
@@ -1272,13 +1275,13 @@ function BrowserChrome({children, hasPulse, hasRefresh, domain, path}) {
   }
 
   return (
-    <div className="mx-auto max-w-3xl shadow-nav dark:shadow-nav-dark relative overflow-hidden w-full dark:border-opacity-10 rounded-2xl">
-      <div className="w-full h-14 rounded-t-2xl shadow-outer-border backdrop-filter overflow-hidden backdrop-blur-lg backdrop-saturate-200 bg-white bg-opacity-90 z-10 absolute top-0 px-3 gap-2 flex flex-row items-center">
-        <div className="select-none h-8 relative bg-gray-30/20 text-sm text-tertiary text-center rounded-full w-full flex-row flex space-between items-center">
-          {hasRefresh && <div className="h-4 w-6" />}
-          <div className="w-full leading-snug flex flex-row items-center justify-center">
+    <div className="relative w-full max-w-3xl mx-auto overflow-hidden shadow-nav dark:shadow-nav-dark dark:border-opacity-10 rounded-2xl">
+      <div className="absolute top-0 z-10 flex flex-row items-center w-full gap-2 px-3 overflow-hidden bg-white h-14 rounded-t-2xl shadow-outer-border backdrop-filter backdrop-blur-lg backdrop-saturate-200 bg-opacity-90">
+        <div className="relative flex flex-row items-center w-full h-8 text-sm text-center rounded-full select-none bg-gray-30/20 text-tertiary space-between">
+          {hasRefresh && <div className="w-6 h-4" />}
+          <div className="flex flex-row items-center justify-center w-full leading-snug">
             <svg
-              className="text-tertiary mr-1 opacity-60"
+              className="mr-1 text-tertiary opacity-60"
               width="12"
               height="12"
               viewBox="0 0 44 44"
@@ -1317,7 +1320,7 @@ function BrowserChrome({children, hasPulse, hasRefresh, domain, path}) {
                   // but opaque to obscure the pulsing wave.
                   ' bg-[#ebecef] hover:bg-[#d3d7de]'
                 }>
-                <IconRestart className="text-tertiary text-lg" />
+                <IconRestart className="text-lg text-tertiary" />
               </button>
             </div>
           )}
@@ -1332,7 +1335,7 @@ function BrowserChrome({children, hasPulse, hasRefresh, domain, path}) {
           />
         )}
       </div>
-      <div className="h-full flex flex-1" key={restartId}>
+      <div className="flex flex-1 h-full" key={restartId}>
         {children}
       </div>
     </div>
@@ -1359,41 +1362,41 @@ function TalksLoading() {
         <div className="relative overflow-hidden before:-skew-x-12 before:absolute before:inset-0 before:-translate-x-full before:animate-[shimmer_2.5s_infinite] before:bg-gradient-to-r before:from-transparent before:via-white/50 before:to-transparent">
           <div className="space-y-4">
             <div className="pt-4 pb-1">
-              <div className="h-10 w-full rounded-full bg-gray-10"></div>
+              <div className="w-full h-10 rounded-full bg-gray-10"></div>
             </div>
             <div className="pb-1">
-              <div className="h-5 w-20 rounded-lg bg-gray-10"></div>
+              <div className="w-20 h-5 rounded-lg bg-gray-10"></div>
             </div>
             <div className="flex flex-row items-center gap-3">
-              <div className="aspect-video w-32 xs:w-36 rounded-lg bg-gray-10"></div>
+              <div className="w-32 rounded-lg aspect-video xs:w-36 bg-gray-10"></div>
               <div className="flex flex-col gap-2">
-                <div className="h-3 w-40 rounded-lg bg-gray-10"></div>
-                <div className="h-3 w-32 rounded-lg bg-gray-10"></div>
-                <div className="h-3 w-24 rounded-lg bg-gray-10"></div>
+                <div className="w-40 h-3 rounded-lg bg-gray-10"></div>
+                <div className="w-32 h-3 rounded-lg bg-gray-10"></div>
+                <div className="w-24 h-3 rounded-lg bg-gray-10"></div>
               </div>
             </div>
             <div className="flex flex-row items-center gap-3">
-              <div className="aspect-video w-32 xs:w-36 rounded-lg bg-gray-10"></div>
+              <div className="w-32 rounded-lg aspect-video xs:w-36 bg-gray-10"></div>
               <div className="flex flex-col gap-2">
-                <div className="h-3 w-40 rounded-lg bg-gray-10"></div>
-                <div className="h-3 w-32 rounded-lg bg-gray-10"></div>
-                <div className="h-3 w-24 rounded-lg bg-gray-10"></div>
+                <div className="w-40 h-3 rounded-lg bg-gray-10"></div>
+                <div className="w-32 h-3 rounded-lg bg-gray-10"></div>
+                <div className="w-24 h-3 rounded-lg bg-gray-10"></div>
               </div>
             </div>
             <div className="flex flex-row items-center gap-3">
-              <div className="aspect-video w-32 xs:w-36 rounded-lg bg-gray-10"></div>
+              <div className="w-32 rounded-lg aspect-video xs:w-36 bg-gray-10"></div>
               <div className="flex flex-col gap-2">
-                <div className="h-3 w-40 rounded-lg bg-gray-10"></div>
-                <div className="h-3 w-32 rounded-lg bg-gray-10"></div>
-                <div className="h-3 w-24 rounded-lg bg-gray-10"></div>
+                <div className="w-40 h-3 rounded-lg bg-gray-10"></div>
+                <div className="w-32 h-3 rounded-lg bg-gray-10"></div>
+                <div className="w-24 h-3 rounded-lg bg-gray-10"></div>
               </div>
             </div>
             <div className="flex flex-row items-center gap-3">
-              <div className="aspect-video w-32 xs:w-36 rounded-lg bg-gray-10"></div>
+              <div className="w-32 rounded-lg aspect-video xs:w-36 bg-gray-10"></div>
               <div className="flex flex-col gap-2">
-                <div className="h-3 w-40 rounded-lg bg-gray-10"></div>
-                <div className="h-3 w-32 rounded-lg bg-gray-10"></div>
-                <div className="h-3 w-24 rounded-lg bg-gray-10"></div>
+                <div className="w-40 h-3 rounded-lg bg-gray-10"></div>
+                <div className="w-32 h-3 rounded-lg bg-gray-10"></div>
+                <div className="w-24 h-3 rounded-lg bg-gray-10"></div>
               </div>
             </div>
           </div>
@@ -1448,7 +1451,7 @@ function VideoList({videos, emptyHeading}) {
   return (
     <section className="relative" data-hover="VideoList">
       <h2
-        className="font-bold text-xl text-primary mb-4 leading-snug"
+        className="mb-4 text-xl font-bold leading-snug text-primary"
         data-hover="h2">
         {heading}
       </h2>
@@ -1465,7 +1468,7 @@ function SearchInput({value, onChange}) {
   const id = useId();
   return (
     <form
-      className="mb-3 py-1"
+      className="py-1 mb-3"
       data-hover="SearchInput"
       onSubmit={(e) => e.preventDefault()}>
       <label htmlFor={id} className="sr-only">
@@ -1473,12 +1476,12 @@ function SearchInput({value, onChange}) {
       </label>
       <div className="relative w-full">
         <div className="absolute inset-y-0 left-0 flex items-center pl-4 pointer-events-none">
-          <IconSearch className="text-gray-30 w-4" />
+          <IconSearch className="w-4 text-gray-30" />
         </div>
         <input
           type="text"
           id={id}
-          className="flex pl-11 py-4 h-10 w-full bg-secondary-button outline-none betterhover:hover:bg-opacity-80 pointer items-center text-left text-primary rounded-full align-middle text-base"
+          className="flex items-center w-full h-10 py-4 text-base text-left align-middle rounded-full outline-none pl-11 bg-secondary-button betterhover:hover:bg-opacity-80 pointer text-primary"
           placeholder="Search"
           value={value}
           onChange={(e) => onChange(e.target.value)}
@@ -1529,8 +1532,8 @@ function ConferenceLayout({conf, children}) {
 
 function Cover({background, children}) {
   return (
-    <div className="h-40 overflow-hidden relative items-center flex">
-      <div className="absolute inset-0 px-4 py-2 flex items-end bg-gradient-to-t from-black/40 via-black/0">
+    <div className="relative flex items-center h-40 overflow-hidden">
+      <div className="absolute inset-0 flex items-end px-4 py-2 bg-gradient-to-t from-black/40 via-black/0">
         {children}
       </div>
       <img
@@ -1538,7 +1541,7 @@ function Cover({background, children}) {
         width={500}
         height={263}
         alt=""
-        className="w-full object-cover"
+        className="object-cover w-full"
       />
     </div>
   );
@@ -1562,7 +1565,7 @@ function Video({video}) {
           data-hover="h3">
           {video.title}
         </h3>
-        <p className="text-tertiary text-sm leading-snug" data-hover="p">
+        <p className="text-sm leading-snug text-tertiary" data-hover="p">
           {video.description}
         </p>
       </a>
@@ -1610,7 +1613,7 @@ function Thumbnail({video}) {
             {image.speakers.map((src, i) => (
               <img
                 key={i}
-                className="h-8 w-8 border-2 shadow-md border-gray-70 object-cover rounded-full"
+                className="object-cover w-8 h-8 border-2 rounded-full shadow-md border-gray-70"
                 src={src}
                 alt=""
               />
@@ -1618,7 +1621,7 @@ function Thumbnail({video}) {
           </div>
           <div className="mt-1">
             <span className="inline-flex text-xs font-normal items-center text-primary-dark py-1 whitespace-nowrap outline-link px-1.5 rounded-lg">
-              <Logo className="text-xs mr-1 w-4 h-4 text-link-dark" />
+              <Logo className="w-4 h-4 mr-1 text-xs text-link-dark" />
               React Conf
             </span>
           </div>

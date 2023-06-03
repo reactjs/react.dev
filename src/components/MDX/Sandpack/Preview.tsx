@@ -49,7 +49,7 @@ export function Preview({
     errorScreenRegisteredRef,
     openInCSBRegisteredRef,
     loadingScreenRegisteredRef,
-    status,
+    // status,
   } = sandpack;
 
   if (

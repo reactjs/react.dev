@@ -15,7 +15,7 @@ This repo contains the source code and documentation powering [react.dev](https:
 ### Installation
 
 1. `cd react.dev` to go into the project root
-3. `yarn` to install the website's npm dependencies
+3. run `yarn install` to install the website's npm dependencies
 
 ### Running locally
 

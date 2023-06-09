@@ -46,7 +46,7 @@ export default function MyApp() {
 }
 ```
 
-Observe that the `<MyButton />` commences with an uppercase letter, indicating it as a React component. React component names begin with a capital letter, whereas HTML tags are written in lowercase.
+Observe that `<MyButton />` commences with an uppercase letter, indicating it as a React component. React component names begin with a capital letter, whereas HTML tags are written in lowercase.
 
 Have a look at the result:
 

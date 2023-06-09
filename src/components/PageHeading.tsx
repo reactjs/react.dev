@@ -31,7 +31,7 @@ function PageHeading({
           {status ? <em>—{status}</em> : ''}
         </H1>
         {description && (
-          <p className="mt-4 mb-6 text-primary dark:text-primary-dark text-xl text-gray-90 leading-large">
+          <p className="mt-4 mb-6 dark:text-primary-dark text-xl text-gray-90 leading-large">
             {description}
           </p>
         )}

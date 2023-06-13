@@ -593,9 +593,7 @@ You should write the `render` method as a pure function, meaning that it should 
 
 #### Parameters {/*render-parameters*/}
 
-* `prevProps`: Props before the update. Compare `prevProps` to [`this.props`](#props) to determine what changed.
-
-* `prevState`: State before the update. Compare `prevState` to [`this.state`](#state) to determine what changed.
+`render` does not take any parameters.
 
 #### Returns {/*render-returns*/}
 

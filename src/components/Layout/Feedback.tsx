@@ -79,8 +79,11 @@ function SendFeedback({onSubmit}: {onSubmit: () => void}) {
   }, [isSubmitted]);
   return (
     <div
-      className="max-w-xs w-80 lg:w-auto py-3 shadow-lg rounded-lg m-4 bg-wash dark:bg-gray-95 px-4 flex"
-      style={{opacity: isVisible ? 1 : 0}}>
+      className="max-w-xs w-80 lg:w-auto py-3 shadow-lg rounded-lg m-4 bg-wash dark:bg-gray-95 px-4 flex transition-opacity duration-300"
+      style={{
+        display: isVisible ? 'flex' : 'none',
+        pointerEvents: isVisible ? 'auto' : 'none',
+      }}>
       <p className="w-full font-bold text-primary dark:text-primary-dark text-lg mr-4">
         {isSubmitted ? 'Thank you for your feedback!' : 'Is this page useful?'}
       </p>

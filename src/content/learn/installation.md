@@ -49,7 +49,7 @@ If you want to build an app or a website fully with React, [start a new React pr
 
 ## Add React to an existing project {/*add-react-to-an-existing-project*/}
 
-If want to try using React in your existing app or a website, [add React to an existing project.](/learn/add-react-to-an-existing-project)
+If you want to try using React in your existing app or a website, [add React to an existing project.](/learn/add-react-to-an-existing-project)
 
 ## Next steps {/*next-steps*/}
 

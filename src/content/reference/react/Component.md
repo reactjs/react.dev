@@ -1010,7 +1010,7 @@ We recommend using [TypeScript](https://www.typescriptlang.org/) instead of chec
 
 If you define `static getDerivedStateFromError`, React will call it when a child component (including distant children) throws an error during rendering. This lets you display an error message instead of clearing the UI.
 
-Typically, it is used together with [`componentDidCatch`](#componentDidCatch) which lets you send the error report to some analytics service. A component with these methods is called an *error boundary.*
+Typically, it is used together with [`componentDidCatch`](#componentdidcatch) which lets you send the error report to some analytics service. A component with these methods is called an *error boundary.*
 
 [See an example.](#catching-rendering-errors-with-an-error-boundary)
 

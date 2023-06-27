@@ -45,6 +45,10 @@ export default function MyApp() {
 }
 ```
 
+```js App.js hidden
+import AppTSX from "./App.tsx";
+export default App = AppTSX;
+```
 </Sandpack>
 
  <Note>
@@ -75,10 +79,15 @@ export default function MyApp() {
   return (
     <div>
       <h1>Welcome to my app</h1>
-      <MyButton title="I'm a button" disabled={false}/>
+      <MyButton title="I'm a disabled button" disabled={true}/>
     </div>
   );
 }
+```
+
+```js App.js hidden
+import AppTSX from "./App.tsx";
+export default App = AppTSX;
 ```
 
 </Sandpack>
@@ -92,7 +101,7 @@ The type definitions from `@types/react-dom` include types for the built-in hook
 
 ### `useState` {/*typing-usestate*/}
 
-The `useState` hook will re-use the value passed in as the initial state to determine what the type of the value should be. For example:
+The [`useState` hook](/reference/react/useReducer) will re-use the value passed in as the initial state to determine what the type of the value should be. For example:
 
 ```ts
 const [enabled, setEnabled] = useState(false);
@@ -124,12 +133,75 @@ type RequestState =
 const [requestState, setRequestState] = useState<RequestState>({ status: 'idle' });
 ```
 
+### `useReducer` {/*usereducer*/}
 
-## Add React to an existing project {/*add-react-to-an-existing-project*/}
+The [`useReducer` hook](/reference/react/useReducer) is a more complex hook that takes a reducer function and an initial state. The types for the reducer function are inferred from the initial state. You can optionally provide a type argument to the `useReducer` call to provide a type for the state, but it is often better to set the type on the initial state instead:
 
-If want to try using React in your existing app or a website, [add React to an existing project.](/learn/add-react-to-an-existing-project)
+<Sandpack>
 
-## Next steps {/*next-steps*/}
+```tsx App.tsx active
+import {useReducer, useCallback} from 'react';
 
-Head to the [Quick Start](/learn) guide for a tour of the most important React concepts you will encounter every day.
+interface State {
+   count: number 
+};
 
+type CounterAction =
+  | { type: "reset" }
+  | { type: "setCount"; value: State["count"] }
+
+const initialState: State = { count: 0 };
+
+function stateReducer(state: State, action: CounterAction): State {
+  switch (action.type) {
+    case "reset":
+      return initialState;
+    case "setCount":
+      return { ...state, count: action.value };
+    default:
+      throw new Error("Unknown action");
+  }
+}
+
+export default function App() {
+  const [state, dispatch] = useReducer(stateReducer, initialState);
+
+  const addFive = useCallback(() => dispatch({ type: "setCount", value: state.count + 5 }), [state.count]);
+  const reset = useCallback(() => dispatch({ type: "reset" }), []);
+
+  return (
+    <div>
+      <h1>Welcome to my counter</h1>
+
+      <p>Count: {state.count}</p>
+      <button onClick={addFive}>Add 5</button>
+      <button onClick={reset}>Reset</button>
+    </div>
+  );
+}
+
+```
+
+```js App.js hidden
+import AppTSX from "./App.tsx";
+export default App = AppTSX;
+```
+</Sandpack>
+
+
+We are using TypeScript in a few key places:
+
+ - `interface State` describes the shape of the reducer's state.
+ - `type CounterAction` describes the different actions which can be dispatched to the reducer.
+ - `const initialState: State` provides a type for the initial state, and also the type which is used by `useReducer` by default.
+ - `stateReducer(state: State, action: CounterAction): State` sets the types for the reducer function's arguments and return value.
+
+ An alternative to setting the type on `initialState` is to provide a type argument to `useReducer`:
+
+ ```ts
+const initialState = { count: 0 };
+
+export default function App() {
+  const [state, dispatch] = useReducer<State>(stateReducer, initialState);
+}
+ ```

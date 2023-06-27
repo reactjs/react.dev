@@ -11,7 +11,7 @@ TypeScript is a popular way to add type definitions to JavaScript codebases. Out
 
 <YouWillLearn>
 * [TypeScript with React Components](/learn/typescript#typescript-with-react-components)
-* [Typing common hooks](/learn/add-react-to-an-existing-project)
+* [Typing common hooks](/learn/typescript#typing-hooks)
 * [How to set up your editor](/learn/editor-setup)
 * [How to install React Developer Tools](/learn/react-developer-tools)
 
@@ -133,7 +133,7 @@ type RequestState =
 const [requestState, setRequestState] = useState<RequestState>({ status: 'idle' });
 ```
 
-### `useReducer` {/*usereducer*/}
+### `useReducer` {/*typing-usereducer*/}
 
 The [`useReducer` hook](/reference/react/useReducer) is a more complex hook that takes a reducer function and an initial state. The types for the reducer function are inferred from the initial state. You can optionally provide a type argument to the `useReducer` call to provide a type for the state, but it is often better to set the type on the initial state instead:
 
@@ -196,12 +196,16 @@ We are using TypeScript in a few key places:
  - `const initialState: State` provides a type for the initial state, and also the type which is used by `useReducer` by default.
  - `stateReducer(state: State, action: CounterAction): State` sets the types for the reducer function's arguments and return value.
 
- An alternative to setting the type on `initialState` is to provide a type argument to `useReducer`:
+A more explicit alternative to setting the type on `initialState` is to provide a type argument to `useReducer`:
 
- ```ts
+```ts
 const initialState = { count: 0 };
 
 export default function App() {
   const [state, dispatch] = useReducer<State>(stateReducer, initialState);
 }
- ```
+```
+
+### `useContext` {/*typing-usecontext*/}
+
+The [`useContext` hook](/reference/react/useContext) is a [...]

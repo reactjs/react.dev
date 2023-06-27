@@ -13,8 +13,7 @@ TypeScript is a popular way to add type definitions to JavaScript codebases. Out
 
 * [TypeScript with React Components](/learn/typescript#typescript-with-react-components)
 * [Typing common hooks](/learn/typescript#typing-hooks)
-* [How to set up your editor](/learn/editor-setup)
-* [How to install React Developer Tools](/learn/react-developer-tools)
+* [Typing Events](/learn/typescript/#typing-dom-events)
 
 </YouWillLearn>
 
@@ -141,7 +140,7 @@ The [`useReducer` hook](/reference/react/useReducer) is a more complex hook that
 <Sandpack>
 
 ```tsx App.tsx active
-import {useReducer, useCallback} from 'react';
+import {useReducer} from 'react';
 
 interface State {
    count: number 
@@ -167,8 +166,8 @@ function stateReducer(state: State, action: CounterAction): State {
 export default function App() {
   const [state, dispatch] = useReducer(stateReducer, initialState);
 
-  const addFive = useCallback(() => dispatch({ type: "setCount", value: state.count + 5 }), [state.count]);
-  const reset = useCallback(() => dispatch({ type: "reset" }), []);
+  const addFive = () => dispatch({ type: "setCount", value: state.count + 5 });
+  const reset = () => dispatch({ type: "reset" });
 
   return (
     <div>
@@ -333,4 +332,46 @@ export default App = AppTSX;
 </Sandpack>
 
 
-### `useMemo` / `useCallback` {/*typing-other-hooks*/}
+### `useMemo` / `useCallback` {/*typing-memo-callback*/}
+
+The [`useMemo`](/reference/react/useMemo) and [`useCallback`](/reference/react/useCallback) hooks follow the same pattern with determining their type from the parameter passed to them. If needed you can pass a type argument to them to explicitly set the type.
+
+`useCallback` requires adding your 
+
+### `useEffect` {/*typing-useeffect*/}
+
+The [`useEffect` hook](/reference/react/useEffect) is used to perform side effects in a component. It is called after every render by default, but can be configured to only run when certain values change. The types for this hook allow for either returning a cleanup function or not returning anything.
+
+## Typing DOM Events {/*typing-dom-events*/}
+
+When working with DOM events in React, the type of the event is inferred from the event handler. However, when you want to extract a function to be passed to an event handler, you will need to explicitly set the type of the event.
+
+<Sandpack>
+
+```tsx App.tsx active
+import { useState } from 'react';
+
+export default function Form() {
+  const [value, setValue] = useState("Change me");
+
+  function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
+    setValue(event.target.value);
+  }
+
+  return (
+    <>
+      <input value={value} onChange={handleChange} />
+      <p>Value: {value}</p>
+    </>
+  );
+}
+```
+
+```js App.js hidden
+import AppTSX from "./App.tsx";
+export default App = AppTSX;
+```
+
+</Sandpack>
+
+There are many types of events provided in React - the full list can be found [here](https://github.com/DefinitelyTyped/DefinitelyTyped/blob/b580df54c0819ec9df62b0835a315dd48b8594a9/types/react/index.d.ts#L1247C1-L1373) which is based on the [most popular events from the DOM](https://developer.mozilla.org/en-US/docs/Web/Events). If you need to use an event that is not included in this list, you can use the `React.SyntheticEvent` type, which is the base type for all events.

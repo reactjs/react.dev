@@ -1,28 +1,32 @@
 ---
 title: Using TypeScript
+re: https://github.com/reactjs/react.dev/issues/5960
 ---
 
 <Intro>
 
-TypeScript is a popular way to add type definitions to React projects. Out of the box, TypeScript [supports JSX](/learn/writing-markup-with-jsx) and you can get full React support by adding [`@types/react-dom`](https://www.npmjs.com/package/@types/react-dom) to your project.
+TypeScript is a popular way to add type definitions to JavaScript codebases. Out of the box, TypeScript [supports JSX](/learn/writing-markup-with-jsx) and you can get full React support by adding [`@types/react-dom`](https://www.npmjs.com/package/@types/react-dom) to your project.
 
 </Intro>
 
 <YouWillLearn isChapter={true}>
-* [How does ](/learn/start-a-new-react-project)
+* [How does it come together](/learn/start-a-new-react-project)
 * [How to add React to an existing project](/learn/add-react-to-an-existing-project)
 * [How to set up your editor](/learn/editor-setup)
 * [How to install React Developer Tools](/learn/react-developer-tools)
 
 </YouWillLearn>
 
-## Try React {/*try-react*/}
 
-You don't need to install anything to play with React. Try editing this sandbox!
+All of the production-grade frameworks mentioned in [Start a New React Project](/learn/start-a-new-react-project) offer support for using TypeScript with React, we recommend consulting their documentation for more information on setup. This guide assumes you have your project configured to support writing TypeScript React files as `*.tsx`.
+
+## TypeScript with React {/*typescript-with-react*/}
 
 <Sandpack>
 
 ```tsx App.tsx active
+const a = "";
+
 function Greeting({ name } : { name: string }) {
   return <h1>Hello, {name}</h1>;
 }
@@ -34,9 +38,12 @@ export default function App() {
 
 </Sandpack>
 
-You can edit it directly or open it in a new tab by pressing the "Fork" button in the upper right corner.
+ <Note>
 
-Most pages in the React documentation contain sandboxes like this. Outside of the React documentation, there are many online sandboxes that support React: for example, [CodeSandbox](https://codesandbox.io/s/new), [StackBlitz](https://stackblitz.com/fork/react), or [CodePen.](https://codepen.io/pen?&editors=0010&layout=left&prefill_data_id=3f4569d1-1b11-4bce-bd46-89090eed5ddb)
+These sandboxes can handle TypeScript code, but they do not run the type-checker. This means you can amend the TypeScript sandboxes to learn, but you won't get any type errors or warnings. To get type-checking, you can use the [TypeScript Playground](https://www.typescriptlang.org/play) or use an online sandbox.
+
+</Note>
+
 
 ### Try React locally {/*try-react-locally*/}
 

@@ -10,6 +10,7 @@ TypeScript is a popular way to add type definitions to JavaScript codebases. Out
 </Intro>
 
 <YouWillLearn>
+
 * [TypeScript with React Components](/learn/typescript#typescript-with-react-components)
 * [Typing common hooks](/learn/typescript#typing-hooks)
 * [How to set up your editor](/learn/editor-setup)
@@ -186,6 +187,7 @@ export default function App() {
 import AppTSX from "./App.tsx";
 export default App = AppTSX;
 ```
+
 </Sandpack>
 
 
@@ -208,4 +210,127 @@ export default function App() {
 
 ### `useContext` {/*typing-usecontext*/}
 
-The [`useContext` hook](/reference/react/useContext) is a [...]
+The [`useContext` hook](/reference/react/useContext) is a technique for passing data down the component tree without having to pass props through components. It is used by creating a provider component and often by creating a hook to consume the value in a child component.
+
+The type of the value provided by the context is inferred from the value passed to the `createContext` call:
+
+<Sandpack>
+
+```tsx App.tsx active
+import { createContext, useContext, useState } from 'react';
+
+type Theme = "light" | "dark" | "system";
+const ThemeContext = createContext<Theme>("system");
+
+const useGetTheme = () => useContext(ThemeContext);
+
+export default function MyApp() {
+  const [theme, setTheme] = useState<Theme>('light');
+
+  return (
+    <ThemeContext.Provider value={theme}>
+      <MyComponent />
+    </ThemeContext.Provider>
+  )
+}
+
+function MyComponent() {
+  const theme = useGetTheme();
+
+  return (
+    <div>
+      <p>Current theme: {theme}</p>
+    </div>
+  )
+}
+```
+
+```js App.js hidden
+import AppTSX from "./App.tsx";
+export default App = AppTSX;
+```
+
+</Sandpack>
+
+This technique works when you have an obvious default value - but often with context you do not, and [in those cases `null` is an appropriate default value](/reference/react/useContext#specifying-a-fallback-default-value). However, you likely would not want `null` to be in the type when consuming the type, our recommendation is to have the hook do a runtime check for it's existence and throw an error when not present:
+
+```js {5, 16-20}
+import { createContext, useContext, useState, useMemo } from 'react';
+
+// This is a simpler example, but you can imagine a more complex object here
+type ComplexObject = {
+  kind: string
+};
+
+// The context is created with `| null` in the type, to accurately reflect the default value.
+const Context = createContext<ComplexObject | null>(null);
+
+// The `| null` will be removed via the check in the hook.
+const useGetComplexObject = () => {
+  const object = useContext(Context);
+  if (!object) { throw new Error("useGetComplexObject must be used within a Provider") }
+  return object;
+}
+
+export default function MyApp() {
+  const object = useMemo(() => ({ kind: "complex" }), []);
+
+  return (
+    <Context.Provider value={object}>
+      <MyComponent />
+    </Context.Provider>
+  )
+}
+
+function MyComponent() {
+  const object = useGetComplexObject();
+
+  return (
+    <div>
+      <p>Current object: {object.kind}</p>
+    </div>
+  )
+}
+```
+
+### `useRef` {/*typing-useref*/}
+
+The [`useRef` hook](/reference/react/useRef) returns a mutable ref object whose `.current` property is initialized to the passed argument. The returned object will persist for the full lifetime of the component.
+
+`useRef` is often used to access the underlying DOM element of a component, but it can also be used to store any mutable value.
+
+When interacting with the DOM, the type of the ref should be set to the type of the underlying DOM element. The naming rule is `HTML` + the name of the element + `Element`, for example `HTMLDivElement` or `HTMLButtonElement`. You can see the full list from TypeScript 5.1 [here](https://github.com/microsoft/TypeScript/blob/a3773ec590c4f0308d546f0e65818cd0d12402f3/src/lib/dom.generated.d.ts#L26899-L27012). These are provided globally by the "DOM" lib, which is included by default in TypeScript projects.
+
+<Sandpack>
+
+```tsx App.tsx active
+import { useRef } from 'react';
+
+export default function Form() {
+  const inputRef = useRef<HTMLButtonElement | null>(null);
+
+  function handleClick() {
+    // The ?. is used because of the `| null` above.
+    inputRef?.current.focus();
+  }
+
+  return (
+    <>
+      <input ref={inputRef} />
+      <button onClick={handleClick}>
+        Focus the input
+      </button>
+    </>
+  );
+}
+```
+
+```js App.js hidden
+import AppTSX from "./App.tsx";
+export default App = AppTSX;
+```
+
+</Sandpack>
+
+
+### `useMemo` / `useCallback` {/*typing-other-hooks*/}

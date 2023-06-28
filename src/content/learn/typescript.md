@@ -342,7 +342,11 @@ The [`useMemo`](/reference/react/useMemo) and [`useCallback`](/reference/react/u
 
 The [`useEffect` hook](/reference/react/useEffect) is used to perform side effects in a component. It is called after every render by default, but can be configured to only run when certain values change. The types for this hook allow for either returning a cleanup function or not returning anything.
 
-## Typing DOM Events {/*typing-dom-events*/}
+## Useful Types {/*useful-types*/}
+
+There is quite an expansive set of types which come from the `@types/react` package, it is worth a read when you feel comfortable with how React and TypeScript interact. You can find them [in React's folder in DefinitelyTyped](https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/react/index.d.ts). We will cover a few of the more common types here.
+
+### DOM Events {/*typing-dom-events*/}
 
 When working with DOM events in React, the type of the event is inferred from the event handler. However, when you want to extract a function to be passed to an event handler, you will need to explicitly set the type of the event.
 
@@ -374,4 +378,56 @@ export default App = AppTSX;
 
 </Sandpack>
 
-There are many types of events provided in React - the full list can be found [here](https://github.com/DefinitelyTyped/DefinitelyTyped/blob/b580df54c0819ec9df62b0835a315dd48b8594a9/types/react/index.d.ts#L1247C1-L1373) which is based on the [most popular events from the DOM](https://developer.mozilla.org/en-US/docs/Web/Events). If you need to use an event that is not included in this list, you can use the `React.SyntheticEvent` type, which is the base type for all events.
+There are many types of events provided in the React types - the full list can be found [here](https://github.com/DefinitelyTyped/DefinitelyTyped/blob/b580df54c0819ec9df62b0835a315dd48b8594a9/types/react/index.d.ts#L1247C1-L1373) which is based on the [most popular events from the DOM](https://developer.mozilla.org/en-US/docs/Web/Events). If you need to use an event that is not included in this list, you can use the `React.SyntheticEvent` type, which is the base type for all events.
+
+### Children {/*typing-children*/}
+
+There are three common paths to describing the children of a component. The first is to use the `React.ReactNode` type, which is a union of all the possible types that can be passed as children in JSX:
+
+```ts
+interface ModalRendererProps {
+  title: string;
+  children: React.ReactNode;
+}
+```
+
+The second is to use the `React.ReactElement` type, which is only JSX elements and not JavaScript primitives like strings or numbers:
+
+```ts
+interface ModalRendererProps {
+  title: string;
+  children: React.ReactElement;
+}
+```
+
+The third is to use `React.PropsWithChildren` which is a utility type that takes an object type and adds a optional `children` field of `React.ReactNode` to it:
+
+```ts
+type ModalRendererProps = React.PropsWithChildren<{
+  title: string;
+}>
+```
+
+Note, that you cannot use TypeScript to describe that the children are a certain type of elements. You can see all three of these in action with the type-checker in [this TypeScript playground](https://www.typescriptlang.org/play?#code/JYWwDg9gTgLgBAJQKYEMDG8BmUIjgIilQ3wChSB6CxYmAOmXRgDkIATJOdNJMGAZzgwAFpxAR+8YADswAVwGkZMJFEzpOjDKw4AFHGEEBvUnDhphwADZsi0gFw0mDWjqQBuUgF9yaCNMlENzgAXjgACjADfkctFnYkfQhDAEpQgD44AB42YAA3dKMo5P46C2tbJGkvLIpcgt9-QLi3AEEwMFCItJDMrPTTbIQ3dKywdIB5aU4kKyQQKpha8drhhIGzLLWODbNs3b3s8YAxKBQAcwXpAThMaGWDvbH0gFloGbmrgQfBzYpd1YjQZbEYARkB6zMwO2SHSAAlZlYIBCdtCRkZpHIrFYahQYQD8UYYFA5EhcfjyGYqHAXnJAsIUHlOOUbHYhMIIHJzsI0Qk4P9SLUBuRqXEXEwAKKfRZcNA8PiCfxWACecAAUgBlAAacFm80W-CU11U6h4TgwUv11yShjgJjMLMqDnN9Dilq+nh8pD8AXgCHdMrCkWisVoAet0R6fXqhWKhjKllZVVxMcavpd4Zg7U6Qaj+2hmdG4zeRF10uu-Aeq0LBfLMEe-V+T2L7zLVu+FBWLdLeq+lc7DYFf39deFVOotMCACNOCh1dq219a+30uC8YWoZsRyuEdjkevR8uvoVMdjyTWt4WiSSydXD4NqZP4AymeZE072ZzuUeZQKheRKGoMUbX4AB1YARAAYXfNlgEEJkoFVbheBgGRzjgGQMNkBQABpzAgBC0K4bE4AgTAXWCFBpDYOBpAgN8Kjsb0mj9cCoPfKoumDEpQ2cEC2OEaDGKqLIjC8dI8xyfJY2iBNhOqWpU2Y9M4gEoSk2kbMuMkgk1I46Qi1eVtewNKs8T0ioql0iDBP0htHk2bsPnbfsuyMns61cwcAXMmz1I4AzKSGCybCstcEBCgLMjgaFIqs3ckVWOLAq3ZKTyxHEkr8uzYuyyyDOvUlyTSoLqQASRwaRgDQFBsVVO4oHZThpBQBY8Jq6RiP4ei6OfRlmRgqpcvY-L+QGf8gA).
+
+### Style Props {/*typing-style-props*/}
+
+When using inline styles in React, you can use `React.CSSProperties` to describe the object passed to the `style` prop. This type is a union of all the possible CSS properties, and is a good way to ensure you are passing valid CSS properties to the `style` prop, and to get auto-complete in your editor.
+
+```ts
+interface MyComponentProps {
+  style: React.CSSProperties;
+}
+```
+
+## Further learning {/*further-learning*/}
+
+This guide has covered the basics of using TypeScript with React, but there is a lot more to learn. We recommend the following resources:
+
+ - [The TypeScript handbook](https://www.typescriptlang.org/docs/handbook/) is the official documentation for TypeScript, and covers most key language features.
+
+ - [The TypeScript release notes](https://devblogs.microsoft.com/typescript/) covers a each new features in-depth.
+
+ - [React TypeScript Cheatsheet](https://react-typescript-cheatsheet.netlify.app/) is a community-maintained cheatsheet for using TypeScript with React, covering a lot of useful edge cases and providing more breadth than this document.
+
+ - [TypeScript Community Discord](discord.com/invite/typescript) is a great place to ask questions and get help with TypeScript and React issues.

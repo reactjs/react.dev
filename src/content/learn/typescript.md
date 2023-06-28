@@ -101,7 +101,7 @@ The type definitions from `@types/react-dom` include types for the built-in hook
 
 ### `useState` {/*typing-usestate*/}
 
-The [`useState` hook](/reference/react/useReducer) will re-use the value passed in as the initial state to determine what the type of the value should be. For example:
+The [`useState` hook](/reference/react/useState) will re-use the value passed in as the initial state to determine what the type of the value should be. For example:
 
 ```ts
 const [enabled, setEnabled] = useState(false);
@@ -359,7 +359,7 @@ export default function Form() {
   const [value, setValue] = useState("Change me");
 
   function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
-    setValue(event.target.value);
+    setValue(event.currentTarget.value);
   }
 
   return (

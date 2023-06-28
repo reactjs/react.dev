@@ -13,7 +13,7 @@ TypeScript is a popular way to add type definitions to JavaScript codebases. Out
 
 * [TypeScript with React Components](/learn/typescript#typescript-with-react-components)
 * [Typing common hooks](/learn/typescript#typing-hooks)
-* [Typing Events](/learn/typescript/#typing-dom-events)
+* [Common types from `@types/react`](/learn/typescript/#useful-types)
 
 </YouWillLearn>
 

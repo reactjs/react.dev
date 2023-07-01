@@ -1173,7 +1173,7 @@ Why didn't this problem happen earlier?
 
 When you were passing `onSquareClick={handleClick}`, you were passing the `handleClick` function down as a prop. You were not calling it! But now you are *calling* that function right away--notice the parentheses in `handleClick(0)`--and that's why it runs too early. You don't *want* to call `handleClick` until the user clicks!
 
-You could fix by creating a function like `handleFirstSquareClick` that calls `handleClick(0)`, a function like `handleSecondSquareClick` that calls `handleClick(1)`, and so on. You would pass (rather than call) these functions down as props like `onSquareClick={handleFirstSquareClick}`. This would solve the infinite loop.
+You could fix this by creating functions like `handleFirstSquareClick` that call `handleClick(0)`, `handleSecondSquareClick` that call `handleClick(1)`, and so on. Then, you would pass (rather than call) these functions down as props, such as `onSquareClick={handleFirstSquareClick}`. This approach would resolve the infinite loop.
 
 However, defining nine different functions and giving each of them a name is too verbose. Instead, let's do this:
 

@@ -92,7 +92,7 @@ export default App = AppTSX;
 
 </Sandpack>
 
-The type describing your component's props can be as simple or as complex as you need, though they should probably be an object type. You can learn about how TypeScript describes objects in [Object Types](https://www.typescriptlang.org/docs/handbook/2/objects.html) but you may also be interested in using [Union Types](https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#union-types) to describe a prop that can be one of a few different types and the [Creating Types from Types](https://www.typescriptlang.org/docs/handbook/2/types-from-types.html) guide for more advanced use cases.
+The type describing your component's props can be as simple or as complex as you need, though they should be an object type described with either a `type` or `interface`. You can learn about how TypeScript describes objects in [Object Types](https://www.typescriptlang.org/docs/handbook/2/objects.html) but you may also be interested in using [Union Types](https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#union-types) to describe a prop that can be one of a few different types and the [Creating Types from Types](https://www.typescriptlang.org/docs/handbook/2/types-from-types.html) guide for more advanced use cases.
 
 
 ## Hooks {/*typing-hooks*/}
@@ -300,7 +300,9 @@ The [`useRef` hook](/reference/react/useRef) returns a mutable ref object whose 
 
 `useRef` is often used to access the underlying DOM element of a component, but it can also be used to store any mutable value.
 
-When interacting with the DOM, the type of the ref should be set to the type of the underlying DOM element. The naming rule is `HTML` + the name of the element + `Element`, for example `HTMLDivElement` or `HTMLButtonElement`. You can see the full list from TypeScript 5.1 [here](https://github.com/microsoft/TypeScript/blob/a3773ec590c4f0308d546f0e65818cd0d12402f3/src/lib/dom.generated.d.ts#L26899-L27012). These are provided globally by the "DOM" lib, which is included by default in TypeScript projects.
+When interacting with the DOM, the type of the ref should be set to the type of the underlying DOM element. The type names match the names provided in the HTML specification. A rough heuristic is `HTML` + the name of the element + `Element`, for example `HTMLDivElement` or `HTMLButtonElement`. You can see the full [list from TypeScript 5.1 here](https://github.com/microsoft/TypeScript/blob/a3773ec590c4f0308d546f0e65818cd0d12402f3/src/lib/dom.generated.d.ts#L26899-L27012) and the [list in MDN here](https://developer.mozilla.org/en-US/docs/Web/API#h_2). 
+
+These types are provided globally by the "DOM" lib, which is included by default in TypeScript projects and do not need to be imported.
 
 <Sandpack>
 
@@ -350,7 +352,9 @@ There is quite an expansive set of types which come from the `@types/react` pack
 
 ### DOM Events {/*typing-dom-events*/}
 
-When working with DOM events in React, the type of the event is inferred from the event handler. However, when you want to extract a function to be passed to an event handler, you will need to explicitly set the type of the event.
+When working with DOM events in React, the type of the event can often be inferred from the event handler. However, when you want to extract a function to be passed to an event handler, you will need to explicitly set the type of the event.
+
+
 
 <Sandpack>
 
@@ -384,7 +388,7 @@ There are many types of events provided in the React types - the full list can b
 
 ### Children {/*typing-children*/}
 
-There are three common paths to describing the children of a component. The first is to use the `React.ReactNode` type, which is a union of all the possible types that can be passed as children in JSX:
+There are two common paths to describing the children of a component. The first is to use the `React.ReactNode` type, which is a union of all the possible types that can be passed as children in JSX:
 
 ```ts
 interface ModalRendererProps {
@@ -393,7 +397,7 @@ interface ModalRendererProps {
 }
 ```
 
-The second is to use the `React.ReactElement` type, which is only JSX elements and not JavaScript primitives like strings or numbers:
+This is a very broad definition of children. The second is to use the `React.ReactElement` type, which is only JSX elements and not JavaScript primitives like strings or numbers:
 
 ```ts
 interface ModalRendererProps {
@@ -402,15 +406,9 @@ interface ModalRendererProps {
 }
 ```
 
-The third is to use `React.PropsWithChildren` which is a utility type that takes an object type and adds a optional `children` field of `React.ReactNode` to it:
+Note, that you cannot use TypeScript to describe that the children are a certain type of JSX elements, so you cannot use the type-system to describe a component which only accepts `<li>` children. 
 
-```ts
-type ModalRendererProps = React.PropsWithChildren<{
-  title: string;
-}>
-```
-
-Note, that you cannot use TypeScript to describe that the children are a certain type of elements. You can see all three of these in action with the type-checker in [this TypeScript playground](https://www.typescriptlang.org/play?#code/JYWwDg9gTgLgBAJQKYEMDG8BmUIjgIilQ3wChSB6CxYmAOmXRgDkIATJOdNJMGAZzgwAFpxAR+8YADswAVwGkZMJFEzpOjDKw4AFHGEEBvUnDhphwADZsi0gFw0mDWjqQBuUgF9yaCNMlENzgAXjgACjADfkctFnYkfQhDAEpQgD44AB42YAA3dKMo5P46C2tbJGkvLIpcgt9-QLi3AEEwMFCItJDMrPTTbIQ3dKywdIB5aU4kKyQQKpha8drhhIGzLLWODbNs3b3s8YAxKBQAcwXpAThMaGWDvbH0gFloGbmrgQfBzYpd1YjQZbEYARkB6zMwO2SHSAAlZlYIBCdtCRkZpHIrFYahQYQD8UYYFA5EhcfjyGYqHAXnJAsIUHlOOUbHYhMIIHJzsI0Qk4P9SLUBuRqXEXEwAKKfRZcNA8PiCfxWACecAAUgBlAAacFm80W-CU11U6h4TgwUv11yShjgJjMLMqDnN9Dilq+nh8pD8AXgCHdMrCkWisVoAet0R6fXqhWKhjKllZVVxMcavpd4Zg7U6Qaj+2hmdG4zeRF10uu-Aeq0LBfLMEe-V+T2L7zLVu+FBWLdLeq+lc7DYFf39deFVOotMCACNOCh1dq219a+30uC8YWoZsRyuEdjkevR8uvoVMdjyTWt4WiSSydXD4NqZP4AymeZE072ZzuUeZQKheRKGoMUbX4AB1YARAAYXfNlgEEJkoFVbheBgGRzjgGQMNkBQABpzAgBC0K4bE4AgTAXWCFBpDYOBpAgN8Kjsb0mj9cCoPfKoumDEpQ2cEC2OEaDGKqLIjC8dI8xyfJY2iBNhOqWpU2Y9M4gEoSk2kbMuMkgk1I46Qi1eVtewNKs8T0ioql0iDBP0htHk2bsPnbfsuyMns61cwcAXMmz1I4AzKSGCybCstcEBCgLMjgaFIqs3ckVWOLAq3ZKTyxHEkr8uzYuyyyDOvUlyTSoLqQASRwaRgDQFBsVVO4oHZThpBQBY8Jq6RiP4ei6OfRlmRgqpcvY-L+QGf8gA).
+You can see all an example of both `React.ReactNode` and `React.ReactElement` with the type-checker in [this TypeScript playground](https://www.typescriptlang.org/play?#code/JYWwDg9gTgLgBAJQKYEMDG8BmUIjgIilQ3wChSB6CxYmAOmXRgDkIATJOdNJMGAZzgwAFpxAR+8YADswAVwGkZMJFEzpOjDKw4AFHGEEBvUnDhphwADZsi0gFw0mDWjqQBuUgF9yaCNMlENzgAXjgACjADfkctFnYkfQhDAEpQgD44AB42YAA3dKMo5P46C2tbJGkvLIpcgt9-QLi3AEEwMFCItJDMrPTTbIQ3dKywdIB5aU4kKyQQKpha8drhhIGzLLWODbNs3b3s8YAxKBQAcwXpAThMaGWDvbH0gFloGbmrgQfBzYpd1YjQZbEYARkB6zMwO2SHSAAlZlYIBCdtCRkZpHIrFYahQYQD8UYYFA5EhcfjyGYqHAXnJAsIUHlOOUbHYhMIIHJzsI0Qk4P9SLUBuRqXEXEwAKKfRZcNA8PiCfxWACecAAUgBlAAacFm80W-CU11U6h4TgwUv11yShjgJjMLMqDnN9Dilq+nh8pD8AXgCHdMrCkWisVoAet0R6fXqhWKhjKllZVVxMcavpd4Zg7U6Qaj+2hmdG4zeRF10uu-Aeq0LBfLMEe-V+T2L7zLVu+FBWLdLeq+lc7DYFf39deFVOotMCACNOCh1dq219a+30uC8YWoZsRyuEdjkevR8uvoVMdjyTWt4WiSSydXD4NqZP4AymeZE072ZzuUeZQKheQgA).
 
 ### Style Props {/*typing-style-props*/}
 

@@ -5,7 +5,7 @@ re: https://github.com/reactjs/react.dev/issues/5960
 
 <Intro>
 
-TypeScript is a popular way to add type definitions to JavaScript codebases. Out of the box, TypeScript [supports JSX](/learn/writing-markup-with-jsx) and you can get full React support by adding [`@types/react-dom`](https://www.npmjs.com/package/@types/react-dom) to your project.
+TypeScript is a popular way to add type definitions to JavaScript codebases. Out of the box, TypeScript [supports JSX](/learn/writing-markup-with-jsx) and you can get full React Web support by adding [`@types/react`](https://www.npmjs.com/package/@types/react) and [`@types/react-dom`](https://www.npmjs.com/package/@types/react-dom) to your project.
 
 </Intro>
 
@@ -97,7 +97,7 @@ The type describing your component's props can be as simple or as complex as you
 
 ## Hooks {/*typing-hooks*/}
 
-The type definitions from `@types/react-dom` include types for the built-in hooks, so you can use them in your components without any additional setup. They are built to take into account the code you write in your component, so you will get inferred types a lot of the time and ideally do not need to handle the minutiae of providing the types. However, we can look at a few examples of how to provide types for hooks.
+The type definitions from `@types/react` include types for the built-in hooks, so you can use them in your components without any additional setup. They are built to take into account the code you write in your component, so you will get inferred types a lot of the time and ideally do not need to handle the minutiae of providing the types. However, we can look at a few examples of how to provide types for hooks.
 
 ### `useState` {/*typing-usestate*/}
 
@@ -251,7 +251,9 @@ export default App = AppTSX;
 
 </Sandpack>
 
-This technique works when you have an obvious default value - but often with context you do not, and [in those cases `null` is an appropriate default value](/reference/react/useContext#specifying-a-fallback-default-value). However, you likely would not want `null` to be in the type when consuming the type, our recommendation is to have the hook do a runtime check for it's existence and throw an error when not present:
+This technique works when you have an default value which makes sense - but there are occasionally cases when you do not, and in those cases `null` can feel reasonable as a default value. However, to allow the type-system to understand your code, you need to explicitly set `ContextShape | null` on the `createContext`. 
+
+This causes the knock-on issue that you need to eliminate the `| null` in the type for context consumers. Our recommendation is to have the hook do a runtime check for it's existence and throw an error when not present:
 
 ```js {5, 16-20}
 import { createContext, useContext, useState, useMemo } from 'react';

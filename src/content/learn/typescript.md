@@ -14,6 +14,7 @@ TypeScript is a popular way to add type definitions to JavaScript codebases. Out
 * [TypeScript with React Components](/learn/typescript#typescript-with-react-components)
 * [Typing common hooks](/learn/typescript#typing-hooks)
 * [Common types from `@types/react`](/learn/typescript/#useful-types)
+* [Further learning locations](/learn/typescript/#further-learning)
 
 </YouWillLearn>
 
@@ -296,9 +297,9 @@ function MyComponent() {
 
 ### `useRef` {/*typing-useref*/}
 
-The [`useRef` hook](/reference/react/useRef) returns a mutable ref object whose `.current` property is initialized to the passed argument. The returned object will persist for the full lifetime of the component.
+The [`useRef` hook](/reference/react/useRef) returns a reference object (ref) whose `.current` property is initialized to the passed argument. The returned object will persist for the full lifetime of the component. It is often used to access the underlying DOM element in a component, but it can also be used to store any values where changes should not cause re-renders.
 
-`useRef` is often used to access the underlying DOM element of a component, but it can also be used to store any mutable value.
+The inferred types for `useRef` will either provide you with a mutable ref, or an immutable ref based on whether `null` is passed as the initial value (or explicitly included in a union with the type you want to use). An immutable ref cannot have `.current` changed by your code, but it can be set by React via the `ref={ref}` API.
 
 When interacting with the DOM, the type of the ref should be set to the type of the underlying DOM element. The type names match the names provided in the HTML specification. A rough heuristic is `HTML` + the name of the element + `Element`, for example `HTMLDivElement` or `HTMLButtonElement`. You can see the full [list from TypeScript 5.1 here](https://github.com/microsoft/TypeScript/blob/a3773ec590c4f0308d546f0e65818cd0d12402f3/src/lib/dom.generated.d.ts#L26899-L27012) and the [list in MDN here](https://developer.mozilla.org/en-US/docs/Web/API#h_2). 
 
@@ -336,15 +337,53 @@ export default App = AppTSX;
 </Sandpack>
 
 
-### `useMemo` / `useCallback` {/*typing-memo-callback*/}
+### `useMemo` {/*typing-usememo*/}
 
-The [`useMemo`](/reference/react/useMemo) and [`useCallback`](/reference/react/useCallback) hooks follow the same pattern with determining their type from the parameter passed to them. If needed you can pass a type argument to them to explicitly set the type.
+The [`useMemo`](/reference/react/useMemo) hooks will create/re-access a memorized value from a function call, re-running the function only when dependencies passed as the 2nd parameter are changed. The result of calling the hook is inferred from the return value from the function in the first parameter. You can be more explicit by providing a type argument to the hook.
 
-`useCallback` requires adding your 
+```ts
+// The type of visibleTodos is inferred from the return value of filterTodos
+const visibleTodos = useMemo(() => filterTodos(todos, tab), [todos, tab]);
+```
+
+
+### `useCallback` {/*typing-usecallback*/}
+
+The [`useCallback`](/reference/react/useCallback) provide a stable reference to a function as long as the dependencies passed into the second parameter are the same. Like `useMemo`, the function's type is inferred from the return value of the function in the first parameter, and you can be more explicit by providing a type argument to the hook.
+
+
+```ts
+const handleClick = useCallback(() => {
+  // ...
+}, [todos]);
+```
+
+When working in TypeScript strict mode `useCallback` requires adding types for the parameters in your callback. This is because the type of the callback is inferred from the return value of the function, and without parameters the type cannot be fully understood.
+
+Depending on your code-style preferences, you could use the `*EventHandler` functions from the React types to provide the type for the event handler at the same time as defining the callback: 
+
+```ts
+import { useState, useCallback } from 'react';
+
+export default function Form() {
+  const [value, setValue] = useState("Change me");
+
+  const handleChange = useCallback<React.ChangeEventHandler<HTMLInputElement>>((event) => {
+    setValue(event.currentTarget.value);
+  }, [setValue])
+  
+  return (
+    <>
+      <input value={value} onChange={handleChange} />
+      <p>Value: {value}</p>
+    </>
+  );
+}
+```
 
 ### `useEffect` {/*typing-useeffect*/}
 
-The [`useEffect` hook](/reference/react/useEffect) is used to perform side effects in a component. It is called after every render by default, but can be configured to only run when certain values change. The types for this hook allow for either returning a cleanup function or not returning anything.
+The [`useEffect` hook](/reference/react/useEffect) is used to perform side effects in a component after it has rendered. It is called after every render by default, but can be configured to only run when certain values change. The type of the function passed to `useEffect` is inferred from the return value of the function, and you can be more explicit by providing a type argument to the hook.
 
 ## Useful Types {/*useful-types*/}
 
@@ -353,8 +392,6 @@ There is quite an expansive set of types which come from the `@types/react` pack
 ### DOM Events {/*typing-dom-events*/}
 
 When working with DOM events in React, the type of the event can often be inferred from the event handler. However, when you want to extract a function to be passed to an event handler, you will need to explicitly set the type of the event.
-
-
 
 <Sandpack>
 
@@ -384,7 +421,11 @@ export default App = AppTSX;
 
 </Sandpack>
 
-There are many types of events provided in the React types - the full list can be found [here](https://github.com/DefinitelyTyped/DefinitelyTyped/blob/b580df54c0819ec9df62b0835a315dd48b8594a9/types/react/index.d.ts#L1247C1-L1373) which is based on the [most popular events from the DOM](https://developer.mozilla.org/en-US/docs/Web/Events). If you need to use an event that is not included in this list, you can use the `React.SyntheticEvent` type, which is the base type for all events.
+There are many types of events provided in the React types - the full list can be found [here](https://github.com/DefinitelyTyped/DefinitelyTyped/blob/b580df54c0819ec9df62b0835a315dd48b8594a9/types/react/index.d.ts#L1247C1-L1373) which is based on the [most popular events from the DOM](https://developer.mozilla.org/en-US/docs/Web/Events).
+
+When determining the type you are looking for you can first look at the hover information for the event handler you are using, which will show the type of the event.
+
+If you need to use an event that is not included in this list, you can use the `React.SyntheticEvent` type, which is the base type for all events.
 
 ### Children {/*typing-children*/}
 

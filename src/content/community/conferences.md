@@ -10,6 +10,11 @@ Do you know of a local React.js conference? Add it here! (Please keep the list c
 
 ## Upcoming Conferences {/*upcoming-conferences*/}
 
+### React Live 2023 {/*#react-live-2023*/}
+September 29th, 2023. In-person in Amsterdam, The Netherlands + remote (hybrid event)
+
+[Website](https://reactlive.nl) - [Twitter](https://twitter.com/reactlivenl)
+
 ### React Norway 2023 {/*react-norway-2023*/}
 June 16th, 2023. Larvik, Norway
 

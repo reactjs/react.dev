@@ -280,7 +280,7 @@ export function Footer() {
             </div>
           </ExternalLink>
 
-          <div className="text-xs text-left mt-2 pr-0.5">
+          <div className="text-xs text-start mt-2 pe-0.5">
             &copy;{new Date().getFullYear()}
           </div>
         </div>

@@ -25,6 +25,11 @@ July 07 & 08, 2023. Bangalore, India (In-person event)
 
 [Website](https://reactnexus.com/) - [Twitter](https://twitter.com/ReactNexus) - [Linkedin](https://www.linkedin.com/company/react-nexus) - [YouTube](https://www.youtube.com/reactify_in)
 
+### React Cairo August 2023 {/*react-cairo-august-2023*/}
+August, 16 2023. Cairo, Egypt (In-person event)
+
+[Website](https://react-cairo.com/) - [Twitter](https://twitter.com/ReactCairo) - [Linkedin](https://www.linkedin.com/showcase/react-cairo) - [YouTube](https://www.youtube.com/@ReactCairo)
+
 ### React Rally 2023 🐙 {/*react-rally-2023*/}
 August 17 & 18, 2023. Salt Lake City, UT, USA
 

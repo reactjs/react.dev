@@ -2,11 +2,12 @@
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
 
-exports.siteConfig = {
+const siteConfig = {
   // --------------------------------------
   // Translations should replace these lines:
   languageCode: 'en',
   hasLegacySite: true,
+  isRTL: false, // Do NOT ever set this to true. It is deprecated.
   // --------------------------------------
   copyright: `Copyright © ${new Date().getFullYear()} Facebook Inc. All Rights Reserved.`,
   repoUrl: 'https://github.com/facebook/react',
@@ -17,3 +18,8 @@ exports.siteConfig = {
     indexName: 'beta-react',
   },
 };
+
+const rtlDetect = require('rtl-detect');
+siteConfig.isRTL = rtlDetect.isRtlLang(siteConfig.languageCode);
+
+exports.siteConfig = siteConfig;

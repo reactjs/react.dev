@@ -30,6 +30,11 @@ August 17 & 18, 2023. Salt Lake City, UT, USA
 
 [Website](https://www.reactrally.com/) - [Twitter](https://twitter.com/ReactRally) - [Instagram](https://www.instagram.com/reactrally/)
 
+### RenderCon Kenya 2023 {/*rendercon-kenya-2023*/}
+September 29 - 30, 2023. Nairobi, Kenya
+
+[Website](https://rendercon.org/) - [Twitter](https://twitter.com/renderconke) - [LinkedIn](https://www.linkedin.com/company/renderconke/) - [YouTube](https://www.youtube.com/channel/UC0bCcG8gHUL4njDOpQGcMIA)
+
 ### React India 2023 {/*react-india-2023*/}
 Oct 5 - 7, 2023. In-person in Goa, India (hybrid event) + Oct 3 2023 - remote day
 
@@ -510,7 +515,7 @@ August 18 in Guangzhou, China
 
 [Website](https://react.w3ctech.com)
 
-### React Rally 2018{/*react-rally-2018*/}
+### React Rally 2018 {/*react-rally-2018*/}
 August 16-17 in Salt Lake City, Utah USA
 
 [Website](http://www.reactrally.com) - [Twitter](https://twitter.com/reactrally)

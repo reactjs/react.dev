@@ -14,8 +14,8 @@ export const IconNavArrow = memo<
     'duration-100 ease-in transition',
     {
       'rotate-0': displayDirection === 'down',
-      '-rotate-90': displayDirection === 'end' || displayDirection === 'right',
       'rotate-90': displayDirection === 'start' || displayDirection === 'left',
+      '-rotate-90': displayDirection === 'end' || displayDirection === 'right',
     },
     className
   );

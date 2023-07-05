@@ -7,15 +7,15 @@ import cn from 'classnames';
 
 export const IconNavArrow = memo<
   JSX.IntrinsicElements['svg'] & {
-    displayDirection: 'right' | 'down' | 'left' | 'start' | 'end';
+    displayDirection: 'right' | 'down' | 'left';
   }
->(function IconNavArrow({displayDirection = 'start', className}) {
+>(function IconNavArrow({displayDirection = 'right', className}) {
   const classes = cn(
     'duration-100 ease-in transition',
     {
       'rotate-0': displayDirection === 'down',
-      '-rotate-90': displayDirection === 'end' || displayDirection === 'right',
-      'rotate-90': displayDirection === 'start' || displayDirection === 'left',
+      '-rotate-90': displayDirection === 'right',
+      'rotate-90': displayDirection === 'left',
     },
     className
   );

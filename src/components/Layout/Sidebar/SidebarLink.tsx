@@ -56,10 +56,10 @@ export function SidebarLink({
       target={target}
       aria-current={selected ? 'page' : undefined}
       className={cn(
-        'p-2 pr-2 w-full rounded-none lg:rounded-r-2xl text-left hover:bg-gray-5 dark:hover:bg-gray-80 relative flex items-center justify-between',
+        'p-2 pe-2 w-full rounded-none lg:rounded-r-2xl text-left hover:bg-gray-5 dark:hover:bg-gray-80 relative flex items-center justify-between',
         {
-          'text-sm pl-6': level > 0,
-          'pl-5': level < 2,
+          'text-sm ps-6': level > 0,
+          'ps-5': level < 2,
           'text-base font-bold': level === 0,
           'text-primary dark:text-primary-dark': level === 0 && !selected,
           'text-base text-secondary dark:text-secondary-dark':

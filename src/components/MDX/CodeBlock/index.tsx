@@ -24,6 +24,7 @@ export default memo(function CodeBlockWrapper(props: {
     <Suspense
       fallback={
         <pre
+          translate="no"
           dir="ltr"
           className={cn(
             'rounded-lg leading-6 h-full w-full overflow-x-auto flex items-center bg-wash dark:bg-gray-95 shadow-lg text-[13.6px] overflow-hidden',

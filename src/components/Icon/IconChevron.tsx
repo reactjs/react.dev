@@ -7,15 +7,15 @@ import cn from 'classnames';
 
 export const IconChevron = memo<
   JSX.IntrinsicElements['svg'] & {
-    displayDirection: 'up' | 'down' | 'left' | 'right';
+    displayDirection: 'up' | 'down' | 'left' | 'right' | 'start' | 'end';
   }
 >(function IconChevron({className, displayDirection}) {
   const classes = cn(
     {
       'rotate-0': displayDirection === 'down',
-      'rotate-90': displayDirection === 'left',
+      'rotate-90': displayDirection === 'left' || displayDirection === 'start',
       'rotate-180': displayDirection === 'up',
-      '-rotate-90': displayDirection === 'right',
+      '-rotate-90': displayDirection === 'right' || displayDirection === 'end',
     },
     className
   );

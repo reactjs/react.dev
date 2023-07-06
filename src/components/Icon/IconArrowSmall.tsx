@@ -7,11 +7,11 @@ import cn from 'classnames';
 
 export const IconArrowSmall = memo<
   JSX.IntrinsicElements['svg'] & {
-    displayDirection: 'left' | 'right' | 'up' | 'down';
+    displayDirection: 'start' | 'end' | 'left' | 'right' | 'up' | 'down';
   }
 >(function IconArrowSmall({displayDirection, className, ...rest}) {
   const classes = cn(className, {
-    'rotate-180': displayDirection === 'left',
+    'rotate-180': displayDirection === 'left' || displayDirection === 'start',
     'rotate-90': displayDirection === 'down',
   });
   return (

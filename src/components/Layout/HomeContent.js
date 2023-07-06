@@ -1278,7 +1278,7 @@ function BrowserChrome({children, hasPulse, hasRefresh, domain, path}) {
           {hasRefresh && <div className="h-4 w-6" />}
           <div className="w-full leading-snug flex flex-row items-center justify-center">
             <svg
-              className="text-tertiary mr-1 opacity-60"
+              className="text-tertiary me-1 opacity-60"
               width="12"
               height="12"
               viewBox="0 0 44 44"
@@ -1325,7 +1325,7 @@ function BrowserChrome({children, hasPulse, hasRefresh, domain, path}) {
         {restartId > 0 && (
           <div
             key={restartId}
-            className="z-10 loading h-0.5 bg-link transition-all duration-200 absolute bottom-0 left-0"
+            className="z-10 loading h-0.5 bg-link transition-all duration-200 absolute bottom-0 start-0"
             style={{
               animation: `progressbar ${loadTalksDelay + 100}ms ease-in-out`,
             }}
@@ -1472,13 +1472,13 @@ function SearchInput({value, onChange}) {
         Search
       </label>
       <div className="relative w-full">
-        <div className="absolute inset-y-0 left-0 flex items-center pl-4 pointer-events-none">
+        <div className="absolute inset-y-0 start-0 flex items-center ps-4 pointer-events-none">
           <IconSearch className="text-gray-30 w-4" />
         </div>
         <input
           type="text"
           id={id}
-          className="flex pl-11 py-4 h-10 w-full bg-secondary-button outline-none betterhover:hover:bg-opacity-80 pointer items-center text-left text-primary rounded-full align-middle text-base"
+          className="flex ps-11 py-4 h-10 w-full bg-secondary-button outline-none betterhover:hover:bg-opacity-80 pointer items-center text-left text-primary rounded-full align-middle text-base"
           placeholder="Search"
           value={value}
           onChange={(e) => onChange(e.target.value)}
@@ -1507,7 +1507,7 @@ function ConferenceLayout({conf, children}) {
               navigate(e.target.value);
             });
           }}
-          className="appearance-none pr-8 bg-transparent text-primary-dark text-2xl font-bold mb-0.5"
+          className="appearance-none pe-8 bg-transparent text-primary-dark text-2xl font-bold mb-0.5"
           style={{
             backgroundSize: '4px 4px, 4px 4px',
             backgroundRepeat: 'no-repeat',
@@ -1537,7 +1537,7 @@ function Cover({background, children}) {
         src={background}
         width={500}
         height={263}
-        alt=""
+        alt="cover"
         className="w-full object-cover"
       />
     </div>
@@ -1573,9 +1573,9 @@ function Video({video}) {
 
 function Code({children}) {
   return (
-    <span className="font-mono inline rounded-lg bg-gray-15/40 dark:bg-secondary-button-dark py-0.5 px-1">
+    <code className="font-mono inline rounded-lg bg-gray-15/40 dark:bg-secondary-button-dark py-0.5 px-1 text-left">
       {children}
-    </span>
+    </code>
   );
 }
 
@@ -1612,13 +1612,13 @@ function Thumbnail({video}) {
                 key={i}
                 className="h-8 w-8 border-2 shadow-md border-gray-70 object-cover rounded-full"
                 src={src}
-                alt=""
+                alt="Speaker"
               />
             ))}
           </div>
           <div className="mt-1">
             <span className="inline-flex text-xs font-normal items-center text-primary-dark py-1 whitespace-nowrap outline-link px-1.5 rounded-lg">
-              <Logo className="text-xs mr-1 w-4 h-4 text-link-dark" />
+              <Logo className="text-xs me-1 w-4 h-4 text-link-dark" />
               React Conf
             </span>
           </div>

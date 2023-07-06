@@ -69,7 +69,7 @@ function Para({children}) {
 
 function Left({children}) {
   return (
-    <div className="px-5 lg:px-0 max-w-4xl lg:text-left text-white text-opacity-80">
+    <div className="px-5 lg:px-0 max-w-4xl lg:text-start text-white text-opacity-80">
       {children}
     </div>
   );
@@ -85,7 +85,9 @@ function Center({children}) {
 
 function FullBleed({children}) {
   return (
-    <div className="max-w-7xl mx-auto flex flex-col w-full">{children}</div>
+    <div className="max-w-7xl mx-auto flex flex-col w-full" dir="ltr">
+      {children}
+    </div>
   );
 }
 
@@ -120,11 +122,11 @@ const recentPosts = blogSidebar.routes.slice(0, 4).map((entry) => ({
 export function HomeContent() {
   return (
     <>
-      <div className="pl-0">
+      <div className="ps-0">
         <div className="mx-5 mt-12 lg:mt-24 mb-20 lg:mb-32 flex flex-col justify-center">
           <Logo
             className={cn(
-              'mt-4 mb-3 text-link dark:text-link-dark w-24 lg:w-28 self-center text-sm mr-0 flex origin-center transition-all ease-in-out'
+              'mt-4 mb-3 text-link dark:text-link-dark w-24 lg:w-28 self-center text-sm me-0 flex origin-center transition-all ease-in-out'
             )}
           />
           <h1 className="text-5xl font-display lg:text-6xl self-center flex font-semibold leading-snug text-primary dark:text-primary-dark">
@@ -386,7 +388,7 @@ export function HomeContent() {
                           more. They look and feel native because their UIs{' '}
                           <i>are</i> truly native. It’s not a web view—your
                           React components render real Android and iOS views
-                          provided by the platform.
+                          provided by the platform.
                         </p>
                       </div>
                     </div>
@@ -413,7 +415,7 @@ export function HomeContent() {
         <Section background="right-card">
           <div className="max-w-7xl mx-auto flex flex-col lg:flex-row px-5">
             <div className="max-w-3xl lg:max-w-7xl gap-5 flex flex-col lg:flex-row lg:px-5">
-              <div className="w-full lg:w-6/12 max-w-3xl flex flex-col items-start justify-start lg:pl-5 lg:pr-10">
+              <div className="w-full lg:w-6/12 max-w-3xl flex flex-col items-start justify-start lg:ps-5 lg:pe-10">
                 <Header>Upgrade when the future is ready</Header>
                 <Para>
                   React approaches changes with care. Every React commit is
@@ -835,7 +837,7 @@ function ExampleLayout({
   return (
     <div className="lg:pl-10 lg:pr-5 w-full">
       <div className="mt-12 mb-2 lg:my-16 max-w-7xl mx-auto flex flex-col w-full lg:rounded-2xl lg:bg-card lg:dark:bg-card-dark">
-        <div className="flex-col gap-0 lg:gap-5 lg:rounded-2xl lg:bg-gray-10 lg:dark:bg-gray-70 shadow-inner-border dark:shadow-inner-border-dark lg:flex-row flex grow w-full mx-auto items-center bg-cover bg-center lg:bg-right lg:bg-[length:60%_100%] bg-no-repeat bg-meta-gradient dark:bg-meta-gradient-dark">
+        <div className="flex-col gap-0 lg:gap-5 lg:rounded-2xl lg:bg-gray-10 lg:dark:bg-gray-70 shadow-inner-border dark:shadow-inner-border-dark lg:flex-row flex grow w-full mx-auto items-center bg-cover bg-center lg:bg-right ltr:lg:bg-[length:60%_100%] bg-no-repeat bg-meta-gradient dark:bg-meta-gradient-dark">
           <div className="lg:-m-5 h-full shadow-nav dark:shadow-nav-dark lg:rounded-2xl bg-wash dark:bg-gray-95 w-full flex grow flex-col">
             <div className="w-full bg-card dark:bg-wash-dark lg:rounded-t-2xl border-b border-black/5 dark:border-white/5">
               <h3 className="text-sm my-1 mx-5 text-tertiary dark:text-tertiary-dark select-none">

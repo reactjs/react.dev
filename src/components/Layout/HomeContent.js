@@ -441,13 +441,13 @@ export function HomeContent() {
                   Latest React News
                 </p>
                 <div className="flex-col sm:flex-row flex-wrap flex gap-5 text-left my-5">
-                  <div className="flex-1 min-w-[40%]">
+                  <div className="flex-1 min-w-[40%] text-start">
                     <BlogCard {...recentPosts[0]} />
                   </div>
-                  <div className="flex-1 min-w-[40%]">
+                  <div className="flex-1 min-w-[40%] text-start">
                     <BlogCard {...recentPosts[1]} />
                   </div>
-                  <div className="flex-1 min-w-[40%]">
+                  <div className="flex-1 min-w-[40%] text-start">
                     <BlogCard {...recentPosts[2]} />
                   </div>
                   <div className="hidden sm:flex-1 sm:inline">
@@ -1478,7 +1478,7 @@ function SearchInput({value, onChange}) {
         <input
           type="text"
           id={id}
-          className="flex ps-11 py-4 h-10 w-full bg-secondary-button outline-none betterhover:hover:bg-opacity-80 pointer items-center text-left text-primary rounded-full align-middle text-base"
+          className="flex ps-11 py-4 h-10 w-full text-start bg-secondary-button outline-none betterhover:hover:bg-opacity-80 pointer items-center text-left text-primary rounded-full align-middle text-base"
           placeholder="Search"
           value={value}
           onChange={(e) => onChange(e.target.value)}

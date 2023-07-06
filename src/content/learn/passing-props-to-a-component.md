@@ -349,7 +349,7 @@ export function getImageUrl(person, size = 's') {
 
 Try replacing the `<Avatar>` inside `<Card>` with some text to see how the `Card` component can wrap any nested content. It doesn't need to "know" what's being rendered inside of it. You will see this flexible pattern in many places.
 
-You can think of a component with a `children` prop as having a "hole" that can be "filled in" by its parent components with arbitrary JSX. You will often use the `children` prop for visual wrappers: panels, grids, etc.
+You can think of a component with a `children` prop as having a "hole" that can be "filled in" by its child components with arbitrary JSX. You will often use the `children` prop for visual wrappers: panels, grids, etc.
 
 <Illustration src="/images/docs/illustrations/i_children-prop.png" alt='A puzzle-like Card tile with a slot for "children" pieces like text and Avatar' />
 

@@ -24,14 +24,14 @@ function PageHeading({
 }: PageHeadingProps) {
   return (
     <div className="px-5 sm:px-12 pt-3.5">
-      <div className="max-w-4xl ml-0 2xl:mx-auto">
+      <div className="max-w-4xl ms-0 2xl:mx-auto">
         {breadcrumbs ? <Breadcrumbs breadcrumbs={breadcrumbs} /> : null}
         <H1 className="mt-0 text-primary dark:text-primary-dark -mx-.5 break-words">
           {title}
           {status ? <em>—{status}</em> : ''}
         </H1>
         {description && (
-          <p className="mt-4 mb-6 text-primary dark:text-primary-dark text-xl text-gray-90 leading-large">
+          <p className="mt-4 mb-6 text-primary dark:text-primary-dark text-xl leading-large">
             {description}
           </p>
         )}

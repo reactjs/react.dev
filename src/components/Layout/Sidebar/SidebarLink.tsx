@@ -56,7 +56,7 @@ export function SidebarLink({
       target={target}
       aria-current={selected ? 'page' : undefined}
       className={cn(
-        'p-2 pe-2 w-full rounded-none lg:rounded-r-2xl text-left hover:bg-gray-5 dark:hover:bg-gray-80 relative flex items-center justify-between',
+        'p-2 pe-2 w-full rounded-none lg:rounded-s-2xl text-start hover:bg-gray-5 dark:hover:bg-gray-80 relative flex items-center justify-between',
         {
           'text-sm ps-6': level > 0,
           'ps-5': level < 2,
@@ -83,7 +83,7 @@ export function SidebarLink({
             'text-link dark:text-link-dark': isExpanded,
             'text-tertiary dark:text-tertiary-dark': !isExpanded,
           })}>
-          <IconNavArrow displayDirection={isExpanded ? 'down' : 'right'} />
+          <IconNavArrow displayDirection={isExpanded ? 'down' : 'end'} />
         </span>
       )}
     </Link>

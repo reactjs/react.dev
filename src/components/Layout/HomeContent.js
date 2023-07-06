@@ -85,9 +85,7 @@ function Center({children}) {
 
 function FullBleed({children}) {
   return (
-    <div className="max-w-7xl mx-auto flex flex-col w-full" dir="ltr">
-      {children}
-    </div>
+    <div className="max-w-7xl mx-auto flex flex-col w-full">{children}</div>
   );
 }
 
@@ -500,7 +498,7 @@ export function HomeContent() {
           <div className="mt-20 px-5 lg:px-0 mb-6 max-w-4xl text-center text-opacity-80">
             <Logo className="text-link dark:text-link-dark w-24 lg:w-28 mb-10 lg:mb-8 mt-12 h-auto mx-auto self-start" />
             <Header>
-              Welcome to the <br className="" />
+              Welcome to the <br className="hidden lg:inline" />
               React community
             </Header>
             <ButtonLink
@@ -533,7 +531,7 @@ function CTA({children, icon, href}) {
       className="focus:outline-none focus-visible:outline focus-visible:outline-link focus:outline-offset-2 focus-visible:dark:focus:outline-link-dark group cursor-pointer w-auto justify-center inline-flex font-bold items-center mt-10 outline-none hover:bg-gray-40/5 active:bg-gray-40/10 hover:dark:bg-gray-60/5 active:dark:bg-gray-60/10 leading-tight hover:bg-opacity-80 text-lg py-2.5 rounded-full px-4 sm:px-6 ease-in-out shadow-secondary-button-stroke dark:shadow-secondary-button-stroke-dark text-primary dark:text-primary-dark">
       {icon === 'native' && (
         <svg
-          className="mr-2.5 text-primary dark:text-primary-dark"
+          className="me-2.5 text-primary dark:text-primary-dark"
           fill="none"
           width="24"
           height="24"
@@ -564,7 +562,7 @@ function CTA({children, icon, href}) {
       )}
       {icon === 'framework' && (
         <svg
-          className="mr-2.5 text-primary dark:text-primary-dark"
+          className="me-2.5 text-primary dark:text-primary-dark"
           fill="none"
           width="24"
           height="24"
@@ -587,7 +585,7 @@ function CTA({children, icon, href}) {
       )}
       {icon === 'code' && (
         <svg
-          className="mr-2.5 text-primary dark:text-primary-dark"
+          className="me-2.5 text-primary dark:text-primary-dark"
           fill="none"
           width="24"
           height="24"
@@ -616,7 +614,7 @@ function CTA({children, icon, href}) {
       )}
       {icon === 'news' && (
         <svg
-          className="mr-2.5 text-primary dark:text-primary-dark"
+          className="me-2.5 text-primary dark:text-primary-dark"
           fill="none"
           width="24"
           height="24"
@@ -632,7 +630,7 @@ function CTA({children, icon, href}) {
       )}
       {children}
       <svg
-        className="text-primary dark:text-primary-dark"
+        className="text-primary dark:text-primary-dark rtl:rotate-180"
         fill="none"
         width="24"
         height="24"
@@ -835,12 +833,12 @@ function ExampleLayout({
     }
   }, [activeArea]);
   return (
-    <div className="lg:pl-10 lg:pr-5 w-full">
+    <div className="lg:ps-10 lg:pe-5 w-full">
       <div className="mt-12 mb-2 lg:my-16 max-w-7xl mx-auto flex flex-col w-full lg:rounded-2xl lg:bg-card lg:dark:bg-card-dark">
         <div className="flex-col gap-0 lg:gap-5 lg:rounded-2xl lg:bg-gray-10 lg:dark:bg-gray-70 shadow-inner-border dark:shadow-inner-border-dark lg:flex-row flex grow w-full mx-auto items-center bg-cover bg-center lg:bg-right ltr:lg:bg-[length:60%_100%] bg-no-repeat bg-meta-gradient dark:bg-meta-gradient-dark">
           <div className="lg:-m-5 h-full shadow-nav dark:shadow-nav-dark lg:rounded-2xl bg-wash dark:bg-gray-95 w-full flex grow flex-col">
             <div className="w-full bg-card dark:bg-wash-dark lg:rounded-t-2xl border-b border-black/5 dark:border-white/5">
-              <h3 className="text-sm my-1 mx-5 text-tertiary dark:text-tertiary-dark select-none">
+              <h3 className="text-sm my-1 mx-5 text-tertiary dark:text-tertiary-dark select-none text-left">
                 {filename}
               </h3>
             </div>

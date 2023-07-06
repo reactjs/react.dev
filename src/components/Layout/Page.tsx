@@ -39,12 +39,18 @@ export function Page({children, toc, routeTree, meta, section}: PageProps) {
     cleanedPath,
     routeTree
   );
+  const [isSidebarExpanded, setSidebarExpanded] = React.useState<boolean>(true);
+
   const title = meta.title || route?.title || '';
   const description = meta.description || route?.description || '';
   const isHomePage = cleanedPath === '/';
   const isBlogIndex = cleanedPath === '/blog';
 
-  const [isSidebarExpanded, setSidebarExpanded] = React.useState(true);
+  function toggleLeftSideBar() {
+    setSidebarExpanded(function (prevState) {
+      return !prevState;
+    });
+  }
 
   let content;
   if (isHomePage) {
@@ -131,7 +137,7 @@ export function Page({children, toc, routeTree, meta, section}: PageProps) {
                 routeTree={routeTree}
                 breadcrumbs={breadcrumbs}
                 isExpanded={isSidebarExpanded}
-                setExpanded={setSidebarExpanded}
+                toggleLeftSideBar={toggleLeftSideBar}
               />
             </div>
           </div>

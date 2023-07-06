@@ -22,12 +22,12 @@ export default function SidebarNav({
   routeTree,
   breadcrumbs,
   isExpanded,
-  setExpanded,
+  toggleLeftSideBar,
 }: {
   routeTree: RouteItem;
   breadcrumbs: RouteItem[];
   isExpanded: boolean;
-  setExpanded: Function;
+  toggleLeftSideBar: () => void;
 }) {
   // HACK. Fix up the data structures instead.
   if ((routeTree as any).routes.length === 1) {
@@ -43,7 +43,7 @@ export default function SidebarNav({
         <button
           type="button"
           aria-label="Close Sidebar"
-          onClick={() => setExpanded(!isExpanded)}
+          onClick={toggleLeftSideBar}
           className={cn(
             'absolute top-5 right-6 z-10 active:scale-95 transition-transform flex rounded-full items-center' +
               ' justify-center hover:bg-primary/5 hover:dark:bg-primary-dark/5 outline-link'
@@ -89,7 +89,7 @@ export default function SidebarNav({
           <button
             type="button"
             aria-label="Menu"
-            onClick={() => setExpanded(!isExpanded)}
+            onClick={toggleLeftSideBar}
             className={cn(
               'active:scale-95 transition-transform flex w-12 h-12 rounded-full items-center justify-center hover:bg-primary/5 hover:dark:bg-primary-dark/5 outline-link'
             )}>

@@ -121,6 +121,20 @@
       ]
     },
     {
+      "title": "Directives",
+      "path": "/reference/react/directives",
+      "routes": [
+        {
+          "title": "'use client'",
+          "path": "/reference/react/use-client"
+        },
+        {
+          "title": "'use server'",
+          "path": "/reference/react/use-server"
+        }
+      ]
+    },
+    {
       "hasSectionHeader": true,
       "sectionHeader": "react-dom@18.2.0"
     },

@@ -164,7 +164,7 @@ export function Page({children, toc, routeTree, meta, section}: PageProps) {
                             target="_blank">
                             Take our survey!
                             <IconNavArrow
-                              displayDirection="right"
+                              displayDirection="end"
                               className="inline ms-1"
                             />
                           </ButtonLink>

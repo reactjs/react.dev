@@ -440,7 +440,7 @@ export function HomeContent() {
                   <IconChevron />
                   Latest React News
                 </p>
-                <div className="flex-col sm:flex-row flex-wrap flex gap-5 text-left my-5">
+                <div className="flex-col sm:flex-row flex-wrap flex gap-5 text-start my-5">
                   <div className="flex-1 min-w-[40%] text-start">
                     <BlogCard {...recentPosts[0]} />
                   </div>
@@ -838,7 +838,7 @@ function ExampleLayout({
         <div className="flex-col gap-0 lg:gap-5 lg:rounded-2xl lg:bg-gray-10 lg:dark:bg-gray-70 shadow-inner-border dark:shadow-inner-border-dark lg:flex-row flex grow w-full mx-auto items-center bg-cover bg-center lg:bg-right ltr:lg:bg-[length:60%_100%] bg-no-repeat bg-meta-gradient dark:bg-meta-gradient-dark">
           <div className="lg:-m-5 h-full shadow-nav dark:shadow-nav-dark lg:rounded-2xl bg-wash dark:bg-gray-95 w-full flex grow flex-col">
             <div className="w-full bg-card dark:bg-wash-dark lg:rounded-t-2xl border-b border-black/5 dark:border-white/5">
-              <h3 className="text-sm my-1 mx-5 text-tertiary dark:text-tertiary-dark select-none text-left">
+              <h3 className="text-sm my-1 mx-5 text-tertiary dark:text-tertiary-dark select-none text-start">
                 {filename}
               </h3>
             </div>
@@ -856,7 +856,7 @@ function ExampleLayout({
               {overlayStyles.map((styles, i) => (
                 <div
                   key={i}
-                  className="top-0 left-0 bg-blue-30/5 border-2 border-link dark:border-link-dark absolute rounded-lg"
+                  className="inset-x-0 bg-blue-30/5 border-2 border-link dark:border-link-dark absolute rounded-lg"
                   style={styles}
                 />
               ))}
@@ -1478,7 +1478,7 @@ function SearchInput({value, onChange}) {
         <input
           type="text"
           id={id}
-          className="flex ps-11 py-4 h-10 w-full text-start bg-secondary-button outline-none betterhover:hover:bg-opacity-80 pointer items-center text-left text-primary rounded-full align-middle text-base"
+          className="flex ps-11 py-4 h-10 w-full text-start bg-secondary-button outline-none betterhover:hover:bg-opacity-80 pointer items-center text-primary rounded-full align-middle text-base"
           placeholder="Search"
           value={value}
           onChange={(e) => onChange(e.target.value)}
@@ -1573,7 +1573,9 @@ function Video({video}) {
 
 function Code({children}) {
   return (
-    <code className="font-mono inline rounded-lg bg-gray-15/40 dark:bg-secondary-button-dark py-0.5 px-1 text-left">
+    <code
+      dir="ltr"
+      className="font-mono inline rounded-lg bg-gray-15/40 dark:bg-secondary-button-dark py-0.5 px-1 text-left">
       {children}
     </code>
   );

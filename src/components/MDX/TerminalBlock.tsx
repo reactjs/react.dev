@@ -17,9 +17,9 @@ interface TerminalBlockProps {
 function LevelText({type}: {type: LogLevel}) {
   switch (type) {
     case 'warning':
-      return <span className="text-yellow-50 bg-none mr-1">Warning: </span>;
+      return <span className="text-yellow-50 bg-none me-1">Warning: </span>;
     case 'error':
-      return <span className="text-red-40 mr-1">Error: </span>;
+      return <span className="text-red-40 me-1">Error: </span>;
     default:
       return null;
   }

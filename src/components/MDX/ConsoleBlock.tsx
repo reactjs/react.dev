@@ -48,8 +48,8 @@ function ConsoleBlock({level = 'error', children}: ConsoleBlockProps) {
             Console
           </div>
           <div className="px-4 py-2 flex">
-            <Box className="mr-2 bg-gray-300 dark:bg-gray-70" />
-            <Box className="mr-2 hidden md:block bg-gray-300 dark:bg-gray-70" />
+            <Box className="me-2 bg-gray-300 dark:bg-gray-70" />
+            <Box className="me-2 hidden md:block bg-gray-300 dark:bg-gray-70" />
             <Box className="hidden md:block bg-gray-300 dark:bg-gray-70" />
           </div>
         </div>

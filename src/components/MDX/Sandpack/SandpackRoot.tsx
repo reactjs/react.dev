@@ -62,7 +62,7 @@ code {
 }
 
 ul {
-  padding-left: 20px;
+  padding-inline-start: 20px;
 }
 `.trim();
 

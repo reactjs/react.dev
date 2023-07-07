@@ -79,7 +79,7 @@ export function SidebarLink({
       </span>
       {isExpanded != null && !hideArrow && (
         <span
-          className={cn('pr-1', {
+          className={cn('pe-1', {
             'text-link dark:text-link-dark': isExpanded,
             'text-tertiary dark:text-tertiary-dark': !isExpanded,
           })}>

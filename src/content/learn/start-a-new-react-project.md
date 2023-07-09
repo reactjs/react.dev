@@ -2,16 +2,6 @@
 title: Start a New React Project
 ---
 
-## Create React App
-
-Create React App provides a user-friendly environment for learning React, making it the ideal starting point for crafting exceptional single-page applications.
-
-<TerminalBlock>
-npx create-react-app my-app
-cd my-app
-npm start
-</TerminalBlock>
-
 <Intro>
 
 If you want to build a new app or a new website fully with React, we recommend picking one of the React-powered frameworks popular in the community. Frameworks provide features that most apps and sites eventually need, including routing, data fetching, and generating HTML.

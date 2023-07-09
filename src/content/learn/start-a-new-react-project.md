@@ -1,7 +1,7 @@
 ---
 title: Start a New React Project
 ---
-
+ 
 ## Create React App
 
 Create React App provides a user-friendly environment for learning React, making it the ideal starting point for crafting exceptional single-page applications.

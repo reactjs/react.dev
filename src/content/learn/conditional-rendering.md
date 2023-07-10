@@ -202,7 +202,7 @@ return (
 );
 ```
 
-You can read it as *"if `isPacked` is true, then (`?`) render `name + ' ✔'`, otherwise (`:`) render `name`"*.
+You can read it as *"if `isPacked` is truthy, then (`?`) render `name + ' ✔'`, otherwise (`:`) render `name`"*.
 
 <DeepDive>
 

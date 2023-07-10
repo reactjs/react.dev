@@ -270,7 +270,7 @@ return (
 );
 ```
 
-You can read this as *"if `isPacked` is true, then (`&&`) render the checkmark, otherwise, render nothing"*.
+You can read this as *"if `isPacked` is truthy, then (`&&`) render the checkmark, otherwise, render nothing"*.
 
 Here it is in action:
 
@@ -448,7 +448,7 @@ If you're not familiar with JavaScript, this variety of styles might seem overwh
 * In React, you control branching logic with JavaScript.
 * You can return a JSX expression conditionally with an `if` statement.
 * You can conditionally save some JSX to a variable and then include it inside other JSX by using the curly braces.
-* In JSX, `{cond ? <A /> : <B />}` means *"if `cond`, render `<A />`, otherwise `<B />`"*.
+* In JSX, `{cond ? <A /> : <B />}` means *"if `cond`, render`<A />`, otherwise `<B />`"*.
 * In JSX, `{cond && <A />}` means *"if `cond`, render `<A />`, otherwise nothing"*.
 * The shortcuts are common, but you don't have to use them if you prefer plain `if`.
 

@@ -270,7 +270,7 @@ return (
 );
 ```
 
-You can read this as *"if `isPacked` is true, then (`&&`) renders the checkmark, otherwise, renders nothing"*.
+You can read this as *"if `isPacked` is true, then (`&&`) render the checkmark, otherwise, render nothing"*.
 
 Here it is in action:
 

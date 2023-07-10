@@ -323,6 +323,10 @@ For example, a common mistake is to write code like `messageCount && <p>New mess
 
 To fix it, make the left side a boolean: `messageCount > 0 && <p>New messages</p>`.
 
+Another common mistake is relying on `Array.length` with `&&` to render JSX. Let's consider a scenario where you have an array of notifications, and you want to display a button only when there are notifications present. In such cases, people often write code like `notifications.length && <button>Show notifications</button>`, assuming that nothing will be rendered when there are no notifications. However, this code actually renders `0` instead.
+
+To fix this issue, you can use the same solution as mentioned earlier. Make the left side of the expression a boolean by comparing it to `0`: `notifications.length > 0 && <button>Show notifications</button>`. This ensures that the JSX is rendered only when the length of the `notifications` array is greater than zero.
+
 </Pitfall>
 
 ### Conditionally assigning JSX to a variable {/*conditionally-assigning-jsx-to-a-variable*/}

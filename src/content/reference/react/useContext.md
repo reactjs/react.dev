@@ -328,7 +328,7 @@ export default function MyApp() {
   );
 }
 
-function Form({ children }) {
+function Form() {
   return (
     <Panel title="Welcome">
       <LoginButton />
@@ -434,7 +434,7 @@ export default function MyApp() {
   )
 }
 
-function WelcomePanel({ children }) {
+function WelcomePanel() {
   const {currentUser} = useContext(CurrentUserContext);
   return (
     <Panel title="Welcome">
@@ -609,7 +609,7 @@ function MyProviders({ children, theme, setTheme }) {
   );
 }
 
-function WelcomePanel({ children }) {
+function WelcomePanel() {
   const {currentUser} = useContext(CurrentUserContext);
   return (
     <Panel title="Welcome">
@@ -990,7 +990,7 @@ export default function MyApp() {
   )
 }
 
-function Form({ children }) {
+function Form() {
   return (
     <Panel title="Welcome">
       <Button>Sign up</Button>

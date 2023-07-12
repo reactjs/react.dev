@@ -113,7 +113,7 @@ const experiments = [
   ['#11b1ea', '#0ea0d4', '#2e87ae', '#055572'], // 15 fave (gen)
 ];
 
-const experiment = 0;
+const experiment = 11;
 
 colors['blue-30'] = experiments[experiment][0];
 colors['blue-40'] = experiments[experiment][1];

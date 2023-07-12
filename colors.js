@@ -120,9 +120,9 @@ colors['blue-40'] = experiments[experiment][1];
 colors['blue-50'] = experiments[experiment][2];
 colors['blue-60'] = experiments[experiment][3];
 
-colors.link = colors['blue-40'];
-colors['link-dark'] = colors['blue-40'];
-colors.brand = colors['blue-40'];
-colors['brand-dark'] = colors['blue-40'];
+colors.link = colors['blue-50'];
+colors['link-dark'] = colors['blue-30'];
+colors.brand = colors['blue-50'];
+colors['brand-dark'] = colors['blue-30'];
 
 module.exports = colors;

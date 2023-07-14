@@ -21,7 +21,7 @@ Welcome to the React documentation! This page will give you an introduction to t
 
 ## Creating and nesting components {/*components*/}
 
-React apps are made out of *components*. A component is a piece of the UI (user interface) that has its own logic and appearance. A component can be as small as a button, or as large as an entire page.
+React applications are built using components, which are self-contained UI segments varying in size from buttons to entire pages, each with its logic and styling.
 
 React components are JavaScript functions that return markup:
 

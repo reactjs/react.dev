@@ -68,7 +68,7 @@ export function getRouteMeta(cleanedPath: string, routeTree: RouteItem) {
     currentIndex: 0,
   };
   buildRouteMeta(cleanedPath, routeTree, ctx);
-  const {currentIndex, ...meta} = ctx;
+  const {currentIndex: _, ...meta} = ctx;
   return {
     ...meta,
     breadcrumbs: breadcrumbs.length > 0 ? breadcrumbs : [routeTree],

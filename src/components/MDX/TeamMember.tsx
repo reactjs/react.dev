@@ -7,7 +7,6 @@ import Image from 'next/image';
 import {IconTwitter} from '../Icon/IconTwitter';
 import {IconGitHub} from '../Icon/IconGitHub';
 import {ExternalLink} from '../ExternalLink';
-import {IconNewPage} from 'components/Icon/IconNewPage';
 import {H3} from './Heading';
 import {IconLink} from 'components/Icon/IconLink';
 

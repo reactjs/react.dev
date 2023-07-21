@@ -90,15 +90,17 @@ export function NavigationBar({providedFiles}: {providedFiles: Array<string>}) {
     } else {
       return;
     }
-  }, [isMultiFile]);
+
+    // Note: in a real useEvent, onContainerResize would be omitted.
+  }, [isMultiFile, onContainerResize]);
 
   const handleReset = () => {
     /**
      * resetAllFiles must come first, otherwise
-     * the previous content will appears for a second
+     * the previous content will appear for a second
      * when the iframe loads.
      *
-     * Plus, it should only prompts if there's any file changes
+     * Plus, it should only prompt if there's any file changes
      */
     if (
       sandpack.editorState === 'dirty' &&

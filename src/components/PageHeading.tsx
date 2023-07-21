@@ -6,9 +6,11 @@ import Breadcrumbs from 'components/Breadcrumbs';
 import Tag from 'components/Tag';
 import {H1} from './MDX/Heading';
 import type {RouteTag, RouteItem} from './Layout/getRouteMeta';
+import * as React from 'react';
 
 interface PageHeadingProps {
   title: string;
+  canary?: boolean;
   status?: string;
   description?: string;
   tags?: RouteTag[];
@@ -18,6 +20,7 @@ interface PageHeadingProps {
 function PageHeading({
   title,
   status,
+  canary,
   description,
   tags = [],
   breadcrumbs,
@@ -27,7 +30,16 @@ function PageHeading({
       <div className="max-w-4xl ml-0 2xl:mx-auto">
         {breadcrumbs ? <Breadcrumbs breadcrumbs={breadcrumbs} /> : null}
         <H1 className="mt-0 text-primary dark:text-primary-dark -mx-.5 break-words">
-          {title}
+          <div className="flex items-center">
+            {title}{' '}
+            {canary && (
+              <span
+                title="This feature is available in the latest React Canary"
+                className="ml-2 mt-1 border border-purple-40 dark:border-purple-50 rounded-full px-2 text-xl text-purple-40 dark:text-purple-50 pt-0 pb-1 align-top">
+                canary
+              </span>
+            )}
+          </div>
           {status ? <em>—{status}</em> : ''}
         </H1>
         {description && (

@@ -1,10 +1,17 @@
 ---
 title: "Directives"
+canary: true
 ---
+
+<Canary>
+
+Directives are available in the [React Canary](https://react.dev/community/versioning-policy#canary-channel) release channel. They are needed only if you're [using React Server Components](/learn/start-a-new-react-project#bleeding-edge-react-frameworks) or building a library compatible with them.
+
+</Canary>
 
 <Intro>
 
-React uses two directives to provide instructions to [bundlers compatible with React Server Components](/learn/start-a-new-react-project#bleeding-edge-react-frameworks).
+Directives provide instructions to [bundlers compatible with React Server Components](/learn/start-a-new-react-project#bleeding-edge-react-frameworks).
 
 </Intro>
 

@@ -15,7 +15,7 @@ interface SidebarLinkProps {
   selected?: boolean;
   title: string;
   level: number;
-  wip: boolean | undefined;
+  canary: boolean | undefined;
   icon?: React.ReactNode;
   isExpanded?: boolean;
   hideArrow?: boolean;
@@ -26,7 +26,7 @@ export function SidebarLink({
   href,
   selected = false,
   title,
-  wip,
+  canary,
   level,
   isExpanded,
   hideArrow,
@@ -72,12 +72,17 @@ export function SidebarLink({
         }
       )}>
       {/* This here needs to be refactored ofc */}
-      <span
-        className={cn({
-          'text-gray-400 dark:text-gray-500': wip,
-        })}>
-        {title}
-      </span>
+      <div>
+        {title}{' '}
+        {canary && (
+          <span
+            title="This feature is available in the latest React Canary"
+            className="ml-2 border border-purple-40 dark:border-purple-50 rounded-full pt-0 pb-0.5 px-2 text-sm text-purple-40 dark:text-purple-50 leading-3">
+            canary
+          </span>
+        )}
+      </div>
+
       {isExpanded != null && !hideArrow && (
         <span
           className={cn('pr-1', {

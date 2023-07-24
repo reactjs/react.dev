@@ -281,7 +281,7 @@ export function Footer() {
           </ExternalLink>
 
           <div className="text-xs text-left mt-2 pr-0.5">
-            &copy;{new Date().getFullYear()}
+            &copy; {new Date().getFullYear()}
           </div>
         </div>
         <div className="flex flex-col">

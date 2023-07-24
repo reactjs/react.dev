@@ -125,7 +125,7 @@ export function NavigationBar({providedFiles}: {providedFiles: Array<string>}) {
                   // not always visible. This lets us measure how much space
                   // the tabs would take if displayed. We use this to decide
                   // whether to keep showing the dropdown, or show all tabs.
-                  'w-[fit-content]',
+                  'w-fit',
                   showDropdown ? 'invisible' : ''
                 )}>
                 <FileTabs />
@@ -137,7 +137,7 @@ export function NavigationBar({providedFiles}: {providedFiles: Array<string>}) {
                   // space that's taken by the (invisible) tab list.
                   <button
                     className={cn(
-                      'absolute top-0 left-[2px]',
+                      'absolute top-0 left-0.5',
                       !showDropdown && 'invisible'
                     )}>
                     <span
@@ -160,7 +160,7 @@ export function NavigationBar({providedFiles}: {providedFiles: Array<string>}) {
             </div>
           </div>
           {isMultiFile && showDropdown && (
-            <Listbox.Options className="absolute mt-0.5 bg-card dark:bg-card-dark px-2 left-0 right-0 mx-0 rounded-b-lg border-1 border-border dark:border-border-dark rounded-sm shadow-md">
+            <Listbox.Options className="absolute mt-0.5 bg-card dark:bg-card-dark px-2 inset-x-0 mx-0 rounded-b-lg border-1 border-border dark:border-border-dark rounded-sm shadow-md">
               {visibleFiles.map((filePath: string) => (
                 <Listbox.Option key={filePath} value={filePath} as={Fragment}>
                   {({active}) => (

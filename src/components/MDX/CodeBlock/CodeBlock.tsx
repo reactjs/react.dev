@@ -322,7 +322,7 @@ function getInlineDecorators(
       ...line,
       elementAttributes: {'data-step': `${line.step}`},
       className: cn(
-        'code-step bg-opacity-10 dark:bg-opacity-20 relative rounded px-1 py-[1.5px] border-b-[2px] border-opacity-60',
+        'code-step bg-opacity-10 dark:bg-opacity-20 relative rounded px-1 py-[1.5px] border-b-2 border-opacity-60',
         {
           'bg-blue-40 border-blue-40 text-blue-60 dark:text-blue-30':
             line.step === 1,

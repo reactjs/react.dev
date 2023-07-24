@@ -122,7 +122,7 @@ export function Page({children, toc, routeTree, meta, section}: PageProps) {
         )}>
         {showSidebar && (
           <div className="lg:-mt-16">
-            <div className="lg:pt-16 fixed lg:sticky top-0 left-0 right-0 py-0 shadow lg:shadow-none">
+            <div className="lg:pt-16 fixed lg:sticky top-0 inset-x-0 py-0 shadow lg:shadow-none">
               <SidebarNav
                 key={section}
                 routeTree={routeTree}
@@ -142,7 +142,7 @@ export function Page({children, toc, routeTree, meta, section}: PageProps) {
             <div
               className={cn(
                 'self-stretch w-full',
-                isHomePage && 'bg-wash dark:bg-gray-95 mt-[-1px]'
+                isHomePage && 'bg-wash dark:bg-gray-95 mt-px'
               )}>
               {!isHomePage && (
                 <div className="mx-auto w-full px-5 sm:px-12 md:px-12 pt-10 md:pt-12 lg:pt-10">

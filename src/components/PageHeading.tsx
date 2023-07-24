@@ -25,7 +25,11 @@ function PageHeading({
   return (
     <div className="px-5 sm:px-12 pt-3.5">
       <div className="max-w-4xl ml-0 2xl:mx-auto">
-        {breadcrumbs ? <Breadcrumbs breadcrumbs={breadcrumbs} /> : null}
+        {breadcrumbs ? (
+          <nav aria-label="Breadcrumb">
+            <Breadcrumbs breadcrumbs={breadcrumbs} />
+          </nav>
+        ) : null}
         <H1 className="mt-0 text-primary dark:text-primary-dark -mx-.5 break-words">
           {title}
           {status ? <em>—{status}</em> : ''}

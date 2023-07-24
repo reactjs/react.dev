@@ -2,25 +2,27 @@
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
 
-import {Fragment} from 'react';
-import Link from 'next/link';
 import type {RouteItem} from 'components/Layout/getRouteMeta';
+import Link from 'next/link';
+import {Fragment} from 'react';
 
 function Breadcrumbs({breadcrumbs}: {breadcrumbs: RouteItem[]}) {
   return (
-    <div className="flex flex-wrap">
+    <ol className="flex flex-wrap">
       {breadcrumbs.map(
         (crumb, i) =>
           crumb.path &&
           !crumb.skipBreadcrumb && (
-            <div className="flex mb-3 mt-0.5 items-center" key={i}>
+            <li className="flex mb-3 mt-0.5 items-center" key={i}>
               <Fragment key={crumb.path}>
                 <Link
                   href={crumb.path}
                   className="text-link dark:text-link-dark text-sm tracking-wide font-bold uppercase mr-1 hover:underline">
                   {crumb.title}
                 </Link>
-                <span className="inline-block mr-1 text-link dark:text-link-dark text-lg">
+                <span
+                  className="inline-block mr-1 text-link dark:text-link-dark text-lg"
+                  aria-hidden>
                   <svg
                     width="20"
                     height="20"
@@ -34,10 +36,10 @@ function Breadcrumbs({breadcrumbs}: {breadcrumbs: RouteItem[]}) {
                   </svg>
                 </span>
               </Fragment>
-            </div>
+            </li>
           )
       )}
-    </div>
+    </ol>
   );
 }
 

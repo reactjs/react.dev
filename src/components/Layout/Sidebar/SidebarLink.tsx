@@ -15,7 +15,7 @@ interface SidebarLinkProps {
   selected?: boolean;
   title: string;
   level: number;
-  canary: boolean | undefined;
+  canary?: boolean;
   icon?: React.ReactNode;
   isExpanded?: boolean;
   hideArrow?: boolean;
@@ -77,8 +77,8 @@ export function SidebarLink({
         {canary && (
           <span
             title="This feature is available in the latest React Canary"
-            className="ml-2 border border-purple-40 dark:border-purple-50 rounded-full pt-0 pb-0.5 px-2 text-sm text-purple-40 dark:text-purple-50 leading-3">
-            canary
+            className="ml-2 border border-yellow-40 dark:border-yellow-50 rounded-full pt-0 pb-0.5 px-2 text-sm text-yellow-40 dark:text-yellow-50 leading-3">
+            Canary
           </span>
         )}
       </div>

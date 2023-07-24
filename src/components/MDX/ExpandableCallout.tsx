@@ -38,8 +38,8 @@ const variantMap = {
     title: 'Canary',
     Icon: IconWarning,
     containerClasses:
-      'bg-purple-5 dark:bg-purple-60 dark:bg-opacity-20 text-primary dark:text-primary-dark text-lg',
-    textColor: 'text-purple-60 dark:text-purple-40',
+      'bg-yellow-5 dark:bg-yellow-60 dark:bg-opacity-20 text-primary dark:text-primary-dark text-lg',
+    textColor: 'text-yellow-50 dark:text-yellow-40',
     overlayGradient:
       'linear-gradient(rgba(245, 249, 248, 0), rgba(245, 249, 248, 1)',
   },

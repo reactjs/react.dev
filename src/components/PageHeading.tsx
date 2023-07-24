@@ -35,8 +35,8 @@ function PageHeading({
             {canary && (
               <span
                 title="This feature is available in the latest React Canary"
-                className="ml-2 mt-1 border border-purple-40 dark:border-purple-50 rounded-full px-2 text-xl text-purple-40 dark:text-purple-50 pt-0 pb-1 align-top">
-                canary
+                className="ml-2 mt-1 border border-yellow-40 dark:border-yellow-50 rounded-full px-2 text-xl text-yellow-40 dark:text-yellow-50 pt-0 pb-1 align-top">
+                Canary
               </span>
             )}
           </div>

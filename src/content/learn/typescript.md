@@ -105,12 +105,14 @@ The type definitions from `@types/react` include types for the built-in hooks, s
 The [`useState` hook](/reference/react/useState) will re-use the value passed in as the initial state to determine what the type of the value should be. For example:
 
 ```ts
+// Infer the type as "boolean"
 const [enabled, setEnabled] = useState(false);
 ```
 
 Will assign the type of `boolean` to `enabled`, and `setEnabled` will be a function accepting either a `boolean` argument, or a function that returns a `boolean`. If you want to explicitly provide a type for the state, you can do so by providing a type argument to the `useState` call:
 
 ```ts 
+// Explicitly set the type to "boolean"
 const [enabled, setEnabled] = useState<boolean>(false);
 ```
 

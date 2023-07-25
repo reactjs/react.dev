@@ -8,6 +8,20 @@ on:
   workflow_dispatch:
 
 jobs:
+  event_type:
+    runs-on: ubuntu-latest
+    steps: 
+      - uses: actions/checkout@v2
+      
+      - name: Save Event Type
+        run: echo ${{ github.event_name }} > ./event_type
+
+      - name: Upload Event Type
+        uses: actions/upload-artifact@v2
+        with:
+          path: ./event_type
+          name: event_type
+
   analyze:
     runs-on: ubuntu-latest
     steps:
@@ -48,10 +62,10 @@ jobs:
 
       - name: Download base branch bundle stats
         uses: dawidd6/action-download-artifact@v2
-        if: success() && github.event.number
+        if: success()
         with:
           workflow: analyze.yml
-          branch: ${{ github.event.pull_request.base.ref }}
+          branch: ${{ github.event.pull_request.base.ref || 'main' }} 
           name: bundle_analysis.json
           path: .next/analyze/base/bundle
 
@@ -69,7 +83,7 @@ jobs:
       # Either of these arguments can be changed or removed by editing the `nextBundleAnalysis`
       # entry in your package.json file.
       - name: Compare with base branch bundle
-        if: success() && github.event.number
+        if: success()
         run: ls -laR .next/analyze/base && npx -p nextjs-bundle-analysis compare
 
       - name: Upload analysis comment
@@ -77,6 +91,13 @@ jobs:
         with:
           name: analysis_comment.txt
           path: .next/analyze/__bundle_analysis_comment.txt
+          
+  number:
+    runs-on: ubuntu-latest
+    needs: analyze
+    if: github.event_name == 'pull_request'
+    steps:
+      - uses: actions/checkout@v2
 
       - name: Save PR number
         run: echo ${{ github.event.number }} > ./pr_number

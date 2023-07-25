@@ -545,6 +545,12 @@
   }
 }
 
+@layer utilities {
+  [class*='space-x-'] {
+    @apply rtl:space-x-reverse;
+  }
+}
+
 .code-step * {
   color: inherit !important;
 }

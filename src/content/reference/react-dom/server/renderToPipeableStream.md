@@ -24,7 +24,7 @@ This API is specific to Node.js. Environments with [Web Streams,](https://develo
 
 ## Reference {/*reference*/}
 
-### `renderToPipeableStream(reactNode, options)` {/*rendertopipeablestream*/}
+### `renderToPipeableStream(reactNode, options?)` {/*rendertopipeablestream*/}
 
 Call `renderToPipeableStream` to render your React tree as HTML into a [Node.js Stream.](https://nodejs.org/api/stream.html#writable-streams)
 
@@ -127,7 +127,7 @@ React will inject the [doctype](https://developer.mozilla.org/en-US/docs/Glossar
 On the client, your bootstrap script should [hydrate the entire `document` with a call to `hydrateRoot`:](/reference/react-dom/client/hydrateRoot#hydrating-an-entire-document)
 
 ```js [[1, 4, "<App />"]]
-import {hydrateRoot} from 'react-dom/client';
+import { hydrateRoot } from 'react-dom/client';
 import App from './App.js';
 
 hydrateRoot(document, <App />);
@@ -203,7 +203,7 @@ app.use('/', (request, response) => {
 In the example above, the `bootstrapScriptContent` option adds an extra inline `<script>` tag that sets the global `window.assetMap` variable on the client. This lets the client code read the same `assetMap`:
 
 ```js {4}
-import {hydrateRoot} from 'react-dom/client';
+import { hydrateRoot } from 'react-dom/client';
 import App from './App.js';
 
 hydrateRoot(document, <App assetMap={window.assetMap} />);
@@ -286,7 +286,7 @@ Streaming does not need to wait for React itself to load in the browser, or for 
 
 **Only Suspense-enabled data sources will activate the Suspense component.** They include:
 
-- Data fetching with Suspense-enabled frameworks like [Relay](https://relay.dev/docs/guided-tour/rendering/loading-states/) and [Next.js](https://nextjs.org/docs/advanced-features/react-18)
+- Data fetching with Suspense-enabled frameworks like [Relay](https://relay.dev/docs/guided-tour/rendering/loading-states/) and [Next.js](https://nextjs.org/docs/getting-started/react-essentials)
 - Lazy-loading component code with [`lazy`](/reference/react/lazy)
 
 Suspense **does not** detect when data is fetched inside an Effect or event handler.

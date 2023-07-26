@@ -369,7 +369,8 @@ function YouTubeIframe(props: any) {
 }
 
 function Image(props: any) {
-  return <img className="max-w-[calc(min(700px,100%))]" {...props} />;
+  const {alt, ...rest} = props;
+  return <img alt={alt} className="max-w-[calc(min(700px,100%))]" {...rest} />;
 }
 
 export const MDXComponents = {

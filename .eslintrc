@@ -5,7 +5,8 @@
   "plugins": ["@typescript-eslint"],
   "rules": {
     "no-unused-vars": "off",
-    "@typescript-eslint/no-unused-vars": "warn"
+    "@typescript-eslint/no-unused-vars": ["error", { "varsIgnorePattern": "^_" }],
+    "react-hooks/exhaustive-deps": "error"
   },
   "env": {
     "node": true,

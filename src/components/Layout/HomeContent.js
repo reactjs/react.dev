@@ -8,12 +8,10 @@ import {
   useState,
   useContext,
   useId,
-  Fragment,
   Suspense,
   useEffect,
   useRef,
   useTransition,
-  useReducer,
 } from 'react';
 import cn from 'classnames';
 import NextLink from 'next/link';
@@ -26,7 +24,6 @@ import {IconSearch} from 'components/Icon/IconSearch';
 import {Logo} from 'components/Logo';
 import Link from 'components/MDX/Link';
 import CodeBlock from 'components/MDX/CodeBlock';
-import {IconNavArrow} from 'components/Icon/IconNavArrow';
 import {ExternalLink} from 'components/ExternalLink';
 import sidebarBlog from '../../sidebarBlog.json';
 
@@ -67,14 +64,6 @@ function Para({children}) {
   );
 }
 
-function Left({children}) {
-  return (
-    <div className="px-5 lg:px-0 max-w-4xl lg:text-left text-white text-opacity-80">
-      {children}
-    </div>
-  );
-}
-
 function Center({children}) {
   return (
     <div className="px-5 lg:px-0 max-w-4xl lg:text-center text-white text-opacity-80 flex flex-col items-center justify-center">
@@ -90,19 +79,23 @@ function FullBleed({children}) {
 }
 
 function CurrentTime() {
-  const msPerMinute = 60 * 1000;
-  const date = new Date();
-  let nextMinute = Math.floor(+date / msPerMinute + 1) * msPerMinute;
-
+  const [date, setDate] = useState(new Date());
   const currentTime = date.toLocaleTimeString([], {
     hour: 'numeric',
     minute: 'numeric',
   });
-  let [, forceUpdate] = useReducer((n) => n + 1, 0);
   useEffect(() => {
-    const timeout = setTimeout(forceUpdate, nextMinute - Date.now());
+    const msPerMinute = 60 * 1000;
+    let nextMinute = Math.floor(+date / msPerMinute + 1) * msPerMinute;
+
+    const timeout = setTimeout(() => {
+      if (Date.now() > nextMinute) {
+        setDate(new Date());
+      }
+    }, nextMinute - Date.now());
     return () => clearTimeout(timeout);
   }, [date]);
+
   return <span suppressHydrationWarning>{currentTime}</span>;
 }
 
@@ -831,7 +824,7 @@ function ExampleLayout({
         .filter((s) => s !== null);
       setOverlayStyles(nextOverlayStyles);
     }
-  }, [activeArea]);
+  }, [activeArea, hoverTopOffset]);
   return (
     <div className="lg:pl-10 lg:pr-5 w-full">
       <div className="mt-12 mb-2 lg:my-16 max-w-7xl mx-auto flex flex-col w-full lg:rounded-2xl lg:bg-card lg:dark:bg-card-dark">
@@ -1186,13 +1179,14 @@ async function Talks({ confId }) {
 
 function useNestedScrollLock(ref) {
   useEffect(() => {
+    let node = ref.current;
     let isLocked = false;
     let lastScroll = performance.now();
 
     function handleScroll() {
       if (!isLocked) {
         isLocked = true;
-        ref.current.style.pointerEvents = 'none';
+        node.style.pointerEvents = 'none';
       }
       lastScroll = performance.now();
     }
@@ -1200,7 +1194,7 @@ function useNestedScrollLock(ref) {
     function updateLock() {
       if (isLocked && performance.now() - lastScroll > 150) {
         isLocked = false;
-        ref.current.style.pointerEvents = '';
+        node.style.pointerEvents = '';
       }
     }
 
@@ -1210,7 +1204,7 @@ function useNestedScrollLock(ref) {
       window.removeEventListener('scroll', handleScroll);
       clearInterval(interval);
     };
-  }, []);
+  }, [ref]);
 }
 
 function ExamplePanel({
@@ -1219,7 +1213,6 @@ function ExamplePanel({
   noShadow,
   height,
   contentMarginTop,
-  activeArea,
 }) {
   return (
     <div
@@ -1274,7 +1267,7 @@ function BrowserChrome({children, hasPulse, hasRefresh, domain, path}) {
     <div className="mx-auto max-w-3xl shadow-nav dark:shadow-nav-dark relative overflow-hidden w-full dark:border-opacity-10 rounded-2xl">
       <div className="w-full h-14 rounded-t-2xl shadow-outer-border backdrop-filter overflow-hidden backdrop-blur-lg backdrop-saturate-200 bg-white bg-opacity-90 z-10 absolute top-0 px-3 gap-2 flex flex-row items-center">
         <div className="select-none h-8 relative bg-gray-30/20 text-sm text-tertiary text-center rounded-full w-full flex-row flex space-between items-center">
-          <div className="h-4 w-6" />
+          {hasRefresh && <div className="h-4 w-6" />}
           <div className="w-full leading-snug flex flex-row items-center justify-center">
             <svg
               className="text-tertiary mr-1 opacity-60"
@@ -1463,7 +1456,10 @@ function VideoList({videos, emptyHeading}) {
 function SearchInput({value, onChange}) {
   const id = useId();
   return (
-    <form className="mb-3 py-1" data-hover="SearchInput">
+    <form
+      className="mb-3 py-1"
+      data-hover="SearchInput"
+      onSubmit={(e) => e.preventDefault()}>
       <label htmlFor={id} className="sr-only">
         Search
       </label>
@@ -1569,7 +1565,7 @@ function Video({video}) {
 
 function Code({children}) {
   return (
-    <span className="font-mono inline rounded-lg bg-secondary-button dark:bg-secondary-button-dark py-0.5 px-1">
+    <span className="font-mono inline rounded-lg bg-gray-15/40 dark:bg-secondary-button-dark py-0.5 px-1">
       {children}
     </span>
   );

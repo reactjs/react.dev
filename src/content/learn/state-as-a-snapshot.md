@@ -327,7 +327,7 @@ But what if you wanted to read the latest state before a re-render? You'll want 
 
 #### Implement a traffic light {/*implement-a-traffic-light*/}
 
-Here is a crosswalk light component that toggles on when the button is pressed:
+Here is a crosswalk light component that toggles when the button is pressed:
 
 <Sandpack>
 

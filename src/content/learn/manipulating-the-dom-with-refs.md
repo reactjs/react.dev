@@ -31,7 +31,7 @@ Then, use it to declare a ref inside your component:
 const myRef = useRef(null);
 ```
 
-Finally, pass it to the DOM node as the `ref` attribute:
+Finally, pass your ref as the `ref` attribute to the JSX tag for which you want to get the DOM node:
 
 ```js
 <div ref={myRef}>
@@ -643,7 +643,7 @@ Try pressing "Toggle with setState" a few times. The message should disappear an
 <Sandpack>
 
 ```js
-import {useState, useRef} from 'react';
+import { useState, useRef } from 'react';
 
 export default function Counter() {
   const [show, setShow] = useState(true);

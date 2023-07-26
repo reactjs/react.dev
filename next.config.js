@@ -9,10 +9,10 @@ const nextConfig = {
   pageExtensions: ['jsx', 'js', 'ts', 'tsx', 'mdx', 'md'],
   reactStrictMode: true,
   experimental: {
-    plugins: true,
+    // TODO: Remove after https://github.com/vercel/next.js/issues/49355 is fixed
+    appDir: false,
     scrollRestoration: true,
     legacyBrowsers: false,
-    browsersListForSwc: true,
   },
   env: {
     SANDPACK_BARE_COMPONENTS: process.env.SANDPACK_BARE_COMPONENTS,

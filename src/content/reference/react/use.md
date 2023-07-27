@@ -4,20 +4,14 @@ title: use
 
 <Wip>
 The `use` hook is only supported under when using [React Server Components](/learn/start-a-new-react-project#bleeding-edge-react-frameworks) which is only available in React’s canary and experimental channels. Learn more about [React's release channels here](/community/versioning-policy#all-release-channels).
-
-The `use` hook has only been partially implemented for client components and only supports the following scenarios:
-
-* When the use hook is directly called within a server component.
-* When a promise is created in a server component, passed to a client component as a prop, and the client component then uses the `use` hook to unwrap the promise.
-
 </Wip>
 
 <Intro>
 
-`use` is a special React Hook that lets you asynchronously resolve the value of a promise or [context](https://react.dev/learn/passing-data-deeply-with-context).
+`use` is a React Hook that lets you read the value of data provider like a [promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) or [context](https://react.dev/learn/passing-data-deeply-with-context).
 
 ```js
-const value = use(promiseOrContext);
+const value = use(provider);
 ```
 
 </Intro>
@@ -28,61 +22,82 @@ const value = use(promiseOrContext);
 
 ## Reference {/*reference*/}
 
-### `use(promiseOrContext)` {/*use*/}
+### `use(provider)` {/*use*/}
 
-Call `use` in your component to resolve the value of a promise or [context](https://react.dev/learn/passing-data-deeply-with-context).
+Call `use` in your component to read the value of a data provider like a [promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) or [context](https://react.dev/learn/passing-data-deeply-with-context).
 
 ```js
-"use client";
+import { use } from 'react';
 
-import { use, cache } from "react";
-
-export function MyComponent({ promise }) {
-  const user = use(cache(fetch(`/api/user`)));
-  return <h1>Hello, {user.name}</h1>
-}
+function MyComponent({ messageReqest }) {
+  const content = use(messageReqest);
+  const theme = use(ThemeContext);
+  // ...
 ```
 
-When using `use` to fetch data from a client component we recommend using wrapping your data fetching function in `cache` to avoid recreating a new promise every time the component is rerendered.
-
-Unlike all other React Hooks, the `use` hook can be called within conditional statements like loops, if statements. Like other React hooks, the parent function of a hook must be a React component or hook.
+Unlike all other React Hooks, the `use` Hook can be called within conditional statements like loops and `if` statements. Like other React Hooks, the parent function of a Hook must be a React component or Hook.
 
 [See more examples below.](#usage)
 
 #### Parameters {/*parameters*/}
 
-* `promiseOrContext`: the promise or context you want to resolve.
+* `provider`: this is the source of the data you want to read a value from. Common values for a provider are a promise or context.
 
 #### Returns {/*returns*/}
 
-The `use` hook returns the value of the resolved promise or context.
+The `use` Hook returns the value that was read from the provider like the value of a promise or context.
 
 #### Caveats {/*caveats*/}
 
-* `use` is not recommended for data fetching from a server component. async and await is preferred when fetching data from a server component.
-* The parent function of the `use` hook must be a React component or a hook. For example, the `use` hook cannot be used in function closures like “map”:
+* `use` is not recommended for data fetching from a [Server Component](/reference/react/components#server-components). `async` and `await` are preferred when fetching data from a [Server Component](/reference/react/components#server-components). For example, instead of using `use` in a [Server Component](/reference/react/components#server-components) with `fetch`:
+
   ```js
-  function Component({ids}) {
-    return ids.map((id) => {
+  const data = use(fetch('/data'))
+  ```
+  use `await` with `fetch` to get your data.
+  ```js
+  const data = await fetch('/data')
+  ```
+
+  <Note>
+  Using `await` in a [Server Component](/reference/react/components#server-components) will block the rendering of the [Server Component](/reference/react/components#server-components) until what is being `await` completes. To render the [Server Component](/reference/react/components#server-components) and stream the data to the client as it is retrived, you can pass a promise as a prop to a [Client Component](/reference/react/components#client-components) and wrap it in suspense [like in this example](#🚧)
+  </Note>
+
+* The parent function of the `use` Hook must be a React component or a Hook. For example, the `use` Hook cannot be used in function closures like “map”:
+  ```js
+  export default function Messages() {
+    const [msg, setMsg] = useState("No messages yet");
+    function download() {
       // ❌ The parent closure is not a component or Hook!
       // This will cause a compiler error.
-      const data = use(fetchThing(id));
-      return <Item key={id} data={data} />;
-    });
+      setMsg(use(fetchMsg()));
+    }
+    return (
+      <>
+        <p>{msg}</p>
+        <button onClick={download}>Download new message</button>
+      </>
+    );
+  }
   ```
   instead, use a loop to iterate through an array:
   ```js
-  function Component({ids}) {
-    const items = [];
-    for (const id of ids) {
-      // ✅ This works! The parent function is a component.
-      const data = use(fetchThing(id));
-      items.push(<Item key={id} data={data} />);
+  export default function Messages() {
+    const [msg, setMsg] = useState(null);
+    function download() {
+      setMsg(fetchMsg());
     }
-    return items;
+    return (
+      <>
+        {/* ✅ This works! The parent function is a component. */}
+        {/* TODO: wrap `use`` in Suspense */}
+        {msg ? <p>{use(msg)}</p> : <p>{"No messages yet"}</p>}
+        <button onClick={download}>Download new message</button>
+      </>
+    );
   }
   ```
-* `use` cannot be called in a try-catch block. To handle errors either wrap your component that calls the `use` hook in an error boundary or call the promise's `catch` method to handle the error and return a new value to resolve the promise. [See more examples below.](#dealing-with-rejected-promises)
+* `use` cannot be called in a try-catch block. To handle errors either wrap your component that calls the `use` Hook in an error boundary or call the promise's `catch` method to handle the error and return a new value to resolve the promise. [See more examples below.](#dealing-with-rejected-promises)
 
 ---
 
@@ -95,50 +110,69 @@ This section is incomplete. See also the [draft use RFC](https://github.com/acdl
 </Wip>
 
 
-### Passing a promise from a server component to a client component {/*passing-a-promise*/}
+### Getting data from a promise {/*getting-data-from-a-promise*/}
 
-The client component accept a promise as a prop and then uses the `use` hook to unwrap the promise to its resolved value. The resolved value is then displayed by the client component in the JSX the client component returns.
+`use` functions similarly to the `await` with JavaScript promises but is compatible with React's renderer and suspense. 🚧
 
-The server component imports the client component in includes it in the JSX the server component returns. The promise is passed from the server componentn to the client component as a prop. The client component is wrapped in a suspense boundary. The fallback will be displayed until the promise is resolved. Then the suspense fallback will be replaced by the client component with the resolved value from the promise.
+<Recipes titleText="Reading promises with use" titleId="reading-promises-with-use">
+
+#### Promises from Server Components {/*promises-from-server-components*/}
+
+The Client Component accept a promise as a prop and then uses the `use` Hook to unwrap the promise to its resolved value. The resolved value is then displayed by the Client Component in the JSX the Client Component returns.
+
+The Server Component imports the Client Component in includes it in the JSX the Server Component returns. The promise is passed from the Server Componentn to the Client Component as a prop. The Client Component is wrapped in a suspense boundary. The fallback will be displayed until the promise is resolved. Then the suspense fallback will be replaced by the Client Component with the resolved value from the promise.
 
 <Sandpack>
 
-```js client-component.js active
+```js message.js active
 "use client";
 
 import { use } from "react";
 
-export default function ClientComponent({ promise }) {
-  const value = use(promise);
-  return <p>Here is the value from the promise: {value}</p>;
+export function Message({ messageReqest }) {
+  const content = use(messageReqest);
+  return <p>Here is the message: {content}</p>;
 }
 ```
 
 ```js App.js
-import { Suspense } from "react";
-import ClientComponent from "./client-component";
+import { Suspense, useState } from "react";
+import { Message } from "./message.js";
 
-export default function ServerComponent() {
-  const promise = new Promise((resolve) => setTimeout(resolve, 3000, "⚛️"));
+function fetchMessage() {
+  return new Promise((resolve) => setTimeout(resolve, 3000, "⚛️"));
+}
 
-  return (
-    <Suspense fallback={<p>waiting for promise to resolve...</p>}>
-      <ClientComponent promise={promise} />
-    </Suspense>
-  );
+export default function App() {
+  const [msgReq, setMsgReq] = useState(null);
+  const [show, setShow] = useState(false);
+  function download() {
+    setMsgReq(fetchMessage());
+    setShow(true);
+  }
+
+  if (show) {
+    return (
+      <Suspense fallback={<p>waiting for message...</p>}>
+        <Message messageReqest={msgReq} />
+      </Suspense>
+    );
+  } else {
+    return <button onClick={download}>Download message</button>;
+  }
 }
 ```
 
 ```js index.js hidden
 // TODO: update to import from stable
 // react instead of canary once the `use`
-// hook is in a stable release of React
+// Hook is in a stable release of React
 import React, { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "./styles.css";
 
 // TODO: update this example to use
-// the Codesandbox server component
+// the Codesandbox Server Component
 // demo enviornemnt once it is created
 import App from "./App";
 
@@ -162,9 +196,11 @@ root.render(
 ```
 </Sandpack>
 
-### Using use on the client with useState {/*use-with-usestate*/}
+<Solution />
 
-Promises can be passed as a prop from a parent client component to a child client component when the promise is stored in a state variables of the parent component. The parent component should wrap the client component calling `use` in a suspense bounardy to avoid pop-in:
+#### Promises from useState {/*promises-from-usestate*/}
+
+Promises can be passed as a prop from a parent Client Component to a child Client Component when the promise is stored in a state variables of the parent component. The parent component should wrap the Client Component calling `use` in a suspense bounardy to avoid pop-in:
 
 <Sandpack>
 
@@ -201,13 +237,13 @@ export default function App() {
 ```js index.js hidden
 // TODO: update to import from stable
 // react instead of canary once the `use`
-// hook is in a stable release of React
+// Hook is in a stable release of React
 import React, { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "./styles.css";
 
 // TODO: update this example to use
-// the Codesandbox server component
+// the Codesandbox Server Component
 // demo enviornemnt once it is created
 import App from "./App";
 
@@ -230,6 +266,18 @@ root.render(
 }
 ```
 </Sandpack>
+
+<Solution />
+
+#### Promises from data fetching libraries {/*promises-from-libraries*/}
+
+🚧
+
+<Sandpack />
+
+<Solution />
+
+</Recipes>
 
 ### Dealing with rejected promises {/*dealing-with-rejected-promises*/}
 
@@ -274,13 +322,13 @@ export default function Message({ timer }) {
 ```js index.js hidden
 // TODO: update to import from stable
 // react instead of canary once the `use`
-// hook is in a stable release of React
+// Hook is in a stable release of React
 import React, { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "./styles.css";
 
 // TODO: update this example to use
-// the Codesandbox server component
+// the Codesandbox Server Component
 // demo enviornemnt once it is created
 import App from "./App";
 
@@ -347,13 +395,13 @@ export default function Message({ timer }) {
 ```js index.js hidden
 // TODO: update to import from stable
 // react instead of canary once the `use`
-// hook is in a stable release of React
+// Hook is in a stable release of React
 import React, { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "./styles.css";
 
 // TODO: update this example to use
-// the Codesandbox server component
+// the Codesandbox Server Component
 // demo enviornemnt once it is created
 import App from "./App";
 
@@ -378,6 +426,10 @@ root.render(
 </Sandpack>
 
 
+### Reading the value of a context {/*reading-the-value-of-a-context*/}
+
+🚧
+
 ---
 
 ## Troubleshooting {/*troubleshooting*/}
@@ -387,7 +439,9 @@ root.render(
 I’m geting this error: 
 
 <ConsoleBlock level="error">
+
 Suspense Exception: This is not a real error! It\'s an implementation detail of \'use\' to interrupt the current render. You must either rethrow it immediately, or move the \'use\' call outside of the \'try/catch\' block. Capturing without rethrowing will lead to unexpected behavior. To handle async errors, wrap your component in an error boundary, or call the promise's \'.catch\' method and pass the result to \'use\'
+
 </ConsoleBlock>
 
-You are either calling `use` outside of a React component or hook function, or calling `use` in a try-catch block. If you are calling `use` outside a React component or hook function, move the `use` call to a React component or hook function. If you are calling `use` inside a `try-catch` block. Instead of a try-catch block wrap your component in an error boundary, or call the promise's `catch` to catch the error and resolve the promise with another value. [See these examples](#dealing-with-rejected-promises).
+You are either calling `use` outside of a React component or Hook function, or calling `use` in a try-catch block. If you are calling `use` outside a React component or Hook function, move the `use` call to a React component or Hook function. If you are calling `use` inside a `try-catch` block. Instead of a try-catch block wrap your component in an error boundary, or call the promise's `catch` to catch the error and resolve the promise with another value. [See these examples](#dealing-with-rejected-promises).

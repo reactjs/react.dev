@@ -208,6 +208,48 @@ setArtists(
 
 Here, `artists.filter(a => a.id !== artist.id)` means "create an array that consists of those `artists` whose IDs are different from `artist.id`". In other words, each artist's "Delete" button will filter _that_ artist out of the array, and then request a re-render with the resulting array. Note that `filter` does not modify the original array.
 
+You might also want to delete an item at a particular index. The following will delete the last item of the array:
+
+<Sandpack>
+
+```js
+import { useState } from 'react';
+
+let initialArtists = [
+  { id: 0, name: 'Marta Colvin Andrade' },
+  { id: 1, name: 'Lamidi Olonade Fakeye'},
+  { id: 2, name: 'Louise Nevelson'},
+];
+
+export default function List() {
+  const [artists, setArtists] = useState(
+    initialArtists
+  );
+
+  return (
+    <>
+      <h1>Inspiring sculptors:</h1>
+      <ul>
+        {artists.map(artist => (
+          <li key={artist.id}>
+            {artist.name}{' '}
+          </li>
+        ))}
+      </ul>
+  <button onClick={() => {
+              setArtists(artists.toSpliced(artists.length - 1, 1));
+            }}>
+              Delete
+            </button>
+    </>
+  );
+}
+```
+
+</Sandpack>
+
+
+
 ### Transforming an array {/*transforming-an-array*/}
 
 If you want to change some or all items of the array, you can use `map()` to create a **new** array. The function you will pass to `map` can decide what to do with each item, based on its data or its index (or both).
@@ -310,6 +352,47 @@ export default function CounterList() {
     });
     setCounters(nextCounters);
   }
+
+  return (
+    <ul>
+      {counters.map((counter, i) => (
+        <li key={i}>
+          {counter}
+          <button onClick={() => {
+            handleIncrementClick(i);
+          }}>+1</button>
+        </li>
+      ))}
+    </ul>
+  );
+}
+```
+
+```css
+button { margin: 5px; }
+```
+
+</Sandpack>
+
+An alternative approach is to use `.with`. `with()` accepts an index and a value. The value replaces the array item at the given index.
+
+<Sandpack>
+
+```js
+import { useState } from 'react';
+
+let initialCounters = [
+  0, 0, 0
+];
+
+export default function CounterList() {
+  const [counters, setCounters] = useState(
+    initialCounters
+  );
+
+function handleIncrementClick(index) {
+  setCounters(counters.with(index, counters[index] + 1));
+}
 
   return (
     <ul>

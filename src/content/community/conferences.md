@@ -20,6 +20,11 @@ Oct 5 - 7, 2023. In-person in Goa, India (hybrid event) + Oct 3 2023 - remote da
 
 [Website](https://www.reactindia.io) - [Twitter](https://twitter.com/react_india) - [Facebook](https://www.facebook.com/ReactJSIndia) - [Youtube](https://www.youtube.com/channel/UCaFbHCBkPvVv1bWs_jwYt3w)
 
+### React Brussels 2023 {/*react-brussels-2023*/}
+Oct 13, 2023. In-person in Brussels, Belgium (hybrid event)
+
+[Website](https://www.react.brussels/) - [Twitter](https://twitter.com/BrusselsReact) - [Youtube](https://www.youtube.com/channel/UCvES7lMpnx-t934qGxD4w4g) - [LinkedIn](https://www.linkedin.com/events/7079049914676080640/comments/)
+
 ### React Advanced 2023 {/*react-advanced-2023*/}
 October 20 & 23, 2023. In-person in London, UK + remote first interactivity (hybrid event)
 
@@ -510,7 +515,7 @@ August 18 in Guangzhou, China
 
 [Website](https://react.w3ctech.com)
 
-### React Rally 2018{/*react-rally-2018*/}
+### React Rally 2018 {/*react-rally-2018*/}
 August 16-17 in Salt Lake City, Utah USA
 
 [Website](http://www.reactrally.com) - [Twitter](https://twitter.com/reactrally)

@@ -8,10 +8,10 @@ The `use` hook is only supported under when using [React Server Components](/lea
 
 <Intro>
 
-`use` is a React Hook that lets you read the value of data provider like a [promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) or [context](https://react.dev/learn/passing-data-deeply-with-context).
+`use` is a React Hook that lets you read the value of a resource like a [promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) or [context](/learn/passing-data-deeply-with-context).
 
 ```js
-const value = use(provider);
+const value = use(resource);
 ```
 
 </Intro>
@@ -22,9 +22,9 @@ const value = use(provider);
 
 ## Reference {/*reference*/}
 
-### `use(provider)` {/*use*/}
+### `use(resource)` {/*use*/}
 
-Call `use` in your component to read the value of a data provider like a [promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) or [context](https://react.dev/learn/passing-data-deeply-with-context).
+Call `use` in your component to read the value of a resource like a [promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) or [context](/learn/passing-data-deeply-with-context).
 
 ```js
 import { use } from 'react';
@@ -41,26 +41,26 @@ Unlike all other React Hooks, the `use` Hook can be called within conditional st
 
 #### Parameters {/*parameters*/}
 
-* `provider`: this is the source of the data you want to read a value from. Common values for a provider are a promise or context.
+* `resource`: this is the source of the data you want to read a value from. Resources are often a promises or contexts.
 
 #### Returns {/*returns*/}
 
-The `use` Hook returns the value that was read from the provider like the value of a promise or context.
+The `use` Hook returns the value that was read from the provider like the value of a [promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) or [context](/learn/passing-data-deeply-with-context).
 
 #### Caveats {/*caveats*/}
 
-* `use` is not recommended for data fetching from a [Server Component](/reference/react/components#server-components). `async` and `await` are preferred when fetching data from a [Server Component](/reference/react/components#server-components). For example, instead of using `use` in a [Server Component](/reference/react/components#server-components) with `fetch`:
+* `use` is not recommended for data fetching from a [Server Component](/reference/react/components#server-components). `async` and `await` are preferred when fetching data from a [Server Component](/reference/react/components#server-components). For example, instead of calling `use` in a [Server Component](/reference/react/components#server-components) you can use `await`:
 
   ```js
-  const data = use(fetch('/data'))
+  const user = use(fetch('/api/user'))
   ```
   use `await` with `fetch` to get your data.
   ```js
-  const data = await fetch('/data')
+  const user = await fetch('/api/user')
   ```
 
   <Note>
-  Using `await` in a [Server Component](/reference/react/components#server-components) will block the rendering of the [Server Component](/reference/react/components#server-components) until what is being `await` completes. To render the [Server Component](/reference/react/components#server-components) and stream the data to the client as it is retrived, you can pass a promise as a prop to a [Client Component](/reference/react/components#client-components) and wrap it in suspense [like in this example](#🚧)
+  Using `await` in a [Server Component](/reference/react/components#server-components) will block the rendering of the [Server Component](/reference/react/components#server-components) until the statement after `await` completes. To render the [Server Component](/reference/react/components#server-components) immediately and stream the data to the client as it is retrived, you can pass a promise as a prop to a [Client Component](/reference/react/components#client-components) and wrap it in suspense [like in this example](#promises-from-server-components)
   </Note>
 
 * The parent function of the `use` Hook must be a React component or a Hook. For example, the `use` Hook cannot be used in function closures like “map”:
@@ -68,8 +68,8 @@ The `use` Hook returns the value that was read from the provider like the value 
   export default function Messages() {
     const [msg, setMsg] = useState("No messages yet");
     function download() {
-      // ❌ The parent closure is not a component or Hook!
-      // This will cause a compiler error.
+      // ❌ The parent function not a component or Hook!
+      // This will cause a error.
       setMsg(use(fetchMsg()));
     }
     return (
@@ -80,7 +80,8 @@ The `use` Hook returns the value that was read from the provider like the value 
     );
   }
   ```
-  instead, use a loop to iterate through an array:
+  instead, call `use` outside any component closures, where the parent function
+  is a component or Hook:
   ```js
   export default function Messages() {
     const [msg, setMsg] = useState(null);
@@ -109,14 +110,9 @@ This section is incomplete. See also the [draft use RFC](https://github.com/acdl
 
 </Wip>
 
-
-### Getting data from a promise {/*getting-data-from-a-promise*/}
+### Streaming data from the server to the client {/*streaming-data-from-server-to-client*/}
 
 `use` functions similarly to the `await` with JavaScript promises but is compatible with React's renderer and suspense. 🚧
-
-<Recipes titleText="Reading promises with use" titleId="reading-promises-with-use">
-
-#### Promises from Server Components {/*promises-from-server-components*/}
 
 The Client Component accept a promise as a prop and then uses the `use` Hook to unwrap the promise to its resolved value. The resolved value is then displayed by the Client Component in the JSX the Client Component returns.
 
@@ -196,42 +192,55 @@ root.render(
 ```
 </Sandpack>
 
-<Solution />
-
-#### Promises from useState {/*promises-from-usestate*/}
+### Consume async browser APIs with `use` {/*consume-async-browser-apis*/}
 
 Promises can be passed as a prop from a parent Client Component to a child Client Component when the promise is stored in a state variables of the parent component. The parent component should wrap the Client Component calling `use` in a suspense bounardy to avoid pop-in:
+
+<Pitfall>
+put the promise in a useState prevents the promise from being recreated on every rerender
+</Pitfall>
+
+<Pitfall>
+Wrap components that call `use` in suspense to prevent pop in when
+a promise is resolved
+</Pitfall>
 
 <Sandpack>
 
 ```js App.js
 "use client";
 
-import { use, Suspense, useState } from "react";
+import { use, useState, Suspense } from "react";
+import prettyBytes from "pretty-bytes";
 
-function Message({ timer }) {
-  const message = use(timer);
-  return <p>Here is the message: {message}</p>;
+function StorageInfo({ storagePromise }) {
+  const storage = use(storagePromise);
+  const utilization = ((storage.usage / storage.quota) * 100).toFixed(2);
+  return (
+    <ul>
+      <li>Using an estimated {prettyBytes(storage.usage)} of storage </li>
+      <li>An estimated {prettyBytes(storage.quota)} of storage available</li>
+      <li>Using {utilization}% of available storage</li>
+    </ul>
+  );
 }
 
 export default function App() {
-  const [timer, setTimer] = useState(
-    () => new Promise((resolve) => setTimeout(resolve, 3000, "⚛️"))
-  );
-  function resetTimer() {
-    const promise = new Promise((resolve) => setTimeout(resolve, 1000, "⚛️"));
-    setTimer(promise);
+  const [storagePromise, setStoragePromise] = useState(null);
+  function download() {
+    setStoragePromise(navigator.storage.estimate());
   }
 
+  if (!storagePromise) {
+    return <button onClick={download}>Get storage info</button>;
+  }
   return (
-    <>
-      <Suspense fallback={<p>waiting for message...</p>}>
-        <Message timer={timer} />
-      </Suspense>
-      <button onClick={resetTimer}>Reset</button>
-    </>
+    <Suspense fallback={<p>⌛Waiting for storage data...</p>}>
+      <StorageInfo storagePromise={storagePromise} />
+    </Suspense>
   );
 }
+
 ```
 
 ```js index.js hidden
@@ -260,28 +269,23 @@ root.render(
   "dependencies": {
     "react": "18.3.0-canary-9377e1010-20230712",
     "react-dom": "18.3.0-canary-9377e1010-20230712",
-    "react-scripts": "^5.0.0"
+    "react-scripts": "^5.0.0",
+    "pretty-bytes": "6.1.0"
   },
   "main": "/index.js"
 }
 ```
 </Sandpack>
 
-<Solution />
-
-#### Promises from data fetching libraries {/*promises-from-libraries*/}
+### Promises from data fetching libraries {/*promises-from-libraries*/}
 
 🚧
 
-<Sandpack />
-
-<Solution />
-
-</Recipes>
-
 ### Dealing with rejected promises {/*dealing-with-rejected-promises*/}
 
+<Pitfall>
 `use` cannot be called in a try-catch block. Instead of a try-catch block wrap your component in an error boundary, or call the promise's `.catch` method and pass the result to `use`.
+</Pitfall>
 
 You can wrap the suspense boundary for the component you are passing a promise to as a prompt in a `ErrorBoundary`. In the case that the promise is rejected the fallback for the `ErrorBoundary` will be displayed:
 
@@ -426,7 +430,7 @@ root.render(
 </Sandpack>
 
 
-### Reading the value of a context {/*reading-the-value-of-a-context*/}
+### Reading the value in a context {/*reading-the-value-of-a-context*/}
 
 🚧
 

@@ -319,7 +319,7 @@ const CallToAction = memo(function CallToAction({ hasGroups }) {
 });
 ```
 
-When you need to pass a function to memoized component, either declare it outside your component so that it never changes, or [`useCallback`](/reference/react/useCallback#skipping-re-rendering-of-components) to cache its definition between re-renders.
+When you need to pass a function to memoized component, either declare it outside your component so that it never changes, or use [`useCallback`](/reference/react/useCallback#skipping-re-rendering-of-components) to cache its definition between re-renders.
 
 ---
 

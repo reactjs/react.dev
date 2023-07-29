@@ -25,6 +25,13 @@ October 20 & 23, 2023. In-person in London, UK + remote first interactivity (hyb
 
 [Website](https://www.reactadvanced.com/) - [Twitter](https://twitter.com/ReactAdvanced) - [Facebook](https://www.facebook.com/ReactAdvanced) - [Videos](https://portal.gitnation.org/events/react-advanced-conference-2023)
 
+
+### reactjsday 2023 {/*reactjsday-2023*/}
+
+October 27, 2023. In-person in Verona, Italy + remote first interactivity (hybrid event)
+
+[Website](https://2023.reactjsday.it/) - [Twitter](https://twitter.com/reactjsday) - [Instagram](https://www.instagram.com/grusp_/)
+
 ### React Summit US 2023 {/*react-summit-us-2023*/}
 November 13 & 15, 2023. In-person in New York, US + remote first interactivity (hybrid event)
 
@@ -510,7 +517,7 @@ August 18 in Guangzhou, China
 
 [Website](https://react.w3ctech.com)
 
-### React Rally 2018{/*react-rally-2018*/}
+### React Rally 2018 {/*react-rally-2018*/}
 August 16-17 in Salt Lake City, Utah USA
 
 [Website](http://www.reactrally.com) - [Twitter](https://twitter.com/reactrally)

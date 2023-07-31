@@ -26,8 +26,8 @@ Here is a reference table of common array operations. When dealing with arrays i
 
 |           | avoid (mutates the array)           | prefer (returns a new array)                                        |
 | --------- | ----------------------------------- | ------------------------------------------------------------------- |
-| adding    | `push`, `unshift`                   | `concat`, `[...arr]` spread syntax ([example](#adding-to-an-array)) |
-| removing  | `pop`, `shift`, `splice`            | `filter`, `slice` ([example](#removing-from-an-array))              |
+| adding    | `push`, `unshift`                   | `toSpliced`, `concat`, `[...arr]` spread syntax ([example](#adding-to-an-array)) |
+| removing  | `pop`, `shift`, `splice`            | `toSpliced`, `filter`, `slice` ([example](#removing-from-an-array))              |
 | replacing | `splice`, `arr[i] = ...` assignment | `toSpliced`, `map` ([example](#replacing-items-in-an-array))                     |
 | sorting   | `reverse`, `sort`                   | `toReversed`, `toSorted` ([example](#making-other-changes-to-an-array)) |
 
@@ -40,7 +40,7 @@ Unfortunately, [`slice`](https://developer.mozilla.org/en-US/docs/Web/JavaScript
 * `slice` lets you copy an array or a part of it.
 * `splice` **mutates** the array (to insert or delete items).
 
-In React, you will be using `slice` (no `p`!) a lot more often because you don't want to mutate objects or arrays in state. [Updating Objects](/learn/updating-objects-in-state) explains what mutation is and why it's not recommended for state.
+In React, avoid using `splice` because you don't want to mutate objects or arrays in state. Instead you can use [`toSpliced`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/toSpliced), which is a non-mutating version of `splice`. [Updating Objects](/learn/updating-objects-in-state) explains what mutation is and why it's not recommended for state.
 
 </Pitfall>
 
@@ -208,7 +208,9 @@ setArtists(
 
 Here, `artists.filter(a => a.id !== artist.id)` means "create an array that consists of those `artists` whose IDs are different from `artist.id`". In other words, each artist's "Delete" button will filter _that_ artist out of the array, and then request a re-render with the resulting array. Note that `filter` does not modify the original array.
 
-You might also want to delete an item at a particular index. The following will delete the last item of the array:
+You might also want to delete an item at a particular index, for which you can use [`toSpliced`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/toSpliced). The first parameter of `toSpliced` is an index. The second parameter is the number of items you want to delete.
+
+The following will delete the last item of the array (a negative index counts back from the end of the array):
 
 <Sandpack>
 
@@ -238,7 +240,7 @@ export default function List() {
       </ul>
       <button
         onClick={() => {
-          setArtists(artists.toSpliced(artists.length - 1, 1));
+          setArtists(artists.toSpliced(-1, 1));
         }}
       >
         Delete
@@ -475,7 +477,7 @@ button { margin-left: 5px; }
 
 ### Making other changes to an array {/*making-other-changes-to-an-array*/}
 
-You may want to reverse or sort an array. The JavaScript `reverse()` and `sort()` methods mutate the original array, so use `toReversed()` or `toSorted()` instead.
+You may want to reverse or sort an array. The JavaScript `reverse()` and `sort()` methods mutate the original array, so use [`toReversed()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/toReversed) or [`toSorted()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/toSorted) instead.
 
 For example:
 

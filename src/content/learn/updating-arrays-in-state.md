@@ -28,7 +28,7 @@ Here is a reference table of common array operations. When dealing with arrays i
 | --------- | ----------------------------------- | ------------------------------------------------------------------- |
 | adding    | `push`, `unshift`                   | `toSpliced`, `concat`, `[...arr]` spread syntax ([example](#adding-to-an-array)) |
 | removing  | `pop`, `shift`, `splice`            | `toSpliced`, `filter`, `slice` ([example](#removing-from-an-array))              |
-| replacing | `splice`, `arr[i] = ...` assignment | `toSpliced`, `map` ([example](#replacing-items-in-an-array))                     |
+| replacing | `splice`, `arr[i] = ...` assignment | `with`, `toSpliced`, `map` ([example](#replacing-items-in-an-array))                     |
 | sorting   | `reverse`, `sort`                   | `toReversed`, `toSorted` ([example](#making-other-changes-to-an-array)) |
 
 Alternatively, you can [use Immer](#write-concise-update-logic-with-immer) which lets you use methods from both columns.

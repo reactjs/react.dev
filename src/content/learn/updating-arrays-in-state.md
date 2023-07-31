@@ -236,11 +236,13 @@ export default function List() {
           </li>
         ))}
       </ul>
-  <button onClick={() => {
-              setArtists(artists.toSpliced(artists.length - 1, 1));
-            }}>
-              Delete
-            </button>
+      <button
+        onClick={() => {
+          setArtists(artists.toSpliced(artists.length - 1, 1));
+        }}
+      >
+        Delete
+      </button>
     </>
   );
 }

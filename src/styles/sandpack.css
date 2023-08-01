@@ -201,7 +201,7 @@ html.dark .sp-wrapper {
 
 .sandpack .sp-code-editor .cm-editor,
 .sandpack .sp-code-editor .cm-editor .cm-gutters {
-  background-color: transparent;
+  background-color: white;
 }
 
 .sandpack .sp-code-editor .cm-content,
@@ -212,7 +212,6 @@ html.dark .sp-wrapper {
 }
 
 .sandpack .sp-code-editor .cm-content {
-  overflow-x: auto;
   padding-bottom: 18px;
 }
 
@@ -262,7 +261,7 @@ html.dark .sp-wrapper {
 }
 
 .sp-code-editor .sp-cm .cm-scroller {
-  overflow-x: hidden;
+  overflow-x: auto;
   overflow-y: auto;
   padding-top: 18px;
 }

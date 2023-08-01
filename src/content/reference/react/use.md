@@ -6,9 +6,9 @@ title: use
 This section is incomplete. See also the [draft use RFC](https://github.com/acdlite/rfcs/blob/first-class-promises/text/0000-first-class-support-for-promises.md#usepromise).
 </Wip>
 
-[//]: # (TODO: replace the `<Note></Note>` below with `<Canary></Canary>` once https://github.com/reactjs/react.dev/pull/6173 is merged )
+[//]: # (TODO: replace the `<Note></Note>` below with `<Canary></Canary>` once https://github.com/reactjs/react.dev/pull/6173 is merged)
 <Note>
-The `use` hook is only supported under when using [React Server Components](/learn/start-a-new-react-project#bleeding-edge-react-frameworks). React Server Components are only available in React’s canary and experimental channels. Learn more about [React's release channels here](/community/versioning-policy#all-release-channels). 
+The `use` hook is only supported when using [React Server Components](/learn/start-a-new-react-project#bleeding-edge-react-frameworks). React Server Components are only available in React’s canary and experimental channels. Learn more about [React's release channels here](/community/versioning-policy#all-release-channels). 
 </Note>
 
 <Intro>
@@ -35,7 +35,7 @@ Call `use` in your component to read the value of a resource like a [promise](ht
 import { use } from "react";
 
 function Message({ messagePromise }) {
-  const messsage = use(messagePromise);
+  const message = use(messagePromise);
   const theme = use(ThemeContext);
   //...
 ```
@@ -48,7 +48,7 @@ A component that passes a promise to `use` integrates with [`Suspense`](/referen
 
 #### Parameters {/*parameters*/}
 
-* `resource`: this is the source of the data you want to read a value from. Resources can be a [promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) or [context](/learn/passing-data-deeply-with-context).
+* `resource`: this is the source of the data you want to read a value from. A resources can be a [promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) or a [context](/learn/passing-data-deeply-with-context).
 
 #### Returns {/*returns*/}
 
@@ -58,7 +58,7 @@ The `use` Hook returns the value that was read from the resource like the resolv
 
 * The parent function of the `use` Hook must be a React component or your own Hooks.
 * `use` is not recommended for data fetching from a [Server Component](/reference/react/components#server-components). `async` and `await` are preferred when fetching data from a Server Component.
-* When passing promises to `use` you must store the promise in a state variable or context to avoid recreating the promise on every rerender. When invoking a function that returns a promise, you can to store the returned promise with a cache mechanism like React's `cache` function.
+* When passing promises to `use`, you must store the promise in a state variable or context to avoid recreating the promise on every rerender. When invoking a function that returns a promise, you can to store the returned promise with a cache mechanism like React's `cache` function.
 
 ---
 
@@ -66,12 +66,14 @@ The `use` Hook returns the value that was read from the resource like the resolv
 
 ### Reading promises with `use` {/*reading-promises-with-use*/}
 
-`use` functions similarly to the `await` with JavaScript promises but is compatible with React's renderer and [`Suspense`](/reference/react/Suspense). Broswer APIs or data fetching libraries that return a promise can be passed to `use` to read the value of the promise.
+`use` functions similarly to the `await` with JavaScript promises but is compatible with React's renderer and [`Suspense`](/reference/react/Suspense). Browser APIs or data fetching libraries that return a promise can be passed to `use` to read the value of the promise.
 
-In the example below we'll use <CodeStep step={1}>[`navigator.storage.estimate()`](https://developer.mozilla.org/en-US/docs/Web/API/StorageManager/estimate)</CodeStep>, a browser API that provides information on how much storage is being used by the current page and how much space is avaialbe. <CodeStep step={1}>`navigator.storage.estimate()`</CodeStep> is an async function that returns a Promise which resolves once the information is available.
+In the example below we'll use <CodeStep step={1}>[`navigator.storage.estimate()`](https://developer.mozilla.org/en-US/docs/Web/API/StorageManager/estimate)</CodeStep>, a browser API that provides information on how much storage is being used by the current page and how much space is available. <CodeStep step={1}>`navigator.storage.estimate()`</CodeStep> is an async function that returns a Promise which resolves once the information is available.
 
-```js [[1,4, "navigator.storage.estimate()"], [2,4, "storagePromise"], [3,4, "useState"], [4,5, "use"], [5,6, "storage.quota"]]
+```js [[1,6, "navigator.storage.estimate()"], [2,6, "storagePromise"], [3,6, "useState"], [4,7, "use"], [5,8, "storage.quota"]]
 "use client";
+
+import { use, useState } from "react"
 
 function StorageInfo() {
   const [storagePromise] = useState(navigator.storage.estimate());
@@ -81,8 +83,8 @@ function StorageInfo() {
 ```
 
 1. First, the promise returned by <CodeStep step={1}>`navigator.storage.estimate()`</CodeStep> is stored in the <CodeStep step={2}>`storagePromise`</CodeStep> state variable created by <CodeStep step={3}>`useState`</CodeStep>. This prevents the call to <CodeStep step={1}>`navigator.storage.estimate()`</CodeStep> and the promise it returns from being recreated across renders.
-2. Next, <CodeStep step={2}>`storagePromise`</CodeStep> is then passed to <CodeStep step={4}>`use`</CodeStep> to read the resovled value of the promise.
-3. Finally, the resolved value of the promise can now be safely used. This includes surfacing data read by <CodeStep step={4}>`use`</CodeStep> like <CodeStep step={5}>`storage.quota`</CodeStep> in the JSX returned by the component.
+2. Next, <CodeStep step={2}>`storagePromise`</CodeStep> is passed to <CodeStep step={4}>`use`</CodeStep> to read the resolved value of the promise.
+3. Finally, the resolved value of the promise can now be used safely. This includes surfacing data read by <CodeStep step={4}>`use`</CodeStep> like <CodeStep step={5}>`storage.quota`</CodeStep> in the JSX returned by the component.
 
 <Pitfall>
 
@@ -111,7 +113,7 @@ function Component() {
 
 #### Read promises from async browser APIs {/*read-promises-from-async-browser-apis*/}
 
-You can read promises returned by async browser APIs like [`navigator.storage.estimate()`](https://developer.mozilla.org/en-US/docs/Web/API/StorageManager/estimate) with `use`. In this example, the promise from `navigator.storage.estimate()` is stored in a state variable and passed to the `StorageInfo` component as a prop. The promise is then read by `use` and the result is displayed to the user. While waiting for the promise to resolve a the fallback of the parent Suspense component is displayed.
+You can read promises returned by async browser APIs like [`navigator.storage.estimate()`](https://developer.mozilla.org/en-US/docs/Web/API/StorageManager/estimate) with `use`. In this example, the promise from `navigator.storage.estimate()` is stored in a state variable and passed to the `StorageInfo` component as a prop. The promise is then read by `use` and the result is displayed to the user. While waiting for the promise to resolve, the fallback of the parent Suspense component is displayed.
 
 <Sandpack>
 
@@ -188,7 +190,7 @@ root.render(
 
 #### Read promises from data fetching libraries {/*read-promises-from-data-fetching-libraries*/}
 
-You can read the values of promises returned from data fetching libraries with the `use` Hook. In this example the function `fetchMessage` is imported from a mock data fetching library. The promise returned by `fetchMessage` is stored in the `messagePromise` state variable and then passed to `use` to read. The result is then displayed to the user. While waiting for the promise to resolve a the fallback of the parent Suspense component is displayed.
+You can read the values of promises returned from data fetching libraries with the `use` Hook. In this example the function `fetchMessage` is imported from a mock data fetching library. The promise returned by `fetchMessage` is stored in the `messagePromise` state variable and then passed to `use` to read. The result is then displayed to the user. While waiting for the promise to resolve the fallback of the parent Suspense component is displayed.
 
 <Sandpack>
 
@@ -273,7 +275,7 @@ export function fetchMessage() {
 
 ### Reading context with `use` {/*reading-context-with-use*/}
 
-When a [context](/learn/passing-data-deeply-with-context) is passed to `use`, it similarly to [`useContext`](/reference/react/useContext). While `useContext` must be called at the top level of your component `use` can be called in side of conditionals like `if` and loops like `for`. 
+When a [context](/learn/passing-data-deeply-with-context) is passed to `use`, it works similarly to [`useContext`](/reference/react/useContext). While `useContext` must be called at the top level of your component, `use` can be called inside conditionals like `if` and loops like `for`.
 
 ```js [[2, 4, "theme"], [1, 4, "ThemeContext"]]
 import { use } from 'react';
@@ -406,7 +408,7 @@ function Button({ children }) {
 
 ### Streaming data from the server to the client {/*streaming-data-from-server-to-client*/}
 
-Data case be streamed from the server to the client by passing a promise as a prop from a server component to a client component:
+Data can be streamed from the server to the client by passing a promise as a prop from a server component to a client component:
 
 ```js App.js
 import { fetchMessage } from "./lib.js";
@@ -435,7 +437,7 @@ export function Message({ messagePromise }) {
   return <p>Here is the message: {messageContent}</p>;
 }
 ```
-Because `Message` is wrapped in [`Suspense`](/reference/react/Suspense) the fallback will be displayed until the promise is resolved. When the promise is resolve the value will be unwraped by the `use` Hook and the `Message` component will replace the [`Suspense`](/reference/react/Suspense) fallback.
+Because `Message` is wrapped in [`Suspense`](/reference/react/Suspense) the fallback will be displayed until the promise is resolved. When the promise is resolve the value will be unwrapped by the `use` Hook and the `Message` component will replace the [`Suspense`](/reference/react/Suspense) fallback.
 
 <Sandpack>
 
@@ -544,7 +546,7 @@ In some cases a promise passed to `use` could be rejected. You can handle reject
 2. [Providing an alternative value with `Promise.catch`](#providing-an-alternative-value-with-promise-catch)
 
 <Pitfall>
-`use` cannot be called in a try-catch block. Instead of a try-catch block [wrap your component in an Error Boundary]((#displaying-an-error-to-users-with-errorboundary)), or [provide an alternative value to use with the promise's `.catch` method](#providing-an-alternative-value-with-promise-catch).
+`use` cannot be called in a try-catch block. Instead of a try-catch block [wrap your component in an Error Boundary](#displaying-an-error-to-users-with-errorboundary), or [provide an alternative value to use with the promise's `.catch` method](#providing-an-alternative-value-with-promise-catch).
 </Pitfall>
 
 #### Displaying an error to users with `ErrorBoundary` {/*displaying-an-error-to-users-with-errorboundary*/}
@@ -563,10 +565,10 @@ function fetchMessage() {
 }
 
 export default function App() {
-  const [msgReq, setMsgReq] = useState(null);
+  const [messagePromise, setMessagePromise] = useState(null);
   const [show, setShow] = useState(false);
   function download() {
-    setMsgReq(fetchMessage());
+    setMessagePromise(fetchMessage());
     setShow(true);
   }
 
@@ -574,7 +576,7 @@ export default function App() {
     return (
       <ErrorBoundary fallback={<p>⚠️Something went wrong</p>}>
         <Suspense fallback={<p>⌛Downloading message...</p>}>
-          <Message messageReqest={msgReq} />
+          <Message messagePromise={messagePromise} />
         </Suspense>
       </ErrorBoundary>
     );
@@ -589,8 +591,8 @@ export default function App() {
 
 import { use } from "react";
 
-export function Message({ messageReqest }) {
-  const content = use(messageReqest);
+export function Message({ messagePromise }) {
+  const content = use(messagePromise);
   return <p>Here is the message: {content}</p>;
 }
 ```
@@ -631,36 +633,35 @@ root.render(
 
 #### Providing an alternative value with `Promise.catch` {/*providing-an-alternative-value-with-promise-catch*/}
 
-
 If you'd like to display provide an alternative value when a promise passed to `use` is rejected you can use an the promise's [`catch`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/catch) method. To use the promise's `catch` method, call `catch` on the promise object. `catch` takes a single argument: a function that takes an error message as an argument. Whatever is returned by the function passed to `catch` will be used as the resolved value of the promise.
 
 <Sandpack>
 
 ```js App.js
-import { Suspense, useState } from "react";
+import { useState, Suspense } from "react";
 import { Message } from "./message.js";
 
 function fetchMessage() {
   return new Promise((resolve, reject) => {
-    setTimeout(reject, 3000, "no new message found.");
+    setTimeout(reject, 3000, new Error("no new message found."));
   }).catch((error) => {
-    console.log(error);
+    console.log(error.toString());
     return "no new message found.";
   });
 }
 
 export default function App() {
-  const [msgReq, setMsgReq] = useState(null);
+  const [messagePromise, setMessagePromise] = useState(null);
   const [show, setShow] = useState(false);
   function download() {
-    setMsgReq(fetchMessage());
+    setMessagePromise(fetchMessage());
     setShow(true);
   }
 
   if (show) {
     return (
       <Suspense fallback={<p>⌛Downloading message...</p>}>
-        <Message messageReqest={msgReq} />
+        <Message messagePromise={messagePromise} />
       </Suspense>
     );
   } else {
@@ -674,8 +675,8 @@ export default function App() {
 
 import { use } from "react";
 
-export function Message({ messageReqest }) {
-  const content = use(messageReqest);
+export function Message({ messagePromise }) {
+  const content = use(messagePromise);
   return <p>Here is the message: {content}</p>;
 }
 ```
@@ -717,11 +718,11 @@ root.render(
 
 ## Troubleshooting {/*troubleshooting*/}
 
-### I’m geting this error: "An unsupported type was passed to use" {/*im-geting-this-error-an-unsupported-type-was-passed-to-use*/}
+### I'm getting this error: "An unsupported type was passed to use" {/*im-getting-this-error-an-unsupported-type-was-passed-to-use*/}
 
 The `use` hook only supports [JavaScript promises](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) and React's [Context](/learn/passing-data-deeply-with-context) as parameters.
 
-### I’m geting this error: "Suspense Exception: This is not a real error!" {/*suspense-exception-error*/}
+### I'm getting this error: "Suspense Exception: This is not a real error!" {/*suspense-exception-error*/}
 
 You are either calling `use` outside of a React component or Hook function, or calling `use` in a try-catch block. If you are calling `use` inside a `try-catch` block wrap your component in an error boundary, or call the promise's `catch` to catch the error and resolve the promise with another value. [See these examples](#dealing-with-rejected-promises).
 
@@ -730,7 +731,7 @@ If you are calling `use` outside a React component or Hook function, move the `u
 ```jsx
 function Message({messagePromise}) {
   function download() {
-    // ❌ The parent function is not a Component or Hook!
+    // ❌ `use`'s parent function is not a Component or Hook!
     const message = use(messagePromise);
     //...
 ```
@@ -746,7 +747,7 @@ function Message({messagePromise}) {
 
 ### How do I prevent the component calling `use` from abruptly appearing in the UI? {/*how-do-i-prevent-the-component-calling-use-from-abruptly-appearing-in-the-ui*/}
 
-Components that pass a promise to `use` must be wraped in [`Suspense`](/reference/react/Suspense) to prevent the Component from "poping in" when the promise is resolved. In the examples below, the `Message` Component calls the `use` hook. Because the `Message` Component is not wraped in [`Suspense`](/reference/react/Suspense) the `Message` component will abruptly pop into the page when `messagePromise` is resolved:
+Components that pass a promise to `use` must be wrapped in [`Suspense`](/reference/react/Suspense) to prevent the Component from "popping in" when the promise is resolved. In the examples below, the `Message` Component calls the `use` hook. Because the `Message` Component is not wrapped in [`Suspense`](/reference/react/Suspense) the `Message` component will abruptly pop into the page when `messagePromise` is resolved:
 ```js
 function Messages({messagePromise}) {
   // ❌ the `Message` component will pop-in
@@ -754,7 +755,7 @@ function Messages({messagePromise}) {
 }
 ```
 
-To fix the "pop in" issue, wrap the `Message` Component in [`Suspense`](/reference/react/Suspense) with a sutable fallback component. In the example below a `MessageFallback` component will displayed until the `messagePromise` is resolved. Then `MessageFallback` will be replaced by the `Message`:
+To fix the "pop-in" issue, wrap the `Message` Component in [`Suspense`](/reference/react/Suspense) with a suitable fallback component. In the example below a `MessageFallback` component will displayed until the `messagePromise` is resolved. Then `MessageFallback` will be replaced by the `Message`:
 
 ```jsx
 function Messages({messagePromise}) {

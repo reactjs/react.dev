@@ -57,7 +57,7 @@ The `use` Hook returns the value that was read from the resource like the resolv
 #### Caveats {/*caveats*/}
 
 * The `use` Hook must be called inside a Component or a Hook.
-* `use` is not recommended for data fetching from a [server component](/reference/react/components#server-components). `async` and `await` are preferred when fetching data from a server component.
+* `use` is not recommended for data fetching from a [Server Component](/reference/react/components#server-components). `async` and `await` are preferred when fetching data from a Server Component.
 * When passing Promises to `use`, you must store the Promise in a state variable or context to avoid recreating the Promise on every rerender. When invoking a function that returns a Promise, you can store the returned Promise with a cache mechanism like React's `cache` function.
 
 ---
@@ -107,12 +107,12 @@ function Component() {
   // ...
 ```
 
-Storing the results of a API call in a state variable, context, or cache means that value returned by `use` will not be updated if the underlying API returns a new value. If the underlying data changes you must call the API again and update the state variable or context to the new Promise returned by the API call:
+Storing the results of an API call in a state variable, context, or cache means that value returned by `use` will not be updated if the underlying API returns a new value. If the underlying data changes you must call the API again and update the state variable or context to the new Promise returned by the API call:
 
 ```js
 function StorageInfo() {
   const [storagePromise, setStoragePromise] = useState(
-    navigator.storage.estimate();
+    () => navigator.storage.estimate();
   );
   function updateStorageInfo() {
     setStoragePromise(navigator.storage.estimate());
@@ -182,7 +182,7 @@ import { createRoot } from 'react-dom/client';
 import './styles.css';
 
 // TODO: update this example to use
-// the Codesandbox server component
+// the Codesandbox Server Component
 // demo environment once it is created
 import App from './App';
 
@@ -258,7 +258,7 @@ import { createRoot } from 'react-dom/client';
 import './styles.css';
 
 // TODO: update this example to use
-// the Codesandbox server component
+// the Codesandbox Server Component
 // demo environment once it is created
 import App from './App';
 
@@ -332,9 +332,9 @@ export default function App() {
   return (
     <Suspense fallback={<p>⌛Loading article...</p>}>
       <Article
-        title={'Article Title'}
-        body={'this is the body of an article'}
-        authorId={'Jordan'}
+        title="Article Title"
+        body="this is the body of an article"
+        authorId="Jordan"
         shouldIncludeByline={true}
       />
     </Suspense>
@@ -351,7 +351,7 @@ import { createRoot } from 'react-dom/client';
 import './styles.css';
 
 // TODO: update this example to use
-// the Codesandbox server component
+// the Codesandbox Server Component
 // demo environment once it is created
 import App from './App';
 
@@ -549,7 +549,7 @@ function Button({ show, children }) {
 
 ### Streaming data from the server to the client {/*streaming-data-from-server-to-client*/}
 
-Data can be streamed from the server to the client by passing a Promise as a prop from a server component to a client component:
+Data can be streamed from the server to the client by passing a Promise as a prop from a Server Component to a Client Component:
 
 ```js App.js
 import { fetchMessage } from './lib.js';
@@ -565,7 +565,7 @@ export default function App() {
 }
 ```
 
-The client component then takes the Promise it received as a prop and passes it to the `use` Hook. This allows the client component to read the value from the Promise that was initially created by the server component:
+The Client Component then takes the Promise it received as a prop and passes it to the `use` Hook. This allows the Client Component to read the value from the Promise that was initially created by the Server Component:
 
 ```js
 // message.js
@@ -632,7 +632,7 @@ import { createRoot } from 'react-dom/client';
 import './styles.css';
 
 // TODO: update this example to use
-// the Codesandbox server component
+// the Codesandbox Server Component
 // demo environment once it is created
 import App from './App';
 
@@ -657,9 +657,9 @@ root.render(
 </Sandpack>
 <DeepDive>
 
-#### Server components: `await` vs passing a Promise? {/*await-vs-passing-a-promise*/}
+#### Server Components: `await` vs passing a Promise? {/*await-vs-passing-a-promise*/}
 
-Instead of passing a Promise from a server component to a client component you could `await` the Promise in the server component and pass the data to the client component as a prop:
+Instead of passing a Promise from a Server Component to a Client Component you could `await` the Promise in the Server Component and pass the data to the Client Component as a prop:
 
 ```js
 import { fetchMessage } from './lib.js';
@@ -675,9 +675,9 @@ export default function App() {
 }
 ```
 
-But using `await` in a [server component](/reference/react/components#server-components) will block the rendering of the [server component](/reference/react/components#server-components) until the `await` statement is finished.
+But using `await` in a [Server Component](/reference/react/components#server-components) will block the rendering of the [Server Component](/reference/react/components#server-components) until the `await` statement is finished.
 
-Passing a Promise from a server component to a client component wrapped in a Suspense boundary prevents the Promise from blocking the rendering of the server component. This enables the Suspense component's fallback to be displayed to the user. When the Promise resolves, the value of the Promise is read by `use`. This value is used to render the client component which replaces the Suspense component's fallback.
+Passing a Promise from a Server Component to a Client Component wrapped in a Suspense boundary prevents the Promise from blocking the rendering of the Server Component. This enables the Suspense component's fallback to be displayed to the user. When the Promise resolves, the value of the Promise is read by `use`. This value is used to render the Client Component which replaces the Suspense component's fallback.
 
 </DeepDive>
 
@@ -749,7 +749,7 @@ import { createRoot } from 'react-dom/client';
 import './styles.css';
 
 // TODO: update this example to use
-// the Codesandbox server component
+// the Codesandbox Server Component
 // demo environment once it is created
 import App from './App';
 
@@ -830,7 +830,7 @@ import { createRoot } from 'react-dom/client';
 import './styles.css';
 
 // TODO: update this example to use
-// the Codesandbox server component
+// the Codesandbox Server Component
 // demo environment once it is created
 import App from './App';
 

@@ -33,7 +33,7 @@ You can also [define your own components](/learn/your-first-component) as JavaSc
 
 <Note>
 
-React server components require the use of [a supported framework](/learn/start-a-new-react-project#bleeding-edge-react-frameworks). If you're aren't working with a framework that support React server components, all the components you interact with are treated as client components.
+React server components require the use of [a supported framework](/learn/start-a-new-react-project#bleeding-edge-react-frameworks). If you aren't working with a framework that supports React server components, all the components you interact with are treated as client components.
 
 </Note>
 
@@ -45,6 +45,6 @@ Server components allow developers to leverage the power of server-side renderin
 
 ### Client components {/*client-components*/}
 
-Client components can access the full range of React features, including state, effects, and access to the DOM. They are essential for creating rich, interactive features where users expect immediate feedback. Client component must have the [`'use client'` directive](/reference/react/use-client#use-client) place at the top of the file they are defined in.
+Client components can access the full range of React features, including state, effects, and access to the DOM. They are essential for creating rich, interactive features where users expect immediate feedback. Client component must have the [`'use client'` directive](/reference/react/use-client#use-client) placed at the top of the file they are defined in.
 
 In the following sections, we will delve deeper into the characteristics, capabilities, and use cases of both server components and client Components.

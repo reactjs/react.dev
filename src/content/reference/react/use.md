@@ -48,7 +48,7 @@ When called with a promise, the `use` Hook integrates with [`Suspense`](/referen
 
 #### Parameters {/*parameters*/}
 
-* `resource`: this is the source of the data you want to read a value from. A resources can be a [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) or a [context](/learn/passing-data-deeply-with-context).
+* `resource`: this is the source of the data you want to read a value from. A resource can be a [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) or a [context](/learn/passing-data-deeply-with-context).
 
 #### Returns {/*returns*/}
 
@@ -58,7 +58,7 @@ The `use` Hook returns the value that was read from the resource like the resolv
 
 * The `use` Hook must be called inside a React component or a Hook.
 * `use` is not recommended for data fetching from a [server component](/reference/react/components#server-components). `async` and `await` are preferred when fetching data from a server component.
-* When passing Promises to `use`, you must store the Promise in a state variable or context to avoid recreating the Promise on every rerender. When invoking a function that returns a Promise, you can to store the returned Promise with a cache mechanism like React's `cache` function.
+* When passing Promises to `use`, you must store the Promise in a state variable or context to avoid recreating the Promise on every rerender. When invoking a function that returns a Promise, you can store the returned Promise with a cache mechanism like React's `cache` function.
 
 ---
 
@@ -211,7 +211,7 @@ root.render(
 
 #### Read Promises from data fetching libraries {/*read-promises-from-data-fetching-libraries*/}
 
-You can read the values of Promises returned from data fetching libraries with the `use` Hook. In this example the function `fetchMessage` is imported from a mock data fetching library. The Promise returned by `fetchMessage` is stored in the `messagePromise` state variable and then passed to `use` to read. The result is then displayed to the user. While waiting for the Promise to resolve, the fallback of the Suspense component that wraps `Message` is displayed.
+You can read the values of Promises returned from data fetching libraries with the `use` Hook. In this example, the function `fetchMessage` is imported from a mock data fetching library. The Promise returned by `fetchMessage` is stored in the `messagePromise` state variable and then passed to `use` to read. The result is then displayed to the user. While waiting for the Promise to resolve, the fallback of the Suspense component that wraps `Message` is displayed.
 
 <Sandpack>
 
@@ -307,7 +307,7 @@ function Article({ title, body, shouldIncludeByline, authorId }) {
 
   if (shouldIncludeByline && !byline) {
     // Because `use` is inside a conditional block, we avoid blocking
-    // unncessarily when `shouldIncludeByline` is false.
+    // unnecssarily when `shouldIncludeByline` is false.
     setByline(use(fetchByline(authorId)));
   }
 

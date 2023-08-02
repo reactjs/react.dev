@@ -35,6 +35,11 @@ December 8 & 12, 2023. In-person in Berlin, Germany + remote first interactivity
 
 [Website](https://reactday.berlin) - [Twitter](https://twitter.com/reactdayberlin) - [Facebook](https://www.facebook.com/reactdayberlin/) - [Videos](https://portal.gitnation.org/events/react-day-berlin-2023)
 
+### App.js Conf 2024 {/*appjs-conf-2024*/}
+May 22 - 24, 2024. In-person in Kraków, Poland + remote
+
+[Website](https://appjs.co) - [Twitter](https://twitter.com/appjsconf)
+
 ## Past Conferences {/*past-conferences*/}
 
 ### React Nexus 2023 {/*react-nexus-2023*/}

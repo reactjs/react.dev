@@ -34,15 +34,15 @@ Call `use` in your component to read the value of a resource like a [Promise](ht
 ```jsx
 import { use } from 'react';
 
-function Message({ messagePromise }) {
+function MessageComponent({ messagePromise }) {
   const message = use(messagePromise);
   const theme = use(ThemeContext);
   // ...
 ```
 
-Unlike all other React Hooks, the `use` Hook can be called within conditional statements like loops and `if` statements. Like other React Hooks, the function that calls `use` must be React component or Hook.
+Unlike all other React Hooks, the `use` Hook can be called within conditional statements like loops and `if` statements. Like other React Hooks, the function that calls `use` must be a Component or Hook.
 
-When called with a promise, the `use` Hook integrates with [`Suspense`](/reference/react/Suspense) and [error boundaries](/reference/react/Component#catching-rendering-errors-with-an-error-boundary). The component calling `use` *suspends* while the Promise passed to `use` is pending. If the component that calls `use` is wrapped in a Suspense boundary the fallback of that Suspense component will be displayed.  Once the Promise is resolved, React hides the Suspense component fallback and renders the component(s) inside the Suspense boundary with the data returned by the `use` Hook. If the Promise passed to `use` is rejected, the fallback of the nearest Error Boundary will be displayed.
+When called with a Promise, the `use` Hook integrates with [`Suspense`](/reference/react/Suspense) and [error boundaries](/reference/react/Component#catching-rendering-errors-with-an-error-boundary). The component calling `use` *suspends* while the Promise passed to `use` is pending. If the component that calls `use` is wrapped in a Suspense boundary the fallback of that Suspense component will be displayed.  Once the Promise is resolved, React hides the Suspense component fallback and renders the component(s) inside the Suspense boundary with the data returned by the `use` Hook. If the Promise passed to `use` is rejected, the fallback of the nearest Error Boundary will be displayed.
 
 [See more examples below.](#usage)
 
@@ -56,7 +56,7 @@ The `use` Hook returns the value that was read from the resource like the resolv
 
 #### Caveats {/*caveats*/}
 
-* The `use` Hook must be called inside a React component or a Hook.
+* The `use` Hook must be called inside a Component or a Hook.
 * `use` is not recommended for data fetching from a [server component](/reference/react/components#server-components). `async` and `await` are preferred when fetching data from a server component.
 * When passing Promises to `use`, you must store the Promise in a state variable or context to avoid recreating the Promise on every rerender. When invoking a function that returns a Promise, you can store the returned Promise with a cache mechanism like React's `cache` function.
 
@@ -76,7 +76,7 @@ In the example below we'll use <CodeStep step={1}>[`navigator.storage.estimate()
 import { use, useState } from 'react';
 
 function StorageInfo() {
-  const [storagePromise] = useState(navigator.storage.estimate());
+  const [storagePromise] = useState(() => navigator.storage.estimate());
   const storage = use(storagePromise);
   return <p>An estimated {storage.quota} bytes available</p>;
 }
@@ -107,7 +107,7 @@ function Component() {
   // ...
 ```
 
-Storing the results of a API call in a state variable, context, or cache means that value returned by `use` will not be updated if the underlying API returns a new value. If the underlying data changes you must call the API again and update the state variable or context to the new promise returned by the API call:
+Storing the results of a API call in a state variable, context, or cache means that value returned by `use` will not be updated if the underlying API returns a new value. If the underlying data changes you must call the API again and update the state variable or context to the new Promise returned by the API call:
 
 ```js
 function StorageInfo() {
@@ -183,7 +183,7 @@ import './styles.css';
 
 // TODO: update this example to use
 // the Codesandbox server component
-// demo enviornemnt once it is created
+// demo environment once it is created
 import App from './App';
 
 const root = createRoot(document.getElementById('root'));
@@ -259,7 +259,7 @@ import './styles.css';
 
 // TODO: update this example to use
 // the Codesandbox server component
-// demo enviornemnt once it is created
+// demo environment once it is created
 import App from './App';
 
 const root = createRoot(document.getElementById('root'));
@@ -292,7 +292,7 @@ export function fetchMessage() {
 
 #### Conditional data fetching {/*conditional-data-fetching*/}
 
-In this example, the `Article` Component only calls `use` when the `shouldIncludeByline` is set to true. If `shouldIncludeByline` the Promise returned by the `fetchByline` function is read by the `use` Hook. The value read by `use` Hook is then used to display the byline of the article's author to the user.
+In this example, the `Article` component only calls `use` when the `shouldIncludeByline` is set to true. If `shouldIncludeByline` is set to true, the Promise returned by `fetchByline()` is read by the use Hook. The value read by `use` Hook is then used to display the byline of the article's author to the user.
 
 <Sandpack>
 
@@ -307,7 +307,7 @@ function Article({ title, body, shouldIncludeByline, authorId }) {
 
   if (shouldIncludeByline && !byline) {
     // Because `use` is inside a conditional block, we avoid blocking
-    // unnecssarily when `shouldIncludeByline` is false.
+    // unnecessarily when `shouldIncludeByline` is false.
     setByline(use(fetchByline(authorId)));
   }
 
@@ -352,7 +352,7 @@ import './styles.css';
 
 // TODO: update this example to use
 // the Codesandbox server component
-// demo enviornemnt once it is created
+// demo environment once it is created
 import App from './App';
 
 const root = createRoot(document.getElementById('root'));
@@ -633,7 +633,7 @@ import './styles.css';
 
 // TODO: update this example to use
 // the Codesandbox server component
-// demo enviornemnt once it is created
+// demo environment once it is created
 import App from './App';
 
 const root = createRoot(document.getElementById('root'));
@@ -692,7 +692,7 @@ In some cases a Promise passed to `use` could be rejected. You can handle reject
 `use` cannot be called in a try-catch block. Instead of a try-catch block [wrap your component in an Error Boundary](#displaying-an-error-to-users-with-error-boundary), or [provide an alternative value to use with the Promise's `.catch` method](#providing-an-alternative-value-with-promise-catch).
 </Pitfall>
 
-#### Displaying an error to users with a error boundary` {/*displaying-an-error-to-users-with-error-boundary*/}
+#### Displaying an error to users with a error boundary {/*displaying-an-error-to-users-with-error-boundary*/}
 
 If you'd like to display an error to your users when a Promise is rejected you can use an [error boundary](/reference/react/Component#catching-rendering-errors-with-an-error-boundary). To use an error boundary wrap the component you are calling the `use` Hook in an error boundary. If the Promise passed to `use` is rejected the fallback for the error boundary will be displayed.
 
@@ -750,7 +750,7 @@ import './styles.css';
 
 // TODO: update this example to use
 // the Codesandbox server component
-// demo enviornemnt once it is created
+// demo environment once it is created
 import App from './App';
 
 const root = createRoot(document.getElementById('root'));
@@ -831,7 +831,7 @@ import './styles.css';
 
 // TODO: update this example to use
 // the Codesandbox server component
-// demo enviornemnt once it is created
+// demo environment once it is created
 import App from './App';
 
 const root = createRoot(document.getElementById('root'));

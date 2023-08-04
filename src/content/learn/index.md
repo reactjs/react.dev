@@ -336,7 +336,7 @@ function MyButton() {
 }
 ```
 
-React will call your component function again. This time, `count` will be `1`. Then it will be `2`. And so on.
+React will call your component function again. This time, `count` will be `1`. Then it will be `2` and so on.
 
 If you render the same component multiple times, each will get its own state. Click each button separately:
 

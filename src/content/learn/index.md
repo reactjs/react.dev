@@ -197,7 +197,7 @@ return (
 );
 ```
 
-If you prefer more compact code, you can use the [conditional `?` operator.](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Conditional_Operator) Unlike `if`, it works inside JSX:
+If you prefer more compact code, you can use the [conditional (ternary) `?` `:` operator.](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Conditional_Operator) Unlike `if`, it works inside JSX:
 
 ```js
 <div>

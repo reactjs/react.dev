@@ -107,7 +107,7 @@ Calling `root.unmount` will unmount all the components in the root and "detach" 
 
 #### Returns {/*root-unmount-returns*/}
 
-`render` returns `null`.
+`root.unmount` returns `undefined`.
 
 #### Caveats {/*root-unmount-caveats*/}
 

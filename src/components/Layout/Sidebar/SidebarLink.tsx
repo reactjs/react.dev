@@ -54,6 +54,7 @@ export function SidebarLink({
       ref={ref}
       title={title}
       target={target}
+      passHref
       aria-current={selected ? 'page' : undefined}
       className={cn(
         'p-2 pr-2 w-full rounded-none lg:rounded-r-2xl text-left hover:bg-gray-5 dark:hover:bg-gray-80 relative flex items-center justify-between',

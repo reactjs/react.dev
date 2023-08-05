@@ -39,10 +39,18 @@ export function Page({children, toc, routeTree, meta, section}: PageProps) {
     cleanedPath,
     routeTree
   );
+  const [isSidebarExpanded, setSidebarExpanded] = React.useState<boolean>(true);
+
   const title = meta.title || route?.title || '';
   const description = meta.description || route?.description || '';
   const isHomePage = cleanedPath === '/';
   const isBlogIndex = cleanedPath === '/blog';
+
+  function toggleLeftSideBar() {
+    setSidebarExpanded(function (prevState) {
+      return !prevState;
+    });
+  }
 
   let content;
   if (isHomePage) {
@@ -64,7 +72,7 @@ export function Page({children, toc, routeTree, meta, section}: PageProps) {
         <div className="px-5 sm:px-12">
           <div
             className={cn(
-              'max-w-7xl mx-auto',
+              'max-w-7xl lg:ml-0 2xl:mx-auto',
               section === 'blog' && 'lg:flex lg:flex-col lg:items-center'
             )}>
             <TocContext.Provider value={toc}>{children}</TocContext.Provider>
@@ -100,7 +108,6 @@ export function Page({children, toc, routeTree, meta, section}: PageProps) {
   if (section === 'learn' || (section === 'blog' && !isBlogIndex)) {
     searchOrder = order;
   }
-
   return (
     <>
       <Seo
@@ -116,10 +123,12 @@ export function Page({children, toc, routeTree, meta, section}: PageProps) {
         breadcrumbs={breadcrumbs}
       />
       <div
-        className={cn(
-          hasColumns &&
-            'grid grid-cols-only-content lg:grid-cols-sidebar-content 2xl:grid-cols-sidebar-content-toc'
-        )}>
+        className={cn(hasColumns && 'grid grid-cols-only-content', {
+          'lg:grid-cols-sidebar-content 2xl:grid-cols-sidebar-content-toc':
+            isSidebarExpanded,
+          'lg:grid-cols-miniSidebar-content xl:grid-cols-miniSidebar-content-toc':
+            !isSidebarExpanded,
+        })}>
         {showSidebar && (
           <div className="lg:-mt-16">
             <div className="lg:pt-16 fixed lg:sticky top-0 left-0 right-0 py-0 shadow lg:shadow-none">
@@ -127,6 +136,8 @@ export function Page({children, toc, routeTree, meta, section}: PageProps) {
                 key={section}
                 routeTree={routeTree}
                 breadcrumbs={breadcrumbs}
+                isExpanded={isSidebarExpanded}
+                toggleLeftSideBar={toggleLeftSideBar}
               />
             </div>
           </div>
@@ -185,7 +196,11 @@ export function Page({children, toc, routeTree, meta, section}: PageProps) {
             </div>
           </main>
         </Suspense>
-        <div className="-mt-16 hidden lg:max-w-xs 2xl:block">
+        <div
+          className={cn('-mt-16 hidden lg:max-w-xs', {
+            '2xl:block': isSidebarExpanded,
+            'xl:block': !isSidebarExpanded,
+          })}>
           {showToc && toc.length > 0 && <Toc headings={toc} key={asPath} />}
         </div>
       </div>

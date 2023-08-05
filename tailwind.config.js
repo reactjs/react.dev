@@ -144,6 +144,8 @@ module.exports = {
         'only-content': 'auto',
         'sidebar-content': '20rem auto',
         'sidebar-content-toc': '20rem auto 20rem',
+        'miniSidebar-content-toc': '5rem auto 20rem',
+        'miniSidebar-content': '5rem auto',
       },
     },
   },

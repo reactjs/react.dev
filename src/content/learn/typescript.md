@@ -98,7 +98,7 @@ The type describing your component's props can be as simple or as complex as you
 
 ## Hooks {/*typing-hooks*/}
 
-The type definitions from `@types/react` include types for the built-in hooks, so you can use them in your components without any additional setup. They are built to take into account the code you write in your component, so you will get inferred types a lot of the time and ideally do not need to handle the minutiae of providing the types. However, we can look at a few examples of how to provide types for hooks.
+The type definitions from `@types/react` include types for the built-in hooks, so you can use them in your components without any additional setup. They are built to take into account the code you write in your component, so you will get [inferred types](https://www.typescriptlang.org/docs/handbook/type-inference.html) a lot of the time and ideally do not need to handle the minutiae of providing the types. However, we can look at a few examples of how to provide types for hooks.
 
 ### `useState` {/*typing-usestate*/}
 

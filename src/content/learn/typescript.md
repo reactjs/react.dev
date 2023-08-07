@@ -299,48 +299,6 @@ function MyComponent() {
 }
 ```
 
-### `useRef` {/*typing-useref*/}
-
-The [`useRef` hook](/reference/react/useRef) returns a reference object (ref) whose `.current` property is initialized to the passed argument. The returned object will persist for the full lifetime of the component. It is often used to access the underlying DOM element in a component, but it can also be used to store any values where changes should not cause re-renders.
-
-The inferred types for `useRef` will either provide you with a mutable ref, or an immutable ref based on whether `null` is passed as the initial value (or explicitly included in a union with the type you want to use). An immutable ref cannot have `.current` changed by your code, but it can be set by React via the `ref={ref}` API.
-
-When interacting with the DOM, the type of the ref should be set to the type of the underlying DOM element. The type names match the names provided in the HTML specification. A rough heuristic is `HTML` + the name of the element + `Element`, for example `HTMLDivElement` or `HTMLButtonElement`. You can see the full [list from TypeScript 5.1 here](https://github.com/microsoft/TypeScript/blob/a3773ec590c4f0308d546f0e65818cd0d12402f3/src/lib/dom.generated.d.ts#L26899-L27012) and the [list in MDN here](https://developer.mozilla.org/en-US/docs/Web/API#h_2). 
-
-These types are provided globally by the "DOM" lib, which is included by default in TypeScript projects and do not need to be imported.
-
-<Sandpack>
-
-```tsx App.tsx active
-import { useRef } from 'react';
-
-export default function Form() {
-  const inputRef = useRef<HTMLButtonElement | null>(null);
-
-  function handleClick() {
-    // The ?. is used because of the `| null` above.
-    inputRef?.current.focus();
-  }
-
-  return (
-    <>
-      <input ref={inputRef} />
-      <button onClick={handleClick}>
-        Focus the input
-      </button>
-    </>
-  );
-}
-```
-
-```js App.js hidden
-import AppTSX from "./App.tsx";
-export default App = AppTSX;
-```
-
-</Sandpack>
-
-
 ### `useMemo` {/*typing-usememo*/}
 
 The [`useMemo`](/reference/react/useMemo) hooks will create/re-access a memorized value from a function call, re-running the function only when dependencies passed as the 2nd parameter are changed. The result of calling the hook is inferred from the return value from the function in the first parameter. You can be more explicit by providing a type argument to the hook.
@@ -384,10 +342,6 @@ export default function Form() {
   );
 }
 ```
-
-### `useEffect` {/*typing-useeffect*/}
-
-The [`useEffect` hook](/reference/react/useEffect) is used to perform side effects in a component after it has rendered. It is called after every render by default, but can be configured to only run when certain values change. The type of the function passed to `useEffect` is inferred from the return value of the function, and you can be more explicit by providing a type argument to the hook.
 
 ## Useful Types {/*useful-types*/}
 
@@ -467,7 +421,10 @@ interface MyComponentProps {
 
 ## Further learning {/*further-learning*/}
 
-This guide has covered the basics of using TypeScript with React, but there is a lot more to learn. We recommend the following resources:
+This guide has covered the basics of using TypeScript with React, but there is a lot more to learn.
+Individual API pages on the docs may contain more in-depth documentation on how to use them with TypeScript.
+
+We recommend the following resources:
 
  - [The TypeScript handbook](https://www.typescriptlang.org/docs/handbook/) is the official documentation for TypeScript, and covers most key language features.
 

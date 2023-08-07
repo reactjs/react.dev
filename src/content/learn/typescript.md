@@ -203,6 +203,8 @@ We are using TypeScript in a few key places:
 A more explicit alternative to setting the type on `initialState` is to provide a type argument to `useReducer`:
 
 ```ts
+import { stateReducer, State } from './your-reducer-implementation';
+
 const initialState = { count: 0 };
 
 export default function App() {

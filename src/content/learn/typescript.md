@@ -18,10 +18,34 @@ TypeScript is a popular way to add type definitions to JavaScript codebases. Out
 
 </YouWillLearn>
 
+## Installation {/*installation*/}
 
-All of the production-grade frameworks mentioned in [Start a New React Project](/learn/start-a-new-react-project) offer support for using TypeScript with React, we recommend consulting their documentation for more information on setup. This guide assumes you have your project configured to support writing `*.tsx` TypeScript React files, and have finished the Quick Start guide.
+All of the production-grade frameworks mentioned in [Start a New React Project](/learn/start-a-new-react-project) offer support for using TypeScript with React, we recommend consulting their documentation for more information on setup. 
+
+### Adding TypeScript to an existing React project {/*adding-typescript-to-an-existing-react-project*/}
+
+To install the latest version of React's type definitions:
+
+```bash
+npm install @types/react @types/react-dom
+```
+
+Or if you’re using yarn:
+
+```bash
+yarn add @types/react @types/react-dom
+```
+
+The following compiler options need to be set in your `tsconfig.json`:
+
+1. `dom` must be included in [`lib`](https://www.typescriptlang.org/tsconfig/#lib) (Note: If no `lib` option is specified, `dom` is included by default)
+1. [`jsx`](https://www.typescriptlang.org/tsconfig/#jsx) must be set 
+  `preserve` should suffice for most applications.
+  If you're publishing a library, consult the [`jsx` documentation](https://www.typescriptlang.org/tsconfig/#jsx) on what value to choose.
 
 ## TypeScript with React Components {/*typescript-with-react-components*/}
+
+Keep in mind that every file containing JSX must use the `.tsx` file extension.
 
 Writing TypeScript with React is very similar to writing JavaScript with React. The key difference when working with a component is that you can provide types for your component's props. These types can be used for correctness checking and providing inline documentation in editors.
 

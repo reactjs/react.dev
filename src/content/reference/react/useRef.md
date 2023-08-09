@@ -538,45 +538,6 @@ Here, the `playerRef` itself is nullable. However, you should be able to convinc
 
 ---
 
-### TypeScript {/*typescript*/}
-
-The inferred types for `useRef` will either provide you with a mutable ref, or an immutable ref based on whether `null` is passed as the initial value (or explicitly included in a union with the type you want to use). An immutable ref cannot have `.current` changed by your code, but it can be set by React via the `ref={ref}` API.
-
-When interacting with the DOM, the type of the ref should be set to the type of the underlying DOM element. The type names match the names provided in the HTML specification. A rough heuristic is `HTML` + the name of the element + `Element`, for example `HTMLDivElement` or `HTMLButtonElement`. You can see the full [list from TypeScript 5.1 here](https://github.com/microsoft/TypeScript/blob/a3773ec590c4f0308d546f0e65818cd0d12402f3/src/lib/dom.generated.d.ts#L26899-L27012) and the [list in MDN here](https://developer.mozilla.org/en-US/docs/Web/API#h_2). 
-
-These types are provided globally by the "DOM" lib, which is included by default in TypeScript projects and do not need to be imported.
-
-<Sandpack>
-
-```tsx App.tsx active
-import { useRef } from 'react';
-
-export default function Form() {
-  const inputRef = useRef<HTMLButtonElement | null>(null);
-
-  function handleClick() {
-    // The ?. is used because of the `| null` above.
-    inputRef?.current.focus();
-  }
-
-  return (
-    <>
-      <input ref={inputRef} />
-      <button onClick={handleClick}>
-        Focus the input
-      </button>
-    </>
-  );
-}
-```
-
-```js App.js hidden
-import AppTSX from "./App.tsx";
-export default App = AppTSX;
-```
-
-</Sandpack>
-
 ## Troubleshooting {/*troubleshooting*/}
 
 ### I can't get a ref to a custom component {/*i-cant-get-a-ref-to-a-custom-component*/}

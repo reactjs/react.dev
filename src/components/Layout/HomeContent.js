@@ -67,14 +67,6 @@ function Para({children}) {
   );
 }
 
-function Left({children}) {
-  return (
-    <div className="px-5 lg:px-0 max-w-4xl lg:text-start text-white text-opacity-80">
-      {children}
-    </div>
-  );
-}
-
 function Center({children}) {
   return (
     <div className="px-5 lg:px-0 max-w-4xl lg:text-center text-white text-opacity-80 flex flex-col items-center justify-center">

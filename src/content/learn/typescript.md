@@ -12,7 +12,7 @@ TypeScript is a popular way to add type definitions to JavaScript codebases. Out
 <YouWillLearn>
 
 * [TypeScript with React Components](/learn/typescript#typescript-with-react-components)
-* [Typing common hooks](/learn/typescript#typing-hooks)
+* [Examples of typing with hooks](/learn/typescript#example-hooks)
 * [Common types from `@types/react`](/learn/typescript/#useful-types)
 * [Further learning locations](/learn/typescript/#further-learning)
 
@@ -20,8 +20,7 @@ TypeScript is a popular way to add type definitions to JavaScript codebases. Out
 
 ## Installation {/*installation*/}
 
-All of the production-grade frameworks mentioned in [Start a New React Project](/learn/start-a-new-react-project) offer support for using TypeScript with React.
-You may want to look at the TypeScript guides for:
+All [production-grade React frameworks](https://react-dev-git-fork-orta-typescriptpage-fbopensource.vercel.app/learn/start-a-new-react-project#production-grade-react-frameworks) offer support for using TypeScript. Follow the framework specific guide for installation:
 
 - [Next.js](https://nextjs.org/docs/pages/building-your-application/configuring/typescript)
 - [Remix](https://remix.run/docs/en/1.19.2/guides/typescript)
@@ -32,30 +31,27 @@ You may want to look at the TypeScript guides for:
 
 To install the latest version of React's type definitions:
 
-```bash
+<TerminalBlock>
 npm install @types/react @types/react-dom
-```
-
-Or if you’re using yarn:
-
-```bash
-yarn add @types/react @types/react-dom
-```
+</TerminalBlock>
 
 The following compiler options need to be set in your `tsconfig.json`:
 
-1. `dom` must be included in [`lib`](https://www.typescriptlang.org/tsconfig/#lib) (Note: If no `lib` option is specified, `dom` is included by default)
-1. [`jsx`](https://www.typescriptlang.org/tsconfig/#jsx) must be set 
-  `preserve` should suffice for most applications.
+1. `dom` must be included in [`lib`](https://www.typescriptlang.org/tsconfig/#lib) (Note: If no `lib` option is specified, `dom` is included by default).
+1. [`jsx`](https://www.typescriptlang.org/tsconfig/#jsx) must be set to one of the valid options. `preserve` should suffice for most applications.
   If you're publishing a library, consult the [`jsx` documentation](https://www.typescriptlang.org/tsconfig/#jsx) on what value to choose.
 
 ## TypeScript with React Components {/*typescript-with-react-components*/}
 
-Keep in mind that every file containing JSX must use the `.tsx` file extension.
+<Note>
+
+Every file containing JSX must use the `.tsx` file extension. This is a TypeScript-specific extension that tells TypeScript that this file contains JSX.
+
+</Note>
 
 Writing TypeScript with React is very similar to writing JavaScript with React. The key difference when working with a component is that you can provide types for your component's props. These types can be used for correctness checking and providing inline documentation in editors.
 
-Taking the [`MyButton` functional component](/learn#components) from the [Quick Start](/learn) guide, we can add a type describing the `title` for the button:
+Taking the [`MyButton` component](/learn#components) from the [Quick Start](/learn) guide, we can add a type describing the `title` for the button:
 
 <Sandpack>
 
@@ -88,7 +84,7 @@ These sandboxes can handle TypeScript code, but they do not run the type-checker
 
 </Note>
 
-This inline syntax is the simplest way to provide types for a functional component, though once you start to have a few fields to describe it can become unwieldy. Instead, you can use an `interface` or `type` to describe the component's props:
+This inline syntax is the simplest way to provide types for a component, though once you start to have a few fields to describe it can become unwieldy. Instead, you can use an `interface` or `type` to describe the component's props:
 
 <Sandpack>
 
@@ -126,9 +122,11 @@ export default App = AppTSX;
 The type describing your component's props can be as simple or as complex as you need, though they should be an object type described with either a `type` or `interface`. You can learn about how TypeScript describes objects in [Object Types](https://www.typescriptlang.org/docs/handbook/2/objects.html) but you may also be interested in using [Union Types](https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#union-types) to describe a prop that can be one of a few different types and the [Creating Types from Types](https://www.typescriptlang.org/docs/handbook/2/types-from-types.html) guide for more advanced use cases.
 
 
-## Hooks {/*typing-hooks*/}
+## Example Hooks {/*example-hooks*/}
 
-The type definitions from `@types/react` include types for the built-in hooks, so you can use them in your components without any additional setup. They are built to take into account the code you write in your component, so you will get [inferred types](https://www.typescriptlang.org/docs/handbook/type-inference.html) a lot of the time and ideally do not need to handle the minutiae of providing the types. However, we can look at a few examples of how to provide types for hooks.
+The type definitions from `@types/react` include types for the built-in hooks, so you can use them in your components without any additional setup. They are built to take into account the code you write in your component, so you will get [inferred types](https://www.typescriptlang.org/docs/handbook/type-inference.html) a lot of the time and ideally do not need to handle the minutiae of providing the types. 
+
+However, we can look at a few examples of how to provide types for hooks.
 
 ### `useState` {/*typing-usestate*/}
 

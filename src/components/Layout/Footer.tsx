@@ -290,7 +290,6 @@ export function Footer() {
           </FooterLink>
           <FooterLink href="/learn/">Quick Start</FooterLink>
           <FooterLink href="/learn/installation">Installation</FooterLink>
-          <FooterLink href="/learn/typescript">Using TypeScript</FooterLink>
           <FooterLink href="/learn/describing-the-ui">
             Describing the UI
           </FooterLink>

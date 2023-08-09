@@ -21,6 +21,7 @@ import {ResetButton} from './ResetButton';
 import {DownloadButton} from './DownloadButton';
 import {IconChevron} from '../../Icon/IconChevron';
 import {Listbox} from '@headlessui/react';
+import {OpenInTypeScriptPlaygroundButton} from './OpenInTypeScriptPlayground';
 
 export function useEvent(fn: any): any {
   const ref = useRef(null);
@@ -184,6 +185,11 @@ export function NavigationBar({providedFiles}: {providedFiles: Array<string>}) {
         <DownloadButton providedFiles={providedFiles} />
         <ResetButton onReset={handleReset} />
         <OpenInCodeSandboxButton />
+        {activeFile.endsWith('.tsx') && (
+          <OpenInTypeScriptPlaygroundButton
+            content={sandpack.files[activeFile]?.code || ''}
+          />
+        )}
       </div>
     </div>
   );

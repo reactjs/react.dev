@@ -8,6 +8,7 @@ import cn from 'classnames';
 import {IconNote} from '../Icon/IconNote';
 import {IconWarning} from '../Icon/IconWarning';
 import {IconPitfall} from '../Icon/IconPitfall';
+import {IconCanary} from '../Icon/IconCanary';
 
 type CalloutVariants = 'deprecated' | 'pitfall' | 'note' | 'wip' | 'canary';
 
@@ -36,10 +37,10 @@ const variantMap = {
   },
   canary: {
     title: 'Canary',
-    Icon: IconWarning,
+    Icon: IconCanary,
     containerClasses:
-      'bg-yellow-5 dark:bg-yellow-60 dark:bg-opacity-20 text-primary dark:text-primary-dark text-lg',
-    textColor: 'text-yellow-50 dark:text-yellow-40',
+      'bg-gray-5 dark:bg-gray-60 dark:bg-opacity-20 text-primary dark:text-primary-dark text-lg',
+    textColor: 'text-gray-60 dark:text-gray-30',
     overlayGradient:
       'linear-gradient(rgba(245, 249, 248, 0), rgba(245, 249, 248, 1)',
   },

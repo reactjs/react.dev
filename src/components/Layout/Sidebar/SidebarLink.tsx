@@ -8,6 +8,7 @@ import {useRef, useEffect} from 'react';
 import * as React from 'react';
 import cn from 'classnames';
 import {IconNavArrow} from 'components/Icon/IconNavArrow';
+import {IconCanary} from 'components/Icon/IconCanary';
 import Link from 'next/link';
 
 interface SidebarLinkProps {
@@ -75,11 +76,10 @@ export function SidebarLink({
       <div>
         {title}{' '}
         {canary && (
-          <span
-            title="This feature is available in the latest React Canary"
-            className="ml-2 border border-yellow-40 dark:border-yellow-50 rounded-full pt-0 pb-0.5 px-2 text-sm text-yellow-40 dark:text-yellow-50 leading-3">
-            Canary
-          </span>
+          <IconCanary
+            title="This feature is available in the latest Canary"
+            className="ml-2 text-gray-30 dark:text-gray-60 inline-block w-4 h-4"
+          />
         )}
       </div>
 

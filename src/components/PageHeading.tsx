@@ -7,6 +7,7 @@ import Tag from 'components/Tag';
 import {H1} from './MDX/Heading';
 import type {RouteTag, RouteItem} from './Layout/getRouteMeta';
 import * as React from 'react';
+import {IconCanary} from './Icon/IconCanary';
 
 interface PageHeadingProps {
   title: string;
@@ -33,11 +34,10 @@ function PageHeading({
           <div className="flex items-center">
             {title}{' '}
             {canary && (
-              <span
-                title="This feature is available in the latest React Canary"
-                className="ml-2 mt-1 border border-yellow-40 dark:border-yellow-50 rounded-full px-2 text-xl text-yellow-40 dark:text-yellow-50 pt-0 pb-1 align-top">
-                Canary
-              </span>
+              <IconCanary
+                title="This feature is available in the latest Canary"
+                className="ml-4 mt-1 text-gray-50 dark:text-gray-40 inline-block w-6 h-6"
+              />
             )}
           </div>
           {status ? <em>—{status}</em> : ''}

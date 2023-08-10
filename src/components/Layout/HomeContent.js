@@ -1529,7 +1529,7 @@ function Cover({background, children}) {
         src={background}
         width={500}
         height={263}
-        alt="cover"
+        alt=""
         className="w-full object-cover"
       />
     </div>
@@ -1606,7 +1606,7 @@ function Thumbnail({video}) {
                 key={i}
                 className="h-8 w-8 border-2 shadow-md border-gray-70 object-cover rounded-full"
                 src={src}
-                alt="Speaker"
+                alt=""
               />
             ))}
           </div>

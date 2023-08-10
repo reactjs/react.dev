@@ -87,6 +87,10 @@ const Note = ({children}: {children: React.ReactNode}) => (
   <ExpandableCallout type="note">{children}</ExpandableCallout>
 );
 
+const Canary = ({children}: {children: React.ReactNode}) => (
+  <ExpandableCallout type="canary">{children}</ExpandableCallout>
+);
+
 const Blockquote = ({
   children,
   ...props
@@ -416,6 +420,7 @@ export const MDXComponents = {
   Math,
   MathI,
   Note,
+  Canary,
   PackageImport,
   ReadBlogPost,
   Recap,

@@ -8,6 +8,7 @@ import {useRef, useEffect} from 'react';
 import * as React from 'react';
 import cn from 'classnames';
 import {IconNavArrow} from 'components/Icon/IconNavArrow';
+import {IconCanary} from 'components/Icon/IconCanary';
 import Link from 'next/link';
 
 interface SidebarLinkProps {
@@ -15,7 +16,7 @@ interface SidebarLinkProps {
   selected?: boolean;
   title: string;
   level: number;
-  wip: boolean | undefined;
+  canary?: boolean;
   icon?: React.ReactNode;
   isExpanded?: boolean;
   hideArrow?: boolean;
@@ -26,7 +27,7 @@ export function SidebarLink({
   href,
   selected = false,
   title,
-  wip,
+  canary,
   level,
   isExpanded,
   hideArrow,
@@ -72,12 +73,16 @@ export function SidebarLink({
         }
       )}>
       {/* This here needs to be refactored ofc */}
-      <span
-        className={cn({
-          'text-gray-400 dark:text-gray-500': wip,
-        })}>
-        {title}
-      </span>
+      <div>
+        {title}{' '}
+        {canary && (
+          <IconCanary
+            title="This feature is available in the latest Canary"
+            className="ml-2 text-gray-30 dark:text-gray-60 inline-block w-4 h-4 align-[-3px]"
+          />
+        )}
+      </div>
+
       {isExpanded != null && !hideArrow && (
         <span
           className={cn('pr-1', {

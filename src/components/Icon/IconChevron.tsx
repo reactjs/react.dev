@@ -18,9 +18,11 @@ export const IconChevron = memo<
   const classes = cn(
     {
       'rotate-0': displayDirection === 'down',
-      'rotate-90': displayDirection === 'left' || displayDirection === 'start',
+      'rotate-90': displayDirection === 'left',
       'rotate-180': displayDirection === 'up',
-      '-rotate-90': displayDirection === 'right' || displayDirection === 'end',
+      '-rotate-90': displayDirection === 'right',
+      'rotate-90 rtl:-rotate-90': displayDirection === 'start',
+      '-rotate-90 rtl:rotate-90': displayDirection === 'end',
     },
     className
   );

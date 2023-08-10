@@ -1078,7 +1078,7 @@ You can override the context for a part of the tree by wrapping that part in a p
 
 You can nest and override providers as many times as you need.
 
-<Recipes title="Examples of overriding context">
+<Recipes titleText="Examples of overriding context">
 
 #### Overriding a theme {/*overriding-a-theme*/}
 

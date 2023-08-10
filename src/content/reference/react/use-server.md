@@ -5,7 +5,7 @@ canary: true
 
 <Canary>
 
-`'use server'` available in the [Canary](https://react.dev/community/versioning-policy#canary-channel) release channel. It is needed only if you're [using React Server Components](/learn/start-a-new-react-project#bleeding-edge-react-frameworks) or building a library compatible with them.
+`'use server'` is needed only if you're [using React Server Components](/learn/start-a-new-react-project#bleeding-edge-react-frameworks) or building a library compatible with them.
 
 </Canary>
 

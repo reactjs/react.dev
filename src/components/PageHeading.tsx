@@ -31,19 +31,17 @@ function PageHeading({
       <div className="max-w-4xl ml-0 2xl:mx-auto">
         {breadcrumbs ? <Breadcrumbs breadcrumbs={breadcrumbs} /> : null}
         <H1 className="mt-0 text-primary dark:text-primary-dark -mx-.5 break-words">
-          <div className="flex items-center">
-            {title}{' '}
-            {canary && (
-              <IconCanary
-                title="This feature is available in the latest Canary"
-                className="ml-4 mt-1 text-gray-50 dark:text-gray-40 inline-block w-6 h-6"
-              />
-            )}
-          </div>
+          {title}
+          {canary && (
+            <IconCanary
+              title="This feature is available in the latest Canary"
+              className="ml-4 mt-1 text-gray-50 dark:text-gray-40 inline-block w-6 h-6"
+            />
+          )}
           {status ? <em>—{status}</em> : ''}
         </H1>
         {description && (
-          <p className="mt-4 mb-6 text-primary dark:text-primary-dark text-xl text-gray-90 leading-large">
+          <p className="mt-4 mb-6 dark:text-primary-dark text-xl text-gray-90 leading-large">
             {description}
           </p>
         )}

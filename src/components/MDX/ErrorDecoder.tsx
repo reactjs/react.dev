@@ -6,7 +6,8 @@ function replaceArgs(msg: string, argList: Array<string | undefined>): string {
   let argIdx = 0;
   return msg.replace(/%s/g, function () {
     const arg = argList[argIdx++];
-    return arg === undefined ? '[missing argument]' : arg;
+    // arg can be an empty string: ?invariant=377&args[0]=&args[1]=count
+    return arg === undefined || arg === '' ? '[missing argument]' : arg;
   });
 }
 

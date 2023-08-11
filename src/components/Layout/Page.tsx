@@ -50,7 +50,7 @@ export function Page({children, toc, routeTree, meta, section}: PageProps) {
     content = <HomeContent />;
   } else {
     content = (
-      <div className="pl-0">
+      <div className="ps-0">
         <div
           className={cn(
             section === 'blog' && 'mx-auto px-0 lg:px-4 max-w-5xl'
@@ -124,7 +124,7 @@ export function Page({children, toc, routeTree, meta, section}: PageProps) {
         )}>
         {showSidebar && (
           <div className="lg:-mt-16">
-            <div className="lg:pt-16 fixed lg:sticky top-0 left-0 right-0 py-0 shadow lg:shadow-none">
+            <div className="lg:pt-16 fixed lg:sticky top-0 start-0 end-0 py-0 shadow lg:shadow-none">
               <SidebarNav
                 key={section}
                 routeTree={routeTree}
@@ -166,8 +166,8 @@ export function Page({children, toc, routeTree, meta, section}: PageProps) {
                             target="_blank">
                             Take our survey!
                             <IconNavArrow
-                              displayDirection="right"
-                              className="inline ml-1"
+                              displayDirection="end"
+                              className="inline ms-1"
                             />
                           </ButtonLink>
                         </div>

@@ -75,7 +75,7 @@ function ExpandableCallout({children, type = 'note'}: ExpandableCalloutProps) {
       )}>
       <h3 className={cn('text-2xl font-display font-bold', variant.textColor)}>
         <variant.Icon
-          className={cn('inline mr-3 mb-1 text-lg', variant.textColor)}
+          className={cn('inline me-3 mb-1 text-lg', variant.textColor)}
         />
         {variant.title}
       </h3>

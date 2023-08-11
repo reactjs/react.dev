@@ -23,7 +23,7 @@ const SandpackGlimmer = ({code}: {code: string}) => (
               <div className="sp-cm sp-pristine">
                 <div className="cm-editor">
                   <div>
-                    <div className="cm-gutters pl-9 sticky min-h-[192px]">
+                    <div className="cm-gutters ps-9 sticky min-h-[192px]">
                       <div className="cm-gutter cm-lineNumbers whitespace-pre sp-pre-placeholder">
                         {code}
                       </div>

@@ -62,13 +62,13 @@ const Strong = (strong: JSX.IntrinsicElements['strong']) => (
 );
 
 const OL = (p: JSX.IntrinsicElements['ol']) => (
-  <ol className="ml-6 my-3 list-decimal" {...p} />
+  <ol className="ms-6 my-3 list-decimal" {...p} />
 );
 const LI = (p: JSX.IntrinsicElements['li']) => (
   <li className="leading-relaxed mb-1" {...p} />
 );
 const UL = (p: JSX.IntrinsicElements['ul']) => (
-  <ul className="ml-6 my-3 list-disc" {...p} />
+  <ul className="ms-6 my-3 list-disc" {...p} />
 );
 
 const Divider = () => (
@@ -127,7 +127,7 @@ function LearnMore({
               href={path}
               type="primary">
               Read More
-              <IconNavArrow displayDirection="right" className="inline ml-1" />
+              <IconNavArrow displayDirection="end" className="inline ms-1" />
             </ButtonLink>
           ) : null}
         </div>
@@ -141,7 +141,7 @@ function ReadBlogPost({path}: {path: string}) {
   return (
     <ButtonLink className="mt-1" label="Read Post" href={path} type="primary">
       Read Post
-      <IconNavArrow displayDirection="right" className="inline ml-1" />
+      <IconNavArrow displayDirection="end" className="inline ms-1" />
     </ButtonLink>
   );
 }
@@ -195,7 +195,7 @@ function AuthorCredit({
 }) {
   return (
     <div className="sr-only group-hover:not-sr-only group-focus-within:not-sr-only hover:sr-only">
-      <p className="bg-card dark:bg-card-dark text-center text-sm text-secondary dark:text-secondary-dark leading-tight dark:text-secondary-dark p-2 rounded-lg absolute left-1/2 -top-4 -translate-x-1/2 -translate-y-full group-hover:flex group-hover:opacity-100 after:content-[''] after:absolute after:left-1/2 after:top-[95%] after:-translate-x-1/2 after:border-8 after:border-x-transparent after:border-b-transparent after:border-t-card after:dark:border-t-card-dark opacity-0 transition-opacity duration-300">
+      <p className="bg-card dark:bg-card-dark text-center text-sm text-secondary dark:text-secondary-dark leading-tight p-2 rounded-lg absolute start-1/2 -top-4 -translate-x-1/2 -translate-y-full group-hover:flex group-hover:opacity-100 after:content-[''] after:absolute after:start-1/2 after:top-[95%] after:-translate-x-1/2 after:border-8 after:border-x-transparent after:border-b-transparent after:border-t-card after:dark:border-t-card-dark opacity-0 transition-opacity duration-300">
         <cite>
           Illustrated by{' '}
           {authorLink ? (
@@ -407,7 +407,7 @@ export const MDXComponents = {
     return children;
   },
   MaxWidth({children}: {children: any}) {
-    return <div className="max-w-4xl ml-0 2xl:mx-auto">{children}</div>;
+    return <div className="max-w-4xl ms-0 2xl:mx-auto">{children}</div>;
   },
   Pitfall,
   Deprecated,

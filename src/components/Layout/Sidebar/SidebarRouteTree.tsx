@@ -155,12 +155,12 @@ export function SidebarRouteTree({
                 {index !== 0 && (
                   <li
                     role="separator"
-                    className="mt-4 mb-2 ml-5 border-b border-border dark:border-border-dark"
+                    className="mt-4 mb-2 ms-5 border-b border-border dark:border-border-dark"
                   />
                 )}
                 <h3
                   className={cn(
-                    'mb-1 text-sm font-bold ml-5 text-tertiary dark:text-tertiary-dark',
+                    'mb-1 text-sm font-bold ms-5 text-tertiary dark:text-tertiary-dark',
                     index !== 0 && 'mt-2'
                   )}>
                   {sectionHeader}

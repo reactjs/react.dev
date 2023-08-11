@@ -87,7 +87,11 @@ export default function ErrorDecoder() {
 
     if (typeof window !== 'undefined' && isReady) {
       const parseResult = parseQueryString(window.location.search);
-      if (parseResult != null && errorCodes != null) {
+      if (
+        parseResult != null &&
+        errorCodes != null &&
+        parseResult.code in errorCodes
+      ) {
         code = parseResult.code;
         msg = replaceArgs(errorCodes[code], parseResult.args);
       }

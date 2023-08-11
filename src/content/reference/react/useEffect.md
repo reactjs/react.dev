@@ -426,7 +426,7 @@ body {
 
 #### Tracking element visibility {/*tracking-element-visibility*/}
 
-In this example, the external system is again the browser DOM. The `App` component displays a long list, then a `Box` component, and then another long list. Scroll the list down. Notice that when the `Box` component appears in the viewport, the background color changes to black. To implement this, the `Box` component uses an Effect to manage an [`IntersectionObserver`](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API). This browser API notifies you when the DOM element is visible in the viewport.
+In this example, the external system is again the browser DOM. The `App` component displays a long list, then a `Box` component, and then another long list. Scroll the list down. Notice that when all of the `Box` component is fully visible in the viewport, the background color changes to black. To implement this, the `Box` component uses an Effect to manage an [`IntersectionObserver`](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API). This browser API notifies you when the DOM element is visible in the viewport.
 
 <Sandpack>
 
@@ -471,10 +471,10 @@ export default function Box() {
         document.body.style.backgroundColor = 'white';
         document.body.style.color = 'black';
       }
+    }, {
+       threshold: 1.0
     });
-    observer.observe(div, {
-      threshold: 1.0
-    });
+    observer.observe(div);
     return () => {
       observer.disconnect();
     }
@@ -763,10 +763,10 @@ export function useIntersectionObserver(ref) {
     const observer = new IntersectionObserver(entries => {
       const entry = entries[0];
       setIsIntersecting(entry.isIntersecting);
+    }, {
+       threshold: 1.0
     });
-    observer.observe(div, {
-      threshold: 1.0
-    });
+    observer.observe(div);
     return () => {
       observer.disconnect();
     }

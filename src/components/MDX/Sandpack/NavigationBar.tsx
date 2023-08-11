@@ -21,6 +21,7 @@ import {ResetButton} from './ResetButton';
 import {DownloadButton} from './DownloadButton';
 import {IconChevron} from '../../Icon/IconChevron';
 import {Listbox} from '@headlessui/react';
+import {OpenInTypeScriptPlaygroundButton} from './OpenInTypeScriptPlayground';
 
 export function useEvent(fn: any): any {
   const ref = useRef(null);
@@ -90,15 +91,17 @@ export function NavigationBar({providedFiles}: {providedFiles: Array<string>}) {
     } else {
       return;
     }
-  }, [isMultiFile]);
+
+    // Note: in a real useEvent, onContainerResize would be omitted.
+  }, [isMultiFile, onContainerResize]);
 
   const handleReset = () => {
     /**
      * resetAllFiles must come first, otherwise
-     * the previous content will appears for a second
+     * the previous content will appear for a second
      * when the iframe loads.
      *
-     * Plus, it should only prompts if there's any file changes
+     * Plus, it should only prompt if there's any file changes
      */
     if (
       sandpack.editorState === 'dirty' &&
@@ -182,6 +185,11 @@ export function NavigationBar({providedFiles}: {providedFiles: Array<string>}) {
         <DownloadButton providedFiles={providedFiles} />
         <ResetButton onReset={handleReset} />
         <OpenInCodeSandboxButton />
+        {activeFile.endsWith('.tsx') && (
+          <OpenInTypeScriptPlaygroundButton
+            content={sandpack.files[activeFile]?.code || ''}
+          />
+        )}
       </div>
     </div>
   );

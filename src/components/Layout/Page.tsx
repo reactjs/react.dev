@@ -28,7 +28,7 @@ interface PageProps {
   children: React.ReactNode;
   toc: Array<TocItem>;
   routeTree: RouteItem;
-  meta: {title?: string; description?: string};
+  meta: {title?: string; canary?: boolean; description?: string};
   section: 'learn' | 'reference' | 'community' | 'blog' | 'home' | 'unknown';
 }
 
@@ -40,6 +40,7 @@ export function Page({children, toc, routeTree, meta, section}: PageProps) {
     routeTree
   );
   const title = meta.title || route?.title || '';
+  const canary = meta.canary || false;
   const description = meta.description || route?.description || '';
   const isHomePage = cleanedPath === '/';
   const isBlogIndex = cleanedPath === '/blog';
@@ -56,6 +57,7 @@ export function Page({children, toc, routeTree, meta, section}: PageProps) {
           )}>
           <PageHeading
             title={title}
+            canary={canary}
             description={description}
             tags={route?.tags}
             breadcrumbs={breadcrumbs}

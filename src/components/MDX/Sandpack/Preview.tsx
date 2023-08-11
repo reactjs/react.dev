@@ -49,7 +49,6 @@ export function Preview({
     errorScreenRegisteredRef,
     openInCSBRegisteredRef,
     loadingScreenRegisteredRef,
-    status,
   } = sandpack;
 
   if (

@@ -5,7 +5,6 @@
 import {Suspense} from 'react';
 import * as React from 'react';
 import cn from 'classnames';
-import {Search} from 'components/Search';
 import {Feedback} from '../Feedback';
 import {SidebarRouteTree} from '../Sidebar/SidebarRouteTree';
 import type {RouteItem} from '../getRouteMeta';

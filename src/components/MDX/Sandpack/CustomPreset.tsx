@@ -54,7 +54,6 @@ export const CustomPreset = memo(function CustomPreset({
 
 const SandboxShell = memo(function SandboxShell({
   showDevTools,
-  onDevToolsLoad,
   devToolsLoaded,
   providedFiles,
   lintErrors,

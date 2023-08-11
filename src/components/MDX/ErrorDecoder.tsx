@@ -2,7 +2,7 @@ import {useContext, useMemo} from 'react';
 import {useRouter} from 'next/router';
 import {ErrorCodesContext} from './ErrorCodesContext';
 
-function replaceArgs(msg: string, argList: string[]): string {
+function replaceArgs(msg: string, argList: Array<string | undefined>): string {
   let argIdx = 0;
   return msg.replace(/%s/g, function () {
     const arg = argList[argIdx++];
@@ -33,18 +33,16 @@ function urlify(str: string): React.ReactNode {
 // or `// ?invariant=123&args[0]=foo&args[1]=bar`
 function parseQueryString(
   query: ReturnType<typeof useRouter>['query']
-): {code: string; args: string[]} | null {
+): {code: string; args: Array<string | undefined>} | null {
   let code = '';
-  let args: string[] = [];
+  let args: Array<string | undefined> = [];
 
   if ('invariant' in query && typeof query.invariant === 'string') {
     code = query.invariant;
   }
   Object.entries(query).forEach(([key, value]) => {
     if (key.startsWith('args[')) {
-      if (value) {
-        args.push(Array.isArray(value) ? value[0] : value);
-      }
+      args.push(Array.isArray(value) ? value[0] : value);
     }
   });
 

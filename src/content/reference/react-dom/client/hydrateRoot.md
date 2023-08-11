@@ -301,7 +301,7 @@ export default function App() {
   const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
-    setIsClient(true);
+    setTimeout(() => setIsClient(true), 1000);
   }, []);
 
   return (

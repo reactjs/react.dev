@@ -5,6 +5,7 @@
 import {Fragment, useMemo} from 'react';
 import {useRouter} from 'next/router';
 import {MDXComponents} from 'components/MDX/MDXComponents';
+import {ErrorCodesContext} from 'components/MDX/ErrorCodesContext.tsx';
 import {Page} from 'components/Layout/Page';
 import sidebarHome from '../sidebarHome.json';
 import sidebarLearn from '../sidebarLearn.json';
@@ -12,7 +13,7 @@ import sidebarReference from '../sidebarReference.json';
 import sidebarCommunity from '../sidebarCommunity.json';
 import sidebarBlog from '../sidebarBlog.json';
 
-export default function Layout({content, toc, meta}) {
+export default function Layout({content, toc, meta, errorCodes}) {
   const parsedContent = useMemo(
     () => JSON.parse(content, reviveNodeOnClient),
     [content]
@@ -39,9 +40,11 @@ export default function Layout({content, toc, meta}) {
       break;
   }
   return (
-    <Page toc={parsedToc} routeTree={routeTree} meta={meta} section={section}>
-      {parsedContent}
-    </Page>
+    <ErrorCodesContext.Provider value={errorCodes || null}>
+      <Page toc={parsedToc} routeTree={routeTree} meta={meta} section={section}>
+        {parsedContent}
+      </Page>
+    </ErrorCodesContext.Provider>
   );
 }
 
@@ -111,6 +114,7 @@ export async function getStaticProps(context) {
 
   // Read MDX from the file.
   let path = (context.params.markdownPath || []).join('/') || 'index';
+
   let mdx;
   try {
     mdx = fs.readFileSync(rootDir + path + '.md', 'utf8');
@@ -216,10 +220,31 @@ export async function getStaticProps(context) {
   const fm = require('gray-matter');
   const meta = fm(mdx).data;
 
+  // Serialize MDX into JSON.
+  const content = JSON.stringify(children, stringifyNodeOnServer);
+  toc = JSON.stringify(toc, stringifyNodeOnServer);
+
+  // Do not cache /error-decoder pages in local filesystem, so we can have
+  // latest error codes from GitHub.
+  if (path === 'error-decoder') {
+    return {
+      props: {
+        content,
+        toc,
+        meta,
+        errorCodes: await (
+          await fetch(
+            'https://raw.githubusercontent.com/facebook/react/main/scripts/error-codes/codes.json'
+          )
+        ).json(),
+      },
+    };
+  }
+
   const output = {
     props: {
-      content: JSON.stringify(children, stringifyNodeOnServer),
-      toc: JSON.stringify(toc, stringifyNodeOnServer),
+      content,
+      toc,
       meta,
     },
   };

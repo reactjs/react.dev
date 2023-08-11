@@ -224,8 +224,9 @@ export async function getStaticProps(context) {
   const content = JSON.stringify(children, stringifyNodeOnServer);
   toc = JSON.stringify(toc, stringifyNodeOnServer);
 
+  // Output error codes information for /error-decoder page only
   // Do not cache /error-decoder pages in local filesystem, so we can have
-  // latest error codes from GitHub.
+  // latest error codes from GitHub on every build.
   if (path === 'error-decoder') {
     return {
       props: {

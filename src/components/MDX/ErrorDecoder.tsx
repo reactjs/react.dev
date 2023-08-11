@@ -32,25 +32,21 @@ function urlify(str: string): React.ReactNode {
 // `?invariant=123&args[]=foo&args[]=bar`
 // or `// ?invariant=123&args[0]=foo&args[1]=bar`
 function parseQueryString(
-  search: string
+  query: ReturnType<typeof useRouter>['query']
 ): {code: string; args: string[]} | null {
-  const rawQueryString = search.substring(1);
-  if (!rawQueryString) {
-    return null;
-  }
-
   let code = '';
-  let args = [];
+  let args: string[] = [];
 
-  const queries = rawQueryString.split('&');
-  for (let i = 0; i < queries.length; i++) {
-    const query = decodeURIComponent(queries[i]);
-    if (query.indexOf('invariant=') === 0) {
-      code = query.slice(10);
-    } else if (query.indexOf('args[') === 0) {
-      args.push(query.slice(query.indexOf(']=') + 2));
-    }
+  if ('invariant' in query && typeof query.invariant === 'string') {
+    code = query.invariant;
   }
+  Object.entries(query).forEach(([key, value]) => {
+    if (key.startsWith('args[')) {
+      if (value) {
+        args.push(Array.isArray(value) ? value[0] : value);
+      }
+    }
+  });
 
   return {args, code};
 }
@@ -78,15 +74,17 @@ function ErrorResult(props: {code?: string | null; msg: string}) {
 }
 
 export default function ErrorDecoder() {
-  const {isReady} = useRouter();
+  const {isReady, query} = useRouter();
   const errorCodes = useContext(ErrorCodesContext);
 
   const [code, msg] = useMemo(() => {
     let code = null;
     let msg = '';
 
+    // The `query` object is only populated after the initial hydration, so
+    // we need to wait for the `isReady` becomes `true`
     if (typeof window !== 'undefined' && isReady) {
-      const parseResult = parseQueryString(window.location.search);
+      const parseResult = parseQueryString(query);
       if (
         parseResult != null &&
         errorCodes != null &&
@@ -98,7 +96,7 @@ export default function ErrorDecoder() {
     }
 
     return [code, msg];
-  }, [errorCodes, isReady]);
+  }, [errorCodes, isReady, query]);
 
   return <ErrorResult code={code} msg={msg} />;
 }

@@ -181,10 +181,15 @@ export function HomeContent() {
           <Center>
             <Header>Write components with code and markup</Header>
             <Para>
-              React components are JavaScript functions. Want to show some
-              content conditionally? Use an <Code>if</Code> statement.
-              Displaying a list? Try array <Code>map()</Code>. Learning React is
-              learning programming.
+              React components are JavaScript functions.
+              <br />
+              Want to show some content conditionally? Use an <Code>
+                if
+              </Code>{' '}
+              statement.
+              <br />
+              Displaying a list? Try array <Code>map()</Code>.<br /> Learning
+              React is learning programming.
             </Para>
           </Center>
           <FullBleed>
@@ -237,10 +242,13 @@ export function HomeContent() {
               with a framework
             </Header>
             <Para>
-              React is a library. It lets you put components together, but it
-              doesn’t prescribe how to do routing and data fetching. To build an
-              entire app with React, we recommend a full-stack React framework
-              like <Link href="https://nextjs.org">Next.js</Link> or{' '}
+              React is a library.
+              <br />
+              It lets you put components together, but it doesn’t prescribe how
+              to do routing and data fetching.
+              <br /> To build an entire app with React, we recommend a
+              full-stack React framework like{' '}
+              <Link href="https://nextjs.org">Next.js</Link> or{' '}
               <Link href="https://remix.run">Remix</Link>.
             </Para>
           </Center>
@@ -271,7 +279,8 @@ export function HomeContent() {
               <Para>
                 People love web and native apps for different reasons. React
                 lets you build both web apps and native apps using the same
-                skills. It leans upon each platform’s unique strengths to let
+                skills.
+                <br /> It leans upon each platform’s unique strengths to let
                 your interfaces feel just right on every platform.
               </Para>
             </div>
@@ -396,10 +405,12 @@ export function HomeContent() {
             </div>
             <div className="px-5 lg:px-0 max-w-4xl mx-auto lg:text-center text-secondary dark:text-secondary-dark">
               <Para>
-                With React, you can be a web <i>and</i> a native developer. Your
-                team can ship to many platforms without sacrificing the user
-                experience. Your organization can bridge the platform silos, and
-                form teams that own entire features end-to-end.
+                With React, you can be a web <i>and</i> a native developer.
+                <br />
+                Your team can ship to many platforms without sacrificing the
+                user experience.
+                <br /> Your organization can bridge the platform silos, and form
+                teams that own entire features end-to-end.
               </Para>
               <div className="flex justify-start w-full lg:justify-center">
                 <CTA color="gray" icon="native" href="https://reactnative.dev/">

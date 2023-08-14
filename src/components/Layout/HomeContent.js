@@ -849,7 +849,7 @@ function ExampleLayout({
               {overlayStyles.map((styles, i) => (
                 <div
                   key={i}
-                  className="inset-x-0 bg-blue-30/5 border-2 border-link dark:border-link-dark absolute rounded-lg"
+                  className="top-0 start-0 bg-blue-30/5 border-2 border-link dark:border-link-dark absolute rounded-lg"
                   style={styles}
                 />
               ))}

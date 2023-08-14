@@ -5,7 +5,6 @@
 import {Fragment, useMemo} from 'react';
 import {useRouter} from 'next/router';
 import {MDXComponents} from 'components/MDX/MDXComponents';
-import {ErrorCodesContext} from 'components/MDX/ErrorCodesContext.tsx';
 import {Page} from 'components/Layout/Page';
 import sidebarHome from '../sidebarHome.json';
 import sidebarLearn from '../sidebarLearn.json';
@@ -13,7 +12,7 @@ import sidebarReference from '../sidebarReference.json';
 import sidebarCommunity from '../sidebarCommunity.json';
 import sidebarBlog from '../sidebarBlog.json';
 
-export default function Layout({content, toc, meta, errorCodes}) {
+export default function Layout({content, toc, meta}) {
   const parsedContent = useMemo(
     () => JSON.parse(content, reviveNodeOnClient),
     [content]
@@ -40,11 +39,9 @@ export default function Layout({content, toc, meta, errorCodes}) {
       break;
   }
   return (
-    <ErrorCodesContext.Provider value={errorCodes || null}>
-      <Page toc={parsedToc} routeTree={routeTree} meta={meta} section={section}>
-        {parsedContent}
-      </Page>
-    </ErrorCodesContext.Provider>
+    <Page toc={parsedToc} routeTree={routeTree} meta={meta} section={section}>
+      {parsedContent}
+    </Page>
   );
 }
 
@@ -223,24 +220,6 @@ export async function getStaticProps(context) {
   // Serialize MDX into JSON.
   const content = JSON.stringify(children, stringifyNodeOnServer);
   toc = JSON.stringify(toc, stringifyNodeOnServer);
-
-  // Output error codes information for /error-decoder page only
-  // Do not cache /error-decoder pages in local filesystem, so we can have
-  // latest error codes from GitHub on every build.
-  if (path === 'error-decoder') {
-    return {
-      props: {
-        content,
-        toc,
-        meta,
-        errorCodes: await (
-          await fetch(
-            'https://raw.githubusercontent.com/facebook/react/main/scripts/error-codes/codes.json'
-          )
-        ).json(),
-      },
-    };
-  }
 
   const output = {
     props: {

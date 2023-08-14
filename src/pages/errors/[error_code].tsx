@@ -5,7 +5,7 @@ import sidebarLearn from 'sidebarLearn.json';
 import type {RouteItem} from 'components/Layout/getRouteMeta';
 import {GetStaticPaths, GetStaticProps, InferGetStaticPropsType} from 'next';
 
-const {MaxWidth, p: P} = MDXComponents;
+const {MaxWidth, p: P, Intro} = MDXComponents;
 
 interface ErrorDecoderProps {
   errorCode: string;
@@ -22,11 +22,13 @@ export default function ErrorDecoderPage({
       routeTree={sidebarLearn as RouteItem}
       section="unknown">
       <MaxWidth>
-        <P>
-          In the minified production build of React, we avoid sending down full
-          error messages in order to reduce the number of bytes sent over the
-          wire.
-        </P>
+        <Intro>
+          <P>
+            In the minified production build of React, we avoid sending down
+            full error messages in order to reduce the number of bytes sent over
+            the wire.
+          </P>
+        </Intro>
         <P>
           We highly recommend using the development build locally when debugging
           your app since it tracks additional debug info and provides helpful

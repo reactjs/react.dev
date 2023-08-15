@@ -42,14 +42,23 @@ export default function ErrorDecoderPage({
   );
 }
 
+/**
+ * Next.js Page Router doesn't have a way to cache specific data fetching request.
+ * But since Next.js uses limited number of workers, keep "cachedErrorCodes" as a
+ * module level memory cache can reduce the number of requests down to once per worker.
+ *
+ * TODO: use `next/unstable_cache` when migrating to Next.js App Router
+ */
+let cachedErrorCodes: Record<string, string> | null = null;
+
 export const getStaticProps: GetStaticProps<ErrorDecoderProps> = async ({
   params,
 }) => {
-  const errorCodes = await (
+  const errorCodes = (cachedErrorCodes ||= await (
     await fetch(
       'https://raw.githubusercontent.com/facebook/react/main/scripts/error-codes/codes.json'
     )
-  ).json();
+  ).json());
 
   const code =
     typeof params?.error_code === 'string' ? params?.error_code : null;
@@ -68,11 +77,11 @@ export const getStaticProps: GetStaticProps<ErrorDecoderProps> = async ({
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const errorCodes = await (
+  const errorCodes = (cachedErrorCodes ||= await (
     await fetch(
       'https://raw.githubusercontent.com/facebook/react/main/scripts/error-codes/codes.json'
     )
-  ).json();
+  ).json());
 
   const paths = Object.keys(errorCodes).map((code) => ({
     params: {

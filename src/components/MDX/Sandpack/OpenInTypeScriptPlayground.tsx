@@ -16,7 +16,7 @@ export const OpenInTypeScriptPlaygroundButton = (props: {content: string}) => {
       target="_blank"
       rel="noreferrer">
       <IconNewPage
-        className="inline ml-1 mr-1 relative top-[1px]"
+        className="inline mx-1 relative top-[1px]"
         width="1em"
         height="1em"
       />

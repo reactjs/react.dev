@@ -58,7 +58,7 @@ export function SidebarLink({
       passHref
       aria-current={selected ? 'page' : undefined}
       className={cn(
-        'p-2 pe-2 w-full rounded-none lg:rounded-s-2xl text-start hover:bg-gray-5 dark:hover:bg-gray-80 relative flex items-center justify-between',
+        'p-2 pe-2 w-full rounded-none lg:rounded-e-2xl text-start hover:bg-gray-5 dark:hover:bg-gray-80 relative flex items-center justify-between',
         {
           'text-sm ps-6': level > 0,
           'ps-5': level < 2,
@@ -78,7 +78,7 @@ export function SidebarLink({
         {canary && (
           <IconCanary
             title="This feature is available in the latest Canary"
-            className="ml-2 text-gray-30 dark:text-gray-60 inline-block w-4 h-4 align-[-3px]"
+            className="ms-2 text-gray-30 dark:text-gray-60 inline-block w-4 h-4 align-[-3px]"
           />
         )}
       </div>

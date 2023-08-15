@@ -11,7 +11,7 @@ export const OpenInCodeSandboxButton = () => {
       className="text-sm text-primary dark:text-primary-dark inline-flex items-center hover:text-link duration-100 ease-in transition mx-1 ms-2 md:ms-1"
       title="Open in CodeSandbox">
       <IconNewPage
-        className="inline ms-1 me-1 relative top-[1px]"
+        className="inline mx-1 relative top-[1px]"
         width="1em"
         height="1em"
       />

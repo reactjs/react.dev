@@ -199,21 +199,11 @@ html.dark .sp-wrapper {
   background: var(--sp-colors-surface1);
 }
 
-.sandpack .sp-code-editor .cm-editor,
-.sandpack .sp-code-editor .cm-editor .cm-gutters {
-  background-color: transparent;
-}
-
 .sandpack .sp-code-editor .cm-content,
 .sandpack .sp-code-editor .cm-gutters,
 .sandpack .sp-code-editor .cm-gutterElement {
   padding: 0;
   -webkit-font-smoothing: auto; /* Improve the legibility */
-}
-
-.sandpack .sp-code-editor .cm-content {
-  overflow-x: auto;
-  padding-bottom: 18px;
 }
 
 .sandpack--playground .sp-code-editor .cm-line {
@@ -262,9 +252,9 @@ html.dark .sp-wrapper {
 }
 
 .sp-code-editor .sp-cm .cm-scroller {
-  overflow-x: hidden;
+  overflow-x: auto;
   overflow-y: auto;
-  padding-top: 18px;
+  padding: 18px 0;
 }
 
 /**

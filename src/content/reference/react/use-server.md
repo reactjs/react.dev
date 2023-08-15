@@ -48,8 +48,4 @@ Alternatively, add `'use server';` at the very top of a file to mark all exports
 
 ## Usage {/*usage*/}
 
-<Wip>
-
-This section is incomplete. See also the [Next.js documentation for Server Components](https://beta.nextjs.org/docs/rendering/server-and-client-components).
-
-</Wip>
+<Wip />

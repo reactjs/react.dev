@@ -182,7 +182,7 @@ When rendering `Profile`, we call `getUser` again. In the ideal case, the initia
 Memoization only occurs within component renders.
 
 ```jsx
-import {cache} from "react";
+import {cache} from 'react';
 
 const getUser = cache(async (userId) => {
   return await db.user.query(userId);    

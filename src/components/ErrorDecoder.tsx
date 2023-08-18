@@ -70,7 +70,7 @@ export default function ErrorDecoder({errorMessages}: ErrorDecoderProps) {
   const {isReady, query} = useRouter();
 
   const msg = useMemo<React.ReactNode | null>(() => {
-    if (errorMessages === null) {
+    if (errorMessages == null) {
       return null;
     }
 

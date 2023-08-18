@@ -111,7 +111,6 @@ export async function getStaticProps(context) {
 
   // Read MDX from the file.
   let path = (context.params.markdownPath || []).join('/') || 'index';
-
   let mdx;
   try {
     mdx = fs.readFileSync(rootDir + path + '.md', 'utf8');
@@ -217,14 +216,10 @@ export async function getStaticProps(context) {
   const fm = require('gray-matter');
   const meta = fm(mdx).data;
 
-  // Serialize MDX into JSON.
-  const content = JSON.stringify(children, stringifyNodeOnServer);
-  toc = JSON.stringify(toc, stringifyNodeOnServer);
-
   const output = {
     props: {
-      content,
-      toc,
+      content: JSON.stringify(children, stringifyNodeOnServer),
+      toc: JSON.stringify(toc, stringifyNodeOnServer),
       meta,
     },
   };

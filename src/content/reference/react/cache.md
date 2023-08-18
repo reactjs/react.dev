@@ -60,7 +60,8 @@ Caching return values based on inputs is also known as [*memoization*](https://e
 
 #### Caveats {/*caveats*/}
 
-* `cache` is recommended for React [Server Component](/reference/react/components/#server-components) environments only. There are plans to introduce `cache` for [Client Components](/reference/react/components#client-components) but it is not recommended today.
+[//]: # (TODO: add links to Server/Client Component reference once https://github.com/reactjs/react.dev/pull/6177 is merged)
+* `cache` is recommended for React Server Component environments only. There are plans to introduce `cache` for Client Components but it is not recommended today.
 * React will invalidate the cache for a memoizing function across server requests.
 * The benefit of `cache` is to skip duplicate work across components. To leverage this benefit, `cachingFn`, should be defined in a scope that is accessible to components. In most cases, this means calling `cache` and defining the memoizing function in the global scope.
 * Each call to `cache` creates a new memoizing version of `fn`. This means that wrapping `cache` around the same function multiple times will return different memoizing functions and they will not share the same cache.
@@ -101,8 +102,6 @@ To leverage the cache, components should use the same memoizing function instanc
 
 ```js
 // temperature.js
-import {cache} from 'react';
-
 export async function fetchTemperature(city) {
   return await fetch(`https://...`);
 }
@@ -112,22 +111,26 @@ import {cache} from 'react';
 import {fetchTemperature} from './temperature';
 
 const getTemperature = cache(fetchTemperature);
-async function MinimalWeatherCard({city}) {
-	const temperature = getTemperature(city);
-  return <h1>{temperature}</h1>;
+
+export default async function MinimalWeatherCard({city}) {
+	const temperature = await getTemperature(city);
+  // ...
 }
 
 // animatedWeatherCard.js
 import {cache} from 'react';
 import {fetchTemperature} from './temperature';
 
-function AnimatedWeatherCard({city}) {
+export default async function AnimatedWeatherCard({city}) {
 	const getTemperature = cache(fetchTemperature);
-	const temperature = getTemperature(city);
-  return <h1>{temperature}</h1>;
+	const temperature = await getTemperature(city);
+  // ...
 }
 
 // app.js
+import AnimatedWeatherCard from './animatedWeatherCard';
+import AnimatedWeatherCard from './animatedWeatherCard';
+
 function App() {
 	return (<>
       <AnimatedWeatherCard city="Los Angeles" />

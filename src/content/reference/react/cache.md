@@ -180,7 +180,7 @@ When rendering `Profile`, we call `getUser` again. In the ideal case, the initia
 
 <Pitfall>
 
-Memoization only occurs within component renders.
+Cache is only saved during component renders.
 
 ```jsx
 import {cache} from 'react';

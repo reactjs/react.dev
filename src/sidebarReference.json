@@ -99,6 +99,10 @@
       "path": "/reference/react/apis",
       "routes": [
         {
+          "title": "cache",
+          "path": "/reference/react/cache"
+        },
+        {
           "title": "createContext",
           "path": "/reference/react/createContext"
         },

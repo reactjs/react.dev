@@ -1,5 +1,6 @@
 ---
 title: cache
+canary: true
 ---
 
 <Canary>

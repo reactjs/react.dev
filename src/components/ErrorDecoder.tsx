@@ -1,5 +1,4 @@
-import {useMemo} from 'react';
-import {useRouter} from 'next/router';
+import {useEffect, useState} from 'react';
 
 function replaceArgs(
   msg: string,
@@ -48,16 +47,21 @@ function urlify(str: string): React.ReactNode[] {
 
 // `?args[]=foo&args[]=bar`
 // or `// ?args[0]=foo&args[1]=bar`
-function parseQueryString(
-  query: ReturnType<typeof useRouter>['query']
-): Array<string | undefined> {
+function parseQueryString(search: string): Array<string | undefined> {
+  const rawQueryString = search.substring(1);
+  if (!rawQueryString) {
+    return [];
+  }
+
   const args: Array<string | undefined> = [];
 
-  Object.entries(query).forEach(([key, value]) => {
-    if (key.startsWith('args[')) {
-      args.push(Array.isArray(value) ? value[0] : value);
+  const queries = rawQueryString.split('&');
+  for (let i = 0; i < queries.length; i++) {
+    const query = decodeURIComponent(queries[i]);
+    if (query.startsWith('args[')) {
+      args.push(query.slice(query.indexOf(']=') + 2));
     }
-  });
+  }
 
   return args;
 }
@@ -67,31 +71,28 @@ interface ErrorDecoderProps {
 }
 
 export default function ErrorDecoder({errorMessages}: ErrorDecoderProps) {
-  const {isReady, query} = useRouter();
+  /** error messages that contain %s require reading location.search */
+  const [message, setMessage] = useState<React.ReactNode | null>(() =>
+    errorMessages ? urlify(errorMessages) : null
+  );
 
-  const msg = useMemo<React.ReactNode | null>(() => {
-    if (errorMessages == null) {
-      return null;
+  useEffect(() => {
+    if (errorMessages == null || !errorMessages.includes('%s')) {
+      return;
     }
 
-    if (!errorMessages.includes('%s')) {
-      return urlify(errorMessages);
-    }
-
-    if (typeof window !== 'undefined' && isReady) {
-      return urlify(
+    setMessage(
+      urlify(
         replaceArgs(
           errorMessages,
-          parseQueryString(query),
+          parseQueryString(window.location.search),
           '[missing argument]'
         )
-      );
-    }
+      )
+    );
+  }, [errorMessages]);
 
-    return urlify(replaceArgs(errorMessages, [], '[parsing argument]'));
-  }, [errorMessages, isReady, query]);
-
-  if (!msg) {
+  if (!message) {
     return (
       <p>
         When you encounter an error, you{"'"}ll receive a link to this page for
@@ -105,8 +106,8 @@ export default function ErrorDecoder({errorMessages}: ErrorDecoderProps) {
       <p>
         <b>The full text of the error you just encountered is:</b>
       </p>
-      <code className="block bg-red-100 text-red-600 py-4 px-6 mt-5 rounded-lg">
-        <b>{msg}</b>
+      <code className="block bg-red-100 text-red-600 py-4 px-6 mt-5 rounded-lg animate-fade-up">
+        <b>{message}</b>
       </code>
     </div>
   );

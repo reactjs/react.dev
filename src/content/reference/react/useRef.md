@@ -502,9 +502,11 @@ To solve it, you may initialize the ref like this instead:
 ```js
 function Video() {
   const playerRef = useRef(null);
-  if (playerRef.current === null) {
+  useEffect(()=>{
+   if (playerRef.current === null) {
     playerRef.current = new VideoPlayer();
-  }
+   }
+  });
   // ...
 ```
 

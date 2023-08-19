@@ -101,7 +101,7 @@ module.exports = {
         marquee2: 'marquee2 40s linear infinite',
         'large-marquee': 'large-marquee 80s linear infinite',
         'large-marquee2': 'large-marquee2 80s linear infinite',
-        'fade-up': 'fade-up 0.1s 1s both',
+        'fade-up': 'fade-up 1s 100ms both',
       },
       keyframes: {
         shimmer: {

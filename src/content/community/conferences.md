@@ -25,6 +25,11 @@ Oct 5 - 7, 2023. In-person in Goa, India (hybrid event) + Oct 3 2023 - remote da
 
 [Website](https://www.reactindia.io) - [Twitter](https://twitter.com/react_india) - [Facebook](https://www.facebook.com/ReactJSIndia) - [Youtube](https://www.youtube.com/channel/UCaFbHCBkPvVv1bWs_jwYt3w)
 
+### React Brussels 2023  {/*react-brussels-2023*/}
+October 13th 2023. In-person in Brussels, Belgium + Remote (hybrid)
+
+[Website](https://www.react.brussels/) - [Twitter](https://twitter.com/BrusselsReact)
+
 ### React Advanced 2023 {/*react-advanced-2023*/}
 October 20 & 23, 2023. In-person in London, UK + remote first interactivity (hybrid event)
 

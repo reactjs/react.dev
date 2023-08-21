@@ -10,6 +10,11 @@ Do you know of a local React.js conference? Add it here! (Please keep the list c
 
 ## Upcoming Conferences {/*upcoming-conferences*/}
 
+### React Alicante
+September 28 - 30, 2023. Alicante, Spain
+
+[Website](https://reactalicante.es/) - [Twitter](https://twitter.com/reactalicante)
+
 ### React India 2023 {/*react-india-2023*/}
 Oct 5 - 7, 2023. In-person in Goa, India (hybrid event) + Oct 3 2023 - remote day
 

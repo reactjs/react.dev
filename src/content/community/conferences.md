@@ -10,12 +10,12 @@ Do you know of a local React.js conference? Add it here! (Please keep the list c
 
 ## Upcoming Conferences {/*upcoming-conferences*/}
 
-### RedwoodJS Conference
+### RedwoodJS Conference 2023
 September 26 - 29, 2023. Grants Pass, Oregon + remote (hybrid event) 
 
 [Website](https://www.redwoodjsconf.com/) - [Twitter](https://twitter.com/redwoodjs)
 
-### React Alicante
+### React Alicante 2023
 September 28 - 30, 2023. Alicante, Spain
 
 [Website](https://reactalicante.es/) - [Twitter](https://twitter.com/reactalicante)

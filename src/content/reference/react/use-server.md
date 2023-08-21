@@ -49,7 +49,9 @@ Alternatively, add `'use server';` at the very top of a file to mark all exports
 ## Usage {/*usage*/}
 
 <Wip>
+This section is a work in progress. 
 
-This section is incomplete. See also the [Next.js documentation for Server Components](https://beta.nextjs.org/docs/rendering/server-and-client-components).
-
+This API can be used in any framework that supports React Server Components. You may find additional documentation from them.
+* [Next.js documentation](https://nextjs.org/docs/getting-started/react-essentials)
+* More coming soon
 </Wip>

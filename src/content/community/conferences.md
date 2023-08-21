@@ -10,11 +10,6 @@ Do you know of a local React.js conference? Add it here! (Please keep the list c
 
 ## Upcoming Conferences {/*upcoming-conferences*/}
 
-### React Rally 2023 🐙 {/*react-rally-2023*/}
-August 17 & 18, 2023. Salt Lake City, UT, USA
-
-[Website](https://www.reactrally.com/) - [Twitter](https://twitter.com/ReactRally) - [Instagram](https://www.instagram.com/reactrally/)
-
 ### React India 2023 {/*react-india-2023*/}
 Oct 5 - 7, 2023. In-person in Goa, India (hybrid event) + Oct 3 2023 - remote day
 
@@ -24,6 +19,12 @@ Oct 5 - 7, 2023. In-person in Goa, India (hybrid event) + Oct 3 2023 - remote da
 October 20 & 23, 2023. In-person in London, UK + remote first interactivity (hybrid event)
 
 [Website](https://www.reactadvanced.com/) - [Twitter](https://twitter.com/ReactAdvanced) - [Facebook](https://www.facebook.com/ReactAdvanced) - [Videos](https://portal.gitnation.org/events/react-advanced-conference-2023)
+
+### reactjsday 2023
+October 27th 2023. In-person in Verona, Italy and online (hybrid event)
+
+[Website](https://2023.reactjsday.it/) - [Twitter](https://twitter.com/reactjsday) - [Facebook](https://www.facebook.com/GrUSP/) - [YouTube](https://www.youtube.com/c/grusp)
+
 
 ### React Summit US 2023 {/*react-summit-us-2023*/}
 November 13 & 15, 2023. In-person in New York, US + remote first interactivity (hybrid event)
@@ -36,6 +37,11 @@ December 8 & 12, 2023. In-person in Berlin, Germany + remote first interactivity
 [Website](https://reactday.berlin) - [Twitter](https://twitter.com/reactdayberlin) - [Facebook](https://www.facebook.com/reactdayberlin/) - [Videos](https://portal.gitnation.org/events/react-day-berlin-2023)
 
 ## Past Conferences {/*past-conferences*/}
+
+### React Rally 2023 🐙 {/*react-rally-2023*/}
+August 17 & 18, 2023. Salt Lake City, UT, USA
+
+[Website](https://www.reactrally.com/) - [Twitter](https://twitter.com/ReactRally) - [Instagram](https://www.instagram.com/reactrally/)
 
 ### React Nexus 2023 {/*react-nexus-2023*/}
 July 07 & 08, 2023. Bangalore, India (In-person event)

@@ -79,7 +79,7 @@ The optimization of caching return values based on inputs is known as [_memoizat
 
 ### Share a snapshot of data {/*take-and-share-snapshot-of-data*/}
 
-Wrap `cache` around a data-fetching function and use in multiple components. If multiple components make the same data fetch, only one request is made and the data returned is cached and shared across components. In a sense, all components refer to the same snapshot of data across the render.
+To share a snapshot of data between multiple components, wrap `cache` around a data-fetching function like `fetch`. When multiple components make the same data fetch, only one request is made and the data returned is cached and shared across components. In a sense, all components refer to the same snapshot of data across each render. 
 
 ```jsx
 import {cache} from 'react';

@@ -14,7 +14,7 @@ Learn more about [React's release channels here](/community/versioning-policy#al
 `cache` lets you cache the result of a data fetch or computation.
 
 ```js
-const cachingFn = cache(fn);
+const cachedFn = cache(fn);
 ```
 
 </Intro>
@@ -27,7 +27,7 @@ const cachingFn = cache(fn);
 
 ### `cache(fn)` {/*cache*/}
 
-Wrap a function with `cache` to receive a caching version of that function.
+Wrap a function with `cache` to receive a version of that function with caching.
 ```jsx
 import { cache } from 'react';
 import fetchUser from 'lib/user';
@@ -39,7 +39,7 @@ function UserProfile(id) {
   //...
 }
 ```
-`getUser` will first see if there is a cached result for `id`, otherwise call `fetchUser(id)` and cache the returned result.
+`getUser` will first check if there is a cached result for `id`, otherwise call `fetchUser(id)` and cache the returned result.
 
 [See more examples below.](#usage)
 
@@ -49,25 +49,25 @@ function UserProfile(id) {
 
 #### Returns {/*returns*/}
 
-`cache` returns a caching version of `fn` with the same type signature.
+`cache` returns a cached version of `fn` with the same type signature.
 
-When calling `cachingFn` with given arguments, it first checks if a cached result exists in the cache. If a cached result exists, it returns the result. If not, it calls `fn` with the arguments, stores the result in the cache, and returns the result.
+When calling `cachedFn` with given arguments, it first checks if a cached result exists in the cache. If a cached result exists, it returns the result. If not, it calls `fn` with the arguments, stores the result in the cache, and returns the result.
 
 <Note>
 
-Caching return values based on inputs is also known as [*memoization*](https://en.wikipedia.org/wiki/Memoization). We refer to `cachingFn` as a memoizing function.
+The optimization of caching return values based on inputs is known as [*memoization*](https://en.wikipedia.org/wiki/Memoization). We refer to `cachedFn` as a memoized function.
 
 </Note>
 
 #### Caveats {/*caveats*/}
 
 [//]: # (TODO: add links to Server/Client Component reference once https://github.com/reactjs/react.dev/pull/6177 is merged)
-* `cache` is recommended for React Server Component environments only. There are plans to introduce `cache` for Client Components but it is not recommended today.
-* React will invalidate the cache for a memoizing function across server requests.
-* The benefit of `cache` is to skip duplicate work across components. To leverage this benefit, `cachingFn`, should be defined in a scope that is accessible to components. In most cases, this means calling `cache` and defining the memoizing function in the global scope.
-* Each call to `cache` creates a new memoizing version of `fn`. This means that wrapping `cache` around the same function multiple times will return different memoizing functions and they will not share the same cache.
-* Cache access only occurs during a component render. This means a call to `cachingFn` outside of a Server Component will not update or use the cache.
-* `cachingFn` will also cache errors. If `fn` throws an error for certain arguments, it will be cached, and rethrown when `cachingFn` is called with those arguments. 
+* `cache` is recommended for Server Components only. There are plans to introduce `cache` for Client Components but it is not recommended today.
+* React will invalidate the cache for a memoized function across server requests.
+* Each call to `cache` creates a new function. This means that wrapping `cache` around the same function multiple times will return different memoized functions and they will not share the same cache.
+* The benefit of `cache` is to skip duplicate work by sharing a cache. To promote cache sharing, `cachedFn`, should be defined in a scope that is accessible to multiple components. In most cases, this means calling `cache` and defining the memoized function in the global scope.
+* Cache access only occurs during a component render. This means a call to `cachedFn` outside of a Server Component will not update or use the cache.
+* `cachedFn` will also cache errors. If `fn` throws an error for certain arguments, it will be cached, and re-thrown when `cachedFn` is called with those arguments. 
 
 ---
 
@@ -99,7 +99,7 @@ If `AnimatedWeatherCard` and `MinimalWeatherCard` both render for the same city,
 
 <Pitfall>
 
-To leverage the cache, components should use the same memoizing function instance.
+To order to share the cache, components must use the same memoized function.
 
 ```js
 // temperature.js
@@ -107,7 +107,7 @@ export async function fetchTemperature(city) {
   return await fetch(`https://...`);
 }
 
-// minimalWeatherCard.js
+// MinimalWeatherCard.js
 import {cache} from 'react';
 import {fetchTemperature} from './temperature';
 
@@ -118,19 +118,20 @@ export default async function MinimalWeatherCard({city}) {
   // ...
 }
 
-// animatedWeatherCard.js
+// AnimatedWeatherCard.js
 import {cache} from 'react';
 import {fetchTemperature} from './temperature';
 
 export default async function AnimatedWeatherCard({city}) {
+  // 🚩 Wrong: cache should not be called in render.
 	const getTemperature = cache(fetchTemperature);
 	const temperature = await getTemperature(city);
   // ...
 }
 
 // app.js
-import AnimatedWeatherCard from './animatedWeatherCard';
-import AnimatedWeatherCard from './animatedWeatherCard';
+import AnimatedWeatherCard from './AnimatedWeatherCard';
+import MinimalWeatherCard from './MinimalWeatherCard';
 
 function App() {
 	return (<>
@@ -142,9 +143,9 @@ function App() {
 
 In this example, `MinimalWeatherCard` and `AnimatedWeatherCard` are not leveraging the same cache and so `fetchTemperature` is double invoked with the same argument `"Los Angeles"`.
 
-This is because each call to `cache` creates a new memoizing function that uses a different cache for look-up. For `AnimatedWeatherCard` and `MinimalWeatherCard` to use the same cache, `getTemperature` should be defined in a mutually accessible scope, like moving the definition to `temperature.js`.
+This is because each call to `cache` creates a new memoized function that uses a different cache for look-up. For `AnimatedWeatherCard` and `MinimalWeatherCard` to use the same cache, `getTemperature` should be defined in a mutually accessible scope, like moving the definition to `temperature.js`.
 
-In addition, `AnimatedWeatherCard` is calling `cache` in its component render. This means that each time `AnimatedWeatherCard` is rendered, a new memoizing function is created so there will never be an opportunity for cache-sharing.
+In addition, `AnimatedWeatherCard` is calling `cache` in its component render. This means that each time `AnimatedWeatherCard` is rendered, a new memoized function is created so there will never be an opportunity for cache-sharing.
 
 </Pitfall>
 
@@ -159,10 +160,14 @@ const getUser = cache(async (id) => {
 
 async function Profile({id}) {
   const user = await getUser(id);
-  // ...
+  return (<section>
+    <img src={user.profilePic} />
+    <h2>{user.name}</h2>
+    </section>);
 }
 
 function Page({id}) {
+  // ✅ Good: start fetching the user data 
   getUser(id);
   // ... some computational work
   return (
@@ -189,17 +194,17 @@ const getUser = cache(async (userId) => {
   return await db.user.query(userId);    
 });
 
-// This call to `getUser` will not update the cache.
+// 🚩 Wrong: This will not update the cache as its not in a component render.
 getUser('demo-id');
 
 async function DemoProfile() {
-  // This `getUser` will have a cache miss
+  // ✅ Good: This `getUser` will access the cache.
   const user = await getUser('demo-id');
-  return (<Profile user={user} />);
+  return <Profile user={user} />;
 }
 ```
 
-You may attempt to preload some work outside of a component. React only provides cache access to the memoizing function in a component render. 
+You may attempt to preload some work outside of a component. React only provides cache access to the memoized function in a component render. 
 </Pitfall>
 
 <DeepDive>
@@ -207,7 +212,7 @@ You may attempt to preload some work outside of a component. React only provides
 #### What's the difference between `cache`, [`memo`](/reference/react/memo), and [`useMemo`](/reference/react/useMemo)? {/*cache-memo-usememo*/}
 All mentioned APIs offer memoization but the difference is what they're intended to memoize, who can access the cache, and when their cache is invalidated.
 
-[`useMemo`](/reference/react/useMemo) is a hook that is used in a client component or another hook. `useMemo` takes a function and a list of dependencies. During the component render, `useMemo` will only call the function when the dependencies have changed and will cache the result. 
+[`useMemo`](/reference/react/useMemo) is a hook that is used in a Client Component or another hook. `useMemo` takes a function and a list of dependencies. During the component render, `useMemo` will only call the function when the dependencies have changed and will cache the result. 
 
 You can think of `useMemo`'s cache as a size of one, where it can only cache the last work it did based on the last value of its dependencies. Only the component instance can benefit from this cache to skip work across re-renders. If you rendered two instances of the same component, the `useMemo` of one wouldn't help the other to skip work. The cache is invalidated each time the dependencies change or the component is unmounted.
 
@@ -231,7 +236,7 @@ function App() {
 ```
 In this example, both instances of the `Weather` component are doing the same work in calling `getTemp("Los Angeles")`. Unfortunately, the second `Weather` component instance can't use the result from the first component. `useMemo` is only a local cache to the component instance. However `useMemo` does ensure that if `App` re-renders, each component instance would not call `getTemp("Los Angeles")` again because the city hasn't changed.
 
-`cache` is a utility that creates a memoizing version of a function. The memoizing function, `cachingFn`, is like `useMemo` in that it skips duplicate work. Unlike `useMemo`, it will cache results for multiple inputs and can be shared across component instances to leverage the same cache. At this time, `cache` should only be used in server components and the cache will be invalidated across server requests. 
+`cache` is a utility that creates a memoized version of a function. The memoized function, `cachedFn`, is like `useMemo` in that it skips duplicate work. Unlike `useMemo`, it will cache results for multiple inputs and can be shared across component instances to leverage the same cache. At this time, `cache` should only be used in Server Components and the cache will be invalidated across server requests. 
 
 ```jsx
 // assume `getTemp` is an expensive computation
@@ -260,7 +265,7 @@ Re-writing the previous example to use `cache`, in this case the second instance
 <DeepDive>
 
 #### When should I not use cache? {/*not-use-cache*/}
-`cache` is not recommended for use in client components today.
+`cache` is not recommended for use in Client Components today.
 
 The motivation for `cache` is to provide a complete data fetching and invalidation strategy between client and server. However, only server usage is ready for use today.
 
@@ -276,9 +281,9 @@ Although data-fetching is often not deterministic, as there may be mutations bet
 
 ## Troubleshooting {/*troubleshooting*/}
 
-### My memoizing function still runs even though I've called it with the same arguments {/*memoizing-function-stil-runs*/}
+### My memoized function still runs even though I've called it with the same arguments {/*memoized-function-stil-runs*/}
 
-When calling a memoizing function, React will look up the input arguments to see if a result is already cached. React will use shallow equality of the arguments to determine if there is a cache hit.
+When calling a memoized function, React will look up the input arguments to see if a result is already cached. React will use shallow equality of the arguments to determine if there is a cache hit.
 
 This means that if your arguments are not [primatives](https://developer.mozilla.org/en-US/docs/Glossary/Primitive) (ex. objects, functions, arrays), ensure you're passing the same object reference.
 

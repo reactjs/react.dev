@@ -1577,11 +1577,14 @@ To let the players know when the game is over, you can display text such as "Win
 export default function Board() {
   // ...
   const winner = calculateWinner(squares);
+  const hasNoSquareLeft = squares.every(value => value !== null);
   let status;
   if (winner) {
-    status = "Winner: " + winner;
+    status = 'Winner: ' + winner;
+  } else if (hasNoSquareLeft) {
+    status = 'Tie!'
   } else {
-    status = "Next player: " + (xIsNext ? "X" : "O");
+    status = 'Next player: ' + (xIsNext ? 'X' : 'O');
   }
 
   return (
@@ -1627,9 +1630,12 @@ export default function Board() {
   }
 
   const winner = calculateWinner(squares);
+  const hasNoSquareLeft = squares.every(value => value !== null);
   let status;
   if (winner) {
     status = 'Winner: ' + winner;
+  } else if (hasNoSquareLeft) {
+    status = 'Tie!'
   } else {
     status = 'Next player: ' + (xIsNext ? 'X' : 'O');
   }
@@ -1901,9 +1907,12 @@ function Board({ xIsNext, squares, onPlay }) {
   }
 
   const winner = calculateWinner(squares);
+  const hasNoSquareLeft = squares.every(value => value !== null);
   let status;
   if (winner) {
     status = 'Winner: ' + winner;
+  } else if (hasNoSquareLeft) {
+    status = 'Tie!'
   } else {
     status = 'Next player: ' + (xIsNext ? 'X' : 'O');
   }
@@ -2106,9 +2115,12 @@ function Board({ xIsNext, squares, onPlay }) {
   }
 
   const winner = calculateWinner(squares);
+  const hasNoSquareLeft = squares.every(value => value !== null);
   let status;
   if (winner) {
     status = 'Winner: ' + winner;
+  } else if (hasNoSquareLeft) {
+    status = 'Tie!'
   } else {
     status = 'Next player: ' + (xIsNext ? 'X' : 'O');
   }
@@ -2334,9 +2346,12 @@ function Board({ xIsNext, squares, onPlay }) {
   }
 
   const winner = calculateWinner(squares);
+  const hasNoSquareLeft = squares.every(value => value !== null);
   let status;
   if (winner) {
     status = 'Winner: ' + winner;
+  } else if (hasNoSquareLeft) {
+    status = 'Tie!'
   } else {
     status = 'Next player: ' + (xIsNext ? 'X' : 'O');
   }
@@ -2555,9 +2570,12 @@ function Board({ xIsNext, squares, onPlay }) {
   }
 
   const winner = calculateWinner(squares);
+  const hasNoSquareLeft = squares.every(value => value !== null);
   let status;
   if (winner) {
     status = 'Winner: ' + winner;
+  } else if (hasNoSquareLeft) {
+    status = 'Tie!'
   } else {
     status = 'Next player: ' + (xIsNext ? 'X' : 'O');
   }
@@ -2765,9 +2783,12 @@ function Board({ xIsNext, squares, onPlay }) {
   }
 
   const winner = calculateWinner(squares);
+  const hasNoSquareLeft = squares.every(value => value !== null);
   let status;
   if (winner) {
     status = 'Winner: ' + winner;
+  } else if (hasNoSquareLeft) {
+    status = 'Tie!'
   } else {
     status = 'Next player: ' + (xIsNext ? 'X' : 'O');
   }

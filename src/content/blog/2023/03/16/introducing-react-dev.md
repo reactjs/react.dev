@@ -488,7 +488,7 @@ export default function Counter() {
 
   return (
     <button onClick={handleClick}>
-      You pressed me {count} times
+      You pressed me {count} {count === 1? "time":"times"}
     </button>
   );
 }

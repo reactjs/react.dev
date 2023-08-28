@@ -12,7 +12,7 @@ Learn more about [React's release channels here](/community/versioning-policy#al
 
 <Intro>
 
-`cache` lets you cache the result of a data fetch or computation.
+`cache` lets you cache the result of a data fetch or computation across server requests.
 
 ```js
 const cachedFn = cache(fn);
@@ -28,21 +28,21 @@ const cachedFn = cache(fn);
 
 ### `cache(fn)` {/*cache*/}
 
-Wrap a function with `cache` to receive a version of that function with caching.
+Call `cache` outside of any components to create a version of the function with caching.
 
 ```js {4,7}
 import {cache} from 'react';
-import fetchUser from 'lib/user';
+import calculateMetrics from 'lib/metrics';
 
-const getUser = cache(fetchUser);
+const getMetrics = cache(calculateMetrics);
 
-function UserProfile(id) {
-  const user = getUser(id);
-  //...
+function Chart({data}) {
+  const report = getMetrics(data);
+  // ...
 }
 ```
 
-`getUser` will first check if there is a cached result for `id`, otherwise call `fetchUser(id)` and cache the returned result.
+`getMetrics` will first check if there is a cached result for `data`, otherwise call `calculateMetrics(data)` and cache the returned result.
 
 [See more examples below.](#usage)
 
@@ -52,9 +52,9 @@ function UserProfile(id) {
 
 #### Returns {/*returns*/}
 
-`cache` returns a cached version of `fn` with the same type signature.
+`cache` returns a cached version of `fn` with the same type signature. It does not call `fn` in the process.
 
-When calling `cachedFn` with given arguments, it first checks if a cached result exists in the cache. If a cached result exists, it returns the result. If not, it calls `fn` with the arguments, stores the result in the cache, and returns the result.
+When calling `cachedFn` with given arguments, it first checks if a cached result exists in the cache. If a cached result exists, it returns the result. If not, it calls `fn` with the arguments, stores the result in the cache, and returns the result. The only time `fn` is called is when there is a cache miss.
 
 <Note>
 
@@ -67,10 +67,10 @@ The optimization of caching return values based on inputs is known as [_memoizat
 [//]: # 'TODO: add links to Server/Client Component reference once https://github.com/reactjs/react.dev/pull/6177 is merged'
 
 - `cache` is recommended for Server Components only. There are plans to introduce `cache` for Client Components, but it is not recommended today.
-- React will invalidate the cache for a memoized function across server requests.
-- Each call to `cache` creates a new function. This means that wrapping `cache` around the same function multiple times will return different memoized functions and they will not share the same cache.
+- React will invalidate the cache for all memoized functions across server requests.
+- Each call to `cache` creates a new function. This means that calling `cache` with the same function multiple times will return different memoized functions that do not share the same cache.
 - The benefit of `cache` is to skip duplicate work by sharing a cache. To promote cache sharing, `cachedFn`, should be defined in a scope that is accessible to multiple components. In most cases, this means calling `cache` and defining the memoized function in the global scope.
-- Cache access only occurs during a component render. This means a call to `cachedFn` outside of a Server Component will not update or read the cache.
+- Cache access only occurs during a component render. This means a call to `cachedFn` outside of a Server Component will call `fn` but not update or read the cache.
 - `cachedFn` will also cache errors. If `fn` throws an error for certain arguments, it will be cached, and re-thrown when `cachedFn` is called with those arguments.
 
 ---
@@ -94,13 +94,17 @@ async function AnimatedWeatherCard({city}) {
 	// ...
 }
 
-async function MinimalWeatherCard({city) {
+async function MinimalWeatherCard({city}) {
 	const temperature = await getTemperature(city);
 	// ...
 }
 ```
 
-If `AnimatedWeatherCard` and `MinimalWeatherCard` both render for the same <CodeStep step={1}>city</CodeStep>, they will receive the same snapshot of data from the <CodeStep step={2}>memoized function</CodeStep>. The <CodeStep step={1}>city</CodeStep> acts as a cache key.
+If `AnimatedWeatherCard` and `MinimalWeatherCard` both render for the same <CodeStep step={1}>city</CodeStep>, they will receive the same snapshot of data from the <CodeStep step={2}>memoized function</CodeStep>. 
+
+If `AnimatedWeatherCard` and `MinimalWeatherCard` supply different <CodeStep step={1}>city</CodeStep> arguments to <CodeStep step={2}>`getTemperature`</CodeStep>, then `fetchTemperature` will be called twice and each call site will receive different data.
+
+The <CodeStep step={1}>city</CodeStep> acts as a cache key.
 
 <Note>
 
@@ -184,7 +188,7 @@ export default async function AnimatedWeatherCard({city}) {
 
 If you want to optimize cache hits across components, you'll need to define the memoized function in a scope that is accessible across multiple components.
 
-In the above example, each component <CodeStep step={1}>creates a new memoized version of `fetchTemperature`</CodeStep> that is only defined locally. This narrows the access to the memoized function to only the component in the module. 
+In the above example, each component <CodeStep step={1}>creates a new memoized version of `fetchTemperature`</CodeStep> that is only defined locally. This narrows the access to the memoized function to only the module. 
 
 If both `AnimatedWeatherCard` and `MinimalWeatherCard` render for the same city, they will call different memoized functions that have separate cache look-ups. This is a missed opportunity for sharing work.
 
@@ -228,7 +232,7 @@ const getUser = cache(async (id) => {
   return await db.user.query(id);
 }
 
-async function Profile({ id }) {
+async function Profile({id}) {
   const user = await getUser(id);
   return (
     <section>
@@ -273,22 +277,22 @@ async function MyComponent() {
 }
 ```
 
-When evaluating an asynchronous function, you will receive a [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) for that work. The promise holds the state of that work (_pending_, _fulfilled_, _failed_) and its settled result. In the example, the asynchronous function <CodeStep step={1}>`fetchData`</CodeStep> returns a promise that is awaiting the `fetch`. 
+When evaluating an [asynchronous function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function), you will receive a [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) for that work. The promise holds the state of that work (_pending_, _fulfilled_, _failed_) and its eventual settled result. In the example, the asynchronous function <CodeStep step={1}>`fetchData`</CodeStep> returns a promise that is awaiting the `fetch`. 
 
 In calling <CodeStep step={2}>`getData`</CodeStep> the first time, the promise returned from <CodeStep step={1}>`fetchData`</CodeStep> is cached. Subsequent look-ups will then return the same promise.
 
-Notice that the first <CodeStep step={2}>`getData`</CodeStep> call does not `await` whereas the <CodeStep step={3}>second</CodeStep> does. `await` is a JavaScript operator that will wait and return the settled result of the promise. The first <CodeStep step={2}>`getData`</CodeStep> call simply initiates the `fetch` to cache the promise for the second <CodeStep step={3}>`getData`</CodeStep> to look-up.
+Notice that the first <CodeStep step={2}>`getData`</CodeStep> call does not `await` whereas the <CodeStep step={3}>second</CodeStep> does. [`await`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/await) is a JavaScript operator that will wait and return the settled result of the promise. The first <CodeStep step={2}>`getData`</CodeStep> call simply initiates the `fetch` to cache the promise for the second <CodeStep step={3}>`getData`</CodeStep> to look-up.
 
-If by the <CodeStep step={3}>second call</CodeStep> the promise is still _pending_, then `await` will pause for the result. The optimization is that while we wait on the `fetch`, React can continue with computational work, thus reducing the wait time by the <CodeStep step={3}>second call</CodeStep>. 
+If by the <CodeStep step={3}>second call</CodeStep> the promise is still _pending_, then `await` will pause for the result. The optimization is that while we wait on the `fetch`, React can continue with computational work, thus reducing the wait time for the <CodeStep step={3}>second call</CodeStep>. 
 
-If the promise is already settled, either to an error or the intended result, `await` will return that value. In both outcomes, there is a performance benefit.
+If the promise is already settled, either to an error or the _fulfilled_ result, `await` will return that value immediately. In both outcomes, there is a performance benefit.
 </DeepDive>
 
 <Pitfall>
 
-Cache is only saved during component renders.
+Memoization only occurs during component renders.
 
-```jsx
+```jsx [[1, 3, "getUser"]]
 import {cache} from 'react';
 
 const getUser = cache(async (userId) => {
@@ -305,7 +309,9 @@ async function DemoProfile() {
 }
 ```
 
-Calling a memoized function outside of a component render will not update the cache. React only provides cache access to the memoized function in a component render. Cache access is provided through a Context which is only accessibile from a component render. 
+Calling a memoized function outside of a component render will not update the cache. React only provides cache access to the memoized function in a component render. When calling <CodeStep step={1}>`getUser`</CodeStep> outside of a component render, it will still evaluate the function but not read or update the cache.
+
+Behind the scenes, this is because cache access is provided through a [context](/learn/passing-data-deeply-with-context) which is only accessibile from a component render. 
 
 </Pitfall>
 

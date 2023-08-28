@@ -425,7 +425,7 @@ const calculateNorm = cache((vector) => {
 });
 
 function MapMarker(props) {
-  // ✅ Good: Pass primitives to memoized function
+  // ✅ Good: Pass the same `vector` object
   const length = calculateNorm(props.vector);
   // ...
 }

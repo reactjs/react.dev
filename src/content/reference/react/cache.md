@@ -221,7 +221,7 @@ Now `MinimalWeatherCard` and `AnimatedWeatherCard` call the <CodeStep step={2}>s
 
 ### Preload data {/*preload-data*/}
 
-By wrapping a long-running data fetch in `cache`, you can kick off the asynchronous work prior to rendering the component.
+By wrapping a long-running data fetch in `cache`, you can kick off asynchronous work prior to rendering the component.
 
 ```jsx [[2, 6, "await getUser(id)"], [1, 17, "getUser(id)"]]
 const getUser = cache(async (id) => {

@@ -252,11 +252,41 @@ function Page({id}) {
 
 When rendering `Page`, the component calls <CodeStep step={1}>`getUser`</CodeStep> but note that it doesn't use the returned data. This early <CodeStep step={1}>`getUser`</CodeStep> call kicks off the asynchronous database query that occurs while `Page` is doing other computational work and rendering children.
 
-When rendering `Profile`, we call <CodeStep step={2}>`getUser`</CodeStep> again. In the ideal case, the initial <CodeStep step={1}>`getUser`</CodeStep> call has already returned and cached the user data. So when `Profile` <CodeStep step={2}>asks and waits for this data</CodeStep>, it can simply read from the cache without requiring another remote procedure call. Even if the data request hasn't been completed, preloading data in this pattern reduces delay in data-fetching..
+When rendering `Profile`, we call <CodeStep step={2}>`getUser`</CodeStep> again. In the ideal case, the initial <CodeStep step={1}>`getUser`</CodeStep> call has already returned and cached the user data. So when `Profile` <CodeStep step={2}>asks and waits for this data</CodeStep>, it can simply read from the cache without requiring another remote procedure call. Even if the data request hasn't been completed, preloading data in this pattern reduces delay in data-fetching.
+
+<DeepDive>
+
+#### Caching asynchronous work {/*caching-asynchronous-work*/}
+
+```js [[1, 1, "fetchData()"], [2, 8, "getData()"], [3, 10, "getData()"]]
+async function fetchData() {
+  return await fetch(`https://...`);
+}
+
+const getData = cache(fetchData);
+
+async function MyComponent() {
+  getData();
+  // ... more computational work  
+  await getData();
+  // ...
+}
+```
+
+When evaluating an asynchronous function, you will receive a [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) for that work. The promise holds the state of that work (_pending_, _fulfilled_, _failed_) and its settled result. In the example, the asynchronous function <CodeStep step={1}>`fetchData`</CodeStep> returns a promise that is awaiting the `fetch`. 
+
+In calling <CodeStep step={2}>`getData`</CodeStep> the first time, the promise returned from <CodeStep step={1}>`fetchData`</CodeStep> is cached. Subsequent look-ups will then return the same promise.
+
+Notice that the first <CodeStep step={2}>`getData`</CodeStep> call does not `await` whereas the <CodeStep step={3}>second</CodeStep> does. `await` is a JavaScript operator that will wait and return the settled result of the promise. The first <CodeStep step={2}>`getData`</CodeStep> call simply initiates the `fetch` to cache the promise for the second <CodeStep step={3}>`getData`</CodeStep> to look-up.
+
+If by the <CodeStep step={3}>second call</CodeStep> the promise is still _pending_, then `await` will pause for the result. The optimization is that while we wait on the `fetch`, React can continue with computational work, thus reducing the wait time by the <CodeStep step={3}>second call</CodeStep>. 
+
+If the promise is already settled, either to an error or the intended result, `await` will return that value. In both outcomes, there is a performance benefit.
+</DeepDive>
 
 <Pitfall>
 
-Memoization only occurs in component renders.
+Cache is only saved during component renders.
 
 ```jsx
 import {cache} from 'react';

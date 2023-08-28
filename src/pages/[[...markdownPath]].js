@@ -96,12 +96,14 @@ function reviveNodeOnClient(key, val) {
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // ~~~~ IMPORTANT: BUMP THIS IF YOU CHANGE ANY CODE BELOW ~~~
-const DISK_CACHE_BREAKER = 7;
+const DISK_CACHE_BREAKER = 8;
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 // Put MDX output into JSON for client.
 export async function getStaticProps(context) {
   const fs = require('fs');
+  const imageSize = require('image-size');
+  const pathSrc = require('path');
   const {
     prepareMDX,
     PREPARE_MDX_CACHE_BREAKER,
@@ -227,9 +229,22 @@ export async function getStaticProps(context) {
   // Serialize a server React tree node to JSON.
   function stringifyNodeOnServer(key, val) {
     if (val != null && val.$$typeof === Symbol.for('react.element')) {
+      // Get image height and width
+      let size = {}; //{ height: number, width: number, type: string }
+      const src = val.props.src;
+      if (val['type'] === 'img' && src) {
+        size = imageSize(
+          pathSrc.join(process.cwd(), 'public', src.replace('..', ''))
+        );
+        delete size.type; // remove type from size
+      }
       // Remove fake MDX props.
+      // add height and width from size, overwrite it if provided in val.props
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      const {mdxType, originalType, parentName, ...cleanProps} = val.props;
+      const {mdxType, originalType, parentName, ...cleanProps} = {
+        ...size,
+        ...val.props,
+      };
       return [
         '$r',
         typeof val.type === 'string' ? val.type : mdxType,

@@ -134,7 +134,7 @@ export default async function WeatherCard({city}) {
   // ...
 }
 ```
-Each time `WeatherCard` is rendered, a new memoized function is created that will have it's own cache look-up. This means, across renders, `getTemperature` is referring to a new memoized function and there will be no cache-sharing, losing the benefit of memoiziation.
+For every render, `WeatherCard` creates a new memoized function that will have its own cache look-up. Across renders, `getTemperature` refers to the new memoized function, losing the benefit of cache-sharing and memoization.
 
 ```js {5}
 import {cache} from 'react';

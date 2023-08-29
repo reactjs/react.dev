@@ -369,7 +369,7 @@ function App() {
 
 Re-writing the previous example to use `cache`, in this case the second instance of `WeatherReport` will be able to skip duplicate work and read from the cache.
 
-[`memo`](reference/react/memo) is similar to `cache` in that is also a utility function for memoization but instead of memoizing functions, it memoizes components. When you call a component with `memo`, you create a new version of that component that only re-renders when the passed props of the component have changed. Similar to `useMemo`, the memoized component only caches the last render with certain props so you can also think of the cache size as one. Once the props change, the cache invalidates and the component re-renders.
+[`memo`](reference/react/memo) is similar to `cache` in that is also a utility function for memoization but instead of memoizing functions, it memoizes components. When you call `memo` with a component, you create a new version of that component that only re-renders when the passed props of the component have changed. Similar to `useMemo`, the memoized component only caches the last render with certain props so you can also think of the cache size as one. Once the props change, the cache invalidates and the component re-renders.
 
 </DeepDive>
 

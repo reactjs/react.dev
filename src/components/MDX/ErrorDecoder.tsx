@@ -1,4 +1,5 @@
 import {useEffect, useState} from 'react';
+import {useErrorDecoder} from './ErrorDecoderContext';
 
 function replaceArgs(
   msg: string,
@@ -66,11 +67,9 @@ function parseQueryString(search: string): Array<string | undefined> {
   return args;
 }
 
-interface ErrorDecoderProps {
-  errorMessages: string | null;
-}
+export default function ErrorDecoder() {
+  const errorMessages = useErrorDecoder();
 
-export default function ErrorDecoder({errorMessages}: ErrorDecoderProps) {
   /** error messages that contain %s require reading location.search */
   const [message, setMessage] = useState<React.ReactNode | null>(() =>
     errorMessages ? urlify(errorMessages) : null

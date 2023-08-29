@@ -66,12 +66,12 @@ The optimization of caching return values based on inputs is known as [_memoizat
 
 [//]: # 'TODO: add links to Server/Client Component reference once https://github.com/reactjs/react.dev/pull/6177 is merged'
 
-- `cache` is recommended for Server Components only. There are plans to introduce `cache` for Client Components, but it is not recommended today.
+- `cache` is recommended for Server Components only. There are plans to introduce `cache` for Client Components, but it is not a supported feature today. There are plans to add a warning when `cache` is used in Client Components.
 - React will invalidate the cache for all memoized functions across server requests.
 - Each call to `cache` creates a new function. This means that calling `cache` with the same function multiple times will return different memoized functions that do not share the same cache.
-- The benefit of `cache` is to skip duplicate work by sharing a cache. To promote cache sharing, `cachedFn`, should be defined in a scope that is accessible to multiple components. In most cases, this means calling `cache` and defining the memoized function in the global scope.
+- The benefit of `cache` is to skip duplicate work by sharing a cache. To promote cache sharing, `cachedFn`, should be defined in a scope that is accessible to multiple components. In most cases, this means calling `cache` and defining the memoized function in a dedicated module.
 - Cache access only occurs during a component render. This means a call to `cachedFn` outside of a Server Component will call `fn` but not update or read the cache.
-- `cachedFn` will also cache errors. If `fn` throws an error for certain arguments, it will be cached, and re-thrown when `cachedFn` is called with those arguments.
+- `cachedFn` will also cache errors. If `fn` throws an error for certain arguments, it will be cached, and the same error is re-thrown when `cachedFn` is called with those arguments.
 
 ---
 

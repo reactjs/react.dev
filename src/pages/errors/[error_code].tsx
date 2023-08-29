@@ -188,11 +188,9 @@ export const getStaticProps: GetStaticProps<ErrorDecoderProps> = async ({
         return (tree) => {
           visit(tree, 'element', (node) => {
             if (
-              'tagName' in node &&
-              typeof node.tagName === 'string' &&
+              // @ts-expect-error -- tagName is a valid property
               node.tagName === 'code' &&
-              node.data &&
-              node.data.meta
+              node.data?.meta
             ) {
               // @ts-expect-error -- properties is a valid property
               node.properties.meta = node.data.meta;

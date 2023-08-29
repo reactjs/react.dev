@@ -95,7 +95,7 @@ export const getStaticProps: GetStaticProps<ErrorDecoderProps> = async ({
 
   const code =
     typeof params?.error_code === 'string' ? params?.error_code : null;
-  if (!code || !errorCodes[code]) {
+  if (code && !errorCodes[code]) {
     return {
       notFound: true,
     };
@@ -142,6 +142,7 @@ export const getStaticProps: GetStaticProps<ErrorDecoderProps> = async ({
       // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
       mdx,
       mdxComponentNames,
+      code,
       DISK_CACHE_BREAKER,
       PREPARE_MDX_CACHE_BREAKER,
       lockfile: fs.readFileSync(process.cwd() + '/yarn.lock', 'utf8'),
@@ -169,8 +170,6 @@ export const getStaticProps: GetStaticProps<ErrorDecoderProps> = async ({
     mdxComponentNames
       .map((key) => 'import ' + key + ' from "' + key + '";\n')
       .join('\n');
-
-  console.log({mdxComponentNames});
 
   // Turn the MDX we just read into some JS we can execute.
   const {remarkPlugins} = require('../../../plugins/markdownToHtml');
@@ -240,7 +239,7 @@ export const getStaticProps: GetStaticProps<ErrorDecoderProps> = async ({
     props: {
       content: JSON.stringify(children, stringifyNodeOnServer),
       errorCode: code,
-      errorMessages: errorCodes[code],
+      errorMessages: code ? errorCodes[code] : null,
       toc: JSON.stringify(toc, stringifyNodeOnServer),
       meta,
     },

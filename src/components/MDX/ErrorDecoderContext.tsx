@@ -5,12 +5,16 @@
 
 import {createContext, useContext} from 'react';
 
-export const ErrorDecoderContext = createContext<string | null>(null);
+const notInErrorDecoderContext = Symbol('not in error decoder context');
+
+export const ErrorDecoderContext = createContext<
+  string | null | typeof notInErrorDecoderContext
+>(notInErrorDecoderContext);
 
 export const useErrorDecoder = () => {
   const errorMessages = useContext(ErrorDecoderContext);
 
-  if (errorMessages === null) {
+  if (errorMessages === notInErrorDecoderContext) {
     throw new Error('useErrorDecoder must be used in error decoder pages only');
   }
 

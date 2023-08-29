@@ -110,7 +110,7 @@ export const getStaticProps: GetStaticProps<ErrorDecoderProps> = async ({
    */
   // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   // ~~~~ IMPORTANT: BUMP THIS IF YOU CHANGE ANY CODE BELOW ~~~
-  const DISK_CACHE_BREAKER = 0;
+  const DISK_CACHE_BREAKER = 1;
   // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   const fs = require('fs');
   const {
@@ -124,7 +124,7 @@ export const getStaticProps: GetStaticProps<ErrorDecoderProps> = async ({
   let path = params?.error_code || 'index';
   let mdx;
   try {
-    mdx = fs.readFileSync(rootDir + path + '.md', 'utf8');
+    mdx = fs.readFileSync(rootDir + '/' + path + '.md', 'utf8');
   } catch {
     // if error_code.md is not found, fallback to default.md
     mdx = fs.readFileSync(rootDir + '/index.md', 'utf8');

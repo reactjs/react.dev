@@ -266,7 +266,12 @@ export async function getStaticPaths() {
           : res.slice(rootDir.length + 1);
       })
     );
-    return files.flat().filter((file) => file.endsWith('.md'));
+    return (
+      files
+        .flat()
+        // ignores `errors/*.md`, they will be handled by `pages/errors/[error_code].tsx`
+        .filter((file) => file.endsWith('.md') && !file.startsWith('errors/'))
+    );
   }
 
   // 'foo/bar/baz.md' -> ['foo', 'bar', 'baz']
@@ -280,6 +285,7 @@ export async function getStaticPaths() {
   }
 
   const files = await getFiles(rootDir);
+
   const paths = files.map((file) => ({
     params: {
       markdownPath: getSegments(file),

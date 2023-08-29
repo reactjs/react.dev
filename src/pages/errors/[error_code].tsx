@@ -121,13 +121,13 @@ export const getStaticProps: GetStaticProps<ErrorDecoderProps> = async ({
   const mdxComponentNames = Object.keys(MDXComponents);
 
   // Read MDX from the file.
-  let path = params?.error_code || 'default';
+  let path = params?.error_code || 'index';
   let mdx;
   try {
     mdx = fs.readFileSync(rootDir + path + '.md', 'utf8');
   } catch {
     // if error_code.md is not found, fallback to default.md
-    mdx = fs.readFileSync(rootDir + '/default.md', 'utf8');
+    mdx = fs.readFileSync(rootDir + '/index.md', 'utf8');
   }
 
   // See if we have a cached output first.

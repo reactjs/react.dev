@@ -66,12 +66,12 @@ The optimization of caching return values based on inputs is known as [_memoizat
 
 [//]: # 'TODO: add links to Server/Client Component reference once https://github.com/reactjs/react.dev/pull/6177 is merged'
 
-- `cache` is recommended for Server Components only. There are plans to introduce `cache` for Client Components, but it is not a supported feature today. There are plans to add a warning when `cache` is used in Client Components.
+- `cache` is for Server Component usage only. There are plans to introduce `cache` for Client Components, but it is not a supported feature today. There are plans to add a warning when `cache` is used in Client Components.
 - React will invalidate the cache for all memoized functions across server requests.
 - Each call to `cache` creates a new function. This means that calling `cache` with the same function multiple times will return different memoized functions that do not share the same cache.
 - The benefit of `cache` is to skip duplicate work by sharing a cache. To promote cache sharing, `cachedFn`, should be defined in a scope that is accessible to multiple components. In most cases, this means calling `cache` and defining the memoized function in a dedicated module.
-- Cache access only occurs during a component render. This means a call to `cachedFn` outside of a Server Component will call `fn` but not update or read the cache.
-- `cachedFn` will also cache errors. If `fn` throws an error for certain arguments, it will be cached, and the same error is re-thrown when `cachedFn` is called with those arguments.
+- Cache access only occurs during a component render. This means a call to `cachedFn` outside of a Server Component will call `fn` but will not update or read the cache.
+- `cachedFn` will also cache errors. If `fn` throws an error for certain arguments, it will be cached, and the same error is re-thrown when `cachedFn` is called with those same arguments.
 
 ---
 
@@ -79,7 +79,7 @@ The optimization of caching return values based on inputs is known as [_memoizat
 
 ### Share a snapshot of data {/*take-and-share-snapshot-of-data*/}
 
-To share a snapshot of data between components, wrap `cache` around a data-fetching function like `fetch`. When multiple components make the same data fetch, only one request is made and the data returned is cached and shared across components. All components refer to the same snapshot of data across the server render. 
+To share a snapshot of data between components, call `cache` with a data-fetching function like `fetch`. When multiple components make the same data fetch, only one request is made and the data returned is cached and shared across components. All components refer to the same snapshot of data across the server render. 
 
 ```js [[1, 4, "city"], [1, 5, "fetchTemperature(city)"], [2, 4, "getTemperature"], [2, 9, "getTemperature"], [1, 9, "city"], [2, 14, "getTemperature"], [1, 14, "city"]]
 import {cache} from 'react';
@@ -192,7 +192,7 @@ In the above example, each component <CodeStep step={1}>creates a new memoized v
 
 If both `AnimatedWeatherCard` and `MinimalWeatherCard` render for the same city, they will call different memoized functions that have separate cache look-ups. This is a missed opportunity for sharing work.
 
-Instead, define your memoized function in a scope that can be shared across components.
+Instead, define your memoized function in a dedicated module that can be [`import`-ed](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import) across components.
 
 ```js [[2, 3, "export default cache(fetchTemperature)"], [2, 8, "getTemperature", 0], [2, 18, "getTemperature", 0]]
 // getTemperature.js
@@ -225,7 +225,7 @@ Now `MinimalWeatherCard` and `AnimatedWeatherCard` call the <CodeStep step={2}>s
 
 ### Preload data {/*preload-data*/}
 
-By wrapping a long-running data fetch in `cache`, you can kick off asynchronous work prior to rendering the component.
+By caching a long-running data fetch, you can kick off asynchronous work prior to rendering the component.
 
 ```jsx [[2, 6, "await getUser(id)"], [1, 17, "getUser(id)"]]
 const getUser = cache(async (id) => {
@@ -329,7 +329,7 @@ You can think of `useMemo`'s cache as a size of one, where it can only cache the
 'use client';
 
 function WeatherReport({record}) {
-	const avgTemp = useMemo(() => calculateAvg(record)), record);
+  const avgTemp = useMemo(() => calculateAvg(record)), record);
   // ...
 }
 
@@ -369,7 +369,7 @@ function App() {
 
 Re-writing the previous example to use `cache`, in this case the second instance of `WeatherReport` will be able to skip duplicate work and read from the cache.
 
-[`memo`](reference/react/memo) is similar to `cache` in that is also a utility function for memoization but instead of memoizing functions, it memoizes components. When you wrap a component with `memo`, you create a new version of that component that only re-renders when the passed props of the component have changed. Similar to `useMemo`, the memoized component only caches the last render with certain props so you can also think of the cache size as one. Once the props change, the cache invalidates and the component re-renders.
+[`memo`](reference/react/memo) is similar to `cache` in that is also a utility function for memoization but instead of memoizing functions, it memoizes components. When you call a component with `memo`, you create a new version of that component that only re-renders when the passed props of the component have changed. Similar to `useMemo`, the memoized component only caches the last render with certain props so you can also think of the cache size as one. Once the props change, the cache invalidates and the component re-renders.
 
 </DeepDive>
 

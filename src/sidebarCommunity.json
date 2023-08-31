@@ -12,6 +12,14 @@
       "skipBreadcrumb": true,
       "routes": [
         {
+          "title": "Contributing",
+          "path": "/community/contributing-guidelines"
+        },
+        {
+          "title": "How To Contribute",
+          "path": "/community/how-to-contribute"
+        },
+        {
           "title": "React Conferences",
           "path": "/community/conferences"
         },

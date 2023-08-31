@@ -122,9 +122,91 @@ export default App = AppTSX;
 The type describing your component's props can be as simple or as complex as you need, though they should be an object type described with either a `type` or `interface`. You can learn about how TypeScript describes objects in [Object Types](https://www.typescriptlang.org/docs/handbook/2/objects.html) but you may also be interested in using [Union Types](https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#union-types) to describe a prop that can be one of a few different types and the [Creating Types from Types](https://www.typescriptlang.org/docs/handbook/2/types-from-types.html) guide for more advanced use cases.
 
 
+### Common patterns for components in Typescript {/*common-patterns-for-components-in-typescript*/}
+
+#### Exposing the api of the component being decorated {/*exposing-the-api-of-the-component-being-decorated*/}
+
+Often when we create components that decorate other components we want to expose the api of the component being decorated.
+For example if we're making a button component that adds a customProp we would still like the consumer to expose the props of the underlying button component.
+
+
+```tsx App.tsx active
+import { ComponentPropsWithoutRef, ElementType } from "react";
+
+type MyButtonProps = ComponentPropsWithoutRef<ElementType<"button">> & { customProp?: string };
+
+function MyButton({ customProp, children, ...props }: MyButtonProps) {
+  return <button {...props}>{customProp === "secret" ? "Super" : children}</button>
+}
+
+
+function CustomComponent({ children }: { children?: ReactNode; baseProp?: string; }) {
+  return children;
+}
+
+type OtherCustomComponentProps = ComponentPropsWithoutRef<typeof CustomComponent> & { customProp?: string };
+
+function OtherCustomComponent({ customProp, children, ...props }: OtherCustomComponentProps) {
+  return <CustomComponent {...props}>{customProp === "secret" ? "Super" : children}</CustomComponent>
+}
+
+
+export default function MyApp() {
+  return (
+    <div>
+      {/* Notice that we have full type completion on the MyButton and OtherCustomComponentProps components */}
+      <MyButton>HI!</MyButton>
+      <OtherCustomComponent>Hello</OtherCustomComponentProps>
+    </div>
+  );
+}
+```
+
+#### Type safe forwardRef {/*type-safe-forwardref*/}
+
+Whenever we want to forward a ref to a decorated component we can leverage the `ElementType` and `ElementRef` types to ensure that the ref is of the correct type.
+
+```tsx App.tsx active
+import { ElementType, ElementRef, forwardRef, ComponentPropsWithoutRef } from "react";
+
+const MyButton = forwardRef(function MyButton(props: ComponentPropsWithoutRef<ElementType<"button">> & { customProp?: string }, ref: ForwardedRef<ElementRef<"button">>) {
+  return <button ref={ref} {...props}>{customProp === "secret" ? "Super" : children}</button>
+});
+
+// Similarly for custom components
+const MyOther = forwardRef(function MyOther(props: ComponentPropsWithoutRef<typeof CustomComponent> & { customProp?: string }, ref: ForwardedRef<ElementRef<typeof CustomComponent>>) {
+  return <CustomComponent ref={ref} {...props}>{customProp === "secret" ? "Super" : children}</CustomComponent>
+});
+```
+
+#### Memoize and forwardref the same component while maintaining type saftey {/*memoize-and-forwardref-the-same-component-while-maintaining-type-saftey*/}
+
+When we want to memoize a component that also forwards a ref we can leverage inferrence to avoid having to specify generic arguments multiple times.
+
+```tsx App.tsx active
+
+import { ElementType, ElementRef, ComponentPropsWithoutRef, ForwardedRef, forwardRef, memo } from "react";
+
+// Prefer
+
+const MyButton = memo(forwardRef((props: ComponentPropsWithoutRef<ElementType<"button">>, ref: ForwardedRef<ElementRef<"button">>) {
+  return <button ref={ref} {...props} >;
+}))
+
+
+// Avoid
+
+type Props = ComponentPropsWithoutRef<ElementType<"button">>;
+
+const MyButton = memo<Props>(forwardRef<HTMLButtonElement, Props>((props, ref) {
+  return <button ref={ref} {...props} >;
+}))
+
+```
+
 ## Example Hooks {/*example-hooks*/}
 
-The type definitions from `@types/react` include types for the built-in hooks, so you can use them in your components without any additional setup. They are built to take into account the code you write in your component, so you will get [inferred types](https://www.typescriptlang.org/docs/handbook/type-inference.html) a lot of the time and ideally do not need to handle the minutiae of providing the types. 
+The type definitions from `@types/react` include types for the built-in hooks, so you can use them in your components without any additional setup. They are built to take into account the code you write in your component, so you will get [inferred types](https://www.typescriptlang.org/docs/handbook/type-inference.html) a lot of the time and ideally do not need to handle the minutiae of providing the types.
 
 However, we can look at a few examples of how to provide types for hooks.
 
@@ -139,7 +221,7 @@ const [enabled, setEnabled] = useState(false);
 
 Will assign the type of `boolean` to `enabled`, and `setEnabled` will be a function accepting either a `boolean` argument, or a function that returns a `boolean`. If you want to explicitly provide a type for the state, you can do so by providing a type argument to the `useState` call:
 
-```ts 
+```ts
 // Explicitly set the type to "boolean"
 const [enabled, setEnabled] = useState<boolean>(false);
 ```
@@ -174,7 +256,7 @@ The [`useReducer` hook](/reference/react/useReducer) is a more complex hook that
 import {useReducer} from 'react';
 
 interface State {
-   count: number 
+   count: number
 };
 
 type CounterAction =
@@ -284,7 +366,7 @@ export default App = AppTSX;
 
 </Sandpack>
 
-This technique works when you have an default value which makes sense - but there are occasionally cases when you do not, and in those cases `null` can feel reasonable as a default value. However, to allow the type-system to understand your code, you need to explicitly set `ContextShape | null` on the `createContext`. 
+This technique works when you have an default value which makes sense - but there are occasionally cases when you do not, and in those cases `null` can feel reasonable as a default value. However, to allow the type-system to understand your code, you need to explicitly set `ContextShape | null` on the `createContext`.
 
 This causes the issue that you need to eliminate the `| null` in the type for context consumers. Our recommendation is to have the hook do a runtime check for it's existence and throw an error when not present:
 
@@ -350,7 +432,7 @@ const handleClick = useCallback(() => {
 
 When working in TypeScript strict mode `useCallback` requires adding types for the parameters in your callback. This is because the type of the callback is inferred from the return value of the function, and without parameters the type cannot be fully understood.
 
-Depending on your code-style preferences, you could use the `*EventHandler` functions from the React types to provide the type for the event handler at the same time as defining the callback: 
+Depending on your code-style preferences, you could use the `*EventHandler` functions from the React types to provide the type for the event handler at the same time as defining the callback:
 
 ```ts
 import { useState, useCallback } from 'react';
@@ -361,7 +443,7 @@ export default function Form() {
   const handleChange = useCallback<React.ChangeEventHandler<HTMLInputElement>>((event) => {
     setValue(event.currentTarget.value);
   }, [setValue])
-  
+
   return (
     <>
       <input value={value} onChange={handleChange} />
@@ -433,7 +515,7 @@ interface ModalRendererProps {
 }
 ```
 
-Note, that you cannot use TypeScript to describe that the children are a certain type of JSX elements, so you cannot use the type-system to describe a component which only accepts `<li>` children. 
+Note, that you cannot use TypeScript to describe that the children are a certain type of JSX elements, so you cannot use the type-system to describe a component which only accepts `<li>` children.
 
 You can see all an example of both `React.ReactNode` and `React.ReactElement` with the type-checker in [this TypeScript playground](https://www.typescriptlang.org/play?#code/JYWwDg9gTgLgBAJQKYEMDG8BmUIjgIilQ3wChSB6CxYmAOmXRgDkIATJOdNJMGAZzgwAFpxAR+8YADswAVwGkZMJFEzpOjDKw4AFHGEEBvUnDhphwADZsi0gFw0mDWjqQBuUgF9yaCNMlENzgAXjgACjADfkctFnYkfQhDAEpQgD44AB42YAA3dKMo5P46C2tbJGkvLIpcgt9-QLi3AEEwMFCItJDMrPTTbIQ3dKywdIB5aU4kKyQQKpha8drhhIGzLLWODbNs3b3s8YAxKBQAcwXpAThMaGWDvbH0gFloGbmrgQfBzYpd1YjQZbEYARkB6zMwO2SHSAAlZlYIBCdtCRkZpHIrFYahQYQD8UYYFA5EhcfjyGYqHAXnJAsIUHlOOUbHYhMIIHJzsI0Qk4P9SLUBuRqXEXEwAKKfRZcNA8PiCfxWACecAAUgBlAAacFm80W-CU11U6h4TgwUv11yShjgJjMLMqDnN9Dilq+nh8pD8AXgCHdMrCkWisVoAet0R6fXqhWKhjKllZVVxMcavpd4Zg7U6Qaj+2hmdG4zeRF10uu-Aeq0LBfLMEe-V+T2L7zLVu+FBWLdLeq+lc7DYFf39deFVOotMCACNOCh1dq219a+30uC8YWoZsRyuEdjkevR8uvoVMdjyTWt4WiSSydXD4NqZP4AymeZE072ZzuUeZQKheQgA).
 

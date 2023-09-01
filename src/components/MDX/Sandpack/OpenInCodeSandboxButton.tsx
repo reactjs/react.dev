@@ -8,10 +8,10 @@ import {IconNewPage} from '../../Icon/IconNewPage';
 export const OpenInCodeSandboxButton = () => {
   return (
     <UnstyledOpenInCodeSandboxButton
-      className="text-sm text-primary dark:text-primary-dark inline-flex items-center hover:text-link duration-100 ease-in transition mx-1 ml-2 md:ml-1"
+      className="text-sm text-primary dark:text-primary-dark inline-flex items-center hover:text-link duration-100 ease-in transition mx-1 ms-2 md:ms-1"
       title="Open in CodeSandbox">
       <IconNewPage
-        className="inline ml-1 mr-1 relative top-[1px]"
+        className="inline mx-1 relative top-[1px]"
         width="1em"
         height="1em"
       />

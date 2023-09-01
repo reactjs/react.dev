@@ -8,8 +8,9 @@ import cn from 'classnames';
 import {IconNote} from '../Icon/IconNote';
 import {IconWarning} from '../Icon/IconWarning';
 import {IconPitfall} from '../Icon/IconPitfall';
+import {IconCanary} from '../Icon/IconCanary';
 
-type CalloutVariants = 'deprecated' | 'pitfall' | 'note' | 'wip';
+type CalloutVariants = 'deprecated' | 'pitfall' | 'note' | 'wip' | 'canary';
 
 interface ExpandableCalloutProps {
   children: React.ReactNode;
@@ -31,6 +32,15 @@ const variantMap = {
     containerClasses:
       'bg-green-5 dark:bg-green-60 dark:bg-opacity-20 text-primary dark:text-primary-dark text-lg',
     textColor: 'text-green-60 dark:text-green-40',
+    overlayGradient:
+      'linear-gradient(rgba(245, 249, 248, 0), rgba(245, 249, 248, 1)',
+  },
+  canary: {
+    title: 'Canary',
+    Icon: IconCanary,
+    containerClasses:
+      'bg-gray-5 dark:bg-gray-60 dark:bg-opacity-20 text-primary dark:text-primary-dark text-lg',
+    textColor: 'text-gray-60 dark:text-gray-30',
     overlayGradient:
       'linear-gradient(rgba(245, 249, 248, 0), rgba(245, 249, 248, 1)',
   },
@@ -65,7 +75,7 @@ function ExpandableCallout({children, type = 'note'}: ExpandableCalloutProps) {
       )}>
       <h3 className={cn('text-2xl font-display font-bold', variant.textColor)}>
         <variant.Icon
-          className={cn('inline mr-3 mb-1 text-lg', variant.textColor)}
+          className={cn('inline me-3 mb-1 text-lg', variant.textColor)}
         />
         {variant.title}
       </h3>

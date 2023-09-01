@@ -1,12 +1,12 @@
 ---
 title: "'use client'"
+canary: true
 ---
 
-<Note>
+<Canary>
 
-These directives are needed only if you're [using React Server Components](/learn/start-a-new-react-project#bleeding-edge-react-frameworks) or building a library compatible with them.
-
-</Note>
+`'use client'` is needed only if you're [using React Server Components](/learn/start-a-new-react-project#bleeding-edge-react-frameworks) or building a library compatible with them.
+</Canary>
 
 
 <Intro>
@@ -51,7 +51,9 @@ When a file marked `'use client'` is imported from a server component, [compatib
 ## Usage {/*usage*/}
 
 <Wip>
+This section is a work in progress. 
 
-This section is incomplete. See also the [Next.js documentation for Server Components](https://beta.nextjs.org/docs/rendering/server-and-client-components).
-
+This API can be used in any framework that supports React Server Components. You may find additional documentation from them.
+* [Next.js documentation](https://nextjs.org/docs/getting-started/react-essentials)
+* More coming soon
 </Wip>

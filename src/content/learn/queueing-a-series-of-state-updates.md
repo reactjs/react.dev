@@ -1,10 +1,10 @@
 ---
-title: Queueing a Series of State Updates
+title: queuing a Series of State Updates
 ---
 
 <Intro>
 
-Setting a state variable will queue another render. But sometimes you might want to perform multiple operations on the value before queueing the next render. To do this, it helps to understand how React batches state updates.
+Setting a state variable will queue another render. But sometimes you might want to perform multiple operations on the value before queuing the next render. To do this, it helps to understand how React batches state updates.
 
 </Intro>
 

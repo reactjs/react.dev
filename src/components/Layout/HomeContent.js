@@ -977,7 +977,7 @@ function Example2() {
   return (
     <section>
       <h2>{heading}</h2>
-      {videos.map(video =>
+      {videos.map(video => (
         <Video key={video.id} video={video} />
       )}
     </section>

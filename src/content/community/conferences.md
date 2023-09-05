@@ -21,7 +21,7 @@ September 28 - 30, 2023. Alicante, Spain
 [Website](https://reactalicante.es/) - [Twitter](https://twitter.com/reactalicante)
 
 ### React Live 2023 {/*react-live-2023*/}
-September 29, 2023. Amsterdam, Nederland
+September 29, 2023. Amsterdam, Netherlands
 
 [Website](https://reactlive.nl/)
 

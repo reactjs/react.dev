@@ -202,6 +202,7 @@ const CodeBlock = function CodeBlock({
 
   return (
     <div
+      dir="ltr"
       className={cn(
         'sandpack sandpack--codeblock',
         'rounded-2xl h-full w-full overflow-x-auto flex items-center bg-wash dark:bg-gray-95 shadow-lg',

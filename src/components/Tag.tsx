@@ -37,7 +37,7 @@ interface TagProps {
 function Tag({text, variant, className}: TagProps) {
   const {name, classes} = variantMap[variant];
   return (
-    <span className={cn('mr-2', className)}>
+    <span className={cn('me-2', className)}>
       <span
         className={cn(
           'inline font-bold text-sm uppercase py-1 px-2 rounded',

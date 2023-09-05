@@ -24,11 +24,13 @@ export default memo(function CodeBlockWrapper(props: {
     <Suspense
       fallback={
         <pre
+          translate="no"
+          dir="ltr"
           className={cn(
             'rounded-lg leading-6 h-full w-full overflow-x-auto flex items-center bg-wash dark:bg-gray-95 shadow-lg text-[13.6px] overflow-hidden',
             !isFromPackageImport && 'my-8'
           )}>
-          <div className="py-[18px] pl-5 font-normal ">
+          <div className="py-[18px] ps-5 font-normal ">
             <p className="sp-pre-placeholder overflow-hidden">{children}</p>
           </div>
         </pre>

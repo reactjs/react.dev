@@ -7,7 +7,7 @@ import {siteConfig} from '../siteConfig';
 
 const MyDocument = () => {
   return (
-    <Html lang={siteConfig.languageCode}>
+    <Html lang={siteConfig.languageCode} dir={siteConfig.isRTL ? 'rtl' : 'ltr'}>
       <Head />
       <body className="font-text font-medium antialiased text-lg bg-wash dark:bg-wash-dark text-secondary dark:text-secondary-dark leading-base">
         <script

@@ -27,8 +27,7 @@ export function Toc({headings}: {headings: Toc}) {
         <ul className="space-y-2 pb-16">
           {headings.length > 0 &&
             headings.map((h, i) => {
-              if (h.url == null) {
-                // TODO: only log in DEV
+              if (!h.url && process.env.NODE_ENV === 'development') {
                 console.error('Heading does not have URL');
               }
               return (

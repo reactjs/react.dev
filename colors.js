@@ -2,28 +2,7 @@
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
 
-module.exports = {
-  // Text colors
-  primary: '#23272F', // gray-90
-  'primary-dark': '#F6F7F9', // gray-5
-  secondary: '#404756', // gray-70
-  'secondary-dark': '#EBECF0', // gray-10
-  tertiary: '#5E687E', // gray-50
-  'tertiary-dark': '#99A1B3', // gray-30
-  link: '#087EA4', // blue-50
-  'link-dark': '#149ECA', // blue-40
-  syntax: '#EBECF0', // gray-10
-  wash: '#FFFFFF',
-  'wash-dark': '#23272F', // gray-90
-  card: '#F6F7F9', // gray-05
-  'card-dark': '#343A46', // gray-80
-  highlight: '#E6F7FF', // blue-10
-  'highlight-dark': 'rgba(88,175,223,.1)',
-  border: '#EBECF0', // gray-10
-  'border-dark': '#343A46', // gray-80
-  'secondary-button': '#EBECF0', // gray-10
-  'secondary-button-dark': '#404756', // gray-70
-
+const colorScale = {
   // Gray
   'gray-95': '#16181D',
   'gray-90': '#23272F',
@@ -43,7 +22,7 @@ module.exports = {
   'blue-60': '#045975',
   'blue-50': '#087EA4',
   'blue-40': '#149ECA', // Brand Blue
-  'blue-30': '#58C4DC', // unused
+  'blue-30': '#58C4DC',
   'blue-20': '#ABE2ED',
   'blue-10': '#E6F7FF', // todo: doesn't match illustrations
   'blue-5': '#E6F6FA',
@@ -83,10 +62,35 @@ module.exports = {
   'red-20': '#E5B7B3', // unused
   'red-10': '#F2DBD9', // unused
   'red-5': '#FAF1F0',
+};
+
+module.exports = {
+  ...colorScale,
+
+  // Text colors
+  primary: colorScale['gray-90'],
+  'primary-dark': colorScale['gray-5'],
+  secondary: colorScale['gray-70'],
+  'secondary-dark': colorScale['gray-10'],
+  tertiary: colorScale['gray-50'],
+  'tertiary-dark': colorScale['gray-30'],
+  link: colorScale['blue-50'],
+  'link-dark': colorScale['blue-40'],
+  syntax: colorScale['gray-10'],
+  wash: '#FFFFFF',
+  'wash-dark': colorScale['gray-90'],
+  card: colorScale['gray-5'],
+  'card-dark': colorScale['gray-80'],
+  highlight: colorScale['blue-10'],
+  'highlight-dark': 'rgba(88,175,223,.1)',
+  border: colorScale['gray-10'],
+  'border-dark': colorScale['gray-80'],
+  'secondary-button': colorScale['gray-10'],
+  'secondary-button-dark': colorScale['gray-70'],
 
   // MISC
   'code-block': '#99a1b30f', // gray-30 @ 6%
-  'gradient-blue': '#58C4DC', // Only used for the landing gradient for now.
+  'gradient-blue': colorScale['blue-30'], // Only used for the landing gradient for now.
   github: {
     highlight: '#fffbdd',
   },

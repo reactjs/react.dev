@@ -62,7 +62,7 @@ code {
 }
 
 ul {
-  padding-left: 20px;
+  padding-inline-start: 20px;
 }
 `.trim();
 
@@ -78,7 +78,7 @@ function SandpackRoot(props: SandpackProps) {
   };
 
   return (
-    <div className="sandpack sandpack--playground w-full my-8">
+    <div className="sandpack sandpack--playground w-full my-8" dir="ltr">
       <SandpackProvider
         template="react"
         files={files}

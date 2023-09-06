@@ -115,7 +115,7 @@ const SandboxShell = memo(function SandboxShell({
               }}>
               <span className="flex p-2 focus:outline-none text-primary dark:text-primary-dark leading-[20px]">
                 <IconChevron
-                  className="inline mr-1.5 text-xl"
+                  className="inline me-1.5 text-xl"
                   displayDirection={isExpanded ? 'up' : 'down'}
                 />
                 {isExpanded ? 'Show less' : 'Show more'}

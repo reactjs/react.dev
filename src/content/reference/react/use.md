@@ -58,7 +58,7 @@ The `use` Hook returns the value that was read from the resource like the resolv
 
 * The `use` Hook must be called inside a Component or a Hook.
 * `use` is not recommended for data fetching from a [Server Component](/reference/react/components#server-components). `async` and `await` are preferred when fetching data from a Server Component.
-* When passing Promises to `use`, you must store the Promise in a state variable or context to avoid recreating the Promise on every rerender. When invoking a function that returns a Promise, you can store the returned Promise with a cache mechanism like React's `cache` function.
+* Creating a Promise inside a Client Component is not supported. Promises can be created in Server Components and passed to Client Components as props. When invoking a function that returns a Promise, you can store the returned Promise with a cache mechanism like React's `cache` function.
 
 ---
 

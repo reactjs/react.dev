@@ -110,6 +110,7 @@ To prioritize rendering, use one of these Hooks:
 
 These Hooks are mostly useful to library authors and aren't commonly used in the application code.
 
+- [`use`](/reference/react/use) lets you read the value of a resource like a [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) or [context](/learn/passing-data-deeply-with-context)
 - [`useDebugValue`](/reference/react/useDebugValue) lets you customize the label React DevTools displays for your custom Hook.
 - [`useId`](/reference/react/useId) lets a component associate a unique ID with itself. Typically used with accessibility APIs.
 - [`useSyncExternalStore`](/reference/react/useSyncExternalStore) lets a component subscribe to an external store.

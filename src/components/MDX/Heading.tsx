@@ -88,3 +88,11 @@ export const H4 = ({className, ...props}: HeadingProps) => (
     {...props}
   />
 );
+
+export const H5 = ({className, ...props}: HeadingProps) => (
+  <Heading
+    as="h5"
+    className={cn(className, 'text-lg font-display font-bold leading-9 my-2')}
+    {...props}
+  />
+);

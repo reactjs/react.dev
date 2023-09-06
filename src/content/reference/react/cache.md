@@ -6,7 +6,7 @@ canary: true
 <Canary>
 * `cache` is only for use with [React Server Components](https://react.dev/blog/2023/03/22/react-labs-what-we-have-been-working-on-march-2023#react-server-components). See [frameworks](https://react.dev/learn/start-a-new-react-project#bleeding-edge-react-frameworks) that support React Server Components.
 
-* `cache` is currently only available in React’s [Canary](https://react.dev/community/versioning-policy#canary-channel) and [experimental](https://react.dev/community/versioning-policy#experimental-channel) channels. Please ensure you understand the limitations before using `cache` in production. Learn more about [React's release channels here](/community/versioning-policy#all-release-channels).
+* `cache` is only available in React’s [Canary](https://react.dev/community/versioning-policy#canary-channel) and [experimental](https://react.dev/community/versioning-policy#experimental-channel) channels. Please ensure you understand the limitations before using `cache` in production. Learn more about [React's release channels here](/community/versioning-policy#all-release-channels).
 </Canary>
 
 <Intro>
@@ -41,7 +41,7 @@ function Chart({data}) {
 }
 ```
 
-`getMetrics` will first check if there is a cached result for `data`, otherwise call `calculateMetrics(data)` and cache the returned result.
+When `getMetrics` is first called with `data`, `getMetrics` will call `calculateMetrics(data)` and store the result in cache. If `getMetrics` is called again with the same `data`, it will return the cached result instead of calling `calculateMetrics(data)` again.
 
 [See more examples below.](#usage)
 
@@ -68,7 +68,7 @@ The optimization of caching return values based on inputs is known as [_memoizat
 - React will invalidate the cache for all memoized functions for each server request. 
 - Each call to `cache` creates a new function. This means that calling `cache` with the same function multiple times will return different memoized functions that do not share the same cache.
 - `cachedFn` will also cache errors. If `fn` throws an error for certain arguments, it will be cached, and the same error is re-thrown when `cachedFn` is called with those same arguments.
-- `cache` is for use in [Server Components](https://react.dev/blog/2023/03/22/react-labs-what-we-have-been-working-on-march-2023#react-server-components) only. There are plans to introduce `cache` for Client Components, but it is not a supported feature today. There are plans to add a warning when `cache` is used in Client Components.
+- `cache` is for use in [Server Components](https://react.dev/blog/2023/03/22/react-labs-what-we-have-been-working-on-march-2023#react-server-components) only.
 
 ---
 
@@ -105,9 +105,12 @@ Assume `Profile` is rendered first. It will call <CodeStep step={1}>`getUserMetr
 When `TeamReport` renders its list of `users` and reaches the same `user` object, it will call <CodeStep step={2}>`getUserMetrics`</CodeStep> and read the result from cache.
 
 <Pitfall>
-Calling different memoized functions will read from different caches. To access the same cache, components must call the same memoized function.
 
-```js [[1, 7, "getWeekReport = cache(calculateWeekReport)"], [1, 8, "getWeekReport(cityData)"], [2, 17, "getWeekReport = cache(calculateWeekReport)"], [2, 20, "getWeekReport(cityData)"]]
+##### Calling different memoized functions will read from different caches. {/*pitfall-different-memoized-functions*/}
+
+To access the same cache, components must call the same memoized function.
+
+```js [[1, 7, "getWeekReport"], [1, 7, "cache(calculateWeekReport)"], [1, 8, "getWeekReport"]]
 // Temperature.js
 import {cache} from 'react';
 import {calculateWeekReport} from './report';
@@ -115,10 +118,12 @@ import {calculateWeekReport} from './report';
 export function Temperature({cityData}) {
   // 🚩 Wrong: Calling `cache` in component creates new `getWeekReport` for each render
   const getWeekReport = cache(calculateWeekReport);
-	const report = getWeekReport(cityData);
+  const report = getWeekReport(cityData);
   // ...
 }
+```
 
+```js [[2, 6, "getWeekReport"], [2, 6, "cache(calculateWeekReport)"], [2, 9, "getWeekReport"]]
 // Precipitation.js
 import {cache} from 'react';
 import {calculateWeekReport} from './report';
@@ -138,13 +143,15 @@ In addition, `Temperature` creates a <CodeStep step={1}>new memoized function</C
 
 To maximize cache hits and reduce work, the two components should call the same memoized function to access the same cache. Instead, define the memoized function in a dedicated module that can be [`import`-ed](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import) across components.
 
-```js [[3, 5, "export default cache(calculateWeekReport)"], [3, 8, "getWeekReport", 0], [3, 11, "getWeekReport(cityData)"], [3, 16, "getWeekReport", 0], [3, 19, "getWeekReport(cityData)"]]
+```js [[3, 5, "export default cache(calculateWeekReport)"]]
 // getWeekReport.js
 import {cache} from 'react';
 import {calculateWeekReport} from './report';
 
 export default cache(calculateWeekReport);
+```
 
+```js [[3, 2, "getWeekReport", 0], [3, 5, "getWeekReport"]]
 // Temperature.js
 import getWeekReport from './getWeekReport';
 
@@ -152,7 +159,9 @@ export default function Temperature({cityData}) {
 	const report = getWeekReport(cityData);
   // ...
 }
+```
 
+```js [[3, 2, "getWeekReport", 0], [3, 5, "getWeekReport"]]
 // Precipitation.js
 import getWeekReport from './getWeekReport';
 
@@ -279,7 +288,7 @@ If the promise is already settled, either to an error or the _fulfilled_ result,
 
 <Pitfall>
 
-Calling a memoized function outside of a component will not use the cache.
+##### Calling a memoized function outside of a component will not use the cache. {/*pitfall-memoized-call-outside-component*/}
 
 ```jsx [[1, 3, "getUser"]]
 import {cache} from 'react';
@@ -288,7 +297,7 @@ const getUser = cache(async (userId) => {
   return await db.user.query(userId);
 });
 
-// 🚩 Wrong: Calling memoized function outside of render will not memoize.
+// 🚩 Wrong: Calling memoized function outside of component will not memoize.
 getUser('demo-id');
 
 async function DemoProfile() {
@@ -332,7 +341,7 @@ function App() {
   );
 }
 ```
-In this example, `App` renders two `WeatherReport`s with the same record. Even though both components do the same work, they cannot share work. `useMemo` is only a local cache to the component instance. 
+In this example, `App` renders two `WeatherReport`s with the same record. Even though both components do the same work, they cannot share work. `useMemo`'s cache is only local to the component.
 
 However, `useMemo` does ensure that if `App` re-renders and the `record` object doesn't change, each component instance would skip work and use the memoized value of `avgTemp`. `useMemo` will only cache the last computation of `avgTemp` with the given dependencies. 
 
@@ -399,11 +408,15 @@ Compared to `useMemo`, `memo` memoizes the component render based on props vs. s
 
 ### My memoized function still runs even though I've called it with the same arguments {/*memoized-function-still-runs*/}
 
-Beyond the mentioned Pitfalls, it may be a problem with how React checks if something exists in cache.
+See prior mentioned pitfalls
+* [Calling different memoized functions will read from different caches.](#pitfall-different-memoized-functions)
+* [Calling a memoized function outside of a component will not use the cache.](#pitfall-memoized-call-outside-component)
+
+If none of the above apply, it may be a problem with how React checks if something exists in cache.
+
+If your arguments are not [primatives](https://developer.mozilla.org/en-US/docs/Glossary/Primitive) (ex. objects, functions, arrays), ensure you're passing the same object reference.
 
 When calling a memoized function, React will look up the input arguments to see if a result is already cached. React will use shallow equality of the arguments to determine if there is a cache hit.
-
-This means that if your arguments are not [primatives](https://developer.mozilla.org/en-US/docs/Glossary/Primitive) (ex. objects, functions, arrays), ensure you're passing the same object reference.
 
 ```js
 import {cache} from 'react';

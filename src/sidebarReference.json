@@ -12,7 +12,8 @@
       "routes": [
         {
           "title": "use",
-          "path": "/reference/react/use"
+          "path": "/reference/react/use",
+          "canary": true
         },
         {
           "title": "useCallback",

@@ -1,15 +1,13 @@
 ---
 title: use
+canary: true
 ---
 
-<Wip>
-This section is incomplete. See also the [draft use RFC](https://github.com/acdlite/rfcs/blob/first-class-promises/text/0000-first-class-support-for-promises.md#usepromise).
-</Wip>
+<Canary>
 
-[//]: # (TODO: replace the `<Note></Note>` below with `<Canary></Canary>` once https://github.com/reactjs/react.dev/pull/6173 is merged)
-<Note>
 The `use` Hook is currently only available in React’s canary and experimental channels. Learn more about [React's release channels here](/community/versioning-policy#all-release-channels). 
-</Note>
+
+</Canary>
 
 <Intro>
 
@@ -42,7 +40,7 @@ function MessageComponent({ messagePromise }) {
 
 Unlike all other React Hooks, the `use` Hook can be called within conditional statements like loops and `if` statements. Like other React Hooks, the function that calls `use` must be a Component or Hook.
 
-When called with a Promise, the `use` Hook integrates with [`Suspense`](/reference/react/Suspense) and [error boundaries](/reference/react/Component#catching-rendering-errors-with-an-error-boundary). The component calling `use` *suspends* while the Promise passed to `use` is pending. If the component that calls `use` is wrapped in a Suspense boundary the fallback of that Suspense component will be displayed.  Once the Promise is resolved, React hides the Suspense component fallback and renders the component(s) inside the Suspense boundary with the data returned by the `use` Hook. If the Promise passed to `use` is rejected, the fallback of the nearest Error Boundary will be displayed.
+When called with a Promise, the `use` Hook integrates with [`Suspense`](/reference/react/Suspense) and [error boundaries](/reference/react/Component#catching-rendering-errors-with-an-error-boundary). The component calling `use` *suspends* while the Promise passed to `use` is pending. If the component that calls `use` is wrapped in a Suspense boundary, the fallback will be displayed.  Once the Promise is resolved, the Suspense fallback is replaced by the rendered components using the data returned by the `use` Hook. If the Promise passed to `use` is rejected, the fallback of the nearest Error Boundary will be displayed.
 
 [See more examples below.](#usage)
 
@@ -57,359 +55,12 @@ The `use` Hook returns the value that was read from the resource like the resolv
 #### Caveats {/*caveats*/}
 
 * The `use` Hook must be called inside a Component or a Hook.
-* `use` is not recommended for data fetching from a [Server Component](/reference/react/components#server-components). `async` and `await` are preferred when fetching data from a Server Component.
-* Creating a Promise inside a Client Component is not supported. Promises can be created in Server Components and passed to Client Components as props. When invoking a function that returns a Promise, you can store the returned Promise with a cache mechanism like React's `cache` function.
+* `use` is not recommended for data fetching from a [Server Component](/reference/react/use-server). `async` and `await` are preferred when fetching data from a Server Component.
+* Creating a Promise inside a [Client Component](/reference/react/use-client) is not supported.
 
 ---
 
 ## Usage {/*usage*/}
-
-### Reading Promises with `use` {/*reading-promises-with-use*/}
-
-`use` functions similarly to the `await` with JavaScript Promises but is compatible with React's renderer and [`Suspense`](/reference/react/Suspense). Browser APIs or data fetching libraries that return a Promise can be passed to `use` to read the value of the Promise.
-
-In the example below we'll use <CodeStep step={1}>[`navigator.storage.estimate()`](https://developer.mozilla.org/en-US/docs/Web/API/StorageManager/estimate)</CodeStep>, a browser API that provides information on how much storage is being used by the current page and how much space is available. <CodeStep step={1}>`navigator.storage.estimate()`</CodeStep> is an asynchronous function that returns a Promise which resolves once the information is available.
-
-```js [[1,6, "navigator.storage.estimate()"], [2,6, "storagePromise"], [3,6, "useState"], [4,7, "use"], [5,8, "storage.quota"]]
-'use client';
-
-import { use, useState } from 'react';
-
-function StorageInfo() {
-  const [storagePromise] = useState(() => navigator.storage.estimate());
-  const storage = use(storagePromise);
-  return <p>An estimated {storage.quota} bytes available</p>;
-}
-```
-
-1. First, the Promise returned by <CodeStep step={1}>`navigator.storage.estimate()`</CodeStep> is stored in the <CodeStep step={2}>`storagePromise`</CodeStep> state variable created by <CodeStep step={3}>`useState`</CodeStep>. This prevents the call to <CodeStep step={1}>`navigator.storage.estimate()`</CodeStep> and the Promise it returns from being recreated across renders.
-2. Next, <CodeStep step={2}>`storagePromise`</CodeStep> is passed to <CodeStep step={4}>`use`</CodeStep> to read the resolved value of the Promise.
-3. Finally, the resolved value of the Promise can now be used safely. This includes surfacing data read by <CodeStep step={4}>`use`</CodeStep> like <CodeStep step={5}>`storage.quota`</CodeStep> in the JSX returned by the component.
-
-<Pitfall>
-
-When passing Promises to `use`, the Promise must be cached with the `cache` function, a state variable, or context to prevent the Promise from being recreated on every render.
-
-```js
-function Component() {
-  use(new Promise(...)); // ❌ Promise will be recreated on every render
-  // ...
-```
-
-Instead, pass the Promise to a state variable or context or wrap the function that returns the Promise in `cache`:
-
-```js
-import { use, useState, cache } from 'react';
-
-function Component() {
-  const [promise] = useState(() => new Promise(...)); // ✅ Promise persists across renders
-  const data = use(cache(fnThatReturnsAPromise())); // ✅ Promise persists across renders
-  // ...
-```
-
-Storing the results of an API call in a state variable, context, or cache means that value returned by `use` will not be updated if the underlying API returns a new value. If the underlying data changes you must call the API again and update the state variable or context to the new Promise returned by the API call:
-
-```js
-function StorageInfo() {
-  const [storagePromise, setStoragePromise] = useState(
-    () => navigator.storage.estimate();
-  );
-  function updateStorageInfo() {
-    setStoragePromise(navigator.storage.estimate());
-  }
-  const storage = use(storagePromise);
-  return (
-    <>
-      <p>An estimated {storage.quota} bytes available</p>
-      <button onClick={updateStorageInfo}>Update storage info</button>
-    </>
-  );
-}
-```
-
-</Pitfall>
-
-
-<Recipes>
-
-#### Read Promises from asynchronous browser APIs {/*read-promises-from-asynchronous-browser-apis*/}
-
-In this example, the Promise from `navigator.storage.estimate()` is stored in a state variable and passed to the `StorageInfo` component as a prop. The Promise is then read by `use` and the result is displayed to the user. While waiting for the Promise to resolve, the fallback of Suspense component that wraps `StorageInfo` is displayed.
-
-<Sandpack>
-
-```js App.js
-'use client';
-
-import { use, useState, Suspense } from 'react';
-import prettyBytes from 'pretty-bytes';
-
-function StorageInfo({ storagePromise }) {
-  const storage = use(storagePromise);
-  const utilization = ((storage.usage / storage.quota) * 100).toFixed(2);
-  return (
-    <ul>
-      <li>Using an estimated {prettyBytes(storage.usage)} of storage </li>
-      <li>An estimated {prettyBytes(storage.quota)} of storage available</li>
-      <li>Using {utilization}% of available storage</li>
-    </ul>
-  );
-}
-
-export default function App() {
-  const [storagePromise, setStoragePromise] = useState(null);
-  function download() {
-    setStoragePromise(navigator.storage.estimate());
-  }
-
-  if (!storagePromise) {
-    return <button onClick={download}>Get storage info</button>;
-  }
-  return (
-    <Suspense fallback={<p>⌛Waiting for storage data...</p>}>
-      <StorageInfo storagePromise={storagePromise} />
-    </Suspense>
-  );
-}
-```
-
-```js index.js hidden
-// TODO: update to import from stable
-// react instead of canary once the `use`
-// Hook is in a stable release of React
-import React, { StrictMode } from 'react';
-import { createRoot } from 'react-dom/client';
-import './styles.css';
-
-// TODO: update this example to use
-// the Codesandbox Server Component
-// demo environment once it is created
-import App from './App';
-
-const root = createRoot(document.getElementById('root'));
-root.render(
-  <StrictMode>
-    <App />
-  </StrictMode>
-);
-```
-
-```json package.json hidden
-{
-  "dependencies": {
-    "react": "18.3.0-canary-9377e1010-20230712",
-    "react-dom": "18.3.0-canary-9377e1010-20230712",
-    "react-scripts": "^5.0.0",
-    "pretty-bytes": "6.1.0"
-  },
-  "main": "/index.js"
-}
-```
-</Sandpack>
-
-<Solution />
-
-#### Read Promises from data fetching libraries {/*read-promises-from-data-fetching-libraries*/}
-
-You can read the values of Promises returned from data fetching libraries with the `use` Hook. In this example, the function `fetchMessage` is imported from a mock data fetching library. The Promise returned by `fetchMessage` is stored in the `messagePromise` state variable and then passed to `use` to read. The result is then displayed to the user. While waiting for the Promise to resolve, the fallback of the Suspense component that wraps `Message` is displayed.
-
-<Sandpack>
-
-```js App.js active
-'use client';
-
-import { use, useState, Suspense } from 'react';
-import { fetchMessage } from './data-fetching-lib.js';
-
-function Message({ messagePromise }) {
-  const messageContent = use(messagePromise);
-  return <p>Here is the message: {messageContent}</p>;
-}
-
-function MessageContainer() {
-  const [messagePromise] = useState(fetchMessage());
-  return (
-    <Suspense fallback={<p>⌛Downloading message...</p>}>
-      <Message messagePromise={messagePromise} />
-    </Suspense>
-  );
-}
-
-export default function App() {
-  const [show, setShow] = useState(false);
-  function download() {
-    setShow(true);
-  }
-
-  if (show) {
-    return <MessageContainer />;
-  } else {
-    return <button onClick={download}>Download message</button>;
-  }
-}
-```
-
-```js index.js hidden
-// TODO: update to import from stable
-// react instead of canary once the `use`
-// Hook is in a stable release of React
-import React, { StrictMode } from 'react';
-import { createRoot } from 'react-dom/client';
-import './styles.css';
-
-// TODO: update this example to use
-// the Codesandbox Server Component
-// demo environment once it is created
-import App from './App';
-
-const root = createRoot(document.getElementById('root'));
-root.render(
-  <StrictMode>
-    <App />
-  </StrictMode>
-);
-```
-
-```js data-fetching-lib.js hidden
-export function fetchMessage() {
-  return new Promise((resolve) => setTimeout(resolve, 1000, '⚛️'));
-}
-```
-
-```json package.json hidden
-{
-  "dependencies": {
-    "react": "18.3.0-canary-9377e1010-20230712",
-    "react-dom": "18.3.0-canary-9377e1010-20230712",
-    "react-scripts": "^5.0.0"
-  },
-  "main": "/index.js"
-}
-```
-</Sandpack>
-
-<Solution />
-
-#### Conditional data fetching {/*conditional-data-fetching*/}
-
-In this example, the `Article` component only calls `use` when the `shouldIncludeByline` is set to true. If `shouldIncludeByline` is set to true, the Promise returned by `fetchByline()` is read by the use Hook. The value read by `use` Hook is then used to display the byline of the article's author to the user.
-
-<Sandpack>
-
-```js App.js
-'use client';
-
-import { use, Suspense, useState } from 'react';
-import { fetchByline } from './api.js';
-
-function Article({ title, body, shouldIncludeByline, authorId }) {
-  const [byline, setByline] = useState(null);
-
-  if (shouldIncludeByline && !byline) {
-    // Because `use` is inside a conditional block, we avoid blocking
-    // unnecessarily when `shouldIncludeByline` is false.
-    setByline(use(fetchByline(authorId)));
-  }
-
-  return (
-    <div>
-      <h1>{title}</h1>
-      <h2>{byline}</h2>
-      <section>{body}</section>
-    </div>
-  );
-}
-
-export default function App() {
-  const [show, setShow] = useState(false);
-  function showArticle() {
-    setShow(true);
-  }
-
-  if (!show) {
-    return <button onClick={showArticle}>Show article</button>;
-  }
-  return (
-    <Suspense fallback={<p>⌛Loading article...</p>}>
-      <Article
-        title="Article Title"
-        body="this is the body of an article"
-        authorId="Jordan"
-        shouldIncludeByline={true}
-      />
-    </Suspense>
-  );
-}
-```
-
-```js index.js hidden
-// TODO: update to import from stable
-// react instead of canary once the `use`
-// Hook is in a stable release of React
-import React, { StrictMode } from 'react';
-import { createRoot } from 'react-dom/client';
-import './styles.css';
-
-// TODO: update this example to use
-// the Codesandbox Server Component
-// demo environment once it is created
-import App from './App';
-
-const root = createRoot(document.getElementById('root'));
-root.render(
-  <StrictMode>
-    <App />
-  </StrictMode>
-);
-```
-
-```js api.js hidden
-export function fetchByline(authorId) {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve('By ' + authorId);
-    }, 200);
-  });
-}
-```
-
-```css styles.css hidden
-* {
-  box-sizing: border-box;
-}
-
-body {
-  font-family: sans-serif;
-  margin: 20px;
-  padding: 0;
-}
-
-h1 {
-  margin-top: 0;
-  font-size: 22px;
-}
-
-h2 {
-  margin-top: 0;
-  font-size: 15px;
-}
-```
-
-```json package.json hidden
-{
-  "dependencies": {
-    "react": "18.3.0-canary-9377e1010-20230712",
-    "react-dom": "18.3.0-canary-9377e1010-20230712",
-    "react-scripts": "^5.0.0"
-  },
-  "main": "/index.js"
-}
-```
-</Sandpack>
-
-<Solution />
-
-</Recipes>
 
 ### Reading context with `use` {/*reading-context-with-use*/}
 
@@ -442,6 +93,20 @@ function Form() {
 ```
 
 It doesn't matter how many layers of components there are between the provider and the `Button`. When a `Button` *anywhere* inside of `Form` calls `use(ThemeContext)`, it will receive `"dark"` as the value.
+
+Unlike [`useContext`](/reference/react/useContext), <CodeStep step={2}>`use`</CodeStep> can be called in conditionals and loops like <CodeStep step={1}>`if`</CodeStep>:
+
+```js [[1, 2, "if"], [2, 3, "use"]]
+function HorizontalRule({ show }) {
+  if (show) {
+    const theme = use(ThemeContext);
+    return <hr className={theme} />;
+  }
+  return false;
+}
+```
+
+<CodeStep step={2}>`use`</CodeStep> is called from inside a <CodeStep step={1}>`if`</CodeStep> statement, allowing you to conditionally read values from a Context.
 
 <Pitfall>
 
@@ -549,9 +214,9 @@ function Button({ show, children }) {
 
 ### Streaming data from the server to the client {/*streaming-data-from-server-to-client*/}
 
-Data can be streamed from the server to the client by passing a Promise as a prop from a Server Component to a Client Component:
+Data can be streamed from the server to the client by passing a Promise as a prop from a Server Component (<CodeStep step={1}>`App`</CodeStep>) to a Client Component (<CodeStep step={2}>`Message`</CodeStep>):
 
-```js App.js
+```js [[1, 4, "App"], [2, 2, "Message"], [3, 7, "Suspense"], [4, 8, "messagePromise", 30], [4, 5, "messagePromise"]]
 import { fetchMessage } from './lib.js';
 import { Message } from './message.js';
 
@@ -565,9 +230,9 @@ export default function App() {
 }
 ```
 
-The Client Component then takes the Promise it received as a prop and passes it to the `use` Hook. This allows the Client Component to read the value from the Promise that was initially created by the Server Component:
+The Client Component (<CodeStep step={2}>`Message`</CodeStep>) then takes the Promise it received as a prop (<CodeStep step={4}>`messagePromise`</CodeStep>) and passes it to the <CodeStep step={5}>`use`</CodeStep> Hook. This allows the Client Component (<CodeStep step={2}>`Message`</CodeStep>) to read the value from the Promise that was initially created by the Server Component (<CodeStep step={4}>`messagePromise`</CodeStep>):
 
-```js
+```js [[2, 6, "Message"], [4, 6, "messagePromise"], [4, 7, "messagePromise"], [5, 7, "use"]]
 // message.js
 'use client';
 
@@ -575,32 +240,38 @@ import { use } from 'react';
 
 export function Message({ messagePromise }) {
   const messageContent = use(messagePromise);
-  const theme = use(ThemeContext);
-  // ...
   return <p>Here is the message: {messageContent}</p>;
 }
 ```
-Because `Message` is wrapped in [`Suspense`](/reference/react/Suspense) the Suspense component's fallback will be displayed until the Promise is resolved. When the Promise is resolved the value will be read by the `use` Hook and the `Message` component will replace the [`Suspense`](/reference/react/Suspense) component's fallback.
+Because <CodeStep step={2}>`Message`</CodeStep> is wrapped in <CodeStep step={3}>[`Suspense`](/reference/react/Suspense)</CodeStep>, the fallback will be displayed until the Promise is resolved. When the Promise is resolved, the value will be read by the <CodeStep step={5}>`use`</CodeStep> Hook and the <CodeStep step={2}>`Message`</CodeStep> component will replace the Suspense fallback.
 
 <Sandpack>
 
 ```js message.js active
-'use client';
+"use client";
 
-import { use } from 'react';
+import { use, Suspense } from "react";
 
-export function Message({ messagePromise }) {
+function Message({ messagePromise }) {
   const messageContent = use(messagePromise);
   return <p>Here is the message: {messageContent}</p>;
 }
+
+export function MessageContainer({ messagePromise }) {
+  return (
+    <Suspense fallback={<p>⌛Downloading message...</p>}>
+      <Message messagePromise={messagePromise} />
+    </Suspense>
+  );
+}
 ```
 
-```js App.js
-import { Suspense, useState } from 'react';
-import { Message } from './message.js';
+```js App.js hidden
+import { useState } from "react";
+import { MessageContainer } from "./message.js";
 
 function fetchMessage() {
-  return new Promise((resolve) => setTimeout(resolve, 1000, '⚛️'));
+  return new Promise((resolve) => setTimeout(resolve, 1000, "⚛️"));
 }
 
 export default function App() {
@@ -612,11 +283,7 @@ export default function App() {
   }
 
   if (show) {
-    return (
-      <Suspense fallback={<p>⌛Downloading message...</p>}>
-        <Message messagePromise={messagePromise} />
-      </Suspense>
-    );
+    return <MessageContainer messagePromise={messagePromise} />;
   } else {
     return <button onClick={download}>Download message</button>;
   }
@@ -655,29 +322,28 @@ root.render(
 }
 ```
 </Sandpack>
+
+<Note>
+
+When passing a Promise from a Server Component to a Client Component, its resolved value must be serializable to pass between server and client. Data types like functions aren't serializable and cannot serve as the resolved value of such a Promise.
+
+</Note>
+
+
 <DeepDive>
 
-#### Server Components: `await` vs passing a Promise? {/*await-vs-passing-a-promise*/}
+#### Server Components: `await` vs passing a Promise to a Client Component {/*await-vs-passing-a-promise*/}
 
 Instead of passing a Promise from a Server Component to a Client Component you could `await` the Promise in the Server Component and pass the data to the Client Component as a prop:
 
 ```js
-import { fetchMessage } from './lib.js';
-import { Message } from './message.js';
-
 export default function App() {
   const messageContent = await fetchMessage();
-  return (
-    <Suspense fallback={<p>⌛Downloading message...</p>}>
-      <Message messageContent={messageContent} />
-    </Suspense>
-  );
+  return <Message messageContent={messageContent} />
 }
 ```
 
-But using `await` in a [Server Component](/reference/react/components#server-components) will block the rendering of the [Server Component](/reference/react/components#server-components) until the `await` statement is finished.
-
-Passing a Promise from a Server Component to a Client Component wrapped in a Suspense boundary prevents the Promise from blocking the rendering of the Server Component. This enables the Suspense component's fallback to be displayed to the user. When the Promise resolves, the value of the Promise is read by `use`. This value is used to render the Client Component which replaces the Suspense component's fallback.
+But using `await` in a [Server Component](/reference/react/components#server-components) will block the rendering of the [Server Component](/reference/react/components#server-components) until the `await` statement is finished. Passing a Promise from a Server Component to a Client Component prevents the Promise from blocking the rendering of the Server Component.
 
 </DeepDive>
 
@@ -698,10 +364,31 @@ If you'd like to display an error to your users when a Promise is rejected you c
 
 <Sandpack>
 
-```js App.js active
-import { Suspense, useState } from 'react';
-import { ErrorBoundary } from 'react-error-boundary';
-import { Message } from './message.js';
+```js message.js active
+"use client";
+
+import { use, Suspense } from "react";
+import { ErrorBoundary } from "react-error-boundary";
+
+export function MessageContainer({ messagePromise }) {
+  return (
+    <ErrorBoundary fallback={<p>⚠️Something went wrong</p>}>
+      <Suspense fallback={<p>⌛Downloading message...</p>}>
+        <Message messagePromise={messagePromise} />
+      </Suspense>
+    </ErrorBoundary>
+  );
+}
+
+function Message({ messagePromise }) {
+  const content = use(messagePromise);
+  return <p>Here is the message: {content}</p>;
+}
+```
+
+```js App.js hidden
+import { useState } from "react";
+import { MessageContainer } from "./message.js";
 
 function fetchMessage() {
   return new Promise((resolve, reject) => setTimeout(reject, 1000));
@@ -716,27 +403,10 @@ export default function App() {
   }
 
   if (show) {
-    return (
-      <ErrorBoundary fallback={<p>⚠️Something went wrong</p>}>
-        <Suspense fallback={<p>⌛Downloading message...</p>}>
-          <Message messagePromise={messagePromise} />
-        </Suspense>
-      </ErrorBoundary>
-    );
+    return <MessageContainer messagePromise={messagePromise} />;
   } else {
     return <button onClick={download}>Download message</button>;
   }
-}
-```
-
-```js message.js
-'use client';
-
-import { use } from 'react';
-
-export function Message({ messagePromise }) {
-  const content = use(messagePromise);
-  return <p>Here is the message: {content}</p>;
 }
 ```
 
@@ -776,83 +446,27 @@ root.render(
 
 #### Providing an alternative value with `Promise.catch` {/*providing-an-alternative-value-with-promise-catch*/}
 
-If you'd like to provide an alternative value when a Promise passed to `use` is rejected you can use an the Promise's [`catch`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/catch) method. To use the Promise's `catch` method, call `catch` on the Promise object. `catch` takes a single argument: a function that takes an error message as an argument. Whatever is returned by the function passed to `catch` will be used as the resolved value of the Promise.
+If you'd like to provide an alternative value when the Promise passed to `use` is rejected you can use an the Promise's <CodeStep step={1}>[`catch`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/catch)</CodeStep> method: 
 
-<Sandpack>
-
-```js App.js
-import { useState, Suspense } from 'react';
-import { MessageComponent } from './message.js';
-
-function fetchMessage() {
-  return new Promise((resolve, reject) => reject()).catch(() => {
-    return 'no new message found.';
-  });
-}
+```js [[1, 6, "catch"],[2, 7, "return"]]
+import { Message } from './message.js';
 
 export default function App() {
-  const [messagePromise, setMessagePromise] = useState(null);
-  const [show, setShow] = useState(false);
-  function download() {
-    setMessagePromise(fetchMessage());
-    setShow(true);
-  }
+  const messagePromise = new Promise((resolve, reject) => {
+    reject();
+  }).catch(() => {
+    return "no new message found.";
+  });
 
-  if (show) {
-    return (
-      <Suspense fallback={<p>⌛Downloading message...</p>}>
-        <MessageComponent messagePromise={messagePromise} />
-      </Suspense>
-    );
-  } else {
-    return <button onClick={download}>Download new message</button>;
-  }
+  return (
+    <Suspense fallback={<p>waiting for message...</p>}>
+      <Message messagePromise={messagePromise} />
+    </Suspense>
+  );
 }
 ```
 
-```js message.js
-'use client';
-
-import { use } from 'react';
-
-export function MessageComponent({ messagePromise }) {
-  const content = use(messagePromise);
-  return <p>Here is the message: {content}</p>;
-}
-```
-
-```js index.js hidden
-// TODO: update to import from stable
-// react instead of canary once the `use`
-// Hook is in a stable release of React
-import React, { StrictMode } from 'react';
-import { createRoot } from 'react-dom/client';
-import './styles.css';
-
-// TODO: update this example to use
-// the Codesandbox Server Component
-// demo environment once it is created
-import App from './App';
-
-const root = createRoot(document.getElementById('root'));
-root.render(
-  <StrictMode>
-    <App />
-  </StrictMode>
-);
-```
-
-```json package.json hidden
-{
-  "dependencies": {
-    "react": "18.3.0-canary-9377e1010-20230712",
-    "react-dom": "18.3.0-canary-9377e1010-20230712",
-    "react-scripts": "^5.0.0"
-  },
-  "main": "/index.js"
-}
-```
-</Sandpack>
+To use the Promise's <CodeStep step={1}>`catch`</CodeStep> method, call <CodeStep step={1}>`catch`</CodeStep> on the Promise object. <CodeStep step={1}>`catch`</CodeStep> takes a single argument: a function that takes an error message as an argument. Whatever is <CodeStep step={2}>returned</CodeStep> by the function passed to <CodeStep step={1}>`catch`</CodeStep> will be used as the resolved value of the Promise.
 
 ---
 
@@ -884,3 +498,7 @@ function MessageComponent({messagePromise}) {
   const message = use(messagePromise);
   // ...
 ```
+
+### I'm getting this warning: "Warning: Functions are not valid as a React child." {/*non-serializable-function-warning*/}
+
+When passing a Promise from a Server Component to a Client Component, its resolved value must be serializable to pass between server and client. Data types like functions aren't serializable and cannot serve as the resolved value of such a Promise.

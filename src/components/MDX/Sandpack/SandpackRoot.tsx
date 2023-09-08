@@ -2,7 +2,7 @@
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
 
-import {Children, useState} from 'react';
+import {Children} from 'react';
 import * as React from 'react';
 import {SandpackProvider} from '@codesandbox/sandpack-react/unstyled';
 import {SandpackLogLevel} from '@codesandbox/sandpack-client';

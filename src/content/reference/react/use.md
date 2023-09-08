@@ -5,7 +5,7 @@ canary: true
 
 <Canary>
 
-The `use` Hook is currently only available in React’s canary and experimental channels. Learn more about [React's release channels here](/community/versioning-policy#all-release-channels). 
+The `use` Hook is currently only available in React's canary and experimental channels. Learn more about [React's release channels here](/community/versioning-policy#all-release-channels).
 
 </Canary>
 
@@ -38,7 +38,7 @@ function MessageComponent({ messagePromise }) {
   // ...
 ```
 
-Unlike all other React Hooks, the `use` Hook can be called within conditional statements like loops and `if` statements. Like other React Hooks, the function that calls `use` must be a Component or Hook.
+Unlike all other React Hooks, `use` can be called within loops and conditional statements like `if`. Like other React Hooks, the function that calls `use` must be a Component or Hook.
 
 When called with a Promise, the `use` Hook integrates with [`Suspense`](/reference/react/Suspense) and [error boundaries](/reference/react/Component#catching-rendering-errors-with-an-error-boundary). The component calling `use` *suspends* while the Promise passed to `use` is pending. If the component that calls `use` is wrapped in a Suspense boundary, the fallback will be displayed.  Once the Promise is resolved, the Suspense fallback is replaced by the rendered components using the data returned by the `use` Hook. If the Promise passed to `use` is rejected, the fallback of the nearest Error Boundary will be displayed.
 
@@ -56,7 +56,7 @@ The `use` Hook returns the value that was read from the resource like the resolv
 
 * The `use` Hook must be called inside a Component or a Hook.
 * `use` is not recommended for data fetching from a [Server Component](/reference/react/use-server). `async` and `await` are preferred when fetching data from a Server Component.
-* Passing a Promise created inside a Client Component to `use` is not supported. Promises created by browser APIs in Client Components like `fetch` cannot be passed to `use`.
+* Creating Promises, or calling functions that return Promises inside Client Components is not recommended. When Promises are created in Client Components, they are recreated during every render which can impact performance. Instead, prefer creating Promises in a Server Component and passing it as a prop to a Client Component. [See this example](#streaming-data-from-server-to-client).
 
 ---
 
@@ -76,7 +76,7 @@ function Button() {
 
 `use` returns the <CodeStep step={2}>context value</CodeStep> for the <CodeStep step={1}>context</CodeStep> you passed. To determine the context value, React searches the component tree and finds **the closest context provider above** for that particular context.
 
-To pass context to a `Button`, wrap it or one of its parent components into the corresponding context provider:
+To pass context to a `Button`, wrap it or one of its parent components into the corresponding context provider.
 
 ```js [[1, 3, "ThemeContext"], [2, 3, "\\"dark\\""], [1, 5, "ThemeContext"]]
 function MyPage() {
@@ -94,7 +94,7 @@ function Form() {
 
 It doesn't matter how many layers of components there are between the provider and the `Button`. When a `Button` *anywhere* inside of `Form` calls `use(ThemeContext)`, it will receive `"dark"` as the value.
 
-Unlike [`useContext`](/reference/react/useContext), <CodeStep step={2}>`use`</CodeStep> can be called in conditionals and loops like <CodeStep step={1}>`if`</CodeStep>:
+Unlike [`useContext`](/reference/react/useContext), <CodeStep step={2}>`use`</CodeStep> can be called in conditionals and loops like <CodeStep step={1}>`if`</CodeStep>.
 
 ```js [[1, 2, "if"], [2, 3, "use"]]
 function HorizontalRule({ show }) {
@@ -214,7 +214,7 @@ function Button({ show, children }) {
 
 ### Streaming data from the server to the client {/*streaming-data-from-server-to-client*/}
 
-Data can be streamed from the server to the client by passing a Promise as a prop from a Server Component (<CodeStep step={1}>`App`</CodeStep>) to a Client Component (<CodeStep step={2}>`Message`</CodeStep>):
+Data can be streamed from the server to the client by passing a Promise as a prop from a <CodeStep step={1}>Server Component</CodeStep> to a <CodeStep step={2}>Client Component</CodeStep>.
 
 ```js [[1, 4, "App"], [2, 2, "Message"], [3, 7, "Suspense"], [4, 8, "messagePromise", 30], [4, 5, "messagePromise"]]
 import { fetchMessage } from './lib.js';
@@ -230,7 +230,7 @@ export default function App() {
 }
 ```
 
-The Client Component (<CodeStep step={2}>`Message`</CodeStep>) then takes the Promise it received as a prop (<CodeStep step={4}>`messagePromise`</CodeStep>) and passes it to the <CodeStep step={5}>`use`</CodeStep> Hook. This allows the Client Component (<CodeStep step={2}>`Message`</CodeStep>) to read the value from the Promise that was initially created by the Server Component (<CodeStep step={4}>`messagePromise`</CodeStep>):
+The <CodeStep step={2}>Client Component</CodeStep> then takes <CodeStep step={4}>the Promise it received as a prop</CodeStep> and passes it to the <CodeStep step={5}>`use`</CodeStep> Hook. This allows the <CodeStep step={2}>Client Component</CodeStep> to read the value from <CodeStep step={4}>the Promise</CodeStep> that was initially created by the Server Component.
 
 ```js [[2, 6, "Message"], [4, 6, "messagePromise"], [4, 7, "messagePromise"], [5, 7, "use"]]
 // message.js
@@ -325,16 +325,16 @@ root.render(
 
 <Note>
 
-When passing a Promise from a Server Component to a Client Component, its resolved value must be serializable to pass between server and client. Data types like functions aren't serializable and cannot serve as the resolved value of such a Promise.
+When passing a Promise from a Server Component to a Client Component, its resolved value must be serializable to pass between server and client. Data types like functions aren't serializable and cannot be the resolved value of such a Promise.
 
 </Note>
 
 
 <DeepDive>
 
-#### Server Components: `await` vs passing a Promise to a Client Component {/*await-vs-passing-a-promise*/}
+#### Should I resolve a Promise in a Server or Client Component? {/*resolve-promise-in-server-or-client-component*/}
 
-Instead of passing a Promise from a Server Component to a Client Component you could `await` the Promise in the Server Component and pass the data to the Client Component as a prop:
+A Promise can be passed from a Server Component to a Client Component and resolved in the Client component with the `use` Hook. You can also resolve the Promise in a Server Component with `await` and pass the required data to the Client Component as a prop.
 
 ```js
 export default function App() {
@@ -343,7 +343,7 @@ export default function App() {
 }
 ```
 
-But using `await` in a [Server Component](/reference/react/components#server-components) will block the rendering of the [Server Component](/reference/react/components#server-components) until the `await` statement is finished. Passing a Promise from a Server Component to a Client Component prevents the Promise from blocking the rendering of the Server Component.
+But using `await` in a [Server Component](/reference/react/components#server-components) will block its rendering until the `await` statement is finished. Passing a Promise from a Server Component to a Client Component prevents the Promise from blocking the rendering of the Server Component.
 
 </DeepDive>
 
@@ -360,7 +360,7 @@ In some cases a Promise passed to `use` could be rejected. You can handle reject
 
 #### Displaying an error to users with a error boundary {/*displaying-an-error-to-users-with-error-boundary*/}
 
-If you'd like to display an error to your users when a Promise is rejected you can use an [error boundary](/reference/react/Component#catching-rendering-errors-with-an-error-boundary). To use an error boundary wrap the component you are calling the `use` Hook in an error boundary. If the Promise passed to `use` is rejected the fallback for the error boundary will be displayed.
+If you'd like to display an error to your users when a Promise is rejected, you can use an [error boundary](/reference/react/Component#catching-rendering-errors-with-an-error-boundary). To use an error boundary, wrap the component where you are calling the `use` Hook in an error boundary. If the Promise passed to `use` is rejected the fallback for the error boundary will be displayed.
 
 <Sandpack>
 
@@ -446,7 +446,7 @@ root.render(
 
 #### Providing an alternative value with `Promise.catch` {/*providing-an-alternative-value-with-promise-catch*/}
 
-If you'd like to provide an alternative value when the Promise passed to `use` is rejected you can use an the Promise's <CodeStep step={1}>[`catch`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/catch)</CodeStep> method: 
+If you'd like to provide an alternative value when the Promise passed to `use` is rejected you can use the Promise's <CodeStep step={1}>[`catch`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/catch)</CodeStep> method.
 
 ```js [[1, 6, "catch"],[2, 7, "return"]]
 import { Message } from './message.js';
@@ -472,11 +472,7 @@ To use the Promise's <CodeStep step={1}>`catch`</CodeStep> method, call <CodeSte
 
 ## Troubleshooting {/*troubleshooting*/}
 
-### I'm getting this error: "An unsupported type was passed to use" {/*im-getting-this-error-an-unsupported-type-was-passed-to-use*/}
-
-The `use` Hook only supports [JavaScript Promises](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) and React [Context](/learn/passing-data-deeply-with-context) as parameters.
-
-### I'm getting this error: "Suspense Exception: This is not a real error!" {/*suspense-exception-error*/}
+### "Suspense Exception: This is not a real error!" {/*suspense-exception-error*/}
 
 You are either calling `use` outside of a React component or Hook function, or calling `use` in a try–catch block. If you are calling `use` inside a try–catch block, wrap your component in an error boundary, or call the Promise's `catch` to catch the error and resolve the Promise with another value. [See these examples](#dealing-with-rejected-promises).
 
@@ -490,7 +486,7 @@ function MessageComponent({messagePromise}) {
     // ...
 ```
 
-instead, call `use` outside any component closures, where the function that calls `use` is a component or Hook:
+Instead, call `use` outside any component closures, where the function that calls `use` is a component or Hook.
 
 ```jsx
 function MessageComponent({messagePromise}) {
@@ -498,7 +494,3 @@ function MessageComponent({messagePromise}) {
   const message = use(messagePromise);
   // ...
 ```
-
-### I'm getting this warning: "Warning: Functions are not valid as a React child." {/*non-serializable-function-warning*/}
-
-When passing a Promise from a Server Component to a Client Component, its resolved value must be serializable to pass between server and client. Data types like functions aren't serializable and cannot serve as the resolved value of such a Promise.

@@ -135,7 +135,7 @@ This `Form` component [passes a ref](/reference/react/useRef#manipulating-the-do
 
 Keep in mind that exposing a ref to the DOM node inside your component makes it harder to change your component's internals later. You will typically expose DOM nodes from reusable low-level components like buttons or text inputs, but you won't do it for application-level components like an avatar or a comment.
 
-<Recipes title="Examples of forwarding a ref">
+<Recipes titleText="Examples of forwarding a ref">
 
 #### Focusing a text input {/*focusing-a-text-input*/}
 

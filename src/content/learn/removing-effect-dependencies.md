@@ -882,7 +882,7 @@ const options2 = { serverUrl: 'https://localhost:1234', roomId: 'music' };
 
 // These are two different objects!
 console.log(Object.is(options1, options2)); // false
-````
+```
 
 **Object and function dependencies can make your Effect re-synchronize more often than you need.** 
 
@@ -968,7 +968,7 @@ const roomId2 = 'music';
 
 // These two strings are the same!
 console.log(Object.is(roomId1, roomId2)); // true
-````
+```
 
 Thanks to this fix, the chat no longer re-connects if you edit the input:
 

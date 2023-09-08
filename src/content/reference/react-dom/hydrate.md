@@ -68,7 +68,7 @@ Call `hydrate` to attach a <CodeStep step={1}>React component</CodeStep> into a 
 import { hydrate } from 'react-dom';
 
 hydrate(<App />, document.getElementById('root'));
-````
+```
 
 Using `hydrate()` to render a client-only app (an app without server-rendered HTML) is not supported. Use [`render()`](/reference/react-dom/render) (in React 17 and below) or [`createRoot()`](/reference/react-dom/client/createRoot) (in React 18+) instead.
 

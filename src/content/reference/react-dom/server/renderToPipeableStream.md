@@ -286,7 +286,7 @@ Streaming does not need to wait for React itself to load in the browser, or for 
 
 **Only Suspense-enabled data sources will activate the Suspense component.** They include:
 
-- Data fetching with Suspense-enabled frameworks like [Relay](https://relay.dev/docs/guided-tour/rendering/loading-states/) and [Next.js](https://nextjs.org/docs/advanced-features/react-18)
+- Data fetching with Suspense-enabled frameworks like [Relay](https://relay.dev/docs/guided-tour/rendering/loading-states/) and [Next.js](https://nextjs.org/docs/getting-started/react-essentials)
 - Lazy-loading component code with [`lazy`](/reference/react/lazy)
 
 Suspense **does not** detect when data is fetched inside an Effect or event handler.

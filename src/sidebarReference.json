@@ -99,6 +99,11 @@
       "path": "/reference/react/apis",
       "routes": [
         {
+          "title": "cache",
+          "path": "/reference/react/cache",
+          "canary": true
+        },
+        {
           "title": "createContext",
           "path": "/reference/react/createContext"
         },
@@ -117,6 +122,23 @@
         {
           "title": "startTransition",
           "path": "/reference/react/startTransition"
+        }
+      ]
+    },
+    {
+      "title": "Directives",
+      "path": "/reference/react/directives",
+      "canary": true,
+      "routes": [
+        {
+          "title": "'use client'",
+          "path": "/reference/react/use-client",
+          "canary": true
+        },
+        {
+          "title": "'use server'",
+          "path": "/reference/react/use-server",
+          "canary": true
         }
       ]
     },

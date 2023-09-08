@@ -935,7 +935,7 @@ Clicking "next" again
 
 </DiagramGroup>
 
-Each `Counter`'s state gets destroyed each time its removed from the DOM. This is why they reset every time you click the button.
+Each `Counter`'s state gets destroyed each time it's removed from the DOM. This is why they reset every time you click the button.
 
 This solution is convenient when you only have a few independent components rendered in the same place. In this example, you only have two, so it's not a hassle to render both separately in the JSX.
 

@@ -15,7 +15,7 @@ import {
   FileTabs,
   useSandpack,
   useSandpackNavigation,
-} from '@codesandbox/sandpack-react';
+} from '@codesandbox/sandpack-react/unstyled';
 import {OpenInCodeSandboxButton} from './OpenInCodeSandboxButton';
 import {ResetButton} from './ResetButton';
 import {DownloadButton} from './DownloadButton';

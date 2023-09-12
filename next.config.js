@@ -14,9 +14,7 @@ const nextConfig = {
     scrollRestoration: true,
     legacyBrowsers: false,
   },
-  env: {
-    SANDPACK_BARE_COMPONENTS: process.env.SANDPACK_BARE_COMPONENTS,
-  },
+  env: {},
   webpack: (config, {dev, isServer, ...options}) => {
     if (process.env.ANALYZE) {
       const {BundleAnalyzerPlugin} = require('webpack-bundle-analyzer');
@@ -35,10 +33,6 @@ const nextConfig = {
 
     const {IgnorePlugin, NormalModuleReplacementPlugin} = require('webpack');
     config.plugins.push(
-      new NormalModuleReplacementPlugin(
-        /^@stitches\/core$/,
-        require.resolve('./src/utils/emptyShim.js')
-      ),
       new NormalModuleReplacementPlugin(
         /^raf$/,
         require.resolve('./src/utils/rafShim.js')

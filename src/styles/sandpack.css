@@ -199,8 +199,7 @@ html.dark .sp-wrapper {
   background: var(--sp-colors-surface1);
 }
 
-.sandpack .sp-code-editor .cm-editor,
-.sandpack .sp-code-editor .cm-editor .cm-gutters {
+.sandpack .sp-code-editor .cm-editor {
   background-color: transparent;
 }
 
@@ -262,8 +261,6 @@ html.dark .sp-wrapper {
 }
 
 .sp-code-editor .sp-cm .cm-scroller {
-  overflow-x: hidden;
-  overflow-y: auto;
   padding-top: 18px;
 }
 
@@ -546,20 +543,6 @@ html.dark .sandpack--playground .sp-overlay {
  */
 .sandpack .sp-code-editor .cm-diagnostic {
   @apply text-secondary;
-}
-
-/**
- * Integrations: React devtools inline
- */
-.sandpack .sp-devtools {
-  border-bottom-left-radius: 0.5rem;
-  border-bottom-right-radius: 0.5rem;
-  overflow: hidden;
-}
-
-.sandpack .sp-wrapper .sp-layout-devtools {
-  border-bottom-left-radius: 0;
-  border-bottom-right-radius: 0;
 }
 
 /**

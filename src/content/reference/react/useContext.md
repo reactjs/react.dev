@@ -1339,6 +1339,61 @@ function MyApp() {
 
 As a result of this change, even if `MyApp` needs to re-render, the components calling `useContext(AuthContext)` won't need to re-render unless `currentUser` has changed.
 
+Note that although <CodeStep step={2}>context value</CodeStep> doesn't change, when `MyApp` re-renders, React still re-renders all of its children. To skip re-rendering of a child component, you must wrap it with `memo`.
+
+<Sandpack>
+
+```js
+import { createContext, memo, useContext, useState, useCallback, useMemo } from 'react';
+
+const AuthContext = createContext(null);
+
+export default function MyApp() {
+  console.log("MyApp was rendered at ", new Date().toLocaleTimeString());
+  const [currentUser, setCurrentUser] = useState(null);
+
+  const login = useCallback((response) => {
+    setCurrentUser(response.user);
+  }, []);
+
+  const contextValue = useMemo(() => ({
+    currentUser,
+    login
+  }), [currentUser, login]);
+
+  const [unrelatedState, setUnrelatedState] = useState(false);
+  const toggleUnrelatedState = () => setUnrelatedState(state => !state);
+
+  return (
+    <AuthContext.Provider value={contextValue}>
+      <WithoutMemo />
+      <WithMemo />
+      <button onClick={toggleUnrelatedState}>Re-render MyApp</button>
+    </AuthContext.Provider>
+  );
+}
+
+const WithoutMemo = () => {
+  console.log("WithoutMemo was rendered at ", new Date().toLocaleTimeString());
+  const contextValue = useContext(AuthContext);
+  return (
+    <h3>Without Memo</h3>
+  );
+};
+
+const WithMemo = memo(() => {
+  console.log("WithMemo was rendered at ", new Date().toLocaleTimeString());
+  const contextValue = useContext(AuthContext);
+  return (
+    <h3>With Memo</h3>
+  );
+});
+```
+
+</Sandpack>
+
+In the example above, clicking the button will cause `MyApp` to re-render. The child component without `memo` re-renders, while the other one doesn't. You can check the console to see details.
+
 Read more about [`useMemo`](/reference/react/useMemo#skipping-re-rendering-of-components) and [`useCallback`.](/reference/react/useCallback#skipping-re-rendering-of-components)
 
 ---

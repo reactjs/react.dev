@@ -2,6 +2,8 @@
 title: useState
 ---
 
+<AddedInVersion version="16.8.0" />
+
 <Intro>
 
 `useState` is a React Hook that lets you add a [state variable](/learn/state-a-components-memory) to your component.

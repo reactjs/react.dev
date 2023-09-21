@@ -2,6 +2,8 @@
 title: useTransition
 ---
 
+<AddedInVersion version="18.0.0" />
+
 <Intro>
 
 `useTransition` is a React Hook that lets you update the state without blocking the UI.

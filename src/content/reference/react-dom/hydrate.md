@@ -2,6 +2,8 @@
 title: hydrate
 ---
 
+<AddedInVersion version="16.0.0" />
+
 <Deprecated>
 
 This API will be removed in a future major version of React.

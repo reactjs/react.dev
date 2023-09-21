@@ -2,6 +2,8 @@
 title: createContext
 ---
 
+<AddedInVersion version="16.3.0" />
+
 <Intro>
 
 `createContext` lets you create a [context](/learn/passing-data-deeply-with-context) that components can provide or read.

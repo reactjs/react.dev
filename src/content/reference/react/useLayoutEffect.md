@@ -2,6 +2,8 @@
 title: useLayoutEffect
 ---
 
+<AddedInVersion version="16.8.0" />
+
 <Pitfall>
 
 `useLayoutEffect` can hurt performance. Prefer [`useEffect`](/reference/react/useEffect) when possible.
@@ -9,6 +11,7 @@ title: useLayoutEffect
 </Pitfall>
 
 <Intro>
+
 
 `useLayoutEffect` is a version of [`useEffect`](/reference/react/useEffect) that fires before the browser repaints the screen.
 

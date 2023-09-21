@@ -2,6 +2,8 @@
 title: Component
 ---
 
+<AddedInVersion version="0.13.0" />
+
 <Pitfall>
 
 We recommend defining components as functions instead of classes. [See how to migrate.](#alternatives)

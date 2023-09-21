@@ -2,6 +2,8 @@
 title: cloneElement
 ---
 
+<AddedInVersion version="0.13.0" />
+
 <Pitfall>
 
 Using `cloneElement` is uncommon and can lead to fragile code. [See common alternatives.](#alternatives)

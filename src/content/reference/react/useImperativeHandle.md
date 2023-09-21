@@ -2,6 +2,8 @@
 title: useImperativeHandle
 ---
 
+<AddedInVersion version="16.8.0" />
+
 <Intro>
 
 `useImperativeHandle` is a React Hook that lets you customize the handle exposed as a [ref.](/learn/manipulating-the-dom-with-refs)

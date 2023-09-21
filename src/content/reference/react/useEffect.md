@@ -2,6 +2,8 @@
 title: useEffect
 ---
 
+<AddedInVersion version="16.8.0" />
+
 <Intro>
 
 `useEffect` is a React Hook that lets you [synchronize a component with an external system.](/learn/synchronizing-with-effects)

@@ -2,6 +2,8 @@
 title: renderToReadableStream
 ---
 
+<AddedInVersion version="18.0.0" />
+
 <Intro>
 
 `renderToReadableStream` renders a React tree to a [Readable Web Stream.](https://developer.mozilla.org/en-US/docs/Web/API/ReadableStream)

@@ -2,6 +2,8 @@
 title: useCallback
 ---
 
+<AddedInVersion version="16.8.0" />
+
 <Intro>
 
 `useCallback` is a React Hook that lets you cache a function definition between re-renders.

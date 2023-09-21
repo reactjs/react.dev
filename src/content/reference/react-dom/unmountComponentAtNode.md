@@ -2,6 +2,8 @@
 title: unmountComponentAtNode
 ---
 
+<AddedInVersion version="0.5.0" />
+
 <Deprecated>
 
 This API will be removed in a future major version of React.

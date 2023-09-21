@@ -2,6 +2,8 @@
 title: useDeferredValue
 ---
 
+<AddedInVersion version="18.0.0" />
+
 <Intro>
 
 `useDeferredValue` is a React Hook that lets you defer updating a part of the UI.

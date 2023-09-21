@@ -1654,8 +1654,8 @@ function LikeButton({video}) {
     <button
       data-hover="LikeButton"
       className={cn(
-        'outline-none focus:bg-red-50/5 focus:text-red-50 relative flex items-center justify-center w-10 h-10 cursor-pointer rounded-full text-tertiary hover:bg-card active:scale-95 active:bg-red-50/5 active:text-red-50',
-        isLiked && 'text-red-50'
+        'outline-none focus:bg-red-50/5 focus:text-red-50 relative flex items-center justify-center w-10 h-10 cursor-pointer rounded-full hover:bg-card active:scale-95 active:bg-red-50/5 active:text-red-50',
+        isLiked ? 'text-red-50' : 'text-tertiary'
       )}
       aria-label={isLiked ? 'Unsave' : 'Save'}
       onClick={() => {

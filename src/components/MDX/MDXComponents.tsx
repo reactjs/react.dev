@@ -30,6 +30,7 @@ import ButtonLink from 'components/ButtonLink';
 import {TocContext} from './TocContext';
 import type {Toc, TocItem} from './TocContext';
 import {TeamMember} from './TeamMember';
+import AddedInVersion from './AddedInVersion';
 
 function CodeStep({children, step}: {children: any; step: number}) {
   return (
@@ -416,6 +417,7 @@ export const MDXComponents = {
   Illustration,
   IllustrationBlock,
   Intro,
+  AddedInVersion,
   InlineToc,
   LearnMore,
   Math,

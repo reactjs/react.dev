@@ -1,5 +1,5 @@
 ---
-title: use
+title: useOptimistic
 canary: true
 ---
 

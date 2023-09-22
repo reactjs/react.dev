@@ -160,6 +160,11 @@
           "path": "/reference/react-dom/components/common"
         },
         {
+          "title": "<form>",
+          "path": "/reference/react-dom/components/form",
+          "canary": true
+        },
+        {
           "title": "<input>",
           "path": "/reference/react-dom/components/input"
         },

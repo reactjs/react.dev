@@ -3,23 +3,26 @@
  */
 
 import {useSyncExternalStore} from 'react';
-import {useSandpack} from '@codesandbox/sandpack-react';
+import {useSandpack} from '@codesandbox/sandpack-react/unstyled';
 import {IconDownload} from '../../Icon/IconDownload';
 export interface DownloadButtonProps {}
 
-let supportsImportMap: boolean | void;
+let supportsImportMap = false;
+
+function subscribe(cb: () => void) {
+  // This shouldn't actually need to update, but this works around
+  // https://github.com/facebook/react/issues/26095
+  let timeout = setTimeout(() => {
+    supportsImportMap =
+      (HTMLScriptElement as any).supports &&
+      (HTMLScriptElement as any).supports('importmap');
+    cb();
+  }, 0);
+  return () => clearTimeout(timeout);
+}
 
 function useSupportsImportMap() {
-  function subscribe() {
-    // It never updates.
-    return () => {};
-  }
   function getCurrentValue() {
-    if (supportsImportMap === undefined) {
-      supportsImportMap =
-        (HTMLScriptElement as any).supports &&
-        (HTMLScriptElement as any).supports('importmap');
-    }
     return supportsImportMap;
   }
   function getServerSnapshot() {
@@ -100,7 +103,7 @@ ${css}
       onClick={downloadHTML}
       title="Download Sandbox"
       type="button">
-      <IconDownload className="inline mr-1" /> Download
+      <IconDownload className="inline me-1" /> Download
     </button>
   );
 }

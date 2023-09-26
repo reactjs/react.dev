@@ -882,7 +882,7 @@ const options2 = { serverUrl: 'https://localhost:1234', roomId: 'music' };
 
 // These are two different objects!
 console.log(Object.is(options1, options2)); // false
-````
+```
 
 **Object and function dependencies can make your Effect re-synchronize more often than you need.** 
 
@@ -926,7 +926,7 @@ function ChatRoom() {
 
   useEffect(() => {
     const options = createOptions();
-    const connection = createConnection();
+    const connection = createConnection(options);
     connection.connect();
     return () => connection.disconnect();
   }, []); // ✅ All dependencies declared
@@ -968,7 +968,7 @@ const roomId2 = 'music';
 
 // These two strings are the same!
 console.log(Object.is(roomId1, roomId2)); // true
-````
+```
 
 Thanks to this fix, the chat no longer re-connects if you edit the input:
 
@@ -1613,7 +1613,7 @@ label, button { display: block; margin-bottom: 5px; }
 
 Your Effect is re-running because it depends on the `options` object. Objects can be re-created unintentionally, you should try to avoid them as dependencies of your Effects whenever possible.
 
-The least invasive fix is to read `roomId` and `serverUrl` right outside the Effect, and then make the Effect depend on those primitive values (which can't change unintentionally). Inside the Effect, create an object and it pass to `createConnection`:
+The least invasive fix is to read `roomId` and `serverUrl` right outside the Effect, and then make the Effect depend on those primitive values (which can't change unintentionally). Inside the Effect, create an object and pass it to `createConnection`:
 
 <Sandpack>
 

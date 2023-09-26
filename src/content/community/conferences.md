@@ -55,7 +55,6 @@ October 27th 2023. In-person in Verona, Italy and online (hybrid event)
 
 [Website](https://2023.reactjsday.it/) - [Twitter](https://twitter.com/reactjsday) - [Facebook](https://www.facebook.com/GrUSP/) - [YouTube](https://www.youtube.com/c/grusp)
 
-
 ### React Summit US 2023 {/*react-summit-us-2023*/}
 November 13 & 15, 2023. In-person in New York, US + remote first interactivity (hybrid event)
 
@@ -65,6 +64,11 @@ November 13 & 15, 2023. In-person in New York, US + remote first interactivity (
 December 8 & 12, 2023. In-person in Berlin, Germany + remote first interactivity (hybrid event)
 
 [Website](https://reactday.berlin) - [Twitter](https://twitter.com/reactdayberlin) - [Facebook](https://www.facebook.com/reactdayberlin/) - [Videos](https://portal.gitnation.org/events/react-day-berlin-2023)
+
+### App.js Conf 2024 {/*appjs-conf-2024*/}
+May 22 - 24, 2024. In-person in Kraków, Poland + remote
+
+[Website](https://appjs.co) - [Twitter](https://twitter.com/appjsconf)
 
 ### Render(ATL) 2024 🍑 {/*renderatl-2024-*/}
 June 12 - June 14, 2024. Atlanta, GA, USA

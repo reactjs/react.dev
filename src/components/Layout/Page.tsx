@@ -120,7 +120,7 @@ export function Page({children, toc, routeTree, meta, section}: PageProps) {
       <div
         className={cn(
           hasColumns &&
-            'grid grid-cols-only-content lg:grid-cols-sidebar-content 2xl:grid-cols-sidebar-content-toc'
+            'grid grid-cols-only-content lg:grid-cols-sidebar-content gap-4 2xl:grid-cols-sidebar-content-toc'
         )}>
         {showSidebar && (
           <div className="lg:-mt-16">

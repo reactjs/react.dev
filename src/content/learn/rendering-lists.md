@@ -244,7 +244,7 @@ img { width: 100px; height: 100px; border-radius: 50%; }
 
 <Pitfall>
 
-Arrow functions implicitly return the expression right after `=>`, so you didn't need a `return` statement:
+Arrow functions implicitly return the expression right after `=>` even if the single expression spans multiple lines, as is often the case with JSX in React, you can still omit the `return` keyword and the curly braces:
 
 ```js
 const listItems = chemists.map(person =>

@@ -5294,10 +5294,10 @@ raw-body@2.5.1:
     iconv-lite "0.4.24"
     unpipe "1.0.0"
 
-react-collapsed@4.0.2:
-  version "4.0.2"
-  resolved "https://registry.npmjs.org/react-collapsed/-/react-collapsed-4.0.2.tgz#5f2b2f9695c6f3858b44771dc36fa40f63b8fa51"
-  integrity sha512-mzGhppOLzW3PGtU+RlSYPANpShYd5wt6LdFWnDgHy/asyIfQT8BHDognr5sYFPouXiHPwGWUtQ6ZfI5jd7bU6Q==
+react-collapsed@4.0.4:
+  version "4.0.4"
+  resolved "https://registry.yarnpkg.com/react-collapsed/-/react-collapsed-4.0.4.tgz#4c6bce3a15286d43e95b6730ad70ec387a54caa9"
+  integrity sha512-8avvmnQxDYTgGZYVP9+3Z7doomxVEBoCkukpTmUHEIrAYvELZ5jNNfYCt/hCpHB6GmQbzZoDmnDupjsnQVgcCQ==
   dependencies:
     tiny-warning "^1.0.3"
 

@@ -152,6 +152,17 @@
       "sectionHeader": "react-dom@18.2.0"
     },
     {
+      "title": "Hooks",
+      "path": "/reference/react-dom/hooks",
+      "routes": [
+        {
+          "title": "useFormState",
+          "path": "/reference/react-dom/hooks/useFormState",
+          "canary": true
+        }
+      ]
+    },
+    {
       "title": "Components",
       "path": "/reference/react-dom/components",
       "routes": [

@@ -69,7 +69,7 @@ experimental_taintUniqueValue(
 
 ## Usage {/*usage*/}
 
-If you're running a Server Components that has access to private keys or passwords such as database passwords, you have to be careful not to pass that to a Client Component.
+If you're running a Server Components environment that has access to private keys or passwords such as database passwords, you have to be careful not to pass that to a Client Component.
 
 ```js
 export async function Dashboard(props) {

@@ -66,7 +66,7 @@ experimental_taintObjectReference(
 
 ## Usage {/*usage*/}
 
-If you're running a Server Components that has access to sensitive data, you have to be careful not to pass objects straight through:
+If you're running a Server Components environment that has access to sensitive data, you have to be careful not to pass objects straight through:
 
 ```js
 export async function getUser(id) {

@@ -363,6 +363,55 @@ export async function search() {
 }
 ```
 
+To surface specific error messages to your users from a form action you can use the `useFormState` Hook. `useFormState` takes two parameters: an action and a inital state, and returns two values, a state varible and a new action. When you use the action returned by `useFormState` it will call the action passed to `useFormState` with the current state as an argument. The value that the actions passed to `useFormState` returns will be used as the new value for the state var.
+
+<Sandpack>
+
+```js App.js
+import { useState } from "react";
+import { useFormState } from "react-dom";
+
+let maxUsers = 1;
+
+export default function NewsletterSignUp() {
+  const [signups, setSignups] = useState(0);
+  async function addEmailToNewsletter(prevState) {
+    if (signups >= maxUsers) {
+      return "maximum users reached";
+    }
+    setSignups(signups + 1);
+  }
+  const [errorMessage, formAction] = useFormState(addEmailToNewsletter, null);
+  return (
+    <form action={formAction}>
+      <label>
+        Email:
+        <input type="text" />
+      </label>
+      <button disabled={!!errorMessage} type="submit">
+        Sign up
+      </button>
+      <p style={{ color: "red" }}>{errorMessage}</p>
+    </form>
+  );
+}
+```
+
+```json package.json hidden
+{
+  "dependencies": {
+    "react": "canary",
+    "react-dom": "canary",
+    "react-scripts": "^5.0.0"
+  },
+  "main": "/index.js",
+  "devDependencies": {}
+}
+```
+
+</Sandpack>  
+
+
 </Sandpack>
 
 ### Processing forms differently with different submit buttons {/*processing-forms-differently-with-different-submit-buttons*/}
@@ -407,39 +456,3 @@ export default function Search() {
 ```
 
 </Sandpack>
-
-### Managing state inside a form {/*managing-state-inside-a-form*/}
-
-To manage state inside a form you can use the `useFormState` Hook. When working with forms, state often represents the data a user inputs or the actions they take. The `useFormState` works in conjunction with React's `<form>` Component to update state inside a form based on a user's input.
-
-<Sandpack>
-
-```js App.js
-import { experimental_useFormState as useFormState } from "react-dom";
-
-export default function Counter() {
-  async function increment(n) {
-    return n + 1;
-  }
-  const [count, incrementFormAction] = useFormState(increment, 0);
-  return (
-    <form>
-      <button formAction={incrementFormAction}>Count: {count}</button>
-    </form>
-  );
-}
-```
-
-```json package.json hidden
-{
-  "dependencies": {
-    "react": "experimental",
-    "react-dom": "experimental",
-    "react-scripts": "^5.0.0"
-  },
-  "main": "/index.js",
-  "devDependencies": {}
-}
-```
-
-</Sandpack>  

@@ -37,7 +37,7 @@ To prevent passing a key, hash or token, see [`taintUniqueValue`](/reference/rea
 
 ## Reference {/*reference*/}
 
-### `taintObjectReference(errMessage, object)` {/*taintobjectreference*/}
+### `taintObjectReference(message, object)` {/*taintobjectreference*/}
 
 Call `taintObjectReference` with an object to register it with React as something that should not be allowed to be passed to the Client as is:
 
@@ -54,9 +54,9 @@ experimental_taintObjectReference(
 
 #### Parameters {/*parameters*/}
 
-* `errMessage`: The message you want to display if the object gets passed to a Client Component. This message will the be contents of an Error that will be thrown if the object gets passed to a Client Component.
+* `message`: The message you want to display if the object gets passed to a Client Component. This message will be displayed as a part of the Error that will be thrown if the object gets passed to a Client Component.
 
-* `object`: The object to be tainted.
+* `object`: The object to be tainted. Functions and class instances can be passed to `taintObjectReference` as `object`. Functions and classes are already blocked from being passed to Client Components but the React's default error message will be replaced by what you defined in `message`. When a specific instance of a Typed Array is passed to `taintObjectReference` as `object`, any other copies of the Typed Array will not be tainted.
 
 #### Returns {/*returns*/}
 
@@ -64,9 +64,7 @@ experimental_taintObjectReference(
 
 #### Caveats {/*caveats*/}
 
-- Recreating or cloning a tainting object creates a new untained object which main contain sensetive data. For example, if you have a tainted `user` object, `const userInfo = {name: user.name, ssn: user.ssn}` or `{...user}` will create new objects which are not tainted.  `taintObjectReference` only protects against simple mistakes when the object is passed through to a Client Component unchanged.
-- Functions and class instances can be passed to `taintObjectReference` as `object`. Functions and classes are already blocked from being passed to Client Components but the React's default error message will be replaced by what you defined in `errMessage`. 
-- If you taint a specific instances of a Typed Array any other copies of the Typed Array will not be tainted.
+- Recreating or cloning a tainted object creates a new untained object which main contain sensetive data. For example, if you have a tainted `user` object, `const userInfo = {name: user.name, ssn: user.ssn}` or `{...user}` will create new objects which are not tainted. `taintObjectReference` only protects against simple mistakes when the object is passed through to a Client Component unchanged.
 
 <Pitfall>
 

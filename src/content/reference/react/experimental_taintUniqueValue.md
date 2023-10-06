@@ -55,7 +55,7 @@ experimental_taintUniqueValue(
 
 #### Parameters {/*parameters*/}
 
-* `errMessage`: The message you want to display if the object gets passed to a Client Component. If `value` is passed to a Client Component an Error will be thrown. `errMessage` let's you define the message displayed by this Error.
+* `message`: The message you want to display if `value` is passed to a Client Component. This message will be displayed as a part of the Error that will be thrown if `value` is passed to a Client Component.
 
 * `lifetime`: Any object that indicates how long `value` should be tainted. `value` will be blocked from being sent to any Client Component while this object still exists. For example, passing `globalThis` blocks the value for the lifetime of an app. `lifetime` is typically an object whose properties contains `value`.
 
@@ -67,7 +67,7 @@ experimental_taintUniqueValue(
 
 #### Caveats {/*caveats*/}
 
-- Modifying tainted values can invalidate tainting protection. Converting tainted values to upper case, concatenating tainted string values into a larger string, converting tainted values to base64, returning a substring, and similar transformations will lose tainting protection.
+- Deriving new values from tainted values can compromise tainting protection. New values created by uppercasing tainted values, concatenating tainted string values into a larger string, converting tainted values to base64, substringing tainted values, and other similar transformations are not tainted unless you explicity call `taintUniqueValue` on these newly created values.
 
 <Pitfall>
 

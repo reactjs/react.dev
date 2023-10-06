@@ -69,12 +69,6 @@ experimental_taintUniqueValue(
 
 - Deriving new values from tainted values can compromise tainting protection. New values created by uppercasing tainted values, concatenating tainted string values into a larger string, converting tainted values to base64, substringing tainted values, and other similar transformations are not tainted unless you explicity call `taintUniqueValue` on these newly created values.
 
-<Pitfall>
-
-**Do not rely solely on tainting for security.** Tainting a value doesn't block every possible derived value. For example, converting it to upper case, concatenating it into a larger string, converting it to base64, returning a substring etc, will still be allowed. It only protects against simple mistakes like explictly passing secret values to the client. Mistakes in calling the `taintUniqueValue` like using a global store outside of React, without the corresponding lifetime object, can cause the tainted value to become untainted. Tainting is a layer of protection, a secure app will have multiple layers of protection, well designed APIs, and isolation patterns. 
-
-</Pitfall>
-
 ---
 
 ## Usage {/*usage*/}
@@ -83,7 +77,7 @@ experimental_taintUniqueValue(
 
 To ensure that sensitive information such as passwords, session tokens, or other unique values do not inadvertently get passed to Client Components, the `taintUniqueValue` function provides a layer of protection. When a value is tainted, any attempt to pass it to a Client Component will result in an error. 
 
-The `lifetime` argument defines the duration for which the value remains tainted. For values that should remain tainted indefinitely, objects like `globalThis` or `process` can serve as the `lifetime` argument. These objects have a lifespan that spans the entire duration of your app's execution.
+The `lifetime` argument defines the duration for which the value remains tainted. For values that should remain tainted indefinitely, objects like [`globalThis`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/globalThis) or `process` can serve as the `lifetime` argument. These objects have a lifespan that spans the entire duration of your app's execution.
 
 ```js
 import {experimental_taintUniqueValue} from 'react';
@@ -112,6 +106,33 @@ export async function getUser(id) {
 ```
 
 In this example, the `user` object serves as the `lifetime` argument. If this object gets stored in a global cache or is accessible by another request, the session token remains tainted.
+
+<Pitfall>
+
+**Do not rely solely on tainting for security.** Tainting a value doesn't block every possible derived value. For example, creating a new value by upper casing a tainted string will not taint the new value.
+
+
+```js
+import {experimental_taintUniqueValue} from 'react';
+
+const password = 'correct horse battery staple';
+
+experimental_taintUniqueValue(
+  'Do not pass the password to the client.',
+  globalThis,
+  password
+);
+
+const uppercasePassword = password.toUpperCase() // `uppercasePassword` is not tainted
+```
+
+In this example, the constant `password` is tainted. Then `password` is used to create a new value `uppercasePassword` by calling the `toUpperCase` method on `password`. The newly created `uppercasePassword` is not tainted.
+
+Other similar ways of deriving new values from tainted values like concatenating it into a larger string, converting it to base64, or returning a substring create untained values.
+
+Tainting only protects against simple mistakes like explictly passing secret values to the client. Mistakes in calling the `taintUniqueValue` like using a global store outside of React, without the corresponding lifetime object, can cause the tainted value to become untainted. Tainting is a layer of protection, a secure app will have multiple layers of protection, well designed APIs, and isolation patterns.
+
+</Pitfall>
 
 <DeepDive>
 

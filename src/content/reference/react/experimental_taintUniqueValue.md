@@ -14,17 +14,17 @@ You can try it by upgrading React packages to the most recent experimental versi
 
 Experimental versions of React may contain bugs. Don't use them in production.
 
-This API is only available inside React Server Components.
+This API is only available inside [React Server Components](/reference/react/use-client).
 
 </Wip>
 
 
 <Intro>
 
-`taintUniqueValue` lets you prevent a passing a password, crypto graphic key or token, as a string, bigint or typed array, to a Client Component. It blocks this string completely so it cannot be a value that's also used in other contexts. It needs to be unique.
+`taintUniqueValue` lets you prevent unique values from being passed to Client Components like passwords, keys, or tokens.
 
 ```js
-taintUniqueValue(message, lifetime, value)
+taintUniqueValue(errMessage, lifetime, value)
 ```
 
 To prevent passing an object containing sensitive data, see [`taintObjectReference`](/reference/react/experimental_taintObjectReference).
@@ -45,9 +45,9 @@ Call `taintUniqueValue` with a password, token, key or hash to register it with 
 import {experimental_taintUniqueValue} from 'react';
 
 experimental_taintUniqueValue(
-  'Do not pass super secret keys to the client.',
+  'Do not pass secret keys to the client.',
   process,
-  process.env.SUPER_SECRET_KEY
+  process.env.SECRET_KEY
 );
 ```
 
@@ -55,19 +55,67 @@ experimental_taintUniqueValue(
 
 #### Parameters {/*parameters*/}
 
-* `message`: The message you want to display if the object gets passed to a Client Component. It's logged as any other Error that is thrown.
+* `errMessage`: The message you want to display if the object gets passed to a Client Component. If `value` is passed to a Client Component an Error will be thrown. `errMessage` let's you define the message displayed by this Error.
 
-* `lifetime`: Any object that indicates how long to block it. The value remains blocked as long as this object is still around. For example, passing `globalThis` blocks the value for the life time of an app. Typically it would an object whose properties contains the value.
+* `lifetime`: Any object that indicates how long `value` should be tainted. `value` will be blocked from being sent to any Client Component while this object still exists. For example, passing `globalThis` blocks the value for the lifetime of an app. `lifetime` is typically an object whose properties contains `value`.
 
-* `value`: A string, bigint or TypedArray. This value must be a unique sequence of characters/bytes with high entropy such as a cryptographic token, private key, hash or a long password. This value gets banned for passing to any Client Component in the whole app.
+* `value`: A string, bigint or TypedArray. `value` must be a unique sequence of characters or bytes with high entropy such as a cryptographic token, private key, hash, or a long password. `value` will be blocked from being sent to any Client Component.
 
 #### Returns {/*returns*/}
 
 `experimental_taintUniqueValue` returns `undefined`.
 
+#### Caveats {/*caveats*/}
+
+- Modifying tainted values can invalidate tainting protection. Converting tainted values to upper case, concatenating tainted string values into a larger string, converting tainted values to base64, returning a substring, and similar transformations will lose tainting protection.
+
+<Pitfall>
+
+**Do not rely solely on tainting for security.** Tainting a value doesn't block every possible derived value. For example, converting it to upper case, concatenating it into a larger string, converting it to base64, returning a substring etc, will still be allowed. It only protects against simple mistakes like explictly passing secret values to the client. Mistakes in calling the `taintUniqueValue` like using a global store outside of React, without the corresponding lifetime object, can cause the tainted value to become untainted. Tainting is a layer of protection, a secure app will have multiple layers of protection, well designed APIs, and isolation patterns. 
+
+</Pitfall>
+
 ---
 
 ## Usage {/*usage*/}
+
+### Prevent a token from being passed to Client Components {/*prevent-a-token-from-being-passed-to-client-components*/}
+
+To ensure that sensitive information such as passwords, session tokens, or other unique values do not inadvertently get passed to Client Components, the `taintUniqueValue` function provides a layer of protection. When a value is tainted, any attempt to pass it to a Client Component will result in an error. 
+
+The `lifetime` argument defines the duration for which the value remains tainted. For values that should remain tainted indefinitely, objects like `globalThis` or `process` can serve as the `lifetime` argument. These objects have a lifespan that spans the entire duration of your app's execution.
+
+```js
+import {experimental_taintUniqueValue} from 'react';
+
+experimental_taintUniqueValue(
+  'Do not pass a user password to the client.',
+  globalThis,
+  process.env.SECRET_KEY
+);
+```
+
+If the tainted value's lifespan is tied to a object, the `lifetime` should be the object that encapsulates the value. This ensures the tainted value remains protected for the lifetime of the encapsulating object.
+
+```js
+import {experimental_taintUniqueValue} from 'react';
+
+export async function getUser(id) {
+  const user = await db`SELECT * FROM users WHERE id = ${id}`;
+  experimental_taintUniqueValue(
+    'Do not pass a user session token to the client.',
+    user,
+    user.session.token
+  );
+  return user;
+}
+```
+
+In this example, the `user` object serves as the `lifetime` argument. If this object gets stored in a global cache or is accessible by another request, the session token remains tainted.
+
+<DeepDive>
+
+#### Using `server-only` and `taintUniqueValue` to prevent leaking secrets {/*using-server-only-and-taintuniquevalue-to-prevent-leaking-secrets*/}
 
 If you're running a Server Components environment that has access to private keys or passwords such as database passwords, you have to be careful not to pass that to a Client Component.
 
@@ -92,9 +140,11 @@ export async function Overview({ password }) {
 }
 ```
 
-This example would leak the secret API token to the client. If this API token can be used to access data this particular user shouldn't have access to, it's a security problem.
+This example would leak the secret API token to the client. If this API token can be used to access data this particular user shouldn't have access to, it could lead to a data breach.
 
-Ideally, secrets like this are abstracted into a single helper file that can only be imported by trusted data utilities on the server. The helper can even be tagged with `server-only` to ensure that this file isn't imported on the client.
+[comment]: <> (TODO: Link to `server-only` docs once they are written)
+
+Ideally, secrets like this are abstracted into a single helper file that can only be imported by trusted data utilities on the server. The helper can even be tagged with [`server-only`](https://www.npmjs.com/package/server-only) to ensure that this file isn't imported on the client.
 
 ```js
 import "server-only";
@@ -120,43 +170,8 @@ experimental_taintUniqueValue(
 );
 ```
 
-Now whenever anyone tries to pass this password to a Client Component, or bound to a Server Action, it'll error with the passed in error message instead.
+Now whenever anyone tries to pass this password to a Client Component, or send the password to a Client Component with a Server Action, a error will be thrown with message you defined when you called `taintUniqueValue`.
 
-#### Lifetime {/*lifetime*/}
+</DeepDive>
 
-Whenever we taint a value, we need to provide a lifetime argument to define how long the value should be tainted. Otherwise, it might just grow indefinitely in memory until you run out of memory. In many cases, such as the examples above, this is just fine. We can pass an object that lives forever such as `globalThis` or `process` for this use case.
-
-If we're tainting a value that just lives for one request or for the lifetime of some cached object, or if we don't know how long it'll be kept around, we need to provide a different object.
-
-Typically this would be the object that ends up getting passed around and cached.
-
-```js
-import {experimental_taintUniqueValue} from 'react';
-
-export async function getUser(id) {
-  const user = await db`SELECT * FROM users WHERE id = ${id}`;
-  experimental_taintUniqueValue(
-    'Do not pass a user session token to the client.',
-    user,
-    user.session.token,
-  );
-  return user;
-}
-```
-
-This ensures that if this `user` object gets stored in some global store, and another request can read from it, the token is still tainted. If it gets cleaned up then we don't end up leaking memory.
-
-If the lifetime object gets GC:ed during an on-going request, React will still keep the value tainted for the duration of this request.
-
-
-<Pitfall>
-
-**Do not rely on just tainting for security.** You should design your data access APIs and access to private keys in an isolated way such that you don't easily leak it into the Component rendering in the first place. Tainting is opt-in and easy to forget.
-
-Tainting provides an extra layer of protection if someone on your team still makes a mistake but it's not intended as the primary solution.
-
-Tainting a value doesn't block every possible derived value. For example, converting it to upper case, concatenating it into a larger string, converting it to base64, returning a substring etc, will still be allowed. It only protects against simple mistakes like passing it straight through.
-
-If you cache the value in a global store outside of React, without the corresponding lifetime object, the value will be untainted eventually.
-
-</Pitfall>
+---

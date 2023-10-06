@@ -113,6 +113,14 @@
           "path": "/reference/react/createContext"
         },
         {
+          "title": "experimental_taintObjectReference",
+          "path": "/reference/react/experimental_taintObjectReference"
+        },
+        {
+          "title": "experimental_taintUniqueValue",
+          "path": "/reference/react/experimental_taintUniqueValue"
+        },
+        {
           "title": "forwardRef",
           "path": "/reference/react/forwardRef"
         },

@@ -21,13 +21,13 @@ This API is only available inside React Server Components.
 
 <Intro>
 
-`taintObjectReference` lets you prevent a passing a specific object instance to a Client Component by mistake.
+`taintObjectReference` lets you prevent a specific object instance from being passed to a Client Component like a `user` object.
 
 ```js
 experimental_taintObjectReference(message, object);
 ```
 
-To prevent passing a crypto key, hash or token, see [`taintUniqueValue`](/reference/react/experimental_taintUniqueValue).
+To prevent passing a key, hash or token, see [`taintUniqueValue`](/reference/react/experimental_taintUniqueValue).
 
 </Intro>
 
@@ -37,7 +37,7 @@ To prevent passing a crypto key, hash or token, see [`taintUniqueValue`](/refere
 
 ## Reference {/*reference*/}
 
-### `taintObjectReference(message, object)` {/*taintobjectreference*/}
+### `taintObjectReference(errMessage, object)` {/*taintobjectreference*/}
 
 Call `taintObjectReference` with an object to register it with React as something that should not be allowed to be passed to the Client as is:
 
@@ -54,49 +54,33 @@ experimental_taintObjectReference(
 
 #### Parameters {/*parameters*/}
 
-* `message`: The message you want to display if the object gets passed to a Client Component. It's logged as any other Error that is thrown.
+* `errMessage`: The message you want to display if the object gets passed to a Client Component. This message will the be contents of an Error that will be thrown if the object gets passed to a Client Component.
 
-* `object`: Any kind of object that should be tainted. You can pass functions and class instances here too. They're already blocked from being passed to Client Components but this lets you customize the error message. You can also taint a specific instance of a Typed Array without tainting the value in other Typed Array copies.
+* `object`: The object to be tainted.
 
 #### Returns {/*returns*/}
 
 `experimental_taintObjectReference` returns `undefined`.
 
+#### Caveats {/*caveats*/}
+
+- Recreating or cloning a tainting object creates a new untained object which main contain sensetive data. For example, if you have a tainted `user` object, `const userInfo = {name: user.name, ssn: user.ssn}` or `{...user}` will create new objects which are not tainted.  `taintObjectReference` only protects against simple mistakes when the object is passed through to a Client Component unchanged.
+- Functions and class instances can be passed to `taintObjectReference` as `object`. Functions and classes are already blocked from being passed to Client Components but the React's default error message will be replaced by what you defined in `errMessage`. 
+- If you taint a specific instances of a Typed Array any other copies of the Typed Array will not be tainted.
+
+<Pitfall>
+
+**Do not rely on just tainting for security.** Tainting an object doesn't prevent leaking of every possible derived value. For example, the clone of a tainted object will create a new untained object. Using data from a tainted object (e.g. `{secret: taintedObj.secret}`) will create a new value or object that is not tainted. Tainting is a layer of protection, a secure app will have multiple layers of protection, well designed APIs, and isolation patterns. 
+
+</Pitfall>
+
 ---
 
 ## Usage {/*usage*/}
 
-If you're running a Server Components environment that has access to sensitive data, you have to be careful not to pass objects straight through:
+### Prevent user data from unintentionally reaching the client {/*prevent-user-data-from-unintentionally-reaching-the-client*/}
 
-```js
-export async function getUser(id) {
-  const user = await db`SELECT * FROM users WHERE id = ${id}`;
-  return user;
-}
-```
-
-```js
-import { getUser } from '...';
-import { InfoCard } from '...';
-
-export async function Profile(props) {
-  const user = await getUser(props.userId);
-  // DO NOT DO THIS
-  return <InfoCard user={user} />;
-}
-```
-
-```js
-"use client";
-
-export async function InfoCard({ user }) {
-  return <div>{user.name}</div>;
-}
-```
-
-A `"use client"` component should never accept objects that might be carrying sensitive data. Ideally, the getUser helper should not expose data that the current user can't see. Sometimes mistakes happen during refactoring.
-
-To protect against this mistakes happening down the line we can "taint" the user object in our data API.
+A Client Component should never accept objects that carry sensitive data. Ideally, the data fetching functions should not expose data that the current user should not have access to. Sometimes mistakes happen during refactoring. To protect against this mistakes happening down the line we can "taint" the user object in our data API.
 
 ```js
 import {experimental_taintObjectReference} from 'react';
@@ -112,14 +96,60 @@ export async function getUser(id) {
 }
 ```
 
-Now whenever anyone tries to pass this object to a Client Component, or bound to a Server Action, it'll error with the passed in error message instead.
+Now whenever anyone tries to pass this object to a Client Component, an error will be thrown with the passed in error message instead.
 
-<Pitfall>
+<DeepDive>
 
-**Do not rely on just tainting for security.** You should design your data access APIs and access to private keys in an isolated way such that you don't easily leak it into the Component rendering in the first place. Tainting is opt-in and easy to forget.
+#### Protecting against leaks in data fetching {/*protecting-against-leaks-in-data-fetching*/}
 
-Tainting provides an extra layer of protection if someone on your team still makes a mistake but it's not intended as the primary solution.
+If you're running a Server Components environment that has access to sensitive data, you have to be careful not to pass objects straight through:
 
-Tainting an object doesn't prevent leaking of every possible derived value. For example, `const userInfo = {name: user.name, ssn: user.ssn}` create a new object which is not tainted. Creating a new object by just cloning it means it's no longer tainted `{...object}`. It only protects against simple mistakes when the object is passed straight through unchanged.
+```js
+// api.js
+export async function getUser(id) {
+  const user = await db`SELECT * FROM users WHERE id = ${id}`;
+  return user;
+}
+```
 
-</Pitfall>
+```js
+import { getUser } from 'api.js';
+import { InfoCard } from 'components.js';
+
+export async function Profile(props) {
+  const user = await getUser(props.userId);
+  // DO NOT DO THIS
+  return <InfoCard user={user} />;
+}
+```
+
+```js
+// components.js
+"use client";
+
+export async function InfoCard({ user }) {
+  return <div>{user.name}</div>;
+}
+```
+
+Ideally, the `getUser` should not expose data that the current user should not have access to. To prevent passing the `user` object to a Client Component down the line we can "taint" the user object:
+
+
+```js
+// api.js
+import {experimental_taintObjectReference} from 'react';
+
+export async function getUser(id) {
+  const user = await db`SELECT * FROM users WHERE id = ${id}`;
+  experimental_taintObjectReference(
+    'Do not pass the entire user object to the client. ' +
+      'Instead, pick off the specific properties you need for this use case.',
+    user,
+  );
+  return user;
+}
+```
+
+Now if anyone tries to pass the `user` object to a Client Component, an error will be thrown with the passed in error message.
+
+</DeepDive>

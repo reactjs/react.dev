@@ -273,8 +273,10 @@ function reducer(state, action) {
         age: state.age
       };
     }
+    default: {
+      throw Error('Unknown action: ' + action.type);
+    }
   }
-  throw Error('Unknown action: ' + action.type);
 }
 
 const initialState = { name: 'Taylor', age: 42 };

@@ -82,10 +82,11 @@ During updates, the <CodeStep step={2}>deferred value</CodeStep> will "lag behin
 
 <Note>
 
-This example assumes you use one of Suspense-enabled data sources:
+This example assumes you use a Suspense-enabled data source:
 
 - Data fetching with Suspense-enabled frameworks like [Relay](https://relay.dev/docs/guided-tour/rendering/loading-states/) and [Next.js](https://nextjs.org/docs/getting-started/react-essentials)
 - Lazy-loading component code with [`lazy`](/reference/react/lazy)
+- Reading the value of a Promise with [`use`](/reference/react/use)
 
 [Learn more about Suspense and its limitations.](/reference/react/Suspense)
 

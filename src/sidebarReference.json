@@ -127,6 +127,14 @@
         {
           "title": "startTransition",
           "path": "/reference/react/startTransition"
+        },
+        {
+          "title": "experimental_taintObjectReference",
+          "path": "/reference/react/experimental_taintObjectReference"
+        },
+        {
+          "title": "experimental_taintUniqueValue",
+          "path": "/reference/react/experimental_taintUniqueValue"
         }
       ]
     },

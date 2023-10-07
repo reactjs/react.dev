@@ -32,7 +32,7 @@ The `useFormStatus` Hook provides status information of the last form submission
 ```js [[1, 5, "status.pending"]]
 import action from './actions';
 
-function Button() {
+function Submit() {
   const status = useFormStatus();
   return <button disabled={status.pending}>Submit</button>
 }
@@ -40,15 +40,15 @@ function Button() {
 export default App() {
   return (
     <form action={action}>
-      <Button />
+      <Submit />
     </form>
   );
 }
 ```
 
-To get status information, the `Button` component must be rendered within a `<form>`. The Hook returns information like the <CodeStep step={1}>`pending`</CodeStep> property which tells you if the form is actively submitting. 
+To get status information, the `Submit` component must be rendered within a `<form>`. The Hook returns information like the <CodeStep step={1}>`pending`</CodeStep> property which tells you if the form is actively submitting. 
 
-In the above example, `Button` uses this information to disable `<button>` presses while the form is submitting.
+In the above example, `Submit` uses this information to disable `<button>` presses while the form is submitting.
 
 [See more examples below.](#usage)
 
@@ -87,7 +87,7 @@ Here, we use the `pending` property to indicate the form is submitting.
 import { useFormStatus } from "react-dom";
 import { submitForm } from "./actions.js";
 
-function Button() {
+function Submit() {
   const { pending } = useFormStatus();
   return (
     <button type="submit" disabled={pending}>
@@ -99,7 +99,7 @@ function Button() {
 function Form({ action }) {
   return (
     <form action={action}>
-      <Button />
+      <Submit />
     </form>
   );
 }
@@ -146,9 +146,9 @@ function Form() {
 Instead call `useFormStatus` from inside a component that is located inside `<form>`.
 
 ```js
-function Button() {
+function Submit() {
     // ✅ `pending` will be derived from the 
-    // form that wraps the Button component
+    // form that wraps the Submit component
     const { pending } = useFormStatus() 
     return <button disabled={pending}>...</button>
 }
@@ -157,7 +157,7 @@ function Form() {
   // This is the <form> `useFormStatus` tracks
   return (
     <form action={submit}>
-      <Button />
+      <Submit />
     </form>
   );
 }

@@ -59,7 +59,23 @@ The current snapshot of the store which you can use in your rendering logic.
 
 * If the store is mutated during a [non-blocking transition update](/reference/react/useTransition), React will fall back to performing that update as blocking. Specifically, React will call `getSnapshot` a second time just before applying changes to the DOM. If it returns a different value than when it was called originally, React will restart the transition update from scratch, this time applying it as a blocking update, to ensure that every component on screen is reflecting the same version of the store.
 
-* It's not recommended to _suspend_ a render based on a store value returned by `useSyncExternalStore`. For example, if you set `const expandedItemId = useSyncExternalStore(...)`, avoid rendering a [`lazy`](/reference/react/lazy) component conditionally like `{expandedItemId != null && <LazyItemDetails />}` or calling [`use`](/reference/react/use) with a Promise dependent on the value like `use(fetchItem(expandedItemId))`. The reason is that mutations to the external store cannot be [marked as non-blocking transition updates](/reference/react/useTransition), so they will trigger the nearest [`Suspense` fallback](/reference/react/Suspense), replacing already-rendered content on screen with a loading spinner, which typically makes a poor UX.
+* It's not recommended to _suspend_ a render based on a store value returned by `useSyncExternalStore`. The reason is that mutations to the external store cannot be [marked as non-blocking transition updates](/reference/react/useTransition), so they will trigger the nearest [`Suspense` fallback](/reference/react/Suspense), replacing already-rendered content on screen with a loading spinner, which typically makes a poor UX.
+
+  For example, the following are discouraged:
+
+  ```js
+  const LazyProductDetailPage = lazy(() => import('./ProductDetailPage.js'));
+
+  function ShoppingApp() {
+    const selectedProductId = useSyncExternalStore(...);
+
+    // ❌ Calling `use` with a Promise dependent on `selectedProductId`
+    const data = use(fetchItem(selectedProductId))
+
+    // ❌ Conditionally rendering a lazy component based on `selectedProductId`
+    return selectedProductId != null ? <LazyProductDetailPage /> : <FeaturedProducts />;
+  }
+  ```
 
 ---
 

@@ -4797,11 +4797,6 @@ path-type@^4.0.0:
   resolved "https://registry.yarnpkg.com/path-type/-/path-type-4.0.0.tgz#84ed01c0a7ba380afe09d90a8c180dcd9d03043b"
   integrity sha512-gDKb8aZMDeD/tZWs9P6+q0J9Mwkdl6xMV8TjnGP3qJVJ06bdMgkbBlLU8IdfOsIsFz2BW1rNVT3XuNEl8zPAvw==
 
-performance-now@^2.1.0:
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/performance-now/-/performance-now-2.1.0.tgz#6309f4e0e5fa913ec1c69307ae364b4b377c9e7b"
-  integrity sha1-Ywn04OX6kT7BxpMHrjZLSzd8nns=
-
 periscopic@^3.0.0:
   version "3.0.4"
   resolved "https://registry.yarnpkg.com/periscopic/-/periscopic-3.0.4.tgz#b3fbed0d1bc844976b977173ca2cd4a0ef4fa8d1"
@@ -5284,13 +5279,6 @@ queue-microtask@^1.2.2:
   resolved "https://registry.yarnpkg.com/queue-microtask/-/queue-microtask-1.2.3.tgz#4929228bbc724dfac43e0efb058caf7b6cfb6243"
   integrity sha512-NuaNSa6flKT5JaSYQzJok04JzTL1CA6aGhv5rfLW3PgqA+M2ChpZQnAC8h8i4ZFkBS8X5RqkDBHA7r4hej3K9A==
 
-raf@^3.4.1:
-  version "3.4.1"
-  resolved "https://registry.yarnpkg.com/raf/-/raf-3.4.1.tgz#0742e99a4a6552f445d73e3ee0328af0ff1ede39"
-  integrity sha512-Sq4CW4QhwOHE8ucn6J34MqtZCeWFP2aQSmrlroYgqAV1PjStIhJXxYuTgUIfkEk7zTLjmIjLmU5q+fbD1NnOJA==
-  dependencies:
-    performance-now "^2.1.0"
-
 range-parser@~1.2.1:
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/range-parser/-/range-parser-1.2.1.tgz#3cf37023d199e1c24d1a55b84800c2f3e6468031"
@@ -5306,12 +5294,11 @@ raw-body@2.5.1:
     iconv-lite "0.4.24"
     unpipe "1.0.0"
 
-"react-collapsed@npm:@gaearon/react-collapsed@3.1.0-forked.1":
-  version "3.1.0-forked.1"
-  resolved "https://registry.yarnpkg.com/@gaearon/react-collapsed/-/react-collapsed-3.1.0-forked.1.tgz#b287b81fc2af2971d7d7b523dc40b6cf116822ac"
-  integrity sha512-QkW55Upl4eeOtnDMOxasafDtDwaF+DpYKvHq8KZoNz9P477iUH8Ik1YFYuqtI7UA8mHm1/z66LD678dZCXwEEg==
+react-collapsed@4.0.4:
+  version "4.0.4"
+  resolved "https://registry.yarnpkg.com/react-collapsed/-/react-collapsed-4.0.4.tgz#4c6bce3a15286d43e95b6730ad70ec387a54caa9"
+  integrity sha512-8avvmnQxDYTgGZYVP9+3Z7doomxVEBoCkukpTmUHEIrAYvELZ5jNNfYCt/hCpHB6GmQbzZoDmnDupjsnQVgcCQ==
   dependencies:
-    raf "^3.4.1"
     tiny-warning "^1.0.3"
 
 react-devtools-inline@4.4.0:

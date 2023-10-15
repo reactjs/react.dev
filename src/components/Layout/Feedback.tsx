@@ -15,6 +15,7 @@ export function Feedback({onSubmit}: {onSubmit?: () => void}) {
 
   function handleSubmit() {
     onSubmit?.();
+    localStorage.setItem(`${cleanedPath}`, 'true');
     setIsSubmitted(true);
 
     setTimeout(() => {
@@ -23,8 +24,12 @@ export function Feedback({onSubmit}: {onSubmit?: () => void}) {
   }
 
   useEffect(() => {
-    setIsSubmitted((prev) => !prev);
-    setShowFeedback((prev) => !prev);
+    const isSubmit = localStorage.getItem(`${cleanedPath}`);
+
+    if (isSubmit !== 'true') {
+      setIsSubmitted(false);
+      setShowFeedback(true);
+    }
   }, [cleanedPath]);
 
   // Reset on route changes.

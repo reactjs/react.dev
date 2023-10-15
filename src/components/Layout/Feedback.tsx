@@ -33,15 +33,13 @@ export function Feedback({onSubmit}: {onSubmit?: () => void}) {
   }, [cleanedPath]);
 
   // Reset on route changes.
-  return (
-    showFeedback && (
-      <SendFeedback
-        key={cleanedPath}
-        handleSubmit={handleSubmit}
-        isSubmitted={isSubmitted}
-      />
-    )
-  );
+  return showFeedback ? (
+    <SendFeedback
+      key={cleanedPath}
+      handleSubmit={handleSubmit}
+      isSubmitted={isSubmitted}
+    />
+  ) : null;
 }
 
 const thumbsUpIcon = (

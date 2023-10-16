@@ -9,6 +9,15 @@ const MyDocument = () => {
   return (
     <Html lang={siteConfig.languageCode} dir={siteConfig.isRTL ? 'rtl' : 'ltr'}>
       <Head />
+      <script
+        async
+        src={`https://www.googletagmanager.com/gtag/js?id=${siteConfig.googleAnalyticsTagId}`}
+      />
+      <script
+        dangerouslySetInnerHTML={{
+          __html: `window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', '${siteConfig.googleAnalyticsTagId}');`,
+        }}
+      />
       <body className="font-text font-medium antialiased text-lg bg-wash dark:bg-wash-dark text-secondary dark:text-secondary-dark leading-base">
         <script
           dangerouslySetInnerHTML={{

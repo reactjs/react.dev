@@ -29,7 +29,7 @@ const { pending, data, method, action } = useFormStatus();
 
 The `useFormStatus` Hook provides status information of the last form submission.
 
-```js [[1, 5, "status.pending"]]
+```js {4},[[1, 5, "status.pending"]]
 import action from './actions';
 
 function Submit() {
@@ -61,11 +61,13 @@ In the above example, `Submit` uses this information to disable `<button>` press
 A `status` object with the following properties:
 
 * `pending`: A boolean. If `true`, this means the parent `<form>` is pending submission. Otherwise, `false`.
-* `data`: An object implementing the [`FormData interface`](https://developer.mozilla.org/en-US/docs/Web/API/FormData) that contains the data the parent `<form>` is submitting. `null` if there is no active submission or no parent `<form>`.
-* `method`: A string value of either `'get'` or `'post'`. This represents whether the parent `<form>` is submitting with either `GET` or `POST` [HTTP method](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods). By default, a `<form>` will use `GET` method and can be specified by the [`method`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form#attributes_for_form_submission) property.
+
+* `data`: An object implementing the [`FormData interface`](https://developer.mozilla.org/en-US/docs/Web/API/FormData) that contains the data the parent `<form>` is submitting. If there is no active submission or no parent `<form>`, it will be `null`.
+
+* `method`: A string value of either `'get'` or `'post'`. This represents whether the parent `<form>` is submitting with either a `GET` or `POST` [HTTP method](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods). By default, a `<form>` will use the `GET` method and can be specified by the [`method`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form#method) property.
 
 [//]: # (Link to `<form>` documentation. "Read more on the `action` prop on `<form>`.")
-* `action`: A reference to the function passed to the `action` prop on the parent `<form>` which is called during submission. If `action` is unset on `<form>` or there is no parent `<form>`, the property is `null`.
+* `action`: A reference to the function passed to the `action` prop on the parent `<form>`. If there is no parent `<form>`, the property is `null`. If there is a URI value provided to the `action` prop, or no `action` prop specified, `status.action` will be `null`.
 
 #### Caveats {/*caveats*/}
 
@@ -138,8 +140,8 @@ The `useFormStatus` Hook only returns status information for a parent `<form>` a
 function Form() {
   // 🚩 `pending` will never be true
   // useFormStatus does not track the form rendered in this component
-  const { pending } = useFormStatus() 
-  return <form action={submit}></form>
+  const { pending } = useFormStatus();
+  return <form action={submit}></form>;
 }
 ```
 
@@ -147,10 +149,9 @@ Instead call `useFormStatus` from inside a component that is located inside `<fo
 
 ```js
 function Submit() {
-    // ✅ `pending` will be derived from the 
-    // form that wraps the Submit component
-    const { pending } = useFormStatus() 
-    return <button disabled={pending}>...</button>
+  // ✅ `pending` will be derived from the form that wraps the Submit component
+  const { pending } = useFormStatus(); 
+  return <button disabled={pending}>...</button>;
 }
 
 function Form() {
@@ -254,6 +255,6 @@ export async function submitForm(query) {
 
 `useFormStatus` will only return status information for a parent `<form>`. 
 
-If the component that calls `useFormStatus` is not nested in a `<form>`, the returned `status` object will always return `false` for the `pending` property. 
+If the component that calls `useFormStatus` is not nested in a `<form>`, `status.pending` will always return `false`. Verify `useFormStatus` is called in a component that is a child of a `<form>` element.
 
 `useFormStatus` will not track the status of a `<form>` rendered in the same component. See [Pitfall](#useformstatus-will-not-return-status-information-for-a-form-rendered-in-the-same-component) for more details.

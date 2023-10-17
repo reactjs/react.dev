@@ -1501,6 +1501,92 @@ main {
 
 ---
 
+### Displaying an error to users with a error boundary {/*displaying-an-error-to-users-with-error-boundary*/}
+
+If you'd like to display an error to your users when using startTransition, you can use an [error boundary](/reference/react/Component#catching-rendering-errors-with-an-error-boundary). 
+
+<Sandpack>
+
+```js message.js active
+
+import { useTransition } from "react";
+import { ErrorBoundary } from "react-error-boundary";
+
+export function MessageContainer() {
+  return (
+    <ErrorBoundary fallback={<p>⚠️Something went wrong</p>}>
+        <Message />
+    </ErrorBoundary>
+  );
+}
+
+function Message() {
+  const [pending, startTransition] = useTransition();
+  function handleTransition(){
+    throw new Error();
+  }
+
+  return (
+    <button 
+      disabled={pending} 
+      onClick={() => {
+        startTransition(handleTransition);
+      }}>Click me
+      </button>
+  );
+}
+```
+
+```js App.js hidden
+import { MessageContainer } from "./message.js";
+
+export default function App() {
+  return <MessageContainer />;
+}
+```
+
+```js index.js hidden
+// TODO: update to import from stable
+// react instead of canary once the `use`
+// Hook is in a stable release of React
+import React, { StrictMode } from 'react';
+import { createRoot } from 'react-dom/client';
+import './styles.css';
+
+// TODO: update this example to use
+// the Codesandbox Server Component
+// demo environment once it is created
+import App from './App';
+
+const root = createRoot(document.getElementById('root'));
+root.render(
+  <StrictMode>
+    <App />
+  </StrictMode>
+);
+```
+
+```css
+body > iframe {
+  display: none;
+}
+```
+
+```json package.json hidden
+{
+  "dependencies": {
+    "react": "experimental",
+    "react-dom": "experimental",
+    "react-scripts": "^5.0.0",
+    "react-error-boundary": "4.0.3"
+  },
+  "main": "/index.js"
+}
+```
+</Sandpack>
+
+---
+
 ## Troubleshooting {/*troubleshooting*/}
 
 ### Updating an input in a transition doesn't work {/*updating-an-input-in-a-transition-doesnt-work*/}

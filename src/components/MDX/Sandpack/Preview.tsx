@@ -52,7 +52,8 @@ export function Preview({
     rawError = null;
   }
 
-  // When using Error Boundary - we want to disble the error dialog to show fallback
+  // When throwing a new Error in Sandpack - we want to disble the dev error dialog
+  // to show the Error Boundary fallback
   if (rawError && rawError.message.includes('throw new Error()')) {
     rawError = null;
   }

@@ -1,5 +1,6 @@
 ---
 title: useTransition
+canary: true
 ---
 
 <Intro>
@@ -1503,45 +1504,51 @@ main {
 
 ### Displaying an error to users with a error boundary {/*displaying-an-error-to-users-with-error-boundary*/}
 
-If you'd like to display an error to your users when using startTransition, you can use an [error boundary](/reference/react/Component#catching-rendering-errors-with-an-error-boundary). 
+<Note>
+
+Error Boundary for useTransition is currently only available in React's canary and experimental channels. Learn more about [React's release channels here](/community/versioning-policy#all-release-channels).
+
+</Note>
+
+If you'd like to display an error to your users when using `useTransition`, you can use an [error boundary](/reference/react/Component#catching-rendering-errors-with-an-error-boundary). To use an error boundary, wrap the component where you are calling the `useTransition` in an error boundary. If the function in `startTransition` is rejected the fallback for the error boundary will be displayed.
 
 <Sandpack>
 
-```js message.js active
+```js SubmitContainer.js active
 
 import { useTransition } from "react";
 import { ErrorBoundary } from "react-error-boundary";
 
-export function MessageContainer() {
+export function SubmitContainer() {
   return (
     <ErrorBoundary fallback={<p>⚠️Something went wrong</p>}>
-        <Message />
+        <SubmitButton />
     </ErrorBoundary>
   );
 }
 
-function Message() {
+function SubmitButton() {
   const [pending, startTransition] = useTransition();
-  function handleTransition(){
-    throw new Error();
-  }
 
   return (
     <button 
       disabled={pending} 
       onClick={() => {
-        startTransition(handleTransition);
-      }}>Click me
-      </button>
+        startTransition(() => {
+          throw new Error();
+        });
+      }}>
+        Submit
+      </button>      
   );
 }
 ```
 
 ```js App.js hidden
-import { MessageContainer } from "./message.js";
+import { SubmitContainer } from "./SubmitContainer.js";
 
 export default function App() {
-  return <MessageContainer />;
+  return <SubmitContainer />;
 }
 ```
 
@@ -1566,17 +1573,11 @@ root.render(
 );
 ```
 
-```css
-body > iframe {
-  display: none;
-}
-```
-
 ```json package.json hidden
 {
   "dependencies": {
-    "react": "experimental",
-    "react-dom": "experimental",
+    "react": "canary",
+    "react-dom": "canary",
     "react-scripts": "^5.0.0",
     "react-error-boundary": "4.0.3"
   },

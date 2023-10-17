@@ -52,6 +52,11 @@ export function Preview({
     rawError = null;
   }
 
+  // When using Error Boundary - we want to disble the error dialog to show fallback
+  if (rawError && rawError.message.includes('throw new Error()')) {
+    rawError = null;
+  }
+
   // Memoized because it's fed to debouncing.
   const firstLintError = useMemo(() => {
     if (lintErrors.length === 0) {

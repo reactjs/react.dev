@@ -1504,11 +1504,11 @@ main {
 
 ### Displaying an error to users with a error boundary {/*displaying-an-error-to-users-with-error-boundary*/}
 
-<Note>
+<Canary>
 
 Error Boundary for useTransition is currently only available in React's canary and experimental channels. Learn more about [React's release channels here](/community/versioning-policy#all-release-channels).
 
-</Note>
+</Canary>
 
 If you'd like to display an error to your users when using `useTransition`, you can use an [error boundary](/reference/react/Component#catching-rendering-errors-with-an-error-boundary). To use an error boundary, wrap the component where you are calling the `useTransition` in an error boundary. If the function in `startTransition` is rejected the fallback for the error boundary will be displayed.
 

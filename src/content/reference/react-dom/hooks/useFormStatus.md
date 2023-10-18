@@ -29,7 +29,8 @@ const { pending, data, method, action } = useFormStatus();
 
 The `useFormStatus` Hook provides status information of the last form submission.
 
-```js {4},[[1, 5, "status.pending"]]
+```js {5},[[1, 6, "status.pending"]]
+import { useFormStatus } from "react-dom";
 import action from './actions';
 
 function Submit() {

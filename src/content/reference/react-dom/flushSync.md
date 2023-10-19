@@ -4,7 +4,7 @@ title: flushSync
 
 <AddedInVersion version="16" />
 
-[//]: # (According to the linked answer from Dan Abramov, this was supposed to be released during v16, but is only officially documented in v18.0.0 --> https://github.com/facebook/react/issues/11527#issuecomment-360199710)
+{/* According to the linked answer from Dan Abramov, this was supposed to be released during v16, but is only officially documented in v18.0.0 --> https://github.com/facebook/react/issues/11527#issuecomment-360199710 */}
 
 <Pitfall>
 

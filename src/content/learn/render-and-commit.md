@@ -84,7 +84,7 @@ After you trigger a render, React calls your components to figure out what to di
 
 This process is recursive: if the updated component returns some other component, React will render _that_ component next, and if that component also returns something, it will render _that_ component next, and so on. The process will continue until there are no more nested components and React knows exactly what should be displayed on screen.
 
-In the following example, React will call `Gallery()` and  `Image()` several times:
+In the following example, React will call `Gallery()` once and call `Image()` several times:
 
 <Sandpack>
 

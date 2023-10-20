@@ -228,26 +228,44 @@ In a module dependency tree, a node that represents a module with a `'use client
 
 As in any React app, parent components pass data to child components. As they are rendered in different environments, passing data from a Server Component to a Client Component requires extra consideration.
 
-Prop values passed from a Server Component to Client Component need to be serializable.
+Prop values passed from a Server Component to Client Component must be serializable.
+
+[TODO]: <> (Link to use server docs)
 
 Serializable props include:
-* [JavaScript primitives](https://developer.mozilla.org/en-US/docs/Glossary/Primitive)
-* Subclasses of [TypedArrays](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray)
-*
+* Primitives
+	* [string](https://developer.mozilla.org/en-US/docs/Glossary/String)
+	* [number](https://developer.mozilla.org/en-US/docs/Glossary/Number)
+	* [bigint](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/BigInt)
+	* [boolean](https://developer.mozilla.org/en-US/docs/Glossary/Boolean)
+	* [undefined](https://developer.mozilla.org/en-US/docs/Glossary/Undefined)
+	* [null](https://developer.mozilla.org/en-US/docs/Glossary/Null)
+	* [symbol](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol), only symbols registered in the global Symbol registry via [`Symbol.for`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol/for)
+* Iterables
+	* [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)
+	* [Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)
+	* [Map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map)
+	* [Set](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set)
+	* [TypedArray](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray)
+* Plain [objects](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object), those created with [object initializers](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Object_initializer), with serializable properties
+* Client or Server Components
+* [Promises](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)
 
-
+Notably, these are not supported:
+* [Functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function) that are not exported from client-marked modules or marked with `'use server'`
+* [Classes](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/Classes_in_JavaScript)
+* Objects that are not an instance of [Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object), or [null-prototype objects](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object#null-prototype_objects)
+* Symbols not registered globally, ex. `Symbol('my new symbol')`
 
 #### Caveats {/*caveats*/}
 
-* It's not necessary to add `'use client'` to every file that uses client-only React features, only the files that are imported from server component files. `'use client'` denotes the _boundary_ between server-only and client code; any components further down the tree will automatically be executed on the client. In order to be rendered from server components, components exported from `'use client'` files must have serializable props.
-* When a `'use client'` file is imported from a server file, the imported values can be rendered as a React component or passed via props to a client component. Any other use will throw an exception.
-* When a `'use client'` file is imported from another client file, the directive has no effect. This allows you to write client-only components that are simultaneously usable from server and client components.
-* All the code in `'use client'` file as well as any modules it imports (directly or indirectly) will become a part of the client module graph and must be sent to and executed by the client in order to be rendered by the browser. To reduce client bundle size and take full advantage of the server, move state (and the `'use client'` directives) lower in the tree when possible, and pass rendered server components [as children](/learn/passing-props-to-a-component#passing-jsx-as-children) to client components.
-* Because props are serialized across the server–client boundary, note that the placement of these directives can affect the amount of data sent to the client; avoid data structures that are larger than necessary.
-* Components like a `<MarkdownRenderer>` that use neither server-only nor client-only features should generally not be marked with `'use client'`. That way, they can render exclusively on the server when used from a server component, but they'll be added to the client bundle when used from a client component.
-* Libraries published to npm should include `'use client'` on exported React components that can be rendered with serializable props that use client-only React features, to allow those components to be imported and rendered by server components. Otherwise, users will need to wrap library components in their own `'use client'` files which can be cumbersome and prevents the library from moving logic to the server later. When publishing prebundled files to npm, ensure that `'use client'` source files end up in a bundle marked with `'use client'`, separate from any bundle containing exports that can be used directly on the server.
-* Client components will still run as part of server-side rendering (SSR) or build-time static site generation (SSG), which act as clients to transform React components' initial render output to HTML that can be rendered before JavaScript bundles are downloaded. But they can't use server-only features like reading directly from a database.
-* Directives like `'use client'` must be at the very beginning of a file, above any imports or other code (comments above directives are OK). They must be written with single or double quotes, not backticks. (The `'use xyz'` directive format somewhat resembles the `useXyz()` Hook naming convention, but the similarity is coincidental.)
+* `'use client'` must be at the very beginning of a file, above any imports or other code (comments are OK). They must be written with single or double quotes, but not backticks. 
+* When a `'use client'` module is imported from another client-rendered module, the directive has no effect.
+* When a component module contains a `'use client'` directive, any usage of that component is guaranteed to be a Client Component. However, a component can still be evaluated on the client even if it does not have a `'use client'` directive.
+	* A component usage is considered a Client Component if it is defined in module with `'use client'` directive or it is a transitive dependency of a module that contains a `'use client'` directive. Otherwise, it is a Server Component. 
+* Code that is marked for client evaluation is not limited to components. All code that is a part of the client module sub-tree is sent to and run by the client.
+* When a server evaluated module imports values from a `'use client'` module, the values must either be a React component or [supported serializable prop values](#passing-props-from-server-to-client-components) to be passed to a Client Component. Any other use case will throw an exception.
+
 
 ## Usage {/*usage*/}
 

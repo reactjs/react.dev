@@ -5,24 +5,11 @@
 import {useEffect} from 'react';
 import {AppProps} from 'next/app';
 import {useRouter} from 'next/router';
-import Script from 'next/script';
 
 import '@docsearch/css';
 import '../styles/algolia.css';
 import '../styles/index.css';
 import '../styles/sandpack.css';
-
-if (typeof window !== 'undefined') {
-  // @ts-ignore
-  window.dataLayer = window.dataLayer || [];
-  // @ts-ignore
-  window.gtag = function () {
-    // @ts-ignore
-    window.dataLayer.push(arguments);
-  };
-  // @ts-ignore
-  gtag('js', new Date());
-}
 
 export default function MyApp({Component, pageProps}: AppProps) {
   const router = useRouter();
@@ -56,15 +43,5 @@ export default function MyApp({Component, pageProps}: AppProps) {
     };
   }, [router.events]);
 
-  return (
-    <>
-      <Component {...pageProps} />
-      {process.env.NODE_ENV === 'production' && (
-        <Script
-          strategy="lazyOnload"
-          src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_TRACKING_ID}`}
-        />
-      )}
-    </>
-  );
+  return <Component {...pageProps} />;
 }

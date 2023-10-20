@@ -1515,7 +1515,6 @@ If you'd like to display an error to your users when using `useTransition`, you 
 <Sandpack>
 
 ```js SubmitContainer.js active
-
 import { useTransition } from "react";
 import { ErrorBoundary } from "react-error-boundary";
 

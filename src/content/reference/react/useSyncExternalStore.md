@@ -107,7 +107,7 @@ It returns the <CodeStep step={3}>snapshot</CodeStep> of the data in the store. 
 
 React will use these functions to keep your component subscribed to the store and re-render it on changes.
 
-For example, in the sandbox below, `todosStore` is implemented as an external store that stores data outside of React. The `TodosApp` component connects to that external store with the `useSyncExternalStore` Hook. 
+For example, in the sandbox below, `todosStore` is implemented as an external store that stores data outside of React. The `TodosApp` component connects to that external store with the `useSyncExternalStore` Hook.
 
 <Sandpack>
 
@@ -408,7 +408,7 @@ This `subscribe` function is defined *inside* a component so it is different on 
 ```js {4-7}
 function ChatIndicator() {
   const isOnline = useSyncExternalStore(subscribe, getSnapshot);
-  
+
   // 🚩 Always a different function, so React will resubscribe on every re-render
   function subscribe() {
     // ...
@@ -417,7 +417,7 @@ function ChatIndicator() {
   // ...
 }
 ```
-  
+
 React will resubscribe to your store if you pass a different `subscribe` function between re-renders. If this causes performance issues and you'd like to avoid resubscribing, move the `subscribe` function outside:
 
 ```js {6-9}
@@ -437,7 +437,7 @@ Alternatively, wrap `subscribe` into [`useCallback`](/reference/react/useCallbac
 ```js {4-8}
 function ChatIndicator({ userId }) {
   const isOnline = useSyncExternalStore(subscribe, getSnapshot);
-  
+
   // ✅ Same function as long as userId doesn't change
   const subscribe = useCallback(() => {
     // ...

@@ -11,6 +11,17 @@ import '../styles/algolia.css';
 import '../styles/index.css';
 import '../styles/sandpack.css';
 
+if (typeof window !== 'undefined') {
+  const terminationEvent = 'onpagehide' in window ? 'pagehide' : 'unload';
+  window.addEventListener(terminationEvent, function () {
+    // @ts-ignore
+    gtag('event', 'timing', {
+      event_label: 'JS Dependencies',
+      event: 'unload',
+    });
+  });
+}
+
 export default function MyApp({Component, pageProps}: AppProps) {
   const router = useRouter();
 
@@ -33,8 +44,8 @@ export default function MyApp({Component, pageProps}: AppProps) {
     const handleRouteChange = (url: string) => {
       const cleanedUrl = url.split(/[\?\#]/)[0];
       // @ts-ignore
-      gtag('config', process.env.NEXT_PUBLIC_GA_TRACKING_ID, {
-        page_path: cleanedUrl,
+      gtag('event', 'pageview', {
+        event_label: cleanedUrl,
       });
     };
     router.events.on('routeChangeComplete', handleRouteChange);

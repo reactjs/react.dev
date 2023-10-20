@@ -694,7 +694,7 @@ An event handler type for the `onWheel` event.
 
 ```js
 <div
-  onScroll={e => console.log('onScroll')}
+  onWheel={e => console.log('onWheel')}
 />
 ```
 

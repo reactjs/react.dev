@@ -64,7 +64,7 @@ experimental_taintObjectReference(
 
 #### Caveats {/*caveats*/}
 
-- Recreating or cloning a tainted object creates a new untained object which main contain sensetive data. For example, if you have a tainted `user` object, `const userInfo = {name: user.name, ssn: user.ssn}` or `{...user}` will create new objects which are not tainted. `taintObjectReference` only protects against simple mistakes when the object is passed through to a Client Component unchanged.
+- Recreating or cloning a tainted object creates a new untained object which main contain sensitive data. For example, if you have a tainted `user` object, `const userInfo = {name: user.name, ssn: user.ssn}` or `{...user}` will create new objects which are not tainted. `taintObjectReference` only protects against simple mistakes when the object is passed through to a Client Component unchanged.
 
 <Pitfall>
 

@@ -5,7 +5,7 @@
 import {useEffect} from 'react';
 import {AppProps} from 'next/app';
 import {useRouter} from 'next/router';
-import {ga} from '../utils/analytics';
+import Script from 'next/script';
 
 import '@docsearch/css';
 import '../styles/algolia.css';
@@ -13,14 +13,15 @@ import '../styles/index.css';
 import '../styles/sandpack.css';
 
 if (typeof window !== 'undefined') {
-  if (process.env.NODE_ENV === 'production') {
-    ga('create', process.env.NEXT_PUBLIC_GA_TRACKING_ID, 'auto');
-    ga('send', 'pageview');
-  }
-  const terminationEvent = 'onpagehide' in window ? 'pagehide' : 'unload';
-  window.addEventListener(terminationEvent, function () {
-    ga('send', 'timing', 'JS Dependencies', 'unload');
-  });
+  // @ts-ignore
+  window.dataLayer = window.dataLayer || [];
+  // @ts-ignore
+  window.gtag = function () {
+    // @ts-ignore
+    window.dataLayer.push(arguments);
+  };
+  // @ts-ignore
+  gtag('js', new Date());
 }
 
 export default function MyApp({Component, pageProps}: AppProps) {
@@ -44,8 +45,10 @@ export default function MyApp({Component, pageProps}: AppProps) {
   useEffect(() => {
     const handleRouteChange = (url: string) => {
       const cleanedUrl = url.split(/[\?\#]/)[0];
-      ga('set', 'page', cleanedUrl);
-      ga('send', 'pageview');
+      // @ts-ignore
+      gtag('config', process.env.NEXT_PUBLIC_GA_TRACKING_ID, {
+        page_path: cleanedUrl,
+      });
     };
     router.events.on('routeChangeComplete', handleRouteChange);
     return () => {
@@ -53,5 +56,15 @@ export default function MyApp({Component, pageProps}: AppProps) {
     };
   }, [router.events]);
 
-  return <Component {...pageProps} />;
+  return (
+    <>
+      <Component {...pageProps} />
+      {process.env.NODE_ENV === 'production' && (
+        <Script
+          strategy="lazyOnload"
+          src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_TRACKING_ID}`}
+        />
+      )}
+    </>
+  );
 }

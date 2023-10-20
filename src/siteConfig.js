@@ -17,5 +17,4 @@ exports.siteConfig = {
     apiKey: 'e8451218980a351815563de007648b00',
     indexName: 'beta-react',
   },
-  googleAnalyticsTagId: 'G-B1E83PJ3RT',
 };

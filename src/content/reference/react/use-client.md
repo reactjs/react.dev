@@ -141,7 +141,7 @@ export default [
 
 </Sandpack>
 
-<Diagram name="use_client_module_dependency" height={250} width={545} alt="A tree graph with the top node representing the module 'App.js'. 'App.js' has three children: 'Copyright.js', 'FancyText.js', and 'InspirationGenerator.js'. 'InspirationGenerator.js' has two children: 'FancyText.js' and 'inspirations.js'. The nodes under and including 'InspirationGenerator.js' have a yellow background color to signify that this sub-graph is client-rendered due to the 'use client' directive in 'InspirationGenerator.js'. ">
+<Diagram name="use_client_module_dependency" height={250} width={545} alt="A tree graph with the top node representing the module 'App.js'. 'App.js' has three children: 'Copyright.js', 'FancyText.js', and 'InspirationGenerator.js'. 'InspirationGenerator.js' has two children: 'FancyText.js' and 'inspirations.js'. The nodes under and including 'InspirationGenerator.js' have a yellow background color to signify that this sub-graph is client-rendered due to the 'use client' directive in 'InspirationGenerator.js'.">
 `'use client'` segments the module dependency tree of the React Server Components app to mark `InspirationGenerator.js` and any of its dependencies as client-rendered.
 </Diagram>
 
@@ -153,7 +153,7 @@ In rendering, the framework will server-render the root component and continue t
 
 The server-rendered portion of the render tree is then sent to the client. The client, with its client code downloaded, then completes rendering the rest of the tree. 
 
-<Diagram name="use_client_render_tree" height={250} width={500} alt="A tree graph . ">
+<Diagram name="use_client_render_tree" height={250} width={500} alt="A tree graph where each node represents a component and its children as child components. The top-level node is labelled 'App' and it has two child components 'InspirationGenerator' and 'FancyText'. 'InspirationGenerator' has two child components, 'FancyText' and 'Copyright'. Both 'InspirationGenerator' and its child component 'FancyText' are marked to be client-rendered.">
 The render tree for the React Server Components app. `InspirationGenerator` and its child component `FancyText` are components exported from client-marked code and considered Client Components.
 </Diagram>
 
@@ -201,7 +201,7 @@ The exception is if a component is defined in a module with a `'use client'` dir
 
 Looking back to the question of `FancyText`, it's now clear that a render tree is a tree of component usages. 
 
-<Diagram name="use_client_render_tree" height={150} width={450} alt="A tree graph . ">A render tree is a tree of component usages.</Diagram>
+<Diagram name="use_client_render_tree" height={150} width={450} alt="A tree graph where each node represents a component and its children as child components. The top-level node is labelled 'App' and it has two child components 'InspirationGenerator' and 'FancyText'. 'InspirationGenerator' has two child components, 'FancyText' and 'Copyright'. Both 'InspirationGenerator' and its child component 'FancyText' are marked to be client-rendered.">A render tree is a tree of component usages.</Diagram>
 
 The usage of `FancyText` as a child of `App`, marks that usage as a Server Component as root components are always Server Components. When `FancyText` is imported and used under `InspirationGenerator`, that usage of `FancyText` is a Client Component. 
 
@@ -232,7 +232,7 @@ Prop values passed from a Server Component to Client Component need to be serial
 
 Serializable props include:
 * [JavaScript primitives](https://developer.mozilla.org/en-US/docs/Glossary/Primitive)
-* Subclasses of [TypedArray](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray)s
+* Subclasses of [TypedArrays](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray)
 *
 
 

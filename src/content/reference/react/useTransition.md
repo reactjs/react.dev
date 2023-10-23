@@ -1514,26 +1514,19 @@ If you'd like to display an error to your users when using `useTransition`, you 
 
 <Sandpack>
 
-```js AddCommentContainer.js active
+```js SubmitContainer.js active
 import { useTransition } from "react";
 import { ErrorBoundary } from "react-error-boundary";
 
-export function AddCommentContainer() {
+export function SubmitContainer() {
   return (
     <ErrorBoundary fallback={<p>⚠️Something went wrong</p>}>
-        <AddCommentButton />
+        <SubmitButton />
     </ErrorBoundary>
   );
 }
 
-function addComment(comment) {
-  // For demonstration purposes to show Error Boundary
-  if(comment == null){
-    throw Error('Example error')
-  }
-}
-
-function AddCommentButton() {
+function SubmitButton() {
   const [pending, startTransition] = useTransition();
 
   return (
@@ -1541,22 +1534,20 @@ function AddCommentButton() {
       disabled={pending}
       onClick={() => {
         startTransition(() => {
-          // Intentionally not passing a comment
-          // so error gets thrown
-          addComment();
+          throw new Error();
         });
       }}>
-        Add comment
+        Submit
       </button>
   );
 }
 ```
 
 ```js App.js hidden
-import { AddCommentContainer } from "./AddCommentContainer.js";
+import { SubmitContainer } from "./SubmitContainer.js";
 
 export default function App() {
-  return <AddCommentContainer />;
+  return <SubmitContainer />;
 }
 ```
 

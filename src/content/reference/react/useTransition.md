@@ -152,7 +152,7 @@ export default function TabContainer() {
 
   function selectTab(nextTab) {
     startTransition(() => {
-      setTab(nextTab);      
+      setTab(nextTab);
     });
   }
 
@@ -824,7 +824,7 @@ function use(promise) {
       reason => {
         promise.status = 'rejected';
         promise.reason = reason;
-      },      
+      },
     );
     throw promise;
   }
@@ -1018,7 +1018,7 @@ function use(promise) {
       reason => {
         promise.status = 'rejected';
         promise.reason = reason;
-      },      
+      },
     );
     throw promise;
   }
@@ -1289,7 +1289,7 @@ function use(promise) {
       reason => {
         promise.status = 'rejected';
         promise.reason = reason;
-      },      
+      },
     );
     throw promise;
   }
@@ -1333,7 +1333,7 @@ function use(promise) {
       reason => {
         promise.status = 'rejected';
         promise.reason = reason;
-      },      
+      },
     );
     throw promise;
   }
@@ -1380,9 +1380,9 @@ async function getBio() {
     setTimeout(resolve, 500);
   });
 
-  return `The Beatles were an English rock band, 
-    formed in Liverpool in 1960, that comprised 
-    John Lennon, Paul McCartney, George Harrison 
+  return `The Beatles were an English rock band,
+    formed in Liverpool in 1960, that comprised
+    John Lennon, Paul McCartney, George Harrison
     and Ringo Starr.`;
 }
 
@@ -1514,40 +1514,49 @@ If you'd like to display an error to your users when using `useTransition`, you 
 
 <Sandpack>
 
-```js SubmitContainer.js active
+```js AddCommentContainer.js active
 import { useTransition } from "react";
 import { ErrorBoundary } from "react-error-boundary";
 
-export function SubmitContainer() {
+export function AddCommentContainer() {
   return (
     <ErrorBoundary fallback={<p>⚠️Something went wrong</p>}>
-        <SubmitButton />
+        <AddCommentButton />
     </ErrorBoundary>
   );
 }
 
-function SubmitButton() {
+function addComment(comment) {
+  // For demonstration purposes to show Error Boundary
+  if(comment == null){
+    throw Error('Example error')
+  }
+}
+
+function AddCommentButton() {
   const [pending, startTransition] = useTransition();
 
   return (
-    <button 
-      disabled={pending} 
+    <button
+      disabled={pending}
       onClick={() => {
         startTransition(() => {
-          throw new Error();
+          // Intentionally not passing a comment
+          // so error gets thrown
+          addComment();
         });
       }}>
-        Submit
-      </button>      
+        Add comment
+      </button>
   );
 }
 ```
 
 ```js App.js hidden
-import { SubmitContainer } from "./SubmitContainer.js";
+import { AddCommentContainer } from "./AddCommentContainer.js";
 
 export default function App() {
-  return <SubmitContainer />;
+  return <AddCommentContainer />;
 }
 ```
 

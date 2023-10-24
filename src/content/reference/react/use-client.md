@@ -154,7 +154,7 @@ export default [
 
 In the module dependency tree of the example app, the `'use client'` directive in `InspirationGenerator.js` marks that module and all of its transitive dependencies as client modules. It creates a subtree of client modules with `InspirationGenerator.js` as the root.
 
-In rendering, the framework will server-render the root component and continue through the [render tree](/learn/understanding-your-ui-as-a-tree#the-render-tree), opting-out of evaluating any code imported from client-marked code.
+During render, the framework will server-render the root component and continue through the [render tree](/learn/understanding-your-ui-as-a-tree#the-render-tree), opting-out of evaluating any code imported from client-marked code.
 
 The server-rendered portion of the render tree is then sent to the client. The client, with its client code downloaded, then completes rendering the rest of the tree.
 

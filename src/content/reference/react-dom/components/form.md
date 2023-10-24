@@ -50,7 +50,7 @@ To create interactive controls for submitting information, render the [built-in 
 
 #### Caveats {/*caveats*/}
 
-* When a function is passed to `action` or `formAction` the HTTP method will be POST regaudless of value of the `method` prop.
+* When a function is passed to `action` or `formAction` the HTTP method will be POST regardless of value of the `method` prop.
 
 ---
 

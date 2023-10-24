@@ -43,13 +43,13 @@ export default function RichTextEditor(props) {
 
 When a file marked with `'use client'` is imported from a Server Component, [compatible bundlers](/learn/start-a-new-react-project#bleeding-edge-react-frameworks) will treat the module import as a boundary between server-run and client-run code.
 
-As a dependency of `RichTextEditor`,  `formatDate` and `Link` will also be evaluated on the client irregardless if their modules contain a `'use client'` directive.
+As a dependency of `RichTextEditor`,  `formatDate` and `Link` will also be evaluated on the client regardless if their modules contain a `'use client'` directive.
 
 <DeepDive>
 
 #### Client and Server Rendering with React Server Components {/*client-and-server-rendering-with-react-server-components*/}
 
-React's full-stack architecture vision is realized through the React Server Components (RSC) specification.
+React's full-stack architecture vision is realized through the [React Server Components (RSC) specification](https://github.com/reactjs/rfcs/blob/main/text/0188-server-components.md).
 
 React Server Components lets you coordinate which components of your [render tree](/learn/understanding-your-ui-as-a-tree#the-render-tree) are rendered on the server or on the client. Server rendering is traditionally more performant and allows access to the back-end, while client rendering is necessary for adding interactivity into your components.
 
@@ -97,13 +97,13 @@ export default function FancyText({title, text}) {
 'use client';
 
 import * as React from 'react';
-import quotes from './quotes';
+import inspirations from './inspirations';
 import FancyText from './FancyText';
 
 export default function InspirationGenerator({children}) {
   const [index, setIndex] = React.useState(0);
-  const quote = quotes[index];
-  const next = () => setIndex((index + 1) % quotes.length);
+  const quote = inspirations[index];
+  const next = () => setIndex((index + 1) % inspirations.length);
 
   return (
     <>
@@ -122,12 +122,12 @@ export default function Copyright({year}) {
 }
 ```
 
-```js quotes.js
+```js inspirations.js
 export default [
   "Don’t let yesterday take up too much of today.” — Will Rogers",
   "Ambition is putting a ladder against the sky.",
   "A joy that's shared is a joy made double.",
-  ];
+];
 ```
 
 ```css
@@ -154,8 +154,6 @@ export default [
 
 In the module dependency tree of the example app, the `'use client'` directive in `InspirationGenerator.js` marks that module and all of its transitive dependencies as client modules. It creates a subtree of client modules with `InspirationGenerator.js` as the root.
 
-Irregardless if a module exports a component, like `inspirations.js`, if a module is part of that client subtree, then it will be evaluated on the client.
-
 In rendering, the framework will server-render the root component and continue through the [render tree](/learn/understanding-your-ui-as-a-tree#the-render-tree), opting-out of evaluating any code imported from client-marked code.
 
 The server-rendered portion of the render tree is then sent to the client. The client, with its client code downloaded, then completes rendering the rest of the tree.
@@ -178,7 +176,7 @@ By the above definitions, the component `FancyText` is both a Server and Client 
 
 First, let's clarify that the term "component" is not very precise. Here are just two ways "component" can be understood:
 
-1. A "component" can refer to a **component definition**.
+1. A "component" can refer to a **component definition**. In most cases this will be a function.
 
 ```js
 // This is a definition of a component
@@ -187,7 +185,7 @@ function MyComponent() {
 }
 ```
 
-2. A "component" can also refer to a **component usage** of a definition.
+2. A "component" can also refer to a **component callsite** of its definition.
 ```js
 import MyComponent from './MyComponent';
 
@@ -199,20 +197,19 @@ function App() {
 
 Often, the imprecision is not important when explaining concepts, but in this case it is.
 
-When we talk about Server or Client Components, we are referring to component usages. Where a component is imported and used determines if it is a Server or Client Component, with one notable exception.
+When we talk about Server or Client Components, we are referring to component callsites.
 
-* If the component is imported and used in a Client Component, then the component usage is a Client Component.
-* If the component is imported and used in a Server Component, then the component usage is a Server Component.
+* If the component is defined in a module with a `'use client'` directive, or the component is imported and called in a Client Component, then the component callsite is a Client Component.
+* If the component is imported and called in a Server Component, then the component callsite is a Server Component.
 
-The exception is if a component is defined in a module with a `'use client'` directive. In that case, regardless of where the component is imported and used, every component usage will be a Client Component.
 
-Looking back to the question of `FancyText`, it's now clear that a render tree is a tree of component usages.
+<Diagram name="use_client_render_tree" height={150} width={450} alt="A tree graph where each node represents a component and its children as child components. The top-level node is labelled 'App' and it has two child components 'InspirationGenerator' and 'FancyText'. 'InspirationGenerator' has two child components, 'FancyText' and 'Copyright'. Both 'InspirationGenerator' and its child component 'FancyText' are marked to be client-rendered.">A render tree illustrates component callsites.</Diagram>
 
-<Diagram name="use_client_render_tree" height={150} width={450} alt="A tree graph where each node represents a component and its children as child components. The top-level node is labelled 'App' and it has two child components 'InspirationGenerator' and 'FancyText'. 'InspirationGenerator' has two child components, 'FancyText' and 'Copyright'. Both 'InspirationGenerator' and its child component 'FancyText' are marked to be client-rendered.">A render tree is a tree of component usages.</Diagram>
+Back to the question of `FancyText`, we see that the component definition does _not_ have a `'use client'` directive and it has two callsites.
 
-The usage of `FancyText` as a child of `App`, marks that usage as a Server Component as root components are always Server Components. When `FancyText` is imported and used under `InspirationGenerator`, that usage of `FancyText` is a Client Component.
+The callsite of `FancyText` as a child of `App`, marks that usage as a Server Component as root components are always Server Components. When `FancyText` is imported and called under `InspirationGenerator`, that callsite of `FancyText` is a Client Component as `InspirationGenerator` is a Client Component since it contains a `'use client'` directive.
 
-This also means that the component definition for `FancyText` will both be evaluated on the server and also be downlaoded by the client to render its Client Component usage.
+This means that the component definition for `FancyText` will both be evaluated on the server and also downloaded by the client to render its Client Component usage.
 
 </DeepDive>
 
@@ -220,13 +217,19 @@ This also means that the component definition for `FancyText` will both be evalu
 
 #### Why is `Copyright` a Server Component? {/*why-is-copyright-a-server-component*/}
 
-`Copyright` is a Server Component because it is imported and used by the Server Component `App`.
+As a child of `InspirationGenerator`, a Client Component, why is `Copyright` a Server Component?
 
-This may be counterintuitive as `Copyright` is a child component of `InspirationGenerator`, which is a Client Component.
+To clarify, `'use client'` defines the boundary between server and client code on the _module dependency tree_, not the render tree.
 
-This is because `InspirationGenerator` accepts [JSX as children props](/learn/passing-props-to-a-component#passing-jsx-as-children) but the actual import and usage of the component occurs within `App`, a Server Component, because it is a root component.
+<Diagram name="use_client_module_dependency" height={200} width={500} alt="A tree graph with the top node representing the module 'App.js'. 'App.js' has three children: 'Copyright.js', 'FancyText.js', and 'InspirationGenerator.js'. 'InspirationGenerator.js' has two children: 'FancyText.js' and 'inspirations.js'. The nodes under and including 'InspirationGenerator.js' have a yellow background color to signify that this sub-graph is client-rendered due to the 'use client' directive in 'InspirationGenerator.js'.">
+`'use client'` defines the boundary between server and client code on the module dependency tree.
+</Diagram>
 
-In a module dependency tree, a node that represents a module with a `'use client'` will mark every descendent node to be client-run -- however the same is not true for a Client Component in a render true.
+In the module dependency tree, we see that `App.js` imports and calls `Copyright` from the `Copyright.js` module. As `Copyright.js` does not contain a `'use client'` directive, the component callsite is rendered on the server. `App` is rendered on the server as it is the root component.
+
+Client Components can render Server Components because you can pass JSX as props. In this case, `InspirationGenerator` takes [JSX as children props](/learn/passing-props-to-a-component#passing-jsx-as-children) and receives `Copyright` as a `children` prop. However, the `InspirationGenerator` module never directly imports the `Copyright` module nor calls the component, all of that is done by `App`.
+
+The takeaway is that a parent-child render relationship between components does not guarantee the same render environment.
 
 </DeepDive>
 

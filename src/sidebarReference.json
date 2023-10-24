@@ -7,8 +7,13 @@
       "sectionHeader": "react@18.2.0"
     },
     {
-      "title": "Hooks",
+      "title": "Overview",
       "path": "/reference/react",
+      "canary": true
+    },
+    {
+      "title": "Hooks",
+      "path": "/reference/react/hooks",
       "routes": [
         {
           "title": "use",

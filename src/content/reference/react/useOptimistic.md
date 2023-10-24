@@ -29,19 +29,32 @@ The `useOptimistic` Hook is currently only available in React's canary and exper
 
 `useOptimistic` is a React Hook that lets you optimistically update the UI.
 
-🚧
+```js
+import { useOptimistic } from 'react';
+
+function AppContainer() {
+  const [optimistic, addOptimistic] = useOptimistic(
+    initialState,
+    (currentState, newState) => {
+      // merge and return new state
+    }
+  );
+}
+```
 
 [See more examples below.](#usage)
 
 #### Parameters {/*parameters*/}
 
-* `initialState`: 🚧
-* `updateFn`: 🚧
+* `initialState`: `initialState` is the source of truth so if the `initialState` is ever changed and we get a new value in from the server, the return value `optimistic` will be set the that too since it will always treat `initialState` as the final source of truth.
+* `updateFn`: `updateFn` is the mutation that will occur to `optimistic` when `addOptimistic` is called.
+
 
 #### Returns {/*returns*/}
 
-* `optimistic`: 🚧
-* `addOptimistic`: 🚧
+* `optimistic`: `optimistic` is the optimistic state, it will default to what `initialState` is.
+* `addOptimistic`: `addOptimistic` is the dispatching function to call that will run what we define in `updateFn`.
+
 
 #### Caveats {/*caveats*/}
 
@@ -114,7 +127,7 @@ export default function App() {
 
 ### Optimistically updating forms {/*optimistically-updating-with-forms*/}
 
-The `useOptimistic` Hook provides a way to optimistically update the user interface before a background operation, like a network request, completes. In the context of forms, this technique helps to make apps feel more responsive. When a user submits a form, instead of waiting for the server's response to reflect the changes, the interface is immediately updated with the expected outcome. 
+The `useOptimistic` Hook provides a way to optimistically update the user interface before a background operation, like a network request, completes. In the context of forms, this technique helps to make apps feel more responsive. When a user submits a form, instead of waiting for the server's response to reflect the changes, the interface is immediately updated with the expected outcome.
 
 For example, when a user types a message into the form and hits the "Send" button, the `useOptimistic` Hook allows the message to immediately appear in the list with a "Sending..." label, even before the message is actually sent to a server. This "optimistic" approach gives the impression of speed and responsiveness. The form then attempts to truly send the message in the background. Once the server confirms the message has been received, the "Sending..." label is removed.
 
@@ -122,60 +135,55 @@ For example, when a user types a message into the form and hits the "Send" butto
 
 
 ```js App.js
-import { experimental_useOptimistic as useOptimistic, useState } from "react";
+import { useOptimistic, useState } from "react";
 import { deliverMessage } from "./actions.js";
 
 function Thread({ messages, sendMessage }) {
+  async function formAction(formData) {
+    addOptimisticMessage(formData.get("message"));
+    document.getElementById("message-form").reset();
+    await sendMessage(formData);
+  }
   const [optimisticMessages, addOptimisticMessage] = useOptimistic(
     messages,
     (state, newMessage) => [
       ...state,
       {
-        message: newMessage,
+        text: newMessage,
         sending: true
       }
     ]
   );
 
   return (
-    <div>
-      {optimisticMessages.map((m, i) => (
-        <div key={i}>
-          {m.message}
-          <small>{m.sending ? " (Sending...)" : ""}</small>
+    <>
+      {optimisticMessages.map((message, index) => (
+        <div key={index}>
+          {message.text}
+          {!!message.sending && <small> (Sending...)</small>}
         </div>
       ))}
-      <form
-        action={sendMessage}
-        onSubmit={async (e) => {
-          e.preventDefault();
-          const form = e.currentTarget;
-          const formData = new FormData(form);
-          addOptimisticMessage(formData.get("message"));
-          form.reset();
-          await sendMessage(formData);
-        }}
-      >
+      <form action={formAction} id="message-form">
         <input type="text" name="message" placeholder="Hello!" />
         <button type="submit">Send</button>
       </form>
-    </div>
+    </>
   );
 }
 
 export default function App() {
   const [messages, setMessages] = useState([
-    { message: "Hello there!", sending: false, key: 1 }
+    { text: "Hello there!", sending: false, key: 1 }
   ]);
   async function sendMessage(formData) {
     const sentMessage = await deliverMessage(formData.get("message"));
-    setMessages([...messages, { message: sentMessage }]);
+    setMessages([...messages, { text: sentMessage }]);
   }
   return <Thread messages={messages} sendMessage={sendMessage} />;
 }
 ```
 
-```js actions.js hidden
+```js actions.js
 export async function deliverMessage(message) {
   await new Promise((res) => setTimeout(res, 1000));
   return message;
@@ -186,8 +194,8 @@ export async function deliverMessage(message) {
 ```json package.json hidden
 {
   "dependencies": {
-    "react": "experimental",
-    "react-dom": "experimental",
+    "react": "18.3.0-canary-6db7f4209-20231021",
+    "react-dom": "18.3.0-canary-6db7f4209-20231021",
     "react-scripts": "^5.0.0"
   },
   "main": "/index.js",

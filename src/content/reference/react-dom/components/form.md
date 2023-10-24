@@ -5,7 +5,7 @@ canary: true
 
 <Canary>
 
-React's `form` Component is currently only available in React's canary and experimental channels but you can use the [standard HTML `form` tag](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form) in your React's stable channel. Learn more about [React's release channels here](/community/versioning-policy#all-release-channels).
+React's extensions to `<form>` are currently only available in React's canary and experimental channels. In stable releases of React `<form>` works only as a [built-in browser HTML component](https://react.dev/reference/react-dom/components#all-html-components). Learn more about [React's release channels here](/community/versioning-policy#all-release-channels).
 
 </Canary>
 
@@ -29,9 +29,9 @@ The [built-in browser `<form>` component](https://developer.mozilla.org/en-US/do
 
 ## Reference {/*reference*/}
 
-### `<form>` {/*option*/}
+### `<form>` {/*form*/}
 
-The [built-in browser `<form>` component](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form) lets you create interactive controls for submitting information.
+To create interactive controls for submitting information, render the [built-in browser `<form>` component](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form). 🚧
 
 ```js
 <form action={search}>
@@ -46,24 +46,14 @@ The [built-in browser `<form>` component](https://developer.mozilla.org/en-US/do
 
 `<form>` supports all [common element props.](/reference/react-dom/components/common#props)
 
-Additionally, `<form>` supports these props:
+Additionally, `<form>` supports passing a function directly to the `action` and `formAction` props to handle form submission.
 
 * [`action`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/option#disabled): A boolean. Specifies what to do when a form is submitted. The form data can be handled with client or server side code.
-* 🚧
-
-
-🚧 Forms can contain one or more of the following tags:
-* [`<input>`]
-* [`<textarea>`]
 * [`<button>`]
     * [`formAction`] prop that overrides `<form>`'s `action` prop
-* [`<select>`]
-* [`<option>`]
-* [`<optgroup>`]
-* [`<fieldset>`]
-* [`<label>`]
-* [`<output>`]
-* 🚧
+    * [`formAction`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#formaction): A string. Overrides the parent `<form action>` for `type="submit"` and `type="image"`.
+
+
 
 #### 🚧 Caveats {/*caveats*/}
 
@@ -123,7 +113,7 @@ export function queryDb(query) {
 }
 ```
 
-</Sandpack>  
+</Sandpack>
 
 
 ### Handling form submissions on the client {/*handle-form-submission-on-the-client*/}
@@ -134,8 +124,8 @@ Render a `<form>` with a input and submit button. Pass a function to the `action
 
 ```js App.js
 export default function Search() {
-  function search(formAction) {
-    const query = formAction.get("query");
+  function search(formData) {
+    const query = formData.get("query");
     alert(`You searched for '${query}'`);
   }
   return (
@@ -409,7 +399,7 @@ export default function NewsletterSignUp() {
 }
 ```
 
-</Sandpack>  
+</Sandpack>
 
 
 </Sandpack>

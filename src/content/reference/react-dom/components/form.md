@@ -224,7 +224,7 @@ function Form() {
 To learn more about the `useFormStatus` Hook see the [reference documentation](/reference/react-dom/hooks/useFormStatus).
 
 ### Optimistically updating form data {/*optimistically-updating-form-data*/}
-The `useOptimistic` Hook provides a way to optimistically update the user interface before a background operation, like a network request, completes. In the context of forms, this technique helps to make apps feel more responsive. When a user submits a form, instead of waiting for the server's response to reflect the changes, the interface is immediately updated with the expected outcome. 
+The `useOptimistic` Hook provides a way to optimistically update the user interface before a background operation, like a network request, completes. In the context of forms, this technique helps to make apps feel more responsive. When a user submits a form, instead of waiting for the server's response to reflect the changes, the interface is immediately updated with the expected outcome.
 
 For example, when a user types a message into the form and hits the "Send" button, the `useOptimistic` Hook allows the message to immediately appear in the list with a "Sending..." label, even before the message is actually sent to a server. This "optimistic" approach gives the impression of speed and responsiveness. The form then attempts to truly send the message in the background. Once the server confirms the message has been received, the "Sending..." label is removed.
 
@@ -238,6 +238,7 @@ import { deliverMessage } from "./actions.js";
 function Thread({ messages, sendMessage }) {
   async function formAction(formData) {
     addOptimisticMessage(formData.get("message"));
+    document.getElementById("message-form").reset();
     await sendMessage(formData);
   }
   const [optimisticMessages, addOptimisticMessage] = useOptimistic(
@@ -259,7 +260,7 @@ function Thread({ messages, sendMessage }) {
           {!!message.sending && <small> (Sending...)</small>}
         </div>
       ))}
-      <form action={formAction}>
+      <form action={formAction} id="message-form">
         <input type="text" name="message" placeholder="Hello!" />
         <button type="submit">Send</button>
       </form>

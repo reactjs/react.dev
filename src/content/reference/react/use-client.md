@@ -11,7 +11,7 @@ canary: true
 
 <Intro>
 
-`'use client'` marks which components render on the client.
+`'use client'` lets you mark what code runs on the client.
 
 </Intro>
 
@@ -23,18 +23,27 @@ canary: true
 
 ### `'use client'` {/*use-client*/}
 
-Add `'use client'` at the top of a file to mark the code to be evaluated on the client.
+Add `'use client'` at the top of a file to mark the module and its transitive dependencies as client code.
 
 ```js {1}
 'use client';
 
 import { useState } from 'react';
+import { formatDate } from './formatters';
+import Link from './link';
 
 export default function RichTextEditor(props) {
+  formatDate();
   // ...
+  return
+    <Link />
+    // ...
+}
 ```
 
 When a file marked with `'use client'` is imported from a Server Component, [compatible bundlers](/learn/start-a-new-react-project#bleeding-edge-react-frameworks) will treat the module import as a boundary between server-run and client-run code.
+
+As a dependency of `RichTextEditor`,  `formatDate` and `Link` will also be evaluated on the client irregardless if their modules contain a `'use client'` directive.
 
 <DeepDive>
 
@@ -46,17 +55,15 @@ React Server Components lets you coordinate which components of your [render tre
 
 To use React Server Components, you need to use a compatible [React framework](/learn/start-a-new-react-project#bleeding-edge-react-frameworks). These frameworks will render your app on the server by default, unless specified otherwise.
 
-`'use client'` is how we tell the React framework which component should be rendered on the client. We call components that render on the client, Client Components and server-rendered components, Server Components.
-
 </DeepDive>
 
 ### Marking client code with `'use client'` {/*marking-client-components-with-use-client*/}
 
 In a React app, components are often split into separate files, or [modules](/learn/importing-and-exporting-components#exporting-and-importing-a-component).
 
-For apps that use React Server Components, the app is server-rendered by default. `'use client'` creates a client-module subtree in the [module dependency tree](/learn/understanding-your-ui-as-a-tree#the-module-dependency-tree). When a server-rendered module imports a `'use client'` module, the `use client` module and all its transitive dependencies will be run on the client.
+For apps that use React Server Components, the app is server-rendered by default. `'use client'` introduces a server-client boundary in the [module dependency tree](/learn/understanding-your-ui-as-a-tree#the-module-dependency-tree), effectively creating a client-module subtree.
 
-To better illustrate this, consider the following React Server Component app module dependency and render tree.
+To better illustrate this, consider the following React Server Component app and its module dependency and render tree.
 
 <Sandpack>
 
@@ -215,7 +222,7 @@ This also means that the component definition for `FancyText` will both be evalu
 
 `Copyright` is a Server Component because it is imported and used by the Server Component `App`.
 
-This may be unintuitive as `Copyright` is a child component of `InspirationGenerator`, which is a Client Component.
+This may be counterintuitive as `Copyright` is a child component of `InspirationGenerator`, which is a Client Component.
 
 This is because `InspirationGenerator` accepts [JSX as children props](/learn/passing-props-to-a-component#passing-jsx-as-children) but the actual import and usage of the component occurs within `App`, a Server Component, because it is a root component.
 

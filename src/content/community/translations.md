@@ -8,6 +8,10 @@ React docs are translated by the global community into many languages all over t
 
 </Intro>
 
+## Main site {/*main-site*/}
+
+- [English](https://react.dev/) &mdash; [Contribute](https://github.com/reactjs/react.dev/)
+
 ## Translated languages {/*translated-languages*/}
 
 {/* If you are a language maintainer and want to add your language here, finish the "Core" translations and edit `deployedTranslations` under `src/utils`. */}

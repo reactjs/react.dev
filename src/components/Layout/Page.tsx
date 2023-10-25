@@ -16,6 +16,7 @@ import {IconNavArrow} from 'components/Icon/IconNavArrow';
 import PageHeading from 'components/PageHeading';
 import {getRouteMeta} from './getRouteMeta';
 import {TocContext} from '../MDX/TocContext';
+import {Languages, LanguagesContext} from '../MDX/LanguagesContext';
 import type {TocItem} from 'components/MDX/TocContext';
 import type {RouteItem} from 'components/Layout/getRouteMeta';
 import {HomeContent} from './HomeContent';
@@ -30,9 +31,17 @@ interface PageProps {
   routeTree: RouteItem;
   meta: {title?: string; canary?: boolean; description?: string};
   section: 'learn' | 'reference' | 'community' | 'blog' | 'home' | 'unknown';
+  languages: Languages | null;
 }
 
-export function Page({children, toc, routeTree, meta, section}: PageProps) {
+export function Page({
+  children,
+  toc,
+  routeTree,
+  meta,
+  section,
+  languages,
+}: PageProps) {
   const {asPath} = useRouter();
   const cleanedPath = asPath.split(/[\?\#]/)[0];
   const {route, nextRoute, prevRoute, breadcrumbs, order} = getRouteMeta(
@@ -69,7 +78,11 @@ export function Page({children, toc, routeTree, meta, section}: PageProps) {
               'max-w-7xl mx-auto',
               section === 'blog' && 'lg:flex lg:flex-col lg:items-center'
             )}>
-            <TocContext.Provider value={toc}>{children}</TocContext.Provider>
+            <TocContext.Provider value={toc}>
+              <LanguagesContext.Provider value={languages}>
+                {children}
+              </LanguagesContext.Provider>
+            </TocContext.Provider>
           </div>
           {!isBlogIndex && (
             <DocsPageFooter

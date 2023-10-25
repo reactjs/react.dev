@@ -30,6 +30,8 @@ import ButtonLink from 'components/ButtonLink';
 import {TocContext} from './TocContext';
 import type {Toc, TocItem} from './TocContext';
 import {TeamMember} from './TeamMember';
+import {LanguagesContext} from './LanguagesContext';
+import {deployedTranslations} from 'utils/deployedTranslations';
 
 function CodeStep({children, step}: {children: any; step: number}) {
   return (
@@ -357,6 +359,36 @@ function InlineTocItem({items}: {items: Array<NestedTocNode>}) {
   );
 }
 
+function LanguageList({showTranslated}: {showTranslated: boolean}) {
+  const allLanguages = React.useContext(LanguagesContext) ?? [];
+  const languages = allLanguages
+    .filter(
+      ({code}) =>
+        code !== 'en' &&
+        (showTranslated
+          ? deployedTranslations.includes(code)
+          : !deployedTranslations.includes(code))
+    )
+    .sort((a, b) => a.enName.localeCompare(b.enName));
+  return (
+    <UL>
+      {languages.map(({code, name, enName}) => {
+        return (
+          <LI key={code}>
+            <Link href={`https://${code}.react.dev/`}>
+              {enName} ({name})
+            </Link>{' '}
+            &mdash;{' '}
+            <Link href={`https://github.com/reactjs/${code}.react.dev`}>
+              Contribute
+            </Link>
+          </LI>
+        );
+      })}
+    </UL>
+  );
+}
+
 function YouTubeIframe(props: any) {
   return (
     <div className="relative h-0 overflow-hidden pt-[56.25%]">
@@ -417,6 +449,7 @@ export const MDXComponents = {
   IllustrationBlock,
   Intro,
   InlineToc,
+  LanguageList,
   LearnMore,
   Math,
   MathI,

@@ -5,16 +5,16 @@ canary: true
 
 <Canary>
 
-The `useFormState` Hook is currently only available in React's canary and experimental channels. Learn more about [React's release channels here](/community/versioning-policy#all-release-channels). In addition, you need to use a framework that supports React Server Components to get the full benefit of `useFormState`.
+The `useFormState` Hook is currently only available in React's canary and experimental channels. Learn more about [release channels here](/community/versioning-policy#all-release-channels). In addition, you need to use a framework that supports [React Server Components](/reference/react/use-client) to get the full benefit of `useFormState`.
 
 </Canary>
 
 <Intro>
 
-`useFormState` is a Hook that allows you to read the return value of the form action after a form is submitted.
+`useFormState` is a Hook that allows you to update state based on the result of a form action.
 
 ```js
-const [state, formAction] = useFormState(action, initalState);
+const [state, formAction] = useFormState(fn, initialState);
 ```
 
 </Intro>
@@ -25,24 +25,25 @@ const [state, formAction] = useFormState(action, initalState);
 
 ## Reference {/*reference*/}
 
-### `useFormState()` {/*useformstate*/}
-
-In the context of React Server Components, an *action* is a function that may be [executed when a form is submitted](/reference/react-dom/components/form). You can execute actions on the server or on the client.
+### `useFormState(action, initialState)` {/*useformstate*/}
 
 {/* TODO T164397693: link to actions documentation once it exists */}
 
-Call `useFormState` at the top level of your component to see the return value of an action after submitting a form. You pass `useFormState` an existing action as well as an initial state, and it returns a new action that you use when submitting your form, along with the latest form state.
+Call `useFormState` at the top level of your component to create component state that is updated [when a form action is invoked](/reference/react-dom/components/form). You pass `useFormState` an existing form action function as well as an initial state, and it returns a new action that you use in your form, along with the latest form state. The latest form state is also passed to the function that you provided.
 
 ```js
-function AddToCart({itemID}) {
-  const [message, formAction] = useFormState(addToCartAction, null);
+import { useFormState } from "react-dom";
+
+async function increment(previousState, formData) {
+  return previousState + 1;
+}
+
+function StatefulForm({}) {
+  const [state, formAction] = useFormState(increment, 0);
   return (
-    <form action={formAction}>
-      <input type="hidden" name="itemID" value={itemID} />
-      <button type="submit" label="Add to cart" />
-      <p>
-        {message}
-      </p>
+    <form>
+      {state}
+      <button formAction={formAction}>Increment</button>
     </form>
   )
 }
@@ -56,23 +57,22 @@ If used with a server action, `useFormState` allows the server's response from s
 
 #### Parameters {/*parameters*/}
 
-* `action`: The action to be performed when the form is submitted. When the action is called, it will receive the previous state of the form (initially the `initialState` that you pass, subsequently its previous return value) as its initial argument, followed by the arguments that an action normally receives.
-* `initialState`: The value you want the state to be initially. It can be any serializable value. This argument is ignored after the form is first submitted.
+* `fn`: The function to be called when the form is submitted or button pressed. When the function is called, it will receive the previous state of the form (initially the `initialState` that you pass, subsequently its previous return value) as its initial argument, followed by the arguments that a form action normally receives.
+* `initialState`: The value you want the state to be initially. It can be any serializable value. This argument is ignored after the action is first invoked.
 
 {/* TODO T164397693: link to serializable values docs once it exists */}
-
 
 #### Returns {/*returns*/}
 
 `useFormState` returns an array with exactly two values:
 
-1. The current state. During the first render, it will match the `initialState` you have passed. After the form is submitted, it will match the value returned by the action.
-2. A new action that you can pass as the `action` prop to your `form` component.
+1. The current state. During the first render, it will match the `initialState` you have passed. After the action is invoked, it will match the value returned by the action.
+2. A new action that you can pass as the `action` prop to your `form` component or `formAction` prop to any `button` component within the form.
 
 #### Caveats {/*caveats*/}
 
-* When used with a framework that supports React Server Components, `useFormState` lets you make forms interactive before JavaScript has executed on the client. When used without Server Components, there is no advantage to using it over component local state.
-* The action passed to `useFormState` receives an extra argument, the previous or initial state state, as its first argument. This makes its signature different than if it were used directly without `useFormState`.
+* When used with a framework that supports React Server Components, `useFormState` lets you make forms interactive before JavaScript has executed on the client. When used without Server Components, it is equivalent to component local state.
+* The function passed to `useFormState` receives an extra argument, the previous or initial state, as its first argument. This makes its signature different than if it were used directly as a form action without using `useFormState`.
 
 ---
 
@@ -102,7 +102,7 @@ function MyComponent() {
 1. The <CodeStep step={1}>current state</CodeStep> of the form, which is initially set to the <CodeStep step={4}>initial state</CodeStep> you provided, and after the form is submitted is set to the return value of the <CodeStep step={3}>action</CodeStep> you provided.
 2. A <CodeStep step={2}>new action</CodeStep> that you pass to `<form>` as its `action` prop.
 
-When the form is submitted, the <CodeStep step={3}>action</CodeStep> that you provided will be called. Its return value will become the new <CodeStep step={1}>current state</CodeStep> of the form.
+When the form is submitted, the <CodeStep step={3}>action</CodeStep> function that you provided will be called. Its return value will become the new <CodeStep step={1}>current state</CodeStep> of the form.
 
 The <CodeStep step={3}>action</CodeStep> that you provide will also receive a new first argument, namely the <CodeStep step={1}>current state</CodeStep> of the form. The first time the form is submitted, this will be the <CodeStep step={4}>initial state</CodeStep> you provided, while with subsequent submissions, it will be the return value from the last time the action was called. The rest of the arguments are the same as if `useFormState` had not been used
 
@@ -141,8 +141,8 @@ function AddToCartForm({itemID, itemTitle}) {
 export default function App() {
   return (
     <>
-      <AddToCartForm itemID="1" itemTitle="Javascript: The Definitive Guide" />
-      <AddToCartForm itemID="2" itemTitle="Javascript: The Good Parts" />
+      <AddToCartForm itemID="1" itemTitle="JavaScript: The Definitive Guide" />
+      <AddToCartForm itemID="2" itemTitle="JavaScript: The Good Parts" />
     </>
   )
 }
@@ -176,8 +176,8 @@ form button {
 ```json package.json hidden
 {
   "dependencies": {
-    "react": "experimental",
-    "react-dom": "experimental",
+    "react": "canary",
+    "react-dom": "canary",
     "react-scripts": "^5.0.0"
   },
   "main": "/index.js",
@@ -223,8 +223,8 @@ function AddToCartForm({itemID, itemTitle}) {
 export default function App() {
   return (
     <>
-      <AddToCartForm itemID="1" itemTitle="Javascript: The Definitive Guide" />
-      <AddToCartForm itemID="2" itemTitle="Javascript: The Good Parts" />
+      <AddToCartForm itemID="1" itemTitle="JavaScript: The Definitive Guide" />
+      <AddToCartForm itemID="2" itemTitle="JavaScript: The Good Parts" />
     </>
   )
 }
@@ -264,8 +264,8 @@ form button {
 ```json package.json hidden
 {
   "dependencies": {
-    "react": "experimental",
-    "react-dom": "experimental",
+    "react": "canary",
+    "react-dom": "canary",
     "react-scripts": "^5.0.0"
   },
   "main": "/index.js",

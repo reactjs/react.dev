@@ -14,7 +14,7 @@ The `useOptimistic` Hook is currently only available in React's canary and exper
 `useOptimistic` is a React Hook that lets you optimistically update the UI.
 
 ```js
-  const [optimistic, addOptimistic] = useOptimistic(initialState, updateFn);
+  const [optimisticState, addOptimistic] = useOptimistic(state, updateFn);
 ```
 
 </Intro>
@@ -25,7 +25,7 @@ The `useOptimistic` Hook is currently only available in React's canary and exper
 
 ## Reference {/*reference*/}
 
-### `useOptimistic(initialState, updateFn)` {/*use*/}
+### `useOptimistic(state, updateFn)` {/*use*/}
 
 `useOptimistic` is a React Hook that lets you optimistically update the UI.
 
@@ -33,8 +33,9 @@ The `useOptimistic` Hook is currently only available in React's canary and exper
 import { useOptimistic } from 'react';
 
 function AppContainer() {
-  const [optimistic, addOptimistic] = useOptimistic(
-    initialState,
+  const [optimisticState, addOptimistic] = useOptimistic(
+    state,
+    // updateFn
     (currentState, newState) => {
       // merge and return new state
     }
@@ -46,19 +47,14 @@ function AppContainer() {
 
 #### Parameters {/*parameters*/}
 
-* `initialState`: `initialState` is the source of truth so if the `initialState` is ever changed and we get a new value in from the server, the return value `optimistic` will be set the that too since it will always treat `initialState` as the final source of truth.
-* `updateFn`: `updateFn` is the mutation that will occur to `optimistic` when `addOptimistic` is called.
+* `state`: `state` is the source of truth so if the `state` is ever changed and we get a new value in from the server, the return value `optimisticState` will be set the that too since it will always treat `state` as the final source of truth.
+* `updateFn`: `updateFn` is the mutation that will occur to `optimisticState` when `addOptimistic` is called. `updateFn` takes in two parameters. The `currentState` and the `newState`. The return value will be the merged value of the `currentState` and `newState`.
 
 
 #### Returns {/*returns*/}
 
-* `optimistic`: `optimistic` is the optimistic state, it will default to what `initialState` is.
+* `optimisticState`: `optimisticState` is the optimistic state, it will default to what `state` is.
 * `addOptimistic`: `addOptimistic` is the dispatching function to call that will run what we define in `updateFn`.
-
-
-#### Caveats {/*caveats*/}
-
-* 🚧
 
 ---
 
@@ -69,7 +65,7 @@ function AppContainer() {
 <Sandpack>
 
 ```js like-button.js active
-import { experimental_useOptimistic as useOptimistic } from "react";
+import { useOptimistic } from "react";
 
 export function LikeButton({ likes, updateLikes, disabled }) {
   const [optimisticLikes, addOptimisticLike] = useOptimistic(
@@ -204,9 +200,3 @@ export async function deliverMessage(message) {
 ```
 
 </Sandpack>
-
----
-
-## Troubleshooting {/*troubleshooting*/}
-
-🚧

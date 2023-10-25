@@ -207,7 +207,7 @@ When we talk about Server or Client Components, we are referring to component ca
 
 Back to the question of `FancyText`, we see that the component definition does _not_ have a `'use client'` directive and it has two callsites.
 
-The callsite of `FancyText` as a child of `App`, marks that usage as a Server Component as root components are always Server Components. When `FancyText` is imported and called under `InspirationGenerator`, that callsite of `FancyText` is a Client Component as `InspirationGenerator` is a Client Component since it contains a `'use client'` directive.
+The callsite of `FancyText` as a child of `App`, marks that usage as a Server Component as root components are always Server Components. When `FancyText` is imported and called under `InspirationGenerator`, that callsite of `FancyText` is a Client Component as `InspirationGenerator` contains a `'use client'` directive.
 
 This means that the component definition for `FancyText` will both be evaluated on the server and also downloaded by the client to render its Client Component usage.
 

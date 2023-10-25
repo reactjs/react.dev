@@ -46,7 +46,7 @@ To create interactive controls for submitting information, render the [built-in 
 
 `<form>` supports all [common element props.](/reference/react-dom/components/common#props)
 
-* [`action`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form#action): a URL or function. When a URL is passed to `action` the form will behave like the HTML form component. When a function is passed to `action` the function will handle the form submission. The function passed to `action` may be async and will be called with a single argument containing the [form data](https://developer.mozilla.org/en-US/docs/Web/API/FormData) of the submitted form. The `action` prop can be overridden by a `formAction` attribute on a `<button>`, `<input type="submit">`, or `<input type="image">` component.
+[`action`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form#action): a URL or function. When a URL is passed to `action` the form will behave like the HTML form component. When a function is passed to `action` the function will handle the form submission. The function passed to `action` may be async and will be called with a single argument containing the [form data](https://developer.mozilla.org/en-US/docs/Web/API/FormData) of the submitted form. The `action` prop can be overridden by a `formAction` attribute on a `<button>`, `<input type="submit">`, or `<input type="image">` component.
 
 #### Caveats {/*caveats*/}
 
@@ -56,9 +56,9 @@ To create interactive controls for submitting information, render the [built-in 
 
 ## Usage {/*usage*/}
 
-### Handling form submission without a server {/*handle-form-submission-on-the-client*/}
+### Handle form submission on the client {/*handle-form-submission-on-the-client*/}
 
-Render a `<form>` with a input and submit button. Pass a function to the `action` prop of form to run the function when the form is submitted.
+Pass a function to the `action` prop of form to run the function when the form is submitted. Unlike a conventional HTML action, the form won't call a server endpoint when a client function is passed to `action` prop of form. [`formData`](https://developer.mozilla.org/en-US/docs/Web/API/FormData) will be passed to the function as an arrgument so you can access the data submitted by the form.
 
 <Sandpack>
 
@@ -91,9 +91,13 @@ export default function Search() {
 
 </Sandpack>
 
-### Submitting forms without JavaScript {/*submitting-forms-without-javascript*/}
+### Handle form submission with a Server Action {/*handle-form-submission-with-a-server-action*/}
 
-Render a `<form>` with a input and submit button. Pass a function marked with `'use server'` to the `action` prop of form to run the function when the form is submitted. When used with [Server Components](/reference/react/use-client), the form is [progressively enhanced](https://developer.mozilla.org/en-US/docs/Glossary/Progressive_Enhancement).
+Render a `<form>` with a input and submit button. Pass a server action (a function marked with [`'use server'`](/reference/react/use-server) to the `action` prop of form to run the function when the form is submitted.
+
+This is similar to the way forms work when a URL is passed to the `action` prop. The ability to submit forms without JavaScript enables users to submit forms before JavaScript has had a chance to load. This can be benificial to users who have a slow connection, device, or have JavaScript disabled.
+
+You can use hidden form fields to provide data to the `<form>`'s action. The hidden form field data can be access via the [`formData`](https://developer.mozilla.org/en-US/docs/Web/API/FormData) argument pass to the function that is passed to the `action` prop of `<form>`.
 
 ```jsx
 import { updateCart } from './lib.js';
@@ -114,9 +118,9 @@ function AddToCart({productId}) {
 }
 ```
 
-In leiu, of using hidden form fields to provide data to the function passed to the `action` prop of `<form>` you can call the `bind` method on the function passed to the `action` prop of `<form>`.
+In lieu, of using hidden form fields to provide data to the `<form>`'s action, you can call the <CodeStep step={1}>`bind`</CodeStep> method to supply it with extra arguments. This will bind a new argument (<CodeStep step={2}>`productId`</CodeStep>) to the function in addition to the <CodeStep step={3}>`formData`</CodeStep> that is passed as a argument to the function.
 
-```jsx
+```jsx [[1, 8, "bind"], [2,8, "productId"], [2,4, "productId"], [3,4, "formData"]]
 import { updateCart } from './lib.js';
 
 function AddToCart({productId}) {
@@ -133,8 +137,10 @@ function AddToCart({productId}) {
 }
 ```
 
+When `<form>` is rendered by a [Server Component](/reference/react/use-client), and a [Server Action](/reference/react/use-server) is passed to the `<form>`'s `action` prop, the form is [progressively enhanced](https://developer.mozilla.org/en-US/docs/Glossary/Progressive_Enhancement).
+
 ### Display a pending state during form submission {/*display-a-pending-state-during-form-submission*/}
-To display a pending state while a form is submitting, you can call the `useFormStatus` Hook in a component rendered in a `<form>` and read the `pending` property returned.
+To display a pending state when a form is being submitted, you can call the `useFormStatus` Hook in a component rendered in a `<form>` and read the `pending` property returned.
 
 Here, we use the `pending` property to indicate the form is submitting.
 
@@ -185,42 +191,6 @@ export async function submitForm(query) {
 ```
 </Sandpack>
 
-<Pitfall>
-
-##### `useFormStatus` will not return status information for a `<form>` rendered in the same component. {/*useformstatus-will-not-return-status-information-for-a-form-rendered-in-the-same-component*/}
-
-The `useFormStatus` Hook only returns status information for a parent `<form>` and not for any `<form>` rendered in the same component calling the Hook, or child components.
-
-```js
-function Form() {
-  // 🚩 `pending` will never be true
-  // useFormStatus does not track the form rendered in this component
-  const { pending } = useFormStatus();
-  return <form action={submit}></form>;
-}
-```
-
-Instead call `useFormStatus` from inside a component that is located inside `<form>`.
-
-```js
-function Submit() {
-  // ✅ `pending` will be derived from the form that wraps the Submit component
-  const { pending } = useFormStatus();
-  return <button disabled={pending}>...</button>;
-}
-
-function Form() {
-  // This is the <form> `useFormStatus` tracks
-  return (
-    <form action={submit}>
-      <Submit />
-    </form>
-  );
-}
-```
-
-</Pitfall>
-
 To learn more about the `useFormStatus` Hook see the [reference documentation](/reference/react-dom/hooks/useFormStatus).
 
 ### Optimistically updating form data {/*optimistically-updating-form-data*/}
@@ -232,13 +202,14 @@ For example, when a user types a message into the form and hits the "Send" butto
 
 
 ```js App.js
-import { useOptimistic, useState } from "react";
+import { useOptimistic, useState, useRef } from "react";
 import { deliverMessage } from "./actions.js";
 
 function Thread({ messages, sendMessage }) {
+  const formRef = useRef();
   async function formAction(formData) {
     addOptimisticMessage(formData.get("message"));
-    document.getElementById("message-form").reset();
+    formRef.current.reset();
     await sendMessage(formData);
   }
   const [optimisticMessages, addOptimisticMessage] = useOptimistic(
@@ -260,7 +231,7 @@ function Thread({ messages, sendMessage }) {
           {!!message.sending && <small> (Sending...)</small>}
         </div>
       ))}
-      <form action={formAction} id="message-form">
+      <form action={formAction} ref={formRef}>
         <input type="text" name="message" placeholder="Hello!" />
         <button type="submit">Send</button>
       </form>
@@ -301,6 +272,9 @@ export async function deliverMessage(message) {
 ```
 
 </Sandpack>
+
+[//]: # 'Uncomment the next line, and delete this line after the `useOptimisitc` reference documentatino page is published'
+[//]: # 'To learn more about the `useOptimistic` Hook see the [reference documentation](/reference/react/hooks/useOptimistic).'
 
 ### Handling form submission errors {/*handling-form-submission-errors*/}
 
@@ -346,7 +320,15 @@ export async function search() {
 
 </Sandpack>
 
-To surface error messages to your users from a form action you can use the `useFormState` Hook. `useFormState` takes two parameters: an action and a inital state, and returns two values, a state varible and a form action. The form action is passed to the `action` prop of the form. The value returned by the action passed to `useFormState` is used to update the state varible. This can be used to return error message that can be displayed to a user. When use in conjunction with [Server Actions](/reference/react/use-server) and [Server Components](/reference/react/use-client), the error message is progressively enhanced.
+### Display a form submission error without JavaScript {/*display-a-form-submission-error-without-javascript*/}
+
+Displaying a form submissions error message without JavaScript requires that:
+
+1. `<form>` be rendered by a [Server Component](/reference/react/use-client)
+1. the function passed to the `<form>`'s `action` prop be a [Server Action](/reference/react/use-server)
+1. the `useFormState` Hook be used to display the error message
+
+`useFormState` takes two parameters: an [Server Action](/reference/react/use-server) and a inital state. `useFormState` returns two values, a state variable and a action. The action returned by `useFormState` should be passed to the `action` prop of the form. The state varible returned by `useFormState` can be used to displayed an error message. The value returned by the [Server Action](/reference/react/use-server) passed to `useFormState` will be used to update the state variable.
 
 <Sandpack>
 
@@ -371,7 +353,7 @@ export default function Page() {
       <h1>Signup for my newsletter</h1>
       <p>Signup with the same email twice to see an error</p>
       <form action={formAction} id="signup-form">
-        <label for="email">Email: </label>
+        <label htmlFor="email">Email: </label>
         <input name="email" id="email" placeholder="react@example.com" />
         <button>Sign up</button>
         {!!message && <p>{message}</p>}
@@ -406,9 +388,9 @@ export async function signUpNewUser(newEmail) {
 
 </Sandpack>
 
-### Processing forms differently with different submit buttons {/*processing-forms-differently-with-different-submit-buttons*/}
+### Handling multiple submission types {/*processing-forms-differently-with-different-submit-buttons*/}
 
-Forms can be designed to handle multiple submission actions based on the button pressed by the user. Each button can be associated with a distinct action or behavior. When a user taps a specific button, the form is submitted, and a corresponding action, defined by that button's attributes and action, is executed. For instance, a form might allow users to either save their input as a draft or submit it for review with separate buttons.
+Forms can be designed to handle multiple submission actions based on the button pressed by the user. Each button inside a form can be associated with a distinct action or behavior by setting the `formAction` prop. When a user taps a specific button, the form is submitted, and a corresponding action, defined by that button's attributes and action, is executed. For instance, a form might  submit a article for review by default but have a seperate button with `formAction` set to save the article as a draft.
 
 <Sandpack>
 

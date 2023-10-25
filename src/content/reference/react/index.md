@@ -27,4 +27,4 @@ React-dom contains features that are only supported for web applications
 * [Server APIs](/reference/react-dom/server) - The `react-dom/server` APIs let you render React components to HTML on the server.
 
 ## Legacy APIs {/*legacy-apis*/}
-* [Legacy APIs](/reference/react) - Exported from the react package, but not recommended for use in newly written code. 
+* [Legacy APIs](/reference/react/legacy) - Exported from the react package, but not recommended for use in newly written code. 

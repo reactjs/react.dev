@@ -4,4 +4,11 @@
 // It must be the same between all translations.
 // This will also affect the 'Translations' article.
 
-export const deployedTranslations = ['en', 'zh-hans', 'es', 'fr', 'ja'];
+// prettier-ignore
+export const deployedTranslations = [
+  'en',
+  'zh-hans',
+  'es',
+  'fr',
+  'ja',
+];

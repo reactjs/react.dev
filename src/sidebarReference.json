@@ -167,6 +167,11 @@
       "path": "/reference/react-dom/hooks",
       "routes": [
         {
+          "title": "useFormState",
+          "path": "/reference/react-dom/hooks/useFormState",
+          "canary": true
+        },
+        {
           "title": "useFormStatus",
           "path": "/reference/react-dom/hooks/useFormStatus",
           "canary": true

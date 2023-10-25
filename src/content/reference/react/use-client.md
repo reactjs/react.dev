@@ -47,7 +47,7 @@ As a dependency of `RichTextEditor`,  `formatDate` and `Link` will also be evalu
 
 <DeepDive>
 
-#### Client and Server Rendering with React Server Components {/*client-and-server-rendering-with-react-server-components*/}
+#### Client and server rendering with React Server Components {/*client-and-server-rendering-with-react-server-components*/}
 
 React's full-stack architecture vision is realized through the [React Server Components (RSC) specification](https://github.com/reactjs/rfcs/blob/main/text/0188-server-components.md).
 
@@ -190,7 +190,7 @@ function MyComponent() {
 import MyComponent from './MyComponent';
 
 function App() {
-	// This is a usage of a component
+	// This is a callsite of a component
 	return <MyComponent />;
 }
 ```
@@ -227,7 +227,7 @@ To clarify, `'use client'` defines the boundary between server and client code o
 
 In the module dependency tree, we see that `App.js` imports and calls `Copyright` from the `Copyright.js` module. As `Copyright.js` does not contain a `'use client'` directive, the component callsite is rendered on the server. `App` is rendered on the server as it is the root component.
 
-Client Components can render Server Components because you can pass JSX as props. In this case, `InspirationGenerator` takes [JSX as children props](/learn/passing-props-to-a-component#passing-jsx-as-children) and receives `Copyright` as a `children` prop. However, the `InspirationGenerator` module never directly imports the `Copyright` module nor calls the component, all of that is done by `App`.
+Client Components can render Server Components because you can pass JSX as props. In this case, `InspirationGenerator` receives `Copyright` as [children](/learn/passing-props-to-a-component#passing-jsx-as-children). However, the `InspirationGenerator` module never directly imports the `Copyright` module nor calls the component, all of that is done by `App`.
 
 The takeaway is that a parent-child render relationship between components does not guarantee the same render environment.
 
@@ -279,7 +279,7 @@ Serializable props include:
 Notably, these are not supported:
 * [Functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function) that are not exported from client-marked modules or marked with `'use server'`
 * [Classes](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/Classes_in_JavaScript)
-* Objects that are not an instance of [Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object), or [null-prototype objects](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object#null-prototype_objects)
+* Objects that are not an instance of [Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object), or are [null-prototype objects](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object#null-prototype_objects)
 * Symbols not registered globally, ex. `Symbol('my new symbol')`
 
 #### Caveats {/*caveats*/}

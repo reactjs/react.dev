@@ -73,7 +73,8 @@
         },
         {
           "title": "useTransition",
-          "path": "/reference/react/useTransition"
+          "path": "/reference/react/useTransition",
+          "canary": true
         }
       ]
     },
@@ -130,11 +131,13 @@
         },
         {
           "title": "experimental_taintObjectReference",
-          "path": "/reference/react/experimental_taintObjectReference"
+          "path": "/reference/react/experimental_taintObjectReference",
+          "canary": true
         },
         {
           "title": "experimental_taintUniqueValue",
-          "path": "/reference/react/experimental_taintUniqueValue"
+          "path": "/reference/react/experimental_taintUniqueValue",
+          "canary": true
         }
       ]
     },
@@ -166,6 +169,11 @@
         {
           "title": "useFormState",
           "path": "/reference/react-dom/hooks/useFormState",
+          "canary": true
+        },
+        {
+          "title": "useFormStatus",
+          "path": "/reference/react-dom/hooks/useFormStatus",
           "canary": true
         }
       ]

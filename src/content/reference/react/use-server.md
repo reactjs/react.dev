@@ -24,20 +24,33 @@ canary: true
 
 ### `'use server'` {/*use-server*/}
 
-Add `'use server';` at the very top of an async function to mark that the function can be executed by the client.
+Add `'use server'` at the top of an async function body to mark that that function can be called by the client. We refer to server functions that have been marked with `'use server'` as server actions.
 
 ```js
 async function addToCart(data) {
   'use server';
   // ...
 }
-
-// <ProductDetailPage addToCart={addToCart} />
 ```
 
-This function can be passed to the client. When called on the client, it will make a network request to the server that includes a serialized copy of any arguments passed. If the server function returns a value, that value will be serialized and returned to the client.
+As a server action, you can pass `addToCart` as a prop to a Client Component to be called on the client.
 
-Alternatively, add `'use server';` at the very top of a file to mark all exports within that file as async server functions that can be used anywhere, including imported in client component files.
+When calling a server action on the client, it will make a network request to the server that includes a serialized copy of any arguments passed. If the server action returns a value, that value will be serialized and returned to the client.
+
+Instead of individually marking functions with `'use server'`, you can add the directive to the top of a file to mark all exports within that file as server actions.
+
+### Serializable parameters and return values {/*serializable-parameters-and-return-values*/}
+
+* 
+
+### Closures {/*closures*/}
+
+* This section should be about defining Server Actions and what is persisted, briefly that values in function sc
+
+### Security {/*security*/}
+
+* Brief point here about tainting values
+
 
 #### Caveats {/*caveats*/}
 
@@ -48,7 +61,20 @@ Alternatively, add `'use server';` at the very top of a file to mark all exports
 
 ## Usage {/*usage*/}
 
-<Wip>
+
+### Server Actions in forms {/*server-actions-in-forms*/}
+
+* Server actions in Server Components, wins of progressive enhancement
+* Server action call from Client Component
+* Receiving a return value with `useFormState`
+
+### Server Actions outside of forms {/*server-actions-outside-of-forms*/}
+
+* Transitions, must wrap in transition
+* Cannot be progressively enhanced because cant define
+
+
+
 This section is a work in progress. 
 
 This API can be used in any framework that supports React Server Components. You may find additional documentation from them.

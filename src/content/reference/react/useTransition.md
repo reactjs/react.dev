@@ -1,6 +1,5 @@
 ---
 title: useTransition
-canary: true
 ---
 
 <Intro>

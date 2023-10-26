@@ -27,7 +27,9 @@ The `useOptimistic` Hook is currently only available in React's canary and exper
 
 ### `useOptimistic(state, updateFn)` {/*use*/}
 
-`useOptimistic` is a React Hook that lets you optimistically update the UI.
+`useOptimistic` is a React Hook that lets you optimistically update the UI. It accepts some state as an argument and returns a copy of that state that can be different during the duration of an async action such as a network request. You provide a function that takes the current state and the input to the action, and returns the optimistic state to be used while the action is pending.
+
+This state is called the "optimistic" state because it is usually used to immediately present the user with the result of performing an action, even though the action actually takes time to complete.
 
 ```js
 import { useOptimistic } from 'react';
@@ -36,8 +38,9 @@ function AppContainer() {
   const [optimisticState, addOptimistic] = useOptimistic(
     state,
     // updateFn
-    (currentState, newState) => {
+    (currentState, optimisticValue) => {
       // merge and return new state
+      // with optimistic value
     }
   );
 }
@@ -47,79 +50,18 @@ function AppContainer() {
 
 #### Parameters {/*parameters*/}
 
-* `state`: `state` is the source of truth so if the `state` is ever changed and we get a new value in from the server, the return value `optimisticState` will be set the that too since it will always treat `state` as the final source of truth.
-* `updateFn`: `updateFn` is the mutation that will occur to `optimisticState` when `addOptimistic` is called. `updateFn` takes in two parameters. The `currentState` and the `newState`. The return value will be the merged value of the `currentState` and `newState`.
+* `state`: the value to be returned initially and whenever no action is pending. `state` is ever changed and we get a new value in from the server, the return value `optimisticState` will be set the that too since it will always treat `state` as the final source of truth.
+* `updateFn(currentState, optimisticValue)`: a function that takes the current state and the optimistic value passed to `addOptimistic` and returns the resulting optimistic state. It must be a pure function. `updateFn` takes in two parameters. The `currentState` and the `optimisticValue`. The return value will be the merged value of the `currentState` and `optimisticValue`.
 
 
 #### Returns {/*returns*/}
 
-* `optimisticState`: `optimisticState` is the optimistic state, it will default to what `state` is.
-* `addOptimistic`: `addOptimistic` is the dispatching function to call that will run what we define in `updateFn`.
+* `optimisticState`: The resulting optimistic state. It is equal to `state` unless an action is pending, in which case it is equal to the value returned by `updateFn`.
+* `addOptimistic`: `addOptimistic` is the dispatching function to call when you have an optimistic update. It takes one argument, `optimisticValue`, of any type and will call the `updateFn` with `state` and `optimisticValue`.
 
 ---
 
 ## Usage {/*usage*/}
-
-### Optimistically update the UI while waiting for a network request {/*optimistically-update-while-waiting-for-network*/}
-
-<Sandpack>
-
-```js like-button.js active
-import { useOptimistic } from "react";
-
-export function LikeButton({ likes, updateLikes, disabled }) {
-  const [optimisticLikes, addOptimisticLike] = useOptimistic(
-    likes,
-    (likes) => likes + 1
-  );
-
-  async function addLike() {
-    addOptimisticLike();
-    await updateLikes(likes);
-  }
-
-  return (
-    <button disabled={disabled} onClick={addLike}>
-      Like {optimisticLikes}
-    </button>
-  );
-}
-```
-
-
-```js App.js
-import { useState } from "react";
-import { LikeButton } from "./like-button.js";
-
-export default function App() {
-  const [likes, setLikes] = useState(0);
-  const [updating, setUpdating] = useState(false);
-  async function updateLikes(num) {
-    setUpdating(true);
-    await new Promise((res) => setTimeout(res, 1000));
-    setLikes(num + 1);
-    setUpdating(false);
-  }
-  return (
-    <LikeButton likes={likes} updateLikes={updateLikes} disabled={updating} />
-  );
-}
-```
-
-```json package.json hidden
-{
-  "dependencies": {
-    "react": "experimental",
-    "react-dom": "experimental",
-    "react-scripts": "^5.0.0"
-  },
-  "main": "/index.js",
-  "devDependencies": {}
-}
-```
-
-</Sandpack>
-
 
 ### Optimistically updating forms {/*optimistically-updating-with-forms*/}
 
@@ -131,13 +73,14 @@ For example, when a user types a message into the form and hits the "Send" butto
 
 
 ```js App.js
-import { useOptimistic, useState } from "react";
+import { useOptimistic, useState, useRef } from "react";
 import { deliverMessage } from "./actions.js";
 
 function Thread({ messages, sendMessage }) {
+  const formRef = useRef();
   async function formAction(formData) {
     addOptimisticMessage(formData.get("message"));
-    document.getElementById("message-form").reset();
+    formRef.current.reset();
     await sendMessage(formData);
   }
   const [optimisticMessages, addOptimisticMessage] = useOptimistic(
@@ -159,7 +102,7 @@ function Thread({ messages, sendMessage }) {
           {!!message.sending && <small> (Sending...)</small>}
         </div>
       ))}
-      <form action={formAction} id="message-form">
+      <form action={formAction} ref={formRef}>
         <input type="text" name="message" placeholder="Hello!" />
         <button type="submit">Send</button>
       </form>

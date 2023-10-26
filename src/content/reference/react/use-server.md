@@ -77,13 +77,13 @@ Supported serializable return values are the same as [serializable props](/refer
 
 ### Security considerations {/*security*/}
 
-Recall that parameters to server actions are fully client-controlled. For security, always treat them as untrusted input, and make sure to validate and escape arguments as appropriate.
+Arguments to server actions are fully client-controlled. For security, always treat them as untrusted input, and make sure to validate and escape arguments as appropriate.
 
 In addition, we recommend validating user authorization for any server mutations a server action may perform.
 
 <Wip>
 
-Beyond arguments, server actions also encode closures which are sent to the client and back to when the server action is called. To prevent sending sensitive data, there are experimental taint APIs to prevent unique values and objects from being passed to client code.
+Beyond arguments, server actions also encode closures which are sent to the client and back to server when the server action is called. To prevent sending sensitive data, there are experimental taint APIs to prevent unique values and objects from being passed to client code.
 
 See [experimental_taintUniqueValue](/reference/react/experimental_taintUniqueValue) and [experimental_taintObjectReference](/reference/react/experimental_taintObjectReference).
 
@@ -145,7 +145,7 @@ We force `UsernameForm` as a Client Component with `'use client'` purely for dem
 
 #### Progressive Enhancement in `<form>` {/*progressive-enhancement-in-form*/}
 
-In the above example, the `<form>` is rendered in a Client Component. By instead rendering the `<form>` in a Server Component, React can support [progressively enhanced](https://developer.mozilla.org/en-US/docs/Glossary/Progressive_Enhancement) forms.
+In the above example, the `<form>` is rendered in a Client Component. By instead rendering the `<form>` in a Server Component, React can [progressively enhance](https://developer.mozilla.org/en-US/docs/Glossary/Progressive_Enhancement) the form.
 
 In this context, we mean that server-rendered forms can provide the baseline experience of submitting a form without JavaScript. This is useful for apps that are server-side rendered (SSR) where HTML scaffolding is sent to the client first, before any code is downloaded to add interactivity.
 
@@ -157,7 +157,7 @@ Server-side rendering and React Server Components are two features for optimizin
 
 Server-side rendering (SSR) is the concept of taking a single render pass of a React app to resolve it to its base UI primitives, HTML elements for the web. This HTML is sent down to the client to serve as "scaffolding" while JavaScript is still being downloaded and evaluated.
 
-SRR is an optimization for ["time to paint"](https://developer.mozilla.org/en-US/docs/Glossary/First_paint) but it still requires all your app code to download and be evaluated on the client. The client then needs to [hydrate](/reference/react-dom/client/hydrateRoot#hydrating-server-rendered-html) this scaffolding to add interactivity.
+SSR is an optimization for ["time to paint"](https://developer.mozilla.org/en-US/docs/Glossary/First_paint) but it still requires all your app code to download and be evaluated on the client. The client then needs to [hydrate](/reference/react-dom/client/hydrateRoot#hydrating-server-rendered-html) this scaffolding to add interactivity.
 
 React Server Components (RSC) is the concept of breaking up your React [module dependency tree](/reference/react/use-client#marking-client-components-with-use-client) to determine what components can be rendered on the server and what can be sent to the client. In contrast to SSR, components that are rendered on the server have access to server APIs and can make data-fetches.
 
@@ -227,7 +227,7 @@ export default App() {
 
 ### Calling a server action outside of `<form>` {/*calling-a-server-action-outside-of-form*/}
 
-Server actions are exposed server endpoints to client code and can in theory be called anywhere in client code.
+Server actions are exposed server endpoints to client code and can be called anywhere in client code.
 
 ```js
 import incrementLike from './actions';
@@ -251,6 +251,6 @@ function LikeButton() {
 }
 ```
 
-If you call a server action outside of a [form](/reference/react-dom/components/form), which has first-class support for server actions, you can only do so in a Client Component, which lacks progressive enhancement. In addition, you'll need to manually call the server action in a transition `<form action>` takes care of this for you.
+If you call a server action outside of a [form](/reference/react-dom/components/form), which has first-class support for server actions, you can only do so in a Client Component, which lacks progressive enhancement. In addition, you'll need to manually call the server action in a transition. `<form action>` takes care of this for you.
 
 To read a server action return value, you'll need to `await` the promise returned.

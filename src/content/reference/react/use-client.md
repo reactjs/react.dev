@@ -379,7 +379,7 @@ These libraries may rely on component Hooks or client APIs. In these cases, you'
 
 Libraries that use any of the following React APIs must be marked as client-run:
 * [createContext](/reference/react/createContext)
-* [`react`](/reference/react) and [`react-dom`](/reference/react-dom/hooks) Hooks
+* [`react`](/reference/react) and [`react-dom`](/reference/react-dom/hooks) Hooks, excluding [`use`](/reference/react/use) and [`useId`](/reference/react/useId)
 * [forwardRef](/reference/react/forwardRef)
 * [memo](/reference/react/memo)
 * [startTransition](/reference/react/startTransition)

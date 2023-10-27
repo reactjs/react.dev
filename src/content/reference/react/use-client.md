@@ -96,12 +96,12 @@ export default function FancyText({title, text}) {
 ```js InspirationGenerator.js
 'use client';
 
-import * as React from 'react';
+import { useState } from 'react';
 import inspirations from './inspirations';
 import FancyText from './FancyText';
 
 export default function InspirationGenerator({children}) {
-  const [index, setIndex] = React.useState(0);
+  const [index, setIndex] = useState(0);
   const quote = inspirations[index];
   const next = () => setIndex((index + 1) % inspirations.length);
 
@@ -303,7 +303,7 @@ Notably, these are not supported:
 ```js App.js
 'use client';
 
-import {useState} from 'react';
+import { useState } from 'react';
 
 export default function Counter({initialValue = 0}) {
 	const [countValue, setCountValue] = useState(initialValue);

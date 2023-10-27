@@ -233,9 +233,9 @@ The takeaway is that a parent-child render relationship between components does 
 
 </DeepDive>
 
-### Server Component advantages and limitations {/*server-component-advantages-and-limitations*/}
+### When to use `'use client'` {/*when-to-use-use-client*/}
 
-With `'use client'`, you can determine what components will be Server or Client Components. To understand when to use Client Components, here is an overview of the advantages and limitations to Server Components.
+With `'use client'`, you can determine what component usages will be Client Components. As Server Components are default, here is a brief overview of the advantages and limitations to Server Components to determine when you need to mark something as client rendered.
 
 For simplicity, we talk about Server Components, but the same principles apply to all code in your app that is server run.
 

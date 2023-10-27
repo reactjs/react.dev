@@ -326,7 +326,7 @@ Displaying a form submission error message before the JavaScript bundle loads fo
 1. the function passed to the `<form>`'s `action` prop be a [Server Action](/reference/react/use-server)
 1. the `useFormState` Hook be used to display the error message
 
-`useFormState` takes two parameters: a [Server Action](/reference/react/use-server) and an inital state. `useFormState` returns two values, a state variable and an action. The action returned by `useFormState` should be passed to the `action` prop of the form. The state varible returned by `useFormState` can be used to displayed an error message. The value returned by the [Server Action](/reference/react/use-server) passed to `useFormState` will be used to update the state variable.
+`useFormState` takes two parameters: a [Server Action](/reference/react/use-server) and an initial state. `useFormState` returns two values, a state variable and an action. The action returned by `useFormState` should be passed to the `action` prop of the form. The state variable returned by `useFormState` can be used to displayed an error message. The value returned by the [Server Action](/reference/react/use-server) passed to `useFormState` will be used to update the state variable.
 
 <Sandpack>
 
@@ -392,7 +392,7 @@ Learn more about updating state from a form action with the [`useFormState`](/re
 
 Forms can be designed to handle multiple submission actions based on the button pressed by the user. Each button inside a form can be associated with a distinct action or behavior by setting the `formAction` prop.
 
-When a user taps a specific button, the form is submitted, and a corresponding action, defined by that button's attributes and action, is executed. For instance, a form might submit an article for review by default but have a seperate button with `formAction` set to save the article as a draft.
+When a user taps a specific button, the form is submitted, and a corresponding action, defined by that button's attributes and action, is executed. For instance, a form might submit an article for review by default but have a separate button with `formAction` set to save the article as a draft.
 
 <Sandpack>
 

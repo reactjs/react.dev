@@ -56,6 +56,11 @@
           "path": "/reference/react/useMemo"
         },
         {
+          "title": "useOptimistic",
+          "path": "/reference/react/useOptimistic",
+          "canary": true
+        },
+        {
           "title": "useReducer",
           "path": "/reference/react/useReducer"
         },

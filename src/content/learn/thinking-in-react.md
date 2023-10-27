@@ -117,13 +117,13 @@ function ProductTable({ products }) {
           category={product.category}
           key={product.category} />
       );
+      lastCategory = product.category;
     }
     rows.push(
       <ProductRow
         product={product}
         key={product.name} />
     );
-    lastCategory = product.category;
   });
 
   return (
@@ -364,13 +364,13 @@ function ProductTable({ products, filterText, inStockOnly }) {
           category={product.category}
           key={product.category} />
       );
+      lastCategory = product.category;
     }
     rows.push(
       <ProductRow
         product={product}
         key={product.name} />
     );
-    lastCategory = product.category;
   });
 
   return (
@@ -563,13 +563,13 @@ function ProductTable({ products, filterText, inStockOnly }) {
           category={product.category}
           key={product.category} />
       );
+      lastCategory = product.category;
     }
     rows.push(
       <ProductRow
         product={product}
         key={product.name} />
     );
-    lastCategory = product.category;
   });
 
   return (

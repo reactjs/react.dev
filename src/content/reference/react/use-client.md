@@ -351,7 +351,7 @@ In this case, it is discouraged to use the `'use client'` directive as it premat
 
 Your React app may use client-specific APIs which are dependent on your targeted client. For the browser, some example client APIs include web storage, audio and video manipulation, and device hardware, among [others](https://developer.mozilla.org/en-US/docs/Web/API).
 
-In this example, the component references the [`canvas`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/canvas) element and [DOM](https://developer.mozilla.org/en-US/docs/Glossary/DOM) through the `ref`. Both of which are only accessible on the browser so this component must be marked as a Client Component.
+In this example, the component uses  [DOM APIs](https://developer.mozilla.org/en-US/docs/Glossary/DOM) to manipulate a [`canvas`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/canvas) element. Since those APIs  are only available in the browser, it must be marked as a Client Component.
 
 ```js
 'use client';

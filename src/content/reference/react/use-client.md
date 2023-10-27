@@ -205,9 +205,9 @@ When we talk about Server or Client Components, we are referring to component us
 
 <Diagram name="use_client_render_tree" height={150} width={450} alt="A tree graph where each node represents a component and its children as child components. The top-level node is labelled 'App' and it has two child components 'InspirationGenerator' and 'FancyText'. 'InspirationGenerator' has two child components, 'FancyText' and 'Copyright'. Both 'InspirationGenerator' and its child component 'FancyText' are marked to be client-rendered.">A render tree illustrates component usages.</Diagram>
 
-Back to the question of `FancyText`, we see that the component definition does _not_ have a `'use client'` directive and it has two .
+Back to the question of `FancyText`, we see that the component definition does _not_ have a `'use client'` directive and it has two usages.
 
-The usage of `FancyText` as a child of `App`, marks that usage as a Server Component as root components are always Server Components. When `FancyText` is imported and called under `InspirationGenerator`, that usage of `FancyText` is a Client Component as `InspirationGenerator` contains a `'use client'` directive.
+The usage of `FancyText` as a child of `App`, marks that usage as a Server Component. When `FancyText` is imported and called under `InspirationGenerator`, that usage of `FancyText` is a Client Component as `InspirationGenerator` contains a `'use client'` directive.
 
 This means that the component definition for `FancyText` will both be evaluated on the server and also downloaded by the client to render its Client Component usage.
 
@@ -240,7 +240,7 @@ With `'use client'`, you can determine what components will be Server or Client 
 For simplicity, we talk about Server Components, but the same principles apply to all code in your app that is server run.
 
 #### Advantages {/*advantages*/}
-* Server Components reduce the amount of code sent and run by the client. Only client modules are bundled and evaluated by the client.
+* Server Components can reduce the amount of code sent and run by the client. Only client modules are bundled and evaluated by the client.
 * Server Components benefit from running on the server. They can access the local filesystem and may experience low latency for data fetches and network requests.
 
 #### Limitations {/*limitations*/}
@@ -279,7 +279,7 @@ Serializable props include:
 * [Promises](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)
 
 Notably, these are not supported:
-* [Functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function) that are not exported from client-marked modules or marked with `'use server'`
+* [Functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function) that are not exported from client-marked modules or marked with [`'use server'`](/reference/react/use-server)
 * [Classes](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/Classes_in_JavaScript)
 * Objects that are instances of any class (other than built-ins mentioned) or objects with [null-prototype](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object#null-prototype_objects)
 * Symbols not registered globally, ex. `Symbol('my new symbol')`

@@ -442,8 +442,8 @@ In the above example, `MyInput` exposes the original DOM input element. This let
 
 ```js
 import {
-  forwardRef, 
-  useRef, 
+  forwardRef,
+  useRef,
   useImperativeHandle
 } from 'react';
 
@@ -590,7 +590,7 @@ export default function TodoList() {
     const newTodo = { id: nextId++, text: text };
     flushSync(() => {
       setText('');
-      setTodos([ ...todos, newTodo]);      
+      setTodos([ ...todos, newTodo]);
     });
     listRef.current.lastChild.scrollIntoView({
       behavior: 'smooth',
@@ -1004,7 +1004,7 @@ export default function CatFriends() {
             behavior: 'smooth',
             block: 'nearest',
             inline: 'center'
-          });            
+          });
         }}>
           Next
         </button>

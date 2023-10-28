@@ -217,7 +217,7 @@ export default function MyForm() {
             type="radio"
             name="myRadio"
             value="option2"
-            defaultChecked={true} 
+            defaultChecked={true}
           />
           Option 2
         </label>

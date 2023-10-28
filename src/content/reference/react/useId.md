@@ -189,7 +189,7 @@ Inside React, `useId` is generated from the "parent path" of the calling compone
 
 ### Generating IDs for several related elements {/*generating-ids-for-several-related-elements*/}
 
-If you need to give IDs to multiple related elements, you can call `useId` to generate a shared prefix for them: 
+If you need to give IDs to multiple related elements, you can call `useId` to generate a shared prefix for them:
 
 <Sandpack>
 

@@ -76,7 +76,7 @@ experimental_taintUniqueValue(
 
 ### Prevent a token from being passed to Client Components {/*prevent-a-token-from-being-passed-to-client-components*/}
 
-To ensure that sensitive information such as passwords, session tokens, or other unique values do not inadvertently get passed to Client Components, the `taintUniqueValue` function provides a layer of protection. When a value is tainted, any attempt to pass it to a Client Component will result in an error. 
+To ensure that sensitive information such as passwords, session tokens, or other unique values do not inadvertently get passed to Client Components, the `taintUniqueValue` function provides a layer of protection. When a value is tainted, any attempt to pass it to a Client Component will result in an error.
 
 The `lifetime` argument defines the duration for which the value remains tainted. For values that should remain tainted indefinitely, objects like [`globalThis`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/globalThis) or `process` can serve as the `lifetime` argument. These objects have a lifespan that spans the entire duration of your app's execution.
 
@@ -177,7 +177,7 @@ export function fetchAPI(url) {
 }
 ```
 
-Sometimes mistakes happen during refactoring and not all of your colleagues might know about this. 
+Sometimes mistakes happen during refactoring and not all of your colleagues might know about this.
 To protect against this mistakes happening down the line we can "taint" the actual password:
 
 ```js

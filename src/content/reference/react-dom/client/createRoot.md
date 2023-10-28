@@ -102,7 +102,7 @@ An app fully built with React will usually not have any calls to `root.unmount`.
 
 This is mostly useful if your React root's DOM node (or any of its ancestors) may get removed from the DOM by some other code. For example, imagine a jQuery tab panel that removes inactive tabs from the DOM. If a tab gets removed, everything inside it (including the React roots inside) would get removed from the DOM as well. In that case, you need to tell React to "stop" managing the removed root's content by calling `root.unmount`. Otherwise, the components inside the removed root won't know to clean up and free up global resources like subscriptions.
 
-Calling `root.unmount` will unmount all the components in the root and "detach" React from the root DOM node, including removing any event handlers or state in the tree. 
+Calling `root.unmount` will unmount all the components in the root and "detach" React from the root DOM node, including removing any event handlers or state in the tree.
 
 
 #### Parameters {/*root-unmount-parameters*/}
@@ -186,7 +186,7 @@ function Counter() {
 
 </Sandpack>
 
-**If your app is fully built with React, you shouldn't need to create any more roots, or to call [`root.render`](#root-render) again.** 
+**If your app is fully built with React, you shouldn't need to create any more roots, or to call [`root.render`](#root-render) again.**
 
 From this point on, React will manage the DOM of your entire app. To add more components, [nest them inside the `App` component.](/learn/importing-and-exporting-components) When you need to update the UI, each of your components can do this by [using state.](/reference/react/useState) When you need to display extra content like a modal or a tooltip outside the DOM node, [render it with a portal.](/reference/react-dom/createPortal)
 
@@ -238,11 +238,11 @@ import { createRoot } from 'react-dom/client';
 import { Comments, Navigation } from './Components.js';
 
 const navDomNode = document.getElementById('navigation');
-const navRoot = createRoot(navDomNode); 
+const navRoot = createRoot(navDomNode);
 navRoot.render(<Navigation />);
 
 const commentDomNode = document.getElementById('comments');
-const commentRoot = createRoot(commentDomNode); 
+const commentRoot = createRoot(commentDomNode);
 commentRoot.render(<Comments />);
 ```
 
@@ -292,7 +292,7 @@ You could also create a new DOM node with [`document.createElement()`](https://d
 
 ```js
 const domNode = document.createElement('div');
-const root = createRoot(domNode); 
+const root = createRoot(domNode);
 root.render(<Comment />);
 document.body.appendChild(domNode); // You can add it anywhere in the document
 ```

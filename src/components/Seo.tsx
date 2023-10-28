@@ -9,6 +9,7 @@ import {siteConfig} from '../siteConfig';
 
 export interface SeoProps {
   title: string;
+  titleForTitleTag: undefined | string;
   description?: string;
   image?: string;
   // jsonld?: JsonLDType | Array<JsonLDType>;
@@ -36,6 +37,7 @@ function getDomain(languageCode: string): string {
 export const Seo = withRouter(
   ({
     title,
+    titleForTitleTag,
     image = '/images/og-default.png',
     router,
     children,
@@ -46,7 +48,9 @@ export const Seo = withRouter(
     const canonicalUrl = `https://${siteDomain}${
       router.asPath.split(/[\?\#]/)[0]
     }`;
-    const pageTitle = isHomePage ? title : title + ' – React';
+    // Allow setting a different title for Google results
+    const pageTitle =
+      (titleForTitleTag ?? title) + (isHomePage ? '' : ' – React');
     // Twitter's meta parser is not very good.
     const twitterTitle = pageTitle.replace(/[<>]/g, '');
     let description = isHomePage

@@ -28,7 +28,12 @@ interface PageProps {
   children: React.ReactNode;
   toc: Array<TocItem>;
   routeTree: RouteItem;
-  meta: {title?: string; canary?: boolean; description?: string};
+  meta: {
+    title?: string;
+    titleForTitleTag?: string;
+    canary?: boolean;
+    description?: string;
+  };
   section: 'learn' | 'reference' | 'community' | 'blog' | 'home' | 'unknown';
 }
 
@@ -107,6 +112,7 @@ export function Page({children, toc, routeTree, meta, section}: PageProps) {
     <>
       <Seo
         title={title}
+        titleForTitleTag={meta.titleForTitleTag}
         isHomePage={isHomePage}
         image={`/images/og-` + section + '.png'}
         searchOrder={searchOrder}

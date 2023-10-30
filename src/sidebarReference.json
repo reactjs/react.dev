@@ -8,8 +8,7 @@
     },
     {
       "title": "Overview",
-      "path": "/reference/react",
-      "canary": true
+      "path": "/reference/react"
     },
     {
       "title": "Hooks",

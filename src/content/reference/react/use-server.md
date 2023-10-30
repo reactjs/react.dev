@@ -68,7 +68,7 @@ Here are supported types for server action arguments:
 
 Notably, these are not supported:
 * React elements, or [JSX](https://react.dev/learn/writing-markup-with-jsx)
-* Functions, this includes component functions or any other function that is not a server action
+* Functions, including component functions or any other function that is not a server action
 * [Classes](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/Classes_in_JavaScript)
 * Objects that are instances of any class (other than built-ins mentioned) or objects with [null-prototype](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object#null-prototype_objects)
 * Symbols not registered globally, ex. `Symbol('my new symbol')`
@@ -95,7 +95,8 @@ See [experimental_taintUniqueValue](/reference/react/experimental_taintUniqueVal
 #### Caveats {/*caveats*/}
 * `'use server'` can only be used in server-side files; the resulting functions can be passed to Client Components through props.
 * Because the underlying network calls are always asynchronous, `'use server'` can be used only on async functions.
-* Server actions must be called in a [transition](/reference/react/useTransition). Server actions passed to [`<form action>`](/reference/react-dom/components/form#props) or [`formAction`](/reference/react-dom/components/input#props) will automatically be called in a transition.
+* Server actions should be called in a [transition](/reference/react/useTransition). Server actions passed to [`<form action>`](/reference/react-dom/components/form#props) or [`formAction`](/reference/react-dom/components/input#props) will automatically be called in a transition.
+* Server actions are designed for mutations that update server-side state; they are not recommended for data fetching. Accordingly, frameworks implementing server actions typically process one action at a time and do not have a way to caching the return value.
 * Directives like `'use server'` must be at the very beginning of their function or file, above any other code including imports (comments above directives are OK). They must be written with single or double quotes, not backticks.
 
 ## Usage {/*usage*/}
@@ -131,7 +132,7 @@ By passing a server action to the form `action`, React can [progressively enhanc
 
 In the username request form, there might be the chance that a username is not available. `requestUsername` should tell us if it fails or not. How can the form receive the return value of the server action?
 
-Here is where you can use [`useFormState`](/reference/react-dom/hooks/useFormState), a Hook designed for receiving a server action return value which supports progressive enhancement.
+To update the UI based on the result of a server action while supporting progressive enhancement, use [`useFormState`](/reference/react-dom/hooks/useFormState).
 
 ```js
 // requestUsername.js
@@ -169,32 +170,34 @@ function UsernameForm() {
 }
 ```
 
-Note that `useFormState` can only be called in <CodeStep step={1}>[client code](/reference/react/use-client)</CodeStep>.
+Note that like most Hooks, `useFormState` can only be called in <CodeStep step={1}>[client code](/reference/react/use-client)</CodeStep>.
 
 ### Calling a server action outside of `<form>` {/*calling-a-server-action-outside-of-form*/}
 
 Server actions are exposed server endpoints and can be called anywhere in client code.
 
-If you call a server action outside of a [form](/reference/react-dom/components/form), you'll need to call the server action in a [transition](/reference/react/useTransition). Server actions in forms will automatically handle this for you.
+When using a server action outside of a [form](/reference/react-dom/components/form), call the server action in a [transition](/reference/react/useTransition), which allows you to display a loading indicator, show [optimistic state updates](/reference/react/useOptimistic), and handle unexpected errors. Server actions in forms will automatically handle this for you.
 
-```js {8-11}
+```js {9-13}
 import incrementLike from './actions';
 import {useState, useTransition} from 'react';
 
 function LikeButton() {
-  const [pending, startTransition] = useTransition();
+  const [isPending, startTransition] = useTransition();
   const [likeCount, setLikeCount] = useState(0);
 
-  const onClick = () => startTransition(async () => {
-    // `incrementLike` is a server action
-    const currentCount = await incrementLike();
-    setLikeCount(currentCount);
-  });
+  const onClick = () => {
+    startTransition(async () => {
+      // `incrementLike` is a server action
+      const currentCount = await incrementLike();
+      setLikeCount(currentCount);
+    })
+  };
 
   return (
     <>
       <p>Total Likes: {likeCount}</p>
-      <button onClick={onClick} disabled={pending}>Like</button>;
+      <button onClick={onClick} disabled={isPending}>Like</button>;
     </>
   );
 }

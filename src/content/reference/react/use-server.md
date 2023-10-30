@@ -26,18 +26,39 @@ canary: true
 
 Add `'use server'` at the top of an async function body to mark the function as callable by the client. We call these functions _server actions_.
 
-```js
+```js {2}
 async function addToCart(data) {
   'use server';
   // ...
 }
 ```
 
-Pass `addToCart` as a prop to a Client Component to be invoked on the client.
-
 When calling a server action on the client, it will make a network request to the server that includes a serialized copy of any arguments passed. If the server action returns a value, that value will be serialized and returned to the client.
 
-Instead of individually marking functions with `'use server'`, you can add the directive to the top of a file to mark all exports within that file as server actions.
+Instead of individually marking functions with `'use server'`, you can add the directive to the top of a file to mark all exports within that file as server actions that can be used anywhere, including imported in client code.
+
+#### Caveats {/*caveats*/}
+* `'use server'` must be at the very beginning of their function or module; above any other code including imports (comments above directives are OK). They must be written with single or double quotes, not backticks.
+* `'use server'` can only be used in server-side files. The resulting server actions can be passed to Client Components through props. See supported [types for serialization](#serializable-parameters-and-return-values).
+* To import a server action from [client code](/reference/react/use-client), the directive must be used on a module level.
+* Because the underlying network calls are always asynchronous, `'use server'` can only be used on async functions.
+* Always treat arguments to server actions as untrusted input and authorize any mutations. See [security considerations](#security).
+* Server actions should be called in a [transition](/reference/react/useTransition). Server actions passed to [`<form action>`](/reference/react-dom/components/form#props) or [`formAction`](/reference/react-dom/components/input#props) will automatically be called in a transition.
+* Server actions are designed for mutations that update server-side state; they are not recommended for data fetching. Accordingly, frameworks implementing server actions typically process one action at a time and do not have a way to cache the return value.
+
+### Security considerations {/*security*/}
+
+Arguments to server actions are fully client-controlled. For security, always treat them as untrusted input, and make sure to validate and escape arguments as appropriate.
+
+In any server action, make sure to validate that the logged-in user is allowed to perform that action.
+
+<Wip>
+
+To prevent sending sensitive data from a server action, there are experimental taint APIs to prevent unique values and objects from being passed to client code.
+
+See [experimental_taintUniqueValue](/reference/react/experimental_taintUniqueValue) and [experimental_taintObjectReference](/reference/react/experimental_taintObjectReference).
+
+</Wip>
 
 ### Serializable arguments and return values {/*serializable-parameters-and-return-values*/}
 
@@ -77,28 +98,6 @@ Notably, these are not supported:
 Supported serializable return values are the same as [serializable props](/reference/react/use-client#passing-props-from-server-to-client-components) for a boundary Client Component.
 
 
-### Security considerations {/*security*/}
-
-Arguments to server actions are fully client-controlled. For security, always treat them as untrusted input, and make sure to validate and escape arguments as appropriate.
-
-In any server action, make sure to validate that the logged-in user is allowed to perform that action.
-
-<Wip>
-
-To prevent sending sensitive data from a server action, there are experimental taint APIs to prevent unique values and objects from being passed to client code.
-
-See [experimental_taintUniqueValue](/reference/react/experimental_taintUniqueValue) and [experimental_taintObjectReference](/reference/react/experimental_taintObjectReference).
-
-</Wip>
-
-
-#### Caveats {/*caveats*/}
-* `'use server'` can only be used in server-side files; the resulting functions can be passed to Client Components through props.
-* Because the underlying network calls are always asynchronous, `'use server'` can be used only on async functions.
-* Server actions should be called in a [transition](/reference/react/useTransition). Server actions passed to [`<form action>`](/reference/react-dom/components/form#props) or [`formAction`](/reference/react-dom/components/input#props) will automatically be called in a transition.
-* Server actions are designed for mutations that update server-side state; they are not recommended for data fetching. Accordingly, frameworks implementing server actions typically process one action at a time and do not have a way to cache the return value.
-* Directives like `'use server'` must be at the very beginning of their function or file, above any other code including imports (comments above directives are OK). They must be written with single or double quotes, not backticks.
-
 ## Usage {/*usage*/}
 
 ### Server actions in forms {/*server-actions-in-forms*/}
@@ -130,7 +129,7 @@ By passing a server action to the form `action`, React can [progressively enhanc
 
 #### Handling return values in forms {/*handling-return-values*/}
 
-In the username request form, there might be the chance that a username is not available. `requestUsername` should tell us if it fails or not. How can the form receive the return value of the server action?
+In the username request form, there might be the chance that a username is not available. `requestUsername` should tell us if it fails or not.
 
 To update the UI based on the result of a server action while supporting progressive enhancement, use [`useFormState`](/reference/react-dom/hooks/useFormState).
 
@@ -176,11 +175,11 @@ Note that like most Hooks, `useFormState` can only be called in <CodeStep step={
 
 Server actions are exposed server endpoints and can be called anywhere in client code.
 
-When using a server action outside of a [form](/reference/react-dom/components/form), call the server action in a [transition](/reference/react/useTransition), which allows you to display a loading indicator, show [optimistic state updates](/reference/react/useOptimistic), and handle unexpected errors. Server actions in forms will automatically handle this for you.
+When using a server action outside of a [form](/reference/react-dom/components/form), call the server action in a [transition](/reference/react/useTransition), which allows you to display a loading indicator, show [optimistic state updates](/reference/react/useOptimistic), and handle unexpected errors. Forms will automatically wrap server actions in transitions.
 
-```js {9-13}
+```js {9-12}
 import incrementLike from './actions';
-import {useState, useTransition} from 'react';
+import { useState, useTransition } from 'react';
 
 function LikeButton() {
   const [isPending, startTransition] = useTransition();
@@ -188,7 +187,6 @@ function LikeButton() {
 
   const onClick = () => {
     startTransition(async () => {
-      // `incrementLike` is a server action
       const currentCount = await incrementLike();
       setLikeCount(currentCount);
     });
@@ -200,6 +198,17 @@ function LikeButton() {
       <button onClick={onClick} disabled={isPending}>Like</button>;
     </>
   );
+}
+```
+
+```js
+// actions.js
+'use server';
+
+let likeCount = 0;
+export default async incrementLike() {
+  likeCount++;
+  return likeCount;
 }
 ```
 

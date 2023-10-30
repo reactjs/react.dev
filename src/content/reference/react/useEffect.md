@@ -670,7 +670,7 @@ export default function App() {
 ```
 
 ```js useWindowListener.js
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 
 export function useWindowListener(eventType, listener) {
   useEffect(() => {

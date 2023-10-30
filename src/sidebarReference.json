@@ -7,8 +7,12 @@
       "sectionHeader": "react@18.2.0"
     },
     {
+      "title": "Overview",
+      "path": "/reference/react"
+    },
+    {
       "title": "Hooks",
-      "path": "/reference/react",
+      "path": "/reference/react/hooks",
       "routes": [
         {
           "title": "use",

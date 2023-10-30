@@ -117,7 +117,7 @@ export function HomeContent() {
         <div className="mx-5 mt-12 lg:mt-24 mb-20 lg:mb-32 flex flex-col justify-center">
           <Logo
             className={cn(
-              'mt-4 mb-3 text-link dark:text-link-dark w-24 lg:w-28 self-center text-sm me-0 flex origin-center transition-all ease-in-out'
+              'mt-4 mb-3 text-link dark:text-link-dark w-24 lg:w-28 self-center text-sm mr-0 flex origin-center'
             )}
           />
           <h1 className="text-5xl font-display lg:text-6xl self-center flex font-semibold leading-snug text-primary dark:text-primary-dark">
@@ -176,8 +176,8 @@ export function HomeContent() {
             <Para>
               React components are JavaScript functions. Want to show some
               content conditionally? Use an <Code>if</Code> statement.
-              Displaying a list? Try array <Code>map()</Code>. Learning React is
-              learning programming.
+              Displaying a list? Try array <Code>map()</Code>. <br />
+              Learning React is learning programming!🚀
             </Para>
           </Center>
           <FullBleed>
@@ -185,10 +185,10 @@ export function HomeContent() {
           </FullBleed>
           <Center>
             <Para>
-              This markup syntax is called JSX. It is a JavaScript syntax
-              extension popularized by React. Putting JSX markup close to
-              related rendering logic makes React components easy to create,
-              maintain, and delete.
+              This markup syntax is called JSX(Javascript XML). It is a
+              JavaScript syntax extension popularized by React. Putting JSX
+              markup close to related rendering logic makes React components
+              easy to create, maintain, and delete.
             </Para>
           </Center>
         </Section>
@@ -208,11 +208,11 @@ export function HomeContent() {
           </FullBleed>
           <Center>
             <Para>
-              You don’t have to build your whole page in React. Add React to
+              You don’t have to build your entire page in React. Add React to
               your existing HTML page, and render interactive React components
               anywhere on it.
             </Para>
-            <div className="flex justify-start w-full lg:justify-center">
+            <div className="flex justify-start w-full lg:justify-center animate-bounce">
               <CTA
                 color="gray"
                 icon="code"
@@ -247,7 +247,7 @@ export function HomeContent() {
               or even during the build. Read data from a file or a database, and
               pass it down to your interactive components.
             </Para>
-            <div className="flex justify-start w-full lg:justify-center">
+            <div className="flex justify-start w-full lg:justify-center animate-bounce">
               <CTA
                 color="gray"
                 icon="framework"
@@ -394,7 +394,7 @@ export function HomeContent() {
                 experience. Your organization can bridge the platform silos, and
                 form teams that own entire features end-to-end.
               </Para>
-              <div className="flex justify-start w-full lg:justify-center">
+              <div className="flex justify-start w-full lg:justify-center animate-bounce">
                 <CTA color="gray" icon="native" href="https://reactnative.dev/">
                   Build for native platforms
                 </CTA>

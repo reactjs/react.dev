@@ -46,7 +46,7 @@ export default function MyApp() {
 }
 ```
 
-Notice that `<MyButton />` starts with a capital letter. That's how you know it's a React component. React component names must always start with a capital letter, while HTML tags must be lowercase.
+Observe that `<MyButton />` commences with an uppercase letter, indicating it as a React component. React component names begin with a capital letter, whereas HTML tags are written in lowercase.
 
 Have a look at the result:
 
@@ -75,11 +75,11 @@ export default function MyApp() {
 
 The `export default` keywords specify the main component in the file. If you're not familiar with some piece of JavaScript syntax, [MDN](https://developer.mozilla.org/en-US/docs/web/javascript/reference/statements/export) and [javascript.info](https://javascript.info/import-export) have great references.
 
-## Writing markup with JSX {/*writing-markup-with-jsx*/}
+## Writing markup with JSX(Javascript XML) {/*writing-markup-with-jsx*/}
 
-The markup syntax you've seen above is called *JSX*. It is optional, but most React projects use JSX for its convenience. All of the [tools we recommend for local development](/learn/installation) support JSX out of the box.
+The markup syntax written above is called *JSX(Javascript XML)*. It is optional, but most React projects use JSX for its convenience. All of the [tools we recommend for local development](/learn/installation) support JSX out of the box.
 
-JSX is stricter than HTML. You have to close tags like `<br />`. Your component also can't return multiple JSX tags. You have to wrap them into a shared parent, like a `<div>...</div>` or an empty `<>...</>` wrapper:
+JSX is more strict than HTML. You have to close tags like `<br />`. Your component also can't return multiple JSX tags. You have to wrap them in a single gragment or into a shared parent, like a `<div>...</div>` or an empty React fragment like `<>...</>` wrapper:
 
 ```js {3,6}
 function AboutPage() {
@@ -112,6 +112,15 @@ Then you write the CSS rules for it in a separate CSS file:
 ```
 
 React does not prescribe how you add CSS files. In the simplest case, you'll add a [`<link>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/link) tag to your HTML. If you use a build tool or a framework, consult its documentation to learn how to add a CSS file to your project.
+
+For example, CSS styles can be applied as classes when you use a CSS framework like [Tailwind.](https://tailwindui.com/documentation)
+
+```js
+<div className= "bg-black p-4">
+</div>
+```
+
+Visit [Tailwind](https://tailwindui.com/documentation) documentation to learn more about its usage.
 
 ## Displaying data {/*displaying-data*/}
 

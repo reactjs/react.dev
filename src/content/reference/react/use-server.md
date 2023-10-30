@@ -96,7 +96,7 @@ See [experimental_taintUniqueValue](/reference/react/experimental_taintUniqueVal
 * `'use server'` can only be used in server-side files; the resulting functions can be passed to Client Components through props.
 * Because the underlying network calls are always asynchronous, `'use server'` can be used only on async functions.
 * Server actions should be called in a [transition](/reference/react/useTransition). Server actions passed to [`<form action>`](/reference/react-dom/components/form#props) or [`formAction`](/reference/react-dom/components/input#props) will automatically be called in a transition.
-* Server actions are designed for mutations that update server-side state; they are not recommended for data fetching. Accordingly, frameworks implementing server actions typically process one action at a time and do not have a way to caching the return value.
+* Server actions are designed for mutations that update server-side state; they are not recommended for data fetching. Accordingly, frameworks implementing server actions typically process one action at a time and do not have a way to cache the return value.
 * Directives like `'use server'` must be at the very beginning of their function or file, above any other code including imports (comments above directives are OK). They must be written with single or double quotes, not backticks.
 
 ## Usage {/*usage*/}
@@ -191,7 +191,7 @@ function LikeButton() {
       // `incrementLike` is a server action
       const currentCount = await incrementLike();
       setLikeCount(currentCount);
-    })
+    });
   };
 
   return (

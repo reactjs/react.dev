@@ -36,14 +36,14 @@ export function SidebarLink({
   const ref = useRef<HTMLAnchorElement>(null);
 
   useEffect(() => {
-    if (selected && ref && ref.current) {
+    if (selected && ref.current) {
       // @ts-ignore
       if (typeof ref.current.scrollIntoViewIfNeeded === 'function') {
         // @ts-ignore
         ref.current.scrollIntoViewIfNeeded();
       }
     }
-  }, [ref, selected]);
+  }, [selected]);
 
   let target = '';
   if (href.startsWith('https://')) {

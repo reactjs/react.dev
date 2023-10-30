@@ -45,19 +45,16 @@ When a file marked with `'use client'` is imported from a Server Component, [com
 
 As a dependency of `RichTextEditor`, `formatDate` and `Link` will also be evaluated on the client regardless of whether their modules contain a `'use client'` directive. Note that the same module may be evaluated on the server when imported from server code and on the client when imported from client code.
 
-<DeepDive>
+#### Caveats {/*caveats*/}
 
-#### Client and server rendering with React Server Components {/*client-and-server-rendering-with-react-server-components*/}
+* `'use client'` must be at the very beginning of a file, above any imports or other code (comments are OK). They must be written with single or double quotes, but not backticks.
+* When a `'use client'` module is imported from another client-rendered module, the directive has no effect.
+* When a component module contains a `'use client'` directive, any usage of that component is guaranteed to be a Client Component. However, a component can still be evaluated on the client even if it does not have a `'use client'` directive.
+	* A component usage is considered a Client Component if it is defined in module with `'use client'` directive or when it is a transitive dependency of a module that contains a `'use client'` directive. Otherwise, it is a Server Component.
+* Code that is marked for client evaluation is not limited to components. All code that is a part of the client module sub-tree is sent to and run by the client.
+* When a server evaluated module imports values from a `'use client'` module, the values must either be a React component or [supported serializable prop values](#passing-props-from-server-to-client-components) to be passed to a Client Component. Any other use case will throw an exception.
 
-React's full-stack architecture vision is realized through the [React Server Components (RSC) specification](https://github.com/reactjs/rfcs/blob/main/text/0188-server-components.md).
-
-React Server Components lets you coordinate which components of your [render tree](/learn/understanding-your-ui-as-a-tree#the-render-tree) are rendered on the server or on the client. Server rendering is generally more performant and allows access to the back-end, while client rendering is necessary for adding interactivity into your components.
-
-To use React Server Components, you need to use a compatible [React framework](/learn/start-a-new-react-project#bleeding-edge-react-frameworks). These frameworks will render your app on the server by default, unless specified otherwise.
-
-</DeepDive>
-
-### Marking client code with `'use client'` {/*marking-client-components-with-use-client*/}
+### How `'use client'` marks client code {/*how-use-client-marks-client-code*/}
 
 In a React app, components are often split into separate files, or [modules](/learn/importing-and-exporting-components#exporting-and-importing-a-component).
 
@@ -255,8 +252,6 @@ As in any React app, parent components pass data to child components. As they ar
 
 Prop values passed from a Server Component to Client Component must be serializable.
 
-[TODO]: <> (Link to use server docs)
-
 Serializable props include:
 * Primitives
 	* [string](https://developer.mozilla.org/en-US/docs/Glossary/String)
@@ -283,15 +278,6 @@ Notably, these are not supported:
 * [Classes](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/Classes_in_JavaScript)
 * Objects that are instances of any class (other than built-ins mentioned) or objects with [null-prototype](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object#null-prototype_objects)
 * Symbols not registered globally, ex. `Symbol('my new symbol')`
-
-#### Caveats {/*caveats*/}
-
-* `'use client'` must be at the very beginning of a file, above any imports or other code (comments are OK). They must be written with single or double quotes, but not backticks.
-* When a `'use client'` module is imported from another client-rendered module, the directive has no effect.
-* When a component module contains a `'use client'` directive, any usage of that component is guaranteed to be a Client Component. However, a component can still be evaluated on the client even if it does not have a `'use client'` directive.
-	* A component usage is considered a Client Component if it is defined in module with `'use client'` directive or when it is a transitive dependency of a module that contains a `'use client'` directive. Otherwise, it is a Server Component.
-* Code that is marked for client evaluation is not limited to components. All code that is a part of the client module sub-tree is sent to and run by the client.
-* When a server evaluated module imports values from a `'use client'` module, the values must either be a React component or [supported serializable prop values](#passing-props-from-server-to-client-components) to be passed to a Client Component. Any other use case will throw an exception.
 
 
 ## Usage {/*usage*/}
@@ -379,7 +365,7 @@ These libraries may rely on component Hooks or client APIs. In these cases, you'
 
 Libraries that use any of the following React APIs must be marked as client-run:
 * [createContext](/reference/react/createContext)
-* [`react`](/reference/react) and [`react-dom`](/reference/react-dom/hooks) Hooks, excluding [`use`](/reference/react/use) and [`useId`](/reference/react/useId)
+* [`react`](/reference/react/hooks) and [`react-dom`](/reference/react-dom/hooks) Hooks, excluding [`use`](/reference/react/use) and [`useId`](/reference/react/useId)
 * [forwardRef](/reference/react/forwardRef)
 * [memo](/reference/react/memo)
 * [startTransition](/reference/react/startTransition)

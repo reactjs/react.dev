@@ -985,7 +985,7 @@ export const places = [{
 }, {
   id: 5, 
   name: 'Chefchaouen, Marocco',
-  description: 'There are a few theories on why the houses are painted blue, including that the color repells mosquitos or that it symbolizes sky and heaven.',
+  description: 'There are a few theories on why the houses are painted blue, including that the color repels mosquitos or that it symbolizes sky and heaven.',
   imageId: 'rTqKo46'
 }, {
   id: 6,
@@ -1124,7 +1124,7 @@ export const places = [{
 }, {
   id: 5, 
   name: 'Chefchaouen, Marocco',
-  description: 'There are a few theories on why the houses are painted blue, including that the color repells mosquitos or that it symbolizes sky and heaven.',
+  description: 'There are a few theories on why the houses are painted blue, including that the color repels mosquitos or that it symbolizes sky and heaven.',
   imageId: 'rTqKo46'
 }, {
   id: 6,

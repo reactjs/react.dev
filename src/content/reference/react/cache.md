@@ -309,7 +309,7 @@ async function DemoProfile() {
 
 React only provides cache access to the memoized function in a component. When calling <CodeStep step={1}>`getUser`</CodeStep> outside of a component, it will still evaluate the function but not read or update the cache.
 
-This is because cache access is provided through a [context](/learn/passing-data-deeply-with-context) which is only accessibile from a component. 
+This is because cache access is provided through a [context](/learn/passing-data-deeply-with-context) which is only accessible from a component. 
 
 </Pitfall>
 

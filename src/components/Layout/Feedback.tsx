@@ -2,7 +2,7 @@
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
 
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
 import {useRouter} from 'next/router';
 
 export function Feedback({onSubmit = () => {}}: {onSubmit?: () => void}) {
@@ -57,8 +57,19 @@ function sendGAEvent(isPositive: boolean) {
 
 function SendFeedback({onSubmit}: {onSubmit: () => void}) {
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [showFeedback, setShowFeedback] = useState(true);
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      isSubmitted && setShowFeedback(false);
+    }, 1000);
+    return () => clearTimeout(timer);
+  }, [isSubmitted]);
+
   return (
-    <div className="max-w-xs w-80 lg:w-auto py-3 shadow-lg rounded-lg m-4 bg-wash dark:bg-gray-95 px-4 flex">
+    <div
+      className={`max-w-xs w-80 lg:w-auto py-3 shadow-lg rounded-lg m-4 bg-wash dark:bg-gray-95 px-4 flex ${
+        showFeedback ? `block` : `hidden`
+      } transform-gpu`}>
       <p className="w-full font-bold text-primary dark:text-primary-dark text-lg me-4">
         {isSubmitted ? 'Thank you for your feedback!' : 'Is this page useful?'}
       </p>

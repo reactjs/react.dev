@@ -74,7 +74,7 @@ Making plain JavaScript in React components reactive requires a compiler with a 
 
 ## Offscreen Rendering {/*offscreen-rendering*/}
 
-Offscreen rendering is an upcoming capability in React for rendering screens in the background without additional performance overhead. You can think of it as a version of the [`content-visiblity` CSS property](https://developer.mozilla.org/en-US/docs/Web/CSS/content-visibility) that works not only for DOM elements but React components, too. During our research, we've discovered a variety of use cases:
+Offscreen rendering is an upcoming capability in React for rendering screens in the background without additional performance overhead. You can think of it as a version of the [`content-visibility` CSS property](https://developer.mozilla.org/en-US/docs/Web/CSS/content-visibility) that works not only for DOM elements but React components, too. During our research, we've discovered a variety of use cases:
 
 - A router can prerender screens in the background so that when a user navigates to them, they're instantly available.
 - A tab switching component can preserve the state of hidden tabs, so the user can switch between them without losing their progress.

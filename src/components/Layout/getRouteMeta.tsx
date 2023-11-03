@@ -58,13 +58,13 @@ export interface RouteMeta {
   order?: number;
 }
 
-type TravesalContext = RouteMeta & {
+type TraversalContext = RouteMeta & {
   currentIndex: number;
 };
 
 export function getRouteMeta(cleanedPath: string, routeTree: RouteItem) {
   const breadcrumbs = getBreadcrumbs(cleanedPath, routeTree);
-  const ctx: TravesalContext = {
+  const ctx: TraversalContext = {
     currentIndex: 0,
   };
   buildRouteMeta(cleanedPath, routeTree, ctx);
@@ -79,7 +79,7 @@ export function getRouteMeta(cleanedPath: string, routeTree: RouteItem) {
 function buildRouteMeta(
   searchPath: string,
   currentRoute: RouteItem,
-  ctx: TravesalContext
+  ctx: TraversalContext
 ) {
   ctx.currentIndex++;
 

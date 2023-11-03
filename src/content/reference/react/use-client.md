@@ -244,7 +244,7 @@ For simplicity, we talk about Server Components, but the same principles apply t
 * Server Components cannot support interaction as event handlers must be registered and triggered by a client.
 	* For example, event handlers like `onClick` can only be defined in Client Components.
 * Server Components cannot use most Hooks.
-	* When Server Components are rendered, their output is essentially a list of components for the client to render are conceptually resolved into instructions for the client to interpret and turn into UI primitives. Server Components do not persist in memory after render and cannot have their own state.
+	* When Server Components are rendered, their output is essentially a list of components for the client to render. Server Components do not persist in memory after render and cannot have their own state.
 
 ### Serializable types returned by Server Components {/*serializable-types*/}
 
@@ -321,7 +321,7 @@ export default async function CounterContainer() {
 }
 ```
 
-For example, `Counter`'s parent component, `CounterContainer`, does not require `'use client'` as it is not interactive and does not use state. In addition, `CounterContainer` must be a Server Component as it reads from the local file system on the server, which is possibly only in a Server Component.
+For example, `Counter`'s parent component, `CounterContainer`, does not require `'use client'` as it is not interactive and does not use state. In addition, `CounterContainer` must be a Server Component as it reads from the local file system on the server, which is possible only in a Server Component.
 
 There are also components that don't use any server or client-only features and can be agnostic to where they render. In our earlier example, `FancyText` is one such component.
 

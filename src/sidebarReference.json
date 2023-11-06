@@ -82,8 +82,7 @@
         },
         {
           "title": "useTransition",
-          "path": "/reference/react/useTransition",
-          "canary": true
+          "path": "/reference/react/useTransition"
         }
       ]
     },

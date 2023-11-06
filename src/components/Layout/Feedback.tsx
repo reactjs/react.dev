@@ -45,13 +45,14 @@ const thumbsDownIcon = (
 );
 
 function sendGAEvent(isPositive: boolean) {
+  const value = isPositive ? 1 : 0;
   // Fragile. Don't change unless you've tested the network payload
   // and verified that the right events actually show up in GA.
   // @ts-ignore
   gtag('event', 'feedback', {
     event_category: 'button',
     event_label: window.location.pathname,
-    value: isPositive ? 1 : 0,
+    value,
   });
 }
 

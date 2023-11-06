@@ -1514,20 +1514,20 @@ If a function passed to `startTransition` throws an error, you can display an er
 <Sandpack>
 
 ```js AddCommentContainer.js active
-import { useTransition } from "react";
-import { ErrorBoundary } from "react-error-boundary";
+import { useTransition } from 'react';
+import { ErrorBoundary } from 'react-error-boundary';
 
 export function AddCommentContainer() {
   return (
     <ErrorBoundary fallback={<p>⚠️Something went wrong</p>}>
-        <AddCommentButton />
+      <AddCommentButton />
     </ErrorBoundary>
   );
 }
 
 function addComment(comment) {
   // For demonstration purposes to show Error Boundary
-  if(comment == null){
+  if (comment == null) { 
     throw Error('Example error')
   }
 }
@@ -1545,14 +1545,14 @@ function AddCommentButton() {
           addComment();
         });
       }}>
-        Add comment
-      </button>
+      Add comment
+    </button>
   );
 }
 ```
 
 ```js App.js hidden
-import { AddCommentContainer } from "./AddCommentContainer.js";
+import { AddCommentContainer } from './AddCommentContainer.js';
 
 export default function App() {
   return <AddCommentContainer />;

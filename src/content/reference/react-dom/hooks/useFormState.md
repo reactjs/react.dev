@@ -276,6 +276,90 @@ form button {
 
 <Solution />
 
+#### Validate input on the client & server {/*validate-input-on-the-client-and-server*/}
+
+You can combine client- and server-side validation. In this example, we check the input for a minimum length first on the client. If it is successful, we call a Server Action, which additionally checks for a reserved username.
+
+Try to submit the form for the different scenarios and watch the message below the form:
+ - A username with less than three characters
+ - The username "foo", which is reserved
+ - A username with more than three characters
+
+<Sandpack>
+
+```js App.js
+import { useState } from "react";
+import { useFormState } from "react-dom";
+import { reserveUsernameOnServer } from "./actions.js";
+
+async function reserveUsernameOnClient(prevState, queryData) {
+  const username = queryData?.get("username");
+  console.log(`Processing username "${username}" on the client`);
+
+  if (username.length < 3) {
+    return "Username must be at least 3 characters long";
+  }
+  return reserveUsernameOnServer(username);
+}
+
+export default function App() {
+  const [message, formAction] = useFormState(reserveUsernameOnClient, null);
+
+  return (
+    <form action={formAction}>
+      <label htmlFor="username">Username: </label>
+      <input type="text" name="username" id="username" />
+
+      <button type="submit">Submit</button>
+
+      {!!message && <p>{message}</p>}
+    </form>
+  );
+}
+```
+
+```js actions.js
+"use server"
+export async function reserveUsernameOnServer(username) {
+  console.log(`Processing username "${username}" on the server`);
+  if (username.length < 3) {
+    return "Username must be at least 3 characters long";
+  }
+  if (username === "foo") {
+    return "The username 'foo' is already reserved";
+  }
+
+  return `Reserved ${username} successfully`;
+}
+```
+
+```css styles.css hidden
+form {
+  border: solid 1px black;
+  margin-bottom: 24px;
+  padding: 12px
+}
+
+form button {
+  margin-right: 12px;
+}
+```
+
+```json package.json hidden
+{
+  "dependencies": {
+    "react": "canary",
+    "react-dom": "canary",
+    "react-scripts": "^5.0.0"
+  },
+  "main": "/index.js",
+  "devDependencies": {}
+}
+```
+</Sandpack>
+
+<Solution />
+
 </Recipes>
 
 ## Troubleshooting {/*troubleshooting*/}

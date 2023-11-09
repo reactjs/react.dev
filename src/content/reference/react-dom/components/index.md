@@ -181,7 +181,6 @@ React supports all built-in browser SVG components. This includes:
 * [`<clipPath>`](https://developer.mozilla.org/en-US/docs/Web/SVG/Element/clipPath)
 * [`<defs>`](https://developer.mozilla.org/en-US/docs/Web/SVG/Element/defs)
 * [`<desc>`](https://developer.mozilla.org/en-US/docs/Web/SVG/Element/desc)
-* [`<discard>`](https://developer.mozilla.org/en-US/docs/Web/SVG/Element/discard)
 * [`<ellipse>`](https://developer.mozilla.org/en-US/docs/Web/SVG/Element/ellipse)
 * [`<feBlend>`](https://developer.mozilla.org/en-US/docs/Web/SVG/Element/feBlend)
 * [`<feColorMatrix>`](https://developer.mozilla.org/en-US/docs/Web/SVG/Element/feColorMatrix)

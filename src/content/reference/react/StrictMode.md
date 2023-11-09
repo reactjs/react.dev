@@ -95,7 +95,7 @@ Strict Mode enables the following checks in development:
 
 ---
 
-### Enabling strict mode for a part of the app {/*enabling-strict-mode-for-a-part-of-the-app*/}
+### Enabling Strict Mode for a part of the app {/*enabling-strict-mode-for-a-part-of-the-app*/}
 
 You can also enable Strict Mode for any part of your application:
 

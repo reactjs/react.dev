@@ -103,7 +103,7 @@ function Thread({ messages, sendMessage }) {
         </div>
       ))}
       <form action={formAction} ref={formRef}>
-        <input type="text" name="message" placeholder="Hello!" />
+        <input type="text" name="message" required placeholder="Hello!" />
         <button type="submit">Send</button>
       </form>
     </>

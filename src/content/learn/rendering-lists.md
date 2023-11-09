@@ -1145,7 +1145,7 @@ hr {
 
 <Hint>
 
-You'll either need to convert `map` to a manual loop, or use a fragment.
+You'll either need to convert `map` to a manual loop, or use a Fragment.
 
 </Hint>
 
@@ -1208,7 +1208,7 @@ hr {
 
 Using the original line index as a `key` doesn't work anymore because each separator and paragraph are now in the same array. However, you can give each of them a distinct key using a suffix, e.g. `key={i + '-text'}`.
 
-Alternatively, you could render a collection of fragments which contain `<hr />` and `<p>...</p>`. However, the `<>...</>` shorthand syntax doesn't support passing keys, so you'd have to write `<Fragment>` explicitly:
+Alternatively, you could render a collection of Fragments which contain `<hr />` and `<p>...</p>`. However, the `<>...</>` shorthand syntax doesn't support passing keys, so you'd have to write `<Fragment>` explicitly:
 
 <Sandpack>
 
@@ -1254,7 +1254,7 @@ hr {
 
 </Sandpack>
 
-Remember, fragments (often written as `<> </>`) let you group JSX nodes without adding extra `<div>`s!
+Remember, Fragments (often written as `<> </>`) let you group JSX nodes without adding extra `<div>`s!
 
 </Solution>
 

@@ -307,7 +307,7 @@ export default function Counter({initialValue = 0}) {
 
 </Sandpack>
 
-As `Counter` requires both the `useState` hook and event handlers to increment or decrement the value, this component must be a Client Component and will require a `'use client'` directive at the top.
+As `Counter` requires both the `useState` Hook and event handlers to increment or decrement the value, this component must be a Client Component and will require a `'use client'` directive at the top.
 
 In contrast, a component that renders UI without interaction will not need to be a Client Component.
 

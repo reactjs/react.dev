@@ -12,7 +12,7 @@ TypeScript is a popular way to add type definitions to JavaScript codebases. Out
 <YouWillLearn>
 
 * [TypeScript with React Components](/learn/typescript#typescript-with-react-components)
-* [Examples of typing with hooks](/learn/typescript#example-hooks)
+* [Examples of typing with Hooks](/learn/typescript#example-hooks)
 * [Common types from `@types/react`](/learn/typescript/#useful-types)
 * [Further learning locations](/learn/typescript/#further-learning)
 
@@ -124,13 +124,13 @@ The type describing your component's props can be as simple or as complex as you
 
 ## Example Hooks {/*example-hooks*/}
 
-The type definitions from `@types/react` include types for the built-in hooks, so you can use them in your components without any additional setup. They are built to take into account the code you write in your component, so you will get [inferred types](https://www.typescriptlang.org/docs/handbook/type-inference.html) a lot of the time and ideally do not need to handle the minutiae of providing the types. 
+The type definitions from `@types/react` include types for the built-in Hooks, so you can use them in your components without any additional setup. They are built to take into account the code you write in your component, so you will get [inferred types](https://www.typescriptlang.org/docs/handbook/type-inference.html) a lot of the time and ideally do not need to handle the minutiae of providing the types. 
 
-However, we can look at a few examples of how to provide types for hooks.
+However, we can look at a few examples of how to provide types for Hooks.
 
 ### `useState` {/*typing-usestate*/}
 
-The [`useState` hook](/reference/react/useState) will re-use the value passed in as the initial state to determine what the type of the value should be. For example:
+The [`useState` Hook](/reference/react/useState) will re-use the value passed in as the initial state to determine what the type of the value should be. For example:
 
 ```ts
 // Infer the type as "boolean"
@@ -166,7 +166,7 @@ const [requestState, setRequestState] = useState<RequestState>({ status: 'idle' 
 
 ### `useReducer` {/*typing-usereducer*/}
 
-The [`useReducer` hook](/reference/react/useReducer) is a more complex hook that takes a reducer function and an initial state. The types for the reducer function are inferred from the initial state. You can optionally provide a type argument to the `useReducer` call to provide a type for the state, but it is often better to set the type on the initial state instead:
+The [`useReducer` Hook](/reference/react/useReducer) is a more complex Hook that takes a reducer function and an initial state. The types for the reducer function are inferred from the initial state. You can optionally provide a type argument to the `useReducer` call to provide a type for the state, but it is often better to set the type on the initial state instead:
 
 <Sandpack>
 
@@ -242,7 +242,7 @@ export default function App() {
 
 ### `useContext` {/*typing-usecontext*/}
 
-The [`useContext` hook](/reference/react/useContext) is a technique for passing data down the component tree without having to pass props through components. It is used by creating a provider component and often by creating a hook to consume the value in a child component.
+The [`useContext` Hook](/reference/react/useContext) is a technique for passing data down the component tree without having to pass props through components. It is used by creating a provider component and often by creating a Hook to consume the value in a child component.
 
 The type of the value provided by the context is inferred from the value passed to the `createContext` call:
 
@@ -286,7 +286,7 @@ export default App = AppTSX;
 
 This technique works when you have a default value which makes sense - but there are occasionally cases when you do not, and in those cases `null` can feel reasonable as a default value. However, to allow the type-system to understand your code, you need to explicitly set `ContextShape | null` on the `createContext`. 
 
-This causes the issue that you need to eliminate the `| null` in the type for context consumers. Our recommendation is to have the hook do a runtime check for it's existence and throw an error when not present:
+This causes the issue that you need to eliminate the `| null` in the type for context consumers. Our recommendation is to have the Hook do a runtime check for it's existence and throw an error when not present:
 
 ```js {5, 16-20}
 import { createContext, useContext, useState, useMemo } from 'react';
@@ -299,7 +299,7 @@ type ComplexObject = {
 // The context is created with `| null` in the type, to accurately reflect the default value.
 const Context = createContext<ComplexObject | null>(null);
 
-// The `| null` will be removed via the check in the hook.
+// The `| null` will be removed via the check in the Hook.
 const useGetComplexObject = () => {
   const object = useContext(Context);
   if (!object) { throw new Error("useGetComplexObject must be used within a Provider") }
@@ -329,7 +329,7 @@ function MyComponent() {
 
 ### `useMemo` {/*typing-usememo*/}
 
-The [`useMemo`](/reference/react/useMemo) hooks will create/re-access a memorized value from a function call, re-running the function only when dependencies passed as the 2nd parameter are changed. The result of calling the hook is inferred from the return value from the function in the first parameter. You can be more explicit by providing a type argument to the hook.
+The [`useMemo`](/reference/react/useMemo) Hooks will create/re-access a memorized value from a function call, re-running the function only when dependencies passed as the 2nd parameter are changed. The result of calling the Hook is inferred from the return value from the function in the first parameter. You can be more explicit by providing a type argument to the Hook.
 
 ```ts
 // The type of visibleTodos is inferred from the return value of filterTodos
@@ -339,7 +339,7 @@ const visibleTodos = useMemo(() => filterTodos(todos, tab), [todos, tab]);
 
 ### `useCallback` {/*typing-usecallback*/}
 
-The [`useCallback`](/reference/react/useCallback) provide a stable reference to a function as long as the dependencies passed into the second parameter are the same. Like `useMemo`, the function's type is inferred from the return value of the function in the first parameter, and you can be more explicit by providing a type argument to the hook.
+The [`useCallback`](/reference/react/useCallback) provide a stable reference to a function as long as the dependencies passed into the second parameter are the same. Like `useMemo`, the function's type is inferred from the return value of the function in the first parameter, and you can be more explicit by providing a type argument to the Hook.
 
 
 ```ts

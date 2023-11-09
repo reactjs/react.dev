@@ -5,7 +5,7 @@ canary: true
 
 <Canary>
 
-The `useFormStatus` Hook is currently only available in React's canary and experimental channels. Learn more about [React's release channels here](/community/versioning-policy#all-release-channels).
+The `useFormStatus` Hook is currently only available in React's Canary and experimental channels. Learn more about [React's release channels here](/community/versioning-policy#all-release-channels).
 
 </Canary>
 

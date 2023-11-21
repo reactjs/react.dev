@@ -115,13 +115,13 @@ async function requestUsername(formData) {
   // ...
 }
 
-export default App() {
+export default function App() {
   return (
     <form action={requestUsername}>
       <input type="text" name="username" />
       <button type="submit">Request</button>
     </form>
-  )
+  );
 }
 ```
 

@@ -52,7 +52,7 @@ export default function PackingList() {
 
 </Sandpack>
 
-Notice that some of the `Item` components have their `isPacked` prop set to `true` instead of `false`. You want to add a checkmark (✔) to packed items if `isPacked={true}`.
+Notice that some of the `Item` components have their `isPacked` prop set to `true` instead of `false`. You want to add a check mark (✔) to packed items if `isPacked={true}`.
 
 You can write this as an [`if`/`else` statement](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/if...else) like so:
 
@@ -63,7 +63,7 @@ if (isPacked) {
 return <li className="item">{name}</li>;
 ```
 
-If the `isPacked` prop is `true`, this code **returns a different JSX tree.** With this change, some of the items get a checkmark at the end:
+If the `isPacked` prop is `true`, this code **returns a different JSX tree.** With this change, some of the items get a check mark at the end:
 
 <Sandpack>
 
@@ -260,7 +260,7 @@ This style works well for simple conditions, but use it in moderation. If your c
 
 ### Logical AND operator (`&&`) {/*logical-and-operator-*/}
 
-Another common shortcut you'll encounter is the [JavaScript logical AND (`&&`) operator.](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Logical_AND#:~:text=The%20logical%20AND%20(%20%26%26%20)%20operator,it%20returns%20a%20Boolean%20value.) Inside React components, it often comes up when you want to render some JSX when the condition is true, **or render nothing otherwise.** With `&&`, you could conditionally render the checkmark only if `isPacked` is `true`:
+Another common shortcut you'll encounter is the [JavaScript logical AND (`&&`) operator.](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Logical_AND#:~:text=The%20logical%20AND%20(%20%26%26%20)%20operator,it%20returns%20a%20Boolean%20value.) Inside React components, it often comes up when you want to render some JSX when the condition is true, **or render nothing otherwise.** With `&&`, you could conditionally render the check mark only if `isPacked` is `true`:
 
 ```js
 return (
@@ -270,7 +270,7 @@ return (
 );
 ```
 
-You can read this as *"if `isPacked`, then (`&&`) render the checkmark, otherwise, render nothing"*.
+You can read this as *"if `isPacked`, then (`&&`) render the check mark, otherwise, render nothing"*.
 
 Here it is in action:
 
@@ -310,7 +310,7 @@ export default function PackingList() {
 
 </Sandpack>
 
-A [JavaScript && expression](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Logical_AND) returns the value of its right side (in our case, the checkmark) if the left side (our condition) is `true`. But if the condition is `false`, the whole expression becomes `false`. React considers `false` as a "hole" in the JSX tree, just like `null` or `undefined`, and doesn't render anything in its place.
+A [JavaScript && expression](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Logical_AND) returns the value of its right side (in our case, the check mark) if the left side (our condition) is `true`. But if the condition is `false`, the whole expression becomes `false`. React considers `false` as a "hole" in the JSX tree, just like `null` or `undefined`, and doesn't render anything in its place.
 
 
 <Pitfall>

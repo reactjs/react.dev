@@ -18,7 +18,7 @@ title: Writing Markup with JSX
 
 ## JSX: Putting markup into JavaScript {/*jsx-putting-markup-into-javascript*/}
 
-The Web has been built on HTML, CSS, and JavaScript. For many years, web developers kept content in HTML, design in CSS, and logic in JavaScript—often in separate files! Content was marked up inside HTML while the page's logic lived separately in JavaScript:
+The Web has been built on HTML, CSS, and JavaScript. For many years, web developers kept content in HTML, design in CSS, and logic in JavaScript—often in separate files! The content was marked up inside HTML while the page's logic lived separately in JavaScript:
 
 <DiagramGroup>
 
@@ -36,7 +36,7 @@ JavaScript
 
 </DiagramGroup>
 
-But as the Web became more interactive, logic increasingly determined content. JavaScript was in charge of the HTML! This is why **in React, rendering logic and markup live together in the same place—components.**
+But as the Web became more interactive, logic increasingly determined content. JavaScript was in charge of the HTML! This is why **in React, rendering logic and markup live together in the same place — components.**
 
 <DiagramGroup>
 
@@ -54,7 +54,7 @@ But as the Web became more interactive, logic increasingly determined content. J
 
 </DiagramGroup>
 
-Keeping a button's rendering logic and markup together ensures that they stay in sync with each other on every edit. Conversely, details that are unrelated, such as the button's markup and a sidebar's markup, are isolated from each other, making it safer to change either of them on their own.
+Keeping a button's rendering logic and markup together ensures that they stay in sync with each other on every edit. Conversely, unrelated details, such as the button's markup and a sidebar's markup, are isolated from each other, making it safer to change either of them on their own.
 
 Each React component is a JavaScript function that may contain some markup that React renders into the browser. React components use a syntax extension called JSX to represent that markup. JSX looks a lot like HTML, but it is a bit stricter and can display dynamic information. The best way to understand this is to convert some HTML markup to JSX markup.
 
@@ -136,7 +136,7 @@ Most of the time, React's on-screen error messages will help you find where the 
 
 To return multiple elements from a component, **wrap them with a single parent tag.**
 
-For example, you can use a `<div>`:
+For example, you can use a `<div>` tag:
 
 ```js {1,11}
 <div>
@@ -153,7 +153,7 @@ For example, you can use a `<div>`:
 ```
 
 
-If you don't want to add an extra `<div>` to your markup, you can write `<>` and `</>` instead:
+If you don't want to add an extra `<div>` to your markup, you can write an empty tag `<></>` instead:
 
 ```js {1,11}
 <>
@@ -202,9 +202,9 @@ This is how Hedy Lamarr's image and list items look closed:
 
 ### 3. camelCase <s>all</s> most of the things! {/*3-camelcase-salls-most-of-the-things*/}
 
-JSX turns into JavaScript and attributes written in JSX become keys of JavaScript objects. In your own components, you will often want to read those attributes into variables. But JavaScript has limitations on variable names. For example, their names can't contain dashes or be reserved words like `class`.
+JSX turns into JavaScript and attributes written in JSX become keys of JavaScript objects. In your components, you will often want to read those attributes into variables. However, JavaScript has limitations on variable names. For example, their names can't contain dashes or be reserved words like `class`.
 
-This is why, in React, many HTML and SVG attributes are written in camelCase. For example, instead of `stroke-width` you use `strokeWidth`. Since `class` is a reserved word, in React you write `className` instead, named after the [corresponding DOM property](https://developer.mozilla.org/en-US/docs/Web/API/Element/className):
+This is why, in React, many HTML and SVG attributes are written in camelCase. For example, instead of `stroke-width`, you use `strokeWidth`. Since `class` is a reserved word, in React you write `className` instead, named after the [corresponding DOM property](https://developer.mozilla.org/en-US/docs/Web/API/Element/className):
 
 ```js {4}
 <img 

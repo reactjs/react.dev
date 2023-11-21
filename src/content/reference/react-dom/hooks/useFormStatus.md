@@ -38,7 +38,7 @@ function Submit() {
   return <button disabled={status.pending}>Submit</button>
 }
 
-export default App() {
+export default function App() {
   return (
     <form action={action}>
       <Submit />

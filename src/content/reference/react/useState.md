@@ -1114,22 +1114,36 @@ export default function App() {
 ```
 
 ```js CountLabel.js active
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 export default function CountLabel({ count }) {
   const [prevCount, setPrevCount] = useState(count);
   const [trend, setTrend] = useState(null);
-  if (prevCount !== count) {
-    setPrevCount(count);
-    setTrend(count > prevCount ? 'increasing' : 'decreasing');
+
+  useEffect(() => {
+    if (prevCount !== count) {
+      setPrevCount(count);
+      setTrend(count > prevCount ? 'increasing' : 'decreasing');
+    }
+  }, [count, prevCount]);
+
+  if (trend === null) {
+    // Early return if trend is null to avoid rendering the <p> element
+    return (
+      <>
+        <h1>{count}</h1>
+      </>
+    );
   }
+
   return (
     <>
       <h1>{count}</h1>
-      {trend && <p>The count is {trend}</p>}
+      <p>The count is {trend}</p>
     </>
   );
 }
+
 ```
 
 ```css

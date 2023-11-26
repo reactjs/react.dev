@@ -103,7 +103,7 @@ This will allow the `Accordion` component to coordinate both `Panel`s can only e
 
 ### Step 1: Remove state from the child components {/*step-1-remove-state-from-the-child-components*/}
 
-You will give control of the `Panel`'s `isActive` to its parent component. This means that the parent component will pass `isActive` to `Panel` as a prop instead. Start by **removing this line** from the `Panel` component:
+You will give control of the `Panel`'s `isActive` to its parent component. This means that the parent component will pass `isActive` to the `Panel` component as a prop instead. Start by **removing this line** from the `Panel` component:
 
 ```js
 const [isActive, setIsActive] = useState(false);

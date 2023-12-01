@@ -16,7 +16,7 @@ export default function NotFound() {
       meta={{title: 'Something Went Wrong'}}>
       <MaxWidth>
         <Intro>
-          <P>Something went very wrong.</P>
+          <P className="mt-8">Something went very wrong.</P>
           <P>Sorry about that.</P>
           <P>
             If you’d like, please{' '}

@@ -302,3 +302,40 @@ input { margin: 5px; }
 ```
 
 </Sandpack>
+
+### useId in server rendering {/*useid-in-server-rendering*/}
+
+Choose a unique id prefix and pass it into the server options and client options. `useId` will return the same id string on server side and client side. The following example selects `react-app1` as the id prefix. 
+
+```js
+import { useId } from 'react';
+
+function App() {
+  const id = useId();
+  // ...
+
+```
+
+```js
+/**
+ * server side
+ */
+
+import ReactServer from 'react-dom/server';
+
+const { pipe } = ReactServer.renderToPipeableStream(<App />, { identifierPrefix: 'react-app1' });
+// ...
+
+```
+
+```js
+/**
+ * client side
+ */
+
+import { hydrateRoot } from 'react-dom/client';
+
+const domNode = document.getElementById('root');
+const root = hydrateRoot(domNode, reactNode, { identifierPrefix: 'react-app1' });
+
+```

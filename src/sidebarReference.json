@@ -202,6 +202,30 @@
           "path": "/reference/react-dom/hydrate"
         },
         {
+          "title": "preconnect",
+          "path": "/reference/react-dom/preconnect"
+        },
+        {
+          "title": "prefetchDNS",
+          "path": "/reference/react-dom/prefetchDNS"
+        },
+        {
+          "title": "preinit",
+          "path": "/reference/react-dom/preinit"
+        },
+        {
+          "title": "preinitModule",
+          "path": "/reference/react-dom/preinitModule"
+        },
+        {
+          "title": "preload",
+          "path": "/reference/react-dom/preload"
+        },
+        {
+          "title": "preloadModule",
+          "path": "/reference/react-dom/preloadModule"
+        },
+        {
           "title": "render",
           "path": "/reference/react-dom/render"
         },

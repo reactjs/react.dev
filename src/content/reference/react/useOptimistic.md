@@ -59,6 +59,11 @@ function AppContainer() {
 * `optimisticState`: The resulting optimistic state. It is equal to `state` unless an action is pending, in which case it is equal to the value returned by `updateFn`.
 * `addOptimistic`: `addOptimistic` is the dispatching function to call when you have an optimistic update. It takes one argument, `optimisticValue`, of any type and will call the `updateFn` with `state` and `optimisticValue`.
 
+
+#### Caveats {/*caveats*/}
+
+* An optimistic state update needs to be called in an action or wrapped with `startTransition`. If it's used outside an action or a transition React will throw an error.
+
 ---
 
 ## Usage {/*usage*/}

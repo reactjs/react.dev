@@ -151,7 +151,7 @@ export async function deliverMessage(message) {
 <Sandpack>
 
 ```js like-button.js active
-import { useOptimistic } from "react";
+import { startTransition, useOptimistic } from "react";
 
 export function LikeButton({ likes, updateLikes, disabled }) {
   const [optimisticLikes, addOptimisticLike] = useOptimistic(
@@ -160,8 +160,10 @@ export function LikeButton({ likes, updateLikes, disabled }) {
   );
 
   async function addLike() {
-    addOptimisticLike();
-    await updateLikes(likes);
+    startTransition(() => {
+      addOptimisticLike();
+      updateLikes(likes);
+    })
   }
 
   return (

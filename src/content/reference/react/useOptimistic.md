@@ -143,3 +143,65 @@ export async function deliverMessage(message) {
 ```
 
 </Sandpack>
+
+---
+
+### Optimistically update the UI while waiting for a network request {/*optimistically-update-while-waiting-for-network*/}
+
+<Sandpack>
+
+```js like-button.js active
+import { useOptimistic } from "react";
+
+export function LikeButton({ likes, updateLikes, disabled }) {
+  const [optimisticLikes, addOptimisticLike] = useOptimistic(
+    likes,
+    (likes) => likes + 1
+  );
+
+  async function addLike() {
+    addOptimisticLike();
+    await updateLikes(likes);
+  }
+
+  return (
+    <button disabled={disabled} onClick={addLike}>
+      Like {optimisticLikes}
+    </button>
+  );
+}
+```
+
+
+```js App.js
+import { useState } from "react";
+import { LikeButton } from "./like-button.js";
+
+export default function App() {
+  const [likes, setLikes] = useState(0);
+  const [updating, setUpdating] = useState(false);
+  async function updateLikes(num) {
+    setUpdating(true);
+    await new Promise((res) => setTimeout(res, 1000));
+    setLikes(num + 1);
+    setUpdating(false);
+  }
+  return (
+    <LikeButton likes={likes} updateLikes={updateLikes} disabled={updating} />
+  );
+}
+```
+
+```json package.json hidden
+{
+  "dependencies": {
+    "react": "experimental",
+    "react-dom": "experimental",
+    "react-scripts": "^5.0.0"
+  },
+  "main": "/index.js",
+  "devDependencies": {}
+}
+```
+
+</Sandpack>

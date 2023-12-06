@@ -1,0 +1,22 @@
+diff --git a/node_modules/next/dist/server/render.js b/node_modules/next/dist/server/render.js
+index a1f8648..1b3d608 100644
+--- a/node_modules/next/dist/server/render.js
++++ b/node_modules/next/dist/server/render.js
+@@ -758,9 +758,14 @@ async function renderToHTML(req, res, pathname, query, renderOpts) {
+         // Always using react concurrent rendering mode with required react version 18.x
+         const renderShell = async (EnhancedApp, EnhancedComponent)=>{
+             const content = renderContent(EnhancedApp, EnhancedComponent);
+-            return await (0, _nodewebstreamshelper.renderToInitialStream)({
+-                ReactDOMServer: _serverbrowser.default,
+-                element: content
++            return new Promise((resolve, reject) => {
++                (0, _nodewebstreamshelper.renderToInitialStream)({
++                    ReactDOMServer: _serverbrowser.default,
++                    element: content,
++                    streamOptions: {
++                        onError: reject
++                    }
++                }).then(resolve, reject);
+             });
+         };
+         const createBodyResult = (0, _tracer.getTracer)().wrap(_constants2.RenderSpan.createBodyResult, (initialStream, suffix)=>{

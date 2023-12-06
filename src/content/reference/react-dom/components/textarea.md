@@ -1,5 +1,5 @@
 ---
-title: "<textarea>"
+title: "<textarea/>"
 ---
 
 <Intro>

@@ -1,5 +1,5 @@
 ---
-title: <Fragment> (<>...</>)
+title: <Fragment/> (<>...</>)
 ---
 
 <Intro>

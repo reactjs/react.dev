@@ -1,5 +1,5 @@
 ---
-title: <Suspense>
+title: <Suspense/>
 ---
 
 <Intro>

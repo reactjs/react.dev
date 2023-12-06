@@ -1,5 +1,5 @@
 ---
-title: "Common components (e.g. <div>)"
+title: "Common components (e.g. <div></div>)"
 ---
 
 <Intro>

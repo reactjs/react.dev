@@ -24,6 +24,7 @@ import {Logo} from '../../Logo';
 import {Feedback} from '../Feedback';
 import {SidebarRouteTree} from '../Sidebar';
 import type {RouteItem} from '../getRouteMeta';
+import { AIAskDialog } from 'components/AI/AIAskDialog';
 
 declare global {
   interface Window {
@@ -221,6 +222,7 @@ export default function TopNav({
         onOpen={onOpenSearch}
         onClose={onCloseSearch}
       />
+      <AIAskDialog/>
       <div ref={scrollDetectorRef} />
       <div
         className={cn(

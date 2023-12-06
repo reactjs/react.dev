@@ -1,5 +1,5 @@
 ---
-title: "<form>"
+title: "<form></form>"
 canary: true
 ---
 

@@ -1,5 +1,5 @@
 ---
-title: "<select>"
+title: "<select/>"
 ---
 
 <Intro>

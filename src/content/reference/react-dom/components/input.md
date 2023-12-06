@@ -1,5 +1,5 @@
 ---
-title: "<input>"
+title: "<input></input>"
 ---
 
 <Intro>

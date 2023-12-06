@@ -1,5 +1,5 @@
 ---
-title: <Profiler>
+title: <Profiler/>
 ---
 
 <Intro>

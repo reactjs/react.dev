@@ -1,5 +1,5 @@
 import {IconUser} from '@tabler/icons-react';
-import {FC, useEffect, useRef, useState} from 'react';
+import {FC} from 'react';
 
 import {MemoizedReactMarkdown} from './Markdown/MemoizedReactMarkdown';
 
@@ -20,13 +20,7 @@ function isMineMessage(message: Message) {
   return message.role === 'user';
 }
 
-export const ChatMessage: FC<Props> = ({message, messageIndex}) => {
-  const [messageContent, setMessageContent] = useState(message.content);
-
-  useEffect(() => {
-    setMessageContent(message.content);
-  }, [message.content]);
-
+export const ChatMessage: FC<Props> = ({message}) => {
   console.log('message is', message.content);
 
   function renderLinkList(content_ref_list?: ContentRefList) {
@@ -37,11 +31,12 @@ export const ChatMessage: FC<Props> = ({message, messageIndex}) => {
           <div> For more information, please check the following link:</div>
           {content_ref_list?.map((content_ref, index) => {
             return (
-              <div className="flex">
+              <div key={index} className="flex">
                 <a
                   href={content_ref.ref_link}
                   className=" underline text-blue-40 text-lg"
-                  target="_blank" rel="noreferrer">
+                  target="_blank"
+                  rel="noreferrer">
                   {' '}
                   {content_ref.ref_desc}{' '}
                 </a>
@@ -86,7 +81,7 @@ export const ChatMessage: FC<Props> = ({message, messageIndex}) => {
                 remarkPlugins={[remarkGfm as any, remarkMath]}
                 rehypePlugins={[rehypeMathjax]}
                 components={{
-                  code({node, inline, className, children, ...props}: any) {
+                  code({inline, className, children, ...props}: any) {
                     if (typeof children === 'string' && children?.length) {
                       if (children[0] == '▍') {
                         return (

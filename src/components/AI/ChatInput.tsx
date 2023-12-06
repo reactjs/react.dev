@@ -1,11 +1,5 @@
 import {IconArrowDown, IconClearAll, IconSend} from '@tabler/icons-react';
-import {
-  KeyboardEvent,
-  MutableRefObject,
-  createRef,
-  useEffect,
-  useState,
-} from 'react';
+import {KeyboardEvent, MutableRefObject, useEffect, useState} from 'react';
 
 interface Props {
   onSend?: (message: string) => void;
@@ -68,7 +62,7 @@ export const ChatInput = ({
         textareaRef?.current?.scrollHeight > 400 ? 'auto' : 'hidden'
       }`;
     }
-  }, [content]);
+  }, [content, textareaRef]);
 
   return (
     <div className="absolute bottom-0 left-0 w-full border-transparent bg-gradient-to-b from-transparent via-white to-white pt-6 dark:border-white/20 dark:via-[#343541] dark:to-[#343541] md:pt-2">

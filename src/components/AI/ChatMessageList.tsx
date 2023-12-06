@@ -10,7 +10,13 @@ export function ChatMessageList({messageList}: Props) {
   return (
     <div className=" overflow-auto h-5/6">
       {messageList.map((message, index) => {
-        return <ChatMessage message={message} messageIndex={index} />;
+        return (
+          <ChatMessage
+            key={'chat_item' + index}
+            message={message}
+            messageIndex={index}
+          />
+        );
       })}
     </div>
   );

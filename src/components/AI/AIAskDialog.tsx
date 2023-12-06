@@ -73,8 +73,8 @@ export function AIAskDialog() {
       window.removeEventListener('keydown', onKeyDown);
     };
   }, [isOpen]);
-  //@ts-ignore
   return (
+    //@ts-ignore
     <ReactModal
       isOpen={isOpen}
       style={customStyle}

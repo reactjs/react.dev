@@ -1,10 +1,10 @@
-import { MessageList } from "./ask";
+import {MessageList} from './ask';
 
 export interface AskRequest {
-    query: string;
-    threadId: number;
+  query: string;
+  threadId: number;
 }
 
 export interface AskResponse {
-    messageList: MessageList;
+  messageList: MessageList;
 }

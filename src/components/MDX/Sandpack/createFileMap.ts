@@ -7,7 +7,7 @@ import type {SandpackFile} from '@codesandbox/sandpack-react/unstyled';
 export const createFileMap = (codeSnippets: any) => {
   return codeSnippets.reduce(
     (result: Record<string, SandpackFile>, codeSnippet: React.ReactElement) => {
-      if ((codeSnippet.type as any).mdxName !== 'pre') {
+      if ((codeSnippet.type as any).mdxName !== 'pre' && codeSnippet.type !== 'pre') {
         return result;
       }
       const {props} = codeSnippet.props.children;

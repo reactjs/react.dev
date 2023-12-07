@@ -327,7 +327,7 @@ export function Footer() {
           <FooterLink isHeader={true}>More</FooterLink>
           <FooterLink href="/blog">Blog</FooterLink>
           <FooterLink href="https://reactnative.dev/">React Native</FooterLink>
-          <FooterLink href="https://opensource.facebook.com/legal/privacy">
+          <FooterLink href="https://opensource.fb.com/legal/privacy">
             Privacy
           </FooterLink>
           <FooterLink href="https://opensource.fb.com/legal/terms/">

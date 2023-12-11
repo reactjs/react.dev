@@ -64,7 +64,7 @@ experimental_taintObjectReference(
 
 #### Caveats {/*caveats*/}
 
-- Recreating or cloning a tainted object creates a new untained object which main contain sensetive data. For example, if you have a tainted `user` object, `const userInfo = {name: user.name, ssn: user.ssn}` or `{...user}` will create new objects which are not tainted. `taintObjectReference` only protects against simple mistakes when the object is passed through to a Client Component unchanged.
+- Recreating or cloning a tainted object creates a new untained object which may contain sensitive data. For example, if you have a tainted `user` object, `const userInfo = {name: user.name, ssn: user.ssn}` or `{...user}` will create new objects which are not tainted. `taintObjectReference` only protects against simple mistakes when the object is passed through to a Client Component unchanged.
 
 <Pitfall>
 
@@ -78,7 +78,7 @@ experimental_taintObjectReference(
 
 ### Prevent user data from unintentionally reaching the client {/*prevent-user-data-from-unintentionally-reaching-the-client*/}
 
-A Client Component should never accept objects that carry sensitive data. Ideally, the data fetching functions should not expose data that the current user should not have access to. Sometimes mistakes happen during refactoring. To protect against this mistakes happening down the line we can "taint" the user object in our data API.
+A Client Component should never accept objects that carry sensitive data. Ideally, the data fetching functions should not expose data that the current user should not have access to. Sometimes mistakes happen during refactoring. To protect against these mistakes happening down the line we can "taint" the user object in our data API.
 
 ```js
 import {experimental_taintObjectReference} from 'react';

@@ -179,7 +179,7 @@ You might be wondering why `useId` is better than incrementing a global variable
 
 The primary benefit of `useId` is that React ensures that it works with [server rendering.](/reference/react-dom/server) During server rendering, your components generate HTML output. Later, on the client, [hydration](/reference/react-dom/client/hydrateRoot) attaches your event handlers to the generated HTML. For hydration to work, the client output must match the server HTML.
 
-This is very difficult to guarantee with an incrementing counter because the order in which the client components are hydrated may not match the order in which the server HTML was emitted. By calling `useId`, you ensure that hydration will work, and the output will match between the server and the client.
+This is very difficult to guarantee with an incrementing counter because the order in which the Client Components are hydrated may not match the order in which the server HTML was emitted. By calling `useId`, you ensure that hydration will work, and the output will match between the server and the client.
 
 Inside React, `useId` is generated from the "parent path" of the calling component. This is why, if the client and the server tree are the same, the "parent path" will match up regardless of rendering order.
 
@@ -303,3 +303,32 @@ input { margin: 5px; }
 
 </Sandpack>
 
+---
+
+### Using the same ID prefix on the client and the server {/*using-the-same-id-prefix-on-the-client-and-the-server*/}
+
+If you [render multiple independent React apps on the same page](#specifying-a-shared-prefix-for-all-generated-ids), and some of these apps are server-rendered, make sure that the `identifierPrefix` you pass to the [`hydrateRoot`](/reference/react-dom/client/hydrateRoot) call on the client side is the same as the `identifierPrefix` you pass to the [server APIs](/reference/react-dom/server) such as [`renderToPipeableStream`.](/reference/react-dom/server/renderToPipeableStream)
+
+```js
+// Server
+import { renderToPipeableStream } from 'react-dom/server';
+
+const { pipe } = renderToPipeableStream(
+  <App />,
+  { identifierPrefix: 'react-app1' }
+);
+```
+
+```js
+// Client
+import { hydrateRoot } from 'react-dom/client';
+
+const domNode = document.getElementById('root');
+const root = hydrateRoot(
+  domNode,
+  reactNode,
+  { identifierPrefix: 'react-app1' }
+);
+```
+
+You do not need to pass `identifierPrefix` if you only have one React app on the page.

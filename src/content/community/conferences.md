@@ -10,11 +10,6 @@ Do you know of a local React.js conference? Add it here! (Please keep the list c
 
 ## Upcoming Conferences {/*upcoming-conferences*/}
 
-### React India 2024 {/*react-india-2024*/}
-October 17 - 19, 2024. In-person in Goa, India (hybrid event) + Oct 15 2024 - remote day
-
-[Website](https://www.reactindia.io) - [Twitter](https://twitter.com/react_india) - [Facebook](https://www.facebook.com/ReactJSIndia) - [Youtube](https://www.youtube.com/channel/UCaFbHCBkPvVv1bWs_jwYt3w)
-
 ### RedwoodJS Conference 2023 {/*redwoodjs-conference-2023*/}
 September 26 - 29, 2023. Grants Pass, Oregon + remote (hybrid event) 
 
@@ -74,6 +69,11 @@ May 22 - 24, 2024. In-person in Kraków, Poland + remote
 June 12 - June 14, 2024. Atlanta, GA, USA
 
 [Website](https://renderatl.com) - [Discord](https://www.renderatl.com/discord) - [Twitter](https://twitter.com/renderATL) - [Instagram](https://www.instagram.com/renderatl/) - [Facebook](https://www.facebook.com/renderatl/) - [LinkedIn](https://www.linkedin.com/company/renderatl) - [Podcast](https://www.renderatl.com/culture-and-code#/)
+
+### React India 2024 {/*react-india-2024*/}
+October 17 - 19, 2024. In-person in Goa, India (hybrid event) + Oct 15 2024 - remote day
+
+[Website](https://www.reactindia.io) - [Twitter](https://twitter.com/react_india) - [Facebook](https://www.facebook.com/ReactJSIndia) - [Youtube](https://www.youtube.com/channel/UCaFbHCBkPvVv1bWs_jwYt3w)
 
 ## Past Conferences {/*past-conferences*/}
 

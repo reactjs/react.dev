@@ -1499,7 +1499,7 @@ function ConferenceLayout({conf, children}) {
               navigate(e.target.value);
             });
           }}
-          className="appearance-none pe-8 bg-transparent text-primary-dark text-2xl font-bold mb-0.5"
+          className="appearance-none pe-8 bg-black text-primary-dark text-2xl font-bold mb-0.5"
           style={{
             backgroundSize: '4px 4px, 4px 4px',
             backgroundRepeat: 'no-repeat',

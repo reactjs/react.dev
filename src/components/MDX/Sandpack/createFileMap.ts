@@ -35,7 +35,7 @@ export const createFileMap = (codeSnippets: any) => {
           );
         }
       }
-      console.log(filePath);
+
       if (result[filePath]) {
         throw new Error(
           `File ${filePath} was defined multiple times. Each file snippet should have a unique path name`

@@ -57,7 +57,7 @@ export default memo(function SandpackWrapper(props: any): any {
   );
   let activeCode;
   if (!activeCodeSnippet.length) {
-    activeCode = codeSnippet['/App.js'].code;
+    activeCode = codeSnippet['/src/App.js'].code;
   } else {
     activeCode = codeSnippet[activeCodeSnippet[0]].code;
   }

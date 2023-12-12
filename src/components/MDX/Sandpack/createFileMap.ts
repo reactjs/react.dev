@@ -17,7 +17,7 @@ export const createFileMap = (codeSnippets: any) => {
 
       if (props.meta) {
         const [name, ...params] = props.meta.split(' ');
-        filePath = '/' + name;
+        filePath = '/src/' + name;
         if (params.includes('hidden')) {
           fileHidden = true;
         }
@@ -26,15 +26,16 @@ export const createFileMap = (codeSnippets: any) => {
         }
       } else {
         if (props.className === 'language-js') {
-          filePath = '/App.js';
+          filePath = '/src/App.js';
         } else if (props.className === 'language-css') {
-          filePath = '/styles.css';
+          filePath = '/src/styles.css';
         } else {
           throw new Error(
             `Code block is missing a filename: ${props.children}`
           );
         }
       }
+      console.log(filePath);
       if (result[filePath]) {
         throw new Error(
           `File ${filePath} was defined multiple times. Each file snippet should have a unique path name`

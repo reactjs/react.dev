@@ -13,7 +13,7 @@ In this chapter, we will go over common data sources and how to fetch and use th
 <YouWillLearn>
 
 * Static and dynamic data and how it affects data access
-* How to fetch data from common data sources
+* How to fetch data in your components and examples of common data sources
 * How components "wait" for data to be fetched
 
 </YouWillLearn>
@@ -128,7 +128,7 @@ async function LATemperature() {
 
 An API service will usually provide documentation on how to make a request to their server and how the data is returned to you.
 
-## Waiting for data during render {/*waiting-for-data-during-render*/}
+## Waiting for asynchronous data during render {/*waiting-for-data-during-render*/}
 
 You'll notice that once we started to read data during render, we began to use the keywords `async` and `await` in our component. Let's dive deeper into what that means.
 
@@ -186,6 +186,14 @@ async function HoveringButton({ userContext, label, lastTouchPoint }) {
 You'll notice that our component function declarations now have an `async` prefix. This is also a JavaScript keyword and any function that uses `await` will need to be marked with `async`. If a function `await`s a Promise, it itself becomes asynchronous.
 
 Imagine being the parent function calling the `LATemperature` component function. When you call `LATemperature` and it gets to the instruction of `await`-ing `readFilePromise`, JavaScript execution returns to you and you receive a Promise that promises to give you the completed render of `LATemperature`.
+
+<DeepDive>
+
+#### Why is dynamic data-fetching asynchronous vs. static data reads? {/*why-is-dynamic-data-fetching-asynchronous-vs-static-data-reads*/}
+
+TODO: go into build-time and run-time data access
+
+</DeepDive>
 
 ## Recap {/*recap*/}
 

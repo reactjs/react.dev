@@ -9,9 +9,9 @@ import App from "./App";
 
 const root = createRoot(document.getElementById("root"));
 root.render(
-	<StrictMode>
-		<App />
-	</StrictMode>
+  <StrictMode>
+    <App />
+  </StrictMode>
 );`,
   },
   '/package.json': {
@@ -42,12 +42,12 @@ root.render(
     code: `<!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
 </head>
 <body>
-	<div id="root"></div>
+  <div id="root"></div>
 </body>
 </html>`,
   },

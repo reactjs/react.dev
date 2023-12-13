@@ -53,7 +53,7 @@ export function TeamMember({
           className="block w-full sm:hidden flex-grow basis-2/5 rounded overflow-hidden relative">
           <Image src={photo} layout="fill" objectFit="cover" alt={name} />
         </div>
-        <div className="pl-0 sm:pl-6 basis-3/5 items-start">
+        <div className="ps-0 sm:ps-6 basis-3/5 items-start">
           <H3 className="mb-1 sm:my-0" id={permalink}>
             {name}
           </H3>
@@ -61,23 +61,23 @@ export function TeamMember({
           {children}
           <div className="sm:flex sm:flex-row">
             {twitter && (
-              <div className="mr-4">
+              <div className="me-4">
                 <ExternalLink
                   aria-label="React on Twitter"
                   href={`https://twitter.com/${twitter}`}
                   className="hover:text-primary dark:text-primary-dark flex flex-row items-center">
-                  <IconTwitter className="pr-2" />
+                  <IconTwitter className="pe-2" />
                   {twitter}
                 </ExternalLink>
               </div>
             )}
             {github && (
-              <div className="mr-4">
+              <div className="me-4">
                 <ExternalLink
                   aria-label="GitHub Profile"
                   href={`https://github.com/${github}`}
                   className="hover:text-primary dark:text-primary-dark flex flex-row items-center">
-                  <IconGitHub className="pr-2" /> {github}
+                  <IconGitHub className="pe-2" /> {github}
                 </ExternalLink>
               </div>
             )}
@@ -86,7 +86,7 @@ export function TeamMember({
                 aria-label="Personal Site"
                 href={`https://${personal}`}
                 className="hover:text-primary dark:text-primary-dark flex flex-row items-center">
-                <IconLink className="pr-2" /> {personal}
+                <IconLink className="pe-2" /> {personal}
               </ExternalLink>
             )}
           </div>

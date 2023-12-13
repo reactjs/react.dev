@@ -4,7 +4,7 @@
 
 /* eslint-disable react-hooks/exhaustive-deps */
 import {useRef, useState, useEffect, useMemo, useId} from 'react';
-import {useSandpack, SandpackStack} from '@codesandbox/sandpack-react';
+import {useSandpack, SandpackStack} from '@codesandbox/sandpack-react/unstyled';
 import cn from 'classnames';
 import {ErrorMessage} from './ErrorMessage';
 import {SandpackConsole} from './Console';
@@ -42,20 +42,19 @@ export function Preview({
     null
   );
 
-  let {
-    error: rawError,
-    registerBundler,
-    unregisterBundler,
-    errorScreenRegisteredRef,
-    openInCSBRegisteredRef,
-    loadingScreenRegisteredRef,
-  } = sandpack;
+  let {error: rawError, registerBundler, unregisterBundler} = sandpack;
 
   if (
     rawError &&
     rawError.message === '_csbRefreshUtils.prelude is not a function'
   ) {
     // Work around a noisy internal error.
+    rawError = null;
+  }
+
+  // When throwing a new Error in Sandpack - we want to disable the dev error dialog
+  // to show the Error Boundary fallback
+  if (rawError && rawError.message.includes(`throw Error('Example error')`)) {
     rawError = null;
   }
 
@@ -87,12 +86,6 @@ export function Preview({
 
   const clientId = useId();
   const iframeRef = useRef<HTMLIFrameElement | null>(null);
-
-  // SandpackPreview immediately registers the custom screens/components so the bundler does not render any of them
-  // TODO: why are we doing this during render?
-  openInCSBRegisteredRef.current = true;
-  errorScreenRegisteredRef.current = true;
-  loadingScreenRegisteredRef.current = true;
 
   const sandpackIdle = sandpack.status === 'idle';
 

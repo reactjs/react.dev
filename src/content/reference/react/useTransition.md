@@ -151,7 +151,7 @@ export default function TabContainer() {
 
   function selectTab(nextTab) {
     startTransition(() => {
-      setTab(nextTab);      
+      setTab(nextTab);
     });
   }
 
@@ -823,7 +823,7 @@ function use(promise) {
       reason => {
         promise.status = 'rejected';
         promise.reason = reason;
-      },      
+      },
     );
     throw promise;
   }
@@ -1017,7 +1017,7 @@ function use(promise) {
       reason => {
         promise.status = 'rejected';
         promise.reason = reason;
-      },      
+      },
     );
     throw promise;
   }
@@ -1288,7 +1288,7 @@ function use(promise) {
       reason => {
         promise.status = 'rejected';
         promise.reason = reason;
-      },      
+      },
     );
     throw promise;
   }
@@ -1332,7 +1332,7 @@ function use(promise) {
       reason => {
         promise.status = 'rejected';
         promise.reason = reason;
-      },      
+      },
     );
     throw promise;
   }
@@ -1379,9 +1379,9 @@ async function getBio() {
     setTimeout(resolve, 500);
   });
 
-  return `The Beatles were an English rock band, 
-    formed in Liverpool in 1960, that comprised 
-    John Lennon, Paul McCartney, George Harrison 
+  return `The Beatles were an English rock band,
+    formed in Liverpool in 1960, that comprised
+    John Lennon, Paul McCartney, George Harrison
     and Ringo Starr.`;
 }
 
@@ -1498,6 +1498,100 @@ main {
 [Suspense-enabled](/reference/react/Suspense) routers are expected to wrap the navigation updates into transitions by default.
 
 </Note>
+
+---
+
+### Displaying an error to users with a error boundary {/*displaying-an-error-to-users-with-error-boundary*/}
+
+<Canary>
+
+Error Boundary for useTransition is currently only available in React's canary and experimental channels. Learn more about [React's release channels here](/community/versioning-policy#all-release-channels).
+
+</Canary>
+
+If a function passed to `startTransition` throws an error, you can display an error to your user with an [error boundary](/reference/react/Component#catching-rendering-errors-with-an-error-boundary). To use an error boundary, wrap the component where you are calling the `useTransition` in an error boundary. Once the function passed to `startTransition` errors, the fallback for the error boundary will be displayed.
+
+<Sandpack>
+
+```js AddCommentContainer.js active
+import { useTransition } from "react";
+import { ErrorBoundary } from "react-error-boundary";
+
+export function AddCommentContainer() {
+  return (
+    <ErrorBoundary fallback={<p>⚠️Something went wrong</p>}>
+        <AddCommentButton />
+    </ErrorBoundary>
+  );
+}
+
+function addComment(comment) {
+  // For demonstration purposes to show Error Boundary
+  if(comment == null){
+    throw Error('Example error')
+  }
+}
+
+function AddCommentButton() {
+  const [pending, startTransition] = useTransition();
+
+  return (
+    <button
+      disabled={pending}
+      onClick={() => {
+        startTransition(() => {
+          // Intentionally not passing a comment
+          // so error gets thrown
+          addComment();
+        });
+      }}>
+        Add comment
+      </button>
+  );
+}
+```
+
+```js App.js hidden
+import { AddCommentContainer } from "./AddCommentContainer.js";
+
+export default function App() {
+  return <AddCommentContainer />;
+}
+```
+
+```js index.js hidden
+// TODO: update to import from stable
+// react instead of canary once the `use`
+// Hook is in a stable release of React
+import React, { StrictMode } from 'react';
+import { createRoot } from 'react-dom/client';
+import './styles.css';
+
+// TODO: update this example to use
+// the Codesandbox Server Component
+// demo environment once it is created
+import App from './App';
+
+const root = createRoot(document.getElementById('root'));
+root.render(
+  <StrictMode>
+    <App />
+  </StrictMode>
+);
+```
+
+```json package.json hidden
+{
+  "dependencies": {
+    "react": "canary",
+    "react-dom": "canary",
+    "react-scripts": "^5.0.0",
+    "react-error-boundary": "4.0.3"
+  },
+  "main": "/index.js"
+}
+```
+</Sandpack>
 
 ---
 

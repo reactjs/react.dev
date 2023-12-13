@@ -19,6 +19,8 @@ export type RouteTag =
 export interface RouteItem {
   /** Page title (for the sidebar) */
   title: string;
+  /** Optional canary flag for heading */
+  canary?: boolean;
   /** Optional page description for heading */
   description?: string;
   /* Additional meta info for page tagging */
@@ -27,8 +29,6 @@ export interface RouteItem {
   path?: string;
   /** Whether the entry is a heading */
   heading?: boolean;
-  /** Whether the page is under construction */
-  wip?: boolean;
   /** List of sub-routes */
   routes?: RouteItem[];
   /** Adds a section header above the route item */
@@ -58,13 +58,13 @@ export interface RouteMeta {
   order?: number;
 }
 
-type TravesalContext = RouteMeta & {
+type TraversalContext = RouteMeta & {
   currentIndex: number;
 };
 
 export function getRouteMeta(cleanedPath: string, routeTree: RouteItem) {
   const breadcrumbs = getBreadcrumbs(cleanedPath, routeTree);
-  const ctx: TravesalContext = {
+  const ctx: TraversalContext = {
     currentIndex: 0,
   };
   buildRouteMeta(cleanedPath, routeTree, ctx);
@@ -79,7 +79,7 @@ export function getRouteMeta(cleanedPath: string, routeTree: RouteItem) {
 function buildRouteMeta(
   searchPath: string,
   currentRoute: RouteItem,
-  ctx: TravesalContext
+  ctx: TraversalContext
 ) {
   ctx.currentIndex++;
 

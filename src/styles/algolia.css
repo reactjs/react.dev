@@ -61,13 +61,16 @@ html.dark .DocSearch-Commands {
   @apply border-border-dark;
 }
 .DocSearch-Commands-Key {
-  @apply shadow-none;
+  @apply shadow-none me-[.4rem] ms-0;
   @apply bg-gray-10;
   @apply text-primary;
 }
 .DocSearch-Logo {
   @apply pt-4;
   @apply pb-2;
+}
+.DocSearch-Logo svg {
+  @apply ms-2 me-0;
 }
 .DocSearch-Label {
   @apply text-xs;
@@ -85,7 +88,7 @@ html.dark .DocSearch-Footer {
   @apply bg-wash-dark;
 }
 .DocSearch-Input {
-  @apply py-3;
+  @apply py-3 ps-2 pe-0;
   @apply text-base;
   @apply leading-tight;
   @apply text-primary;
@@ -96,10 +99,10 @@ html.dark .DocSearch-Input {
   @apply text-primary-dark;
 }
 .DocSearch-Hit a {
-  @apply rounded-r-lg;
-  @apply rounded-l-none;
+  @apply rounded-e-lg;
+  @apply rounded-s-none;
   @apply shadow-none;
-  @apply pl-5;
+  @apply ps-5;
 }
 .DocSearch-Hit-source {
   @apply uppercase;
@@ -108,14 +111,14 @@ html.dark .DocSearch-Input {
   @apply text-secondary;
   @apply font-bold;
   @apply pt-0;
-  @apply pl-5;
+  @apply ps-5;
   @apply m-0;
 }
 html.dark .DocSearch-Hit-source {
   @apply text-secondary-dark;
 }
 .DocSearch-Dropdown ul {
-  @apply mr-5;
+  @apply me-5;
 }
 .DocSearch-Hit-title {
   @apply text-base;
@@ -157,8 +160,8 @@ html.dark .DocSearch-Modal {
   @apply shadow-nav-dark;
 }
 .DocSearch-Cancel {
-  @apply pl-5;
-  @apply ml-0;
+  @apply ps-5;
+  @apply ms-0;
   @apply text-base;
   @apply text-link;
   @apply font-normal;

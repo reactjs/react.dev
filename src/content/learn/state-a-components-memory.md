@@ -1488,8 +1488,6 @@ Here is a fixed version that uses a regular `name` variable declared in the func
 <Sandpack>
 
 ```js
-import { useState } from 'react';
-
 export default function FeedbackForm() {
   function handleClick() {
     const name = prompt('What is your name?');

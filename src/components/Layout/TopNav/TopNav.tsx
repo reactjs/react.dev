@@ -127,7 +127,7 @@ function Kbd(props: {children?: React.ReactNode; wide?: boolean}) {
 
   return (
     <kbd
-      className={`${width} h-5 border border-transparent mr-1 bg-wash dark:bg-wash-dark text-gray-30 align-middle p-0 inline-flex justify-center items-center text-xs text-center rounded-md`}
+      className={`${width} h-5 border border-transparent me-1 bg-wash dark:bg-wash-dark text-gray-30 align-middle p-0 inline-flex justify-center items-center text-xs text-center rounded-md`}
       {...rest}
     />
   );
@@ -230,7 +230,7 @@ export default function TopNav({
         )}>
         <nav
           className={cn(
-            'duration-300 backdrop-filter backdrop-blur-lg backdrop-saturate-200 transition-shadow bg-opacity-90 items-center w-full flex justify-between bg-wash dark:bg-wash-dark dark:bg-opacity-95 px-1.5 lg:pr-5 lg:pl-4 z-50',
+            'duration-300 backdrop-filter backdrop-blur-lg backdrop-saturate-200 transition-shadow bg-opacity-90 items-center w-full flex justify-between bg-wash dark:bg-wash-dark dark:bg-opacity-95 px-1.5 lg:pe-5 lg:ps-4 z-50',
             {'dark:shadow-nav-dark shadow-nav': isScrolled || isOpen}
           )}>
           <div className="h-16 w-full gap-0 sm:gap-3 flex items-center justify-between">
@@ -253,7 +253,7 @@ export default function TopNav({
                   className={`active:scale-95 overflow-hidden transition-transform relative items-center text-primary dark:text-primary-dark p-1 whitespace-nowrap outline-link rounded-full 3xl:rounded-xl inline-flex text-lg font-normal gap-2`}>
                   <Logo
                     className={cn(
-                      'text-sm mr-0 w-10 h-10 text-link dark:text-link-dark flex origin-center transition-all ease-in-out'
+                      'text-sm me-0 w-10 h-10 text-link dark:text-link-dark flex origin-center transition-all ease-in-out'
                     )}
                   />
                   <span className="sr-only 3xl:not-sr-only">React</span>
@@ -264,12 +264,12 @@ export default function TopNav({
               <button
                 type="button"
                 className={cn(
-                  'flex 3xl:w-[56rem] 3xl:mx-0 relative pl-4 pr-1 py-1 h-10 bg-gray-30/20 dark:bg-gray-40/20 outline-none focus:outline-link betterhover:hover:bg-opacity-80 pointer items-center text-left w-full text-gray-30 rounded-full align-middle text-base'
+                  'flex 3xl:w-[56rem] 3xl:mx-0 relative ps-4 pe-1 py-1 h-10 bg-gray-30/20 dark:bg-gray-40/20 outline-none focus:outline-link betterhover:hover:bg-opacity-80 pointer items-center text-start w-full text-gray-30 rounded-full align-middle text-base'
                 )}
                 onClick={onOpenSearch}>
-                <IconSearch className="mr-3 align-middle text-gray-30 shrink-0 group-betterhover:hover:text-gray-70" />
+                <IconSearch className="me-3 align-middle text-gray-30 shrink-0 group-betterhover:hover:text-gray-70" />
                 Search
-                <span className="ml-auto hidden sm:flex item-center mr-1">
+                <span className="ms-auto hidden sm:flex item-center me-1">
                   <Kbd data-platform="mac">⌘</Kbd>
                   <Kbd data-platform="win" wide>
                     Ctrl
@@ -355,10 +355,10 @@ export default function TopNav({
               <nav
                 role="navigation"
                 style={{'--bg-opacity': '.2'} as React.CSSProperties} // Need to cast here because CSS vars aren't considered valid in TS types (cuz they could be anything)
-                className="w-full lg:h-auto grow pr-0 lg:pr-5 pt-4 lg:py-6 md:pt-4 lg:pt-4 scrolling-touch scrolling-gpu">
+                className="w-full lg:h-auto grow pe-0 lg:pe-5 pt-4 lg:py-6 md:pt-4 lg:pt-4 scrolling-touch scrolling-gpu">
                 {/* No fallback UI so need to be careful not to suspend directly inside. */}
                 <Suspense fallback={null}>
-                  <div className="pl-3 xs:pl-5 xs:gap-0.5 xs:text-base overflow-x-auto flex flex-row lg:hidden text-base font-bold text-secondary dark:text-secondary-dark">
+                  <div className="ps-3 xs:ps-5 xs:gap-0.5 xs:text-base overflow-x-auto flex flex-row lg:hidden text-base font-bold text-secondary dark:text-secondary-dark">
                     <NavItem isActive={section === 'learn'} url="/learn">
                       Learn
                     </NavItem>
@@ -378,7 +378,7 @@ export default function TopNav({
                   </div>
                   <div
                     role="separator"
-                    className="ml-5 mt-4 mb-2 border-b border-border dark:border-border-dark"
+                    className="ms-5 mt-4 mb-2 border-b border-border dark:border-border-dark"
                   />
                   <SidebarRouteTree
                     // Don't share state between the desktop and mobile versions.

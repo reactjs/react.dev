@@ -545,6 +545,12 @@
   }
 }
 
+@layer utilities {
+  [class*='space-x-'] {
+    @apply rtl:space-x-reverse;
+  }
+}
+
 .code-step * {
   color: inherit !important;
 }
@@ -560,7 +566,7 @@ html.dark .code-step * {
 .mdx-heading {
   scroll-margin-top: calc(4rem + 20px);
   /* Space for the anchor */
-  padding-right: 1em;
+  padding-inline-end: 1em;
 }
 
 .mdx-heading:before {
@@ -629,7 +635,7 @@ ol.mdx-illustration-block {
   display: block;
   position: absolute;
   top: 50%;
-  right: 100%;
+  inset-inline-end: 100%;
   transform: translateY(-50%);
   width: 60px;
   height: 49px;
@@ -653,8 +659,8 @@ ol.mdx-illustration-block {
   }
   .mdx-illustration-block li:after {
     top: 0;
-    left: 50%;
-    right: auto;
+    inset-inline-start: 50%;
+    inset-inline-end: auto;
     transform: translateX(-50%) translateY(-100%) rotate(90deg);
   }
 }

@@ -2,9 +2,9 @@
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
 
-import {Children, useState} from 'react';
+import {Children} from 'react';
 import * as React from 'react';
-import {SandpackProvider} from '@codesandbox/sandpack-react';
+import {SandpackProvider} from '@codesandbox/sandpack-react/unstyled';
 import {SandpackLogLevel} from '@codesandbox/sandpack-client';
 import {CustomPreset} from './CustomPreset';
 import {createFileMap} from './createFileMap';
@@ -13,7 +13,6 @@ import {CustomTheme} from './Themes';
 type SandpackProps = {
   children: React.ReactNode;
   autorun?: boolean;
-  showDevTools?: boolean;
 };
 
 const sandboxStyle = `
@@ -62,13 +61,12 @@ code {
 }
 
 ul {
-  padding-left: 20px;
+  padding-inline-start: 20px;
 }
 `.trim();
 
 function SandpackRoot(props: SandpackProps) {
-  let {children, autorun = true, showDevTools = false} = props;
-  const [devToolsLoaded, setDevToolsLoaded] = useState(false);
+  let {children, autorun = true} = props;
   const codeSnippets = Children.toArray(children) as React.ReactElement[];
   const files = createFileMap(codeSnippets);
 
@@ -78,7 +76,7 @@ function SandpackRoot(props: SandpackProps) {
   };
 
   return (
-    <div className="sandpack sandpack--playground w-full my-8">
+    <div className="sandpack sandpack--playground w-full my-8" dir="ltr">
       <SandpackProvider
         template="react"
         files={files}
@@ -90,12 +88,7 @@ function SandpackRoot(props: SandpackProps) {
           bundlerURL: 'https://1e4ad8f7.sandpack-bundler-4bw.pages.dev',
           logLevel: SandpackLogLevel.None,
         }}>
-        <CustomPreset
-          showDevTools={showDevTools}
-          onDevToolsLoad={() => setDevToolsLoaded(true)}
-          devToolsLoaded={devToolsLoaded}
-          providedFiles={Object.keys(files)}
-        />
+        <CustomPreset providedFiles={Object.keys(files)} />
       </SandpackProvider>
     </div>
   );

@@ -3,7 +3,7 @@
  */
 
 import {useSyncExternalStore} from 'react';
-import {useSandpack} from '@codesandbox/sandpack-react';
+import {useSandpack} from '@codesandbox/sandpack-react/unstyled';
 import {IconDownload} from '../../Icon/IconDownload';
 export interface DownloadButtonProps {}
 
@@ -103,7 +103,7 @@ ${css}
       onClick={downloadHTML}
       title="Download Sandbox"
       type="button">
-      <IconDownload className="inline mr-1" /> Download
+      <IconDownload className="inline me-1" /> Download
     </button>
   );
 }

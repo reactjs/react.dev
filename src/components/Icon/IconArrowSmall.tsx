@@ -7,11 +7,17 @@ import cn from 'classnames';
 
 export const IconArrowSmall = memo<
   JSX.IntrinsicElements['svg'] & {
-    displayDirection: 'left' | 'right' | 'up' | 'down';
+    /**
+     * The direction the arrow should point.
+     * `start` and `end` are relative to the current locale.
+     * for example, in LTR, `start` is left and `end` is right.
+     */
+    displayDirection: 'start' | 'end' | 'right' | 'left' | 'up' | 'down';
   }
 >(function IconArrowSmall({displayDirection, className, ...rest}) {
   const classes = cn(className, {
     'rotate-180': displayDirection === 'left',
+    'rotate-180 rtl:rotate-0': displayDirection === 'start',
     'rotate-90': displayDirection === 'down',
   });
   return (

@@ -15,6 +15,16 @@ March 22, 2024. In-person in Paris, France + Remote (hybrid)
 
 [Website](https://react.paris/) - [Twitter](https://twitter.com/BeJS_) - [LinkedIn](https://www.linkedin.com/events/7150816372074192900/comments/)
 
+### React Connection 2024 {/*react-connection-2024*/}
+April 22, 2024. Paris, France 
+
+[Website](https://www.reactconnection.io/) - [X](https://twitter.com/reactconn) - [Mastodon](https://mastodon.world/@reactconnection)
+
+### React Native Connection 2024 {/*react-native-connection-2024*/}
+April 23, 2024. Paris, France 
+
+[Website](https://www.reactnativeconnection.io/) - [X](https://twitter.com/reactnativeconn) - [Mastodon](https://mastodon.world/@reactnativeconnection)
+
 ### App.js Conf 2024 {/*appjs-conf-2024*/}
 May 22 - 24, 2024. In-person in Kraków, Poland + remote
 

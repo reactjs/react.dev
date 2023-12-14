@@ -1,7 +1,6 @@
 import {Children, memo} from 'react';
 import InlineCode from './InlineCode';
 import Sandpack from './Sandpack';
-import { format } from 'path';
 
 const ShowRenderedHTML = `
 import { renderToStaticMarkup } from 'react-dom/server';
@@ -66,7 +65,7 @@ const packageJSON = `
 function createFile(meta: string, source: string) {
   return (
     <pre key={meta}>
-      <InlineCode meta={meta} className="language-js" children={source} />
+      <InlineCode meta={meta} className="language-js">{source}</InlineCode>
     </pre>
   );
 }
@@ -79,6 +78,6 @@ export default memo (function SandpackWithHTMLOutput(props: React.ComponentProps
     createFile('package.json hidden', packageJSON),
   ];
   return (
-    <Sandpack {...props} children={children} />
+    <Sandpack {...props}>{children}</Sandpack>
   );
 });

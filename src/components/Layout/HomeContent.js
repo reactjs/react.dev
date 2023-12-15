@@ -1508,8 +1508,8 @@ function ConferenceLayout({conf, children}) {
             backgroundImage:
               'linear-gradient(45deg,transparent 50%,currentColor 50%),linear-gradient(135deg,currentColor 50%,transparent 50%)',
           }}>
-          <option value="react-conf-2021">React Conf 2021</option>
-          <option value="react-conf-2019">React Conf 2019</option>
+          <option className="text-black" value="react-conf-2021">React Conf 2021</option>
+          <option className="text-black" value="react-conf-2019">React Conf 2019</option>
         </select>
       </Cover>
       <div className="px-4 pb-4" key={conf.id}>

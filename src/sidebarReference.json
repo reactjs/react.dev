@@ -7,8 +7,12 @@
       "sectionHeader": "react@18.2.0"
     },
     {
+      "title": "Overview",
+      "path": "/reference/react"
+    },
+    {
       "title": "Hooks",
-      "path": "/reference/react",
+      "path": "/reference/react/hooks",
       "routes": [
         {
           "title": "use",
@@ -54,6 +58,11 @@
         {
           "title": "useMemo",
           "path": "/reference/react/useMemo"
+        },
+        {
+          "title": "useOptimistic",
+          "path": "/reference/react/useOptimistic",
+          "canary": true
         },
         {
           "title": "useReducer",
@@ -127,6 +136,16 @@
         {
           "title": "startTransition",
           "path": "/reference/react/startTransition"
+        },
+        {
+          "title": "experimental_taintObjectReference",
+          "path": "/reference/react/experimental_taintObjectReference",
+          "canary": true
+        },
+        {
+          "title": "experimental_taintUniqueValue",
+          "path": "/reference/react/experimental_taintUniqueValue",
+          "canary": true
         }
       ]
     },
@@ -152,12 +171,33 @@
       "sectionHeader": "react-dom@18.2.0"
     },
     {
+      "title": "Hooks",
+      "path": "/reference/react-dom/hooks",
+      "routes": [
+        {
+          "title": "useFormState",
+          "path": "/reference/react-dom/hooks/useFormState",
+          "canary": true
+        },
+        {
+          "title": "useFormStatus",
+          "path": "/reference/react-dom/hooks/useFormStatus",
+          "canary": true
+        }
+      ]
+    },
+    {
       "title": "Components",
       "path": "/reference/react-dom/components",
       "routes": [
         {
           "title": "Common (e.g. <div>)",
           "path": "/reference/react-dom/components/common"
+        },
+        {
+          "title": "<form>",
+          "path": "/reference/react-dom/components/form",
+          "canary": true
         },
         {
           "title": "<input>",

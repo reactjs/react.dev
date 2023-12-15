@@ -52,6 +52,12 @@ export function Preview({
     rawError = null;
   }
 
+  // When throwing a new Error in Sandpack - we want to disable the dev error dialog
+  // to show the Error Boundary fallback
+  if (rawError && rawError.message.includes(`throw Error('Example error')`)) {
+    rawError = null;
+  }
+
   // Memoized because it's fed to debouncing.
   const firstLintError = useMemo(() => {
     if (lintErrors.length === 0) {

@@ -72,7 +72,7 @@ For example, when a user types a message into the form and hits the "Send" butto
 <Sandpack>
 
 
-```js App.js
+```js src/App.js
 import { useOptimistic, useState, useRef } from "react";
 import { deliverMessage } from "./actions.js";
 
@@ -122,7 +122,7 @@ export default function App() {
 }
 ```
 
-```js actions.js
+```js src/actions.js
 export async function deliverMessage(message) {
   await new Promise((res) => setTimeout(res, 1000));
   return message;

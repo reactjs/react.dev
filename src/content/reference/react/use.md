@@ -247,7 +247,7 @@ Because <CodeStep step={2}>`Message`</CodeStep> is wrapped in <CodeStep step={3}
 
 <Sandpack>
 
-```js message.js active
+```js src/message.js active
 "use client";
 
 import { use, Suspense } from "react";
@@ -266,7 +266,7 @@ export function MessageContainer({ messagePromise }) {
 }
 ```
 
-```js App.js hidden
+```js src/App.js hidden
 import { useState } from "react";
 import { MessageContainer } from "./message.js";
 
@@ -290,7 +290,7 @@ export default function App() {
 }
 ```
 
-```js index.js hidden
+```js src/index.js hidden
 // TODO: update to import from stable
 // react instead of canary once the `use`
 // Hook is in a stable release of React
@@ -364,7 +364,7 @@ If you'd like to display an error to your users when a Promise is rejected, you 
 
 <Sandpack>
 
-```js message.js active
+```js src/message.js active
 "use client";
 
 import { use, Suspense } from "react";
@@ -386,7 +386,7 @@ function Message({ messagePromise }) {
 }
 ```
 
-```js App.js hidden
+```js src/App.js hidden
 import { useState } from "react";
 import { MessageContainer } from "./message.js";
 
@@ -410,7 +410,7 @@ export default function App() {
 }
 ```
 
-```js index.js hidden
+```js src/index.js hidden
 // TODO: update to import from stable
 // react instead of canary once the `use`
 // Hook is in a stable release of React

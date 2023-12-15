@@ -177,7 +177,7 @@ Toggle the theme. **Thanks to `useMemo`, it's fast despite the artificial slowdo
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useState } from 'react';
 import { createTodos } from './utils.js';
 import TodoList from './TodoList.js';
@@ -219,7 +219,7 @@ export default function App() {
 
 ```
 
-```js TodoList.js active
+```js src/TodoList.js active
 import { useMemo } from 'react';
 import { filterTodos } from './utils.js'
 
@@ -246,7 +246,7 @@ export default function TodoList({ todos, theme, tab }) {
 }
 ```
 
-```js utils.js
+```js src/utils.js
 export function createTodos() {
   const todos = [];
   for (let i = 0; i < 50; i++) {
@@ -307,7 +307,7 @@ Unlike in the previous example, toggling the theme is also slow now! This is bec
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useState } from 'react';
 import { createTodos } from './utils.js';
 import TodoList from './TodoList.js';
@@ -349,7 +349,7 @@ export default function App() {
 
 ```
 
-```js TodoList.js active
+```js src/TodoList.js active
 import { filterTodos } from './utils.js'
 
 export default function TodoList({ todos, theme, tab }) {
@@ -372,7 +372,7 @@ export default function TodoList({ todos, theme, tab }) {
 }
 ```
 
-```js utils.js
+```js src/utils.js
 export function createTodos() {
   const todos = [];
   for (let i = 0; i < 50; i++) {
@@ -427,7 +427,7 @@ However, here is the same code **with the artificial slowdown removed.** Does th
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useState } from 'react';
 import { createTodos } from './utils.js';
 import TodoList from './TodoList.js';
@@ -469,7 +469,7 @@ export default function App() {
 
 ```
 
-```js TodoList.js active
+```js src/TodoList.js active
 import { filterTodos } from './utils.js'
 
 export default function TodoList({ todos, theme, tab }) {
@@ -491,7 +491,7 @@ export default function TodoList({ todos, theme, tab }) {
 }
 ```
 
-```js utils.js
+```js src/utils.js
 export function createTodos() {
   const todos = [];
   for (let i = 0; i < 50; i++) {
@@ -651,7 +651,7 @@ Next, try toggling the theme. **Thanks to `useMemo` together with [`memo`](/refe
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useState } from 'react';
 import { createTodos } from './utils.js';
 import TodoList from './TodoList.js';
@@ -692,7 +692,7 @@ export default function App() {
 }
 ```
 
-```js TodoList.js active
+```js src/TodoList.js active
 import { useMemo } from 'react';
 import List from './List.js';
 import { filterTodos } from './utils.js'
@@ -711,7 +711,7 @@ export default function TodoList({ todos, theme, tab }) {
 }
 ```
 
-```js List.js
+```js src/List.js
 import { memo } from 'react';
 
 const List = memo(function List({ items }) {
@@ -738,7 +738,7 @@ const List = memo(function List({ items }) {
 export default List;
 ```
 
-```js utils.js
+```js src/utils.js
 export function createTodos() {
   const todos = [];
   for (let i = 0; i < 50; i++) {
@@ -793,7 +793,7 @@ Unlike in the previous example, toggling the theme is also slow now! This is bec
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useState } from 'react';
 import { createTodos } from './utils.js';
 import TodoList from './TodoList.js';
@@ -834,7 +834,7 @@ export default function App() {
 }
 ```
 
-```js TodoList.js active
+```js src/TodoList.js active
 import List from './List.js';
 import { filterTodos } from './utils.js'
 
@@ -849,7 +849,7 @@ export default function TodoList({ todos, theme, tab }) {
 }
 ```
 
-```js List.js
+```js src/List.js
 import { memo } from 'react';
 
 const List = memo(function List({ items }) {
@@ -876,7 +876,7 @@ const List = memo(function List({ items }) {
 export default List;
 ```
 
-```js utils.js
+```js src/utils.js
 export function createTodos() {
   const todos = [];
   for (let i = 0; i < 50; i++) {
@@ -925,7 +925,7 @@ However, here is the same code **with the artificial slowdown removed.** Does th
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useState } from 'react';
 import { createTodos } from './utils.js';
 import TodoList from './TodoList.js';
@@ -966,7 +966,7 @@ export default function App() {
 }
 ```
 
-```js TodoList.js active
+```js src/TodoList.js active
 import List from './List.js';
 import { filterTodos } from './utils.js'
 
@@ -980,7 +980,7 @@ export default function TodoList({ todos, theme, tab }) {
 }
 ```
 
-```js List.js
+```js src/List.js
 import { memo } from 'react';
 
 function List({ items }) {
@@ -1001,7 +1001,7 @@ function List({ items }) {
 export default memo(List);
 ```
 
-```js utils.js
+```js src/utils.js
 export function createTodos() {
   const todos = [];
   for (let i = 0; i < 50; i++) {

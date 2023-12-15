@@ -131,7 +131,7 @@ export default function TodosApp() {
 }
 ```
 
-```js todoStore.js
+```js src/todoStore.js
 // This is an example of a third-party store
 // that you might need to integrate with React.
 
@@ -300,7 +300,7 @@ export default function App() {
 }
 ```
 
-```js useOnlineStatus.js
+```js src/useOnlineStatus.js
 import { useSyncExternalStore } from 'react';
 
 export function useOnlineStatus() {

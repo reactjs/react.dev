@@ -83,6 +83,10 @@ function SandpackRoot(props: SandpackProps) {
         theme={CustomTheme}
         customSetup={{
           environment: 'create-react-app',
+          dependencies: {
+            'react-dom': '18.3.0-canary-0cdfef19b-20231211',
+            react: '18.3.0-canary-0cdfef19b-20231211',
+          },
         }}
         options={{
           autorun,

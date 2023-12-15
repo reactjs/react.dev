@@ -9,7 +9,6 @@ import {SandpackLogLevel} from '@codesandbox/sandpack-client';
 import {CustomPreset} from './CustomPreset';
 import {createFileMap} from './createFileMap';
 import {CustomTheme} from './Themes';
-import {template} from './template';
 
 type SandpackProps = {
   children: React.ReactNode;
@@ -71,19 +70,17 @@ function SandpackRoot(props: SandpackProps) {
   const codeSnippets = Children.toArray(children) as React.ReactElement[];
   const files = createFileMap(codeSnippets);
 
-  files['/src/styles.css'] = {
-    code: [sandboxStyle, files['/src/styles.css']?.code ?? ''].join('\n\n'),
-    hidden: !files['/src/styles.css']?.visible,
+  files['/styles.css'] = {
+    code: [sandboxStyle, files['/styles.css']?.code ?? ''].join('\n\n'),
+    hidden: !files['/styles.css']?.visible,
   };
 
   return (
     <div className="sandpack sandpack--playground w-full my-8" dir="ltr">
       <SandpackProvider
-        files={{...template, ...files}}
+        template="react"
+        files={files}
         theme={CustomTheme}
-        customSetup={{
-          environment: 'create-react-app',
-        }}
         options={{
           autorun,
           initMode: 'user-visible',

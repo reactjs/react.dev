@@ -854,7 +854,7 @@ export default function Map({ zoomLevel }) {
 }
 ```
 
-```js map-widget.js
+```js src/map-widget.js
 import 'leaflet/dist/leaflet.css';
 import * as L from 'leaflet';
 

@@ -72,7 +72,7 @@ export default function MyApp() {
 }
 ```
 
-```js App.js hidden
+```js src/App.js hidden
 import AppTSX from "./App.tsx";
 export default App = AppTSX;
 ```
@@ -112,7 +112,7 @@ export default function MyApp() {
 }
 ```
 
-```js App.js hidden
+```js src/App.js hidden
 import AppTSX from "./App.tsx";
 export default App = AppTSX;
 ```
@@ -213,7 +213,7 @@ export default function App() {
 
 ```
 
-```js App.js hidden
+```js src/App.js hidden
 import AppTSX from "./App.tsx";
 export default App = AppTSX;
 ```
@@ -277,7 +277,7 @@ function MyComponent() {
 }
 ```
 
-```js App.js hidden
+```js src/App.js hidden
 import AppTSX from "./App.tsx";
 export default App = AppTSX;
 ```
@@ -400,7 +400,7 @@ export default function Form() {
 }
 ```
 
-```js App.js hidden
+```js src/App.js hidden
 import AppTSX from "./App.tsx";
 export default App = AppTSX;
 ```

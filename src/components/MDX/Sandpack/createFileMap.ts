@@ -4,12 +4,6 @@
 
 import type {SandpackFile} from '@codesandbox/sandpack-react/unstyled';
 
-/**
- * Ideally, we should update all markdown files and all the sandboxes
- * to use the same folder structure to include `src`. However, we can
- * do the same by prepending the root folder on this function.
- */
-const rootFolder = '/src/';
 export const AppJSPath = `/src/App.js`;
 export const StylesCSSPath = `/src/styles.css`;
 export const SUPPORTED_FILES = [AppJSPath, StylesCSSPath];
@@ -27,7 +21,7 @@ export const createFileMap = (codeSnippets: any) => {
 
       if (props.meta) {
         const [name, ...params] = props.meta.split(' ');
-        filePath = rootFolder + name;
+        filePath = '/' + name;
         if (params.includes('hidden')) {
           fileHidden = true;
         }

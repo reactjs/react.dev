@@ -502,7 +502,7 @@ export default function ChatRoom() {
 }
 ```
 
-```js chat.js
+```js src/chat.js
 export function createConnection() {
   // A real implementation would actually connect to the server
   return {
@@ -560,7 +560,7 @@ export default function ChatRoom() {
 }
 ```
 
-```js chat.js
+```js src/chat.js
 export function createConnection() {
   // A real implementation would actually connect to the server
   return {
@@ -971,7 +971,7 @@ Use the input's [`focus()`](https://developer.mozilla.org/en-US/docs/Web/API/HTM
 
 <Sandpack>
 
-```js MyInput.js active
+```js src/MyInput.js active
 import { useEffect, useRef } from 'react';
 
 export default function MyInput({ value, onChange }) {
@@ -990,7 +990,7 @@ export default function MyInput({ value, onChange }) {
 }
 ```
 
-```js App.js hidden
+```js src/App.js hidden
 import { useState } from 'react';
 import MyInput from './MyInput.js';
 
@@ -1055,7 +1055,7 @@ To fix the mistake, wrap the `ref.current.focus()` call into an Effect declarati
 
 <Sandpack>
 
-```js MyInput.js active
+```js src/MyInput.js active
 import { useEffect, useRef } from 'react';
 
 export default function MyInput({ value, onChange }) {
@@ -1075,7 +1075,7 @@ export default function MyInput({ value, onChange }) {
 }
 ```
 
-```js App.js hidden
+```js src/App.js hidden
 import { useState } from 'react';
 import MyInput from './MyInput.js';
 
@@ -1139,7 +1139,7 @@ Let's say you want to focus the first field. The first `MyInput` component now r
 
 <Sandpack>
 
-```js MyInput.js active
+```js src/MyInput.js active
 import { useEffect, useRef } from 'react';
 
 export default function MyInput({ shouldFocus, value, onChange }) {
@@ -1160,7 +1160,7 @@ export default function MyInput({ shouldFocus, value, onChange }) {
 }
 ```
 
-```js App.js hidden
+```js src/App.js hidden
 import { useState } from 'react';
 import MyInput from './MyInput.js';
 
@@ -1229,7 +1229,7 @@ Put the conditional logic inside the Effect. You will need to specify `shouldFoc
 
 <Sandpack>
 
-```js MyInput.js active
+```js src/MyInput.js active
 import { useEffect, useRef } from 'react';
 
 export default function MyInput({ shouldFocus, value, onChange }) {
@@ -1251,7 +1251,7 @@ export default function MyInput({ shouldFocus, value, onChange }) {
 }
 ```
 
-```js App.js hidden
+```js src/App.js hidden
 import { useState } from 'react';
 import MyInput from './MyInput.js';
 
@@ -1322,7 +1322,7 @@ Keep in mind that `setInterval` returns an interval ID, which you can pass to [`
 
 <Sandpack>
 
-```js Counter.js active
+```js src/Counter.js active
 import { useState, useEffect } from 'react';
 
 export default function Counter() {
@@ -1340,7 +1340,7 @@ export default function Counter() {
 }
 ```
 
-```js App.js hidden
+```js src/App.js hidden
 import { useState } from 'react';
 import Counter from './Counter.js';
 
@@ -1381,7 +1381,7 @@ To fix this code, save the interval ID returned by `setInterval`, and implement 
 
 <Sandpack>
 
-```js Counter.js active
+```js src/Counter.js active
 import { useState, useEffect } from 'react';
 
 export default function Counter() {
@@ -1400,7 +1400,7 @@ export default function Counter() {
 }
 ```
 
-```js App.js hidden
+```js src/App.js hidden
 import { useState } from 'react';
 import Counter from './Counter.js';
 
@@ -1441,7 +1441,7 @@ This component shows the biography for the selected person. It loads the biograp
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useState, useEffect } from 'react';
 import { fetchBio } from './api.js';
 
@@ -1472,7 +1472,7 @@ export default function Page() {
 }
 ```
 
-```js api.js hidden
+```js src/api.js hidden
 export async function fetchBio(person) {
   const delay = person === 'Bob' ? 2000 : 200;
   return new Promise(resolve => {
@@ -1514,7 +1514,7 @@ To fix this race condition, add a cleanup function:
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useState, useEffect } from 'react';
 import { fetchBio } from './api.js';
 
@@ -1550,7 +1550,7 @@ export default function Page() {
 }
 ```
 
-```js api.js hidden
+```js src/api.js hidden
 export async function fetchBio(person) {
   const delay = person === 'Bob' ? 2000 : 200;
   return new Promise(resolve => {

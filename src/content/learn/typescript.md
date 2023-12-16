@@ -55,7 +55,7 @@ Taking the [`MyButton` component](/learn#components) from the [Quick Start](/lea
 
 <Sandpack>
 
-```tsx App.tsx active
+```tsx src/App.tsx active
 function MyButton({ title }: { title: string }) {
   return (
     <button>{title}</button>
@@ -88,7 +88,7 @@ This inline syntax is the simplest way to provide types for a component, though 
 
 <Sandpack>
 
-```tsx App.tsx active
+```tsx src/App.tsx active
 interface MyButtonProps {
   /** The text to display inside the button */
   title: string;
@@ -170,7 +170,7 @@ The [`useReducer` Hook](/reference/react/useReducer) is a more complex Hook that
 
 <Sandpack>
 
-```tsx App.tsx active
+```tsx src/App.tsx active
 import {useReducer} from 'react';
 
 interface State {
@@ -248,7 +248,7 @@ The type of the value provided by the context is inferred from the value passed 
 
 <Sandpack>
 
-```tsx App.tsx active
+```tsx src/App.tsx active
 import { createContext, useContext, useState } from 'react';
 
 type Theme = "light" | "dark" | "system";
@@ -381,7 +381,7 @@ When working with DOM events in React, the type of the event can often be inferr
 
 <Sandpack>
 
-```tsx App.tsx active
+```tsx src/App.tsx active
 import { useState } from 'react';
 
 export default function Form() {

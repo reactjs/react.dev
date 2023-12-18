@@ -65,19 +65,21 @@ const packageJSON = `
 function createFile(meta: string, source: string) {
   return (
     <pre key={meta}>
-      <InlineCode meta={meta} className="language-js">{source}</InlineCode>
+      <InlineCode meta={meta} className="language-js">
+        {source}
+      </InlineCode>
     </pre>
   );
 }
 
-export default memo (function SandpackWithHTMLOutput(props: React.ComponentProps<typeof Sandpack>) {
+export default memo(function SandpackWithHTMLOutput(
+  props: React.ComponentProps<typeof Sandpack>
+) {
   const children = [
     ...Children.toArray(props.children),
     createFile('ShowRenderedHTML.js', ShowRenderedHTML),
     createFile('formatHTML.js hidden', formatHTML),
     createFile('package.json hidden', packageJSON),
   ];
-  return (
-    <Sandpack {...props}>{children}</Sandpack>
-  );
+  return <Sandpack {...props}>{children}</Sandpack>;
 });

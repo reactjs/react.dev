@@ -492,6 +492,8 @@ Inside the `SearchBar`, you will add the `onChange` event handlers and set the p
   onChange={(e) => onFilterTextChange(e.target.value)} />
 ```
 
+(Set up changing state for the checkbox using `onInStockOnlyChange` yourself.)
+
 Now the application fully works!
 
 <Sandpack>

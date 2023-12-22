@@ -918,6 +918,7 @@ This example passes the initializer function, so the `createInitialTodos` functi
 import { useState } from 'react';
 
 function createInitialTodos() {
+  console.log('createInitialTodos called')
   const initialTodos = [];
   for (let i = 0; i < 50; i++) {
     initialTodos.push({
@@ -963,7 +964,7 @@ export default function TodoList() {
 
 #### Passing the initial state directly {/*passing-the-initial-state-directly*/}
 
-This example **does not** pass the initializer function, so the `createInitialTodos` function runs on every render, such as when you type into the input. There is no observable difference in behavior, but this code is less efficient.
+This example **does not** pass the initializer function. As a result, the `createInitialTodos` function is invoked on every render, including scenarios like typing into the input field. While there may not be an immediately observable behavior change, you can notice the console log message for each rerender caused by changes in the text field. Despite this subtlety, it's important to be aware that this approach is less efficient.
 
 <Sandpack>
 
@@ -971,6 +972,7 @@ This example **does not** pass the initializer function, so the `createInitialTo
 import { useState } from 'react';
 
 function createInitialTodos() {
+  console.log('createInitialTodos called')
   const initialTodos = [];
   for (let i = 0; i < 50; i++) {
     initialTodos.push({

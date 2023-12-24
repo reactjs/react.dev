@@ -33,7 +33,7 @@ const mappedChildren = Children.map(children, child =>
 
 Call `Children.count(children)` to count the number of children in the `children` data structure.
 
-```js RowList.js active
+```js src/RowList.js active
 import { Children } from 'react';
 
 function RowList({ children }) {
@@ -66,7 +66,7 @@ The number of nodes inside these `children`.
 
 Call `Children.forEach(children, fn, thisArg?)` to run some code for each child in the `children` data structure.
 
-```js RowList.js active
+```js src/RowList.js active
 import { Children } from 'react';
 
 function SeparatorList({ children }) {
@@ -100,7 +100,7 @@ function SeparatorList({ children }) {
 
 Call `Children.map(children, fn, thisArg?)` to map or transform each child in the `children` data structure.
 
-```js RowList.js active
+```js src/RowList.js active
 import { Children } from 'react';
 
 function RowList({ children }) {
@@ -169,7 +169,7 @@ Otherwise, throws an error.
 
 Call `Children.toArray(children)` to create an array out of the `children` data structure.
 
-```js ReversedList.js active
+```js src/ReversedList.js active
 import { Children } from 'react';
 
 export default function ReversedList({ children }) {
@@ -258,7 +258,7 @@ export default function App() {
 }
 ```
 
-```js RowList.js active
+```js src/RowList.js active
 import { Children } from 'react';
 
 export default function RowList({ children }) {
@@ -336,7 +336,7 @@ function MoreRows() {
 }
 ```
 
-```js RowList.js
+```js src/RowList.js
 import { Children } from 'react';
 
 export default function RowList({ children }) {
@@ -395,7 +395,7 @@ export default function App() {
 }
 ```
 
-```js SeparatorList.js active
+```js src/SeparatorList.js active
 import { Children } from 'react';
 
 export default function SeparatorList({ children }) {
@@ -439,7 +439,7 @@ export default function App() {
 }
 ```
 
-```js RowList.js active
+```js src/RowList.js active
 import { Children } from 'react';
 
 export default function RowList({ children }) {
@@ -510,7 +510,7 @@ export default function App() {
 }
 ```
 
-```js ReversedList.js active
+```js src/ReversedList.js active
 import { Children } from 'react';
 
 export default function ReversedList({ children }) {
@@ -572,7 +572,7 @@ export default function App() {
 }
 ```
 
-```js RowList.js
+```js src/RowList.js
 export function RowList({ children }) {
   return (
     <div className="RowList">
@@ -639,7 +639,7 @@ function MoreRows() {
 }
 ```
 
-```js RowList.js
+```js src/RowList.js
 export function RowList({ children }) {
   return (
     <div className="RowList">
@@ -698,7 +698,7 @@ export default function App() {
 }
 ```
 
-```js RowList.js
+```js src/RowList.js
 export function RowList({ rows }) {
   return (
     <div className="RowList">
@@ -761,7 +761,7 @@ export default function App() {
 }
 ```
 
-```js TabSwitcher.js
+```js src/TabSwitcher.js
 import { useState } from 'react';
 
 export default function TabSwitcher({ tabs }) {
@@ -817,7 +817,7 @@ export default function App() {
 }
 ```
 
-```js TabSwitcher.js
+```js src/TabSwitcher.js
 import { useState } from 'react';
 
 export default function TabSwitcher({ tabIds, getHeader, renderContent }) {
@@ -869,7 +869,7 @@ export default function App() {
 }
 ```
 
-```js RowList.js
+```js src/RowList.js
 import { Fragment } from 'react';
 
 export function RowList({ rowIds, renderRow }) {

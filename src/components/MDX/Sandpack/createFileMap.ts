@@ -2,7 +2,11 @@
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
 
-import type {SandpackFile} from '@codesandbox/sandpack-react';
+import type {SandpackFile} from '@codesandbox/sandpack-react/unstyled';
+
+export const AppJSPath = `/src/App.js`;
+export const StylesCSSPath = `/src/styles.css`;
+export const SUPPORTED_FILES = [AppJSPath, StylesCSSPath];
 
 export const createFileMap = (codeSnippets: any) => {
   return codeSnippets.reduce(
@@ -26,15 +30,16 @@ export const createFileMap = (codeSnippets: any) => {
         }
       } else {
         if (props.className === 'language-js') {
-          filePath = '/App.js';
+          filePath = AppJSPath;
         } else if (props.className === 'language-css') {
-          filePath = '/styles.css';
+          filePath = StylesCSSPath;
         } else {
           throw new Error(
             `Code block is missing a filename: ${props.children}`
           );
         }
       }
+
       if (result[filePath]) {
         throw new Error(
           `File ${filePath} was defined multiple times. Each file snippet should have a unique path name`

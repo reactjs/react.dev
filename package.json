@@ -22,7 +22,7 @@
     "check-all": "npm-run-all prettier lint:fix tsc"
   },
   "dependencies": {
-    "@codesandbox/sandpack-react": "1.15.5",
+    "@codesandbox/sandpack-react": "2.6.0",
     "@docsearch/css": "3.0.0-alpha.41",
     "@docsearch/react": "3.0.0-alpha.41",
     "@headlessui/react": "^1.7.0",
@@ -30,13 +30,12 @@
     "classnames": "^2.2.6",
     "date-fns": "^2.16.1",
     "debounce": "^1.2.1",
-    "ga-lite": "^2.1.4",
     "github-slugger": "^1.3.0",
     "next": "^13.4.1",
     "next-remote-watch": "^1.0.0",
     "parse-numeric-range": "^1.2.0",
     "react": "^0.0.0-experimental-16d053d59-20230506",
-    "react-collapsed": "npm:@gaearon/react-collapsed@3.1.0-forked.1",
+    "react-collapsed": "4.0.4",
     "react-dom": "^0.0.0-experimental-16d053d59-20230506",
     "remark-frontmatter": "^4.0.1",
     "remark-gfm": "^3.0.1"
@@ -92,7 +91,7 @@
     "retext": "^7.0.1",
     "retext-smartypants": "^4.0.0",
     "rss": "^1.2.2",
-    "tailwindcss": "^3.0.22",
+    "tailwindcss": "^3.3.2",
     "typescript": "^4.0.2",
     "unist-util-visit": "^2.0.3",
     "webpack-bundle-analyzer": "^4.5.0"

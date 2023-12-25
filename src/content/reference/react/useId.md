@@ -269,7 +269,7 @@ export default function App() {
 }
 ```
 
-```js index.js active
+```js src/index.js active
 import { createRoot } from 'react-dom/client';
 import App from './App.js';
 import './styles.css';

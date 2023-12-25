@@ -22,7 +22,7 @@ In this example from [the introduction to reducers](/learn/extracting-state-logi
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useReducer } from 'react';
 import AddTask from './AddTask.js';
 import TaskList from './TaskList.js';
@@ -105,7 +105,7 @@ const initialTasks = [
 ];
 ```
 
-```js AddTask.js
+```js src/AddTask.js
 import { useState } from 'react';
 
 export default function AddTask({ onAddTask }) {
@@ -126,7 +126,7 @@ export default function AddTask({ onAddTask }) {
 }
 ```
 
-```js TaskList.js
+```js src/TaskList.js
 import { useState } from 'react';
 
 export default function TaskList({
@@ -256,7 +256,7 @@ Export them from a separate file so that you can later import them from other fi
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useReducer } from 'react';
 import AddTask from './AddTask.js';
 import TaskList from './TaskList.js';
@@ -339,14 +339,14 @@ const initialTasks = [
 ];
 ```
 
-```js TasksContext.js active
+```js src/TasksContext.js active
 import { createContext } from 'react';
 
 export const TasksContext = createContext(null);
 export const TasksDispatchContext = createContext(null);
 ```
 
-```js AddTask.js
+```js src/AddTask.js
 import { useState } from 'react';
 
 export default function AddTask({ onAddTask }) {
@@ -367,7 +367,7 @@ export default function AddTask({ onAddTask }) {
 }
 ```
 
-```js TaskList.js
+```js src/TaskList.js
 import { useState } from 'react';
 
 export default function TaskList({
@@ -474,7 +474,7 @@ For now, you pass the information both via props and in context:
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useReducer } from 'react';
 import AddTask from './AddTask.js';
 import TaskList from './TaskList.js';
@@ -560,14 +560,14 @@ const initialTasks = [
 ];
 ```
 
-```js TasksContext.js
+```js src/TasksContext.js
 import { createContext } from 'react';
 
 export const TasksContext = createContext(null);
 export const TasksDispatchContext = createContext(null);
 ```
 
-```js AddTask.js
+```js src/AddTask.js
 import { useState } from 'react';
 
 export default function AddTask({ onAddTask }) {
@@ -588,7 +588,7 @@ export default function AddTask({ onAddTask }) {
 }
 ```
 
-```js TaskList.js
+```js src/TaskList.js
 import { useState } from 'react';
 
 export default function TaskList({
@@ -717,7 +717,7 @@ export default function AddTask() {
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useReducer } from 'react';
 import AddTask from './AddTask.js';
 import TaskList from './TaskList.js';
@@ -774,14 +774,14 @@ const initialTasks = [
 ];
 ```
 
-```js TasksContext.js
+```js src/TasksContext.js
 import { createContext } from 'react';
 
 export const TasksContext = createContext(null);
 export const TasksDispatchContext = createContext(null);
 ```
 
-```js AddTask.js
+```js src/AddTask.js
 import { useState, useContext } from 'react';
 import { TasksDispatchContext } from './TasksContext.js';
 
@@ -810,7 +810,7 @@ export default function AddTask() {
 let nextId = 3;
 ```
 
-```js TaskList.js active
+```js src/TaskList.js active
 import { useState, useContext } from 'react';
 import { TasksContext, TasksDispatchContext } from './TasksContext.js';
 
@@ -934,7 +934,7 @@ export function TasksProvider({ children }) {
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import AddTask from './AddTask.js';
 import TaskList from './TaskList.js';
 import { TasksProvider } from './TasksContext.js';
@@ -950,7 +950,7 @@ export default function TaskApp() {
 }
 ```
 
-```js TasksContext.js
+```js src/TasksContext.js
 import { createContext, useReducer } from 'react';
 
 export const TasksContext = createContext(null);
@@ -1005,7 +1005,7 @@ const initialTasks = [
 ];
 ```
 
-```js AddTask.js
+```js src/AddTask.js
 import { useState, useContext } from 'react';
 import { TasksDispatchContext } from './TasksContext.js';
 
@@ -1034,7 +1034,7 @@ export default function AddTask() {
 let nextId = 3;
 ```
 
-```js TaskList.js
+```js src/TaskList.js
 import { useState, useContext } from 'react';
 import { TasksContext, TasksDispatchContext } from './TasksContext.js';
 
@@ -1144,7 +1144,7 @@ This doesn't change the behavior in any way, but it lets you later split these c
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import AddTask from './AddTask.js';
 import TaskList from './TaskList.js';
 import { TasksProvider } from './TasksContext.js';
@@ -1160,7 +1160,7 @@ export default function TaskApp() {
 }
 ```
 
-```js TasksContext.js
+```js src/TasksContext.js
 import { createContext, useContext, useReducer } from 'react';
 
 const TasksContext = createContext(null);
@@ -1224,7 +1224,7 @@ const initialTasks = [
 ];
 ```
 
-```js AddTask.js
+```js src/AddTask.js
 import { useState } from 'react';
 import { useTasksDispatch } from './TasksContext.js';
 
@@ -1253,7 +1253,7 @@ export default function AddTask() {
 let nextId = 3;
 ```
 
-```js TaskList.js active
+```js src/TaskList.js active
 import { useState } from 'react';
 import { useTasks, useTasksDispatch } from './TasksContext.js';
 

@@ -11,4 +11,5 @@ export const deployedTranslations = [
   'es',
   'fr',
   'ja',
+  'tr'
 ];

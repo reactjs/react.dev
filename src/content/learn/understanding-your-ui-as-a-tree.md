@@ -22,7 +22,7 @@ React, and many other UI libraries, model UI as a tree. Thinking of your app as 
 
 Trees are a relationship model between items and UI is often represented using tree structures. For example, browsers use tree structures to model HTML ([DOM](https://developer.mozilla.org/docs/Web/API/Document_Object_Model/Introduction)) and CSS ([CSSOM](https://developer.mozilla.org/docs/Web/API/CSS_Object_Model)). Mobile platforms also use trees to represent their view hierarchy.
 
-<Diagram name="preserving_state_dom_tree" height={193} width={864} alt="Diagram with three sections arranged horizontally. In the first section, there are three rectangles stacked vertically, with labels 'Component A', 'Component B', and 'Component C'. Transitioning to the next pane is an arrow with the React logo on top labeled 'React'. The middle section contains a tree of components, with the root labeled 'A' and two children labeled 'B' and 'C'. The next section is again transitioned using an arrow with the React logo on top labeled 'React'. The third and final section is a wireframe of a browser, containing a tree of 8 nodes, which has only a subset highlighted (indicating the subtree from the middle section).">
+<Diagram name="preserving_state_dom_tree" height={193} width={864} alt="Diagram with three sections arranged horizontally. In the first section, there are three rectangles stacked vertically, with labels 'Component A', 'Component B', and 'Component C'. Transitioning to the next pane is an arrow with the React logo on top labeled 'React'. The middle section contains a tree of components, with the root labeled 'A' and two children labeled 'B' and 'C'. The next section is again transitioned using an arrow with the React logo on top labeled 'React DOM'. The third and final section is a wireframe of a browser, containing a tree of 8 nodes, which has only a subset highlighted (indicating the subtree from the middle section).">
 
 React creates a UI tree from your components. In this example, the UI tree is then used to render to the DOM.
 </Diagram>
@@ -39,7 +39,7 @@ Here is a React app that renders inspirational quotes.
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import FancyText from './FancyText';
 import InspirationGenerator from './InspirationGenerator';
 import Copyright from './Copyright';
@@ -57,7 +57,7 @@ export default function App() {
 
 ```
 
-```js FancyText.js
+```js src/FancyText.js
 export default function FancyText({title, text}) {
   return title
     ? <h1 className='fancy title'>{text}</h1>
@@ -65,7 +65,7 @@ export default function FancyText({title, text}) {
 }
 ```
 
-```js InspirationGenerator.js
+```js src/InspirationGenerator.js
 import * as React from 'react';
 import quotes from './quotes';
 import FancyText from './FancyText';
@@ -86,13 +86,13 @@ export default function InspirationGenerator({children}) {
 }
 ```
 
-```js Copyright.js
+```js src/Copyright.js
 export default function Copyright({year}) {
   return <p className='small'>©️ {year}</p>;
 }
 ```
 
-```js quotes.js
+```js src/quotes.js
 export default [
   "Don’t let yesterday take up too much of today.” — Will Rogers",
   "Ambition is putting a ladder against the sky.",
@@ -149,7 +149,7 @@ We can update the app to conditionally render either an inspirational quote or c
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import FancyText from './FancyText';
 import InspirationGenerator from './InspirationGenerator';
 import Copyright from './Copyright';
@@ -167,7 +167,7 @@ export default function App() {
 
 ```
 
-```js FancyText.js
+```js src/FancyText.js
 export default function FancyText({title, text}) {
   return title
     ? <h1 className='fancy title'>{text}</h1>
@@ -175,13 +175,13 @@ export default function FancyText({title, text}) {
 }
 ```
 
-```js Color.js
+```js src/Color.js
 export default function Color({value}) {
   return <div className="colorbox" style={{backgroundColor: value}} />
 }
 ```
 
-```js InspirationGenerator.js
+```js src/InspirationGenerator.js
 import * as React from 'react';
 import inspirations from './inspirations';
 import FancyText from './FancyText';
@@ -206,13 +206,13 @@ export default function InspirationGenerator({children}) {
 }
 ```
 
-```js Copyright.js
+```js src/Copyright.js
 export default function Copyright({year}) {
   return <p className='small'>©️ {year}</p>;
 }
 ```
 
-```js inspirations.js
+```js src/inspirations.js
 export default [
   {type: 'quote', value: "Don’t let yesterday take up too much of today.” — Will Rogers"},
   {type: 'color', value: "#B73636"},

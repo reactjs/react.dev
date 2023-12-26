@@ -78,12 +78,12 @@ function FooterLink({
         className="text-tertiary dark:text-tertiary-dark inline group-focus:text-link dark:group-focus:text-link-dark"
         displayDirection={type === 'Previous' ? 'start' : 'end'}
       />
-      <span>
-        <span className="block no-underline text-sm tracking-wide text-secondary dark:text-secondary-dark uppercase font-bold group-focus:text-link dark:group-focus:text-link-dark group-focus:text-opacity-100">
+      <div className="flex flex-col overflow-hidden">
+        <span className="no-underline text-sm tracking-wide text-secondary dark:text-secondary-dark uppercase font-bold group-focus:text-link dark:group-focus:text-link-dark group-focus:text-opacity-100">
           {type}
         </span>
-        <span className="block text-lg group-hover:underline">{title}</span>
-      </span>
+        <span className="overflow-hidden whitespace-nowrap text-ellipsis text-lg group-hover:underline" title={title}>{title}</span>
+      </div>
     </NextLink>
   );
 }

@@ -139,7 +139,7 @@ To update the UI based on the result of a Server Action while supporting progres
 // requestUsername.js
 'use server';
 
-export async function requestUsername(formData) {
+export default async function requestUsername(formData) {
   const username = formData.get('username');
   if (canRequest(username)) {
     // ...
@@ -154,7 +154,7 @@ export async function requestUsername(formData) {
 'use client';
 
 import { useFormState } from 'react-dom';
-import { requestUsername } from './requestUsername';
+import requestUsername from './requestUsername';
 
 function UsernameForm() {
   const [returnValue, action] = useFormState(requestUsername, 'n/a');
@@ -180,7 +180,7 @@ Server Actions are exposed server endpoints and can be called anywhere in client
 When using a Server Action outside of a [form](/reference/react-dom/components/form), call the Server Action in a [transition](/reference/react/useTransition), which allows you to display a loading indicator, show [optimistic state updates](/reference/react/useOptimistic), and handle unexpected errors. Forms will automatically wrap Server Actions in transitions.
 
 ```js {9-12}
-import { incrementLike } from './actions';
+import incrementLike from './actions';
 import { useState, useTransition } from 'react';
 
 function LikeButton() {
@@ -208,7 +208,7 @@ function LikeButton() {
 'use server';
 
 let likeCount = 0;
-export async function incrementLike() {
+export default async function incrementLike() {
   likeCount++;
   return likeCount;
 }

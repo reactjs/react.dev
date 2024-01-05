@@ -59,35 +59,50 @@ function sendGAEvent(isPositive: boolean) {
 
 function SendFeedback({onSubmit}: {onSubmit: () => void}) {
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [reply, setReply] = useState('Is this page useful?');
+  const submitChange = (x: boolean) => {
+    x == true
+      ? setTimeout(() => {
+          setIsSubmitted(true);
+        }, 3000)
+      : null;
+  };
+
   return (
-    <div className="max-w-xs w-80 lg:w-auto py-3 shadow-lg rounded-lg m-4 bg-wash dark:bg-gray-95 px-4 flex">
-      <p className="w-full font-bold text-primary dark:text-primary-dark text-lg me-4">
-        {isSubmitted ? 'Thank you for your feedback!' : 'Is this page useful?'}
-      </p>
+    <>
       {!isSubmitted && (
-        <button
-          aria-label="Yes"
-          className="bg-secondary-button dark:bg-secondary-button-dark rounded-lg text-primary dark:text-primary-dark px-3 me-2"
-          onClick={() => {
-            setIsSubmitted(true);
-            onSubmit();
-            sendGAEvent(true);
-          }}>
-          {thumbsUpIcon}
-        </button>
+        <div className="max-w-xs w-80 lg:w-auto py-3 shadow-lg rounded-lg m-4 bg-wash dark:bg-gray-95 px-4 flex">
+          <p className="w-full font-bold text-primary dark:text-primary-dark text-lg me-4">
+            {reply}
+          </p>
+          {!isSubmitted && reply == 'Is this page useful?' && (
+            <button
+              aria-label="Yes"
+              className="bg-secondary-button dark:bg-secondary-button-dark rounded-lg text-primary dark:text-primary-dark px-3 me-2"
+              onClick={() => {
+                setReply('Thank you for your feedback!');
+                submitChange(true);
+                onSubmit();
+                sendGAEvent(true);
+              }}>
+              {thumbsUpIcon}
+            </button>
+          )}
+          {!isSubmitted && reply == 'Is this page useful?' && (
+            <button
+              aria-label="No"
+              className="bg-secondary-button dark:bg-secondary-button-dark rounded-lg text-primary dark:text-primary-dark px-3"
+              onClick={() => {
+                setReply('Thank you for your feedback!');
+                submitChange(true);
+                onSubmit();
+                sendGAEvent(false);
+              }}>
+              {thumbsDownIcon}
+            </button>
+          )}
+        </div>
       )}
-      {!isSubmitted && (
-        <button
-          aria-label="No"
-          className="bg-secondary-button dark:bg-secondary-button-dark rounded-lg text-primary dark:text-primary-dark px-3"
-          onClick={() => {
-            setIsSubmitted(true);
-            onSubmit();
-            sendGAEvent(false);
-          }}>
-          {thumbsDownIcon}
-        </button>
-      )}
-    </div>
+    </>
   );
 }

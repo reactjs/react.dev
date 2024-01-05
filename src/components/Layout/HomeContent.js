@@ -1499,7 +1499,7 @@ function ConferenceLayout({conf, children}) {
               navigate(e.target.value);
             });
           }}
-          className="appearance-none pe-8 bg-transparent text-primary-dark text-2xl font-bold mb-0.5"
+          className="appearance-none pe-8 ps-2 bg-transparent text-primary-dark text-2xl font-bold mb-0.5"
           style={{
             backgroundSize: '4px 4px, 4px 4px',
             backgroundRepeat: 'no-repeat',
@@ -1508,8 +1508,16 @@ function ConferenceLayout({conf, children}) {
             backgroundImage:
               'linear-gradient(45deg,transparent 50%,currentColor 50%),linear-gradient(135deg,currentColor 50%,transparent 50%)',
           }}>
-          <option value="react-conf-2021">React Conf 2021</option>
-          <option value="react-conf-2019">React Conf 2019</option>
+          <option
+            className="bg-wash dark:bg-wash-dark text-primary dark:text-primary-dark"
+            value="react-conf-2021">
+            React Conf 2021
+          </option>
+          <option
+            className="bg-wash dark:bg-wash-dark text-primary dark:text-primary-dark"
+            value="react-conf-2019">
+            React Conf 2019
+          </option>
         </select>
       </Cover>
       <div className="px-4 pb-4" key={conf.id}>

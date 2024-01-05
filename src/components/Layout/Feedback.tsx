@@ -60,9 +60,13 @@ function sendGAEvent(isPositive: boolean) {
 function SendFeedback({onSubmit}: {onSubmit: () => void}) {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [reply, setReply] = useState('Is this page useful?');
-  const submitChange = setTimeout(() => {
-    setIsSubmitted(true);
-  }, 3000);
+  const submitChange = (x: boolean) => {
+    x == true
+      ? setTimeout(() => {
+          setIsSubmitted(true);
+        }, 3000)
+      : null;
+  };
 
   return (
     <>
@@ -77,7 +81,7 @@ function SendFeedback({onSubmit}: {onSubmit: () => void}) {
               className="bg-secondary-button dark:bg-secondary-button-dark rounded-lg text-primary dark:text-primary-dark px-3 me-2"
               onClick={() => {
                 setReply('Thank you for your feedback!');
-                submitChange;
+                submitChange(true);
                 onSubmit();
                 sendGAEvent(true);
               }}>
@@ -90,7 +94,7 @@ function SendFeedback({onSubmit}: {onSubmit: () => void}) {
               className="bg-secondary-button dark:bg-secondary-button-dark rounded-lg text-primary dark:text-primary-dark px-3"
               onClick={() => {
                 setReply('Thank you for your feedback!');
-                submitChange;
+                submitChange(true);
                 onSubmit();
                 sendGAEvent(false);
               }}>

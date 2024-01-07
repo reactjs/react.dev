@@ -719,3 +719,8 @@ ol.mdx-illustration-block {
     width: 100%;
   }
 }
+
+.exit {
+  opacity: 0;
+  transition: opacity 1s ease-out;
+}

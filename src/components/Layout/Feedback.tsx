@@ -64,14 +64,17 @@ function SendFeedback({onSubmit}: {onSubmit: () => void}) {
     x == true
       ? setTimeout(() => {
           setIsSubmitted(true);
-        }, 3000)
+        }, 1500)
       : null;
   };
 
   return (
     <>
       {!isSubmitted && (
-        <div className="max-w-xs w-80 lg:w-auto py-3 shadow-lg rounded-lg m-4 bg-wash dark:bg-gray-95 px-4 flex">
+        <div
+          className={`max-w-xs w-80 lg:w-auto py-3 shadow-lg rounded-lg m-4 bg-wash dark:bg-gray-95 px-4 flex ${
+            reply === 'Thank you for your feedback!' ? 'exit' : ''
+          }`}>
           <p className="w-full font-bold text-primary dark:text-primary-dark text-lg me-4">
             {reply}
           </p>

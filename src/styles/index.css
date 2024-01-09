@@ -722,5 +722,6 @@ ol.mdx-illustration-block {
 
 .exit {
   opacity: 0;
-  transition: opacity 1s ease-out;
+  transition: opacity 500ms ease-out;
+  transition-delay: 1s;
 }

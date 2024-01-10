@@ -57,7 +57,12 @@ module.exports = {
         'meta-gradient-dark': "url('/images/meta-gradient-dark.png')",
       },
       maxWidth: {
+        ...defaultTheme.maxWidth,
         xs: '21rem',
+      },
+      minWidth:{
+        ...defaultTheme.minWidth,
+        80: '20rem',
       },
       outline: {
         blue: ['1px auto ' + colors.link, '3px'],

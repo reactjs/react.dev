@@ -8,9 +8,9 @@ React is one of Meta’s first open source projects that is both under very acti
 
 </Intro>
 
-## [Code of Conduct](https://github.com/facebook/react/blob/main/CODE_OF_CONDUCT.md) {/*code-of-conduct*/}
+## Code of Conduct {/*code-of-conduct*/}
 
-Meta has adopted the [Contributor Covenant](https://www.contributor-covenant.org/) as its Code of Conduct, and we expect project participants to adhere to it. Please read the [full text](https://github.com/facebook/react/blob/main/CODE_OF_CONDUCT.md) so that you can understand what actions will and will not be tolerated.
+Meta has adopted the [Contributor Covenant](https://www.contributor-covenant.org/) as its Code of Conduct, and we expect project participants to adhere to it. Please read the [full Code of Conduct text](https://github.com/facebook/react/blob/main/CODE_OF_CONDUCT.md) so that you can understand what actions will and will not be tolerated.
 
 ## Open Development {/*open-development*/}
 
@@ -38,11 +38,11 @@ React’s build system will strip out disabled feature branches before publishin
 
 ## Bugs {/*bugs*/}
 
-### Where to Find Known Issues {/*known-issues*/}
+### Where to Find Known Issues {/*where-to-find-known-issues*/}
 
 We are using [GitHub Issues](https://github.com/facebook/react/issues) for our public bugs. We keep a close eye on this and try to make it clear when we have an internal fix in progress. Before filing a new task, try to make sure your problem doesn’t already exist.
 
-### Reporting New Issues {/*new-issues*/}
+### Reporting New Issues {/*reporting-new-issues*/}
 
 The best way to get your bug fixed is to provide a reduced test case. This [JSFiddle template](https://jsfiddle.net/Luktwrdm/) is a great starting point.
 
@@ -50,7 +50,7 @@ The best way to get your bug fixed is to provide a reduced test case. This [JSFi
 
 Meta has a [bounty program](https://www.facebook.com/whitehat/) for the safe disclosure of security bugs. With that in mind, please do not file public issues; go through the process outlined on that page.
 
-## How to Get in Touch {/*get-in-touch*/}
+## How to Get in Touch {/*how-to-get-in-touch*/}
 
 * IRC: [#reactjs on freenode](https://webchat.freenode.net/?channels=reactjs)
 * [Discussion forums](community)
@@ -62,7 +62,7 @@ If you intend to change the public API, or make any non-trivial changes to the i
 
 If you’re only fixing a bug, it’s fine to submit a pull request right away but we still recommend to file an issue detailing what you’re fixing. This is helpful in case we don’t accept that specific fix but want to keep track of the issue.
 
-## Your First Pull Request {/*first-pull-request*/}
+## Your First Pull Request {/*your-first-pull-request*/}
 Working on your first Pull Request? You can learn how from this free video series:
 
 **[How to Contribute to an Open Source Project on GitHub](https://egghead.io/courses/how-to-contribute-to-an-open-source-project-on-github)**
@@ -74,7 +74,7 @@ If you decide to fix an issue, please be sure to check the comment thread in cas
 If somebody claims an issue but doesn’t follow up for more than two weeks, it’s fine to take it over but you should still leave a comment.
 
 ## Sending a Pull Request {/*sending-a-pull-request*/}
-The core team is monitoring for pull requests. We will review your pull request and either merge it, request changes to it, or close it with an explanation. For API changes we may need to fix our internal uses at Facebook.com, which could cause some delay. We’ll do our best to provide updates and feedback throughout the process.
+The core team is monitoring for pull requests. We will review your pull request and either merge it, request changes to it, or close it with an explanation. For API changes we may need to fix our internal uses at [facebook.com](https://www.facebook.com), which could cause some delay. We’ll do our best to provide updates and feedback throughout the process.
 
 **Before submitting a pull request**, please make sure the following is done:
 
@@ -89,8 +89,8 @@ The core team is monitoring for pull requests. We will review your pull request 
 9. Run the Flow typechecks (`yarn flow`).
 10. If you haven’t already, complete the [Contributor License Agreement](https://code.facebook.com/cla) (CLA).
 
-## Contributor License Agreement (CLA) {/*contributor-license-agreement*/}
-In order to accept your pull request, we need you to submit a CLA. You only need to do this once, so if you’ve done this for another Facebook open source project, you’re good to go. If you are submitting a pull request for the first time, just let us know that you have completed the CLA and we can cross-check with your GitHub username.
+## Contributor License Agreement (CLA) {/*contributor-license-agreement-cla*/}
+In order to accept your pull request, we need you to submit a CLA. You only need to do this once, so if you’ve done this for another Meta open source project, you’re good to go. If you are submitting a pull request for the first time, just let us know that you have completed the CLA and we can cross-check with your GitHub username.
 
 **[Complete your CLA here.](https://code.facebook.com/cla)**
 
@@ -150,7 +150,7 @@ Then, our linter will catch most issues that may exist in your code. You can che
 
 However, there are still some styles that the linter cannot pick up. If you are unsure about something, looking at Airbnb’s Style Guide will guide you in the right direction.
 
-## Request for Comments (RFC) {/*request-for-comments*/}
+## Request for Comments (RFC) {/*request-for-comments-rfc*/}
 Many changes, including bug fixes and documentation improvements can be implemented and reviewed via the normal GitHub pull request workflow.
 
 Some changes though are “substantial”, and we ask that these be put through a bit of a design process and produce a consensus among the React core team.

@@ -68,7 +68,7 @@ function reviveNodeOnClient(key, val) {
   if (Array.isArray(val) && val[0] == '$r') {
     // Assume it's a React element.
     let type = val[1];
-    let key = val[2];
+    const key = val[2];
     let props = val[3];
     if (type === 'wrapper') {
       type = Fragment;
@@ -110,7 +110,7 @@ export async function getStaticProps(context) {
   const mdxComponentNames = Object.keys(MDXComponents);
 
   // Read MDX from the file.
-  let path = (context.params.markdownPath || []).join('/') || 'index';
+  const path = (context.params.markdownPath || []).join('/') || 'index';
   let mdx;
   try {
     mdx = fs.readFileSync(rootDir + path + '.md', 'utf8');
@@ -151,7 +151,7 @@ export async function getStaticProps(context) {
   // If we don't add these fake imports, the MDX compiler
   // will insert a bunch of opaque components we can't introspect.
   // This will break the prepareMDX() call below.
-  let mdxWithFakeImports =
+  const mdxWithFakeImports =
     mdx +
     '\n\n' +
     mdxComponentNames
@@ -188,7 +188,7 @@ export async function getStaticProps(context) {
   }).code;
 
   // Prepare environment for MDX.
-  let fakeExports = {};
+  const fakeExports = {};
   const fakeRequire = (name) => {
     if (name === 'react/jsx-runtime') {
       return require('react/jsx-runtime');
@@ -272,7 +272,7 @@ export async function getStaticPaths() {
   // 'foo/bar/baz.md' -> ['foo', 'bar', 'baz']
   // 'foo/bar/qux/index.md' -> ['foo', 'bar', 'qux']
   function getSegments(file) {
-    let segments = file.slice(0, -3).replace(/\\/g, '/').split('/');
+    const segments = file.slice(0, -3).replace(/\\/g, '/').split('/');
     if (segments[segments.length - 1] === 'index') {
       segments.pop();
     }

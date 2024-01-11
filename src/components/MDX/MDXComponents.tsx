@@ -177,7 +177,7 @@ function YouWillLearn({
   children: any;
   isChapter?: boolean;
 }) {
-  let title = isChapter ? 'In this chapter' : 'You will learn';
+  const title = isChapter ? 'In this chapter' : 'You will learn';
   return <SimpleCallout title={title}>{children}</SimpleCallout>;
 }
 
@@ -443,7 +443,7 @@ export const MDXComponents = {
   YouTubeIframe,
 };
 
-for (let key in MDXComponents) {
+for (const key in MDXComponents) {
   if (MDXComponents.hasOwnProperty(key)) {
     const MDXComponent: any = (MDXComponents as any)[key];
     MDXComponent.mdxName = key;

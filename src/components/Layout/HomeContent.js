@@ -86,7 +86,7 @@ function CurrentTime() {
   });
   useEffect(() => {
     const msPerMinute = 60 * 1000;
-    let nextMinute = Math.floor(+date / msPerMinute + 1) * msPerMinute;
+    const nextMinute = Math.floor(+date / msPerMinute + 1) * msPerMinute;
 
     const timeout = setTimeout(() => {
       if (Date.now() > nextMinute) {
@@ -808,8 +808,8 @@ function ExampleLayout({
           const nodeRect = node.getBoundingClientRect();
           let top = Math.round(nodeRect.top - parentRect.top) - 8;
           let bottom = Math.round(nodeRect.bottom - parentRect.top) + 8;
-          let left = Math.round(nodeRect.left - parentRect.left) - 8;
-          let right = Math.round(nodeRect.right - parentRect.left) + 8;
+          const left = Math.round(nodeRect.left - parentRect.left) - 8;
+          const right = Math.round(nodeRect.right - parentRect.left) + 8;
           top = Math.max(top, hoverTopOffset);
           bottom = Math.min(bottom, parentRect.height - 12);
           if (top >= bottom) {
@@ -1179,7 +1179,7 @@ async function Talks({ confId }) {
 
 function useNestedScrollLock(ref) {
   useEffect(() => {
-    let node = ref.current;
+    const node = ref.current;
     let isLocked = false;
     let lastScroll = performance.now();
 

@@ -50,7 +50,7 @@ export default memo(function SandpackWrapper(props: any): any {
 
   // To set the active file in the fallback we have to find the active file first.
   // If there are no active files we fallback to App.js as default.
-  let activeCodeSnippet = Object.keys(codeSnippet).filter(
+  const activeCodeSnippet = Object.keys(codeSnippet).filter(
     (fileName) =>
       codeSnippet[fileName]?.active === true &&
       codeSnippet[fileName]?.hidden === false

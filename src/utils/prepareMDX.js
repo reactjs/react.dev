@@ -22,7 +22,7 @@ function wrapChildrenInMaxWidthContainers(children) {
   // <MaxWidth> wrappers. Keep reusing the same
   // wrapper as long as we can until we meet
   // a full-width section which interrupts it.
-  let fullWidthTypes = [
+  const fullWidthTypes = [
     'Sandpack',
     'FullWidth',
     'Illustration',
@@ -31,7 +31,7 @@ function wrapChildrenInMaxWidthContainers(children) {
     'Recipes',
   ];
   let wrapQueue = [];
-  let finalChildren = [];
+  const finalChildren = [];
   function flushWrapper(key) {
     if (wrapQueue.length > 0) {
       const Wrapper = 'MaxWidth';

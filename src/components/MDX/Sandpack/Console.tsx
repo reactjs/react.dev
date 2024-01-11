@@ -131,7 +131,7 @@ export const SandpackConsole = ({visible}: {visible: boolean}) => {
                 data: formatStr(...consoleData.data),
               };
             });
-          let messages = [...prev, ...newLogs];
+          const messages = [...prev, ...newLogs];
           while (messages.length > MAX_MESSAGE_COUNT) {
             messages.shift();
           }

@@ -25,7 +25,7 @@ export const useSandpackLint = () => {
         // so that we don't take away bandwidth from things loading early.
         const {runESLint} = await import('./runESLint');
         const editorState = props.state.doc;
-        let {errors, codeMirrorErrors} = runESLint(editorState);
+        const {errors, codeMirrorErrors} = runESLint(editorState);
         // Ignore parsing or internal linter errors.
         const isReactRuleError = (error: any) => error.ruleId != null;
         setLintErrors(errors.filter(isReactRuleError));

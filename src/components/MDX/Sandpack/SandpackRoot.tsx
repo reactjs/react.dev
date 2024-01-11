@@ -67,7 +67,7 @@ ul {
 `.trim();
 
 function SandpackRoot(props: SandpackProps) {
-  let {children, autorun = true} = props;
+  const {children, autorun = true} = props;
   const codeSnippets = Children.toArray(children) as React.ReactElement[];
   const files = createFileMap(codeSnippets);
 

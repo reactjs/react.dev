@@ -52,8 +52,8 @@ const CodeBlock = function CodeBlock({
     lang = htmlLang;
   }
   const tree = lang.language.parser.parse(code);
-  let tokenStarts = new Map();
-  let tokenEnds = new Map();
+  const tokenStarts = new Map();
+  const tokenEnds = new Map();
   const highlightTheme = getSyntaxHighlight(CustomTheme);
   highlightTree(tree, highlightTheme, (from, to, className) => {
     tokenStarts.set(from, className);
@@ -63,14 +63,14 @@ const CodeBlock = function CodeBlock({
   const highlightedLines = new Map();
   const lines = code.split('\n');
   const lineDecorators = getLineDecorators(code, meta);
-  for (let decorator of lineDecorators) {
+  for (const decorator of lineDecorators) {
     highlightedLines.set(decorator.line - 1, decorator.className);
   }
 
   const inlineDecorators = getInlineDecorators(code, meta);
   const decoratorStarts = new Map();
   const decoratorEnds = new Map();
-  for (let decorator of inlineDecorators) {
+  for (const decorator of inlineDecorators) {
     // Find where inline highlight starts and ends.
     let decoratorStart = 0;
     for (let i = 0; i < decorator.line - 1; i++) {
@@ -99,7 +99,7 @@ const CodeBlock = function CodeBlock({
   let buffer = '';
   let lineIndex = 0;
   let lineOutput = [];
-  let finalOutput = [];
+  const finalOutput = [];
   for (let i = 0; i < code.length; i++) {
     if (tokenEnds.has(i)) {
       if (!currentToken) {

@@ -27,7 +27,7 @@ export const DocsPageFooter = memo<DocsPageFooterProps>(
       <>
         {prevRoute?.path || nextRoute?.path ? (
           <>
-            <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-4 py-4 md:py-12">
+            <div className="grid grid-cols-1 gap-4 py-4 mx-auto max-w-7xl md:grid-cols-2 md:py-12">
               {prevRoute?.path ? (
                 <FooterLink
                   type="Previous"
@@ -75,14 +75,18 @@ function FooterLink({
         }
       )}>
       <IconNavArrow
-        className="text-tertiary dark:text-tertiary-dark inline group-focus:text-link dark:group-focus:text-link-dark"
+        className="inline text-tertiary dark:text-tertiary-dark group-focus:text-link dark:group-focus:text-link-dark"
         displayDirection={type === 'Previous' ? 'start' : 'end'}
       />
       <div className="flex flex-col overflow-hidden">
-        <span className="no-underline text-sm tracking-wide text-secondary dark:text-secondary-dark uppercase font-bold group-focus:text-link dark:group-focus:text-link-dark group-focus:text-opacity-100">
+        <span className="text-sm font-bold tracking-wide no-underline uppercase text-secondary dark:text-secondary-dark group-focus:text-link dark:group-focus:text-link-dark group-focus:text-opacity-100">
           {type}
         </span>
-        <span className="overflow-hidden whitespace-nowrap text-ellipsis text-lg group-hover:underline" title={title}>{title}</span>
+        <span
+          className="text-lg break-words group-hover:underline"
+          title={title}>
+          {title}
+        </span>
       </div>
     </NextLink>
   );

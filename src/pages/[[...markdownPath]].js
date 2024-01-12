@@ -11,8 +11,9 @@ import sidebarLearn from '../sidebarLearn.json';
 import sidebarReference from '../sidebarReference.json';
 import sidebarCommunity from '../sidebarCommunity.json';
 import sidebarBlog from '../sidebarBlog.json';
+import {deployedTranslations} from '../utils/deployedTranslations';
 
-export default function Layout({content, toc, meta}) {
+export default function Layout({content, toc, meta, languages}) {
   const parsedContent = useMemo(
     () => JSON.parse(content, reviveNodeOnClient),
     [content]
@@ -39,7 +40,12 @@ export default function Layout({content, toc, meta}) {
       break;
   }
   return (
-    <Page toc={parsedToc} routeTree={routeTree} meta={meta} section={section}>
+    <Page
+      toc={parsedToc}
+      routeTree={routeTree}
+      meta={meta}
+      section={section}
+      languages={languages}>
       {parsedContent}
     </Page>
   );
@@ -96,7 +102,7 @@ function reviveNodeOnClient(key, val) {
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // ~~~~ IMPORTANT: BUMP THIS IF YOU CHANGE ANY CODE BELOW ~~~
-const DISK_CACHE_BREAKER = 7;
+const DISK_CACHE_BREAKER = 8;
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 // Put MDX output into JSON for client.
@@ -118,6 +124,17 @@ export async function getStaticProps(context) {
     mdx = fs.readFileSync(rootDir + path + '/index.md', 'utf8');
   }
 
+  // Conditionally retrieve deployed languages from GitHub.
+  let languages = null;
+  if (path.endsWith('/translations')) {
+    console.log('Retrieving list of languages from GitHub');
+    languages = await (
+      await fetch(
+        'https://raw.githubusercontent.com/reactjs/translations.react.dev/main/langs/langs.json'
+      )
+    ).json(); // { code: string; name: string; enName: string}[]
+  }
+
   // See if we have a cached output first.
   const {FileStore, stableHash} = require('metro-cache');
   const store = new FileStore({
@@ -130,6 +147,8 @@ export async function getStaticProps(context) {
       // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
       mdx,
       mdxComponentNames,
+      languages,
+      deployedTranslations: languages ? deployedTranslations : {},
       DISK_CACHE_BREAKER,
       PREPARE_MDX_CACHE_BREAKER,
       lockfile: fs.readFileSync(process.cwd() + '/yarn.lock', 'utf8'),
@@ -221,6 +240,7 @@ export async function getStaticProps(context) {
       content: JSON.stringify(children, stringifyNodeOnServer),
       toc: JSON.stringify(toc, stringifyNodeOnServer),
       meta,
+      languages,
     },
   };
 

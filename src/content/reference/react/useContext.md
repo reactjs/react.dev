@@ -457,7 +457,8 @@ function LoginForm() {
   const {setCurrentUser} = useContext(CurrentUserContext);
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
-  const canLogin = firstName !== '' && lastName !== '';
+  // use trim method to prevent form from accepting whitespaces
+  const canLogin = firstName.trim() !== '' && lastName.trim() !== '';
   return (
     <>
       <label>

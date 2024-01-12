@@ -437,7 +437,6 @@ export const MDXComponents = {
   Solution,
   CodeStep,
   YouTubeIframe,
-
   ErrorDecoder,
 };
 

@@ -9,5 +9,3 @@ We highly recommend using the development build locally when debugging your app 
 The full text of the error you just encountered is:
 
 <ErrorDecoder />
-
-This error occurs when you pass a BigInt value from a Server Component to a Client Component.

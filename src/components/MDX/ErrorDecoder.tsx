@@ -1,5 +1,6 @@
 import {useEffect, useState} from 'react';
-import {useErrorDecoder} from './ErrorDecoderContext';
+import {useErrorDecoderParams} from '../ErrorDecoderContext';
+import cn from 'classnames';
 
 function replaceArgs(
   msg: string,
@@ -68,46 +69,39 @@ function parseQueryString(search: string): Array<string | undefined> {
 }
 
 export default function ErrorDecoder() {
-  const errorMessages = useErrorDecoder();
-
+  const {errorMessage} = useErrorDecoderParams();
   /** error messages that contain %s require reading location.search */
+  const hasParams = errorMessage?.includes('%s');
   const [message, setMessage] = useState<React.ReactNode | null>(() =>
-    errorMessages ? urlify(errorMessages) : null
+    errorMessage ? urlify(errorMessage) : null
   );
 
+  const [isReady, setIsReady] = useState(errorMessage == null || !hasParams);
+
   useEffect(() => {
-    if (errorMessages == null || !errorMessages.includes('%s')) {
+    if (errorMessage == null || !hasParams) {
       return;
     }
 
     setMessage(
       urlify(
         replaceArgs(
-          errorMessages,
+          errorMessage,
           parseQueryString(window.location.search),
           '[missing argument]'
         )
       )
     );
-  }, [errorMessages]);
-
-  if (!message) {
-    return (
-      <p>
-        When you encounter an error, you{"'"}ll receive a link to this page for
-        that specific error and we{"'"}ll show you the full error text.
-      </p>
-    );
-  }
+    setIsReady(true);
+  }, [hasParams, errorMessage]);
 
   return (
-    <div>
-      <p>
-        <b>The full text of the error you just encountered is:</b>
-      </p>
-      <code className="block bg-red-100 text-red-600 py-4 px-6 mt-5 rounded-lg animate-fade-up">
-        <b>{message}</b>
-      </code>
-    </div>
+    <code
+      className={cn(
+        'block bg-red-100 text-red-600 py-4 px-6 mt-5 rounded-lg',
+        isReady ? 'opacity-100' : 'opacity-0'
+      )}>
+      <b>{message}</b>
+    </code>
   );
 }

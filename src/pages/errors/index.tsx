@@ -1,3 +1,3 @@
-import ErrorDecoderPage from './[error_code]';
+import ErrorDecoderPage from './[errorCode]';
 export default ErrorDecoderPage;
-export {getStaticProps} from './[error_code]';
+export {getStaticProps} from './[errorCode]';

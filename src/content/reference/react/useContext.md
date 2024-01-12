@@ -577,7 +577,7 @@ const CurrentUserContext = createContext(null);
 export default function MyApp() {
   const [theme, setTheme] = useState('light');
   return (
-    <MyProviders theme={theme} setTheme={setTheme}>
+    <MyProviders theme={theme}>
       <WelcomePanel />
       <label>
         <input
@@ -593,7 +593,7 @@ export default function MyApp() {
   );
 }
 
-function MyProviders({ children, theme, setTheme }) {
+function MyProviders({ children, theme }) {
   const [currentUser, setCurrentUser] = useState(null);
   return (
     <ThemeContext.Provider value={theme}>

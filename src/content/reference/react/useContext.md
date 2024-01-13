@@ -457,7 +457,7 @@ function LoginForm() {
   const {setCurrentUser} = useContext(CurrentUserContext);
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
-  const canLogin = firstName !== '' && lastName !== '';
+  const canLogin = firstName.trim() !== '' && lastName.trim() !== '';
   return (
     <>
       <label>

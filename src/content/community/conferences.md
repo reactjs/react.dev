@@ -10,6 +10,11 @@ Do you know of a local React.js conference? Add it here! (Please keep the list c
 
 ## Upcoming Conferences {/*upcoming-conferences*/}
 
+### React Paris 2024 {/*react-paris-2024*/}
+March 22, 2024. In-person in Paris, France + Remote (hybrid)
+
+[Website](https://react.paris/) - [Twitter](https://twitter.com/BeJS_) - [LinkedIn](https://www.linkedin.com/events/7150816372074192900/comments/)
+
 ### App.js Conf 2024 {/*appjs-conf-2024*/}
 May 22 - 24, 2024. In-person in Kraków, Poland + remote
 
@@ -55,7 +60,7 @@ October 20 & 23, 2023. In-person in London, UK + remote first interactivity (hyb
 ### React Brussels 2023 {/*react-brussels-2023*/}
 October 13th 2023. In-person in Brussels, Belgium + Remote (hybrid)
 
-[Website](https://www.react.brussels/) - [Twitter](https://twitter.com/BrusselsReact)
+[Website](https://www.react.brussels/) - [Twitter](https://twitter.com/BrusselsReact) - [Videos](https://www.youtube.com/playlist?list=PL53Z0yyYnpWh85KeMomUoVz8_brrmh_aC) 
 
 ### React India 2023 {/*react-india-2023*/}
 October 5 - 7, 2023. In-person in Goa, India (hybrid event) + Oct 3 2023 - remote day

@@ -14,9 +14,11 @@ This tutorial is designed for people who prefer to **learn by doing** and want t
 
 </Note>
 
-The tutorial is divided into several sections: - [Setup for the tutorial](#setup-for-the-tutorial) will give you **a starting point** to follow the tutorial.
+The tutorial is divided into several sections:
+
+- [Setup for the tutorial](#setup-for-the-tutorial) will give you **a starting point** to follow the tutorial.
 - [Overview](#overview) will teach you **the fundamentals** of React: components, props, and state.
-         - [Completing the game](#completing-the-game) will teach you **the most common techniques** in React development.
+- [Completing the game](#completing-the-game) will teach you **the most common techniques** in React development.
 - [Adding time travel](#adding-time-travel) will give you **a deeper insight** into the unique strengths of React.
 
 ### What are you building? {/*what-are-you-building*/}
@@ -24,7 +26,7 @@ The tutorial is divided into several sections: - [Setup for the tutorial](#setup
 In this tutorial, you'll build an interactive tic-tac-toe game with React.
 
 You can see what it will look like when you're finished here:
-<Sand - error - pack>
+<Sandpack>
 
 ```js src/App.js
 import { useState } from 'react'; function Square({ value, onSquareClick }) {

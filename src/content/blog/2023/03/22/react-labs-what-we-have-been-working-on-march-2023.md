@@ -8,7 +8,7 @@ March 22, 2023 by [Joseph Savona](https://twitter.com/en_JS), [Josh Story](https
 
 <Intro>
 
-In React Labs posts, we write about projects in active research and development. We've made significant progress on them since our [last update](https://react.dev/blog/2022/06/15/react-labs-what-we-have-been-working-on-june-2022), and we'd like to share what we learned.
+In React Labs posts, we write about projects in active research and development. We've made significant progress on them since our [last update](/blog/2022/06/15/react-labs-what-we-have-been-working-on-june-2022), and we'd like to share what we learned.
 
 </Intro>
 

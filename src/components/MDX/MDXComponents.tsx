@@ -31,6 +31,8 @@ import {TocContext} from './TocContext';
 import type {Toc, TocItem} from './TocContext';
 import {TeamMember} from './TeamMember';
 
+import ErrorDecoder from './ErrorDecoder';
+
 function CodeStep({children, step}: {children: any; step: number}) {
   return (
     <span
@@ -441,6 +443,7 @@ export const MDXComponents = {
   Solution,
   CodeStep,
   YouTubeIframe,
+  ErrorDecoder,
 };
 
 for (let key in MDXComponents) {

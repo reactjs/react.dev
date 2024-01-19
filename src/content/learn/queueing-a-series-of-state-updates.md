@@ -535,6 +535,12 @@ export default function App() {
       />
       <hr />
       <TestCase
+        baseState={1}
+        queue={[3, 1, 2]}
+        expected={2}
+      />
+      <hr />
+      <TestCase
         baseState={0}
         queue={[
           increment,

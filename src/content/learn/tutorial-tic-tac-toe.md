@@ -337,7 +337,7 @@ import './styles.css';
 import App from './App';
 ```
 
-Lines 1-5 brings all the necessary pieces together: 
+Lines 1-5 bring all the necessary pieces together: 
 
 * React
 * React's library to talk to web browsers (React DOM)

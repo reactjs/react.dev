@@ -40,12 +40,12 @@ export default function SidebarNav({
         }}>
         <aside
           className={cn(
-            `lg:grow flex-col w-full pb-8 lg:pb-0 lg:max-w-xs z-10 hidden lg:block`
+            `lg:grow flex-col w-full pb-8 lg:pb-0 lg:max-w-custom-xs z-10 hidden lg:block`
           )}>
           <nav
             role="navigation"
             style={{'--bg-opacity': '.2'} as React.CSSProperties} // Need to cast here because CSS vars aren't considered valid in TS types (cuz they could be anything)
-            className="w-full lg:h-auto grow pe-0 lg:pe-5 pt-6 lg:pb-16 md:pt-4 lg:pt-4 scrolling-touch scrolling-gpu">
+            className="w-full pt-6 scrolling-touch lg:h-auto grow pe-0 lg:pe-5 lg:pb-16 md:pt-4 lg:pt-4 scrolling-gpu">
             {/* No fallback UI so need to be careful not to suspend directly inside. */}
             <Suspense fallback={null}>
               <SidebarRouteTree

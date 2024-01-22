@@ -41,21 +41,13 @@ export default function App() {
 function Toolbar({ onPlayMovie, onUploadImage }) {
   return (
     <div>
-      <Button onClick={onPlayMovie}>
+      <button onClick={onPlayMovie}>
         Play Movie
-      </Button>
-      <Button onClick={onUploadImage}>
+      </button>
+      <button onClick={onUploadImage}>
         Upload Image
-      </Button>
+      </button>
     </div>
-  );
-}
-
-function Button({ onClick, children }) {
-  return (
-    <button onClick={onClick}>
-      {children}
-    </button>
   );
 }
 ```

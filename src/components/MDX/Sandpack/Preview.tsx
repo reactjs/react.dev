@@ -77,7 +77,7 @@ export function Preview({
     }
   }
 
-  if (rawError != null && rawError.title === 'Runtime Exception') {
+  if (rawError !== null && rawError.title === 'Runtime Exception') {
     rawError.title = 'Runtime Error';
   }
 

@@ -67,7 +67,7 @@ export function useTocHighlight() {
     updateActiveLink();
 
     return () => {
-      if (timeoutRef.current != null) {
+      if (timeoutRef.current !== null) {
         clearTimeout(timeoutRef.current);
         timeoutRef.current = null;
       }

@@ -176,31 +176,23 @@ To do this, pass a prop the component receives from its parent as the event hand
 <Sandpack>
 
 ```js
-function Button({ onClick, children }) {
-  return (
-    <button onClick={onClick}>
-      {children}
-    </button>
-  );
-}
-
 function PlayButton({ movieName }) {
   function handlePlayClick() {
     alert(`Playing ${movieName}!`);
   }
 
   return (
-    <Button onClick={handlePlayClick}>
+    <button onClick={handlePlayClick}>
       Play "{movieName}"
-    </Button>
+    </button>
   );
 }
 
 function UploadButton() {
   return (
-    <Button onClick={() => alert('Uploading!')}>
+    <button onClick={() => alert('Uploading!')}>
       Upload Image
-    </Button>
+    </button>
   );
 }
 

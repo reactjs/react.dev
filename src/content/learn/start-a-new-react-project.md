@@ -4,7 +4,7 @@ title: Start a New React Project
 
 <Intro>
 
-If you want to build a new app or a new website fully with React, we recommend picking one of the React-powered frameworks popular in the community. Frameworks provide features that most apps and sites eventually need, including routing, data fetching, and generating HTML.
+For beginners, quickstart using Vite. If you're comfortable with basics and want to build a new app or a new website fully with React, we recommend picking one of the React-powered frameworks popular in the community. Frameworks provide features that most apps and sites eventually need, including routing, data fetching, and generating HTML.
 
 </Intro>
 
@@ -13,6 +13,16 @@ If you want to build a new app or a new website fully with React, we recommend p
 **You need to install [Node.js](https://nodejs.org/en/) for local development.** You can *also* choose to use Node.js in production, but you don't have to. Many React frameworks support export to a static HTML/CSS/JS folder.
 
 </Note>
+
+## Quickstart React Development with Vite {/*quickstart-react-development-with-vite*/}
+
+**[Vite](https://vitejs.dev/) is a modern build tool that simplifies learning React development.** While other frameworks offer many powerful features, Vite's simplicity makes it a great choice for React beginners. Vite is fast, supports [TypeScript](https://vitejs.dev/guide/features.html#typescript) out of the box, and includes the [Hot Module Replacement (HMR)](https://vitejs.dev/guide/features.html#hot-module-replacement) feature to quickly test code modifications. To create a new Vite project, run in your terminal:
+
+<TerminalBlock>
+npx create-vite
+</TerminalBlock>
+
+Vite is best for small to medium-sized [single page applications (SPA)](https://developer.mozilla.org/en-US/docs/Glossary/SPA). For larger projects, consider using a framework.
 
 ## Production-grade React frameworks {/*production-grade-react-frameworks*/}
 
@@ -66,7 +76,7 @@ Expo is maintained by [Expo (the company)](https://expo.dev/about). Building app
 
 <DeepDive>
 
-#### Can I use React without a framework? {/*can-i-use-react-without-a-framework*/}
+#### Should I use React with a framework? {/*should-i-use-react-with-a-framework*/}
 
 You can definitely use React without a framework--that's how you'd [use React for a part of your page.](/learn/add-react-to-an-existing-project#using-react-for-a-part-of-your-existing-page) **However, if you're building a new app or a site fully with React, we recommend using a framework.**
 

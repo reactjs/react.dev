@@ -25,6 +25,11 @@ April 19 - 20, 2024. In-person in Miami, FL, USA
 
 [Website](https://reactmiami.com/) - [Twitter](https://twitter.com/ReactMiamiConf)
 
+### Epic Web Conf 2024 {/*epic-web-2024*/}
+April 10 - 11, 2024. In-person in Park City, UT, USA
+
+[Website](https://www.epicweb.dev/conf) - [YouTube](https://www.youtube.com/@EpicWebDev)
+
 ### App.js Conf 2024 {/*appjs-conf-2024*/}
 May 22 - 24, 2024. In-person in Kraków, Poland + remote
 

@@ -14,7 +14,7 @@ The `useFormState` Hook is currently only available in React's Canary and experi
 `useFormState` is a Hook that allows you to update state based on the result of a form action.
 
 ```js
-const [state, formAction] = useFormState(fn, initialState);
+const [state, formAction] = useFormState(fn, initialState, permalink?);
 ```
 
 </Intro>
@@ -25,7 +25,7 @@ const [state, formAction] = useFormState(fn, initialState);
 
 ## Reference {/*reference*/}
 
-### `useFormState(action, initialState)` {/*useformstate*/}
+### `useFormState(action, initialState, permalink?)` {/*useformstate*/}
 
 {/* TODO T164397693: link to actions documentation once it exists */}
 
@@ -59,6 +59,7 @@ If used with a Server Action, `useFormState` allows the server's response from s
 
 * `fn`: The function to be called when the form is submitted or button pressed. When the function is called, it will receive the previous state of the form (initially the `initialState` that you pass, subsequently its previous return value) as its initial argument, followed by the arguments that a form action normally receives.
 * `initialState`: The value you want the state to be initially. It can be any serializable value. This argument is ignored after the action is first invoked.
+* **optional** `permalink`: A string containing the unique page URL that this form modifies. For use on pages with dynamic content (eg: feeds) in conjunction with progressive enhancement: if `fn` is a [server action](/reference/react/use-server) and the form is submitted before the JavaScript bundle loads, the browser will navigate to the specified permalink URL, rather than the current page's URL. Ensure that the same form component is rendered on the destination page (including the same action `fn` and `permalink`) so that React knows how to pass the state through. Once the form has been hydrated, this parameter has no effect.
 
 {/* TODO T164397693: link to serializable values docs once it exists */}
 

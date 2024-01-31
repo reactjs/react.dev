@@ -23,3 +23,8 @@ To be included, frameworks must meet the following criteria:
 - **Self-hosting option**. The framework must support an option to self-host applications without losing access to the baseline features included on this list. 
 - **Well maintained**. The framework must be actively maintained.
 - **Free & open-source**.
+
+To apply, please provide:
+* The name of your framework
+* A link to the framework's main code repository
+* A bullted list describing how the framework meets each of the above criteria

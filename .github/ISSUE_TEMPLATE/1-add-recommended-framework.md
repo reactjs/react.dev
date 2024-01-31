@@ -19,7 +19,7 @@ To be included, frameworks must meet the following criteria:
 - **Great developer experience**. The framework must allow developers to be productive, and support tools such as React Developer Tools and Fast Refresh.
 - **Great user experience**. The framework must help developers create high quality user experiences by solving common use-cases. Specifically, the framework must provide built-in support for routing and data-fetching in a way that avoids client/server waterfalls by default.
 - **Active Community**. The framework must have a sufficiently large/active community in order to provide help and support to users.
-- **Compatible with our future vision for React**. React evolves over time, and frameworks that do not align with React’s direction risk isolating their users from the main React ecosystem over time. To be included on this page we must feel confident that the framework is setting its user up for success with React over time.
+- **Compatible with our future vision for React**. React evolves over time, and frameworks that do not align with React’s direction risk isolating their users from the main React ecosystem over time. To be included on this page we must feel confident that the framework is setting its users up for success with React over time.
 - **Self-hosting option**. The framework must support an option to self-host applications without losing access to the baseline features included on this list. 
 - **Well maintained**. The framework must be actively maintained.
 - **Free & open-source**.

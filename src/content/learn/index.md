@@ -325,7 +325,7 @@ function MyButton() {
   const [count, setCount] = useState(0);
 
   function handleClick() {
-    setCount(count + 1);
+    setCount((prevCount) => prevCount + 1);
   }
 
   return (
@@ -359,7 +359,7 @@ function MyButton() {
   const [count, setCount] = useState(0);
 
   function handleClick() {
-    setCount(count + 1);
+    setCount((prevCount) => prevCount + 1);
   }
 
   return (
@@ -438,7 +438,7 @@ export default function MyApp() {
   const [count, setCount] = useState(0);
 
   function handleClick() {
-    setCount(count + 1);
+    setCount((prevCount) => prevCount + 1);
   }
 
   return (
@@ -463,7 +463,7 @@ export default function MyApp() {
   const [count, setCount] = useState(0);
 
   function handleClick() {
-    setCount(count + 1);
+    setCount((prevCount) => prevCount + 1);
   }
 
   return (
@@ -490,7 +490,7 @@ function MyButton({ count, onClick }) {
 }
 ```
 
-When you click the button, the `onClick` handler fires. Each button's `onClick` prop was set to the `handleClick` function inside `MyApp`, so the code inside of it runs. That code calls `setCount(count + 1)`, incrementing the `count` state variable. The new `count` value is passed as a prop to each button, so they all show the new value. This is called "lifting state up". By moving state up, you've shared it between components.
+When you click the button, the `onClick` handler fires. Each button's `onClick` prop was set to the `handleClick` function inside `MyApp`, so the code inside of it runs. That code calls `setCount()`, incrementing the `count` state variable. The new `count` value is passed as a prop to each button, so they all show the new value. This is called "lifting state up". By moving state up, you've shared it between components.
 
 <Sandpack>
 
@@ -501,7 +501,7 @@ export default function MyApp() {
   const [count, setCount] = useState(0);
 
   function handleClick() {
-    setCount(count + 1);
+    setCount((prevCount) => prevCount + 1);
   }
 
   return (

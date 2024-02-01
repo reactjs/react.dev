@@ -45,6 +45,11 @@ June 12 - June 14, 2024. Atlanta, GA, USA
 
 [Website](https://renderatl.com) - [Discord](https://www.renderatl.com/discord) - [Twitter](https://twitter.com/renderATL) - [Instagram](https://www.instagram.com/renderatl/) - [Facebook](https://www.facebook.com/renderatl/) - [LinkedIn](https://www.linkedin.com/company/renderatl) - [Podcast](https://www.renderatl.com/culture-and-code#/)
 
+### React Norway 2024 {/*react-norway-2024*/}
+June 14, 2024. In-person at Farris Bad Hotel in Larvik, Norway and online (hybrid event).
+
+[Website](https://reactnorway.com/) - [Twitter](https://twitter.com/ReactNorway)
+
 ### React Nexus 2024 {/*react-nexus-2024*/}
 July 04 & 05, 2024. Bangalore, India (In-person event)
 

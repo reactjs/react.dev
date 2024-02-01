@@ -9,6 +9,7 @@ import {SidebarNav} from './SidebarNav';
 import {Footer} from './Footer';
 import {Toc} from './Toc';
 import SocialBanner from '../SocialBanner';
+import Banner from '../Banner';
 import {DocsPageFooter} from 'components/DocsFooter';
 import {Seo} from 'components/Seo';
 import ButtonLink from 'components/ButtonLink';
@@ -116,6 +117,13 @@ export function Page({children, toc, routeTree, meta, section}: PageProps) {
         isHomePage={isHomePage}
         image={`/images/og-` + section + '.png'}
         searchOrder={searchOrder}
+      />
+      <Banner
+        text={
+          'React Conf is on May 15-16! Grab your tickets, sign up for updates, and join the free livestream at'
+        }
+        link={'https://conf.react.dev'}
+        linkText={'conf.react.dev'}
       />
       <SocialBanner />
       <TopNav

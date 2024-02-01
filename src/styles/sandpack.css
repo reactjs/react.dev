@@ -211,7 +211,6 @@ html.dark .sp-wrapper {
 }
 
 .sandpack .sp-code-editor .cm-content {
-  overflow-x: auto;
   padding-bottom: 18px;
 }
 

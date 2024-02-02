@@ -267,6 +267,36 @@
           "path": "/reference/react-dom/hydrate"
         },
         {
+          "title": "preconnect",
+          "path": "/reference/react-dom/preconnect",
+          "canary": true
+        },
+        {
+          "title": "prefetchDNS",
+          "path": "/reference/react-dom/prefetchDNS",
+          "canary": true
+        },
+        {
+          "title": "preinit",
+          "path": "/reference/react-dom/preinit",
+          "canary": true
+        },
+        {
+          "title": "preinitModule",
+          "path": "/reference/react-dom/preinitModule",
+          "canary": true
+        },
+        {
+          "title": "preload",
+          "path": "/reference/react-dom/preload",
+          "canary": true
+        },
+        {
+          "title": "preloadModule",
+          "path": "/reference/react-dom/preloadModule",
+          "canary": true
+        },
+        {
           "title": "render",
           "path": "/reference/react-dom/render"
         },

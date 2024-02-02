@@ -218,6 +218,31 @@
         {
           "title": "<textarea>",
           "path": "/reference/react-dom/components/textarea"
+        },
+        {
+          "title": "<link>",
+          "path": "/reference/react-dom/components/link",
+          "canary": true
+        },
+        {
+          "title": "<meta>",
+          "path": "/reference/react-dom/components/meta",
+          "canary": true
+        },
+        {
+          "title": "<script>",
+          "path": "/reference/react-dom/components/script",
+          "canary": true
+        },
+        {
+          "title": "<style>",
+          "path": "/reference/react-dom/components/style",
+          "canary": true
+        },
+        {
+          "title": "<title>",
+          "path": "/reference/react-dom/components/title",
+          "canary": true
         }
       ]
     },

@@ -115,8 +115,8 @@ function Loading() {
 ```
 
 ```js src/Albums.js hidden
+import {useEffect, useState} from 'react';
 import { fetchData } from './data.js';
-
 // Note: this component is written using an experimental API
 // that's not yet available in stable versions of React.
 
@@ -124,7 +124,20 @@ import { fetchData } from './data.js';
 // that's integrated with Suspense, like Relay or Next.js.
 
 export default function Albums({ artistId }) {
-  const albums = use(fetchData(`/${artistId}/albums`));
+  const [albums,setAlbums] = useState([])
+  useEffect(()=>{
+    const fetchAlbums = async() =>{
+      try{
+        const albumData = await fetchData(`/${artistId}/albums`)
+        setAlbums(albumData)
+      }
+      catch(error){
+        console.error(`Error fetching albums: ${error}`)
+      }
+    }
+    fetchAlbums()
+  },[artistId])
+
   return (
     <ul>
       {albums.map(album => (
@@ -134,31 +147,6 @@ export default function Albums({ artistId }) {
       ))}
     </ul>
   );
-}
-
-// This is a workaround for a bug to get the demo running.
-// TODO: replace with real implementation when the bug is fixed.
-function use(promise) {
-  if (promise.status === 'fulfilled') {
-    return promise.value;
-  } else if (promise.status === 'rejected') {
-    throw promise.reason;
-  } else if (promise.status === 'pending') {
-    throw promise;
-  } else {
-    promise.status = 'pending';
-    promise.then(
-      result => {
-        promise.status = 'fulfilled';
-        promise.value = result;
-      },
-      reason => {
-        promise.status = 'rejected';
-        promise.reason = reason;
-      },      
-    );
-    throw promise;
-  }
 }
 ```
 
@@ -375,7 +363,7 @@ export default function Biography({ artistId }) {
   useEffect(()=>{
     const fetchBio = async() =>{
       try{
-        const bioData = fetchData(`${artistId}/bio`)
+        const bioData = await fetchData(`/${artistId}/bio`)
         setBio(bioData)
       }
       catch(error){
@@ -384,7 +372,7 @@ export default function Biography({ artistId }) {
     }
     fetchBio()
   },[artistId])
-  const bio = use(fetchData(`/${artistId}/bio`));
+
   return (
     <section>
       <p className="bio">{bio}</p>
@@ -412,7 +400,7 @@ export default function Albums({ artistId }) {
         setAlbums(albumData)
       }
       catch(error){
-        console.error(`Error fetching bio: ${error}`)
+        console.error(`Error fetching albums: ${error}`)
       }
     }
     fetchAlbums()
@@ -677,6 +665,7 @@ export default function Panel({ children }) {
 ```
 
 ```js src/Biography.js hidden
+import {useEffect, useState} from 'react';
 import { fetchData } from './data.js';
 
 // Note: this component is written using an experimental API
@@ -686,43 +675,31 @@ import { fetchData } from './data.js';
 // that's integrated with Suspense, like Relay or Next.js.
 
 export default function Biography({ artistId }) {
-  const bio = use(fetchData(`/${artistId}/bio`));
+  const [bio,setBio] = useState(null)
+  useEffect(()=>{
+    const fetchBio = async() =>{
+      try{
+        const bioData = await fetchData(`/${artistId}/bio`)
+        setBio(bioData)
+      }
+      catch(error){
+        console.error(`Error fetching bio: ${error}`)
+      }
+    }
+    fetchBio()
+  },[artistId])
+  
   return (
     <section>
       <p className="bio">{bio}</p>
     </section>
   );
 }
-
-// This is a workaround for a bug to get the demo running.
-// TODO: replace with real implementation when the bug is fixed.
-function use(promise) {
-  if (promise.status === 'fulfilled') {
-    return promise.value;
-  } else if (promise.status === 'rejected') {
-    throw promise.reason;
-  } else if (promise.status === 'pending') {
-    throw promise;
-  } else {
-    promise.status = 'pending';
-    promise.then(
-      result => {
-        promise.status = 'fulfilled';
-        promise.value = result;
-      },
-      reason => {
-        promise.status = 'rejected';
-        promise.reason = reason;
-      },      
-    );
-    throw promise;
-  }
-}
 ```
 
 ```js src/Albums.js hidden
+import {useEffect, useState} from 'react';
 import { fetchData } from './data.js';
-
 // Note: this component is written using an experimental API
 // that's not yet available in stable versions of React.
 
@@ -730,7 +707,20 @@ import { fetchData } from './data.js';
 // that's integrated with Suspense, like Relay or Next.js.
 
 export default function Albums({ artistId }) {
-  const albums = use(fetchData(`/${artistId}/albums`));
+  const [albums,setAlbums] = useState([])
+  useEffect(()=>{
+    const fetchAlbums = async() =>{
+      try{
+        const albumData = await fetchData(`/${artistId}/albums`)
+        setAlbums(albumData)
+      }
+      catch(error){
+        console.error(`Error fetching albums: ${error}`)
+      }
+    }
+    fetchAlbums()
+  },[artistId])
+
   return (
     <ul>
       {albums.map(album => (
@@ -740,31 +730,6 @@ export default function Albums({ artistId }) {
       ))}
     </ul>
   );
-}
-
-// This is a workaround for a bug to get the demo running.
-// TODO: replace with real implementation when the bug is fixed.
-function use(promise) {
-  if (promise.status === 'fulfilled') {
-    return promise.value;
-  } else if (promise.status === 'rejected') {
-    throw promise.reason;
-  } else if (promise.status === 'pending') {
-    throw promise;
-  } else {
-    promise.status = 'pending';
-    promise.then(
-      result => {
-        promise.status = 'fulfilled';
-        promise.value = result;
-      },
-      reason => {
-        promise.status = 'rejected';
-        promise.reason = reason;
-      },      
-    );
-    throw promise;
-  }
 }
 ```
 
@@ -1459,6 +1424,7 @@ function AlbumsGlimmer() {
 ```
 
 ```js src/Albums.js hidden
+import {useState, useEffect} from 'react'
 import { fetchData } from './data.js';
 
 // Note: this component is written using an experimental API
@@ -1468,7 +1434,17 @@ import { fetchData } from './data.js';
 // that's integrated with Suspense, like Relay or Next.js.
 
 export default function Albums({ artistId }) {
-  const albums = use(fetchData(`/${artistId}/albums`));
+  const [albums,setAlbums] = useState([])
+  useEffect(()=>{
+    const fetchAlbums = async()=>{
+      try{
+        const albums = await fetchData(`/${artistId}/albums`);
+      }
+      catch(error){
+        console.error(`Error fetching albums: ${error}`)
+      }
+    }
+  },[artistId])
   return (
     <ul>
       {albums.map(album => (
@@ -1480,33 +1456,10 @@ export default function Albums({ artistId }) {
   );
 }
 
-// This is a workaround for a bug to get the demo running.
-// TODO: replace with real implementation when the bug is fixed.
-function use(promise) {
-  if (promise.status === 'fulfilled') {
-    return promise.value;
-  } else if (promise.status === 'rejected') {
-    throw promise.reason;
-  } else if (promise.status === 'pending') {
-    throw promise;
-  } else {
-    promise.status = 'pending';
-    promise.then(
-      result => {
-        promise.status = 'fulfilled';
-        promise.value = result;
-      },
-      reason => {
-        promise.status = 'rejected';
-        promise.reason = reason;
-      },      
-    );
-    throw promise;
-  }
-}
 ```
 
 ```js src/Biography.js hidden
+import {useState, useEffect} from 'react';
 import { fetchData } from './data.js';
 
 // Note: this component is written using an experimental API
@@ -1516,7 +1469,18 @@ import { fetchData } from './data.js';
 // that's integrated with Suspense, like Relay or Next.js.
 
 export default function Biography({ artistId }) {
-  const bio = use(fetchData(`/${artistId}/bio`));
+  const [bio,setBio] = useState(null)
+  useEffect(()=>{
+    const fetchBio = async()=>{
+      try{
+        const bioData = await (fetchData(`/${artistId}/bio`));
+        setBio(bioData);
+      }
+      catch(error){
+        console.error(`Error fetching bio: ${error}`);
+      }
+    }
+  },[artistId])
   return (
     <section>
       <p className="bio">{bio}</p>
@@ -1524,30 +1488,6 @@ export default function Biography({ artistId }) {
   );
 }
 
-// This is a workaround for a bug to get the demo running.
-// TODO: replace with real implementation when the bug is fixed.
-function use(promise) {
-  if (promise.status === 'fulfilled') {
-    return promise.value;
-  } else if (promise.status === 'rejected') {
-    throw promise.reason;
-  } else if (promise.status === 'pending') {
-    throw promise;
-  } else {
-    promise.status = 'pending';
-    promise.then(
-      result => {
-        promise.status = 'fulfilled';
-        promise.value = result;
-      },
-      reason => {
-        promise.status = 'rejected';
-        promise.reason = reason;
-      },      
-    );
-    throw promise;
-  }
-}
 ```
 
 ```js src/Panel.js hidden
@@ -1846,8 +1786,8 @@ function AlbumsGlimmer() {
 ```
 
 ```js src/Albums.js hidden
+import {useEffect, useState} from 'react';
 import { fetchData } from './data.js';
-
 // Note: this component is written using an experimental API
 // that's not yet available in stable versions of React.
 
@@ -1855,7 +1795,20 @@ import { fetchData } from './data.js';
 // that's integrated with Suspense, like Relay or Next.js.
 
 export default function Albums({ artistId }) {
-  const albums = use(fetchData(`/${artistId}/albums`));
+  const [albums,setAlbums] = useState([])
+  useEffect(()=>{
+    const fetchAlbums = async() =>{
+      try{
+        const albumData = await fetchData(`/${artistId}/albums`)
+        setAlbums(albumData)
+      }
+      catch(error){
+        console.error(`Error fetching albums: ${error}`)
+      }
+    }
+    fetchAlbums()
+  },[artistId])
+
   return (
     <ul>
       {albums.map(album => (
@@ -1866,34 +1819,10 @@ export default function Albums({ artistId }) {
     </ul>
   );
 }
-
-// This is a workaround for a bug to get the demo running.
-// TODO: replace with real implementation when the bug is fixed.
-function use(promise) {
-  if (promise.status === 'fulfilled') {
-    return promise.value;
-  } else if (promise.status === 'rejected') {
-    throw promise.reason;
-  } else if (promise.status === 'pending') {
-    throw promise;
-  } else {
-    promise.status = 'pending';
-    promise.then(
-      result => {
-        promise.status = 'fulfilled';
-        promise.value = result;
-      },
-      reason => {
-        promise.status = 'rejected';
-        promise.reason = reason;
-      },      
-    );
-    throw promise;
-  }
-}
 ```
 
 ```js src/Biography.js hidden
+import {useEffect, useState} from 'react';
 import { fetchData } from './data.js';
 
 // Note: this component is written using an experimental API
@@ -1903,37 +1832,25 @@ import { fetchData } from './data.js';
 // that's integrated with Suspense, like Relay or Next.js.
 
 export default function Biography({ artistId }) {
-  const bio = use(fetchData(`/${artistId}/bio`));
+  const [bio,setBio] = useState(null)
+  useEffect(()=>{
+    const fetchBio = async() =>{
+      try{
+        const bioData = await fetchData(`/${artistId}/bio`)
+        setBio(bioData)
+      }
+      catch(error){
+        console.error(`Error fetching bio: ${error}`)
+      }
+    }
+    fetchBio()
+  },[artistId])
+  
   return (
     <section>
       <p className="bio">{bio}</p>
     </section>
   );
-}
-
-// This is a workaround for a bug to get the demo running.
-// TODO: replace with real implementation when the bug is fixed.
-function use(promise) {
-  if (promise.status === 'fulfilled') {
-    return promise.value;
-  } else if (promise.status === 'rejected') {
-    throw promise.reason;
-  } else if (promise.status === 'pending') {
-    throw promise;
-  } else {
-    promise.status = 'pending';
-    promise.then(
-      result => {
-        promise.status = 'fulfilled';
-        promise.value = result;
-      },
-      reason => {
-        promise.status = 'rejected';
-        promise.reason = reason;
-      },      
-    );
-    throw promise;
-  }
 }
 ```
 
@@ -2232,8 +2149,8 @@ function AlbumsGlimmer() {
 ```
 
 ```js src/Albums.js hidden
+import {useEffect, useState} from 'react';
 import { fetchData } from './data.js';
-
 // Note: this component is written using an experimental API
 // that's not yet available in stable versions of React.
 
@@ -2241,7 +2158,20 @@ import { fetchData } from './data.js';
 // that's integrated with Suspense, like Relay or Next.js.
 
 export default function Albums({ artistId }) {
-  const albums = use(fetchData(`/${artistId}/albums`));
+  const [albums,setAlbums] = useState([])
+  useEffect(()=>{
+    const fetchAlbums = async() =>{
+      try{
+        const albumData = await fetchData(`/${artistId}/albums`)
+        setAlbums(albumData)
+      }
+      catch(error){
+        console.error(`Error fetching albums: ${error}`)
+      }
+    }
+    fetchAlbums()
+  },[artistId])
+
   return (
     <ul>
       {albums.map(album => (
@@ -2252,34 +2182,10 @@ export default function Albums({ artistId }) {
     </ul>
   );
 }
-
-// This is a workaround for a bug to get the demo running.
-// TODO: replace with real implementation when the bug is fixed.
-function use(promise) {
-  if (promise.status === 'fulfilled') {
-    return promise.value;
-  } else if (promise.status === 'rejected') {
-    throw promise.reason;
-  } else if (promise.status === 'pending') {
-    throw promise;
-  } else {
-    promise.status = 'pending';
-    promise.then(
-      result => {
-        promise.status = 'fulfilled';
-        promise.value = result;
-      },
-      reason => {
-        promise.status = 'rejected';
-        promise.reason = reason;
-      },      
-    );
-    throw promise;
-  }
-}
 ```
 
 ```js src/Biography.js hidden
+import {useEffect, useState} from 'react';
 import { fetchData } from './data.js';
 
 // Note: this component is written using an experimental API
@@ -2289,37 +2195,25 @@ import { fetchData } from './data.js';
 // that's integrated with Suspense, like Relay or Next.js.
 
 export default function Biography({ artistId }) {
-  const bio = use(fetchData(`/${artistId}/bio`));
+  const [bio,setBio] = useState(null)
+  useEffect(()=>{
+    const fetchBio = async() =>{
+      try{
+        const bioData = await fetchData(`/${artistId}/bio`)
+        setBio(bioData)
+      }
+      catch(error){
+        console.error(`Error fetching bio: ${error}`)
+      }
+    }
+    fetchBio()
+  },[artistId])
+  
   return (
     <section>
       <p className="bio">{bio}</p>
     </section>
   );
-}
-
-// This is a workaround for a bug to get the demo running.
-// TODO: replace with real implementation when the bug is fixed.
-function use(promise) {
-  if (promise.status === 'fulfilled') {
-    return promise.value;
-  } else if (promise.status === 'rejected') {
-    throw promise.reason;
-  } else if (promise.status === 'pending') {
-    throw promise;
-  } else {
-    promise.status = 'pending';
-    promise.then(
-      result => {
-        promise.status = 'fulfilled';
-        promise.value = result;
-      },
-      reason => {
-        promise.status = 'rejected';
-        promise.reason = reason;
-      },      
-    );
-    throw promise;
-  }
 }
 ```
 

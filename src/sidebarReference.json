@@ -218,6 +218,31 @@
         {
           "title": "<textarea>",
           "path": "/reference/react-dom/components/textarea"
+        },
+        {
+          "title": "<link>",
+          "path": "/reference/react-dom/components/link",
+          "canary": true
+        },
+        {
+          "title": "<meta>",
+          "path": "/reference/react-dom/components/meta",
+          "canary": true
+        },
+        {
+          "title": "<script>",
+          "path": "/reference/react-dom/components/script",
+          "canary": true
+        },
+        {
+          "title": "<style>",
+          "path": "/reference/react-dom/components/style",
+          "canary": true
+        },
+        {
+          "title": "<title>",
+          "path": "/reference/react-dom/components/title",
+          "canary": true
         }
       ]
     },
@@ -240,6 +265,36 @@
         {
           "title": "hydrate",
           "path": "/reference/react-dom/hydrate"
+        },
+        {
+          "title": "preconnect",
+          "path": "/reference/react-dom/preconnect",
+          "canary": true
+        },
+        {
+          "title": "prefetchDNS",
+          "path": "/reference/react-dom/prefetchDNS",
+          "canary": true
+        },
+        {
+          "title": "preinit",
+          "path": "/reference/react-dom/preinit",
+          "canary": true
+        },
+        {
+          "title": "preinitModule",
+          "path": "/reference/react-dom/preinitModule",
+          "canary": true
+        },
+        {
+          "title": "preload",
+          "path": "/reference/react-dom/preload",
+          "canary": true
+        },
+        {
+          "title": "preloadModule",
+          "path": "/reference/react-dom/preloadModule",
+          "canary": true
         },
         {
           "title": "render",

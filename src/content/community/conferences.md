@@ -25,6 +25,16 @@ April 19 - 20, 2024. In-person in Miami, FL, USA
 
 [Website](https://reactmiami.com/) - [Twitter](https://twitter.com/ReactMiamiConf)
 
+### React Connection 2024 {/*react-connection-2024*/}
+April 22, 2024. In-person in Paris, France 
+
+[Website](https://reactconnection.io/) - [Twitter](https://twitter.com/ReactConn)
+
+### React Native Connection 2024 {/*react-native-connection-2024*/}
+April 23, 2024. In-person in Paris, France 
+
+[Website](https://reactnativeconnection.io/) - [Twitter](https://twitter.com/ReactNativeConn)
+
 ### React Conf 2024 {/*react-conf-2024*/}
 May 15 - 16, 2024. In-person in Henderson, NV, USA + remote
 

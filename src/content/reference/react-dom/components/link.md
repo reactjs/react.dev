@@ -96,7 +96,7 @@ In addition, if the `<link>` is to a stylesheet (namely, it has `rel="stylesheet
 
 There are two exception to this special behavior:
 
-* If the link doesn't have a `precedence` prop, there is no special behavior, because the order of stylesheets within the document is significant, so React needs to know how to order this stylesheet relative to others, which you specify using the `precedence` prop.  
+* If the link doesn't have a `precedence` prop, there is no special behavior, because the order of stylesheets within the document is significant, so React needs to know how to order this stylesheet relative to others, which you specify using the `precedence` prop.
 * If you supply any of the `onLoad`, `onError`, or `disabled` props, there is no special behavior, because these props indicate that you are managing the loading of the stylesheet manually within your component.
 
 This special treatment comes with two caveats:
@@ -114,7 +114,7 @@ You can annotate the document with links to related resources such as an icon, c
 
 <SandpackWithHTMLOutput>
 
-```js App.js active
+```js src/App.js active
 import ShowRenderedHTML from './ShowRenderedHTML.js';
 
 export default function BlogPage() {
@@ -141,7 +141,7 @@ When you want to use a stylesheet, it can be beneficial to call the [preinit](/r
 
 <SandpackWithHTMLOutput>
 
-```js App.js active
+```js src/App.js active
 import ShowRenderedHTML from './ShowRenderedHTML.js';
 
 export default function SiteMapPage() {
@@ -164,7 +164,7 @@ Stylesheets can conflict with each other, and when they do, the browser goes wit
 
 <SandpackWithHTMLOutput>
 
-```js App.js active
+```js src/App.js active
 import ShowRenderedHTML from './ShowRenderedHTML.js';
 
 export default function HomePage() {
@@ -195,7 +195,7 @@ If you render the same stylesheet from multiple components, React will place onl
 
 <SandpackWithHTMLOutput>
 
-```js App.js active
+```js src/App.js active
 import ShowRenderedHTML from './ShowRenderedHTML.js';
 
 export default function HomePage() {

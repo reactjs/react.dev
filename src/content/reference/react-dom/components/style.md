@@ -73,7 +73,7 @@ If you supply an `href` and `precedence` prop, your component will suspend while
 
 <SandpackWithHTMLOutput>
 
-```js App.js active
+```js src/App.js active
 import ShowRenderedHTML from './ShowRenderedHTML.js';
 import { useId } from 'react';
 

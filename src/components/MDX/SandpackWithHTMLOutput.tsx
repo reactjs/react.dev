@@ -20,7 +20,7 @@ export default function ShowRenderedHTML({children}) {
         {formatHTML(markup)}
       </pre>
     </>
-  );  
+  );
 }`;
 
 const formatHTML = `
@@ -77,8 +77,8 @@ export default memo(function SandpackWithHTMLOutput(
 ) {
   const children = [
     ...Children.toArray(props.children),
-    createFile('ShowRenderedHTML.js', ShowRenderedHTML),
-    createFile('formatHTML.js hidden', formatHTML),
+    createFile('src/ShowRenderedHTML.js', ShowRenderedHTML),
+    createFile('src/formatHTML.js hidden', formatHTML),
     createFile('package.json hidden', packageJSON),
   ];
   return <Sandpack {...props}>{children}</Sandpack>;

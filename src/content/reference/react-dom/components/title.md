@@ -66,7 +66,7 @@ Render the `<title>` component from any component with text as its children. Rea
 
 <SandpackWithHTMLOutput>
 
-```js App.js active
+```js src/App.js active
 import ShowRenderedHTML from './ShowRenderedHTML.js';
 
 export default function ContactUsPage() {

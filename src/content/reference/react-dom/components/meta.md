@@ -72,7 +72,7 @@ You can render the `<meta>` component from any component. React will put a `<met
 
 <SandpackWithHTMLOutput>
 
-```js App.js active
+```js src/App.js active
 import ShowRenderedHTML from './ShowRenderedHTML.js';
 
 export default function SiteMapPage() {

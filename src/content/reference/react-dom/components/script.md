@@ -91,7 +91,7 @@ If you supply an `src` and `async` prop, your component will suspend while the s
 
 <SandpackWithHTMLOutput>
 
-```js App.js active
+```js src/App.js active
 import ShowRenderedHTML from './ShowRenderedHTML.js';
 
 function Map({lat, long}) {
@@ -124,7 +124,7 @@ To include an inline script, render the `<script>` component with the script sou
 
 <SandpackWithHTMLOutput>
 
-```js App.js active
+```js src/App.js active
 import ShowRenderedHTML from './ShowRenderedHTML.js';
 
 function Tracking() {

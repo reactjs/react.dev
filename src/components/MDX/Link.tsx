@@ -37,9 +37,9 @@ function Link({
         </ExternalLink>
       ) : href.startsWith('#') ? (
         // eslint-disable-next-line jsx-a11y/anchor-has-content
-        <a className={cn(classes, className)} href={href} {...props}>
+        <NextLink className={cn(classes, className)} href={href} {...props}>
           {modifiedChildren}
-        </a>
+        </NextLink>
       ) : (
         <NextLink href={href} className={cn(classes, className)} {...props}>
           {modifiedChildren}

@@ -1,0 +1,59 @@
+import React from 'react';
+import PropTypes from 'prop-types';
+
+const ProgressBar = ({ percent, barColor, height, showLabel, showTooltip }) => {
+  const containerStyle = {
+    width: '100%',
+    backgroundColor: '#f0f0f0',
+    borderRadius: '5px',
+    overflow: 'hidden',
+    height,
+  };
+
+  const fillerStyle = {
+    height: '100%',
+    width: `${percent}%`,
+    backgroundColor: barColor,
+    transition: 'width 0.5s ease-in-out',
+    borderRadius: '5px',
+  };
+
+  const labelStyle = {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    color: '#ffffff',
+    fontWeight: 'bold',
+    pointerEvents: 'none',
+  };
+
+  const tooltipStyle = {
+    position: 'absolute',
+    top: '-30px',
+    left: `${percent > 90 ? 90 : percent}%`,
+    backgroundColor: '#000',
+    color: '#fff',
+    padding: '5px',
+    borderRadius: '5px',
+    visibility: showTooltip ? 'visible' : 'hidden',
+  };
+
+  return (
+    <div style={containerStyle}>
+      <div style={fillerStyle}></div>
+      {showLabel && <div style={labelStyle}>{`${percent}%`}</div>}
+      {showTooltip && <div style={tooltipStyle}>{`${percent}% Completed`}</div>}
+    </div>
+  );
+};
+
+ProgressBar.propTypes = {
+  percent: PropTypes.number.isRequired,
+  barColor: PropTypes.string,
+  height: PropTypes.string,
+  showLabel: PropTypes.bool,
+  showTooltip: PropTypes.bool,
+};
+
+P

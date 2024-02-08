@@ -8,7 +8,7 @@ This section provides detailed reference documentation for working with React. F
 
 </Intro>
 
-Our The React reference documentation is broken down into functional subsections:
+The React reference documentation is broken down into functional subsections:
 
 ## React {/*react*/}
 

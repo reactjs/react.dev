@@ -193,7 +193,7 @@ export default function Form() {
   }
   return (
     <form onSubmit={handleSubmit}>
-      <p>this button has been pressed {"" + optimisticCount}</p>
+      <p>This button has been pressed {"" + optimisticCount} times.</p>
       <button disabled={pending}>Submit</button>
     </form>
   );

@@ -80,7 +80,7 @@ And here's how to build a component:
 
 ### Step 1: Export the component {/*step-1-export-the-component*/}
 
-The `export default` prefix is a [standard JavaScript syntax](https://developer.mozilla.org/docs/web/javascript/reference/statements/export) (not specific to React). It lets you mark the main function in a file so that you can later import it from other files. (More on importing in [Importing and Exporting Components](/learn/importing-and-exporting-components)!)
+The `export default` prefix is a [standard JavaScript syntax](https://developer.mozilla.org/docs/web/javascript/reference/statements/export) (not specific to React). It lets you mark the main function in a file so that you can later import it from other files. For more information about the importing, see [Importing and Exporting Components](/learn/importing-and-exporting-components).
 
 ### Step 2: Define the function {/*step-2-define-the-function*/}
 

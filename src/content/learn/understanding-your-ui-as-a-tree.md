@@ -255,7 +255,7 @@ In this example, depending on what `inspiration.type` is, we may render `<FancyT
 
 Although render trees may differ across render passes, these trees are generally helpful for identifying what the *top-level* and *leaf components* are in a React app. Top-level components are the components nearest to the root component and affect the rendering performance of all the components beneath them and often contain the most complexity. Leaf components are near the bottom of the tree and have no child components and are often frequently re-rendered.
 
-Identifying these categories of components are useful for understanding data flow and performance of your app.
+Identifying these categories of components is useful for understanding data flow and performance of your app.
 
 ## The Module Dependency Tree {/*the-module-dependency-tree*/}
 
@@ -275,7 +275,7 @@ The root node of the tree is the root module, also known as the entrypoint file.
 
 Comparing to the render tree of the same app, there are similar structures but some notable differences:
 
-* The nodes that make-up the tree represent modules, not components.
+* The nodes that make up the tree represent modules, not components.
 * Non-component modules, like `inspirations.js`, are also represented in this tree. The render tree only encapsulates components.
 * `Copyright.js` appears under `App.js` but in the render tree, `Copyright`, the component, appears as a child of `InspirationGenerator`. This is because `InspirationGenerator` accepts JSX as [children props](/learn/passing-props-to-a-component#passing-jsx-as-children), so it renders `Copyright` as a child component but does not import the module.
 

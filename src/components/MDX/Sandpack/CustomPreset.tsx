@@ -7,9 +7,8 @@ import {
   useSandpack,
   useActiveCode,
   SandpackCodeEditor,
-  // SandpackReactDevTools,
   SandpackLayout,
-} from '@codesandbox/sandpack-react';
+} from '@codesandbox/sandpack-react/unstyled';
 import cn from 'classnames';
 
 import {IconChevron} from 'components/Icon/IconChevron';
@@ -19,14 +18,8 @@ import {Preview} from './Preview';
 import {useSandpackLint} from './useSandpackLint';
 
 export const CustomPreset = memo(function CustomPreset({
-  showDevTools,
-  onDevToolsLoad,
-  devToolsLoaded,
   providedFiles,
 }: {
-  showDevTools: boolean;
-  devToolsLoaded: boolean;
-  onDevToolsLoad: () => void;
   providedFiles: Array<string>;
 }) {
   const {lintErrors, lintExtensions} = useSandpackLint();
@@ -41,9 +34,6 @@ export const CustomPreset = memo(function CustomPreset({
   const isExpandable = lineCount > 16;
   return (
     <SandboxShell
-      showDevTools={showDevTools}
-      onDevToolsLoad={onDevToolsLoad}
-      devToolsLoaded={devToolsLoaded}
       providedFiles={providedFiles}
       lintErrors={lintErrors}
       lintExtensions={lintExtensions}
@@ -53,17 +43,11 @@ export const CustomPreset = memo(function CustomPreset({
 });
 
 const SandboxShell = memo(function SandboxShell({
-  showDevTools,
-  onDevToolsLoad,
-  devToolsLoaded,
   providedFiles,
   lintErrors,
   lintExtensions,
   isExpandable,
 }: {
-  showDevTools: boolean;
-  devToolsLoaded: boolean;
-  onDevToolsLoad: () => void;
   providedFiles: Array<string>;
   lintErrors: Array<any>;
   lintExtensions: Array<any>;
@@ -82,7 +66,6 @@ const SandboxShell = memo(function SandboxShell({
         <NavigationBar providedFiles={providedFiles} />
         <SandpackLayout
           className={cn(
-            showDevTools && devToolsLoaded && 'sp-layout-devtools',
             !(isExpandable || isExpanded) && 'rounded-b-lg overflow-hidden',
             isExpanded && 'sp-layout-expanded'
           )}>
@@ -116,7 +99,7 @@ const SandboxShell = memo(function SandboxShell({
               }}>
               <span className="flex p-2 focus:outline-none text-primary dark:text-primary-dark leading-[20px]">
                 <IconChevron
-                  className="inline mr-1.5 text-xl"
+                  className="inline me-1.5 text-xl"
                   displayDirection={isExpanded ? 'up' : 'down'}
                 />
                 {isExpanded ? 'Show less' : 'Show more'}
@@ -124,11 +107,6 @@ const SandboxShell = memo(function SandboxShell({
             </button>
           )}
         </SandpackLayout>
-
-        {/* {showDevTools && (
-          // @ts-ignore TODO(@danilowoz): support devtools
-          <SandpackReactDevTools onLoadModule={onDevToolsLoad} />
-        )} */}
       </div>
     </>
   );

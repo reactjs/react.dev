@@ -17,9 +17,9 @@ interface TerminalBlockProps {
 function LevelText({type}: {type: LogLevel}) {
   switch (type) {
     case 'warning':
-      return <span className="text-yellow-50 bg-none mr-1">Warning: </span>;
+      return <span className="text-yellow-50 bg-none me-1">Warning: </span>;
     case 'error':
-      return <span className="text-red-40 mr-1">Error: </span>;
+      return <span className="text-red-40 me-1">Error: </span>;
     default:
       return null;
   }
@@ -55,22 +55,25 @@ function TerminalBlock({level = 'info', children}: TerminalBlockProps) {
       <div className="bg-gray-90 dark:bg-gray-60 w-full rounded-t-lg">
         <div className="text-primary-dark dark:text-primary-dark flex text-sm px-4 py-0.5 relative justify-between">
           <div>
-            <IconTerminal className="inline-flex mr-2 self-center" /> Terminal
+            <IconTerminal className="inline-flex me-2 self-center" /> Terminal
           </div>
           <div>
             <button
-              className="w-full text-left text-primary-dark dark:text-primary-dark "
+              className="w-full text-start text-primary-dark dark:text-primary-dark "
               onClick={() => {
                 window.navigator.clipboard.writeText(message ?? '');
                 setCopied(true);
               }}>
-              <IconCopy className="inline-flex mr-2 self-center" />{' '}
+              <IconCopy className="inline-flex me-2 self-center" />{' '}
               {copied ? 'Copied' : 'Copy'}
             </button>
           </div>
         </div>
       </div>
-      <div className="px-8 pt-4 pb-6 text-primary-dark dark:text-primary-dark font-mono text-code whitespace-pre">
+      <div
+        className="px-8 pt-4 pb-6 text-primary-dark dark:text-primary-dark font-mono text-code whitespace-pre overflow-x-scroll"
+        translate="no"
+        dir="ltr">
         <LevelText type={level} />
         {message}
       </div>

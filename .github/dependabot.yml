@@ -1,0 +1,8 @@
+version: 2
+updates:
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    # Disable Dependabot. Doing it here so it propagates to translation forks.
+    open-pull-requests-limit: 0

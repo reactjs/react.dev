@@ -7,7 +7,7 @@ import {useRef, useLayoutEffect, Fragment} from 'react';
 import cn from 'classnames';
 import {useRouter} from 'next/router';
 import {SidebarLink} from './SidebarLink';
-import useCollapse from 'react-collapsed';
+import {useCollapse} from 'react-collapsed';
 import usePendingRoute from 'hooks/usePendingRoute';
 import type {RouteItem} from 'components/Layout/getRouteMeta';
 
@@ -82,12 +82,20 @@ export function SidebarRouteTree({
     <ul>
       {currentRoutes.map(
         (
-          {path, title, routes, wip, heading, hasSectionHeader, sectionHeader},
+          {
+            path,
+            title,
+            routes,
+            canary,
+            heading,
+            hasSectionHeader,
+            sectionHeader,
+          },
           index
         ) => {
           const selected = slug === path;
           let listItem = null;
-          if (!path || !path || heading) {
+          if (!path || heading) {
             // if current route item has no path and children treat it as an API sidebar heading
             listItem = (
               <SidebarRouteTree
@@ -112,9 +120,8 @@ export function SidebarRouteTree({
                   selected={selected}
                   level={level}
                   title={title}
-                  wip={wip}
+                  canary={canary}
                   isExpanded={isExpanded}
-                  isBreadcrumb={isBreadcrumb}
                   hideArrow={isForceExpanded}
                 />
                 <CollapseWrapper duration={250} isExpanded={isExpanded}>
@@ -137,7 +144,7 @@ export function SidebarRouteTree({
                   selected={selected}
                   level={level}
                   title={title}
-                  wip={wip}
+                  canary={canary}
                 />
               </li>
             );
@@ -148,12 +155,12 @@ export function SidebarRouteTree({
                 {index !== 0 && (
                   <li
                     role="separator"
-                    className="mt-4 mb-2 ml-5 border-b border-border dark:border-border-dark"
+                    className="mt-4 mb-2 ms-5 border-b border-border dark:border-border-dark"
                   />
                 )}
                 <h3
                   className={cn(
-                    'mb-1 text-sm font-bold ml-5 text-tertiary dark:text-tertiary-dark',
+                    'mb-1 text-sm font-bold ms-5 text-tertiary dark:text-tertiary-dark',
                     index !== 0 && 'mt-2'
                   )}>
                   {sectionHeader}

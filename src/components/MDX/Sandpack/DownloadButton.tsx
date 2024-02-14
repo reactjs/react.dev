@@ -3,23 +3,27 @@
  */
 
 import {useSyncExternalStore} from 'react';
-import {useSandpack} from '@codesandbox/sandpack-react';
+import {useSandpack} from '@codesandbox/sandpack-react/unstyled';
 import {IconDownload} from '../../Icon/IconDownload';
+import {AppJSPath, StylesCSSPath, SUPPORTED_FILES} from './createFileMap';
 export interface DownloadButtonProps {}
 
-let supportsImportMap: boolean | void;
+let supportsImportMap = false;
+
+function subscribe(cb: () => void) {
+  // This shouldn't actually need to update, but this works around
+  // https://github.com/facebook/react/issues/26095
+  let timeout = setTimeout(() => {
+    supportsImportMap =
+      (HTMLScriptElement as any).supports &&
+      (HTMLScriptElement as any).supports('importmap');
+    cb();
+  }, 0);
+  return () => clearTimeout(timeout);
+}
 
 function useSupportsImportMap() {
-  function subscribe() {
-    // It never updates.
-    return () => {};
-  }
   function getCurrentValue() {
-    if (supportsImportMap === undefined) {
-      supportsImportMap =
-        (HTMLScriptElement as any).supports &&
-        (HTMLScriptElement as any).supports('importmap');
-    }
     return supportsImportMap;
   }
   function getServerSnapshot() {
@@ -28,8 +32,6 @@ function useSupportsImportMap() {
 
   return useSyncExternalStore(subscribe, getCurrentValue, getServerSnapshot);
 }
-
-const SUPPORTED_FILES = ['/App.js', '/styles.css'];
 
 export function DownloadButton({
   providedFiles,
@@ -46,8 +48,8 @@ export function DownloadButton({
   }
 
   const downloadHTML = () => {
-    const css = sandpack.files['/styles.css']?.code ?? '';
-    const code = sandpack.files['/App.js']?.code ?? '';
+    const css = sandpack.files[StylesCSSPath]?.code ?? '';
+    const code = sandpack.files[AppJSPath]?.code ?? '';
     const blob = new Blob([
       `<!DOCTYPE html>
 <html>
@@ -100,7 +102,7 @@ ${css}
       onClick={downloadHTML}
       title="Download Sandbox"
       type="button">
-      <IconDownload className="inline mr-1" /> Download
+      <IconDownload className="inline me-1" /> Download
     </button>
   );
 }

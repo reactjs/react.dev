@@ -12,6 +12,13 @@
       "skipBreadcrumb": true,
       "routes": [
         {
+          "title": "React Canaries: Enabling Incremental Feature Rollout Outside Meta",
+          "titleForHomepage": "React Canaries: Incremental Feature Rollout",
+          "icon": "blog",
+          "date": "May 3, 2023",
+          "path": "/blog/2023/05/03/react-canaries"
+        },
+        {
           "title": "React Labs: What We've Been Working On – March 2023",
           "titleForHomepage": "React Labs: March 2023",
           "icon": "labs",

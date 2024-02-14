@@ -21,7 +21,7 @@ function ButtonLink({
   label,
   target = '_self',
   ...props
-}: JSX.IntrinsicElements['a'] & ButtonLinkProps) {
+}: React.AnchorHTMLAttributes<HTMLAnchorElement> & ButtonLinkProps) {
   const classes = cn(
     className,
     'active:scale-[.98] transition-transform inline-flex font-bold items-center outline-none focus:outline-none focus-visible:outline focus-visible:outline-link focus:outline-offset-2 focus-visible:dark:focus:outline-link-dark leading-snug',
@@ -34,10 +34,13 @@ function ButtonLink({
     }
   );
   return (
-    <NextLink href={href as string}>
-      <a className={classes} {...props} aria-label={label} target={target}>
-        {children}
-      </a>
+    <NextLink
+      href={href as string}
+      className={classes}
+      {...props}
+      aria-label={label}
+      target={target}>
+      {children}
     </NextLink>
   );
 }

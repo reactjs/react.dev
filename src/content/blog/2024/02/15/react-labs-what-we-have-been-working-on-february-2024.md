@@ -80,9 +80,11 @@ React Server Components, Asset Loading, Document Metadata, and Actions have all 
 
 - **Actions**: As shared above, we've added Actions to manage sending data from the client to the server. You can add `action` to elements like [`<form/>`](/reference/react-dom/components/form), access the status with [`useFormStatus`](/reference/react-dom/hooks/useFormStatus), handle the result with [`useFormState`](/reference/react-dom/hooks/useFormState), and optimistically update the UI with [`useOptimistic`](/reference/react/useOptimistic).
 
-We developed these features individually and released them incrementally for testing in the `canary` channel. This allowed us to build each feature in public, test them individually in production, and iterate on feedback until we reach a final design. Since all of these features work together, it’s difficult to release them individually. Releasing Actions without the complementary hooks for accessing form states would limit the practical usability of Actions. Introducing React Server Components without integrating Server Actions would complicate modifying data on the server. Before we can release a set of features to stable, we need to ensure they work cohesively and developers have everything they need to use them in production.
+Since all of these features work together, it’s difficult to release them in the Stable channel individually. Releasing Actions without the complementary hooks for accessing form states would limit the practical usability of Actions. Introducing React Server Components without integrating Server Actions would complicate modifying data on the server. 
 
-The current set of features in React Canary have everything needed to build in production are ready to release in the next semver stable version of React.
+Before we can release a set of features to the Stable channel, we need to ensure they work cohesively and developers have everything they need to use them in production. React Canaries allow us to develop these features individually, and release the stable APIs incrementally until the entire feature set is complete.
+
+The current set of features in React Canary are complete and ready to release.
 
 ## The Next Major Version of React {/*the-next-major-version-of-react*/}
 

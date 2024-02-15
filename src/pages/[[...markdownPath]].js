@@ -157,6 +157,10 @@ export async function getStaticPaths() {
   }
 
   const files = await getFiles(rootDir);
+  console.log(
+    'files',
+    files.filter((f) => f.indexOf('blog') >= 0)
+  );
 
   const paths = files.map((file) => ({
     params: {

@@ -2,7 +2,7 @@
 title: "React Labs: What We've Been Working On – February 2024"
 ---
 
-February 15, 2024 by [Ricky Hanlon](https://twitter.com/rickhanlonii), [Joseph Savona](https://twitter.com/en_JS), [Andrew Clark](https://twitter.com/acdlite), [Matt Carroll](https://twitter.com/mattcarrollcode), [Dan Abramov](https://twitter.com/dan_abramov).
+February 15, 2024 by [Ricky Hanlon](https://twitter.com/rickhanlonii), [Joseph Savona](https://twitter.com/en_JS), [Andrew Clark](https://twitter.com/acdlite), [Matt Carroll](https://twitter.com/mattcarrollcode), and [Dan Abramov](https://twitter.com/dan_abramov).
 
 ---
 
@@ -43,7 +43,7 @@ To see the compiler in action, you can check out our [talk from last fall](https
 
 We [previously shared](/blog/2023/03/22/react-labs-what-we-have-been-working-on-march-2023#react-server-components) that we were exploring solutions for sending data from the client to the server with Server Actions, so that you can execute database mutations and implement forms. During development, we extended these APIs to support data handling in client-only applications as well.
 
-We refer to this broader collection of features as simply "Actions":
+We refer to this broader collection of features as simply "Actions". Actions allow you to pass a function to DOM elements such as [`<form/>`](/reference/react-dom/components/form):
 
 ```js
 <form action={search}>

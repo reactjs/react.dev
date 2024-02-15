@@ -14,7 +14,7 @@ In React Labs posts, we write about projects in active research and development.
 
 <Note>
 
-React Conf 2024 is scheduled for May 15–16 in Henderson, Nevada! If you’re interested in speaking at React Conf, you can [submit a talk proposal](https://sessionize.com/react-conf-2024) until February 28th. 
+React Conf 2024 is scheduled for May 15–16 in Henderson, Nevada! If you’re interested in attending React Conf in person, you can [sign up for the ticket lottery](https://forms.reform.app/bLaLeE/react-conf-2024-ticket-lottery/1aRQLK) until February 28th. 
 
 For more info on tickets, free streaming, sponsoring, and more, see [the React Conf website](https://conf.react.dev).
 

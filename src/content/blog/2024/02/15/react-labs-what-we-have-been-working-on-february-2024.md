@@ -112,4 +112,4 @@ In addition to this update, our team has presented at conferences and made appea
 
 Thanks [Lauren Tan](https://twitter.com/potetotes), [Sophie Alpert](https://twitter.com/sophiebits), [Jason Bonta](https://threads.net/someextent), [Eli White](https://twitter.com/Eli_White), and [Sathya Gunasekaran](https://twitter.com/_gsathya) for reviewing this post.
 
-Thanks for reading, and see you at React Conf!
+Thanks for reading, and [see you at React Conf](https://conf.react.dev/)!

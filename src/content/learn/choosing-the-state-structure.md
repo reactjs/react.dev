@@ -81,7 +81,8 @@ export default function MovingDot() {
         top: -10,
         width: 20,
         height: 20,
-      }} />
+      }}> 
+      </div>
     </div>
   )
 }

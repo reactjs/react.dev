@@ -104,9 +104,9 @@ Activity is still under research and our remaining work is to finalize the primi
 
 In addition to this update, our team has presented at conferences and made appearances on podcasts to speak more on our work and answer questions.
 
-- [Sathya Gunasekaran](/community/team#sathya-gunasekaran) spoke about the React Complier at the [React India](https://www.youtube.com/watch?v=kjOacmVsLSE) conference
+- [Sathya Gunasekaran](/community/team#sathya-gunasekaran) spoke about the React Compiler at the [React India](https://www.youtube.com/watch?v=kjOacmVsLSE) conference
 
-- [Dan Abramov](/community/team#dan-abramov) gave a talk at [RemixConf](https://www.youtube.com/watch?v=zMf_xeGPn6s) titled “React from Another Dimension” which explores and alternative history of how React Server Components and Actions could have been created
+- [Dan Abramov](/community/team#dan-abramov) gave a talk at [RemixConf](https://www.youtube.com/watch?v=zMf_xeGPn6s) titled “React from Another Dimension” which explores an alternative history of how React Server Components and Actions could have been created
 
 - [Dan Abramov](/community/team#dan-abramov) was interviewed on [the Changelog’s JS Party podcast](https://changelog.com/jsparty/311) about React Server Components
 

@@ -65,6 +65,11 @@ July 04 & 05, 2024. Bangalore, India (In-person event)
 
 [Website](https://reactnexus.com/) - [Twitter](https://twitter.com/ReactNexus) - [Linkedin](https://www.linkedin.com/company/react-nexus) - [YouTube](https://www.youtube.com/reactify_in)
 
+### Chain React 2024 {/*chain-react-2024*/}
+July 17-19, 2024. In-person in Portland, OR, USA
+
+[Website](https://chainreactconf.com) - [Twitter](https://twitter.com/ChainReactConf)
+
 ### React India 2024 {/*react-india-2024*/}
 October 17 - 19, 2024. In-person in Goa, India (hybrid event) + Oct 15 2024 - remote day
 

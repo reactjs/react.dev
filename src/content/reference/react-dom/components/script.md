@@ -68,7 +68,7 @@ Props that are **not recommended** for use with React:
 
 #### Special rendering behavior {/*special-rendering-behavior*/}
 
-React can move `<script>` components to the document's `<head>`, de-duplicate identical scripts, and [suspend](http://localhost:3000/reference/react/Suspense) while the script is loading.
+React can move `<script>` components to the document's `<head>`, de-duplicate identical scripts, and [suspend](/reference/react/Suspense) while the script is loading.
 
 To opt into this behavior, provide the `src` and `async={true}` props. React will de-duplicate scripts if they have the same `src`. The `async` prop must be true to allow scripts to be safely moved.
 

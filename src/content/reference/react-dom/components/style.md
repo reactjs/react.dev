@@ -14,7 +14,7 @@ React's extensions to `<style>` are currently only available in React's canary a
 The [built-in browser `<style>` component](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/style) lets you add inline CSS stylesheets to your document.
 
 ```js
-<style> p { color: red; } </style>
+<style>{` p { color: red; } `}</style>
 ```
 
 </Intro>

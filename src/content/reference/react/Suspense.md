@@ -2528,7 +2528,7 @@ You can use this to opt out some components from rendering on the server. To do 
 </Suspense>
 
 function Chat() {
-  if (typeof window === 'undefined') {
+  if (typeof document === 'undefined') {
     throw Error('Chat should only render on the client.');
   }
   // ...

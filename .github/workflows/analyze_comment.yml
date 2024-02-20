@@ -14,7 +14,7 @@ jobs:
       github.event.workflow_run.conclusion == 'success' }}
     steps:
       - name: Download base branch bundle stats
-        uses: dawidd6/action-download-artifact@v2
+        uses: dawidd6/action-download-artifact@v3
         with:
           workflow: analyze.yml
           run_id: ${{ github.event.workflow_run.id }}
@@ -22,7 +22,7 @@ jobs:
           path: analysis_comment.txt
 
       - name: Download PR number
-        uses: dawidd6/action-download-artifact@v2
+        uses: dawidd6/action-download-artifact@v3
         with:
           workflow: analyze.yml
           run_id: ${{ github.event.workflow_run.id }}

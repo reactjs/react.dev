@@ -74,6 +74,7 @@ jobs:
 
       - name: Upload analysis comment
         uses: actions/upload-artifact@v3
+        if: success() && github.event.number
         with:
           name: analysis_comment.txt
           path: .next/analyze/__bundle_analysis_comment.txt

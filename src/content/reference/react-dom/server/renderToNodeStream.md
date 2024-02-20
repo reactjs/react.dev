@@ -13,7 +13,7 @@ This API will be removed in a future major version of React. Use [`renderToPipea
 `renderToNodeStream` renders a React tree to a [Node.js Readable Stream.](https://nodejs.org/api/stream.html#readable-streams)
 
 ```js
-const stream = renderToNodeStream(reactNode)
+const stream = renderToNodeStream(reactNode, options?)
 ```
 
 </Intro>
@@ -24,7 +24,7 @@ const stream = renderToNodeStream(reactNode)
 
 ## Reference {/*reference*/}
 
-### `renderToNodeStream(reactNode)` {/*rendertonodestream*/}
+### `renderToNodeStream(reactNode, options?)` {/*rendertonodestream*/}
 
 On the server, call `renderToNodeStream` to get a [Node.js Readable Stream](https://nodejs.org/api/stream.html#readable-streams) which you can pipe into the response.
 

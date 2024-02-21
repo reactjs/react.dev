@@ -75,6 +75,11 @@ July 17-19, 2024. In-person in Portland, OR, USA
 
 [Website](https://chainreactconf.com) - [Twitter](https://twitter.com/ChainReactConf)
 
+### The Geek Conf 2024 {/*the-geek-conf-2024*/}
+July 25, 2024. In-person in Berlin, Germany + remote (hybrid event)
+
+[Website](https://thegeekconf.com) - [Twitter](https://twitter.com/thegeekconf)
+
 ### React India 2024 {/*react-india-2024*/}
 October 17 - 19, 2024. In-person in Goa, India (hybrid event) + Oct 15 2024 - remote day
 

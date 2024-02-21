@@ -10,11 +10,6 @@ Do you know of a local React.js conference? Add it here! (Please keep the list c
 
 ## Upcoming Conferences {/*upcoming-conferences*/}
 
-### React Universe Conf 2024 {/*react-universe-conf-2024*/}
-September 5-6, 2024. Wrocław, Poland.
-
-[Website](https://www.reactuniverseconf.com/) - [Twitter](https://twitter.com/react_native_eu) - [LinkedIn](https://www.linkedin.com/events/reactuniverseconf7163919537074118657/)
-
 ### React Paris 2024 {/*react-paris-2024*/}
 March 22, 2024. In-person in Paris, France + Remote (hybrid)
 
@@ -79,6 +74,17 @@ July 17-19, 2024. In-person in Portland, OR, USA
 July 25, 2024. In-person in Berlin, Germany + remote (hybrid event)
 
 [Website](https://thegeekconf.com) - [Twitter](https://twitter.com/thegeekconf)
+
+### React Universe Conf 2024 {/*react-universe-conf-2024*/}
+September 5-6, 2024. Wrocław, Poland.
+
+[Website](https://www.reactuniverseconf.com/) - [Twitter](https://twitter.com/react_native_eu) - [LinkedIn](https://www.linkedin.com/events/reactuniverseconf7163919537074118657/)
+
+### React Alicante 2024 {/*react-alicante-2024*/}
+September 19-21, 2024. Alicante, Spain.
+
+[Website](https://reactalicante.es/) - [Twitter](https://twitter.com/ReactAlicante) - [YouTube](https://www.youtube.com/channel/UCaSdUaITU1Cz6PvC97A7e0w)
+
 
 ### React India 2024 {/*react-india-2024*/}
 October 17 - 19, 2024. In-person in Goa, India (hybrid event) + Oct 15 2024 - remote day

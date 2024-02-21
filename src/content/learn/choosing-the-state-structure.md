@@ -554,8 +554,6 @@ button { margin-top: 10px; }
 
 </Sandpack>
 
-(Alternatively, you may hold the selected index in state.)
-
 The state used to be duplicated like this:
 
 * `items = [{ id: 0, title: 'pretzels'}, ...]`

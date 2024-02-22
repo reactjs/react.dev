@@ -147,13 +147,20 @@ export default function Accordion() {
 }
 
 function Panel({ title, children, isActive }) {
+  // Please carefully look up to this here setIsActive is not defined yet
+  // isActive is only passing by props
+  // I added this lines and updated setIsActive to setCheckActive to remove errors
+  // Please take necessary step so that learners like myself don't get confused by error
+  
+  const [checkActive, setCheckActive] = useState(isActive);
+
   return (
     <section className="panel">
       <h3>{title}</h3>
       {isActive ? (
         <p>{children}</p>
       ) : (
-        <button onClick={() => setIsActive(true)}>
+        <button onClick={() => setCheckActive(true)}>
           Show
         </button>
       )}

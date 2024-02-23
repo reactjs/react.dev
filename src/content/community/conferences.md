@@ -70,6 +70,11 @@ July 17-19, 2024. In-person in Portland, OR, USA
 
 [Website](https://chainreactconf.com) - [Twitter](https://twitter.com/ChainReactConf)
 
+### The Geek Conf 2024 {/*the-geek-conf-2024*/}
+July 25, 2024. In-person in Berlin, Germany + remote (hybrid event)
+
+[Website](https://thegeekconf.com) - [Twitter](https://twitter.com/thegeekconf)
+
 ### React Universe Conf 2024 {/*react-universe-conf-2024*/}
 September 5-6, 2024. Wrocław, Poland.
 
@@ -79,6 +84,7 @@ September 5-6, 2024. Wrocław, Poland.
 September 19-21, 2024. Alicante, Spain.
 
 [Website](https://reactalicante.es/) - [Twitter](https://twitter.com/ReactAlicante) - [YouTube](https://www.youtube.com/channel/UCaSdUaITU1Cz6PvC97A7e0w)
+
 
 ### React India 2024 {/*react-india-2024*/}
 October 17 - 19, 2024. In-person in Goa, India (hybrid event) + Oct 15 2024 - remote day

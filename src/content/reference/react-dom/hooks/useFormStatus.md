@@ -184,14 +184,13 @@ export default function UsernameForm() {
 
   return (
     <div>
-      <label>Request a Username: </label>
-      <br />
+      <h3>Request a Username: </h3>
       <input type="text" name="username" disabled={pending}/>
       <button type="submit" disabled={pending}>
         Submit
       </button>
       <br />
-      <p>{pending ? `Requesting ${data?.get("username")}...`: ''}</p>
+      <p>{data ? `Requesting ${data?.get("username")}...`: ''}</p>
     </div>
   );
 }
@@ -231,10 +230,6 @@ p {
 
 button {
     margin-left: 2px;
-}
-
-input {
-    margin-top: 2px;
 }
 
 ```

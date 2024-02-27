@@ -608,3 +608,7 @@ html.dark .sp-devtools > div {
     }
   }
 }
+
+.sp-loading .sp-icon-standalone span {
+  display: none;
+}

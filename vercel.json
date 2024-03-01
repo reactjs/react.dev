@@ -41,11 +41,6 @@
       "permanent": false
     },
     {
-      "source": "/link/event-pooling",
-      "destination": "/reference/react/useEffect#fetching-data-with-effects",
-      "permanent": false
-    },
-    {
       "source": "/link/controlled-components",
       "destination": "/reference/react-dom/components/input#controlling-an-input-with-a-state-variable",
       "permanent": false
@@ -78,6 +73,11 @@
     {
       "source": "/link/rules-of-hooks",
       "destination": "/warnings/invalid-hook-call-warning",
+      "permanent": false
+    },
+    {
+      "source": "/link/event-pooling",
+      "destination": "https://legacy.reactjs.org/docs/legacy-event-pooling.html",
       "permanent": false
     },
     {

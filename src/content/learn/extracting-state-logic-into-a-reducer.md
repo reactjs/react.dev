@@ -1462,7 +1462,6 @@ export function messengerReducer(state, action) {
   switch (action.type) {
     case 'changed_selection': {
       return {
-        ...state,
         selectedId: action.contactId,
         message: '',
       };
@@ -1601,7 +1600,6 @@ export function messengerReducer(state, action) {
   switch (action.type) {
     case 'changed_selection': {
       return {
-        ...state,
         selectedId: action.contactId,
         message: '',
       };

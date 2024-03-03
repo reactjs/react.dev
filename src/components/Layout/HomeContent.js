@@ -277,10 +277,10 @@ export function HomeContent() {
                   <div className="relative overflow-hidden">
                     <div className="absolute inset-0 bg-gradient-right" />
                     <div className="bg-wash relative h-14 w-full" />
-                    <div className="relative flex items-start justify-center flex-col flex-1 pb-16 pt-5 gap-3 px-5 lg:px-10 lg:pt-8">
-                      <h4 className="leading-tight text-primary font-semibold text-3xl lg:text-4xl">
+                    <article className="relative flex items-start justify-center flex-col flex-1 pb-16 pt-5 gap-3 px-5 lg:px-10 lg:pt-8">
+                      <h1 className="leading-tight text-primary font-semibold text-3xl lg:text-4xl">
                         Stay true to the web
-                      </h4>
+                      </h1>
                       <p className="lg:text-xl leading-normal text-secondary">
                         People expect web app pages to load fast. On the server,
                         React lets you start streaming HTML while you’re still
@@ -289,7 +289,7 @@ export function HomeContent() {
                         React can use standard web APIs to keep your UI
                         responsive even in the middle of rendering.
                       </p>
-                    </div>
+                    </article>
                   </div>
                 </BrowserChrome>
               </div>
@@ -364,9 +364,9 @@ export function HomeContent() {
                         </div>
                       </div>
                       <div className="flex flex-col items-start justify-center pt-0 gap-3 px-2.5 lg:pt-8 lg:px-8">
-                        <h4 className="leading-tight text-primary dark:text-primary-dark font-semibold text-3xl lg:text-4xl">
+                        <h1 className="leading-tight text-primary dark:text-primary-dark font-semibold text-3xl lg:text-4xl">
                           Go truly native
-                        </h4>
+                        </h1>
                         <p className="h-full lg:text-xl text-secondary dark:text-secondary-dark leading-normal">
                           People expect native apps to look and feel like their
                           platform.{' '}
@@ -488,7 +488,7 @@ export function HomeContent() {
             </div>
           </div>
 
-          <div className="mt-20 px-5 lg:px-0 mb-6 max-w-4xl text-center text-opacity-80">
+          <article className="mt-20 px-5 lg:px-0 mb-6 max-w-4xl text-center text-opacity-80">
             <Logo className="text-link dark:text-link-dark w-24 lg:w-28 mb-10 lg:mb-8 mt-12 h-auto mx-auto self-start" />
             <Header>
               Welcome to the <br className="hidden lg:inline" />
@@ -498,10 +498,10 @@ export function HomeContent() {
               href={'/learn'}
               type="primary"
               size="lg"
-              label="Take the Tutorial">
+              label="Get Started">
               Get Started
             </ButtonLink>
-          </div>
+          </article>
         </Section>
       </div>
     </>
@@ -745,14 +745,13 @@ function CommunityGallery() {
         }}>
         <CommunityImages isLazy={isLazy} />
       </div>
-      <div
-        aria-hidden="true"
+      <figure
         className="w-full absolute top-0 py-12 lg:py-20 whitespace-nowrap flex flex-row animate-marquee2 lg:animate-large-marquee2"
         style={{
           animationPlayState: shouldPlay ? 'running' : 'paused',
         }}>
         <CommunityImages isLazy={isLazy} />
-      </div>
+      </figure>
     </div>
   );
 }
@@ -1284,11 +1283,11 @@ function BrowserChrome({children, hasPulse, hasRefresh, domain, path}) {
               />
             </svg>
 
-            <span className="text-gray-30">
+            <span className="text-gray-50">
               {domain}
               {path != null && '/'}
             </span>
-            {path}
+            <span className="text-gray-">{path}</span>
           </div>
           {hasRefresh && (
             <div

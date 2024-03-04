@@ -11,6 +11,48 @@
       "path": "/reference/react"
     },
     {
+      "title": "Rules of React",
+      "path": "/reference/rules",
+      "routes": [
+        {
+          "title": "Side effects must run outside of render",
+          "path": "/reference/rules/side-effects-must-run-outside-of-render"
+        },
+        {
+          "title": "Components must be idempotent",
+          "path": "/reference/rules/components-must-be-idempotent"
+        },
+        {
+          "title": "Props and State are immutable",
+          "path": "/reference/rules/props-and-state-are-immutable"
+        },
+        {
+          "title": "Never call component functions directly",
+          "path": "/reference/rules/never-call-component-functions-directly"
+        },
+        {
+          "title": "Never pass around Hooks as regular values",
+          "path": "/reference/rules/never-pass-around-hooks-as-regular-values"
+        },
+        {
+          "title": "Only call Hooks at the top level",
+          "path": "/reference/rules/only-call-hooks-at-the-top-level"
+        },
+        {
+          "title": "Only call Hooks from React functions",
+          "path": "/reference/rules/only-call-hooks-from-react-functions"
+        },
+        {
+          "title": "Values are immutable after being passed to JSX",
+          "path": "/reference/rules/values-are-immutable-after-being-passed-to-jsx"
+        },
+        {
+          "title": "Return values and arguments to Hooks are immutable",
+          "path": "/reference/rules/return-values-and-arguments-to-hooks-are-immutable"
+        }
+      ]
+    },
+    {
       "title": "Hooks",
       "path": "/reference/react/hooks",
       "routes": [

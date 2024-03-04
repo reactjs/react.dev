@@ -56,6 +56,11 @@
       "permanent": false
     },
     {
+      "source": "/link/hydration-mismatch",
+      "destination": "/reference/react-dom/client/hydrateRoot#hydrating-server-rendered-html",
+      "permanent": false
+    },
+    {
       "source": "/link/switch-to-createroot",
       "destination": "/blog/2022/03/08/react-18-upgrade-guide#updates-to-client-rendering-apis",
       "permanent": false

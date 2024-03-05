@@ -23,7 +23,7 @@
           "path": "/reference/rules/components-must-be-idempotent"
         },
         {
-          "title": "Props and State are immutable",
+          "title": "Props and state are immutable",
           "path": "/reference/rules/props-and-state-are-immutable"
         },
         {

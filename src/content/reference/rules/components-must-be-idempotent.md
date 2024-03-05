@@ -10,8 +10,9 @@ React components are assumed to always return the same output with respect to th
 
 Put simply, idempotence means that you [always get the same result everytime](learn/keeping-components-pure) you run that piece of code.
 
-```js
+```js {3}
 function NewsFeed({ items }) {
+  // ✅ Array.filter doesn't mutate `items`
   const filteredItems = items.filter(item => item.isDisplayed === true);
   return (
     <ul>
@@ -25,7 +26,8 @@ This means that _all_ code that runs during render must also be idempotent in or
 
 ```js {2}
 function Clock() {
-  return <div>{new Date()}</div> // ❌ always returns a different result!
+  const date = new Date();  // ❌ always returns a different result!
+  return <div>{date}</div>
 }
 ```
 

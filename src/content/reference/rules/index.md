@@ -3,7 +3,7 @@ title: Rules of React
 ---
 
 <Intro>
-JavaScript rendering libraries and frameworks like React have constraints or "rules" to make the programming model cohesive and easy to reason about, while also helping you prevent bugs in your code. The rules also have the added benefit of creating a safe space for React to optimise and run your code more efficiently. This page lists all the Rules of React.
+JavaScript rendering libraries and frameworks like React have constraints or "rules" to make the programming model cohesive and easy to reason about, while also helping you prevent bugs in your code. The rules also have the added benefit of creating a safe space for React to optimize and run your code more efficiently. This page lists all the Rules of React.
 </Intro>
 
 ---
@@ -29,8 +29,8 @@ If the Rules of React are broken, at best the upcoming compiler will skip optimi
 ## Rules {/*rules*/}
 * [Side effects must run outside of render](/reference/rules/side-effects-must-run-outside-of-render): React can start and stop rendering components multiple times to create the best possible user experience.
 * [Components must be idempotent](/reference/rules/components-must-be-idempotent): React components are assumed to always return the same output with respect to their props.
-* [Props and State are immutable](/reference/rules/props-and-state-are-immutable): A component's props and state are immutable "snapshots" with respect to a single render.
-* [Never call component functions directly](/reference/rules/never-call-component-functions-directly): TODO React must orchestrate rendering
+* [Props and state are immutable](/reference/rules/props-and-state-are-immutable): A component's props and state are immutable "snapshots" with respect to a single render.
+* [Never call component functions directly](/reference/rules/never-call-component-functions-directly): Components should only be used in JSX. Don't call them as regular functions.
 * [Never pass around Hooks as regular values](/reference/rules/never-pass-around-hooks-as-regular-values): TODO
 * [Only call Hooks at the top level](/reference/rules/only-call-hooks-at-the-top-level): TODO
 * [Only call Hooks from React functions](/reference/rules/only-call-hooks-from-react-functions): TODO

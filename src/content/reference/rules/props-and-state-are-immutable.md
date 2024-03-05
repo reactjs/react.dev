@@ -1,17 +1,17 @@
 ---
-title: Props and State are immutable
+title: Props and state are immutable
 ---
 
 <Intro>
-A component's props and state are immutable [snapshots](learn/state-as-a-snapshot) with respect to a single render.
+A component's props and state are immutable [snapshots](learn/state-as-a-snapshot) with respect to a single render. Never mutate them directly.
 </Intro>
 
 ---
 
-You can think of the props and state values as snapshots that are updated after rendering. For this reason, you don't modify the props or state variables directly: instead you use the setter function provided to you to tell React that state needs to update the next time the component is rendered.
+You can think of the props and state values as snapshots that are updated after rendering. For this reason, you don't modify the props or state variables directly: instead you pass new props, or use the setter function provided to you to tell React that state needs to update the next time the component is rendered.
 
 ## Props {/*props*/}
-When followed, this rule allows React to understand that values that flow from props aren't mutated when they're passed as arguments to functions. Mutating props may also indicate a bug in your app – changing values on the props object doesn't cause the component to update, leaving your users with an outdated UI.
+When followed, this rule allows React to understand that values that flow from props aren't mutated when they're passed as arguments to functions, allowing certain optimizations to be made. Mutating props may also indicate a bug in your app – changing values on the props object doesn't cause the component to update, leaving your users with an outdated UI.
 
 ```js {2}
 function Post({ item }) {
@@ -28,7 +28,7 @@ function Post({ item }) {
 ```
 
 ## State {/*state*/}
-`useState` returns an immutable tuple of the state variable and a setter to update that state.
+`useState` returns the state variable and a setter to update that state.
 
 ```js
 const [stateVariable, setter] = useState(0);

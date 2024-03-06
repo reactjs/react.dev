@@ -32,5 +32,5 @@ The Rules of React are proven rules used at companies like Meta that help you ma
 * [Never pass around Hooks as regular values](/reference/rules/never-pass-around-hooks-as-regular-values): Hooks should only be called inside of components. Never pass it around as a regular value.
 * [Only call Hooks at the top level](/reference/rules/only-call-hooks-at-the-top-level): Don’t call Hooks inside loops, conditions, or nested functions. Instead, always use Hooks at the top level of your React function, before any early returns.
 * [Only call Hooks from React functions](/reference/rules/only-call-hooks-from-react-functions): Don’t call Hooks from regular JavaScript functions.
-* [Values are immutable after being passed to JSX](/reference/rules/values-are-immutable-after-being-passed-to-jsx): TODO
+* [Values are immutable after being passed to JSX](/reference/rules/values-are-immutable-after-being-passed-to-jsx): Don't mutate values after they've been used in JSX. Move the mutation before the JSX is created.
 * [Return values and arguments to Hooks are immutable](/reference/rules/return-values-and-arguments-to-hooks-are-immutable): TODO

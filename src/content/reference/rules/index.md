@@ -15,13 +15,11 @@ We strongly recommend using Strict Mode alongside React's ESLint plugin to help 
 <DeepDive>
 #### Why are rules necessary in React? {/*why-are-rules-necessary-in-react*/}
 
-You can think of React's constraints like the grammatical rules and patterns of languages: they constrain what we can do with words, so that we can correctly and efficiently communicate our thoughts. These rules have been used in the design of all of React's features over the years. React's Strict Mode enforces several of these rules at runtime in DEV mode, and with the release of React's upcoming compiler, more rules will now be statically checked to help you find more bugs as well as allow for correct optimisation of your code.
+You can think of React's constraints like the grammatical rules and patterns of languages: they constrain what we can do with words, so that we can correctly and efficiently communicate our thoughts.
 
-The upcoming compiler automatically makes writing simple and intuitive React code run efficiently by default. It understands JavaScript semantics and relies on the Rules of React in order to correctly and precisely optimise your codebase.
+These rules have been used in the design of all of React's features over the years. React's Strict Mode enforces several of these rules at runtime in DEV mode, and with the release of React's upcoming compiler, more rules will now be statically checked to help you find more bugs as well as allow for correct optimisation of your code.
 
-However, while the compiler can detect most cases of Rules of React breakages, because of the dynamic and flexible nature of JavaScript, it is not possible to exhaustively detect all edge cases. Future iterations of the compiler will continue to improve its static detection, but it's important to understand and follow the Rules of React so that your code continues to run correctly and efficiently even if it's not possible to statically detect.
-
-If the Rules of React are broken, at best the upcoming compiler will skip optimising the components that broke the rules; and at worst, if the breakage is not statically detectable the compiled code may break in unexpected ways.
+The Rules of React are proven rules used at companies like Meta that help you maintain an application and codebase that scales with you. When followed, your codebase becomes easier to understand and maintain, is less buggy, and helps React ensure your code runs efficiently by default.
 </DeepDive>
 
 ---
@@ -31,7 +29,7 @@ If the Rules of React are broken, at best the upcoming compiler will skip optimi
 * [Components must be idempotent](/reference/rules/components-must-be-idempotent): React components are assumed to always return the same output with respect to their props.
 * [Props and state are immutable](/reference/rules/props-and-state-are-immutable): A component's props and state are immutable "snapshots" with respect to a single render.
 * [Never call component functions directly](/reference/rules/never-call-component-functions-directly): Components should only be used in JSX. Don't call them as regular functions.
-* [Never pass around Hooks as regular values](/reference/rules/never-pass-around-hooks-as-regular-values): TODO
+* [Never pass around Hooks as regular values](/reference/rules/never-pass-around-hooks-as-regular-values): Hooks should only be called inside of components. Never pass it around as a regular value.
 * [Only call Hooks at the top level](/reference/rules/only-call-hooks-at-the-top-level): TODO
 * [Only call Hooks from React functions](/reference/rules/only-call-hooks-from-react-functions): TODO
 * [Values are immutable after being passed to JSX](/reference/rules/values-are-immutable-after-being-passed-to-jsx): TODO

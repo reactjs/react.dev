@@ -43,7 +43,7 @@ Try building a component that displays the time in real-time in our [challenge](
 
 ## Side effects must run outside of render {/*side-effects-must-run-outside-of-render*/}
 
-Side effects should not run in render, as React can render components multiple times to create the best possible user experience.
+[Side effects](http://localhost:3000/learn/keeping-components-pure#side-effects-unintended-consequences) should not run in render, as React can render components multiple times to create the best possible user experience.
 
 While render must be kept pure, side effects are necessary at some point in order for your app to do anything interesting, like showing something on the screen! The key point of this rule is that side effects should not run in render, as React can render components multiple times. In most cases, you'll use [event handlers](learn/responding-to-events) to handle side effects.
 

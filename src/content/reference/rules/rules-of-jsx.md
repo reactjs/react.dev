@@ -1,12 +1,18 @@
 ---
-title: Values are immutable after being passed to JSX
+title: Rules of JSX
 ---
 
 <Intro>
-Don't mutate values after they've been used in JSX. Move the mutation before the JSX is created.
+TODO
 </Intro>
 
+<InlineToc />
+
 ---
+
+## Values are immutable after being passed to JSX {/*values-are-immutable-after-being-passed-to-jsx*/}
+
+Don't mutate values after they've been used in JSX. Move the mutation before the JSX is created.
 
 When you use JSX in an expression, React may eagerly evaluate the JSX before the component finishes rendering. This means that mutating values after they've been passed to JSX can lead to outdated UIs, as React won't know to update the component's output.
 

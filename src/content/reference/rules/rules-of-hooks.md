@@ -1,12 +1,18 @@
 ---
-title: Only call Hooks at the top level
+title: Rules of Hooks
 ---
 
 <Intro>
-Don’t call Hooks inside loops, conditions, or nested functions. Instead, always use Hooks at the top level of your React function, before any early returns.
+TODO
 </Intro>
 
+<InlineToc />
+
 ---
+
+##  Only call Hooks at the top level {/*only-call-hooks-at-the-top-level*/}
+
+Don’t call Hooks inside loops, conditions, or nested functions. Instead, always use Hooks at the top level of your React function, before any early returns.
 
 By following this rule, you ensure that Hooks are called in the same order each time a component renders. That’s what allows React to correctly preserve the state of Hooks between multiple `useState` and `useEffect` calls.
 
@@ -90,3 +96,25 @@ useEffect(function persistForm() {
 ```
 
 Note that you don’t need to worry about this problem if you use the provided lint rule. But now you also know why Hooks work this way, and which issues the rule is preventing.
+
+## Only call Hooks from React functions {/*only-call-hooks-from-react-functions*/}
+
+Don’t call Hooks from regular JavaScript functions. Instead, you can:
+
+✅ Call Hooks from React function components.
+✅ Call Hooks from [custom Hooks](/learn/reusing-logic-with-custom-hooks#extracting-your-own-custom-hook-from-a-component).
+
+By following this rule, you ensure that all stateful logic in a component is clearly visible from its source code.
+
+```js {2,5}
+function FriendList() {
+  const [onlineStatus, setOnlineStatus] = useOnlineStatus(); // ✅
+}
+
+function setOnlineStatus() { // ❌ Not a component or custom hook!
+  const [onlineStatus, setOnlineStatus] = useOnlineStatus();
+}
+```
+
+## Return values and arguments to Hooks are immutable {/*return-values-and-arguments-to-hooks-are-immutable*/}
+TODO

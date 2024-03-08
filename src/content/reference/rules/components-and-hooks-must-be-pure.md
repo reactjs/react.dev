@@ -22,7 +22,7 @@ function NewsFeed({ items }) {
   const filteredItems = items.filter(item => item.isDisplayed === true);
   return (
     <ul>
-      {filteredItems.map(item => <li>{item.text}</li>}
+      {filteredItems.map(item => <li key={item.id}>{item.text}</li>}
     </ul>
   );
 }

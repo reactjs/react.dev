@@ -25,14 +25,13 @@ function BlogPost() {
 
 ```js {3}
 function BlogPost() {
-  ReactDOM.render(
-    Layout({ children: Article() }), // ❌ Never call them directly
-    /* ... */
-  );
+  return <Layout>{Article()}</Layout> // ❌ Never call them directly
 }
 ```
 
-Letting React orchestrate rendering allows a number of benefits:
+If a component contains hooks, it's easy to violate the Rules of Hooks when components are called directly in a loop or conditionally.
+
+Letting React orchestrate rendering also allows a number of benefits:
 
 * **Components become more than functions.** React can augment them with features like _local state_ through Hooks that are tied to the component's identity in the tree.
 * **Component types participate in reconcilation.** By letting React call your components, you also tell it more about the conceptual structure of your tree. For example, when you move from rendering `<Feed>` to the `<Profile>` page, React won’t attempt to re-use them.
@@ -45,6 +44,8 @@ Letting React orchestrate rendering allows a number of benefits:
 Hooks should only be called inside of components. Never pass it around as a regular value.
 
 Hooks allow you to augment a component with React features. They should always be called as a function, and never passed around as a regular value. This enables _local reasoning_, or the ability for developers to understand everything a component can do by looking at that component in isolation.
+
+Passing around hooks as regular values also inhibits the compiler at performing optimizations. Breaking this rule will de-optimize your component.
 
 ```js {2}
 function ChatInput() {

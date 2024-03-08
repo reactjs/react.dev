@@ -22,7 +22,7 @@
     "check-all": "npm-run-all prettier lint:fix tsc"
   },
   "dependencies": {
-    "@codesandbox/sandpack-react": "2.13.4",
+    "@codesandbox/sandpack-react": "2.13.5",
     "@docsearch/css": "3.0.0-alpha.41",
     "@docsearch/react": "3.0.0-alpha.41",
     "@headlessui/react": "^1.7.0",

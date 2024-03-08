@@ -630,10 +630,10 @@
     outvariant "1.4.0"
     static-browser-server "1.0.3"
 
-"@codesandbox/sandpack-react@2.13.4":
-  version "2.13.4"
-  resolved "https://registry.yarnpkg.com/@codesandbox/sandpack-react/-/sandpack-react-2.13.4.tgz#d079da898e54a5546cfbeea13e4c3549b20f58a6"
-  integrity sha512-lgfcOwWAA+JKztLL5fwZ89389WvBMBl2R2BwE+RfnYKLIfgZ2UGH2Kifly4pam2iFqIzxPER7rYZJh/keSJQbg==
+"@codesandbox/sandpack-react@2.13.5":
+  version "2.13.5"
+  resolved "https://registry.yarnpkg.com/@codesandbox/sandpack-react/-/sandpack-react-2.13.5.tgz#bc4b3fe43b74fdb011f69d3d9a117415110c709e"
+  integrity sha512-MWzh2P/Asck0JSCKY3y7WecdUBBEqB0NFi4p+ohoZMTYqHWTaYfd7nbPlNmGIE1xcGppSZEqPVDjOpAfeQ0zFw==
   dependencies:
     "@codemirror/autocomplete" "^6.4.0"
     "@codemirror/commands" "^6.1.3"

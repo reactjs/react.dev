@@ -408,8 +408,9 @@ This section describes an **experimental API that has not yet been released** in
 
 Use a special Hook called [`useEffectEvent`](/reference/react/experimental_useEffectEvent) to extract this non-reactive logic out of your Effect:
 
-```js {1,4-6}
-import { useEffect, useEffectEvent } from 'react';
+```js {2,4-6}
+import { useEffect } from 'react';
+import { experimental_useEffectEvent as useEffectEvent } from 'react';
 
 function ChatRoom({ roomId, theme }) {
   const onConnected = useEffectEvent(() => {

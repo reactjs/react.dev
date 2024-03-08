@@ -901,8 +901,10 @@ This will work, but there's one more improvement you can do when your custom Hoo
 
 Adding a dependency on `onReceiveMessage` is not ideal because it will cause the chat to re-connect every time the component re-renders. [Wrap this event handler into an Effect Event to remove it from the dependencies:](/learn/removing-effect-dependencies#wrapping-an-event-handler-from-the-props)
 
-```js {1,4,5,15,18}
-import { useEffect, useEffectEvent } from 'react';
+```js {2,4,5,15,18}
+import { useEffect } from 'react';
+import { experimental_useEffectEvent as useEffectEvent } from 'react';
+
 // ...
 
 export function useChatRoom({ serverUrl, roomId, onReceiveMessage }) {

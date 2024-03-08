@@ -660,7 +660,8 @@ The problem is that every time `isMuted` changes (for example, when the user pre
 To solve this problem, you need to extract the logic that shouldn't be reactive out of the Effect. You don't want this Effect to "react" to the changes in `isMuted`. [Move this non-reactive piece of logic into an Effect Event:](/learn/separating-events-from-effects#declaring-an-effect-event)
 
 ```js {1,7-12,18,21}
-import { useState, useEffect, useEffectEvent } from 'react';
+import { useState, useEffect} from 'react';
+import { experimental_useEffectEvent as useEffectEvent } from 'react';
 
 function ChatRoom({ roomId }) {
   const [messages, setMessages] = useState([]);

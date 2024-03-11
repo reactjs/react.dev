@@ -172,3 +172,64 @@ function Counter() {
   );
 }
 ```
+
+## Return values and arguments to Hooks are immutable {/*return-values-and-arguments-to-hooks-are-immutable*/}
+
+Once values are passed to a Hook, neither the calling code nor the Hook should
+modify them. Like props in JSX, values become immutable when passed to a Hook.
+
+```js {4}
+function useIconStyle(icon) {
+  const theme = useContext(ThemeContext);
+  if (icon.enabled) {
+    // ❌ never mutate hook arguments directly
+    icon.className = computeStyle(icon, theme);
+  }
+  return icon;
+}
+```
+
+```js {4}
+function useIconStyle(icon) {
+  const theme = useContext(ThemeContext);
+  // ✅ make a copy instead
+  let newIcon = { ...icon };
+  if (icon.enabled) {
+    newIcon.className = computeStyle(icon, theme);
+  }
+  return newIcon;
+}
+```
+
+The custom Hook might have used the hook arguments as dependencies to memoize
+values inside it.
+
+```js {4}
+function useIconStyle(icon) {
+  const theme = useContext(ThemeContext);
+
+  return useMemo(() => {
+    let newIcon = { ...icon };
+    if (icon.enabled) {
+      newIcon.className = computeStyle(icon, theme);
+    }
+    return newIcon;
+  }, [icon, theme]);
+}
+```
+
+Modifying the hook arguments after the hook call can cause issues, so it's important to avoid doing that.
+
+```js {4}
+style = useIconStyle(icon);         // `style` is memoized based on `icon`
+icon.enabled = false;               // ❌ never mutate hook arguments directly
+style = useIconStyle(icon);         // previously memoized result is returned
+```
+
+```js {4}
+style = useIconStyle(icon);         // `style` is memoized based on `icon`
+icon = { ...icon, enabled: false }; // ✅ make a copy instead
+style = useIconStyle(icon);         // new value of `style` is calculated
+```
+
+Similarly, it's important to not modify the return values of hooks, as they have been memoized.

@@ -23,7 +23,7 @@ function BlogPost() {
 
 ```js {2}
 function BlogPost() {
-  return <Layout>{Article()}</Layout> // ❌ Never call them directly
+  return <Layout>{Article()}</Layout>; // ❌ Never call them directly
 }
 ```
 

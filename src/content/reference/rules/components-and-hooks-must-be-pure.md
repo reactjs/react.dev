@@ -12,7 +12,7 @@ title: Components and Hooks must be pure
 
 ## Components must be idempotent {/*components-must-be-idempotent*/}
 
-React components are assumed to always return the same output with respect to their props. This is known as [idempotency](https://stackoverflow.com/questions/1077412/what-is-an-idempotent-operation).
+React components are assumed to always return the same output with respect to their inputs – props, state, and context. This is known as [idempotency](https://stackoverflow.com/questions/1077412/what-is-an-idempotent-operation).
 
 Put simply, idempotence means that you [always get the same result everytime](learn/keeping-components-pure) you run that piece of code.
 

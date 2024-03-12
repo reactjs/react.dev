@@ -202,7 +202,7 @@ function useIconStyle(icon) {
 }
 ```
 
-One important principle in React is _local reasoning_: the ability to understand what a component or hook does by looking at its code in isolation. Custom hooks should be treated like "black boxes". For example, the custom Hook might have used its arguments as dependencies to memoize values inside it:
+One important principle in React is _local reasoning_: the ability to understand what a component or hook does by looking at its code in isolation. Hooks should be treated like "black boxes" when they are called. For example, a custom hook might have used its arguments as dependencies to memoize values inside it:
 
 ```js {4}
 function useIconStyle(icon) {

@@ -3,7 +3,7 @@ title: Components and Hooks must be pure
 ---
 
 <Intro>
-[Purity](/learn/keeping-components-pure) makes your code easier to understand and debug.
+[Purity](/learn/keeping-components-pure) makes your code easier to understand, debug, and also allows the compiler to optimize your components and hooks correctly.
 </Intro>
 
 <InlineToc />
@@ -32,7 +32,7 @@ This means that _all_ code that runs during render must also be idempotent in or
 
 ```js {2}
 function Clock() {
-  const date = new Date();  // ❌ always returns a different result!
+  const date = new Date(); // ❌ always returns a different result!
   return <div>{date}</div>
 }
 ```
@@ -43,7 +43,11 @@ Try building a component that displays the time in real-time in our [challenge](
 
 ## Side effects must run outside of render {/*side-effects-must-run-outside-of-render*/}
 
-[Side effects](http://localhost:3000/learn/keeping-components-pure#side-effects-unintended-consequences) should not run in render, as React can render components multiple times to create the best possible user experience.
+[Side effects](/learn/keeping-components-pure#side-effects-unintended-consequences) should not run in render, as React can render components multiple times to create the best possible user experience.
+
+<Note>
+Side effects are a broader term than Effects. Effects specifically refer to code that's wrapped in `useEffect`, while a side effect is a general term for code that has any observable effect other than its primary result of returning a value to the invoker of the operation.
+</Note>
 
 While render must be kept pure, side effects are necessary at some point in order for your app to do anything interesting, like showing something on the screen! The key point of this rule is that side effects should not run in render, as React can render components multiple times. In most cases, you'll use [event handlers](learn/responding-to-events) to handle side effects.
 
@@ -59,7 +63,7 @@ Concretely, this means that rendering logic can be run multiple times in a way t
 </DeepDive>
 
 ### When is it okay to have mutation? {/*mutation*/}
-One common example of a side effect is mutation, which refers to changing the value of a non-[primitive](https://developer.mozilla.org/en-US/docs/Glossary/Primitive) value. In general, while mutation is not idiomatic in React, _local_ mutation is absolutely fine:
+One common example of a side effect is mutation, which in JavaScript refers to changing the value of a non-[primitive](https://developer.mozilla.org/en-US/docs/Glossary/Primitive) value. In general, while mutation is not idiomatic in React, _local_ mutation is absolutely fine:
 
 ```js {2}
 function FriendList({ friends }) {
@@ -74,7 +78,7 @@ function FriendList({ friends }) {
 }
 ```
 
-There is no need to contort your code to avoid local mutation. In particular, [`Array.map`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) could also be used here for brevity, but there is nothing wrong with creating a local array and then pushing items into it during render.
+There is no need to contort your code to avoid local mutation. [`Array.map`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) could also be used here for brevity, but there is nothing wrong with creating a local array and then pushing items into it during render.
 
 Even though it looks like we are mutating `items`, the key point to note is that this code only does so locally – the mutation isn't "remembered" when the component is rendered again. In other words, `items` only stays around as long as the component does. Because `items` is always recreated every time `<FriendList />` is rendered, the component will always return the same result.
 

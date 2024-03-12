@@ -10,7 +10,7 @@ JavaScript rendering libraries and frameworks like React have constraints or "ru
 
 These constraints are known as the **Rules of React**. They are rules – and not just guidelines – in the sense that if they are broken, your app likely has bugs. Your code also becomes unidiomatic and harder to understand and reason about.
 
-We strongly recommend using Strict Mode alongside React's ESLint plugin to help your codebase follow the Rules of React. By following the Rules of React, you'll be able to find and address these bugs, as well as prepare your codebase to work out of the box with the upcoming compiler.
+We strongly recommend using [Strict Mode](/reference/react/StrictMode) alongside React's [ESLint plugin](https://www.npmjs.com/package/eslint-plugin-react-hooks) to help your codebase follow the Rules of React. By following the Rules of React, you'll be able to find and address these bugs, as well as prepare your codebase to work out of the box with the upcoming compiler.
 
 <DeepDive>
 #### Why are rules necessary in React? {/*why-are-rules-necessary-in-react*/}
@@ -18,10 +18,6 @@ We strongly recommend using Strict Mode alongside React's ESLint plugin to help 
 You can think of React's constraints like the grammatical rules and patterns of languages: they constrain what we can do with words, so that we can correctly and efficiently communicate our thoughts.
 
 These rules have been used in the design of all of React's features over the years. Enabling Strict Mode catches bugs caused by breaking these rules, and with the release of React's upcoming compiler, more rules will now be statically checked to help you find more bugs as well as allow for correct optimization of your code.
-
-<Note>
-Strict Mode checks are run in development mode only; they do not impact the production build.
-</Note>
 
 The Rules of React are proven rules used at companies like Meta that help you maintain an application and codebase that scales with you. When followed, your codebase becomes easier to understand and maintain, is less buggy, and helps React ensure your code runs efficiently by default.
 </DeepDive>

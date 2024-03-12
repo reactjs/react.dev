@@ -10,6 +10,14 @@ This section provides detailed reference documentation for working with React. F
 
 The React reference documentation is broken down into functional subsections:
 
+## Rules of React {/*rules-of-react*/}
+
+JavaScript rendering libraries and frameworks like React have constraints or "rules" to make the programming model cohesive and easy to reason about, while also helping you prevent bugs in your code. The rules also have the added benefit of creating a safe space for React to optimize and run your code more efficiently.
+
+* [Components and Hooks must be pure](/reference/rules/components-and-hooks-must-be-pure) – Purity makes your code easier to understand, debug, and also allows the compiler to optimize your components and hooks correctly.
+* [React orchestrates Components and Hooks](/reference/rules/react-orchestrates-components-and-hooks) – React takes care of when your code runs for you so that your application has a great user experience.
+* [Rules of Hooks](/reference/rules/rules-of-hooks) – Hooks are JavaScript functions, but you need to follow two rules when using them.
+
 ## React {/*react*/}
 
 Programmatic React features:

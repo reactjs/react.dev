@@ -3,7 +3,7 @@ title: Components and Hooks must be pure
 ---
 
 <Intro>
-TODO
+[Purity](/learn/keeping-components-pure) makes your code easier to understand and debug.
 </Intro>
 
 <InlineToc />
@@ -76,7 +76,7 @@ function FriendList({ friends }) {
 
 There is no need to contort your code to avoid local mutation. In particular, [`Array.map`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) could also be used here for brevity, but there is nothing wrong with creating a local array and then pushing items into it during render.
 
-Even though it looks like we are mutating `items`, the key point to note is that this code only does so locally – the mutation isn't "remembered" when the component is rendered again. In other words, `items` only stays around as long as the component does. Because `items` is always recreated every time `<FriendList />` is rendered, the component will always returns the same result.
+Even though it looks like we are mutating `items`, the key point to note is that this code only does so locally – the mutation isn't "remembered" when the component is rendered again. In other words, `items` only stays around as long as the component does. Because `items` is always recreated every time `<FriendList />` is rendered, the component will always return the same result.
 
 On the other hand, if `items` was created outside of the component, it holds on to its previous values and remembers changes:
 
@@ -175,8 +175,7 @@ function Counter() {
 
 ## Return values and arguments to Hooks are immutable {/*return-values-and-arguments-to-hooks-are-immutable*/}
 
-Once values are passed to a Hook, neither the calling code nor the Hook should
-modify them. Like props in JSX, values become immutable when passed to a Hook.
+Once values are passed to a Hook, you should not modify them. Like props in JSX, values become immutable when passed to a Hook.
 
 ```js {4}
 function useIconStyle(icon) {
@@ -201,8 +200,7 @@ function useIconStyle(icon) {
 }
 ```
 
-The custom Hook might have used the hook arguments as dependencies to memoize
-values inside it.
+The custom Hook might have used the hook arguments as dependencies to memoize values inside it.
 
 ```js {4}
 function useIconStyle(icon) {
@@ -232,4 +230,42 @@ icon = { ...icon, enabled: false }; // ✅ make a copy instead
 style = useIconStyle(icon);         // new value of `style` is calculated
 ```
 
-Similarly, it's important to not modify the return values of hooks, as they have been memoized.
+Similarly, it's important to not modify the return values of hooks, as they may have been memoized.
+
+## Values are immutable after being passed to JSX {/*values-are-immutable-after-being-passed-to-jsx*/}
+
+Don't mutate values after they've been used in JSX. Move the mutation before the JSX is created.
+
+When you use JSX in an expression, React may eagerly evaluate the JSX before the component finishes rendering. This means that mutating values after they've been passed to JSX can lead to outdated UIs, as React won't know to update the component's output.
+
+```js {4}
+function Page({ colour }) {
+  const styles = { colour, size: "large" };
+  const header = <Header styles={styles} />;
+  styles.size = "small"; // ❌ styles was already used in the JSX above!
+  const footer = <Footer styles={styles} />;
+  return (
+    <>
+      {header}
+      <Content />
+      {footer}
+    </>
+  );
+}
+```
+
+```js {4}
+function Page({ colour }) {
+  const headerStyles = { colour, size: "large" };
+  const header = <Header styles={headerStyles} />;
+  const footerStyles = { colour, size: "small" }; // ✅ we created a new value
+  const footer = <Footer styles={footerStyles} />;
+  return (
+    <>
+      {header}
+      <Content />
+      {footer}
+    </>
+  );
+}
+```

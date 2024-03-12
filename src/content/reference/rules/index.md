@@ -17,7 +17,11 @@ We strongly recommend using Strict Mode alongside React's ESLint plugin to help 
 
 You can think of React's constraints like the grammatical rules and patterns of languages: they constrain what we can do with words, so that we can correctly and efficiently communicate our thoughts.
 
-These rules have been used in the design of all of React's features over the years. React's Strict Mode enforces several of these rules at runtime in DEV mode, and with the release of React's upcoming compiler, more rules will now be statically checked to help you find more bugs as well as allow for correct optimization of your code.
+These rules have been used in the design of all of React's features over the years. Enabling Strict Mode catches bugs caused by breaking these rules, and with the release of React's upcoming compiler, more rules will now be statically checked to help you find more bugs as well as allow for correct optimization of your code.
+
+<Note>
+Strict Mode checks are run in development mode only; they do not impact the production build.
+</Note>
 
 The Rules of React are proven rules used at companies like Meta that help you maintain an application and codebase that scales with you. When followed, your codebase becomes easier to understand and maintain, is less buggy, and helps React ensure your code runs efficiently by default.
 </DeepDive>
@@ -25,4 +29,3 @@ The Rules of React are proven rules used at companies like Meta that help you ma
 * [Components and Hooks must be pure](/reference/rules/components-and-hooks-must-be-pure)
 * [React orchestrates Components and Hooks](/reference/rules/react-orchestrates-components-and-hooks)
 * [Rules of Hooks](/reference/rules/rules-of-hooks)
-* [Rules of JSX](/reference/rules/rules-of-jsx)

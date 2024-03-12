@@ -25,10 +25,6 @@
         {
           "title": "Rules of Hooks",
           "path": "/reference/rules/rules-of-hooks"
-        },
-        {
-          "title": "Rules of JSX",
-          "path": "/reference/rules/rules-of-jsx"
         }
       ]
     },

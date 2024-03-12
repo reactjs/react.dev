@@ -3,7 +3,7 @@ title: React orchestrates Components and Hooks
 ---
 
 <Intro>
-TODO
+React takes care of when your code runs for you so that your application has a great user experience. It is declarative: you tell React what to render in your component’s logic, and React will figure out how best to display it to your user.
 </Intro>
 
 <InlineToc />
@@ -13,9 +13,7 @@ TODO
 ## Never call component functions directly {/*never-call-component-functions-directly*/}
 Components should only be used in JSX. Don't call them as regular functions.
 
-React takes care of _when_ your code runs for you so that your application has a great user experience. It is declarative: you tell React what to render in your component's logic, and React will figure out how best to display it to your user.
-
-In order to do this, React must decide when your component function is called during rendering. In React, you do this using JSX.
+React must decide when your component function is called during rendering. In React, you do this using JSX.
 
 ```js {2}
 function BlogPost() {
@@ -23,7 +21,7 @@ function BlogPost() {
 }
 ```
 
-```js {3}
+```js {2}
 function BlogPost() {
   return <Layout>{Article()}</Layout> // ❌ Never call them directly
 }
@@ -47,6 +45,10 @@ Hooks allow you to augment a component with React features. They should always b
 
 Passing around hooks as regular values also inhibits the compiler at performing optimizations. Breaking this rule will de-optimize your component.
 
+### Don't dynamically mutate a hook {/*dont-dynamically-mutate-a-hook*/}
+
+Hooks should be as "static" as possible. This means you shouldn't dynamically mutate them. For example, this means you shouldn't write higher order hooks:
+
 ```js {2}
 function ChatInput() {
   const useDataWithLogging = withLogging(useData); // ❌
@@ -54,21 +56,21 @@ function ChatInput() {
 }
 ```
 
-```js {2}
+Hooks should be immutable and not be mutated. Instead of mutating a hook dynamically, create a static version of the hook with the desired functionality.
+
+```js {2,6}
 function ChatInput() {
   const data = useDataWithLogging(); // ✅
 }
-```
 
-Hooks should be immutable and not be mutated. Instead of mutating a hook dynamically, create a static version of the hook with the desired functionality.
-
-```js
 function useDataWithLogging() {
-  // ... Logic should go in here
+  // ... Create a new version of the Hook and inline the logic here
 }
 ```
 
-Hooks should also not be dynamically used: for example, instead of doing dependency injection in a component:
+### Don't dynamically use hooks {/*dont-dynamically-use-hooks*/}
+
+Hooks should also not be dynamically used: for example, instead of doing dependency injection in a component by passing a hook as a value:
 
 ```js {2}
 function ChatInput() {
@@ -84,11 +86,12 @@ function ChatInput() {
 }
 
 function Button() {
-  const data = useDataWithLogging();
+  const data = useDataWithLogging(); // ✅
 }
 
 function useDataWithLogging() {
-  // conditional logic can live here
+  // If there's any conditional logic to change the hook's behavior, it should be inlined into
+  // the hook
 }
 ```
 

@@ -3,7 +3,7 @@ title: Rules of Hooks
 ---
 
 <Intro>
-TODO
+Hooks are JavaScript functions, but you need to follow two rules when using them. We provide a [linter plugin](https://www.npmjs.com/package/eslint-plugin-react-hooks) to enforce these rules automatically.
 </Intro>
 
 <InlineToc />
@@ -115,6 +115,3 @@ function setOnlineStatus() { // ❌ Not a component or custom hook!
   const [onlineStatus, setOnlineStatus] = useOnlineStatus();
 }
 ```
-
-## Return values and arguments to Hooks are immutable {/*return-values-and-arguments-to-hooks-are-immutable*/}
-TODO

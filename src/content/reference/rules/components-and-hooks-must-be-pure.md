@@ -185,18 +185,16 @@ Once values are passed to a Hook, you should not modify them. Like props in JSX,
 function useIconStyle(icon) {
   const theme = useContext(ThemeContext);
   if (icon.enabled) {
-    // ❌ never mutate hook arguments directly
-    icon.className = computeStyle(icon, theme);
+    icon.className = computeStyle(icon, theme); // ❌ never mutate hook arguments directly
   }
   return icon;
 }
 ```
 
-```js {4}
+```js {3}
 function useIconStyle(icon) {
   const theme = useContext(ThemeContext);
-  // ✅ make a copy instead
-  let newIcon = { ...icon };
+  const newIcon = { ...icon }; // ✅ make a copy instead
   if (icon.enabled) {
     newIcon.className = computeStyle(icon, theme);
   }
@@ -204,14 +202,14 @@ function useIconStyle(icon) {
 }
 ```
 
-The custom Hook might have used the hook arguments as dependencies to memoize values inside it.
+One important principle in React is _local reasoning_: the ability to understand what a component or hook does by looking at its code in isolation. Custom hooks should be treated like "black boxes". For example, the custom Hook might have used its arguments as dependencies to memoize values inside it:
 
 ```js {4}
 function useIconStyle(icon) {
   const theme = useContext(ThemeContext);
 
   return useMemo(() => {
-    let newIcon = { ...icon };
+    const newIcon = { ...icon };
     if (icon.enabled) {
       newIcon.className = computeStyle(icon, theme);
     }
@@ -220,7 +218,7 @@ function useIconStyle(icon) {
 }
 ```
 
-Modifying the hook arguments after the hook call can cause issues, so it's important to avoid doing that.
+If you were to mutate the hooks arguments, the custom hook's memoization will become incorrect,  so it's important to avoid doing that.
 
 ```js {4}
 style = useIconStyle(icon);         // `style` is memoized based on `icon`

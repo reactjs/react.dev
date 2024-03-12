@@ -39,6 +39,8 @@ function Clock() {
 
 `new Date()` is not idempotent as it always returns the current date and changes its result every time it's called. When you render the above component, the time displayed on the screen will stay stuck on the time that the component was rendered. Similarly, functions like `Math.random()` also aren't idempotent, because they return different results every time they're called, even when the inputs are the same.
 
+This doesn't mean you shouldn't use non-idempotent functions like `new Date()` _at all_ – you should just avoid using them during render. One quick heuristic to tell if code runs during render is to examine where it is: if it's written at the top level like in the example above, there's a good chance it runs during render.
+
 Try building a component that displays the time in real-time in our [challenge](learn/keeping-components-pure#challenges) to see if you follow this rule!
 
 ## Side effects must run outside of render {/*side-effects-must-run-outside-of-render*/}

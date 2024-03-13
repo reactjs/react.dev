@@ -43,7 +43,7 @@ Hooks should only be called inside of components. Never pass it around as a regu
 
 Hooks allow you to augment a component with React features. They should always be called as a function, and never passed around as a regular value. This enables _local reasoning_, or the ability for developers to understand everything a component can do by looking at that component in isolation.
 
-Passing around hooks as regular values also inhibits the compiler at performing optimizations. Breaking this rule will de-optimize your component.
+Breaking this rule will cause React to not automatically optimize your component.
 
 ### Don't dynamically mutate a hook {/*dont-dynamically-mutate-a-hook*/}
 

@@ -21,7 +21,7 @@ Concretely, this means that rendering logic can be run multiple times in a way t
 
 ## Components must be idempotent {/*components-must-be-idempotent*/}
 
-React components are assumed to always return the same output with respect to their inputs – props, state, and context. This is known as [idempotency](https://stackoverflow.com/questions/1077412/what-is-an-idempotent-operation).
+React assumes that components always return the same output with respect to their inputs – props, state, and context. This is known as [idempotency](https://stackoverflow.com/questions/1077412/what-is-an-idempotent-operation).
 
 Put simply, idempotence means that you [always get the same result everytime](learn/keeping-components-pure) you run that piece of code.
 
@@ -93,7 +93,7 @@ function FriendList({ friends }) {
     let friend = friends[i];
     items.push(
       <Friend key={friend.id} friend={friend} />
-    );
+    ); // ❌ mutates a value created outside of render
   }
   return <section>{items}</section>;
 }

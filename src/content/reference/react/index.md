@@ -12,7 +12,7 @@ The React reference documentation is broken down into functional subsections:
 
 ## Rules of React {/*rules-of-react*/}
 
-React is a programming paradigm for declarative user interfaces, in which developers describe what should be rendered given the current state and the framework is responsible for updating the UI. Just as different programming languages have their own ways of expressing concepts, React has its own idioms — or rules — for how to express patterns in a way that is easy to understand and yields high-quality applications.
+React has idioms — or rules — for how to express patterns in a way that is easy to understand and yields high-quality applications:
 
 * [Components and Hooks must be pure](/reference/rules/components-and-hooks-must-be-pure) – Purity makes your code easier to understand, debug, and allows React to automatically optimize your components and hooks correctly.
 * [React orchestrates Components and Hooks](/reference/rules/react-orchestrates-components-and-hooks) – React is responsible for rendering components and hooks when necessary to optimize the user experience.

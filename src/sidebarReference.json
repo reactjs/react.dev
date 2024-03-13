@@ -3,14 +3,6 @@
   "path": "/reference/react",
   "routes": [
     {
-      "hasSectionHeader": true,
-      "sectionHeader": "react@18.2.0"
-    },
-    {
-      "title": "Overview",
-      "path": "/reference/react"
-    },
-    {
       "title": "Rules of React",
       "path": "/reference/rules",
       "routes": [
@@ -27,6 +19,14 @@
           "path": "/reference/rules/rules-of-hooks"
         }
       ]
+    },
+    {
+      "hasSectionHeader": true,
+      "sectionHeader": "react@18.2.0"
+    },
+    {
+      "title": "Overview",
+      "path": "/reference/react"
     },
     {
       "title": "Hooks",

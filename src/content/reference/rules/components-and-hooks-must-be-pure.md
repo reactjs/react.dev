@@ -10,7 +10,8 @@ title: Components and Hooks must be pure
 
 <DeepDive>
 #### Why does render need to be pure? {/*why-does-render-need-to-be-pure*/}
-UI libraries like React take care of when your code runs for you so that your application has a great user experience. React is declarative: you tell React what to render in your component's logic, and React will figure out how best to display it to your user!
+
+React is declarative: you tell React what to render in your component's logic, and React will figure out how best to display it to your user.
 
 When render is kept pure, React can understand how to prioritize which updates are most important for the user to see first. This is made possible because of render purity: since components don't have side effects in render, React can pause rendering components that aren't as important to update, and only come back to them later when it's needed.
 
@@ -21,23 +22,23 @@ Concretely, this means that rendering logic can be run multiple times in a way t
 
 ## Components must be idempotent {/*components-must-be-idempotent*/}
 
-React assumes that components always return the same output with respect to their inputs – props, state, and context. This is known as [idempotency](https://stackoverflow.com/questions/1077412/what-is-an-idempotent-operation).
+Components must always return the same output with respect to their inputs – props, state, and context. This is known as _idempotency_.
 
-Put simply, idempotence means that you [always get the same result everytime](learn/keeping-components-pure) you run that piece of code.
+[Idempotency](https://en.wikipedia.org/wiki/Idempotence) is a term popularized in functional programming. It refers to the idea that you [always get the same result everytime](learn/keeping-components-pure) you run that piece of code with the same inputs.
 
 ```js {3}
 function NewsFeed({ items }) {
-  // ✅ Array.filter doesn't mutate `items`
+  // ✅ Array.filter is idempotent: it doesn't mutate `items`
   const filteredItems = items.filter(item => item.isDisplayed === true);
   return (
     <ul>
-      {filteredItems.map(item => <li key={item.id}>{item.text}</li>}
+      {filteredItems.map(item => <li key={item.id}>{item.text}</li>)}
     </ul>
   );
 }
 ```
 
-This means that _all_ code that runs during render must also be idempotent in order for this rule to hold. For example, this line of code is not idempotent (and therefore, neither is the component) and breaks this rule:
+This means that _all_ code that runs during render must also be idempotent in order for this rule to hold. For example, this line of code is not idempotent (and therefore, neither is the component):
 
 ```js {2}
 function Clock() {
@@ -101,7 +102,7 @@ function FriendList({ friends }) {
 
 When `<FriendList />` runs again, we will continue appending `friends` to `items` every time that component is run, leading to multiple duplicated results. This version of `<FriendList />` has observable side effects during render and **breaks the rule**.
 
-Similarly, lazy initialization is fine despite not being fully "pure":
+Lazy initialization is also fine despite not being fully "pure":
 
 ```js {2}
 function ExpenseForm() {
@@ -120,11 +121,11 @@ function ProductDetailPage({ product }) {
 
 One way to achieve the desired result of updating `window.title` outside of render is to [synchronize the component with `window`](http://localhost:3000/learn/synchronizing-with-effects).
 
-As long as calling a component multiple times is safe and doesn’t affect the rendering of other components, React doesn’t care if it’s 100% pure in the strict functional programming sense of the word. It is more important that [components must be idempotent](/reference/rules/components-must-be-idempotent).
+As long as calling a component multiple times is safe and doesn’t affect the rendering of other components, React doesn’t care if it’s 100% pure in the strict functional programming sense of the word. It is more important that [components must be idempotent](/reference/rules/components-and-hooks-must-be-pure).
 
 ## Props and state are immutable {/*props-and-state-are-immutable*/}
 
-A component's props and state are immutable [snapshots](learn/state-as-a-snapshot) with respect to a single render. Never mutate them directly.
+A component's props and state are immutable [snapshots](learn/state-as-a-snapshot). Never mutate them directly. Instead, pass new props down, and use the setter function from `useState`.
 
 You can think of the props and state values as snapshots that are updated after rendering. For this reason, you don't modify the props or state variables directly: instead you pass new props, or use the setter function provided to you to tell React that state needs to update the next time the component is rendered.
 

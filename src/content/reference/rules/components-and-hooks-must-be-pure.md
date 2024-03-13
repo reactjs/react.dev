@@ -3,10 +3,19 @@ title: Components and Hooks must be pure
 ---
 
 <Intro>
-[Purity](/learn/keeping-components-pure) makes your code easier to understand, debug, and also allows the compiler to optimize your components and hooks correctly.
+[Purity](/learn/keeping-components-pure) makes your code easier to understand, debug, and allows React to automatically optimize your components and hooks correctly.
 </Intro>
 
 <InlineToc />
+
+<DeepDive>
+#### Why does render need to be pure? {/*why-does-render-need-to-be-pure*/}
+UI libraries like React take care of when your code runs for you so that your application has a great user experience. React is declarative: you tell React what to render in your component's logic, and React will figure out how best to display it to your user!
+
+When render is kept pure, React can understand how to prioritize which updates are most important for the user to see first. This is made possible because of render purity: since components don't have side effects in render, React can pause rendering components that aren't as important to update, and only come back to them later when it's needed.
+
+Concretely, this means that rendering logic can be run multiple times in a way that allows React to give your user a pleasant user experience. However, if your component has an untracked side effect – like modifying the value of a global variable during render – when React runs your rendering code again, your side effects will be triggered in a way that won't match what you want. This often leads to unexpected bugs that can degrade how your users experience your app.
+</DeepDive>
 
 ---
 
@@ -55,15 +64,6 @@ While render must be kept pure, side effects are necessary at some point in orde
 
 For example, you might have an event handler that displays a confirmation dialog after the user clicks a button. Using an event handler explicitly tells React that this code doesn't need to run during render, keeping render pure. If you've exhausted all options – and only as a last resort – you can also handle side effects using `useEffect`.
 
-<DeepDive>
-#### Why does render need to be pure? {/*why-does-render-need-to-be-pure*/}
-UI libraries like React take care of when your code runs for you so that your application has a great user experience. React is declarative: you tell React what to render in your component's logic, and React will figure out how best to display it to your user!
-
-When render is kept pure, React can understand how to prioritize which updates are most important for the user to see first. This is made possible because of render purity: since components don't have side effects in render, React can pause rendering components that aren't as important to update, and only come back to them later when it's needed.
-
-Concretely, this means that rendering logic can be run multiple times in a way that allows React to give your user a pleasant user experience. However, if your component has an untracked side effect – like modifying the value of a global variable during render – when React runs your rendering code again, your side effects will be triggered in a way that won't match what you want. This often leads to unexpected bugs that can degrade how your users experience your app.
-</DeepDive>
-
 ### When is it okay to have mutation? {/*mutation*/}
 One common example of a side effect is mutation, which in JavaScript refers to changing the value of a non-[primitive](https://developer.mozilla.org/en-US/docs/Glossary/Primitive) value. In general, while mutation is not idiomatic in React, _local_ mutation is absolutely fine:
 
@@ -89,7 +89,12 @@ On the other hand, if `items` was created outside of the component, it holds on 
 ```js {1}
 let items = []; // ❌ created outside of the component
 function FriendList({ friends }) {
-  // Push `friends` into `items`...
+  for (let i = 0; i < friends.length; i++) {
+    let friend = friends[i];
+    items.push(
+      <Friend key={friend.id} friend={friend} />
+    );
+  }
   return <section>{items}</section>;
 }
 ```
@@ -113,6 +118,8 @@ function ProductDetailPage({ product }) {
 }
 ```
 
+One way to achieve the desired result of updating `window.title` outside of render is to [synchronize the component with `window`](http://localhost:3000/learn/synchronizing-with-effects).
+
 As long as calling a component multiple times is safe and doesn’t affect the rendering of other components, React doesn’t care if it’s 100% pure in the strict functional programming sense of the word. It is more important that [components must be idempotent](/reference/rules/components-must-be-idempotent).
 
 ## Props and state are immutable {/*props-and-state-are-immutable*/}
@@ -122,7 +129,7 @@ A component's props and state are immutable [snapshots](learn/state-as-a-snapsho
 You can think of the props and state values as snapshots that are updated after rendering. For this reason, you don't modify the props or state variables directly: instead you pass new props, or use the setter function provided to you to tell React that state needs to update the next time the component is rendered.
 
 ### Don't mutate Props {/*props*/}
-When followed, this rule allows React to understand that values that flow from props aren't mutated when they're passed as arguments to functions, allowing certain optimizations to be made. Mutating props may also indicate a bug in your app – changing values on the props object doesn't cause the component to update, leaving your users with an outdated UI.
+Props are immutable because if you mutate them, the application will produce inconsistent output, which can be hard to debug since it may or may not work depending on the circumstance.
 
 ```js {2}
 function Post({ item }) {

@@ -3,7 +3,7 @@ title: Rules of Hooks
 ---
 
 <Intro>
-Hooks are JavaScript functions, but you need to follow two rules when using them. We provide a [linter plugin](https://www.npmjs.com/package/eslint-plugin-react-hooks) to enforce these rules automatically.
+Hooks are defined using JavaScript functions, but they represent a special type of reusable UI logic with restrictions on where they can be called.
 </Intro>
 
 <InlineToc />

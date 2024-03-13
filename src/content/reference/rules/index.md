@@ -3,16 +3,20 @@ title: Rules of React
 ---
 
 <Intro>
-JavaScript rendering libraries and frameworks like React have constraints or "rules" to make the programming model cohesive and easy to reason about, while also helping you prevent bugs in your code. The rules also have the added benefit of creating a safe space for React to optimize and run your code more efficiently. This page lists all the Rules of React.
+React is a programming paradigm for declarative user interfaces, in which developers describe what should be rendered given the current state and the framework is responsible for updating the UI. Just as different programming languages have their own ways of expressing concepts, React has its own idioms — or rules — for how to express patterns in a way that is easy to understand and yields high-quality applications. This page lists all the Rules of React.
 </Intro>
 
 <InlineToc />
 
 ---
 
-These constraints are known as the **Rules of React**. They are rules – and not just guidelines – in the sense that if they are broken, your app likely has bugs. Your code also becomes unidiomatic and harder to understand and reason about.
+<Note>
+To learn more about expressing UIs with React, we recommend reading [Thinking in React](/learn/thinking-in-react). This section describes the React programming paradigm from the perspective of its key rules, which may differ from approaches you've used elsewhere. Many of these rules are common to other UI libraries and non-UI related "reactive" systems, in addition to being a strong approach to building robust software generally.
+</Note>
 
-We strongly recommend using [Strict Mode](/reference/react/StrictMode) alongside React's [ESLint plugin](https://www.npmjs.com/package/eslint-plugin-react-hooks) to help your codebase follow the Rules of React. By following the Rules of React, you'll be able to find and address these bugs, as well as prepare your codebase to work out of the box with the upcoming compiler.
+These rules are known as the **Rules of React**. They are rules – and not just guidelines – in the sense that if they are broken, your app likely has bugs. Your code also becomes unidiomatic and harder to understand and reason about.
+
+We strongly recommend using [Strict Mode](/reference/react/StrictMode) alongside React's [ESLint plugin](https://www.npmjs.com/package/eslint-plugin-react-hooks) to help your codebase follow the Rules of React. By following the Rules of React, you'll be able to find and address these bugs and keep your application maintainable.
 
 <DeepDive>
 #### Why are rules necessary in React? {/*why-are-rules-necessary-in-react*/}
@@ -28,7 +32,7 @@ The Rules of React are proven rules used at companies like Meta that help you ma
 
 ## Components and Hooks must be pure {/*components-and-hooks-must-be-pure*/}
 
-[Purity in Components and Hooks](/reference/rules/components-and-hooks-must-be-pure) is a key rule of React that makes your app predictable, easy to debug, and creates a safe space for the compiler to safely optimize your code.
+[Purity in Components and Hooks](/reference/rules/components-and-hooks-must-be-pure) is a key rule of React that makes your app predictable, easy to debug, and allows React to automatically optimize your code.
 
 * [Components must be idempotent](/reference/rules/components-and-hooks-must-be-pure#components-must-be-idempotent) – React components are assumed to always return the same output with respect to their inputs – props, state, and context.
 * [Side effects must run outside of render](/reference/rules/components-and-hooks-must-be-pure#side-effects-must-run-outside-of-render) – Side effects should not run in render, as React can render components multiple times to create the best possible user experience.
@@ -40,7 +44,7 @@ The Rules of React are proven rules used at companies like Meta that help you ma
 
 ## React orchestrates Components and Hooks {/*react-orchestrates-components-and-hooks*/}
 
-[React takes care of when your code runs](/reference/rules/react-orchestrates-components-and-hooks) for you so that your application has a great user experience. It is declarative: you tell React what to render in your component’s logic, and React will figure out how best to display it to your user.
+[React is responsible for rendering components and hooks when necessary to optimize the user experience.](/reference/rules/react-orchestrates-components-and-hooks) It is declarative: you tell React what to render in your component’s logic, and React will figure out how best to display it to your user.
 
 * [Never call component functions directly](/reference/rules/react-orchestrates-components-and-hooks#never-call-component-functions-directly) – Components should only be used in JSX. Don’t call them as regular functions.
 * [Never pass around hooks as regular values](/reference/rules/react-orchestrates-components-and-hooks#never-pass-around-hooks-as-regular-values) – Hooks should only be called inside of components. Never pass it around as a regular value.
@@ -49,7 +53,7 @@ The Rules of React are proven rules used at companies like Meta that help you ma
 
 ## Rules of Hooks {/*rules-of-hooks*/}
 
-Hooks are JavaScript functions, but you need to follow the [Rules of Hooks](/reference/rules/rules-of-hooks) when using them.
+Hooks are defined using JavaScript functions, but they represent a special type of reusable UI logic with restrictions on where they can be called. You need to follow the [Rules of Hooks](/reference/rules/rules-of-hooks) when using them.
 
 * [Only call Hooks at the top level](/reference/rules/rules-of-hooks#only-call-hooks-at-the-top-level) – Don’t call Hooks inside loops, conditions, or nested functions. Instead, always use Hooks at the top level of your React function, before any early returns.
 * [Only call Hooks from React functions](/reference/rules/rules-of-hooks#only-call-hooks-from-react-functions) – Don’t call Hooks from regular JavaScript functions.

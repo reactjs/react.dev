@@ -3,24 +3,6 @@
   "path": "/reference/react",
   "routes": [
     {
-      "title": "Rules of React",
-      "path": "/reference/rules",
-      "routes": [
-        {
-          "title": "Components and Hooks must be pure",
-          "path": "/reference/rules/components-and-hooks-must-be-pure"
-        },
-        {
-          "title": "React calls Components and Hooks",
-          "path": "/reference/rules/react-calls-components-and-hooks"
-        },
-        {
-          "title": "Rules of Hooks",
-          "path": "/reference/rules/rules-of-hooks"
-        }
-      ]
-    },
-    {
       "hasSectionHeader": true,
       "sectionHeader": "react@18.2.0"
     },
@@ -367,6 +349,26 @@
           "path": "/reference/react-dom/server/renderToString"
         }
       ]
+    },
+    {
+      "hasSectionHeader": true,
+      "sectionHeader": "Rules of React"
+    },
+    {
+      "title": "Overview",
+      "path": "/reference/rules"
+    },
+    {
+      "title": "Components and Hooks must be pure",
+      "path": "/reference/rules/components-and-hooks-must-be-pure"
+    },
+    {
+      "title": "React calls Components and Hooks",
+      "path": "/reference/rules/react-calls-components-and-hooks"
+    },
+    {
+      "title": "Rules of Hooks",
+      "path": "/reference/rules/rules-of-hooks"
     },
     {
       "hasSectionHeader": true,

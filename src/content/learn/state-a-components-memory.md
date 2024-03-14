@@ -375,7 +375,7 @@ const [index, setIndex] = useState(0);
 ```
 
 1. **Your component renders the first time.** Because you passed `0` to `useState` as the initial value for `index`, it will return `[0, setIndex]`. React remembers `0` is the latest state value.
-2. **You update the state.** When a user clicks the button, it calls `setIndex((index + 1) % sculptureList.length)`. `index` is `0`, sculptureList is `12`, 1 % 12 = 1, so it's `setIndex(1)`. This tells React to remember `index` is `1` now and triggers another render.
+2. **You update the state.** Upon clicking the button, setIndex((index + 1) % sculptureList.length) is invoked. This updates the state to (index + 1) modulo the length of sculptureList, ensuring the index loops back to the start after the last item, thereby triggering a component re-render with the new index.
 3. **Your component's second render.** React still sees `useState(0)`, but because React *remembers* that you set `index` to `1`, it returns `[1, setIndex]` instead.
 4. And so on!
 

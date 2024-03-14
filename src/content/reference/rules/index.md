@@ -3,7 +3,7 @@ title: Rules of React
 ---
 
 <Intro>
-Just as different programming languages have their own ways of expressing concepts, React has its own idioms — or rules — for how to express patterns in a way that is easy to understand and yields high-quality applications. This page lists all the Rules of React.
+Just as different programming languages have their own ways of expressing concepts, React has its own idioms — or rules — for how to express patterns in a way that is easy to understand and yields high-quality applications.
 </Intro>
 
 <InlineToc />
@@ -11,22 +11,14 @@ Just as different programming languages have their own ways of expressing concep
 ---
 
 <Note>
-To learn more about expressing UIs with React, we recommend reading [Thinking in React](/learn/thinking-in-react). This section describes the React programming paradigm from the perspective of its key rules, which may differ from approaches you've used elsewhere. Many of these rules are common to other UI libraries and non-UI related "reactive" systems, in addition to being a strong approach to building robust software generally.
+To learn more about expressing UIs with React, we recommend reading [Thinking in React](/learn/thinking-in-react).
+
+This section describes the rules you need to follow to write idiomatic React code. Writing idiomatic React code can help you write well organized, safe, and composable applications. These properties make your app more resilient to changes and makes it easier to work with other developers, libraries, and tools.
 </Note>
 
 These rules are known as the **Rules of React**. They are rules – and not just guidelines – in the sense that if they are broken, your app likely has bugs. Your code also becomes unidiomatic and harder to understand and reason about.
 
 We strongly recommend using [Strict Mode](/reference/react/StrictMode) alongside React's [ESLint plugin](https://www.npmjs.com/package/eslint-plugin-react-hooks) to help your codebase follow the Rules of React. By following the Rules of React, you'll be able to find and address these bugs and keep your application maintainable.
-
-<DeepDive>
-#### Why are rules necessary in React? {/*why-are-rules-necessary-in-react*/}
-
-You can think of React's constraints like the grammatical rules and patterns of languages: they constrain what we can do with words, so that we can correctly and efficiently communicate our thoughts.
-
-These rules have been used in the design of all of React's features over the years. Enabling Strict Mode catches bugs caused by breaking these rules, and with the release of React's upcoming compiler, more rules will now be statically checked to help you find more bugs as well as allow for correct optimization of your code.
-
-The Rules of React are proven rules used at companies like Meta that help you maintain an application and codebase that scales with you. When followed, your codebase becomes easier to understand and maintain, is less buggy, and helps React ensure your code runs efficiently by default.
-</DeepDive>
 
 ---
 

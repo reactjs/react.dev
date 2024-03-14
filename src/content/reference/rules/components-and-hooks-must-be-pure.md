@@ -26,7 +26,7 @@ One of the key concepts that makes React, _React_ is _purity_. A pure component 
 * **Has no side effects in render** – Code with side effects should run [**separately from rendering**](#how-does-react-run-your-code): for example as an [event handler](/learn/responding-to-events) – where the user interacts with the UI and causes it to update – or as an [Effect](/reference/react/useEffect) – which runs after render.
 * **Does not mutate non-local values**: Components and hooks should never modify values that aren't created locally. Local mutations are covered [below](#mutation).
 
-When render is kept pure, React can understand how to prioritize which updates are most important for the user to see first. This is made possible because of render purity: since components don't have side effects in render, React can pause rendering components that aren't as important to update, and only come back to them later when it's needed.
+When render is kept pure, React can understand how to prioritize which updates are most important for the user to see first. This is made possible because of render purity: since components don't have side effects [in render](#how-does-react-run-your-code), React can pause rendering components that aren't as important to update, and only come back to them later when it's needed.
 
 Concretely, this means that rendering logic can be run multiple times in a way that allows React to give your user a pleasant user experience. However, if your component has an untracked side effect – like modifying the value of a global variable [during render](#how-does-react-run-your-code) – when React runs your rendering code again, your side effects will be triggered in a way that won't match what you want. This often leads to unexpected bugs that can degrade how your users experience your app. You can see an [example of this in the Keeping Components Pure page](/learn/keeping-components-pure#side-effects-unintended-consequences).
 
@@ -99,13 +99,13 @@ You can refer to the solution to this [challenge](learn/keeping-components-pure#
 
 ## Side effects must run outside of render {/*side-effects-must-run-outside-of-render*/}
 
-[Side effects](/learn/keeping-components-pure#side-effects-unintended-consequences) should not run in render, as React can render components multiple times to create the best possible user experience.
+[Side effects](/learn/keeping-components-pure#side-effects-unintended-consequences) should not run [in render](#how-does-react-run-your-code), as React can render components multiple times to create the best possible user experience.
 
 <Note>
 Side effects are a broader term than Effects. Effects specifically refer to code that's wrapped in `useEffect`, while a side effect is a general term for code that has any observable effect other than its primary result of returning a value to the caller.
 </Note>
 
-While render must be kept pure, side effects are necessary at some point in order for your app to do anything interesting, like showing something on the screen! The key point of this rule is that side effects should not run in render, as React can render components multiple times. In most cases, you'll use [event handlers](learn/responding-to-events) to handle side effects.
+While render must be kept pure, side effects are necessary at some point in order for your app to do anything interesting, like showing something on the screen! The key point of this rule is that side effects should not run [in render](#how-does-react-run-your-code), as React can render components multiple times. In most cases, you'll use [event handlers](learn/responding-to-events) to handle side effects.
 
 For example, you might have an event handler that displays a confirmation dialog after the user clicks a button. Using an event handler explicitly tells React that this code doesn't need to run [during render](#how-does-react-run-your-code), keeping render pure. If you've exhausted all options – and only as a last resort – you can also handle side effects using `useEffect`.
 

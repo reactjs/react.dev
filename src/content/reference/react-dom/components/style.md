@@ -52,7 +52,7 @@ Props that are **not recommended** for use with React:
 
 #### Special rendering behavior {/*special-rendering-behavior*/}
 
-React can move `<style>` components to the document's `<head>`, de-duplicate identical stylesheets, and [suspend](http://localhost:3000/reference/react/Suspense) while the stylesheet is loading.
+React can move `<style>` components to the document's `<head>`, de-duplicate identical stylesheets, and [suspend](/reference/react/Suspense) while the stylesheet is loading.
 
 To opt into this behavior, provide the `href` and `precedence` props. React will de-duplicate styles if they have the same `href`. The precedence prop tells React where to rank the `<style>` DOM node relative to others in the document `<head>`, which determines which stylesheet can override the other.
 

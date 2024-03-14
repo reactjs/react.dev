@@ -19,6 +19,41 @@ React is declarative: you tell React _what_ to render, and React will figure out
 #### How does React run your code? {/*how-does-react-run-your-code*/}
 _Rendering_ refers to calculating what the next version of your UI should look like. After rendering, [Effects](/reference/react/useEffect) are _flushed_ (meaning they are run until there are no more left) and may update the calculation if the Effects have impacts on layout. React takes this new calculation and compares it to the calulation used to create the previous version of your UI, then _commits_ just the minimum changes needed to the [DOM](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model) (what your user actually sees) to catch it up to the latest version.
 
+<DeepDive>
+#### How to tell if code runs in render {/*how-to-tell-if-code-runs-in-render*/}
+
+One quick heuristic to tell if code runs during render is to examine where it is: if it's written at the top level like in the example below, there's a good chance it runs during render.
+
+```js {2}
+function Dropdown() {
+  const selectedItems = new Set(); // created during render
+  // ...
+}
+```
+
+Event handlers and Effects don't run in render:
+
+```js {4}
+function Dropdown() {
+  const selectedItems = new Set();
+  const onSelect = (item) => {
+    // this code is in an event handler, so it's only run when the user triggers this
+    selectedItems.add(item);
+  }
+}
+```
+
+```js {4}
+function Dropdown() {
+  const selectedItems = new Set();
+  useEffect(() => {
+    // this code is inside of an Effect, so it only runs after rendering
+    logForAnalytics(selectedItems);
+  }, [selectedItems]);
+}
+```
+</DeepDive>
+
 #### What is purity? {/*what-is-purity*/}
 One of the key concepts that makes React, _React_ is _purity_. A pure component or hook is one that is:
 
@@ -61,7 +96,7 @@ function Clock() {
 
 `new Date()` is not idempotent as it always returns the current date and changes its result every time it's called. When you render the above component, the time displayed on the screen will stay stuck on the time that the component was rendered. Similarly, functions like `Math.random()` also aren't idempotent, because they return different results every time they're called, even when the inputs are the same.
 
-This doesn't mean you shouldn't use non-idempotent functions like `new Date()` _at all_ – you should just avoid using them [during render](#how-does-react-run-your-code). One quick heuristic to tell if code runs during render is to examine where it is: if it's written at the top level like in the example above, there's a good chance it runs during render.
+This doesn't mean you shouldn't use non-idempotent functions like `new Date()` _at all_ – you should just avoid using them [during render](#how-does-react-run-your-code).
 
 <DeepDive>
 #### Where to run non-idempotent code like `new Date()` {/*where-to-run-non-idempotent-code-like-new-date*/}

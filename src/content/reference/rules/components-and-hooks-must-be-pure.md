@@ -3,20 +3,34 @@ title: Components and Hooks must be pure
 ---
 
 <Intro>
-[Purity](/learn/keeping-components-pure) makes your code easier to understand, debug, and allows React to automatically optimize your components and hooks correctly.
+Pure functions only perform a calculation and nothing more. It makes your code easier to understand, debug, and allows React to automatically optimize your components and hooks correctly.
 </Intro>
+
+<Note>
+This reference page covers advanced topics and requires familiarity with the concepts covered in the [Keeping Components Pure](/learn/keeping-components-pure) page.
+</Note>
 
 <InlineToc />
 
-<DeepDive>
-#### Why does render need to be pure? {/*why-does-render-need-to-be-pure*/}
+---
 
-React is declarative: you tell React what to render in your component's logic, and React will figure out how best to display it to your user.
+### Why does purity matter? {/*why-does-purity-matter*/}
+
+React is declarative: you tell React _what_ to render, and React will figure out _how_ best to display it to your user. To do this, React has a few phases where it runs your code. You don't need to know about all of these phases to use React well. But at a high level, you should know about what code runs in _render_, and what runs outside of it.
+
+#### How does React run your code? {/*how-does-react-run-your-code*/}
+_Rendering_ refers to calculating what the next version of your UI should look like. After rendering, [Effects](/reference/react/useEffect) are _flushed_ (meaning they are run until there are no more left) and may update the calculation if the Effects have impacts on layout. React takes this calculation and compares it to the previously calculated one, then _commits_ the minimum changes to the [DOM](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model) (what your user actually sees) to catch it up to the latest version.
+
+#### What is purity? {/*what-is-purity*/}
+One of the key concepts that makes React, _React_ is _purity_. A pure component or hook is one that is:
+
+* **Idempotent** – You [always get the same result everytime](/learn/keeping-components-pure#purity-components-as-formulas) you run it with the same inputs – props, state, context for component inputs; and arguments for hook inputs.
+* **Has no side effects in render** – Code with side effects should run **separately from rendering**: for example as an [event handler](/learn/responding-to-events) – where the user interacts with the UI and causes it to update – or as an [Effect](/reference/react/useEffect) – which runs after render.
+* **Does not mutate non-local values**: Components and hooks should never modify values that aren't created locally
 
 When render is kept pure, React can understand how to prioritize which updates are most important for the user to see first. This is made possible because of render purity: since components don't have side effects in render, React can pause rendering components that aren't as important to update, and only come back to them later when it's needed.
 
-Concretely, this means that rendering logic can be run multiple times in a way that allows React to give your user a pleasant user experience. However, if your component has an untracked side effect – like modifying the value of a global variable during render – when React runs your rendering code again, your side effects will be triggered in a way that won't match what you want. This often leads to unexpected bugs that can degrade how your users experience your app.
-</DeepDive>
+Concretely, this means that rendering logic can be run multiple times in a way that allows React to give your user a pleasant user experience. However, if your component has an untracked side effect – like modifying the value of a global variable during render – when React runs your rendering code again, your side effects will be triggered in a way that won't match what you want. This often leads to unexpected bugs that can degrade how your users experience your app. You can see an [example of this in the Keeping Components Pure page](/learn/keeping-components-pure#side-effects-unintended-consequences).
 
 ---
 

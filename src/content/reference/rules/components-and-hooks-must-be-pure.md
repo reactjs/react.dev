@@ -28,7 +28,7 @@ One of the key concepts that makes React, _React_ is _purity_. A pure component 
 
 When render is kept pure, React can understand how to prioritize which updates are most important for the user to see first. This is made possible because of render purity: since components don't have side effects in render, React can pause rendering components that aren't as important to update, and only come back to them later when it's needed.
 
-Concretely, this means that rendering logic can be run multiple times in a way that allows React to give your user a pleasant user experience. However, if your component has an untracked side effect – like modifying the value of a global variable during render – when React runs your rendering code again, your side effects will be triggered in a way that won't match what you want. This often leads to unexpected bugs that can degrade how your users experience your app. You can see an [example of this in the Keeping Components Pure page](/learn/keeping-components-pure#side-effects-unintended-consequences).
+Concretely, this means that rendering logic can be run multiple times in a way that allows React to give your user a pleasant user experience. However, if your component has an untracked side effect – like modifying the value of a global variable [during render](#how-does-react-run-your-code) – when React runs your rendering code again, your side effects will be triggered in a way that won't match what you want. This often leads to unexpected bugs that can degrade how your users experience your app. You can see an [example of this in the Keeping Components Pure page](/learn/keeping-components-pure#side-effects-unintended-consequences).
 
 ---
 
@@ -50,7 +50,7 @@ function NewsFeed({ items }) {
 }
 ```
 
-This means that _all_ code that runs during render must also be idempotent in order for this rule to hold. For example, this line of code is not idempotent (and therefore, neither is the component):
+This means that _all_ code that runs [during render](#how-does-react-run-your-code) must also be idempotent in order for this rule to hold. For example, this line of code is not idempotent (and therefore, neither is the component):
 
 ```js {2}
 function Clock() {
@@ -61,9 +61,41 @@ function Clock() {
 
 `new Date()` is not idempotent as it always returns the current date and changes its result every time it's called. When you render the above component, the time displayed on the screen will stay stuck on the time that the component was rendered. Similarly, functions like `Math.random()` also aren't idempotent, because they return different results every time they're called, even when the inputs are the same.
 
-This doesn't mean you shouldn't use non-idempotent functions like `new Date()` _at all_ – you should just avoid using them during render. One quick heuristic to tell if code runs during render is to examine where it is: if it's written at the top level like in the example above, there's a good chance it runs during render.
+This doesn't mean you shouldn't use non-idempotent functions like `new Date()` _at all_ – you should just avoid using them [during render](#how-does-react-run-your-code). One quick heuristic to tell if code runs during render is to examine where it is: if it's written at the top level like in the example above, there's a good chance it runs during render.
 
-Try building a component that displays the time in real-time in our [challenge](learn/keeping-components-pure#challenges) to see if you follow this rule!
+<DeepDive>
+#### Where to run non-idempotent code like `new Date()` {/*where-to-run-non-idempotent-code-like-new-date*/}
+
+An example of creating a hook that returns an always updated date is below:
+
+```js
+function useTime() {
+  const [time, setTime] = useState(() => new Date());
+  useEffect(() => {
+    const id = setInterval(() => {
+      setTime(new Date());
+    }, 1000);
+    return () => clearInterval(id);
+  }, []);
+  return time;
+}
+```
+
+By wrapping the non-idempotent `new Date()` call in an Effect, it moves that calculation [outside of rendering](#how-does-react-run-your-code).
+
+You could then use the `useTime` hook in a parent component and pass the latest `time` down to where you need it:
+
+```js
+export default function App() {
+  const time = useTime();
+  return (
+    <Clock time={time} />
+  );
+}
+```
+
+You can refer to the solution to this [challenge](learn/keeping-components-pure#challenges) to see this code in action.
+</DeepDive>
 
 ## Side effects must run outside of render {/*side-effects-must-run-outside-of-render*/}
 
@@ -75,7 +107,7 @@ Side effects are a broader term than Effects. Effects specifically refer to code
 
 While render must be kept pure, side effects are necessary at some point in order for your app to do anything interesting, like showing something on the screen! The key point of this rule is that side effects should not run in render, as React can render components multiple times. In most cases, you'll use [event handlers](learn/responding-to-events) to handle side effects.
 
-For example, you might have an event handler that displays a confirmation dialog after the user clicks a button. Using an event handler explicitly tells React that this code doesn't need to run during render, keeping render pure. If you've exhausted all options – and only as a last resort – you can also handle side effects using `useEffect`.
+For example, you might have an event handler that displays a confirmation dialog after the user clicks a button. Using an event handler explicitly tells React that this code doesn't need to run [during render](#how-does-react-run-your-code), keeping render pure. If you've exhausted all options – and only as a last resort – you can also handle side effects using `useEffect`.
 
 ### When is it okay to have mutation? {/*mutation*/}
 One common example of a side effect is mutation, which in JavaScript refers to changing the value of a non-[primitive](https://developer.mozilla.org/en-US/docs/Glossary/Primitive) value. In general, while mutation is not idiomatic in React, _local_ mutation is absolutely fine:
@@ -93,7 +125,7 @@ function FriendList({ friends }) {
 }
 ```
 
-There is no need to contort your code to avoid local mutation. [`Array.map`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) could also be used here for brevity, but there is nothing wrong with creating a local array and then pushing items into it during render.
+There is no need to contort your code to avoid local mutation. [`Array.map`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) could also be used here for brevity, but there is nothing wrong with creating a local array and then pushing items into it [during render](#how-does-react-run-your-code).
 
 Even though it looks like we are mutating `items`, the key point to note is that this code only does so locally – the mutation isn't "remembered" when the component is rendered again. In other words, `items` only stays around as long as the component does. Because `items` is always recreated every time `<FriendList />` is rendered, the component will always return the same result.
 
@@ -112,7 +144,7 @@ function FriendList({ friends }) {
 }
 ```
 
-When `<FriendList />` runs again, we will continue appending `friends` to `items` every time that component is run, leading to multiple duplicated results. This version of `<FriendList />` has observable side effects during render and **breaks the rule**.
+When `<FriendList />` runs again, we will continue appending `friends` to `items` every time that component is run, leading to multiple duplicated results. This version of `<FriendList />` has observable side effects [during render](#how-does-react-run-your-code) and **breaks the rule**.
 
 Lazy initialization is also fine despite not being fully "pure":
 
@@ -131,7 +163,7 @@ function ProductDetailPage({ product }) {
 }
 ```
 
-One way to achieve the desired result of updating `window.title` outside of render is to [synchronize the component with `window`](http://localhost:3000/learn/synchronizing-with-effects).
+One way to achieve the desired result of updating `window.title` outside of render is to [synchronize the component with `window`](/learn/synchronizing-with-effects).
 
 As long as calling a component multiple times is safe and doesn’t affect the rendering of other components, React doesn’t care if it’s 100% pure in the strict functional programming sense of the word. It is more important that [components must be idempotent](/reference/rules/components-and-hooks-must-be-pure).
 

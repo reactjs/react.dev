@@ -12,7 +12,7 @@ Hooks are defined using JavaScript functions, but they represent a special type 
 
 ##  Only call Hooks at the top level {/*only-call-hooks-at-the-top-level*/}
 
-Don’t call Hooks inside loops, conditions, or nested functions. Instead, always use Hooks at the top level of your React function, before any early returns.
+Don’t call Hooks inside loops, conditions, nested functions, or in `try`/`catch`/`finally` blocks. Instead, always use Hooks at the **top level** of your React function, before any early returns.
 
 By following this rule, you ensure that Hooks are called in the same order each time a component renders. That’s what allows React to correctly preserve the state of Hooks between multiple `useState` and `useEffect` calls.
 
@@ -82,7 +82,7 @@ useState('Poppins')        // 🔴 2 (but was 3). Fail to read the surname state
 useEffect(updateTitle)     // 🔴 3 (but was 4). Fail to replace the effect
 ```
 
-React wouldn’t know what to return for the second useState Hook call. React expected that the second Hook call in this component corresponds to the persistForm effect, just like during the previous render, but it doesn’t anymore. From that point, every next Hook call after the one we skipped would also shift by one, leading to bugs.
+React wouldn’t know what to return for the second `useState` Hook call. React expected that the second Hook call in this component corresponds to the persistForm effect, just like during the previous render, but it doesn’t anymore. From that point, every next Hook call after the one we skipped would also shift by one, leading to bugs.
 
 This is why Hooks must be called on the top level of our components. If we want to run an effect conditionally, we can put that condition inside our Hook:
 

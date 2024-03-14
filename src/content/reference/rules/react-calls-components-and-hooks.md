@@ -1,5 +1,5 @@
 ---
-title: React orchestrates Components and Hooks
+title: React calls Components and Hooks
 ---
 
 <Intro>
@@ -11,9 +11,9 @@ React is responsible for rendering components and hooks when necessary to optimi
 ---
 
 ## Never call component functions directly {/*never-call-component-functions-directly*/}
-Components should only be used in JSX. Don't call them as regular functions.
+Components should only be used in JSX. Don't call them as regular functions. React should call it.
 
-React must decide when your component function is called during rendering. In React, you do this using JSX.
+React must decide when your component function is called [during rendering](/reference/rules/components-and-hooks-must-be-pure#how-does-react-run-your-code). In React, you do this using JSX.
 
 ```js {2}
 function BlogPost() {
@@ -27,7 +27,7 @@ function BlogPost() {
 }
 ```
 
-If a component contains hooks, it's easy to violate the Rules of Hooks when components are called directly in a loop or conditionally.
+If a component contains hooks, it's easy to violate the [Rules of Hooks](/reference/rules/rules-of-hooks) when components are called directly in a loop or conditionally.
 
 Letting React orchestrate rendering also allows a number of benefits:
 
@@ -39,7 +39,7 @@ Letting React orchestrate rendering also allows a number of benefits:
 
 ## Never pass around hooks as regular values {/*never-pass-around-hooks-as-regular-values*/}
 
-Hooks should only be called inside of components. Never pass it around as a regular value.
+Hooks should only be called inside of components or hooks. Never pass it around as a regular value.
 
 Hooks allow you to augment a component with React features. They should always be called as a function, and never passed around as a regular value. This enables _local reasoning_, or the ability for developers to understand everything a component can do by looking at that component in isolation.
 

@@ -11,8 +11,8 @@
           "path": "/reference/rules/components-and-hooks-must-be-pure"
         },
         {
-          "title": "React orchestrates Components and Hooks",
-          "path": "/reference/rules/react-orchestrates-components-and-hooks"
+          "title": "React calls Components and Hooks",
+          "path": "/reference/rules/react-calls-components-and-hooks"
         },
         {
           "title": "Rules of Hooks",

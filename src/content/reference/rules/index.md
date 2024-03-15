@@ -12,9 +12,9 @@ Just as different programming languages have their own ways of expressing concep
 
 <Note>
 To learn more about expressing UIs with React, we recommend reading [Thinking in React](/learn/thinking-in-react).
+</Note>
 
 This section describes the rules you need to follow to write idiomatic React code. Writing idiomatic React code can help you write well organized, safe, and composable applications. These properties make your app more resilient to changes and makes it easier to work with other developers, libraries, and tools.
-</Note>
 
 These rules are known as the **Rules of React**. They are rules – and not just guidelines – in the sense that if they are broken, your app likely has bugs. Your code also becomes unidiomatic and harder to understand and reason about.
 

@@ -14,12 +14,24 @@ This reference page covers advanced topics and requires familiarity with the con
 
 ### Why does purity matter? {/*why-does-purity-matter*/}
 
-React is declarative: you tell React _what_ to render, and React will figure out _how_ best to display it to your user. To do this, React has a few phases where it runs your code. You don't need to know about all of these phases to use React well. But at a high level, you should know about what code runs in _render_, and what runs outside of it.
+One of the key concepts that makes React, _React_ is _purity_. A pure component or hook is one that is:
+
+* **Idempotent** – You [always get the same result everytime](/learn/keeping-components-pure#purity-components-as-formulas) you run it with the same inputs – props, state, context for component inputs; and arguments for hook inputs.
+* **Has no side effects in render** – Code with side effects should run [**separately from rendering**](#how-does-react-run-your-code): for example as an [event handler](/learn/responding-to-events) – where the user interacts with the UI and causes it to update – or as an [Effect](/reference/react/useEffect) – which runs after render.
+* **Does not mutate non-local values**: Components and hooks should never modify values that aren't created locally. Local mutations are covered [below](#mutation).
+
+When render is kept pure, React can understand how to prioritize which updates are most important for the user to see first. This is made possible because of render purity: since components don't have side effects [in render](#how-does-react-run-your-code), React can pause rendering components that aren't as important to update, and only come back to them later when it's needed.
+
+Concretely, this means that rendering logic can be run multiple times in a way that allows React to give your user a pleasant user experience. However, if your component has an untracked side effect – like modifying the value of a global variable [during render](#how-does-react-run-your-code) – when React runs your rendering code again, your side effects will be triggered in a way that won't match what you want. This often leads to unexpected bugs that can degrade how your users experience your app. You can see an [example of this in the Keeping Components Pure page](/learn/keeping-components-pure#side-effects-unintended-consequences).
 
 #### How does React run your code? {/*how-does-react-run-your-code*/}
+
+React is declarative: you tell React _what_ to render, and React will figure out _how_ best to display it to your user. To do this, React has a few phases where it runs your code. You don't need to know about all of these phases to use React well. But at a high level, you should know about what code runs in _render_, and what runs outside of it.
+
 _Rendering_ refers to calculating what the next version of your UI should look like. After rendering, [Effects](/reference/react/useEffect) are _flushed_ (meaning they are run until there are no more left) and may update the calculation if the Effects have impacts on layout. React takes this new calculation and compares it to the calulation used to create the previous version of your UI, then _commits_ just the minimum changes needed to the [DOM](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model) (what your user actually sees) to catch it up to the latest version.
 
 <DeepDive>
+
 #### How to tell if code runs in render {/*how-to-tell-if-code-runs-in-render*/}
 
 One quick heuristic to tell if code runs during render is to examine where it is: if it's written at the top level like in the example below, there's a good chance it runs during render.
@@ -53,17 +65,6 @@ function Dropdown() {
 }
 ```
 </DeepDive>
-
-#### What is purity? {/*what-is-purity*/}
-One of the key concepts that makes React, _React_ is _purity_. A pure component or hook is one that is:
-
-* **Idempotent** – You [always get the same result everytime](/learn/keeping-components-pure#purity-components-as-formulas) you run it with the same inputs – props, state, context for component inputs; and arguments for hook inputs.
-* **Has no side effects in render** – Code with side effects should run [**separately from rendering**](#how-does-react-run-your-code): for example as an [event handler](/learn/responding-to-events) – where the user interacts with the UI and causes it to update – or as an [Effect](/reference/react/useEffect) – which runs after render.
-* **Does not mutate non-local values**: Components and hooks should never modify values that aren't created locally. Local mutations are covered [below](#mutation).
-
-When render is kept pure, React can understand how to prioritize which updates are most important for the user to see first. This is made possible because of render purity: since components don't have side effects [in render](#how-does-react-run-your-code), React can pause rendering components that aren't as important to update, and only come back to them later when it's needed.
-
-Concretely, this means that rendering logic can be run multiple times in a way that allows React to give your user a pleasant user experience. However, if your component has an untracked side effect – like modifying the value of a global variable [during render](#how-does-react-run-your-code) – when React runs your rendering code again, your side effects will be triggered in a way that won't match what you want. This often leads to unexpected bugs that can degrade how your users experience your app. You can see an [example of this in the Keeping Components Pure page](/learn/keeping-components-pure#side-effects-unintended-consequences).
 
 ---
 

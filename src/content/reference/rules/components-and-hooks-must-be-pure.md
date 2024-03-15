@@ -17,8 +17,8 @@ This reference page covers advanced topics and requires familiarity with the con
 One of the key concepts that makes React, _React_ is _purity_. A pure component or hook is one that is:
 
 * **Idempotent** – You [always get the same result everytime](/learn/keeping-components-pure#purity-components-as-formulas) you run it with the same inputs – props, state, context for component inputs; and arguments for hook inputs.
-* **Has no side effects in render** – Code with side effects should run [**separately from rendering**](#how-does-react-run-your-code): for example as an [event handler](/learn/responding-to-events) – where the user interacts with the UI and causes it to update – or as an [Effect](/reference/react/useEffect) – which runs after render.
-* **Does not mutate non-local values**: Components and hooks should never modify values that aren't created locally. Local mutations are covered [below](#mutation).
+* **Has no side effects in render** – Code with side effects should run [**separately from rendering**](#how-does-react-run-your-code). For example as an [event handler](/learn/responding-to-events) – where the user interacts with the UI and causes it to update; or as an [Effect](/reference/react/useEffect) – which runs after render.
+* **Does not mutate non-local values**: Components and hooks should [never modify values that aren't created locally](#mutation) in render.
 
 When render is kept pure, React can understand how to prioritize which updates are most important for the user to see first. This is made possible because of render purity: since components don't have side effects [in render](#how-does-react-run-your-code), React can pause rendering components that aren't as important to update, and only come back to them later when it's needed.
 

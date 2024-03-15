@@ -12,90 +12,108 @@ Hooks are defined using JavaScript functions, but they represent a special type 
 
 ##  Only call Hooks at the top level {/*only-call-hooks-at-the-top-level*/}
 
-Don’t call Hooks inside loops, conditions, nested functions, or in `try`/`catch`/`finally` blocks. Instead, always use Hooks at the **top level** of your React function, before any early returns.
+Functions whose names start with `use` are called [*Hooks*](/reference/react) in React.
 
-By following this rule, you ensure that Hooks are called in the same order each time a component renders. That’s what allows React to correctly preserve the state of Hooks between multiple `useState` and `useEffect` calls.
+**Don’t call Hooks inside loops, conditions, nested functions, or `try`/`catch`/`finally` blocks.** Instead, always use Hooks at the top level of your React function, before any early returns. You can only call Hooks while React is rendering a function component:
 
-We can use multiple State or Effect Hooks in a single component:
+* ✅ Call them at the top level in the body of a [function component](/learn/your-first-component).
+* ✅ Call them at the top level in the body of a [custom Hook](/learn/reusing-logic-with-custom-hooks).
 
-```js
-function Form() {
-  // 1. Use the name state variable
-  const [name, setName] = useState('Mary');
+```js{2-3,8-9}
+function Counter() {
+  // ✅ Good: top-level in a function component
+  const [count, setCount] = useState(0);
+  // ...
+}
 
-  // 2. Use an effect for persisting the form
-  useEffect(function persistForm() {
-    localStorage.setItem('formData', name);
-  });
-
-  // 3. Use the surname state variable
-  const [surname, setSurname] = useState('Poppins');
-
-  // 4. Use an effect for updating the title
-  useEffect(function updateTitle() {
-    document.title = name + ' ' + surname;
-  });
-
+function useWindowWidth() {
+  // ✅ Good: top-level in a custom Hook
+  const [width, setWidth] = useState(window.innerWidth);
   // ...
 }
 ```
 
-So how does React know which state corresponds to which `useState` call? The answer is that React relies on the order in which Hooks are called. Our example works because the order of the Hook calls is the same on every render:
+It’s **not** supported to call Hooks (functions starting with `use`) in any other cases, for example:
 
-```js
-// ------------
-// First render
-// ------------
-useState('Mary')           // 1. Initialize the name state variable with 'Mary'
-useEffect(persistForm)     // 2. Add an effect for persisting the form
-useState('Poppins')        // 3. Initialize the surname state variable with 'Poppins'
-useEffect(updateTitle)     // 4. Add an effect for updating the title
+* 🔴 Do not call Hooks inside conditions or loops.
+* 🔴 Do not call Hooks after a conditional `return` statement.
+* 🔴 Do not call Hooks in event handlers.
+* 🔴 Do not call Hooks in class components.
+* 🔴 Do not call Hooks inside functions passed to `useMemo`, `useReducer`, or `useEffect`.
+* 🔴 Do not call Hooks inside `try`/`catch`/`finally` blocks.
 
-// -------------
-// Second render
-// -------------
-useState('Mary')           // 1. Read the name state variable (argument is ignored)
-useEffect(persistForm)     // 2. Replace the effect for persisting the form
-useState('Poppins')        // 3. Read the surname state variable (argument is ignored)
-useEffect(updateTitle)     // 4. Replace the effect for updating the title
+If you break these rules, you might see this error.
 
-// ...
-```
+```js{3-4,11-12,20-21}
+function Bad({ cond }) {
+  if (cond) {
+    // 🔴 Bad: inside a condition (to fix, move it outside!)
+    const theme = useContext(ThemeContext);
+  }
+  // ...
+}
 
-As long as the order of the Hook calls is the same between renders, React can associate some local state with each of them. But what happens if we put a Hook call (for example, the `persistForm` effect) inside a condition?
+function Bad() {
+  for (let i = 0; i < 10; i++) {
+    // 🔴 Bad: inside a loop (to fix, move it outside!)
+    const theme = useContext(ThemeContext);
+  }
+  // ...
+}
 
-```js
-// 🔴 We're breaking the first rule by using a Hook in a condition
-if (name !== '') {
-  useEffect(function persistForm() {
-    localStorage.setItem('formData', name);
+function Bad({ cond }) {
+  if (cond) {
+    return;
+  }
+  // 🔴 Bad: after a conditional return (to fix, move it before the return!)
+  const theme = useContext(ThemeContext);
+  // ...
+}
+
+function Bad() {
+  function handleClick() {
+    // 🔴 Bad: inside an event handler (to fix, move it outside!)
+    const theme = useContext(ThemeContext);
+  }
+  // ...
+}
+
+function Bad() {
+  const style = useMemo(() => {
+    // 🔴 Bad: inside useMemo (to fix, move it outside!)
+    const theme = useContext(ThemeContext);
+    return createStyle(theme);
   });
+  // ...
+}
+
+class Bad extends React.Component {
+  render() {
+    // 🔴 Bad: inside a class component (to fix, write a function component instead of a class!)
+    useEffect(() => {})
+    // ...
+  }
+}
+
+function Bad() {
+  try {
+    // 🔴 Bad: inside try/catch/finally block (to fix, move it outside!)
+    const [x, setX] = useState(0);
+  } catch {
+    const [x, setX] = useState(1);
+  }
 }
 ```
 
-The `name !== ''` condition is true on the first render, so we run this Hook. However, on the next render the user might clear the form, making the condition false. Now that we skip this Hook during rendering, the order of the Hook calls becomes different:
+You can use the [`eslint-plugin-react-hooks` plugin](https://www.npmjs.com/package/eslint-plugin-react-hooks) to catch these mistakes.
 
-```js
-useState('Mary')           // 1. Read the name state variable (argument is ignored)
-// useEffect(persistForm)  // 🔴 This Hook was skipped!
-useState('Poppins')        // 🔴 2 (but was 3). Fail to read the surname state variable
-useEffect(updateTitle)     // 🔴 3 (but was 4). Fail to replace the effect
-```
+<Note>
 
-React wouldn’t know what to return for the second `useState` Hook call. React expected that the second Hook call in this component corresponds to the persistForm effect, just like during the previous render, but it doesn’t anymore. From that point, every next Hook call after the one we skipped would also shift by one, leading to bugs.
+[Custom Hooks](/learn/reusing-logic-with-custom-hooks) *may* call other Hooks (that's their whole purpose). This works because custom Hooks are also supposed to only be called while a function component is rendering.
 
-This is why Hooks must be called on the top level of our components. If we want to run an effect conditionally, we can put that condition inside our Hook:
+</Note>
 
-```js
-useEffect(function persistForm() {
-  // 👍 We're not breaking the first rule anymore
-  if (name !== '') {
-    localStorage.setItem('formData', name);
-  }
-});
-```
-
-Note that you don’t need to worry about this problem if you use the provided lint rule. But now you also know why Hooks work this way, and which issues the rule is preventing.
+---
 
 ## Only call Hooks from React functions {/*only-call-hooks-from-react-functions*/}
 

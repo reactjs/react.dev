@@ -17,13 +17,13 @@ React must decide when your component function is called [during rendering](/ref
 
 ```js {2}
 function BlogPost() {
-  return <Layout><Article /></Layout>; // ✅ Only use components in JSX
+  return <Layout><Article /></Layout>; // ✅ Good: Only use components in JSX
 }
 ```
 
 ```js {2}
 function BlogPost() {
-  return <Layout>{Article()}</Layout>; // ❌ Never call them directly
+  return <Layout>{Article()}</Layout>; // 🔴 Bad: Never call them directly
 }
 ```
 
@@ -36,6 +36,8 @@ Letting React orchestrate rendering also allows a number of benefits:
 * **React can enhance your user experience.** For example, it can let the browser do some work between component calls so that re-rendering a large component tree doesn’t block the main thread.
 * **A better debugging story.** If components are first-class citizens that the library is aware of, we can build rich developer tools for introspection in development.
 * **More efficient reconciliation.** React can decide exactly which components in the tree need re-rendering and skip over the ones that don't. That makes your app faster and more snappy.
+
+---
 
 ## Never pass around hooks as regular values {/*never-pass-around-hooks-as-regular-values*/}
 
@@ -51,7 +53,7 @@ Hooks should be as "static" as possible. This means you shouldn't dynamically mu
 
 ```js {2}
 function ChatInput() {
-  const useDataWithLogging = withLogging(useData); // ❌
+  const useDataWithLogging = withLogging(useData); // 🔴 Bad: don't write higher order hooks
   const data = useDataWithLogging();
 }
 ```
@@ -60,7 +62,7 @@ Hooks should be immutable and not be mutated. Instead of mutating a hook dynamic
 
 ```js {2,6}
 function ChatInput() {
-  const data = useDataWithLogging(); // ✅
+  const data = useDataWithLogging(); // ✅ Good: Create a new version of the hook
 }
 
 function useDataWithLogging() {
@@ -74,7 +76,7 @@ Hooks should also not be dynamically used: for example, instead of doing depende
 
 ```js {2}
 function ChatInput() {
-  return <Button useData={useDataWithLogging} /> // ❌
+  return <Button useData={useDataWithLogging} /> // 🔴 Bad: don't pass hooks as props
 }
 ```
 
@@ -86,7 +88,7 @@ function ChatInput() {
 }
 
 function Button() {
-  const data = useDataWithLogging(); // ✅
+  const data = useDataWithLogging(); // ✅ Good: Use the hook directly
 }
 
 function useDataWithLogging() {

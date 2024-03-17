@@ -153,9 +153,7 @@ function Panel({ title, children, isActive }) {
       {isActive ? (
         <p>{children}</p>
       ) : (
-        <button onClick={() => setIsActive(true)}>
-          Show
-        </button>
+        <button>Show</button>
       )}
     </section>
   );

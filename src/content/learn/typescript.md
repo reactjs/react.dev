@@ -456,7 +456,7 @@ We recommend the following resources:
 
  - [The TypeScript handbook](https://www.typescriptlang.org/docs/handbook/) is the official documentation for TypeScript, and covers most key language features.
 
- - [The TypeScript release notes](https://devblogs.microsoft.com/typescript/) covers each new features in-depth.
+ - [The TypeScript release notes](https://devblogs.microsoft.com/typescript/) covers new features in depth.
 
  - [React TypeScript Cheatsheet](https://react-typescript-cheatsheet.netlify.app/) is a community-maintained cheatsheet for using TypeScript with React, covering a lot of useful edge cases and providing more breadth than this document.
 

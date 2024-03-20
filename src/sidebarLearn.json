@@ -43,6 +43,10 @@
         {
           "title": "React Developer Tools",
           "path": "/learn/react-developer-tools"
+        },
+        {
+          "title": "React Compiler",
+          "path": "/learn/react-compiler"
         }
       ]
     },

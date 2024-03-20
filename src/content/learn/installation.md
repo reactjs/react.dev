@@ -14,6 +14,7 @@ React has been designed from the start for gradual adoption. You can use as litt
 * [How to add React to an existing project](/learn/add-react-to-an-existing-project)
 * [How to set up your editor](/learn/editor-setup)
 * [How to install React Developer Tools](/learn/react-developer-tools)
+* [How to install React Compiler](/learn/react-compiler)
 
 </YouWillLearn>
 

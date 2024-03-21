@@ -202,7 +202,7 @@ return (
 );
 ```
 
-You can read it as *"if `isPacked` is true, then (`?`) render `name + ' ✔'`, otherwise (`:`) render `name`"*.
+You can read it as *"if `isPacked` is truthy, then (`?`) render `name + ' ✔'`, otherwise (`:`) render `name`"*.
 
 <DeepDive>
 
@@ -260,7 +260,7 @@ This style works well for simple conditions, but use it in moderation. If your c
 
 ### Logical AND operator (`&&`) {/*logical-and-operator-*/}
 
-Another common shortcut you'll encounter is the [JavaScript logical AND (`&&`) operator.](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Logical_AND#:~:text=The%20logical%20AND%20(%20%26%26%20)%20operator,it%20returns%20a%20Boolean%20value.) Inside React components, it often comes up when you want to render some JSX when the condition is true, **or render nothing otherwise.** With `&&`, you could conditionally render the checkmark only if `isPacked` is `true`:
+Another common shortcut you'll encounter is the [JavaScript logical AND (`&&`) operator.](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Logical_AND) Inside React components, it often comes up when you want to render some JSX when the condition is true, **or render nothing otherwise.** With `&&`, you could conditionally render the checkmark only if `isPacked` is `true`:
 
 ```js
 return (
@@ -270,7 +270,7 @@ return (
 );
 ```
 
-You can read this as *"if `isPacked`, then (`&&`) render the checkmark, otherwise, render nothing"*.
+You can read this as *"if `isPacked` is truthy, then (`&&`) render the checkmark, otherwise, render nothing"*.
 
 Here it is in action:
 
@@ -322,6 +322,10 @@ To test the condition, JavaScript converts the left side to a boolean automatica
 For example, a common mistake is to write code like `messageCount && <p>New messages</p>`. It's easy to assume that it renders nothing when `messageCount` is `0`, but it really renders the `0` itself!
 
 To fix it, make the left side a boolean: `messageCount > 0 && <p>New messages</p>`.
+
+Another common mistake is relying on `Array.length` with `&&` to render JSX. Let's consider a scenario where you have an array of notifications, and you want to display a button only when there are notifications present. In such cases, people often write code like `notifications.length && <button>Show notifications</button>`, assuming that nothing will be rendered when there are no notifications. However, this code actually renders `0` instead.
+
+To fix this issue, you can use the same solution as mentioned earlier. Make the left side of the expression a boolean by comparing it to `0`: `notifications.length > 0 && <button>Show notifications</button>`. This ensures that the JSX is rendered only when the length of the `notifications` array is greater than zero.
 
 </Pitfall>
 
@@ -444,7 +448,7 @@ If you're not familiar with JavaScript, this variety of styles might seem overwh
 * In React, you control branching logic with JavaScript.
 * You can return a JSX expression conditionally with an `if` statement.
 * You can conditionally save some JSX to a variable and then include it inside other JSX by using the curly braces.
-* In JSX, `{cond ? <A /> : <B />}` means *"if `cond`, render `<A />`, otherwise `<B />`"*.
+* In JSX, `{cond ? <A /> : <B />}` means *"if `cond`, render`<A />`, otherwise `<B />`"*.
 * In JSX, `{cond && <A />}` means *"if `cond`, render `<A />`, otherwise nothing"*.
 * The shortcuts are common, but you don't have to use them if you prefer plain `if`.
 

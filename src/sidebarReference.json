@@ -335,6 +335,18 @@
     },
     {
       "hasSectionHeader": true,
+      "sectionHeader": "react-compiler@0.0.0-experimental"
+    },
+    {
+      "title": "Options",
+      "path": "/reference/react-compiler/options"
+    },
+    {
+      "title": "Errors",
+      "path": "/reference/react-compiler/errors"
+    },
+    {
+      "hasSectionHeader": true,
       "sectionHeader": "Rules of React"
     },
     {

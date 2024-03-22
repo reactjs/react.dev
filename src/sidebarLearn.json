@@ -43,10 +43,33 @@
         {
           "title": "React Developer Tools",
           "path": "/learn/react-developer-tools"
+        }
+      ]
+    },
+    {
+      "title": "React Compiler",
+      "path": "/learn/react-compiler",
+      "canary": true,
+      "routes": [
+        {
+          "title": "Getting Started",
+          "path": "/learn/react-compiler/getting-started"
         },
         {
-          "title": "React Compiler",
-          "path": "/learn/react-compiler"
+          "title": "Installation",
+          "path": "/learn/react-compiler/installation"
+        },
+        {
+          "title": "Reporting Issues",
+          "path": "/learn/react-compiler/reporting-issues"
+        },
+        {
+          "title": "DevTools Integration",
+          "path": "/learn/react-compiler/devtools-integration"
+        },
+        {
+          "title": "Debugging",
+          "path": "/learn/react-compiler/debugging"
         }
       ]
     },
@@ -198,7 +221,7 @@
         },
         {
           "title": "Removing Effect Dependencies",
-          "path": "/learn/removing-effect-dependencies"              
+          "path": "/learn/removing-effect-dependencies"
         },
         {
           "title": "Reusing Logic with Custom Hooks",

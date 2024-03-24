@@ -15,7 +15,7 @@ export function Footer() {
   return (
     <footer className={cn('text-secondary dark:text-secondary-dark')}>
       <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-x-12 gap-y-8 max-w-7xl mx-auto">
-        <div className="col-span-2 md:col-span-1 justify-items-start mt-3.5 text-left">
+        <div className="col-span-2 md:col-span-1 justify-items-start mt-3.5">
           <ExternalLink
             href="https://opensource.fb.com/"
             aria-label="Meta Open Source">
@@ -280,7 +280,9 @@ export function Footer() {
             </div>
           </ExternalLink>
 
-          <div className="text-xs text-left mt-2 pr-0.5">
+          <div
+            className="text-xs text-left rtl:text-right mt-2 pe-0.5"
+            dir="ltr">
             &copy;{new Date().getFullYear()}
           </div>
         </div>
@@ -331,7 +333,7 @@ export function Footer() {
           <FooterLink href="https://opensource.fb.com/legal/terms/">
             Terms
           </FooterLink>
-          <div className="flex flex-row mt-8 gap-x-2">
+          <div className="flex flex-row items-center mt-8 gap-x-2">
             <ExternalLink
               aria-label="React on Facebook"
               href="https://www.facebook.com/react"

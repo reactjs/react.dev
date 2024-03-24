@@ -42,7 +42,7 @@ const MyInput = forwardRef(function MyInput(props, ref) {
 
 #### Caveats {/*caveats*/}
 
-* In Strict Mode, React will **call your render function twice** in order to [help you find accidental impurities.](#my-initializer-or-updater-function-runs-twice) This is development-only behavior and does not affect production. If your render function is pure (as it should be), this should not affect the logic of your component. The result from one of the calls will be ignored.
+* In Strict Mode, React will **call your render function twice** in order to [help you find accidental impurities.](/reference/react/useState#my-initializer-or-updater-function-runs-twice) This is development-only behavior and does not affect production. If your render function is pure (as it should be), this should not affect the logic of your component. The result from one of the calls will be ignored.
 
 
 ---
@@ -135,7 +135,7 @@ This `Form` component [passes a ref](/reference/react/useRef#manipulating-the-do
 
 Keep in mind that exposing a ref to the DOM node inside your component makes it harder to change your component's internals later. You will typically expose DOM nodes from reusable low-level components like buttons or text inputs, but you won't do it for application-level components like an avatar or a comment.
 
-<Recipes title="Examples of forwarding a ref">
+<Recipes titleText="Examples of forwarding a ref">
 
 #### Focusing a text input {/*focusing-a-text-input*/}
 
@@ -165,7 +165,7 @@ export default function Form() {
 }
 ```
 
-```js MyInput.js
+```js src/MyInput.js
 import { forwardRef } from 'react';
 
 const MyInput = forwardRef(function MyInput(props, ref) {
@@ -223,7 +223,7 @@ export default function App() {
 }
 ```
 
-```js MyVideoPlayer.js
+```js src/MyVideoPlayer.js
 import { forwardRef } from 'react';
 
 const VideoPlayer = forwardRef(function VideoPlayer({ src, type, width }, ref) {
@@ -316,7 +316,7 @@ export default function Form() {
 }
 ```
 
-```js FormField.js
+```js src/FormField.js
 import { forwardRef, useState } from 'react';
 import MyInput from './MyInput.js';
 
@@ -341,7 +341,7 @@ export default FormField;
 ```
 
 
-```js MyInput.js
+```js src/MyInput.js
 import { forwardRef } from 'react';
 
 const MyInput = forwardRef((props, ref) => {
@@ -423,7 +423,7 @@ export default function Form() {
 
   return (
     <form>
-      <MyInput label="Enter your name:" ref={ref} />
+      <MyInput placeholder="Enter your name" ref={ref} />
       <button type="button" onClick={handleClick}>
         Edit
       </button>
@@ -432,7 +432,7 @@ export default function Form() {
 }
 ```
 
-```js MyInput.js
+```js src/MyInput.js
 import { forwardRef, useRef, useImperativeHandle } from 'react';
 
 const MyInput = forwardRef(function MyInput(props, ref) {

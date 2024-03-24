@@ -8,11 +8,11 @@
 }
 
 .markdown ol {
-  @apply mb-4 ml-8 list-decimal;
+  @apply mb-4 ms-8 list-decimal;
 }
 
 .markdown ul {
-  @apply mb-4 ml-8 list-disc;
+  @apply mb-4 ms-8 list-disc;
 }
 
 .markdown h1 {
@@ -30,7 +30,7 @@
 }
 
 .markdown code {
-  @apply text-gray-70 bg-card dark:bg-card-dark   p-1 rounded-lg no-underline;
+  @apply text-gray-70 bg-card dark:bg-card-dark p-1 rounded-lg no-underline;
   font-size: 90%;
 }
 

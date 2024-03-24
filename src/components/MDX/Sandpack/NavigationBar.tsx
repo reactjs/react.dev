@@ -15,12 +15,13 @@ import {
   FileTabs,
   useSandpack,
   useSandpackNavigation,
-} from '@codesandbox/sandpack-react';
+} from '@codesandbox/sandpack-react/unstyled';
 import {OpenInCodeSandboxButton} from './OpenInCodeSandboxButton';
 import {ResetButton} from './ResetButton';
 import {DownloadButton} from './DownloadButton';
 import {IconChevron} from '../../Icon/IconChevron';
 import {Listbox} from '@headlessui/react';
+import {OpenInTypeScriptPlaygroundButton} from './OpenInTypeScriptPlayground';
 
 export function useEvent(fn: any): any {
   const ref = useRef(null);
@@ -90,15 +91,17 @@ export function NavigationBar({providedFiles}: {providedFiles: Array<string>}) {
     } else {
       return;
     }
-  }, [isMultiFile]);
+
+    // Note: in a real useEvent, onContainerResize would be omitted.
+  }, [isMultiFile, onContainerResize]);
 
   const handleReset = () => {
     /**
      * resetAllFiles must come first, otherwise
-     * the previous content will appears for a second
+     * the previous content will appear for a second
      * when the iframe loads.
      *
-     * Plus, it should only prompts if there's any file changes
+     * Plus, it should only prompt if there's any file changes
      */
     if (
       sandpack.editorState === 'dirty' &&
@@ -135,7 +138,7 @@ export function NavigationBar({providedFiles}: {providedFiles: Array<string>}) {
                   // space that's taken by the (invisible) tab list.
                   <button
                     className={cn(
-                      'absolute top-0 left-[2px]',
+                      'absolute top-0 start-[2px]',
                       !showDropdown && 'invisible'
                     )}>
                     <span
@@ -145,7 +148,7 @@ export function NavigationBar({providedFiles}: {providedFiles: Array<string>}) {
                       style={{maxWidth: '160px'}}>
                       {getFileName(activeFile)}
                       {isMultiFile && (
-                        <span className="ml-2">
+                        <span className="ms-2">
                           <IconChevron
                             displayDirection={open ? 'up' : 'down'}
                           />
@@ -158,7 +161,7 @@ export function NavigationBar({providedFiles}: {providedFiles: Array<string>}) {
             </div>
           </div>
           {isMultiFile && showDropdown && (
-            <Listbox.Options className="absolute mt-0.5 bg-card dark:bg-card-dark px-2 left-0 right-0 mx-0 rounded-b-lg border-1 border-border dark:border-border-dark rounded-sm shadow-md">
+            <Listbox.Options className="absolute mt-0.5 bg-card dark:bg-card-dark px-2 inset-x-0 mx-0 rounded-b-lg border-1 border-border dark:border-border-dark rounded-sm shadow-md">
               {visibleFiles.map((filePath: string) => (
                 <Listbox.Option key={filePath} value={filePath} as={Fragment}>
                   {({active}) => (
@@ -177,11 +180,16 @@ export function NavigationBar({providedFiles}: {providedFiles: Array<string>}) {
         </Listbox>
       </div>
       <div
-        className="px-3 flex items-center justify-end text-right"
+        className="px-3 flex items-center justify-end text-start"
         translate="yes">
         <DownloadButton providedFiles={providedFiles} />
         <ResetButton onReset={handleReset} />
         <OpenInCodeSandboxButton />
+        {activeFile.endsWith('.tsx') && (
+          <OpenInTypeScriptPlaygroundButton
+            content={sandpack.files[activeFile]?.code || ''}
+          />
+        )}
       </div>
     </div>
   );

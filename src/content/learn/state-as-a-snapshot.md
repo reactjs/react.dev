@@ -79,7 +79,7 @@ When React re-renders a component:
 
 1. React calls your function again.
 2. Your function returns a new JSX snapshot.
-3. React then updates the screen to match the snapshot you've returned.
+3. React then updates the screen to match the snapshot your function returned.
 
 <IllustrationBlock sequential>
     <Illustration caption="React executing the function" src="/images/docs/illustrations/i_render1.png" />

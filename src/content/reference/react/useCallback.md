@@ -251,7 +251,7 @@ Next, try toggling the theme. **Thanks to `useCallback` together with [`memo`](/
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useState } from 'react';
 import ProductPage from './ProductPage.js';
 
@@ -278,7 +278,7 @@ export default function App() {
 }
 ```
 
-```js ProductPage.js active
+```js src/ProductPage.js active
 import { useCallback } from 'react';
 import ShippingForm from './ShippingForm.js';
 
@@ -304,7 +304,7 @@ function post(url, data) {
 }
 ```
 
-```js ShippingForm.js
+```js src/ShippingForm.js
 import { memo, useState } from 'react';
 
 const ShippingForm = memo(function ShippingForm({ onSubmit }) {
@@ -391,7 +391,7 @@ Unlike in the previous example, toggling the theme is also slow now! This is bec
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useState } from 'react';
 import ProductPage from './ProductPage.js';
 
@@ -418,7 +418,7 @@ export default function App() {
 }
 ```
 
-```js ProductPage.js active
+```js src/ProductPage.js active
 import ShippingForm from './ShippingForm.js';
 
 export default function ProductPage({ productId, referrer, theme }) {
@@ -443,7 +443,7 @@ function post(url, data) {
 }
 ```
 
-```js ShippingForm.js
+```js src/ShippingForm.js
 import { memo, useState } from 'react';
 
 const ShippingForm = memo(function ShippingForm({ onSubmit }) {
@@ -525,7 +525,7 @@ However, here is the same code **with the artificial slowdown removed.** Does th
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useState } from 'react';
 import ProductPage from './ProductPage.js';
 
@@ -552,7 +552,7 @@ export default function App() {
 }
 ```
 
-```js ProductPage.js active
+```js src/ProductPage.js active
 import ShippingForm from './ShippingForm.js';
 
 export default function ProductPage({ productId, referrer, theme }) {
@@ -577,7 +577,7 @@ function post(url, data) {
 }
 ```
 
-```js ShippingForm.js
+```js src/ShippingForm.js
 import { memo, useState } from 'react';
 
 const ShippingForm = memo(function ShippingForm({ onSubmit }) {

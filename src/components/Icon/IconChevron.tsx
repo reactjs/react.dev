@@ -7,7 +7,12 @@ import cn from 'classnames';
 
 export const IconChevron = memo<
   JSX.IntrinsicElements['svg'] & {
-    displayDirection: 'up' | 'down' | 'left' | 'right';
+    /**
+     * The direction the arrow should point.
+     * `start` and `end` are relative to the current locale.
+     * for example, in LTR, `start` is left and `end` is right.
+     */
+    displayDirection: 'start' | 'end' | 'right' | 'left' | 'up' | 'down';
   }
 >(function IconChevron({className, displayDirection}) {
   const classes = cn(
@@ -16,6 +21,8 @@ export const IconChevron = memo<
       'rotate-90': displayDirection === 'left',
       'rotate-180': displayDirection === 'up',
       '-rotate-90': displayDirection === 'right',
+      'rotate-90 rtl:-rotate-90': displayDirection === 'start',
+      '-rotate-90 rtl:rotate-90': displayDirection === 'end',
     },
     className
   );

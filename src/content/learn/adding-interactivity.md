@@ -134,7 +134,7 @@ export default function Gallery() {
 }
 ```
 
-```js data.js
+```js src/data.js
 export const sculptureList = [{
   name: 'Homenaje a la Neurocirugía',
   artist: 'Marta Colvin Andrade',
@@ -646,7 +646,6 @@ Arrays are another type of mutable JavaScript objects you can store in state and
 ```js
 import { useState } from 'react';
 
-let nextId = 3;
 const initialList = [
   { id: 0, title: 'Big Bellies', seen: false },
   { id: 1, title: 'Lunar Landscape', seen: false },
@@ -714,7 +713,6 @@ If copying arrays in code gets tedious, you can use a library like [Immer](https
 import { useState } from 'react';
 import { useImmer } from 'use-immer';
 
-let nextId = 3;
 const initialList = [
   { id: 0, title: 'Big Bellies', seen: false },
   { id: 1, title: 'Lunar Landscape', seen: false },

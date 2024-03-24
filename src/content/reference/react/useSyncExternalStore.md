@@ -57,6 +57,26 @@ The current snapshot of the store which you can use in your rendering logic.
 
 * If a different `subscribe` function is passed during a re-render, React will re-subscribe to the store using the newly passed `subscribe` function. You can prevent this by declaring `subscribe` outside the component.
 
+* If the store is mutated during a [non-blocking transition update](/reference/react/useTransition), React will fall back to performing that update as blocking. Specifically, for every transition update, React will call `getSnapshot` a second time just before applying changes to the DOM. If it returns a different value than when it was called originally, React will restart the update from scratch, this time applying it as a blocking update, to ensure that every component on screen is reflecting the same version of the store.
+
+* It's not recommended to _suspend_ a render based on a store value returned by `useSyncExternalStore`. The reason is that mutations to the external store cannot be marked as [non-blocking transition updates](/reference/react/useTransition), so they will trigger the nearest [`Suspense` fallback](/reference/react/Suspense), replacing already-rendered content on screen with a loading spinner, which typically makes a poor UX.
+
+  For example, the following are discouraged:
+
+  ```js
+  const LazyProductDetailPage = lazy(() => import('./ProductDetailPage.js'));
+
+  function ShoppingApp() {
+    const selectedProductId = useSyncExternalStore(...);
+
+    // ❌ Calling `use` with a Promise dependent on `selectedProductId`
+    const data = use(fetchItem(selectedProductId))
+
+    // ❌ Conditionally rendering a lazy component based on `selectedProductId`
+    return selectedProductId != null ? <LazyProductDetailPage /> : <FeaturedProducts />;
+  }
+  ```
+
 ---
 
 ## Usage {/*usage*/}
@@ -111,7 +131,7 @@ export default function TodosApp() {
 }
 ```
 
-```js todoStore.js
+```js src/todoStore.js
 // This is an example of a third-party store
 // that you might need to integrate with React.
 
@@ -280,7 +300,7 @@ export default function App() {
 }
 ```
 
-```js useOnlineStatus.js
+```js src/useOnlineStatus.js
 import { useSyncExternalStore } from 'react';
 
 export function useOnlineStatus() {
@@ -341,7 +361,7 @@ The `getServerSnapshot` function is similar to `getSnapshot`, but it runs only i
 - It runs on the server when generating the HTML.
 - It runs on the client during [hydration](/reference/react-dom/client/hydrateRoot), i.e. when React takes the server HTML and makes it interactive.
 
-This lets you provide the initial snapshot value which will be used before the app becomes interactive. If there is no meaningful initial value for the server rendering, omit this argument to [force rendering on the client.](/reference/react/Suspense#providing-a-fallback-for-server-errors-and-server-only-content)
+This lets you provide the initial snapshot value which will be used before the app becomes interactive. If there is no meaningful initial value for the server rendering, omit this argument to [force rendering on the client.](/reference/react/Suspense#providing-a-fallback-for-server-errors-and-client-only-content)
 
 <Note>
 

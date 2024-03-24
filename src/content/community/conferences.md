@@ -10,47 +10,163 @@ Do you know of a local React.js conference? Add it here! (Please keep the list c
 
 ## Upcoming Conferences {/*upcoming-conferences*/}
 
-### React Norway 2023 {/*react-norway-2023*/}
-June 16th, 2023. Larvik, Norway
+### React Paris 2024 {/*react-paris-2024*/}
+March 22, 2024. In-person in Paris, France + Remote (hybrid)
 
-[Website](https://reactnorway.com/) - [Twitter](https://twitter.com/ReactNorway/) - [Facebook](https://www.facebook.com/reactdaynorway/)
+[Website](https://react.paris/) - [Twitter](https://twitter.com/BeJS_) - [LinkedIn](https://www.linkedin.com/events/7150816372074192900/comments/)
 
-### ReactNext 2023 {/*reactnext-2023*/}
-June 27th, 2023. Tel Aviv, Israel
+### Epic Web Conf 2024 {/*epic-web-2024*/}
+April 10 - 11, 2024. In-person in Park City, UT, USA
 
-[Website](https://www.react-next.com/) - [Facebook](https://www.facebook.com/ReactNextConf) - [Youtube](https://www.youtube.com/@ReactNext)
+[Website](https://www.epicweb.dev/conf) - [YouTube](https://www.youtube.com/@EpicWebDev)
 
-### React Nexus 2023 {/*react-nexus-2023*/}
-July 07 & 08, 2023. Bangalore, India (In-person event)
+### React Miami 2024 {/*react-miami-2024*/}
+April 19 - 20, 2024. In-person in Miami, FL, USA
+
+[Website](https://reactmiami.com/) - [Twitter](https://twitter.com/ReactMiamiConf)
+
+### React Connection 2024 {/*react-connection-2024*/}
+April 22, 2024. In-person in Paris, France 
+
+[Website](https://reactconnection.io/) - [Twitter](https://twitter.com/ReactConn)
+
+### React Native Connection 2024 {/*react-native-connection-2024*/}
+April 23, 2024. In-person in Paris, France 
+
+[Website](https://reactnativeconnection.io/) - [Twitter](https://twitter.com/ReactNativeConn)
+
+### React Conf 2024 {/*react-conf-2024*/}
+May 15 - 16, 2024. In-person in Henderson, NV, USA + remote
+
+[Website](https://conf.react.dev) - [Twitter](https://twitter.com/reactjs)
+
+### App.js Conf 2024 {/*appjs-conf-2024*/}
+May 22 - 24, 2024. In-person in Kraków, Poland + remote
+
+[Website](https://appjs.co) - [Twitter](https://twitter.com/appjsconf)
+
+### React Summit 2024 {/*react-summit-2024*/}
+June 14 & 18, 2024. In-person in Amsterdam, Netherlands + remote (hybrid event)
+
+[Website](https://reactsummit.com/) - [Twitter](https://twitter.com/reactsummit) - [Videos](https://portal.gitnation.org/)
+
+### Render(ATL) 2024 🍑 {/*renderatl-2024-*/}
+June 12 - June 14, 2024. Atlanta, GA, USA
+
+[Website](https://renderatl.com) - [Discord](https://www.renderatl.com/discord) - [Twitter](https://twitter.com/renderATL) - [Instagram](https://www.instagram.com/renderatl/) - [Facebook](https://www.facebook.com/renderatl/) - [LinkedIn](https://www.linkedin.com/company/renderatl) - [Podcast](https://www.renderatl.com/culture-and-code#/)
+
+### React Norway 2024 {/*react-norway-2024*/}
+June 14, 2024. In-person at Farris Bad Hotel in Larvik, Norway and online (hybrid event).
+
+[Website](https://reactnorway.com/) - [Twitter](https://twitter.com/ReactNorway)
+
+### React Nexus 2024 {/*react-nexus-2024*/}
+July 04 & 05, 2024. Bangalore, India (In-person event)
 
 [Website](https://reactnexus.com/) - [Twitter](https://twitter.com/ReactNexus) - [Linkedin](https://www.linkedin.com/company/react-nexus) - [YouTube](https://www.youtube.com/reactify_in)
 
-### React Rally 2023 🐙 {/*react-rally-2023*/}
-August 17 & 18, 2023. Salt Lake City, UT, USA
+### Chain React 2024 {/*chain-react-2024*/}
+July 17-19, 2024. In-person in Portland, OR, USA
 
-[Website](https://www.reactrally.com/) - [Twitter](https://twitter.com/ReactRally) - [Instagram](https://www.instagram.com/reactrally/)
+[Website](https://chainreactconf.com) - [Twitter](https://twitter.com/ChainReactConf)
 
-### React India 2023 {/*react-india-2023*/}
-Oct 5 - 7, 2023. In-person in Goa, India (hybrid event) + Oct 3 2023 - remote day
+### The Geek Conf 2024 {/*the-geek-conf-2024*/}
+July 25, 2024. In-person in Berlin, Germany + remote (hybrid event)
+
+[Website](https://thegeekconf.com) - [Twitter](https://twitter.com/thegeekconf)
+
+### React Universe Conf 2024 {/*react-universe-conf-2024*/}
+September 5-6, 2024. Wrocław, Poland.
+
+[Website](https://www.reactuniverseconf.com/) - [Twitter](https://twitter.com/react_native_eu) - [LinkedIn](https://www.linkedin.com/events/reactuniverseconf7163919537074118657/)
+
+### React Alicante 2024 {/*react-alicante-2024*/}
+September 19-21, 2024. Alicante, Spain.
+
+[Website](https://reactalicante.es/) - [Twitter](https://twitter.com/ReactAlicante) - [YouTube](https://www.youtube.com/channel/UCaSdUaITU1Cz6PvC97A7e0w)
+
+
+### React India 2024 {/*react-india-2024*/}
+October 17 - 19, 2024. In-person in Goa, India (hybrid event) + Oct 15 2024 - remote day
 
 [Website](https://www.reactindia.io) - [Twitter](https://twitter.com/react_india) - [Facebook](https://www.facebook.com/ReactJSIndia) - [Youtube](https://www.youtube.com/channel/UCaFbHCBkPvVv1bWs_jwYt3w)
 
-### React Advanced 2023 {/*react-advanced-2023*/}
-October 20 & 23, 2023. In-person in London, UK + remote first interactivity (hybrid event)
-
-[Website](https://www.reactadvanced.com/) - [Twitter](https://twitter.com/ReactAdvanced) - [Facebook](https://www.facebook.com/ReactAdvanced) - [Videos](https://portal.gitnation.org/events/react-advanced-conference-2023)
-
-### React Summit US 2023 {/*react-summit-us-2023*/}
-November 13 & 15, 2023. In-person in New York, US + remote first interactivity (hybrid event)
-
-[Website](https://reactsummit.us) - [Twitter](https://twitter.com/reactsummit) - [Facebook](https://www.facebook.com/reactamsterdam) - [Videos](https://portal.gitnation.org/events/react-summit-us-2023)
+## Past Conferences {/*past-conferences*/}
 
 ### React Day Berlin 2023 {/*react-day-berlin-2023*/}
 December 8 & 12, 2023. In-person in Berlin, Germany + remote first interactivity (hybrid event)
 
 [Website](https://reactday.berlin) - [Twitter](https://twitter.com/reactdayberlin) - [Facebook](https://www.facebook.com/reactdayberlin/) - [Videos](https://portal.gitnation.org/events/react-day-berlin-2023)
 
-## Past Conferences {/*past-conferences*/}
+### React Summit US 2023 {/*react-summit-us-2023*/}
+November 13 & 15, 2023. In-person in New York, US + remote first interactivity (hybrid event)
+
+[Website](https://reactsummit.us) - [Twitter](https://twitter.com/reactsummit) - [Facebook](https://www.facebook.com/reactamsterdam) - [Videos](https://portal.gitnation.org/events/react-summit-us-2023)
+
+### reactjsday 2023 {/*reactjsday-2023*/}
+October 27th 2023. In-person in Verona, Italy and online (hybrid event)
+
+[Website](https://2023.reactjsday.it/) - [Twitter](https://twitter.com/reactjsday) - [Facebook](https://www.facebook.com/GrUSP/) - [YouTube](https://www.youtube.com/c/grusp)
+
+### React Advanced 2023 {/*react-advanced-2023*/}
+October 20 & 23, 2023. In-person in London, UK + remote first interactivity (hybrid event)
+
+[Website](https://www.reactadvanced.com/) - [Twitter](https://twitter.com/ReactAdvanced) - [Facebook](https://www.facebook.com/ReactAdvanced) - [Videos](https://portal.gitnation.org/events/react-advanced-conference-2023)
+
+### React Brussels 2023 {/*react-brussels-2023*/}
+October 13th 2023. In-person in Brussels, Belgium + Remote (hybrid)
+
+[Website](https://www.react.brussels/) - [Twitter](https://twitter.com/BrusselsReact) - [Videos](https://www.youtube.com/playlist?list=PL53Z0yyYnpWh85KeMomUoVz8_brrmh_aC) 
+
+### React India 2023 {/*react-india-2023*/}
+October 5 - 7, 2023. In-person in Goa, India (hybrid event) + Oct 3 2023 - remote day
+
+[Website](https://www.reactindia.io) - [Twitter](https://x.com/react_india) - [Facebook](https://www.facebook.com/ReactJSIndia) - [Youtube](https://www.youtube.com/channel/UCaFbHCBkPvVv1bWs_jwYt3w)
+
+### RenderCon Kenya 2023 {/*rendercon-kenya-2023*/}
+September 29 - 30, 2023. Nairobi, Kenya
+
+[Website](https://rendercon.org/) - [Twitter](https://twitter.com/renderconke) - [LinkedIn](https://www.linkedin.com/company/renderconke/) - [YouTube](https://www.youtube.com/channel/UC0bCcG8gHUL4njDOpQGcMIA)
+
+### React Live 2023 {/*react-live-2023*/}
+September 29, 2023. Amsterdam, Netherlands
+
+[Website](https://reactlive.nl/)
+
+### React Alicante 2023 {/*react-alicante-2023*/}
+September 28 - 30, 2023. Alicante, Spain
+
+[Website](https://reactalicante.es/) - [Twitter](https://twitter.com/reactalicante)
+
+### RedwoodJS Conference 2023 {/*redwoodjs-conference-2023*/}
+September 26 - 29, 2023. Grants Pass, Oregon + remote (hybrid event) 
+
+[Website](https://www.redwoodjsconf.com/) - [Twitter](https://twitter.com/redwoodjs)
+
+### React Native EU 2023 {/*react-native-eu-2023*/}
+September 7 & 8, 2023. Wrocław, Poland
+
+[Website](https://react-native.eu) - [Twitter](https://twitter.com/react_native_eu) - [Facebook](https://www.facebook.com/reactnativeeu)
+
+### React Rally 2023 🐙 {/*react-rally-2023*/}
+August 17 & 18, 2023. Salt Lake City, UT, USA
+
+[Website](https://www.reactrally.com/) - [Twitter](https://twitter.com/ReactRally) - [Instagram](https://www.instagram.com/reactrally/)
+
+### React Nexus 2023 {/*react-nexus-2023*/}
+July 07 & 08, 2023. Bangalore, India (In-person event)
+
+[Website](https://reactnexus.com/) - [Twitter](https://twitter.com/ReactNexus) - [Linkedin](https://www.linkedin.com/company/react-nexus) - [YouTube](https://www.youtube.com/reactify_in)
+
+### ReactNext 2023 {/*reactnext-2023*/}
+June 27th, 2023. Tel Aviv, Israel
+
+[Website](https://www.react-next.com/) - [Facebook](https://www.facebook.com/ReactNextConf) - [Youtube](https://www.youtube.com/@ReactNext)
+
+### React Norway 2023 {/*react-norway-2023*/}
+June 16th, 2023. Larvik, Norway
+
+[Website](https://reactnorway.com/) - [Twitter](https://twitter.com/ReactNorway/) - [Facebook](https://www.facebook.com/reactdaynorway/)
 
 ### React Summit 2023 {/*react-summit-2023*/}
 June 2 & 6, 2023. In-person in Amsterdam, Netherlands + remote first interactivity (hybrid event)
@@ -510,7 +626,7 @@ August 18 in Guangzhou, China
 
 [Website](https://react.w3ctech.com)
 
-### React Rally 2018{/*react-rally-2018*/}
+### React Rally 2018 {/*react-rally-2018*/}
 August 16-17 in Salt Lake City, Utah USA
 
 [Website](http://www.reactrally.com) - [Twitter](https://twitter.com/reactrally)

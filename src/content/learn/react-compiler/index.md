@@ -3,19 +3,30 @@ title: React Compiler
 ---
 
 <Intro>
-TODO
+Welcome to the React Compiler documentation! This section will give you an introduction to the new experimental React Compiler and how to use it successfully.
 </Intro>
 
 <YouWillLearn>
 
-* What is the compiler
+* What is React Compiler
 
 </YouWillLearn>
 
 ## React Compiler {/*react-compiler*/}
 
-The core idea of React is that developers define their UI as a function of the current state. You work with plain JavaScript values — numbers, strings, arrays, objects — and use standard JavaScript idioms — if/else, for, etc — to describe your component logic. The mental model is that React will re-render whenever the application state changes. We believe this simple mental model and keeping close to JavaScript semantics is an important principle in React’s programming model.
+React Compiler is a new experimental compiler that we've open sourced to get feedback from the community. It is a build-time only tool that automatically optimizes your React app. It works with plain JavaScript, and understands the [Rules of React](/reference/rules), so you don't need to rewrite any code to use it.
 
-The catch is that React can sometimes be too reactive: it can re-render too much. For example, in JavaScript we don’t have cheap ways to compare if two objects or arrays are equivalent (having the same keys and values), so creating a new object or array on each render may cause React to do more work than it strictly needs to. This means developers have to explicitly memoize components so as to not over-react to changes.
+## What does the compiler do? {/*what-does-the-compiler-do*/}
 
-Manual memoization is a reasonable compromise, but we weren’t satisfied. Our vision is for React to automatically re-render just the right parts of the UI when state changes, without compromising on React’s core mental model. We believe that React’s approach — UI as a simple function of state, with standard JavaScript values and idioms — is a key part of why React has been approachable for so many developers. That’s why we’ve invested in building an optimizing compiler for React.
+The compiler understands your code at a deep level through its understanding of plain JavaScript semantics and the Rules of React. This allows it to add automatic optimizations to your code.
+
+### Automatic Memoization {/*automatic-memoization*/}
+The first optimization that we've added is **auto-memoization**. You may be familiar today with manual memoization through [`useMemo`](/reference/react/useMemo), [`useCallback`](/reference/react/useCallback), and [`React.memo`](/reference/react/memo). The compiler can automatically do this for you, if your code follows the Rules of React. Where it can detect breakages of the rules, it can automatically skip over just those components or hooks, and continue compiling other code.
+
+If your codebase is already very well memoized, you might not expect to see major performance improvements with the compiler.
+
+## Trying out the compiler {/*trying-out-the-compiler*/}
+
+Please note that the compiler is still experimental and has many rough edges. While it has been used in production at companies like Meta, rolling out the compiler to production for your app will depend on the health of your codebase and how well you've followed the [Rules of React](/reference/rules).
+
+You don't have to rush into using the compiler now. It's okay to wait until it reaches a stable release before adopting it. However, we do appreciate trying it out in small experiments in your apps so that you can provide feedback to us to help make the compiler better.

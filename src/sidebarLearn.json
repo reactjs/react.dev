@@ -60,12 +60,12 @@
           "path": "/learn/react-compiler/installation"
         },
         {
-          "title": "Reporting Issues",
-          "path": "/learn/react-compiler/reporting-issues"
+          "title": "Compatibility",
+          "path": "/learn/react-compiler/compatibility"
         },
         {
-          "title": "DevTools Integration",
-          "path": "/learn/react-compiler/devtools-integration"
+          "title": "Reporting Issues",
+          "path": "/learn/react-compiler/reporting-issues"
         },
         {
           "title": "Debugging",

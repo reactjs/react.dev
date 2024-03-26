@@ -335,15 +335,20 @@
     },
     {
       "hasSectionHeader": true,
-      "sectionHeader": "react-compiler@0.0.0-experimental"
+      "sectionHeader": "react-compiler@0.0.0-experimental",
+      "tags": ["experimental"]
     },
     {
       "title": "Options",
-      "path": "/reference/react-compiler/options"
+      "path": "/reference/react-compiler/options",
+      "canary": true,
+      "tags": ["experimental"]
     },
     {
       "title": "Errors",
-      "path": "/reference/react-compiler/errors"
+      "path": "/reference/react-compiler/errors",
+      "canary": true,
+      "tags": ["experimental"]
     },
     {
       "hasSectionHeader": true,

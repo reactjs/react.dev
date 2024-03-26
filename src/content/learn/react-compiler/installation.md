@@ -14,6 +14,10 @@ TODO
 
 </YouWillLearn>
 
+<Note>
+React Compiler is a new experimental compiler that we've open sourced to get early feedback from the community. It still has rough edges and is not yet fully ready for production.
+</Note>
+
 ## Installation {/*installation*/}
 
 ### Set up the babel-plugin-react-compiler {/*set-up-the-babel-plugin-react-compiler*/}

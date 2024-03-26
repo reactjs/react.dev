@@ -10,12 +10,17 @@ Welcome to the React Compiler documentation! This section will give you an intro
 
 * Getting started with the compiler
 * Installing the compiler
+* Known issues
 * Reporting issues
 * Debugging
 
 </YouWillLearn>
 
-React Compiler is a new experimental compiler that we've open sourced to get feedback from the community. It is a build-time only tool that automatically optimizes your React app. It works with plain JavaScript, and understands the [Rules of React](/reference/rules), so you don't need to rewrite any code to use it.
+<Note>
+React Compiler is a new experimental compiler that we've open sourced to get early feedback from the community. It still has rough edges and is not yet fully ready for production.
+</Note>
+
+React Compiler is a new experimental compiler that we've open sourced to get early feedback from the community. It is a build-time only tool that automatically optimizes your React app. It works with plain JavaScript, and understands the [Rules of React](/reference/rules), so you don't need to rewrite any code to use it.
 
 The compiler also includes an eslint plugin that surfaces the analysis from the compiler right in your editor. The plugin runs independently of the compiler and can be used even if you aren't using the compiler in your app. We recommend all React developers to use this eslint plugin to help improve the quality of your codebase.
 

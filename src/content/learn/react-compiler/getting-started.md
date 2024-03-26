@@ -15,6 +15,10 @@ TODO
 
 </YouWillLearn>
 
+<Note>
+React Compiler is a new experimental compiler that we've open sourced to get early feedback from the community. It still has rough edges and is not yet fully ready for production.
+</Note>
+
 ## Understanding the React Compiler {/*understanding-the-react-compiler*/}
 
 React Compiler is an optimizing compiler that optimizes your components and hooks. It is a single-file compiler, meaning that it only looks at the contents of a single file in order to perform its optimization.

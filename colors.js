@@ -59,6 +59,9 @@ module.exports = {
   'yellow-10': '#FDE7C7',
   'yellow-5': '#FEF5E7',
 
+  // Orange
+  'orange-40': '#FF9927',
+
   // Purple
   'purple-60': '#2B3491', // unused
   'purple-50': '#575FB7',

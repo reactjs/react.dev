@@ -66,3 +66,16 @@ module.exports = function () {
   };
 };
 ```
+
+
+## Rollout Strategy {/*rollout-strategy*/}
+
+### Add React Compiler to an existing project {/*add-react-compiler-to-an-existing-project*/}
+
+- Incremental: Opt-in, Opt-out
+- Drop in
+
+### Add React Compiler to a new project {/*add-react-compiler-to-a-new-project*/}
+
+### Add React Compiler if you're not using React 19 {/*add-react-compiler-if-youre-not-using-react-19*/}
+

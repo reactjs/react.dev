@@ -18,31 +18,117 @@ TODO
 React Compiler is a new experimental compiler that we've open sourced to get early feedback from the community. It still has rough edges and is not yet fully ready for production.
 </Note>
 
-## Installation {/*installation*/}
+## Checking compatibility {/*checking-compatibility*/}
 
-### Set up the babel-plugin-react-compiler {/*set-up-the-babel-plugin-react-compiler*/}
+Prior to installing the compiler, you should first check if your codebase is compatible:
 
 <TerminalBlock>
-npm install babel-plugin-react-compiler eslint-plugin-react-compiler
+npx react-compiler-healthcheck
 </TerminalBlock>
 
-Please note that the babel-plugin-react-compiler should run before other Babel plugins or presets as the compiler requires the input source information for sound analysis.
+TODO
+- reserve npm name
+- write out what this script should do
+- implement script
 
-## Rollout Strategy {/*rollout-strategy*/}
+## Installation {/*installation*/}
 
-### Add React Compiler to an existing project {/*add-react-compiler-to-an-existing-project*/}
+### Configure included directories {/*configure-included-directories*/}
 
-- Incremental: Opt-in, Opt-out
-- Drop in
+Because React Compiler is still experimental, its usage is opt-in: you must pass the compiler a list of directories to compile.
 
-### Add React Compiler to a new project {/*add-react-compiler-to-a-new-project*/}
+```js
+const ReactCompilerConfig = {
+  includes: ['/path/to/dir', '/path/to/dir'],
+};
+```
 
-### Add React Compiler if you're not using React 19 {/*add-react-compiler-if-youre-not-using-react-19*/}
+### Usage with Babel {/*set-up-the-babel-plugin-react-compiler*/}
 
-## Troubleshooting {/*troubleshooting*/}
+<TerminalBlock>
+npm install babel-plugin-react-compiler
+</TerminalBlock>
 
-#### `(0 , _react.unstable_useMemoCache) is not a function` error {/*0--_reactunstable_usememocache-is-not-a-function-error*/}
+Although the React Compiler is largely decoupled from Babel, we currently only support a Babel integration, so this package includes a Babel plugin which you can use in your build pipeline to run the compiler.
 
-This occurs during JavaScript module evaluation when you are not using an experimental version of React that has this API, and you haven't enabled the `enableUseMemoCachePolyfill` compiler option.
+TODO: add explanations for other frameworks
 
-To fix, either change your React version to an experimental one, or enable the polyfill.
+Then, add it to your Babel config:
+
+```js {7}
+// babel.config.js
+const ReactCompilerConfig = { /* ... */ };
+
+module.exports = function () {
+  return {
+    plugins: [
+      ['babel-plugin-react-compiler', ReactCompilerConfig], // must run first!
+      // ...
+    ],
+  };
+};
+```
+
+Please note that the babel-plugin-react-compiler should run first before other Babel plugins or presets as the compiler requires the input source information for sound analysis.
+
+### Usage with Vite {/*usage-with-vite*/}
+
+If you use Vite, you can add the plugin to vite-plugin-react:
+
+```js {10}
+// vite.config.js
+const ReactCompilerConfig = { /* ... */ };
+
+export default defineConfig(() => {
+  return {
+    plugins: [
+      react({
+        babel: {
+          plugins: [
+            ["babel-plugin-react-compiler", ReactCompilerConfig],
+          ],
+        },
+      }),
+    ],
+    // ...
+  };
+});
+```
+
+#### vite:import-analysis Failed to resolve import react-compiler-runtime {/*viteimport-analysis-failed-to-resolve-import-react-compiler-runtime*/}
+
+If you see `vite:import-analysis Failed to resolve import react-compiler-runtime`, this error occurs when you use the [`enableUseMemoCachePolyfill`](/reference/react-compiler/options#enable-use-memo-cache-polyfill) compiler option. Because this option dynamically injects an import to `react-compiler-runtime`, we need to teach Vite how to resolve it:
+
+```js {10-11}
+// vite.config.js
+const ReactCompilerConfig = { /* ... */ };
+
+export default defineConfig(() => {
+  return {
+    // ...
+    resolve: {
+      alias: [
+        {
+          find: "react-compiler-runtime",
+          replacement: resolve(__dirname, "./node_modules/react-compiler-runtime"),
+        },
+      ],
+    },
+  };
+});
+```
+
+### Usage with Next.js {/*usage-with-nextjs*/}
+TODO
+
+### Usage with Remix {/*usage-with-remix*/}
+TODO
+
+### Usage with Webpack {/*usage-with-webpack*/}
+TODO
+
+### Usage with Expo {/*usage-with-expo*/}
+TODO
+
+### Usage with React Native (Metro) {/*usage-with-react-native-metro*/}
+TODO

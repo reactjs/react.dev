@@ -53,14 +53,14 @@
       "tags": ["experimental"],
       "routes": [
         {
-          "title": "Getting Started",
-          "path": "/learn/react-compiler/getting-started",
+          "title": "Installation",
+          "path": "/learn/react-compiler/installation",
           "canary": true,
           "tags": ["experimental"]
         },
         {
-          "title": "Installation",
-          "path": "/learn/react-compiler/installation",
+          "title": "Getting Started",
+          "path": "/learn/react-compiler/getting-started",
           "canary": true,
           "tags": ["experimental"]
         },

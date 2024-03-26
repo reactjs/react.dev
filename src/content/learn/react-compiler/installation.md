@@ -3,7 +3,7 @@ title: Installation
 ---
 
 <Intro>
-TODO
+This page will help you install React Compiler across major React frameworks.
 </Intro>
 
 <YouWillLearn>

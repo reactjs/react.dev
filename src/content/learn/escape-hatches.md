@@ -4,7 +4,7 @@ title: Escape Hatches
 
 <Intro>
 
-Some of your components may need to control and synchronize with systems outside of React. For example, you might need to focus an input using the browser API, play and pause a video player implemented without React, or connect and listen to messages from a remote server. In this chapter, you'll learn the escape hatches that let you "step outside" React and connect to external systems. Most of your application logic and data flow should not rely on these features.
+Some of your Components may need to control and synchronize with systems outside of React. For example, you might need to focus an input using the browser API, play and pause a video player implemented without React, or connect and listen to messages from a remote server. In this chapter, you'll learn the escape hatches that let you "step outside" React and connect to external systems. Most of your application logic and data flow should not rely on these features.
 
 </Intro>
 
@@ -12,7 +12,7 @@ Some of your components may need to control and synchronize with systems outside
 
 * [How to "remember" information without re-rendering](/learn/referencing-values-with-refs)
 * [How to access DOM elements managed by React](/learn/manipulating-the-dom-with-refs)
-* [How to synchronize components with external systems](/learn/synchronizing-with-effects)
+* [How to synchronize Components with external systems](/learn/synchronizing-with-effects)
 * [How to remove unnecessary Effects from your components](/learn/you-might-not-need-an-effect)
 * [How an Effect's lifecycle is different from a component's](/learn/lifecycle-of-reactive-effects)
 * [How to prevent some values from re-triggering Effects](/learn/separating-events-from-effects)
@@ -23,7 +23,7 @@ Some of your components may need to control and synchronize with systems outside
 
 ## Referencing values with refs {/*referencing-values-with-refs*/}
 
-When you want a component to "remember" some information, but you don't want that information to [trigger new renders](/learn/render-and-commit), you can use a *ref*:
+When you want a Component to "remember" some information, but you don't want that information to [trigger new renders](/learn/render-and-commit), you can use a *ref*:
 
 ```js
 const ref = useRef(0);
@@ -54,7 +54,7 @@ export default function Counter() {
 
 </Sandpack>
 
-A ref is like a secret pocket of your component that React doesn't track. For example, you can use refs to store [timeout IDs](https://developer.mozilla.org/en-US/docs/Web/API/setTimeout#return_value), [DOM elements](https://developer.mozilla.org/en-US/docs/Web/API/Element), and other objects that don't impact the component's rendering output.
+A ref is like a secret pocket of your Component that React doesn't track. For example, you can use refs to store [timeout IDs](https://developer.mozilla.org/en-US/docs/Web/API/setTimeout#return_value), [DOM elements](https://developer.mozilla.org/en-US/docs/Web/API/Element), and other objects that don't impact the component's rendering output.
 
 <LearnMore path="/learn/referencing-values-with-refs">
 
@@ -64,7 +64,7 @@ Read **[Referencing Values with Refs](/learn/referencing-values-with-refs)** to 
 
 ## Manipulating the DOM with refs {/*manipulating-the-dom-with-refs*/}
 
-React automatically updates the DOM to match your render output, so your components won't often need to manipulate it. However, sometimes you might need access to the DOM elements managed by React—for example, to focus a node, scroll to it, or measure its size and position. There is no built-in way to do those things in React, so you will need a ref to the DOM node. For example, clicking the button will focus the input using a ref:
+React automatically updates the DOM to match your render output, so your Components won't often need to manipulate it. However, sometimes you might need access to the DOM elements managed by React—for example, to focus a node, scroll to it, or measure its size and position. There is no built-in way to do those things in React, so you will need a ref to the DOM node. For example, clicking the button will focus the input using a ref:
 
 <Sandpack>
 
@@ -99,7 +99,7 @@ Read **[Manipulating the DOM with Refs](/learn/manipulating-the-dom-with-refs)**
 
 ## Synchronizing with Effects {/*synchronizing-with-effects*/}
 
-Some components need to synchronize with external systems. For example, you might want to control a non-React component based on the React state, set up a server connection, or send an analytics log when a component appears on the screen. Unlike event handlers, which let you handle particular events, *Effects* let you run some code after rendering. Use them to synchronize your component with a system outside of React.
+Some Components need to synchronize with external systems. For example, you might want to control a non-React Component based on the React state, set up a server connection, or send an analytics log when a Component appears on the screen. Unlike event handlers, which let you handle particular events, *Effects* let you run some code after rendering. Use them to synchronize your Component with a system outside of React.
 
 Press Play/Pause a few times and see how the video player stays synchronized to the `isPlaying` prop value:
 
@@ -145,7 +145,7 @@ video { width: 250px; }
 
 </Sandpack>
 
-Many Effects also "clean up" after themselves. For example, an Effect that sets up a connection to a chat server should return a *cleanup function* that tells React how to disconnect your component from that server:
+Many Effects also "clean up" after themselves. For example, an Effect that sets up a connection to a chat server should return a *cleanup function* that tells React how to disconnect your Component from that server:
 
 <Sandpack>
 
@@ -187,13 +187,13 @@ In development, React will immediately run and clean up your Effect one extra ti
 
 <LearnMore path="/learn/synchronizing-with-effects">
 
-Read **[Synchronizing with Effects](/learn/synchronizing-with-effects)** to learn how to synchronize components with external systems.
+Read **[Synchronizing with Effects](/learn/synchronizing-with-effects)** to learn how to synchronize Components with external systems.
 
 </LearnMore>
 
 ## You Might Not Need An Effect {/*you-might-not-need-an-effect*/}
 
-Effects are an escape hatch from the React paradigm. They let you "step outside" of React and synchronize your components with some external system. If there is no external system involved (for example, if you want to update a component's state when some props or state change), you shouldn't need an Effect. Removing unnecessary Effects will make your code easier to follow, faster to run, and less error-prone.
+Effects are an escape hatch from the React paradigm. They let you "step outside" of React and synchronize your Components with some external system. If there is no external system involved (for example, if you want to update a component's state when some props or state change), you shouldn't need an Effect. Removing unnecessary Effects will make your code easier to follow, faster to run, and less error-prone.
 
 There are two common cases in which you don't need Effects:
 - **You don't need Effects to transform data for rendering.**

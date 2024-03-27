@@ -29,7 +29,7 @@ title: <Suspense>
 
 #### Caveats {/*caveats*/}
 
-- React does not preserve any state for renders that got suspended before they were able to mount for the first time. When the component has loaded, React will retry rendering the suspended tree from scratch.
+- React does not preserve any state for renders that got suspended before they were able to mount for the first time. When the Component has loaded, React will retry rendering the suspended tree from scratch.
 - If Suspense was displaying content for the tree, but then it suspended again, the `fallback` will be shown again unless the update causing it was caused by [`startTransition`](/reference/react/startTransition) or [`useDeferredValue`](/reference/react/useDeferredValue).
 - If React needs to hide the already visible content because it suspended again, it will clean up [layout Effects](/reference/react/useLayoutEffect) in the content tree. When the content is ready to be shown again, React will fire the layout Effects again. This ensures that Effects measuring the DOM layout don't try to do this while the content is hidden.
 - React includes under-the-hood optimizations like *Streaming Server Rendering* and *Selective Hydration* that are integrated with Suspense. Read [an architectural overview](https://github.com/reactwg/react-18/discussions/37) and watch [a technical talk](https://www.youtube.com/watch?v=pj5N-Khihgc) to learn more.
@@ -50,7 +50,7 @@ You can wrap any part of your application with a Suspense boundary:
 
 React will display your <CodeStep step={1}>loading fallback</CodeStep> until all the code and data needed by <CodeStep step={2}>the children</CodeStep> has been loaded.
 
-In the example below, the `Albums` component *suspends* while fetching the list of albums. Until it's ready to render, React switches the closest Suspense boundary above to show the fallback--your `Loading` component. Then, when the data loads, React hides the `Loading` fallback and renders the `Albums` component with data.
+In the example below, the `Albums` Component *suspends* while fetching the list of albums. Until it's ready to render, React switches the closest Suspense boundary above to show the fallback--your `Loading` component. Then, when the data loads, React hides the `Loading` fallback and renders the `Albums` Component with data.
 
 <Sandpack>
 
@@ -117,7 +117,7 @@ function Loading() {
 ```js src/Albums.js hidden
 import { fetchData } from './data.js';
 
-// Note: this component is written using an experimental API
+// Note: this Component is written using an experimental API
 // that's not yet available in stable versions of React.
 
 // For a realistic example you can follow today, try a framework
@@ -253,12 +253,12 @@ async function getAlbums() {
 **Only Suspense-enabled data sources will activate the Suspense component.** They include:
 
 - Data fetching with Suspense-enabled frameworks like [Relay](https://relay.dev/docs/guided-tour/rendering/loading-states/) and [Next.js](https://nextjs.org/docs/getting-started/react-essentials)
-- Lazy-loading component code with [`lazy`](/reference/react/lazy)
+- Lazy-loading Component code with [`lazy`](/reference/react/lazy)
 - Reading the value of a Promise with [`use`](/reference/react/use)
 
 Suspense **does not** detect when data is fetched inside an Effect or event handler.
 
-The exact way you would load data in the `Albums` component above depends on your framework. If you use a Suspense-enabled framework, you'll find the details in its data fetching documentation.
+The exact way you would load data in the `Albums` Component above depends on your framework. If you use a Suspense-enabled framework, you'll find the details in its data fetching documentation.
 
 Suspense-enabled data fetching without the use of an opinionated framework is not yet supported. The requirements for implementing a Suspense-enabled data source are unstable and undocumented. An official API for integrating data sources with Suspense will be released in a future version of React. 
 
@@ -268,7 +268,7 @@ Suspense-enabled data fetching without the use of an opinionated framework is no
 
 ### Revealing content together at once {/*revealing-content-together-at-once*/}
 
-By default, the whole tree inside Suspense is treated as a single unit. For example, even if *only one* of these components suspends waiting for some data, *all* of them together will be replaced by the loading indicator:
+By default, the whole tree inside Suspense is treated as a single unit. For example, even if *only one* of these Components suspends waiting for some data, *all* of them together will be replaced by the loading indicator:
 
 ```js {2-5}
 <Suspense fallback={<Loading />}>
@@ -281,7 +281,7 @@ By default, the whole tree inside Suspense is treated as a single unit. For exam
 
 Then, after all of them are ready to be displayed, they will all appear together at once.
 
-In the example below, both `Biography` and `Albums` fetch some data. However, because they are grouped under a single Suspense boundary, these components always "pop in" together at the same time.
+In the example below, both `Biography` and `Albums` fetch some data. However, because they are grouped under a single Suspense boundary, these Components always "pop in" together at the same time.
 
 <Sandpack>
 
@@ -363,7 +363,7 @@ export default function Panel({ children }) {
 ```js src/Biography.js hidden
 import { fetchData } from './data.js';
 
-// Note: this component is written using an experimental API
+// Note: this Component is written using an experimental API
 // that's not yet available in stable versions of React.
 
 // For a realistic example you can follow today, try a framework
@@ -407,7 +407,7 @@ function use(promise) {
 ```js src/Albums.js hidden
 import { fetchData } from './data.js';
 
-// Note: this component is written using an experimental API
+// Note: this Component is written using an experimental API
 // that's not yet available in stable versions of React.
 
 // For a realistic example you can follow today, try a framework
@@ -586,7 +586,7 @@ function Details({ artistId }) {
 
 ### Revealing nested content as it loads {/*revealing-nested-content-as-it-loads*/}
 
-When a component suspends, the closest parent Suspense component shows the fallback. This lets you nest multiple Suspense components to create a loading sequence. Each Suspense boundary's fallback will be filled in as the next level of content becomes available. For example, you can give the album list its own fallback:
+When a Component suspends, the closest parent Suspense Component shows the fallback. This lets you nest multiple Suspense Components to create a loading sequence. Each Suspense boundary's fallback will be filled in as the next level of content becomes available. For example, you can give the album list its own fallback:
 
 ```js {3,7}
 <Suspense fallback={<BigSpinner />}>
@@ -700,7 +700,7 @@ export default function Panel({ children }) {
 ```js src/Biography.js hidden
 import { fetchData } from './data.js';
 
-// Note: this component is written using an experimental API
+// Note: this Component is written using an experimental API
 // that's not yet available in stable versions of React.
 
 // For a realistic example you can follow today, try a framework
@@ -744,7 +744,7 @@ function use(promise) {
 ```js src/Albums.js hidden
 import { fetchData } from './data.js';
 
-// Note: this component is written using an experimental API
+// Note: this Component is written using an experimental API
 // that's not yet available in stable versions of React.
 
 // For a realistic example you can follow today, try a framework
@@ -925,7 +925,7 @@ Don't put a Suspense boundary around every component. Suspense boundaries should
 
 ### Showing stale content while fresh content is loading {/*showing-stale-content-while-fresh-content-is-loading*/}
 
-In this example, the `SearchResults` component suspends while fetching the search results. Type `"a"`, wait for the results, and then edit it to `"ab"`. The results for `"a"` will get replaced by the loading fallback.
+In this example, the `SearchResults` Component suspends while fetching the search results. Type `"a"`, wait for the results, and then edit it to `"ab"`. The results for `"a"` will get replaced by the loading fallback.
 
 <Sandpack>
 
@@ -967,7 +967,7 @@ export default function App() {
 ```js src/SearchResults.js hidden
 import { fetchData } from './data.js';
 
-// Note: this component is written using an experimental API
+// Note: this Component is written using an experimental API
 // that's not yet available in stable versions of React.
 
 // For a realistic example you can follow today, try a framework
@@ -1196,7 +1196,7 @@ export default function App() {
 ```js src/SearchResults.js hidden
 import { fetchData } from './data.js';
 
-// Note: this component is written using an experimental API
+// Note: this Component is written using an experimental API
 // that's not yet available in stable versions of React.
 
 // For a realistic example you can follow today, try a framework
@@ -1356,7 +1356,7 @@ Both deferred values and [Transitions](#preventing-already-revealed-content-from
 
 ### Preventing already revealed content from hiding {/*preventing-already-revealed-content-from-hiding*/}
 
-When a component suspends, the closest parent Suspense boundary switches to showing the fallback. This can lead to a jarring user experience if it was already displaying some content. Try pressing this button:
+When a Component suspends, the closest parent Suspense boundary switches to showing the fallback. This can lead to a jarring user experience if it was already displaying some content. Try pressing this button:
 
 <Sandpack>
 
@@ -1482,7 +1482,7 @@ function AlbumsGlimmer() {
 ```js src/Albums.js hidden
 import { fetchData } from './data.js';
 
-// Note: this component is written using an experimental API
+// Note: this Component is written using an experimental API
 // that's not yet available in stable versions of React.
 
 // For a realistic example you can follow today, try a framework
@@ -1530,7 +1530,7 @@ function use(promise) {
 ```js src/Biography.js hidden
 import { fetchData } from './data.js';
 
-// Note: this component is written using an experimental API
+// Note: this Component is written using an experimental API
 // that's not yet available in stable versions of React.
 
 // For a realistic example you can follow today, try a framework
@@ -1725,7 +1725,7 @@ main {
 
 </Sandpack>
 
-When you pressed the button, the `Router` component rendered `ArtistPage` instead of `IndexPage`. A component inside `ArtistPage` suspended, so the closest Suspense boundary started showing the fallback. The closest Suspense boundary was near the root, so the whole site layout got replaced by `BigSpinner`.
+When you pressed the button, the `Router` Component rendered `ArtistPage` instead of `IndexPage`. A Component inside `ArtistPage` suspended, so the closest Suspense boundary started showing the fallback. The closest Suspense boundary was near the root, so the whole site layout got replaced by `BigSpinner`.
 
 To prevent this, you can mark the navigation state update as a *Transition* with [`startTransition`:](/reference/react/startTransition)
 
@@ -1869,7 +1869,7 @@ function AlbumsGlimmer() {
 ```js src/Albums.js hidden
 import { fetchData } from './data.js';
 
-// Note: this component is written using an experimental API
+// Note: this Component is written using an experimental API
 // that's not yet available in stable versions of React.
 
 // For a realistic example you can follow today, try a framework
@@ -1917,7 +1917,7 @@ function use(promise) {
 ```js src/Biography.js hidden
 import { fetchData } from './data.js';
 
-// Note: this component is written using an experimental API
+// Note: this Component is written using an experimental API
 // that's not yet available in stable versions of React.
 
 // For a realistic example you can follow today, try a framework
@@ -2255,7 +2255,7 @@ function AlbumsGlimmer() {
 ```js src/Albums.js hidden
 import { fetchData } from './data.js';
 
-// Note: this component is written using an experimental API
+// Note: this Component is written using an experimental API
 // that's not yet available in stable versions of React.
 
 // For a realistic example you can follow today, try a framework
@@ -2303,7 +2303,7 @@ function use(promise) {
 ```js src/Biography.js hidden
 import { fetchData } from './data.js';
 
-// Note: this component is written using an experimental API
+// Note: this Component is written using an experimental API
 // that's not yet available in stable versions of React.
 
 // For a realistic example you can follow today, try a framework
@@ -2516,11 +2516,11 @@ However, now imagine you're navigating between two different user profiles. In t
 
 ### Providing a fallback for server errors and client-only content {/*providing-a-fallback-for-server-errors-and-client-only-content*/}
 
-If you use one of the [streaming server rendering APIs](/reference/react-dom/server) (or a framework that relies on them), React will also use your `<Suspense>` boundaries to handle errors on the server. If a component throws an error on the server, React will not abort the server render. Instead, it will find the closest `<Suspense>` component above it and include its fallback (such as a spinner) into the generated server HTML. The user will see a spinner at first.
+If you use one of the [streaming server rendering APIs](/reference/react-dom/server) (or a framework that relies on them), React will also use your `<Suspense>` boundaries to handle errors on the server. If a Component throws an error on the server, React will not abort the server render. Instead, it will find the closest `<Suspense>` Component above it and include its fallback (such as a spinner) into the generated server HTML. The user will see a spinner at first.
 
-On the client, React will attempt to render the same component again. If it errors on the client too, React will throw the error and display the closest [error boundary.](/reference/react/Component#static-getderivedstatefromerror) However, if it does not error on the client, React will not display the error to the user since the content was eventually displayed successfully.
+On the client, React will attempt to render the same Component again. If it errors on the client too, React will throw the error and display the closest [error boundary.](/reference/react/Component#static-getderivedstatefromerror) However, if it does not error on the client, React will not display the error to the user since the content was eventually displayed successfully.
 
-You can use this to opt out some components from rendering on the server. To do this, throw an error in the server environment and then wrap them in a `<Suspense>` boundary to replace their HTML with fallbacks:
+You can use this to opt out some Components from rendering on the server. To do this, throw an error in the server environment and then wrap them in a `<Suspense>` boundary to replace their HTML with fallbacks:
 
 ```js
 <Suspense fallback={<Loading />}>
@@ -2535,7 +2535,7 @@ function Chat() {
 }
 ```
 
-The server HTML will include the loading indicator. It will be replaced by the `Chat` component on the client.
+The server HTML will include the loading indicator. It will be replaced by the `Chat` Component on the client.
 
 ---
 
@@ -2543,7 +2543,7 @@ The server HTML will include the loading indicator. It will be replaced by the `
 
 ### How do I prevent the UI from being replaced by a fallback during an update? {/*preventing-unwanted-fallbacks*/}
 
-Replacing visible UI with a fallback creates a jarring user experience. This can happen when an update causes a component to suspend, and the nearest Suspense boundary is already showing content to the user.
+Replacing visible UI with a fallback creates a jarring user experience. This can happen when an update causes a Component to suspend, and the nearest Suspense boundary is already showing content to the user.
 
 To prevent this from happening, [mark the update as non-urgent using `startTransition`](#preventing-already-revealed-content-from-hiding). During a Transition, React will wait until enough data has loaded to prevent an unwanted fallback from appearing:
 

@@ -96,7 +96,7 @@ function Bad() {
 
 class Bad extends React.Component {
   render() {
-    // 🔴 Bad: inside a class component (to fix, write a function component instead of a class!)
+    // 🔴 Bad: inside a class Component (to fix, write a function Component instead of a class!)
     useEffect(() => {})
     // ...
   }
@@ -107,7 +107,7 @@ You can use the [`eslint-plugin-react-hooks` plugin](https://www.npmjs.com/packa
 
 <Note>
 
-[Custom Hooks](/learn/reusing-logic-with-custom-hooks) *may* call other Hooks (that's their whole purpose). This works because custom Hooks are also supposed to only be called while a function component is rendering.
+[Custom Hooks](/learn/reusing-logic-with-custom-hooks) *may* call other Hooks (that's their whole purpose). This works because custom Hooks are also supposed to only be called while a function Component is rendering.
 
 </Note>
 
@@ -137,7 +137,7 @@ You can also try to debug this problem by adding some logs and restarting your d
 // Add this in node_modules/react-dom/index.js
 window.React1 = require('react');
 
-// Add this in your component file
+// Add this in your Component file
 require('react-dom');
 window.React2 = require('react');
 console.log(window.React1 === window.React2);
@@ -149,7 +149,7 @@ This problem can also come up when you use `npm link` or an equivalent. In that 
 
 <Note>
 
-In general, React supports using multiple independent copies on one page (for example, if an app and a third-party widget both use it). It only breaks if `require('react')` resolves differently between the component and the `react-dom` copy it was rendered with.
+In general, React supports using multiple independent copies on one page (for example, if an app and a third-party widget both use it). It only breaks if `require('react')` resolves differently between the Component and the `react-dom` copy it was rendered with.
 
 </Note>
 

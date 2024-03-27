@@ -10,19 +10,19 @@ React supports all of the browser built-in [HTML](https://developer.mozilla.org/
 
 ---
 
-## Common components {/*common-components*/}
+## Common Components {/*common-components*/}
 
-All of the built-in browser components support some props and events.
+All of the built-in browser Components support some props and events.
 
-* [Common components (e.g. `<div>`)](/reference/react-dom/components/common)
+* [Common Components (e.g. `<div>`)](/reference/react-dom/components/common)
 
 This includes React-specific props like `ref` and `dangerouslySetInnerHTML`.
 
 ---
 
-## Form components {/*form-components*/}
+## Form Components {/*form-components*/}
 
-These built-in browser components accept user input:
+These built-in browser Components accept user input:
 
 * [`<input>`](/reference/react-dom/components/input)
 * [`<select>`](/reference/react-dom/components/select)
@@ -34,7 +34,7 @@ They are special in React because passing the `value` prop to them makes them *[
 
 ## Resource and Metadata Components {/*resource-and-metadata-components*/}
 
-These bulit-in browser components let you load external resources or annotate the document with metadata:
+These bulit-in browser Components let you load external resources or annotate the document with metadata:
 
 * [`<link>`](/reference/react-dom/components/link)
 * [`<meta>`](/reference/react-dom/components/meta)
@@ -46,7 +46,7 @@ They are special in React because React can render them into the document head, 
 
 ---
 
-## All HTML components {/*all-html-components*/}
+## All HTML Components {/*all-html-components*/}
 
 React supports all built-in browser HTML components. This includes:
 
@@ -183,7 +183,7 @@ Experimental versions of React may contain bugs. Don't use them in production.
 </Note>
 ---
 
-## All SVG components {/*all-svg-components*/}
+## All SVG Components {/*all-svg-components*/}
 
 React supports all built-in browser SVG components. This includes:
 

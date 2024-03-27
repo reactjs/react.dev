@@ -205,7 +205,7 @@ function ChatRoom({ roomId }) {
 
 And the linter would be right! Since `roomId` may change over time, this would introduce a bug in your code.
 
-**To remove a dependency, "prove" to the linter that it *doesn't need* to be a dependency.** For example, you can move `roomId` out of your component to prove that it's not reactive and won't change on re-renders:
+**To remove a dependency, "prove" to the linter that it *doesn't need* to be a dependency.** For example, you can move `roomId` out of your Component to prove that it's not reactive and won't change on re-renders:
 
 ```js {2,9}
 const serverUrl = 'https://localhost:1234';
@@ -394,7 +394,7 @@ function Form() {
 }
 ```
 
-Later, you want to style the notification message according to the current theme, so you read the current theme. Since `theme` is declared in the component body, it is a reactive value, so you add it as a dependency:
+Later, you want to style the notification message according to the current theme, so you read the current theme. Since `theme` is declared in the Component body, it is a reactive value, so you add it as a dependency:
 
 ```js {3,9,11}
 function Form() {
@@ -587,7 +587,7 @@ function ChatRoom({ roomId }) {
 
 And making `messages` a dependency introduces a problem.
 
-Every time you receive a message, `setMessages()` causes the component to re-render with a new `messages` array that includes the received message. However, since this Effect now depends on `messages`, this will *also* re-synchronize the Effect. So every new message will make the chat re-connect. The user would not like that!
+Every time you receive a message, `setMessages()` causes the Component to re-render with a new `messages` array that includes the received message. However, since this Effect now depends on `messages`, this will *also* re-synchronize the Effect. So every new message will make the chat re-connect. The user would not like that!
 
 To fix the issue, don't read `messages` inside the Effect. Instead, pass an [updater function](/reference/react/useState#updating-state-based-on-the-previous-state) to `setMessages`:
 
@@ -688,7 +688,7 @@ Effect Events let you split an Effect into reactive parts (which should "react" 
 
 #### Wrapping an event handler from the props {/*wrapping-an-event-handler-from-the-props*/}
 
-You might run into a similar problem when your component receives an event handler as a prop:
+You might run into a similar problem when your Component receives an event handler as a prop:
 
 ```js {1,8,11}
 function ChatRoom({ roomId, onReceiveMessage }) {
@@ -705,7 +705,7 @@ function ChatRoom({ roomId, onReceiveMessage }) {
   // ...
 ```
 
-Suppose that the parent component passes a *different* `onReceiveMessage` function on every render:
+Suppose that the parent Component passes a *different* `onReceiveMessage` function on every render:
 
 ```js {3-5}
 <ChatRoom
@@ -737,7 +737,7 @@ function ChatRoom({ roomId, onReceiveMessage }) {
   // ...
 ```
 
-Effect Events aren't reactive, so you don't need to specify them as dependencies. As a result, the chat will no longer re-connect even if the parent component passes a function that's different on every re-render.
+Effect Events aren't reactive, so you don't need to specify them as dependencies. As a result, the chat will no longer re-connect even if the parent Component passes a function that's different on every re-render.
 
 #### Separating reactive and non-reactive code {/*separating-reactive-and-non-reactive-code*/}
 
@@ -778,7 +778,7 @@ function ChatRoom({ roomId }) {
     // ...
 ```
 
-This object is declared in the component body, so it's a [reactive value.](/learn/lifecycle-of-reactive-effects#effects-react-to-reactive-values) When you read a reactive value like this inside an Effect, you declare it as a dependency. This ensures your Effect "reacts" to its changes:
+This object is declared in the Component body, so it's a [reactive value.](/learn/lifecycle-of-reactive-effects#effects-react-to-reactive-values) When you read a reactive value like this inside an Effect, you declare it as a dependency. This ensures your Effect "reacts" to its changes:
 
 ```js {3,6}
   // ...
@@ -867,7 +867,7 @@ button { margin-left: 10px; }
 
 </Sandpack>
 
-In the sandbox above, the input only updates the `message` state variable. From the user's perspective, this should not affect the chat connection. However, every time you update the `message`, your component re-renders. When your component re-renders, the code inside of it runs again from scratch.
+In the sandbox above, the input only updates the `message` state variable. From the user's perspective, this should not affect the chat connection. However, every time you update the `message`, your Component re-renders. When your Component re-renders, the code inside of it runs again from scratch.
 
 A new `options` object is created from scratch on every re-render of the `ChatRoom` component. React sees that the `options` object is a *different object* from the `options` object created during the last render. This is why it re-synchronizes your Effect (which depends on `options`), and the chat re-connects as you type.
 
@@ -888,7 +888,7 @@ console.log(Object.is(options1, options2)); // false
 
 This is why, whenever possible, you should try to avoid objects and functions as your Effect's dependencies. Instead, try moving them outside the component, inside the Effect, or extracting primitive values out of them.
 
-#### Move static objects and functions outside your component {/*move-static-objects-and-functions-outside-your-component*/}
+#### Move static objects and functions outside your Component {/*move-static-objects-and-functions-outside-your-component*/}
 
 If the object does not depend on any props and state, you can move that object outside your component:
 
@@ -1088,7 +1088,7 @@ function ChatRoom({ options }) {
   // ...
 ```
 
-The risk here is that the parent component will create the object during rendering:
+The risk here is that the parent Component will create the object during rendering:
 
 ```js {3-6}
 <ChatRoom
@@ -1100,7 +1100,7 @@ The risk here is that the parent component will create the object during renderi
 />
 ```
 
-This would cause your Effect to re-connect every time the parent component re-renders. To fix this, read information from the object *outside* the Effect, and avoid having object and function dependencies:
+This would cause your Effect to re-connect every time the parent Component re-renders. To fix this, read information from the object *outside* the Effect, and avoid having object and function dependencies:
 
 ```js {4,7-8,12}
 function ChatRoom({ options }) {
@@ -1122,7 +1122,7 @@ The logic gets a little repetitive (you read some values from an object outside 
 
 #### Calculate primitive values from functions {/*calculate-primitive-values-from-functions*/}
 
-The same approach can work for functions. For example, suppose the parent component passes a function:
+The same approach can work for functions. For example, suppose the parent Component passes a function:
 
 ```js {3-8}
 <ChatRoom
@@ -1167,7 +1167,7 @@ This only works for [pure](/learn/keeping-components-pure) functions because the
 - If you want to update some state based on the previous state, pass an updater function.
 - If you want to read the latest value without "reacting" it, extract an Effect Event from your Effect.
 - In JavaScript, objects and functions are considered different if they were created at different times.
-- Try to avoid object and function dependencies. Move them outside the component or inside the Effect.
+- Try to avoid object and function dependencies. Move them outside the Component or inside the Effect.
 
 </Recap>
 
@@ -1798,7 +1798,7 @@ label, button { display: block; margin-bottom: 5px; }
 
 </Sandpack>
 
-Sticking to primitive props where possible makes it easier to optimize your components later.
+Sticking to primitive props where possible makes it easier to optimize your Components later.
 
 </Solution>
 

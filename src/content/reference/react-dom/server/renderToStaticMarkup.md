@@ -46,9 +46,9 @@ An HTML string.
 
 * `renderToStaticMarkup` output cannot be hydrated.
 
-* `renderToStaticMarkup` has limited Suspense support. If a component suspends, `renderToStaticMarkup` immediately sends its fallback as HTML.
+* `renderToStaticMarkup` has limited Suspense support. If a Component suspends, `renderToStaticMarkup` immediately sends its fallback as HTML.
 
-* `renderToStaticMarkup` works in the browser, but using it in the client code is not recommended. If you need to render a component to HTML in the browser, [get the HTML by rendering it into a DOM node.](/reference/react-dom/server/renderToString#removing-rendertostring-from-the-client-code)
+* `renderToStaticMarkup` works in the browser, but using it in the client code is not recommended. If you need to render a Component to HTML in the browser, [get the HTML by rendering it into a DOM node.](/reference/react-dom/server/renderToString#removing-rendertostring-from-the-client-code)
 
 ---
 

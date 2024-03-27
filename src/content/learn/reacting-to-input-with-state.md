@@ -4,14 +4,14 @@ title: Reacting to Input with State
 
 <Intro>
 
-React provides a declarative way to manipulate the UI. Instead of manipulating individual pieces of the UI directly, you describe the different states that your component can be in, and switch between them in response to the user input. This is similar to how designers think about the UI.
+React provides a declarative way to manipulate the UI. Instead of manipulating individual pieces of the UI directly, you describe the different states that your Component can be in, and switch between them in response to the user input. This is similar to how designers think about the UI.
 
 </Intro>
 
 <YouWillLearn>
 
 * How declarative UI programming differs from imperative UI programming
-* How to enumerate the different visual states your component can be in
+* How to enumerate the different visual states your Component can be in
 * How to trigger the changes between the different visual states from code
 
 </YouWillLearn>
@@ -135,7 +135,7 @@ Manipulating the UI imperatively works well enough for isolated examples, but it
 
 React was built to solve this problem.
 
-In React, you don't directly manipulate the UI--meaning you don't enable, disable, show, or hide components directly. Instead, you **declare what you want to show,** and React figures out how to update the UI. Think of getting into a taxi and telling the driver where you want to go instead of telling them exactly where to turn. It's the driver's job to get you there, and they might even know some shortcuts you haven't considered!
+In React, you don't directly manipulate the UI--meaning you don't enable, disable, show, or hide Components directly. Instead, you **declare what you want to show,** and React figures out how to update the UI. Think of getting into a taxi and telling the driver where you want to go instead of telling them exactly where to turn. It's the driver's job to get you there, and they might even know some shortcuts you haven't considered!
 
 <Illustration src="/images/docs/illustrations/i_declarative-ui-programming.png" alt="In a car driven by React, a passenger asks to be taken to a specific place on the map. React figures out how to do that." />
 
@@ -242,7 +242,7 @@ export default function Form({
 
 #### Displaying many visual states at once {/*displaying-many-visual-states-at-once*/}
 
-If a component has a lot of visual states, it can be convenient to show them all on one page:
+If a Component has a lot of visual states, it can be convenient to show them all on one page:
 
 <Sandpack>
 
@@ -350,7 +350,7 @@ Form states
 
 ### Step 3: Represent the state in memory with `useState` {/*step-3-represent-the-state-in-memory-with-usestate*/}
 
-Next you'll need to represent the visual states of your component in memory with [`useState`.](/reference/react/useState) Simplicity is key: each piece of state is a "moving piece", and **you want as few "moving pieces" as possible.** More complexity leads to more bugs!
+Next you'll need to represent the visual states of your Component in memory with [`useState`.](/reference/react/useState) Simplicity is key: each piece of state is a "moving piece", and **you want as few "moving pieces" as possible.** More complexity leads to more bugs!
 
 Start with the state that *absolutely must* be there. For example, you'll need to store the `answer` for the input, and the `error` (if it exists) to store the last error:
 
@@ -375,7 +375,7 @@ Your first idea likely won't be the best, but that's ok--refactoring state is a 
 
 ### Step 4: Remove any non-essential state variables {/*step-4-remove-any-non-essential-state-variables*/}
 
-You want to avoid duplication in the state content so you're only tracking what is essential. Spending a little time on refactoring your state structure will make your components easier to understand, reduce duplication, and avoid unintended meanings. Your goal is to **prevent the cases where the state in memory doesn't represent any valid UI that you'd want a user to see.** (For example, you never want to show an error message and disable the input at the same time, or the user won't be able to correct the error!)
+You want to avoid duplication in the state content so you're only tracking what is essential. Spending a little time on refactoring your state structure will make your Components easier to understand, reduce duplication, and avoid unintended meanings. Your goal is to **prevent the cases where the state in memory doesn't represent any valid UI that you'd want a user to see.** (For example, you never want to show an error message and disable the input at the same time, or the user won't be able to correct the error!)
 
 Here are some questions you can ask about your state variables:
 
@@ -557,7 +557,7 @@ body { margin: 0; padding: 0; height: 250px; }
 
 <Solution>
 
-This component has two visual states: when the image is active, and when the image is inactive:
+This Component has two visual states: when the image is active, and when the image is inactive:
 
 * When the image is active, the CSS classes are `background` and `picture picture--active`.
 * When the image is inactive, the CSS classes are `background background--active` and `picture`.

@@ -38,7 +38,7 @@ function Greeting({ name }) {
 
 #### Parameters {/*parameters*/}
 
-* `type`: The `type` argument must be a valid React component type. For example, it could be a tag name string (such as `'div'` or `'span'`), or a React component (a function, a class, or a special component like [`Fragment`](/reference/react/Fragment)).
+* `type`: The `type` argument must be a valid React Component type. For example, it could be a tag name string (such as `'div'` or `'span'`), or a React Component (a function, a class, or a special Component like [`Fragment`](/reference/react/Fragment)).
 
 * `props`: The `props` argument must either be an object or `null`. If you pass `null`, it will be treated the same as an empty object. React will create an element with props matching the `props` you have passed. Note that `ref` and `key` from your `props` object are special and will *not* be available as `element.props.ref` and `element.props.key` on the returned `element`. They will be available as `element.ref` and `element.key`.
 
@@ -49,11 +49,11 @@ function Greeting({ name }) {
 `createElement` returns a React element object with a few properties:
 
 * `type`: The `type` you have passed.
-* `props`: The `props` you have passed except for `ref` and `key`. If the `type` is a component with legacy `type.defaultProps`, then any missing or undefined `props` will get the values from `type.defaultProps`.
+* `props`: The `props` you have passed except for `ref` and `key`. If the `type` is a Component with legacy `type.defaultProps`, then any missing or undefined `props` will get the values from `type.defaultProps`.
 * `ref`: The `ref` you have passed. If missing, `null`.
 * `key`: The `key` you have passed, coerced to a string. If missing, `null`.
 
-Usually, you'll return the element from your component or make it a child of another element. Although you may read the element's properties, it's best to treat every element as opaque after it's created, and only render it.
+Usually, you'll return the element from your Component or make it a child of another element. Although you may read the element's properties, it's best to treat every element as opaque after it's created, and only render it.
 
 #### Caveats {/*caveats*/}
 
@@ -196,7 +196,7 @@ An element is a lightweight description of a piece of the user interface. For ex
 }
 ```
 
-**Note that creating this object does not render the `Greeting` component or create any DOM elements.**
+**Note that creating this object does not render the `Greeting` Component or create any DOM elements.**
 
 A React element is more like a description--an instruction for React to later render the `Greeting` component. By returning this object from your `App` component, you tell React what to do next.
 

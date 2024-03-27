@@ -73,7 +73,7 @@ The `preload` function provides the browser with a hint that it should start dow
   * Two calls are equivalent if they have the same `href`, except:
   * If `as` is set to `image`, two calls are equivalent if they have the same `href`, `imageSrcSet`, and `imageSizes`.
 * In the browser, you can call `preload` in any situation: while rendering a component, in an Effect, in an event handler, and so on.
-* In server-side rendering or when rendering Server Components, `preload` only has an effect if you call it while rendering a component or in an async context originating from rendering a component. Any other calls will be ignored.
+* In server-side rendering or when rendering Server Components, `preload` only has an effect if you call it while rendering a Component or in an async context originating from rendering a component. Any other calls will be ignored.
 
 ---
 
@@ -81,7 +81,7 @@ The `preload` function provides the browser with a hint that it should start dow
 
 ### Preloading when rendering {/*preloading-when-rendering*/}
 
-Call `preload` when rendering a component if you know that it or its children will use a specific resource.
+Call `preload` when rendering a Component if you know that it or its children will use a specific resource.
 
 <Recipes titleText="Examples of preloading">
 

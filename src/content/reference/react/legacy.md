@@ -14,7 +14,7 @@ These APIs are exported from the `react` package, but they are not recommended f
 
 * [`Children`](/reference/react/Children) lets you manipulate and transform the JSX received as the `children` prop. [See alternatives.](/reference/react/Children#alternatives)
 * [`cloneElement`](/reference/react/cloneElement) lets you create a React element using another element as a starting point. [See alternatives.](/reference/react/cloneElement#alternatives)
-* [`Component`](/reference/react/Component) lets you define a React component as a JavaScript class. [See alternatives.](/reference/react/Component#alternatives)
+* [`Component`](/reference/react/Component) lets you define a React Component as a JavaScript class. [See alternatives.](/reference/react/Component#alternatives)
 * [`createElement`](/reference/react/createElement) lets you create a React element. Typically, you'll use JSX instead.
 * [`createRef`](/reference/react/createRef) creates a ref object which can contain arbitrary value. [See alternatives.](/reference/react/createRef#alternatives)
 * [`isValidElement`](/reference/react/isValidElement) checks whether a value is a React element. Typically used with [`cloneElement`.](/reference/react/cloneElement)

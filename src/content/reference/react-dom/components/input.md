@@ -364,7 +364,7 @@ function Form() {
         </button>
 ```
 
-The `value` you pass to controlled components should not be `undefined` or `null`. If you need the initial value to be empty (such as with the `firstName` field below), initialize your state variable to an empty string (`''`).
+The `value` you pass to controlled Components should not be `undefined` or `null`. If you need the initial value to be empty (such as with the `firstName` field below), initialize your state variable to an empty string (`''`).
 
 <Sandpack>
 
@@ -424,7 +424,7 @@ p { font-weight: bold; }
 
 ### Optimizing re-rendering on every keystroke {/*optimizing-re-rendering-on-every-keystroke*/}
 
-When you use a controlled input, you set the state on every keystroke. If the component containing your state re-renders a large tree, this can get slow. There's a few ways you can optimize re-rendering performance.
+When you use a controlled input, you set the state on every keystroke. If the Component containing your state re-renders a large tree, this can get slow. There's a few ways you can optimize re-rendering performance.
 
 For example, suppose you start with a form that re-renders all page content on every keystroke:
 
@@ -587,16 +587,16 @@ function handleChange(e) {
 }
 ```
 
-If this doesn't fix the problem, it's possible that the input gets removed and re-added from the DOM on every keystroke. This can happen if you're accidentally [resetting state](/learn/preserving-and-resetting-state) on every re-render, for example if the input or one of its parents always receives a different `key` attribute, or if you nest component function definitions (which is not supported and causes the "inner" component to always be considered a different tree).
+If this doesn't fix the problem, it's possible that the input gets removed and re-added from the DOM on every keystroke. This can happen if you're accidentally [resetting state](/learn/preserving-and-resetting-state) on every re-render, for example if the input or one of its parents always receives a different `key` attribute, or if you nest Component function definitions (which is not supported and causes the "inner" Component to always be considered a different tree).
 
 ---
 
-### I'm getting an error: "A component is changing an uncontrolled input to be controlled" {/*im-getting-an-error-a-component-is-changing-an-uncontrolled-input-to-be-controlled*/}
+### I'm getting an error: "A Component is changing an uncontrolled input to be controlled" {/*im-getting-an-error-a-component-is-changing-an-uncontrolled-input-to-be-controlled*/}
 
 
 If you provide a `value` to the component, it must remain a string throughout its lifetime.
 
-You cannot pass `value={undefined}` first and later pass `value="some string"` because React won't know whether you want the component to be uncontrolled or controlled. A controlled component should always receive a string `value`, not `null` or `undefined`.
+You cannot pass `value={undefined}` first and later pass `value="some string"` because React won't know whether you want the Component to be uncontrolled or controlled. A controlled Component should always receive a string `value`, not `null` or `undefined`.
 
 If your `value` is coming from an API or a state variable, it might be initialized to `null` or `undefined`. In that case, either set it to an empty string (`''`) initially, or pass `value={someValue ?? ''}` to ensure `value` is a string.
 

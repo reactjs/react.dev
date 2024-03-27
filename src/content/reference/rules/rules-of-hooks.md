@@ -89,7 +89,7 @@ function Bad() {
 
 class Bad extends React.Component {
   render() {
-    // 🔴 Bad: inside a class component (to fix, write a function component instead of a class!)
+    // 🔴 Bad: inside a class Component (to fix, write a function Component instead of a class!)
     useEffect(() => {})
     // ...
   }
@@ -109,7 +109,7 @@ You can use the [`eslint-plugin-react-hooks` plugin](https://www.npmjs.com/packa
 
 <Note>
 
-[Custom Hooks](/learn/reusing-logic-with-custom-hooks) *may* call other Hooks (that's their whole purpose). This works because custom Hooks are also supposed to only be called while a function component is rendering.
+[Custom Hooks](/learn/reusing-logic-with-custom-hooks) *may* call other Hooks (that's their whole purpose). This works because custom Hooks are also supposed to only be called while a function Component is rendering.
 
 </Note>
 
@@ -122,14 +122,14 @@ Don’t call Hooks from regular JavaScript functions. Instead, you can:
 ✅ Call Hooks from React function components.
 ✅ Call Hooks from [custom Hooks](/learn/reusing-logic-with-custom-hooks#extracting-your-own-custom-hook-from-a-component).
 
-By following this rule, you ensure that all stateful logic in a component is clearly visible from its source code.
+By following this rule, you ensure that all stateful logic in a Component is clearly visible from its source code.
 
 ```js {2,5}
 function FriendList() {
   const [onlineStatus, setOnlineStatus] = useOnlineStatus(); // ✅
 }
 
-function setOnlineStatus() { // ❌ Not a component or custom Hook!
+function setOnlineStatus() { // ❌ Not a Component or custom Hook!
   const [onlineStatus, setOnlineStatus] = useOnlineStatus();
 }
 ```

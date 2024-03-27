@@ -5,7 +5,7 @@ title: <StrictMode>
 
 <Intro>
 
-`<StrictMode>` lets you find common bugs in your components early during development.
+`<StrictMode>` lets you find common bugs in your Components early during development.
 
 
 ```js
@@ -24,7 +24,7 @@ title: <StrictMode>
 
 ### `<StrictMode>` {/*strictmode*/}
 
-Use `StrictMode` to enable additional development behaviors and warnings for the component tree inside:
+Use `StrictMode` to enable additional development behaviors and warnings for the Component tree inside:
 
 ```js
 import { StrictMode } from 'react';
@@ -42,9 +42,9 @@ root.render(
 
 Strict Mode enables the following development-only behaviors:
 
-- Your components will [re-render an extra time](#fixing-bugs-found-by-double-rendering-in-development) to find bugs caused by impure rendering.
-- Your components will [re-run Effects an extra time](#fixing-bugs-found-by-re-running-effects-in-development) to find bugs caused by missing Effect cleanup.
-- Your components will [be checked for usage of deprecated APIs.](#fixing-deprecation-warnings-enabled-by-strict-mode)
+- Your Components will [re-render an extra time](#fixing-bugs-found-by-double-rendering-in-development) to find bugs caused by impure rendering.
+- Your Components will [re-run Effects an extra time](#fixing-bugs-found-by-re-running-effects-in-development) to find bugs caused by missing Effect cleanup.
+- Your Components will [be checked for usage of deprecated APIs.](#fixing-deprecation-warnings-enabled-by-strict-mode)
 
 #### Props {/*props*/}
 
@@ -52,7 +52,7 @@ Strict Mode enables the following development-only behaviors:
 
 #### Caveats {/*caveats*/}
 
-* There is no way to opt out of Strict Mode inside a tree wrapped in `<StrictMode>`. This gives you confidence that all components inside `<StrictMode>` are checked. If two teams working on a product disagree whether they find the checks valuable, they need to either reach consensus or move `<StrictMode>` down in the tree.
+* There is no way to opt out of Strict Mode inside a tree wrapped in `<StrictMode>`. This gives you confidence that all Components inside `<StrictMode>` are checked. If two teams working on a product disagree whether they find the checks valuable, they need to either reach consensus or move `<StrictMode>` down in the tree.
 
 ---
 
@@ -60,10 +60,10 @@ Strict Mode enables the following development-only behaviors:
 
 ### Enabling Strict Mode for entire app {/*enabling-strict-mode-for-entire-app*/}
 
-Strict Mode enables extra development-only checks for the entire component tree inside the `<StrictMode>` component. These checks help you find common bugs in your components early in the development process.
+Strict Mode enables extra development-only checks for the entire Component tree inside the `<StrictMode>` component. These checks help you find common bugs in your Components early in the development process.
 
 
-To enable Strict Mode for your entire app, wrap your root component with `<StrictMode>` when you render it:
+To enable Strict Mode for your entire app, wrap your root Component with `<StrictMode>` when you render it:
 
 ```js {6,8}
 import { StrictMode } from 'react';
@@ -85,9 +85,9 @@ Although the Strict Mode checks **only run in development,** they help you find 
 
 Strict Mode enables the following checks in development:
 
-- Your components will [re-render an extra time](#fixing-bugs-found-by-double-rendering-in-development) to find bugs caused by impure rendering.
-- Your components will [re-run Effects an extra time](#fixing-bugs-found-by-re-running-effects-in-development) to find bugs caused by missing Effect cleanup.
-- Your components will [be checked for usage of deprecated APIs.](#fixing-deprecation-warnings-enabled-by-strict-mode)
+- Your Components will [re-render an extra time](#fixing-bugs-found-by-double-rendering-in-development) to find bugs caused by impure rendering.
+- Your Components will [re-run Effects an extra time](#fixing-bugs-found-by-re-running-effects-in-development) to find bugs caused by missing Effect cleanup.
+- Your Components will [be checked for usage of deprecated APIs.](#fixing-deprecation-warnings-enabled-by-strict-mode)
 
 **All of these checks are development-only and do not impact the production build.**
 
@@ -118,25 +118,25 @@ function App() {
 }
 ```
 
-In this example, Strict Mode checks will not run against the `Header` and `Footer` components. However, they will run on `Sidebar` and `Content`, as well as all of the components inside them, no matter how deep.
+In this example, Strict Mode checks will not run against the `Header` and `Footer` components. However, they will run on `Sidebar` and `Content`, as well as all of the Components inside them, no matter how deep.
 
 ---
 
 ### Fixing bugs found by double rendering in development {/*fixing-bugs-found-by-double-rendering-in-development*/}
 
-[React assumes that every component you write is a pure function.](/learn/keeping-components-pure) This means that React components you write must always return the same JSX given the same inputs (props, state, and context).
+[React assumes that every Component you write is a pure function.](/learn/keeping-components-pure) This means that React Components you write must always return the same JSX given the same inputs (props, state, and context).
 
 Components breaking this rule behave unpredictably and cause bugs. To help you find accidentally impure code, Strict Mode calls some of your functions (only the ones that should be pure) **twice in development.** This includes:
 
-- Your component function body (only top-level logic, so this doesn't include code inside event handlers)
+- Your Component function body (only top-level logic, so this doesn't include code inside event handlers)
 - Functions that you pass to [`useState`](/reference/react/useState), [`set` functions](/reference/react/useState#setstate), [`useMemo`](/reference/react/useMemo), or [`useReducer`](/reference/react/useReducer)
-- Some class component methods like [`constructor`](/reference/react/Component#constructor), [`render`](/reference/react/Component#render), [`shouldComponentUpdate`](/reference/react/Component#shouldcomponentupdate) ([see the whole list](https://reactjs.org/docs/strict-mode.html#detecting-unexpected-side-effects))
+- Some class Component methods like [`constructor`](/reference/react/Component#constructor), [`render`](/reference/react/Component#render), [`shouldComponentUpdate`](/reference/react/Component#shouldcomponentupdate) ([see the whole list](https://reactjs.org/docs/strict-mode.html#detecting-unexpected-side-effects))
 
 If a function is pure, running it twice does not change its behavior because a pure function produces the same result every time. However, if a function is impure (for example, it mutates the data it receives), running it twice tends to be noticeable (that's what makes it impure!) This helps you spot and fix the bug early.
 
 **Here is an example to illustrate how double rendering in Strict Mode helps you find bugs early.**
 
-This `StoryTray` component takes an array of `stories` and adds one last "Create Story" item at the end:
+This `StoryTray` Component takes an array of `stories` and adds one last "Create Story" item at the end:
 
 <Sandpack>
 
@@ -216,7 +216,7 @@ li {
 
 There is a mistake in the code above. However, it is easy to miss because the initial output appears correct.
 
-This mistake will become more noticeable if the `StoryTray` component re-renders multiple times. For example, let's make the `StoryTray` re-render with a different background color whenever you hover over it: 
+This mistake will become more noticeable if the `StoryTray` Component re-renders multiple times. For example, let's make the `StoryTray` re-render with a different background color whenever you hover over it: 
 
 <Sandpack>
 
@@ -314,7 +314,7 @@ export default function StoryTray({ stories }) {
   items.push({ id: 'create', label: 'Create Story' });
 ```
 
-This would [make the `StoryTray` function pure.](/learn/keeping-components-pure) Each time it is called, it would only modify a new copy of the array, and would not affect any external objects or variables. This solves the bug, but you had to make the component re-render more often before it became obvious that something is wrong with its behavior.
+This would [make the `StoryTray` function pure.](/learn/keeping-components-pure) Each time it is called, it would only modify a new copy of the array, and would not affect any external objects or variables. This solves the bug, but you had to make the Component re-render more often before it became obvious that something is wrong with its behavior.
 
 **In the original example, the bug wasn't obvious. Now let's wrap the original (buggy) code in `<StrictMode>`:**
 
@@ -399,7 +399,7 @@ li {
 
 </Sandpack>
 
-**Strict Mode *always* calls your rendering function twice, so you can see the mistake right away** ("Create Story" appears twice). This lets you notice such mistakes early in the process. When you fix your component to render in Strict Mode, you *also* fix many possible future production bugs like the hover functionality from before:
+**Strict Mode *always* calls your rendering function twice, so you can see the mistake right away** ("Create Story" appears twice). This lets you notice such mistakes early in the process. When you fix your Component to render in Strict Mode, you *also* fix many possible future production bugs like the hover functionality from before:
 
 <Sandpack>
 
@@ -493,7 +493,7 @@ li {
 
 Without Strict Mode, it was easy to miss the bug until you added more re-renders. Strict Mode made the same bug appear right away. Strict Mode helps you find bugs before you push them to your team and to your users.
 
-[Read more about keeping components pure.](/learn/keeping-components-pure)
+[Read more about keeping Components pure.](/learn/keeping-components-pure)
 
 <Note>
 
@@ -507,13 +507,13 @@ If you have [React DevTools](/learn/react-developer-tools) installed, any `conso
 
 Strict Mode can also help find bugs in [Effects.](/learn/synchronizing-with-effects)
 
-Every Effect has some setup code and may have some cleanup code. Normally, React calls setup when the component *mounts* (is added to the screen) and calls cleanup when the component *unmounts* (is removed from the screen). React then calls cleanup and setup again if its dependencies changed since the last render.
+Every Effect has some setup code and may have some cleanup code. Normally, React calls setup when the Component *mounts* (is added to the screen) and calls cleanup when the Component *unmounts* (is removed from the screen). React then calls cleanup and setup again if its dependencies changed since the last render.
 
 When Strict Mode is on, React will also run **one extra setup+cleanup cycle in development for every Effect.** This may feel surprising, but it helps reveal subtle bugs that are hard to catch manually.
 
 **Here is an example to illustrate how re-running Effects in Strict Mode helps you find bugs early.**
 
-Consider this example that connects a component to a chat:
+Consider this example that connects a Component to a chat:
 
 <Sandpack>
 
@@ -828,7 +828,7 @@ Without Strict Mode, it was easy to miss that your Effect needed cleanup. By run
 
 ### Fixing deprecation warnings enabled by Strict Mode {/*fixing-deprecation-warnings-enabled-by-strict-mode*/}
 
-React warns if some component anywhere inside a `<StrictMode>` tree uses one of these deprecated APIs:
+React warns if some Component anywhere inside a `<StrictMode>` tree uses one of these deprecated APIs:
 
 * [`findDOMNode`](/reference/react-dom/findDOMNode). [See alternatives.](https://reactjs.org/docs/strict-mode.html#warning-about-deprecated-finddomnode-usage)
 * `UNSAFE_` class lifecycle methods like [`UNSAFE_componentWillMount`](/reference/react/Component#unsafe_componentwillmount). [See alternatives.](https://reactjs.org/blog/2018/03/27/update-on-async-rendering.html#migrating-from-legacy-lifecycles) 

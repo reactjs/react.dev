@@ -37,7 +37,7 @@ function useOnlineStatus() {
 #### Parameters {/*parameters*/}
 
 * `value`: The value you want to display in React DevTools. It can have any type.
-* **optional** `format`: A formatting function. When the component is inspected, React DevTools will call the formatting function with the `value` as the argument, and then display the returned formatted value (which may have any type). If you don't specify the formatting function, the original `value` itself will be displayed.
+* **optional** `format`: A formatting function. When the Component is inspected, React DevTools will call the formatting function with the `value` as the argument, and then display the returned formatted value (which may have any type). If you don't specify the formatting function, the original `value` itself will be displayed.
 
 #### Returns {/*returns*/}
 
@@ -59,7 +59,7 @@ function useOnlineStatus() {
 }
 ```
 
-This gives components calling `useOnlineStatus` a label like `OnlineStatus: "Online"` when you inspect them:
+This gives Components calling `useOnlineStatus` a label like `OnlineStatus: "Online"` when you inspect them:
 
 ![A screenshot of React DevTools showing the debug value](/images/docs/react-devtools-usedebugvalue.png)
 
@@ -117,6 +117,6 @@ You can also pass a formatting function as the second argument to `useDebugValue
 useDebugValue(date, date => date.toDateString());
 ```
 
-Your formatting function will receive the <CodeStep step={1}>debug value</CodeStep> as a parameter and should return a <CodeStep step={2}>formatted display value</CodeStep>. When your component is inspected, React DevTools will call this function and display its result.
+Your formatting function will receive the <CodeStep step={1}>debug value</CodeStep> as a parameter and should return a <CodeStep step={2}>formatted display value</CodeStep>. When your Component is inspected, React DevTools will call this function and display its result.
 
-This lets you avoid running potentially expensive formatting logic unless the component is actually inspected. For example, if `date` is a Date value, this avoids calling `toDateString()` on it for every render.
+This lets you avoid running potentially expensive formatting logic unless the Component is actually inspected. For example, if `date` is a Date value, this avoids calling `toDateString()` on it for every render.

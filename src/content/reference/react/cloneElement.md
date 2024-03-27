@@ -62,7 +62,7 @@ console.log(clonedElement); // <Row title="Cabbage" isHighlighted={true}>Goodbye
 * `ref`: The original `element.ref`, unless it was overridden by `props.ref`.
 * `key`: The original `element.key`, unless it was overridden by `props.key`.
 
-Usually, you'll return the element from your component or make it a child of another element. Although you may read the element's properties, it's best to treat every element as opaque after it's created, and only render it.
+Usually, you'll return the element from your Component or make it a child of another element. Although you may read the element's properties, it's best to treat every element as opaque after it's created, and only render it.
 
 #### Caveats {/*caveats*/}
 
@@ -94,7 +94,7 @@ Here, the resulting <CodeStep step={3}>cloned element</CodeStep> will be `<Row t
 
 **Let's walk through an example to see when it's useful.**
 
-Imagine a `List` component that renders its [`children`](/learn/passing-props-to-a-component#passing-jsx-as-children) as a list of selectable rows with a "Next" button that changes which row is selected. The `List` component needs to render the selected `Row` differently, so it clones every `<Row>` child that it has received, and adds an extra `isHighlighted: true` or `isHighlighted: false` prop:
+Imagine a `List` Component that renders its [`children`](/learn/passing-props-to-a-component#passing-jsx-as-children) as a list of selectable rows with a "Next" button that changes which row is selected. The `List` Component needs to render the selected `Row` differently, so it clones every `<Row>` child that it has received, and adds an extra `isHighlighted: true` or `isHighlighted: false` prop:
 
 ```js {6-8}
 export default function List({ children }) {
@@ -404,7 +404,7 @@ For example, you can call [`createContext`](/reference/react/createContext) to d
 export const HighlightContext = createContext(false);
 ```
 
-Your `List` component can wrap every item it renders into a `HighlightContext` provider:
+Your `List` Component can wrap every item it renders into a `HighlightContext` provider:
 
 ```js {8,10}
 export default function List({ items, renderItem }) {
@@ -429,7 +429,7 @@ export default function Row({ title }) {
   // ...
 ```
 
-This allows the calling component to not know or worry about passing `isHighlighted` to `<Row>`:
+This allows the calling Component to not know or worry about passing `isHighlighted` to `<Row>`:
 
 ```js {4}
 <List

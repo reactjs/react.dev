@@ -16,7 +16,7 @@ Today we are thrilled to launch [react.dev](https://react.dev), the new home for
 
 ## tl;dr {/*tldr*/}
 
-* The new React site ([react.dev](https://react.dev)) teaches modern React with function components and Hooks.
+* The new React site ([react.dev](https://react.dev)) teaches modern React with function Components and Hooks.
 * We've included diagrams, illustrations, challenges, and over 600 new interactive examples.
 * The previous React documentation site has now moved to [legacy.reactjs.org](https://legacy.reactjs.org).
 
@@ -34,7 +34,7 @@ If you haven't seen the new homepage yet, check it out!
 
 ## Going all-in on modern React with Hooks {/*going-all-in-on-modern-react-with-hooks*/}
 
-When we released React Hooks in 2018, the Hooks docs assumed the reader is familiar with class components. This helped the community adopt Hooks very swiftly, but after a while the old docs failed to serve the new readers. New readers had to learn React twice: once with class components and then once again with Hooks.
+When we released React Hooks in 2018, the Hooks docs assumed the reader is familiar with class components. This helped the community adopt Hooks very swiftly, but after a while the old docs failed to serve the new readers. New readers had to learn React twice: once with class Components and then once again with Hooks.
 
 **The new docs teach React with Hooks from the beginning.** The docs are divided in two main sections:
 
@@ -45,7 +45,7 @@ Let's have a closer look at what you can find in each section.
 
 <Note>
 
-There are still a few rare class component use cases that do not yet have a Hook-based equivalent. Class components remain supported, and are documented in the [Legacy API](/reference/react/legacy) section of the new site.
+There are still a few rare class Component use cases that do not yet have a Hook-based equivalent. Class Components remain supported, and are documented in the [Legacy API](/reference/react/legacy) section of the new site.
 
 </Note>
 
@@ -222,7 +222,7 @@ body {
 
 </Sandpack>
 
-We'd also like to highlight [Thinking in React](/learn/thinking-in-react)—that's the tutorial that made React "click" for many of us. **We've updated both of these classic tutorials to use function components and Hooks,** so they're as good as new.
+We'd also like to highlight [Thinking in React](/learn/thinking-in-react)—that's the tutorial that made React "click" for many of us. **We've updated both of these classic tutorials to use function Components and Hooks,** so they're as good as new.
 
 <Note>
 
@@ -440,7 +440,7 @@ Notice the "Show solution" button in the left bottom corner. It's handy if you w
 
 When we couldn't figure out how to explain something with code and words alone, we've added diagrams that help provide some intuition. For example, here is one of the diagrams from [Preserving and Resetting State](/learn/preserving-and-resetting-state):
 
-<Diagram name="preserving_state_diff_same_pt1" height={350} width={794} alt="Diagram with three sections, with an arrow transitioning each section in between. The first section contains a React component labeled 'div' with a single child labeled 'section', which has a single child labeled 'Counter' containing a state bubble labeled 'count' with value 3. The middle section has the same 'div' parent, but the child components have now been deleted, indicated by a yellow 'proof' image. The third section has the same 'div' parent again, now with a new child labeled 'div', highlighted in yellow, also with a new child labeled 'Counter' containing a state bubble labeled 'count' with value 0, all highlighted in yellow.">
+<Diagram name="preserving_state_diff_same_pt1" height={350} width={794} alt="Diagram with three sections, with an arrow transitioning each section in between. The first section contains a React Component labeled 'div' with a single child labeled 'section', which has a single child labeled 'Counter' containing a state bubble labeled 'count' with value 3. The middle section has the same 'div' parent, but the child Components have now been deleted, indicated by a yellow 'proof' image. The third section has the same 'div' parent again, now with a new child labeled 'div', highlighted in yellow, also with a new child labeled 'Counter' containing a state bubble labeled 'count' with value 0, all highlighted in yellow.">
 
 When `section` changes to `div`, the `section` is deleted and the new `div` is added
 
@@ -457,8 +457,8 @@ We've confirmed with the browser vendors that this depiction is 100% scientifica
 In the [API Reference](/reference/react), every React API now has a dedicated page. This includes all kinds of APIs:
 
 - Built-in Hooks like [`useState`](/reference/react/useState).
-- Built-in components like [`<Suspense>`](/reference/react/Suspense).
-- Built-in browser components like [`<input>`](/reference/react-dom/components/input).
+- Built-in Components like [`<Suspense>`](/reference/react/Suspense).
+- Built-in browser Components like [`<input>`](/reference/react-dom/components/input).
 - Framework-oriented APIs like [`renderToPipeableStream`](/reference/react-dom/server/renderToReadableStream).
 - Other React APIs like [`memo`](/reference/react/memo).
 

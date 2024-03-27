@@ -27,7 +27,7 @@ The [built-in browser `<script>` component](https://developer.mozilla.org/en-US/
 
 ### `<script>` {/*script*/}
 
-To add inline or external scripts to your document, render the [built-in browser `<script>` component](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script). You can render `<script>` from any component and React will [in certain cases](#special-rendering-behavior) place the corresponding DOM element in the document head and de-duplicate identical scripts.
+To add inline or external scripts to your document, render the [built-in browser `<script>` component](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script). You can render `<script>` from any Component and React will [in certain cases](#special-rendering-behavior) place the corresponding DOM element in the document head and de-duplicate identical scripts.
 
 ```js
 <script> alert("hi!") </script>
@@ -68,7 +68,7 @@ Props that are **not recommended** for use with React:
 
 #### Special rendering behavior {/*special-rendering-behavior*/}
 
-React can move `<script>` components to the document's `<head>`, de-duplicate identical scripts, and [suspend](/reference/react/Suspense) while the script is loading.
+React can move `<script>` Components to the document's `<head>`, de-duplicate identical scripts, and [suspend](/reference/react/Suspense) while the script is loading.
 
 To opt into this behavior, provide the `src` and `async={true}` props. React will de-duplicate scripts if they have the same `src`. The `async` prop must be true to allow scripts to be safely moved.
 
@@ -77,7 +77,7 @@ If you supply any of the `onLoad` or `onError` props, there is no special behavi
 This special treatment comes with two caveats:
 
 * React will ignore changes to props after the script has been rendered. (React will issue a warning in development if this happens.)
-* React may leave the script in the DOM even after the component that rendered it has been unmounted. (This has no effect as scripts just execute once when they are inserted into the DOM.)
+* React may leave the script in the DOM even after the Component that rendered it has been unmounted. (This has no effect as scripts just execute once when they are inserted into the DOM.)
 
 ---
 
@@ -85,9 +85,9 @@ This special treatment comes with two caveats:
 
 ### Rendering an external script {/*rendering-an-external-script*/}
 
-If a component depends on certain scripts in order to be displayed correctly, you can render a `<script>` within the component.
+If a Component depends on certain scripts in order to be displayed correctly, you can render a `<script>` within the component.
 
-If you supply an `src` and `async` prop, your component will suspend while the script is loading. React will de-duplicate scripts that have the same `src`, inserting only one of them into the DOM even if multiple components render it.
+If you supply an `src` and `async` prop, your Component will suspend while the script is loading. React will de-duplicate scripts that have the same `src`, inserting only one of them into the DOM even if multiple Components render it.
 
 <SandpackWithHTMLOutput>
 
@@ -120,7 +120,7 @@ When you want to use a script, it can be beneficial to call the [preinit](/refer
 
 ### Rendering an inline script {/*rendering-an-inline-script*/}
 
-To include an inline script, render the `<script>` component with the script source code as its children. Inline scripts are not de-duplicated or moved to the document `<head>`, and since they don't load any external resources, they will not cause your component to suspend.
+To include an inline script, render the `<script>` Component with the script source code as its children. Inline scripts are not de-duplicated or moved to the document `<head>`, and since they don't load any external resources, they will not cause your Component to suspend.
 
 <SandpackWithHTMLOutput>
 

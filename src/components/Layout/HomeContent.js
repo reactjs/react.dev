@@ -151,7 +151,7 @@ export function HomeContent() {
             <Header>Create user interfaces from components</Header>
             <Para>
               React lets you build user interfaces out of individual pieces
-              called components. Create your own React components like{' '}
+              called components. Create your own React Components like{' '}
               <Code>Thumbnail</Code>, <Code>LikeButton</Code>, and{' '}
               <Code>Video</Code>. Then combine them into entire screens, pages,
               and apps.
@@ -164,7 +164,7 @@ export function HomeContent() {
             <Para>
               Whether you work on your own or with thousands of other
               developers, using React feels the same. It is designed to let you
-              seamlessly combine components written by independent people,
+              seamlessly combine Components written by independent people,
               teams, and organizations.
             </Para>
           </Center>
@@ -172,9 +172,9 @@ export function HomeContent() {
 
         <Section background="right-card">
           <Center>
-            <Header>Write components with code and markup</Header>
+            <Header>Write Components with code and markup</Header>
             <Para>
-              React components are JavaScript functions. Want to show some
+              React Components are JavaScript functions. Want to show some
               content conditionally? Use an <Code>if</Code> statement.
               Displaying a list? Try array <Code>map()</Code>. Learning React is
               learning programming.
@@ -187,7 +187,7 @@ export function HomeContent() {
             <Para>
               This markup syntax is called JSX. It is a JavaScript syntax
               extension popularized by React. Putting JSX markup close to
-              related rendering logic makes React components easy to create,
+              related rendering logic makes React Components easy to create,
               maintain, and delete.
             </Para>
           </Center>
@@ -197,7 +197,7 @@ export function HomeContent() {
           <Center>
             <Header>Add interactivity wherever you need it</Header>
             <Para>
-              React components receive data and return what should appear on the
+              React Components receive data and return what should appear on the
               screen. You can pass them new data in response to an interaction,
               like when the user types into an input. React will then update the
               screen to match the new data.
@@ -230,7 +230,7 @@ export function HomeContent() {
               with a framework
             </Header>
             <Para>
-              React is a library. It lets you put components together, but it
+              React is a library. It lets you put Components together, but it
               doesn’t prescribe how to do routing and data fetching. To build an
               entire app with React, we recommend a full-stack React framework
               like <Link href="https://nextjs.org">Next.js</Link> or{' '}
@@ -243,7 +243,7 @@ export function HomeContent() {
           <Center>
             <Para>
               React is also an architecture. Frameworks that implement it let
-              you fetch data in asynchronous components that run on the server
+              you fetch data in asynchronous Components that run on the server
               or even during the build. Read data from a file or a database, and
               pass it down to your interactive components.
             </Para>
@@ -378,7 +378,7 @@ export function HomeContent() {
                           let you build apps in React for Android, iOS, and
                           more. They look and feel native because their UIs{' '}
                           <i>are</i> truly native. It’s not a web view—your
-                          React components render real Android and iOS views
+                          React Components render real Android and iOS views
                           provided by the platform.
                         </p>
                       </div>
@@ -411,7 +411,7 @@ export function HomeContent() {
                 <Para>
                   React approaches changes with care. Every React commit is
                   tested on business-critical surfaces with over a billion
-                  users. Over 100,000 React components at Meta help validate
+                  users. Over 100,000 React Components at Meta help validate
                   every migration strategy.
                 </Para>
                 <div className="order-last pt-5">

@@ -41,7 +41,7 @@ Wrap elements in `<Fragment>` to group them together in situations where you nee
 
 ### Returning multiple elements {/*returning-multiple-elements*/}
 
-Use `Fragment`, or the equivalent `<>...</>` syntax, to group multiple elements together. You can use it to put multiple elements in any place where a single element can go. For example, a component can only return one element, but by using a Fragment you can group multiple elements together and then return them as a group:
+Use `Fragment`, or the equivalent `<>...</>` syntax, to group multiple elements together. You can use it to put multiple elements in any place where a single element can go. For example, a Component can only return one element, but by using a Fragment you can group multiple elements together and then return them as a group:
 
 ```js {3,6}
 function Post() {

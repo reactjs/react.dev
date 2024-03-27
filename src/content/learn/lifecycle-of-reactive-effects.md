@@ -23,15 +23,15 @@ Effects have a different lifecycle from components. Components may mount, update
 
 ## The lifecycle of an Effect {/*the-lifecycle-of-an-effect*/}
 
-Every React component goes through the same lifecycle:
+Every React Component goes through the same lifecycle:
 
-- A component _mounts_ when it's added to the screen.
-- A component _updates_ when it receives new props or state, usually in response to an interaction.
-- A component _unmounts_ when it's removed from the screen.
+- A Component _mounts_ when it's added to the screen.
+- A Component _updates_ when it receives new props or state, usually in response to an interaction.
+- A Component _unmounts_ when it's removed from the screen.
 
 **It's a good way to think about components, but _not_ about Effects.** Instead, try to think about each Effect independently from your component's lifecycle. An Effect describes how to [synchronize an external system](/learn/synchronizing-with-effects) to the current props and state. As your code changes, synchronization will need to happen more or less often.
 
-To illustrate this point, consider this Effect connecting your component to a chat server:
+To illustrate this point, consider this Effect connecting your Component to a chat server:
 
 ```js
 const serverUrl = 'https://localhost:1234';
@@ -72,7 +72,7 @@ The cleanup function returned by your Effect specifies how to **stop synchronizi
     // ...
 ```
 
-Intuitively, you might think that React would **start synchronizing** when your component mounts and **stop synchronizing** when your component unmounts. However, this is not the end of the story! Sometimes, it may also be necessary to **start and stop synchronizing multiple times** while the component remains mounted.
+Intuitively, you might think that React would **start synchronizing** when your Component mounts and **stop synchronizing** when your Component unmounts. However, this is not the end of the story! Sometimes, it may also be necessary to **start and stop synchronizing multiple times** while the Component remains mounted.
 
 Let's look at _why_ this is necessary, _when_ it happens, and _how_ you can control this behavior.
 
@@ -84,7 +84,7 @@ Some Effects don't return a cleanup function at all. [More often than not,](/lea
 
 ### Why synchronization may need to happen more than once {/*why-synchronization-may-need-to-happen-more-than-once*/}
 
-Imagine this `ChatRoom` component receives a `roomId` prop that the user picks in a dropdown. Let's say that initially the user picks the `"general"` room as the `roomId`. Your app displays the `"general"` chat room:
+Imagine this `ChatRoom` Component receives a `roomId` prop that the user picks in a dropdown. Let's say that initially the user picks the `"general"` room as the `roomId`. Your app displays the `"general"` chat room:
 
 ```js {3}
 const serverUrl = 'https://localhost:1234';
@@ -131,7 +131,7 @@ At this point, you want React to do two things:
 
 ### How React re-synchronizes your Effect {/*how-react-re-synchronizes-your-effect*/}
 
-Recall that your `ChatRoom` component has received a new value for its `roomId` prop. It used to be `"general"`, and now it is `"travel"`. React needs to re-synchronize your Effect to re-connect you to a different room.
+Recall that your `ChatRoom` Component has received a new value for its `roomId` prop. It used to be `"general"`, and now it is `"travel"`. React needs to re-synchronize your Effect to re-connect you to a different room.
 
 To **stop synchronizing,** React will call the cleanup function that your Effect returned after connecting to the `"general"` room. Since `roomId` was `"general"`, the cleanup function disconnects from the `"general"` room:
 
@@ -158,7 +158,7 @@ function ChatRoom({ roomId /* "travel" */ }) {
 
 Thanks to this, you're now connected to the same room that the user chose in the UI. Disaster averted!
 
-Every time after your component re-renders with a different `roomId`, your Effect will re-synchronize. For example, let's say the user changes `roomId` from `"travel"` to `"music"`. React will again **stop synchronizing** your Effect by calling its cleanup function (disconnecting you from the `"travel"` room). Then it will **start synchronizing** again by running its body with the new `roomId` prop (connecting you to the `"music"` room).
+Every time after your Component re-renders with a different `roomId`, your Effect will re-synchronize. For example, let's say the user changes `roomId` from `"travel"` to `"music"`. React will again **stop synchronizing** your Effect by calling its cleanup function (disconnecting you from the `"travel"` room). Then it will **start synchronizing** again by running its body with the new `roomId` prop (connecting you to the `"music"` room).
 
 Finally, when the user goes to a different screen, `ChatRoom` unmounts. Now there is no need to stay connected at all. React will **stop synchronizing** your Effect one last time and disconnect you from the `"music"` chat room.
 
@@ -200,9 +200,9 @@ This code's structure might inspire you to see what happened as a sequence of no
 
 Previously, you were thinking from the component's perspective. When you looked from the component's perspective, it was tempting to think of Effects as "callbacks" or "lifecycle events" that fire at a specific time like "after a render" or "before unmount". This way of thinking gets complicated very fast, so it's best to avoid.
 
-**Instead, always focus on a single start/stop cycle at a time. It shouldn't matter whether a component is mounting, updating, or unmounting. All you need to do is to describe how to start synchronization and how to stop it. If you do it well, your Effect will be resilient to being started and stopped as many times as it's needed.**
+**Instead, always focus on a single start/stop cycle at a time. It shouldn't matter whether a Component is mounting, updating, or unmounting. All you need to do is to describe how to start synchronization and how to stop it. If you do it well, your Effect will be resilient to being started and stopped as many times as it's needed.**
 
-This might remind you how you don't think whether a component is mounting or updating when you write the rendering logic that creates JSX. You describe what should be on the screen, and React [figures out the rest.](/learn/reacting-to-input-with-state)
+This might remind you how you don't think whether a Component is mounting or updating when you write the rendering logic that creates JSX. You describe what should be on the screen, and React [figures out the rest.](/learn/reacting-to-input-with-state)
 
 ### How React verifies that your Effect can re-synchronize {/*how-react-verifies-that-your-effect-can-re-synchronize*/}
 
@@ -272,13 +272,13 @@ button { margin-left: 10px; }
 
 </Sandpack>
 
-Notice that when the component mounts for the first time, you see three logs:
+Notice that when the Component mounts for the first time, you see three logs:
 
 1. `✅ Connecting to "general" room at https://localhost:1234...` *(development-only)*
 1. `❌ Disconnected from "general" room at https://localhost:1234.` *(development-only)*
 1. `✅ Connecting to "general" room at https://localhost:1234...`
 
-The first two logs are development-only. In development, React always remounts each component once.
+The first two logs are development-only. In development, React always remounts each Component once.
 
 **React verifies that your Effect can re-synchronize by forcing it to do that immediately in development.** This might remind you of opening a door and closing it an extra time to check if the door lock works. React starts and stops your Effect one extra time in development to check [you've implemented its cleanup well.](/learn/synchronizing-with-effects#how-to-handle-the-effect-firing-twice-in-development)
 
@@ -308,9 +308,9 @@ Here's how this works:
 2. You knew that your Effect reads `roomId` (so its logic depends on a value that may change later).
 3. This is why you specified it as your Effect's dependency (so that it re-synchronizes when `roomId` changes).
 
-Every time after your component re-renders, React will look at the array of dependencies that you have passed. If any of the values in the array is different from the value at the same spot that you passed during the previous render, React will re-synchronize your Effect.
+Every time after your Component re-renders, React will look at the array of dependencies that you have passed. If any of the values in the array is different from the value at the same spot that you passed during the previous render, React will re-synchronize your Effect.
 
-For example, if you passed `["general"]` during the initial render, and later you passed `["travel"]` during the next render, React will compare `"general"` and `"travel"`. These are different values (compared with [`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is)), so React will re-synchronize your Effect. On the other hand, if your component re-renders but `roomId` has not changed, your Effect will remain connected to the same room.
+For example, if you passed `["general"]` during the initial render, and later you passed `["travel"]` during the next render, React will compare `"general"` and `"travel"`. These are different values (compared with [`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is)), so React will re-synchronize your Effect. On the other hand, if your Component re-renders but `roomId` has not changed, your Effect will remain connected to the same room.
 
 ### Each Effect represents a separate synchronization process {/*each-effect-represents-a-separate-synchronization-process*/}
 
@@ -371,9 +371,9 @@ function ChatRoom({ roomId }) {
 
 Why doesn't `serverUrl` need to be a dependency?
 
-This is because the `serverUrl` never changes due to a re-render. It's always the same no matter how many times the component re-renders and why. Since `serverUrl` never changes, it wouldn't make sense to specify it as a dependency. After all, dependencies only do something when they change over time!
+This is because the `serverUrl` never changes due to a re-render. It's always the same no matter how many times the Component re-renders and why. Since `serverUrl` never changes, it wouldn't make sense to specify it as a dependency. After all, dependencies only do something when they change over time!
 
-On the other hand, `roomId` may be different on a re-render. **Props, state, and other values declared inside the component are _reactive_ because they're calculated during rendering and participate in the React data flow.**
+On the other hand, `roomId` may be different on a re-render. **Props, state, and other values declared inside the Component are _reactive_ because they're calculated during rendering and participate in the React data flow.**
 
 If `serverUrl` was a state variable, it would be reactive. Reactive values must be included in dependencies:
 
@@ -492,7 +492,7 @@ function ChatRoom() {
 
 Now your Effect's code does not use *any* reactive values, so its dependencies can be empty (`[]`).
 
-Thinking from the component's perspective, the empty `[]` dependency array means this Effect connects to the chat room only when the component mounts, and disconnects only when the component unmounts. (Keep in mind that React would still [re-synchronize it an extra time](#how-react-verifies-that-your-effect-can-re-synchronize) in development to stress-test your logic.)
+Thinking from the component's perspective, the empty `[]` dependency array means this Effect connects to the chat room only when the Component mounts, and disconnects only when the Component unmounts. (Keep in mind that React would still [re-synchronize it an extra time](#how-react-verifies-that-your-effect-can-re-synchronize) in development to stress-test your logic.)
 
 
 <Sandpack>
@@ -550,9 +550,9 @@ button { margin-left: 10px; }
 
 However, if you [think from the Effect's perspective,](#thinking-from-the-effects-perspective) you don't need to think about mounting and unmounting at all. What's important is you've specified what your Effect does to start and stop synchronizing. Today, it has no reactive dependencies. But if you ever want the user to change `roomId` or `serverUrl` over time (and they would become reactive), your Effect's code won't change. You will only need to add them to the dependencies.
 
-### All variables declared in the component body are reactive {/*all-variables-declared-in-the-component-body-are-reactive*/}
+### All variables declared in the Component body are reactive {/*all-variables-declared-in-the-component-body-are-reactive*/}
 
-Props and state aren't the only reactive values. Values that you calculate from them are also reactive. If the props or state change, your component will re-render, and the values calculated from them will also change. This is why all variables from the component body used by the Effect should be in the Effect dependency list.
+Props and state aren't the only reactive values. Values that you calculate from them are also reactive. If the props or state change, your Component will re-render, and the values calculated from them will also change. This is why all variables from the Component body used by the Effect should be in the Effect dependency list.
 
 Let's say that the user can pick a chat server in the dropdown, but they can also configure a default server in settings. Suppose you've already put the settings state in a [context](/learn/scaling-up-with-reducer-and-context) so you read the `settings` from that context. Now you calculate the `serverUrl` based on the selected server from props and the default server:
 
@@ -573,9 +573,9 @@ function ChatRoom({ roomId, selectedServerUrl }) { // roomId is reactive
 
 In this example, `serverUrl` is not a prop or a state variable. It's a regular variable that you calculate during rendering. But it's calculated during rendering, so it can change due to a re-render. This is why it's reactive.
 
-**All values inside the component (including props, state, and variables in your component's body) are reactive. Any reactive value can change on a re-render, so you need to include reactive values as Effect's dependencies.**
+**All values inside the Component (including props, state, and variables in your component's body) are reactive. Any reactive value can change on a re-render, so you need to include reactive values as Effect's dependencies.**
 
-In other words, Effects "react" to all values from the component body.
+In other words, Effects "react" to all values from the Component body.
 
 <DeepDive>
 
@@ -766,7 +766,7 @@ On the [next](/learn/separating-events-from-effects) [pages](/learn/removing-eff
 - Each Effect has a separate lifecycle from the surrounding component.
 - Each Effect describes a separate synchronization process that can *start* and *stop*.
 - When you write and read Effects, think from each individual Effect's perspective (how to start and stop synchronization) rather than from the component's perspective (how it mounts, updates, or unmounts).
-- Values declared inside the component body are "reactive".
+- Values declared inside the Component body are "reactive".
 - Reactive values should re-synchronize the Effect because they can change over time.
 - The linter verifies that all reactive values used inside the Effect are specified as dependencies.
 - All errors flagged by the linter are legitimate. There's always a way to fix the code to not break the rules.
@@ -777,7 +777,7 @@ On the [next](/learn/separating-events-from-effects) [pages](/learn/removing-eff
 
 #### Fix reconnecting on every keystroke {/*fix-reconnecting-on-every-keystroke*/}
 
-In this example, the `ChatRoom` component connects to the chat room when the component mounts, disconnects when it unmounts, and reconnects when you select a different chat room. This behavior is correct, so you need to keep it working.
+In this example, the `ChatRoom` Component connects to the chat room when the Component mounts, disconnects when it unmounts, and reconnects when you select a different chat room. This behavior is correct, so you need to keep it working.
 
 However, there is a problem. Whenever you type into the message box input at the bottom, `ChatRoom` *also* reconnects to the chat. (You can notice this by clearing the console and typing into the input.) Fix the issue so that this doesn't happen.
 
@@ -1187,7 +1187,7 @@ body {
 
 <Solution>
 
-The problem with the original code was suppressing the dependency linter. If you remove the suppression, you'll see that this Effect depends on the `handleMove` function. This makes sense: `handleMove` is declared inside the component body, which makes it a reactive value. Every reactive value must be specified as a dependency, or it can potentially get stale over time!
+The problem with the original code was suppressing the dependency linter. If you remove the suppression, you'll see that this Effect depends on the `handleMove` function. This makes sense: `handleMove` is declared inside the Component body, which makes it a reactive value. Every reactive value must be specified as a dependency, or it can potentially get stale over time!
 
 The author of the original code has "lied" to React by saying that the Effect does not depend (`[]`) on any reactive values. This is why React did not re-synchronize the Effect after `canMove` has changed (and `handleMove` with it). Because React did not re-synchronize the Effect, the `handleMove` attached as a listener is the `handleMove` function created during the initial render. During the initial render, `canMove` was `true`, which is why `handleMove` from the initial render will forever see that value.
 
@@ -1317,7 +1317,7 @@ You'll learn a more general approach to this type of problem in [Separating Even
 
 #### Fix a connection switch {/*fix-a-connection-switch*/}
 
-In this example, the chat service in `chat.js` exposes two different APIs: `createEncryptedConnection` and `createUnencryptedConnection`. The root `App` component lets the user choose whether to use encryption or not, and then passes down the corresponding API method to the child `ChatRoom` component as the `createConnection` prop.
+In this example, the chat service in `chat.js` exposes two different APIs: `createEncryptedConnection` and `createUnencryptedConnection`. The root `App` Component lets the user choose whether to use encryption or not, and then passes down the corresponding API method to the child `ChatRoom` Component as the `createConnection` prop.
 
 Notice that initially, the console logs say the connection is not encrypted. Try toggling the checkbox on: nothing will happen. However, if you change the selected room after that, then the chat will reconnect *and* enable encryption (as you'll see from the console messages). This is a bug. Fix the bug so that toggling the checkbox *also* causes the chat to reconnect.
 
@@ -1423,7 +1423,7 @@ label { display: block; margin-bottom: 10px; }
 
 <Solution>
 
-If you remove the linter suppression, you will see a lint error. The problem is that `createConnection` is a prop, so it's a reactive value. It can change over time! (And indeed, it should--when the user ticks the checkbox, the parent component passes a different value of the `createConnection` prop.) This is why it should be a dependency. Include it in the list to fix the bug:
+If you remove the linter suppression, you will see a lint error. The problem is that `createConnection` is a prop, so it's a reactive value. It can change over time! (And indeed, it should--when the user ticks the checkbox, the parent Component passes a different value of the `createConnection` prop.) This is why it should be a dependency. Include it in the list to fix the bug:
 
 <Sandpack>
 
@@ -1518,7 +1518,7 @@ label { display: block; margin-bottom: 10px; }
 
 </Sandpack>
 
-It is correct that `createConnection` is a dependency. However, this code is a bit fragile because someone could edit the `App` component to pass an inline function as the value of this prop. In that case, its value would be different every time the `App` component re-renders, so the Effect might re-synchronize too often. To avoid this, you can pass `isEncrypted` down instead:
+It is correct that `createConnection` is a dependency. However, this code is a bit fragile because someone could edit the `App` Component to pass an inline function as the value of this prop. In that case, its value would be different every time the `App` Component re-renders, so the Effect might re-synchronize too often. To avoid this, you can pass `isEncrypted` down instead:
 
 <Sandpack>
 
@@ -1613,7 +1613,7 @@ label { display: block; margin-bottom: 10px; }
 
 </Sandpack>
 
-In this version, the `App` component passes a boolean prop instead of a function. Inside the Effect, you decide which function to use. Since both `createEncryptedConnection` and `createUnencryptedConnection` are declared outside the component, they aren't reactive, and don't need to be dependencies. You'll learn more about this in [Removing Effect Dependencies.](/learn/removing-effect-dependencies)
+In this version, the `App` Component passes a boolean prop instead of a function. Inside the Effect, you decide which function to use. Since both `createEncryptedConnection` and `createUnencryptedConnection` are declared outside the component, they aren't reactive, and don't need to be dependencies. You'll learn more about this in [Removing Effect Dependencies.](/learn/removing-effect-dependencies)
 
 </Solution>
 
@@ -2102,7 +2102,7 @@ label { display: block; margin-bottom: 10px; }
 
 </Sandpack>
 
-Check the `useSelectOptions.js` tab in the sandbox to see how it works. Ideally, most Effects in your application should eventually be replaced by custom Hooks, whether written by you or by the community. Custom Hooks hide the synchronization logic, so the calling component doesn't know about the Effect. As you keep working on your app, you'll develop a palette of Hooks to choose from, and eventually you won't need to write Effects in your components very often.
+Check the `useSelectOptions.js` tab in the sandbox to see how it works. Ideally, most Effects in your application should eventually be replaced by custom Hooks, whether written by you or by the community. Custom Hooks hide the synchronization logic, so the calling Component doesn't know about the Effect. As you keep working on your app, you'll develop a palette of Hooks to choose from, and eventually you won't need to write Effects in your Components very often.
 
 </Solution>
 

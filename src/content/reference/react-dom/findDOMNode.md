@@ -43,23 +43,23 @@ const domNode = findDOMNode(componentInstance);
 
 #### Returns {/*returns*/}
 
-`findDOMNode` returns the first closest browser DOM node within the given `componentInstance`. When a component renders to `null`, or renders `false`, `findDOMNode` returns `null`. When a component renders to a string, `findDOMNode` returns a text DOM node containing that value.
+`findDOMNode` returns the first closest browser DOM node within the given `componentInstance`. When a Component renders to `null`, or renders `false`, `findDOMNode` returns `null`. When a Component renders to a string, `findDOMNode` returns a text DOM node containing that value.
 
 #### Caveats {/*caveats*/}
 
-* A component may return an array or a [Fragment](/reference/react/Fragment) with multiple children. In that case `findDOMNode`, will return the DOM node corresponding to the first non-empty child.
+* A Component may return an array or a [Fragment](/reference/react/Fragment) with multiple children. In that case `findDOMNode`, will return the DOM node corresponding to the first non-empty child.
 
-* `findDOMNode` only works on mounted components (that is, components that have been placed in the DOM). If you try to call this on a component that has not been mounted yet (like calling `findDOMNode()` in `render()` on a component that has yet to be created), an exception will be thrown.
+* `findDOMNode` only works on mounted Components (that is, Components that have been placed in the DOM). If you try to call this on a Component that has not been mounted yet (like calling `findDOMNode()` in `render()` on a Component that has yet to be created), an exception will be thrown.
 
-* `findDOMNode` only returns the result at the time of your call. If a child component renders a different node later, there is no way for you to be notified of this change.
+* `findDOMNode` only returns the result at the time of your call. If a child Component renders a different node later, there is no way for you to be notified of this change.
 
-* `findDOMNode` accepts a class component instance, so it can't be used with function components.
+* `findDOMNode` accepts a class Component instance, so it can't be used with function components.
 
 ---
 
 ## Usage {/*usage*/}
 
-### Finding the root DOM node of a class component {/*finding-the-root-dom-node-of-a-class-component*/}
+### Finding the root DOM node of a class Component {/*finding-the-root-dom-node-of-a-class-component*/}
 
 Call `findDOMNode` with a [class component](/reference/react/Component) instance (usually, `this`) to find the DOM node it has rendered.
 
@@ -257,7 +257,7 @@ export default function AutoselectingInput() {
 
 ### Reading a child component's DOM node from a forwarded ref {/*reading-a-child-components-dom-node-from-a-forwarded-ref*/}
 
-In this example, `findDOMNode(this)` finds a DOM node that belongs to another component. The `AutoselectingInput` renders `MyInput`, which is your own component that renders a browser `<input>`.
+In this example, `findDOMNode(this)` finds a DOM node that belongs to another component. The `AutoselectingInput` renders `MyInput`, which is your own Component that renders a browser `<input>`.
 
 <Sandpack>
 
@@ -307,7 +307,7 @@ export default function MyInput() {
 
 Notice that calling `findDOMNode(this)` inside `AutoselectingInput` still gives you the DOM `<input>`--even though the JSX for this `<input>` is hidden inside the `MyInput` component. This seems convenient for the above example, but it leads to fragile code. Imagine that you wanted to edit `MyInput` later and add a wrapper `<div>` around it. This would break the code of `AutoselectingInput` (which expects to find an `<input>`).
 
-To replace `findDOMNode` in this example, the two components need to coordinate:
+To replace `findDOMNode` in this example, the two Components need to coordinate:
 
 1. `AutoSelectingInput` should declare a ref, like [in the earlier example](#reading-components-own-dom-node-from-a-ref), and pass it to `<MyInput>`.
 2. `MyInput` should be declared with [`forwardRef`](/reference/react/forwardRef) to take that ref and forward it down to the `<input>` node.
@@ -368,7 +368,7 @@ export default MyInput;
 
 </Sandpack>
 
-Here is how this code would look like with function components instead of classes:
+Here is how this code would look like with function Components instead of classes:
 
 <Sandpack>
 
@@ -422,7 +422,7 @@ export default MyInput;
 
 ### Adding a wrapper `<div>` element {/*adding-a-wrapper-div-element*/}
 
-Sometimes a component needs to know the position and size of its children. This makes it tempting to find the children with `findDOMNode(this)`, and then use DOM methods like [`getBoundingClientRect`](https://developer.mozilla.org/en-US/docs/Web/API/Element/getBoundingClientRect) for measurements.
+Sometimes a Component needs to know the position and size of its children. This makes it tempting to find the children with `findDOMNode(this)`, and then use DOM methods like [`getBoundingClientRect`](https://developer.mozilla.org/en-US/docs/Web/API/Element/getBoundingClientRect) for measurements.
 
 There is currently no direct equivalent for this use case, which is why `findDOMNode` is deprecated but is not yet removed completely from React. In the meantime, you can try rendering a wrapper `<div>` node around the content as a workaround, and getting a ref to that node. However, extra wrappers can break styling.
 

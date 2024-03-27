@@ -4,7 +4,7 @@ title: Render and Commit
 
 <Intro>
 
-Before your components are displayed on screen, they must be rendered by React. Understanding the steps in this process will help you think about how your code executes and explain its behavior.
+Before your Components are displayed on screen, they must be rendered by React. Understanding the steps in this process will help you think about how your code executes and explain its behavior.
 
 </Intro>
 
@@ -12,15 +12,15 @@ Before your components are displayed on screen, they must be rendered by React. 
 
 * What rendering means in React
 * When and why React renders a component
-* The steps involved in displaying a component on screen
+* The steps involved in displaying a Component on screen
 * Why rendering does not always produce a DOM update
 
 </YouWillLearn>
 
-Imagine that your components are cooks in the kitchen, assembling tasty dishes from ingredients. In this scenario, React is the waiter who puts in requests from customers and brings them their orders. This process of requesting and serving UI has three steps:
+Imagine that your Components are cooks in the kitchen, assembling tasty dishes from ingredients. In this scenario, React is the waiter who puts in requests from customers and brings them their orders. This process of requesting and serving UI has three steps:
 
 1. **Triggering** a render (delivering the guest's order to the kitchen)
-2. **Rendering** the component (preparing the order in the kitchen)
+2. **Rendering** the Component (preparing the order in the kitchen)
 3. **Committing** to the DOM (placing the order on the table)
 
 <IllustrationBlock sequential>
@@ -31,7 +31,7 @@ Imagine that your components are cooks in the kitchen, assembling tasty dishes f
 
 ## Step 1: Trigger a render {/*step-1-trigger-a-render*/}
 
-There are two reasons for a component to render:
+There are two reasons for a Component to render:
 
 1. It's the component's **initial render.**
 2. The component's (or one of its ancestors') **state has been updated.**
@@ -63,11 +63,11 @@ export default function Image() {
 
 </Sandpack>
 
-Try commenting out the `root.render()` call and see the component disappear!
+Try commenting out the `root.render()` call and see the Component disappear!
 
 ### Re-renders when state updates {/*re-renders-when-state-updates*/}
 
-Once the component has been initially rendered, you can trigger further renders by updating its state with the [`set` function.](/reference/react/useState#setstate) Updating your component's state automatically queues a render. (You can imagine these as a restaurant guest ordering tea, dessert, and all sorts of things after putting in their first order, depending on the state of their thirst or hunger.)
+Once the Component has been initially rendered, you can trigger further renders by updating its state with the [`set` function.](/reference/react/useState#setstate) Updating your component's state automatically queues a render. (You can imagine these as a restaurant guest ordering tea, dessert, and all sorts of things after putting in their first order, depending on the state of their thirst or hunger.)
 
 <IllustrationBlock sequential>
   <Illustration caption="State update..." alt="React as a server in a restaurant, serving a Card UI to the user, represented as a patron with a cursor for their head. They patron expresses they want a pink card, not a black one!" src="/images/docs/illustrations/i_rerender1.png" />
@@ -75,14 +75,14 @@ Once the component has been initially rendered, you can trigger further renders 
   <Illustration caption="...render!" alt="The Card Chef gives React the pink Card." src="/images/docs/illustrations/i_rerender3.png" />
 </IllustrationBlock>
 
-## Step 2: React renders your components {/*step-2-react-renders-your-components*/}
+## Step 2: React renders your Components {/*step-2-react-renders-your-components*/}
 
-After you trigger a render, React calls your components to figure out what to display on screen. **"Rendering" is React calling your components.**
+After you trigger a render, React calls your Components to figure out what to display on screen. **"Rendering" is React calling your components.**
 
 * **On initial render,** React will call the root component.
-* **For subsequent renders,** React will call the function component whose state update triggered the render.
+* **For subsequent renders,** React will call the function Component whose state update triggered the render.
 
-This process is recursive: if the updated component returns some other component, React will render _that_ component next, and if that component also returns something, it will render _that_ component next, and so on. The process will continue until there are no more nested components and React knows exactly what should be displayed on screen.
+This process is recursive: if the updated Component returns some other component, React will render _that_ Component next, and if that Component also returns something, it will render _that_ Component next, and so on. The process will continue until there are no more nested Components and React knows exactly what should be displayed on screen.
 
 In the following example, React will call `Gallery()` and  `Image()` several times:
 
@@ -131,7 +131,7 @@ img { margin: 0 10px 10px 0; }
 
 Rendering must always be a [pure calculation](/learn/keeping-components-pure):
 
-* **Same inputs, same output.** Given the same inputs, a component should always return the same JSX. (When someone orders a salad with tomatoes, they should not receive a salad with onions!)
+* **Same inputs, same output.** Given the same inputs, a Component should always return the same JSX. (When someone orders a salad with tomatoes, they should not receive a salad with onions!)
 * **It minds its own business.** It should not change any objects or variables that existed before rendering. (One order should not change anyone else's order.)
 
 Otherwise, you can encounter confusing bugs and unpredictable behavior as your codebase grows in complexity. When developing in "Strict Mode", React calls each component's function twice, which can help surface mistakes caused by impure functions.
@@ -142,7 +142,7 @@ Otherwise, you can encounter confusing bugs and unpredictable behavior as your c
 
 #### Optimizing performance {/*optimizing-performance*/}
 
-The default behavior of rendering all components nested within the updated component is not optimal for performance if the updated component is very high in the tree. If you run into a performance issue, there are several opt-in ways to solve it described in the [Performance](https://reactjs.org/docs/optimizing-performance.html) section. **Don't optimize prematurely!**
+The default behavior of rendering all Components nested within the updated Component is not optimal for performance if the updated Component is very high in the tree. If you run into a performance issue, there are several opt-in ways to solve it described in the [Performance](https://reactjs.org/docs/optimizing-performance.html) section. **Don't optimize prematurely!**
 
 </DeepDive>
 
@@ -153,7 +153,7 @@ After rendering (calling) your components, React will modify the DOM.
 * **For the initial render,** React will use the [`appendChild()`](https://developer.mozilla.org/docs/Web/API/Node/appendChild) DOM API to put all the DOM nodes it has created on screen. 
 * **For re-renders,** React will apply the minimal necessary operations (calculated while rendering!) to make the DOM match the latest rendering output.
 
-**React only changes the DOM nodes if there's a difference between renders.** For example, here is a component that re-renders with different props passed from its parent every second. Notice how you can add some text into the `<input>`, updating its `value`, but the text doesn't disappear when the component re-renders:
+**React only changes the DOM nodes if there's a difference between renders.** For example, here is a Component that re-renders with different props passed from its parent every second. Notice how you can add some text into the `<input>`, updating its `value`, but the text doesn't disappear when the Component re-renders:
 
 <Sandpack>
 

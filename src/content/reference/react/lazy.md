@@ -20,7 +20,7 @@ const SomeComponent = lazy(load)
 
 ### `lazy(load)` {/*lazy*/}
 
-Call `lazy` outside your components to declare a lazy-loaded React component:
+Call `lazy` outside your Components to declare a lazy-loaded React component:
 
 ```js
 import { lazy } from 'react';
@@ -36,7 +36,7 @@ const MarkdownPreview = lazy(() => import('./MarkdownPreview.js'));
 
 #### Returns {/*returns*/}
 
-`lazy` returns a React component you can render in your tree. While the code for the lazy component is still loading, attempting to render it will *suspend.* Use [`<Suspense>`](/reference/react/Suspense) to display a loading indicator while it's loading.
+`lazy` returns a React Component you can render in your tree. While the code for the lazy Component is still loading, attempting to render it will *suspend.* Use [`<Suspense>`](/reference/react/Suspense) to display a loading indicator while it's loading.
 
 ---
 
@@ -48,15 +48,15 @@ const MarkdownPreview = lazy(() => import('./MarkdownPreview.js'));
 
 #### Returns {/*load-returns*/}
 
-You need to return a [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) or some other *thenable* (a Promise-like object with a `then` method). It needs to eventually resolve to an object whose `.default` property is a valid React component type, such as a function, [`memo`](/reference/react/memo), or a [`forwardRef`](/reference/react/forwardRef) component.
+You need to return a [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) or some other *thenable* (a Promise-like object with a `then` method). It needs to eventually resolve to an object whose `.default` property is a valid React Component type, such as a function, [`memo`](/reference/react/memo), or a [`forwardRef`](/reference/react/forwardRef) component.
 
 ---
 
 ## Usage {/*usage*/}
 
-### Lazy-loading components with Suspense {/*suspense-for-code-splitting*/}
+### Lazy-loading Components with Suspense {/*suspense-for-code-splitting*/}
 
-Usually, you import components with the static [`import`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import) declaration:
+Usually, you import Components with the static [`import`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import) declaration:
 
 ```js
 import MarkdownPreview from './MarkdownPreview.js';
@@ -70,9 +70,9 @@ import { lazy } from 'react';
 const MarkdownPreview = lazy(() => import('./MarkdownPreview.js'));
 ```
 
-This code relies on [dynamic `import()`,](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/import) which might require support from your bundler or framework. Using this pattern requires that the lazy component you're importing was exported as the `default` export.
+This code relies on [dynamic `import()`,](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/import) which might require support from your bundler or framework. Using this pattern requires that the lazy Component you're importing was exported as the `default` export.
 
-Now that your component's code loads on demand, you also need to specify what should be displayed while it is loading. You can do this by wrapping the lazy component or any of its parents into a [`<Suspense>`](/reference/react/Suspense) boundary:
+Now that your component's code loads on demand, you also need to specify what should be displayed while it is loading. You can do this by wrapping the lazy Component or any of its parents into a [`<Suspense>`](/reference/react/Suspense) boundary:
 
 ```js {1,4}
 <Suspense fallback={<Loading />}>
@@ -185,7 +185,7 @@ This demo loads with an artificial delay. The next time you untick and tick the 
 
 ### My `lazy` component's state gets reset unexpectedly {/*my-lazy-components-state-gets-reset-unexpectedly*/}
 
-Do not declare `lazy` components *inside* other components:
+Do not declare `lazy` Components *inside* other components:
 
 ```js {4-5}
 import { lazy } from 'react';
@@ -202,7 +202,7 @@ Instead, always declare them at the top level of your module:
 ```js {3-4}
 import { lazy } from 'react';
 
-// ✅ Good: Declare lazy components outside of your components
+// ✅ Good: Declare lazy Components outside of your components
 const MarkdownPreview = lazy(() => import('./MarkdownPreview.js'));
 
 function Editor() {

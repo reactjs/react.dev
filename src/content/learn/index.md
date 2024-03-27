@@ -19,11 +19,11 @@ Welcome to the React documentation! This page will give you an introduction to t
 
 </YouWillLearn>
 
-## Creating and nesting components {/*components*/}
+## Creating and nesting Components {/*components*/}
 
-React apps are made out of *components*. A component is a piece of the UI (user interface) that has its own logic and appearance. A component can be as small as a button, or as large as an entire page.
+React apps are made out of *components*. A Component is a piece of the UI (user interface) that has its own logic and appearance. A Component can be as small as a button, or as large as an entire page.
 
-React components are JavaScript functions that return markup:
+React Components are JavaScript functions that return markup:
 
 ```js
 function MyButton() {
@@ -46,7 +46,7 @@ export default function MyApp() {
 }
 ```
 
-Notice that `<MyButton />` starts with a capital letter. That's how you know it's a React component. React component names must always start with a capital letter, while HTML tags must be lowercase.
+Notice that `<MyButton />` starts with a capital letter. That's how you know it's a React component. React Component names must always start with a capital letter, while HTML tags must be lowercase.
 
 Have a look at the result:
 
@@ -73,13 +73,13 @@ export default function MyApp() {
 
 </Sandpack>
 
-The `export default` keywords specify the main component in the file. If you're not familiar with some piece of JavaScript syntax, [MDN](https://developer.mozilla.org/en-US/docs/web/javascript/reference/statements/export) and [javascript.info](https://javascript.info/import-export) have great references.
+The `export default` keywords specify the main Component in the file. If you're not familiar with some piece of JavaScript syntax, [MDN](https://developer.mozilla.org/en-US/docs/web/javascript/reference/statements/export) and [javascript.info](https://javascript.info/import-export) have great references.
 
 ## Writing markup with JSX {/*writing-markup-with-jsx*/}
 
 The markup syntax you've seen above is called *JSX*. It is optional, but most React projects use JSX for its convenience. All of the [tools we recommend for local development](/learn/installation) support JSX out of the box.
 
-JSX is stricter than HTML. You have to close tags like `<br />`. Your component also can't return multiple JSX tags. You have to wrap them into a shared parent, like a `<div>...</div>` or an empty `<>...</>` wrapper:
+JSX is stricter than HTML. You have to close tags like `<br />`. Your Component also can't return multiple JSX tags. You have to wrap them into a shared parent, like a `<div>...</div>` or an empty `<>...</>` wrapper:
 
 ```js {3,6}
 function AboutPage() {
@@ -300,7 +300,7 @@ Notice how `onClick={handleClick}` has no parentheses at the end! Do not _call_ 
 
 ## Updating the screen {/*updating-the-screen*/}
 
-Often, you'll want your component to "remember" some information and display it. For example, maybe you want to count the number of times a button is clicked. To do this, add *state* to your component.
+Often, you'll want your Component to "remember" some information and display it. For example, maybe you want to count the number of times a button is clicked. To do this, add *state* to your component.
 
 First, import [`useState`](/reference/react/useState) from React:
 
@@ -336,9 +336,9 @@ function MyButton() {
 }
 ```
 
-React will call your component function again. This time, `count` will be `1`. Then it will be `2`. And so on.
+React will call your Component function again. This time, `count` will be `1`. Then it will be `2`. And so on.
 
-If you render the same component multiple times, each will get its own state. Click each button separately:
+If you render the same Component multiple times, each will get its own state. Click each button separately:
 
 <Sandpack>
 
@@ -385,21 +385,21 @@ Notice how each button "remembers" its own `count` state and doesn't affect othe
 
 Functions starting with `use` are called *Hooks*. `useState` is a built-in Hook provided by React. You can find other built-in Hooks in the [API reference.](/reference/react) You can also write your own Hooks by combining the existing ones.
 
-Hooks are more restrictive than other functions. You can only call Hooks *at the top* of your components (or other Hooks). If you want to use `useState` in a condition or a loop, extract a new component and put it there.
+Hooks are more restrictive than other functions. You can only call Hooks *at the top* of your Components (or other Hooks). If you want to use `useState` in a condition or a loop, extract a new Component and put it there.
 
-## Sharing data between components {/*sharing-data-between-components*/}
+## Sharing data between Components {/*sharing-data-between-components*/}
 
 In the previous example, each `MyButton` had its own independent `count`, and when each button was clicked, only the `count` for the button clicked changed:
 
 <DiagramGroup>
 
-<Diagram name="sharing_data_child" height={367} width={407} alt="Diagram showing a tree of three components, one parent labeled MyApp and two children labeled MyButton. Both MyButton components contain a count with value zero.">
+<Diagram name="sharing_data_child" height={367} width={407} alt="Diagram showing a tree of three components, one parent labeled MyApp and two children labeled MyButton. Both MyButton Components contain a count with value zero.">
 
 Initially, each `MyButton`'s `count` state is `0`
 
 </Diagram>
 
-<Diagram name="sharing_data_child_clicked" height={367} width={407} alt="The same diagram as the previous, with the count of the first child MyButton component highlighted indicating a click with the count value incremented to one. The second MyButton component still contains value zero." >
+<Diagram name="sharing_data_child_clicked" height={367} width={407} alt="The same diagram as the previous, with the count of the first child MyButton Component highlighted indicating a click with the count value incremented to one. The second MyButton Component still contains value zero." >
 
 The first `MyButton` updates its `count` to `1`
 
@@ -407,9 +407,9 @@ The first `MyButton` updates its `count` to `1`
 
 </DiagramGroup>
 
-However, often you'll need components to *share data and always update together*.
+However, often you'll need Components to *share data and always update together*.
 
-To make both `MyButton` components display the same `count` and update together, you need to move the state from the individual buttons "upwards" to the closest component containing all of them.
+To make both `MyButton` Components display the same `count` and update together, you need to move the state from the individual buttons "upwards" to the closest Component containing all of them.
 
 In this example, it is `MyApp`:
 
@@ -421,7 +421,7 @@ Initially, `MyApp`'s `count` state is `0` and is passed down to both children
 
 </Diagram>
 
-<Diagram name="sharing_data_parent_clicked" height={385} width={410} alt="The same diagram as the previous, with the count of the parent MyApp component highlighted indicating a click with the value incremented to one. The flow to both of the children MyButton components is also highlighted, and the count value in each child is set to one indicating the value was passed down." >
+<Diagram name="sharing_data_parent_clicked" height={385} width={410} alt="The same diagram as the previous, with the count of the parent MyApp Component highlighted indicating a click with the value incremented to one. The flow to both of the children MyButton Components is also highlighted, and the count value in each child is set to one indicating the value was passed down." >
 
 On click, `MyApp` updates its `count` state to `1` and passes it down to both children
 
@@ -476,7 +476,7 @@ export default function MyApp() {
 }
 ```
 
-The information you pass down like this is called _props_. Now the `MyApp` component contains the `count` state and the `handleClick` event handler, and *passes both of them down as props* to each of the buttons.
+The information you pass down like this is called _props_. Now the `MyApp` Component contains the `count` state and the `handleClick` event handler, and *passes both of them down as props* to each of the buttons.
 
 Finally, change `MyButton` to *read* the props you have passed from its parent component:
 

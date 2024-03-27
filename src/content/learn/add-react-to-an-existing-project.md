@@ -4,7 +4,7 @@ title: Add React to an Existing Project
 
 <Intro>
 
-If you want to add some interactivity to your existing project, you don't have to rewrite it in React. Add React to your existing stack, and render interactive React components anywhere.
+If you want to add some interactivity to your existing project, you don't have to rewrite it in React. Add React to your existing stack, and render interactive React Components anywhere.
 
 </Intro>
 
@@ -30,7 +30,7 @@ Many React-based frameworks are full-stack and let your React app take advantage
 
 ## Using React for a part of your existing page {/*using-react-for-a-part-of-your-existing-page*/}
 
-Let's say you have an existing page built with another technology (either a server one like Rails, or a client one like Backbone), and you want to render interactive React components somewhere on that page. That's a common way to integrate React--in fact, it's how most React usage looked at Meta for many years!
+Let's say you have an existing page built with another technology (either a server one like Rails, or a client one like Backbone), and you want to render interactive React Components somewhere on that page. That's a common way to integrate React--in fact, it's how most React usage looked at Meta for many years!
 
 You can do this in two steps:
 
@@ -41,7 +41,7 @@ The exact approach depends on your existing page setup, so let's walk through so
 
 ### Step 1: Set up a modular JavaScript environment {/*step-1-set-up-a-modular-javascript-environment*/}
 
-A modular JavaScript environment lets you write your React components in individual files, as opposed to writing all of your code in a single file. It also lets you use all the wonderful packages published by other developers on the [npm](https://www.npmjs.com/) registry--including React itself! How you do this depends on your existing setup:
+A modular JavaScript environment lets you write your React Components in individual files, as opposed to writing all of your code in a single file. It also lets you use all the wonderful packages published by other developers on the [npm](https://www.npmjs.com/) registry--including React itself! How you do this depends on your existing setup:
 
 * **If your app is already split into files that use `import` statements,** try to use the setup you already have. Check whether writing `<div />` in your JS code causes a syntax error. If it causes a syntax error, you might need to [transform your JavaScript code with Babel](https://babeljs.io/setup), and enable the [Babel React preset](https://babeljs.io/docs/babel-preset-react) to use JSX.
 
@@ -73,7 +73,7 @@ import { createRoot } from 'react-dom/client';
 // Clear the existing HTML content
 document.body.innerHTML = '<div id="app"></div>';
 
-// Render your React component instead
+// Render your React Component instead
 const root = createRoot(document.getElementById('app'));
 root.render(<h1>Hello, world</h1>);
 ```
@@ -88,7 +88,7 @@ Integrating a modular JavaScript environment into an existing project for the fi
 
 </Note>
 
-### Step 2: Render React components anywhere on the page {/*step-2-render-react-components-anywhere-on-the-page*/}
+### Step 2: Render React Components anywhere on the page {/*step-2-render-react-components-anywhere-on-the-page*/}
 
 In the previous step, you put this code at the top of your main file:
 
@@ -98,7 +98,7 @@ import { createRoot } from 'react-dom/client';
 // Clear the existing HTML content
 document.body.innerHTML = '<div id="app"></div>';
 
-// Render your React component instead
+// Render your React Component instead
 const root = createRoot(document.getElementById('app'));
 root.render(<h1>Hello, world</h1>);
 ```
@@ -107,7 +107,7 @@ Of course, you don't actually want to clear the existing HTML content!
 
 Delete this code.
 
-Instead, you probably want to render your React components in specific places in your HTML. Open your HTML page (or the server templates that generate it) and add a unique [`id`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/id) attribute to any tag, for example:
+Instead, you probably want to render your React Components in specific places in your HTML. Open your HTML page (or the server templates that generate it) and add a unique [`id`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/id) attribute to any tag, for example:
 
 ```html
 <!-- ... somewhere in your html ... -->
@@ -115,7 +115,7 @@ Instead, you probably want to render your React components in specific places in
 <!-- ... more html ... -->
 ```
 
-This lets you find that HTML element with [`document.getElementById`](https://developer.mozilla.org/en-US/docs/Web/API/Document/getElementById) and pass it to [`createRoot`](/reference/react-dom/client/createRoot) so that you can render your own React component inside:
+This lets you find that HTML element with [`document.getElementById`](https://developer.mozilla.org/en-US/docs/Web/API/Document/getElementById) and pass it to [`createRoot`](/reference/react-dom/client/createRoot) so that you can render your own React Component inside:
 
 <Sandpack>
 
@@ -146,9 +146,9 @@ root.render(<NavigationBar />);
 
 </Sandpack>
 
-Notice how the original HTML content from `index.html` is preserved, but your own `NavigationBar` React component now appears inside the `<nav id="navigation">` from your HTML. Read the [`createRoot` usage documentation](/reference/react-dom/client/createRoot#rendering-a-page-partially-built-with-react) to learn more about rendering React components inside an existing HTML page.
+Notice how the original HTML content from `index.html` is preserved, but your own `NavigationBar` React Component now appears inside the `<nav id="navigation">` from your HTML. Read the [`createRoot` usage documentation](/reference/react-dom/client/createRoot#rendering-a-page-partially-built-with-react) to learn more about rendering React Components inside an existing HTML page.
 
-When you adopt React in an existing project, it's common to start with small interactive components (like buttons), and then gradually keep "moving upwards" until eventually your entire page is built with React. If you ever reach that point, we recommend migrating to [a React framework](/learn/start-a-new-react-project) right after to get the most out of React.
+When you adopt React in an existing project, it's common to start with small interactive Components (like buttons), and then gradually keep "moving upwards" until eventually your entire page is built with React. If you ever reach that point, we recommend migrating to [a React framework](/learn/start-a-new-react-project) right after to get the most out of React.
 
 ## Using React Native in an existing native mobile app {/*using-react-native-in-an-existing-native-mobile-app*/}
 

@@ -10,7 +10,7 @@ React development is led by a dedicated team working full time at Meta. It also 
 
 ## React Core {/*react-core*/}
 
-The React Core team members work full time on the core component APIs, the engine that powers React DOM and React Native, React DevTools, and the React documentation website.
+The React Core team members work full time on the core Component APIs, the engine that powers React DOM and React Native, React DevTools, and the React documentation website.
 
 Current members of the React team are listed in alphabetical order below.
 

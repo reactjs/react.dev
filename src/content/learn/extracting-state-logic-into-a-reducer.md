@@ -4,7 +4,7 @@ title: Extracting State Logic into a Reducer
 
 <Intro>
 
-Components with many state updates spread across many event handlers can get overwhelming. For these cases, you can consolidate all the state update logic outside your component in a single function, called a _reducer._
+Components with many state updates spread across many event handlers can get overwhelming. For these cases, you can consolidate all the state update logic outside your Component in a single function, called a _reducer._
 
 </Intro>
 
@@ -19,7 +19,7 @@ Components with many state updates spread across many event handlers can get ove
 
 ## Consolidate state logic with a reducer {/*consolidate-state-logic-with-a-reducer*/}
 
-As your components grow in complexity, it can get harder to see at a glance all the different ways in which a component's state gets updated. For example, the `TaskApp` component below holds an array of `tasks` in state and uses three different event handlers to add, remove, and edit tasks:
+As your Components grow in complexity, it can get harder to see at a glance all the different ways in which a component's state gets updated. For example, the `TaskApp` Component below holds an array of `tasks` in state and uses three different event handlers to add, remove, and edit tasks:
 
 <Sandpack>
 
@@ -179,7 +179,7 @@ li {
 
 </Sandpack>
 
-Each of its event handlers calls `setTasks` in order to update the state. As this component grows, so does the amount of state logic sprinkled throughout it. To reduce this complexity and keep all your logic in one easy-to-access place, you can move that state logic into a single function outside your component, **called a "reducer".**
+Each of its event handlers calls `setTasks` in order to update the state. As this Component grows, so does the amount of state logic sprinkled throughout it. To reduce this complexity and keep all your logic in one easy-to-access place, you can move that state logic into a single function outside your component, **called a "reducer".**
 
 Reducers are a different way to handle state. You can migrate from `useState` to `useReducer` in three steps:
 
@@ -457,7 +457,7 @@ You probably won't need to do this yourself, but this is similar to what React d
 
 </DeepDive>
 
-### Step 3: Use the reducer from your component {/*step-3-use-the-reducer-from-your-component*/}
+### Step 3: Use the reducer from your Component {/*step-3-use-the-reducer-from-your-component*/}
 
 Finally, you need to hook up the `tasksReducer` to your component. Import the `useReducer` Hook from React:
 
@@ -489,7 +489,7 @@ And it returns:
 1. A stateful value
 2. A dispatch function (to "dispatch" user actions to the reducer)
 
-Now it's fully wired up! Here, the reducer is declared at the bottom of the component file:
+Now it's fully wired up! Here, the reducer is declared at the bottom of the Component file:
 
 <Sandpack>
 
@@ -871,7 +871,7 @@ Reducers are not without downsides! Here's a few ways you can compare them:
 - **Code size:** Generally, with `useState` you have to write less code upfront. With `useReducer`, you have to write both a reducer function _and_ dispatch actions. However, `useReducer` can help cut down on the code if many event handlers modify state in a similar way.
 - **Readability:** `useState` is very easy to read when the state updates are simple. When they get more complex, they can bloat your component's code and make it difficult to scan. In this case, `useReducer` lets you cleanly separate the _how_ of update logic from the _what happened_ of event handlers.
 - **Debugging:** When you have a bug with `useState`, it can be difficult to tell _where_ the state was set incorrectly, and _why_. With `useReducer`, you can add a console log into your reducer to see every state update, and _why_ it happened (due to which `action`). If each `action` is correct, you'll know that the mistake is in the reducer logic itself. However, you have to step through more code than with `useState`.
-- **Testing:** A reducer is a pure function that doesn't depend on your component. This means that you can export and test it separately in isolation. While generally it's best to test components in a more realistic environment, for complex state update logic it can be useful to assert that your reducer returns a particular state for a particular initial state and action.
+- **Testing:** A reducer is a pure function that doesn't depend on your component. This means that you can export and test it separately in isolation. While generally it's best to test Components in a more realistic environment, for complex state update logic it can be useful to assert that your reducer returns a particular state for a particular initial state and action.
 - **Personal preference:** Some people like reducers, others don't. That's okay. It's a matter of preference. You can always convert between `useState` and `useReducer` back and forth: they are equivalent!
 
 We recommend using a reducer if you often encounter bugs due to incorrect state updates in some component, and want to introduce more structure to its code. You don't have to use reducers for everything: feel free to mix and match! You can even `useState` and `useReducer` in the same component.
@@ -1107,7 +1107,7 @@ Replace these two `// TODO`s with the code to `dispatch` the corresponding actio
 
 <Hint>
 
-The `dispatch` function is already available in both of these components because it was passed as a prop. So you need to call `dispatch` with the corresponding action object.
+The `dispatch` function is already available in both of these Components because it was passed as a prop. So you need to call `dispatch` with the corresponding action object.
 
 To check the action object shape, you can look at the reducer and see which `action` fields it expects to see. For example, the `changed_selection` case in the reducer looks like this:
 
@@ -2071,7 +2071,7 @@ case 'edited_message': {
 }
 ```
 
-You would also update the `Messenger` component to read the message for the currently selected contact:
+You would also update the `Messenger` Component to read the message for the currently selected contact:
 
 ```js
 const message = state.messages[state.selectedId];

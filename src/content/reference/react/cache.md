@@ -27,7 +27,7 @@ const cachedFn = cache(fn);
 
 ### `cache(fn)` {/*cache*/}
 
-Call `cache` outside of any components to create a version of the function with caching.
+Call `cache` outside of any Components to create a version of the function with caching.
 
 ```js {4,7}
 import {cache} from 'react';
@@ -98,7 +98,7 @@ function TeamReport({users}) {
 }
 ```
 
-If the same `user` object is rendered in both `Profile` and `TeamReport`, the two components can share work and only call `calculateUserMetrics` once for that `user`. 
+If the same `user` object is rendered in both `Profile` and `TeamReport`, the two Components can share work and only call `calculateUserMetrics` once for that `user`. 
 
 Assume `Profile` is rendered first. It will call <CodeStep step={1}>`getUserMetrics`</CodeStep>, and check if there is a cached result. Since it is the first time `getUserMetrics` is called with that `user`, there will be a cache miss. `getUserMetrics` will then call `calculateUserMetrics` with that `user` and write the result to cache. 
 
@@ -108,7 +108,7 @@ When `TeamReport` renders its list of `users` and reaches the same `user` object
 
 ##### Calling different memoized functions will read from different caches. {/*pitfall-different-memoized-functions*/}
 
-To access the same cache, components must call the same memoized function.
+To access the same cache, Components must call the same memoized function.
 
 ```js [[1, 7, "getWeekReport"], [1, 7, "cache(calculateWeekReport)"], [1, 8, "getWeekReport"]]
 // Temperature.js
@@ -116,7 +116,7 @@ import {cache} from 'react';
 import {calculateWeekReport} from './report';
 
 export function Temperature({cityData}) {
-  // 🚩 Wrong: Calling `cache` in component creates new `getWeekReport` for each render
+  // 🚩 Wrong: Calling `cache` in Component creates new `getWeekReport` for each render
   const getWeekReport = cache(calculateWeekReport);
   const report = getWeekReport(cityData);
   // ...
@@ -137,11 +137,11 @@ export function Precipitation({cityData}) {
 }
 ```
 
-In the above example, <CodeStep step={2}>`Precipitation`</CodeStep> and <CodeStep step={1}>`Temperature`</CodeStep> each call `cache` to create a new memoized function with their own cache look-up. If both components render for the same `cityData`, they will do duplicate work to call `calculateWeekReport`.
+In the above example, <CodeStep step={2}>`Precipitation`</CodeStep> and <CodeStep step={1}>`Temperature`</CodeStep> each call `cache` to create a new memoized function with their own cache look-up. If both Components render for the same `cityData`, they will do duplicate work to call `calculateWeekReport`.
 
-In addition, `Temperature` creates a <CodeStep step={1}>new memoized function</CodeStep> each time the component is rendered which doesn't allow for any cache sharing.
+In addition, `Temperature` creates a <CodeStep step={1}>new memoized function</CodeStep> each time the Component is rendered which doesn't allow for any cache sharing.
 
-To maximize cache hits and reduce work, the two components should call the same memoized function to access the same cache. Instead, define the memoized function in a dedicated module that can be [`import`-ed](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import) across components.
+To maximize cache hits and reduce work, the two Components should call the same memoized function to access the same cache. Instead, define the memoized function in a dedicated module that can be [`import`-ed](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import) across components.
 
 ```js [[3, 5, "export default cache(calculateWeekReport)"]]
 // getWeekReport.js
@@ -170,12 +170,12 @@ export default function Precipitation({cityData}) {
   // ...
 }
 ```
-Here, both components call the <CodeStep step={3}>same memoized function</CodeStep> exported from `./getWeekReport.js` to read and write to the same cache. 
+Here, both Components call the <CodeStep step={3}>same memoized function</CodeStep> exported from `./getWeekReport.js` to read and write to the same cache. 
 </Pitfall>
 
 ### Share a snapshot of data {/*take-and-share-snapshot-of-data*/}
 
-To share a snapshot of data between components, call `cache` with a data-fetching function like `fetch`. When multiple components make the same data fetch, only one request is made and the data returned is cached and shared across components. All components refer to the same snapshot of data across the server render. 
+To share a snapshot of data between components, call `cache` with a data-fetching function like `fetch`. When multiple Components make the same data fetch, only one request is made and the data returned is cached and shared across components. All Components refer to the same snapshot of data across the server render. 
 
 ```js [[1, 4, "city"], [1, 5, "fetchTemperature(city)"], [2, 4, "getTemperature"], [2, 9, "getTemperature"], [1, 9, "city"], [2, 14, "getTemperature"], [1, 14, "city"]]
 import {cache} from 'react';
@@ -215,7 +215,7 @@ async function AnimatedWeatherCard({city}) {
 }
 ```
 [//]: # 'TODO: add link and mention to use documentation when merged'
-[//]: # 'To render components that use asynchronous data in Client Components, see `use` documentation.'
+[//]: # 'To render Components that use asynchronous data in Client Components, see `use` documentation.'
 
 </Note>
 
@@ -250,7 +250,7 @@ function Page({id}) {
 }
 ```
 
-When rendering `Page`, the component calls <CodeStep step={1}>`getUser`</CodeStep> but note that it doesn't use the returned data. This early <CodeStep step={1}>`getUser`</CodeStep> call kicks off the asynchronous database query that occurs while `Page` is doing other computational work and rendering children.
+When rendering `Page`, the Component calls <CodeStep step={1}>`getUser`</CodeStep> but note that it doesn't use the returned data. This early <CodeStep step={1}>`getUser`</CodeStep> call kicks off the asynchronous database query that occurs while `Page` is doing other computational work and rendering children.
 
 When rendering `Profile`, we call <CodeStep step={2}>`getUser`</CodeStep> again. If the initial <CodeStep step={1}>`getUser`</CodeStep> call has already returned and cached the user data, when `Profile` <CodeStep step={2}>asks and waits for this data</CodeStep>, it can simply read from the cache without requiring another remote procedure call. If the <CodeStep step={1}> initial data request</CodeStep> hasn't been completed, preloading data in this pattern reduces delay in data-fetching.
 
@@ -288,7 +288,7 @@ If the promise is already settled, either to an error or the _fulfilled_ result,
 
 <Pitfall>
 
-##### Calling a memoized function outside of a component will not use the cache. {/*pitfall-memoized-call-outside-component*/}
+##### Calling a memoized function outside of a Component will not use the cache. {/*pitfall-memoized-call-outside-component*/}
 
 ```jsx [[1, 3, "getUser"]]
 import {cache} from 'react';
@@ -297,7 +297,7 @@ const getUser = cache(async (userId) => {
   return await db.user.query(userId);
 });
 
-// 🚩 Wrong: Calling memoized function outside of component will not memoize.
+// 🚩 Wrong: Calling memoized function outside of Component will not memoize.
 getUser('demo-id');
 
 async function DemoProfile() {
@@ -341,9 +341,9 @@ function App() {
   );
 }
 ```
-In this example, `App` renders two `WeatherReport`s with the same record. Even though both components do the same work, they cannot share work. `useMemo`'s cache is only local to the component.
+In this example, `App` renders two `WeatherReport`s with the same record. Even though both Components do the same work, they cannot share work. `useMemo`'s cache is only local to the component.
 
-However, `useMemo` does ensure that if `App` re-renders and the `record` object doesn't change, each component instance would skip work and use the memoized value of `avgTemp`. `useMemo` will only cache the last computation of `avgTemp` with the given dependencies. 
+However, `useMemo` does ensure that if `App` re-renders and the `record` object doesn't change, each Component instance would skip work and use the memoized value of `avgTemp`. `useMemo` will only cache the last computation of `avgTemp` with the given dependencies. 
 
 #### `cache` {/*deep-dive-cache*/}
 
@@ -373,7 +373,7 @@ At this time, `cache` should only be used in Server Components and the cache wil
 
 #### `memo` {/*deep-dive-memo*/}
 
-You should use [`memo`](reference/react/memo) to prevent a component re-rendering if its props are unchanged.
+You should use [`memo`](reference/react/memo) to prevent a Component re-rendering if its props are unchanged.
 
 ```js
 'use client';
@@ -396,9 +396,9 @@ function App() {
 }
 ```
 
-In this example, both `MemoWeatherReport` components will call `calculateAvg` when first rendered. However, if `App` re-renders, with no changes to `record`, none of the props have changed and `MemoWeatherReport` will not re-render. 
+In this example, both `MemoWeatherReport` Components will call `calculateAvg` when first rendered. However, if `App` re-renders, with no changes to `record`, none of the props have changed and `MemoWeatherReport` will not re-render. 
 
-Compared to `useMemo`, `memo` memoizes the component render based on props vs. specific computations. Similar to `useMemo`, the memoized component only caches the last render with the last prop values. Once the props change, the cache invalidates and the component re-renders.
+Compared to `useMemo`, `memo` memoizes the Component render based on props vs. specific computations. Similar to `useMemo`, the memoized Component only caches the last render with the last prop values. Once the props change, the cache invalidates and the Component re-renders.
 
 </DeepDive>
 
@@ -410,7 +410,7 @@ Compared to `useMemo`, `memo` memoizes the component render based on props vs. s
 
 See prior mentioned pitfalls
 * [Calling different memoized functions will read from different caches.](#pitfall-different-memoized-functions)
-* [Calling a memoized function outside of a component will not use the cache.](#pitfall-memoized-call-outside-component)
+* [Calling a memoized function outside of a Component will not use the cache.](#pitfall-memoized-call-outside-component)
 
 If none of the above apply, it may be a problem with how React checks if something exists in cache.
 
@@ -441,7 +441,7 @@ function App() {
 }
 ```
 
-In this case the two `MapMarker`s look like they're doing the same work and calling `calculateNorm` with the same value of `{x: 10, y: 10, z:10}`. Even though the objects contain the same values, they are not the same object reference as each component creates its own `props` object.
+In this case the two `MapMarker`s look like they're doing the same work and calling `calculateNorm` with the same value of `{x: 10, y: 10, z:10}`. Even though the objects contain the same values, they are not the same object reference as each Component creates its own `props` object.
 
 React will call [`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is) on the input to verify if there is a cache hit.
 
@@ -470,7 +470,7 @@ function App() {
 
 One way to address this could be to pass the vector dimensions to `calculateNorm`. This works because the dimensions themselves are primitives.
 
-Another solution may be to pass the vector object itself as a prop to the component. We'll need to pass the same object to both component instances.
+Another solution may be to pass the vector object itself as a prop to the component. We'll need to pass the same object to both Component instances.
 
 ```js {3,9,14}
 import {cache} from 'react';

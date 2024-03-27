@@ -68,7 +68,7 @@ The `preinit` function provides the browser with a hint that it should start dow
 
 * Multiple calls to `preinit` with the same `href` have the same effect as a single call.
 * In the browser, you can call `preinit` in any situation: while rendering a component, in an Effect, in an event handler, and so on.
-* In server-side rendering or when rendering Server Components, `preinit` only has an effect if you call it while rendering a component or in an async context originating from rendering a component. Any other calls will be ignored.
+* In server-side rendering or when rendering Server Components, `preinit` only has an effect if you call it while rendering a Component or in an async context originating from rendering a component. Any other calls will be ignored.
 
 ---
 
@@ -76,7 +76,7 @@ The `preinit` function provides the browser with a hint that it should start dow
 
 ### Preiniting when rendering {/*preiniting-when-rendering*/}
 
-Call `preinit` when rendering a component if you know that it or its children will use a specific resource, and you're OK with the resource being evaluated and thereby taking effect immediately upon being downloaded.
+Call `preinit` when rendering a Component if you know that it or its children will use a specific resource, and you're OK with the resource being evaluated and thereby taking effect immediately upon being downloaded.
 
 <Recipes titleText="Examples of preiniting">
 

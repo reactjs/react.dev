@@ -20,7 +20,7 @@ const [state, setState] = useState(initialState)
 
 ### `useState(initialState)` {/*usestate*/}
 
-Call `useState` at the top level of your component to declare a [state variable.](/learn/state-a-components-memory)
+Call `useState` at the top level of your Component to declare a [state variable.](/learn/state-a-components-memory)
 
 ```js
 import { useState } from 'react';
@@ -50,7 +50,7 @@ The convention is to name state variables like `[something, setSomething]` using
 
 #### Caveats {/*caveats*/}
 
-* `useState` is a Hook, so you can only call it **at the top level of your component** or your own Hooks. You can't call it inside loops or conditions. If you need that, extract a new component and move the state into it.
+* `useState` is a Hook, so you can only call it **at the top level of your component** or your own Hooks. You can't call it inside loops or conditions. If you need that, extract a new Component and move the state into it.
 * In Strict Mode, React will **call your initializer function twice** in order to [help you find accidental impurities.](#my-initializer-or-updater-function-runs-twice) This is development-only behavior and does not affect production. If your initializer function is pure (as it should be), this should not affect the behavior. The result from one of the calls will be ignored.
 
 ---
@@ -81,7 +81,7 @@ function handleClick() {
 
 * The `set` function **only updates the state variable for the *next* render**. If you read the state variable after calling the `set` function, [you will still get the old value](#ive-updated-the-state-but-logging-gives-me-the-old-value) that was on the screen before your call.
 
-* If the new value you provide is identical to the current `state`, as determined by an [`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is) comparison, React will **skip re-rendering the component and its children.** This is an optimization. Although in some cases React may still need to call your component before skipping the children, it shouldn't affect your code.
+* If the new value you provide is identical to the current `state`, as determined by an [`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is) comparison, React will **skip re-rendering the Component and its children.** This is an optimization. Although in some cases React may still need to call your Component before skipping the children, it shouldn't affect your code.
 
 * React [batches state updates.](/learn/queueing-a-series-of-state-updates) It updates the screen **after all the event handlers have run** and have called their `set` functions. This prevents multiple re-renders during a single event. In the rare case that you need to force React to update the screen earlier, for example to access the DOM, you can use [`flushSync`.](/reference/react-dom/flushSync)
 
@@ -93,9 +93,9 @@ function handleClick() {
 
 ## Usage {/*usage*/}
 
-### Adding state to a component {/*adding-state-to-a-component*/}
+### Adding state to a Component {/*adding-state-to-a-component*/}
 
-Call `useState` at the top level of your component to declare one or more [state variables.](/learn/state-a-components-memory)
+Call `useState` at the top level of your Component to declare one or more [state variables.](/learn/state-a-components-memory)
 
 ```js [[1, 4, "age"], [2, 4, "setAge"], [3, 4, "42"], [1, 5, "name"], [2, 5, "setName"], [3, 5, "'Taylor'"]]
 import { useState } from 'react';
@@ -121,7 +121,7 @@ function handleClick() {
 }
 ```
 
-React will store the next state, render your component again with the new values, and update the UI.
+React will store the next state, render your Component again with the new values, and update the UI.
 
 <Pitfall>
 
@@ -910,7 +910,7 @@ React may [call your initializers twice](#my-initializer-or-updater-function-run
 
 #### Passing the initializer function {/*passing-the-initializer-function*/}
 
-This example passes the initializer function, so the `createInitialTodos` function only runs during initialization. It does not run when component re-renders, such as when you type into the input.
+This example passes the initializer function, so the `createInitialTodos` function only runs during initialization. It does not run when Component re-renders, such as when you type into the input.
 
 <Sandpack>
 
@@ -1022,7 +1022,7 @@ export default function TodoList() {
 
 You'll often encounter the `key` attribute when [rendering lists.](/learn/rendering-lists) However, it also serves another purpose.
 
-You can **reset a component's state by passing a different `key` to a component.** In this example, the Reset button changes the `version` state variable, which we pass as a `key` to the `Form`. When the `key` changes, React re-creates the `Form` component (and all of its children) from scratch, so its state gets reset.
+You can **reset a component's state by passing a different `key` to a component.** In this example, the Reset button changes the `version` state variable, which we pass as a `key` to the `Form`. When the `key` changes, React re-creates the `Form` Component (and all of its children) from scratch, so its state gets reset.
 
 Read [preserving and resetting state](/learn/preserving-and-resetting-state) to learn more.
 
@@ -1076,12 +1076,12 @@ Usually, you will update state in event handlers. However, in rare cases you mig
 In most cases, you don't need this:
 
 * **If the value you need can be computed entirely from the current props or other state, [remove that redundant state altogether.](/learn/choosing-the-state-structure#avoid-redundant-state)** If you're worried about recomputing too often, the [`useMemo` Hook](/reference/react/useMemo) can help.
-* If you want to reset the entire component tree's state, [pass a different `key` to your component.](#resetting-state-with-a-key)
+* If you want to reset the entire Component tree's state, [pass a different `key` to your component.](#resetting-state-with-a-key)
 * If you can, update all the relevant state in the event handlers.
 
-In the rare case that none of these apply, there is a pattern you can use to update state based on the values that have been rendered so far, by calling a `set` function while your component is rendering.
+In the rare case that none of these apply, there is a pattern you can use to update state based on the values that have been rendered so far, by calling a `set` function while your Component is rendering.
 
-Here's an example. This `CountLabel` component displays the `count` prop passed to it:
+Here's an example. This `CountLabel` Component displays the `count` prop passed to it:
 
 ```js src/CountLabel.js
 export default function CountLabel({ count }) {
@@ -1138,9 +1138,9 @@ button { margin-bottom: 10px; }
 
 </Sandpack>
 
-Note that if you call a `set` function while rendering, it must be inside a condition like `prevCount !== count`, and there must be a call like `setPrevCount(count)` inside of the condition. Otherwise, your component would re-render in a loop until it crashes. Also, you can only update the state of the *currently rendering* component like this. Calling the `set` function of *another* component during rendering is an error. Finally, your `set` call should still [update state without mutation](#updating-objects-and-arrays-in-state) -- this doesn't mean you can break other rules of [pure functions.](/learn/keeping-components-pure)
+Note that if you call a `set` function while rendering, it must be inside a condition like `prevCount !== count`, and there must be a call like `setPrevCount(count)` inside of the condition. Otherwise, your Component would re-render in a loop until it crashes. Also, you can only update the state of the *currently rendering* Component like this. Calling the `set` function of *another* Component during rendering is an error. Finally, your `set` call should still [update state without mutation](#updating-objects-and-arrays-in-state) -- this doesn't mean you can break other rules of [pure functions.](/learn/keeping-components-pure)
 
-This pattern can be hard to understand and is usually best avoided. However, it's better than updating state in an effect. When you call the `set` function during render, React will re-render that component immediately after your component exits with a `return` statement, and before rendering the children. This way, children don't need to render twice. The rest of your component function will still execute (and the result will be thrown away). If your condition is below all the Hook calls, you may add an early `return;` to restart rendering earlier.
+This pattern can be hard to understand and is usually best avoided. However, it's better than updating state in an effect. When you call the `set` function during render, React will re-render that Component immediately after your Component exits with a `return` statement, and before rendering the children. This way, children don't need to render twice. The rest of your Component function will still execute (and the result will be thrown away). If your condition is below all the Hook calls, you may add an early `return;` to restart rendering earlier.
 
 ---
 
@@ -1200,7 +1200,7 @@ setObj({
 
 ### I'm getting an error: "Too many re-renders" {/*im-getting-an-error-too-many-re-renders*/}
 
-You might get an error that says: `Too many re-renders. React limits the number of renders to prevent an infinite loop.` Typically, this means that you're unconditionally setting state *during render*, so your component enters a loop: render, set state (which causes a render), render, set state (which causes a render), and so on. Very often, this is caused by a mistake in specifying an event handler:
+You might get an error that says: `Too many re-renders. React limits the number of renders to prevent an infinite loop.` Typically, this means that you're unconditionally setting state *during render*, so your Component enters a loop: render, set state (which causes a render), render, set state (which causes a render), and so on. Very often, this is caused by a mistake in specifying an event handler:
 
 ```js {1-2}
 // 🚩 Wrong: calls the handler during render
@@ -1223,7 +1223,7 @@ In [Strict Mode](/reference/react/StrictMode), React will call some of your func
 
 ```js {2,5-6,11-12}
 function TodoList() {
-  // This component function will run twice for every render.
+  // This Component function will run twice for every render.
 
   const [todos, setTodos] = useState(() => {
     // This initializer function will run twice during initialization.
@@ -1241,7 +1241,7 @@ function TodoList() {
 
 This is expected and shouldn't break your code.
 
-This **development-only** behavior helps you [keep components pure.](/learn/keeping-components-pure) React uses the result of one of the calls, and ignores the result of the other call. As long as your component, initializer, and updater functions are pure, this shouldn't affect your logic. However, if they are accidentally impure, this helps you notice the mistakes.
+This **development-only** behavior helps you [keep Components pure.](/learn/keeping-components-pure) React uses the result of one of the calls, and ignores the result of the other call. As long as your component, initializer, and updater functions are pure, this shouldn't affect your logic. However, if they are accidentally impure, this helps you notice the mistakes.
 
 For example, this impure updater function mutates an array in state:
 
@@ -1263,7 +1263,7 @@ setTodos(prevTodos => {
 
 Now that this updater function is pure, calling it an extra time doesn't make a difference in behavior. This is why React calling it twice helps you find mistakes. **Only component, initializer, and updater functions need to be pure.** Event handlers don't need to be pure, so React will never call your event handlers twice.
 
-Read [keeping components pure](/learn/keeping-components-pure) to learn more.
+Read [keeping Components pure](/learn/keeping-components-pure) to learn more.
 
 ---
 

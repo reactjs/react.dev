@@ -4,14 +4,14 @@ title: Keeping Components Pure
 
 <Intro>
 
-Some JavaScript functions are *pure.* Pure functions only perform a calculation and nothing more. By strictly only writing your components as pure functions, you can avoid an entire class of baffling bugs and unpredictable behavior as your codebase grows. To get these benefits, though, there are a few rules you must follow.
+Some JavaScript functions are *pure.* Pure functions only perform a calculation and nothing more. By strictly only writing your Components as pure functions, you can avoid an entire class of baffling bugs and unpredictable behavior as your codebase grows. To get these benefits, though, there are a few rules you must follow.
 
 </Intro>
 
 <YouWillLearn>
 
 * What purity is and how it helps you avoid bugs
-* How to keep components pure by keeping changes out of the render phase
+* How to keep Components pure by keeping changes out of the render phase
 * How to use Strict Mode to find mistakes in your components
 
 </YouWillLearn>
@@ -45,7 +45,7 @@ function double(number) {
 
 In the above example, `double` is a **pure function.** If you pass it `3`, it will return `6`. Always.
 
-React is designed around this concept. **React assumes that every component you write is a pure function.** This means that React components you write must always return the same JSX given the same inputs:
+React is designed around this concept. **React assumes that every Component you write is a pure function.** This means that React Components you write must always return the same JSX given the same inputs:
 
 <Sandpack>
 
@@ -81,7 +81,7 @@ If you pass `drinkers={4}`, it will return JSX containing `4 cups of water`. Alw
 
 Just like a math formula. 
 
-You could think of your components as recipes: if you follow them and don't introduce new ingredients during the cooking process, you will get the same dish every time. That "dish" is the JSX that the component serves to React to [render.](/learn/render-and-commit)
+You could think of your Components as recipes: if you follow them and don't introduce new ingredients during the cooking process, you will get the same dish every time. That "dish" is the JSX that the Component serves to React to [render.](/learn/render-and-commit)
 
 <Illustration src="/images/docs/illustrations/i_puritea-recipe.png" alt="A tea recipe for x people: take x cups of water, add x spoons of tea and 0.5x spoons of spices, and 0.5x cups of milk" />
 
@@ -89,7 +89,7 @@ You could think of your components as recipes: if you follow them and don't intr
 
 React's rendering process must always be pure. Components should only *return* their JSX, and not *change* any objects or variables that existed before rendering—that would make them impure!
 
-Here is a component that breaks this rule:
+Here is a Component that breaks this rule:
 
 <Sandpack>
 
@@ -115,11 +115,11 @@ export default function TeaSet() {
 
 </Sandpack>
 
-This component is reading and writing a `guest` variable declared outside of it. This means that **calling this component multiple times will produce different JSX!** And what's more, if _other_ components read `guest`, they will produce different JSX, too, depending on when they were rendered! That's not predictable.
+This Component is reading and writing a `guest` variable declared outside of it. This means that **calling this Component multiple times will produce different JSX!** And what's more, if _other_ Components read `guest`, they will produce different JSX, too, depending on when they were rendered! That's not predictable.
 
 Going back to our formula <Math><MathI>y</MathI> = 2<MathI>x</MathI></Math>, now even if <Math><MathI>x</MathI> = 2</Math>, we cannot trust that <Math><MathI>y</MathI> = 4</Math>. Our tests could fail, our users would be baffled, planes would fall out of the sky—you can see how this would lead to confusing bugs!
 
-You can fix this component by [passing `guest` as a prop instead](/learn/passing-props-to-a-component):
+You can fix this Component by [passing `guest` as a prop instead](/learn/passing-props-to-a-component):
 
 <Sandpack>
 
@@ -141,9 +141,9 @@ export default function TeaSet() {
 
 </Sandpack>
 
-Now your component is pure, as the JSX it returns only depends on the `guest` prop.
+Now your Component is pure, as the JSX it returns only depends on the `guest` prop.
 
-In general, you should not expect your components to be rendered in any particular order. It doesn't matter if you call <Math><MathI>y</MathI> = 2<MathI>x</MathI></Math> before or after <Math><MathI>y</MathI> = 5<MathI>x</MathI></Math>: both formulas will resolve independently of each other. In the same way, each component should only "think for itself", and not attempt to coordinate with or depend upon others during rendering. Rendering is like a school exam: each component should calculate JSX on their own!
+In general, you should not expect your Components to be rendered in any particular order. It doesn't matter if you call <Math><MathI>y</MathI> = 2<MathI>x</MathI></Math> before or after <Math><MathI>y</MathI> = 5<MathI>x</MathI></Math>: both formulas will resolve independently of each other. In the same way, each Component should only "think for itself", and not attempt to coordinate with or depend upon others during rendering. Rendering is like a school exam: each Component should calculate JSX on their own!
 
 <DeepDive>
 
@@ -151,19 +151,19 @@ In general, you should not expect your components to be rendered in any particul
 
 Although you might not have used them all yet, in React there are three kinds of inputs that you can read while rendering: [props](/learn/passing-props-to-a-component), [state](/learn/state-a-components-memory), and [context.](/learn/passing-data-deeply-with-context) You should always treat these inputs as read-only.
 
-When you want to *change* something in response to user input, you should [set state](/learn/state-a-components-memory) instead of writing to a variable. You should never change preexisting variables or objects while your component is rendering.
+When you want to *change* something in response to user input, you should [set state](/learn/state-a-components-memory) instead of writing to a variable. You should never change preexisting variables or objects while your Component is rendering.
 
-React offers a "Strict Mode" in which it calls each component's function twice during development. **By calling the component functions twice, Strict Mode helps find components that break these rules.**
+React offers a "Strict Mode" in which it calls each component's function twice during development. **By calling the Component functions twice, Strict Mode helps find Components that break these rules.**
 
 Notice how the original example displayed "Guest #2", "Guest #4", and "Guest #6" instead of "Guest #1", "Guest #2", and "Guest #3". The original function was impure, so calling it twice broke it. But the fixed pure version works even if the function is called twice every time. **Pure functions only calculate, so calling them twice won't change anything**--just like calling `double(2)` twice doesn't change what's returned, and solving <Math><MathI>y</MathI> = 2<MathI>x</MathI></Math> twice doesn't change what <MathI>y</MathI> is. Same inputs, same outputs. Always.
 
-Strict Mode has no effect in production, so it won't slow down the app for your users. To opt into Strict Mode, you can wrap your root component into `<React.StrictMode>`. Some frameworks do this by default.
+Strict Mode has no effect in production, so it won't slow down the app for your users. To opt into Strict Mode, you can wrap your root Component into `<React.StrictMode>`. Some frameworks do this by default.
 
 </DeepDive>
 
 ### Local mutation: Your component's little secret {/*local-mutation-your-components-little-secret*/}
 
-In the above example, the problem was that the component changed a *preexisting* variable while rendering. This is often called a **"mutation"** to make it sound a bit scarier. Pure functions don't mutate variables outside of the function's scope or objects that were created before the call—that makes them impure!
+In the above example, the problem was that the Component changed a *preexisting* variable while rendering. This is often called a **"mutation"** to make it sound a bit scarier. Pure functions don't mutate variables outside of the function's scope or objects that were created before the call—that makes them impure!
 
 However, **it's completely fine to change variables and objects that you've *just* created while rendering.** In this example, you create an `[]` array, assign it to a `cups` variable, and then `push` a dozen cups into it:
 
@@ -205,21 +205,21 @@ When possible, try to express your logic with rendering alone. You'll be surpris
 
 Writing pure functions takes some habit and discipline. But it also unlocks marvelous opportunities:
 
-* Your components could run in a different environment—for example, on the server! Since they return the same result for the same inputs, one component can serve many user requests.
-* You can improve performance by [skipping rendering](/reference/react/memo) components whose inputs have not changed. This is safe because pure functions always return the same results, so they are safe to cache.
-* If some data changes in the middle of rendering a deep component tree, React can restart rendering without wasting time to finish the outdated render. Purity makes it safe to stop calculating at any time.
+* Your Components could run in a different environment—for example, on the server! Since they return the same result for the same inputs, one Component can serve many user requests.
+* You can improve performance by [skipping rendering](/reference/react/memo) Components whose inputs have not changed. This is safe because pure functions always return the same results, so they are safe to cache.
+* If some data changes in the middle of rendering a deep Component tree, React can restart rendering without wasting time to finish the outdated render. Purity makes it safe to stop calculating at any time.
 
-Every new React feature we're building takes advantage of purity. From data fetching to animations to performance, keeping components pure unlocks the power of the React paradigm.
+Every new React feature we're building takes advantage of purity. From data fetching to animations to performance, keeping Components pure unlocks the power of the React paradigm.
 
 </DeepDive>
 
 <Recap>
 
-* A component must be pure, meaning:
+* A Component must be pure, meaning:
   * **It minds its own business.** It should not change any objects or variables that existed before rendering.
-  * **Same inputs, same output.** Given the same inputs, a component should always return the same JSX. 
-* Rendering can happen at any time, so components should not depend on each others' rendering sequence.
-* You should not mutate any of the inputs that your components use for rendering. That includes props, state, and context. To update the screen, ["set" state](/learn/state-a-components-memory) instead of mutating preexisting objects.
+  * **Same inputs, same output.** Given the same inputs, a Component should always return the same JSX. 
+* Rendering can happen at any time, so Components should not depend on each others' rendering sequence.
+* You should not mutate any of the inputs that your Components use for rendering. That includes props, state, and context. To update the screen, ["set" state](/learn/state-a-components-memory) instead of mutating preexisting objects.
 * Strive to express your component's logic in the JSX you return. When you need to "change things", you'll usually want to do it in an event handler. As a last resort, you can `useEffect`.
 * Writing pure functions takes a bit of practice, but it unlocks the power of React's paradigm.
 
@@ -231,7 +231,7 @@ Every new React feature we're building takes advantage of purity. From data fetc
 
 #### Fix a broken clock {/*fix-a-broken-clock*/}
 
-This component tries to set the `<h1>`'s CSS class to `"night"` during the time from midnight to six hours in the morning, and `"day"` at all other times. However, it doesn't work. Can you fix this component?
+This Component tries to set the `<h1>`'s CSS class to `"night"` during the time from midnight to six hours in the morning, and `"day"` at all other times. However, it doesn't work. Can you fix this component?
 
 You can verify whether your solution works by temporarily changing the computer's timezone. When the current time is between midnight and six in the morning, the clock should have inverted colors!
 
@@ -301,7 +301,7 @@ body > * {
 
 <Solution>
 
-You can fix this component by calculating the `className` and including it in the render output:
+You can fix this Component by calculating the `className` and including it in the render output:
 
 <Sandpack>
 
@@ -368,7 +368,7 @@ In this example, the side effect (modifying the DOM) was not necessary at all. Y
 
 #### Fix a broken profile {/*fix-a-broken-profile*/}
 
-Two `Profile` components are rendered side by side with different data. Press "Collapse" on the first profile, and then "Expand" it. You'll notice that both profiles now show the same person. This is a bug.
+Two `Profile` Components are rendered side by side with different data. Press "Collapse" on the first profile, and then "Expand" it. You'll notice that both profiles now show the same person. This is a bug.
 
 Find the cause of the bug and fix it.
 
@@ -475,9 +475,9 @@ h1 { margin: 5px; font-size: 18px; }
 
 <Solution>
 
-The problem is that the `Profile` component writes to a preexisting variable called `currentPerson`, and the `Header` and `Avatar` components read from it. This makes *all three of them* impure and difficult to predict.
+The problem is that the `Profile` Component writes to a preexisting variable called `currentPerson`, and the `Header` and `Avatar` Components read from it. This makes *all three of them* impure and difficult to predict.
 
-To fix the bug, remove the `currentPerson` variable. Instead, pass all information from `Profile` to `Header` and `Avatar` via props. You'll need to add a `person` prop to both components and pass it all the way down.
+To fix the bug, remove the `currentPerson` variable. Instead, pass all information from `Profile` to `Header` and `Avatar` via props. You'll need to add a `person` prop to both Components and pass it all the way down.
 
 <Sandpack>
 
@@ -571,13 +571,13 @@ h1 { margin: 5px; font-size: 18px; }
 
 </Sandpack>
 
-Remember that React does not guarantee that component functions will execute in any particular order, so you can't communicate between them by setting variables. All communication must happen through props.
+Remember that React does not guarantee that Component functions will execute in any particular order, so you can't communicate between them by setting variables. All communication must happen through props.
 
 </Solution>
 
 #### Fix a broken story tray {/*fix-a-broken-story-tray*/}
 
-The CEO of your company is asking you to add "stories" to your online clock app, and you can't say no. You've written a `StoryTray` component that accepts a list of `stories`, followed by a "Create Story" placeholder.
+The CEO of your company is asking you to add "stories" to your online clock app, and you can't say no. You've written a `StoryTray` Component that accepts a list of `stories`, followed by a "Create Story" placeholder.
 
 You implemented the "Create Story" placeholder by pushing one more fake story at the end of the `stories` array that you receive as a prop. But for some reason, "Create Story" appears more than once. Fix the issue.
 
@@ -675,7 +675,7 @@ li {
 
 <Solution>
 
-Notice how whenever the clock updates, "Create Story" is added *twice*. This serves as a hint that we have a mutation during rendering--Strict Mode calls components twice to make these issues more noticeable.
+Notice how whenever the clock updates, "Create Story" is added *twice*. This serves as a hint that we have a mutation during rendering--Strict Mode calls Components twice to make these issues more noticeable.
 
 `StoryTray` function is not pure. By calling `push` on the received `stories` array (a prop!), it is mutating an object that was created *before* `StoryTray` started rendering. This makes it buggy and very difficult to predict.
 

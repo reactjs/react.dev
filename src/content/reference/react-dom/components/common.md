@@ -4,7 +4,7 @@ title: "Common Components (e.g. <div>)"
 
 <Intro>
 
-All built-in browser Components, such as [`<div>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/div), support some common props and events.
+All built-in browser components, such as [`<div>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/div), support some common props and events.
 
 </Intro>
 

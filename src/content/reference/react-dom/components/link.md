@@ -5,13 +5,13 @@ canary: true
 
 <Canary>
 
-React's extensions to `<link>` are currently only available in React's canary and experimental channels. In stable releases of React `<link>` works only as a [built-in browser HTML Component](https://react.dev/reference/react-dom/components#all-html-components). Learn more about [React's release channels here](/community/versioning-policy#all-release-channels).
+React's extensions to `<link>` are currently only available in React's canary and experimental channels. In stable releases of React `<link>` works only as a [built-in browser HTML component](https://react.dev/reference/react-dom/components#all-html-components). Learn more about [React's release channels here](/community/versioning-policy#all-release-channels).
 
 </Canary>
 
 <Intro>
 
-The [built-in browser `<link>` Component](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/link) lets you use external resources such as stylesheets or annotate the document with link metadata.
+The [built-in browser `<link>` component](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/link) lets you use external resources such as stylesheets or annotate the document with link metadata.
 
 ```js
 <link rel="icon" href="favicon.ico" />
@@ -27,7 +27,7 @@ The [built-in browser `<link>` Component](https://developer.mozilla.org/en-US/do
 
 ### `<link>` {/*link*/}
 
-To link to external resources such as stylesheets, fonts, and icons, or to annotate the document with link metadata, render the [built-in browser `<link>` Component](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/link). You can render `<link>` from any Component and React will [in most cases](#special-rendering-behavior) place the corresponding DOM element in the document head.
+To link to external resources such as stylesheets, fonts, and icons, or to annotate the document with link metadata, render the [built-in browser `<link>` component](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/link). You can render `<link>` from any Component and React will [in most cases](#special-rendering-behavior) place the corresponding DOM element in the document head.
 
 ```js
 <link rel="icon" href="favicon.ico" />

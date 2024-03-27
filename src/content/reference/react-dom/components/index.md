@@ -46,9 +46,9 @@ They are special in React because React can render them into the document head, 
 
 ---
 
-## All HTML Components {/*all-html-components*/}
+## All HTML components {/*all-html-components*/}
 
-React supports all built-in browser HTML Components. This includes:
+React supports all built-in browser HTML components. This includes:
 
 * [`<aside>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/aside)
 * [`<audio>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/audio)

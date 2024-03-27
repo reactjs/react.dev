@@ -5,14 +5,14 @@ canary: true
 
 <Canary>
 
-React's extensions to `<title>` are currently only available in React's canary and experimental channels. In stable releases of React `<title>` works only as a [built-in browser HTML Component](https://react.dev/reference/react-dom/components#all-html-components). Learn more about [React's release channels here](/community/versioning-policy#all-release-channels).
+React's extensions to `<title>` are currently only available in React's canary and experimental channels. In stable releases of React `<title>` works only as a [built-in browser HTML component](https://react.dev/reference/react-dom/components#all-html-components). Learn more about [React's release channels here](/community/versioning-policy#all-release-channels).
 
 </Canary>
 
 
 <Intro>
 
-The [built-in browser `<title>` Component](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/title) lets you specify the title of the document.
+The [built-in browser `<title>` component](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/title) lets you specify the title of the document.
 
 ```js
 <title>My Blog</title>
@@ -28,7 +28,7 @@ The [built-in browser `<title>` Component](https://developer.mozilla.org/en-US/d
 
 ### `<title>` {/*title*/}
 
-To specify the title of the document, render the [built-in browser `<title>` Component](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/title). You can render `<title>` from any Component and React will always place the corresponding DOM element in the document head.
+To specify the title of the document, render the [built-in browser `<title>` component](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/title). You can render `<title>` from any Component and React will always place the corresponding DOM element in the document head.
 
 ```js
 <title>My Blog</title>

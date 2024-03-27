@@ -2,6 +2,8 @@
 title: startTransition
 ---
 
+<AddedInVersion version="18.0.0" />
+
 <Intro>
 
 `startTransition` lets you update the state without blocking the UI.

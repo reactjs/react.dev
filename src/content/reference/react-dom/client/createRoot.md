@@ -2,6 +2,8 @@
 title: createRoot
 ---
 
+<AddedInVersion version="18.0.0" />
+
 <Intro>
 
 `createRoot` lets you create a root to display React components inside a browser DOM node.

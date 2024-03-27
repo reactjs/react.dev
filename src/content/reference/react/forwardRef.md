@@ -2,6 +2,8 @@
 title: forwardRef
 ---
 
+<AddedInVersion version="16.3.0" />
+
 <Intro>
 
 `forwardRef` lets your component expose a DOM node to parent component with a [ref.](/learn/manipulating-the-dom-with-refs)

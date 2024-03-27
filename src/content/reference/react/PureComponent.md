@@ -2,6 +2,8 @@
 title: PureComponent
 ---
 
+<AddedInVersion version="15.3.0" />
+
 <Pitfall>
 
 We recommend defining components as functions instead of classes. [See how to migrate.](#alternatives)

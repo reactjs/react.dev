@@ -2,6 +2,8 @@
 title: createPortal
 ---
 
+<AddedInVersion version="16.0.0" />
+
 <Intro>
 
 `createPortal` lets you render some children into a different part of the DOM.

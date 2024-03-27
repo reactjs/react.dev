@@ -2,6 +2,8 @@
 title: memo
 ---
 
+<AddedInVersion version="16.6.0" />
+
 <Intro>
 
 `memo` lets you skip re-rendering a component when its props are unchanged.

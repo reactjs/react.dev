@@ -2,6 +2,10 @@
 title: createFactory
 ---
 
+<AddedInVersion version="0.12.0" />
+
+[//]: # (Gets officially documented starting with 0.12.2 according to https://web.archive.org/)
+
 <Deprecated>
 
 This API will be removed in a future major version of React. [See the alternatives.](#alternatives)

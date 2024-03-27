@@ -2,6 +2,8 @@
 title: <Profiler>
 ---
 
+<AddedInVersion version="16.9.0" />
+
 <Intro>
 
 `<Profiler>` lets you measure rendering performance of a React tree programmatically.

@@ -31,6 +31,7 @@ import ButtonLink from 'components/ButtonLink';
 import {TocContext} from './TocContext';
 import type {Toc, TocItem} from './TocContext';
 import {TeamMember} from './TeamMember';
+import AddedInVersion from './AddedInVersion';
 
 import ErrorDecoder from './ErrorDecoder';
 
@@ -424,6 +425,7 @@ export const MDXComponents = {
   Illustration,
   IllustrationBlock,
   Intro,
+  AddedInVersion,
   InlineToc,
   LearnMore,
   Math,

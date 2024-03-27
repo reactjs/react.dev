@@ -2,6 +2,8 @@
 title: findDOMNode
 ---
 
+<AddedInVersion version="0.13.0" />
+
 <Deprecated>
 
 This API will be removed in a future major version of React. [See the alternatives.](#alternatives)

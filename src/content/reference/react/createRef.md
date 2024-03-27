@@ -2,6 +2,8 @@
 title: createRef
 ---
 
+<AddedInVersion version="16.3.0" />
+
 <Pitfall>
 
 `createRef` is mostly used for [class components.](/reference/react/Component) Function components typically rely on [`useRef`](/reference/react/useRef) instead.

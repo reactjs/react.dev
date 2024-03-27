@@ -2,6 +2,8 @@
 title: <Suspense>
 ---
 
+<AddedInVersion version="16.6.0" />
+
 <Intro>
 
 `<Suspense>` lets you display a fallback until its children have finished loading.

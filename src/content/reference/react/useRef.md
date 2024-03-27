@@ -2,6 +2,8 @@
 title: useRef
 ---
 
+<AddedInVersion version="16.8.0" />
+
 <Intro>
 
 `useRef` is a React Hook that lets you reference a value that's not needed for rendering.

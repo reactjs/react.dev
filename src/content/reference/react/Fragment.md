@@ -2,6 +2,8 @@
 title: <Fragment> (<>...</>)
 ---
 
+<AddedInVersion version="16.2.0" />
+
 <Intro>
 
 `<Fragment>`, often used via `<>...</>` syntax, lets you group elements without a wrapper node.

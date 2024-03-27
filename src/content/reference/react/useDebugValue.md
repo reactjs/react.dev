@@ -2,6 +2,8 @@
 title: useDebugValue
 ---
 
+<AddedInVersion version="16.8.0" />
+
 <Intro>
 
 `useDebugValue` is a React Hook that lets you add a label to a custom Hook in [React DevTools.](/learn/react-developer-tools)

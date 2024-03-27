@@ -2,6 +2,8 @@
 title: createElement
 ---
 
+<AddedInVersion version="0.11.2" />
+
 <Intro>
 
 `createElement` lets you create a React element. It serves as an alternative to writing [JSX.](/learn/writing-markup-with-jsx)

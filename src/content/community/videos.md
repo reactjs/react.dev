@@ -28,7 +28,7 @@ For a demo of upgrading to React 18, see [Shruti Kapoor](https://twitter.com/shr
 
 React 18 also includes improvements to server-side rendering performance using Suspense.
 
-Streaming server rendering lets you generate HTML from React Components on the server, and stream that HTML to your users. In React 18, you can use `Suspense` to break down your app into smaller independent units which can be streamed independently of each other without blocking the rest of the app. This means users will see your content sooner and be able to start interacting with it much faster.
+Streaming server rendering lets you generate HTML from React components on the server, and stream that HTML to your users. In React 18, you can use `Suspense` to break down your app into smaller independent units which can be streamed independently of each other without blocking the rest of the app. This means users will see your content sooner and be able to start interacting with it much faster.
 
 For a deep dive, see [Shaundai Person](https://twitter.com/shaundai)’s talk here:
 

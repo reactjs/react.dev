@@ -30,9 +30,9 @@ If you've been following our research into the future of React (we don't expect 
 
 ## A gradual adoption strategy {/*a-gradual-adoption-strategy*/}
 
-Since concurrency in React 18 is opt-in, there are no significant out-of-the-box breaking changes to Component behavior. **You can upgrade to React 18 with minimal or no changes to your application code, with a level of effort comparable to a typical major React release**. Based on our experience converting several apps to React 18, we expect that many users will be able to upgrade within a single afternoon.
+Since concurrency in React 18 is opt-in, there are no significant out-of-the-box breaking changes to component behavior. **You can upgrade to React 18 with minimal or no changes to your application code, with a level of effort comparable to a typical major React release**. Based on our experience converting several apps to React 18, we expect that many users will be able to upgrade within a single afternoon.
 
-We successfully shipped concurrent features to tens of thousands of Components at Facebook, and in our experience, we've found that most React Components “just work” without additional changes. We're committed to making sure this is a smooth upgrade for the entire community, so today we're announcing the React 18 Working Group.
+We successfully shipped concurrent features to tens of thousands of components at Facebook, and in our experience, we've found that most React components “just work” without additional changes. We're committed to making sure this is a smooth upgrade for the entire community, so today we're announcing the React 18 Working Group.
 
 ## Working with the community {/*working-with-the-community*/}
 

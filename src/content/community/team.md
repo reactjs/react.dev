@@ -10,7 +10,7 @@ React development is led by a dedicated team working full time at Meta. It also 
 
 ## React Core {/*react-core*/}
 
-The React Core team members work full time on the core Component APIs, the engine that powers React DOM and React Native, React DevTools, and the React documentation website.
+The React Core team members work full time on the core component APIs, the engine that powers React DOM and React Native, React DevTools, and the React documentation website.
 
 Current members of the React team are listed in alphabetical order below.
 
@@ -67,7 +67,7 @@ Current members of the React team are listed in alphabetical order below.
 </TeamMember>
 
 <TeamMember name="Sathya Gunasekaran " permalink="sathya-gunasekaran" photo="/images/team/sathya.jpg" github="gsathya" twitter="_gsathya" threads="gsathya.03" title="Engineer at Meta">
-    Sathya hated the Dragon Book in school but somehow ended up working on compilers all his career. When he's not compiling React Components, he's either drinking coffee or eating yet another Dosa.
+    Sathya hated the Dragon Book in school but somehow ended up working on compilers all his career. When he's not compiling React components, he's either drinking coffee or eating yet another Dosa.
 </TeamMember>
 
 <TeamMember name="Sebastian Markbåge" permalink="sebastian-markbåge" photo="/images/team/sebmarkbage.jpg" github="sebmarkbage" twitter="sebmarkbage" threads="sebmarkbage" title="Engineer at Vercel">

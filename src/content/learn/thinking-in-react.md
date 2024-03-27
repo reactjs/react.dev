@@ -37,7 +37,7 @@ Start by drawing boxes around every Component and subcomponent in the mockup and
 
 Depending on your background, you can think about splitting up a design into Components in different ways:
 
-* **Programming**--use the same techniques for deciding if you should create a new function or object. One such technique is the [single responsibility principle](https://en.wikipedia.org/wiki/Single_responsibility_principle), that is, a Component should ideally only do one thing. If it ends up growing, it should be decomposed into smaller subComponents. 
+* **Programming**--use the same techniques for deciding if you should create a new function or object. One such technique is the [single responsibility principle](https://en.wikipedia.org/wiki/Single_responsibility_principle), that is, a Component should ideally only do one thing. If it ends up growing, it should be decomposed into smaller subcomponents.
 * **CSS**--consider what you would make class selectors for. (However, Components are a bit less granular.)
 * **Design**--consider how you would organize the design's layers.
 

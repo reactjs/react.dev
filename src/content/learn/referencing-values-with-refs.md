@@ -12,7 +12,7 @@ When you want a component to "remember" some information, but you don't want tha
 
 - How to add a ref to your component
 - How to update a ref's value
-- How refs are different from state
+- How refs are different from State
 - How to use refs safely
 
 </YouWillLearn>
@@ -68,13 +68,13 @@ export default function Counter() {
 
 </Sandpack>
 
-The ref points to a number, but, like [state](/learn/state-a-components-memory), you could point to anything: a string, an object, or even a function. Unlike state, ref is a plain JavaScript object with the `current` property that you can read and modify.
+The ref points to a number, but, like [state](/learn/state-a-components-memory), you could point to anything: a string, an object, or even a function. Unlike State, ref is a plain JavaScript object with the `current` property that you can read and modify.
 
-Note that **the component doesn't re-render with every increment.** Like state, refs are retained by React between re-renders. However, setting state re-renders a component. Changing a ref does not!
+Note that **the component doesn't re-render with every increment.** Like State, refs are retained by React between re-renders. However, setting State re-renders a component. Changing a ref does not!
 
 ## Example: building a stopwatch {/*example-building-a-stopwatch*/}
 
-You can combine refs and state in a single component. For example, let's make a stopwatch that the user can start or stop by pressing a button. In order to display how much time has passed since the user pressed "Start", you will need to keep track of when the Start button was pressed and what the current time is. **This information is used for rendering, so you'll keep it in state:**
+You can combine refs and State in a single component. For example, let's make a stopwatch that the user can start or stop by pressing a button. In order to display how much time has passed since the user pressed "Start", you will need to keep track of when the Start button was pressed and what the current time is. **This information is used for rendering, so you'll keep it in state:**
 
 ```js
 const [startTime, setStartTime] = useState(null);
@@ -121,7 +121,7 @@ export default function Stopwatch() {
 
 </Sandpack>
 
-When the "Stop" button is pressed, you need to cancel the existing interval so that it stops updating the `now` state variable. You can do this by calling [`clearInterval`](https://developer.mozilla.org/en-US/docs/Web/API/clearInterval), but you need to give it the interval ID that was previously returned by the `setInterval` call when the user pressed Start. You need to keep the interval ID somewhere. **Since the interval ID is not used for rendering, you can keep it in a ref:**
+When the "Stop" button is pressed, you need to cancel the existing interval so that it stops updating the `now` State variable. You can do this by calling [`clearInterval`](https://developer.mozilla.org/en-US/docs/Web/API/clearInterval), but you need to give it the interval ID that was previously returned by the `setInterval` call when the user pressed Start. You need to keep the interval ID somewhere. **Since the interval ID is not used for rendering, you can keep it in a ref:**
 
 <Sandpack>
 
@@ -168,20 +168,20 @@ export default function Stopwatch() {
 
 </Sandpack>
 
-When a piece of information is used for rendering, keep it in state. When a piece of information is only needed by event handlers and changing it doesn't require a re-render, using a ref may be more efficient.
+When a piece of information is used for rendering, keep it in State. When a piece of information is only needed by event handlers and changing it doesn't require a re-render, using a ref may be more efficient.
 
-## Differences between refs and state {/*differences-between-refs-and-state*/}
+## Differences between refs and State {/*differences-between-refs-and-state*/}
 
-Perhaps you're thinking refs seem less "strict" than state—you can mutate them instead of always having to use a state setting function, for instance. But in most cases, you'll want to use state. Refs are an "escape hatch" you won't need often. Here's how state and refs compare:
+Perhaps you're thinking refs seem less "strict" than State—you can mutate them instead of always having to use a State setting function, for instance. But in most cases, you'll want to use State. Refs are an "escape hatch" you won't need often. Here's how State and refs compare:
 
 | refs                                                                                  | state                                                                                                                     |
 | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- |
-| `useRef(initialValue)` returns `{ current: initialValue }`                            | `useState(initialValue)` returns the current value of a state variable and a state setter function ( `[value, setValue]`) |
+| `useRef(initialValue)` returns `{ current: initialValue }`                            | `useState(initialValue)` returns the current value of a State variable and a State setter function ( `[value, setValue]`) |
 | Doesn't trigger re-render when you change it.                                         | Triggers re-render when you change it.                                                                                    |
-| Mutable—you can modify and update `current`'s value outside of the rendering process. | "Immutable"—you must use the state setting function to modify state variables to queue a re-render.                       |
-| You shouldn't read (or write) the `current` value during rendering. | You can read state at any time. However, each render has its own [snapshot](/learn/state-as-a-snapshot) of state which does not change.
+| Mutable—you can modify and update `current`'s value outside of the rendering process. | "Immutable"—you must use the State setting function to modify State variables to queue a re-render.                       |
+| You shouldn't read (or write) the `current` value during rendering. | You can read State at any time. However, each render has its own [snapshot](/learn/state-as-a-snapshot) of State which does not change.
 
-Here is a counter button that's implemented with state:
+Here is a counter button that's implemented with State:
 
 <Sandpack>
 
@@ -205,7 +205,7 @@ export default function Counter() {
 
 </Sandpack>
 
-Because the `count` value is displayed, it makes sense to use a state value for it. When the counter's value is set with `setCount()`, React re-renders the component and the screen updates to reflect the new count.
+Because the `count` value is displayed, it makes sense to use a State value for it. When the counter's value is set with `setCount()`, React re-renders the component and the screen updates to reflect the new count.
 
 If you tried to implement this with a ref, React would never re-render the component, so you'd never see the count change! See how clicking this button **does not update its text**:
 
@@ -232,7 +232,7 @@ export default function Counter() {
 
 </Sandpack>
 
-This is why reading `ref.current` during render leads to unreliable code. If you need that, use state instead.
+This is why reading `ref.current` during render leads to unreliable code. If you need that, use State instead.
 
 <DeepDive>
 
@@ -248,9 +248,9 @@ function useRef(initialValue) {
 }
 ```
 
-During the first render, `useRef` returns `{ current: initialValue }`. This object is stored by React, so during the next render the same object will be returned. Note how the state setter is unused in this example. It is unnecessary because `useRef` always needs to return the same object!
+During the first render, `useRef` returns `{ current: initialValue }`. This object is stored by React, so during the next render the same object will be returned. Note how the State setter is unused in this example. It is unnecessary because `useRef` always needs to return the same object!
 
-React provides a built-in version of `useRef` because it is common enough in practice. But you can think of it as a regular state variable without a setter. If you're familiar with object-oriented programming, refs might remind you of instance fields--but instead of `this.something` you write `somethingRef.current`.
+React provides a built-in version of `useRef` because it is common enough in practice. But you can think of it as a regular State variable without a setter. If you're familiar with object-oriented programming, refs might remind you of instance fields--but instead of `this.something` you write `somethingRef.current`.
 
 </DeepDive>
 
@@ -271,7 +271,7 @@ Following these principles will make your components more predictable:
 - **Treat refs as an escape hatch.** Refs are useful when you work with external systems or browser APIs. If much of your application logic and data flow relies on refs, you might want to rethink your approach.
 - **Don't read or write `ref.current` during rendering.** If some information is needed during rendering, use [state](/learn/state-a-components-memory) instead. Since React doesn't know when `ref.current` changes, even reading it while rendering makes your component's behavior difficult to predict. (The only exception to this is code like `if (!ref.current) ref.current = new Thing()` which only sets the ref once during the first render.)
 
-Limitations of React state don't apply to refs. For example, state acts like a [snapshot for every render](/learn/state-as-a-snapshot) and [doesn't update synchronously.](/learn/queueing-a-series-of-state-updates) But when you mutate the current value of a ref, it changes immediately:
+Limitations of React State don't apply to refs. For example, State acts like a [snapshot for every render](/learn/state-as-a-snapshot) and [doesn't update synchronously.](/learn/queueing-a-series-of-state-updates) But when you mutate the current value of a ref, it changes immediately:
 
 ```js
 ref.current = 5;
@@ -291,8 +291,8 @@ You can point a ref to any value. However, the most common use case for a ref is
 - Refs are an escape hatch to hold onto values that aren't used for rendering. You won't need them often.
 - A ref is a plain JavaScript object with a single property called `current`, which you can read or set.
 - You can ask React to give you a ref by calling the `useRef` Hook.
-- Like state, refs let you retain information between re-renders of a component.
-- Unlike state, setting the ref's `current` value does not trigger a re-render.
+- Like State, refs let you retain information between re-renders of a component.
+- Unlike State, setting the ref's `current` value does not trigger a re-render.
 - Don't read or write `ref.current` during rendering. This makes your component hard to predict.
 
 </Recap>
@@ -360,7 +360,7 @@ export default function Chat() {
 
 <Solution>
 
-Whenever your component re-renders (such as when you set state), all local variables get initialized from scratch. This is why you can't save the timeout ID in a local variable like `timeoutID` and then expect another event handler to "see" it in the future. Instead, store it in a ref, which React will preserve between renders.
+Whenever your component re-renders (such as when you set State), all local variables get initialized from scratch. This is why you can't save the timeout ID in a local variable like `timeoutID` and then expect another event handler to "see" it in the future. Instead, store it in a ref, which React will preserve between renders.
 
 <Sandpack>
 
@@ -438,7 +438,7 @@ export default function Toggle() {
 
 <Solution>
 
-In this example, the current value of a ref is used to calculate the rendering output: `{isOnRef.current ? 'On' : 'Off'}`. This is a sign that this information should not be in a ref, and should have instead been put in state. To fix it, remove the ref and use state instead:
+In this example, the current value of a ref is used to calculate the rendering output: `{isOnRef.current ? 'On' : 'Off'}`. This is a sign that this information should not be in a ref, and should have instead been put in State. To fix it, remove the ref and use State instead:
 
 <Sandpack>
 
@@ -577,11 +577,11 @@ button { display: block; margin: 10px; }
 
 </Solution>
 
-#### Read the latest state {/*read-the-latest-state*/}
+#### Read the latest State {/*read-the-latest-state*/}
 
-In this example, after you press "Send", there is a small delay before the message is shown. Type "hello", press Send, and then quickly edit the input again. Despite your edits, the alert would still show "hello" (which was the value of state [at the time](/learn/state-as-a-snapshot#state-over-time) the button was clicked).
+In this example, after you press "Send", there is a small delay before the message is shown. Type "hello", press Send, and then quickly edit the input again. Despite your edits, the alert would still show "hello" (which was the value of State [at the time](/learn/state-as-a-snapshot#state-over-time) the button was clicked).
 
-Usually, this behavior is what you want in an app. However, there may be occasional cases where you want some asynchronous code to read the *latest* version of some state. Can you think of a way to make the alert show the *current* input text rather than what it was at the time of the click?
+Usually, this behavior is what you want in an app. However, there may be occasional cases where you want some asynchronous code to read the *latest* version of some State. Can you think of a way to make the alert show the *current* input text rather than what it was at the time of the click?
 
 <Sandpack>
 
@@ -616,7 +616,7 @@ export default function Chat() {
 
 <Solution>
 
-State works [like a snapshot](/learn/state-as-a-snapshot), so you can't read the latest state from an asynchronous operation like a timeout. However, you can keep the latest input text in a ref. A ref is mutable, so you can read the `current` property at any time. Since the current text is also used for rendering, in this example, you will need *both* a state variable (for rendering), *and* a ref (to read it in the timeout). You will need to update the current ref value manually.
+State works [like a snapshot](/learn/state-as-a-snapshot), so you can't read the latest State from an asynchronous operation like a timeout. However, you can keep the latest input text in a ref. A ref is mutable, so you can read the `current` property at any time. Since the current text is also used for rendering, in this example, you will need *both* a State variable (for rendering), *and* a ref (to read it in the timeout). You will need to update the current ref value manually.
 
 <Sandpack>
 

@@ -34,7 +34,7 @@ Imagine that your components are cooks in the kitchen, assembling tasty dishes f
 There are two reasons for a component to render:
 
 1. It's the component's **initial render.**
-2. The component's (or one of its ancestors') **state has been updated.**
+2. The component's (or one of its ancestors') **State has been updated.**
 
 ### Initial render {/*initial-render*/}
 
@@ -65,9 +65,9 @@ export default function Image() {
 
 Try commenting out the `root.render()` call and see the component disappear!
 
-### Re-renders when state updates {/*re-renders-when-state-updates*/}
+### Re-renders when State updates {/*re-renders-when-state-updates*/}
 
-Once the component has been initially rendered, you can trigger further renders by updating its state with the [`set` function.](/reference/react/useState#setstate) Updating your component's state automatically queues a render. (You can imagine these as a restaurant guest ordering tea, dessert, and all sorts of things after putting in their first order, depending on the state of their thirst or hunger.)
+Once the component has been initially rendered, you can trigger further renders by updating its State with the [`set` function.](/reference/react/useState#setstate) Updating your component's state automatically queues a render. (You can imagine these as a restaurant guest ordering tea, dessert, and all sorts of things after putting in their first order, depending on the state of their thirst or hunger.)
 
 <IllustrationBlock sequential>
   <Illustration caption="State update..." alt="React as a server in a restaurant, serving a Card UI to the user, represented as a patron with a cursor for their head. They patron expresses they want a pink card, not a black one!" src="/images/docs/illustrations/i_rerender1.png" />
@@ -80,7 +80,7 @@ Once the component has been initially rendered, you can trigger further renders 
 After you trigger a render, React calls your components to figure out what to display on screen. **"Rendering" is React calling your components.**
 
 * **On initial render,** React will call the root component.
-* **For subsequent renders,** React will call the function component whose state update triggered the render.
+* **For subsequent renders,** React will call the function component whose State update triggered the render.
 
 This process is recursive: if the updated component returns some other component, React will render _that_ component next, and if that component also returns something, it will render _that_ component next, and so on. The process will continue until there are no more nested components and React knows exactly what should be displayed on screen.
 

@@ -300,7 +300,7 @@ Notice how `onClick={handleClick}` has no parentheses at the end! Do not _call_ 
 
 ## Updating the screen {/*updating-the-screen*/}
 
-Often, you'll want your component to "remember" some information and display it. For example, maybe you want to count the number of times a button is clicked. To do this, add *state* to your component.
+Often, you'll want your component to "remember" some information and display it. For example, maybe you want to count the number of times a button is clicked. To do this, add *State* to your component.
 
 First, import [`useState`](/reference/react/useState) from React:
 
@@ -308,7 +308,7 @@ First, import [`useState`](/reference/react/useState) from React:
 import { useState } from 'react';
 ```
 
-Now you can declare a *state variable* inside your component:
+Now you can declare a *State variable* inside your component:
 
 ```js
 function MyButton() {
@@ -316,9 +316,9 @@ function MyButton() {
   // ...
 ```
 
-You’ll get two things from `useState`: the current state (`count`), and the function that lets you update it (`setCount`). You can give them any names, but the convention is to write `[something, setSomething]`.
+You’ll get two things from `useState`: the current State (`count`), and the function that lets you update it (`setCount`). You can give them any names, but the convention is to write `[something, setSomething]`.
 
-The first time the button is displayed, `count` will be `0` because you passed `0` to `useState()`. When you want to change state, call `setCount()` and pass the new value to it. Clicking this button will increment the counter:
+The first time the button is displayed, `count` will be `0` because you passed `0` to `useState()`. When you want to change State, call `setCount()` and pass the new value to it. Clicking this button will increment the counter:
 
 ```js {5}
 function MyButton() {
@@ -338,7 +338,7 @@ function MyButton() {
 
 React will call your component function again. This time, `count` will be `1`. Then it will be `2`. And so on.
 
-If you render the same component multiple times, each will get its own state. Click each button separately:
+If you render the same component multiple times, each will get its own State. Click each button separately:
 
 <Sandpack>
 
@@ -379,7 +379,7 @@ button {
 
 </Sandpack>
 
-Notice how each button "remembers" its own `count` state and doesn't affect other buttons.
+Notice how each button "remembers" its own `count` State and doesn't affect other buttons.
 
 ## Using Hooks {/*using-hooks*/}
 
@@ -395,7 +395,7 @@ In the previous example, each `MyButton` had its own independent `count`, and wh
 
 <Diagram name="sharing_data_child" height={367} width={407} alt="Diagram showing a tree of three components, one parent labeled MyApp and two children labeled MyButton. Both MyButton components contain a count with value zero.">
 
-Initially, each `MyButton`'s `count` state is `0`
+Initially, each `MyButton`'s `count` State is `0`
 
 </Diagram>
 
@@ -409,7 +409,7 @@ The first `MyButton` updates its `count` to `1`
 
 However, often you'll need components to *share data and always update together*.
 
-To make both `MyButton` components display the same `count` and update together, you need to move the state from the individual buttons "upwards" to the closest component containing all of them.
+To make both `MyButton` components display the same `count` and update together, you need to move the State from the individual buttons "upwards" to the closest component containing all of them.
 
 In this example, it is `MyApp`:
 
@@ -417,13 +417,13 @@ In this example, it is `MyApp`:
 
 <Diagram name="sharing_data_parent" height={385} width={410} alt="Diagram showing a tree of three components, one parent labeled MyApp and two children labeled MyButton. MyApp contains a count value of zero which is passed down to both of the MyButton components, which also show value zero." >
 
-Initially, `MyApp`'s `count` state is `0` and is passed down to both children
+Initially, `MyApp`'s `count` State is `0` and is passed down to both children
 
 </Diagram>
 
 <Diagram name="sharing_data_parent_clicked" height={385} width={410} alt="The same diagram as the previous, with the count of the parent MyApp component highlighted indicating a click with the value incremented to one. The flow to both of the children MyButton components is also highlighted, and the count value in each child is set to one indicating the value was passed down." >
 
-On click, `MyApp` updates its `count` state to `1` and passes it down to both children
+On click, `MyApp` updates its `count` State to `1` and passes it down to both children
 
 </Diagram>
 
@@ -431,7 +431,7 @@ On click, `MyApp` updates its `count` state to `1` and passes it down to both ch
 
 Now when you click either button, the `count` in `MyApp` will change, which will change both of the counts in `MyButton`. Here's how you can express this in code.
 
-First, *move the state up* from `MyButton` into `MyApp`:
+First, *move the State up* from `MyButton` into `MyApp`:
 
 ```js {2-6,18}
 export default function MyApp() {
@@ -456,7 +456,7 @@ function MyButton() {
 
 ```
 
-Then, *pass the state down* from `MyApp` to each `MyButton`, together with the shared click handler. You can pass information to `MyButton` using the JSX curly braces, just like you previously did with built-in tags like `<img>`:
+Then, *pass the State down* from `MyApp` to each `MyButton`, together with the shared click handler. You can pass information to `MyButton` using the JSX curly braces, just like you previously did with built-in tags like `<img>`:
 
 ```js {11-12}
 export default function MyApp() {
@@ -476,7 +476,7 @@ export default function MyApp() {
 }
 ```
 
-The information you pass down like this is called _props_. Now the `MyApp` component contains the `count` state and the `handleClick` event handler, and *passes both of them down as props* to each of the buttons.
+The information you pass down like this is called _props_. Now the `MyApp` component contains the `count` State and the `handleClick` event handler, and *passes both of them down as props* to each of the buttons.
 
 Finally, change `MyButton` to *read* the props you have passed from its parent component:
 
@@ -490,7 +490,7 @@ function MyButton({ count, onClick }) {
 }
 ```
 
-When you click the button, the `onClick` handler fires. Each button's `onClick` prop was set to the `handleClick` function inside `MyApp`, so the code inside of it runs. That code calls `setCount(count + 1)`, incrementing the `count` state variable. The new `count` value is passed as a prop to each button, so they all show the new value. This is called "lifting state up". By moving state up, you've shared it between components.
+When you click the button, the `onClick` handler fires. Each button's `onClick` prop was set to the `handleClick` function inside `MyApp`, so the code inside of it runs. That code calls `setCount(count + 1)`, incrementing the `count` State variable. The new `count` value is passed as a prop to each button, so they all show the new value. This is called "lifting State up". By moving State up, you've shared it between components.
 
 <Sandpack>
 

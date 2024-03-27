@@ -4,35 +4,35 @@ title: Choosing the State Structure
 
 <Intro>
 
-Structuring state well can make a difference between a component that is pleasant to modify and debug, and one that is a constant source of bugs. Here are some tips you should consider when structuring state.
+Structuring State well can make a difference between a component that is pleasant to modify and debug, and one that is a constant source of bugs. Here are some tips you should consider when structuring State.
 
 </Intro>
 
 <YouWillLearn>
 
-* When to use a single vs multiple state variables
-* What to avoid when organizing state
-* How to fix common issues with the state structure
+* When to use a single vs multiple State variables
+* What to avoid when organizing State
+* How to fix common issues with the State structure
 
 </YouWillLearn>
 
-## Principles for structuring state {/*principles-for-structuring-state*/}
+## Principles for structuring State {/*principles-for-structuring-state*/}
 
-When you write a component that holds some state, you'll have to make choices about how many state variables to use and what the shape of their data should be. While it's possible to write correct programs even with a suboptimal state structure, there are a few principles that can guide you to make better choices:
+When you write a component that holds some State, you'll have to make choices about how many State variables to use and what the shape of their data should be. While it's possible to write correct programs even with a suboptimal State structure, there are a few principles that can guide you to make better choices:
 
-1. **Group related state.** If you always update two or more state variables at the same time, consider merging them into a single state variable.
-2. **Avoid contradictions in state.** When the state is structured in a way that several pieces of state may contradict and "disagree" with each other, you leave room for mistakes. Try to avoid this.
-3. **Avoid redundant state.** If you can calculate some information from the component's props or its existing state variables during rendering, you should not put that information into that component's state.
-4. **Avoid duplication in state.** When the same data is duplicated between multiple state variables, or within nested objects, it is difficult to keep them in sync. Reduce duplication when you can.
-5. **Avoid deeply nested state.** Deeply hierarchical state is not very convenient to update. When possible, prefer to structure state in a flat way.
+1. **Group related State.** If you always update two or more State variables at the same time, consider merging them into a single State variable.
+2. **Avoid contradictions in State.** When the State is structured in a way that several pieces of State may contradict and "disagree" with each other, you leave room for mistakes. Try to avoid this.
+3. **Avoid redundant State.** If you can calculate some information from the component's props or its existing State variables during rendering, you should not put that information into that component's State.
+4. **Avoid duplication in State.** When the same data is duplicated between multiple State variables, or within nested objects, it is difficult to keep them in sync. Reduce duplication when you can.
+5. **Avoid deeply nested State.** Deeply hierarchical State is not very convenient to update. When possible, prefer to structure State in a flat way.
 
-The goal behind these principles is to *make state easy to update without introducing mistakes*. Removing redundant and duplicate data from state helps ensure that all its pieces stay in sync. This is similar to how a database engineer might want to ["normalize" the database structure](https://docs.microsoft.com/en-us/office/troubleshoot/access/database-normalization-description) to reduce the chance of bugs. To paraphrase Albert Einstein, **"Make your state as simple as it can be--but no simpler."**
+The goal behind these principles is to *make State easy to update without introducing mistakes*. Removing redundant and duplicate data from State helps ensure that all its pieces stay in sync. This is similar to how a database engineer might want to ["normalize" the database structure](https://docs.microsoft.com/en-us/office/troubleshoot/access/database-normalization-description) to reduce the chance of bugs. To paraphrase Albert Einstein, **"Make your State as simple as it can be--but no simpler."**
 
 Now let's see how these principles apply in action.
 
-## Group related state {/*group-related-state*/}
+## Group related State {/*group-related-state*/}
 
-You might sometimes be unsure between using a single or multiple state variables.
+You might sometimes be unsure between using a single or multiple State variables.
 
 Should you do this?
 
@@ -47,7 +47,7 @@ Or this?
 const [position, setPosition] = useState({ x: 0, y: 0 });
 ```
 
-Technically, you can use either of these approaches. But **if some two state variables always change together, it might be a good idea to unify them into a single state variable.** Then you won't forget to always keep them in sync, like in this example where moving the cursor updates both coordinates of the red dot:
+Technically, you can use either of these approaches. But **if some two State variables always change together, it might be a good idea to unify them into a single State variable.** Then you won't forget to always keep them in sync, like in this example where moving the cursor updates both coordinates of the red dot:
 
 <Sandpack>
 
@@ -93,17 +93,17 @@ body { margin: 0; padding: 0; height: 250px; }
 
 </Sandpack>
 
-Another case where you'll group data into an object or an array is when you don't know how many pieces of state you'll need. For example, it's helpful when you have a form where the user can add custom fields.
+Another case where you'll group data into an object or an array is when you don't know how many pieces of State you'll need. For example, it's helpful when you have a form where the user can add custom fields.
 
 <Pitfall>
 
-If your state variable is an object, remember that [you can't update only one field in it](/learn/updating-objects-in-state) without explicitly copying the other fields. For example, you can't do `setPosition({ x: 100 })` in the above example because it would not have the `y` property at all! Instead, if you wanted to set `x` alone, you would either do `setPosition({ ...position, x: 100 })`, or split them into two state variables and do `setX(100)`.
+If your State variable is an object, remember that [you can't update only one field in it](/learn/updating-objects-in-state) without explicitly copying the other fields. For example, you can't do `setPosition({ x: 100 })` in the above example because it would not have the `y` property at all! Instead, if you wanted to set `x` alone, you would either do `setPosition({ ...position, x: 100 })`, or split them into two State variables and do `setX(100)`.
 
 </Pitfall>
 
-## Avoid contradictions in state {/*avoid-contradictions-in-state*/}
+## Avoid contradictions in State {/*avoid-contradictions-in-state*/}
 
-Here is a hotel feedback form with `isSending` and `isSent` state variables:
+Here is a hotel feedback form with `isSending` and `isSent` State variables:
 
 <Sandpack>
 
@@ -157,9 +157,9 @@ function sendMessage(text) {
 
 </Sandpack>
 
-While this code works, it leaves the door open for "impossible" states. For example, if you forget to call `setIsSent` and `setIsSending` together, you may end up in a situation where both `isSending` and `isSent` are `true` at the same time. The more complex your component is, the harder it is to understand what happened.
+While this code works, it leaves the door open for "impossible" States. For example, if you forget to call `setIsSent` and `setIsSending` together, you may end up in a situation where both `isSending` and `isSent` are `true` at the same time. The more complex your component is, the harder it is to understand what happened.
 
-**Since `isSending` and `isSent` should never be `true` at the same time, it is better to replace them with one `status` state variable that may take one of *three* valid states:** `'typing'` (initial), `'sending'`, and `'sent'`:
+**Since `isSending` and `isSent` should never be `true` at the same time, it is better to replace them with one `status` State variable that may take one of *three* valid States:** `'typing'` (initial), `'sending'`, and `'sent'`:
 
 <Sandpack>
 
@@ -221,13 +221,13 @@ const isSending = status === 'sending';
 const isSent = status === 'sent';
 ```
 
-But they're not state variables, so you don't need to worry about them getting out of sync with each other.
+But they're not State variables, so you don't need to worry about them getting out of sync with each other.
 
-## Avoid redundant state {/*avoid-redundant-state*/}
+## Avoid redundant State {/*avoid-redundant-state*/}
 
-If you can calculate some information from the component's props or its existing state variables during rendering, you **should not** put that information into that component's state.
+If you can calculate some information from the component's props or its existing State variables during rendering, you **should not** put that information into that component's State.
 
-For example, take this form. It works, but can you find any redundant state in it?
+For example, take this form. It works, but can you find any redundant State in it?
 
 <Sandpack>
 
@@ -280,7 +280,7 @@ label { display: block; margin-bottom: 5px; }
 
 </Sandpack>
 
-This form has three state variables: `firstName`, `lastName`, and `fullName`. However, `fullName` is redundant. **You can always calculate `fullName` from `firstName` and `lastName` during render, so remove it from state.**
+This form has three State variables: `firstName`, `lastName`, and `fullName`. However, `fullName` is redundant. **You can always calculate `fullName` from `firstName` and `lastName` during render, so remove it from State.**
 
 This is how you can do it:
 
@@ -334,7 +334,7 @@ label { display: block; margin-bottom: 5px; }
 
 </Sandpack>
 
-Here, `fullName` is *not* a state variable. Instead, it's calculated during render:
+Here, `fullName` is *not* a State variable. Instead, it's calculated during render:
 
 ```js
 const fullName = firstName + ' ' + lastName;
@@ -344,18 +344,18 @@ As a result, the change handlers don't need to do anything special to update it.
 
 <DeepDive>
 
-#### Don't mirror props in state {/*don-t-mirror-props-in-state*/}
+#### Don't mirror props in State {/*don-t-mirror-props-in-state*/}
 
-A common example of redundant state is code like this:
+A common example of redundant State is code like this:
 
 ```js
 function Message({ messageColor }) {
   const [color, setColor] = useState(messageColor);
 ```
 
-Here, a `color` state variable is initialized to the `messageColor` prop. The problem is that **if the parent component passes a different value of `messageColor` later (for example, `'red'` instead of `'blue'`), the `color` *state variable* would not be updated!** The state is only initialized during the first render.
+Here, a `color` State variable is initialized to the `messageColor` prop. The problem is that **if the parent component passes a different value of `messageColor` later (for example, `'red'` instead of `'blue'`), the `color` *State variable* would not be updated!** The State is only initialized during the first render.
 
-This is why "mirroring" some prop in a state variable can lead to confusion. Instead, use the `messageColor` prop directly in your code. If you want to give it a shorter name, use a constant:
+This is why "mirroring" some prop in a State variable can lead to confusion. Instead, use the `messageColor` prop directly in your code. If you want to give it a shorter name, use a constant:
 
 ```js
 function Message({ messageColor }) {
@@ -364,18 +364,18 @@ function Message({ messageColor }) {
 
 This way it won't get out of sync with the prop passed from the parent component.
 
-"Mirroring" props into state only makes sense when you *want* to ignore all updates for a specific prop. By convention, start the prop name with `initial` or `default` to clarify that its new values are ignored:
+"Mirroring" props into State only makes sense when you *want* to ignore all updates for a specific prop. By convention, start the prop name with `initial` or `default` to clarify that its new values are ignored:
 
 ```js
 function Message({ initialColor }) {
-  // The `color` state variable holds the *first* value of `initialColor`.
+  // The `color` State variable holds the *first* value of `initialColor`.
   // Further changes to the `initialColor` prop are ignored.
   const [color, setColor] = useState(initialColor);
 ```
 
 </DeepDive>
 
-## Avoid duplication in state {/*avoid-duplication-in-state*/}
+## Avoid duplication in State {/*avoid-duplication-in-state*/}
 
 This menu list component lets you choose a single travel snack out of several:
 
@@ -422,7 +422,7 @@ button { margin-top: 10px; }
 
 </Sandpack>
 
-Currently, it stores the selected item as an object in the `selectedItem` state variable. However, this is not great: **the contents of the `selectedItem` is the same object as one of the items inside the `items` list.** This means that the information about the item itself is duplicated in two places.
+Currently, it stores the selected item as an object in the `selectedItem` State variable. However, this is not great: **the contents of the `selectedItem` is the same object as one of the items inside the `items` list.** This means that the information about the item itself is duplicated in two places.
 
 Why is this a problem? Let's make each item editable:
 
@@ -487,9 +487,9 @@ button { margin-top: 10px; }
 
 </Sandpack>
 
-Notice how if you first click "Choose" on an item and *then* edit it, **the input updates but the label at the bottom does not reflect the edits.** This is because you have duplicated state, and you forgot to update `selectedItem`.
+Notice how if you first click "Choose" on an item and *then* edit it, **the input updates but the label at the bottom does not reflect the edits.** This is because you have duplicated State, and you forgot to update `selectedItem`.
 
-Although you could update `selectedItem` too, an easier fix is to remove duplication. In this example, instead of a `selectedItem` object (which creates a duplication with objects inside `items`), you hold the `selectedId` in state, and *then* get the `selectedItem` by searching the `items` array for an item with that ID:
+Although you could update `selectedItem` too, an easier fix is to remove duplication. In this example, instead of a `selectedItem` object (which creates a duplication with objects inside `items`), you hold the `selectedId` in State, and *then* get the `selectedItem` by searching the `items` array for an item with that ID:
 
 <Sandpack>
 
@@ -554,7 +554,7 @@ button { margin-top: 10px; }
 
 </Sandpack>
 
-The state used to be duplicated like this:
+The State used to be duplicated like this:
 
 * `items = [{ id: 0, title: 'pretzels'}, ...]`
 * `selectedItem = {id: 0, title: 'pretzels'}`
@@ -564,11 +564,11 @@ But after the change it's like this:
 * `items = [{ id: 0, title: 'pretzels'}, ...]`
 * `selectedId = 0`
 
-The duplication is gone, and you only keep the essential state!
+The duplication is gone, and you only keep the essential State!
 
-Now if you edit the *selected* item, the message below will update immediately. This is because `setItems` triggers a re-render, and `items.find(...)` would find the item with the updated title. You didn't need to hold *the selected item* in state, because only the *selected ID* is essential. The rest could be calculated during render.
+Now if you edit the *selected* item, the message below will update immediately. This is because `setItems` triggers a re-render, and `items.find(...)` would find the item with the updated title. You didn't need to hold *the selected item* in State, because only the *selected ID* is essential. The rest could be calculated during render.
 
-## Avoid deeply nested state {/*avoid-deeply-nested-state*/}
+## Avoid deeply nested State {/*avoid-deeply-nested-state*/}
 
 Imagine a travel plan consisting of planets, continents, and countries. You might be tempted to structure its state using nested objects and arrays, like in this example:
 
@@ -814,7 +814,7 @@ export const initialTravelPlan = {
 
 Now let's say you want to add a button to delete a place you've already visited. How would you go about it? [Updating nested state](/learn/updating-objects-in-state#updating-a-nested-object) involves making copies of objects all the way up from the part that changed. Deleting a deeply nested place would involve copying its entire parent place chain. Such code can be very verbose.
 
-**If the state is too nested to update easily, consider making it "flat".** Here is one way you can restructure this data. Instead of a tree-like structure where each `place` has an array of *its child places*, you can have each place hold an array of *its child place IDs*. Then store a mapping from each place ID to the corresponding place.
+**If the State is too nested to update easily, consider making it "flat".** Here is one way you can restructure this data. Instead of a tree-like structure where each `place` has an array of *its child places*, you can have each place hold an array of *its child place IDs*. Then store a mapping from each place ID to the corresponding place.
 
 This data restructuring might remind you of seeing a database table:
 
@@ -1118,9 +1118,9 @@ export const initialTravelPlan = {
 
 </Sandpack>
 
-**Now that the state is "flat" (also known as "normalized"), updating nested items becomes easier.**
+**Now that the State is "flat" (also known as "normalized"), updating nested items becomes easier.**
 
-In order to remove a place now, you only need to update two levels of state:
+In order to remove a place now, you only need to update two levels of State:
 
 - The updated version of its *parent* place should exclude the removed ID from its `childIds` array.
 - The updated version of the root "table" object should include the updated version of the parent place.
@@ -1145,7 +1145,7 @@ export default function TravelPlan() {
       childIds: parent.childIds
         .filter(id => id !== childId)
     };
-    // Update the root state object...
+    // Update the root State object...
     setPlan({
       ...plan,
       // ...so that it has the updated parent.
@@ -1458,7 +1458,7 @@ button { margin: 10px; }
 
 </Sandpack>
 
-You can nest state as much as you like, but making it "flat" can solve numerous problems. It makes state easier to update, and it helps ensure you don't have duplication in different parts of a nested object.
+You can nest State as much as you like, but making it "flat" can solve numerous problems. It makes State easier to update, and it helps ensure you don't have duplication in different parts of a nested object.
 
 <DeepDive>
 
@@ -1817,17 +1817,17 @@ button { margin: 10px; }
 
 </DeepDive>
 
-Sometimes, you can also reduce state nesting by moving some of the nested state into the child components. This works well for ephemeral UI state that doesn't need to be stored, like whether an item is hovered.
+Sometimes, you can also reduce State nesting by moving some of the nested State into the child components. This works well for ephemeral UI State that doesn't need to be stored, like whether an item is hovered.
 
 <Recap>
 
-* If two state variables always update together, consider merging them into one. 
-* Choose your state variables carefully to avoid creating "impossible" states.
-* Structure your state in a way that reduces the chances that you'll make a mistake updating it.
-* Avoid redundant and duplicate state so that you don't need to keep it in sync.
-* Don't put props *into* state unless you specifically want to prevent updates.
-* For UI patterns like selection, keep ID or index in state instead of the object itself.
-* If updating deeply nested state is complicated, try flattening it.
+* If two State variables always update together, consider merging them into one. 
+* Choose your State variables carefully to avoid creating "impossible" States.
+* Structure your State in a way that reduces the chances that you'll make a mistake updating it.
+* Avoid redundant and duplicate State so that you don't need to keep it in sync.
+* Don't put props *into* State unless you specifically want to prevent updates.
+* For UI patterns like selection, keep ID or index in State instead of the object itself.
+* If updating deeply nested State is complicated, try flattening it.
 
 </Recap>
 
@@ -1890,7 +1890,7 @@ export default function App() {
 
 <Solution>
 
-The issue is that this component has `color` state initialized with the initial value of the `color` prop. But when the `color` prop changes, this does not affect the state variable! So they get out of sync. To fix this issue, remove the state variable altogether, and use the `color` prop directly.
+The issue is that this component has `color` State initialized with the initial value of the `color` prop. But when the `color` prop changes, this does not affect the State variable! So they get out of sync. To fix this issue, remove the State variable altogether, and use the `color` prop directly.
 
 <Sandpack>
 
@@ -2002,7 +2002,7 @@ This packing list has a footer that shows how many items are packed, and how man
 
 <Hint>
 
-Is any state in this example redundant?
+Is any State in this example redundant?
 
 </Hint>
 
@@ -2143,7 +2143,7 @@ ul, li { margin: 0; padding: 0; }
 
 <Solution>
 
-Although you could carefully change each event handler to update the `total` and `packed` counters correctly, the root problem is that these state variables exist at all. They are redundant because you can always calculate the number of items (packed or total) from the `items` array itself. Remove the redundant state to fix the bug:
+Although you could carefully change each event handler to update the `total` and `packed` counters correctly, the root problem is that these State variables exist at all. They are redundant because you can always calculate the number of items (packed or total) from the `items` array itself. Remove the redundant State to fix the bug:
 
 <Sandpack>
 
@@ -2282,7 +2282,7 @@ Notice how the event handlers are only concerned with calling `setItems` after t
 
 #### Fix the disappearing selection {/*fix-the-disappearing-selection*/}
 
-There is a list of `letters` in state. When you hover or focus a particular letter, it gets highlighted. The currently highlighted letter is stored in the `highlightedLetter` state variable. You can "star" and "unstar" individual letters, which updates the `letters` array in state.
+There is a list of `letters` in State. When you hover or focus a particular letter, it gets highlighted. The currently highlighted letter is stored in the `highlightedLetter` State variable. You can "star" and "unstar" individual letters, which updates the `letters` array in State.
 
 This code works, but there is a minor UI glitch. When you press "Star" or "Unstar", the highlighting disappears for a moment. However, it reappears as soon as you move your pointer or switch to another letter with keyboard. Why is this happening? Fix it so that the highlighting doesn't disappear after the button click.
 
@@ -2391,9 +2391,9 @@ li { border-radius: 5px; }
 
 <Solution>
 
-The problem is that you're holding the letter object in `highlightedLetter`. But you're also holding the same information in the `letters` array. So your state has duplication! When you update the `letters` array after the button click, you create a new letter object which is different from `highlightedLetter`. This is why `highlightedLetter === letter` check becomes `false`, and the highlight disappears. It reappears the next time you call `setHighlightedLetter` when the pointer moves.
+The problem is that you're holding the letter object in `highlightedLetter`. But you're also holding the same information in the `letters` array. So your State has duplication! When you update the `letters` array after the button click, you create a new letter object which is different from `highlightedLetter`. This is why `highlightedLetter === letter` check becomes `false`, and the highlight disappears. It reappears the next time you call `setHighlightedLetter` when the pointer moves.
 
-To fix the issue, remove the duplication from state. Instead of storing *the letter itself* in two places, store the `highlightedId` instead. Then you can check `isHighlighted` for each letter with `letter.id === highlightedId`, which will work even if the `letter` object has changed since the last render.
+To fix the issue, remove the duplication from State. Instead of storing *the letter itself* in two places, store the `highlightedId` instead. Then you can check `isHighlighted` for each letter with `letter.id === highlightedId`, which will work even if the `letter` object has changed since the last render.
 
 <Sandpack>
 
@@ -2502,13 +2502,13 @@ li { border-radius: 5px; }
 
 #### Implement multiple selection {/*implement-multiple-selection*/}
 
-In this example, each `Letter` has an `isSelected` prop and an `onToggle` handler that marks it as selected. This works, but the state is stored as a `selectedId` (either `null` or an ID), so only one letter can get selected at any given time.
+In this example, each `Letter` has an `isSelected` prop and an `onToggle` handler that marks it as selected. This works, but the State is stored as a `selectedId` (either `null` or an ID), so only one letter can get selected at any given time.
 
-Change the state structure to support multiple selection. (How would you structure it? Think about this before writing the code.) Each checkbox should become independent from the others. Clicking a selected letter should uncheck it. Finally, the footer should show the correct number of the selected items.
+Change the State structure to support multiple selection. (How would you structure it? Think about this before writing the code.) Each checkbox should become independent from the others. Clicking a selected letter should uncheck it. Finally, the footer should show the correct number of the selected items.
 
 <Hint>
 
-Instead of a single selected ID, you might want to hold an array or a [Set](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set) of selected IDs in state.
+Instead of a single selected ID, you might want to hold an array or a [Set](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set) of selected IDs in State.
 
 </Hint>
 
@@ -2609,7 +2609,7 @@ label { width: 100%; padding: 5px; display: inline-block; }
 
 <Solution>
 
-Instead of a single `selectedId`, keep a `selectedIds` *array* in state. For example, if you select the first and the last letter, it would contain `[0, 2]`. When nothing is selected, it would be an empty `[]` array:
+Instead of a single `selectedId`, keep a `selectedIds` *array* in State. For example, if you select the first and the last letter, it would contain `[0, 2]`. When nothing is selected, it would be an empty `[]` array:
 
 <Sandpack>
 
@@ -2717,7 +2717,7 @@ label { width: 100%; padding: 5px; display: inline-block; }
 
 One minor downside of using an array is that for each item, you're calling `selectedIds.includes(letter.id)` to check whether it's selected. If the array is very large, this can become a performance problem because array search with [`includes()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/includes) takes linear time, and you're doing this search for each individual item.
 
-To fix this, you can hold a [Set](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set) in state instead, which provides a fast [`has()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/has) operation:
+To fix this, you can hold a [Set](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set) in State instead, which provides a fast [`has()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/has) operation:
 
 <Sandpack>
 
@@ -2822,7 +2822,7 @@ label { width: 100%; padding: 5px; display: inline-block; }
 
 Now each item does a `selectedIds.has(letter.id)` check, which is very fast.
 
-Keep in mind that you [should not mutate objects in state](/learn/updating-objects-in-state), and that includes Sets, too. This is why the `handleToggle` function creates a *copy* of the Set first, and then updates that copy.
+Keep in mind that you [should not mutate objects in State](/learn/updating-objects-in-state), and that includes Sets, too. This is why the `handleToggle` function creates a *copy* of the Set first, and then updates that copy.
 
 </Solution>
 

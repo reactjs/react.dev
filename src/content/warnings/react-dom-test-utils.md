@@ -66,7 +66,7 @@ const element = document.querySelector('button');
 fireEvent.click(element);
 ```
 
-Be aware, that `fireEvent` dispatches an actual event on the element and doesn't just synthetically call the event handler.
+Be aware that `fireEvent` dispatches an actual event on the element and doesn't just synthetically call the event handler.
 
 ### List of all removed APIs {/*list-of-all-removed-apis-list-of-all-removed-apis*/}
 

@@ -10,20 +10,20 @@ Welcome to the React documentation! This page will give you an introduction to t
 
 <YouWillLearn>
 
-- How to create and nest components
+- How to create and nest Components
 - How to add markup and styles
 - How to display data
 - How to render conditions and lists
 - How to respond to events and update the screen
-- How to share data between components
+- How to share data between Components
 
 </YouWillLearn>
 
-## Creating and nesting components {/*components*/}
+## Creating and nesting Components {/*components*/}
 
-React apps are made out of *components*. A component is a piece of the UI (user interface) that has its own logic and appearance. A component can be as small as a button, or as large as an entire page.
+React apps are made out of *Components*. A Component is a piece of the UI (user interface) that has its own logic and appearance. A Component can be as small as a button, or as large as an entire page.
 
-React components are JavaScript functions that return markup:
+React Components are JavaScript functions that return markup:
 
 ```js
 function MyButton() {
@@ -33,7 +33,7 @@ function MyButton() {
 }
 ```
 
-Now that you've declared `MyButton`, you can nest it into another component:
+Now that you've declared `MyButton`, you can nest it into another Component:
 
 ```js {5}
 export default function MyApp() {
@@ -46,7 +46,7 @@ export default function MyApp() {
 }
 ```
 
-Notice that `<MyButton />` starts with a capital letter. That's how you know it's a React component. React component names must always start with a capital letter, while HTML tags must be lowercase.
+Notice that `<MyButton />` starts with a capital letter. That's how you know it's a React Component. React Component names must always start with a capital letter, while HTML tags must be lowercase.
 
 Have a look at the result:
 
@@ -79,7 +79,7 @@ The `export default` keywords specify the main component in the file. If you're 
 
 The markup syntax you've seen above is called *JSX*. It is optional, but most React projects use JSX for its convenience. All of the [tools we recommend for local development](/learn/installation) support JSX out of the box.
 
-JSX is stricter than HTML. You have to close tags like `<br />`. Your component also can't return multiple JSX tags. You have to wrap them into a shared parent, like a `<div>...</div>` or an empty `<>...</>` wrapper:
+JSX is stricter than HTML. You have to close tags like `<br />`. Your Component also can't return multiple JSX tags. You have to wrap them into a shared parent, like a `<div>...</div>` or an empty `<>...</>` wrapper:
 
 ```js {3,6}
 function AboutPage() {

@@ -1501,7 +1501,7 @@ main {
 
 ---
 
-### Displaying an error to users with an error boundary {/*displaying-an-error-to-users-with-error-boundary*/}
+### Displaying an error to users with an Error Boundary {/*displaying-an-error-to-users-with-error-boundary*/}
 
 <Canary>
 
@@ -1509,7 +1509,7 @@ Error Boundary for useTransition is currently only available in React's canary a
 
 </Canary>
 
-If a function passed to `startTransition` throws an error, you can display an error to your user with an [error boundary](/reference/react/Component#catching-rendering-errors-with-an-error-boundary). To use an error boundary, wrap the component where you are calling the `useTransition` in an error boundary. Once the function passed to `startTransition` errors, the fallback for the error boundary will be displayed.
+If a function passed to `startTransition` throws an error, you can display an error to your user with an [Error Boundary](/reference/react/Component#catching-rendering-errors-with-an-error-boundary). To use an Error Boundary, wrap the component where you are calling the `useTransition` in an Error Boundary. Once the function passed to `startTransition` errors, the fallback for the Error Boundary will be displayed.
 
 <Sandpack>
 
@@ -1528,7 +1528,7 @@ export function AddCommentContainer() {
 function addComment(comment) {
   // For demonstration purposes to show Error Boundary
   if (comment == null) {
-    throw new Error("Example Error: An error thrown to trigger error boundary");
+    throw new Error("Example Error: An error thrown to trigger Error Boundary");
   }
 }
 

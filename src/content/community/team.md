@@ -67,7 +67,7 @@ Current members of the React team are listed in alphabetical order below.
 </TeamMember>
 
 <TeamMember name="Sathya Gunasekaran " permalink="sathya-gunasekaran" photo="/images/team/sathya.jpg" github="gsathya" twitter="_gsathya" threads="gsathya.03" title="Engineer at Meta">
-    Sathya hated the Dragon Book in school but somehow ended up working on compilers all his career. When he's not compiling React components, he's either drinking coffee or eating yet another Dosa.
+    Sathya hated the Dragon Book in school but somehow ended up working on compilers all his career. When he's not compiling React Components, he's either drinking coffee or eating yet another Dosa.
 </TeamMember>
 
 <TeamMember name="Sebastian Markbåge" permalink="sebastian-markbåge" photo="/images/team/sebmarkbage.jpg" github="sebmarkbage" twitter="sebmarkbage" threads="sebmarkbage" title="Engineer at Vercel">

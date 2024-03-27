@@ -18,7 +18,7 @@ In React Labs posts, we write about projects in active research and development.
 
 React Server Components (or RSC) is a new application architecture designed by the React team.
 
-We've first shared our research on RSC in an [introductory talk](/blog/2020/12/21/data-fetching-with-react-server-components) and an [RFC](https://github.com/reactjs/rfcs/pull/188). To recap them, we are introducing a new kind of component--Server Components--that run ahead of time and are excluded from your JavaScript bundle. Server Components can run during the build, letting you read from the filesystem or fetch static content. They can also run on the server, letting you access your data layer without having to build an API. You can pass data by props from Server Components to the interactive Client Components in the browser.
+We've first shared our research on RSC in an [introductory talk](/blog/2020/12/21/data-fetching-with-react-server-components) and an [RFC](https://github.com/reactjs/rfcs/pull/188). To recap them, we are introducing a new kind of Component--Server Components--that run ahead of time and are excluded from your JavaScript bundle. Server Components can run during the build, letting you read from the filesystem or fetch static content. They can also run on the server, letting you access your data layer without having to build an API. You can pass data by props from Server Components to the interactive Client Components in the browser.
 
 RSC combines the simple "request/response" mental model of server-centric Multi-Page Apps with the seamless interactivity of client-centric Single-Page Apps, giving you the best of both worlds.
 
@@ -36,7 +36,7 @@ We generally recommend using an existing framework, but if you need to build you
 
 [Suspense](/reference/react/Suspense) lets you specify what to display on the screen while the data or code for your Components is still being loaded. This lets your users progressively see more content while the page is loading as well as during the router navigations that load more data and code. However, from the user's perspective, data loading and rendering do not tell the whole story when considering whether new content is ready. By default, browsers load stylesheets, fonts, and images independently, which can lead to UI jumps and consecutive layout shifts.
 
-We're working to fully integrate Suspense with the loading lifecycle of stylesheets, fonts, and images, so that React takes them into account to determine whether the content is ready to be displayed. Without any change to the way you author your React components, updates will behave in a more coherent and pleasing manner. As an optimization, we will also provide a manual way to preload assets like fonts directly from components.
+We're working to fully integrate Suspense with the loading lifecycle of stylesheets, fonts, and images, so that React takes them into account to determine whether the content is ready to be displayed. Without any change to the way you author your React Components, updates will behave in a more coherent and pleasing manner. As an optimization, we will also provide a manual way to preload assets like fonts directly from Components.
 
 We are currently implementing these features and will have more to share soon.
 
@@ -74,7 +74,7 @@ Making plain JavaScript in React Components reactive requires a compiler with a 
 
 ## Offscreen Rendering {/*offscreen-rendering*/}
 
-Offscreen rendering is an upcoming capability in React for rendering screens in the background without additional performance overhead. You can think of it as a version of the [`content-visibility` CSS property](https://developer.mozilla.org/en-US/docs/Web/CSS/content-visibility) that works not only for DOM elements but React components, too. During our research, we've discovered a variety of use cases:
+Offscreen rendering is an upcoming capability in React for rendering screens in the background without additional performance overhead. You can think of it as a version of the [`content-visibility` CSS property](https://developer.mozilla.org/en-US/docs/Web/CSS/content-visibility) that works not only for DOM elements but React Components, too. During our research, we've discovered a variety of use cases:
 
 - A router can prerender screens in the background so that when a user navigates to them, they're instantly available.
 - A tab switching Component can preserve the state of hidden tabs, so the user can switch between them without losing their progress.
@@ -83,7 +83,7 @@ Offscreen rendering is an upcoming capability in React for rendering screens in 
 
 Most React developers will not interact with React's offscreen APIs directly. Instead, offscreen rendering will be integrated into things like routers and UI libraries, and then developers who use those libraries will automatically benefit without additional work.
 
-The idea is that you should be able to render any React tree offscreen without changing the way you write your components. When a Component is rendered offscreen, it does not actually *mount* until the Component becomes visible — its effects are not fired. For example, if a Component uses `useEffect` to log analytics when it appears for the first time, prerendering won't mess up the accuracy of those analytics. Similarly, when a Component goes offscreen, its effects are unmounted, too. A key feature of offscreen rendering is that you can toggle the visibility of a Component without losing its state.
+The idea is that you should be able to render any React tree offscreen without changing the way you write your Components. When a Component is rendered offscreen, it does not actually *mount* until the Component becomes visible — its effects are not fired. For example, if a Component uses `useEffect` to log analytics when it appears for the first time, prerendering won't mess up the accuracy of those analytics. Similarly, when a Component goes offscreen, its effects are unmounted, too. A key feature of offscreen rendering is that you can toggle the visibility of a Component without losing its state.
 
 Since our last update, we've tested an experimental version of prerendering internally at Meta in our React Native apps on Android and iOS, with positive performance results. We've also improved how offscreen rendering works with Suspense — suspending inside an offscreen tree will not trigger Suspense fallbacks. Our remaining work involves finalizing the primitives that are exposed to library developers. We expect to publish an RFC later this year, alongside an experimental API for testing and feedback.
 

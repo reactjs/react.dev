@@ -4,7 +4,7 @@ title: "React DOM Components"
 
 <Intro>
 
-React supports all of the browser built-in [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML/Element) and [SVG](https://developer.mozilla.org/en-US/docs/Web/SVG/Element) components.
+React supports all of the browser built-in [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML/Element) and [SVG](https://developer.mozilla.org/en-US/docs/Web/SVG/Element) Components.
 
 </Intro>
 
@@ -42,13 +42,13 @@ These bulit-in browser Components let you load external resources or annotate th
 * [`<style>`](/reference/react-dom/components/style)
 * [`<title>`](/reference/react-dom/components/title)
 
-They are special in React because React can render them into the document head, suspend while resources are loading, and enact other behaviors that are described on the reference page for each specific component.
+They are special in React because React can render them into the document head, suspend while resources are loading, and enact other behaviors that are described on the reference page for each specific Component.
 
 ---
 
 ## All HTML Components {/*all-html-components*/}
 
-React supports all built-in browser HTML components. This includes:
+React supports all built-in browser HTML Components. This includes:
 
 * [`<aside>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/aside)
 * [`<audio>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/audio)
@@ -185,7 +185,7 @@ Experimental versions of React may contain bugs. Don't use them in production.
 
 ## All SVG Components {/*all-svg-components*/}
 
-React supports all built-in browser SVG components. This includes:
+React supports all built-in browser SVG Components. This includes:
 
 * [`<a>`](https://developer.mozilla.org/en-US/docs/Web/SVG/Element/a)
 * [`<animate>`](https://developer.mozilla.org/en-US/docs/Web/SVG/Element/animate)

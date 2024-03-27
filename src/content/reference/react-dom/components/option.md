@@ -4,7 +4,7 @@ title: "<option>"
 
 <Intro>
 
-The [built-in browser `<option>` component](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/option) lets you render an option inside a [`<select>`](/reference/react-dom/components/select) box.
+The [built-in browser `<option>` Component](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/option) lets you render an option inside a [`<select>`](/reference/react-dom/components/select) box.
 
 ```js
 <select>
@@ -23,7 +23,7 @@ The [built-in browser `<option>` component](https://developer.mozilla.org/en-US/
 
 ### `<option>` {/*option*/}
 
-The [built-in browser `<option>` component](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/option) lets you render an option inside a [`<select>`](/reference/react-dom/components/select) box.
+The [built-in browser `<option>` Component](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/option) lets you render an option inside a [`<select>`](/reference/react-dom/components/select) box.
 
 ```js
 <select>
@@ -56,7 +56,7 @@ Additionally, `<option>` supports these props:
 
 Render a `<select>` with a list of `<option>` Components inside to display a select box. Give each `<option>` a `value` representing the data to be submitted with the form.
 
-[Read more about displaying a `<select>` with a list of `<option>` components.](/reference/react-dom/components/select)
+[Read more about displaying a `<select>` with a list of `<option>` Components.](/reference/react-dom/components/select)
 
 <Sandpack>
 

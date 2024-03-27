@@ -151,7 +151,7 @@ export function HomeContent() {
             <Header>Create user interfaces from components</Header>
             <Para>
               React lets you build user interfaces out of individual pieces
-              called components. Create your own React Components like{' '}
+              called Components. Create your own React Components like{' '}
               <Code>Thumbnail</Code>, <Code>LikeButton</Code>, and{' '}
               <Code>Video</Code>. Then combine them into entire screens, pages,
               and apps.
@@ -209,7 +209,7 @@ export function HomeContent() {
           <Center>
             <Para>
               You don’t have to build your whole page in React. Add React to
-              your existing HTML page, and render interactive React components
+              your existing HTML page, and render interactive React Components
               anywhere on it.
             </Para>
             <div className="flex justify-start w-full lg:justify-center">
@@ -245,7 +245,7 @@ export function HomeContent() {
               React is also an architecture. Frameworks that implement it let
               you fetch data in asynchronous Components that run on the server
               or even during the build. Read data from a file or a database, and
-              pass it down to your interactive components.
+              pass it down to your interactive Components.
             </Para>
             <div className="flex justify-start w-full lg:justify-center">
               <CTA

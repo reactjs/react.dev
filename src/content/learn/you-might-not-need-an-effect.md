@@ -4,13 +4,13 @@ title: 'You Might Not Need an Effect'
 
 <Intro>
 
-Effects are an escape hatch from the React paradigm. They let you "step outside" of React and synchronize your Components with some external system like a non-React widget, network, or the browser DOM. If there is no external system involved (for example, if you want to update a component's state when some props or state change), you shouldn't need an Effect. Removing unnecessary Effects will make your code easier to follow, faster to run, and less error-prone.
+Effects are an escape hatch from the React paradigm. They let you "step outside" of React and synchronize your Components with some external system like a non-React widget, network, or the browser DOM. If there is no external system involved (for example, if you want to update a Component's state when some props or state change), you shouldn't need an Effect. Removing unnecessary Effects will make your code easier to follow, faster to run, and less error-prone.
 
 </Intro>
 
 <YouWillLearn>
 
-* Why and how to remove unnecessary Effects from your components
+* Why and how to remove unnecessary Effects from your Components
 * How to cache expensive computations without Effects
 * How to reset and adjust Component state without Effects
 * How to share logic between event handlers
@@ -23,10 +23,10 @@ Effects are an escape hatch from the React paradigm. They let you "step outside"
 
 There are two common cases in which you don't need Effects:
 
-* **You don't need Effects to transform data for rendering.** For example, let's say you want to filter a list before displaying it. You might feel tempted to write an Effect that updates a state variable when the list changes. However, this is inefficient. When you update the state, React will first call your Component functions to calculate what should be on the screen. Then React will ["commit"](/learn/render-and-commit) these changes to the DOM, updating the screen. Then React will run your Effects. If your Effect *also* immediately updates the state, this restarts the whole process from scratch! To avoid the unnecessary render passes, transform all the data at the top level of your components. That code will automatically re-run whenever your props or state change.
+* **You don't need Effects to transform data for rendering.** For example, let's say you want to filter a list before displaying it. You might feel tempted to write an Effect that updates a state variable when the list changes. However, this is inefficient. When you update the state, React will first call your Component functions to calculate what should be on the screen. Then React will ["commit"](/learn/render-and-commit) these changes to the DOM, updating the screen. Then React will run your Effects. If your Effect *also* immediately updates the state, this restarts the whole process from scratch! To avoid the unnecessary render passes, transform all the data at the top level of your Components. That code will automatically re-run whenever your props or state change.
 * **You don't need Effects to handle user events.** For example, let's say you want to send an `/api/buy` POST request and show a notification when the user buys a product. In the Buy button click event handler, you know exactly what happened. By the time an Effect runs, you don't know *what* the user did (for example, which button was clicked). This is why you'll usually handle user events in the corresponding event handlers.
 
-You *do* need Effects to [synchronize](/learn/synchronizing-with-effects#what-are-effects-and-how-are-they-different-from-events) with external systems. For example, you can write an Effect that keeps a jQuery widget synchronized with the React state. You can also fetch data with Effects: for example, you can synchronize the search results with the current search query. Keep in mind that modern [frameworks](/learn/start-a-new-react-project#production-grade-react-frameworks) provide more efficient built-in data fetching mechanisms than writing Effects directly in your components.
+You *do* need Effects to [synchronize](/learn/synchronizing-with-effects#what-are-effects-and-how-are-they-different-from-events) with external systems. For example, you can write an Effect that keeps a jQuery widget synchronized with the React state. You can also fetch data with Effects: for example, you can synchronize the search results with the current search query. Keep in mind that modern [frameworks](/learn/start-a-new-react-project#production-grade-react-frameworks) provide more efficient built-in data fetching mechanisms than writing Effects directly in your Components.
 
 To help you gain the right intuition, let's look at some common concrete examples!
 
@@ -192,7 +192,7 @@ function Profile({ userId }) {
 }
 ```
 
-Normally, React preserves the state when the same Component is rendered in the same spot. **By passing `userId` as a `key` to the `Profile` component, you're asking React to treat two `Profile` Components with different `userId` as two different Components that should not share any state.** Whenever the key (which you've set to `userId`) changes, React will recreate the DOM and [reset the state](/learn/preserving-and-resetting-state#option-2-resetting-state-with-a-key) of the `Profile` Component and all of its children. Now the `comment` field will clear out automatically when navigating between profiles.
+Normally, React preserves the state when the same Component is rendered in the same spot. **By passing `userId` as a `key` to the `Profile` Component, you're asking React to treat two `Profile` Components with different `userId` as two different Components that should not share any state.** Whenever the key (which you've set to `userId`) changes, React will recreate the DOM and [reset the state](/learn/preserving-and-resetting-state#option-2-resetting-state-with-a-key) of the `Profile` Component and all of its children. Now the `comment` field will clear out automatically when navigating between profiles.
 
 Note that in this example, only the outer `ProfilePage` Component is exported and visible to other files in the project. Components rendering `ProfilePage` don't need to pass the key to it: they pass `userId` as a regular prop. The fact `ProfilePage` passes it as a `key` to the inner `Profile` Component is an implementation detail.
 
@@ -215,7 +215,7 @@ function List({ items }) {
 }
 ```
 
-This, too, is not ideal. Every time the `items` change, the `List` and its child Components will render with a stale `selection` value at first. Then React will update the DOM and run the Effects. Finally, the `setSelection(null)` call will cause another re-render of the `List` and its child components, restarting this whole process again.
+This, too, is not ideal. Every time the `items` change, the `List` and its child Components will render with a stale `selection` value at first. Then React will update the DOM and run the Effects. Finally, the `setSelection(null)` call will cause another re-render of the `List` and its child Components, restarting this whole process again.
 
 Start by deleting the Effect. Instead, adjust the state directly during rendering:
 
@@ -236,7 +236,7 @@ function List({ items }) {
 
 [Storing information from previous renders](/reference/react/useState#storing-information-from-previous-renders) like this can be hard to understand, but it’s better than updating the same state in an Effect. In the above example, `setSelection` is called directly during a render. React will re-render the `List` *immediately* after it exits with a `return` statement. React has not rendered the `List` children or updated the DOM yet, so this lets the `List` children skip rendering the stale `selection` value.
 
-When you update a Component during rendering, React throws away the returned JSX and immediately retries rendering. To avoid very slow cascading retries, React only lets you update the *same* component's state during a render. If you update another component's state during a render, you'll see an error. A condition like `items !== prevItems` is necessary to avoid loops. You may adjust state like this, but any other side effects (like changing the DOM or setting timeouts) should stay in event handlers or Effects to [keep Components pure.](/learn/keeping-components-pure)
+When you update a Component during rendering, React throws away the returned JSX and immediately retries rendering. To avoid very slow cascading retries, React only lets you update the *same* Component's state during a render. If you update another Component's state during a render, you'll see an error. A condition like `items !== prevItems` is necessary to avoid loops. You may adjust state like this, but any other side effects (like changing the DOM or setting timeouts) should stay in event handlers or Effects to [keep Components pure.](/learn/keeping-components-pure)
 
 **Although this pattern is more efficient than an Effect, most Components shouldn't need it either.** No matter how you do it, adjusting state based on props or other state makes your data flow more difficult to understand and debug. Always check whether you can [reset all state with a key](#resetting-all-state-when-a-prop-changes) or [calculate everything during rendering](#updating-state-based-on-props-or-state) instead. For example, instead of storing (and resetting) the selected *item*, you can store the selected *item ID:*
 
@@ -456,7 +456,7 @@ In some cases, you *can't* calculate the next state directly in the event handle
 
 Some logic should only run once when the app loads.
 
-You might be tempted to place it in an Effect in the top-level component:
+You might be tempted to place it in an Effect in the top-level Component:
 
 ```js {2-6}
 function App() {
@@ -469,7 +469,7 @@ function App() {
 }
 ```
 
-However, you'll quickly discover that it [runs twice in development.](/learn/synchronizing-with-effects#how-to-handle-the-effect-firing-twice-in-development) This can cause issues--for example, maybe it invalidates the authentication token because the function wasn't designed to be called twice. In general, your Components should be resilient to being remounted. This includes your top-level `App` component.
+However, you'll quickly discover that it [runs twice in development.](/learn/synchronizing-with-effects#how-to-handle-the-effect-firing-twice-in-development) This can cause issues--for example, maybe it invalidates the authentication token because the function wasn't designed to be called twice. In general, your Components should be resilient to being remounted. This includes your top-level `App` Component.
 
 Although it may not ever get remounted in practice in production, following the same constraints in all Components makes it easier to move and reuse code. If some logic must run *once per app load* rather than *once per Component mount*, add a top-level variable to track whether it has already executed:
 
@@ -503,7 +503,7 @@ function App() {
 }
 ```
 
-Code at the top level runs once when your Component is imported--even if it doesn't end up being rendered. To avoid slowdown or surprising behavior when importing arbitrary components, don't overuse this pattern. Keep app-wide initialization logic to root Component modules like `App.js` or in your application's entry point.
+Code at the top level runs once when your Component is imported--even if it doesn't end up being rendered. To avoid slowdown or surprising behavior when importing arbitrary Components, don't overuse this pattern. Keep app-wide initialization logic to root Component modules like `App.js` or in your application's entry point.
 
 ### Notifying parent Components about state changes {/*notifying-parent-components-about-state-changes*/}
 
@@ -534,7 +534,7 @@ function Toggle({ onChange }) {
 }
 ```
 
-Like earlier, this is not ideal. The `Toggle` updates its state first, and React updates the screen. Then React runs the Effect, which calls the `onChange` function passed from a parent component. Now the parent Component will update its own state, starting another render pass. It would be better to do everything in a single pass.
+Like earlier, this is not ideal. The `Toggle` updates its state first, and React updates the screen. Then React runs the Effect, which calls the `onChange` function passed from a parent Component. Now the parent Component will update its own state, starting another render pass. It would be better to do everything in a single pass.
 
 Delete the Effect and instead update the state of *both* Components within the same event handler:
 
@@ -566,7 +566,7 @@ function Toggle({ onChange }) {
 
 With this approach, both the `Toggle` Component and its parent Component update their state during the event. React [batches updates](/learn/queueing-a-series-of-state-updates) from different Components together, so there will only be one render pass.
 
-You might also be able to remove the state altogether, and instead receive `isOn` from the parent component:
+You might also be able to remove the state altogether, and instead receive `isOn` from the parent Component:
 
 ```js {1,2}
 // ✅ Also good: the Component is fully controlled by its parent
@@ -689,7 +689,7 @@ function ChatIndicator() {
 }
 ```
 
-This approach is less error-prone than manually syncing mutable data to React state with an Effect. Typically, you'll write a custom Hook like `useOnlineStatus()` above so that you don't need to repeat this code in the individual components. [Read more about subscribing to external stores from React components.](/reference/react/useSyncExternalStore)
+This approach is less error-prone than manually syncing mutable data to React state with an Effect. Typically, you'll write a custom Hook like `useOnlineStatus()` above so that you don't need to repeat this code in the individual Components. [Read more about subscribing to external stores from React Components.](/reference/react/useSyncExternalStore)
 
 ### Fetching data {/*fetching-data*/}
 
@@ -788,7 +788,7 @@ function useData(url) {
 
 You'll likely also want to add some logic for error handling and to track whether the content is loading. You can build a Hook like this yourself or use one of the many solutions already available in the React ecosystem. **Although this alone won't be as efficient as using a framework's built-in data fetching mechanism, moving the data fetching logic into a custom Hook will make it easier to adopt an efficient data fetching strategy later.**
 
-In general, whenever you have to resort to writing Effects, keep an eye out for when you can extract a piece of functionality into a custom Hook with a more declarative and purpose-built API like `useData` above. The fewer raw `useEffect` calls you have in your components, the easier you will find to maintain your application.
+In general, whenever you have to resort to writing Effects, keep an eye out for when you can extract a piece of functionality into a custom Hook with a more declarative and purpose-built API like `useData` above. The fewer raw `useEffect` calls you have in your Components, the easier you will find to maintain your application.
 
 <Recap>
 
@@ -797,8 +797,8 @@ In general, whenever you have to resort to writing Effects, keep an eye out for 
 - To reset the state of an entire Component tree, pass a different `key` to it.
 - To reset a particular bit of state in response to a prop change, set it during rendering.
 - Code that runs because a Component was *displayed* should be in Effects, the rest should be in events.
-- If you need to update the state of several components, it's better to do it during a single event.
-- Whenever you try to synchronize state variables in different components, consider lifting state up.
+- If you need to update the state of several Components, it's better to do it during a single event.
+- Whenever you try to synchronize state variables in different Components, consider lifting state up.
 - You can fetch data with Effects, but you need to implement cleanup to avoid race conditions.
 
 </Recap>
@@ -1006,7 +1006,7 @@ input { margin-top: 10px; }
 
 In this example, filtering the todos was extracted into a separate function called `getVisibleTodos()`. This function contains a `console.log()` call inside of it which helps you notice when it's being called. Toggle "Show only active todos" and notice that it causes `getVisibleTodos()` to re-run. This is expected because visible todos change when you toggle which ones to display.
 
-Your task is to remove the Effect that recomputes the `visibleTodos` list in the `TodoList` component. However, you need to make sure that `getVisibleTodos()` does *not* re-run (and so does not print any logs) when you type into the input.
+Your task is to remove the Effect that recomputes the `visibleTodos` list in the `TodoList` Component. However, you need to make sure that `getVisibleTodos()` does *not* re-run (and so does not print any logs) when you type into the input.
 
 <Hint>
 
@@ -1179,7 +1179,7 @@ input { margin-top: 10px; }
 
 With this change, `getVisibleTodos()` will be called only if `todos` or `showActive` change. Typing into the input only changes the `text` state variable, so it does not trigger a call to `getVisibleTodos()`.
 
-There is also another solution which does not need `useMemo`. Since the `text` state variable can't possibly affect the list of todos, you can extract the `NewTodo` form into a separate component, and move the `text` state variable inside of it:
+There is also another solution which does not need `useMemo`. Since the `text` state variable can't possibly affect the list of todos, you can extract the `NewTodo` form into a separate Component, and move the `text` state variable inside of it:
 
 <Sandpack>
 
@@ -1266,7 +1266,7 @@ input { margin-top: 10px; }
 
 </Sandpack>
 
-This approach satisfies the requirements too. When you type into the input, only the `text` state variable updates. Since the `text` state variable is in the child `NewTodo` component, the parent `TodoList` Component won't get re-rendered. This is why `getVisibleTodos()` doesn't get called when you type. (It would still be called if the `TodoList` re-renders for another reason.)
+This approach satisfies the requirements too. When you type into the input, only the `text` state variable updates. Since the `text` state variable is in the child `NewTodo` Component, the parent `TodoList` Component won't get re-rendered. This is why `getVisibleTodos()` doesn't get called when you type. (It would still be called if the `TodoList` re-renders for another reason.)
 
 </Solution>
 
@@ -1438,7 +1438,7 @@ It would be nice if there was a way to tell React that when `savedContact.id` is
 
 <Solution>
 
-Split the `EditContact` Component in two. Move all the form state into the inner `EditForm` component. Export the outer `EditContact` component, and make it pass `savedContact.id` as the `key` to the inner `EditForm` component. As a result, the inner `EditForm` Component resets all of the form state and recreates the DOM whenever you select a different contact.
+Split the `EditContact` Component in two. Move all the form state into the inner `EditForm` Component. Export the outer `EditContact` Component, and make it pass `savedContact.id` as the `key` to the inner `EditForm` Component. As a result, the inner `EditForm` Component resets all of the form state and recreates the DOM whenever you select a different contact.
 
 <Sandpack>
 

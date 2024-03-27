@@ -73,7 +73,7 @@ app.use('/', (request, response) => {
 });
 ```
 
-This will produce the initial non-interactive HTML output of your React components. On the client, you will need to call [`hydrateRoot`](/reference/react-dom/client/hydrateRoot) to *hydrate* that server-generated HTML and make it interactive.
+This will produce the initial non-interactive HTML output of your React Components. On the client, you will need to call [`hydrateRoot`](/reference/react-dom/client/hydrateRoot) to *hydrate* that server-generated HTML and make it interactive.
 
 
 <Pitfall>

@@ -152,11 +152,11 @@ export default function PackingList() {
 
 </Sandpack>
 
-In practice, returning `null` from a Component isn't common because it might surprise a developer trying to render it. More often, you would conditionally include or exclude the Component in the parent component's JSX. Here's how to do that!
+In practice, returning `null` from a Component isn't common because it might surprise a developer trying to render it. More often, you would conditionally include or exclude the Component in the parent Component's JSX. Here's how to do that!
 
 ## Conditionally including JSX {/*conditionally-including-jsx*/}
 
-In the previous example, you controlled which (if any!) JSX tree would be returned by the component. You may already have noticed some duplication in the render output:
+In the previous example, you controlled which (if any!) JSX tree would be returned by the Component. You may already have noticed some duplication in the render output:
 
 ```js
 <li className="item">{name} ✔</li>
@@ -260,7 +260,7 @@ This style works well for simple conditions, but use it in moderation. If your C
 
 ### Logical AND operator (`&&`) {/*logical-and-operator-*/}
 
-Another common shortcut you'll encounter is the [JavaScript logical AND (`&&`) operator.](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Logical_AND#:~:text=The%20logical%20AND%20(%20%26%26%20)%20operator,it%20returns%20a%20Boolean%20value.) Inside React components, it often comes up when you want to render some JSX when the condition is true, **or render nothing otherwise.** With `&&`, you could conditionally render the checkmark only if `isPacked` is `true`:
+Another common shortcut you'll encounter is the [JavaScript logical AND (`&&`) operator.](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Logical_AND#:~:text=The%20logical%20AND%20(%20%26%26%20)%20operator,it%20returns%20a%20Boolean%20value.) Inside React Components, it often comes up when you want to render some JSX when the condition is true, **or render nothing otherwise.** With `&&`, you could conditionally render the checkmark only if `isPacked` is `true`:
 
 ```js
 return (
@@ -437,7 +437,7 @@ export default function PackingList() {
 
 </Sandpack>
 
-If you're not familiar with JavaScript, this variety of styles might seem overwhelming at first. However, learning them will help you read and write any JavaScript code -- and not just React components! Pick the one you prefer for a start, and then consult this reference again if you forget how the other ones work.
+If you're not familiar with JavaScript, this variety of styles might seem overwhelming at first. However, learning them will help you read and write any JavaScript code -- and not just React Components! Pick the one you prefer for a start, and then consult this reference again if you forget how the other ones work.
 
 <Recap>
 

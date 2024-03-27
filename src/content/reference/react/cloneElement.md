@@ -598,7 +598,7 @@ export default function App() {
 }
 ```
 
-The data flow is explicit, but the state is inside the `useList` custom Hook that you can use from any component:
+The data flow is explicit, but the state is inside the `useList` custom Hook that you can use from any Component:
 
 <Sandpack>
 
@@ -691,4 +691,4 @@ button {
 
 </Sandpack>
 
-This approach is particularly useful if you want to reuse this logic between different components.
+This approach is particularly useful if you want to reuse this logic between different Components.

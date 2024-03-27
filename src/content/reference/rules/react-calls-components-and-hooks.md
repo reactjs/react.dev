@@ -3,7 +3,7 @@ title: React calls Components and Hooks
 ---
 
 <Intro>
-React is responsible for rendering Components and Hooks when necessary to optimize the user experience. It is declarative: you tell React what to render in your component’s logic, and React will figure out how best to display it to your user.
+React is responsible for rendering Components and Hooks when necessary to optimize the user experience. It is declarative: you tell React what to render in your Component’s logic, and React will figure out how best to display it to your user.
 </Intro>
 
 <InlineToc />
@@ -31,8 +31,8 @@ If a Component contains Hooks, it's easy to violate the [Rules of Hooks](/refere
 
 Letting React orchestrate rendering also allows a number of benefits:
 
-* **Components become more than functions.** React can augment them with features like _local state_ through Hooks that are tied to the component's identity in the tree.
-* **Component types participate in reconciliation.** By letting React call your components, you also tell it more about the conceptual structure of your tree. For example, when you move from rendering `<Feed>` to the `<Profile>` page, React won’t attempt to re-use them.
+* **Components become more than functions.** React can augment them with features like _local state_ through Hooks that are tied to the Component's identity in the tree.
+* **Component types participate in reconciliation.** By letting React call your Components, you also tell it more about the conceptual structure of your tree. For example, when you move from rendering `<Feed>` to the `<Profile>` page, React won’t attempt to re-use them.
 * **React can enhance your user experience.** For example, it can let the browser do some work between Component calls so that re-rendering a large Component tree doesn’t block the main thread.
 * **A better debugging story.** If Components are first-class citizens that the library is aware of, we can build rich developer tools for introspection in development.
 * **More efficient reconciliation.** React can decide exactly which Components in the tree need re-rendering and skip over the ones that don't. That makes your app faster and more snappy.
@@ -45,7 +45,7 @@ Hooks should only be called inside of Components or Hooks. Never pass it around 
 
 Hooks allow you to augment a Component with React features. They should always be called as a function, and never passed around as a regular value. This enables _local reasoning_, or the ability for developers to understand everything a Component can do by looking at that Component in isolation.
 
-Breaking this rule will cause React to not automatically optimize your component.
+Breaking this rule will cause React to not automatically optimize your Component.
 
 ### Don't dynamically mutate a Hook {/*dont-dynamically-mutate-a-hook*/}
 

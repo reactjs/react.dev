@@ -5,13 +5,13 @@ canary: true
 
 <Canary>
 
-React's extensions to `<style>` are currently only available in React's canary and experimental channels. In stable releases of React `<style>` works only as a [built-in browser HTML component](https://react.dev/reference/react-dom/components#all-html-components). Learn more about [React's release channels here](/community/versioning-policy#all-release-channels).
+React's extensions to `<style>` are currently only available in React's canary and experimental channels. In stable releases of React `<style>` works only as a [built-in browser HTML Component](https://react.dev/reference/react-dom/components#all-html-components). Learn more about [React's release channels here](/community/versioning-policy#all-release-channels).
 
 </Canary>
 
 <Intro>
 
-The [built-in browser `<style>` component](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/style) lets you add inline CSS stylesheets to your document.
+The [built-in browser `<style>` Component](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/style) lets you add inline CSS stylesheets to your document.
 
 ```js
 <style>{` p { color: red; } `}</style>
@@ -27,7 +27,7 @@ The [built-in browser `<style>` component](https://developer.mozilla.org/en-US/d
 
 ### `<style>` {/*style*/}
 
-To add inline styles to your document, render the [built-in browser `<style>` component](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/style). You can render `<style>` from any Component and React will [in certain cases](#special-rendering-behavior) place the corresponding DOM element in the document head and de-duplicate identical styles.
+To add inline styles to your document, render the [built-in browser `<style>` Component](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/style). You can render `<style>` from any Component and React will [in certain cases](#special-rendering-behavior) place the corresponding DOM element in the document head and de-duplicate identical styles.
 
 ```js
 <style>{` p { color: red; } `}</style>
@@ -67,7 +67,7 @@ This special treatment comes with two caveats:
 
 ### Rendering an inline CSS stylesheet {/*rendering-an-inline-css-stylesheet*/}
 
-If a Component depends on certain CSS styles in order to be displayed correctly, you can render an inline stylesheet within the component.
+If a Component depends on certain CSS styles in order to be displayed correctly, you can render an inline stylesheet within the Component.
 
 If you supply an `href` and `precedence` prop, your Component will suspend while the stylesheet is loading. (Even with inline stylesheets, there may be a loading time due to fonts and images that the stylesheet refers to.) The `href` prop should uniquely identify the stylesheet, because React will de-duplicate stylesheets that have the same `href`.
 

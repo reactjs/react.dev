@@ -28,7 +28,7 @@ import { renderToStaticMarkup } from 'react-dom/server';
 const html = renderToStaticMarkup(<Page />);
 ```
 
-It will produce non-interactive HTML output of your React components.
+It will produce non-interactive HTML output of your React Components.
 
 [See more examples below.](#usage)
 
@@ -68,7 +68,7 @@ app.use('/', (request, response) => {
 });
 ```
 
-This will produce the initial non-interactive HTML output of your React components.
+This will produce the initial non-interactive HTML output of your React Components.
 
 <Pitfall>
 

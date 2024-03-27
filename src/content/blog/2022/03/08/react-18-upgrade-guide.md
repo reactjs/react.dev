@@ -235,12 +235,12 @@ In the future, we'd like to add a feature that allows React to add and remove se
 
 This feature will give React better performance out-of-the-box, but requires Components to be resilient to effects being mounted and destroyed multiple times. Most effects will work without any changes, but some effects assume they are only mounted or destroyed once.
 
-To help surface these issues, React 18 introduces a new development-only check to Strict Mode. This new check will automatically unmount and remount every component, whenever a Component mounts for the first time, restoring the previous state on the second mount.
+To help surface these issues, React 18 introduces a new development-only check to Strict Mode. This new check will automatically unmount and remount every Component, whenever a Component mounts for the first time, restoring the previous state on the second mount.
 
 Before this change, React would mount the Component and create the effects:
 
 ```
-* React mounts the component.
+* React mounts the Component.
     * Layout effects are created.
     * Effect effects are created.
 ```
@@ -248,10 +248,10 @@ Before this change, React would mount the Component and create the effects:
 With Strict Mode in React 18, React will simulate unmounting and remounting the Component in development mode:
 
 ```
-* React mounts the component.
+* React mounts the Component.
     * Layout effects are created.
     * Effect effects are created.
-* React simulates unmounting the component.
+* React simulates unmounting the Component.
     * Layout effects are destroyed.
     * Effects are destroyed.
 * React simulates mounting the Component with the previous state.
@@ -312,9 +312,9 @@ If you need to support Internet Explorer we recommend you stay with React 17.
 
 ### React {/*react*/}
 
-* **Components can now render `undefined`:** React no longer warns if you return `undefined` from a component. This makes the allowed Component return values consistent with values that are allowed in the middle of a Component tree. We suggest to use a linter to prevent mistakes like forgetting a `return` statement before JSX.
+* **Components can now render `undefined`:** React no longer warns if you return `undefined` from a Component. This makes the allowed Component return values consistent with values that are allowed in the middle of a Component tree. We suggest to use a linter to prevent mistakes like forgetting a `return` statement before JSX.
 * **In tests, `act` warnings are now opt-in:** If you're running end-to-end tests, the `act` warnings are unnecessary. We've introduced an [opt-in](https://github.com/reactwg/react-18/discussions/102) mechanism so you can enable them only for unit tests where they are useful and beneficial.
-* **No warning about `setState` on unmounted components:** Previously, React warned about memory leaks when you call `setState` on an unmounted component. This warning was added for subscriptions, but people primarily run into it in scenarios where setting state is fine, and workarounds make the code worse. We've [removed](https://github.com/facebook/react/pull/22114) this warning.
+* **No warning about `setState` on unmounted Components:** Previously, React warned about memory leaks when you call `setState` on an unmounted Component. This warning was added for subscriptions, but people primarily run into it in scenarios where setting state is fine, and workarounds make the code worse. We've [removed](https://github.com/facebook/react/pull/22114) this warning.
 * **No suppression of console logs:** When you use Strict Mode, React renders each Component twice to help you find unexpected side effects. In React 17, we've suppressed console logs for one of the two renders to make the logs easier to read. In response to [community feedback](https://github.com/facebook/react/issues/21783) about this being confusing, we've removed the suppression. Instead, if you have React DevTools installed, the second log's renders will be displayed in grey, and there will be an option (off by default) to suppress them completely.
 * **Improved memory usage:** React now cleans up more internal fields on unmount, making the impact from unfixed memory leaks that may exist in your application code less severe.
 

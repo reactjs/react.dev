@@ -101,7 +101,7 @@ Next.js is maintained by [Vercel](https://vercel.com/). You can [deploy a Next.j
 
 Next.js's App Router bundler fully implements the official [React Server Components specification](https://github.com/reactjs/rfcs/blob/main/text/0188-server-components.md). This lets you mix build-time, server-only, and interactive Components in a single React tree.
 
-For example, you can write a server-only React Component as an `async` function that reads from a database or from a file. Then you can pass data down from it to your interactive components:
+For example, you can write a server-only React Component as an `async` function that reads from a database or from a file. Then you can pass data down from it to your interactive Components:
 
 ```js
 // This Component runs *only* on the server (or during the build).

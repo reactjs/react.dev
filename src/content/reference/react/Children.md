@@ -50,7 +50,7 @@ function RowList({ children }) {
 
 #### Parameters {/*children-count-parameters*/}
 
-* `children`: The value of the [`children` prop](/learn/passing-props-to-a-component#passing-jsx-as-children) received by your component.
+* `children`: The value of the [`children` prop](/learn/passing-props-to-a-component#passing-jsx-as-children) received by your Component.
 
 #### Returns {/*children-count-returns*/}
 
@@ -82,7 +82,7 @@ function SeparatorList({ children }) {
 
 #### Parameters {/*children-foreach-parameters*/}
 
-* `children`: The value of the [`children` prop](/learn/passing-props-to-a-component#passing-jsx-as-children) received by your component.
+* `children`: The value of the [`children` prop](/learn/passing-props-to-a-component#passing-jsx-as-children) received by your Component.
 * `fn`: The function you want to run for each child, similar to the [array `forEach` method](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach) callback. It will be called with the child as the first argument and its index as the second argument. The index starts at `0` and increments on each call.
 * **optional** `thisArg`: The [`this` value](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/this) with which the `fn` function should be called. If omitted, it's `undefined`.
 
@@ -120,7 +120,7 @@ function RowList({ children }) {
 
 #### Parameters {/*children-map-parameters*/}
 
-* `children`: The value of the [`children` prop](/learn/passing-props-to-a-component#passing-jsx-as-children) received by your component.
+* `children`: The value of the [`children` prop](/learn/passing-props-to-a-component#passing-jsx-as-children) received by your Component.
 * `fn`: The mapping function, similar to the [array `map` method](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) callback. It will be called with the child as the first argument and its index as the second argument. The index starts at `0` and increments on each call. You need to return a React node from this function. This may be an empty node (`null`, `undefined`, or a Boolean), a string, a number, a React element, or an array of other React nodes.
 * **optional** `thisArg`: The [`this` value](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/this) with which the `fn` function should be called. If omitted, it's `undefined`.
 
@@ -151,7 +151,7 @@ function Box({ children }) {
 
 #### Parameters {/*children-only-parameters*/}
 
-* `children`: The value of the [`children` prop](/learn/passing-props-to-a-component#passing-jsx-as-children) received by your component.
+* `children`: The value of the [`children` prop](/learn/passing-props-to-a-component#passing-jsx-as-children) received by your Component.
 
 #### Returns {/*children-only-returns*/}
 
@@ -180,7 +180,7 @@ export default function ReversedList({ children }) {
 
 #### Parameters {/*children-toarray-parameters*/}
 
-* `children`: The value of the [`children` prop](/learn/passing-props-to-a-component#passing-jsx-as-children) received by your component.
+* `children`: The value of the [`children` prop](/learn/passing-props-to-a-component#passing-jsx-as-children) received by your Component.
 
 #### Returns {/*children-toarray-returns*/}
 
@@ -369,7 +369,7 @@ export default function RowList({ children }) {
 
 </Sandpack>
 
-**There is no way to get the rendered output of an inner component** like `<MoreRows />` when manipulating `children`. This is why [it's usually better to use one of the alternative solutions.](#alternatives)
+**There is no way to get the rendered output of an inner Component** like `<MoreRows />` when manipulating `children`. This is why [it's usually better to use one of the alternative solutions.](#alternatives)
 
 </Pitfall>
 
@@ -548,7 +548,7 @@ Don't confuse it with [using the `children` prop](/learn/passing-props-to-a-comp
 
 Manipulating children with the `Children` methods often leads to fragile code. When you pass children to a Component in JSX, you don't usually expect the Component to manipulate or transform the individual children.
 
-When you can, try to avoid using the `Children` methods. For example, if you want every child of `RowList` to be wrapped in `<div className="Row">`, export a `Row` component, and manually wrap every row into it like this:
+When you can, try to avoid using the `Children` methods. For example, if you want every child of `RowList` to be wrapped in `<div className="Row">`, export a `Row` Component, and manually wrap every row into it like this:
 
 <Sandpack>
 
@@ -607,7 +607,7 @@ export function Row({ children }) {
 
 </Sandpack>
 
-Unlike using `Children.map`, this approach does not wrap every child automatically. **However, this approach has a significant benefit compared to the [earlier example with `Children.map`](#transforming-children) because it works even if you keep extracting more components.** For example, it still works if you extract your own `MoreRows` component:
+Unlike using `Children.map`, this approach does not wrap every child automatically. **However, this approach has a significant benefit compared to the [earlier example with `Children.map`](#transforming-children) because it works even if you keep extracting more Components.** For example, it still works if you extract your own `MoreRows` Component:
 
 <Sandpack>
 
@@ -795,7 +795,7 @@ Unlike passing the children as JSX, this approach lets you associate some extra 
 
 ### Calling a render prop to customize rendering {/*calling-a-render-prop-to-customize-rendering*/}
 
-Instead of producing JSX for every single item, you can also pass a function that returns JSX, and call that function when necessary. In this example, the `App` Component passes a `renderContent` function to the `TabSwitcher` component. The `TabSwitcher` Component calls `renderContent` only for the selected tab:
+Instead of producing JSX for every single item, you can also pass a function that returns JSX, and call that function when necessary. In this example, the `App` Component passes a `renderContent` function to the `TabSwitcher` Component. The `TabSwitcher` Component calls `renderContent` only for the selected tab:
 
 <Sandpack>
 
@@ -933,7 +933,7 @@ This is another example of how parent and child Components can cooperate without
 
 ## Troubleshooting {/*troubleshooting*/}
 
-### I pass a custom component, but the `Children` methods don't show its render result {/*i-pass-a-custom-component-but-the-children-methods-dont-show-its-render-result*/}
+### I pass a custom Component, but the `Children` methods don't show its render result {/*i-pass-a-custom-component-but-the-children-methods-dont-show-its-render-result*/}
 
 Suppose you pass two children to `RowList` like this:
 
@@ -944,6 +944,6 @@ Suppose you pass two children to `RowList` like this:
 </RowList>
 ```
 
-If you do `Children.count(children)` inside `RowList`, you will get `2`. Even if `MoreRows` renders 10 different items, or if it returns `null`, `Children.count(children)` will still be `2`. From the `RowList`'s perspective, it only "sees" the JSX it has received. It does not "see" the internals of the `MoreRows` component.
+If you do `Children.count(children)` inside `RowList`, you will get `2`. Even if `MoreRows` renders 10 different items, or if it returns `null`, `Children.count(children)` will still be `2`. From the `RowList`'s perspective, it only "sees" the JSX it has received. It does not "see" the internals of the `MoreRows` Component.
 
-The limitation makes it hard to extract a component. This is why [alternatives](#alternatives) are preferred to using `Children`.
+The limitation makes it hard to extract a Component. This is why [alternatives](#alternatives) are preferred to using `Children`.

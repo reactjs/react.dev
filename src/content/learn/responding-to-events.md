@@ -11,7 +11,7 @@ React lets you add *event handlers* to your JSX. Event handlers are your own fun
 <YouWillLearn>
 
 * Different ways to write an event handler
-* How to pass event handling logic from a parent component
+* How to pass event handling logic from a parent Component
 * How events propagate and how to stop them
 
 </YouWillLearn>
@@ -36,7 +36,7 @@ export default function Button() {
 
 You can make it show a message when a user clicks by following these three steps:
 
-1. Declare a function called `handleClick` *inside* your `Button` component.
+1. Declare a function called `handleClick` *inside* your `Button` Component.
 2. Implement the logic inside that function (use `alert` to show the message).
 3. Add `onClick={handleClick}` to the `<button>` JSX.
 
@@ -64,7 +64,7 @@ button { margin-right: 10px; }
 
 You defined the `handleClick` function and then [passed it as a prop](/learn/passing-props-to-a-component) to `<button>`.  `handleClick` is an **event handler.** Event handler functions:
 
-* Are usually defined *inside* your components.
+* Are usually defined *inside* your Components.
 * Have names that start with `handle`, followed by the name of the event.
 
 By convention, it is common to name event handlers as `handle` followed by the event name. You'll often see `onClick={handleClick}`, `onMouseEnter={handleMouseEnter}`, and so on.
@@ -132,7 +132,7 @@ In both cases, what you want to pass is a function:
 
 ### Reading props in event handlers {/*reading-props-in-event-handlers*/}
 
-Because event handlers are declared inside of a component, they have access to the component's props. Here is a button that, when clicked, shows an alert with its `message` prop:
+Because event handlers are declared inside of a Component, they have access to the Component's props. Here is a button that, when clicked, shows an alert with its `message` prop:
 
 <Sandpack>
 
@@ -169,7 +169,7 @@ This lets these two buttons show different messages. Try changing the messages p
 
 ### Passing event handlers as props {/*passing-event-handlers-as-props*/}
 
-Often you'll want the parent Component to specify a child's event handler. Consider buttons: depending on where you're using a `Button` component, you might want to execute a different function—perhaps one plays a movie and another uploads an image. 
+Often you'll want the parent Component to specify a child's event handler. Consider buttons: depending on where you're using a `Button` Component, you might want to execute a different function—perhaps one plays a movie and another uploads an image. 
 
 To do this, pass a prop the Component receives from its parent as the event handler like so:
 
@@ -231,11 +231,11 @@ If you use a [design system](https://uxdesign.cc/everything-you-need-to-know-abo
 
 ### Naming event handler props {/*naming-event-handler-props*/}
 
-Built-in Components like `<button>` and `<div>` only support [browser event names](/reference/react-dom/components/common#common-props) like `onClick`. However, when you're building your own components, you can name their event handler props any way that you like.
+Built-in Components like `<button>` and `<div>` only support [browser event names](/reference/react-dom/components/common#common-props) like `onClick`. However, when you're building your own Components, you can name their event handler props any way that you like.
 
 By convention, event handler props should start with `on`, followed by a capital letter.
 
-For example, the `Button` component's `onClick` prop could have been called `onSmash`:
+For example, the `Button` Component's `onClick` prop could have been called `onSmash`:
 
 <Sandpack>
 
@@ -367,7 +367,7 @@ All events propagate in React except `onScroll`, which only works on the JSX tag
 
 Event handlers receive an **event object** as their only argument. By convention, it's usually called `e`, which stands for "event". You can use this object to read information about the event.
 
-That event object also lets you stop the propagation. If you want to prevent an event from reaching parent components, you need to call `e.stopPropagation()` like this `Button` Component does:
+That event object also lets you stop the propagation. If you want to prevent an event from reaching parent Components, you need to call `e.stopPropagation()` like this `Button` Component does:
 
 <Sandpack>
 
@@ -414,8 +414,8 @@ When you click on a button:
 1. React calls the `onClick` handler passed to `<button>`. 
 2. That handler, defined in `Button`, does the following:
    * Calls `e.stopPropagation()`, preventing the event from bubbling further.
-   * Calls the `onClick` function, which is a prop passed from the `Toolbar` component.
-3. That function, defined in the `Toolbar` component, displays the button's own alert.
+   * Calls the `onClick` function, which is a prop passed from the `Toolbar` Component.
+3. That function, defined in the `Toolbar` Component, displays the button's own alert.
 4. Since the propagation was stopped, the parent `<div>`'s `onClick` handler does *not* run.
 
 As a result of `e.stopPropagation()`, clicking on the buttons now only shows a single alert (from the `<button>`) rather than the two of them (from the `<button>` and the parent toolbar `<div>`). Clicking a button is not the same thing as clicking the surrounding toolbar, so stopping the propagation makes sense for this UI.
@@ -520,14 +520,14 @@ Don't confuse `e.stopPropagation()` and `e.preventDefault()`. They are both usef
 
 Absolutely! Event handlers are the best place for side effects.
 
-Unlike rendering functions, event handlers don't need to be [pure](/learn/keeping-components-pure), so it's a great place to *change* something—for example, change an input's value in response to typing, or change a list in response to a button press. However, in order to change some information, you first need some way to store it. In React, this is done by using [state, a component's memory.](/learn/state-a-components-memory) You will learn all about it on the next page.
+Unlike rendering functions, event handlers don't need to be [pure](/learn/keeping-components-pure), so it's a great place to *change* something—for example, change an input's value in response to typing, or change a list in response to a button press. However, in order to change some information, you first need some way to store it. In React, this is done by using [state, a Component's memory.](/learn/state-a-components-memory) You will learn all about it on the next page.
 
 <Recap>
 
 * You can handle events by passing a function as a prop to an element like `<button>`.
 * Event handlers must be passed, **not called!** `onClick={handleClick}`, not `onClick={handleClick()}`.
 * You can define an event handler function separately or inline.
-* Event handlers are defined inside a component, so they can access props.
+* Event handlers are defined inside a Component, so they can access props.
 * You can declare an event handler in a parent and pass it as a prop to a child.
 * You can define your own event handler props with application-specific names.
 * Events propagate upwards. Call `e.stopPropagation()` on the first argument to prevent that.

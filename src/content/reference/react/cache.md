@@ -128,7 +128,7 @@ export function Temperature({cityData}) {
 import {cache} from 'react';
 import {calculateWeekReport} from './report';
 
-// 🚩 Wrong: `getWeekReport` is only accessible for `Precipitation` component.
+// 🚩 Wrong: `getWeekReport` is only accessible for `Precipitation` Component.
 const getWeekReport = cache(calculateWeekReport);
 
 export function Precipitation({cityData}) {
@@ -141,7 +141,7 @@ In the above example, <CodeStep step={2}>`Precipitation`</CodeStep> and <CodeSte
 
 In addition, `Temperature` creates a <CodeStep step={1}>new memoized function</CodeStep> each time the Component is rendered which doesn't allow for any cache sharing.
 
-To maximize cache hits and reduce work, the two Components should call the same memoized function to access the same cache. Instead, define the memoized function in a dedicated module that can be [`import`-ed](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import) across components.
+To maximize cache hits and reduce work, the two Components should call the same memoized function to access the same cache. Instead, define the memoized function in a dedicated module that can be [`import`-ed](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import) across Components.
 
 ```js [[3, 5, "export default cache(calculateWeekReport)"]]
 // getWeekReport.js
@@ -175,7 +175,7 @@ Here, both Components call the <CodeStep step={3}>same memoized function</CodeSt
 
 ### Share a snapshot of data {/*take-and-share-snapshot-of-data*/}
 
-To share a snapshot of data between components, call `cache` with a data-fetching function like `fetch`. When multiple Components make the same data fetch, only one request is made and the data returned is cached and shared across components. All Components refer to the same snapshot of data across the server render. 
+To share a snapshot of data between Components, call `cache` with a data-fetching function like `fetch`. When multiple Components make the same data fetch, only one request is made and the data returned is cached and shared across Components. All Components refer to the same snapshot of data across the server render. 
 
 ```js [[1, 4, "city"], [1, 5, "fetchTemperature(city)"], [2, 4, "getTemperature"], [2, 9, "getTemperature"], [1, 9, "city"], [2, 14, "getTemperature"], [1, 14, "city"]]
 import {cache} from 'react';
@@ -221,7 +221,7 @@ async function AnimatedWeatherCard({city}) {
 
 ### Preload data {/*preload-data*/}
 
-By caching a long-running data fetch, you can kick off asynchronous work prior to rendering the component.
+By caching a long-running data fetch, you can kick off asynchronous work prior to rendering the Component.
 
 ```jsx [[2, 6, "await getUser(id)"], [1, 17, "getUser(id)"]]
 const getUser = cache(async (id) => {
@@ -307,9 +307,9 @@ async function DemoProfile() {
 }
 ```
 
-React only provides cache access to the memoized function in a component. When calling <CodeStep step={1}>`getUser`</CodeStep> outside of a component, it will still evaluate the function but not read or update the cache.
+React only provides cache access to the memoized function in a Component. When calling <CodeStep step={1}>`getUser`</CodeStep> outside of a Component, it will still evaluate the function but not read or update the cache.
 
-This is because cache access is provided through a [context](/learn/passing-data-deeply-with-context) which is only accessible from a component. 
+This is because cache access is provided through a [context](/learn/passing-data-deeply-with-context) which is only accessible from a Component. 
 
 </Pitfall>
 
@@ -321,7 +321,7 @@ All mentioned APIs offer memoization but the difference is what they're intended
 
 #### `useMemo` {/*deep-dive-use-memo*/}
 
-In general, you should use [`useMemo`](/reference/react/useMemo) for caching a expensive computation in a Client Component across renders. As an example, to memoize a transformation of data within a component.
+In general, you should use [`useMemo`](/reference/react/useMemo) for caching a expensive computation in a Client Component across renders. As an example, to memoize a transformation of data within a Component.
 
 ```jsx {4}
 'use client';
@@ -341,13 +341,13 @@ function App() {
   );
 }
 ```
-In this example, `App` renders two `WeatherReport`s with the same record. Even though both Components do the same work, they cannot share work. `useMemo`'s cache is only local to the component.
+In this example, `App` renders two `WeatherReport`s with the same record. Even though both Components do the same work, they cannot share work. `useMemo`'s cache is only local to the Component.
 
 However, `useMemo` does ensure that if `App` re-renders and the `record` object doesn't change, each Component instance would skip work and use the memoized value of `avgTemp`. `useMemo` will only cache the last computation of `avgTemp` with the given dependencies. 
 
 #### `cache` {/*deep-dive-cache*/}
 
-In general, you should use `cache` in Server Components to memoize work that can be shared across components.
+In general, you should use `cache` in Server Components to memoize work that can be shared across Components.
 
 ```js [[1, 12, "<WeatherReport city={city} />"], [3, 13, "<WeatherReport city={city} />"], [2, 1, "cache(fetchReport)"]]
 const cachedFetchReport = cache(fetchReport);
@@ -470,7 +470,7 @@ function App() {
 
 One way to address this could be to pass the vector dimensions to `calculateNorm`. This works because the dimensions themselves are primitives.
 
-Another solution may be to pass the vector object itself as a prop to the component. We'll need to pass the same object to both Component instances.
+Another solution may be to pass the vector object itself as a prop to the Component. We'll need to pass the same object to both Component instances.
 
 ```js {3,9,14}
 import {cache} from 'react';

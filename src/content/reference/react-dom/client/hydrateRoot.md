@@ -29,7 +29,7 @@ const domNode = document.getElementById('root');
 const root = hydrateRoot(domNode, reactNode);
 ```
 
-React will attach to the HTML that exists inside the `domNode`, and take over managing the DOM inside it. An app fully built with React will usually only have one `hydrateRoot` call with its root component.
+React will attach to the HTML that exists inside the `domNode`, and take over managing the DOM inside it. An app fully built with React will usually only have one `hydrateRoot` call with its root Component.
 
 [See more examples below.](#usage)
 
@@ -129,9 +129,9 @@ import { hydrateRoot } from 'react-dom/client';
 hydrateRoot(document.getElementById('root'), <App />);
 ```
 
-This will hydrate the server HTML inside the <CodeStep step={1}>browser DOM node</CodeStep> with the <CodeStep step={2}>React component</CodeStep> for your app. Usually, you will do it once at startup. If you use a framework, it might do this behind the scenes for you.
+This will hydrate the server HTML inside the <CodeStep step={1}>browser DOM node</CodeStep> with the <CodeStep step={2}>React Component</CodeStep> for your app. Usually, you will do it once at startup. If you use a framework, it might do this behind the scenes for you.
 
-To hydrate your app, React will "attach" your components' logic to the initial generated HTML from the server. Hydration turns the initial HTML snapshot from the server into a fully interactive app that runs in the browser.
+To hydrate your app, React will "attach" your Components' logic to the initial generated HTML from the server. Hydration turns the initial HTML snapshot from the server into a fully interactive app that runs in the browser.
 
 <Sandpack>
 
@@ -326,7 +326,7 @@ This approach makes hydration slower because your Components have to render twic
 
 ### Updating a hydrated root Component {/*updating-a-hydrated-root-component*/}
 
-After the root has finished hydrating, you can call [`root.render`](#root-render) to update the root React component. **Unlike with [`createRoot`](/reference/react-dom/client/createRoot), you don't usually need to do this because the initial content was already rendered as HTML.**
+After the root has finished hydrating, you can call [`root.render`](#root-render) to update the root React Component. **Unlike with [`createRoot`](/reference/react-dom/client/createRoot), you don't usually need to do this because the initial content was already rendered as HTML.**
 
 If you call `root.render` at some point after hydration, and the Component tree structure matches up with what was previously rendered, React will [preserve the state.](/learn/preserving-and-resetting-state) Notice how you can type in the input, which means that the updates from repeated `render` calls every second in this example are not destructive:
 

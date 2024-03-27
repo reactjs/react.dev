@@ -53,7 +53,7 @@ unmountComponentAtNode(domNode);
 
 ## Usage {/*usage*/}
 
-Call `unmountComponentAtNode` to remove a <CodeStep step={1}>mounted React component</CodeStep> from a <CodeStep step={2}>browser DOM node</CodeStep> and clean up its event handlers and state.
+Call `unmountComponentAtNode` to remove a <CodeStep step={1}>mounted React Component</CodeStep> from a <CodeStep step={2}>browser DOM node</CodeStep> and clean up its event handlers and state.
 
 ```js [[1, 5, "<App />"], [2, 5, "rootNode"], [2, 8, "rootNode"]]
 import { render, unmountComponentAtNode } from 'react-dom';

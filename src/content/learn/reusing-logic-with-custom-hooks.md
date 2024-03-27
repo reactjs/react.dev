@@ -19,7 +19,7 @@ React comes with several built-in Hooks like `useState`, `useContext`, and `useE
 
 ## Custom Hooks: Sharing logic between Components {/*custom-hooks-sharing-logic-between-components*/}
 
-Imagine you're developing an app that heavily relies on the network (as most apps do). You want to warn the user if their network connection has accidentally gone off while they were using your app. How would you go about it? It seems like you'll need two things in your component:
+Imagine you're developing an app that heavily relies on the network (as most apps do). You want to warn the user if their network connection has accidentally gone off while they were using your app. How would you go about it? It seems like you'll need two things in your Component:
 
 1. A piece of state that tracks whether the network is online.
 2. An Effect that subscribes to the global [`online`](https://developer.mozilla.org/en-US/docs/Web/API/Window/online_event) and [`offline`](https://developer.mozilla.org/en-US/docs/Web/API/Window/offline_event) events, and updates that state.
@@ -56,7 +56,7 @@ export default function StatusBar() {
 
 Try turning your network on and off, and notice how this `StatusBar` updates in response to your actions.
 
-Now imagine you *also* want to use the same logic in a different component. You want to implement a Save button that will become disabled and show "Reconnecting..." instead of "Save" while the network is off.
+Now imagine you *also* want to use the same logic in a different Component. You want to implement a Save button that will become disabled and show "Reconnecting..." instead of "Save" while the network is off.
 
 To start, you can copy and paste the `isOnline` state and the Effect into `SaveButton`:
 
@@ -209,7 +209,7 @@ export function useOnlineStatus() {
 
 </Sandpack>
 
-Verify that switching the network on and off updates both components.
+Verify that switching the network on and off updates both Components.
 
 Now your Components don't have as much repetitive logic. **More importantly, the code inside them describes *what they want to do* (use the online status!) rather than *how to do it* (by subscribing to the browser events).**
 
@@ -217,14 +217,14 @@ When you extract logic into custom Hooks, you can hide the gnarly details of how
 
 ### Hook names always start with `use` {/*hook-names-always-start-with-use*/}
 
-React applications are built from components. Components are built from Hooks, whether built-in or custom. You'll likely often use custom Hooks created by others, but occasionally you might write one yourself!
+React applications are built from Components. Components are built from Hooks, whether built-in or custom. You'll likely often use custom Hooks created by others, but occasionally you might write one yourself!
 
 You must follow these naming conventions:
 
 1. **React Component names must start with a capital letter,** like `StatusBar` and `SaveButton`. React Components also need to return something that React knows how to display, like a piece of JSX.
 2. **Hook names must start with `use` followed by a capital letter,** like [`useState`](/reference/react/useState) (built-in) or `useOnlineStatus` (custom, like earlier on the page). Hooks may return arbitrary values.
 
-This convention guarantees that you can always look at a Component and know where its state, Effects, and other React features might "hide". For example, if you see a `getColor()` function call inside your component, you can be sure that it can't possibly contain React state inside because its name doesn't start with `use`. However, a function call like `useOnlineStatus()` will most likely contain calls to other Hooks inside!
+This convention guarantees that you can always look at a Component and know where its state, Effects, and other React features might "hide". For example, if you see a `getColor()` function call inside your Component, you can be sure that it can't possibly contain React state inside because its name doesn't start with `use`. However, a function call like `useOnlineStatus()` will most likely contain calls to other Hooks inside!
 
 <Note>
 
@@ -327,7 +327,7 @@ function SaveButton() {
 
 These are two completely independent state variables and Effects! They happened to have the same value at the same time because you synchronized them with the same external value (whether the network is on).
 
-To better illustrate this, we'll need a different example. Consider this `Form` component:
+To better illustrate this, we'll need a different example. Consider this `Form` Component:
 
 <Sandpack>
 
@@ -443,13 +443,13 @@ This is why it works like declaring two separate state variables!
 
 **Custom Hooks let you share *stateful logic* but not *state itself.* Each call to a Hook is completely independent from every other call to the same Hook.** This is why the two sandboxes above are completely equivalent. If you'd like, scroll back up and compare them. The behavior before and after extracting a custom Hook is identical.
 
-When you need to share the state itself between multiple components, [lift it up and pass it down](/learn/sharing-state-between-components) instead.
+When you need to share the state itself between multiple Components, [lift it up and pass it down](/learn/sharing-state-between-components) instead.
 
 ## Passing reactive values between Hooks {/*passing-reactive-values-between-hooks*/}
 
-The code inside your custom Hooks will re-run during every re-render of your component. This is why, like components, custom Hooks [need to be pure.](/learn/keeping-components-pure) Think of custom Hooks' code as part of your component's body!
+The code inside your custom Hooks will re-run during every re-render of your Component. This is why, like Components, custom Hooks [need to be pure.](/learn/keeping-components-pure) Think of custom Hooks' code as part of your Component's body!
 
-Because custom Hooks re-render together with your component, they always receive the latest props and state. To see what this means, consider this chat room example. Change the server URL or the chat room:
+Because custom Hooks re-render together with your Component, they always receive the latest props and state. To see what this means, consider this chat room example. Change the server URL or the chat room:
 
 <Sandpack>
 
@@ -843,7 +843,7 @@ This section describes an **experimental API that has not yet been released** in
 
 </Wip>
 
-As you start using `useChatRoom` in more components, you might want to let Components customize its behavior. For example, currently, the logic for what to do when a message arrives is hardcoded inside the Hook:
+As you start using `useChatRoom` in more Components, you might want to let Components customize its behavior. For example, currently, the logic for what to do when a message arrives is hardcoded inside the Hook:
 
 ```js {9-11}
 export function useChatRoom({ serverUrl, roomId }) {
@@ -862,7 +862,7 @@ export function useChatRoom({ serverUrl, roomId }) {
 }
 ```
 
-Let's say you want to move this logic back to your component:
+Let's say you want to move this logic back to your Component:
 
 ```js {7-9}
 export default function ChatRoom({ roomId }) {
@@ -1091,7 +1091,7 @@ button { margin-left: 10px; }
 
 </Sandpack>
 
-Notice how you no longer need to know *how* `useChatRoom` works in order to use it. You could add it to any other component, pass any other options, and it would work the same way. That's the power of custom Hooks.
+Notice how you no longer need to know *how* `useChatRoom` works in order to use it. You could add it to any other Component, pass any other options, and it would work the same way. That's the power of custom Hooks.
 
 ## When to use custom Hooks {/*when-to-use-custom-hooks*/}
 
@@ -1181,7 +1181,7 @@ Extracting a custom Hook makes the data flow explicit. You feed the `url` in and
 
 #### Keep your custom Hooks focused on concrete high-level use cases {/*keep-your-custom-hooks-focused-on-concrete-high-level-use-cases*/}
 
-Start by choosing your custom Hook's name. If you struggle to pick a clear name, it might mean that your Effect is too coupled to the rest of your component's logic, and is not yet ready to be extracted.
+Start by choosing your custom Hook's name. If you struggle to pick a clear name, it might mean that your Effect is too coupled to the rest of your Component's logic, and is not yet ready to be extracted.
 
 Ideally, your custom Hook's name should be clear enough that even a person who doesn't write code often could have a good guess about what your custom Hook does, what it takes, and what it returns:
 
@@ -1393,7 +1393,7 @@ export function useOnlineStatus() {
 
 </Sandpack>
 
-Notice how **you didn't need to change any of the components** to make this migration:
+Notice how **you didn't need to change any of the Components** to make this migration:
 
 ```js {2,7}
 function StatusBar() {
@@ -1411,7 +1411,7 @@ This is another reason for why wrapping Effects in custom Hooks is often benefic
 
 1. You make the data flow to and from your Effects very explicit.
 2. You let your Components focus on the intent rather than on the exact implementation of your Effects.
-3. When React adds new features, you can remove those Effects without changing any of your components.
+3. When React adds new features, you can remove those Effects without changing any of your Components.
 
 Similar to a [design system,](https://uxdesign.cc/everything-you-need-to-know-about-design-systems-54b109851969) you might find it helpful to start extracting common idioms from your app's Components into custom Hooks. This will keep your components' code focused on the intent, and let you avoid writing raw Effects very often. Many excellent custom Hooks are maintained by the React community.
 
@@ -1874,12 +1874,12 @@ Sometimes, you don't even need a Hook!
 
 <Recap>
 
-- Custom Hooks let you share logic between components.
+- Custom Hooks let you share logic between Components.
 - Custom Hooks must be named starting with `use` followed by a capital letter.
 - Custom Hooks only share stateful logic, not state itself.
 - You can pass reactive values from one Hook to another, and they stay up-to-date.
 - All Hooks re-run every time your Component re-renders.
-- The code of your custom Hooks should be pure, like your component's code.
+- The code of your custom Hooks should be pure, like your Component's code.
 - Wrap event handlers received by custom Hooks into Effect Events.
 - Don't create custom Hooks like `useMount`. Keep their purpose specific.
 - It's up to you how and where to choose the boundaries of your code.
@@ -2252,7 +2252,7 @@ export function useInterval(onTick, delay) {
 
 Inside `useInterval`, wrap the tick callback into an Effect Event, as you did [earlier on this page.](/learn/reusing-logic-with-custom-hooks#passing-event-handlers-to-custom-hooks)
 
-This will allow you to omit `onTick` from dependencies of your Effect. The Effect won't re-synchronize on every re-render of the component, so the page background color change interval won't get reset every second before it has a chance to fire.
+This will allow you to omit `onTick` from dependencies of your Effect. The Effect won't re-synchronize on every re-render of the Component, so the page background color change interval won't get reset every second before it has a chance to fire.
 
 With this change, both intervals work as expected and don't interfere with each other:
 

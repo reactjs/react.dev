@@ -108,7 +108,7 @@ You can use multiple `<Profiler>` Components to measure different parts of your 
 </App>
 ```
 
-You can also nest `<Profiler>` components:
+You can also nest `<Profiler>` Components:
 
 ```js {5,7,9,12}
 <App>
@@ -126,7 +126,7 @@ You can also nest `<Profiler>` components:
 </App>
 ```
 
-Although `<Profiler>` is a lightweight component, it should be used only when necessary. Each use adds some CPU and memory overhead to an application.
+Although `<Profiler>` is a lightweight Component, it should be used only when necessary. Each use adds some CPU and memory overhead to an application.
 
 ---
 

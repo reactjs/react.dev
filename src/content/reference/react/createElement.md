@@ -59,7 +59,7 @@ Usually, you'll return the element from your Component or make it a child of ano
 
 * You must **treat React elements and their props as [immutable](https://en.wikipedia.org/wiki/Immutable_object)** and never change their contents after creation. In development, React will [freeze](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/freeze) the returned element and its `props` property shallowly to enforce this.
 
-* When you use JSX, **you must start a tag with a capital letter to render your own custom component.** In other words, `<Something />` is equivalent to `createElement(Something)`, but `<something />` (lowercase) is equivalent to `createElement('something')` (note it's a string, so it will be treated as a built-in HTML tag).
+* When you use JSX, **you must start a tag with a capital letter to render your own custom Component.** In other words, `<Something />` is equivalent to `createElement(Something)`, but `<something />` (lowercase) is equivalent to `createElement('something')` (note it's a string, so it will be treated as a built-in HTML tag).
 
 * You should only **pass children as multiple arguments to `createElement` if they are all statically known,** like `createElement('h1', {}, child1, child2, child3)`. If your children are dynamic, pass the entire array as the third argument: `createElement('ul', {}, listItems)`. This ensures that React will [warn you about missing `key`s](/learn/rendering-lists#keeping-list-items-in-order-with-key) for any dynamic lists. For static lists this is not necessary because they never reorder.
 
@@ -99,7 +99,7 @@ function Greeting({ name }) {
 }
 ```
 
-To render your own React component, pass a function like `Greeting` as the <CodeStep step={1}>type</CodeStep> instead of a string like `'h1'`:
+To render your own React Component, pass a function like `Greeting` as the <CodeStep step={1}>type</CodeStep> instead of a string like `'h1'`:
 
 ```js [[1, 2, "Greeting"], [2, 2, "{ name: 'Taylor' }"]]
 export default function App() {
@@ -198,7 +198,7 @@ An element is a lightweight description of a piece of the user interface. For ex
 
 **Note that creating this object does not render the `Greeting` Component or create any DOM elements.**
 
-A React element is more like a description--an instruction for React to later render the `Greeting` component. By returning this object from your `App` component, you tell React what to do next.
+A React element is more like a description--an instruction for React to later render the `Greeting` Component. By returning this object from your `App` Component, you tell React what to do next.
 
 Creating elements is extremely cheap so you don't need to try to optimize or avoid it.
 

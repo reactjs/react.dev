@@ -34,7 +34,7 @@ If you haven't seen the new homepage yet, check it out!
 
 ## Going all-in on modern React with Hooks {/*going-all-in-on-modern-react-with-hooks*/}
 
-When we released React Hooks in 2018, the Hooks docs assumed the reader is familiar with class components. This helped the community adopt Hooks very swiftly, but after a while the old docs failed to serve the new readers. New readers had to learn React twice: once with class Components and then once again with Hooks.
+When we released React Hooks in 2018, the Hooks docs assumed the reader is familiar with class Components. This helped the community adopt Hooks very swiftly, but after a while the old docs failed to serve the new readers. New readers had to learn React twice: once with class Components and then once again with Hooks.
 
 **The new docs teach React with Hooks from the beginning.** The docs are divided in two main sections:
 
@@ -51,7 +51,7 @@ There are still a few rare class Component use cases that do not yet have a Hook
 
 ## Quick start {/*quick-start*/}
 
-The Learn section begins with the [Quick Start](/learn) page. It is a short introductory tour of React. It introduces the syntax for concepts like components, props, and state, but doesn't go into much detail on how to use them.
+The Learn section begins with the [Quick Start](/learn) page. It is a short introductory tour of React. It introduces the syntax for concepts like Components, props, and state, but doesn't go into much detail on how to use them.
 
 If you like to learn by doing, we recommend checking out the [Tic-Tac-Toe Tutorial](/learn/tutorial-tic-tac-toe) next. It walks you through building a little game with React, while teaching the skills you'll use every day. Here's what you'll build:
 
@@ -236,7 +236,7 @@ We'd like everyone in the world to have an equal opportunity to learn React for 
 
 This is why the Learn section is organized like a self-paced course split into chapters. The first two chapters describe the fundamentals of React. If you're new to React, or want to refresh it in your memory, start here:
 
-- **[Describing the UI](/learn/describing-the-ui)** teaches how to display information with components.
+- **[Describing the UI](/learn/describing-the-ui)** teaches how to display information with Components.
 - **[Adding Interactivity](/learn/adding-interactivity)** teaches how to update the screen in response to user input.
 
 The next two chapters are more advanced, and will give you a deeper insight into the trickier parts:
@@ -568,7 +568,7 @@ export default function MyCheckbox() {
 
 #### Form (two variables) {/*form-two-variables*/}
 
-You can declare more than one state variable in the same component. Each state variable is completely independent.
+You can declare more than one state variable in the same Component. Each state variable is completely independent.
 
 <Sandpack>
 

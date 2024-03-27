@@ -4,7 +4,7 @@ title: Writing Markup with JSX
 
 <Intro>
 
-*JSX* is a syntax extension for JavaScript that lets you write HTML-like markup inside a JavaScript file. Although there are other ways to write components, most React developers prefer the conciseness of JSX, and most codebases use it.
+*JSX* is a syntax extension for JavaScript that lets you write HTML-like markup inside a JavaScript file. Although there are other ways to write Components, most React developers prefer the conciseness of JSX, and most codebases use it.
 
 </Intro>
 
@@ -36,19 +36,19 @@ JavaScript
 
 </DiagramGroup>
 
-But as the Web became more interactive, logic increasingly determined content. JavaScript was in charge of the HTML! This is why **in React, rendering logic and markup live together in the same place—components.**
+But as the Web became more interactive, logic increasingly determined content. JavaScript was in charge of the HTML! This is why **in React, rendering logic and markup live together in the same place—Components.**
 
 <DiagramGroup>
 
 <Diagram name="writing_jsx_sidebar" height={330} width={325} alt="React Component with HTML and JavaScript from previous examples mixed. Function name is Sidebar which calls the function isLoggedIn, highlighted in yellow. Nested inside the function highlighted in purple is the p tag from before, and a Form tag referencing the Component shown in the next diagram.">
 
-`Sidebar.js` React component
+`Sidebar.js` React Component
 
 </Diagram>
 
 <Diagram name="writing_jsx_form" height={330} width={325} alt="React Component with HTML and JavaScript from previous examples mixed. Function name is Form containing two handlers onClick and onSubmit highlighted in yellow. Following the handlers is HTML highlighted in purple. The HTML contains a form element with a nested input element, each with an onClick prop.">
 
-`Form.js` React component
+`Form.js` React Component
 
 </Diagram>
 
@@ -82,7 +82,7 @@ Suppose that you have some (perfectly valid) HTML:
 </ul>
 ```
 
-And you want to put it into your component:
+And you want to put it into your Component:
 
 ```js
 export default function TodoList() {
@@ -134,7 +134,7 @@ Most of the time, React's on-screen error messages will help you find where the 
 
 ### 1. Return a single root element {/*1-return-a-single-root-element*/}
 
-To return multiple elements from a component, **wrap them with a single parent tag.**
+To return multiple elements from a Component, **wrap them with a single parent tag.**
 
 For example, you can use a `<div>`:
 
@@ -202,7 +202,7 @@ This is how Hedy Lamarr's image and list items look closed:
 
 ### 3. camelCase <s>all</s> most of the things! {/*3-camelcase-salls-most-of-the-things*/}
 
-JSX turns into JavaScript and attributes written in JSX become keys of JavaScript objects. In your own components, you will often want to read those attributes into variables. But JavaScript has limitations on variable names. For example, their names can't contain dashes or be reserved words like `class`.
+JSX turns into JavaScript and attributes written in JSX become keys of JavaScript objects. In your own Components, you will often want to read those attributes into variables. But JavaScript has limitations on variable names. For example, their names can't contain dashes or be reserved words like `class`.
 
 This is why, in React, many HTML and SVG attributes are written in camelCase. For example, instead of `stroke-width` you use `strokeWidth`. Since `class` is a reserved word, in React you write `className` instead, named after the [corresponding DOM property](https://developer.mozilla.org/en-US/docs/Web/API/Element/className):
 
@@ -258,7 +258,7 @@ img { height: 90px }
 
 <Recap>
 
-Now you know why JSX exists and how to use it in components:
+Now you know why JSX exists and how to use it in Components:
 
 * React Components group rendering logic together with markup because they are related.
 * JSX is similar to HTML, with a few differences. You can use a [converter](https://transform.tools/html-to-jsx) if you need to.
@@ -272,7 +272,7 @@ Now you know why JSX exists and how to use it in components:
 
 #### Convert some HTML to JSX {/*convert-some-html-to-jsx*/}
 
-This HTML was pasted into a component, but it's not valid JSX. Fix it:
+This HTML was pasted into a Component, but it's not valid JSX. Fix it:
 
 <Sandpack>
 

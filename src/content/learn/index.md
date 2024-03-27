@@ -21,7 +21,7 @@ Welcome to the React documentation! This page will give you an introduction to t
 
 ## Creating and nesting Components {/*components*/}
 
-React apps are made out of *components*. A Component is a piece of the UI (user interface) that has its own logic and appearance. A Component can be as small as a button, or as large as an entire page.
+React apps are made out of *Components*. A Component is a piece of the UI (user interface) that has its own logic and appearance. A Component can be as small as a button, or as large as an entire page.
 
 React Components are JavaScript functions that return markup:
 
@@ -33,7 +33,7 @@ function MyButton() {
 }
 ```
 
-Now that you've declared `MyButton`, you can nest it into another component:
+Now that you've declared `MyButton`, you can nest it into another Component:
 
 ```js {5}
 export default function MyApp() {
@@ -46,7 +46,7 @@ export default function MyApp() {
 }
 ```
 
-Notice that `<MyButton />` starts with a capital letter. That's how you know it's a React component. React Component names must always start with a capital letter, while HTML tags must be lowercase.
+Notice that `<MyButton />` starts with a capital letter. That's how you know it's a React Component. React Component names must always start with a capital letter, while HTML tags must be lowercase.
 
 Have a look at the result:
 
@@ -221,7 +221,7 @@ All of these approaches also work for conditionally specifying attributes. If yo
 
 ## Rendering lists {/*rendering-lists*/}
 
-You will rely on JavaScript features like [`for` loop](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for) and the [array `map()` function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) to render lists of components.
+You will rely on JavaScript features like [`for` loop](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for) and the [array `map()` function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) to render lists of Components.
 
 For example, let's say you have an array of products:
 
@@ -233,7 +233,7 @@ const products = [
 ];
 ```
 
-Inside your component, use the `map()` function to transform an array of products into an array of `<li>` items:
+Inside your Component, use the `map()` function to transform an array of products into an array of `<li>` items:
 
 ```js
 const listItems = products.map(product =>
@@ -280,7 +280,7 @@ export default function ShoppingList() {
 
 ## Responding to events {/*responding-to-events*/}
 
-You can respond to events by declaring *event handler* functions inside your components:
+You can respond to events by declaring *event handler* functions inside your Components:
 
 ```js {2-4,7}
 function MyButton() {
@@ -300,7 +300,7 @@ Notice how `onClick={handleClick}` has no parentheses at the end! Do not _call_ 
 
 ## Updating the screen {/*updating-the-screen*/}
 
-Often, you'll want your Component to "remember" some information and display it. For example, maybe you want to count the number of times a button is clicked. To do this, add *state* to your component.
+Often, you'll want your Component to "remember" some information and display it. For example, maybe you want to count the number of times a button is clicked. To do this, add *state* to your Component.
 
 First, import [`useState`](/reference/react/useState) from React:
 
@@ -308,7 +308,7 @@ First, import [`useState`](/reference/react/useState) from React:
 import { useState } from 'react';
 ```
 
-Now you can declare a *state variable* inside your component:
+Now you can declare a *state variable* inside your Component:
 
 ```js
 function MyButton() {
@@ -393,7 +393,7 @@ In the previous example, each `MyButton` had its own independent `count`, and wh
 
 <DiagramGroup>
 
-<Diagram name="sharing_data_child" height={367} width={407} alt="Diagram showing a tree of three components, one parent labeled MyApp and two children labeled MyButton. Both MyButton Components contain a count with value zero.">
+<Diagram name="sharing_data_child" height={367} width={407} alt="Diagram showing a tree of three Components, one parent labeled MyApp and two children labeled MyButton. Both MyButton Components contain a count with value zero.">
 
 Initially, each `MyButton`'s `count` state is `0`
 
@@ -415,7 +415,7 @@ In this example, it is `MyApp`:
 
 <DiagramGroup>
 
-<Diagram name="sharing_data_parent" height={385} width={410} alt="Diagram showing a tree of three components, one parent labeled MyApp and two children labeled MyButton. MyApp contains a count value of zero which is passed down to both of the MyButton components, which also show value zero." >
+<Diagram name="sharing_data_parent" height={385} width={410} alt="Diagram showing a tree of three Components, one parent labeled MyApp and two children labeled MyButton. MyApp contains a count value of zero which is passed down to both of the MyButton Components, which also show value zero." >
 
 Initially, `MyApp`'s `count` state is `0` and is passed down to both children
 
@@ -478,7 +478,7 @@ export default function MyApp() {
 
 The information you pass down like this is called _props_. Now the `MyApp` Component contains the `count` state and the `handleClick` event handler, and *passes both of them down as props* to each of the buttons.
 
-Finally, change `MyButton` to *read* the props you have passed from its parent component:
+Finally, change `MyButton` to *read* the props you have passed from its parent Component:
 
 ```js {1,3}
 function MyButton({ count, onClick }) {
@@ -490,7 +490,7 @@ function MyButton({ count, onClick }) {
 }
 ```
 
-When you click the button, the `onClick` handler fires. Each button's `onClick` prop was set to the `handleClick` function inside `MyApp`, so the code inside of it runs. That code calls `setCount(count + 1)`, incrementing the `count` state variable. The new `count` value is passed as a prop to each button, so they all show the new value. This is called "lifting state up". By moving state up, you've shared it between components.
+When you click the button, the `onClick` handler fires. Each button's `onClick` prop was set to the `handleClick` function inside `MyApp`, so the code inside of it runs. That code calls `setCount(count + 1)`, incrementing the `count` state variable. The new `count` value is passed as a prop to each button, so they all show the new value. This is called "lifting state up". By moving state up, you've shared it between Components.
 
 <Sandpack>
 

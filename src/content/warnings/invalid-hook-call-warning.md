@@ -6,7 +6,7 @@ You are probably here because you got the following error message:
 
 <ConsoleBlock level="error">
 
-Hooks can only be called inside the body of a function component.
+Hooks can only be called inside the body of a function Component.
 
 </ConsoleBlock>
 
@@ -22,14 +22,14 @@ Let's look at each of these cases.
 
 Functions whose names start with `use` are called [*Hooks*](/reference/react) in React.
 
-**Don’t call Hooks inside loops, conditions, or nested functions.** Instead, always use Hooks at the top level of your React function, before any early returns. You can only call Hooks while React is rendering a function component:
+**Don’t call Hooks inside loops, conditions, or nested functions.** Instead, always use Hooks at the top level of your React function, before any early returns. You can only call Hooks while React is rendering a function Component:
 
-* ✅ Call them at the top level in the body of a [function component](/learn/your-first-component).
+* ✅ Call them at the top level in the body of a [function Component](/learn/your-first-component).
 * ✅ Call them at the top level in the body of a [custom Hook](/learn/reusing-logic-with-custom-hooks).
 
 ```js{2-3,8-9}
 function Counter() {
-  // ✅ Good: top-level in a function component
+  // ✅ Good: top-level in a function Component
   const [count, setCount] = useState(0);
   // ...
 }
@@ -46,7 +46,7 @@ It’s **not** supported to call Hooks (functions starting with `use`) in any ot
 * 🔴 Do not call Hooks inside conditions or loops.
 * 🔴 Do not call Hooks after a conditional `return` statement.
 * 🔴 Do not call Hooks in event handlers.
-* 🔴 Do not call Hooks in class components.
+* 🔴 Do not call Hooks in class Components.
 * 🔴 Do not call Hooks inside functions passed to `useMemo`, `useReducer`, or `useEffect`.
 
 If you break these rules, you might see this error.

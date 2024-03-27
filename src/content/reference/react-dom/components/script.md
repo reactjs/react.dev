@@ -5,13 +5,13 @@ canary: true
 
 <Canary>
 
-React's extensions to `<script>` are currently only available in React's canary and experimental channels. In stable releases of React `<script>` works only as a [built-in browser HTML component](https://react.dev/reference/react-dom/components#all-html-components). Learn more about [React's release channels here](/community/versioning-policy#all-release-channels).
+React's extensions to `<script>` are currently only available in React's canary and experimental channels. In stable releases of React `<script>` works only as a [built-in browser HTML Component](https://react.dev/reference/react-dom/components#all-html-components). Learn more about [React's release channels here](/community/versioning-policy#all-release-channels).
 
 </Canary>
 
 <Intro>
 
-The [built-in browser `<script>` component](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script) lets you add a script to your document.
+The [built-in browser `<script>` Component](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script) lets you add a script to your document.
 
 ```js
 <script> alert("hi!") </script>
@@ -27,7 +27,7 @@ The [built-in browser `<script>` component](https://developer.mozilla.org/en-US/
 
 ### `<script>` {/*script*/}
 
-To add inline or external scripts to your document, render the [built-in browser `<script>` component](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script). You can render `<script>` from any Component and React will [in certain cases](#special-rendering-behavior) place the corresponding DOM element in the document head and de-duplicate identical scripts.
+To add inline or external scripts to your document, render the [built-in browser `<script>` Component](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script). You can render `<script>` from any Component and React will [in certain cases](#special-rendering-behavior) place the corresponding DOM element in the document head and de-duplicate identical scripts.
 
 ```js
 <script> alert("hi!") </script>
@@ -64,7 +64,7 @@ Props that disable React's [special treatment of scripts](#special-rendering-beh
 Props that are **not recommended** for use with React:
 
 * `blocking`: a string. If set to `"render"`, instructs the browser not to render the page until the scriptsheet is loaded. React provides more fine-grained control using Suspense.
-* `defer`: a string. Prevents the browser from executing the script until the document is done loading. Not compatible with streaming server-rendered components. Use the `async` prop instead.
+* `defer`: a string. Prevents the browser from executing the script until the document is done loading. Not compatible with streaming server-rendered Components. Use the `async` prop instead.
 
 #### Special rendering behavior {/*special-rendering-behavior*/}
 
@@ -72,7 +72,7 @@ React can move `<script>` Components to the document's `<head>`, de-duplicate id
 
 To opt into this behavior, provide the `src` and `async={true}` props. React will de-duplicate scripts if they have the same `src`. The `async` prop must be true to allow scripts to be safely moved.
 
-If you supply any of the `onLoad` or `onError` props, there is no special behavior, because these props indicate that you are managing the loading of the script manually within your component.
+If you supply any of the `onLoad` or `onError` props, there is no special behavior, because these props indicate that you are managing the loading of the script manually within your Component.
 
 This special treatment comes with two caveats:
 
@@ -85,7 +85,7 @@ This special treatment comes with two caveats:
 
 ### Rendering an external script {/*rendering-an-external-script*/}
 
-If a Component depends on certain scripts in order to be displayed correctly, you can render a `<script>` within the component.
+If a Component depends on certain scripts in order to be displayed correctly, you can render a `<script>` within the Component.
 
 If you supply an `src` and `async` prop, your Component will suspend while the script is loading. React will de-duplicate scripts that have the same `src`, inserting only one of them into the DOM even if multiple Components render it.
 
@@ -115,7 +115,7 @@ export default function Page() {
 </SandpackWithHTMLOutput>
 
 <Note>
-When you want to use a script, it can be beneficial to call the [preinit](/reference/react-dom/preinit) function. Calling this function may allow the browser to start fetching the script earlier than if you just render a `<script>` component, for example by sending an [HTTP Early Hints response](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/103).
+When you want to use a script, it can be beneficial to call the [preinit](/reference/react-dom/preinit) function. Calling this function may allow the browser to start fetching the script earlier than if you just render a `<script>` Component, for example by sending an [HTTP Early Hints response](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/103).
 </Note>
 
 ### Rendering an inline script {/*rendering-an-inline-script*/}

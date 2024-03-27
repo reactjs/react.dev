@@ -18,7 +18,7 @@ Form Hooks are currently only available in React's canary and experimental chann
 
 </Canary>
 
-*Forms* let you create interactive controls for submitting information.  To manage forms in your components, use one of these Hooks:
+*Forms* let you create interactive controls for submitting information.  To manage forms in your Components, use one of these Hooks:
 
 * [`useFormStatus`](/reference/react-dom/hooks/useFormStatus) allows you to make updates to the UI based on the status of the a form.
 * [`useFormState`](/reference/react-dom/hooks/useFormState) allows you to manage state inside a form.

@@ -64,7 +64,7 @@ The `use` Hook returns the value that was read from the resource like the resolv
 
 ### Reading context with `use` {/*reading-context-with-use*/}
 
-When a [context](/learn/passing-data-deeply-with-context) is passed to `use`, it works similarly to [`useContext`](/reference/react/useContext). While `useContext` must be called at the top level of your component, `use` can be called inside conditionals like `if` and loops like `for`. `use` is preferred over `useContext` because it is more flexible.
+When a [context](/learn/passing-data-deeply-with-context) is passed to `use`, it works similarly to [`useContext`](/reference/react/useContext). While `useContext` must be called at the top level of your Component, `use` can be called inside conditionals like `if` and loops like `for`. `use` is preferred over `useContext` because it is more flexible.
 
 ```js [[2, 4, "theme"], [1, 4, "ThemeContext"]]
 import { use } from 'react';
@@ -490,7 +490,7 @@ Instead, call `use` outside any Component closures, where the function that call
 
 ```jsx
 function MessageComponent({messagePromise}) {
-  // ✅ `use` is being called from a component. 
+  // ✅ `use` is being called from a Component. 
   const message = use(messagePromise);
   // ...
 ```

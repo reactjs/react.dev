@@ -411,7 +411,7 @@ b { display: inline-block; margin-right: 10px; }
 
 ### Updating the parent Component in a Transition {/*updating-the-parent-component-in-a-transition*/}
 
-You can update a parent component's state from the `useTransition` call, too. For example, this `TabButton` Component wraps its `onClick` logic in a Transition:
+You can update a parent Component's state from the `useTransition` call, too. For example, this `TabButton` Component wraps its `onClick` logic in a Transition:
 
 ```js {8-10}
 export default function TabButton({ children, isActive, onClick }) {

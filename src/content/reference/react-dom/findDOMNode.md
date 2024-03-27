@@ -10,7 +10,7 @@ This API will be removed in a future major version of React. [See the alternativ
 
 <Intro>
 
-`findDOMNode` finds the browser DOM node for a React [class component](/reference/react/Component) instance.
+`findDOMNode` finds the browser DOM node for a React [class Component](/reference/react/Component) instance.
 
 ```js
 const domNode = findDOMNode(componentInstance)
@@ -26,7 +26,7 @@ const domNode = findDOMNode(componentInstance)
 
 ### `findDOMNode(componentInstance)` {/*finddomnode*/}
 
-Call `findDOMNode` to find the browser DOM node for a given React [class component](/reference/react/Component) instance.
+Call `findDOMNode` to find the browser DOM node for a given React [class Component](/reference/react/Component) instance.
 
 ```js
 import { findDOMNode } from 'react-dom';
@@ -38,7 +38,7 @@ const domNode = findDOMNode(componentInstance);
 
 #### Parameters {/*parameters*/}
 
-* `componentInstance`: An instance of the [`Component`](/reference/react/Component) subclass. For example, `this` inside a class component.
+* `componentInstance`: An instance of the [`Component`](/reference/react/Component) subclass. For example, `this` inside a class Component.
 
 
 #### Returns {/*returns*/}
@@ -53,7 +53,7 @@ const domNode = findDOMNode(componentInstance);
 
 * `findDOMNode` only returns the result at the time of your call. If a child Component renders a different node later, there is no way for you to be notified of this change.
 
-* `findDOMNode` accepts a class Component instance, so it can't be used with function components.
+* `findDOMNode` accepts a class Component instance, so it can't be used with function Components.
 
 ---
 
@@ -61,7 +61,7 @@ const domNode = findDOMNode(componentInstance);
 
 ### Finding the root DOM node of a class Component {/*finding-the-root-dom-node-of-a-class-component*/}
 
-Call `findDOMNode` with a [class component](/reference/react/Component) instance (usually, `this`) to find the DOM node it has rendered.
+Call `findDOMNode` with a [class Component](/reference/react/Component) instance (usually, `this`) to find the DOM node it has rendered.
 
 ```js {3}
 class AutoselectingInput extends Component {
@@ -122,7 +122,7 @@ export default AutoselectingInput;
 
 ## Alternatives {/*alternatives*/}
 
-### Reading component's own DOM node from a ref {/*reading-components-own-dom-node-from-a-ref*/}
+### Reading Component's own DOM node from a ref {/*reading-components-own-dom-node-from-a-ref*/}
 
 Code using `findDOMNode` is fragile because the connection between the JSX node and the code manipulating the corresponding DOM node is not explicit. For example, try wrapping this `<input />` into a `<div>`:
 
@@ -212,7 +212,7 @@ export default AutoselectingInput;
 
 </Sandpack>
 
-In modern React without class components, the equivalent code would call [`useRef`](/reference/react/useRef) instead:
+In modern React without class Components, the equivalent code would call [`useRef`](/reference/react/useRef) instead:
 
 <Sandpack>
 
@@ -255,9 +255,9 @@ export default function AutoselectingInput() {
 
 ---
 
-### Reading a child component's DOM node from a forwarded ref {/*reading-a-child-components-dom-node-from-a-forwarded-ref*/}
+### Reading a child Component's DOM node from a forwarded ref {/*reading-a-child-components-dom-node-from-a-forwarded-ref*/}
 
-In this example, `findDOMNode(this)` finds a DOM node that belongs to another component. The `AutoselectingInput` renders `MyInput`, which is your own Component that renders a browser `<input>`.
+In this example, `findDOMNode(this)` finds a DOM node that belongs to another Component. The `AutoselectingInput` renders `MyInput`, which is your own Component that renders a browser `<input>`.
 
 <Sandpack>
 
@@ -305,7 +305,7 @@ export default function MyInput() {
 
 </Sandpack>
 
-Notice that calling `findDOMNode(this)` inside `AutoselectingInput` still gives you the DOM `<input>`--even though the JSX for this `<input>` is hidden inside the `MyInput` component. This seems convenient for the above example, but it leads to fragile code. Imagine that you wanted to edit `MyInput` later and add a wrapper `<div>` around it. This would break the code of `AutoselectingInput` (which expects to find an `<input>`).
+Notice that calling `findDOMNode(this)` inside `AutoselectingInput` still gives you the DOM `<input>`--even though the JSX for this `<input>` is hidden inside the `MyInput` Component. This seems convenient for the above example, but it leads to fragile code. Imagine that you wanted to edit `MyInput` later and add a wrapper `<div>` around it. This would break the code of `AutoselectingInput` (which expects to find an `<input>`).
 
 To replace `findDOMNode` in this example, the two Components need to coordinate:
 

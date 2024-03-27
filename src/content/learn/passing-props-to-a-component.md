@@ -51,11 +51,11 @@ body { min-height: 120px; }
 
 </Sandpack>
 
-The props you can pass to an `<img>` tag are predefined (ReactDOM conforms to [the HTML standard](https://www.w3.org/TR/html52/semantics-embedded-content.html#the-img-element)). But you can pass any props to *your own* components, such as `<Avatar>`, to customize them. Here's how!
+The props you can pass to an `<img>` tag are predefined (ReactDOM conforms to [the HTML standard](https://www.w3.org/TR/html52/semantics-embedded-content.html#the-img-element)). But you can pass any props to *your own* Components, such as `<Avatar>`, to customize them. Here's how!
 
 ## Passing props to a Component {/*passing-props-to-a-component*/}
 
-In this code, the `Profile` Component isn't passing any props to its child component, `Avatar`:
+In this code, the `Profile` Component isn't passing any props to its child Component, `Avatar`:
 
 ```js
 export default function Profile() {
@@ -88,7 +88,7 @@ If double curly braces after `person=` confuse you, recall [they're merely an ob
 
 </Note>
 
-Now you can read these props inside the `Avatar` component.
+Now you can read these props inside the `Avatar` Component.
 
 ### Step 2: Read props inside the child Component {/*step-2-read-props-inside-the-child-component*/}
 
@@ -170,7 +170,7 @@ body { min-height: 120px; }
 
 Props let you think about parent and child Components independently. For example, you can change the `person` or the `size` props inside `Profile` without having to think about how `Avatar` uses them. Similarly, you can change how the `Avatar` uses these props, without looking at the `Profile`.
 
-You can think of props like "knobs" that you can adjust. They serve the same role as arguments serve for functions—in fact, props _are_ the only argument to your component! React Component functions accept a single argument, a `props` object:
+You can think of props like "knobs" that you can adjust. They serve the same role as arguments serve for functions—in fact, props _are_ the only argument to your Component! React Component functions accept a single argument, a `props` object:
 
 ```js
 function Avatar(props) {
@@ -251,7 +251,7 @@ function Profile(props) {
 
 This forwards all of `Profile`'s props to the `Avatar` without listing each of their names.
 
-**Use spread syntax with restraint.** If you're using it in every other component, something is wrong. Often, it indicates that you should split your Components and pass children as JSX. More on that next!
+**Use spread syntax with restraint.** If you're using it in every other Component, something is wrong. Often, it indicates that you should split your Components and pass children as JSX. More on that next!
 
 ## Passing JSX as children {/*passing-jsx-as-children*/}
 
@@ -355,7 +355,7 @@ You can think of a Component with a `children` prop as having a "hole" that can 
 
 ## How props change over time {/*how-props-change-over-time*/}
 
-The `Clock` Component below receives two props from its parent component: `color` and `time`. (The parent component's code is omitted because it uses [state](/learn/state-a-components-memory), which we won't dive into just yet.)
+The `Clock` Component below receives two props from its parent Component: `color` and `time`. (The parent Component's code is omitted because it uses [state](/learn/state-a-components-memory), which we won't dive into just yet.)
 
 Try changing the color in the select box below:
 
@@ -407,7 +407,7 @@ export default function App() {
 
 </Sandpack>
 
-This example illustrates that **a Component may receive different props over time.** Props are not always static! Here, the `time` prop changes every second, and the `color` prop changes when you select another color. Props reflect a component's data at any point in time, rather than only in the beginning.
+This example illustrates that **a Component may receive different props over time.** Props are not always static! Here, the `time` prop changes every second, and the `color` prop changes when you select another color. Props reflect a Component's data at any point in time, rather than only in the beginning.
 
 However, props are [immutable](https://en.wikipedia.org/wiki/Immutable_object)—a term from computer science meaning "unchangeable". When a Component needs to change its props (for example, in response to a user interaction or new data), it will have to "ask" its parent Component to pass it _different props_—a new object! Its old props will then be cast aside, and eventually the JavaScript engine will reclaim the memory taken by them.
 
@@ -419,7 +419,7 @@ However, props are [immutable](https://en.wikipedia.org/wiki/Immutable_object)�
 * To read props, use the `function Avatar({ person, size })` destructuring syntax.
 * You can specify a default value like `size = 100`, which is used for missing and `undefined` props.
 * You can forward all props with `<Avatar {...props} />` JSX spread syntax, but don't overuse it!
-* Nested JSX like `<Card><Avatar /></Card>` will appear as `Card` component's `children` prop.
+* Nested JSX like `<Card><Avatar /></Card>` will appear as `Card` Component's `children` prop.
 * Props are read-only snapshots in time: every render receives a new version of props.
 * You can't change props. When you need interactivity, you'll need to set state.
 
@@ -532,7 +532,7 @@ Start by extracting the markup for one of the scientists. Then find the pieces t
 
 In this solution, the `Profile` Component accepts multiple props: `imageId` (a string), `name` (a string), `profession` (a string), `awards` (an array of strings), `discovery` (a string), and `imageSize` (a number).
 
-Note that the `imageSize` prop has a default value, which is why we don't pass it to the component.
+Note that the `imageSize` prop has a default value, which is why we don't pass it to the Component.
 
 <Sandpack>
 
@@ -983,7 +983,7 @@ h1 {
 
 <Hint>
 
-Any JSX you put inside of a component's tag will be passed as the `children` prop to that component.
+Any JSX you put inside of a Component's tag will be passed as the `children` prop to that Component.
 
 </Hint>
 

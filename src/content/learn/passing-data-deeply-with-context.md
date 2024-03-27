@@ -25,7 +25,7 @@ But passing props can become verbose and inconvenient when you need to pass some
 
 <DiagramGroup>
 
-<Diagram name="passing_data_lifting_state" height={160} width={608} captionPosition="top" alt="Diagram with a tree of three components. The parent contains a bubble representing a value highlighted in purple. The value flows down to each of the two children, both highlighted in purple." >
+<Diagram name="passing_data_lifting_state" height={160} width={608} captionPosition="top" alt="Diagram with a tree of three Components. The parent contains a bubble representing a value highlighted in purple. The value flows down to each of the two children, both highlighted in purple." >
 
 Lifting state up
 
@@ -212,7 +212,7 @@ Context lets a parent--even a distant one!--provide some data to the entire tree
 
 <DiagramGroup>
 
-<Diagram name="passing_data_context_close" height={160} width={608} captionPosition="top" alt="Diagram with a tree of three components. The parent contains a bubble representing a value highlighted in orange which projects down to the two children, each highlighted in orange." >
+<Diagram name="passing_data_context_close" height={160} width={608} captionPosition="top" alt="Diagram with a tree of three Components. The parent contains a bubble representing a value highlighted in orange which projects down to the two children, each highlighted in orange." >
 
 Using context in close children
 
@@ -564,7 +564,7 @@ export const LevelContext = createContext(1);
 
 </Sandpack>
 
-It's the same result as the original code, but you did not need to pass the `level` prop to each `Heading` component! Instead, it "figures out" its heading level by asking the closest `Section` above:
+It's the same result as the original code, but you did not need to pass the `level` prop to each `Heading` Component! Instead, it "figures out" its heading level by asking the closest `Section` above:
 
 1. You pass a `level` prop to the `<Section>`.
 2. `Section` wraps its children into `<LevelContext.Provider value={level}>`.
@@ -846,7 +846,7 @@ Context is very tempting to use! However, this also means it's too easy to overu
 
 Here's a few alternatives you should consider before using context:
 
-1. **Start by [passing props.](/learn/passing-props-to-a-component)** If your Components are not trivial, it's not unusual to pass a dozen props down through a dozen components. It may feel like a slog, but it makes it very clear which Components use which data! The person maintaining your code will be glad you've made the data flow explicit with props.
+1. **Start by [passing props.](/learn/passing-props-to-a-component)** If your Components are not trivial, it's not unusual to pass a dozen props down through a dozen Components. It may feel like a slog, but it makes it very clear which Components use which data! The person maintaining your code will be glad you've made the data flow explicit with props.
 2. **Extract Components and [pass JSX as `children`](/learn/passing-props-to-a-component#passing-jsx-as-children) to them.** If you pass some data through many layers of intermediate Components that don't use that data (and only pass it further down), this often means that you forgot to extract some Components along the way. For example, maybe you pass data props like `posts` to visual Components that don't use them directly, like `<Layout posts={posts} />`. Instead, make `Layout` take `children` as a prop, and render `<Layout><Posts posts={posts} /></Layout>`. This reduces the number of layers between the Component specifying the data and the one that needs it.
 
 If neither of these approaches works well for you, consider context.
@@ -867,7 +867,7 @@ In general, if some information is needed by distant Components in different par
 * Context lets a Component provide some information to the entire tree below it.
 * To pass context:
   1. Create and export it with `export const MyContext = createContext(defaultValue)`.
-  2. Pass it to the `useContext(MyContext)` Hook to read it in any child component, no matter how deep.
+  2. Pass it to the `useContext(MyContext)` Hook to read it in any child Component, no matter how deep.
   3. Wrap children into `<MyContext.Provider value={...}>` to provide it from a parent.
 * Context passes through any Components in the middle.
 * Context lets you write Components that "adapt to their surroundings".
@@ -879,7 +879,7 @@ In general, if some information is needed by distant Components in different par
 
 #### Replace prop drilling with context {/*replace-prop-drilling-with-context*/}
 
-In this example, toggling the checkbox changes the `imageSize` prop passed to each `<PlaceImage>`. The checkbox state is held in the top-level `App` component, but each `<PlaceImage>` needs to be aware of it.
+In this example, toggling the checkbox changes the `imageSize` prop passed to each `<PlaceImage>`. The checkbox state is held in the top-level `App` Component, but each `<PlaceImage>` needs to be aware of it.
 
 Currently, `App` passes `imageSize` to `List`, which passes it to each `Place`, which passes it to the `PlaceImage`. Remove the `imageSize` prop, and instead pass it from the `App` Component directly to `PlaceImage`.
 
@@ -1020,7 +1020,7 @@ li {
 
 <Solution>
 
-Remove `imageSize` prop from all the components.
+Remove `imageSize` prop from all the Components.
 
 Create and export `ImageSizeContext` from `Context.js`. Then wrap the List into `<ImageSizeContext.Provider value={imageSize}>` to pass the value down, and `useContext(ImageSizeContext)` to read it in the `PlaceImage`:
 

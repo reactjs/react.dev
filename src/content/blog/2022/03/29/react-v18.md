@@ -198,12 +198,12 @@ In the future, we’d like to add a feature that allows React to add and remove 
 
 This feature will give React apps better performance out-of-the-box, but requires Components to be resilient to effects being mounted and destroyed multiple times. Most effects will work without any changes, but some effects assume they are only mounted or destroyed once.
 
-To help surface these issues, React 18 introduces a new development-only check to Strict Mode. This new check will automatically unmount and remount every component, whenever a Component mounts for the first time, restoring the previous state on the second mount.
+To help surface these issues, React 18 introduces a new development-only check to Strict Mode. This new check will automatically unmount and remount every Component, whenever a Component mounts for the first time, restoring the previous state on the second mount.
 
 Before this change, React would mount the Component and create the effects:
 
 ```
-* React mounts the component.
+* React mounts the Component.
   * Layout effects are created.
   * Effects are created.
 ```
@@ -212,10 +212,10 @@ Before this change, React would mount the Component and create the effects:
 With Strict Mode in React 18, React will simulate unmounting and remounting the Component in development mode:
 
 ```
-* React mounts the component.
+* React mounts the Component.
   * Layout effects are created.
   * Effects are created.
-* React simulates unmounting the component.
+* React simulates unmounting the Component.
   * Layout effects are destroyed.
   * Effects are destroyed.
 * React simulates mounting the Component with the previous state.

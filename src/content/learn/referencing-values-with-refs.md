@@ -10,7 +10,7 @@ When you want a Component to "remember" some information, but you don't want tha
 
 <YouWillLearn>
 
-- How to add a ref to your component
+- How to add a ref to your Component
 - How to update a ref's value
 - How refs are different from state
 - How to use refs safely
@@ -25,7 +25,7 @@ You can add a ref to your Component by importing the `useRef` Hook from React:
 import { useRef } from 'react';
 ```
 
-Inside your component, call the `useRef` Hook and pass the initial value that you want to reference as the only argument. For example, here is a ref to the value `0`:
+Inside your Component, call the `useRef` Hook and pass the initial value that you want to reference as the only argument. For example, here is a ref to the value `0`:
 
 ```js
 const ref = useRef(0);
@@ -70,11 +70,11 @@ export default function Counter() {
 
 The ref points to a number, but, like [state](/learn/state-a-components-memory), you could point to anything: a string, an object, or even a function. Unlike state, ref is a plain JavaScript object with the `current` property that you can read and modify.
 
-Note that **the Component doesn't re-render with every increment.** Like state, refs are retained by React between re-renders. However, setting state re-renders a component. Changing a ref does not!
+Note that **the Component doesn't re-render with every increment.** Like state, refs are retained by React between re-renders. However, setting state re-renders a Component. Changing a ref does not!
 
 ## Example: building a stopwatch {/*example-building-a-stopwatch*/}
 
-You can combine refs and state in a single component. For example, let's make a stopwatch that the user can start or stop by pressing a button. In order to display how much time has passed since the user pressed "Start", you will need to keep track of when the Start button was pressed and what the current time is. **This information is used for rendering, so you'll keep it in state:**
+You can combine refs and state in a single Component. For example, let's make a stopwatch that the user can start or stop by pressing a button. In order to display how much time has passed since the user pressed "Start", you will need to keep track of when the Start button was pressed and what the current time is. **This information is used for rendering, so you'll keep it in state:**
 
 ```js
 const [startTime, setStartTime] = useState(null);
@@ -207,7 +207,7 @@ export default function Counter() {
 
 Because the `count` value is displayed, it makes sense to use a state value for it. When the counter's value is set with `setCount()`, React re-renders the Component and the screen updates to reflect the new count.
 
-If you tried to implement this with a ref, React would never re-render the component, so you'd never see the count change! See how clicking this button **does not update its text**:
+If you tried to implement this with a ref, React would never re-render the Component, so you'd never see the count change! See how clicking this button **does not update its text**:
 
 <Sandpack>
 
@@ -218,7 +218,7 @@ export default function Counter() {
   let countRef = useRef(0);
 
   function handleClick() {
-    // This doesn't re-render the component!
+    // This doesn't re-render the Component!
     countRef.current = countRef.current + 1;
   }
 
@@ -256,7 +256,7 @@ React provides a built-in version of `useRef` because it is common enough in pra
 
 ## When to use refs {/*when-to-use-refs*/}
 
-Typically, you will use a ref when your Component needs to "step outside" React and communicate with external APIs—often a browser API that won't impact the appearance of the component. Here are a few of these rare situations:
+Typically, you will use a ref when your Component needs to "step outside" React and communicate with external APIs—often a browser API that won't impact the appearance of the Component. Here are a few of these rare situations:
 
 - Storing [timeout IDs](https://developer.mozilla.org/docs/Web/API/setTimeout)
 - Storing and manipulating [DOM elements](https://developer.mozilla.org/docs/Web/API/Element), which we cover on [the next page](/learn/manipulating-the-dom-with-refs)
@@ -269,7 +269,7 @@ If your Component needs to store some value, but it doesn't impact the rendering
 Following these principles will make your Components more predictable:
 
 - **Treat refs as an escape hatch.** Refs are useful when you work with external systems or browser APIs. If much of your application logic and data flow relies on refs, you might want to rethink your approach.
-- **Don't read or write `ref.current` during rendering.** If some information is needed during rendering, use [state](/learn/state-a-components-memory) instead. Since React doesn't know when `ref.current` changes, even reading it while rendering makes your component's behavior difficult to predict. (The only exception to this is code like `if (!ref.current) ref.current = new Thing()` which only sets the ref once during the first render.)
+- **Don't read or write `ref.current` during rendering.** If some information is needed during rendering, use [state](/learn/state-a-components-memory) instead. Since React doesn't know when `ref.current` changes, even reading it while rendering makes your Component's behavior difficult to predict. (The only exception to this is code like `if (!ref.current) ref.current = new Thing()` which only sets the ref once during the first render.)
 
 Limitations of React state don't apply to refs. For example, state acts like a [snapshot for every render](/learn/state-as-a-snapshot) and [doesn't update synchronously.](/learn/queueing-a-series-of-state-updates) But when you mutate the current value of a ref, it changes immediately:
 
@@ -291,7 +291,7 @@ You can point a ref to any value. However, the most common use case for a ref is
 - Refs are an escape hatch to hold onto values that aren't used for rendering. You won't need them often.
 - A ref is a plain JavaScript object with a single property called `current`, which you can read or set.
 - You can ask React to give you a ref by calling the `useRef` Hook.
-- Like state, refs let you retain information between re-renders of a component.
+- Like state, refs let you retain information between re-renders of a Component.
 - Unlike state, setting the ref's `current` value does not trigger a re-render.
 - Don't read or write `ref.current` during rendering. This makes your Component hard to predict.
 
@@ -472,7 +472,7 @@ Why are the buttons interfering with each other? Find and fix the issue.
 
 <Hint>
 
-The last timeout ID variable is shared between all `DebouncedButton` components. This is why clicking one button resets another button's timeout. Can you store a separate timeout ID for each button?
+The last timeout ID variable is shared between all `DebouncedButton` Components. This is why clicking one button resets another button's timeout. Can you store a separate timeout ID for each button?
 
 </Hint>
 
@@ -525,7 +525,7 @@ button { display: block; margin: 10px; }
 
 <Solution>
 
-A variable like `timeoutID` is shared between all components. This is why clicking on the second button resets the first button's pending timeout. To fix this, you can keep timeout in a ref. Each button will get its own ref, so they won't conflict with each other. Notice how clicking two buttons fast will show both messages.
+A variable like `timeoutID` is shared between all Components. This is why clicking on the second button resets the first button's pending timeout. To fix this, you can keep timeout in a ref. Each button will get its own ref, so they won't conflict with each other. Notice how clicking two buttons fast will show both messages.
 
 <Sandpack>
 

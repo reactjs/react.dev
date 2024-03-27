@@ -21,4 +21,4 @@ React exposes a few built-in Components that you can use in your JSX.
 
 ## Your own Components {/*your-own-components*/}
 
-You can also [define your own components](/learn/your-first-component) as JavaScript functions.
+You can also [define your own Components](/learn/your-first-component) as JavaScript functions.

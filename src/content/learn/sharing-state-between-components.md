@@ -11,7 +11,7 @@ Sometimes, you want the state of two Components to always change together. To do
 <YouWillLearn>
 
 - How to share state between Components by lifting it up
-- What are controlled and uncontrolled components
+- What are controlled and uncontrolled Components
 
 </YouWillLearn>
 
@@ -77,7 +77,7 @@ Notice how pressing one panel's button does not affect the other panel--they are
 
 <DiagramGroup>
 
-<Diagram name="sharing_state_child" height={367} width={477} alt="Diagram showing a tree of three components, one parent labeled Accordion and two children labeled Panel. Both Panel Components contain isActive with value false.">
+<Diagram name="sharing_state_child" height={367} width={477} alt="Diagram showing a tree of three Components, one parent labeled Accordion and two children labeled Panel. Both Panel Components contain isActive with value false.">
 
 Initially, each `Panel`'s `isActive` state is `false`, so they both appear collapsed
 
@@ -95,7 +95,7 @@ Clicking either `Panel`'s button will only update that `Panel`'s `isActive` stat
 
 To coordinate these two panels, you need to "lift their state up" to a parent Component in three steps:
 
-1. **Remove** state from the child components.
+1. **Remove** state from the child Components.
 2. **Pass** hardcoded data from the common parent.
 3. **Add** state to the common parent and pass it down together with the event handlers.
 
@@ -103,7 +103,7 @@ This will allow the `Accordion` Component to coordinate both `Panel`s and only e
 
 ### Step 1: Remove state from the child Components {/*step-1-remove-state-from-the-child-components*/}
 
-You will give control of the `Panel`'s `isActive` to its parent component. This means that the parent Component will pass `isActive` to `Panel` as a prop instead. Start by **removing this line** from the `Panel` component:
+You will give control of the `Panel`'s `isActive` to its parent Component. This means that the parent Component will pass `isActive` to `Panel` as a prop instead. Start by **removing this line** from the `Panel` Component:
 
 ```js
 const [isActive, setIsActive] = useState(false);
@@ -115,7 +115,7 @@ And instead, add `isActive` to the `Panel`'s list of props:
 function Panel({ title, children, isActive }) {
 ```
 
-Now the `Panel`'s parent Component can *control* `isActive` by [passing it down as a prop.](/learn/passing-props-to-a-component) Conversely, the `Panel` Component now has *no control* over the value of `isActive`--it's now up to the parent component!
+Now the `Panel`'s parent Component can *control* `isActive` by [passing it down as a prop.](/learn/passing-props-to-a-component) Conversely, the `Panel` Component now has *no control* over the value of `isActive`--it's now up to the parent Component!
 
 ### Step 2: Pass hardcoded data from the common parent {/*step-2-pass-hardcoded-data-from-the-common-parent*/}
 
@@ -125,7 +125,7 @@ To lift state up, you must locate the closest common parent Component of *both* 
   - `Panel`
   - `Panel`
 
-In this example, it's the `Accordion` component. Since it's above both panels and can control their props, it will become the "source of truth" for which panel is currently active. Make the `Accordion` Component pass a hardcoded value of `isActive` (for example, `true`) to both panels:
+In this example, it's the `Accordion` Component. Since it's above both panels and can control their props, it will become the "source of truth" for which panel is currently active. Make the `Accordion` Component pass a hardcoded value of `isActive` (for example, `true`) to both panels:
 
 <Sandpack>
 
@@ -270,7 +270,7 @@ This completes lifting state up! Moving state into the common parent Component a
 
 <DiagramGroup>
 
-<Diagram name="sharing_state_parent" height={385} width={487} alt="Diagram showing a tree of three components, one parent labeled Accordion and two children labeled Panel. Accordion contains an activeIndex value of zero which turns into isActive value of true passed to the first Panel, and isActive value of false passed to the second Panel." >
+<Diagram name="sharing_state_parent" height={385} width={487} alt="Diagram showing a tree of three Components, one parent labeled Accordion and two children labeled Panel. Accordion contains an activeIndex value of zero which turns into isActive value of true passed to the first Panel, and isActive value of false passed to the second Panel." >
 
 Initially, `Accordion`'s `activeIndex` is `0`, so the first `Panel` receives `isActive = true`
 
@@ -290,29 +290,29 @@ When `Accordion`'s `activeIndex` state changes to `1`, the second `Panel` receiv
 
 It is common to call a Component with some local state "uncontrolled". For example, the original `Panel` Component with an `isActive` state variable is uncontrolled because its parent cannot influence whether the panel is active or not.
 
-In contrast, you might say a Component is "controlled" when the important information in it is driven by props rather than its own local state. This lets the parent Component fully specify its behavior. The final `Panel` Component with the `isActive` prop is controlled by the `Accordion` component.
+In contrast, you might say a Component is "controlled" when the important information in it is driven by props rather than its own local state. This lets the parent Component fully specify its behavior. The final `Panel` Component with the `isActive` prop is controlled by the `Accordion` Component.
 
 Uncontrolled Components are easier to use within their parents because they require less configuration. But they're less flexible when you want to coordinate them together. Controlled Components are maximally flexible, but they require the parent Components to fully configure them with props.
 
 In practice, "controlled" and "uncontrolled" aren't strict technical terms--each Component usually has some mix of both local state and props. However, this is a useful way to talk about how Components are designed and what capabilities they offer.
 
-When writing a component, consider which information in it should be controlled (via props), and which information should be uncontrolled (via state). But you can always change your mind and refactor later.
+When writing a Component, consider which information in it should be controlled (via props), and which information should be uncontrolled (via state). But you can always change your mind and refactor later.
 
 </DeepDive>
 
 ## A single source of truth for each state {/*a-single-source-of-truth-for-each-state*/}
 
-In a React application, many Components will have their own state. Some state may "live" close to the leaf Components (components at the bottom of the tree) like inputs. Other state may "live" closer to the top of the app. For example, even client-side routing libraries are usually implemented by storing the current route in the React state, and passing it down by props!
+In a React application, many Components will have their own state. Some state may "live" close to the leaf Components (Components at the bottom of the tree) like inputs. Other state may "live" closer to the top of the app. For example, even client-side routing libraries are usually implemented by storing the current route in the React state, and passing it down by props!
 
-**For each unique piece of state, you will choose the Component that "owns" it.** This principle is also known as having a ["single source of truth".](https://en.wikipedia.org/wiki/Single_source_of_truth) It doesn't mean that all state lives in one place--but that for _each_ piece of state, there is a _specific_ Component that holds that piece of information. Instead of duplicating shared state between components, *lift it up* to their common shared parent, and *pass it down* to the children that need it.
+**For each unique piece of state, you will choose the Component that "owns" it.** This principle is also known as having a ["single source of truth".](https://en.wikipedia.org/wiki/Single_source_of_truth) It doesn't mean that all state lives in one place--but that for _each_ piece of state, there is a _specific_ Component that holds that piece of information. Instead of duplicating shared state between Components, *lift it up* to their common shared parent, and *pass it down* to the children that need it.
 
 Your app will change as you work on it. It is common that you will move state down or back up while you're still figuring out where each piece of the state "lives". This is all part of the process!
 
-To see what this feels like in practice with a few more components, read [Thinking in React.](/learn/thinking-in-react)
+To see what this feels like in practice with a few more Components, read [Thinking in React.](/learn/thinking-in-react)
 
 <Recap>
 
-* When you want to coordinate two components, move their state to their common parent.
+* When you want to coordinate two Components, move their state to their common parent.
 * Then pass the information down through props from their common parent.
 * Finally, pass the event handlers down so that the children can change the parent's state.
 * It's useful to consider Components as "controlled" (driven by props) or "uncontrolled" (driven by state).
@@ -327,7 +327,7 @@ These two inputs are independent. Make them stay in sync: editing one input shou
 
 <Hint>
 
-You'll need to lift their state up into the parent component.
+You'll need to lift their state up into the parent Component.
 
 </Hint>
 
@@ -374,7 +374,7 @@ label { display: block; }
 
 <Solution>
 
-Move the `text` state variable into the parent Component along with the `handleChange` handler. Then pass them down as props to both of the `Input` components. This will keep them in sync.
+Move the `text` state variable into the parent Component along with the `handleChange` handler. Then pass them down as props to both of the `Input` Components. This will keep them in sync.
 
 <Sandpack>
 
@@ -528,7 +528,7 @@ export const foods = [{
 
 <Solution>
 
-Lift the `query` state up into the `FilterableList` component. Call `filterItems(foods, query)` to get the filtered list and pass it down to the `List`. Now changing the query input is reflected in the list:
+Lift the `query` state up into the `FilterableList` Component. Call `filterItems(foods, query)` to get the filtered list and pass it down to the `List`. Now changing the query input is reflected in the list:
 
 <Sandpack>
 

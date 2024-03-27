@@ -12,7 +12,7 @@ title: Your First Component
 
 * What a Component is
 * What role Components play in a React application
-* How to write your first React component
+* How to write your first React Component
 
 </YouWillLearn>
 
@@ -35,7 +35,7 @@ This markup represents this article `<article>`, its heading `<h1>`, and an (abb
 
 React lets you combine your markup, CSS, and JavaScript into custom "components", **reusable UI elements for your app.** The table of contents code you saw above could be turned into a `<TableOfContents />` Component you could render on every page. Under the hood, it still uses the same HTML tags like `<article>`, `<h1>`, etc.
 
-Just like with HTML tags, you can compose, order and nest Components to design whole pages. For example, the documentation page you're reading is made out of React components:
+Just like with HTML tags, you can compose, order and nest Components to design whole pages. For example, the documentation page you're reading is made out of React Components:
 
 ```js
 <PageLayout>
@@ -76,7 +76,7 @@ img { height: 200px; }
 
 </Sandpack>
 
-And here's how to build a component:
+And here's how to build a Component:
 
 ### Step 1: Export the Component {/*step-1-export-the-component*/}
 
@@ -96,7 +96,7 @@ React Components are regular JavaScript functions, but **their names must start 
 
 The Component returns an `<img />` tag with `src` and `alt` attributes. `<img />` is written like HTML, but it is actually JavaScript under the hood! This syntax is called [JSX](/learn/writing-markup-with-jsx), and it lets you embed markup inside JavaScript.
 
-Return statements can be written all on one line, as in this component:
+Return statements can be written all on one line, as in this Component:
 
 ```js
 return <img src="https://i.imgur.com/MK3eW3As.jpg" alt="Katherine Johnson" />;
@@ -120,7 +120,7 @@ Without parentheses, any code on the lines after `return` [will be ignored](http
 
 ## Using a Component {/*using-a-component*/}
 
-Now that you've defined your `Profile` component, you can nest it inside other components. For example, you can export a `Gallery` Component that uses multiple `Profile` components:
+Now that you've defined your `Profile` Component, you can nest it inside other Components. For example, you can export a `Gallery` Component that uses multiple `Profile` Components:
 
 <Sandpack>
 
@@ -174,15 +174,15 @@ And `Profile` contains even more HTML: `<img />`. In the end, this is what the b
 
 Components are regular JavaScript functions, so you can keep multiple Components in the same file. This is convenient when Components are relatively small or tightly related to each other. If this file gets crowded, you can always move `Profile` to a separate file. You will learn how to do this shortly on the [page about imports.](/learn/importing-and-exporting-components)
 
-Because the `Profile` Components are rendered inside `Gallery`—even several times!—we can say that `Gallery` is a **parent component,** rendering each `Profile` as a "child". This is part of the magic of React: you can define a Component once, and then use it in as many places and as many times as you like.
+Because the `Profile` Components are rendered inside `Gallery`—even several times!—we can say that `Gallery` is a **parent Component,** rendering each `Profile` as a "child". This is part of the magic of React: you can define a Component once, and then use it in as many places and as many times as you like.
 
 <Pitfall>
 
-Components can render other components, but **you must never nest their definitions:**
+Components can render other Components, but **you must never nest their definitions:**
 
 ```js {2-5}
 export default function Gallery() {
-  // 🔴 Never define a Component inside another component!
+  // 🔴 Never define a Component inside another Component!
   function Profile() {
     // ...
   }
@@ -211,11 +211,11 @@ When a child Component needs some data from a parent, [pass it by props](/learn/
 
 #### Components all the way down {/*components-all-the-way-down*/}
 
-Your React application begins at a "root" component. Usually, it is created automatically when you start a new project. For example, if you use [CodeSandbox](https://codesandbox.io/) or if you use the framework [Next.js](https://nextjs.org/), the root Component is defined in `pages/index.js`. In these examples, you've been exporting root components.
+Your React application begins at a "root" Component. Usually, it is created automatically when you start a new project. For example, if you use [CodeSandbox](https://codesandbox.io/) or if you use the framework [Next.js](https://nextjs.org/), the root Component is defined in `pages/index.js`. In these examples, you've been exporting root Components.
 
 Most React apps use Components all the way down. This means that you won't only use Components for reusable pieces like buttons, but also for larger pieces like sidebars, lists, and ultimately, complete pages! Components are a handy way to organize UI code and markup, even if some of them are only used once.
 
-[React-based frameworks](/learn/start-a-new-react-project) take this a step further. Instead of using an empty HTML file and letting React "take over" managing the page with JavaScript, they *also* generate the HTML automatically from your React components. This allows your app to show some content before the JavaScript code loads.
+[React-based frameworks](/learn/start-a-new-react-project) take this a step further. Instead of using an empty HTML file and letting React "take over" managing the page with JavaScript, they *also* generate the HTML automatically from your React Components. This allows your app to show some content before the JavaScript code loads.
 
 Still, many websites only use React to [add interactivity to existing HTML pages.](/learn/add-react-to-an-existing-project#using-react-for-a-part-of-your-existing-page) They have many root Components instead of a single one for the entire page. You can use as much—or as little—React as you need.
 
@@ -225,8 +225,8 @@ Still, many websites only use React to [add interactivity to existing HTML pages
 
 You've just gotten your first taste of React! Let's recap some key points.
 
-* React lets you create components, **reusable UI elements for your app.**
-* In a React app, every piece of UI is a component.
+* React lets you create Components, **reusable UI elements for your app.**
+* In a React app, every piece of UI is a Component.
 * React Components are regular JavaScript functions except:
 
   1. Their names always begin with a capital letter.

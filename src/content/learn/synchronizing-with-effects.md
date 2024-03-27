@@ -12,7 +12,7 @@ Some Components need to synchronize with external systems. For example, you migh
 
 - What Effects are
 - How Effects are different from events
-- How to declare an Effect in your component
+- How to declare an Effect in your Component
 - How to skip re-running an Effect unnecessarily
 - Why Effects run twice in development and how to fix them
 
@@ -20,9 +20,9 @@ Some Components need to synchronize with external systems. For example, you migh
 
 ## What are Effects and how are they different from events? {/*what-are-effects-and-how-are-they-different-from-events*/}
 
-Before getting to Effects, you need to be familiar with two types of logic inside React components:
+Before getting to Effects, you need to be familiar with two types of logic inside React Components:
 
-- **Rendering code** (introduced in [Describing the UI](/learn/describing-the-ui)) lives at the top level of your component. This is where you take the props and state, transform them, and return the JSX you want to see on the screen. [Rendering code must be pure.](/learn/keeping-components-pure) Like a math formula, it should only _calculate_ the result, but not do anything else.
+- **Rendering code** (introduced in [Describing the UI](/learn/describing-the-ui)) lives at the top level of your Component. This is where you take the props and state, transform them, and return the JSX you want to see on the screen. [Rendering code must be pure.](/learn/keeping-components-pure) Like a math formula, it should only _calculate_ the result, but not do anything else.
 
 - **Event handlers** (introduced in [Adding Interactivity](/learn/adding-interactivity)) are nested functions inside your Components that *do* things rather than just calculate them. An event handler might update an input field, submit an HTTP POST request to buy a product, or navigate the user to another screen. Event handlers contain ["side effects"](https://en.wikipedia.org/wiki/Side_effect_(computer_science)) (they change the program's state) caused by a specific user action (for example, a button click or typing).
 
@@ -39,7 +39,7 @@ Here and later in this text, capitalized "Effect" refers to the React-specific d
 
 ## You might not need an Effect {/*you-might-not-need-an-effect*/}
 
-**Don't rush to add Effects to your components.** Keep in mind that Effects are typically used to "step out" of your React code and synchronize with some *external* system. This includes browser APIs, third-party widgets, network, and so on. If your Effect only adjusts some state based on other state, [you might not need an Effect.](/learn/you-might-not-need-an-effect)
+**Don't rush to add Effects to your Components.** Keep in mind that Effects are typically used to "step out" of your React code and synchronize with some *external* system. This includes browser APIs, third-party widgets, network, and so on. If your Effect only adjusts some state based on other state, [you might not need an Effect.](/learn/you-might-not-need-an-effect)
 
 ## How to write an Effect {/*how-to-write-an-effect*/}
 
@@ -53,7 +53,7 @@ Let's look at each of these steps in detail.
 
 ### Step 1: Declare an Effect {/*step-1-declare-an-effect*/}
 
-To declare an Effect in your component, import the [`useEffect` Hook](/reference/react/useEffect) from React:
+To declare an Effect in your Component, import the [`useEffect` Hook](/reference/react/useEffect) from React:
 
 ```js
 import { useEffect } from 'react';
@@ -72,7 +72,7 @@ function MyComponent() {
 
 Every time your Component renders, React will update the screen *and then* run the code inside `useEffect`. In other words, **`useEffect` "delays" a piece of code from running until that render is reflected on the screen.**
 
-Let's see how you can use an Effect to synchronize with an external system. Consider a `<VideoPlayer>` React component. It would be nice to control whether it's playing or paused by passing an `isPlaying` prop to it:
+Let's see how you can use an Effect to synchronize with an external system. Consider a `<VideoPlayer>` React Component. It would be nice to control whether it's playing or paused by passing an `isPlaying` prop to it:
 
 ```js
 <VideoPlayer isPlaying={isPlaying} />;
@@ -205,7 +205,7 @@ video { width: 250px; }
 
 </Sandpack>
 
-In this example, the "external system" you synchronized to React state was the browser media API. You can use a similar approach to wrap legacy non-React code (like jQuery plugins) into declarative React components.
+In this example, the "external system" you synchronized to React state was the browser media API. You can use a similar approach to wrap legacy non-React code (like jQuery plugins) into declarative React Components.
 
 Note that controlling a video player is much more complex in practice. Calling `play()` may fail, the user might play or pause using the built-in browser controls, and so on. This example is very simplified and incomplete.
 
@@ -233,7 +233,7 @@ By default, Effects run after *every* render. Often, this is **not what you want
 - Sometimes, it's slow. Synchronizing with an external system is not always instant, so you might want to skip doing it unless it's necessary. For example, you don't want to reconnect to the chat server on every keystroke.
 - Sometimes, it's wrong. For example, you don't want to trigger a Component fade-in animation on every keystroke. The animation should only play once when the Component appears for the first time.
 
-To demonstrate the issue, here is the previous example with a few `console.log` calls and a text input that updates the parent component's state. Notice how typing causes the Effect to re-run:
+To demonstrate the issue, here is the previous example with a few `console.log` calls and a text input that updates the parent Component's state. Notice how typing causes the Effect to re-run:
 
 <Sandpack>
 
@@ -457,7 +457,7 @@ function VideoPlayer({ src, isPlaying }) {
 
 The [`set` functions](/reference/react/useState#setstate) returned by `useState` also have stable identity, so you will often see them omitted from the dependencies too. If the linter lets you omit a dependency without errors, it is safe to do.
 
-Omitting always-stable dependencies only works when the linter can "see" that the object is stable. For example, if `ref` was passed from a parent component, you would have to specify it in the dependency array. However, this is good because you can't know whether the parent Component always passes the same ref, or passes one of several refs conditionally. So your Effect _would_ depend on which ref is passed.
+Omitting always-stable dependencies only works when the linter can "see" that the object is stable. For example, if `ref` was passed from a parent Component, you would have to specify it in the dependency array. However, this is good because you can't know whether the parent Component always passes the same ref, or passes one of several refs conditionally. So your Effect _would_ depend on which ref is passed.
 
 </DeepDive>
 
@@ -586,7 +586,7 @@ Now you get three console logs in development:
 2. `"❌ Disconnected."`
 3. `"✅ Connecting..."`
 
-**This is the correct behavior in development.** By remounting your component, React verifies that navigating away and back would not break your code. Disconnecting and then connecting again is exactly what should happen! When you implement the cleanup well, there should be no user-visible difference between running the Effect once vs running it, cleaning it up, and running it again. There's an extra connect/disconnect call pair because React is probing your code for bugs in development. This is normal--don't try to make it go away!
+**This is the correct behavior in development.** By remounting your Component, React verifies that navigating away and back would not break your code. Disconnecting and then connecting again is exactly what should happen! When you implement the cleanup well, there should be no user-visible difference between running the Effect once vs running it, cleaning it up, and running it again. There's an extra connect/disconnect call pair because React is probing your code for bugs in development. This is normal--don't try to make it go away!
 
 **In production, you would only see `"✅ Connecting..."` printed once.** Remounting Components only happens in development to help you find Effects that need cleanup. You can turn off [Strict Mode](/reference/react/StrictMode) to opt out of the development behavior, but we recommend keeping it on. This lets you find many bugs like the one above.
 
@@ -682,7 +682,7 @@ You can't "undo" a network request that already happened, but your cleanup funct
 
 **In development, you will see two fetches in the Network tab.** There is nothing wrong with that. With the approach above, the first Effect will immediately get cleaned up so its copy of the `ignore` variable will be set to `true`. So even though there is an extra request, it won't affect the state thanks to the `if (!ignore)` check.
 
-**In production, there will only be one request.** If the second request in development is bothering you, the best approach is to use a solution that deduplicates requests and caches their responses between components:
+**In production, there will only be one request.** If the second request in development is bothering you, the best approach is to use a solution that deduplicates requests and caches their responses between Components:
 
 ```js
 function TodoList() {
@@ -699,7 +699,7 @@ This will not only improve the development experience, but also make your applic
 Writing `fetch` calls inside Effects is a [popular way to fetch data](https://www.robinwieruch.de/react-hooks-fetch-data/), especially in fully client-side apps. This is, however, a very manual approach and it has significant downsides:
 
 - **Effects don't run on the server.** This means that the initial server-rendered HTML will only include a loading state with no data. The client computer will have to download all JavaScript and render your app only to discover that now it needs to load the data. This is not very efficient.
-- **Fetching directly in Effects makes it easy to create "network waterfalls".** You render the parent component, it fetches some data, renders the child components, and then they start fetching their data. If the network is not very fast, this is significantly slower than fetching all data in parallel.
+- **Fetching directly in Effects makes it easy to create "network waterfalls".** You render the parent Component, it fetches some data, renders the child Components, and then they start fetching their data. If the network is not very fast, this is significantly slower than fetching all data in parallel.
 - **Fetching directly in Effects usually means you don't preload or cache data.** For example, if the Component unmounts and then mounts again, it would have to fetch the data again.
 - **It's not very ergonomic.** There's quite a bit of boilerplate code involved when writing `fetch` calls in a way that doesn't suffer from bugs like [race conditions.](https://maxrozen.com/race-conditions-fetching-data-react-with-useeffect)
 
@@ -730,7 +730,7 @@ To debug the analytics events you're sending, you can deploy your app to a stagi
 
 ### Not an Effect: Initializing the application {/*not-an-effect-initializing-the-application*/}
 
-Some logic should only run once when the application starts. You can put it outside your components:
+Some logic should only run once when the application starts. You can put it outside your Components:
 
 ```js {2-3}
 if (typeof window !== 'undefined') { // Check if we're running in the browser.
@@ -773,7 +773,7 @@ Buying is not caused by rendering; it's caused by a specific interaction. It sho
 
 This playground can help you "get a feel" for how Effects work in practice.
 
-This example uses [`setTimeout`](https://developer.mozilla.org/en-US/docs/Web/API/setTimeout) to schedule a console log with the input text to appear three seconds after the Effect runs. The cleanup function cancels the pending timeout. Start by pressing "Mount the component":
+This example uses [`setTimeout`](https://developer.mozilla.org/en-US/docs/Web/API/setTimeout) to schedule a console log with the input text to appear three seconds after the Effect runs. The cleanup function cancels the pending timeout. Start by pressing "Mount the Component":
 
 <Sandpack>
 
@@ -816,7 +816,7 @@ export default function App() {
   return (
     <>
       <button onClick={() => setShow(!show)}>
-        {show ? 'Unmount' : 'Mount'} the component
+        {show ? 'Unmount' : 'Mount'} the Component
       </button>
       {show && <hr />}
       {show && <Playground />}
@@ -831,7 +831,7 @@ You will see three logs at first: `Schedule "a" log`, `Cancel "a" log`, and `Sch
 
 Now edit the input to say `abc`. If you do it fast enough, you'll see `Schedule "ab" log` immediately followed by `Cancel "ab" log` and `Schedule "abc" log`. **React always cleans up the previous render's Effect before the next render's Effect.** This is why even if you type into the input fast, there is at most one timeout scheduled at a time. Edit the input a few times and watch the console to get a feel for how Effects get cleaned up.
 
-Type something into the input and then immediately press "Unmount the component". Notice how unmounting cleans up the last render's Effect. Here, it clears the last timeout before it has a chance to fire.
+Type something into the input and then immediately press "Unmount the Component". Notice how unmounting cleans up the last render's Effect. Here, it clears the last timeout before it has a chance to fire.
 
 Finally, edit the Component above and comment out the cleanup function so that the timeouts don't get cancelled. Try typing `abcde` fast. What do you expect to happen in three seconds? Will `console.log(text)` inside the timeout print the *latest* `text` and produce five `abcde` logs? Give it a try to check your intuition!
 
@@ -965,7 +965,7 @@ When [Strict Mode](/reference/react/StrictMode) is on, React remounts every Comp
 
 #### Focus a field on mount {/*focus-a-field-on-mount*/}
 
-In this example, the form renders a `<MyInput />` component.
+In this example, the form renders a `<MyInput />` Component.
 
 Use the input's [`focus()`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/focus) method to make `MyInput` automatically focus when it appears on the screen. There is already a commented out implementation, but it doesn't quite work. Figure out why it doesn't work, and fix it. (If you're familiar with the `autoFocus` attribute, pretend that it does not exist: we are reimplementing the same functionality from scratch.)
 
@@ -1131,7 +1131,7 @@ body {
 
 #### Focus a field conditionally {/*focus-a-field-conditionally*/}
 
-This form renders two `<MyInput />` components.
+This form renders two `<MyInput />` Components.
 
 Press "Show form" and notice that the second field automatically gets focused. This is because both of the `<MyInput />` Components try to focus the field inside. When you call `focus()` for two input fields in a row, the last one always "wins".
 

@@ -143,13 +143,13 @@ In React, you don't directly manipulate the UI--meaning you don't enable, disabl
 
 You've seen how to implement a form imperatively above. To better understand how to think in React, you'll walk through reimplementing this UI in React below:
 
-1. **Identify** your component's different visual states
+1. **Identify** your Component's different visual states
 2. **Determine** what triggers those state changes
 3. **Represent** the state in memory using `useState`
 4. **Remove** any non-essential state variables
 5. **Connect** the event handlers to set the state
 
-### Step 1: Identify your component's different visual states {/*step-1-identify-your-components-different-visual-states*/}
+### Step 1: Identify your Component's different visual states {/*step-1-identify-your-components-different-visual-states*/}
 
 In computer science, you may hear about a ["state machine"](https://en.wikipedia.org/wiki/Finite-state_machine) being in one of several “states”. If you work with a designer, you may have seen mockups for different "visual states". React stands at the intersection of design and computer science, so both of these ideas are sources of inspiration.
 
@@ -192,7 +192,7 @@ export default function Form({
 
 </Sandpack>
 
-You could call that prop anything you like, the naming is not important. Try editing `status = 'empty'` to `status = 'success'` to see the success message appear. Mocking lets you quickly iterate on the UI before you wire up any logic. Here is a more fleshed out prototype of the same component, still "controlled" by the `status` prop:
+You could call that prop anything you like, the naming is not important. Try editing `status = 'empty'` to `status = 'success'` to see the success message appear. Mocking lets you quickly iterate on the UI before you wire up any logic. Here is a more fleshed out prototype of the same Component, still "controlled" by the `status` prop:
 
 <Sandpack>
 
@@ -490,7 +490,7 @@ Although this code is longer than the original imperative example, it is much le
 <Recap>
 
 * Declarative programming means describing the UI for each visual state rather than micromanaging the UI (imperative).
-* When developing a component:
+* When developing a Component:
   1. Identify all its visual states.
   2. Determine the human and computer triggers for state changes.
   3. Model the state with `useState`.

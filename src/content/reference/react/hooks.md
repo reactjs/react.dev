@@ -4,7 +4,7 @@ title: "Built-in React Hooks"
 
 <Intro>
 
-*Hooks* let you use different React features from your components. You can either use the built-in Hooks or combine them to build your own. This page lists all built-in Hooks in React.
+*Hooks* let you use different React features from your Components. You can either use the built-in Hooks or combine them to build your own. This page lists all built-in Hooks in React.
 
 </Intro>
 
@@ -14,7 +14,7 @@ title: "Built-in React Hooks"
 
 *State* lets a Component ["remember" information like user input.](/learn/state-a-components-memory) For example, a form Component can use state to store the input value, while an image gallery Component can use state to store the selected image index.
 
-To add state to a component, use one of these Hooks:
+To add state to a Component, use one of these Hooks:
 
 * [`useState`](/reference/react/useState) declares a state variable that you can update directly.
 * [`useReducer`](/reference/react/useReducer) declares a state variable with the update logic inside a [reducer function.](/learn/extracting-state-logic-into-a-reducer)
@@ -43,10 +43,10 @@ function Button() {
 
 ## Ref Hooks {/*ref-hooks*/}
 
-*Refs* let a Component [hold some information that isn't used for rendering,](/learn/referencing-values-with-refs) like a DOM node or a timeout ID. Unlike with state, updating a ref does not re-render your component. Refs are an "escape hatch" from the React paradigm. They are useful when you need to work with non-React systems, such as the built-in browser APIs.
+*Refs* let a Component [hold some information that isn't used for rendering,](/learn/referencing-values-with-refs) like a DOM node or a timeout ID. Unlike with state, updating a ref does not re-render your Component. Refs are an "escape hatch" from the React paradigm. They are useful when you need to work with non-React systems, such as the built-in browser APIs.
 
 * [`useRef`](/reference/react/useRef) declares a ref. You can hold any value in it, but most often it's used to hold a DOM node.
-* [`useImperativeHandle`](/reference/react/useImperativeHandle) lets you customize the ref exposed by your component. This is rarely used.
+* [`useImperativeHandle`](/reference/react/useImperativeHandle) lets you customize the ref exposed by your Component. This is rarely used.
 
 ```js
 function Form() {
@@ -88,7 +88,7 @@ A common way to optimize re-rendering performance is to skip unnecessary work. F
 To skip calculations and unnecessary re-rendering, use one of these Hooks:
 
 - [`useMemo`](/reference/react/useMemo) lets you cache the result of an expensive calculation.
-- [`useCallback`](/reference/react/useCallback) lets you cache a function definition before passing it down to an optimized component.
+- [`useCallback`](/reference/react/useCallback) lets you cache a function definition before passing it down to an optimized Component.
 
 ```js
 function TodoList({ todos, tab, theme }) {

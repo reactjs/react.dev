@@ -54,7 +54,7 @@ const MyInput = forwardRef(function MyInput(props, ref) {
 
 ### Exposing a custom ref handle to the parent Component {/*exposing-a-custom-ref-handle-to-the-parent-component*/}
 
-By default, Components don't expose their DOM nodes to parent components. For example, if you want the parent Component of `MyInput` to [have access](/learn/manipulating-the-dom-with-refs) to the `<input>` DOM node, you have to opt in with [`forwardRef`:](/reference/react/forwardRef)
+By default, Components don't expose their DOM nodes to parent Components. For example, if you want the parent Component of `MyInput` to [have access](/learn/manipulating-the-dom-with-refs) to the `<input>` DOM node, you have to opt in with [`forwardRef`:](/reference/react/forwardRef)
 
 ```js {4}
 import { forwardRef } from 'react';
@@ -64,7 +64,7 @@ const MyInput = forwardRef(function MyInput(props, ref) {
 });
 ```
 
-With the code above, [a ref to `MyInput` will receive the `<input>` DOM node.](/reference/react/forwardRef#exposing-a-dom-node-to-the-parent-component) However, you can expose a custom value instead. To customize the exposed handle, call `useImperativeHandle` at the top level of your component:
+With the code above, [a ref to `MyInput` will receive the `<input>` DOM node.](/reference/react/forwardRef#exposing-a-dom-node-to-the-parent-component) However, you can expose a custom value instead. To customize the exposed handle, call `useImperativeHandle` at the top level of your Component:
 
 ```js {4-8}
 import { forwardRef, useImperativeHandle } from 'react';
@@ -283,6 +283,6 @@ export default AddComment;
 
 **Do not overuse refs.** You should only use refs for *imperative* behaviors that you can't express as props: for example, scrolling to a node, focusing a node, triggering an animation, selecting text, and so on.
 
-**If you can express something as a prop, you should not use a ref.** For example, instead of exposing an imperative handle like `{ open, close }` from a `Modal` component, it is better to take `isOpen` as a prop like `<Modal isOpen={isOpen} />`. [Effects](/learn/synchronizing-with-effects) can help you expose imperative behaviors via props.
+**If you can express something as a prop, you should not use a ref.** For example, instead of exposing an imperative handle like `{ open, close }` from a `Modal` Component, it is better to take `isOpen` as a prop like `<Modal isOpen={isOpen} />`. [Effects](/learn/synchronizing-with-effects) can help you expose imperative behaviors via props.
 
 </Pitfall>

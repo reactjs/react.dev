@@ -4,14 +4,14 @@ title: Preserving and Resetting State
 
 <Intro>
 
-State is isolated between components. React keeps track of which state belongs to which Component based on their place in the UI tree. You can control when to preserve state and when to reset it between re-renders.
+State is isolated between Components. React keeps track of which state belongs to which Component based on their place in the UI tree. You can control when to preserve state and when to reset it between re-renders.
 
 </Intro>
 
 <YouWillLearn>
 
 * When React chooses to preserve or reset the state
-* How to force React to reset component's state
+* How to force React to reset Component's state
 * How keys and types affect whether the state is preserved
 
 </YouWillLearn>
@@ -20,7 +20,7 @@ State is isolated between components. React keeps track of which state belongs t
 
 React builds [render trees](learn/understanding-your-ui-as-a-tree#the-render-tree) for the Component structure in your UI.
 
-When you give a Component state, you might think the state "lives" inside the component. But the state is actually held inside React. React associates each piece of state it's holding with the correct Component by where that Component sits in the render tree.
+When you give a Component state, you might think the state "lives" inside the Component. But the state is actually held inside React. React associates each piece of state it's holding with the correct Component by where that Component sits in the render tree.
 
 Here, there is only one `<Counter />` JSX tag, but it's rendered at two different positions:
 
@@ -90,7 +90,7 @@ Here's how these look as a tree:
 
 <DiagramGroup>
 
-<Diagram name="preserving_state_tree" height={248} width={395} alt="Diagram of a tree of React components. The root node is labeled 'div' and has two children. Each of the children are labeled 'Counter' and both contain a state bubble labeled 'count' with value 0.">
+<Diagram name="preserving_state_tree" height={248} width={395} alt="Diagram of a tree of React Components. The root node is labeled 'div' and has two children. Each of the children are labeled 'Counter' and both contain a state bubble labeled 'count' with value 0.">
 
 React tree
 
@@ -165,7 +165,7 @@ As you can see, when one counter is updated, only the state for that Component i
 
 <DiagramGroup>
 
-<Diagram name="preserving_state_increment" height={248} width={441} alt="Diagram of a tree of React components. The root node is labeled 'div' and has two children. The left child is labeled 'Counter' and contains a state bubble labeled 'count' with value 0. The right child is labeled 'Counter' and contains a state bubble labeled 'count' with value 1. The state bubble of the right child is highlighted in yellow to indicate its value has updated.">
+<Diagram name="preserving_state_increment" height={248} width={441} alt="Diagram of a tree of React Components. The root node is labeled 'div' and has two children. The left child is labeled 'Counter' and contains a state bubble labeled 'count' with value 0. The right child is labeled 'Counter' and contains a state bubble labeled 'count' with value 1. The state bubble of the right child is highlighted in yellow to indicate its value has updated.">
 
 Updating state
 
@@ -248,11 +248,11 @@ label {
 
 </Sandpack>
 
-Notice how the moment you stop rendering the second counter, its state disappears completely. That's because when React removes a component, it destroys its state.
+Notice how the moment you stop rendering the second counter, its state disappears completely. That's because when React removes a Component, it destroys its state.
 
 <DiagramGroup>
 
-<Diagram name="preserving_state_remove_component" height={253} width={422} alt="Diagram of a tree of React components. The root node is labeled 'div' and has two children. The left child is labeled 'Counter' and contains a state bubble labeled 'count' with value 0. The right child is missing, and in its place is a yellow 'poof' image, highlighting the Component being deleted from the tree.">
+<Diagram name="preserving_state_remove_component" height={253} width={422} alt="Diagram of a tree of React Components. The root node is labeled 'div' and has two children. The left child is labeled 'Counter' and contains a state bubble labeled 'count' with value 0. The right child is missing, and in its place is a yellow 'poof' image, highlighting the Component being deleted from the tree.">
 
 Deleting a component
 
@@ -264,7 +264,7 @@ When you tick "Render the second counter", a second `Counter` and its state are 
 
 <DiagramGroup>
 
-<Diagram name="preserving_state_add_component" height={258} width={500} alt="Diagram of a tree of React components. The root node is labeled 'div' and has two children. The left child is labeled 'Counter' and contains a state bubble labeled 'count' with value 0. The right child is labeled 'Counter' and contains a state bubble labeled 'count' with value 0. The entire right child node is highlighted in yellow, indicating that it was just added to the tree.">
+<Diagram name="preserving_state_add_component" height={258} width={500} alt="Diagram of a tree of React Components. The root node is labeled 'div' and has two children. The left child is labeled 'Counter' and contains a state bubble labeled 'count' with value 0. The right child is labeled 'Counter' and contains a state bubble labeled 'count' with value 0. The entire right child node is highlighted in yellow, indicating that it was just added to the tree.">
 
 Adding a component
 
@@ -272,7 +272,7 @@ Adding a component
 
 </DiagramGroup>
 
-**React preserves a component's state for as long as it's being rendered at its position in the UI tree.** If it gets removed, or a different Component gets rendered at the same position, React discards its state.
+**React preserves a Component's state for as long as it's being rendered at its position in the UI tree.** If it gets removed, or a different Component gets rendered at the same position, React discards its state.
 
 ## Same Component at the same position preserves state {/*same-component-at-the-same-position-preserves-state*/}
 
@@ -361,7 +361,7 @@ label {
 
 </Sandpack>
 
-When you tick or clear the checkbox, the counter state does not get reset. Whether `isFancy` is `true` or `false`, you always have a `<Counter />` as the first child of the `div` returned from the root `App` component:
+When you tick or clear the checkbox, the counter state does not get reset. Whether `isFancy` is `true` or `false`, you always have a `<Counter />` as the first child of the `div` returned from the root `App` Component:
 
 <DiagramGroup>
 
@@ -741,7 +741,7 @@ Every time you click the button, the input state disappears! This is because a *
 
 ## Resetting state at the same position {/*resetting-state-at-the-same-position*/}
 
-By default, React preserves state of a Component while it stays at the same position. Usually, this is exactly what you want, so it makes sense as the default behavior. But sometimes, you may want to reset a component's state. Consider this app that lets two players keep track of their scores during each turn:
+By default, React preserves state of a Component while it stays at the same position. Usually, this is exactly what you want, so it makes sense as the default behavior. But sometimes, you may want to reset a Component's state. Consider this app that lets two players keep track of their scores during each turn:
 
 <Sandpack>
 
@@ -899,19 +899,19 @@ h1 {
 
 <DiagramGroup>
 
-<Diagram name="preserving_state_diff_position_p1" height={375} width={504} alt="Diagram with a tree of React components. The parent is labeled 'Scoreboard' with a state bubble labeled isPlayerA with value 'true'. The only child, arranged to the left, is labeled Counter with a state bubble labeled 'count' and value 0. All of the left child is highlighted in yellow, indicating it was added.">
+<Diagram name="preserving_state_diff_position_p1" height={375} width={504} alt="Diagram with a tree of React Components. The parent is labeled 'Scoreboard' with a state bubble labeled isPlayerA with value 'true'. The only child, arranged to the left, is labeled Counter with a state bubble labeled 'count' and value 0. All of the left child is highlighted in yellow, indicating it was added.">
 
 Initial state
 
 </Diagram>
 
-<Diagram name="preserving_state_diff_position_p2" height={375} width={504} alt="Diagram with a tree of React components. The parent is labeled 'Scoreboard' with a state bubble labeled isPlayerA with value 'false'. The state bubble is highlighted in yellow, indicating that it has changed. The left child is replaced with a yellow 'poof' image indicating that it has been deleted and there is a new child on the right, highlighted in yellow indicating that it was added. The new child is labeled 'Counter' and contains a state bubble labeled 'count' with value 0.">
+<Diagram name="preserving_state_diff_position_p2" height={375} width={504} alt="Diagram with a tree of React Components. The parent is labeled 'Scoreboard' with a state bubble labeled isPlayerA with value 'false'. The state bubble is highlighted in yellow, indicating that it has changed. The left child is replaced with a yellow 'poof' image indicating that it has been deleted and there is a new child on the right, highlighted in yellow indicating that it was added. The new child is labeled 'Counter' and contains a state bubble labeled 'count' with value 0.">
 
 Clicking "next"
 
 </Diagram>
 
-<Diagram name="preserving_state_diff_position_p3" height={375} width={504} alt="Diagram with a tree of React components. The parent is labeled 'Scoreboard' with a state bubble labeled isPlayerA with value 'true'. The state bubble is highlighted in yellow, indicating that it has changed. There is a new child on the left, highlighted in yellow indicating that it was added. The new child is labeled 'Counter' and contains a state bubble labeled 'count' with value 0. The right child is replaced with a yellow 'poof' image indicating that it has been deleted.">
+<Diagram name="preserving_state_diff_position_p3" height={375} width={504} alt="Diagram with a tree of React Components. The parent is labeled 'Scoreboard' with a state bubble labeled isPlayerA with value 'true'. The state bubble is highlighted in yellow, indicating that it has changed. There is a new child on the left, highlighted in yellow indicating that it was added. The new child is labeled 'Counter' and contains a state bubble labeled 'count' with value 0. The right child is replaced with a yellow 'poof' image indicating that it has been deleted.">
 
 Clicking "next" again
 
@@ -925,9 +925,9 @@ This solution is convenient when you only have a few independent Components rend
 
 ### Option 2: Resetting state with a key {/*option-2-resetting-state-with-a-key*/}
 
-There is also another, more generic, way to reset a component's state.
+There is also another, more generic, way to reset a Component's state.
 
-You might have seen `key`s when [rendering lists.](/learn/rendering-lists#keeping-list-items-in-order-with-key) Keys aren't just for lists! You can use keys to make React distinguish between any components. By default, React uses order within the parent ("first counter", "second counter") to discern between components. But keys let you tell React that this is not just a *first* counter, or a *second* counter, but a specific counter--for example, *Taylor's* counter. This way, React will know *Taylor's* counter wherever it appears in the tree!
+You might have seen `key`s when [rendering lists.](/learn/rendering-lists#keeping-list-items-in-order-with-key) Keys aren't just for lists! You can use keys to make React distinguish between any Components. By default, React uses order within the parent ("first counter", "second counter") to discern between Components. But keys let you tell React that this is not just a *first* counter, or a *second* counter, but a specific counter--for example, *Taylor's* counter. This way, React will know *Taylor's* counter wherever it appears in the tree!
 
 In this example, the two `<Counter />`s don't share state even though they appear in the same place in JSX:
 
@@ -1228,7 +1228,7 @@ textarea {
 In a real chat app, you'd probably want to recover the input state when the user selects the previous recipient again. There are a few ways to keep the state "alive" for a Component that's no longer visible:
 
 - You could render _all_ chats instead of just the current one, but hide all the others with CSS. The chats would not get removed from the tree, so their local state would be preserved. This solution works great for simple UIs. But it can get very slow if the hidden trees are large and contain a lot of DOM nodes.
-- You could [lift the state up](/learn/sharing-state-between-components) and hold the pending message for each recipient in the parent component. This way, when the child Components get removed, it doesn't matter, because it's the parent that keeps the important information. This is the most common solution.
+- You could [lift the state up](/learn/sharing-state-between-components) and hold the pending message for each recipient in the parent Component. This way, when the child Components get removed, it doesn't matter, because it's the parent that keeps the important information. This is the most common solution.
 - You might also use a different source in addition to React state. For example, you probably want a message draft to persist even if the user accidentally closes the page. To implement this, you could have the `Chat` Component initialize its state by reading from the [`localStorage`](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage), and save the drafts there too.
 
 No matter which strategy you pick, a chat _with Alice_ is conceptually distinct from a chat _with Bob_, so it makes sense to give a `key` to the `<Chat>` tree based on the current recipient.
@@ -1689,7 +1689,7 @@ button {
 
 <Solution>
 
-Give `key={selectedId}` to the `EditContact` component. This way, switching between different contacts will reset the form:
+Give `key={selectedId}` to the `EditContact` Component. This way, switching between different contacts will reset the form:
 
 <Sandpack>
 

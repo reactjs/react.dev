@@ -35,7 +35,7 @@ Let's say you have an existing page built with another technology (either a serv
 You can do this in two steps:
 
 1. **Set up a JavaScript environment** that lets you use the [JSX syntax](/learn/writing-markup-with-jsx), split your code into modules with the [`import`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import) / [`export`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/export) syntax, and use packages (for example, React) from the [npm](https://www.npmjs.com/) package registry.
-2. **Render your React components** where you want to see them on the page.
+2. **Render your React Components** where you want to see them on the page.
 
 The exact approach depends on your existing page setup, so let's walk through some details.
 

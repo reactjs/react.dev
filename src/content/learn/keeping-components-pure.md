@@ -12,7 +12,7 @@ Some JavaScript functions are *pure.* Pure functions only perform a calculation 
 
 * What purity is and how it helps you avoid bugs
 * How to keep Components pure by keeping changes out of the render phase
-* How to use Strict Mode to find mistakes in your components
+* How to use Strict Mode to find mistakes in your Components
 
 </YouWillLearn>
 
@@ -153,7 +153,7 @@ Although you might not have used them all yet, in React there are three kinds of
 
 When you want to *change* something in response to user input, you should [set state](/learn/state-a-components-memory) instead of writing to a variable. You should never change preexisting variables or objects while your Component is rendering.
 
-React offers a "Strict Mode" in which it calls each component's function twice during development. **By calling the Component functions twice, Strict Mode helps find Components that break these rules.**
+React offers a "Strict Mode" in which it calls each Component's function twice during development. **By calling the Component functions twice, Strict Mode helps find Components that break these rules.**
 
 Notice how the original example displayed "Guest #2", "Guest #4", and "Guest #6" instead of "Guest #1", "Guest #2", and "Guest #3". The original function was impure, so calling it twice broke it. But the fixed pure version works even if the function is called twice every time. **Pure functions only calculate, so calling them twice won't change anything**--just like calling `double(2)` twice doesn't change what's returned, and solving <Math><MathI>y</MathI> = 2<MathI>x</MathI></Math> twice doesn't change what <MathI>y</MathI> is. Same inputs, same outputs. Always.
 
@@ -161,7 +161,7 @@ Strict Mode has no effect in production, so it won't slow down the app for your 
 
 </DeepDive>
 
-### Local mutation: Your component's little secret {/*local-mutation-your-components-little-secret*/}
+### Local mutation: Your Component's little secret {/*local-mutation-your-components-little-secret*/}
 
 In the above example, the problem was that the Component changed a *preexisting* variable while rendering. This is often called a **"mutation"** to make it sound a bit scarier. Pure functions don't mutate variables outside of the function's scope or objects that were created before the call—that makes them impure!
 
@@ -187,15 +187,15 @@ export default function TeaGathering() {
 
 If the `cups` variable or the `[]` array were created outside the `TeaGathering` function, this would be a huge problem! You would be changing a *preexisting* object by pushing items into that array.
 
-However, it's fine because you've created them *during the same render*, inside `TeaGathering`. No code outside of `TeaGathering` will ever know that this happened. This is called **"local mutation"**—it's like your component's little secret.
+However, it's fine because you've created them *during the same render*, inside `TeaGathering`. No code outside of `TeaGathering` will ever know that this happened. This is called **"local mutation"**—it's like your Component's little secret.
 
 ## Where you _can_ cause side effects {/*where-you-_can_-cause-side-effects*/}
 
 While functional programming relies heavily on purity, at some point, somewhere, _something_ has to change. That's kind of the point of programming! These changes—updating the screen, starting an animation, changing the data—are called **side effects.** They're things that happen _"on the side"_, not during rendering.
 
-In React, **side effects usually belong inside [event handlers.](/learn/responding-to-events)** Event handlers are functions that React runs when you perform some action—for example, when you click a button. Even though event handlers are defined *inside* your component, they don't run *during* rendering! **So event handlers don't need to be pure.**
+In React, **side effects usually belong inside [event handlers.](/learn/responding-to-events)** Event handlers are functions that React runs when you perform some action—for example, when you click a button. Even though event handlers are defined *inside* your Component, they don't run *during* rendering! **So event handlers don't need to be pure.**
 
-If you've exhausted all other options and can't find the right event handler for your side effect, you can still attach it to your returned JSX with a [`useEffect`](/reference/react/useEffect) call in your component. This tells React to execute it later, after rendering, when side effects are allowed. **However, this approach should be your last resort.**
+If you've exhausted all other options and can't find the right event handler for your side effect, you can still attach it to your returned JSX with a [`useEffect`](/reference/react/useEffect) call in your Component. This tells React to execute it later, after rendering, when side effects are allowed. **However, this approach should be your last resort.**
 
 When possible, try to express your logic with rendering alone. You'll be surprised how far this can take you!
 
@@ -220,7 +220,7 @@ Every new React feature we're building takes advantage of purity. From data fetc
   * **Same inputs, same output.** Given the same inputs, a Component should always return the same JSX. 
 * Rendering can happen at any time, so Components should not depend on each others' rendering sequence.
 * You should not mutate any of the inputs that your Components use for rendering. That includes props, state, and context. To update the screen, ["set" state](/learn/state-a-components-memory) instead of mutating preexisting objects.
-* Strive to express your component's logic in the JSX you return. When you need to "change things", you'll usually want to do it in an event handler. As a last resort, you can `useEffect`.
+* Strive to express your Component's logic in the JSX you return. When you need to "change things", you'll usually want to do it in an event handler. As a last resort, you can `useEffect`.
 * Writing pure functions takes a bit of practice, but it unlocks the power of React's paradigm.
 
 </Recap>
@@ -231,7 +231,7 @@ Every new React feature we're building takes advantage of purity. From data fetc
 
 #### Fix a broken clock {/*fix-a-broken-clock*/}
 
-This Component tries to set the `<h1>`'s CSS class to `"night"` during the time from midnight to six hours in the morning, and `"day"` at all other times. However, it doesn't work. Can you fix this component?
+This Component tries to set the `<h1>`'s CSS class to `"night"` during the time from midnight to six hours in the morning, and `"day"` at all other times. However, it doesn't work. Can you fix this Component?
 
 You can verify whether your solution works by temporarily changing the computer's timezone. When the current time is between midnight and six in the morning, the clock should have inverted colors!
 

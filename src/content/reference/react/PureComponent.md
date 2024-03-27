@@ -53,7 +53,7 @@ class Greeting extends PureComponent {
 
 ### Skipping unnecessary re-renders for class Components {/*skipping-unnecessary-re-renders-for-class-components*/}
 
-React normally re-renders a Component whenever its parent re-renders. As an optimization, you can create a Component that React will not re-render when its parent re-renders so long as its new props and state are the same as the old props and state. [Class components](/reference/react/Component) can opt into this behavior by extending `PureComponent`:
+React normally re-renders a Component whenever its parent re-renders. As an optimization, you can create a Component that React will not re-render when its parent re-renders so long as its new props and state are the same as the old props and state. [Class Components](/reference/react/Component) can opt into this behavior by extending `PureComponent`:
 
 ```js {1}
 class Greeting extends PureComponent {
@@ -119,7 +119,7 @@ We recommend defining Components as functions instead of classes. [See how to mi
 
 ### Migrating from a `PureComponent` class Component to a function {/*migrating-from-a-purecomponent-class-component-to-a-function*/}
 
-We recommend using function Components instead of [class components](/reference/react/Component) in new code. If you have some existing class Components using `PureComponent`, here is how you can convert them. This is the original code:
+We recommend using function Components instead of [class Components](/reference/react/Component) in new code. If you have some existing class Components using `PureComponent`, here is how you can convert them. This is the original code:
 
 <Sandpack>
 
@@ -203,6 +203,6 @@ label {
 
 <Note>
 
-Unlike `PureComponent`, [`memo`](/reference/react/memo) does not compare the new and the old state. In function components, calling the [`set` function](/reference/react/useState#setstate) with the same state [already prevents re-renders by default,](/reference/react/memo#updating-a-memoized-component-using-state) even without `memo`.
+Unlike `PureComponent`, [`memo`](/reference/react/memo) does not compare the new and the old state. In function Components, calling the [`set` function](/reference/react/useState#setstate) with the same state [already prevents re-renders by default,](/reference/react/memo#updating-a-memoized-component-using-state) even without `memo`.
 
 </Note>

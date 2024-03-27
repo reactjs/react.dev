@@ -4,7 +4,7 @@ title: Importing and Exporting Components
 
 <Intro>
 
-The magic of Components lies in their reusability: you can create Components that are composed of other components. But as you nest more and more components, it often makes sense to start splitting them into different files. This lets you keep your files easy to scan and reuse Components in more places.
+The magic of Components lies in their reusability: you can create Components that are composed of other Components. But as you nest more and more Components, it often makes sense to start splitting them into different files. This lets you keep your files easy to scan and reuse Components in more places.
 
 </Intro>
 
@@ -143,13 +143,13 @@ How you export your Component dictates how you must import it. You will get an e
 
 When you write a _default_ import, you can put any name you want after `import`. For example, you could write `import Banana from './Button.js'` instead and it would still provide you with the same default export. In contrast, with named imports, the name has to match on both sides. That's why they are called _named_ imports!
 
-**People often use default exports if the file exports only one component, and use named exports if it exports multiple Components and values.** Regardless of which coding style you prefer, always give meaningful names to your Component functions and the files that contain them. Components without names, like `export default () => {}`, are discouraged because they make debugging harder.
+**People often use default exports if the file exports only one Component, and use named exports if it exports multiple Components and values.** Regardless of which coding style you prefer, always give meaningful names to your Component functions and the files that contain them. Components without names, like `export default () => {}`, are discouraged because they make debugging harder.
 
 </DeepDive>
 
 ## Exporting and importing multiple Components from the same file {/*exporting-and-importing-multiple-components-from-the-same-file*/}
 
-What if you want to show just one `Profile` instead of a gallery? You can export the `Profile` component, too. But `Gallery.js` already has a *default* export, and you can't have _two_ default exports. You could create a new file with a default export, or you could add a *named* export for `Profile`. **A file can only have one default export, but it can have numerous named exports!**
+What if you want to show just one `Profile` instead of a gallery? You can export the `Profile` Component, too. But `Gallery.js` already has a *default* export, and you can't have _two_ default exports. You could create a new file with a default export, or you could add a *named* export for `Profile`. **A file can only have one default export, but it can have numerous named exports!**
 
 <Note>
 
@@ -171,7 +171,7 @@ Then, **import** `Profile` from `Gallery.js` to `App.js` using a named import (w
 import { Profile } from './Gallery.js';
 ```
 
-Finally, **render** `<Profile />` from the `App` component:
+Finally, **render** `<Profile />` from the `App` Component:
 
 ```js
 export default function App() {

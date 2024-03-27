@@ -4,7 +4,7 @@ title: Managing State
 
 <Intro>
 
-As your application grows, it helps to be more intentional about how your state is organized and how the data flows between your components. Redundant or duplicate state is a common source of bugs. In this chapter, you'll learn how to structure your state well, how to keep your state update logic maintainable, and how to share state between distant components.
+As your application grows, it helps to be more intentional about how your state is organized and how the data flows between your Components. Redundant or duplicate state is a common source of bugs. In this chapter, you'll learn how to structure your state well, how to keep your state update logic maintainable, and how to share state between distant Components.
 
 </Intro>
 
@@ -12,7 +12,7 @@ As your application grows, it helps to be more intentional about how your state 
 
 * [How to think about UI changes as state changes](/learn/reacting-to-input-with-state)
 * [How to structure state well](/learn/choosing-the-state-structure)
-* [How to "lift state up" to share it between components](/learn/sharing-state-between-components)
+* [How to "lift state up" to share it between Components](/learn/sharing-state-between-components)
 * [How to control whether the state gets preserved or reset](/learn/preserving-and-resetting-state)
 * [How to consolidate complex state logic in a function](/learn/extracting-state-logic-into-a-reducer)
 * [How to pass information without "prop drilling"](/learn/passing-data-deeply-with-context)
@@ -302,7 +302,7 @@ Read **[Sharing State Between Components](/learn/sharing-state-between-component
 
 ## Preserving and resetting state {/*preserving-and-resetting-state*/}
 
-When you re-render a component, React needs to decide which parts of the tree to keep (and update), and which parts to discard or re-create from scratch. In most cases, React's automatic behavior works well enough. By default, React preserves the parts of the tree that "match up" with the previously rendered Component tree.
+When you re-render a Component, React needs to decide which parts of the tree to keep (and update), and which parts to discard or re-create from scratch. In most cases, React's automatic behavior works well enough. By default, React preserves the parts of the tree that "match up" with the previously rendered Component tree.
 
 However, sometimes this is not what you want. In this chat app, typing a message and then switching the recipient does not reset the input. This can make the user accidentally send a message to the wrong person:
 
@@ -399,7 +399,7 @@ textarea {
 
 </Sandpack>
 
-React lets you override the default behavior, and *force* a Component to reset its state by passing it a different `key`, like `<Chat key={email} />`. This tells React that if the recipient is different, it should be considered a *different* `Chat` Component that needs to be re-created from scratch with the new data (and UI like inputs). Now switching between the recipients resets the input field--even though you render the same component.
+React lets you override the default behavior, and *force* a Component to reset its state by passing it a different `key`, like `<Chat key={email} />`. This tells React that if the recipient is different, it should be considered a *different* `Chat` Component that needs to be re-created from scratch with the new data (and UI like inputs). Now switching between the recipients resets the input field--even though you render the same Component.
 
 <Sandpack>
 
@@ -699,7 +699,7 @@ Read **[Extracting State Logic into a Reducer](/learn/extracting-state-logic-int
 
 ## Passing data deeply with context {/*passing-data-deeply-with-context*/}
 
-Usually, you will pass information from a parent Component to a child Component via props. But passing props can become inconvenient if you need to pass some prop through many components, or if many Components need the same information. Context lets the parent Component make some information available to any Component in the tree below it—no matter how deep it is—without passing it explicitly through props.
+Usually, you will pass information from a parent Component to a child Component via props. But passing props can become inconvenient if you need to pass some prop through many Components, or if many Components need the same information. Context lets the parent Component make some information available to any Component in the tree below it—no matter how deep it is—without passing it explicitly through props.
 
 Here, the `Heading` Component determines its heading level by "asking" the closest `Section` for its level. Each `Section` tracks its own level by asking the parent `Section` and adding one to it. Every `Section` provides information to all Components below it without passing props--it does that through context.
 
@@ -801,7 +801,7 @@ Read **[Passing Data Deeply with Context](/learn/passing-data-deeply-with-contex
 
 ## Scaling up with reducer and context {/*scaling-up-with-reducer-and-context*/}
 
-Reducers let you consolidate a component’s state update logic. Context lets you pass information deep down to other components. You can combine reducers and context together to manage state of a complex screen.
+Reducers let you consolidate a Component’s state update logic. Context lets you pass information deep down to other Components. You can combine reducers and context together to manage state of a complex screen.
 
 With this approach, a parent Component with complex state manages it with a reducer. Other Components anywhere deep in the tree can read its state via context. They can also dispatch actions to update that state.
 

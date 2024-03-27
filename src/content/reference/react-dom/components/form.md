@@ -5,14 +5,14 @@ canary: true
 
 <Canary>
 
-React's extensions to `<form>` are currently only available in React's canary and experimental channels. In stable releases of React, `<form>` works only as a [built-in browser HTML component](https://react.dev/reference/react-dom/components#all-html-components). Learn more about [React's release channels here](/community/versioning-policy#all-release-channels).
+React's extensions to `<form>` are currently only available in React's canary and experimental channels. In stable releases of React, `<form>` works only as a [built-in browser HTML Component](https://react.dev/reference/react-dom/components#all-html-components). Learn more about [React's release channels here](/community/versioning-policy#all-release-channels).
 
 </Canary>
 
 
 <Intro>
 
-The [built-in browser `<form>` component](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form) lets you create interactive controls for submitting information.
+The [built-in browser `<form>` Component](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form) lets you create interactive controls for submitting information.
 
 ```js
 <form action={search}>
@@ -31,7 +31,7 @@ The [built-in browser `<form>` component](https://developer.mozilla.org/en-US/do
 
 ### `<form>` {/*form*/}
 
-To create interactive controls for submitting information, render the [built-in browser `<form>` component](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form).
+To create interactive controls for submitting information, render the [built-in browser `<form>` Component](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form).
 
 ```js
 <form action={search}>
@@ -46,7 +46,7 @@ To create interactive controls for submitting information, render the [built-in 
 
 `<form>` supports all [common element props.](/reference/react-dom/components/common#props)
 
-[`action`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form#action): a URL or function. When a URL is passed to `action` the form will behave like the HTML form component. When a function is passed to `action` the function will handle the form submission. The function passed to `action` may be async and will be called with a single argument containing the [form data](https://developer.mozilla.org/en-US/docs/Web/API/FormData) of the submitted form. The `action` prop can be overridden by a `formAction` attribute on a `<button>`, `<input type="submit">`, or `<input type="image">` component.
+[`action`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form#action): a URL or function. When a URL is passed to `action` the form will behave like the HTML form Component. When a function is passed to `action` the function will handle the form submission. The function passed to `action` may be async and will be called with a single argument containing the [form data](https://developer.mozilla.org/en-US/docs/Web/API/FormData) of the submitted form. The `action` prop can be overridden by a `formAction` attribute on a `<button>`, `<input type="submit">`, or `<input type="image">` Component.
 
 #### Caveats {/*caveats*/}
 

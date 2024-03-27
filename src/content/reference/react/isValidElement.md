@@ -47,7 +47,7 @@ console.log(isValidElement({ age: 42 })); // false
 
 #### Caveats {/*caveats*/}
 
-* **Only [JSX tags](/learn/writing-markup-with-jsx) and objects returned by [`createElement`](/reference/react/createElement) are considered to be React elements.** For example, even though a number like `42` is a valid React *node* (and can be returned from a component), it is not a valid React element. Arrays and portals created with [`createPortal`](/reference/react-dom/createPortal) are also *not* considered to be React elements.
+* **Only [JSX tags](/learn/writing-markup-with-jsx) and objects returned by [`createElement`](/reference/react/createElement) are considered to be React elements.** For example, even though a number like `42` is a valid React *node* (and can be returned from a Component), it is not a valid React element. Arrays and portals created with [`createPortal`](/reference/react-dom/createPortal) are also *not* considered to be React elements.
 
 ---
 
@@ -98,7 +98,7 @@ Unless you have some very specific reason to add an `isValidElement` check, you 
 
 #### React elements vs React nodes {/*react-elements-vs-react-nodes*/}
 
-When you write a component, you can return any kind of *React node* from it:
+When you write a Component, you can return any kind of *React node* from it:
 
 ```js
 function MyComponent() {
@@ -119,7 +119,7 @@ A React node can be:
 
 ```js
 function MyComponent() {
-  return 42; // It's ok to return a number from component
+  return 42; // It's ok to return a number from Component
 }
 ```
 

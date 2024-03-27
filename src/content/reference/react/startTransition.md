@@ -90,7 +90,7 @@ With a Transition, your UI stays responsive in the middle of a re-render. For ex
 
 <Note>
 
-`startTransition` is very similar to [`useTransition`](/reference/react/useTransition), except that it does not provide the `isPending` flag to track whether a Transition is ongoing. You can call `startTransition` when `useTransition` is not available. For example, `startTransition` works outside components, such as from a data library.
+`startTransition` is very similar to [`useTransition`](/reference/react/useTransition), except that it does not provide the `isPending` flag to track whether a Transition is ongoing. You can call `startTransition` when `useTransition` is not available. For example, `startTransition` works outside Components, such as from a data library.
 
 [Learn about Transitions and see examples on the `useTransition` page.](/reference/react/useTransition)
 

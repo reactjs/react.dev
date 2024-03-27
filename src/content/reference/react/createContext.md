@@ -40,7 +40,7 @@ const ThemeContext = createContext('light');
 
 **The context object itself does not hold any information.** It represents _which_ context other Components read or provide. Typically, you will use [`SomeContext.Provider`](#provider) in Components above to specify the context value, and call [`useContext(SomeContext)`](/reference/react/useContext) in Components below to read it. The context object has a few properties:
 
-* `SomeContext.Provider` lets you provide the context value to components.
+* `SomeContext.Provider` lets you provide the context value to Components.
 * `SomeContext.Consumer` is an alternative and rarely used way to read the context value.
 
 ---
@@ -131,7 +131,7 @@ function Profile() {
 
 By default, the values they receive will be the <CodeStep step={3}>default values</CodeStep> you have specified when creating the contexts. However, by itself this isn't useful because the default values never change.
 
-Context is useful because you can **provide other, dynamic values from your components:**
+Context is useful because you can **provide other, dynamic values from your Components:**
 
 ```js {8-9,11-12}
 function App() {
@@ -196,7 +196,7 @@ function App() {
 }
 ```
 
-This works similar to [importing and exporting components.](/learn/importing-and-exporting-components)
+This works similar to [importing and exporting Components.](/learn/importing-and-exporting-components)
 
 ---
 

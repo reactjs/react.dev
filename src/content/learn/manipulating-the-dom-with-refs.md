@@ -12,7 +12,7 @@ React automatically updates the [DOM](https://developer.mozilla.org/docs/Web/API
 
 - How to access a DOM node managed by React with the `ref` attribute
 - How the `ref` JSX attribute relates to the `useRef` Hook
-- How to access another component's DOM node
+- How to access another Component's DOM node
 - In which cases it's safe to modify the DOM managed by React
 
 </YouWillLearn>
@@ -25,7 +25,7 @@ To access a DOM node managed by React, first, import the `useRef` Hook:
 import { useRef } from 'react';
 ```
 
-Then, use it to declare a ref inside your component:
+Then, use it to declare a ref inside your Component:
 
 ```js
 const myRef = useRef(null);
@@ -84,7 +84,7 @@ While DOM manipulation is the most common use case for refs, the `useRef` Hook c
 
 ### Example: Scrolling to an element {/*example-scrolling-to-an-element*/}
 
-You can have more than a single ref in a component. In this example, there is a carousel of three images. Each button centers an image by calling the browser [`scrollIntoView()`](https://developer.mozilla.org/en-US/docs/Web/API/Element/scrollIntoView) method on the corresponding DOM node:
+You can have more than a single ref in a Component. In this example, there is a carousel of three images. Each button centers an image by calling the browser [`scrollIntoView()`](https://developer.mozilla.org/en-US/docs/Web/API/Element/scrollIntoView) method on the corresponding DOM node:
 
 <Sandpack>
 
@@ -207,7 +207,7 @@ In the above examples, there is a predefined number of refs. However, sometimes 
 </ul>
 ```
 
-This is because **Hooks must only be called at the top-level of your component.** You can't call `useRef` in a loop, in a condition, or inside a `map()` call.
+This is because **Hooks must only be called at the top-level of your Component.** You can't call `useRef` in a loop, in a condition, or inside a `map()` call.
 
 One possible way around this is to get a single ref to their parent element, and then use DOM manipulation methods like [`querySelectorAll`](https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelectorAll) to "find" the individual child nodes from it. However, this is brittle and can break if your DOM structure changes.
 
@@ -340,11 +340,11 @@ This lets you read individual DOM nodes from the Map later.
 
 </DeepDive>
 
-## Accessing another component's DOM nodes {/*accessing-another-components-dom-nodes*/}
+## Accessing another Component's DOM nodes {/*accessing-another-components-dom-nodes*/}
 
 When you put a ref on a built-in Component that outputs a browser element like `<input />`, React will set that ref's `current` property to the corresponding DOM node (such as the actual `<input />` in the browser).
 
-However, if you try to put a ref on **your own** component, like `<MyInput />`, by default you will get `null`. Here is an example demonstrating it. Notice how clicking the button **does not** focus the input:
+However, if you try to put a ref on **your own** Component, like `<MyInput />`, by default you will get `null`. Here is an example demonstrating it. Notice how clicking the button **does not** focus the input:
 
 <Sandpack>
 
@@ -383,7 +383,7 @@ Warning: Function Components cannot be given refs. Attempts to access this ref w
 
 </ConsoleBlock>
 
-This happens because by default React does not let a Component access the DOM nodes of other components. Not even for its own children! This is intentional. Refs are an escape hatch that should be used sparingly. Manually manipulating _another_ component's DOM nodes makes your code even more fragile.
+This happens because by default React does not let a Component access the DOM nodes of other Components. Not even for its own children! This is intentional. Refs are an escape hatch that should be used sparingly. Manually manipulating _another_ Component's DOM nodes makes your code even more fragile.
 
 Instead, Components that _want_ to expose their DOM nodes have to **opt in** to that behavior. A Component can specify that it "forwards" its ref to one of its children. Here's how `MyInput` can use the `forwardRef` API:
 
@@ -478,7 +478,7 @@ export default function Form() {
 
 </Sandpack>
 
-Here, `realInputRef` inside `MyInput` holds the actual input DOM node. However, `useImperativeHandle` instructs React to provide your own special object as the value of a ref to the parent component. So `inputRef.current` inside the `Form` Component will only have the `focus` method. In this case, the ref "handle" is not the DOM node, but the custom object you create inside `useImperativeHandle` call.
+Here, `realInputRef` inside `MyInput` holds the actual input DOM node. However, `useImperativeHandle` instructs React to provide your own special object as the value of a ref to the parent Component. So `inputRef.current` inside the `Form` Component will only have the `focus` method. In this case, the ref "handle" is not the DOM node, but the custom object you create inside `useImperativeHandle` call.
 
 </DeepDive>
 

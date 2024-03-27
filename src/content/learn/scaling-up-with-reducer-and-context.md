@@ -4,7 +4,7 @@ title: Scaling Up with Reducer and Context
 
 <Intro>
 
-Reducers let you consolidate a component's state update logic. Context lets you pass information deep down to other components. You can combine reducers and context together to manage state of a complex screen.
+Reducers let you consolidate a Component's state update logic. Context lets you pass information deep down to other Components. You can combine reducers and context together to manage state of a complex screen.
 
 </Intro>
 
@@ -207,7 +207,7 @@ ul, li { margin: 0; padding: 0; }
 
 </Sandpack>
 
-A reducer helps keep the event handlers short and concise. However, as your app grows, you might run into another difficulty. **Currently, the `tasks` state and the `dispatch` function are only available in the top-level `TaskApp` component.** To let other Components read the list of tasks or change it, you have to explicitly [pass down](/learn/passing-props-to-a-component) the current state and the event handlers that change it as props.
+A reducer helps keep the event handlers short and concise. However, as your app grows, you might run into another difficulty. **Currently, the `tasks` state and the `dispatch` function are only available in the top-level `TaskApp` Component.** To let other Components read the list of tasks or change it, you have to explicitly [pass down](/learn/passing-props-to-a-component) the current state and the event handlers that change it as props.
 
 For example, `TaskApp` passes a list of tasks and the event handlers to `TaskList`:
 
@@ -448,11 +448,11 @@ ul, li { margin: 0; padding: 0; }
 
 </Sandpack>
 
-Here, you're passing `null` as the default value to both contexts. The actual values will be provided by the `TaskApp` component.
+Here, you're passing `null` as the default value to both contexts. The actual values will be provided by the `TaskApp` Component.
 
 ### Step 2: Put state and dispatch into context {/*step-2-put-state-and-dispatch-into-context*/}
 
-Now you can import both contexts in your `TaskApp` component. Take the `tasks` and `dispatch` returned by `useReducer()` and [provide them](/learn/passing-data-deeply-with-context#step-3-provide-the-context) to the entire tree below:
+Now you can import both contexts in your `TaskApp` Component. Take the `tasks` and `dispatch` returned by `useReducer()` and [provide them](/learn/passing-data-deeply-with-context#step-3-provide-the-context) to the entire tree below:
 
 ```js {4,7-8}
 import { TasksContext, TasksDispatchContext } from './TasksContext.js';
@@ -897,7 +897,7 @@ ul, li { margin: 0; padding: 0; }
 
 </Sandpack>
 
-**The state still "lives" in the top-level `TaskApp` component, managed with `useReducer`.** But its `tasks` and `dispatch` are now available to every Component below in the tree by importing and using these contexts.
+**The state still "lives" in the top-level `TaskApp` Component, managed with `useReducer`.** But its `tasks` and `dispatch` are now available to every Component below in the tree by importing and using these contexts.
 
 ## Moving all wiring into a single file {/*moving-all-wiring-into-a-single-file*/}
 
@@ -930,7 +930,7 @@ export function TasksProvider({ children }) {
 }
 ```
 
-**This removes all the complexity and wiring from your `TaskApp` component:**
+**This removes all the complexity and wiring from your `TaskApp` Component:**
 
 <Sandpack>
 

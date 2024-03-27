@@ -60,7 +60,7 @@ Strict Mode enables the following development-only behaviors:
 
 ### Enabling Strict Mode for entire app {/*enabling-strict-mode-for-entire-app*/}
 
-Strict Mode enables extra development-only checks for the entire Component tree inside the `<StrictMode>` component. These checks help you find common bugs in your Components early in the development process.
+Strict Mode enables extra development-only checks for the entire Component tree inside the `<StrictMode>` Component. These checks help you find common bugs in your Components early in the development process.
 
 
 To enable Strict Mode for your entire app, wrap your root Component with `<StrictMode>` when you render it:
@@ -118,7 +118,7 @@ function App() {
 }
 ```
 
-In this example, Strict Mode checks will not run against the `Header` and `Footer` components. However, they will run on `Sidebar` and `Content`, as well as all of the Components inside them, no matter how deep.
+In this example, Strict Mode checks will not run against the `Header` and `Footer` Components. However, they will run on `Sidebar` and `Content`, as well as all of the Components inside them, no matter how deep.
 
 ---
 
@@ -303,7 +303,7 @@ li {
 
 </Sandpack>
 
-Notice how every time you hover over the `StoryTray` component, "Create Story" gets added to the list again. The intention of the code was to add it once at the end. But `StoryTray` directly modifies the `stories` array from the props. Every time `StoryTray` renders, it adds "Create Story" again at the end of the same array. In other words, `StoryTray` is not a pure function--running it multiple times produces different results.
+Notice how every time you hover over the `StoryTray` Component, "Create Story" gets added to the list again. The intention of the code was to add it once at the end. But `StoryTray` directly modifies the `stories` array from the props. Every time `StoryTray` renders, it adds "Create Story" again at the end of the same array. In other words, `StoryTray` is not a pure function--running it multiple times produces different results.
 
 To fix this problem, you can make a copy of the array, and modify that copy instead of the original one:
 
@@ -835,4 +835,4 @@ React warns if some Component anywhere inside a `<StrictMode>` tree uses one of 
 * Legacy context ([`childContextTypes`](/reference/react/Component#static-childcontexttypes), [`contextTypes`](/reference/react/Component#static-contexttypes), and [`getChildContext`](/reference/react/Component#getchildcontext)). [See alternatives.](/reference/react/createContext)
 * Legacy string refs ([`this.refs`](/reference/react/Component#refs)). [See alternatives.](https://reactjs.org/docs/strict-mode.html#warning-about-legacy-string-ref-api-usage)
 
-These APIs are primarily used in older [class components](/reference/react/Component) so they rarely appear in modern apps.
+These APIs are primarily used in older [class Components](/reference/react/Component) so they rarely appear in modern apps.

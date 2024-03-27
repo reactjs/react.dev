@@ -48,8 +48,8 @@ On the next renders, `useRef` will return the same object.
 #### Caveats {/*caveats*/}
 
 * You can mutate the `ref.current` property. Unlike state, it is mutable. However, if it holds an object that is used for rendering (for example, a piece of your state), then you shouldn't mutate that object.
-* When you change the `ref.current` property, React does not re-render your component. React is not aware of when you change it because a ref is a plain JavaScript object.
-* Do not write _or read_ `ref.current` during rendering, except for [initialization.](#avoiding-recreating-the-ref-contents) This makes your component's behavior unpredictable.
+* When you change the `ref.current` property, React does not re-render your Component. React is not aware of when you change it because a ref is a plain JavaScript object.
+* Do not write _or read_ `ref.current` during rendering, except for [initialization.](#avoiding-recreating-the-ref-contents) This makes your Component's behavior unpredictable.
 * In Strict Mode, React will **call your Component function twice** in order to [help you find accidental impurities.](/reference/react/useState#my-initializer-or-updater-function-runs-twice) This is development-only behavior and does not affect production. Each ref object will be created twice, but one of the versions will be discarded. If your Component function is pure (as it should be), this should not affect the behavior.
 
 ---
@@ -72,7 +72,7 @@ function Stopwatch() {
 
 On the next renders, `useRef` will return the same object. You can change its `current` property to store information and read it later. This might remind you of [state](/reference/react/useState), but there is an important difference.
 
-**Changing a ref does not trigger a re-render.** This means refs are perfect for storing information that doesn't affect the visual output of your component. For example, if you need to store an [interval ID](https://developer.mozilla.org/en-US/docs/Web/API/setInterval) and retrieve it later, you can put it in a ref. To update the value inside the ref, you need to manually change its <CodeStep step={2}>`current` property</CodeStep>:
+**Changing a ref does not trigger a re-render.** This means refs are perfect for storing information that doesn't affect the visual output of your Component. For example, if you need to store an [interval ID](https://developer.mozilla.org/en-US/docs/Web/API/setInterval) and retrieve it later, you can put it in a ref. To update the value inside the ref, you need to manually change its <CodeStep step={2}>`current` property</CodeStep>:
 
 ```js [[2, 5, "intervalRef.current"]]
 function handleStartClick() {
@@ -448,7 +448,7 @@ button { display: block; margin-bottom: 20px; }
 
 #### Exposing a ref to your own Component {/*exposing-a-ref-to-your-own-component*/}
 
-Sometimes, you may want to let the parent Component manipulate the DOM inside of your component. For example, maybe you're writing a `MyInput` component, but you want the parent to be able to focus the input (which the parent has no access to). You can use a combination of `useRef` to hold the input and [`forwardRef`](/reference/react/forwardRef) to expose it to the parent component. Read a [detailed walkthrough](/learn/manipulating-the-dom-with-refs#accessing-another-components-dom-nodes) here.
+Sometimes, you may want to let the parent Component manipulate the DOM inside of your Component. For example, maybe you're writing a `MyInput` Component, but you want the parent to be able to focus the input (which the parent has no access to). You can use a combination of `useRef` to hold the input and [`forwardRef`](/reference/react/forwardRef) to expose it to the parent Component. Read a [detailed walkthrough](/learn/manipulating-the-dom-with-refs#accessing-another-components-dom-nodes) here.
 
 <Sandpack>
 
@@ -593,4 +593,4 @@ export default MyInput;
 
 Then the parent Component can get a ref to it.
 
-Read more about [accessing another component's DOM nodes.](/learn/manipulating-the-dom-with-refs#accessing-another-components-dom-nodes)
+Read more about [accessing another Component's DOM nodes.](/learn/manipulating-the-dom-with-refs#accessing-another-components-dom-nodes)

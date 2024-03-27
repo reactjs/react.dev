@@ -22,7 +22,7 @@ Event handlers only re-run when you perform the same interaction again. Unlike e
 
 First, let's recap the difference between event handlers and Effects.
 
-Imagine you're implementing a chat room component. Your requirements look like this:
+Imagine you're implementing a chat room Component. Your requirements look like this:
 
 1. Your Component should automatically connect to the selected chat room.
 1. When you click the "Send" button, it should send a message to the chat.
@@ -160,7 +160,7 @@ Intuitively, you could say that event handlers are always triggered "manually", 
 
 There is a more precise way to think about this.
 
-Props, state, and variables declared inside your component's body are called <CodeStep step={2}>reactive values</CodeStep>. In this example, `serverUrl` is not a reactive value, but `roomId` and `message` are. They participate in the rendering data flow:
+Props, state, and variables declared inside your Component's body are called <CodeStep step={2}>reactive values</CodeStep>. In this example, `serverUrl` is not a reactive value, but `roomId` and `message` are. They participate in the rendering data flow:
 
 ```js [[2, 3, "roomId"], [2, 4, "message"]]
 const serverUrl = 'https://localhost:1234';

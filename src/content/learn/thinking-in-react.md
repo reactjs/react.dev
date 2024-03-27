@@ -4,7 +4,7 @@ title: Thinking in React
 
 <Intro>
 
-React can change how you think about the designs you look at and the apps you build. When you build a user interface with React, you will first break it apart into pieces called *components*. Then, you will describe the different visual states for each of your components. Finally, you will connect your Components together so that the data flows through them. In this tutorial, we’ll guide you through the thought process of building a searchable product data table with React.
+React can change how you think about the designs you look at and the apps you build. When you build a user interface with React, you will first break it apart into pieces called *Components*. Then, you will describe the different visual states for each of your Components. Finally, you will connect your Components together so that the data flows through them. In this tutorial, we’ll guide you through the thought process of building a searchable product data table with React.
 
 </Intro>
 
@@ -37,11 +37,11 @@ Start by drawing boxes around every Component and subcomponent in the mockup and
 
 Depending on your background, you can think about splitting up a design into Components in different ways:
 
-* **Programming**--use the same techniques for deciding if you should create a new function or object. One such technique is the [single responsibility principle](https://en.wikipedia.org/wiki/Single_responsibility_principle), that is, a Component should ideally only do one thing. If it ends up growing, it should be decomposed into smaller subcomponents. 
+* **Programming**--use the same techniques for deciding if you should create a new function or object. One such technique is the [single responsibility principle](https://en.wikipedia.org/wiki/Single_responsibility_principle), that is, a Component should ideally only do one thing. If it ends up growing, it should be decomposed into smaller subComponents. 
 * **CSS**--consider what you would make class selectors for. (However, Components are a bit less granular.)
 * **Design**--consider how you would organize the design's layers.
 
-If your JSON is well-structured, you'll often find that it naturally maps to the Component structure of your UI. That's because UI and data models often have the same information architecture--that is, the same shape. Separate your UI into components, where each Component matches one piece of your data model.
+If your JSON is well-structured, you'll often find that it naturally maps to the Component structure of your UI. That's because UI and data models often have the same information architecture--that is, the same shape. Separate your UI into Components, where each Component matches one piece of your data model.
 
 There are five Components on this screen:
 
@@ -61,7 +61,7 @@ There are five Components on this screen:
 
 </FullWidth>
 
-If you look at `ProductTable` (lavender), you'll see that the table header (containing the "Name" and "Price" labels) isn't its own component. This is a matter of preference, and you could go either way. For this example, it is a part of `ProductTable` because it appears inside the `ProductTable`'s list. However, if this header grows to be complex (e.g., if you add sorting), you can move it into its own `ProductTableHeader` component.
+If you look at `ProductTable` (lavender), you'll see that the table header (containing the "Name" and "Price" labels) isn't its own Component. This is a matter of preference, and you could go either way. For this example, it is a part of `ProductTable` because it appears inside the `ProductTable`'s list. However, if this header grows to be complex (e.g., if you add sorting), you can move it into its own `ProductTableHeader` Component.
 
 Now that you've identified the Components in the mockup, arrange them into a hierarchy. Components that appear within another Component in the mockup should appear as a child in the hierarchy:
 
@@ -75,7 +75,7 @@ Now that you've identified the Components in the mockup, arrange them into a hie
 
 Now that you have your Component hierarchy, it's time to implement your app. The most straightforward approach is to build a version that renders the UI from your data model without adding any interactivity... yet! It's often easier to build the static version first and add interactivity later. Building a static version requires a lot of typing and no thinking, but adding interactivity requires a lot of thinking and not a lot of typing.
 
-To build a static version of your app that renders your data model, you'll want to build [components](/learn/your-first-component) that reuse other Components and pass data using [props.](/learn/passing-props-to-a-component) Props are a way of passing data from parent to child. (If you're familiar with the concept of [state](/learn/state-a-components-memory), don't use state at all to build this static version. State is reserved only for interactivity, that is, data that changes over time. Since this is a static version of the app, you don't need it.)
+To build a static version of your app that renders your data model, you'll want to build [Components](/learn/your-first-component) that reuse other Components and pass data using [props.](/learn/passing-props-to-a-component) Props are a way of passing data from parent to child. (If you're familiar with the concept of [state](/learn/state-a-components-memory), don't use state at all to build this static version. State is reserved only for interactivity, that is, data that changes over time. Since this is a static version of the app, you don't need it.)
 
 You can either build "top down" by starting with building the Components higher up in the hierarchy (like `FilterableProductTable`) or "bottom up" by working from Components lower down (like `ProductRow`). In simpler examples, it’s usually easier to go top-down, and on larger projects, it’s easier to go bottom-up.
 
@@ -197,7 +197,7 @@ td {
 
 (If this code looks intimidating, go through the [Quick Start](/learn/) first!)
 
-After building your components, you'll have a library of reusable Components that render your data model. Because this is a static app, the Components will only return JSX. The Component at the top of the hierarchy (`FilterableProductTable`) will take your data model as a prop. This is called _one-way data flow_ because the data flows down from the top-level Component to the ones at the bottom of the tree.
+After building your Components, you'll have a library of reusable Components that render your data model. Because this is a static app, the Components will only return JSX. The Component at the top of the hierarchy (`FilterableProductTable`) will take your data model as a prop. This is called _one-way data flow_ because the data flows down from the top-level Component to the ones at the bottom of the tree.
 
 <Pitfall>
 
@@ -222,7 +222,7 @@ Which of these are state? Identify the ones that are not:
 
 * Does it **remain unchanged** over time? If so, it isn't state.
 * Is it **passed in from a parent** via props? If so, it isn't state.
-* **Can you compute it** based on existing state or props in your component? If so, it *definitely* isn't state!
+* **Can you compute it** based on existing state or props in your Component? If so, it *definitely* isn't state!
 
 What's left is probably state.
 
@@ -242,7 +242,7 @@ This means only the search text and the value of the checkbox are state! Nicely 
 There are two types of "model" data in React: props and state. The two are very different:
 
 * [**Props** are like arguments you pass](/learn/passing-props-to-a-component) to a function. They let a parent Component pass data to a child Component and customize its appearance. For example, a `Form` can pass a `color` prop to a `Button`.
-* [**State** is like a component’s memory.](/learn/state-a-components-memory) It lets a Component keep track of some information and change it in response to interactions. For example, a `Button` might keep track of `isHovered` state.
+* [**State** is like a Component’s memory.](/learn/state-a-components-memory) It lets a Component keep track of some information and change it in response to interactions. For example, a `Button` might keep track of `isHovered` state.
 
 Props and state are different, but they work together. A parent Component will often keep some information in state (so that it can change it), and *pass it down* to child Components as their props. It's okay if the difference still feels fuzzy on the first read. It takes a bit of practice for it to really stick!
 
@@ -250,16 +250,16 @@ Props and state are different, but they work together. A parent Component will o
 
 ## Step 4: Identify where your state should live {/*step-4-identify-where-your-state-should-live*/}
 
-After identifying your app’s minimal state data, you need to identify which Component is responsible for changing this state, or *owns* the state. Remember: React uses one-way data flow, passing data down the Component hierarchy from parent to child component. It may not be immediately clear which Component should own what state. This can be challenging if you’re new to this concept, but you can figure it out by following these steps!
+After identifying your app’s minimal state data, you need to identify which Component is responsible for changing this state, or *owns* the state. Remember: React uses one-way data flow, passing data down the Component hierarchy from parent to child Component. It may not be immediately clear which Component should own what state. This can be challenging if you’re new to this concept, but you can figure it out by following these steps!
 
 For each piece of state in your application:
 
 1. Identify *every* Component that renders something based on that state.
-2. Find their closest common parent component--a Component above them all in the hierarchy.
+2. Find their closest common parent Component--a Component above them all in the hierarchy.
 3. Decide where the state should live:
     1. Often, you can put the state directly into their common parent.
     2. You can also put the state into some Component above their common parent.
-    3. If you can't find a Component where it makes sense to own the state, create a new Component solely for holding the state and add it somewhere in the hierarchy above the common parent component.
+    3. If you can't find a Component where it makes sense to own the state, create a new Component solely for holding the state and add it somewhere in the hierarchy above the common parent Component.
 
 In the previous step, you found two pieces of state in this application: the search input text, and the value of the checkbox. In this example, they always appear together, so it makes sense to put them into the same place.
 

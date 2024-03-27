@@ -4,7 +4,7 @@ title: "<input>"
 
 <Intro>
 
-The [built-in browser `<input>` component](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input) lets you render different kinds of form inputs.
+The [built-in browser `<input>` Component](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input) lets you render different kinds of form inputs.
 
 ```js
 <input />
@@ -20,7 +20,7 @@ The [built-in browser `<input>` component](https://developer.mozilla.org/en-US/d
 
 ### `<input>` {/*input*/}
 
-To display an input, render the [built-in browser `<input>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input) component.
+To display an input, render the [built-in browser `<input>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input) Component.
 
 ```js
 <input name="myInput" />
@@ -34,7 +34,7 @@ To display an input, render the [built-in browser `<input>`](https://developer.m
 
 <Canary>
 
-React's extensions to the `formAction` prop are currently only available in React's Canary and experimental channels. In stable releases of React, `formAction` works only as a [built-in browser HTML component](/reference/react-dom/components#all-html-components). Learn more about [React's release channels here](/community/versioning-policy#all-release-channels).
+React's extensions to the `formAction` prop are currently only available in React's Canary and experimental channels. In stable releases of React, `formAction` works only as a [built-in browser HTML Component](/reference/react-dom/components#all-html-components). Learn more about [React's release channels here](/community/versioning-policy#all-release-channels).
 
 </Canary>
 
@@ -109,7 +109,7 @@ These `<input>` props are relevant both for uncontrolled and controlled inputs:
 
 ### Displaying inputs of different types {/*displaying-inputs-of-different-types*/}
 
-To display an input, render an `<input>` component. By default, it will be a text input. You can pass `type="checkbox"` for a checkbox, `type="radio"` for a radio button, [or one of the other input types.](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#input_types)
+To display an input, render an `<input>` Component. By default, it will be a text input. You can pass `type="checkbox"` for a checkbox, `type="radio"` for a radio button, [or one of the other input types.](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#input_types)
 
 <Sandpack>
 
@@ -158,7 +158,7 @@ input { margin: 5px; }
 
 Typically, you will place every `<input>` inside a [`<label>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/label) tag. This tells the browser that this label is associated with that input. When the user clicks the label, the browser will automatically focus the input. It's also essential for accessibility: a screen reader will announce the label caption when the user focuses the associated input.
 
-If you can't nest `<input>` into a `<label>`, associate them by passing the same ID to `<input id>` and [`<label htmlFor>`.](https://developer.mozilla.org/en-US/docs/Web/API/HTMLLabelElement/htmlFor) To avoid conflicts between multiple instances of one component, generate such an ID with [`useId`.](/reference/react/useId)
+If you can't nest `<input>` into a `<label>`, associate them by passing the same ID to `<input id>` and [`<label htmlFor>`.](https://developer.mozilla.org/en-US/docs/Web/API/HTMLLabelElement/htmlFor) To avoid conflicts between multiple instances of one Component, generate such an ID with [`useId`.](/reference/react/useId)
 
 <Sandpack>
 
@@ -303,7 +303,7 @@ Give a `name` to every `<input>`, for example `<input name="firstName" defaultVa
 
 <Pitfall>
 
-By default, *any* `<button>` inside a `<form>` will submit it. This can be surprising! If you have your own custom `Button` React component, consider returning [`<button type="button">`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/button) instead of `<button>`. Then, to be explicit, use `<button type="submit">` for buttons that *are* supposed to submit the form.
+By default, *any* `<button>` inside a `<form>` will submit it. This can be surprising! If you have your own custom `Button` React Component, consider returning [`<button type="button">`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/button) instead of `<button>`. Then, to be explicit, use `<button type="submit">` for buttons that *are* supposed to submit the form.
 
 </Pitfall>
 
@@ -442,7 +442,7 @@ function App() {
 }
 ```
 
-Since `<PageContent />` doesn't rely on the input state, you can move the input state into its own component:
+Since `<PageContent />` doesn't rely on the input state, you can move the input state into its own Component:
 
 ```js {4,10-17}
 function App() {
@@ -594,7 +594,7 @@ If this doesn't fix the problem, it's possible that the input gets removed and r
 ### I'm getting an error: "A Component is changing an uncontrolled input to be controlled" {/*im-getting-an-error-a-component-is-changing-an-uncontrolled-input-to-be-controlled*/}
 
 
-If you provide a `value` to the component, it must remain a string throughout its lifetime.
+If you provide a `value` to the Component, it must remain a string throughout its lifetime.
 
 You cannot pass `value={undefined}` first and later pass `value="some string"` because React won't know whether you want the Component to be uncontrolled or controlled. A controlled Component should always receive a string `value`, not `null` or `undefined`.
 

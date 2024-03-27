@@ -47,7 +47,7 @@ We’re also working on a playground for exploring many aspects of the compiler.
 
 ## Offscreen {/*offscreen*/}
 
-Today, if you want to hide and show a component, you have two options. One is to add or remove it from the tree completely. The problem with this approach is that the state of your UI is lost each time you unmount, including state stored in the DOM, like scroll position.
+Today, if you want to hide and show a Component, you have two options. One is to add or remove it from the tree completely. The problem with this approach is that the state of your UI is lost each time you unmount, including state stored in the DOM, like scroll position.
 
 The other option is to keep the Component mounted and toggle the appearance visually using CSS. This preserves the state of your UI, but it comes at a performance cost, because React must keep rendering the hidden Component and all of its children whenever it receives new updates.
 

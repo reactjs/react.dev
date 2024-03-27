@@ -4,13 +4,13 @@ title: 'Lifecycle of Reactive Effects'
 
 <Intro>
 
-Effects have a different lifecycle from components. Components may mount, update, or unmount. An Effect can only do two things: to start synchronizing something, and later to stop synchronizing it. This cycle can happen multiple times if your Effect depends on props and state that change over time. React provides a linter rule to check that you've specified your Effect's dependencies correctly. This keeps your Effect synchronized to the latest props and state.
+Effects have a different lifecycle from Components. Components may mount, update, or unmount. An Effect can only do two things: to start synchronizing something, and later to stop synchronizing it. This cycle can happen multiple times if your Effect depends on props and state that change over time. React provides a linter rule to check that you've specified your Effect's dependencies correctly. This keeps your Effect synchronized to the latest props and state.
 
 </Intro>
 
 <YouWillLearn>
 
-- How an Effect's lifecycle is different from a component's lifecycle
+- How an Effect's lifecycle is different from a Component's lifecycle
 - How to think about each individual Effect in isolation
 - When your Effect needs to re-synchronize, and why
 - How your Effect's dependencies are determined
@@ -29,7 +29,7 @@ Every React Component goes through the same lifecycle:
 - A Component _updates_ when it receives new props or state, usually in response to an interaction.
 - A Component _unmounts_ when it's removed from the screen.
 
-**It's a good way to think about components, but _not_ about Effects.** Instead, try to think about each Effect independently from your component's lifecycle. An Effect describes how to [synchronize an external system](/learn/synchronizing-with-effects) to the current props and state. As your code changes, synchronization will need to happen more or less often.
+**It's a good way to think about Components, but _not_ about Effects.** Instead, try to think about each Effect independently from your Component's lifecycle. An Effect describes how to [synchronize an external system](/learn/synchronizing-with-effects) to the current props and state. As your code changes, synchronization will need to happen more or less often.
 
 To illustrate this point, consider this Effect connecting your Component to a chat server:
 
@@ -164,14 +164,14 @@ Finally, when the user goes to a different screen, `ChatRoom` unmounts. Now ther
 
 ### Thinking from the Effect's perspective {/*thinking-from-the-effects-perspective*/}
 
-Let's recap everything that's happened from the `ChatRoom` component's perspective:
+Let's recap everything that's happened from the `ChatRoom` Component's perspective:
 
 1. `ChatRoom` mounted with `roomId` set to `"general"`
 1. `ChatRoom` updated with `roomId` set to `"travel"`
 1. `ChatRoom` updated with `roomId` set to `"music"`
 1. `ChatRoom` unmounted
 
-During each of these points in the component's lifecycle, your Effect did different things:
+During each of these points in the Component's lifecycle, your Effect did different things:
 
 1. Your Effect connected to the `"general"` room
 1. Your Effect disconnected from the `"general"` room and connected to the `"travel"` room
@@ -198,7 +198,7 @@ This code's structure might inspire you to see what happened as a sequence of no
 1. Your Effect connected to the `"travel"` room (until it disconnected)
 1. Your Effect connected to the `"music"` room (until it disconnected)
 
-Previously, you were thinking from the component's perspective. When you looked from the component's perspective, it was tempting to think of Effects as "callbacks" or "lifecycle events" that fire at a specific time like "after a render" or "before unmount". This way of thinking gets complicated very fast, so it's best to avoid.
+Previously, you were thinking from the Component's perspective. When you looked from the Component's perspective, it was tempting to think of Effects as "callbacks" or "lifecycle events" that fire at a specific time like "after a render" or "before unmount". This way of thinking gets complicated very fast, so it's best to avoid.
 
 **Instead, always focus on a single start/stop cycle at a time. It shouldn't matter whether a Component is mounting, updating, or unmounting. All you need to do is to describe how to start synchronization and how to stop it. If you do it well, your Effect will be resilient to being started and stopped as many times as it's needed.**
 
@@ -206,7 +206,7 @@ This might remind you how you don't think whether a Component is mounting or upd
 
 ### How React verifies that your Effect can re-synchronize {/*how-react-verifies-that-your-effect-can-re-synchronize*/}
 
-Here is a live example that you can play with. Press "Open chat" to mount the `ChatRoom` component:
+Here is a live example that you can play with. Press "Open chat" to mount the `ChatRoom` Component:
 
 <Sandpack>
 
@@ -472,7 +472,7 @@ Whenever you change a reactive value like `roomId` or `serverUrl`, the Effect re
 
 ### What an Effect with empty dependencies means {/*what-an-effect-with-empty-dependencies-means*/}
 
-What happens if you move both `serverUrl` and `roomId` outside the component?
+What happens if you move both `serverUrl` and `roomId` outside the Component?
 
 ```js {1,2}
 const serverUrl = 'https://localhost:1234';
@@ -492,7 +492,7 @@ function ChatRoom() {
 
 Now your Effect's code does not use *any* reactive values, so its dependencies can be empty (`[]`).
 
-Thinking from the component's perspective, the empty `[]` dependency array means this Effect connects to the chat room only when the Component mounts, and disconnects only when the Component unmounts. (Keep in mind that React would still [re-synchronize it an extra time](#how-react-verifies-that-your-effect-can-re-synchronize) in development to stress-test your logic.)
+Thinking from the Component's perspective, the empty `[]` dependency array means this Effect connects to the chat room only when the Component mounts, and disconnects only when the Component unmounts. (Keep in mind that React would still [re-synchronize it an extra time](#how-react-verifies-that-your-effect-can-re-synchronize) in development to stress-test your logic.)
 
 
 <Sandpack>
@@ -573,7 +573,7 @@ function ChatRoom({ roomId, selectedServerUrl }) { // roomId is reactive
 
 In this example, `serverUrl` is not a prop or a state variable. It's a regular variable that you calculate during rendering. But it's calculated during rendering, so it can change due to a re-render. This is why it's reactive.
 
-**All values inside the Component (including props, state, and variables in your component's body) are reactive. Any reactive value can change on a re-render, so you need to include reactive values as Effect's dependencies.**
+**All values inside the Component (including props, state, and variables in your Component's body) are reactive. Any reactive value can change on a re-render, so you need to include reactive values as Effect's dependencies.**
 
 In other words, Effects "react" to all values from the Component body.
 
@@ -583,7 +583,7 @@ In other words, Effects "react" to all values from the Component body.
 
 Mutable values (including global variables) aren't reactive.
 
-**A mutable value like [`location.pathname`](https://developer.mozilla.org/en-US/docs/Web/API/Location/pathname) can't be a dependency.** It's mutable, so it can change at any time completely outside of the React rendering data flow. Changing it wouldn't trigger a re-render of your component. Therefore, even if you specified it in the dependencies, React *wouldn't know* to re-synchronize the Effect when it changes. This also breaks the rules of React because reading mutable data during rendering (which is when you calculate the dependencies) breaks [purity of rendering.](/learn/keeping-components-pure) Instead, you should read and subscribe to an external mutable value with [`useSyncExternalStore`.](/learn/you-might-not-need-an-effect#subscribing-to-an-external-store)
+**A mutable value like [`location.pathname`](https://developer.mozilla.org/en-US/docs/Web/API/Location/pathname) can't be a dependency.** It's mutable, so it can change at any time completely outside of the React rendering data flow. Changing it wouldn't trigger a re-render of your Component. Therefore, even if you specified it in the dependencies, React *wouldn't know* to re-synchronize the Effect when it changes. This also breaks the rules of React because reading mutable data during rendering (which is when you calculate the dependencies) breaks [purity of rendering.](/learn/keeping-components-pure) Instead, you should read and subscribe to an external mutable value with [`useSyncExternalStore`.](/learn/you-might-not-need-an-effect#subscribing-to-an-external-store)
 
 **A mutable value like [`ref.current`](/reference/react/useRef#reference) or things you read from it also can't be a dependency.** The ref object returned by `useRef` itself can be a dependency, but its `current` property is intentionally mutable. It lets you [keep track of something without triggering a re-render.](/learn/referencing-values-with-refs) But since changing it doesn't trigger a re-render, it's not a reactive value, and React won't know to re-run your Effect when it changes.
 
@@ -689,7 +689,7 @@ Try this fix in the sandbox above. Verify that the linter error is gone, and the
 
 <Note>
 
-In some cases, React *knows* that a value never changes even though it's declared inside the component. For example, the [`set` function](/reference/react/useState#setstate) returned from `useState` and the ref object returned by [`useRef`](/reference/react/useRef) are *stable*--they are guaranteed to not change on a re-render. Stable values aren't reactive, so you may omit them from the list. Including them is allowed: they won't change, so it doesn't matter.
+In some cases, React *knows* that a value never changes even though it's declared inside the Component. For example, the [`set` function](/reference/react/useState#setstate) returned from `useState` and the ref object returned by [`useRef`](/reference/react/useRef) are *stable*--they are guaranteed to not change on a re-render. Stable values aren't reactive, so you may omit them from the list. Including them is allowed: they won't change, so it doesn't matter.
 
 </Note>
 
@@ -697,7 +697,7 @@ In some cases, React *knows* that a value never changes even though it's declare
 
 In the previous example, you've fixed the lint error by listing `roomId` and `serverUrl` as dependencies.
 
-**However, you could instead "prove" to the linter that these values aren't reactive values,** i.e. that they *can't* change as a result of a re-render. For example, if `serverUrl` and `roomId` don't depend on rendering and always have the same values, you can move them outside the component. Now they don't need to be dependencies:
+**However, you could instead "prove" to the linter that these values aren't reactive values,** i.e. that they *can't* change as a result of a re-render. For example, if `serverUrl` and `roomId` don't depend on rendering and always have the same values, you can move them outside the Component. Now they don't need to be dependencies:
 
 ```js {1,2,11}
 const serverUrl = 'https://localhost:1234'; // serverUrl is not reactive
@@ -763,9 +763,9 @@ On the [next](/learn/separating-events-from-effects) [pages](/learn/removing-eff
 <Recap>
 
 - Components can mount, update, and unmount.
-- Each Effect has a separate lifecycle from the surrounding component.
+- Each Effect has a separate lifecycle from the surrounding Component.
 - Each Effect describes a separate synchronization process that can *start* and *stop*.
-- When you write and read Effects, think from each individual Effect's perspective (how to start and stop synchronization) rather than from the component's perspective (how it mounts, updates, or unmounts).
+- When you write and read Effects, think from each individual Effect's perspective (how to start and stop synchronization) rather than from the Component's perspective (how it mounts, updates, or unmounts).
 - Values declared inside the Component body are "reactive".
 - Reactive values should re-synchronize the Effect because they can change over time.
 - The linter verifies that all reactive values used inside the Effect are specified as dependencies.
@@ -860,7 +860,7 @@ button { margin-left: 10px; }
 
 <Solution>
 
-This Effect didn't have a dependency array at all, so it re-synchronized after every re-render. First, add a dependency array. Then, make sure that every reactive value used by the Effect is specified in the array. For example, `roomId` is reactive (because it's a prop), so it should be included in the array. This ensures that when the user selects a different room, the chat reconnects. On the other hand, `serverUrl` is defined outside the component. This is why it doesn't need to be in the array.
+This Effect didn't have a dependency array at all, so it re-synchronized after every re-render. First, add a dependency array. Then, make sure that every reactive value used by the Effect is specified in the array. For example, `roomId` is reactive (because it's a prop), so it should be included in the array. This ensures that when the user selects a different room, the chat reconnects. On the other hand, `serverUrl` is defined outside the Component. This is why it doesn't need to be in the array.
 
 <Sandpack>
 
@@ -1613,7 +1613,7 @@ label { display: block; margin-bottom: 10px; }
 
 </Sandpack>
 
-In this version, the `App` Component passes a boolean prop instead of a function. Inside the Effect, you decide which function to use. Since both `createEncryptedConnection` and `createUnencryptedConnection` are declared outside the component, they aren't reactive, and don't need to be dependencies. You'll learn more about this in [Removing Effect Dependencies.](/learn/removing-effect-dependencies)
+In this version, the `App` Component passes a boolean prop instead of a function. Inside the Effect, you decide which function to use. Since both `createEncryptedConnection` and `createUnencryptedConnection` are declared outside the Component, they aren't reactive, and don't need to be dependencies. You'll learn more about this in [Removing Effect Dependencies.](/learn/removing-effect-dependencies)
 
 </Solution>
 

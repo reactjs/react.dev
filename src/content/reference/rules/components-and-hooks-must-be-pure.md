@@ -72,7 +72,7 @@ function Dropdown() {
 
 Components must always return the same output with respect to their inputs – props, state, and context. This is known as _idempotency_. [Idempotency](https://en.wikipedia.org/wiki/Idempotence) is a term popularized in functional programming. It refers to the idea that you [always get the same result everytime](learn/keeping-components-pure) you run that piece of code with the same inputs.
 
-This means that _all_ code that runs [during render](#how-does-react-run-your-code) must also be idempotent in order for this rule to hold. For example, this line of code is not idempotent (and therefore, neither is the component):
+This means that _all_ code that runs [during render](#how-does-react-run-your-code) must also be idempotent in order for this rule to hold. For example, this line of code is not idempotent (and therefore, neither is the Component):
 
 ```js {2}
 function Clock() {
@@ -81,7 +81,7 @@ function Clock() {
 }
 ```
 
-`new Date()` is not idempotent as it always returns the current date and changes its result every time it's called. When you render the above component, the time displayed on the screen will stay stuck on the time that the Component was rendered. Similarly, functions like `Math.random()` also aren't idempotent, because they return different results every time they're called, even when the inputs are the same.
+`new Date()` is not idempotent as it always returns the current date and changes its result every time it's called. When you render the above Component, the time displayed on the screen will stay stuck on the time that the Component was rendered. Similarly, functions like `Math.random()` also aren't idempotent, because they return different results every time they're called, even when the inputs are the same.
 
 This doesn't mean you shouldn't use non-idempotent functions like `new Date()` _at all_ – you should just avoid using them [during render](#how-does-react-run-your-code). In this case, we can _synchronize_ the latest date to this Component using an [Effect](/reference/react/useEffect):
 
@@ -156,10 +156,10 @@ There is no need to contort your code to avoid local mutation. [`Array.map`](htt
 
 Even though it looks like we are mutating `items`, the key point to note is that this code only does so _locally_ – the mutation isn't "remembered" when the Component is rendered again. In other words, `items` only stays around as long as the Component does. Because `items` is always _recreated_ every time `<FriendList />` is rendered, the Component will always return the same result.
 
-On the other hand, if `items` was created outside of the component, it holds on to its previous values and remembers changes:
+On the other hand, if `items` was created outside of the Component, it holds on to its previous values and remembers changes:
 
 ```js {1,7}
-const items = []; // 🔴 Bad: created outside of the component
+const items = []; // 🔴 Bad: created outside of the Component
 function FriendList({ friends }) {
   for (let i = 0; i < friends.length; i++) {
     const friend = friends[i];
@@ -179,14 +179,14 @@ Lazy initialization is also fine despite not being fully "pure":
 
 ```js {2}
 function ExpenseForm() {
-  SuperCalculator.initializeIfNotReady(); // ✅ Good: if it doesn't affect other components
+  SuperCalculator.initializeIfNotReady(); // ✅ Good: if it doesn't affect other Components
   // Continue rendering...
 }
 ```
 
 #### Changing the DOM {/*changing-the-dom*/}
 
-Side effects that are directly visible to the user are not allowed in the render logic of React components. In other words, merely calling a Component function shouldn’t by itself produce a change on the screen.
+Side effects that are directly visible to the user are not allowed in the render logic of React Components. In other words, merely calling a Component function shouldn’t by itself produce a change on the screen.
 
 ```js {2}
 function ProductDetailPage({ product }) {
@@ -196,13 +196,13 @@ function ProductDetailPage({ product }) {
 
 One way to achieve the desired result of updating `window.title` outside of render is to [synchronize the Component with `window`](/learn/synchronizing-with-effects).
 
-As long as calling a Component multiple times is safe and doesn’t affect the rendering of other components, React doesn’t care if it’s 100% pure in the strict functional programming sense of the word. It is more important that [components must be idempotent](/reference/rules/components-and-hooks-must-be-pure).
+As long as calling a Component multiple times is safe and doesn’t affect the rendering of other Components, React doesn’t care if it’s 100% pure in the strict functional programming sense of the word. It is more important that [components must be idempotent](/reference/rules/components-and-hooks-must-be-pure).
 
 ---
 
 ## Props and state are immutable {/*props-and-state-are-immutable*/}
 
-A component's props and state are immutable [snapshots](learn/state-as-a-snapshot). Never mutate them directly. Instead, pass new props down, and use the setter function from `useState`.
+A Component's props and state are immutable [snapshots](learn/state-as-a-snapshot). Never mutate them directly. Instead, pass new props down, and use the setter function from `useState`.
 
 You can think of the props and state values as snapshots that are updated after rendering. For this reason, you don't modify the props or state variables directly: instead you pass new props, or use the setter function provided to you to tell React that state needs to update the next time the Component is rendered.
 
@@ -329,7 +329,7 @@ Similarly, it's important to not modify the return values of Hooks, as they may 
 
 Don't mutate values after they've been used in JSX. Move the mutation before the JSX is created.
 
-When you use JSX in an expression, React may eagerly evaluate the JSX before the Component finishes rendering. This means that mutating values after they've been passed to JSX can lead to outdated UIs, as React won't know to update the component's output.
+When you use JSX in an expression, React may eagerly evaluate the JSX before the Component finishes rendering. This means that mutating values after they've been passed to JSX can lead to outdated UIs, as React won't know to update the Component's output.
 
 ```js {4}
 function Page({ colour }) {

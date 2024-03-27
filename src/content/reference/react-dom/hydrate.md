@@ -36,7 +36,7 @@ import { hydrate } from 'react-dom';
 hydrate(reactNode, domNode);
 ```
 
-React will attach to the HTML that exists inside the `domNode`, and take over managing the DOM inside it. An app fully built with React will usually only have one `hydrate` call with its root component.
+React will attach to the HTML that exists inside the `domNode`, and take over managing the DOM inside it. An app fully built with React will usually only have one `hydrate` call with its root Component.
 
 [See more examples below.](#usage)
 
@@ -62,7 +62,7 @@ React will attach to the HTML that exists inside the `domNode`, and take over ma
 
 ## Usage {/*usage*/}
 
-Call `hydrate` to attach a <CodeStep step={1}>React component</CodeStep> into a server-rendered <CodeStep step={2}>browser DOM node</CodeStep>.
+Call `hydrate` to attach a <CodeStep step={1}>React Component</CodeStep> into a server-rendered <CodeStep step={2}>browser DOM node</CodeStep>.
 
 ```js [[1, 3, "<App />"], [2, 3, "document.getElementById('root')"]]
 import { hydrate } from 'react-dom';

@@ -5,14 +5,14 @@ canary: true
 
 <Canary>
 
-React's extensions to `<meta>` are currently only available in React's canary and experimental channels. In stable releases of React `<meta>` works only as a [built-in browser HTML component](https://react.dev/reference/react-dom/components#all-html-components). Learn more about [React's release channels here](/community/versioning-policy#all-release-channels).
+React's extensions to `<meta>` are currently only available in React's canary and experimental channels. In stable releases of React `<meta>` works only as a [built-in browser HTML Component](https://react.dev/reference/react-dom/components#all-html-components). Learn more about [React's release channels here](/community/versioning-policy#all-release-channels).
 
 </Canary>
 
 
 <Intro>
 
-The [built-in browser `<meta>` component](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/meta) lets you add metadata to the document.
+The [built-in browser `<meta>` Component](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/meta) lets you add metadata to the document.
 
 ```js
 <meta name="keywords" content="React, JavaScript, semantic markup, html" />
@@ -28,7 +28,7 @@ The [built-in browser `<meta>` component](https://developer.mozilla.org/en-US/do
 
 ### `<meta>` {/*meta*/}
 
-To add document metadata, render the [built-in browser `<meta>` component](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/meta). You can render `<meta>` from any Component and React will always place the corresponding DOM element in the document head.
+To add document metadata, render the [built-in browser `<meta>` Component](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/meta). You can render `<meta>` from any Component and React will always place the corresponding DOM element in the document head.
 
 ```js
 <meta name="keywords" content="React, JavaScript, semantic markup, html" />
@@ -68,7 +68,7 @@ You can annotate the document with metadata such as keywords, a summary, or the 
 <meta name="description" content="API reference for the <meta> Component in React DOM" />
 ```
 
-You can render the `<meta>` Component from any component. React will put a `<meta>` DOM node in the document `<head>`.
+You can render the `<meta>` Component from any Component. React will put a `<meta>` DOM node in the document `<head>`.
 
 <SandpackWithHTMLOutput>
 
@@ -91,7 +91,7 @@ export default function SiteMapPage() {
 
 ### Annotating specific items within the document with metadata {/*annotating-specific-items-within-the-document-with-metadata*/}
 
-You can use the `<meta>` Component with the `itemProp` prop to annotate specific items within the document with metadata. In this case, React will *not* place these annotations within the document `<head>` but will place them like any other React component. 
+You can use the `<meta>` Component with the `itemProp` prop to annotate specific items within the document with metadata. In this case, React will *not* place these annotations within the document `<head>` but will place them like any other React Component. 
 
 ```js
 <section itemScope>

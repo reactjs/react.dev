@@ -38,11 +38,11 @@ function PasswordField() {
 
 #### Returns {/*returns*/}
 
-`useId` returns a unique ID string associated with this particular `useId` call in this particular component.
+`useId` returns a unique ID string associated with this particular `useId` call in this particular Component.
 
 #### Caveats {/*caveats*/}
 
-* `useId` is a Hook, so you can only call it **at the top level of your component** or your own Hooks. You can't call it inside loops or conditions. If you need that, extract a new Component and move the state into it.
+* `useId` is a Hook, so you can only call it **at the top level of your Component** or your own Hooks. You can't call it inside loops or conditions. If you need that, extract a new Component and move the state into it.
 
 * `useId` **should not be used to generate keys** in a list. [Keys should be generated from your data.](/learn/rendering-lists#where-to-get-your-key)
 
@@ -181,7 +181,7 @@ The primary benefit of `useId` is that React ensures that it works with [server 
 
 This is very difficult to guarantee with an incrementing counter because the order in which the Client Components are hydrated may not match the order in which the server HTML was emitted. By calling `useId`, you ensure that hydration will work, and the output will match between the server and the client.
 
-Inside React, `useId` is generated from the "parent path" of the calling component. This is why, if the client and the server tree are the same, the "parent path" will match up regardless of rendering order.
+Inside React, `useId` is generated from the "parent path" of the calling Component. This is why, if the client and the server tree are the same, the "parent path" will match up regardless of rendering order.
 
 </DeepDive>
 

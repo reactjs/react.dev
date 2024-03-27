@@ -50,8 +50,8 @@ During subsequent renders, it will either return an already stored `fn`  functio
 
 #### Caveats {/*caveats*/}
 
-* `useCallback` is a Hook, so you can only call it **at the top level of your component** or your own Hooks. You can't call it inside loops or conditions. If you need that, extract a new Component and move the state into it.
-* React **will not throw away the cached function unless there is a specific reason to do that.** For example, in development, React throws away the cache when you edit the file of your component. Both in development and in production, React will throw away the cache if your Component suspends during the initial mount. In the future, React may add more features that take advantage of throwing away the cache--for example, if React adds built-in support for virtualized lists in the future, it would make sense to throw away the cache for items that scroll out of the virtualized table viewport. This should match your expectations if you rely on `useCallback` as a performance optimization. Otherwise, a [state variable](/reference/react/useState#im-trying-to-set-state-to-a-function-but-it-gets-called-instead) or a [ref](/reference/react/useRef#avoiding-recreating-the-ref-contents) may be more appropriate.
+* `useCallback` is a Hook, so you can only call it **at the top level of your Component** or your own Hooks. You can't call it inside loops or conditions. If you need that, extract a new Component and move the state into it.
+* React **will not throw away the cached function unless there is a specific reason to do that.** For example, in development, React throws away the cache when you edit the file of your Component. Both in development and in production, React will throw away the cache if your Component suspends during the initial mount. In the future, React may add more features that take advantage of throwing away the cache--for example, if React adds built-in support for virtualized lists in the future, it would make sense to throw away the cache for items that scroll out of the virtualized table viewport. This should match your expectations if you rely on `useCallback` as a performance optimization. Otherwise, a [state variable](/reference/react/useState#im-trying-to-set-state-to-a-function-but-it-gets-called-instead) or a [ref](/reference/react/useRef#avoiding-recreating-the-ref-contents) may be more appropriate.
 
 ---
 
@@ -59,9 +59,9 @@ During subsequent renders, it will either return an already stored `fn`  functio
 
 ### Skipping re-rendering of Components {/*skipping-re-rendering-of-components*/}
 
-When you optimize rendering performance, you will sometimes need to cache the functions that you pass to child components. Let's first look at the syntax for how to do this, and then see in which cases it's useful.
+When you optimize rendering performance, you will sometimes need to cache the functions that you pass to child Components. Let's first look at the syntax for how to do this, and then see in which cases it's useful.
 
-To cache a function between re-renders of your component, wrap its definition into the `useCallback` Hook:
+To cache a function between re-renders of your Component, wrap its definition into the `useCallback` Hook:
 
 ```js [[3, 4, "handleSubmit"], [2, 9, "[productId, referrer]"]]
 import { useCallback } from 'react';
@@ -89,7 +89,7 @@ In other words, `useCallback` caches a function between re-renders until its dep
 
 **Let's walk through an example to see when this is useful.**
 
-Say you're passing a `handleSubmit` function down from the `ProductPage` to the `ShippingForm` component:
+Say you're passing a `handleSubmit` function down from the `ProductPage` to the `ShippingForm` Component:
 
 ```js {5}
 function ProductPage({ productId, referrer, theme }) {
@@ -101,7 +101,7 @@ function ProductPage({ productId, referrer, theme }) {
   );
 ```
 
-You've noticed that toggling the `theme` prop freezes the app for a moment, but if you remove `<ShippingForm />` from your JSX, it feels fast. This tells you that it's worth trying to optimize the `ShippingForm` component.
+You've noticed that toggling the `theme` prop freezes the app for a moment, but if you remove `<ShippingForm />` from your JSX, it feels fast. This tells you that it's worth trying to optimize the `ShippingForm` Component.
 
 **By default, when a Component re-renders, React re-renders all of its children recursively.** This is why, when `ProductPage` re-renders with a different `theme`, the `ShippingForm` Component *also* re-renders. This is fine for Components that don't require much calculation to re-render. But if you verified a re-render is slow, you can tell `ShippingForm` to skip re-rendering when its props are the same as on last render by wrapping it in [`memo`:](/reference/react/memo)
 
@@ -167,7 +167,7 @@ function ProductPage({ productId, referrer, theme }) {
 
 #### How is useCallback related to useMemo? {/*how-is-usecallback-related-to-usememo*/}
 
-You will often see [`useMemo`](/reference/react/useMemo) alongside `useCallback`. They are both useful when you're trying to optimize a child component. They let you [memoize](https://en.wikipedia.org/wiki/Memoization) (or, in other words, cache) something you're passing down:
+You will often see [`useMemo`](/reference/react/useMemo) alongside `useCallback`. They are both useful when you're trying to optimize a child Component. They let you [memoize](https://en.wikipedia.org/wiki/Memoization) (or, in other words, cache) something you're passing down:
 
 ```js {6-8,10-15,19}
 import { useMemo, useCallback } from 'react';
@@ -223,17 +223,17 @@ Caching a function with `useCallback`  is only valuable in a few cases:
 - You pass it as a prop to a Component wrapped in [`memo`.](/reference/react/memo) You want to skip re-rendering if the value hasn't changed. Memoization lets your Component re-render only if dependencies changed.
 - The function you're passing is later used as a dependency of some Hook. For example, another function wrapped in `useCallback` depends on it, or you depend on this function from [`useEffect.`](/reference/react/useEffect)
 
-There is no benefit to wrapping a function in `useCallback` in other cases. There is no significant harm to doing that either, so some teams choose to not think about individual cases, and memoize as much as possible. The downside is that code becomes less readable. Also, not all memoization is effective: a single value that's "always new" is enough to break memoization for an entire component.
+There is no benefit to wrapping a function in `useCallback` in other cases. There is no significant harm to doing that either, so some teams choose to not think about individual cases, and memoize as much as possible. The downside is that code becomes less readable. Also, not all memoization is effective: a single value that's "always new" is enough to break memoization for an entire Component.
 
 Note that `useCallback` does not prevent *creating* the function. You're always creating a function (and that's fine!), but React ignores it and gives you back a cached function if nothing changed.
 
 **In practice, you can make a lot of memoization unnecessary by following a few principles:**
 
-1. When a Component visually wraps other components, let it [accept JSX as children.](/learn/passing-props-to-a-component#passing-jsx-as-children) Then, if the wrapper Component updates its own state, React knows that its children don't need to re-render.
+1. When a Component visually wraps other Components, let it [accept JSX as children.](/learn/passing-props-to-a-component#passing-jsx-as-children) Then, if the wrapper Component updates its own state, React knows that its children don't need to re-render.
 1. Prefer local state and don't [lift state up](/learn/sharing-state-between-components) any further than necessary. Don't keep transient state like forms and whether an item is hovered at the top of your tree or in a global state library.
-1. Keep your [rendering logic pure.](/learn/keeping-components-pure) If re-rendering a Component causes a problem or produces some noticeable visual artifact, it's a bug in your component! Fix the bug instead of adding memoization.
+1. Keep your [rendering logic pure.](/learn/keeping-components-pure) If re-rendering a Component causes a problem or produces some noticeable visual artifact, it's a bug in your Component! Fix the bug instead of adding memoization.
 1. Avoid [unnecessary Effects that update state.](/learn/you-might-not-need-an-effect) Most performance problems in React apps are caused by chains of updates originating from Effects that cause your Components to render over and over.
-1. Try to [remove unnecessary dependencies from your Effects.](/learn/removing-effect-dependencies) For example, instead of memoization, it's often simpler to move some object or a function inside an Effect or outside the component.
+1. Try to [remove unnecessary dependencies from your Effects.](/learn/removing-effect-dependencies) For example, instead of memoization, it's often simpler to move some object or a function inside an Effect or outside the Component.
 
 If a specific interaction still feels laggy, [use the React Developer Tools profiler](https://legacy.reactjs.org/blog/2018/09/10/introducing-the-react-profiler.html) to see which Components benefit the most from memoization, and add memoization where needed. These principles make your Components easier to debug and understand, so it's good to follow them in any case. In long term, we're researching [doing memoization automatically](https://www.youtube.com/watch?v=lGEMwh32soc) to solve this once and for all.
 

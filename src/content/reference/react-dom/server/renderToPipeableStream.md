@@ -92,7 +92,7 @@ app.use('/', (request, response) => {
 });
 ```
 
-Along with the <CodeStep step={1}>root component</CodeStep>, you need to provide a list of <CodeStep step={2}>bootstrap `<script>` paths</CodeStep>. Your root Component should return **the entire document including the root `<html>` tag.**
+Along with the <CodeStep step={1}>root Component</CodeStep>, you need to provide a list of <CodeStep step={2}>bootstrap `<script>` paths</CodeStep>. Your root Component should return **the entire document including the root `<html>` tag.**
 
 For example, it might look like this:
 
@@ -284,7 +284,7 @@ Streaming does not need to wait for React itself to load in the browser, or for 
 
 <Note>
 
-**Only Suspense-enabled data sources will activate the Suspense component.** They include:
+**Only Suspense-enabled data sources will activate the Suspense Component.** They include:
 
 - Data fetching with Suspense-enabled frameworks like [Relay](https://relay.dev/docs/guided-tour/rendering/loading-states/) and [Next.js](https://nextjs.org/docs/getting-started/react-essentials)
 - Lazy-loading Component code with [`lazy`](/reference/react/lazy)
@@ -389,7 +389,7 @@ function ProfilePage() {
 }
 ```
 
-If an error occurs while rendering those components, React won't have any meaningful HTML to send to the client. Override `onShellError` to send a fallback HTML that doesn't rely on server rendering as the last resort:
+If an error occurs while rendering those Components, React won't have any meaningful HTML to send to the client. Override `onShellError` to send a fallback HTML that doesn't rely on server rendering as the last resort:
 
 ```js {7-11}
 const { pipe } = renderToPipeableStream(<App />, {
@@ -502,7 +502,7 @@ This will only catch errors outside the shell that happened while generating the
 
 ### Handling different errors in different ways {/*handling-different-errors-in-different-ways*/}
 
-You can [create your own `Error` subclasses](https://javascript.info/custom-errors) and use the [`instanceof`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/instanceof) operator to check which error is thrown. For example, you can define a custom `NotFoundError` and throw it from your component. Then your `onError`, `onShellReady`, and `onShellError` callbacks can do something different depending on the error type:
+You can [create your own `Error` subclasses](https://javascript.info/custom-errors) and use the [`instanceof`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/instanceof) operator to check which error is thrown. For example, you can define a custom `NotFoundError` and throw it from your Component. Then your `onError`, `onShellReady`, and `onShellError` callbacks can do something different depending on the error type:
 
 ```js {2,4-14,19,24,30}
 let didError = false;

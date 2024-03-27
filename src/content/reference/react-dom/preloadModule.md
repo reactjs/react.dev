@@ -66,8 +66,8 @@ The `preloadModule` function provides the browser with a hint that it should sta
 #### Caveats {/*caveats*/}
 
 * Multiple calls to `preloadModule` with the same `href` have the same effect as a single call.
-* In the browser, you can call `preloadModule` in any situation: while rendering a component, in an Effect, in an event handler, and so on.
-* In server-side rendering or when rendering Server Components, `preloadModule` only has an effect if you call it while rendering a Component or in an async context originating from rendering a component. Any other calls will be ignored.
+* In the browser, you can call `preloadModule` in any situation: while rendering a Component, in an Effect, in an event handler, and so on.
+* In server-side rendering or when rendering Server Components, `preloadModule` only has an effect if you call it while rendering a Component or in an async context originating from rendering a Component. Any other calls will be ignored.
 
 ---
 

@@ -54,7 +54,7 @@ A portal only changes the physical placement of the DOM node. In every other way
 
 #### Returns {/*returns*/}
 
-`createPortal` returns a React node that can be included into JSX or returned from a React component. If React encounters it in the render output, it will place the provided `children` inside the provided `domNode`.
+`createPortal` returns a React node that can be included into JSX or returned from a React Component. If React encounters it in the render output, it will place the provided `children` inside the provided `domNode`.
 
 #### Caveats {/*caveats*/}
 

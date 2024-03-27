@@ -66,7 +66,7 @@ The prefetchDNS function provides the browser with a hint that it should look up
 
 ### Prefetching DNS when rendering {/*prefetching-dns-when-rendering*/}
 
-Call `prefetchDNS` when rendering a component if you know that its children will load external resources from that host.
+Call `prefetchDNS` when rendering a Component if you know that its children will load external resources from that host.
 
 ```js
 import { prefetchDNS } from 'react-dom';
@@ -79,7 +79,7 @@ function AppRoot() {
 
 ### Prefetching DNS in an event handler {/*prefetching-dns-in-an-event-handler*/}
 
-Call `prefetchDNS` in an event handler before transitioning to a page or state where external resources will be needed. This gets the process started earlier than if you call it during the rendering of the new page or state.
+Call `prefetchDNS` in an event handler before transitioning to a page or state where external resources will be needed. This gets the process started earlier than if you call it during the rendering of the new page or State.
 
 ```js
 import { prefetchDNS } from 'react-dom';

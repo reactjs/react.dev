@@ -139,7 +139,7 @@ To update the UI based on the result of a Server Action while supporting progres
 // requestUsername.js
 'use server';
 
-export default async function requestUsername(formData) {
+export default async function requestUsername(prevState, formData) {
   const username = formData.get('username');
   if (canRequest(username)) {
     // ...

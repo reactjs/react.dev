@@ -40,6 +40,11 @@
           "path": "/reference/react/useEffect"
         },
         {
+          "title": "experimental_useEffectEvent",
+          "path": "/reference/react/experimental_useEffectEvent",
+          "canary": true
+        },
+        {
           "title": "useId",
           "path": "/reference/react/useId"
         },

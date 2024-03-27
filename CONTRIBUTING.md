@@ -79,6 +79,7 @@ Ignore this rule if you're specifically describing an experimental proposal. Mak
 - Use semicolons.
 - No space between function names and parens (`method() {}` not `method () {}`).
 - When in doubt, use the default style favored by [Prettier](https://prettier.io/playground/).
+- Always capitalize React concepts such as Hooks, Effects, and Transitions.
 
 ### Highlighting
 

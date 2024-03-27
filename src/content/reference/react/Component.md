@@ -48,11 +48,11 @@ Only the `render` method is required, other methods are optional.
 
 ---
 
-### `context` {/*context*/}
+### `Context` {/*context*/}
 
-The [context](/learn/passing-data-deeply-with-context) of a class component is available as `this.context`. It is only available if you specify *which* context you want to receive using [`static contextType`](#static-contexttype) (modern) or [`static contextTypes`](#static-contexttypes) (deprecated).
+The [Context](/learn/passing-data-deeply-with-context) of a class component is available as `this.context`. It is only available if you specify *which* Context you want to receive using [`static contextType`](#static-contexttype) (modern) or [`static contextTypes`](#static-contexttypes) (deprecated).
 
-A class component can only read one context at a time.
+A class component can only read one Context at a time.
 
 ```js {2,5}
 class Button extends Component {

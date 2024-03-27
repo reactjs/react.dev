@@ -11,7 +11,7 @@ The `use` Hook is currently only available in React's Canary and experimental ch
 
 <Intro>
 
-`use` is a React Hook that lets you read the value of a resource like a [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) or [context](/learn/passing-data-deeply-with-context).
+`use` is a React Hook that lets you read the value of a resource like a [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) or [Context](/learn/passing-data-deeply-with-context).
 
 ```js
 const value = use(resource);
@@ -27,7 +27,7 @@ const value = use(resource);
 
 ### `use(resource)` {/*use*/}
 
-Call `use` in your component to read the value of a resource like a [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) or [context](/learn/passing-data-deeply-with-context).
+Call `use` in your component to read the value of a resource like a [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) or [Context](/learn/passing-data-deeply-with-context).
 
 ```jsx
 import { use } from 'react';
@@ -46,11 +46,11 @@ When called with a Promise, the `use` Hook integrates with [`Suspense`](/referen
 
 #### Parameters {/*parameters*/}
 
-* `resource`: this is the source of the data you want to read a value from. A resource can be a [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) or a [context](/learn/passing-data-deeply-with-context).
+* `resource`: this is the source of the data you want to read a value from. A resource can be a [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) or a [Context](/learn/passing-data-deeply-with-context).
 
 #### Returns {/*returns*/}
 
-The `use` Hook returns the value that was read from the resource like the resolved value of a [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) or [context](/learn/passing-data-deeply-with-context).
+The `use` Hook returns the value that was read from the resource like the resolved value of a [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) or [Context](/learn/passing-data-deeply-with-context).
 
 #### Caveats {/*caveats*/}
 
@@ -62,9 +62,9 @@ The `use` Hook returns the value that was read from the resource like the resolv
 
 ## Usage {/*usage*/}
 
-### Reading context with `use` {/*reading-context-with-use*/}
+### Reading Context with `use` {/*reading-context-with-use*/}
 
-When a [context](/learn/passing-data-deeply-with-context) is passed to `use`, it works similarly to [`useContext`](/reference/react/useContext). While `useContext` must be called at the top level of your component, `use` can be called inside conditionals like `if` and loops like `for`. `use` is preferred over `useContext` because it is more flexible.
+When a [Context](/learn/passing-data-deeply-with-context) is passed to `use`, it works similarly to [`useContext`](/reference/react/useContext). While `useContext` must be called at the top level of your component, `use` can be called inside conditionals like `if` and loops like `for`. `use` is preferred over `useContext` because it is more flexible.
 
 ```js [[2, 4, "theme"], [1, 4, "ThemeContext"]]
 import { use } from 'react';
@@ -74,9 +74,9 @@ function Button() {
   // ... 
 ```
 
-`use` returns the <CodeStep step={2}>context value</CodeStep> for the <CodeStep step={1}>context</CodeStep> you passed. To determine the context value, React searches the component tree and finds **the closest context provider above** for that particular context.
+`use` returns the <CodeStep step={2}>Context value</CodeStep> for the <CodeStep step={1}>Context</CodeStep> you passed. To determine the Context value, React searches the component tree and finds **the closest Context provider above** for that particular Context.
 
-To pass context to a `Button`, wrap it or one of its parent components into the corresponding context provider.
+To pass Context to a `Button`, wrap it or one of its parent components into the corresponding Context provider.
 
 ```js [[1, 3, "ThemeContext"], [2, 3, "\\"dark\\""], [1, 5, "ThemeContext"]]
 function MyPage() {
@@ -110,7 +110,7 @@ function HorizontalRule({ show }) {
 
 <Pitfall>
 
-Like `useContext`, `use(context)` always looks for the closest context provider *above* the component that calls it. It searches upwards and **does not** consider context providers in the component from which you're calling `use(context)`.
+Like `useContext`, `use(context)` always looks for the closest Context provider *above* the component that calls it. It searches upwards and **does not** consider Context providers in the component from which you're calling `use(context)`.
 
 </Pitfall>
 

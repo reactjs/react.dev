@@ -149,7 +149,7 @@ In general, you should not expect your components to be rendered in any particul
 
 #### Detecting impure calculations with StrictMode {/*detecting-impure-calculations-with-strict-mode*/}
 
-Although you might not have used them all yet, in React there are three kinds of inputs that you can read while rendering: [props](/learn/passing-props-to-a-component), [state](/learn/state-a-components-memory), and [context.](/learn/passing-data-deeply-with-context) You should always treat these inputs as read-only.
+Although you might not have used them all yet, in React there are three kinds of inputs that you can read while rendering: [props](/learn/passing-props-to-a-component), [state](/learn/state-a-components-memory), and [Context.](/learn/passing-data-deeply-with-context) You should always treat these inputs as read-only.
 
 When you want to *change* something in response to user input, you should [set state](/learn/state-a-components-memory) instead of writing to a variable. You should never change preexisting variables or objects while your component is rendering.
 
@@ -219,7 +219,7 @@ Every new React feature we're building takes advantage of purity. From data fetc
   * **It minds its own business.** It should not change any objects or variables that existed before rendering.
   * **Same inputs, same output.** Given the same inputs, a component should always return the same JSX. 
 * Rendering can happen at any time, so components should not depend on each others' rendering sequence.
-* You should not mutate any of the inputs that your components use for rendering. That includes props, state, and context. To update the screen, ["set" state](/learn/state-a-components-memory) instead of mutating preexisting objects.
+* You should not mutate any of the inputs that your components use for rendering. That includes props, state, and Context. To update the screen, ["set" state](/learn/state-a-components-memory) instead of mutating preexisting objects.
 * Strive to express your component's logic in the JSX you return. When you need to "change things", you'll usually want to do it in an event handler. As a last resort, you can `useEffect`.
 * Writing pure functions takes a bit of practice, but it unlocks the power of React's paradigm.
 

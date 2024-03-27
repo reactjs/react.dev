@@ -244,7 +244,7 @@ export default function App() {
 
 The [`useContext` Hook](/reference/react/useContext) is a technique for passing data down the component tree without having to pass props through components. It is used by creating a provider component and often by creating a Hook to consume the value in a child component.
 
-The type of the value provided by the context is inferred from the value passed to the `createContext` call:
+The type of the value provided by the Context is inferred from the value passed to the `createContext` call:
 
 <Sandpack>
 
@@ -286,7 +286,7 @@ export default App = AppTSX;
 
 This technique works when you have a default value which makes sense - but there are occasionally cases when you do not, and in those cases `null` can feel reasonable as a default value. However, to allow the type-system to understand your code, you need to explicitly set `ContextShape | null` on the `createContext`. 
 
-This causes the issue that you need to eliminate the `| null` in the type for context consumers. Our recommendation is to have the Hook do a runtime check for it's existence and throw an error when not present:
+This causes the issue that you need to eliminate the `| null` in the type for Context consumers. Our recommendation is to have the Hook do a runtime check for it's existence and throw an error when not present:
 
 ```js {5, 16-20}
 import { createContext, useContext, useState, useMemo } from 'react';
@@ -296,7 +296,7 @@ type ComplexObject = {
   kind: string
 };
 
-// The context is created with `| null` in the type, to accurately reflect the default value.
+// The Context is created with `| null` in the type, to accurately reflect the default value.
 const Context = createContext<ComplexObject | null>(null);
 
 // The `| null` will be removed via the check in the Hook.

@@ -21,8 +21,8 @@ React comes with several built-in Hooks like `useState`, `useContext`, and `useE
 
 Imagine you're developing an app that heavily relies on the network (as most apps do). You want to warn the user if their network connection has accidentally gone off while they were using your app. How would you go about it? It seems like you'll need two things in your component:
 
-1. A piece of state that tracks whether the network is online.
-2. An Effect that subscribes to the global [`online`](https://developer.mozilla.org/en-US/docs/Web/API/Window/online_event) and [`offline`](https://developer.mozilla.org/en-US/docs/Web/API/Window/offline_event) events, and updates that state.
+1. A piece of State that tracks whether the network is online.
+2. An Effect that subscribes to the global [`online`](https://developer.mozilla.org/en-US/docs/Web/API/Window/online_event) and [`offline`](https://developer.mozilla.org/en-US/docs/Web/API/Window/offline_event) events, and updates that State.
 
 This will keep your component [synchronized](/learn/synchronizing-with-effects) with the network status. You might start with something like this:
 
@@ -58,7 +58,7 @@ Try turning your network on and off, and notice how this `StatusBar` updates in 
 
 Now imagine you *also* want to use the same logic in a different component. You want to implement a Save button that will become disabled and show "Reconnecting..." instead of "Save" while the network is off.
 
-To start, you can copy and paste the `isOnline` state and the Effect into `SaveButton`:
+To start, you can copy and paste the `isOnline` State and the Effect into `SaveButton`:
 
 <Sandpack>
 
@@ -224,7 +224,7 @@ You must follow these naming conventions:
 1. **React component names must start with a capital letter,** like `StatusBar` and `SaveButton`. React components also need to return something that React knows how to display, like a piece of JSX.
 2. **Hook names must start with `use` followed by a capital letter,** like [`useState`](/reference/react/useState) (built-in) or `useOnlineStatus` (custom, like earlier on the page). Hooks may return arbitrary values.
 
-This convention guarantees that you can always look at a component and know where its state, Effects, and other React features might "hide". For example, if you see a `getColor()` function call inside your component, you can be sure that it can't possibly contain React state inside because its name doesn't start with `use`. However, a function call like `useOnlineStatus()` will most likely contain calls to other Hooks inside!
+This convention guarantees that you can always look at a component and know where its State, Effects, and other React features might "hide". For example, if you see a `getColor()` function call inside your component, you can be sure that it can't possibly contain React State inside because its name doesn't start with `use`. However, a function call like `useOnlineStatus()` will most likely contain calls to other Hooks inside!
 
 <Note>
 
@@ -289,9 +289,9 @@ Then components won't be able to call it conditionally. This will become importa
 
 </DeepDive>
 
-### Custom Hooks let you share stateful logic, not state itself {/*custom-hooks-let-you-share-stateful-logic-not-state-itself*/}
+### Custom Hooks let you share stateful logic, not State itself {/*custom-hooks-let-you-share-stateful-logic-not-state-itself*/}
 
-In the earlier example, when you turned the network on and off, both components updated together. However, it's wrong to think that a single `isOnline` state variable is shared between them. Look at this code:
+In the earlier example, when you turned the network on and off, both components updated together. However, it's wrong to think that a single `isOnline` State variable is shared between them. Look at this code:
 
 ```js {2,7}
 function StatusBar() {
@@ -325,7 +325,7 @@ function SaveButton() {
 }
 ```
 
-These are two completely independent state variables and Effects! They happened to have the same value at the same time because you synchronized them with the same external value (whether the network is on).
+These are two completely independent State variables and Effects! They happened to have the same value at the same time because you synchronized them with the same external value (whether the network is on).
 
 To better illustrate this, we'll need a different example. Consider this `Form` component:
 
@@ -428,7 +428,7 @@ input { margin-left: 10px; }
 
 </Sandpack>
 
-Notice that it only declares *one* state variable called `value`.
+Notice that it only declares *one* State variable called `value`.
 
 However, the `Form` component calls `useFormInput` *two times:*
 
@@ -439,17 +439,17 @@ function Form() {
   // ...
 ```
 
-This is why it works like declaring two separate state variables!
+This is why it works like declaring two separate State variables!
 
 **Custom Hooks let you share *stateful logic* but not *state itself.* Each call to a Hook is completely independent from every other call to the same Hook.** This is why the two sandboxes above are completely equivalent. If you'd like, scroll back up and compare them. The behavior before and after extracting a custom Hook is identical.
 
-When you need to share the state itself between multiple components, [lift it up and pass it down](/learn/sharing-state-between-components) instead.
+When you need to share the State itself between multiple components, [lift it up and pass it down](/learn/sharing-state-between-components) instead.
 
 ## Passing reactive values between Hooks {/*passing-reactive-values-between-hooks*/}
 
 The code inside your custom Hooks will re-run during every re-render of your component. This is why, like components, custom Hooks [need to be pure.](/learn/keeping-components-pure) Think of custom Hooks' code as part of your component's body!
 
-Because custom Hooks re-render together with your component, they always receive the latest props and state. To see what this means, consider this chat room example. Change the server URL or the chat room:
+Because custom Hooks re-render together with your component, they always receive the latest props and State. To see what this means, consider this chat room example. Change the server URL or the chat room:
 
 <Sandpack>
 
@@ -645,7 +645,7 @@ export default function ChatRoom({ roomId }) {
 
 This looks much simpler! (But it does the same thing.)
 
-Notice that the logic *still responds* to prop and state changes. Try editing the server URL or the selected room:
+Notice that the logic *still responds* to prop and State changes. Try editing the server URL or the selected room:
 
 <Sandpack>
 
@@ -1890,7 +1890,7 @@ Sometimes, you don't even need a Hook!
 
 #### Extract a `useCounter` Hook {/*extract-a-usecounter-hook*/}
 
-This component uses a state variable and an Effect to display a number that increments every second. Extract this logic into a custom Hook called `useCounter`. Your goal is to make the `Counter` component implementation look exactly like this:
+This component uses a State variable and an Effect to display a number that increments every second. Extract this logic into a custom Hook called `useCounter`. Your goal is to make the `Counter` component implementation look exactly like this:
 
 ```js
 export default function Counter() {
@@ -1962,7 +1962,7 @@ Notice that `App.js` doesn't need to import `useState` or `useEffect` anymore.
 
 #### Make the counter delay configurable {/*make-the-counter-delay-configurable*/}
 
-In this example, there is a `delay` state variable controlled by a slider, but its value is not used. Pass the `delay` value to your custom `useCounter` Hook, and change the `useCounter` Hook to use the passed `delay` instead of hardcoding `1000` ms.
+In this example, there is a `delay` State variable controlled by a slider, but its value is not used. Pass the `delay` value to your custom `useCounter` Hook, and change the `useCounter` Hook to use the passed `delay` instead of hardcoding `1000` ms.
 
 <Sandpack>
 
@@ -2064,7 +2064,7 @@ export function useCounter(delay) {
 
 #### Extract `useInterval` out of `useCounter` {/*extract-useinterval-out-of-usecounter*/}
 
-Currently, your `useCounter` Hook does two things. It sets up an interval, and it also increments a state variable on every interval tick. Split out the logic that sets up the interval into a separate Hook called `useInterval`. It should take two arguments: the `onTick` callback, and the `delay`. After this change, your `useCounter` implementation should look like this:
+Currently, your `useCounter` Hook does two things. It sets up an interval, and it also increments a State variable on every interval tick. Split out the logic that sets up the interval into a separate Hook called `useInterval`. It should take two arguments: the `onTick` callback, and the `delay`. After this change, your `useCounter` implementation should look like this:
 
 ```js
 export function useCounter(delay) {
@@ -2327,7 +2327,7 @@ In this example, the `usePointerPosition()` Hook tracks the current pointer posi
 
 In fact, there are five (!) different red dots being rendered. You don't see them because currently they all appear at the same position. This is what you need to fix. What you want to implement instead is a "staggered" movement: each dot should "follow" the previous dot's path. For example, if you quickly move your cursor, the first dot should follow it immediately, the second dot should follow the first dot with a small delay, the third dot should follow the second dot, and so on.
 
-You need to implement the `useDelayedValue` custom Hook. Its current implementation returns the `value` provided to it. Instead, you want to return the value back from `delay` milliseconds ago. You might need some state and an Effect to do this.
+You need to implement the `useDelayedValue` custom Hook. Its current implementation returns the `value` provided to it. Instead, you want to return the value back from `delay` milliseconds ago. You might need some State and an Effect to do this.
 
 After you implement `useDelayedValue`, you should see the dots move following one another.
 
@@ -2408,7 +2408,7 @@ body { min-height: 300px; }
 
 <Solution>
 
-Here is a working version. You keep the `delayedValue` as a state variable. When `value` updates, your Effect schedules a timeout to update the `delayedValue`. This is why the `delayedValue` always "lags behind" the actual `value`.
+Here is a working version. You keep the `delayedValue` as a State variable. When `value` updates, your Effect schedules a timeout to update the `delayedValue`. This is why the `delayedValue` always "lags behind" the actual `value`.
 
 <Sandpack>
 

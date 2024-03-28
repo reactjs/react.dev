@@ -31,7 +31,17 @@ TODO
 - write out what this script should do
 - implement script
 
-## Installation {/*installation*/}
+## Installing eslint-plugin-react-compiler {/*installing-eslint-plugin-react-compiler*/}
+
+React Compiler also powers an eslint plugin. The eslint plugin can be used **independently** of the compiler, meaning you can use the eslint plugin even if you don't use the compiler.
+
+<TerminalBlock>
+npm install eslint-plugin-react-compiler
+</TerminalBlock>
+
+TODO: what else?
+
+## Installing babel-plugin-react-compiler {/*installation*/}
 
 ### Configure included directories {/*configure-included-directories*/}
 

@@ -4,22 +4,22 @@ title: State as a Snapshot
 
 <Intro>
 
-State variables might look like regular JavaScript variables that you can read and write to. However, state behaves more like a snapshot. Setting it does not change the state variable you already have, but instead triggers a re-render.
+State variables might look like regular JavaScript variables that you can read and write to. However, State behaves more like a snapshot. Setting it does not change the State variable you already have, but instead triggers a re-render.
 
 </Intro>
 
 <YouWillLearn>
 
-* How setting state triggers re-renders
-* When and how state updates
-* Why state does not update immediately after you set it
-* How event handlers access a "snapshot" of the state
+* How setting State triggers re-renders
+* When and how State updates
+* Why State does not update immediately after you set it
+* How event handlers access a "snapshot" of the State
 
 </YouWillLearn>
 
-## Setting state triggers renders {/*setting-state-triggers-renders*/}
+## Setting State triggers renders {/*setting-state-triggers-renders*/}
 
-You might think of your user interface as changing directly in response to the user event like a click. In React, it works a little differently from this mental model. On the previous page, you saw that [setting state requests a re-render](/learn/render-and-commit#step-1-trigger-a-render) from React. This means that for an interface to react to the event, you need to *update the state*.
+You might think of your user interface as changing directly in response to the user event like a click. In React, it works a little differently from this mental model. On the previous page, you saw that [setting State requests a re-render](/learn/render-and-commit#step-1-trigger-a-render) from React. This means that for an interface to react to the event, you need to *update the State*.
 
 In this example, when you press "send", `setIsSent(true)` tells React to re-render the UI:
 
@@ -67,11 +67,11 @@ Here's what happens when you click the button:
 2. `setIsSent(true)` sets `isSent` to `true` and queues a new render.
 3. React re-renders the component according to the new `isSent` value.
 
-Let's take a closer look at the relationship between state and rendering.
+Let's take a closer look at the relationship between State and rendering.
 
 ## Rendering takes a snapshot in time {/*rendering-takes-a-snapshot-in-time*/}
 
-["Rendering"](/learn/render-and-commit#step-2-react-renders-your-components) means that React is calling your component, which is a function. The JSX you return from that function is like a snapshot of the UI in time. Its props, event handlers, and local variables were all calculated **using its state at the time of the render.**
+["Rendering"](/learn/render-and-commit#step-2-react-renders-your-components) means that React is calling your component, which is a function. The JSX you return from that function is like a snapshot of the UI in time. Its props, event handlers, and local variables were all calculated **using its State at the time of the render.**
 
 Unlike a photograph or a movie frame, the UI "snapshot" you return is interactive. It includes logic like event handlers that specify what happens in response to inputs. React updates the screen to match this snapshot and connects the event handlers. As a result, pressing a button will trigger the click handler from your JSX.
 
@@ -87,7 +87,7 @@ When React re-renders a component:
     <Illustration caption="Updating the DOM tree" src="/images/docs/illustrations/i_render3.png" />
 </IllustrationBlock>
 
-As a component's memory, state is not like a regular variable that disappears after your function returns. State actually "lives" in React itself--as if on a shelf!--outside of your function. When React calls your component, it gives you a snapshot of the state for that particular render. Your component returns a snapshot of the UI with a fresh set of props and event handlers in its JSX, all calculated **using the state values from that render!**
+As a component's memory, State is not like a regular variable that disappears after your function returns. State actually "lives" in React itself--as if on a shelf!--outside of your function. When React calls your component, it gives you a snapshot of the State for that particular render. Your component returns a snapshot of the UI with a fresh set of props and event handlers in its JSX, all calculated **using the State values from that render!**
 
 <IllustrationBlock sequential>
   <Illustration caption="You tell React to update the state" src="/images/docs/illustrations/i_state-snapshot1.png" />
@@ -129,7 +129,7 @@ h1 { display: inline-block; margin: 10px; width: 30px; text-align: center; }
 
 Notice that `number` only increments once per click!
 
-**Setting state only changes it for the *next* render.** During the first render, `number` was `0`. This is why, in *that render's* `onClick` handler, the value of `number` is still `0` even after `setNumber(number + 1)` was called:
+**Setting State only changes it for the *next* render.** During the first render, `number` was `0`. This is why, in *that render's* `onClick` handler, the value of `number` is still `0` even after `setNumber(number + 1)` was called:
 
 ```js
 <button onClick={() => {
@@ -148,9 +148,9 @@ Here is what this button's click handler tells React to do:
 3. `setNumber(number + 1)`: `number` is `0` so `setNumber(0 + 1)`.
     - React prepares to change `number` to `1` on the next render.
 
-Even though you called `setNumber(number + 1)` three times, in *this render's* event handler `number` is always `0`, so you set the state to `1` three times. This is why, after your event handler finishes, React re-renders the component with `number` equal to `1` rather than `3`.
+Even though you called `setNumber(number + 1)` three times, in *this render's* event handler `number` is always `0`, so you set the State to `1` three times. This is why, after your event handler finishes, React re-renders the component with `number` equal to `1` rather than `3`.
 
-You can also visualize this by mentally substituting state variables with their values in your code. Since the `number` state variable is `0` for *this render*, its event handler looks like this:
+You can also visualize this by mentally substituting State variables with their values in your code. Since the `number` State variable is `0` for *this render*, its event handler looks like this:
 
 ```js
 <button onClick={() => {
@@ -241,7 +241,7 @@ h1 { display: inline-block; margin: 10px; width: 30px; text-align: center; }
 
 </Sandpack>
 
-Surprised? If you use the substitution method, you can see the "snapshot" of the state passed to the alert.
+Surprised? If you use the substitution method, you can see the "snapshot" of the State passed to the alert.
 
 ```js
 setNumber(0 + 5);
@@ -250,9 +250,9 @@ setTimeout(() => {
 }, 3000);
 ```
 
-The state stored in React may have changed by the time the alert runs, but it was scheduled using a snapshot of the state at the time the user interacted with it!
+The State stored in React may have changed by the time the alert runs, but it was scheduled using a snapshot of the State at the time the user interacted with it!
 
-**A state variable's value never changes within a render,** even if its event handler's code is asynchronous. Inside *that render's* `onClick`, the value of `number` continues to be `0` even after `setNumber(number + 5)` was called. Its value was "fixed" when React "took the snapshot" of the UI by calling your component.
+**A State variable's value never changes within a render,** even if its event handler's code is asynchronous. Inside *that render's* `onClick`, the value of `number` continues to be `0` even after `setNumber(number + 5)` was called. Its value was "fixed" when React "took the snapshot" of the UI by calling your component.
 
 Here is an example of how that makes your event handlers less prone to timing mistakes. Below is a form that sends a message with a five-second delay. Imagine this scenario:
 
@@ -305,19 +305,19 @@ label, textarea { margin-bottom: 10px; display: block; }
 
 </Sandpack>
 
-**React keeps the state values "fixed" within one render's event handlers.** You don't need to worry whether the state has changed while the code is running.
+**React keeps the State values "fixed" within one render's event handlers.** You don't need to worry whether the State has changed while the code is running.
 
-But what if you wanted to read the latest state before a re-render? You'll want to use a [state updater function](/learn/queueing-a-series-of-state-updates), covered on the next page!
+But what if you wanted to read the latest State before a re-render? You'll want to use a [State updater function](/learn/queueing-a-series-of-state-updates), covered on the next page!
 
 <Recap>
 
-* Setting state requests a new render.
-* React stores state outside of your component, as if on a shelf.
-* When you call `useState`, React gives you a snapshot of the state *for that render*.
+* Setting State requests a new render.
+* React stores State outside of your component, as if on a shelf.
+* When you call `useState`, React gives you a snapshot of the State *for that render*.
 * Variables and event handlers don't "survive" re-renders. Every render has its own event handlers.
-* Every render (and functions inside it) will always "see" the snapshot of the state that React gave to *that* render.
-* You can mentally substitute state in event handlers, similarly to how you think about the rendered JSX.
-* Event handlers created in the past have the state values from the render in which they were created.
+* Every render (and functions inside it) will always "see" the snapshot of the State that React gave to *that* render.
+* You can mentally substitute State in event handlers, similarly to how you think about the rendered JSX.
+* Event handlers created in the past have the State values from the render in which they were created.
 
 </Recap>
 

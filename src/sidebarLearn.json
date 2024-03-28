@@ -43,44 +43,11 @@
         {
           "title": "React Developer Tools",
           "path": "/learn/react-developer-tools"
-        }
-      ]
-    },
-    {
-      "title": "React Compiler",
-      "path": "/learn/react-compiler",
-      "canary": true,
-      "tags": ["experimental"],
-      "routes": [
-        {
-          "title": "Installation",
-          "path": "/learn/react-compiler/installation",
-          "canary": true,
-          "tags": ["experimental"]
         },
         {
-          "title": "Getting Started",
-          "path": "/learn/react-compiler/getting-started",
-          "canary": true,
-          "tags": ["experimental"]
-        },
-        {
-          "title": "Known Issues",
-          "path": "/learn/react-compiler/known-issues",
-          "canary": true,
-          "tags": ["experimental"]
-        },
-        {
-          "title": "Reporting Issues",
-          "path": "/learn/react-compiler/reporting-issues",
-          "canary": true,
-          "tags": ["experimental"]
-        },
-        {
-          "title": "Debugging",
-          "path": "/learn/react-compiler/debugging",
-          "canary": true,
-          "tags": ["experimental"]
+          "title": "React Compiler",
+          "path": "/learn/react-compiler",
+          "canary": true
         }
       ]
     },

@@ -335,23 +335,6 @@
     },
     {
       "hasSectionHeader": true,
-      "sectionHeader": "react-compiler@0.0.0-experimental",
-      "tags": ["experimental"]
-    },
-    {
-      "title": "Options",
-      "path": "/reference/react-compiler/options",
-      "canary": true,
-      "tags": ["experimental"]
-    },
-    {
-      "title": "Errors",
-      "path": "/reference/react-compiler/errors",
-      "canary": true,
-      "tags": ["experimental"]
-    },
-    {
-      "hasSectionHeader": true,
       "sectionHeader": "Rules of React"
     },
     {

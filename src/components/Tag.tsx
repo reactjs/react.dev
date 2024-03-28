@@ -20,7 +20,7 @@ const variantMap = {
   },
   experimental: {
     name: 'Experimental',
-    classes: 'bg-orange-40 text-white',
+    classes: 'bg-ui-orange text-white',
   },
   deprecated: {
     name: 'Deprecated',

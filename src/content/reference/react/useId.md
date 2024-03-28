@@ -20,7 +20,7 @@ const id = useId()
 
 ### `useId()` {/*useid*/}
 
-Call `useId` at the top level of your component to generate a unique ID:
+Call `useId` at the top level of your Component to generate a unique ID:
 
 ```js
 import { useId } from 'react';
@@ -38,11 +38,11 @@ function PasswordField() {
 
 #### Returns {/*returns*/}
 
-`useId` returns a unique ID string associated with this particular `useId` call in this particular component.
+`useId` returns a unique ID string associated with this particular `useId` call in this particular Component.
 
 #### Caveats {/*caveats*/}
 
-* `useId` is a Hook, so you can only call it **at the top level of your component** or your own Hooks. You can't call it inside loops or conditions. If you need that, extract a new component and move the state into it.
+* `useId` is a Hook, so you can only call it **at the top level of your Component** or your own Hooks. You can't call it inside loops or conditions. If you need that, extract a new Component and move the state into it.
 
 * `useId` **should not be used to generate keys** in a list. [Keys should be generated from your data.](/learn/rendering-lists#where-to-get-your-key)
 
@@ -58,7 +58,7 @@ function PasswordField() {
 
 ### Generating unique IDs for accessibility attributes {/*generating-unique-ids-for-accessibility-attributes*/}
 
-Call `useId` at the top level of your component to generate a unique ID:
+Call `useId` at the top level of your Component to generate a unique ID:
 
 ```js [[1, 4, "passwordHintId"]]
 import { useId } from 'react';
@@ -96,7 +96,7 @@ In regular HTML, you would write it like this:
 </p>
 ```
 
-However, hardcoding IDs like this is not a good practice in React. A component may be rendered more than once on the page--but IDs have to be unique! Instead of hardcoding an ID, generate a unique ID with `useId`:
+However, hardcoding IDs like this is not a good practice in React. A Component may be rendered more than once on the page--but IDs have to be unique! Instead of hardcoding an ID, generate a unique ID with `useId`:
 
 ```js {4,11,14}
 import { useId } from 'react';
@@ -167,7 +167,7 @@ input { margin: 5px; }
 
 <Pitfall>
 
-With [server rendering](/reference/react-dom/server), **`useId` requires an identical component tree on the server and the client**. If the trees you render on the server and the client don't match exactly, the generated IDs won't match.
+With [server rendering](/reference/react-dom/server), **`useId` requires an identical Component tree on the server and the client**. If the trees you render on the server and the client don't match exactly, the generated IDs won't match.
 
 </Pitfall>
 
@@ -177,11 +177,11 @@ With [server rendering](/reference/react-dom/server), **`useId` requires an iden
 
 You might be wondering why `useId` is better than incrementing a global variable like `nextId++`.
 
-The primary benefit of `useId` is that React ensures that it works with [server rendering.](/reference/react-dom/server) During server rendering, your components generate HTML output. Later, on the client, [hydration](/reference/react-dom/client/hydrateRoot) attaches your event handlers to the generated HTML. For hydration to work, the client output must match the server HTML.
+The primary benefit of `useId` is that React ensures that it works with [server rendering.](/reference/react-dom/server) During server rendering, your Components generate HTML output. Later, on the client, [hydration](/reference/react-dom/client/hydrateRoot) attaches your event handlers to the generated HTML. For hydration to work, the client output must match the server HTML.
 
 This is very difficult to guarantee with an incrementing counter because the order in which the Client Components are hydrated may not match the order in which the server HTML was emitted. By calling `useId`, you ensure that hydration will work, and the output will match between the server and the client.
 
-Inside React, `useId` is generated from the "parent path" of the calling component. This is why, if the client and the server tree are the same, the "parent path" will match up regardless of rendering order.
+Inside React, `useId` is generated from the "parent path" of the calling Component. This is why, if the client and the server tree are the same, the "parent path" will match up regardless of rendering order.
 
 </DeepDive>
 

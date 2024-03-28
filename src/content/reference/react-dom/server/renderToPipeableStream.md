@@ -46,7 +46,7 @@ On the client, call [`hydrateRoot`](/reference/react-dom/client/hydrateRoot) to 
 
 #### Parameters {/*parameters*/}
 
-* `reactNode`: A React node you want to render to HTML. For example, a JSX element like `<App />`. It is expected to represent the entire document, so the `App` component should render the `<html>` tag.
+* `reactNode`: A React node you want to render to HTML. For example, a JSX element like `<App />`. It is expected to represent the entire document, so the `App` Component should render the `<html>` tag.
 
 * **optional** `options`: An object with streaming options.
   * **optional** `bootstrapScriptContent`: If specified, this string will be placed in an inline `<script>` tag.
@@ -92,7 +92,7 @@ app.use('/', (request, response) => {
 });
 ```
 
-Along with the <CodeStep step={1}>root component</CodeStep>, you need to provide a list of <CodeStep step={2}>bootstrap `<script>` paths</CodeStep>. Your root component should return **the entire document including the root `<html>` tag.**
+Along with the <CodeStep step={1}>root Component</CodeStep>, you need to provide a list of <CodeStep step={2}>bootstrap `<script>` paths</CodeStep>. Your root Component should return **the entire document including the root `<html>` tag.**
 
 For example, it might look like this:
 
@@ -119,7 +119,7 @@ React will inject the [doctype](https://developer.mozilla.org/en-US/docs/Glossar
 ```html [[2, 5, "/main.js"]]
 <!DOCTYPE html>
 <html>
-  <!-- ... HTML from your components ... -->
+  <!-- ... HTML from your Components ... -->
 </html>
 <script src="/main.js" async=""></script>
 ```
@@ -141,7 +141,7 @@ This will attach event listeners to the server-generated HTML and make it intera
 
 The final asset URLs (like JavaScript and CSS files) are often hashed after the build. For example, instead of `styles.css` you might end up with `styles.123456.css`. Hashing static asset filenames guarantees that every distinct build of the same asset will have a different filename. This is useful because it lets you safely enable long-term caching for static assets: a file with a certain name would never change content.
 
-However, if you don't know the asset URLs until after the build, there's no way for you to put them in the source code. For example, hardcoding `"/styles.css"` into JSX like earlier wouldn't work. To keep them out of your source code, your root component can read the real filenames from a map passed as a prop:
+However, if you don't know the asset URLs until after the build, there's no way for you to put them in the source code. For example, hardcoding `"/styles.css"` into JSX like earlier wouldn't work. To keep them out of your source code, your root Component can read the real filenames from a map passed as a prop:
 
 ```js {1,6}
 export default function App({ assetMap }) {
@@ -284,15 +284,15 @@ Streaming does not need to wait for React itself to load in the browser, or for 
 
 <Note>
 
-**Only Suspense-enabled data sources will activate the Suspense component.** They include:
+**Only Suspense-enabled data sources will activate the Suspense Component.** They include:
 
 - Data fetching with Suspense-enabled frameworks like [Relay](https://relay.dev/docs/guided-tour/rendering/loading-states/) and [Next.js](https://nextjs.org/docs/getting-started/react-essentials)
-- Lazy-loading component code with [`lazy`](/reference/react/lazy)
+- Lazy-loading Component code with [`lazy`](/reference/react/lazy)
 - Reading the value of a Promise with [`use`](/reference/react/use)
 
 Suspense **does not** detect when data is fetched inside an Effect or event handler.
 
-The exact way you would load data in the `Posts` component above depends on your framework. If you use a Suspense-enabled framework, you'll find the details in its data fetching documentation.
+The exact way you would load data in the `Posts` Component above depends on your framework. If you use a Suspense-enabled framework, you'll find the details in its data fetching documentation.
 
 Suspense-enabled data fetching without the use of an opinionated framework is not yet supported. The requirements for implementing a Suspense-enabled data source are unstable and undocumented. An official API for integrating data sources with Suspense will be released in a future version of React. 
 
@@ -346,7 +346,7 @@ const { pipe } = renderToPipeableStream(<App />, {
 });
 ```
 
-By the time `onShellReady` fires, components in nested `<Suspense>` boundaries might still be loading data.
+By the time `onShellReady` fires, Components in nested `<Suspense>` boundaries might still be loading data.
 
 ---
 
@@ -389,7 +389,7 @@ function ProfilePage() {
 }
 ```
 
-If an error occurs while rendering those components, React won't have any meaningful HTML to send to the client. Override `onShellError` to send a fallback HTML that doesn't rely on server rendering as the last resort:
+If an error occurs while rendering those Components, React won't have any meaningful HTML to send to the client. Override `onShellError` to send a fallback HTML that doesn't rely on server rendering as the last resort:
 
 ```js {7-11}
 const { pipe } = renderToPipeableStream(<App />, {
@@ -416,7 +416,7 @@ If there is an error while generating the shell, both `onError` and `onShellErro
 
 ### Recovering from errors outside the shell {/*recovering-from-errors-outside-the-shell*/}
 
-In this example, the `<Posts />` component is wrapped in `<Suspense>` so it is *not* a part of the shell:
+In this example, the `<Posts />` Component is wrapped in `<Suspense>` so it is *not* a part of the shell:
 
 ```js {6}
 function ProfilePage() {
@@ -431,7 +431,7 @@ function ProfilePage() {
 }
 ```
 
-If an error happens in the `Posts` component or somewhere inside it, React will [try to recover from it:](/reference/react/Suspense#providing-a-fallback-for-server-errors-and-client-only-content)
+If an error happens in the `Posts` Component or somewhere inside it, React will [try to recover from it:](/reference/react/Suspense#providing-a-fallback-for-server-errors-and-client-only-content)
 
 1. It will emit the loading fallback for the closest `<Suspense>` boundary (`PostsGlimmer`) into the HTML.
 2. It will "give up" on trying to render the `Posts` content on the server anymore.
@@ -469,7 +469,7 @@ const { pipe } = renderToPipeableStream(<App />, {
 });
 ```
 
-If a component *outside* the shell (i.e. inside a `<Suspense>` boundary) throws an error, React will not stop rendering. This means that the `onError` callback will fire, but you will still get `onShellReady` instead of `onShellError`. This is because React will try to recover from that error on the client, [as described above.](#recovering-from-errors-outside-the-shell)
+If a Component *outside* the shell (i.e. inside a `<Suspense>` boundary) throws an error, React will not stop rendering. This means that the `onError` callback will fire, but you will still get `onShellReady` instead of `onShellError`. This is because React will try to recover from that error on the client, [as described above.](#recovering-from-errors-outside-the-shell)
 
 However, if you'd like, you can use the fact that something has errored to set the status code:
 
@@ -502,7 +502,7 @@ This will only catch errors outside the shell that happened while generating the
 
 ### Handling different errors in different ways {/*handling-different-errors-in-different-ways*/}
 
-You can [create your own `Error` subclasses](https://javascript.info/custom-errors) and use the [`instanceof`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/instanceof) operator to check which error is thrown. For example, you can define a custom `NotFoundError` and throw it from your component. Then your `onError`, `onShellReady`, and `onShellError` callbacks can do something different depending on the error type:
+You can [create your own `Error` subclasses](https://javascript.info/custom-errors) and use the [`instanceof`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/instanceof) operator to check which error is thrown. For example, you can define a custom `NotFoundError` and throw it from your Component. Then your `onError`, `onShellReady`, and `onShellError` callbacks can do something different depending on the error type:
 
 ```js {2,4-14,19,24,30}
 let didError = false;

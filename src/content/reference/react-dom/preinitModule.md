@@ -65,8 +65,8 @@ The `preinitModule` function provides the browser with a hint that it should sta
 #### Caveats {/*caveats*/}
 
 * Multiple calls to `preinitModule` with the same `href` have the same effect as a single call.
-* In the browser, you can call `preinitModule` in any situation: while rendering a component, in an Effect, in an event handler, and so on.
-* In server-side rendering or when rendering Server Components, `preinitModule` only has an effect if you call it while rendering a component or in an async context originating from rendering a component. Any other calls will be ignored.
+* In the browser, you can call `preinitModule` in any situation: while rendering a Component, in an Effect, in an event handler, and so on.
+* In server-side rendering or when rendering Server Components, `preinitModule` only has an effect if you call it while rendering a Component or in an async context originating from rendering a Component. Any other calls will be ignored.
 
 ---
 
@@ -74,7 +74,7 @@ The `preinitModule` function provides the browser with a hint that it should sta
 
 ### Preloading when rendering {/*preloading-when-rendering*/}
 
-Call `preinitModule` when rendering a component if you know that it or its children will use a specific module and you're OK with the module being evaluated and thereby taking effect immediately upon being downloaded.
+Call `preinitModule` when rendering a Component if you know that it or its children will use a specific module and you're OK with the module being evaluated and thereby taking effect immediately upon being downloaded.
 
 ```js
 import { preinitModule } from 'react-dom';

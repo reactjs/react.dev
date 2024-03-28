@@ -28,7 +28,7 @@ The [built-in browser `<meta>` component](https://developer.mozilla.org/en-US/do
 
 ### `<meta>` {/*meta*/}
 
-To add document metadata, render the [built-in browser `<meta>` component](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/meta). You can render `<meta>` from any component and React will always place the corresponding DOM element in the document head.
+To add document metadata, render the [built-in browser `<meta>` component](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/meta). You can render `<meta>` from any Component and React will always place the corresponding DOM element in the document head.
 
 ```js
 <meta name="keywords" content="React, JavaScript, semantic markup, html" />
@@ -40,7 +40,7 @@ To add document metadata, render the [built-in browser `<meta>` component](https
 
 `<meta>` supports all [common element props.](/reference/react-dom/components/common#props)
 
-It should have *exactly one* of the following props: `name`, `httpEquiv`, `charset`, `itemProp`. The `<meta>` component does something different depending on which of these props is specified.
+It should have *exactly one* of the following props: `name`, `httpEquiv`, `charset`, `itemProp`. The `<meta>` Component does something different depending on which of these props is specified.
 
 * `name`: a string. Specifies the [kind of metadata](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/meta/name) to be attached to the document. 
 * `charset`: a string. Specifies the character set used by the document. The only valid value is `"utf-8"`.
@@ -50,7 +50,7 @@ It should have *exactly one* of the following props: `name`, `httpEquiv`, `chars
 
 #### Special rendering behavior {/*special-rendering-behavior*/}
 
-React will always place the DOM element corresponding to the `<meta>` component within the document’s `<head>`, regardless of where in the React tree it is rendered. The `<head>` is the only valid place for `<meta>` to exist within the DOM, yet it’s convenient and keeps things composable if a component representing a specific page can render `<meta>` components itself. 
+React will always place the DOM element corresponding to the `<meta>` Component within the document’s `<head>`, regardless of where in the React tree it is rendered. The `<head>` is the only valid place for `<meta>` to exist within the DOM, yet it’s convenient and keeps things composable if a Component representing a specific page can render `<meta>` Components itself. 
 
 There is one exception to this: if `<meta>` has an [`itemProp`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/itemprop) prop, there is no special behavior, because in this case it doesn’t represent metadata about the document but rather metadata about a specific part of the page. 
 
@@ -65,10 +65,10 @@ You can annotate the document with metadata such as keywords, a summary, or the 
 ```html
 <meta name="author" content="John Smith" />
 <meta name="keywords" content="React, JavaScript, semantic markup, html" />
-<meta name="description" content="API reference for the <meta> component in React DOM" />
+<meta name="description" content="API reference for the <meta> Component in React DOM" />
 ```
 
-You can render the `<meta>` component from any component. React will put a `<meta>` DOM node in the document `<head>`.
+You can render the `<meta>` Component from any Component. React will put a `<meta>` DOM node in the document `<head>`.
 
 <SandpackWithHTMLOutput>
 
@@ -91,7 +91,7 @@ export default function SiteMapPage() {
 
 ### Annotating specific items within the document with metadata {/*annotating-specific-items-within-the-document-with-metadata*/}
 
-You can use the `<meta>` component with the `itemProp` prop to annotate specific items within the document with metadata. In this case, React will *not* place these annotations within the document `<head>` but will place them like any other React component. 
+You can use the `<meta>` Component with the `itemProp` prop to annotate specific items within the document with metadata. In this case, React will *not* place these annotations within the document `<head>` but will place them like any other React Component. 
 
 ```js
 <section itemScope>

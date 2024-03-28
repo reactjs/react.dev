@@ -4,7 +4,7 @@ title: 'Manipulating the DOM with Refs'
 
 <Intro>
 
-React automatically updates the [DOM](https://developer.mozilla.org/docs/Web/API/Document_Object_Model/Introduction) to match your render output, so your components won't often need to manipulate it. However, sometimes you might need access to the DOM elements managed by React--for example, to focus a node, scroll to it, or measure its size and position. There is no built-in way to do those things in React, so you will need a *ref* to the DOM node.
+React automatically updates the [DOM](https://developer.mozilla.org/docs/Web/API/Document_Object_Model/Introduction) to match your render output, so your Components won't often need to manipulate it. However, sometimes you might need access to the DOM elements managed by React--for example, to focus a node, scroll to it, or measure its size and position. There is no built-in way to do those things in React, so you will need a *ref* to the DOM node.
 
 </Intro>
 
@@ -12,7 +12,7 @@ React automatically updates the [DOM](https://developer.mozilla.org/docs/Web/API
 
 - How to access a DOM node managed by React with the `ref` attribute
 - How the `ref` JSX attribute relates to the `useRef` Hook
-- How to access another component's DOM node
+- How to access another Component's DOM node
 - In which cases it's safe to modify the DOM managed by React
 
 </YouWillLearn>
@@ -25,7 +25,7 @@ To access a DOM node managed by React, first, import the `useRef` Hook:
 import { useRef } from 'react';
 ```
 
-Then, use it to declare a ref inside your component:
+Then, use it to declare a ref inside your Component:
 
 ```js
 const myRef = useRef(null);
@@ -84,7 +84,7 @@ While DOM manipulation is the most common use case for refs, the `useRef` Hook c
 
 ### Example: Scrolling to an element {/*example-scrolling-to-an-element*/}
 
-You can have more than a single ref in a component. In this example, there is a carousel of three images. Each button centers an image by calling the browser [`scrollIntoView()`](https://developer.mozilla.org/en-US/docs/Web/API/Element/scrollIntoView) method on the corresponding DOM node:
+You can have more than a single ref in a Component. In this example, there is a carousel of three images. Each button centers an image by calling the browser [`scrollIntoView()`](https://developer.mozilla.org/en-US/docs/Web/API/Element/scrollIntoView) method on the corresponding DOM node:
 
 <Sandpack>
 
@@ -207,7 +207,7 @@ In the above examples, there is a predefined number of refs. However, sometimes 
 </ul>
 ```
 
-This is because **Hooks must only be called at the top-level of your component.** You can't call `useRef` in a loop, in a condition, or inside a `map()` call.
+This is because **Hooks must only be called at the top-level of your Component.** You can't call `useRef` in a loop, in a condition, or inside a `map()` call.
 
 One possible way around this is to get a single ref to their parent element, and then use DOM manipulation methods like [`querySelectorAll`](https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelectorAll) to "find" the individual child nodes from it. However, this is brittle and can break if your DOM structure changes.
 
@@ -340,11 +340,11 @@ This lets you read individual DOM nodes from the Map later.
 
 </DeepDive>
 
-## Accessing another component's DOM nodes {/*accessing-another-components-dom-nodes*/}
+## Accessing another Component's DOM nodes {/*accessing-another-components-dom-nodes*/}
 
-When you put a ref on a built-in component that outputs a browser element like `<input />`, React will set that ref's `current` property to the corresponding DOM node (such as the actual `<input />` in the browser).
+When you put a ref on a built-in Component that outputs a browser element like `<input />`, React will set that ref's `current` property to the corresponding DOM node (such as the actual `<input />` in the browser).
 
-However, if you try to put a ref on **your own** component, like `<MyInput />`, by default you will get `null`. Here is an example demonstrating it. Notice how clicking the button **does not** focus the input:
+However, if you try to put a ref on **your own** Component, like `<MyInput />`, by default you will get `null`. Here is an example demonstrating it. Notice how clicking the button **does not** focus the input:
 
 <Sandpack>
 
@@ -379,13 +379,13 @@ To help you notice the issue, React also prints an error to the console:
 
 <ConsoleBlock level="error">
 
-Warning: Function components cannot be given refs. Attempts to access this ref will fail. Did you mean to use React.forwardRef()?
+Warning: Function Components cannot be given refs. Attempts to access this ref will fail. Did you mean to use React.forwardRef()?
 
 </ConsoleBlock>
 
-This happens because by default React does not let a component access the DOM nodes of other components. Not even for its own children! This is intentional. Refs are an escape hatch that should be used sparingly. Manually manipulating _another_ component's DOM nodes makes your code even more fragile.
+This happens because by default React does not let a Component access the DOM nodes of other Components. Not even for its own children! This is intentional. Refs are an escape hatch that should be used sparingly. Manually manipulating _another_ Component's DOM nodes makes your code even more fragile.
 
-Instead, components that _want_ to expose their DOM nodes have to **opt in** to that behavior. A component can specify that it "forwards" its ref to one of its children. Here's how `MyInput` can use the `forwardRef` API:
+Instead, Components that _want_ to expose their DOM nodes have to **opt in** to that behavior. A Component can specify that it "forwards" its ref to one of its children. Here's how `MyInput` can use the `forwardRef` API:
 
 ```js
 const MyInput = forwardRef((props, ref) => {
@@ -395,8 +395,8 @@ const MyInput = forwardRef((props, ref) => {
 
 This is how it works:
 
-1. `<MyInput ref={inputRef} />` tells React to put the corresponding DOM node into `inputRef.current`. However, it's up to the `MyInput` component to opt into that--by default, it doesn't.
-2. The `MyInput` component is declared using `forwardRef`. **This opts it into receiving the `inputRef` from above as the second `ref` argument** which is declared after `props`.
+1. `<MyInput ref={inputRef} />` tells React to put the corresponding DOM node into `inputRef.current`. However, it's up to the `MyInput` Component to opt into that--by default, it doesn't.
+2. The `MyInput` Component is declared using `forwardRef`. **This opts it into receiving the `inputRef` from above as the second `ref` argument** which is declared after `props`.
 3. `MyInput` itself passes the `ref` it received to the `<input>` inside of it.
 
 Now clicking the button to focus the input works:
@@ -430,13 +430,13 @@ export default function Form() {
 
 </Sandpack>
 
-In design systems, it is a common pattern for low-level components like buttons, inputs, and so on, to forward their refs to their DOM nodes. On the other hand, high-level components like forms, lists, or page sections usually won't expose their DOM nodes to avoid accidental dependencies on the DOM structure.
+In design systems, it is a common pattern for low-level Components like buttons, inputs, and so on, to forward their refs to their DOM nodes. On the other hand, high-level Components like forms, lists, or page sections usually won't expose their DOM nodes to avoid accidental dependencies on the DOM structure.
 
 <DeepDive>
 
 #### Exposing a subset of the API with an imperative handle {/*exposing-a-subset-of-the-api-with-an-imperative-handle*/}
 
-In the above example, `MyInput` exposes the original DOM input element. This lets the parent component call `focus()` on it. However, this also lets the parent component do something else--for example, change its CSS styles. In uncommon cases, you may want to restrict the exposed functionality. You can do that with `useImperativeHandle`:
+In the above example, `MyInput` exposes the original DOM input element. This lets the parent Component call `focus()` on it. However, this also lets the parent Component do something else--for example, change its CSS styles. In uncommon cases, you may want to restrict the exposed functionality. You can do that with `useImperativeHandle`:
 
 <Sandpack>
 
@@ -478,7 +478,7 @@ export default function Form() {
 
 </Sandpack>
 
-Here, `realInputRef` inside `MyInput` holds the actual input DOM node. However, `useImperativeHandle` instructs React to provide your own special object as the value of a ref to the parent component. So `inputRef.current` inside the `Form` component will only have the `focus` method. In this case, the ref "handle" is not the DOM node, but the custom object you create inside `useImperativeHandle` call.
+Here, `realInputRef` inside `MyInput` holds the actual input DOM node. However, `useImperativeHandle` instructs React to provide your own special object as the value of a ref to the parent Component. So `inputRef.current` inside the `Form` Component will only have the `focus` method. In this case, the ref "handle" is not the DOM node, but the custom object you create inside `useImperativeHandle` call.
 
 </DeepDive>
 
@@ -486,7 +486,7 @@ Here, `realInputRef` inside `MyInput` holds the actual input DOM node. However, 
 
 In React, every update is split in [two phases](/learn/render-and-commit#step-3-react-commits-changes-to-the-dom):
 
-* During **render,** React calls your components to figure out what should be on the screen.
+* During **render,** React calls your Components to figure out what should be on the screen.
 * During **commit,** React applies changes to the DOM.
 
 In general, you [don't want](/learn/referencing-values-with-refs#best-practices-for-refs) to access refs during rendering. That goes for refs holding DOM nodes as well. During the first render, the DOM nodes have not yet been created, so `ref.current` will be `null`. And during the rendering of updates, the DOM nodes haven't been updated yet. So it's too early to read them.
@@ -690,7 +690,7 @@ However, this doesn't mean that you can't do it at all. It requires caution. **Y
 - Refs are a generic concept, but most often you'll use them to hold DOM elements.
 - You instruct React to put a DOM node into `myRef.current` by passing `<div ref={myRef}>`.
 - Usually, you will use refs for non-destructive actions like focusing, scrolling, or measuring DOM elements.
-- A component doesn't expose its DOM nodes by default. You can opt into exposing a DOM node by using `forwardRef` and passing the second `ref` argument down to a specific node.
+- A Component doesn't expose its DOM nodes by default. You can opt into exposing a DOM node by using `forwardRef` and passing the second `ref` argument down to a specific node.
 - Avoid changing DOM nodes managed by React.
 - If you do modify DOM nodes managed by React, modify parts that React has no reason to update.
 
@@ -1086,13 +1086,13 @@ img {
 
 </Solution>
 
-#### Focus the search field with separate components {/*focus-the-search-field-with-separate-components*/}
+#### Focus the search field with separate Components {/*focus-the-search-field-with-separate-components*/}
 
-Make it so that clicking the "Search" button puts focus into the field. Note that each component is defined in a separate file and shouldn't be moved out of it. How do you connect them together?
+Make it so that clicking the "Search" button puts focus into the field. Note that each Component is defined in a separate file and shouldn't be moved out of it. How do you connect them together?
 
 <Hint>
 
-You'll need `forwardRef` to opt into exposing a DOM node from your own component like `SearchInput`.
+You'll need `forwardRef` to opt into exposing a DOM node from your own Component like `SearchInput`.
 
 </Hint>
 

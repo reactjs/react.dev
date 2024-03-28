@@ -31,7 +31,7 @@ stream.pipe(response);
 
 [See more examples below.](#usage)
 
-The stream will produce non-interactive HTML output of your React components.
+The stream will produce non-interactive HTML output of your React Components.
 
 #### Parameters {/*parameters*/}
 
@@ -72,7 +72,7 @@ app.use('/', (request, response) => {
 });
 ```
 
-The stream will produce the initial non-interactive HTML output of your React components.
+The stream will produce the initial non-interactive HTML output of your React Components.
 
 <Pitfall>
 

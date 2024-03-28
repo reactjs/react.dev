@@ -65,17 +65,17 @@ Here's what happens when you click the button:
 
 1. The `onSubmit` event handler executes.
 2. `setIsSent(true)` sets `isSent` to `true` and queues a new render.
-3. React re-renders the component according to the new `isSent` value.
+3. React re-renders the Component according to the new `isSent` value.
 
 Let's take a closer look at the relationship between state and rendering.
 
 ## Rendering takes a snapshot in time {/*rendering-takes-a-snapshot-in-time*/}
 
-["Rendering"](/learn/render-and-commit#step-2-react-renders-your-components) means that React is calling your component, which is a function. The JSX you return from that function is like a snapshot of the UI in time. Its props, event handlers, and local variables were all calculated **using its state at the time of the render.**
+["Rendering"](/learn/render-and-commit#step-2-react-renders-your-components) means that React is calling your Component, which is a function. The JSX you return from that function is like a snapshot of the UI in time. Its props, event handlers, and local variables were all calculated **using its state at the time of the render.**
 
 Unlike a photograph or a movie frame, the UI "snapshot" you return is interactive. It includes logic like event handlers that specify what happens in response to inputs. React updates the screen to match this snapshot and connects the event handlers. As a result, pressing a button will trigger the click handler from your JSX.
 
-When React re-renders a component:
+When React re-renders a Component:
 
 1. React calls your function again.
 2. Your function returns a new JSX snapshot.
@@ -87,12 +87,12 @@ When React re-renders a component:
     <Illustration caption="Updating the DOM tree" src="/images/docs/illustrations/i_render3.png" />
 </IllustrationBlock>
 
-As a component's memory, state is not like a regular variable that disappears after your function returns. State actually "lives" in React itself--as if on a shelf!--outside of your function. When React calls your component, it gives you a snapshot of the state for that particular render. Your component returns a snapshot of the UI with a fresh set of props and event handlers in its JSX, all calculated **using the state values from that render!**
+As a Component's memory, state is not like a regular variable that disappears after your function returns. State actually "lives" in React itself--as if on a shelf!--outside of your function. When React calls your Component, it gives you a snapshot of the state for that particular render. Your Component returns a snapshot of the UI with a fresh set of props and event handlers in its JSX, all calculated **using the state values from that render!**
 
 <IllustrationBlock sequential>
   <Illustration caption="You tell React to update the state" src="/images/docs/illustrations/i_state-snapshot1.png" />
   <Illustration caption="React updates the state value" src="/images/docs/illustrations/i_state-snapshot2.png" />
-  <Illustration caption="React passes a snapshot of the state value into the component" src="/images/docs/illustrations/i_state-snapshot3.png" />
+  <Illustration caption="React passes a snapshot of the state value into the Component" src="/images/docs/illustrations/i_state-snapshot3.png" />
 </IllustrationBlock>
 
 Here's a little experiment to show you how this works. In this example, you might expect that clicking the "+3" button would increment the counter three times because it calls `setNumber(number + 1)` three times.
@@ -148,7 +148,7 @@ Here is what this button's click handler tells React to do:
 3. `setNumber(number + 1)`: `number` is `0` so `setNumber(0 + 1)`.
     - React prepares to change `number` to `1` on the next render.
 
-Even though you called `setNumber(number + 1)` three times, in *this render's* event handler `number` is always `0`, so you set the state to `1` three times. This is why, after your event handler finishes, React re-renders the component with `number` equal to `1` rather than `3`.
+Even though you called `setNumber(number + 1)` three times, in *this render's* event handler `number` is always `0`, so you set the state to `1` three times. This is why, after your event handler finishes, React re-renders the Component with `number` equal to `1` rather than `3`.
 
 You can also visualize this by mentally substituting state variables with their values in your code. Since the `number` state variable is `0` for *this render*, its event handler looks like this:
 
@@ -210,7 +210,7 @@ setNumber(0 + 5);
 alert(0);
 ```
 
-But what if you put a timer on the alert, so it only fires _after_ the component re-rendered? Would it say "0" or "5"? Have a guess!
+But what if you put a timer on the alert, so it only fires _after_ the Component re-rendered? Would it say "0" or "5"? Have a guess!
 
 <Sandpack>
 
@@ -252,7 +252,7 @@ setTimeout(() => {
 
 The state stored in React may have changed by the time the alert runs, but it was scheduled using a snapshot of the state at the time the user interacted with it!
 
-**A state variable's value never changes within a render,** even if its event handler's code is asynchronous. Inside *that render's* `onClick`, the value of `number` continues to be `0` even after `setNumber(number + 5)` was called. Its value was "fixed" when React "took the snapshot" of the UI by calling your component.
+**A state variable's value never changes within a render,** even if its event handler's code is asynchronous. Inside *that render's* `onClick`, the value of `number` continues to be `0` even after `setNumber(number + 5)` was called. Its value was "fixed" when React "took the snapshot" of the UI by calling your Component.
 
 Here is an example of how that makes your event handlers less prone to timing mistakes. Below is a form that sends a message with a five-second delay. Imagine this scenario:
 
@@ -312,7 +312,7 @@ But what if you wanted to read the latest state before a re-render? You'll want 
 <Recap>
 
 * Setting state requests a new render.
-* React stores state outside of your component, as if on a shelf.
+* React stores state outside of your Component, as if on a shelf.
 * When you call `useState`, React gives you a snapshot of the state *for that render*.
 * Variables and event handlers don't "survive" re-renders. Every render has its own event handlers.
 * Every render (and functions inside it) will always "see" the snapshot of the state that React gave to *that* render.
@@ -327,7 +327,7 @@ But what if you wanted to read the latest state before a re-render? You'll want 
 
 #### Implement a traffic light {/*implement-a-traffic-light*/}
 
-Here is a crosswalk light component that toggles when the button is pressed:
+Here is a crosswalk light Component that toggles when the button is pressed:
 
 <Sandpack>
 

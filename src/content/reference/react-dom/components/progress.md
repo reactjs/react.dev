@@ -43,7 +43,7 @@ Additionally, `<progress>` supports these props:
 
 ### Controlling a progress indicator {/*controlling-a-progress-indicator*/}
 
-To display a progress indicator, render a `<progress>` component. You can pass a number `value` between `0` and the `max` value you specify. If you don't pass a `max` value, it will assumed to be `1` by default.
+To display a progress indicator, render a `<progress>` Component. You can pass a number `value` between `0` and the `max` value you specify. If you don't pass a `max` value, it will assumed to be `1` by default.
 
 If the operation is not ongoing, pass `value={null}` to put the progress indicator into an indeterminate state.
 

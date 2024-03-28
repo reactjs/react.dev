@@ -122,7 +122,7 @@ export async function Profile(props) {
 ```
 
 ```js
-// components.js
+// Components.js
 "use client";
 
 export async function InfoCard({ user }) {

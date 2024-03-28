@@ -4,7 +4,7 @@ title: Conditional Rendering
 
 <Intro>
 
-Your components will often need to display different things depending on different conditions. In React, you can conditionally render JSX using JavaScript syntax like `if` statements, `&&`, and `? :` operators.
+Your Components will often need to display different things depending on different conditions. In React, you can conditionally render JSX using JavaScript syntax like `if` statements, `&&`, and `? :` operators.
 
 </Intro>
 
@@ -18,7 +18,7 @@ Your components will often need to display different things depending on differe
 
 ## Conditionally returning JSX {/*conditionally-returning-jsx*/}
 
-Let’s say you have a `PackingList` component rendering several `Item`s, which can be marked as packed or not:
+Let’s say you have a `PackingList` Component rendering several `Item`s, which can be marked as packed or not:
 
 <Sandpack>
 
@@ -52,7 +52,7 @@ export default function PackingList() {
 
 </Sandpack>
 
-Notice that some of the `Item` components have their `isPacked` prop set to `true` instead of `false`. You want to add a checkmark (✔) to packed items if `isPacked={true}`.
+Notice that some of the `Item` Components have their `isPacked` prop set to `true` instead of `false`. You want to add a checkmark (✔) to packed items if `isPacked={true}`.
 
 You can write this as an [`if`/`else` statement](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/if...else) like so:
 
@@ -106,7 +106,7 @@ Notice how you're creating branching logic with JavaScript's `if` and `return` s
 
 ### Conditionally returning nothing with `null` {/*conditionally-returning-nothing-with-null*/}
 
-In some situations, you won't want to render anything at all. For example, say you don't want to show packed items at all. A component must return something. In this case, you can return `null`:
+In some situations, you won't want to render anything at all. For example, say you don't want to show packed items at all. A Component must return something. In this case, you can return `null`:
 
 ```js
 if (isPacked) {
@@ -115,7 +115,7 @@ if (isPacked) {
 return <li className="item">{name}</li>;
 ```
 
-If `isPacked` is true, the component will return nothing, `null`. Otherwise, it will return JSX to render.
+If `isPacked` is true, the Component will return nothing, `null`. Otherwise, it will return JSX to render.
 
 <Sandpack>
 
@@ -152,11 +152,11 @@ export default function PackingList() {
 
 </Sandpack>
 
-In practice, returning `null` from a component isn't common because it might surprise a developer trying to render it. More often, you would conditionally include or exclude the component in the parent component's JSX. Here's how to do that!
+In practice, returning `null` from a Component isn't common because it might surprise a developer trying to render it. More often, you would conditionally include or exclude the Component in the parent Component's JSX. Here's how to do that!
 
 ## Conditionally including JSX {/*conditionally-including-jsx*/}
 
-In the previous example, you controlled which (if any!) JSX tree would be returned by the component. You may already have noticed some duplication in the render output:
+In the previous example, you controlled which (if any!) JSX tree would be returned by the Component. You may already have noticed some duplication in the render output:
 
 ```js
 <li className="item">{name} ✔</li>
@@ -256,11 +256,11 @@ export default function PackingList() {
 
 </Sandpack>
 
-This style works well for simple conditions, but use it in moderation. If your components get messy with too much nested conditional markup, consider extracting child components to clean things up. In React, markup is a part of your code, so you can use tools like variables and functions to tidy up complex expressions.
+This style works well for simple conditions, but use it in moderation. If your Components get messy with too much nested conditional markup, consider extracting child Components to clean things up. In React, markup is a part of your code, so you can use tools like variables and functions to tidy up complex expressions.
 
 ### Logical AND operator (`&&`) {/*logical-and-operator-*/}
 
-Another common shortcut you'll encounter is the [JavaScript logical AND (`&&`) operator.](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Logical_AND#:~:text=The%20logical%20AND%20(%20%26%26%20)%20operator,it%20returns%20a%20Boolean%20value.) Inside React components, it often comes up when you want to render some JSX when the condition is true, **or render nothing otherwise.** With `&&`, you could conditionally render the checkmark only if `isPacked` is `true`:
+Another common shortcut you'll encounter is the [JavaScript logical AND (`&&`) operator.](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Logical_AND#:~:text=The%20logical%20AND%20(%20%26%26%20)%20operator,it%20returns%20a%20Boolean%20value.) Inside React Components, it often comes up when you want to render some JSX when the condition is true, **or render nothing otherwise.** With `&&`, you could conditionally render the checkmark only if `isPacked` is `true`:
 
 ```js
 return (
@@ -437,7 +437,7 @@ export default function PackingList() {
 
 </Sandpack>
 
-If you're not familiar with JavaScript, this variety of styles might seem overwhelming at first. However, learning them will help you read and write any JavaScript code -- and not just React components! Pick the one you prefer for a start, and then consult this reference again if you forget how the other ones work.
+If you're not familiar with JavaScript, this variety of styles might seem overwhelming at first. However, learning them will help you read and write any JavaScript code -- and not just React Components! Pick the one you prefer for a start, and then consult this reference again if you forget how the other ones work.
 
 <Recap>
 
@@ -632,7 +632,7 @@ In this solution, two separate conditions are used to insert a space between the
 
 #### Refactor a series of `? :` to `if` and variables {/*refactor-a-series-of---to-if-and-variables*/}
 
-This `Drink` component uses a series of `? :` conditions to show different information depending on whether the `name` prop is `"tea"` or `"coffee"`. The problem is that the information about each drink is spread across multiple conditions. Refactor this code to use a single `if` statement instead of three `? :` conditions.
+This `Drink` Component uses a series of `? :` conditions to show different information depending on whether the `name` prop is `"tea"` or `"coffee"`. The problem is that the information about each drink is spread across multiple conditions. Refactor this code to use a single `if` statement instead of three `? :` conditions.
 
 <Sandpack>
 

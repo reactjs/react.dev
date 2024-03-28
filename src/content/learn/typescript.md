@@ -49,9 +49,9 @@ Every file containing JSX must use the `.tsx` file extension. This is a TypeScri
 
 </Note>
 
-Writing TypeScript with React is very similar to writing JavaScript with React. The key difference when working with a component is that you can provide types for your component's props. These types can be used for correctness checking and providing inline documentation in editors.
+Writing TypeScript with React is very similar to writing JavaScript with React. The key difference when working with a Component is that you can provide types for your Component's props. These types can be used for correctness checking and providing inline documentation in editors.
 
-Taking the [`MyButton` component](/learn#components) from the [Quick Start](/learn) guide, we can add a type describing the `title` for the button:
+Taking the [`MyButton` Component](/learn#components) from the [Quick Start](/learn) guide, we can add a type describing the `title` for the button:
 
 <Sandpack>
 
@@ -84,7 +84,7 @@ These sandboxes can handle TypeScript code, but they do not run the type-checker
 
 </Note>
 
-This inline syntax is the simplest way to provide types for a component, though once you start to have a few fields to describe it can become unwieldy. Instead, you can use an `interface` or `type` to describe the component's props:
+This inline syntax is the simplest way to provide types for a Component, though once you start to have a few fields to describe it can become unwieldy. Instead, you can use an `interface` or `type` to describe the Component's props:
 
 <Sandpack>
 
@@ -119,12 +119,12 @@ export default App = AppTSX;
 
 </Sandpack>
 
-The type describing your component's props can be as simple or as complex as you need, though they should be an object type described with either a `type` or `interface`. You can learn about how TypeScript describes objects in [Object Types](https://www.typescriptlang.org/docs/handbook/2/objects.html) but you may also be interested in using [Union Types](https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#union-types) to describe a prop that can be one of a few different types and the [Creating Types from Types](https://www.typescriptlang.org/docs/handbook/2/types-from-types.html) guide for more advanced use cases.
+The type describing your Component's props can be as simple or as complex as you need, though they should be an object type described with either a `type` or `interface`. You can learn about how TypeScript describes objects in [Object Types](https://www.typescriptlang.org/docs/handbook/2/objects.html) but you may also be interested in using [Union Types](https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#union-types) to describe a prop that can be one of a few different types and the [Creating Types from Types](https://www.typescriptlang.org/docs/handbook/2/types-from-types.html) guide for more advanced use cases.
 
 
 ## Example Hooks {/*example-hooks*/}
 
-The type definitions from `@types/react` include types for the built-in Hooks, so you can use them in your components without any additional setup. They are built to take into account the code you write in your component, so you will get [inferred types](https://www.typescriptlang.org/docs/handbook/type-inference.html) a lot of the time and ideally do not need to handle the minutiae of providing the types. 
+The type definitions from `@types/react` include types for the built-in Hooks, so you can use them in your Components without any additional setup. They are built to take into account the code you write in your Component, so you will get [inferred types](https://www.typescriptlang.org/docs/handbook/type-inference.html) a lot of the time and ideally do not need to handle the minutiae of providing the types. 
 
 However, we can look at a few examples of how to provide types for Hooks.
 
@@ -242,7 +242,7 @@ export default function App() {
 
 ### `useContext` {/*typing-usecontext*/}
 
-The [`useContext` Hook](/reference/react/useContext) is a technique for passing data down the component tree without having to pass props through components. It is used by creating a provider component and often by creating a Hook to consume the value in a child component.
+The [`useContext` Hook](/reference/react/useContext) is a technique for passing data down the Component tree without having to pass props through Components. It is used by creating a provider Component and often by creating a Hook to consume the value in a child Component.
 
 The type of the value provided by the context is inferred from the value passed to the `createContext` call:
 
@@ -415,7 +415,7 @@ If you need to use an event that is not included in this list, you can use the `
 
 ### Children {/*typing-children*/}
 
-There are two common paths to describing the children of a component. The first is to use the `React.ReactNode` type, which is a union of all the possible types that can be passed as children in JSX:
+There are two common paths to describing the children of a Component. The first is to use the `React.ReactNode` type, which is a union of all the possible types that can be passed as children in JSX:
 
 ```ts
 interface ModalRendererProps {
@@ -433,7 +433,7 @@ interface ModalRendererProps {
 }
 ```
 
-Note, that you cannot use TypeScript to describe that the children are a certain type of JSX elements, so you cannot use the type-system to describe a component which only accepts `<li>` children. 
+Note, that you cannot use TypeScript to describe that the children are a certain type of JSX elements, so you cannot use the type-system to describe a Component which only accepts `<li>` children. 
 
 You can see an example of both `React.ReactNode` and `React.ReactElement` with the type-checker in [this TypeScript playground](https://www.typescriptlang.org/play?#code/JYWwDg9gTgLgBAJQKYEMDG8BmUIjgIilQ3wChSB6CxYmAOmXRgDkIATJOdNJMGAZzgwAFpxAR+8YADswAVwGkZMJFEzpOjDKw4AFHGEEBvUnDhphwADZsi0gFw0mDWjqQBuUgF9yaCNMlENzgAXjgACjADfkctFnYkfQhDAEpQgD44AB42YAA3dKMo5P46C2tbJGkvLIpcgt9-QLi3AEEwMFCItJDMrPTTbIQ3dKywdIB5aU4kKyQQKpha8drhhIGzLLWODbNs3b3s8YAxKBQAcwXpAThMaGWDvbH0gFloGbmrgQfBzYpd1YjQZbEYARkB6zMwO2SHSAAlZlYIBCdtCRkZpHIrFYahQYQD8UYYFA5EhcfjyGYqHAXnJAsIUHlOOUbHYhMIIHJzsI0Qk4P9SLUBuRqXEXEwAKKfRZcNA8PiCfxWACecAAUgBlAAacFm80W-CU11U6h4TgwUv11yShjgJjMLMqDnN9Dilq+nh8pD8AXgCHdMrCkWisVoAet0R6fXqhWKhjKllZVVxMcavpd4Zg7U6Qaj+2hmdG4zeRF10uu-Aeq0LBfLMEe-V+T2L7zLVu+FBWLdLeq+lc7DYFf39deFVOotMCACNOCh1dq219a+30uC8YWoZsRyuEdjkevR8uvoVMdjyTWt4WiSSydXD4NqZP4AymeZE072ZzuUeZQKheQgA).
 

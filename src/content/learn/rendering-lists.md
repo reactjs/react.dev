@@ -4,14 +4,14 @@ title: Rendering Lists
 
 <Intro>
 
-You will often want to display multiple similar components from a collection of data. You can use the [JavaScript array methods](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array#) to manipulate an array of data. On this page, you'll use [`filter()`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array/filter) and [`map()`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array/map) with React to filter and transform your array of data into an array of components.
+You will often want to display multiple similar Components from a collection of data. You can use the [JavaScript array methods](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array#) to manipulate an array of data. On this page, you'll use [`filter()`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array/filter) and [`map()`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array/map) with React to filter and transform your array of data into an array of Components.
 
 </Intro>
 
 <YouWillLearn>
 
-* How to render components from an array using JavaScript's `map()`
-* How to render only specific components using JavaScript's `filter()`
+* How to render Components from an array using JavaScript's `map()`
+* How to render only specific Components using JavaScript's `filter()`
 * When and why to use React keys
 
 </YouWillLearn>
@@ -30,7 +30,7 @@ Say that you have a list of content.
 </ul>
 ```
 
-The only difference among those list items is their contents, their data. You will often need to show several instances of the same component using different data when building interfaces: from lists of comments to galleries of profile images. In these situations, you can store that data in JavaScript objects and arrays and use methods like [`map()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) and [`filter()`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array/filter) to render lists of components from them.
+The only difference among those list items is their contents, their data. You will often need to show several instances of the same Component using different data when building interfaces: from lists of comments to galleries of profile images. In these situations, you can store that data in JavaScript objects and arrays and use methods like [`map()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) and [`filter()`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array/filter) to render lists of Components from them.
 
 Here’s a short example of how to generate a list of items from an array:
 
@@ -52,7 +52,7 @@ const people = [
 const listItems = people.map(person => <li>{person}</li>);
 ```
 
-3. **Return** `listItems` from your component wrapped in a `<ul>`:
+3. **Return** `listItems` from your Component wrapped in a `<ul>`:
 
 ```js
 return <ul>{listItems}</ul>;
@@ -153,7 +153,7 @@ const listItems = chemists.map(person =>
 );
 ```
 
-3. Lastly, **return** the `listItems` from your component:
+3. Lastly, **return** the `listItems` from your Component:
 
 ```js
 return <ul>{listItems}</ul>;
@@ -288,7 +288,7 @@ JSX elements directly inside a `map()` call always need keys!
 
 </Note>
 
-Keys tell React which array item each component corresponds to, so that it can match them up later. This becomes important if your array items can move (e.g. due to sorting), get inserted, or get deleted. A well-chosen `key` helps React infer what exactly has happened, and make the correct updates to the DOM tree.
+Keys tell React which array item each Component corresponds to, so that it can match them up later. This becomes important if your array items can move (e.g. due to sorting), get inserted, or get deleted. A well-chosen `key` helps React infer what exactly has happened, and make the correct updates to the DOM tree.
 
 Rather than generating keys on the fly, you should include them in your data:
 
@@ -421,9 +421,9 @@ File names in a folder and JSX keys in an array serve a similar purpose. They le
 
 You might be tempted to use an item's index in the array as its key. In fact, that's what React will use if you don't specify a `key` at all. But the order in which you render items will change over time if an item is inserted, deleted, or if the array gets reordered. Index as a key often leads to subtle and confusing bugs.
 
-Similarly, do not generate keys on the fly, e.g. with `key={Math.random()}`. This will cause keys to never match up between renders, leading to all your components and DOM being recreated every time. Not only is this slow, but it will also lose any user input inside the list items. Instead, use a stable ID based on the data.
+Similarly, do not generate keys on the fly, e.g. with `key={Math.random()}`. This will cause keys to never match up between renders, leading to all your Components and DOM being recreated every time. Not only is this slow, but it will also lose any user input inside the list items. Instead, use a stable ID based on the data.
 
-Note that your components won't receive `key` as a prop. It's only used as a hint by React itself. If your component needs an ID, you have to pass it as a separate prop: `<Profile key={id} userId={id} />`.
+Note that your Components won't receive `key` as a prop. It's only used as a hint by React itself. If your Component needs an ID, you have to pass it as a separate prop: `<Profile key={id} userId={id} />`.
 
 </Pitfall>
 
@@ -431,10 +431,10 @@ Note that your components won't receive `key` as a prop. It's only used as a hin
 
 On this page you learned:
 
-* How to move data out of components and into data structures like arrays and objects.
-* How to generate sets of similar components with JavaScript's `map()`.
+* How to move data out of Components and into data structures like arrays and objects.
+* How to generate sets of similar Components with JavaScript's `map()`.
 * How to create arrays of filtered items with JavaScript's `filter()`.
-* Why and how to set `key` on each component in a collection so React can keep track of each of them even if their position or data changes.
+* Why and how to set `key` on each Component in a collection so React can keep track of each of them even if their position or data changes.
 
 </Recap>
 
@@ -652,7 +652,7 @@ img { width: 100px; height: 100px; border-radius: 50%; }
 
 In this solution, the `map` calls are placed directly inline into the parent `<ul>` elements, but you could introduce variables for them if you find that more readable.
 
-There is still a bit duplication between the rendered lists. You can go further and extract the repetitive parts into a `<ListSection>` component:
+There is still a bit duplication between the rendered lists. You can go further and extract the repetitive parts into a `<ListSection>` Component:
 
 <Sandpack>
 
@@ -766,7 +766,7 @@ img { width: 100px; height: 100px; border-radius: 50%; }
 
 A very attentive reader might notice that with two `filter` calls, we check each person's profession twice. Checking a property is very fast, so in this example it's fine. If your logic was more expensive than that, you could replace the `filter` calls with a loop that manually constructs the arrays and checks each person once.
 
-In fact, if `people` never change, you could move this code out of your component. From React's perspective, all that matters is that you give it an array of JSX nodes in the end. It doesn't care how you produce that array:
+In fact, if `people` never change, you could move this code out of your Component. From React's perspective, all that matters is that you give it an array of JSX nodes in the end. It doesn't care how you produce that array:
 
 <Sandpack>
 
@@ -884,7 +884,7 @@ img { width: 100px; height: 100px; border-radius: 50%; }
 
 </Solution>
 
-#### Nested lists in one component {/*nested-lists-in-one-component*/}
+#### Nested lists in one Component {/*nested-lists-in-one-component*/}
 
 Make a list of recipes from this array! For each recipe in the array, display its name as an `<h2>` and list its ingredients in a `<ul>`.
 
@@ -978,9 +978,9 @@ Each of the `recipes` already includes an `id` field, so that's what the outer l
 
 </Solution>
 
-#### Extracting a list item component {/*extracting-a-list-item-component*/}
+#### Extracting a list item Component {/*extracting-a-list-item-component*/}
 
-This `RecipeList` component contains two nested `map` calls. To simplify it, extract a `Recipe` component from it which will accept `id`, `name`, and `ingredients` props. Where do you place the outer `key` and why?
+This `RecipeList` Component contains two nested `map` calls. To simplify it, extract a `Recipe` Component from it which will accept `id`, `name`, and `ingredients` props. Where do you place the outer `key` and why?
 
 <Sandpack>
 
@@ -1028,7 +1028,7 @@ export const recipes = [{
 
 <Solution>
 
-You can copy-paste the JSX from the outer `map` into a new `Recipe` component and return that JSX. Then you can change `recipe.name` to `name`, `recipe.id` to `id`, and so on, and pass them as props to the `Recipe`:
+You can copy-paste the JSX from the outer `map` into a new `Recipe` Component and return that JSX. Then you can change `recipe.name` to `name`, `recipe.id` to `id`, and so on, and pass them as props to the `Recipe`:
 
 <Sandpack>
 
@@ -1080,9 +1080,9 @@ export const recipes = [{
 
 </Sandpack>
 
-Here, `<Recipe {...recipe} key={recipe.id} />` is a syntax shortcut saying "pass all properties of the `recipe` object as props to the `Recipe` component". You could also write each prop explicitly: `<Recipe id={recipe.id} name={recipe.name} ingredients={recipe.ingredients} key={recipe.id} />`.
+Here, `<Recipe {...recipe} key={recipe.id} />` is a syntax shortcut saying "pass all properties of the `recipe` object as props to the `Recipe` Component". You could also write each prop explicitly: `<Recipe id={recipe.id} name={recipe.name} ingredients={recipe.ingredients} key={recipe.id} />`.
 
-**Note that the `key` is specified on the `<Recipe>` itself rather than on the root `<div>` returned from `Recipe`.** This is because this `key` is needed directly within the context of the surrounding array. Previously, you had an array of `<div>`s so each of them needed a `key`, but now you have an array of `<Recipe>`s. In other words, when you extract a component, don't forget to leave the `key` outside the JSX you copy and paste.
+**Note that the `key` is specified on the `<Recipe>` itself rather than on the root `<div>` returned from `Recipe`.** This is because this `key` is needed directly within the context of the surrounding array. Previously, you had an array of `<div>`s so each of them needed a `key`, but now you have an array of `<Recipe>`s. In other words, when you extract a Component, don't forget to leave the `key` outside the JSX you copy and paste.
 
 </Solution>
 

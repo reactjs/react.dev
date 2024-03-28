@@ -21,7 +21,7 @@ You can definitely use React without a framework--that's how you'd [use React fo
 
 Here's why.
 
-Even if you don't need routing or data fetching at first, you'll likely want to add some libraries for them. As your JavaScript bundle grows with every new feature, you might have to figure out how to split code for every route individually. As your data fetching needs get more complex, you are likely to encounter server-client network waterfalls that make your app feel very slow. As your audience includes more users with poor network conditions and low-end devices, you might need to generate HTML from your components to display content early--either on the server, or during the build time. Changing your setup to run some of your code on the server or during the build can be very tricky.
+Even if you don't need routing or data fetching at first, you'll likely want to add some libraries for them. As your JavaScript bundle grows with every new feature, you might have to figure out how to split code for every route individually. As your data fetching needs get more complex, you are likely to encounter server-client network waterfalls that make your app feel very slow. As your audience includes more users with poor network conditions and low-end devices, you might need to generate HTML from your Components to display content early--either on the server, or during the build time. Changing your setup to run some of your code on the server or during the build can be very tricky.
 
 **These problems are not React-specific. This is why Svelte has SvelteKit, Vue has Nuxt, and so on.** To solve these problems on your own, you'll need to integrate your bundler with your router and with your data fetching library. It's not hard to get an initial setup working, but there are a lot of subtleties involved in making an app that loads quickly even as it grows over time. You'll want to send down the minimal amount of app code but do so in a single client–server roundtrip, in parallel with any data required for the page. You'll likely want the page to be interactive before your JavaScript code even runs, to support progressive enhancement. You may want to generate a folder of fully static HTML files for your marketing pages that can be hosted anywhere and still work with JavaScript disabled. Building these capabilities yourself takes real work.
 
@@ -91,7 +91,7 @@ These features are getting closer to being production-ready every day, and we've
 
 ### Next.js (App Router) {/*nextjs-app-router*/}
 
-**[Next.js's App Router](https://nextjs.org/docs) is a redesign of the Next.js APIs aiming to fulfill the React team’s full-stack architecture vision.** It lets you fetch data in asynchronous components that run on the server or even during the build.
+**[Next.js's App Router](https://nextjs.org/docs) is a redesign of the Next.js APIs aiming to fulfill the React team’s full-stack architecture vision.** It lets you fetch data in asynchronous Components that run on the server or even during the build.
 
 Next.js is maintained by [Vercel](https://vercel.com/). You can [deploy a Next.js app](https://nextjs.org/docs/app/building-your-application/deploying) to any Node.js or serverless hosting, or to your own server. Next.js also supports [static export](https://nextjs.org/docs/app/building-your-application/deploying/static-exports) which doesn't require a server.
 
@@ -99,12 +99,12 @@ Next.js is maintained by [Vercel](https://vercel.com/). You can [deploy a Next.j
 
 #### Which features make up the React team’s full-stack architecture vision? {/*which-features-make-up-the-react-teams-full-stack-architecture-vision*/}
 
-Next.js's App Router bundler fully implements the official [React Server Components specification](https://github.com/reactjs/rfcs/blob/main/text/0188-server-components.md). This lets you mix build-time, server-only, and interactive components in a single React tree.
+Next.js's App Router bundler fully implements the official [React Server Components specification](https://github.com/reactjs/rfcs/blob/main/text/0188-server-components.md). This lets you mix build-time, server-only, and interactive Components in a single React tree.
 
-For example, you can write a server-only React component as an `async` function that reads from a database or from a file. Then you can pass data down from it to your interactive components:
+For example, you can write a server-only React Component as an `async` function that reads from a database or from a file. Then you can pass data down from it to your interactive Components:
 
 ```js
-// This component runs *only* on the server (or during the build).
+// This Component runs *only* on the server (or during the build).
 async function Talks({ confId }) {
   // 1. You're on the server, so you can talk to your data layer. API endpoint not required.
   const talks = await db.Talks.findAll({ confId });
@@ -112,7 +112,7 @@ async function Talks({ confId }) {
   // 2. Add any amount of rendering logic. It won't make your JavaScript bundle larger.
   const videos = talks.map(talk => talk.video);
 
-  // 3. Pass the data down to the components that will run in the browser.
+  // 3. Pass the data down to the Components that will run in the browser.
   return <SearchableVideoList videos={videos} />;
 }
 ```

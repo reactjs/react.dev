@@ -20,7 +20,7 @@ const ref = useRef(initialValue)
 
 ### `useRef(initialValue)` {/*useref*/}
 
-Call `useRef` at the top level of your component to declare a [ref.](/learn/referencing-values-with-refs)
+Call `useRef` at the top level of your Component to declare a [ref.](/learn/referencing-values-with-refs)
 
 ```js
 import { useRef } from 'react';
@@ -48,9 +48,9 @@ On the next renders, `useRef` will return the same object.
 #### Caveats {/*caveats*/}
 
 * You can mutate the `ref.current` property. Unlike state, it is mutable. However, if it holds an object that is used for rendering (for example, a piece of your state), then you shouldn't mutate that object.
-* When you change the `ref.current` property, React does not re-render your component. React is not aware of when you change it because a ref is a plain JavaScript object.
-* Do not write _or read_ `ref.current` during rendering, except for [initialization.](#avoiding-recreating-the-ref-contents) This makes your component's behavior unpredictable.
-* In Strict Mode, React will **call your component function twice** in order to [help you find accidental impurities.](/reference/react/useState#my-initializer-or-updater-function-runs-twice) This is development-only behavior and does not affect production. Each ref object will be created twice, but one of the versions will be discarded. If your component function is pure (as it should be), this should not affect the behavior.
+* When you change the `ref.current` property, React does not re-render your Component. React is not aware of when you change it because a ref is a plain JavaScript object.
+* Do not write _or read_ `ref.current` during rendering, except for [initialization.](#avoiding-recreating-the-ref-contents) This makes your Component's behavior unpredictable.
+* In Strict Mode, React will **call your Component function twice** in order to [help you find accidental impurities.](/reference/react/useState#my-initializer-or-updater-function-runs-twice) This is development-only behavior and does not affect production. Each ref object will be created twice, but one of the versions will be discarded. If your Component function is pure (as it should be), this should not affect the behavior.
 
 ---
 
@@ -58,7 +58,7 @@ On the next renders, `useRef` will return the same object.
 
 ### Referencing a value with a ref {/*referencing-a-value-with-a-ref*/}
 
-Call `useRef` at the top level of your component to declare one or more [refs.](/learn/referencing-values-with-refs)
+Call `useRef` at the top level of your Component to declare one or more [refs.](/learn/referencing-values-with-refs)
 
 ```js [[1, 4, "intervalRef"], [3, 4, "0"]]
 import { useRef } from 'react';
@@ -72,7 +72,7 @@ function Stopwatch() {
 
 On the next renders, `useRef` will return the same object. You can change its `current` property to store information and read it later. This might remind you of [state](/reference/react/useState), but there is an important difference.
 
-**Changing a ref does not trigger a re-render.** This means refs are perfect for storing information that doesn't affect the visual output of your component. For example, if you need to store an [interval ID](https://developer.mozilla.org/en-US/docs/Web/API/setInterval) and retrieve it later, you can put it in a ref. To update the value inside the ref, you need to manually change its <CodeStep step={2}>`current` property</CodeStep>:
+**Changing a ref does not trigger a re-render.** This means refs are perfect for storing information that doesn't affect the visual output of your Component. For example, if you need to store an [interval ID](https://developer.mozilla.org/en-US/docs/Web/API/setInterval) and retrieve it later, you can put it in a ref. To update the value inside the ref, you need to manually change its <CodeStep step={2}>`current` property</CodeStep>:
 
 ```js [[2, 5, "intervalRef.current"]]
 function handleStartClick() {
@@ -96,7 +96,7 @@ By using a ref, you ensure that:
 
 - You can **store information** between re-renders (unlike regular variables, which reset on every render).
 - Changing it **does not trigger a re-render** (unlike state variables, which trigger a re-render).
-- The **information is local** to each copy of your component (unlike the variables outside, which are shared).
+- The **information is local** to each copy of your Component (unlike the variables outside, which are shared).
 
 Changing a ref does not trigger a re-render, so refs are not appropriate for storing information you want to display on the screen. Use state for that instead. Read more about [choosing between `useRef` and `useState`.](/learn/referencing-values-with-refs#differences-between-refs-and-state)
 
@@ -104,7 +104,7 @@ Changing a ref does not trigger a re-render, so refs are not appropriate for sto
 
 #### Click counter {/*click-counter*/}
 
-This component uses a ref to keep track of how many times the button was clicked. Note that it's okay to use a ref instead of state here because the click count is only read and written in an event handler.
+This Component uses a ref to keep track of how many times the button was clicked. Note that it's okay to use a ref instead of state here because the click count is only read and written in an event handler.
 
 <Sandpack>
 
@@ -190,7 +190,7 @@ export default function Stopwatch() {
 
 **Do not write _or read_ `ref.current` during rendering.**
 
-React expects that the body of your component [behaves like a pure function](/learn/keeping-components-pure):
+React expects that the body of your Component [behaves like a pure function](/learn/keeping-components-pure):
 
 - If the inputs ([props](/learn/passing-props-to-a-component), [state](/learn/state-a-components-memory), and [context](/learn/passing-data-deeply-with-context)) are the same, it should return exactly the same JSX.
 - Calling it in a different order or with different arguments should not affect the results of other calls.
@@ -228,7 +228,7 @@ function MyComponent() {
 
 If you *have to* read [or write](/reference/react/useState#storing-information-from-previous-renders) something during rendering, [use state](/reference/react/useState) instead.
 
-When you break these rules, your component might still work, but most of the newer features we're adding to React will rely on these expectations. Read more about [keeping your components pure.](/learn/keeping-components-pure#where-you-_can_-cause-side-effects)
+When you break these rules, your Component might still work, but most of the newer features we're adding to React will rely on these expectations. Read more about [keeping your Components pure.](/learn/keeping-components-pure#where-you-_can_-cause-side-effects)
 
 </Pitfall>
 
@@ -446,9 +446,9 @@ button { display: block; margin-bottom: 20px; }
 
 <Solution />
 
-#### Exposing a ref to your own component {/*exposing-a-ref-to-your-own-component*/}
+#### Exposing a ref to your own Component {/*exposing-a-ref-to-your-own-component*/}
 
-Sometimes, you may want to let the parent component manipulate the DOM inside of your component. For example, maybe you're writing a `MyInput` component, but you want the parent to be able to focus the input (which the parent has no access to). You can use a combination of `useRef` to hold the input and [`forwardRef`](/reference/react/forwardRef) to expose it to the parent component. Read a [detailed walkthrough](/learn/manipulating-the-dom-with-refs#accessing-another-components-dom-nodes) here.
+Sometimes, you may want to let the parent Component manipulate the DOM inside of your Component. For example, maybe you're writing a `MyInput` Component, but you want the parent to be able to focus the input (which the parent has no access to). You can use a combination of `useRef` to hold the input and [`forwardRef`](/reference/react/forwardRef) to expose it to the parent Component. Read a [detailed walkthrough](/learn/manipulating-the-dom-with-refs#accessing-another-components-dom-nodes) here.
 
 <Sandpack>
 
@@ -540,9 +540,9 @@ Here, the `playerRef` itself is nullable. However, you should be able to convinc
 
 ## Troubleshooting {/*troubleshooting*/}
 
-### I can't get a ref to a custom component {/*i-cant-get-a-ref-to-a-custom-component*/}
+### I can't get a ref to a custom Component {/*i-cant-get-a-ref-to-a-custom-component*/}
 
-If you try to pass a `ref` to your own component like this:
+If you try to pass a `ref` to your own Component like this:
 
 ```js
 const inputRef = useRef(null);
@@ -554,13 +554,13 @@ You might get an error in the console:
 
 <ConsoleBlock level="error">
 
-Warning: Function components cannot be given refs. Attempts to access this ref will fail. Did you mean to use React.forwardRef()?
+Warning: Function Components cannot be given refs. Attempts to access this ref will fail. Did you mean to use React.forwardRef()?
 
 </ConsoleBlock>
 
-By default, your own components don't expose refs to the DOM nodes inside them.
+By default, your own Components don't expose refs to the DOM nodes inside them.
 
-To fix this, find the component that you want to get a ref to:
+To fix this, find the Component that you want to get a ref to:
 
 ```js
 export default function MyInput({ value, onChange }) {
@@ -591,6 +591,6 @@ const MyInput = forwardRef(({ value, onChange }, ref) => {
 export default MyInput;
 ```
 
-Then the parent component can get a ref to it.
+Then the parent Component can get a ref to it.
 
-Read more about [accessing another component's DOM nodes.](/learn/manipulating-the-dom-with-refs#accessing-another-components-dom-nodes)
+Read more about [accessing another Component's DOM nodes.](/learn/manipulating-the-dom-with-refs#accessing-another-components-dom-nodes)

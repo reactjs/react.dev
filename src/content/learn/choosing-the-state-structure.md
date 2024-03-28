@@ -4,7 +4,7 @@ title: Choosing the State Structure
 
 <Intro>
 
-Structuring state well can make a difference between a component that is pleasant to modify and debug, and one that is a constant source of bugs. Here are some tips you should consider when structuring state.
+Structuring state well can make a difference between a Component that is pleasant to modify and debug, and one that is a constant source of bugs. Here are some tips you should consider when structuring state.
 
 </Intro>
 
@@ -18,11 +18,11 @@ Structuring state well can make a difference between a component that is pleasan
 
 ## Principles for structuring state {/*principles-for-structuring-state*/}
 
-When you write a component that holds some state, you'll have to make choices about how many state variables to use and what the shape of their data should be. While it's possible to write correct programs even with a suboptimal state structure, there are a few principles that can guide you to make better choices:
+When you write a Component that holds some state, you'll have to make choices about how many state variables to use and what the shape of their data should be. While it's possible to write correct programs even with a suboptimal state structure, there are a few principles that can guide you to make better choices:
 
 1. **Group related state.** If you always update two or more state variables at the same time, consider merging them into a single state variable.
 2. **Avoid contradictions in state.** When the state is structured in a way that several pieces of state may contradict and "disagree" with each other, you leave room for mistakes. Try to avoid this.
-3. **Avoid redundant state.** If you can calculate some information from the component's props or its existing state variables during rendering, you should not put that information into that component's state.
+3. **Avoid redundant state.** If you can calculate some information from the Component's props or its existing state variables during rendering, you should not put that information into that Component's state.
 4. **Avoid duplication in state.** When the same data is duplicated between multiple state variables, or within nested objects, it is difficult to keep them in sync. Reduce duplication when you can.
 5. **Avoid deeply nested state.** Deeply hierarchical state is not very convenient to update. When possible, prefer to structure state in a flat way.
 
@@ -157,7 +157,7 @@ function sendMessage(text) {
 
 </Sandpack>
 
-While this code works, it leaves the door open for "impossible" states. For example, if you forget to call `setIsSent` and `setIsSending` together, you may end up in a situation where both `isSending` and `isSent` are `true` at the same time. The more complex your component is, the harder it is to understand what happened.
+While this code works, it leaves the door open for "impossible" states. For example, if you forget to call `setIsSent` and `setIsSending` together, you may end up in a situation where both `isSending` and `isSent` are `true` at the same time. The more complex your Component is, the harder it is to understand what happened.
 
 **Since `isSending` and `isSent` should never be `true` at the same time, it is better to replace them with one `status` state variable that may take one of *three* valid states:** `'typing'` (initial), `'sending'`, and `'sent'`:
 
@@ -225,7 +225,7 @@ But they're not state variables, so you don't need to worry about them getting o
 
 ## Avoid redundant state {/*avoid-redundant-state*/}
 
-If you can calculate some information from the component's props or its existing state variables during rendering, you **should not** put that information into that component's state.
+If you can calculate some information from the Component's props or its existing state variables during rendering, you **should not** put that information into that Component's state.
 
 For example, take this form. It works, but can you find any redundant state in it?
 
@@ -353,7 +353,7 @@ function Message({ messageColor }) {
   const [color, setColor] = useState(messageColor);
 ```
 
-Here, a `color` state variable is initialized to the `messageColor` prop. The problem is that **if the parent component passes a different value of `messageColor` later (for example, `'red'` instead of `'blue'`), the `color` *state variable* would not be updated!** The state is only initialized during the first render.
+Here, a `color` state variable is initialized to the `messageColor` prop. The problem is that **if the parent Component passes a different value of `messageColor` later (for example, `'red'` instead of `'blue'`), the `color` *state variable* would not be updated!** The state is only initialized during the first render.
 
 This is why "mirroring" some prop in a state variable can lead to confusion. Instead, use the `messageColor` prop directly in your code. If you want to give it a shorter name, use a constant:
 
@@ -362,7 +362,7 @@ function Message({ messageColor }) {
   const color = messageColor;
 ```
 
-This way it won't get out of sync with the prop passed from the parent component.
+This way it won't get out of sync with the prop passed from the parent Component.
 
 "Mirroring" props into state only makes sense when you *want* to ignore all updates for a specific prop. By convention, start the prop name with `initial` or `default` to clarify that its new values are ignored:
 
@@ -377,7 +377,7 @@ function Message({ initialColor }) {
 
 ## Avoid duplication in state {/*avoid-duplication-in-state*/}
 
-This menu list component lets you choose a single travel snack out of several:
+This menu list Component lets you choose a single travel snack out of several:
 
 <Sandpack>
 
@@ -1817,7 +1817,7 @@ button { margin: 10px; }
 
 </DeepDive>
 
-Sometimes, you can also reduce state nesting by moving some of the nested state into the child components. This works well for ephemeral UI state that doesn't need to be stored, like whether an item is hovered.
+Sometimes, you can also reduce state nesting by moving some of the nested state into the child Components. This works well for ephemeral UI state that doesn't need to be stored, like whether an item is hovered.
 
 <Recap>
 
@@ -1833,9 +1833,9 @@ Sometimes, you can also reduce state nesting by moving some of the nested state 
 
 <Challenges>
 
-#### Fix a component that's not updating {/*fix-a-component-thats-not-updating*/}
+#### Fix a Component that's not updating {/*fix-a-component-thats-not-updating*/}
 
-This `Clock` component receives two props: `color` and `time`. When you select a different color in the select box, the `Clock` component receives a different `color` prop from its parent component. However, for some reason, the displayed color doesn't update. Why? Fix the problem.
+This `Clock` Component receives two props: `color` and `time`. When you select a different color in the select box, the `Clock` Component receives a different `color` prop from its parent Component. However, for some reason, the displayed color doesn't update. Why? Fix the problem.
 
 <Sandpack>
 
@@ -1890,7 +1890,7 @@ export default function App() {
 
 <Solution>
 
-The issue is that this component has `color` state initialized with the initial value of the `color` prop. But when the `color` prop changes, this does not affect the state variable! So they get out of sync. To fix this issue, remove the state variable altogether, and use the `color` prop directly.
+The issue is that this Component has `color` state initialized with the initial value of the `color` prop. But when the `color` prop changes, this does not affect the state variable! So they get out of sync. To fix this issue, remove the state variable altogether, and use the `color` prop directly.
 
 <Sandpack>
 

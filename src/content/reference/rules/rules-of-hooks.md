@@ -14,14 +14,14 @@ Hooks are defined using JavaScript functions, but they represent a special type 
 
 Functions whose names start with `use` are called [*Hooks*](/reference/react) in React.
 
-**Don’t call Hooks inside loops, conditions, nested functions, or `try`/`catch`/`finally` blocks.** Instead, always use Hooks at the top level of your React function, before any early returns. You can only call Hooks while React is rendering a function component:
+**Don’t call Hooks inside loops, conditions, nested functions, or `try`/`catch`/`finally` blocks.** Instead, always use Hooks at the top level of your React function, before any early returns. You can only call Hooks while React is rendering a function Component:
 
-* ✅ Call them at the top level in the body of a [function component](/learn/your-first-component).
+* ✅ Call them at the top level in the body of a [function Component](/learn/your-first-component).
 * ✅ Call them at the top level in the body of a [custom Hook](/learn/reusing-logic-with-custom-hooks).
 
 ```js{2-3,8-9}
 function Counter() {
-  // ✅ Good: top-level in a function component
+  // ✅ Good: top-level in a function Component
   const [count, setCount] = useState(0);
   // ...
 }
@@ -38,7 +38,7 @@ It’s **not** supported to call Hooks (functions starting with `use`) in any ot
 * 🔴 Do not call Hooks inside conditions or loops.
 * 🔴 Do not call Hooks after a conditional `return` statement.
 * 🔴 Do not call Hooks in event handlers.
-* 🔴 Do not call Hooks in class components.
+* 🔴 Do not call Hooks in class Components.
 * 🔴 Do not call Hooks inside functions passed to `useMemo`, `useReducer`, or `useEffect`.
 * 🔴 Do not call Hooks inside `try`/`catch`/`finally` blocks.
 
@@ -89,7 +89,7 @@ function Bad() {
 
 class Bad extends React.Component {
   render() {
-    // 🔴 Bad: inside a class component (to fix, write a function component instead of a class!)
+    // 🔴 Bad: inside a class Component (to fix, write a function Component instead of a class!)
     useEffect(() => {})
     // ...
   }
@@ -109,7 +109,7 @@ You can use the [`eslint-plugin-react-hooks` plugin](https://www.npmjs.com/packa
 
 <Note>
 
-[Custom Hooks](/learn/reusing-logic-with-custom-hooks) *may* call other Hooks (that's their whole purpose). This works because custom Hooks are also supposed to only be called while a function component is rendering.
+[Custom Hooks](/learn/reusing-logic-with-custom-hooks) *may* call other Hooks (that's their whole purpose). This works because custom Hooks are also supposed to only be called while a function Component is rendering.
 
 </Note>
 
@@ -119,17 +119,17 @@ You can use the [`eslint-plugin-react-hooks` plugin](https://www.npmjs.com/packa
 
 Don’t call Hooks from regular JavaScript functions. Instead, you can:
 
-✅ Call Hooks from React function components.
+✅ Call Hooks from React function Components.
 ✅ Call Hooks from [custom Hooks](/learn/reusing-logic-with-custom-hooks#extracting-your-own-custom-hook-from-a-component).
 
-By following this rule, you ensure that all stateful logic in a component is clearly visible from its source code.
+By following this rule, you ensure that all stateful logic in a Component is clearly visible from its source code.
 
 ```js {2,5}
 function FriendList() {
   const [onlineStatus, setOnlineStatus] = useOnlineStatus(); // ✅
 }
 
-function setOnlineStatus() { // ❌ Not a component or custom Hook!
+function setOnlineStatus() { // ❌ Not a Component or custom Hook!
   const [onlineStatus, setOnlineStatus] = useOnlineStatus();
 }
 ```

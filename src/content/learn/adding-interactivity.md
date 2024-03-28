@@ -4,14 +4,14 @@ title: Adding Interactivity
 
 <Intro>
 
-Some things on the screen update in response to user input. For example, clicking an image gallery switches the active image. In React, data that changes over time is called *state.* You can add state to any component, and update it as needed. In this chapter, you'll learn how to write components that handle interactions, update their state, and display different output over time.
+Some things on the screen update in response to user input. For example, clicking an image gallery switches the active image. In React, data that changes over time is called *state.* You can add state to any Component, and update it as needed. In this chapter, you'll learn how to write Components that handle interactions, update their state, and display different output over time.
 
 </Intro>
 
 <YouWillLearn isChapter={true}>
 
 * [How to handle user-initiated events](/learn/responding-to-events)
-* [How to make components "remember" information with state](/learn/state-a-components-memory)
+* [How to make Components "remember" information with state](/learn/state-a-components-memory)
 * [How React updates the UI in two phases](/learn/render-and-commit)
 * [Why state doesn't update right after you change it](/learn/state-as-a-snapshot)
 * [How to queue multiple state updates](/learn/queueing-a-series-of-state-updates)
@@ -24,7 +24,7 @@ Some things on the screen update in response to user input. For example, clickin
 
 React lets you add *event handlers* to your JSX. Event handlers are your own functions that will be triggered in response to user interactions like clicking, hovering, focusing on form inputs, and so on.
 
-Built-in components like `<button>` only support built-in browser events like `onClick`. However, you can also create your own components, and give their event handler props any application-specific names that you like.
+Built-in Components like `<button>` only support built-in browser events like `onClick`. However, you can also create your own Components, and give their event handler props any application-specific names that you like.
 
 <Sandpack>
 
@@ -72,11 +72,11 @@ Read **[Responding to Events](/learn/responding-to-events)** to learn how to add
 
 </LearnMore>
 
-## State: a component's memory {/*state-a-components-memory*/}
+## State: a Component's memory {/*state-a-components-memory*/}
 
-Components often need to change what's on the screen as a result of an interaction. Typing into the form should update the input field, clicking "next" on an image carousel should change which image is displayed, clicking "buy" puts a product in the shopping cart. Components need to "remember" things: the current input value, the current image, the shopping cart. In React, this kind of component-specific memory is called *state.*
+Components often need to change what's on the screen as a result of an interaction. Typing into the form should update the input field, clicking "next" on an image carousel should change which image is displayed, clicking "buy" puts a product in the shopping cart. Components need to "remember" things: the current input value, the current image, the shopping cart. In React, this kind of Component-specific memory is called *state.*
 
-You can add state to a component with a [`useState`](/reference/react/useState) Hook. *Hooks* are special functions that let your components use React features (state is one of those features). The `useState` Hook lets you declare a state variable. It takes the initial state and returns a pair of values: the current state, and a state setter function that lets you update it.
+You can add state to a Component with a [`useState`](/reference/react/useState) Hook. *Hooks* are special functions that let your Components use React features (state is one of those features). The `useState` Hook lets you declare a state variable. It takes the initial state and returns a pair of values: the current state, and a state setter function that lets you update it.
 
 ```js
 const [index, setIndex] = useState(0);
@@ -235,17 +235,17 @@ Read **[State: A Component's Memory](/learn/state-a-components-memory)** to lear
 
 ## Render and commit {/*render-and-commit*/}
 
-Before your components are displayed on the screen, they must be rendered by React. Understanding the steps in this process will help you think about how your code executes and explain its behavior.
+Before your Components are displayed on the screen, they must be rendered by React. Understanding the steps in this process will help you think about how your code executes and explain its behavior.
 
-Imagine that your components are cooks in the kitchen, assembling tasty dishes from ingredients. In this scenario, React is the waiter who puts in requests from customers and brings them their orders. This process of requesting and serving UI has three steps:
+Imagine that your Components are cooks in the kitchen, assembling tasty dishes from ingredients. In this scenario, React is the waiter who puts in requests from customers and brings them their orders. This process of requesting and serving UI has three steps:
 
 1. **Triggering** a render (delivering the diner's order to the kitchen)
-2. **Rendering** the component (preparing the order in the kitchen)
+2. **Rendering** the Component (preparing the order in the kitchen)
 3. **Committing** to the DOM (placing the order on the table)
 
 <IllustrationBlock sequential>
   <Illustration caption="Trigger" alt="React as a server in a restaurant, fetching orders from the users and delivering them to the Component Kitchen." src="/images/docs/illustrations/i_render-and-commit1.png" />
-  <Illustration caption="Render" alt="The Card Chef gives React a fresh Card component." src="/images/docs/illustrations/i_render-and-commit2.png" />
+  <Illustration caption="Render" alt="The Card Chef gives React a fresh Card Component." src="/images/docs/illustrations/i_render-and-commit2.png" />
   <Illustration caption="Commit" alt="React delivers the Card to the user at their table." src="/images/docs/illustrations/i_render-and-commit3.png" />
 </IllustrationBlock>
 
@@ -320,7 +320,7 @@ Read **[State as a Snapshot](/learn/state-as-a-snapshot)** to learn why state ap
 
 ## Queueing a series of state updates {/*queueing-a-series-of-state-updates*/}
 
-This component is buggy: clicking "+3" increments the score only once.
+This Component is buggy: clicking "+3" increments the score only once.
 
 <Sandpack>
 

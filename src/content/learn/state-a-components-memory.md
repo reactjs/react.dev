@@ -4,16 +4,16 @@ title: "State: A Component's Memory"
 
 <Intro>
 
-Components often need to change what's on the screen as a result of an interaction. Typing into the form should update the input field, clicking "next" on an image carousel should change which image is displayed, clicking "buy" should put a product in the shopping cart. Components need to "remember" things: the current input value, the current image, the shopping cart. In React, this kind of component-specific memory is called *state*.
+Components often need to change what's on the screen as a result of an interaction. Typing into the form should update the input field, clicking "next" on an image carousel should change which image is displayed, clicking "buy" should put a product in the shopping cart. Components need to "remember" things: the current input value, the current image, the shopping cart. In React, this kind of component-specific memory is called *State*.
 
 </Intro>
 
 <YouWillLearn>
 
-* How to add a state variable with the [`useState`](/reference/react/useState) Hook
+* How to add a State variable with the [`useState`](/reference/react/useState) Hook
 * What pair of values the `useState` Hook returns
-* How to add more than one state variable
-* Why state is called local
+* How to add more than one State variable
+* Why State is called local
 
 </YouWillLearn>
 
@@ -163,12 +163,12 @@ To update a component with new data, two things need to happen:
 
 The [`useState`](/reference/react/useState) Hook provides those two things:
 
-1. A **state variable** to retain the data between renders.
-2. A **state setter function** to update the variable and trigger React to render the component again.
+1. A **State variable** to retain the data between renders.
+2. A **State setter function** to update the variable and trigger React to render the component again.
 
-## Adding a state variable {/*adding-a-state-variable*/}
+## Adding a State variable {/*adding-a-state-variable*/}
 
-To add a state variable, import `useState` from React at the top of the file:
+To add a State variable, import `useState` from React at the top of the file:
 
 ```js
 import { useState } from 'react';
@@ -186,7 +186,7 @@ with
 const [index, setIndex] = useState(0);
 ```
 
-`index` is a state variable and `setIndex` is the setter function.
+`index` is a State variable and `setIndex` is the setter function.
 
 > The `[` and `]` syntax here is called [array destructuring](https://javascript.info/destructuring-assignment) and it lets you read values from an array. The array returned by `useState` always has exactly two items.
 
@@ -361,12 +361,12 @@ The convention is to name this pair like `const [something, setSomething]`. You 
 
 </Note>
 
-The only argument to `useState` is the **initial value** of your state variable. In this example, the `index`'s initial value is set to `0` with `useState(0)`. 
+The only argument to `useState` is the **initial value** of your State variable. In this example, the `index`'s initial value is set to `0` with `useState(0)`. 
 
 Every time your component renders, `useState` gives you an array containing two values:
 
-1. The **state variable** (`index`) with the value you stored.
-2. The **state setter function** (`setIndex`) which can update the state variable and trigger React to render the component again.
+1. The **State variable** (`index`) with the value you stored.
+2. The **State setter function** (`setIndex`) which can update the State variable and trigger React to render the component again.
 
 Here's how that happens in action:
 
@@ -374,14 +374,14 @@ Here's how that happens in action:
 const [index, setIndex] = useState(0);
 ```
 
-1. **Your component renders the first time.** Because you passed `0` to `useState` as the initial value for `index`, it will return `[0, setIndex]`. React remembers `0` is the latest state value.
-2. **You update the state.** When a user clicks the button, it calls `setIndex(index + 1)`. `index` is `0`, so it's `setIndex(1)`. This tells React to remember `index` is `1` now and triggers another render.
+1. **Your component renders the first time.** Because you passed `0` to `useState` as the initial value for `index`, it will return `[0, setIndex]`. React remembers `0` is the latest State value.
+2. **You update the State.** When a user clicks the button, it calls `setIndex(index + 1)`. `index` is `0`, so it's `setIndex(1)`. This tells React to remember `index` is `1` now and triggers another render.
 3. **Your component's second render.** React still sees `useState(0)`, but because React *remembers* that you set `index` to `1`, it returns `[1, setIndex]` instead.
 4. And so on!
 
-## Giving a component multiple state variables {/*giving-a-component-multiple-state-variables*/}
+## Giving a component multiple State variables {/*giving-a-component-multiple-state-variables*/}
 
-You can have as many state variables of as many types as you like in one component. This component has two state variables, a number `index` and a boolean `showMore` that's toggled when you click "Show details":
+You can have as many State variables of as many types as you like in one component. This component has two State variables, a number `index` and a boolean `showMore` that's toggled when you click "Show details":
 
 <Sandpack>
 
@@ -520,17 +520,17 @@ button {
 
 </Sandpack>
 
-It is a good idea to have multiple state variables if their state is unrelated, like `index` and `showMore` in this example. But if you find that you often change two state variables together, it might be easier to combine them into one. For example, if you have a form with many fields, it's more convenient to have a single state variable that holds an object than state variable per field. Read [Choosing the State Structure](/learn/choosing-the-state-structure) for more tips.
+It is a good idea to have multiple State variables if their State is unrelated, like `index` and `showMore` in this example. But if you find that you often change two State variables together, it might be easier to combine them into one. For example, if you have a form with many fields, it's more convenient to have a single State variable that holds an object than State variable per field. Read [Choosing the State Structure](/learn/choosing-the-state-structure) for more tips.
 
 <DeepDive>
 
-#### How does React know which state to return? {/*how-does-react-know-which-state-to-return*/}
+#### How does React know which State to return? {/*how-does-react-know-which-state-to-return*/}
 
-You might have noticed that the `useState` call does not receive any information about *which* state variable it refers to. There is no "identifier" that is passed to `useState`, so how does it know which of the state variables to return? Does it rely on some magic like parsing your functions? The answer is no.
+You might have noticed that the `useState` call does not receive any information about *which* State variable it refers to. There is no "identifier" that is passed to `useState`, so how does it know which of the State variables to return? Does it rely on some magic like parsing your functions? The answer is no.
 
 Instead, to enable their concise syntax, Hooks **rely on a stable call order on every render of the same component.** This works well in practice because if you follow the rule above ("only call Hooks at the top level"), Hooks will always be called in the same order. Additionally, a [linter plugin](https://www.npmjs.com/package/eslint-plugin-react-hooks) catches most mistakes.
 
-Internally, React holds an array of state pairs for every component. It also maintains the current pair index, which is set to `0` before rendering. Each time you call `useState`, React gives you the next state pair and increments the index. You can read more about this mechanism in [React Hooks: Not Magic, Just Arrays.](https://medium.com/@ryardley/react-hooks-not-magic-just-arrays-cd4f1857236e)
+Internally, React holds an array of State pairs for every component. It also maintains the current pair index, which is set to `0` before rendering. Each time you call `useState`, React gives you the next State pair and increments the index. You can read more about this mechanism in [React Hooks: Not Magic, Just Arrays.](https://medium.com/@ryardley/react-hooks-not-magic-just-arrays-cd4f1857236e)
 
 This example **doesn't use React** but it gives you an idea of how `useState` works internally:
 
@@ -732,7 +732,7 @@ You don't have to understand it to use React, but you might find this a helpful 
 
 State is local to a component instance on the screen. In other words, **if you render the same component twice, each copy will have completely isolated state!** Changing one of them will not affect the other.
 
-In this example, the `Gallery` component from earlier is rendered twice with no changes to its logic. Try clicking the buttons inside each of the galleries. Notice that their state is independent:
+In this example, the `Gallery` component from earlier is rendered twice with no changes to its logic. Try clicking the buttons inside each of the galleries. Notice that their State is independent:
 
 <Sandpack>
 
@@ -891,21 +891,21 @@ button {
 
 </Sandpack>
 
-This is what makes state different from regular variables that you might declare at the top of your module. State is not tied to a particular function call or a place in the code, but it's "local" to the specific place on the screen. You rendered two `<Gallery />` components, so their state is stored separately.
+This is what makes State different from regular variables that you might declare at the top of your module. State is not tied to a particular function call or a place in the code, but it's "local" to the specific place on the screen. You rendered two `<Gallery />` components, so their State is stored separately.
 
-Also notice how the `Page` component doesn't "know" anything about the `Gallery` state or even whether it has any. Unlike props, **state is fully private to the component declaring it.** The parent component can't change it. This lets you add state to any component or remove it without impacting the rest of the components.
+Also notice how the `Page` component doesn't "know" anything about the `Gallery` State or even whether it has any. Unlike props, **State is fully private to the component declaring it.** The parent component can't change it. This lets you add State to any component or remove it without impacting the rest of the components.
 
-What if you wanted both galleries to keep their states in sync? The right way to do it in React is to *remove* state from child components and add it to their closest shared parent. The next few pages will focus on organizing state of a single component, but we will return to this topic in [Sharing State Between Components.](/learn/sharing-state-between-components)
+What if you wanted both galleries to keep their States in sync? The right way to do it in React is to *remove* State from child components and add it to their closest shared parent. The next few pages will focus on organizing State of a single component, but we will return to this topic in [Sharing State Between Components.](/learn/sharing-state-between-components)
 
 <Recap>
 
-* Use a state variable when a component needs to "remember" some information between renders.
+* Use a State variable when a component needs to "remember" some information between renders.
 * State variables are declared by calling the `useState` Hook.
-* Hooks are special functions that start with `use`. They let you "hook into" React features like state.
+* Hooks are special functions that start with `use`. They let you "hook into" React features like State.
 * Hooks might remind you of imports: they need to be called unconditionally. Calling Hooks, including `useState`, is only valid at the top level of a component or another Hook.
-* The `useState` Hook returns a pair of values: the current state and the function to update it.
-* You can have more than one state variable. Internally, React matches them up by their order.
-* State is private to the component. If you render it in two places, each copy gets its own state.
+* The `useState` Hook returns a pair of values: the current State and the function to update it.
+* You can have more than one State variable. Internally, React matches them up by their order.
+* State is private to the component. If you render it in two places, each copy gets its own State.
 
 </Recap>
 
@@ -1225,7 +1225,7 @@ Notice how `hasPrev` and `hasNext` are used *both* for the returned JSX and insi
 
 #### Fix stuck form inputs {/*fix-stuck-form-inputs*/}
 
-When you type into the input fields, nothing appears. It's like the input values are "stuck" with empty strings. The `value` of the first `<input>` is set to always match the `firstName` variable, and the `value` for the second `<input>` is set to always match the `lastName` variable. This is correct. Both inputs have `onChange` event handlers, which try to update the variables based on the latest user input (`e.target.value`). However, the variables don't seem to "remember" their values between re-renders. Fix this by using state variables instead.
+When you type into the input fields, nothing appears. It's like the input values are "stuck" with empty strings. The `value` of the first `<input>` is set to always match the `firstName` variable, and the `value` for the second `<input>` is set to always match the `lastName` variable. This is correct. Both inputs have `onChange` event handlers, which try to update the variables based on the latest user input (`e.target.value`). However, the variables don't seem to "remember" their values between re-renders. Fix this by using State variables instead.
 
 <Sandpack>
 
@@ -1274,7 +1274,7 @@ h1 { margin-top: 10px; }
 
 <Solution>
 
-First, import `useState` from React. Then replace `firstName` and `lastName` with state variables declared by calling `useState`. Finally, replace every `firstName = ...` assignment with `setFirstName(...)`, and do the same for `lastName`. Don't forget to update `handleReset` too so that the reset button works.
+First, import `useState` from React. Then replace `firstName` and `lastName` with State variables declared by calling `useState`. Finally, replace every `firstName = ...` assignment with `setFirstName(...)`, and do the same for `lastName`. Don't forget to update `handleReset` too so that the reset button works.
 
 <Sandpack>
 
@@ -1450,13 +1450,13 @@ If your linter is [configured for React](/learn/editor-setup#linting), you shoul
 
 </Solution>
 
-#### Remove unnecessary state {/*remove-unnecessary-state*/}
+#### Remove unnecessary State {/*remove-unnecessary-state*/}
 
-When the button is clicked, this example should ask for the user's name and then display an alert greeting them. You tried to use state to keep the name, but for some reason it always shows "Hello, !".
+When the button is clicked, this example should ask for the user's name and then display an alert greeting them. You tried to use State to keep the name, but for some reason it always shows "Hello, !".
 
-To fix this code, remove the unnecessary state variable. (We will discuss about [why this didn't work](/learn/state-as-a-snapshot) later.)
+To fix this code, remove the unnecessary State variable. (We will discuss about [why this didn't work](/learn/state-as-a-snapshot) later.)
 
-Can you explain why this state variable was unnecessary?
+Can you explain why this State variable was unnecessary?
 
 <Sandpack>
 
@@ -1504,7 +1504,7 @@ export default function FeedbackForm() {
 
 </Sandpack>
 
-A state variable is only necessary to keep information between re-renders of a component. Within a single event handler, a regular variable will do fine. Don't introduce state variables when a regular variable works well.
+A State variable is only necessary to keep information between re-renders of a component. Within a single event handler, a regular variable will do fine. Don't introduce State variables when a regular variable works well.
 
 </Solution>
 

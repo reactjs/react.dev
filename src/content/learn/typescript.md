@@ -130,14 +130,14 @@ However, we can look at a few examples of how to provide types for Hooks.
 
 ### `useState` {/*typing-usestate*/}
 
-The [`useState` Hook](/reference/react/useState) will re-use the value passed in as the initial state to determine what the type of the value should be. For example:
+The [`useState` Hook](/reference/react/useState) will re-use the value passed in as the initial State to determine what the type of the value should be. For example:
 
 ```ts
 // Infer the type as "boolean"
 const [enabled, setEnabled] = useState(false);
 ```
 
-Will assign the type of `boolean` to `enabled`, and `setEnabled` will be a function accepting either a `boolean` argument, or a function that returns a `boolean`. If you want to explicitly provide a type for the state, you can do so by providing a type argument to the `useState` call:
+Will assign the type of `boolean` to `enabled`, and `setEnabled` will be a function accepting either a `boolean` argument, or a function that returns a `boolean`. If you want to explicitly provide a type for the State, you can do so by providing a type argument to the `useState` call:
 
 ```ts 
 // Explicitly set the type to "boolean"
@@ -152,7 +152,7 @@ type Status = "idle" | "loading" | "success" | "error";
 const [status, setStatus] = useState<Status>("idle");
 ```
 
-Or, as recommended in [Principles for structuring state](/learn/choosing-the-state-structure#principles-for-structuring-state), you can group related state as an object and describe the different possibilities via object types:
+Or, as recommended in [Principles for structuring State](/learn/choosing-the-state-structure#principles-for-structuring-state), you can group related State as an object and describe the different possibilities via object types:
 
 ```ts
 type RequestState =
@@ -166,7 +166,7 @@ const [requestState, setRequestState] = useState<RequestState>({ status: 'idle' 
 
 ### `useReducer` {/*typing-usereducer*/}
 
-The [`useReducer` Hook](/reference/react/useReducer) is a more complex Hook that takes a reducer function and an initial state. The types for the reducer function are inferred from the initial state. You can optionally provide a type argument to the `useReducer` call to provide a type for the state, but it is often better to set the type on the initial state instead:
+The [`useReducer` Hook](/reference/react/useReducer) is a more complex Hook that takes a reducer function and an initial State. The types for the reducer function are inferred from the initial State. You can optionally provide a type argument to the `useReducer` call to provide a type for the State, but it is often better to set the type on the initial State instead:
 
 <Sandpack>
 
@@ -223,9 +223,9 @@ export default App = AppTSX;
 
 We are using TypeScript in a few key places:
 
- - `interface State` describes the shape of the reducer's state.
+ - `interface State` describes the shape of the reducer's State.
  - `type CounterAction` describes the different actions which can be dispatched to the reducer.
- - `const initialState: State` provides a type for the initial state, and also the type which is used by `useReducer` by default.
+ - `const initialState: State` provides a type for the initial State, and also the type which is used by `useReducer` by default.
  - `stateReducer(state: State, action: CounterAction): State` sets the types for the reducer function's arguments and return value.
 
 A more explicit alternative to setting the type on `initialState` is to provide a type argument to `useReducer`:

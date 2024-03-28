@@ -4,7 +4,7 @@ title: 'Removing Effect Dependencies'
 
 <Intro>
 
-When you write an Effect, the linter will verify that you've included every reactive value (like props and state) that the Effect reads in the list of your Effect's dependencies. This ensures that your Effect remains synchronized with the latest props and state of your component. Unnecessary dependencies may cause your Effect to run too often, or even create an infinite loop. Follow this guide to review and remove unnecessary dependencies from your Effects.
+When you write an Effect, the linter will verify that you've included every reactive value (like props and State) that the Effect reads in the list of your Effect's dependencies. This ensures that your Effect remains synchronized with the latest props and State of your component. Unnecessary dependencies may cause your Effect to run too often, or even create an infinite loop. Follow this guide to review and remove unnecessary dependencies from your Effects.
 
 </Intro>
 
@@ -263,7 +263,7 @@ button { margin-left: 10px; }
 
 </Sandpack>
 
-This is why you could now specify an [empty (`[]`) dependency list.](/learn/lifecycle-of-reactive-effects#what-an-effect-with-empty-dependencies-means) Your Effect *really doesn't* depend on any reactive value anymore, so it *really doesn't* need to re-run when any of the component's props or state change.
+This is why you could now specify an [empty (`[]`) dependency list.](/learn/lifecycle-of-reactive-effects#what-an-effect-with-empty-dependencies-means) Your Effect *really doesn't* depend on any reactive value anymore, so it *really doesn't* need to re-run when any of the component's props or State change.
 
 ### To change the dependencies, change the code {/*to-change-the-dependencies-change-the-code*/}
 
@@ -372,7 +372,7 @@ To find the right solution, you'll need to answer a few questions about your Eff
 
 The first thing you should think about is whether this code should be an Effect at all.
 
-Imagine a form. On submit, you set the `submitted` state variable to `true`. You need to send a POST request and show a notification. You've put this logic inside an Effect that "reacts" to `submitted` being `true`:
+Imagine a form. On submit, you set the `submitted` State variable to `true`. You need to send a POST request and show a notification. You've put this logic inside an Effect that "reacts" to `submitted` being `true`:
 
 ```js {6-8}
 function Form() {
@@ -465,7 +465,7 @@ function ShippingForm({ country }) {
   // ...
 ```
 
-This is a good example of [fetching data in an Effect.](/learn/you-might-not-need-an-effect#fetching-data) You are synchronizing the `cities` state with the network according to the `country` prop. You can't do this in an event handler because you need to fetch as soon as `ShippingForm` is displayed and whenever the `country` changes (no matter which interaction causes it).
+This is a good example of [fetching data in an Effect.](/learn/you-might-not-need-an-effect#fetching-data) You are synchronizing the `cities` State with the network according to the `country` prop. You can't do this in an event handler because you need to fetch as soon as `ShippingForm` is displayed and whenever the `country` changes (no matter which interaction causes it).
 
 Now let's say you're adding a second select box for city areas, which should fetch the `areas` for the currently selected `city`. You might start by adding a second `fetch` call for the list of areas inside the same Effect:
 
@@ -502,12 +502,12 @@ function ShippingForm({ country }) {
   // ...
 ```
 
-However, since the Effect now uses the `city` state variable, you've had to add `city` to the list of dependencies. That, in turn, introduced a problem: when the user selects a different city, the Effect will re-run and call `fetchCities(country)`. As a result, you will be unnecessarily refetching the list of cities many times.
+However, since the Effect now uses the `city` State variable, you've had to add `city` to the list of dependencies. That, in turn, introduced a problem: when the user selects a different city, the Effect will re-run and call `fetchCities(country)`. As a result, you will be unnecessarily refetching the list of cities many times.
 
 **The problem with this code is that you're synchronizing two different unrelated things:**
 
-1. You want to synchronize the `cities` state to the network based on the `country` prop.
-1. You want to synchronize the `areas` state to the network based on the `city` state.
+1. You want to synchronize the `cities` State to the network based on the `country` prop.
+1. You want to synchronize the `areas` State to the network based on the `city` State.
 
 Split the logic into two Effects, each of which reacts to the prop that it needs to synchronize with:
 
@@ -553,9 +553,9 @@ Now the first Effect only re-runs if the `country` changes, while the second Eff
 
 The final code is longer than the original, but splitting these Effects is still correct. [Each Effect should represent an independent synchronization process.](/learn/lifecycle-of-reactive-effects#each-effect-represents-a-separate-synchronization-process) In this example, deleting one Effect doesn't break the other Effect's logic. This means they *synchronize different things,* and it's good to split them up. If you're concerned about duplication, you can improve this code by [extracting repetitive logic into a custom Hook.](/learn/reusing-logic-with-custom-hooks#when-to-use-custom-hooks)
 
-### Are you reading some state to calculate the next state? {/*are-you-reading-some-state-to-calculate-the-next-state*/}
+### Are you reading some State to calculate the next State? {/*are-you-reading-some-state-to-calculate-the-next-state*/}
 
-This Effect updates the `messages` state variable with a newly created array every time a new message arrives:
+This Effect updates the `messages` State variable with a newly created array every time a new message arrives:
 
 ```js {2,6-8}
 function ChatRoom({ roomId }) {
@@ -867,7 +867,7 @@ button { margin-left: 10px; }
 
 </Sandpack>
 
-In the sandbox above, the input only updates the `message` state variable. From the user's perspective, this should not affect the chat connection. However, every time you update the `message`, your component re-renders. When your component re-renders, the code inside of it runs again from scratch.
+In the sandbox above, the input only updates the `message` State variable. From the user's perspective, this should not affect the chat connection. However, every time you update the `message`, your component re-renders. When your component re-renders, the code inside of it runs again from scratch.
 
 A new `options` object is created from scratch on every re-render of the `ChatRoom` component. React sees that the `options` object is a *different object* from the `options` object created during the last render. This is why it re-synchronizes your Effect (which depends on `options`), and the chat re-connects as you type.
 
@@ -890,7 +890,7 @@ This is why, whenever possible, you should try to avoid objects and functions as
 
 #### Move static objects and functions outside your component {/*move-static-objects-and-functions-outside-your-component*/}
 
-If the object does not depend on any props and state, you can move that object outside your component:
+If the object does not depend on any props and State, you can move that object outside your component:
 
 ```js {1-4,13}
 const options = {
@@ -1179,7 +1179,7 @@ This Effect sets up an interval that ticks every second. You've noticed somethin
 
 <Hint>
 
-It seems like this Effect's code depends on `count`. Is there some way to not need this dependency? There should be a way to update the `count` state based on its previous value without adding a dependency on that value.
+It seems like this Effect's code depends on `count`. Is there some way to not need this dependency? There should be a way to update the `count` State based on its previous value without adding a dependency on that value.
 
 </Hint>
 
@@ -1211,7 +1211,7 @@ export default function Timer() {
 
 <Solution>
 
-You want to update the `count` state to be `count + 1` from inside the Effect. However, this makes your Effect depend on `count`, which changes with every tick, and that's why your interval gets re-created on every tick.
+You want to update the `count` State to be `count + 1` from inside the Effect. However, this makes your Effect depend on `count`, which changes with every tick, and that's why your interval gets re-created on every tick.
 
 To solve this, use the [updater function](/reference/react/useState#updating-state-based-on-the-previous-state) and write `setCount(c => c + 1)` instead of `setCount(count + 1)`:
 
@@ -1249,7 +1249,7 @@ Instead of reading `count` inside the Effect, you pass a `c => c + 1` instructio
 
 In this example, when you press "Show", a welcome message fades in. The animation takes a second. When you press "Remove", the welcome message immediately disappears. The logic for the fade-in animation is implemented in the `animation.js` file as plain JavaScript [animation loop.](https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame) You don't need to change that logic. You can treat it as a third-party library. Your Effect creates an instance of `FadeInAnimation` for the DOM node, and then calls `start(duration)` or `stop()` to control the animation. The `duration` is controlled by a slider. Adjust the slider and see how the animation changes.
 
-This code already works, but there is something you want to change. Currently, when you move the slider that controls the `duration` state variable, it retriggers the animation. Change the behavior so that the Effect does not "react" to the `duration` variable. When you press "Show", the Effect should use the current `duration` on the slider. However, moving the slider itself should not by itself retrigger the animation.
+This code already works, but there is something you want to change. Currently, when you move the slider that controls the `duration` State variable, it retriggers the animation. Change the behavior so that the Effect does not "react" to the `duration` variable. When you press "Show", the Effect should use the current `duration` on the slider. However, moving the slider itself should not by itself retrigger the animation.
 
 <Hint>
 
@@ -1816,7 +1816,7 @@ You're passing down two functions: `onMessage` and `createConnection`. Both of t
 
 One of these functions is an event handler. Do you know some way to call an event handler an Effect without "reacting" to the new values of the event handler function? That would come in handy!
 
-Another of these functions only exists to pass some state to an imported API method. Is this function really necessary? What is the essential information that's being passed down? You might need to move some imports from `App.js` to `ChatRoom.js`.
+Another of these functions only exists to pass some State to an imported API method. Is this function really necessary? What is the essential information that's being passed down? You might need to move some imports from `App.js` to `ChatRoom.js`.
 
 </Hint>
 

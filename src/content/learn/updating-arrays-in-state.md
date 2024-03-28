@@ -4,13 +4,13 @@ title: Updating Arrays in State
 
 <Intro>
 
-Arrays are mutable in JavaScript, but you should treat them as immutable when you store them in state. Just like with objects, when you want to update an array stored in state, you need to create a new one (or make a copy of an existing one), and then set state to use the new array.
+Arrays are mutable in JavaScript, but you should treat them as immutable when you store them in State. Just like with objects, when you want to update an array stored in State, you need to create a new one (or make a copy of an existing one), and then set State to use the new array.
 
 </Intro>
 
 <YouWillLearn>
 
-- How to add, remove, or change items in an array in React state
+- How to add, remove, or change items in an array in React State
 - How to update an object inside of an array
 - How to make array copying less repetitive with Immer
 
@@ -18,11 +18,11 @@ Arrays are mutable in JavaScript, but you should treat them as immutable when yo
 
 ## Updating arrays without mutation {/*updating-arrays-without-mutation*/}
 
-In JavaScript, arrays are just another kind of object. [Like with objects](/learn/updating-objects-in-state), **you should treat arrays in React state as read-only.** This means that you shouldn't reassign items inside an array like `arr[0] = 'bird'`, and you also shouldn't use methods that mutate the array, such as `push()` and `pop()`.
+In JavaScript, arrays are just another kind of object. [Like with objects](/learn/updating-objects-in-state), **you should treat arrays in React State as read-only.** This means that you shouldn't reassign items inside an array like `arr[0] = 'bird'`, and you also shouldn't use methods that mutate the array, such as `push()` and `pop()`.
 
-Instead, every time you want to update an array, you'll want to pass a *new* array to your state setting function. To do that, you can create a new array from the original array in your state by calling its non-mutating methods like `filter()` and `map()`. Then you can set your state to the resulting new array.
+Instead, every time you want to update an array, you'll want to pass a *new* array to your State setting function. To do that, you can create a new array from the original array in your State by calling its non-mutating methods like `filter()` and `map()`. Then you can set your State to the resulting new array.
 
-Here is a reference table of common array operations. When dealing with arrays inside React state, you will need to avoid the methods in the left column, and instead prefer the methods in the right column:
+Here is a reference table of common array operations. When dealing with arrays inside React State, you will need to avoid the methods in the left column, and instead prefer the methods in the right column:
 
 |           | avoid (mutates the array)           | prefer (returns a new array)                                        |
 | --------- | ----------------------------------- | ------------------------------------------------------------------- |
@@ -40,7 +40,7 @@ Unfortunately, [`slice`](https://developer.mozilla.org/en-US/docs/Web/JavaScript
 * `slice` lets you copy an array or a part of it.
 * `splice` **mutates** the array (to insert or delete items).
 
-In React, you will be using `slice` (no `p`!) a lot more often because you don't want to mutate objects or arrays in state. [Updating Objects](/learn/updating-objects-in-state) explains what mutation is and why it's not recommended for state.
+In React, you will be using `slice` (no `p`!) a lot more often because you don't want to mutate objects or arrays in State. [Updating Objects](/learn/updating-objects-in-state) explains what mutation is and why it's not recommended for State.
 
 </Pitfall>
 
@@ -443,7 +443,7 @@ export default function List() {
 
 Here, you use the `[...list]` spread syntax to create a copy of the original array first. Now that you have a copy, you can use mutating methods like `nextList.reverse()` or `nextList.sort()`, or even assign individual items with `nextList[0] = "something"`.
 
-However, **even if you copy an array, you can't mutate existing items _inside_ of it directly.** This is because copying is shallow--the new array will contain the same items as the original one. So if you modify an object inside the copied array, you are mutating the existing state. For example, code like this is a problem.
+However, **even if you copy an array, you can't mutate existing items _inside_ of it directly.** This is because copying is shallow--the new array will contain the same items as the original one. So if you modify an object inside the copied array, you are mutating the existing State. For example, code like this is a problem.
 
 ```js
 const nextList = [...list];
@@ -451,15 +451,15 @@ nextList[0].seen = true; // Problem: mutates list[0]
 setList(nextList);
 ```
 
-Although `nextList` and `list` are two different arrays, **`nextList[0]` and `list[0]` point to the same object.** So by changing `nextList[0].seen`, you are also changing `list[0].seen`. This is a state mutation, which you should avoid! You can solve this issue in a similar way to [updating nested JavaScript objects](/learn/updating-objects-in-state#updating-a-nested-object)--by copying individual items you want to change instead of mutating them. Here's how.
+Although `nextList` and `list` are two different arrays, **`nextList[0]` and `list[0]` point to the same object.** So by changing `nextList[0].seen`, you are also changing `list[0].seen`. This is a State mutation, which you should avoid! You can solve this issue in a similar way to [updating nested JavaScript objects](/learn/updating-objects-in-state#updating-a-nested-object)--by copying individual items you want to change instead of mutating them. Here's how.
 
 ## Updating objects inside arrays {/*updating-objects-inside-arrays*/}
 
 Objects are not _really_ located "inside" arrays. They might appear to be "inside" in code, but each object in an array is a separate value, to which the array "points". This is why you need to be careful when changing nested fields like `list[0]`. Another person's artwork list may point to the same element of the array!
 
-**When updating nested state, you need to create copies from the point where you want to update, and all the way up to the top level.** Let's see how this works.
+**When updating nested State, you need to create copies from the point where you want to update, and all the way up to the top level.** Let's see how this works.
 
-In this example, two separate artwork lists have the same initial state. They are supposed to be isolated, but because of a mutation, their state is accidentally shared, and checking a box in one list affects the other list:
+In this example, two separate artwork lists have the same initial State. They are supposed to be isolated, but because of a mutation, their State is accidentally shared, and checking a box in one list affects the other list:
 
 <Sandpack>
 
@@ -548,7 +548,7 @@ artwork.seen = nextSeen; // Problem: mutates an existing item
 setMyList(myNextList);
 ```
 
-Although the `myNextList` array itself is new, the *items themselves* are the same as in the original `myList` array. So changing `artwork.seen` changes the *original* artwork item. That artwork item is also in `yourList`, which causes the bug. Bugs like this can be difficult to think about, but thankfully they disappear if you avoid mutating state.
+Although the `myNextList` array itself is new, the *items themselves* are the same as in the original `myList` array. So changing `artwork.seen` changes the *original* artwork item. That artwork item is also in `yourList`, which causes the bug. Bugs like this can be difficult to think about, but thankfully they disappear if you avoid mutating State.
 
 **You can use `map` to substitute an old item with its updated version without mutation.**
 
@@ -566,7 +566,7 @@ setMyList(myList.map(artwork => {
 
 Here, `...` is the object spread syntax used to [create a copy of an object.](/learn/updating-objects-in-state#copying-objects-with-the-spread-syntax)
 
-With this approach, none of the existing state items are being mutated, and the bug is fixed:
+With this approach, none of the existing State items are being mutated, and the bug is fixed:
 
 <Sandpack>
 
@@ -652,7 +652,7 @@ function ItemList({ artworks, onToggle }) {
 
 </Sandpack>
 
-In general, **you should only mutate objects that you have just created.** If you were inserting a *new* artwork, you could mutate it, but if you're dealing with something that's already in state, you need to make a copy.
+In general, **you should only mutate objects that you have just created.** If you were inserting a *new* artwork, you could mutate it, but if you're dealing with something that's already in State, you need to make a copy.
 
 ### Write concise update logic with Immer {/*write-concise-update-logic-with-immer*/}
 
@@ -773,12 +773,12 @@ updateMyTodos(draft => {
 
 This is because you're not mutating the _original_ state, but you're mutating a special `draft` object provided by Immer. Similarly, you can apply mutating methods like `push()` and `pop()` to the content of the `draft`.
 
-Behind the scenes, Immer always constructs the next state from scratch according to the changes that you've done to the `draft`. This keeps your event handlers very concise without ever mutating state.
+Behind the scenes, Immer always constructs the next State from scratch according to the changes that you've done to the `draft`. This keeps your event handlers very concise without ever mutating State.
 
 <Recap>
 
-- You can put arrays into state, but you can't change them.
-- Instead of mutating an array, create a *new* version of it, and update the state to it.
+- You can put arrays into State, but you can't change them.
+- Instead of mutating an array, create a *new* version of it, and update the State to it.
 - You can use the `[...arr, newItem]` array spread syntax to create arrays with new items.
 - You can use `filter()` and `map()` to create new arrays with filtered or transformed items.
 - You can use Immer to keep your code concise.
@@ -1412,7 +1412,7 @@ ul, li { margin: 0; padding: 0; }
 
 #### Fix the mutations using Immer {/*fix-the-mutations-using-immer*/}
 
-This is the same example as in the previous challenge. This time, fix the mutations by using Immer. For your convenience, `useImmer` is already imported, so you need to change the `todos` state variable to use it.
+This is the same example as in the previous challenge. This time, fix the mutations by using Immer. For your convenience, `useImmer` is already imported, so you need to change the `todos` State variable to use it.
 
 <Sandpack>
 

@@ -4,7 +4,7 @@ title: 'You Might Not Need an Effect'
 
 <Intro>
 
-Effects are an escape hatch from the React paradigm. They let you "step outside" of React and synchronize your components with some external system like a non-React widget, network, or the browser DOM. If there is no external system involved (for example, if you want to update a component's state when some props or state change), you shouldn't need an Effect. Removing unnecessary Effects will make your code easier to follow, faster to run, and less error-prone.
+Effects are an escape hatch from the React paradigm. They let you "step outside" of React and synchronize your components with some external system like a non-React widget, network, or the browser DOM. If there is no external system involved (for example, if you want to update a component's State when some props or State change), you shouldn't need an Effect. Removing unnecessary Effects will make your code easier to follow, faster to run, and less error-prone.
 
 </Intro>
 
@@ -12,7 +12,7 @@ Effects are an escape hatch from the React paradigm. They let you "step outside"
 
 * Why and how to remove unnecessary Effects from your components
 * How to cache expensive computations without Effects
-* How to reset and adjust component state without Effects
+* How to reset and adjust component State without Effects
 * How to share logic between event handlers
 * Which logic should be moved to event handlers
 * How to notify parent components about changes
@@ -23,16 +23,16 @@ Effects are an escape hatch from the React paradigm. They let you "step outside"
 
 There are two common cases in which you don't need Effects:
 
-* **You don't need Effects to transform data for rendering.** For example, let's say you want to filter a list before displaying it. You might feel tempted to write an Effect that updates a state variable when the list changes. However, this is inefficient. When you update the state, React will first call your component functions to calculate what should be on the screen. Then React will ["commit"](/learn/render-and-commit) these changes to the DOM, updating the screen. Then React will run your Effects. If your Effect *also* immediately updates the state, this restarts the whole process from scratch! To avoid the unnecessary render passes, transform all the data at the top level of your components. That code will automatically re-run whenever your props or state change.
+* **You don't need Effects to transform data for rendering.** For example, let's say you want to filter a list before displaying it. You might feel tempted to write an Effect that updates a State variable when the list changes. However, this is inefficient. When you update the State, React will first call your component functions to calculate what should be on the screen. Then React will ["commit"](/learn/render-and-commit) these changes to the DOM, updating the screen. Then React will run your Effects. If your Effect *also* immediately updates the State, this restarts the whole process from scratch! To avoid the unnecessary render passes, transform all the data at the top level of your components. That code will automatically re-run whenever your props or State change.
 * **You don't need Effects to handle user events.** For example, let's say you want to send an `/api/buy` POST request and show a notification when the user buys a product. In the Buy button click event handler, you know exactly what happened. By the time an Effect runs, you don't know *what* the user did (for example, which button was clicked). This is why you'll usually handle user events in the corresponding event handlers.
 
-You *do* need Effects to [synchronize](/learn/synchronizing-with-effects#what-are-effects-and-how-are-they-different-from-events) with external systems. For example, you can write an Effect that keeps a jQuery widget synchronized with the React state. You can also fetch data with Effects: for example, you can synchronize the search results with the current search query. Keep in mind that modern [frameworks](/learn/start-a-new-react-project#production-grade-react-frameworks) provide more efficient built-in data fetching mechanisms than writing Effects directly in your components.
+You *do* need Effects to [synchronize](/learn/synchronizing-with-effects#what-are-effects-and-how-are-they-different-from-events) with external systems. For example, you can write an Effect that keeps a jQuery widget synchronized with the React State. You can also fetch data with Effects: for example, you can synchronize the search results with the current search query. Keep in mind that modern [frameworks](/learn/start-a-new-react-project#production-grade-react-frameworks) provide more efficient built-in data fetching mechanisms than writing Effects directly in your components.
 
 To help you gain the right intuition, let's look at some common concrete examples!
 
-### Updating state based on props or state {/*updating-state-based-on-props-or-state*/}
+### Updating State based on props or State {/*updating-state-based-on-props-or-state*/}
 
-Suppose you have a component with two state variables: `firstName` and `lastName`. You want to calculate a `fullName` from them by concatenating them. Moreover, you'd like `fullName` to update whenever `firstName` or `lastName` change. Your first instinct might be to add a `fullName` state variable and update it in an Effect:
+Suppose you have a component with two State variables: `firstName` and `lastName`. You want to calculate a `fullName` from them by concatenating them. Moreover, you'd like `fullName` to update whenever `firstName` or `lastName` change. Your first instinct might be to add a `fullName` State variable and update it in an Effect:
 
 ```js {5-9}
 function Form() {
@@ -48,7 +48,7 @@ function Form() {
 }
 ```
 
-This is more complicated than necessary. It is inefficient too: it does an entire render pass with a stale value for `fullName`, then immediately re-renders with the updated value. Remove the state variable and the Effect:
+This is more complicated than necessary. It is inefficient too: it does an entire render pass with a stale value for `fullName`, then immediately re-renders with the updated value. Remove the State variable and the Effect:
 
 ```js {4-5}
 function Form() {
@@ -60,7 +60,7 @@ function Form() {
 }
 ```
 
-**When something can be calculated from the existing props or state, [don't put it in state.](/learn/choosing-the-state-structure#avoid-redundant-state) Instead, calculate it during rendering.** This makes your code faster (you avoid the extra "cascading" updates), simpler (you remove some code), and less error-prone (you avoid bugs caused by different state variables getting out of sync with each other). If this approach feels new to you, [Thinking in React](/learn/thinking-in-react#step-3-find-the-minimal-but-complete-representation-of-ui-state) explains what should go into state.
+**When something can be calculated from the existing props or State, [don't put it in State.](/learn/choosing-the-state-structure#avoid-redundant-state) Instead, calculate it during rendering.** This makes your code faster (you avoid the extra "cascading" updates), simpler (you remove some code), and less error-prone (you avoid bugs caused by different State variables getting out of sync with each other). If this approach feels new to you, [Thinking in React](/learn/thinking-in-react#step-3-find-the-minimal-but-complete-representation-of-ui-state) explains what should go into State.
 
 ### Caching expensive calculations {/*caching-expensive-calculations*/}
 
@@ -80,7 +80,7 @@ function TodoList({ todos, filter }) {
 }
 ```
 
-Like in the earlier example, this is both unnecessary and inefficient. First, remove the state and the Effect:
+Like in the earlier example, this is both unnecessary and inefficient. First, remove the State and the Effect:
 
 ```js {3-4}
 function TodoList({ todos, filter }) {
@@ -91,7 +91,7 @@ function TodoList({ todos, filter }) {
 }
 ```
 
-Usually, this code is fine! But maybe `getFilteredTodos()` is slow or you have a lot of `todos`. In that case you don't want to recalculate `getFilteredTodos()` if some unrelated state variable like `newTodo` has changed.
+Usually, this code is fine! But maybe `getFilteredTodos()` is slow or you have a lot of `todos`. In that case you don't want to recalculate `getFilteredTodos()` if some unrelated State variable like `newTodo` has changed.
 
 You can cache (or ["memoize"](https://en.wikipedia.org/wiki/Memoization)) an expensive calculation by wrapping it in a [`useMemo`](/reference/react/useMemo) Hook:
 
@@ -155,9 +155,9 @@ Also note that measuring performance in development will not give you the most a
 
 </DeepDive>
 
-### Resetting all state when a prop changes {/*resetting-all-state-when-a-prop-changes*/}
+### Resetting all State when a prop changes {/*resetting-all-state-when-a-prop-changes*/}
 
-This `ProfilePage` component receives a `userId` prop. The page contains a comment input, and you use a `comment` state variable to hold its value. One day, you notice a problem: when you navigate from one profile to another, the `comment` state does not get reset. As a result, it's easy to accidentally post a comment on a wrong user's profile. To fix the issue, you want to clear out the `comment` state variable whenever the `userId` changes:
+This `ProfilePage` component receives a `userId` prop. The page contains a comment input, and you use a `comment` State variable to hold its value. One day, you notice a problem: when you navigate from one profile to another, the `comment` State does not get reset. As a result, it's easy to accidentally post a comment on a wrong user's profile. To fix the issue, you want to clear out the `comment` State variable whenever the `userId` changes:
 
 ```js {4-7}
 export default function ProfilePage({ userId }) {
@@ -171,7 +171,7 @@ export default function ProfilePage({ userId }) {
 }
 ```
 
-This is inefficient because `ProfilePage` and its children will first render with the stale value, and then render again. It is also complicated because you'd need to do this in *every* component that has some state inside `ProfilePage`. For example, if the comment UI is nested, you'd want to clear out nested comment state too.
+This is inefficient because `ProfilePage` and its children will first render with the stale value, and then render again. It is also complicated because you'd need to do this in *every* component that has some State inside `ProfilePage`. For example, if the comment UI is nested, you'd want to clear out nested comment State too.
 
 Instead, you can tell React that each user's profile is conceptually a _different_ profile by giving it an explicit key. Split your component in two and pass a `key` attribute from the outer component to the inner one:
 
@@ -192,15 +192,15 @@ function Profile({ userId }) {
 }
 ```
 
-Normally, React preserves the state when the same component is rendered in the same spot. **By passing `userId` as a `key` to the `Profile` component, you're asking React to treat two `Profile` components with different `userId` as two different components that should not share any state.** Whenever the key (which you've set to `userId`) changes, React will recreate the DOM and [reset the state](/learn/preserving-and-resetting-state#option-2-resetting-state-with-a-key) of the `Profile` component and all of its children. Now the `comment` field will clear out automatically when navigating between profiles.
+Normally, React preserves the State when the same component is rendered in the same spot. **By passing `userId` as a `key` to the `Profile` component, you're asking React to treat two `Profile` components with different `userId` as two different components that should not share any State.** Whenever the key (which you've set to `userId`) changes, React will recreate the DOM and [reset the State](/learn/preserving-and-resetting-state#option-2-resetting-state-with-a-key) of the `Profile` component and all of its children. Now the `comment` field will clear out automatically when navigating between profiles.
 
 Note that in this example, only the outer `ProfilePage` component is exported and visible to other files in the project. Components rendering `ProfilePage` don't need to pass the key to it: they pass `userId` as a regular prop. The fact `ProfilePage` passes it as a `key` to the inner `Profile` component is an implementation detail.
 
-### Adjusting some state when a prop changes {/*adjusting-some-state-when-a-prop-changes*/}
+### Adjusting some State when a prop changes {/*adjusting-some-state-when-a-prop-changes*/}
 
-Sometimes, you might want to reset or adjust a part of the state on a prop change, but not all of it.
+Sometimes, you might want to reset or adjust a part of the State on a prop change, but not all of it.
 
-This `List` component receives a list of `items` as a prop, and maintains the selected item in the `selection` state variable. You want to reset the `selection` to `null` whenever the `items` prop receives a different array:
+This `List` component receives a list of `items` as a prop, and maintains the selected item in the `selection` State variable. You want to reset the `selection` to `null` whenever the `items` prop receives a different array:
 
 ```js {5-8}
 function List({ items }) {
@@ -217,7 +217,7 @@ function List({ items }) {
 
 This, too, is not ideal. Every time the `items` change, the `List` and its child components will render with a stale `selection` value at first. Then React will update the DOM and run the Effects. Finally, the `setSelection(null)` call will cause another re-render of the `List` and its child components, restarting this whole process again.
 
-Start by deleting the Effect. Instead, adjust the state directly during rendering:
+Start by deleting the Effect. Instead, adjust the State directly during rendering:
 
 ```js {5-11}
 function List({ items }) {
@@ -234,11 +234,11 @@ function List({ items }) {
 }
 ```
 
-[Storing information from previous renders](/reference/react/useState#storing-information-from-previous-renders) like this can be hard to understand, but it’s better than updating the same state in an Effect. In the above example, `setSelection` is called directly during a render. React will re-render the `List` *immediately* after it exits with a `return` statement. React has not rendered the `List` children or updated the DOM yet, so this lets the `List` children skip rendering the stale `selection` value.
+[Storing information from previous renders](/reference/react/useState#storing-information-from-previous-renders) like this can be hard to understand, but it’s better than updating the same State in an Effect. In the above example, `setSelection` is called directly during a render. React will re-render the `List` *immediately* after it exits with a `return` statement. React has not rendered the `List` children or updated the DOM yet, so this lets the `List` children skip rendering the stale `selection` value.
 
-When you update a component during rendering, React throws away the returned JSX and immediately retries rendering. To avoid very slow cascading retries, React only lets you update the *same* component's state during a render. If you update another component's state during a render, you'll see an error. A condition like `items !== prevItems` is necessary to avoid loops. You may adjust state like this, but any other side effects (like changing the DOM or setting timeouts) should stay in event handlers or Effects to [keep components pure.](/learn/keeping-components-pure)
+When you update a component during rendering, React throws away the returned JSX and immediately retries rendering. To avoid very slow cascading retries, React only lets you update the *same* component's State during a render. If you update another component's State during a render, you'll see an error. A condition like `items !== prevItems` is necessary to avoid loops. You may adjust State like this, but any other side effects (like changing the DOM or setting timeouts) should stay in event handlers or Effects to [keep components pure.](/learn/keeping-components-pure)
 
-**Although this pattern is more efficient than an Effect, most components shouldn't need it either.** No matter how you do it, adjusting state based on props or other state makes your data flow more difficult to understand and debug. Always check whether you can [reset all state with a key](#resetting-all-state-when-a-prop-changes) or [calculate everything during rendering](#updating-state-based-on-props-or-state) instead. For example, instead of storing (and resetting) the selected *item*, you can store the selected *item ID:*
+**Although this pattern is more efficient than an Effect, most components shouldn't need it either.** No matter how you do it, adjusting State based on props or other State makes your data flow more difficult to understand and debug. Always check whether you can [reset all State with a key](#resetting-all-state-when-a-prop-changes) or [calculate everything during rendering](#updating-state-based-on-props-or-state) instead. For example, instead of storing (and resetting) the selected *item*, you can store the selected *item ID:*
 
 ```js {3-5}
 function List({ items }) {
@@ -250,7 +250,7 @@ function List({ items }) {
 }
 ```
 
-Now there is no need to "adjust" the state at all. If the item with the selected ID is in the list, it remains selected. If it's not, the `selection` calculated during rendering will be `null` because no matching item was found. This behavior is different, but arguably better because most changes to `items` preserve the selection.
+Now there is no need to "adjust" the State at all. If the item with the selected ID is in the list, it remains selected. If it's not, the `selection` calculated during rendering will be `null` because no matching item was found. This behavior is different, but arguably better because most changes to `items` preserve the selection.
 
 ### Sharing logic between event handlers {/*sharing-logic-between-event-handlers*/}
 
@@ -362,7 +362,7 @@ When you choose whether to put some logic into an event handler or an Effect, th
 
 ### Chains of computations {/*chains-of-computations*/}
 
-Sometimes you might feel tempted to chain Effects that each adjust a piece of state based on other state:
+Sometimes you might feel tempted to chain Effects that each adjust a piece of State based on other State:
 
 ```js {7-29}
 function Game() {
@@ -410,9 +410,9 @@ There are two problems with this code.
 
 One problem is that it is very inefficient: the component (and its children) have to re-render between each `set` call in the chain. In the example above, in the worst case (`setCard` → render → `setGoldCardCount` → render → `setRound` → render → `setIsGameOver` → render) there are three unnecessary re-renders of the tree below.
 
-Even if it weren't slow, as your code evolves, you will run into cases where the "chain" you wrote doesn't fit the new requirements. Imagine you are adding a way to step through the history of the game moves. You'd do it by updating each state variable to a value from the past. However, setting the `card` state to a value from the past would trigger the Effect chain again and change the data you're showing. Such code is often rigid and fragile.
+Even if it weren't slow, as your code evolves, you will run into cases where the "chain" you wrote doesn't fit the new requirements. Imagine you are adding a way to step through the history of the game moves. You'd do it by updating each State variable to a value from the past. However, setting the `card` State to a value from the past would trigger the Effect chain again and change the data you're showing. Such code is often rigid and fragile.
 
-In this case, it's better to calculate what you can during rendering, and adjust the state in the event handler:
+In this case, it's better to calculate what you can during rendering, and adjust the State in the event handler:
 
 ```js {6-7,14-26}
 function Game() {
@@ -446,11 +446,11 @@ function Game() {
   // ...
 ```
 
-This is a lot more efficient. Also, if you implement a way to view game history, now you will be able to set each state variable to a move from the past without triggering the Effect chain that adjusts every other value. If you need to reuse logic between several event handlers, you can [extract a function](#sharing-logic-between-event-handlers) and call it from those handlers.
+This is a lot more efficient. Also, if you implement a way to view game history, now you will be able to set each State variable to a move from the past without triggering the Effect chain that adjusts every other value. If you need to reuse logic between several event handlers, you can [extract a function](#sharing-logic-between-event-handlers) and call it from those handlers.
 
-Remember that inside event handlers, [state behaves like a snapshot.](/learn/state-as-a-snapshot) For example, even after you call `setRound(round + 1)`, the `round` variable will reflect the value at the time the user clicked the button. If you need to use the next value for calculations, define it manually like `const nextRound = round + 1`.
+Remember that inside event handlers, [State behaves like a snapshot.](/learn/state-as-a-snapshot) For example, even after you call `setRound(round + 1)`, the `round` variable will reflect the value at the time the user clicked the button. If you need to use the next value for calculations, define it manually like `const nextRound = round + 1`.
 
-In some cases, you *can't* calculate the next state directly in the event handler. For example, imagine a form with multiple dropdowns where the options of the next dropdown depend on the selected value of the previous dropdown. Then, a chain of Effects is appropriate because you are synchronizing with network.
+In some cases, you *can't* calculate the next State directly in the event handler. For example, imagine a form with multiple dropdowns where the options of the next dropdown depend on the selected value of the previous dropdown. Then, a chain of Effects is appropriate because you are synchronizing with network.
 
 ### Initializing the application {/*initializing-the-application*/}
 
@@ -505,9 +505,9 @@ function App() {
 
 Code at the top level runs once when your component is imported--even if it doesn't end up being rendered. To avoid slowdown or surprising behavior when importing arbitrary components, don't overuse this pattern. Keep app-wide initialization logic to root component modules like `App.js` or in your application's entry point.
 
-### Notifying parent components about state changes {/*notifying-parent-components-about-state-changes*/}
+### Notifying parent components about State changes {/*notifying-parent-components-about-state-changes*/}
 
-Let's say you're writing a `Toggle` component with an internal `isOn` state which can be either `true` or `false`. There are a few different ways to toggle it (by clicking or dragging). You want to notify the parent component whenever the `Toggle` internal state changes, so you expose an `onChange` event and call it from an Effect:
+Let's say you're writing a `Toggle` component with an internal `isOn` State which can be either `true` or `false`. There are a few different ways to toggle it (by clicking or dragging). You want to notify the parent component whenever the `Toggle` internal State changes, so you expose an `onChange` event and call it from an Effect:
 
 ```js {4-7}
 function Toggle({ onChange }) {
@@ -534,9 +534,9 @@ function Toggle({ onChange }) {
 }
 ```
 
-Like earlier, this is not ideal. The `Toggle` updates its state first, and React updates the screen. Then React runs the Effect, which calls the `onChange` function passed from a parent component. Now the parent component will update its own state, starting another render pass. It would be better to do everything in a single pass.
+Like earlier, this is not ideal. The `Toggle` updates its State first, and React updates the screen. Then React runs the Effect, which calls the `onChange` function passed from a parent component. Now the parent component will update its own State, starting another render pass. It would be better to do everything in a single pass.
 
-Delete the Effect and instead update the state of *both* components within the same event handler:
+Delete the Effect and instead update the State of *both* components within the same event handler:
 
 ```js {5-7,11,16,18}
 function Toggle({ onChange }) {
@@ -564,9 +564,9 @@ function Toggle({ onChange }) {
 }
 ```
 
-With this approach, both the `Toggle` component and its parent component update their state during the event. React [batches updates](/learn/queueing-a-series-of-state-updates) from different components together, so there will only be one render pass.
+With this approach, both the `Toggle` component and its parent component update their State during the event. React [batches updates](/learn/queueing-a-series-of-state-updates) from different components together, so there will only be one render pass.
 
-You might also be able to remove the state altogether, and instead receive `isOn` from the parent component:
+You might also be able to remove the State altogether, and instead receive `isOn` from the parent component:
 
 ```js {1,2}
 // ✅ Also good: the component is fully controlled by its parent
@@ -587,7 +587,7 @@ function Toggle({ isOn, onChange }) {
 }
 ```
 
-["Lifting state up"](/learn/sharing-state-between-components) lets the parent component fully control the `Toggle` by toggling the parent's own state. This means the parent component will have to contain more logic, but there will be less state overall to worry about. Whenever you try to keep two different state variables synchronized, try lifting state up instead!
+["Lifting state up"](/learn/sharing-state-between-components) lets the parent component fully control the `Toggle` by toggling the parent's own State. This means the parent component will have to contain more logic, but there will be less State overall to worry about. Whenever you try to keep two different State variables synchronized, try lifting State up instead!
 
 ### Passing data to the parent {/*passing-data-to-the-parent*/}
 
@@ -612,7 +612,7 @@ function Child({ onFetched }) {
 }
 ```
 
-In React, data flows from the parent components to their children. When you see something wrong on the screen, you can trace where the information comes from by going up the component chain until you find which component passes the wrong prop or has the wrong state. When child components update the state of their parent components in Effects, the data flow becomes very difficult to trace. Since both the child and the parent need the same data, let the parent component fetch that data, and *pass it down* to the child instead:
+In React, data flows from the parent components to their children. When you see something wrong on the screen, you can trace where the information comes from by going up the component chain until you find which component passes the wrong prop or has the wrong State. When child components update the State of their parent components in Effects, the data flow becomes very difficult to trace. Since both the child and the parent need the same data, let the parent component fetch that data, and *pass it down* to the child instead:
 
 ```js {4-5}
 function Parent() {
@@ -631,7 +631,7 @@ This is simpler and keeps the data flow predictable: the data flows down from th
 
 ### Subscribing to an external store {/*subscribing-to-an-external-store*/}
 
-Sometimes, your components may need to subscribe to some data outside of the React state. This data could be from a third-party library or a built-in browser API. Since this data can change without React's knowledge, you need to manually subscribe your components to it. This is often done with an Effect, for example:
+Sometimes, your components may need to subscribe to some data outside of the React State. This data could be from a third-party library or a built-in browser API. Since this data can change without React's knowledge, you need to manually subscribe your components to it. This is often done with an Effect, for example:
 
 ```js {2-17}
 function useOnlineStatus() {
@@ -660,7 +660,7 @@ function ChatIndicator() {
 }
 ```
 
-Here, the component subscribes to an external data store (in this case, the browser `navigator.onLine` API). Since this API does not exist on the server (so it can't be used for the initial HTML), initially the state is set to `true`. Whenever the value of that data store changes in the browser, the component updates its state.
+Here, the component subscribes to an external data store (in this case, the browser `navigator.onLine` API). Since this API does not exist on the server (so it can't be used for the initial HTML), initially the State is set to `true`. Whenever the value of that data store changes in the browser, the component updates its State.
 
 Although it's common to use Effects for this, React has a purpose-built Hook for subscribing to an external store that is preferred instead. Delete the Effect and replace it with a call to [`useSyncExternalStore`](/reference/react/useSyncExternalStore):
 
@@ -689,7 +689,7 @@ function ChatIndicator() {
 }
 ```
 
-This approach is less error-prone than manually syncing mutable data to React state with an Effect. Typically, you'll write a custom Hook like `useOnlineStatus()` above so that you don't need to repeat this code in the individual components. [Read more about subscribing to external stores from React components.](/reference/react/useSyncExternalStore)
+This approach is less error-prone than manually syncing mutable data to React State with an Effect. Typically, you'll write a custom Hook like `useOnlineStatus()` above so that you don't need to repeat this code in the individual components. [Read more about subscribing to external stores from React components.](/reference/react/useSyncExternalStore)
 
 ### Fetching data {/*fetching-data*/}
 
@@ -794,11 +794,11 @@ In general, whenever you have to resort to writing Effects, keep an eye out for 
 
 - If you can calculate something during render, you don't need an Effect.
 - To cache expensive calculations, add `useMemo` instead of `useEffect`.
-- To reset the state of an entire component tree, pass a different `key` to it.
-- To reset a particular bit of state in response to a prop change, set it during rendering.
+- To reset the State of an entire component tree, pass a different `key` to it.
+- To reset a particular bit of State in response to a prop change, set it during rendering.
 - Code that runs because a component was *displayed* should be in Effects, the rest should be in events.
-- If you need to update the state of several components, it's better to do it during a single event.
-- Whenever you try to synchronize state variables in different components, consider lifting state up.
+- If you need to update the State of several components, it's better to do it during a single event.
+- Whenever you try to synchronize State variables in different components, consider lifting State up.
 - You can fetch data with Effects, but you need to implement cleanup to avoid race conditions.
 
 </Recap>
@@ -809,7 +809,7 @@ In general, whenever you have to resort to writing Effects, keep an eye out for 
 
 The `TodoList` below displays a list of todos. When the "Show only active todos" checkbox is ticked, completed todos are not displayed in the list. Regardless of which todos are visible, the footer displays the count of todos that are not yet completed.
 
-Simplify this component by removing all the unnecessary state and Effects.
+Simplify this component by removing all the unnecessary State and Effects.
 
 <Sandpack>
 
@@ -915,7 +915,7 @@ If you can calculate something during rendering, you don't need state or an Effe
 
 <Solution>
 
-There are only two essential pieces of state in this example: the list of `todos` and the `showActive` state variable which represents whether the checkbox is ticked. All of the other state variables are [redundant](/learn/choosing-the-state-structure#avoid-redundant-state) and can be calculated during rendering instead. This includes the `footer` which you can move directly into the surrounding JSX.
+There are only two essential pieces of State in this example: the list of `todos` and the `showActive` State variable which represents whether the checkbox is ticked. All of the other State variables are [redundant](/learn/choosing-the-state-structure#avoid-redundant-state) and can be calculated during rendering instead. This includes the `footer` which you can move directly into the surrounding JSX.
 
 Your result should end up looking like this:
 
@@ -1177,9 +1177,9 @@ input { margin-top: 10px; }
 
 </Sandpack>
 
-With this change, `getVisibleTodos()` will be called only if `todos` or `showActive` change. Typing into the input only changes the `text` state variable, so it does not trigger a call to `getVisibleTodos()`.
+With this change, `getVisibleTodos()` will be called only if `todos` or `showActive` change. Typing into the input only changes the `text` State variable, so it does not trigger a call to `getVisibleTodos()`.
 
-There is also another solution which does not need `useMemo`. Since the `text` state variable can't possibly affect the list of todos, you can extract the `NewTodo` form into a separate component, and move the `text` state variable inside of it:
+There is also another solution which does not need `useMemo`. Since the `text` State variable can't possibly affect the list of todos, you can extract the `NewTodo` form into a separate component, and move the `text` State variable inside of it:
 
 <Sandpack>
 
@@ -1266,11 +1266,11 @@ input { margin-top: 10px; }
 
 </Sandpack>
 
-This approach satisfies the requirements too. When you type into the input, only the `text` state variable updates. Since the `text` state variable is in the child `NewTodo` component, the parent `TodoList` component won't get re-rendered. This is why `getVisibleTodos()` doesn't get called when you type. (It would still be called if the `TodoList` re-renders for another reason.)
+This approach satisfies the requirements too. When you type into the input, only the `text` State variable updates. Since the `text` State variable is in the child `NewTodo` component, the parent `TodoList` component won't get re-rendered. This is why `getVisibleTodos()` doesn't get called when you type. (It would still be called if the `TodoList` re-renders for another reason.)
 
 </Solution>
 
-#### Reset state without Effects {/*reset-state-without-effects*/}
+#### Reset State without Effects {/*reset-state-without-effects*/}
 
 This `EditContact` component receives a contact object shaped like `{ id, name, email }` as the `savedContact` prop. Try editing the name and email input fields. When you press Save, the contact's button above the form updates to the edited name. When you press Reset, any pending changes in the form are discarded. Play around with this UI to get a feel for it.
 
@@ -1432,13 +1432,13 @@ button {
 
 <Hint>
 
-It would be nice if there was a way to tell React that when `savedContact.id` is different, the `EditContact` form is conceptually a _different contact's form_ and should not preserve state. Do you recall any such way?
+It would be nice if there was a way to tell React that when `savedContact.id` is different, the `EditContact` form is conceptually a _different contact's form_ and should not preserve State. Do you recall any such way?
 
 </Hint>
 
 <Solution>
 
-Split the `EditContact` component in two. Move all the form state into the inner `EditForm` component. Export the outer `EditContact` component, and make it pass `savedContact.id` as the `key` to the inner `EditForm` component. As a result, the inner `EditForm` component resets all of the form state and recreates the DOM whenever you select a different contact.
+Split the `EditContact` component in two. Move all the form State into the inner `EditForm` component. Export the outer `EditContact` component, and make it pass `savedContact.id` as the `key` to the inner `EditForm` component. As a result, the inner `EditForm` component resets all of the form State and recreates the DOM whenever you select a different contact.
 
 <Sandpack>
 
@@ -1602,9 +1602,9 @@ button {
 
 #### Submit a form without Effects {/*submit-a-form-without-effects*/}
 
-This `Form` component lets you send a message to a friend. When you submit the form, the `showForm` state variable is set to `false`. This triggers an Effect calling `sendMessage(message)`, which sends the message (you can see it in the console). After the message is sent, you see a "Thank you" dialog with an "Open chat" button that lets you get back to the form.
+This `Form` component lets you send a message to a friend. When you submit the form, the `showForm` State variable is set to `false`. This triggers an Effect calling `sendMessage(message)`, which sends the message (you can see it in the console). After the message is sent, you see a "Thank you" dialog with an "Open chat" button that lets you get back to the form.
 
-Your app's users are sending way too many messages. To make chatting a little bit more difficult, you've decided to show the "Thank you" dialog *first* rather than the form. Change the `showForm` state variable to initialize to `false` instead of `true`. As soon as you make that change, the console will show that an empty message was sent. Something in this logic is wrong!
+Your app's users are sending way too many messages. To make chatting a little bit more difficult, you've decided to show the "Thank you" dialog *first* rather than the form. Change the `showForm` State variable to initialize to `false` instead of `true`. As soon as you make that change, the console will show that an empty message was sent. Something in this logic is wrong!
 
 What's the root cause of this problem? And how can you fix it?
 
@@ -1675,7 +1675,7 @@ label, textarea { margin-bottom: 10px; display: block; }
 
 <Solution>
 
-The `showForm` state variable determines whether to show the form or the "Thank you" dialog. However, you aren't sending the message because the "Thank you" dialog was _displayed_. You want to send the message because the user has _submitted the form._ Delete the misleading Effect and move the `sendMessage` call inside the `handleSubmit` event handler:
+The `showForm` State variable determines whether to show the form or the "Thank you" dialog. However, you aren't sending the message because the "Thank you" dialog was _displayed_. You want to send the message because the user has _submitted the form._ Delete the misleading Effect and move the `sendMessage` call inside the `handleSubmit` event handler:
 
 <Sandpack>
 

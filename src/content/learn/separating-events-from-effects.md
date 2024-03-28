@@ -4,7 +4,7 @@ title: 'Separating Events from Effects'
 
 <Intro>
 
-Event handlers only re-run when you perform the same interaction again. Unlike event handlers, Effects re-synchronize if some value they read, like a prop or a state variable, is different from what it was during the last render. Sometimes, you also want a mix of both behaviors: an Effect that re-runs in response to some values but not others. This page will teach you how to do that.
+Event handlers only re-run when you perform the same interaction again. Unlike event handlers, Effects re-synchronize if some value they read, like a prop or a State variable, is different from what it was during the last render. Sometimes, you also want a mix of both behaviors: an Effect that re-runs in response to some values but not others. This page will teach you how to do that.
 
 </Intro>
 
@@ -14,7 +14,7 @@ Event handlers only re-run when you perform the same interaction again. Unlike e
 - Why Effects are reactive, and event handlers are not
 - What to do when you want a part of your Effect's code to not be reactive
 - What Effect Events are, and how to extract them from your Effects
-- How to read the latest props and state from Effects using Effect Events
+- How to read the latest props and State from Effects using Effect Events
 
 </YouWillLearn>
 
@@ -160,7 +160,7 @@ Intuitively, you could say that event handlers are always triggered "manually", 
 
 There is a more precise way to think about this.
 
-Props, state, and variables declared inside your component's body are called <CodeStep step={2}>reactive values</CodeStep>. In this example, `serverUrl` is not a reactive value, but `roomId` and `message` are. They participate in the rendering data flow:
+Props, State, and variables declared inside your component's body are called <CodeStep step={2}>reactive values</CodeStep>. In this example, `serverUrl` is not a reactive value, but `roomId` and `message` are. They participate in the rendering data flow:
 
 ```js [[2, 3, "roomId"], [2, 4, "message"]]
 const serverUrl = 'https://localhost:1234';
@@ -418,7 +418,7 @@ function ChatRoom({ roomId, theme }) {
   // ...
 ```
 
-Here, `onConnected` is called an *Effect Event.* It's a part of your Effect logic, but it behaves a lot more like an event handler. The logic inside it is not reactive, and it always "sees" the latest values of your props and state.
+Here, `onConnected` is called an *Effect Event.* It's a part of your Effect logic, but it behaves a lot more like an event handler. The logic inside it is not reactive, and it always "sees" the latest values of your props and State.
 
 Now you can call the `onConnected` Effect Event from inside your Effect:
 
@@ -576,7 +576,7 @@ label { display: block; margin-top: 10px; }
 
 You can think of Effect Events as being very similar to event handlers. The main difference is that event handlers run in response to a user interactions, whereas Effect Events are triggered by you from Effects. Effect Events let you "break the chain" between the reactivity of Effects and code that should not be reactive.
 
-### Reading latest props and state with Effect Events {/*reading-latest-props-and-state-with-effect-events*/}
+### Reading latest props and State with Effect Events {/*reading-latest-props-and-state-with-effect-events*/}
 
 <Wip>
 
@@ -729,7 +729,7 @@ After `useEffectEvent` becomes a stable part of React, we recommend **never supp
 
 The first downside of suppressing the rule is that React will no longer warn you when your Effect needs to "react" to a new reactive dependency you've introduced to your code. In the earlier example, you added `url` to the dependencies *because* React reminded you to do it. You will no longer get such reminders for any future edits to that Effect if you disable the linter. This leads to bugs.
 
-Here is an example of a confusing bug caused by suppressing the linter. In this example, the `handleMove` function is supposed to read the current `canMove` state variable value in order to decide whether the dot should follow the cursor. However, `canMove` is always `true` inside `handleMove`.
+Here is an example of a confusing bug caused by suppressing the linter. In this example, the `handleMove` function is supposed to read the current `canMove` State variable value in order to decide whether the dot should follow the cursor. However, `canMove` is always `true` inside `handleMove`.
 
 Can you see why?
 
@@ -961,7 +961,7 @@ Effect Events are non-reactive "pieces" of your Effect code. They should be next
 
 #### Fix a variable that doesn't update {/*fix-a-variable-that-doesnt-update*/}
 
-This `Timer` component keeps a `count` state variable which increases every second. The value by which it's increasing is stored in the `increment` state variable. You can control the `increment` variable with the plus and minus buttons.
+This `Timer` component keeps a `count` State variable which increases every second. The value by which it's increasing is stored in the `increment` State variable. You can control the `increment` variable with the plus and minus buttons.
 
 However, no matter how many times you click the plus button, the counter is still incremented by one every second. What's wrong with this code? Why is `increment` always equal to `1` inside the Effect's code? Find the mistake and fix it.
 
@@ -1076,7 +1076,7 @@ Now, when `increment` changes, React will re-synchronize your Effect, which will
 
 #### Fix a freezing counter {/*fix-a-freezing-counter*/}
 
-This `Timer` component keeps a `count` state variable which increases every second. The value by which it's increasing is stored in the `increment` state variable, which you can control it with the plus and minus buttons. For example, try pressing the plus button nine times, and notice that the `count` now increases each second by ten rather than by one.
+This `Timer` component keeps a `count` State variable which increases every second. The value by which it's increasing is stored in the `increment` State variable, which you can control it with the plus and minus buttons. For example, try pressing the plus button nine times, and notice that the `count` now increases each second by ten rather than by one.
 
 There is a small issue with this user interface. You might notice that if you keep pressing the plus or minus buttons faster than once per second, the timer itself seems to pause. It only resumes after a second passes since the last time you've pressed either button. Find why this is happening, and fix the issue so that the timer ticks on *every* second without interruptions.
 
@@ -1151,7 +1151,7 @@ button { margin: 10px; }
 
 <Solution>
 
-The issue is that the code inside the Effect uses the `increment` state variable. Since it's a dependency of your Effect, every change to `increment` causes the Effect to re-synchronize, which causes the interval to clear. If you keep clearing the interval every time before it has a chance to fire, it will appear as if the timer has stalled.
+The issue is that the code inside the Effect uses the `increment` State variable. Since it's a dependency of your Effect, every change to `increment` causes the Effect to re-synchronize, which causes the interval to clear. If you keep clearing the interval every time before it has a chance to fire, it will appear as if the timer has stalled.
 
 To solve the issue, extract an `onTick` Effect Event from the Effect:
 
@@ -1229,7 +1229,7 @@ Since `onTick` is an Effect Event, the code inside it isn't reactive. The change
 
 #### Fix a non-adjustable delay {/*fix-a-non-adjustable-delay*/}
 
-In this example, you can customize the interval delay. It's stored in a `delay` state variable which is updated by two buttons. However, even if you press the "plus 100 ms" button until the `delay` is 1000 milliseconds (that is, a second), you'll notice that the timer still increments very fast (every 100 ms). It's as if your changes to the `delay` are ignored. Find and fix the bug.
+In this example, you can customize the interval delay. It's stored in a `delay` State variable which is updated by two buttons. However, even if you press the "plus 100 ms" button until the `delay` is 1000 milliseconds (that is, a second), you'll notice that the timer still increments very fast (every 100 ms). It's as if your changes to the `delay` are ignored. Find and fix the bug.
 
 <Hint>
 
@@ -1322,7 +1322,7 @@ button { margin: 10px; }
 
 <Solution>
 
-The problem with the above example is that it extracted an Effect Event called `onMount` without considering what the code should actually be doing. You should only extract Effect Events for a specific reason: when you want to make a part of your code non-reactive. However, the `setInterval` call *should* be reactive with respect to the `delay` state variable. If the `delay` changes, you want to set up the interval from scratch! To fix this code, pull all the reactive code back inside the Effect:
+The problem with the above example is that it extracted an Effect Event called `onMount` without considering what the code should actually be doing. You should only extract Effect Events for a specific reason: when you want to make a part of your code non-reactive. However, the `setInterval` call *should* be reactive with respect to the `delay` State variable. If the `delay` changes, you want to set up the interval from scratch! To fix this code, pull all the reactive code back inside the Effect:
 
 <Sandpack>
 

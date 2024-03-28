@@ -20,7 +20,7 @@ const [state, dispatch] = useReducer(reducer, initialArg, init?)
 
 ### `useReducer(reducer, initialArg, init?)` {/*usereducer*/}
 
-Call `useReducer` at the top level of your component to manage its state with a [reducer.](/learn/extracting-state-logic-into-a-reducer)
+Call `useReducer` at the top level of your component to manage its State with a [reducer.](/learn/extracting-state-logic-into-a-reducer)
 
 ```js
 import { useReducer } from 'react';
@@ -38,27 +38,27 @@ function MyComponent() {
 
 #### Parameters {/*parameters*/}
 
-* `reducer`: The reducer function that specifies how the state gets updated. It must be pure, should take the state and action as arguments, and should return the next state. State and action can be of any types. 
-* `initialArg`: The value from which the initial state is calculated. It can be a value of any type. How the initial state is calculated from it depends on the next `init` argument.
-* **optional** `init`: The initializer function that should return the initial state. If it's not specified, the initial state is set to `initialArg`. Otherwise, the initial state is set to the result of calling `init(initialArg)`.
+* `reducer`: The reducer function that specifies how the State gets updated. It must be pure, should take the State and action as arguments, and should return the next State. State and action can be of any types. 
+* `initialArg`: The value from which the initial state is calculated. It can be a value of any type. How the initial State is calculated from it depends on the next `init` argument.
+* **optional** `init`: The initializer function that should return the initial State. If it's not specified, the initial State is set to `initialArg`. Otherwise, the initial State is set to the result of calling `init(initialArg)`.
 
 #### Returns {/*returns*/}
 
 `useReducer` returns an array with exactly two values:
 
-1. The current state. During the first render, it's set to `init(initialArg)` or `initialArg` (if there's no `init`).
-2. The [`dispatch` function](#dispatch) that lets you update the state to a different value and trigger a re-render.
+1. The current State. During the first render, it's set to `init(initialArg)` or `initialArg` (if there's no `init`).
+2. The [`dispatch` function](#dispatch) that lets you update the State to a different value and trigger a re-render.
 
 #### Caveats {/*caveats*/}
 
-* `useReducer` is a Hook, so you can only call it **at the top level of your component** or your own Hooks. You can't call it inside loops or conditions. If you need that, extract a new component and move the state into it.
+* `useReducer` is a Hook, so you can only call it **at the top level of your component** or your own Hooks. You can't call it inside loops or conditions. If you need that, extract a new component and move the State into it.
 * In Strict Mode, React will **call your reducer and initializer twice** in order to [help you find accidental impurities.](#my-reducer-or-initializer-function-runs-twice) This is development-only behavior and does not affect production. If your reducer and initializer are pure (as they should be), this should not affect your logic. The result from one of the calls is ignored.
 
 ---
 
 ### `dispatch` function {/*dispatch*/}
 
-The `dispatch` function returned by `useReducer` lets you update the state to a different value and trigger a re-render. You need to pass the action as the only argument to the `dispatch` function:
+The `dispatch` function returned by `useReducer` lets you update the State to a different value and trigger a re-render. You need to pass the action as the only argument to the `dispatch` function:
 
 ```js
 const [state, dispatch] = useReducer(reducer, { age: 42 });
@@ -68,7 +68,7 @@ function handleClick() {
   // ...
 ```
 
-React will set the next state to the result of calling the `reducer` function you've provided with the current `state` and the action you've passed to `dispatch`.
+React will set the next State to the result of calling the `reducer` function you've provided with the current `state` and the action you've passed to `dispatch`.
 
 #### Parameters {/*dispatch-parameters*/}
 
@@ -80,7 +80,7 @@ React will set the next state to the result of calling the `reducer` function yo
 
 #### Caveats {/*setstate-caveats*/}
 
-* The `dispatch` function **only updates the state variable for the *next* render**. If you read the state variable after calling the `dispatch` function, [you will still get the old value](#ive-dispatched-an-action-but-logging-gives-me-the-old-state-value) that was on the screen before your call.
+* The `dispatch` function **only updates the State variable for the *next* render**. If you read the State variable after calling the `dispatch` function, [you will still get the old value](#ive-dispatched-an-action-but-logging-gives-me-the-old-state-value) that was on the screen before your call.
 
 * If the new value you provide is identical to the current `state`, as determined by an [`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is) comparison, React will **skip re-rendering the component and its children.** This is an optimization. React may still need to call your component before ignoring the result, but it shouldn't affect your code.
 
@@ -92,7 +92,7 @@ React will set the next state to the result of calling the `reducer` function yo
 
 ### Adding a reducer to a component {/*adding-a-reducer-to-a-component*/}
 
-Call `useReducer` at the top level of your component to manage state with a [reducer.](/learn/extracting-state-logic-into-a-reducer)
+Call `useReducer` at the top level of your component to manage State with a [reducer.](/learn/extracting-state-logic-into-a-reducer)
 
 ```js [[1, 8, "state"], [2, 8, "dispatch"], [4, 8, "reducer"], [3, 8, "{ age: 42 }"]]
 import { useReducer } from 'react';
@@ -119,7 +119,7 @@ function handleClick() {
 }
 ```
 
-React will pass the current state and the action to your <CodeStep step={4}>reducer function</CodeStep>. Your reducer will calculate and return the next state. React will store that next state, render your component with it, and update the UI.
+React will pass the current State and the action to your <CodeStep step={4}>reducer function</CodeStep>. Your reducer will calculate and return the next State. React will store that next State, render your component with it, and update the UI.
 
 <Sandpack>
 
@@ -157,7 +157,7 @@ button { display: block; margin-top: 10px; }
 
 </Sandpack>
 
-`useReducer` is very similar to [`useState`](/reference/react/useState), but it lets you move the state update logic from event handlers into a single function outside of your component. Read more about [choosing between `useState` and `useReducer`.](/learn/extracting-state-logic-into-a-reducer#comparing-usestate-and-usereducer)
+`useReducer` is very similar to [`useState`](/reference/react/useState), but it lets you move the State update logic from event handlers into a single function outside of your component. Read more about [choosing between `useState` and `useReducer`.](/learn/extracting-state-logic-into-a-reducer#comparing-usestate-and-usereducer)
 
 ---
 
@@ -171,7 +171,7 @@ function reducer(state, action) {
 }
 ```
 
-Then you need to fill in the code that will calculate and return the next state. By convention, it is common to write it as a [`switch` statement.](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/switch) For each `case` in the `switch`, calculate and return some next state.
+Then you need to fill in the code that will calculate and return the next State. By convention, it is common to write it as a [`switch` statement.](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/switch) For each `case` in the `switch`, calculate and return some next State.
 
 ```js {4-7,10-13}
 function reducer(state, action) {
@@ -193,7 +193,7 @@ function reducer(state, action) {
 }
 ```
 
-Actions can have any shape. By convention, it's common to pass objects with a `type` property identifying the action. It should include the minimal necessary information that the reducer needs to compute the next state.
+Actions can have any shape. By convention, it's common to pass objects with a `type` property identifying the action. It should include the minimal necessary information that the reducer needs to compute the next State.
 
 ```js {5,9-12}
 function Form() {
@@ -212,13 +212,13 @@ function Form() {
   // ...
 ```
 
-The action type names are local to your component. [Each action describes a single interaction, even if that leads to multiple changes in data.](/learn/extracting-state-logic-into-a-reducer#writing-reducers-well) The shape of the state is arbitrary, but usually it'll be an object or an array.
+The action type names are local to your component. [Each action describes a single interaction, even if that leads to multiple changes in data.](/learn/extracting-state-logic-into-a-reducer#writing-reducers-well) The shape of the State is arbitrary, but usually it'll be an object or an array.
 
-Read [extracting state logic into a reducer](/learn/extracting-state-logic-into-a-reducer) to learn more.
+Read [extracting State logic into a reducer](/learn/extracting-state-logic-into-a-reducer) to learn more.
 
 <Pitfall>
 
-State is read-only. Don't modify any objects or arrays in state:
+State is read-only. Don't modify any objects or arrays in State:
 
 ```js {4,5}
 function reducer(state, action) {
@@ -252,7 +252,7 @@ Read [updating objects in state](/learn/updating-objects-in-state) and [updating
 
 #### Form (object) {/*form-object*/}
 
-In this example, the reducer manages a state object with two fields: `name` and `age`.
+In this example, the reducer manages a State object with two fields: `name` and `age`.
 
 <Sandpack>
 
@@ -723,9 +723,9 @@ ul, li { margin: 0; padding: 0; }
 
 ---
 
-### Avoiding recreating the initial state {/*avoiding-recreating-the-initial-state*/}
+### Avoiding recreating the initial State {/*avoiding-recreating-the-initial-state*/}
 
-React saves the initial state once and ignores it on the next renders.
+React saves the initial State once and ignores it on the next renders.
 
 ```js
 function createInitialState(username) {
@@ -751,9 +751,9 @@ function TodoList({ username }) {
   // ...
 ```
 
-Notice that you’re passing `createInitialState`, which is the *function itself*, and not `createInitialState()`, which is the result of calling it. This way, the initial state does not get re-created after initialization.
+Notice that you’re passing `createInitialState`, which is the *function itself*, and not `createInitialState()`, which is the result of calling it. This way, the initial State does not get re-created after initialization.
 
-In the above example, `createInitialState` takes a `username` argument. If your initializer doesn't need any information to compute the initial state, you may pass `null` as the second argument to `useReducer`.
+In the above example, `createInitialState` takes a `username` argument. If your initializer doesn't need any information to compute the initial State, you may pass `null` as the second argument to `useReducer`.
 
 <Recipes titleText="The difference between passing an initializer and passing the initial state directly" titleId="examples-initializer">
 
@@ -845,7 +845,7 @@ export default function TodoList({ username }) {
 
 <Solution />
 
-#### Passing the initial state directly {/*passing-the-initial-state-directly*/}
+#### Passing the initial State directly {/*passing-the-initial-state-directly*/}
 
 This example **does not** pass the initializer function, so the `createInitialState` function runs on every render, such as when you type into the input. There is no observable difference in behavior, but this code is less efficient.
 
@@ -938,9 +938,9 @@ export default function TodoList({ username }) {
 
 ## Troubleshooting {/*troubleshooting*/}
 
-### I've dispatched an action, but logging gives me the old state value {/*ive-dispatched-an-action-but-logging-gives-me-the-old-state-value*/}
+### I've dispatched an action, but logging gives me the old State value {/*ive-dispatched-an-action-but-logging-gives-me-the-old-state-value*/}
 
-Calling the `dispatch` function **does not change state in the running code**:
+Calling the `dispatch` function **does not change State in the running code**:
 
 ```js {4,5,8}
 function handleClick() {
@@ -955,9 +955,9 @@ function handleClick() {
 }
 ```
 
-This is because [states behaves like a snapshot.](/learn/state-as-a-snapshot) Updating state requests another render with the new state value, but does not affect the `state` JavaScript variable in your already-running event handler.
+This is because [states behaves like a snapshot.](/learn/state-as-a-snapshot) Updating State requests another render with the new State value, but does not affect the `state` JavaScript variable in your already-running event handler.
 
-If you need to guess the next state value, you can calculate it manually by calling the reducer yourself:
+If you need to guess the next State value, you can calculate it manually by calling the reducer yourself:
 
 ```js
 const action = { type: 'incremented_age' };
@@ -972,7 +972,7 @@ console.log(nextState); // { age: 43 }
 
 ### I've dispatched an action, but the screen doesn't update {/*ive-dispatched-an-action-but-the-screen-doesnt-update*/}
 
-React will **ignore your update if the next state is equal to the previous state,** as determined by an [`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is) comparison. This usually happens when you change an object or an array in state directly:
+React will **ignore your update if the next State is equal to the previous State,** as determined by an [`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is) comparison. This usually happens when you change an object or an array in state directly:
 
 ```js {4-5,9-10}
 function reducer(state, action) {
@@ -992,7 +992,7 @@ function reducer(state, action) {
 }
 ```
 
-You mutated an existing `state` object and returned it, so React ignored the update. To fix this, you need to ensure that you're always [updating objects in state](/learn/updating-objects-in-state) and [updating arrays in state](/learn/updating-arrays-in-state) instead of mutating them:
+You mutated an existing `state` object and returned it, so React ignored the update. To fix this, you need to ensure that you're always [updating objects in State](/learn/updating-objects-in-state) and [updating arrays in State](/learn/updating-arrays-in-state) instead of mutating them:
 
 ```js {4-8,11-15}
 function reducer(state, action) {
@@ -1018,9 +1018,9 @@ function reducer(state, action) {
 
 ---
 
-### A part of my reducer state becomes undefined after dispatching {/*a-part-of-my-reducer-state-becomes-undefined-after-dispatching*/}
+### A part of my reducer State becomes undefined after dispatching {/*a-part-of-my-reducer-state-becomes-undefined-after-dispatching*/}
 
-Make sure that every `case` branch **copies all of the existing fields** when returning the new state:
+Make sure that every `case` branch **copies all of the existing fields** when returning the new State:
 
 ```js {5}
 function reducer(state, action) {
@@ -1034,13 +1034,13 @@ function reducer(state, action) {
     // ...
 ```
 
-Without `...state` above, the returned next state would only contain the `age` field and nothing else.
+Without `...state` above, the returned next State would only contain the `age` field and nothing else.
 
 ---
 
-### My entire reducer state becomes undefined after dispatching {/*my-entire-reducer-state-becomes-undefined-after-dispatching*/}
+### My entire reducer State becomes undefined after dispatching {/*my-entire-reducer-state-becomes-undefined-after-dispatching*/}
 
-If your state unexpectedly becomes `undefined`, you're likely forgetting to `return` state in one of the cases, or your action type doesn't match any of the `case` statements. To find why, throw an error outside the `switch`:
+If your State unexpectedly becomes `undefined`, you're likely forgetting to `return` State in one of the cases, or your action type doesn't match any of the `case` statements. To find why, throw an error outside the `switch`:
 
 ```js {10}
 function reducer(state, action) {
@@ -1085,7 +1085,7 @@ In [Strict Mode](/reference/react/StrictMode), React will call your reducer and 
 
 This **development-only** behavior helps you [keep components pure.](/learn/keeping-components-pure) React uses the result of one of the calls, and ignores the result of the other call. As long as your component, initializer, and reducer functions are pure, this shouldn't affect your logic. However, if they are accidentally impure, this helps you notice the mistakes.
 
-For example, this impure reducer function mutates an array in state:
+For example, this impure reducer function mutates an array in State:
 
 ```js {4-6}
 function reducer(state, action) {

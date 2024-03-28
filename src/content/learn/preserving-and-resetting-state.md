@@ -4,15 +4,15 @@ title: Preserving and Resetting State
 
 <Intro>
 
-State is isolated between components. React keeps track of which state belongs to which component based on their place in the UI tree. You can control when to preserve state and when to reset it between re-renders.
+State is isolated between components. React keeps track of which State belongs to which component based on their place in the UI tree. You can control when to preserve State and when to reset it between re-renders.
 
 </Intro>
 
 <YouWillLearn>
 
-* When React chooses to preserve or reset the state
+* When React chooses to preserve or reset the State
 * How to force React to reset component's state
-* How keys and types affect whether the state is preserved
+* How keys and types affect whether the State is preserved
 
 </YouWillLearn>
 
@@ -20,7 +20,7 @@ State is isolated between components. React keeps track of which state belongs t
 
 React builds [render trees](learn/understanding-your-ui-as-a-tree#the-render-tree) for the component structure in your UI.
 
-When you give a component state, you might think the state "lives" inside the component. But the state is actually held inside React. React associates each piece of state it's holding with the correct component by where that component sits in the render tree.
+When you give a component state, you might think the State "lives" inside the component. But the State is actually held inside React. React associates each piece of State it's holding with the correct component by where that component sits in the render tree.
 
 Here, there is only one `<Counter />` JSX tag, but it's rendered at two different positions:
 
@@ -160,7 +160,7 @@ function Counter() {
 
 </Sandpack>
 
-As you can see, when one counter is updated, only the state for that component is updated:
+As you can see, when one counter is updated, only the State for that component is updated:
 
 
 <DiagramGroup>
@@ -248,7 +248,7 @@ label {
 
 </Sandpack>
 
-Notice how the moment you stop rendering the second counter, its state disappears completely. That's because when React removes a component, it destroys its state.
+Notice how the moment you stop rendering the second counter, its State disappears completely. That's because when React removes a component, it destroys its state.
 
 <DiagramGroup>
 
@@ -476,13 +476,13 @@ label {
 
 </Sandpack>
 
-You might expect the state to reset when you tick checkbox, but it doesn't! This is because **both of these `<Counter />` tags are rendered at the same position.** React doesn't know where you place the conditions in your function. All it "sees" is the tree you return.
+You might expect the State to reset when you tick checkbox, but it doesn't! This is because **both of these `<Counter />` tags are rendered at the same position.** React doesn't know where you place the conditions in your function. All it "sees" is the tree you return.
 
 In both cases, the `App` component returns a `<div>` with `<Counter />` as a first child. To React, these two counters have the same "address": the first child of the first child of the root. This is how React matches them up between the previous and next renders, regardless of how you structure your logic.
 
 </Pitfall>
 
-## Different components at the same position reset state {/*different-components-at-the-same-position-reset-state*/}
+## Different components at the same position reset State {/*different-components-at-the-same-position-reset-state*/}
 
 In this example, ticking the checkbox will replace `<Counter>` with a `<p>`:
 
@@ -583,7 +583,7 @@ When switching back, the `p` is deleted and the `Counter` is added
 
 </DiagramGroup>
 
-Also, **when you render a different component in the same position, it resets the state of its entire subtree.** To see how this works, increment the counter and then tick the checkbox:
+Also, **when you render a different component in the same position, it resets the State of its entire subtree.** To see how this works, increment the counter and then tick the checkbox:
 
 <Sandpack>
 
@@ -1237,10 +1237,10 @@ No matter which strategy you pick, a chat _with Alice_ is conceptually distinct 
 
 <Recap>
 
-- React keeps state for as long as the same component is rendered at the same position.
+- React keeps State for as long as the same component is rendered at the same position.
 - State is not kept in JSX tags. It's associated with the tree position in which you put that JSX.
-- You can force a subtree to reset its state by giving it a different key.
-- Don't nest component definitions, or you'll reset state by accident.
+- You can force a subtree to reset its State by giving it a different key.
+- Don't nest component definitions, or you'll reset State by accident.
 
 </Recap>
 
@@ -1299,7 +1299,7 @@ textarea { display: block; margin: 10px 0; }
 
 <Solution>
 
-The problem is that `Form` is rendered in different positions. In the `if` branch, it is the second child of the `<div>`, but in the `else` branch, it is the first child. Therefore, the component type in each position changes. The first position changes between holding a `p` and a `Form`, while the second position changes between holding a `Form` and a `button`. React resets the state every time the component type changes.
+The problem is that `Form` is rendered in different positions. In the `if` branch, it is the second child of the `<div>`, but in the `else` branch, it is the first child. Therefore, the component type in each position changes. The first position changes between holding a `p` and a `Form`, while the second position changes between holding a `Form` and a `button`. React resets the State every time the component type changes.
 
 The easiest solution is to unify the branches so that `Form` always renders in the same position:
 
@@ -1471,7 +1471,7 @@ label { display: block; margin: 10px 0; }
 
 <Solution>
 
-Give a `key` to both `<Field>` components in both `if` and `else` branches. This tells React how to "match up" the correct state for either `<Field>` even if their order within the parent changes:
+Give a `key` to both `<Field>` components in both `if` and `else` branches. This tells React how to "match up" the correct State for either `<Field>` even if their order within the parent changes:
 
 <Sandpack>
 
@@ -1537,7 +1537,7 @@ label { display: block; margin: 10px 0; }
 
 This is an editable contact list. You can edit the selected contact's details and then either press "Save" to update it, or "Reset" to undo your changes.
 
-When you select a different contact (for example, Alice), the state updates but the form keeps showing the previous contact's details. Fix it so that the form gets reset when the selected contact changes.
+When you select a different contact (for example, Alice), the State updates but the form keeps showing the previous contact's details. Fix it so that the form gets reset when the selected contact changes.
 
 <Sandpack>
 
@@ -1986,11 +1986,11 @@ img { width: 150px; height: 150px; }
 
 </Solution>
 
-#### Fix misplaced state in the list {/*fix-misplaced-state-in-the-list*/}
+#### Fix misplaced State in the list {/*fix-misplaced-state-in-the-list*/}
 
-In this list, each `Contact` has state that determines whether "Show email" has been pressed for it. Press "Show email" for Alice, and then tick the "Show in reverse order" checkbox. You will notice that it's _Taylor's_ email that is expanded now, but Alice's--which has moved to the bottom--appears collapsed.
+In this list, each `Contact` has State that determines whether "Show email" has been pressed for it. Press "Show email" for Alice, and then tick the "Show in reverse order" checkbox. You will notice that it's _Taylor's_ email that is expanded now, but Alice's--which has moved to the bottom--appears collapsed.
 
-Fix it so that the expanded state is associated with each contact, regardless of the chosen ordering.
+Fix it so that the expanded State is associated with each contact, regardless of the chosen ordering.
 
 <Sandpack>
 
@@ -2087,7 +2087,7 @@ The problem is that this example was using index as a `key`:
   <li key={i}>
 ```
 
-However, you want the state to be associated with _each particular contact_.
+However, you want the State to be associated with _each particular contact_.
 
 Using the contact ID as a `key` instead fixes the issue:
 

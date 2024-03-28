@@ -4,18 +4,18 @@ title: Queueing a Series of State Updates
 
 <Intro>
 
-Setting a state variable will queue another render. But sometimes you might want to perform multiple operations on the value before queueing the next render. To do this, it helps to understand how React batches state updates.
+Setting a State variable will queue another render. But sometimes you might want to perform multiple operations on the value before queueing the next render. To do this, it helps to understand how React batches State updates.
 
 </Intro>
 
 <YouWillLearn>
 
-* What "batching" is and how React uses it to process multiple state updates
-* How to apply several updates to the same state variable in a row
+* What "batching" is and how React uses it to process multiple State updates
+* How to apply several updates to the same State variable in a row
 
 </YouWillLearn>
 
-## React batches state updates {/*react-batches-state-updates*/}
+## React batches State updates {/*react-batches-state-updates*/}
 
 You might expect that clicking the "+3" button will increment the counter three times because it calls `setNumber(number + 1)` three times:
 
@@ -55,19 +55,19 @@ setNumber(0 + 1);
 setNumber(0 + 1);
 ```
 
-But there is one other factor at play here. **React waits until *all* code in the event handlers has run before processing your state updates.** This is why the re-render only happens *after* all these `setNumber()` calls.
+But there is one other factor at play here. **React waits until *all* code in the event handlers has run before processing your State updates.** This is why the re-render only happens *after* all these `setNumber()` calls.
 
 This might remind you of a waiter taking an order at the restaurant. A waiter doesn't run to the kitchen at the mention of your first dish! Instead, they let you finish your order, let you make changes to it, and even take orders from other people at the table.
 
 <Illustration src="/images/docs/illustrations/i_react-batching.png"  alt="An elegant cursor at a restaurant places and order multiple times with React, playing the part of the waiter. After she calls setState() multiple times, the waiter writes down the last one she requested as her final order." />
 
-This lets you update multiple state variables--even from multiple components--without triggering too many [re-renders.](/learn/render-and-commit#re-renders-when-state-updates) But this also means that the UI won't be updated until _after_ your event handler, and any code in it, completes. This behavior, also known as **batching,** makes your React app run much faster. It also avoids dealing with confusing "half-finished" renders where only some of the variables have been updated.
+This lets you update multiple State variables--even from multiple components--without triggering too many [re-renders.](/learn/render-and-commit#re-renders-when-state-updates) But this also means that the UI won't be updated until _after_ your event handler, and any code in it, completes. This behavior, also known as **batching,** makes your React app run much faster. It also avoids dealing with confusing "half-finished" renders where only some of the variables have been updated.
 
 **React does not batch across *multiple* intentional events like clicks**--each click is handled separately. Rest assured that React only does batching when it's generally safe to do. This ensures that, for example, if the first button click disables a form, the second click would not submit it again.
 
-## Updating the same state multiple times before the next render {/*updating-the-same-state-multiple-times-before-the-next-render*/}
+## Updating the same State multiple times before the next render {/*updating-the-same-state-multiple-times-before-the-next-render*/}
 
-It is an uncommon use case, but if you would like to update the same state variable multiple times before the next render, instead of passing the *next state value* like `setNumber(number + 1)`, you can pass a *function* that calculates the next state based on the previous one in the queue, like `setNumber(n => n + 1)`. It is a way to tell React to "do something with the state value" instead of just replacing it.
+It is an uncommon use case, but if you would like to update the same State variable multiple times before the next render, instead of passing the *next State value* like `setNumber(number + 1)`, you can pass a *function* that calculates the next State based on the previous one in the queue, like `setNumber(n => n + 1)`. It is a way to tell React to "do something with the State value" instead of just replacing it.
 
 Try incrementing the counter now:
 
@@ -99,10 +99,10 @@ h1 { display: inline-block; margin: 10px; width: 30px; text-align: center; }
 
 </Sandpack>
 
-Here, `n => n + 1` is called an **updater function.** When you pass it to a state setter:
+Here, `n => n + 1` is called an **updater function.** When you pass it to a State setter:
 
 1. React queues this function to be processed after all the other code in the event handler has run.
-2. During the next render, React goes through the queue and gives you the final updated state.
+2. During the next render, React goes through the queue and gives you the final updated State.
 
 ```js
 setNumber(n => n + 1);
@@ -116,7 +116,7 @@ Here's how React works through these lines of code while executing the event han
 1. `setNumber(n => n + 1)`: `n => n + 1` is a function. React adds it to a queue.
 1. `setNumber(n => n + 1)`: `n => n + 1` is a function. React adds it to a queue.
 
-When you call `useState` during the next render, React goes through the queue. The previous `number` state was `0`, so that's what React passes to the first updater function as the `n` argument. Then React takes the return value of your previous updater function and passes it to the next updater as `n`, and so on:
+When you call `useState` during the next render, React goes through the queue. The previous `number` State was `0`, so that's what React passes to the first updater function as the `n` argument. Then React takes the return value of your previous updater function and passes it to the next updater as `n`, and so on:
 
 |  queued update | `n` | returns |
 |--------------|---------|-----|
@@ -127,7 +127,7 @@ When you call `useState` during the next render, React goes through the queue. T
 React stores `3` as the final result and returns it from `useState`.
 
 This is why clicking "+3" in the above example correctly increments the value by 3.
-### What happens if you update state after replacing it {/*what-happens-if-you-update-state-after-replacing-it*/}
+### What happens if you update State after replacing it {/*what-happens-if-you-update-state-after-replacing-it*/}
 
 What about this event handler? What do you think `number` will be in the next render?
 
@@ -170,7 +170,7 @@ Here's what this event handler tells React to do:
 1. `setNumber(number + 5)`: `number` is `0`, so `setNumber(0 + 5)`. React adds *"replace with `5`"* to its queue.
 2. `setNumber(n => n + 1)`: `n => n + 1` is an updater function. React adds *that function* to its queue.
 
-During the next render, React goes through the state queue:
+During the next render, React goes through the State queue:
 
 |   queued update       | `n` | returns |
 |--------------|---------|-----|
@@ -185,7 +185,7 @@ You may have noticed that `setState(5)` actually works like `setState(n => 5)`, 
 
 </Note>
 
-### What happens if you replace state after updating it {/*what-happens-if-you-replace-state-after-updating-it*/}
+### What happens if you replace State after updating it {/*what-happens-if-you-replace-state-after-updating-it*/}
 
 Let's try one more example. What do you think `number` will be in the next render?
 
@@ -231,7 +231,7 @@ Here's how React works through these lines of code while executing this event ha
 2. `setNumber(n => n + 1)`: `n => n + 1` is an updater function. React adds *that function* to its queue.
 3. `setNumber(42)`: React adds *"replace with `42`"* to its queue.
 
-During the next render, React goes through the state queue:
+During the next render, React goes through the State queue:
 
 |   queued update       | `n` | returns |
 |--------------|---------|-----|
@@ -241,16 +241,16 @@ During the next render, React goes through the state queue:
 
 Then React stores `42` as the final result and returns it from `useState`.
 
-To summarize, here's how you can think of what you're passing to the `setNumber` state setter:
+To summarize, here's how you can think of what you're passing to the `setNumber` State setter:
 
 * **An updater function** (e.g. `n => n + 1`) gets added to the queue.
 * **Any other value** (e.g. number `5`) adds "replace with `5`" to the queue, ignoring what's already queued.
 
-After the event handler completes, React will trigger a re-render. During the re-render, React will process the queue. Updater functions run during rendering, so **updater functions must be [pure](/learn/keeping-components-pure)** and only *return* the result. Don't try to set state from inside of them or run other side effects. In Strict Mode, React will run each updater function twice (but discard the second result) to help you find mistakes.
+After the event handler completes, React will trigger a re-render. During the re-render, React will process the queue. Updater functions run during rendering, so **updater functions must be [pure](/learn/keeping-components-pure)** and only *return* the result. Don't try to set State from inside of them or run other side effects. In Strict Mode, React will run each updater function twice (but discard the second result) to help you find mistakes.
 
 ### Naming conventions {/*naming-conventions*/}
 
-It's common to name the updater function argument by the first letters of the corresponding state variable:
+It's common to name the updater function argument by the first letters of the corresponding State variable:
 
 ```js
 setEnabled(e => !e);
@@ -258,13 +258,13 @@ setLastName(ln => ln.reverse());
 setFriendCount(fc => fc * 2);
 ```
 
-If you prefer more verbose code, another common convention is to repeat the full state variable name, like `setEnabled(enabled => !enabled)`, or to use a prefix like `setEnabled(prevEnabled => !prevEnabled)`.
+If you prefer more verbose code, another common convention is to repeat the full State variable name, like `setEnabled(enabled => !enabled)`, or to use a prefix like `setEnabled(prevEnabled => !prevEnabled)`.
 
 <Recap>
 
-* Setting state does not change the variable in the existing render, but it requests a new render.
-* React processes state updates after event handlers have finished running. This is called batching.
-* To update some state multiple times in one event, you can use `setNumber(n => n + 1)` updater function.
+* Setting State does not change the variable in the existing render, but it requests a new render.
+* React processes State updates after event handlers have finished running. This is called batching.
+* To update some State multiple times in one event, you can use `setNumber(n => n + 1)` updater function.
 
 </Recap>
 
@@ -364,19 +364,19 @@ function delay(ms) {
 
 </Sandpack>
 
-This ensures that when you increment or decrement a counter, you do it in relation to its *latest* state rather than what the state was at the time of the click.
+This ensures that when you increment or decrement a counter, you do it in relation to its *latest* State rather than what the State was at the time of the click.
 
 </Solution>
 
-#### Implement the state queue yourself {/*implement-the-state-queue-yourself*/}
+#### Implement the State queue yourself {/*implement-the-state-queue-yourself*/}
 
 In this challenge, you will reimplement a tiny part of React from scratch! It's not as hard as it sounds.
 
 Scroll through the sandbox preview. Notice that it shows **four test cases.** They correspond to the examples you've seen earlier on this page. Your task is to implement the `getFinalState` function so that it returns the correct result for each of those cases. If you implement it correctly, all four tests should pass.
 
-You will receive two arguments: `baseState` is the initial state (like `0`), and the `queue` is an array which contains a mix of numbers (like `5`) and updater functions (like `n => n + 1`) in the order they were added.
+You will receive two arguments: `baseState` is the initial State (like `0`), and the `queue` is an array which contains a mix of numbers (like `5`) and updater functions (like `n => n + 1`) in the order they were added.
 
-Your task is to return the final state, just like the tables on this page show!
+Your task is to return the final State, just like the tables on this page show!
 
 <Hint>
 
@@ -495,7 +495,7 @@ function TestCase({
 
 <Solution>
 
-This is the exact algorithm described on this page that React uses to calculate the final state:
+This is the exact algorithm described on this page that React uses to calculate the final State:
 
 <Sandpack>
 

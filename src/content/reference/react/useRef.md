@@ -47,7 +47,7 @@ On the next renders, `useRef` will return the same object.
 
 #### Caveats {/*caveats*/}
 
-* You can mutate the `ref.current` property. Unlike state, it is mutable. However, if it holds an object that is used for rendering (for example, a piece of your state), then you shouldn't mutate that object.
+* You can mutate the `ref.current` property. Unlike State, it is mutable. However, if it holds an object that is used for rendering (for example, a piece of your State), then you shouldn't mutate that object.
 * When you change the `ref.current` property, React does not re-render your component. React is not aware of when you change it because a ref is a plain JavaScript object.
 * Do not write _or read_ `ref.current` during rendering, except for [initialization.](#avoiding-recreating-the-ref-contents) This makes your component's behavior unpredictable.
 * In Strict Mode, React will **call your component function twice** in order to [help you find accidental impurities.](/reference/react/useState#my-initializer-or-updater-function-runs-twice) This is development-only behavior and does not affect production. Each ref object will be created twice, but one of the versions will be discarded. If your component function is pure (as it should be), this should not affect the behavior.
@@ -95,16 +95,16 @@ function handleStopClick() {
 By using a ref, you ensure that:
 
 - You can **store information** between re-renders (unlike regular variables, which reset on every render).
-- Changing it **does not trigger a re-render** (unlike state variables, which trigger a re-render).
+- Changing it **does not trigger a re-render** (unlike State variables, which trigger a re-render).
 - The **information is local** to each copy of your component (unlike the variables outside, which are shared).
 
-Changing a ref does not trigger a re-render, so refs are not appropriate for storing information you want to display on the screen. Use state for that instead. Read more about [choosing between `useRef` and `useState`.](/learn/referencing-values-with-refs#differences-between-refs-and-state)
+Changing a ref does not trigger a re-render, so refs are not appropriate for storing information you want to display on the screen. Use State for that instead. Read more about [choosing between `useRef` and `useState`.](/learn/referencing-values-with-refs#differences-between-refs-and-state)
 
 <Recipes titleText="Examples of referencing a value with useRef" titleId="examples-value">
 
 #### Click counter {/*click-counter*/}
 
-This component uses a ref to keep track of how many times the button was clicked. Note that it's okay to use a ref instead of state here because the click count is only read and written in an event handler.
+This component uses a ref to keep track of how many times the button was clicked. Note that it's okay to use a ref instead of State here because the click count is only read and written in an event handler.
 
 <Sandpack>
 
@@ -129,13 +129,13 @@ export default function Counter() {
 
 </Sandpack>
 
-If you show `{ref.current}` in the JSX, the number won't update on click. This is because setting `ref.current` does not trigger a re-render. Information that's used for rendering should be state instead.
+If you show `{ref.current}` in the JSX, the number won't update on click. This is because setting `ref.current` does not trigger a re-render. Information that's used for rendering should be State instead.
 
 <Solution />
 
 #### A stopwatch {/*a-stopwatch*/}
 
-This example uses a combination of state and refs. Both `startTime` and `now` are state variables because they are used for rendering. But we also need to hold an [interval ID](https://developer.mozilla.org/en-US/docs/Web/API/setInterval) so that we can stop the interval on button press. Since the interval ID is not used for rendering, it's appropriate to keep it in a ref, and manually update it.
+This example uses a combination of State and refs. Both `startTime` and `now` are State variables because they are used for rendering. But we also need to hold an [interval ID](https://developer.mozilla.org/en-US/docs/Web/API/setInterval) so that we can stop the interval on button press. Since the interval ID is not used for rendering, it's appropriate to keep it in a ref, and manually update it.
 
 <Sandpack>
 

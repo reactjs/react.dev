@@ -80,7 +80,7 @@ To implement this:
 3. In the `handleClick` function, read the input DOM node from `inputRef.current` and call [`focus()`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/focus) on it with `inputRef.current.focus()`.
 4. Pass the `handleClick` event handler to `<button>` with `onClick`.
 
-While DOM manipulation is the most common use case for refs, the `useRef` Hook can be used for storing other things outside React, like timer IDs. Similarly to state, refs remain between renders. Refs are like state variables that don't trigger re-renders when you set them. Read about refs in [Referencing Values with Refs.](/learn/referencing-values-with-refs)
+While DOM manipulation is the most common use case for refs, the `useRef` Hook can be used for storing other things outside React, like timer IDs. Similarly to state, refs remain between renders. Refs are like State variables that don't trigger re-renders when you set them. Read about refs in [Referencing Values with Refs.](/learn/referencing-values-with-refs)
 
 ### Example: Scrolling to an element {/*example-scrolling-to-an-element*/}
 
@@ -497,7 +497,7 @@ React sets `ref.current` during the commit. Before updating the DOM, React sets 
 
 <DeepDive>
 
-#### Flushing state updates synchronously with flushSync {/*flushing-state-updates-synchronously-with-flush-sync*/}
+#### Flushing State updates synchronously with flushSync {/*flushing-state-updates-synchronously-with-flush-sync*/}
 
 Consider code like this, which adds a new todo and scrolls the screen down to the last child of the list. Notice how, for some reason, it always scrolls to the todo that was *just before* the last added one:
 
@@ -562,7 +562,7 @@ listRef.current.lastChild.scrollIntoView();
 
 In React, [state updates are queued.](/learn/queueing-a-series-of-state-updates) Usually, this is what you want. However, here it causes a problem because `setTodos` does not immediately update the DOM. So the time you scroll the list to its last element, the todo has not yet been added. This is why scrolling always "lags behind" by one item.
 
-To fix this issue, you can force React to update ("flush") the DOM synchronously. To do this, import `flushSync` from `react-dom` and **wrap the state update** into a `flushSync` call:
+To fix this issue, you can force React to update ("flush") the DOM synchronously. To do this, import `flushSync` from `react-dom` and **wrap the State update** into a `flushSync` call:
 
 ```js
 flushSync(() => {
@@ -702,7 +702,7 @@ However, this doesn't mean that you can't do it at all. It requires caution. **Y
 
 #### Play and pause the video {/*play-and-pause-the-video*/}
 
-In this example, the button toggles a state variable to switch between a playing and a paused state. However, in order to actually play or pause the video, toggling state is not enough. You also need to call [`play()`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/play) and [`pause()`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/pause) on the DOM element for the `<video>`. Add a ref to it, and make the button work.
+In this example, the button toggles a State variable to switch between a playing and a paused State. However, in order to actually play or pause the video, toggling State is not enough. You also need to call [`play()`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/play) and [`pause()`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/pause) on the DOM element for the `<video>`. Add a ref to it, and make the button work.
 
 <Sandpack>
 
@@ -743,7 +743,7 @@ For an extra challenge, keep the "Play" button in sync with whether the video is
 
 <Solution>
 
-Declare a ref and put it on the `<video>` element. Then call `ref.current.play()` and `ref.current.pause()` in the event handler depending on the next state.
+Declare a ref and put it on the `<video>` element. Then call `ref.current.play()` and `ref.current.pause()` in the event handler depending on the next State.
 
 <Sandpack>
 
@@ -792,7 +792,7 @@ button { display: block; margin-bottom: 20px; }
 
 </Sandpack>
 
-In order to handle the built-in browser controls, you can add `onPlay` and `onPause` handlers to the `<video>` element and call `setIsPlaying` from them. This way, if the user plays the video using the browser controls, the state will adjust accordingly.
+In order to handle the built-in browser controls, you can add `onPlay` and `onPause` handlers to the `<video>` element and call `setIsPlaying` from them. This way, if the user plays the video using the browser controls, the State will adjust accordingly.
 
 </Solution>
 

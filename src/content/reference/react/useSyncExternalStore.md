@@ -83,9 +83,9 @@ The current snapshot of the store which you can use in your rendering logic.
 
 ### Subscribing to an external store {/*subscribing-to-an-external-store*/}
 
-Most of your React components will only read data from their [props,](/learn/passing-props-to-a-component) [state,](/reference/react/useState) and [context.](/reference/react/useContext) However, sometimes a component needs to read some data from some store outside of React that changes over time. This includes:
+Most of your React components will only read data from their [props,](/learn/passing-props-to-a-component) [State,](/reference/react/useState) and [context.](/reference/react/useContext) However, sometimes a component needs to read some data from some store outside of React that changes over time. This includes:
 
-* Third-party state management libraries that hold state outside of React.
+* Third-party State management libraries that hold State outside of React.
 * Browser APIs that expose a mutable value and events to subscribe to its changes.
 
 Call `useSyncExternalStore` at the top level of your component to read a value from an external data store.
@@ -136,7 +136,7 @@ export default function TodosApp() {
 // that you might need to integrate with React.
 
 // If your app is fully built with React,
-// we recommend using React state instead.
+// we recommend using React State instead.
 
 let nextId = 0;
 let todos = [{ id: nextId++, text: 'Todo #1' }];
@@ -169,7 +169,7 @@ function emitChange() {
 
 <Note>
 
-When possible, we recommend using built-in React state with [`useState`](/reference/react/useState) and [`useReducer`](/reference/react/useReducer) instead. The `useSyncExternalStore` API is mostly useful if you need to integrate with existing non-React code.
+When possible, we recommend using built-in React State with [`useState`](/reference/react/useState) and [`useReducer`](/reference/react/useReducer) instead. The `useSyncExternalStore` API is mostly useful if you need to integrate with existing non-React code.
 
 </Note>
 

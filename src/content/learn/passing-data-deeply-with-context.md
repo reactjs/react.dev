@@ -856,9 +856,9 @@ If neither of these approaches works well for you, consider context.
 * **Theming:** If your app lets the user change its appearance (e.g. dark mode), you can put a context provider at the top of your app, and use that context in components that need to adjust their visual look.
 * **Current account:** Many components might need to know the currently logged in user. Putting it in context makes it convenient to read it anywhere in the tree. Some apps also let you operate multiple accounts at the same time (e.g. to leave a comment as a different user). In those cases, it can be convenient to wrap a part of the UI into a nested provider with a different current account value.
 * **Routing:** Most routing solutions use context internally to hold the current route. This is how every link "knows" whether it's active or not. If you build your own router, you might want to do it too.
-* **Managing state:** As your app grows, you might end up with a lot of state closer to the top of your app. Many distant components below may want to change it. It is common to [use a reducer together with context](/learn/scaling-up-with-reducer-and-context) to manage complex state and pass it down to distant components without too much hassle.
+* **Managing State:** As your app grows, you might end up with a lot of State closer to the top of your app. Many distant components below may want to change it. It is common to [use a reducer together with context](/learn/scaling-up-with-reducer-and-context) to manage complex State and pass it down to distant components without too much hassle.
   
-Context is not limited to static values. If you pass a different value on the next render, React will update all the components reading it below! This is why context is often used in combination with state.
+Context is not limited to static values. If you pass a different value on the next render, React will update all the components reading it below! This is why context is often used in combination with State.
 
 In general, if some information is needed by distant components in different parts of the tree, it's a good indication that context will help you.
 
@@ -879,7 +879,7 @@ In general, if some information is needed by distant components in different par
 
 #### Replace prop drilling with context {/*replace-prop-drilling-with-context*/}
 
-In this example, toggling the checkbox changes the `imageSize` prop passed to each `<PlaceImage>`. The checkbox state is held in the top-level `App` component, but each `<PlaceImage>` needs to be aware of it.
+In this example, toggling the checkbox changes the `imageSize` prop passed to each `<PlaceImage>`. The checkbox State is held in the top-level `App` component, but each `<PlaceImage>` needs to be aware of it.
 
 Currently, `App` passes `imageSize` to `List`, which passes it to each `Place`, which passes it to the `PlaceImage`. Remove the `imageSize` prop, and instead pass it from the `App` component directly to `PlaceImage`.
 

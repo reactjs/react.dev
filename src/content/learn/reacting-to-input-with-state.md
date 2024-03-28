@@ -4,7 +4,7 @@ title: Reacting to Input with State
 
 <Intro>
 
-React provides a declarative way to manipulate the UI. Instead of manipulating individual pieces of the UI directly, you describe the different states that your component can be in, and switch between them in response to the user input. This is similar to how designers think about the UI.
+React provides a declarative way to manipulate the UI. Instead of manipulating individual pieces of the UI directly, you describe the different States that your component can be in, and switch between them in response to the user input. This is similar to how designers think about the UI.
 
 </Intro>
 
@@ -311,9 +311,9 @@ Pages like this are often called "living styleguides" or "storybooks".
 
 </DeepDive>
 
-### Step 2: Determine what triggers those state changes {/*step-2-determine-what-triggers-those-state-changes*/}
+### Step 2: Determine what triggers those State changes {/*step-2-determine-what-triggers-those-state-changes*/}
 
-You can trigger state updates in response to two kinds of inputs:
+You can trigger State updates in response to two kinds of inputs:
 
 * **Human inputs,** like clicking a button, typing in a field, navigating a link.
 * **Computer inputs,** like a network response arriving, a timeout completing, an image loading.
@@ -323,7 +323,7 @@ You can trigger state updates in response to two kinds of inputs:
   <Illustration caption="Computer inputs" alt="Ones and zeroes." src="/images/docs/illustrations/i_inputs2.png" />
 </IllustrationBlock>
 
-In both cases, **you must set [state variables](/learn/state-a-components-memory#anatomy-of-usestate) to update the UI.** For the form you're developing, you will need to change state in response to a few different inputs:
+In both cases, **you must set [state variables](/learn/state-a-components-memory#anatomy-of-usestate) to update the UI.** For the form you're developing, you will need to change State in response to a few different inputs:
 
 * **Changing the text input** (human) should switch it from the *Empty* state to the *Typing* state or back, depending on whether the text box is empty or not.
 * **Clicking the Submit button** (human) should switch it to the *Submitting* state.
@@ -336,7 +336,7 @@ Notice that human inputs often require [event handlers](/learn/responding-to-eve
 
 </Note>
 
-To help visualize this flow, try drawing each state on paper as a labeled circle, and each change between two states as an arrow. You can sketch out many flows this way and sort out bugs long before implementation.
+To help visualize this flow, try drawing each State on paper as a labeled circle, and each change between two States as an arrow. You can sketch out many flows this way and sort out bugs long before implementation.
 
 <DiagramGroup>
 
@@ -840,7 +840,7 @@ label { display: block; margin-bottom: 20px; }
 
 <Solution>
 
-You will need two state variables to hold the input values: `firstName` and `lastName`. You're also going to need an `isEditing` state variable that holds whether to display the inputs or not. You should _not_ need a `fullName` variable because the full name can always be calculated from the `firstName` and the `lastName`.
+You will need two State variables to hold the input values: `firstName` and `lastName`. You're also going to need an `isEditing` State variable that holds whether to display the inputs or not. You should _not_ need a `fullName` variable because the full name can always be calculated from the `firstName` and the `lastName`.
 
 Finally, you should use [conditional rendering](/learn/conditional-rendering) to show or hide the inputs depending on `isEditing`.
 
@@ -1003,7 +1003,7 @@ label { display: block; margin-bottom: 20px; }
 
 </Sandpack>
 
-Imagine React didn't exist. Can you refactor this code in a way that makes the logic less fragile and more similar to the React version? What would it look like if the state was explicit, like in React?
+Imagine React didn't exist. Can you refactor this code in a way that makes the logic less fragile and more similar to the React version? What would it look like if the State was explicit, like in React?
 
 If you're struggling to think where to start, the stub below already has most of the structure in place. If you start here, fill in the missing logic in the `updateDOM` function. (Refer to the original code where needed.)
 
@@ -1229,7 +1229,7 @@ label { display: block; margin-bottom: 20px; }
 
 </Sandpack>
 
-The `updateDOM` function you wrote shows what React does under the hood when you set the state. (However, React also avoids touching the DOM for properties that have not changed since the last time they were set.)
+The `updateDOM` function you wrote shows what React does under the hood when you set the State. (However, React also avoids touching the DOM for properties that have not changed since the last time they were set.)
 
 </Solution>
 

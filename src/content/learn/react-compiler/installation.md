@@ -125,10 +125,46 @@ TODO
 TODO
 
 ### Usage with Webpack {/*usage-with-webpack*/}
-TODO
+
+You can create your own loader for React Compiler, like so:
+
+```js
+const ReactCompilerConfig = { /* ... */ };
+const BabelPluginReactCompiler = require('babel-plugin-react-compiler');
+
+function reactCompilerLoader(sourceCode, sourceMap) {
+  // ...
+  const result = transformSync(sourceCode, {
+    // ...
+    plugins: [
+      [BabelPluginReactCompiler, ReactCompilerConfig],
+    ],
+  // ...
+  });
+
+  if (result === null) {
+    this.callback(
+      Error(
+        `Failed to transform "${options.filename}"`
+      )
+    );
+    return;
+  }
+
+  this.callback(
+    null,
+    result.code
+    result.map === null ? undefined : result.map
+  );
+}
+
+module.exports = reactCompilerLoader;
+```
 
 ### Usage with Expo {/*usage-with-expo*/}
-TODO
+
+Expo uses Babel via Metro, so refer to the [Usage with Babel](#usage-with-babel) section for installation instructions.
 
 ### Usage with React Native (Metro) {/*usage-with-react-native-metro*/}
-TODO
+
+React Native uses Babel via Metro, so refer to the [Usage with Babel](#usage-with-babel) section for installation instructions.

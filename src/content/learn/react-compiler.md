@@ -74,32 +74,44 @@ For that reason, ...
 
 ### Rolling out the compiler to your codebase {/*using-the-compiler-effectively*/}
 
-The compiler is designed to compile functional components and hooks that follows the [Rules of React](/reference/rules). It can also handle code that breaks those rules by bailing out (skipping over) those components or hooks.
+TODO: actually implement `includes`
 
-To adopt the compiler successfully, we recommend running it on a small directory in your product code first. You can do by configuring the compiler to only run on a list of glob patterns:
+#### Existing projects {/*existing-projects*/}
+The compiler is designed to compile functional components and hooks that follows the [Rules of React](/reference/rules). It can also handle code that breaks those rules by bailing out (skipping over) those components or hooks. However, due to the flexible nature of JavaScript, the compiler cannot catch every possible violation and may compile with false negatives: that is, the compiler may accidentally compile a component/hook that breaks the Rules of React which can lead to undefined behavior.
 
-```js
-// .babel.config.js
+For this reason, to adopt the compiler successfully on existing projects, we recommend running it on a small directory in your product code first. You can do by configuring the compiler to only run on a list of glob patterns:
 
-module.exports = function () {
-  const ReactCompilerConfig = {
-    includes: ['src/app/**/*.tsx'],
-  };
-  return {
-    plugins: [
-      ['babel-plugin-react-compiler', ReactCompilerConfig,
-      // ...
-    ],
-  };
+```js {2}
+const ReactCompilerConfig = {
+  includes: ['src/app/allowlisted_directory/*.tsx'],
 };
 ```
 
-TODO
-- Add React Compiler to an existing project
-  - Incremental: Opt-in, Opt-out
-  - Drop in
-- Add React Compiler to a new project
-- Add React Compiler if you're not using React 19
+You can also configure the compiler to run in "opt-in" mode using the `compilationMode: "annotation"` option. This makes it so the compiler will only compile components and hooks annotated with a `"use memo"` directive. Please note that the `annotation` mode is a temporary one to aid early adopters, and that we don't intend for the `"use memo"` directive to be used for the long term.
+
+```js {2,7}
+const ReactCompilerConfig = {
+  compilationMode: "annotation",
+};
+
+// src/app.jsx
+export default function App() {
+  "use memo";
+  // ...
+}
+```
+
+When you have more confidence with rolling out the compiler, you can expand coverage to other directories as well and slowly roll it out to your whole app.
+
+#### New projects {/*new-projects*/}
+
+If you're starting a new project, you can enable the compiler on your entire codebase:
+
+```js {2}
+const ReactCompilerConfig = {
+  includes: ['src/**/*.tsx'],
+};
+```
 
 ## Installation {/*installation*/}
 

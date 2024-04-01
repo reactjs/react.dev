@@ -22,7 +22,7 @@
     "check-all": "npm-run-all prettier lint:fix tsc"
   },
   "dependencies": {
-    "@codesandbox/sandpack-react": "2.6.0",
+    "@codesandbox/sandpack-react": "2.13.5",
     "@docsearch/css": "3.0.0-alpha.41",
     "@docsearch/react": "3.0.0-alpha.41",
     "@headlessui/react": "^1.7.0",
@@ -97,7 +97,7 @@
     "webpack-bundle-analyzer": "^4.5.0"
   },
   "engines": {
-    "node": "^16.8.0 || ^18.0.0 || ^19.0.0 || ^20.0.0"
+    "node": "^16.8.0 || ^18.0.0 || ^19.0.0 || ^20.0.0 || ^21.0.0"
   },
   "nextBundleAnalysis": {
     "budget": null,

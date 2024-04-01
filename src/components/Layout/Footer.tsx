@@ -333,7 +333,7 @@ export function Footer() {
           <FooterLink href="https://opensource.fb.com/legal/terms/">
             Terms
           </FooterLink>
-          <div className="flex flex-row mt-8 gap-x-2">
+          <div className="flex flex-row items-center mt-8 gap-x-2">
             <ExternalLink
               aria-label="React on Facebook"
               href="https://www.facebook.com/react"

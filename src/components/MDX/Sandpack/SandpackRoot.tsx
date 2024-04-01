@@ -88,7 +88,7 @@ function SandpackRoot(props: SandpackProps) {
           autorun,
           initMode: 'user-visible',
           initModeObserverOptions: {rootMargin: '1400px 0px'},
-          bundlerURL: 'https://1e4ad8f7.sandpack-bundler-4bw.pages.dev',
+          bundlerURL: 'https://786946de.sandpack-bundler-4bw.pages.dev',
           logLevel: SandpackLogLevel.None,
         }}>
         <CustomPreset providedFiles={Object.keys(files)} />

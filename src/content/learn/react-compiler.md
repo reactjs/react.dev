@@ -304,3 +304,18 @@ To fix, either change your React version to an experimental one, or enable the p
 
 React Devtools (v5.0+) has built-in support for the react compiler and will display a "Forget" badge against components that have been compiled by the compiler. Note that this only works if you're using the compiler with the experimental version of React, and not the polyfill.
 
+##### Logger {/*logger*/}
+
+The compiler exposes a logging interface to capture different diagnostics, including successful compilation. You can provide the logger to the compiler via the configuration. 
+
+```js
+const ReactCompilerConfig = {
+  logger: {
+    log(filename, event) {
+      if (event.kind === "CompileSuccess") {
+        console.log(`Successfully compiled ${event.fnName} in ${filename}`)
+      }
+    }
+  }
+}
+```

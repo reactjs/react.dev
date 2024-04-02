@@ -297,11 +297,10 @@ To fix, either change your React version to an experimental one, or enable the p
 
 ### Incompatible libraries {/*incompatible-libraries*/}
 
-
-
 ### Debugging {/*debugging*/}
 
-* Debugging:
-  * Understanding what components have been compiled or not (eg DevTools)
-  * Build issues
-  * App crashes or hangs
+#### Checking if components have been compiled {/*checking-if-components-have-been-compiled*/}
+##### React DevTools {/*react-devtools*/}
+
+React Devtools (v5.0+) has built-in support for the react compiler and will display a "Forget" badge against components that have been compiled by the compiler. Note that this only works if you're using the compiler with the experimental version of React, and not the polyfill.
+

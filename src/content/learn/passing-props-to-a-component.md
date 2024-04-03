@@ -421,7 +421,7 @@ However, props are [immutable](https://en.wikipedia.org/wiki/Immutable_object)â€
 * You can forward all props with `<Avatar {...props} />` JSX spread syntax, but don't overuse it!
 * Nested JSX like `<Card><Avatar /></Card>` will appear as `Card` component's `children` prop.
 * Props are read-only snapshots in time: every render receives a new version of props.
-* You can't change props. When you need interactivity, you'll need to set state.
+* You can't change props. When you need interactivity, you'll need to set State.
 
 </Recap>
 

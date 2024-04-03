@@ -4,13 +4,13 @@ title: Updating Objects in State
 
 <Intro>
 
-State can hold any kind of JavaScript value, including objects. But you shouldn't change objects that you hold in the React state directly. Instead, when you want to update an object, you need to create a new one (or make a copy of an existing one), and then set the state to use that copy.
+State can hold any kind of JavaScript value, including objects. But you shouldn't change objects that you hold in the React State directly. Instead, when you want to update an object, you need to create a new one (or make a copy of an existing one), and then set the State to use that copy.
 
 </Intro>
 
 <YouWillLearn>
 
-- How to correctly update an object in React state
+- How to correctly update an object in React State
 - How to update a nested object without mutating it
 - What immutability is, and how not to break it
 - How to make object copying less repetitive with Immer
@@ -19,7 +19,7 @@ State can hold any kind of JavaScript value, including objects. But you shouldn'
 
 ## What's a mutation? {/*whats-a-mutation*/}
 
-You can store any kind of JavaScript value in state.
+You can store any kind of JavaScript value in State.
 
 ```js
 const [x, setX] = useState(0);
@@ -31,9 +31,9 @@ So far you've been working with numbers, strings, and booleans. These kinds of J
 setX(5);
 ```
 
-The `x` state changed from `0` to `5`, but the _number `0` itself_ did not change. It's not possible to make any changes to the built-in primitive values like numbers, strings, and booleans in JavaScript.
+The `x` State changed from `0` to `5`, but the _number `0` itself_ did not change. It's not possible to make any changes to the built-in primitive values like numbers, strings, and booleans in JavaScript.
 
-Now consider an object in state:
+Now consider an object in State:
 
 ```js
 const [position, setPosition] = useState({ x: 0, y: 0 });
@@ -45,13 +45,13 @@ Technically, it is possible to change the contents of _the object itself_. **Thi
 position.x = 5;
 ```
 
-However, although objects in React state are technically mutable, you should treat them **as if** they were immutable--like numbers, booleans, and strings. Instead of mutating them, you should always replace them.
+However, although objects in React State are technically mutable, you should treat them **as if** they were immutable--like numbers, booleans, and strings. Instead of mutating them, you should always replace them.
 
-## Treat state as read-only {/*treat-state-as-read-only*/}
+## Treat State as read-only {/*treat-state-as-read-only*/}
 
-In other words, you should **treat any JavaScript object that you put into state as read-only.**
+In other words, you should **treat any JavaScript object that you put into State as read-only.**
 
-This example holds an object in state to represent the current pointer position. The red dot is supposed to move when you touch or move the cursor over the preview area. But the dot stays in the initial position:
+This example holds an object in State to represent the current pointer position. The red dot is supposed to move when you touch or move the cursor over the preview area. But the dot stays in the initial position:
 
 <Sandpack>
 
@@ -103,9 +103,9 @@ onPointerMove={e => {
 }}
 ```
 
-This code modifies the object assigned to `position` from [the previous render.](/learn/state-as-a-snapshot#rendering-takes-a-snapshot-in-time) But without using the state setting function, React has no idea that object has changed. So React does not do anything in response. It's like trying to change the order after you've already eaten the meal. While mutating state can work in some cases, we don't recommend it. You should treat the state value you have access to in a render as read-only.
+This code modifies the object assigned to `position` from [the previous render.](/learn/state-as-a-snapshot#rendering-takes-a-snapshot-in-time) But without using the State setting function, React has no idea that object has changed. So React does not do anything in response. It's like trying to change the order after you've already eaten the meal. While mutating State can work in some cases, we don't recommend it. You should treat the State value you have access to in a render as read-only.
 
-To actually [trigger a re-render](/learn/state-as-a-snapshot#setting-state-triggers-renders) in this case, **create a *new* object and pass it to the state setting function:**
+To actually [trigger a re-render](/learn/state-as-a-snapshot#setting-state-triggers-renders) in this case, **create a *new* object and pass it to the State setting function:**
 
 ```js
 onPointerMove={e => {
@@ -170,7 +170,7 @@ body { margin: 0; padding: 0; height: 250px; }
 
 #### Local mutation is fine {/*local-mutation-is-fine*/}
 
-Code like this is a problem because it modifies an *existing* object in state:
+Code like this is a problem because it modifies an *existing* object in State:
 
 ```js
 position.x = e.clientX;
@@ -195,7 +195,7 @@ setPosition({
 });
 ```
 
-Mutation is only a problem when you change *existing* objects that are already in state. Mutating an object you've just created is okay because *no other code references it yet.* Changing it isn't going to accidentally impact something that depends on it. This is called a "local mutation". You can even do local mutation [while rendering.](/learn/keeping-components-pure#local-mutation-your-components-little-secret) Very convenient and completely okay!
+Mutation is only a problem when you change *existing* objects that are already in State. Mutating an object you've just created is okay because *no other code references it yet.* Changing it isn't going to accidentally impact something that depends on it. This is called a "local mutation". You can even do local mutation [while rendering.](/learn/keeping-components-pure#local-mutation-your-components-little-secret) Very convenient and completely okay!
 
 </DeepDive>  
 
@@ -203,7 +203,7 @@ Mutation is only a problem when you change *existing* objects that are already i
 
 In the previous example, the `position` object is always created fresh from the current cursor position. But often, you will want to include *existing* data as a part of the new object you're creating. For example, you may want to update *only one* field in a form, but keep the previous values for all other fields.
 
-These input fields don't work because the `onChange` handlers mutate the state:
+These input fields don't work because the `onChange` handlers mutate the State:
 
 <Sandpack>
 
@@ -269,7 +269,7 @@ input { margin-left: 5px; margin-bottom: 5px; }
 
 </Sandpack>
 
-For example, this line mutates the state from a past render:
+For example, this line mutates the State from a past render:
 
 ```js
 person.firstName = e.target.value;
@@ -296,7 +296,7 @@ setPerson({
 
 Now the form works! 
 
-Notice how you didn't declare a separate state variable for each input field. For large forms, keeping all data grouped in an object is very convenient--as long as you update it correctly!
+Notice how you didn't declare a separate State variable for each input field. For large forms, keeping all data grouped in an object is very convenient--as long as you update it correctly!
 
 <Sandpack>
 
@@ -466,7 +466,7 @@ If you wanted to update `person.artwork.city`, it's clear how to do it with muta
 person.artwork.city = 'New Delhi';
 ```
 
-But in React, you treat state as immutable! In order to change `city`, you would first need to produce the new `artwork` object (pre-populated with data from the previous one), and then produce the new `person` object which points at the new `artwork`:
+But in React, you treat State as immutable! In order to change `city`, you would first need to produce the new `artwork` object (pre-populated with data from the previous one), and then produce the new `person` object which points at the new `artwork`:
 
 ```js
 const nextArtwork = { ...person.artwork, city: 'New Delhi' };
@@ -652,7 +652,7 @@ If you were to mutate `obj3.artwork.city`, it would affect both `obj2.artwork.ci
 
 ### Write concise update logic with Immer {/*write-concise-update-logic-with-immer*/}
 
-If your state is deeply nested, you might want to consider [flattening it.](/learn/choosing-the-state-structure#avoid-deeply-nested-state) But, if you don't want to change your state structure, you might prefer a shortcut to nested spreads. [Immer](https://github.com/immerjs/use-immer) is a popular library that lets you write using the convenient but mutating syntax and takes care of producing the copies for you. With Immer, the code you write looks like you are "breaking the rules" and mutating an object:
+If your State is deeply nested, you might want to consider [flattening it.](/learn/choosing-the-state-structure#avoid-deeply-nested-state) But, if you don't want to change your State structure, you might prefer a shortcut to nested spreads. [Immer](https://github.com/immerjs/use-immer) is a popular library that lets you write using the convenient but mutating syntax and takes care of producing the copies for you. With Immer, the code you write looks like you are "breaking the rules" and mutating an object:
 
 ```js
 updatePerson(draft => {
@@ -660,7 +660,7 @@ updatePerson(draft => {
 });
 ```
 
-But unlike a regular mutation, it doesn't overwrite the past state!
+But unlike a regular mutation, it doesn't overwrite the past State!
 
 <DeepDive>
 
@@ -788,29 +788,29 @@ img { width: 200px; height: 200px; }
 
 </Sandpack>
 
-Notice how much more concise the event handlers have become. You can mix and match `useState` and `useImmer` in a single component as much as you like. Immer is a great way to keep the update handlers concise, especially if there's nesting in your state, and copying objects leads to repetitive code.
+Notice how much more concise the event handlers have become. You can mix and match `useState` and `useImmer` in a single component as much as you like. Immer is a great way to keep the update handlers concise, especially if there's nesting in your State, and copying objects leads to repetitive code.
 
 <DeepDive>
 
-#### Why is mutating state not recommended in React? {/*why-is-mutating-state-not-recommended-in-react*/}
+#### Why is mutating State not recommended in React? {/*why-is-mutating-state-not-recommended-in-react*/}
 
 There are a few reasons:
 
-* **Debugging:** If you use `console.log` and don't mutate state, your past logs won't get clobbered by the more recent state changes. So you can clearly see how state has changed between renders.
-* **Optimizations:** Common React [optimization strategies](/reference/react/memo) rely on skipping work if previous props or state are the same as the next ones. If you never mutate state, it is very fast to check whether there were any changes. If `prevObj === obj`, you can be sure that nothing could have changed inside of it.
-* **New Features:** The new React features we're building rely on state being [treated like a snapshot.](/learn/state-as-a-snapshot) If you're mutating past versions of state, that may prevent you from using the new features.
-* **Requirement Changes:** Some application features, like implementing Undo/Redo, showing a history of changes, or letting the user reset a form to earlier values, are easier to do when nothing is mutated. This is because you can keep past copies of state in memory, and reuse them when appropriate. If you start with a mutative approach, features like this can be difficult to add later on.
-* **Simpler Implementation:** Because React does not rely on mutation, it does not need to do anything special with your objects. It does not need to hijack their properties, always wrap them into Proxies, or do other work at initialization as many "reactive" solutions do. This is also why React lets you put any object into state--no matter how large--without additional performance or correctness pitfalls.
+* **Debugging:** If you use `console.log` and don't mutate State, your past logs won't get clobbered by the more recent State changes. So you can clearly see how State has changed between renders.
+* **Optimizations:** Common React [optimization strategies](/reference/react/memo) rely on skipping work if previous props or State are the same as the next ones. If you never mutate State, it is very fast to check whether there were any changes. If `prevObj === obj`, you can be sure that nothing could have changed inside of it.
+* **New Features:** The new React features we're building rely on State being [treated like a snapshot.](/learn/state-as-a-snapshot) If you're mutating past versions of State, that may prevent you from using the new features.
+* **Requirement Changes:** Some application features, like implementing Undo/Redo, showing a history of changes, or letting the user reset a form to earlier values, are easier to do when nothing is mutated. This is because you can keep past copies of State in memory, and reuse them when appropriate. If you start with a mutative approach, features like this can be difficult to add later on.
+* **Simpler Implementation:** Because React does not rely on mutation, it does not need to do anything special with your objects. It does not need to hijack their properties, always wrap them into Proxies, or do other work at initialization as many "reactive" solutions do. This is also why React lets you put any object into State--no matter how large--without additional performance or correctness pitfalls.
 
-In practice, you can often "get away" with mutating state in React, but we strongly advise you not to do that so that you can use new React features developed with this approach in mind. Future contributors and perhaps even your future self will thank you!
+In practice, you can often "get away" with mutating State in React, but we strongly advise you not to do that so that you can use new React features developed with this approach in mind. Future contributors and perhaps even your future self will thank you!
 
 </DeepDive>
 
 <Recap>
 
-* Treat all state in React as immutable.
-* When you store objects in state, mutating them will not trigger renders and will change the state in previous render "snapshots".
-* Instead of mutating an object, create a *new* version of it, and trigger a re-render by setting state to it.
+* Treat all State in React as immutable.
+* When you store objects in State, mutating them will not trigger renders and will change the State in previous render "snapshots".
+* Instead of mutating an object, create a *new* version of it, and trigger a re-render by setting State to it.
 * You can use the `{...obj, something: 'newValue'}` object spread syntax to create copies of objects.
 * Spread syntax is shallow: it only copies one level deep.
 * To update a nested object, you need to create copies all the way up from the place you're updating.
@@ -822,7 +822,7 @@ In practice, you can often "get away" with mutating state in React, but we stron
 
 <Challenges>
 
-#### Fix incorrect state updates {/*fix-incorrect-state-updates*/}
+#### Fix incorrect State updates {/*fix-incorrect-state-updates*/}
 
 This form has a few bugs. Click the button that increases the score a few times. Notice that it does not increase. Then edit the first name, and notice that the score has suddenly "caught up" with your changes. Finally, edit the last name, and notice that the score has disappeared completely.
 
@@ -964,7 +964,7 @@ input { margin-left: 5px; margin-bottom: 5px; }
 
 </Sandpack>
 
-The problem with `handlePlusClick` was that it mutated the `player` object. As a result, React did not know that there's a reason to re-render, and did not update the score on the screen. This is why, when you edited the first name, the state got updated, triggering a re-render which _also_ updated the score on the screen.
+The problem with `handlePlusClick` was that it mutated the `player` object. As a result, React did not know that there's a reason to re-render, and did not update the score on the screen. This is why, when you edited the first name, the State got updated, triggering a re-render which _also_ updated the score on the screen.
 
 The problem with `handleLastNameChange` was that it did not copy the existing `...player` fields into the new object. This is why the score got lost after you edited the last name.
 
@@ -1287,7 +1287,7 @@ select { margin-bottom: 10px; }
 
 #### Update an object with Immer {/*update-an-object-with-immer*/}
 
-This is the same buggy example as in the previous challenge. This time, fix the mutation by using Immer. For your convenience, `useImmer` is already imported, so you need to change the `shape` state variable to use it.
+This is the same buggy example as in the previous challenge. This time, fix the mutation by using Immer. For your convenience, `useImmer` is already imported, so you need to change the `shape` State variable to use it.
 
 <Sandpack>
 

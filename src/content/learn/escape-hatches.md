@@ -29,7 +29,7 @@ When you want a component to "remember" some information, but you don't want tha
 const ref = useRef(0);
 ```
 
-Like state, refs are retained by React between re-renders. However, setting state re-renders a component. Changing a ref does not! You can access the current value of that ref through the `ref.current` property.
+Like State, refs are retained by React between re-renders. However, setting State re-renders a component. Changing a ref does not! You can access the current value of that ref through the `ref.current` property.
 
 <Sandpack>
 
@@ -99,7 +99,7 @@ Read **[Manipulating the DOM with Refs](/learn/manipulating-the-dom-with-refs)**
 
 ## Synchronizing with Effects {/*synchronizing-with-effects*/}
 
-Some components need to synchronize with external systems. For example, you might want to control a non-React component based on the React state, set up a server connection, or send an analytics log when a component appears on the screen. Unlike event handlers, which let you handle particular events, *Effects* let you run some code after rendering. Use them to synchronize your component with a system outside of React.
+Some components need to synchronize with external systems. For example, you might want to control a non-React component based on the React State, set up a server connection, or send an analytics log when a component appears on the screen. Unlike event handlers, which let you handle particular events, *Effects* let you run some code after rendering. Use them to synchronize your component with a system outside of React.
 
 Press Play/Pause a few times and see how the video player stays synchronized to the `isPlaying` prop value:
 
@@ -199,7 +199,7 @@ There are two common cases in which you don't need Effects:
 - **You don't need Effects to transform data for rendering.**
 - **You don't need Effects to handle user events.**
 
-For example, you don't need an Effect to adjust some state based on other state:
+For example, you don't need an Effect to adjust some State based on other State:
 
 ```js {5-9}
 function Form() {
@@ -318,7 +318,7 @@ This section describes an **experimental API that has not yet been released** in
 
 </Wip>
 
-Event handlers only re-run when you perform the same interaction again. Unlike event handlers, Effects re-synchronize if any of the values they read, like props or state, are different than during last render. Sometimes, you want a mix of both behaviors: an Effect that re-runs in response to some values but not others.
+Event handlers only re-run when you perform the same interaction again. Unlike event handlers, Effects re-synchronize if any of the values they read, like props or State, are different than during last render. Sometimes, you want a mix of both behaviors: an Effect that re-runs in response to some values but not others.
 
 All code inside Effects is *reactive.* It will run again if some reactive value it reads has changed due to a re-render. For example, this Effect will re-connect to the chat if either `roomId` or `theme` have changed:
 
@@ -591,7 +591,7 @@ Read **[Separating Events from Effects](/learn/separating-events-from-effects)**
 
 ## Removing Effect dependencies {/*removing-effect-dependencies*/}
 
-When you write an Effect, the linter will verify that you've included every reactive value (like props and state) that the Effect reads in the list of your Effect's dependencies. This ensures that your Effect remains synchronized with the latest props and state of your component. Unnecessary dependencies may cause your Effect to run too often, or even create an infinite loop. The way you remove them depends on the case.
+When you write an Effect, the linter will verify that you've included every reactive value (like props and tate) that the Effect reads in the list of your Effect's dependencies. This ensures that your Effect remains synchronized with the latest props and State of your component. Unnecessary dependencies may cause your Effect to run too often, or even create an infinite loop. The way you remove them depends on the case.
 
 For example, this Effect depends on the `options` object which gets re-created every time you edit the input:
 

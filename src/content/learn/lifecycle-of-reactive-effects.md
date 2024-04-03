@@ -4,7 +4,7 @@ title: 'Lifecycle of Reactive Effects'
 
 <Intro>
 
-Effects have a different lifecycle from components. Components may mount, update, or unmount. An Effect can only do two things: to start synchronizing something, and later to stop synchronizing it. This cycle can happen multiple times if your Effect depends on props and state that change over time. React provides a linter rule to check that you've specified your Effect's dependencies correctly. This keeps your Effect synchronized to the latest props and state.
+Effects have a different lifecycle from components. Components may mount, update, or unmount. An Effect can only do two things: to start synchronizing something, and later to stop synchronizing it. This cycle can happen multiple times if your Effect depends on props and State that change over time. React provides a linter rule to check that you've specified your Effect's dependencies correctly. This keeps your Effect synchronized to the latest props and State.
 
 </Intro>
 
@@ -26,10 +26,10 @@ Effects have a different lifecycle from components. Components may mount, update
 Every React component goes through the same lifecycle:
 
 - A component _mounts_ when it's added to the screen.
-- A component _updates_ when it receives new props or state, usually in response to an interaction.
+- A component _updates_ when it receives new props or State, usually in response to an interaction.
 - A component _unmounts_ when it's removed from the screen.
 
-**It's a good way to think about components, but _not_ about Effects.** Instead, try to think about each Effect independently from your component's lifecycle. An Effect describes how to [synchronize an external system](/learn/synchronizing-with-effects) to the current props and state. As your code changes, synchronization will need to happen more or less often.
+**It's a good way to think about components, but _not_ about Effects.** Instead, try to think about each Effect independently from your component's lifecycle. An Effect describes how to [synchronize an external system](/learn/synchronizing-with-effects) to the current props and State. As your code changes, synchronization will need to happen more or less often.
 
 To illustrate this point, consider this Effect connecting your component to a chat server:
 
@@ -127,7 +127,7 @@ At this point, you want React to do two things:
 1. Stop synchronizing with the old `roomId` (disconnect from the `"general"` room)
 2. Start synchronizing with the new `roomId` (connect to the `"travel"` room)
 
-**Luckily, you've already taught React how to do both of these things!** Your Effect's body specifies how to start synchronizing, and your cleanup function specifies how to stop synchronizing. All that React needs to do now is to call them in the correct order and with the correct props and state. Let's see how exactly that happens.
+**Luckily, you've already taught React how to do both of these things!** Your Effect's body specifies how to start synchronizing, and your cleanup function specifies how to stop synchronizing. All that React needs to do now is to call them in the correct order and with the correct props and State. Let's see how exactly that happens.
 
 ### How React re-synchronizes your Effect {/*how-react-re-synchronizes-your-effect*/}
 
@@ -373,21 +373,21 @@ Why doesn't `serverUrl` need to be a dependency?
 
 This is because the `serverUrl` never changes due to a re-render. It's always the same no matter how many times the component re-renders and why. Since `serverUrl` never changes, it wouldn't make sense to specify it as a dependency. After all, dependencies only do something when they change over time!
 
-On the other hand, `roomId` may be different on a re-render. **Props, state, and other values declared inside the component are _reactive_ because they're calculated during rendering and participate in the React data flow.**
+On the other hand, `roomId` may be different on a re-render. **Props, State, and other values declared inside the component are _reactive_ because they're calculated during rendering and participate in the React data flow.**
 
-If `serverUrl` was a state variable, it would be reactive. Reactive values must be included in dependencies:
+If `serverUrl` was a State variable, it would be reactive. Reactive values must be included in dependencies:
 
 ```js {2,5,10}
 function ChatRoom({ roomId }) { // Props change over time
   const [serverUrl, setServerUrl] = useState('https://localhost:1234'); // State may change over time
 
   useEffect(() => {
-    const connection = createConnection(serverUrl, roomId); // Your Effect reads props and state
+    const connection = createConnection(serverUrl, roomId); // Your Effect reads props and State
     connection.connect();
     return () => {
       connection.disconnect();
     };
-  }, [roomId, serverUrl]); // So you tell React that this Effect "depends on" on props and state
+  }, [roomId, serverUrl]); // So you tell React that this Effect "depends on" on props and State
   // ...
 }
 ```
@@ -552,9 +552,9 @@ However, if you [think from the Effect's perspective,](#thinking-from-the-effect
 
 ### All variables declared in the component body are reactive {/*all-variables-declared-in-the-component-body-are-reactive*/}
 
-Props and state aren't the only reactive values. Values that you calculate from them are also reactive. If the props or state change, your component will re-render, and the values calculated from them will also change. This is why all variables from the component body used by the Effect should be in the Effect dependency list.
+Props and State aren't the only reactive values. Values that you calculate from them are also reactive. If the props or State change, your component will re-render, and the values calculated from them will also change. This is why all variables from the component body used by the Effect should be in the Effect dependency list.
 
-Let's say that the user can pick a chat server in the dropdown, but they can also configure a default server in settings. Suppose you've already put the settings state in a [context](/learn/scaling-up-with-reducer-and-context) so you read the `settings` from that context. Now you calculate the `serverUrl` based on the selected server from props and the default server:
+Let's say that the user can pick a chat server in the dropdown, but they can also configure a default server in settings. Suppose you've already put the settings State in a [context](/learn/scaling-up-with-reducer-and-context) so you read the `settings` from that context. Now you calculate the `serverUrl` based on the selected server from props and the default server:
 
 ```js {3,5,10}
 function ChatRoom({ roomId, selectedServerUrl }) { // roomId is reactive
@@ -571,9 +571,9 @@ function ChatRoom({ roomId, selectedServerUrl }) { // roomId is reactive
 }
 ```
 
-In this example, `serverUrl` is not a prop or a state variable. It's a regular variable that you calculate during rendering. But it's calculated during rendering, so it can change due to a re-render. This is why it's reactive.
+In this example, `serverUrl` is not a prop or a State variable. It's a regular variable that you calculate during rendering. But it's calculated during rendering, so it can change due to a re-render. This is why it's reactive.
 
-**All values inside the component (including props, state, and variables in your component's body) are reactive. Any reactive value can change on a re-render, so you need to include reactive values as Effect's dependencies.**
+**All values inside the component (including props, State, and variables in your component's body) are reactive. Any reactive value can change on a re-render, so you need to include reactive values as Effect's dependencies.**
 
 In other words, Effects "react" to all values from the component body.
 
@@ -738,7 +738,7 @@ function ChatRoom() {
 
 * **Check that your Effect represents an independent synchronization process.** If your Effect doesn't synchronize anything, [it might be unnecessary.](/learn/you-might-not-need-an-effect) If it synchronizes several independent things, [split it up.](#each-effect-represents-a-separate-synchronization-process)
 
-* **If you want to read the latest value of props or state without "reacting" to it and re-synchronizing the Effect,** you can split your Effect into a reactive part (which you'll keep in the Effect) and a non-reactive part (which you'll extract into something called an _Effect Event_). [Read about separating Events from Effects.](/learn/separating-events-from-effects)
+* **If you want to read the latest value of props or State without "reacting" to it and re-synchronizing the Effect,** you can split your Effect into a reactive part (which you'll keep in the Effect) and a non-reactive part (which you'll extract into something called an _Effect Event_). [Read about separating Events from Effects.](/learn/separating-events-from-effects)
 
 * **Avoid relying on objects and functions as dependencies.** If you create objects and functions during rendering and then read them from an Effect, they will be different on every render. This will cause your Effect to re-synchronize every time. [Read more about removing unnecessary dependencies from Effects.](/learn/removing-effect-dependencies)
 
@@ -939,7 +939,7 @@ button { margin-left: 10px; }
 
 In this example, an Effect subscribes to the window [`pointermove`](https://developer.mozilla.org/en-US/docs/Web/API/Element/pointermove_event) event to move a pink dot on the screen. Try hovering over the preview area (or touching the screen if you're on a mobile device), and see how the pink dot follows your movement.
 
-There is also a checkbox. Ticking the checkbox toggles the `canMove` state variable, but this state variable is not used anywhere in the code. Your task is to change the code so that when `canMove` is `false` (the checkbox is ticked off), the dot should stop moving. After you toggle the checkbox back on (and set `canMove` to `true`), the box should follow the movement again. In other words, whether the dot can move or not should stay synchronized to whether the checkbox is checked.
+There is also a checkbox. Ticking the checkbox toggles the `canMove` State variable, but this State variable is not used anywhere in the code. Your task is to change the code so that when `canMove` is `false` (the checkbox is ticked off), the dot should stop moving. After you toggle the checkbox back on (and set `canMove` to `true`), the box should follow the movement again. In other words, whether the dot can move or not should stay synchronized to whether the checkbox is checked.
 
 <Hint>
 
@@ -1119,9 +1119,9 @@ In both of these cases, `canMove` is a reactive variable that you read inside th
 
 #### Investigate a stale value bug {/*investigate-a-stale-value-bug*/}
 
-In this example, the pink dot should move when the checkbox is on, and should stop moving when the checkbox is off. The logic for this has already been implemented: the `handleMove` event handler checks the `canMove` state variable.
+In this example, the pink dot should move when the checkbox is on, and should stop moving when the checkbox is off. The logic for this has already been implemented: the `handleMove` event handler checks the `canMove` State variable.
 
-However, for some reason, the `canMove` state variable inside `handleMove` appears to be "stale": it's always `true`, even after you tick off the checkbox. How is this possible? Find the mistake in the code and fix it.
+However, for some reason, the `canMove` State variable inside `handleMove` appears to be "stale": it's always `true`, even after you tick off the checkbox. How is this possible? Find the mistake in the code and fix it.
 
 <Hint>
 
@@ -1621,7 +1621,7 @@ In this version, the `App` component passes a boolean prop instead of a function
 
 In this example, there are two select boxes. One select box lets the user pick a planet. Another select box lets the user pick a place *on that planet.* The second box doesn't work yet. Your task is to make it show the places on the chosen planet.
 
-Look at how the first select box works. It populates the `planetList` state with the result from the `"/planets"` API call. The currently selected planet's ID is kept in the `planetId` state variable. You need to find where to add some additional code so that the `placeList` state variable is populated with the result of the `"/planets/" + planetId + "/places"` API call.
+Look at how the first select box works. It populates the `planetList` State with the result from the `"/planets"` API call. The currently selected planet's ID is kept in the `planetId` State variable. You need to find where to add some additional code so that the `placeList` State variable is populated with the result of the `"/planets/" + planetId + "/places"` API call.
 
 If you implement this right, selecting a planet should populate the place list. Changing a planet should change the place list.
 

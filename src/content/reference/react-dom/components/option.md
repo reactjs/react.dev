@@ -54,9 +54,9 @@ Additionally, `<option>` supports these props:
 
 ### Displaying a select box with options {/*displaying-a-select-box-with-options*/}
 
-Render a `<select>` with a list of `<option>` components inside to display a select box. Give each `<option>` a `value` representing the data to be submitted with the form.
+Render a `<select>` with a list of `<option>` Components inside to display a select box. Give each `<option>` a `value` representing the data to be submitted with the form.
 
-[Read more about displaying a `<select>` with a list of `<option>` components.](/reference/react-dom/components/select)
+[Read more about displaying a `<select>` with a list of `<option>` Components.](/reference/react-dom/components/select)
 
 <Sandpack>
 

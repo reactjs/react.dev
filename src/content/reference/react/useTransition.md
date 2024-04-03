@@ -20,7 +20,7 @@ const [isPending, startTransition] = useTransition()
 
 ### `useTransition()` {/*usetransition*/}
 
-Call `useTransition` at the top level of your component to mark some state updates as Transitions.
+Call `useTransition` at the top level of your Component to mark some state updates as Transitions.
 
 ```js
 import { useTransition } from 'react';
@@ -74,13 +74,13 @@ function TabContainer() {
 
 #### Caveats {/*starttransition-caveats*/}
 
-* `useTransition` is a Hook, so it can only be called inside components or custom Hooks. If you need to start a Transition somewhere else (for example, from a data library), call the standalone [`startTransition`](/reference/react/startTransition) instead.
+* `useTransition` is a Hook, so it can only be called inside Components or custom Hooks. If you need to start a Transition somewhere else (for example, from a data library), call the standalone [`startTransition`](/reference/react/startTransition) instead.
 
 * You can wrap an update into a Transition only if you have access to the `set` function of that state. If you want to start a Transition in response to some prop or a custom Hook value, try [`useDeferredValue`](/reference/react/useDeferredValue) instead.
 
 * The function you pass to `startTransition` must be synchronous. React immediately executes this function, marking all state updates that happen while it executes as Transitions. If you try to perform more state updates later (for example, in a timeout), they won't be marked as Transitions.
 
-* A state update marked as a Transition will be interrupted by other state updates. For example, if you update a chart component inside a Transition, but then start typing into an input while the chart is in the middle of a re-render, React will restart the rendering work on the chart component after handling the input update.
+* A state update marked as a Transition will be interrupted by other state updates. For example, if you update a chart Component inside a Transition, but then start typing into an input while the chart is in the middle of a re-render, React will restart the rendering work on the chart Component after handling the input update.
 
 * Transition updates can't be used to control text inputs.
 
@@ -92,7 +92,7 @@ function TabContainer() {
 
 ### Marking a state update as a non-blocking Transition {/*marking-a-state-update-as-a-non-blocking-transition*/}
 
-Call `useTransition` at the top level of your component to mark state updates as non-blocking *Transitions*.
+Call `useTransition` at the top level of your Component to mark state updates as non-blocking *Transitions*.
 
 ```js [[1, 4, "isPending"], [2, 4, "startTransition"]]
 import { useState, useTransition } from 'react';
@@ -409,9 +409,9 @@ b { display: inline-block; margin-right: 10px; }
 
 ---
 
-### Updating the parent component in a Transition {/*updating-the-parent-component-in-a-transition*/}
+### Updating the parent Component in a Transition {/*updating-the-parent-component-in-a-transition*/}
 
-You can update a parent component's state from the `useTransition` call, too. For example, this `TabButton` component wraps its `onClick` logic in a Transition:
+You can update a parent Component's state from the `useTransition` call, too. For example, this `TabButton` Component wraps its `onClick` logic in a Transition:
 
 ```js {8-10}
 export default function TabButton({ children, isActive, onClick }) {
@@ -431,7 +431,7 @@ export default function TabButton({ children, isActive, onClick }) {
 }
 ```
 
-Because the parent component updates its state inside the `onClick` event handler, that state update gets marked as a Transition. This is why, like in the earlier example, you can click on "Posts" and then immediately click "Contact". Updating the selected tab is marked as a Transition, so it does not block user interactions.
+Because the parent Component updates its state inside the `onClick` event handler, that state update gets marked as a Transition. This is why, like in the earlier example, you can click on "Posts" and then immediately click "Contact". Updating the selected tab is marked as a Transition, so it does not block user interactions.
 
 <Sandpack>
 
@@ -709,7 +709,7 @@ b { display: inline-block; margin-right: 10px; }
 
 ### Preventing unwanted loading indicators {/*preventing-unwanted-loading-indicators*/}
 
-In this example, the `PostsTab` component fetches some data using a [Suspense-enabled](/reference/react/Suspense) data source. When you click the "Posts" tab, the `PostsTab` component *suspends*, causing the closest loading fallback to appear:
+In this example, the `PostsTab` Component fetches some data using a [Suspense-enabled](/reference/react/Suspense) data source. When you click the "Posts" tab, the `PostsTab` Component *suspends*, causing the closest loading fallback to appear:
 
 <Sandpack>
 
@@ -777,7 +777,7 @@ export default function AboutTab() {
 ```js src/PostsTab.js hidden
 import { fetchData } from './data.js';
 
-// Note: this component is written using an experimental API
+// Note: this Component is written using an experimental API
 // that's not yet available in stable versions of React.
 
 // For a realistic example you can follow today, try a framework
@@ -971,7 +971,7 @@ export default function AboutTab() {
 ```js src/PostsTab.js hidden
 import { fetchData } from './data.js';
 
-// Note: this component is written using an experimental API
+// Note: this Component is written using an experimental API
 // that's not yet available in stable versions of React.
 
 // For a realistic example you can follow today, try a framework
@@ -1250,7 +1250,7 @@ function AlbumsGlimmer() {
 ```js src/Albums.js hidden
 import { fetchData } from './data.js';
 
-// Note: this component is written using an experimental API
+// Note: this Component is written using an experimental API
 // that's not yet available in stable versions of React.
 
 // For a realistic example you can follow today, try a framework
@@ -1298,7 +1298,7 @@ function use(promise) {
 ```js src/Biography.js hidden
 import { fetchData } from './data.js';
 
-// Note: this component is written using an experimental API
+// Note: this Component is written using an experimental API
 // that's not yet available in stable versions of React.
 
 // For a realistic example you can follow today, try a framework
@@ -1509,7 +1509,7 @@ Error Boundary for useTransition is currently only available in React's canary a
 
 </Canary>
 
-If a function passed to `startTransition` throws an error, you can display an error to your user with an [error boundary](/reference/react/Component#catching-rendering-errors-with-an-error-boundary). To use an error boundary, wrap the component where you are calling the `useTransition` in an error boundary. Once the function passed to `startTransition` errors, the fallback for the error boundary will be displayed.
+If a function passed to `startTransition` throws an error, you can display an error to your user with an [error boundary](/reference/react/Component#catching-rendering-errors-with-an-error-boundary). To use an error boundary, wrap the Component where you are calling the `useTransition` in an error boundary. Once the function passed to `startTransition` errors, the fallback for the error boundary will be displayed.
 
 <Sandpack>
 
@@ -1679,9 +1679,9 @@ startTransition(() => {
 
 ---
 
-### I want to call `useTransition` from outside a component {/*i-want-to-call-usetransition-from-outside-a-component*/}
+### I want to call `useTransition` from outside a Component {/*i-want-to-call-usetransition-from-outside-a-component*/}
 
-You can't call `useTransition` outside a component because it's a Hook. In this case, use the standalone [`startTransition`](/reference/react/startTransition) method instead. It works the same way, but it doesn't provide the `isPending` indicator.
+You can't call `useTransition` outside a Component because it's a Hook. In this case, use the standalone [`startTransition`](/reference/react/startTransition) method instead. It works the same way, but it doesn't provide the `isPending` indicator.
 
 ---
 

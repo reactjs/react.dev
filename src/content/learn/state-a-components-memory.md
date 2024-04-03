@@ -4,7 +4,7 @@ title: "State: A Component's Memory"
 
 <Intro>
 
-Components often need to change what's on the screen as a result of an interaction. Typing into the form should update the input field, clicking "next" on an image carousel should change which image is displayed, clicking "buy" should put a product in the shopping cart. Components need to "remember" things: the current input value, the current image, the shopping cart. In React, this kind of component-specific memory is called *state*.
+Components often need to change what's on the screen as a result of an interaction. Typing into the form should update the input field, clicking "next" on an image carousel should change which image is displayed, clicking "buy" should put a product in the shopping cart. Components need to "remember" things: the current input value, the current image, the shopping cart. In React, this kind of Component-specific memory is called *state*.
 
 </Intro>
 
@@ -19,7 +19,7 @@ Components often need to change what's on the screen as a result of an interacti
 
 ## When a regular variable isn’t enough {/*when-a-regular-variable-isnt-enough*/}
 
-Here's a component that renders a sculpture image. Clicking the "Next" button should show the next sculpture by changing the `index` to `1`, then `2`, and so on. However, this **won't work** (you can try it!):
+Here's a Component that renders a sculpture image. Clicking the "Next" button should show the next sculpture by changing the `index` to `1`, then `2`, and so on. However, this **won't work** (you can try it!):
 
 <Sandpack>
 
@@ -153,18 +153,18 @@ button {
 
 The `handleClick` event handler is updating a local variable, `index`. But two things prevent that change from being visible:
 
-1. **Local variables don't persist between renders.** When React renders this component a second time, it renders it from scratch—it doesn't consider any changes to the local variables.
-2. **Changes to local variables won't trigger renders.** React doesn't realize it needs to render the component again with the new data.
+1. **Local variables don't persist between renders.** When React renders this Component a second time, it renders it from scratch—it doesn't consider any changes to the local variables.
+2. **Changes to local variables won't trigger renders.** React doesn't realize it needs to render the Component again with the new data.
 
-To update a component with new data, two things need to happen:
+To update a Component with new data, two things need to happen:
 
 1. **Retain** the data between renders.
-2. **Trigger** React to render the component with new data (re-rendering).
+2. **Trigger** React to render the Component with new data (re-rendering).
 
 The [`useState`](/reference/react/useState) Hook provides those two things:
 
 1. A **state variable** to retain the data between renders.
-2. A **state setter function** to update the variable and trigger React to render the component again.
+2. A **state setter function** to update the variable and trigger React to render the Component again.
 
 ## Adding a state variable {/*adding-a-state-variable*/}
 
@@ -341,13 +341,13 @@ State is just one of those features, but you will meet the other Hooks later.
 
 <Pitfall>
 
-**Hooks—functions starting with `use`—can only be called at the top level of your components or [your own Hooks.](/learn/reusing-logic-with-custom-hooks)** You can't call Hooks inside conditions, loops, or other nested functions. Hooks are functions, but it's helpful to think of them as unconditional declarations about your component's needs. You "use" React features at the top of your component similar to how you "import" modules at the top of your file.
+**Hooks—functions starting with `use`—can only be called at the top level of your Components or [your own Hooks.](/learn/reusing-logic-with-custom-hooks)** You can't call Hooks inside conditions, loops, or other nested functions. Hooks are functions, but it's helpful to think of them as unconditional declarations about your Component's needs. You "use" React features at the top of your Component similar to how you "import" modules at the top of your file.
 
 </Pitfall>
 
 ### Anatomy of `useState` {/*anatomy-of-usestate*/}
 
-When you call [`useState`](/reference/react/useState), you are telling React that you want this component to remember something:
+When you call [`useState`](/reference/react/useState), you are telling React that you want this Component to remember something:
 
 ```js
 const [index, setIndex] = useState(0);
@@ -363,10 +363,10 @@ The convention is to name this pair like `const [something, setSomething]`. You 
 
 The only argument to `useState` is the **initial value** of your state variable. In this example, the `index`'s initial value is set to `0` with `useState(0)`. 
 
-Every time your component renders, `useState` gives you an array containing two values:
+Every time your Component renders, `useState` gives you an array containing two values:
 
 1. The **state variable** (`index`) with the value you stored.
-2. The **state setter function** (`setIndex`) which can update the state variable and trigger React to render the component again.
+2. The **state setter function** (`setIndex`) which can update the state variable and trigger React to render the Component again.
 
 Here's how that happens in action:
 
@@ -374,14 +374,14 @@ Here's how that happens in action:
 const [index, setIndex] = useState(0);
 ```
 
-1. **Your component renders the first time.** Because you passed `0` to `useState` as the initial value for `index`, it will return `[0, setIndex]`. React remembers `0` is the latest state value.
+1. **Your Component renders the first time.** Because you passed `0` to `useState` as the initial value for `index`, it will return `[0, setIndex]`. React remembers `0` is the latest state value.
 2. **You update the state.** When a user clicks the button, it calls `setIndex(index + 1)`. `index` is `0`, so it's `setIndex(1)`. This tells React to remember `index` is `1` now and triggers another render.
-3. **Your component's second render.** React still sees `useState(0)`, but because React *remembers* that you set `index` to `1`, it returns `[1, setIndex]` instead.
+3. **Your Component's second render.** React still sees `useState(0)`, but because React *remembers* that you set `index` to `1`, it returns `[1, setIndex]` instead.
 4. And so on!
 
-## Giving a component multiple state variables {/*giving-a-component-multiple-state-variables*/}
+## Giving a Component multiple state variables {/*giving-a-component-multiple-state-variables*/}
 
-You can have as many state variables of as many types as you like in one component. This component has two state variables, a number `index` and a boolean `showMore` that's toggled when you click "Show details":
+You can have as many state variables of as many types as you like in one Component. This Component has two state variables, a number `index` and a boolean `showMore` that's toggled when you click "Show details":
 
 <Sandpack>
 
@@ -528,9 +528,9 @@ It is a good idea to have multiple state variables if their state is unrelated, 
 
 You might have noticed that the `useState` call does not receive any information about *which* state variable it refers to. There is no "identifier" that is passed to `useState`, so how does it know which of the state variables to return? Does it rely on some magic like parsing your functions? The answer is no.
 
-Instead, to enable their concise syntax, Hooks **rely on a stable call order on every render of the same component.** This works well in practice because if you follow the rule above ("only call Hooks at the top level"), Hooks will always be called in the same order. Additionally, a [linter plugin](https://www.npmjs.com/package/eslint-plugin-react-hooks) catches most mistakes.
+Instead, to enable their concise syntax, Hooks **rely on a stable call order on every render of the same Component.** This works well in practice because if you follow the rule above ("only call Hooks at the top level"), Hooks will always be called in the same order. Additionally, a [linter plugin](https://www.npmjs.com/package/eslint-plugin-react-hooks) catches most mistakes.
 
-Internally, React holds an array of state pairs for every component. It also maintains the current pair index, which is set to `0` before rendering. Each time you call `useState`, React gives you the next state pair and increments the index. You can read more about this mechanism in [React Hooks: Not Magic, Just Arrays.](https://medium.com/@ryardley/react-hooks-not-magic-just-arrays-cd4f1857236e)
+Internally, React holds an array of state pairs for every Component. It also maintains the current pair index, which is set to `0` before rendering. Each time you call `useState`, React gives you the next state pair and increments the index. You can read more about this mechanism in [React Hooks: Not Magic, Just Arrays.](https://medium.com/@ryardley/react-hooks-not-magic-just-arrays-cd4f1857236e)
 
 This example **doesn't use React** but it gives you an idea of how `useState` works internally:
 
@@ -599,7 +599,7 @@ function Gallery() {
 
 function updateDOM() {
   // Reset the current Hook index
-  // before rendering the component.
+  // before rendering the Component.
   currentHookIndex = 0;
   let output = Gallery();
 
@@ -730,9 +730,9 @@ You don't have to understand it to use React, but you might find this a helpful 
 
 ## State is isolated and private {/*state-is-isolated-and-private*/}
 
-State is local to a component instance on the screen. In other words, **if you render the same component twice, each copy will have completely isolated state!** Changing one of them will not affect the other.
+State is local to a Component instance on the screen. In other words, **if you render the same Component twice, each copy will have completely isolated state!** Changing one of them will not affect the other.
 
-In this example, the `Gallery` component from earlier is rendered twice with no changes to its logic. Try clicking the buttons inside each of the galleries. Notice that their state is independent:
+In this example, the `Gallery` Component from earlier is rendered twice with no changes to its logic. Try clicking the buttons inside each of the galleries. Notice that their state is independent:
 
 <Sandpack>
 
@@ -891,21 +891,21 @@ button {
 
 </Sandpack>
 
-This is what makes state different from regular variables that you might declare at the top of your module. State is not tied to a particular function call or a place in the code, but it's "local" to the specific place on the screen. You rendered two `<Gallery />` components, so their state is stored separately.
+This is what makes state different from regular variables that you might declare at the top of your module. State is not tied to a particular function call or a place in the code, but it's "local" to the specific place on the screen. You rendered two `<Gallery />` Components, so their state is stored separately.
 
-Also notice how the `Page` component doesn't "know" anything about the `Gallery` state or even whether it has any. Unlike props, **state is fully private to the component declaring it.** The parent component can't change it. This lets you add state to any component or remove it without impacting the rest of the components.
+Also notice how the `Page` Component doesn't "know" anything about the `Gallery` state or even whether it has any. Unlike props, **state is fully private to the Component declaring it.** The parent Component can't change it. This lets you add state to any Component or remove it without impacting the rest of the Components.
 
-What if you wanted both galleries to keep their states in sync? The right way to do it in React is to *remove* state from child components and add it to their closest shared parent. The next few pages will focus on organizing state of a single component, but we will return to this topic in [Sharing State Between Components.](/learn/sharing-state-between-components)
+What if you wanted both galleries to keep their states in sync? The right way to do it in React is to *remove* state from child Components and add it to their closest shared parent. The next few pages will focus on organizing state of a single Component, but we will return to this topic in [Sharing State Between Components.](/learn/sharing-state-between-components)
 
 <Recap>
 
-* Use a state variable when a component needs to "remember" some information between renders.
+* Use a state variable when a Component needs to "remember" some information between renders.
 * State variables are declared by calling the `useState` Hook.
 * Hooks are special functions that start with `use`. They let you "hook into" React features like state.
-* Hooks might remind you of imports: they need to be called unconditionally. Calling Hooks, including `useState`, is only valid at the top level of a component or another Hook.
+* Hooks might remind you of imports: they need to be called unconditionally. Calling Hooks, including `useState`, is only valid at the top level of a Component or another Hook.
 * The `useState` Hook returns a pair of values: the current state and the function to update it.
 * You can have more than one state variable. Internally, React matches them up by their order.
-* State is private to the component. If you render it in two places, each copy gets its own state.
+* State is private to the Component. If you render it in two places, each copy gets its own state.
 
 </Recap>
 
@@ -1331,7 +1331,7 @@ Here is a small form that is supposed to let the user leave some feedback. When 
 
 <Hint>
 
-Are there any limitations on _where_ Hooks may be called? Does this component break any rules? Check if there are any comments disabling the linter checks--this is where the bugs often hide!
+Are there any limitations on _where_ Hooks may be called? Does this Component break any rules? Check if there are any comments disabling the linter checks--this is where the bugs often hide!
 
 </Hint>
 
@@ -1370,7 +1370,7 @@ export default function FeedbackForm() {
 
 <Solution>
 
-Hooks can only be called at the top level of the component function. Here, the first `isSent` definition follows this rule, but the `message` definition is nested in a condition.
+Hooks can only be called at the top level of the Component function. Here, the first `isSent` definition follows this rule, but the `message` definition is nested in a condition.
 
 Move it out of the condition to fix the issue:
 
@@ -1504,7 +1504,7 @@ export default function FeedbackForm() {
 
 </Sandpack>
 
-A state variable is only necessary to keep information between re-renders of a component. Within a single event handler, a regular variable will do fine. Don't introduce state variables when a regular variable works well.
+A state variable is only necessary to keep information between re-renders of a Component. Within a single event handler, a regular variable will do fine. Don't introduce state variables when a regular variable works well.
 
 </Solution>
 

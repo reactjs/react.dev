@@ -165,7 +165,7 @@ The next time you see `{{` and `}}` in JSX, know that it's nothing more than an 
 
 <Pitfall>
 
-Inline `style` properties are written in camelCase. For example, HTML `<ul style="background-color: black">` would be written as `<ul style={{ backgroundColor: 'black' }}>`  in your component.
+Inline `style` properties are written in camelCase. For example, HTML `<ul style="background-color: black">` would be written as `<ul style={{ backgroundColor: 'black' }}>`  in your Component.
 
 </Pitfall>
 
@@ -223,7 +223,7 @@ const person = {
 };
 ```
 
-The component can use these values from `person` like so:
+The Component can use these values from `person` like so:
 
 ```js
 <div style={person.theme}>

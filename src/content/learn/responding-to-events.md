@@ -11,7 +11,7 @@ React lets you add *event handlers* to your JSX. Event handlers are your own fun
 <YouWillLearn>
 
 * Different ways to write an event handler
-* How to pass event handling logic from a parent component
+* How to pass event handling logic from a parent Component
 * How events propagate and how to stop them
 
 </YouWillLearn>
@@ -36,7 +36,7 @@ export default function Button() {
 
 You can make it show a message when a user clicks by following these three steps:
 
-1. Declare a function called `handleClick` *inside* your `Button` component.
+1. Declare a function called `handleClick` *inside* your `Button` Component.
 2. Implement the logic inside that function (use `alert` to show the message).
 3. Add `onClick={handleClick}` to the `<button>` JSX.
 
@@ -64,7 +64,7 @@ button { margin-right: 10px; }
 
 You defined the `handleClick` function and then [passed it as a prop](/learn/passing-props-to-a-component) to `<button>`.  `handleClick` is an **event handler.** Event handler functions:
 
-* Are usually defined *inside* your components.
+* Are usually defined *inside* your Components.
 * Have names that start with `handle`, followed by the name of the event.
 
 By convention, it is common to name event handlers as `handle` followed by the event name. You'll often see `onClick={handleClick}`, `onMouseEnter={handleMouseEnter}`, and so on.
@@ -106,10 +106,10 @@ When you write code inline, the same pitfall presents itself in a different way:
 | `<button onClick={() => alert('...')}>` | `<button onClick={alert('...')}>` |
 
 
-Passing inline code like this won't fire on click—it fires every time the component renders:
+Passing inline code like this won't fire on click—it fires every time the Component renders:
 
 ```jsx
-// This alert fires when the component renders, not when clicked!
+// This alert fires when the Component renders, not when clicked!
 <button onClick={alert('You clicked me!')}>
 ```
 
@@ -132,7 +132,7 @@ In both cases, what you want to pass is a function:
 
 ### Reading props in event handlers {/*reading-props-in-event-handlers*/}
 
-Because event handlers are declared inside of a component, they have access to the component's props. Here is a button that, when clicked, shows an alert with its `message` prop:
+Because event handlers are declared inside of a Component, they have access to the Component's props. Here is a button that, when clicked, shows an alert with its `message` prop:
 
 <Sandpack>
 
@@ -169,9 +169,9 @@ This lets these two buttons show different messages. Try changing the messages p
 
 ### Passing event handlers as props {/*passing-event-handlers-as-props*/}
 
-Often you'll want the parent component to specify a child's event handler. Consider buttons: depending on where you're using a `Button` component, you might want to execute a different function—perhaps one plays a movie and another uploads an image. 
+Often you'll want the parent Component to specify a child's event handler. Consider buttons: depending on where you're using a `Button` Component, you might want to execute a different function—perhaps one plays a movie and another uploads an image. 
 
-To do this, pass a prop the component receives from its parent as the event handler like so:
+To do this, pass a prop the Component receives from its parent as the event handler like so:
 
 <Sandpack>
 
@@ -220,22 +220,22 @@ button { margin-right: 10px; }
 
 </Sandpack>
 
-Here, the `Toolbar` component renders a `PlayButton` and an `UploadButton`:
+Here, the `Toolbar` Component renders a `PlayButton` and an `UploadButton`:
 
 - `PlayButton` passes `handlePlayClick` as the `onClick` prop to the `Button` inside.
 - `UploadButton` passes `() => alert('Uploading!')` as the `onClick` prop to the `Button` inside.
 
-Finally, your `Button` component accepts a prop called `onClick`. It passes that prop directly to the built-in browser `<button>` with `onClick={onClick}`. This tells React to call the passed function on click.
+Finally, your `Button` Component accepts a prop called `onClick`. It passes that prop directly to the built-in browser `<button>` with `onClick={onClick}`. This tells React to call the passed function on click.
 
-If you use a [design system](https://uxdesign.cc/everything-you-need-to-know-about-design-systems-54b109851969), it's common for components like buttons to contain styling but not specify behavior. Instead, components like `PlayButton` and `UploadButton` will pass event handlers down.
+If you use a [design system](https://uxdesign.cc/everything-you-need-to-know-about-design-systems-54b109851969), it's common for Components like buttons to contain styling but not specify behavior. Instead, Components like `PlayButton` and `UploadButton` will pass event handlers down.
 
 ### Naming event handler props {/*naming-event-handler-props*/}
 
-Built-in components like `<button>` and `<div>` only support [browser event names](/reference/react-dom/components/common#common-props) like `onClick`. However, when you're building your own components, you can name their event handler props any way that you like.
+Built-in Components like `<button>` and `<div>` only support [browser event names](/reference/react-dom/components/common#common-props) like `onClick`. However, when you're building your own Components, you can name their event handler props any way that you like.
 
 By convention, event handler props should start with `on`, followed by a capital letter.
 
-For example, the `Button` component's `onClick` prop could have been called `onSmash`:
+For example, the `Button` Component's `onClick` prop could have been called `onSmash`:
 
 <Sandpack>
 
@@ -268,9 +268,9 @@ button { margin-right: 10px; }
 
 </Sandpack>
 
-In this example, `<button onClick={onSmash}>` shows that the browser `<button>` (lowercase) still needs a prop called `onClick`, but the prop name received by your custom `Button` component is up to you!
+In this example, `<button onClick={onSmash}>` shows that the browser `<button>` (lowercase) still needs a prop called `onClick`, but the prop name received by your custom `Button` Component is up to you!
 
-When your component supports multiple interactions, you might name event handler props for app-specific concepts. For example, this `Toolbar` component receives `onPlayMovie` and `onUploadImage` event handlers:
+When your Component supports multiple interactions, you might name event handler props for app-specific concepts. For example, this `Toolbar` Component receives `onPlayMovie` and `onUploadImage` event handlers:
 
 <Sandpack>
 
@@ -312,7 +312,7 @@ button { margin-right: 10px; }
 
 </Sandpack>
 
-Notice how the `App` component does not need to know *what* `Toolbar` will do with `onPlayMovie` or `onUploadImage`. That's an implementation detail of the `Toolbar`. Here, `Toolbar` passes them down as `onClick` handlers to its `Button`s, but it could later also trigger them on a keyboard shortcut. Naming props after app-specific interactions like `onPlayMovie` gives you the flexibility to change how they're used later.
+Notice how the `App` Component does not need to know *what* `Toolbar` will do with `onPlayMovie` or `onUploadImage`. That's an implementation detail of the `Toolbar`. Here, `Toolbar` passes them down as `onClick` handlers to its `Button`s, but it could later also trigger them on a keyboard shortcut. Naming props after app-specific interactions like `onPlayMovie` gives you the flexibility to change how they're used later.
   
 <Note>
 
@@ -322,7 +322,7 @@ Make sure that you use the appropriate HTML tags for your event handlers. For ex
 
 ## Event propagation {/*event-propagation*/}
 
-Event handlers will also catch events from any children your component might have. We say that an event "bubbles" or "propagates" up the tree: it starts with where the event happened, and then goes up the tree.
+Event handlers will also catch events from any children your Component might have. We say that an event "bubbles" or "propagates" up the tree: it starts with where the event happened, and then goes up the tree.
 
 This `<div>` contains two buttons. Both the `<div>` *and* each button have their own `onClick` handlers. Which handlers do you think will fire when you click a button?
 
@@ -367,7 +367,7 @@ All events propagate in React except `onScroll`, which only works on the JSX tag
 
 Event handlers receive an **event object** as their only argument. By convention, it's usually called `e`, which stands for "event". You can use this object to read information about the event.
 
-That event object also lets you stop the propagation. If you want to prevent an event from reaching parent components, you need to call `e.stopPropagation()` like this `Button` component does:
+That event object also lets you stop the propagation. If you want to prevent an event from reaching parent Components, you need to call `e.stopPropagation()` like this `Button` Component does:
 
 <Sandpack>
 
@@ -414,8 +414,8 @@ When you click on a button:
 1. React calls the `onClick` handler passed to `<button>`. 
 2. That handler, defined in `Button`, does the following:
    * Calls `e.stopPropagation()`, preventing the event from bubbling further.
-   * Calls the `onClick` function, which is a prop passed from the `Toolbar` component.
-3. That function, defined in the `Toolbar` component, displays the button's own alert.
+   * Calls the `onClick` function, which is a prop passed from the `Toolbar` Component.
+3. That function, defined in the `Toolbar` Component, displays the button's own alert.
 4. Since the propagation was stopped, the parent `<div>`'s `onClick` handler does *not* run.
 
 As a result of `e.stopPropagation()`, clicking on the buttons now only shows a single alert (from the `<button>`) rather than the two of them (from the `<button>` and the parent toolbar `<div>`). Clicking a button is not the same thing as clicking the surrounding toolbar, so stopping the propagation makes sense for this UI.
@@ -460,7 +460,7 @@ function Button({ onClick, children }) {
 }
 ```
 
-You could add more code to this handler before calling the parent `onClick` event handler, too. This pattern provides an *alternative* to propagation. It lets the child component handle the event, while also letting the parent component specify some additional behavior. Unlike propagation, it's not automatic. But the benefit of this pattern is that you can clearly follow the whole chain of code that executes as a result of some event.
+You could add more code to this handler before calling the parent `onClick` event handler, too. This pattern provides an *alternative* to propagation. It lets the child Component handle the event, while also letting the parent Component specify some additional behavior. Unlike propagation, it's not automatic. But the benefit of this pattern is that you can clearly follow the whole chain of code that executes as a result of some event.
 
 If you rely on propagation and it's difficult to trace which handlers execute and why, try this approach instead.
 
@@ -520,14 +520,14 @@ Don't confuse `e.stopPropagation()` and `e.preventDefault()`. They are both usef
 
 Absolutely! Event handlers are the best place for side effects.
 
-Unlike rendering functions, event handlers don't need to be [pure](/learn/keeping-components-pure), so it's a great place to *change* something—for example, change an input's value in response to typing, or change a list in response to a button press. However, in order to change some information, you first need some way to store it. In React, this is done by using [state, a component's memory.](/learn/state-a-components-memory) You will learn all about it on the next page.
+Unlike rendering functions, event handlers don't need to be [pure](/learn/keeping-components-pure), so it's a great place to *change* something—for example, change an input's value in response to typing, or change a list in response to a button press. However, in order to change some information, you first need some way to store it. In React, this is done by using [state, a Component's memory.](/learn/state-a-components-memory) You will learn all about it on the next page.
 
 <Recap>
 
 * You can handle events by passing a function as a prop to an element like `<button>`.
 * Event handlers must be passed, **not called!** `onClick={handleClick}`, not `onClick={handleClick()}`.
 * You can define an event handler function separately or inline.
-* Event handlers are defined inside a component, so they can access props.
+* Event handlers are defined inside a Component, so they can access props.
 * You can declare an event handler in a parent and pass it as a prop to a child.
 * You can define your own event handler props with application-specific names.
 * Events propagate upwards. Call `e.stopPropagation()` on the first argument to prevent that.
@@ -623,9 +623,9 @@ export default function LightSwitch() {
 
 #### Wire up the events {/*wire-up-the-events*/}
 
-This `ColorSwitch` component renders a button. It's supposed to change the page color. Wire it up to the `onChangeColor` event handler prop it receives from the parent so that clicking the button changes the color.
+This `ColorSwitch` Component renders a button. It's supposed to change the page color. Wire it up to the `onChangeColor` event handler prop it receives from the parent so that clicking the button changes the color.
 
-After you do this, notice that clicking the button also increments the page click counter. Your colleague who wrote the parent component insists that `onChangeColor` does not increment any counters. What else might be happening? Fix it so that clicking the button *only* changes the color, and does _not_ increment the counter.
+After you do this, notice that clicking the button also increments the page click counter. Your colleague who wrote the parent Component insists that `onChangeColor` does not increment any counters. What else might be happening? Fix it so that clicking the button *only* changes the color, and does _not_ increment the counter.
 
 <Sandpack>
 

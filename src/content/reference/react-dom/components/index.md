@@ -4,25 +4,25 @@ title: "React DOM Components"
 
 <Intro>
 
-React supports all of the browser built-in [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML/Element) and [SVG](https://developer.mozilla.org/en-US/docs/Web/SVG/Element) components.
+React supports all of the browser built-in [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML/Element) and [SVG](https://developer.mozilla.org/en-US/docs/Web/SVG/Element) Components.
 
 </Intro>
 
 ---
 
-## Common components {/*common-components*/}
+## Common Components {/*common-components*/}
 
-All of the built-in browser components support some props and events.
+All of the built-in browser Components support some props and events.
 
-* [Common components (e.g. `<div>`)](/reference/react-dom/components/common)
+* [Common Components (e.g. `<div>`)](/reference/react-dom/components/common)
 
 This includes React-specific props like `ref` and `dangerouslySetInnerHTML`.
 
 ---
 
-## Form components {/*form-components*/}
+## Form Components {/*form-components*/}
 
-These built-in browser components accept user input:
+These built-in browser Components accept user input:
 
 * [`<input>`](/reference/react-dom/components/input)
 * [`<select>`](/reference/react-dom/components/select)
@@ -34,7 +34,7 @@ They are special in React because passing the `value` prop to them makes them *[
 
 ## Resource and Metadata Components {/*resource-and-metadata-components*/}
 
-These bulit-in browser components let you load external resources or annotate the document with metadata:
+These bulit-in browser Components let you load external resources or annotate the document with metadata:
 
 * [`<link>`](/reference/react-dom/components/link)
 * [`<meta>`](/reference/react-dom/components/meta)
@@ -42,7 +42,7 @@ These bulit-in browser components let you load external resources or annotate th
 * [`<style>`](/reference/react-dom/components/style)
 * [`<title>`](/reference/react-dom/components/title)
 
-They are special in React because React can render them into the document head, suspend while resources are loading, and enact other behaviors that are described on the reference page for each specific component.
+They are special in React because React can render them into the document head, suspend while resources are loading, and enact other behaviors that are described on the reference page for each specific Component.
 
 ---
 
@@ -183,9 +183,9 @@ Experimental versions of React may contain bugs. Don't use them in production.
 </Note>
 ---
 
-## All SVG components {/*all-svg-components*/}
+## All SVG Components {/*all-svg-components*/}
 
-React supports all built-in browser SVG components. This includes:
+React supports all built-in browser SVG Components. This includes:
 
 * [`<a>`](https://developer.mozilla.org/en-US/docs/Web/SVG/Element/a)
 * [`<animate>`](https://developer.mozilla.org/en-US/docs/Web/SVG/Element/animate)

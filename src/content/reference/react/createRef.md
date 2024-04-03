@@ -4,7 +4,7 @@ title: createRef
 
 <Pitfall>
 
-`createRef` is mostly used for [class components.](/reference/react/Component) Function components typically rely on [`useRef`](/reference/react/useRef) instead.
+`createRef` is mostly used for [class Components.](/reference/react/Component) Function Components typically rely on [`useRef`](/reference/react/useRef) instead.
 
 </Pitfall>
 
@@ -29,7 +29,7 @@ class MyInput extends Component {
 
 ### `createRef()` {/*createref*/}
 
-Call `createRef` to declare a [ref](/learn/referencing-values-with-refs) inside a [class component.](/reference/react/Component)
+Call `createRef` to declare a [ref](/learn/referencing-values-with-refs) inside a [class Component.](/reference/react/Component)
 
 ```js
 import { createRef, Component } from 'react';
@@ -55,16 +55,16 @@ class MyComponent extends Component {
 #### Caveats {/*caveats*/}
 
 * `createRef` always returns a *different* object. It's equivalent to writing `{ current: null }` yourself.
-* In a function component, you probably want [`useRef`](/reference/react/useRef) instead which always returns the same object.
+* In a function Component, you probably want [`useRef`](/reference/react/useRef) instead which always returns the same object.
 * `const ref = useRef()` is equivalent to `const [ref, _] = useState(() => createRef(null))`.
 
 ---
 
 ## Usage {/*usage*/}
 
-### Declaring a ref in a class component {/*declaring-a-ref-in-a-class-component*/}
+### Declaring a ref in a class Component {/*declaring-a-ref-in-a-class-component*/}
 
-To declare a ref inside a [class component,](/reference/react/Component) call `createRef` and assign its result to a class field:
+To declare a ref inside a [class Component,](/reference/react/Component) call `createRef` and assign its result to a class field:
 
 ```js {4}
 import { Component, createRef } from 'react';
@@ -107,7 +107,7 @@ export default class Form extends Component {
 
 <Pitfall>
 
-`createRef` is mostly used for [class components.](/reference/react/Component) Function components typically rely on [`useRef`](/reference/react/useRef) instead.
+`createRef` is mostly used for [class Components.](/reference/react/Component) Function Components typically rely on [`useRef`](/reference/react/useRef) instead.
 
 </Pitfall>
 
@@ -117,7 +117,7 @@ export default class Form extends Component {
 
 ### Migrating from a class with `createRef` to a function with `useRef` {/*migrating-from-a-class-with-createref-to-a-function-with-useref*/}
 
-We recommend using function components instead of [class components](/reference/react/Component) in new code. If you have some existing class components using `createRef`, here is how you can convert them. This is the original code:
+We recommend using function Components instead of [class Components](/reference/react/Component) in new code. If you have some existing class Components using `createRef`, here is how you can convert them. This is the original code:
 
 <Sandpack>
 
@@ -146,7 +146,7 @@ export default class Form extends Component {
 
 </Sandpack>
 
-When you [convert this component from a class to a function,](/reference/react/Component#alternatives) replace calls to `createRef` with calls to [`useRef`:](/reference/react/useRef)
+When you [convert this Component from a class to a function,](/reference/react/Component#alternatives) replace calls to `createRef` with calls to [`useRef`:](/reference/react/useRef)
 
 <Sandpack>
 

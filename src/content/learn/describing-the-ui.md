@@ -4,27 +4,27 @@ title: Describing the UI
 
 <Intro>
 
-React is a JavaScript library for rendering user interfaces (UI). UI is built from small units like buttons, text, and images. React lets you combine them into reusable, nestable *components.* From web sites to phone apps, everything on the screen can be broken down into components. In this chapter, you'll learn to create, customize, and conditionally display React components.
+React is a JavaScript library for rendering user interfaces (UI). UI is built from small units like buttons, text, and images. React lets you combine them into reusable, nestable *Components.* From web sites to phone apps, everything on the screen can be broken down into Components. In this chapter, you'll learn to create, customize, and conditionally display React Components.
 
 </Intro>
 
 <YouWillLearn isChapter={true}>
 
-* [How to write your first React component](/learn/your-first-component)
+* [How to write your first React Component](/learn/your-first-component)
 * [When and how to create multi-component files](/learn/importing-and-exporting-components)
 * [How to add markup to JavaScript with JSX](/learn/writing-markup-with-jsx)
-* [How to use curly braces with JSX to access JavaScript functionality from your components](/learn/javascript-in-jsx-with-curly-braces)
-* [How to configure components with props](/learn/passing-props-to-a-component)
-* [How to conditionally render components](/learn/conditional-rendering)
-* [How to render multiple components at a time](/learn/rendering-lists)
-* [How to avoid confusing bugs by keeping components pure](/learn/keeping-components-pure)
+* [How to use curly braces with JSX to access JavaScript functionality from your Components](/learn/javascript-in-jsx-with-curly-braces)
+* [How to configure Components with props](/learn/passing-props-to-a-component)
+* [How to conditionally render Components](/learn/conditional-rendering)
+* [How to render multiple Components at a time](/learn/rendering-lists)
+* [How to avoid confusing bugs by keeping Components pure](/learn/keeping-components-pure)
 * [Why understanding your UI as trees is useful](/learn/understanding-your-ui-as-a-tree)
 
 </YouWillLearn>
 
-## Your first component {/*your-first-component*/}
+## Your first Component {/*your-first-component*/}
 
-React applications are built from isolated pieces of UI called *components*. A React component is a JavaScript function that you can sprinkle with markup. Components can be as small as a button, or as large as an entire page. Here is a `Gallery` component rendering three `Profile` components:
+React applications are built from isolated pieces of UI called *Components*. A React Component is a JavaScript function that you can sprinkle with markup. Components can be as small as a button, or as large as an entire page. Here is a `Gallery` Component rendering three `Profile` Components:
 
 <Sandpack>
 
@@ -58,13 +58,13 @@ img { margin: 0 10px 10px 0; height: 90px; }
 
 <LearnMore path="/learn/your-first-component">
 
-Read **[Your First Component](/learn/your-first-component)** to learn how to declare and use React components.
+Read **[Your First Component](/learn/your-first-component)** to learn how to declare and use React Components.
 
 </LearnMore>
 
-## Importing and exporting components {/*importing-and-exporting-components*/}
+## Importing and exporting Components {/*importing-and-exporting-components*/}
 
-You can declare many components in one file, but large files can get difficult to navigate. To solve this, you can *export* a component into its own file, and then *import* that component from another file:
+You can declare many Components in one file, but large files can get difficult to navigate. To solve this, you can *export* a Component into its own file, and then *import* that Component from another file:
 
 
 <Sandpack>
@@ -113,15 +113,15 @@ img { margin: 0 10px 10px 0; }
 
 <LearnMore path="/learn/importing-and-exporting-components">
 
-Read **[Importing and Exporting Components](/learn/importing-and-exporting-components)** to learn how to split components into their own files.
+Read **[Importing and Exporting Components](/learn/importing-and-exporting-components)** to learn how to split Components into their own files.
 
 </LearnMore>
 
 ## Writing markup with JSX {/*writing-markup-with-jsx*/}
 
-Each React component is a JavaScript function that may contain some markup that React renders into the browser. React components use a syntax extension called JSX to represent that markup. JSX looks a lot like HTML, but it is a bit stricter and can display dynamic information.
+Each React Component is a JavaScript function that may contain some markup that React renders into the browser. React Components use a syntax extension called JSX to represent that markup. JSX looks a lot like HTML, but it is a bit stricter and can display dynamic information.
 
-If we paste existing HTML markup into a React component, it won't always work:
+If we paste existing HTML markup into a React Component, it won't always work:
 
 <Sandpack>
 
@@ -234,9 +234,9 @@ Read **[JavaScript in JSX with Curly Braces](/learn/javascript-in-jsx-with-curly
 
 </LearnMore>
 
-## Passing props to a component {/*passing-props-to-a-component*/}
+## Passing props to a Component {/*passing-props-to-a-component*/}
 
-React components use *props* to communicate with each other. Every parent component can pass some information to its child components by giving them props. Props might remind you of HTML attributes, but you can pass any JavaScript value through them, including objects, arrays, functions, and even JSX!
+React Components use *props* to communicate with each other. Every parent Component can pass some information to its child Components by giving them props. Props might remind you of HTML attributes, but you can pass any JavaScript value through them, including objects, arrays, functions, and even JSX!
 
 <Sandpack>
 
@@ -317,7 +317,7 @@ Read **[Passing Props to a Component](/learn/passing-props-to-a-component)** to 
 
 ## Conditional rendering {/*conditional-rendering*/}
 
-Your components will often need to display different things depending on different conditions. In React, you can conditionally render JSX using JavaScript syntax like `if` statements, `&&`, and `? :` operators.
+Your Components will often need to display different things depending on different conditions. In React, you can conditionally render JSX using JavaScript syntax like `if` statements, `&&`, and `? :` operators.
 
 In this example, the JavaScript `&&` operator is used to conditionally render a checkmark:
 
@@ -365,7 +365,7 @@ Read **[Conditional Rendering](/learn/conditional-rendering)** to learn the diff
 
 ## Rendering lists {/*rendering-lists*/}
 
-You will often want to display multiple similar components from a collection of data. You can use JavaScript's `filter()` and `map()` with React to filter and transform your array of data into an array of components.
+You will often want to display multiple similar Components from a collection of data. You can use JavaScript's `filter()` and `map()` with React to filter and transform your array of data into an array of Components.
 
 For each array item, you will need to specify a `key`. Usually, you will want to use an ID from the database as a `key`. Keys let React keep track of each item's place in the list even if the list changes.
 
@@ -459,18 +459,18 @@ h2 { font-size: 20px; }
 
 <LearnMore path="/learn/rendering-lists">
 
-Read **[Rendering Lists](/learn/rendering-lists)** to learn how to render a list of components, and how to choose a key.
+Read **[Rendering Lists](/learn/rendering-lists)** to learn how to render a list of Components, and how to choose a key.
 
 </LearnMore>
 
-## Keeping components pure {/*keeping-components-pure*/}
+## Keeping Components pure {/*keeping-components-pure*/}
 
 Some JavaScript functions are *pure.* A pure function:
 
 * **Minds its own business.** It does not change any objects or variables that existed before it was called.
 * **Same inputs, same output.** Given the same inputs, a pure function should always return the same result.
 
-By strictly only writing your components as pure functions, you can avoid an entire class of baffling bugs and unpredictable behavior as your codebase grows. Here is an example of an impure component:
+By strictly only writing your Components as pure functions, you can avoid an entire class of baffling bugs and unpredictable behavior as your codebase grows. Here is an example of an impure Component:
 
 <Sandpack>
 
@@ -496,7 +496,7 @@ export default function TeaSet() {
 
 </Sandpack>
 
-You can make this component pure by passing a prop instead of modifying a preexisting variable:
+You can make this Component pure by passing a prop instead of modifying a preexisting variable:
 
 <Sandpack>
 
@@ -520,23 +520,23 @@ export default function TeaSet() {
 
 <LearnMore path="/learn/keeping-components-pure">
 
-Read **[Keeping Components Pure](/learn/keeping-components-pure)** to learn how to write components as pure, predictable functions.
+Read **[Keeping Components Pure](/learn/keeping-components-pure)** to learn how to write Components as pure, predictable functions.
 
 </LearnMore>
 
 ## Your UI as a tree {/*your-ui-as-a-tree*/}
 
-React uses trees to model the relationships between components and modules. 
+React uses trees to model the relationships between Components and modules. 
 
-A React render tree is a representation of the parent and child relationship between components. 
+A React render tree is a representation of the parent and child relationship between Components. 
 
-<Diagram name="generic_render_tree" height={250} width={500} alt="A tree graph with five nodes, with each node representing a component. The root node is located at the top the tree graph and is labelled 'Root Component'. It has two arrows extending down to two nodes labelled 'Component A' and 'Component C'. Each of the arrows is labelled with 'renders'. 'Component A' has a single 'renders' arrow to a node labelled 'Component B'. 'Component C' has a single 'renders' arrow to a node labelled 'Component D'.">
+<Diagram name="generic_render_tree" height={250} width={500} alt="A tree graph with five nodes, with each node representing a Component. The root node is located at the top the tree graph and is labelled 'Root Component'. It has two arrows extending down to two nodes labelled 'Component A' and 'Component C'. Each of the arrows is labelled with 'renders'. 'Component A' has a single 'renders' arrow to a node labelled 'Component B'. 'Component C' has a single 'renders' arrow to a node labelled 'Component D'.">
 
 An example React render tree.
 
 </Diagram>
 
-Components near the top of the tree, near the root component, are considered top-level components. Components with no child components are leaf components. This categorization of components is useful for understanding data flow and rendering performance.
+Components near the top of the tree, near the root Component, are considered top-level Components. Components with no child Components are leaf Components. This categorization of Components is useful for understanding data flow and rendering performance.
 
 Modelling the relationship between JavaScript modules is another useful way to understand your app. We refer to it as a module dependency tree. 
 

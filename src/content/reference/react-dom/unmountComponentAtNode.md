@@ -12,7 +12,7 @@ In React 18, `unmountComponentAtNode` was replaced by [`root.unmount()`](/refere
 
 <Intro>
 
-`unmountComponentAtNode` removes a mounted React component from the DOM.
+`unmountComponentAtNode` removes a mounted React Component from the DOM.
 
 ```js
 unmountComponentAtNode(domNode)
@@ -28,7 +28,7 @@ unmountComponentAtNode(domNode)
 
 ### `unmountComponentAtNode(domNode)` {/*unmountcomponentatnode*/}
 
-Call `unmountComponentAtNode` to remove a mounted React component from the DOM and clean up its event handlers and state.
+Call `unmountComponentAtNode` to remove a mounted React Component from the DOM and clean up its event handlers and state.
 
 ```js
 import { unmountComponentAtNode } from 'react-dom';
@@ -43,17 +43,17 @@ unmountComponentAtNode(domNode);
 
 #### Parameters {/*parameters*/}
 
-* `domNode`: A [DOM element.](https://developer.mozilla.org/en-US/docs/Web/API/Element) React will remove a mounted React component from this element.
+* `domNode`: A [DOM element.](https://developer.mozilla.org/en-US/docs/Web/API/Element) React will remove a mounted React Component from this element.
 
 #### Returns {/*returns*/}
 
-`unmountComponentAtNode` returns `true` if a component was unmounted and `false` otherwise.
+`unmountComponentAtNode` returns `true` if a Component was unmounted and `false` otherwise.
 
 ---
 
 ## Usage {/*usage*/}
 
-Call `unmountComponentAtNode` to remove a <CodeStep step={1}>mounted React component</CodeStep> from a <CodeStep step={2}>browser DOM node</CodeStep> and clean up its event handlers and state.
+Call `unmountComponentAtNode` to remove a <CodeStep step={1}>mounted React Component</CodeStep> from a <CodeStep step={2}>browser DOM node</CodeStep> and clean up its event handlers and state.
 
 ```js [[1, 5, "<App />"], [2, 5, "rootNode"], [2, 8, "rootNode"]]
 import { render, unmountComponentAtNode } from 'react-dom';

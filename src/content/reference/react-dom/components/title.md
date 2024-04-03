@@ -28,7 +28,7 @@ The [built-in browser `<title>` component](https://developer.mozilla.org/en-US/d
 
 ### `<title>` {/*title*/}
 
-To specify the title of the document, render the [built-in browser `<title>` component](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/title). You can render `<title>` from any component and React will always place the corresponding DOM element in the document head.
+To specify the title of the document, render the [built-in browser `<title>` component](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/title). You can render `<title>` from any Component and React will always place the corresponding DOM element in the document head.
 
 ```js
 <title>My Blog</title>
@@ -40,19 +40,19 @@ To specify the title of the document, render the [built-in browser `<title>` com
 
 `<title>` supports all [common element props.](/reference/react-dom/components/common#props)
 
-* `children`: `<title>` accepts only text as a child. This text will become the title of the document. You can also pass your own components as long as they only render text.
+* `children`: `<title>` accepts only text as a child. This text will become the title of the document. You can also pass your own Components as long as they only render text.
 
 #### Special rendering behavior {/*special-rendering-behavior*/}
 
-React will always place the DOM element corresponding to the `<title>` component within the document’s `<head>`, regardless of where in the React tree it is rendered. The `<head>` is the only valid place for `<title>` to exist within the DOM, yet it’s convenient and keeps things composable if a component representing a specific page can render its `<title>` itself. 
+React will always place the DOM element corresponding to the `<title>` Component within the document’s `<head>`, regardless of where in the React tree it is rendered. The `<head>` is the only valid place for `<title>` to exist within the DOM, yet it’s convenient and keeps things composable if a Component representing a specific page can render its `<title>` itself. 
 
 There are two exception to this:
-* If `<title>` is within an `<svg>` component, then there is no special behavior, because in this context it doesn’t represent the document’s title but rather is an [accessibility annotation for that SVG graphic](https://developer.mozilla.org/en-US/docs/Web/SVG/Element/title).
+* If `<title>` is within an `<svg>` Component, then there is no special behavior, because in this context it doesn’t represent the document’s title but rather is an [accessibility annotation for that SVG graphic](https://developer.mozilla.org/en-US/docs/Web/SVG/Element/title).
 * If the `<title>` has an [`itemProp`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/itemprop) prop, there is no special behavior, because in this case it doesn’t represent the document’s title but rather metadata about a specific part of the page. 
 
 <Pitfall>
 
-Only render a single `<title>` at a time. If more than one component renders a `<title>` tag at the same time, React will place all of those titles in the document head. When this happens, the behavior of browsers and search engines is undefined.
+Only render a single `<title>` at a time. If more than one Component renders a `<title>` tag at the same time, React will place all of those titles in the document head. When this happens, the behavior of browsers and search engines is undefined.
 
 </Pitfall>
 
@@ -62,7 +62,7 @@ Only render a single `<title>` at a time. If more than one component renders a `
 
 ### Set the document title {/*set-the-document-title*/}
 
-Render the `<title>` component from any component with text as its children. React will put a `<title>` DOM node in the document `<head>`.
+Render the `<title>` Component from any Component with text as its children. React will put a `<title>` DOM node in the document `<head>`.
 
 <SandpackWithHTMLOutput>
 
@@ -84,13 +84,13 @@ export default function ContactUsPage() {
 
 ### Use variables in the title {/*use-variables-in-the-title*/}
 
-The children of the `<title>` component must be a single string of text. (Or a single number or a single object with a `toString` method.) It might not be obvious, but using JSX curly braces like this:
+The children of the `<title>` Component must be a single string of text. (Or a single number or a single object with a `toString` method.) It might not be obvious, but using JSX curly braces like this:
 
 ```js
 <title>Results page {pageNumber}</title> // 🔴 Problem: This is not a single string
 ```
 
-... actually causes the `<title>` component to get a two-element array as its children (the string `"Results page"` and the value of `pageNumber`). This will cause an error. Instead, use string interpolation to pass `<title>` a single string:
+... actually causes the `<title>` Component to get a two-element array as its children (the string `"Results page"` and the value of `pageNumber`). This will cause an error. Instead, use string interpolation to pass `<title>` a single string:
 
 ```js
 <title>{`Results page ${pageNumber}`}</title>

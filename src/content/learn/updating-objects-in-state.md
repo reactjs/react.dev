@@ -119,7 +119,7 @@ onPointerMove={e => {
 With `setPosition`, you're telling React:
 
 * Replace `position` with this new object
-* And render this component again
+* And render this Component again
 
 Notice how the red dot now follows your pointer when you touch or hover over the preview area:
 
@@ -788,7 +788,7 @@ img { width: 200px; height: 200px; }
 
 </Sandpack>
 
-Notice how much more concise the event handlers have become. You can mix and match `useState` and `useImmer` in a single component as much as you like. Immer is a great way to keep the update handlers concise, especially if there's nesting in your state, and copying objects leads to repetitive code.
+Notice how much more concise the event handlers have become. You can mix and match `useState` and `useImmer` in a single Component as much as you like. Immer is a great way to keep the update handlers concise, especially if there's nesting in your state, and copying objects leads to repetitive code.
 
 <DeepDive>
 

@@ -28,7 +28,7 @@ import { renderToStaticMarkup } from 'react-dom/server';
 const html = renderToStaticMarkup(<Page />);
 ```
 
-It will produce non-interactive HTML output of your React components.
+It will produce non-interactive HTML output of your React Components.
 
 [See more examples below.](#usage)
 
@@ -46,9 +46,9 @@ An HTML string.
 
 * `renderToStaticMarkup` output cannot be hydrated.
 
-* `renderToStaticMarkup` has limited Suspense support. If a component suspends, `renderToStaticMarkup` immediately sends its fallback as HTML.
+* `renderToStaticMarkup` has limited Suspense support. If a Component suspends, `renderToStaticMarkup` immediately sends its fallback as HTML.
 
-* `renderToStaticMarkup` works in the browser, but using it in the client code is not recommended. If you need to render a component to HTML in the browser, [get the HTML by rendering it into a DOM node.](/reference/react-dom/server/renderToString#removing-rendertostring-from-the-client-code)
+* `renderToStaticMarkup` works in the browser, but using it in the client code is not recommended. If you need to render a Component to HTML in the browser, [get the HTML by rendering it into a DOM node.](/reference/react-dom/server/renderToString#removing-rendertostring-from-the-client-code)
 
 ---
 
@@ -68,7 +68,7 @@ app.use('/', (request, response) => {
 });
 ```
 
-This will produce the initial non-interactive HTML output of your React components.
+This will produce the initial non-interactive HTML output of your React Components.
 
 <Pitfall>
 

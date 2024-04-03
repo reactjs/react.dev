@@ -51,7 +51,7 @@ An HTML string.
 
 #### Caveats {/*caveats*/}
 
-* `renderToString` has limited Suspense support. If a component suspends, `renderToString` immediately sends its fallback as HTML.
+* `renderToString` has limited Suspense support. If a Component suspends, `renderToString` immediately sends its fallback as HTML.
 
 * `renderToString` works in the browser, but using it in the client code is [not recommended.](#removing-rendertostring-from-the-client-code)
 
@@ -73,7 +73,7 @@ app.use('/', (request, response) => {
 });
 ```
 
-This will produce the initial non-interactive HTML output of your React components. On the client, you will need to call [`hydrateRoot`](/reference/react-dom/client/hydrateRoot) to *hydrate* that server-generated HTML and make it interactive.
+This will produce the initial non-interactive HTML output of your React Components. On the client, you will need to call [`hydrateRoot`](/reference/react-dom/client/hydrateRoot) to *hydrate* that server-generated HTML and make it interactive.
 
 
 <Pitfall>
@@ -101,7 +101,7 @@ You can continue using `renderToString` if your server environment does not supp
 
 ### Removing `renderToString` from the client code {/*removing-rendertostring-from-the-client-code*/}
 
-Sometimes, `renderToString` is used on the client to convert some component to HTML.
+Sometimes, `renderToString` is used on the client to convert some Component to HTML.
 
 ```js {1-2}
 // 🚩 Unnecessary: using renderToString on the client
@@ -111,7 +111,7 @@ const html = renderToString(<MyIcon />);
 console.log(html); // For example, "<svg>...</svg>"
 ```
 
-Importing `react-dom/server` **on the client** unnecessarily increases your bundle size and should be avoided. If you need to render some component to HTML in the browser, use [`createRoot`](/reference/react-dom/client/createRoot) and read HTML from the DOM:
+Importing `react-dom/server` **on the client** unnecessarily increases your bundle size and should be avoided. If you need to render some Component to HTML in the browser, use [`createRoot`](/reference/react-dom/client/createRoot) and read HTML from the DOM:
 
 ```js
 import { createRoot } from 'react-dom/client';
@@ -131,11 +131,11 @@ The [`flushSync`](/reference/react-dom/flushSync) call is necessary so that the 
 
 ## Troubleshooting {/*troubleshooting*/}
 
-### When a component suspends, the HTML always contains a fallback {/*when-a-component-suspends-the-html-always-contains-a-fallback*/}
+### When a Component suspends, the HTML always contains a fallback {/*when-a-component-suspends-the-html-always-contains-a-fallback*/}
 
 `renderToString` does not fully support Suspense.
 
-If some component suspends (for example, because it's defined with [`lazy`](/reference/react/lazy) or fetches data), `renderToString` will not wait for its content to resolve. Instead, `renderToString` will find the closest [`<Suspense>`](/reference/react/Suspense) boundary above it and render its `fallback` prop in the HTML. The content will not appear until the client code loads.
+If some Component suspends (for example, because it's defined with [`lazy`](/reference/react/lazy) or fetches data), `renderToString` will not wait for its content to resolve. Instead, `renderToString` will find the closest [`<Suspense>`](/reference/react/Suspense) boundary above it and render its `fallback` prop in the HTML. The content will not appear until the client code loads.
 
 To solve this, use one of the [recommended streaming solutions.](#migrating-from-rendertostring-to-a-streaming-method-on-the-server) They can stream content in chunks as it resolves on the server so that the user sees the page being progressively filled in before the client code loads.
 

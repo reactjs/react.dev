@@ -20,7 +20,7 @@ const deferredValue = useDeferredValue(value)
 
 ### `useDeferredValue(value)` {/*usedeferredvalue*/}
 
-Call `useDeferredValue` at the top level of your component to get a deferred version of that value.
+Call `useDeferredValue` at the top level of your Component to get a deferred version of that value.
 
 ```js
 import { useState, useDeferredValue } from 'react';
@@ -62,7 +62,7 @@ During the initial render, the returned deferred value will be the same as the v
 
 ### Showing stale content while fresh content is loading {/*showing-stale-content-while-fresh-content-is-loading*/}
 
-Call `useDeferredValue` at the top level of your component to defer updating some part of your UI.
+Call `useDeferredValue` at the top level of your Component to defer updating some part of your UI.
 
 ```js [[1, 5, "query"], [2, 5, "deferredQuery"]]
 import { useState, useDeferredValue } from 'react';
@@ -85,7 +85,7 @@ During updates, the <CodeStep step={2}>deferred value</CodeStep> will "lag behin
 This example assumes you use a Suspense-enabled data source:
 
 - Data fetching with Suspense-enabled frameworks like [Relay](https://relay.dev/docs/guided-tour/rendering/loading-states/) and [Next.js](https://nextjs.org/docs/getting-started/react-essentials)
-- Lazy-loading component code with [`lazy`](/reference/react/lazy)
+- Lazy-loading Component code with [`lazy`](/reference/react/lazy)
 - Reading the value of a Promise with [`use`](/reference/react/use)
 
 [Learn more about Suspense and its limitations.](/reference/react/Suspense)
@@ -93,7 +93,7 @@ This example assumes you use a Suspense-enabled data source:
 </Note>
 
 
-In this example, the `SearchResults` component [suspends](/reference/react/Suspense#displaying-a-fallback-while-content-is-loading) while fetching the search results. Try typing `"a"`, waiting for the results, and then editing it to `"ab"`. The results for `"a"` get replaced by the loading fallback.
+In this example, the `SearchResults` Component [suspends](/reference/react/Suspense#displaying-a-fallback-while-content-is-loading) while fetching the search results. Try typing `"a"`, waiting for the results, and then editing it to `"ab"`. The results for `"a"` get replaced by the loading fallback.
 
 <Sandpack>
 
@@ -135,7 +135,7 @@ export default function App() {
 ```js src/SearchResults.js hidden
 import { fetchData } from './data.js';
 
-// Note: this component is written using an experimental API
+// Note: this Component is written using an experimental API
 // that's not yet available in stable versions of React.
 
 // For a realistic example you can follow today, try a framework
@@ -350,7 +350,7 @@ export default function App() {
 ```js src/SearchResults.js hidden
 import { fetchData } from './data.js';
 
-// Note: this component is written using an experimental API
+// Note: this Component is written using an experimental API
 // that's not yet available in stable versions of React.
 
 // For a realistic example you can follow today, try a framework
@@ -579,7 +579,7 @@ export default function App() {
 ```js src/SearchResults.js hidden
 import { fetchData } from './data.js';
 
-// Note: this component is written using an experimental API
+// Note: this Component is written using an experimental API
 // that's not yet available in stable versions of React.
 
 // For a realistic example you can follow today, try a framework
@@ -735,7 +735,7 @@ input { margin: 10px; }
 
 You can also apply `useDeferredValue` as a performance optimization. It is useful when a part of your UI is slow to re-render, there's no easy way to optimize it, and you want to prevent it from blocking the rest of the UI.
 
-Imagine you have a text field and a component (like a chart or a long list) that re-renders on every keystroke:
+Imagine you have a text field and a Component (like a chart or a long list) that re-renders on every keystroke:
 
 ```js
 function App() {
@@ -780,7 +780,7 @@ This does not make re-rendering of the `SlowList` faster. However, it tells Reac
 
 #### Deferred re-rendering of the list {/*deferred-re-rendering-of-the-list*/}
 
-In this example, each item in the `SlowList` component is **artificially slowed down** so that you can see how `useDeferredValue` lets you keep the input responsive. Type into the input and notice that typing feels snappy while the list "lags behind" it.
+In this example, each item in the `SlowList` Component is **artificially slowed down** so that you can see how `useDeferredValue` lets you keep the input responsive. Type into the input and notice that typing feels snappy while the list "lags behind" it.
 
 <Sandpack>
 
@@ -856,7 +856,7 @@ export default SlowList;
 
 #### Unoptimized re-rendering of the list {/*unoptimized-re-rendering-of-the-list*/}
 
-In this example, each item in the `SlowList` component is **artificially slowed down**, but there is no `useDeferredValue`.
+In this example, each item in the `SlowList` Component is **artificially slowed down**, but there is no `useDeferredValue`.
 
 Notice how typing into the input feels very janky. This is because without `useDeferredValue`, each keystroke forces the entire list to re-render immediately in a non-interruptible way.
 
@@ -935,7 +935,7 @@ export default SlowList;
 
 <Pitfall>
 
-This optimization requires `SlowList` to be wrapped in [`memo`.](/reference/react/memo) This is because whenever the `text` changes, React needs to be able to re-render the parent component quickly. During that re-render, `deferredText` still has its previous value, so `SlowList` is able to skip re-rendering (its props have not changed). Without [`memo`,](/reference/react/memo) it would have to re-render anyway, defeating the point of the optimization.
+This optimization requires `SlowList` to be wrapped in [`memo`.](/reference/react/memo) This is because whenever the `text` changes, React needs to be able to re-render the parent Component quickly. During that re-render, `deferredText` still has its previous value, so `SlowList` is able to skip re-rendering (its props have not changed). Without [`memo`,](/reference/react/memo) it would have to re-render anyway, defeating the point of the optimization.
 
 </Pitfall>
 

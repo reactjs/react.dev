@@ -155,7 +155,7 @@ const ReactCompilerConfig = {
 };
 ```
 
-### Usage with Babel {/*set-up-the-babel-plugin-react-compiler*/}
+### Usage with Babel {/*usage-with-babel*/}
 
 <TerminalBlock>
 npm install babel-plugin-react-compiler
@@ -213,6 +213,7 @@ If you see `vite:import-analysis Failed to resolve import react-compiler-runtime
 
 ```js {10-11}
 // vite.config.js
+const { resolve } = require('path');
 const ReactCompilerConfig = { /* ... */ };
 
 export default defineConfig(() => {
@@ -231,7 +232,32 @@ export default defineConfig(() => {
 ```
 
 ### Usage with Next.js {/*usage-with-nextjs*/}
-TODO
+
+First, [configure Babel](#usage-with-babel). Then, configure Webpack to resolve `react-compiler-runtime`, which is injected dynamically by the compiler:
+
+TODO: verify that this is actually needed when installed with npm
+
+```js
+// .next.config.js
+const path = require("path");
+
+const nextConfig = {
+  reactStrictMode: true,
+  webpack: (config, options) => {
+    // ...
+    config.resolve.alias = {
+      ...config.resolve.alias,
+      "react-compiler-runtime": path.resolve(
+        __dirname,
+        "node_modules/react-comiler-runtime",
+      ),
+    };
+    return config;
+  },
+};
+
+module.exports = nextConfig;
+```
 
 ### Usage with Remix {/*usage-with-remix*/}
 TODO
@@ -306,7 +332,7 @@ React Devtools (v5.0+) has built-in support for the react compiler and will disp
 
 ##### Logger {/*logger*/}
 
-The compiler exposes a logging interface to capture different diagnostics, including successful compilation. You can provide the logger to the compiler via the configuration. 
+The compiler exposes a logging interface to capture different diagnostics, including successful compilation. You can provide the logger to the compiler via the configuration.
 
 ```js
 const ReactCompilerConfig = {

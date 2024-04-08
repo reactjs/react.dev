@@ -359,3 +359,9 @@ The compiler applies several heuristics to decide which values need memoization 
 While this trade-off generally works well, it implies that developers should not rely on the compiler for memoizing a value correctly.
 
 To prevent the compiler from dropping manual memoization and causing correctness issues, it will stop compilation of the component and bailout out if it cannot guarantee the memoization of existing manually memoized values.
+
+##### Hooks are called conditionally {/*hooks-are-called-conditionally*/}
+
+If your hooks don't start with the 'use' prefix, the compiler will consider them as regular functions and memoize them.  These memoized functions will only be called their dependencies change, causing this error.
+
+To fix this error, rename your hook to start with an 'use' prefix.

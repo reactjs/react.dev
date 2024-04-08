@@ -4,7 +4,7 @@ title: 'Synchronizing with Effects'
 
 <Intro>
 
-Some Components need to synchronize with external systems. For example, you might want to control a non-React Component based on the React state, set up a server connection, or send an analytics log when a Component appears on the screen. *Effects* let you run some code after rendering so that you can synchronize your Component with some system outside of React.
+Some Components need to synchronize with external systems. For example, you might want to control a non-React component based on the React state, set up a server connection, or send an analytics log when a Component appears on the screen. *Effects* let you run some code after rendering so that you can synchronize your Component with some system outside of React.
 
 </Intro>
 

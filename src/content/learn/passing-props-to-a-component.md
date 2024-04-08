@@ -10,10 +10,10 @@ React Components use *props* to communicate with each other. Every parent Compon
 
 <YouWillLearn>
 
-* How to pass props to a component
-* How to read props from a component
+* How to pass props to a Component
+* How to read props from a Component
 * How to specify default values for props
-* How to pass some JSX to a component
+* How to pass some JSX to a Component
 * How props change over time
 
 </YouWillLearn>

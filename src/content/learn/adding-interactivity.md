@@ -24,7 +24,7 @@ Some things on the screen update in response to user input. For example, clickin
 
 React lets you add *event handlers* to your JSX. Event handlers are your own functions that will be triggered in response to user interactions like clicking, hovering, focusing on form inputs, and so on.
 
-Built-in Components like `<button>` only support built-in browser events like `onClick`. However, you can also create your own Components, and give their event handler props any application-specific names that you like.
+Built-in components like `<button>` only support built-in browser events like `onClick`. However, you can also create your own Components, and give their event handler props any application-specific names that you like.
 
 <Sandpack>
 

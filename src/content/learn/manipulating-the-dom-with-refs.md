@@ -342,7 +342,7 @@ This lets you read individual DOM nodes from the Map later.
 
 ## Accessing another Component's DOM nodes {/*accessing-another-components-dom-nodes*/}
 
-When you put a ref on a built-in Component that outputs a browser element like `<input />`, React will set that ref's `current` property to the corresponding DOM node (such as the actual `<input />` in the browser).
+When you put a ref on a built-in component that outputs a browser element like `<input />`, React will set that ref's `current` property to the corresponding DOM node (such as the actual `<input />` in the browser).
 
 However, if you try to put a ref on **your own** Component, like `<MyInput />`, by default you will get `null`. Here is an example demonstrating it. Notice how clicking the button **does not** focus the input:
 

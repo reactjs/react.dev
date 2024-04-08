@@ -705,7 +705,7 @@ This example uses heading levels because they show visually how nested Component
 
 ## Context passes through intermediate Components {/*context-passes-through-intermediate-components*/}
 
-You can insert as many Components as you like between the Component that provides context and the one that uses it. This includes both built-in Components like `<div>` and Components you might build yourself.
+You can insert as many Components as you like between the Component that provides context and the one that uses it. This includes both built-in components like `<div>` and Components you might build yourself.
 
 In this example, the same `Post` Component (with a dashed border) is rendered at two different nesting levels. Notice that the `<Heading>` inside of it gets its level automatically from the closest `<Section>`:
 

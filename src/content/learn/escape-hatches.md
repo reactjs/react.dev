@@ -99,7 +99,7 @@ Read **[Manipulating the DOM with Refs](/learn/manipulating-the-dom-with-refs)**
 
 ## Synchronizing with Effects {/*synchronizing-with-effects*/}
 
-Some Components need to synchronize with external systems. For example, you might want to control a non-React Component based on the React state, set up a server connection, or send an analytics log when a Component appears on the screen. Unlike event handlers, which let you handle particular events, *Effects* let you run some code after rendering. Use them to synchronize your Component with a system outside of React.
+Some Components need to synchronize with external systems. For example, you might want to control a non-React component based on the React state, set up a server connection, or send an analytics log when a Component appears on the screen. Unlike event handlers, which let you handle particular events, *Effects* let you run some code after rendering. Use them to synchronize your Component with a system outside of React.
 
 Press Play/Pause a few times and see how the video player stays synchronized to the `isPlaying` prop value:
 

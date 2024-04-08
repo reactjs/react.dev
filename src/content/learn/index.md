@@ -10,12 +10,12 @@ Welcome to the React documentation! This page will give you an introduction to t
 
 <YouWillLearn>
 
-- How to create and nest components
+- How to create and nest Components
 - How to add markup and styles
 - How to display data
 - How to render conditions and lists
 - How to respond to events and update the screen
-- How to share data between components
+- How to share data between Components
 
 </YouWillLearn>
 

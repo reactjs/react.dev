@@ -148,7 +148,7 @@ root.render(<NavigationBar />);
 
 Notice how the original HTML content from `index.html` is preserved, but your own `NavigationBar` React Component now appears inside the `<nav id="navigation">` from your HTML. Read the [`createRoot` usage documentation](/reference/react-dom/client/createRoot#rendering-a-page-partially-built-with-react) to learn more about rendering React Components inside an existing HTML page.
 
-When you adopt React in an existing project, it's common to start with small interactive Components (like buttons), and then gradually keep "moving upwards" until eventually your entire page is built with React. If you ever reach that point, we recommend migrating to [a React framework](/learn/start-a-new-react-project) right after to get the most out of React.
+When you adopt React in an existing project, it's common to start with small interactive components (like buttons), and then gradually keep "moving upwards" until eventually your entire page is built with React. If you ever reach that point, we recommend migrating to [a React framework](/learn/start-a-new-react-project) right after to get the most out of React.
 
 ## Using React Native in an existing native mobile app {/*using-react-native-in-an-existing-native-mobile-app*/}
 

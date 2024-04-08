@@ -254,7 +254,7 @@ Notice how the moment you stop rendering the second counter, its state disappear
 
 <Diagram name="preserving_state_remove_component" height={253} width={422} alt="Diagram of a tree of React Components. The root node is labeled 'div' and has two children. The left child is labeled 'Counter' and contains a state bubble labeled 'count' with value 0. The right child is missing, and in its place is a yellow 'poof' image, highlighting the Component being deleted from the tree.">
 
-Deleting a component
+Deleting a Component
 
 </Diagram>
 
@@ -266,7 +266,7 @@ When you tick "Render the second counter", a second `Counter` and its state are 
 
 <Diagram name="preserving_state_add_component" height={258} width={500} alt="Diagram of a tree of React Components. The root node is labeled 'div' and has two children. The left child is labeled 'Counter' and contains a state bubble labeled 'count' with value 0. The right child is labeled 'Counter' and contains a state bubble labeled 'count' with value 0. The entire right child node is highlighted in yellow, indicating that it was just added to the tree.">
 
-Adding a component
+Adding a Component
 
 </Diagram>
 

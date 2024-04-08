@@ -349,3 +349,13 @@ const ReactCompilerConfig = {
   }
 }
 ```
+
+##### useEffect fires more frequently with the compiler {/*useeffect-fires-more-frequently-with-the-compiler*/}
+
+If you notice your Effect running more frequently than anticipated, it could be due to a dependency that you previously memoized manually (using useMemo/useCallback) not being automatically memoized by the compiler.
+
+The compiler applies several heuristics to decide which values need memoization to avoid unnecessary memory usage. However, this might sometimes result in a value that was previously memoized not being memoized now.
+
+While this trade-off generally works well, it implies that developers should not rely on the compiler for memoizing a value correctly.
+
+To prevent the compiler from dropping manual memoization and causing correctness issues, it will stop compilation of the component and bailout out if it cannot guarantee the memoization of existing manually memoized values.

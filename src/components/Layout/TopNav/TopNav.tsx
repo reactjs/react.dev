@@ -142,7 +142,7 @@ export default function TopNav({
   breadcrumbs: RouteItem[];
   section: 'learn' | 'reference' | 'community' | 'blog' | 'home' | 'unknown';
 }) {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const scrollParentRef = useRef<HTMLDivElement>(null);
   const {asPath} = useRouter();
   const [isScrolled, setIsScrolled] = useState(false);
@@ -154,18 +154,18 @@ export default function TopNav({
 
   // While the overlay is open, disable body scroll.
   useEffect(() => {
-    if (isOpen) {
+    if (isMenuOpen) {
       const preferredScrollParent = scrollParentRef.current!;
       disableBodyScroll(preferredScrollParent);
       return () => enableBodyScroll(preferredScrollParent);
     } else {
       return undefined;
     }
-  }, [isOpen]);
+  }, [isMenuOpen]);
 
   // Close the overlay on any navigation.
   useEffect(() => {
-    setIsOpen(false);
+    setIsMenuOpen(false);
   }, [asPath]);
 
   // Also close the overlay if the window gets resized past mobile layout.
@@ -175,7 +175,7 @@ export default function TopNav({
 
     function closeIfNeeded() {
       if (!media.matches) {
-        setIsOpen(false);
+        setIsMenuOpen(false);
       }
     }
 
@@ -224,28 +224,28 @@ export default function TopNav({
       <div ref={scrollDetectorRef} />
       <div
         className={cn(
-          isOpen
+          isMenuOpen
             ? 'h-screen sticky top-0 lg:bottom-0 lg:h-screen flex flex-col shadow-nav dark:shadow-nav-dark z-20'
             : 'z-50 sticky top-0'
         )}>
         <nav
           className={cn(
             'duration-300 backdrop-filter backdrop-blur-lg backdrop-saturate-200 transition-shadow bg-opacity-90 items-center w-full flex justify-between bg-wash dark:bg-wash-dark dark:bg-opacity-95 px-1.5 lg:pe-5 lg:ps-4 z-50',
-            {'dark:shadow-nav-dark shadow-nav': isScrolled || isOpen}
+            {'dark:shadow-nav-dark shadow-nav': isScrolled || isMenuOpen}
           )}>
           <div className="flex items-center justify-between w-full h-16 gap-0 sm:gap-3">
             <div className="flex flex-row 3xl:flex-1 ">
               <button
                 type="button"
                 aria-label="Menu"
-                onClick={() => setIsOpen(!isOpen)}
+                onClick={() => setIsMenuOpen(!isMenuOpen)}
                 className={cn(
                   'active:scale-95 transition-transform flex lg:hidden w-12 h-12 rounded-full items-center justify-center hover:bg-primary/5 hover:dark:bg-primary-dark/5 outline-link',
                   {
-                    'text-link dark:text-link-dark': isOpen,
+                    'text-link dark:text-link-dark': isMenuOpen,
                   }
                 )}>
-                {isOpen ? <IconClose /> : <IconHamburger />}
+                {isMenuOpen ? <IconClose /> : <IconHamburger />}
               </button>
               <div className="flex 3xl:flex-1 align-center">
                 <NextLink
@@ -343,14 +343,14 @@ export default function TopNav({
           </div>
         </nav>
 
-        {isOpen && (
+        {isMenuOpen && (
           <div
             ref={scrollParentRef}
             className="overflow-y-scroll isolate no-bg-scrollbar lg:w-[342px] grow bg-wash dark:bg-wash-dark">
             <aside
               className={cn(
                 `lg:grow lg:flex flex-col w-full pb-8 lg:pb-0 lg:max-w-custom-xs z-50`,
-                isOpen ? 'block z-40' : 'hidden lg:block'
+                isMenuOpen ? 'block z-40' : 'hidden lg:block'
               )}>
               <nav
                 role="navigation"
@@ -383,10 +383,10 @@ export default function TopNav({
                   <SidebarRouteTree
                     // Don't share state between the desktop and mobile versions.
                     // This avoids unnecessary animations and visual flicker.
-                    key={isOpen ? 'mobile-overlay' : 'desktop-or-hidden'}
+                    key={isMenuOpen ? 'mobile-overlay' : 'desktop-or-hidden'}
                     routeTree={routeTree}
                     breadcrumbs={breadcrumbs}
-                    isForceExpanded={isOpen}
+                    isForceExpanded={isMenuOpen}
                   />
                 </Suspense>
                 <div className="h-16" />

@@ -143,9 +143,10 @@ export default function TopNav({
   section: 'learn' | 'reference' | 'community' | 'blog' | 'home' | 'unknown';
 }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [showSearch, setShowSearch] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
   const scrollParentRef = useRef<HTMLDivElement>(null);
   const {asPath} = useRouter();
-  const [isScrolled, setIsScrolled] = useState(false);
 
   // HACK. Fix up the data structures instead.
   if ((routeTree as any).routes.length === 1) {
@@ -204,7 +205,6 @@ export default function TopNav({
     return () => observer.disconnect();
   }, []);
 
-  const [showSearch, setShowSearch] = useState(false);
   const onOpenSearch = useCallback(() => {
     startTransition(() => {
       setShowSearch(true);

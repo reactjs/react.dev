@@ -18,7 +18,7 @@ const deferredValue = useDeferredValue(value)
 
 ## Reference {/*reference*/}
 
-### `useDeferredValue(value)` {/*usedeferredvalue*/}
+### `useDeferredValue(value, initialValue?)` {/*usedeferredvalue*/}
 
 Call `useDeferredValue` at the top level of your component to get a deferred version of that value.
 
@@ -37,10 +37,19 @@ function SearchPage() {
 #### Parameters {/*parameters*/}
 
 * `value`: The value you want to defer. It can have any type.
+* **optional** `initialValue`: A value to use during the initial render of a component. If this option is omitted, `useDeferredValue` will not defer during the initial render, because there's no previous version of `value` that it can render instead.
+
 
 #### Returns {/*returns*/}
 
-During the initial render, the returned deferred value will be the same as the value you provided. During updates, React will first attempt a re-render with the old value (so it will return the old value), and then try another re-render in the background with the new value (so it will return the updated value). 
+Returns either `value`, the old `value` that was previously rendered to the screen, or `initialValue`, depending on the scenario:
+
+- During the initial render...
+  - If `initialValue` _is_ provided, it first returns `initialValue`, then spawns a deferred render to switch to `value`.
+  - If `initialValue` _is not_ provided, it returns `value`, and does not spawn a deferred render.
+- During an update...
+  - If the update _is_ the result of a Transition, it returns the new `value`, and does not spawn a deferred render.
+  - If the update _is not_ the result of a Transition, it first returns the old `value`, then spawns a deferred render to switch to the new `value`.
 
 #### Caveats {/*caveats*/}
 

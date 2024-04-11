@@ -37,21 +37,22 @@ function SearchPage() {
 #### Parameters {/*parameters*/}
 
 * `value`: The value you want to defer. It can have any type.
-* **optional** `initialValue`: A value to use during the initial render of a component. If this option is omitted, `useDeferredValue` will not defer during the initial render, because there's no previous version of `value` that it can render instead.
+* <CanaryBadge title="This feature is only available in the Canary channel" /> **optional** `initialValue`: A value to use during the initial render of a component. If this option is omitted, `useDeferredValue` will not defer during the initial render, because there's no previous version of `value` that it can render instead.
 
 
 #### Returns {/*returns*/}
 
-Returns either `value`, the old `value` that was previously rendered to the screen, or `initialValue`, depending on the scenario:
+- `currentValue`: During the initial render, the returned deferred value will be the same as the value you provided. During updates, React will first attempt a re-render with the old value (so it will return the old value), and then try another re-render in the background with the new value (so it will return the updated value).
 
-- During the initial render...
-  - If `initialValue` _is_ provided, it first returns `initialValue`, then spawns a deferred render to switch to `value`.
-  - If `initialValue` _is not_ provided, it returns `value`, and does not spawn a deferred render.
-- During an update...
-  - If the update _is_ the result of a Transition, it returns the new `value`, and does not spawn a deferred render.
-  - If the update _is not_ the result of a Transition, it first returns the old `value`, then spawns a deferred render to switch to the new `value`.
+<Canary>
+
+In the latest React Canary versions, `useDeferredValue` returns the `initialValue` on initial render, and schedules a re-render in the background with the `value` returned.
+
+</Canary>
 
 #### Caveats {/*caveats*/}
+
+- When an update is inside a Transition, `useDeferredValue` always returns the new `value` and does not spawn a deferred render, since the update is already deferred.
 
 - The values you pass to `useDeferredValue` should either be primitive values (like strings and numbers) or objects created outside of rendering. If you create a new object during rendering and immediately pass it to `useDeferredValue`, it will be different on every render, causing unnecessary background re-renders.
 

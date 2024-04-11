@@ -33,6 +33,7 @@ import type {Toc, TocItem} from './TocContext';
 import {TeamMember} from './TeamMember';
 
 import ErrorDecoder from './ErrorDecoder';
+import {IconCanary} from '../Icon/IconCanary';
 
 function CodeStep({children, step}: {children: any; step: number}) {
   return (
@@ -92,6 +93,20 @@ const Note = ({children}: {children: React.ReactNode}) => (
 
 const Canary = ({children}: {children: React.ReactNode}) => (
   <ExpandableCallout type="canary">{children}</ExpandableCallout>
+);
+
+const CanaryBadge = ({title}: {title: string}) => (
+  <span
+    title={title}
+    className={
+      'text-base font-display px-1 py-0.5 font-bold bg-gray-10 dark:bg-gray-60 text-gray-60 dark:text-gray-10 rounded'
+    }>
+    <IconCanary
+      size="s"
+      className={'inline me-1 mb-0.5 text-sm text-gray-60 dark:text-gray-10'}
+    />
+    Canary only
+  </span>
 );
 
 const Blockquote = ({
@@ -430,6 +445,7 @@ export const MDXComponents = {
   MathI,
   Note,
   Canary,
+  CanaryBadge,
   PackageImport,
   ReadBlogPost,
   Recap,

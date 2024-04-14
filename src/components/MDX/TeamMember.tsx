@@ -68,7 +68,7 @@ export function TeamMember({
                 <ExternalLink
                   aria-label="React on Twitter"
                   href={`https://twitter.com/${twitter}`}
-                  className="hover:text-primary dark:text-primary-dark flex flex-row items-center">
+                  className="hover:text-primary hover:underline dark:text-primary-dark flex flex-row items-center">
                   <IconTwitter className="pe-1" />
                   {twitter}
                 </ExternalLink>
@@ -90,7 +90,7 @@ export function TeamMember({
                 <ExternalLink
                   aria-label="GitHub Profile"
                   href={`https://github.com/${github}`}
-                  className="hover:text-primary dark:text-primary-dark flex flex-row items-center">
+                  className="hover:text-primary hover:underline dark:text-primary-dark flex flex-row items-center">
                   <IconGitHub className="pe-1" /> {github}
                 </ExternalLink>
               </div>
@@ -99,7 +99,7 @@ export function TeamMember({
               <ExternalLink
                 aria-label="Personal Site"
                 href={`https://${personal}`}
-                className="hover:text-primary dark:text-primary-dark flex flex-row items-center">
+                className="hover:text-primary hover:underline dark:text-primary-dark flex flex-row items-center">
                 <IconLink className="pe-1" /> {personal}
               </ExternalLink>
             )}

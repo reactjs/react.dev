@@ -10,6 +10,18 @@ This blog is the official source for the updates from the React team. Anything i
 
 <div className="sm:-mx-5 flex flex-col gap-5 mt-12">
 
+<BlogCard title="React 19 Beta " date="April 1, 2024" url="/blog/2024/04/01/react-19">
+
+TODO
+
+</BlogCard>
+
+<BlogCard title="React 19 Beta Upgrade Guide" date="February 15, 2024" url="/blog/2024/04/01/react-19-upgrade-guide">
+
+TODO
+
+</BlogCard>
+
 <BlogCard title="React Labs: What We've Been Working On – February 2024" date="February 15, 2024" url="/blog/2024/02/15/react-labs-what-we-have-been-working-on-february-2024">
 
 In React Labs posts, we write about projects in active research and development. Since our last update, we've made significant progress on React Compiler, new features, and React 19, and we'd like to share what we learned.

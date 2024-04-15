@@ -12,6 +12,20 @@
       "skipBreadcrumb": true,
       "routes": [
         {
+          "title": "React 19 Beta",
+          "titleForHomepage": "React 19 Beta",
+          "icon": "blog",
+          "date": "April 1, 2024",
+          "path": "/blog/2024/04/01/react-19"
+        },
+        {
+          "title": "React 19 Beta Upgrade Guide",
+          "titleForHomepage": "React 19 Beta Upgrade Guide",
+          "icon": "blog",
+          "date": "April 1, 2024",
+          "path": "/blog/2024/04/01/react-19-upgrade-guide"
+        },
+        {
           "title": "React Labs: What We've Been Working On – February 2024",
           "titleForHomepage": "React Labs: February 2024",
           "icon": "labs",

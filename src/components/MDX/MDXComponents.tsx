@@ -94,6 +94,9 @@ const Note = ({children}: {children: React.ReactNode}) => (
 const Canary = ({children}: {children: React.ReactNode}) => (
   <ExpandableCallout type="canary">{children}</ExpandableCallout>
 );
+const Changelog = ({children}: {children: React.ReactNode}) => (
+  <ExpandableCallout type="changelog">{children}</ExpandableCallout>
+);
 
 const CanaryBadge = ({title}: {title: string}) => (
   <span
@@ -292,7 +295,7 @@ function IllustrationBlock({
   );
   const images = imageInfos.map((info, index) => (
     <figure key={index}>
-      <div className="bg-white rounded-lg p-4 flex-1 flex xl:p-6 justify-center items-center my-4">
+      <div className="flex items-center justify-center flex-1 p-4 my-4 bg-white rounded-lg xl:p-6">
         <img
           className="text-primary"
           src={info.src}
@@ -445,6 +448,7 @@ export const MDXComponents = {
   MathI,
   Note,
   Canary,
+  Changelog,
   CanaryBadge,
   PackageImport,
   ReadBlogPost,

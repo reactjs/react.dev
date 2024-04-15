@@ -114,8 +114,7 @@
       "routes": [
         {
           "title": "cache",
-          "path": "/reference/react/cache",
-          "canary": true
+          "path": "/reference/react/cache"
         },
         {
           "title": "createContext",

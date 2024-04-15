@@ -206,7 +206,7 @@ function Recipes(props: any) {
 
 function AuthorCredit({
   author = 'Rachel Lee Nabors',
-  authorLink = 'http://rachelnabors.com/',
+  authorLink = 'https://nearestnabors.com/',
 }: {
   author: string;
   authorLink: string;

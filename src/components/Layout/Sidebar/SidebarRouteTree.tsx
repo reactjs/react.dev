@@ -87,6 +87,7 @@ export function SidebarRouteTree({
             title,
             routes,
             canary,
+            deprecated,
             heading,
             hasSectionHeader,
             sectionHeader,
@@ -121,6 +122,7 @@ export function SidebarRouteTree({
                   level={level}
                   title={title}
                   canary={canary}
+                  deprecated={deprecated}
                   isExpanded={isExpanded}
                   hideArrow={isForceExpanded}
                 />
@@ -145,6 +147,7 @@ export function SidebarRouteTree({
                   level={level}
                   title={title}
                   canary={canary}
+                  deprecated={deprecated}
                 />
               </li>
             );

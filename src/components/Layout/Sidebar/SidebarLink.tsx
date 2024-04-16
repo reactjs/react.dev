@@ -17,6 +17,7 @@ interface SidebarLinkProps {
   title: string;
   level: number;
   canary?: boolean;
+  deprecated?: boolean;
   icon?: React.ReactNode;
   isExpanded?: boolean;
   hideArrow?: boolean;
@@ -28,6 +29,7 @@ export function SidebarLink({
   selected = false,
   title,
   canary,
+  deprecated,
   level,
   isExpanded,
   hideArrow,
@@ -63,7 +65,9 @@ export function SidebarLink({
           'text-sm ps-6': level > 0,
           'ps-5': level < 2,
           'text-base font-bold': level === 0,
-          'text-primary dark:text-primary-dark': level === 0 && !selected,
+          'text-primary dark:text-primary-dark':
+            !deprecated && level === 0 && !selected,
+          'text-gray-30 dark:text-gray-60': deprecated && !selected,
           'text-base text-secondary dark:text-secondary-dark':
             level > 0 && !selected,
           'text-base text-link dark:text-link-dark bg-highlight dark:bg-highlight-dark border-blue-40 hover:bg-highlight hover:text-link dark:hover:bg-highlight-dark dark:hover:text-link-dark':

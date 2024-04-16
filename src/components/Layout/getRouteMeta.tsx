@@ -21,6 +21,8 @@ export interface RouteItem {
   title: string;
   /** Optional canary flag for heading */
   canary?: boolean;
+  /** Optional deprecated flag */
+  deprecated?: boolean;
   /** Optional page description for heading */
   description?: string;
   /* Additional meta info for page tagging */

@@ -74,6 +74,10 @@ const submitAction = async () => {
 
 By convention, functions that use async transitions are called "Actions". Actions will immediately set the `isPending` state to true, make the async request(s), and render any state updates as transitions. This allows you to keep the current UI responsive and interactive while the data is changing.
 
+For more information, see the docs for [`useTransition`](/reference/react/useTransition).
+
+### New Hook: `useActionState` {/*new-hook-useactionstate*/}
+
 You can always create an Action by dropping down to `useTransition`, but to make the common cases easier we've added a new hook called `useActionState`:
 
 ```js {2,6}
@@ -85,32 +89,13 @@ const [submitAction, data, isPending] = useActionState(async () => {
 });
 ```
 
-Actions are enabled by default with the new `<form>` action prop.
+`useActionState` accepts an function (the "Action"), and returns a new Action to call. This works because Actions compose. When the new Action is called, `useActionState` will return the last result of the Action as `data`, and the pending state of the Action as `pending`. 
 
+For more information, see the docs for [`useActionState`](/reference/react/useActionState).
 
-### New Feature: Forms {/*new-feature-forms*/}
+### New Feature: Form Actions {/*new-feature-form-actions*/}
 
-We've added an `action` prop to React DOM `<form>` elements to automatically submit forms with Actions:
-
-```js {11,14}
-const [error, setError] = useState(null);
-
-const submitAction = async (formData) => {
-  const {error} = await updateName(formData.get('name'));
-  if (error) {
-    setError(error);
-  }
-}
-
-return (
-  <form action={submitAction}>
-    <input type="text" name="name" />
-    {error && <span>Failed: {error}</span>}
-  </form>
-)
-```
-
-Actions compose, so to access the pending state of `<form>` actions, you can wrap the action in `startTransition`, or use the `useActionState` hook:
+Actions are also integrated with React 19's new Form features. We've added an `action` prop to React DOM `<form>` elements to automatically submit forms with Actions:
 
 ```js {1,3,7-8}
 const [submitAction, state, isPending] = useActionState(async (formData) => {
@@ -125,9 +110,11 @@ return (
 )
 ```
 
-When a `<form>` Action succeeds, React will automatically reset the form for uncontrolled components. If you need to reset the `<form>` manually, you can call the new `requestFormReset` react-dom API.
+When a `<form>` Action succeeds, React will automatically reset the form for uncontrolled components. If you need to reset the `<form>` manually, you can call the new [`requestFormReset`](/todo) react-dom API.
 
-Finally, to access the status of the form Action, we've added a new hook `useFormStatus`. This hook works like context for the nearest `<form>` element, returning it's `pending` state and last submitted `formData` and `result`:
+### New Hook: useFormStatus {/*new-hook-useformstatus*/}
+
+In design systems, it's common to write design components that need access to the nearest Form status, without passing the status down to the component. This can be done via Context, but to make the common case easier, we've added a new hook `useFormStatus`:
 
 ```js {2,5-6}
 function NameInput() {
@@ -141,28 +128,97 @@ function NameInput() {
 }
 ```
 
-### New Feature: Optimistic Updates {/*new-feature-optimistic-updates*/}
+`useFormStatus` works like Context for the nearest `<form>` element, returning it's `pending` state, the last submitted form `data`, and the `action`.
 
-### New Feature: Head Elements {/*new-feature-head-elements*/}
+For more information, see the docs for [`useFormStatus`](/reference/react-dom/hooks/useFormStatus).
 
-### New Feature: Resource Loading APIs {/*new-feature-resource-loading-apis*/}
+### New Hook: useOptimistic {/*new-feature-optimistic-updates*/}
 
-### React Server Components {/*react-server-components*/}
+Another common UI pattern when performing a data mutation is to show the final state optimistically while the async request is underway. In React 19, we're adding a new hook called `useOptimistic` to make this easier:
+
+```js {2,6,13,19}
+const [name, setName] = useState("");
+const [optimisticName, setOptimisticName] = useOptimistic(name);
+
+const handleSubmit = async (formData) => {
+  const newName = formData.get("name");
+  setOptimisticName(newName);
+  const updatedName = await updateName(newName);
+  setName(updatedName);
+};
+
+return (
+  <form action={handleSubmit}>
+    <p>Your name is: {optimisticName}</p>
+    <p>
+      <label>Change Name:</label>
+      <input
+        type="text"
+        name="name"
+        disabled={name !== optimisticName}/>
+    </p>
+  </form>
+);
+```
+The `useOptimisitc` hook will immediately render the `optimisticName` while the `updateName` request is in progress. When the update finishes, React will automatically switch back to the original `name` value.
+
+For more information, see the docs for [`useOptimistic`](/reference/react/useOptimistic).
+
+### New Feature: Server Actions {/*new-feature-server-actions*/}
+
+TODO
+
+<Note>
+TODO: Requires a bundler and framework that supports Server Actions.
+</Note>
+
+### New Feature: Server Components {/*new-feature-server-components*/}
+
+TODO
 
 <Note>
 TODO: Requires a bundler and framework that supports RSC.
 </Note>
 
+### New Feature: `use` {/*new-feature-use*/}
+
+TODO
+
+### New Feature: Resource and Metadata Components {/*new-feature-resource-and-metadata-components*/}
+
+In HTML, many elements are reserved for placement in the `<head>` section of the document. This includes metadata elements like `<title>` and `<meta>`, and some forms of resource elements like `<script>`, `<style>` and `<link>`. In React, it's often convenient these elements deeper in the tree.
+
+These elements can be inserted manually in an effect, and libraries like [`react-helmet`](github.com/nfl/react-helmet) have made this easier. In React 19, we're adding support for rendering most `<head>` tags in components natively:
+
+```js
+return (
+  <div>
+    <p>Hello World</p>
+    <title>Hello World</title>
+    <meta name="keywords" content="React 19" />
+    <link rel="icon" href="favicon.ico" />
+    <style>{` p { color: red; } `}</style>
+    <script src="script.js" async />
+  </div>
+);
+```
+
+By supporting these elements natively, we're able to ensure they work with client-only apps, streaming SSR, and Server Components. For some resource elements, React can suspend while waiting for the resource to load (such as a style or async script tag). This ensures that styles and scripts are available before the components are displayed, preventing flashes of un-styled content and race conditions for scripts.
+
+To maintain compatibility with HTML and optimize performance, React will dedupe and hoist some but not all elements for all props. For the specific constraints, read the docs for [Resource and Metadata Components](/reference/react-dom/components#resource-and-metadata-components).
+
 ## Improvements in React 19 {/*improvements-in-react-19*/}
 
 ### Ref as a prop {/*ref-as-a-prop*/}
 
+### Better Error Handling {/*error-handling*/}
+
 ### Full Support for Web Components {/*support-for-web-components*/}
 
-### Error Handling {/*error-handling*/}
 
-### Strict Mode {/*strict-mode*/}
-
+## Other improvements {/*other-improvements*/}
+- Resource loading APIs
+- Strict Mode improvements
 
 ## How to Upgrade {/*how-to-upgrade*/}
 See How to Upgrade to React 18 for step-by-step instructions and a full list of breaking and notable changes.

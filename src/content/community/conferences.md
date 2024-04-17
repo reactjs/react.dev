@@ -10,15 +10,81 @@ Do you know of a local React.js conference? Add it here! (Please keep the list c
 
 ## Upcoming Conferences {/*upcoming-conferences*/}
 
+### React Paris 2024 {/*react-paris-2024*/}
+March 22, 2024. In-person in Paris, France + Remote (hybrid)
+
+[Website](https://react.paris/) - [Twitter](https://twitter.com/BeJS_) - [LinkedIn](https://www.linkedin.com/events/7150816372074192900/comments/)
+
+### Epic Web Conf 2024 {/*epic-web-2024*/}
+April 10 - 11, 2024. In-person in Park City, UT, USA
+
+[Website](https://www.epicweb.dev/conf) - [YouTube](https://www.youtube.com/@EpicWebDev)
+
+### React Miami 2024 {/*react-miami-2024*/}
+April 19 - 20, 2024. In-person in Miami, FL, USA
+
+[Website](https://reactmiami.com/) - [Twitter](https://twitter.com/ReactMiamiConf)
+
+### React Connection 2024 {/*react-connection-2024*/}
+April 22, 2024. In-person in Paris, France 
+
+[Website](https://reactconnection.io/) - [Twitter](https://twitter.com/ReactConn)
+
+### React Native Connection 2024 {/*react-native-connection-2024*/}
+April 23, 2024. In-person in Paris, France 
+
+[Website](https://reactnativeconnection.io/) - [Twitter](https://twitter.com/ReactNativeConn)
+
+### React Conf 2024 {/*react-conf-2024*/}
+May 15 - 16, 2024. In-person in Henderson, NV, USA + remote
+
+[Website](https://conf.react.dev) - [Twitter](https://twitter.com/reactjs)
+
 ### App.js Conf 2024 {/*appjs-conf-2024*/}
 May 22 - 24, 2024. In-person in Kraków, Poland + remote
 
 [Website](https://appjs.co) - [Twitter](https://twitter.com/appjsconf)
 
+### React Summit 2024 {/*react-summit-2024*/}
+June 14 & 18, 2024. In-person in Amsterdam, Netherlands + remote (hybrid event)
+
+[Website](https://reactsummit.com/) - [Twitter](https://twitter.com/reactsummit) - [Videos](https://portal.gitnation.org/)
+
 ### Render(ATL) 2024 🍑 {/*renderatl-2024-*/}
 June 12 - June 14, 2024. Atlanta, GA, USA
 
 [Website](https://renderatl.com) - [Discord](https://www.renderatl.com/discord) - [Twitter](https://twitter.com/renderATL) - [Instagram](https://www.instagram.com/renderatl/) - [Facebook](https://www.facebook.com/renderatl/) - [LinkedIn](https://www.linkedin.com/company/renderatl) - [Podcast](https://www.renderatl.com/culture-and-code#/)
+
+### React Norway 2024 {/*react-norway-2024*/}
+June 14, 2024. In-person at Farris Bad Hotel in Larvik, Norway and online (hybrid event).
+
+[Website](https://reactnorway.com/) - [Twitter](https://twitter.com/ReactNorway)
+
+### React Nexus 2024 {/*react-nexus-2024*/}
+July 04 & 05, 2024. Bangalore, India (In-person event)
+
+[Website](https://reactnexus.com/) - [Twitter](https://twitter.com/ReactNexus) - [Linkedin](https://www.linkedin.com/company/react-nexus) - [YouTube](https://www.youtube.com/reactify_in)
+
+### Chain React 2024 {/*chain-react-2024*/}
+July 17-19, 2024. In-person in Portland, OR, USA
+
+[Website](https://chainreactconf.com) - [Twitter](https://twitter.com/ChainReactConf)
+
+### The Geek Conf 2024 {/*the-geek-conf-2024*/}
+July 25, 2024. In-person in Berlin, Germany + remote (hybrid event)
+
+[Website](https://thegeekconf.com) - [Twitter](https://twitter.com/thegeekconf)
+
+### React Universe Conf 2024 {/*react-universe-conf-2024*/}
+September 5-6, 2024. Wrocław, Poland.
+
+[Website](https://www.reactuniverseconf.com/) - [Twitter](https://twitter.com/react_native_eu) - [LinkedIn](https://www.linkedin.com/events/reactuniverseconf7163919537074118657/)
+
+### React Alicante 2024 {/*react-alicante-2024*/}
+September 19-21, 2024. Alicante, Spain.
+
+[Website](https://reactalicante.es/) - [Twitter](https://twitter.com/ReactAlicante) - [YouTube](https://www.youtube.com/channel/UCaSdUaITU1Cz6PvC97A7e0w)
+
 
 ### React India 2024 {/*react-india-2024*/}
 October 17 - 19, 2024. In-person in Goa, India (hybrid event) + Oct 15 2024 - remote day
@@ -50,7 +116,7 @@ October 20 & 23, 2023. In-person in London, UK + remote first interactivity (hyb
 ### React Brussels 2023 {/*react-brussels-2023*/}
 October 13th 2023. In-person in Brussels, Belgium + Remote (hybrid)
 
-[Website](https://www.react.brussels/) - [Twitter](https://twitter.com/BrusselsReact)
+[Website](https://www.react.brussels/) - [Twitter](https://twitter.com/BrusselsReact) - [Videos](https://www.youtube.com/playlist?list=PL53Z0yyYnpWh85KeMomUoVz8_brrmh_aC) 
 
 ### React India 2023 {/*react-india-2023*/}
 October 5 - 7, 2023. In-person in Goa, India (hybrid event) + Oct 3 2023 - remote day

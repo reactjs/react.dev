@@ -44,7 +44,7 @@ Instead of individually marking functions with `'use server'`, you can add the d
 * To import a Server Action from [client code](/reference/react/use-client), the directive must be used on a module level.
 * Because the underlying network calls are always asynchronous, `'use server'` can only be used on async functions.
 * Always treat arguments to Server Actions as untrusted input and authorize any mutations. See [security considerations](#security).
-* Server Actions should be called in a [transition](/reference/react/useTransition). Server Actions passed to [`<form action>`](/reference/react-dom/components/form#props) or [`formAction`](/reference/react-dom/components/input#props) will automatically be called in a transition.
+* Server Actions should be called in a [Transition](/reference/react/useTransition). Server Actions passed to [`<form action>`](/reference/react-dom/components/form#props) or [`formAction`](/reference/react-dom/components/input#props) will automatically be called in a transition.
 * Server Actions are designed for mutations that update server-side state; they are not recommended for data fetching. Accordingly, frameworks implementing Server Actions typically process one action at a time and do not have a way to cache the return value.
 
 ### Security considerations {/*security*/}
@@ -88,7 +88,7 @@ Here are supported types for Server Action arguments:
 * [Promises](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)
 
 Notably, these are not supported:
-* React elements, or [JSX](https://react.dev/learn/writing-markup-with-jsx)
+* React elements, or [JSX](/learn/writing-markup-with-jsx)
 * Functions, including component functions or any other function that is not a Server Action
 * [Classes](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/Classes_in_JavaScript)
 * Objects that are instances of any class (other than the built-ins mentioned) or objects with [a null prototype](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object#null-prototype_objects)
@@ -153,7 +153,7 @@ export default async function requestUsername(formData) {
 // UsernameForm.js
 'use client';
 
-import {useFormState} from 'react-dom';
+import { useFormState } from 'react-dom';
 import requestUsername from './requestUsername';
 
 function UsernameForm() {
@@ -177,7 +177,7 @@ Note that like most Hooks, `useFormState` can only be called in <CodeStep step={
 
 Server Actions are exposed server endpoints and can be called anywhere in client code.
 
-When using a Server Action outside of a [form](/reference/react-dom/components/form), call the Server Action in a [transition](/reference/react/useTransition), which allows you to display a loading indicator, show [optimistic state updates](/reference/react/useOptimistic), and handle unexpected errors. Forms will automatically wrap Server Actions in transitions.
+When using a Server Action outside of a [form](/reference/react-dom/components/form), call the Server Action in a [Transition](/reference/react/useTransition), which allows you to display a loading indicator, show [optimistic state updates](/reference/react/useOptimistic), and handle unexpected errors. Forms will automatically wrap Server Actions in transitions.
 
 ```js {9-12}
 import incrementLike from './actions';
@@ -208,7 +208,7 @@ function LikeButton() {
 'use server';
 
 let likeCount = 0;
-export default async incrementLike() {
+export default async function incrementLike() {
   likeCount++;
   return likeCount;
 }

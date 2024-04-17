@@ -337,7 +337,7 @@ When passing a Promise from a Server Component to a Client Component, its resolv
 A Promise can be passed from a Server Component to a Client Component and resolved in the Client Component with the `use` Hook. You can also resolve the Promise in a Server Component with `await` and pass the required data to the Client Component as a prop.
 
 ```js
-export default function App() {
+export default async function App() {
   const messageContent = await fetchMessage();
   return <Message messageContent={messageContent} />
 }
@@ -351,14 +351,14 @@ But using `await` in a [Server Component](/reference/react/components#server-com
 
 In some cases a Promise passed to `use` could be rejected. You can handle rejected Promises by either:
 
-1. [Displaying an error to users with error boundary.](#displaying-an-error-to-users-with-error-boundary)
+1. [Displaying an error to users with an error boundary.](#displaying-an-error-to-users-with-error-boundary)
 2. [Providing an alternative value with `Promise.catch`](#providing-an-alternative-value-with-promise-catch)
 
 <Pitfall>
 `use` cannot be called in a try-catch block. Instead of a try-catch block [wrap your component in an Error Boundary](#displaying-an-error-to-users-with-error-boundary), or [provide an alternative value to use with the Promise's `.catch` method](#providing-an-alternative-value-with-promise-catch).
 </Pitfall>
 
-#### Displaying an error to users with a error boundary {/*displaying-an-error-to-users-with-error-boundary*/}
+#### Displaying an error to users with an error boundary {/*displaying-an-error-to-users-with-error-boundary*/}
 
 If you'd like to display an error to your users when a Promise is rejected, you can use an [error boundary](/reference/react/Component#catching-rendering-errors-with-an-error-boundary). To use an error boundary, wrap the component where you are calling the `use` Hook in an error boundary. If the Promise passed to `use` is rejected the fallback for the error boundary will be displayed.
 

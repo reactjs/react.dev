@@ -13,7 +13,7 @@ title: renderToString
 `renderToString` renders a React tree to an HTML string.
 
 ```js
-const html = renderToString(reactNode)
+const html = renderToString(reactNode, options?)
 ```
 
 </Intro>
@@ -24,7 +24,7 @@ const html = renderToString(reactNode)
 
 ## Reference {/*reference*/}
 
-### `renderToString(reactNode)` {/*rendertostring*/}
+### `renderToString(reactNode, options?)` {/*rendertostring*/}
 
 On the server, call `renderToString` to render your app to HTML.
 

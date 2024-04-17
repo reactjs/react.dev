@@ -719,3 +719,10 @@ ol.mdx-illustration-block {
     width: 100%;
   }
 }
+
+.exit {
+  opacity: 0;
+  transition: opacity 500ms ease-out;
+  transition-delay: 1s;
+  pointer-events: none;
+}

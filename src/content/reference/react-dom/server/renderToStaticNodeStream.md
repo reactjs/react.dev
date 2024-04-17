@@ -7,7 +7,7 @@ title: renderToStaticNodeStream
 `renderToStaticNodeStream` renders a non-interactive React tree to a [Node.js Readable Stream.](https://nodejs.org/api/stream.html#readable-streams)
 
 ```js
-const stream = renderToStaticNodeStream(reactNode)
+const stream = renderToStaticNodeStream(reactNode, options?)
 ```
 
 </Intro>
@@ -18,7 +18,7 @@ const stream = renderToStaticNodeStream(reactNode)
 
 ## Reference {/*reference*/}
 
-### `renderToStaticNodeStream(reactNode)` {/*rendertostaticnodestream*/}
+### `renderToStaticNodeStream(reactNode, options?)` {/*rendertostaticnodestream*/}
 
 On the server, call `renderToStaticNodeStream` to get a [Node.js Readable Stream](https://nodejs.org/api/stream.html#readable-streams).
 

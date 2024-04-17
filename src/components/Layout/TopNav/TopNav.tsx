@@ -110,7 +110,7 @@ function Link({
   return (
     <NextLink
       href={`${href}`}
-      className="inline text-primary dark:text-primary-dark hover:text-link hover:dark:text-link-dark border-b border-link border-opacity-0 hover:border-opacity-100 duration-100 ease-in transition leading-normal"
+      className="inline leading-normal transition duration-100 ease-in border-b border-opacity-0 text-primary dark:text-primary-dark hover:text-link hover:dark:text-link-dark border-link hover:border-opacity-100"
       {...props}>
       {children}
     </NextLink>
@@ -155,10 +155,11 @@ export default function TopNav({
   breadcrumbs: RouteItem[];
   section: 'learn' | 'reference' | 'community' | 'blog' | 'home' | 'unknown';
 }) {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [showSearch, setShowSearch] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
   const scrollParentRef = useRef<HTMLDivElement>(null);
   const {asPath} = useRouter();
-  const [isScrolled, setIsScrolled] = useState(false);
 
   // HACK. Fix up the data structures instead.
   if ((routeTree as any).routes.length === 1) {
@@ -167,18 +168,18 @@ export default function TopNav({
 
   // While the overlay is open, disable body scroll.
   useEffect(() => {
-    if (isOpen) {
+    if (isMenuOpen) {
       const preferredScrollParent = scrollParentRef.current!;
       disableBodyScroll(preferredScrollParent);
       return () => enableBodyScroll(preferredScrollParent);
     } else {
       return undefined;
     }
-  }, [isOpen]);
+  }, [isMenuOpen]);
 
   // Close the overlay on any navigation.
   useEffect(() => {
-    setIsOpen(false);
+    setIsMenuOpen(false);
   }, [asPath]);
 
   // Also close the overlay if the window gets resized past mobile layout.
@@ -188,7 +189,7 @@ export default function TopNav({
 
     function closeIfNeeded() {
       if (!media.matches) {
-        setIsOpen(false);
+        setIsMenuOpen(false);
       }
     }
 
@@ -217,7 +218,6 @@ export default function TopNav({
     return () => observer.disconnect();
   }, []);
 
-  const [showSearch, setShowSearch] = useState(false);
   const onOpenSearch = useCallback(() => {
     startTransition(() => {
       setShowSearch(true);
@@ -237,30 +237,30 @@ export default function TopNav({
       <div ref={scrollDetectorRef} />
       <div
         className={cn(
-          isOpen
+          isMenuOpen
             ? 'h-screen sticky top-0 lg:bottom-0 lg:h-screen flex flex-col shadow-nav dark:shadow-nav-dark z-20'
             : 'z-50 sticky top-0'
         )}>
         <nav
           className={cn(
             'duration-300 backdrop-filter backdrop-blur-lg backdrop-saturate-200 transition-shadow bg-opacity-90 items-center w-full flex justify-between bg-wash dark:bg-wash-dark dark:bg-opacity-95 px-1.5 lg:pe-5 lg:ps-4 z-50',
-            {'dark:shadow-nav-dark shadow-nav': isScrolled || isOpen}
+            {'dark:shadow-nav-dark shadow-nav': isScrolled || isMenuOpen}
           )}>
-          <div className="h-16 w-full gap-0 sm:gap-3 flex items-center justify-between">
-            <div className="3xl:flex-1 flex flex-row ">
+          <div className="flex items-center justify-between w-full h-16 gap-0 sm:gap-3">
+            <div className="flex flex-row 3xl:flex-1 ">
               <button
                 type="button"
                 aria-label="Menu"
-                onClick={() => setIsOpen(!isOpen)}
+                onClick={() => setIsMenuOpen(!isMenuOpen)}
                 className={cn(
                   'active:scale-95 transition-transform flex lg:hidden w-12 h-12 rounded-full items-center justify-center hover:bg-primary/5 hover:dark:bg-primary-dark/5 outline-link',
                   {
-                    'text-link dark:text-link-dark': isOpen,
+                    'text-link dark:text-link-dark': isMenuOpen,
                   }
                 )}>
-                {isOpen ? <IconClose /> : <IconHamburger />}
+                {isMenuOpen ? <IconClose /> : <IconHamburger />}
               </button>
-              <div className="3xl:flex-1 flex align-center">
+              <div className="flex 3xl:flex-1 align-center">
                 <NextLink
                   href="/"
                   className={`active:scale-95 overflow-hidden transition-transform relative items-center text-primary dark:text-primary-dark p-1 whitespace-nowrap outline-link rounded-full 3xl:rounded-xl inline-flex text-lg font-normal gap-2`}>
@@ -273,16 +273,16 @@ export default function TopNav({
                 </NextLink>
               </div>
             </div>
-            <div className="hidden md:flex flex-1 justify-center items-center w-full 3xl:w-auto 3xl:shrink-0 3xl:justify-center">
+            <div className="items-center justify-center flex-1 hidden w-full md:flex 3xl:w-auto 3xl:shrink-0 3xl:justify-center">
               <button
                 type="button"
                 className={cn(
                   'flex 3xl:w-[56rem] 3xl:mx-0 relative ps-4 pe-1 py-1 h-10 bg-gray-30/20 dark:bg-gray-40/20 outline-none focus:outline-link betterhover:hover:bg-opacity-80 pointer items-center text-start w-full text-gray-30 rounded-full align-middle text-base'
                 )}
                 onClick={onOpenSearch}>
-                <IconSearch className="me-3 align-middle text-gray-30 shrink-0 group-betterhover:hover:text-gray-70" />
+                <IconSearch className="align-middle me-3 text-gray-30 shrink-0 group-betterhover:hover:text-gray-70" />
                 Search
-                <span className="ms-auto hidden sm:flex item-center me-1">
+                <span className="hidden ms-auto sm:flex item-center me-1">
                   <Kbd data-platform="mac">⌘</Kbd>
                   <Kbd data-platform="win" wide>
                     Ctrl
@@ -314,9 +314,9 @@ export default function TopNav({
                   <button
                     aria-label="Search"
                     type="button"
-                    className="active:scale-95 transition-transform flex md:hidden w-12 h-12 rounded-full items-center justify-center hover:bg-secondary-button hover:dark:bg-secondary-button-dark outline-link"
+                    className="flex items-center justify-center w-12 h-12 transition-transform rounded-full active:scale-95 md:hidden hover:bg-secondary-button hover:dark:bg-secondary-button-dark outline-link"
                     onClick={onOpenSearch}>
-                    <IconSearch className="align-middle w-5 h-5" />
+                    <IconSearch className="w-5 h-5 align-middle" />
                   </button>
                 </div>
                 <div className="flex dark:hidden">
@@ -326,7 +326,7 @@ export default function TopNav({
                     onClick={() => {
                       window.__setPreferredTheme('dark');
                     }}
-                    className="active:scale-95 transition-transform flex w-12 h-12 rounded-full items-center justify-center hover:bg-primary/5 hover:dark:bg-primary-dark/5 outline-link">
+                    className="flex items-center justify-center w-12 h-12 transition-transform rounded-full active:scale-95 hover:bg-primary/5 hover:dark:bg-primary-dark/5 outline-link">
                     {darkIcon}
                   </button>
                 </div>
@@ -337,7 +337,7 @@ export default function TopNav({
                     onClick={() => {
                       window.__setPreferredTheme('light');
                     }}
-                    className="active:scale-95 transition-transform flex w-12 h-12 rounded-full items-center justify-center hover:bg-primary/5 hover:dark:bg-primary-dark/5 outline-link">
+                    className="flex items-center justify-center w-12 h-12 transition-transform rounded-full active:scale-95 hover:bg-primary/5 hover:dark:bg-primary-dark/5 outline-link">
                     {lightIcon}
                   </button>
                 </div>
@@ -355,7 +355,7 @@ export default function TopNav({
                     target="_blank"
                     rel="noreferrer noopener"
                     aria-label="Open on GitHub"
-                    className="active:scale-95 transition-transform flex w-12 h-12 rounded-full items-center justify-center hover:bg-primary/5 hover:dark:bg-primary-dark/5 outline-link">
+                    className="flex items-center justify-center w-12 h-12 transition-transform rounded-full active:scale-95 hover:bg-primary/5 hover:dark:bg-primary-dark/5 outline-link">
                     {githubIcon}
                   </Link>
                 </div>
@@ -364,19 +364,19 @@ export default function TopNav({
           </div>
         </nav>
 
-        {isOpen && (
+        {isMenuOpen && (
           <div
             ref={scrollParentRef}
             className="overflow-y-scroll isolate no-bg-scrollbar lg:w-[342px] grow bg-wash dark:bg-wash-dark">
             <aside
               className={cn(
-                `lg:grow lg:flex flex-col w-full pb-8 lg:pb-0 lg:max-w-xs z-50`,
-                isOpen ? 'block z-40' : 'hidden lg:block'
+                `lg:grow lg:flex flex-col w-full pb-8 lg:pb-0 lg:max-w-custom-xs z-50`,
+                isMenuOpen ? 'block z-40' : 'hidden lg:block'
               )}>
               <nav
                 role="navigation"
                 style={{'--bg-opacity': '.2'} as React.CSSProperties} // Need to cast here because CSS vars aren't considered valid in TS types (cuz they could be anything)
-                className="w-full lg:h-auto grow pe-0 lg:pe-5 pt-4 lg:py-6 md:pt-4 lg:pt-4 scrolling-touch scrolling-gpu">
+                className="w-full pt-4 scrolling-touch lg:h-auto grow pe-0 lg:pe-5 lg:py-6 md:pt-4 lg:pt-4 scrolling-gpu">
                 {/* No fallback UI so need to be careful not to suspend directly inside. */}
                 <Suspense fallback={null}>
                   <div className="ps-3 xs:ps-5 xs:gap-0.5 xs:text-base overflow-x-auto flex flex-row lg:hidden text-base font-bold text-secondary dark:text-secondary-dark">
@@ -399,15 +399,15 @@ export default function TopNav({
                   </div>
                   <div
                     role="separator"
-                    className="ms-5 mt-4 mb-2 border-b border-border dark:border-border-dark"
+                    className="mt-4 mb-2 border-b ms-5 border-border dark:border-border-dark"
                   />
                   <SidebarRouteTree
                     // Don't share state between the desktop and mobile versions.
                     // This avoids unnecessary animations and visual flicker.
-                    key={isOpen ? 'mobile-overlay' : 'desktop-or-hidden'}
+                    key={isMenuOpen ? 'mobile-overlay' : 'desktop-or-hidden'}
                     routeTree={routeTree}
                     breadcrumbs={breadcrumbs}
-                    isForceExpanded={isOpen}
+                    isForceExpanded={isMenuOpen}
                   />
                 </Suspense>
                 <div className="h-16" />

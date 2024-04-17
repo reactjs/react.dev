@@ -264,7 +264,7 @@ body {
 You can also follow this tutorial using your local development environment. To do this, you need to:
 
 1. Install [Node.js](https://nodejs.org/en/)
-1. In the CodeSandbox tab you opened earlier, press the top-left corner button to open the menu, and then choose **File > Export to ZIP** in that menu to download an archive of the files locally
+1. In the CodeSandbox tab you opened earlier, press the top-left corner button to open the menu, and then choose **Download Sandbox** in that menu to download an archive of the files locally
 1. Unzip the archive, then open a terminal and `cd` to the directory you unzipped
 1. Install the dependencies with `npm install`
 1. Run `npm start` to start a local server and follow the prompts to view the code running in a browser
@@ -337,7 +337,7 @@ import './styles.css';
 import App from './App';
 ```
 
-Lines 1-5 brings all the necessary pieces together: 
+Lines 1-5 bring all the necessary pieces together: 
 
 * React
 * React's library to talk to web browsers (React DOM)

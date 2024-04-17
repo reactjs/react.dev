@@ -1,3 +1,4 @@
+import {LanguageItem} from 'components/MDX/LanguagesContext';
 import {MDXComponents} from 'components/MDX/MDXComponents';
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -125,14 +126,13 @@ export default async function compileMDX(
   const meta = fm(mdx).data;
 
   // Load the list of translated languages conditionally.
-  let languages: Array<{code: string; name: string; enName: string}> = [];
+  let languages: Array<LanguageItem> | null = null;
   if (typeof path === 'string' && path.endsWith('/translations')) {
     languages = await (
       await fetch(
         'https://raw.githubusercontent.com/reactjs/translations.react.dev/main/langs/langs.json'
       )
     ).json(); // { code: string; name: string; enName: string}[]
-    meta.languages = languages;
   }
 
   const output = {

@@ -36,7 +36,7 @@ interface PageProps {
     description?: string;
   };
   section: 'learn' | 'reference' | 'community' | 'blog' | 'home' | 'unknown';
-  languages: Languages | null;
+  languages?: Languages | null;
 }
 
 export function Page({
@@ -45,7 +45,7 @@ export function Page({
   routeTree,
   meta,
   section,
-  languages,
+  languages = null,
 }: PageProps) {
   const {asPath} = useRouter();
   const cleanedPath = asPath.split(/[\?\#]/)[0];

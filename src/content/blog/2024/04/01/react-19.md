@@ -209,19 +209,193 @@ To maintain compatibility with HTML and optimize performance, React will dedupe 
 
 ## Improvements in React 19 {/*improvements-in-react-19*/}
 
-### Ref as a prop {/*ref-as-a-prop*/}
+### `ref` as a prop {/*ref-as-a-prop*/}
 
-### Better Error Handling {/*error-handling*/}
+In 16.3 we introduced `forwardRef` as way for function components to expose `ref` to a parent:
 
-### Full Support for Web Components {/*support-for-web-components*/}
+```js [[2, 1, "forwardRef"], [1, 1, "ref"], [1, 2, "ref", 20]]
+const MyInput = forwardRef(function MyInput(props, ref) {
+  return <input ref={ref} />
+});
+
+//...
+<MyInput ref={ref} />
+```
+
+Starting in React 19, you can now access `ref` as a prop for function components:
+
+```js [[1, 1, "ref"], [1, 2, "ref", 20]]
+function MyInput({ref}) {
+  return <input ref={ref} />
+}
+
+//...
+<MyInput ref={ref} />
+```
+
+<Note>
+
+Todo: This requires the new transform, correct?
+
+</Note>
+
+For more information, see [Manipulating the DOM with refs](/learn/manipulating-the-dom-with-refs)
+
+### Better Error Reporting {/*error-handling*/}
+
+We improved error handling in React 19 to remove duplication and provide options for handling caught and uncaught errors. For example, when there's an error in render caught by an error boundary, previously React would throw the error twice (once for the original error, then again after failing to automatically recover), and then call `console.error` with info about where the error occurred. 
+
+This resulted in three errors for every caught error:
+
+<ConsoleBlockMulti>
+
+<ConsoleLogLine level="error">
+
+Uncaught Error: hit
+{'  '}at Throws
+{'  '}at renderWithHooks
+{'  '}...
+
+</ConsoleLogLine>
+
+<ConsoleLogLine level="error">
+
+Uncaught Error: hit<span className="ms-2 text-gray-30">{'    <--'} Duplicate</span>
+{'  '}at Throws
+{'  '}at renderWithHooks
+{'  '}...
+
+</ConsoleLogLine>
+
+<ConsoleLogLine level="error">
+
+The above error occurred in the Throws component:
+{'  '}at Throws
+{'  '}at ErrorBoundary
+{'  '}at App{'\n'}
+React will try to recreate this component tree from scratch using the error boundary you provided, ErrorBoundary.
+
+</ConsoleLogLine>
+
+</ConsoleBlockMulti>
+
+In React 19, we log a single error with all the error information included:
+
+<ConsoleBlockMulti>
+
+<ConsoleLogLine level="error">
+
+Error: hit
+{'  '}at Throws
+{'  '}at renderWithHooks
+{'  '}...{'\n'}
+The above error occurred in the Throws component:
+{'  '}at Throws
+{'  '}at ErrorBoundary
+{'  '}at App{'\n'}
+React will try to recreate this component tree from scratch using the error boundary you provided, ErrorBoundary.
+{'  '}at ErrorBoundary
+{'  '}at App
+
+</ConsoleLogLine>
+
+</ConsoleBlockMulti>
+
+Additionally, we've added two new root options to compliment `onRecoverableError`:
+
+- `onCaughtError`: called when React catches an error in an Error Boundary.
+- `onUncaughtError`: called when an error is thrown and not caught by an Error Boundary.
+- `onRecoverableError`: called when an error is thrown and automatically recovered.
+
+For more info and examples, see the docs for [`createRoot`](/reference/react-dom/client/createRoot) and [`hydrateRoot`](/reference/react-dom/client/createRoot).
+
+### Better Hydration Errors {/*better-hydration-errors*/}
+
+We also improved error reporting for hydration errors. For example, instead of logging multiple errors in DEV without any information about what mismatched:
+
+<ConsoleBlockMulti>
+
+<ConsoleLogLine level="error">
+
+Warning: Text content did not match. Server: "Server" Client: "Client"
+{'  '}at span
+{'  '}at App
+
+</ConsoleLogLine>
+
+<ConsoleLogLine level="error">
+
+Warning: An error occurred during hydration. The server HTML was replaced with client content in \<div\>.
+
+</ConsoleLogLine>
+
+<ConsoleLogLine level="error">
+
+Warning: Text content did not match. Server: "Server" Client: "Client"
+{'  '}at span
+{'  '}at App
+
+</ConsoleLogLine>
+
+<ConsoleLogLine level="error">
+
+Warning: An error occurred during hydration. The server HTML was replaced with client content in \<div\>.
+
+</ConsoleLogLine>
+
+<ConsoleLogLine level="error">
+
+Uncaught Error: Text content does not match server-rendered HTML.
+{'  '}at checkForUnmatchedText
+{'  '}...
+
+</ConsoleLogLine>
+
+</ConsoleBlockMulti>
+
+We now log a single message with a diff of the mismatch:
 
 
-## Other improvements {/*other-improvements*/}
+<ConsoleBlockMulti>
+
+<ConsoleLogLine level="error">
+
+Uncaught Error: Hydration failed because the server rendered HTML didn't match the client. As a result this tree will be regenerated on the client. This can happen if a SSR-ed Client Component used:{'\n'}
+\- A server/client branch `if (typeof window !== 'undefined')`.
+\- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+\- Date formatting in a user's locale which doesn't match the server.
+\- External changing data without sending a snapshot of it along with the HTML.
+\- Invalid HTML tag nesting.{'\n'}
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.{'\n'}
+https://react.dev/link/hydration-mismatch {'\n'}
+{'  '}\<App\>
+{'    '}\<span\>
+{'+    '}Client
+{'-    '}Server{'\n'}
+{'  '}at throwOnHydrationMismatch
+{'  '}...
+
+</ConsoleLogLine>
+
+</ConsoleBlockMulti>
+
+### Custom Element Support {/*support-for-web-components*/}
+
+TODO
+
+
+### TODO {/*todo*/}
+
+More improvements?
 - Resource loading APIs
 - Strict Mode improvements
+- useDeferredValue initalValue
+- Context.Provider is replaced with Context
+- Refs can now return a cleanup function. (TODO: docs)
+
 
 ## How to Upgrade {/*how-to-upgrade*/}
-See How to Upgrade to React 18 for step-by-step instructions and a full list of breaking and notable changes.
+See the React 19 Upgrade Guide for step-by-step instructions and a full list of breaking and notable changes.
 
 
 

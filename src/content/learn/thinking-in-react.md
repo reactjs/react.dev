@@ -462,7 +462,7 @@ However, you haven't added any code to respond to the user actions like typing y
 
 ## Step 5: Add inverse data flow {/*step-5-add-inverse-data-flow*/}
 
-Currently your app renders correctly with props and state flowing down the hierarchy. But to change the state according to user input, you will need to support data flowing the other way: the form Components deep in the hierarchy need to update the state in `FilterableProductTable`. 
+Currently your app renders correctly with props and state flowing down the hierarchy. But to change the state according to user input, you will need to support data flowing the other way: the form component deep in the hierarchy need to update the state in `FilterableProductTable`.
 
 React makes this data flow explicit, but it requires a little more typing than two-way data binding. If you try to type or check the box in the example above, you'll see that React ignores your input. This is intentional. By writing `<input value={filterText} />`, you've set the `value` prop of the `input` to always be equal to the `filterText` state passed in from `FilterableProductTable`. Since `filterText` state is never set, the input never changes.
 

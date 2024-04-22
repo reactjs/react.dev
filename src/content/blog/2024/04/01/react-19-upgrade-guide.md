@@ -209,6 +209,17 @@ const button = createFactory('button');
 const button = <button />;
 ```
 
+### Removing react/test-utils {/*removing-react-test-utils*/}
+
+TODO (mention React.act)
+
+
+### Removing react-test-renderer {/*removing-react-test-renderer*/}
+
+TODO
+
+
+
 ## Removing deprecated React DOM APIs {/*removing-deprecated-react-dom-apis*/}
 
 
@@ -253,39 +264,43 @@ function AutoselectingInput() {
 }
 ```
 
-## Removing react-test-renderer and test-utils {/*react-test-renderer-and-test-utils*/}
-
-TODO
-
 <Note>
 
 TODO: note about React Native.
 
 </Note>
 
-## Removing UMD builds {/*umd-builds*/}
+## Breaking Changes {/*breaking-changes*/}
+
+### Do not re-throw errors {/*do-not-rethrow-errors*/}
+
+TODO
+TODO: need expect(act()).toThrow();
+
+### Transitions in popstate are now synchronous. {/*transitions-in-popstate-are-now-synchronous*/}
 
 TODO
 
+### StrictMode improvements {/*strict-mode-improvements*/}
+
+TODO
 
 ## New Deprecations {/*new-deprecations*/}
 
 - react: Warn when using defaultProps in functions, memo, lazy, and forwardRef (TODO)
 - react: Warn when spreading “key” as part of props in DEV  (TODO)
 
-## Other Breaking Changes {/*breaking-changes*/}
+## Other Breaking Changes {/*other-breaking-changes*/}
 
-- react-dom: Remove errorInfo.digest with warning (TODO)
+- UMD builds have been removed
+- react-dom: Remove `errorInfo.digest` with warning (TODO)
 - react-dom: Removed unstable_renderSubtreeIntoContainer (TODO)
 - react-dom: Warn and don’t set empty string attributes for src/href (TODO: land)
 - react-dom: Error and do not allow javascript URLs in src/href (TODO: land)
 
-## Other notable changes {/*other-notable-changes*/}
+## Other Notable changes {/*other-notable-changes*/}
 
 #### React {/*other-notable-changes-react*/}
-- act moved to top-level React package (TODO)
-- unstable_batchedUpdates is a noop (TODO).
-- Transitions in popstate are now synchronous.
 
 #### React DOM {/*other-notable-changes-react-dom*/}
 - Removed layout effect warning during SSR.

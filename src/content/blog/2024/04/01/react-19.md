@@ -1043,20 +1043,9 @@ https://react.dev/link/hydration-mismatch {'\n'}
 
 TODO
 
-### Hydration support for extensions {/*hydration-support-for-extensions*/}
-
-TODO
-
-
-### TODO {/*todo*/}
-
-More improvements?
-- Strict Mode improvements
-- Refs can now return a cleanup function. (TODO: docs)
-
 
 #### How to Upgrade {/*how-to-upgrade*/}
-See the React 19 Upgrade Guide for step-by-step instructions and a full list of breaking and notable changes.
+See the [React 19 Upgrade Guide](/blog/2024/04/01/react-19-upgrade-guide) for step-by-step instructions and a full list of breaking and notable changes.
 
 
 

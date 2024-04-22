@@ -781,6 +781,27 @@ Todo: This requires the new transform, correct?
 
 For more information, see [Manipulating the DOM with refs](/learn/manipulating-the-dom-with-refs)
 
+### `<Context>` as a provider {/*context-as-a-provider*/}
+
+In React 19, you can render `<Context>` as a provider instead of `<Context.Provider>`:
+
+
+```js {5,7}
+const ThemeContext = createContext('');
+
+function App({children}) {
+  return (
+    <ThemeContext value="dark">
+      {children}
+    </ThemeContext>
+  );  
+}
+```
+
+In future versions we will deprecate `<Context.Provider>`.
+
+For more, see [`createContext`](/reference/react/createContext).
+
 ### `useDeferredValue` inital value {/*use-deferred-value-initial-value*/}
 
 We've added an `initalValue` option to `useDeferredValue`:
@@ -800,7 +821,6 @@ function Search({deferredValue}) {
 When <CodeStep step={3}>initialValue</CodeStep> is provided, React will return it as the <CodeStep step={2}>value</CodeStep> for the initial render of the component, and scheduled a re-render in the background with the <CodeStep step={1}>deferredValue</CodeStep> returned.
 
 For more, see [`useDeferredValue`](/reference/react/useDeferredValue).
-
 
 ### Support for Document Metadata {/*support-for-metadata-tags*/}
 
@@ -1002,8 +1022,6 @@ TODO
 
 More improvements?
 - Strict Mode improvements
-- useDeferredValue initialValue
-- Context.Provider is replaced with Context
 - Refs can now return a cleanup function. (TODO: docs)
 
 

@@ -111,6 +111,14 @@ const [submitAction, state, isPending] = useActionState(async () => {
 
 `useActionState` accepts a function (the "Action"), and returns a new Action to call. This works because Actions compose. When the new Action is called, `useActionState` will return the last result of the Action as `data`, and the pending state of the Action as `pending`. 
 
+<Note>
+
+`React.useActionState` was previously called `ReactDOM.useFormState` in the Canary releases, but we've renamed it and deprecated `useFormState`.
+
+See [#28491](https://github.com/facebook/react/pull/28491) for more info.
+
+</Note>
+
 For more information, see the docs for [`useActionState`](/reference/react/useActionState).
 
 ### Form Actions {/*form-actions*/}
@@ -148,7 +156,7 @@ function NameInput() {
 }
 ```
 
-`useFormStatus` works like Context for the nearest `<form>` element, returning it's `pending` state, the last submitted form `data`, and the `action`.
+`useFormStatus` works like Context for the nearest `<form>` element, returning its `pending` state, the last submitted form `data`, and the `action`.
 
 For more information, see the docs for [`useFormStatus`](/reference/react-dom/hooks/useFormStatus).
 
@@ -180,7 +188,7 @@ return (
   </form>
 );
 ```
-The `useOptimisitc` hook will immediately render the `optimisticName` while the `updateName` request is in progress. When the update finishes, React will automatically switch back to the original `name` value.
+The `useOptimistic` hook will immediately render the `optimisticName` while the `updateName` request is in progress. When the update finishes or errors, React will automatically switch back to the original `name` value.
 
 For more information, see the docs for [`useOptimistic`](/reference/react/useOptimistic).
 
@@ -205,7 +213,7 @@ Or you can read context with `use`:
 
 ```js {1,5}
 import {use} from 'react';
-import ThemeContext from 'ThemeContext'
+import ThemeContext from './ThemeContext'
 
 function ThemedPage({children}) {
   const theme = use(ThemeContext);
@@ -360,7 +368,7 @@ function Author({id}) {
 ```
 ```js
 // api
-import db from 'db';
+import db from './database';
 
 app.get(`/api/notes/:id`, async (req, res) => {
   const note = await db.notes.get(id);
@@ -376,7 +384,7 @@ app.get(`/api/authors/:id`, async (req, res) => {
 With Server Components, you can read the data and render it in the component:
 
 ```js
-import db from 'db';
+import db from './database';
 
 async function Note({id}) {
   // NOTE: loads *during* render.
@@ -449,7 +457,7 @@ A common misunderstanding is that Server Components are denoted by `"use server"
 In the following example, the `Notes` Server Component imports an `Expandable` Client Component that uses state to toggle it's `expanded` state:
 ```js
 // Server Component
-import Exapandable from 'Expandable';
+import Exapandable from './Expandable';
 
 async function Notes() {
   const notes = await db.notes.getAll();
@@ -472,7 +480,11 @@ export default function Expandable({children}) {
   const [expanded, setExpanded] = useState(false);
   return (
     <div>
-      <button onClick={() => setExpanded(s => !s)}>Toggle</button>
+      <button
+        onClick={() => setExpanded(!expanded)}
+      >
+        Toggle
+      </button>
       {expanded && children}
     </div>
   )
@@ -503,11 +515,11 @@ This works by first rendering `Notes` as a Server Component, and then instructin
 
 Server Components introduce a new way to write Components using async/await. When you `await` in an async component, React will suspend and wait for the promise to resolve before resuming rendering. This works across server/client boundaries with streaming support for Suspense.
 
-You can even start a promise on the server, and resume it on the client:
+You can even create a promise on the server, and await it on the client:
 
 ```js
 // Server Component
-import db from 'db';
+import db from './database';
 
 async function Page({id}) {
   // Will suspend the Server Component.
@@ -565,7 +577,7 @@ Server Components can define Server Actions with the `"use server"` directive:
 
 ```js [[2, 7, "'use server'"], [1, 5, "emptyNoteAction"], [1, 12, "emptyNoteAction"]]
 // Server Component
-import Button from 'Button';
+import Button from './Button';
 
 function EmptyNote () {
   async function emptyNoteAction() {
@@ -826,7 +838,9 @@ When the component unmounts, React will call the cleanup function returned from 
 
 <Note>
 
-When the cleanup function is provided, React will not call the ref with `null`. In future versions, we will deprecate calling the ref with `null` as a way to reset the `ref`.
+Previously, React would call ref functions with `null` when unmounting the component. If your ref returns a cleanup function, React will skip this step.
+
+In future versions, we will deprecate calling the ref with `null` when unmounting components.
 
 </Note>
 
@@ -961,7 +975,7 @@ React will try to recreate this component tree from scratch using the error boun
 
 </ConsoleBlockMulti>
 
-Additionally, we've added two new root options to compliment `onRecoverableError`:
+Additionally, we've added two new root options to complement `onRecoverableError`:
 
 - `onCaughtError`: called when React catches an error in an Error Boundary.
 - `onUncaughtError`: called when an error is thrown and not caught by an Error Boundary.
@@ -971,7 +985,7 @@ For more info and examples, see the docs for [`createRoot`](/reference/react-dom
 
 ### Diffs for Hydration Errors {/*diffs-for-hydration-errors*/}
 
-We also improved error reporting for hydration errors. For example, instead of logging multiple errors in DEV without any information about what mismatched:
+We also improved error reporting for hydration errors. For example, instead of logging multiple errors in DEV without any information about the mismatch:
 
 <ConsoleBlockMulti>
 

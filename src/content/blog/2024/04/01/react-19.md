@@ -439,7 +439,7 @@ Server Components are not sent to the browser, so they cannot use interactive AP
 
 <Note>
 
-#### There is no directive for Server Components.  {/*there-is-no-directive-for-server-components*/}
+#### There is no directive for Server Components. {/*there-is-no-directive-for-server-components*/}
 
 A common misunderstanding is that Server Components are denoted by `"use server"`, but there is no directive for Server Components. The `"use server"` directive is used for Server Actions.
 
@@ -780,6 +780,27 @@ Todo: This requires the new transform, correct?
 </Note>
 
 For more information, see [Manipulating the DOM with refs](/learn/manipulating-the-dom-with-refs)
+
+### `useDeferredValue` inital value {/*use-deferred-value-initial-value*/}
+
+We've added an `initalValue` option to `useDeferredValue`:
+
+```js [[1, 1, "deferredValue"], [1, 4, "deferredValue"], [2, 4, "value"], [2, 7, "value"], [3, 4, "''"]]
+function Search({deferredValue}) {
+  // On inital render the value is ''.
+  // Then a re-render is scheduled with the deferredValue.
+  const value = useDeferredValue(deferredValue, '');
+  
+  return (
+    <Results query={value} />
+  );
+}
+````
+
+When <CodeStep step={3}>initialValue</CodeStep> is provided, React will return it as the <CodeStep step={2}>value</CodeStep> for the initial render of the component, and scheduled a re-render in the background with the <CodeStep step={1}>deferredValue</CodeStep> returned.
+
+For more, see [`useDeferredValue`](/reference/react/useDeferredValue).
+
 
 ### Support for Document Metadata {/*support-for-metadata-tags*/}
 

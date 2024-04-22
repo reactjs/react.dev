@@ -272,6 +272,10 @@ TODO: note about React Native.
 
 ## Breaking Changes {/*breaking-changes*/}
 
+### SECRET_INTERNALS have been renamed {/*secret-internals-have-been-renamed*/}
+
+TODO
+
 ### Do not re-throw errors {/*do-not-rethrow-errors*/}
 
 TODO

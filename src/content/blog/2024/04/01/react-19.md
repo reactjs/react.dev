@@ -802,6 +802,36 @@ In future versions we will deprecate `<Context.Provider>`.
 
 For more, see [`createContext`](/reference/react/createContext).
 
+### Cleanup functions for DOM refs {/*cleanup-functions-for-dom-refs*/}
+
+We now support returning a cleanup function from DOM ref callbacks:
+
+```js {7-11}
+function Input() {
+  const ref = useRef();
+  
+  return <input ref={(ref) => {
+    ref.current = ref;
+
+    // NEW: return a cleanup funtion to reset
+    // the ref when element is removed from DOM. 
+    return () => {
+      ref.current = null;
+    }
+  }} />;
+}
+```
+
+When the component unmounts, React will call the cleanup function returned from the ref callback. 
+
+<Note>
+
+When the cleanup function is provided, React will not call the ref with `null`. In future versions, we will deprecate calling the ref with `null` as a way to reset the `ref`.
+
+</Note>
+
+For more, see [Manipulating the DOM with refs](/learn/manipulating-the-dom-with-refs).
+
 ### `useDeferredValue` inital value {/*use-deferred-value-initial-value*/}
 
 We've added an `initalValue` option to `useDeferredValue`:

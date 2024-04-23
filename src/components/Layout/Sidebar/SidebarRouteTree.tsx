@@ -5,6 +5,7 @@
 import {useRef, useLayoutEffect, Fragment} from 'react';
 
 import cn from 'classnames';
+import * as Semver from 'semver';
 import {useRouter} from 'next/router';
 import {SidebarLink} from './SidebarLink';
 import {useCollapse} from 'react-collapsed';
@@ -77,6 +78,8 @@ export function SidebarRouteTree({
 }: SidebarRouteTreeProps) {
   const slug = useRouter().asPath.split(/[\?\#]/)[0];
   const pendingRoute = usePendingRoute();
+  const selectedVersion: string =
+    (useRouter().query.version as string) ?? '19.0.0';
   const currentRoutes = routeTree.routes as RouteItem[];
   return (
     <ul>
@@ -86,13 +89,22 @@ export function SidebarRouteTree({
             path,
             title,
             routes,
-            canary,
             heading,
             hasSectionHeader,
             sectionHeader,
+            version,
           },
           index
         ) => {
+          if (
+            version &&
+            !Semver.satisfies(
+              Semver.coerce(selectedVersion) as Semver.SemVer,
+              version
+            )
+          ) {
+            return null;
+          }
           const selected = slug === path;
           let listItem = null;
           if (!path || heading) {
@@ -120,7 +132,6 @@ export function SidebarRouteTree({
                   selected={selected}
                   level={level}
                   title={title}
-                  canary={canary}
                   isExpanded={isExpanded}
                   hideArrow={isForceExpanded}
                 />
@@ -144,7 +155,6 @@ export function SidebarRouteTree({
                   selected={selected}
                   level={level}
                   title={title}
-                  canary={canary}
                 />
               </li>
             );
@@ -163,7 +173,7 @@ export function SidebarRouteTree({
                     'mb-1 text-sm font-bold ms-5 text-tertiary dark:text-tertiary-dark',
                     index !== 0 && 'mt-2'
                   )}>
-                  {sectionHeader}
+                  {sectionHeader?.replace('%VERSION%', selectedVersion)}
                 </h3>
               </Fragment>
             );

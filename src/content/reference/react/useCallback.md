@@ -20,6 +20,14 @@ const cachedFn = useCallback(fn, dependencies)
 
 ### `useCallback(fn, dependencies)` {/*usecallback*/}
 
+<VersionCondition range=">= 19.0.0">
+  # 19+ content example
+</VersionCondition>
+
+<VersionCondition range="< 19.0.0">
+  # pre 19 content example
+</VersionCondition>
+
 Call `useCallback` at the top level of your component to cache a function definition between re-renders:
 
 ```js {4,9}

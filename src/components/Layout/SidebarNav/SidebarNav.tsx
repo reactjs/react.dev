@@ -8,6 +8,7 @@ import cn from 'classnames';
 import {Feedback} from '../Feedback';
 import {SidebarRouteTree} from '../Sidebar/SidebarRouteTree';
 import type {RouteItem} from '../getRouteMeta';
+import {useRouter} from 'next/router';
 
 declare global {
   interface Window {
@@ -23,6 +24,14 @@ export default function SidebarNav({
   routeTree: RouteItem;
   breadcrumbs: RouteItem[];
 }) {
+  const {push, query} = useRouter();
+  const onChangeVersion = React.useCallback(
+    (e: any) => {
+      push({query: {...query, version: e.target.value}});
+    },
+    [push, query]
+  );
+
   // HACK. Fix up the data structures instead.
   if ((routeTree as any).routes.length === 1) {
     routeTree = (routeTree as any).routes[0];
@@ -48,6 +57,12 @@ export default function SidebarNav({
             className="w-full pt-6 scrolling-touch lg:h-auto grow pe-0 lg:pe-5 lg:pb-16 md:pt-4 lg:pt-4 scrolling-gpu">
             {/* No fallback UI so need to be careful not to suspend directly inside. */}
             <Suspense fallback={null}>
+              <select
+                value={query.version ?? '19.0.0'}
+                onChange={onChangeVersion}>
+                <option value="18.0.0">Version 18.0.0</option>
+                <option value="19.0.0">Version 19.0.0</option>
+              </select>
               <SidebarRouteTree
                 routeTree={routeTree}
                 breadcrumbs={breadcrumbs}

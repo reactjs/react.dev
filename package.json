@@ -38,7 +38,8 @@
     "react-collapsed": "4.0.4",
     "react-dom": "^0.0.0-experimental-16d053d59-20230506",
     "remark-frontmatter": "^4.0.1",
-    "remark-gfm": "^3.0.1"
+    "remark-gfm": "^3.0.1",
+    "semver": "^7.6.0"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
@@ -54,6 +55,7 @@
     "@types/parse-numeric-range": "^0.0.1",
     "@types/react": "^18.0.9",
     "@types/react-dom": "^18.0.5",
+    "@types/semver": "^7.5.8",
     "@typescript-eslint/eslint-plugin": "^5.36.2",
     "@typescript-eslint/parser": "^5.36.2",
     "asyncro": "^3.0.0",

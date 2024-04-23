@@ -4,7 +4,7 @@
   "routes": [
     {
       "hasSectionHeader": true,
-      "sectionHeader": "react@18.2.0"
+      "sectionHeader": "react@%VERSION%"
     },
     {
       "title": "Overview",
@@ -17,7 +17,7 @@
         {
           "title": "use",
           "path": "/reference/react/use",
-          "canary": true
+          "version": ">= 19"
         },
         {
           "title": "useCallback",
@@ -62,7 +62,7 @@
         {
           "title": "useOptimistic",
           "path": "/reference/react/useOptimistic",
-          "canary": true
+          "version": ">= 19"
         },
         {
           "title": "useReducer",
@@ -168,7 +168,7 @@
     },
     {
       "hasSectionHeader": true,
-      "sectionHeader": "react-dom@18.2.0"
+      "sectionHeader": "react-dom@%VERSION%"
     },
     {
       "title": "Hooks",

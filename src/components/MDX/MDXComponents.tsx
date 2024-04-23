@@ -31,9 +31,21 @@ import ButtonLink from 'components/ButtonLink';
 import {TocContext} from './TocContext';
 import type {Toc, TocItem} from './TocContext';
 import {TeamMember} from './TeamMember';
+import * as Semver from 'semver';
 
 import ErrorDecoder from './ErrorDecoder';
 import {IconCanary} from '../Icon/IconCanary';
+import {useRouter} from 'next/router';
+
+function VersionCondition({children, range}: {children: any; range: string}) {
+  const router = useRouter();
+  return Semver.satisfies(
+    Semver.coerce((router.query.version as any) ?? '19.0.0') as any,
+    range
+  )
+    ? children
+    : null;
+}
 
 function CodeStep({children, step}: {children: any; step: number}) {
   return (
@@ -462,6 +474,7 @@ export const MDXComponents = {
   CodeStep,
   YouTubeIframe,
   ErrorDecoder,
+  VersionCondition,
 };
 
 for (let key in MDXComponents) {

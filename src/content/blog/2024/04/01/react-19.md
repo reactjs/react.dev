@@ -23,21 +23,27 @@ April 1, 2024, by [The React Team](/community/team)
 
 <Intro>
 
-React 19 Beta is now available on npm! 
-
-In our [React 19 Upgrade Guide](/blog/04/01/react-19-upgrade-guide), we shared step-by-step instructions for upgrading your app to the React 19 Beta. In this post, we'll give an overview of the new features in React 19 Beta, and how you can adopt them.
-
-<InlineToc />
-
-_Note for React Native users: React 19 will ship a future version of React Native with the New React Native Architecture._
-
-</Intro>
-
 <Note>
 
 Stream [React Conf 2024]((https://conf.react.dev)) live May 15–16!
 
 </Note>
+
+React 19 Beta is now available on npm! 
+
+In our [React 19 Upgrade Guide](/blog/2024/04/01/react-19-upgrade-guide), we shared step-by-step instructions for upgrading your app to the React 19 Beta. In this post, we'll give an overview of the new features in React 19 Beta, and how you can adopt them.
+
+- [What's new in React 19](#whats-new-in-react-19)
+- [Improvements in React 19](#improvements-in-react-19)
+- [How to Upgrade](#how-to-upgrade)
+
+For a list of breaking changes, see the [Upgrade Guide](/blog/2024/04/01/react-19-upgrade-guide).
+
+_Note for React Native users: React 19 will ship a future version of React Native with the New React Native Architecture._
+
+</Intro>
+
+
 
 ---
 
@@ -246,14 +252,6 @@ function ThemedPage({children}) {
 The `use` API can only be called in render, similar to hooks. Unlike hooks, `use` can be called conditionally. In the future we plan to support more ways to consume resources in render with `use`.
 
 For more information, see the docs for [`use`](/reference/react/use).
-
-<DeepDive>
-
-#### Why can't I use async components on the client? {/*why-cant-i-use-async-components-on-the-client*/}
-
-TODO: we can't yet
-
-</DeepDive>
 
 ### React Server Components (RSC) {/*new-feature-server-components*/}
 

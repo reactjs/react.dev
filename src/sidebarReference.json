@@ -150,23 +150,6 @@
       ]
     },
     {
-      "title": "Directives",
-      "path": "/reference/react/directives",
-      "canary": true,
-      "routes": [
-        {
-          "title": "'use client'",
-          "path": "/reference/react/use-client",
-          "canary": true
-        },
-        {
-          "title": "'use server'",
-          "path": "/reference/react/use-server",
-          "canary": true
-        }
-      ]
-    },
-    {
       "hasSectionHeader": true,
       "sectionHeader": "react-dom@18.2.0"
     },
@@ -356,19 +339,57 @@
     },
     {
       "title": "Overview",
-      "path": "/reference/rules"
+      "path": "/reference/rules",
+      "routes": [
+        {
+        "title": "Components and Hooks must be pure",
+        "path": "/reference/rules/components-and-hooks-must-be-pure"
+        },
+        {
+          "title": "React calls Components and Hooks",
+          "path": "/reference/rules/react-calls-components-and-hooks"
+        },
+        {
+          "title": "Rules of Hooks",
+          "path": "/reference/rules/rules-of-hooks"
+        }
+      ]
     },
     {
-      "title": "Components and Hooks must be pure",
-      "path": "/reference/rules/components-and-hooks-must-be-pure"
+      "hasSectionHeader": true,
+      "sectionHeader": "React Full-stack Architecture"
     },
     {
-      "title": "React calls Components and Hooks",
-      "path": "/reference/rules/react-calls-components-and-hooks"
+      "title": "Overview",
+      "canary": true,
+      "path": "/reference/full-stack",
+      "routes": [
+        {
+          "title": "React Server Components",
+          "path": "/reference/full-stack/server-components"
+        },
+        {
+          "title": "React Server Actions",
+          "path": "/reference/full-stack/server-actions"
+        }
+      ]
     },
     {
-      "title": "Rules of Hooks",
-      "path": "/reference/rules/rules-of-hooks"
+      "title": "Directives",
+      "path": "/reference/full-stack/directives",
+      "canary": true,
+      "routes": [
+        {
+          "title": "'use client'",
+          "path": "/reference/full-stack/use-client",
+          "canary": true
+        },
+        {
+          "title": "'use server'",
+          "path": "/reference/full-stack/use-server",
+          "canary": true
+        }
+      ]
     },
     {
       "hasSectionHeader": true,

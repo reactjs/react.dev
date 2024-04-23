@@ -6,6 +6,12 @@ April 1, 2024 by [Ricky Hanlon](https://twitter.com/rickhanlonii)
 
 ---
 
+<Note>
+
+Stream [React Conf 2024]((https://conf.react.dev)) live May 15–16!
+
+</Note>
+
 <Intro>
 
 Today we're releasing a beta version of React 19, the next major version of React.  In this post, we will guide you through the steps for upgrading.
@@ -14,13 +20,15 @@ If you'd like to help us test React 19, follow the steps in this upgrade guide a
 
 </Intro>
 
-<InlineToc />
+- [Installing](#installing)
+- [Removing deprecated React APIs](#removing-deprecated-react-apis)
+- [Removing deprecated React DOM APIs](#removing-deprecated-react-dom-apis)
+- [Breaking Changes](#breaking-changes)
+- [New Deprecations](#new-deprecations)
+- [Other Breaking Changes](#other-breaking-changes)
+- [Other Notable changes](#other-notable-changes)
 
-<Note>
-
-Stream [React Conf 2024]((https://conf.react.dev)) live May 15–16!
-
-</Note>
+For a list of new features added to React 19, see the [React 19 Release Post](/blog/2024/04/01/react-19).
 
 ---
 ## Installing {/*installing*/}

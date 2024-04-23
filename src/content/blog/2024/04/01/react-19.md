@@ -259,6 +259,8 @@ Server Components are a new option that allows rendering components ahead of tim
 
 Today we're releasing React Server Components as semver stable in React 19. This means libraries that ship Server Components and Server Actions can target React 19 as a peer dependency for use in frameworks that support the [Full-stack React Architecture](/learn/start-a-new-react-project#which-features-make-up-the-react-teams-full-stack-architecture-vision).
 
+For more, see the docs for [React Server Components](/reference/full-stack/server-components). 
+
 <DeepDive>
 
 #### How do I use Server Components? {/*how-do-i-use-server-components*/}
@@ -282,6 +284,8 @@ Server Actions allow Client Components to call async functions executed on the s
 When a Server Action is defined with the `"use server"` directive, your framework will automatically create a reference to the server function, and pass that reference to the Client Component. When that function is called on the client, React will send a request to the server to execute the function, and return the result.
 
 Server Actions can be created in Server Components and passed as props to Client Components, or they can be imported and used in Client Components.
+
+For more, see the docs for [React Server Actions](/reference/full-stack/server-actions).
 
 <DeepDive>
 

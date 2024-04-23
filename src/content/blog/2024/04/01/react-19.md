@@ -35,9 +35,7 @@ _Note for React Native users: React 19 will ship a future version of React Nativ
 
 <Note>
 
-React Conf 2024 is scheduled for May 15–16 in Henderson, Nevada!
-
-For more see [the React Conf website](https://conf.react.dev).
+Stream [React Conf 2024]((https://conf.react.dev)) live May 15–16!
 
 </Note>
 
@@ -47,7 +45,9 @@ For more see [the React Conf website](https://conf.react.dev).
 
 ### Actions {/*actions*/}
 
-A common use case in React apps is to perform a data mutation and then update state in response. For example, when a user submits a form to change their name, you will make an API request, and then handle the response. Since this is an async request, you need to handle the pending state in a separate useState call:
+A common use case in React apps is to perform a data mutation and then update state in response. For example, when a user submits a form to change their name, you will make an API request, and then handle the response. In the past, you would need to handle pending states, errors, optimistic updates, and sequential requests manually.
+
+For example, you could handle the pending state in `useState`:
 
 ```js {5,8,10}
 const [name, setName] = useState('');
@@ -68,7 +68,9 @@ const handleSubmit = async () => {
 }
 ```
 
-In React 19, we added support for using async functions in transitions:
+In React 19, we're adding support for using async functions in transitions to handle pending states, errors, forms, and optimistic updates automatically.
+
+For example, you can use `useTransition` to handle the pending state for you:
 
 ```js {5,8,15}
 const [name, setName] = useState('');
@@ -89,17 +91,33 @@ const submitAction = async () => {
 }
 ```
 
-By convention, functions that use async transitions are called "Actions". Actions will immediately set the `isPending` state to true, make the async request(s), and render any state updates as transitions. This allows you to keep the current UI responsive and interactive while the data is changing.
 
-For more information, see the docs for [`useTransition`](/reference/react/useTransition).
+The async transition will immediately set the `isPending` state to true, make the async request(s), and render any state updates as transitions. This allows you to keep the current UI responsive and interactive while the data is changing.
+
+<Note>
+
+#### By convention, functions that use async transitions are called "Actions". {/*by-convention-functions-that-use-async-transitions-are-called-actions*/}
+
+Actions automatically manage submitting data for you:
+
+- **Pending state**: Actions provide a pending state that starts at the beginning of a request and automatically resets when the final state update is committed.
+- **Optimistic updates**: Actions support the new [`useOptimistic`](#new-feature-optimistic-updates) hook to handle optimistically showing the user the final state while requests are submitting.
+- **Error Handling**: Actions provide error handling so you can and display Error Boundaries when a request fails, and revert optimistic updates to their original value automatically.
+- **Forms**: Actions support new `action` prop for `<form>` elements called [Form Actions](#form-actions). This means form submissions use Actions by default, and reset automatically after submission.
+
+</Note>
+
+Async transitions are the raw primitive that power Actions, and you can always drop down to `useTransition`, `useState`, and `useOptimisitc` to create your own custom behavior. We're also introducing the [`useActionState`](#new-hook-useactionstate) and [`useFormStatus`](#new-hook-useformstatus) hooks to support the common cases for Actions and Forms.
+
+For more information, see the docs for [`useTransition`](/reference/react/useTransition) and the next sections.
 
 ### New Hook: `useActionState` {/*new-hook-useactionstate*/}
 
-You can always create an Action by dropping down to `useTransition`, but to make the common cases easier we've added a new hook called `useActionState`:
+To make the common cases easier for Actions, we've added a new hook called `useActionState`:
 
 ```js {2,9}
 const [name, setName] = useState('');
-const [submitAction, state, isPending] = useActionState(async () => {
+const [submitAction, data, isPending] = useActionState(async () => {
   const {error} = await updateName(name);
   setName('');
   
@@ -109,7 +127,7 @@ const [submitAction, state, isPending] = useActionState(async () => {
 });
 ```
 
-`useActionState` accepts a function (the "Action"), and returns a new Action to call. This works because Actions compose. When the new Action is called, `useActionState` will return the last result of the Action as `data`, and the pending state of the Action as `pending`. 
+`useActionState` accepts a function (the "Action"), and returns a wrapped Action to call. This works because Actions compose. When the wrapped Action is called, `useActionState` will return the last result of the Action as `data`, and the pending state of the Action as `pending`. 
 
 <Note>
 
@@ -168,7 +186,7 @@ Another common UI pattern when performing a data mutation is to show the final s
 const [name, setName] = useState("");
 const [optimisticName, setOptimisticName] = useOptimistic(name);
 
-const handleSubmit = async (formData) => {
+const submitAction = async (formData) => {
   const newName = formData.get("name");
   setOptimisticName(newName);
   const updatedName = await updateName(newName);
@@ -176,7 +194,7 @@ const handleSubmit = async (formData) => {
 };
 
 return (
-  <form action={handleSubmit}>
+  <form action={submitAction}>
     <p>Your name is: {optimisticName}</p>
     <p>
       <label>Change Name:</label>
@@ -201,10 +219,10 @@ For example, you can read a promise with `use`, and React will Suspend until the
 ```js {1,6}
 import {use} from 'react';
 
-function Comments({loadComments}) {
+function Comments({commentsPromise}) {
   // NOTE: this will resume the promise from the server.
   // It will suspend until the data is available.
-  const comments = use(loadComments);
+  const comments = use(commentsPromise);
   return comments.map(commment => <p>{comment}</p>);
 }
 ```
@@ -241,7 +259,7 @@ TODO: we can't yet
 
 Server Components are a new option that allows rendering components ahead of time, before bundling, in an environment separate from your application (the "server"). They can run once at build time, or can be run for each request to a web server. 
 
-Today we're releasing React Server Components as semver stable in React 19. This means libraries that ship Server Components and Server Action can target React 19 as a peer dependency for use in frameworks that support the [Full-stack React Architecture](/learn/start-a-new-react-project#which-features-make-up-the-react-teams-full-stack-architecture-vision). 
+Today we're releasing React Server Components as semver stable in React 19. This means libraries that ship Server Components and Server Actions can target React 19 as a peer dependency for use in frameworks that support the [Full-stack React Architecture](/learn/start-a-new-react-project#which-features-make-up-the-react-teams-full-stack-architecture-vision). 
 
 <DeepDive>
 
@@ -525,13 +543,13 @@ async function Page({id}) {
   // Will suspend the Server Component.
   const note = await db.notes.get(id);
   
-  // NOTE: not awaited, will resume and suspend on the client. 
-  const loadComments = db.comments.get(note.id);
+  // NOTE: not awaited, will start here and await on the client. 
+  const commentsPromise = db.comments.get(note.id);
   return (
     <div>
       {note}
       <Suspense fallback={<p>Loading Comments...</p>}>
-        <Comments loadComments={loadComments} />
+        <Comments commentsPromise={commentsPromise} />
       </Suspense>
     </div>
   );
@@ -543,10 +561,10 @@ async function Page({id}) {
 "use client";
 import {use} from 'react';
 
-function Comments({loadComments}) {
+function Comments({commentsPromise}) {
   // NOTE: this will resume the promise from the server.
   // It will suspend until the data is available.
-  const comments = use(loadComments);
+  const comments = use(commentsPromise);
   return comments.map(commment => <p>{comment}</p>);
 }
 ```
@@ -575,30 +593,30 @@ TODO
 
 Server Components can define Server Actions with the `"use server"` directive:
 
-```js [[2, 7, "'use server'"], [1, 5, "emptyNoteAction"], [1, 12, "emptyNoteAction"]]
+```js [[2, 7, "'use server'"], [1, 5, "createNoteAction"], [1, 12, "createNoteAction"]]
 // Server Component
 import Button from './Button';
 
 function EmptyNote () {
-  async function emptyNoteAction() {
+  async function createNoteAction() {
     // Server Action
     'use server';
     
     await db.notes.create();
   }
 
-  return <Button onClick={emptyNoteAction}/>;
+  return <Button onClick={createNoteAction}/>;
 }
 ```
 
-When React renders the `EmptyNote` Server Component, it will create a reference to the `emptyNoteAction` function, and pass that reference to the `Button` Client Component. When the button is clicked, React will send a request to the server to execute the `emptyNoteAction` function with the reference provided:
+When React renders the `EmptyNote` Server Component, it will create a reference to the `createNoteAction` function, and pass that reference to the `Button` Client Component. When the button is clicked, React will send a request to the server to execute the `createNoteAction` function with the reference provided:
 
 ```js {5}
 "use client";
 
 export default function Button({onClick}) { 
   console.log(onClick); 
-  // {$$typeof: Symbol.for("react.server.reference"), $$id: 'emptyNoteAction'}
+  // {$$typeof: Symbol.for("react.server.reference"), $$id: 'createNoteAction'}
   return <button onClick={onClick}>Create Empty Note</button>
 }
 ```
@@ -610,25 +628,25 @@ For more, see the docs for [`"use server"`](/reference/react/use-server).
 
 Client Components can import Server Actions from files that use the `"use server"` directive:
 
-```js [[1, 3, "emptyNoteAction"]]
+```js [[1, 3, "createNoteAction"]]
 "use server";
 
-export async function emptyNoteAction() {
+export async function createNoteAction() {
   await db.notes.create();
 }
 
 ```
 
-When the bundler builds the `EmptyNote` Client Component, it will create a reference to the `emptyNoteAction` function in the bundle. When the `button` is clicked, React will send a request to the server to execute the `emptyNoteAction` function using the reference provided:
+When the bundler builds the `EmptyNote` Client Component, it will create a reference to the `createNoteAction` function in the bundle. When the `button` is clicked, React will send a request to the server to execute the `createNoteAction` function using the reference provided:
 
-```js [[1, 2, "emptyNoteAction"], [1, 5, "emptyNoteAction"], [1, 7, "emptyNoteAction"]]
+```js [[1, 2, "createNoteAction"], [1, 5, "createNoteAction"], [1, 7, "createNoteAction"]]
 "use client";
-import {emptyNoteAction} from './actions';
+import {createNoteAction} from './actions';
 
 function EmptyNote() {
-  console.log(emptyNoteAction);
-  // {$$typeof: Symbol.for("react.server.reference"), $$id: 'emptyNoteAction'}
-  <button onClick={emptyNoteAction} />
+  console.log(createNoteAction);
+  // {$$typeof: Symbol.for("react.server.reference"), $$id: 'createNoteAction'}
+  <button onClick={createNoteAction} />
 }
 ```
 
@@ -850,7 +868,7 @@ For more, see [Manipulating the DOM with refs](/learn/manipulating-the-dom-with-
 
 We've added an `initalValue` option to `useDeferredValue`:
 
-```js [[1, 1, "deferredValue"], [1, 4, "deferredValue"], [2, 4, "value"], [2, 7, "value"], [3, 4, "''"]]
+```js [[1, 1, "deferredValue"], [1, 4, "deferredValue"], [2, 4, "''"]]
 function Search({deferredValue}) {
   // On inital render the value is ''.
   // Then a re-render is scheduled with the deferredValue.
@@ -862,7 +880,7 @@ function Search({deferredValue}) {
 }
 ````
 
-When <CodeStep step={3}>initialValue</CodeStep> is provided, React will return it as the <CodeStep step={2}>value</CodeStep> for the initial render of the component, and scheduled a re-render in the background with the <CodeStep step={1}>deferredValue</CodeStep> returned.
+When <CodeStep step={2}>initialValue</CodeStep> is provided, `useDeferredValue` will return it as `value` for the initial render of the component, and scheduled a re-render in the background with the <CodeStep step={1}>deferredValue</CodeStep> returned.
 
 For more, see [`useDeferredValue`](/reference/react/useDeferredValue).
 
@@ -917,7 +935,7 @@ We've improved hydration to account for third-party scripts and browser extensio
 
 ### Better Error Reporting {/*error-handling*/}
 
-We improved error handling in React 19 to remove duplication and provide options for handling caught and uncaught errors. For example, when there's an error in render caught by an error boundary, previously React would throw the error twice (once for the original error, then again after failing to automatically recover), and then call `console.error` with info about where the error occurred. 
+We improved error handling in React 19 to remove duplication and provide options for handling caught and uncaught errors. For example, when there's an error in render caught by an Error Boundary, previously React would throw the error twice (once for the original error, then again after failing to automatically recover), and then call `console.error` with info about where the error occurred. 
 
 This resulted in three errors for every caught error:
 

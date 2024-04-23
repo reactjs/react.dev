@@ -2,7 +2,7 @@
 title: "React 19 Beta Upgrade Guide"
 ---
 
-April 1, 2024 by [The React Team](/community/team)
+April 1, 2024 by [Ricky Hanlon](https://twitter.com/rickhanlonii)
 
 ---
 
@@ -18,9 +18,7 @@ If you'd like to help us test React 19, follow the steps in this upgrade guide a
 
 <Note>
 
-React Conf 2024 is scheduled for May 15–16 in Henderson, Nevada!
-
-For more see [the React Conf website](https://conf.react.dev).
+Stream [React Conf 2024]((https://conf.react.dev)) live May 15–16!
 
 </Note>
 

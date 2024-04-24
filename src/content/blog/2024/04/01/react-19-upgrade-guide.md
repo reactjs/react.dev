@@ -4,41 +4,34 @@ title: "React 19 Beta Upgrade Guide"
 
 April 1, 2024 by [Ricky Hanlon](https://twitter.com/rickhanlonii)
 
----
+_Note: This beta release is for libraries to prepare for React 19. App developers should upgrade to 18.3.0 and wait for React 19 stable as we work with libraries and make changes based on feedback._
 
+---
 <Intro>
 
+[//]: # (As we shared in the [beta release post]&#40;/blog/2024/04/01/react-19&#41;, React 19 includes long-requested improvements like using refs without `forwardRef`, using `<Context>` as a provider, better error handling, and faster JSX.)
 
-As we shared in the [release post](/blog/2024/04/01/react-19), 19 adds new features like Actions, optimistic updates, and React Server Components. It also includes long-requested improvements like using refs without `forwardRef`, using `<Context>` as a provider, better error handling, and faster JSX.
+The improvements added to React 19 require some breaking changes, but we've worked to make the upgrade as smooth as possible and we don't expect the changes to impact most apps.
 
-The improvements added to React 19 require some breaking changes, but we've worked to make the upgrade as smooth as possible. We're also removing many long time deprecated APIs to make React simpler and easier to understand.
+To help make the upgrade easier, today we are also publishing React 18.3.
 
 </Intro>
 
-
 <Note>
 
+#### React 18.3 has also been published {/*react-18-3*/}
 
-
-#### Upgrade to 18.3 first {/*upgrade-to-18-3-first*/}
-
-To help make the upgrade to React 19 easier, we've published a `react@18.3` release that only includes warnings for deprecated APIs and other changes that will be removed in React 19.
+To help make the upgrade to React 19 easier, we've published a `react@18.3` release that only includes warnings for deprecated APIs and other changes that are needed for React 19. 
 
 We recommend upgrading to React 18.3 first to help identify any issues before upgrading to React 19.
 
+For a list of changes in 18.3 see the [Release Notes](https://github.com/facebook/react/blob/main/CHANGELOG.md).
+
 </Note>
 
-In this post, we will guide you through the steps for upgrading. If you'd like to help us test React 19, follow the steps in this upgrade guide and [report any issues](https://github.com/facebook/react/issues/new/choose) you encounter.
+In this post, we will guide you through the steps for upgrading libraries to React 19 beta. If you'd like to help us test React 19, follow the steps in this upgrade guide and [report any issues](https://github.com/facebook/react/issues/new/choose) you encounter. 
 
-- [Installing](#installing)
-- [Breaking Changes](#breaking-changes)
-- [Removed React APIs](#removed-react-apis)
-- [Removed React DOM APIs](#removed-react-dom-apis)
-- [New Deprecations](#new-deprecations)
-- [Other Breaking Changes](#other-breaking-changes)
-- [Other Notable changes](#other-notable-changes)
-
-For a list of new features added to React 19, see the [React 19 Release Post](/blog/2024/04/01/react-19).
+For a list of new features added to React 19 beta, see the [React 19 release post](/blog/2024/04/01/react-19).
 
 ---
 ## Installing {/*installing*/}
@@ -46,14 +39,17 @@ For a list of new features added to React 19, see the [React 19 Release Post](/b
 To install the latest version of React:
 
 ```bash
-npm install react react-dom
+npm install react@beta react-dom@beta
 ```
 
-Or if you’re using yarn:
+Typescript users will also need to update their types:
 
 ```bash
-yarn add react react-dom
+npm install @types/react@beta @types/react-dom@beta
 ```
+
+For a full list of type changes, see the type [CHANGELOG](TODO).
+
 <Note>
 #### New JSX Transform is now required {/*new-jsx-transform-is-now-required*/}
 
@@ -79,33 +75,14 @@ We expect most apps will not be affected since the transform is enabled in most 
 
 ## Breaking Changes {/*breaking-changes*/}
 
-### `element.ref` not supported {/*element-ref-not-supported*/}
-
-TODO
-
 ### Errors in render are not re-thrown {/*errors-in-render-are-not-re-thrown*/}
 
 TODO
 TODO: need expect(act()).toThrow();
 
-### Transitions in popstate are now synchronous {/*transitions-in-popstate-are-now-synchronous*/}
+### Removed deprecated React APIs {/*removed-deprecated-react-apis*/}
 
-TODO
-
-### StrictMode changes {/*strict-mode-improvements*/}
-
-TODO
-
-- https://github.com/facebook/react/pull/25583
-- https://github.com/facebook/react/pull/25049
-
-### SECRET_INTERNALS have been renamed {/*secret-internals-have-been-renamed*/}
-
-TODO
-
-## Removed deprecated React APIs {/*removed-deprecated-react-apis*/}
-
-### Removed: `propTypes` and `defaultProps` for functions {/*removed-proptypes-and-defaultprops*/}
+#### Removed: `propTypes` and `defaultProps` for functions {/*removed-proptypes-and-defaultprops*/}
 `PropTypes` were deprecated in [April 2017 (v15.5.0)](https://legacy.reactjs.org/blog/2017/04/07/react-v15.5.0.html#new-deprecation-warnings). 
 
 In React 19, we're removing the `propType` checks from the React package, and using them will be silently ignored. If you're using `propTypes`, we recommend migrating to TypeScript or another type-checking solution.
@@ -136,7 +113,7 @@ function Heading({text = 'Hello, world!'}: Props) {
 }
 ```
 
-### Removed: Legacy Context using `contextTypes` and `getChildContext` {/*removed-removing-legacy-context*/}
+#### Removed: Legacy Context using `contextTypes` and `getChildContext` {/*removed-removing-legacy-context*/}
 
 Legacy Context was deprecated in [October 2018 (v16.6.0)](https://legacy.reactjs.org/blog/2018/10/23/react-v-16-6.html).
 
@@ -196,7 +173,7 @@ class Child extends React.Component {
 }
 ```
 
-### Removed: string refs {/*removed-string-refs*/}
+#### Removed: string refs {/*removed-string-refs*/}
 String refs were deprecated in [March, 2018 (v16.3.0)](https://legacy.reactjs.org/blog/2018/03/27/update-on-async-rendering.html).
 
 Class components supported string refs before being replaced by ref callbacks due to [multiple downsides](https://github.com/facebook/react/issues/1373). In React 19, we're removing string refs to make React simpler and easier to understand.
@@ -237,7 +214,7 @@ TODO: instructions.
 
 </Note>
 
-### Removed: Module pattern factories {/*removed-module-pattern-factories*/}
+#### Removed: Module pattern factories {/*removed-module-pattern-factories*/}
 Module pattern factories were deprecated in [August 2019 (v16.9.0)](https://legacy.reactjs.org/blog/2019/08/08/react-v16.9.0.html#deprecating-module-pattern-factories).
 
 This pattern was rarely used and supporting it causes React to be slightly larger and slower than necessary. In React 19, we're removing support for module pattern factories, and you'll need to migrate to regular functions:
@@ -256,7 +233,7 @@ function FactoryComponent() {
 }
 ```
 
-### Removed: `React.createFactory` {/*removed-createfactory*/}
+#### Removed: `React.createFactory` {/*removed-createfactory*/}
 `createFactory` was deprecated in [February 2020 (v16.13.0)](https://legacy.reactjs.org/blog/2020/02/26/react-v16.13.0.html#deprecating-createfactory).
 
 Using `createFactory` was common before broad support for JSX, but it's rarely used today and can be replaced with JSX. In React 19, we're removing `createFactory` and you'll need to migrate to JSX:
@@ -273,9 +250,9 @@ const button = createFactory('button');
 const button = <button />;
 ```
 
-### Removed: `react-test-renderer/shallow` {/*removed-react-test-renderer-shallow*/}
+#### Removed: `react-test-renderer/shallow` {/*removed-react-test-renderer-shallow*/}
 
-In React 18, we updated `react-test-renderer/shallow` to reexport [react-shallow-renderer](https://github.com/enzymejs/react-shallow-renderer). In React 19, we're removing `react-test-render/shallow` to prefer installing the package directly:
+In React 18, we updated `react-test-renderer/shallow` to re-export [react-shallow-renderer](https://github.com/enzymejs/react-shallow-renderer). In React 19, we're removing `react-test-render/shallow` to prefer installing the package directly:
 
 ```bash
 npm install react-shallow-renderer --save-dev
@@ -287,15 +264,15 @@ npm install react-shallow-renderer --save-dev
 
 <Note>
 
-#### Please reconsider shallow rendering {/*please-reconsider-shallow-rendering*/}
+##### Please reconsider shallow rendering {/*please-reconsider-shallow-rendering*/}
 
 Shallow rendering depends on React internals and can block you from future upgrades. We recommend migrating your tests to [@testing-library/react](https://testing-library.com/docs/react-testing-library/intro/) or [@testing-library/react-native](https://callstack.github.io/react-native-testing-library/docs/getting-started). 
 
 </Note>
 
-## Removed deprecated React DOM APIs {/*removed-deprecated-react-dom-apis*/}
+### Removed deprecated React DOM APIs {/*removed-deprecated-react-dom-apis*/}
 
-### Removed: `react-dom/test-utils` {/*removed-react-dom-test-utils*/}
+#### Removed: `react-dom/test-utils` {/*removed-react-dom-test-utils*/}
 
 We've moved `act` from `react-dom/test-utils` to the `react` package:
 
@@ -320,7 +297,7 @@ All other `test-utils` functions have been removed. These utilities were uncommo
 
 See the [warning page](https://react.dev/warnings/react-dom-test-utils) to for alternatives.
 
-### Removed: `ReactDOM.render` {/*removed-reactdom-render*/}
+#### Removed: `ReactDOM.render` {/*removed-reactdom-render*/}
 
 `ReactDOM.render` was deprecated in [March 2022 (v18.0.0)](https://react.dev/blog/2022/03/08/react-18-upgrade-guide). In React 19, we're removing `ReactDOM.render` and you'll need to migrate to using [`ReactDOM.createRoot`](https://react.dev/reference/react-dom/client/createRoot):
 
@@ -335,7 +312,7 @@ const root = createRoot(document.getElementById('root'));
 root.render(<App />);
 ```
 
-### Removed: `ReactDOM.hydrate` {/*removed-reactdom-hydrate*/}
+#### Removed: `ReactDOM.hydrate` {/*removed-reactdom-hydrate*/}
 
 `ReactDOM.hydrate` was deprecated in [March 2022 (v18.0.0)](https://react.dev/blog/2022/03/08/react-18-upgrade-guide). In React 19, we're removing `ReactDOM.hydrate` you'll need to migrate to using [`ReactDOM.hydrateRoot`](https://react.dev/reference/react-dom/client/hydrateRoot),
 
@@ -350,7 +327,7 @@ hydrate(document.getElementById('root'), <App />);
 ```
 
 
-### Removed: `unmountComponentAtNode` {/*removed-unmountcomponentatnode*/}
+#### Removed: `unmountComponentAtNode` {/*removed-unmountcomponentatnode*/}
 
 `ReactDOM.unmountComponentAtNode` was deprecated in [March 2022 (v18.0.0)](https://react.dev/blog/2022/03/08/react-18-upgrade-guide). In React 19, you'll need to migrate to using `root.unmount()`.
 
@@ -366,7 +343,7 @@ root.unmount();
 For more see `root.unmount()` for [`createRoot`](https://react.dev/reference/react-dom/client/createRoot#root-unmount) and [`hydrateRoot`](https://react.dev/reference/react-dom/client/hydrateRoot#root-unmount).
 
 
-### Removed: `ReactDOM.findDOMNode` {/*removed-reactdom-finddomnode*/}
+#### Removed: `ReactDOM.findDOMNode` {/*removed-reactdom-finddomnode*/}
 `ReactDOM.findDOMNode` was [deprecated in October 2018 (v16.6.0)](https://legacy.reactjs.org/blog/2018/10/23/react-v-16-6.html#deprecations-in-strictmode). 
 
 We're removing `findDOMNode` because it was a legacy escape hatch that was slow to execute, fragile to refactoring, only returned the first child, and broke abstraction levels (see more [here](https://legacy.reactjs.org/docs/strict-mode.html#warning-about-deprecated-finddomnode-usage)). You can replace `ReactDOM.findDOMNode` with [DOM refs](/learn/manipulating-the-dom-with-refs):
@@ -399,39 +376,54 @@ function AutoselectingInput() {
 
 ## New Deprecations {/*new-deprecations*/}
 
-### Deprecating `react-test-renderer` {/*deprecating-react-test-renderer*/}
+### Deprecated: `element.ref` {/*deprecated-element-ref*/}
+
+TODO
+
+### Deprecated: `react-test-renderer` {/*deprecated-react-test-renderer*/}
 
 We are deprecating `react-test-renderer` because it implements its own renderer environment that doesn't match the environment users use, promotes testing implementation details, and relies on introspection of React's internals.
 
 The test renderer was created before there were more viable testing strategies available like [React Testing Library](https://testing-library.com), and we now recommend using a modern testing library instead.
 
-In React 19, `react-test-renderer` log a deprecation warning, and has switched to concurrent rendering by default. We recommend migrating your tests to [@testing-library/react](https://testing-library.com/docs/react-testing-library/intro/) or [@testing-library/react-native](https://callstack.github.io/react-native-testing-library/docs/getting-started) for a modern and well supported testing experience.
+In React 19, `react-test-renderer` log a deprecation warning, and has switched to concurrent rendering. We recommend migrating your tests to [@testing-library/react](https://testing-library.com/docs/react-testing-library/intro/) or [@testing-library/react-native](https://callstack.github.io/react-native-testing-library/docs/getting-started) for a modern and well supported testing experience.
+
+## Notable Changes {/*notable-changes*/}
+
+### StrictMode changes {/*strict-mode-improvements*/}
+
+TODO
+
+- https://github.com/facebook/react/pull/25583
+- https://github.com/facebook/react/pull/25049
+
+### UMD builds removed {/*umd-builds-removed*/}
+
+TODO
+
+### Changes for libraries depending on internals {/*changes-for-libraries-depending-on-internals*/}
+
+TODO
 
 
 ## Other Breaking Changes {/*other-breaking-changes*/}
 
-- UMD builds have been removed
-- react: Warn when using defaultProps in functions, memo, lazy, and forwardRef (TODO)
-- react: Don't prerender siblings of suspended component https://github.com/facebook/react/pull/26380
-- react: warnAboutSpreadingKeyToJSX https://github.com/facebook/react/pull/25697
-- react: unified sync lane https://github.com/facebook/react/pull/25700
-- react: element.ref not supported
-- react-dom: Remove `errorInfo.digest` with warning (TODO)
-- react-dom: Removed unstable_renderSubtreeIntoContainer (TODO)
-- react-dom: Warn and don’t set empty string attributes for src/href (TODO: land)
-- react-dom: Error and do not allow javascript URLs in src/href (TODO: land) https://github.com/facebook/react/pull/26507
-- react-dom: Restore old behavior for empty href props on anchor tags
+
+
+- react-dom: Removed unstable_renderSubtreeIntoContainer
+- react-dom: Remove `errorInfo.digest` with warning
+- react-dom: Error and do not allow javascript URLs in src/href https://github.com/facebook/react/pull/26507
 - react-is: Remove deprecated methods from react-is
 
-## Other Notable changes {/*other-notable-changes*/}
+## Other Notable Changes {/*other-notable-changes*/}
 
 #### React {/*other-notable-changes-react*/}
+- react: Don't prerender siblings of suspended component https://github.com/facebook/react/pull/26380
 - better infinite loop detection
-- unified sync lane
+- unified sync lane https://github.com/facebook/react/pull/25700
 
 #### React DOM {/*other-notable-changes-react-dom*/}
+- Transitions in popstate are now synchronous
 - Removed layout effect warning during SSR.
-- Removed workaround for IE style sorting hydration errors (TODO: land)
-
-#### React ART {/*other-notable-changes-react-art*/}
-- React ART now runs in concurrent rendering 
+- Removed workaround for IE style sorting hydration errors
+- Warn and don’t set empty string attributes for src/href except anchor tags

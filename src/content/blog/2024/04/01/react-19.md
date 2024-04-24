@@ -253,19 +253,22 @@ The `use` API can only be called in render, similar to hooks. Unlike hooks, `use
 
 For more information, see the docs for [`use`](/reference/react/use).
 
-### React Server Components (RSC) {/*new-feature-server-components*/}
+
+### React Server Components {/*react-server-components*/}
+
+### Server Components {/*server-components*/}
 
 Server Components are a new option that allows rendering components ahead of time, before bundling, in an environment separate from your application (the "server"). They can run once at build time, or can be run for each request to a web server.
 
-Today we're releasing React Server Components as semver stable in React 19. This means libraries that ship Server Components and Server Actions can target React 19 as a peer dependency for use in frameworks that support the [Full-stack React Architecture](/learn/start-a-new-react-project#which-features-make-up-the-react-teams-full-stack-architecture-vision).
+Today we're releasing React Server Components as semver stable in React 19. TODO: re-write This means libraries that ship Server Components and Server Actions can target React 19 as a peer dependency for use in frameworks that support the [Full-stack React Architecture](/learn/start-a-new-react-project#which-features-make-up-the-react-teams-full-stack-architecture-vision).
 
-For more, see the docs for [React Server Components](/reference/full-stack/server-components). 
+For more, see the docs for [React Server Components](/reference/rsc/server-components). 
 
 <DeepDive>
 
 #### How do I use Server Components? {/*how-do-i-use-server-components*/}
 
-We first announced React Server Components (RSC) in a [demo in December 2020](https://legacy.reactjs.org/blog/2020/12/21/data-fetching-with-react-server-components.html). In 2022, we merged the [RFC for React Server Components](https://github.com/reactjs/rfcs/blob/main/text/0188-server-components.md) and the [RFC for React Server Module Conventions](https://github.com/reactjs/rfcs/blob/main/text/0227-server-module-conventions.md) and partnered with Next.js for the first implementation in the Next.js 13 App Router beta. We worked with the Next.js team to implement Server Components via the stable Canary channel, and Server Components shipped as the default in Next.js 14.
+We first announced React Server Components in a [demo in December 2020](https://legacy.reactjs.org/blog/2020/12/21/data-fetching-with-react-server-components.html). In 2022, we merged the [RFC for React Server Components](https://github.com/reactjs/rfcs/blob/main/text/0188-server-components.md) and the [RFC for React Server Module Conventions](https://github.com/reactjs/rfcs/blob/main/text/0227-server-module-conventions.md) and partnered with Next.js for the first implementation in the Next.js 13 App Router beta. We worked with the Next.js team to implement Server Components via the stable Canary channel, and Server Components shipped as the default in Next.js 14.
 
 We will continue working with bundlers and framework authors to expand support for React Server Components.
 
@@ -277,7 +280,7 @@ TODO:
 
 </DeepDive>
 
-### React Server Actions (RSA) {/*react-server-actions-rsa*/}
+### Server Actions {/*server-actions*/}
 
 Server Actions allow Client Components to call async functions executed on the server.
 
@@ -285,7 +288,7 @@ When a Server Action is defined with the `"use server"` directive, your framewor
 
 Server Actions can be created in Server Components and passed as props to Client Components, or they can be imported and used in Client Components.
 
-For more, see the docs for [React Server Actions](/reference/full-stack/server-actions).
+For more, see the docs for [React Server Actions](/reference/rsc/server-actions).
 
 <DeepDive>
 
@@ -409,12 +412,12 @@ In HTML, document metadata tags like `<title>` and `<meta>` are reserved for pla
 In React 19, we're adding support for rendering document metadata tags in components natively:
 
 ```js {5,6}
-function Component() {
+function BlogPost({post}) {
   return (
     <div>
-      <p>Hello World</p>
-      <title>Hello World</title>
-      <meta name="keywords" content="React 19"/>
+      <p>{post.title}</p>
+      <title>{post.title}</title>
+      <meta name="keywords" content={post.keywords} />
     </div>
   );
 }
@@ -449,7 +452,11 @@ To maintain compatibility with HTML and optimize performance, React will dedupe 
 
 ### Improved hydration for third-party scripts {/*improved-hydration-for-third-party-scripts*/}
 
-We've improved hydration to account for third-party scripts and browser extensions. TODO: explain how.
+We've improved hydration to account for third-party scripts and browser extensions.
+
+When hydrating, if an element that renders on the client doesn't match the element found in the HTML from the server, React will force a client re-render to fix up the content. Previously, if an element was inserted by third-party scripts or browser extensions, it would trigger a mismatch error and client render.
+
+In React 19 unexpected tags in the `<head>` and `<body>` will be skipped over, avoiding the mismatch errors. If React needs to re-render the entire document due to an unrelated hydration mismatch, it will leave in place stylesheets inserted by third-party scripts and browser extensions.
 
 ### Better Error Reporting {/*error-handling*/}
 

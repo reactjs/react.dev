@@ -9,6 +9,12 @@ The `useActionState` Hook is currently only available in React's Canary and expe
 
 </Canary>
 
+<Note>
+
+In earlier React Canary versions, this API was part of `react-dom` and called `useFormState`.
+
+</Note>
+
 <Intro>
 
 `useActionState` is a Hook that allows you to update state based on the result of a form action.

@@ -341,6 +341,12 @@ In this example, `itemsRef` doesn't hold a single DOM node. Instead, it holds a 
 
 This lets you read individual DOM nodes from the Map later.
 
+<Note>
+
+When [Strict Mode](/reference/react/StrictMode) is on , [React detaches and re-attaches DOM refs](/reference/react/StrictMode#fixing-bugs-found-by-cleaning-up-and-re-attaching-dom-refs-in-development). This will stress-test callbacks like the one above by calling its cleanup function before calling the callback a second time.
+
+</Note>
+
 </DeepDive>
 
 ## Accessing another component's DOM nodes {/*accessing-another-components-dom-nodes*/}

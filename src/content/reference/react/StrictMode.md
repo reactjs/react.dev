@@ -44,6 +44,7 @@ Strict Mode enables the following development-only behaviors:
 
 - Your components will [re-render an extra time](#fixing-bugs-found-by-double-rendering-in-development) to find bugs caused by impure rendering.
 - Your components will [re-run Effects an extra time](#fixing-bugs-found-by-re-running-effects-in-development) to find bugs caused by missing Effect cleanup.
+- <CanaryBadge title="This feature is only available in the Canary channel" /> Your components will [detach and re-attach DOM refs](#fixing-bugs-found-by-cleaning-up-and-re-attaching-dom-refs-in-development) to find bugs caused by missing DOM ref cleanup.
 - Your components will [be checked for usage of deprecated APIs.](#fixing-deprecation-warnings-enabled-by-strict-mode)
 
 #### Props {/*props*/}
@@ -87,6 +88,7 @@ Strict Mode enables the following checks in development:
 
 - Your components will [re-render an extra time](#fixing-bugs-found-by-double-rendering-in-development) to find bugs caused by impure rendering.
 - Your components will [re-run Effects an extra time](#fixing-bugs-found-by-re-running-effects-in-development) to find bugs caused by missing Effect cleanup.
+- <CanaryBadge title="This feature is only available in the Canary channel" /> Your components will [detach and re-attach DOM refs](#fixing-bugs-found-by-cleaning-up-and-re-attaching-dom-refs-in-development) to find bugs caused by missing DOM ref cleanup.
 - Your components will [be checked for usage of deprecated APIs.](#fixing-deprecation-warnings-enabled-by-strict-mode)
 
 **All of these checks are development-only and do not impact the production build.**
@@ -825,7 +827,19 @@ Without Strict Mode, it was easy to miss that your Effect needed cleanup. By run
 [Read more about implementing Effect cleanup.](/learn/synchronizing-with-effects#how-to-handle-the-effect-firing-twice-in-development)
 
 ---
+### Fixing bugs found by detaching and re-attaching DOM refs in development {/*fixing-bugs-found-by-cleaning-up-and-re-attaching-dom-refs-in-development*/}
 
+<Canary> 
+In canary and experimental channels, React will run an extra setup+cleanup cycle in development for DOM refs, much like it does for Effects. 
+
+For [`ref` callbacks](/reference/react-dom/components/common#ref-callback), React will call the callback function with the DOM node as its argument. It will then call the callback's [cleanup function](reference/react-dom/components/common#returns) before calling the `ref` callback function again with the DOM node as its argument.
+
+Similarly, React will detach DOM refs that were created via `useRef` by setting `ref.current` to `null` before setting it back to the DOM node.
+
+You can read more about DOM refs in [Manipulating the DOM with Refs.](/learn/manipulating-the-dom-with-refs)
+</Canary>
+
+--- 
 ### Fixing deprecation warnings enabled by Strict Mode {/*fixing-deprecation-warnings-enabled-by-strict-mode*/}
 
 React warns if some component anywhere inside a `<StrictMode>` tree uses one of these deprecated APIs:

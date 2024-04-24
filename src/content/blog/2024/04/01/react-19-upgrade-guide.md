@@ -77,6 +77,50 @@ We expect most apps will not be affected since the transform is enabled in most 
 
 </Note>
 
+If you're using TypeScript, you also need to update the types.
+During the beta period, the types are available in different packages which need to be enforced in your `package.json`:
+
+```json
+{
+  "dependencies": {
+    "@types/react": "npm:types-react@alpha",
+    "@types/react-dom": "npm:types-react-dom@alpha"
+  },
+  "overrides": {
+    "@types/react": "npm:types-react@alpha",
+    "@types/react-dom": "npm:types-react-dom@alpha"
+  }
+}
+```g
+
+Or if you're using yarn:
+
+```json
+{
+  "dependencies": {
+    "@types/react": "npm:types-react@alpha",
+    "@types/react-dom": "npm:types-react-dom@alpha"
+  },
+  "resolutions": {
+    "@types/react": "npm:types-react@alpha",
+    "@types/react-dom": "npm:types-react-dom@alpha"
+  }
+}
+```
+
+Once React 19 is released as stable, you can install the types as usual from `@types/react` and `@types/react-dom`.
+
+Most of the type related breaking changes are codemoddable with [`types-react-codemod`](https://github.com/eps1lon/types-react-codemod/):
+
+```bash
+# Run the codemod
+npx types-react-codemod@latest preset-19 ./path-to-your-react-ts-files
+
+# If you have a lot of unsound access to `element.props`,
+# you can run this additional codemod:
+npx types-react-codemod@latest react-element-default-any-props ./path-to-your-react-ts-files
+```
+
 ## Breaking Changes {/*breaking-changes*/}
 
 ### `element.ref` not supported {/*element-ref-not-supported*/}
@@ -407,6 +451,187 @@ The test renderer was created before there were more viable testing strategies a
 
 In React 19, `react-test-renderer` log a deprecation warning, and has switched to concurrent rendering by default. We recommend migrating your tests to [@testing-library/react](https://testing-library.com/docs/react-testing-library/intro/) or [@testing-library/react-native](https://callstack.github.io/react-native-testing-library/docs/getting-started) for a modern and well supported testing experience.
 
+
+## Removed deprecated TypeScript types
+
+Some of the removed have types been moved to more relevant packages, like `Validator` moving to `PropTypes`.
+Others are no longer needed to describe React's behavior.
+ Removing them means one less thing to learn.
+
+### Codemoddable
+
+| Type                    | Codemod                                                                                                                   | Replacement                              |
+| ----------------------- | ------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------- |
+| `ReactChild`            | [`deprecated-react-child`](https://github.com/eps1lon/types-react-codemod#deprecated-react-child)                         | `React.ReactElement \| number \| string` |
+| `ReactFragment`         | [`deprecated-react-fragment`](https://github.com/eps1lon/types-react-codemod#deprecated-react-fragment)                   | `Iterable<React.ReactNode>`              |
+| `ReactNodeArray`        | [`deprecated-react-node-array`](https://github.com/eps1lon/types-react-codemod#deprecated-react-node-array)               | `ReadonlyArray<React.ReactNode>`         |
+| `ReactText`             | [`deprecated-react-text`](https://github.com/eps1lon/types-react-codemod#deprecated-react-text)                           | `number \| string`                       |
+| `Requireable`           | [`deprecated-prop-types-types`](https://github.com/eps1lon/types-react-codemod#deprecated-prop-types-types)               | `Requireable` from `prop-types`          |
+| `ValidationMap`         | [`deprecated-prop-types-types`](https://github.com/eps1lon/types-react-codemod#deprecated-prop-types-types)               | `ValidationMap` from `prop-types`        |
+| `Validator`             | [`deprecated-prop-types-types`](https://github.com/eps1lon/types-react-codemod#)                                          | `Validator` from `prop-types`            |
+| `VoidFunctionComponent` | [`deprecated-void-function-component`](https://github.com/eps1lon/types-react-codemod#deprecated-void-function-component) | `FunctionComponent`                      |
+| `VFC`                   | [`deprecated-void-function-component`](https://github.com/eps1lon/types-react-codemod#)                                   | `FC`                                     |
+| `WeakValidationMap`     | [`deprecated-prop-types-types`](https://github.com/eps1lon/types-react-codemod#deprecated-prop-types-tpyes)               | `WeakValidationMap` from `prop-types`    |
+
+### Not Codemoddable
+
+During [example migrations](https://github.com/users/eps1lon/projects/3/views/9), these types were not used at all.
+If you feel a codemod is missing, it can be tracked in the [list of missing React 19 codemods](https://github.com/eps1lon/types-react-codemod/issues?q=is%3Aissue+is%3Aopen+sort%3Aupdated-desc+label%3A%22React+19%22+label%3Aenhancement).
+
+| Type                    | Replacement                                                                                                    |
+| ----------------------- | -------------------------------------------------------------------------------------------------------------- |
+| `ClassicComponentClass` | `ClassicComponentClass` from `create-react-class`                                                              |
+| `ClassicComponent`      | `ClassicComponent` from `create-react-class`                                                                   |
+| `ClassicElement<Props>` | `ClassicElement<Props, InstanceType<T>>` from `create-react-class`                                             |
+| `ComponentSpec`         | `ComponentSpec` from the `create-react-class` package                                                          |
+| `Mixin`                 | `Mixin` from the `create-react-class` package                                                                  |
+| `ReactChildren`         | `typeof React.Children`                                                                                        |
+| `ReactHTML`             | Either `ReactHTML` from `react-dom-factories` or, if you used `keyof ReactHTML`, use `HTMLElementType` instead |
+| `ReactSVG`              | Either `ReactSVG` from `react-dom-factories` or, if you used `keyof ReactSVG`, use `SVGElementType` instead    |
+| `SFCFactory`            | No replacement                                                                                                 |
+
+### JSX Namespace
+
+A long-time request is to remove the global `JSX` namespace from our types in favor of `React.JSX`.
+This helps prevent pollution of global types which prevents conflicts between different UI libraries that leverage JSX.
+This change is [codemoddable with `scoped-jsx`](https://github.com/eps1lon/types-react-codemod#scoped-jsx).
+
+You'll now need to wrap module augmentation of the JSX namespace in `declare module "....":
+
+```diff
+// global.d.ts
+
++ declare module "react" {
+    namespace JSX {
+      interface IntrinsicElements {
+        "my-element": {
+          myElementProps: string;
+        };
+      }
+    }
++ }
+```
+
+The exact module specifier depends on the JSX runtime you specified in the `compilerOptions` of your `tsconfig.json`.
+For `"jsx": "react-jsx"` it would be `react/jsx-runtime`.
+For `"jsx": "react-jsxdev"` it would be `react/jsx-dev-runtime`.
+For `"jsx": "react"` and `"jsx": "preserve"` it would be `react`.
+
+### Changes to Type Parameters
+
+#### `useReducer`
+
+`useReducer` now has improved type inference thanks to [@mfp22](https://github.com/mfp22).
+
+However, this required a breaking change where `useReducer` doesn't accept the full reducer type as a type parameter but instead either needs none (and rely on contextual typing) or needs both the state and action type.
+
+The new best practice is _not_ to pass type arguments to `useReducer`.
+
+```diff
+-useReducer<React.Reducer<State, Action>>(reducer)
++useReducer(reducer)
+```
+
+However, this may not work in edge cases where you can explicitly type the state and action, by passing in the `Action` in a tuple:
+
+```diff
+-useReducer<React.Reducer<State, Action>>(reducer)
++useReducer<State, [Action]>(reducer)
+```
+
+If you define the reducer inline, we encourage to annotate the function parameters instead:
+
+```diff
+-useReducer<React.Reducer<State, Action>>((state, action) => state)
++useReducer((state: State, action: Action) => state)
+```
+
+This, of course, is also what you'd also have to do if you move the reducer outside of the `useReducer` call:
+
+```ts
+const reducer = (state: State, action: Action) => state;
+```
+
+
+#### `ReactElement`
+
+The `props` of React elements now default to `unknown` instead of `any` if the element is typed as `ReactElement`. This does not affect you if you pass a type argument to `ReactElement`:
+
+```ts
+type Example2 = ReactElement<{ id: string }>["props"];
+//   ^? { id: string }
+```
+
+But if you relied on the default, you now have to handle `unknown`:
+
+```ts
+type Example = ReactElement["props"];
+//   ^? Before, was 'any', now 'unknown'
+```
+
+If you rely on this behavior, use the [`react-element-default-any-props` codemod](https://github.com/eps1lon/types-react-codemod#react-element-default-any-props).
+You should only need it if you have a lot of legacy code relying on unsound access of element props.
+Element introspection only exists as an escape hatch and you should make it explicit that your props access is unsound via an explicit `any`.
+
+### Ref cleanup
+
+Due to the introduction of ref cleanup functions, returning anything else from a ref callback will now be rejected by TypeScript.
+
+The fix is usually to stop using implicit returns e.g.
+
+```diff
+-<div ref={current => (instance = current)} />
++<div ref={current => {instance = current}} />
+```
+
+The original code returned the instance of the `HTMLDivElement` and TypeScript wouldn't know if this was _supposed_ to be a cleanup function or if you didn't want to return a cleanup function.
+
+You can codemod this pattern with [`no-implicit-ref-callback-return
+`](https://github.com/eps1lon/types-react-codemod/#no-implicit-ref-callback-return)
+
+#### Ref changes
+
+All the of the changes in this section are codemoddable with [`preset-19` from `types-react-codemod`](https://github.com/eps1lon/types-react-codemod/#preset-19)
+
+A long-time complaint of how TypeScript and React work has been `useRef`.
+We've changed the types so that `useRef` now requires an argument.
+This significantly simplifies its type signature. It'll now behave more like `createContext`.
+
+```ts
+// @ts-expect-error: Expected 1 argument but saw none
+useRef();
+// Passes
+useRef(undefined);
+// @ts-expect-error: Expected 1 argument but saw none
+createContext();
+// Passes
+createContext(undefined);
+```
+
+This now also means that all refs are mutable.
+You'll no longer hit the issue where you can't mutate a ref because you initialised it with `null`:
+
+```ts
+const ref = useRef<number>(null);
+
+// Cannot assign to 'current' because it is a read-only property
+ref.current = 1;
+```
+
+`MutableRef` is now deprecated in favor of a single `RefObject` type which `useRef` will always return:
+
+```ts
+interface RefObject<T> {
+  current: T
+}
+
+declare function useRef<T>: RefObject<T>
+```
+
+`useRef` still has a convenience overload for `useRef<T>(null)` that automatically returns `RefObject<T | null>`.
+To ease migration due to the required argument for `useRef`, a convenience overload for `useRef(undefined)` was added that automatically returns `RefObject<T | undefined>`.
+
+Check out [[RFC] Make all refs mutable](https://github.com/DefinitelyTyped/DefinitelyTyped/pull/64772) for prior discussions about this change.
 
 ## Other Breaking Changes {/*other-breaking-changes*/}
 

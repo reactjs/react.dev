@@ -4,46 +4,23 @@ title: "React 19 Beta"
 
 April 1, 2024, by [The React Team](/community/team)
 
+_Note: This beta release is for libraries to prepare for React 19. App developers should upgrade to 18.3.0 and wait for React 19 stable as we work with libraries and make changes based on feedback._
+
 ---
-
-**TODO**
-- Content
-  - [ ] Finish RSC and RSA sections and examples
-  - [ ] Finish other incomplete sections 
-  - [ ] Write Deep Dives
-  - [ ] Review changelog and add any missing sections
-  - [ ] Finish inline todos
-- Polish
-  - [ ] Header capitalization consistency
-  - [ ] React concept capitalization
-  - [ ] Package name capitalization (react-dom vs React DOM)
-  - [ ] Format code with prettier
-
---- 
 
 <Intro>
 
-<Note>
+React 19 Beta is now available on npm!
 
-Stream [React Conf 2024]((https://conf.react.dev)) live May 15–16!
+</Intro>
 
-</Note>
-
-React 19 Beta is now available on npm! 
-
-In our [React 19 Upgrade Guide](/blog/2024/04/01/react-19-upgrade-guide), we shared step-by-step instructions for upgrading your app to the React 19 Beta. In this post, we'll give an overview of the new features in React 19 Beta, and how you can adopt them.
+In our [React 19 Beta Upgrade Guide](/blog/2024/04/01/react-19-upgrade-guide), we shared step-by-step instructions for upgrading your app to React 19 Beta. In this post, we'll give an overview of the new features in React 19, and how you can adopt them.
 
 - [What's new in React 19](#whats-new-in-react-19)
 - [Improvements in React 19](#improvements-in-react-19)
 - [How to Upgrade](#how-to-upgrade)
 
 For a list of breaking changes, see the [Upgrade Guide](/blog/2024/04/01/react-19-upgrade-guide).
-
-_Note for React Native users: React 19 will ship a future version of React Native with the New React Native Architecture._
-
-</Intro>
-
-
 
 ---
 

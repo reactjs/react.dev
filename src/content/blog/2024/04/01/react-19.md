@@ -450,7 +450,66 @@ In future versions, we will deprecate calling the ref with `null` when unmountin
 
 </Note>
 
+Due to the introduction of ref cleanup functions, returning anything else from a ref callback will now be rejected by TypeScript.
+
+The fix is usually to stop using implicit returns e.g.
+
+```diff
+-<div ref={current => (instance = current)} />
++<div ref={current => {instance = current}} />
+```
+
+The original code returned the instance of the `HTMLDivElement` and TypeScript wouldn't know if this was _supposed_ to be a cleanup function or if you didn't want to return a cleanup function.
+
+You can codemod this pattern with [`no-implicit-ref-callback-return
+`](https://github.com/eps1lon/types-react-codemod/#no-implicit-ref-callback-return)
+
 For more, see [Manipulating the DOM with refs](/learn/manipulating-the-dom-with-refs).
+
+### `useRef` changes in TypeScript
+
+
+All the of the changes in this section are codemoddable with [`preset-19` from `types-react-codemod`](https://github.com/eps1lon/types-react-codemod/#preset-19)
+
+A long-time complaint of how TypeScript and React work has been `useRef`.
+We've changed the types so that `useRef` now requires an argument.
+This significantly simplifies its type signature. It'll now behave more like `createContext`.
+
+```ts
+// @ts-expect-error: Expected 1 argument but saw none
+useRef();
+// Passes
+useRef(undefined);
+// @ts-expect-error: Expected 1 argument but saw none
+createContext();
+// Passes
+createContext(undefined);
+```
+
+This now also means that all refs are mutable.
+You'll no longer hit the issue where you can't mutate a ref because you initialised it with `null`:
+
+```ts
+const ref = useRef<number>(null);
+
+// Cannot assign to 'current' because it is a read-only property
+ref.current = 1;
+```
+
+`MutableRef` is now deprecated in favor of a single `RefObject` type which `useRef` will always return:
+
+```ts
+interface RefObject<T> {
+  current: T
+}
+
+declare function useRef<T>: RefObject<T>
+```
+
+`useRef` still has a convenience overload for `useRef<T>(null)` that automatically returns `RefObject<T | null>`.
+To ease migration due to the required argument for `useRef`, a convenience overload for `useRef(undefined)` was added that automatically returns `RefObject<T | undefined>`.
+
+Check out [[RFC] Make all refs mutable](https://github.com/DefinitelyTyped/DefinitelyTyped/pull/64772) for prior discussions about this change.
 
 ### `useDeferredValue` inital value {/*use-deferred-value-initial-value*/}
 
@@ -471,6 +530,39 @@ function Search({deferredValue}) {
 When <CodeStep step={2}>initialValue</CodeStep> is provided, `useDeferredValue` will return it as `value` for the initial render of the component, and scheduled a re-render in the background with the <CodeStep step={1}>deferredValue</CodeStep> returned.
 
 For more, see [`useDeferredValue`](/reference/react/useDeferredValue).
+
+### Better `useReducer` typings
+
+`useReducer` now has improved type inference thanks to [@mfp22](https://github.com/mfp22).
+
+However, this required a breaking change where `useReducer` doesn't accept the full reducer type as a type parameter but instead either needs none (and rely on contextual typing) or needs both the state and action type.
+
+The new best practice is _not_ to pass type arguments to `useReducer`.
+
+```diff
+-useReducer<React.Reducer<State, Action>>(reducer)
++useReducer(reducer)
+```
+
+However, this may not work in edge cases where you can explicitly type the state and action, by passing in the `Action` in a tuple:
+
+```diff
+-useReducer<React.Reducer<State, Action>>(reducer)
++useReducer<State, [Action]>(reducer)
+```
+
+If you define the reducer inline, we encourage to annotate the function parameters instead:
+
+```diff
+-useReducer<React.Reducer<State, Action>>((state, action) => state)
++useReducer((state: State, action: Action) => state)
+```
+
+This, of course, is also what you'd also have to do if you move the reducer outside of the `useReducer` call:
+
+```ts
+const reducer = (state: State, action: Action) => state;
+```
 
 ### Support for Document Metadata {/*support-for-metadata-tags*/}
 
@@ -601,5 +693,49 @@ TODO
 #### How to Upgrade {/*how-to-upgrade*/}
 See the [React 19 Upgrade Guide](/blog/2024/04/01/react-19-upgrade-guide) for step-by-step instructions and a full list of breaking and notable changes.
 
+### Changes to the `ReactElement` TypeScript type
 
+The `props` of React elements now default to `unknown` instead of `any` if the element is typed as `ReactElement`. This does not affect you if you pass a type argument to `ReactElement`:
 
+```ts
+type Example2 = ReactElement<{ id: string }>["props"];
+//   ^? { id: string }
+```
+
+But if you relied on the default, you now have to handle `unknown`:
+
+```ts
+type Example = ReactElement["props"];
+//   ^? Before, was 'any', now 'unknown'
+```
+
+If you rely on this behavior, use the [`react-element-default-any-props` codemod](https://github.com/eps1lon/types-react-codemod#react-element-default-any-props).
+You should only need it if you have a lot of legacy code relying on unsound access of element props.
+Element introspection only exists as an escape hatch and you should make it explicit that your props access is unsound via an explicit `any`.
+
+### The JSX Namespace in TypeScript
+
+A long-time request is to remove the global `JSX` namespace from our types in favor of `React.JSX`.
+This helps prevent pollution of global types which prevents conflicts between different UI libraries that leverage JSX.
+This change is [codemoddable with `scoped-jsx`](https://github.com/eps1lon/types-react-codemod#scoped-jsx).
+
+You'll now need to wrap module augmentation of the JSX namespace in `declare module "....":
+
+```diff
+// global.d.ts
+
++ declare module "react" {
+    namespace JSX {
+      interface IntrinsicElements {
+        "my-element": {
+          myElementProps: string;
+        };
+      }
+    }
++ }
+```
+
+The exact module specifier depends on the JSX runtime you specified in the `compilerOptions` of your `tsconfig.json`.
+For `"jsx": "react-jsx"` it would be `react/jsx-runtime`.
+For `"jsx": "react-jsxdev"` it would be `react/jsx-dev-runtime`.
+For `"jsx": "react"` and `"jsx": "preserve"` it would be `react`.

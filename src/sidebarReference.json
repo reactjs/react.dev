@@ -15,6 +15,11 @@
       "path": "/reference/react/hooks",
       "routes": [
         {
+          "title": "useActionState",
+          "path": "/reference/react/useActionState",
+          "canary": true
+        },
+        {
           "title": "useCallback",
           "path": "/reference/react/useCallback"
         },
@@ -174,11 +179,6 @@
       "title": "Hooks",
       "path": "/reference/react-dom/hooks",
       "routes": [
-        {
-          "title": "useFormState",
-          "path": "/reference/react-dom/hooks/useFormState",
-          "canary": true
-        },
         {
           "title": "useFormStatus",
           "path": "/reference/react-dom/hooks/useFormStatus",

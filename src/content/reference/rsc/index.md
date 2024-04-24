@@ -1,5 +1,5 @@
 ---
-title: React Full-stack Architecture
+title: React Server Components (RSC)
 ---
 
 <Intro>
@@ -10,11 +10,11 @@ This section provides detailed documentation for the Full-stack React Architectu
 
 ---
 
-## React Server Components {/*react-server-components*/}
+## Server Components {/*server-components*/}
 
 TODO
 
-## React Server Actions {/*react-server-actions*/}
+## Server Actions {/*server-actions*/}
 
 TODO
 

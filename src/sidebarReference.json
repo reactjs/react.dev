@@ -357,36 +357,36 @@
     },
     {
       "hasSectionHeader": true,
-      "sectionHeader": "React Full-stack Architecture"
+      "sectionHeader": "React Server Components"
     },
     {
       "title": "Overview",
       "canary": true,
-      "path": "/reference/full-stack",
+      "path": "/reference/rsc",
       "routes": [
         {
-          "title": "React Server Components",
-          "path": "/reference/full-stack/server-components"
+          "title": "Server Components",
+          "path": "/reference/rsc/server-components"
         },
         {
-          "title": "React Server Actions",
-          "path": "/reference/full-stack/server-actions"
+          "title": "Server Actions",
+          "path": "/reference/rsc/server-actions"
         }
       ]
     },
     {
       "title": "Directives",
-      "path": "/reference/full-stack/directives",
+      "path": "/reference/rsc/directives",
       "canary": true,
       "routes": [
         {
           "title": "'use client'",
-          "path": "/reference/full-stack/use-client",
+          "path": "/reference/rsc/use-client",
           "canary": true
         },
         {
           "title": "'use server'",
-          "path": "/reference/full-stack/use-server",
+          "path": "/reference/rsc/use-server",
           "canary": true
         }
       ]

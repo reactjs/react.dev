@@ -50,16 +50,18 @@ yarn add react react-dom
 We introduced a [new JSX transform](https://legacy.reactjs.org/blog/2020/09/22/introducing-the-new-jsx-transform.html) in 2020 to improve bundle size and use JSX without importing React. In React 19, we're adding additional improvements like using ref as a prop and JSX speed improvements that require the new transform.
 
 
-If you haven't already, you will need to enable the new transform in your project. We expect most apps will not be effected since the transform is enabled in most environments already. For manual instructions on how to upgrade, please see the [announcement post](https://legacy.reactjs.org/blog/2020/09/22/introducing-the-new-jsx-transform.html).
+If you haven't already, you will need to enable the new transform in your project. We expect most apps will not be affected since the transform is enabled in most environments already. For manual instructions on how to upgrade, please see the [announcement post](https://legacy.reactjs.org/blog/2020/09/22/introducing-the-new-jsx-transform.html).
 
 </Note>
 
 ## Removing deprecated React APIs {/*removing-deprecated-react-apis*/}
 
-### Removing PropTypes and DefaultProps {/*removing-proptypes-and-defaultprops*/}
-`PropTypes` were been [deprecated in v15.5.0](https://legacy.reactjs.org/blog/2017/04/07/react-v15.5.0.html#new-deprecation-warnings). 
+### Removing `propTypes` and `defaultProps` {/*removing-proptypes-and-defaultprops*/}
+`PropTypes` were deprecated in [April 2017 (v15.5.0)](https://legacy.reactjs.org/blog/2017/04/07/react-v15.5.0.html#new-deprecation-warnings). 
 
-In React 19, we're removing the PropType checks from the React package, and using them will be silently ignored. If you're using PropTypes, we recommend migrating to TypeScript or another type-checking solution. We're also removing `defaultProps` in place of ES6 default parameters.
+In React 19, we're removing the `propType` checks from the React package, and using them will be silently ignored. If you're using `propTypes`, we recommend migrating to TypeScript or another type-checking solution.
+
+We're also removing `defaultProps` from function components in place of ES6 default parameters. Class components will continue to support `defaultProps` since there is no ES6 alternative.
 
 ```js
 // Before
@@ -87,7 +89,9 @@ function Heading({text = 'Hello, world!'}: Props) {
 
 ### Removing Legacy Context {/*removing-legacy-context*/}
 
-Legacy Context using `contextTypes` and `getChildContext` was [deprecated in v16.6.0](https://legacy.reactjs.org/blog/2018/10/23/react-v-16-6.html) due to subtle bugs that were easy to miss. In React 19, we're removing Legacy Context to make React slightly smaller and faster.
+Legacy Context was deprecated in [October 2018 (v16.6.0)](https://legacy.reactjs.org/blog/2018/10/23/react-v-16-6.html).
+
+Legacy Context was only available in class components using the APIs `contextTypes` and `getChildContext`, and was replaced with `contextType` due to subtle bugs that were easy to miss. In React 19, we're removing Legacy Context to make React slightly smaller and faster.
 
 If you're still using Legacy Context in class components, you'll need to migrate to the new `contextType` API:
 
@@ -144,7 +148,9 @@ class Child extends React.Component {
 ```
 
 ### Removing string refs {/*removing-string-refs*/}
-String refs were [deprecated in v16.3.0](https://legacy.reactjs.org/blog/2018/03/27/update-on-async-rendering.html) because they had [multiple downsides](https://github.com/facebook/react/issues/1373). In React 19, we're removing string refs to make React simpler and easier to understand.
+String refs were deprecated in [March, 2018 (v16.3.0)](https://legacy.reactjs.org/blog/2018/03/27/update-on-async-rendering.html).
+
+Class components supported string refs before being replaced by ref callbacks due to [multiple downsides](https://github.com/facebook/react/issues/1373). In React 19, we're removing string refs to make React simpler and easier to understand.
 
 If you're still using string refs in class components, you'll need to migrate to ref callbacks:
 
@@ -152,7 +158,7 @@ If you're still using string refs in class components, you'll need to migrate to
 // Before
 class MyComponent extends React.Component {
   componentDidMount() {
-    this.refs['input'].focus();
+    this.refs.input.focus();
   }
 
   render() {
@@ -163,7 +169,6 @@ class MyComponent extends React.Component {
 
 ```js
 // After
-// Before
 class MyComponent extends React.Component {
   componentDidMount() {
     this.input.focus();
@@ -184,7 +189,9 @@ TODO: instructions.
 </Note>
 
 ### Removing module pattern factories {/*removing-module-pattern-factories*/}
-Module pattern factories were [deprecated in v16.9.0](https://legacy.reactjs.org/blog/2019/08/08/react-v16.9.0.html#deprecating-module-pattern-factories) because they were rarely used and supporting it causes React to be slightly larger and slower than necessary. In React 19, we're removing support for module pattern factories, and you'll need to migrate to regular functions:
+Module pattern factories were deprecated in [August 2019 (v16.9.0)](https://legacy.reactjs.org/blog/2019/08/08/react-v16.9.0.html#deprecating-module-pattern-factories).
+
+This pattern was rarely used and supporting it causes React to be slightly larger and slower than necessary. In React 19, we're removing support for module pattern factories, and you'll need to migrate to regular functions:
 
 ```js
 // Before
@@ -201,7 +208,9 @@ function FactoryComponent() {
 ```
 
 ### Removing `createFactory` {/*removing-createfactory*/}
-`createFactory` was [deprecated in v16.13.0](https://legacy.reactjs.org/blog/2020/02/26/react-v16.13.0.html#deprecating-createfactory) because it was rarely used and is replaced by JSX. In React 19, we're removing `createFactory` and you'll need to migrate to JSX:
+`createFactory` was deprecated in [February 202 (v16.13.0)](https://legacy.reactjs.org/blog/2020/02/26/react-v16.13.0.html#deprecating-createfactory).
+
+Using `createFactory` was common before broad support for JSX, but it's rarely used today and can be replaced with JSX. In React 19, we're removing `createFactory` and you'll need to migrate to JSX:
 
 ```js
 // Before
@@ -242,7 +251,7 @@ TODO
 TODO
 
 ### Removing `ReactDOM.findDOMNode` {/*removing-reactdom-finddomnode*/}
-`ReactDOM.findDOMNode` was [deprecated in v16.3.0](https://legacy.reactjs.org/blog/2018/03/27/update-on-async-rendering.html) because it was a legacy escape hatch that was slow to execute, fragile to refactoring, only returned the first child, and broke abstraction levels (see more [here](https://legacy.reactjs.org/docs/strict-mode.html#warning-about-deprecated-finddomnode-usage)). In React 19, we're removing `ReactDOM.findDOMNode` and you'll need to migrate to using refs:
+`ReactDOM.findDOMNode` was [deprecated in October 2018 (v16.6.0)](https://legacy.reactjs.org/blog/2018/10/23/react-v-16-6.html#deprecations-in-strictmode) because it was a legacy escape hatch that was slow to execute, fragile to refactoring, only returned the first child, and broke abstraction levels (see more [here](https://legacy.reactjs.org/docs/strict-mode.html#warning-about-deprecated-finddomnode-usage)). In React 19, we're removing `ReactDOM.findDOMNode` and you'll need to migrate to using refs:
 
 ```js
 // Before

@@ -36,7 +36,7 @@ For a list of new features added to React 19 beta, see the [React 19 release pos
 ---
 ## Installing {/*installing*/}
 
-To install the latest version of React:
+To install the latest version of React and React DOM:
 
 ```bash
 npm install react@beta react-dom@beta
@@ -77,8 +77,28 @@ We expect most apps will not be affected since the transform is enabled in most 
 
 ### Errors in render are not re-thrown {/*errors-in-render-are-not-re-thrown*/}
 
-TODO
-TODO: need expect(act()).toThrow();
+In previous versions of React, errors thrown during render were caught in rethrown. In DEV, we would also log to `console.error`, resulting in duplicate error logs. 
+
+In React 19, we've [improved how errors are handled](/blog/2024/04/01/react-19#error-handling) to reduce duplication by not re-throwing:
+
+- **Uncaught Errors**: Errors that are not caught by an Error Boundary are reported to `window.reportError`.
+- **Caught Errors**: Errors that are caught by an Error Boundary are reported to `console.error`.
+
+This change should not impact most apps, but if your production error reporting relies on errors being re-thrown, you may need to update your error handling. To support this, we've added new methods to `createRoot` and `hydrateRoot` for custom error handling:
+
+```js [[1, 2, "onUncaughtError"], [2, 5, "onCaughtError"]]
+const root = createRoot(container, {
+  onUncaughtError: (error, errorInfo) => {
+    // ... log error report
+  },
+  onCaughtError: (error, errorInfo) => {
+    // ... log error report
+  }
+});
+```
+
+For more info, see the docs for [`createRoot`](https://react.dev/reference/react-dom/client/createRoot) and [`hydrateRoot`](https://react.dev/reference/react-dom/client/hydrateRoot).
+
 
 ### Removed deprecated React APIs {/*removed-deprecated-react-apis*/}
 
@@ -378,7 +398,19 @@ function AutoselectingInput() {
 
 ### Deprecated: `element.ref` {/*deprecated-element-ref*/}
 
-TODO
+React 19 supports [`ref` as a prop](/blog/2024/04/01/react-19#ref-as-a-prop), so we're deprecating the `element.ref` in place of `element.props.ref`.
+
+Accessing `element.ref` will warn:
+
+<ConsoleBlockMulti>
+
+<ConsoleLogLine level="error">
+
+Accessing element.ref is no longer supported. ref is now a regular prop. It will be removed from the JSX Element type in a future release.
+
+</ConsoleLogLine>
+
+</ConsoleBlockMulti>
 
 ### Deprecated: `react-test-renderer` {/*deprecated-react-test-renderer*/}
 

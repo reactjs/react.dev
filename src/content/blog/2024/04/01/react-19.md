@@ -450,7 +450,7 @@ For some resource elements, React will suspend while waiting for the resource to
 
 To maintain compatibility with HTML and optimize performance, React will dedupe and hoist some but not all elements for all props. For the specific constraints, read the docs for [Resource and Metadata Components](/reference/react-dom/components#resource-and-metadata-components).
 
-### Improved hydration for third-party scripts {/*improved-hydration-for-third-party-scripts*/}
+### Compatability with third-party scripts and extensions {/*compatability-with-third-party-scripts-and-extensions*/}
 
 We've improved hydration to account for third-party scripts and browser extensions.
 

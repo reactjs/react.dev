@@ -11,7 +11,7 @@ The `useActionState` Hook is currently only available in React's Canary and expe
 
 <Note>
 
-In earlier React Canary versions, this API was part of `react-dom` and called `useFormState`.
+In earlier React Canary versions, this API was part of React DOM and called `useFormState`.
 
 </Note>
 

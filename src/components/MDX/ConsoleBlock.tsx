@@ -42,7 +42,10 @@ export function ConsoleBlock({level = 'error', children}: ConsoleBlockProps) {
   }
 
   return (
-    <div className="console-block mb-4 text-secondary" translate="no" dir="ltr">
+    <div
+      className="console-block mb-4 text-secondary bg-wash dark:bg-wash-dark rounded-lg"
+      translate="no"
+      dir="ltr">
       <div className="flex w-full rounded-t-lg bg-gray-200 dark:bg-gray-80">
         <div className="px-4 py-2 border-gray-300 dark:border-gray-90 border-r">
           <Box className="bg-gray-300 dark:bg-gray-70" width="15px" />
@@ -79,7 +82,10 @@ export function ConsoleBlock({level = 'error', children}: ConsoleBlockProps) {
 
 export function ConsoleBlockMulti({children}: ConsoleBlockMultiProps) {
   return (
-    <div className="console-block mb-4 text-secondary" translate="no" dir="ltr">
+    <div
+      className="console-block mb-4 text-secondary bg-wash dark:bg-wash-dark rounded-lg"
+      translate="no"
+      dir="ltr">
       <div className="flex w-full rounded-t-lg bg-gray-200 dark:bg-gray-80">
         <div className="px-4 py-2 border-gray-300 dark:border-gray-90 border-r">
           <Box className="bg-gray-300 dark:bg-gray-70" width="15px" />

@@ -211,7 +211,7 @@ This is because **Hooks must only be called at the top-level of your component.*
 
 One possible way around this is to get a single ref to their parent element, and then use DOM manipulation methods like [`querySelectorAll`](https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelectorAll) to "find" the individual child nodes from it. However, this is brittle and can break if your DOM structure changes.
 
-Another solution is to **pass a function to the `ref` attribute.** This is called a [`ref` callback.](/reference/react-dom/components/common#ref-callback) React will call your ref callback with the DOM node when it's time to set the ref, and call your cleanup function when it's time to clear it. This lets you maintain your own array or a [Map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map), and access any ref by its index or some kind of ID.
+Another solution is to **pass a function to the `ref` attribute.** This is called a [`ref` callback.](/reference/react-dom/components/common#ref-callback) React will call your ref callback with the DOM node when it's time to set the ref, and with `null` when it's time to clear it. This lets you maintain your own array or a [Map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map), and access any ref by its index or some kind of ID.
 
 This example shows how you can use this approach to scroll to an arbitrary node in a long list:
 
@@ -242,19 +242,9 @@ export default function CatFriends() {
     return itemsRef.current;
   }
 
-  async function addCat() {
-    setCatList((prev) => [createCatImg(prev.length + 100), ...prev]);
-  }
-
-  async function removeCat() {
-    setCatList((prev) => prev.slice(1));
-  }
-
   return (
     <>
       <nav>
-        <button onClick={addCat}>Add Cat</button>
-        <button onClick={removeCat}>Remove Cat</button>
         <button onClick={() => scrollToCat(catList[0])}>Tom</button>
         <button onClick={() => scrollToCat(catList[5])}>Maru</button>
         <button onClick={() => scrollToCat(catList[9])}>Jellylorum</button>
@@ -266,11 +256,11 @@ export default function CatFriends() {
               key={cat}
               ref={(node) => {
                 const map = getMap();
+                if (node) {
                   map.set(cat, node);
-
-                return () => {
+                } else {
                   map.delete(cat);
-                };
+                }
               }}
             >
               <img src={cat} />
@@ -285,14 +275,10 @@ export default function CatFriends() {
 function setupCatList() {
   const catList = [];
   for (let i = 0; i < 10; i++) {
-    catList.push(createCatImg(i));
+    catList.push("https://loremflickr.com/320/240/cat?lock=" + i);
   }
 
   return catList;
-}
-
-function createCatImg(i) {
-  return "https://loremflickr.com/320/240/cat?lock=" + i;
 }
 
 ```
@@ -342,18 +328,40 @@ In this example, `itemsRef` doesn't hold a single DOM node. Instead, it holds a 
   key={cat.id}
   ref={node => {
     const map = getMap();
-    // Add to the map
+    if (node) {
+      // Add to the Map
+      map.set(cat, node);
+    } else {
+      // Remove from the Map
+      map.delete(cat);
+    }
+  }}
+>
+```
+
+This lets you read individual DOM nodes from the Map later.
+
+<Canary>
+
+This example shows another approach for managing the Map with a `ref` callback cleanup function.
+
+```js
+<li
+  key={cat.id}
+  ref={node => {
+    const map = getMap();
+    // Add to the Map
     map.set(cat, node);
 
     return () => {
-      // Remove from the map
+      // Remove from the Map
       map.delete(cat);
     };
   }}
 >
 ```
 
-This lets you read individual DOM nodes from the Map later.
+</Canary>
 
 </DeepDive>
 

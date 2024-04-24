@@ -50,7 +50,20 @@ yarn add react react-dom
 We introduced a [new JSX transform](https://legacy.reactjs.org/blog/2020/09/22/introducing-the-new-jsx-transform.html) in 2020 to improve bundle size and use JSX without importing React. In React 19, we're adding additional improvements like using ref as a prop and JSX speed improvements that require the new transform.
 
 
-If you haven't already, you will need to enable the new transform in your project. We expect most apps will not be affected since the transform is enabled in most environments already. For manual instructions on how to upgrade, please see the [announcement post](https://legacy.reactjs.org/blog/2020/09/22/introducing-the-new-jsx-transform.html).
+If you the new transform is not enabled, you will see this warning:
+
+<ConsoleBlockMulti>
+
+<ConsoleLogLine level="warning">
+
+Your app (or one of its dependencies) is using an outdated JSX transform. Update to the modern JSX transform for faster performance: https://react.dev/link/new-jsx-transform
+
+</ConsoleLogLine>
+
+</ConsoleBlockMulti>
+
+
+We expect most apps will not be affected since the transform is enabled in most environments already. For manual instructions on how to upgrade, please see the [announcement post](https://legacy.reactjs.org/blog/2020/09/22/introducing-the-new-jsx-transform.html).
 
 </Note>
 
@@ -238,7 +251,7 @@ npm install react-shallow-renderer --save-dev
 
 <Note>
 
-#### Please reconsider shallow rendering  {/*please-reconsider-shallow-rendering*/}
+#### Please reconsider shallow rendering {/*please-reconsider-shallow-rendering*/}
 
 Shallow rendering depends on React internals and can block you from future upgrades. We recommend migrating your tests to [@testing-library/react](https://testing-library.com/docs/react-testing-library/intro/) or [@testing-library/react-native](https://callstack.github.io/react-native-testing-library/docs/getting-started). 
 

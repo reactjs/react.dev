@@ -109,14 +109,10 @@ export function ConsoleLogLine({children, level}: ConsoleBlockProps) {
   } else if (isValidElement(children)) {
     message = children.props.children;
   } else if (Array.isArray(children)) {
-    console.log('array', children);
     message = children.reduce((result, child) => {
       if (typeof child === 'string') {
-        console.log('adding', child);
         result += child;
       } else if (isValidElement(child)) {
-        // @ts-ignore
-        console.log('adding', child.props.children);
         // @ts-ignore
         result += child.props.children;
       }

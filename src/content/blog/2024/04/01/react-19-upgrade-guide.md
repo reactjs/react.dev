@@ -208,7 +208,7 @@ function FactoryComponent() {
 ```
 
 ### Removing `createFactory` {/*removing-createfactory*/}
-`createFactory` was deprecated in [February 202 (v16.13.0)](https://legacy.reactjs.org/blog/2020/02/26/react-v16.13.0.html#deprecating-createfactory).
+`createFactory` was deprecated in [February 2020 (v16.13.0)](https://legacy.reactjs.org/blog/2020/02/26/react-v16.13.0.html#deprecating-createfactory).
 
 Using `createFactory` was common before broad support for JSX, but it's rarely used today and can be replaced with JSX. In React 19, we're removing `createFactory` and you'll need to migrate to JSX:
 
@@ -224,19 +224,52 @@ const button = createFactory('button');
 const button = <button />;
 ```
 
-### Removing react/test-utils {/*removing-react-test-utils*/}
+### Removing `react-test-renderer/shallow` {/*removing-react-test-renderer-shallow*/}
 
-TODO (mention React.act)
+In React 18, we updated `react-test-renderer/shallow` to reexport [react-shallow-renderer](https://github.com/enzymejs/react-shallow-renderer). In React 19, we're removing `react-test-render/shallow` to prefer installing the package directly:
 
+```bash
+npm install react-shallow-renderer --save-dev
+```
+```diff
+- import ShallowRenderer from 'react-test-renderer/shallow';
++ import ShallowRenderer from 'react-shallow-renderer';
+```
 
-### Removing react-test-renderer {/*removing-react-test-renderer*/}
+<Note>
 
-TODO
+#### Please reconsider shallow rendering  {/*please-reconsider-shallow-rendering*/}
 
+Shallow rendering depends on React internals and can block you from future upgrades. We recommend migrating your tests to [@testing-library/react](https://testing-library.com/docs/react-testing-library/intro/) or [@testing-library/react-native](https://callstack.github.io/react-native-testing-library/docs/getting-started). 
 
+</Note>
 
 ## Removing deprecated React DOM APIs {/*removing-deprecated-react-dom-apis*/}
 
+### Removing `react-dom/test-utils` {/*removing-react-dom-test-utils*/}
+
+We've moved `act` from `react-dom/test-utils` to the `react` package:
+
+<ConsoleBlockMulti>
+
+<ConsoleLogLine level="error">
+
+`ReactDOMTestUtils.act` is deprecated in favor of `React.act`. Import `act` from `react` instead of `react-dom/test-utils`. See https://react.dev/warnings/react-dom-test-utils for more info.
+
+</ConsoleLogLine>
+
+</ConsoleBlockMulti>
+
+To fix this warning, you can import `act` from `react`:
+
+```diff
+- import {act} from 'react-dom/test-utils'
++ import {act} from 'react';
+```
+
+All other `test-utils` functions have been removed. These utilities were uncommon, and made it too easy to depend on low level implementation details of your components and React. In React 19, these functions will error when called and their exports will be removed in a future version.
+
+See the [warning page](https://react.dev/warnings/react-dom-test-utils) to for alternatives.
 
 ### Removing `ReactDOM.render` {/*removing-reactdom-render*/}
 
@@ -279,12 +312,6 @@ function AutoselectingInput() {
 }
 ```
 
-<Note>
-
-TODO: note about React Native.
-
-</Note>
-
 ## Breaking Changes {/*breaking-changes*/}
 
 ### SECRET_INTERNALS have been renamed {/*secret-internals-have-been-renamed*/}
@@ -306,12 +333,21 @@ TODO
 
 ## New Deprecations {/*new-deprecations*/}
 
-- react: Warn when using defaultProps in functions, memo, lazy, and forwardRef (TODO)
-- react: Warn when spreading “key” as part of props in DEV  (TODO)
+### Deprecating `react-test-renderer` {/*deprecating-react-test-renderer*/}
+
+We are deprecating `react-test-renderer` because it implements its own renderer environment that doesn't match the environment users use, promotes testing implementation details, and relies on introspection of React's internals.
+
+The test renderer was created before there were more viable testing strategies available like [React Testing Library](https://testing-library.com), and we now recommend using a modern testing library instead.
+
+In React 19, `react-test-renderer` log a deprecation warning, and has switched to concurrent rendering by default. We recommend migrating your tests to [@testing-library/react](https://testing-library.com/docs/react-testing-library/intro/) or [@testing-library/react-native](https://callstack.github.io/react-native-testing-library/docs/getting-started) for a modern and well supported testing experience.
+
+
 
 ## Other Breaking Changes {/*other-breaking-changes*/}
 
 - UMD builds have been removed
+- react: Warn when using defaultProps in functions, memo, lazy, and forwardRef (TODO)
+- react: Warn when spreading “key” as part of props in DEV  (TODO)
 - react-dom: Remove `errorInfo.digest` with warning (TODO)
 - react-dom: Removed unstable_renderSubtreeIntoContainer (TODO)
 - react-dom: Warn and don’t set empty string attributes for src/href (TODO: land)

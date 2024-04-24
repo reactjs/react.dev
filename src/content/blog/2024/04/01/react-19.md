@@ -107,13 +107,13 @@ The async transition will immediately set the `isPending` state to true, make th
 Actions automatically manage submitting data for you:
 
 - **Pending state**: Actions provide a pending state that starts at the beginning of a request and automatically resets when the final state update is committed.
-- **Optimistic updates**: Actions support the new [`useOptimistic`](#new-feature-optimistic-updates) hook to handle optimistically showing the user the final state while requests are submitting.
-- **Error Handling**: Actions provide error handling so you can and display Error Boundaries when a request fails, and revert optimistic updates to their original value automatically.
-- **Forms**: Actions support new `action` prop for `<form>` elements called [Form Actions](#form-actions). This means form submissions use Actions by default, and reset automatically after submission.
+- **Optimistic updates**: Actions support the new [`useOptimistic`](#new-feature-optimistic-updates) hook so you can show users instant feedback while the requests are submitting.
+- **Error handling**: Actions provide error handling so you can and display Error Boundaries when a request fails, and revert optimistic updates to their original value automatically.
+- **Forms**: Actions integrate with new `action` and `formActions` props as [`<form>` Actions](#form-actions). This means form submissions use Actions by default and reset the form automatically after submission.
 
 </Note>
 
-Async transitions are the raw primitive that power Actions, and you can always drop down to `useTransition`, `useState`, and `useOptimisitc` to create your own custom behavior. We're also introducing the [`useActionState`](#new-hook-useactionstate) and [`useFormStatus`](#new-hook-useformstatus) hooks to support the common cases for Actions and Forms.
+Async transitions are the raw primitive that power Actions, and you can always drop down to `useTransition`, `useState`, and `useOptimistic` to create your own custom behavior. We're also introducing the [`useActionState`](#new-hook-useactionstate) and [`useFormStatus`](#new-hook-useformstatus) hooks to support the common cases for Actions and Forms.
 
 For more information, see the docs for [`useTransition`](/reference/react/useTransition) and the next sections.
 
@@ -123,7 +123,7 @@ To make the common cases easier for Actions, we've added a new hook called `useA
 
 ```js {2,9}
 const [name, setName] = useState('');
-const [submitAction, data, isPending] = useActionState(async () => {
+const [error, submitAction, isPending] = useActionState(async () => {
   const {error} = await updateName(name);
   setName('');
   
@@ -145,13 +145,13 @@ See [#28491](https://github.com/facebook/react/pull/28491) for more info.
 
 For more information, see the docs for [`useActionState`](/reference/react/useActionState).
 
-### Form Actions {/*form-actions*/}
+### `<form>` Actions {/*form-actions*/}
 
-Actions are also integrated with React 19's new Form features. We've added an `action` prop to React DOM `<form>` elements to automatically submit forms with Actions:
+Actions are also integrated with React 19's new `<form>` features. We've added `action` and `formAction` props to React DOM `<form>`, `<input>`, and `<button>` elements to automatically submit forms with Actions:
 
 ```js {1,3,7-8}
 const [submitAction, state, isPending] = useActionState(async (formData) => {
-  return updateName(formData.get('name'));
+  return await updateName(formData.get('name'));
 })
 
 return (
@@ -164,23 +164,20 @@ return (
 
 When a `<form>` Action succeeds, React will automatically reset the form for uncontrolled components. If you need to reset the `<form>` manually, you can call the new [`requestFormReset`](/todo) React DOM API.
 
+For more information, see the docs for [`<form>`](/reference/react-dom/components/form), [`<input>`](/reference/react-dom/components/input), and [`<button>`](/reference/react-dom/components/button).
+
 ### New Hook: `useFormStatus` {/*new-hook-useformstatus*/}
 
-In design systems, it's common to write design components that need access to the nearest Form status, without passing the status down to the component. This can be done via Context, but to make the common case easier, we've added a new hook `useFormStatus`:
+In design systems, it's common to write design components that need access to information about the `<form>` they're in, without drilling props down to the component. This can be done via Context, but to make the common case easier, we've added a new hook `useFormStatus`:
 
-```js {2,5-6}
-function NameInput() {
-  const {data, pending} = useFormStatus();
-  return (
-    <>
-      <input type="text" name="name" disabled={pending} />
-      {!data.sucess && <span>Failed: {data.error}</span>}
-    </>
-  )
+```js [[1, 2, "pending"], [1, 3, "pending"]]
+function DesignButton() {
+  const {pending} = useFormStatus();
+  return <button type="submit" disabled={pending} />
 }
 ```
 
-`useFormStatus` works like Context for the nearest `<form>` element, returning its `pending` state, the last submitted form `data`, and the `action`.
+`useFormStatus` reads the status of the parent `<form>` as if the form was a Context provider.
 
 For more information, see the docs for [`useFormStatus`](/reference/react-dom/hooks/useFormStatus).
 
@@ -332,6 +329,76 @@ Todo: This requires the new transform, correct?
 
 For more information, see [Manipulating the DOM with refs](/learn/manipulating-the-dom-with-refs)
 
+### Diffs for Hydration Errors {/*diffs-for-hydration-errors*/}
+
+We also improved error reporting for hydration errors. For example, instead of logging multiple errors in DEV without any information about the mismatch:
+
+<ConsoleBlockMulti>
+
+<ConsoleLogLine level="error">
+
+Warning: Text content did not match. Server: "Server" Client: "Client"
+{'  '}at span
+{'  '}at App
+
+</ConsoleLogLine>
+
+<ConsoleLogLine level="error">
+
+Warning: An error occurred during hydration. The server HTML was replaced with client content in \<div\>.
+
+</ConsoleLogLine>
+
+<ConsoleLogLine level="error">
+
+Warning: Text content did not match. Server: "Server" Client: "Client"
+{'  '}at span
+{'  '}at App
+
+</ConsoleLogLine>
+
+<ConsoleLogLine level="error">
+
+Warning: An error occurred during hydration. The server HTML was replaced with client content in \<div\>.
+
+</ConsoleLogLine>
+
+<ConsoleLogLine level="error">
+
+Uncaught Error: Text content does not match server-rendered HTML.
+{'  '}at checkForUnmatchedText
+{'  '}...
+
+</ConsoleLogLine>
+
+</ConsoleBlockMulti>
+
+We now log a single message with a diff of the mismatch:
+
+
+<ConsoleBlockMulti>
+
+<ConsoleLogLine level="error">
+
+Uncaught Error: Hydration failed because the server rendered HTML didn't match the client. As a result this tree will be regenerated on the client. This can happen if an SSR-ed Client Component used:{'\n'}
+\- A server/client branch `if (typeof window !== 'undefined')`.
+\- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+\- Date formatting in a user's locale which doesn't match the server.
+\- External changing data without sending a snapshot of it along with the HTML.
+\- Invalid HTML tag nesting.{'\n'}
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.{'\n'}
+https://react.dev/link/hydration-mismatch {'\n'}
+{'  '}\<App\>
+{'    '}\<span\>
+{'+    '}Client
+{'-    '}Server{'\n'}
+{'  '}at throwOnHydrationMismatch
+{'  '}...
+
+</ConsoleLogLine>
+
+</ConsoleBlockMulti>
+
 ### `<Context>` as a provider {/*context-as-a-provider*/}
 
 In React 19, you can render `<Context>` as a provider instead of `<Context.Provider>`:
@@ -377,7 +444,7 @@ When the component unmounts, React will call the cleanup function returned from 
 
 <Note>
 
-Previously, React would call ref functions with `null` when unmounting the component. If your ref returns a cleanup function, React will skip this step.
+Previously, React would call ref functions with `null` when unmounting the component. If your ref returns a cleanup function, React will now skip this step.
 
 In future versions, we will deprecate calling the ref with `null` when unmounting components.
 
@@ -414,11 +481,11 @@ In React 19, we're adding support for rendering document metadata tags in compon
 ```js {5,6}
 function BlogPost({post}) {
   return (
-    <div>
-      <p>{post.title}</p>
+    <article>
+      <h1>{post.title}</h1>
       <title>{post.title}</title>
       <meta name="keywords" content={post.keywords} />
-    </div>
+    </article>
   );
 }
 ```
@@ -446,9 +513,9 @@ return (
 ```
 When React renders this component, it will see the `<link>`, `<style>`, and `<script>` tags and hoist them to the `<head>` of the document.
 
-For some resource elements, React will suspend while waiting for the resource to load (such as a `<link>` to a css file). This ensures that styles are available before the components are displayed, preventing flashes of un-styled content. React may also dedupe some elements to ensure duplicate resources are not loaded.
+For some resource elements, React will suspend while waiting for the resource to load (such as a `<link>` to a CSS file). This ensures that styles are available before the components are displayed, preventing flashes of un-styled content. React may also dedupe some elements to ensure duplicate resources are not loaded.
 
-To maintain compatibility with HTML and optimize performance, React will dedupe and hoist some but not all elements for all props. For the specific constraints, read the docs for [Resource and Metadata Components](/reference/react-dom/components#resource-and-metadata-components).
+To optimize performance, React will dedupe elements if they refer to equivalent resources. For more details, read the docs for [Resource and Metadata Components](/reference/react-dom/components#resource-and-metadata-components).
 
 ### Compatability with third-party scripts and extensions {/*compatability-with-third-party-scripts-and-extensions*/}
 
@@ -525,76 +592,6 @@ Additionally, we've added two new root options to complement `onRecoverableError
 - `onRecoverableError`: called when an error is thrown and automatically recovered.
 
 For more info and examples, see the docs for [`createRoot`](/reference/react-dom/client/createRoot) and [`hydrateRoot`](/reference/react-dom/client/createRoot).
-
-### Diffs for Hydration Errors {/*diffs-for-hydration-errors*/}
-
-We also improved error reporting for hydration errors. For example, instead of logging multiple errors in DEV without any information about the mismatch:
-
-<ConsoleBlockMulti>
-
-<ConsoleLogLine level="error">
-
-Warning: Text content did not match. Server: "Server" Client: "Client"
-{'  '}at span
-{'  '}at App
-
-</ConsoleLogLine>
-
-<ConsoleLogLine level="error">
-
-Warning: An error occurred during hydration. The server HTML was replaced with client content in \<div\>.
-
-</ConsoleLogLine>
-
-<ConsoleLogLine level="error">
-
-Warning: Text content did not match. Server: "Server" Client: "Client"
-{'  '}at span
-{'  '}at App
-
-</ConsoleLogLine>
-
-<ConsoleLogLine level="error">
-
-Warning: An error occurred during hydration. The server HTML was replaced with client content in \<div\>.
-
-</ConsoleLogLine>
-
-<ConsoleLogLine level="error">
-
-Uncaught Error: Text content does not match server-rendered HTML.
-{'  '}at checkForUnmatchedText
-{'  '}...
-
-</ConsoleLogLine>
-
-</ConsoleBlockMulti>
-
-We now log a single message with a diff of the mismatch:
-
-
-<ConsoleBlockMulti>
-
-<ConsoleLogLine level="error">
-
-Uncaught Error: Hydration failed because the server rendered HTML didn't match the client. As a result this tree will be regenerated on the client. This can happen if an SSR-ed Client Component used:{'\n'}
-\- A server/client branch `if (typeof window !== 'undefined')`.
-\- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
-\- Date formatting in a user's locale which doesn't match the server.
-\- External changing data without sending a snapshot of it along with the HTML.
-\- Invalid HTML tag nesting.{'\n'}
-It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.{'\n'}
-https://react.dev/link/hydration-mismatch {'\n'}
-{'  '}\<App\>
-{'    '}\<span\>
-{'+    '}Client
-{'-    '}Server{'\n'}
-{'  '}at throwOnHydrationMismatch
-{'  '}...
-
-</ConsoleLogLine>
-
-</ConsoleBlockMulti>
 
 ### Custom Element Support {/*support-for-web-components*/}
 

@@ -528,7 +528,7 @@ function BlogPost({post}) {
       <h1>{post.title}</h1>
       <title>{post.title}</title>
       <meta name="author" content="Josh" />
-      <link rel="author" href="...Josh's href" />
+      <link rel="author" href="https://twitter.com/joshcstory/" />
       <meta name="keywords" content={post.keywords} />
       <p>
         Eee equals em-see-squared...

@@ -115,7 +115,7 @@ Actions automatically manage submitting data for you:
 
 </Note>
 
-Building on top of Actions, we're also introducing [`<form>` Actions](#form-actions) to manage forms automatically, [`useOptimistic`](#new-hook-optimistic-updates) to manage optimistic updates, and new hooks [`useActionState`](#new-hook-useactionstate), [`useFormStatus`](#new-hook-useformstatus) to support the common cases for Actions and Forms.
+Building on top of Actions, React 19 introduces [`useOptimistic`](#new-hook-optimistic-updates) to manage optimistic updates, and a new hook [`React.useActionState`](#new-hook-useactionstate) to handle common cases for Actions. In `react-dom` we're adding [`<form>` Actions](#form-actions) to manage forms automatically and [`useFormStatus`](#new-hook-useformstatus) to support the common cases for Actions in forms.
 
 In React 19, the above example can be simplified to:
 
@@ -173,9 +173,9 @@ See [#28491](https://github.com/facebook/react/pull/28491) for more info.
 
 For more information, see the docs for [`useActionState`](/reference/react/useActionState).
 
-### `<form>` Actions {/*form-actions*/}
+### React DOM: `<form>` Actions {/*form-actions*/}
 
-Actions are also integrated with React 19's new `<form>` features. We've added support for passing functions as the `action` and `formAction` props of `<form>`, `<input>`, and `<button>` elements to automatically submit forms with Actions:
+Actions are also integrated with React 19's new `<form>` features for `react-dom`. We've added support for passing functions as the `action` and `formAction` props of `<form>`, `<input>`, and `<button>` elements to automatically submit forms with Actions:
 
 ```js [[1,1,"actionFunction"]]
 <form action={actionFunction}>
@@ -183,13 +183,15 @@ Actions are also integrated with React 19's new `<form>` features. We've added s
 
 When a `<form>` Action succeeds, React will automatically reset the form for uncontrolled components. If you need to reset the `<form>` manually, you can call the new `requestFormReset` React DOM API.
 
-For more information, see the docs for [`<form>`](/reference/react-dom/components/form), [`<input>`](/reference/react-dom/components/input), and [`<button>`](/reference/react-dom/components/button).
+For more information, see the `react-dom` docs for [`<form>`](/reference/react-dom/components/form), [`<input>`](/reference/react-dom/components/input), and [`<button>`](/reference/react-dom/components/button).
 
-### New hook: `useFormStatus` {/*new-hook-useformstatus*/}
+### React DOM: New hook: `useFormStatus` {/*new-hook-useformstatus*/}
 
 In design systems, it's common to write design components that need access to information about the `<form>` they're in, without drilling props down to the component. This can be done via Context, but to make the common case easier, we've added a new hook `useFormStatus`:
 
-```js [[1, 2, "pending"], [1, 3, "pending"]]
+```js [[1, 4, "pending"], [1, 5, "pending"]]
+import {useFormStatus} from 'react-dom';
+
 function DesignButton() {
   const {pending} = useFormStatus();
   return <button type="submit" disabled={pending} />
@@ -198,7 +200,7 @@ function DesignButton() {
 
 `useFormStatus` reads the status of the parent `<form>` as if the form was a Context provider.
 
-For more information, see the docs for [`useFormStatus`](/reference/react-dom/hooks/useFormStatus).
+For more information, see the `react-dom` docs for [`useFormStatus`](/reference/react-dom/hooks/useFormStatus).
 
 ### New hook: `useOptimistic` {/*new-hook-optimistic-updates*/}
 
@@ -366,7 +368,7 @@ New function components will no longer need `forwardRef`, and we will be publish
 
 ### Diffs for hydration errors {/*diffs-for-hydration-errors*/}
 
-We also improved error reporting for hydration errors. For example, instead of logging multiple errors in DEV without any information about the mismatch:
+We also improved error reporting for hydration errors in `react-dom`. For example, instead of logging multiple errors in DEV without any information about the mismatch:
 
 <ConsoleBlockMulti>
 

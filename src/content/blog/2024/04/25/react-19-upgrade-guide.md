@@ -363,7 +363,7 @@ hydrate(<App />, document.getElementById('root'));
 
 // After
 import {hydrateRoot} from 'react-dom/client';
-hydrate(document.getElementById('root'), <App />);
+hydrateRoot(document.getElementById('root'), <App />);
 ```
 
 

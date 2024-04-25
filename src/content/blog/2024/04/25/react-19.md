@@ -483,7 +483,7 @@ In future versions, we will deprecate calling the ref with `null` when unmountin
 
 Due to the introduction of ref cleanup functions, returning anything else from a ref callback will now be rejected by TypeScript.
 
-The fix is usually to stop using implicit returns e.g.
+The fix is usually to stop using implicit returns, for example:
 
 ```diff
 -<div ref={current => (instance = current)} />

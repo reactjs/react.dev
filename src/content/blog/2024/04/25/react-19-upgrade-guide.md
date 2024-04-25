@@ -42,7 +42,7 @@ In this post, we will guide you through the steps for upgrading libraries to Rea
 - [TypeScript Changes](#typescript-changes)
 - [Changelog](#changelog)
 
-If you'd like to help us test React 19, follow the steps in this upgrade guide and [report any issues](https://github.com/facebook/react/issues/new/choose) you encounter. For a list of new features added to React 19 beta, see the [React 19 release post](/blog/2024/04/25/react-19).
+If you'd like to help us test React 19, follow the steps in this upgrade guide and [report any issues](https://github.com/facebook/react/issues/new?assignees=&labels=React+19&projects=&template=19.md&title=%5BReact+19%5D) you encounter. For a list of new features added to React 19 beta, see the [React 19 release post](/blog/2024/04/25/react-19).
 
 ---
 ## Installing {/*installing*/}

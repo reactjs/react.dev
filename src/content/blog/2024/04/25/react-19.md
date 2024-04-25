@@ -630,7 +630,7 @@ In Server Side Rendering, async scripts will be included in the `<head>` and pri
 
 For more details, read the docs for [`<script>`](/reference/react-dom/components/script).
 
-### Support for preloading Resources {/*support-for-preloading-resources*/}
+### Support for preloading resources {/*support-for-preloading-resources*/}
 
 During initial document load and on client side updates, telling the Browser about resources that it will likely need to load as early as possible can have a dramatic effect on page performance.
 

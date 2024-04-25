@@ -746,7 +746,7 @@ Additionally, we've added two new root options to complement `onRecoverableError
 - `onUncaughtError`: called when an error is thrown and not caught by an Error Boundary.
 - `onRecoverableError`: called when an error is thrown and automatically recovered.
 
-For more info and examples, see the docs for [`createRoot`](/reference/react-dom/client/createRoot) and [`hydrateRoot`](/reference/react-dom/client/createRoot).
+For more info and examples, see the docs for [`createRoot`](/reference/react-dom/client/createRoot) and [`hydrateRoot`](/reference/react-dom/client/hydrateRoot).
 
 ### Custom Element Support {/*support-for-web-components*/}
 

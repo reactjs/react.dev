@@ -53,7 +53,7 @@ If you'd like to help us test React 19, follow the steps in this upgrade guide a
 
 We introduced a [new JSX transform](https://legacy.reactjs.org/blog/2020/09/22/introducing-the-new-jsx-transform.html) in 2020 to improve bundle size and use JSX without importing React. In React 19, we're adding additional improvements like using ref as a prop and JSX speed improvements that require the new transform.
 
-If you the new transform is not enabled, you will see this warning:
+If the new transform is not enabled, you will see this warning:
 
 <ConsoleBlockMulti>
 
@@ -99,7 +99,7 @@ We're also including a codemod for the most common replacements. See [Removed Ty
 
 ### Errors in render are not re-thrown {/*errors-in-render-are-not-re-thrown*/}
 
-In previous versions of React, errors thrown during render were caught in rethrown. In DEV, we would also log to `console.error`, resulting in duplicate error logs. 
+In previous versions of React, errors thrown during render were caught and rethrown. In DEV, we would also log to `console.error`, resulting in duplicate error logs. 
 
 In React 19, we've [improved how errors are handled](/blog/2024/04/25/react-19#error-handling) to reduce duplication by not re-throwing:
 
@@ -250,7 +250,7 @@ class MyComponent extends React.Component {
 
 <Note>
 
-To help with the migration, we've created a [react-codemod](/todo) that will automatically update your code to use ref callbacks.
+To help with the migration, we've created a [react-codemod](https://github.com/reactjs/react-codemod/#string-refs) that will automatically update your code to use ref callbacks.
 
 TODO: instructions.
 

@@ -133,7 +133,7 @@ By passing a Server Action to the form `action`, React can [progressively enhanc
 
 In the username request form, there might be the chance that a username is not available. `requestUsername` should tell us if it fails or not.
 
-To update the UI based on the result of a Server Action while supporting progressive enhancement, use [`useFormState`](/reference/react-dom/hooks/useFormState).
+To update the UI based on the result of a Server Action while supporting progressive enhancement, use [`useActionState`](/reference/react/useActionState).
 
 ```js
 // requestUsername.js
@@ -153,11 +153,11 @@ export default async function requestUsername(formData) {
 // UsernameForm.js
 'use client';
 
-import { useFormState } from 'react-dom';
+import { useActionState } from 'react';
 import requestUsername from './requestUsername';
 
 function UsernameForm() {
-  const [returnValue, action] = useFormState(requestUsername, 'n/a');
+  const [returnValue, action] = useActionState(requestUsername, 'n/a');
 
   return (
     <>
@@ -171,7 +171,7 @@ function UsernameForm() {
 }
 ```
 
-Note that like most Hooks, `useFormState` can only be called in <CodeStep step={1}>[client code](/reference/react/use-client)</CodeStep>.
+Note that like most Hooks, `useActionState` can only be called in <CodeStep step={1}>[client code](/reference/react/use-client)</CodeStep>.
 
 ### Calling a Server Action outside of `<form>` {/*calling-a-server-action-outside-of-form*/}
 

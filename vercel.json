@@ -10,6 +10,11 @@
       "permanent": true
     },
     {
+      "source": "/reference/react-dom/hooks/useFormState",
+      "destination": "/reference/react/useActionState",
+      "permanent": true
+    },
+    {
       "source": "/learn/meet-the-team",
       "destination": "/community/team",
       "permanent": true

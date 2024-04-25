@@ -324,14 +324,14 @@ Displaying a form submission error message before the JavaScript bundle loads fo
 
 1. `<form>` be rendered by a [Server Component](/reference/react/use-client)
 1. the function passed to the `<form>`'s `action` prop be a [Server Action](/reference/react/use-server)
-1. the `useFormState` Hook be used to display the error message
+1. the `useActionState` Hook be used to display the error message
 
-`useFormState` takes two parameters: a [Server Action](/reference/react/use-server) and an initial state. `useFormState` returns two values, a state variable and an action. The action returned by `useFormState` should be passed to the `action` prop of the form. The state variable returned by `useFormState` can be used to displayed an error message. The value returned by the [Server Action](/reference/react/use-server) passed to `useFormState` will be used to update the state variable.
+`useActionState` takes two parameters: a [Server Action](/reference/react/use-server) and an initial state. `useActionState` returns two values, a state variable and an action. The action returned by `useActionState` should be passed to the `action` prop of the form. The state variable returned by `useActionState` can be used to displayed an error message. The value returned by the [Server Action](/reference/react/use-server) passed to `useActionState` will be used to update the state variable.
 
 <Sandpack>
 
 ```js src/App.js
-import { useFormState } from "react-dom";
+import { useActionState } from "react";
 import { signUpNewUser } from "./api";
 
 export default function Page() {
@@ -345,12 +345,12 @@ export default function Page() {
       return err.toString();
     }
   }
-  const [message, formAction] = useFormState(signup, null);
+  const [message, signupAction] = useActionState(signup, null);
   return (
     <>
       <h1>Signup for my newsletter</h1>
       <p>Signup with the same email twice to see an error</p>
-      <form action={formAction} id="signup-form">
+      <form action={signupAction} id="signup-form">
         <label htmlFor="email">Email: </label>
         <input name="email" id="email" placeholder="react@example.com" />
         <button>Sign up</button>
@@ -386,7 +386,7 @@ export async function signUpNewUser(newEmail) {
 
 </Sandpack>
 
-Learn more about updating state from a form action with the [`useFormState`](/reference/react-dom/hooks/useFormState) docs
+Learn more about updating state from a form action with the [`useActionState`](/reference/react/hooks/useActionState) docs
 
 ### Handling multiple submission types {/*handling-multiple-submission-types*/}
 

@@ -29,9 +29,16 @@ For a list of changes in 18.3 see the [Release Notes](https://github.com/faceboo
 
 </Note>
 
-In this post, we will guide you through the steps for upgrading libraries to React 19 beta. If you'd like to help us test React 19, follow the steps in this upgrade guide and [report any issues](https://github.com/facebook/react/issues/new/choose) you encounter. 
+In this post, we will guide you through the steps for upgrading libraries to React 19 beta:
 
-For a list of new features added to React 19 beta, see the [React 19 release post](/blog/2024/04/01/react-19).
+- [Installing](#installing)
+- [Breaking Changes](#breaking-changes)
+- [New Deprecations](#new-deprecations)
+- [Notable Changes](#notable-changes)
+- [TypeScript Changes](#typescript-changes)
+- [Changelog](#changelog)
+
+If you'd like to help us test React 19, follow the steps in this upgrade guide and [report any issues](https://github.com/facebook/react/issues/new/choose) you encounter. For a list of new features added to React 19 beta, see the [React 19 release post](/blog/2024/04/01/react-19).
 
 ---
 ## Installing {/*installing*/}
@@ -456,7 +463,9 @@ To reflect the impact of using internals, we have renamed the `SECRET_INTERNALS`
 
 In the future we will more aggressively block accessing internals from React to discourage usage and ensure users are not blocked from upgrading.
 
-## Removed deprecated TypeScript types {/*removed-deprecated-typescript-types*/}
+## TypeScript Changes {/*typescript-changes*/}
+
+### Removed deprecated TypeScript types {/*removed-deprecated-typescript-types*/}
 
 We've cleaned up the TypeScript types based on the removed APIs in React 19. Some of the removed have types been moved to more relevant packages, and others are no longer needed to describe React's behavior.
 
@@ -476,6 +485,134 @@ npx types-react-codemod@latest react-element-default-any-props ./path-to-your-re
 </Note>
 
 Check out [`types-react-codemod`](https://github.com/eps1lon/types-react-codemod/) for a list of supported replacements. If you feel a codemod is missing, it can be tracked in the [list of missing React 19 codemods](https://github.com/eps1lon/types-react-codemod/issues?q=is%3Aissue+is%3Aopen+sort%3Aupdated-desc+label%3A%22React+19%22+label%3Aenhancement).
+
+
+### `ref` cleanups required {/*ref-cleanup-required*/}
+
+_This change is included in the `react-19` codemod preset as [`no-implicit-ref-callback-return
+`](https://github.com/eps1lon/types-react-codemod/#no-implicit-ref-callback-return)._
+
+Due to the introduction of ref cleanup functions, returning anything else from a ref callback will now be rejected by TypeScript. The fix is usually to stop using implicit returns:
+
+```diff
+-<div ref={current => (instance = current)} />
++<div ref={current => {instance = current}} />
+```
+
+The original code returned the instance of the `HTMLDivElement` and TypeScript wouldn't know if this was supposed to be a cleanup function or not.
+
+### `useRef` requires an argument {/*useref-requires-argument*/}
+
+_This change is included in the `react-19` codemod preset as [`refobject-defaults`](https://github.com/eps1lon/types-react-codemod/#refobject-defaults)._
+
+A long-time complaint of how TypeScript and React work has been `useRef`. We've changed the types so that `useRef` now requires an argument. This significantly simplifies its type signature. It'll now behave more like `createContext`.
+
+```ts
+// @ts-expect-error: Expected 1 argument but saw none
+useRef();
+// Passes
+useRef(undefined);
+// @ts-expect-error: Expected 1 argument but saw none
+createContext();
+// Passes
+createContext(undefined);
+```
+
+This now also means that all refs are mutable. You'll no longer hit the issue where you can't mutate a ref because you initialised it with `null`:
+
+```ts
+const ref = useRef<number>(null);
+
+// Cannot assign to 'current' because it is a read-only property
+ref.current = 1;
+```
+
+`MutableRef` is now deprecated in favor of a single `RefObject` type which `useRef` will always return:
+
+```ts
+interface RefObject<T> {
+  current: T
+}
+
+declare function useRef<T>: RefObject<T>
+```
+
+`useRef` still has a convenience overload for `useRef<T>(null)` that automatically returns `RefObject<T | null>`. To ease migration due to the required argument for `useRef`, a convenience overload for `useRef(undefined)` was added that automatically returns `RefObject<T | undefined>`.
+
+Check out [[RFC] Make all refs mutable](https://github.com/DefinitelyTyped/DefinitelyTyped/pull/64772) for prior discussions about this change.
+
+### Changes to the `ReactElement` TypeScript type {/*changes-to-the-reactelement-typescript-type*/}
+
+_This change is included in the [`react-element-default-any-props`](https://github.com/eps1lon/types-react-codemod#react-element-default-any-props) codemod._
+
+The `props` of React elements now default to `unknown` instead of `any` if the element is typed as `ReactElement`. This does not affect you if you pass a type argument to `ReactElement`:
+
+```ts
+type Example2 = ReactElement<{ id: string }>["props"];
+//   ^? { id: string }
+```
+
+But if you relied on the default, you now have to handle `unknown`:
+
+```ts
+type Example = ReactElement["props"];
+//   ^? Before, was 'any', now 'unknown'
+```
+
+You should only need it if you have a lot of legacy code relying on unsound access of element props. Element introspection only exists as an escape hatch, and you should make it explicit that your props access is unsound via an explicit `any`.
+
+### The JSX Namespace in TypeScript {/*the-jsx-namespace-in-typescript*/}
+This change is included in the `react-19` codemod preset as [`scoped-jsx`](https://github.com/eps1lon/types-react-codemod#scoped-jsx)
+
+A long-time request is to remove the global `JSX` namespace from our types in favor of `React.JSX`. This helps prevent pollution of global types which prevents conflicts between different UI libraries that leverage JSX.
+
+You'll now need to wrap module augmentation of the JSX namespace in `declare module "....":
+
+```diff
+// global.d.ts
++ declare module "react" {
+    namespace JSX {
+      interface IntrinsicElements {
+        "my-element": {
+          myElementProps: string;
+        };
+      }
+    }
++ }
+```
+
+The exact module specifier depends on the JSX runtime you specified in the `compilerOptions` of your `tsconfig.json`:
+
+- For `"jsx": "react-jsx"` it would be `react/jsx-runtime`.
+- For `"jsx": "react-jsxdev"` it would be `react/jsx-dev-runtime`.
+- For `"jsx": "react"` and `"jsx": "preserve"` it would be `react`.
+
+### Better `useReducer` typings {/*better-usereducer-typings*/}
+
+`useReducer` now has improved type inference thanks to [@mfp22](https://github.com/mfp22).
+
+However, this required a breaking change where `useReducer` doesn't accept the full reducer type as a type parameter but instead either needs none (and rely on contextual typing) or needs both the state and action type.
+
+The new best practice is _not_ to pass type arguments to `useReducer`.
+```diff
+- useReducer<React.Reducer<State, Action>>(reducer)
++ useReducer(reducer)
+```
+This may not work in edge cases where you can explicitly type the state and action, by passing in the `Action` in a tuple:
+```diff
+- useReducer<React.Reducer<State, Action>>(reducer)
++ useReducer<State, [Action]>(reducer)
+```
+If you define the reducer inline, we encourage to annotate the function parameters instead:
+```diff
+- useReducer<React.Reducer<State, Action>>((state, action) => state)
++ useReducer((state: State, action: Action) => state)
+```
+This is also what you'd also have to do if you move the reducer outside of the `useReducer` call:
+
+```ts
+const reducer = (state: State, action: Action) => state;
+```
 
 ## Changlog {/*changelog*/}
 

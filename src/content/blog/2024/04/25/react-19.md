@@ -495,7 +495,7 @@ You can codemod this pattern with [`no-implicit-ref-callback-return
 
 ### `useDeferredValue` initial value {/*use-deferred-value-initial-value*/}
 
-We've added an `initalValue` option to `useDeferredValue`:
+We've added an `initialValue` option to `useDeferredValue`:
 
 ```js [[1, 1, "deferredValue"], [1, 4, "deferredValue"], [2, 4, "''"]]
 function Search({deferredValue}) {

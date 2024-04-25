@@ -750,7 +750,7 @@ For more info and examples, see the docs for [`createRoot`](/reference/react-dom
 
 ### Custom Element Support {/*support-for-web-components*/}
 
-Custom Elements have been part of the web platform for a long while now however using them with React has been impractical because React has always treated unrecognized props as attributes rather than properties.
+Custom Elements have been part of the web platform for a long while now, however using them with React has been impractical because React has always treated unrecognized props as attributes rather than properties.
 
 React 19 adds support for custom elements and passes all tests on [Custom Elements Everywhere](https://custom-elements-everywhere.com/).
 

@@ -248,7 +248,7 @@ function Comments({commentsPromise}) {
   // NOTE: this will resume the promise from the server.
   // It will suspend until the data is available.
   const comments = use(commentsPromise);
-  return comments.map(commment => <p>{comment}</p>);
+  return comments.map(comment => <p>{comment}</p>);
 }
 ```
 
@@ -314,7 +314,7 @@ React 19 includes all of the React Server Components features included from the 
 
 Bundler and framework support for React Server Components can be built on React 19, but the underlying APIs will not follow semver and may break between minors in React 19.x. 
 
-To support React Server Components, we recommend pinning to a specific React version, or using the Canary release. We will continue working with bundlers and frameworks to stablize support for React Server Components in future versions.
+To support React Server Components, we recommend pinning to a specific React version, or using the Canary release. We will continue working with bundlers and frameworks to stabilize support for React Server Components in future versions.
 
 </Note>
 
@@ -495,11 +495,11 @@ You can codemod this pattern with [`no-implicit-ref-callback-return
 
 ### `useDeferredValue` initial value {/*use-deferred-value-initial-value*/}
 
-We've added an `initalValue` option to `useDeferredValue`:
+We've added an `initialValue` option to `useDeferredValue`:
 
 ```js [[1, 1, "deferredValue"], [1, 4, "deferredValue"], [2, 4, "''"]]
 function Search({deferredValue}) {
-  // On inital render the value is ''.
+  // On initial render the value is ''.
   // Then a re-render is scheduled with the deferredValue.
   const value = useDeferredValue(deferredValue, '');
   
@@ -647,7 +647,7 @@ function MyComponent() {
 }
 ```
 ```html
-<!-- the above would resul in the following DOM/HTML -->
+<!-- the above would result in the following DOM/HTML -->
 <html>
   <head>
     <!-- links/scripts are prioritized by their utility to early loading, not call order -->
@@ -667,7 +667,7 @@ These APIs can be used to optimize initial page loads by moving discovery of add
 
 For more details see [Resource Preloading APIs](/reference/react-dom#resource-preloading-apis).
 
-### Compatability with third-party scripts and extensions {/*compatability-with-third-party-scripts-and-extensions*/}
+### Compatibility with third-party scripts and extensions {/*compatibility-with-third-party-scripts-and-extensions*/}
 
 We've improved hydration to account for third-party scripts and browser extensions.
 

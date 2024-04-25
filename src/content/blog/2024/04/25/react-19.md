@@ -552,7 +552,7 @@ For more info, see the docs for [`<title>`](/reference/react-dom/components/titl
 
 ### Support for stylesheets {/*support-for-stylesheets*/}
 
-Stylesheets, both externally linked (`<link rel="stylesheet" href="...">`) and inline (`<style>...</style>`), require careful positioning in the DOM due to style precedence rules. Building a stylesheet capability that allows for composability within components is hard so users often end up either loading all of their styles far from the components that may depend on them or they use a style library which encapsulates this complexity.
+Stylesheets, both externally linked (`<link rel="stylesheet" href="...">`) and inline (`<style>...</style>`), require careful positioning in the DOM due to style precedence rules. Building a stylesheet capability that allows for composability within components is hard, so users often end up either loading all of their styles far from the components that may depend on them, or they use a style library which encapsulates this complexity.
 
 In React 19, we're addressing this complexity and providing even deeper integration into Concurrent Rendering on the Client and Streaming Rendering on the Server with built in support for stylesheets. If you tell React what the `precedence` of your stylesheet is React can manage the insertion order of the stylesheet in the DOM and ensure that the stylesheet (if external) is loaded before revealing content that depends on those style rules.
 

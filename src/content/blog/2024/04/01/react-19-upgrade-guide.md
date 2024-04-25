@@ -36,25 +36,11 @@ For a list of new features added to React 19 beta, see the [React 19 release pos
 ---
 ## Installing {/*installing*/}
 
-To install the latest version of React and React DOM:
-
-```bash
-npm install react@beta react-dom@beta
-```
-
-Typescript users will also need to update their types:
-
-```bash
-npm install @types/react@beta @types/react-dom@beta
-```
-
-For a full list of type changes, see the type [CHANGELOG](TODO).
-
 <Note>
+
 #### New JSX Transform is now required {/*new-jsx-transform-is-now-required*/}
 
 We introduced a [new JSX transform](https://legacy.reactjs.org/blog/2020/09/22/introducing-the-new-jsx-transform.html) in 2020 to improve bundle size and use JSX without importing React. In React 19, we're adding additional improvements like using ref as a prop and JSX speed improvements that require the new transform.
-
 
 If you the new transform is not enabled, you will see this warning:
 
@@ -72,6 +58,31 @@ Your app (or one of its dependencies) is using an outdated JSX transform. Update
 We expect most apps will not be affected since the transform is enabled in most environments already. For manual instructions on how to upgrade, please see the [announcement post](https://legacy.reactjs.org/blog/2020/09/22/introducing-the-new-jsx-transform.html).
 
 </Note>
+
+
+To install the latest version of React and React DOM:
+
+```bash
+npm install react@beta react-dom@beta
+```
+
+If you're using TypeScript, you also need to update the types. Once React 19 is released as stable, you can install the types as usual from `@types/react` and `@types/react-dom`.  During the beta period, the types are available in different packages which need to be enforced in your `package.json`:
+
+```json
+{
+  "dependencies": {
+    "@types/react": "npm:types-react@alpha",
+    "@types/react-dom": "npm:types-react-dom@alpha"
+  },
+  "overrides": {
+    "@types/react": "npm:types-react@alpha",
+    "@types/react-dom": "npm:types-react-dom@alpha"
+  }
+}
+```
+
+We're also including a codemod for the most common replacements. See [Removed TypeScript Types](#removed-deprecated-typescript-types) below.
+
 
 ## Breaking Changes {/*breaking-changes*/}
 
@@ -444,6 +455,27 @@ To reflect the impact of using internals, we have renamed the `SECRET_INTERNALS`
 `_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE`
 
 In the future we will more aggressively block accessing internals from React to discourage usage and ensure users are not blocked from upgrading.
+
+## Removed deprecated TypeScript types {/*removed-deprecated-typescript-types*/}
+
+We've cleaned up the TypeScript types based on the removed APIs in React 19. Some of the removed have types been moved to more relevant packages, and others are no longer needed to describe React's behavior.
+
+<Note>
+We've published [`types-react-codemod`](https://github.com/eps1lon/types-react-codemod/) to migrate most type related breaking changes:
+
+```bash
+npx types-react-codemod@latest preset-19 ./path-to-app
+```
+
+If you have a lot of unsound access to `element.props`, you can run this additional codemod:
+
+```bash
+npx types-react-codemod@latest react-element-default-any-props ./path-to-your-react-ts-files
+```
+
+</Note>
+
+Check out [`types-react-codemod`](https://github.com/eps1lon/types-react-codemod/) for a list of supported replacements. If you feel a codemod is missing, it can be tracked in the [list of missing React 19 codemods](https://github.com/eps1lon/types-react-codemod/issues?q=is%3Aissue+is%3Aopen+sort%3Aupdated-desc+label%3A%22React+19%22+label%3Aenhancement).
 
 ## Changlog {/*changelog*/}
 

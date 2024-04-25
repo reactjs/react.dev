@@ -581,7 +581,7 @@ function ComponentTwo() {
 
 During Server Side Rendering React will include the stylesheet in the `<head>` which ensures that the browser will not paint until it has loaded. If the stylesheet is discovered late after we've already started streaming React will ensure that the stylesheet is inderted into the `<head>` on the client before revealing the content of a Suspense boundary that depends on that stylesheet
 
-During Client Side Rendering if newly discovered stylesheets are rendered React will wait for those stylesheets to load before committing the render.
+During Client Side Rendering React will wait for newly rendered stylesheets to load before committing the render.
 
 If you render this component from multiple places within your application React will only include the stylesheet once in the document
 ```js

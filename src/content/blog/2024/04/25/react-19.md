@@ -462,7 +462,7 @@ We now support returning a cleanup function from `ref` callbacks:
   ref={(ref) => {
     // ref created
 
-    // NEW: return a cleanup funtion to reset
+    // NEW: return a cleanup function to reset
     // the ref when element is removed from DOM.
     return () => {
       // ref cleanup
@@ -471,17 +471,17 @@ We now support returning a cleanup function from `ref` callbacks:
 />
 ```
 
-When the component unmounts, React will call the cleanup function returned from the ref callback. This works for DOM refs, refs to class components, and `useImperativeHandle`. 
+When the component unmounts, React will call the cleanup function returned from the `ref` callback. This works for DOM refs, refs to class components, and `useImperativeHandle`. 
 
 <Note>
 
-Previously, React would call ref functions with `null` when unmounting the component. If your ref returns a cleanup function, React will now skip this step.
+Previously, React would call `ref` functions with `null` when unmounting the component. If your `ref` returns a cleanup function, React will now skip this step.
 
-In future versions, we will deprecate calling the ref with `null` when unmounting components.
+In future versions, we will deprecate calling refs with `null` when unmounting components.
 
 </Note>
 
-Due to the introduction of ref cleanup functions, returning anything else from a ref callback will now be rejected by TypeScript.
+Due to the introduction of ref cleanup functions, returning anything else from a `ref` callback will now be rejected by TypeScript.
 
 The fix is usually to stop using implicit returns, for example:
 

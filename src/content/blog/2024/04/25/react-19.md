@@ -280,7 +280,7 @@ import LightThemeContext from './LightThemeContext'
 import DarkThemeContext from './ThemeContext'
 
 function ThemedPage({theme, children}) {
-  let themeValue;
+  let currentTheme;
   if (theme === 'dark') {
     currentTheme = use(DarkThemeContext);
   } else {

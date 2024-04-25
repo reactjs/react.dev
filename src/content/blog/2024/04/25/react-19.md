@@ -583,7 +583,7 @@ During Server Side Rendering React will include the stylesheet in the `<head>`, 
 
 During Client Side Rendering React will wait for newly rendered stylesheets to load before committing the render.
 
-If you render this component from multiple places within your application React will only include the stylesheet once in the document
+If you render this component from multiple places within your application React will only include the stylesheet once in the document:
 ```js
 function App() {
   return <>

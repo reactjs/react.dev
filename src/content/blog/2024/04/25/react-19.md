@@ -758,7 +758,7 @@ During Server Side Rendering props passed to a custom element will render as att
 
 During Client Side Rendering props that match a property on the Custom Element instance will be assigned as properties, otherwise they will be assigned as attributes.
 
-Thanks [Joey Arhar](https://github.com/josepharhar) for driving the design and implementation of Custom Element support in React.
+Thanks to [Joey Arhar](https://github.com/josepharhar) for driving the design and implementation of Custom Element support in React.
 
 
 #### How to Upgrade {/*how-to-upgrade*/}

@@ -451,7 +451,7 @@ For more, see [`useDeferredValue`](/reference/react/useDeferredValue).
 
 ### Support for Document Metadata {/*support-for-metadata-tags*/}
 
-In HTML, document metadata tags like `<title>` and `<meta>` are reserved for placement in the `<head>` section of the document. In React, it's often convenient these elements deeper in the tree where the data for those tags is available. In the past, these elements would need to be inserted manually in an effect, or by libraries like [`react-helmet`](github.com/nfl/react-helmet). 
+In HTML, document metadata tags like `<title>` `<link>` and `<meta>` are reserved for placement in the `<head>` section of the document. In React, the component that decides what metadata is appropriate for the app may be very far from the place where you rendere the `<head>` or the no `<head>` is rendered by React at all. In the past, these elements would need to be inserted manually in an effect, or by libraries like [`react-helmet`](github.com/nfl/react-helmet) and required careful handling when server rendering a React application. 
 
 In React 19, we're adding support for rendering document metadata tags in components natively:
 
@@ -461,15 +461,126 @@ function BlogPost({post}) {
     <article>
       <h1>{post.title}</h1>
       <title>{post.title}</title>
+      <meta name="author" content="Josh" />
+      <link rel="author" href="...Josh's href" />
       <meta name="keywords" content={post.keywords} />
     </article>
   );
 }
 ```
 
-When React renders this component, it will see the `<title>` and `<meta>` tags, and automatically hoist them to the `<head>` section of document. By supporting these metadata tags natively, we're able to ensure they work with client-only apps, streaming SSR, and Server Components. 
+When React renders this component, it will see the `<title>` `<link>` and `<meta>` tags, and automatically hoist them to the `<head>` section of document. By supporting these metadata tags natively, we're able to ensure they work with client-only apps, streaming SSR, and Server Components.
 
-For more info, see the docs for [`<title>`](/reference/react-dom/components/title) and [`<meta>`](/reference/react-dom/components/meta)
+For more info, see the docs for [`<title>`](/reference/react-dom/components/title), [`<link>`](/reference/react-dom/components/link), and [`<meta>`](/reference/react-dom/components/meta).
+
+### Support for stylesheets {/*support-for-stylesheets*/}
+
+Stylesheets, both externally linked (`<link rel="stylesheet" href="...">`) and inline (`<style>...</style>`), require careful positioning in the DOM due to style precedence rules. Building a stylesheet capability that allows for composability within components is hard so users often end up either loading all of their styles far from the components that may depend on them or they use a style library which encapsulates this complexity.
+
+In React 19, we're addressing this complexity and providing even deeper integration into Concurrent Rendering on the Client and Streaming Rendering on the Server with built in support for stylesheets. If you tell React what the `precedence` of your stylesheet is React can manage the insertion order of the stylesheet in the DOM and ensure that the stylesheet (if external) is loaded before revealing content that depends on those style rules.
+
+```js
+function ComponentOne() {
+  return (
+    <Suspense fallback="loading...">
+      <link rel="stylesheet" href="foo" precedence="default" />
+      <link rel="stylesheet" href="bar" precedence="high" />
+      <article class="foo-class bar-class">
+        High from ComponentOne
+      </article>
+    </Suspense>
+  )
+}
+
+function ComponentTwo() {
+  return (
+    <div>
+      Hi from ComponentTwo
+      <link rel="stylesheet" href="baz" precedence="default" />  <-- will be inserted between foo & bar
+    </div>
+  )
+}
+```
+
+During Server Side Rendering React will include the stylesheet in the `<head>` which ensures that the browser will not paint until it has loaded. If the stylesheet is discovered late after we've already started streaming React will ensure that the stylesheet is inderted into the `<head>` on the client before revealing the content of a Suspense boundary that depends on that stylesheet
+
+During Client Side Rendering if newly discovered stylesheets are rendered React will wait for those stylesheets to load before committing the render.
+
+If you render this component from multiple places within your application React will only include the stylesheet once in the document
+```js
+function App() {
+  return <>
+    <ComponentOne />
+    ...
+    <ComponentOne />    <-- won't lead to a duplicate stylesheet link in the DOM
+  </>
+}
+```
+
+For users accustomed to loading stylesheets manually this is an opportunity to locate those stylesheets alongside the components that depend on them allowing for better local reasoning and an easier time ensuring you only load the stylesheets that you actually depend on
+
+For users that use style libraries or style integrations with bundlers these benefits will these libraries even better by simplifying their implementations, providing better integration with Concurrent Rendering features like Suspense, and eliminating awkward SSR integrations.
+
+For more details, read the docs for [`<link>`](/reference/react-dom/components/link) and [`<style>`](/reference/react-dom/components/style).
+
+### Support for async scripts {/*support-for-async-scripts*/}
+
+In HTML normal scripts (`<script src="...">`) and deferred scripts (`<script defer="" src="...">`) load in document order which makes rendering these kinds of scripts deep within your component tree challenging. Async scripts (`<script async="" src="...">`) however will load in arbitrary order and in React 19 we've included better support for async scripts by allowing you to render them anywhere in your component tree, inside the components that actually depend on the script, without having to manage relocating and deduplicating script instances.
+
+```js
+function MyComponent() {
+  return (
+    <div>
+      <script async={true} src="..." />
+      Hello World
+    </div>
+  )
+}
+```
+
+In all rendering environments async scripts will be deduplicated so that React will only load and execute the script once even if it is rendered by multiple difference components
+
+In Server Side Rendering async scripts will be included in the `<head>` priorized behind more critical resources that block paint such as stylesheets, fonts, and image preloads.
+
+For more details, read the docs for [`<script>`](/reference/react-dom/components/script).
+
+### Support for preloading Resources (/*support-for-preloading-resources*/) {/*support-for-preloading-resources-support-for-preloading-resources*/}
+
+During initial document loads and on client side updates the ability to tell the Browser about resources that it will likely need to load as early as possible can have a dramatic effect on percieved page peformance.
+
+React 19 includes a number of new APIs for loading and preloading Browser resources to make it as easy as possible to build great experiences that aren't held back by inefficient resource loading.
+
+```js
+import { prefetchDNS, preconnect, preload, preinit } from 'react-dom'
+function MyComponent() {
+  preinit('https://.../path/to/some/script.js', {as: 'script' }) // loads and executes this script eagerly
+  preload('https://.../path/to/font.woff', { as: 'font' }) // preloads this font
+  preload('https://.../path/to/stylesheet.css', { as: 'style' }) // preloads this stylesheet
+  prefetchDNS('https://...') // when you may not actually request anything from this host
+  preconnect('https://...') // when you will request something but aren't sure what
+}
+```
+```html
+<!-- the above would resul in the following DOM/HTML -->
+<html>
+  <head>
+    <link rel="prefetch-dns" href="https://..."> <!-- links are prioritized by their utility to early loading, not call order -->
+    <link rel="preconnect" href="https://...">
+    <link rel="preload" as="font" href="https://.../path/to/font.woff">
+    <link rel="preload" as="style" href="https://.../path/to/stylesheet.css">
+    <script async="" src="https://.../path/to/some/script.js"></script>
+  </head>
+  <body>
+    ...
+  </body>
+</html>
+```
+
+These APIs can be used to make initial page loads optimized for instance by moving discovery of additional resources like fonts out of stylesheet loading
+
+These APIs can be used to make client updates faster for instance by prefetching a list of resources used by an anticipated navigation and then eagerly preloading those resources on click or even on hover.
+
+For more details see [Resource Preloading APIs](/reference/react-dom#resource-preloading-apis).
 
 ### Support for Document Resources {/*support-for-document-resources*/}
 

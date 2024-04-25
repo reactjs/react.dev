@@ -635,7 +635,7 @@ For more details, read the docs for [`<script>`](/reference/react-dom/components
 
 ### Support for preloading Resources {/*support-for-preloading-resources*/}
 
-During initial document loads and on client side updates the ability to tell the Browser about resources that it will likely need to load as early as possible can have a dramatic effect on percieved page peformance.
+During initial document load and on client side updates, telling the Browser about resources that it will likely need to load as early as possible can have a dramatic effect on page performance.
 
 React 19 includes a number of new APIs for loading and preloading Browser resources to make it as easy as possible to build great experiences that aren't held back by inefficient resource loading.
 

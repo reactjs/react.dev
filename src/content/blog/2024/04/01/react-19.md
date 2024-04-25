@@ -269,31 +269,27 @@ The `use` API can only be called in render, similar to hooks. Unlike hooks, `use
 For more information, see the docs for [`use`](/reference/react/use).
 
 
-### React Server Components {/*react-server-components*/}
+## React Server Components {/*react-server-components*/}
 
 ### Server Components {/*server-components*/}
 
-Server Components are a new option that allows rendering components ahead of time, before bundling, in an environment separate from your application (the "server"). They can run once at build time, or can be run for each request to a web server.
+Server Components are a new option that allows rendering components ahead of time, before bundling, in an environment separate from your client application or SSR server. This separate environment is the "server" in React Server Components. Server Components can run once at build time on your CI server, or they can be run for each request using a web server.
 
-Today we're releasing React Server Components as semver stable in React 19. TODO: re-write This means libraries that ship Server Components and Server Actions can target React 19 as a peer dependency for use in frameworks that support the [Full-stack React Architecture](/learn/start-a-new-react-project#which-features-make-up-the-react-teams-full-stack-architecture-vision).
-
-For more, see the docs for [React Server Components](/reference/rsc/server-components). 
-
-<DeepDive>
-
-#### How do I use Server Components? {/*how-do-i-use-server-components*/}
-
-We first announced React Server Components in a [demo in December 2020](https://legacy.reactjs.org/blog/2020/12/21/data-fetching-with-react-server-components.html). In 2022, we merged the [RFC for React Server Components](https://github.com/reactjs/rfcs/blob/main/text/0188-server-components.md) and the [RFC for React Server Module Conventions](https://github.com/reactjs/rfcs/blob/main/text/0227-server-module-conventions.md) and partnered with Next.js for the first implementation in the Next.js 13 App Router beta. We worked with the Next.js team to implement Server Components via the stable Canary channel, and Server Components shipped as the default in Next.js 14.
-
-We will continue working with bundlers and framework authors to expand support for React Server Components.
-
-TODO:
-- need a framework
-- bundler: link to "How do bundler authors support Directives?"
-- router: link to "How do I make Server Components dynamic?"
+React 19 includes all of the React Server Components features included from the Canary channel. This means libraries that ship with Server Components can now target React 19 as a peer dependency with a `react-server` [export condition](https://github.com/reactjs/rfcs/blob/main/text/0227-server-module-conventions.md#react-server-conditional-exports) for use in frameworks that support the [Full-stack React Architecture](/learn/start-a-new-react-project#which-features-make-up-the-react-teams-full-stack-architecture-vision). 
 
 
-</DeepDive>
+<Note>
+
+#### How do I build support for Server Components? {/*how-do-i-build-support-for-server-components*/}
+
+Bundler and framework support for React Server Components can be built on React 19, but the underlying APIs will not follow semver and may break between minors in React 19.x. 
+
+To support React Server Components, we recommend pinning to a specific React version, or using the Canary release. We will continue working with bundlers and frameworks to stablize support for React Server Components in future versions.
+
+</Note>
+
+
+For more, see the docs for [React Server Components](/reference/rsc/server-components).
 
 ### Server Actions {/*server-actions*/}
 
@@ -301,17 +297,19 @@ Server Actions allow Client Components to call async functions executed on the s
 
 When a Server Action is defined with the `"use server"` directive, your framework will automatically create a reference to the server function, and pass that reference to the Client Component. When that function is called on the client, React will send a request to the server to execute the function, and return the result.
 
+<Note>
+
+#### There is no directive for Server Components. {/*there-is-no-directive-for-server-components*/}
+
+A common misunderstanding is that Server Components are denoted by `"use server"`, but there is no directive for Server Components. The `"use server"` directive is used for Server Actions.
+
+For more info, see the docs for [Directives](/reference/rsc/directives).
+
+</Note>
+
 Server Actions can be created in Server Components and passed as props to Client Components, or they can be imported and used in Client Components.
 
 For more, see the docs for [React Server Actions](/reference/rsc/server-actions).
-
-<DeepDive>
-
-#### How do I use Server Actions? {/*how-do-i-use-server-actions*/}
-
-TODO
-
-</DeepDive>
 
 ## Improvements in React 19 {/*improvements-in-react-19*/}
 

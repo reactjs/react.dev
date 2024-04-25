@@ -360,19 +360,14 @@
       "sectionHeader": "React Server Components"
     },
     {
-      "title": "Overview",
-      "canary": true,
-      "path": "/reference/rsc",
-      "routes": [
-        {
-          "title": "Server Components",
-          "path": "/reference/rsc/server-components"
-        },
-        {
-          "title": "Server Actions",
-          "path": "/reference/rsc/server-actions"
-        }
-      ]
+      "title": "Server Components",
+      "path": "/reference/rsc/server-components",
+      "canary": true
+    },
+    {
+      "title": "Server Actions",
+      "path": "/reference/rsc/server-actions",
+      "canary": true
     },
     {
       "title": "Directives",

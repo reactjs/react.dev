@@ -1,5 +1,5 @@
 ---
-title: React Server Actions (RSA)
+title: Server Actions
 canary: true
 ---
 
@@ -11,20 +11,19 @@ Server Actions allow Client Components to call async functions executed on the s
 
 <InlineToc />
 
-<DeepDive>
+<Note>
 
-#### How do I use Server Actions? {/*how-do-i-use-server-actions*/}
+#### How do I build support for Server Actions? {/*how-do-i-build-support-for-server-components*/}
 
-TODO
+Bundler and framework support for Server Actins can be built on React 19, but the underlying APIs will not follow semver and may break between minors in React 19.x.
 
-</DeepDive>
+To support Server Actions, we recommend pinning to a specific React version, or using the Canary release. We will continue working with bundlers and frameworks to stablize support for React Server Components in future versions.
 
+</Note>
 
 When a Server Action is defined with the `"use server"` directive, your framework will automatically create a reference to the server function, and pass that reference to the Client Component. When that function is called on the client, React will send a request to the server to execute the function, and return the result.
 
 Server Actions can be created in Server Components and passed as props to Client Components, or they can be imported and used in Client Components.
-
-
 
 ### Creating a Server Action from a Server Component {/*creating-a-server-action-from-a-server-component*/}
 

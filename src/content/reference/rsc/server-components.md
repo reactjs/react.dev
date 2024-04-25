@@ -1,5 +1,5 @@
 ---
-title: React Server Components (RSC)
+title: React Server Components
 canary: true
 ---
 
@@ -9,24 +9,19 @@ Server Components are a new type of Component that renders ahead of time, before
 
 </Intro>
 
+This separate environment is the "server" in React Server Components. Server Components can run once at build time on your CI server, or they can be run for each request using a web server.
+
 <InlineToc />
 
-<DeepDive>
+<Note>
 
-#### How do I use Server Components? {/*how-do-i-use-server-components*/}
+#### How do I build support for Server Components? {/*how-do-i-build-support-for-server-components*/}
 
-We first announced React Server Components (RSC) in a [demo in December 2020](https://legacy.reactjs.org/blog/2020/12/21/data-fetching-with-react-server-components.html). In 2022, we merged the [RFC for React Server Components](https://github.com/reactjs/rfcs/blob/main/text/0188-server-components.md) and the [RFC for React Server Module Conventions](https://github.com/reactjs/rfcs/blob/main/text/0227-server-module-conventions.md) and partnered with Next.js for the first implementation in the Next.js 13 App Router beta. We worked with the Next.js team to implement Server Components via the stable Canary channel, and Server Components shipped as the default in Next.js 14.
+Bundler and framework support for React Server Components can be built on React 19, but the underlying APIs will not follow semver and may break between minors in React 19.x.
 
-We will continue working with bundlers and framework authors to expand support for React Server Components.
+To support React Server Components, we recommend pinning to a specific React version, or using the Canary release. We will continue working with bundlers and frameworks to stablize support for React Server Components in future versions.
 
-TODO:
-- need a framework
-- bundler: link to "How do bundler authors support Directives?"
-- router: link to "How do I make Server Components dynamic?"
-
-
-</DeepDive>
-
+</Note>
 
 ### Server Components without a Server {/*server-components-without-a-server*/}
 Server components can run at build time to read from the filesystem or fetch static content, so a web server is not required. For example, you may want to read static data from a content management system.
@@ -185,24 +180,6 @@ The bundler then combines the data, rendered Server Components and dynamic Clien
 
 Server Components can be made dynamic by re-fetching them from a server, where they can access the data and render again. This new application architecture combines the simple “request/response” mental model of server-centric Multi-Page Apps with the seamless interactivity of client-centric Single-Page Apps, giving you the best of both worlds.
 
-<DeepDive>
-
-#### How do I make Server Components dynamic? {/*how-do-i-make-server-components-dynamic*/}
-
-TODO: use a router, re-fetch them.
-
-</DeepDive>
-
-### Directives `"use client"` and `"use server"` {/*directives*/}
-
-[Directives](/reference/react/directives) are bundler features designed for full-stack React frameworks. They mark the “split points” between the two environments:
-
-- `"use client"` instructs the bundler to generate a `<script>` tag (like Astro Islands).
-- `"use server"` tells the bundler to generate a POST endpoint (like tRPC Mutations).
-
-Together, directives let you write reusable components that compose client-side interactivity with the related server-side logic. `"use client"` composes client-side interactivity on the server with Server Components, and `"use server"` composes server-side code on the client with Server Actions.
-
-
 ### Adding interactivity to Server Components {/*adding-interactivity-to-server-components*/}
 
 Server Components are not sent to the browser, so they cannot use interactive APIs like `useState`. To add interactivity to Server Components, you can compose them with Client Component using the `"use client"` directive.
@@ -212,6 +189,8 @@ Server Components are not sent to the browser, so they cannot use interactive AP
 #### There is no directive for Server Components. {/*there-is-no-directive-for-server-components*/}
 
 A common misunderstanding is that Server Components are denoted by `"use server"`, but there is no directive for Server Components. The `"use server"` directive is used for Server Actions.
+
+For more info, see the docs for [Directives](/reference/rsc/directives).
 
 </Note>
 

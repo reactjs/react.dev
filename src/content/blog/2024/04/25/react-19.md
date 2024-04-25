@@ -280,14 +280,14 @@ import LightThemeContext from './LightThemeContext'
 import DarkThemeContext from './ThemeContext'
 
 function ThemedPage({theme, children}) {
-  let theme;
+  let currentTheme;
   if (theme === 'dark') {
-    theme = use(DarkThemeContext);
+    currentTheme = use(DarkThemeContext);
   } else {
-    theme = use(LightThemeContext);
+    currentTheme = use(LightThemeContext);
   } 
   return (
-    <Page theme={theme}>
+    <Page theme={currentTheme}>
       {children}
     </Page>
   );

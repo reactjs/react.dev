@@ -830,11 +830,11 @@ Without Strict Mode, it was easy to miss that your Effect needed cleanup. By run
 ### Fixing bugs found by detaching and re-attaching DOM refs in development {/*fixing-bugs-found-by-cleaning-up-and-re-attaching-dom-refs-in-development*/}
 
 <Canary> 
-In canary and experimental channels, React will run an extra setup+cleanup cycle in development for DOM refs, much like it does for Effects. 
+In canary and experimental channels, React will run an extra setup+cleanup cycle in development for DOM refs, much like it does for Effects.
+
+React will detach DOM refs that were created via `useRef` by setting `ref.current` to `null` before setting it back to the DOM node.
 
 For [`ref` callbacks](/reference/react-dom/components/common#ref-callback), React will call the callback function with the DOM node as its argument. It will then call the callback's [cleanup function](reference/react-dom/components/common#returns) before calling the `ref` callback function again with the DOM node as its argument.
-
-Similarly, React will detach DOM refs that were created via `useRef` by setting `ref.current` to `null` before setting it back to the DOM node.
 
 You can read more about DOM refs in [Manipulating the DOM with Refs.](/learn/manipulating-the-dom-with-refs)
 </Canary>

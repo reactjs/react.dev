@@ -596,7 +596,7 @@ function App() {
 
 For users accustomed to loading stylesheets manually this is an opportunity to locate those stylesheets alongside the components that depend on them allowing for better local reasoning and an easier time ensuring you only load the stylesheets that you actually depend on.
 
-For users that use style libraries or style integrations with bundlers these benefits will these libraries even better by simplifying their implementations, providing better integration with Concurrent Rendering features like Suspense, and eliminating awkward SSR integrations.
+style libraries and style integrations with bundlers can also adopt this new capability so even if you don't directly render your own stylesheets, you can still benefit as your tools are upgraded to use this feature.
 
 For more details, read the docs for [`<link>`](/reference/react-dom/components/link) and [`<style>`](/reference/react-dom/components/style).
 

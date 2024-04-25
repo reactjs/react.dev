@@ -30,24 +30,35 @@ For a list of breaking changes, see the [Upgrade Guide](/blog/2024/04/01/react-1
 
 A common use case in React apps is to perform a data mutation and then update state in response. For example, when a user submits a form to change their name, you will make an API request, and then handle the response. In the past, you would need to handle pending states, errors, optimistic updates, and sequential requests manually.
 
-For example, you could handle the pending state in `useState`:
+For example, you could handle the pending and error state in `useState`:
 
-```js {5,8,10}
-const [name, setName] = useState('');
-const [error, setError] = useState(null);
+```js
+// Before Actions
+function UpdateName({}) {
+  const [name, setName] = useState("");
+  const [error, setError] = useState(null);
+  const [isPending, setIsPending] = useState(false);
 
-// Manually handle the pending state
-const [isPending, setIsPending] = useState(false);
+  const handleSubmit = async () => {
+    setIsPending(true);
+    const error = await updateName(name);
+    setIsPending(false);
+    if (error) {
+      setError(error);
+      return;
+    } 
+    redirect("/path");
+  };
 
-const handleSubmit = async () => {
-  setIsPending(true);
-  const {error} = await updateName(name);
-  setIsPending(false);
-  if (error) {
-    setError(error);
-  } else {
-    setName('');
-  }
+  return (
+    <div>
+      <input value={name} onChange={(event) => setName(event.target.value)} />
+      <button onClick={handleSubmit} disabled={isPending}>
+        Update
+      </button>
+      {error && <p>{error}</p>}
+    </div>
+  );
 }
 ```
 
@@ -55,27 +66,37 @@ In React 19, we're adding support for using async functions in transitions to ha
 
 For example, you can use `useTransition` to handle the pending state for you:
 
-```js {5,8,15}
-const [name, setName] = useState('');
-const [error, setError] = useState(null);
+```js
+// Using pending state from Actions
+function UpdateName({}) {
+  const [name, setName] = useState("");
+  const [error, setError] = useState(null);
+  const [isPending, startTransition] = useTransition();
 
-// Pending state is handled for you
-const [isPending, startTransition] = useTransition();
+  const handleSubmit = async () => {
+    startTransition(async () => {
+      const error = await updateName(name);
+      if (error) {
+        setError(error);
+        return;
+      } 
+      redirect("/path");
+    })
+  };
 
-const submitAction = async () => {
-  startTransition(async () => {
-    const {error} = await updateName(name);
-    if (!error) {
-      setError(error);
-    } else {
-      setName('');  
-    }
-  })
+  return (
+    <div>
+      <input value={name} onChange={(event) => setName(event.target.value)} />
+      <button onClick={handleSubmit} disabled={isPending}>
+        Update
+      </button>
+      {error && <p>{error}</p>}
+    </div>
+  );
 }
 ```
 
-
-The async transition will immediately set the `isPending` state to true, make the async request(s), and render any state updates as transitions. This allows you to keep the current UI responsive and interactive while the data is changing.
+The async transition will immediately set the `isPending` state to true, make the async request(s), and switch `isPending` to false after any transitions. This allows you to keep the current UI responsive and interactive while the data is changing.
 
 <Note>
 
@@ -90,23 +111,49 @@ Actions automatically manage submitting data for you:
 
 </Note>
 
-Async transitions are the raw primitive that power Actions, and you can always drop down to `useTransition`, `useState`, and `useOptimistic` to create your own custom behavior. We're also introducing the [`useActionState`](#new-hook-useactionstate) and [`useFormStatus`](#new-hook-useformstatus) hooks to support the common cases for Actions and Forms.
+Building on top of Actions, we're also introducing [`<form>` Actions](#form-actions) to manage forms automatically, [`useOptimistic`](#new-hook-optimistic-updates) to manage optimistic updates, and new hooks [`useActionState`](#new-hook-useactionstate), [`useFormStatus`](#new-hook-useformstatus) hooks to support the common cases for Actions and Forms.
 
-For more information, see the docs for [`useTransition`](/reference/react/useTransition) and the next sections.
+In React 19, the above example can be simplified to:
+
+```js
+// Using <form> Actions and useActionState
+function ChangeName({ name, setName }) {
+  const [error, submitAction, isPending] = useActionState(
+    async (previousState, formData) => {
+      const error = await updateName(formData.get("name"));
+      if (error) {
+        return error;
+      }
+      redirect("/path");
+    }
+  );
+
+  return (
+    <form action={submitAction}>
+      <input type="text" name="name" />
+      <button type="submit" disabled={isPending}>Update</button>
+      {error && <p>{error}</p>}
+    </form>
+  );
+}
+```
+
+In the next section, we'll break down each of the new Action features in React 19.
 
 ### New Hook: `useActionState` {/*new-hook-useactionstate*/}
 
 To make the common cases easier for Actions, we've added a new hook called `useActionState`:
 
-```js {2,9}
-const [name, setName] = useState('');
-const [error, submitAction, isPending] = useActionState(async () => {
-  const {error} = await updateName(name);
-  setName('');
+```js
+const [error, submitAction, isPending] = useActionState(async (previousState, newName) => {
+  const {error} = await updateName(newName);
+  if (!error) {
+    // You can return any result of the action.
+    // Here, we return only the error.
+    return error;
+  }
   
-  // You can return any result of the action.
-  // Here, we return only the error.
-  return error;
+  // handle success
 });
 ```
 
@@ -126,17 +173,8 @@ For more information, see the docs for [`useActionState`](/reference/react/useAc
 
 Actions are also integrated with React 19's new `<form>` features. We've added support for passing functions as the `action` and `formAction` props of `<form>`, `<input>`, and `<button>` elements to automatically submit forms with Actions:
 
-```js {1,3,7-8}
-const [state, submitAction, isPending] = useActionState(async (formData) => {
-  return await updateName(formData.get('name'));
-})
-
-return (
-  <form action={submitAction}>
-    <input type="text" name="name" disabled={isPending}/>
-    {!state.success && <span>Failed: {state.error}</span>}
-  </form>
-)
+```js [[1,1,"actionFunction"]]
+<form action={actionFunction}>
 ```
 
 When a `<form>` Action succeeds, React will automatically reset the form for uncontrolled components. If you need to reset the `<form>` manually, you can call the new [`requestFormReset`](/todo) React DOM API.
@@ -158,35 +196,38 @@ function DesignButton() {
 
 For more information, see the docs for [`useFormStatus`](/reference/react-dom/hooks/useFormStatus).
 
-### New Hook: `useOptimistic` {/*new-feature-optimistic-updates*/}
+### New Hook: `useOptimistic` {/*new-hook-optimistic-updates*/}
 
 Another common UI pattern when performing a data mutation is to show the final state optimistically while the async request is underway. In React 19, we're adding a new hook called `useOptimistic` to make this easier:
 
 ```js {2,6,13,19}
-const [name, setName] = useState("");
-const [optimisticName, setOptimisticName] = useOptimistic(name);
+function ChangeName({currentName, onUpdateName}) {
+  const [optimisticName, setOptimisticName] = useOptimistic(currentName);
 
-const submitAction = async (formData) => {
-  const newName = formData.get("name");
-  setOptimisticName(newName);
-  const updatedName = await updateName(newName);
-  setName(updatedName);
-};
+  const submitAction = async formData => {
+    const newName = formData.get("name");
+    setOptimisticName(newName);
+    await updateName(newName);
+    onUpdateName(updatedName);
+  };
 
-return (
-  <form action={submitAction}>
-    <p>Your name is: {optimisticName}</p>
-    <p>
-      <label>Change Name:</label>
-      <input
-        type="text"
-        name="name"
-        disabled={name !== optimisticName}/>
-    </p>
-  </form>
-);
+  return (
+    <form action={submitAction}>
+      <p>Your name is: {optimisticName}</p>
+      <p>
+        <label>Change Name:</label>
+        <input
+          type="text"
+          name="name"
+          disabled={currentName !== optimisticName}
+        />
+      </p>
+    </form>
+  );
+}
 ```
-The `useOptimistic` hook will immediately render the `optimisticName` while the `updateName` request is in progress. When the update finishes or errors, React will automatically switch back to the original `name` value.
+
+The `useOptimistic` hook will immediately render the `optimisticName` while the `updateName` request is in progress. When the update finishes or errors, React will automatically switch back to the `currentName` value.
 
 For more information, see the docs for [`useOptimistic`](/reference/react/useOptimistic).
 

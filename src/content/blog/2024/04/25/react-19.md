@@ -2,7 +2,7 @@
 title: "React 19 Beta"
 ---
 
-April 25, 2024, by [The React Team](/community/team)
+April 25, 2024 by [The React Team](/community/team)
 
 ---
 

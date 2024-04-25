@@ -433,7 +433,7 @@ TODO
 
 TODO
 
-### Changes for libraries depending on internals {/*changes-for-libraries-depending-on-internals*/}
+### Libraries depending on React internals may block upgrades {/*libraries-depending-on-react-internals-may-block-upgrades*/}
 
 This release includes changes to React internals that may impact libraries that ignore our pleas to not use internals like `SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED`. These changes are necessary to land improvements in React 19, and will not break libraries that follow our guidelines.
 
@@ -445,25 +445,25 @@ To reflect the impact of using internals, we have renamed the `SECRET_INTERNALS`
 
 In the future we will more aggressively block accessing internals from React to discourage usage and ensure users are not blocked from upgrading.
 
+## Changlog {/*changelog*/}
 
-## Other Breaking Changes {/*other-breaking-changes*/}
+### Other Breaking Changes {/*other-breaking-changes*/}
 
+- **react-dom**: Error for javascript URLs in src/href [#26507](https://github.com/facebook/react/pull/26507)
+- **react-dom**: Remove `errorInfo.digest` from `onRecoverableError` [#28222](https://github.com/facebook/react/pull/28222)
+- **react-dom**: Remove `unstable_flushControlled` [#26397](https://github.com/facebook/react/pull/26397)
+- **react-dom**: Remove `unstable_createEventHandle` [#28271](https://github.com/facebook/react/pull/28271)
+- **react-dom**: Remove `unstable_renderSubtreeIntoContainer` [#28271](https://github.com/facebook/react/pull/28271)
+- **react-dom**: Remove `unstable_runWithPrioirty` [#28271](https://github.com/facebook/react/pull/28271)
+- **react-is**: Remove deprecated methods from `react-is` [28224](https://github.com/facebook/react/pull/28224)
 
+### Other Notable Changes {/*other-notable-changes*/}
 
-- react-dom: Removed unstable_renderSubtreeIntoContainer
-- react-dom: Remove `errorInfo.digest` with warning
-- react-dom: Error and do not allow javascript URLs in src/href https://github.com/facebook/react/pull/26507
-- react-is: Remove deprecated methods from react-is
+- **react**: Batch sync, default and continuous lanes [#25700](https://github.com/facebook/react/pull/25700)
+- **react**: Don't prerender siblings of suspended component [#26380](https://github.com/facebook/react/pull/26380)
+- **react**: Detect infinite update loops caused by render phase updates [#26625](https://github.com/facebook/react/pull/26625)
+- **react-dom**: Transitions in popstate are now synchronous [#26025](https://github.com/facebook/react/pull/26025)
+- **react-dom**: Remove layout effect warning during SSR [#26395](https://github.com/facebook/react/pull/26395)
+- **react-dom**: Warn and don’t set empty string for src/href (except anchor tags) [#28124](https://github.com/facebook/react/pull/28124)
 
-## Other Notable Changes {/*other-notable-changes*/}
-
-#### React {/*other-notable-changes-react*/}
-- react: Don't prerender siblings of suspended component https://github.com/facebook/react/pull/26380
-- better infinite loop detection
-- unified sync lane https://github.com/facebook/react/pull/25700
-
-#### React DOM {/*other-notable-changes-react-dom*/}
-- Transitions in popstate are now synchronous
-- Removed layout effect warning during SSR.
-- Removed workaround for IE style sorting hydration errors
-- Warn and don’t set empty string attributes for src/href except anchor tags
+We'll publish the full changelog with the stable release of React 19.

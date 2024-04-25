@@ -629,7 +629,7 @@ function App() {
 
 In all rendering environments async scripts will be deduplicated so that React will only load and execute the script once even if it is rendered by multiple difference components.
 
-In Server Side Rendering async scripts will be included in the `<head>` priorized behind more critical resources that block paint such as stylesheets, fonts, and image preloads.
+In Server Side Rendering async scripts will be included in the `<head>` and prioritized behind more critical resources that block paint such as stylesheets, fonts, and image preloads.
 
 For more details, read the docs for [`<script>`](/reference/react-dom/components/script).
 

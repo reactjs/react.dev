@@ -435,7 +435,15 @@ TODO
 
 ### Changes for libraries depending on internals {/*changes-for-libraries-depending-on-internals*/}
 
-TODO
+This release includes changes to React internals that may impact libraries that ignore our pleas to not use internals like `SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED`. These changes are necessary to land improvements in React 19, and will not break libraries that follow our guidelines.
+
+Based on our [Versioning Policy](https://react.dev/community/versioning-policy#what-counts-as-a-breaking-change), these updates are not listed as breaking changes, and we are not including docs for how to upgrade them. The recommendation is to remove any code that depends on internals.
+
+To reflect the impact of using internals, we have renamed the `SECRET_INTERNALS` suffix to: 
+
+`_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE`
+
+In the future we will more aggressively block accessing internals from React to discourage usage and ensure users are not blocked from upgrading.
 
 
 ## Other Breaking Changes {/*other-breaking-changes*/}

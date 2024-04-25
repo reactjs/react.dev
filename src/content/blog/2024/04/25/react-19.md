@@ -517,7 +517,7 @@ For more, see [`useDeferredValue`](/reference/react/useDeferredValue).
 
 ### Support for Document Metadata {/*support-for-metadata-tags*/}
 
-In HTML, document metadata tags like `<title>` `<link>` and `<meta>` are reserved for placement in the `<head>` section of the document. In React, the component that decides what metadata is appropriate for the app may be very far from the place where you rendere the `<head>` or the no `<head>` is rendered by React at all. In the past, these elements would need to be inserted manually in an effect, or by libraries like [`react-helmet`](github.com/nfl/react-helmet) and required careful handling when server rendering a React application. 
+In HTML, document metadata tags like `<title>`, `<link>`, and `<meta>` are reserved for placement in the `<head>` section of the document. In React, the component that decides what metadata is appropriate for the app may be very far from the place where you render the `<head>` or React does not render the `<head>` at all. In the past, these elements would need to be inserted manually in an effect, or by libraries like [`react-helmet`](https://github.com/nfl/react-helmet), and required careful handling when server rendering a React application. 
 
 In React 19, we're adding support for rendering document metadata tags in components natively:
 

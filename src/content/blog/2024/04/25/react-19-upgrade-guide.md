@@ -25,7 +25,7 @@ To help make the upgrade easier, today we are also publishing React 18.3.
 
 #### React 18.3 has also been published {/*react-18-3*/}
 
-To help make the upgrade to React 19 easier, we've published a `react@18.3` release that only includes warnings for deprecated APIs and other changes that are needed for React 19. 
+To help make the upgrade to React 19 easier, we've published a `react@18.3` release that is identical to 18.2 but adds warnings for deprecated APIs and other changes that are needed for React 19. 
 
 We recommend upgrading to React 18.3 first to help identify any issues before upgrading to React 19.
 
@@ -440,20 +440,23 @@ We are deprecating `react-test-renderer` because it implements its own renderer 
 
 The test renderer was created before there were more viable testing strategies available like [React Testing Library](https://testing-library.com), and we now recommend using a modern testing library instead.
 
-In React 19, `react-test-renderer` log a deprecation warning, and has switched to concurrent rendering. We recommend migrating your tests to [@testing-library/react](https://testing-library.com/docs/react-testing-library/intro/) or [@testing-library/react-native](https://callstack.github.io/react-native-testing-library/docs/getting-started) for a modern and well supported testing experience.
+In React 19, `react-test-renderer` logs a deprecation warning, and has switched to concurrent rendering. We recommend migrating your tests to [@testing-library/react](https://testing-library.com/docs/react-testing-library/intro/) or [@testing-library/react-native](https://callstack.github.io/react-native-testing-library/docs/getting-started) for a modern and well supported testing experience.
 
 ## Notable Changes {/*notable-changes*/}
 
 ### StrictMode changes {/*strict-mode-improvements*/}
 
-TODO
+React 19 includes several fixes and improvements to Strict Mode.
 
-- https://github.com/facebook/react/pull/25583
-- https://github.com/facebook/react/pull/25049
+When double rendering in Strict Mode in development, `useMemo` and `useCallback` will reuse the memoized results from the first render during the second render. Components that are already Strict Mode compatible should not notice a difference in behavior.
+
+As with all Strict Mode behaviors, these features are designed to proactively surface bugs in your components during development so you can fix them before they are shipped to production. For example, during development, Strict Mode will double-invoke ref callback functions on initial mount, to simulate what happens when a mounted component is replaced by a Suspense fallback.
 
 ### UMD builds removed {/*umd-builds-removed*/}
 
-UMD was widely used in the past as a convenient way to load React without a build step. Now, there are modern alternatives for loading modules as scripts in HTML documents. Starting with React 19, React will no longer produce UMD builds to reduce the complexity of its testing and release process. If you want to load React 19 using a script tag, we recommend using an ESM-based CDN such as [esm.sh](https://esm.sh/).
+UMD was widely used in the past as a convenient way to load React without a build step. Now, there are modern alternatives for loading modules as scripts in HTML documents. Starting with React 19, React will no longer produce UMD builds to reduce the complexity of its testing and release process. 
+
+To load React 19 with a script tag, we recommend using an ESM-based CDN such as [esm.sh](https://esm.sh/).
 
 ```html
 <script type="module">
@@ -506,9 +509,9 @@ _This change is included in the `react-19` codemod preset as [`no-implicit-ref-c
 
 Due to the introduction of ref cleanup functions, returning anything else from a ref callback will now be rejected by TypeScript. The fix is usually to stop using implicit returns:
 
-```diff
--<div ref={current => (instance = current)} />
-+<div ref={current => {instance = current}} />
+```diff [[1, 1, "("], [1, 1, ")"], [2, 2, "{", 15], [2, 2, "}", 1]]
+- <div ref={current => (instance = current)} />
++ <div ref={current => {instance = current}} />
 ```
 
 The original code returned the instance of the `HTMLDivElement` and TypeScript wouldn't know if this was supposed to be a cleanup function or not.

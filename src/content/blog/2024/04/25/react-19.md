@@ -252,18 +252,44 @@ function Comments({commentsPromise}) {
 }
 ```
 
-Or you can read context with `use`:
+<Note>
 
-```js {1,5}
+#### `use` does not support promises created in render. {/*use-does-not-support-promises-created-in-render*/}
+
+If you try to pass a promise created in render to `use`, React will warn:
+
+<ConsoleBlockMulti>
+
+<ConsoleLogLine level="error">
+
+A component was suspended by an uncached promise. Creating promises inside a Client Component or hook is not yet supported, except via a Suspense-compatible library or framework.
+
+</ConsoleLogLine>
+
+</ConsoleBlockMulti>
+
+To fix, you need to pass a promise from a suspense powered library or framework that supports caching for promises. In the future we plan to ship features to make it easier to cache promises in render.
+
+</Note>
+
+You can also read context with `use`, allowing you to react Context conditionally:
+
+```js {1,8,10}
 import {use} from 'react';
-import ThemeContext from './ThemeContext'
+import LightThemeContext from './LightThemeContext'
+import DarkThemeContext from './ThemeContext'
 
-function ThemedPage({children}) {
-  const theme = use(ThemeContext);
+function ThemedPage({theme, children}) {
+  let theme;
+  if (theme === 'dark') {
+    theme = use(DarkThemeContext);
+  } else {
+    theme = use(LightThemeContext);
+  } 
   return (
-    <div className={theme === 'dark' ? 'dark' : 'light'}>
+    <Page theme={theme}>
       {children}
-    </div>
+    </Page>
   );
 }
 ```
@@ -321,9 +347,9 @@ For more, see the docs for [React Server Actions](/reference/rsc/server-actions)
 
 Starting in React 19, you can now access `ref` as a prop for function components:
 
-```js [[1, 1, "ref"], [1, 2, "ref", 20]]
-function MyInput({ref}) {
-  return <input ref={ref} />
+```js [[1, 1, "ref"], [1, 2, "ref", 45], [1, 6, "ref", 14]]
+function MyInput({placeholder, ref}) {
+  return <input placeholder={placeholder} ref={ref} />
 }
 
 //...
@@ -432,19 +458,17 @@ New Context providers can use `<Context>` and we will be publishing a codemod to
 We now support returning a cleanup function from `ref` callbacks:
 
 ```js {7-11}
-function Input() {
-  const ref = useRef();
-  
-  return <input ref={(ref) => {
-    ref.current = ref;
+<input
+  ref={(ref) => {
+    // ref created
 
     // NEW: return a cleanup funtion to reset
-    // the ref when element is removed from DOM. 
+    // the ref when element is removed from DOM.
     return () => {
-      ref.current = null;
-    }
-  }} />;
-}
+      // ref cleanup
+    };
+  }}
+/>
 ```
 
 When the component unmounts, React will call the cleanup function returned from the ref callback. This works for DOM refs, refs to class components, and `useImperitiveHandle`. 
@@ -570,7 +594,9 @@ For more details, read the docs for [`<link>`](/reference/react-dom/components/l
 
 ### Support for async scripts {/*support-for-async-scripts*/}
 
-In HTML normal scripts (`<script src="...">`) and deferred scripts (`<script defer="" src="...">`) load in document order which makes rendering these kinds of scripts deep within your component tree challenging. Async scripts (`<script async="" src="...">`) however will load in arbitrary order and in React 19 we've included better support for async scripts by allowing you to render them anywhere in your component tree, inside the components that actually depend on the script, without having to manage relocating and deduplicating script instances.
+In HTML normal scripts (`<script src="...">`) and deferred scripts (`<script defer="" src="...">`) load in document order which makes rendering these kinds of scripts deep within your component tree challenging. Async scripts (`<script async="" src="...">`) however will load in arbitrary order.
+
+In React 19 we've included better support for async scripts by allowing you to render them anywhere in your component tree, inside the components that actually depend on the script, without having to manage relocating and deduplicating script instances.
 
 ```js
 function MyComponent() {

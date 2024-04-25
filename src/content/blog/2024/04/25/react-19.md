@@ -211,7 +211,7 @@ function ChangeName({currentName, onUpdateName}) {
   const submitAction = async formData => {
     const newName = formData.get("name");
     setOptimisticName(newName);
-    await updateName(newName);
+    const updatedName = await updateName(newName);
     onUpdateName(updatedName);
   };
 

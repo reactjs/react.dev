@@ -464,6 +464,9 @@ function BlogPost({post}) {
       <meta name="author" content="Josh" />
       <link rel="author" href="...Josh's href" />
       <meta name="keywords" content={post.keywords} />
+      <p>
+        Eee equals em-see-squared...
+      </p>
     </article>
   );
 }
@@ -512,7 +515,7 @@ function App() {
   return <>
     <ComponentOne />
     ...
-    <ComponentOne />    <-- won't lead to a duplicate stylesheet link in the DOM
+    <ComponentOne /> // won't lead to a duplicate stylesheet link in the DOM
   </>
 }
 ```
@@ -536,6 +539,16 @@ function MyComponent() {
     </div>
   )
 }
+
+function App() {
+  <html>
+    <body>
+      <MyComponent>
+      ...
+      <MyComponent> // won't lead to duplicate script in the DOM
+    </body>
+  </html>
+}
 ```
 
 In all rendering environments async scripts will be deduplicated so that React will only load and execute the script once even if it is rendered by multiple difference components
@@ -544,7 +557,7 @@ In Server Side Rendering async scripts will be included in the `<head>` priorize
 
 For more details, read the docs for [`<script>`](/reference/react-dom/components/script).
 
-### Support for preloading Resources (/*support-for-preloading-resources*/) {/*support-for-preloading-resources-support-for-preloading-resources*/}
+### Support for preloading Resources {/*support-for-preloading-resources*/}
 
 During initial document loads and on client side updates the ability to tell the Browser about resources that it will likely need to load as early as possible can have a dramatic effect on percieved page peformance.
 
@@ -564,7 +577,8 @@ function MyComponent() {
 <!-- the above would resul in the following DOM/HTML -->
 <html>
   <head>
-    <link rel="prefetch-dns" href="https://..."> <!-- links are prioritized by their utility to early loading, not call order -->
+    <!-- links/scripts are prioritized by their utility to early loading, not call order -->
+    <link rel="prefetch-dns" href="https://...">
     <link rel="preconnect" href="https://...">
     <link rel="preload" as="font" href="https://.../path/to/font.woff">
     <link rel="preload" as="style" href="https://.../path/to/stylesheet.css">
@@ -581,29 +595,6 @@ These APIs can be used to make initial page loads optimized for instance by movi
 These APIs can be used to make client updates faster for instance by prefetching a list of resources used by an anticipated navigation and then eagerly preloading those resources on click or even on hover.
 
 For more details see [Resource Preloading APIs](/reference/react-dom#resource-preloading-apis).
-
-### Support for Document Resources {/*support-for-document-resources*/}
-
-In HTML, document resource tags like `<script>`, `<style>` and `<link>` are used to load external resources for the page. In React, it's often convenient these elements deeper in the tree, but in the past React would silently ignore these tags when rendered in a component. These elements can be inserted manually in an effect, and libraries like [`react-helmet`](github.com/nfl/react-helmet) have made this easier.
-
-In React 19, we're adding support for rendering document resources:
-
-```js
-return (
-  <div>
-    <p>Hello World</p>
-    <title>Hello World</title>
-    <link rel="icon" href="favicon.ico" />
-    <style>{` p { color: red; } `}</style>
-    <script src="script.js" async />
-  </div>
-);
-```
-When React renders this component, it will see the `<link>`, `<style>`, and `<script>` tags and hoist them to the `<head>` of the document.
-
-For some resource elements, React will suspend while waiting for the resource to load (such as a `<link>` to a CSS file). This ensures that styles are available before the components are displayed, preventing flashes of un-styled content. React may also dedupe some elements to ensure duplicate resources are not loaded.
-
-To optimize performance, React will dedupe elements if they refer to equivalent resources. For more details, read the docs for [Resource and Metadata Components](/reference/react-dom/components#resource-and-metadata-components).
 
 ### Compatability with third-party scripts and extensions {/*compatability-with-third-party-scripts-and-extensions*/}
 

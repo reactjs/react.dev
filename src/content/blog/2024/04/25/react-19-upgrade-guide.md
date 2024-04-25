@@ -250,9 +250,7 @@ class MyComponent extends React.Component {
 
 <Note>
 
-To help with the migration, we will be publishing a [react-codemod](https://github.com/reactjs/react-codemod/#string-refs) to automatically replace string refs with `ref` callbacks.
-
-Follow [this PR](https://github.com/reactjs/react-codemod/pull/309) for updates and to try it out.
+To help with the migration, we will be publishing a [react-codemod](https://github.com/reactjs/react-codemod/#string-refs) to automatically replace string refs with `ref` callbacks. Follow [this PR](https://github.com/reactjs/react-codemod/pull/309) for updates and to try it out.
 
 </Note>
 

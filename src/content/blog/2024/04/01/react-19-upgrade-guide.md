@@ -449,9 +449,7 @@ TODO
 
 ### UMD builds removed {/*umd-builds-removed*/}
 
-UMD builds are not well tested by React's own tooling and add project complexity and release overhead. While UMD was widely used in the past and a convenient way to load React without a build step it is no longer widely used and there are modern alternatives to loading modules as scripts in HTML Documents.
-
-In React 19 there are no more UMD builds. If you want to load React 19 using a script tag try using ESM based CDN such as [esm.sh](https://esm.sh/)
+UMD was widely used in the past as a convenient way to load React without a build step. Now, there are modern alternatives for loading modules as scripts in HTML documents. Starting with React 19, React will no longer produce UMD builds to reduce the complexity of its testing and release process. If you want to load React 19 using a script tag, we recommend using an ESM-based CDN such as [esm.sh](https://esm.sh/).
 
 ```html
 <script type="module">

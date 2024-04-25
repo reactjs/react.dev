@@ -36,10 +36,10 @@ For a list of changes in 18.3 see the [Release Notes](https://github.com/faceboo
 In this post, we will guide you through the steps for upgrading libraries to React 19 beta:
 
 - [Installing](#installing)
-- [Breaking Changes](#breaking-changes)
-- [New Deprecations](#new-deprecations)
-- [Notable Changes](#notable-changes)
-- [TypeScript Changes](#typescript-changes)
+- [Breaking changes](#breaking-changes)
+- [New deprecations](#new-deprecations)
+- [Notable changes](#notable-changes)
+- [TypeScript changes](#typescript-changes)
 - [Changelog](#changelog)
 
 If you'd like to help us test React 19, follow the steps in this upgrade guide and [report any issues](https://github.com/facebook/react/issues/new?assignees=&labels=React+19&projects=&template=19.md&title=%5BReact+19%5D) you encounter. For a list of new features added to React 19 beta, see the [React 19 release post](/blog/2024/04/25/react-19).
@@ -92,10 +92,10 @@ If you're using TypeScript, you also need to update the types. Once React 19 is 
 }
 ```
 
-We're also including a codemod for the most common replacements. See [Removed TypeScript Types](#removed-deprecated-typescript-types) below.
+We're also including a codemod for the most common replacements. See [TypeScript changes](#typescript-changes) below.
 
 
-## Breaking Changes {/*breaking-changes*/}
+## Breaking changes {/*breaking-changes*/}
 
 ### Errors in render are not re-thrown {/*errors-in-render-are-not-re-thrown*/}
 
@@ -163,7 +163,7 @@ Legacy Context was only available in class components using the APIs `contextTyp
 
 If you're still using Legacy Context in class components, you'll need to migrate to the new `contextType` API:
 
-```js
+```js {5-11,19-21}
 // Before
 import PropTypes from 'prop-types';
 
@@ -192,7 +192,7 @@ class Child extends React.Component {
 }
 ```
 
-```js
+```js {2,7,9,15}
 // After
 const FooContext = React.createContext();
 
@@ -222,7 +222,7 @@ Class components supported string refs before being replaced by ref callbacks du
 
 If you're still using string refs in class components, you'll need to migrate to ref callbacks:
 
-```js
+```js {4,8}
 // Before
 class MyComponent extends React.Component {
   componentDidMount() {
@@ -235,7 +235,7 @@ class MyComponent extends React.Component {
 }
 ```
 
-```js
+```js {4,8}
 // After
 class MyComponent extends React.Component {
   componentDidMount() {
@@ -414,7 +414,7 @@ function AutoselectingInput() {
 }
 ```
 
-## New Deprecations {/*new-deprecations*/}
+## New deprecations {/*new-deprecations*/}
 
 ### Deprecated: `element.ref` {/*deprecated-element-ref*/}
 
@@ -440,7 +440,7 @@ The test renderer was created before there were more viable testing strategies a
 
 In React 19, `react-test-renderer` logs a deprecation warning, and has switched to concurrent rendering. We recommend migrating your tests to [@testing-library/react](https://testing-library.com/docs/react-testing-library/intro/) or [@testing-library/react-native](https://callstack.github.io/react-native-testing-library/docs/getting-started) for a modern and well supported testing experience.
 
-## Notable Changes {/*notable-changes*/}
+## Notable changes {/*notable-changes*/}
 
 ### StrictMode changes {/*strict-mode-improvements*/}
 
@@ -476,7 +476,7 @@ To reflect the impact of using internals, we have renamed the `SECRET_INTERNALS`
 
 In the future we will more aggressively block accessing internals from React to discourage usage and ensure users are not blocked from upgrading.
 
-## TypeScript Changes {/*typescript-changes*/}
+## TypeScript changes {/*typescript-changes*/}
 
 ### Removed deprecated TypeScript types {/*removed-deprecated-typescript-types*/}
 
@@ -574,7 +574,7 @@ type Example = ReactElement["props"];
 
 You should only need it if you have a lot of legacy code relying on unsound access of element props. Element introspection only exists as an escape hatch, and you should make it explicit that your props access is unsound via an explicit `any`.
 
-### The JSX Namespace in TypeScript {/*the-jsx-namespace-in-typescript*/}
+### The JSX namespace in TypeScript {/*the-jsx-namespace-in-typescript*/}
 This change is included in the `react-19` codemod preset as [`scoped-jsx`](https://github.com/eps1lon/types-react-codemod#scoped-jsx)
 
 A long-time request is to remove the global `JSX` namespace from our types in favor of `React.JSX`. This helps prevent pollution of global types which prevents conflicts between different UI libraries that leverage JSX.
@@ -629,7 +629,7 @@ const reducer = (state: State, action: Action) => state;
 
 ## Changlog {/*changelog*/}
 
-### Other Breaking Changes {/*other-breaking-changes*/}
+### Other breaking changes {/*other-breaking-changes*/}
 
 - **react-dom**: Error for javascript URLs in src/href [#26507](https://github.com/facebook/react/pull/26507)
 - **react-dom**: Remove `errorInfo.digest` from `onRecoverableError` [#28222](https://github.com/facebook/react/pull/28222)
@@ -639,7 +639,7 @@ const reducer = (state: State, action: Action) => state;
 - **react-dom**: Remove `unstable_runWithPrioirty` [#28271](https://github.com/facebook/react/pull/28271)
 - **react-is**: Remove deprecated methods from `react-is` [28224](https://github.com/facebook/react/pull/28224)
 
-### Other Notable Changes {/*other-notable-changes*/}
+### Other notable changes {/*other-notable-changes*/}
 
 - **react**: Batch sync, default and continuous lanes [#25700](https://github.com/facebook/react/pull/25700)
 - **react**: Don't prerender siblings of suspended component [#26380](https://github.com/facebook/react/pull/26380)

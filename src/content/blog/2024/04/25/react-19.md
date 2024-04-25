@@ -22,7 +22,7 @@ In our [React 19 Beta Upgrade Guide](/blog/2024/04/25/react-19-upgrade-guide), w
 
 - [What's new in React 19](#whats-new-in-react-19)
 - [Improvements in React 19](#improvements-in-react-19)
-- [How to Upgrade](#how-to-upgrade)
+- [How to upgrade](#how-to-upgrade)
 
 For a list of breaking changes, see the [Upgrade Guide](/blog/2024/04/25/react-19-upgrade-guide).
 
@@ -144,7 +144,7 @@ function ChangeName({ name, setName }) {
 
 In the next section, we'll break down each of the new Action features in React 19.
 
-### New Hook: `useActionState` {/*new-hook-useactionstate*/}
+### New hook: `useActionState` {/*new-hook-useactionstate*/}
 
 To make the common cases easier for Actions, we've added a new hook called `useActionState`:
 
@@ -185,7 +185,7 @@ When a `<form>` Action succeeds, React will automatically reset the form for unc
 
 For more information, see the docs for [`<form>`](/reference/react-dom/components/form), [`<input>`](/reference/react-dom/components/input), and [`<button>`](/reference/react-dom/components/button).
 
-### New Hook: `useFormStatus` {/*new-hook-useformstatus*/}
+### New hook: `useFormStatus` {/*new-hook-useformstatus*/}
 
 In design systems, it's common to write design components that need access to information about the `<form>` they're in, without drilling props down to the component. This can be done via Context, but to make the common case easier, we've added a new hook `useFormStatus`:
 
@@ -200,7 +200,7 @@ function DesignButton() {
 
 For more information, see the docs for [`useFormStatus`](/reference/react-dom/hooks/useFormStatus).
 
-### New Hook: `useOptimistic` {/*new-hook-optimistic-updates*/}
+### New hook: `useOptimistic` {/*new-hook-optimistic-updates*/}
 
 Another common UI pattern when performing a data mutation is to show the final state optimistically while the async request is underway. In React 19, we're adding a new hook called `useOptimistic` to make this easier:
 
@@ -364,7 +364,7 @@ New function components will no longer need `forwardRef`, and we will be publish
 
 </Note>
 
-### Diffs for Hydration Errors {/*diffs-for-hydration-errors*/}
+### Diffs for hydration errors {/*diffs-for-hydration-errors*/}
 
 We also improved error reporting for hydration errors. For example, instead of logging multiple errors in DEV without any information about the mismatch:
 
@@ -493,7 +493,7 @@ The original code returned the instance of the `HTMLDivElement` and TypeScript w
 You can codemod this pattern with [`no-implicit-ref-callback-return
 `](https://github.com/eps1lon/types-react-codemod/#no-implicit-ref-callback-return).
 
-### `useDeferredValue` inital value {/*use-deferred-value-initial-value*/}
+### `useDeferredValue` initial value {/*use-deferred-value-initial-value*/}
 
 We've added an `initalValue` option to `useDeferredValue`:
 
@@ -675,7 +675,7 @@ When hydrating, if an element that renders on the client doesn't match the eleme
 
 In React 19, unexpected tags in the `<head>` and `<body>` will be skipped over, avoiding the mismatch errors. If React needs to re-render the entire document due to an unrelated hydration mismatch, it will leave in place stylesheets inserted by third-party scripts and browser extensions.
 
-### Better Error Reporting {/*error-handling*/}
+### Better error reporting {/*error-handling*/}
 
 We improved error handling in React 19 to remove duplication and provide options for handling caught and uncaught errors. For example, when there's an error in render caught by an Error Boundary, previously React would throw the error twice (once for the original error, then again after failing to automatically recover), and then call `console.error` with info about where the error occurred. 
 
@@ -743,7 +743,7 @@ Additionally, we've added two new root options to complement `onRecoverableError
 
 For more info and examples, see the docs for [`createRoot`](/reference/react-dom/client/createRoot) and [`hydrateRoot`](/reference/react-dom/client/hydrateRoot).
 
-### Custom Element Support {/*support-for-web-components*/}
+### Support for Custom Elements {/*support-for-custom-elements*/}
 
 React 19 adds full support for custom elements and passes all tests on [Custom Elements Everywhere](https://custom-elements-everywhere.com/).
 
@@ -755,7 +755,7 @@ In past versions, using Custom Elements in React has been difficult because Reac
 Thanks to [Joey Arhar](https://github.com/josepharhar) for driving the design and implementation of Custom Element support in React.
 
 
-#### How to Upgrade {/*how-to-upgrade*/}
+#### How to upgrade {/*how-to-upgrade*/}
 See the [React 19 Upgrade Guide](/blog/2024/04/25/react-19-upgrade-guide) for step-by-step instructions and a full list of breaking and notable changes.
 
 

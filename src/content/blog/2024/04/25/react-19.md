@@ -22,7 +22,7 @@ In our [React 19 Beta Upgrade Guide](/blog/2024/04/25/react-19-upgrade-guide), w
 
 - [What's new in React 19](#whats-new-in-react-19)
 - [Improvements in React 19](#improvements-in-react-19)
-- [How to Upgrade](#how-to-upgrade)
+- [How to upgrade](#how-to-upgrade)
 
 For a list of breaking changes, see the [Upgrade Guide](/blog/2024/04/25/react-19-upgrade-guide).
 
@@ -115,7 +115,7 @@ Actions automatically manage submitting data for you:
 
 </Note>
 
-Building on top of Actions, we're also introducing [`<form>` Actions](#form-actions) to manage forms automatically, [`useOptimistic`](#new-hook-optimistic-updates) to manage optimistic updates, and new hooks [`useActionState`](#new-hook-useactionstate), [`useFormStatus`](#new-hook-useformstatus) hooks to support the common cases for Actions and Forms.
+Building on top of Actions, we're also introducing [`<form>` Actions](#form-actions) to manage forms automatically, [`useOptimistic`](#new-hook-optimistic-updates) to manage optimistic updates, and new hooks [`useActionState`](#new-hook-useactionstate), [`useFormStatus`](#new-hook-useformstatus) to support the common cases for Actions and Forms.
 
 In React 19, the above example can be simplified to:
 
@@ -144,7 +144,7 @@ function ChangeName({ name, setName }) {
 
 In the next section, we'll break down each of the new Action features in React 19.
 
-### New Hook: `useActionState` {/*new-hook-useactionstate*/}
+### New hook: `useActionState` {/*new-hook-useactionstate*/}
 
 To make the common cases easier for Actions, we've added a new hook called `useActionState`:
 
@@ -185,7 +185,7 @@ When a `<form>` Action succeeds, React will automatically reset the form for unc
 
 For more information, see the docs for [`<form>`](/reference/react-dom/components/form), [`<input>`](/reference/react-dom/components/input), and [`<button>`](/reference/react-dom/components/button).
 
-### New Hook: `useFormStatus` {/*new-hook-useformstatus*/}
+### New hook: `useFormStatus` {/*new-hook-useformstatus*/}
 
 In design systems, it's common to write design components that need access to information about the `<form>` they're in, without drilling props down to the component. This can be done via Context, but to make the common case easier, we've added a new hook `useFormStatus`:
 
@@ -200,7 +200,7 @@ function DesignButton() {
 
 For more information, see the docs for [`useFormStatus`](/reference/react-dom/hooks/useFormStatus).
 
-### New Hook: `useOptimistic` {/*new-hook-optimistic-updates*/}
+### New hook: `useOptimistic` {/*new-hook-optimistic-updates*/}
 
 Another common UI pattern when performing a data mutation is to show the final state optimistically while the async request is underway. In React 19, we're adding a new hook called `useOptimistic` to make this easier:
 
@@ -272,7 +272,7 @@ To fix, you need to pass a promise from a suspense powered library or framework 
 
 </Note>
 
-You can also read context with `use`, allowing you to react Context conditionally:
+You can also read context with `use`, allowing you to read Context conditionally:
 
 ```js {1,8,10}
 import {use} from 'react';
@@ -364,7 +364,7 @@ New function components will no longer need `forwardRef`, and we will be publish
 
 </Note>
 
-### Diffs for Hydration Errors {/*diffs-for-hydration-errors*/}
+### Diffs for hydration errors {/*diffs-for-hydration-errors*/}
 
 We also improved error reporting for hydration errors. For example, instead of logging multiple errors in DEV without any information about the mismatch:
 
@@ -457,7 +457,7 @@ New Context providers can use `<Context>` and we will be publishing a codemod to
 
 We now support returning a cleanup function from `ref` callbacks:
 
-```js {7-11}
+```js {7-9}
 <input
   ref={(ref) => {
     // ref created
@@ -481,13 +481,11 @@ In future versions, we will deprecate calling refs with `null` when unmounting c
 
 </Note>
 
-Due to the introduction of ref cleanup functions, returning anything else from a `ref` callback will now be rejected by TypeScript.
+Due to the introduction of ref cleanup functions, returning anything else from a `ref` callback will now be rejected by TypeScript. The fix is usually to stop using implicit returns, for example:
 
-The fix is usually to stop using implicit returns, for example:
-
-```diff
--<div ref={current => (instance = current)} />
-+<div ref={current => {instance = current}} />
+```diff [[1, 1, "("], [1, 1, ")"], [2, 2, "{", 15], [2, 2, "}", 1]]
+- <div ref={current => (instance = current)} />
++ <div ref={current => {instance = current}} />
 ```
 
 The original code returned the instance of the `HTMLDivElement` and TypeScript wouldn't know if this was _supposed_ to be a cleanup function or if you didn't want to return a cleanup function.
@@ -495,7 +493,7 @@ The original code returned the instance of the `HTMLDivElement` and TypeScript w
 You can codemod this pattern with [`no-implicit-ref-callback-return
 `](https://github.com/eps1lon/types-react-codemod/#no-implicit-ref-callback-return).
 
-### `useDeferredValue` inital value {/*use-deferred-value-initial-value*/}
+### `useDeferredValue` initial value {/*use-deferred-value-initial-value*/}
 
 We've added an `initalValue` option to `useDeferredValue`:
 
@@ -521,7 +519,7 @@ In HTML, document metadata tags like `<title>`, `<link>`, and `<meta>` are reser
 
 In React 19, we're adding support for rendering document metadata tags in components natively:
 
-```js {5,6}
+```js {5-8}
 function BlogPost({post}) {
   return (
     <article>
@@ -556,14 +554,14 @@ Stylesheets, both externally linked (`<link rel="stylesheet" href="...">`) and i
 
 In React 19, we're addressing this complexity and providing even deeper integration into Concurrent Rendering on the Client and Streaming Rendering on the Server with built in support for stylesheets. If you tell React the `precedence` of your stylesheet it will manage the insertion order of the stylesheet in the DOM and ensure that the stylesheet (if external) is loaded before revealing content that depends on those style rules.
 
-```js
+```js {4,5,17}
 function ComponentOne() {
   return (
     <Suspense fallback="loading...">
       <link rel="stylesheet" href="foo" precedence="default" />
       <link rel="stylesheet" href="bar" precedence="high" />
       <article class="foo-class bar-class">
-        High from ComponentOne
+        {...}
       </article>
     </Suspense>
   )
@@ -572,7 +570,7 @@ function ComponentOne() {
 function ComponentTwo() {
   return (
     <div>
-      Hi from ComponentTwo
+      <p>{...}</p>
       <link rel="stylesheet" href="baz" precedence="default" />  <-- will be inserted between foo & bar
     </div>
   )
@@ -581,10 +579,9 @@ function ComponentTwo() {
 
 During Server Side Rendering React will include the stylesheet in the `<head>`, which ensures that the browser will not paint until it has loaded. If the stylesheet is discovered late after we've already started streaming, React will ensure that the stylesheet is inserted into the `<head>` on the client before revealing the content of a Suspense boundary that depends on that stylesheet.
 
-During Client Side Rendering React will wait for newly rendered stylesheets to load before committing the render.
+During Client Side Rendering React will wait for newly rendered stylesheets to load before committing the render. If you render this component from multiple places within your application React will only include the stylesheet once in the document:
 
-If you render this component from multiple places within your application React will only include the stylesheet once in the document:
-```js
+```js {5}
 function App() {
   return <>
     <ComponentOne />
@@ -596,7 +593,7 @@ function App() {
 
 For users accustomed to loading stylesheets manually this is an opportunity to locate those stylesheets alongside the components that depend on them allowing for better local reasoning and an easier time ensuring you only load the stylesheets that you actually depend on.
 
-style libraries and style integrations with bundlers can also adopt this new capability so even if you don't directly render your own stylesheets, you can still benefit as your tools are upgraded to use this feature.
+Style libraries and style integrations with bundlers can also adopt this new capability so even if you don't directly render your own stylesheets, you can still benefit as your tools are upgraded to use this feature.
 
 For more details, read the docs for [`<link>`](/reference/react-dom/components/link) and [`<style>`](/reference/react-dom/components/style).
 
@@ -606,7 +603,7 @@ In HTML normal scripts (`<script src="...">`) and deferred scripts (`<script def
 
 In React 19 we've included better support for async scripts by allowing you to render them anywhere in your component tree, inside the components that actually depend on the script, without having to manage relocating and deduplicating script instances.
 
-```js
+```js {4,15}
 function MyComponent() {
   return (
     <div>
@@ -627,9 +624,9 @@ function App() {
 }
 ```
 
-In all rendering environments async scripts will be deduplicated so that React will only load and execute the script once even if it is rendered by multiple different components.
+In all rendering environments, async scripts will be deduplicated so that React will only load and execute the script once even if it is rendered by multiple different components.
 
-In Server Side Rendering async scripts will be included in the `<head>` and prioritized behind more critical resources that block paint such as stylesheets, fonts, and image preloads.
+In Server Side Rendering, async scripts will be included in the `<head>` and prioritized behind more critical resources that block paint such as stylesheets, fonts, and image preloads.
 
 For more details, read the docs for [`<script>`](/reference/react-dom/components/script).
 
@@ -666,9 +663,7 @@ function MyComponent() {
 </html>
 ```
 
-These APIs can be used to make initial page loads optimized for instance by moving discovery of additional resources like fonts out of stylesheet loading
-
-These APIs can be used to make client updates faster for instance by prefetching a list of resources used by an anticipated navigation and then eagerly preloading those resources on click or even on hover.
+These APIs can be used to optimize initial page loads by moving discovery of additional resources like fonts out of stylesheet loading. They can also make client updates faster by prefetching a list of resources used by an anticipated navigation and then eagerly preloading those resources on click or even on hover.
 
 For more details see [Resource Preloading APIs](/reference/react-dom#resource-preloading-apis).
 
@@ -678,9 +673,9 @@ We've improved hydration to account for third-party scripts and browser extensio
 
 When hydrating, if an element that renders on the client doesn't match the element found in the HTML from the server, React will force a client re-render to fix up the content. Previously, if an element was inserted by third-party scripts or browser extensions, it would trigger a mismatch error and client render.
 
-In React 19 unexpected tags in the `<head>` and `<body>` will be skipped over, avoiding the mismatch errors. If React needs to re-render the entire document due to an unrelated hydration mismatch, it will leave in place stylesheets inserted by third-party scripts and browser extensions.
+In React 19, unexpected tags in the `<head>` and `<body>` will be skipped over, avoiding the mismatch errors. If React needs to re-render the entire document due to an unrelated hydration mismatch, it will leave in place stylesheets inserted by third-party scripts and browser extensions.
 
-### Better Error Reporting {/*error-handling*/}
+### Better error reporting {/*error-handling*/}
 
 We improved error handling in React 19 to remove duplication and provide options for handling caught and uncaught errors. For example, when there's an error in render caught by an Error Boundary, previously React would throw the error twice (once for the original error, then again after failing to automatically recover), and then call `console.error` with info about where the error occurred. 
 
@@ -748,20 +743,19 @@ Additionally, we've added two new root options to complement `onRecoverableError
 
 For more info and examples, see the docs for [`createRoot`](/reference/react-dom/client/createRoot) and [`hydrateRoot`](/reference/react-dom/client/hydrateRoot).
 
-### Custom Element Support {/*support-for-web-components*/}
+### Support for Custom Elements {/*support-for-custom-elements*/}
 
-Custom Elements have been part of the web platform for a long while now, however using them with React has been impractical because React has always treated unrecognized props as attributes rather than properties.
+React 19 adds full support for custom elements and passes all tests on [Custom Elements Everywhere](https://custom-elements-everywhere.com/).
 
-React 19 adds support for custom elements and passes all tests on [Custom Elements Everywhere](https://custom-elements-everywhere.com/).
+In past versions, using Custom Elements in React has been difficult because React treated unrecognized props as attributes rather than properties. In React 19, we've added support for properties that works on the client and during SSR with the following strategy:
 
-During Server Side Rendering props passed to a custom element will render as attributes if their type is a `"string"`, `"number"`, or the value is `true`. Props with type `"object"`, `"symbol"`, `"function"`, or value `false` will be omitted.
-
-During Client Side Rendering props that match a property on the Custom Element instance will be assigned as properties, otherwise they will be assigned as attributes.
+- **Server Side Rendering**: props passed to a custom element will render as attributes if their type is a primitive value like `string`, `number`, or the value is `true`. Props with non-primitive types like `object`, `symbol`, `function`, or value `false` will be omitted.
+- **Client Side Rendering**: props that match a property on the Custom Element instance will be assigned as properties, otherwise they will be assigned as attributes.
 
 Thanks to [Joey Arhar](https://github.com/josepharhar) for driving the design and implementation of Custom Element support in React.
 
 
-#### How to Upgrade {/*how-to-upgrade*/}
+#### How to upgrade {/*how-to-upgrade*/}
 See the [React 19 Upgrade Guide](/blog/2024/04/25/react-19-upgrade-guide) for step-by-step instructions and a full list of breaking and notable changes.
 
 

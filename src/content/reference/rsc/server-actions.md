@@ -13,11 +13,11 @@ Server Actions allow Client Components to call async functions executed on the s
 
 <Note>
 
-#### How do I build support for Server Actions? {/*how-do-i-build-support-for-server-components*/}
+#### How do I build support for Server Actions? {/*how-do-i-build-support-for-server-actions*/}
 
-Bundler and framework support for Server Actins can be built on React 19, but the underlying APIs will not follow semver and may break between minors in React 19.x.
+While Server Actions in React 19 are stable and will not break between major versions, the underlying APIs used to implement Server Actions in a React Server Components bundler or framework do not follow semver and may break between minors in React 19.x. 
 
-To support Server Actions, we recommend pinning to a specific React version, or using the Canary release. We will continue working with bundlers and frameworks to stablize support for React Server Components in future versions.
+To support Server Actions as a bundler or framework, we recommend pinning to a specific React version, or using the Canary release. We will continue working with bundlers and frameworks to stabilize the APIs used to implement Server Actions in the future.
 
 </Note>
 

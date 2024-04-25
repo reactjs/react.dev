@@ -540,6 +540,14 @@ function BlogPost({post}) {
 
 When React renders this component, it will see the `<title>` `<link>` and `<meta>` tags, and automatically hoist them to the `<head>` section of document. By supporting these metadata tags natively, we're able to ensure they work with client-only apps, streaming SSR, and Server Components.
 
+<Note>
+
+#### You may still want a Metadata library {/*you-may-still-want-a-metadata-library*/}
+
+For simple use cases rendering Document Metadata as tags may be suitable but libraries can offer more powerful features like overriding generic metadata with specific metadata based on the current route. So these feature make it easier for frameworks and libraries like [`react-helmet`](github.com/nfl/react-helmet) to support metadata tags, rather than replace them.
+
+</Note>
+
 For more info, see the docs for [`<title>`](/reference/react-dom/components/title), [`<link>`](/reference/react-dom/components/link), and [`<meta>`](/reference/react-dom/components/meta).
 
 ### Support for stylesheets {/*support-for-stylesheets*/}

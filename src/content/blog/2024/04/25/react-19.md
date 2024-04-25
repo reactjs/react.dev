@@ -284,7 +284,7 @@ function ThemedPage({theme, children}) {
   if (theme === 'dark') {
     themeValue = use(DarkThemeContext);
   } else {
-    themeValue = use(LightThemeContext);
+    currentTheme = use(LightThemeContext);
   } 
   return (
     <Page theme={themeValue}>

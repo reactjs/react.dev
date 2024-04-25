@@ -287,7 +287,7 @@ function ThemedPage({theme, children}) {
     currentTheme = use(LightThemeContext);
   } 
   return (
-    <Page theme={themeValue}>
+    <Page theme={currentTheme}>
       {children}
     </Page>
   );

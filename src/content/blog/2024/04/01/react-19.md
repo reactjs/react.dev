@@ -86,7 +86,7 @@ Actions automatically manage submitting data for you:
 - **Pending state**: Actions provide a pending state that starts at the beginning of a request and automatically resets when the final state update is committed.
 - **Optimistic updates**: Actions support the new [`useOptimistic`](#new-feature-optimistic-updates) hook so you can show users instant feedback while the requests are submitting.
 - **Error handling**: Actions provide error handling so you can and display Error Boundaries when a request fails, and revert optimistic updates to their original value automatically.
-- **Forms**: Actions integrate with new `action` and `formActions` props as [`<form>` Actions](#form-actions). This means form submissions use Actions by default and reset the form automatically after submission.
+- **Forms**: `<form>` elements now support passing functions to the `action` and `formAction` props. Passing functions to the `action` props use Actions by default and reset the form automatically after submission.
 
 </Note>
 
@@ -124,10 +124,10 @@ For more information, see the docs for [`useActionState`](/reference/react/useAc
 
 ### `<form>` Actions {/*form-actions*/}
 
-Actions are also integrated with React 19's new `<form>` features. We've added `action` and `formAction` props to React DOM `<form>`, `<input>`, and `<button>` elements to automatically submit forms with Actions:
+Actions are also integrated with React 19's new `<form>` features. We've added support for passing functions as the `action` and `formAction` props of `<form>`, `<input>`, and `<button>` elements to automatically submit forms with Actions:
 
 ```js {1,3,7-8}
-const [submitAction, state, isPending] = useActionState(async (formData) => {
+const [state, submitAction, isPending] = useActionState(async (formData) => {
   return await updateName(formData.get('name'));
 })
 
@@ -276,17 +276,6 @@ TODO
 
 ### `ref` as a prop {/*ref-as-a-prop*/}
 
-In 16.3 we introduced `forwardRef` as way for function components to expose `ref` to a parent:
-
-```js [[2, 1, "forwardRef"], [1, 1, "ref"], [1, 2, "ref", 20]]
-const MyInput = forwardRef(function MyInput(props, ref) {
-  return <input ref={ref} />
-});
-
-//...
-<MyInput ref={ref} />
-```
-
 Starting in React 19, you can now access `ref` as a prop for function components:
 
 ```js [[1, 1, "ref"], [1, 2, "ref", 20]]
@@ -298,13 +287,13 @@ function MyInput({ref}) {
 <MyInput ref={ref} />
 ```
 
+New function components will no longer need `forwardRef`, and we will be publishing a codemod to automatically update your components to use the new `ref` prop. In future versions we will deprecate and remove `forwardRef`.
+
 <Note>
 
-Todo: This requires the new transform, correct?
+`refs` passed to classes are not passed as props since they reference the component instance.
 
 </Note>
-
-For more information, see [Manipulating the DOM with refs](/learn/manipulating-the-dom-with-refs)
 
 ### Diffs for Hydration Errors {/*diffs-for-hydration-errors*/}
 
@@ -393,13 +382,11 @@ function App({children}) {
 }
 ```
 
-In future versions we will deprecate `<Context.Provider>`.
+New Context providers can use `<Context>` and we will be publishing a codemod to convert existing providers. In future versions we will deprecate `<Context.Provider>`.
 
-For more, see [`createContext`](/reference/react/createContext).
+### Cleanup functions for refs {/*cleanup-functions-for-refs*/}
 
-### Cleanup functions for DOM refs {/*cleanup-functions-for-dom-refs*/}
-
-We now support returning a cleanup function from DOM ref callbacks:
+We now support returning a cleanup function from `ref` callbacks:
 
 ```js {7-11}
 function Input() {
@@ -417,7 +404,7 @@ function Input() {
 }
 ```
 
-When the component unmounts, React will call the cleanup function returned from the ref callback. 
+When the component unmounts, React will call the cleanup function returned from the ref callback. This works for DOM refs, refs to class components, and `useImperitiveHandle`. 
 
 <Note>
 
@@ -426,8 +413,6 @@ Previously, React would call ref functions with `null` when unmounting the compo
 In future versions, we will deprecate calling the ref with `null` when unmounting components.
 
 </Note>
-
-For more, see [Manipulating the DOM with refs](/learn/manipulating-the-dom-with-refs).
 
 ### `useDeferredValue` inital value {/*use-deferred-value-initial-value*/}
 

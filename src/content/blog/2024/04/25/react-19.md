@@ -110,7 +110,7 @@ Actions automatically manage submitting data for you:
 
 - **Pending state**: Actions provide a pending state that starts at the beginning of a request and automatically resets when the final state update is committed.
 - **Optimistic updates**: Actions support the new [`useOptimistic`](#new-feature-optimistic-updates) hook so you can show users instant feedback while the requests are submitting.
-- **Error handling**: Actions provide error handling so you can and display Error Boundaries when a request fails, and revert optimistic updates to their original value automatically.
+- **Error handling**: Actions provide error handling so you can display Error Boundaries when a request fails, and revert optimistic updates to their original value automatically.
 - **Forms**: `<form>` elements now support passing functions to the `action` and `formAction` props. Passing functions to the `action` props use Actions by default and reset the form automatically after submission.
 
 </Note>
@@ -511,7 +511,7 @@ function Search({deferredValue}) {
 }
 ````
 
-When <CodeStep step={2}>initialValue</CodeStep> is provided, `useDeferredValue` will return it as `value` for the initial render of the component, and scheduled a re-render in the background with the <CodeStep step={1}>deferredValue</CodeStep> returned.
+When <CodeStep step={2}>initialValue</CodeStep> is provided, `useDeferredValue` will return it as `value` for the initial render of the component, and schedules a re-render in the background with the <CodeStep step={1}>deferredValue</CodeStep> returned.
 
 For more, see [`useDeferredValue`](/reference/react/useDeferredValue).
 

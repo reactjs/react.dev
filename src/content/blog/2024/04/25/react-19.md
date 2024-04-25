@@ -754,7 +754,7 @@ Custom Elements have been part of the web platform for a long while now however 
 
 React 19 adds support for custom elements and passes all tests on [Custom Elements Everywhere](https://custom-elements-everywhere.com/).
 
-During Server Side Rendering props passed to a custom element will render as attributes if their type is a `"string"`, `"number"`, or the value is `true`. props with type `"object"`, `"symbol"`, `"function"`, or value `false` will be omitted.
+During Server Side Rendering props passed to a custom element will render as attributes if their type is a `"string"`, `"number"`, or the value is `true`. Props with type `"object"`, `"symbol"`, `"function"`, or value `false` will be omitted.
 
 During Client Side Rendering props that match a property on the Custom Element instance will be assigned as properties, otherwise they will be assigned as attributes.
 

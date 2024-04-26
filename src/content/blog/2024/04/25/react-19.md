@@ -274,24 +274,24 @@ To fix, you need to pass a promise from a suspense powered library or framework 
 
 </Note>
 
-You can also read context with `use`, allowing you to read Context conditionally:
+You can also read context with `use`, allowing you to read Context conditionally such as after early returns:
 
-```js {1,8,10}
+```js {1,11}
 import {use} from 'react';
-import LightThemeContext from './LightThemeContext'
-import DarkThemeContext from './ThemeContext'
+import ThemeContext from './ThemeContext'
 
-function ThemedPage({theme, children}) {
-  let currentTheme;
-  if (theme === 'dark') {
-    currentTheme = use(DarkThemeContext);
-  } else {
-    currentTheme = use(LightThemeContext);
-  } 
+function Heading({children}) {
+  if (children == null) {
+    return null;
+  }
+  
+  // This would not work with useContext
+  // because of the early return.
+  const theme = use(ThemeContext);
   return (
-    <Page theme={currentTheme}>
+    <h1 style={{color: theme.color}}>
       {children}
-    </Page>
+    </h1>
   );
 }
 ```

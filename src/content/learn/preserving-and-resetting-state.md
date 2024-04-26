@@ -1017,6 +1017,98 @@ Remember that keys are not globally unique. They only specify the position *with
 
 </Note>
 
+<DeepDive>
+
+#### Preserving state for previous players {/*preserving-state-for-previous-players*/}
+
+In a real-world multi-player game app, it is common to want to preserve a player's score when switching to other players. This allows you to continue from that score when you return to that player, rather than resetting it to zero each time. The two previously discussed methods for [resetting state at the same position](/learn/preserving-and-resetting-state#resetting-state-at-the-same-position) mentioned above did not address or resolve this particular issue.
+
+An effective way to address this issue is to ["lift states up."](/learn/sharing-state-between-components) Using our `Counter` example, we raise the "score" state to the closest common parent, which is the `Scoreboard` component. Then, we provide each player, represented by the `Counter` component, with their own "score" state by passing it to them via props. This aligns with our desired outcome: each player should have their individual score. Subsequently, we update the "score" state for each player from the `Scoreboard` component by passing down the corresponding [set function](/reference/react/useState#setstate) for each "score" from the parent component to the children component via props:
+
+<Sandpack>
+
+```js {5-6,13-14,19-20,34,49,51}
+import { useState } from "react";
+
+export default function Scoreboard() {
+  const [isPlayerA, setIsPlayerA] = useState(true);
+  const [playerAScore, setPlayerAScore] = useState(0);
+  const [playerBScore, setPlayerBScore] = useState(0);
+
+  return (
+    <div>
+      {isPlayerA ? (
+        <Counter
+          person="Taylor"
+          score={playerAScore}
+          handleScore={() => setPlayerAScore(playerAScore + 1)}
+        />
+      ) : (
+        <Counter
+          person="Sarah"
+          score={playerBScore}
+          handleScore={() => setPlayerBScore(playerBScore + 1)}
+        />
+      )}
+      <button
+        onClick={() => {
+          setIsPlayerA(!isPlayerA);
+        }}
+      >
+        Next player!
+      </button>
+    </div>
+  );
+}
+
+function Counter({ person, score, handleScore }) {
+  const [hover, setHover] = useState(false);
+
+  let className = "counter";
+  if (hover) {
+    className += " hover";
+  }
+
+  return (
+    <div
+      className={className}
+      onPointerEnter={() => setHover(true)}
+      onPointerLeave={() => setHover(false)}
+    >
+      <h1>
+        {person}'s score: {score}
+      </h1>
+      <button onClick={handleScore}>Add one</button>
+    </div>
+  );
+}
+```
+
+```css
+h1 {
+  font-size: 18px;
+}
+
+.counter {
+  width: 100px;
+  text-align: center;
+  border: 1px solid gray;
+  border-radius: 4px;
+  padding: 20px;
+  margin: 0 20px 20px 0;
+}
+
+.hover {
+  background: #ffffd8;
+}
+```
+
+</Sandpack>
+
+Attempt to increment the score by clicking on each player's button, then switch to the next player and repeat the process. Afterward, switch back to the previous player. As you can observe, the score has been preserved.
+
+</DeepDive>
+
 ### Resetting a form with a key {/*resetting-a-form-with-a-key*/}
 
 Resetting state with a key is particularly useful when dealing with forms.

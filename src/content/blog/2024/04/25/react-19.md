@@ -153,8 +153,8 @@ To make the common cases easier for Actions, we've added a new hook called `useA
 
 ```js
 const [error, submitAction, isPending] = useActionState(async (previousState, newName) => {
-  const {error} = await updateName(newName);
-  if (!error) {
+  const error = await updateName(newName);
+  if (error) {
     // You can return any result of the action.
     // Here, we return only the error.
     return error;

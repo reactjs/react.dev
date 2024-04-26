@@ -158,6 +158,21 @@
       "source": "/link/new-jsx-transform",
       "destination": "https://legacy.reactjs.org/blog/2020/09/22/introducing-the-new-jsx-transform.html",
       "permanent": false
+    },
+    {
+      "source": "/reference/react/directives",
+      "destination": "/reference/rsc/directives",
+      "permanent": true
+    },
+    {
+      "source": "/reference/react/use-client",
+      "destination": "/reference/rsc/use-client",
+      "permanent": true
+    },
+    {
+      "source": "/reference/react/use-server",
+      "destination": "/reference/rsc/use-server",
+      "permanent": true
     }
   ],
   "headers": [

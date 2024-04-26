@@ -627,7 +627,7 @@ This is also what you'd also have to do if you move the reducer outside of the `
 const reducer = (state: State, action: Action) => state;
 ```
 
-## Changlog {/*changelog*/}
+## Changelog {/*changelog*/}
 
 ### Other breaking changes {/*other-breaking-changes*/}
 

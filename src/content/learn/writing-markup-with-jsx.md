@@ -171,6 +171,28 @@ If you don't want to add an extra `<div>` to your markup, you can write `<>` and
 
 This empty tag is called a *[Fragment.](/reference/react/Fragment)* Fragments let you group things without leaving any trace in the browser HTML tree.
 
+<Note>
+
+You can return multiple elements as an array in JSX. This is a valid syntax and can be useful in specific situations where you need to render several elements without enclosing them within a single parent element like a `<div>` or a fragment (`<>...</>` or `<Fragment>...</Fragment>`) as demonstrated earlier.
+
+```js
+[
+  <h1>Hedy Lamarr's Todos</h1>,
+  <img
+    src="https://i.imgur.com/yXOvdOSs.jpg"
+    alt="Hedy Lamarr"
+    className="photo"
+  >,
+  <ul>
+    ...
+  </ul>,
+];
+```
+
+Although returning an array of elements is possible, it's not as common as using a single parent element or a fragment to group elements. Fragments are specifically designed for this use case and provide better encapsulation without affecting the underlying DOM structure. Using fragments is generally considered more readable and idiomatic. Therefore, while returning an array remains an option, using fragments is the recommended practice in most cases to achieve the same result with cleaner code.
+
+</Note>
+
 <DeepDive>
 
 #### Why do multiple JSX tags need to be wrapped? {/*why-do-multiple-jsx-tags-need-to-be-wrapped*/}

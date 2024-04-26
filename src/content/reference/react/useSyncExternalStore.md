@@ -2,6 +2,8 @@
 title: useSyncExternalStore
 ---
 
+<AddedInVersion version="18.0.0" />
+
 <Intro>
 
 `useSyncExternalStore` is a React Hook that lets you subscribe to an external store.

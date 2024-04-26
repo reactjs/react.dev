@@ -2,6 +2,8 @@
 title: isValidElement
 ---
 
+<AddedInVersion version="0.12.0" />
+
 <Intro>
 
 `isValidElement` checks whether a value is a React element.

@@ -2,6 +2,8 @@
 title: renderToPipeableStream
 ---
 
+<AddedInVersion version="18.0.0" />
+
 <Intro>
 
 `renderToPipeableStream` renders a React tree to a pipeable [Node.js Stream.](https://nodejs.org/api/stream.html)

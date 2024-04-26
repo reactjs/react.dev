@@ -2,6 +2,10 @@
 title: Children
 ---
 
+<AddedInVersion version="0.10.0" />
+
+{/* Does not show up in changelogs but only appears in v0.10.0 docs based on https://web.archive.org/ research */}
+
 <Pitfall>
 
 Using `Children` is uncommon and can lead to fragile code. [See common alternatives.](#alternatives)

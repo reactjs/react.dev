@@ -2,6 +2,8 @@
 title: useInsertionEffect
 ---
 
+<AddedInVersion version="18.0.0" />
+
 <Pitfall>
 
 `useInsertionEffect` is for CSS-in-JS library authors. Unless you are working on a CSS-in-JS library and need a place to inject the styles, you probably want [`useEffect`](/reference/react/useEffect) or [`useLayoutEffect`](/reference/react/useLayoutEffect) instead.

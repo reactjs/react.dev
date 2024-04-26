@@ -2,6 +2,7 @@
 title: <StrictMode>
 ---
 
+<AddedInVersion version="16.3.0" />
 
 <Intro>
 

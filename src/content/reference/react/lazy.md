@@ -2,6 +2,8 @@
 title: lazy
 ---
 
+<AddedInVersion version="16.6.0" />
+
 <Intro>
 
 `lazy` lets you defer loading component's code until it is rendered for the first time.

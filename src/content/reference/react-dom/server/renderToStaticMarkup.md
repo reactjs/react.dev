@@ -2,6 +2,8 @@
 title: renderToStaticMarkup
 ---
 
+<AddedInVersion version="0.14.3" />
+
 <Intro>
 
 `renderToStaticMarkup` renders a non-interactive React tree to an HTML string.

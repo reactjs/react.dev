@@ -2,6 +2,8 @@
 title: renderToString
 ---
 
+<AddedInVersion version="0.14.3" />
+
 <Pitfall>
 
 `renderToString` does not support streaming or waiting for data. [See the alternatives.](#alternatives)

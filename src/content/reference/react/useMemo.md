@@ -2,6 +2,8 @@
 title: useMemo
 ---
 
+<AddedInVersion version="16.8.0" />
+
 <Intro>
 
 `useMemo` is a React Hook that lets you cache the result of a calculation between re-renders.

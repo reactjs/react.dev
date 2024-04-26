@@ -2,6 +2,8 @@
 title: useContext
 ---
 
+<AddedInVersion version="16.8.0" />
+
 <Intro>
 
 `useContext` is a React Hook that lets you read and subscribe to [context](/learn/passing-data-deeply-with-context) from your component.

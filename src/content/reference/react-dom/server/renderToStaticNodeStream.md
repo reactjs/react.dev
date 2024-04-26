@@ -2,6 +2,8 @@
 title: renderToStaticNodeStream
 ---
 
+<AddedInVersion version="16.0.0" />
+
 <Intro>
 
 `renderToStaticNodeStream` renders a non-interactive React tree to a [Node.js Readable Stream.](https://nodejs.org/api/stream.html#readable-streams)

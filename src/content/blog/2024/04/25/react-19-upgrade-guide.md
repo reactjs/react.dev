@@ -1,5 +1,8 @@
 ---
 title: "React 19 Beta Upgrade Guide"
+author:
+date: 2024/04/25
+description: The improvements added to React 19 require some breaking changes, but we've worked to make the upgrade as smooth as possible and we don't expect the changes to impact most apps. In this post, we will guide you through the steps for upgrading libraries to React 19 beta.
 ---
 
 April 25, 2024 by [Ricky Hanlon](https://twitter.com/rickhanlonii)

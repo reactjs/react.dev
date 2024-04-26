@@ -1,5 +1,8 @@
 ---
 title: "Introducing react.dev"
+author: Dan Abramov and Rachel Nabors
+date: 2023/03/16
+description: Today we are thrilled to launch react.dev, the new home for React and its documentation. In this post, we would like to give you a tour of the new site.
 ---
 
 March 16, 2023 by [Dan Abramov](https://twitter.com/dan_abramov) and [Rachel Nabors](https://twitter.com/rachelnabors)

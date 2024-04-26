@@ -15,11 +15,12 @@
     "prettier:diff": "yarn nit:source",
     "lint-heading-ids": "node scripts/headingIdLinter.js",
     "fix-headings": "node scripts/headingIdLinter.js --fix",
-    "ci-check": "npm-run-all prettier:diff --parallel lint tsc lint-heading-ids",
+    "ci-check": "npm-run-all prettier:diff --parallel lint tsc lint-heading-ids rss",
     "tsc": "tsc --noEmit",
     "start": "next start",
     "postinstall": "patch-package && (is-ci || husky install .husky)",
-    "check-all": "npm-run-all prettier lint:fix tsc"
+    "check-all": "npm-run-all prettier lint:fix tsc rss",
+    "rss": "node scripts/generateRss.js"
   },
   "dependencies": {
     "@codesandbox/sandpack-react": "2.13.5",

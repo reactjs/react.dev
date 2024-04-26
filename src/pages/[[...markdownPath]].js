@@ -12,6 +12,7 @@ import sidebarCommunity from '../sidebarCommunity.json';
 import sidebarBlog from '../sidebarBlog.json';
 import {MDXComponents} from 'components/MDX/MDXComponents';
 import compileMDX from 'utils/compileMDX';
+import {generateRssFeed} from '../utils/rss';
 export default function Layout({content, toc, meta}) {
   const parsedContent = useMemo(
     () => JSON.parse(content, reviveNodeOnClient),
@@ -96,6 +97,7 @@ function reviveNodeOnClient(key, val) {
 
 // Put MDX output into JSON for client.
 export async function getStaticProps(context) {
+  generateRssFeed();
   const fs = require('fs');
   const rootDir = process.cwd() + '/src/content/';
 

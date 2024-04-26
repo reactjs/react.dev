@@ -85,12 +85,12 @@ If you're using TypeScript, you also need to update the types. Once React 19 is 
 ```json
 {
   "dependencies": {
-    "@types/react": "npm:types-react@alpha",
-    "@types/react-dom": "npm:types-react-dom@alpha"
+    "@types/react": "npm:types-react@beta",
+    "@types/react-dom": "npm:types-react-dom@beta"
   },
   "overrides": {
-    "@types/react": "npm:types-react@alpha",
-    "@types/react-dom": "npm:types-react-dom@alpha"
+    "@types/react": "npm:types-react@beta",
+    "@types/react-dom": "npm:types-react-dom@beta"
   }
 }
 ```

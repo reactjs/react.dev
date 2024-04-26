@@ -57,7 +57,7 @@ export default function Button({onClick}) {
 }
 ```
 
-For more, see the docs for [`"use server"`](/reference/react/use-server).
+For more, see the docs for [`"use server"`](/reference/rsc/use-server).
 
 
 ### Importing Server Actions from Client Components {/*importing-server-actions-from-client-components*/}
@@ -86,7 +86,7 @@ function EmptyNote() {
 }
 ```
 
-For more, see the docs for [`"use server"`](/reference/react/use-server).
+For more, see the docs for [`"use server"`](/reference/rsc/use-server).
 
 ### Composing Server Actions with Actions {/*composing-server-actions-with-actions*/}
 
@@ -136,7 +136,7 @@ function UpdateName() {
 
 This allows you to access the `isPending` state of the Server Action by wrapping it in an Action on the client.
 
-For more, see the docs for [Calling a Server Action outside of `<form>`](/reference/react/use-server#calling-a-server-action-outside-of-form)
+For more, see the docs for [Calling a Server Action outside of `<form>`](/reference/rsc/use-server#calling-a-server-action-outside-of-form)
 
 ### Form Actions with Server Actions {/*form-actions-with-server-actions*/}
 
@@ -161,7 +161,7 @@ function UpdateName() {
 
 When the Form submission succeeds, React will automatically reset the form. You can add `useActionState` to access the pending state, last response, or to support progressive enhancement.
 
-For more, see the docs for [Server Actions in Forms](/reference/react/use-server#server-actions-in-forms).
+For more, see the docs for [Server Actions in Forms](/reference/rsc/use-server#server-actions-in-forms).
 
 ### Server Actions with `useActionState` {/*server-actions-with-use-action-state*/}
 

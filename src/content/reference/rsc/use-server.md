@@ -41,7 +41,7 @@ Instead of individually marking functions with `'use server'`, you can add the d
 #### Caveats {/*caveats*/}
 * `'use server'` must be at the very beginning of their function or module; above any other code including imports (comments above directives are OK). They must be written with single or double quotes, not backticks.
 * `'use server'` can only be used in server-side files. The resulting Server Actions can be passed to Client Components through props. See supported [types for serialization](#serializable-parameters-and-return-values).
-* To import a Server Action from [client code](/reference/react/use-client), the directive must be used on a module level.
+* To import a Server Action from [client code](/reference/rsc/use-client), the directive must be used on a module level.
 * Because the underlying network calls are always asynchronous, `'use server'` can only be used on async functions.
 * Always treat arguments to Server Actions as untrusted input and authorize any mutations. See [security considerations](#security).
 * Server Actions should be called in a [Transition](/reference/react/useTransition). Server Actions passed to [`<form action>`](/reference/react-dom/components/form#props) or [`formAction`](/reference/react-dom/components/input#props) will automatically be called in a transition.
@@ -95,7 +95,7 @@ Notably, these are not supported:
 * Symbols not registered globally, ex. `Symbol('my new symbol')`
 
 
-Supported serializable return values are the same as [serializable props](/reference/react/use-client#passing-props-from-server-to-client-components) for a boundary Client Component.
+Supported serializable return values are the same as [serializable props](/reference/rsc/use-client#passing-props-from-server-to-client-components) for a boundary Client Component.
 
 
 ## Usage {/*usage*/}
@@ -171,7 +171,7 @@ function UsernameForm() {
 }
 ```
 
-Note that like most Hooks, `useActionState` can only be called in <CodeStep step={1}>[client code](/reference/react/use-client)</CodeStep>.
+Note that like most Hooks, `useActionState` can only be called in <CodeStep step={1}>[client code](/reference/rsc/use-client)</CodeStep>.
 
 ### Calling a Server Action outside of `<form>` {/*calling-a-server-action-outside-of-form*/}
 

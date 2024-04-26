@@ -243,7 +243,7 @@ In React 19 we're introducing a new API to read resources in render: `use`.
 
 For example, you can read a promise with `use`, and React will Suspend until the promise resolves:
 
-```js {1,6}
+```js {1,5}
 import {use} from 'react';
 
 function Comments({commentsPromise}) {

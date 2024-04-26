@@ -6,7 +6,6 @@ const fs = require('fs');
 const path = require('path');
 const matter = require('gray-matter');
 
-// Recursively get all .md files
 const getAllFiles = function (dirPath, arrayOfFiles) {
   const files = fs.readdirSync(dirPath);
 
@@ -23,7 +22,6 @@ const getAllFiles = function (dirPath, arrayOfFiles) {
   return arrayOfFiles;
 };
 
-// Put MDX output into JSON for client.
 exports.generateRssFeed = function () {
   const feed = new Feed({
     title: 'React Blog',
@@ -31,25 +29,44 @@ exports.generateRssFeed = function () {
       'This blog is the official source for the updates from the React team. Anything important, including release notes or deprecation notices, will be posted here first.',
     feed_url: 'https://react.dev/rss.xml',
     site_url: 'https://react.dev/',
-    language: 'en', // your target language
-    // image: "https://yourdomain.com/image.png",
+    language: 'en',
     favicon: 'https://react.dev/favicon.ico',
     pubDate: new Date(),
     generator: 'react.dev rss module',
   });
 
-  // Define blog posts directory
   const dirPath = path.join(process.cwd(), 'src/content/blog');
   const filesByOldest = getAllFiles(dirPath);
   const files = filesByOldest.reverse();
 
   for (const filePath of files) {
-    const content = fs.readFileSync(filePath, 'utf-8');
-    const {data} = matter(content);
-
-    const slug = filePath.split('/').slice(-4).join('/').replace('.md', '');
     const id = filePath.split('/').slice(-1).join('');
     if (id !== 'index.md') {
+      const content = fs.readFileSync(filePath, 'utf-8');
+      const {data} = matter(content);
+      const slug = filePath.split('/').slice(-4).join('/').replace('.md', '');
+
+      if (data.title == null || data.title.trim() === '') {
+        throw new Error(
+          `${id}: Blog posts must include a title in the metadata, for RSS feeds`
+        );
+      }
+      if (data.author == null || data.author.trim() === '') {
+        throw new Error(
+          `${id}: Blog posts must include an author in the metadata, for RSS feeds`
+        );
+      }
+      if (data.date == null || data.date.trim() === '') {
+        throw new Error(
+          `${id}: Blog posts must include a date in the metadata, for RSS feeds`
+        );
+      }
+      if (data.description == null || data.description.trim() === '') {
+        throw new Error(
+          `${id}: Blog posts must include a description in the metadata, for RSS feeds`
+        );
+      }
+
       feed.item({
         id,
         title: data.title,

@@ -1,6 +1,6 @@
 ---
 title: "React Labs: What We've Been Working On – February 2024"
-author:
+author: Joseph Savona, Ricky Hanlon, Andrew Clark, Matt Carroll, and Dan Abramov
 date: 2024/02/15
 description: In React Labs posts, we write about projects in active research and development. We’ve made significant progress since our last update, and we’d like to share our progress.
 ---

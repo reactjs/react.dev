@@ -553,7 +553,7 @@ When React renders this component, it will see the `<title>` `<link>` and `<meta
 
 #### You may still want a Metadata library {/*you-may-still-want-a-metadata-library*/}
 
-For simple use cases rendering Document Metadata as tags may be suitable, but libraries can offer more powerful features like overriding generic metadata with specific metadata based on the current route. So these feature make it easier for frameworks and libraries like [`react-helmet`](https://github.com/nfl/react-helmet) to support metadata tags, rather than replace them.
+For simple use cases rendering Document Metadata as tags may be suitable, but libraries can offer more powerful features like overriding generic metadata with specific metadata based on the current route. So these features make it easier for frameworks and libraries like [`react-helmet`](https://github.com/nfl/react-helmet) to support metadata tags, rather than replace them.
 
 </Note>
 

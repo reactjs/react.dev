@@ -132,7 +132,9 @@ function ChangeName({ name, setName }) {
         return error;
       }
       redirect("/path");
-    }
+      return null;
+    },
+    null,
   );
 
   return (
@@ -152,16 +154,20 @@ In the next section, we'll break down each of the new Action features in React 1
 To make the common cases easier for Actions, we've added a new hook called `useActionState`:
 
 ```js
-const [error, submitAction, isPending] = useActionState(async (previousState, newName) => {
-  const error = await updateName(newName);
-  if (error) {
-    // You can return any result of the action.
-    // Here, we return only the error.
-    return error;
-  }
-  
-  // handle success
-});
+const [error, submitAction, isPending] = useActionState(
+  async (previousState, newName) => {
+    const error = await updateName(newName);
+    if (error) {
+      // You can return any result of the action.
+      // Here, we return only the error.
+      return error;
+    }
+
+    // handle success
+    return null;
+  },
+  null,
+);
 ```
 
 `useActionState` accepts a function (the "Action"), and returns a wrapped Action to call. This works because Actions compose. When the wrapped Action is called, `useActionState` will return the last result of the Action as `data`, and the pending state of the Action as `pending`. 

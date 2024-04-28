@@ -341,9 +341,9 @@ In this example, `itemsRef` doesn't hold a single DOM node. Instead, it holds a 
 
 This lets you read individual DOM nodes from the Map later.
 
-<Canary>
+<NextMajor>
 
-This example shows another approach for managing the Map with a `ref` callback cleanup function.
+Starting in React 19 callback refs can return a cleanup function. When the cleanup function is provided, React will not call the `ref` callback with `null` and call the cleanup function instead:
 
 ```js
 <li
@@ -361,7 +361,7 @@ This example shows another approach for managing the Map with a `ref` callback c
 >
 ```
 
-</Canary>
+</NextMajor>
 
 </DeepDive>
 

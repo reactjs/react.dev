@@ -1,19 +1,16 @@
 ---
 title: useActionState
-canary: true
 ---
 
-<Canary>
+<NextMajor>
 
-The `useActionState` Hook is currently only available in React's Canary and experimental channels. Learn more about [release channels here](/community/versioning-policy#all-release-channels). In addition, you need to use a framework that supports [React Server Components](/reference/rsc/use-client) to get the full benefit of `useActionState`.
-
-</Canary>
-
-<Note>
+The `useActionState` Hook is currently is available in React 19 beta, and the latest React Canary.
 
 In earlier React Canary versions, this API was part of React DOM and called `useFormState`.
 
-</Note>
+Learn more about [React's release channels here](/community/versioning-policy#all-release-channels).
+
+</NextMajor>
 
 <Intro>
 

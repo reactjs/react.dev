@@ -24,6 +24,7 @@ import {Logo} from '../../Logo';
 import {Feedback} from '../Feedback';
 import {SidebarRouteTree} from '../Sidebar';
 import type {RouteItem} from '../getRouteMeta';
+import {siteConfig} from 'siteConfig';
 
 declare global {
   interface Window {
@@ -263,7 +264,7 @@ export default function TopNav({
                 <NextLink
                   href="/versions"
                   className=" flex py-2 flex-column justify-center items-center text-gray-50 dark:text-gray-30 hover:text-link hover:dark:text-link-dark hover:underline text-sm ms-1 cursor-pointer">
-                  v19.0.0 (beta)
+                  {siteConfig.version}
                 </NextLink>
               </div>
             </div>

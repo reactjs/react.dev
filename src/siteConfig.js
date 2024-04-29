@@ -5,6 +5,7 @@
 exports.siteConfig = {
   // --------------------------------------
   // Translations should replace these lines:
+  version: '19.0.0 (beta)',
   languageCode: 'en',
   hasLegacySite: true,
   isRTL: false,

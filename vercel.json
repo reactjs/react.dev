@@ -9,6 +9,17 @@
       "has": [
         {
           "type": "host",
+          "value": "18.react.dev"
+        }
+      ],
+      "permanent": false,
+      "destination": "https://react.dev/"
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
           "value": "17.react.dev"
         }
       ],

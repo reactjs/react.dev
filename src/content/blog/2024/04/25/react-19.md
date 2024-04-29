@@ -80,7 +80,7 @@ function UpdateName({}) {
   const [error, setError] = useState(null);
   const [isPending, startTransition] = useTransition();
 
-  const handleSubmit = async () => {
+  const handleSubmit = () => {
     startTransition(async () => {
       const error = await updateName(name);
       if (error) {

@@ -176,7 +176,7 @@ For versions older than React 15, see [15.react.dev](https://15.react.dev).
 - [React v0.14.3](https://legacy.reactjs.org/blog/2015/11/18/react-v0.14.3.html)
 - [React v0.14.4](https://legacy.reactjs.org/blog/2015/12/29/react-v0.14.4.html)
 - [React v0.14.8](https://legacy.reactjs.org/blog/2016/03/29/react-v0.14.8.html)
-- 
+
 **Releases**
 - [v0.14.10 (October 2020)](https://github.com/facebook/react/blob/main/CHANGELOG.md#01410-october-14-2020)
 - [v0.14.8 (March 2016)](https://github.com/facebook/react/blob/main/CHANGELOG.md#0148-march-29-2016)

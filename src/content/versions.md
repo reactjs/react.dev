@@ -11,16 +11,16 @@ The React docs at [react.dev](https://react.dev) provide documentation for the l
 We aim to keep the docs updated within major versions, and do not publish versions for each minor or patch version. When a new major is released, we archive the docs for the previous version as `x.react.dev`. See our [versioning policy](/community/versioning-policy) for more info.
 
 You can find an archive of previous major versions below.
+## Future versions {/*future-versions*/}
 
-## Previous doc versions {/*previous-doc-versions*/}
+- [19.react.dev](https://19.react.dev) {/*docs-19*/}
 
-#### [18.react.dev](https//18.react.dev) {/*docs-18*/}
+## Previous versions {/*previous-versions*/}
 
-#### [17.react.dev](https://17.react.dev) {/*docs-17*/}
-
-#### [16.react.dev](https://16.react.dev) {/*docs-16*/}
-
-#### [15.react.dev](https://15.react.dev) {/*docs-15*/}
+- [18.react.dev](https://18.react.dev) {/*docs-18*/}
+- [17.react.dev](https://17.react.dev) {/*docs-17*/}
+- [16.react.dev](https://16.react.dev) {/*docs-16*/}
+- [15.react.dev](https://15.react.dev) {/*docs-15*/}
 
 <Note>
 

@@ -251,9 +251,7 @@ export default function TopNav({
               </button>
               <div className="f">
                 <div className="uwu-visible">
-                  <NextLink
-                    href="/"
-                    className={`active:scale-95 mt-0.5 overflow-hidden transition-transform relative items-center justify-center text-primary dark:text-primary-dark p-1 whitespace-nowrap outline-link rounded-full 3xl:rounded-xl inline-flex text-lg font-normal gap-2`}>
+                  <NextLink href="/">
                     <Image
                       alt="logo by @sawaratsuki1004"
                       title="logo by @sawaratsuki1004"

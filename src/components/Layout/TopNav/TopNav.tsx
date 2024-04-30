@@ -253,7 +253,7 @@ export default function TopNav({
                 <div className="uwu-visible">
                   <NextLink
                     href="/"
-                    className="mt-0.5 items-center justify-center p-1 whitespace-nowrap">
+                    className="h-10 items-center justify-center p-1">
                     <Image
                       alt="logo by @sawaratsuki1004"
                       title="logo by @sawaratsuki1004"

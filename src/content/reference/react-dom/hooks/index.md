@@ -12,11 +12,13 @@ The `react-dom` package contains Hooks that are only supported for web applicati
 
 ## Form Hooks {/*form-hooks*/}
 
-<Canary>
+<NextMajor>
 
-Form Hooks are currently only available in React's canary and experimental channels. Learn more about [React's release channels here](/community/versioning-policy#all-release-channels).
+Form Hooks are currently available in React 19 beta and the React canary channel.
 
-</Canary>
+Learn more about [React's release channels here](/community/versioning-policy#all-release-channels).
+
+</NextMajor>
 
 *Forms* let you create interactive controls for submitting information.  To manage forms in your components, use one of these Hooks:
 

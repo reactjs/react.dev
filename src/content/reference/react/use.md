@@ -1,13 +1,12 @@
 ---
 title: use
-canary: true
 ---
 
-<Canary>
+<NextMajor>
 
-The `use` API is currently only available in React's Canary and experimental channels. Learn more about [React's release channels here](/community/versioning-policy#all-release-channels).
+The `use` API is currently is available in React 19 beta, and the latest React Canary. Learn more about [React's release channels here](/community/versioning-policy#all-release-channels).
 
-</Canary>
+</NextMajor>
 
 <Intro>
 

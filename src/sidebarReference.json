@@ -4,7 +4,7 @@
   "routes": [
     {
       "hasSectionHeader": true,
-      "sectionHeader": "react@18.2.0"
+      "sectionHeader": "react@{{version}}"
     },
     {
       "title": "Overview",
@@ -156,7 +156,7 @@
     },
     {
       "hasSectionHeader": true,
-      "sectionHeader": "react-dom@18.2.0"
+      "sectionHeader": "react-dom@{{version}}"
     },
     {
       "title": "Hooks",

@@ -745,11 +745,10 @@ ol.mdx-illustration-block {
   display: flex;
 }
 
-.uwu {
-  .uwu-visible {
-    display: flex;
-  }
-  .uwu-hidden {
-    display: none;
-  }
+.uwu .uwu-visible {
+  display: flex;
+}
+
+.uwu .uwu-hidden {
+  display: none;
 }

@@ -1,7 +1,6 @@
 /*
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
-
 exports.siteConfig = {
   version: '19-beta',
   // --------------------------------------

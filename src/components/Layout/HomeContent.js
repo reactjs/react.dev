@@ -27,6 +27,7 @@ import CodeBlock from 'components/MDX/CodeBlock';
 import {ExternalLink} from 'components/ExternalLink';
 import sidebarBlog from '../../sidebarBlog.json';
 import * as React from 'react';
+import Image from 'next/image';
 
 function Section({children, background = null}) {
   return (
@@ -117,10 +118,12 @@ export function HomeContent() {
       <div className="ps-0">
         <div className="mx-5 mt-12 lg:mt-24 mb-20 lg:mb-32 flex flex-col justify-center">
           <div className="uwu-visible flex justify-center">
-            <img
+            <Image
               alt="logo by @sawaratsuki1004"
               title="logo by @sawaratsuki1004"
-              className="uwu-visible h-24 lg:h-40"
+              loading="eager"
+              width={313}
+              height={160}
               src="/images/uwu.png"
             />
           </div>

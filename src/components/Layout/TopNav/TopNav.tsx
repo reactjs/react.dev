@@ -256,6 +256,7 @@ export default function TopNav({
                       alt="logo by @sawaratsuki1004"
                       title="logo by @sawaratsuki1004"
                       className="h-8"
+                      priority={true}
                       width={63}
                       height={32}
                       src="/images/uwu.png"

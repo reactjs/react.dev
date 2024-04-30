@@ -1,13 +1,14 @@
 ---
 title: preinit
-canary: true
 ---
 
-<Canary>
+<NextMajor>
 
-The `preinit` function is currently only available in React's Canary and experimental channels. Learn more about [React's release channels here](/community/versioning-policy#all-release-channels).
+The `preinit` function is currently available in React 19 beta and the React canary channel.
 
-</Canary>
+Learn more about [React's release channels here](/community/versioning-policy#all-release-channels).
+
+</NextMajor>
 
 <Note>
 

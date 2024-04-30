@@ -1,7 +1,12 @@
 ---
-title: React Server Components
-canary: true
+title: Server Components
 ---
+
+<RSC>
+
+Sever Components are for use in [React Server Components](/learn/start-a-new-react-project#bleeding-edge-react-frameworks).
+
+</RSC>
 
 <Intro>
 

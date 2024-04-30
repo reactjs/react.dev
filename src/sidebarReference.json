@@ -17,7 +17,7 @@
         {
           "title": "useActionState",
           "path": "/reference/react/useActionState",
-          "canary": true
+          "version": "major"
         },
         {
           "title": "useCallback",
@@ -62,7 +62,7 @@
         {
           "title": "useOptimistic",
           "path": "/reference/react/useOptimistic",
-          "canary": true
+          "version": "major"
         },
         {
           "title": "useReducer",
@@ -115,7 +115,7 @@
         {
           "title": "cache",
           "path": "/reference/react/cache",
-          "canary": true
+          "version": "major"
         },
         {
           "title": "createContext",
@@ -140,17 +140,17 @@
         {
           "title": "use",
           "path": "/reference/react/use",
-          "canary": true
+          "version": "major"
         },
         {
           "title": "experimental_taintObjectReference",
           "path": "/reference/react/experimental_taintObjectReference",
-          "canary": true
+          "version": "canary"
         },
         {
           "title": "experimental_taintUniqueValue",
           "path": "/reference/react/experimental_taintUniqueValue",
-          "canary": true
+          "version": "canary"
         }
       ]
     },
@@ -165,7 +165,7 @@
         {
           "title": "useFormStatus",
           "path": "/reference/react-dom/hooks/useFormStatus",
-          "canary": true
+          "version": "major"
         }
       ]
     },
@@ -180,11 +180,12 @@
         {
           "title": "<form>",
           "path": "/reference/react-dom/components/form",
-          "canary": true
+          "version": "major"
         },
         {
           "title": "<input>",
-          "path": "/reference/react-dom/components/input"
+          "path": "/reference/react-dom/components/input",
+          "version": "major"
         },
         {
           "title": "<option>",
@@ -205,27 +206,27 @@
         {
           "title": "<link>",
           "path": "/reference/react-dom/components/link",
-          "canary": true
+          "version": "major"
         },
         {
           "title": "<meta>",
           "path": "/reference/react-dom/components/meta",
-          "canary": true
+          "version": "major"
         },
         {
           "title": "<script>",
           "path": "/reference/react-dom/components/script",
-          "canary": true
+          "version": "major"
         },
         {
           "title": "<style>",
           "path": "/reference/react-dom/components/style",
-          "canary": true
+          "version": "major"
         },
         {
           "title": "<title>",
           "path": "/reference/react-dom/components/title",
-          "canary": true
+          "version": "major"
         }
       ]
     },
@@ -252,32 +253,32 @@
         {
           "title": "preconnect",
           "path": "/reference/react-dom/preconnect",
-          "canary": true
+          "version": "major"
         },
         {
           "title": "prefetchDNS",
           "path": "/reference/react-dom/prefetchDNS",
-          "canary": true
+          "version": "major"
         },
         {
           "title": "preinit",
           "path": "/reference/react-dom/preinit",
-          "canary": true
+          "version": "major"
         },
         {
           "title": "preinitModule",
           "path": "/reference/react-dom/preinitModule",
-          "canary": true
+          "version": "major"
         },
         {
           "title": "preload",
           "path": "/reference/react-dom/preload",
-          "canary": true
+          "version": "major"
         },
         {
           "title": "preloadModule",
           "path": "/reference/react-dom/preloadModule",
-          "canary": true
+          "version": "major"
         },
         {
           "title": "render",
@@ -361,28 +362,23 @@
     },
     {
       "title": "Server Components",
-      "path": "/reference/rsc/server-components",
-      "canary": true
+      "path": "/reference/rsc/server-components"
     },
     {
       "title": "Server Actions",
-      "path": "/reference/rsc/server-actions",
-      "canary": true
+      "path": "/reference/rsc/server-actions"
     },
     {
       "title": "Directives",
       "path": "/reference/rsc/directives",
-      "canary": true,
       "routes": [
         {
           "title": "'use client'",
-          "path": "/reference/rsc/use-client",
-          "canary": true
+          "path": "/reference/rsc/use-client"
         },
         {
           "title": "'use server'",
-          "path": "/reference/rsc/use-server",
-          "canary": true
+          "path": "/reference/rsc/use-server"
         }
       ]
     },

@@ -1,7 +1,12 @@
 ---
 title: Server Actions
-canary: true
 ---
+
+<RSC>
+
+Sever Actions are for use in [React Server Components](/learn/start-a-new-react-project#bleeding-edge-react-frameworks).
+
+</RSC>
 
 <Intro>
 

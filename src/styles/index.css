@@ -737,3 +737,19 @@ ol.mdx-illustration-block {
   transition-delay: 1s;
   pointer-events: none;
 }
+
+.uwu-visible {
+  display: none;
+}
+.uwu-hidden {
+  display: flex;
+}
+
+.uwu {
+  .uwu-visible {
+    display: flex;
+  }
+  .uwu-hidden {
+    display: none;
+  }
+}

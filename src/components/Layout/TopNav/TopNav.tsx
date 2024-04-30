@@ -249,16 +249,25 @@ export default function TopNav({
                 {isMenuOpen ? <IconClose /> : <IconHamburger />}
               </button>
               <div className="f">
-                <NextLink
-                  href="/"
-                  className={`active:scale-95 overflow-hidden transition-transform relative items-center text-primary dark:text-primary-dark p-1 whitespace-nowrap outline-link rounded-full 3xl:rounded-xl inline-flex text-lg font-normal gap-2`}>
-                  <Logo
-                    className={cn(
-                      'text-sm me-0 w-10 h-10 text-link dark:text-link-dark flex origin-center transition-all ease-in-out'
-                    )}
-                  />
-                  <span className="sr-only 3xl:not-sr-only">React</span>
-                </NextLink>
+                <div className="uwu-visible">
+                  <NextLink
+                    href="/"
+                    className={`active:scale-95 mt-0.5 overflow-hidden transition-transform relative items-center justify-center text-primary dark:text-primary-dark p-1 whitespace-nowrap outline-link rounded-full 3xl:rounded-xl inline-flex text-lg font-normal gap-2`}>
+                    <img className="h-8" src="/images/uwu.png" />
+                  </NextLink>
+                </div>
+                <div className="uwu-hidden">
+                  <NextLink
+                    href="/"
+                    className={`active:scale-95 overflow-hidden transition-transform relative items-center text-primary dark:text-primary-dark p-1 whitespace-nowrap outline-link rounded-full 3xl:rounded-xl inline-flex text-lg font-normal gap-2`}>
+                    <Logo
+                      className={cn(
+                        'text-sm me-0 w-10 h-10 text-link dark:text-link-dark flex origin-center transition-all ease-in-out'
+                      )}
+                    />
+                    <span className="sr-only 3xl:not-sr-only">React</span>
+                  </NextLink>
+                </div>
               </div>
               <div className="flex flex-column justify-center items-center">
                 <NextLink

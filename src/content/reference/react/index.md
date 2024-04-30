@@ -17,7 +17,7 @@ Programmatic React features:
 * [Hooks](/reference/react/hooks) - Use different React features from your components.
 * [Components](/reference/react/components) - Documents built-in components that you can use in your JSX.
 * [APIs](/reference/react/apis) - APIs that are useful for defining components.
-* [Directives](/reference/react/directives) - Provide instructions to bundlers compatible with React Server Components.
+* [Directives](/reference/rsc/directives) - Provide instructions to bundlers compatible with React Server Components.
 
 ## React DOM {/*react-dom*/}
 

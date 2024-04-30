@@ -2,7 +2,6 @@
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
 
-import {useRef} from 'react';
 import * as React from 'react';
 import cn from 'classnames';
 import {IconNote} from '../Icon/IconNote';
@@ -63,7 +62,6 @@ const variantMap = {
 };
 
 function ExpandableCallout({children, type = 'note'}: ExpandableCalloutProps) {
-  const contentRef = useRef<HTMLDivElement>(null);
   const variant = variantMap[type];
 
   return (
@@ -80,9 +78,7 @@ function ExpandableCallout({children, type = 'note'}: ExpandableCalloutProps) {
         {variant.title}
       </h3>
       <div className="relative">
-        <div ref={contentRef} className="py-2">
-          {children}
-        </div>
+        <div className="py-2">{children}</div>
       </div>
     </div>
   );

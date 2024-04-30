@@ -4,7 +4,7 @@
   "routes": [
     {
       "hasSectionHeader": true,
-      "sectionHeader": "react@18.2.0"
+      "sectionHeader": "react@{{version}}"
     },
     {
       "title": "Overview",
@@ -15,8 +15,8 @@
       "path": "/reference/react/hooks",
       "routes": [
         {
-          "title": "use",
-          "path": "/reference/react/use",
+          "title": "useActionState",
+          "path": "/reference/react/useActionState",
           "canary": true
         },
         {
@@ -138,6 +138,11 @@
           "path": "/reference/react/startTransition"
         },
         {
+          "title": "use",
+          "path": "/reference/react/use",
+          "canary": true
+        },
+        {
           "title": "experimental_taintObjectReference",
           "path": "/reference/react/experimental_taintObjectReference",
           "canary": true
@@ -150,35 +155,13 @@
       ]
     },
     {
-      "title": "Directives",
-      "path": "/reference/react/directives",
-      "canary": true,
-      "routes": [
-        {
-          "title": "'use client'",
-          "path": "/reference/react/use-client",
-          "canary": true
-        },
-        {
-          "title": "'use server'",
-          "path": "/reference/react/use-server",
-          "canary": true
-        }
-      ]
-    },
-    {
       "hasSectionHeader": true,
-      "sectionHeader": "react-dom@18.2.0"
+      "sectionHeader": "react-dom@{{version}}"
     },
     {
       "title": "Hooks",
       "path": "/reference/react-dom/hooks",
       "routes": [
-        {
-          "title": "useFormState",
-          "path": "/reference/react-dom/hooks/useFormState",
-          "canary": true
-        },
         {
           "title": "useFormStatus",
           "path": "/reference/react-dom/hooks/useFormStatus",
@@ -356,19 +339,52 @@
     },
     {
       "title": "Overview",
-      "path": "/reference/rules"
+      "path": "/reference/rules",
+      "routes": [
+        {
+        "title": "Components and Hooks must be pure",
+        "path": "/reference/rules/components-and-hooks-must-be-pure"
+        },
+        {
+          "title": "React calls Components and Hooks",
+          "path": "/reference/rules/react-calls-components-and-hooks"
+        },
+        {
+          "title": "Rules of Hooks",
+          "path": "/reference/rules/rules-of-hooks"
+        }
+      ]
     },
     {
-      "title": "Components and Hooks must be pure",
-      "path": "/reference/rules/components-and-hooks-must-be-pure"
+      "hasSectionHeader": true,
+      "sectionHeader": "React Server Components"
     },
     {
-      "title": "React calls Components and Hooks",
-      "path": "/reference/rules/react-calls-components-and-hooks"
+      "title": "Server Components",
+      "path": "/reference/rsc/server-components",
+      "canary": true
     },
     {
-      "title": "Rules of Hooks",
-      "path": "/reference/rules/rules-of-hooks"
+      "title": "Server Actions",
+      "path": "/reference/rsc/server-actions",
+      "canary": true
+    },
+    {
+      "title": "Directives",
+      "path": "/reference/rsc/directives",
+      "canary": true,
+      "routes": [
+        {
+          "title": "'use client'",
+          "path": "/reference/rsc/use-client",
+          "canary": true
+        },
+        {
+          "title": "'use server'",
+          "path": "/reference/rsc/use-server",
+          "canary": true
+        }
+      ]
     },
     {
       "hasSectionHeader": true,

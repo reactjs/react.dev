@@ -22,6 +22,7 @@ import type {RouteItem} from 'components/Layout/getRouteMeta';
 import {HomeContent} from './HomeContent';
 import {TopNav} from './TopNav';
 import cn from 'classnames';
+import Head from 'next/head';
 
 import(/* webpackPrefetch: true */ '../MDX/CodeBlock/CodeBlock');
 
@@ -130,6 +131,16 @@ export function Page({
         image={`/images/og-` + section + '.png'}
         searchOrder={searchOrder}
       />
+      {(isHomePage || isBlogIndex) && (
+        <Head>
+          <link
+            rel="alternate"
+            type="application/rss+xml"
+            title="React Blog RSS Feed"
+            href="/rss.xml"
+          />
+        </Head>
+      )}
       <SocialBanner />
       <TopNav
         section={section}

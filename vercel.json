@@ -10,6 +10,11 @@
       "permanent": true
     },
     {
+      "source": "/reference/react-dom/hooks/useFormState",
+      "destination": "/reference/react/useActionState",
+      "permanent": true
+    },
+    {
       "source": "/learn/meet-the-team",
       "destination": "/community/team",
       "permanent": true
@@ -19,7 +24,6 @@
       "destination": "/learn/rendering-lists#keeping-list-items-in-order-with-key",
       "permanent": false
     },
-
     {
       "source": "/link/invalid-hook-call",
       "destination": "/warnings/invalid-hook-call-warning",
@@ -149,6 +153,26 @@
       "source": "/link/setstate-in-render",
       "destination": "https://github.com/facebook/react/issues/18178#issuecomment-595846312",
       "permanent": false
+    },
+    {
+      "source": "/link/new-jsx-transform",
+      "destination": "https://legacy.reactjs.org/blog/2020/09/22/introducing-the-new-jsx-transform.html",
+      "permanent": false
+    },
+    {
+      "source": "/reference/react/directives",
+      "destination": "/reference/rsc/directives",
+      "permanent": true
+    },
+    {
+      "source": "/reference/react/use-client",
+      "destination": "/reference/rsc/use-client",
+      "permanent": true
+    },
+    {
+      "source": "/reference/react/use-server",
+      "destination": "/reference/rsc/use-server",
+      "permanent": true
     }
   ],
   "headers": [

@@ -8,6 +8,8 @@ All stable builds of React go through a high level of testing and follow semanti
 
 </Intro>
 
+For a list of previous releases, see the [Versions](/versions) page.
+
 ## Stable releases {/*stable-releases*/}
 
 Stable React releases (also known as "Latest" release channel) follow [semantic versioning (semver)](https://semver.org/) principles.

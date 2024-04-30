@@ -8,7 +8,7 @@ import cn from 'classnames';
 
 import CodeBlock from './CodeBlock';
 import {CodeDiagram} from './CodeDiagram';
-import ConsoleBlock from './ConsoleBlock';
+import {ConsoleBlock, ConsoleLogLine, ConsoleBlockMulti} from './ConsoleBlock';
 import ExpandableCallout from './ExpandableCallout';
 import ExpandableExample from './ExpandableExample';
 import {H1, H2, H3, H4, H5} from './Heading';
@@ -208,7 +208,7 @@ function Recipes(props: any) {
 
 function AuthorCredit({
   author = 'Rachel Lee Nabors',
-  authorLink = 'http://rachelnabors.com/',
+  authorLink = 'https://nearestnabors.com/',
 }: {
   author: string;
   authorLink: string;
@@ -452,6 +452,8 @@ export const MDXComponents = {
   pre: CodeBlock,
   CodeDiagram,
   ConsoleBlock,
+  ConsoleBlockMulti,
+  ConsoleLogLine,
   DeepDive: (props: {
     children: React.ReactNode;
     title: string;

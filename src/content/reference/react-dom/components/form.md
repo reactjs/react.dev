@@ -93,7 +93,7 @@ export default function Search() {
 
 ### Handle form submission with a Server Action {/*handle-form-submission-with-a-server-action*/}
 
-Render a `<form>` with an input and submit button. Pass a Server Action (a function marked with [`'use server'`](/reference/react/use-server)) to the `action` prop of form to run the function when the form is submitted.
+Render a `<form>` with an input and submit button. Pass a Server Action (a function marked with [`'use server'`](/reference/rsc/use-server)) to the `action` prop of form to run the function when the form is submitted.
 
 Passing a Server Action to `<form action>` allow users to submit forms without JavaScript enabled or before the code has loaded. This is beneficial to users who have a slow connection, device, or have JavaScript disabled and is similar to the way forms work when a URL is passed to the `action` prop.
 
@@ -137,7 +137,7 @@ function AddToCart({productId}) {
 }
 ```
 
-When `<form>` is rendered by a [Server Component](/reference/react/use-client), and a [Server Action](/reference/react/use-server) is passed to the `<form>`'s `action` prop, the form is [progressively enhanced](https://developer.mozilla.org/en-US/docs/Glossary/Progressive_Enhancement).
+When `<form>` is rendered by a [Server Component](/reference/rsc/use-client), and a [Server Action](/reference/rsc/use-server) is passed to the `<form>`'s `action` prop, the form is [progressively enhanced](https://developer.mozilla.org/en-US/docs/Glossary/Progressive_Enhancement).
 
 ### Display a pending state during form submission {/*display-a-pending-state-during-form-submission*/}
 To display a pending state when a form is being submitted, you can call the `useFormStatus` Hook in a component rendered in a `<form>` and read the `pending` property returned.
@@ -322,16 +322,16 @@ export default function Search() {
 
 Displaying a form submission error message before the JavaScript bundle loads for progressive enhancement requires that:
 
-1. `<form>` be rendered by a [Server Component](/reference/react/use-client)
-1. the function passed to the `<form>`'s `action` prop be a [Server Action](/reference/react/use-server)
-1. the `useFormState` Hook be used to display the error message
+1. `<form>` be rendered by a [Server Component](/reference/rsc/use-client)
+1. the function passed to the `<form>`'s `action` prop be a [Server Action](/reference/rsc/use-server)
+1. the `useActionState` Hook be used to display the error message
 
-`useFormState` takes two parameters: a [Server Action](/reference/react/use-server) and an initial state. `useFormState` returns two values, a state variable and an action. The action returned by `useFormState` should be passed to the `action` prop of the form. The state variable returned by `useFormState` can be used to displayed an error message. The value returned by the [Server Action](/reference/react/use-server) passed to `useFormState` will be used to update the state variable.
+`useActionState` takes two parameters: a [Server Action](/reference/rsc/use-server) and an initial state. `useActionState` returns two values, a state variable and an action. The action returned by `useActionState` should be passed to the `action` prop of the form. The state variable returned by `useActionState` can be used to displayed an error message. The value returned by the [Server Action](/reference/rsc/use-server) passed to `useActionState` will be used to update the state variable.
 
 <Sandpack>
 
 ```js src/App.js
-import { useFormState } from "react-dom";
+import { useActionState } from "react";
 import { signUpNewUser } from "./api";
 
 export default function Page() {
@@ -345,12 +345,12 @@ export default function Page() {
       return err.toString();
     }
   }
-  const [message, formAction] = useFormState(signup, null);
+  const [message, signupAction] = useActionState(signup, null);
   return (
     <>
       <h1>Signup for my newsletter</h1>
       <p>Signup with the same email twice to see an error</p>
-      <form action={formAction} id="signup-form">
+      <form action={signupAction} id="signup-form">
         <label htmlFor="email">Email: </label>
         <input name="email" id="email" placeholder="react@example.com" />
         <button>Sign up</button>
@@ -386,7 +386,7 @@ export async function signUpNewUser(newEmail) {
 
 </Sandpack>
 
-Learn more about updating state from a form action with the [`useFormState`](/reference/react-dom/hooks/useFormState) docs
+Learn more about updating state from a form action with the [`useActionState`](/reference/react/hooks/useActionState) docs
 
 ### Handling multiple submission types {/*handling-multiple-submission-types*/}
 

@@ -285,6 +285,14 @@ export function Footer() {
             dir="ltr">
             &copy;{new Date().getFullYear()}
           </div>
+          <div className="uwu-visible text-xs">
+            Logo by
+            <ExternalLink
+              className="ms-1"
+              href="https://twitter.com/sawaratsuki1004">
+              @sawaratsuki1004
+            </ExternalLink>
+          </div>
         </div>
         <div className="flex flex-col">
           <FooterLink href="/learn" isHeader={true}>

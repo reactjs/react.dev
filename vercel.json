@@ -5,50 +5,6 @@
   "trailingSlash": false,
   "redirects": [
     {
-      "source": "/",
-      "has": [
-        {
-          "type": "host",
-          "value": "18.react.dev"
-        }
-      ],
-      "permanent": false,
-      "destination": "https://react.dev/"
-    },
-    {
-      "source": "/",
-      "has": [
-        {
-          "type": "host",
-          "value": "17.react.dev"
-        }
-      ],
-      "permanent": true,
-      "destination": "https://17.reactjs.org/"
-    },
-    {
-      "source": "/",
-      "has": [
-        {
-          "type": "host",
-          "value": "16.react.dev"
-        }
-      ],
-      "permanent": true,
-      "destination": "https://17.reactjs.org/"
-    },
-    {
-      "source": "/",
-      "has": [
-        {
-          "type": "host",
-          "value": "15.react.dev"
-        }
-      ],
-      "permanent": true,
-      "destination": "https://react-legacy.netlify.app/"
-    },
-    {
       "source": "/reference",
       "destination": "/reference/react",
       "permanent": true

@@ -251,12 +251,14 @@ export default function TopNav({
               </button>
               <div className="f">
                 <div className="uwu-visible">
-                  <NextLink href="/">
+                  <NextLink
+                    href="/"
+                    className="mt-0.5 items-center justify-center p-1 whitespace-nowrap">
                     <Image
                       alt="logo by @sawaratsuki1004"
                       title="logo by @sawaratsuki1004"
                       className="h-8"
-                      priority={true}
+                      loading="eager"
                       width={63}
                       height={32}
                       src="/images/uwu.png"

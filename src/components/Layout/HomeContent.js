@@ -121,8 +121,8 @@ export function HomeContent() {
             <Image
               alt="logo by @sawaratsuki1004"
               title="logo by @sawaratsuki1004"
+              loading="eager"
               width={313}
-              priority={true}
               height={160}
               src="/images/uwu.png"
             />

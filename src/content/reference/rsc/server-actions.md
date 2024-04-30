@@ -114,7 +114,7 @@ function UpdateName() {
 
   const [isPending, startTransition] = useTransition();
 
-  const submitAction = async () => {
+  const submitAction = () => {
     startTransition(async () => {
       const {error} = await updateName(name);
       if (!error) {

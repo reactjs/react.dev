@@ -40,7 +40,8 @@ const MyDocument = () => {
                           localStorage.setItem('uwu', true);
                         } catch (err) { }
                         document.documentElement.classList.add('uwu');
-                        console.log('uwu mode enabled. logo credits to @sawaratsuki1004 via https://github.com/SAWARATSUKI/ServiceLogos');
+                        console.log('uwu mode enabled. turn off with ?uwu=false')
+                        console.log('logo credit to @sawaratsuki1004 via https://github.com/SAWARATSUKI/ServiceLogos');
                       } else {
                         try {
                           localStorage.removeItem('uwu', false);

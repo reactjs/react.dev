@@ -117,7 +117,12 @@ export function HomeContent() {
       <div className="ps-0">
         <div className="mx-5 mt-12 lg:mt-24 mb-20 lg:mb-32 flex flex-col justify-center">
           <div className="uwu-visible flex justify-center">
-            <img className="uwu-visible h-24 lg:h-40" src="/images/uwu.png" />
+            <img
+              alt="logo by @sawaratsuki1004"
+              title="logo by @sawaratsuki1004"
+              className="uwu-visible h-24 lg:h-40"
+              src="/images/uwu.png"
+            />
           </div>
           <Logo
             className={cn(
@@ -495,6 +500,8 @@ export function HomeContent() {
           <div className="mt-20 px-5 lg:px-0 mb-6 max-w-4xl text-center text-opacity-80">
             <div className="uwu-visible flex justify-center">
               <img
+                alt="logo by @sawaratsuki1004"
+                title="logo by @sawaratsuki1004"
                 className="uwu-visible mb-10 lg:mb-8 h-24 lg:h-32"
                 src="/images/uwu.png"
               />

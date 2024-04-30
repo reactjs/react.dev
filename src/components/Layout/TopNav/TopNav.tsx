@@ -253,7 +253,12 @@ export default function TopNav({
                   <NextLink
                     href="/"
                     className={`active:scale-95 mt-0.5 overflow-hidden transition-transform relative items-center justify-center text-primary dark:text-primary-dark p-1 whitespace-nowrap outline-link rounded-full 3xl:rounded-xl inline-flex text-lg font-normal gap-2`}>
-                    <img className="h-8" src="/images/uwu.png" />
+                    <img
+                      alt="logo by @sawaratsuki1004"
+                      title="logo by @sawaratsuki1004"
+                      className="h-8"
+                      src="/images/uwu.png"
+                    />
                   </NextLink>
                 </div>
                 <div className="uwu-hidden">

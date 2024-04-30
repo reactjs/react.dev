@@ -343,7 +343,7 @@ This lets you read individual DOM nodes from the Map later.
 
 <NextMajor>
 
-Starting in React 19 callback refs can return a cleanup function. When the cleanup function is provided, React will not call the `ref` callback with `null` and call the cleanup function instead:
+Starting in React 19, callback refs can return a cleanup function. When the cleanup function is provided, React will not call the `ref` callback with `null` and call the cleanup function instead:
 
 ```js
 <li

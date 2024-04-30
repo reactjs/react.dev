@@ -250,10 +250,8 @@ export default function TopNav({
                 {isMenuOpen ? <IconClose /> : <IconHamburger />}
               </button>
               <div className="f">
-                <div className="uwu-visible">
-                  <NextLink
-                    href="/"
-                    className="h-10 items-center justify-center p-1">
+                <div className="uwu-visible flex items-center justify-center h-full">
+                  <NextLink href="/">
                     <Image
                       alt="logo by @sawaratsuki1004"
                       title="logo by @sawaratsuki1004"

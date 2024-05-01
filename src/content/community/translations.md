@@ -8,7 +8,9 @@ React docs are translated by the global community into many languages all over t
 
 </Intro>
 
-## Main site {/*main-site*/}
+## Source site {/*main-site*/}
+
+All translations are provided from the canonical source docs:
 
 - [English](https://react.dev/) &mdash; [Contribute](https://github.com/reactjs/react.dev/)
 

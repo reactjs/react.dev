@@ -58,7 +58,7 @@ html .sandpack {
 
 /* Dark theme */
 html.dark .sp-wrapper {
-  --sp-colors-accent: #149eca;
+  --sp-colors-accent: #58c4dc;
   --sp-colors-clickable: #999;
   --sp-colors-disabled: #fff;
   --sp-colors-error: #811e18;
@@ -593,7 +593,7 @@ html.dark .sp-devtools > div {
   -webkit-text-size-adjust: none;
 }
 
-/** 
+/**
  * For iOS: prevent browser zoom when clicking on sandbox.
  * Does NOT apply to code blocks.
  */

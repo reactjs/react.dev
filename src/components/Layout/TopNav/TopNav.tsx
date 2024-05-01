@@ -282,7 +282,7 @@ export default function TopNav({
                     className={`active:scale-95 overflow-hidden transition-transform relative items-center text-primary dark:text-primary-dark p-1 whitespace-nowrap outline-link rounded-full 3xl:rounded-xl inline-flex text-lg font-normal gap-2`}>
                     <Logo
                       className={cn(
-                        'text-sm me-0 w-10 h-10 text-link dark:text-link-dark flex origin-center transition-all ease-in-out'
+                        'text-sm me-0 w-10 h-10 text-brand dark:text-brand-dark flex origin-center transition-all ease-in-out'
                       )}
                     />
                     <span className="sr-only 3xl:not-sr-only">React</span>

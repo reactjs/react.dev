@@ -12,18 +12,18 @@ React docs are translated by the global community into many languages all over t
 
 - [English](https://react.dev/) &mdash; [Contribute](https://github.com/reactjs/react.dev/)
 
-## Translated languages {/*translated-languages*/}
+## Full translations {/*full-translations*/}
 
 {/* If you are a language maintainer and want to add your language here, finish the "Core" translations and edit `deployedTranslations` under `src/utils`. */}
 
-<LanguageList showTranslated={true} />
+<LanguageList progress="complete" />
 
-## Languages undergoing translation work {/*languages-undergoing-translation-work*/}
+## In-progress translations {/*in-progress-translations*/}
 
-The list below includes languages with a significant amount of completed translation as well as those with little to no progress. The translation progress for each language is being tracked in [Is React Translated Yet?](https://translations.react.dev/)
+For the progress of each translation, see: [Is React Translated Yet?](https://translations.react.dev/)
 
-<LanguageList showTranslated={false} />
+<LanguageList progress="in-progress" />
 
 ## How to contribute {/*how-to-contribute*/}
 
-You can contribute to the translation efforts! The community conducts the translation work for the React docs on each language-specific fork of react.dev. Typical translation work involves directly translating a Markdown file and creating a pull request. Visit the GitHub repository for your language, and follow the instructions there or contact one of the maintainers.
+You can contribute to the translation efforts! The community conducts the translation work for the React docs on each language-specific fork of react.dev. Typical translation work involves directly translating a Markdown file and creating a pull request. Visit the GitHub repository for your language, and follow the instructions there or contact one of the maintainers. If you want to start a new translation for your language, visit: [translations.react.dev](https://github.com/reactjs/translations.react.dev)

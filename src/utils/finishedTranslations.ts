@@ -5,7 +5,7 @@
 // This will also affect the 'Translations' article.
 
 // prettier-ignore
-export const deployedTranslations = [
+export const finishedTranslations = [
   'en',
   'zh-hans',
   'es',

@@ -32,7 +32,7 @@ import {TocContext} from './TocContext';
 import type {Toc, TocItem} from './TocContext';
 import {TeamMember} from './TeamMember';
 import {LanguagesContext} from './LanguagesContext';
-import {deployedTranslations} from 'utils/deployedTranslations';
+import {finishedTranslations} from 'utils/finishedTranslations';
 
 import ErrorDecoder from './ErrorDecoder';
 import {IconCanary} from '../Icon/IconCanary';
@@ -382,15 +382,17 @@ function InlineTocItem({items}: {items: Array<NestedTocNode>}) {
   );
 }
 
-function LanguageList({showTranslated}: {showTranslated: boolean}) {
+type TranslationProgress = 'complete' | 'in-progress';
+
+function LanguageList({progress}: {progress: TranslationProgress}) {
   const allLanguages = React.useContext(LanguagesContext) ?? [];
   const languages = allLanguages
     .filter(
       ({code}) =>
         code !== 'en' &&
-        (showTranslated
-          ? deployedTranslations.includes(code)
-          : !deployedTranslations.includes(code))
+        (progress === 'complete'
+          ? finishedTranslations.includes(code)
+          : !finishedTranslations.includes(code))
     )
     .sort((a, b) => a.enName.localeCompare(b.enName));
   return (

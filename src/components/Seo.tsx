@@ -6,7 +6,7 @@ import * as React from 'react';
 import Head from 'next/head';
 import {withRouter, Router} from 'next/router';
 import {siteConfig} from '../siteConfig';
-import {deployedTranslations} from 'utils/deployedTranslations';
+import {finishedTranslations} from 'utils/finishedTranslations';
 
 export interface SeoProps {
   title: string;
@@ -20,7 +20,7 @@ export interface SeoProps {
 }
 
 // If you are a maintainer of a language fork,
-// deployedTranslations has been moved to src/utils/deployedTranslations.ts.
+// deployedTranslations has been moved to src/utils/finishedTranslations.ts.
 
 function getDomain(languageCode: string): string {
   const subdomain = languageCode === 'en' ? '' : languageCode + '.';
@@ -63,7 +63,7 @@ export const Seo = withRouter(
           href={canonicalUrl.replace(siteDomain, getDomain('en'))}
           hrefLang="x-default"
         />
-        {deployedTranslations.map((languageCode) => (
+        {finishedTranslations.map((languageCode) => (
           <link
             key={'alt-' + languageCode}
             rel="alternate"

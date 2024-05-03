@@ -198,7 +198,7 @@ For more info, see the docs for [Directives](/reference/rsc/directives).
 In the following example, the `Notes` Server Component imports an `Expandable` Client Component that uses state to toggle its `expanded` state:
 ```js
 // Server Component
-import Exapandable from './Expandable';
+import Expandable from './Expandable';
 
 async function Notes() {
   const notes = await db.notes.getAll();

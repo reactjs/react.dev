@@ -112,7 +112,7 @@ The async transition will immediately set the `isPending` state to true, make th
 Actions automatically manage submitting data for you:
 
 - **Pending state**: Actions provide a pending state that starts at the beginning of a request and automatically resets when the final state update is committed.
-- **Optimistic updates**: Actions support the new [`useOptimistic`](#new-feature-optimistic-updates) hook so you can show users instant feedback while the requests are submitting.
+- **Optimistic updates**: Actions support the new [`useOptimistic`](#new-hook-optimistic-updates) hook so you can show users instant feedback while the requests are submitting.
 - **Error handling**: Actions provide error handling so you can display Error Boundaries when a request fails, and revert optimistic updates to their original value automatically.
 - **Forms**: `<form>` elements now support passing functions to the `action` and `formAction` props. Passing functions to the `action` props use Actions by default and reset the form automatically after submission.
 

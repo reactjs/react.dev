@@ -173,6 +173,11 @@
       "source": "/reference/react/use-server",
       "destination": "/reference/rsc/use-server",
       "permanent": true
+    },
+    {
+      "source": "/feed.xml",
+      "destination": "/rss.xml",
+      "permanent": true
     }
   ],
   "headers": [

@@ -338,7 +338,7 @@ To fix this warning, you can import `act` from `react`:
 
 All other `test-utils` functions have been removed. These utilities were uncommon, and made it too easy to depend on low level implementation details of your components and React. In React 19, these functions will error when called and their exports will be removed in a future version.
 
-See the [warning page](https://react.dev/warnings/react-dom-test-utils) to for alternatives.
+See the [warning page](https://react.dev/warnings/react-dom-test-utils) for alternatives.
 
 #### Removed: `ReactDOM.render` {/*removed-reactdom-render*/}
 

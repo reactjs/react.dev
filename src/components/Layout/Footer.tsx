@@ -285,6 +285,22 @@ export function Footer() {
             dir="ltr">
             &copy;{new Date().getFullYear()}
           </div>
+          <div
+            className="uwu-visible text-xs cursor-pointer hover:text-link hover:dark:text-link-dark hover:underline"
+            onClick={() => {
+              // @ts-ignore
+              window.__setUwu(false);
+            }}>
+            no uwu plz
+          </div>
+          <div
+            className="uwu-hidden text-xs cursor-pointer hover:text-link hover:dark:text-link-dark hover:underline"
+            onClick={() => {
+              // @ts-ignore
+              window.__setUwu(true);
+            }}>
+            uwu?
+          </div>
           <div className="uwu-visible text-xs">
             Logo by
             <ExternalLink

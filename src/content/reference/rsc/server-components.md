@@ -162,7 +162,7 @@ async function Note({id}) {
 }
 
 async function Author({id}) {
-  // NOTE: loads *after* Node,
+  // NOTE: loads *after* Note,
   // but is fast if data is co-located.
   const author = await db.authors.get(id);
   return <span>By: {author.name}</span>;
@@ -198,7 +198,7 @@ For more info, see the docs for [Directives](/reference/rsc/directives).
 In the following example, the `Notes` Server Component imports an `Expandable` Client Component that uses state to toggle its `expanded` state:
 ```js
 // Server Component
-import Exapandable from './Expandable';
+import Expandable from './Expandable';
 
 async function Notes() {
   const notes = await db.notes.getAll();

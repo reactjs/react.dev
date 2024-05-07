@@ -79,6 +79,19 @@ const lightIcon = (
   </svg>
 );
 
+const languageIcon = (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="24"
+    height="24"
+    viewBox="0 0 24 24">
+    <path
+      fill="currentColor"
+      d=" M12.87 15.07l-2.54-2.51.03-.03c1.74-1.94 2.98-4.17 3.71-6.53H17V4h-7V2H8v2H1v1.99h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11.76-2.04zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2l-4.5-12zm-2.62 7l1.62-4.33L19.12 17h-3.24z "
+    />
+  </svg>
+);
+
 const githubIcon = (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -269,7 +282,7 @@ export default function TopNav({
                     className={`active:scale-95 overflow-hidden transition-transform relative items-center text-primary dark:text-primary-dark p-1 whitespace-nowrap outline-link rounded-full 3xl:rounded-xl inline-flex text-lg font-normal gap-2`}>
                     <Logo
                       className={cn(
-                        'text-sm me-0 w-10 h-10 text-link dark:text-link-dark flex origin-center transition-all ease-in-out'
+                        'text-sm me-0 w-10 h-10 text-brand dark:text-brand-dark flex origin-center transition-all ease-in-out'
                       )}
                     />
                     <span className="sr-only 3xl:not-sr-only">React</span>
@@ -351,6 +364,14 @@ export default function TopNav({
                     className="flex items-center justify-center w-12 h-12 transition-transform rounded-full active:scale-95 hover:bg-primary/5 hover:dark:bg-primary-dark/5 outline-link">
                     {lightIcon}
                   </button>
+                </div>
+                <div className="flex">
+                  <Link
+                    href="/community/translations"
+                    aria-label="Translations"
+                    className="active:scale-95 transition-transform flex w-12 h-12 rounded-full items-center justify-center hover:bg-primary/5 hover:dark:bg-primary-dark/5 outline-link">
+                    {languageIcon}
+                  </Link>
                 </div>
                 <div className="flex">
                   <Link

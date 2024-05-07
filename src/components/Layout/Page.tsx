@@ -11,11 +11,10 @@ import {Toc} from './Toc';
 import SocialBanner from '../SocialBanner';
 import {DocsPageFooter} from 'components/DocsFooter';
 import {Seo} from 'components/Seo';
-import ButtonLink from 'components/ButtonLink';
-import {IconNavArrow} from 'components/Icon/IconNavArrow';
 import PageHeading from 'components/PageHeading';
 import {getRouteMeta} from './getRouteMeta';
 import {TocContext} from '../MDX/TocContext';
+import {Languages, LanguagesContext} from '../MDX/LanguagesContext';
 import type {TocItem} from 'components/MDX/TocContext';
 import type {RouteItem} from 'components/Layout/getRouteMeta';
 import {HomeContent} from './HomeContent';
@@ -36,9 +35,17 @@ interface PageProps {
     description?: string;
   };
   section: 'learn' | 'reference' | 'community' | 'blog' | 'home' | 'unknown';
+  languages?: Languages | null;
 }
 
-export function Page({children, toc, routeTree, meta, section}: PageProps) {
+export function Page({
+  children,
+  toc,
+  routeTree,
+  meta,
+  section,
+  languages = null,
+}: PageProps) {
   const {asPath} = useRouter();
   const cleanedPath = asPath.split(/[\?\#]/)[0];
   const {route, nextRoute, prevRoute, breadcrumbs, order} = getRouteMeta(
@@ -75,7 +82,11 @@ export function Page({children, toc, routeTree, meta, section}: PageProps) {
               'max-w-7xl mx-auto',
               section === 'blog' && 'lg:flex lg:flex-col lg:items-center'
             )}>
-            <TocContext.Provider value={toc}>{children}</TocContext.Provider>
+            <TocContext.Provider value={toc}>
+              <LanguagesContext.Provider value={languages}>
+                {children}
+              </LanguagesContext.Provider>
+            </TocContext.Provider>
           </div>
           {!isBlogIndex && (
             <DocsPageFooter
@@ -92,12 +103,10 @@ export function Page({children, toc, routeTree, meta, section}: PageProps) {
   let hasColumns = true;
   let showSidebar = true;
   let showToc = true;
-  let showSurvey = true;
   if (isHomePage || isBlogIndex) {
     hasColumns = false;
     showSidebar = false;
     showToc = false;
-    showSurvey = false;
   } else if (section === 'blog') {
     showToc = false;
     hasColumns = false;
@@ -165,33 +174,7 @@ export function Page({children, toc, routeTree, meta, section}: PageProps) {
               )}>
               {!isHomePage && (
                 <div className="w-full px-5 pt-10 mx-auto sm:px-12 md:px-12 md:pt-12 lg:pt-10">
-                  {
-                    <hr className="mx-auto max-w-7xl border-border dark:border-border-dark" />
-                  }
-                  {showSurvey && (
-                    <>
-                      <div className="flex flex-col items-center p-4 m-4">
-                        <p className="mb-4 text-lg font-bold text-primary dark:text-primary-dark">
-                          How do you like these docs?
-                        </p>
-                        <div>
-                          <ButtonLink
-                            href="https://www.surveymonkey.co.uk/r/PYRPF3X"
-                            className="mt-1"
-                            type="primary"
-                            size="md"
-                            target="_blank">
-                            Take our survey!
-                            <IconNavArrow
-                              displayDirection="end"
-                              className="inline ms-1"
-                            />
-                          </ButtonLink>
-                        </div>
-                      </div>
-                      <hr className="mx-auto max-w-7xl border-border dark:border-border-dark" />
-                    </>
-                  )}
+                  <hr className="mx-auto max-w-7xl border-border dark:border-border-dark" />
                 </div>
               )}
               <div

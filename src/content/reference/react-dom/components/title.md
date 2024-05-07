@@ -2,17 +2,6 @@
 title: "<title>"
 ---
 
-<NextMajor>
-
-React's extensions to `<title>` are currently available in React 19 beta and the React canary channels.
-
-In stable releases of React `<title>` works only as a [built-in browser HTML component](https://react.dev/reference/react-dom/components#all-html-components).
-
-Learn more about [React's release channels here](/community/versioning-policy#all-release-channels).
-
-</NextMajor>
-
-
 <Intro>
 
 The [built-in browser `<title>` component](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/title) lets you specify the title of the document.

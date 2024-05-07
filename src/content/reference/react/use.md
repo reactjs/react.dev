@@ -2,12 +2,6 @@
 title: use
 ---
 
-<NextMajor>
-
-The `use` API is currently is available in React 19 beta, and the latest React Canary. Learn more about [React's release channels here](/community/versioning-policy#all-release-channels).
-
-</NextMajor>
-
 <Intro>
 
 `use` is a React API that lets you read the value of a resource like a [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) or [context](/learn/passing-data-deeply-with-context).

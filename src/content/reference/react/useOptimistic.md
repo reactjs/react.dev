@@ -2,14 +2,6 @@
 title: useOptimistic
 ---
 
-<NextMajor>
-
-The `useOptimistic` Hook is currently available in React 19 beta, and the latest React Canary.
-
-Learn more about [React's release channels here](/community/versioning-policy#all-release-channels).
-
-</NextMajor>
-
 <Intro>
 
 `useOptimistic` is a React Hook that lets you optimistically update the UI.

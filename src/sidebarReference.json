@@ -16,8 +16,7 @@
       "routes": [
         {
           "title": "useActionState",
-          "path": "/reference/react/useActionState",
-          "version": "major"
+          "path": "/reference/react/useActionState"
         },
         {
           "title": "useCallback",
@@ -61,8 +60,7 @@
         },
         {
           "title": "useOptimistic",
-          "path": "/reference/react/useOptimistic",
-          "version": "major"
+          "path": "/reference/react/useOptimistic"
         },
         {
           "title": "useReducer",
@@ -114,8 +112,7 @@
       "routes": [
         {
           "title": "cache",
-          "path": "/reference/react/cache",
-          "version": "major"
+          "path": "/reference/react/cache"
         },
         {
           "title": "createContext",
@@ -139,8 +136,7 @@
         },
         {
           "title": "use",
-          "path": "/reference/react/use",
-          "version": "major"
+          "path": "/reference/react/use"
         },
         {
           "title": "experimental_taintObjectReference",
@@ -164,8 +160,7 @@
       "routes": [
         {
           "title": "useFormStatus",
-          "path": "/reference/react-dom/hooks/useFormStatus",
-          "version": "major"
+          "path": "/reference/react-dom/hooks/useFormStatus"
         }
       ]
     },
@@ -179,13 +174,11 @@
         },
         {
           "title": "<form>",
-          "path": "/reference/react-dom/components/form",
-          "version": "major"
+          "path": "/reference/react-dom/components/form"
         },
         {
           "title": "<input>",
-          "path": "/reference/react-dom/components/input",
-          "version": "major"
+          "path": "/reference/react-dom/components/input"
         },
         {
           "title": "<option>",
@@ -205,28 +198,23 @@
         },
         {
           "title": "<link>",
-          "path": "/reference/react-dom/components/link",
-          "version": "major"
+          "path": "/reference/react-dom/components/link"
         },
         {
           "title": "<meta>",
-          "path": "/reference/react-dom/components/meta",
-          "version": "major"
+          "path": "/reference/react-dom/components/meta"
         },
         {
           "title": "<script>",
-          "path": "/reference/react-dom/components/script",
-          "version": "major"
+          "path": "/reference/react-dom/components/script"
         },
         {
           "title": "<style>",
-          "path": "/reference/react-dom/components/style",
-          "version": "major"
+          "path": "/reference/react-dom/components/style"
         },
         {
           "title": "<title>",
-          "path": "/reference/react-dom/components/title",
-          "version": "major"
+          "path": "/reference/react-dom/components/title"
         }
       ]
     },
@@ -252,33 +240,27 @@
         },
         {
           "title": "preconnect",
-          "path": "/reference/react-dom/preconnect",
-          "version": "major"
+          "path": "/reference/react-dom/preconnect"
         },
         {
           "title": "prefetchDNS",
-          "path": "/reference/react-dom/prefetchDNS",
-          "version": "major"
+          "path": "/reference/react-dom/prefetchDNS"
         },
         {
           "title": "preinit",
-          "path": "/reference/react-dom/preinit",
-          "version": "major"
+          "path": "/reference/react-dom/preinit"
         },
         {
           "title": "preinitModule",
-          "path": "/reference/react-dom/preinitModule",
-          "version": "major"
+          "path": "/reference/react-dom/preinitModule"
         },
         {
           "title": "preload",
-          "path": "/reference/react-dom/preload",
-          "version": "major"
+          "path": "/reference/react-dom/preload"
         },
         {
           "title": "preloadModule",
-          "path": "/reference/react-dom/preloadModule",
-          "version": "major"
+          "path": "/reference/react-dom/preloadModule"
         },
         {
           "title": "render",

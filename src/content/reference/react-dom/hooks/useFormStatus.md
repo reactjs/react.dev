@@ -3,14 +3,6 @@ title: useFormStatus
 canary: true
 ---
 
-<NextMajor>
-
-The `useFormStatus` Hook is currently available in React 19 beta and the React canary channel.
-
-Learn more about [React's release channels here](/community/versioning-policy#all-release-channels).
-
-</NextMajor>
-
 <Intro>
 
 `useFormStatus` is a Hook that gives you status information of the last form submission.

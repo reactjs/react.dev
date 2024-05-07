@@ -37,18 +37,12 @@ function SearchPage() {
 #### Parameters {/*parameters*/}
 
 * `value`: The value you want to defer. It can have any type.
-* <NextMajorBadge title="This feature is available in React 19 beta and the React canary channel" /> **optional** `initialValue`: A value to use during the initial render of a component. If this option is omitted, `useDeferredValue` will not defer during the initial render, because there's no previous version of `value` that it can render instead.
+* **optional** `initialValue`: A value to use during the initial render of a component. If this option is omitted, `useDeferredValue` will not defer during the initial render, because there's no previous version of `value` that it can render instead.
 
 
 #### Returns {/*returns*/}
 
-- `currentValue`: During the initial render, the returned deferred value will be the same as the value you provided. During updates, React will first attempt a re-render with the old value (so it will return the old value), and then try another re-render in the background with the new value (so it will return the updated value).
-
-<Canary>
-
-In the latest React Canary versions, `useDeferredValue` returns the `initialValue` on initial render, and schedules a re-render in the background with the `value` returned.
-
-</Canary>
+- `currentValue`: During the initial render, the returned deferred value will be the `initialValue`, or the same as the value you provided. During updates, React will first attempt a re-render with the old value (so it will return the old value), and then try another re-render in the background with the new value (so it will return the updated value).
 
 #### Caveats {/*caveats*/}
 

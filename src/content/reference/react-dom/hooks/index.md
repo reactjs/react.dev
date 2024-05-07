@@ -12,14 +12,6 @@ The `react-dom` package contains Hooks that are only supported for web applicati
 
 ## Form Hooks {/*form-hooks*/}
 
-<NextMajor>
-
-Form Hooks are currently available in React 19 beta and the React canary channel.
-
-Learn more about [React's release channels here](/community/versioning-policy#all-release-channels).
-
-</NextMajor>
-
 *Forms* let you create interactive controls for submitting information.  To manage forms in your components, use one of these Hooks:
 
 * [`useFormStatus`](/reference/react-dom/hooks/useFormStatus) allows you to make updates to the UI based on the status of the a form.

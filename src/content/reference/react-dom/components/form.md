@@ -2,17 +2,6 @@
 title: "<form>"
 ---
 
-<NextMajor>
-
-React's extensions to `<form>` are currently available in React 19 beta and React's canary and experimental channels. 
-
-In stable releases of React, `<form>` works only as a [built-in browser HTML component](https://react.dev/reference/react-dom/components#all-html-components). 
-
-Learn more about [React's release channels here](/community/versioning-policy#all-release-channels).
-
-</NextMajor>
-
-
 <Intro>
 
 The [built-in browser `<form>` component](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form) lets you create interactive controls for submitting information.

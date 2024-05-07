@@ -15,7 +15,6 @@ The `react-dom/server` APIs let you render React components to HTML on the serve
 These methods are only available in the environments with [Node.js Streams:](https://nodejs.org/api/stream.html)
 
 * [`renderToPipeableStream`](/reference/react-dom/server/renderToPipeableStream) renders a React tree to a pipeable [Node.js Stream.](https://nodejs.org/api/stream.html)
-* [`renderToStaticNodeStream`](/reference/react-dom/server/renderToStaticNodeStream) renders a non-interactive React tree to a [Node.js Readable Stream.](https://nodejs.org/api/stream.html#readable-streams)
 
 ---
 
@@ -35,15 +34,3 @@ These methods can be used in the environments that don't support streams:
 * [`renderToStaticMarkup`](/reference/react-dom/server/renderToStaticMarkup) renders a non-interactive React tree to a string.
 
 They have limited functionality compared to the streaming APIs.
-
----
-
-## Deprecated server APIs {/*deprecated-server-apis*/}
-
-<Deprecated>
-
-These APIs will be removed in a future major version of React.
-
-</Deprecated>
-
-* [`renderToNodeStream`](/reference/react-dom/server/renderToNodeStream) renders a React tree to a [Node.js Readable stream.](https://nodejs.org/api/stream.html#readable-streams) (Deprecated.)

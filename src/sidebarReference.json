@@ -119,10 +119,6 @@
           "path": "/reference/react/createContext"
         },
         {
-          "title": "forwardRef",
-          "path": "/reference/react/forwardRef"
-        },
-        {
           "title": "lazy",
           "path": "/reference/react/lazy"
         },
@@ -231,14 +227,6 @@
           "path": "/reference/react-dom/flushSync"
         },
         {
-          "title": "findDOMNode",
-          "path": "/reference/react-dom/findDOMNode"
-        },
-        {
-          "title": "hydrate",
-          "path": "/reference/react-dom/hydrate"
-        },
-        {
           "title": "preconnect",
           "path": "/reference/react-dom/preconnect"
         },
@@ -261,14 +249,6 @@
         {
           "title": "preloadModule",
           "path": "/reference/react-dom/preloadModule"
-        },
-        {
-          "title": "render",
-          "path": "/reference/react-dom/render"
-        },
-        {
-          "title": "unmountComponentAtNode",
-          "path": "/reference/react-dom/unmountComponentAtNode"
         }
       ]
     },
@@ -291,10 +271,6 @@
       "path": "/reference/react-dom/server",
       "routes": [
         {
-          "title": "renderToNodeStream",
-          "path": "/reference/react-dom/server/renderToNodeStream"
-        },
-        {
           "title": "renderToPipeableStream",
           "path": "/reference/react-dom/server/renderToPipeableStream"
         },
@@ -305,10 +281,6 @@
         {
           "title": "renderToStaticMarkup",
           "path": "/reference/react-dom/server/renderToStaticMarkup"
-        },
-        {
-          "title": "renderToStaticNodeStream",
-          "path": "/reference/react-dom/server/renderToStaticNodeStream"
         },
         {
           "title": "renderToString",
@@ -389,12 +361,12 @@
           "path": "/reference/react/createElement"
         },
         {
-          "title": "createFactory",
-          "path": "/reference/react/createFactory"
-        },
-        {
           "title": "createRef",
           "path": "/reference/react/createRef"
+        },
+        {
+          "title": "forwardRef",
+          "path": "/reference/react/forwardRef"
         },
         {
           "title": "isValidElement",

@@ -650,7 +650,7 @@ export default function App() {
 
   useWindowListener('pointermove', (e) => {
     setPosition({ x: e.clientX, y: e.clientY });
-  });
+  }, []);
 
   return (
     <div style={{
@@ -672,13 +672,13 @@ export default function App() {
 ```js src/useWindowListener.js
 import { useState, useEffect } from 'react';
 
-export function useWindowListener(eventType, listener) {
+export function useWindowListener(eventType, listener, deps) {
   useEffect(() => {
     window.addEventListener(eventType, listener);
     return () => {
       window.removeEventListener(eventType, listener);
     };
-  }, [eventType, listener]);
+  }, deps);
 }
 ```
 

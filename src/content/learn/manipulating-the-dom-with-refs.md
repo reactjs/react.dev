@@ -256,9 +256,7 @@ export default function CatFriends() {
               key={cat}
               ref={(node) => {
                 const map = getMap();
-                if (node) {
-                  map.set(cat, node);
-                }
+                map.set(cat, node);
 
                 return () => {
                   map.delete(cat);

@@ -256,11 +256,11 @@ export default function CatFriends() {
               key={cat}
               ref={(node) => {
                 const map = getMap();
-                if (node) {
-                  map.set(cat, node);
-                } else {
+                map.set(cat, node);
+
+                return () => {
                   map.delete(cat);
-                }
+                };
               }}
             >
               <img src={cat} />
@@ -328,28 +328,6 @@ In this example, `itemsRef` doesn't hold a single DOM node. Instead, it holds a 
   key={cat.id}
   ref={node => {
     const map = getMap();
-    if (node) {
-      // Add to the Map
-      map.set(cat, node);
-    } else {
-      // Remove from the Map
-      map.delete(cat);
-    }
-  }}
->
-```
-
-This lets you read individual DOM nodes from the Map later.
-
-<NextMajor>
-
-Starting in React 19, callback refs can return a cleanup function. When the cleanup function is provided, React will not call the `ref` callback with `null` and call the cleanup function instead:
-
-```js
-<li
-  key={cat.id}
-  ref={node => {
-    const map = getMap();
     // Add to the Map
     map.set(cat, node);
 
@@ -361,7 +339,7 @@ Starting in React 19, callback refs can return a cleanup function. When the clea
 >
 ```
 
-</NextMajor>
+This lets you read individual DOM nodes from the Map later.
 
 </DeepDive>
 

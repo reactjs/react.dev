@@ -2,16 +2,6 @@
 style: "<style>"
 ---
 
-<NextMajor>
-
-React's extensions to `<style>` are currently available in React 19 beta and the React canary channel.
-
-In stable releases of React `<style>` works only as a [built-in browser HTML component](https://react.dev/reference/react-dom/components#all-html-components).
-
-Learn more about [React's release channels here](/community/versioning-policy#all-release-channels).
-
-</NextMajor>
-
 <Intro>
 
 The [built-in browser `<style>` component](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/style) lets you add inline CSS stylesheets to your document.

@@ -2,17 +2,6 @@
 meta: "<meta>"
 ---
 
-<NextMajor>
-
-React's extensions to `<meta>` are currently available in React 19 beta and the React canary channel. 
-
-In stable releases of React `<meta>` works only as a [built-in browser HTML component](https://react.dev/reference/react-dom/components#all-html-components).
-
-Learn more about [React's release channels here](/community/versioning-policy#all-release-channels).
-
-</NextMajor>
-
-
 <Intro>
 
 The [built-in browser `<meta>` component](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/meta) lets you add metadata to the document.

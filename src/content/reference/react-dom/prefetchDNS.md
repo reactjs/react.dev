@@ -2,14 +2,6 @@
 title: prefetchDNS
 ---
 
-<NextMajor>
-
-The `prefetchDNS` function is currently available in React 19 beta and the React canary channel.
-
-Learn more about [React's release channels here](/community/versioning-policy#all-release-channels).
-
-</NextMajor>
-
 <Intro>
 
 `prefetchDNS` lets you eagerly look up the IP of a server that you expect to load resources from.

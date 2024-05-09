@@ -2,14 +2,6 @@
 title: preconnect
 ---
 
-<NextMajor>
-
-The `preconnect` function is available in React 19 beta and the React Canary channel.
-
-Learn more about [React's release channels here](/community/versioning-policy#all-release-channels).
-
-</NextMajor>
-
 <Intro>
 
 `preconnect` lets you eagerly connect to a server that you expect to load resources from.

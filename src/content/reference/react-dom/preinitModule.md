@@ -2,14 +2,6 @@
 title: preinitModule
 ---
 
-<NextMajor>
-
-The `preinitModule` function is currently available React 19 beta and the React canary channel.
-
-Learn more about [React's release channels here](/community/versioning-policy#all-release-channels).
-
-</NextMajor>
-
 <Note>
 
 [React-based frameworks](/learn/start-a-new-react-project) frequently handle resource loading for you, so you might not have to call this API yourself. Consult your framework's documentation for details.

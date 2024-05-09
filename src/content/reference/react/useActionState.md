@@ -2,16 +2,6 @@
 title: useActionState
 ---
 
-<NextMajor>
-
-The `useActionState` Hook is currently is available in React 19 beta, and the latest React Canary.
-
-In earlier React Canary versions, this API was part of React DOM and called `useFormState`.
-
-Learn more about [React's release channels here](/community/versioning-policy#all-release-channels).
-
-</NextMajor>
-
 <Intro>
 
 `useActionState` is a Hook that allows you to update state based on the result of a form action.
@@ -21,6 +11,13 @@ const [state, formAction] = useActionState(fn, initialState, permalink?);
 ```
 
 </Intro>
+
+<Note>
+
+In earlier React Canary versions, this API was part of React DOM and called `useFormState`.
+
+</Note>
+
 
 <InlineToc />
 

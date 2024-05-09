@@ -2,16 +2,6 @@
 script: "<script>"
 ---
 
-<NextMajor>
-
-React's extensions to `<script>` are currently available in React 19 beta and the React canary channel.
-
-In stable releases of React `<script>` works only as a [built-in browser HTML component](https://react.dev/reference/react-dom/components#all-html-components).
-
-Learn more about [React's release channels here](/community/versioning-policy#all-release-channels).
-
-</NextMajor>
-
 <Intro>
 
 The [built-in browser `<script>` component](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script) lets you add a script to your document.

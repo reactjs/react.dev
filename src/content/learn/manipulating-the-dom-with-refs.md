@@ -341,6 +341,14 @@ In this example, `itemsRef` doesn't hold a single DOM node. Instead, it holds a 
 
 This lets you read individual DOM nodes from the Map later.
 
+<Note>
+
+When Strict Mode is enabled, ref callbacks will run twice in development.
+
+Read more about [how this helps find bugs](/reference/react/StrictMode#fixing-bugs-found-by-re-running-ref-callbacks-in-development) in callback refs.
+
+</Note>
+
 </DeepDive>
 
 ## Accessing another component's DOM nodes {/*accessing-another-components-dom-nodes*/}

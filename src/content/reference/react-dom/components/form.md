@@ -386,7 +386,7 @@ export async function signUpNewUser(newEmail) {
 
 </Sandpack>
 
-Learn more about updating state from a form action with the [`useActionState`](/reference/react/hooks/useActionState) docs
+Learn more about updating state from a form action with the [`useActionState`](/reference/react/useActionState) docs
 
 ### Handling multiple submission types {/*handling-multiple-submission-types*/}
 

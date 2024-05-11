@@ -15,14 +15,15 @@
     "prettier:diff": "yarn nit:source",
     "lint-heading-ids": "node scripts/headingIdLinter.js",
     "fix-headings": "node scripts/headingIdLinter.js --fix",
-    "ci-check": "npm-run-all prettier:diff --parallel lint tsc lint-heading-ids",
+    "ci-check": "npm-run-all prettier:diff --parallel lint tsc lint-heading-ids rss",
     "tsc": "tsc --noEmit",
     "start": "next start",
     "postinstall": "patch-package && (is-ci || husky install .husky)",
-    "check-all": "npm-run-all prettier lint:fix tsc"
+    "check-all": "npm-run-all prettier lint:fix tsc rss",
+    "rss": "node scripts/generateRss.js"
   },
   "dependencies": {
-    "@codesandbox/sandpack-react": "2.6.0",
+    "@codesandbox/sandpack-react": "2.13.5",
     "@docsearch/css": "3.0.0-alpha.41",
     "@docsearch/react": "3.0.0-alpha.41",
     "@headlessui/react": "^1.7.0",
@@ -91,13 +92,13 @@
     "retext": "^7.0.1",
     "retext-smartypants": "^4.0.0",
     "rss": "^1.2.2",
-    "tailwindcss": "^3.3.2",
+    "tailwindcss": "^3.4.1",
     "typescript": "^4.0.2",
     "unist-util-visit": "^2.0.3",
     "webpack-bundle-analyzer": "^4.5.0"
   },
   "engines": {
-    "node": "^16.8.0 || ^18.0.0 || ^19.0.0 || ^20.0.0"
+    "node": ">=16.8.0"
   },
   "nextBundleAnalysis": {
     "budget": null,

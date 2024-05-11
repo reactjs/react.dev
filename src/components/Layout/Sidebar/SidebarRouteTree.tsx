@@ -10,6 +10,7 @@ import {SidebarLink} from './SidebarLink';
 import {useCollapse} from 'react-collapsed';
 import usePendingRoute from 'hooks/usePendingRoute';
 import type {RouteItem} from 'components/Layout/getRouteMeta';
+import {siteConfig} from 'siteConfig';
 
 interface SidebarRouteTreeProps {
   isForceExpanded: boolean;
@@ -150,8 +151,12 @@ export function SidebarRouteTree({
             );
           }
           if (hasSectionHeader) {
+            let sectionHeaderText =
+              sectionHeader != null
+                ? sectionHeader.replace('{{version}}', siteConfig.version)
+                : '';
             return (
-              <Fragment key={`${sectionHeader}-${level}-separator`}>
+              <Fragment key={`${sectionHeaderText}-${level}-separator`}>
                 {index !== 0 && (
                   <li
                     role="separator"
@@ -163,7 +168,7 @@ export function SidebarRouteTree({
                     'mb-1 text-sm font-bold ms-5 text-tertiary dark:text-tertiary-dark',
                     index !== 0 && 'mt-2'
                   )}>
-                  {sectionHeader}
+                  {sectionHeaderText}
                 </h3>
               </Fragment>
             );

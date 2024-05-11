@@ -106,24 +106,6 @@ To prioritize rendering, use one of these Hooks:
 
 ---
 
-## Resource Hooks {/*resource-hooks*/}
-
-*Resources* can be accessed by a component without having them as part of their state. For example, a component can read a message from a Promise or read styling information from a context.
-
-To read a value from a resource, use this Hook:
-
-- [`use`](/reference/react/use) lets you read the value of a resource like a [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) or [context](/learn/passing-data-deeply-with-context).
-
-```js
-function MessageComponent({ messagePromise }) {
-  const message = use(messagePromise);
-  const theme = use(ThemeContext);
-  // ...
-}
-```
-
----
-
 ## Other Hooks {/*other-hooks*/}
 
 These Hooks are mostly useful to library authors and aren't commonly used in the application code.
@@ -131,6 +113,7 @@ These Hooks are mostly useful to library authors and aren't commonly used in the
 - [`useDebugValue`](/reference/react/useDebugValue) lets you customize the label React DevTools displays for your custom Hook.
 - [`useId`](/reference/react/useId) lets a component associate a unique ID with itself. Typically used with accessibility APIs.
 - [`useSyncExternalStore`](/reference/react/useSyncExternalStore) lets a component subscribe to an external store.
+* [`useActionState`](/reference/react/useActionState) allows you to manage state of actions.
 
 ---
 

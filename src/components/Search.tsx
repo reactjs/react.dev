@@ -110,7 +110,6 @@ export function Search({
         createPortal(
           <DocSearchModal
             {...options}
-            initialScrollY={window.scrollY}
             searchParameters={searchParameters}
             onClose={onClose}
             navigator={{

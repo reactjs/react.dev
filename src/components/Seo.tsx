@@ -6,6 +6,7 @@ import * as React from 'react';
 import Head from 'next/head';
 import {withRouter, Router} from 'next/router';
 import {siteConfig} from '../siteConfig';
+import {finishedTranslations} from 'utils/finishedTranslations';
 
 export interface SeoProps {
   title: string;
@@ -18,17 +19,8 @@ export interface SeoProps {
   searchOrder?: number;
 }
 
-const deployedTranslations = [
-  'en',
-  'zh-hans',
-  'es',
-  'fr',
-  'ja',
-  'tr',
-  // We'll add more languages when they have enough content.
-  // Please DO NOT edit this list without a discussion in the reactjs/react.dev repo.
-  // It must be the same between all translations.
-];
+// If you are a maintainer of a language fork,
+// deployedTranslations has been moved to src/utils/finishedTranslations.ts.
 
 function getDomain(languageCode: string): string {
   const subdomain = languageCode === 'en' ? '' : languageCode + '.';
@@ -71,7 +63,7 @@ export const Seo = withRouter(
           href={canonicalUrl.replace(siteDomain, getDomain('en'))}
           hrefLang="x-default"
         />
-        {deployedTranslations.map((languageCode) => (
+        {finishedTranslations.map((languageCode) => (
           <link
             key={'alt-' + languageCode}
             rel="alternate"

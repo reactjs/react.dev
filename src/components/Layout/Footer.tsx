@@ -285,6 +285,30 @@ export function Footer() {
             dir="ltr">
             &copy;{new Date().getFullYear()}
           </div>
+          <div
+            className="uwu-visible text-xs cursor-pointer hover:text-link hover:dark:text-link-dark hover:underline"
+            onClick={() => {
+              // @ts-ignore
+              window.__setUwu(false);
+            }}>
+            no uwu plz
+          </div>
+          <div
+            className="uwu-hidden text-xs cursor-pointer hover:text-link hover:dark:text-link-dark hover:underline"
+            onClick={() => {
+              // @ts-ignore
+              window.__setUwu(true);
+            }}>
+            uwu?
+          </div>
+          <div className="uwu-visible text-xs">
+            Logo by
+            <ExternalLink
+              className="ms-1"
+              href="https://twitter.com/sawaratsuki1004">
+              @sawaratsuki1004
+            </ExternalLink>
+          </div>
         </div>
         <div className="flex flex-col">
           <FooterLink href="/learn" isHeader={true}>
@@ -333,7 +357,7 @@ export function Footer() {
           <FooterLink href="https://opensource.fb.com/legal/terms/">
             Terms
           </FooterLink>
-          <div className="flex flex-row mt-8 gap-x-2">
+          <div className="flex flex-row items-center mt-8 gap-x-2">
             <ExternalLink
               aria-label="React on Facebook"
               href="https://www.facebook.com/react"

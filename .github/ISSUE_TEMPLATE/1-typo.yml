@@ -1,0 +1,34 @@
+name: "🤦 Typo or mistake"
+description: "Report a typo or mistake in the docs."
+title: "[Typo]: "
+labels: ["type: typos"]
+body:
+  - type: textarea
+    attributes:
+      label: Summary
+      description: |
+        A clear and concise summary of what the mistake is.
+      placeholder: |
+        Example:
+        The code example on the "useReducer" page includes an unused variable `nextId`.
+    validations:
+      required: true
+  - type: input
+    attributes:
+      label: Page
+      description: |
+        What page is the typo on?
+      placeholder: |
+        https://react.dev/
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Details
+      description: |
+        Please provide a explanation for why this is a mistake.
+      placeholder: |
+        Example mistake:
+        In the "useReducer" section of the "API Reference" page, the code example under "Writing a reducer function" includes an unused variable `nextId` that should be removed.
+    validations:
+      required: false

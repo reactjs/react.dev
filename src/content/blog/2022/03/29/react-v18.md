@@ -1,5 +1,8 @@
 ---
 title: "React v18.0"
+author: The React Team
+date: 2022/03/08
+description: React 18 is now available on npm! In our last post, we shared step-by-step instructions for upgrading your app to React 18. In this post, we'll give an overview of what's new in React 18, and what it means for the future.
 ---
 
 March 29, 2022 by [The React Team](/community/team)
@@ -237,7 +240,7 @@ With Strict Mode in React 18, React will simulate unmounting and remounting the 
 
 #### useTransition {/*usetransition*/}
 
-`useTransition` and `startTransition` let you mark some state updates as not urgent. Other state updates are considered urgent by default. React will allow urgent state updates (for example, updating a text input) to interrupt non-urgent state updates (for example, rendering a list of search results). [See docs here](/reference/react/useTransition)
+`useTransition` and `startTransition` let you mark some state updates as not urgent. Other state updates are considered urgent by default. React will allow urgent state updates (for example, updating a text input) to interrupt non-urgent state updates (for example, rendering a list of search results). [See docs here](/reference/react/useTransition).
 
 #### useDeferredValue {/*usedeferredvalue*/}
 

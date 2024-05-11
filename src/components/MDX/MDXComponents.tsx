@@ -8,7 +8,7 @@ import cn from 'classnames';
 
 import CodeBlock from './CodeBlock';
 import {CodeDiagram} from './CodeDiagram';
-import ConsoleBlock from './ConsoleBlock';
+import {ConsoleBlock, ConsoleLogLine, ConsoleBlockMulti} from './ConsoleBlock';
 import ExpandableCallout from './ExpandableCallout';
 import ExpandableExample from './ExpandableExample';
 import {H1, H2, H3, H4, H5} from './Heading';
@@ -19,6 +19,7 @@ import Link from './Link';
 import {PackageImport} from './PackageImport';
 import Recap from './Recap';
 import Sandpack from './Sandpack';
+import SandpackWithHTMLOutput from './SandpackWithHTMLOutput';
 import Diagram from './Diagram';
 import DiagramGroup from './DiagramGroup';
 import SimpleCallout from './SimpleCallout';
@@ -30,8 +31,11 @@ import ButtonLink from 'components/ButtonLink';
 import {TocContext} from './TocContext';
 import type {Toc, TocItem} from './TocContext';
 import {TeamMember} from './TeamMember';
+import {LanguagesContext} from './LanguagesContext';
+import {finishedTranslations} from 'utils/finishedTranslations';
 
 import ErrorDecoder from './ErrorDecoder';
+import {IconCanary} from '../Icon/IconCanary';
 
 function CodeStep({children, step}: {children: any; step: number}) {
   return (
@@ -91,6 +95,20 @@ const Note = ({children}: {children: React.ReactNode}) => (
 
 const Canary = ({children}: {children: React.ReactNode}) => (
   <ExpandableCallout type="canary">{children}</ExpandableCallout>
+);
+
+const CanaryBadge = ({title}: {title: string}) => (
+  <span
+    title={title}
+    className={
+      'text-base font-display px-1 py-0.5 font-bold bg-gray-10 dark:bg-gray-60 text-gray-60 dark:text-gray-10 rounded'
+    }>
+    <IconCanary
+      size="s"
+      className={'inline me-1 mb-0.5 text-sm text-gray-60 dark:text-gray-10'}
+    />
+    Canary only
+  </span>
 );
 
 const Blockquote = ({
@@ -190,7 +208,7 @@ function Recipes(props: any) {
 
 function AuthorCredit({
   author = 'Rachel Lee Nabors',
-  authorLink = 'http://rachelnabors.com/',
+  authorLink = 'https://nearestnabors.com/',
 }: {
   author: string;
   authorLink: string;
@@ -364,6 +382,38 @@ function InlineTocItem({items}: {items: Array<NestedTocNode>}) {
   );
 }
 
+type TranslationProgress = 'complete' | 'in-progress';
+
+function LanguageList({progress}: {progress: TranslationProgress}) {
+  const allLanguages = React.useContext(LanguagesContext) ?? [];
+  const languages = allLanguages
+    .filter(
+      ({code}) =>
+        code !== 'en' &&
+        (progress === 'complete'
+          ? finishedTranslations.includes(code)
+          : !finishedTranslations.includes(code))
+    )
+    .sort((a, b) => a.enName.localeCompare(b.enName));
+  return (
+    <UL>
+      {languages.map(({code, name, enName}) => {
+        return (
+          <LI key={code}>
+            <Link href={`https://${code}.react.dev/`}>
+              {enName} ({name})
+            </Link>{' '}
+            &mdash;{' '}
+            <Link href={`https://github.com/reactjs/${code}.react.dev`}>
+              Contribute
+            </Link>
+          </LI>
+        );
+      })}
+    </UL>
+  );
+}
+
 function YouTubeIframe(props: any) {
   return (
     <div className="relative h-0 overflow-hidden pt-[56.25%]">
@@ -404,6 +454,8 @@ export const MDXComponents = {
   pre: CodeBlock,
   CodeDiagram,
   ConsoleBlock,
+  ConsoleBlockMulti,
+  ConsoleLogLine,
   DeepDive: (props: {
     children: React.ReactNode;
     title: string;
@@ -424,16 +476,19 @@ export const MDXComponents = {
   IllustrationBlock,
   Intro,
   InlineToc,
+  LanguageList,
   LearnMore,
   Math,
   MathI,
   Note,
   Canary,
+  CanaryBadge,
   PackageImport,
   ReadBlogPost,
   Recap,
   Recipes,
   Sandpack,
+  SandpackWithHTMLOutput,
   TeamMember,
   TerminalBlock,
   YouWillLearn,

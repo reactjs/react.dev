@@ -258,7 +258,7 @@ React Native uses Babel via Metro, so refer to the [Usage with Babel](#usage-wit
 
 ### Reporting Issues {/*reporting-issues*/}
 
-To report issues, please first create a minimal repro on the [React Compiler Playground](https://0xeac7-forget.vercel.app/) and include it in your bug report.
+To report issues, please first create a minimal repro on the [React Compiler Playground](https://playground.react.dev/) and include it in your bug report.
 
 You can open issues in the [facebook/react](https://github.com/facebook/react/issues) repo.
 

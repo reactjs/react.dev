@@ -181,10 +181,16 @@ export default defineConfig(() => {
 Next.js allows for a slower build pipeline via Babel, which can be enabled by [configuring Babel](#usage-with-babel) by adding a `babel.config.js` file.
 
 ### Usage with Remix {/*usage-with-remix*/}
-Add `vite-plugin-babel`, and add the compiler's Babel plugin to it like so:
+Install `vite-plugin-babel`, and add the compiler's Babel plugin to it:
 
-```js {12}
+<TerminalBlock>
+npm install vite-plugin-babel
+</TerminalBlock>
+
+```js {2,14}
 // vite.config.js
+import babel from "vite-plugin-babel";
+
 const ReactCompilerConfig = { /* ... */ };
 
 export default defineConfig({

@@ -121,7 +121,7 @@ module.exports = {
     'eslint-plugin-react-compiler',
   ],
   rules: {
-    'react-compiler/react-compiler': 2,
+    'react-compiler/react-compiler': "error",
   },
 }
 ```

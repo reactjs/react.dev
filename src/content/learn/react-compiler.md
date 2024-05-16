@@ -49,9 +49,9 @@ In addition to these docs, we recommend checking the [React Compiler Working Gro
 ### Rolling out the compiler to your codebase {/*using-the-compiler-effectively*/}
 
 #### Existing projects {/*existing-projects*/}
-The compiler is designed to compile functional components and hooks that follows the [Rules of React](/reference/rules). It can also handle code that breaks those rules by bailing out (skipping over) those components or hooks. However, due to the flexible nature of JavaScript, the compiler cannot catch every possible violation and may compile with false negatives: that is, the compiler may accidentally compile a component/hook that breaks the Rules of React which can lead to undefined behavior.
+The compiler is designed to compile functional components and hooks that follow the [Rules of React](/reference/rules). It can also handle code that breaks those rules by bailing out (skipping over) those components or hooks. However, due to the flexible nature of JavaScript, the compiler cannot catch every possible violation and may compile with false negatives: that is, the compiler may accidentally compile a component/hook that breaks the Rules of React which can lead to undefined behavior.
 
-For this reason, to adopt the compiler successfully on existing projects, we recommend running it on a small directory in your product code first. You can do by configuring the compiler to only run on specific set of directories:
+For this reason, to adopt the compiler successfully on existing projects, we recommend running it on a small directory in your product code first. You can do this by configuring the compiler to only run on a specific set of directories:
 
 ```js {3}
 const ReactCompilerConfig = {

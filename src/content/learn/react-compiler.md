@@ -178,7 +178,36 @@ export default defineConfig(() => {
 
 ### Usage with Next.js {/*usage-with-nextjs*/}
 
-Next.js allows for a slower build pipeline via Babel, which can be enabled by [configuring Babel](#usage-with-babel) by adding a `babel.config.js` file.
+Next.js has an experimental configuration to enable the React Compiler. It automatically ensures Babel is set up with `babel-plugin-react-compiler`.
+
+- Install Next.js canary, which uses React 19 Release Candidate
+- Install `babel-plugin-react-compiler`
+
+<TerminalBlock>
+npm install next@canary babel-plugin-react-compiler
+</TerminalBlock>
+
+Then configure the experimental option in `next.config.js`:
+
+```js {4,5,6}
+// next.config.js
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  experimental: {
+    reactCompiler: true,
+  },
+};
+
+export default nextConfig;
+```
+
+Using the experimental option ensures support for the React Compiler in:
+
+- App Router
+- Pages Router
+- Webpack (default)
+- Turbopack (opt-in through `--turbo`)
+
 
 ### Usage with Remix {/*usage-with-remix*/}
 Install `vite-plugin-babel`, and add the compiler's Babel plugin to it:

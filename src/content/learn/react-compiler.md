@@ -198,7 +198,7 @@ const nextConfig = {
   },
 };
 
-export default nextConfig;
+module.exports = nextConfig;
 ```
 
 Using the experimental option ensures support for the React Compiler in:

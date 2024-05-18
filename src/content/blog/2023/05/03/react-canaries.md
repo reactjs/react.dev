@@ -5,7 +5,7 @@ date: 2023/05/03
 description: We'd like to offer the React community an option to adopt individual new features as soon as their design is close to final, before they're released in a stable version--similar to how Meta has long used bleeding-edge versions of React internally. We are introducing a new officially supported [Canary release channel](/community/versioning-policy#canary-channel). It lets curated setups like frameworks decouple adoption of individual React features from the React release schedule.
 ---
 
-May 3, 2023 by [Dan Abramov](https://x.com/dan_abramov), [Sophie Alpert](https://x.com/sophiebits), [Rick Hanlon](https://x.com/rickhanlonii), [Sebastian Markbåge](https://x.com/sebmarkbage), and [Andrew Clark](https://x.com/acdlite)
+May 3, 2023 by [Dan Abramov](https://x.com/dan_abramov2), [Sophie Alpert](https://x.com/sophiebits), [Rick Hanlon](https://x.com/rickhanlonii), [Sebastian Markbåge](https://x.com/sebmarkbage), and [Andrew Clark](https://x.com/acdlite)
 
 ---
 

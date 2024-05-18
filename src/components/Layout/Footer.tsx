@@ -303,9 +303,7 @@ export function Footer() {
           </div>
           <div className="uwu-visible text-xs">
             Logo by
-            <ExternalLink
-              className="ms-1"
-              href="https://x.com/sawaratsuki1004">
+            <ExternalLink className="ms-1" href="https://x.com/sawaratsuki1004">
               @sawaratsuki1004
             </ExternalLink>
           </div>

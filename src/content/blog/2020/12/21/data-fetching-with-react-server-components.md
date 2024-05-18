@@ -5,7 +5,7 @@ date: 2020/12/21
 description: 2020 has been a long year. As it comes to an end we wanted to share a special Holiday Update on our research into zero-bundle-size React Server Components.
 ---
 
-December 21, 2020 by [Dan Abramov](https://x.com/dan_abramov), [Lauren Tan](https://x.com/potetotes), [Joseph Savona](https://x.com/en_JS), and [Sebastian Markbåge](https://x.com/sebmarkbage)
+December 21, 2020 by [Dan Abramov](https://x.com/dan_abramov2), [Lauren Tan](https://x.com/potetotes), [Joseph Savona](https://x.com/en_JS), and [Sebastian Markbåge](https://x.com/sebmarkbage)
 
 ---
 

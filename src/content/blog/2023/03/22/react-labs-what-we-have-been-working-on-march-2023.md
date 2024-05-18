@@ -97,9 +97,9 @@ The Transition Tracing API lets you detect when [React Transitions](/reference/r
 * * *
 In addition to this update, our team has made recent guest appearances on community podcasts and livestreams to speak more on our work and answer questions.
 
-* [Dan Abramov](https://x.com/dan_abramov) and [Joe Savona](https://x.com/en_JS) were interviewed by [Kent C. Dodds on his YouTube channel](https://www.youtube.com/watch?v=h7tur48JSaw), where they discussed concerns around React Server Components.
-* [Dan Abramov](https://x.com/dan_abramov) and [Joe Savona](https://x.com/en_JS) were guests on the [JSParty podcast](https://jsparty.fm/267) and shared their thoughts about the future of React.
+* [Dan Abramov](https://x.com/dan_abramov2) and [Joe Savona](https://x.com/en_JS) were interviewed by [Kent C. Dodds on his YouTube channel](https://www.youtube.com/watch?v=h7tur48JSaw), where they discussed concerns around React Server Components.
+* [Dan Abramov](https://x.com/dan_abramov2) and [Joe Savona](https://x.com/en_JS) were guests on the [JSParty podcast](https://jsparty.fm/267) and shared their thoughts about the future of React.
 
-Thanks to [Andrew Clark](https://x.com/acdlite), [Dan Abramov](https://x.com/dan_abramov), [Dave McCabe](https://x.com/mcc_abe), [Luna Wei](https://x.com/lunaleaps), [Matt Carroll](https://x.com/mattcarrollcode), [Sean Keegan](https://x.com/DevRelSean), [Sebastian Silbermann](https://x.com/sebsilbermann), [Seth Webster](https://x.com/sethwebster), and [Sophie Alpert](https://x.com/sophiebits) for reviewing this post.
+Thanks to [Andrew Clark](https://x.com/acdlite), [Dan Abramov](https://x.com/dan_abramov2), [Dave McCabe](https://x.com/mcc_abe), [Luna Wei](https://x.com/lunaleaps), [Matt Carroll](https://x.com/mattcarrollcode), [Sean Keegan](https://x.com/DevRelSean), [Sebastian Silbermann](https://x.com/sebsilbermann), [Seth Webster](https://x.com/sethwebster), and [Sophie Alpert](https://x.com/sophiebits) for reviewing this post.
 
 Thanks for reading, and see you in the next update!

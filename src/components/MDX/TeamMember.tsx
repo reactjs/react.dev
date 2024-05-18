@@ -67,7 +67,7 @@ export function TeamMember({
               <div className="me-4">
                 <ExternalLink
                   aria-label="React on Twitter"
-                  href={`https://twitter.com/${twitter}`}
+                  href={`https://x.com/${twitter}`}
                   className="hover:text-primary hover:underline dark:text-primary-dark flex flex-row items-center">
                   <IconTwitter className="pe-1" />
                   {twitter}

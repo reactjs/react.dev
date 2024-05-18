@@ -5,7 +5,7 @@ date: 2020/12/21
 description: 2020 has been a long year. As it comes to an end we wanted to share a special Holiday Update on our research into zero-bundle-size React Server Components.
 ---
 
-December 21, 2020 by [Dan Abramov](https://twitter.com/dan_abramov), [Lauren Tan](https://twitter.com/potetotes), [Joseph Savona](https://twitter.com/en_JS), and [Sebastian Markbåge](https://twitter.com/sebmarkbage)
+December 21, 2020 by [Dan Abramov](https://x.com/dan_abramov), [Lauren Tan](https://x.com/potetotes), [Joseph Savona](https://x.com/en_JS), and [Sebastian Markbåge](https://x.com/sebmarkbage)
 
 ---
 
@@ -31,4 +31,4 @@ If you want to check them out, we recommend going in the following order:
 
 3. **[Read the RFC (with FAQ at the end)](https://github.com/reactjs/rfcs/pull/188)** for a deeper technical breakdown and to provide feedback.
 
-We are excited to hear from you on the RFC or in replies to the [@reactjs](https://twitter.com/reactjs) Twitter handle. Happy holidays, stay safe, and see you next year!
+We are excited to hear from you on the RFC or in replies to the [@reactjs](https://x.com/reactjs) Twitter handle. Happy holidays, stay safe, and see you next year!

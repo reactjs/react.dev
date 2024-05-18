@@ -14,13 +14,13 @@ Videos dedicated to the discussion of React and the React ecosystem.
 
 In the keynote, we shared our vision for the future of React starting with React 18.
 
-Watch the full keynote from [Andrew Clark](https://twitter.com/acdlite), [Juan Tejada](https://twitter.com/_jstejada), [Lauren Tan](https://twitter.com/potetotes), and [Rick Hanlon](https://twitter.com/rickhanlonii) here:
+Watch the full keynote from [Andrew Clark](https://x.com/acdlite), [Juan Tejada](https://x.com/_jstejada), [Lauren Tan](https://x.com/potetotes), and [Rick Hanlon](https://x.com/rickhanlonii) here:
 
 <YouTubeIframe src="https://www.youtube.com/embed/FZ0cG47msEk" title="YouTube video player" />
 
 ### React 18 for Application Developers {/*react-18-for-application-developers*/}
 
-For a demo of upgrading to React 18, see [Shruti Kapoor](https://twitter.com/shrutikapoor08)’s talk here:
+For a demo of upgrading to React 18, see [Shruti Kapoor](https://x.com/shrutikapoor08)’s talk here:
 
 <YouTubeIframe src="https://www.youtube.com/embed/ytudH8je5ko" title="YouTube video player" />
 
@@ -30,7 +30,7 @@ React 18 also includes improvements to server-side rendering performance using S
 
 Streaming server rendering lets you generate HTML from React components on the server, and stream that HTML to your users. In React 18, you can use `Suspense` to break down your app into smaller independent units which can be streamed independently of each other without blocking the rest of the app. This means users will see your content sooner and be able to start interacting with it much faster.
 
-For a deep dive, see [Shaundai Person](https://twitter.com/shaundai)’s talk here:
+For a deep dive, see [Shaundai Person](https://x.com/shaundai)’s talk here:
 
 <YouTubeIframe src="https://www.youtube.com/embed/pj5N-Khihgc" title="YouTube video player" />
 
@@ -38,7 +38,7 @@ For a deep dive, see [Shaundai Person](https://twitter.com/shaundai)’s talk he
 
 For React 18, we created our first Working Group to collaborate with a panel of experts, developers, library maintainers, and educators. Together we worked to create our gradual adoption strategy and refine new APIs such as `useId`, `useSyncExternalStore`, and `useInsertionEffect`.
 
-For an overview of this work, see [Aakansha' Doshi](https://twitter.com/aakansha1216)'s talk:
+For an overview of this work, see [Aakansha' Doshi](https://x.com/aakansha1216)'s talk:
 
 <YouTubeIframe src="https://www.youtube.com/embed/qn7gRClrC9U" title="YouTube video player" />
 
@@ -46,19 +46,19 @@ For an overview of this work, see [Aakansha' Doshi](https://twitter.com/aakansha
 
 To support the new features in this release, we also announced the newly formed React DevTools team and a new Timeline Profiler to help developers debug their React apps.
 
-For more information and a demo of new DevTools features, see [Brian Vaughn](https://twitter.com/brian_d_vaughn)’s talk:
+For more information and a demo of new DevTools features, see [Brian Vaughn](https://x.com/brian_d_vaughn)’s talk:
 
 <YouTubeIframe src="https://www.youtube.com/embed/oxDfrke8rZg" title="YouTube video player" />
 
 ### React without memo {/*react-without-memo*/}
 
-Looking further into the future, [Xuan Huang (黄玄)](https://twitter.com/Huxpro) shared an update from our React Labs research into an auto-memoizing compiler. Check out this talk for more information and a demo of the compiler prototype:
+Looking further into the future, [Xuan Huang (黄玄)](https://x.com/Huxpro) shared an update from our React Labs research into an auto-memoizing compiler. Check out this talk for more information and a demo of the compiler prototype:
 
 <YouTubeIframe src="https://www.youtube.com/embed/lGEMwh32soc" title="YouTube video player" />
 
 ### React docs keynote {/*react-docs-keynote*/}
 
-[Rachel Nabors](https://twitter.com/rachelnabors) kicked off a section of talks about learning and designing with React with a keynote about our investment in React's new docs ([now shipped as react.dev](/blog/2023/03/16/introducing-react-dev)):
+[Rachel Nabors](https://x.com/rachelnabors) kicked off a section of talks about learning and designing with React with a keynote about our investment in React's new docs ([now shipped as react.dev](/blog/2023/03/16/introducing-react-dev)):
 
 <YouTubeIframe src="https://www.youtube.com/embed/mneDaMYOKP8" title="YouTube video player" />
 

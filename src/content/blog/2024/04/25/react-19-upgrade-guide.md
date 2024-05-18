@@ -5,7 +5,7 @@ date: 2024/04/25
 description: The improvements added to React 19 require some breaking changes, but we've worked to make the upgrade as smooth as possible and we don't expect the changes to impact most apps. In this post, we will guide you through the steps for upgrading libraries to React 19 beta.
 ---
 
-April 25, 2024 by [Ricky Hanlon](https://twitter.com/rickhanlonii)
+April 25, 2024 by [Ricky Hanlon](https://x.com/rickhanlonii)
 
 ---
 
@@ -655,4 +655,4 @@ We'll publish the full changelog with the stable release of React 19.
 
 ---
 
-Thanks to [Andrew Clark](https://twitter.com/acdlite), [Eli White](https://twitter.com/Eli_White), [Jack Pope](https://github.com/jackpope), [Jan Kassens](https://github.com/kassens), [Josh Story](https://twitter.com/joshcstory), [Matt Carroll](https://twitter.com/mattcarrollcode), [Noah Lemen](https://twitter.com/noahlemen), [Sophie Alpert](https://twitter.com/sophiebits), and [Sebastian Silbermann](https://twitter.com/sebsilbermann) for reviewing and editing this post.
+Thanks to [Andrew Clark](https://x.com/acdlite), [Eli White](https://x.com/Eli_White), [Jack Pope](https://github.com/jackpope), [Jan Kassens](https://github.com/kassens), [Josh Story](https://x.com/joshcstory), [Matt Carroll](https://x.com/mattcarrollcode), [Noah Lemen](https://x.com/noahlemen), [Sophie Alpert](https://x.com/sophiebits), and [Sebastian Silbermann](https://x.com/sebsilbermann) for reviewing and editing this post.

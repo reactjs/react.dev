@@ -305,7 +305,7 @@ export function Footer() {
             Logo by
             <ExternalLink
               className="ms-1"
-              href="https://twitter.com/sawaratsuki1004">
+              href="https://x.com/sawaratsuki1004">
               @sawaratsuki1004
             </ExternalLink>
           </div>
@@ -366,7 +366,7 @@ export function Footer() {
             </ExternalLink>
             <ExternalLink
               aria-label="React on Twitter"
-              href="https://twitter.com/reactjs"
+              href="https://x.com/reactjs"
               className={socialLinkClasses}>
               <IconTwitter />
             </ExternalLink>

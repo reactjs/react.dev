@@ -5,7 +5,7 @@ date: 2024/02/15
 description: In React Labs posts, we write about projects in active research and development. We’ve made significant progress since our last update, and we’d like to share our progress.
 ---
 
-February 15, 2024 by [Joseph Savona](https://twitter.com/en_JS), [Ricky Hanlon](https://twitter.com/rickhanlonii), [Andrew Clark](https://twitter.com/acdlite), [Matt Carroll](https://twitter.com/mattcarrollcode), and [Dan Abramov](https://twitter.com/dan_abramov).
+February 15, 2024 by [Joseph Savona](https://x.com/en_JS), [Ricky Hanlon](https://x.com/rickhanlonii), [Andrew Clark](https://x.com/acdlite), [Matt Carroll](https://x.com/mattcarrollcode), and [Dan Abramov](https://x.com/dan_abramov).
 
 ---
 
@@ -115,6 +115,6 @@ In addition to this update, our team has presented at conferences and made appea
 
 - [Matt Carroll](/community/team#matt-carroll) was interviewed on the [Front-End Fire podcast](https://www.buzzsprout.com/2226499/14462424-interview-the-two-reacts-with-rachel-nabors-evan-bacon-and-matt-carroll) where he discussed [The Two Reacts](https://overreacted.io/the-two-reacts/)
 
-Thanks [Lauren Tan](https://twitter.com/potetotes), [Sophie Alpert](https://twitter.com/sophiebits), [Jason Bonta](https://threads.net/someextent), [Eli White](https://twitter.com/Eli_White), and [Sathya Gunasekaran](https://twitter.com/_gsathya) for reviewing this post.
+Thanks [Lauren Tan](https://x.com/potetotes), [Sophie Alpert](https://x.com/sophiebits), [Jason Bonta](https://threads.net/someextent), [Eli White](https://x.com/Eli_White), and [Sathya Gunasekaran](https://x.com/_gsathya) for reviewing this post.
 
 Thanks for reading, and [see you at React Conf](https://conf.react.dev/)!

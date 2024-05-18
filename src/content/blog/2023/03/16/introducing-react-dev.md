@@ -5,7 +5,7 @@ date: 2023/03/16
 description: Today we are thrilled to launch react.dev, the new home for React and its documentation. In this post, we would like to give you a tour of the new site.
 ---
 
-March 16, 2023 by [Dan Abramov](https://twitter.com/dan_abramov) and [Rachel Nabors](https://twitter.com/rachelnabors)
+March 16, 2023 by [Dan Abramov](https://x.com/dan_abramov) and [Rachel Nabors](https://x.com/rachelnabors)
 
 ---
 
@@ -631,18 +631,18 @@ We think there's never been a better time to learn React.
 
 ## Who worked on this? {/*who-worked-on-this*/}
 
-On the React team, [Rachel Nabors](https://twitter.com/rachelnabors/) led the project (and provided the illustrations), and [Dan Abramov](https://twitter.com/dan_abramov) designed the curriculum. They co-authored most of the content together as well.
+On the React team, [Rachel Nabors](https://x.com/rachelnabors/) led the project (and provided the illustrations), and [Dan Abramov](https://x.com/dan_abramov) designed the curriculum. They co-authored most of the content together as well.
 
 Of course, no project this large happens in isolation. We have a lot of people to thank!
 
-[Sylwia Vargas](https://twitter.com/SylwiaVargas) overhauled our examples to go beyond "foo/bar/baz" and kittens, and feature scientists, artists and cities from around the world. [Maggie Appleton](https://twitter.com/Mappletons) turned our doodles into a clear diagram system.
+[Sylwia Vargas](https://x.com/SylwiaVargas) overhauled our examples to go beyond "foo/bar/baz" and kittens, and feature scientists, artists and cities from around the world. [Maggie Appleton](https://x.com/Mappletons) turned our doodles into a clear diagram system.
 
-Thanks to [David McCabe](https://twitter.com/mcc_abe), [Sophie Alpert](https://twitter.com/sophiebits), [Rick Hanlon](https://twitter.com/rickhanlonii), [Andrew Clark](https://twitter.com/acdlite), and [Matt Carroll](https://twitter.com/mattcarrollcode) for additional writing contributions. We'd also like to thank [Natalia Tepluhina](https://twitter.com/n_tepluhina) and [Sebastian Markbåge](https://twitter.com/sebmarkbage) for their ideas and feedback.
+Thanks to [David McCabe](https://x.com/mcc_abe), [Sophie Alpert](https://x.com/sophiebits), [Rick Hanlon](https://x.com/rickhanlonii), [Andrew Clark](https://x.com/acdlite), and [Matt Carroll](https://x.com/mattcarrollcode) for additional writing contributions. We'd also like to thank [Natalia Tepluhina](https://x.com/n_tepluhina) and [Sebastian Markbåge](https://x.com/sebmarkbage) for their ideas and feedback.
 
-Thanks to [Dan Lebowitz](https://twitter.com/lebo) for the site design and [Razvan Gradinar](https://dribbble.com/GradinarRazvan) for the sandbox design.
+Thanks to [Dan Lebowitz](https://x.com/lebo) for the site design and [Razvan Gradinar](https://dribbble.com/GradinarRazvan) for the sandbox design.
 
-On the development front, thanks to [Jared Palmer](https://twitter.com/jaredpalmer) for prototype development. Thanks to [Dane Grant](https://twitter.com/danecando) and [Dustin Goodman](https://twitter.com/dustinsgoodman) from [ThisDotLabs](https://www.thisdot.co/) for their support on UI development. Thanks to [Ives van Hoorne](https://twitter.com/CompuIves), [Alex Moldovan](https://twitter.com/alexnmoldovan), [Jasper De Moor](https://twitter.com/JasperDeMoor), and [Danilo Woznica](https://twitter.com/danilowoz) from [CodeSandbox](https://codesandbox.io/) for their work with sandbox integration. Thanks to [Rick Hanlon](https://twitter.com/rickhanlonii) for spot development and design work, finessing our colors and finer details. Thanks to [Harish Kumar](https://www.strek.in/) and [Luna Ruan](https://twitter.com/lunaruan) for adding new features to the site and helping maintain it.
+On the development front, thanks to [Jared Palmer](https://x.com/jaredpalmer) for prototype development. Thanks to [Dane Grant](https://x.com/danecando) and [Dustin Goodman](https://x.com/dustinsgoodman) from [ThisDotLabs](https://www.thisdot.co/) for their support on UI development. Thanks to [Ives van Hoorne](https://x.com/CompuIves), [Alex Moldovan](https://x.com/alexnmoldovan), [Jasper De Moor](https://x.com/JasperDeMoor), and [Danilo Woznica](https://x.com/danilowoz) from [CodeSandbox](https://codesandbox.io/) for their work with sandbox integration. Thanks to [Rick Hanlon](https://x.com/rickhanlonii) for spot development and design work, finessing our colors and finer details. Thanks to [Harish Kumar](https://www.strek.in/) and [Luna Ruan](https://x.com/lunaruan) for adding new features to the site and helping maintain it.
 
-Huge thanks to the folks who volunteered their time to participate in the alpha and beta testing program. Your enthusiasm and invaluable feedback helped us shape these docs. A special shout out to our beta tester, [Debbie O'Brien](https://twitter.com/debs_obrien), who gave a talk about her experience using the React docs at React Conf 2021.
+Huge thanks to the folks who volunteered their time to participate in the alpha and beta testing program. Your enthusiasm and invaluable feedback helped us shape these docs. A special shout out to our beta tester, [Debbie O'Brien](https://x.com/debs_obrien), who gave a talk about her experience using the React docs at React Conf 2021.
 
 Finally, thanks to the React community for being the inspiration behind this effort. You are the reason we do this, and we hope that the new docs will help you use React to build any user interface that you want.

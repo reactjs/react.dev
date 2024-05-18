@@ -5,7 +5,7 @@ date: 2021/12/17
 description: Last week we hosted our 6th React Conf. In previous years, we've used the React Conf stage to deliver industry changing announcements such as React Native and React Hooks. This year, we shared our multi-platform vision for React, starting with the release of React 18 and gradual adoption of concurrent features.
 ---
 
-December 17, 2021 by [Jesslyn Tannady](https://twitter.com/jtannady) and [Rick Hanlon](https://twitter.com/rickhanlonii)
+December 17, 2021 by [Jesslyn Tannady](https://x.com/jtannady) and [Rick Hanlon](https://x.com/rickhanlonii)
 
 ---
 
@@ -33,7 +33,7 @@ React 18 adds the long-awaited concurrent renderer and updates to Suspense witho
 
 In the keynote, we also shared our vision for Suspense, Server Components, new React working groups, and our long-term many-platform vision for React Native.
 
-Watch the full keynote from [Andrew Clark](https://twitter.com/acdlite), [Juan Tejada](https://twitter.com/_jstejada), [Lauren Tan](https://twitter.com/potetotes), and [Rick Hanlon](https://twitter.com/rickhanlonii) here:
+Watch the full keynote from [Andrew Clark](https://x.com/acdlite), [Juan Tejada](https://x.com/_jstejada), [Lauren Tan](https://x.com/potetotes), and [Rick Hanlon](https://x.com/rickhanlonii) here:
 
 <YouTubeIframe src="https://www.youtube.com/embed/FZ0cG47msEk" />
 
@@ -60,7 +60,7 @@ const root = ReactDOM.createRoot(container);
 root.render(<App/>);
 ```
 
-For a demo of upgrading to React 18, see [Shruti Kapoor](https://twitter.com/shrutikapoor08)’s talk here:
+For a demo of upgrading to React 18, see [Shruti Kapoor](https://x.com/shrutikapoor08)’s talk here:
 
 <YouTubeIframe src="https://www.youtube.com/embed/ytudH8je5ko" />
 
@@ -70,7 +70,7 @@ React 18 also includes improvements to server-side rendering performance using S
 
 Streaming server rendering lets you generate HTML from React components on the server, and stream that HTML to your users. In React 18, you can use `Suspense` to break down your app into smaller independent units which can be streamed independently of each other without blocking the rest of the app. This means users will see your content sooner and be able to start interacting with it much faster.
 
-For a deep dive, see [Shaundai Person](https://twitter.com/shaundai)’s talk here:
+For a deep dive, see [Shaundai Person](https://x.com/shaundai)’s talk here:
 
 <YouTubeIframe src="https://www.youtube.com/embed/pj5N-Khihgc" />
 
@@ -78,7 +78,7 @@ For a deep dive, see [Shaundai Person](https://twitter.com/shaundai)’s talk he
 
 For React 18, we created our first Working Group to collaborate with a panel of experts, developers, library maintainers, and educators. Together we worked to create our gradual adoption strategy and refine new APIs such as `useId`, `useSyncExternalStore`, and `useInsertionEffect`.
 
-For an overview of this work, see [Aakansha' Doshi](https://twitter.com/aakansha1216)'s talk:
+For an overview of this work, see [Aakansha' Doshi](https://x.com/aakansha1216)'s talk:
 
 <YouTubeIframe src="https://www.youtube.com/embed/qn7gRClrC9U" />
 
@@ -86,19 +86,19 @@ For an overview of this work, see [Aakansha' Doshi](https://twitter.com/aakansha
 
 To support the new features in this release, we also announced the newly formed React DevTools team and a new Timeline Profiler to help developers debug their React apps.
 
-For more information and a demo of new DevTools features, see [Brian Vaughn](https://twitter.com/brian_d_vaughn)’s talk:
+For more information and a demo of new DevTools features, see [Brian Vaughn](https://x.com/brian_d_vaughn)’s talk:
 
 <YouTubeIframe src="https://www.youtube.com/embed/oxDfrke8rZg" />
 
 ## React without memo {/*react-without-memo*/}
 
-Looking further into the future, [Xuan Huang (黄玄)](https://twitter.com/Huxpro) shared an update from our React Labs research into an auto-memoizing compiler. Check out this talk for more information and a demo of the compiler prototype:
+Looking further into the future, [Xuan Huang (黄玄)](https://x.com/Huxpro) shared an update from our React Labs research into an auto-memoizing compiler. Check out this talk for more information and a demo of the compiler prototype:
 
 <YouTubeIframe src="https://www.youtube.com/embed/lGEMwh32soc" />
 
 ## React docs keynote {/*react-docs-keynote*/}
 
-[Rachel Nabors](https://twitter.com/rachelnabors) kicked off a section of talks about learning and designing with React with a keynote about our investment in React's new docs ([now shipped as react.dev](/blog/2023/03/16/introducing-react-dev)):
+[Rachel Nabors](https://x.com/rachelnabors) kicked off a section of talks about learning and designing with React with a keynote about our investment in React's new docs ([now shipped as react.dev](/blog/2023/03/16/introducing-react-dev)):
 
 <YouTubeIframe src="https://www.youtube.com/embed/mneDaMYOKP8" />
 
@@ -129,29 +129,29 @@ Looking further into the future, [Xuan Huang (黄玄)](https://twitter.com/Huxpr
 
 This was our first year planning a conference ourselves, and we have a lot of people to thank.
 
-First, thanks to all of our speakers [Aakansha Doshi](https://twitter.com/aakansha1216), [Andrew Clark](https://twitter.com/acdlite), [Brian Vaughn](https://twitter.com/brian_d_vaughn), [Daishi Kato](https://twitter.com/dai_shi), [Debbie O'Brien](https://twitter.com/debs_obrien), [Delba de Oliveira](https://twitter.com/delba_oliveira), [Diego Haz](https://twitter.com/diegohaz), [Eric Rozell](https://twitter.com/EricRozell), [Helen Lin](https://twitter.com/wizardlyhel), [Juan Tejada](https://twitter.com/_jstejada), [Lauren Tan](https://twitter.com/potetotes), [Linton Ye](https://twitter.com/lintonye), [Lyle Troxell](https://twitter.com/lyle), [Rachel Nabors](https://twitter.com/rachelnabors), [Rick Hanlon](https://twitter.com/rickhanlonii), [Robert Balicki](https://twitter.com/StatisticsFTW), [Roman Rädle](https://twitter.com/raedle), [Sarah Rainsberger](https://twitter.com/sarah11918), [Shaundai Person](https://twitter.com/shaundai), [Shruti Kapoor](https://twitter.com/shrutikapoor08), [Steven Moyes](https://twitter.com/moyessa), [Tafu Nakazaki](https://twitter.com/hawaiiman0), and  [Xuan Huang (黄玄)](https://twitter.com/Huxpro).
+First, thanks to all of our speakers [Aakansha Doshi](https://x.com/aakansha1216), [Andrew Clark](https://x.com/acdlite), [Brian Vaughn](https://x.com/brian_d_vaughn), [Daishi Kato](https://x.com/dai_shi), [Debbie O'Brien](https://x.com/debs_obrien), [Delba de Oliveira](https://x.com/delba_oliveira), [Diego Haz](https://x.com/diegohaz), [Eric Rozell](https://x.com/EricRozell), [Helen Lin](https://x.com/wizardlyhel), [Juan Tejada](https://x.com/_jstejada), [Lauren Tan](https://x.com/potetotes), [Linton Ye](https://x.com/lintonye), [Lyle Troxell](https://x.com/lyle), [Rachel Nabors](https://x.com/rachelnabors), [Rick Hanlon](https://x.com/rickhanlonii), [Robert Balicki](https://x.com/StatisticsFTW), [Roman Rädle](https://x.com/raedle), [Sarah Rainsberger](https://x.com/sarah11918), [Shaundai Person](https://x.com/shaundai), [Shruti Kapoor](https://x.com/shrutikapoor08), [Steven Moyes](https://x.com/moyessa), [Tafu Nakazaki](https://x.com/hawaiiman0), and  [Xuan Huang (黄玄)](https://x.com/Huxpro).
 
-Thanks to everyone who helped provide feedback on talks including [Andrew Clark](https://twitter.com/acdlite), [Dan Abramov](https://twitter.com/dan_abramov), [Dave McCabe](https://twitter.com/mcc_abe), [Eli White](https://twitter.com/Eli_White), [Joe Savona](https://twitter.com/en_JS),  [Lauren Tan](https://twitter.com/potetotes), [Rachel Nabors](https://twitter.com/rachelnabors), and [Tim Yung](https://twitter.com/yungsters).
+Thanks to everyone who helped provide feedback on talks including [Andrew Clark](https://x.com/acdlite), [Dan Abramov](https://x.com/dan_abramov), [Dave McCabe](https://x.com/mcc_abe), [Eli White](https://x.com/Eli_White), [Joe Savona](https://x.com/en_JS),  [Lauren Tan](https://x.com/potetotes), [Rachel Nabors](https://x.com/rachelnabors), and [Tim Yung](https://x.com/yungsters).
 
-Thanks to [Lauren Tan](https://twitter.com/potetotes) for setting up the conference Discord and serving as our Discord admin.
+Thanks to [Lauren Tan](https://x.com/potetotes) for setting up the conference Discord and serving as our Discord admin.
 
-Thanks to [Seth Webster](https://twitter.com/sethwebster) for feedback on overall direction and making sure we were focused on diversity and inclusion.
+Thanks to [Seth Webster](https://x.com/sethwebster) for feedback on overall direction and making sure we were focused on diversity and inclusion.
 
-Thanks to [Rachel Nabors](https://twitter.com/rachelnabors) for spearheading our moderation effort, and [Aisha Blake](https://twitter.com/AishaBlake) for creating our moderation guide, leading our moderation team, training the translators and moderators, and helping to moderate both events.
+Thanks to [Rachel Nabors](https://x.com/rachelnabors) for spearheading our moderation effort, and [Aisha Blake](https://x.com/AishaBlake) for creating our moderation guide, leading our moderation team, training the translators and moderators, and helping to moderate both events.
 
-Thanks to our moderators [Jesslyn Tannady](https://twitter.com/jtannady), [Suzie Grange](https://twitter.com/missuze), [Becca Bailey](https://twitter.com/beccaliz), [Luna Wei](https://twitter.com/lunaleaps), [Joe Previte](https://twitter.com/jsjoeio), [Nicola Corti](https://twitter.com/Cortinico), [Gijs Weterings](https://twitter.com/gweterings), [Claudio Procida](https://twitter.com/claudiopro), Julia Neumann, Mengdi Chen, Jean Zhang, Ricky Li, and [Xuan Huang (黄玄)](https://twitter.com/Huxpro).
+Thanks to our moderators [Jesslyn Tannady](https://x.com/jtannady), [Suzie Grange](https://x.com/missuze), [Becca Bailey](https://x.com/beccaliz), [Luna Wei](https://x.com/lunaleaps), [Joe Previte](https://x.com/jsjoeio), [Nicola Corti](https://x.com/Cortinico), [Gijs Weterings](https://x.com/gweterings), [Claudio Procida](https://x.com/claudiopro), Julia Neumann, Mengdi Chen, Jean Zhang, Ricky Li, and [Xuan Huang (黄玄)](https://x.com/Huxpro).
 
-Thanks to [Manjula Dube](https://twitter.com/manjula_dube), [Sahil Mhapsekar](https://twitter.com/apheri0), and Vihang Patel from [React India](https://www.reactindia.io/), and [Jasmine Xie](https://twitter.com/jasmine_xby), [QiChang Li](https://twitter.com/QCL15), and [YanLun Li](https://twitter.com/anneincoding) from [React China](https://twitter.com/ReactChina) for helping moderate our replay event and keep it engaging for the community.
+Thanks to [Manjula Dube](https://x.com/manjula_dube), [Sahil Mhapsekar](https://x.com/apheri0), and Vihang Patel from [React India](https://www.reactindia.io/), and [Jasmine Xie](https://x.com/jasmine_xby), [QiChang Li](https://x.com/QCL15), and [YanLun Li](https://x.com/anneincoding) from [React China](https://x.com/ReactChina) for helping moderate our replay event and keep it engaging for the community.
 
-Thanks to Vercel for publishing their [Virtual Event Starter Kit](https://vercel.com/virtual-event-starter-kit), which the conference website was built on, and to [Lee Robinson](https://twitter.com/leeerob) and [Delba de Oliveira](https://twitter.com/delba_oliveira) for sharing their experience running Next.js Conf.
+Thanks to Vercel for publishing their [Virtual Event Starter Kit](https://vercel.com/virtual-event-starter-kit), which the conference website was built on, and to [Lee Robinson](https://x.com/leeerob) and [Delba de Oliveira](https://x.com/delba_oliveira) for sharing their experience running Next.js Conf.
 
-Thanks to [Leah Silber](https://twitter.com/wifelette) for sharing her experience running conferences, learnings from running [RustConf](https://rustconf.com/), and for her book [Event Driven](https://leanpub.com/eventdriven/) and the advice it contains for running conferences.
+Thanks to [Leah Silber](https://x.com/wifelette) for sharing her experience running conferences, learnings from running [RustConf](https://rustconf.com/), and for her book [Event Driven](https://leanpub.com/eventdriven/) and the advice it contains for running conferences.
 
-Thanks to [Kevin Lewis](https://twitter.com/_phzn) and [Rachel Nabors](https://twitter.com/rachelnabors) for sharing their experience running Women of React Conf.
+Thanks to [Kevin Lewis](https://x.com/_phzn) and [Rachel Nabors](https://x.com/rachelnabors) for sharing their experience running Women of React Conf.
 
-Thanks to [Aakansha Doshi](https://twitter.com/aakansha1216), [Laurie Barth](https://twitter.com/laurieontech), [Michael Chan](https://twitter.com/chantastic), and [Shaundai Person](https://twitter.com/shaundai) for their advice and ideas throughout planning.
+Thanks to [Aakansha Doshi](https://x.com/aakansha1216), [Laurie Barth](https://x.com/laurieontech), [Michael Chan](https://x.com/chantastic), and [Shaundai Person](https://x.com/shaundai) for their advice and ideas throughout planning.
 
-Thanks to [Dan Lebowitz](https://twitter.com/lebo) for help designing and building the conference website and tickets.
+Thanks to [Dan Lebowitz](https://x.com/lebo) for help designing and building the conference website and tickets.
 
 Thanks to Laura Podolak Waddell, Desmond Osei-Acheampong, Mark Rossi, Josh Toberman and others on the Facebook Video Productions team for recording the videos for the Keynote and Meta employee talks.
 

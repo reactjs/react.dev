@@ -45,6 +45,11 @@ May 22 - 24, 2024. In-person in Kraków, Poland + remote
 
 [Website](https://appjs.co) - [Twitter](https://twitter.com/appjsconf)
 
+### Frontend Nation 2024 {/*frontend-nation-2024*/}
+June 4 - 7, 2024. Online
+
+[Website](https://frontendnation.com/) - [Twitter](https://twitter.com/frontendnation)
+
 ### React Summit 2024 {/*react-summit-2024*/}
 June 14 & 18, 2024. In-person in Amsterdam, Netherlands + remote (hybrid event)
 

@@ -23,9 +23,11 @@ In this post, we'll summarize the talks and announcements from the event.
 
 ## Day 1 {/*day-1*/}
 
+_[Watch the full day 1 stream here.](https://www.youtube.com/watch?v=T8TZQ6k4SLE&t=973s)_
+
 To kick off day 1, Meta CTO [Andrew "Boz" Bosworth](https://www.threads.net/@boztank) shared a welcome message followed by an introduction by [Seth Webster](https://twitter.com/sethwebster) and our MC [Ashley Narcisse](https://twitter.com/_darkfadr).
 
-In the day 1 keynote, [Joe Savona](https://twitter.com/en_JS) shared our goals and vision for React to make it easy for anyone to build great user experiences. [Lauren Tan](https://twitter.com/potetotes) followed with a State of React, which was downloaded over 1 billion times in 2023 and highlighted the work of the React community to make React, React.
+In the day 1 keynote, [Joe Savona](https://twitter.com/en_JS) shared our goals and vision for React to make it easy for anyone to build great user experiences. [Lauren Tan](https://twitter.com/potetotes) followed with a State of React, where she shared that React was downloaded over 1 billion times in 2023, and that 37% of new developers learn to program with React. Finally, she highlighted the work of the React community to make React, React.
 
 For more, check out these talks from the community later in the conference:
 
@@ -55,6 +57,8 @@ Watch the full day 1 keynote here:
 <YouTubeIframe src="https://www.youtube.com/embed/T8TZQ6k4SLE?t=973s" />
 
 ## Day 2 {/*day-2*/}
+
+_[Watch the full day 2 stream here.](https://www.youtube.com/watch?v=0ckOUBiuxVY&t=1720s)_
 
 To kick off day 2, [Seth Webster](https://twitter.com/sethwebster) shared a welcome message, followed by a Thank You from [Eli White](https://x.com/Eli_White) and an introduction by our Chief Vibes Officer [Ashley Narcisse](https://twitter.com/_darkfadr).
 
@@ -102,7 +106,8 @@ Thank you to [Barbara Markiewicz](https://twitter.com/barbara_markie), the team 
 
 Thank you [Ashley Narcisse](https://twitter.com/_darkfadr) for being our MC and Chief Vibes Officer; and to [Michael Chan](https://twitter.com/chantastic) and [Jamon Holmgren](https://twitter.com/jamonholmgren) for hosting the Q&A sessions.
 
-Thank you [Ricky Hanlon](https://twitter.com/rickhanlonii) for providing detailed feedback to speakers on their talks, working on design and animations for the keynote slides, deploying the [React Compiler Playground](https://playground.react.dev) and docs, and generally filling in the gaps to sweat the details and make this conference a success.
+Thank you [Ricky Hanlon](https://www.youtube.com/watch?v=NfF3bThOW0Q) for providing detailed feedback on talks, working on slide designs, and generally filling in the gaps to sweat the details.
+
 Thank you [Callstack](https://www.callstack.com/) for building the conference website; and to [Kadi Kraman](https://twitter.com/kadikraman) and the [Expo](https://expo.dev/) team for building the conference mobile app.
 
 Thank you to all the sponsors who made the event possible: [Remix](https://remix.run/), [Amazon](https://developer.amazon.com/apps-and-games?cmp=US_2024_05_3P_React-Conf-2024&ch=prtnr&chlast=prtnr&pub=ref&publast=ref&type=org&typelast=org), [MUI](https://mui.com/), [Sentry](https://sentry.io/for/react/?utm_source=sponsored-conf&utm_medium=sponsored-event&utm_campaign=frontend-fy25q2-evergreen&utm_content=logo-reactconf2024-learnmore), [Abbott](https://www.jobs.abbott/software), [Expo](https://expo.dev/), [RedwoodJS](https://redwoodjs.com/), and [Vercel](https://vercel.com).

@@ -48,7 +48,7 @@ Finally, we ended the keynote with [Joe Savona](https://twitter.com/en_JS), [Sat
 For more information on using the Compiler and how it works, check out [the docs](/learn/react-compiler) and these talks:
 
 - [Forget About Memo](https://www.youtube.com/watch?v=T8TZQ6k4SLE&t=5542s) by [Lauren Tan](https://twitter.com/potetotes)
-- [React Compiler Deep Dive](https://www.youtube.com/watch?v=0ckOUBiuxVY&t=9313s) by [Sathya Gunasekaran](https://twitter.com/_gsathya) and [Mofei Zhang](https://www.threads.net/@z_mofei)
+- [React Compiler Deep Dive](https://www.youtube.com/watch?v=0ckOUBiuxVY&t=9313s) by [Sathya Gunasekaran](https://twitter.com/_gsathya) and [Mofei Zhang](https://twitter.com/zmofei)
 
 Watch the full day 1 keynote here:
 
@@ -102,6 +102,7 @@ Thank you to [Barbara Markiewicz](https://twitter.com/barbara_markie), the team 
 
 Thank you [Ashley Narcisse](https://twitter.com/_darkfadr) for being our MC and Chief Vibes Officer; and to [Michael Chan](https://twitter.com/chantastic) and [Jamon Holmgren](https://twitter.com/jamonholmgren) for hosting the Q&A sessions.
 
+Thank you [Ricky Hanlon](https://twitter.com/rickhanlonii) for providing detailed feedback to speakers on their talks, working on design and animations for the keynote slides, deploying the [React Compiler Playground](https://playground.react.dev) and docs, and generally filling in the gaps to sweat the details and make this conference a success.
 Thank you [Callstack](https://www.callstack.com/) for building the conference website; and to [Kadi Kraman](https://twitter.com/kadikraman) and the [Expo](https://expo.dev/) team for building the conference mobile app.
 
 Thank you to all the sponsors who made the event possible: [Remix](https://remix.run/), [Amazon](https://developer.amazon.com/apps-and-games?cmp=US_2024_05_3P_React-Conf-2024&ch=prtnr&chlast=prtnr&pub=ref&publast=ref&type=org&typelast=org), [MUI](https://mui.com/), [Sentry](https://sentry.io/for/react/?utm_source=sponsored-conf&utm_medium=sponsored-event&utm_campaign=frontend-fy25q2-evergreen&utm_content=logo-reactconf2024-learnmore), [Abbott](https://www.jobs.abbott/software), [Expo](https://expo.dev/), [RedwoodJS](https://redwoodjs.com/), and [Vercel](https://vercel.com).

@@ -21,7 +21,7 @@ These docs are still a work in progress. More documentation is available in the 
 <Note>
 React Compiler is a new experimental compiler that we've open sourced to get early feedback from the community. It still has rough edges and is not yet fully ready for production.
 
-React Compiler requires React 19 Beta.
+React Compiler requires React 19 Beta. If you are unable to upgrade to React 19, you may try a userspace implementation of the cache function as described in the [Working Group](https://github.com/reactwg/react-compiler/discussions/6). However, please note that this is not recommended and you should upgrade to React 19 when possible.
 </Note>
 
 React Compiler is a new experimental compiler that we've open sourced to get early feedback from the community. It is a build-time only tool that automatically optimizes your React app. It works with plain JavaScript, and understands the [Rules of React](/reference/rules), so you don't need to rewrite any code to use it.

@@ -127,7 +127,7 @@ This does not include the TypeScript changes. See [TypeScript changes](#typescri
 
 Changes that include a codemod include the command below. 
 
-For a list of all available codemods, see the `react-codemod` [repo here](https://github.com/reactjs/react-codemod).
+For a list of all available codemods, see the [`react-codemod` repo](https://github.com/reactjs/react-codemod).
 
 ## Breaking changes {/*breaking-changes*/}
 

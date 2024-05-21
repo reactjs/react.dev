@@ -95,7 +95,7 @@ This script will:
 
 - Check how many components can be successfully optimized: higher is better
 - Check for `<StrictMode>` usage: having this enabled and followed means a higher chance that the [Rules of React](/reference/rules) are followed
-- Check for incompatible library usage: known libaries that are incompatible with the compiler
+- Check for incompatible library usage: known libraries that are incompatible with the compiler
 
 As an example:
 

@@ -39,6 +39,7 @@ For a list of changes in 18.3 see the [Release Notes](https://github.com/faceboo
 In this post, we will guide you through the steps for upgrading libraries to React 19 beta:
 
 - [Installing](#installing)
+- [Codemods](#codemods)
 - [Breaking changes](#breaking-changes)
 - [New deprecations](#new-deprecations)
 - [Notable changes](#notable-changes)
@@ -97,6 +98,36 @@ If you're using TypeScript, you also need to update the types. Once React 19 is 
 
 We're also including a codemod for the most common replacements. See [TypeScript changes](#typescript-changes) below.
 
+## Codemods {/*codemods*/}
+
+To help with the upgrade, we've worked with the team at [codemod.com](https://codemod.com) to publish codemods that will automatically update your code to many of the new APIs and patterns in React 19.
+
+The Codemod team have published all codemods to [`react-codemod`](https://github.com/reactjs/react-codemod) and will be helping maintain the React codemods moving forward, but we recommend using the `codemod` command for a better experience. 
+
+<Note>
+
+#### Run all React 19 codemods {/*run-all-react-19-codemods*/}
+
+To run all codemods listed in this guide, you can use the command below:
+
+```bash
+npx codemod@latest react/19/migration-recipe
+```
+
+This will run the following codemods from `react-codemod`:
+- [`replace-reactdom-render`](https://github.com/reactjs/react-codemod?tab=readme-ov-file#replace-reactdom-render) 
+- [`replace-string-ref`](https://github.com/reactjs/react-codemod?tab=readme-ov-file#replace-string-ref)
+- [`replace-act-import`](https://github.com/reactjs/react-codemod?tab=readme-ov-file#replace-act-import)
+- [`replace-use-form-state`](https://github.com/reactjs/react-codemod?tab=readme-ov-file#replace-use-form-state) 
+- [`prop-types-typescript`](TODO)
+
+This does not include the TypeScript changes. See [TypeScript changes](#typescript-changes) below.
+
+</Note>
+
+Changes that include a codemod include the command below. 
+
+For a list of all available codemods, see the `react-codemod` [repo here](https://github.com/reactjs/react-codemod).
 
 ## Breaking changes {/*breaking-changes*/}
 
@@ -128,7 +159,7 @@ For more info, see the docs for [`createRoot`](https://react.dev/reference/react
 ### Removed deprecated React APIs {/*removed-deprecated-react-apis*/}
 
 #### Removed: `propTypes` and `defaultProps` for functions {/*removed-proptypes-and-defaultprops*/}
-`PropTypes` were deprecated in [April 2017 (v15.5.0)](https://legacy.reactjs.org/blog/2017/04/07/react-v15.5.0.html#new-deprecation-warnings). 
+`PropTypes` were deprecated in [April 2017 (v15.5.0)](https://legacy.reactjs.org/blog/2017/04/07/react-v15.5.0.html#new-deprecation-warnings).
 
 In React 19, we're removing the `propType` checks from the React package, and using them will be silently ignored. If you're using `propTypes`, we recommend migrating to TypeScript or another type-checking solution.
 
@@ -157,6 +188,16 @@ function Heading({text = 'Hello, world!'}: Props) {
   return <h1>{text}</h1>;
 }
 ```
+
+<Note>
+
+Codemod `propTypes` to TypeScript with:
+
+```bash
+npx codemod@latest react/prop-types-typescript
+```
+
+</Note>
 
 #### Removed: Legacy Context using `contextTypes` and `getChildContext` {/*removed-removing-legacy-context*/}
 
@@ -253,7 +294,11 @@ class MyComponent extends React.Component {
 
 <Note>
 
-To help with the migration, we will be publishing a [react-codemod](https://github.com/reactjs/react-codemod/#string-refs) to automatically replace string refs with `ref` callbacks. Follow [this PR](https://github.com/reactjs/react-codemod/pull/309) for updates and to try it out.
+Codemod string refs with `ref` callbacks:
+
+```bash
+npx codemod@latest react/19/replace-string-ref
+```
 
 </Note>
 
@@ -340,6 +385,16 @@ All other `test-utils` functions have been removed. These utilities were uncommo
 
 See the [warning page](https://react.dev/warnings/react-dom-test-utils) for alternatives.
 
+<Note>
+
+Codemod `ReactDOMTestUtils.act` to `React.act`:
+
+```bash
+npx codemod@latest react/19/replace-act-import
+```
+
+</Note>
+
 #### Removed: `ReactDOM.render` {/*removed-reactdom-render*/}
 
 `ReactDOM.render` was deprecated in [March 2022 (v18.0.0)](https://react.dev/blog/2022/03/08/react-18-upgrade-guide). In React 19, we're removing `ReactDOM.render` and you'll need to migrate to using [`ReactDOM.createRoot`](https://react.dev/reference/react-dom/client/createRoot):
@@ -354,6 +409,16 @@ import {createRoot} from 'react-dom/client';
 const root = createRoot(document.getElementById('root'));
 root.render(<App />);
 ```
+
+<Note>
+
+Codemod `ReactDOM.render` to `ReactDOM.createRoot`:
+
+```bash
+npx codemod@latest react/19/replace-reactdom-render
+```
+
+</Note>
 
 #### Removed: `ReactDOM.hydrate` {/*removed-reactdom-hydrate*/}
 

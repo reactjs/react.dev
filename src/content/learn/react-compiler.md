@@ -368,12 +368,31 @@ You can also provide feedback in the React Compiler Working Group by applying to
 
 This occurs during JavaScript module evaluation when you are not using React 19 Beta and up. To fix this, [upgrade your app to React 19 Beta](https://react.dev/blog/2024/04/25/react-19-upgrade-guide) first.
 
+If you are unable to upgrade to React 19, you may try a userspace implementation of the cache function as described in the [Working Group](https://github.com/reactwg/react-compiler/discussions/6). However, please note that this is not recommended and you should upgrade to React 19 when possible.
+
 ### Debugging {/*debugging*/}
 
 #### Checking if components have been optimized {/*checking-if-components-have-been-optimized*/}
-##### React DevTools {/*react-devtools*/}
 
-React Devtools (v5.0+) has built-in support for React Compiler and will display a "Memo ✨" badge next to components that have been optimized by the compiler.
+[React Devtools](/learn/react-developer-tools) (v5.0+) has built-in support for React Compiler and will display a "Memo ✨" badge next to components that have been optimized by the compiler.
+
+#### Something is throwing an error or not working after compilation {/*something-is-throwing-an-error-or-not-working-after-compilation*/}
+If there's a runtime issue, first try to make the error or bug go away by aggressively opting out any component or hook you think might be related via the `"use no memo"` directive:
+
+```js {2}
+function SuspiciousComponent() {
+  "use no memo"; // opts out this component from being compiled by React Compiler
+  // ...
+}
+```
+
+<Note>
+#### `"use no memo"` {/*use-no-memo*/}
+
+`"use no memo"` is a _temporary_ escape hatch that lets you opt-out components and hooks from being compiled by the React Compiler. This directive is not meant to be long lived the same way as eg [`"use client"`](/reference/rsc/use-client) is.
+</Note>
+
+When you make the error go away, confirm that removing the opt out directive makes the error come back. Then share a bug report with us (you can try to reduce it to a small repro, or if it's open source code you can also just paste the entire source) using the [React Compiler Playground](https://playground.react.dev) so we can identify and help fix the issue.
 
 ##### Other issues {/*other-issues*/}
 

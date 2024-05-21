@@ -45,7 +45,7 @@ Next in the keynote, [Josh Story](https://twitter.com/joshcstory) and [Andrew Cl
 - [React for Two Computers](https://www.youtube.com/watch?v=T8TZQ6k4SLE&t=5542s) by [Dan Abramov](https://twitter.com/dan_abramov2)
 - [And Now You Understand React Server Components](https://www.youtube.com/watch?v=0ckOUBiuxVY&t=11256s) by [Kent C. Dodds](https://twitter.com/kentcdodds)
 
-Finally, we ended the keynote with [Joe Savona](https://twitter.com/en_JS), [Sathya Gunasekaran](https://twitter.com/_gsathya), and [Mofei Zhang](https://www.threads.net/@z_mofei) announcing that the React Compiler is now [Open Source](https://github.com/facebook/react/pull/29061), and sharing an experimental version of the React Compiler to try out.
+Finally, we ended the keynote with [Joe Savona](https://twitter.com/en_JS), [Sathya Gunasekaran](https://twitter.com/_gsathya), and [Mofei Zhang](https://twitter.com/zmofei) announcing that the React Compiler is now [Open Source](https://github.com/facebook/react/pull/29061), and sharing an experimental version of the React Compiler to try out.
 
 For more information on using the Compiler and how it works, check out [the docs](/learn/react-compiler) and these talks:
 

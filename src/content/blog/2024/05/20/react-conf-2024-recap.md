@@ -106,7 +106,7 @@ Thank you to [Barbara Markiewicz](https://twitter.com/barbara_markie), the team 
 
 Thank you [Ashley Narcisse](https://twitter.com/_darkfadr) for being our MC and Chief Vibes Officer; and to [Michael Chan](https://twitter.com/chantastic) and [Jamon Holmgren](https://twitter.com/jamonholmgren) for hosting the Q&A sessions.
 
-Thank you [Ricky Hanlon](https://www.youtube.com/watch?v=NfF3bThOW0Q) for providing detailed feedback on talks, working on slide designs, and generally filling in the gaps to sweat the details.
+Thank you [Ricky Hanlon](https://www.youtube.com/watch?v=FxTZL2U-uKg&t=1263s) for providing detailed feedback on talks, working on slide designs, and generally filling in the gaps to sweat the details.
 
 Thank you [Callstack](https://www.callstack.com/) for building the conference website; and to [Kadi Kraman](https://twitter.com/kadikraman) and the [Expo](https://expo.dev/) team for building the conference mobile app.
 

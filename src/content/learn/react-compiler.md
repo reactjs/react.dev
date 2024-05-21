@@ -30,11 +30,80 @@ The compiler also includes an [eslint plugin](#installing-eslint-plugin-react-co
 
 ### What does the compiler do? {/*what-does-the-compiler-do*/}
 
-The compiler understands your code at a deep level through its understanding of plain JavaScript semantics and the [Rules of React](/reference/rules). This allows it to add automatic optimizations to your code.
+In order to optimize applications, React Compiler automatically memoizes your code. You may be familiar today with memoization through APIs such as `useMemo`, `useCallback`, and `React.memo`. With these APIs you can tell React that certain parts of your application don't need to recompute if their inputs haven't changed, reducing work on updates. While powerful, it's easy to forget to apply memoization or apply them incorrectly. This can lead to inefficient updates as React has to check parts of your UI that don't have any _meaningful_ changes.
 
-You may be familiar today with manual memoization through [`useMemo`](/reference/react/useMemo), [`useCallback`](/reference/react/useCallback), and [`React.memo`](/reference/react/memo). The compiler can automatically do this for you, if your code follows the [Rules of React](/reference/rules). If it detects breakages of the rules, it will automatically skip over just those components or hooks, and continue safely compiling other code.
+The compiler uses its knowledge of JavaScript and React's rules to automatically memoize values or groups of values within your components and hooks. If it detects breakages of the rules, it will automatically skip over just those components or hooks, and continue safely compiling other code.
 
-If your codebase is already very well memoized, you might not expect to see major performance improvements with the compiler. However, in practice memoizing the correct dependencies that cause performance issues is tricky to get right by hand.
+If your codebase is already very well-memoized, you might not expect to see major performance improvements with the compiler. However, in practice memoizing the correct dependencies that cause performance issues is tricky to get right by hand.
+
+<DeepDive>
+#### What kind of memoization does React Compiler add? {/*what-kind-of-memoization-does-react-compiler-add*/}
+
+The initial release of React Compiler is primarily focused on **improving update performance** (re-rendering existing components), so it focuses on these two use cases:
+
+1. **Skipping cascading re-rendering of components**
+    * Re-rendering `<Parent />` causes many components in its component tree to re-render, even though only `<Parent />` has changed
+1. **Skipping expensive calculations from outside of React**
+    * For example, calling `expensivelyProcessAReallyLargeArrayOfObjects()` inside of your component or hook that needs that data
+
+#### Optimizing Re-renders {/*optimizing-re-renders*/}
+
+React lets you express your UI as a function of their current state (more concretely: their props, state, and context). In its current implementation, when a component's state changes, React will re-render that component _and all of its children_ — unless you have applied some form of manual memoization with `useMemo()`, `useCallback()`, or `React.memo()`. For example, in the following example, `<MessageButton>` will re-render whenever `<FriendList>`'s state changes:
+
+```javascript
+function FriendList({ friends }) {
+  const onlineCount = useFriendOnlineCount();
+  if (friends.length === 0) {
+    return <NoFriends />;
+  }
+  return (
+    <div>
+      <span>{onlineCount} online</span>
+      {friends.map((friend) => (
+        <FriendListCard key={friend.id} friend={friend} />
+      ))}
+      <MessageButton />
+    </div>
+  );
+}
+```
+[_See this example in the React Compiler Playground_](https://playground.react.dev/#N4Igzg9grgTgxgUxALhAMygOzgFwJYSYAEAYjHgpgCYAyeYOAFMEWuZVWEQL4CURwADrEicQgyKEANnkwIAwtEw4iAXiJQwCMhWoB5TDLmKsTXgG5hRInjRFGbXZwB0UygHMcACzWr1ABn4hEWsYBBxYYgAeADkIHQ4uAHoAPksRbisiMIiYYkYs6yiqPAA3FMLrIiiwAAcAQ0wU4GlZBSUcbklDNqikusaKkKrgR0TnAFt62sYHdmp+VRT7SqrqhOo6Bnl6mCoiAGsEAE9VUfmqZzwqLrHqM7ubolTVol5eTOGigFkEMDB6u4EAAhKA4HCEZ5DNZ9ErlLIWYTcEDcIA)
+
+React Compiler automatically applies the equivalent of manual memoization, ensuring that only the relevant parts of an app re-render as state changes, which is sometimes referred to as "fine-grained reactivity". In the above example, React Compiler determines that the return value of `<FriendListCard />` can be reused even as `friends` changes, and can avoid recreating this JSX _and_ avoid re-rendering `<MessageButton>` as the count changes.
+
+#### Expensive calculations also get memoized {/*expensive-calculations-also-get-memoized*/}
+
+The compiler can also automatically memoize for expensive calculations used during rendering:
+
+```js
+// **Not** memoized by React Compiler, since this is not a component or hook
+function expensivelyProcessAReallyLargeArrayOfObjects() { /* ... */ }
+
+// Memoized by React Compiler since this is a component
+function TableContainer({ items }) {
+  // This function call would be memoized:
+  const data = expensivelyProcessAReallyLargeArrayOfObjects(items);
+  // ...
+}
+```
+
+However, if `expensivelyProcessAReallyLargeArrayOfObjects` is truly an expensive function, you may want to consider implementing its own memoization outside of React, because:
+
+- React Compiler only memoizes React components and hooks, not every function
+- React Compiler's memoization is not shared across multiple components or hooks
+
+So if `expensivelyProcessAReallyLargeArrayOfObjects` was used in many different components, even if the same exact items were passed down, that expensive calculation would be run repeatedly. We recommend [profiling](https://react.dev/reference/react/useMemo#how-to-tell-if-a-calculation-is-expensive) first to see if it really is that expensive before making code more complicated.
+</DeepDive>
+
+### What does the compiler assume? {/*what-does-the-compiler-assume*/}
+
+React Compiler assumes that your code:
+
+1. Is valid, semantic JavaScript
+2. Tests that nullable/optional values and properties are defined before accessing them (for example, by enabling [`strictNullChecks`](https://www.typescriptlang.org/tsconfig/#strictNullChecks) if using TypeScript), i.e., `if (object.nullableProperty) { object.nullableProperty.foo }` or with optional-chaining `object.nullableProperty?.foo`
+3. Follows the [Rules of React](https://react.dev/reference/rules)
+
+React Compiler can verify many of the Rules of React statically, and will safely skip compilation when it detects an error. To see the errors we recommend also installing [eslint-plugin-react-compiler](https://www.npmjs.com/package/eslint-plugin-react-compiler).
 
 ### Should I try out the compiler? {/*should-i-try-out-the-compiler*/}
 

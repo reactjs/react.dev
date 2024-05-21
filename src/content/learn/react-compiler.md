@@ -116,43 +116,6 @@ Please note that the compiler is still experimental and has many rough edges. Wh
 
 In addition to these docs, we recommend checking the [React Compiler Working Group](https://github.com/reactwg/react-compiler) for additional information and discussion about the compiler.
 
-### Rolling out the compiler to your codebase {/*using-the-compiler-effectively*/}
-
-#### Existing projects {/*existing-projects*/}
-The compiler is designed to compile functional components and hooks that follow the [Rules of React](/reference/rules). It can also handle code that breaks those rules by bailing out (skipping over) those components or hooks. However, due to the flexible nature of JavaScript, the compiler cannot catch every possible violation and may compile with false negatives: that is, the compiler may accidentally compile a component/hook that breaks the Rules of React which can lead to undefined behavior.
-
-For this reason, to adopt the compiler successfully on existing projects, we recommend running it on a small directory in your product code first. You can do this by configuring the compiler to only run on a specific set of directories:
-
-```js {3}
-const ReactCompilerConfig = {
-  sources: (filename) => {
-    return filename.indexOf('src/path/to/dir') !== -1;
-  },
-};
-```
-
-In rare cases, you can also configure the compiler to run in "opt-in" mode using the `compilationMode: "annotation"` option. This makes it so the compiler will only compile components and hooks annotated with a `"use memo"` directive. Please note that the `annotation` mode is a temporary one to aid early adopters, and that we don't intend for the `"use memo"` directive to be used for the long term.
-
-```js {2,7}
-const ReactCompilerConfig = {
-  compilationMode: "annotation",
-};
-
-// src/app.jsx
-export default function App() {
-  "use memo";
-  // ...
-}
-```
-
-When you have more confidence with rolling out the compiler, you can expand coverage to other directories as well and slowly roll it out to your whole app.
-
-#### New projects {/*new-projects*/}
-
-If you're starting a new project, you can enable the compiler on your entire codebase, which is the default behavior.
-
-## Installation {/*installation*/}
-
 ### Checking compatibility {/*checking-compatibility*/}
 
 Prior to installing the compiler, you can first check to see if your codebase is compatible:
@@ -196,7 +159,48 @@ module.exports = {
 }
 ```
 
-### Usage with Babel {/*usage-with-babel*/}
+The eslint plugin will display any violations of the rules of React in your editor. When it does this, it means that the compiler has skipped over optimizing that component or hook. This is perfectly okay, and the compiler can recover and continue optimizing other components in your codebase.
+
+**You don't have to fix all eslint violations straight away.** You can address them at your own pace to increase the amount of components and hooks being optimized, but it is not required to fix everything before you can use the compiler.
+
+### Rolling out the compiler to your codebase {/*using-the-compiler-effectively*/}
+
+#### Existing projects {/*existing-projects*/}
+The compiler is designed to compile functional components and hooks that follow the [Rules of React](/reference/rules). It can also handle code that breaks those rules by bailing out (skipping over) those components or hooks. However, due to the flexible nature of JavaScript, the compiler cannot catch every possible violation and may compile with false negatives: that is, the compiler may accidentally compile a component/hook that breaks the Rules of React which can lead to undefined behavior.
+
+For this reason, to adopt the compiler successfully on existing projects, we recommend running it on a small directory in your product code first. You can do this by configuring the compiler to only run on a specific set of directories:
+
+```js {3}
+const ReactCompilerConfig = {
+  sources: (filename) => {
+    return filename.indexOf('src/path/to/dir') !== -1;
+  },
+};
+```
+
+In rare cases, you can also configure the compiler to run in "opt-in" mode using the `compilationMode: "annotation"` option. This makes it so the compiler will only compile components and hooks annotated with a `"use memo"` directive. Please note that the `annotation` mode is a temporary one to aid early adopters, and that we don't intend for the `"use memo"` directive to be used for the long term.
+
+```js {2,7}
+const ReactCompilerConfig = {
+  compilationMode: "annotation",
+};
+
+// src/app.jsx
+export default function App() {
+  "use memo";
+  // ...
+}
+```
+
+When you have more confidence with rolling out the compiler, you can expand coverage to other directories as well and slowly roll it out to your whole app.
+
+#### New projects {/*new-projects*/}
+
+If you're starting a new project, you can enable the compiler on your entire codebase, which is the default behavior.
+
+## Usage {/*installation*/}
+
+### Babel {/*usage-with-babel*/}
 
 <TerminalBlock>
 npm install babel-plugin-react-compiler
@@ -222,7 +226,7 @@ module.exports = function () {
 
 `babel-plugin-react-compiler` should run first before other Babel plugins as the compiler requires the input source information for sound analysis.
 
-### Usage with Vite {/*usage-with-vite*/}
+### Vite {/*usage-with-vite*/}
 
 If you use Vite, you can add the plugin to vite-plugin-react:
 
@@ -246,7 +250,7 @@ export default defineConfig(() => {
 });
 ```
 
-### Usage with Next.js {/*usage-with-nextjs*/}
+### Next.js {/*usage-with-nextjs*/}
 
 Next.js has an experimental configuration to enable the React Compiler. It automatically ensures Babel is set up with `babel-plugin-react-compiler`.
 
@@ -279,7 +283,7 @@ Using the experimental option ensures support for the React Compiler in:
 - Turbopack (opt-in through `--turbo`)
 
 
-### Usage with Remix {/*usage-with-remix*/}
+### Remix {/*usage-with-remix*/}
 Install `vite-plugin-babel`, and add the compiler's Babel plugin to it:
 
 <TerminalBlock>
@@ -308,7 +312,7 @@ export default defineConfig({
 });
 ```
 
-### Usage with Webpack {/*usage-with-webpack*/}
+### Webpack {/*usage-with-webpack*/}
 
 You can create your own loader for React Compiler, like so:
 
@@ -345,37 +349,54 @@ function reactCompilerLoader(sourceCode, sourceMap) {
 module.exports = reactCompilerLoader;
 ```
 
-### Usage with Expo {/*usage-with-expo*/}
+### Expo {/*usage-with-expo*/}
 
 Expo uses Babel via Metro, so refer to the [Usage with Babel](#usage-with-babel) section for installation instructions.
 
-### Usage with React Native (Metro) {/*usage-with-react-native-metro*/}
+### Metro (React Native) {/*usage-with-react-native-metro*/}
 
 React Native uses Babel via Metro, so refer to the [Usage with Babel](#usage-with-babel) section for installation instructions.
 
 ## Troubleshooting {/*troubleshooting*/}
 
-### Reporting Issues {/*reporting-issues*/}
-
-To report issues, please first create a minimal repro on the [React Compiler Playground](https://playground.react.dev/) and include it in your bug report.
-
-You can open issues in the [facebook/react](https://github.com/facebook/react/issues) repo.
+To report issues, please first create a minimal repro on the [React Compiler Playground](https://playground.react.dev/) and include it in your bug report. You can open issues in the [facebook/react](https://github.com/facebook/react/issues) repo.
 
 You can also provide feedback in the React Compiler Working Group by applying to be a member. Please see [the README for more details on joining](https://github.com/reactwg/react-compiler).
 
-### Common Issues {/*common-issues*/}
+### `(0 , _c) is not a function` error {/*0--_c-is-not-a-function-error*/}
 
-#### `(0 , _c) is not a function` error {/*0--_c-is-not-a-function-error*/}
+This occurs if you are not using React 19 Beta and up. To fix this, [upgrade your app to React 19 Beta](https://react.dev/blog/2024/04/25/react-19-upgrade-guide) first.
 
-This occurs during JavaScript module evaluation when you are not using React 19 Beta and up. To fix this, [upgrade your app to React 19 Beta](https://react.dev/blog/2024/04/25/react-19-upgrade-guide) first.
+If you are unable to upgrade to React 19, you may try a userspace implementation of the cache function as described in the [Working Group](https://github.com/reactwg/react-compiler/discussions/6). However, please note that this is not recommended and you should upgrade to React 19 when possible.
 
-### Debugging {/*debugging*/}
+### How do I know my components have been optimized? {/*how-do-i-know-my-components-have-been-optimized*/}
 
-#### Checking if components have been optimized {/*checking-if-components-have-been-optimized*/}
-##### React DevTools {/*react-devtools*/}
+[React Devtools](/learn/react-developer-tools) (v5.0+) has built-in support for React Compiler and will display a "Memo ✨" badge next to components that have been optimized by the compiler.
 
-React Devtools (v5.0+) has built-in support for React Compiler and will display a "Memo ✨" badge next to components that have been optimized by the compiler.
+### Something is not working after compilation {/*something-is-not-working-after-compilation*/}
+If you have eslint-plugin-react-compiler installed, the compiler will display any violations of the rules of React in your editor. When it does this, it means that the compiler has skipped over optimizing that component or hook. This is perfectly okay, and the compiler can recover and continue optimizing other components in your codebase. **You don't have to fix all eslint violations straight away.** You can address them at your own pace to increase the amount of components and hooks being optimized.
 
-##### Other issues {/*other-issues*/}
+Due to the flexible and dynamic nature of JavaScript however, it's not possible to comprehensively detect all cases. Bugs and undefined behavior such as infinite loops may occur in those cases.
+
+If your app doesn't work properly after compilation and you aren't seeing any eslint errors, the compiler may be incorrectly compiling your code. To confirm this, try to make the issue go away by aggressively opting out any component or hook you think might be related via the [`"use no memo"` directive](#opt-out-of-the-compiler-for-a-component).
+
+```js {2}
+function SuspiciousComponent() {
+  "use no memo"; // opts out this component from being compiled by React Compiler
+  // ...
+}
+```
+
+<Note>
+#### `"use no memo"` {/*use-no-memo*/}
+
+`"use no memo"` is a _temporary_ escape hatch that lets you opt-out components and hooks from being compiled by the React Compiler. This directive is not meant to be long lived the same way as eg [`"use client"`](/reference/rsc/use-client) is.
+
+It is not recommended to reach for this directive unless it's strictly necessary. Once you opt-out a component or hook, it is opted-out forever until the directive is removed. This means that even if you fix the code, the compiler will still skip over compiling it unless you remove the directive.
+</Note>
+
+When you make the error go away, confirm that removing the opt out directive makes the issue come back. Then share a bug report with us (you can try to reduce it to a small repro, or if it's open source code you can also just paste the entire source) using the [React Compiler Playground](https://playground.react.dev) so we can identify and help fix the issue.
+
+### Other issues {/*other-issues*/}
 
 Please see https://github.com/reactwg/react-compiler/discussions/7.

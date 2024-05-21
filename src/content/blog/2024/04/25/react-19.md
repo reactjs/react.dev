@@ -510,8 +510,7 @@ Due to the introduction of ref cleanup functions, returning anything else from a
 
 The original code returned the instance of the `HTMLDivElement` and TypeScript wouldn't know if this was _supposed_ to be a cleanup function or if you didn't want to return a cleanup function.
 
-You can codemod this pattern with [`no-implicit-ref-callback-return
-`](https://github.com/eps1lon/types-react-codemod/#no-implicit-ref-callback-return).
+You can codemod this pattern with [`no-implicit-ref-callback-return`](https://github.com/eps1lon/types-react-codemod/#no-implicit-ref-callback-return).
 
 ### `useDeferredValue` initial value {/*use-deferred-value-initial-value*/}
 

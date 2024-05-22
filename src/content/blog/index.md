@@ -10,8 +10,10 @@ This blog is the official source for the updates from the React team. Anything i
 
 <div className="sm:-mx-5 flex flex-col gap-5 mt-12">
 
-<BlogCard title="React Conf 2024 Recap" date="May 21, 2024" url="/blog/2024/05/21/react-conf-2024-recap">
-Last week we hosted React Conf 2024, a two-day conference in Henderson, Nevada where over 800 attendees gathered to discuss the latest in UI engineering. This was our first in-person conference since 2019, and we were thrilled to be able to bring the community together again ...
+<BlogCard title="React Conf 2024 Recap" date="May 22, 2024" url="/blog/2024/05/22/react-conf-2024-recap">
+
+Last week we hosted React Conf 2024, a two-day conference in Henderson, Nevada where 700+ attendees gathered in-person to discuss the latest in UI engineering. This was our first in-person conference since 2019, and we were thrilled to be able to bring the community together again ...
+
 </BlogCard>
 
 <BlogCard title="React 19 Beta " date="April 25, 2024" url="/blog/2024/04/25/react-19">

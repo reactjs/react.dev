@@ -25,7 +25,7 @@ The entire [day 1](https://www.youtube.com/watch?v=T8TZQ6k4SLE) and [day 2](http
 
 _[Watch the full day 1 stream here.](https://www.youtube.com/watch?v=T8TZQ6k4SLE&t=973s)_
 
-To kick off day 1, Meta CTO [Andrew "Boz" Bosworth](https://www.threads.net/@boztank) shared a welcome message followed by an introduction by [Seth Webster](https://twitter.com/sethwebster) and our MC [Ashley Narcisse](https://twitter.com/_darkfadr).
+To kick off day 1, Meta CTO [Andrew "Boz" Bosworth](https://www.threads.net/@boztank) shared a welcome message followed by an introduction by [Seth Webster](https://twitter.com/sethwebster), who manages the React Org at Meta, and our MC [Ashley Narcisse](https://twitter.com/_darkfadr).
 
 In the day 1 keynote, [Joe Savona](https://twitter.com/en_JS) shared our goals and vision for React to make it easy for anyone to build great user experiences. [Lauren Tan](https://twitter.com/potetotes) followed with a State of React, where she shared that React was downloaded over 1 billion times in 2023, and that 37% of new developers learn to program with React. Finally, she highlighted the work of the React community to make React, React.
 

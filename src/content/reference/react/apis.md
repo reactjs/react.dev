@@ -15,6 +15,7 @@ In addition to [Hooks](/reference/react) and [Components](/reference/react/compo
 * [`lazy`](/reference/react/lazy) lets you defer loading a component's code until it's rendered for the first time.
 * [`memo`](/reference/react/memo) lets your component skip re-renders with same props. Used with [`useMemo`](/reference/react/useMemo) and [`useCallback`.](/reference/react/useCallback)
 * [`startTransition`](/reference/react/startTransition) lets you mark a state update as non-urgent. Similar to [`useTransition`.](/reference/react/useTransition)
+* [`act`](/reference/react/act) lets you wrap renders and interactions in tests to ensure updates have processed before making assertions.
 
 ---
 

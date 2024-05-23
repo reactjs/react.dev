@@ -21,7 +21,7 @@ These docs are still a work in progress. More documentation is available in the 
 <Note>
 React Compiler is a new experimental compiler that we've open sourced to get early feedback from the community. It still has rough edges and is not yet fully ready for production.
 
-React Compiler requires React 19 Beta. If you are unable to upgrade to React 19, you may try a userspace implementation of the cache function as described in the [Working Group](https://github.com/reactwg/react-compiler/discussions/6). However, please note that this is not recommended and you should upgrade to React 19 when possible.
+React Compiler requires React 19 RC. If you are unable to upgrade to React 19, you may try a userspace implementation of the cache function as described in the [Working Group](https://github.com/reactwg/react-compiler/discussions/6). However, please note that this is not recommended and you should upgrade to React 19 when possible.
 </Note>
 
 React Compiler is a new experimental compiler that we've open sourced to get early feedback from the community. It is a build-time only tool that automatically optimizes your React app. It works with plain JavaScript, and understands the [Rules of React](/reference/rules), so you don't need to rewrite any code to use it.
@@ -365,7 +365,7 @@ You can also provide feedback in the React Compiler Working Group by applying to
 
 ### `(0 , _c) is not a function` error {/*0--_c-is-not-a-function-error*/}
 
-This occurs if you are not using React 19 Beta and up. To fix this, [upgrade your app to React 19 Beta](https://react.dev/blog/2024/04/25/react-19-upgrade-guide) first.
+This occurs if you are not using React 19 RC and up. To fix this, [upgrade your app to React 19 RC](https://react.dev/blog/2024/04/25/react-19-upgrade-guide) first.
 
 If you are unable to upgrade to React 19, you may try a userspace implementation of the cache function as described in the [Working Group](https://github.com/reactwg/react-compiler/discussions/6). However, please note that this is not recommended and you should upgrade to React 19 when possible.
 

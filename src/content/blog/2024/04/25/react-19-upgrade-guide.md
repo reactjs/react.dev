@@ -1,26 +1,18 @@
 ---
-title: "React 19 Beta Upgrade Guide"
+title: "React 19 RC Upgrade Guide"
 author: Ricky Hanlon
 date: 2024/04/25
-description: The improvements added to React 19 require some breaking changes, but we've worked to make the upgrade as smooth as possible and we don't expect the changes to impact most apps. In this post, we will guide you through the steps for upgrading libraries to React 19 beta.
+description: The improvements added to React 19 require some breaking changes, but we've worked to make the upgrade as smooth as possible and we don't expect the changes to impact most apps. In this post, we will guide you through the steps for upgrading apps and libraries to React 19.
 ---
 
 April 25, 2024 by [Ricky Hanlon](https://twitter.com/rickhanlonii)
 
 ---
 
-<Note>
-
-This beta release is for libraries to prepare for React 19. App developers should upgrade to 18.3.0 and wait for React 19 stable as we work with libraries and make changes based on feedback.
-
-</Note>
-
 
 <Intro>
 
-The improvements added to React 19 require some breaking changes, but we've worked to make the upgrade as smooth as possible and we don't expect the changes to impact most apps.
-
-To help make the upgrade easier, today we are also publishing React 18.3.
+The improvements added to React 19 RC require some breaking changes, but we've worked to make the upgrade as smooth as possible, and we don't expect the changes to impact most apps.
 
 </Intro>
 
@@ -36,7 +28,7 @@ For a list of changes in 18.3 see the [Release Notes](https://github.com/faceboo
 
 </Note>
 
-In this post, we will guide you through the steps for upgrading libraries to React 19 beta:
+In this post, we will guide you through the steps for upgrading to React 19:
 
 - [Installing](#installing)
 - [Codemods](#codemods)
@@ -46,7 +38,7 @@ In this post, we will guide you through the steps for upgrading libraries to Rea
 - [TypeScript changes](#typescript-changes)
 - [Changelog](#changelog)
 
-If you'd like to help us test React 19, follow the steps in this upgrade guide and [report any issues](https://github.com/facebook/react/issues/new?assignees=&labels=React+19&projects=&template=19.md&title=%5BReact+19%5D) you encounter. For a list of new features added to React 19 beta, see the [React 19 release post](/blog/2024/04/25/react-19).
+If you'd like to help us test React 19, follow the steps in this upgrade guide and [report any issues](https://github.com/facebook/react/issues/new?assignees=&labels=React+19&projects=&template=19.md&title=%5BReact+19%5D) you encounter. For a list of new features added to React 19, see the [React 19 release post](/blog/2024/04/25/react-19).
 
 ---
 ## Installing {/*installing*/}
@@ -78,20 +70,20 @@ We expect most apps will not be affected since the transform is enabled in most 
 To install the latest version of React and React DOM:
 
 ```bash
-npm install react@beta react-dom@beta
+npm install react@rc react-dom@rc
 ```
 
-If you're using TypeScript, you also need to update the types. Once React 19 is released as stable, you can install the types as usual from `@types/react` and `@types/react-dom`.  During the beta period, the types are available in different packages which need to be enforced in your `package.json`:
+If you're using TypeScript, you also need to update the types. Once React 19 is released as stable, you can install the types as usual from `@types/react` and `@types/react-dom`.  Until the stable release, the types are available in different packages which need to be enforced in your `package.json`:
 
 ```json
 {
   "dependencies": {
-    "@types/react": "npm:types-react@beta",
-    "@types/react-dom": "npm:types-react-dom@beta"
+    "@types/react": "npm:types-react@rc",
+    "@types/react-dom": "npm:types-react-dom@rc"
   },
   "overrides": {
-    "@types/react": "npm:types-react@beta",
-    "@types/react-dom": "npm:types-react-dom@beta"
+    "@types/react": "npm:types-react@rc",
+    "@types/react-dom": "npm:types-react-dom@rc"
   }
 }
 ```

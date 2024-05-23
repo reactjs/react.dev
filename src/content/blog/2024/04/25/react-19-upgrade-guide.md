@@ -102,13 +102,14 @@ We're also including a codemod for the most common replacements. See [TypeScript
 
 To help with the upgrade, we've worked with the team at [codemod.com](https://codemod.com) to publish codemods that will automatically update your code to many of the new APIs and patterns in React 19.
 
-The Codemod team have published all codemods to [`react-codemod`](https://github.com/reactjs/react-codemod) and will be helping maintain the React codemods moving forward, but we recommend using the `codemod` command for a better experience. 
+All codemods are available in the [`react-codemod` repo](https://github.com/reactjs/react-codemod) and the Codemod team have joined in helping maintain the codemods. To run these codemods, we recommend using the `codemod` command instead of the `react-codemod` because it runs faster, handles more complex code migrations, and provides better support for TypeScript.
+
 
 <Note>
 
 #### Run all React 19 codemods {/*run-all-react-19-codemods*/}
 
-To run all codemods listed in this guide, you can use the command below:
+Run all codemods listed in this guide with the React 19 `codemod` recipe:
 
 ```bash
 npx codemod@latest react/19/migration-recipe

@@ -156,7 +156,7 @@ import { useActionState } from 'react';
 import requestUsername from './requestUsername';
 
 function UsernameForm() {
-  const [returnValue, action] = useActionState(requestUsername, 'n/a');
+  const [state, action] = useActionState(requestUsername, null, 'n/a');
 
   return (
     <>
@@ -164,7 +164,7 @@ function UsernameForm() {
         <input type="text" name="username" />
         <button type="submit">Request</button>
       </form>
-      <p>Last submission request returned: {returnValue}</p>
+      <p>Last submission request returned: {state}</p>
     </>
   );
 }

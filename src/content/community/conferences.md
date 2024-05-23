@@ -45,6 +45,11 @@ May 22 - 24, 2024. In-person in Kraków, Poland + remote
 
 [Website](https://appjs.co) - [Twitter](https://twitter.com/appjsconf)
 
+### Frontend Nation 2024 {/*frontend-nation-2024*/}
+June 4 - 7, 2024. Online
+
+[Website](https://frontendnation.com/) - [Twitter](https://twitter.com/frontendnation)
+
 ### React Summit 2024 {/*react-summit-2024*/}
 June 14 & 18, 2024. In-person in Amsterdam, Netherlands + remote (hybrid event)
 
@@ -74,6 +79,11 @@ July 17-19, 2024. In-person in Portland, OR, USA
 July 25, 2024. In-person in Berlin, Germany + remote (hybrid event)
 
 [Website](https://thegeekconf.com) - [Twitter](https://twitter.com/thegeekconf)
+
+### React Rally 2024 🐙 {/*react-rally-2024*/}
+August 12-13, 2024. Park City, UT, USA
+
+[Website](https://reactrally.com) - [Twitter](https://twitter.com/ReactRally) - [YouTube](https://www.youtube.com/channel/UCXBhQ05nu3L1abBUGeQ0ahw)
 
 ### React Universe Conf 2024 {/*react-universe-conf-2024*/}
 September 5-6, 2024. Wrocław, Poland.

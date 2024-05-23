@@ -178,7 +178,7 @@ You can compose Server Actions with `useActionState` for the common case where y
 import {updateName} from './actions';
 
 function UpdateName() {
-  const [submitAction, state, isPending] = useActionState(updateName);
+  const [state, submitAction, isPending] = useActionState(updateName, {error: null});
 
   return (
     <form action={submitAction}>
@@ -195,7 +195,7 @@ For more, see the docs for [`useActionState`](/reference/react-dom/hooks/useForm
 
 ### Progressive enhancement with `useActionState` {/*progressive-enhancement-with-useactionstate*/}
 
-Server Actions also support progressive enhancement with the second argument of `useActionState`.
+Server Actions also support progressive enhancement with the third argument of `useActionState`.
 
 ```js [[1, 3, "updateName"], [1, 6, "updateName"], [2, 6, "/name/update"], [3, 6, "submitAction"], [3, 9, "submitAction"]]
 "use client";
@@ -203,7 +203,7 @@ Server Actions also support progressive enhancement with the second argument of 
 import {updateName} from './actions';
 
 function UpdateName() {
-  const [submitAction] = useActionState(updateName, `/name/update`);
+  const [, submitAction] = useActionState(updateName, null, `/name/update`);
 
   return (
     <form action={submitAction}>

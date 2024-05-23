@@ -208,6 +208,11 @@
       "source": "/reference/react-dom/server/renderToNodeStream",
       "destination": "https://18.react.dev/reference/react-dom/server/renderToNodeStream",
       "permanent": true
+    },
+    {
+      "source": "/feed.xml",
+      "destination": "/rss.xml",
+      "permanent": true
     }
   ],
   "headers": [

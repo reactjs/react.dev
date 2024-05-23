@@ -22,7 +22,6 @@ function PageHeading({
   title,
   status,
   canary,
-  description,
   tags = [],
   breadcrumbs,
 }: PageHeadingProps) {
@@ -40,11 +39,6 @@ function PageHeading({
           )}
           {status ? <em>—{status}</em> : ''}
         </H1>
-        {description && (
-          <p className="mt-4 mb-6 dark:text-primary-dark text-xl text-primary leading-large">
-            {description}
-          </p>
-        )}
         {tags?.length > 0 && (
           <div className="mt-4">
             {tags.map((tag) => (

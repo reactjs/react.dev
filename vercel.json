@@ -160,6 +160,11 @@
       "permanent": false
     },
     {
+      "source": "/warnings/version-mismatch",
+      "destination": "/warnings/invalid-hook-call-warning#mismatching-versions-of-react-and-react-dom",
+      "permanent": false
+    },
+    {
       "source": "/reference/react/directives",
       "destination": "/reference/rsc/directives",
       "permanent": true

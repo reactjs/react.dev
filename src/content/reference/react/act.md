@@ -4,24 +4,45 @@ title: act
 
 <Intro>
 
-To prepare a component for assertions, wrap the code rendering it and performing updates inside an act() call. This makes your test run closer to how React works in the browser.
+`act` lets you wrap rendering and updates in tests to ensure changes are applied to the DOM before making assertions.
+
+```js
+act(updateFn)
+```
 
 </Intro>
+
+To prepare a component for assertions, wrap the code rendering it and performing updates inside an `act()` call. This makes your test run closer to how React works in the browser.
+
 
 <InlineToc />
 
 ---
 
+## Reference {/*reference*/}
+
+### `act(updateFn)` {/*actupdatefn*/}
+
 When writing UI tests, tasks like rendering, user events, or data fetching can be considered as “units” of interaction with a user interface. React provides a helper called `act()` that makes sure all updates related to these “units” have been processed and applied to the DOM before you make any assertions.
 
 The name `act` comes from the [Arrange-Act-Assert](https://wiki.c2.com/?ArrangeActAssert) pattern.
 
-```js
-act(() => {
-  // render components
+```js {2,4}
+it ('renders with button disabled', () => {
+  act(() => {
+    root.render(<TestComponent />)
+  });
+  expect(container.querySelector('button')).toBeDisabled();
 });
-// make assertions
 ```
+
+#### Parameters {/*parameters*/}
+
+* `updateFn`: A function wrapping renders or interactions for components being tested. Any updates triggered within the `updateFn` are added to an internal act queue, which are then flushed together to process and apply any changes to the DOM.
+
+#### Returns {/*returns*/}
+
+`act` does not return anything.
 
 ## Usage {/*usage*/}
 
@@ -55,7 +76,7 @@ function Counter() {
 
 Here is how we can test it:
 
-```js
+```js  {19,21,28,30}
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import Counter from './Counter';

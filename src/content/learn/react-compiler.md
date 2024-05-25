@@ -341,7 +341,7 @@ function reactCompilerLoader(sourceCode, sourceMap) {
 
   this.callback(
     null,
-    result.code
+    result.code,
     result.map === null ? undefined : result.map
   );
 }

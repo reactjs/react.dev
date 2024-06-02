@@ -137,21 +137,21 @@ export default function CatFriends() {
         <ul>
           <li>
             <img
-              src="https://placekitten.com/g/200/200"
+              src="https://cataas.com/cat?width=200&height=200&tag=flower"
               alt="Tom"
               ref={firstCatRef}
             />
           </li>
           <li>
             <img
-              src="https://placekitten.com/g/300/200"
+              src="https://cataas.com/cat?width=300&height=200&tag=cute"
               alt="Maru"
               ref={secondCatRef}
             />
           </li>
           <li>
             <img
-              src="https://placekitten.com/g/250/200"
+              src="https://cataas.com/cat?width=300&height=200&tag=angel"
               alt="Jellylorum"
               ref={thirdCatRef}
             />
@@ -948,7 +948,7 @@ const catList = [];
 for (let i = 0; i < 10; i++) {
   catList.push({
     id: i,
-    imageUrl: 'https://placekitten.com/250/200?image=' + i
+    imageUrl: `https://cataas.com/cat?width=${250 + i}&height=200`
   });
 }
 
@@ -1065,7 +1065,7 @@ const catList = [];
 for (let i = 0; i < 10; i++) {
   catList.push({
     id: i,
-    imageUrl: 'https://placekitten.com/250/200?image=' + i
+    imageUrl: `https://cataas.com/cat?width=${250 + i}&height=200`
   });
 }
 

@@ -3,68 +3,48 @@
  */
 
 import NextLink from 'next/link';
-import {memo} from 'react';
+import { memo } from 'react';
 import cn from 'classnames';
-import {IconNavArrow} from './Icon/IconNavArrow';
-import type {RouteMeta} from './Layout/getRouteMeta';
+import { IconNavArrow } from './Icon/IconNavArrow';
+import type { RouteMeta } from './Layout/getRouteMeta';
 
-export type DocsPageFooterProps = Pick<
-  RouteMeta,
-  'route' | 'nextRoute' | 'prevRoute'
->;
+export type DocsPageFooterProps = Pick<RouteMeta, 'route' | 'nextRoute' | 'prevRoute'>;
 
-function areEqual(prevProps: DocsPageFooterProps, props: DocsPageFooterProps) {
-  return prevProps.route?.path === props.route?.path;
-}
+const areEqual = (prevProps: DocsPageFooterProps, nextProps: DocsPageFooterProps) => {
+  return prevProps.route?.path === nextProps.route?.path;
+};
 
-export const DocsPageFooter = memo<DocsPageFooterProps>(
-  function DocsPageFooter({nextRoute, prevRoute, route}) {
-    if (!route || route?.heading) {
-      return null;
-    }
+const DocsPageFooter = memo<DocsPageFooterProps>(({ nextRoute, prevRoute, route }) => {
+  if (!route || route.heading) {
+    return null;
+  }
 
-    return (
-      <>
-        {prevRoute?.path || nextRoute?.path ? (
-          <>
-            <div className="grid grid-cols-1 gap-4 py-4 mx-auto max-w-7xl md:grid-cols-2 md:py-12">
-              {prevRoute?.path ? (
-                <FooterLink
-                  type="Previous"
-                  title={prevRoute.title}
-                  href={prevRoute.path}
-                />
-              ) : (
-                <div />
-              )}
+  return (
+    (prevRoute?.path || nextRoute?.path) && (
+      <div className="grid grid-cols-1 gap-4 py-4 mx-auto max-w-7xl md:grid-cols-2 md:py-12">
+        {prevRoute?.path ? (
+          <FooterLink type="Previous" title={prevRoute.title} href={prevRoute.path} />
+        ) : (
+          <div />
+        )}
 
-              {nextRoute?.path ? (
-                <FooterLink
-                  type="Next"
-                  title={nextRoute.title}
-                  href={nextRoute.path}
-                />
-              ) : (
-                <div />
-              )}
-            </div>
-          </>
-        ) : null}
-      </>
-    );
-  },
-  areEqual
-);
+        {nextRoute?.path ? (
+          <FooterLink type="Next" title={nextRoute.title} href={nextRoute.path} />
+        ) : (
+          <div />
+        )}
+      </div>
+    )
+  );
+}, areEqual);
 
-function FooterLink({
-  href,
-  title,
-  type,
-}: {
+type FooterLinkProps = {
   href: string;
   title: string;
   type: 'Previous' | 'Next';
-}) {
+};
+
+const FooterLink = ({ href, title, type }: FooterLinkProps) => {
   return (
     <NextLink
       href={href}
@@ -73,7 +53,8 @@ function FooterLink({
         {
           'flex-row-reverse justify-self-end text-end': type === 'Next',
         }
-      )}>
+      )}
+    >
       <IconNavArrow
         className="inline text-tertiary dark:text-tertiary-dark group-focus:text-link dark:group-focus:text-link-dark"
         displayDirection={type === 'Previous' ? 'start' : 'end'}
@@ -88,4 +69,6 @@ function FooterLink({
       </div>
     </NextLink>
   );
-}
+};
+
+export { DocsPageFooter };

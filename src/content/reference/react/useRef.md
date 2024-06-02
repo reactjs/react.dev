@@ -340,19 +340,19 @@ export default function CatFriends() {
         <ul ref={listRef}>
           <li>
             <img
-              src="https://cataas.com/cat?width=200&height=200&tag=flower"
+              src="https://loremflickr.com/200/200/cat"
               alt="Tom"
             />
           </li>
           <li>
             <img
-              src="https://cataas.com/cat?width=300&height=200&tag=cute"
+              src="https://loremflickr.com/300/200/cat"
               alt="Maru"
             />
           </li>
           <li>
             <img
-              src="https://cataas.com/cat?width=250&height=200&tag=angel"
+              src="https://loremflickr.com/250/200/cat"
               alt="Jellylorum"
             />
           </li>

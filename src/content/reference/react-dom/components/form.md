@@ -131,6 +131,93 @@ function AddToCart({productId}) {
 
 When `<form>` is rendered by a [Server Component](/reference/rsc/use-client), and a [Server Action](/reference/rsc/use-server) is passed to the `<form>`'s `action` prop, the form is [progressively enhanced](https://developer.mozilla.org/en-US/docs/Glossary/Progressive_Enhancement).
 
+### Form resets after action succeeds {/*form-resets-after-action-succeeds*/}
+
+Starting from React 19, React will automatically reset the form for uncontrolled components when a `<form>` Action succeeds.
+
+<Sandpack>
+
+```js src/App.js
+export default function Search() {
+  async function search(formData) {
+    const query = formData.get('query');
+    await new Promise(r => setTimeout(r, 1000));
+    console.log(`You searched for '${query}', the form will reset automatically`);
+  }
+
+  return (
+    <form action={search}>
+      <input name="query" />
+      <button type="submit">Search</button>
+    </form>
+  );
+}
+```
+
+```json package.json hidden
+{
+  "dependencies": {
+    "react": "canary",
+    "react-dom": "canary",
+    "react-scripts": "^5.0.0"
+  },
+  "main": "/index.js",
+  "devDependencies": {}
+}
+```
+
+</Sandpack>
+
+If you need to prevent the default form reset and reset the `<form>` manually, you should continue using `onSubmit` event and call the new `requestFormReset` React DOM API.
+
+<Sandpack>
+
+```js src/App.js
+import { startTransition } from 'react';
+import { requestFormReset } from 'react-dom';
+
+export default function Search() {
+  async function search(formData) {
+    const query = formData.get('query');
+    await new Promise(r => setTimeout(r, 1000));
+    console.log(`You searched for '${query}'`);
+  }
+
+  function handleSearch(e) {
+    e.preventDefault(); // prevent default form submission behavior
+    const form = e.target;
+    startTransition(async () => {
+      // request the form to reset once the action has completed
+      requestFormReset(form);
+      // manually call action
+      await search(new FormData(form));
+    });
+  }
+
+  return (
+    <form onSubmit={handleSearch}>
+      <input name="query" />
+      <button type="submit">Search</button>
+    </form>
+  );
+}
+```
+
+```json package.json hidden
+{
+  "dependencies": {
+    "react": "canary",
+    "react-dom": "canary",
+    "react-scripts": "^5.0.0"
+  },
+  "main": "/index.js",
+  "devDependencies": {}
+}
+```
+
+</Sandpack>
+
+
 ### Display a pending state during form submission {/*display-a-pending-state-during-form-submission*/}
 To display a pending state when a form is being submitted, you can call the `useFormStatus` Hook in a component rendered in a `<form>` and read the `pending` property returned.
 

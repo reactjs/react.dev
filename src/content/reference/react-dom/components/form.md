@@ -157,8 +157,8 @@ export default function Search() {
 ```json package.json hidden
 {
   "dependencies": {
-    "react": "canary",
-    "react-dom": "canary",
+    "react": "rc",
+    "react-dom": "rc",
     "react-scripts": "^5.0.0"
   },
   "main": "/index.js",
@@ -206,8 +206,8 @@ export default function Search() {
 ```json package.json hidden
 {
   "dependencies": {
-    "react": "canary",
-    "react-dom": "canary",
+    "react": "rc",
+    "react-dom": "rc",
     "react-scripts": "^5.0.0"
   },
   "main": "/index.js",

@@ -101,24 +101,24 @@ Without Server Components, it's common to fetch dynamic data on the client in an
 ```js
 // bundle.js
 function Note({id}) {
-  const [note, setNote] = useState('');
+  const [note, setNote] = useState(null);
   // NOTE: loads *after* first render.
   useEffect(() => {
     fetch(`/api/notes/${id}`).then(data => {
-      setNote(data.note);
+      setNote(data);
     });
   }, [id]);
   
   return (
     <div>
       <Author id={note.authorId} />
-      <p>{note}</p>
+      <p>{note.content}</p>
     </div>
   );
 }
 
 function Author({id}) {
-  const [author, setAuthor] = useState('');
+  const [author, setAuthor] = useState(null);
   // NOTE: loads *after* Note renders.
   // Causing an expensive client-server waterfall.
   useEffect(() => {
@@ -127,7 +127,7 @@ function Author({id}) {
     });
   }, [id]);
 
-  return <span>By: {author.name}</span>;
+  return <span>By: {author?.name}</span>;
 }
 ```
 ```js
@@ -156,7 +156,7 @@ async function Note({id}) {
   return (
     <div>
       <Author id={note.authorId} />
-      <p>{note}</p>
+      <p>{note.content}</p>
     </div>
   );
 }
@@ -206,7 +206,7 @@ async function Notes() {
     <div>
       {notes.map(note => (
         <Expandable key={note.id}>
-          <p note={note} />
+          <p note={note.content} />
         </Expandable>
       ))}
     </div>

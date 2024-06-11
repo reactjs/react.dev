@@ -34,7 +34,7 @@ export default function SidebarNav({
         'sticky top-0 lg:bottom-0 lg:h-[calc(100vh-4rem)] flex flex-col'
       )}>
       <div
-        className="overflow-y-scroll no-bg-scrollbar lg:w-[342px] grow bg-wash dark:bg-wash-dark"
+        className="overflow-y-scroll no-bg-scrollbar grow bg-wash dark:bg-wash-dark"
         style={{
           overscrollBehavior: 'contain',
         }}>

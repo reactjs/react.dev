@@ -73,6 +73,12 @@ To install the latest version of React and React DOM:
 npm install --save-exact react@rc react-dom@rc
 ```
 
+Or, if you're using Yarn:
+
+```bash
+yarn add --exact react@rc react-dom@rc
+```
+
 If you're using TypeScript, you also need to update the types. Once React 19 is released as stable, you can install the types as usual from `@types/react` and `@types/react-dom`.  Until the stable release, the types are available in different packages which need to be enforced in your `package.json`:
 
 ```json

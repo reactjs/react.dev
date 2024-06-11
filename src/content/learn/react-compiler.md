@@ -351,7 +351,7 @@ module.exports = reactCompilerLoader;
 
 ### Expo {/*usage-with-expo*/}
 
-Expo uses Babel via Metro, so refer to the [Usage with Babel](#usage-with-babel) section for installation instructions.
+Expo has a dedicated guide for setting up the React Compiler. For detailed instructions, refer to the [React Compiler Guide](https://docs.expo.dev/guides/react-compiler/) on the Expo documentation site.
 
 ### Metro (React Native) {/*usage-with-react-native-metro*/}
 

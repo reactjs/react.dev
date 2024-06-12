@@ -109,7 +109,7 @@ it('can render and update a counter', async () => {
 });
 ```
 
-Here, wwe create a container, append it to the document, and render the `Counter` component inside `act()`. This ensures that the component is rendered and its effects are applied before making assertions.
+Here, we create a container, append it to the document, and render the `Counter` component inside `act()`. This ensures that the component is rendered and its effects are applied before making assertions.
 
 Using `act` ensures that all updates have been applied before we make assertions.
 

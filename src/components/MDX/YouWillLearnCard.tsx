@@ -29,7 +29,7 @@ function YouWillLearnCard({title, path, children}: YouWillLearnCardProps) {
           size="md"
           label={title}>
           Read More
-          <IconNavArrow displayDirection="right" className="inline ml-1" />
+          <IconNavArrow displayDirection="end" className="inline ms-1" />
         </ButtonLink>
       </div>
     </div>

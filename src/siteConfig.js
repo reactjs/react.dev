@@ -3,10 +3,12 @@
  */
 
 exports.siteConfig = {
+  version: '18.3.1',
   // --------------------------------------
   // Translations should replace these lines:
   languageCode: 'en',
   hasLegacySite: true,
+  isRTL: false,
   // --------------------------------------
   copyright: `Copyright © ${new Date().getFullYear()} Facebook Inc. All Rights Reserved.`,
   repoUrl: 'https://github.com/facebook/react',

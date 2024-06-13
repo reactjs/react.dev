@@ -18,7 +18,7 @@ const deferredValue = useDeferredValue(value)
 
 ## Reference {/*reference*/}
 
-### `useDeferredValue(value)` {/*usedeferredvalue*/}
+### `useDeferredValue(value, initialValue?)` {/*usedeferredvalue*/}
 
 Call `useDeferredValue` at the top level of your component to get a deferred version of that value.
 
@@ -37,12 +37,22 @@ function SearchPage() {
 #### Parameters {/*parameters*/}
 
 * `value`: The value you want to defer. It can have any type.
+* <CanaryBadge title="This feature is only available in the Canary channel" /> **optional** `initialValue`: A value to use during the initial render of a component. If this option is omitted, `useDeferredValue` will not defer during the initial render, because there's no previous version of `value` that it can render instead.
+
 
 #### Returns {/*returns*/}
 
-During the initial render, the returned deferred value will be the same as the value you provided. During updates, React will first attempt a re-render with the old value (so it will return the old value), and then try another re-render in background with the new value (so it will return the updated value). 
+- `currentValue`: During the initial render, the returned deferred value will be the same as the value you provided. During updates, React will first attempt a re-render with the old value (so it will return the old value), and then try another re-render in the background with the new value (so it will return the updated value).
+
+<Canary>
+
+In the latest React Canary versions, `useDeferredValue` returns the `initialValue` on initial render, and schedules a re-render in the background with the `value` returned.
+
+</Canary>
 
 #### Caveats {/*caveats*/}
+
+- When an update is inside a Transition, `useDeferredValue` always returns the new `value` and does not spawn a deferred render, since the update is already deferred.
 
 - The values you pass to `useDeferredValue` should either be primitive values (like strings and numbers) or objects created outside of rendering. If you create a new object during rendering and immediately pass it to `useDeferredValue`, it will be different on every render, causing unnecessary background re-renders.
 
@@ -76,16 +86,17 @@ function SearchPage() {
 
 During the initial render, the <CodeStep step={2}>deferred value</CodeStep> will be the same as the <CodeStep step={1}>value</CodeStep> you provided.
 
-During updates, the <CodeStep step={2}>deferred value</CodeStep> will "lag behind" the latest <CodeStep step={1}>value</CodeStep>. In particular, React will first re-render *without* updating the deferred value, and then try to re-render with the newly received value in background.
+During updates, the <CodeStep step={2}>deferred value</CodeStep> will "lag behind" the latest <CodeStep step={1}>value</CodeStep>. In particular, React will first re-render *without* updating the deferred value, and then try to re-render with the newly received value in the background.
 
 **Let's walk through an example to see when this is useful.**
 
 <Note>
 
-This example assumes you use one of Suspense-enabled data sources:
+This example assumes you use a Suspense-enabled data source:
 
-- Data fetching with Suspense-enabled frameworks like [Relay](https://relay.dev/docs/guided-tour/rendering/loading-states/) and [Next.js](https://nextjs.org/docs/advanced-features/react-18)
+- Data fetching with Suspense-enabled frameworks like [Relay](https://relay.dev/docs/guided-tour/rendering/loading-states/) and [Next.js](https://nextjs.org/docs/getting-started/react-essentials)
 - Lazy-loading component code with [`lazy`](/reference/react/lazy)
+- Reading the value of a Promise with [`use`](/reference/react/use)
 
 [Learn more about Suspense and its limitations.](/reference/react/Suspense)
 
@@ -111,7 +122,7 @@ In this example, the `SearchResults` component [suspends](/reference/react/Suspe
 }
 ```
 
-```js App.js
+```js src/App.js
 import { Suspense, useState } from 'react';
 import SearchResults from './SearchResults.js';
 
@@ -131,7 +142,7 @@ export default function App() {
 }
 ```
 
-```js SearchResults.js hidden
+```js src/SearchResults.js hidden
 import { fetchData } from './data.js';
 
 // Note: this component is written using an experimental API
@@ -185,7 +196,7 @@ function use(promise) {
 }
 ```
 
-```js data.js hidden
+```js src/data.js hidden
 // Note: the way you would do data fetching depends on
 // the framework that you use together with Suspense.
 // Normally, the caching logic would be inside a framework.
@@ -325,7 +336,7 @@ Enter `"a"` in the example below, wait for the results to load, and then edit th
 }
 ```
 
-```js App.js
+```js src/App.js
 import { Suspense, useState, useDeferredValue } from 'react';
 import SearchResults from './SearchResults.js';
 
@@ -346,7 +357,7 @@ export default function App() {
 }
 ```
 
-```js SearchResults.js hidden
+```js src/SearchResults.js hidden
 import { fetchData } from './data.js';
 
 // Note: this component is written using an experimental API
@@ -400,7 +411,7 @@ function use(promise) {
 }
 ```
 
-```js data.js hidden
+```js src/data.js hidden
 // Note: the way you would do data fetching depends on
 // the framework that you use together with Suspense.
 // Normally, the caching logic would be inside a framework.
@@ -507,7 +518,7 @@ You can think of it as happening in two steps:
 
 1. **First, React re-renders with the new `query` (`"ab"`) but with the old `deferredQuery` (still `"a")`.** The `deferredQuery` value, which you pass to the result list, is *deferred:* it "lags behind" the `query` value.
 
-2. **In background, React tries to re-render with *both* `query` and `deferredQuery` updated to `"ab"`.** If this re-render completes, React will show it on the screen. However, if it suspends (the results for `"ab"` have not loaded yet), React will abandon this rendering attempt, and retry this re-render again after the data has loaded. The user will keep seeing the stale deferred value until the data is ready.
+2. **In the background, React tries to re-render with *both* `query` and `deferredQuery` updated to `"ab"`.** If this re-render completes, React will show it on the screen. However, if it suspends (the results for `"ab"` have not loaded yet), React will abandon this rendering attempt, and retry this re-render again after the data has loaded. The user will keep seeing the stale deferred value until the data is ready.
 
 The deferred "background" rendering is interruptible. For example, if you type into the input again, React will abandon it and restart with the new value. React will always use the latest provided value.
 
@@ -548,7 +559,7 @@ With this change, as soon as you start typing, the stale result list gets slight
 }
 ```
 
-```js App.js
+```js src/App.js
 import { Suspense, useState, useDeferredValue } from 'react';
 import SearchResults from './SearchResults.js';
 
@@ -575,7 +586,7 @@ export default function App() {
 }
 ```
 
-```js SearchResults.js hidden
+```js src/SearchResults.js hidden
 import { fetchData } from './data.js';
 
 // Note: this component is written using an experimental API
@@ -629,7 +640,7 @@ function use(promise) {
 }
 ```
 
-```js data.js hidden
+```js src/data.js hidden
 // Note: the way you would do data fetching depends on
 // the framework that you use together with Suspense.
 // Normally, the caching logic would be inside a framework.
@@ -799,7 +810,7 @@ export default function App() {
 }
 ```
 
-```js SlowList.js
+```js src/SlowList.js
 import { memo } from 'react';
 
 const SlowList = memo(function SlowList({ text }) {
@@ -876,7 +887,7 @@ export default function App() {
 }
 ```
 
-```js SlowList.js
+```js src/SlowList.js
 import { memo } from 'react';
 
 const SlowList = memo(function SlowList({ text }) {
@@ -951,7 +962,7 @@ While these techniques are helpful in some cases, `useDeferredValue` is better s
 
 Unlike debouncing or throttling, it doesn't require choosing any fixed delay. If the user's device is fast (e.g. powerful laptop), the deferred re-render would happen almost immediately and wouldn't be noticeable. If the user's device is slow, the list would "lag behind" the input proportionally to how slow the device is.
 
-Also, unlike with debouncing or throttling, deferred re-renders done by `useDeferredValue` are interruptible by default. This means that if React is in the middle of re-rendering a large list, but the user makes another keystroke, React will abandon that re-render, handle the keystroke, and then start rendering in background again. By contrast, debouncing and throttling still produce a janky experience because they're *blocking:* they merely postpone the moment when rendering blocks the keystroke.
+Also, unlike with debouncing or throttling, deferred re-renders done by `useDeferredValue` are interruptible by default. This means that if React is in the middle of re-rendering a large list, but the user makes another keystroke, React will abandon that re-render, handle the keystroke, and then start rendering in the background again. By contrast, debouncing and throttling still produce a janky experience because they're *blocking:* they merely postpone the moment when rendering blocks the keystroke.
 
 If the work you're optimizing doesn't happen during rendering, debouncing and throttling are still useful. For example, they can let you fire fewer network requests. You can also use these techniques together.
 

@@ -16,12 +16,12 @@ jobs:
     steps:
       - uses: actions/checkout@v1
       - name: Use Node.js 20.x
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v3
         with:
           node-version: 20.x
 
       - name: Install deps and build (with cache)
-        uses: bahmutov/npm-install@v1.7.10
+        uses: bahmutov/npm-install@v1.8.32
 
       - name: Lint codebase
         run: yarn ci-check

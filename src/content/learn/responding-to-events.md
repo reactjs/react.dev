@@ -629,7 +629,7 @@ After you do this, notice that clicking the button also increments the page clic
 
 <Sandpack>
 
-```js ColorSwitch.js active
+```js src/ColorSwitch.js active
 export default function ColorSwitch({
   onChangeColor
 }) {
@@ -641,7 +641,7 @@ export default function ColorSwitch({
 }
 ```
 
-```js App.js hidden
+```js src/App.js hidden
 import { useState } from 'react';
 import ColorSwitch from './ColorSwitch.js';
 
@@ -685,7 +685,7 @@ However, this introduces the problem of the incrementing counter. If `onChangeCo
 
 <Sandpack>
 
-```js ColorSwitch.js active
+```js src/ColorSwitch.js active
 export default function ColorSwitch({
   onChangeColor
 }) {
@@ -700,7 +700,7 @@ export default function ColorSwitch({
 }
 ```
 
-```js App.js hidden
+```js src/App.js hidden
 import { useState } from 'react';
 import ColorSwitch from './ColorSwitch.js';
 

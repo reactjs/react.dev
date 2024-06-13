@@ -69,7 +69,7 @@ In the example below, the `Albums` component *suspends* while fetching the list 
 }
 ```
 
-```js App.js hidden
+```js src/App.js hidden
 import { useState } from 'react';
 import ArtistPage from './ArtistPage.js';
 
@@ -94,7 +94,7 @@ export default function App() {
 }
 ```
 
-```js ArtistPage.js active
+```js src/ArtistPage.js active
 import { Suspense } from 'react';
 import Albums from './Albums.js';
 
@@ -114,7 +114,7 @@ function Loading() {
 }
 ```
 
-```js Albums.js hidden
+```js src/Albums.js hidden
 import { fetchData } from './data.js';
 
 // Note: this component is written using an experimental API
@@ -162,7 +162,7 @@ function use(promise) {
 }
 ```
 
-```js data.js hidden
+```js src/data.js hidden
 // Note: the way you would do data fetching depends on
 // the framework that you use together with Suspense.
 // Normally, the caching logic would be inside a framework.
@@ -252,8 +252,9 @@ async function getAlbums() {
 
 **Only Suspense-enabled data sources will activate the Suspense component.** They include:
 
-- Data fetching with Suspense-enabled frameworks like [Relay](https://relay.dev/docs/guided-tour/rendering/loading-states/) and [Next.js](https://nextjs.org/docs/advanced-features/react-18)
+- Data fetching with Suspense-enabled frameworks like [Relay](https://relay.dev/docs/guided-tour/rendering/loading-states/) and [Next.js](https://nextjs.org/docs/getting-started/react-essentials)
 - Lazy-loading component code with [`lazy`](/reference/react/lazy)
+- Reading the value of a Promise with [`use`](/reference/react/use)
 
 Suspense **does not** detect when data is fetched inside an Effect or event handler.
 
@@ -299,7 +300,7 @@ In the example below, both `Biography` and `Albums` fetch some data. However, be
 }
 ```
 
-```js App.js hidden
+```js src/App.js hidden
 import { useState } from 'react';
 import ArtistPage from './ArtistPage.js';
 
@@ -324,7 +325,7 @@ export default function App() {
 }
 ```
 
-```js ArtistPage.js active
+```js src/ArtistPage.js active
 import { Suspense } from 'react';
 import Albums from './Albums.js';
 import Biography from './Biography.js';
@@ -349,7 +350,7 @@ function Loading() {
 }
 ```
 
-```js Panel.js
+```js src/Panel.js
 export default function Panel({ children }) {
   return (
     <section className="panel">
@@ -359,7 +360,7 @@ export default function Panel({ children }) {
 }
 ```
 
-```js Biography.js hidden
+```js src/Biography.js hidden
 import { fetchData } from './data.js';
 
 // Note: this component is written using an experimental API
@@ -403,7 +404,7 @@ function use(promise) {
 }
 ```
 
-```js Albums.js hidden
+```js src/Albums.js hidden
 import { fetchData } from './data.js';
 
 // Note: this component is written using an experimental API
@@ -451,7 +452,7 @@ function use(promise) {
 }
 ```
 
-```js data.js hidden
+```js src/data.js hidden
 // Note: the way you would do data fetching depends on
 // the framework that you use together with Suspense.
 // Normally, the caching logic would be inside a framework.
@@ -624,7 +625,7 @@ The sequence will be:
 }
 ```
 
-```js App.js hidden
+```js src/App.js hidden
 import { useState } from 'react';
 import ArtistPage from './ArtistPage.js';
 
@@ -649,7 +650,7 @@ export default function App() {
 }
 ```
 
-```js ArtistPage.js active
+```js src/ArtistPage.js active
 import { Suspense } from 'react';
 import Albums from './Albums.js';
 import Biography from './Biography.js';
@@ -686,7 +687,7 @@ function AlbumsGlimmer() {
 }
 ```
 
-```js Panel.js
+```js src/Panel.js
 export default function Panel({ children }) {
   return (
     <section className="panel">
@@ -696,7 +697,7 @@ export default function Panel({ children }) {
 }
 ```
 
-```js Biography.js hidden
+```js src/Biography.js hidden
 import { fetchData } from './data.js';
 
 // Note: this component is written using an experimental API
@@ -740,7 +741,7 @@ function use(promise) {
 }
 ```
 
-```js Albums.js hidden
+```js src/Albums.js hidden
 import { fetchData } from './data.js';
 
 // Note: this component is written using an experimental API
@@ -788,7 +789,7 @@ function use(promise) {
 }
 ```
 
-```js data.js hidden
+```js src/data.js hidden
 // Note: the way you would do data fetching depends on
 // the framework that you use together with Suspense.
 // Normally, the caching logic would be inside a framework.
@@ -943,7 +944,7 @@ In this example, the `SearchResults` component suspends while fetching the searc
 }
 ```
 
-```js App.js
+```js src/App.js
 import { Suspense, useState } from 'react';
 import SearchResults from './SearchResults.js';
 
@@ -963,7 +964,7 @@ export default function App() {
 }
 ```
 
-```js SearchResults.js hidden
+```js src/SearchResults.js hidden
 import { fetchData } from './data.js';
 
 // Note: this component is written using an experimental API
@@ -1017,7 +1018,7 @@ function use(promise) {
 }
 ```
 
-```js data.js hidden
+```js src/data.js hidden
 // Note: the way you would do data fetching depends on
 // the framework that you use together with Suspense.
 // Normally, the caching logic would be inside a framework.
@@ -1168,7 +1169,7 @@ Enter `"a"` in the example below, wait for the results to load, and then edit th
 }
 ```
 
-```js App.js
+```js src/App.js
 import { Suspense, useState, useDeferredValue } from 'react';
 import SearchResults from './SearchResults.js';
 
@@ -1192,7 +1193,7 @@ export default function App() {
 }
 ```
 
-```js SearchResults.js hidden
+```js src/SearchResults.js hidden
 import { fetchData } from './data.js';
 
 // Note: this component is written using an experimental API
@@ -1246,7 +1247,7 @@ function use(promise) {
 }
 ```
 
-```js data.js hidden
+```js src/data.js hidden
 // Note: the way you would do data fetching depends on
 // the framework that you use together with Suspense.
 // Normally, the caching logic would be inside a framework.
@@ -1347,7 +1348,7 @@ input { margin: 10px; }
 
 <Note>
 
-Both deferred values and [transitions](#preventing-already-revealed-content-from-hiding) let you avoid showing Suspense fallback in favor of inline indicators. Transitions mark the whole update as non-urgent so they are typically used by frameworks and router libraries for navigation. Deferred values, on the other hand, are mostly useful in application code where you want to mark a part of UI as non-urgent and let it "lag behind" the rest of the UI.
+Both deferred values and [Transitions](#preventing-already-revealed-content-from-hiding) let you avoid showing Suspense fallback in favor of inline indicators. Transitions mark the whole update as non-urgent so they are typically used by frameworks and router libraries for navigation. Deferred values, on the other hand, are mostly useful in application code where you want to mark a part of UI as non-urgent and let it "lag behind" the rest of the UI.
 
 </Note>
 
@@ -1374,7 +1375,7 @@ When a component suspends, the closest parent Suspense boundary switches to show
 }
 ```
 
-```js App.js
+```js src/App.js
 import { Suspense, useState } from 'react';
 import IndexPage from './IndexPage.js';
 import ArtistPage from './ArtistPage.js';
@@ -1422,7 +1423,7 @@ function BigSpinner() {
 }
 ```
 
-```js Layout.js
+```js src/Layout.js
 export default function Layout({ children }) {
   return (
     <div className="layout">
@@ -1437,7 +1438,7 @@ export default function Layout({ children }) {
 }
 ```
 
-```js IndexPage.js
+```js src/IndexPage.js
 export default function IndexPage({ navigate }) {
   return (
     <button onClick={() => navigate('/the-beatles')}>
@@ -1447,7 +1448,7 @@ export default function IndexPage({ navigate }) {
 }
 ```
 
-```js ArtistPage.js
+```js src/ArtistPage.js
 import { Suspense } from 'react';
 import Albums from './Albums.js';
 import Biography from './Biography.js';
@@ -1478,7 +1479,7 @@ function AlbumsGlimmer() {
 }
 ```
 
-```js Albums.js hidden
+```js src/Albums.js hidden
 import { fetchData } from './data.js';
 
 // Note: this component is written using an experimental API
@@ -1526,7 +1527,7 @@ function use(promise) {
 }
 ```
 
-```js Biography.js hidden
+```js src/Biography.js hidden
 import { fetchData } from './data.js';
 
 // Note: this component is written using an experimental API
@@ -1570,7 +1571,7 @@ function use(promise) {
 }
 ```
 
-```js Panel.js hidden
+```js src/Panel.js hidden
 export default function Panel({ children }) {
   return (
     <section className="panel">
@@ -1580,7 +1581,7 @@ export default function Panel({ children }) {
 }
 ```
 
-```js data.js hidden
+```js src/data.js hidden
 // Note: the way you would do data fetching depends on
 // the framework that you use together with Suspense.
 // Normally, the caching logic would be inside a framework.
@@ -1726,7 +1727,7 @@ main {
 
 When you pressed the button, the `Router` component rendered `ArtistPage` instead of `IndexPage`. A component inside `ArtistPage` suspended, so the closest Suspense boundary started showing the fallback. The closest Suspense boundary was near the root, so the whole site layout got replaced by `BigSpinner`.
 
-To prevent this, you can mark the navigation state update as a *transition* with [`startTransition`:](/reference/react/startTransition)
+To prevent this, you can mark the navigation state update as a *Transition* with [`startTransition`:](/reference/react/startTransition)
 
 ```js {5,7}
 function Router() {
@@ -1759,7 +1760,7 @@ This tells React that the state transition is not urgent, and it's better to kee
 }
 ```
 
-```js App.js
+```js src/App.js
 import { Suspense, startTransition, useState } from 'react';
 import IndexPage from './IndexPage.js';
 import ArtistPage from './ArtistPage.js';
@@ -1809,7 +1810,7 @@ function BigSpinner() {
 }
 ```
 
-```js Layout.js
+```js src/Layout.js
 export default function Layout({ children }) {
   return (
     <div className="layout">
@@ -1824,7 +1825,7 @@ export default function Layout({ children }) {
 }
 ```
 
-```js IndexPage.js
+```js src/IndexPage.js
 export default function IndexPage({ navigate }) {
   return (
     <button onClick={() => navigate('/the-beatles')}>
@@ -1834,7 +1835,7 @@ export default function IndexPage({ navigate }) {
 }
 ```
 
-```js ArtistPage.js
+```js src/ArtistPage.js
 import { Suspense } from 'react';
 import Albums from './Albums.js';
 import Biography from './Biography.js';
@@ -1865,7 +1866,7 @@ function AlbumsGlimmer() {
 }
 ```
 
-```js Albums.js hidden
+```js src/Albums.js hidden
 import { fetchData } from './data.js';
 
 // Note: this component is written using an experimental API
@@ -1913,7 +1914,7 @@ function use(promise) {
 }
 ```
 
-```js Biography.js hidden
+```js src/Biography.js hidden
 import { fetchData } from './data.js';
 
 // Note: this component is written using an experimental API
@@ -1957,7 +1958,7 @@ function use(promise) {
 }
 ```
 
-```js Panel.js hidden
+```js src/Panel.js hidden
 export default function Panel({ children }) {
   return (
     <section className="panel">
@@ -1967,7 +1968,7 @@ export default function Panel({ children }) {
 }
 ```
 
-```js data.js hidden
+```js src/data.js hidden
 // Note: the way you would do data fetching depends on
 // the framework that you use together with Suspense.
 // Normally, the caching logic would be inside a framework.
@@ -2111,19 +2112,19 @@ main {
 
 </Sandpack>
 
-A transition doesn't wait for *all* content to load. It only waits long enough to avoid hiding already revealed content. For example, the website `Layout` was already revealed, so it would be bad to hide it behind a loading spinner. However, the nested `Suspense` boundary around `Albums` is new, so the transition doesn't wait for it.
+A Transition doesn't wait for *all* content to load. It only waits long enough to avoid hiding already revealed content. For example, the website `Layout` was already revealed, so it would be bad to hide it behind a loading spinner. However, the nested `Suspense` boundary around `Albums` is new, so the Transition doesn't wait for it.
 
 <Note>
 
-Suspense-enabled routers are expected to wrap the navigation updates into transitions by default.
+Suspense-enabled routers are expected to wrap the navigation updates into Transitions by default.
 
 </Note>
 
 ---
 
-### Indicating that a transition is happening {/*indicating-that-a-transition-is-happening*/}
+### Indicating that a Transition is happening {/*indicating-that-a-transition-is-happening*/}
 
-In the above example, once you click the button, there is no visual indication that a navigation is in progress. To add an indicator, you can replace [`startTransition`](/reference/react/startTransition) with [`useTransition`](/reference/react/useTransition) which gives you a boolean `isPending` value. In the example below, it's used to change the website header styling while a transition is happening:
+In the above example, once you click the button, there is no visual indication that a navigation is in progress. To add an indicator, you can replace [`startTransition`](/reference/react/startTransition) with [`useTransition`](/reference/react/useTransition) which gives you a boolean `isPending` value. In the example below, it's used to change the website header styling while a Transition is happening:
 
 <Sandpack>
 
@@ -2142,7 +2143,7 @@ In the above example, once you click the button, there is no visual indication t
 }
 ```
 
-```js App.js
+```js src/App.js
 import { Suspense, useState, useTransition } from 'react';
 import IndexPage from './IndexPage.js';
 import ArtistPage from './ArtistPage.js';
@@ -2193,7 +2194,7 @@ function BigSpinner() {
 }
 ```
 
-```js Layout.js
+```js src/Layout.js
 export default function Layout({ children, isPending }) {
   return (
     <div className="layout">
@@ -2210,7 +2211,7 @@ export default function Layout({ children, isPending }) {
 }
 ```
 
-```js IndexPage.js
+```js src/IndexPage.js
 export default function IndexPage({ navigate }) {
   return (
     <button onClick={() => navigate('/the-beatles')}>
@@ -2220,7 +2221,7 @@ export default function IndexPage({ navigate }) {
 }
 ```
 
-```js ArtistPage.js
+```js src/ArtistPage.js
 import { Suspense } from 'react';
 import Albums from './Albums.js';
 import Biography from './Biography.js';
@@ -2251,7 +2252,7 @@ function AlbumsGlimmer() {
 }
 ```
 
-```js Albums.js hidden
+```js src/Albums.js hidden
 import { fetchData } from './data.js';
 
 // Note: this component is written using an experimental API
@@ -2299,7 +2300,7 @@ function use(promise) {
 }
 ```
 
-```js Biography.js hidden
+```js src/Biography.js hidden
 import { fetchData } from './data.js';
 
 // Note: this component is written using an experimental API
@@ -2343,7 +2344,7 @@ function use(promise) {
 }
 ```
 
-```js Panel.js hidden
+```js src/Panel.js hidden
 export default function Panel({ children }) {
   return (
     <section className="panel">
@@ -2353,7 +2354,7 @@ export default function Panel({ children }) {
 }
 ```
 
-```js data.js hidden
+```js src/data.js hidden
 // Note: the way you would do data fetching depends on
 // the framework that you use together with Suspense.
 // Normally, the caching logic would be inside a framework.
@@ -2501,19 +2502,19 @@ main {
 
 ### Resetting Suspense boundaries on navigation {/*resetting-suspense-boundaries-on-navigation*/}
 
-During a transition, React will avoid hiding already revealed content. However, if you navigate to a route with different parameters, you might want to tell React it is *different* content. You can express this with a `key`:
+During a Transition, React will avoid hiding already revealed content. However, if you navigate to a route with different parameters, you might want to tell React it is *different* content. You can express this with a `key`:
 
 ```js
 <ProfilePage key={queryParams.id} />
 ```
 
-Imagine you're navigating within a user's profile page, and something suspends. If that update is wrapped in a transition, it will not trigger the fallback for already visible content. That's the expected behavior.
+Imagine you're navigating within a user's profile page, and something suspends. If that update is wrapped in a Transition, it will not trigger the fallback for already visible content. That's the expected behavior.
 
 However, now imagine you're navigating between two different user profiles. In that case, it makes sense to show the fallback. For example, one user's timeline is *different content* from another user's timeline. By specifying a `key`, you ensure that React treats different users' profiles as different components, and resets the Suspense boundaries during navigation. Suspense-integrated routers should do this automatically.
 
 ---
 
-### Providing a fallback for server errors and server-only content {/*providing-a-fallback-for-server-errors-and-server-only-content*/}
+### Providing a fallback for server errors and client-only content {/*providing-a-fallback-for-server-errors-and-client-only-content*/}
 
 If you use one of the [streaming server rendering APIs](/reference/react-dom/server) (or a framework that relies on them), React will also use your `<Suspense>` boundaries to handle errors on the server. If a component throws an error on the server, React will not abort the server render. Instead, it will find the closest `<Suspense>` component above it and include its fallback (such as a spinner) into the generated server HTML. The user will see a spinner at first.
 
@@ -2544,7 +2545,7 @@ The server HTML will include the loading indicator. It will be replaced by the `
 
 Replacing visible UI with a fallback creates a jarring user experience. This can happen when an update causes a component to suspend, and the nearest Suspense boundary is already showing content to the user.
 
-To prevent this from happening, [mark the update as non-urgent using `startTransition`](#preventing-already-revealed-content-from-hiding). During a transition, React will wait until enough data has loaded to prevent an unwanted fallback from appearing:
+To prevent this from happening, [mark the update as non-urgent using `startTransition`](#preventing-already-revealed-content-from-hiding). During a Transition, React will wait until enough data has loaded to prevent an unwanted fallback from appearing:
 
 ```js {2-3,5}
 function handleNextPageClick() {

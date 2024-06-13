@@ -7,7 +7,7 @@ title: useState
 `useState` is a React Hook that lets you add a [state variable](/learn/state-a-components-memory) to your component.
 
 ```js
-const [state, setState] = useState(initialState);
+const [state, setState] = useState(initialState)
 ```
 
 </Intro>
@@ -630,7 +630,7 @@ In this example, the `todos` state variable holds an array. Each button handler 
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useState } from 'react';
 import AddTodo from './AddTodo.js';
 import TaskList from './TaskList.js';
@@ -687,7 +687,7 @@ export default function TaskApp() {
 }
 ```
 
-```js AddTodo.js
+```js src/AddTodo.js
 import { useState } from 'react';
 
 export default function AddTodo({ onAddTodo }) {
@@ -708,7 +708,7 @@ export default function AddTodo({ onAddTodo }) {
 }
 ```
 
-```js TaskList.js
+```js src/TaskList.js
 import { useState } from 'react';
 
 export default function TaskList({
@@ -1028,7 +1028,7 @@ Read [preserving and resetting state](/learn/preserving-and-resetting-state) to 
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useState } from 'react';
 
 export default function App() {
@@ -1083,7 +1083,7 @@ In the rare case that none of these apply, there is a pattern you can use to upd
 
 Here's an example. This `CountLabel` component displays the `count` prop passed to it:
 
-```js CountLabel.js
+```js src/CountLabel.js
 export default function CountLabel({ count }) {
   return <h1>{count}</h1>
 }
@@ -1093,7 +1093,7 @@ Say you want to show whether the counter has *increased or decreased* since the 
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useState } from 'react';
 import CountLabel from './CountLabel.js';
 
@@ -1113,7 +1113,7 @@ export default function App() {
 }
 ```
 
-```js CountLabel.js active
+```js src/CountLabel.js active
 import { useState } from 'react';
 
 export default function CountLabel({ count }) {

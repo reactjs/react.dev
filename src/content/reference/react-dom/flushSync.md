@@ -53,7 +53,7 @@ Most of the time, `flushSync` can be avoided. Use `flushSync` as last resort.
 
 * `flushSync` can significantly hurt performance. Use sparingly.
 * `flushSync` may force pending Suspense boundaries to show their `fallback` state.
-* `flushSync` may run pending effects and synchronously apply any updates they contain before returning.
+* `flushSync` may run pending Effects and synchronously apply any updates they contain before returning.
 * `flushSync` may flush updates outside the callback when necessary to flush the updates inside the callback. For example, if there are pending updates from a click, React may flush those before flushing the updates inside the callback.
 
 ---
@@ -83,20 +83,20 @@ For example, the browser `onbeforeprint` API allows you to change the page immed
 
 <Sandpack>
 
-```js App.js active
+```js src/App.js active
 import { useState, useEffect } from 'react';
 import { flushSync } from 'react-dom';
 
 export default function PrintApp() {
   const [isPrinting, setIsPrinting] = useState(false);
-  
+
   useEffect(() => {
     function handleBeforePrint() {
       flushSync(() => {
         setIsPrinting(true);
       })
     }
-    
+
     function handleAfterPrint() {
       setIsPrinting(false);
     }
@@ -108,7 +108,7 @@ export default function PrintApp() {
       window.removeEventListener('afterprint', handleAfterPrint);
     }
   }, []);
-  
+
   return (
     <>
       <h1>isPrinting: {isPrinting ? 'yes' : 'no'}</h1>
@@ -122,7 +122,7 @@ export default function PrintApp() {
 
 </Sandpack>
 
-Without `flushSync`, when the print dialog will display `isPrinting` as "no". This is because React batches the updates asynchronously and the print dialog is displayed before the state is updated.
+Without `flushSync`, the print dialog will display `isPrinting` as "no". This is because React batches the updates asynchronously and the print dialog is displayed before the state is updated.
 
 <Pitfall>
 

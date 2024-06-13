@@ -1,0 +1,30 @@
+name: Create build
+on: 
+  workflow_dispatch:
+    inputs:
+      tags:
+        description: 'tags to create build'
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        ref: publish
+    - name: Set up node
+      uses: actions/setup-node@v1
+      with:
+        node-version: '20.x'
+
+    - name: Install dependencies
+      uses: bahmutov/npm-install@v1.7.10
+    - name: Archive Release
+      uses: thedoctor0/zip-release@0.7.5
+      with:
+        type: '7z'
+        filename: 'build.7z'
+    - name: create release and upload assets
+      uses: softprops/action-gh-release@v2
+      with:
+        files: build.7z
+        tag_name: ${{ github.event.inputs.tags }}

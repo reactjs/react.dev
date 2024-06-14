@@ -10,46 +10,6 @@ Do you know of a local React.js conference? Add it here! (Please keep the list c
 
 ## Upcoming Conferences {/*upcoming-conferences*/}
 
-### React Paris 2024 {/*react-paris-2024*/}
-March 22, 2024. In-person in Paris, France + Remote (hybrid)
-
-[Website](https://react.paris/) - [Twitter](https://twitter.com/BeJS_) - [LinkedIn](https://www.linkedin.com/events/7150816372074192900/comments/)
-
-### Epic Web Conf 2024 {/*epic-web-2024*/}
-April 10 - 11, 2024. In-person in Park City, UT, USA
-
-[Website](https://www.epicweb.dev/conf) - [YouTube](https://www.youtube.com/@EpicWebDev)
-
-### React Miami 2024 {/*react-miami-2024*/}
-April 19 - 20, 2024. In-person in Miami, FL, USA
-
-[Website](https://reactmiami.com/) - [Twitter](https://twitter.com/ReactMiamiConf)
-
-### React Connection 2024 {/*react-connection-2024*/}
-April 22, 2024. In-person in Paris, France 
-
-[Website](https://reactconnection.io/) - [Twitter](https://twitter.com/ReactConn)
-
-### React Native Connection 2024 {/*react-native-connection-2024*/}
-April 23, 2024. In-person in Paris, France 
-
-[Website](https://reactnativeconnection.io/) - [Twitter](https://twitter.com/ReactNativeConn)
-
-### React Conf 2024 {/*react-conf-2024*/}
-May 15 - 16, 2024. In-person in Henderson, NV, USA + remote
-
-[Website](https://conf.react.dev) - [Twitter](https://twitter.com/reactjs)
-
-### App.js Conf 2024 {/*appjs-conf-2024*/}
-May 22 - 24, 2024. In-person in Kraków, Poland + remote
-
-[Website](https://appjs.co) - [Twitter](https://twitter.com/appjsconf)
-
-### Frontend Nation 2024 {/*frontend-nation-2024*/}
-June 4 - 7, 2024. Online
-
-[Website](https://frontendnation.com/) - [Twitter](https://twitter.com/frontendnation)
-
 ### React Summit 2024 {/*react-summit-2024*/}
 June 14 & 18, 2024. In-person in Amsterdam, Netherlands + remote (hybrid event)
 
@@ -102,6 +62,41 @@ October 17 - 19, 2024. In-person in Goa, India (hybrid event) + Oct 15 2024 - re
 [Website](https://www.reactindia.io) - [Twitter](https://twitter.com/react_india) - [Facebook](https://www.facebook.com/ReactJSIndia) - [Youtube](https://www.youtube.com/channel/UCaFbHCBkPvVv1bWs_jwYt3w)
 
 ## Past Conferences {/*past-conferences*/}
+
+### Frontend Nation 2024 {/*frontend-nation-2024*/}
+June 4 - 7, 2024. Online
+
+[Website](https://frontendnation.com/) - [Twitter](https://twitter.com/frontendnation)
+
+### App.js Conf 2024 {/*appjs-conf-2024*/}
+May 22 - 24, 2024. In-person in Kraków, Poland + remote
+
+[Website](https://appjs.co) - [Twitter](https://twitter.com/appjsconf)
+
+### React Conf 2024 {/*react-conf-2024*/}
+May 15 - 16, 2024. In-person in Henderson, NV, USA + remote
+
+[Website](https://conf.react.dev) - [Twitter](https://twitter.com/reactjs)
+
+### React Native Connection 2024 {/*react-native-connection-2024*/}
+April 23, 2024. In-person in Paris, France 
+
+[Website](https://reactnativeconnection.io/) - [Twitter](https://twitter.com/ReactNativeConn)
+
+### React Miami 2024 {/*react-miami-2024*/}
+April 19 - 20, 2024. In-person in Miami, FL, USA
+
+[Website](https://reactmiami.com/) - [Twitter](https://twitter.com/ReactMiamiConf)
+
+### Epic Web Conf 2024 {/*epic-web-2024*/}
+April 10 - 11, 2024. In-person in Park City, UT, USA
+
+[Website](https://www.epicweb.dev/conf) - [YouTube](https://www.youtube.com/@EpicWebDev)
+
+### React Paris 2024 {/*react-paris-2024*/}
+March 22, 2024. In-person in Paris, France + Remote (hybrid)
+
+[Website](https://react.paris/) - [Twitter](https://twitter.com/BeJS_) - [LinkedIn](https://www.linkedin.com/events/7150816372074192900/comments/)
 
 ### React Day Berlin 2023 {/*react-day-berlin-2023*/}
 December 8 & 12, 2023. In-person in Berlin, Germany + remote first interactivity (hybrid event)

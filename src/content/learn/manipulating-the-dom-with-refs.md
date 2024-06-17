@@ -137,21 +137,21 @@ export default function CatFriends() {
         <ul>
           <li>
             <img
-              src="https://placekitten.com/g/200/200"
+              src="https://loremflickr.com/200/200/cat"
               alt="Tom"
               ref={firstCatRef}
             />
           </li>
           <li>
             <img
-              src="https://placekitten.com/g/300/200"
+              src="https://loremflickr.com/300/200/cat"
               alt="Maru"
               ref={secondCatRef}
             />
           </li>
           <li>
             <img
-              src="https://placekitten.com/g/250/200"
+              src="https://loremflickr.com/250/200/cat"
               alt="Jellylorum"
               ref={thirdCatRef}
             />
@@ -467,8 +467,8 @@ In the above example, `MyInput` exposes the original DOM input element. This let
 
 ```js
 import {
-  forwardRef, 
-  useRef, 
+  forwardRef,
+  useRef,
   useImperativeHandle
 } from 'react';
 
@@ -615,7 +615,7 @@ export default function TodoList() {
     const newTodo = { id: nextId++, text: text };
     flushSync(() => {
       setText('');
-      setTodos([ ...todos, newTodo]);      
+      setTodos([ ...todos, newTodo]);
     });
     listRef.current.lastChild.scrollIntoView({
       behavior: 'smooth',
@@ -948,7 +948,7 @@ const catList = [];
 for (let i = 0; i < 10; i++) {
   catList.push({
     id: i,
-    imageUrl: 'https://placekitten.com/250/200?image=' + i
+    imageUrl: 'https://loremflickr.com/250/200/cat?lock=' + i
   });
 }
 
@@ -1029,7 +1029,7 @@ export default function CatFriends() {
             behavior: 'smooth',
             block: 'nearest',
             inline: 'center'
-          });            
+          });
         }}>
           Next
         </button>
@@ -1065,7 +1065,7 @@ const catList = [];
 for (let i = 0; i < 10; i++) {
   catList.push({
     id: i,
-    imageUrl: 'https://placekitten.com/250/200?image=' + i
+    imageUrl: 'https://loremflickr.com/250/200/cat?lock=' + i
   });
 }
 

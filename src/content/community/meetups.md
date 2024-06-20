@@ -72,7 +72,7 @@ Do you have a local React.js meetup? Add it here! (Please keep the list alphabet
 ## England (UK) {/*england-uk*/}
 * [Manchester](https://www.meetup.com/Manchester-React-User-Group/)
 * [React.JS Girls London](https://www.meetup.com/ReactJS-Girls-London/)
-* [React Advanced London](https://guild.host/react-advanced-london)
+* [React Advanced London](https://reactadvanced.com/)
 * [React Native London](https://guild.host/RNLDN)
 
 ## France {/*france*/}

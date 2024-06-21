@@ -10,21 +10,6 @@ Do you know of a local React.js conference? Add it here! (Please keep the list c
 
 ## Upcoming Conferences {/*upcoming-conferences*/}
 
-### React Summit 2024 {/*react-summit-2024*/}
-June 14 & 18, 2024. In-person in Amsterdam, Netherlands + remote (hybrid event)
-
-[Website](https://reactsummit.com/) - [Twitter](https://twitter.com/reactsummit) - [Videos](https://portal.gitnation.org/)
-
-### Render(ATL) 2024 🍑 {/*renderatl-2024-*/}
-June 12 - June 14, 2024. Atlanta, GA, USA
-
-[Website](https://renderatl.com) - [Discord](https://www.renderatl.com/discord) - [Twitter](https://twitter.com/renderATL) - [Instagram](https://www.instagram.com/renderatl/) - [Facebook](https://www.facebook.com/renderatl/) - [LinkedIn](https://www.linkedin.com/company/renderatl) - [Podcast](https://www.renderatl.com/culture-and-code#/)
-
-### React Norway 2024 {/*react-norway-2024*/}
-June 14, 2024. In-person at Farris Bad Hotel in Larvik, Norway and online (hybrid event).
-
-[Website](https://reactnorway.com/) - [Twitter](https://twitter.com/ReactNorway)
-
 ### React Nexus 2024 {/*react-nexus-2024*/}
 July 04 & 05, 2024. Bangalore, India (In-person event)
 
@@ -61,7 +46,32 @@ October 17 - 19, 2024. In-person in Goa, India (hybrid event) + Oct 15 2024 - re
 
 [Website](https://www.reactindia.io) - [Twitter](https://twitter.com/react_india) - [Facebook](https://www.facebook.com/ReactJSIndia) - [Youtube](https://www.youtube.com/channel/UCaFbHCBkPvVv1bWs_jwYt3w)
 
+### React Brussels 2024 {/*react-brussels-2024*/}
+October 18, 2024. In-person in Brussels, Belgium (hybrid event)
+
+[Website](https://www.react.brussels/) - [Twitter](https://x.com/BrusselsReact)
+
+### React Africa 2024 {/*react-africa-2024*/}
+November 29, 2024. In-person in Casablanca, Morocco (hybrid event)
+
+[Website](https://react-africa.com/) - [Twitter](https://x.com/BeJS_)
+
 ## Past Conferences {/*past-conferences*/}
+
+### React Summit 2024 {/*react-summit-2024*/}
+June 14 & 18, 2024. In-person in Amsterdam, Netherlands + remote (hybrid event)
+
+[Website](https://reactsummit.com/) - [Twitter](https://twitter.com/reactsummit) - [Videos](https://portal.gitnation.org/)
+
+### React Norway 2024 {/*react-norway-2024*/}
+June 14, 2024. In-person at Farris Bad Hotel in Larvik, Norway and online (hybrid event).
+
+[Website](https://reactnorway.com/) - [Twitter](https://twitter.com/ReactNorway)
+
+### Render(ATL) 2024 🍑 {/*renderatl-2024-*/}
+June 12 - June 14, 2024. Atlanta, GA, USA
+
+[Website](https://renderatl.com) - [Discord](https://www.renderatl.com/discord) - [Twitter](https://twitter.com/renderATL) - [Instagram](https://www.instagram.com/renderatl/) - [Facebook](https://www.facebook.com/renderatl/) - [LinkedIn](https://www.linkedin.com/company/renderatl) - [Podcast](https://www.renderatl.com/culture-and-code#/)
 
 ### Frontend Nation 2024 {/*frontend-nation-2024*/}
 June 4 - 7, 2024. Online
@@ -96,7 +106,7 @@ April 10 - 11, 2024. In-person in Park City, UT, USA
 ### React Paris 2024 {/*react-paris-2024*/}
 March 22, 2024. In-person in Paris, France + Remote (hybrid)
 
-[Website](https://react.paris/) - [Twitter](https://twitter.com/BeJS_) - [LinkedIn](https://www.linkedin.com/events/7150816372074192900/comments/)
+[Website](https://react.paris/) - [Twitter](https://twitter.com/BeJS_) - [LinkedIn](https://www.linkedin.com/events/7150816372074192900/comments/) - [Videos](https://www.youtube.com/playlist?list=PL53Z0yyYnpWhUzgvr2Nys3kZBBLcY0TA7)
 
 ### React Day Berlin 2023 {/*react-day-berlin-2023*/}
 December 8 & 12, 2023. In-person in Berlin, Germany + remote first interactivity (hybrid event)

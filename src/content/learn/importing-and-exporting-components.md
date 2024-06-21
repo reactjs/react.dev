@@ -59,8 +59,8 @@ These currently live in a **root component file,** named `App.js` in this exampl
 What if you want to change the landing screen in the future and put a list of science books there? Or place all the profiles somewhere else? It makes sense to move `Gallery` and `Profile` out of the root component file. This will make them more modular and reusable in other files. You can move a component in three steps:
 
 1. **Make** a new JS file to put the components in.
-2. **Export** your function component from that file (using either [default](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/export#using_the_default_export) or [named](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/export#using_named_exports) exports).
-3. **Import** it in the file where you’ll use the component (using the corresponding technique for importing [default](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/import#importing_defaults) or [named](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/import#import_a_single_export_from_a_module) exports).
+2. **Export** your function component from that file (using either [default or named](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/export#description) exports).
+3. **Import** it in the file where you’ll use the component (using the corresponding technique for importing [default or named](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import#description) exports).
 
 Here both `Profile` and `Gallery` have been moved out of `App.js` into a new file called `Gallery.js`. Now you can change `App.js` to import `Gallery` from `Gallery.js`:
 

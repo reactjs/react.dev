@@ -15,6 +15,7 @@ import compileMDX from 'utils/compileMDX';
 import {generateRssFeed} from '../utils/rss';
 
 export default function Layout({content, toc, meta, languages}) {
+  console.log(content);
   const parsedContent = useMemo(
     () => JSON.parse(content, reviveNodeOnClient),
     [content]
@@ -72,11 +73,9 @@ function useActiveSection() {
 
 // Deserialize a client React tree from JSON.
 function reviveNodeOnClient(key, val) {
-  if (Array.isArray(val) && val[0] == '$r') {
+  if (typeof val === 'object' && val !== null && 'type' in val) {
     // Assume it's a React element.
-    let type = val[1];
-    let key = val[2];
-    let props = val[3];
+    let {type, key, ref, props} = val;
     if (type === 'wrapper') {
       type = Fragment;
       props = {children: props.children};
@@ -92,7 +91,7 @@ function reviveNodeOnClient(key, val) {
       $$typeof: Symbol.for('react.element'),
       type: type,
       key: key,
-      ref: null,
+      ref: ref,
       props: props,
       _owner: null,
     };

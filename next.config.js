@@ -10,9 +10,14 @@ const nextConfig = {
   reactStrictMode: true,
   experimental: {
     // TODO: Remove after https://github.com/vercel/next.js/issues/49355 is fixed
-    appDir: false,
+    // appDir: false,
     scrollRestoration: true,
-    legacyBrowsers: false,
+    // legacyBrowsers: false,
+    reactCompiler: true,
+    staleTimes: {
+      dynamic: 30,
+      static: 180,
+    },
   },
   env: {},
   webpack: (config, {dev, isServer, ...options}) => {

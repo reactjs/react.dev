@@ -1525,7 +1525,7 @@ To make the component more readable, you might extract the logic into a `useFade
 <Sandpack>
 
 ```js
-import { useState, useEffect, useRef } from 'react';
+import { useState, useRef } from 'react';
 import { useFadeIn } from './useFadeIn.js';
 
 function Welcome() {
@@ -1616,7 +1616,7 @@ You could keep the `useFadeIn` code as is, but you could also refactor it more. 
 <Sandpack>
 
 ```js
-import { useState, useEffect, useRef } from 'react';
+import { useState, useRef } from 'react';
 import { useFadeIn } from './useFadeIn.js';
 
 function Welcome() {
@@ -1720,7 +1720,7 @@ However, you didn't *have to* do that. As with regular functions, ultimately you
 <Sandpack>
 
 ```js
-import { useState, useEffect, useRef } from 'react';
+import { useState, useRef } from 'react';
 import { useFadeIn } from './useFadeIn.js';
 
 function Welcome() {
@@ -1750,7 +1750,7 @@ export default function App() {
 ```
 
 ```js src/useFadeIn.js active
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { FadeInAnimation } from './animation.js';
 
 export function useFadeIn(ref, duration) {
@@ -1820,7 +1820,7 @@ The examples above assume that the fade-in logic needs to be written in JavaScri
 <Sandpack>
 
 ```js
-import { useState, useEffect, useRef } from 'react';
+import { useState } from 'react';
 import './welcome.css';
 
 function Welcome() {

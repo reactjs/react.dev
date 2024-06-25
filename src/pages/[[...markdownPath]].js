@@ -15,7 +15,6 @@ import compileMDX from 'utils/compileMDX';
 import {generateRssFeed} from '../utils/rss';
 
 export default function Layout({content, toc, meta, languages}) {
-  console.log(content);
   const parsedContent = useMemo(
     () => JSON.parse(content, reviveNodeOnClient),
     [content]

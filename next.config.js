@@ -8,12 +8,13 @@
 const nextConfig = {
   pageExtensions: ['jsx', 'js', 'ts', 'tsx', 'mdx', 'md'],
   reactStrictMode: true,
+  // bundlePagesRouterDependencies: true,
   experimental: {
     // TODO: Remove after https://github.com/vercel/next.js/issues/49355 is fixed
     // appDir: false,
     scrollRestoration: true,
     // legacyBrowsers: false,
-    reactCompiler: true,
+    // reactCompiler: true,
     // staleTimes: {
     //   dynamic: 30,
     //   static: 180,

@@ -14,10 +14,10 @@ const nextConfig = {
     scrollRestoration: true,
     // legacyBrowsers: false,
     reactCompiler: true,
-    staleTimes: {
-      dynamic: 30,
-      static: 180,
-    },
+    // staleTimes: {
+    //   dynamic: 30,
+    //   static: 180,
+    // },
   },
   env: {},
   webpack: (config, {dev, isServer, ...options}) => {

@@ -46,6 +46,10 @@ const SandpackGlimmer = ({code}: {code: string}) => (
 );
 
 export default memo(function SandpackWrapper(props: any): any {
+  console.log(`\n\n\nprops ${JSON.stringify(props)}`);
+  console.log(`\n\n\nprops.children ${JSON.stringify(props.children)}`);
+  console.log(`\n\n\nChildren ${JSON.stringify(Children)}`);
+  console.log(`\n\n\nSuspense ${JSON.stringify(Suspense)}`);
   const codeSnippet = createFileMap(Children.toArray(props.children));
 
   // To set the active file in the fallback we have to find the active file first.

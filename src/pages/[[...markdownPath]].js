@@ -74,7 +74,7 @@ function useActiveSection() {
 function reviveNodeOnClient(key, val) {
   if (typeof val === 'object' && val !== null && 'type' in val) {
     // Assume it's a React element.
-    let {type, key, ref, props} = val;
+    let {type, key, props} = val;
     if (type === 'wrapper') {
       type = Fragment;
       props = {children: props.children};

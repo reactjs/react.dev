@@ -87,6 +87,7 @@ const MyDocument = () => {
                     }
                   }
                   const uwuQueryParam = checkQueryParam();
+                  console.log('uwuQueryParam', uwuQueryParam);
                   if (uwuQueryParam != null) {
                     setUwu(uwuQueryParam);
                   } else if (checkLocalStorage()) {

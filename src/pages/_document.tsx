@@ -141,7 +141,7 @@ const MyDocument = () => {
                   // An example of such content can be the keyboard shortcut displayed in the search bar
                   document.documentElement.classList.add(
                       window.navigator.platform.includes('Mac')
-                      ? "platform-mac"
+                      ? "platform-mac" 
                       : "platform-win"
                   );
                 })();

@@ -90,7 +90,7 @@ function reviveNodeOnClient(key, val) {
       $$typeof: Symbol.for('react.transitional.element'),
       type: type,
       key: key,
-      ref: ref,
+      ref: null,
       props: props,
       _owner: null,
     };

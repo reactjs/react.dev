@@ -72,12 +72,14 @@ function useActiveSection() {
 
 // Deserialize a client React tree from JSON.
 function reviveNodeOnClient(key, val) {
-  if (typeof val === 'object' && val !== null && 'type' in val) {
+  if (Array.isArray(val) && val[0] == '$r') {
     // Assume it's a React element.
-    let {type, key, props} = val;
+    let type = val[1];
+    let key = val[2];
+    let props = val[3];
     if (type === 'wrapper') {
       type = Fragment;
-      props = {children: props.children};
+      props = {children: [props.children]};
     }
     if (MDXComponents[type]) {
       type = MDXComponents[type];
@@ -91,6 +93,7 @@ function reviveNodeOnClient(key, val) {
       type: type,
       key: key,
       ref: null,
+      _store: {validated: 0},
       props: props,
       _owner: null,
     };

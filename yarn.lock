@@ -2104,10 +2104,10 @@ babel-plugin-dynamic-import-node@^2.3.3:
   dependencies:
     object.assign "^4.1.0"
 
-babel-plugin-react-compiler@^0.0.0-experimental-938cd9a-20240601:
-  version "0.0.0-experimental-938cd9a-20240601"
-  resolved "https://registry.yarnpkg.com/babel-plugin-react-compiler/-/babel-plugin-react-compiler-0.0.0-experimental-938cd9a-20240601.tgz#7e922f8c579564a42b2c3b7d1719f6a5bec5d554"
-  integrity sha512-t+uBHxbfxq2z4j83ZYgOsV0dlSaRgPfhrYB5+CMv6ByXUAv5wm7m7YLFx67fWKrG3eDhq3+KH1OMeFypuDLkUA==
+babel-plugin-react-compiler@0.0.0-experimental-696af53-20240625:
+  version "0.0.0-experimental-696af53-20240625"
+  resolved "https://registry.yarnpkg.com/babel-plugin-react-compiler/-/babel-plugin-react-compiler-0.0.0-experimental-696af53-20240625.tgz#ebf18487ce3fa795a7af78443be0a9f274df8df1"
+  integrity sha512-OUDKms8qmcm5bX0D+sJWC1YcKcd7AZ2aJ7eY6gkR+Xr7PDfkXLbqAld4Qs9B0ntjVbUMEtW/PjlQrxDtY4raHg==
   dependencies:
     "@babel/generator" "7.2.0"
     "@babel/types" "^7.19.0"

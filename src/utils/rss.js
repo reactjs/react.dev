@@ -6,7 +6,7 @@ const fs = require('fs');
 const path = require('path');
 const matter = require('gray-matter');
 
-const { platform } = process;
+const {platform} = process;
 const locale = path[platform === `posix` ? `posix` : `win32`];
 
 const getAllFiles = function (dirPath, arrayOfFiles) {
@@ -19,7 +19,6 @@ const getAllFiles = function (dirPath, arrayOfFiles) {
       arrayOfFiles = getAllFiles(dirPath + locale.sep + file, arrayOfFiles);
     } else {
       arrayOfFiles.push(path.join(dirPath, locale.sep, file));
-      const pushedFile = path.join(dirPath, locale.sep, file);
     }
   });
 
@@ -49,7 +48,11 @@ exports.generateRssFeed = function () {
     if (id !== 'index.md') {
       const content = fs.readFileSync(filePath, 'utf-8');
       const {data} = matter(content);
-      const slug = filePath.split(locale.sep).slice(-4).join(locale.sep).replace('.md', '');
+      const slug = filePath
+        .split(locale.sep)
+        .slice(-4)
+        .join(locale.sep)
+        .replace('.md', '');
 
       if (data.title == null || data.title.trim() === '') {
         throw new Error(

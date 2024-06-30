@@ -5,7 +5,7 @@
 import Head from 'next/head';
 import Link from 'next/link';
 import Router from 'next/router';
-import {lazy, useEffect} from 'react';
+import {lazy, useEffect, useState} from 'react';
 import * as React from 'react';
 import {createPortal} from 'react-dom';
 import {siteConfig} from 'siteConfig';
@@ -97,6 +97,17 @@ export function Search({
     hitsPerPage: 5,
   },
 }: SearchProps) {
+  const [scrollPosition, setScrollPosition] = useState(0);
+
+  useEffect(() => {
+    if (isOpen) {
+      setScrollPosition(window.scrollY);
+    } else {
+      window.scrollTo(0, scrollPosition);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isOpen]);
+
   useDocSearchKeyboardEvents({isOpen, onOpen, onClose});
   return (
     <>

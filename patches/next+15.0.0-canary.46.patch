@@ -1,13 +1,13 @@
 diff --git a/node_modules/next/dist/server/render.js b/node_modules/next/dist/server/render.js
-index a1f8648..1b3d608 100644
+index ed5eda3..6d4a57b 100644
 --- a/node_modules/next/dist/server/render.js
 +++ b/node_modules/next/dist/server/render.js
-@@ -758,9 +758,14 @@ async function renderToHTML(req, res, pathname, query, renderOpts) {
+@@ -815,9 +815,14 @@ async function renderToHTMLImpl(req, res, pathname, query, renderOpts, extra) {
          // Always using react concurrent rendering mode with required react version 18.x
          const renderShell = async (EnhancedApp, EnhancedComponent)=>{
              const content = renderContent(EnhancedApp, EnhancedComponent);
--            return await (0, _nodewebstreamshelper.renderToInitialStream)({
--                ReactDOMServer: _serverbrowser.default,
+-            return await (0, _nodewebstreamshelper.renderToInitialFizzStream)({
+-                ReactDOMServer: _serveredge.default,
 -                element: content
 +            return new Promise((resolve, reject) => {
 +                (0, _nodewebstreamshelper.renderToInitialStream)({
@@ -19,4 +19,4 @@ index a1f8648..1b3d608 100644
 +                }).then(resolve, reject);
              });
          };
-         const createBodyResult = (0, _tracer.getTracer)().wrap(_constants2.RenderSpan.createBodyResult, (initialStream, suffix)=>{
+         const hasDocumentGetInitialProps = process.env.NEXT_RUNTIME !== 'edge' && !!Document.getInitialProps;

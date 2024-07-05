@@ -235,7 +235,7 @@ During the next render, React goes through the state queue:
 
 |   queued update       | `n` | returns |
 |--------------|---------|-----|
-| "replace with `5`" | `0` (unused) | `5` |
+| "replace with `5`" | `0` | `5` |
 | `n => n + 1` | `5` | `5 + 1 = 6` |
 | "replace with `42`" | `6` (unused) | `42` |
 

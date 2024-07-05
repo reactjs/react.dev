@@ -357,6 +357,14 @@ Please refer to [Expo's docs](https://docs.expo.dev/preview/react-compiler/) to 
 
 React Native uses Babel via Metro, so refer to the [Usage with Babel](#usage-with-babel) section for installation instructions.
 
+### Rspack {/*usage-with-rspack*/}
+
+Please refer to [Rspack's docs](https://rspack.dev/guide/tech/react#react-compiler) to enable and use the React Compiler in Rspack apps.
+
+### Rsbuild {/*usage-with-rsbuild*/}
+
+Please refer to [Rsbuild's docs](https://rsbuild.dev/guide/framework/react#react-compiler) to enable and use the React Compiler in Rsbuild apps.
+
 ## Troubleshooting {/*troubleshooting*/}
 
 To report issues, please first create a minimal repro on the [React Compiler Playground](https://playground.react.dev/) and include it in your bug report. You can open issues in the [facebook/react](https://github.com/facebook/react/issues) repo.

@@ -47,7 +47,7 @@ export default function App() {
 }
 ```
 
-To get status information, the `Submit` component must be rendered within a `<form>`. The Hook returns information like the <CodeStep step={1}>`pending`</CodeStep> property which tells you if the form is actively submitting. 
+To get status information, the `Submit` component must be rendered within a `<form>`. The Hook returns information like the <CodeStep step={1}>`pending`</CodeStep> property which tells you if the form is actively submitting.
 
 In the above example, `Submit` uses this information to disable `<button>` presses while the form is submitting.
 
@@ -72,7 +72,7 @@ A `status` object with the following properties:
 
 #### Caveats {/*caveats*/}
 
-* The `useFormStatus` Hook must be called from a component that is rendered inside a `<form>`. 
+* The `useFormStatus` Hook must be called from a component that is rendered inside a `<form>`.
 * `useFormStatus` will only return status information for a parent `<form>`. It will not return status information for any `<form>` rendered in that same component or children components.
 
 ---
@@ -129,7 +129,7 @@ export async function submitForm(query) {
   "devDependencies": {}
 }
 ```
-</Sandpack>  
+</Sandpack>
 
 <Pitfall>
 
@@ -151,7 +151,7 @@ Instead call `useFormStatus` from inside a component that is located inside `<fo
 ```js
 function Submit() {
   // ✅ `pending` will be derived from the form that wraps the Submit component
-  const { pending } = useFormStatus(); 
+  const { pending } = useFormStatus();
   return <button disabled={pending}>...</button>;
 }
 
@@ -164,6 +164,62 @@ function Form() {
   );
 }
 ```
+
+When implementing a library or application that involve rich, complex forms, we recommend implementing a Hook similar to `useFormStatus` by using the [form onSubmit event-handler](https://developer.mozilla.org/en-US/docs/Web/API/HTMLFormElement/submit_event) with [startTransition](/reference/react/startTransition), and (optionally) [useOptimistic](/reference/react/useOptimistic):
+
+
+<Sandpack>
+
+```js src/App.js
+import { useState, startTransition, useOptimistic } from "react";
+import { addCount } from "./api";
+
+export default function Form() {
+  const [pending, setPending] = useState(false);
+  const [count, setCount] = useState(0);
+  const [optimisticCount, optimisticIncreaseCount] = useOptimistic(
+    count,
+    (state) => state + 1
+  );
+  function handleSubmit(event) {
+    event.preventDefault();
+    setPending(true);
+    startTransition(async () => {
+      optimisticIncreaseCount();
+      const updatedCount = await addCount(count);
+      setCount(updatedCount);
+      setPending(false);
+    });
+  }
+  return (
+    <form onSubmit={handleSubmit}>
+      <p>This button has been pressed {"" + optimisticCount} times.</p>
+      <button disabled={pending}>Submit</button>
+    </form>
+  );
+}
+```
+
+```js src/api.js hidden
+export async function addCount(count) {
+  // simulate a delay from a API/network call
+  await new Promise((res) => setTimeout(res, 500));
+  return count + 1;
+}
+```
+
+```json package.json hidden
+{
+  "dependencies": {
+    "react": "canary",
+    "react-dom": "canary",
+    "react-scripts": "^5.0.0"
+  },
+  "main": "/index.js",
+  "devDependencies": {}
+}
+```
+</Sandpack>
 
 </Pitfall>
 
@@ -245,7 +301,7 @@ button {
   "devDependencies": {}
 }
 ```
-</Sandpack>  
+</Sandpack>
 
 ---
 

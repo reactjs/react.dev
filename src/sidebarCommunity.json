@@ -44,6 +44,24 @@
           "path": "/community/versioning-policy"
         }
       ]
+    },
+    {
+      "title": "How to Contribute",
+      "path": "/community/contributing/how-to-contribute",
+      "routes": [
+        {
+          "title": "Codebase Overview",
+          "path": "/community/contributing/codebase-overview"
+        },
+        {
+          "title": "Implementation Notes",
+          "path": "/community/contributing/implementation-notes"
+        },
+        {
+          "title": "Design Principles",
+          "path": "/community/contributing/design-principles"
+        }
+      ]
     }
   ]
 }

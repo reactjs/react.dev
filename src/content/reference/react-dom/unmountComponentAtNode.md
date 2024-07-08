@@ -75,7 +75,7 @@ In this example, clicking "Render React App" will render a React app. Click "Unm
 
 <Sandpack>
 
-```html index.html
+```html public/index.html
 <!DOCTYPE html>
 <html>
   <head><title>My app</title></head>

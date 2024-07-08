@@ -477,7 +477,7 @@ with `useReducer` like so:
 const [tasks, dispatch] = useReducer(tasksReducer, initialTasks);
 ```
 
-The `useReducer` Hook is similar to `useState`—you must pass it an initial state and it returns a stateful value and a way to set state (in this case, the dispatch function). But it's a little different.
+The `useReducer` Hook is similar to `useState` — you must pass it an initial state and it returns a stateful value and a way to set state (in this case, the dispatch function). But it's a little different.
 
 The `useReducer` Hook takes two arguments:
 

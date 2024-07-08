@@ -223,7 +223,7 @@ const person = {
 };
 ```
 
-The component can use these values from `person` like so:
+The component can use these values from a `person` like so:
 
 ```js
 <div style={person.theme}>

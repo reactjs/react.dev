@@ -9,7 +9,13 @@ import {IconWarning} from '../Icon/IconWarning';
 import {IconPitfall} from '../Icon/IconPitfall';
 import {IconCanary} from '../Icon/IconCanary';
 
-type CalloutVariants = 'deprecated' | 'pitfall' | 'note' | 'wip' | 'canary';
+type CalloutVariants =
+  | 'changelog'
+  | 'deprecated'
+  | 'pitfall'
+  | 'note'
+  | 'wip'
+  | 'canary';
 
 interface ExpandableCalloutProps {
   children: React.ReactNode;
@@ -27,6 +33,15 @@ const variantMap = {
   },
   note: {
     title: 'Note',
+    Icon: IconNote,
+    containerClasses:
+      'bg-green-5 dark:bg-green-60 dark:bg-opacity-20 text-primary dark:text-primary-dark text-lg',
+    textColor: 'text-green-60 dark:text-green-40',
+    overlayGradient:
+      'linear-gradient(rgba(245, 249, 248, 0), rgba(245, 249, 248, 1)',
+  },
+  changelog: {
+    title: 'Changelog',
     Icon: IconNote,
     containerClasses:
       'bg-green-5 dark:bg-green-60 dark:bg-opacity-20 text-primary dark:text-primary-dark text-lg',

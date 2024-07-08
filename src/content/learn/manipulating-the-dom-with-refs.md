@@ -124,34 +124,34 @@ export default function CatFriends() {
     <>
       <nav>
         <button onClick={handleScrollToFirstCat}>
-          Tom
+          Image 1
         </button>
         <button onClick={handleScrollToSecondCat}>
-          Maru
+          Image 2
         </button>
         <button onClick={handleScrollToThirdCat}>
-          Jellylorum
+          Image 3
         </button>
       </nav>
       <div>
         <ul>
           <li>
             <img
-              src="https://placekitten.com/g/200/200"
+              src="https://picsum.photos/g/200/200"
               alt="Tom"
               ref={firstCatRef}
             />
           </li>
           <li>
             <img
-              src="https://placekitten.com/g/300/200"
+              src="https://picsum.photos/g/300/200"
               alt="Maru"
               ref={secondCatRef}
             />
           </li>
           <li>
             <img
-              src="https://placekitten.com/g/250/200"
+              src="https://picsum.photos/g/250/200"
               alt="Jellylorum"
               ref={thirdCatRef}
             />

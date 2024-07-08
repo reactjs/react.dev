@@ -161,7 +161,7 @@ export function Page({
         )}
         {/* No fallback UI so need to be careful not to suspend directly inside. */}
         <Suspense fallback={null}>
-          <main className="min-w-0 isolate">
+          <main className="min-w-0 isolate" style={{marginLeft: '1.2rem'}}>
             <article
               className="font-normal break-words text-primary dark:text-primary-dark"
               key={asPath}>

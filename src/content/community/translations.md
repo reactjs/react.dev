@@ -12,7 +12,7 @@ React docs are translated by the global community into many languages all over t
 
 All translations are provided from the canonical source docs:
 
-- [English](https://react.dev/) &mdash; [Contribute](https://github.com/reactjs/react.dev/)
+- [English](https://react.dev/) &ndash; [Contribute](https://github.com/reactjs/react.dev/)
 
 ## Full translations {/*full-translations*/}
 

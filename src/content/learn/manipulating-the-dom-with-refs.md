@@ -137,21 +137,21 @@ export default function CatFriends() {
         <ul>
           <li>
             <img
-              src="https://loremflickr.com/g/200/200/cat?r=1"
+              src="https://loremflickr.com/g/200/200/cat?random=1"
               alt="Tom"
               ref={firstCatRef}
             />
           </li>
           <li>
             <img
-              src="https://loremflickr.com/g/200/200/cat?r=2"
+              src="https://loremflickr.com/g/200/200/cat?random=2"
               alt="Maru"
               ref={secondCatRef}
             />
           </li>
           <li>
             <img
-              src="https://loremflickr.com/g/200/200/cat?r=3"
+              src="https://loremflickr.com/g/200/200/cat?random=3"
               alt="Jellylorum"
               ref={thirdCatRef}
             />
@@ -948,7 +948,7 @@ const catList = [];
 for (let i = 0; i < 10; i++) {
   catList.push({
     id: i,
-    imageUrl: 'https://loremflickr.com/250/200/cat?r=' + i
+    imageUrl: 'https://loremflickr.com/250/200/cat?lock=' + i
   });
 }
 
@@ -1065,7 +1065,7 @@ const catList = [];
 for (let i = 0; i < 10; i++) {
   catList.push({
     id: i,
-    imageUrl: 'https://loremflickr.com/250/200/cat?r=' + i
+    imageUrl: 'https://loremflickr.com/250/200/cat?lock=' + i
   });
 }
 

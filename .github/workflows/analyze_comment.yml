@@ -9,11 +9,23 @@ on:
 jobs:
   comment:
     runs-on: ubuntu-latest
-    if: >
-      ${{ github.event.workflow_run.event == 'pull_request' &&
-      github.event.workflow_run.conclusion == 'success' }}
     steps:
+      - name: Download Event Type
+        uses: dawidd6/action-download-artifact@v2
+        with:
+          workflow: analyze.yml
+          run_id: ${{ github.event.workflow_run.id }}
+          name: event_type
+          path: event_type
+
+      - name: get type
+        id: get-type
+        run: |
+          event_type=$(cat event_type/event_type)
+          echo "event-type=$event_type" >> $GITHUB_OUTPUT
+
       - name: Download base branch bundle stats
+        if: github.event.workflow_run.conclusion == 'success' && steps.get-type.outputs.event-type == 'pull_request'
         uses: dawidd6/action-download-artifact@v2
         with:
           workflow: analyze.yml
@@ -22,6 +34,7 @@ jobs:
           path: analysis_comment.txt
 
       - name: Download PR number
+        if: github.event.workflow_run.conclusion == 'success' && steps.get-type.outputs.event-type == 'pull_request'
         uses: dawidd6/action-download-artifact@v2
         with:
           workflow: analyze.yml
@@ -31,7 +44,7 @@ jobs:
 
       - name: Get comment body
         id: get-comment-body
-        if: success()
+        if: success() && github.event.workflow_run.conclusion == 'success' && steps.get-type.outputs.event-type == 'pull_request'
         run: |
           echo 'body<<EOF' >> $GITHUB_OUTPUT
           echo '' >>  $GITHUB_OUTPUT

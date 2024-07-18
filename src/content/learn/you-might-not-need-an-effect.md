@@ -392,7 +392,9 @@ function Game() {
   }, [round]);
 
   useEffect(() => {
-    alert('Good game!');
+    if (isGameOver) {
+      alert('Good game!');
+    }
   }, [isGameOver]);
 
   function handlePlaceCard(nextCard) {

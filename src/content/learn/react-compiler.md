@@ -151,7 +151,7 @@ Then, add it to your eslint config:
 ```js
 module.exports = {
   plugins: [
-    'eslint-plugin-react-compiler',
+    'react-compiler',
   ],
   rules: {
     'react-compiler/react-compiler': "error",

@@ -231,7 +231,7 @@ And `TaskList` passes the event handlers to `Task`:
 
 In a small example like this, this works well, but if you have tens or hundreds of components in the middle, passing down all state and functions can be quite frustrating!
 
-This is why, as an alternative to passing them through props, you might want to put both the `tasks` state and the `dispatch` function [into context.](/learn/passing-data-deeply-with-context) **This way, any component below `TaskApp` in the tree can read the tasks and dispatch actions without the repetitive "prop drilling".**
+This is why, as an alternative to passing them through props, you might want to put both the `tasks` state and the `dispatch` function [into context.](/learn/passing-data-deeply-with-context) **This way, any component below `TaskApp` in the tree can read the tasks and Dispatch Actions without the repetitive "prop drilling".**
 
 Here is how you can combine a reducer with context:
 
@@ -250,7 +250,7 @@ const [tasks, dispatch] = useReducer(tasksReducer, initialTasks);
 To pass them down the tree, you will [create](/learn/passing-data-deeply-with-context#step-2-use-the-context) two separate contexts:
 
 - `TasksContext` provides the current list of tasks.
-- `TasksDispatchContext` provides the function that lets components dispatch actions.
+- `TasksDispatchContext` provides the function that lets components Dispatch Actions.
 
 Export them from a separate file so that you can later import them from other files:
 

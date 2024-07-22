@@ -382,7 +382,7 @@
   /* Write your own custom base styles here */
   html {
     color-scheme: light;
-
+    scroll-behavior: smooth;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
     -webkit-tap-highlight-color: transparent;
   }

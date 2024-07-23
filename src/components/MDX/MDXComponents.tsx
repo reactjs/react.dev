@@ -15,6 +15,7 @@ import {H1, H2, H3, H4, H5} from './Heading';
 import InlineCode from './InlineCode';
 import Intro from './Intro';
 import BlogCard from './BlogCard';
+import CareerCard from './CareerCard';
 import Link from './Link';
 import {PackageImport} from './PackageImport';
 import Recap from './Recap';
@@ -450,6 +451,7 @@ export const MDXComponents = {
   a: Link,
   img: Image,
   BlogCard,
+  CareerCard,
   code: InlineCode,
   pre: CodeBlock,
   CodeDiagram,

@@ -57,6 +57,7 @@ export function Page({
   const description = meta.description || route?.description || '';
   const isHomePage = cleanedPath === '/';
   const isBlogIndex = cleanedPath === '/blog';
+  const isCareersIndex = cleanedPath === '/careers';
 
   let content;
   if (isHomePage) {
@@ -88,7 +89,7 @@ export function Page({
               </LanguagesContext.Provider>
             </TocContext.Provider>
           </div>
-          {!isBlogIndex && (
+          {!isBlogIndex && !isCareersIndex && (
             <DocsPageFooter
               route={route}
               nextRoute={nextRoute}

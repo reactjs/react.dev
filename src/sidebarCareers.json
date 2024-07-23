@@ -1,0 +1,21 @@
+{
+  "title": "Careers",
+  "path": "/careers",
+  "routes": [
+    {
+      "hasSectionHeader": true,
+      "sectionHeader": "STAY INFORMED"
+    },
+    {
+      "title": "Careers",
+      "path": "/careers",
+      "skipBreadcrumb": true,
+      "routes": [
+        {
+          "title": "iOS Engineer",
+          "path": "/careers/2024/05/22/react-conf-2024-recap"
+        }
+      ]
+    }
+  ]
+}

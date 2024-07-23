@@ -377,7 +377,7 @@ Note that the `...` spread syntax is "shallow"--it only copies things one level 
 
 #### Using a single event handler for multiple fields {/*using-a-single-event-handler-for-multiple-fields*/}
 
-You can also use the `[` and `]` braces inside your object definition to specify a property with dynamic name. Here is the same example, but with a single event handler instead of three different ones:
+You can also use the `[` and `]` braces inside your object definition to specify a property with a dynamic name. Here is the same example, but with a single event handler instead of three different ones:
 
 <Sandpack>
 

@@ -34,7 +34,14 @@ interface PageProps {
     canary?: boolean;
     description?: string;
   };
-  section: 'learn' | 'reference' | 'community' | 'blog' | 'home' | 'unknown';
+  section:
+    | 'learn'
+    | 'reference'
+    | 'community'
+    | 'blog'
+    | 'home'
+    | 'careers'
+    | 'unknown';
   languages?: Languages | null;
 }
 
@@ -57,7 +64,6 @@ export function Page({
   const description = meta.description || route?.description || '';
   const isHomePage = cleanedPath === '/';
   const isBlogIndex = cleanedPath === '/blog';
-  const isCareersIndex = cleanedPath === '/careers';
 
   let content;
   if (isHomePage) {
@@ -89,7 +95,7 @@ export function Page({
               </LanguagesContext.Provider>
             </TocContext.Provider>
           </div>
-          {!isBlogIndex && !isCareersIndex && (
+          {!isBlogIndex && section !== 'careers' && (
             <DocsPageFooter
               route={route}
               nextRoute={nextRoute}

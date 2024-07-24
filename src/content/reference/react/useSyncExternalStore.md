@@ -41,7 +41,7 @@ It returns the snapshot of the data in the store. You need to pass two functions
 
 #### Parameters {/*parameters*/}
 
-* `subscribe`: A function that takes a single `callback` argument and subscribes it to the store. When the store changes, it should invoke the provided `callback`. This will cause the component to re-render. The `subscribe` function should return a function that cleans up the subscription.
+* `subscribe`: A function that takes a single `callback` argument and subscribes it to the store. When the store changes, it should invoke the provided `callback`. This alerts React to potential changes in the store, but it will only cause the component to re-render if the snapshot, evaluated subsequently, has also changed. The `subscribe` function should return a function that removes the subscription when it's no longer needed. This helps prevent unnecessary re-renders and optimizes performance.
 
 * `getSnapshot`: A function that returns a snapshot of the data in the store that's needed by the component. While the store has not changed, repeated calls to `getSnapshot` must return the same value. If the store changes and the returned value is different (as compared by [`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is)), React re-renders the component.
 

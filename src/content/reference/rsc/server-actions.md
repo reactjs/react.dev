@@ -173,7 +173,7 @@ You can compose Server Actions with `useActionState` for the common case where y
 import {updateName} from './actions';
 
 function UpdateName() {
-  const [submitAction, state, isPending] = useActionState(updateName, {error: null});
+  const [state, submitAction, isPending] = useActionState(updateName, {error: null});
 
   return (
     <form action={submitAction}>

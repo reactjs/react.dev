@@ -1,27 +1,21 @@
 ---
-title: "React 19 Beta"
+title: "React 19 RC"
 author: The React Team
 date: 2024/04/25
-description: React 19 Beta is now available on npm! In this post, we'll give an overview of the new features in React 19, and how you can adopt them.
+description: React 19 RC is now available on npm! In this post, we'll give an overview of the new features in React 19, and how you can adopt them.
 ---
 
 April 25, 2024 by [The React Team](/community/team)
 
 ---
 
-<Note>
-
-This beta release is for libraries to prepare for React 19. App developers should upgrade to 18.3.0 and wait for React 19 stable as we work with libraries and make changes based on feedback.
-
-</Note>
-
 <Intro>
 
-React 19 Beta is now available on npm!
+React 19 RC is now available on npm!
 
 </Intro>
 
-In our [React 19 Beta Upgrade Guide](/blog/2024/04/25/react-19-upgrade-guide), we shared step-by-step instructions for upgrading your app to React 19 Beta. In this post, we'll give an overview of the new features in React 19, and how you can adopt them.
+In our [React 19 RC Upgrade Guide](/blog/2024/04/25/react-19-upgrade-guide), we shared step-by-step instructions for upgrading your app to React 19. In this post, we'll give an overview of the new features in React 19, and how you can adopt them.
 
 - [What's new in React 19](#whats-new-in-react-19)
 - [Improvements in React 19](#improvements-in-react-19)
@@ -510,8 +504,7 @@ Due to the introduction of ref cleanup functions, returning anything else from a
 
 The original code returned the instance of the `HTMLDivElement` and TypeScript wouldn't know if this was _supposed_ to be a cleanup function or if you didn't want to return a cleanup function.
 
-You can codemod this pattern with [`no-implicit-ref-callback-return
-`](https://github.com/eps1lon/types-react-codemod/#no-implicit-ref-callback-return).
+You can codemod this pattern with [`no-implicit-ref-callback-return`](https://github.com/eps1lon/types-react-codemod/#no-implicit-ref-callback-return).
 
 ### `useDeferredValue` initial value {/*use-deferred-value-initial-value*/}
 

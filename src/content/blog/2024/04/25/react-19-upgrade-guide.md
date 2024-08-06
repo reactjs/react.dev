@@ -1,26 +1,18 @@
 ---
-title: "React 19 Beta Upgrade Guide"
+title: "React 19 RC Upgrade Guide"
 author: Ricky Hanlon
 date: 2024/04/25
-description: The improvements added to React 19 require some breaking changes, but we've worked to make the upgrade as smooth as possible and we don't expect the changes to impact most apps. In this post, we will guide you through the steps for upgrading libraries to React 19 beta.
+description: The improvements added to React 19 require some breaking changes, but we've worked to make the upgrade as smooth as possible and we don't expect the changes to impact most apps. In this post, we will guide you through the steps for upgrading apps and libraries to React 19.
 ---
 
 April 25, 2024 by [Ricky Hanlon](https://twitter.com/rickhanlonii)
 
 ---
 
-<Note>
-
-This beta release is for libraries to prepare for React 19. App developers should upgrade to 18.3.0 and wait for React 19 stable as we work with libraries and make changes based on feedback.
-
-</Note>
-
 
 <Intro>
 
-The improvements added to React 19 require some breaking changes, but we've worked to make the upgrade as smooth as possible and we don't expect the changes to impact most apps.
-
-To help make the upgrade easier, today we are also publishing React 18.3.
+The improvements added to React 19 RC require some breaking changes, but we've worked to make the upgrade as smooth as possible, and we don't expect the changes to impact most apps.
 
 </Intro>
 
@@ -36,16 +28,17 @@ For a list of changes in 18.3 see the [Release Notes](https://github.com/faceboo
 
 </Note>
 
-In this post, we will guide you through the steps for upgrading libraries to React 19 beta:
+In this post, we will guide you through the steps for upgrading to React 19:
 
 - [Installing](#installing)
+- [Codemods](#codemods)
 - [Breaking changes](#breaking-changes)
 - [New deprecations](#new-deprecations)
 - [Notable changes](#notable-changes)
 - [TypeScript changes](#typescript-changes)
 - [Changelog](#changelog)
 
-If you'd like to help us test React 19, follow the steps in this upgrade guide and [report any issues](https://github.com/facebook/react/issues/new?assignees=&labels=React+19&projects=&template=19.md&title=%5BReact+19%5D) you encounter. For a list of new features added to React 19 beta, see the [React 19 release post](/blog/2024/04/25/react-19).
+If you'd like to help us test React 19, follow the steps in this upgrade guide and [report any issues](https://github.com/facebook/react/issues/new?assignees=&labels=React+19&projects=&template=19.md&title=%5BReact+19%5D) you encounter. For a list of new features added to React 19, see the [React 19 release post](/blog/2024/04/25/react-19).
 
 ---
 ## Installing {/*installing*/}
@@ -77,26 +70,63 @@ We expect most apps will not be affected since the transform is enabled in most 
 To install the latest version of React and React DOM:
 
 ```bash
-npm install react@beta react-dom@beta
+npm install --save-exact react@rc react-dom@rc
 ```
 
-If you're using TypeScript, you also need to update the types. Once React 19 is released as stable, you can install the types as usual from `@types/react` and `@types/react-dom`.  During the beta period, the types are available in different packages which need to be enforced in your `package.json`:
+Or, if you're using Yarn:
+
+```bash
+yarn add --exact react@rc react-dom@rc
+```
+
+If you're using TypeScript, you also need to update the types. Once React 19 is released as stable, you can install the types as usual from `@types/react` and `@types/react-dom`.  Until the stable release, the types are available in different packages which need to be enforced in your `package.json`:
 
 ```json
 {
   "dependencies": {
-    "@types/react": "npm:types-react@beta",
-    "@types/react-dom": "npm:types-react-dom@beta"
+    "@types/react": "npm:types-react@rc",
+    "@types/react-dom": "npm:types-react-dom@rc"
   },
   "overrides": {
-    "@types/react": "npm:types-react@beta",
-    "@types/react-dom": "npm:types-react-dom@beta"
+    "@types/react": "npm:types-react@rc",
+    "@types/react-dom": "npm:types-react-dom@rc"
   }
 }
 ```
 
 We're also including a codemod for the most common replacements. See [TypeScript changes](#typescript-changes) below.
 
+## Codemods {/*codemods*/}
+
+To help with the upgrade, we've worked with the team at [codemod.com](https://codemod.com) to publish codemods that will automatically update your code to many of the new APIs and patterns in React 19.
+
+All codemods are available in the [`react-codemod` repo](https://github.com/reactjs/react-codemod) and the Codemod team have joined in helping maintain the codemods. To run these codemods, we recommend using the `codemod` command instead of the `react-codemod` because it runs faster, handles more complex code migrations, and provides better support for TypeScript.
+
+
+<Note>
+
+#### Run all React 19 codemods {/*run-all-react-19-codemods*/}
+
+Run all codemods listed in this guide with the React 19 `codemod` recipe:
+
+```bash
+npx codemod@latest react/19/migration-recipe
+```
+
+This will run the following codemods from `react-codemod`:
+- [`replace-reactdom-render`](https://github.com/reactjs/react-codemod?tab=readme-ov-file#replace-reactdom-render) 
+- [`replace-string-ref`](https://github.com/reactjs/react-codemod?tab=readme-ov-file#replace-string-ref)
+- [`replace-act-import`](https://github.com/reactjs/react-codemod?tab=readme-ov-file#replace-act-import)
+- [`replace-use-form-state`](https://github.com/reactjs/react-codemod?tab=readme-ov-file#replace-use-form-state) 
+- [`prop-types-typescript`](TODO)
+
+This does not include the TypeScript changes. See [TypeScript changes](#typescript-changes) below.
+
+</Note>
+
+Changes that include a codemod include the command below. 
+
+For a list of all available codemods, see the [`react-codemod` repo](https://github.com/reactjs/react-codemod).
 
 ## Breaking changes {/*breaking-changes*/}
 
@@ -128,7 +158,7 @@ For more info, see the docs for [`createRoot`](https://react.dev/reference/react
 ### Removed deprecated React APIs {/*removed-deprecated-react-apis*/}
 
 #### Removed: `propTypes` and `defaultProps` for functions {/*removed-proptypes-and-defaultprops*/}
-`PropTypes` were deprecated in [April 2017 (v15.5.0)](https://legacy.reactjs.org/blog/2017/04/07/react-v15.5.0.html#new-deprecation-warnings). 
+`PropTypes` were deprecated in [April 2017 (v15.5.0)](https://legacy.reactjs.org/blog/2017/04/07/react-v15.5.0.html#new-deprecation-warnings).
 
 In React 19, we're removing the `propType` checks from the React package, and using them will be silently ignored. If you're using `propTypes`, we recommend migrating to TypeScript or another type-checking solution.
 
@@ -157,6 +187,16 @@ function Heading({text = 'Hello, world!'}: Props) {
   return <h1>{text}</h1>;
 }
 ```
+
+<Note>
+
+Codemod `propTypes` to TypeScript with:
+
+```bash
+npx codemod@latest react/prop-types-typescript
+```
+
+</Note>
 
 #### Removed: Legacy Context using `contextTypes` and `getChildContext` {/*removed-removing-legacy-context*/}
 
@@ -253,7 +293,11 @@ class MyComponent extends React.Component {
 
 <Note>
 
-To help with the migration, we will be publishing a [react-codemod](https://github.com/reactjs/react-codemod/#string-refs) to automatically replace string refs with `ref` callbacks. Follow [this PR](https://github.com/reactjs/react-codemod/pull/309) for updates and to try it out.
+Codemod string refs with `ref` callbacks:
+
+```bash
+npx codemod@latest react/19/replace-string-ref
+```
 
 </Note>
 
@@ -340,6 +384,16 @@ All other `test-utils` functions have been removed. These utilities were uncommo
 
 See the [warning page](https://react.dev/warnings/react-dom-test-utils) for alternatives.
 
+<Note>
+
+Codemod `ReactDOMTestUtils.act` to `React.act`:
+
+```bash
+npx codemod@latest react/19/replace-act-import
+```
+
+</Note>
+
 #### Removed: `ReactDOM.render` {/*removed-reactdom-render*/}
 
 `ReactDOM.render` was deprecated in [March 2022 (v18.0.0)](https://react.dev/blog/2022/03/08/react-18-upgrade-guide). In React 19, we're removing `ReactDOM.render` and you'll need to migrate to using [`ReactDOM.createRoot`](https://react.dev/reference/react-dom/client/createRoot):
@@ -355,6 +409,16 @@ const root = createRoot(document.getElementById('root'));
 root.render(<App />);
 ```
 
+<Note>
+
+Codemod `ReactDOM.render` to `ReactDOMClient.createRoot`:
+
+```bash
+npx codemod@latest react/19/replace-reactdom-render
+```
+
+</Note>
+
 #### Removed: `ReactDOM.hydrate` {/*removed-reactdom-hydrate*/}
 
 `ReactDOM.hydrate` was deprecated in [March 2022 (v18.0.0)](https://react.dev/blog/2022/03/08/react-18-upgrade-guide). In React 19, we're removing `ReactDOM.hydrate` you'll need to migrate to using [`ReactDOM.hydrateRoot`](https://react.dev/reference/react-dom/client/hydrateRoot),
@@ -369,6 +433,15 @@ import {hydrateRoot} from 'react-dom/client';
 hydrateRoot(document.getElementById('root'), <App />);
 ```
 
+<Note>
+
+Codemod `ReactDOM.hydrate` to `ReactDOMClient.hydrateRoot`:
+
+```bash
+npx codemod@latest react/19/replace-reactdom-render
+```
+
+</Note>
 
 #### Removed: `unmountComponentAtNode` {/*removed-unmountcomponentatnode*/}
 
@@ -385,8 +458,18 @@ root.unmount();
 
 For more see `root.unmount()` for [`createRoot`](https://react.dev/reference/react-dom/client/createRoot#root-unmount) and [`hydrateRoot`](https://react.dev/reference/react-dom/client/hydrateRoot#root-unmount).
 
+<Note>
+
+Codemod `unmountComponentAtNode` to `root.unmount`:
+
+```bash
+npx codemod@latest react/19/replace-reactdom-render
+```
+
+</Note>
 
 #### Removed: `ReactDOM.findDOMNode` {/*removed-reactdom-finddomnode*/}
+
 `ReactDOM.findDOMNode` was [deprecated in October 2018 (v16.6.0)](https://legacy.reactjs.org/blog/2018/10/23/react-v-16-6.html#deprecations-in-strictmode). 
 
 We're removing `findDOMNode` because it was a legacy escape hatch that was slow to execute, fragile to refactoring, only returned the first child, and broke abstraction levels (see more [here](https://legacy.reactjs.org/docs/strict-mode.html#warning-about-deprecated-finddomnode-usage)). You can replace `ReactDOM.findDOMNode` with [DOM refs](/learn/manipulating-the-dom-with-refs):

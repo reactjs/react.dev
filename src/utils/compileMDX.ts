@@ -10,7 +10,7 @@ export default async function compileMDX(
   mdx: string,
   path: string | string[],
   params: {[key: string]: any}
-): Promise<{content: string; toc: string; meta: any}> {
+): Promise<{content: string; toc: string; meta: any; languages: any}> {
   const fs = require('fs');
   const {
     prepareMDX,

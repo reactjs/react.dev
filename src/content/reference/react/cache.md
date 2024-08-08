@@ -327,7 +327,7 @@ In general, you should use [`useMemo`](/reference/react/useMemo) for caching a e
 'use client';
 
 function WeatherReport({record}) {
-  const avgTemp = useMemo(() => calculateAvg(record)), record);
+  const avgTemp = useMemo(() => calculateAvg(record), record);
   // ...
 }
 

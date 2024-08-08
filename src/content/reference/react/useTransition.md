@@ -78,8 +78,6 @@ function TabContainer() {
 
 * You can wrap an update into a Transition only if you have access to the `set` function of that state. If you want to start a Transition in response to some prop or a custom Hook value, try [`useDeferredValue`](/reference/react/useDeferredValue) instead.
 
-* The function you pass to `startTransition` must be synchronous. React immediately executes this function, marking all state updates that happen while it executes as Transitions. If you try to perform more state updates later (for example, in a timeout), they won't be marked as Transitions.
-
 * A state update marked as a Transition will be interrupted by other state updates. For example, if you update a chart component inside a Transition, but then start typing into an input while the chart is in the middle of a re-render, React will restart the rendering work on the chart component after handling the input update.
 
 * Transition updates can't be used to control text inputs.
@@ -1622,100 +1620,6 @@ This is because Transitions are non-blocking, but updating an input in response 
 
 ---
 
-### React doesn't treat my state update as a Transition {/*react-doesnt-treat-my-state-update-as-a-transition*/}
-
-When you wrap a state update in a Transition, make sure that it happens *during* the `startTransition` call:
-
-```js
-startTransition(() => {
-  // ✅ Setting state *during* startTransition call
-  setPage('/about');
-});
-```
-
-The function you pass to `startTransition` must be synchronous.
-
-You can't mark an update as a Transition like this:
-
-```js
-startTransition(() => {
-  // ❌ Setting state *after* startTransition call
-  setTimeout(() => {
-    setPage('/about');
-  }, 1000);
-});
-```
-
-Instead, you could do this:
-
-```js
-setTimeout(() => {
-  startTransition(() => {
-    // ✅ Setting state *during* startTransition call
-    setPage('/about');
-  });
-}, 1000);
-```
-
-Similarly, you can't mark an update as a Transition like this:
-
-```js
-startTransition(async () => {
-  await someAsyncFunction();
-  // ❌ Setting state *after* startTransition call
-  setPage('/about');
-});
-```
-
-However, this works instead:
-
-```js
-await someAsyncFunction();
-startTransition(() => {
-  // ✅ Setting state *during* startTransition call
-  setPage('/about');
-});
-```
-
----
-
 ### I want to call `useTransition` from outside a component {/*i-want-to-call-usetransition-from-outside-a-component*/}
 
 You can't call `useTransition` outside a component because it's a Hook. In this case, use the standalone [`startTransition`](/reference/react/startTransition) method instead. It works the same way, but it doesn't provide the `isPending` indicator.
-
----
-
-### The function I pass to `startTransition` executes immediately {/*the-function-i-pass-to-starttransition-executes-immediately*/}
-
-If you run this code, it will print 1, 2, 3:
-
-```js {1,3,6}
-console.log(1);
-startTransition(() => {
-  console.log(2);
-  setPage('/about');
-});
-console.log(3);
-```
-
-**It is expected to print 1, 2, 3.** The function you pass to `startTransition` does not get delayed. Unlike with the browser `setTimeout`, it does not run the callback later. React executes your function immediately, but any state updates scheduled *while it is running* are marked as Transitions. You can imagine that it works like this:
-
-```js
-// A simplified version of how React works
-
-let isInsideTransition = false;
-
-function startTransition(scope) {
-  isInsideTransition = true;
-  scope();
-  isInsideTransition = false;
-}
-
-function setState() {
-  if (isInsideTransition) {
-    // ... schedule a Transition state update ...
-  } else {
-    // ... schedule an urgent state update ...
-  }
-}
-```

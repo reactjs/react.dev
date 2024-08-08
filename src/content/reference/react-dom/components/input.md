@@ -359,7 +359,7 @@ function Form() {
           onChange={e => setAge(e.target.value)}
           type="number"
         />
-        <button onClick={() => setAge(ageAsNumber + 10)}>
+        <button onClick={() => setAge(`${ageAsNumber + 10}`)}>
           Add 10 years
         </button>
 ```
@@ -391,7 +391,7 @@ export default function Form() {
           onChange={e => setAge(e.target.value)}
           type="number"
         />
-        <button onClick={() => setAge(ageAsNumber + 10)}>
+        <button onClick={() => setAge(`${ageAsNumber + 10}`)}>
           Add 10 years
         </button>
       </label>

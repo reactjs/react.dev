@@ -71,10 +71,11 @@ If used with a Server Action, `useActionState` allows the server's response from
 
 #### Returns {/*returns*/}
 
-`useActionState` returns an array with exactly two values:
+`useActionState` returns an array with the following values:
 
 1. The current state. During the first render, it will match the `initialState` you have passed. After the action is invoked, it will match the value returned by the action.
 2. A new action that you can pass as the `action` prop to your `form` component or `formAction` prop to any `button` component within the form.
+3. The pending state of the form you can utilise whilst the action is processing.
 
 #### Caveats {/*caveats*/}
 
@@ -104,10 +105,11 @@ function MyComponent() {
 }
 ```
 
-`useActionState` returns an array with exactly two items:
+`useActionState` returns an array with the following items:
 
 1. The <CodeStep step={1}>current state</CodeStep> of the form, which is initially set to the <CodeStep step={4}>initial state</CodeStep> you provided, and after the form is submitted is set to the return value of the <CodeStep step={3}>action</CodeStep> you provided.
 2. A <CodeStep step={2}>new action</CodeStep> that you pass to `<form>` as its `action` prop.
+3. A <CodeStep step={1}>pending state</CodeStep> that you can utilise whilst your action is processing.
 
 When the form is submitted, the <CodeStep step={3}>action</CodeStep> function that you provided will be called. Its return value will become the new <CodeStep step={1}>current state</CodeStep> of the form.
 
@@ -133,13 +135,13 @@ import { useActionState, useState } from "react";
 import { addToCart } from "./actions.js";
 
 function AddToCartForm({itemID, itemTitle}) {
-  const [message, formAction] = useActionState(addToCart, null);
+  const [message, formAction, isPending] = useActionState(addToCart, null);
   return (
     <form action={formAction}>
       <h2>{itemTitle}</h2>
       <input type="hidden" name="itemID" value={itemID} />
       <button type="submit">Add to Cart</button>
-      {message}
+      {isPending ? "Loading..." : message}
     </form>
   );
 }
@@ -162,6 +164,10 @@ export async function addToCart(prevState, queryData) {
   if (itemID === "1") {
     return "Added to cart";
   } else {
+    // Add a fake delay to make waiting noticeable.
+    await new Promise(resolve => {
+      setTimeout(resolve, 2000);
+    });
     return "Couldn't add to cart: the item is sold out.";
   }
 }

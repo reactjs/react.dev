@@ -340,19 +340,19 @@ export default function CatFriends() {
         <ul ref={listRef}>
           <li>
             <img
-              src="https://placekitten.com/g/200/200"
+              src="https://loremflickr.com/200/200/cat"
               alt="Tom"
             />
           </li>
           <li>
             <img
-              src="https://placekitten.com/g/300/200"
+              src="https://loremflickr.com/300/200/cat"
               alt="Maru"
             />
           </li>
           <li>
             <img
-              src="https://placekitten.com/g/250/200"
+              src="https://loremflickr.com/250/200/cat"
               alt="Jellylorum"
             />
           </li>

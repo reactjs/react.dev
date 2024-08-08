@@ -82,7 +82,7 @@ import {createNoteAction} from './actions';
 function EmptyNote() {
   console.log(createNoteAction);
   // {$$typeof: Symbol.for("react.server.reference"), $$id: 'createNoteAction'}
-  <button onClick={createNoteAction} />
+  return <button onClick={createNoteAction} />
 }
 ```
 

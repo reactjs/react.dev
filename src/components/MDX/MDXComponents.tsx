@@ -403,7 +403,7 @@ function LanguageList({progress}: {progress: TranslationProgress}) {
             <Link href={`https://${code}.react.dev/`}>
               {enName} ({name})
             </Link>{' '}
-            &mdash;{' '}
+            &ndash;{' '}
             <Link href={`https://github.com/reactjs/${code}.react.dev`}>
               Contribute
             </Link>

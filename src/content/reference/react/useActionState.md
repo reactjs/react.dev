@@ -20,7 +20,7 @@ In earlier React Canary versions, this API was part of React DOM and called `use
 `useActionState` is a Hook that allows you to update state based on the result of a form action.
 
 ```js
-const [state, formAction] = useActionState(fn, initialState, permalink?);
+const [state, formAction, isPending] = useActionState(fn, initialState, permalink?);
 ```
 
 </Intro>
@@ -45,11 +45,11 @@ async function increment(previousState, formData) {
 }
 
 function StatefulForm({}) {
-  const [state, formAction] = useActionState(increment, 0);
+  const [state, formAction, isPending] = useActionState(increment, 0);
   return (
     <form>
       {state}
-      <button formAction={formAction}>Increment</button>
+      <button formAction={formAction} disabled={isPending}>Increment</button>
     </form>
   )
 }
@@ -71,10 +71,11 @@ If used with a Server Action, `useActionState` allows the server's response from
 
 #### Returns {/*returns*/}
 
-`useActionState` returns an array with exactly two values:
+`useActionState` returns an array with exactly three values:
 
 1. The current state. During the first render, it will match the `initialState` you have passed. After the action is invoked, it will match the value returned by the action.
 2. A new action that you can pass as the `action` prop to your `form` component or `formAction` prop to any `button` component within the form.
+3. The pending state of the action and any state updates contained.
 
 #### Caveats {/*caveats*/}
 
@@ -89,12 +90,12 @@ If used with a Server Action, `useActionState` allows the server's response from
 
 Call `useActionState` at the top level of your component to access the return value of an action from the last time a form was submitted.
 
-```js [[1, 5, "state"], [2, 5, "formAction"], [3, 5, "action"], [4, 5, "null"], [2, 8, "formAction"]]
+```js [[1, 5, "state"], [2, 5, "formAction"], [3, 5, "isPending"], [4, 5, "action"], [5, 5, "null"], [2, 8, "formAction"]]
 import { useActionState } from 'react';
 import { action } from './actions.js';
 
 function MyComponent() {
-  const [state, formAction] = useActionState(action, null);
+  const [state, formAction, isPending] = useActionState(action, null);
   // ...
   return (
     <form action={formAction}>
@@ -104,14 +105,15 @@ function MyComponent() {
 }
 ```
 
-`useActionState` returns an array with exactly two items:
+`useActionState` returns an array with exactly three items:
 
-1. The <CodeStep step={1}>current state</CodeStep> of the form, which is initially set to the <CodeStep step={4}>initial state</CodeStep> you provided, and after the form is submitted is set to the return value of the <CodeStep step={3}>action</CodeStep> you provided.
+1. The <CodeStep step={1}>current state</CodeStep> of the form, which is initially set to the <CodeStep step={5}>initial state</CodeStep> you provided, and after the form is submitted is set to the return value of the <CodeStep step={4}>action</CodeStep> you provided.
 2. A <CodeStep step={2}>new action</CodeStep> that you pass to `<form>` as its `action` prop.
+3. The <CodeStep step={3}>pending state</CodeStep> of the action and any state updates contained.
 
-When the form is submitted, the <CodeStep step={3}>action</CodeStep> function that you provided will be called. Its return value will become the new <CodeStep step={1}>current state</CodeStep> of the form.
+When the form is submitted, the <CodeStep step={4}>action</CodeStep> function that you provided will be called. The <CodeStep step={3}>pending state</CodeStep> is set to `true` until the action completion. The <CodeStep step={4}>action</CodeStep>'s return value will become the new <CodeStep step={1}>current state</CodeStep> of the form.
 
-The <CodeStep step={3}>action</CodeStep> that you provide will also receive a new first argument, namely the <CodeStep step={1}>current state</CodeStep> of the form. The first time the form is submitted, this will be the <CodeStep step={4}>initial state</CodeStep> you provided, while with subsequent submissions, it will be the return value from the last time the action was called. The rest of the arguments are the same as if `useActionState` had not been used.
+The <CodeStep step={4}>action</CodeStep> that you provide will also receive a new first argument, namely the <CodeStep step={1}>current state</CodeStep> of the form. The first time the form is submitted, this will be the <CodeStep step={5}>initial state</CodeStep> you provided, while with subsequent submissions, it will be the return value from the last time the action was called. The rest of the arguments are the same as if `useActionState` had not been used.
 
 ```js [[3, 1, "action"], [1, 1, "currentState"]]
 function action(currentState, formData) {
@@ -133,12 +135,12 @@ import { useActionState, useState } from "react";
 import { addToCart } from "./actions.js";
 
 function AddToCartForm({itemID, itemTitle}) {
-  const [message, formAction] = useActionState(addToCart, null);
+  const [message, formAction, isPending] = useActionState(addToCart, null);
   return (
     <form action={formAction}>
       <h2>{itemTitle}</h2>
       <input type="hidden" name="itemID" value={itemID} />
-      <button type="submit">Add to Cart</button>
+      <button type="submit" disabled={isPending}>Add to Cart</button>
       {message}
     </form>
   );
@@ -205,12 +207,12 @@ import { useActionState, useState } from "react";
 import { addToCart } from "./actions.js";
 
 function AddToCartForm({itemID, itemTitle}) {
-  const [formState, formAction] = useActionState(addToCart, {});
+  const [formState, formAction, isPending] = useActionState(addToCart, {});
   return (
     <form action={formAction}>
       <h2>{itemTitle}</h2>
       <input type="hidden" name="itemID" value={itemID} />
-      <button type="submit">Add to Cart</button>
+      <button type="submit" disabled={isPending}>Add to Cart</button>
       {formState?.success &&
         <div className="toast">
           Added to cart! Your cart now has {formState.cartSize} items.

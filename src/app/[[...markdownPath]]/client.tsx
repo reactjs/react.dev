@@ -1,7 +1,7 @@
 'use client';
 
 import {Fragment, useMemo} from 'react';
-import {useRouter} from 'next/router';
+import {usePathname} from 'next/navigation';
 import {Page} from 'components/Layout/Page';
 import {MDXComponents} from 'components/MDX/MDXComponents';
 import sidebarHome from '../../sidebarHome.json';
@@ -11,17 +11,16 @@ import sidebarCommunity from '../../sidebarCommunity.json';
 import sidebarBlog from '../../sidebarBlog.json';
 
 function useActiveSection() {
-  const {asPath} = useRouter();
-  const cleanedPath = asPath.split(/[\?\#]/)[0];
-  if (cleanedPath === '/') {
+  const pathname = usePathname() ?? '/';
+  if (pathname === '/') {
     return 'home';
-  } else if (cleanedPath.startsWith('/reference')) {
+  } else if (pathname.startsWith('/reference')) {
     return 'reference';
-  } else if (asPath.startsWith('/learn')) {
+  } else if (pathname.startsWith('/learn')) {
     return 'learn';
-  } else if (asPath.startsWith('/community')) {
+  } else if (pathname.startsWith('/community')) {
     return 'community';
-  } else if (asPath.startsWith('/blog')) {
+  } else if (pathname.startsWith('/blog')) {
     return 'blog';
   } else {
     return 'unknown';

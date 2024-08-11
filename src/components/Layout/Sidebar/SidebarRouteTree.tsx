@@ -5,7 +5,7 @@
 import {useRef, useLayoutEffect, Fragment} from 'react';
 
 import cn from 'classnames';
-import {useRouter} from 'next/router';
+import {usePathname} from 'next/navigation';
 import {SidebarLink} from './SidebarLink';
 import {useCollapse} from 'react-collapsed';
 import usePendingRoute from 'hooks/usePendingRoute';
@@ -76,7 +76,7 @@ export function SidebarRouteTree({
   routeTree,
   level = 0,
 }: SidebarRouteTreeProps) {
-  const slug = useRouter().asPath.split(/[\?\#]/)[0];
+  const pathname = usePathname() ?? '/';
   const pendingRoute = usePendingRoute();
   const currentRoutes = routeTree.routes as RouteItem[];
   return (
@@ -94,7 +94,7 @@ export function SidebarRouteTree({
           },
           index
         ) => {
-          const selected = slug === path;
+          const selected = pathname === path;
           let listItem = null;
           if (!path || heading) {
             // if current route item has no path and children treat it as an API sidebar heading

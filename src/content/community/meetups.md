@@ -117,6 +117,9 @@ Do you have a local React.js meetup? Add it here! (Please keep the list alphabet
 ## Italy {/*italy*/}
 * [Milan](https://www.meetup.com/React-JS-Milano/)
 
+## Japan {/*japan*/}
+* [Osaka](https://react-osaka.connpass.com/)
+
 ## Kenya {/*kenya*/}
 * [Nairobi - Reactdevske](https://kommunity.com/reactjs-developer-community-kenya-reactdevske)
 

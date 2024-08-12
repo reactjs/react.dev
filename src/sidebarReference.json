@@ -391,6 +391,18 @@
       ]
     },
     {
+      "title": "react-markup",
+      "path": "/reference/react-markup",
+      "canary": true,
+      "routes": [
+        {
+          "title": "renderToMarkup",
+          "path": "/reference/react-markup/renderToMarkup",
+          "canary": true
+        }
+      ]
+    },
+    {
       "hasSectionHeader": true,
       "sectionHeader": "Legacy APIs"
     },

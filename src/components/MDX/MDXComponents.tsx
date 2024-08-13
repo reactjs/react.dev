@@ -15,6 +15,7 @@ import {H1, H2, H3, H4, H5} from './Heading';
 import InlineCode from './InlineCode';
 import Intro from './Intro';
 import BlogCard from './BlogCard';
+import {CareerApply} from './CareerApply';
 import CareerCard from './CareerCard';
 import Link from './Link';
 import {PackageImport} from './PackageImport';
@@ -33,7 +34,6 @@ import {TocContext} from './TocContext';
 import type {Toc, TocItem} from './TocContext';
 import {TeamMember} from './TeamMember';
 import {LanguagesContext} from './LanguagesContext';
-import {CareerApply} from './CareerApply';
 import {finishedTranslations} from 'utils/finishedTranslations';
 
 import ErrorDecoder from './ErrorDecoder';

@@ -3,8 +3,7 @@
   "path": "/careers",
   "routes": [
     {
-      "hasSectionHeader": true,
-      "sectionHeader": "STAY INFORMED"
+      "hasSectionHeader": true
     },
     {
       "title": "Careers",

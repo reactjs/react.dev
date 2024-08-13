@@ -1,8 +1,6 @@
 ---
 title: "Engineering Manager, Developer Experience"
-author: 
 date: 2024/02/15
-description: 
 ---
 
 Location: Menlo Park, Seattle, or Remote
@@ -14,7 +12,7 @@ As this is a new space for us, we are looking for an EM excited about React, pas
 
 React's developer experience team is a part of the React Technologies org, responsible for development of React and React Native within Meta and for the larger Open Source community.
 
-React's developer experience ranges from internal workflows like VSCode and OnDemand integrations, as well as supporting the developer experience in our open source community.  Examples of the team's responsibilities are: how developers create new applications; upgrade existing ones; and debug and profile your code. This team's work spans beyond technical deliverables, but also by building relationships, influencing, and collaborating with industry partners like Microsoft, Expo, and Vercel. 
+React's developer experience ranges from internal workflows like VSCode and OnDemand integrations, as well as supporting the developer experience in our open source community.  Examples of the team's responsibilities are: how developers create new applications; upgrade existing ones; and debug and profile your code. This team's work spans beyond technical deliverables, but also by building relationships, influencing, and collaborating with industry partners like Microsoft, Expo, and Vercel.
 
 ## Responsibilities {/*responsibilities*/}
 

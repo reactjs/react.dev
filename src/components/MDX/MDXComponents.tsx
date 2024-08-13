@@ -433,9 +433,7 @@ function YouTubeIframe(props: any) {
 
 function Image(props: any) {
   const {alt, ...rest} = props;
-  {
-    /* eslint-disable-next-line @next/next/no-img-element */
-  }
+  {/* eslint-disable-next-line @next/next/no-img-element */}
   return <img alt={alt} className="max-w-[calc(min(700px,100%))]" {...rest} />;
 }
 

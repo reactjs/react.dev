@@ -502,6 +502,7 @@ export function HomeContent() {
 
           <div className="mt-20 px-5 lg:px-0 mb-6 max-w-4xl text-center text-opacity-80">
             <div className="uwu-visible flex justify-center">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 alt="logo by @sawaratsuki1004"
                 title="logo by @sawaratsuki1004"
@@ -793,6 +794,7 @@ const CommunityImages = memo(function CommunityImages({isLazy}) {
                 ? 'rotate-2 group-hover:rotate-[-1deg] group-hover:scale-110 group-hover:shadow-lg lg:group-hover:shadow-2xl'
                 : 'group-hover:rotate-1 group-hover:scale-110 group-hover:shadow-lg lg:group-hover:shadow-2xl rotate-[-2deg]'
             )}>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               loading={isLazy ? 'lazy' : 'eager'}
               src={src}
@@ -915,6 +917,7 @@ function Example1() {
           isFromPackageImport={false}
           noShadow={true}
           noMargin={true}>
+          {/* eslint-disable-next-line react/no-unknown-property  */}
           <div meta={meta}>{`function Video({ video }) {
   return (
     <div>
@@ -987,6 +990,7 @@ function Example2() {
           isFromPackageImport={false}
           noShadow={true}
           noMargin={true}>
+          {/* eslint-disable-next-line react/no-unknown-property  */}
           <div meta={meta}>{`function VideoList({ videos, emptyHeading }) {
   const count = videos.length;
   let heading = emptyHeading;
@@ -1078,6 +1082,7 @@ function Example3() {
           isFromPackageImport={false}
           noShadow={true}
           noMargin={true}>
+          {/* eslint-disable-next-line react/no-unknown-property  */}
           <div meta={meta}>{`import { useState } from 'react';
 
 function SearchableVideoList({ videos }) {
@@ -1149,6 +1154,7 @@ function Example4() {
           isFromPackageImport={false}
           noShadow={true}
           noMargin={true}>
+          {/* eslint-disable-next-line react/no-unknown-property  */}
           <div meta={meta}>{`import { db } from './database.js';
 import { Suspense } from 'react';
 
@@ -1553,6 +1559,7 @@ function Cover({background, children}) {
       <div className="absolute inset-0 px-4 py-2 flex items-end bg-gradient-to-t from-black/40 via-black/0">
         {children}
       </div>
+      {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         src={background}
         width={500}
@@ -1630,6 +1637,7 @@ function Thumbnail({video}) {
         <>
           <div className="transition-opacity mt-2.5 -space-x-2 flex flex-row w-full justify-center">
             {image.speakers.map((src, i) => (
+              // eslint-disable-next-line @next/next/no-img-element
               <img
                 key={i}
                 className="h-8 w-8 border-2 shadow-md border-gray-70 object-cover rounded-full"

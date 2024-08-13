@@ -5,16 +5,23 @@
 import * as React from 'react';
 import Link from 'next/link';
 
-export interface BlogCardProps {
+export interface CareerCardProps {
   title?: string;
   badge?: boolean;
+  location?: string;
   icon?: string;
-  date?: string;
   url?: string;
   children?: React.ReactNode;
 }
 
-function BlogCard({title, badge, date, icon, url, children}: BlogCardProps) {
+function CareerCard({
+  title,
+  badge,
+  location,
+  icon,
+  url,
+  children,
+}: CareerCardProps) {
   return (
     <Link
       href={url as string}
@@ -56,6 +63,7 @@ function BlogCard({title, badge, date, icon, url, children}: BlogCardProps) {
                 />
               </svg>
             )}
+            {location}
             {badge ? (
               <div className="h-fit px-1 bg-highlight dark:bg-highlight-dark rounded uppercase text-link dark:text-link-dark font-bold tracking-wide text-xs whitespace-nowrap">
                 New
@@ -76,4 +84,4 @@ function BlogCard({title, badge, date, icon, url, children}: BlogCardProps) {
   );
 }
 
-export default BlogCard;
+export default CareerCard;

@@ -33,6 +33,7 @@ import {TocContext} from './TocContext';
 import type {Toc, TocItem} from './TocContext';
 import {TeamMember} from './TeamMember';
 import {LanguagesContext} from './LanguagesContext';
+import {CareerApply} from './CareerApply';
 import {finishedTranslations} from 'utils/finishedTranslations';
 
 import ErrorDecoder from './ErrorDecoder';
@@ -453,6 +454,7 @@ export const MDXComponents = {
   BlogCard,
   CareerCard,
   code: InlineCode,
+  CareerApply,
   pre: CodeBlock,
   CodeDiagram,
   ConsoleBlock,

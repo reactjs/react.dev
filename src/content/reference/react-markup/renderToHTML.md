@@ -30,7 +30,7 @@ You can also use it during Client-Side Rendering but only without Server Compone
 When a `<html>` tag is rendered, `renderToHTML` will automatically add `<!DOCTYPE html>` doctype.
 
 ```js
-import { experimental_renderToHTML as renderToHTML } from 'react-dom/server';
+import { experimental_renderToHTML as renderToHTML } from 'react-markup';
 
 const markup = await renderToHTML(<App />);
 ```

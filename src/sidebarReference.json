@@ -396,8 +396,8 @@
       "canary": true,
       "routes": [
         {
-          "title": "renderToMarkup",
-          "path": "/reference/react-markup/renderToMarkup",
+          "title": "renderToHTML",
+          "path": "/reference/react-markup/renderToHTML",
           "canary": true
         }
       ]

@@ -1,14 +1,15 @@
 ---
-title: renderToMarkup
+title: renderToHTML
+canary: true
 ---
 
 
 <Intro>
 
-`renderToMarkup` renders a React tree to non-interactive HTML.
+`renderToHTML` renders a React tree to non-interactive HTML.
 
 ```js
-const stream = renderToMarkup(reactNode, options?)
+const stream = renderToHTML(reactNode, options?)
 ```
 
 </Intro>
@@ -19,14 +20,19 @@ const stream = renderToMarkup(reactNode, options?)
 
 ## Reference {/*reference*/}
 
-### `renderToMarkup(reactNode, options?)` {/*renderToMarkup*/}
+### `renderToHTML(reactNode, options?)` {/*rendertohtml*/}
 
-You can call `renderToMarkup` in a React Server environment (e.g. in a Server Action) to render a non-interactive tree of React components to HTML.
+You can call `renderToHTML` to render a non-interactive tree of React components to HTML.
+By default, it supports shared components and built-in components.
+Server Components are only allowed if used in a React Server environment (e.g. in Server Actions).
+You can also use it during Client-Side Rendering but only without Server Components.
+
+When a `<html>` tag is rendered, `renderToHTML` will automatically add `<!DOCTYPE html>` doctype.
 
 ```js
-import { renderToMarkup } from 'react-dom/server';
+import { experimental_renderToHTML as renderToHTML } from 'react-dom/server';
 
-const markup = await renderToMarkup(<App />);
+const markup = await renderToHTML(<App />);
 ```
 
 #### Parameters {/*parameters*/}
@@ -40,11 +46,11 @@ const markup = await renderToMarkup(<App />);
 
 #### Returns {/*returns*/}
 
-`renderToMarkup` returns a Promise that will resolve with the HTML string of the rendered React tree.
+`renderToHTML` returns a Promise that will resolve with the HTML string of the rendered React tree.
 
 #### Caveats {/*caveats*/}
 
-* Will throw when Client Components (e.g. `useState` or `useEffect`) are used.
+* Will throw when Client APIs (e.g. `useState` or `useEffect`) are used.
 
 ---
 
@@ -52,16 +58,16 @@ const markup = await renderToMarkup(<App />);
 
 ### Rendering a React tree as an Email {/*rendering-a-react-tree-as-an-email*/}
 
-Await the call of `renderToMarkup` :
+Await the call of `renderToHTML` :
 
 ```js {7}
-import { renderToMarkup } from 'react-markup';
+import { experimental_renderToHTML as renderToHTML } from 'react-markup';
 import EmailTemplate from './my-email-template-component.js'
 
 async function action(email, name) {
   "use server";
   // ... in your server, e.g. a Server Action...
-  const htmlString = await renderToMarkup(<EmailTemplate name={name} />);
+  const htmlString = await renderToHTML(<EmailTemplate name={name} />);
   // ... send e-mail using some e-mail provider
   await sendEmail({ to: email, contentType: 'text/html', body: htmlString });
 }

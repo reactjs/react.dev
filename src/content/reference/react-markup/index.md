@@ -13,4 +13,4 @@ It cannot use Client Components and does not hydrate. It is intended to be paire
 
 These APIs can be imported from the React Server environment (e.g. in Server Actions):
 
-* [`renderToMarkup`](/reference/react-markup/renderToMarkup) renders a non-interactive React tree with support for Server Components but not Client Components. 
+* [`renderToHTML`](/reference/react-markup/renderToHTML) renders a non-interactive React tree with support for Server Components but not Client Components. 

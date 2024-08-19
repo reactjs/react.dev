@@ -202,8 +202,8 @@ function Button({ show, children }) {
 ```json package.json hidden
 {
   "dependencies": {
-    "react": "18.3.0-canary-9377e1010-20230712",
-    "react-dom": "18.3.0-canary-9377e1010-20230712",
+    "react": "canary",
+    "react-dom": "canary",
     "react-scripts": "^5.0.0"
   },
   "main": "/index.js"
@@ -314,8 +314,8 @@ root.render(
 ```json package.json hidden
 {
   "dependencies": {
-    "react": "18.3.0-canary-9377e1010-20230712",
-    "react-dom": "18.3.0-canary-9377e1010-20230712",
+    "react": "canary",
+    "react-dom": "canary",
     "react-scripts": "^5.0.0"
   },
   "main": "/index.js"
@@ -434,8 +434,8 @@ root.render(
 ```json package.json hidden
 {
   "dependencies": {
-    "react": "18.3.0-canary-9377e1010-20230712",
-    "react-dom": "18.3.0-canary-9377e1010-20230712",
+    "react": "canary",
+    "react-dom": "canary",
     "react-scripts": "^5.0.0",
     "react-error-boundary": "4.0.3"
   },

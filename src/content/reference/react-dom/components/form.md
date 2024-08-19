@@ -80,8 +80,8 @@ export default function Search() {
 ```json package.json hidden
 {
   "dependencies": {
-    "react": "18.3.0-canary-6db7f4209-20231021",
-    "react-dom": "18.3.0-canary-6db7f4209-20231021",
+    "react": "canary",
+    "react-dom": "canary",
     "react-scripts": "^5.0.0"
   },
   "main": "/index.js",
@@ -262,8 +262,8 @@ export async function deliverMessage(message) {
 ```json package.json hidden
 {
   "dependencies": {
-    "react": "18.3.0-canary-6db7f4209-20231021",
-    "react-dom": "18.3.0-canary-6db7f4209-20231021",
+    "react": "canary",
+    "react-dom": "canary",
     "react-scripts": "^5.0.0"
   },
   "main": "/index.js",
@@ -306,8 +306,8 @@ export default function Search() {
 ```json package.json hidden
 {
   "dependencies": {
-    "react": "18.3.0-canary-6db7f4209-20231021",
-    "react-dom": "18.3.0-canary-6db7f4209-20231021",
+    "react": "canary",
+    "react-dom": "canary",
     "react-scripts": "^5.0.0",
     "react-error-boundary": "4.0.3"
   },
@@ -423,8 +423,8 @@ export default function Search() {
 ```json package.json hidden
 {
   "dependencies": {
-    "react": "18.3.0-canary-6db7f4209-20231021",
-    "react-dom": "18.3.0-canary-6db7f4209-20231021",
+    "react": "canary",
+    "react-dom": "canary",
     "react-scripts": "^5.0.0"
   },
   "main": "/index.js",

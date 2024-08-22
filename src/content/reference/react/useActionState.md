@@ -7,7 +7,7 @@ title: useActionState
 `useActionState` is a Hook that allows you to update state based on the result of a form action.
 
 ```js
-const [state, formAction] = useActionState(fn, initialState, permalink?);
+const [state, formAction, isPending] = useActionState(fn, initialState, permalink?);
 ```
 
 </Intro>
@@ -39,7 +39,7 @@ async function increment(previousState, formData) {
 }
 
 function StatefulForm({}) {
-  const [state, formAction] = useActionState(increment, 0);
+  const [state, formAction, isPending] = useActionState(increment, 0);
   return (
     <form>
       {state}
@@ -98,10 +98,11 @@ function MyComponent() {
 }
 ```
 
-`useActionState` returns an array with exactly two items:
+`useActionState` returns an array with exactly three items:
 
 1. The <CodeStep step={1}>current state</CodeStep> of the form, which is initially set to the <CodeStep step={4}>initial state</CodeStep> you provided, and after the form is submitted is set to the return value of the <CodeStep step={3}>action</CodeStep> you provided.
 2. A <CodeStep step={2}>new action</CodeStep> that you pass to `<form>` as its `action` prop.
+3. A boolean <CodeStep step={5}>isPending</CodeStep>. Will be false when action is complete or not taken; it will be true when pending.
 
 When the form is submitted, the <CodeStep step={3}>action</CodeStep> function that you provided will be called. Its return value will become the new <CodeStep step={1}>current state</CodeStep> of the form.
 

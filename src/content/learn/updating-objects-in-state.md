@@ -57,6 +57,7 @@ This example holds an object in state to represent the current pointer position.
 
 ```js
 import { useState } from 'react';
+
 export default function MovingDot() {
   const [position, setPosition] = useState({
     x: 0,
@@ -127,6 +128,7 @@ Notice how the red dot now follows your pointer when you touch or hover over the
 
 ```js
 import { useState } from 'react';
+
 export default function MovingDot() {
   const [position, setPosition] = useState({
     x: 0,

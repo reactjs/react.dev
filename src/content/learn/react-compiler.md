@@ -282,6 +282,17 @@ Using the experimental option ensures support for the React Compiler in:
 - Webpack (default)
 - Turbopack (opt-in through `--turbo`)
 
+### Waku {/*usage-with-waku*/}
+
+You can enable the React Compiler by easily configuring the `reactCompiler` option in `waku.config.ts`:
+
+```js {4}
+// waku.config.ts
+/** @type {import('waku/config').Config} */
+export default {
+  reactCompiler: false,
+};
+```
 
 ### Remix {/*usage-with-remix*/}
 Install `vite-plugin-babel`, and add the compiler's Babel plugin to it:

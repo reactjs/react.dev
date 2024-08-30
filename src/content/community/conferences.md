@@ -60,6 +60,11 @@ October 25 & 28, 2024. In-person in London, UK + online (hybrid event)
 
 [Website](https://reactadvanced.com/) - [Twitter](https://x.com/reactadvanced)
 
+### React Summit US 2024 {/*react-summit-us-2024*/}
+November 19 & 22, 2024. In-person in New York, US + remote first interactivity (hybrid event)
+
+[Website](https://reactsummit.com/) - [Twitter](https://twitter.com/reactsummit) - [Videos](https://portal.gitnation.org/)
+
 ### React Africa 2024 {/*react-africa-2024*/}
 November 29, 2024. In-person in Casablanca, Morocco (hybrid event)
 

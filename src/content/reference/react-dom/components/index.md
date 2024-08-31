@@ -34,7 +34,7 @@ They are special in React because passing the `value` prop to them makes them *[
 
 ## Resource and Metadata Components {/*resource-and-metadata-components*/}
 
-These bulit-in browser components let you load external resources or annotate the document with metadata:
+These built-in browser components let you load external resources or annotate the document with metadata:
 
 * [`<link>`](/reference/react-dom/components/link)
 * [`<meta>`](/reference/react-dom/components/meta)

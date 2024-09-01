@@ -226,7 +226,7 @@ By caching a long-running data fetch, you can kick off asynchronous work prior t
 ```jsx [[2, 6, "await getUser(id)"], [1, 17, "getUser(id)"]]
 const getUser = cache(async (id) => {
   return await db.user.query(id);
-})
+});
 
 async function Profile({id}) {
   const user = await getUser(id);
@@ -327,7 +327,7 @@ In general, you should use [`useMemo`](/reference/react/useMemo) for caching a e
 'use client';
 
 function WeatherReport({record}) {
-  const avgTemp = useMemo(() => calculateAvg(record)), record);
+  const avgTemp = useMemo(() => calculateAvg(record), record);
   // ...
 }
 

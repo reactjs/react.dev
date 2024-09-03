@@ -1,5 +1,10 @@
 {
   "compilerOptions": {
+    "paths": {
+      "^components/*": ["src/components/*"],
+      "^hooks/*": ["src/hooks/*"],
+      "^siteConfig*": ["src/siteConfig.js"]
+    },
     "target": "es5",
     "lib": [
       "dom",
@@ -27,7 +32,9 @@
   "include": [
     "next-env.d.ts",
     "src/**/*.ts",
-    "src/**/*.tsx"
+    "src/**/*.test.ts",
+    "src/**/*.tsx",
+    "src/**/*.test.tsx"
   ],
   "exclude": [
     "node_modules"

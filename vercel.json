@@ -15,6 +15,11 @@
       "permanent": true
     },
     {
+      "source": "/docs/thinking-in-react",
+      "destination": "/learn/thinking-in-react",
+      "permanent": false
+    },
+    {
       "source": "/learn/meet-the-team",
       "destination": "/community/team",
       "permanent": true

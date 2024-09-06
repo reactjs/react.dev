@@ -10,26 +10,6 @@ Do you know of a local React.js conference? Add it here! (Please keep the list c
 
 ## Upcoming Conferences {/*upcoming-conferences*/}
 
-### React Nexus 2024 {/*react-nexus-2024*/}
-July 04 & 05, 2024. Bangalore, India (In-person event)
-
-[Website](https://reactnexus.com/) - [Twitter](https://twitter.com/ReactNexus) - [Linkedin](https://www.linkedin.com/company/react-nexus) - [YouTube](https://www.youtube.com/reactify_in)
-
-### Chain React 2024 {/*chain-react-2024*/}
-July 17-19, 2024. In-person in Portland, OR, USA
-
-[Website](https://chainreactconf.com) - [Twitter](https://twitter.com/ChainReactConf)
-
-### The Geek Conf 2024 {/*the-geek-conf-2024*/}
-July 25, 2024. In-person in Berlin, Germany + remote (hybrid event)
-
-[Website](https://thegeekconf.com) - [Twitter](https://twitter.com/thegeekconf)
-
-### React Rally 2024 🐙 {/*react-rally-2024*/}
-August 12-13, 2024. Park City, UT, USA
-
-[Website](https://reactrally.com) - [Twitter](https://twitter.com/ReactRally) - [YouTube](https://www.youtube.com/channel/UCXBhQ05nu3L1abBUGeQ0ahw)
-
 ### React Universe Conf 2024 {/*react-universe-conf-2024*/}
 September 5-6, 2024. Wrocław, Poland.
 
@@ -66,6 +46,26 @@ November 29, 2024. In-person in Casablanca, Morocco (hybrid event)
 [Website](https://react-africa.com/) - [Twitter](https://x.com/BeJS_)
 
 ## Past Conferences {/*past-conferences*/}
+
+### React Rally 2024 🐙 {/*react-rally-2024*/}
+August 12-13, 2024. Park City, UT, USA
+
+[Website](https://reactrally.com) - [Twitter](https://twitter.com/ReactRally) - [YouTube](https://www.youtube.com/channel/UCXBhQ05nu3L1abBUGeQ0ahw)
+
+### The Geek Conf 2024 {/*the-geek-conf-2024*/}
+July 25, 2024. In-person in Berlin, Germany + remote (hybrid event)
+
+[Website](https://thegeekconf.com) - [Twitter](https://twitter.com/thegeekconf)
+
+### Chain React 2024 {/*chain-react-2024*/}
+July 17-19, 2024. In-person in Portland, OR, USA
+
+[Website](https://chainreactconf.com) - [Twitter](https://twitter.com/ChainReactConf)
+
+### React Nexus 2024 {/*react-nexus-2024*/}
+July 04 & 05, 2024. Bangalore, India (In-person event)
+
+[Website](https://reactnexus.com/) - [Twitter](https://twitter.com/ReactNexus) - [Linkedin](https://www.linkedin.com/company/react-nexus) - [YouTube](https://www.youtube.com/reactify_in)
 
 ### React Summit 2024 {/*react-summit-2024*/}
 June 14 & 18, 2024. In-person in Amsterdam, Netherlands + remote (hybrid event)

@@ -340,6 +340,9 @@ export function Footer() {
             Code of Conduct
           </FooterLink>
           <FooterLink href="/community/team">Meet the Team</FooterLink>
+          <FooterLink href="community/contributing/how-to-contribute">
+            Contribute to React
+          </FooterLink>
           <FooterLink href="/community/docs-contributors">
             Docs Contributors
           </FooterLink>

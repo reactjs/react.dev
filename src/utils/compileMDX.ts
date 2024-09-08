@@ -3,7 +3,7 @@ import {MDXComponents} from 'components/MDX/MDXComponents';
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // ~~~~ IMPORTANT: BUMP THIS IF YOU CHANGE ANY CODE BELOW ~~~
-const DISK_CACHE_BREAKER = 9;
+const DISK_CACHE_BREAKER = 10;
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 export default async function compileMDX(
@@ -144,7 +144,10 @@ export default async function compileMDX(
 
   // Serialize a server React tree node to JSON.
   function stringifyNodeOnServer(key: unknown, val: any) {
-    if (val != null && val.$$typeof === Symbol.for('react.element')) {
+    if (
+      val != null &&
+      val.$$typeof === Symbol.for('react.transitional.element')
+    ) {
       // Remove fake MDX props.
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const {mdxType, originalType, parentName, ...cleanProps} = val.props;

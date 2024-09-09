@@ -283,7 +283,7 @@ export function Footer() {
           <div
             className="text-xs text-left rtl:text-right mt-2 pe-0.5"
             dir="ltr">
-            &copy;{new Date().getFullYear()}
+            Copyright &copy; Meta Platforms, Inc
           </div>
           <div
             className="uwu-visible text-xs cursor-pointer hover:text-link hover:dark:text-link-dark hover:underline"

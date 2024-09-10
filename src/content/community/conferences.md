@@ -10,6 +10,11 @@ Do you know of a local React.js conference? Add it here! (Please keep the list c
 
 ## Upcoming Conferences {/*upcoming-conferences*/}
 
+### App.js Conf 2025 {/*appjs-conf-2025*/}
+May 28 - 30, 2025. In-person in Kraków, Poland + remote
+
+[Website](https://appjs.co) - [Twitter](https://twitter.com/appjsconf)
+
 ### React Universe Conf 2024 {/*react-universe-conf-2024*/}
 September 5-6, 2024. Wrocław, Poland.
 

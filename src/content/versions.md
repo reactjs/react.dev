@@ -19,7 +19,7 @@ You can find an archive of previous major versions below.
 
 - [18.react.dev](https://18.react.dev) {/*docs-18*/}
 - [17.react.dev](https://17.react.dev) {/*docs-17*/}
-- [16.react.dev](https://16.react.dev) {/*docs-16*/}
+- [16.react.dev](https://legacy.reactjs.org/blog/2017/09/26/react-v16.0.html) {/*docs-16*/}
 - [15.react.dev](https://15.react.dev) {/*docs-15*/}
 
 <Note>

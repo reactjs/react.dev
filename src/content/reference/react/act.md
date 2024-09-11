@@ -127,7 +127,7 @@ it.only('can render and update a counter', async () => {
   document.body.appendChild(container);
   
   await act( async () => {
-    ReactDOMClient.createRoot(container).render(<Counter />);
+    ReactDOM.createRoot(container).render(<Counter />);
   });
   
   // ✅ Dispatch the event inside act().

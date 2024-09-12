@@ -41,4 +41,5 @@ public/fonts/**/Optimistic_*.woff2
 public/rss.xml
 
 /.conductor/
+/.codeapi/
 /.cache/

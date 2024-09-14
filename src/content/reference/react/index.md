@@ -15,7 +15,7 @@ The React reference documentation is broken down into functional subsections:
 Programmatic React features:
 
 * [Hooks](/reference/react/hooks) - Use different React features from your components.
-* [Components](/reference/react/components) - Documents built-in components that you can use in your JSX.
+* [Components](/reference/react/components) - Built-in components that you can use in your JSX.
 * [APIs](/reference/react/apis) - APIs that are useful for defining components.
 * [Directives](/reference/rsc/directives) - Provide instructions to bundlers compatible with React Server Components.
 

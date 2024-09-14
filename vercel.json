@@ -25,6 +25,11 @@
       "permanent": false
     },
     {
+      "source": "/docs/lists-and-keys",
+      "destination": "/learn/rendering-lists#keeping-list-items-in-order-with-key",
+      "permanent": false
+    },
+    {
       "source": "/link/invalid-hook-call",
       "destination": "/warnings/invalid-hook-call-warning",
       "permanent": false

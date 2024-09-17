@@ -35,6 +35,11 @@ October 18, 2024. In-person in Brussels, Belgium (hybrid event)
 
 [Website](https://www.react.brussels/) - [Twitter](https://x.com/BrusselsReact)
 
+### reactjsday 2024 {/*reactjsday-2024*/}
+October 25, 2024. In-person in Verona, Italy + online (hybrid event)
+
+[Website](https://2024.reactjsday.it/) - [Twitter](https://x.com/reactjsday) - [Facebook](https://www.facebook.com/GrUSP/) - [YouTube](https://www.youtube.com/c/grusp)
+
 ### React Advanced London 2024 {/*react-advanced-london-2024*/}
 October 25 & 28, 2024. In-person in London, UK + online (hybrid event)
 

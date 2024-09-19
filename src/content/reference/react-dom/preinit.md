@@ -13,7 +13,7 @@ title: preinit
 `preinit` lets you eagerly fetch and evaluate a stylesheet or external script.
 
 ```js
-preinit("https://example.com/script.js", {as: "style"});
+preinit("https://example.com/script.js", {as: "script"});
 ```
 
 </Intro>

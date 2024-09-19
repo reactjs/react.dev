@@ -70,7 +70,13 @@ We expect most apps will not be affected since the transform is enabled in most 
 To install the latest version of React and React DOM:
 
 ```bash
-npm install react@rc react-dom@rc
+npm install --save-exact react@rc react-dom@rc
+```
+
+Or, if you're using Yarn:
+
+```bash
+yarn add --exact react@rc react-dom@rc
 ```
 
 If you're using TypeScript, you also need to update the types. Once React 19 is released as stable, you can install the types as usual from `@types/react` and `@types/react-dom`.  Until the stable release, the types are available in different packages which need to be enforced in your `package.json`:
@@ -405,7 +411,7 @@ root.render(<App />);
 
 <Note>
 
-Codemod `ReactDOM.render` to `ReactDOM.createRoot`:
+Codemod `ReactDOM.render` to `ReactDOMClient.createRoot`:
 
 ```bash
 npx codemod@latest react/19/replace-reactdom-render
@@ -427,6 +433,15 @@ import {hydrateRoot} from 'react-dom/client';
 hydrateRoot(document.getElementById('root'), <App />);
 ```
 
+<Note>
+
+Codemod `ReactDOM.hydrate` to `ReactDOMClient.hydrateRoot`:
+
+```bash
+npx codemod@latest react/19/replace-reactdom-render
+```
+
+</Note>
 
 #### Removed: `unmountComponentAtNode` {/*removed-unmountcomponentatnode*/}
 
@@ -443,8 +458,18 @@ root.unmount();
 
 For more see `root.unmount()` for [`createRoot`](https://react.dev/reference/react-dom/client/createRoot#root-unmount) and [`hydrateRoot`](https://react.dev/reference/react-dom/client/hydrateRoot#root-unmount).
 
+<Note>
+
+Codemod `unmountComponentAtNode` to `root.unmount`:
+
+```bash
+npx codemod@latest react/19/replace-reactdom-render
+```
+
+</Note>
 
 #### Removed: `ReactDOM.findDOMNode` {/*removed-reactdom-finddomnode*/}
+
 `ReactDOM.findDOMNode` was [deprecated in October 2018 (v16.6.0)](https://legacy.reactjs.org/blog/2018/10/23/react-v-16-6.html#deprecations-in-strictmode). 
 
 We're removing `findDOMNode` because it was a legacy escape hatch that was slow to execute, fragile to refactoring, only returned the first child, and broke abstraction levels (see more [here](https://legacy.reactjs.org/docs/strict-mode.html#warning-about-deprecated-finddomnode-usage)). You can replace `ReactDOM.findDOMNode` with [DOM refs](/learn/manipulating-the-dom-with-refs):

@@ -121,7 +121,7 @@ In addition to these docs, we recommend checking the [React Compiler Working Gro
 Prior to installing the compiler, you can first check to see if your codebase is compatible:
 
 <TerminalBlock>
-npx react-compiler-healthcheck@latest
+npx react-compiler-healthcheck@experimental
 </TerminalBlock>
 
 This script will:
@@ -143,7 +143,7 @@ Found no usage of incompatible libraries.
 React Compiler also powers an eslint plugin. The eslint plugin can be used **independently** of the compiler, meaning you can use the eslint plugin even if you don't use the compiler.
 
 <TerminalBlock>
-npm install eslint-plugin-react-compiler
+npm install eslint-plugin-react-compiler@experimental
 </TerminalBlock>
 
 Then, add it to your eslint config:
@@ -203,7 +203,7 @@ If you're starting a new project, you can enable the compiler on your entire cod
 ### Babel {/*usage-with-babel*/}
 
 <TerminalBlock>
-npm install babel-plugin-react-compiler
+npm install babel-plugin-react-compiler@experimental
 </TerminalBlock>
 
 The compiler includes a Babel plugin which you can use in your build pipeline to run the compiler.
@@ -258,7 +258,7 @@ Next.js has an experimental configuration to enable the React Compiler. It autom
 - Install `babel-plugin-react-compiler`
 
 <TerminalBlock>
-npm install next@canary babel-plugin-react-compiler
+npm install next@canary babel-plugin-react-compiler@experimental
 </TerminalBlock>
 
 Then configure the experimental option in `next.config.js`:
@@ -341,7 +341,7 @@ function reactCompilerLoader(sourceCode, sourceMap) {
 
   this.callback(
     null,
-    result.code
+    result.code,
     result.map === null ? undefined : result.map
   );
 }
@@ -351,11 +351,19 @@ module.exports = reactCompilerLoader;
 
 ### Expo {/*usage-with-expo*/}
 
-Expo uses Babel via Metro, so refer to the [Usage with Babel](#usage-with-babel) section for installation instructions.
+Please refer to [Expo's docs](https://docs.expo.dev/preview/react-compiler/) to enable and use the React Compiler in Expo apps.
 
 ### Metro (React Native) {/*usage-with-react-native-metro*/}
 
 React Native uses Babel via Metro, so refer to the [Usage with Babel](#usage-with-babel) section for installation instructions.
+
+### Rspack {/*usage-with-rspack*/}
+
+Please refer to [Rspack's docs](https://rspack.dev/guide/tech/react#react-compiler) to enable and use the React Compiler in Rspack apps.
+
+### Rsbuild {/*usage-with-rsbuild*/}
+
+Please refer to [Rsbuild's docs](https://rsbuild.dev/guide/framework/react#react-compiler) to enable and use the React Compiler in Rsbuild apps.
 
 ## Troubleshooting {/*troubleshooting*/}
 

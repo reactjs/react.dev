@@ -11,10 +11,10 @@ jobs:
   analyze:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       - name: Set up node
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v3
         with:
           node-version: '20.x'
 
@@ -22,7 +22,7 @@ jobs:
         uses: bahmutov/npm-install@v1.7.10
 
       - name: Restore next build
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         id: restore-build-cache
         env:
           cache-name: cache-next-build
@@ -41,7 +41,7 @@ jobs:
         run: npx -p nextjs-bundle-analysis@0.5.0 report
 
       - name: Upload bundle
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           path: .next/analyze/__bundle_analysis.json
           name: bundle_analysis.json
@@ -73,7 +73,7 @@ jobs:
         run: ls -laR .next/analyze/base && npx -p nextjs-bundle-analysis compare
 
       - name: Upload analysis comment
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: analysis_comment.txt
           path: .next/analyze/__bundle_analysis_comment.txt
@@ -82,7 +82,7 @@ jobs:
         run: echo ${{ github.event.number }} > ./pr_number
 
       - name: Upload PR number
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: pr_number
           path: ./pr_number

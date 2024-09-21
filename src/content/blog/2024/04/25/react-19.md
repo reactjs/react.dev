@@ -213,7 +213,7 @@ Another common UI pattern when performing a data mutation is to show the final s
 function ChangeName({currentName, onUpdateName}) {
   const [optimisticName, setOptimisticName] = useOptimistic(currentName);
 
-  const submitAction = async formData => {
+  const submitAction = async (formData) => {
     const newName = formData.get("name");
     setOptimisticName(newName);
     const updatedName = await updateName(newName);

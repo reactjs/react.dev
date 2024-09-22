@@ -323,8 +323,8 @@
       "path": "/reference/rsc/server-components"
     },
     {
-      "title": "Server Actions",
-      "path": "/reference/rsc/server-actions"
+      "title": "Server Functions",
+      "path": "/reference/rsc/server-functions"
     },
     {
       "title": "Directives",

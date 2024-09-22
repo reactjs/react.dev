@@ -197,7 +197,7 @@ td {
 
 (If this code looks intimidating, go through the [Quick Start](/learn/) first!)
 
-After building your components, you'll have a library of reusable components that render your data model. Because this is a static app, the components will only return JSX. The component at the top of the hierarchy (`FilterableProductTable`) will take your data model as a prop. This is called _one-way data flow_ because the data flows down from the top-level component to the ones at the bottom of the tree.
+After building your components, you'll have a library of reusable components that renders your data model. Because this is a static app, the components will only return JSX. The component at the top of the hierarchy (`FilterableProductTable`) will take your data model as a prop. This is called _one-way data flow_ because the data flows down from the top-level component to the ones at the bottom of the tree.
 
 <Pitfall>
 
@@ -268,8 +268,8 @@ Now let's run through our strategy for them:
 1. **Identify components that use state:**
     * `ProductTable` needs to filter the product list based on that state (search text and checkbox value). 
     * `SearchBar` needs to display that state (search text and checkbox value).
-1. **Find their common parent:** The first parent component both components share is `FilterableProductTable`.
-2. **Decide where the state lives**: We'll keep the filter text and checked state values in `FilterableProductTable`.
+2. **Find their common parent:** The first parent component both components share is `FilterableProductTable`.
+3. **Decide where the state lives**: We'll keep the filter text and checked state values in `FilterableProductTable`.
 
 So the state values will live in `FilterableProductTable`. 
 

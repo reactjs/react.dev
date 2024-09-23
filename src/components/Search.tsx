@@ -121,7 +121,6 @@ export function Search({
           <DocSearchModal
             {...options}
             searchParameters={searchParameters}
-            insights={true}
             onClose={onClose}
             navigator={{
               navigate({itemUrl}: any) {

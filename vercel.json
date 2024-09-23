@@ -186,7 +186,7 @@
     },
     {
       "source": "/reference/rsc/server-actions",
-      "destination": "https://18.react.dev/reference/rsc/server-actions",
+      "destination": "/reference/rsc/server-functions",
       "permanent": true
     },
     {

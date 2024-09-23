@@ -335,25 +335,25 @@ To support React Server Components as a bundler or framework, we recommend pinni
 
 For more, see the docs for [React Server Components](/reference/rsc/server-components).
 
-### Server Functions {/*server-functions*/}
+### Server Actions {/*server-actions*/}
 
-Server Functions allow Client Components to call async functions executed on the server.
+Server Actions allow Client Components to call async functions executed on the server.
 
-When a Server Function is defined with the `"use server"` directive, your framework will automatically create a reference to the server function, and pass that reference to the Client Component. When that function is called on the client, React will send a request to the server to execute the function, and return the result.
+When a Server Action is defined with the `"use server"` directive, your framework will automatically create a reference to the server function, and pass that reference to the Client Component. When that function is called on the client, React will send a request to the server to execute the function, and return the result.
 
 <Note>
 
 #### There is no directive for Server Components. {/*there-is-no-directive-for-server-components*/}
 
-A common misunderstanding is that Server Components are denoted by `"use server"`, but there is no directive for Server Components. The `"use server"` directive is used for Server Functions.
+A common misunderstanding is that Server Components are denoted by `"use server"`, but there is no directive for Server Components. The `"use server"` directive is used for Server Actions.
 
 For more info, see the docs for [Directives](/reference/rsc/directives).
 
 </Note>
 
-Server Functions can be created in Server Components and passed as props to Client Components, or they can be imported and used in Client Components.
+Server Actions can be created in Server Components and passed as props to Client Components, or they can be imported and used in Client Components.
 
-For more, see the docs for [React Server Functions](/reference/rsc/server-functions).
+For more, see the docs for [React Server Actions](/reference/rsc/server-actions).
 
 ## Improvements in React 19 {/*improvements-in-react-19*/}
 

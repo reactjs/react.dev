@@ -109,5 +109,6 @@
   "lint-staged": {
     "*.{js,ts,jsx,tsx,css}": "yarn prettier",
     "src/**/*.md": "yarn fix-headings"
-  }
+  },
+  "packageManager": "yarn@4.5.0"
 }

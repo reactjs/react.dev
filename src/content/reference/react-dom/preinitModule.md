@@ -51,7 +51,7 @@ The `preinitModule` function provides the browser with a hint that it should sta
 
 #### Parameters {/*parameters*/}
 
-* `href`: a string. The URL of the module you want to download and exeucute.
+* `href`: a string. The URL of the module you want to download and execute.
 * `options`: an object. It contains the following properties:
   *  `as`: a required string. It must be `'script'`.
   *  `crossOrigin`: a string. The [CORS policy](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/crossorigin) to use. Its possible values are `anonymous` and `use-credentials`.

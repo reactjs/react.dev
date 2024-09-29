@@ -952,16 +952,6 @@ li {
 }
 ```
 
-```json package.json hidden
-{
-  "dependencies": {
-    "react": "beta",
-    "react-dom": "beta",
-    "react-scripts": "^5.0.0"
-  }
-}
-```
-
 </Sandpack>
 
 
@@ -1104,16 +1094,6 @@ li {
 }
 ```
 
-```json package.json hidden
-{
-  "dependencies": {
-    "react": "beta",
-    "react-dom": "beta",
-    "react-scripts": "^5.0.0"
-  }
-}
-```
-
 </Sandpack>
 
 **With Strict Mode, you immediately see that there is a problem**. Strict Mode runs an extra setup+cleanup cycle for every callback ref. This callback ref has no cleanup logic, so it adds refs but doesn't remove them. This is a hint that you're missing a cleanup function.
@@ -1238,16 +1218,6 @@ li {
 li {
   display: inline;
   padding: 0.5rem;
-}
-```
-
-```json package.json hidden
-{
-  "dependencies": {
-    "react": "beta",
-    "react-dom": "beta",
-    "react-scripts": "^5.0.0"
-  }
 }
 ```
 

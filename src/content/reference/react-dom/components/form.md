@@ -83,13 +83,13 @@ export default function Search() {
 
 </Sandpack>
 
-### Handle form submission with a Server Action {/*handle-form-submission-with-a-server-action*/}
+### Handle form submission with a Server Function {/*handle-form-submission-with-a-server-function*/}
 
-Render a `<form>` with an input and submit button. Pass a Server Action (a function marked with [`'use server'`](/reference/rsc/use-server)) to the `action` prop of form to run the function when the form is submitted.
+Render a `<form>` with an input and submit button. Pass a Server Function (a function marked with [`'use server'`](/reference/rsc/use-server)) to the `action` prop of form to run the function when the form is submitted.
 
-Passing a Server Action to `<form action>` allow users to submit forms without JavaScript enabled or before the code has loaded. This is beneficial to users who have a slow connection, device, or have JavaScript disabled and is similar to the way forms work when a URL is passed to the `action` prop.
+Passing a Server Function to `<form action>` allow users to submit forms without JavaScript enabled or before the code has loaded. This is beneficial to users who have a slow connection, device, or have JavaScript disabled and is similar to the way forms work when a URL is passed to the `action` prop.
 
-You can use hidden form fields to provide data to the `<form>`'s action. The Server Action will be called with the hidden form field data as an instance of [`FormData`](https://developer.mozilla.org/en-US/docs/Web/API/FormData).
+You can use hidden form fields to provide data to the `<form>`'s action. The Server Function will be called with the hidden form field data as an instance of [`FormData`](https://developer.mozilla.org/en-US/docs/Web/API/FormData).
 
 ```jsx
 import { updateCart } from './lib.js';
@@ -129,7 +129,7 @@ function AddToCart({productId}) {
 }
 ```
 
-When `<form>` is rendered by a [Server Component](/reference/rsc/use-client), and a [Server Action](/reference/rsc/use-server) is passed to the `<form>`'s `action` prop, the form is [progressively enhanced](https://developer.mozilla.org/en-US/docs/Glossary/Progressive_Enhancement).
+When `<form>` is rendered by a [Server Component](/reference/rsc/use-client), and a [Server Function](/reference/rsc/server-function) is passed to the `<form>`'s `action` prop, the form is [progressively enhanced](https://developer.mozilla.org/en-US/docs/Glossary/Progressive_Enhancement).
 
 ### Display a pending state during form submission {/*display-a-pending-state-during-form-submission*/}
 To display a pending state when a form is being submitted, you can call the `useFormStatus` Hook in a component rendered in a `<form>` and read the `pending` property returned.
@@ -315,10 +315,10 @@ export default function Search() {
 Displaying a form submission error message before the JavaScript bundle loads for progressive enhancement requires that:
 
 1. `<form>` be rendered by a [Server Component](/reference/rsc/use-client)
-1. the function passed to the `<form>`'s `action` prop be a [Server Action](/reference/rsc/use-server)
+1. the function passed to the `<form>`'s `action` prop be a [Server Function](/reference/rsc/server-functions)
 1. the `useActionState` Hook be used to display the error message
 
-`useActionState` takes two parameters: a [Server Action](/reference/rsc/use-server) and an initial state. `useActionState` returns two values, a state variable and an action. The action returned by `useActionState` should be passed to the `action` prop of the form. The state variable returned by `useActionState` can be used to displayed an error message. The value returned by the [Server Action](/reference/rsc/use-server) passed to `useActionState` will be used to update the state variable.
+`useActionState` takes two parameters: a [Server Function](/reference/rsc/server-functions) and an initial state. `useActionState` returns two values, a state variable and an action. The action returned by `useActionState` should be passed to the `action` prop of the form. The state variable returned by `useActionState` can be used to display an error message. The value returned by the Server Function passed to `useActionState` will be used to update the state variable.
 
 <Sandpack>
 

@@ -190,7 +190,7 @@ Side effects that are directly visible to the user are not allowed in the render
 
 ```js {2}
 function ProductDetailPage({ product }) {
-  document.window.title = product.title; // 🔴 Bad: Changes the DOM
+  document.title = product.title; // 🔴 Bad: Changes the DOM
 }
 ```
 

@@ -1123,21 +1123,6 @@ Here is a tiny simplified router example using Transitions for navigations.
 
 <Sandpack>
 
-```json package.json hidden
-{
-  "dependencies": {
-    "react": "experimental",
-    "react-dom": "experimental"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
-  }
-}
-```
-
 ```js src/App.js
 import { Suspense, useState, useTransition } from 'react';
 import IndexPage from './IndexPage.js';
@@ -1247,14 +1232,9 @@ function AlbumsGlimmer() {
 }
 ```
 
-```js src/Albums.js hidden
+```js src/Albums.js
+import {use} from 'react';
 import { fetchData } from './data.js';
-
-// Note: this component is written using an experimental API
-// that's not yet available in stable versions of React.
-
-// For a realistic example you can follow today, try a framework
-// that's integrated with Suspense, like Relay or Next.js.
 
 export default function Albums({ artistId }) {
   const albums = use(fetchData(`/${artistId}/albums`));
@@ -1268,41 +1248,11 @@ export default function Albums({ artistId }) {
     </ul>
   );
 }
-
-// This is a workaround for a bug to get the demo running.
-// TODO: replace with real implementation when the bug is fixed.
-function use(promise) {
-  if (promise.status === 'fulfilled') {
-    return promise.value;
-  } else if (promise.status === 'rejected') {
-    throw promise.reason;
-  } else if (promise.status === 'pending') {
-    throw promise;
-  } else {
-    promise.status = 'pending';
-    promise.then(
-      result => {
-        promise.status = 'fulfilled';
-        promise.value = result;
-      },
-      reason => {
-        promise.status = 'rejected';
-        promise.reason = reason;
-      },
-    );
-    throw promise;
-  }
-}
 ```
 
-```js src/Biography.js hidden
+```js src/Biography.js
+import {use} from 'react';
 import { fetchData } from './data.js';
-
-// Note: this component is written using an experimental API
-// that's not yet available in stable versions of React.
-
-// For a realistic example you can follow today, try a framework
-// that's integrated with Suspense, like Relay or Next.js.
 
 export default function Biography({ artistId }) {
   const bio = use(fetchData(`/${artistId}/bio`));
@@ -1312,34 +1262,9 @@ export default function Biography({ artistId }) {
     </section>
   );
 }
-
-// This is a workaround for a bug to get the demo running.
-// TODO: replace with real implementation when the bug is fixed.
-function use(promise) {
-  if (promise.status === 'fulfilled') {
-    return promise.value;
-  } else if (promise.status === 'rejected') {
-    throw promise.reason;
-  } else if (promise.status === 'pending') {
-    throw promise;
-  } else {
-    promise.status = 'pending';
-    promise.then(
-      result => {
-        promise.status = 'fulfilled';
-        promise.value = result;
-      },
-      reason => {
-        promise.status = 'rejected';
-        promise.reason = reason;
-      },
-    );
-    throw promise;
-  }
-}
 ```
 
-```js src/Panel.js hidden
+```js src/Panel.js
 export default function Panel({ children }) {
   return (
     <section className="panel">
@@ -1578,8 +1503,8 @@ root.render(
 ```json package.json hidden
 {
   "dependencies": {
-    "react": "canary",
-    "react-dom": "canary",
+    "react": "19.0.0-rc-3edc000d-20240926",
+    "react-dom": "19.0.0-rc-3edc000d-20240926",
     "react-scripts": "^5.0.0",
     "react-error-boundary": "4.0.3"
   },

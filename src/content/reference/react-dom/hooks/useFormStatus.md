@@ -111,18 +111,6 @@ export async function submitForm(query) {
     await new Promise((res) => setTimeout(res, 1000));
 }
 ```
-
-```json package.json hidden
-{
-  "dependencies": {
-    "react": "canary",
-    "react-dom": "canary",
-    "react-scripts": "^5.0.0"
-  },
-  "main": "/index.js",
-  "devDependencies": {}
-}
-```
 </Sandpack>  
 
 <Pitfall>
@@ -228,17 +216,6 @@ button {
 
 ```
 
-```json package.json hidden
-{
-  "dependencies": {
-    "react": "canary",
-    "react-dom": "canary",
-    "react-scripts": "^5.0.0"
-  },
-  "main": "/index.js",
-  "devDependencies": {}
-}
-```
 </Sandpack>  
 
 ---

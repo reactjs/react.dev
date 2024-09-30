@@ -606,17 +606,6 @@ export default function App() {
 }
 ```
 
-```json package.json hidden
-{
-  "dependencies": {
-    "react": "canary",
-    "react-dom": "canary",
-    "react-scripts": "^5.0.0"
-  },
-  "main": "/index.js"
-}
-```
-
 </Sandpack>
 
 
@@ -890,8 +879,8 @@ function Throw({error}) {
 ```json package.json hidden
 {
   "dependencies": {
-    "react": "canary",
-    "react-dom": "canary",
+    "react": "19.0.0-rc-3edc000d-20240926",
+    "react-dom": "19.0.0-rc-3edc000d-20240926",
     "react-scripts": "^5.0.0",
     "react-error-boundary": "4.0.3"
   },
@@ -1152,8 +1141,8 @@ function Throw({error}) {
 ```json package.json hidden
 {
   "dependencies": {
-    "react": "canary",
-    "react-dom": "canary",
+    "react": "19.0.0-rc-3edc000d-20240926",
+    "react-dom": "19.0.0-rc-3edc000d-20240926",
     "react-scripts": "^5.0.0",
     "react-error-boundary": "4.0.3"
   },

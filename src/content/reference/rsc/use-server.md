@@ -43,8 +43,9 @@ Instead of individually marking functions with `'use server'`, you can add the d
 * To import a Server Functions from [client code](/reference/rsc/use-client), the directive must be used on a module level.
 * Because the underlying network calls are always asynchronous, `'use server'` can only be used on async functions.
 * Always treat arguments to Server Functions as untrusted input and authorize any mutations. See [security considerations](#security).
-* Server Functions should be called in a [Transition](/reference/react/useTransition). Server Functions passed to [`<form action>`](/reference/react-dom/components/form#props) or [`formAction`](/reference/react-dom/components/input#props) will automatically be called in a transition.
-* Server Functions are designed for mutations that update server-side state; they are not recommended for data fetching. Accordingly, frameworks implementing Server Functions typically process one action at a time and do not have a way to cache the return value.
+* Server Functions are typically used in Actions to update server-side state; if you need to fetch data from the server, consider using a [Server Component](/reference/rsc/server-components).
+* By convention, Server Functions used in Actions such as inside a [Transition](/reference/react/useTransition), passed to [`<form action>`](/reference/react-dom/components/form#props), or passed to [`formAction`](/reference/react-dom/components/input#props) are called Server Actions.
+* Frameworks implementing Server Functions may order requests and may not have a way to cache the return value. Please see your framework's documentation for the framework specific behavior.
 
 ### Security considerations {/*security*/}
 

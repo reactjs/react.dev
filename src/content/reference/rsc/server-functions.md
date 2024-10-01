@@ -38,30 +38,30 @@ Server Functions can be created in Server Components and passed as props to Clie
 
 Server Components can define Server Functions with the `"use server"` directive:
 
-```js [[2, 7, "'use server'"], [1, 5, "createNoteAction"], [1, 12, "createNoteAction"]]
+```js [[2, 7, "'use server'"], [1, 5, "createNote"], [1, 12, "createNote"]]
 // Server Component
 import Button from './Button';
 
 function EmptyNote () {
-  async function createNoteAction() {
+  async function createNote() {
     // Server Function
     'use server';
     
     await db.notes.create();
   }
 
-  return <Button onClick={createNoteAction}/>;
+  return <Button onClick={createNote}/>;
 }
 ```
 
-When React renders the `EmptyNote` Server Function, it will create a reference to the `createNoteAction` function, and pass that reference to the `Button` Client Component. When the button is clicked, React will send a request to the server to execute the `createNoteAction` function with the reference provided:
+When React renders the `EmptyNote` Server Function, it will create a reference to the `createNote` function, and pass that reference to the `Button` Client Component. When the button is clicked, React will send a request to the server to execute the `createNote` function with the reference provided:
 
 ```js {5}
 "use client";
 
 export default function Button({onClick}) { 
   console.log(onClick); 
-  // {$$typeof: Symbol.for("react.server.reference"), $$id: 'createNoteAction'}
+  // {$$typeof: Symbol.for("react.server.reference"), $$id: 'createNote'}
   return <button onClick={() => onClick()}>Create Empty Note</button>
 }
 ```
@@ -82,15 +82,15 @@ export async function createNote() {
 
 ```
 
-When the bundler builds the `EmptyNote` Client Component, it will create a reference to the `createNoteAction` function in the bundle. When the `button` is clicked, React will send a request to the server to execute the `createNoteAction` function using the reference provided:
+When the bundler builds the `EmptyNote` Client Component, it will create a reference to the `createNote` function in the bundle. When the `button` is clicked, React will send a request to the server to execute the `createNote` function using the reference provided:
 
 ```js [[1, 2, "createNote"], [1, 5, "createNote"], [1, 7, "createNote"]]
 "use client";
-import {createNote} from './actions';
+import {createNote} from './functions';
 
 function EmptyNote() {
   console.log(createNote);
-  // {$$typeof: Symbol.for("react.server.reference"), $$id: 'createNoteAction'}
+  // {$$typeof: Symbol.for("react.server.reference"), $$id: 'createNote'}
   <button onClick={() => createNote()} />
 }
 ```
@@ -115,7 +115,7 @@ export async function updateName(name) {
 ```js [[1, 3, "updateName"], [1, 13, "updateName"], [2, 11, "submitAction"],  [2, 23, "submitAction"]]
 "use client";
 
-import {updateName} from './actions';
+import {updateName} from './functions';
 
 function UpdateName() {
   const [name, setName] = useState('');
@@ -157,7 +157,7 @@ You can pass a Server Function to a Form to automatically submit the form to the
 ```js [[1, 3, "updateName"], [1, 7, "updateName"]]
 "use client";
 
-import {updateName} from './actions';
+import {updateName} from './functions';
 
 function UpdateName() {
   return (
@@ -179,7 +179,7 @@ You can call Server Functions with `useActionState` for the common case where yo
 ```js [[1, 3, "updateName"], [1, 6, "updateName"], [2, 6, "submitAction"], [2, 9, "submitAction"]]
 "use client";
 
-import {updateName} from './actions';
+import {updateName} from './functions';
 
 function UpdateName() {
   const [state, submitAction, isPending] = useActionState(updateName, {error: null});
@@ -204,7 +204,7 @@ Server Functions also support progressive enhancement with the third argument of
 ```js [[1, 3, "updateName"], [1, 6, "updateName"], [2, 6, "/name/update"], [3, 6, "submitAction"], [3, 9, "submitAction"]]
 "use client";
 
-import {updateName} from './actions';
+import {updateName} from './functions';
 
 function UpdateName() {
   const [, submitAction] = useActionState(updateName, null, `/name/update`);

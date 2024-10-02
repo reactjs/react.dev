@@ -104,35 +104,35 @@ export async function updateName(name) {
 ```
 
 ```js [[1, 4, "updateName"], [1, 14, "updateName"], [2, 12, "submitAction"],  [2, 24, "submitAction"]]
-"use client";
-
-import {useState, useTransition} from 'react';
-import {updateName} from './actions';
-
-function UpdateName() {
-  const [name, setName] = useState('');
-  const [error, setError] = useState(null);
-
-  const [isPending, startTransition] = useTransition();
-
-  const submitAction = async () => {
-    startTransition(async () => {
-      const {error} = await updateName(name);
-      if (!error) {
-        setError(error);
-      } else {
-        setName('');
-      }
-    })
-  }
+  "use client";
   
-  return (
-    <form action={submitAction}>
-      <input type="text" name="name" disabled={isPending}/>
-      {state.error && <span>Failed: {state.error}</span>}
-    </form>
-  )
-}
+  import {useState, useTransition} from 'react';
+  import {updateName} from './actions';
+  
+  function UpdateName() {
+    const [name, setName] = useState('');
+    const [error, setError] = useState(null);
+  
+    const [isPending, startTransition] = useTransition();
+  
+    const submitAction = async () => {
+      startTransition(async () => {
+        const result = await updateName(name);
+        if (result?.error) {
+          setError(result.error);
+        } else {
+          setName('');
+        }
+      })
+    }
+    
+    return (
+      <form action={submitAction}>
+        <input type="text" name="name" disabled={isPending}/>
+        {error && <span>Failed: {error}</span>}
+      </form>
+    )
+  }
 ```
 
 This allows you to access the `isPending` state of the Server Action by wrapping it in an Action on the client.

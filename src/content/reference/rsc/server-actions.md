@@ -103,9 +103,10 @@ export async function updateName(name) {
 }
 ```
 
-```js [[1, 3, "updateName"], [1, 13, "updateName"], [2, 11, "submitAction"],  [2, 23, "submitAction"]]
+```js [[1, 4, "updateName"], [1, 14, "updateName"], [2, 12, "submitAction"],  [2, 24, "submitAction"]]
 "use client";
 
+import {useState, useTransition} from 'react';
 import {updateName} from './actions';
 
 function UpdateName() {

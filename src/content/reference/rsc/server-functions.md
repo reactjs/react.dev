@@ -86,7 +86,7 @@ When the bundler builds the `EmptyNote` Client Component, it will create a refer
 
 ```js [[1, 2, "createNote"], [1, 5, "createNote"], [1, 7, "createNote"]]
 "use client";
-import {createNote} from './functions';
+import {createNote} from './server';
 
 function EmptyNote() {
   console.log(createNote);
@@ -115,7 +115,7 @@ export async function updateName(name) {
 ```js [[1, 3, "updateName"], [1, 13, "updateName"], [2, 11, "submitAction"],  [2, 23, "submitAction"]]
 "use client";
 
-import {updateName} from './functions';
+import {updateName} from './server';
 
 function UpdateName() {
   const [name, setName] = useState('');
@@ -157,7 +157,7 @@ You can pass a Server Function to a Form to automatically submit the form to the
 ```js [[1, 3, "updateName"], [1, 7, "updateName"]]
 "use client";
 
-import {updateName} from './functions';
+import {updateName} from './server';
 
 function UpdateName() {
   return (
@@ -179,7 +179,7 @@ You can call Server Functions with `useActionState` for the common case where yo
 ```js [[1, 3, "updateName"], [1, 6, "updateName"], [2, 6, "submitAction"], [2, 9, "submitAction"]]
 "use client";
 
-import {updateName} from './functions';
+import {updateName} from './server';
 
 function UpdateName() {
   const [state, submitAction, isPending] = useActionState(updateName, {error: null});
@@ -204,7 +204,7 @@ Server Functions also support progressive enhancement with the third argument of
 ```js [[1, 3, "updateName"], [1, 6, "updateName"], [2, 6, "/name/update"], [3, 6, "submitAction"], [3, 9, "submitAction"]]
 "use client";
 
-import {updateName} from './functions';
+import {updateName} from './server';
 
 function UpdateName() {
   const [, submitAction] = useActionState(updateName, null, `/name/update`);

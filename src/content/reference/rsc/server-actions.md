@@ -103,25 +103,25 @@ export async function updateName(name) {
 }
 ```
 
-```js [[1, 4, "updateName"], [1, 14, "updateName"], [2, 12, "submitAction"],  [2, 24, "submitAction"]]
+```js [[1, 4, "updateName"], [1, 14, "updateName"], [2, 11, "submitAction"],  [2, 24, "submitAction"]]
 "use client";
 
 import { useState, useTransition } from 'react';
 import { updateName } from './actions';
 
 function UpdateName() {
-  const [name, setName] = useState('');
   const [error, setError] = useState(null);
 
   const [isPending, startTransition] = useTransition();
 
-  const submitAction = async () => {
+  const submitAction = async (formData) => {
     startTransition(async () => {
+      const name = formData.get('name');
       const result = await updateName(name);
       if (result?.error) {
         setError(result.error);
       } else {
-        setName('');
+        setError(null);
       }
     })
   }

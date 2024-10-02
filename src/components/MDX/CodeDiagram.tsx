@@ -15,9 +15,16 @@ export function CodeDiagram({children, flip = false}: CodeDiagramProps) {
   const illustration = Children.toArray(children).filter((child: any) => {
     return child.type === 'img';
   });
-  const content = Children.toArray(children).map((child: any) => {
+  const content = Children.toArray(children).map((child: any, idx) => {
     if (child.type?.mdxName === 'pre') {
-      return <CodeBlock {...child.props} noMargin={true} noMarkers={true} />;
+      return (
+        <CodeBlock
+          key={`codeblock-${idx}`}
+          {...child.props}
+          noMargin={true}
+          noMarkers={true}
+        />
+      );
     } else if (child.type === 'img') {
       return null;
     } else {

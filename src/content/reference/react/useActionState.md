@@ -7,7 +7,7 @@ title: useActionState
 `useActionState` is a Hook that allows you to update state based on the result of a form action.
 
 ```js
-const [state, formAction] = useActionState(fn, initialState, permalink?);
+const [state, formAction, isPending] = useActionState(fn, initialState, permalink?);
 ```
 
 </Intro>
@@ -39,7 +39,7 @@ async function increment(previousState, formData) {
 }
 
 function StatefulForm({}) {
-  const [state, formAction] = useActionState(increment, 0);
+  const [state, formAction, isPending] = useActionState(increment, 0);
   return (
     <form>
       {state}
@@ -98,10 +98,11 @@ function MyComponent() {
 }
 ```
 
-`useActionState` returns an array with exactly two items:
+`useActionState` returns an array with exactly three items:
 
 1. The <CodeStep step={1}>current state</CodeStep> of the form, which is initially set to the <CodeStep step={4}>initial state</CodeStep> you provided, and after the form is submitted is set to the return value of the <CodeStep step={3}>action</CodeStep> you provided.
 2. A <CodeStep step={2}>new action</CodeStep> that you pass to `<form>` as its `action` prop.
+3. A boolean <CodeStep step={5}>isPending</CodeStep>. Will be false when action is complete or not taken; it will be true when pending.
 
 When the form is submitted, the <CodeStep step={3}>action</CodeStep> function that you provided will be called. Its return value will become the new <CodeStep step={1}>current state</CodeStep> of the form.
 
@@ -113,6 +114,33 @@ function action(currentState, formData) {
   return 'next state';
 }
 ```
+
+`useActionState` can also be used outside of the form element 
+
+```js
+import { useActionState, useRef } from "react";
+
+function Form({ someAction }) {
+  const ref = useRef(null);
+  const [state, action, isPending] = useActionState(someAction);
+
+  async function handleSubmit() {
+    // See caveats below
+    await action({ email: ref.current.value });
+  }
+
+  return (
+    <div>
+      <input ref={ref} type="email" name="email" disabled={isPending} />
+      <button onClick={handleSubmit} disabled={isPending}>
+        Submit
+      </button>
+      {state.errorMessage && <p>{state.errorMessage}</p>}
+    </div>
+  );
+}
+```
+
 
 <Recipes titleText="Display information after submitting a form" titleId="display-information-after-submitting-a-form">
 
@@ -264,3 +292,70 @@ function action(currentState, formData) {
   // ...
 }
 ```
+
+### My handler didn't trigger isPending until my action was called
+The pending state begins when the return `action` is dispatched and will revert back after all actions and transitions have settled. The mechanism for this under the hook is the same as `useOptimisitic`.
+
+Concretely, what this means is that the pending state of `useActionState` will not represent any actions or sync work performed before dispatching the action returned by `useActionState`.
+
+To Solve place all function calls inside the action:
+```js 
+import { useActionState, useRef } from "react";
+
+function Form({ someAction, someOtherAction }) {
+  const ref = useRef(null);
+  const [state, action, isPending] = useActionState(async (data) => {
+    // Pending state is true already.
+    await someOtherAction();
+    return someAction(data);
+  });
+
+  async function handleSubmit() {
+    // The pending state starts at this call.
+    await action({ email: ref.current.value });
+  }
+
+  return (
+    <div>
+      <input ref={ref} type="email" name="email" disabled={isPending} />
+      <button onClick={handleSubmit} disabled={isPending}>
+        Submit
+      </button>
+      {state.errorMessage && <p>{state.errorMessage}</p>}
+    </div>
+  );
+}
+```
+
+Or for greater control, you can also wrap both in a transition and use the isPending state of the transition:
+
+```js
+import { useActionState, useTransition, useRef } from "react";
+
+function Form({ someAction, someOtherAction }) {
+  const ref = useRef(null);
+
+  // isPending is used from the transition wrapping both action calls.
+  const [isPending, startTransition] = useTransition();
+
+  // isPending not used from the individual action.
+  const [state, action] = useActionState(someAction);
+
+  async function handleSubmit() {
+    startTransition(async () => {
+      // The transition pending state has begun.
+      await someOtherAction();
+      await action({ email: ref.current.value });
+    });
+  }
+
+  return (
+    <div>
+      <input ref={ref} type="email" name="email" disabled={isPending} />
+      <button onClick={handleSubmit} disabled={isPending}>
+        Submit
+      </button>
+      {state.errorMessage && <p>{state.errorMessage}</p>}
+    </div>
+  );
+}```

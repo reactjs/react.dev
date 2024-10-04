@@ -502,7 +502,7 @@ Read **[Preserving and Resetting State](/learn/preserving-and-resetting-state)**
 
 ## Extracting state logic into a reducer {/*extracting-state-logic-into-a-reducer*/}
 
-Components with many state updates spread across many event handlers can get overwhelming. For these cases, you can consolidate all the state update logic outside your component in a single function, called "reducer". Your event handlers become concise because they only specify the user "actions". At the bottom of the file, the reducer function specifies how the state should update in response to each action!
+Components with many state updates spread across many event handlers can get overwhelming. For these cases, you can consolidate all the state update logic outside your component in a single function, called "reducer". Your event handlers become concise because they only specify the user "Actions". At the bottom of the file, the reducer function specifies how the state should update in response to each Action!
 
 <Sandpack>
 
@@ -803,7 +803,7 @@ Read **[Passing Data Deeply with Context](/learn/passing-data-deeply-with-contex
 
 Reducers let you consolidate a component’s state update logic. Context lets you pass information deep down to other components. You can combine reducers and context together to manage state of a complex screen.
 
-With this approach, a parent component with complex state manages it with a reducer. Other components anywhere deep in the tree can read its state via context. They can also dispatch actions to update that state.
+With this approach, a parent component with complex state manages it with a reducer. Other components anywhere deep in the tree can read its state via context. They can also dispatch Actions to update that state.
 
 <Sandpack>
 

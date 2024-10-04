@@ -224,7 +224,7 @@ export default App = AppTSX;
 We are using TypeScript in a few key places:
 
  - `interface State` describes the shape of the reducer's state.
- - `type CounterAction` describes the different actions which can be dispatched to the reducer.
+ - `type CounterAction` describes the different Actions which can be dispatched to the reducer.
  - `const initialState: State` provides a type for the initial state, and also the type which is used by `useReducer` by default.
  - `stateReducer(state: State, action: CounterAction): State` sets the types for the reducer function's arguments and return value.
 

@@ -34,7 +34,14 @@ interface PageProps {
     canary?: boolean;
     description?: string;
   };
-  section: 'learn' | 'reference' | 'community' | 'blog' | 'home' | 'unknown';
+  section:
+    | 'learn'
+    | 'reference'
+    | 'community'
+    | 'blog'
+    | 'home'
+    | 'careers'
+    | 'unknown';
   languages?: Languages | null;
 }
 
@@ -88,7 +95,7 @@ export function Page({
               </LanguagesContext.Provider>
             </TocContext.Provider>
           </div>
-          {!isBlogIndex && (
+          {!isBlogIndex && section !== 'careers' && (
             <DocsPageFooter
               route={route}
               nextRoute={nextRoute}

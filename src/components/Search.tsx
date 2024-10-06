@@ -28,8 +28,8 @@ function Hit({hit, children}: any) {
 // Slightly trimmed to features we use.
 // (c) Algolia, Inc.
 function isEditingContent(event: any) {
-  var element = event.target;
-  var tagName = element.tagName;
+  const element = event.target;
+  const tagName = element.tagName;
   return (
     element.isContentEditable ||
     tagName === 'INPUT' ||

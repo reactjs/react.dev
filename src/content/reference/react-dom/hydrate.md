@@ -146,7 +146,23 @@ export default function App() {
 
 </Sandpack>
 
-This only works one level deep, and is intended to be an escape hatch. Don’t overuse it. Unless it’s text content, React still won’t attempt to patch it up, so it may remain inconsistent until future updates.
+<!-- This only works one level deep, and is intended to be an escape hatch. Don’t overuse it. Unless it’s text content, React still won’t attempt to patch it up, so it may remain inconsistent until future updates. -->
+
+This suppression only works for the immediate children of the element with suppressHydrationWarning={true}, and is intended to be an escape hatch for specific scenarios where hydration mismatches are unavoidable. React won’t suppress mismatches in deeper nested elements. For example, if you apply suppressHydrationWarning to a parent element, the suppression only applies to its direct children, not to the grandchildren or deeper levels in the component tree.
+
+Example:
+If you have a component like this:
+
+```function ParentComponent() {
+  return (
+    <div suppressHydrationWarning={true}>
+      <ChildComponent />
+      <OtherChildComponent />
+    </div>
+  );
+}
+```
+React will suppress hydration mismatch warnings for ChildComponent and OtherChildComponent (the immediate children of the parent <div>), but not for any children within ChildComponent or OtherChildComponent.
 
 ---
 

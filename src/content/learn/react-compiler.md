@@ -20,8 +20,6 @@ These docs are still a work in progress. More documentation is available in the 
 
 <Note>
 React Compiler is a new experimental compiler that we've open sourced to get early feedback from the community. It still has rough edges and is not yet fully ready for production.
-
-React Compiler requires React 19 RC. If you are unable to upgrade to React 19, you may try a userspace implementation of the cache function as described in the [Working Group](https://github.com/reactwg/react-compiler/discussions/6). However, please note that this is not recommended and you should upgrade to React 19 when possible.
 </Note>
 
 React Compiler is a new experimental compiler that we've open sourced to get early feedback from the community. It is a build-time only tool that automatically optimizes your React app. It works with plain JavaScript, and understands the [Rules of React](/reference/rules), so you don't need to rewrite any code to use it.
@@ -225,6 +223,29 @@ module.exports = function () {
 ```
 
 `babel-plugin-react-compiler` should run first before other Babel plugins as the compiler requires the input source information for sound analysis.
+
+React Compiler works best with React 19 RC. If you are unable to upgrade, you can install the extra `react-compiler-runtime` package which will allow the compiled code to run on versions prior to 19. However, note that the minimum supported version is 17.
+
+<TerminalBlock>
+npm install react-compiler-runtime@experimental
+</TerminalBlock>
+
+You should also add the correct `target` to your compiler config, where `target` is the major version of React you are targeting:
+
+```js {3}
+// babel.config.js
+const ReactCompilerConfig = {
+  target: '18' // '17' | '18' | '19'
+};
+
+module.exports = function () {
+  return {
+    plugins: [
+      ['babel-plugin-react-compiler', ReactCompilerConfig],
+    ],
+  };
+};
+```
 
 ### Vite {/*usage-with-vite*/}
 

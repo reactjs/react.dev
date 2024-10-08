@@ -2,6 +2,7 @@
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
 
+import {DocSearchProps} from '@docsearch/react';
 import Head from 'next/head';
 import Link from 'next/link';
 import Router from 'next/router';
@@ -20,8 +21,10 @@ export interface SearchProps {
   onClose: () => void;
 }
 
-function Hit({hit, children}: any) {
-  return <Link href={hit.url.replace()}>{children}</Link>;
+type HitProps = Parameters<NonNullable<DocSearchProps['hitComponent']>>[0];
+
+function Hit({hit, children}: HitProps) {
+  return <Link href={hit.url}>{children}</Link>;
 }
 
 // Copy-pasted from @docsearch/react to avoid importing the whole bundle.

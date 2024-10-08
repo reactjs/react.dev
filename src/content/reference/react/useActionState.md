@@ -75,7 +75,7 @@ If used with a Server Action, `useActionState` allows the server's response from
 
 1. The current state. During the first render, it will match the `initialState` you have passed. After the action is invoked, it will match the value returned by the action.
 2. A new action that you can pass as the `action` prop to your `form` component or `formAction` prop to any `button` component within the form.
-3. The pending state of the form you can utilise whilst the action is processing.
+3. The `isPending` flag that tells you whether there is a pending Transition.
 
 #### Caveats {/*caveats*/}
 

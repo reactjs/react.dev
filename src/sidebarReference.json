@@ -282,14 +282,6 @@
           "title": "preloadModule",
           "path": "/reference/react-dom/preloadModule",
           "canary": true
-        },
-        {
-          "title": "render",
-          "path": "/reference/react-dom/render"
-        },
-        {
-          "title": "unmountComponentAtNode",
-          "path": "/reference/react-dom/unmountComponentAtNode"
         }
       ]
     },
@@ -334,6 +326,21 @@
         {
           "title": "renderToString",
           "path": "/reference/react-dom/server/renderToString"
+        }
+      ]
+    },
+    {
+      "title": "Deprecated APIs",
+      "path": "/reference/react-dom/deprecated",
+      "deprecated": true,
+      "routes": [
+        {
+          "title": "render",
+          "path": "/reference/react-dom/render"
+        },
+        {
+          "title": "unmountComponentAtNode",
+          "path": "/reference/react-dom/unmountComponentAtNode"
         }
       ]
     },

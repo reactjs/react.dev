@@ -52,7 +52,7 @@ Next.js is maintained by [Vercel](https://vercel.com/). You can [deploy a Next.j
 **[Remix](https://remix.run/) is a full-stack React framework with nested routing.** It lets you break your app into nested parts that can load data in parallel and refresh in response to the user actions. To create a new Remix project, run:
 
 <TerminalBlock>
-npx create-remix
+npx create-remix@latest
 </TerminalBlock>
 
 If you're new to Remix, check out the Remix [blog tutorial](https://remix.run/docs/en/main/tutorials/blog) (short) and [app tutorial](https://remix.run/docs/en/main/tutorials/jokes) (long).
@@ -64,7 +64,7 @@ Remix is maintained by [Shopify](https://www.shopify.com/). When you create a Re
 **[Gatsby](https://www.gatsbyjs.com/) is a React framework for fast CMS-backed websites.** Its rich plugin ecosystem and its GraphQL data layer simplify integrating content, APIs, and services into one website. To create a new Gatsby project, run:
 
 <TerminalBlock>
-npx create-gatsby
+npx create-gatsby@latest
 </TerminalBlock>
 
 If you're new to Gatsby, check out the [Gatsby tutorial.](https://www.gatsbyjs.com/docs/tutorial/)
@@ -76,7 +76,7 @@ Gatsby is maintained by [Netlify](https://www.netlify.com/). You can [deploy a f
 **[Expo](https://expo.dev/) is a React framework that lets you create universal Android, iOS, and web apps with truly native UIs.** It provides an SDK for [React Native](https://reactnative.dev/) that makes the native parts easier to use. To create a new Expo project, run:
 
 <TerminalBlock>
-npx create-expo-app
+npx create-expo-app@latest
 </TerminalBlock>
 
 If you're new to Expo, check out the [Expo tutorial](https://docs.expo.dev/tutorial/introduction/).

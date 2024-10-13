@@ -5,163 +5,28 @@
   "trailingSlash": false,
   "redirects": [
     {
-      "source": "/docs/add-react-to-a-website.html",
-      "destination": "/learn/add-react-to-an-existing-project",
-      "permanent": false
-    },
-    {
-      "source": "/docs/create-a-new-react-app.html",
-      "destination": "/learn/start-a-new-react-project",
-      "permanent": false
-    },
-    {
-      "source": "/docs/release-channels.html",
-      "destination": "/community/versioning-policy",
-      "permanent": false
-    },
-    {
-      "source": "/docs/thinking-in-react.html",
-      "destination": "/learn/thinking-in-react",
-      "permanent": false
-    },
-    {
-      "source": "/tutorial/tutorial.html",
-      "destination": "/learn/tutorial-tic-tac-toe",
-      "permanent": false
-    },
-    {
-      "source": "/community/support.html",
-      "destination": "/community",
-      "permanent": false
-    },
-    {
-      "source": "/community/conferences.html",
-      "destination": "/community/conferences",
-      "permanent": false
-    },
-    {
-      "source": "/community/meetups.html",
-      "destination": "/community/meetups",
-      "permanent": false
-    },
-    {
-      "source": "/community/team.html",
-      "destination": "/community/team",
-      "permanent": false
-    },
-    {
-      "source": "/community/videos.html",
-      "destination": "/community/videos",
-      "permanent": false
-    },
-    {
-      "source": "/blog/2022/06/15/react-labs-what-we-have-been-working-on-june-2022.html",
-      "destination": "/blog/2022/06/15/react-labs-what-we-have-been-working-on-june-2022",
-      "permanent": false
-    },
-    {
-      "source": "/blog/2022/03/29/react-v18.html",
-      "destination": "/blog/2022/03/29/react-v18",
-      "permanent": false
-    },
-    {
-      "source": "/blog/2022/03/08/react-18-upgrade-guide.html",
-      "destination": "/blog/2022/03/08/react-18-upgrade-guide",
-      "permanent": false
-    },
-    {
-      "source": "/blog/2021/12/17/react-conf-2021-recap.html",
-      "destination": "/blog/2021/12/17/react-conf-2021-recap",
-      "permanent": false
-    },
-    {
-      "source": "/blog/2021/06/08/the-plan-for-react-18.html",
-      "destination": "/blog/2021/06/08/the-plan-for-react-18",
-      "permanent": false
-    },
-    {
-      "source": "/blog/2020/12/21/data-fetching-with-react-server-components.html",
-      "destination": "/blog/2020/12/21/data-fetching-with-react-server-components",
-      "permanent": false
-    },
-    {
-      "source": "/:path*(\\.html)",
-      "destination": "https://legacy.reactjs.org/:path*.html",
-      "permanent": false
-    },
-    {
-      "source": "/tips/controlled-input-null-value.html",
-      "destination": "/reference/react-dom/components/input#im-getting-an-error-a-component-is-changing-an-uncontrolled-input-to-be-controlled",
-      "permanent": false
-    },
-    {
-      "source": "/link/switch-to-createroot",
-      "destination": "https://github.com/reactwg/react-18/discussions/5",
-      "permanent": false
-    },
-    {
-      "source": "/server-components",
-      "destination": "/blog/2020/12/21/data-fetching-with-react-server-components",
-      "permanent": false
-    },
-    {
-      "source": "/concurrent",
-      "destination": "/blog/2022/03/29/react-v18",
-      "permanent": false
-    },
-    {
-      "source": "/hooks",
+      "source": "/reference",
       "destination": "/reference/react",
+      "permanent": true
+    },
+    {
+      "source": "/reference/react-dom/hooks/useFormState",
+      "destination": "/reference/react/useActionState",
+      "permanent": true
+    },
+    {
+      "source": "/learn/meet-the-team",
+      "destination": "/community/team",
+      "permanent": true
+    },
+    {
+      "source": "/link/warning-keys",
+      "destination": "/learn/rendering-lists#keeping-list-items-in-order-with-key",
       "permanent": false
     },
     {
-      "source": "/tutorial",
-      "destination": "/learn/tutorial-tic-tac-toe",
-      "permanent": false
-    },
-    {
-      "source": "/link/attribute-behavior",
-      "destination": "https://legacy.reactjs.org/blog/2017/09/08/dom-attributes-in-react-16.html#changes-in-detail",
-      "permanent": false
-    },
-    {
-      "source": "/link/controlled-components",
-      "destination": "/reference/react-dom/components/input#controlling-an-input-with-a-state-variable",
-      "permanent": false
-    },
-    {
-      "source": "/link/crossorigin-error",
-      "destination": "https://legacy.reactjs.org/docs/cross-origin-errors.html",
-      "permanent": false
-    },
-    {
-      "source": "/link/dangerously-set-inner-html",
-      "destination": "/reference/react-dom/components/common#dangerously-setting-the-inner-html",
-      "permanent": false
-    },
-    {
-      "source": "/link/derived-state",
-      "destination": "https://legacy.reactjs.org/blog/2018/06/07/you-probably-dont-need-derived-state.html",
-      "permanent": false
-    },
-    {
-      "source": "/link/error-boundaries",
-      "destination": "https://legacy.reactjs.org/docs/error-boundaries.html",
-      "permanent": false
-    },
-    {
-      "source": "/link/event-pooling",
-      "destination": "https://legacy.reactjs.org/docs/legacy-event-pooling.html",
-      "permanent": false
-    },
-    {
-      "source": "/link/hooks-data-fetching",
-      "destination": "/reference/react/useEffect#fetching-data-with-effects",
-      "permanent": false
-    },
-    {
-      "source": "/link/invalid-aria-props",
-      "destination": "/warnings/invalid-aria-prop",
+      "source": "/docs/lists-and-keys",
+      "destination": "/learn/rendering-lists#keeping-list-items-in-order-with-key",
       "permanent": false
     },
     {
@@ -170,38 +35,8 @@
       "permanent": false
     },
     {
-      "source": "/link/legacy-context",
-      "destination": "https://legacy.reactjs.org/docs/legacy-context.html",
-      "permanent": false
-    },
-    {
-      "source": "/link/legacy-factories",
-      "destination": "https://legacy.reactjs.org/warnings/legacy-factories.html",
-      "permanent": false
-    },
-    {
-      "source": "/link/perf-use-production-build",
-      "destination": "https://legacy.reactjs.org/docs/optimizing-performance.html#use-the-production-build",
-      "permanent": false
-    },
-    {
-      "source": "/link/react-devtools",
-      "destination": "/learn/react-developer-tools",
-      "permanent": false
-    },
-    {
-      "source": "/link/react-polyfills",
-      "destination": "https://legacy.reactjs.org/docs/javascript-environment-requirements.html",
-      "permanent": false
-    },
-    {
-      "source": "/link/refs-must-have-owner",
-      "destination": "https://legacy.reactjs.org/warnings/refs-must-have-owner.html",
-      "permanent": false
-    },
-    {
-      "source": "/link/rules-of-hooks",
-      "destination": "/warnings/invalid-hook-call-warning",
+      "source": "/link/hooks-data-fetching",
+      "destination": "/reference/react/useEffect#fetching-data-with-effects",
       "permanent": false
     },
     {
@@ -210,23 +45,68 @@
       "permanent": false
     },
     {
+      "source": "/link/dangerously-set-inner-html",
+      "destination": "/reference/react-dom/components/common#dangerously-setting-the-inner-html",
+      "permanent": false
+    },
+    {
+      "source": "/link/controlled-components",
+      "destination": "/reference/react-dom/components/input#controlling-an-input-with-a-state-variable",
+      "permanent": false
+    },
+    {
+      "source": "/link/react-devtools",
+      "destination": "/learn/react-developer-tools",
+      "permanent": false
+    },
+    {
+      "source": "/link/invalid-aria-props",
+      "destination": "/warnings/invalid-aria-prop",
+      "permanent": false
+    },
+    {
+      "source": "/link/hydration-mismatch",
+      "destination": "/reference/react-dom/client/hydrateRoot#hydrating-server-rendered-html",
+      "permanent": false
+    },
+    {
+      "source": "/link/switch-to-createroot",
+      "destination": "/blog/2022/03/08/react-18-upgrade-guide#updates-to-client-rendering-apis",
+      "permanent": false
+    },
+    {
+      "source": "/link/error-boundaries",
+      "destination": "/reference/react/Component#catching-rendering-errors-with-an-error-boundary",
+      "permanent": false
+    },
+    {
       "source": "/link/strict-mode-find-node",
       "destination": "/reference/react-dom/findDOMNode#alternatives",
       "permanent": false
     },
     {
-      "source": "/link/strict-mode-string-ref",
-      "destination": "https://legacy.reactjs.org/docs/refs-and-the-dom.html#legacy-api-string-refs",
+      "source": "/link/rules-of-hooks",
+      "destination": "/warnings/invalid-hook-call-warning",
       "permanent": false
     },
     {
-      "source": "/link/unsafe-component-lifecycles",
-      "destination": "https://legacy.reactjs.org/blog/2018/03/27/update-on-async-rendering.html",
+      "source": "/link/event-pooling",
+      "destination": "https://legacy.reactjs.org/docs/legacy-event-pooling.html",
       "permanent": false
     },
     {
-      "source": "/link/warning-keys",
-      "destination": "/learn/rendering-lists#keeping-list-items-in-order-with-key",
+      "source": "/link/legacy-context",
+      "destination": "https://react.dev/blog/2024/04/25/react-19-upgrade-guide#removed-removing-legacy-context",
+      "permanent": false
+    },
+    {
+      "source": "/link/crossorigin-error",
+      "destination": "https://legacy.reactjs.org/docs/cross-origin-errors.html",
+      "permanent": false
+    },
+    {
+      "source": "/link/react-polyfills",
+      "destination": "https://legacy.reactjs.org/docs/javascript-environment-requirements.html",
       "permanent": false
     },
     {
@@ -235,13 +115,28 @@
       "permanent": false
     },
     {
-      "source": "/link/interaction-tracing",
-      "destination": "https://gist.github.com/bvaughn/8de925562903afd2e7a12554adcdda16",
+      "source": "/link/refs-must-have-owner",
+      "destination": "https://legacy.reactjs.org/warnings/refs-must-have-owner.html",
       "permanent": false
     },
     {
-      "source": "/link/profiling",
-      "destination": "https://gist.github.com/bvaughn/25e6233aeb1b4f0cdb8d8366e54a3977",
+      "source": "/link/derived-state",
+      "destination": "https://legacy.reactjs.org/blog/2018/06/07/you-probably-dont-need-derived-state.html",
+      "permanent": false
+    },
+    {
+      "source": "/link/strict-mode-string-ref",
+      "destination": "https://legacy.reactjs.org/docs/refs-and-the-dom.html#legacy-api-string-refs",
+      "permanent": false
+    },
+    {
+      "source": "/link/perf-use-production-build",
+      "destination": "https://legacy.reactjs.org/docs/optimizing-performance.html#use-the-production-build",
+      "permanent": false
+    },
+    {
+      "source": "/link/unsafe-component-lifecycles",
+      "destination": "https://legacy.reactjs.org/blog/2018/03/27/update-on-async-rendering.html",
       "permanent": false
     },
     {
@@ -250,8 +145,8 @@
       "permanent": false
     },
     {
-      "source": "/link/uselayouteffect-ssr",
-      "destination": "https://gist.github.com/gaearon/e7d97cdf38a2907924ea12e4ebdf3c85",
+      "source": "/link/attribute-behavior",
+      "destination": "https://legacy.reactjs.org/blog/2017/09/08/dom-attributes-in-react-16.html#changes-in-detail",
       "permanent": false
     },
     {
@@ -265,28 +160,33 @@
       "permanent": false
     },
     {
-      "source": "/version/15.6",
-      "destination": "https://react-legacy.netlify.app",
+      "source": "/link/new-jsx-transform",
+      "destination": "https://legacy.reactjs.org/blog/2020/09/22/introducing-the-new-jsx-transform.html",
       "permanent": false
     },
     {
-      "source": "/apis/:path*",
-      "destination": "/reference/:path*",
+      "source": "/warnings/version-mismatch",
+      "destination": "/warnings/invalid-hook-call-warning#mismatching-versions-of-react-and-react-dom",
+      "permanent": false
+    },
+    {
+      "source": "/reference/react/directives",
+      "destination": "/reference/rsc/directives",
       "permanent": true
     },
     {
-      "source": "/reference",
-      "destination": "/reference/react",
+      "source": "/reference/react/use-client",
+      "destination": "/reference/rsc/use-client",
       "permanent": true
     },
     {
-      "source": "/learn/meet-the-team",
-      "destination": "/community/team",
+      "source": "/reference/react/use-server",
+      "destination": "/reference/rsc/use-server",
       "permanent": true
     },
     {
-      "source": "/learn/add-react-to-a-website",
-      "destination": "/learn/add-react-to-an-existing-project",
+      "source": "/feed.xml",
+      "destination": "/rss.xml",
       "permanent": true
     }
   ],

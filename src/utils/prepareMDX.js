@@ -7,7 +7,7 @@ import {Children} from 'react';
 // TODO: This logic could be in MDX plugins instead.
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-export const PREPARE_MDX_CACHE_BREAKER = 2;
+export const PREPARE_MDX_CACHE_BREAKER = 3;
 // !!! IMPORTANT !!! Bump this if you change any logic.
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 

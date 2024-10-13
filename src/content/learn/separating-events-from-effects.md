@@ -44,7 +44,7 @@ function ChatRoom({ roomId }) {
   return (
     <>
       <input value={message} onChange={e => setMessage(e.target.value)} />
-      <button onClick={handleSendClick}>Send</button>;
+      <button onClick={handleSendClick}>Send</button>
     </>
   );
 }
@@ -130,7 +130,7 @@ export default function App() {
 }
 ```
 
-```js chat.js
+```js src/chat.js
 export function sendMessage(message) {
   console.log('🔵 You sent: ' + message);
 }
@@ -239,7 +239,7 @@ function ChatRoom({ roomId, theme }) {
     });
     connection.connect();
     // ...
-````
+```
 
 However, `theme` is a reactive value (it can change as a result of re-rendering), and [every reactive value read by an Effect must be declared as its dependency.](/learn/lifecycle-of-reactive-effects#react-verifies-that-you-specified-every-reactive-value-as-a-dependency) Now you have to specify `theme` as a dependency of your Effect:
 
@@ -256,7 +256,7 @@ function ChatRoom({ roomId, theme }) {
     };
   }, [roomId, theme]); // ✅ All dependencies declared
   // ...
-````
+```
 
 Play with this example and see if you can spot the problem with this user experience:
 
@@ -333,7 +333,7 @@ export default function App() {
 }
 ```
 
-```js chat.js
+```js src/chat.js
 export function createConnection(serverUrl, roomId) {
   // A real implementation would actually connect to the server
   let connectedCallback;
@@ -362,7 +362,7 @@ export function createConnection(serverUrl, roomId) {
 }
 ```
 
-```js notifications.js
+```js src/notifications.js
 import Toastify from 'toastify-js';
 import 'toastify-js/src/toastify.css';
 
@@ -416,7 +416,7 @@ function ChatRoom({ roomId, theme }) {
     showNotification('Connected!', theme);
   });
   // ...
-````
+```
 
 Here, `onConnected` is called an *Effect Event.* It's a part of your Effect logic, but it behaves a lot more like an event handler. The logic inside it is not reactive, and it always "sees" the latest values of your props and state.
 
@@ -521,7 +521,7 @@ export default function App() {
 }
 ```
 
-```js chat.js
+```js src/chat.js
 export function createConnection(serverUrl, roomId) {
   // A real implementation would actually connect to the server
   let connectedCallback;
@@ -550,7 +550,7 @@ export function createConnection(serverUrl, roomId) {
 }
 ```
 
-```js notifications.js hidden
+```js src/notifications.js hidden
 import Toastify from 'toastify-js';
 import 'toastify-js/src/toastify.css';
 
@@ -1500,7 +1500,7 @@ export default function App() {
 }
 ```
 
-```js chat.js
+```js src/chat.js
 export function createConnection(serverUrl, roomId) {
   // A real implementation would actually connect to the server
   let connectedCallback;
@@ -1529,7 +1529,7 @@ export function createConnection(serverUrl, roomId) {
 }
 ```
 
-```js notifications.js hidden
+```js src/notifications.js hidden
 import Toastify from 'toastify-js';
 import 'toastify-js/src/toastify.css';
 
@@ -1641,7 +1641,7 @@ export default function App() {
 }
 ```
 
-```js chat.js
+```js src/chat.js
 export function createConnection(serverUrl, roomId) {
   // A real implementation would actually connect to the server
   let connectedCallback;
@@ -1670,7 +1670,7 @@ export function createConnection(serverUrl, roomId) {
 }
 ```
 
-```js notifications.js hidden
+```js src/notifications.js hidden
 import Toastify from 'toastify-js';
 import 'toastify-js/src/toastify.css';
 
@@ -1784,7 +1784,7 @@ export default function App() {
 }
 ```
 
-```js chat.js
+```js src/chat.js
 export function createConnection(serverUrl, roomId) {
   // A real implementation would actually connect to the server
   let connectedCallback;
@@ -1813,7 +1813,7 @@ export function createConnection(serverUrl, roomId) {
 }
 ```
 
-```js notifications.js hidden
+```js src/notifications.js hidden
 import Toastify from 'toastify-js';
 import 'toastify-js/src/toastify.css';
 

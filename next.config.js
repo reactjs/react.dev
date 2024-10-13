@@ -9,14 +9,12 @@ const nextConfig = {
   pageExtensions: ['jsx', 'js', 'ts', 'tsx', 'mdx', 'md'],
   reactStrictMode: true,
   experimental: {
-    plugins: true,
+    // TODO: Remove after https://github.com/vercel/next.js/issues/49355 is fixed
+    appDir: false,
     scrollRestoration: true,
     legacyBrowsers: false,
-    browsersListForSwc: true,
   },
-  env: {
-    SANDPACK_BARE_COMPONENTS: process.env.SANDPACK_BARE_COMPONENTS,
-  },
+  env: {},
   webpack: (config, {dev, isServer, ...options}) => {
     if (process.env.ANALYZE) {
       const {BundleAnalyzerPlugin} = require('webpack-bundle-analyzer');
@@ -35,10 +33,6 @@ const nextConfig = {
 
     const {IgnorePlugin, NormalModuleReplacementPlugin} = require('webpack');
     config.plugins.push(
-      new NormalModuleReplacementPlugin(
-        /^@stitches\/core$/,
-        require.resolve('./src/utils/emptyShim.js')
-      ),
       new NormalModuleReplacementPlugin(
         /^raf$/,
         require.resolve('./src/utils/rafShim.js')

@@ -73,11 +73,11 @@ An app fully built with React will usually only have one `render` call with its 
 Call `render` to display a <CodeStep step={1}>React component</CodeStep> inside a <CodeStep step={2}>browser DOM node</CodeStep>.
 
 ```js [[1, 4, "<App />"], [2, 4, "document.getElementById('root')"]]
-import {render} from 'react-dom';
+import { render } from 'react-dom';
 import App from './App.js';
 
 render(<App />, document.getElementById('root'));
-````
+```
 
 ### Rendering the root component {/*rendering-the-root-component*/}
 
@@ -85,15 +85,15 @@ In apps fully built with React, **you will usually only do this once at startup*
 
 <Sandpack>
 
-```js index.js active
+```js src/index.js active
 import './styles.css';
-import {render} from 'react-dom';
+import { render } from 'react-dom';
 import App from './App.js';
 
 render(<App />, document.getElementById('root'));
 ```
 
-```js App.js
+```js src/App.js
 export default function App() {
   return <h1>Hello, world!</h1>;
 }
@@ -119,7 +119,7 @@ If your page [isn't fully built with React](/learn/add-react-to-an-existing-proj
 </main>
 ```
 
-```js index.js active
+```js src/index.js active
 import './styles.css';
 import { render } from 'react-dom';
 import { Comments, Navigation } from './Components.js';
@@ -135,7 +135,7 @@ render(
 );
 ```
 
-```js Components.js
+```js src/Components.js
 export function Navigation() {
   return (
     <ul>
@@ -187,8 +187,8 @@ You can call `render` more than once on the same DOM node. As long as the compon
 
 <Sandpack>
 
-```js index.js active
-import {render} from 'react-dom';
+```js src/index.js active
+import { render } from 'react-dom';
 import './styles.css';
 import App from './App.js';
 
@@ -202,7 +202,7 @@ setInterval(() => {
 }, 1000);
 ```
 
-```js App.js
+```js src/App.js
 export default function App({counter}) {
   return (
     <>

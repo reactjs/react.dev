@@ -4,7 +4,7 @@ import {
   LoadingOverlayState,
   OpenInCodeSandboxButton,
   useSandpack,
-} from '@codesandbox/sandpack-react';
+} from '@codesandbox/sandpack-react/unstyled';
 import {useEffect} from 'react';
 
 const FADE_ANIMATION_DURATION = 200;

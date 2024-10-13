@@ -12,6 +12,41 @@
       "skipBreadcrumb": true,
       "routes": [
         {
+          "title": "React Conf 2024 Recap",
+          "titleForHomepage": "React Conf 2024 Recap",
+          "icon": "blog",
+          "date": "May 22, 2024",
+          "path": "/blog/2024/05/22/react-conf-2024-recap"
+        },
+        {
+          "title": "React 19 RC",
+          "titleForHomepage": "React 19 RC",
+          "icon": "blog",
+          "date": "April 25, 2024",
+          "path": "/blog/2024/04/25/react-19"
+        },
+        {
+          "title": "React 19 RC Upgrade Guide",
+          "titleForHomepage": "React 19 RC Upgrade Guide",
+          "icon": "blog",
+          "date": "April 25, 2024",
+          "path": "/blog/2024/04/25/react-19-upgrade-guide"
+        },
+        {
+          "title": "React Labs: What We've Been Working On – February 2024",
+          "titleForHomepage": "React Labs: February 2024",
+          "icon": "labs",
+          "date": "February 15, 2024",
+          "path": "/blog/2024/02/15/react-labs-what-we-have-been-working-on-february-2024"
+        },
+        {
+          "title": "React Canaries: Enabling Incremental Feature Rollout Outside Meta",
+          "titleForHomepage": "React Canaries: Incremental Feature Rollout",
+          "icon": "blog",
+          "date": "May 3, 2023",
+          "path": "/blog/2023/05/03/react-canaries"
+        },
+        {
           "title": "React Labs: What We've Been Working On – March 2023",
           "titleForHomepage": "React Labs: March 2023",
           "icon": "labs",

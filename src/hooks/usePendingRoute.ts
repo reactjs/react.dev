@@ -33,7 +33,7 @@ const usePendingRoute = () => {
       events.off('routeChangeComplete', handleRouteChangeComplete);
       clearTimeout(routeTransitionTimer);
     };
-  }, []);
+  }, [events]);
 
   return pendingRoute;
 };

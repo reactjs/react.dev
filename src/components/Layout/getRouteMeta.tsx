@@ -19,6 +19,8 @@ export type RouteTag =
 export interface RouteItem {
   /** Page title (for the sidebar) */
   title: string;
+  /** Optional canary flag for heading */
+  canary?: boolean;
   /** Optional page description for heading */
   description?: string;
   /* Additional meta info for page tagging */
@@ -27,8 +29,6 @@ export interface RouteItem {
   path?: string;
   /** Whether the entry is a heading */
   heading?: boolean;
-  /** Whether the page is under construction */
-  wip?: boolean;
   /** List of sub-routes */
   routes?: RouteItem[];
   /** Adds a section header above the route item */
@@ -54,12 +54,23 @@ export interface RouteMeta {
   route?: RouteItem;
   /** Trail of parent routes */
   breadcrumbs?: RouteItem[];
+  /** Order in the section */
+  order?: number;
 }
+
+type TraversalContext = RouteMeta & {
+  currentIndex: number;
+};
 
 export function getRouteMeta(cleanedPath: string, routeTree: RouteItem) {
   const breadcrumbs = getBreadcrumbs(cleanedPath, routeTree);
+  const ctx: TraversalContext = {
+    currentIndex: 0,
+  };
+  buildRouteMeta(cleanedPath, routeTree, ctx);
+  const {currentIndex: _, ...meta} = ctx;
   return {
-    ...buildRouteMeta(cleanedPath, routeTree, {}),
+    ...meta,
     breadcrumbs: breadcrumbs.length > 0 ? breadcrumbs : [routeTree],
   };
 }
@@ -68,8 +79,10 @@ export function getRouteMeta(cleanedPath: string, routeTree: RouteItem) {
 function buildRouteMeta(
   searchPath: string,
   currentRoute: RouteItem,
-  ctx: RouteMeta
-): RouteMeta {
+  ctx: TraversalContext
+) {
+  ctx.currentIndex++;
+
   const {routes} = currentRoute;
 
   if (ctx.route && !ctx.nextRoute) {
@@ -78,6 +91,7 @@ function buildRouteMeta(
 
   if (currentRoute.path === searchPath) {
     ctx.route = currentRoute;
+    ctx.order = ctx.currentIndex;
     // If we've found a deeper match, reset the previously stored next route.
     // TODO: this only works reliably if deeper matches are first in the tree.
     // We should revamp all of this to be more explicit.
@@ -89,14 +103,12 @@ function buildRouteMeta(
   }
 
   if (!routes) {
-    return ctx;
+    return;
   }
 
   for (const route of routes) {
     buildRouteMeta(searchPath, route, ctx);
   }
-
-  return ctx;
 }
 
 // iterates the route tree from the current route to find its ancestors for breadcrumbs

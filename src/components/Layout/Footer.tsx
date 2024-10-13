@@ -15,7 +15,7 @@ export function Footer() {
   return (
     <footer className={cn('text-secondary dark:text-secondary-dark')}>
       <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-x-12 gap-y-8 max-w-7xl mx-auto">
-        <div className="col-span-2 md:col-span-1 justify-items-start mt-3.5 text-left">
+        <div className="col-span-2 md:col-span-1 justify-items-start mt-3.5">
           <ExternalLink
             href="https://opensource.fb.com/"
             aria-label="Meta Open Source">
@@ -280,8 +280,34 @@ export function Footer() {
             </div>
           </ExternalLink>
 
-          <div className="text-xs text-left mt-2 pr-0.5">
-            &copy;{new Date().getFullYear()}
+          <div
+            className="text-xs text-left rtl:text-right mt-2 pe-0.5"
+            dir="ltr">
+            Copyright &copy; Meta Platforms, Inc
+          </div>
+          <div
+            className="uwu-visible text-xs cursor-pointer hover:text-link hover:dark:text-link-dark hover:underline"
+            onClick={() => {
+              // @ts-ignore
+              window.__setUwu(false);
+            }}>
+            no uwu plz
+          </div>
+          <div
+            className="uwu-hidden text-xs cursor-pointer hover:text-link hover:dark:text-link-dark hover:underline"
+            onClick={() => {
+              // @ts-ignore
+              window.__setUwu(true);
+            }}>
+            uwu?
+          </div>
+          <div className="uwu-visible text-xs">
+            Logo by
+            <ExternalLink
+              className="ms-1"
+              href="https://twitter.com/sawaratsuki1004">
+              @sawaratsuki1004
+            </ExternalLink>
           </div>
         </div>
         <div className="flex flex-col">
@@ -331,7 +357,7 @@ export function Footer() {
           <FooterLink href="https://opensource.fb.com/legal/terms/">
             Terms
           </FooterLink>
-          <div className="flex flex-row mt-8 gap-x-2">
+          <div className="flex flex-row items-center mt-8 gap-x-2">
             <ExternalLink
               aria-label="React on Facebook"
               href="https://www.facebook.com/react"
@@ -388,8 +414,8 @@ function FooterLink({
 
   return (
     <div>
-      <NextLink href={href}>
-        <a className={classes}>{children}</a>
+      <NextLink href={href} className={classes}>
+        {children}
       </NextLink>
     </div>
   );

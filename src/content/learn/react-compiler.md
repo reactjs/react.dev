@@ -192,6 +192,31 @@ export default function App() {
 
 When you have more confidence with rolling out the compiler, you can expand coverage to other directories as well and slowly roll it out to your whole app.
 
+### Using React Compiler with React 17 or 18 {/*using-react-compiler-with-react-17-or-18*/}
+
+React Compiler works best with React 19 RC. If you are unable to upgrade, you can install the extra `react-compiler-runtime` package which will allow the compiled code to run on versions prior to 19. However, note that the minimum supported version is 17.
+
+<TerminalBlock>
+npm install react-compiler-runtime@experimental
+</TerminalBlock>
+
+You should also add the correct `target` to your compiler config, where `target` is the major version of React you are targeting:
+
+```js {3}
+// babel.config.js
+const ReactCompilerConfig = {
+  target: '18' // '17' | '18' | '19'
+};
+
+module.exports = function () {
+  return {
+    plugins: [
+      ['babel-plugin-react-compiler', ReactCompilerConfig],
+    ],
+  };
+};
+```
+
 #### New projects {/*new-projects*/}
 
 If you're starting a new project, you can enable the compiler on your entire codebase, which is the default behavior.
@@ -223,29 +248,6 @@ module.exports = function () {
 ```
 
 `babel-plugin-react-compiler` should run first before other Babel plugins as the compiler requires the input source information for sound analysis.
-
-React Compiler works best with React 19 RC. If you are unable to upgrade, you can install the extra `react-compiler-runtime` package which will allow the compiled code to run on versions prior to 19. However, note that the minimum supported version is 17.
-
-<TerminalBlock>
-npm install react-compiler-runtime@experimental
-</TerminalBlock>
-
-You should also add the correct `target` to your compiler config, where `target` is the major version of React you are targeting:
-
-```js {3}
-// babel.config.js
-const ReactCompilerConfig = {
-  target: '18' // '17' | '18' | '19'
-};
-
-module.exports = function () {
-  return {
-    plugins: [
-      ['babel-plugin-react-compiler', ReactCompilerConfig],
-    ],
-  };
-};
-```
 
 ### Vite {/*usage-with-vite*/}
 
@@ -391,12 +393,6 @@ Please refer to [Rsbuild's docs](https://rsbuild.dev/guide/framework/react#react
 To report issues, please first create a minimal repro on the [React Compiler Playground](https://playground.react.dev/) and include it in your bug report. You can open issues in the [facebook/react](https://github.com/facebook/react/issues) repo.
 
 You can also provide feedback in the React Compiler Working Group by applying to be a member. Please see [the README for more details on joining](https://github.com/reactwg/react-compiler).
-
-### `(0 , _c) is not a function` error {/*0--_c-is-not-a-function-error*/}
-
-This occurs if you are not using React 19 RC and up. To fix this, [upgrade your app to React 19 RC](https://react.dev/blog/2024/04/25/react-19-upgrade-guide) first.
-
-If you are unable to upgrade to React 19, you may try a userspace implementation of the cache function as described in the [Working Group](https://github.com/reactwg/react-compiler/discussions/6). However, please note that this is not recommended and you should upgrade to React 19 when possible.
 
 ### How do I know my components have been optimized? {/*how-do-i-know-my-components-have-been-optimized*/}
 

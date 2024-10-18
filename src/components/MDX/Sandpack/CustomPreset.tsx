@@ -58,7 +58,7 @@ const SandboxShell = memo(function SandboxShell({
   return (
     <>
       <div
-        className="shadow-lg dark:shadow-lg-dark rounded-lg"
+        className="shadow-lg dark:shadow-lg-dark rounded-2xl"
         ref={containerRef}
         style={{
           contain: 'content',

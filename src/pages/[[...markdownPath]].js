@@ -24,6 +24,8 @@ export default function Layout({content, toc, meta, languages}) {
   let routeTree;
   switch (section) {
     case 'home':
+      routeTree = sidebarHome;
+      break;
     case 'unknown':
       routeTree = sidebarHome;
       break;
@@ -38,6 +40,8 @@ export default function Layout({content, toc, meta, languages}) {
       break;
     case 'blog':
       routeTree = sidebarBlog;
+      break;
+    default:
       break;
   }
   return (

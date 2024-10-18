@@ -17,6 +17,10 @@ interface SidebarRouteTreeProps {
   breadcrumbs: RouteItem[];
   routeTree: RouteItem;
   level?: number;
+  expandedPath: string | null;
+  setExpandedPath: (path: string | null) => void;
+  collapsedPaths: Set<string>;
+  setCollapsedPaths: React.Dispatch<React.SetStateAction<Set<string>>>;
 }
 
 function CollapseWrapper({
@@ -75,10 +79,41 @@ export function SidebarRouteTree({
   breadcrumbs,
   routeTree,
   level = 0,
+  expandedPath,
+  setExpandedPath,
+  collapsedPaths,
+  setCollapsedPaths,
 }: SidebarRouteTreeProps) {
   const slug = useRouter().asPath.split(/[\?\#]/)[0];
   const pendingRoute = usePendingRoute();
   const currentRoutes = routeTree.routes as RouteItem[];
+
+  const handleExpand = (path: string) => {
+    setExpandedPath(path);
+    setCollapsedPaths((prev) => {
+      const newSet = new Set(prev);
+      newSet.delete(path);
+      return newSet;
+    });
+  };
+
+  const handleToggle = (path: string) => {
+    if (expandedPath === path) {
+      setExpandedPath(null);
+      setCollapsedPaths((prev) => new Set(prev).add(path));
+    } else {
+      setExpandedPath(path);
+      setCollapsedPaths((prev) => {
+        const newSet = new Set(prev);
+        newSet.delete(path);
+        if (expandedPath) {
+          newSet.add(expandedPath);
+        }
+        return newSet;
+      });
+    }
+  };
+
   return (
     <ul>
       {currentRoutes.map(
@@ -95,23 +130,31 @@ export function SidebarRouteTree({
           index
         ) => {
           const selected = slug === path;
+          const isBreadcrumb = breadcrumbs.some((item) => item.path === path);
+          const isExpanded =
+            isForceExpanded ||
+            expandedPath === path ||
+            (selected && !collapsedPaths.has(path)) ||
+            (isBreadcrumb && !collapsedPaths.has(path as string));
+
           let listItem = null;
           if (!path || heading) {
             // if current route item has no path and children treat it as an API sidebar heading
             listItem = (
               <SidebarRouteTree
+                key={`${title}-${index}`}
                 level={level + 1}
                 isForceExpanded={isForceExpanded}
                 routeTree={{title, routes}}
                 breadcrumbs={[]}
+                expandedPath={expandedPath}
+                setExpandedPath={setExpandedPath}
+                collapsedPaths={collapsedPaths}
+                setCollapsedPaths={setCollapsedPaths}
               />
             );
           } else if (routes) {
             // if route has a path and child routes, treat it as an expandable sidebar item
-            const isBreadcrumb =
-              breadcrumbs.length > 1 &&
-              breadcrumbs[breadcrumbs.length - 1].path === path;
-            const isExpanded = isForceExpanded || isBreadcrumb || selected;
             listItem = (
               <li key={`${title}-${path}-${level}-heading`}>
                 <SidebarLink
@@ -124,6 +167,12 @@ export function SidebarRouteTree({
                   canary={canary}
                   isExpanded={isExpanded}
                   hideArrow={isForceExpanded}
+                  onExpand={() => {
+                    handleExpand(path);
+                  }}
+                  onToggle={() => {
+                    handleToggle(path);
+                  }}
                 />
                 <CollapseWrapper duration={250} isExpanded={isExpanded}>
                   <SidebarRouteTree
@@ -131,6 +180,10 @@ export function SidebarRouteTree({
                     routeTree={{title, routes}}
                     breadcrumbs={breadcrumbs}
                     level={level + 1}
+                    expandedPath={expandedPath}
+                    setExpandedPath={setExpandedPath}
+                    collapsedPaths={collapsedPaths}
+                    setCollapsedPaths={setCollapsedPaths}
                   />
                 </CollapseWrapper>
               </li>
@@ -146,6 +199,11 @@ export function SidebarRouteTree({
                   level={level}
                   title={title}
                   canary={canary}
+                  onExpand={() => {
+                    if (level == 0) {
+                      setExpandedPath(null);
+                    }
+                  }}
                 />
               </li>
             );

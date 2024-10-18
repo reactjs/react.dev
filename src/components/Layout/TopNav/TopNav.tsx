@@ -435,6 +435,10 @@ export default function TopNav({
                     routeTree={routeTree}
                     breadcrumbs={breadcrumbs}
                     isForceExpanded={isMenuOpen}
+                    expandedPath={null}
+                    setExpandedPath={() => {}}
+                    collapsedPaths={new Set()}
+                    setCollapsedPaths={() => {}}
                   />
                 </Suspense>
                 <div className="h-16" />

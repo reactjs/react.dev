@@ -234,7 +234,7 @@ Rather than updating the state variable in-place, we need to update it using the
 
 ```js {5}
 function Counter() {
-  const [count, setCount] = useState(0);
+  let [count, setCount] = useState(0);
 
   function handleClick() {
     count = count + 1; // 🔴 Bad: never mutate state directly

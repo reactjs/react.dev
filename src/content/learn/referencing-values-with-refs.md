@@ -635,7 +635,7 @@ export default function Chat() {
   return (
     <>
       <input
-        value={textRef}
+        ref={textRef}
       />
       <button
         onClick={handleSend}>

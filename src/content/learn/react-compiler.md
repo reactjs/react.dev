@@ -120,28 +120,6 @@ Please note that the compiler is still in Beta and has many rough edges. While i
 
 In addition to these docs, we recommend checking the [React Compiler Working Group](https://github.com/reactwg/react-compiler) for additional information and discussion about the compiler.
 
-### Checking compatibility {/*checking-compatibility*/}
-
-Prior to installing the compiler, you can first check to see if your codebase is compatible:
-
-<TerminalBlock>
-npx react-compiler-healthcheck@beta
-</TerminalBlock>
-
-This script will:
-
-- Check how many components can be successfully optimized: higher is better
-- Check for `<StrictMode>` usage: having this enabled and followed means a higher chance that the [Rules of React](/reference/rules) are followed
-- Check for incompatible library usage: known libraries that are incompatible with the compiler
-
-As an example:
-
-<TerminalBlock>
-Successfully compiled 8 out of 9 components.
-StrictMode usage not found.
-Found no usage of incompatible libraries.
-</TerminalBlock>
-
 ### Installing eslint-plugin-react-compiler {/*installing-eslint-plugin-react-compiler*/}
 
 React Compiler also powers an eslint plugin. The eslint plugin can be used **independently** of the compiler, meaning you can use the eslint plugin even if you don't use the compiler.

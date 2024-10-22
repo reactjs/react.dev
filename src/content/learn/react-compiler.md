@@ -149,7 +149,7 @@ export default [
 ]
 ```
 
-Or, in legacy config:
+Or, in the deprecated eslintrc config format:
 
 ```js
 module.exports = {

@@ -64,7 +64,7 @@ Or, if you're using Yarn:
 yarn add -D eslint-plugin-react-compiler@beta
 </TerminalBlock>
 
-Using the linter helps identify Rules of React breakages, making it easier to adopt the compiler when it's fully released.
+After installation you can enable the linter by [adding it to your ESLint config](/learn/react-compiler#installing-eslint-plugin-react-compiler). Using the linter helps identify Rules of React breakages, making it easier to adopt the compiler when it's fully released.
 
 ## Backwards Compatibility {/*backwards-compatibility*/}
 

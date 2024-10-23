@@ -140,7 +140,7 @@ import reactCompiler from 'eslint-plugin-react-compiler'
 export default [
   {
     plugins: {
-      'eslint-plugin-react-compiler': reactCompiler,
+      'react-compiler': reactCompiler,
     },
     rules: {
       'react-compiler/react-compiler': 'error',

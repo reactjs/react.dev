@@ -65,6 +65,11 @@ December 13 & 16, 2024. In-person in Berlin, Germany + remote (hybrid event)
 
 [Website](https://reactday.berlin/) - [Twitter](https://x.com/reactdayberlin)
 
+### App.js Conf 2025 {/*appjs-conf-2025*/}
+May 28 - 30, 2025. In-person in Kraków, Poland + remote
+
+[Website](https://appjs.co) - [Twitter](https://twitter.com/appjsconf)
+
 ## Past Conferences {/*past-conferences*/}
 
 ### React Rally 2024 🐙 {/*react-rally-2024*/}

@@ -8,6 +8,7 @@ import cn from 'classnames';
 import {Feedback} from '../Feedback';
 import {SidebarRouteTree} from '../Sidebar/SidebarRouteTree';
 import type {RouteItem} from '../getRouteMeta';
+import {useState} from 'react';
 
 declare global {
   interface Window {
@@ -23,6 +24,9 @@ export default function SidebarNav({
   routeTree: RouteItem;
   breadcrumbs: RouteItem[];
 }) {
+  const [expandedPath, setExpandedPath] = useState<string | null>(null);
+  const [collapsedPaths, setCollapsedPaths] = useState<Set<string>>(new Set());
+
   // HACK. Fix up the data structures instead.
   if ((routeTree as any).routes.length === 1) {
     routeTree = (routeTree as any).routes[0];
@@ -52,6 +56,10 @@ export default function SidebarNav({
                 routeTree={routeTree}
                 breadcrumbs={breadcrumbs}
                 isForceExpanded={false}
+                expandedPath={expandedPath}
+                setExpandedPath={setExpandedPath}
+                collapsedPaths={collapsedPaths}
+                setCollapsedPaths={setCollapsedPaths}
               />
             </Suspense>
             <div className="h-20" />

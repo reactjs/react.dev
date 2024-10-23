@@ -21,6 +21,8 @@ interface SidebarLinkProps {
   isExpanded?: boolean;
   hideArrow?: boolean;
   isPending: boolean;
+  onExpand?: (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => void;
+  onToggle?: (event: React.MouseEvent<HTMLSpanElement, MouseEvent>) => void;
 }
 
 export function SidebarLink({
@@ -32,6 +34,8 @@ export function SidebarLink({
   isExpanded,
   hideArrow,
   isPending,
+  onExpand,
+  onToggle,
 }: SidebarLinkProps) {
   const ref = useRef<HTMLAnchorElement>(null);
 
@@ -45,10 +49,29 @@ export function SidebarLink({
     }
   }, [ref, selected]);
 
+  const hasChildren = onExpand !== undefined;
+
   let target = '';
   if (href.startsWith('https://')) {
     target = '_blank';
   }
+
+  const handleLinkClick = (
+    e: React.MouseEvent<HTMLAnchorElement, MouseEvent>
+  ) => {
+    if (onExpand && hasChildren) {
+      onExpand(e);
+    }
+  };
+
+  const handleToggle = (e: React.MouseEvent<HTMLSpanElement, MouseEvent>) => {
+    e.preventDefault();
+    e.stopPropagation();
+    if (onToggle) {
+      onToggle(e);
+    }
+  };
+
   return (
     <Link
       href={href}
@@ -71,8 +94,8 @@ export function SidebarLink({
           'dark:bg-gray-70 bg-gray-3 dark:hover:bg-gray-70 hover:bg-gray-3':
             isPending,
         }
-      )}>
-      {/* This here needs to be refactored ofc */}
+      )}
+      onClick={handleLinkClick}>
       <div>
         {title}{' '}
         {canary && (
@@ -85,10 +108,11 @@ export function SidebarLink({
 
       {isExpanded != null && !hideArrow && (
         <span
-          className={cn('pe-1', {
+          className={cn('pe-1 p-1', {
             'text-link dark:text-link-dark': isExpanded,
             'text-tertiary dark:text-tertiary-dark': !isExpanded,
-          })}>
+          })}
+          onClick={handleToggle}>
           <IconNavArrow displayDirection={isExpanded ? 'down' : 'end'} />
         </span>
       )}

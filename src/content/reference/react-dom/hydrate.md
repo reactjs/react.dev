@@ -146,7 +146,9 @@ export default function App() {
 
 </Sandpack>
 
-This only works one level deep, and is intended to be an escape hatch. Don’t overuse it. Unless it’s text content, React still won’t attempt to patch it up, so it may remain inconsistent until future updates.
+This approach works only for one level of depth and is meant to serve as a quick workaround ("escape hatch") for specific cases. When we say "one level deep," we refer to the ability to apply this method to a single layer of nested components or elements. For example, if you have a component that contains child components, this approach will only affect the immediate children of that component.
+
+Use it sparingly. For any non-text content, React will not try to automatically update or synchronize it. This means that if the child components rely on dynamic data or props, they may remain out of sync with the parent component until subsequent updates are made. This lack of automatic synchronization could lead to inconsistencies in the user interface until React processes the next rendering cycle.
 
 ---
 

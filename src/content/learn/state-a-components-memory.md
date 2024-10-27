@@ -216,7 +216,7 @@ export default function Gallery() {
   let sculpture = sculptureList[index];
   return (
     <>
-      <button onClick={handleClick}>
+      <button onClick={handleClick} disabled={index === sculptureList.length - 1}>
         Next
       </button>
       <h2>
@@ -404,7 +404,7 @@ export default function Gallery() {
   let sculpture = sculptureList[index];
   return (
     <>
-      <button onClick={handleNextClick}>
+      <button onClick={handleNextClick} disabled={sculptureList.length - 1 === index}>
         Next
       </button>
       <h2>
@@ -769,7 +769,7 @@ export default function Gallery() {
   let sculpture = sculptureList[index];
   return (
     <section>
-      <button onClick={handleNextClick}>
+      <button onClick={handleNextClick} disabled={sculptureList.length - 1 === index}>
         Next
       </button>
       <h2>
@@ -940,7 +940,7 @@ export default function Gallery() {
   let sculpture = sculptureList[index];
   return (
     <>
-      <button onClick={handleNextClick}>
+      <button onClick={handleNextClick} disabled={sculptureList.length - 1 === index}>
         Next
       </button>
       <h2>

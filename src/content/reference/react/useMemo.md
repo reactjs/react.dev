@@ -1105,7 +1105,7 @@ function ChatRoom({ roomId }) {
     const connection = createConnection(options);
     connection.connect();
     return () => connection.disconnect();
-  }, [options]); // ✅ Only changes when createOptions changes
+  }, [options]); // ✅ Only changes when create option changes
   // ...
 ```
 

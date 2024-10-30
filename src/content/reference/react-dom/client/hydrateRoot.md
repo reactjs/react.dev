@@ -270,7 +270,8 @@ export default function App() {
 
 </Sandpack>
 
-This only works one level deep, and is intended to be an escape hatch. Don’t overuse it. Unless it’s text content, React still won’t attempt to patch it up, so it may remain inconsistent until future updates.
+
+This only works one level deep, meaning it allows bypassing React’s control only on direct child elements, not nested ones. Intended as an escape hatch for cases like embedding raw HTML or external content, it should be used sparingly. React won’t track updates beyond that first level, which may lead to inconsistencies until future updates.
 
 ---
 

@@ -67,16 +67,18 @@ But there is one other factor at play here. **React waits until *all* code in th
 >   before the handler completes.
 >
 > - This behavior differs from synchronous event handlers, where React waits until the entire handler
->   finishes.
+>    finishes.
 >
 > - Any state updates after the `await` will be treated as a separate batch,potentially causing multiple 
->   renders.
+>    renders.
 > 
-> To avoid this behavior, keep all state updates within a single synchronous batch, or avoid using `await`
->  inside event handlers when possible.
+> To avoid this behavior, keep all state updates within a single synchronous 
+> batch, or avoid using `await` inside event handlers when possible.
 
 ---
 
+
+-This might remind you of a waiter taking an order at the restaurant. A waiter doesn't run to the kitchen at the mention of your first dish! Instead, they let you finish your order, let you make changes to it, and even take orders from other people at the table.
 
 <Illustration src="/images/docs/illustrations/i_react-batching.png"  alt="An elegant cursor at a restaurant places and order multiple times with React, playing the part of the waiter. After she calls setState() multiple times, the waiter writes down the last one she requested as her final order." />
 

@@ -24,13 +24,12 @@ jobs:
 
       - name: Restore cached node_modules
         uses: actions/cache@v4
-        id: node_modules
         with:
           path: "**/node_modules"
           key: node_modules-${{ runner.arch }}-${{ runner.os }}-${{ hashFiles('yarn.lock') }}
 
       - name: Install deps
-        uses: yarn install
+        run: yarn install --frozen-lockfile
 
       - name: Lint codebase
         run: yarn ci-check

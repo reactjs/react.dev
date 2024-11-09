@@ -551,16 +551,16 @@ function useState(initialState) {
     return pair;
   }
 
-  // This is the first time we're rendering,
-  // so create a state pair and store it.
-  pair = [initialState, setState];
-
   function setState(nextState) {
     // When the user requests a state change,
     // put the new value into the pair.
     pair[0] = nextState;
     updateDOM();
   }
+
+  // This is the first time we're rendering,
+  // so create a state pair and store it.
+  pair = [initialState, setState];
 
   // Store the pair for future renders
   // and prepare for the next Hook call.

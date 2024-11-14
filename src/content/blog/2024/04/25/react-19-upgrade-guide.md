@@ -536,6 +536,24 @@ When double rendering in Strict Mode in development, `useMemo` and `useCallback`
 
 As with all Strict Mode behaviors, these features are designed to proactively surface bugs in your components during development so you can fix them before they are shipped to production. For example, during development, Strict Mode will double-invoke ref callback functions on initial mount, to simulate what happens when a mounted component is replaced by a Suspense fallback.
 
+### Improvements to Suspense {/*improvements-to-suspense*/}
+
+In React 19, when a component suspends, React will immediately commit the fallback of the nearest Suspense boundary without waiting for the entire sibling tree to render. After the fallback commits, React schedules another render for the suspended siblings to "pre-warm" lazy requests in the rest of the tree:
+
+<Diagram name="prerender" height={162} width={1270} alt="Diagram showing a tree of three components, one parent labeled Accordion and two children labeled Panel. Both Panel components contain isActive with value false.">
+
+Previously, when a component suspended, the suspended siblings were rendered and then the fallback was committed.
+
+</Diagram>
+
+<Diagram name="prewarm" height={162} width={1270} alt="The same diagram as the previous, with the isActive of the first child Panel component highlighted indicating a click with the isActive value set to true. The second Panel component still contains value false." >
+
+In React 19, when a component suspends, the fallback is committed and then the suspended siblings are rendered.
+
+</Diagram>
+
+This change means Suspense fallbacks display faster, while still warming lazy requests in the suspended tree.
+
 ### UMD builds removed {/*umd-builds-removed*/}
 
 UMD was widely used in the past as a convenient way to load React without a build step. Now, there are modern alternatives for loading modules as scripts in HTML documents. Starting with React 19, React will no longer produce UMD builds to reduce the complexity of its testing and release process. 

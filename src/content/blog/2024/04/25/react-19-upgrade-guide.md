@@ -542,13 +542,13 @@ In React 19, when a component suspends, React will immediately commit the fallba
 
 <Diagram name="prerender" height={162} width={1270} alt="Diagram showing a tree of three components, one parent labeled Accordion and two children labeled Panel. Both Panel components contain isActive with value false.">
 
-Previously, when a component suspended, the suspended siblings rendered and then the fallback.
+Previously, when a component suspended, the suspended siblings were rendered and then the fallback was committed.
 
 </Diagram>
 
 <Diagram name="prewarm" height={162} width={1270} alt="The same diagram as the previous, with the isActive of the first child Panel component highlighted indicating a click with the isActive value set to true. The second Panel component still contains value false." >
 
-In React 19, when a component suspends, the fallback is rendered and then the suspended siblings.
+In React 19, when a component suspends, the fallback is committed and then the suspended siblings are rendered.
 
 </Diagram>
 

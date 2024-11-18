@@ -90,7 +90,16 @@ export function Page({
               </LanguagesContext.Provider>
             </TocContext.Provider>
           </div>
-          {isReferencePage && <EditThis />}
+          {isReferencePage && route && (
+            <EditThis
+              isIndexPage={
+                routeTree.routes?.find((el: RouteItem): boolean | undefined =>
+                  el.path?.startsWith(route.path!)
+                )?.path === route.path
+              }
+              path={route?.path || routeTree.path || ''}
+            />
+          )}
           {!isBlogIndex && (
             <DocsPageFooter
               route={route}

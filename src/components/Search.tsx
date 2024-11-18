@@ -94,7 +94,17 @@ export function Search({
   onOpen,
   onClose,
   searchParameters = {
-    hitsPerPage: 5,
+    hitsPerPage: 30,
+    attributesToHighlight: [
+      'hierarchy.lvl0',
+      'hierarchy.lvl1',
+      'hierarchy.lvl2',
+      'hierarchy.lvl3',
+      'hierarchy.lvl4',
+      'hierarchy.lvl5',
+      'hierarchy.lvl6',
+      'content',
+    ],
   },
 }: SearchProps) {
   useDocSearchKeyboardEvents({isOpen, onOpen, onClose});

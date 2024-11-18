@@ -12,6 +12,13 @@
       "skipBreadcrumb": true,
       "routes": [
         {
+          "title": "React Compiler Beta Release and Roadmap",
+          "titleForHomepage": "React Compiler Beta Release and Roadmap",
+          "icon": "blog",
+          "date": "October 21, 2024",
+          "path": "/blog/2024/10/21/react-compiler-beta-release"
+        },
+        {
           "title": "React Conf 2024 Recap",
           "titleForHomepage": "React Conf 2024 Recap",
           "icon": "blog",

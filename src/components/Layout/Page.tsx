@@ -58,6 +58,7 @@ export function Page({
   const description = meta.description || route?.description || '';
   const isHomePage = cleanedPath === '/';
   const isBlogIndex = cleanedPath === '/blog';
+  const isReferencePage = cleanedPath.startsWith('/reference');
 
   let content;
   if (isHomePage) {
@@ -89,7 +90,7 @@ export function Page({
               </LanguagesContext.Provider>
             </TocContext.Provider>
           </div>
-          {!isBlogIndex && <EditThis />}
+          {isReferencePage && <EditThis />}
           {!isBlogIndex && (
             <DocsPageFooter
               route={route}

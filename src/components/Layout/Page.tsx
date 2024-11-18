@@ -21,6 +21,7 @@ import {HomeContent} from './HomeContent';
 import {TopNav} from './TopNav';
 import cn from 'classnames';
 import Head from 'next/head';
+import {EditThis} from 'components/EditThis';
 
 import(/* webpackPrefetch: true */ '../MDX/CodeBlock/CodeBlock');
 
@@ -88,6 +89,7 @@ export function Page({
               </LanguagesContext.Provider>
             </TocContext.Provider>
           </div>
+          {!isBlogIndex && <EditThis />}
           {!isBlogIndex && (
             <DocsPageFooter
               route={route}

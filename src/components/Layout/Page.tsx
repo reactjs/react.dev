@@ -105,16 +105,18 @@ export function Page({
             </TocContext.Provider>
           </div>
           {editableSections.includes(section) && !!route?.path && (
-            <div className={cn('mt-14 max-w-4xl 2xl:mx-auto')}>
-              <EditPage
-                isIndexPage={
-                  routeTree.path === route.path ||
-                  (!!routeTree.path &&
-                    !route.path.startsWith(routeTree.path) &&
-                    !!route.routes?.length)
-                }
-                path={route.path}
-              />
+            <div className="max-w-7xl mx-auto">
+              <div className={cn('mt-14 max-w-4xl 2xl:mx-auto')}>
+                <EditPage
+                  isIndexPage={
+                    routeTree.path === route.path ||
+                    (!!routeTree.path &&
+                      !route.path.startsWith(routeTree.path) &&
+                      !!route.routes?.length)
+                  }
+                  path={route.path}
+                />
+              </div>
             </div>
           )}
           {!isBlogIndex && (

@@ -21,8 +21,17 @@ import {HomeContent} from './HomeContent';
 import {TopNav} from './TopNav';
 import cn from 'classnames';
 import Head from 'next/head';
+import {EditPage} from 'components/EditPage';
 
 import(/* webpackPrefetch: true */ '../MDX/CodeBlock/CodeBlock');
+
+type Section =
+  | 'learn'
+  | 'reference'
+  | 'community'
+  | 'blog'
+  | 'home'
+  | 'unknown';
 
 interface PageProps {
   children: React.ReactNode;
@@ -34,7 +43,7 @@ interface PageProps {
     canary?: boolean;
     description?: string;
   };
-  section: 'learn' | 'reference' | 'community' | 'blog' | 'home' | 'unknown';
+  section: Section;
   languages?: Languages | null;
 }
 
@@ -57,6 +66,13 @@ export function Page({
   const description = meta.description || route?.description || '';
   const isHomePage = cleanedPath === '/';
   const isBlogIndex = cleanedPath === '/blog';
+
+  const editableSections: Section[] = [
+    'community',
+    'blog',
+    'learn',
+    'reference',
+  ];
 
   let content;
   if (isHomePage) {
@@ -88,6 +104,19 @@ export function Page({
               </LanguagesContext.Provider>
             </TocContext.Provider>
           </div>
+          {editableSections.includes(section) && !!route?.path && (
+            <div className={cn('mx-auto mt-14 max-w-4xl 2xl:mx-auto')}>
+              <EditPage
+                isIndexPage={
+                  routeTree.path === route.path ||
+                  (!!routeTree.path &&
+                    !route.path.startsWith(routeTree.path) &&
+                    !!route.routes?.length)
+                }
+                path={route.path}
+              />
+            </div>
+          )}
           {!isBlogIndex && (
             <DocsPageFooter
               route={route}

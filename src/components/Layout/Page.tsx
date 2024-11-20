@@ -105,7 +105,7 @@ export function Page({
             </TocContext.Provider>
           </div>
           {editableSections.includes(section) && !!route?.path && (
-            <div className={cn('mx-auto mt-14 max-w-4xl 2xl:mx-auto')}>
+            <div className={cn('mt-14 max-w-4xl 2xl:mx-auto')}>
               <EditPage
                 isIndexPage={
                   routeTree.path === route.path ||

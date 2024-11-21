@@ -13,12 +13,12 @@ interface CodeDiagramProps {
 
 export function CodeDiagram({children, flip = false}: CodeDiagramProps) {
   const illustration = Children.toArray(children).filter((child: any) => {
-    return child.type === 'img';
+    return child.type?.name === 'Image';
   });
   const content = Children.toArray(children).map((child: any) => {
     if (child.type?.mdxName === 'pre') {
       return <CodeBlock {...child.props} noMargin={true} noMarkers={true} />;
-    } else if (child.type === 'img') {
+    } else if (child.type?.name === 'Image') {
       return null;
     } else {
       return child;

@@ -77,7 +77,7 @@ When the bundler builds the `EmptyNote` Client Component, it will create a refer
 
 ```js [[1, 2, "createNoteAction"], [1, 5, "createNoteAction"], [1, 7, "createNoteAction"]]
 "use client";
-import {createNoteAction} from './actions';
+import { createNoteAction } from './actions';
 
 function EmptyNote() {
   console.log(createNoteAction);
@@ -103,24 +103,25 @@ export async function updateName(name) {
 }
 ```
 
-```js [[1, 3, "updateName"], [1, 13, "updateName"], [2, 11, "submitAction"],  [2, 23, "submitAction"]]
+```js [[1, 4, "updateName"], [1, 14, "updateName"], [2, 11, "submitAction"],  [2, 24, "submitAction"]]
 "use client";
 
-import {updateName} from './actions';
+import { useState, useTransition } from 'react';
+import { updateName } from './actions';
 
 function UpdateName() {
-  const [name, setName] = useState('');
   const [error, setError] = useState(null);
 
   const [isPending, startTransition] = useTransition();
 
-  const submitAction = async () => {
+  const submitAction = async (formData) => {
     startTransition(async () => {
-      const {error} = await updateName(name);
-      if (!error) {
-        setError(error);
+      const name = formData.get('name');
+      const result = await updateName(name);
+      if (result?.error) {
+        setError(result.error);
       } else {
-        setName('');
+        setError(null);
       }
     })
   }
@@ -128,7 +129,7 @@ function UpdateName() {
   return (
     <form action={submitAction}>
       <input type="text" name="name" disabled={isPending}/>
-      {state.error && <span>Failed: {state.error}</span>}
+      {error && <span>Failed: {error}</span>}
     </form>
   )
 }
@@ -148,7 +149,7 @@ You can pass a Server Action to a Form to automatically submit the form to the s
 ```js [[1, 3, "updateName"], [1, 7, "updateName"]]
 "use client";
 
-import {updateName} from './actions';
+import { updateName } from './actions';
 
 function UpdateName() {
   return (
@@ -167,10 +168,11 @@ For more, see the docs for [Server Actions in Forms](/reference/rsc/use-server#s
 
 You can compose Server Actions with `useActionState` for the common case where you just need access to the action pending state and last returned response:
 
-```js [[1, 3, "updateName"], [1, 6, "updateName"], [2, 6, "submitAction"], [2, 9, "submitAction"]]
+```js [[1, 4, "updateName"], [1, 7, "updateName"], [2, 7, "submitAction"], [2, 10, "submitAction"]]
 "use client";
 
-import {updateName} from './actions';
+import { useActionState } from 'react';
+import { updateName } from './actions';
 
 function UpdateName() {
   const [state, submitAction, isPending] = useActionState(updateName, {error: null});
@@ -192,10 +194,11 @@ For more, see the docs for [`useActionState`](/reference/react-dom/hooks/useForm
 
 Server Actions also support progressive enhancement with the third argument of `useActionState`.
 
-```js [[1, 3, "updateName"], [1, 6, "updateName"], [2, 6, "/name/update"], [3, 6, "submitAction"], [3, 9, "submitAction"]]
+```js [[1, 4, "updateName"], [1, 7, "updateName"], [2, 7, "/name/update"], [3, 7, "submitAction"], [3, 10, "submitAction"]]
 "use client";
 
-import {updateName} from './actions';
+import { useActionState } from 'react';
+import { updateName } from './actions';
 
 function UpdateName() {
   const [, submitAction] = useActionState(updateName, null, `/name/update`);

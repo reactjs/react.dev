@@ -23,8 +23,8 @@ To support React Server Components as a bundler or framework, we recommend pinni
 
 </Note>
 
-### Server Components without a Server {/*server-components-without-a-server*/}
-Server components can run at build time to read from the filesystem or fetch static content, so a web server is not required. For example, you may want to read static data from a content management system.
+### Server Components at build time generation {/*server-components-at-build-time-generation*/}
+Server components can run at build time to read from the filesystem or fetch static content, allowing for the rendering to take place during build time as apposed to having it render when a request comes in. For example, you may want to read static data from a content management system.
 
 Without Server Components, it's common to fetch static data on the client with an Effect:
 ```js

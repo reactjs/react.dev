@@ -12,7 +12,7 @@ React has been designed from the start for gradual adoption. You can use as litt
 
 * [How to start a new React project](/learn/start-a-new-react-project)
 * [How to add React to an existing project](/learn/add-react-to-an-existing-project)
-* [How to set up your editor](/learn/editor-setup)
+* [How to set up your editor](https://github.com/reactjs/react.dev/blob/main/src/content/learn/editor-setup.md)
 * [How to install React Developer Tools](/learn/react-developer-tools)
 
 </YouWillLearn>

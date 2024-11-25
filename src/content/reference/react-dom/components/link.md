@@ -158,9 +158,8 @@ export default function SiteMapPage() {
 
 ### Controlling stylesheet precedence {/*controlling-stylesheet-precedence*/}
 
-Stylesheets can conflict with each other, and when they do, the browser goes with the one that comes later in the document. React lets you control the order of stylesheets with the `precedence` prop. In this example, two components render stylesheets, and the one with the higher precedence goes later in the document even though the component that renders it comes earlier.
+Stylesheets can conflict with each other, and when they do, the browser goes with the one that comes later in the document. React lets you control the order of stylesheets with the `precedence` prop. In this example, three components render stylesheets, and the one with a `precedence` value that was discovered earlier goes earlier in the document even though a component that renders it comes later.
 
-{/*FIXME: this doesn't appear to actually work -- I guess precedence isn't implemented yet?*/}
 
 <SandpackWithHTMLOutput>
 
@@ -172,6 +171,7 @@ export default function HomePage() {
     <ShowRenderedHTML>
       <FirstComponent />
       <SecondComponent />
+      <ThirdComponent />
       ...
     </ShowRenderedHTML>
   );
@@ -183,6 +183,10 @@ function FirstComponent() {
 
 function SecondComponent() {
   return <link rel="stylesheet" href="second.css" precedence="low" />;
+}
+
+function ThirdComponent() {
+  return <link rel="stylesheet" href="second.css" precedence="high" />;
 }
 
 ```

@@ -186,7 +186,7 @@ function SecondComponent() {
 }
 
 function ThirdComponent() {
-  return <link rel="stylesheet" href="second.css" precedence="high" />;
+  return <link rel="stylesheet" href="third.css" precedence="high" />;
 }
 
 ```

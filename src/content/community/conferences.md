@@ -10,6 +10,12 @@ Do you know of a local React.js conference? Add it here! (Please keep the list c
 
 ## Upcoming Conferences {/*upcoming-conferences*/}
 
+### React Native Connection 2025 {/*react-native-connection-2025*/}
+April 3 (Training) + April 4 (Conference), 2025. Paris, France.
+
+[Website](https://reactnativeconnection.io/) - [X](https://x.com/reactnativeconn) - [Bluesky](https://bsky.app/profile/reactnativeconnect.bsky.social) - [CfP](https://sessionize.com/react-native-connection-2025)
+
+
 ### React Universe Conf 2024 {/*react-universe-conf-2024*/}
 September 5-6, 2024. Wrocław, Poland.
 

@@ -163,7 +163,7 @@ function CheckoutForm() {
 
 The function passed to `startTransition` is called the "Action". In Actions, you can perform side effects and update state within a Transition, without blocking the UI. A Transition can include multiple Actions, and while the Transition is in progress, your UI stays responsive in the middle of a re-render.
 
-For example, if the user clicks a tab but then change their mind and click another tab, they can do that without waiting for the first re-render to finish. But if the Action is performing a side effect, such as submitting a form, React will wait for the side effect to finish before changing the tab.
+For example, if the user clicks a tab but then changes their mind and clicks another tab, they can do that without waiting for the first re-render to finish. But if the Action is performing a side effect, such as submitting a form, React will wait for the side effect to finish before changing the tab.
 
 To give the user feedback about in-progress Transitions, to `isPending` state switches to `true` at the first call to `startTransition`, and stays `true` until all Actions complete and the final state is shown to the user. Transitions wait for side effects in Actions to complete in order to [prevent unwanted loading indicators](#preventing-unwanted-loading-indicators), and you can provide immediate feedback while the Transition is in progress with `useOptimistic`.
 

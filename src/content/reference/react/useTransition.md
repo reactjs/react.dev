@@ -55,7 +55,7 @@ function TabContainer() {
   const [isPending, startTransition] = useTransition();
   const [tab, setTab] = useState('about');
 
-  function selectTabAction(nextTab) {
+  function selectTab(nextTab) {
     startTransition(() => {
       setTab(nextTab);
     });
@@ -64,39 +64,30 @@ function TabContainer() {
 }
 ```
 
-The function passed to `startTransition` is called an Action. If the Action is async, React will wait for the async update to finish before transitioning the UI to the updated state: 
-
-```js {6}
-function TabButton({data, setData}) {
-  const [isPending, startTransition] = useTransition();
-
-  function updateAction(data) {
-    startTransition(async () => {
-      const newData = await updateData(data);
-      
-      // Note: currently, an additional startTransition
-      // is needed after any async requests. See Caveats.
-      startTransition(() => {
-        setData(data);
-      });
-    });
-  }
-  // ...
-}
-```
-
 <Note>
-#### By convention, functions inside `startTransition` are called "Actions". {/*by-convention-functions-that-call-transitions-are-called-actions*/}
+#### Functions called in `startTransition` are called "Actions". {/*functions-called-in-starttransition-are-called-actions*/}
 
-The function passed to `startTransition` is called an "Action". By convention, any callback called inside `startTransition` (such as a callback prop) include the "Action" suffix.
+The function passed to `startTransition` is called an "Action". By convention, any callback called inside `startTransition` (such as a callback prop) are named `action` or include the "Action" suffix:
 
-Transitions can include multiple Actions, such as an Action to update a local component, and another Action to navigate to the next route. Transitions support:
+```js {1,9}
+function SubmitButton({ submitAction }) {
+  const [isPending, startTranstion] = useTranstion();
 
-- **Pending states**: Actions provide a pending state that starts at the beginning of the Transition and automatically resets when the final state update is committed.
-- **Optimistic updates**: Actions support the new [`useOptimistic`](#new-hook-optimistic-updates) hook so you can show users instant feedback while the Action is in progress.
-- **Error handling**: Actions provide error handling so you can display Error Boundaries when an Action fails, and revert optimistic updates to their original value automatically.
-- **Forms**: `<form>` elements now support passing functions to the `action` and `formAction` props. Passing functions to the `action` props use Actions by default and reset the form automatically after submission.
+  return (
+    <button
+      disabled={isPending}
+      onClick={() => {
+        startTransition(() => {
+          submitAction();
+        });
+      }}
+    >
+      Submit
+    </button>
+  );
+}
 
+```
 
 </Note>
 

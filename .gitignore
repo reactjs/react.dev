@@ -43,3 +43,6 @@ public/rss.xml
 /.conductor/
 /.codeapi/
 /.cache/
+# Directory for Stride Conductor local files
+.conductor/config.yml
+.conductor/story_context.md

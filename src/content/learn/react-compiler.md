@@ -278,7 +278,7 @@ export default defineConfig(() => {
 
 ### Next.js {/*usage-with-nextjs*/}
 
-Please refer to the [Next.js docs](https://nextjs.org/docs/canary/app/api-reference/next-config-js/reactCompiler) for more information.
+Please refer to the [Next.js docs](https://nextjs.org/docs/app/api-reference/next-config-js/reactCompiler) for more information.
 
 ### Remix {/*usage-with-remix*/}
 Install `vite-plugin-babel`, and add the compiler's Babel plugin to it:
@@ -315,7 +315,7 @@ A community Webpack loader is [now available here](https://github.com/SukkaW/rea
 
 ### Expo {/*usage-with-expo*/}
 
-Please refer to [Expo's docs](https://docs.expo.dev/preview/react-compiler/) to enable and use the React Compiler in Expo apps.
+Please refer to [Expo's docs](https://docs.expo.dev/guides/react-compiler/) to enable and use the React Compiler in Expo apps.
 
 ### Metro (React Native) {/*usage-with-react-native-metro*/}
 

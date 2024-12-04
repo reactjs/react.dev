@@ -67,11 +67,11 @@ function TabContainer() {
 <Note>
 #### Functions called in `startTransition` are called "Actions". {/*functions-called-in-starttransition-are-called-actions*/}
 
-The function passed to `startTransition` is called an "Action". By convention, any callback called inside `startTransition` (such as a callback prop) are named `action` or include the "Action" suffix:
+The function passed to `startTransition` is called an "Action". By convention, any callback called inside `startTransition` (such as a callback prop) should be named `action` or include the "Action" suffix:
 
 ```js {1,9}
 function SubmitButton({ submitAction }) {
-  const [isPending, startTranstion] = useTranstion();
+  const [isPending, startTransition] = useTransition();
 
   return (
     <button
@@ -95,7 +95,7 @@ function SubmitButton({ submitAction }) {
 
 #### Parameters {/*starttransition-parameters*/}
 
-* `action`: A function that updates some state by calling one or more [`set` functions](/reference/react/useState#setstate). React immediately calls `action` with no parameters and marks all state updates scheduled synchronously during the `action` function call as Transitions. Any async calls awaited in the `action` will be included in the transition, but currently require wrapping any `set` functions after the `await` in an additional `startTransition` (see [Troubleshooting](#react-doesnt-treat-my-state-update-after-await-as-a-transition)). State updates marked as Transitions will be [non-blocking](#marking-a-state-update-as-a-non-blocking-transition) and [will not display unwanted loading indicators](#preventing-unwanted-loading-indicators).
+* `action`: A function that updates some state by calling one or more [`set` functions](/reference/react/useState#setstate). React immediately calls `action` with no parameters and marks all state updates scheduled synchronously during the `action` function call as Transitions. Any async calls that are awaited in the `action` will be included in the Transition, but currently require wrapping any `set` functions after the `await` in an additional `startTransition` (see [Troubleshooting](#react-doesnt-treat-my-state-update-after-await-as-a-transition)). State updates marked as Transitions will be [non-blocking](#marking-a-state-update-as-a-non-blocking-transition) and [will not display unwanted loading indicators](#preventing-unwanted-loading-indicators).
 
 #### Returns {/*starttransition-returns*/}
 
@@ -139,7 +139,7 @@ function CheckoutForm() {
 1. The <CodeStep step={1}>`isPending` flag</CodeStep> that tells you whether there is a pending Transition.
 2. The <CodeStep step={2}>`startTransition` function</CodeStep> that lets you create an Action.
 
-To start a transition, pass a function to `startTransition` like this:
+To start a Transition, pass a function to `startTransition` like this:
 
 ```js
 import {useState, useTransition} from 'react';
@@ -161,9 +161,9 @@ function CheckoutForm() {
 }
 ```
 
-The function passed to `startTransition` is called the "Action". You can update state and (optionally) perform side effects within an Action, and the work will be done in the background without blocking user interactions on the page. A Transition can include multiple Actions, and while a Transition is in progress, your UI stays responsive in the middle of the Actions. For example, if the user clicks a tab but then changes their mind and clicks another tab, the second click will be immediately handled waiting for the first update to finish. 
+The function passed to `startTransition` is called the "Action". You can update state and (optionally) perform side effects within an Action, and the work will be done in the background without blocking user interactions on the page. A Transition can include multiple Actions, and while a Transition is in progress, your UI stays responsive. For example, if the user clicks a tab but then changes their mind and clicks another tab, the second click will be immediately handled without waiting for the first update to finish. 
 
-To give the user feedback about in-progress Transitions, to `isPending` state switches to `true` at the first call to `startTransition`, and stays `true` until all Actions complete and the final state is shown to the user. Transitions wait for side effects in Actions to complete in order to [prevent unwanted loading indicators](#preventing-unwanted-loading-indicators), and you can provide immediate feedback while the Transition is in progress with `useOptimistic`.
+To give the user feedback about in-progress Transitions, to `isPending` state switches to `true` at the first call to `startTransition`, and stays `true` until all Actions complete and the final state is shown to the user. Transitions ensure side effects in Actions to complete in order to [prevent unwanted loading indicators](#preventing-unwanted-loading-indicators), and you can provide immediate feedback while the Transition is in progress with `useOptimistic`.
 
 <Recipes titleText="The difference between Actions and regular event handling">
 
@@ -171,7 +171,7 @@ To give the user feedback about in-progress Transitions, to `isPending` state sw
 
 In this example, the `updateQuantity` function simulates a request to the server to update the item's quantity in the cart. This function is *artificially slowed down* so that it takes at least a second to complete the request.
 
-Update the quantity multiple times quickly. Notice that the pending "Total" state is shown while any requests is in progress, and the "Total" updates only after the final request is complete. Because the update is in an Action, the "quantity" can continue to be updated while the request is in progress.
+Update the quantity multiple times quickly. Notice that the pending "Total" state is shown while any requests are in progress, and the "Total" updates only after the final request is complete. Because the update is in an Action, the "quantity" can continue to be updated while the request is in progress.
 
 <Sandpack>
 
@@ -312,7 +312,7 @@ For common use cases, React provides built-in abstractions such as:
 - [`<form>` actions](/reference/react-dom/components/form)
 - [Server Actions](/reference/rsc/server-actions)
 
-These solutions handle request ordering for you. When using transitions to build your own custom hooks or libraries that manage async state transitions, you have greater control over the request ordering, but you must handle it yourself.
+These solutions handle request ordering for you. When using Transitions to build your own custom hooks or libraries that manage async state transitions, you have greater control over the request ordering, but you must handle it yourself.
 
 <Solution />
 
@@ -573,7 +573,7 @@ export async function updateQuantity(newQuantity) {
 
 </Sandpack>
 
-This solution makes the app feel slow, because the user has to wait every time they update the quantity. It's possible to add more complex handling manually to allow the user to interact with the UI while the quantity is updating, but Actions handle this case with a straight-forward built-in API.
+This solution makes the app feel slow, because the user must wait each time they update the quantity. It's possible to add more complex handling manually to allow the user to interact with the UI while the quantity is updating, but Actions handle this case with a straight-forward built-in API.
 
 <Solution />
 
@@ -1038,7 +1038,7 @@ b { display: inline-block; margin-right: 10px; }
 
 </Sandpack>
 
-Hiding the entire tab container to show a loading indicator leads to a jarring user experience. If you add `useTransition` to `TabButton`, you can instead indicate display the pending state in the tab button instead.
+Hiding the entire tab container to show a loading indicator leads to a jarring user experience. If you add `useTransition` to `TabButton`, you can instead display the pending state in the tab button instead.
 
 Notice that clicking "Posts" no longer replaces the entire tab container with a spinner:
 
@@ -1206,7 +1206,7 @@ b { display: inline-block; margin-right: 10px; }
 
 <Note>
 
-Transitions will only "wait" long enough to avoid hiding *already revealed* content (like the tab container). If the Posts tab had a [nested `<Suspense>` boundary,](/reference/react/Suspense#revealing-nested-content-as-it-loads) the Transition would not "wait" for it.
+Transitions only "wait" long enough to avoid hiding *already revealed* content (like the tab container). If the Posts tab had a [nested `<Suspense>` boundary,](/reference/react/Suspense#revealing-nested-content-as-it-loads) the Transition would not "wait" for it.
 
 </Note>
 
@@ -1687,12 +1687,12 @@ setTimeout(() => {
 
 ### React doesn't treat my state update after `await` as a Transition {/*react-doesnt-treat-my-state-update-after-await-as-a-transition*/}
 
-When you use `await` inside a `startTransition` function, the state updates that happen after the `await` are not marked as transitions. You must wrap state updates after each `await` in a `startTransition` call:
+When you use `await` inside a `startTransition` function, the state updates that happen after the `await` are not marked as Transitions. You must wrap state updates after each `await` in a `startTransition` call:
 
 ```js
 startTransition(async () => {
   await someAsyncFunction();
-  // ❌ Not using startTranstion after await
+  // ❌ Not using startTransition after await
   setPage('/about');
 });
 ```
@@ -1930,6 +1930,6 @@ export async function updateQuantity(newName) {
 
 When clicking multiple times, it's possible for previous requests to finish after later requests. When this happens, React currently has no way to know the intended order. This is because the updates are scheduled asynchronously, and React loses context of the order across the async boundary.
 
-This is expected, because Actions within a Transition are not ordered. For common use cases, React provides higher-level abstractions like [`useActionState`](/reference/react/useActionState) and [`<form>` actions](/reference/react-dom/components/form) that handle ordering for you. For advanced use cases, you'll need to implement your own queuing and abort logic to handle this.
+This is expected, because Actions within a Transition do not guarantee execution order. For common use cases, React provides higher-level abstractions like [`useActionState`](/reference/react/useActionState) and [`<form>` actions](/reference/react-dom/components/form) that handle ordering for you. For advanced use cases, you'll need to implement your own queuing and abort logic to handle this.
 
 

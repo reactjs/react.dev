@@ -4,7 +4,7 @@ title: useTransition
 
 <Intro>
 
-`useTransition` is a React Hook that lets you update without blocking the UI.
+`useTransition` is a React Hook that lets you render a part of the UI in the background.
 
 ```js
 const [isPending, startTransition] = useTransition()
@@ -95,7 +95,7 @@ function SubmitButton({ submitAction }) {
 
 #### Parameters {/*starttransition-parameters*/}
 
-* `action`: A function that updates some state by calling one or more [`set` functions](/reference/react/useState#setstate). React immediately calls `action` with no parameters and marks all state updates scheduled synchronously during the `action` function call as Transitions. Any async calls awaited in the `action` will be included in the transition, but currently require wrapping any `set` functions after the `await` in an additional `startTransition` (see [Troubleshooting](#react-doesnt-treat-my-state-update-after-await-as-a-transition)). State updates marked as Transitions will be [non-blocking](#marking-a-state-update-as-a-non-blocking-transition) and [will not display unwanted loading indicators.](#preventing-unwanted-loading-indicators).
+* `action`: A function that updates some state by calling one or more [`set` functions](/reference/react/useState#setstate). React immediately calls `action` with no parameters and marks all state updates scheduled synchronously during the `action` function call as Transitions. Any async calls awaited in the `action` will be included in the transition, but currently require wrapping any `set` functions after the `await` in an additional `startTransition` (see [Troubleshooting](#react-doesnt-treat-my-state-update-after-await-as-a-transition)). State updates marked as Transitions will be [non-blocking](#marking-a-state-update-as-a-non-blocking-transition) and [will not display unwanted loading indicators](#preventing-unwanted-loading-indicators).
 
 #### Returns {/*starttransition-returns*/}
 
@@ -107,7 +107,7 @@ function SubmitButton({ submitAction }) {
 
 * You can wrap an update into a Transition only if you have access to the `set` function of that state. If you want to start a Transition in response to some prop or a custom Hook value, try [`useDeferredValue`](/reference/react/useDeferredValue) instead.
 
-* The function you pass to the of `startTransition` is called immediately, marking all state updates that happen while it executes as Transitions. If you try to perform state updates in a `setTimeout`, for example, they won't be marked as Transitions.
+* The function you pass to `startTransition` is called immediately, marking all state updates that happen while it executes as Transitions. If you try to perform state updates in a `setTimeout`, for example, they won't be marked as Transitions.
 
 * You must wrap any state updates after any async requests in another `startTransition` to mark them as Transitions. This is a known limitation that we will fix in the future (see [Troubleshooting](#react-doesnt-treat-my-state-update-after-await-as-a-transition)).
 
@@ -117,7 +117,7 @@ function SubmitButton({ submitAction }) {
 
 * Transition updates can't be used to control text inputs.
 
-* If there are multiple ongoing Transitions, React currently batches them together. This is a limitation that will likely be removed in a future release.
+* If there are multiple ongoing Transitions, React currently batches them together. This is a limitation that may be removed in a future release.
 
 ## Usage {/*usage*/}
 
@@ -161,9 +161,7 @@ function CheckoutForm() {
 }
 ```
 
-The function passed to `startTransition` is called the "Action". In Actions, you can perform side effects and update state within a Transition, without blocking the UI. A Transition can include multiple Actions, and while the Transition is in progress, your UI stays responsive in the middle of a re-render.
-
-For example, if the user clicks a tab but then changes their mind and clicks another tab, they can do that without waiting for the first re-render to finish. But if the Action is performing a side effect, such as submitting a form, React will wait for the side effect to finish before changing the tab.
+The function passed to `startTransition` is called the "Action". You can update state and (optionally) perform side effects within an Action, and the work will be done in the background without blocking user interactions on the page. A Transition can include multiple Actions, and while a Transition is in progress, your UI stays responsive in the middle of the Actions. For example, if the user clicks a tab but then changes their mind and clicks another tab, the second click will be immediately handled waiting for the first update to finish. 
 
 To give the user feedback about in-progress Transitions, to `isPending` state switches to `true` at the first call to `startTransition`, and stays `true` until all Actions complete and the final state is shown to the user. Transitions wait for side effects in Actions to complete in order to [prevent unwanted loading indicators](#preventing-unwanted-loading-indicators), and you can provide immediate feedback while the Transition is in progress with `useOptimistic`.
 
@@ -202,7 +200,7 @@ export default function App({}) {
   const [quantity, setQuantity] = useState(1);
   const [isPending, startTransition] = useTransition();
 
-  const updateQuantityAction = newQuantity => {
+  const updateQuantityAction = async newQuantity => {
     // To access the pending state of a transition,
     // call startTransition again.
     startTransition(async () => {
@@ -1663,9 +1661,7 @@ startTransition(() => {
 });
 ```
 
-The function you pass to `startTransition` must be synchronous, or await an async function.
-
-You can't mark an update as a Transition like this:
+The function you pass to `startTransition` must be synchronous. You can't mark an update as a Transition like this:
 
 ```js
 startTransition(() => {
@@ -1758,7 +1754,7 @@ function setState() {
 }
 ```
 
-### My state updates in async Transitions are out of order {/*my-state-updates-in-async-transitions-are-out-of-order*/}
+### My state updates in Transitions are out of order {/*my-state-updates-in-transitions-are-out-of-order*/}
 
 If you `await` inside `startTransition`, you might see the updates happen out of order.
 
@@ -1934,6 +1930,6 @@ export async function updateQuantity(newName) {
 
 When clicking multiple times, it's possible for previous requests to finish after later requests. When this happens, React currently has no way to know the intended order. This is because the updates are scheduled asynchronously, and React loses context of the order across the async boundary.
 
-This is expected. In the future, React can use [AsyncContext](https://github.com/tc39/proposal-async-context) to track the order of async updates. For common use cases, React provides higher-level abstractions like [`useActionState`](/reference/react/useActionState) and [`<form>` actions](/reference/react-dom/components/form) that handle this automatically. For advanced use cases that use async transitions directly, you'll need to implement your own queuing and abort logic to handle this.
+This is expected, because Actions within a Transition are not ordered. For common use cases, React provides higher-level abstractions like [`useActionState`](/reference/react/useActionState) and [`<form>` actions](/reference/react-dom/components/form) that handle ordering for you. For advanced use cases, you'll need to implement your own queuing and abort logic to handle this.
 
 

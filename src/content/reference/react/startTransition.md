@@ -4,7 +4,7 @@ title: startTransition
 
 <Intro>
 
-`startTransition` lets you update without blocking the UI.
+`startTransition` lets you render a part of the UI in the background.
 
 ```js
 startTransition(action)
@@ -61,7 +61,7 @@ function TabContainer() {
 
 * Transition updates can't be used to control text inputs.
 
-* If there are multiple ongoing Transitions, React currently batches them together. This is a limitation that will likely be removed in a future release.
+* If there are multiple ongoing Transitions, React currently batches them together. This is a limitation that may be removed in a future release.
 
 ---
 

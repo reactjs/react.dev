@@ -293,6 +293,21 @@
       ]
     },
     {
+      "title": "Static APIs",
+      "path": "/reference/react-dom/static",
+      "routes": [
+        {
+          "title": "prerender",
+          "path": "/reference/react-dom/static/prerender"
+        },
+        {
+          "title": "prerenderToNodeStream",
+          "path": "/reference/react-dom/static/prerenderToNodeStream"
+        }
+        
+      ]
+    },
+    {
       "hasSectionHeader": true,
       "sectionHeader": "Rules of React"
     },

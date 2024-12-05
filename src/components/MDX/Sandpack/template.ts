@@ -28,8 +28,8 @@ root.render(
           eject: 'react-scripts eject',
         },
         dependencies: {
-          react: '^18.0.0',
-          'react-dom': '^18.0.0',
+          react: '19.0.0-rc-3edc000d-20240926',
+          'react-dom': '19.0.0-rc-3edc000d-20240926',
           'react-scripts': '^5.0.0',
         },
       },

@@ -87,7 +87,7 @@ export function SidebarRouteTree({
             path,
             title,
             routes,
-            canary,
+            version,
             heading,
             hasSectionHeader,
             sectionHeader,
@@ -121,7 +121,7 @@ export function SidebarRouteTree({
                   selected={selected}
                   level={level}
                   title={title}
-                  canary={canary}
+                  version={version}
                   isExpanded={isExpanded}
                   hideArrow={isForceExpanded}
                 />
@@ -145,7 +145,7 @@ export function SidebarRouteTree({
                   selected={selected}
                   level={level}
                   title={title}
-                  canary={canary}
+                  version={version}
                 />
               </li>
             );

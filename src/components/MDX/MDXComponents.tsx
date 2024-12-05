@@ -97,6 +97,14 @@ const Canary = ({children}: {children: React.ReactNode}) => (
   <ExpandableCallout type="canary">{children}</ExpandableCallout>
 );
 
+const NextMajor = ({children}: {children: React.ReactNode}) => (
+  <ExpandableCallout type="major">{children}</ExpandableCallout>
+);
+
+const RSC = ({children}: {children: React.ReactNode}) => (
+  <ExpandableCallout type="rsc">{children}</ExpandableCallout>
+);
+
 const CanaryBadge = ({title}: {title: string}) => (
   <span
     title={title}
@@ -108,6 +116,26 @@ const CanaryBadge = ({title}: {title: string}) => (
       className={'inline me-1 mb-0.5 text-sm text-gray-60 dark:text-gray-10'}
     />
     Canary only
+  </span>
+);
+
+const NextMajorBadge = ({title}: {title: string}) => (
+  <span
+    title={title}
+    className={
+      'text-base font-display px-2 py-0.5 font-bold bg-blue-10 dark:bg-blue-60 text-gray-60 dark:text-gray-10 rounded'
+    }>
+    React 19
+  </span>
+);
+
+const RSCBadge = ({title}: {title: string}) => (
+  <span
+    title={title}
+    className={
+      'text-base font-display px-2 py-0.5 font-bold bg-blue-10 dark:bg-blue-50 text-gray-60 dark:text-gray-10 rounded'
+    }>
+    RSC
   </span>
 );
 
@@ -483,6 +511,10 @@ export const MDXComponents = {
   Note,
   Canary,
   CanaryBadge,
+  NextMajor,
+  NextMajorBadge,
+  RSC,
+  RSCBadge,
   PackageImport,
   ReadBlogPost,
   Recap,

@@ -81,7 +81,7 @@ yarn add --exact react@^19.0.0 react-dom@^19.0.0
 
 If you're using TypeScript, you also need to update the types.
 ```bash
-npm install --save-exact @types/react@^19.0.0 react-dom@^19.0.0
+npm install --save-exact @types/react@^19.0.0 @types/react-dom@^19.0.0
 ```
 
 Or, if you're using Yarn:

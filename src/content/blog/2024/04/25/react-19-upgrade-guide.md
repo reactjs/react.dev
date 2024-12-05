@@ -1,5 +1,5 @@
 ---
-title: "React 19 RC Upgrade Guide"
+title: "React 19 Upgrade Guide"
 author: Ricky Hanlon
 date: 2024/04/25
 description: The improvements added to React 19 require some breaking changes, but we've worked to make the upgrade as smooth as possible and we don't expect the changes to impact most apps. In this post, we will guide you through the steps for upgrading apps and libraries to React 19.
@@ -12,7 +12,7 @@ April 25, 2024 by [Ricky Hanlon](https://twitter.com/rickhanlonii)
 
 <Intro>
 
-The improvements added to React 19 RC require some breaking changes, but we've worked to make the upgrade as smooth as possible, and we don't expect the changes to impact most apps.
+The improvements added to React 19 require some breaking changes, but we've worked to make the upgrade as smooth as possible, and we don't expect the changes to impact most apps.
 
 </Intro>
 
@@ -38,7 +38,7 @@ In this post, we will guide you through the steps for upgrading to React 19:
 - [TypeScript changes](#typescript-changes)
 - [Changelog](#changelog)
 
-If you'd like to help us test React 19, follow the steps in this upgrade guide and [report any issues](https://github.com/facebook/react/issues/new?assignees=&labels=React+19&projects=&template=19.md&title=%5BReact+19%5D) you encounter. For a list of new features added to React 19, see the [React 19 release post](/blog/2024/04/25/react-19).
+If you'd like to help us test React 19, follow the steps in this upgrade guide and [report any issues](https://github.com/facebook/react/issues/new?assignees=&labels=React+19&projects=&template=19.md&title=%5BReact+19%5D) you encounter. For a list of new features added to React 19, see the [React 19 release post](/blog/2024/12/05/react-19).
 
 ---
 ## Installing {/*installing*/}
@@ -752,7 +752,7 @@ const reducer = (state: State, action: Action) => state;
 - **react-dom**: Remove layout effect warning during SSR [#26395](https://github.com/facebook/react/pull/26395)
 - **react-dom**: Warn and don’t set empty string for src/href (except anchor tags) [#28124](https://github.com/facebook/react/pull/28124)
 
-We'll publish the full changelog with the stable release of React 19.
+For a full list of changes, please see the [Changelog](https://github.com/facebook/react/blob/main/CHANGELOG.md#1900-december-5-2024).
 
 ---
 

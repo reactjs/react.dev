@@ -5,6 +5,11 @@
   "trailingSlash": false,
   "redirects": [
     {
+      "source": "/blog/:slug",
+      "destination": "https://react.dev/blog/:slug",
+      "permanent": true
+    },
+    {
       "source": "/reference",
       "destination": "/reference/react",
       "permanent": true

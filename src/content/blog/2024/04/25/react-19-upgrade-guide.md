@@ -70,28 +70,23 @@ We expect most apps will not be affected since the transform is enabled in most 
 To install the latest version of React and React DOM:
 
 ```bash
-npm install --save-exact react@rc react-dom@rc
+npm install --save-exact react@^19.0.0 react-dom@^19.0.0
 ```
 
 Or, if you're using Yarn:
 
 ```bash
-yarn add --exact react@rc react-dom@rc
+yarn add --exact react@^19.0.0 react-dom@^19.0.0
 ```
 
-If you're using TypeScript, you also need to update the types. Once React 19 is released as stable, you can install the types as usual from `@types/react` and `@types/react-dom`.  Until the stable release, the types are available in different packages which need to be enforced in your `package.json`:
+If you're using TypeScript, you also need to update the types.
+```bash
+npm install --save-exact @types/react@^19.0.0 react-dom@^19.0.0
+```
 
-```json
-{
-  "dependencies": {
-    "@types/react": "npm:types-react@rc",
-    "@types/react-dom": "npm:types-react-dom@rc"
-  },
-  "overrides": {
-    "@types/react": "npm:types-react@rc",
-    "@types/react-dom": "npm:types-react-dom@rc"
-  }
-}
+Or, if you're using Yarn:
+```bash
+yarn add --exact @†ypes/react@^19.0.0 @†ypes/react-dom@^19.0.0
 ```
 
 We're also including a codemod for the most common replacements. See [TypeScript changes](#typescript-changes) below.

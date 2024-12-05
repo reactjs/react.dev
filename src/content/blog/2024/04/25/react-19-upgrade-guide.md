@@ -86,7 +86,7 @@ npm install --save-exact @types/react@^19.0.0 @types/react-dom@^19.0.0
 
 Or, if you're using Yarn:
 ```bash
-yarn add --exact @†ypes/react@^19.0.0 @†ypes/react-dom@^19.0.0
+yarn add --exact @types/react@^19.0.0 @types/react-dom@^19.0.0
 ```
 
 We're also including a codemod for the most common replacements. See [TypeScript changes](#typescript-changes) below.

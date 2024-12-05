@@ -14,15 +14,15 @@ The `react-dom/static` APIs let you generate static HTML for React components. T
 
 These methods are only available in the environments with [Web Streams](https://developer.mozilla.org/en-US/docs/Web/API/Streams_API), which includes browsers, Deno, and some modern edge runtimes:
 
-* [`prerender`](/reference/react-dom/server/renderToReadableStream) renders a React tree to static HTML with a [Readable Web Stream.](https://developer.mozilla.org/en-US/docs/Web/API/ReadableStream)
+* [`prerender`](/reference/react-dom/static/prerender) renders a React tree to static HTML with a [Readable Web Stream.](https://developer.mozilla.org/en-US/docs/Web/API/ReadableStream)
 
 
 ---
 
 ## Static APIs for Node.js Streams {/*static-apis-for-nodejs-streams*/}
 
-These methods are only available in the environments with [Node.js Streams:](https://nodejs.org/api/stream.html)
+These methods are only available in the environments with [Node.js Streams](https://nodejs.org/api/stream.html):
 
-* [`prerenderToNodeStream`](/reference/react-dom/server/renderToPipeableStream) renders a React tree to static HTML with a [Node.js Stream.](https://nodejs.org/api/stream.html)
+* [`prerenderToNodeStream`](/reference/react-dom/static/prerenderToNodeStream) renders a React tree to static HTML with a [Node.js Stream.](https://nodejs.org/api/stream.html)
 
 

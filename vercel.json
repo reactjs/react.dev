@@ -5,8 +5,18 @@
   "trailingSlash": false,
   "redirects": [
     {
-      "source": "/blog/:slug",
-      "destination": "https://react.dev/blog/:slug",
+      "source": "/blog",
+      "destination": "https://react.dev/blog",
+      "permanent": true
+    },
+    {
+      "source": "/blog/:slug*",
+      "destination": "https://react.dev/blog/:slug*",
+      "permanent": true
+    },
+    {
+      "source": "/versions",
+      "destination": "https://react.dev/versions",
       "permanent": true
     },
     {

@@ -83,7 +83,7 @@ The static `prerenderToNodeStream` API is used for static server-side generation
 
 Call `prerenderToNodeStream` to render your React tree to static HTML into a [Node.js Stream.](https://nodejs.org/api/stream.html):
 
-```js [[1, 4, "<App />"], [2, 5, "['/main.js']"]]
+```js [[1, 5, "<App />"], [2, 6, "['/main.js']"]]
 import { prerenderToNodeStream } from 'react-dom/static';
 
 // The route handler syntax depends on your backend framework
@@ -221,7 +221,7 @@ Both client and server render `App` with the same `assetMap` prop, so there are 
 
 Call `prerenderToNodeStream` to render your app to a static HTML string:
 
-```js {5-6}
+```js
 import { prerenderToNodeStream } from 'react-dom/static';
 
 async function renderToString() {

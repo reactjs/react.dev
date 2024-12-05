@@ -222,9 +222,8 @@ Both client and server render `App` with the same `assetMap` prop, so there are 
 
 Call `prerender` to render your app to a static HTML string:
 
-```js {5-6}
+```js
 import { prerender } from 'react-dom/static';
-
 
 async function renderToString() {
   const {prelude} = await prerender(<App />, {

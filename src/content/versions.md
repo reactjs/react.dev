@@ -39,6 +39,7 @@ For versions older than React 15, see [15.react.dev](https://15.react.dev).
 **Blog Posts**
 - [React v19](/blog/2024/12/05/react-19)
 - [React 19 Upgrade Guide](/blog/2024/04/25/react-19-upgrade-guide)
+- [React Compiler Beta Release](/blog/2024/10/21/react-compiler-beta-release)
 
 **Talks**
 - [React 19 Keynote](https://www.youtube.com/watch?v=lyEKhv8-3n0)

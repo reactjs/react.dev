@@ -1,21 +1,33 @@
 ---
-title: "React 19 RC"
+title: "React v19"
 author: The React Team
-date: 2024/04/25
-description: React 19 RC is now available on npm! In this post, we'll give an overview of the new features in React 19, and how you can adopt them.
+date: 2024/12/05
+description: React 19 is now available on npm! In this post, we'll give an overview of the new features in React 19, and how you can adopt them.
 ---
 
-April 25, 2024 by [The React Team](/community/team)
+December 05, 2024 by [The React Team](/community/team)
 
 ---
+<Note>
+
+### React 19 is now stable! {/*react-19-is-now-stable*/}
+
+Additions since this post was originally shared with the React 19 RC in April:
+
+- **Pre-warming for suspended trees**: see [Improvements to Suspense](/blog/2024/04/25/react-19-upgrade-guide#improvements-to-suspense).
+- **React DOM static APIs**: see [New React DOM Static APIs](#new-react-dom-static-apis).
+
+_The date for this post has been update to reflect the stable release date._
+
+</Note>
 
 <Intro>
 
-React 19 RC is now available on npm!
+React v19 is now available on npm!
 
 </Intro>
 
-In our [React 19 RC Upgrade Guide](/blog/2024/04/25/react-19-upgrade-guide), we shared step-by-step instructions for upgrading your app to React 19. In this post, we'll give an overview of the new features in React 19, and how you can adopt them.
+In our [React 19 Upgrade Guide](/blog/2024/04/25/react-19-upgrade-guide), we shared step-by-step instructions for upgrading your app to React 19. In this post, we'll give an overview of the new features in React 19, and how you can adopt them.
 
 - [What's new in React 19](#whats-new-in-react-19)
 - [Improvements in React 19](#improvements-in-react-19)
@@ -771,5 +783,4 @@ Thanks to [Joey Arhar](https://github.com/josepharhar) for driving the design an
 #### How to upgrade {/*how-to-upgrade*/}
 See the [React 19 Upgrade Guide](/blog/2024/04/25/react-19-upgrade-guide) for step-by-step instructions and a full list of breaking and notable changes.
 
-
-
+_Note: this post was originally published 04/25/2024 and has been updated to 12/05/2024 with the stable release._

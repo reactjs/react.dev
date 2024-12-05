@@ -2,7 +2,7 @@
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
 exports.siteConfig = {
-  version: 'v19',
+  version: '19',
   // --------------------------------------
   // Translations should replace these lines:
   languageCode: 'en',

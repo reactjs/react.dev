@@ -28,7 +28,7 @@ import { useRef } from 'react';
 function MyComponent() {
   const intervalRef = useRef(0);
   const inputRef = useRef(null);
-  // ...
+// ...
 ```
 
 [See more examples below.](#usage)
@@ -65,7 +65,7 @@ import { useRef } from 'react';
 
 function Stopwatch() {
   const intervalRef = useRef(0);
-  // ...
+// ...
 ```
 
 `useRef` returns a <CodeStep step={1}>ref object</CodeStep> with a single <CodeStep step={2}>`current` property</CodeStep> initially set to the <CodeStep step={3}>initial value</CodeStep> you provided.
@@ -245,22 +245,22 @@ import { useRef } from 'react';
 
 function MyComponent() {
   const inputRef = useRef(null);
-  // ...
+// ...
 ```
 
 Then pass your ref object as the `ref` attribute to the JSX of the DOM node you want to manipulate:
 
 ```js [[1, 2, "inputRef"]]
   // ...
-  return <input ref={inputRef} />;
+return <input ref={inputRef} />;
 ```
 
 After React creates the DOM node and puts it on the screen, React will set the <CodeStep step={2}>`current` property</CodeStep> of your ref object to that DOM node. Now you can access the `<input>`'s DOM node and call methods like [`focus()`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/focus):
 
 ```js [[2, 2, "inputRef.current"]]
   function handleClick() {
-    inputRef.current.focus();
-  }
+  inputRef.current.focus();
+}
 ```
 
 React will set the `current` property back to `null` when the node is removed from the screen.
@@ -365,27 +365,27 @@ export default function CatFriends() {
 
 ```css
 div {
-  width: 100%;
-  overflow: hidden;
+    width: 100%;
+    overflow: hidden;
 }
 
 nav {
-  text-align: center;
+    text-align: center;
 }
 
 button {
-  margin: .25rem;
+    margin: .25rem;
 }
 
 ul,
 li {
-  list-style: none;
-  white-space: nowrap;
+    list-style: none;
+    white-space: nowrap;
 }
 
 li {
-  display: inline;
-  padding: 0.5rem;
+    display: inline;
+    padding: 0.5rem;
 }
 ```
 
@@ -448,16 +448,16 @@ button { display: block; margin-bottom: 20px; }
 
 #### Exposing a ref to your own component {/*exposing-a-ref-to-your-own-component*/}
 
-Sometimes, you may want to let the parent component manipulate the DOM inside of your component. For example, maybe you're writing a `MyInput` component, but you want the parent to be able to focus the input (which the parent has no access to). You can use a combination of `useRef` to hold the input and [`forwardRef`](/reference/react/forwardRef) to expose it to the parent component. Read a [detailed walkthrough](/learn/manipulating-the-dom-with-refs#accessing-another-components-dom-nodes) here.
+Sometimes, you may want to let the parent component manipulate the DOM inside of your component. For example, maybe you're writing a `MyInput` component, but you want the parent to be able to focus the input (which the parent has no access to). You can use a combination of `useRef` to hold the input and the `ref` prop to expose it to the parent component. Read a [detailed walkthrough](/learn/manipulating-the-dom-with-refs#accessing-another-components-dom-nodes) here.
 
 <Sandpack>
 
 ```js
-import { forwardRef, useRef } from 'react';
+import { useRef } from 'react';
 
-const MyInput = forwardRef((props, ref) => {
+function MyInput({ ref, ...props }) {
   return <input {...props} ref={ref} />;
-});
+}
 
 export default function Form() {
   const inputRef = useRef(null);
@@ -550,13 +550,7 @@ const inputRef = useRef(null);
 return <MyInput ref={inputRef} />;
 ```
 
-You might get an error in the console:
-
-<ConsoleBlock level="error">
-
-Warning: Function components cannot be given refs. Attempts to access this ref will fail. Did you mean to use React.forwardRef()?
-
-</ConsoleBlock>
+You might find that `inputRef.current` is always `null`.
 
 By default, your own components don't expose refs to the DOM nodes inside them.
 
@@ -573,12 +567,10 @@ export default function MyInput({ value, onChange }) {
 }
 ```
 
-And then wrap it in [`forwardRef`](/reference/react/forwardRef) like this:
+And then add a `ref` prop and pass it to the DOM node that you want to reference:
 
-```js {3,8}
-import { forwardRef } from 'react';
-
-const MyInput = forwardRef(({ value, onChange }, ref) => {
+```js {1,6}
+export default function MyInput({ value, onChange, ref }) {
   return (
     <input
       value={value}
@@ -586,7 +578,7 @@ const MyInput = forwardRef(({ value, onChange }, ref) => {
       ref={ref}
     />
   );
-});
+}
 
 export default MyInput;
 ```

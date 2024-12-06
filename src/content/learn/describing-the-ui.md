@@ -134,7 +134,7 @@ export default function TodoList() {
       src="https://i.imgur.com/yXOvdOSs.jpg"
       alt="Hedy Lamarr"
       class="photo"
-    >
+    />
     <ul>
       <li>Invent new traffic lights
       <li>Rehearse a movie scene

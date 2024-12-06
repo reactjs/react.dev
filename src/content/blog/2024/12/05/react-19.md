@@ -17,7 +17,7 @@ Additions since this post was originally shared with the React 19 RC in April:
 - **Pre-warming for suspended trees**: see [Improvements to Suspense](/blog/2024/04/25/react-19-upgrade-guide#improvements-to-suspense).
 - **React DOM static APIs**: see [New React DOM Static APIs](#new-react-dom-static-apis).
 
-_The date for this post has been update to reflect the stable release date._
+_The date for this post has been updated to reflect the stable release date._
 
 </Note>
 

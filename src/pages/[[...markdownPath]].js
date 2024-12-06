@@ -95,9 +95,7 @@ function reviveNodeOnClient(key, val) {
       ref: null,
       props: props,
       _owner: null,
-      _store: {
-        validate: false,
-      },
+      _store: null,
     };
   } else {
     return val;

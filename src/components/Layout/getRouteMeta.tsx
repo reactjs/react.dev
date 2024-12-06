@@ -85,8 +85,8 @@ function buildRouteMeta(
 
   const {routes} = currentRoute;
 
-  if (ctx.route && !ctx.nextRoute) {
-    ctx.nextRoute = currentRoute;
+  if (!ctx.route) {
+    ctx.prevRoute = currentRoute;
   }
 
   if (currentRoute.path === searchPath) {
@@ -98,8 +98,8 @@ function buildRouteMeta(
     ctx.nextRoute = undefined;
   }
 
-  if (!ctx.route) {
-    ctx.prevRoute = currentRoute;
+  if (ctx.route && !ctx.nextRoute) {
+    ctx.nextRoute = currentRoute;
   }
 
   if (!routes) {

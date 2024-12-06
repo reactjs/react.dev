@@ -207,7 +207,7 @@ async function getAlbums() {
 
 **Only Suspense-enabled data sources will activate the Suspense component.** They include:
 
-- Data fetching with Suspense-enabled frameworks like [Relay](https://relay.dev/docs/guided-tour/rendering/loading-states/) and [Next.js](https://nextjs.org/docs/getting-started/react-essentials)
+- Data fetching with Suspense-enabled frameworks like [Relay](https://relay.dev/docs/guided-tour/rendering/loading-states/) and [Next.js](https://nextjs.org/docs/app/building-your-application/routing/loading-ui-and-streaming#streaming-with-suspense)
 - Lazy-loading component code with [`lazy`](/reference/react/lazy)
 - Reading the value of a cached Promise with [`use`](/reference/react/use)
 

@@ -40,27 +40,7 @@ function ScrollToTop() {
       {isVisible && (
         <div
           onClick={scrollToTop}
-          style={{
-            position: 'fixed',
-            bottom: '40px',
-            right: '40px',
-            cursor: 'pointer',
-            backgroundColor: '#007bff',
-            borderRadius: '50%',
-            width: '40px',
-            height: '40px',
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            boxShadow: '0 2px 10px rgba(0,0,0,0.2)',
-            transition: 'all 0.3s ease',
-            opacity: '0.8',
-            zIndex: 1000,
-            '&:hover': {
-              opacity: 1,
-              transform: 'translateY(-2px)',
-            },
-          }}>
+          className="fixed bottom-10 right-10 cursor-pointer bg-blue-500 rounded-full w-10 h-10 flex justify-center items-center shadow-lg transition-all duration-300 opacity-80 hover:opacity-100 hover:-translate-y-0.5 z-50">
           <svg
             width="20"
             height="20"

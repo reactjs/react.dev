@@ -305,7 +305,7 @@ export async function updateQuantity(newQuantity) {
 
 </Sandpack>
 
-This is a basic example to demonstrate how Actions work, but this example does not handle requests completing out of order. When updating the quantity multiple times, it's possible for the previous requests to finish after later requests causing the quantity to update out of order. This is a known limitation that we will fix in the future (see [Troubleshooting](#my-state-updates-in-async-transitions-are-out-of-order) below).
+This is a basic example to demonstrate how Actions work, but this example does not handle requests completing out of order. When updating the quantity multiple times, it's possible for the previous requests to finish after later requests causing the quantity to update out of order. This is a known limitation that we will fix in the future (see [Troubleshooting](#my-state-updates-in-transitions-are-out-of-order) below).
 
 For common use cases, React provides built-in abstractions such as:
 - [`useActionState`](/reference/react/useActionState)

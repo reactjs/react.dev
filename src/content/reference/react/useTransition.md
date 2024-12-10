@@ -310,7 +310,7 @@ This is a basic example to demonstrate how Actions work, but this example does n
 For common use cases, React provides built-in abstractions such as:
 - [`useActionState`](/reference/react/useActionState)
 - [`<form>` actions](/reference/react-dom/components/form)
-- [Server Actions](/reference/rsc/server-actions)
+- [Server Functions](/reference/rsc/server-functions)
 
 These solutions handle request ordering for you. When using Transitions to build your own custom hooks or libraries that manage async state transitions, you have greater control over the request ordering, but you must handle it yourself.
 

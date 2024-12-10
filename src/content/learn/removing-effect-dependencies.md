@@ -311,7 +311,7 @@ export default function Timer() {
   const [increment, setIncrement] = useState(1);
 
   function onTick() {
-	setCount(count + increment);
+	setCount(count => count + increment);
   }
 
   useEffect(() => {

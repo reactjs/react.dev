@@ -24,7 +24,7 @@ titleForTitleTag: "'use server' directive"
 
 ### `'use server'` {/*use-server*/}
 
-Add `'use server'` at the top of an async function body to mark the function as callable by the client. We call these functions [_Server Functions_]((/reference/rsc/server-functions)).
+Add `'use server'` at the top of an async function body to mark the function as callable by the client. We call these functions [_Server Functions_](/reference/rsc/server-functions).
 
 ```js {2}
 async function addToCart(data) {

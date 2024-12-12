@@ -4,7 +4,7 @@ title: prerenderToNodeStream
 
 <Intro>
 
-`prerender` renders a React tree to a static HTML string using a [Node.js Stream.](https://nodejs.org/api/stream.html).
+`prerenderToNodeStream` renders a React tree to a static HTML string using a [Node.js Stream.](https://nodejs.org/api/stream.html).
 
 ```js
 const {prelude} = await prerenderToNodeStream(reactNode, options?)

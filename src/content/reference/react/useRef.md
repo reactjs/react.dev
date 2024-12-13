@@ -448,16 +448,16 @@ button { display: block; margin-bottom: 20px; }
 
 #### Exposing a ref to your own component {/*exposing-a-ref-to-your-own-component*/}
 
-Sometimes, you may want to let the parent component manipulate the DOM inside of your component. For example, maybe you're writing a `MyInput` component, but you want the parent to be able to focus the input (which the parent has no access to). You can use a combination of `useRef` to hold the input and [`forwardRef`](/reference/react/forwardRef) to expose it to the parent component. Read a [detailed walkthrough](/learn/manipulating-the-dom-with-refs#accessing-another-components-dom-nodes) here.
+Sometimes, you may want to let the parent component manipulate the DOM inside of your component. For example, maybe you're writing a `MyInput` component, but you want the parent to be able to focus the input (which the parent has no access to). You can create a `ref` in the parent and pass the `ref` as prop to the child component. Read a [detailed walkthrough](/learn/manipulating-the-dom-with-refs#accessing-another-components-dom-nodes) here.
 
 <Sandpack>
 
 ```js
-import { forwardRef, useRef } from 'react';
+import { useRef } from 'react';
 
-const MyInput = forwardRef((props, ref) => {
+const MyInput = (props, ref) => {
   return <input {...props} ref={ref} />;
-});
+};
 
 export default function Form() {
   const inputRef = useRef(null);
@@ -535,62 +535,3 @@ function Video() {
 Here, the `playerRef` itself is nullable. However, you should be able to convince your type checker that there is no case in which `getPlayer()` returns `null`. Then use `getPlayer()` in your event handlers.
 
 </DeepDive>
-
----
-
-## Troubleshooting {/*troubleshooting*/}
-
-### I can't get a ref to a custom component {/*i-cant-get-a-ref-to-a-custom-component*/}
-
-If you try to pass a `ref` to your own component like this:
-
-```js
-const inputRef = useRef(null);
-
-return <MyInput ref={inputRef} />;
-```
-
-You might get an error in the console:
-
-<ConsoleBlock level="error">
-
-Warning: Function components cannot be given refs. Attempts to access this ref will fail. Did you mean to use React.forwardRef()?
-
-</ConsoleBlock>
-
-By default, your own components don't expose refs to the DOM nodes inside them.
-
-To fix this, find the component that you want to get a ref to:
-
-```js
-export default function MyInput({ value, onChange }) {
-  return (
-    <input
-      value={value}
-      onChange={onChange}
-    />
-  );
-}
-```
-
-And then wrap it in [`forwardRef`](/reference/react/forwardRef) like this:
-
-```js {3,8}
-import { forwardRef } from 'react';
-
-const MyInput = forwardRef(({ value, onChange }, ref) => {
-  return (
-    <input
-      value={value}
-      onChange={onChange}
-      ref={ref}
-    />
-  );
-});
-
-export default MyInput;
-```
-
-Then the parent component can get a ref to it.
-
-Read more about [accessing another component's DOM nodes.](/learn/manipulating-the-dom-with-refs#accessing-another-components-dom-nodes)

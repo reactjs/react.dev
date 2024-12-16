@@ -46,7 +46,7 @@ function MyInput({ ref }) {
 
 <Note>
 
-Before React 19, it was necessary to use [`forwardRef`](/reference/react/forwardRef) to get the `ref`. Starting with React 18, [`ref` is available a prop.](/blog/2024/12/05/react-19#ref-as-a-prop)
+Starting with React 19, [`ref` is available a prop.](/blog/2024/12/05/react-19#ref-as-a-prop) In React 18 and earlier, it was necessary to get the `ref` from [`forwardRef`.](/reference/react/forwardRef) 
 
 </Note>
 

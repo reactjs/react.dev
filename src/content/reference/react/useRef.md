@@ -455,8 +455,8 @@ Sometimes, you may want to let the parent component manipulate the DOM inside of
 ```js
 import { useRef } from 'react';
 
-function MyInput({ ref, ...props }) {
-  return <input {...props} ref={ref} />;
+function MyInput({ ref }) {
+  return <input ref={ref} />;
 }
 
 export default function Form() {

@@ -360,7 +360,7 @@ export default function MyForm() {
   const inputRef = useRef(null);
 
   function handleClick() {
-    inputRef.current?.focus();
+    inputRef.current.focus();
   }
 
   return (
@@ -376,13 +376,15 @@ export default function MyForm() {
 
 </Sandpack>
 
+Instead, the application crashes because `inputRef.current` is `null`, due to `<MyInput />` not passing the `ref` prop down to one of its children.
+
 This happens because by default React does not let a component access the DOM nodes of other components. Not even for its own children! This is intentional. Refs are an escape hatch that should be used sparingly. Manually manipulating _another_ component's DOM nodes makes your code even more fragile.
 
 Instead, components that _want_ to expose their DOM nodes have to **opt in** to that behavior. A component can specify that it "forwards" its ref to one of its children by passing the `ref` prop down.
 
 ```js
-function MyInput({ ref, ...props }) {
-  return <input {...props} ref={ref} />;
+function MyInput({ ref }) {
+  return <input ref={ref} />;
 }
 ```
 
@@ -398,8 +400,8 @@ Now clicking the button to focus the input works:
 ```js
 import { useRef } from 'react';
 
-function MyInput({ ref, ...props }) {
-  return <input {...props} ref={ref} />;
+function MyInput({ ref }) {
+  return <input ref={ref} />;
 }
 
 export default function Form() {
@@ -435,7 +437,7 @@ In the above example, `MyInput` exposes the original DOM input element. This let
 ```js
 import { useRef, useImperativeHandle } from 'react';
 
-function MyInput({ ref, ...props }) {
+function MyInput({ ref }) {
   const realInputRef = useRef(null);
   useImperativeHandle(ref, () => ({
     // Only expose focus and nothing else
@@ -443,7 +445,7 @@ function MyInput({ ref, ...props }) {
       realInputRef.current.focus();
     },
   }));
-  return <input {...props} ref={realInputRef} />;
+  return <input ref={realInputRef} />;
 }
 
 export default function Form() {

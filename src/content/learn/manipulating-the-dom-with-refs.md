@@ -378,6 +378,10 @@ export default function MyForm() {
 
 Instead, the application crashes because `inputRef.current` is `null`, due to `<MyInput />` not passing the `ref` prop down to one of its children.
 
+<ConsoleBlock level="error">
+Cannot read properties of null (reading 'focus')
+</ConsoleBlock>
+
 This happens because by default React does not let a component access the DOM nodes of other components. Not even for its own children! This is intentional. Refs are an escape hatch that should be used sparingly. Manually manipulating _another_ component's DOM nodes makes your code even more fragile.
 
 Instead, components that _want_ to expose their DOM nodes have to **opt in** to that behavior. A component can specify that it "forwards" its ref to one of its children by passing the `ref` prop down.

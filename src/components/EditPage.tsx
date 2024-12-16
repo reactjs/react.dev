@@ -1,7 +1,7 @@
 import {ExternalLink} from './ExternalLink';
 import {IconGitHub} from './Icon/IconGitHub';
 
-const RepoEditLink = `https://github.com/reactjs/react.dev/blob/main/`;
+const RepoEditLink = `https://github.com/reactjs/react.dev/edit/main/`;
 
 type EditPageProps = {
   path: string;

@@ -165,27 +165,27 @@ export default function CatFriends() {
 
 ```css
 div {
-    width: 100%;
-    overflow: hidden;
+  width: 100%;
+  overflow: hidden;
 }
 
 nav {
-    text-align: center;
+  text-align: center;
 }
 
 button {
-    margin: .25rem;
+  margin: .25rem;
 }
 
 ul,
 li {
-    list-style: none;
-    white-space: nowrap;
+  list-style: none;
+  white-space: nowrap;
 }
 
 li {
-    display: inline;
-    padding: 0.5rem;
+  display: inline;
+  padding: 0.5rem;
 }
 ```
 
@@ -285,27 +285,27 @@ function setupCatList() {
 
 ```css
 div {
-    width: 100%;
-    overflow: hidden;
+  width: 100%;
+  overflow: hidden;
 }
 
 nav {
-    text-align: center;
+  text-align: center;
 }
 
 button {
-    margin: .25rem;
+  margin: .25rem;
 }
 
 ul,
 li {
-    list-style: none;
-    white-space: nowrap;
+  list-style: none;
+  white-space: nowrap;
 }
 
 li {
-    display: inline;
-    padding: 0.5rem;
+  display: inline;
+  padding: 0.5rem;
 }
 ```
 

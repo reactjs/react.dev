@@ -28,7 +28,7 @@ import { useRef } from 'react';
 function MyComponent() {
   const intervalRef = useRef(0);
   const inputRef = useRef(null);
-// ...
+  // ...
 ```
 
 [See more examples below.](#usage)
@@ -65,7 +65,7 @@ import { useRef } from 'react';
 
 function Stopwatch() {
   const intervalRef = useRef(0);
-// ...
+  // ...
 ```
 
 `useRef` returns a <CodeStep step={1}>ref object</CodeStep> with a single <CodeStep step={2}>`current` property</CodeStep> initially set to the <CodeStep step={3}>initial value</CodeStep> you provided.
@@ -245,22 +245,22 @@ import { useRef } from 'react';
 
 function MyComponent() {
   const inputRef = useRef(null);
-// ...
+  // ...
 ```
 
 Then pass your ref object as the `ref` attribute to the JSX of the DOM node you want to manipulate:
 
 ```js [[1, 2, "inputRef"]]
   // ...
-return <input ref={inputRef} />;
+  return <input ref={inputRef} />;
 ```
 
 After React creates the DOM node and puts it on the screen, React will set the <CodeStep step={2}>`current` property</CodeStep> of your ref object to that DOM node. Now you can access the `<input>`'s DOM node and call methods like [`focus()`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/focus):
 
 ```js [[2, 2, "inputRef.current"]]
   function handleClick() {
-  inputRef.current.focus();
-}
+    inputRef.current.focus();
+  }
 ```
 
 React will set the `current` property back to `null` when the node is removed from the screen.
@@ -365,27 +365,27 @@ export default function CatFriends() {
 
 ```css
 div {
-    width: 100%;
-    overflow: hidden;
+  width: 100%;
+  overflow: hidden;
 }
 
 nav {
-    text-align: center;
+  text-align: center;
 }
 
 button {
-    margin: .25rem;
+  margin: .25rem;
 }
 
 ul,
 li {
-    list-style: none;
-    white-space: nowrap;
+  list-style: none;
+  white-space: nowrap;
 }
 
 li {
-    display: inline;
-    padding: 0.5rem;
+  display: inline;
+  padding: 0.5rem;
 }
 ```
 

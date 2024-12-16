@@ -192,6 +192,8 @@ function ThirdComponent() {
 
 </SandpackWithHTMLOutput>
 
+Note the `precedence` values themselves are arbitrary and their naming is up to you. React will infer that precedence values it discovers first are "lower" and precedence values it discovers later are "higher".
+
 ### Deduplicated stylesheet rendering {/*deduplicated-stylesheet-rendering*/}
 
 If you render the same stylesheet from multiple components, React will place only a single `<link>` in the document head.

@@ -48,7 +48,7 @@ function TabContainer() {
 
 ### `startTransition(action)` {/*starttransition*/}
 
-The `startTransition` function returned by `useTransition` lets you mark a updates as a Transition.
+The `startTransition` function returned by `useTransition` lets you mark an update as a Transition.
 
 ```js {6,8}
 function TabContainer() {

@@ -78,7 +78,7 @@ Now that your component's code loads on demand, you also need to specify what sh
 <Suspense fallback={<Loading />}>
   <h2>Preview</h2>
   <MarkdownPreview />
- </Suspense>
+</Suspense>
 ```
 
 In this example, the code for `MarkdownPreview` won't be loaded until you attempt to render it. If `MarkdownPreview` hasn't loaded yet, `Loading` will be shown in its place. Try ticking the checkbox:

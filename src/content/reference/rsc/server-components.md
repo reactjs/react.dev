@@ -1,7 +1,12 @@
 ---
-title: React Server Components
-canary: true
+title: Server Components
 ---
+
+<RSC>
+
+Server Components are for use in [React Server Components](/learn/start-a-new-react-project#bleeding-edge-react-frameworks).
+
+</RSC>
 
 <Intro>
 
@@ -17,7 +22,7 @@ This separate environment is the "server" in React Server Components. Server Com
 
 #### How do I build support for Server Components? {/*how-do-i-build-support-for-server-components*/}
 
-While React Server Components in React 19 are stable and will not break between major versions, the underlying APIs used to implement a React Server Components bundler or framework do not follow semver and may break between minors in React 19.x. 
+While React Server Components in React 19 are stable and will not break between minor versions, the underlying APIs used to implement a React Server Components bundler or framework do not follow semver and may break between minors in React 19.x. 
 
 To support React Server Components as a bundler or framework, we recommend pinning to a specific React version, or using the Canary release. We will continue working with bundlers and frameworks to stabilize the APIs used to implement React Server Components in the future.
 
@@ -188,7 +193,7 @@ Server Components are not sent to the browser, so they cannot use interactive AP
 
 #### There is no directive for Server Components. {/*there-is-no-directive-for-server-components*/}
 
-A common misunderstanding is that Server Components are denoted by `"use server"`, but there is no directive for Server Components. The `"use server"` directive is used for Server Actions.
+A common misunderstanding is that Server Components are denoted by `"use server"`, but there is no directive for Server Components. The `"use server"` directive is used for Server Functions.
 
 For more info, see the docs for [Directives](/reference/rsc/directives).
 

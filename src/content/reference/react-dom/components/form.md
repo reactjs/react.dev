@@ -1,14 +1,6 @@
 ---
 title: "<form>"
-canary: true
 ---
-
-<Canary>
-
-React's extensions to `<form>` are currently only available in React's canary and experimental channels. In stable releases of React, `<form>` works only as a [built-in browser HTML component](https://react.dev/reference/react-dom/components#all-html-components). Learn more about [React's release channels here](/community/versioning-policy#all-release-channels).
-
-</Canary>
-
 
 <Intro>
 
@@ -58,7 +50,7 @@ To create interactive controls for submitting information, render the [built-in 
 
 ### Handle form submission on the client {/*handle-form-submission-on-the-client*/}
 
-Pass a function to the `action` prop of form to run the function when the form is submitted. [`formData`](https://developer.mozilla.org/en-US/docs/Web/API/FormData) will be passed to the function as an argument so you can access the data submitted by the form. This differs from the conventional [HTML action](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form#action), which only accepts URLs.
+Pass a function to the `action` prop of form to run the function when the form is submitted. [`formData`](https://developer.mozilla.org/en-US/docs/Web/API/FormData) will be passed to the function as an argument so you can access the data submitted by the form. This differs from the conventional [HTML action](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form#action), which only accepts URLs. After the `action` function succeeds, all uncontrolled field elements in the form are reset.
 
 <Sandpack>
 
@@ -77,27 +69,15 @@ export default function Search() {
 }
 ```
 
-```json package.json hidden
-{
-  "dependencies": {
-    "react": "18.3.0-canary-6db7f4209-20231021",
-    "react-dom": "18.3.0-canary-6db7f4209-20231021",
-    "react-scripts": "^5.0.0"
-  },
-  "main": "/index.js",
-  "devDependencies": {}
-}
-```
-
 </Sandpack>
 
-### Handle form submission with a Server Action {/*handle-form-submission-with-a-server-action*/}
+### Handle form submission with a Server Function {/*handle-form-submission-with-a-server-function*/}
 
-Render a `<form>` with an input and submit button. Pass a Server Action (a function marked with [`'use server'`](/reference/rsc/use-server)) to the `action` prop of form to run the function when the form is submitted.
+Render a `<form>` with an input and submit button. Pass a Server Function (a function marked with [`'use server'`](/reference/rsc/use-server)) to the `action` prop of form to run the function when the form is submitted.
 
-Passing a Server Action to `<form action>` allow users to submit forms without JavaScript enabled or before the code has loaded. This is beneficial to users who have a slow connection, device, or have JavaScript disabled and is similar to the way forms work when a URL is passed to the `action` prop.
+Passing a Server Function to `<form action>` allow users to submit forms without JavaScript enabled or before the code has loaded. This is beneficial to users who have a slow connection, device, or have JavaScript disabled and is similar to the way forms work when a URL is passed to the `action` prop.
 
-You can use hidden form fields to provide data to the `<form>`'s action. The Server Action will be called with the hidden form field data as an instance of [`FormData`](https://developer.mozilla.org/en-US/docs/Web/API/FormData).
+You can use hidden form fields to provide data to the `<form>`'s action. The Server Function will be called with the hidden form field data as an instance of [`FormData`](https://developer.mozilla.org/en-US/docs/Web/API/FormData).
 
 ```jsx
 import { updateCart } from './lib.js';
@@ -137,7 +117,7 @@ function AddToCart({productId}) {
 }
 ```
 
-When `<form>` is rendered by a [Server Component](/reference/rsc/use-client), and a [Server Action](/reference/rsc/use-server) is passed to the `<form>`'s `action` prop, the form is [progressively enhanced](https://developer.mozilla.org/en-US/docs/Glossary/Progressive_Enhancement).
+When `<form>` is rendered by a [Server Component](/reference/rsc/use-client), and a [Server Function](/reference/rsc/server-functions) is passed to the `<form>`'s `action` prop, the form is [progressively enhanced](https://developer.mozilla.org/en-US/docs/Glossary/Progressive_Enhancement).
 
 ### Display a pending state during form submission {/*display-a-pending-state-during-form-submission*/}
 To display a pending state when a form is being submitted, you can call the `useFormStatus` Hook in a component rendered in a `<form>` and read the `pending` property returned.
@@ -178,17 +158,6 @@ export async function submitForm(query) {
 }
 ```
 
-```json package.json hidden
-{
-  "dependencies": {
-    "react": "canary",
-    "react-dom": "canary",
-    "react-scripts": "^5.0.0"
-  },
-  "main": "/index.js",
-  "devDependencies": {}
-}
-```
 </Sandpack>
 
 To learn more about the `useFormStatus` Hook see the [reference documentation](/reference/react-dom/hooks/useFormStatus).
@@ -258,19 +227,6 @@ export async function deliverMessage(message) {
 }
 ```
 
-
-```json package.json hidden
-{
-  "dependencies": {
-    "react": "18.3.0-canary-6db7f4209-20231021",
-    "react-dom": "18.3.0-canary-6db7f4209-20231021",
-    "react-scripts": "^5.0.0"
-  },
-  "main": "/index.js",
-  "devDependencies": {}
-}
-```
-
 </Sandpack>
 
 [//]: # 'Uncomment the next line, and delete this line after the `useOptimistic` reference documentatino page is published'
@@ -306,8 +262,8 @@ export default function Search() {
 ```json package.json hidden
 {
   "dependencies": {
-    "react": "18.3.0-canary-6db7f4209-20231021",
-    "react-dom": "18.3.0-canary-6db7f4209-20231021",
+    "react": "19.0.0-rc-3edc000d-20240926",
+    "react-dom": "19.0.0-rc-3edc000d-20240926",
     "react-scripts": "^5.0.0",
     "react-error-boundary": "4.0.3"
   },
@@ -323,10 +279,10 @@ export default function Search() {
 Displaying a form submission error message before the JavaScript bundle loads for progressive enhancement requires that:
 
 1. `<form>` be rendered by a [Server Component](/reference/rsc/use-client)
-1. the function passed to the `<form>`'s `action` prop be a [Server Action](/reference/rsc/use-server)
+1. the function passed to the `<form>`'s `action` prop be a [Server Function](/reference/rsc/server-functions)
 1. the `useActionState` Hook be used to display the error message
 
-`useActionState` takes two parameters: a [Server Action](/reference/rsc/use-server) and an initial state. `useActionState` returns two values, a state variable and an action. The action returned by `useActionState` should be passed to the `action` prop of the form. The state variable returned by `useActionState` can be used to displayed an error message. The value returned by the [Server Action](/reference/rsc/use-server) passed to `useActionState` will be used to update the state variable.
+`useActionState` takes two parameters: a [Server Function](/reference/rsc/server-functions) and an initial state. `useActionState` returns two values, a state variable and an action. The action returned by `useActionState` should be passed to the `action` prop of the form. The state variable returned by `useActionState` can be used to display an error message. The value returned by the Server Function passed to `useActionState` will be used to update the state variable.
 
 <Sandpack>
 
@@ -372,18 +328,6 @@ export async function signUpNewUser(newEmail) {
 }
 ```
 
-```json package.json hidden
-{
-  "dependencies": {
-    "react": "canary",
-    "react-dom": "canary",
-    "react-scripts": "^5.0.0"
-  },
-  "main": "/index.js",
-  "devDependencies": {}
-}
-```
-
 </Sandpack>
 
 Learn more about updating state from a form action with the [`useActionState`](/reference/react/useActionState) docs
@@ -417,18 +361,6 @@ export default function Search() {
       <button formAction={save}>Save draft</button>
     </form>
   );
-}
-```
-
-```json package.json hidden
-{
-  "dependencies": {
-    "react": "18.3.0-canary-6db7f4209-20231021",
-    "react-dom": "18.3.0-canary-6db7f4209-20231021",
-    "react-scripts": "^5.0.0"
-  },
-  "main": "/index.js",
-  "devDependencies": {}
 }
 ```
 

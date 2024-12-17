@@ -327,33 +327,33 @@ export default function CatFriends() {
     <>
       <nav>
         <button onClick={() => scrollToIndex(0)}>
-          Tom
+          Neo
         </button>
         <button onClick={() => scrollToIndex(1)}>
-          Maru
+          Millie
         </button>
         <button onClick={() => scrollToIndex(2)}>
-          Jellylorum
+          Bella
         </button>
       </nav>
       <div>
         <ul ref={listRef}>
           <li>
             <img
-              src="https://placekitten.com/g/200/200"
-              alt="Tom"
+              src="https://placecats.com/neo/300/200"
+              alt="Neo"
             />
           </li>
           <li>
             <img
-              src="https://placekitten.com/g/300/200"
-              alt="Maru"
+              src="https://placecats.com/millie/200/200"
+              alt="Millie"
             />
           </li>
           <li>
             <img
-              src="https://placekitten.com/g/250/200"
-              alt="Jellylorum"
+              src="https://placecats.com/bella/199/200"
+              alt="Bella"
             />
           </li>
         </ul>

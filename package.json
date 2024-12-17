@@ -24,8 +24,8 @@
   },
   "dependencies": {
     "@codesandbox/sandpack-react": "2.13.5",
-    "@docsearch/css": "3.0.0-alpha.41",
-    "@docsearch/react": "3.0.0-alpha.41",
+    "@docsearch/css": "^3.6.1",
+    "@docsearch/react": "^3.6.1",
     "@headlessui/react": "^1.7.0",
     "@radix-ui/react-context-menu": "^2.1.5",
     "babel-plugin-react-compiler": "0.0.0-experimental-696af53-20240625",

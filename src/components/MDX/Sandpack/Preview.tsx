@@ -113,7 +113,7 @@ export function Preview({
           /**
            * The spinner component transition might be longer than
            * the bundler loading, so we only show the spinner if
-           * it takes more than 1s to load the bundler.
+           * it takes more than 500s to load the bundler.
            */
           timeout = setTimeout(() => {
             setShowLoading(true);

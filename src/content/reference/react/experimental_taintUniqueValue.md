@@ -192,7 +192,7 @@ experimental_taintUniqueValue(
 );
 ```
 
-Now whenever anyone tries to pass this password to a Client Component, or send the password to a Client Component with a Server Action, an error will be thrown with message you defined when you called `taintUniqueValue`.
+Now whenever anyone tries to pass this password to a Client Component, or send the password to a Client Component with a Server Function, an error will be thrown with message you defined when you called `taintUniqueValue`.
 
 </DeepDive>
 

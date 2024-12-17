@@ -1,21 +1,33 @@
 ---
-title: "React 19 RC"
+title: "React v19"
 author: The React Team
-date: 2024/04/25
-description: React 19 RC is now available on npm! In this post, we'll give an overview of the new features in React 19, and how you can adopt them.
+date: 2024/12/05
+description: React 19 is now available on npm! In this post, we'll give an overview of the new features in React 19, and how you can adopt them.
 ---
 
-April 25, 2024 by [The React Team](/community/team)
+December 05, 2024 by [The React Team](/community/team)
 
 ---
+<Note>
+
+### React 19 is now stable! {/*react-19-is-now-stable*/}
+
+Additions since this post was originally shared with the React 19 RC in April:
+
+- **Pre-warming for suspended trees**: see [Improvements to Suspense](/blog/2024/04/25/react-19-upgrade-guide#improvements-to-suspense).
+- **React DOM static APIs**: see [New React DOM Static APIs](#new-react-dom-static-apis).
+
+_The date for this post has been updated to reflect the stable release date._
+
+</Note>
 
 <Intro>
 
-React 19 RC is now available on npm!
+React v19 is now available on npm!
 
 </Intro>
 
-In our [React 19 RC Upgrade Guide](/blog/2024/04/25/react-19-upgrade-guide), we shared step-by-step instructions for upgrading your app to React 19. In this post, we'll give an overview of the new features in React 19, and how you can adopt them.
+In our [React 19 Upgrade Guide](/blog/2024/04/25/react-19-upgrade-guide), we shared step-by-step instructions for upgrading your app to React 19. In this post, we'll give an overview of the new features in React 19, and how you can adopt them.
 
 - [What's new in React 19](#whats-new-in-react-19)
 - [Improvements in React 19](#improvements-in-react-19)
@@ -312,6 +324,30 @@ The `use` API can only be called in render, similar to hooks. Unlike hooks, `use
 
 For more information, see the docs for [`use`](/reference/react/use).
 
+## New React DOM Static APIs {/*new-react-dom-static-apis*/}
+
+We've added two new APIs to `react-dom/static` for static site generation:
+- [`prerender`](/reference/react-dom/static/prerender)
+- [`prerenderToNodeStream`](/reference/react-dom/static/prerenderToNodeStream)
+
+These new APIs improve on `renderToString` by waiting for data to load for static HTML generation. They are designed to work with streaming environments like Node.js Streams and Web Streams. For example, in a Web Stream environment, you can prerender a React tree to static HTML with `prerender`: 
+
+```js
+import { prerender } from 'react-dom/static';
+
+async function handler(request) {
+  const {prelude} = await prerender(<App />, {
+    bootstrapScripts: ['/main.js']
+  });
+  return new Response(prelude, {
+    headers: { 'content-type': 'text/html' },
+  });
+}
+```
+
+Prerender APIs will wait for all data to load before returning the static HTML stream. Streams can be converted to strings, or sent with a streaming response. They do not support streaming content as it loads, which is supported by the existing [React DOM server rendering APIs](/reference/react-dom/server).
+
+For more information, see [React DOM Static APIs](/reference/react-dom/static).
 
 ## React Server Components {/*react-server-components*/}
 
@@ -326,7 +362,7 @@ React 19 includes all of the React Server Components features included from the 
 
 #### How do I build support for Server Components? {/*how-do-i-build-support-for-server-components*/}
 
-While React Server Components in React 19 are stable and will not break between major versions, the underlying APIs used to implement a React Server Components bundler or framework do not follow semver and may break between minors in React 19.x. 
+While React Server Components in React 19 are stable and will not break between minor versions, the underlying APIs used to implement a React Server Components bundler or framework do not follow semver and may break between minors in React 19.x. 
 
 To support React Server Components as a bundler or framework, we recommend pinning to a specific React version, or using the Canary release. We will continue working with bundlers and frameworks to stabilize the APIs used to implement React Server Components in the future.
 
@@ -771,5 +807,4 @@ Thanks to [Joey Arhar](https://github.com/josepharhar) for driving the design an
 #### How to upgrade {/*how-to-upgrade*/}
 See the [React 19 Upgrade Guide](/blog/2024/04/25/react-19-upgrade-guide) for step-by-step instructions and a full list of breaking and notable changes.
 
-
-
+_Note: this post was originally published 04/25/2024 and has been updated to 12/05/2024 with the stable release._

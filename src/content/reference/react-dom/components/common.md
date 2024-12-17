@@ -347,7 +347,7 @@ export default function MyForm() {
 
 </Sandpack>
 
-To fix the hanging ref to the DOM node that is no longer rendered set the `ref.current` to `null` in the ref callback cleanup function.
+To fix the hanging ref to the DOM node that is no longer rendered, set `ref.current` to `null` in the `ref` callback cleanup function.
 
 ```js
 import { useRef } from "react";

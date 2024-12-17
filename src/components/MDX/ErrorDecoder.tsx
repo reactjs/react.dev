@@ -11,7 +11,7 @@ function replaceArgs(
   return msg.replace(/%s/g, function () {
     const arg = argList[argIdx++];
     // arg can be an empty string: ?args[0]=&args[1]=count
-    return arg === undefined || arg === '' ? replacer : arg;
+    return arg === undefined ? replacer : arg;
   });
 }
 
@@ -101,7 +101,7 @@ export default function ErrorDecoder() {
         'block bg-red-100 text-red-600 py-4 px-6 mt-5 rounded-lg',
         isReady ? 'opacity-100' : 'opacity-0'
       )}>
-      <b>{message}</b>
+      <pre className="font-bold whitespace-pre-wrap">{message}</pre>
     </code>
   );
 }

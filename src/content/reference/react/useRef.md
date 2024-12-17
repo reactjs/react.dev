@@ -455,8 +455,8 @@ Sometimes, you may want to let the parent component manipulate the DOM inside of
 ```js
 import { useRef } from 'react';
 
-const MyInput = (props, ref) => {
-  return <input {...props} ref={ref} />;
+const MyInput = ({ref}) => {
+  return <input ref={ref} />;
 };
 
 export default function Form() {
@@ -535,3 +535,60 @@ function Video() {
 Here, the `playerRef` itself is nullable. However, you should be able to convince your type checker that there is no case in which `getPlayer()` returns `null`. Then use `getPlayer()` in your event handlers.
 
 </DeepDive>
+
+---
+
+## Troubleshooting {/*troubleshooting*/}
+
+### I can't get a ref to a custom component {/*i-cant-get-a-ref-to-a-custom-component*/}
+
+If you try to pass a `ref` to your own component like this:
+
+```js
+const inputRef = useRef(null);
+
+return <MyInput ref={inputRef} />;
+```
+
+You might get an error in the console:
+
+<ConsoleBlock level="error">
+
+TypeError: Cannot read properties of null
+
+</ConsoleBlock>
+
+By default, your own components don't expose refs to the DOM nodes inside them.
+
+To fix this, find the component that you want to get a ref to:
+
+```js
+export default function MyInput({ value, onChange }) {
+  return (
+    <input
+      value={value}
+      onChange={onChange}
+    />
+  );
+}
+```
+
+And then add `ref` to the list of props your component accepts and pass `ref` as a prop to the relevent child [built-in component](/reference/react-dom/components/common) like this:
+
+```js {1,6}
+const MyInput = ({ value, onChange, ref}) => {
+  return (
+    <input
+      value={value}
+      onChange={onChange}
+      ref={ref}
+    />
+  );
+};
+
+export default MyInput;
+```
+
+Then the parent component can get a ref to it.
+
+Read more about [accessing another component's DOM nodes.](/learn/manipulating-the-dom-with-refs#accessing-another-components-dom-nodes)

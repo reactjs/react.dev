@@ -347,15 +347,32 @@ Read more about [how this helps find bugs](/reference/react/StrictMode#fixing-bu
 Refs are an escape hatch that should be used sparingly. Manually manipulating _another_ component's DOM nodes makes your code even more fragile.
 </Pitfall>
 
-When you put a ref on a built-in component that outputs a browser element like `<input />`, React will set that ref's `current` property to the corresponding DOM node (such as the actual `<input />` in the browser).
+You can pass refs from parent component to child components [just like any other prop](/learn/passing-props-to-a-component).
+
+```js {3-4,9}
+import { useRef } from 'react';
+
+function MyInput({ref}) {
+  return <input ref={ref} />;
+}
+
+function MyForm() {
+  const inputRef = useRef(null);
+  return <><MyInput ref={inputRef} /></>
+}
+```
+
+In the above example, a ref is created in the parent component, `MyForm`, and is passed to the child component, `MyInput`. `MyInput` then passes the ref to `<input>`. Because `<input>` is a [built-in component](/reference/react-dom/components/common) React sets the `.current` property of the ref to the `<input>` DOM element.
+
+The `inputRef` created in `MyForm` now points to the `<input>` DOM element returned by `MyInput`. A click handler created in `MyForm` can access `inputRef` and call `focus()` to set the focus on `<input>`.
 
 <Sandpack>
 
 ```js
 import { useRef } from 'react';
 
-function MyInput(props) {
-  return <input {...props} />;
+function MyInput({ref}) {
+  return <input ref={ref} />;
 }
 
 export default function MyForm() {
@@ -530,7 +547,7 @@ export default function TodoList() {
     const newTodo = { id: nextId++, text: text };
     flushSync(() => {
       setText('');
-      setTodos([ ...todos, newTodo]);      
+      setTodos([ ...todos, newTodo]);
     });
     listRef.current.lastChild.scrollIntoView({
       behavior: 'smooth',

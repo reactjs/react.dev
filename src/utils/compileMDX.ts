@@ -3,7 +3,7 @@ import {MDXComponents} from 'components/MDX/MDXComponents';
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // ~~~~ IMPORTANT: BUMP THIS IF YOU CHANGE ANY CODE BELOW ~~~
-const DISK_CACHE_BREAKER = 11;
+const DISK_CACHE_BREAKER = 9;
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 export default async function compileMDX(
@@ -36,13 +36,13 @@ export default async function compileMDX(
       lockfile: fs.readFileSync(process.cwd() + '/yarn.lock', 'utf8'),
     })
   );
-  // const cached = await store.get(hash);
-  // if (cached) {
-  //   console.log(
-  //     'Reading compiled MDX for /' + path + ' from ./node_modules/.cache/'
-  //   );
-  //   return cached;
-  // }
+  const cached = await store.get(hash);
+  if (cached) {
+    console.log(
+      'Reading compiled MDX for /' + path + ' from ./node_modules/.cache/'
+    );
+    return cached;
+  }
   if (process.env.NODE_ENV === 'production') {
     console.log(
       'Cache miss for MDX for /' + path + ' from ./node_modules/.cache/'
@@ -60,15 +60,13 @@ export default async function compileMDX(
       .join('\n');
 
   // Turn the MDX we just read into some JS we can execute.
-  // const {remarkPlugins} = require('../../plugins/markdownToHtml');
+  const {remarkPlugins} = require('../../plugins/markdownToHtml');
   const {compile: compileMdx} = await import('@mdx-js/mdx');
   const visit = (await import('unist-util-visit')).default;
   const jsxCode = await compileMdx(mdxWithFakeImports, {
     remarkPlugins: [
-      // ...remarkPlugins,
-      (
-        await import('remark-gfm')
-      ).default,
+      ...remarkPlugins,
+      (await import('remark-gfm')).default,
       (await import('remark-frontmatter')).default,
     ],
     rehypePlugins: [
@@ -146,10 +144,7 @@ export default async function compileMDX(
 
   // Serialize a server React tree node to JSON.
   function stringifyNodeOnServer(key: unknown, val: any) {
-    if (
-      val != null &&
-      val.$$typeof === Symbol.for('react.transitional.element')
-    ) {
+    if (val != null && val.$$typeof === Symbol.for('react.element')) {
       // Remove fake MDX props.
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const {mdxType, originalType, parentName, ...cleanProps} = val.props;

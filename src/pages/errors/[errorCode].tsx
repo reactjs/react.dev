@@ -71,7 +71,7 @@ function reviveNodeOnClient(key: unknown, val: any) {
       type = Fragment;
     }
     return {
-      $$typeof: Symbol.for('react.transitional.element'),
+      $$typeof: Symbol.for('react.element'),
       type: type,
       key: key,
       ref: null,

@@ -282,6 +282,90 @@ To support backwards compatibility, if a cleanup function is not returned from t
 * When Strict Mode is on, React will **run one extra development-only setup+cleanup cycle** before the first real setup. This is a stress-test that ensures that your cleanup logic "mirrors" your setup logic and that it stops or undoes whatever the setup is doing. If this causes a problem, implement the cleanup function.
 * When you pass a *different* `ref` callback, React will call the *previous* callback's cleanup function if provided. If no cleanup function is defined, the `ref` callback will be called with `null` as the argument. The *next* function will be called with the DOM node.
 
+#### Troubleshooting: My ref points to a unmounted DOM node {/*my-ref-points-to-a-unmounted-dom-node*/}
+
+A `ref` callback function with a cleanup function that does not set `ref.current` to `null` can result in a `ref` to a unmounted node. Uncheck "Show Input" below and click "Submit" to see how the `ref` to the unmounted `<input>` is still accessible by the click handler for the form.
+
+<Sandpack>
+
+```js
+import { useRef, useState } from "react";
+
+export default function MyForm() {
+  const [showInput, setShowInput] = useState(true);
+  let inputRef = useRef();
+  const handleCheckboxChange = (event) => {
+    setShowInput(event.target.checked);
+  };
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    if (inputRef.current) {
+      alert(`Input value is: "${inputRef.current.value}"`);
+    } else {
+      alert("no input");
+    }
+  };
+  const inputRefCallback = (node) => {
+    inputRef.current = node;
+    return () => {
+      // ⚠️ You must set `ref.current` to `null`
+      // in this cleanup function e.g.
+      // `inputRef.current = null;`
+      // to prevent hanging refs to unmounted DOM nodes
+    };
+  };
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <div>
+        <label>
+          <input
+            type="checkbox"
+            checked={showInput}
+            onChange={handleCheckboxChange}
+          />
+          Show Input
+        </label>
+      </div>
+      {showInput && (
+        <div>
+          <label>
+            Input:
+            <input
+              type="text"
+              defaultValue="value from input DOM node"
+              ref={inputRefCallback}
+            />
+          </label>
+        </div>
+      )}
+      <button type="submit">Submit</button>
+    </form>
+  );
+}
+```
+
+</Sandpack>
+
+To fix the hanging ref to the DOM node that is no longer rendered set the `ref.current` to `null` in the ref callback cleanup function.
+
+```js
+import { useRef } from "react";
+
+function MyInput() {
+  inputRef = useRef()
+  const inputRefCallback = (node) => {
+    ref.current = node;
+    return () => {
+      // ⚠️ You must set `ref.current` to `null` in this cleanup
+      // function to prevent hanging refs to unmounted DOM nodes
+      inputRef.current = null;
+    };
+  };
+  return <input ref={inputRefCallback}>
+}
+```
+
 ---
 
 ### React event object {/*react-event-object*/}

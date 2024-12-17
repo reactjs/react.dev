@@ -18,7 +18,7 @@
     "ci-check": "npm-run-all prettier:diff --parallel lint tsc lint-heading-ids rss",
     "tsc": "tsc --noEmit",
     "start": "next start",
-    "postinstall": "patch-package && (is-ci || husky install .husky)",
+    "postinstall": "is-ci || husky install .husky",
     "check-all": "npm-run-all prettier lint:fix tsc rss",
     "rss": "node scripts/generateRss.js"
   },
@@ -79,7 +79,6 @@
     "mdast-util-to-string": "^1.1.0",
     "metro-cache": "0.72.2",
     "npm-run-all": "^4.1.5",
-    "patch-package": "^6.2.2",
     "postcss": "^8.4.5",
     "postcss-flexbugs-fixes": "4.2.1",
     "postcss-preset-env": "^6.7.0",

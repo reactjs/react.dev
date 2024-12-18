@@ -6,6 +6,7 @@ import * as React from 'react';
 import Image from 'next/image';
 import {IconTwitter} from '../Icon/IconTwitter';
 import {IconThreads} from '../Icon/IconThreads';
+import {IconBsky} from '../Icon/IconBsky';
 import {IconGitHub} from '../Icon/IconGitHub';
 import {ExternalLink} from '../ExternalLink';
 import {H3} from './Heading';
@@ -19,6 +20,7 @@ interface TeamMemberProps {
   photo: string;
   twitter?: string;
   threads?: string;
+  bsky?: string;
   github?: string;
   personal?: string;
 }
@@ -33,6 +35,7 @@ export function TeamMember({
   github,
   twitter,
   threads,
+  bsky,
   personal,
 }: TeamMemberProps) {
   if (name == null || title == null || permalink == null || children == null) {
@@ -62,11 +65,11 @@ export function TeamMember({
           </H3>
           {title && <div>{title}</div>}
           {children}
-          <div className="sm:flex sm:flex-row flex-wrap">
+          <div className="sm:flex sm:flex-row flex-wrap text-secondary dark:text-secondary-dark">
             {twitter && (
               <div className="me-4">
                 <ExternalLink
-                  aria-label="React on Twitter"
+                  aria-label={`${name} on Twitter`}
                   href={`https://twitter.com/${twitter}`}
                   className="hover:text-primary hover:underline dark:text-primary-dark flex flex-row items-center">
                   <IconTwitter className="pe-1" />
@@ -77,11 +80,22 @@ export function TeamMember({
             {threads && (
               <div className="me-4">
                 <ExternalLink
-                  aria-label="React on Threads"
+                  aria-label={`${name} on Threads`}
                   href={`https://threads.net/${threads}`}
                   className="hover:text-primary hover:underline dark:text-primary-dark flex flex-row items-center">
                   <IconThreads className="pe-1" />
                   {threads}
+                </ExternalLink>
+              </div>
+            )}
+            {bsky && (
+              <div className="me-4">
+                <ExternalLink
+                  aria-label={`${name} on Bluesky`}
+                  href={`https://bsky.app/profile/${bsky}`}
+                  className="hover:text-primary hover:underline dark:text-primary-dark flex flex-row items-center">
+                  <IconBsky className="pe-1" />
+                  {bsky}
                 </ExternalLink>
               </div>
             )}

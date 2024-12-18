@@ -19,8 +19,8 @@ export type RouteTag =
 export interface RouteItem {
   /** Page title (for the sidebar) */
   title: string;
-  /** Optional canary flag for heading */
-  canary?: boolean;
+  /** Optional version flag for heading */
+  version?: 'canary' | 'major';
   /** Optional page description for heading */
   description?: string;
   /* Additional meta info for page tagging */

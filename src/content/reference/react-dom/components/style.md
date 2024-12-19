@@ -62,7 +62,11 @@ This special treatment comes with two caveats:
 
 If a component depends on certain CSS styles in order to be displayed correctly, you can render an inline stylesheet within the component.
 
-If you supply an `href` and `precedence` prop, your component will suspend while the stylesheet is loading. (Even with inline stylesheets, there may be a loading time due to fonts and images that the stylesheet refers to.) The `href` prop should uniquely identify the stylesheet, because React will de-duplicate stylesheets that have the same `href`.
+The `href` prop should uniquely identify the stylesheet, because React will de-duplicate stylesheets that have the same `href`.
+If you supply a `precedence` prop, React will reorder inline stylesheets based on the order these values appear in the component tree.
+
+Inline stylesheets will not trigger Suspense boundaries while they're loading.
+Even if they load async resources like fonts or images.
 
 <SandpackWithHTMLOutput>
 

@@ -340,7 +340,7 @@ Update the quantity multiple times quickly. Notice that the pending "Total" stat
 ```
 
 ```js src/App.js
-import { useState, useTransition } from "react";
+import { useState } from "react";
 import { updateQuantity } from "./api";
 import Item from "./Item";
 import Total from "./Total";

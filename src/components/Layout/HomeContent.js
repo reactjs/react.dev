@@ -915,6 +915,7 @@ function Example1() {
           isFromPackageImport={false}
           noShadow={true}
           noMargin={true}>
+          {/* eslint-disable-next-line react/no-unknown-property */}
           <div meta={meta}>{`function Video({ video }) {
   return (
     <div>
@@ -987,6 +988,7 @@ function Example2() {
           isFromPackageImport={false}
           noShadow={true}
           noMargin={true}>
+          {/* eslint-disable-next-line react/no-unknown-property */}
           <div meta={meta}>{`function VideoList({ videos, emptyHeading }) {
   const count = videos.length;
   let heading = emptyHeading;
@@ -1078,6 +1080,7 @@ function Example3() {
           isFromPackageImport={false}
           noShadow={true}
           noMargin={true}>
+          {/* eslint-disable-next-line react/no-unknown-property */}
           <div meta={meta}>{`import { useState } from 'react';
 
 function SearchableVideoList({ videos }) {
@@ -1149,6 +1152,7 @@ function Example4() {
           isFromPackageImport={false}
           noShadow={true}
           noMargin={true}>
+          {/* eslint-disable-next-line react/no-unknown-property */}
           <div meta={meta}>{`import { db } from './database.js';
 import { Suspense } from 'react';
 

@@ -72,16 +72,21 @@ import { deliverMessage } from "./actions.js";
 function Thread({ messages, sendMessage }) {
   const formRef = useRef();
   async function formAction(formData) {
-    addOptimisticMessage(formData.get("message"));
+    const message = {
+      key: new Date().getTime(),
+      text: formData.get("message")
+    };
+    addOptimisticMessage(message);
     formRef.current.reset();
-    await sendMessage(formData);
+    await sendMessage(message);
   }
   const [optimisticMessages, addOptimisticMessage] = useOptimistic(
     messages,
     (state, newMessage) => [
-      ...state,
+      //properly merge state by removing the duplicated message
+      ...state.filter(msg => msg.key !== newMessage.key),
       {
-        text: newMessage,
+        ...newMessage,
         sending: true
       }
     ]
@@ -89,8 +94,8 @@ function Thread({ messages, sendMessage }) {
 
   return (
     <>
-      {optimisticMessages.map((message, index) => (
-        <div key={index}>
+      {optimisticMessages.map((message) => (
+        <div key={message.key}>
           {message.text}
           {!!message.sending && <small> (Sending...)</small>}
         </div>
@@ -107,9 +112,9 @@ export default function App() {
   const [messages, setMessages] = useState([
     { text: "Hello there!", sending: false, key: 1 }
   ]);
-  async function sendMessage(formData) {
-    const sentMessage = await deliverMessage(formData.get("message"));
-    setMessages((messages) => [...messages, { text: sentMessage }]);
+  async function sendMessage(message) {
+    const sentMessage = await deliverMessage(message);
+    setMessages((messages) => [...messages, sentMessage]);
   }
   return <Thread messages={messages} sendMessage={sendMessage} />;
 }

@@ -3,6 +3,7 @@
  */
 
 import cn from 'classnames';
+import {JSX} from 'react';
 
 interface InlineCodeProps {
   isLink?: boolean;

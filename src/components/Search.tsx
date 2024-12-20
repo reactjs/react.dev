@@ -109,6 +109,7 @@ export function Search({
 }: SearchProps) {
   useDocSearchKeyboardEvents({isOpen, onOpen, onClose});
   return (
+    // @ts-ignore
     <>
       <Head>
         <link

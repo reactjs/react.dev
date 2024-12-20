@@ -126,7 +126,7 @@ function UpdateName() {
   const submitAction = async () => {
     startTransition(async () => {
       const {error} = await updateName(name);
-      if (!error) {
+      if (error) {
         setError(error);
       } else {
         setName('');

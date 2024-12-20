@@ -352,8 +352,8 @@ However, if you try to put a ref on **your own** component, like `<MyInput />`, 
 ```js
 import { useRef } from 'react';
 
-function MyInput(props) {
-  return <input {...props} />;
+function MyInput() {
+  return <input />;
 }
 
 export default function MyForm() {
@@ -376,40 +376,37 @@ export default function MyForm() {
 
 </Sandpack>
 
-To help you notice the issue, React also prints an error to the console:
+Instead, the application crashes because `inputRef.current` is `null`, due to `<MyInput />` not passing the `ref` prop down to one of its children.
 
 <ConsoleBlock level="error">
-
-Warning: Function components cannot be given refs. Attempts to access this ref will fail. Did you mean to use React.forwardRef()?
-
+Cannot read properties of null (reading 'focus')
 </ConsoleBlock>
 
 This happens because by default React does not let a component access the DOM nodes of other components. Not even for its own children! This is intentional. Refs are an escape hatch that should be used sparingly. Manually manipulating _another_ component's DOM nodes makes your code even more fragile.
 
-Instead, components that _want_ to expose their DOM nodes have to **opt in** to that behavior. A component can specify that it "forwards" its ref to one of its children. Here's how `MyInput` can use the `forwardRef` API:
+Instead, components that _want_ to expose their DOM nodes have to **opt in** to that behavior. A component can specify that it "forwards" its ref to one of its children by passing the `ref` prop down.
 
 ```js
-const MyInput = forwardRef((props, ref) => {
-  return <input {...props} ref={ref} />;
-});
+function MyInput({ ref }) {
+  return <input ref={ref} />;
+}
 ```
 
 This is how it works:
 
 1. `<MyInput ref={inputRef} />` tells React to put the corresponding DOM node into `inputRef.current`. However, it's up to the `MyInput` component to opt into that--by default, it doesn't.
-2. The `MyInput` component is declared using `forwardRef`. **This opts it into receiving the `inputRef` from above as the second `ref` argument** which is declared after `props`.
-3. `MyInput` itself passes the `ref` it received to the `<input>` inside of it.
+2. `MyInput` itself passes the `ref` prop it received to the `<input>` inside of it.
 
 Now clicking the button to focus the input works:
 
 <Sandpack>
 
 ```js
-import { forwardRef, useRef } from 'react';
+import { useRef } from 'react';
 
-const MyInput = forwardRef((props, ref) => {
-  return <input {...props} ref={ref} />;
-});
+function MyInput({ ref }) {
+  return <input ref={ref} />;
+}
 
 export default function Form() {
   const inputRef = useRef(null);
@@ -442,13 +439,9 @@ In the above example, `MyInput` exposes the original DOM input element. This let
 <Sandpack>
 
 ```js
-import {
-  forwardRef, 
-  useRef, 
-  useImperativeHandle
-} from 'react';
+import { useRef, useImperativeHandle } from 'react';
 
-const MyInput = forwardRef((props, ref) => {
+function MyInput({ ref }) {
   const realInputRef = useRef(null);
   useImperativeHandle(ref, () => ({
     // Only expose focus and nothing else
@@ -456,8 +449,8 @@ const MyInput = forwardRef((props, ref) => {
       realInputRef.current.focus();
     },
   }));
-  return <input {...props} ref={realInputRef} />;
-});
+  return <input ref={realInputRef} />;
+}
 
 export default function Form() {
   const inputRef = useRef(null);
@@ -691,7 +684,7 @@ However, this doesn't mean that you can't do it at all. It requires caution. **Y
 - Refs are a generic concept, but most often you'll use them to hold DOM elements.
 - You instruct React to put a DOM node into `myRef.current` by passing `<div ref={myRef}>`.
 - Usually, you will use refs for non-destructive actions like focusing, scrolling, or measuring DOM elements.
-- A component doesn't expose its DOM nodes by default. You can opt into exposing a DOM node by using `forwardRef` and passing the second `ref` argument down to a specific node.
+- A component doesn't expose its DOM nodes by default. You can opt into exposing a DOM node by using a `ref` prop and passing it down to a specific node.
 - Avoid changing DOM nodes managed by React.
 - If you do modify DOM nodes managed by React, modify parts that React has no reason to update.
 
@@ -1093,7 +1086,7 @@ Make it so that clicking the "Search" button puts focus into the field. Note tha
 
 <Hint>
 
-You'll need `forwardRef` to opt into exposing a DOM node from your own component like `SearchInput`.
+You'll need the `ref` prop to opt into exposing a DOM node from your own component like `SearchInput`.
 
 </Hint>
 
@@ -1178,18 +1171,14 @@ export default function SearchButton({ onClick }) {
 ```
 
 ```js src/SearchInput.js
-import { forwardRef } from 'react';
-
-export default forwardRef(
-  function SearchInput(props, ref) {
-    return (
-      <input
-        ref={ref}
-        placeholder="Looking for something?"
-      />
-    );
-  }
-);
+export default function SearchInput({ ref }) {
+  return (
+    <input
+      ref={ref}
+      placeholder="Looking for something?"
+    />
+  );
+}
 ```
 
 ```css

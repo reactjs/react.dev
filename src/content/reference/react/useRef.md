@@ -455,7 +455,7 @@ Sometimes, you may want to let the parent component manipulate the DOM inside of
 ```js
 import { useRef } from 'react';
 
-const MyInput = ({ref}) => {
+function MyInput({ ref }) {
   return <input ref={ref} />;
 };
 
@@ -576,7 +576,7 @@ export default function MyInput({ value, onChange }) {
 And then add `ref` to the list of props your component accepts and pass `ref` as a prop to the relevent child [built-in component](/reference/react-dom/components/common) like this:
 
 ```js {1,6}
-const MyInput = ({ value, onChange, ref}) => {
+function MyInput({ value, onChange, ref }) {
   return (
     <input
       value={value}

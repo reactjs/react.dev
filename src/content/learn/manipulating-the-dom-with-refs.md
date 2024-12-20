@@ -344,7 +344,7 @@ Read more about [how this helps find bugs](/reference/react/StrictMode#fixing-bu
 ## Accessing another component's DOM nodes {/*accessing-another-components-dom-nodes*/}
 
 <Pitfall>
-Refs are an escape hatch that should be used sparingly. Manually manipulating _another_ component's DOM nodes makes your code even more fragile.
+Refs are an escape hatch. Manually manipulating _another_ component's DOM nodes can make your code fragile.
 </Pitfall>
 
 You can pass refs from parent component to child components [just like any other prop](/learn/passing-props-to-a-component).
@@ -352,13 +352,13 @@ You can pass refs from parent component to child components [just like any other
 ```js {3-4,9}
 import { useRef } from 'react';
 
-function MyInput({ref}) {
+function MyInput({ ref }) {
   return <input ref={ref} />;
 }
 
 function MyForm() {
   const inputRef = useRef(null);
-  return <><MyInput ref={inputRef} /></>
+  return <MyInput ref={inputRef} />
 }
 ```
 
@@ -371,7 +371,7 @@ The `inputRef` created in `MyForm` now points to the `<input>` DOM element retur
 ```js
 import { useRef } from 'react';
 
-function MyInput({ref}) {
+function MyInput({ ref }) {
   return <input ref={ref} />;
 }
 
@@ -406,7 +406,7 @@ In the above example, the ref passed to `MyInput` is passed on to the original D
 ```js
 import { useRef, useImperativeHandle } from "react";
 
-const MyInput = ({ ref }) => {
+function MyInput({ ref }) {
   const realInputRef = useRef(null);
   useImperativeHandle(ref, () => ({
     // Only expose focus and nothing else

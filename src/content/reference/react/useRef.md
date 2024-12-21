@@ -663,7 +663,7 @@ export default function ReactLogo() {
 }
 ```
 
-To avoid unnecessary reconnections wrap your ref callback function in [useCallback](/reference/react/useCallback). Make sure to add any dependancies to the dependency array so the ref callback called with updated props when necessary.
+To avoid unnecessary reconnections wrap your ref callback function in [useCallback](/reference/react/useCallback). Make sure to add any dependancies to the `useCallback` dependency array. This will ensure the ref callback is called with updated props when necessary.
 
 ```js
 export default function ReactLogo() {
@@ -674,79 +674,6 @@ export default function ReactLogo() {
   return <div ref={setLogoRef}></div>
 }
 ```
-
-<Sandpack>
-
-```js
-import { useState, useCallback } from "react";
-
-function WithoutCallback() {
-  const [count, setCount] = useState(0);
-
-  // 🚩 without useCallback, the callback changes every
-  // render, which causes the listener to reconnect
-  const handleRefEffect = (node) => {
-    function onClick() {
-      setCount((count) => count + 1);
-    }
-    console.log("without: adding event listener", node);
-    node.addEventListener("click", onClick);
-    return () => {
-      console.log("without: removing event listener", node);
-      node.removeEventListener("click", onClick);
-    };
-  };
-
-  return <button ref={handleRefEffect}>Count {count}</button>;
-}
-
-function WithCallback() {
-  const [count, setCount] = useState(0);
-
-  // ✅ with useCallback, the callback is stable
-  // so the listener doesn't reconnect each time
-  const handleRefEffect = useCallback((node) => {
-    function onClick() {
-      setCount((count) => count + 1);
-    }
-    console.log("with: adding event listener", node);
-    node.addEventListener("click", onClick);
-    return () => {
-      console.log("with: removing event listener", node);
-      node.removeEventListener("click", onClick);
-    };
-  }, []);
-
-  return <button ref={handleRefEffect}>Count {count}</button>;
-}
-
-export default function App() {
-  const [count, setCount] = useState(0);
-
-  const handleRefEffect = (node) => {
-    function onClick() {
-      setCount((count) => count + 1);
-    }
-    console.log("adding event listener", node);
-    node.addEventListener("click", onClick);
-    return () => {
-      console.log("removing event listener", node);
-      node.removeEventListener("click", onClick);
-    };
-  };
-
-  return (
-    <>
-      <h1>without useCallback</h1>
-      <WithoutCallback />
-      <h1>with useCallback</h1>
-      <WithCallback />
-    </>
-  );
-}
-```
-
-</Sandpack>
 
 </DeepDive>
 

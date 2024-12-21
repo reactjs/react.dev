@@ -538,6 +538,307 @@ Here, the `playerRef` itself is nullable. However, you should be able to convinc
 
 ---
 
+### Detect DOM changes with a ref {/*detect-dom-changes-with-a-ref*/}
+
+In some scenarios, you might need to detect changes in the DOM, such as when a component's children are dynamically updated. You can achieve this by using a `ref` callback wrapped in `useCallback` to create a MutationObserver. This approach allows you to observe changes in the DOM and perform actions based on those changes.
+
+<Sandpack>
+
+```js src/App.js active
+import { useState, useRef, useCallback } from "react";
+import { useDrawReactLogo } from "./draw-logo";
+
+export default function ReactLogo() {
+  const [loading, setLoading] = useState(true);
+  const logoRef = useRef(null);
+  // the ref callback function should be wraped in
+  // useCallback so the listener doesn't reconnect
+  // on each render
+  const setLogoRef = useCallback((node) => {
+    logoRef.current = node;
+    const observer = new MutationObserver(() => {
+      if (node && node.children.length > 0) {
+        setLoading(false);
+        logoRef.current = null;
+        observer.disconnect();
+      }
+    });
+    observer.observe(node, { childList: true });
+
+    return () => {
+      // When defining a ref callback cleanup function
+      // it is important to re-assign the ref object
+      // to null so that other references will not
+      // point to the ghost element that no longer exists
+      logoRef.current = null;
+      observer.disconnect();
+    };
+  }, []);
+  useDrawReactLogo(logoRef);
+
+  return (
+    <div>
+      {loading ? <div className="spinner">Loading...</div> : null}
+      <div ref={setLogoRef}></div>
+    </div>
+  );
+}
+```
+
+```js src/draw-logo.js hidden
+import { useRef, useEffect } from "react";
+
+export function useDrawReactLogo(chartRef) {
+  // Use a ref to that status of if drawing
+  // has started or not outside of render
+  const drawnRef = useRef(false);
+  useEffect(() => {
+    if (!drawnRef.current) {
+      delayedDrawReactLogo(chartRef.current);
+      drawnRef.current = true;
+    }
+  }, [chartRef]);
+}
+
+function delayedDrawReactLogo(node) {
+  // add 500ms delay to simulate
+  // a long drawing time
+  setTimeout(() => drawReactLogo(node), 500);
+}
+
+function drawReactLogo(node) {
+  const svgNamespace = "http://www.w3.org/2000/svg";
+  const createSvgElement = (type, attributes) => {
+    const element = document.createElementNS(svgNamespace, type);
+    Object.entries(attributes).forEach(([key, value]) => {
+      element.setAttribute(key, value);
+    });
+    return element;
+  };
+  const svg = createSvgElement("svg", {
+    width: "120",
+    height: "120",
+    viewBox: "0 0 100 100",
+  });
+  const ellipses = [{ rotate: 0 }, { rotate: 60 }, { rotate: 120 }];
+  ellipses.forEach(({ rotate }) => {
+    const ellipse = createSvgElement("ellipse", {
+      cx: "50",
+      cy: "50",
+      rx: "35",
+      ry: "13.75",
+      transform: `rotate(${rotate}, 50, 50)`,
+      fill: "none",
+      stroke: "#58C4DC",
+      "stroke-width": "3",
+    });
+    svg.appendChild(ellipse);
+  });
+  const circle = createSvgElement("circle", {
+    cx: "50",
+    cy: "50",
+    r: "6.25",
+    fill: "#58C4DC",
+  });
+  svg.appendChild(circle);
+  node.appendChild(svg);
+}
+```
+
+</Sandpack>
+
+<DeepDive>
+
+#### Prevent reconnections with useCallback {/*prevent-listener-reconnections-with-usecallback*/}
+
+When a ref callback function change, React will disconnect and reconnect on render. This is similar to a function dependency in an effect. React does this because new prop values may be needed to be passed to the ref callback function.
+
+```js
+export default function ReactLogo() {
+  const setLogoRef = (node) => {
+    //...
+  };
+  //...
+  return <div ref={setLogoRef}></div>
+}
+```
+
+To avoid unnecessary reconnections wrap your ref callback function in [useCallback](/reference/react/useCallback). Make sure to add any dependancies to the dependency array so the ref callback called with updated props when necessary.
+
+```js
+export default function ReactLogo() {
+  const setLogoRef = useCallback((node) => {
+    //....
+  }, []);
+  //...
+  return <div ref={setLogoRef}></div>
+}
+```
+
+<Sandpack>
+
+```js
+import { useState, useCallback } from "react";
+
+function WithoutCallback() {
+  const [count, setCount] = useState(0);
+
+  // 🚩 without useCallback, the callback changes every
+  // render, which causes the listener to reconnect
+  const handleRefEffect = (node) => {
+    function onClick() {
+      setCount((count) => count + 1);
+    }
+    console.log("without: adding event listener", node);
+    node.addEventListener("click", onClick);
+    return () => {
+      console.log("without: removing event listener", node);
+      node.removeEventListener("click", onClick);
+    };
+  };
+
+  return <button ref={handleRefEffect}>Count {count}</button>;
+}
+
+function WithCallback() {
+  const [count, setCount] = useState(0);
+
+  // ✅ with useCallback, the callback is stable
+  // so the listener doesn't reconnect each time
+  const handleRefEffect = useCallback((node) => {
+    function onClick() {
+      setCount((count) => count + 1);
+    }
+    console.log("with: adding event listener", node);
+    node.addEventListener("click", onClick);
+    return () => {
+      console.log("with: removing event listener", node);
+      node.removeEventListener("click", onClick);
+    };
+  }, []);
+
+  return <button ref={handleRefEffect}>Count {count}</button>;
+}
+
+export default function App() {
+  const [count, setCount] = useState(0);
+
+  const handleRefEffect = (node) => {
+    function onClick() {
+      setCount((count) => count + 1);
+    }
+    console.log("adding event listener", node);
+    node.addEventListener("click", onClick);
+    return () => {
+      console.log("removing event listener", node);
+      node.removeEventListener("click", onClick);
+    };
+  };
+
+  return (
+    <>
+      <h1>without useCallback</h1>
+      <WithoutCallback />
+      <h1>with useCallback</h1>
+      <WithCallback />
+    </>
+  );
+}
+```
+
+</Sandpack>
+
+</DeepDive>
+
+<DeepDive>
+
+#### Avoiding Stale Refs {/*avoiding-stale-refs*/}
+
+A `ref` callback function with a cleanup function that does not set `ref.current` to `null` can result in a `ref` to a unmounted node. Uncheck "Show Input" below and click "Submit" to see how the `ref` to the unmounted `<input>` is still accessible by the click handler for the form.
+
+<Sandpack>
+
+```js
+import { useRef, useState } from "react";
+
+export default function MyForm() {
+  const [showInput, setShowInput] = useState(true);
+  const inputRef = useRef();
+  const handleCheckboxChange = (event) => {
+    setShowInput(event.target.checked);
+  };
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    if (inputRef.current) {
+      alert(`Input value is: "${inputRef.current.value}"`);
+    } else {
+      alert("no input");
+    }
+  };
+  const inputRefCallback = (node) => {
+    inputRef.current = node;
+    return () => {
+      // ⚠️ You must set `ref.current` to `null`
+      // in this cleanup function e.g.
+      // `inputRef.current = null;`
+      // to prevent hanging refs to unmounted DOM nodes
+    };
+  };
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <div>
+        <label>
+          <input
+            type="checkbox"
+            checked={showInput}
+            onChange={handleCheckboxChange}
+          />
+          Show Input
+        </label>
+      </div>
+      {showInput && (
+        <div>
+          <label>
+            Input:
+            <input
+              type="text"
+              defaultValue="value from input DOM node"
+              ref={inputRefCallback}
+            />
+          </label>
+        </div>
+      )}
+      <button type="submit">Submit</button>
+    </form>
+  );
+}
+```
+
+</Sandpack>
+
+To fix the hanging ref to the DOM node that is no longer rendered, set `ref.current` to `null` in the `ref` callback cleanup function.
+
+```js
+import { useRef } from "react";
+
+function MyInput() {
+  const inputRef = useRef()
+  const inputRefCallback = (node) => {
+    inputRef.current = node;
+    return () => {
+      // ⚠️ You must set `ref.current` to `null` in this cleanup
+      // function to prevent hanging refs to unmounted DOM nodes
+      inputRef.current = null;
+    };
+  };
+  return <input ref={inputRefCallback}>
+}
+```
+</DeepDive>
+
+---
+
 ## Troubleshooting {/*troubleshooting*/}
 
 ### I can't get a ref to a custom component {/*i-cant-get-a-ref-to-a-custom-component*/}
@@ -592,3 +893,6 @@ export default MyInput;
 Then the parent component can get a ref to it.
 
 Read more about [accessing another component's DOM nodes.](/learn/manipulating-the-dom-with-refs#accessing-another-components-dom-nodes)
+
+
+

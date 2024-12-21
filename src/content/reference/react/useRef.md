@@ -665,7 +665,7 @@ export default function ReactLogo() {
 
 To avoid unnecessary reconnections wrap your ref callback function in [useCallback](/reference/react/useCallback). Make sure to add any dependancies to the `useCallback` dependency array. This will ensure the ref callback is called with updated props when necessary.
 
-```js
+```js {2,4}
 export default function ReactLogo() {
   const setLogoRef = useCallback((node) => {
     //....

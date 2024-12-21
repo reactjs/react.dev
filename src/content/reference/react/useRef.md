@@ -893,6 +893,3 @@ export default MyInput;
 Then the parent component can get a ref to it.
 
 Read more about [accessing another component's DOM nodes.](/learn/manipulating-the-dom-with-refs#accessing-another-components-dom-nodes)
-
-
-

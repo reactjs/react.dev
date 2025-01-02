@@ -81,7 +81,7 @@ You can either build "top down" by starting with building the components higher 
 
 <Sandpack>
 
-```jsx App.js
+```jsx src/App.js
 function ProductCategoryRow({ category }) {
   return (
     <tr>
@@ -268,8 +268,8 @@ Now let's run through our strategy for them:
 1. **Identify components that use state:**
     * `ProductTable` needs to filter the product list based on that state (search text and checkbox value). 
     * `SearchBar` needs to display that state (search text and checkbox value).
-1. **Find their common parent:** The first parent component both components share is `FilterableProductTable`.
-2. **Decide where the state lives**: We'll keep the filter text and checked state values in `FilterableProductTable`.
+2. **Find their common parent:** The first parent component both components share is `FilterableProductTable`.
+3. **Decide where the state lives**: We'll keep the filter text and checked state values in `FilterableProductTable`.
 
 So the state values will live in `FilterableProductTable`. 
 
@@ -299,7 +299,7 @@ You can start seeing how your application will behave. Edit the `filterText` ini
 
 <Sandpack>
 
-```jsx App.js
+```jsx src/App.js
 import { useState } from 'react';
 
 function FilterableProductTable({ products }) {
@@ -484,19 +484,33 @@ function FilterableProductTable({ products }) {
 
 Inside the `SearchBar`, you will add the `onChange` event handlers and set the parent state from them:
 
-```js {5}
-<input 
-  type="text" 
-  value={filterText} 
-  placeholder="Search..." 
-  onChange={(e) => onFilterTextChange(e.target.value)} />
+```js {4,5,13,19}
+function SearchBar({
+  filterText,
+  inStockOnly,
+  onFilterTextChange,
+  onInStockOnlyChange
+}) {
+  return (
+    <form>
+      <input
+        type="text"
+        value={filterText}
+        placeholder="Search..."
+        onChange={(e) => onFilterTextChange(e.target.value)}
+      />
+      <label>
+        <input
+          type="checkbox"
+          checked={inStockOnly}
+          onChange={(e) => onInStockOnlyChange(e.target.checked)}
 ```
 
 Now the application fully works!
 
 <Sandpack>
 
-```jsx App.js
+```jsx src/App.js
 import { useState } from 'react';
 
 function FilterableProductTable({ products }) {

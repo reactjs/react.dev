@@ -8,10 +8,10 @@ import cn from 'classnames';
 
 import CodeBlock from './CodeBlock';
 import {CodeDiagram} from './CodeDiagram';
-import ConsoleBlock from './ConsoleBlock';
+import {ConsoleBlock, ConsoleLogLine, ConsoleBlockMulti} from './ConsoleBlock';
 import ExpandableCallout from './ExpandableCallout';
 import ExpandableExample from './ExpandableExample';
-import {H1, H2, H3, H4} from './Heading';
+import {H1, H2, H3, H4, H5} from './Heading';
 import InlineCode from './InlineCode';
 import Intro from './Intro';
 import BlogCard from './BlogCard';
@@ -19,6 +19,7 @@ import Link from './Link';
 import {PackageImport} from './PackageImport';
 import Recap from './Recap';
 import Sandpack from './Sandpack';
+import SandpackWithHTMLOutput from './SandpackWithHTMLOutput';
 import Diagram from './Diagram';
 import DiagramGroup from './DiagramGroup';
 import SimpleCallout from './SimpleCallout';
@@ -30,6 +31,11 @@ import ButtonLink from 'components/ButtonLink';
 import {TocContext} from './TocContext';
 import type {Toc, TocItem} from './TocContext';
 import {TeamMember} from './TeamMember';
+import {LanguagesContext} from './LanguagesContext';
+import {finishedTranslations} from 'utils/finishedTranslations';
+
+import ErrorDecoder from './ErrorDecoder';
+import {IconCanary} from '../Icon/IconCanary';
 
 function CodeStep({children, step}: {children: any; step: number}) {
   return (
@@ -62,13 +68,13 @@ const Strong = (strong: JSX.IntrinsicElements['strong']) => (
 );
 
 const OL = (p: JSX.IntrinsicElements['ol']) => (
-  <ol className="ml-6 my-3 list-decimal" {...p} />
+  <ol className="ms-6 my-3 list-decimal" {...p} />
 );
 const LI = (p: JSX.IntrinsicElements['li']) => (
   <li className="leading-relaxed mb-1" {...p} />
 );
 const UL = (p: JSX.IntrinsicElements['ul']) => (
-  <ul className="ml-6 my-3 list-disc" {...p} />
+  <ul className="ms-6 my-3 list-disc" {...p} />
 );
 
 const Divider = () => (
@@ -85,6 +91,52 @@ const Deprecated = ({children}: {children: React.ReactNode}) => (
 );
 const Note = ({children}: {children: React.ReactNode}) => (
   <ExpandableCallout type="note">{children}</ExpandableCallout>
+);
+
+const Canary = ({children}: {children: React.ReactNode}) => (
+  <ExpandableCallout type="canary">{children}</ExpandableCallout>
+);
+
+const NextMajor = ({children}: {children: React.ReactNode}) => (
+  <ExpandableCallout type="major">{children}</ExpandableCallout>
+);
+
+const RSC = ({children}: {children: React.ReactNode}) => (
+  <ExpandableCallout type="rsc">{children}</ExpandableCallout>
+);
+
+const CanaryBadge = ({title}: {title: string}) => (
+  <span
+    title={title}
+    className={
+      'text-base font-display px-1 py-0.5 font-bold bg-gray-10 dark:bg-gray-60 text-gray-60 dark:text-gray-10 rounded'
+    }>
+    <IconCanary
+      size="s"
+      className={'inline me-1 mb-0.5 text-sm text-gray-60 dark:text-gray-10'}
+    />
+    Canary only
+  </span>
+);
+
+const NextMajorBadge = ({title}: {title: string}) => (
+  <span
+    title={title}
+    className={
+      'text-base font-display px-2 py-0.5 font-bold bg-blue-10 dark:bg-blue-60 text-gray-60 dark:text-gray-10 rounded'
+    }>
+    React 19
+  </span>
+);
+
+const RSCBadge = ({title}: {title: string}) => (
+  <span
+    title={title}
+    className={
+      'text-base font-display px-2 py-0.5 font-bold bg-blue-10 dark:bg-blue-50 text-gray-60 dark:text-gray-10 rounded'
+    }>
+    RSC
+  </span>
 );
 
 const Blockquote = ({
@@ -123,7 +175,7 @@ function LearnMore({
               href={path}
               type="primary">
               Read More
-              <IconNavArrow displayDirection="right" className="inline ml-1" />
+              <IconNavArrow displayDirection="end" className="inline ms-1" />
             </ButtonLink>
           ) : null}
         </div>
@@ -137,7 +189,7 @@ function ReadBlogPost({path}: {path: string}) {
   return (
     <ButtonLink className="mt-1" label="Read Post" href={path} type="primary">
       Read Post
-      <IconNavArrow displayDirection="right" className="inline ml-1" />
+      <IconNavArrow displayDirection="end" className="inline ms-1" />
     </ButtonLink>
   );
 }
@@ -184,14 +236,14 @@ function Recipes(props: any) {
 
 function AuthorCredit({
   author = 'Rachel Lee Nabors',
-  authorLink = 'http://rachelnabors.com/',
+  authorLink = 'https://nearestnabors.com/',
 }: {
   author: string;
   authorLink: string;
 }) {
   return (
     <div className="sr-only group-hover:not-sr-only group-focus-within:not-sr-only hover:sr-only">
-      <p className="bg-card dark:bg-card-dark text-center text-sm text-secondary dark:text-secondary-dark leading-tight dark:text-secondary-dark p-2 rounded-lg absolute left-1/2 -top-4 -translate-x-1/2 -translate-y-full group-hover:flex group-hover:opacity-100 after:content-[''] after:absolute after:left-1/2 after:top-[95%] after:-translate-x-1/2 after:border-8 after:border-x-transparent after:border-b-transparent after:border-t-card after:dark:border-t-card-dark opacity-0 transition-opacity duration-300">
+      <p className="bg-card dark:bg-card-dark text-center text-sm text-secondary dark:text-secondary-dark leading-tight p-2 rounded-lg absolute start-1/2 -top-4 -translate-x-1/2 -translate-y-full group-hover:flex group-hover:opacity-100 after:content-[''] after:absolute after:start-1/2 after:top-[95%] after:-translate-x-1/2 after:border-8 after:border-x-transparent after:border-b-transparent after:border-t-card after:dark:border-t-card-dark opacity-0 transition-opacity duration-300">
         <cite>
           Illustrated by{' '}
           {authorLink ? (
@@ -239,7 +291,7 @@ function Illustration({
           src={src}
           alt={alt}
           style={{maxHeight: 300}}
-          className="bg-white rounded-lg"
+          className="rounded-lg"
         />
         {caption ? (
           <figcaption className="text-center leading-tight mt-4">
@@ -271,7 +323,12 @@ function IllustrationBlock({
   const images = imageInfos.map((info, index) => (
     <figure key={index}>
       <div className="bg-white rounded-lg p-4 flex-1 flex xl:p-6 justify-center items-center my-4">
-        <img src={info.src} alt={info.alt} height={info.height} />
+        <img
+          className="text-primary"
+          src={info.src}
+          alt={info.alt}
+          height={info.height}
+        />
       </div>
       {info.caption ? (
         <figcaption className="text-secondary dark:text-secondary-dark text-center leading-tight mt-4">
@@ -353,6 +410,38 @@ function InlineTocItem({items}: {items: Array<NestedTocNode>}) {
   );
 }
 
+type TranslationProgress = 'complete' | 'in-progress';
+
+function LanguageList({progress}: {progress: TranslationProgress}) {
+  const allLanguages = React.useContext(LanguagesContext) ?? [];
+  const languages = allLanguages
+    .filter(
+      ({code}) =>
+        code !== 'en' &&
+        (progress === 'complete'
+          ? finishedTranslations.includes(code)
+          : !finishedTranslations.includes(code))
+    )
+    .sort((a, b) => a.enName.localeCompare(b.enName));
+  return (
+    <UL>
+      {languages.map(({code, name, enName}) => {
+        return (
+          <LI key={code}>
+            <Link href={`https://${code}.react.dev/`}>
+              {enName} ({name})
+            </Link>{' '}
+            &mdash;{' '}
+            <Link href={`https://github.com/reactjs/${code}.react.dev`}>
+              Contribute
+            </Link>
+          </LI>
+        );
+      })}
+    </UL>
+  );
+}
+
 function YouTubeIframe(props: any) {
   return (
     <div className="relative h-0 overflow-hidden pt-[56.25%]">
@@ -369,7 +458,8 @@ function YouTubeIframe(props: any) {
 }
 
 function Image(props: any) {
-  return <img className="max-w-[calc(min(700px,100%))]" {...props} />;
+  const {alt, ...rest} = props;
+  return <img alt={alt} className="max-w-[calc(min(700px,100%))]" {...rest} />;
 }
 
 export const MDXComponents = {
@@ -383,6 +473,7 @@ export const MDXComponents = {
   h2: H2,
   h3: H3,
   h4: H4,
+  h5: H5,
   hr: Divider,
   a: Link,
   img: Image,
@@ -391,6 +482,8 @@ export const MDXComponents = {
   pre: CodeBlock,
   CodeDiagram,
   ConsoleBlock,
+  ConsoleBlockMulti,
+  ConsoleLogLine,
   DeepDive: (props: {
     children: React.ReactNode;
     title: string;
@@ -402,7 +495,7 @@ export const MDXComponents = {
     return children;
   },
   MaxWidth({children}: {children: any}) {
-    return <div className="max-w-4xl ml-0 2xl:mx-auto">{children}</div>;
+    return <div className="max-w-4xl ms-0 2xl:mx-auto">{children}</div>;
   },
   Pitfall,
   Deprecated,
@@ -411,15 +504,23 @@ export const MDXComponents = {
   IllustrationBlock,
   Intro,
   InlineToc,
+  LanguageList,
   LearnMore,
   Math,
   MathI,
   Note,
+  Canary,
+  CanaryBadge,
+  NextMajor,
+  NextMajorBadge,
+  RSC,
+  RSCBadge,
   PackageImport,
   ReadBlogPost,
   Recap,
   Recipes,
   Sandpack,
+  SandpackWithHTMLOutput,
   TeamMember,
   TerminalBlock,
   YouWillLearn,
@@ -429,6 +530,7 @@ export const MDXComponents = {
   Solution,
   CodeStep,
   YouTubeIframe,
+  ErrorDecoder,
 };
 
 for (let key in MDXComponents) {

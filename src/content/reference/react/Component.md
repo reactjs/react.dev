@@ -50,7 +50,7 @@ Only the `render` method is required, other methods are optional.
 
 ### `context` {/*context*/}
 
-The [context](/learn/passing-data-deeply-with-context) of a class component is available as `this.context`. It is only available if you specify *which* context you want to receive using [`static contextType`](#static-contexttype) (modern) or [`static contextTypes`](#static-contexttypes) (deprecated).
+The [context](/learn/passing-data-deeply-with-context) of a class component is available as `this.context`. It is only available if you specify *which* context you want to receive using [`static contextType`](#static-contexttype).
 
 A class component can only read one context at a time.
 
@@ -102,18 +102,6 @@ Reading `this.props` in class components is equivalent to [declaring props](/lea
 [See how to migrate.](#migrating-a-simple-component-from-a-class-to-a-function)
 
 </Note>
-
----
-
-### `refs` {/*refs*/}
-
-<Deprecated>
-
-This API will be removed in a future major version of React. [Use `createRef` instead.](/reference/react/createRef)
-
-</Deprecated>
-
-Lets you access [legacy string refs](https://reactjs.org/docs/refs-and-the-dom.html#legacy-api-string-refs) for this component.
 
 ---
 
@@ -494,18 +482,6 @@ Reading an external data source and forcing class components to re-render in res
 
 ---
 
-### `getChildContext()` {/*getchildcontext*/}
-
-<Deprecated>
-
-This API will be removed in a future major version of React. [Use `Context.Provider` instead.](/reference/react/createContext#provider)
-
-</Deprecated>
-
-Lets you specify the values for the [legacy context](https://reactjs.org/docs/legacy-context.html) is provided by this component.
-
----
-
 ### `getSnapshotBeforeUpdate(prevProps, prevState)` {/*getsnapshotbeforeupdate*/}
 
 If you implement `getSnapshotBeforeUpdate`, React will call it immediately before React updates the DOM. It enables your component to capture some information from the DOM (e.g. scroll position) before it is potentially changed. Any value returned by this lifecycle method will be passed as a parameter to [`componentDidUpdate`.](#componentdidupdate)
@@ -593,9 +569,7 @@ You should write the `render` method as a pure function, meaning that it should 
 
 #### Parameters {/*render-parameters*/}
 
-* `prevProps`: Props before the update. Compare `prevProps` to [`this.props`](#props) to determine what changed.
-
-* `prevState`: State before the update. Compare `prevState` to [`this.state`](#state) to determine what changed.
+`render` does not take any parameters.
 
 #### Returns {/*render-returns*/}
 
@@ -634,7 +608,7 @@ class Form extends Component {
     return (
       <>
         <input value={this.state.name} onChange={this.handleNameChange} />
-        <p>Hello, {this.state.name}.
+        <p>Hello, {this.state.name}.</p>
       </>
     );
   }
@@ -740,7 +714,7 @@ React calls `shouldComponentUpdate` before rendering when new props or state are
 
 - `nextProps`: The next props that the component is about to render with. Compare `nextProps` to [`this.props`](#props) to determine what changed.
 - `nextState`: The next state that the component is about to render with. Compare `nextState` to [`this.state`](#props) to determine what changed.
-- `nextContext`: The next context that the component is about to render with. Compare `nextContext` to [`this.context`](#context) to determine what changed. Only available if you specify [`static contextType`](#static-contexttype) (modern) or [`static contextTypes`](#static-contexttypes) (legacy).
+- `nextContext`: The next context that the component is about to render with. Compare `nextContext` to [`this.context`](#context) to determine what changed. Only available if you specify [`static contextType`](#static-contexttype).
 
 #### Returns {/*shouldcomponentupdate-returns*/}
 
@@ -815,7 +789,7 @@ If you define `UNSAFE_componentWillReceiveProps`, React will call it when the co
 #### Parameters {/*unsafe_componentwillreceiveprops-parameters*/}
 
 - `nextProps`: The next props that the component is about to receive from its parent component. Compare `nextProps` to [`this.props`](#props) to determine what changed.
-- `nextContext`: The next props that the component is about to receive from the closest provider. Compare `nextContext` to [`this.context`](#context) to determine what changed. Only available if you specify [`static contextType`](#static-contexttype) (modern) or [`static contextTypes`](#static-contexttypes) (legacy).
+- `nextContext`: The next context that the component is about to receive from the closest provider. Compare `nextContext` to [`this.context`](#context) to determine what changed. Only available if you specify [`static contextType`](#static-contexttype).
 
 #### Returns {/*unsafe_componentwillreceiveprops-returns*/}
 
@@ -877,30 +851,6 @@ If you define `UNSAFE_componentWillUpdate`, React will call it before rendering 
 There is no direct equivalent to `UNSAFE_componentWillUpdate` in function components.
 
 </Note>
-
----
-
-### `static childContextTypes` {/*static-childcontexttypes*/}
-
-<Deprecated>
-
-This API will be removed in a future major version of React. [Use `static contextType` instead.](#static-contexttype)
-
-</Deprecated>
-
-Lets you specify which [legacy context](https://reactjs.org/docs/legacy-context.html) is provided by this component.
-
----
-
-### `static contextTypes` {/*static-contexttypes*/}
-
-<Deprecated>
-
-This API will be removed in a future major version of React. [Use `static contextType` instead.](#static-contexttype)
-
-</Deprecated>
-
-Lets you specify which [legacy context](https://reactjs.org/docs/legacy-context.html) is consumed by this component.
 
 ---
 
@@ -978,39 +928,11 @@ Defining `defaultProps` in class components is similar to using [default values]
 
 ---
 
-### `static propTypes` {/*static-proptypes*/}
-
-You can define `static propTypes` together with the [`prop-types`](https://www.npmjs.com/package/prop-types) library to declare the types of the props accepted by your component. These types will be checked during rendering and in development only.
-
-```js
-import PropTypes from 'prop-types';
-
-class Greeting extends React.Component {
-  static propTypes = {
-    name: PropTypes.string
-  };
-
-  render() {
-    return (
-      <h1>Hello, {this.props.name}</h1>
-    );
-  }
-}
-```
-
-<Note>
-
-We recommend using [TypeScript](https://www.typescriptlang.org/) instead of checking prop types at runtime.
-
-</Note>
-
----
-
 ### `static getDerivedStateFromError(error)` {/*static-getderivedstatefromerror*/}
 
 If you define `static getDerivedStateFromError`, React will call it when a child component (including distant children) throws an error during rendering. This lets you display an error message instead of clearing the UI.
 
-Typically, it is used together with [`componentDidCatch`](#componentDidCatch) which lets you send the error report to some analytics service. A component with these methods is called an *error boundary.*
+Typically, it is used together with [`componentDidCatch`](#componentdidcatch) which lets you send the error report to some analytics service. A component with these methods is called an *error boundary.*
 
 [See an example.](#catching-rendering-errors-with-an-error-boundary)
 
@@ -1223,7 +1145,7 @@ For example, this `ChatRoom` component keeps a chat connection synchronized with
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useState } from 'react';
 import ChatRoom from './ChatRoom.js';
 
@@ -1253,7 +1175,7 @@ export default function App() {
 }
 ```
 
-```js ChatRoom.js active
+```js src/ChatRoom.js active
 import { Component } from 'react';
 import { createConnection } from './chat.js';
 
@@ -1314,7 +1236,7 @@ export default class ChatRoom extends Component {
 }
 ```
 
-```js chat.js
+```js src/chat.js
 export function createConnection(serverUrl, roomId) {
   // A real implementation would actually connect to the server
   return {
@@ -1393,7 +1315,7 @@ Then you can wrap a part of your component tree with it:
 
 If `Profile` or its child component throws an error, `ErrorBoundary` will "catch" that error, display a fallback UI with the error message you've provided, and send a production error report to your error reporting service.
 
-You don't need to wrap every component into a separate error boundary. When you think about the [granularity of error boundaries,](https://aweary.dev/fault-tolerance-react/) consider where it makes sense to display an error message. For example, in a messaging app, it makes sense to place an error boundary around the list of conversations. It also makes sense to place one around every individual message. However, it wouldn't make sense to place a boundary around every avatar.
+You don't need to wrap every component into a separate error boundary. When you think about the [granularity of error boundaries,](https://www.brandondail.com/posts/fault-tolerance-react) consider where it makes sense to display an error message. For example, in a messaging app, it makes sense to place an error boundary around the list of conversations. It also makes sense to place one around every individual message. However, it wouldn't make sense to place a boundary around every avatar.
 
 <Note>
 
@@ -1603,7 +1525,7 @@ Suppose you're converting this `ChatRoom` class component with lifecycle methods
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useState } from 'react';
 import ChatRoom from './ChatRoom.js';
 
@@ -1633,7 +1555,7 @@ export default function App() {
 }
 ```
 
-```js ChatRoom.js active
+```js src/ChatRoom.js active
 import { Component } from 'react';
 import { createConnection } from './chat.js';
 
@@ -1694,7 +1616,7 @@ export default class ChatRoom extends Component {
 }
 ```
 
-```js chat.js
+```js src/chat.js
 export function createConnection(serverUrl, roomId) {
   // A real implementation would actually connect to the server
   return {
@@ -1743,7 +1665,7 @@ This [`useEffect`](/reference/react/useEffect) call is equivalent to the logic i
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useState } from 'react';
 import ChatRoom from './ChatRoom.js';
 
@@ -1773,7 +1695,7 @@ export default function App() {
 }
 ```
 
-```js ChatRoom.js active
+```js src/ChatRoom.js active
 import { useState, useEffect } from 'react';
 import { createConnection } from './chat.js';
 
@@ -1803,7 +1725,7 @@ export default function ChatRoom({ roomId }) {
 }
 ```
 
-```js chat.js
+```js src/chat.js
 export function createConnection(serverUrl, roomId) {
   // A real implementation would actually connect to the server
   return {

@@ -52,6 +52,7 @@ function MyComponent() {
 #### Caveats {/*caveats*/}
 
 * `useReducer` is a Hook, so you can only call it **at the top level of your component** or your own Hooks. You can't call it inside loops or conditions. If you need that, extract a new component and move the state into it.
+* The `dispatch` function has a stable identity, so you will often see it omitted from Effect dependencies, but including it will not cause the Effect to fire. If the linter lets you omit a dependency without errors, it is safe to do. [Learn more about removing Effect dependencies.](/learn/removing-effect-dependencies#move-dynamic-objects-and-functions-inside-your-effect)
 * In Strict Mode, React will **call your reducer and initializer twice** in order to [help you find accidental impurities.](#my-reducer-or-initializer-function-runs-twice) This is development-only behavior and does not affect production. If your reducer and initializer are pure (as they should be), this should not affect your logic. The result from one of the calls is ignored.
 
 ---
@@ -322,7 +323,7 @@ In this example, the reducer manages an array of tasks. The array needs to be up
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useReducer } from 'react';
 import AddTask from './AddTask.js';
 import TaskList from './TaskList.js';
@@ -405,7 +406,7 @@ const initialTasks = [
 ];
 ```
 
-```js AddTask.js hidden
+```js src/AddTask.js hidden
 import { useState } from 'react';
 
 export default function AddTask({ onAddTask }) {
@@ -426,7 +427,7 @@ export default function AddTask({ onAddTask }) {
 }
 ```
 
-```js TaskList.js hidden
+```js src/TaskList.js hidden
 import { useState } from 'react';
 
 export default function TaskList({
@@ -515,7 +516,7 @@ If updating arrays and objects without mutation feels tedious, you can use a lib
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useImmerReducer } from 'use-immer';
 import AddTask from './AddTask.js';
 import TaskList from './TaskList.js';
@@ -597,7 +598,7 @@ const initialTasks = [
 ];
 ```
 
-```js AddTask.js hidden
+```js src/AddTask.js hidden
 import { useState } from 'react';
 
 export default function AddTask({ onAddTask }) {
@@ -618,7 +619,7 @@ export default function AddTask({ onAddTask }) {
 }
 ```
 
-```js TaskList.js hidden
+```js src/TaskList.js hidden
 import { useState } from 'react';
 
 export default function TaskList({
@@ -763,7 +764,7 @@ This example passes the initializer function, so the `createInitialState` functi
 
 <Sandpack>
 
-```js App.js hidden
+```js src/App.js hidden
 import TodoList from './TodoList.js';
 
 export default function App() {
@@ -771,7 +772,7 @@ export default function App() {
 }
 ```
 
-```js TodoList.js active
+```js src/TodoList.js active
 import { useReducer } from 'react';
 
 function createInitialState(username) {
@@ -851,7 +852,7 @@ This example **does not** pass the initializer function, so the `createInitialSt
 
 <Sandpack>
 
-```js App.js hidden
+```js src/App.js hidden
 import TodoList from './TodoList.js';
 
 export default function App() {
@@ -859,7 +860,7 @@ export default function App() {
 }
 ```
 
-```js TodoList.js active
+```js src/TodoList.js active
 import { useReducer } from 'react';
 
 function createInitialState(username) {

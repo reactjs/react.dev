@@ -27,7 +27,7 @@ export const DocsPageFooter = memo<DocsPageFooterProps>(
       <>
         {prevRoute?.path || nextRoute?.path ? (
           <>
-            <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-4 py-4 md:py-12">
+            <div className="grid grid-cols-1 gap-4 py-4 mx-auto max-w-7xl md:grid-cols-2 md:py-12">
               {prevRoute?.path ? (
                 <FooterLink
                   type="Previous"
@@ -69,21 +69,23 @@ function FooterLink({
     <NextLink
       href={href}
       className={cn(
-        'flex gap-x-4 md:gap-x-6 items-center w-full md:w-80 px-4 md:px-5 py-6 border-2 border-transparent text-base leading-base text-link dark:text-link-dark rounded-lg group focus:text-link dark:focus:text-link-dark focus:bg-highlight focus:border-link dark:focus:bg-highlight-dark dark:focus:border-link-dark focus:border-opacity-100 focus:border-2 focus:ring-1 focus:ring-offset-4 focus:ring-blue-40 active:ring-0 active:ring-offset-0 hover:bg-gray-5 dark:hover:bg-gray-80',
+        'flex gap-x-4 md:gap-x-6 items-center w-full md:min-w-80 md:w-fit md:max-w-md px-4 md:px-5 py-6 border-2 border-transparent text-base leading-base text-link dark:text-link-dark rounded-lg group focus:text-link dark:focus:text-link-dark focus:bg-highlight focus:border-link dark:focus:bg-highlight-dark dark:focus:border-link-dark focus:border-opacity-100 focus:border-2 focus:ring-1 focus:ring-offset-4 focus:ring-blue-40 active:ring-0 active:ring-offset-0 hover:bg-gray-5 dark:hover:bg-gray-80',
         {
-          'flex-row-reverse justify-self-end text-right': type === 'Next',
+          'flex-row-reverse justify-self-end text-end': type === 'Next',
         }
       )}>
       <IconNavArrow
-        className="text-tertiary dark:text-tertiary-dark inline group-focus:text-link dark:group-focus:text-link-dark"
-        displayDirection={type === 'Previous' ? 'left' : 'right'}
+        className="inline text-tertiary dark:text-tertiary-dark group-focus:text-link dark:group-focus:text-link-dark"
+        displayDirection={type === 'Previous' ? 'start' : 'end'}
       />
-      <span>
-        <span className="block no-underline text-sm tracking-wide text-secondary dark:text-secondary-dark uppercase font-bold group-focus:text-link dark:group-focus:text-link-dark group-focus:text-opacity-100">
+      <div className="flex flex-col overflow-hidden">
+        <span className="text-sm font-bold tracking-wide no-underline uppercase text-secondary dark:text-secondary-dark group-focus:text-link dark:group-focus:text-link-dark group-focus:text-opacity-100">
           {type}
         </span>
-        <span className="block text-lg group-hover:underline">{title}</span>
-      </span>
+        <span className="text-lg break-words group-hover:underline">
+          {title}
+        </span>
+      </div>
     </NextLink>
   );
 }

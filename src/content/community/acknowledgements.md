@@ -4,7 +4,7 @@ title: Acknowledgements
 
 <Intro>
 
-React was originally created by [Jordan Walke.](https://github.com/jordwalke) Today, React has a [dedicated full-time team working on it](/community/team), as well as over a thousand [open source contributors.](https://github.com/facebook/react/blob/main/AUTHORS)
+React was originally created by [Jordan Walke.](https://github.com/jordwalke) Today, React has a [dedicated full-time team working on it](/community/team), as well as over a thousand [open source contributors.](https://github.com/facebook/react/graphs/contributors)
 
 </Intro>
 
@@ -16,6 +16,7 @@ We'd like to recognize a few people who have made significant contributions to R
 * [Andreas Svensson](https://github.com/syranide)
 * [Alex Krolick](https://github.com/alexkrolick)
 * [Alexey Pyltsyn](https://github.com/lex111)
+* [Andrey Lunyov](https://github.com/alunyov)
 * [Brandon Dail](https://github.com/aweary)
 * [Brian Vaughn](https://github.com/bvaughn)
 * [Caleb Meredith](https://github.com/calebmer)
@@ -24,6 +25,7 @@ We'd like to recognize a few people who have made significant contributions to R
 * [Christoph Nakazawa](https://github.com/cpojer)
 * [Christopher Chedeau](https://github.com/vjeux)
 * [Clement Hoang](https://github.com/clemmy)
+* [Dave McCabe](https://github.com/davidmccabe)
 * [Dominic Gannaway](https://github.com/trueadm)
 * [Flarnie Marchan](https://github.com/flarnie)
 * [Jason Quense](https://github.com/jquense)
@@ -33,8 +35,11 @@ We'd like to recognize a few people who have made significant contributions to R
 * [Josh Duck](https://github.com/joshduck)
 * [Joe Critchley](https://github.com/joecritch)
 * [Jeff Morrison](https://github.com/jeffmo)
+* [Luna Ruan](https://github.com/lunaruan)
+* [Kathryn Middleton](https://github.com/kmiddleton14)
 * [Keyan Zhang](https://github.com/keyz)
 * [Marco Salazar](https://github.com/salazarm)
+* [Mengdi Chen](https://github.com/mondaychen)
 * [Nat Alison](https://github.com/tesseralis)
 * [Nathan Hunzaker](https://github.com/nhunzaker)
 * [Nicolas Gallagher](https://github.com/necolas)
@@ -43,9 +48,10 @@ We'd like to recognize a few people who have made significant contributions to R
 * [Philipp Spiess](https://github.com/philipp-spiess)
 * [Rachel Nabors](https://github.com/rachelnabors)
 * [Robert Zhang](https://github.com/robertzhidealx)
+* [Samuel Susla](https://github.com/sammy-SC)
 * [Sander Spies](https://github.com/sanderspies)
 * [Sasha Aickin](https://github.com/aickin)
-* [Seth Webster](https://github.com/sethwebster)
+* [Sean Keegan](https://github.com/seanryankeegan)
 * [Sophia Shoemaker](https://github.com/mrscobbler)
 * [Sunil Pai](https://github.com/threepointone)
 * [Tim Yung](https://github.com/yungsters)
@@ -53,7 +59,7 @@ We'd like to recognize a few people who have made significant contributions to R
 
 This list is not exhaustive.
 
-We'd like to give special thanks to [Tom Occhino](https://github.com/tomocchino) and [Adam Wolff](https://github.com/wolffiex) for their guidance and support over the years. We are also thankful to all the volunteers who [translated React into other languages.](https://translations.reactjs.org/)
+We'd like to give special thanks to [Tom Occhino](https://github.com/tomocchino) and [Adam Wolff](https://github.com/wolffiex) for their guidance and support over the years. We are also thankful to all the volunteers who [translated React into other languages.](https://translations.react.dev/)
 
 ## Additional Thanks {/*additional-thanks*/}
 

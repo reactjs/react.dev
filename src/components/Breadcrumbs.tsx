@@ -17,10 +17,10 @@ function Breadcrumbs({breadcrumbs}: {breadcrumbs: RouteItem[]}) {
               <Fragment key={crumb.path}>
                 <Link
                   href={crumb.path}
-                  className="text-link dark:text-link-dark text-sm tracking-wide font-bold uppercase mr-1 hover:underline">
+                  className="text-link dark:text-link-dark text-sm tracking-wide font-bold uppercase me-1 hover:underline">
                   {crumb.title}
                 </Link>
-                <span className="inline-block mr-1 text-link dark:text-link-dark text-lg">
+                <span className="inline-block me-1 text-link dark:text-link-dark text-lg rtl:rotate-180">
                   <svg
                     width="20"
                     height="20"

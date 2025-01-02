@@ -7,7 +7,7 @@ title: useState
 `useState` is a React Hook that lets you add a [state variable](/learn/state-a-components-memory) to your component.
 
 ```js
-const [state, setState] = useState(initialState);
+const [state, setState] = useState(initialState)
 ```
 
 </Intro>
@@ -84,6 +84,8 @@ function handleClick() {
 * If the new value you provide is identical to the current `state`, as determined by an [`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is) comparison, React will **skip re-rendering the component and its children.** This is an optimization. Although in some cases React may still need to call your component before skipping the children, it shouldn't affect your code.
 
 * React [batches state updates.](/learn/queueing-a-series-of-state-updates) It updates the screen **after all the event handlers have run** and have called their `set` functions. This prevents multiple re-renders during a single event. In the rare case that you need to force React to update the screen earlier, for example to access the DOM, you can use [`flushSync`.](/reference/react-dom/flushSync)
+
+* The `set` function has a stable identity, so you will often see it omitted from Effect dependencies, but including it will not cause the Effect to fire. If the linter lets you omit a dependency without errors, it is safe to do. [Learn more about removing Effect dependencies.](/learn/removing-effect-dependencies#move-dynamic-objects-and-functions-inside-your-effect)
 
 * Calling the `set` function *during rendering* is only allowed from within the currently rendering component. React will discard its output and immediately attempt to render it again with the new state. This pattern is rarely needed, but you can use it to **store information from the previous renders**. [See an example below.](#storing-information-from-previous-renders)
 
@@ -630,7 +632,7 @@ In this example, the `todos` state variable holds an array. Each button handler 
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useState } from 'react';
 import AddTodo from './AddTodo.js';
 import TaskList from './TaskList.js';
@@ -687,7 +689,7 @@ export default function TaskApp() {
 }
 ```
 
-```js AddTodo.js
+```js src/AddTodo.js
 import { useState } from 'react';
 
 export default function AddTodo({ onAddTodo }) {
@@ -708,7 +710,7 @@ export default function AddTodo({ onAddTodo }) {
 }
 ```
 
-```js TaskList.js
+```js src/TaskList.js
 import { useState } from 'react';
 
 export default function TaskList({
@@ -1028,7 +1030,7 @@ Read [preserving and resetting state](/learn/preserving-and-resetting-state) to 
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useState } from 'react';
 
 export default function App() {
@@ -1083,7 +1085,7 @@ In the rare case that none of these apply, there is a pattern you can use to upd
 
 Here's an example. This `CountLabel` component displays the `count` prop passed to it:
 
-```js CountLabel.js
+```js src/CountLabel.js
 export default function CountLabel({ count }) {
   return <h1>{count}</h1>
 }
@@ -1093,7 +1095,7 @@ Say you want to show whether the counter has *increased or decreased* since the 
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useState } from 'react';
 import CountLabel from './CountLabel.js';
 
@@ -1113,7 +1115,7 @@ export default function App() {
 }
 ```
 
-```js CountLabel.js active
+```js src/CountLabel.js active
 import { useState } from 'react';
 
 export default function CountLabel({ count }) {

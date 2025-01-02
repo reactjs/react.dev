@@ -134,7 +134,7 @@ export default function Gallery() {
 }
 ```
 
-```js data.js
+```js src/data.js
 export const sculptureList = [{
   name: 'Homenaje a la Neurocirugía',
   artist: 'Marta Colvin Andrade',
@@ -265,7 +265,7 @@ setCount(count + 1); // Request a re-render with 1
 console.log(count);  // Still 0!
 ```
 
-This behavior help you avoid subtle bugs. Here is a little chat app. Try to guess what happens if you press "Send" first and *then* change the recipient to Bob. Whose name will appear in the `alert` five seconds later?
+This behavior helps you avoid subtle bugs. Here is a little chat app. Try to guess what happens if you press "Send" first and *then* change the recipient to Bob. Whose name will appear in the `alert` five seconds later?
 
 <Sandpack>
 
@@ -646,7 +646,6 @@ Arrays are another type of mutable JavaScript objects you can store in state and
 ```js
 import { useState } from 'react';
 
-let nextId = 3;
 const initialList = [
   { id: 0, title: 'Big Bellies', seen: false },
   { id: 1, title: 'Lunar Landscape', seen: false },
@@ -714,7 +713,6 @@ If copying arrays in code gets tedious, you can use a library like [Immer](https
 import { useState } from 'react';
 import { useImmer } from 'use-immer';
 
-let nextId = 3;
 const initialList = [
   { id: 0, title: 'Big Bellies', seen: false },
   { id: 1, title: 'Lunar Landscape', seen: false },

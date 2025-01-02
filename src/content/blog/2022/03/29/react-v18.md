@@ -1,5 +1,8 @@
 ---
 title: "React v18.0"
+author: The React Team
+date: 2022/03/08
+description: React 18 is now available on npm! In our last post, we shared step-by-step instructions for upgrading your app to React 18. In this post, we'll give an overview of what's new in React 18, and what it means for the future.
 ---
 
 March 29, 2022 by [The React Team](/community/team)
@@ -139,8 +142,8 @@ startTransition(() => {
 Updates wrapped in startTransition are handled as non-urgent and will be interrupted if more urgent updates like clicks or key presses come in. If a transition gets interrupted by the user (for example, by typing multiple characters in a row), React will throw out the stale rendering work that wasn’t finished and render only the latest update.
 
 
-* `useTransition`: a hook to start transitions, including a value to track the pending state.
-* `startTransition`: a method to start transitions when the hook cannot be used.
+* `useTransition`: a Hook to start transitions, including a value to track the pending state.
+* `startTransition`: a method to start transitions when the Hook cannot be used.
 
 Transitions will opt in to concurrent rendering, which allows the update to be interrupted. If the content re-suspends, transitions also tell React to continue showing the current content while rendering the transition content in the background (see the [Suspense RFC](https://github.com/reactjs/rfcs/blob/main/text/0213-suspense-in-react-18.md) for more info).
 
@@ -229,7 +232,7 @@ With Strict Mode in React 18, React will simulate unmounting and remounting the 
 
 #### useId {/*useid*/}
 
-`useId` is a new hook for generating unique IDs on both the client and server, while avoiding hydration mismatches. It is primarily useful for component libraries integrating with accessibility APIs that require unique IDs. This solves an issue that already exists in React 17 and below, but it's even more important in React 18 because of how the new streaming server renderer delivers HTML out-of-order. [See docs here](/reference/react/useId).
+`useId` is a new Hook for generating unique IDs on both the client and server, while avoiding hydration mismatches. It is primarily useful for component libraries integrating with accessibility APIs that require unique IDs. This solves an issue that already exists in React 17 and below, but it's even more important in React 18 because of how the new streaming server renderer delivers HTML out-of-order. [See docs here](/reference/react/useId).
 
 > Note
 >
@@ -237,7 +240,7 @@ With Strict Mode in React 18, React will simulate unmounting and remounting the 
 
 #### useTransition {/*usetransition*/}
 
-`useTransition` and `startTransition` let you mark some state updates as not urgent. Other state updates are considered urgent by default. React will allow urgent state updates (for example, updating a text input) to interrupt non-urgent state updates (for example, rendering a list of search results). [See docs here](/reference/react/useTransition)
+`useTransition` and `startTransition` let you mark some state updates as not urgent. Other state updates are considered urgent by default. React will allow urgent state updates (for example, updating a text input) to interrupt non-urgent state updates (for example, rendering a list of search results). [See docs here](/reference/react/useTransition).
 
 #### useDeferredValue {/*usedeferredvalue*/}
 
@@ -245,7 +248,7 @@ With Strict Mode in React 18, React will simulate unmounting and remounting the 
 
 #### useSyncExternalStore {/*usesyncexternalstore*/}
 
-`useSyncExternalStore` is a new hook that allows external stores to support concurrent reads by forcing updates to the store to be synchronous. It removes the need for useEffect when implementing subscriptions to external data sources, and is recommended for any library that integrates with state external to React. [See docs here](/reference/react/useSyncExternalStore).
+`useSyncExternalStore` is a new Hook that allows external stores to support concurrent reads by forcing updates to the store to be synchronous. It removes the need for useEffect when implementing subscriptions to external data sources, and is recommended for any library that integrates with state external to React. [See docs here](/reference/react/useSyncExternalStore).
 
 > Note
 >
@@ -253,7 +256,7 @@ With Strict Mode in React 18, React will simulate unmounting and remounting the 
 
 #### useInsertionEffect {/*useinsertioneffect*/}
 
-`useInsertionEffect` is a new hook that allows CSS-in-JS libraries to address performance issues of injecting styles in render. Unless you’ve already built a CSS-in-JS library we don’t expect you to ever use this. This hook will run after the DOM is mutated, but before layout effects read the new layout. This solves an issue that already exists in React 17 and below, but is even more important in React 18 because React yields to the browser during concurrent rendering, giving it a chance to recalculate layout. [See docs here](/reference/react/useInsertionEffect).
+`useInsertionEffect` is a new Hook that allows CSS-in-JS libraries to address performance issues of injecting styles in render. Unless you’ve already built a CSS-in-JS library we don’t expect you to ever use this. This Hook will run after the DOM is mutated, but before layout effects read the new layout. This solves an issue that already exists in React 17 and below, but is even more important in React 18 because React yields to the browser during concurrent rendering, giving it a chance to recalculate layout. [See docs here](/reference/react/useInsertionEffect).
 
 > Note
 >
@@ -339,4 +342,3 @@ See [How to Upgrade to React 18](/blog/2022/03/08/react-18-upgrade-guide) for st
 * Update webpack plugin for webpack 5 ([#22739](https://github.com/facebook/react/pull/22739)  by [@michenly](https://github.com/michenly))
 * Fix a mistake in the Node loader. ([#22537](https://github.com/facebook/react/pull/22537)  by [@btea](https://github.com/btea))
 * Use `globalThis` instead of `window` for edge environments. ([#22777](https://github.com/facebook/react/pull/22777)  by [@huozhi](https://github.com/huozhi))
-

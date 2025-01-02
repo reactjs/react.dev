@@ -26,7 +26,7 @@ useLayoutEffect(setup, dependencies?)
 
 ### `useLayoutEffect(setup, dependencies?)` {/*useinsertioneffect*/}
 
-Call `useLayoutEffect` perform the layout measurements before the browser repaints the screen:
+Call `useLayoutEffect` to perform the layout measurements before the browser repaints the screen:
 
 ```js
 import { useState, useRef, useLayoutEffect } from 'react';
@@ -66,6 +66,8 @@ function Tooltip() {
 * Effects **only run on the client.** They don't run during server rendering.
 
 * The code inside `useLayoutEffect` and all state updates scheduled from it **block the browser from repainting the screen.** When used excessively, this makes your app slow. When possible, prefer [`useEffect`.](/reference/react/useEffect)
+
+* If you trigger a state update inside `useLayoutEffect`, React will execute all remaining Effects immediately including `useEffect`.
 
 ---
 
@@ -149,7 +151,7 @@ export default function App() {
 }
 ```
 
-```js ButtonWithTooltip.js
+```js src/ButtonWithTooltip.js
 import { useState, useRef } from 'react';
 import Tooltip from './Tooltip.js';
 
@@ -185,7 +187,7 @@ export default function ButtonWithTooltip({ tooltipContent, ...rest }) {
 }
 ```
 
-```js Tooltip.js active
+```js src/Tooltip.js active
 import { useRef, useLayoutEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 import TooltipContainer from './TooltipContainer.js';
@@ -220,7 +222,7 @@ export default function Tooltip({ children, targetRect }) {
 }
 ```
 
-```js TooltipContainer.js
+```js src/TooltipContainer.js
 export default function TooltipContainer({ children, x, y, contentRef }) {
   return (
     <div
@@ -299,7 +301,7 @@ export default function App() {
 }
 ```
 
-```js ButtonWithTooltip.js
+```js src/ButtonWithTooltip.js
 import { useState, useRef } from 'react';
 import Tooltip from './Tooltip.js';
 
@@ -335,7 +337,7 @@ export default function ButtonWithTooltip({ tooltipContent, ...rest }) {
 }
 ```
 
-```js Tooltip.js active
+```js src/Tooltip.js active
 import { useRef, useLayoutEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 import TooltipContainer from './TooltipContainer.js';
@@ -369,7 +371,7 @@ export default function Tooltip({ children, targetRect }) {
 }
 ```
 
-```js TooltipContainer.js
+```js src/TooltipContainer.js
 export default function TooltipContainer({ children, x, y, contentRef }) {
   return (
     <div
@@ -446,7 +448,7 @@ export default function App() {
 }
 ```
 
-```js ButtonWithTooltip.js
+```js src/ButtonWithTooltip.js
 import { useState, useRef } from 'react';
 import Tooltip from './Tooltip.js';
 
@@ -482,7 +484,7 @@ export default function ButtonWithTooltip({ tooltipContent, ...rest }) {
 }
 ```
 
-```js Tooltip.js active
+```js src/Tooltip.js active
 import { useRef, useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 import TooltipContainer from './TooltipContainer.js';
@@ -516,7 +518,7 @@ export default function Tooltip({ children, targetRect }) {
 }
 ```
 
-```js TooltipContainer.js
+```js src/TooltipContainer.js
 export default function TooltipContainer({ children, x, y, contentRef }) {
   return (
     <div
@@ -589,7 +591,7 @@ export default function App() {
 }
 ```
 
-```js ButtonWithTooltip.js
+```js src/ButtonWithTooltip.js
 import { useState, useRef } from 'react';
 import Tooltip from './Tooltip.js';
 
@@ -625,7 +627,7 @@ export default function ButtonWithTooltip({ tooltipContent, ...rest }) {
 }
 ```
 
-```js Tooltip.js active
+```js src/Tooltip.js active
 import { useRef, useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 import TooltipContainer from './TooltipContainer.js';
@@ -665,7 +667,7 @@ export default function Tooltip({ children, targetRect }) {
 }
 ```
 
-```js TooltipContainer.js
+```js src/TooltipContainer.js
 export default function TooltipContainer({ children, x, y, contentRef }) {
   return (
     <div
@@ -732,7 +734,7 @@ However, if you're running into this problem, you have a few different options:
 
 - Replace `useLayoutEffect` with [`useEffect`.](/reference/react/useEffect) This tells React that it's okay to display the initial render result without blocking the paint (because the original HTML will become visible before your Effect runs).
 
-- Alternatively, [mark your component as client-only.](/reference/react/Suspense#providing-a-fallback-for-server-errors-and-server-only-content) This tells React to replace its content up to the closest [`<Suspense>`](/reference/react/Suspense) boundary with a loading fallback (for example, a spinner or a glimmer) during server rendering.
+- Alternatively, [mark your component as client-only.](/reference/react/Suspense#providing-a-fallback-for-server-errors-and-client-only-content) This tells React to replace its content up to the closest [`<Suspense>`](/reference/react/Suspense) boundary with a loading fallback (for example, a spinner or a glimmer) during server rendering.
 
 - Alternatively, you can render a component with `useLayoutEffect` only after hydration. Keep a boolean `isMounted` state that's initialized to `false`, and set it to `true` inside a `useEffect` call. Your rendering logic can then be like `return isMounted ? <RealContent /> : <FallbackContent />`. On the server and during the hydration, the user will see `FallbackContent` which should not call `useLayoutEffect`. Then React will replace it with `RealContent` which runs on the client only and can include `useLayoutEffect` calls.
 

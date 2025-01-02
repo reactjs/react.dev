@@ -57,6 +57,7 @@ This example holds an object in state to represent the current pointer position.
 
 ```js
 import { useState } from 'react';
+
 export default function MovingDot() {
   const [position, setPosition] = useState({
     x: 0,
@@ -127,6 +128,7 @@ Notice how the red dot now follows your pointer when you touch or hover over the
 
 ```js
 import { useState } from 'react';
+
 export default function MovingDot() {
   const [position, setPosition] = useState({
     x: 0,
@@ -377,7 +379,7 @@ Note that the `...` spread syntax is "shallow"--it only copies things one level 
 
 #### Using a single event handler for multiple fields {/*using-a-single-event-handler-for-multiple-fields*/}
 
-You can also use the `[` and `]` braces inside your object definition to specify a property with dynamic name. Here is the same example, but with a single event handler instead of three different ones:
+You can also use the `[` and `]` braces inside your object definition to specify a property with a dynamic name. Here is the same example, but with a single event handler instead of three different ones:
 
 <Sandpack>
 
@@ -986,7 +988,7 @@ If something unexpected changes, there is a mutation. Find the mutation in `App.
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useState } from 'react';
 import Background from './Background.js';
 import Box from './Box.js';
@@ -1039,7 +1041,7 @@ export default function Canvas() {
 }
 ```
 
-```js Box.js
+```js src/Box.js
 import { useState } from 'react';
 
 export default function Box({
@@ -1102,7 +1104,7 @@ export default function Box({
 }
 ```
 
-```js Background.js
+```js src/Background.js
 export default function Background({
   position
 }) {
@@ -1136,7 +1138,7 @@ The fix is to remove the mutation from `handleMove`, and use the spread syntax t
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useState } from 'react';
 import Background from './Background.js';
 import Box from './Box.js';
@@ -1194,7 +1196,7 @@ export default function Canvas() {
 }
 ```
 
-```js Box.js
+```js src/Box.js
 import { useState } from 'react';
 
 export default function Box({
@@ -1257,7 +1259,7 @@ export default function Box({
 }
 ```
 
-```js Background.js
+```js src/Background.js
 export default function Background({
   position
 }) {
@@ -1291,7 +1293,7 @@ This is the same buggy example as in the previous challenge. This time, fix the 
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useState } from 'react';
 import { useImmer } from 'use-immer';
 import Background from './Background.js';
@@ -1345,7 +1347,7 @@ export default function Canvas() {
 }
 ```
 
-```js Box.js
+```js src/Box.js
 import { useState } from 'react';
 
 export default function Box({
@@ -1408,7 +1410,7 @@ export default function Box({
 }
 ```
 
-```js Background.js
+```js src/Background.js
 export default function Background({
   position
 }) {
@@ -1458,7 +1460,7 @@ This is the solution rewritten with Immer. Notice how the event handlers are wri
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useImmer } from 'use-immer';
 import Background from './Background.js';
 import Box from './Box.js';
@@ -1512,7 +1514,7 @@ export default function Canvas() {
 }
 ```
 
-```js Box.js
+```js src/Box.js
 import { useState } from 'react';
 
 export default function Box({
@@ -1575,7 +1577,7 @@ export default function Box({
 }
 ```
 
-```js Background.js
+```js src/Background.js
 export default function Background({
   position
 }) {

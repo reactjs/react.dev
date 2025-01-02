@@ -408,9 +408,9 @@ function Game() {
 
 There are two problems with this code.
 
-One problem is that it is very inefficient: the component (and its children) have to re-render between each `set` call in the chain. In the example above, in the worst case (`setCard` → render → `setGoldCardCount` → render → `setRound` → render → `setIsGameOver` → render) there are three unnecessary re-renders of the tree below.
+The first problem is that it is very inefficient: the component (and its children) have to re-render between each `set` call in the chain. In the example above, in the worst case (`setCard` → render → `setGoldCardCount` → render → `setRound` → render → `setIsGameOver` → render) there are three unnecessary re-renders of the tree below.
 
-Even if it weren't slow, as your code evolves, you will run into cases where the "chain" you wrote doesn't fit the new requirements. Imagine you are adding a way to step through the history of the game moves. You'd do it by updating each state variable to a value from the past. However, setting the `card` state to a value from the past would trigger the Effect chain again and change the data you're showing. Such code is often rigid and fragile.
+The second problem is that even if it weren't slow, as your code evolves, you will run into cases where the "chain" you wrote doesn't fit the new requirements. Imagine you are adding a way to step through the history of the game moves. You'd do it by updating each state variable to a value from the past. However, setting the `card` state to a value from the past would trigger the Effect chain again and change the data you're showing. Such code is often rigid and fragile.
 
 In this case, it's better to calculate what you can during rendering, and adjust the state in the event handler:
 
@@ -882,7 +882,7 @@ function NewTodo({ onAdd }) {
 }
 ```
 
-```js todos.js
+```js src/todos.js
 let nextId = 0;
 
 export function createTodo(text, completed = false) {
@@ -975,7 +975,7 @@ function NewTodo({ onAdd }) {
 }
 ```
 
-```js todos.js
+```js src/todos.js
 let nextId = 0;
 
 export function createTodo(text, completed = false) {
@@ -1061,7 +1061,7 @@ export default function TodoList() {
 }
 ```
 
-```js todos.js
+```js src/todos.js
 let nextId = 0;
 let calls = 0;
 
@@ -1144,7 +1144,7 @@ export default function TodoList() {
 }
 ```
 
-```js todos.js
+```js src/todos.js
 let nextId = 0;
 let calls = 0;
 
@@ -1233,7 +1233,7 @@ function NewTodo({ onAdd }) {
 }
 ```
 
-```js todos.js
+```js src/todos.js
 let nextId = 0;
 let calls = 0;
 
@@ -1278,7 +1278,7 @@ When you select a contact with the buttons at the top, the form resets to reflec
 
 <Sandpack>
 
-```js App.js hidden
+```js src/App.js hidden
 import { useState } from 'react';
 import ContactList from './ContactList.js';
 import EditContact from './EditContact.js';
@@ -1330,7 +1330,7 @@ const initialContacts = [
 ];
 ```
 
-```js ContactList.js hidden
+```js src/ContactList.js hidden
 export default function ContactList({
   contacts,
   selectedId,
@@ -1357,7 +1357,7 @@ export default function ContactList({
 }
 ```
 
-```js EditContact.js active
+```js src/EditContact.js active
 import { useState, useEffect } from 'react';
 
 export default function EditContact({ savedContact, onSave }) {
@@ -1438,11 +1438,11 @@ It would be nice if there was a way to tell React that when `savedContact.id` is
 
 <Solution>
 
-Split the `EditContact` component in two. Move all the form state into the inner `EditForm` component. Export the outer `EditContact` component, and make it pass `savedContact.id` as the `key` to the inner `EditContact` component. As a result, the inner `EditForm` component resets all of the form state and recreates the DOM whenever you select a different contact.
+Split the `EditContact` component in two. Move all the form state into the inner `EditForm` component. Export the outer `EditContact` component, and make it pass `savedContact.id` as the `key` to the inner `EditForm` component. As a result, the inner `EditForm` component resets all of the form state and recreates the DOM whenever you select a different contact.
 
 <Sandpack>
 
-```js App.js hidden
+```js src/App.js hidden
 import { useState } from 'react';
 import ContactList from './ContactList.js';
 import EditContact from './EditContact.js';
@@ -1494,7 +1494,7 @@ const initialContacts = [
 ];
 ```
 
-```js ContactList.js hidden
+```js src/ContactList.js hidden
 export default function ContactList({
   contacts,
   selectedId,
@@ -1521,7 +1521,7 @@ export default function ContactList({
 }
 ```
 
-```js EditContact.js active
+```js src/EditContact.js active
 import { useState } from 'react';
 
 export default function EditContact(props) {

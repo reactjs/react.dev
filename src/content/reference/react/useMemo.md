@@ -177,7 +177,7 @@ Toggle the theme. **Thanks to `useMemo`, it's fast despite the artificial slowdo
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useState } from 'react';
 import { createTodos } from './utils.js';
 import TodoList from './TodoList.js';
@@ -219,7 +219,7 @@ export default function App() {
 
 ```
 
-```js TodoList.js active
+```js src/TodoList.js active
 import { useMemo } from 'react';
 import { filterTodos } from './utils.js'
 
@@ -246,7 +246,7 @@ export default function TodoList({ todos, theme, tab }) {
 }
 ```
 
-```js utils.js
+```js src/utils.js
 export function createTodos() {
   const todos = [];
   for (let i = 0; i < 50; i++) {
@@ -307,7 +307,7 @@ Unlike in the previous example, toggling the theme is also slow now! This is bec
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useState } from 'react';
 import { createTodos } from './utils.js';
 import TodoList from './TodoList.js';
@@ -349,7 +349,7 @@ export default function App() {
 
 ```
 
-```js TodoList.js active
+```js src/TodoList.js active
 import { filterTodos } from './utils.js'
 
 export default function TodoList({ todos, theme, tab }) {
@@ -372,7 +372,7 @@ export default function TodoList({ todos, theme, tab }) {
 }
 ```
 
-```js utils.js
+```js src/utils.js
 export function createTodos() {
   const todos = [];
   for (let i = 0; i < 50; i++) {
@@ -427,7 +427,7 @@ However, here is the same code **with the artificial slowdown removed.** Does th
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useState } from 'react';
 import { createTodos } from './utils.js';
 import TodoList from './TodoList.js';
@@ -469,7 +469,7 @@ export default function App() {
 
 ```
 
-```js TodoList.js active
+```js src/TodoList.js active
 import { filterTodos } from './utils.js'
 
 export default function TodoList({ todos, theme, tab }) {
@@ -491,7 +491,7 @@ export default function TodoList({ todos, theme, tab }) {
 }
 ```
 
-```js utils.js
+```js src/utils.js
 export function createTodos() {
   const todos = [];
   for (let i = 0; i < 50; i++) {
@@ -647,11 +647,11 @@ In this example, the `List` component is **artificially slowed down** so that yo
 
 Switching the tabs feels slow because it forces the slowed down `List` to re-render. That's expected because the `tab` has changed, and so you need to reflect the user's new choice on the screen.
 
-Next, try toggling the theme. **Thanks to `useMemo` together with [`memo`](/reference/react/memo), it’s fast despite the artificial slowdown!** The `List` skipped re-rendering because the `visibleItems` array has not changed since the last render. The `visibleItems` array has not changed because both `todos` and `tab` (which you pass as dependencies to `useMemo`) haven't changed since the last render.
+Next, try toggling the theme. **Thanks to `useMemo` together with [`memo`](/reference/react/memo), it’s fast despite the artificial slowdown!** The `List` skipped re-rendering because the `visibleTodos` array has not changed since the last render. The `visibleTodos` array has not changed because both `todos` and `tab` (which you pass as dependencies to `useMemo`) haven't changed since the last render.
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useState } from 'react';
 import { createTodos } from './utils.js';
 import TodoList from './TodoList.js';
@@ -692,7 +692,7 @@ export default function App() {
 }
 ```
 
-```js TodoList.js active
+```js src/TodoList.js active
 import { useMemo } from 'react';
 import List from './List.js';
 import { filterTodos } from './utils.js'
@@ -711,7 +711,7 @@ export default function TodoList({ todos, theme, tab }) {
 }
 ```
 
-```js List.js
+```js src/List.js
 import { memo } from 'react';
 
 const List = memo(function List({ items }) {
@@ -738,7 +738,7 @@ const List = memo(function List({ items }) {
 export default List;
 ```
 
-```js utils.js
+```js src/utils.js
 export function createTodos() {
   const todos = [];
   for (let i = 0; i < 50; i++) {
@@ -793,7 +793,7 @@ Unlike in the previous example, toggling the theme is also slow now! This is bec
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useState } from 'react';
 import { createTodos } from './utils.js';
 import TodoList from './TodoList.js';
@@ -834,7 +834,7 @@ export default function App() {
 }
 ```
 
-```js TodoList.js active
+```js src/TodoList.js active
 import List from './List.js';
 import { filterTodos } from './utils.js'
 
@@ -849,7 +849,7 @@ export default function TodoList({ todos, theme, tab }) {
 }
 ```
 
-```js List.js
+```js src/List.js
 import { memo } from 'react';
 
 const List = memo(function List({ items }) {
@@ -876,7 +876,7 @@ const List = memo(function List({ items }) {
 export default List;
 ```
 
-```js utils.js
+```js src/utils.js
 export function createTodos() {
   const todos = [];
   for (let i = 0; i < 50; i++) {
@@ -925,7 +925,7 @@ However, here is the same code **with the artificial slowdown removed.** Does th
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useState } from 'react';
 import { createTodos } from './utils.js';
 import TodoList from './TodoList.js';
@@ -966,7 +966,7 @@ export default function App() {
 }
 ```
 
-```js TodoList.js active
+```js src/TodoList.js active
 import List from './List.js';
 import { filterTodos } from './utils.js'
 
@@ -980,7 +980,7 @@ export default function TodoList({ todos, theme, tab }) {
 }
 ```
 
-```js List.js
+```js src/List.js
 import { memo } from 'react';
 
 function List({ items }) {
@@ -1001,7 +1001,7 @@ function List({ items }) {
 export default memo(List);
 ```
 
-```js utils.js
+```js src/utils.js
 export function createTodos() {
   const todos = [];
   for (let i = 0; i < 50; i++) {
@@ -1055,6 +1055,82 @@ Keep in mind that you need to run React in production mode, disable [React Devel
 </Recipes>
 
 ---
+
+### Preventing an Effect from firing too often {/*preventing-an-effect-from-firing-too-often*/}
+
+Sometimes, you might want to use a value inside an [Effect:](/learn/synchronizing-with-effects)
+
+```js {4-7,10}
+function ChatRoom({ roomId }) {
+  const [message, setMessage] = useState('');
+
+  const options = {
+    serverUrl: 'https://localhost:1234',
+    roomId: roomId
+  }
+
+  useEffect(() => {
+    const connection = createConnection(options);
+    connection.connect();
+    // ...
+```
+
+This creates a problem. [Every reactive value must be declared as a dependency of your Effect.](/learn/lifecycle-of-reactive-effects#react-verifies-that-you-specified-every-reactive-value-as-a-dependency) However, if you declare `options` as a dependency, it will cause your Effect to constantly reconnect to the chat room:
+
+
+```js {5}
+  useEffect(() => {
+    const connection = createConnection(options);
+    connection.connect();
+    return () => connection.disconnect();
+  }, [options]); // 🔴 Problem: This dependency changes on every render
+  // ...
+```
+
+To solve this, you can wrap the object you need to call from an Effect in `useMemo`:
+
+```js {4-9,16}
+function ChatRoom({ roomId }) {
+  const [message, setMessage] = useState('');
+
+  const options = useMemo(() => {
+    return {
+      serverUrl: 'https://localhost:1234',
+      roomId: roomId
+    };
+  }, [roomId]); // ✅ Only changes when roomId changes
+
+  useEffect(() => {
+    const connection = createConnection(options);
+    connection.connect();
+    return () => connection.disconnect();
+  }, [options]); // ✅ Only changes when options changes
+  // ...
+```
+
+This ensures that the `options` object is the same between re-renders if `useMemo` returns the cached object.
+
+However, since `useMemo` is performance optimization, not a semantic guarantee, React may throw away the cached value if [there is a specific reason to do that](#caveats). This will also cause the effect to re-fire, **so it's even better to remove the need for a function dependency** by moving your object *inside* the Effect:
+
+```js {5-8,13}
+function ChatRoom({ roomId }) {
+  const [message, setMessage] = useState('');
+
+  useEffect(() => {
+    const options = { // ✅ No need for useMemo or object dependencies!
+      serverUrl: 'https://localhost:1234',
+      roomId: roomId
+    }
+    
+    const connection = createConnection(options);
+    connection.connect();
+    return () => connection.disconnect();
+  }, [roomId]); // ✅ Only changes when roomId changes
+  // ...
+```
+
+Now your code is simpler and doesn't need `useMemo`. [Learn more about removing Effect dependencies.](/learn/removing-effect-dependencies#move-dynamic-objects-and-functions-inside-your-effect)
+
 
 ### Memoizing a dependency of another Hook {/*memoizing-a-dependency-of-another-hook*/}
 

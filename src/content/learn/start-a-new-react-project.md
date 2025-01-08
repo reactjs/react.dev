@@ -8,7 +8,6 @@ If you want to build a new app or a new website fully with React, we recommend p
 
 </Intro>
 
-
 You can use React without a framework, however we’ve found that most apps and sites eventually build solutions to common problems such as code-splitting, routing, data fetching, and generating HTML. These problems are common to all UI libraries, not just React.
 
 By starting with a framework, you can get started with React quickly, and avoid essentially building your own framework later.
@@ -30,6 +29,16 @@ Even if you don't need routing or data fetching at first, you'll likely want to 
 If your app has unusual constraints not served well by these frameworks, or you prefer to solve these problems yourself, you can roll your own custom setup with React. Grab `react` and `react-dom` from npm, set up your custom build process with a bundler like [Vite](https://vitejs.dev/) or [Parcel](https://parceljs.org/), and add other tools as you need them for routing, static generation or server-side rendering, and more.
 
 </DeepDive>
+
+## Quick Setup {/*quick-setup*/}
+
+### Vite {/*vite*/}
+
+**[Vite](https://vite.dev/) is a build tool that aims to provide a faster and leaner development experience for modern web projects.** It's opinionated and comes with sensible defaults out of the box. To create a new Vite project, run in your terminal:
+
+<TerminalBlock>
+npx create-vite@latest
+</TerminalBlock>
 
 ## Production-grade React frameworks {/*production-grade-react-frameworks*/}
 

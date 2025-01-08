@@ -71,7 +71,7 @@ function TerminalBlock({level = 'info', children}: TerminalBlockProps) {
         </div>
       </div>
       <div
-        className="px-8 pt-4 pb-6 text-primary-dark dark:text-primary-dark font-mono text-code whitespace-pre overflow-x-scroll"
+        className="px-8 pt-4 pb-6 text-primary-dark dark:text-primary-dark font-mono text-code whitespace-pre overflow-x-auto"
         translate="no"
         dir="ltr">
         <LevelText type={level} />

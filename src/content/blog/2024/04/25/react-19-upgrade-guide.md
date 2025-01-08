@@ -24,7 +24,7 @@ To help make the upgrade to React 19 easier, we've published a `react@18.3` rele
 
 We recommend upgrading to React 18.3 first to help identify any issues before upgrading to React 19.
 
-For a list of changes in 18.3 see the [Release Notes](https://github.com/facebook/react/blob/main/CHANGELOG.md).
+For a list of changes in 18.3 see the [Release Notes](https://github.com/facebook/react/blob/main/CHANGELOG.md#1830-april-25-2024).
 
 </Note>
 

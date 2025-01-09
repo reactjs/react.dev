@@ -25,6 +25,11 @@ June 13 - 17, 2025. In-person in Amsterdam, Netherlands + remote (hybrid event)
 
 [Website](https://reactsummit.com/) - [Twitter](https://x.com/reactsummit)
 
+### React Universe Conf 2025 {/*react-universe-conf-2025*/}
+September 2-4, 2025. Wrocław, Poland.
+
+[Website](https://www.reactuniverseconf.com/) - [Twitter](https://twitter.com/react_native_eu) - [LinkedIn](https://www.linkedin.com/events/reactuniverseconf7163919537074118657/)
+
 ## Past Conferences {/*past-conferences*/}
 
 ### React Africa 2024 {/*react-africa-2024*/}

@@ -163,9 +163,11 @@ export function NavigationBar({providedFiles}: {providedFiles: Array<string>}) {
               </Listbox.Button>
             </div>
           </div>
+          {/* prettier-ignore: If Prettier reformats this block, the @ts-ignore directive will no longer be adjacent to the problematic line, causing TypeScript errors */}
           {/* @ts-ignore: the Listbox type from '@headlessui/react' is incompatible with JSX in React 19 */}
           {isMultiFile && showDropdown && (
             <Listbox.Options className="absolute mt-0.5 bg-card dark:bg-card-dark px-2 inset-x-0 mx-0 rounded-b-lg border-1 border-border dark:border-border-dark rounded-sm shadow-md">
+              {/* prettier-ignore: If Prettier reformats this block, the @ts-ignore directive will no longer be adjacent to the problematic line, causing TypeScript errors */}
               {/* @ts-ignore: the Listbox type from '@headlessui/react' is incompatible with JSX in React 19 */}
               {visibleFiles.map((filePath: string) => (
                 <Listbox.Option key={filePath} value={filePath} as={Fragment}>

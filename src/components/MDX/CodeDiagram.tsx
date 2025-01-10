@@ -17,8 +17,14 @@ export function CodeDiagram({children, flip = false}: CodeDiagramProps) {
   });
   const content = Children.toArray(children).map((child: any) => {
     if (child.type?.mdxName === 'pre') {
-      // eslint-disable-next-line react/jsx-key
-      return <CodeBlock {...child.props} noMargin={true} noMarkers={true} />;
+      return (
+        <CodeBlock
+          key={child.key}
+          {...child.props}
+          noMargin={true}
+          noMarkers={true}
+        />
+      );
     } else if (child.type === 'img') {
       return null;
     } else {

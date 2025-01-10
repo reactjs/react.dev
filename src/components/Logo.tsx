@@ -1,8 +1,9 @@
 /*
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
+import type {SVGProps} from 'react';
 
-export function Logo(props: JSX.IntrinsicElements['svg']) {
+export function Logo(props: SVGProps<SVGSVGElement>) {
   return (
     <svg
       width="100%"

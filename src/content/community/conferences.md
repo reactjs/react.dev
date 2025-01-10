@@ -13,10 +13,20 @@ Do you know of a local React.js conference? Add it here! (Please keep the list c
 ### React Day Berlin 2024 {/*react-day-berlin-2024*/}
 December 13 & 16, 2024. In-person in Berlin, Germany + remote (hybrid event)
 
+[Website](https://london.cityjsconf.org/) - [Twitter](https://x.com/cityjsconf)
+
+### CityJS London 2025 {/*cityjs-london*/}
+April 23 - 25, 2025. In-person in London, UK 
+
 [Website](https://reactday.berlin/) - [Twitter](https://x.com/reactdayberlin)
 
 ### App.js Conf 2025 {/*appjs-conf-2025*/}
 May 28 - 30, 2025. In-person in Kraków, Poland + remote
+
+[Website](https://athens.cityjsconf.org/) - [Twitter](https://x.com/cityjsconf)
+
+### CityJS Athens 2025 {/*cityjs-athens*/}
+May 27 - 31, 2025. In-person in Athens, Greece
 
 [Website](https://appjs.co) - [Twitter](https://twitter.com/appjsconf)
 

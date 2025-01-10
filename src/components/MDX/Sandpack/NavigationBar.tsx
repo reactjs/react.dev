@@ -115,6 +115,8 @@ export function NavigationBar({providedFiles}: {providedFiles: Array<string>}) {
 
   return (
     <div className="bg-wash dark:bg-card-dark flex justify-between items-center relative z-10 border-b border-border dark:border-border-dark rounded-t-lg text-lg">
+      {/* If Prettier reformats this block, the two @ts-ignore directives will no longer be adjacent to the problematic lines, causing TypeScript errors */}
+      {/* prettier-ignore */}
       <div className="flex-1 grow min-w-0 px-4 lg:px-6">
         {/* @ts-ignore: the Listbox type from '@headlessui/react' is incompatible with JSX in React 19 */}
         <Listbox value={activeFile} onChange={setActiveFile}>
@@ -163,14 +165,10 @@ export function NavigationBar({providedFiles}: {providedFiles: Array<string>}) {
               </Listbox.Button>
             </div>
           </div>
-          {/* prettier-ignore: If Prettier reformats this block, the @ts-ignore directive will no longer be adjacent to the problematic line, causing TypeScript errors */}
           {/* @ts-ignore: the Listbox type from '@headlessui/react' is incompatible with JSX in React 19 */}
-          {isMultiFile && showDropdown && (
-            <Listbox.Options className="absolute mt-0.5 bg-card dark:bg-card-dark px-2 inset-x-0 mx-0 rounded-b-lg border-1 border-border dark:border-border-dark rounded-sm shadow-md">
-              {/* prettier-ignore: If Prettier reformats this block, the @ts-ignore directive will no longer be adjacent to the problematic line, causing TypeScript errors */}
+          {isMultiFile && showDropdown && (<Listbox.Options className="absolute mt-0.5 bg-card dark:bg-card-dark px-2 inset-x-0 mx-0 rounded-b-lg border-1 border-border dark:border-border-dark rounded-sm shadow-md">
               {/* @ts-ignore: the Listbox type from '@headlessui/react' is incompatible with JSX in React 19 */}
-              {visibleFiles.map((filePath: string) => (
-                <Listbox.Option key={filePath} value={filePath} as={Fragment}>
+              {visibleFiles.map((filePath: string) => (<Listbox.Option key={filePath} value={filePath} as={Fragment}>
                   {({active}) => (
                     <li
                       className={cn(

@@ -16,8 +16,7 @@ Experimental versions of React may contain bugs. Don't use them in production.
 
 <Intro>
 
-`captureOwnerStack` reads the current **owner** Component stack and returns it as a string.
-If no owner stack is available, it returns an empty string.
+`captureOwnerStack` reads the current **owner** Component stack and returns it as a string if available.
 
 ```js
 captureOwnerStack();
@@ -52,25 +51,10 @@ function Component() {
 
 #### Returns {/*returns*/}
 
-`captureOwnerStack` returns `string`.
+`captureOwnerStack` returns `string | null`.
 
-#### Caveats {/*caveats*/}
-
-`captureOwnerStack` is only available in development builds of React.
-In production builds, the `captureOwnerStack` export does not exist.
-
-Only call `captureOwnerStack` in development environments:
-
-```tsx
-// Use a namespace import to avoid errors in production when using ES modules.
-// Non-existing exports throw a `SyntaxError` in ES modules.
-import * as React from 'react';
-
-let ownerStack = '';
-if (process.env.NODE_ENV !== 'prodction') {
-  ownerStack = React.captureOwnerStack();
-}
-```
+If no owner stack is available, it returns an empty string.
+Outside of development builds, `null` is returned.
 
 ## Owner Component stacks vs parent Component stacks {/*owner-component-stacks-vs-parent-component-stacks*/}
 
@@ -156,7 +140,7 @@ In addition to the stack trace of the <CodeStep step={1}>error</CodeStep> itself
 This can help trace the error especially when the error is caused by props. The owner Component stack helps trace the flow of props.
 
 ```jsx [[9, 15, "error"], [34, 10, "captureOwnerStack"]]
-import * as React from 'react'
+import { captureOwnerStack } from 'react'
 import { hydrateRoot } from 'react-dom/client';
 
 const root = hydrateRoot(
@@ -165,7 +149,7 @@ const root = hydrateRoot(
   {
     onCaughtError: (error, errorInfo) => {
       if (process.env.NODE_ENV !== 'production') {
-        const ownerStack = React.captureOwnerStack();
+        const ownerStack = captureOwnerStack();
         error.stack += ownerStack;
       }
       console.error(

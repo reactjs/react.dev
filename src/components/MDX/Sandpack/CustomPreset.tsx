@@ -28,6 +28,7 @@ export const CustomPreset = memo(function CustomPreset({
   const {activeFile} = sandpack;
   const lineCountRef = useRef<{[key: string]: number}>({});
   if (!lineCountRef.current[activeFile]) {
+    // eslint-disable-next-line react-compiler/react-compiler
     lineCountRef.current[activeFile] = code.split('\n').length;
   }
   const lineCount = lineCountRef.current[activeFile];

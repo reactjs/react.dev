@@ -9,6 +9,7 @@
  */
 
 import * as React from 'react';
+import {ValidationMap} from 'prop-types';
 
 /**
  * React.Ref uses the readonly type `React.RefObject` instead of
@@ -69,10 +70,8 @@ export interface ComponentWithAs<ComponentType extends As, ComponentProps> {
   ): React.ReactElement | null;
 
   displayName?: string;
-  propTypes?: React.WeakValidationMap<
-    PropsWithAs<ComponentType, ComponentProps>
-  >;
-  contextTypes?: React.ValidationMap<any>;
+  propTypes?: ValidationMap<React.ReactNode>;
+  contextTypes?: ValidationMap<React.ReactNode>;
   defaultProps?: Partial<PropsWithAs<ComponentType, ComponentProps>>;
 }
 

@@ -3,10 +3,9 @@
  */
 
 import {memo} from 'react';
+import type {SVGProps} from 'react';
 
-export const IconLink = memo<JSX.IntrinsicElements['svg']>(function IconLink(
-  props
-) {
+export const IconLink = memo<SVGProps<SVGSVGElement>>(function IconLink(props) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

@@ -34,12 +34,12 @@ const stack = captureOwnerStack();
 
 Call `captureOwnerStack` to get the current Owner Stack.
 
-```js
-import * as React from 'react';
+```js {5,5}
+import {captureOwnerStack} from 'react';
 
 function Component() {
   if (process.env.NODE_ENV !== 'production') {
-    const ownerStack = React.captureOwnerStack();
+    const ownerStack = captureOwnerStack();
     console.log(ownerStack);
   }
 }
@@ -68,9 +68,10 @@ The Owner Stack is different from the Component Stack available in React error h
 
 For example, consider the following code:
 
-```tsx
-import * as React from 'react';
-import * as ReactDOMClient from 'react-dom/client';
+<Sandpack>
+
+```js src/App.js
+import {Suspense} from 'react';
 
 function SubComponent({disabled}) {
   if (disabled) {
@@ -78,7 +79,7 @@ function SubComponent({disabled}) {
   }
 }
 
-function Component({label}) {
+export function Component({label}) {
   return (
     <fieldset>
       <legend>{label}</legend>
@@ -91,23 +92,69 @@ function Navigation() {
   return null;
 }
 
-function App({children}) {
+export default function App({children}) {
   return (
-    <React.Suspense fallback="loading...">
+    <Suspense fallback="loading...">
       <main>
         <Navigation />
         {children}
       </main>
-    </React.Suspense>
+    </Suspense>
   );
 }
+```
 
-createRoot(document.createElement('div')).render(
+```js src/index.js
+import {captureOwnerStack} from 'react';
+import {createRoot} from 'react-dom/client';
+import App, {Component} from './App.js';
+import './styles.css';
+
+createRoot(document.createElement('div'), {
+  onUncaughtError: (error, errorInfo) => {
+    // The stacks are logged instead of showing them in the UI directly to highlight that browsers will apply sourcemaps to the logged stacks.
+    // Note that sourcemapping is only applied in the real browser console not in the fake one displayed on this page.
+    console.log(errorInfo.componentStack);
+    console.log(captureOwnerStack());
+  },
+}).render(
   <App>
     <Component label="disabled" />
   </App>
 );
 ```
+
+```json package.json hidden
+{
+  "dependencies": {
+    "react": "experimental",
+    "react-dom": "experimental",
+    "react-scripts": "latest"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  }
+}
+```
+
+```html public/index.html hidden
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <p>Check the console output.</p>
+  </body>
+</html>
+```
+
+</Sandpack>
 
 `SubComponent` would throw an error.
 The Component Stack of that error would be
@@ -124,7 +171,6 @@ at App
 However, the Owner Stack would only read
 
 ```
-at SubComponent
 at Component
 ```
 
@@ -132,38 +178,106 @@ Neither `App` nor the DOM components (e.g. `fieldset`) are considered Owners in 
 
 Neither `Navigation` nor `legend` are in the stack at all since it's only a sibling to a node containing `<SubComponent />`.
 
+`SubComponent` is omitted because it's already part of the callstack.
+
 </DeepDive>
 
 ## Usage {/*usage*/}
 
 ### Expanding error stacks {/*expanding-error-stacks*/}
 
-In addition to the stack trace of the <CodeStep step={1}>error</CodeStep> itself, you can use <CodeStep step={2}>`captureOwnerStack`</CodeStep> to append the Owner Stack.
+In addition to the <CodeStep step={1}>stack trace of the error</CodeStep> itself, you can use <CodeStep step={2}>`captureOwnerStack`</CodeStep> to append the Owner Stack.
 This can help trace the error especially when the error is caused by props. The Owner Stack helps trace the flow of props.
 
-```jsx [[9, 15, "error"], [34, 10, "captureOwnerStack"]]
-import { captureOwnerStack } from 'react'
-import { hydrateRoot } from 'react-dom/client';
 
-const root = hydrateRoot(
-  document.getElementById('root'),
-  <App />,
-  {
-    onCaughtError: (error, errorInfo) => {
-      if (process.env.NODE_ENV !== 'production') {
-        const ownerStack = captureOwnerStack();
-        error.stack += ownerStack;
-      }
-      console.error(
-        'Caught error',
-        error,
-        errorInfo.componentStack
-      );
+```js src/index.js [[1, 8, "error.stack"], [2, 7, "captureOwnerStack()"]]
+import {captureOwnerStack} from 'react';
+import {createRoot} from 'react-dom/client';
+
+const root = createRoot(document.getElementById('root'), {
+  onUncaughtError: (error, errorInfo) => {
+    if (process.env.NODE_ENV !== 'production') {
+      const ownerStack = captureOwnerStack();
+      error.stack += ownerStack;
     }
-  }
-);
-root.render(<App />);
+
+    console.error('Uncaught', error);
+  },
+}).render(<App />);
 ```
+
+<Sandpack>
+
+```js
+function useCustomHook() {
+  throw new Error('Boom!');
+}
+
+function Component() {
+  useCustomHook();
+}
+
+export default function App() {
+  return <Component />;
+}
+```
+
+```js src/index.js
+import {captureOwnerStack} from 'react';
+import {createRoot} from 'react-dom/client';
+import App from './App.js';
+import './styles.css';
+
+const root = createRoot(document.getElementById('root'), {
+  onUncaughtError: (error, errorInfo) => {
+    if (process.env.NODE_ENV !== 'production') {
+      const ownerStack = captureOwnerStack();
+      error.stack =
+        // The stack is only split because these sandboxes don't implement ignore-listing 3rd party frames via sourcemaps.
+        // A framework would ignore-list stackframes from React via sourcemaps and then you could just `error.stack += ownerStack`.
+        // To learn more about ignore-listing see https://developer.chrome.com/docs/devtools/x-google-ignore-list
+        error.stack.split('\n    at react-stack-bottom-frame')[0] + ownerStack;
+    }
+
+    // The stacks are logged instead of showing them in the UI directly to highlight that browsers will apply sourcemaps to the logged stacks.
+    // Note that sourcemapping is only applied in the real browser console not in the fake one displayed on this page.
+    console.error('Uncaught', error);
+  },
+}).render(<App />);
+```
+
+```json package.json hidden
+{
+  "dependencies": {
+    "react": "experimental",
+    "react-dom": "experimental",
+    "react-scripts": "latest"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  }
+}
+```
+
+```html public/index.html hidden
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <p>Check the console output.</p>
+    <div id="root"></div>
+  </body>
+</html>
+```
+
+</Sandpack>
 
 ## Troubleshooting {/*troubleshooting*/}
 

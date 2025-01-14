@@ -130,12 +130,6 @@ Neither `App` nor the DOM components (e.g. `fieldset`) are considered Owners in 
 
 Neither `Navigation` nor `legend` are in the stack at all since it's only a sibling to a node containing `<SubComponent />`.
 
-### When to use which {/*when-to-use-which*/}
-
-The Component Stack is useful for contextual information e.g. [`React.Suspense`](/reference/react/Suspense), [React Context](https://react.dev/reference/react/createContext), or [`<form>`](/reference/react-dom/components/form).
-
-The Owner Stack is useful for tracing the flow of props. Owner stacks are equivalent to [call stacks](https://developer.mozilla.org/en-US/docs/Glossary/Call_stack) if all JSX would be converted to direct function calls e.g. `Component({label: "disabled"})` instead of `<Component label="disabled" />`.
-
 ## Usage {/*usage*/}
 
 ### Expanding error stacks {/*expanding-error-stacks*/}

@@ -19,7 +19,7 @@ Experimental versions of React may contain bugs. Don't use them in production.
 `captureOwnerStack` reads the current **owner** Component stack and returns it as a string if available.
 
 ```js
-captureOwnerStack();
+const stack = captureOwnerStack();
 ```
 
 </Intro>

@@ -60,9 +60,11 @@ Outside of development builds, `null` is returned.
 
 - Owner Stacks are only available in development. `captureOwnerStack` will always return `null` outside of development.
 
-## Owner Stack vs Component Stack {/*owner-stack-vs-component-stack*/}
+<DeepDive>
 
-The Owner Stack is different from the Component Stack available error handlers like [`errorInfo.componentStack` in `onUncaughtError`](/reference/react-dom/client/hydrateRoot#show-a-dialog-for-uncaught-errors).
+#### Owner Stack vs Component Stack {/*owner-stack-vs-component-stack*/}
+
+The Owner Stack is different from the Component Stack available in React error handlers like [`errorInfo.componentStack` in `onUncaughtError`](/reference/react-dom/client/hydrateRoot#show-a-dialog-for-uncaught-errors).
 
 For example, consider the following code:
 
@@ -129,6 +131,8 @@ at Component
 Neither `App` nor the DOM components (e.g. `fieldset`) are considered Owners in this Stack since they didn't contribute to "creating" the node containing `SubComponent`. `App` and DOM components only forwarded the node. `App` just rendered the `children` node as opposed to `Component` which created a node containing `SubComponent` via `<SubComponent />`.
 
 Neither `Navigation` nor `legend` are in the stack at all since it's only a sibling to a node containing `<SubComponent />`.
+
+</DeepDive>
 
 ## Usage {/*usage*/}
 

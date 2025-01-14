@@ -184,6 +184,15 @@ Neither `Navigation` nor `legend` are in the stack at all since it's only a sibl
 
 ## Usage {/*usage*/}
 
+### Improve error reporting {/*improve-error-reporting*/}
+
+Check out the following example to see how to use `captureOwnerStack` to improve error reporting:
+
+- [createRoot usage: Show a dialog for uncaught errors
+](/reference/react-dom/client/createRoot#show-a-dialog-for-uncaught-errors)
+- [createRoot usage: Displaying Error Boundary errors](/reference/react-dom/client/createRoot#show-a-dialog-for-uncaught-errors)
+- [createRoot usage: Displaying a dialog for recoverable errors](/reference/react-dom/client/createRoot#displaying-a-dialog-for-recoverable-errors)
+
 ### Expanding error stacks {/*expanding-error-stacks*/}
 
 In addition to the <CodeStep step={1}>stack trace of the error</CodeStep> itself, you can use <CodeStep step={2}>`captureOwnerStack`</CodeStep> to append the Owner Stack.

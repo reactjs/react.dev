@@ -348,7 +348,9 @@ It is uncommon to call `render` multiple times. Usually, your components will [u
 
 By default, React will log all uncaught errors to the console. To implement your own error reporting, you can provide the optional `onUncaughtError` root option:
 
-```js [[1, 6, "onUncaughtError"], [2, 6, "error", 1], [3, 6, "errorInfo"], [4, 10, "componentStack"]]
+```js [[1, 8, "onUncaughtError"], [2, 8, "error", 1], [3, 8, "errorInfo"], [4, 12, "componentStack"], [5, 13, "captureOwnerStack()"]]
+// captureOwnerStack is only available in react@experimental.
+import { captureOwnerStack } from 'react';
 import { createRoot } from 'react-dom/client';
 
 const root = createRoot(
@@ -358,7 +360,8 @@ const root = createRoot(
       console.error(
         'Uncaught error',
         error,
-        errorInfo.componentStack
+        errorInfo.componentStack,
+        captureOwnerStack()
       );
     }
   }
@@ -370,6 +373,8 @@ The <CodeStep step={1}>onUncaughtError</CodeStep> option is a function called wi
 
 1. The <CodeStep step={2}>error</CodeStep> that was thrown.
 2. An <CodeStep step={3}>errorInfo</CodeStep> object that contains the <CodeStep step={4}>componentStack</CodeStep> of the error.
+
+<ExperimentalBadge /> With <CodeStep step={5}>[`captureOwnerStack`](/reference/react/captureOwnerStack)</CodeStep> you can include the Owner Stack during development.
 
 You can use the `onUncaughtError` root option to display error dialogs:
 
@@ -394,8 +399,10 @@ You can use the `onUncaughtError` root option to display error dialogs:
   <p>
     <pre id="error-body"></pre>
   </p>
-  <h4 class="-mb-20">This error occurred at:</h4>
+  <h4 class="-mb-20">Component stack:</h4>
   <pre id="error-component-stack" class="nowrap"></pre>
+  <h4 class="-mb-20">Owner stack:</h4>
+  <pre id="error-owner-stack" class="nowrap"></pre>
   <h4 class="mb-0">Call stack:</h4>
   <pre id="error-stack" class="nowrap"></pre>
   <div id="error-cause">
@@ -465,12 +472,13 @@ pre.nowrap {
 ```
 
 ```js src/reportError.js hidden
-function reportError({ title, error, componentStack, dismissable }) {
+function reportError({ title, error, componentStack, ownerStack, dismissable }) {
   const errorDialog = document.getElementById("error-dialog");
   const errorTitle = document.getElementById("error-title");
   const errorMessage = document.getElementById("error-message");
   const errorBody = document.getElementById("error-body");
   const errorComponentStack = document.getElementById("error-component-stack");
+  const errorOwnerStack = document.getElementById("error-owner-stack");
   const errorStack = document.getElementById("error-stack");
   const errorClose = document.getElementById("error-close");
   const errorCause = document.getElementById("error-cause");
@@ -492,6 +500,9 @@ function reportError({ title, error, componentStack, dismissable }) {
 
   // Display component stack
   errorComponentStack.innerText = componentStack;
+
+  // Display owner stack
+  errorOwnerStack.innerText = ownerStack;
 
   // Display the call stack
   // Since we already displayed the message, strip it, and the first Error: line.
@@ -518,20 +529,22 @@ function reportError({ title, error, componentStack, dismissable }) {
   errorDialog.classList.remove("hidden");
 }
 
-export function reportCaughtError({error, cause, componentStack}) {
-  reportError({ title: "Caught Error", error, componentStack,  dismissable: true});
+export function reportCaughtError({error, cause, componentStack, ownerStack}) {
+  reportError({ title: "Caught Error", error, componentStack, ownerStack,  dismissable: true});
 }
 
-export function reportUncaughtError({error, cause, componentStack}) {
-  reportError({ title: "Uncaught Error", error, componentStack, dismissable: false });
+export function reportUncaughtError({error, cause, componentStack, ownerStack}) {
+  reportError({ title: "Uncaught Error", error, componentStack, ownerStack, dismissable: false });
 }
 
-export function reportRecoverableError({error, cause, componentStack}) {
-  reportError({ title: "Recoverable Error", error, componentStack,  dismissable: true });
+export function reportRecoverableError({error, cause, componentStack, ownerStack}) {
+  reportError({ title: "Recoverable Error", error, componentStack, ownerStack,  dismissable: true });
 }
 ```
 
 ```js src/index.js active
+// captureOwnerStack is only available in react@experimental.
+import { captureOwnerStack } from 'react';
 import { createRoot } from "react-dom/client";
 import App from "./App.js";
 import {reportUncaughtError} from "./reportError";
@@ -543,7 +556,8 @@ const root = createRoot(container, {
     if (error.message !== 'Known error') {
       reportUncaughtError({
         error,
-        componentStack: errorInfo.componentStack
+        componentStack: errorInfo.componentStack,
+        ownerStack: captureOwnerStack()
       });
     }
   }
@@ -554,7 +568,7 @@ root.render(<App />);
 ```js src/App.js
 import { useState } from 'react';
 
-export default function App() {
+function Component() {
   const [throwError, setThrowError] = useState(false);
   
   if (throwError) {
@@ -562,13 +576,32 @@ export default function App() {
   }
   
   return (
-    <div>
+    <>
       <span>This error shows the error dialog:</span>
-      <button onClick={() => setThrowError(true)}>
-        Throw error
-      </button>
+        <button onClick={() => setThrowError(true)}>
+          Throw error
+        </button>
+    </>
+  );
+}
+
+export default function App() {
+  return (
+    <div>
+      <Component />
     </div>
   );
+}
+```
+
+```json package.json hidden
+{
+  "dependencies": {
+    "react": "experimental",
+    "react-dom": "experimental",
+    "react-scripts": "^5.0.0",
+    "react-error-boundary": "4.0.3"
+  }
 }
 ```
 
@@ -579,7 +612,9 @@ export default function App() {
 
 By default, React will log all errors caught by an Error Boundary to `console.error`. To override this behavior, you can provide the optional `onCaughtError` root option to handle errors caught by an [Error Boundary](/reference/react/Component#catching-rendering-errors-with-an-error-boundary):
 
-```js [[1, 6, "onCaughtError"], [2, 6, "error", 1], [3, 6, "errorInfo"], [4, 10, "componentStack"]]
+```js [[1, 8, "onCaughtError"], [2, 8, "error", 1], [3, 8, "errorInfo"], [4, 12, "componentStack"], [5, 13, "captureOwnerStack()"]]
+// captureOwnerStack is only available in react@experimental.
+import { captureOwnerStack } from 'react';
 import { createRoot } from 'react-dom/client';
 
 const root = createRoot(
@@ -589,7 +624,8 @@ const root = createRoot(
       console.error(
         'Caught error',
         error,
-        errorInfo.componentStack
+        errorInfo.componentStack,
+        ownerStack: captureOwnerStack()
       );
     }
   }
@@ -601,6 +637,8 @@ The <CodeStep step={1}>onCaughtError</CodeStep> option is a function called with
 
 1. The <CodeStep step={2}>error</CodeStep> that was caught by the boundary.
 2. An <CodeStep step={3}>errorInfo</CodeStep> object that contains the <CodeStep step={4}>componentStack</CodeStep> of the error.
+
+<ExperimentalBadge /> With <CodeStep step={5}>[`captureOwnerStack`](/reference/react/captureOwnerStack)</CodeStep> you can include the Owner Stack during development.
 
 You can use the `onCaughtError` root option to display error dialogs or filter known errors from logging:
 
@@ -625,8 +663,10 @@ You can use the `onCaughtError` root option to display error dialogs or filter k
   <p>
     <pre id="error-body"></pre>
   </p>
-  <h4 class="-mb-20">This error occurred at:</h4>
+  <h4 class="-mb-20">Component stack:</h4>
   <pre id="error-component-stack" class="nowrap"></pre>
+  <h4 class="-mb-20">Owner stack:</h4>
+  <pre id="error-owner-stack" class="nowrap"></pre>
   <h4 class="mb-0">Call stack:</h4>
   <pre id="error-stack" class="nowrap"></pre>
   <div id="error-cause">
@@ -696,12 +736,13 @@ pre.nowrap {
 ```
 
 ```js src/reportError.js hidden
-function reportError({ title, error, componentStack, dismissable }) {
+function reportError({ title, error, componentStack, ownerStack, dismissable }) {
   const errorDialog = document.getElementById("error-dialog");
   const errorTitle = document.getElementById("error-title");
   const errorMessage = document.getElementById("error-message");
   const errorBody = document.getElementById("error-body");
   const errorComponentStack = document.getElementById("error-component-stack");
+  const errorOwnerStack = document.getElementById("error-owner-stack");
   const errorStack = document.getElementById("error-stack");
   const errorClose = document.getElementById("error-close");
   const errorCause = document.getElementById("error-cause");
@@ -723,6 +764,9 @@ function reportError({ title, error, componentStack, dismissable }) {
 
   // Display component stack
   errorComponentStack.innerText = componentStack;
+
+  // Display owner stack
+  errorOwnerStack.innerText = ownerStack;
 
   // Display the call stack
   // Since we already displayed the message, strip it, and the first Error: line.
@@ -749,20 +793,22 @@ function reportError({ title, error, componentStack, dismissable }) {
   errorDialog.classList.remove("hidden");
 }
 
-export function reportCaughtError({error, cause, componentStack}) {
-  reportError({ title: "Caught Error", error, componentStack,  dismissable: true});
+export function reportCaughtError({error, cause, componentStack, ownerStack}) {
+  reportError({ title: "Caught Error", error, componentStack, ownerStack,  dismissable: true});
 }
 
-export function reportUncaughtError({error, cause, componentStack}) {
-  reportError({ title: "Uncaught Error", error, componentStack, dismissable: false });
+export function reportUncaughtError({error, cause, componentStack, ownerStack}) {
+  reportError({ title: "Uncaught Error", error, componentStack, ownerStack, dismissable: false });
 }
 
-export function reportRecoverableError({error, cause, componentStack}) {
-  reportError({ title: "Recoverable Error", error, componentStack,  dismissable: true });
+export function reportRecoverableError({error, cause, componentStack, ownerStack}) {
+  reportError({ title: "Recoverable Error", error, componentStack, ownerStack,  dismissable: true });
 }
 ```
 
 ```js src/index.js active
+// captureOwnerStack is only available in react@experimental.
+import {captureOwnerStack} from 'react';
 import { createRoot } from "react-dom/client";
 import App from "./App.js";
 import {reportCaughtError} from "./reportError";
@@ -775,6 +821,7 @@ const root = createRoot(container, {
       reportCaughtError({
         error, 
         componentStack: errorInfo.componentStack,
+        ownerStack: captureOwnerStack()
       });
     }
   }
@@ -842,12 +889,11 @@ function Throw({error}) {
 ```json package.json hidden
 {
   "dependencies": {
-    "react": "19.0.0-rc-3edc000d-20240926",
-    "react-dom": "19.0.0-rc-3edc000d-20240926",
+    "react": "experimental",
+    "react-dom": "experimental",
     "react-scripts": "^5.0.0",
     "react-error-boundary": "4.0.3"
-  },
-  "main": "/index.js"
+  }
 }
 ```
 
@@ -857,7 +903,9 @@ function Throw({error}) {
 
 React may automatically render a component a second time to attempt to recover from an error thrown in render. If successful, React will log a recoverable error to the console to notify the developer. To override this behavior, you can provide the optional `onRecoverableError` root option:
 
-```js [[1, 6, "onRecoverableError"], [2, 6, "error", 1], [3, 10, "error.cause"], [4, 6, "errorInfo"], [5, 11, "componentStack"]]
+```js [[1, 8, "onRecoverableError"], [2, 8, "error", 1], [3, 12, "error.cause"], [4, 8, "errorInfo"], [5, 13, "componentStack"], [6, 14, "captureOwnerStack()"]]
+// captureOwnerStack is only available in react@experimental.
+import { captureOwnerStack } from 'react';
 import { createRoot } from 'react-dom/client';
 
 const root = createRoot(
@@ -869,6 +917,7 @@ const root = createRoot(
         error,
         error.cause,
         errorInfo.componentStack,
+        captureOwnerStack(),
       );
     }
   }
@@ -880,6 +929,8 @@ The <CodeStep step={1}>onRecoverableError</CodeStep> option is a function called
 
 1. The <CodeStep step={2}>error</CodeStep> that React throws. Some errors may include the original cause as <CodeStep step={3}>error.cause</CodeStep>. 
 2. An <CodeStep step={4}>errorInfo</CodeStep> object that contains the <CodeStep step={5}>componentStack</CodeStep> of the error.
+
+<ExperimentalBadge /> With <CodeStep step={6}>[`captureOwnerStack`](/reference/react/captureOwnerStack)</CodeStep> you can include the Owner Stack during development.
 
 You can use the `onRecoverableError` root option to display error dialogs:
 
@@ -904,8 +955,10 @@ You can use the `onRecoverableError` root option to display error dialogs:
   <p>
     <pre id="error-body"></pre>
   </p>
-  <h4 class="-mb-20">This error occurred at:</h4>
+  <h4 class="-mb-20">Component stack:</h4>
   <pre id="error-component-stack" class="nowrap"></pre>
+  <h4 class="-mb-20">Owner stack:</h4>
+  <pre id="error-owner-stack" class="nowrap"></pre>
   <h4 class="mb-0">Call stack:</h4>
   <pre id="error-stack" class="nowrap"></pre>
   <div id="error-cause">
@@ -975,12 +1028,13 @@ pre.nowrap {
 ```
 
 ```js src/reportError.js hidden
-function reportError({ title, error, componentStack, dismissable }) {
+function reportError({ title, error, componentStack, ownerStack, dismissable }) {
   const errorDialog = document.getElementById("error-dialog");
   const errorTitle = document.getElementById("error-title");
   const errorMessage = document.getElementById("error-message");
   const errorBody = document.getElementById("error-body");
   const errorComponentStack = document.getElementById("error-component-stack");
+  const errorOwnerStack = document.getElementById("error-owner-stack");
   const errorStack = document.getElementById("error-stack");
   const errorClose = document.getElementById("error-close");
   const errorCause = document.getElementById("error-cause");
@@ -1002,6 +1056,9 @@ function reportError({ title, error, componentStack, dismissable }) {
 
   // Display component stack
   errorComponentStack.innerText = componentStack;
+
+  // Display owner stack
+  errorOwnerStack.innerText = ownerStack;
 
   // Display the call stack
   // Since we already displayed the message, strip it, and the first Error: line.
@@ -1028,20 +1085,22 @@ function reportError({ title, error, componentStack, dismissable }) {
   errorDialog.classList.remove("hidden");
 }
 
-export function reportCaughtError({error, cause, componentStack}) {
-  reportError({ title: "Caught Error", error, componentStack,  dismissable: true});
+export function reportCaughtError({error, cause, componentStack, ownerStack}) {
+  reportError({ title: "Caught Error", error, componentStack, ownerStack, dismissable: true});
 }
 
-export function reportUncaughtError({error, cause, componentStack}) {
-  reportError({ title: "Uncaught Error", error, componentStack, dismissable: false });
+export function reportUncaughtError({error, cause, componentStack, ownerStack}) {
+  reportError({ title: "Uncaught Error", error, componentStack, ownerStack, dismissable: false });
 }
 
-export function reportRecoverableError({error, cause, componentStack}) {
-  reportError({ title: "Recoverable Error", error, componentStack,  dismissable: true });
+export function reportRecoverableError({error, cause, componentStack, ownerStack}) {
+  reportError({ title: "Recoverable Error", error, componentStack, ownerStack, dismissable: true });
 }
 ```
 
 ```js src/index.js active
+// captureOwnerStack is only available in react@experimental.
+import {captureOwnerStack} from 'react'
 import { createRoot } from "react-dom/client";
 import App from "./App.js";
 import {reportRecoverableError} from "./reportError";
@@ -1054,6 +1113,7 @@ const root = createRoot(container, {
       error,
       cause: error.cause,
       componentStack: errorInfo.componentStack,
+      ownerStack: captureOwnerStack(),
     });
   }
 });
@@ -1100,8 +1160,8 @@ function Throw({error}) {
 ```json package.json hidden
 {
   "dependencies": {
-    "react": "19.0.0-rc-3edc000d-20240926",
-    "react-dom": "19.0.0-rc-3edc000d-20240926",
+    "react": "experimental",
+    "react-dom": "experimental",
     "react-scripts": "^5.0.0",
     "react-error-boundary": "4.0.3"
   },

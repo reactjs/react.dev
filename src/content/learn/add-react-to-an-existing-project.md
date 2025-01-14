@@ -57,12 +57,13 @@ Then add these lines of code at the top of your main JavaScript file (it might b
 
 <Sandpack>
 
-```html index.html hidden
+```html public/index.html hidden
 <!DOCTYPE html>
 <html>
   <head><title>My app</title></head>
   <body>
     <!-- Your existing page content (in this example, it gets replaced) -->
+    <div id="root"></div>
   </body>
 </html>
 ```
@@ -119,7 +120,7 @@ This lets you find that HTML element with [`document.getElementById`](https://de
 
 <Sandpack>
 
-```html index.html
+```html public/index.html
 <!DOCTYPE html>
 <html>
   <head><title>My app</title></head>

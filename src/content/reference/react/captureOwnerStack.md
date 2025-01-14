@@ -16,7 +16,7 @@ Experimental versions of React may contain bugs. Don't use them in production.
 
 <Intro>
 
-`captureOwnerStack` reads the current Owner Stack and returns it as a string if available.
+`captureOwnerStack` reads the current Owner Stack in development and returns it as a string if available.
 
 ```js
 const stack = captureOwnerStack();
@@ -55,6 +55,10 @@ function Component() {
 
 If no Owner Stack is available, it returns an empty string.
 Outside of development builds, `null` is returned.
+
+#### Caveats {/*caveats*/}
+
+- Owner Stacks are only available in development. `captureOwnerStack` will always return `null` outside of development.
 
 ## Owner Stack vs Component Stack {/*owner-stack-vs-component-stack*/}
 
@@ -162,3 +166,15 @@ const root = hydrateRoot(
 );
 root.render(<App />);
 ```
+
+## Troubleshooting {/*troubleshooting*/}
+
+### The Owner Stack is `null` {/*the-owner-stack-is-null*/}
+
+`captureOwnerStack` was called outside of development builds.
+For performance reasons, React will not keep track of Owners in production.
+
+### The Owner Stack is empty {/*the-owner-stack-is-empty*/}
+
+The call of `captureOwnerStack` happened outside of a React controlled function e.g. in a `setTimeout` callback.
+During render, Effects, Events, and React error handlers (e.g. `hydrateRoot#options.onCaughtError`) Owner Stacks should be available.

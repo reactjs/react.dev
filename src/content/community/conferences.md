@@ -10,25 +10,25 @@ Do you know of a local React.js conference? Add it here! (Please keep the list c
 
 ## Upcoming Conferences {/*upcoming-conferences*/}
 
-### React Day Berlin 2024 {/*react-day-berlin-2024*/}
-December 13 & 16, 2024. In-person in Berlin, Germany + remote (hybrid event)
+### React Paris 2025 {/*react-paris-2025*/}
+March 20 - 21, 2024. In-person in Paris, France (hybrid event)
 
-[Website](https://london.cityjsconf.org/) - [Twitter](https://x.com/cityjsconf)
+[Website](https://react.paris/) - [Twitter](https://x.com/BeJS_)
 
 ### CityJS London 2025 {/*cityjs-london*/}
 April 23 - 25, 2025. In-person in London, UK 
 
-[Website](https://reactday.berlin/) - [Twitter](https://x.com/reactdayberlin)
+[Website](https://london.cityjsconf.org/) - [Twitter](https://x.com/cityjsconf)
 
 ### App.js Conf 2025 {/*appjs-conf-2025*/}
 May 28 - 30, 2025. In-person in Kraków, Poland + remote
 
-[Website](https://athens.cityjsconf.org/) - [Twitter](https://x.com/cityjsconf)
+[Website](https://appjs.co) - [Twitter](https://twitter.com/appjsconf)
 
 ### CityJS Athens 2025 {/*cityjs-athens*/}
 May 27 - 31, 2025. In-person in Athens, Greece
 
-[Website](https://appjs.co) - [Twitter](https://twitter.com/appjsconf)
+[Website](https://athens.cityjsconf.org/) - [Twitter](https://x.com/cityjsconf)
 
 ### React Summit 2025 {/*react-summit-2025*/}
 June 13 - 17, 2025. In-person in Amsterdam, Netherlands + remote (hybrid event)
@@ -40,7 +40,18 @@ September 2-4, 2025. Wrocław, Poland.
 
 [Website](https://www.reactuniverseconf.com/) - [Twitter](https://twitter.com/react_native_eu) - [LinkedIn](https://www.linkedin.com/events/reactuniverseconf7163919537074118657/)
 
+### React India 2025 {/*react-india-2025*/}
+October 31 - November 01, 2025. In-person in Goa, India (hybrid event) + Oct 15 2025 - remote day
+
+[Website](https://www.reactindia.io) - [Twitter](https://twitter.com/react_india) - [Facebook](https://www.facebook.com/ReactJSIndia) - [Youtube](https://www.youtube.com/channel/UCaFbHCBkPvVv1bWs_jwYt3w)
+
+
 ## Past Conferences {/*past-conferences*/}
+
+### React Day Berlin 2024 {/*react-day-berlin-2024*/}
+December 13 & 16, 2024. In-person in Berlin, Germany + remote (hybrid event)
+
+[Website](https://reactday.berlin/) - [Twitter](https://x.com/reactdayberlin)
 
 ### React Africa 2024 {/*react-africa-2024*/}
 November 29, 2024. In-person in Casablanca, Morocco (hybrid event)
@@ -70,7 +81,7 @@ October 25, 2024. In-person in Verona, Italy + online (hybrid event)
 ### React Brussels 2024 {/*react-brussels-2024*/}
 October 18, 2024. In-person in Brussels, Belgium (hybrid event)
 
-[Website](https://www.react.brussels/) - [Twitter](https://x.com/BrusselsReact)
+[Website](https://www.react.brussels/) - [Twitter](https://x.com/BrusselsReact) - [YouTube](https://www.youtube.com/playlist?list=PL53Z0yyYnpWimQ0U75woee2zNUIFsiDC3)
 
 ### React India 2024 {/*react-india-2024*/}
 October 17 - 19, 2024. In-person in Goa, India (hybrid event) + Oct 15 2024 - remote day

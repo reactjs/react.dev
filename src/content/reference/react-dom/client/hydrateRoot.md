@@ -406,7 +406,7 @@ You can use the `onUncaughtError` root option to display error dialogs:
 
 <Sandpack>
 
-```html index.html hidden
+```html public/index.html hidden
 <!DOCTYPE html>
 <html>
 <head>
@@ -641,7 +641,7 @@ You can use the `onCaughtError` root option to display error dialogs or filter k
 
 <Sandpack>
 
-```html index.html hidden
+```html public/index.html hidden
 <!DOCTYPE html>
 <html>
 <head>
@@ -922,7 +922,7 @@ You can use the `onRecoverableError` root option to display error dialogs for hy
 
 <Sandpack>
 
-```html index.html hidden
+```html public/index.html hidden
 <!DOCTYPE html>
 <html>
 <head>

@@ -39,11 +39,9 @@ export function TeamMember({
   personal,
 }: TeamMemberProps) {
   if (name == null || title == null || permalink == null || children == null) {
+    const identifier = name ?? title ?? permalink ?? 'unknown';
     throw new Error(
-      'Expected name, title, permalink, and children for ' + name ??
-        title ??
-        permalink ??
-        'unknown'
+      `Expected name, title, permalink, and children for ${identifier}`
     );
   }
   return (

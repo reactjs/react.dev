@@ -11,7 +11,7 @@ function replaceArgs(
   return msg.replace(/%s/g, function () {
     const arg = argList[argIdx++];
     // arg can be an empty string: ?args[0]=&args[1]=count
-    return arg === undefined || arg === '' ? replacer : arg;
+    return arg === undefined ? replacer : arg;
   });
 }
 

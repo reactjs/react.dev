@@ -31,15 +31,13 @@ import YouWillLearnCard from './YouWillLearnCard';
 import {Challenges, Hint, Solution} from './Challenges';
 import {IconNavArrow} from '../Icon/IconNavArrow';
 import ButtonLink from 'components/ButtonLink';
-
 import {TeamMember} from './TeamMember';
-import {LanguagesContext} from './LanguagesContext';
-import {finishedTranslations} from 'utils/finishedTranslations';
-
 import ErrorDecoder from './ErrorDecoder';
 import {IconCanary} from '../Icon/IconCanary';
 import {InlineToc} from './InlineToc';
 import {Illustration, IllustrationBlock} from './Illustration';
+import {LanguageList} from './LanguageList';
+import {Divider, LI, OL, P, Strong, UL} from './Primitives';
 
 function CodeStep({children, step}: {children: any; step: number}) {
   return (
@@ -63,27 +61,6 @@ function CodeStep({children, step}: {children: any; step: number}) {
   );
 }
 
-const P = (p: HTMLAttributes<HTMLParagraphElement>) => (
-  <p className="whitespace-pre-wrap my-4" {...p} />
-);
-
-const Strong = (strong: HTMLAttributes<HTMLElement>) => (
-  <strong className="font-bold" {...strong} />
-);
-
-const OL = (p: HTMLAttributes<HTMLOListElement>) => (
-  <ol className="ms-6 my-3 list-decimal" {...p} />
-);
-const LI = (p: HTMLAttributes<HTMLLIElement>) => (
-  <li className="leading-relaxed mb-1" {...p} />
-);
-const UL = (p: HTMLAttributes<HTMLUListElement>) => (
-  <ul className="ms-6 my-3 list-disc" {...p} />
-);
-
-const Divider = () => (
-  <hr className="my-6 block border-b border-t-0 border-border dark:border-border-dark" />
-);
 const Wip = ({children}: {children: React.ReactNode}) => (
   <ExpandableCallout type="wip">{children}</ExpandableCallout>
 );
@@ -233,132 +210,6 @@ function YouWillLearn({
 // TODO: typing.
 function Recipes(props: any) {
   return <Challenges {...props} isRecipes={true} />;
-}
-
-// const IllustrationContext = React.createContext<{
-//   isInBlock?: boolean;
-// }>({
-//   isInBlock: false,
-// });
-
-// function Illustration({
-//   caption,
-//   src,
-//   alt,
-//   author,
-//   authorLink,
-// }: {
-//   caption: string;
-//   src: string;
-//   alt: string;
-//   author: string;
-//   authorLink: string;
-// }) {
-//   const {isInBlock} = React.useContext(IllustrationContext);
-
-//   return (
-//     <div className="relative group before:absolute before:-inset-y-16 before:inset-x-0 my-16 mx-0 2xl:mx-auto max-w-4xl 2xl:max-w-6xl">
-//       <figure className="my-8 flex justify-center">
-//         <img
-//           src={src}
-//           alt={alt}
-//           style={{maxHeight: 300}}
-//           className="rounded-lg"
-//         />
-//         {caption ? (
-//           <figcaption className="text-center leading-tight mt-4">
-//             {caption}
-//           </figcaption>
-//         ) : null}
-//       </figure>
-//       {!isInBlock && <AuthorCredit author={author} authorLink={authorLink} />}
-//     </div>
-//   );
-// }
-
-const isInBlockTrue = {isInBlock: true};
-
-// function IllustrationBlock({
-//   sequential,
-//   author,
-//   authorLink,
-//   children,
-// }: {
-//   author: string;
-//   authorLink: string;
-//   sequential: boolean;
-//   children: any;
-// }) {
-//   const imageInfos = Children.toArray(children).map(
-//     (child: any) => child.props
-//   );
-//   const images = imageInfos.map((info, index) => (
-//     <figure key={index}>
-//       <div className="bg-white rounded-lg p-4 flex-1 flex xl:p-6 justify-center items-center my-4">
-//         <img
-//           className="text-primary"
-//           src={info.src}
-//           alt={info.alt}
-//           height={info.height}
-//         />
-//       </div>
-//       {info.caption ? (
-//         <figcaption className="text-secondary dark:text-secondary-dark text-center leading-tight mt-4">
-//           {info.caption}
-//         </figcaption>
-//       ) : null}
-//     </figure>
-//   ));
-//   return (
-//     <IllustrationContext.Provider value={isInBlockTrue}>
-//       <div className="relative group before:absolute before:-inset-y-16 before:inset-x-0 my-16 mx-0 2xl:mx-auto max-w-4xl 2xl:max-w-6xl">
-//         {sequential ? (
-//           <ol className="mdx-illustration-block flex">
-//             {images.map((x: any, i: number) => (
-//               <li className="flex-1" key={i}>
-//                 {x}
-//               </li>
-//             ))}
-//           </ol>
-//         ) : (
-//           <div className="mdx-illustration-block">{images}</div>
-//         )}
-//         <AuthorCredit author={author} authorLink={authorLink} />
-//       </div>
-//     </IllustrationContext.Provider>
-//   );
-// }
-
-type TranslationProgress = 'complete' | 'in-progress';
-
-function LanguageList({progress}: {progress: TranslationProgress}) {
-  const allLanguages = React.useContext(LanguagesContext) ?? [];
-  const languages = allLanguages
-    .filter(
-      ({code}) =>
-        code !== 'en' &&
-        (progress === 'complete'
-          ? finishedTranslations.includes(code)
-          : !finishedTranslations.includes(code))
-    )
-    .sort((a, b) => a.enName.localeCompare(b.enName));
-  return (
-    <UL>
-      {languages.map(({code, name, enName}) => {
-        return (
-          <LI key={code}>
-            <Link href={`https://${code}.react.dev/`}>
-              {enName} ({name})
-            </Link>{' '}
-            &mdash;{' '}
-            <Link href={`https://github.com/reactjs/${code}.react.dev`}>
-              Contribute
-            </Link>
-          </LI>
-        );
-      })}
-    </UL>
-  );
 }
 
 function YouTubeIframe(props: any) {

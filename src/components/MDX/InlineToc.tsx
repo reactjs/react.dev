@@ -1,8 +1,9 @@
 'use client';
 
 import Link from 'next/link';
-import {HTMLAttributes, useContext, useMemo} from 'react';
+import {useContext, useMemo} from 'react';
 import {Toc, TocContext, TocItem} from './TocContext';
+import {UL, LI} from './Primitives';
 
 type NestedTocRoot = {
   item: null;
@@ -43,13 +44,6 @@ export function InlineToc() {
   }
   return <InlineTocItem items={root.children} />;
 }
-
-const LI = (p: HTMLAttributes<HTMLLIElement>) => (
-  <li className="leading-relaxed mb-1" {...p} />
-);
-const UL = (p: HTMLAttributes<HTMLUListElement>) => (
-  <ul className="ms-6 my-3 list-disc" {...p} />
-);
 
 function InlineTocItem({items}: {items: Array<NestedTocNode>}) {
   return (

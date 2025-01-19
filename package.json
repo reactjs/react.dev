@@ -40,7 +40,8 @@
     "react-collapsed": "4.0.4",
     "react-dom": "^19.0.0",
     "remark-frontmatter": "^4.0.1",
-    "remark-gfm": "^3.0.1"
+    "remark-gfm": "^3.0.1",
+    "unist-builder": "^4.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",

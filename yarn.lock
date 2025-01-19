@@ -1724,6 +1724,11 @@
   resolved "https://registry.npmjs.org/@types/unist/-/unist-2.0.6.tgz"
   integrity sha512-PBjIUxZHOuj0R15/xuwJYjFi+KZdNFrehocChv4g5hu6aFroHue8m0lBP0POdK2nKzbw0cgV1mws8+V/JAcEkQ==
 
+"@types/unist@^3.0.0":
+  version "3.0.3"
+  resolved "https://registry.yarnpkg.com/@types/unist/-/unist-3.0.3.tgz#acaab0f919ce69cce629c2d4ed2eb4adc1b6c20c"
+  integrity sha512-ko/gIFJRv177XgZsZcBwnqJN5x/Gien8qNOn0D5bQU/zAzVf9Zt3BlcUiLqhV9y4ARk0GbT3tnUiPNgnTXzc/Q==
+
 "@typescript-eslint/eslint-plugin@^5.36.2":
   version "5.36.2"
   resolved "https://registry.npmjs.org/@typescript-eslint/eslint-plugin/-/eslint-plugin-5.36.2.tgz"
@@ -8086,6 +8091,13 @@ unist-builder@^3.0.0:
   integrity sha512-GFxmfEAa0vi9i5sd0R2kcrI9ks0r82NasRq5QHh2ysGngrc6GiqD5CDf1FjPenY4vApmFASBIIlk/jj5J5YbmQ==
   dependencies:
     "@types/unist" "^2.0.0"
+
+unist-builder@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/unist-builder/-/unist-builder-4.0.0.tgz#817b326c015a6f9f5e92bb55b8e8bc5e578fe243"
+  integrity sha512-wmRFnH+BLpZnTKpc5L7O67Kac89s9HMrtELpnNaE6TAobq5DTZZs5YaTQfAZBA9bFPECx2uVAPO31c+GVug8mg==
+  dependencies:
+    "@types/unist" "^3.0.0"
 
 unist-util-generated@^1.0.0:
   version "1.1.6"

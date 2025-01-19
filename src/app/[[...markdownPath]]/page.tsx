@@ -1,5 +1,3 @@
-// src/app/[[...markdownPath]]/page.js
-import {Fragment} from 'react';
 import fs from 'fs/promises';
 import path from 'path';
 import {Page} from 'components/Layout/Page';
@@ -8,11 +6,11 @@ import sidebarLearn from '../../sidebarLearn.json';
 import sidebarReference from '../../sidebarReference.json';
 import sidebarCommunity from '../../sidebarCommunity.json';
 import sidebarBlog from '../../sidebarBlog.json';
-import {MDXComponents} from 'components/MDX/MDXComponents';
-import compileMDX from 'utils/compileMDX';
+import {generateMDX} from '../../utils/generateMDX';
 import {generateRssFeed} from '../../utils/rss';
+import {RouteItem} from 'components/Layout/getRouteMeta';
 
-function getActiveSection(pathname) {
+function getActiveSection(pathname: string) {
   if (pathname === '/') {
     return 'home';
   } else if (pathname.startsWith('/reference')) {
@@ -28,7 +26,7 @@ function getActiveSection(pathname) {
   }
 }
 
-async function getRouteTree(section) {
+async function getRouteTree(section: string) {
   switch (section) {
     case 'home':
     case 'unknown':
@@ -41,11 +39,13 @@ async function getRouteTree(section) {
       return sidebarCommunity;
     case 'blog':
       return sidebarBlog;
+    default:
+      throw new Error(`Unknown section: ${section}`);
   }
 }
 
 // This replaces getStaticProps
-async function getPageContent(markdownPath) {
+async function getPageContent(markdownPath: any[]) {
   const rootDir = path.join(process.cwd(), 'src/content');
   let mdxPath = markdownPath?.join('/') || 'index';
   let mdx;
@@ -61,14 +61,14 @@ async function getPageContent(markdownPath) {
     await generateRssFeed();
   }
 
-  return await compileMDX(mdx, mdxPath, {});
+  return await generateMDX(mdx, mdxPath, {});
 }
 
 // This replaces getStaticPaths
 export async function generateStaticParams() {
   const rootDir = path.join(process.cwd(), 'src/content');
 
-  async function getFiles(dir) {
+  async function getFiles(dir: string): Promise<string[]> {
     const entries = await fs.readdir(dir, {withFileTypes: true});
     const files = await Promise.all(
       entries.map(async (entry) => {
@@ -78,12 +78,15 @@ export async function generateStaticParams() {
           : res.slice(rootDir.length + 1);
       })
     );
+
     return files
       .flat()
-      .filter((file) => file.endsWith('.md') && !file.startsWith('errors/'));
+      .filter(
+        (file: string) => file.endsWith('.md') && !file.startsWith('errors/')
+      );
   }
 
-  function getSegments(file) {
+  function getSegments(file: string) {
     let segments = file.slice(0, -3).replace(/\\/g, '/').split('/');
     if (segments[segments.length - 1] === 'index') {
       segments.pop();
@@ -93,15 +96,20 @@ export async function generateStaticParams() {
 
   const files = await getFiles(rootDir);
 
-  return files.map((file) => ({
+  return files.map((file: any) => ({
     markdownPath: getSegments(file),
   }));
 }
-export default async function WrapperPage({params}) {
+
+export default async function WrapperPage({
+  params,
+}: {
+  params: Promise<{markdownPath: any[]}>;
+}) {
   const {markdownPath} = await params;
 
   // Get the MDX content and associated data
-  const {content, toc, meta, languages} = await getPageContent(markdownPath);
+  const {content, toc, meta} = await getPageContent(markdownPath);
 
   const pathname = '/' + (markdownPath?.join('/') || '');
   const section = getActiveSection(pathname);
@@ -111,10 +119,10 @@ export default async function WrapperPage({params}) {
   return (
     <Page
       toc={toc} // Pass the TOC directly without parsing
-      routeTree={routeTree}
+      routeTree={routeTree as RouteItem}
       meta={meta}
       section={section}
-      languages={languages}>
+      languages={null}>
       {content}
     </Page>
   );

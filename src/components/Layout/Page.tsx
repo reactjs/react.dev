@@ -6,12 +6,12 @@
 
 import * as React from 'react';
 import {Suspense} from 'react';
-import {usePathname, useSearchParams} from 'next/navigation';
+import {usePathname} from 'next/navigation';
 import {SidebarNav} from './SidebarNav';
 import {Footer} from './Footer';
 import {Toc} from './Toc';
 import {DocsPageFooter} from 'components/DocsFooter';
-import {Seo} from 'components/Seo';
+
 import PageHeading from 'components/PageHeading';
 import {getRouteMeta} from './getRouteMeta';
 import {TocContext} from '../MDX/TocContext';
@@ -48,9 +48,8 @@ export function Page({
   languages = null,
 }: PageProps) {
   const pathname = usePathname();
-  const searchParams = useSearchParams();
   const cleanedPath = pathname.split(/[\?\#]/)[0];
-  const {route, nextRoute, prevRoute, breadcrumbs, order} = getRouteMeta(
+  const {route, nextRoute, prevRoute, breadcrumbs} = getRouteMeta(
     cleanedPath,
     routeTree
   );
@@ -115,20 +114,8 @@ export function Page({
     showSidebar = false;
   }
 
-  let searchOrder;
-  if (section === 'learn' || (section === 'blog' && !isBlogIndex)) {
-    searchOrder = order;
-  }
-
   return (
     <>
-      {/* <Seo
-        title={title}
-        titleForTitleTag={meta.titleForTitleTag}
-        isHomePage={isHomePage}
-        image={`/images/og-` + section + '.png'}
-        searchOrder={searchOrder}
-      /> */}
       {(isHomePage || isBlogIndex) && (
         // RSS Feed link is now handled by metadata in layout.tsx
         <link
@@ -162,9 +149,7 @@ export function Page({
         {/* No fallback UI so need to be careful not to suspend directly inside. */}
         <Suspense fallback={null}>
           <main className="min-w-0 isolate">
-            <article
-              className="font-normal break-words text-primary dark:text-primary-dark"
-              key={pathname + searchParams.toString()}>
+            <article className="font-normal break-words text-primary dark:text-primary-dark">
               {content}
             </article>
             <div

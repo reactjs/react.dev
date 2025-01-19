@@ -1,4 +1,3 @@
-// lib/seo.ts
 import {Metadata} from 'next';
 import {siteConfig} from '../siteConfig';
 import {finishedTranslations} from 'utils/finishedTranslations';
@@ -81,11 +80,25 @@ export function generateMetadata({
       google: 'sIlAGs48RulR4DdP95YSWNKZIEtCqQmRjzn-Zq-CcD0',
     },
     other: {
+      'msapplication-TileColor': '#2b5797',
       'fb:app_id': '623268441017527',
       ...(searchOrder != null && {
         'algolia-search-order': searchOrder.toString(),
       }),
     },
+    icons: {
+      icon: [
+        {url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png'},
+        {url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png'},
+      ],
+      apple: [
+        {url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png'},
+      ],
+      other: [
+        {rel: 'mask-icon', url: '/safari-pinned-tab.svg', color: '#404756'},
+      ],
+    },
+    manifest: '/site.webmanifest',
   };
 
   return metadata;

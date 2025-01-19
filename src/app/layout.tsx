@@ -1,16 +1,17 @@
-// app/layout.jsx
 import {siteConfig} from '../siteConfig';
 import Script from 'next/script';
 import {Analytics} from 'components/Analytics';
 import {ScrollHandler} from 'components/SafariScrollHandler';
+
 import '@docsearch/css';
 import '../styles/algolia.css';
 import '../styles/index.css';
 import '../styles/sandpack.css';
 
-import {generateMetadata as generateSeoMetadata} from 'components/Seo';
+import {generateMetadata as generateSeoMetadata} from '../utils/generateMetadata';
+import {Suspense} from 'react';
 
-export async function generateMetadata({params}) {
+export async function generateMetadata() {
   const metadata = generateSeoMetadata({
     title: 'React',
     isHomePage: true,
@@ -18,29 +19,16 @@ export async function generateMetadata({params}) {
   });
 
   return {
-    ...metadata,
-    icons: {
-      icon: [
-        {url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png'},
-        {url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png'},
-      ],
-      apple: [
-        {url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png'},
-      ],
-      other: [
-        {rel: 'mask-icon', url: '/safari-pinned-tab.svg', color: '#404756'},
-      ],
-    },
-    manifest: '/site.webmanifest',
-    themeColor: [
-      {media: '(prefers-color-scheme: light)', color: '#23272f'},
-      {media: '(prefers-color-scheme: dark)', color: '#23272f'},
-    ],
-    other: {
-      'msapplication-TileColor': '#2b5797',
-    },
+    metadata,
   };
 }
+
+export const viewport = {
+  themeColor: [
+    {media: '(prefers-color-scheme: light)', color: '#23272f'},
+    {media: '(prefers-color-scheme: dark)', color: '#23272f'},
+  ],
+};
 
 function ThemeScript() {
   return (
@@ -162,7 +150,7 @@ function UwuScript() {
   );
 }
 
-export default function RootLayout({children}) {
+export default function RootLayout({children}: {children: React.ReactNode}) {
   return (
     <html
       lang={siteConfig.languageCode}
@@ -170,12 +158,14 @@ export default function RootLayout({children}) {
       suppressHydrationWarning>
       <head />
       <body className="font-text font-medium antialiased text-lg bg-wash dark:bg-wash-dark text-secondary dark:text-secondary-dark leading-base">
-        <Analytics />
         <ScrollHandler />
         <ThemeScript />
         <UwuScript />
 
         {children}
+        <Suspense fallback={null}>
+          <Analytics />
+        </Suspense>
       </body>
     </html>
   );

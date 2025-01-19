@@ -123,29 +123,27 @@ export async function generateStaticParams() {
     markdownPath: getSegments(file),
   }));
 }
-
 export default async function WrapperPage({params}) {
-  const {markdownPath} = params;
+  const {markdownPath} = await params;
+
+  // Get the MDX content and associated data
   const {content, toc, meta, languages} = await getPageContent(markdownPath);
 
   const pathname = '/' + (markdownPath?.join('/') || '');
   const section = getActiveSection(pathname);
   const routeTree = await getRouteTree(section);
 
-  const parsedContent = JSON.parse(content, reviveNodeOnClient);
-  const parsedToc = JSON.parse(toc, reviveNodeOnClient);
-
+  // Pass the content and TOC directly, as `getPageContent` should already return them in the correct format
   return (
     <Page
-      toc={parsedToc}
+      toc={toc} // Pass the TOC directly without parsing
       routeTree={routeTree}
       meta={meta}
       section={section}
       languages={languages}>
-      {parsedContent}
+      {content}
     </Page>
   );
 }
-
 // Configure dynamic segments to be statically generated
 export const dynamicParams = false;

@@ -1,3 +1,5 @@
+'use client';
+
 import {Children, memo} from 'react';
 import InlineCode from './InlineCode';
 import Sandpack from './Sandpack';

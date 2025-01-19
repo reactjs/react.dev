@@ -1,10 +1,10 @@
-'use client';
+// 'use client';
 
 /*
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
 
-import {Children, useContext, useMemo} from 'react';
+// import {Children, useContext, useMemo} from 'react';
 import * as React from 'react';
 import cn from 'classnames';
 import type {HTMLAttributes} from 'react';
@@ -263,99 +263,99 @@ function AuthorCredit({
   );
 }
 
-const IllustrationContext = React.createContext<{
-  isInBlock?: boolean;
-}>({
-  isInBlock: false,
-});
+// const IllustrationContext = React.createContext<{
+//   isInBlock?: boolean;
+// }>({
+//   isInBlock: false,
+// });
 
-function Illustration({
-  caption,
-  src,
-  alt,
-  author,
-  authorLink,
-}: {
-  caption: string;
-  src: string;
-  alt: string;
-  author: string;
-  authorLink: string;
-}) {
-  const {isInBlock} = React.useContext(IllustrationContext);
+// function Illustration({
+//   caption,
+//   src,
+//   alt,
+//   author,
+//   authorLink,
+// }: {
+//   caption: string;
+//   src: string;
+//   alt: string;
+//   author: string;
+//   authorLink: string;
+// }) {
+//   const {isInBlock} = React.useContext(IllustrationContext);
 
-  return (
-    <div className="relative group before:absolute before:-inset-y-16 before:inset-x-0 my-16 mx-0 2xl:mx-auto max-w-4xl 2xl:max-w-6xl">
-      <figure className="my-8 flex justify-center">
-        <img
-          src={src}
-          alt={alt}
-          style={{maxHeight: 300}}
-          className="rounded-lg"
-        />
-        {caption ? (
-          <figcaption className="text-center leading-tight mt-4">
-            {caption}
-          </figcaption>
-        ) : null}
-      </figure>
-      {!isInBlock && <AuthorCredit author={author} authorLink={authorLink} />}
-    </div>
-  );
-}
+//   return (
+//     <div className="relative group before:absolute before:-inset-y-16 before:inset-x-0 my-16 mx-0 2xl:mx-auto max-w-4xl 2xl:max-w-6xl">
+//       <figure className="my-8 flex justify-center">
+//         <img
+//           src={src}
+//           alt={alt}
+//           style={{maxHeight: 300}}
+//           className="rounded-lg"
+//         />
+//         {caption ? (
+//           <figcaption className="text-center leading-tight mt-4">
+//             {caption}
+//           </figcaption>
+//         ) : null}
+//       </figure>
+//       {!isInBlock && <AuthorCredit author={author} authorLink={authorLink} />}
+//     </div>
+//   );
+// }
 
 const isInBlockTrue = {isInBlock: true};
 
-function IllustrationBlock({
-  sequential,
-  author,
-  authorLink,
-  children,
-}: {
-  author: string;
-  authorLink: string;
-  sequential: boolean;
-  children: any;
-}) {
-  const imageInfos = Children.toArray(children).map(
-    (child: any) => child.props
-  );
-  const images = imageInfos.map((info, index) => (
-    <figure key={index}>
-      <div className="bg-white rounded-lg p-4 flex-1 flex xl:p-6 justify-center items-center my-4">
-        <img
-          className="text-primary"
-          src={info.src}
-          alt={info.alt}
-          height={info.height}
-        />
-      </div>
-      {info.caption ? (
-        <figcaption className="text-secondary dark:text-secondary-dark text-center leading-tight mt-4">
-          {info.caption}
-        </figcaption>
-      ) : null}
-    </figure>
-  ));
-  return (
-    <IllustrationContext.Provider value={isInBlockTrue}>
-      <div className="relative group before:absolute before:-inset-y-16 before:inset-x-0 my-16 mx-0 2xl:mx-auto max-w-4xl 2xl:max-w-6xl">
-        {sequential ? (
-          <ol className="mdx-illustration-block flex">
-            {images.map((x: any, i: number) => (
-              <li className="flex-1" key={i}>
-                {x}
-              </li>
-            ))}
-          </ol>
-        ) : (
-          <div className="mdx-illustration-block">{images}</div>
-        )}
-        <AuthorCredit author={author} authorLink={authorLink} />
-      </div>
-    </IllustrationContext.Provider>
-  );
-}
+// function IllustrationBlock({
+//   sequential,
+//   author,
+//   authorLink,
+//   children,
+// }: {
+//   author: string;
+//   authorLink: string;
+//   sequential: boolean;
+//   children: any;
+// }) {
+//   const imageInfos = Children.toArray(children).map(
+//     (child: any) => child.props
+//   );
+//   const images = imageInfos.map((info, index) => (
+//     <figure key={index}>
+//       <div className="bg-white rounded-lg p-4 flex-1 flex xl:p-6 justify-center items-center my-4">
+//         <img
+//           className="text-primary"
+//           src={info.src}
+//           alt={info.alt}
+//           height={info.height}
+//         />
+//       </div>
+//       {info.caption ? (
+//         <figcaption className="text-secondary dark:text-secondary-dark text-center leading-tight mt-4">
+//           {info.caption}
+//         </figcaption>
+//       ) : null}
+//     </figure>
+//   ));
+//   return (
+//     <IllustrationContext.Provider value={isInBlockTrue}>
+//       <div className="relative group before:absolute before:-inset-y-16 before:inset-x-0 my-16 mx-0 2xl:mx-auto max-w-4xl 2xl:max-w-6xl">
+//         {sequential ? (
+//           <ol className="mdx-illustration-block flex">
+//             {images.map((x: any, i: number) => (
+//               <li className="flex-1" key={i}>
+//                 {x}
+//               </li>
+//             ))}
+//           </ol>
+//         ) : (
+//           <div className="mdx-illustration-block">{images}</div>
+//         )}
+//         <AuthorCredit author={author} authorLink={authorLink} />
+//       </div>
+//     </IllustrationContext.Provider>
+//   );
+// }
 
 type NestedTocRoot = {
   item: null;
@@ -388,27 +388,27 @@ function calculateNestedToc(toc: Toc): NestedTocRoot {
   return root;
 }
 
-function InlineToc() {
-  const toc = useContext(TocContext);
-  const root = useMemo(() => calculateNestedToc(toc), [toc]);
-  if (root.children.length < 2) {
-    return null;
-  }
-  return <InlineTocItem items={root.children} />;
-}
+// function InlineToc() {
+//   const toc = useContext(TocContext);
+//   const root = useMemo(() => calculateNestedToc(toc), [toc]);
+//   if (root.children.length < 2) {
+//     return null;
+//   }
+//   return <InlineTocItem items={root.children} />;
+// }
 
-function InlineTocItem({items}: {items: Array<NestedTocNode>}) {
-  return (
-    <UL>
-      {items.map((node) => (
-        <LI key={node.item.url}>
-          <Link href={node.item.url}>{node.item.text}</Link>
-          {node.children.length > 0 && <InlineTocItem items={node.children} />}
-        </LI>
-      ))}
-    </UL>
-  );
-}
+// function InlineTocItem({items}: {items: Array<NestedTocNode>}) {
+//   return (
+//     <UL>
+//       {items.map((node) => (
+//         <LI key={node.item.url}>
+//           <Link href={node.item.url}>{node.item.text}</Link>
+//           {node.children.length > 0 && <InlineTocItem items={node.children} />}
+//         </LI>
+//       ))}
+//     </UL>
+//   );
+// }
 
 type TranslationProgress = 'complete' | 'in-progress';
 
@@ -500,10 +500,10 @@ export const MDXComponents = {
   Pitfall,
   Deprecated,
   Wip,
-  Illustration,
-  IllustrationBlock,
+  // Illustration,
+  // IllustrationBlock,
   Intro,
-  InlineToc,
+  // InlineToc,
   LanguageList,
   LearnMore,
   Math,

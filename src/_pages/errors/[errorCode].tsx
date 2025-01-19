@@ -1,6 +1,6 @@
 import {Fragment, useMemo} from 'react';
 import {Page} from 'components/Layout/Page';
-import {MDXComponents} from 'components/MDX/MDXComponents';
+import {MDXComponents} from 'components/MDX/MDXComponentsWrapper';
 import sidebarLearn from 'sidebarLearn.json';
 import type {RouteItem} from 'components/Layout/getRouteMeta';
 import {GetStaticPaths, GetStaticProps, InferGetStaticPropsType} from 'next';

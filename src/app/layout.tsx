@@ -174,6 +174,7 @@ export default function RootLayout({children}) {
         <ScrollHandler />
         <ThemeScript />
         <UwuScript />
+
         {children}
       </body>
     </html>

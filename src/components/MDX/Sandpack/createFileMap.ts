@@ -12,12 +12,13 @@ export const SUPPORTED_FILES = [AppJSPath, StylesCSSPath];
 export const createFileMap = (codeSnippets: any) => {
   return codeSnippets.reduce(
     (result: Record<string, SandpackFile>, codeSnippet: React.ReactElement) => {
-      if (
-        (codeSnippet.type as any).mdxName !== 'pre' &&
-        codeSnippet.type !== 'pre'
-      ) {
-        return result;
-      }
+      // TODO: actually fix this
+      // if (
+      //   (codeSnippet.type as any).mdxName !== 'pre' &&
+      //   codeSnippet.type !== 'pre'
+      // ) {
+      //   return result;
+      // }
       const {props} = (
         codeSnippet.props as PropsWithChildren<{
           children: ReactElement<

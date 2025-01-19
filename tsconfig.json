@@ -30,7 +30,8 @@
     "src/**/*.ts",
     "src/**/*.tsx",
     ".next/types/**/*.ts",
-    "types.d.ts"
+    "types.d.ts",
+    "src/components/UwuScript.jsx"
   ],
   "exclude": ["node_modules"]
 }

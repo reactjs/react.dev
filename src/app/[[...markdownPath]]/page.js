@@ -1,83 +1,24 @@
-/*
- * Copyright (c) Facebook, Inc. and its affiliates.
- */
-
-import {Fragment, useMemo} from 'react';
-import {useRouter} from 'next/router';
+// src/app/[[...markdownPath]]/page.js
+import {Fragment} from 'react';
+import fs from 'fs/promises';
+import path from 'path';
 import {Page} from 'components/Layout/Page';
-import sidebarHome from '../sidebarHome.json';
-import sidebarLearn from '../sidebarLearn.json';
-import sidebarReference from '../sidebarReference.json';
-import sidebarCommunity from '../sidebarCommunity.json';
-import sidebarBlog from '../sidebarBlog.json';
+import sidebarHome from '../../sidebarHome.json';
+import sidebarLearn from '../../sidebarLearn.json';
+import sidebarReference from '../../sidebarReference.json';
+import sidebarCommunity from '../../sidebarCommunity.json';
+import sidebarBlog from '../../sidebarBlog.json';
 import {MDXComponents} from 'components/MDX/MDXComponents';
 import compileMDX from 'utils/compileMDX';
-import {generateRssFeed} from '../utils/rss';
-
-export default function Layout({content, toc, meta, languages}) {
-  const parsedContent = useMemo(
-    () => JSON.parse(content, reviveNodeOnClient),
-    [content]
-  );
-  const parsedToc = useMemo(() => JSON.parse(toc, reviveNodeOnClient), [toc]);
-  const section = useActiveSection();
-  let routeTree;
-  switch (section) {
-    case 'home':
-    case 'unknown':
-      routeTree = sidebarHome;
-      break;
-    case 'learn':
-      routeTree = sidebarLearn;
-      break;
-    case 'reference':
-      routeTree = sidebarReference;
-      break;
-    case 'community':
-      routeTree = sidebarCommunity;
-      break;
-    case 'blog':
-      routeTree = sidebarBlog;
-      break;
-  }
-  return (
-    <Page
-      toc={parsedToc}
-      routeTree={routeTree}
-      meta={meta}
-      section={section}
-      languages={languages}>
-      {parsedContent}
-    </Page>
-  );
-}
-
-function useActiveSection() {
-  const {asPath} = useRouter();
-  const cleanedPath = asPath.split(/[\?\#]/)[0];
-  if (cleanedPath === '/') {
-    return 'home';
-  } else if (cleanedPath.startsWith('/reference')) {
-    return 'reference';
-  } else if (asPath.startsWith('/learn')) {
-    return 'learn';
-  } else if (asPath.startsWith('/community')) {
-    return 'community';
-  } else if (asPath.startsWith('/blog')) {
-    return 'blog';
-  } else {
-    return 'unknown';
-  }
-}
+import {generateRssFeed} from '../../utils/rss';
 
 // Deserialize a client React tree from JSON.
 function reviveNodeOnClient(parentPropertyName, val) {
   if (Array.isArray(val) && val[0] == '$r') {
-    // Assume it's a React element.
     let Type = val[1];
     let key = val[2];
     if (key == null) {
-      key = parentPropertyName; // Index within a parent.
+      key = parentPropertyName;
     }
     let props = val[3];
     if (Type === 'wrapper') {
@@ -97,62 +38,77 @@ function reviveNodeOnClient(parentPropertyName, val) {
   }
 }
 
-// Put MDX output into JSON for client.
-export async function getStaticProps(context) {
-  generateRssFeed();
-  const fs = require('fs');
-  const rootDir = process.cwd() + '/src/content/';
-
-  // Read MDX from the file.
-  let path = (context.params.markdownPath || []).join('/') || 'index';
-  let mdx;
-  try {
-    mdx = fs.readFileSync(rootDir + path + '.md', 'utf8');
-  } catch {
-    mdx = fs.readFileSync(rootDir + path + '/index.md', 'utf8');
+function getActiveSection(pathname) {
+  if (pathname === '/') {
+    return 'home';
+  } else if (pathname.startsWith('/reference')) {
+    return 'reference';
+  } else if (pathname.startsWith('/learn')) {
+    return 'learn';
+  } else if (pathname.startsWith('/community')) {
+    return 'community';
+  } else if (pathname.startsWith('/blog')) {
+    return 'blog';
+  } else {
+    return 'unknown';
   }
-
-  const {toc, content, meta, languages} = await compileMDX(mdx, path, {});
-  return {
-    props: {
-      toc,
-      content,
-      meta,
-      languages,
-    },
-  };
 }
 
-// Collect all MDX files for static generation.
-export async function getStaticPaths() {
-  const {promisify} = require('util');
-  const {resolve} = require('path');
-  const fs = require('fs');
-  const readdir = promisify(fs.readdir);
-  const stat = promisify(fs.stat);
-  const rootDir = process.cwd() + '/src/content';
+async function getRouteTree(section) {
+  switch (section) {
+    case 'home':
+    case 'unknown':
+      return sidebarHome;
+    case 'learn':
+      return sidebarLearn;
+    case 'reference':
+      return sidebarReference;
+    case 'community':
+      return sidebarCommunity;
+    case 'blog':
+      return sidebarBlog;
+  }
+}
 
-  // Find all MD files recursively.
+// This replaces getStaticProps
+async function getPageContent(markdownPath) {
+  const rootDir = path.join(process.cwd(), 'src/content');
+  let mdxPath = markdownPath?.join('/') || 'index';
+  let mdx;
+
+  try {
+    mdx = await fs.readFile(path.join(rootDir, mdxPath + '.md'), 'utf8');
+  } catch {
+    mdx = await fs.readFile(path.join(rootDir, mdxPath, 'index.md'), 'utf8');
+  }
+
+  // Generate RSS feed during build time
+  if (process.env.NODE_ENV === 'production') {
+    await generateRssFeed();
+  }
+
+  return await compileMDX(mdx, mdxPath, {});
+}
+
+// This replaces getStaticPaths
+export async function generateStaticParams() {
+  const rootDir = path.join(process.cwd(), 'src/content');
+
   async function getFiles(dir) {
-    const subdirs = await readdir(dir);
+    const entries = await fs.readdir(dir, {withFileTypes: true});
     const files = await Promise.all(
-      subdirs.map(async (subdir) => {
-        const res = resolve(dir, subdir);
-        return (await stat(res)).isDirectory()
+      entries.map(async (entry) => {
+        const res = path.resolve(dir, entry.name);
+        return entry.isDirectory()
           ? getFiles(res)
           : res.slice(rootDir.length + 1);
       })
     );
-    return (
-      files
-        .flat()
-        // ignores `errors/*.md`, they will be handled by `pages/errors/[errorCode].tsx`
-        .filter((file) => file.endsWith('.md') && !file.startsWith('errors/'))
-    );
+    return files
+      .flat()
+      .filter((file) => file.endsWith('.md') && !file.startsWith('errors/'));
   }
 
-  // 'foo/bar/baz.md' -> ['foo', 'bar', 'baz']
-  // 'foo/bar/qux/index.md' -> ['foo', 'bar', 'qux']
   function getSegments(file) {
     let segments = file.slice(0, -3).replace(/\\/g, '/').split('/');
     if (segments[segments.length - 1] === 'index') {
@@ -163,17 +119,33 @@ export async function getStaticPaths() {
 
   const files = await getFiles(rootDir);
 
-  const paths = files.map((file) => ({
-    params: {
-      markdownPath: getSegments(file),
-      // ^^^ CAREFUL HERE.
-      // If you rename markdownPath, update patches/next-remote-watch.patch too.
-      // Otherwise you'll break Fast Refresh for all MD files.
-    },
+  return files.map((file) => ({
+    markdownPath: getSegments(file),
   }));
-
-  return {
-    paths: paths,
-    fallback: false,
-  };
 }
+
+export default async function WrapperPage({params}) {
+  const {markdownPath} = params;
+  const {content, toc, meta, languages} = await getPageContent(markdownPath);
+
+  const pathname = '/' + (markdownPath?.join('/') || '');
+  const section = getActiveSection(pathname);
+  const routeTree = await getRouteTree(section);
+
+  const parsedContent = JSON.parse(content, reviveNodeOnClient);
+  const parsedToc = JSON.parse(toc, reviveNodeOnClient);
+
+  return (
+    <Page
+      toc={parsedToc}
+      routeTree={routeTree}
+      meta={meta}
+      section={section}
+      languages={languages}>
+      {parsedContent}
+    </Page>
+  );
+}
+
+// Configure dynamic segments to be statically generated
+export const dynamicParams = false;

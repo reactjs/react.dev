@@ -1,14 +1,15 @@
+'use client';
+
 /*
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
 
-import {Suspense} from 'react';
 import * as React from 'react';
-import {useRouter} from 'next/router';
+import {Suspense} from 'react';
+import {usePathname, useSearchParams} from 'next/navigation';
 import {SidebarNav} from './SidebarNav';
 import {Footer} from './Footer';
 import {Toc} from './Toc';
-// import SocialBanner from '../SocialBanner';
 import {DocsPageFooter} from 'components/DocsFooter';
 import {Seo} from 'components/Seo';
 import PageHeading from 'components/PageHeading';
@@ -20,8 +21,8 @@ import type {RouteItem} from 'components/Layout/getRouteMeta';
 import {HomeContent} from './HomeContent';
 import {TopNav} from './TopNav';
 import cn from 'classnames';
-import Head from 'next/head';
 
+// Prefetch the code block component
 import(/* webpackPrefetch: true */ '../MDX/CodeBlock/CodeBlock');
 
 interface PageProps {
@@ -46,8 +47,9 @@ export function Page({
   section,
   languages = null,
 }: PageProps) {
-  const {asPath} = useRouter();
-  const cleanedPath = asPath.split(/[\?\#]/)[0];
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const cleanedPath = pathname.split(/[\?\#]/)[0];
   const {route, nextRoute, prevRoute, breadcrumbs, order} = getRouteMeta(
     cleanedPath,
     routeTree
@@ -120,24 +122,22 @@ export function Page({
 
   return (
     <>
-      <Seo
+      {/* <Seo
         title={title}
         titleForTitleTag={meta.titleForTitleTag}
         isHomePage={isHomePage}
         image={`/images/og-` + section + '.png'}
         searchOrder={searchOrder}
-      />
+      /> */}
       {(isHomePage || isBlogIndex) && (
-        <Head>
-          <link
-            rel="alternate"
-            type="application/rss+xml"
-            title="React Blog RSS Feed"
-            href="/rss.xml"
-          />
-        </Head>
+        // RSS Feed link is now handled by metadata in layout.tsx
+        <link
+          rel="alternate"
+          type="application/rss+xml"
+          title="React Blog RSS Feed"
+          href="/rss.xml"
+        />
       )}
-      {/*<SocialBanner />*/}
       <TopNav
         section={section}
         routeTree={routeTree}
@@ -164,7 +164,7 @@ export function Page({
           <main className="min-w-0 isolate">
             <article
               className="font-normal break-words text-primary dark:text-primary-dark"
-              key={asPath}>
+              key={pathname + searchParams.toString()}>
               {content}
             </article>
             <div
@@ -188,7 +188,7 @@ export function Page({
           </main>
         </Suspense>
         <div className="hidden -mt-16 lg:max-w-custom-xs 2xl:block">
-          {showToc && toc.length > 0 && <Toc headings={toc} key={asPath} />}
+          {showToc && toc.length > 0 && <Toc headings={toc} key={pathname} />}
         </div>
       </div>
     </>

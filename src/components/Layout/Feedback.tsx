@@ -3,12 +3,12 @@
  */
 
 import {useState} from 'react';
-import {useRouter} from 'next/router';
 import cn from 'classnames';
+import {usePathname} from 'next/navigation';
 
 export function Feedback({onSubmit = () => {}}: {onSubmit?: () => void}) {
-  const {asPath} = useRouter();
-  const cleanedPath = asPath.split(/[\?\#]/)[0];
+  const pathname = usePathname();
+  const cleanedPath = pathname.split(/[\?\#]/)[0];
   // Reset on route changes.
   return <SendFeedback key={cleanedPath} onSubmit={onSubmit} />;
 }

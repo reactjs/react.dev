@@ -16,7 +16,7 @@ export default async function compileMDX(
   mdx: string,
   path: string | string[],
   params: {[key: string]: any}
-): Promise<{Component: JSX.Element; toc: any; meta: any}> {
+): Promise<{content: JSX.Element; toc: any; meta: any}> {
   // Cache setup
   const store = new FileStore({
     root: `${process.cwd()}/node_modules/.cache/react-docs-mdx/`,
@@ -70,21 +70,19 @@ export default async function compileMDX(
     })
   );
 
-  // Parse frontmatter for metadata
   const {data: meta} = grayMatter(mdx);
 
-  // Run the compiled code with the runtime and get the default export
   const {default: MDXContent} = await run(code, {
     ...runtime,
     baseUrl: import.meta.url,
   });
 
-  // Prepare TOC (you can process toc within the MDX or separately)
-  const {toc} = prepareMDX(MDXContent);
+  const {toc, children} = prepareMDX(
+    <MDXContent components={{...MDXComponents}} />
+  );
 
-  // Return the ready-to-render React component
   return {
-    content: <MDXContent components={{...MDXComponents}} />, // Replace {} with your custom components if needed
+    content: children,
     toc,
     meta,
   };

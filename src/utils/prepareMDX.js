@@ -34,8 +34,11 @@ function wrapChildrenInMaxWidthContainers(children) {
   let finalChildren = [];
   function flushWrapper(key) {
     if (wrapQueue.length > 0) {
-      const Wrapper = 'MaxWidth';
-      finalChildren.push(<Wrapper key={key}>{wrapQueue}</Wrapper>);
+      finalChildren.push(
+        <div className="max-w-4xl ms-0 2xl:mx-auto" key={key}>
+          {wrapQueue}
+        </div>
+      );
       wrapQueue = [];
     }
   }
@@ -43,6 +46,7 @@ function wrapChildrenInMaxWidthContainers(children) {
     if (child == null) {
       return;
     }
+
     if (typeof child !== 'object') {
       wrapQueue.push(child);
       return;
@@ -54,6 +58,7 @@ function wrapChildrenInMaxWidthContainers(children) {
       wrapQueue.push(child);
     }
   }
+
   Children.forEach(children, handleChild);
   flushWrapper('last');
   return finalChildren;

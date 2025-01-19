@@ -1,5 +1,5 @@
 import {siteConfig} from '../siteConfig';
-import Script from 'next/script';
+
 import {Analytics} from 'components/Analytics';
 import {ScrollHandler} from 'components/SafariScrollHandler';
 
@@ -32,9 +32,8 @@ export const viewport = {
 
 function ThemeScript() {
   return (
-    <Script
+    <script
       id="theme-script"
-      strategy="beforeInteractive"
       dangerouslySetInnerHTML={{
         __html: `
           (function () {
@@ -88,9 +87,8 @@ function ThemeScript() {
 
 function UwuScript() {
   return (
-    <Script
+    <script
       id="uwu-script"
-      strategy="beforeInteractive"
       dangerouslySetInnerHTML={{
         __html: `
           (function () {

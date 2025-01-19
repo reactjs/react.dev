@@ -461,10 +461,3 @@ export const MDXComponents = annotateMDXComponents({
   YouTubeIframe,
   ErrorDecoder,
 });
-
-// for (let key in MDXComponents) {
-//   if (MDXComponents.hasOwnProperty(key)) {
-//     const MDXComponent: any = (MDXComponents as any)[key];
-//     MDXComponent.mdxName = key;
-//   }
-// }

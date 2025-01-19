@@ -13,19 +13,20 @@ export const createFileMap = (codeSnippets: any) => {
   return codeSnippets.reduce(
     (result: Record<string, SandpackFile>, codeSnippet: React.ReactElement) => {
       // TODO: actually fix this
-      // if (
-      //   (codeSnippet.type as any).mdxName !== 'pre' &&
-      //   codeSnippet.type !== 'pre'
-      // ) {
-      //   return result;
-      // }
       const {props} = (
         codeSnippet.props as PropsWithChildren<{
           children: ReactElement<
-            HTMLAttributes<HTMLDivElement> & {meta?: string}
+            HTMLAttributes<HTMLDivElement> & {
+              meta?: string;
+              'data-mdx-name'?: string;
+            }
           >;
         }>
       ).children;
+
+      if (props?.['data-mdx-name'] !== 'code') {
+        return result;
+      }
 
       let filePath; // path in the folder structure
       let fileHidden = false; // if the file is available as a tab

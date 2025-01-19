@@ -8,6 +8,7 @@ import remarkGfm from 'remark-gfm';
 import remarkFrontmatter from 'remark-frontmatter';
 import {prepareMDX} from './prepareMDX'; // Assuming prepareMDX is modularized
 import {MDXComponents} from '../components/MDX/MDXComponents'; // Assuming MDXComponents is modularized
+import visit from 'unist-util-visit';
 
 const DISK_CACHE_BREAKER = 11;
 
@@ -46,6 +47,25 @@ export default async function compileMDX(
   const code = String(
     await compile(mdx, {
       remarkPlugins: [...remarkPlugins, remarkGfm, remarkFrontmatter],
+
+      rehypePlugins: [
+        // Support stuff like ```js App.js {1-5} active by passing it through.
+        function rehypeMetaAsAttributes() {
+          return (tree) => {
+            visit(tree, 'element', (node) => {
+              if (
+                // @ts-expect-error -- tagName is a valid property
+                node.tagName === 'code' &&
+                node.data &&
+                node.data.meta
+              ) {
+                // @ts-expect-error -- properties is a valid property
+                node.properties.meta = node.data.meta;
+              }
+            });
+          };
+        },
+      ],
       outputFormat: 'function-body',
     })
   );

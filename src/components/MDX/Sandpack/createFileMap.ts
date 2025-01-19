@@ -26,6 +26,7 @@ export const createFileMap = (codeSnippets: any) => {
           >;
         }>
       ).children;
+
       let filePath; // path in the folder structure
       let fileHidden = false; // if the file is available as a tab
       let fileActive = false; // if the file tab is shown by default

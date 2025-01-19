@@ -12,32 +12,6 @@ import {MDXComponents} from 'components/MDX/MDXComponents';
 import compileMDX from 'utils/compileMDX';
 import {generateRssFeed} from '../../utils/rss';
 
-// Deserialize a client React tree from JSON.
-function reviveNodeOnClient(parentPropertyName, val) {
-  if (Array.isArray(val) && val[0] == '$r') {
-    let Type = val[1];
-    let key = val[2];
-    if (key == null) {
-      key = parentPropertyName;
-    }
-    let props = val[3];
-    if (Type === 'wrapper') {
-      Type = Fragment;
-      props = {children: props.children};
-    }
-    if (Type in MDXComponents) {
-      Type = MDXComponents[Type];
-    }
-    if (!Type) {
-      console.error('Unknown type: ' + Type);
-      Type = Fragment;
-    }
-    return <Type key={key} {...props} />;
-  } else {
-    return val;
-  }
-}
-
 function getActiveSection(pathname) {
   if (pathname === '/') {
     return 'home';

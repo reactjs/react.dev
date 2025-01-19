@@ -381,7 +381,17 @@ function Image(props: any) {
   return <img alt={alt} className="max-w-[calc(min(700px,100%))]" {...rest} />;
 }
 
-export const MDXComponents = {
+function annotateMDXComponents(
+  components: Record<string, React.ElementType>
+): Record<string, React.ElementType> {
+  return Object.entries(components).reduce((acc, [key, Component]) => {
+    acc[key] = (props) => <Component {...props} data-mdx-name={key} />;
+    acc[key].displayName = `Annotated(${key})`; // Optional, for debugging
+    return acc;
+  }, {} as Record<string, React.ElementType>);
+}
+
+export const MDXComponents = annotateMDXComponents({
   p: P,
   strong: Strong,
   blockquote: Blockquote,
@@ -450,11 +460,11 @@ export const MDXComponents = {
   CodeStep,
   YouTubeIframe,
   ErrorDecoder,
-};
+});
 
-for (let key in MDXComponents) {
-  if (MDXComponents.hasOwnProperty(key)) {
-    const MDXComponent: any = (MDXComponents as any)[key];
-    MDXComponent.mdxName = key;
-  }
-}
+// for (let key in MDXComponents) {
+//   if (MDXComponents.hasOwnProperty(key)) {
+//     const MDXComponent: any = (MDXComponents as any)[key];
+//     MDXComponent.mdxName = key;
+//   }
+// }

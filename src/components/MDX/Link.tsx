@@ -17,7 +17,7 @@ function Link({
   const classes =
     'inline text-link dark:text-link-dark border-b border-link border-opacity-0 hover:border-opacity-100 duration-100 ease-in transition leading-normal';
   const modifiedChildren = Children.toArray(children).map((child: any) => {
-    if (child.type?.mdxName && child.type?.mdxName === 'inlineCode') {
+    if (child.props?.['data-mdx-name'] === 'inlineCode') {
       return cloneElement(child, {
         isLink: true,
       });

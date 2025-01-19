@@ -12,10 +12,10 @@ interface PackageImportProps {
 
 export function PackageImport({children}: PackageImportProps) {
   const terminal = Children.toArray(children).filter((child: any) => {
-    return child.type?.mdxName !== 'pre';
+    return child.props?.['data-mdx-name'] !== 'pre';
   });
   const code = Children.toArray(children).map((child: any, i: number) => {
-    if (child.type?.mdxName === 'pre') {
+    if (child.props?.['data-mdx-name'] === 'pre') {
       return (
         <CodeBlock
           {...child.props}

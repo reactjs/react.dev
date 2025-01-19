@@ -42,11 +42,13 @@ const parseChallengeContents = (
   let challenge: Partial<ChallengeContents> = {};
   let content: React.ReactElement[] = [];
   Children.forEach(children, (child) => {
-    const {props, type} = child as React.ReactElement<{
+    const {props} = child as React.ReactElement<{
       children?: string;
       id?: string;
+      'data-mdx-name'?: string;
     }>;
-    switch ((type as any).mdxName) {
+
+    switch (props?.['data-mdx-name']) {
       case 'Solution': {
         challenge.solution = child;
         challenge.content = content;

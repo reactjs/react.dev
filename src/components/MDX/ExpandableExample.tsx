@@ -21,11 +21,16 @@ interface ExpandableExampleProps {
 }
 
 function ExpandableExample({children, excerpt, type}: ExpandableExampleProps) {
-  if (!Array.isArray(children) || children[0].type.mdxName !== 'h4') {
+  // Validate children using `data-mdx-name`
+  if (
+    !Array.isArray(children) ||
+    children[0].props?.['data-mdx-name'] !== 'h4'
+  ) {
     throw Error(
       `Expandable content ${type} is missing a corresponding title at the beginning`
     );
   }
+
   const isDeepDive = type === 'DeepDive';
   const isExample = type === 'Example';
   const id = children[0].props.id;
@@ -60,8 +65,7 @@ function ExpandableExample({children, excerpt, type}: ExpandableExampleProps) {
         className="list-none p-8"
         tabIndex={-1 /* there's a button instead */}
         onClick={(e) => {
-          // We toggle using a button instead of this whole area,
-          // with an escape case for the header anchor link
+          // Toggle with a button instead of the whole area
           if (!(e.target instanceof SVGElement)) {
             e.preventDefault();
           }

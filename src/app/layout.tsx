@@ -150,13 +150,78 @@ function UwuScript() {
   );
 }
 
+function FontPreload() {
+  return (
+    <>
+      <link
+        rel="preload"
+        href="/fonts/Source-Code-Pro-Regular.woff2"
+        as="font"
+        type="font/woff2"
+        crossOrigin="anonymous"
+      />
+      <link
+        rel="preload"
+        href="/fonts/Optimistic_Display_W_Md.woff2"
+        as="font"
+        type="font/woff2"
+        crossOrigin="anonymous"
+      />
+      <link
+        rel="preload"
+        href="/fonts/Optimistic_Display_W_SBd.woff2"
+        as="font"
+        type="font/woff2"
+        crossOrigin="anonymous"
+      />
+      <link
+        rel="preload"
+        href="/fonts/Optimistic_Display_W_Bd.woff2"
+        as="font"
+        type="font/woff2"
+        crossOrigin="anonymous"
+      />
+      <link
+        rel="preload"
+        href="/fonts/Optimistic_Text_W_Md.woff2"
+        as="font"
+        type="font/woff2"
+        crossOrigin="anonymous"
+      />
+      <link
+        rel="preload"
+        href="/fonts/Optimistic_Text_W_Bd.woff2"
+        as="font"
+        type="font/woff2"
+        crossOrigin="anonymous"
+      />
+      <link
+        rel="preload"
+        href="/fonts/Optimistic_Text_W_Rg.woff2"
+        as="font"
+        type="font/woff2"
+        crossOrigin="anonymous"
+      />
+      <link
+        rel="preload"
+        href="/fonts/Optimistic_Text_W_It.woff2"
+        as="font"
+        type="font/woff2"
+        crossOrigin="anonymous"
+      />
+    </>
+  );
+}
+
 export default function RootLayout({children}: {children: React.ReactNode}) {
   return (
     <html
       lang={siteConfig.languageCode}
       dir={siteConfig.isRTL ? 'rtl' : 'ltr'}
       suppressHydrationWarning>
-      <head />
+      <head>
+        <FontPreload />
+      </head>
       <body className="font-text font-medium antialiased text-lg bg-wash dark:bg-wash-dark text-secondary dark:text-secondary-dark leading-base">
         <ScrollHandler />
         <ThemeScript />

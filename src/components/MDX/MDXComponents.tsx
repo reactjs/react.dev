@@ -31,14 +31,15 @@ import YouWillLearnCard from './YouWillLearnCard';
 import {Challenges, Hint, Solution} from './Challenges';
 import {IconNavArrow} from '../Icon/IconNavArrow';
 import ButtonLink from 'components/ButtonLink';
-import {TocContext} from './TocContext';
-import type {Toc, TocItem} from './TocContext';
+
 import {TeamMember} from './TeamMember';
 import {LanguagesContext} from './LanguagesContext';
 import {finishedTranslations} from 'utils/finishedTranslations';
 
 import ErrorDecoder from './ErrorDecoder';
 import {IconCanary} from '../Icon/IconCanary';
+import {InlineToc} from './InlineToc';
+import {Illustration, IllustrationBlock} from './Illustration';
 
 function CodeStep({children, step}: {children: any; step: number}) {
   return (
@@ -234,35 +235,6 @@ function Recipes(props: any) {
   return <Challenges {...props} isRecipes={true} />;
 }
 
-function AuthorCredit({
-  author = 'Rachel Lee Nabors',
-  authorLink = 'https://nearestnabors.com/',
-}: {
-  author: string;
-  authorLink: string;
-}) {
-  return (
-    <div className="sr-only group-hover:not-sr-only group-focus-within:not-sr-only hover:sr-only">
-      <p className="bg-card dark:bg-card-dark text-center text-sm text-secondary dark:text-secondary-dark leading-tight p-2 rounded-lg absolute start-1/2 -top-4 -translate-x-1/2 -translate-y-full group-hover:flex group-hover:opacity-100 after:content-[''] after:absolute after:start-1/2 after:top-[95%] after:-translate-x-1/2 after:border-8 after:border-x-transparent after:border-b-transparent after:border-t-card after:dark:border-t-card-dark opacity-0 transition-opacity duration-300">
-        <cite>
-          Illustrated by{' '}
-          {authorLink ? (
-            <a
-              target="_blank"
-              rel="noreferrer"
-              className="text-link dark:text-link-dark"
-              href={authorLink}>
-              {author}
-            </a>
-          ) : (
-            author
-          )}
-        </cite>
-      </p>
-    </div>
-  );
-}
-
 // const IllustrationContext = React.createContext<{
 //   isInBlock?: boolean;
 // }>({
@@ -357,59 +329,6 @@ const isInBlockTrue = {isInBlock: true};
 //   );
 // }
 
-type NestedTocRoot = {
-  item: null;
-  children: Array<NestedTocNode>;
-};
-
-type NestedTocNode = {
-  item: TocItem;
-  children: Array<NestedTocNode>;
-};
-
-function calculateNestedToc(toc: Toc): NestedTocRoot {
-  const currentAncestors = new Map<number, NestedTocNode | NestedTocRoot>();
-  const root: NestedTocRoot = {
-    item: null,
-    children: [],
-  };
-  const startIndex = 1; // Skip "Overview"
-  for (let i = startIndex; i < toc.length; i++) {
-    const item = toc[i];
-    const currentParent: NestedTocNode | NestedTocRoot =
-      currentAncestors.get(item.depth - 1) || root;
-    const node: NestedTocNode = {
-      item,
-      children: [],
-    };
-    currentParent.children.push(node);
-    currentAncestors.set(item.depth, node);
-  }
-  return root;
-}
-
-// function InlineToc() {
-//   const toc = useContext(TocContext);
-//   const root = useMemo(() => calculateNestedToc(toc), [toc]);
-//   if (root.children.length < 2) {
-//     return null;
-//   }
-//   return <InlineTocItem items={root.children} />;
-// }
-
-// function InlineTocItem({items}: {items: Array<NestedTocNode>}) {
-//   return (
-//     <UL>
-//       {items.map((node) => (
-//         <LI key={node.item.url}>
-//           <Link href={node.item.url}>{node.item.text}</Link>
-//           {node.children.length > 0 && <InlineTocItem items={node.children} />}
-//         </LI>
-//       ))}
-//     </UL>
-//   );
-// }
-
 type TranslationProgress = 'complete' | 'in-progress';
 
 function LanguageList({progress}: {progress: TranslationProgress}) {
@@ -500,10 +419,10 @@ export const MDXComponents = {
   Pitfall,
   Deprecated,
   Wip,
-  // Illustration,
-  // IllustrationBlock,
+  Illustration,
+  IllustrationBlock,
   Intro,
-  // InlineToc,
+  InlineToc,
   LanguageList,
   LearnMore,
   Math,

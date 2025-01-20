@@ -1,9 +1,8 @@
 /*
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
-
 exports.siteConfig = {
-  version: '18.3.1',
+  version: '19',
   // --------------------------------------
   // Translations should replace these lines:
   languageCode: 'en',

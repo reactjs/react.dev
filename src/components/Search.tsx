@@ -9,6 +9,8 @@ import {lazy, useEffect} from 'react';
 import * as React from 'react';
 import {createPortal} from 'react-dom';
 import {siteConfig} from 'siteConfig';
+import type {ComponentType, PropsWithChildren} from 'react';
+import type {DocSearchModalProps} from '@docsearch/react/modal';
 
 export interface SearchProps {
   appId?: string;
@@ -83,9 +85,10 @@ const options = {
 };
 
 const DocSearchModal: any = lazy(() =>
-  // @ts-ignore
   import('@docsearch/react/modal').then((mod) => ({
-    default: mod.DocSearchModal,
+    default: mod.DocSearchModal as ComponentType<
+      PropsWithChildren<DocSearchModalProps>
+    >,
   }))
 );
 

@@ -1,13 +1,6 @@
 ---
 title: prefetchDNS
-canary: true
 ---
-
-<Canary>
-
-The `prefetchDNS` function is currently only available in React's Canary and experimental channels. Learn more about [React's release channels here](/community/versioning-policy#all-release-channels).
-
-</Canary>
 
 <Intro>
 

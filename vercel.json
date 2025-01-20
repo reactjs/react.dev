@@ -81,7 +81,7 @@
     },
     {
       "source": "/link/strict-mode-find-node",
-      "destination": "/reference/react-dom/findDOMNode#alternatives",
+      "destination": "https://18.react.dev/reference/react-dom/findDOMNode#alternatives",
       "permanent": false
     },
     {
@@ -182,6 +182,51 @@
     {
       "source": "/reference/react/use-server",
       "destination": "/reference/rsc/use-server",
+      "permanent": true
+    },
+    {
+      "source": "/reference/rsc/server-actions",
+      "destination": "/reference/rsc/server-functions",
+      "permanent": true
+    },
+    {
+      "source": "/reference/react-dom/findDOMNode",
+      "destination": "https://18.react.dev/reference/react-dom/findDOMNode",
+      "permanent": true
+    },
+    {
+      "source": "/reference/react/createFactory",
+      "destination": "https://18.react.dev/reference/react/createFactory",
+      "permanent": true
+    },
+    {
+      "source": "/reference/react-dom/render",
+      "destination": "https://18.react.dev/reference/react-dom/render",
+      "permanent": true
+    },
+    {
+      "source": "/reference/react-dom/hydrate",
+      "destination": "https://18.react.dev/reference/react-dom/hydrate",
+      "permanent": true
+    },
+    {
+      "source": "/reference/react-dom/unmountComponentAtNode",
+      "destination": "https://18.react.dev/reference/react-dom/unmountComponentAtNode",
+      "permanent": true
+    },
+    {
+      "source": "/reference/react-dom/server/renderToStaticNodeStream",
+      "destination": "https://18.react.dev/reference/react-dom/server/renderToStaticNodeStream",
+      "permanent": true
+    },
+    {
+      "source": "/reference/react-dom/server/renderToNodeStream",
+      "destination": "https://18.react.dev/reference/react-dom/server/renderToNodeStream",
+      "permanent": true
+    },
+    {
+      "source": "/blog/2024/04/25/react-19",
+      "destination": "/blog/2024/12/05/react-19",
       "permanent": true
     },
     {

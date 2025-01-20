@@ -71,6 +71,13 @@ function SandpackRoot(props: SandpackProps) {
   const codeSnippets = Children.toArray(children) as React.ReactElement[];
   const files = createFileMap(codeSnippets);
 
+  if ('/index.html' in files) {
+    throw new Error(
+      'You cannot use `index.html` file in sandboxes. ' +
+        'Only `public/index.html` is respected by Sandpack and CodeSandbox (where forks are created).'
+    );
+  }
+
   files['/src/styles.css'] = {
     code: [sandboxStyle, files['/src/styles.css']?.code ?? ''].join('\n\n'),
     hidden: !files['/src/styles.css']?.visible,

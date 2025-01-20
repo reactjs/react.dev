@@ -2,6 +2,7 @@
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
 
+// eslint-disable-next-line react-compiler/react-compiler
 /* eslint-disable react-hooks/exhaustive-deps */
 import {useRef, useState, useEffect, useMemo, useId} from 'react';
 import {useSandpack, SandpackStack} from '@codesandbox/sandpack-react/unstyled';

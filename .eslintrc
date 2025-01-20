@@ -2,11 +2,13 @@
   "root": true,
   "extends": "next/core-web-vitals",
   "parser": "@typescript-eslint/parser",
-  "plugins": ["@typescript-eslint"],
+  "plugins": ["@typescript-eslint", "eslint-plugin-react-compiler"],
   "rules": {
     "no-unused-vars": "off",
-    "@typescript-eslint/no-unused-vars": ["error", { "varsIgnorePattern": "^_" }],
-    "react-hooks/exhaustive-deps": "error"
+    "@typescript-eslint/no-unused-vars": ["error", {"varsIgnorePattern": "^_"}],
+    "react-hooks/exhaustive-deps": "error",
+    "react/no-unknown-property": ["error", {"ignore": ["meta"]}],
+    "react-compiler/react-compiler": "error"
   },
   "env": {
     "node": true,

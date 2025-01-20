@@ -71,31 +71,27 @@ function useActiveSection() {
 }
 
 // Deserialize a client React tree from JSON.
-function reviveNodeOnClient(key, val) {
+function reviveNodeOnClient(parentPropertyName, val) {
   if (Array.isArray(val) && val[0] == '$r') {
     // Assume it's a React element.
-    let type = val[1];
+    let Type = val[1];
     let key = val[2];
+    if (key == null) {
+      key = parentPropertyName; // Index within a parent.
+    }
     let props = val[3];
-    if (type === 'wrapper') {
-      type = Fragment;
+    if (Type === 'wrapper') {
+      Type = Fragment;
       props = {children: props.children};
     }
-    if (MDXComponents[type]) {
-      type = MDXComponents[type];
+    if (Type in MDXComponents) {
+      Type = MDXComponents[Type];
     }
-    if (!type) {
-      console.error('Unknown type: ' + type);
-      type = Fragment;
+    if (!Type) {
+      console.error('Unknown type: ' + Type);
+      Type = Fragment;
     }
-    return {
-      $$typeof: Symbol.for('react.element'),
-      type: type,
-      key: key,
-      ref: null,
-      props: props,
-      _owner: null,
-    };
+    return <Type key={key} {...props} />;
   } else {
     return val;
   }

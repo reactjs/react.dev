@@ -11,7 +11,7 @@ Do you know of a local React.js conference? Add it here! (Please keep the list c
 ## Upcoming Conferences {/*upcoming-conferences*/}
 
 ### React Paris 2025 {/*react-paris-2025*/}
-March 20 - 21, 2024. In-person in Paris, France (hybrid event)
+March 20 - 21, 2025. In-person in Paris, France (hybrid event)
 
 [Website](https://react.paris/) - [Twitter](https://x.com/BeJS_)
 

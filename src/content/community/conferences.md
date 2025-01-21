@@ -11,14 +11,22 @@ Do you know of a local React.js conference? Add it here! (Please keep the list c
 ## Upcoming Conferences {/*upcoming-conferences*/}
 
 ### React Paris 2025 {/*react-paris-2025*/}
-March 20 - 21, 2024. In-person in Paris, France (hybrid event)
+March 20 - 21, 2025. In-person in Paris, France (hybrid event)
 
 [Website](https://react.paris/) - [Twitter](https://x.com/BeJS_)
+
+
+### React Native Connection 2025 {/*react-native-connection-2025*/}
+April 3 (Reanimated Training) + April 4 (Conference), 2025. Paris, France.
+
+[Website](https://reactnativeconnection.io/) - [X](https://x.com/reactnativeconn) - [Bluesky](https://bsky.app/profile/reactnativeconnect.bsky.social)
+
 
 ### CityJS London 2025 {/*cityjs-london*/}
 April 23 - 25, 2025. In-person in London, UK 
 
 [Website](https://london.cityjsconf.org/) - [Twitter](https://x.com/cityjsconf)
+
 
 ### App.js Conf 2025 {/*appjs-conf-2025*/}
 May 28 - 30, 2025. In-person in Kraków, Poland + remote

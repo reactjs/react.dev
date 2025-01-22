@@ -99,6 +99,17 @@
       ]
     },
     {
+      "title": "Rendering Data",
+      "path": "/learn/rendering-data",
+      "tags": [],
+      "routes": [
+        {
+          "title": "Fetching Data",
+          "path": "/learn/fetching-data"
+        }
+      ]
+    },
+    {
       "title": "Adding Interactivity",
       "path": "/learn/adding-interactivity",
       "tags": [],

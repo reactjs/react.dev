@@ -379,7 +379,7 @@ It is uncommon to call [`root.render`](#root-render) on a hydrated root. Usually
 By default, React will log all uncaught errors to the console. To implement your own error reporting, you can provide the optional `onUncaughtError` root option:
 
 ```js [[1, 9, "onUncaughtError"], [2, 9, "error", 1], [3, 9, "errorInfo"], [4, 13, "componentStack"], [5, 14, "captureOwnerStack()"]]
-// captureOwnerStack is only available in react@experimental.
+// captureOwnerStack is only available in react@canary.
 import { captureOwnerStack } from 'react';
 import { hydrateRoot } from 'react-dom/client';
 
@@ -404,7 +404,7 @@ The <CodeStep step={1}>onUncaughtError</CodeStep> option is a function called wi
 1. The <CodeStep step={2}>error</CodeStep> that was thrown.
 2. An <CodeStep step={3}>errorInfo</CodeStep> object that contains the <CodeStep step={4}>componentStack</CodeStep> of the error.
 
-<ExperimentalBadge /> With <CodeStep step={5}>[`captureOwnerStack`](/reference/react/captureOwnerStack)</CodeStep> you can include the Owner Stack during development.
+<CanaryBadge /> With <CodeStep step={5}>[`captureOwnerStack`](/reference/react/captureOwnerStack)</CodeStep> you can include the Owner Stack during development.
 
 You can use the `onUncaughtError` root option to display error dialogs:
 
@@ -576,7 +576,7 @@ export function reportRecoverableError({error, cause, componentStack, ownerStack
 ```
 
 ```js src/index.js active
-// captureOwnerStack is only available in react@experimental.
+// captureOwnerStack is only available in react@canary.
 import { captureOwnerStack } from 'react';
 import { hydrateRoot } from "react-dom/client";
 import App from "./App.js";
@@ -646,7 +646,7 @@ export default function App() {
 By default, React will log all errors caught by an Error Boundary to `console.error`. To override this behavior, you can provide the optional `onCaughtError` root option for errors caught by an [Error Boundary](/reference/react/Component#catching-rendering-errors-with-an-error-boundary):
 
 ```js [[1, 9, "onCaughtError"], [2, 9, "error", 1], [3, 9, "errorInfo"], [4, 13, "componentStack"], [5, 14, "captureOwnerStack()"]]
-// captureOwnerStack is only available in react@experimental.
+// captureOwnerStack is only available in react@canary.
 import { captureOwnerStack } from 'react';
 import { hydrateRoot } from 'react-dom/client';
 
@@ -671,7 +671,7 @@ The <CodeStep step={1}>onCaughtError</CodeStep> option is a function called with
 1. The <CodeStep step={2}>error</CodeStep> that was caught by the boundary.
 2. An <CodeStep step={3}>errorInfo</CodeStep> object that contains the <CodeStep step={4}>componentStack</CodeStep> of the error.
 
-<ExperimentalBadge /> With <CodeStep step={5}>[`captureOwnerStack`](/reference/react/captureOwnerStack)</CodeStep> you can include the Owner Stack during development.
+<CanaryBadge /> With <CodeStep step={5}>[`captureOwnerStack`](/reference/react/captureOwnerStack)</CodeStep> you can include the Owner Stack during development.
 
 You can use the `onCaughtError` root option to display error dialogs or filter known errors from logging:
 
@@ -843,7 +843,7 @@ export function reportRecoverableError({error, cause, componentStack}) {
 ```
 
 ```js src/index.js active
-// captureOwnerStack is only available in react@experimental.
+// captureOwnerStack is only available in react@canary.
 import {captureOwnerStack} from 'react';
 import { hydrateRoot } from "react-dom/client";
 import App from "./App.js";
@@ -939,7 +939,7 @@ function Throw({error}) {
 When React encounters a hydration mismatch, it will automatically attempt to recover by rendering on the client. By default, React will log hydration mismatch errors to `console.error`. To override this behavior, you can provide the optional `onRecoverableError` root option:
 
 ```js [[1, 9, "onRecoverableError"], [2, 9, "error", 1], [3, 13, "error.cause", 1], [4, 9, "errorInfo"], [5, 14, "componentStack"], [6, 15, "captureOwnerStack()"]]
-// captureOwnerStack is only available in react@experimental.
+// captureOwnerStack is only available in react@canary.
 import { captureOwnerStack } from 'react';
 import { hydrateRoot } from 'react-dom/client';
 
@@ -965,7 +965,7 @@ The <CodeStep step={1}>onRecoverableError</CodeStep> option is a function called
 1. The <CodeStep step={2}>error</CodeStep> React throws. Some errors may include the original cause as <CodeStep step={3}>error.cause</CodeStep>.
 2. An <CodeStep step={4}>errorInfo</CodeStep> object that contains the <CodeStep step={5}>componentStack</CodeStep> of the error.
 
-<ExperimentalBadge /> With <CodeStep step={6}>[`captureOwnerStack`](/reference/react/captureOwnerStack)</CodeStep> you can include the Owner Stack during development.
+<CanaryBadge /> With <CodeStep step={6}>[`captureOwnerStack`](/reference/react/captureOwnerStack)</CodeStep> you can include the Owner Stack during development.
 
 You can use the `onRecoverableError` root option to display error dialogs for hydration mismatches:
 
@@ -1137,7 +1137,7 @@ export function reportRecoverableError({error, cause, componentStack, ownerStack
 ```
 
 ```js src/index.js active
-// captureOwnerStack is only available in react@experimental.
+// captureOwnerStack is only available in react@canary.
 import {captureOwnerStack} from 'react'
 import { hydrateRoot } from "react-dom/client";
 import App from "./App.js";

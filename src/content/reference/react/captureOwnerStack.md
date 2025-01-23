@@ -2,17 +2,11 @@
 title: captureOwnerStack
 ---
 
-<Wip>
+<Canary>
 
-**This API is experimental and is not available in a stable version of React yet.**
+The `captureOwnerStack` API is currently only available in React's Canary and experimental channels. Learn more about [React's release channels here](/community/versioning-policy#all-release-channels).
 
-You can try it by upgrading React packages to the most recent experimental version:
-
-- `react@experimental`
-
-Experimental versions of React may contain bugs. Don't use them in production.
-
-</Wip>
+</Canary>
 
 <Intro>
 

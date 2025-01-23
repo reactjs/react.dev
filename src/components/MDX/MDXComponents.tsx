@@ -120,20 +120,6 @@ const CanaryBadge = ({title}: {title: string}) => (
   </span>
 );
 
-const ExperimentalBadge = ({title}: {title: string}) => (
-  <span
-    title={title}
-    className={
-      'text-base font-display px-1 py-0.5 font-bold bg-gray-10 dark:bg-gray-60 text-gray-60 dark:text-gray-10 rounded'
-    }>
-    <IconCanary
-      size="s"
-      className={'inline me-1 mb-0.5 text-sm text-gray-60 dark:text-gray-10'}
-    />
-    Experimental only
-  </span>
-);
-
 const NextMajorBadge = ({title}: {title: string}) => (
   <span
     title={title}
@@ -523,7 +509,6 @@ export const MDXComponents = {
   Note,
   Canary,
   CanaryBadge,
-  ExperimentalBadge,
   NextMajor,
   NextMajorBadge,
   RSC,

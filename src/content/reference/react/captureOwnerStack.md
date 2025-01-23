@@ -105,8 +105,10 @@ import './styles.css';
 
 createRoot(document.createElement('div'), {
   onUncaughtError: (error, errorInfo) => {
-    // The stacks are logged instead of showing them in the UI directly to highlight that browsers will apply sourcemaps to the logged stacks.
-    // Note that sourcemapping is only applied in the real browser console not in the fake one displayed on this page.
+    // The stacks are logged instead of showing them in the UI directly to
+    // highlight that browsers will apply sourcemaps to the logged stacks.
+    // Note that sourcemapping is only applied in the real browser console not
+    // in the fake one displayed on this page.
     console.log(errorInfo.componentStack);
     console.log(captureOwnerStack());
   },
@@ -235,14 +237,18 @@ const root = createRoot(document.getElementById('root'), {
     if (process.env.NODE_ENV !== 'production') {
       const ownerStack = captureOwnerStack();
       error.stack =
-        // The stack is only split because these sandboxes don't implement ignore-listing 3rd party frames via sourcemaps.
-        // A framework would ignore-list stackframes from React via sourcemaps and then you could just `error.stack += ownerStack`.
+        // The stack is only split because these sandboxes don't implement
+        // ignore-listing 3rd party frames via sourcemaps.
+        // A framework would ignore-list stackframes from React via sourcemaps
+        // and then you could just `error.stack += ownerStack`.
         // To learn more about ignore-listing see https://developer.chrome.com/docs/devtools/x-google-ignore-list
         error.stack.split('\n    at react-stack-bottom-frame')[0] + ownerStack;
     }
 
-    // The stacks are logged instead of showing them in the UI directly to highlight that browsers will apply sourcemaps to the logged stacks.
-    // Note that sourcemapping is only applied in the real browser console not in the fake one displayed on this page.
+    // The stacks are logged instead of showing them in the UI directly to
+    // highlight that browsers will apply sourcemaps to the logged stacks.
+    // Note that sourcemapping is only applied in the real browser console not
+    // in the fake one displayed on this page.
     console.error('Uncaught', error);
   },
 }).render(<App />);

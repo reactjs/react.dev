@@ -285,10 +285,8 @@ const root = createRoot(document.getElementById('root'), {
 
 ### The Owner Stack is `null` {/*the-owner-stack-is-null*/}
 
-`captureOwnerStack` was called outside of development builds.
-For performance reasons, React will not keep track of Owners in production.
+`captureOwnerStack` was called outside of development builds. For performance reasons, React will not keep track of Owners in production.
 
 ### The Owner Stack is empty {/*the-owner-stack-is-empty*/}
 
-The call of `captureOwnerStack` happened outside of a React controlled function e.g. in a `setTimeout` callback.
-During render, Effects, Events, and React error handlers (e.g. `hydrateRoot#options.onCaughtError`) Owner Stacks should be available.
+The call of `captureOwnerStack` happened outside of a React controlled function e.g. in a `setTimeout` callback. During render, Effects, Events, and React error handlers (e.g. `hydrateRoot#options.onCaughtError`) Owner Stacks should be available.

@@ -47,8 +47,7 @@ function Component() {
 
 `captureOwnerStack` returns `string | null`.
 
-If no Owner Stack is available, it returns an empty string.
-Outside of development builds, `null` is returned.
+If no Owner Stack is available (outside of render, Effects, Events and React error handlers), it returns an empty string (see [Troubleshooting: The Owner Stack is empty](#the-owner-stack-is-empty-the-owner-stack-is-empty)). Outside of development builds, `null` is returned (see [Troubleshooting: The Owner Stack is `null`](#the-owner-stack-is-null-the-owner-stack-is-null)).
 
 #### Caveats {/*caveats*/}
 

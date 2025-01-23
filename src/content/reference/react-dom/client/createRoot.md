@@ -348,25 +348,24 @@ It is uncommon to call `render` multiple times. Usually, your components will [u
 
 By default, React will log all uncaught errors to the console. To implement your own error reporting, you can provide the optional `onUncaughtError` root option:
 
-```js [[1, 8, "onUncaughtError"], [2, 8, "error", 1], [3, 8, "errorInfo"], [4, 12, "componentStack"], [5, 13, "captureOwnerStack()"]]
+```js [[1, 8, "onUncaughtError"], [2, 8, "error", 1], [3, 8, "errorInfo"], [4, 12, "componentStack", 15], [5, 13, "captureOwnerStack()"]]
 // captureOwnerStack is only available in react@canary.
-import { captureOwnerStack } from 'react';
-import { createRoot } from 'react-dom/client';
+import { captureOwnerStack } from "react";
+import { createRoot } from "react-dom/client";
+import { reportUncaughtError } from "./reportError";
 
-const root = createRoot(
-  document.getElementById('root'),
-  {
-    onUncaughtError: (error, errorInfo) => {
-      console.error(
-        'Uncaught error',
+const container = document.getElementById("root");
+const root = createRoot(container, {
+  onUncaughtError: (error, errorInfo) => {
+    if (error.message !== "Known error") {
+      reportUncaughtError({
         error,
-        errorInfo.componentStack,
-        captureOwnerStack()
-      );
+        componentStack: errorInfo.componentStack,
+        ownerStack: captureOwnerStack(),
+      });
     }
-  }
-);
-root.render(<App />);
+  },
+});
 ```
 
 The <CodeStep step={1}>onUncaughtError</CodeStep> option is a function called with two arguments:
@@ -612,25 +611,24 @@ export default function App() {
 
 By default, React will log all errors caught by an Error Boundary to `console.error`. To override this behavior, you can provide the optional `onCaughtError` root option to handle errors caught by an [Error Boundary](/reference/react/Component#catching-rendering-errors-with-an-error-boundary):
 
-```js [[1, 8, "onCaughtError"], [2, 8, "error", 1], [3, 8, "errorInfo"], [4, 12, "componentStack"], [5, 13, "captureOwnerStack()"]]
+```js [[1, 8, "onCaughtError"], [2, 8, "error", 1], [3, 8, "errorInfo"], [4, 12, "componentStack", 15], [5, 13, "captureOwnerStack()"]]
 // captureOwnerStack is only available in react@canary.
-import { captureOwnerStack } from 'react';
-import { createRoot } from 'react-dom/client';
+import {captureOwnerStack} from 'react';
+import { createRoot } from "react-dom/client";
+import {reportCaughtError} from "./reportError";
 
-const root = createRoot(
-  document.getElementById('root'),
-  {
-    onCaughtError: (error, errorInfo) => {
-      console.error(
-        'Caught error',
-        error,
-        errorInfo.componentStack,
+const container = document.getElementById("root");
+const root = createRoot(container, {
+  onCaughtError: (error, errorInfo) => {
+    if (error.message !== 'Known error') {
+      reportCaughtError({
+        error, 
+        componentStack: errorInfo.componentStack,
         ownerStack: captureOwnerStack()
-      );
+      });
     }
   }
-);
-root.render(<App />);
+});
 ```
 
 The <CodeStep step={1}>onCaughtError</CodeStep> option is a function called with two arguments:
@@ -903,26 +901,23 @@ function Throw({error}) {
 
 React may automatically render a component a second time to attempt to recover from an error thrown in render. If successful, React will log a recoverable error to the console to notify the developer. To override this behavior, you can provide the optional `onRecoverableError` root option:
 
-```js [[1, 8, "onRecoverableError"], [2, 8, "error", 1], [3, 12, "error.cause"], [4, 8, "errorInfo"], [5, 13, "componentStack"], [6, 14, "captureOwnerStack()"]]
+```js [[1, 8, "onRecoverableError"], [2, 8, "error", 1], [3, 11, "error.cause"], [4, 8, "errorInfo"], [5, 12, "componentStack", 15], [6, 13, "captureOwnerStack()"]]
 // captureOwnerStack is only available in react@canary.
-import { captureOwnerStack } from 'react';
-import { createRoot } from 'react-dom/client';
+import {captureOwnerStack} from 'react'
+import { createRoot } from "react-dom/client";
+import {reportRecoverableError} from "./reportError";
 
-const root = createRoot(
-  document.getElementById('root'),
-  {
-    onRecoverableError: (error, errorInfo) => {
-      console.error(
-        'Recoverable error',
-        error,
-        error.cause,
-        errorInfo.componentStack,
-        captureOwnerStack(),
-      );
-    }
+const container = document.getElementById("root");
+const root = createRoot(container, {
+  onRecoverableError: (error, errorInfo) => {
+    reportRecoverableError({
+      error,
+      cause: error.cause,
+      componentStack: errorInfo.componentStack,
+      ownerStack: captureOwnerStack(),
+    });
   }
-);
-root.render(<App />);
+});
 ```
 
 The <CodeStep step={1}>onRecoverableError</CodeStep> option is a function called with two arguments:

@@ -47,7 +47,13 @@ function Component() {
 
 `captureOwnerStack` returns `string | null`.
 
-If no Owner Stack is available (outside of render, Effects, Events and React error handlers), it returns an empty string (see [Troubleshooting: The Owner Stack is empty](#the-owner-stack-is-empty-the-owner-stack-is-empty)). Outside of development builds, `null` is returned (see [Troubleshooting: The Owner Stack is `null`](#the-owner-stack-is-null-the-owner-stack-is-null)).
+Owner Stacks are available in
+- Component render
+- Effects (e.g. `useEffect`)
+- React's event handlers (e.g. `<button onClick={...} />`)
+- React error handlers ([React Root options](/reference/react-dom/client/createRoot#parameters) `onCaughtError`, `onRecoverableError`, and `onUncaughtError`)
+
+If no Owner Stack is available, an empty string is returned (see [Troubleshooting: The Owner Stack is empty](#the-owner-stack-is-empty-the-owner-stack-is-empty)). Outside of development builds, `null` is returned (see [Troubleshooting: The Owner Stack is `null`](#the-owner-stack-is-null-the-owner-stack-is-null)).
 
 #### Caveats {/*caveats*/}
 
@@ -109,6 +115,7 @@ createRoot(document.createElement('div'), {
     // highlight that browsers will apply sourcemaps to the logged stacks.
     // Note that sourcemapping is only applied in the real browser console not
     // in the fake one displayed on this page.
+    // Press "fork" to be able to view the sourcemapped stack in a real console.
     console.log(errorInfo.componentStack);
     console.log(captureOwnerStack());
   },
@@ -179,14 +186,205 @@ Neither `Navigation` nor `legend` are in the stack at all since it's only a sibl
 
 ## Usage {/*usage*/}
 
-### Improve error reporting {/*improve-error-reporting*/}
+### Enhance a custom error overlay {/*enhance-a-custom-error-overlay*/}
 
-Check out the following example to see how to use `captureOwnerStack` to improve error reporting:
+```js [[1, 5, "console.error"], [4, 7, "captureOwnerStack"]]
+import { captureOwnerStack } from "react";
+import { instrumentedConsoleError } from "./errorOverlay";
 
-- [createRoot usage: Show a dialog for uncaught errors
-](/reference/react-dom/client/createRoot#show-a-dialog-for-uncaught-errors)
-- [createRoot usage: Displaying Error Boundary errors](/reference/react-dom/client/createRoot#show-a-dialog-for-uncaught-errors)
-- [createRoot usage: Displaying a dialog for recoverable errors](/reference/react-dom/client/createRoot#displaying-a-dialog-for-recoverable-errors)
+const originalConsoleError = console.error;
+console.error = function patchedConsoleError(...args) {
+  originalConsoleError.apply(console, args);
+  const ownerStack = captureOwnerStack();
+  onConsoleError({
+    // Keep in mind that in a real application, console.error can be
+    // called with multiple arguments which you should account for.
+    consoleMessage: args[0],
+    ownerStack,
+  });
+};
+```
+
+If you intercept <CodeStep step={1}>`console.error`</CodeStep> calls to highlight them in an error overlay, you can call <CodeStep step={2}>`captureOwnerStack`</CodeStep> to include the Owner Stack.
+
+<Sandpack>
+
+```css src/styles.css
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: sans-serif;
+  margin: 20px;
+  padding: 0;
+}
+
+h1 {
+  margin-top: 0;
+  font-size: 22px;
+}
+
+h2 {
+  margin-top: 0;
+  font-size: 20px;
+}
+
+code {
+  font-size: 1.2em;
+}
+
+ul {
+  padding-inline-start: 20px;
+}
+
+label, button { display: block; margin-bottom: 20px; }
+html, body { min-height: 300px; }
+
+#error-dialog {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: white;
+  padding: 15px;
+  opacity: 0.9;
+  text-wrap: wrap;
+  overflow: scroll;
+}
+
+.text-red {
+  color: red;
+}
+
+.-mb-20 {
+  margin-bottom: -20px;
+}
+
+.mb-0 {
+  margin-bottom: 0;
+}
+
+.mb-10 {
+  margin-bottom: 10px;
+}
+
+pre {
+  text-wrap: wrap;
+}
+
+pre.nowrap {
+  text-wrap: nowrap;
+}
+
+.hidden {
+ display: none;  
+}
+```
+
+```html public/index.html hidden
+<!DOCTYPE html>
+<html>
+<head>
+  <title>My app</title>
+</head>
+<body>
+<!--
+  Error dialog in raw HTML
+  since an error in the React app may crash.
+-->
+<div id="error-dialog" class="hidden">
+  <h1 id="error-title" class="text-red">Error</h1>
+  <p>
+    <pre id="error-body"></pre>
+  </p>
+  <h2 class="-mb-20">Owner stack:</h4>
+  <pre id="error-owner-stack" class="nowrap"></pre>
+  <button
+    id="error-close"
+    class="mb-10"
+    onclick="document.getElementById('error-dialog').classList.add('hidden')"
+  >
+    Close
+  </button>
+</div>
+<!-- This is the DOM node -->
+<div id="root"></div>
+</body>
+</html>
+
+```
+
+```js src/errorOverlay.js
+
+export function onConsoleError({ consoleMessage, ownerStack }) {
+  const errorDialog = document.getElementById("error-dialog");
+  const errorBody = document.getElementById("error-body");
+  const errorOwnerStack = document.getElementById("error-owner-stack");
+  const errorStack = document.getElementById("error-stack");
+
+  // Display console.error() message
+  errorBody.innerText = consoleMessage;
+
+  // Display owner stack
+  errorOwnerStack.innerText = ownerStack;
+
+  // Show the dialog
+  errorDialog.classList.remove("hidden");
+}
+```
+
+```js src/index.js active
+import { captureOwnerStack } from "react";
+import { createRoot } from "react-dom/client";
+import App from './App';
+import { onConsoleError } from "./errorOverlay";
+import './styles.css';
+
+const originalConsoleError = console.error;
+console.error = function patchedConsoleError(...args) {
+  originalConsoleError.apply(console, args);
+  const ownerStack = captureOwnerStack();
+  onConsoleError({
+    // Keep in mind that in a real application, console.error can be
+    // called with multiple arguments which you should account for.
+    consoleMessage: args[0],
+    ownerStack,
+  });
+};
+
+const container = document.getElementById("root");
+createRoot(container).render(<App />);
+```
+
+```json package.json hidden
+{
+  "dependencies": {
+    "react": "experimental",
+    "react-dom": "experimental",
+    "react-scripts": "latest"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  }
+}
+```
+
+```js src/App.js
+function Component() {
+  return <button onClick={() => console.error('Some console error')}>Trigger console.error()</button>;
+}
+
+export default function App() {
+  return <Component />;
+}
+```
+
+</Sandpack>
 
 ### Expanding error stacks {/*expanding-error-stacks*/}
 
@@ -295,4 +493,48 @@ const root = createRoot(document.getElementById('root'), {
 
 ### The Owner Stack is empty {/*the-owner-stack-is-empty*/}
 
-The call of `captureOwnerStack` happened outside of a React controlled function e.g. in a `setTimeout` callback. During render, Effects, Events, and React error handlers (e.g. `hydrateRoot#options.onCaughtError`) Owner Stacks should be available.
+The call of `captureOwnerStack` happened outside of a React controlled function e.g. in a `setTimeout` callback, after a fetch or in a custom DOM event handler. During render, Effects, React event handlers, and React error handlers (e.g. `hydrateRoot#options.onCaughtError`) Owner Stacks should be available.
+
+In the example below, clicking the button will log an empty Owner Stack because `captureOwnerStack` was called during a custom DOM event handler. The Owner Stack must be captured earlier e.g. by moving the call of `captureOwnerStack` into the Effect body.
+<Sandpack>
+
+```js
+import {captureOwnerStack, useEffect} from 'react';
+
+export default function App() {
+  useEffect(() => {
+    // Should call `captureOwnerStack` here.
+    function handleEvent() {
+      // Calling it in a custom DOM event handler is too late.
+      // The Owner Stack will be empty at this point.
+      console.log('Owner Stack: ', captureOwnerStack());
+    }
+
+    document.addEventListener('click', handleEvent);
+
+    return () => {
+      document.removeEventListener('click', handleEvent);
+    }
+  })
+
+  return <button>Click me to see that Owner Stacks are not available in custom DOM event handlers</button>;
+}
+```
+
+```json package.json hidden
+{
+  "dependencies": {
+    "react": "experimental",
+    "react-dom": "experimental",
+    "react-scripts": "latest"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  }
+}
+```
+
+</Sandpack>

@@ -1,5 +1,7 @@
 # react.dev
 
+testy mctest
+
 This repo contains the source code and documentation powering [react.dev](https://react.dev/).
 
 ## Getting started
@@ -15,7 +17,7 @@ This repo contains the source code and documentation powering [react.dev](https:
 ### Installation
 
 1. `cd react.dev` to go into the project root
-3. `yarn` to install the website's npm dependencies
+2. `yarn` to install the website's npm dependencies
 
 ### Running locally
 
@@ -38,9 +40,9 @@ The documentation is divided into several sections with a different tone and pur
 
 1. Follow the ["Running locally"](#running-locally) instructions
 1. Save the files and check in the browser
-  1. Changes to React components in `src` will hot-reload
-  1. Changes to markdown files in `content` will hot-reload
-  1. If working with plugins, you may need to remove the `.cache` directory and restart the server
+1. Changes to React components in `src` will hot-reload
+1. Changes to markdown files in `content` will hot-reload
+1. If working with plugins, you may need to remove the `.cache` directory and restart the server
 
 ### Test the change
 
@@ -60,4 +62,5 @@ The documentation is divided into several sections with a different tone and pur
 If you are interested in translating `react.dev`, please see the current translation efforts [here](https://github.com/reactjs/react.dev/issues/4135).
 
 ## License
+
 Content submitted to [react.dev](https://react.dev/) is CC-BY-4.0 licensed, as found in the [LICENSE-DOCS.md](https://github.com/reactjs/react.dev/blob/main/LICENSE-DOCS.md) file.

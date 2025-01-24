@@ -13,6 +13,7 @@ jobs:
     uses: facebook/react/.github/workflows/shared_check_maintainer.yml@main
     with:
       actor: ${{ github.event.pull_request.user.login }}
+      is_remote: true
 
   label:
     if: ${{ needs.check_maintainer.outputs.is_core_team == 'true' }}

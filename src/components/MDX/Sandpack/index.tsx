@@ -3,7 +3,7 @@
  */
 
 import {lazy, memo, Children, Suspense} from 'react';
-import {createFileMap} from './createFileMap';
+import {AppJSPath, createFileMap} from './createFileMap';
 
 const SandpackRoot = lazy(() => import('./SandpackRoot'));
 
@@ -23,7 +23,7 @@ const SandpackGlimmer = ({code}: {code: string}) => (
               <div className="sp-cm sp-pristine">
                 <div className="cm-editor">
                   <div>
-                    <div className="cm-gutters pl-9 sticky min-h-[192px]">
+                    <div className="cm-gutters ps-9 sticky min-h-[192px]">
                       <div className="cm-gutter cm-lineNumbers whitespace-pre sp-pre-placeholder">
                         {code}
                       </div>
@@ -57,7 +57,7 @@ export default memo(function SandpackWrapper(props: any): any {
   );
   let activeCode;
   if (!activeCodeSnippet.length) {
-    activeCode = codeSnippet['/App.js'].code;
+    activeCode = codeSnippet[AppJSPath].code;
   } else {
     activeCode = codeSnippet[activeCodeSnippet[0]].code;
   }

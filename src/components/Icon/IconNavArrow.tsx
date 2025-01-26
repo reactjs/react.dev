@@ -7,15 +7,22 @@ import cn from 'classnames';
 
 export const IconNavArrow = memo<
   JSX.IntrinsicElements['svg'] & {
-    displayDirection: 'right' | 'down' | 'left';
+    /**
+     * The direction the arrow should point.
+     * `start` and `end` are relative to the current locale.
+     * for example, in LTR, `start` is left and `end` is right.
+     */
+    displayDirection: 'start' | 'end' | 'right' | 'left' | 'down';
   }
->(function IconNavArrow({displayDirection = 'right', className}) {
+>(function IconNavArrow({displayDirection = 'start', className}) {
   const classes = cn(
     'duration-100 ease-in transition',
     {
       'rotate-0': displayDirection === 'down',
-      '-rotate-90': displayDirection === 'right',
       'rotate-90': displayDirection === 'left',
+      '-rotate-90': displayDirection === 'right',
+      'rotate-90 rtl:-rotate-90': displayDirection === 'start',
+      '-rotate-90 rtl:rotate-90': displayDirection === 'end',
     },
     className
   );

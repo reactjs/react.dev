@@ -7,6 +7,20 @@
       "sectionHeader": "GET STARTED"
     },
     {
+      "title": "Quick Start",
+      "path": "/learn",
+      "routes": [
+        {
+          "title": "Tutorial: Tic-Tac-Toe",
+          "path": "/learn/tutorial-tic-tac-toe"
+        },
+        {
+          "title": "Thinking in React",
+          "path": "/learn/thinking-in-react"
+        }
+      ]
+    },
+    {
       "title": "Installation",
       "path": "/learn/installation",
       "routes": [
@@ -23,22 +37,17 @@
           "path": "/learn/editor-setup"
         },
         {
-          "title": "React Developer Tools",
-          "path": "/learn/react-developer-tools"
-        }
-      ]
-    },
-    {
-      "title": "Quick Start",
-      "path": "/learn",
-      "routes": [
-        {
-          "title": "Tutorial: Tic-Tac-Toe",
-          "path": "/learn/tutorial-tic-tac-toe"
+          "title": "Using TypeScript",
+          "path": "/learn/typescript"
         },
         {
-          "title": "Thinking in React",
-          "path": "/learn/thinking-in-react"
+          "title": "React Developer Tools",
+          "path": "/learn/react-developer-tools"
+        },
+        {
+          "title": "React Compiler",
+          "path": "/learn/react-compiler",
+          "canary": true
         }
       ]
     },
@@ -82,6 +91,10 @@
         {
           "title": "Keeping Components Pure",
           "path": "/learn/keeping-components-pure"
+        },
+        {
+          "title": "Your UI as a Tree",
+          "path": "/learn/understanding-your-ui-as-a-tree"
         }
       ]
     },
@@ -186,7 +199,7 @@
         },
         {
           "title": "Removing Effect Dependencies",
-          "path": "/learn/removing-effect-dependencies"              
+          "path": "/learn/removing-effect-dependencies"
         },
         {
           "title": "Reusing Logic with Custom Hooks",

@@ -7,9 +7,10 @@ import {useRef, useLayoutEffect, Fragment} from 'react';
 import cn from 'classnames';
 import {useRouter} from 'next/router';
 import {SidebarLink} from './SidebarLink';
-import useCollapse from 'react-collapsed';
+import {useCollapse} from 'react-collapsed';
 import usePendingRoute from 'hooks/usePendingRoute';
 import type {RouteItem} from 'components/Layout/getRouteMeta';
+import {siteConfig} from 'siteConfig';
 
 interface SidebarRouteTreeProps {
   isForceExpanded: boolean;
@@ -37,6 +38,7 @@ function CollapseWrapper({
   // Disable pointer events while animating.
   const isExpandedRef = useRef(isExpanded);
   if (typeof window !== 'undefined') {
+    // eslint-disable-next-line react-compiler/react-compiler
     // eslint-disable-next-line react-hooks/rules-of-hooks
     useLayoutEffect(() => {
       const wasExpanded = isExpandedRef.current;
@@ -82,12 +84,20 @@ export function SidebarRouteTree({
     <ul>
       {currentRoutes.map(
         (
-          {path, title, routes, wip, heading, hasSectionHeader, sectionHeader},
+          {
+            path,
+            title,
+            routes,
+            version,
+            heading,
+            hasSectionHeader,
+            sectionHeader,
+          },
           index
         ) => {
           const selected = slug === path;
           let listItem = null;
-          if (!path || !path || heading) {
+          if (!path || heading) {
             // if current route item has no path and children treat it as an API sidebar heading
             listItem = (
               <SidebarRouteTree
@@ -112,9 +122,8 @@ export function SidebarRouteTree({
                   selected={selected}
                   level={level}
                   title={title}
-                  wip={wip}
+                  version={version}
                   isExpanded={isExpanded}
-                  isBreadcrumb={isBreadcrumb}
                   hideArrow={isForceExpanded}
                 />
                 <CollapseWrapper duration={250} isExpanded={isExpanded}>
@@ -137,26 +146,30 @@ export function SidebarRouteTree({
                   selected={selected}
                   level={level}
                   title={title}
-                  wip={wip}
+                  version={version}
                 />
               </li>
             );
           }
           if (hasSectionHeader) {
+            let sectionHeaderText =
+              sectionHeader != null
+                ? sectionHeader.replace('{{version}}', siteConfig.version)
+                : '';
             return (
-              <Fragment key={`${sectionHeader}-${level}-separator`}>
+              <Fragment key={`${sectionHeaderText}-${level}-separator`}>
                 {index !== 0 && (
                   <li
                     role="separator"
-                    className="mt-4 mb-2 ml-5 border-b border-border dark:border-border-dark"
+                    className="mt-4 mb-2 ms-5 border-b border-border dark:border-border-dark"
                   />
                 )}
                 <h3
                   className={cn(
-                    'mb-1 text-sm font-bold ml-5 text-tertiary dark:text-tertiary-dark',
+                    'mb-1 text-sm font-bold ms-5 text-tertiary dark:text-tertiary-dark',
                     index !== 0 && 'mt-2'
                   )}>
-                  {sectionHeader}
+                  {sectionHeaderText}
                 </h3>
               </Fragment>
             );

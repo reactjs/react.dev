@@ -4,34 +4,20 @@
   "routes": [
     {
       "hasSectionHeader": true,
-      "sectionHeader": "react@18.2.0"
+      "sectionHeader": "react@{{version}}"
     },
     {
-      "title": "Components",
-      "path": "/reference/react/components",
-      "routes": [
-        {
-          "title": "<Fragment> (<>)",
-          "path": "/reference/react/Fragment"
-        },
-        {
-          "title": "<Profiler>",
-          "path": "/reference/react/Profiler"
-        },
-        {
-          "title": "<StrictMode>",
-          "path": "/reference/react/StrictMode"
-        },
-        {
-          "title": "<Suspense>",
-          "path": "/reference/react/Suspense"
-        }
-      ]
+      "title": "Overview",
+      "path": "/reference/react"
     },
     {
       "title": "Hooks",
-      "path": "/reference/react",
+      "path": "/reference/react/hooks",
       "routes": [
+        {
+          "title": "useActionState",
+          "path": "/reference/react/useActionState"
+        },
         {
           "title": "useCallback",
           "path": "/reference/react/useCallback"
@@ -73,6 +59,10 @@
           "path": "/reference/react/useMemo"
         },
         {
+          "title": "useOptimistic",
+          "path": "/reference/react/useOptimistic"
+        },
+        {
           "title": "useReducer",
           "path": "/reference/react/useReducer"
         },
@@ -95,16 +85,42 @@
       ]
     },
     {
+      "title": "Components",
+      "path": "/reference/react/components",
+      "routes": [
+        {
+          "title": "<Fragment> (<>)",
+          "path": "/reference/react/Fragment"
+        },
+        {
+          "title": "<Profiler>",
+          "path": "/reference/react/Profiler"
+        },
+        {
+          "title": "<StrictMode>",
+          "path": "/reference/react/StrictMode"
+        },
+        {
+          "title": "<Suspense>",
+          "path": "/reference/react/Suspense"
+        }
+      ]
+    },
+    {
       "title": "APIs",
       "path": "/reference/react/apis",
       "routes": [
         {
-          "title": "createContext",
-          "path": "/reference/react/createContext"
+          "title": "act",
+          "path": "/reference/react/act"
         },
         {
-          "title": "forwardRef",
-          "path": "/reference/react/forwardRef"
+          "title": "cache",
+          "path": "/reference/react/cache"
+        },
+        {
+          "title": "createContext",
+          "path": "/reference/react/createContext"
         },
         {
           "title": "lazy",
@@ -117,12 +133,36 @@
         {
           "title": "startTransition",
           "path": "/reference/react/startTransition"
+        },
+        {
+          "title": "use",
+          "path": "/reference/react/use"
+        },
+        {
+          "title": "experimental_taintObjectReference",
+          "path": "/reference/react/experimental_taintObjectReference",
+          "version": "canary"
+        },
+        {
+          "title": "experimental_taintUniqueValue",
+          "path": "/reference/react/experimental_taintUniqueValue",
+          "version": "canary"
         }
       ]
     },
     {
       "hasSectionHeader": true,
-      "sectionHeader": "react-dom@18.2.0"
+      "sectionHeader": "react-dom@{{version}}"
+    },
+    {
+      "title": "Hooks",
+      "path": "/reference/react-dom/hooks",
+      "routes": [
+        {
+          "title": "useFormStatus",
+          "path": "/reference/react-dom/hooks/useFormStatus"
+        }
+      ]
     },
     {
       "title": "Components",
@@ -131,6 +171,10 @@
         {
           "title": "Common (e.g. <div>)",
           "path": "/reference/react-dom/components/common"
+        },
+        {
+          "title": "<form>",
+          "path": "/reference/react-dom/components/form"
         },
         {
           "title": "<input>",
@@ -151,6 +195,26 @@
         {
           "title": "<textarea>",
           "path": "/reference/react-dom/components/textarea"
+        },
+        {
+          "title": "<link>",
+          "path": "/reference/react-dom/components/link"
+        },
+        {
+          "title": "<meta>",
+          "path": "/reference/react-dom/components/meta"
+        },
+        {
+          "title": "<script>",
+          "path": "/reference/react-dom/components/script"
+        },
+        {
+          "title": "<style>",
+          "path": "/reference/react-dom/components/style"
+        },
+        {
+          "title": "<title>",
+          "path": "/reference/react-dom/components/title"
         }
       ]
     },
@@ -167,20 +231,28 @@
           "path": "/reference/react-dom/flushSync"
         },
         {
-          "title": "findDOMNode",
-          "path": "/reference/react-dom/findDOMNode"
+          "title": "preconnect",
+          "path": "/reference/react-dom/preconnect"
         },
         {
-          "title": "hydrate",
-          "path": "/reference/react-dom/hydrate"
+          "title": "prefetchDNS",
+          "path": "/reference/react-dom/prefetchDNS"
         },
         {
-          "title": "render",
-          "path": "/reference/react-dom/render"
+          "title": "preinit",
+          "path": "/reference/react-dom/preinit"
         },
         {
-          "title": "unmountComponentAtNode",
-          "path": "/reference/react-dom/unmountComponentAtNode"
+          "title": "preinitModule",
+          "path": "/reference/react-dom/preinitModule"
+        },
+        {
+          "title": "preload",
+          "path": "/reference/react-dom/preload"
+        },
+        {
+          "title": "preloadModule",
+          "path": "/reference/react-dom/preloadModule"
         }
       ]
     },
@@ -203,10 +275,6 @@
       "path": "/reference/react-dom/server",
       "routes": [
         {
-          "title": "renderToNodeStream",
-          "path": "/reference/react-dom/server/renderToNodeStream"
-        },
-        {
           "title": "renderToPipeableStream",
           "path": "/reference/react-dom/server/renderToPipeableStream"
         },
@@ -219,12 +287,71 @@
           "path": "/reference/react-dom/server/renderToStaticMarkup"
         },
         {
-          "title": "renderToStaticNodeStream",
-          "path": "/reference/react-dom/server/renderToStaticNodeStream"
-        },
-        {
           "title": "renderToString",
           "path": "/reference/react-dom/server/renderToString"
+        }
+      ]
+    },
+    {
+      "title": "Static APIs",
+      "path": "/reference/react-dom/static",
+      "routes": [
+        {
+          "title": "prerender",
+          "path": "/reference/react-dom/static/prerender"
+        },
+        {
+          "title": "prerenderToNodeStream",
+          "path": "/reference/react-dom/static/prerenderToNodeStream"
+        }
+        
+      ]
+    },
+    {
+      "hasSectionHeader": true,
+      "sectionHeader": "Rules of React"
+    },
+    {
+      "title": "Overview",
+      "path": "/reference/rules",
+      "routes": [
+        {
+          "title": "Components and Hooks must be pure",
+          "path": "/reference/rules/components-and-hooks-must-be-pure"
+        },
+        {
+          "title": "React calls Components and Hooks",
+          "path": "/reference/rules/react-calls-components-and-hooks"
+        },
+        {
+          "title": "Rules of Hooks",
+          "path": "/reference/rules/rules-of-hooks"
+        }
+      ]
+    },
+    {
+      "hasSectionHeader": true,
+      "sectionHeader": "React Server Components"
+    },
+    {
+      "title": "Server Components",
+      "path": "/reference/rsc/server-components"
+    },
+    {
+      "title": "Server Functions",
+      "path": "/reference/rsc/server-functions"
+    },
+    {
+      "title": "Directives",
+      "path": "/reference/rsc/directives",
+      "routes": [
+        {
+          "title": "'use client'",
+          "path": "/reference/rsc/use-client"
+        },
+        {
+          "title": "'use server'",
+          "path": "/reference/rsc/use-server"
         }
       ]
     },
@@ -253,12 +380,12 @@
           "path": "/reference/react/createElement"
         },
         {
-          "title": "createFactory",
-          "path": "/reference/react/createFactory"
-        },
-        {
           "title": "createRef",
           "path": "/reference/react/createRef"
+        },
+        {
+          "title": "forwardRef",
+          "path": "/reference/react/forwardRef"
         },
         {
           "title": "isValidElement",

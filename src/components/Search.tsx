@@ -2,44 +2,28 @@
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
 
-// @ts-ignore
-import {IconSearch} from 'components/Icon/IconSearch';
 import Head from 'next/head';
 import Link from 'next/link';
 import Router from 'next/router';
-import {useState, useCallback, useEffect, useLayoutEffect} from 'react';
+import {lazy, useEffect} from 'react';
 import * as React from 'react';
 import {createPortal} from 'react-dom';
 import {siteConfig} from 'siteConfig';
-import cn from 'classnames';
+import type {ComponentType, PropsWithChildren} from 'react';
+import type {DocSearchModalProps} from '@docsearch/react/modal';
 
 export interface SearchProps {
   appId?: string;
   apiKey?: string;
   indexName?: string;
   searchParameters?: any;
-  renderModal?: boolean;
-  fullsize?: boolean;
+  isOpen: boolean;
+  onOpen: () => void;
+  onClose: () => void;
 }
 
 function Hit({hit, children}: any) {
-  return (
-    <Link href={hit.url.replace()}>
-      <a>{children}</a>
-    </Link>
-  );
-}
-
-function Kbd(props: {children?: React.ReactNode; wide?: boolean}) {
-  const {wide, ...rest} = props;
-  const width = wide ? 'w-10' : 'w-5';
-
-  return (
-    <kbd
-      className={`${width} h-5 border border-transparent mr-1 bg-wash dark:bg-wash-dark text-gray-30 align-middle p-0 inline-flex justify-center items-center text-xs text-center rounded-md`}
-      {...rest}
-    />
-  );
+  return <Link href={hit.url.replace()}>{children}</Link>;
 }
 
 // Copy-pasted from @docsearch/react to avoid importing the whole bundle.
@@ -99,23 +83,34 @@ const options = {
   apiKey: siteConfig.algolia.apiKey,
   indexName: siteConfig.algolia.indexName,
 };
-let DocSearchModal: any = null;
+
+const DocSearchModal: any = lazy(() =>
+  import('@docsearch/react/modal').then((mod) => ({
+    default: mod.DocSearchModal as ComponentType<
+      PropsWithChildren<DocSearchModalProps>
+    >,
+  }))
+);
+
 export function Search({
+  isOpen,
+  onOpen,
+  onClose,
   searchParameters = {
-    hitsPerPage: 5,
+    hitsPerPage: 30,
+    attributesToHighlight: [
+      'hierarchy.lvl0',
+      'hierarchy.lvl1',
+      'hierarchy.lvl2',
+      'hierarchy.lvl3',
+      'hierarchy.lvl4',
+      'hierarchy.lvl5',
+      'hierarchy.lvl6',
+      'content',
+    ],
   },
-  fullsize,
 }: SearchProps) {
   const [isShowing, setIsShowing] = useState(false);
-
-  useLayoutEffect(() => {
-    const scrollBarWidth = window.innerWidth - document.body.clientWidth;
-    if (isShowing) {
-      document.body.style.marginRight = `${scrollBarWidth}px`;
-    } else if (!isShowing) {
-      document.body.style.marginRight = '0px';
-    }
-  }, [isShowing]);
 
   const importDocSearchModalIfNeeded = useCallback(
     function importDocSearchModalIfNeeded() {
@@ -159,40 +154,10 @@ export function Search({
           href={`https://${options.appId}-dsn.algolia.net`}
         />
       </Head>
-
-      {!fullsize && (
-        <button
-          aria-label="Search"
-          type="button"
-          className="active:scale-95 transition-transform flex md:hidden w-12 h-12 rounded-full items-center justify-center hover:bg-secondary-button hover:dark:bg-secondary-button-dark outline-link"
-          onClick={onOpen}>
-          <IconSearch className="align-middle w-5 h-5" />
-        </button>
-      )}
-
-      <button
-        type="button"
-        className={cn(
-          '3xl:w-[56rem] 3xl:mx-0 relative pl-4 pr-1 py-1 h-10 bg-gray-30/20 dark:bg-gray-40/20 outline-none  focus:outline-link betterhover:hover:bg-opacity-80 pointer items-center text-left w-full text-gray-30 rounded-full align-middle text-base',
-          fullsize ? 'flex' : 'hidden md:flex'
-        )}
-        onClick={onOpen}>
-        <IconSearch className="mr-3 align-middle text-gray-30 shrink-0 group-betterhover:hover:text-gray-70" />
-        Search
-        <span className="ml-auto hidden sm:flex item-center mr-1">
-          <Kbd data-platform="mac">⌘</Kbd>
-          <Kbd data-platform="win" wide>
-            Ctrl
-          </Kbd>
-          <Kbd>K</Kbd>
-        </span>
-      </button>
-
-      {isShowing &&
+      {isOpen &&
         createPortal(
           <DocSearchModal
             {...options}
-            initialScrollY={window.scrollY}
             searchParameters={searchParameters}
             onClose={onClose}
             navigator={{

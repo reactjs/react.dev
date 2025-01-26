@@ -7,12 +7,12 @@
       "sectionHeader": "GET STARTED"
     },
     {
-      "title": "Installation",
-      "path": "/learn/installation"
-    },
-    {
       "title": "Quick Start",
       "path": "/learn"
+    },
+    {
+      "title": "Installation",
+      "path": "/learn/installation"
     },
     {
       "hasSectionHeader": true,
@@ -39,12 +39,12 @@
       "sectionHeader": "REACT API"
     },
     {
-      "title": "Components",
-      "path": "/reference/react/components"
-    },
-    {
       "title": "Hooks",
       "path": "/reference/react"
+    },
+    {
+      "title": "Components",
+      "path": "/reference/react/components"
     },
     {
       "title": "APIs",

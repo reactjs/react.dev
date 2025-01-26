@@ -79,7 +79,7 @@ When React re-renders a component:
 
 1. React calls your function again.
 2. Your function returns a new JSX snapshot.
-3. React then updates the screen to match the snapshot you've returned.
+3. React then updates the screen to match the snapshot your function returned.
 
 <IllustrationBlock sequential>
     <Illustration caption="React executing the function" src="/images/docs/illustrations/i_render1.png" />
@@ -327,7 +327,7 @@ But what if you wanted to read the latest state before a re-render? You'll want 
 
 #### Implement a traffic light {/*implement-a-traffic-light*/}
 
-Here is a crosswalk light component that toggles on when the button is pressed:
+Here is a crosswalk light component that toggles when the button is pressed:
 
 <Sandpack>
 

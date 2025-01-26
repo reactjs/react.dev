@@ -70,13 +70,13 @@ function ExpandableExample({children, excerpt, type}: ExpandableExampleProps) {
           })}>
           {isDeepDive && (
             <>
-              <IconDeepDive className="inline mr-2 dark:text-purple-30 text-purple-40" />
+              <IconDeepDive className="inline me-2 dark:text-purple-30 text-purple-40" />
               Deep Dive
             </>
           )}
           {isExample && (
             <>
-              <IconCodeBlock className="inline mr-2 dark:text-yellow-30 text-yellow-50" />
+              <IconCodeBlock className="inline me-2 dark:text-yellow-30 text-yellow-50" />
               Example
             </>
           )}
@@ -98,7 +98,7 @@ function ExpandableExample({children, excerpt, type}: ExpandableExampleProps) {
               isExample,
           })}
           onClick={() => setIsExpanded((current) => !current)}>
-          <span className="mr-1">
+          <span className="me-1">
             <IconChevron displayDirection={isExpanded ? 'up' : 'down'} />
           </span>
           {isExpanded ? 'Hide Details' : 'Show Details'}

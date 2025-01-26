@@ -3,14 +3,17 @@
  */
 
 import cn from 'classnames';
-import {highlightTree, HighlightStyle, tags} from '@codemirror/highlight';
+import {HighlightStyle} from '@codemirror/language';
+import {highlightTree} from '@lezer/highlight';
 import {javascript} from '@codemirror/lang-javascript';
 import {html} from '@codemirror/lang-html';
 import {css} from '@codemirror/lang-css';
 import rangeParser from 'parse-numeric-range';
+import {tags} from '@lezer/highlight';
+
 import {CustomTheme} from '../Sandpack/Themes';
 
-interface InlineHiglight {
+interface InlineHighlight {
   step: number;
   line: number;
   startColumn: number;
@@ -52,7 +55,7 @@ const CodeBlock = function CodeBlock({
   let tokenStarts = new Map();
   let tokenEnds = new Map();
   const highlightTheme = getSyntaxHighlight(CustomTheme);
-  highlightTree(tree, highlightTheme.match, (from, to, className) => {
+  highlightTree(tree, highlightTheme, (from, to, className) => {
     tokenStarts.set(from, className);
     tokenEnds.set(to, className);
   });
@@ -202,6 +205,7 @@ const CodeBlock = function CodeBlock({
 
   return (
     <div
+      dir="ltr"
       className={cn(
         'sandpack sandpack--codeblock',
         'rounded-2xl h-full w-full overflow-x-auto flex items-center bg-wash dark:bg-gray-95 shadow-lg',
@@ -285,7 +289,7 @@ function getSyntaxHighlight(theme: any): HighlightStyle {
 
 function getLineDecorators(
   code: string,
-  meta: string
+  meta?: string
 ): Array<{
   line: number;
   className: string;
@@ -305,7 +309,7 @@ function getLineDecorators(
 
 function getInlineDecorators(
   code: string,
-  meta: string
+  meta?: string
 ): Array<{
   step: number;
   line: number;
@@ -318,7 +322,7 @@ function getInlineDecorators(
   }
   const inlineHighlightLines = getInlineHighlights(meta, code);
   const inlineHighlightConfig = inlineHighlightLines.map(
-    (line: InlineHiglight) => ({
+    (line: InlineHighlight) => ({
       ...line,
       elementAttributes: {'data-step': `${line.step}`},
       className: cn(
@@ -371,15 +375,15 @@ function getHighlightLines(meta: string): number[] {
  * -> The meta is `{1-3,7} [[1, 1, 'count', [2, 4, 'setCount']] App.js active`
  */
 function getInlineHighlights(meta: string, code: string) {
-  const INLINE_HIGHT_REGEX = /(\[\[.*\]\])/;
-  const parsedMeta = INLINE_HIGHT_REGEX.exec(meta);
+  const INLINE_HEIGHT_REGEX = /(\[\[.*\]\])/;
+  const parsedMeta = INLINE_HEIGHT_REGEX.exec(meta);
   if (!parsedMeta) {
     return [];
   }
 
   const lines = code.split('\n');
-  const encodedHiglights = JSON.parse(parsedMeta[1]);
-  return encodedHiglights.map(([step, lineNo, substr, fromIndex]: any[]) => {
+  const encodedHighlights = JSON.parse(parsedMeta[1]);
+  return encodedHighlights.map(([step, lineNo, substr, fromIndex]: any[]) => {
     const line = lines[lineNo - 1];
     let index = line.indexOf(substr);
     const lastIndex = line.lastIndexOf(substr);

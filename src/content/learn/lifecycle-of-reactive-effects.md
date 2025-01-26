@@ -251,7 +251,7 @@ export default function App() {
 }
 ```
 
-```js chat.js
+```js src/chat.js
 export function createConnection(serverUrl, roomId) {
   // A real implementation would actually connect to the server
   return {
@@ -447,7 +447,7 @@ export default function App() {
 }
 ```
 
-```js chat.js
+```js src/chat.js
 export function createConnection(serverUrl, roomId) {
   // A real implementation would actually connect to the server
   return {
@@ -527,7 +527,7 @@ export default function App() {
 }
 ```
 
-```js chat.js
+```js src/chat.js
 export function createConnection(serverUrl, roomId) {
   // A real implementation would actually connect to the server
   return {
@@ -646,7 +646,7 @@ export default function App() {
 }
 ```
 
-```js chat.js
+```js src/chat.js
 export function createConnection(serverUrl, roomId) {
   // A real implementation would actually connect to the server
   return {
@@ -672,7 +672,7 @@ This may look like a React error, but really React is pointing out a bug in your
 To fix the bug, follow the linter's suggestion to specify `roomId` and `serverUrl` as dependencies of your Effect:
 
 ```js {9}
-function ChatRoom({ roomId, serverUrl }) {
+function ChatRoom({ roomId }) { // roomId is reactive
   const [serverUrl, setServerUrl] = useState('https://localhost:1234'); // serverUrl is reactive
   useEffect(() => {
     const connection = createConnection(serverUrl, roomId);
@@ -837,7 +837,7 @@ export default function App() {
 }
 ```
 
-```js chat.js
+```js src/chat.js
 export function createConnection(serverUrl, roomId) {
   // A real implementation would actually connect to the server
   return {
@@ -912,7 +912,7 @@ export default function App() {
 }
 ```
 
-```js chat.js
+```js src/chat.js
 export function createConnection(serverUrl, roomId) {
   // A real implementation would actually connect to the server
   return {
@@ -1187,7 +1187,7 @@ body {
 
 <Solution>
 
-The problem with the original code was suppressing the dependency linter. If you remove the suppression, you'll see that this Effect depends on the `handleMove` function. This makes sense: `handleMove` is declared inside the component body, which makes it a reactive value. Every reactive value must be specified as a depedency, or it can potentially get stale over time!
+The problem with the original code was suppressing the dependency linter. If you remove the suppression, you'll see that this Effect depends on the `handleMove` function. This makes sense: `handleMove` is declared inside the component body, which makes it a reactive value. Every reactive value must be specified as a dependency, or it can potentially get stale over time!
 
 The author of the original code has "lied" to React by saying that the Effect does not depend (`[]`) on any reactive values. This is why React did not re-synchronize the Effect after `canMove` has changed (and `handleMove` with it). Because React did not re-synchronize the Effect, the `handleMove` attached as a listener is the `handleMove` function created during the initial render. During the initial render, `canMove` was `true`, which is why `handleMove` from the initial render will forever see that value.
 
@@ -1329,7 +1329,7 @@ Suppressing the linter is always suspicious. Could this be a bug?
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useState } from 'react';
 import ChatRoom from './ChatRoom.js';
 import {
@@ -1374,7 +1374,7 @@ export default function App() {
 }
 ```
 
-```js ChatRoom.js active
+```js src/ChatRoom.js active
 import { useState, useEffect } from 'react';
 
 export default function ChatRoom({ roomId, createConnection }) {
@@ -1389,7 +1389,7 @@ export default function ChatRoom({ roomId, createConnection }) {
 }
 ```
 
-```js chat.js
+```js src/chat.js
 export function createEncryptedConnection(roomId) {
   // A real implementation would actually connect to the server
   return {
@@ -1427,7 +1427,7 @@ If you remove the linter suppression, you will see a lint error. The problem is 
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useState } from 'react';
 import ChatRoom from './ChatRoom.js';
 import {
@@ -1472,7 +1472,7 @@ export default function App() {
 }
 ```
 
-```js ChatRoom.js active
+```js src/ChatRoom.js active
 import { useState, useEffect } from 'react';
 
 export default function ChatRoom({ roomId, createConnection }) {
@@ -1486,7 +1486,7 @@ export default function ChatRoom({ roomId, createConnection }) {
 }
 ```
 
-```js chat.js
+```js src/chat.js
 export function createEncryptedConnection(roomId) {
   // A real implementation would actually connect to the server
   return {
@@ -1522,7 +1522,7 @@ It is correct that `createConnection` is a dependency. However, this code is a b
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useState } from 'react';
 import ChatRoom from './ChatRoom.js';
 
@@ -1560,7 +1560,7 @@ export default function App() {
 }
 ```
 
-```js ChatRoom.js active
+```js src/ChatRoom.js active
 import { useState, useEffect } from 'react';
 import {
   createEncryptedConnection,
@@ -1581,7 +1581,7 @@ export default function ChatRoom({ roomId, isEncrypted }) {
 }
 ```
 
-```js chat.js
+```js src/chat.js
 export function createEncryptedConnection(roomId) {
   // A real implementation would actually connect to the server
   return {
@@ -1633,7 +1633,7 @@ If you have two independent synchronization processes, you need to write two sep
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useState, useEffect } from 'react';
 import { fetchData } from './api.js';
 
@@ -1687,7 +1687,7 @@ export default function Page() {
 }
 ```
 
-```js api.js hidden
+```js src/api.js hidden
 export function fetchData(url) {
   if (url === '/planets') {
     return fetchPlanets();
@@ -1759,7 +1759,7 @@ async function fetchPlaces(planetId) {
           id: 'vishniac',
           name: 'Vishniac'
         }]);
-      } else throw Error('Uknown planet ID: ' + planetId);
+      } else throw Error('Unknown planet ID: ' + planetId);
     }, 1000);
   });
 }
@@ -1782,7 +1782,7 @@ This is why it makes sense to describe them as two separate Effects. Here's an e
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useState, useEffect } from 'react';
 import { fetchData } from './api.js';
 
@@ -1855,7 +1855,7 @@ export default function Page() {
 }
 ```
 
-```js api.js hidden
+```js src/api.js hidden
 export function fetchData(url) {
   if (url === '/planets') {
     return fetchPlanets();
@@ -1927,7 +1927,7 @@ async function fetchPlaces(planetId) {
           id: 'vishniac',
           name: 'Vishniac'
         }]);
-      } else throw Error('Uknown planet ID: ' + planetId);
+      } else throw Error('Unknown planet ID: ' + planetId);
     }, 1000);
   });
 }
@@ -1945,7 +1945,7 @@ Instead, to reduce repetition, you can extract some logic into a custom Hook lik
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import { useState } from 'react';
 import { useSelectOptions } from './useSelectOptions.js';
 
@@ -1991,7 +1991,7 @@ export default function Page() {
 }
 ```
 
-```js useSelectOptions.js
+```js src/useSelectOptions.js
 import { useState, useEffect } from 'react';
 import { fetchData } from './api.js';
 
@@ -2018,7 +2018,7 @@ export function useSelectOptions(url) {
 }
 ```
 
-```js api.js hidden
+```js src/api.js hidden
 export function fetchData(url) {
   if (url === '/planets') {
     return fetchPlanets();
@@ -2090,7 +2090,7 @@ async function fetchPlaces(planetId) {
           id: 'vishniac',
           name: 'Vishniac'
         }]);
-      } else throw Error('Uknown planet ID: ' + planetId);
+      } else throw Error('Unknown planet ID: ' + planetId);
     }, 1000);
   });
 }

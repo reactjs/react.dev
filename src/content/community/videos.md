@@ -58,7 +58,7 @@ Looking further into the future, [Xuan Huang (黄玄)](https://twitter.com/Huxpr
 
 ### React docs keynote {/*react-docs-keynote*/}
 
-[Rachel Nabors](https://twitter.com/rachelnabors) kicked off a section of talks about learning and designing with React with a keynote about our investment in React's [new docs](https://beta.reactjs.org/):
+[Rachel Nabors](https://twitter.com/rachelnabors) kicked off a section of talks about learning and designing with React with a keynote about our investment in React's new docs ([now shipped as react.dev](/blog/2023/03/16/introducing-react-dev)):
 
 <YouTubeIframe src="https://www.youtube.com/embed/mneDaMYOKP8" title="YouTube video player" />
 

@@ -4,7 +4,7 @@ title: Reacting to Input with State
 
 <Intro>
 
-React uses a declarative way to manipulate the UI. Instead of manipulating individual pieces of the UI directly, you describe the different states that your component can be in, and switch between them in response to the user input. This is similar to how designers think about the UI.
+React provides a declarative way to manipulate the UI. Instead of manipulating individual pieces of the UI directly, you describe the different states that your component can be in, and switch between them in response to the user input. This is similar to how designers think about the UI.
 
 </Intro>
 
@@ -20,8 +20,8 @@ React uses a declarative way to manipulate the UI. Instead of manipulating indiv
 
 When you design UI interactions, you probably think about how the UI *changes* in response to user actions. Consider a form that lets the user submit an answer:
 
-* When you type something into a form, the "Submit" button **becomes enabled.**
-* When you press "Submit", both form and the button **become disabled,** and a spinner **appears.**
+* When you type something into the form, the "Submit" button **becomes enabled.**
+* When you press "Submit", both the form and the button **become disabled,** and a spinner **appears.**
 * If the network request succeeds, the form **gets hidden,** and the "Thank you" message **appears.**
 * If the network request fails, an error message **appears,** and the form **becomes enabled** again.
 
@@ -35,7 +35,7 @@ In this example of imperative UI programming, the form is built *without* React.
 
 <Sandpack>
 
-```js index.js active
+```js src/index.js active
 async function handleFormSubmit(e) {
   e.preventDefault();
   disable(textarea);
@@ -84,7 +84,7 @@ function submitForm(answer) {
   // Pretend it's hitting the network.
   return new Promise((resolve, reject) => {
     setTimeout(() => {
-      if (answer.toLowerCase() == 'istanbul') {
+      if (answer.toLowerCase() === 'istanbul') {
         resolve();
       } else {
         reject(new Error('Good guess but a wrong answer. Try again!'));
@@ -246,7 +246,7 @@ If a component has a lot of visual states, it can be convenient to show them all
 
 <Sandpack>
 
-```js App.js active
+```js src/App.js active
 import Form from './Form.js';
 
 let statuses = [
@@ -271,7 +271,7 @@ export default function App() {
 }
 ```
 
-```js Form.js
+```js src/Form.js
 export default function Form({ status }) {
   if (status === 'success') {
     return <h1>That's right!</h1>
@@ -545,6 +545,7 @@ body { margin: 0; padding: 0; height: 250px; }
   width: 200px;
   height: 200px;
   border-radius: 10px;
+  border: 5px solid transparent;
 }
 
 .picture--active {
@@ -707,7 +708,7 @@ Here is a small form implemented with plain JavaScript and DOM. Play with it to 
 
 <Sandpack>
 
-```js index.js active
+```js src/index.js active
 function handleFormSubmit(e) {
   e.preventDefault();
   if (editButton.textContent === 'Edit Profile') {
@@ -909,7 +910,7 @@ Here is the original sandbox from the previous challenge, written imperatively w
 
 <Sandpack>
 
-```js index.js active
+```js src/index.js active
 function handleFormSubmit(e) {
   e.preventDefault();
   if (editButton.textContent === 'Edit Profile') {
@@ -1008,7 +1009,7 @@ If you're struggling to think where to start, the stub below already has most of
 
 <Sandpack>
 
-```js index.js active
+```js src/index.js active
 let firstName = 'Jane';
 let lastName = 'Jacobs';
 let isEditing = false;
@@ -1115,7 +1116,7 @@ The missing logic included toggling the display of inputs and content, and updat
 
 <Sandpack>
 
-```js index.js active
+```js src/index.js active
 let firstName = 'Jane';
 let lastName = 'Jacobs';
 let isEditing = false;

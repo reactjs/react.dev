@@ -4,7 +4,7 @@ title: Quick Start
 
 <Intro>
 
-Welcome to the React documentation! This page will give you an introduction to the 80% of React concepts that you will use on a daily basis.
+Welcome to the React documentation! This page will give you an introduction to 80% of the React concepts that you will use on a daily basis.
 
 </Intro>
 
@@ -313,6 +313,7 @@ Now you can declare a *state variable* inside your component:
 ```js
 function MyButton() {
   const [count, setCount] = useState(0);
+  // ...
 ```
 
 You’ll get two things from `useState`: the current state (`count`), and the function that lets you update it (`setCount`). You can give them any names, but the convention is to write `[something, setSomething]`.

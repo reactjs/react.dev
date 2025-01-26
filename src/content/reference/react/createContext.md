@@ -84,7 +84,7 @@ function Button() {
 }
 ```
 
-Although this older way still works, but **newly written code should read context with [`useContext()`](/reference/react/useContext) instead:**
+Although this older way still works, **newly written code should read context with [`useContext()`](/reference/react/useContext) instead:**
 
 ```js
 function Button() {
@@ -166,7 +166,7 @@ import { createContext } from 'react';
 
 export const ThemeContext = createContext('light');
 export const AuthContext = createContext(null);
-````
+```
 
 Components declared in other files can then use the [`import`](https://developer.mozilla.org/en-US/docs/web/javascript/reference/statements/import) statement to read or provide this context:
 

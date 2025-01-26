@@ -4,15 +4,17 @@
 
 import {Fragment, useMemo} from 'react';
 import {useRouter} from 'next/router';
-import {MDXComponents} from 'components/MDX/MDXComponents';
 import {Page} from 'components/Layout/Page';
 import sidebarHome from '../sidebarHome.json';
 import sidebarLearn from '../sidebarLearn.json';
 import sidebarReference from '../sidebarReference.json';
 import sidebarCommunity from '../sidebarCommunity.json';
 import sidebarBlog from '../sidebarBlog.json';
+import {MDXComponents} from 'components/MDX/MDXComponents';
+import compileMDX from 'utils/compileMDX';
+import {generateRssFeed} from '../utils/rss';
 
-export default function Layout({content, toc, meta}) {
+export default function Layout({content, toc, meta, languages}) {
   const parsedContent = useMemo(
     () => JSON.parse(content, reviveNodeOnClient),
     [content]
@@ -39,7 +41,12 @@ export default function Layout({content, toc, meta}) {
       break;
   }
   return (
-    <Page toc={parsedToc} routeTree={routeTree} meta={meta} section={section}>
+    <Page
+      toc={parsedToc}
+      routeTree={routeTree}
+      meta={meta}
+      section={section}
+      languages={languages}>
       {parsedContent}
     </Page>
   );
@@ -64,50 +71,37 @@ function useActiveSection() {
 }
 
 // Deserialize a client React tree from JSON.
-function reviveNodeOnClient(key, val) {
+function reviveNodeOnClient(parentPropertyName, val) {
   if (Array.isArray(val) && val[0] == '$r') {
     // Assume it's a React element.
-    let type = val[1];
+    let Type = val[1];
     let key = val[2];
+    if (key == null) {
+      key = parentPropertyName; // Index within a parent.
+    }
     let props = val[3];
-    if (type === 'wrapper') {
-      type = Fragment;
+    if (Type === 'wrapper') {
+      Type = Fragment;
       props = {children: props.children};
     }
-    if (MDXComponents[type]) {
-      type = MDXComponents[type];
+    if (Type in MDXComponents) {
+      Type = MDXComponents[Type];
     }
-    if (!type) {
-      console.error('Unknown type: ' + type);
-      type = Fragment;
+    if (!Type) {
+      console.error('Unknown type: ' + Type);
+      Type = Fragment;
     }
-    return {
-      $$typeof: Symbol.for('react.element'),
-      type: type,
-      key: key,
-      ref: null,
-      props: props,
-      _owner: null,
-    };
+    return <Type key={key} {...props} />;
   } else {
     return val;
   }
 }
 
-// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-// ~~~~ IMPORTANT: BUMP THIS IF YOU CHANGE ANY CODE BELOW ~~~
-const DISK_CACHE_BREAKER = 7;
-// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
 // Put MDX output into JSON for client.
 export async function getStaticProps(context) {
+  generateRssFeed();
   const fs = require('fs');
-  const {
-    prepareMDX,
-    PREPARE_MDX_CACHE_BREAKER,
-  } = require('../utils/prepareMDX');
   const rootDir = process.cwd() + '/src/content/';
-  const mdxComponentNames = Object.keys(MDXComponents);
 
   // Read MDX from the file.
   let path = (context.params.markdownPath || []).join('/') || 'index';
@@ -118,132 +112,15 @@ export async function getStaticProps(context) {
     mdx = fs.readFileSync(rootDir + path + '/index.md', 'utf8');
   }
 
-  // See if we have a cached output first.
-  const {FileStore, stableHash} = require('metro-cache');
-  const store = new FileStore({
-    root: process.cwd() + '/node_modules/.cache/react-docs-mdx/',
-  });
-  const hash = Buffer.from(
-    stableHash({
-      // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-      // ~~~~ IMPORTANT: Everything that the code below may rely on.
-      // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-      mdx,
-      mdxComponentNames,
-      DISK_CACHE_BREAKER,
-      PREPARE_MDX_CACHE_BREAKER,
-      lockfile: fs.readFileSync(process.cwd() + '/yarn.lock', 'utf8'),
-    })
-  );
-  const cached = await store.get(hash);
-  if (cached) {
-    console.log(
-      'Reading compiled MDX for /' + path + ' from ./node_modules/.cache/'
-    );
-    return cached;
-  }
-  if (process.env.NODE_ENV === 'production') {
-    console.log(
-      'Cache miss for MDX for /' + path + ' from ./node_modules/.cache/'
-    );
-  }
-
-  // If we don't add these fake imports, the MDX compiler
-  // will insert a bunch of opaque components we can't introspect.
-  // This will break the prepareMDX() call below.
-  let mdxWithFakeImports =
-    mdx +
-    '\n\n' +
-    mdxComponentNames
-      .map((key) => 'import ' + key + ' from "' + key + '";\n')
-      .join('\n');
-
-  // Turn the MDX we just read into some JS we can execute.
-  const {remarkPlugins} = require('../../plugins/markdownToHtml');
-  const {compile: compileMdx} = await import('@mdx-js/mdx');
-  const visit = (await import('unist-util-visit')).default;
-  const jsxCode = await compileMdx(mdxWithFakeImports, {
-    remarkPlugins: [
-      ...remarkPlugins,
-      (await import('remark-gfm')).default,
-      (await import('remark-frontmatter')).default,
-    ],
-    rehypePlugins: [
-      // Support stuff like ```js App.js {1-5} active by passing it through.
-      function rehypeMetaAsAttributes() {
-        return (tree) => {
-          visit(tree, 'element', (node) => {
-            if (node.tagName === 'code' && node.data && node.data.meta) {
-              node.properties.meta = node.data.meta;
-            }
-          });
-        };
-      },
-    ],
-  });
-  const {transform} = require('@babel/core');
-  const jsCode = await transform(jsxCode, {
-    plugins: ['@babel/plugin-transform-modules-commonjs'],
-    presets: ['@babel/preset-react'],
-  }).code;
-
-  // Prepare environment for MDX.
-  let fakeExports = {};
-  const fakeRequire = (name) => {
-    if (name === 'react/jsx-runtime') {
-      return require('react/jsx-runtime');
-    } else {
-      // For each fake MDX import, give back the string component name.
-      // It will get serialized later.
-      return name;
-    }
-  };
-  const evalJSCode = new Function('require', 'exports', jsCode);
-  // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  // THIS IS A BUILD-TIME EVAL. NEVER DO THIS WITH UNTRUSTED MDX (LIKE FROM CMS)!!!
-  // In this case it's okay because anyone who can edit our MDX can also edit this file.
-  evalJSCode(fakeRequire, fakeExports);
-  // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  const reactTree = fakeExports.default({});
-
-  // Pre-process MDX output and serialize it.
-  let {toc, children} = prepareMDX(reactTree.props.children);
-  if (path === 'index') {
-    toc = [];
-  }
-
-  // Parse Frontmatter headers from MDX.
-  const fm = require('gray-matter');
-  const meta = fm(mdx).data;
-
-  const output = {
+  const {toc, content, meta, languages} = await compileMDX(mdx, path, {});
+  return {
     props: {
-      content: JSON.stringify(children, stringifyNodeOnServer),
-      toc: JSON.stringify(toc, stringifyNodeOnServer),
+      toc,
+      content,
       meta,
+      languages,
     },
   };
-
-  // Serialize a server React tree node to JSON.
-  function stringifyNodeOnServer(key, val) {
-    if (val != null && val.$$typeof === Symbol.for('react.element')) {
-      // Remove fake MDX props.
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      const {mdxType, originalType, parentName, ...cleanProps} = val.props;
-      return [
-        '$r',
-        typeof val.type === 'string' ? val.type : mdxType,
-        val.key,
-        cleanProps,
-      ];
-    } else {
-      return val;
-    }
-  }
-
-  // Cache it on the disk.
-  await store.set(hash, output);
-  return output;
 }
 
 // Collect all MDX files for static generation.
@@ -266,7 +143,12 @@ export async function getStaticPaths() {
           : res.slice(rootDir.length + 1);
       })
     );
-    return files.flat().filter((file) => file.endsWith('.md'));
+    return (
+      files
+        .flat()
+        // ignores `errors/*.md`, they will be handled by `pages/errors/[errorCode].tsx`
+        .filter((file) => file.endsWith('.md') && !file.startsWith('errors/'))
+    );
   }
 
   // 'foo/bar/baz.md' -> ['foo', 'bar', 'baz']
@@ -280,6 +162,7 @@ export async function getStaticPaths() {
   }
 
   const files = await getFiles(rootDir);
+
   const paths = files.map((file) => ({
     params: {
       markdownPath: getSegments(file),

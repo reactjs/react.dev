@@ -126,7 +126,7 @@ This is because JSX is stricter and has a few more rules than HTML! If you read 
 
 <Note>
 
-Most of the times, React's on-screen error messages will help you find where the problem is. Give them a read if you get stuck!
+Most of the time, React's on-screen error messages will help you find where the problem is. Give them a read if you get stuck!
 
 </Note>
 

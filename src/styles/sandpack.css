@@ -58,7 +58,7 @@ html .sandpack {
 
 /* Dark theme */
 html.dark .sp-wrapper {
-  --sp-colors-accent: #149eca;
+  --sp-colors-accent: #58c4dc;
   --sp-colors-clickable: #999;
   --sp-colors-disabled: #fff;
   --sp-colors-error: #811e18;
@@ -199,8 +199,7 @@ html.dark .sp-wrapper {
   background: var(--sp-colors-surface1);
 }
 
-.sandpack .sp-code-editor .cm-editor,
-.sandpack .sp-code-editor .cm-editor .cm-gutters {
+.sandpack .sp-code-editor .cm-editor {
   background-color: transparent;
 }
 
@@ -212,7 +211,6 @@ html.dark .sp-wrapper {
 }
 
 .sandpack .sp-code-editor .cm-content {
-  overflow-x: auto;
   padding-bottom: 18px;
 }
 
@@ -262,8 +260,6 @@ html.dark .sp-wrapper {
 }
 
 .sp-code-editor .sp-cm .cm-scroller {
-  overflow-x: hidden;
-  overflow-y: auto;
   padding-top: 18px;
 }
 
@@ -549,20 +545,6 @@ html.dark .sandpack--playground .sp-overlay {
 }
 
 /**
- * Integrations: React devtools inline
- */
-.sandpack .sp-devtools {
-  border-bottom-left-radius: 0.5rem;
-  border-bottom-right-radius: 0.5rem;
-  overflow: hidden;
-}
-
-.sandpack .sp-wrapper .sp-layout-devtools {
-  border-bottom-left-radius: 0;
-  border-bottom-right-radius: 0;
-}
-
-/**
  * Overwrite inline sty
  */
 .sandpack .sp-devtools > div {
@@ -611,7 +593,7 @@ html.dark .sp-devtools > div {
   -webkit-text-size-adjust: none;
 }
 
-/** 
+/**
  * For iOS: prevent browser zoom when clicking on sandbox.
  * Does NOT apply to code blocks.
  */
@@ -625,4 +607,8 @@ html.dark .sp-devtools > div {
       font-size: initial;
     }
   }
+}
+
+.sp-loading .sp-icon-standalone span {
+  display: none;
 }

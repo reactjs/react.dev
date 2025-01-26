@@ -57,7 +57,8 @@ module.exports = {
         'meta-gradient-dark': "url('/images/meta-gradient-dark.png')",
       },
       maxWidth: {
-        xs: '21rem',
+        ...defaultTheme.maxWidth,
+        'custom-xs': '21rem',
       },
       outline: {
         blue: ['1px auto ' + colors.link, '3px'],
@@ -101,6 +102,7 @@ module.exports = {
         marquee2: 'marquee2 40s linear infinite',
         'large-marquee': 'large-marquee 80s linear infinite',
         'large-marquee2': 'large-marquee2 80s linear infinite',
+        'fade-up': 'fade-up 1s 100ms both',
       },
       keyframes: {
         shimmer: {
@@ -137,6 +139,16 @@ module.exports = {
         'large-marquee2': {
           '0%': {transform: 'translateX(200%)'},
           '100%': {transform: 'translateX(0%)'},
+        },
+        'fade-up': {
+          '0%': {
+            opacity: '0',
+            transform: 'translateY(2rem)',
+          },
+          '100%': {
+            opacity: '1',
+            transform: 'translateY(0)',
+          },
         },
       },
       colors,

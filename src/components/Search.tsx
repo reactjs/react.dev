@@ -110,7 +110,42 @@ export function Search({
     ],
   },
 }: SearchProps) {
-  useDocSearchKeyboardEvents({isOpen, onOpen, onClose});
+  const [isShowing, setIsShowing] = useState(false);
+
+  const importDocSearchModalIfNeeded = useCallback(
+    function importDocSearchModalIfNeeded() {
+      if (DocSearchModal) {
+        return Promise.resolve();
+      }
+
+      // @ts-ignore
+      return import('@docsearch/react/modal').then(
+        ({DocSearchModal: Modal}) => {
+          DocSearchModal = Modal;
+        }
+      );
+    },
+    []
+  );
+
+  const onOpen = useCallback(
+    function onOpen() {
+      importDocSearchModalIfNeeded().then(() => {
+        setIsShowing(true);
+      });
+    },
+    [importDocSearchModalIfNeeded, setIsShowing]
+  );
+
+  const onClose = useCallback(
+    function onClose() {
+      setIsShowing(false);
+    },
+    [setIsShowing]
+  );
+
+  useDocSearchKeyboardEvents({isOpen: isShowing, onOpen, onClose});
+
   return (
     <>
       <Head>

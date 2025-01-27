@@ -230,7 +230,7 @@ async function renderToString() {
     bootstrapScripts: ['/main.js']
   });
   
-  const reader = stream.getReader();
+  const reader = prelude.getReader();
   let content = '';
   while (true) {
     const {done, value} = await reader.read();

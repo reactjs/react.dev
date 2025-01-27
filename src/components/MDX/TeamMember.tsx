@@ -3,7 +3,7 @@
  */
 
 import * as React from 'react';
-import Image from 'next/image';
+import Image from 'next/legacy/image';
 import {IconTwitter} from '../Icon/IconTwitter';
 import {IconThreads} from '../Icon/IconThreads';
 import {IconBsky} from '../Icon/IconBsky';

@@ -7,7 +7,7 @@ import sidebarReference from '../../sidebarReference.json';
 import sidebarCommunity from '../../sidebarCommunity.json';
 import sidebarBlog from '../../sidebarBlog.json';
 import {generateMDX} from '../../utils/generateMDX';
-import {generateRssFeed} from '../../utils/rss';
+
 import {RouteItem} from 'components/Layout/getRouteMeta';
 
 function getActiveSection(pathname: string) {
@@ -54,11 +54,6 @@ async function getPageContent(markdownPath: any[]) {
     mdx = await fs.readFile(path.join(rootDir, mdxPath + '.md'), 'utf8');
   } catch {
     mdx = await fs.readFile(path.join(rootDir, mdxPath, 'index.md'), 'utf8');
-  }
-
-  // Generate RSS feed during build time
-  if (process.env.NODE_ENV === 'production') {
-    await generateRssFeed();
   }
 
   return await generateMDX(mdx, mdxPath, {});

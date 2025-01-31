@@ -21,7 +21,6 @@ export const viewport = {
 };
 
 export const metadata: Metadata = {
-  title: {default: 'React', template: '%s – React'},
   description:
     'React is the library for web and native user interfaces. Build user interfaces out of individual pieces called components written in JavaScript.',
   openGraph: {

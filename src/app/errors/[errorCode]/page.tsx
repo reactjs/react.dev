@@ -6,6 +6,7 @@ import fs from 'fs/promises';
 import path from 'path';
 import {ErrorDecoderProvider} from 'components/ErrorDecoderProvider';
 import {notFound} from 'next/navigation';
+import {generateMetadata as generateSeoMetadata} from 'utils/generateMetadata';
 
 let errorCodesCache: Record<string, string> | null = null;
 
@@ -89,3 +90,19 @@ export default async function ErrorDecoderPage({
 
 // Disable dynamic params to ensure all pages are statically generated
 export const dynamicParams = false;
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{errorCode: string[]}>;
+}) {
+  const {errorCode} = await params;
+
+  const title = `Minified React error #${errorCode}`;
+
+  return generateSeoMetadata({
+    title,
+    path: `/${errorCode}`,
+    isHomePage: false,
+  });
+}

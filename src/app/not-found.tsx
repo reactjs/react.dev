@@ -6,6 +6,7 @@ import {Page} from 'components/Layout/Page';
 import {MDXComponents} from 'components/MDX/MDXComponents';
 import sidebarLearn from '../sidebarLearn.json';
 import {RouteItem} from 'components/Layout/getRouteMeta';
+import {generateMetadata as generateSeoMetadata} from 'utils/generateMetadata';
 
 const {Intro, MaxWidth, p: P, a: A} = MDXComponents;
 
@@ -34,6 +35,10 @@ export default function NotFound() {
   );
 }
 
-export const meta = {
-  title: 'Not Found',
-};
+export async function generateMetadata({}: {}) {
+  return generateSeoMetadata({
+    title: 'Not Found',
+    isHomePage: false,
+    path: '/404',
+  });
+}

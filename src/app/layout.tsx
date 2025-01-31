@@ -1,5 +1,4 @@
 import {siteConfig} from '../siteConfig';
-
 import {Analytics} from 'components/Analytics';
 import {ScrollHandler} from 'components/SafariScrollHandler';
 
@@ -10,6 +9,7 @@ import '../styles/sandpack.css';
 
 import {generateMetadata as generateSeoMetadata} from '../utils/generateMetadata';
 import {Suspense} from 'react';
+import {DevContentRefresher} from 'components/DevContentRefresher';
 
 export async function generateMetadata() {
   const metadata = generateSeoMetadata({
@@ -224,7 +224,7 @@ export default function RootLayout({children}: {children: React.ReactNode}) {
         <ScrollHandler />
         <ThemeScript />
         <UwuScript />
-
+        {process.env.NODE_ENV !== 'production' && <DevContentRefresher />}
         {children}
         <Suspense fallback={null}>
           <Analytics />

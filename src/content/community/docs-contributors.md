@@ -38,5 +38,6 @@ React documentation is written and maintained by the [React team](/community/tea
 * [Rick Hanlon](https://twitter.com/rickhanlonii): site development
 * [Harish Kumar](https://www.strek.in/): development and maintenance
 * [Luna Ruan](https://twitter.com/lunaruan): sandbox improvements
+* [Jimmy Lai](https://twitter.com/feedthejim): site development
 
 We'd also like to thank countless alpha testers and community members who gave us feedback along the way.

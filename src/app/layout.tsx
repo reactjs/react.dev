@@ -7,23 +7,10 @@ import '../styles/algolia.css';
 import '../styles/index.css';
 import '../styles/sandpack.css';
 
-import {generateMetadata as generateSeoMetadata} from '../utils/generateMetadata';
 import {Suspense} from 'react';
 import {DevContentRefresher} from 'components/DevContentRefresher';
 import {ThemeScript} from 'components/ThemeScript';
 import {UwuScript} from 'components/UwuScript';
-
-export async function generateMetadata() {
-  const metadata = generateSeoMetadata({
-    title: 'React',
-    isHomePage: true,
-    path: '/',
-  });
-
-  return {
-    metadata,
-  };
-}
 
 export const viewport = {
   themeColor: [

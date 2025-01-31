@@ -8,8 +8,11 @@ import sidebarCommunity from '../../sidebarCommunity.json';
 import sidebarBlog from '../../sidebarBlog.json';
 import {generateMDX} from '../../utils/generateMDX';
 
-import {RouteItem} from 'components/Layout/getRouteMeta';
+import {generateMetadata as generateSeoMetadata} from '../../utils/generateMetadata';
+
+import {getRouteMeta, RouteItem} from 'components/Layout/getRouteMeta';
 import {LanguageItem} from 'components/MDX/LanguagesContext';
+import {cache} from 'react';
 
 function getActiveSection(pathname: string) {
   if (pathname === '/') {
@@ -45,8 +48,9 @@ async function getRouteTree(section: string) {
   }
 }
 
-// This replaces getStaticProps
-async function getPageContent(markdownPath: any[]) {
+const getPageContent = cache(async function getPageContent(
+  markdownPath: any[]
+) {
   const rootDir = path.join(process.cwd(), 'src/content');
   let mdxPath = markdownPath?.join('/') || 'index';
   let mdx;
@@ -58,7 +62,7 @@ async function getPageContent(markdownPath: any[]) {
   }
 
   return await generateMDX(mdx, mdxPath, {});
-}
+});
 
 // This replaces getStaticPaths
 export async function generateStaticParams() {
@@ -100,7 +104,7 @@ export async function generateStaticParams() {
 export default async function WrapperPage({
   params,
 }: {
-  params: Promise<{markdownPath: any[]}>;
+  params: Promise<{markdownPath: string[]}>;
 }) {
   const {markdownPath} = await params;
 
@@ -136,3 +140,34 @@ export default async function WrapperPage({
 }
 // Configure dynamic segments to be statically generated
 export const dynamicParams = false;
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{markdownPath: string[]}>;
+}) {
+  const {markdownPath} = await params;
+  const pathname = '/' + (markdownPath?.join('/') || '');
+  const section = getActiveSection(pathname);
+  const routeTree = await getRouteTree(section);
+  const {route, order} = getRouteMeta(pathname, routeTree as RouteItem);
+  const {
+    title = route?.title || '',
+    description = route?.description || '',
+    titleForTitleTag,
+  } = await getPageContent(markdownPath).then(({meta}) => meta);
+
+  return {
+    metadata: generateSeoMetadata({
+      title,
+      isHomePage: pathname === '/',
+      path: pathname,
+      description,
+      titleForTitleTag,
+      image: `/images/og-${section}.png`,
+      searchOrder:
+        section === 'learn' || (section === 'blog' && pathname !== '/blog')
+          ? order
+          : undefined,
+    }),
+  };
+}

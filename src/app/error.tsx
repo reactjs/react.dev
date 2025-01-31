@@ -16,6 +16,7 @@ export default function NotFound() {
     <Page
       section="unknown"
       toc={[]}
+      pathname="/500"
       routeTree={sidebarLearn as RouteItem}
       meta={{title: 'Something Went Wrong'}}>
       <MaxWidth>

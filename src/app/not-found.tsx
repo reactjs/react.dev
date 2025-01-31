@@ -13,6 +13,7 @@ export default function NotFound() {
   return (
     <Page
       toc={[]}
+      pathname="/404"
       section="unknown"
       meta={{title: 'Not Found'}}
       routeTree={sidebarLearn as RouteItem}>

@@ -72,6 +72,7 @@ export default async function ErrorDecoderPage({
   return (
     <ErrorDecoderProvider errorMessage={errorMessage} errorCode={errorCode}>
       <Page
+        pathname={`/${errorCode}`}
         toc={[]}
         meta={{
           title: errorCode

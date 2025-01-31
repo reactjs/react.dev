@@ -36,9 +36,6 @@ async function readFromCache(
   try {
     const cached = await store.get(hash);
     if (cached) {
-      console.log(
-        `Cache hit: Compiled MDX for /${path} loaded from ${CACHE_PATH}`
-      );
       return JSON.parse(cached.toString());
     }
   } catch (error) {
@@ -55,9 +52,6 @@ async function writeToCache(
 ): Promise<void> {
   try {
     await store.set(hash, Buffer.from(JSON.stringify(result)));
-    console.log(
-      `Cache updated: Compiled MDX for /${path} saved to ${CACHE_PATH}`
-    );
   } catch (error) {
     console.warn(`Cache write failed for /${path}:`, error);
   }
@@ -87,10 +81,6 @@ export async function generateMDX(
       baseUrl: import.meta.url,
     });
     return {content: <MDXContent components={{...MDXComponents}} />, toc, meta};
-  }
-
-  if (process.env.NODE_ENV === 'production') {
-    console.log(`Cache miss for MDX for /${path} from ${CACHE_PATH}`);
   }
 
   const compiled = await compile(mdx, {

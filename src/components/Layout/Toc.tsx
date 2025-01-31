@@ -51,7 +51,7 @@ export function Toc({headings}: {headings: Toc}) {
                       'block hover:text-link dark:hover:text-link-dark leading-normal py-2'
                     )}
                     href={h.url}>
-                    {h.text}
+                    {h.node}
                   </a>
                 </li>
               );

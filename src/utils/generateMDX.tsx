@@ -6,7 +6,7 @@ import * as runtime from 'react/jsx-runtime';
 import {remarkPlugins} from '../../plugins/markdownToHtml';
 import remarkGfm from 'remark-gfm';
 import remarkFrontmatter from 'remark-frontmatter';
-import {MDXComponents} from '../components/MDX/MDXComponents';
+import {MDXComponents, MDXComponentsToc} from '../components/MDX/MDXComponents';
 import {MaxWidthWrapperPlugin} from './mdx/MaxWidthWrapperPlugin';
 import {ExtractedTOC, TOCExtractorPlugin} from './mdx/TOCExtractorPlugin';
 import {MetaAttributesPlugin} from './mdx/MetaAttributesPlugin';
@@ -96,13 +96,35 @@ export async function generateMDX(
   });
 
   const {data: meta} = grayMatter(mdx);
+  const toc = compiled.data.toc as ExtractedTOC[];
   const result: CachedResult = {
     code: String(compiled),
-    toc: compiled.data.toc as ExtractedTOC[],
+    toc,
     meta,
   };
 
   await writeToCache(store, hash, result, path);
+
+  const tocWithMDX = await Promise.all(
+    toc.map(async (item) => {
+      if (typeof item.node !== 'string') {
+        return item;
+      }
+
+      const compiled = await compile(item.node, {
+        outputFormat: 'function-body',
+      });
+
+      const {default: MDXContent} = await run(compiled, {
+        ...runtime,
+        baseUrl: import.meta.url,
+      });
+
+      item.node = <MDXContent components={{...MDXComponentsToc}} />;
+
+      return item;
+    })
+  );
 
   const {default: MDXContent} = await run(result.code, {
     ...runtime,
@@ -111,7 +133,7 @@ export async function generateMDX(
 
   return {
     content: <MDXContent components={{...MDXComponents}} />,
-    toc: result.toc,
+    toc: tocWithMDX,
     meta: result.meta,
   };
 }

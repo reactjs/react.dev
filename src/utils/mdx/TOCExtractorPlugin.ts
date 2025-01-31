@@ -26,7 +26,7 @@ interface MDXJsxFlowElementNode extends Node {
 
 export interface ExtractedTOC {
   url: string;
-  text: string;
+  node: string | JSX.Element;
   depth: number;
 }
 
@@ -34,7 +34,7 @@ interface PluginOptions {
   maxDepth?: number;
 }
 
-export function TOCExtractorPlugin({maxDepth = Infinity}: PluginOptions = {}) {
+export function TOCExtractorPlugin({maxDepth = 3}: PluginOptions = {}) {
   return (tree: Node, file: any) => {
     const toc: ExtractedTOC[] = [];
 
@@ -45,17 +45,30 @@ export function TOCExtractorPlugin({maxDepth = Infinity}: PluginOptions = {}) {
         if (headingNode.depth > maxDepth) {
           return;
         }
+
+        const mdxSource = file.value
+          .slice(
+            // @ts-ignore
+            node.children[0].position!.start.offset,
+            // @ts-ignore
+            node.children[0].position!.end.offset
+          )
+          .trim();
+
+        console.log(mdxSource);
+
         const text = headingNode.children
           .filter((child) => child.type === 'text' && child.value)
           .map((child) => child.value!)
           .join('');
+
         const id =
           headingNode.data?.hProperties?.id ||
           text.toLowerCase().replace(/\s+/g, '-');
 
         toc.push({
           depth: headingNode.depth,
-          text,
+          node: mdxSource,
           url: `#${id}`,
         });
       }
@@ -81,7 +94,7 @@ export function TOCExtractorPlugin({maxDepth = Infinity}: PluginOptions = {}) {
             toc.push({
               url: `#${permalink}`,
               depth: 3,
-              text: name,
+              node: name,
             });
             break;
           }
@@ -90,14 +103,14 @@ export function TOCExtractorPlugin({maxDepth = Infinity}: PluginOptions = {}) {
             toc.push({
               url: '#challenges',
               depth: 2,
-              text: 'Challenges',
+              node: 'Challenges',
             });
             break;
           case 'Recap':
             toc.push({
               url: '#recap',
               depth: 2,
-              text: 'Recap',
+              node: 'Recap',
             });
             break;
           default:
@@ -110,7 +123,7 @@ export function TOCExtractorPlugin({maxDepth = Infinity}: PluginOptions = {}) {
     if (toc.length > 0) {
       toc.unshift({
         url: '#',
-        text: 'Overview',
+        node: 'Overview',
         depth: 2,
       });
     }

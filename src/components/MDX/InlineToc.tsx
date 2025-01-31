@@ -1,6 +1,7 @@
 'use client';
 
-import Link from 'next/link';
+// import Link from 'next/link';
+import Link from './Link';
 import {useContext, useMemo} from 'react';
 import {Toc, TocContext, TocItem} from './TocContext';
 import {UL, LI} from './Primitives';
@@ -50,7 +51,7 @@ function InlineTocItem({items}: {items: Array<NestedTocNode>}) {
     <UL>
       {items.map((node) => (
         <LI key={node.item.url}>
-          <Link href={node.item.url}>{node.item.text}</Link>
+          <Link href={node.item.url}>{node.item.node}</Link>
           {node.children.length > 0 && <InlineTocItem items={node.children} />}
         </LI>
       ))}

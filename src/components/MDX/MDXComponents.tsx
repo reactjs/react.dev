@@ -242,6 +242,11 @@ function annotateMDXComponents(
   }, {} as Record<string, React.ElementType>);
 }
 
+export const MDXComponentsToc = annotateMDXComponents({
+  a: Link,
+  code: InlineCode,
+});
+
 export const MDXComponents = annotateMDXComponents({
   p: P,
   strong: Strong,

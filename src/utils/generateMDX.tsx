@@ -80,7 +80,12 @@ export async function generateMDX(
       ...runtime,
       baseUrl: import.meta.url,
     });
-    return {content: <MDXContent components={{...MDXComponents}} />, toc, meta};
+    const tocWithMDX = await getTransformedToc(toc);
+    return {
+      content: <MDXContent components={{...MDXComponents}} />,
+      toc: tocWithMDX,
+      meta,
+    };
   }
 
   const compiled = await compile(mdx, {
@@ -105,7 +110,22 @@ export async function generateMDX(
 
   await writeToCache(store, hash, result, path);
 
-  const tocWithMDX = await Promise.all(
+  const tocWithMDX = await getTransformedToc(toc);
+
+  const {default: MDXContent} = await run(result.code, {
+    ...runtime,
+    baseUrl: import.meta.url,
+  });
+
+  return {
+    content: <MDXContent components={{...MDXComponents}} />,
+    toc: tocWithMDX,
+    meta: result.meta,
+  };
+}
+
+async function getTransformedToc(toc: ExtractedTOC[]): Promise<ExtractedTOC[]> {
+  return await Promise.all(
     toc.map(async (item) => {
       if (typeof item.node !== 'string') {
         return item;
@@ -125,15 +145,4 @@ export async function generateMDX(
       return item;
     })
   );
-
-  const {default: MDXContent} = await run(result.code, {
-    ...runtime,
-    baseUrl: import.meta.url,
-  });
-
-  return {
-    content: <MDXContent components={{...MDXComponents}} />,
-    toc: tocWithMDX,
-    meta: result.meta,
-  };
 }

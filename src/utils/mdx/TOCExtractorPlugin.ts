@@ -26,7 +26,7 @@ interface MDXJsxFlowElementNode extends Node {
 
 export interface ExtractedTOC {
   url: string;
-  node: string | JSX.Element;
+  node: string | React.ReactNode;
   depth: number;
 }
 

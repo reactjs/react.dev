@@ -1,6 +1,6 @@
 'use client';
 
-import Link from 'next/link';
+import Link from './Link';
 import React from 'react';
 import {finishedTranslations} from 'utils/finishedTranslations';
 import {LanguagesContext} from './LanguagesContext';

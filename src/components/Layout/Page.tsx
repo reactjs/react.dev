@@ -6,7 +6,6 @@
 
 import * as React from 'react';
 import {Suspense} from 'react';
-import {usePathname} from 'next/navigation';
 import {SidebarNav} from './SidebarNav';
 import {Footer} from './Footer';
 import {Toc} from './Toc';
@@ -37,6 +36,7 @@ interface PageProps {
   };
   section: 'learn' | 'reference' | 'community' | 'blog' | 'home' | 'unknown';
   languages?: Languages | null;
+  pathname: string;
 }
 
 export function Page({
@@ -45,9 +45,9 @@ export function Page({
   routeTree,
   meta,
   section,
+  pathname,
   languages = null,
 }: PageProps) {
-  const pathname = usePathname();
   const cleanedPath = pathname.split(/[\?\#]/)[0];
   const {route, nextRoute, prevRoute, breadcrumbs} = getRouteMeta(
     cleanedPath,

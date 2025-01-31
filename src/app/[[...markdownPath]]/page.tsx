@@ -128,6 +128,7 @@ export default async function WrapperPage({
       routeTree={routeTree as RouteItem}
       meta={meta}
       section={section}
+      pathname={pathname}
       languages={languages}>
       {content}
     </Page>

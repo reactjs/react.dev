@@ -58,6 +58,20 @@ function FontPreload() {
       />
       <link
         rel="preload"
+        href="/fonts/Optimistic_Display_W_MdIt.woff2"
+        as="font"
+        type="font/woff2"
+        crossOrigin="anonymous"
+      />
+      <link
+        rel="preload"
+        href="/fonts/Optimistic_Text_W_BdIt.woff2"
+        as="font"
+        type="font/woff2"
+        crossOrigin="anonymous"
+      />
+      <link
+        rel="preload"
         href="/fonts/Optimistic_Display_W_Bd.woff2"
         as="font"
         type="font/woff2"

@@ -55,8 +55,6 @@ export function TOCExtractorPlugin({maxDepth = 3}: PluginOptions = {}) {
           )
           .trim();
 
-        console.log(mdxSource);
-
         const text = headingNode.children
           .filter((child) => child.type === 'text' && child.value)
           .map((child) => child.value!)

@@ -11,7 +11,7 @@ import {MaxWidthWrapperPlugin} from './mdx/MaxWidthWrapperPlugin';
 import {ExtractedTOC, TOCExtractorPlugin} from './mdx/TOCExtractorPlugin';
 import {MetaAttributesPlugin} from './mdx/MetaAttributesPlugin';
 
-const DISK_CACHE_BREAKER = 12;
+const DISK_CACHE_BREAKER = 13;
 const CACHE_PATH = `${process.cwd()}/node_modules/.cache/react-docs-mdx/`;
 const LOCKFILE_PATH = `${process.cwd()}/yarn.lock`;
 

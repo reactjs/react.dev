@@ -2,7 +2,6 @@
 
 import {useEffect} from 'react';
 import Script from 'next/script';
-import {usePathname, useSearchParams} from 'next/navigation';
 
 declare global {
   interface Window {
@@ -11,9 +10,6 @@ declare global {
 }
 
 export function Analytics() {
-  const pathname = usePathname();
-  const searchParams = useSearchParams();
-
   useEffect(() => {
     if (typeof window !== 'undefined') {
       const terminationEvent = 'onpagehide' in window ? 'pagehide' : 'unload';
@@ -30,15 +26,23 @@ export function Analytics() {
   }, []);
 
   useEffect(() => {
-    if (pathname && window.gtag) {
-      const cleanedUrl = `${pathname}${
-        searchParams?.toString() ? `?${searchParams.toString()}` : ''
-      }`.split(/[\?\#]/)[0];
-      window.gtag('event', 'pageview', {
-        event_label: cleanedUrl,
-      });
-    }
-  }, [pathname, searchParams]);
+    // If only we had router events. But patching pushState is what Vercel Analytics does.
+    // https://va.vercel-scripts.com/v1/script.debug.js
+    const originalPushState = history.pushState;
+
+    history.pushState = function (...args) {
+      const oldCleanedUrl = window.location.href.split(/[\?\#]/)[0];
+      originalPushState.apply(history, args);
+      const newCleanedUrl = window.location.href.split(/[\?\#]/)[0];
+      if (oldCleanedUrl !== newCleanedUrl) {
+        window?.gtag('set', 'page', newCleanedUrl);
+        window?.gtag('send', 'pageview');
+      }
+    };
+    return () => {
+      history.pushState = originalPushState;
+    };
+  }, []);
 
   return (
     <>

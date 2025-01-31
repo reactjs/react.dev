@@ -9,6 +9,7 @@ import sidebarBlog from '../../sidebarBlog.json';
 import {generateMDX} from '../../utils/generateMDX';
 
 import {RouteItem} from 'components/Layout/getRouteMeta';
+import {LanguageItem} from 'components/MDX/LanguagesContext';
 
 function getActiveSection(pathname: string) {
   if (pathname === '/') {
@@ -110,6 +111,16 @@ export default async function WrapperPage({
   const section = getActiveSection(pathname);
   const routeTree = await getRouteTree(section);
 
+  // Load the list of translated languages conditionally.
+  let languages: Array<LanguageItem> | null = null;
+  if (pathname.endsWith('/translations')) {
+    languages = await (
+      await fetch(
+        'https://raw.githubusercontent.com/reactjs/translations.react.dev/main/langs/langs.json'
+      )
+    ).json(); // { code: string; name: string; enName: string}[]
+  }
+
   // Pass the content and TOC directly, as `getPageContent` should already return them in the correct format
   return (
     <Page
@@ -117,7 +128,7 @@ export default async function WrapperPage({
       routeTree={routeTree as RouteItem}
       meta={meta}
       section={section}
-      languages={null}>
+      languages={languages}>
       {content}
     </Page>
   );

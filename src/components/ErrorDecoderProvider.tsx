@@ -8,8 +8,8 @@ export function ErrorDecoderProvider({
   errorCode,
 }: {
   children: React.ReactNode;
-  errorMessage: string;
-  errorCode: string;
+  errorMessage: string | null;
+  errorCode: string | null;
 }) {
   return (
     <ErrorDecoderContext.Provider value={{errorMessage, errorCode}}>

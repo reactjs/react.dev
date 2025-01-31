@@ -23,17 +23,25 @@ async function getErrorCodes() {
 export async function generateStaticParams() {
   const errorCodes = await getErrorCodes();
 
-  return Object.keys(errorCodes!).map((code) => ({
-    errorCode: code,
-  }));
+  const staticParams = Object.keys(errorCodes!).map((code) => ({
+    errorCode: [code],
+  })) as Array<{errorCode: string[] | undefined}>;
+
+  staticParams.push({errorCode: undefined});
+
+  return staticParams;
 }
 
-async function getErrorPageContent(params: {errorCode?: string}) {
+async function getErrorPageContent(params: {errorCode: string[]}) {
+  if (params.errorCode?.length > 1) {
+    notFound();
+  }
+
+  const code = params.errorCode?.[0];
+
   const errorCodes = await getErrorCodes();
 
-  const code = params?.errorCode;
-
-  if (!code || !errorCodes?.[code]) {
+  if (code && !errorCodes?.[code]) {
     notFound();
   }
 
@@ -57,14 +65,14 @@ async function getErrorPageContent(params: {errorCode?: string}) {
     toc,
     meta,
     errorCode: code,
-    errorMessage: errorCodes[code],
+    errorMessage: code ? errorCodes![code] : null,
   };
 }
 
 export default async function ErrorDecoderPage({
   params,
 }: {
-  params: Promise<{errorCode?: string}>;
+  params: Promise<{errorCode: string[]}>;
 }) {
   const {content, errorMessage, errorCode} = await getErrorPageContent(
     await params
@@ -73,7 +81,7 @@ export default async function ErrorDecoderPage({
   return (
     <ErrorDecoderProvider errorMessage={errorMessage} errorCode={errorCode}>
       <Page
-        pathname={`/${errorCode}`}
+        pathname={`/errors/${errorCode}`}
         toc={[]}
         meta={{
           title: errorCode
@@ -98,11 +106,13 @@ export async function generateMetadata({
 }) {
   const {errorCode} = await params;
 
-  const title = `Minified React error #${errorCode}`;
+  const title = errorCode
+    ? `Minified React error #${errorCode}`
+    : 'Minified Error Decoder';
 
   return generateSeoMetadata({
     title,
-    path: `/${errorCode}`,
+    path: `errors/${errorCode}`,
     isHomePage: false,
   });
 }

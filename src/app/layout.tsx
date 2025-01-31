@@ -11,12 +11,50 @@ import {Suspense} from 'react';
 import {DevContentRefresher} from 'components/DevContentRefresher';
 import {ThemeScript} from 'components/ThemeScript';
 import {UwuScript} from 'components/UwuScript';
+import {Metadata} from 'next';
 
 export const viewport = {
   themeColor: [
     {media: '(prefers-color-scheme: light)', color: '#23272f'},
     {media: '(prefers-color-scheme: dark)', color: '#23272f'},
   ],
+};
+
+export const metadata: Metadata = {
+  title: {default: 'React', template: '%s – React'},
+  description:
+    'React is the library for web and native user interfaces. Build user interfaces out of individual pieces called components written in JavaScript.',
+  openGraph: {
+    siteName: 'React',
+    type: 'website',
+    images: [{url: '/images/og-default.png'}],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    site: '@reactjs',
+    creator: '@reactjs',
+    images: ['/images/og-default.png'],
+  },
+  verification: {
+    google: 'sIlAGs48RulR4DdP95YSWNKZIEtCqQmRjzn-Zq-CcD0',
+  },
+  other: {
+    'msapplication-TileColor': '#2b5797',
+    'fb:app_id': '623268441017527',
+  },
+  icons: {
+    icon: [
+      {url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png'},
+      {url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png'},
+    ],
+    apple: [
+      {url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png'},
+    ],
+    other: [
+      {rel: 'mask-icon', url: '/safari-pinned-tab.svg', color: '#404756'},
+    ],
+  },
+  manifest: '/site.webmanifest',
 };
 
 function FontPreload() {

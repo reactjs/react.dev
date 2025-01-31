@@ -140,6 +140,7 @@ export default async function WrapperPage({
 }
 // Configure dynamic segments to be statically generated
 export const dynamicParams = false;
+
 export async function generateMetadata({
   params,
 }: {
@@ -156,18 +157,16 @@ export async function generateMetadata({
     titleForTitleTag,
   } = await getPageContent(markdownPath).then(({meta}) => meta);
 
-  return {
-    metadata: generateSeoMetadata({
-      title,
-      isHomePage: pathname === '/',
-      path: pathname,
-      description,
-      titleForTitleTag,
-      image: `/images/og-${section}.png`,
-      searchOrder:
-        section === 'learn' || (section === 'blog' && pathname !== '/blog')
-          ? order
-          : undefined,
-    }),
-  };
+  return generateSeoMetadata({
+    title,
+    isHomePage: pathname === '/',
+    path: pathname,
+    description,
+    titleForTitleTag,
+    image: `/images/og-${section}.png`,
+    searchOrder:
+      section === 'learn' || (section === 'blog' && pathname !== '/blog')
+        ? order
+        : undefined,
+  });
 }

@@ -11,7 +11,11 @@ export function Toc({headings}: {headings: Toc}) {
   // TODO: We currently have a mismatch between the headings in the document
   // and the headings we find in MarkdownPage (i.e. we don't find Recap or Challenges).
   // Select the max TOC item we have here for now, but remove this after the fix.
-  const selectedIndex = Math.min(currentIndex, headings.length - 1);
+  const selectedIndex =
+    currentIndex !== undefined
+      ? Math.min(currentIndex, headings.length - 1)
+      : -1;
+
   return (
     <nav role="navigation" className="pt-20 sticky top-0 end-0">
       {headings.length > 0 && (
@@ -51,7 +55,7 @@ export function Toc({headings}: {headings: Toc}) {
                       'block hover:text-link dark:hover:text-link-dark leading-normal py-2'
                     )}
                     href={h.url}>
-                    {h.text}
+                    {h.node}
                   </a>
                 </li>
               );

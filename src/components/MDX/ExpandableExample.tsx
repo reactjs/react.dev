@@ -1,3 +1,5 @@
+'use client';
+
 /*
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
@@ -9,8 +11,8 @@ import {IconDeepDive} from '../Icon/IconDeepDive';
 import {IconCodeBlock} from '../Icon/IconCodeBlock';
 import {Button} from '../Button';
 import {H4} from './Heading';
-import {useRouter} from 'next/router';
 import {useEffect, useRef, useState} from 'react';
+import {usePathname} from 'next/navigation';
 
 interface ExpandableExampleProps {
   children: React.ReactNode;
@@ -19,17 +21,23 @@ interface ExpandableExampleProps {
 }
 
 function ExpandableExample({children, excerpt, type}: ExpandableExampleProps) {
-  if (!Array.isArray(children) || children[0].type.mdxName !== 'h4') {
+  // Validate children using `data-mdx-name`
+  if (
+    !Array.isArray(children) ||
+    children[0].props?.['data-mdx-name'] !== 'h4'
+  ) {
     throw Error(
       `Expandable content ${type} is missing a corresponding title at the beginning`
     );
   }
+
   const isDeepDive = type === 'DeepDive';
   const isExample = type === 'Example';
   const id = children[0].props.id;
 
-  const {asPath} = useRouter();
-  const shouldAutoExpand = id === asPath.split('#')[1];
+  const pathname = usePathname();
+
+  const shouldAutoExpand = id === pathname.split('#')[1];
   const queuedExpandRef = useRef<boolean>(shouldAutoExpand);
   const [isExpanded, setIsExpanded] = useState(false);
 
@@ -57,8 +65,7 @@ function ExpandableExample({children, excerpt, type}: ExpandableExampleProps) {
         className="list-none p-8"
         tabIndex={-1 /* there's a button instead */}
         onClick={(e) => {
-          // We toggle using a button instead of this whole area,
-          // with an escape case for the header anchor link
+          // Toggle with a button instead of the whole area
           if (!(e.target instanceof SVGElement)) {
             e.preventDefault();
           }

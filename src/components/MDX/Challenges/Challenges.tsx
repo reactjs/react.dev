@@ -1,3 +1,5 @@
+'use client';
+
 /*
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
@@ -9,7 +11,7 @@ import {H2} from 'components/MDX/Heading';
 import {H4} from 'components/MDX/Heading';
 import {Challenge} from './Challenge';
 import {Navigation} from './Navigation';
-import {useRouter} from 'next/router';
+import {usePathname} from 'next/navigation';
 
 interface ChallengesProps {
   children: React.ReactElement[];
@@ -40,11 +42,13 @@ const parseChallengeContents = (
   let challenge: Partial<ChallengeContents> = {};
   let content: React.ReactElement[] = [];
   Children.forEach(children, (child) => {
-    const {props, type} = child as React.ReactElement<{
+    const {props} = child as React.ReactElement<{
       children?: string;
       id?: string;
+      'data-mdx-name'?: string;
     }>;
-    switch ((type as any).mdxName) {
+
+    switch (props?.['data-mdx-name']) {
       case 'Solution': {
         challenge.solution = child;
         challenge.content = content;
@@ -90,12 +94,12 @@ export function Challenges({
   const queuedScrollRef = useRef<undefined | QueuedScroll>(QueuedScroll.INIT);
   const [activeIndex, setActiveIndex] = useState(0);
   const currentChallenge = challenges[activeIndex];
-  const {asPath} = useRouter();
+  const pathname = usePathname();
 
   useEffect(() => {
     if (queuedScrollRef.current === QueuedScroll.INIT) {
       const initIndex = challenges.findIndex(
-        (challenge) => challenge.id === asPath.split('#')[1]
+        (challenge) => challenge.id === pathname.split('#')[1]
       );
       if (initIndex === -1) {
         queuedScrollRef.current = undefined;
@@ -112,7 +116,7 @@ export function Challenges({
       });
       queuedScrollRef.current = undefined;
     }
-  }, [activeIndex, asPath, challenges]);
+  }, [activeIndex, pathname, challenges]);
 
   const handleChallengeChange = (index: number) => {
     setActiveIndex(index);

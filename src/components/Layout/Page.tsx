@@ -1,16 +1,16 @@
+'use client';
+
 /*
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
 
-import {Suspense} from 'react';
 import * as React from 'react';
-import {useRouter} from 'next/router';
+import {Suspense} from 'react';
 import {SidebarNav} from './SidebarNav';
 import {Footer} from './Footer';
 import {Toc} from './Toc';
-// import SocialBanner from '../SocialBanner';
 import {DocsPageFooter} from 'components/DocsFooter';
-import {Seo} from 'components/Seo';
+
 import PageHeading from 'components/PageHeading';
 import {getRouteMeta} from './getRouteMeta';
 import {TocContext} from '../MDX/TocContext';
@@ -20,8 +20,8 @@ import type {RouteItem} from 'components/Layout/getRouteMeta';
 import {HomeContent} from './HomeContent';
 import {TopNav} from './TopNav';
 import cn from 'classnames';
-import Head from 'next/head';
 
+// Prefetch the code block component
 import(/* webpackPrefetch: true */ '../MDX/CodeBlock/CodeBlock');
 
 interface PageProps {
@@ -36,6 +36,7 @@ interface PageProps {
   };
   section: 'learn' | 'reference' | 'community' | 'blog' | 'home' | 'unknown';
   languages?: Languages | null;
+  pathname: string;
 }
 
 export function Page({
@@ -44,11 +45,11 @@ export function Page({
   routeTree,
   meta,
   section,
+  pathname,
   languages = null,
 }: PageProps) {
-  const {asPath} = useRouter();
-  const cleanedPath = asPath.split(/[\?\#]/)[0];
-  const {route, nextRoute, prevRoute, breadcrumbs, order} = getRouteMeta(
+  const cleanedPath = pathname.split(/[\?\#]/)[0];
+  const {route, nextRoute, prevRoute, breadcrumbs} = getRouteMeta(
     cleanedPath,
     routeTree
   );
@@ -113,31 +114,17 @@ export function Page({
     showSidebar = false;
   }
 
-  let searchOrder;
-  if (section === 'learn' || (section === 'blog' && !isBlogIndex)) {
-    searchOrder = order;
-  }
-
   return (
     <>
-      <Seo
-        title={title}
-        titleForTitleTag={meta.titleForTitleTag}
-        isHomePage={isHomePage}
-        image={`/images/og-` + section + '.png'}
-        searchOrder={searchOrder}
-      />
       {(isHomePage || isBlogIndex) && (
-        <Head>
-          <link
-            rel="alternate"
-            type="application/rss+xml"
-            title="React Blog RSS Feed"
-            href="/rss.xml"
-          />
-        </Head>
+        // RSS Feed link is now handled by metadata in layout.tsx
+        <link
+          rel="alternate"
+          type="application/rss+xml"
+          title="React Blog RSS Feed"
+          href="/rss.xml"
+        />
       )}
-      {/*<SocialBanner />*/}
       <TopNav
         section={section}
         routeTree={routeTree}
@@ -162,9 +149,7 @@ export function Page({
         {/* No fallback UI so need to be careful not to suspend directly inside. */}
         <Suspense fallback={null}>
           <main className="min-w-0 isolate">
-            <article
-              className="font-normal break-words text-primary dark:text-primary-dark"
-              key={asPath}>
+            <article className="font-normal break-words text-primary dark:text-primary-dark">
               {content}
             </article>
             <div
@@ -188,7 +173,7 @@ export function Page({
           </main>
         </Suspense>
         <div className="hidden -mt-16 lg:max-w-custom-xs 2xl:block">
-          {showToc && toc.length > 0 && <Toc headings={toc} key={asPath} />}
+          {showToc && toc.length > 0 && <Toc headings={toc} key={pathname} />}
         </div>
       </div>
     </>

@@ -1,10 +1,8 @@
-// 'use client';
-
 /*
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
 
-// import {Children, useContext, useMemo} from 'react';
+import {Children, useContext, useMemo} from 'react';
 import * as React from 'react';
 import cn from 'classnames';
 import type {HTMLAttributes} from 'react';
@@ -31,13 +29,14 @@ import YouWillLearnCard from './YouWillLearnCard';
 import {Challenges, Hint, Solution} from './Challenges';
 import {IconNavArrow} from '../Icon/IconNavArrow';
 import ButtonLink from 'components/ButtonLink';
+import {TocContext} from './TocContext';
+import type {Toc, TocItem} from './TocContext';
 import {TeamMember} from './TeamMember';
+import {LanguagesContext} from './LanguagesContext';
+import {finishedTranslations} from 'utils/finishedTranslations';
+
 import ErrorDecoder from './ErrorDecoder';
 import {IconCanary} from '../Icon/IconCanary';
-import {InlineToc} from './InlineToc';
-import {Illustration, IllustrationBlock} from './Illustration';
-import {LanguageList} from './LanguageList';
-import {Divider, LI, OL, P, Strong, UL} from './Primitives';
 
 function CodeStep({children, step}: {children: any; step: number}) {
   return (
@@ -61,6 +60,27 @@ function CodeStep({children, step}: {children: any; step: number}) {
   );
 }
 
+const P = (p: HTMLAttributes<HTMLParagraphElement>) => (
+  <p className="whitespace-pre-wrap my-4" {...p} />
+);
+
+const Strong = (strong: HTMLAttributes<HTMLElement>) => (
+  <strong className="font-bold" {...strong} />
+);
+
+const OL = (p: HTMLAttributes<HTMLOListElement>) => (
+  <ol className="ms-6 my-3 list-decimal" {...p} />
+);
+const LI = (p: HTMLAttributes<HTMLLIElement>) => (
+  <li className="leading-relaxed mb-1" {...p} />
+);
+const UL = (p: HTMLAttributes<HTMLUListElement>) => (
+  <ul className="ms-6 my-3 list-disc" {...p} />
+);
+
+const Divider = () => (
+  <hr className="my-6 block border-b border-t-0 border-border dark:border-border-dark" />
+);
 const Wip = ({children}: {children: React.ReactNode}) => (
   <ExpandableCallout type="wip">{children}</ExpandableCallout>
 );
@@ -212,6 +232,214 @@ function Recipes(props: any) {
   return <Challenges {...props} isRecipes={true} />;
 }
 
+function AuthorCredit({
+  author = 'Rachel Lee Nabors',
+  authorLink = 'https://nearestnabors.com/',
+}: {
+  author: string;
+  authorLink: string;
+}) {
+  return (
+    <div className="sr-only group-hover:not-sr-only group-focus-within:not-sr-only hover:sr-only">
+      <p className="bg-card dark:bg-card-dark text-center text-sm text-secondary dark:text-secondary-dark leading-tight p-2 rounded-lg absolute start-1/2 -top-4 -translate-x-1/2 -translate-y-full group-hover:flex group-hover:opacity-100 after:content-[''] after:absolute after:start-1/2 after:top-[95%] after:-translate-x-1/2 after:border-8 after:border-x-transparent after:border-b-transparent after:border-t-card after:dark:border-t-card-dark opacity-0 transition-opacity duration-300">
+        <cite>
+          Illustrated by{' '}
+          {authorLink ? (
+            <a
+              target="_blank"
+              rel="noreferrer"
+              className="text-link dark:text-link-dark"
+              href={authorLink}>
+              {author}
+            </a>
+          ) : (
+            author
+          )}
+        </cite>
+      </p>
+    </div>
+  );
+}
+
+const IllustrationContext = React.createContext<{
+  isInBlock?: boolean;
+}>({
+  isInBlock: false,
+});
+
+function Illustration({
+  caption,
+  src,
+  alt,
+  author,
+  authorLink,
+}: {
+  caption: string;
+  src: string;
+  alt: string;
+  author: string;
+  authorLink: string;
+}) {
+  const {isInBlock} = React.useContext(IllustrationContext);
+
+  return (
+    <div className="relative group before:absolute before:-inset-y-16 before:inset-x-0 my-16 mx-0 2xl:mx-auto max-w-4xl 2xl:max-w-6xl">
+      <figure className="my-8 flex justify-center">
+        <img
+          src={src}
+          alt={alt}
+          style={{maxHeight: 300}}
+          className="rounded-lg"
+        />
+        {caption ? (
+          <figcaption className="text-center leading-tight mt-4">
+            {caption}
+          </figcaption>
+        ) : null}
+      </figure>
+      {!isInBlock && <AuthorCredit author={author} authorLink={authorLink} />}
+    </div>
+  );
+}
+
+const isInBlockTrue = {isInBlock: true};
+
+function IllustrationBlock({
+  sequential,
+  author,
+  authorLink,
+  children,
+}: {
+  author: string;
+  authorLink: string;
+  sequential: boolean;
+  children: any;
+}) {
+  const imageInfos = Children.toArray(children).map(
+    (child: any) => child.props
+  );
+  const images = imageInfos.map((info, index) => (
+    <figure key={index}>
+      <div className="bg-white rounded-lg p-4 flex-1 flex xl:p-6 justify-center items-center my-4">
+        <img
+          className="text-primary"
+          src={info.src}
+          alt={info.alt}
+          height={info.height}
+        />
+      </div>
+      {info.caption ? (
+        <figcaption className="text-secondary dark:text-secondary-dark text-center leading-tight mt-4">
+          {info.caption}
+        </figcaption>
+      ) : null}
+    </figure>
+  ));
+  return (
+    <IllustrationContext.Provider value={isInBlockTrue}>
+      <div className="relative group before:absolute before:-inset-y-16 before:inset-x-0 my-16 mx-0 2xl:mx-auto max-w-4xl 2xl:max-w-6xl">
+        {sequential ? (
+          <ol className="mdx-illustration-block flex">
+            {images.map((x: any, i: number) => (
+              <li className="flex-1" key={i}>
+                {x}
+              </li>
+            ))}
+          </ol>
+        ) : (
+          <div className="mdx-illustration-block">{images}</div>
+        )}
+        <AuthorCredit author={author} authorLink={authorLink} />
+      </div>
+    </IllustrationContext.Provider>
+  );
+}
+
+type NestedTocRoot = {
+  item: null;
+  children: Array<NestedTocNode>;
+};
+
+type NestedTocNode = {
+  item: TocItem;
+  children: Array<NestedTocNode>;
+};
+
+function calculateNestedToc(toc: Toc): NestedTocRoot {
+  const currentAncestors = new Map<number, NestedTocNode | NestedTocRoot>();
+  const root: NestedTocRoot = {
+    item: null,
+    children: [],
+  };
+  const startIndex = 1; // Skip "Overview"
+  for (let i = startIndex; i < toc.length; i++) {
+    const item = toc[i];
+    const currentParent: NestedTocNode | NestedTocRoot =
+      currentAncestors.get(item.depth - 1) || root;
+    const node: NestedTocNode = {
+      item,
+      children: [],
+    };
+    currentParent.children.push(node);
+    currentAncestors.set(item.depth, node);
+  }
+  return root;
+}
+
+function InlineToc() {
+  const toc = useContext(TocContext);
+  const root = useMemo(() => calculateNestedToc(toc), [toc]);
+  if (root.children.length < 2) {
+    return null;
+  }
+  return <InlineTocItem items={root.children} />;
+}
+
+function InlineTocItem({items}: {items: Array<NestedTocNode>}) {
+  return (
+    <UL>
+      {items.map((node) => (
+        <LI key={node.item.url}>
+          <Link href={node.item.url}>{node.item.text}</Link>
+          {node.children.length > 0 && <InlineTocItem items={node.children} />}
+        </LI>
+      ))}
+    </UL>
+  );
+}
+
+type TranslationProgress = 'complete' | 'in-progress';
+
+function LanguageList({progress}: {progress: TranslationProgress}) {
+  const allLanguages = React.useContext(LanguagesContext) ?? [];
+  const languages = allLanguages
+    .filter(
+      ({code}) =>
+        code !== 'en' &&
+        (progress === 'complete'
+          ? finishedTranslations.includes(code)
+          : !finishedTranslations.includes(code))
+    )
+    .sort((a, b) => a.enName.localeCompare(b.enName));
+  return (
+    <UL>
+      {languages.map(({code, name, enName}) => {
+        return (
+          <LI key={code}>
+            <Link href={`https://${code}.react.dev/`}>
+              {enName} ({name})
+            </Link>{' '}
+            &mdash;{' '}
+            <Link href={`https://github.com/reactjs/${code}.react.dev`}>
+              Contribute
+            </Link>
+          </LI>
+        );
+      })}
+    </UL>
+  );
+}
+
 function YouTubeIframe(props: any) {
   return (
     <div className="relative h-0 overflow-hidden pt-[56.25%]">
@@ -232,22 +460,7 @@ function Image(props: any) {
   return <img alt={alt} className="max-w-[calc(min(700px,100%))]" {...rest} />;
 }
 
-function annotateMDXComponents(
-  components: Record<string, React.ElementType>
-): Record<string, React.ElementType> {
-  return Object.entries(components).reduce((acc, [key, Component]) => {
-    acc[key] = (props) => <Component {...props} data-mdx-name={key} />;
-    acc[key].displayName = `Annotated(${key})`; // Optional, for debugging
-    return acc;
-  }, {} as Record<string, React.ElementType>);
-}
-
-export const MDXComponentsToc = annotateMDXComponents({
-  a: Link,
-  code: InlineCode,
-});
-
-export const MDXComponents = annotateMDXComponents({
+export const MDXComponents = {
   p: P,
   strong: Strong,
   blockquote: Blockquote,
@@ -316,4 +529,11 @@ export const MDXComponents = annotateMDXComponents({
   CodeStep,
   YouTubeIframe,
   ErrorDecoder,
-});
+};
+
+for (let key in MDXComponents) {
+  if (MDXComponents.hasOwnProperty(key)) {
+    const MDXComponent: any = (MDXComponents as any)[key];
+    MDXComponent.mdxName = key;
+  }
+}

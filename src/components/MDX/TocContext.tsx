@@ -7,7 +7,7 @@ import type {ReactNode} from 'react';
 
 export type TocItem = {
   url: string;
-  node: ReactNode;
+  text: ReactNode;
   depth: number;
 };
 export type Toc = Array<TocItem>;

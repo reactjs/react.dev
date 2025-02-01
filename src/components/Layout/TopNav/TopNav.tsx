@@ -14,6 +14,7 @@ import Image from 'next/image';
 import * as React from 'react';
 import cn from 'classnames';
 import NextLink from 'next/link';
+import {useRouter} from 'next/router';
 import {disableBodyScroll, enableBodyScroll} from 'body-scroll-lock';
 
 import {IconClose} from 'components/Icon/IconClose';
@@ -26,7 +27,6 @@ import {SidebarRouteTree} from '../Sidebar';
 import type {RouteItem} from '../getRouteMeta';
 import {siteConfig} from 'siteConfig';
 import BrandMenu from './BrandMenu';
-import {usePathname} from 'next/navigation';
 
 declare global {
   interface Window {
@@ -162,7 +162,7 @@ export default function TopNav({
   const [showSearch, setShowSearch] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const scrollParentRef = useRef<HTMLDivElement>(null);
-  const pathname = usePathname();
+  const {asPath} = useRouter();
 
   // HACK. Fix up the data structures instead.
   if ((routeTree as any).routes.length === 1) {
@@ -183,7 +183,7 @@ export default function TopNav({
   // Close the overlay on any navigation.
   useEffect(() => {
     setIsMenuOpen(false);
-  }, [pathname]);
+  }, [asPath]);
 
   // Also close the overlay if the window gets resized past mobile layout.
   // (This is also important because we don't want to keep the body locked!)

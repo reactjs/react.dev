@@ -1,5 +1,3 @@
-'use client';
-
 /*
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
@@ -7,18 +5,14 @@
 import {Page} from 'components/Layout/Page';
 import {MDXComponents} from 'components/MDX/MDXComponents';
 import sidebarLearn from '../sidebarLearn.json';
-import {RouteItem} from 'components/Layout/getRouteMeta';
-import {generateMetadata as generateSeoMetadata} from 'utils/generateMetadata';
 
 const {Intro, MaxWidth, p: P, a: A} = MDXComponents;
 
-export default function Error() {
+export default function NotFound() {
   return (
     <Page
-      section="unknown"
       toc={[]}
-      pathname="/500"
-      routeTree={sidebarLearn as RouteItem}
+      routeTree={sidebarLearn}
       meta={{title: 'Something Went Wrong'}}>
       <MaxWidth>
         <Intro>
@@ -34,12 +28,4 @@ export default function Error() {
       </MaxWidth>
     </Page>
   );
-}
-
-export async function generateMetadata({}: {}) {
-  return generateSeoMetadata({
-    title: 'Something Went Wrong',
-    isHomePage: false,
-    path: '/500',
-  });
 }

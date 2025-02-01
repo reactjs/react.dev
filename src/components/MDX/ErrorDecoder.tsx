@@ -1,5 +1,3 @@
-'use client';
-
 import {useEffect, useState} from 'react';
 import {useErrorDecoderParams} from '../ErrorDecoderContext';
 import cn from 'classnames';

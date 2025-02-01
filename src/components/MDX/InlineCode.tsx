@@ -1,18 +1,18 @@
-'use client';
-
 /*
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
 
 import cn from 'classnames';
-import {useContext, type HTMLAttributes} from 'react';
-import {LinkContext} from './Link';
+import type {HTMLAttributes} from 'react';
 
 interface InlineCodeProps {
+  isLink?: boolean;
   meta?: string;
 }
-function InlineCode({...props}: HTMLAttributes<HTMLElement> & InlineCodeProps) {
-  const isLink = useContext(LinkContext);
+function InlineCode({
+  isLink,
+  ...props
+}: HTMLAttributes<HTMLElement> & InlineCodeProps) {
   return (
     <code
       dir="ltr" // This is needed to prevent the code from inheriting the RTL direction of <html> in case of RTL languages to avoid like `()console.log` to be rendered as `console.log()`

@@ -19,7 +19,8 @@
 
   @font-face {
     font-family: 'Optimistic Display';
-    src: url('/fonts/Optimistic_Display_W_Md.woff2') format('woff2');
+    src: url('https://react.dev/fonts/Optimistic_Display_W_Md.woff2')
+      format('woff2');
     font-weight: 500;
     font-style: normal;
     font-display: swap;
@@ -27,7 +28,8 @@
 
   @font-face {
     font-family: 'Optimistic Display';
-    src: url('/fonts/Optimistic_Display_W_MdIt.woff2') format('woff2');
+    src: url('https://react.dev/fonts/Optimistic_Display_W_MdIt.woff2')
+      format('woff2');
     font-weight: 500;
     font-style: italic;
     font-display: swap;
@@ -35,7 +37,8 @@
 
   @font-face {
     font-family: 'Optimistic Display';
-    src: url('/fonts/Optimistic_Display_W_SBd.woff2') format('woff2');
+    src: url('https://react.dev/fonts/Optimistic_Display_W_SBd.woff2')
+      format('woff2');
     font-weight: 600;
     font-style: normal;
     font-display: swap;
@@ -43,7 +46,8 @@
 
   @font-face {
     font-family: 'Optimistic Display';
-    src: url('/fonts/Optimistic_Display_W_SBdIt.woff2') format('woff2');
+    src: url('https://react.dev/fonts/Optimistic_Display_W_SBdIt.woff2')
+      format('woff2');
     font-weight: 600;
     font-style: italic;
     font-display: swap;
@@ -51,7 +55,8 @@
 
   @font-face {
     font-family: 'Optimistic Display';
-    src: url('/fonts/Optimistic_Display_W_Bd.woff2') format('woff2');
+    src: url('https://react.dev/fonts/Optimistic_Display_W_Bd.woff2')
+      format('woff2');
     font-weight: 700;
     font-style: normal;
     font-display: swap;
@@ -59,7 +64,8 @@
 
   @font-face {
     font-family: 'Optimistic Display';
-    src: url('/fonts/Optimistic_Display_W_BdIt.woff2') format('woff2');
+    src: url('https://react.dev/fonts/Optimistic_Display_W_BdIt.woff2')
+      format('woff2');
     font-weight: 700;
     font-style: italic;
     font-display: swap;
@@ -67,7 +73,8 @@
 
   @font-face {
     font-family: 'Optimistic Text';
-    src: url('/fonts/Optimistic_Text_W_Rg.woff2') format('woff2');
+    src: url('https://react.dev/fonts/Optimistic_Text_W_Rg.woff2')
+      format('woff2');
     font-weight: 400;
     font-style: normal;
     font-display: swap;
@@ -75,7 +82,8 @@
 
   @font-face {
     font-family: 'Optimistic Text';
-    src: url('/fonts/Optimistic_Text_W_It.woff2') format('woff2');
+    src: url('https://react.dev/fonts/Optimistic_Text_W_It.woff2')
+      format('woff2');
     font-weight: 400;
     font-style: italic;
     font-display: swap;
@@ -83,7 +91,8 @@
 
   @font-face {
     font-family: 'Optimistic Text';
-    src: url('/fonts/Optimistic_Text_W_Md.woff2') format('woff2');
+    src: url('https://react.dev/fonts/Optimistic_Text_W_Md.woff2')
+      format('woff2');
     font-weight: 500;
     font-style: normal;
     font-display: swap;
@@ -91,7 +100,8 @@
 
   @font-face {
     font-family: 'Optimistic Text';
-    src: url('/fonts/Optimistic_Text_W_MdIt.woff2') format('woff2');
+    src: url('https://react.dev/fonts/Optimistic_Text_W_MdIt.woff2')
+      format('woff2');
     font-weight: 500;
     font-style: italic;
     font-display: swap;
@@ -99,7 +109,8 @@
 
   @font-face {
     font-family: 'Optimistic Text';
-    src: url('/fonts/Optimistic_Text_W_Bd.woff2') format('woff2');
+    src: url('https://react.dev/fonts/Optimistic_Text_W_Bd.woff2')
+      format('woff2');
     font-weight: 700;
     font-style: normal;
     font-display: swap;
@@ -107,7 +118,8 @@
 
   @font-face {
     font-family: 'Optimistic Text';
-    src: url('/fonts/Optimistic_Text_W_BdIt.woff2') format('woff2');
+    src: url('https://react.dev/fonts/Optimistic_Text_W_BdIt.woff2')
+      format('woff2');
     font-weight: 700;
     font-style: italic;
     font-display: swap;
@@ -117,7 +129,8 @@
 
   @font-face {
     font-family: 'Optimistic Display';
-    src: url('/fonts/Optimistic_Display_Arbc_W_Md.woff2') format('woff2');
+    src: url('https://react.dev/fonts/Optimistic_Display_Arbc_W_Md.woff2')
+      format('woff2');
     font-weight: 500;
     font-style: normal;
     font-display: swap;
@@ -126,7 +139,8 @@
 
   @font-face {
     font-family: 'Optimistic Display';
-    src: url('/fonts/Optimistic_Display_Arbc_W_SBd.woff2') format('woff2');
+    src: url('https://react.dev/fonts/Optimistic_Display_Arbc_W_SBd.woff2')
+      format('woff2');
     font-weight: 600;
     font-style: normal;
     font-display: swap;
@@ -135,7 +149,8 @@
 
   @font-face {
     font-family: 'Optimistic Display';
-    src: url('/fonts/Optimistic_Display_Arbc_W_Bd.woff2') format('woff2');
+    src: url('https://react.dev/fonts/Optimistic_Display_Arbc_W_Bd.woff2')
+      format('woff2');
     font-weight: 700;
     font-style: normal;
     font-display: swap;
@@ -144,7 +159,8 @@
 
   @font-face {
     font-family: 'Optimistic Text';
-    src: url('/fonts/Optimistic_Text_Arbc_W_Rg.woff2') format('woff2');
+    src: url('https://react.dev/fonts/Optimistic_Text_Arbc_W_Rg.woff2')
+      format('woff2');
     font-weight: 400;
     font-style: normal;
     font-display: swap;
@@ -153,7 +169,8 @@
 
   @font-face {
     font-family: 'Optimistic Text';
-    src: url('/fonts/Optimistic_Text_Arbc_W_Md.woff2') format('woff2');
+    src: url('https://react.dev/fonts/Optimistic_Text_Arbc_W_Md.woff2')
+      format('woff2');
     font-weight: 500;
     font-style: normal;
     font-display: swap;
@@ -162,7 +179,8 @@
 
   @font-face {
     font-family: 'Optimistic Text';
-    src: url('/fonts/Optimistic_Text_Arbc_W_Bd.woff2') format('woff2');
+    src: url('https://react.dev/fonts/Optimistic_Text_Arbc_W_Bd.woff2')
+      format('woff2');
     font-weight: 700;
     font-style: normal;
     font-display: swap;
@@ -173,7 +191,8 @@
 
   @font-face {
     font-family: 'Optimistic Display';
-    src: url('/fonts/Optimistic_Display_Cyrl_W_Md.woff2') format('woff2');
+    src: url('https://react.dev/fonts/Optimistic_Display_Cyrl_W_Md.woff2')
+      format('woff2');
     font-weight: 500;
     font-style: normal;
     font-display: swap;
@@ -182,7 +201,8 @@
 
   @font-face {
     font-family: 'Optimistic Display';
-    src: url('/fonts/Optimistic_Display_Cyrl_W_SBd.woff2') format('woff2');
+    src: url('https://react.dev/fonts/Optimistic_Display_Cyrl_W_SBd.woff2')
+      format('woff2');
     font-weight: 600;
     font-style: normal;
     font-display: swap;
@@ -191,7 +211,8 @@
 
   @font-face {
     font-family: 'Optimistic Display';
-    src: url('/fonts/Optimistic_Display_Cyrl_W_Bd.woff2') format('woff2');
+    src: url('https://react.dev/fonts/Optimistic_Display_Cyrl_W_Bd.woff2')
+      format('woff2');
     font-weight: 700;
     font-style: normal;
     font-display: swap;
@@ -200,7 +221,8 @@
 
   @font-face {
     font-family: 'Optimistic Text';
-    src: url('/fonts/Optimistic_Text_Cyrl_W_Rg.woff2') format('woff2');
+    src: url('https://react.dev/fonts/Optimistic_Text_Cyrl_W_Rg.woff2')
+      format('woff2');
     font-weight: 400;
     font-style: normal;
     font-display: swap;
@@ -209,7 +231,8 @@
 
   @font-face {
     font-family: 'Optimistic Text';
-    src: url('/fonts/Optimistic_Text_Cyrl_W_Md.woff2') format('woff2');
+    src: url('https://react.dev/fonts/Optimistic_Text_Cyrl_W_Md.woff2')
+      format('woff2');
     font-weight: 500;
     font-style: normal;
     font-display: swap;
@@ -218,7 +241,8 @@
 
   @font-face {
     font-family: 'Optimistic Text';
-    src: url('/fonts/Optimistic_Text_Cyrl_W_Bd.woff2') format('woff2');
+    src: url('https://react.dev/fonts/Optimistic_Text_Cyrl_W_Bd.woff2')
+      format('woff2');
     font-weight: 700;
     font-style: normal;
     font-display: swap;
@@ -229,7 +253,8 @@
 
   @font-face {
     font-family: 'Optimistic Display';
-    src: url('/fonts/Optimistic_Display_Deva_W_Md.woff2') format('woff2');
+    src: url('https://react.dev/fonts/Optimistic_Display_Deva_W_Md.woff2')
+      format('woff2');
     font-weight: 500;
     font-style: normal;
     font-display: swap;
@@ -239,7 +264,8 @@
 
   @font-face {
     font-family: 'Optimistic Display';
-    src: url('/fonts/Optimistic_Display_Deva_W_SBd.woff2') format('woff2');
+    src: url('https://react.dev/fonts/Optimistic_Display_Deva_W_SBd.woff2')
+      format('woff2');
     font-weight: 600;
     font-style: normal;
     font-display: swap;
@@ -249,7 +275,8 @@
 
   @font-face {
     font-family: 'Optimistic Display';
-    src: url('/fonts/Optimistic_Display_Deva_W_Bd.woff2') format('woff2');
+    src: url('https://react.dev/fonts/Optimistic_Display_Deva_W_Bd.woff2')
+      format('woff2');
     font-weight: 700;
     font-style: normal;
     font-display: swap;
@@ -259,7 +286,8 @@
 
   @font-face {
     font-family: 'Optimistic Text';
-    src: url('/fonts/Optimistic_Text_Deva_W_Rg.woff2') format('woff2');
+    src: url('https://react.dev/fonts/Optimistic_Text_Deva_W_Rg.woff2')
+      format('woff2');
     font-weight: 400;
     font-style: normal;
     font-display: swap;
@@ -269,7 +297,8 @@
 
   @font-face {
     font-family: 'Optimistic Text';
-    src: url('/fonts/Optimistic_Text_Deva_W_Md.woff2') format('woff2');
+    src: url('https://react.dev/fonts/Optimistic_Text_Deva_W_Md.woff2')
+      format('woff2');
     font-weight: 500;
     font-style: normal;
     font-display: swap;
@@ -279,7 +308,8 @@
 
   @font-face {
     font-family: 'Optimistic Text';
-    src: url('/fonts/Optimistic_Text_Deva_W_Bd.woff2') format('woff2');
+    src: url('https://react.dev/fonts/Optimistic_Text_Deva_W_Bd.woff2')
+      format('woff2');
     font-weight: 700;
     font-style: normal;
     font-display: swap;
@@ -291,7 +321,8 @@
 
   @font-face {
     font-family: 'Optimistic Display';
-    src: url('/fonts/Optimistic_Display_Viet_W_Md.woff2') format('woff2');
+    src: url('https://react.dev/fonts/Optimistic_Display_Viet_W_Md.woff2')
+      format('woff2');
     font-weight: 500;
     font-style: normal;
     font-display: swap;
@@ -300,7 +331,8 @@
 
   @font-face {
     font-family: 'Optimistic Display';
-    src: url('/fonts/Optimistic_Display_Viet_W_SBd.woff2') format('woff2');
+    src: url('https://react.dev/fonts/Optimistic_Display_Viet_W_SBd.woff2')
+      format('woff2');
     font-weight: 600;
     font-style: normal;
     font-display: swap;
@@ -309,7 +341,8 @@
 
   @font-face {
     font-family: 'Optimistic Display';
-    src: url('/fonts/Optimistic_Display_Viet_W_Bd.woff2') format('woff2');
+    src: url('https://react.dev/fonts/Optimistic_Display_Viet_W_Bd.woff2')
+      format('woff2');
     font-weight: 700;
     font-style: normal;
     font-display: swap;
@@ -318,7 +351,8 @@
 
   @font-face {
     font-family: 'Optimistic Text';
-    src: url('/fonts/Optimistic_Text_Viet_W_Rg.woff2') format('woff2');
+    src: url('https://react.dev/fonts/Optimistic_Text_Viet_W_Rg.woff2')
+      format('woff2');
     font-weight: 400;
     font-style: normal;
     font-display: swap;
@@ -327,7 +361,8 @@
 
   @font-face {
     font-family: 'Optimistic Text';
-    src: url('/fonts/Optimistic_Text_Viet_W_Md.woff2') format('woff2');
+    src: url('https://react.dev/fonts/Optimistic_Text_Viet_W_Md.woff2')
+      format('woff2');
     font-weight: 500;
     font-style: normal;
     font-display: swap;
@@ -336,7 +371,8 @@
 
   @font-face {
     font-family: 'Optimistic Text';
-    src: url('/fonts/Optimistic_Text_Viet_W_Bd.woff2') format('woff2');
+    src: url('https://react.dev/fonts/Optimistic_Text_Viet_W_Bd.woff2')
+      format('woff2');
     font-weight: 700;
     font-style: normal;
     font-display: swap;

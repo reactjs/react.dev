@@ -23,10 +23,7 @@ export function getHeaderAnchors(): HTMLAnchorElement[] {
  * Sets up Table of Contents highlighting.
  */
 export function useTocHighlight() {
-  const [currentIndex, setCurrentIndex] = useState<number | undefined>(
-    undefined
-  );
-
+  const [currentIndex, setCurrentIndex] = useState<number>(0);
   const timeoutRef = useRef<number | null>(null);
 
   useEffect(() => {

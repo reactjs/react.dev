@@ -16,7 +16,7 @@ export function CodeDiagram({children, flip = false}: CodeDiagramProps) {
     return child.type === 'img';
   });
   const content = Children.toArray(children).map((child: any) => {
-    if (child.props?.['data-mdx-name'] === 'pre') {
+    if (child.type?.mdxName === 'pre') {
       return (
         <CodeBlock
           key={child.key}

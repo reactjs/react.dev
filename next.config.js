@@ -11,11 +11,8 @@ const nextConfig = {
   experimental: {
     scrollRestoration: true,
     reactCompiler: true,
-    newDevOverlay: true,
   },
-
   env: {},
-  serverExternalPackages: [],
   webpack: (config, {dev, isServer, ...options}) => {
     if (process.env.ANALYZE) {
       const {BundleAnalyzerPlugin} = require('webpack-bundle-analyzer');

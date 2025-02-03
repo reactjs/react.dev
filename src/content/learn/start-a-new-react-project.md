@@ -47,6 +47,16 @@ If you're new to Next.js, check out the [learn Next.js course.](https://nextjs.o
 
 Next.js is maintained by [Vercel](https://vercel.com/). You can [deploy a Next.js app](https://nextjs.org/docs/app/building-your-application/deploying) to any Node.js or serverless hosting, or to your own server. Next.js also supports a [static export](https://nextjs.org/docs/pages/building-your-application/deploying/static-exports) which doesn't require a server.
 
+### Vite {/*vite*/}
+
+<TerminalBlock>
+npm create vite@latest
+</TerminalBlock>
+
+If you're new to React, check out the [learn React course.](https://react.dev/learn)
+
+Vite is a **frontend project builder** optimized for rapid development in **React** and other modern frameworks. It focuses on providing an agile and efficient experience.
+
 ### Remix {/*remix*/}
 
 **[Remix](https://remix.run/) is a full-stack React framework with nested routing.** It lets you break your app into nested parts that can load data in parallel and refresh in response to the user actions. To create a new Remix project, run:

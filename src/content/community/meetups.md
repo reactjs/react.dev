@@ -58,7 +58,7 @@ Do you have a local React.js meetup? Add it here! (Please keep the list alphabet
 * [React Native London](https://guild.host/RNLDN)
 
 ## Finland {/*finland*/}
-* [Helsinki]([https://www.meetup.com/ReactBeerLille/](https://www.meetabit.com/communities/react-helsinki))
+* [Helsinki](https://www.meetabit.com/communities/react-helsinki)
 
 ## France {/*france*/}
 * [Lille](https://www.meetup.com/ReactBeerLille/)

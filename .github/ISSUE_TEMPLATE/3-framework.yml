@@ -1,0 +1,116 @@
+name: "📄 Suggest new framework"
+description: "I am a framework author applying to be included as a recommended framework."
+title: "[Framework]: "
+labels: ["type: framework"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Apply to be included as a recommended React framework
+
+        _This form is for framework authors to apply to be included as a recommended [React framework](https://react.dev/learn/start-a-new-react-project). If you are not a framework author, please contact the authors before submitting._
+        
+        Our goal when recommending a framework is to start developers with a React project that solves common problems like code splitting, data fetching, routing, and HTML generation without any extra work later. We believe this will allow users to get started quickly with React, and scale their app to production.
+        
+        While we understand that many frameworks may want to be featured, this page is not a place to advertise every possible React framework or all frameworks that you can add React to. There are many great frameworks that offer support for React that are not listed in our guides. The frameworks we recommend have invested significantly in the React ecosystem, and collaborated with the React team to be compatible with our [full-stack React architecture vision](https://react.dev/learn/start-a-new-react-project#which-features-make-up-the-react-teams-full-stack-architecture-vision).
+        
+        To be included, frameworks must meet the following criteria:
+        
+        - **Free & open-source**: must be open source and free to use.
+        - **Well maintained**. must be actively maintained, providing bug fixes and improvements.
+        - **Active community**: must have a sufficiently large and active community to support users.
+        - **Clear onboarding**: must have clear install steps to install the React version of the framework.
+        - **Ecosystem compatibility**: must support using the full range of libraries and tools in the React ecosystem.
+        - **Self-hosting option**: must support an option to self-host applications without losing access to features.
+        - **Developer experience**. must allow developers to be productive by supporting features like Fast Refresh.
+        - **User experience**. must provide built-in support for common problems like routing and data-fetching.
+        - **Compatible with our future vision for React**. React evolves over time, and frameworks that do not align with React’s direction risk isolating their users from the main React ecosystem over time. To be included on this page we must feel confident that the framework is setting its users up for success with React over time.
+        
+        Please note, we have reviewed most of the popular frameworks available today, so it is unlikely we have not considered your framework already. But if you think we missed something, please complete the application below.
+  - type: input
+    attributes:
+      label: Name
+      description: |
+        What is the name of your framework?
+    validations:
+      required: true
+  - type: input
+    attributes:
+      label: Homepage
+      description: |
+        What is the URL of your homepage?
+    validations:
+      required: true
+  - type: input
+    attributes:
+      label: Install instructions
+      description: |
+        What is the URL of your getting started guide?
+    validations:
+      required: true
+  - type: dropdown
+    attributes:
+      label: Is your framework open source?
+      description: |
+        We only recommend free and open source frameworks.
+      options:
+        - 'No'
+        - 'Yes'
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Well maintained
+      description: |
+        Please describe how your framework is actively maintained. Include recent releases, bug fixes, and improvements as examples.
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Active community
+      description: |
+        Please describe your community. Include the size of your community, and links to community resources.
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Clear onboarding
+      description: |
+        Please describe how a user can install your framework with React. Include links to any relevant documentation.
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Ecosystem compatibility
+      description: |
+        Please describe any limitations your framework has with the React ecosystem. Include any libraries or tools that are not compatible with your framework.
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Self-hosting option
+      description: |
+        Please describe how your framework supports self-hosting. Include any limitations to features when self-hosting. Also include whether you require a server to deploy your framework.
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Developer Experience
+      description: |
+        Please describe how your framework provides a great developer experience. Include any limitations to React features like React DevTools, Chrome DevTools, and Fast Refresh.
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: User Experience
+      description: |
+        Please describe how your framework helps developers create high quality user experiences by solving common use-cases. Include specifics for how your framework offers built-in support for code-splitting, routing, HTML generation, and data-fetching in a way that avoids client/server waterfalls by default. Include details on how you offer features such as SSG and SSR.
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Compatible with our future vision for React
+      description: |
+        Please describe how your framework aligns with our future vision for React. Include how your framework will evolve with React over time, and your plans to support future React features like React Server Components.
+    validations:
+      required: true

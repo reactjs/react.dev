@@ -1,0 +1,35 @@
+name: Site Lint / Heading ID check
+
+on:
+  push:
+    branches:
+      - main # change this if your default branch is named differently
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+
+    name: Lint on node 20.x and ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+      - name: Use Node.js 20.x
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20.x
+          cache: yarn
+          cache-dependency-path: yarn.lock
+
+      - name: Restore cached node_modules
+        uses: actions/cache@v4
+        with:
+          path: "**/node_modules"
+          key: node_modules-${{ runner.arch }}-${{ runner.os }}-${{ hashFiles('yarn.lock') }}
+
+      - name: Install deps
+        run: yarn install --frozen-lockfile
+
+      - name: Lint codebase
+        run: yarn ci-check

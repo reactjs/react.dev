@@ -1,0 +1,34 @@
+name: "🐛 Report a bug"
+description: "Report a problem on the website."
+title: "[Bug]: "
+labels: ["bug: unconfirmed"]
+body:
+  - type: textarea
+    attributes:
+      label: Summary
+      description: |
+        A clear and concise summary of what the bug is.
+      placeholder: |
+        Example bug report:
+        When I click the "Submit" button on "Feedback", nothing happens.
+    validations:
+      required: true
+  - type: input
+    attributes:
+      label: Page
+      description: |
+        What page(s) did you encounter this bug on?
+      placeholder: |
+        https://react.dev/
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Details
+      description: |
+        Please provide any additional details about the bug.
+      placeholder: |
+        Example details:
+        The "Submit" button is unresponsive. I've tried refreshing the page and using a different browser, but the issue persists.
+    validations:
+      required: false

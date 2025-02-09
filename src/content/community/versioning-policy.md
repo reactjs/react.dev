@@ -8,7 +8,7 @@ All stable builds of React go through a high level of testing and follow semanti
 
 </Intro>
 
-For a list of previous releases, see the [Versions](/versions) page.
+This versioning policy describes our approach to version numbers for packages such as `react` and `react-dom`. For a list of previous releases, see the [Versions](/versions) page.
 
 ## Stable releases {/*stable-releases*/}
 
@@ -24,7 +24,9 @@ Major releases can also contain new features, and any release can include bug fi
 
 Minor releases are the most common type of release.
 
-### Breaking Changes {/*breaking-changes*/}
+We know our users continue to use old versions of React in production. If we learn of a security vulnerability in React, we release a backported fix for all major versions that are affected by the vulnerability.
+
+### Breaking changes {/*breaking-changes*/}
 
 Breaking changes are inconvenient for everyone, so we try to minimize the number of major releases – for example, React 15 was released in April 2016 and React 16 was released in September 2017, and React 17 was released in October 2020.
 

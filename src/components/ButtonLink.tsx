@@ -24,7 +24,7 @@ function ButtonLink({
 }: React.AnchorHTMLAttributes<HTMLAnchorElement> & ButtonLinkProps) {
   const classes = cn(
     className,
-    'active:scale-[.98] transition-transform inline-flex font-bold items-center outline-none focus:outline-none focus-visible:outline focus-visible:outline-link focus:outline-offset-2 focus-visible:dark:focus:outline-link-dark leading-snug',
+    'active:scale-[.98] transition-all inline-flex font-bold items-center outline-none focus:outline-none focus-visible:outline focus-visible:outline-link focus:outline-offset-2 focus-visible:dark:focus:outline-link-dark leading-snug',
     {
       'bg-link text-white dark:bg-brand-dark dark:text-secondary hover:bg-opacity-80':
         type === 'primary',

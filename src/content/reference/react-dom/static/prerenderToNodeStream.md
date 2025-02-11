@@ -4,7 +4,7 @@ title: prerenderToNodeStream
 
 <Intro>
 
-`prerenderToNodeStream` renders a React tree to a static HTML string using a [Node.js Stream.](https://nodejs.org/api/stream.html).
+`prerenderToNodeStream` renders a React tree to a static HTML string using a [Node.js Stream.](https://nodejs.org/api/stream.html)
 
 ```js
 const {prelude} = await prerenderToNodeStream(reactNode, options?)
@@ -64,7 +64,7 @@ On the client, call [`hydrateRoot`](/reference/react-dom/client/hydrateRoot) to 
 
 `prerenderToNodeStream` returns a Promise:
 - If rendering the is successful, the Promise will resolve to an object containing:
-  - `prelude`: a [Node.js Stream.](https://nodejs.org/api/stream.html) of HTML. You can use this stream to send a response in chunks, or you can read the entire stream into a string.
+  - `prelude`: a [Node.js Stream](https://nodejs.org/api/stream.html) of HTML. You can use this stream to send a response in chunks, or you can read the entire stream into a string.
 - If rendering fails, the Promise will be rejected. [Use this to output a fallback shell.](#recovering-from-errors-inside-the-shell)
 
 <Note>
@@ -81,7 +81,7 @@ The static `prerenderToNodeStream` API is used for static server-side generation
 
 ### Rendering a React tree to a stream of static HTML {/*rendering-a-react-tree-to-a-stream-of-static-html*/}
 
-Call `prerenderToNodeStream` to render your React tree to static HTML into a [Node.js Stream.](https://nodejs.org/api/stream.html):
+Call `prerenderToNodeStream` to render your React tree to static HTML into a [Node.js Stream:](https://nodejs.org/api/stream.html)
 
 ```js [[1, 5, "<App />"], [2, 6, "['/main.js']"]]
 import { prerenderToNodeStream } from 'react-dom/static';

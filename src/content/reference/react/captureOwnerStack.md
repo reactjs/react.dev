@@ -29,11 +29,11 @@ const stack = captureOwnerStack();
 Call `captureOwnerStack` to get the current Owner Stack.
 
 ```js {5,5}
-import {captureOwnerStack} from 'react';
+import * as React from 'react';
 
 function Component() {
   if (process.env.NODE_ENV !== 'production') {
-    const ownerStack = captureOwnerStack();
+    const ownerStack = React.captureOwnerStack();
     console.log(ownerStack);
   }
 }
@@ -53,7 +53,7 @@ Owner Stacks are available in
 - React's event handlers (e.g. `<button onClick={...} />`)
 - React error handlers ([React Root options](/reference/react-dom/client/createRoot#parameters) `onCaughtError`, `onRecoverableError`, and `onUncaughtError`)
 
-If no Owner Stack is available, an empty string is returned (see [Troubleshooting: The Owner Stack is empty](#the-owner-stack-is-empty-the-owner-stack-is-empty)). Outside of development builds, `null` is returned (see [Troubleshooting: The Owner Stack is `null`](#the-owner-stack-is-null-the-owner-stack-is-null)).
+If no Owner Stack is available, `null` is returned (see [Troubleshooting: The Owner Stack is `null`](#the-owner-stack-is-null)).
 
 #### Caveats {/*caveats*/}
 
@@ -299,7 +299,7 @@ pre.nowrap {
   <p>
     <pre id="error-body"></pre>
   </p>
-  <h2 class="-mb-20">Owner stack:</h4>
+  <h2 class="-mb-20">Owner Stack:</h4>
   <pre id="error-owner-stack" class="nowrap"></pre>
   <button
     id="error-close"
@@ -390,11 +390,7 @@ export default function App() {
 
 ### The Owner Stack is `null` {/*the-owner-stack-is-null*/}
 
-`captureOwnerStack` was called outside of development builds. For performance reasons, React will not keep track of Owners in production.
-
-### The Owner Stack is empty {/*the-owner-stack-is-empty*/}
-
-The call of `captureOwnerStack` happened outside of a React controlled function e.g. in a `setTimeout` callback, after a fetch or in a custom DOM event handler. During render, Effects, React event handlers, and React error handlers (e.g. `hydrateRoot#options.onCaughtError`) Owner Stacks should be available.
+The call of `captureOwnerStack` happened outside of a React controlled function e.g. in a `setTimeout` callback, after a `fetch` call or in a custom DOM event handler. During render, Effects, React event handlers, and React error handlers (e.g. `hydrateRoot#options.onCaughtError`) Owner Stacks should be available.
 
 In the example below, clicking the button will log an empty Owner Stack because `captureOwnerStack` was called during a custom DOM event handler. The Owner Stack must be captured earlier e.g. by moving the call of `captureOwnerStack` into the Effect body.
 <Sandpack>
@@ -407,7 +403,7 @@ export default function App() {
     // Should call `captureOwnerStack` here.
     function handleEvent() {
       // Calling it in a custom DOM event handler is too late.
-      // The Owner Stack will be empty at this point.
+      // The Owner Stack will be `null` at this point.
       console.log('Owner Stack: ', captureOwnerStack());
     }
 
@@ -439,3 +435,19 @@ export default function App() {
 ```
 
 </Sandpack>
+
+### `captureOwnerStack` is not available {/*captureownerstack-is-not-available*/}
+
+`captureOwnerStack` is only exported in development builds. It will be `undefined` in production builds. If `captureOwnerStack` is used in files that are bundled for production and development, you should conditionally access it from a namespace import.
+
+```js
+// Don't use named imports of `captureOwnerStack` in files that are bundled for development and production.
+import {captureOwnerStack} from 'react';
+// Use a namespace import instead and access `captureOwnerStack` conditionally.
+import * as React from 'react';
+
+if (process.env.NODE_ENV !== 'production') {
+  const ownerStack = React.captureOwnerStack();
+  console.log('Owner Stack', ownerStack);
+}
+```

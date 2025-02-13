@@ -129,8 +129,8 @@ createRoot(document.createElement('div'), {
 ```json package.json hidden
 {
   "dependencies": {
-    "react": "experimental",
-    "react-dom": "experimental",
+    "react": "canary",
+    "react-dom": "canary",
     "react-scripts": "latest"
   },
   "scripts": {
@@ -322,7 +322,6 @@ export function onConsoleError({ consoleMessage, ownerStack }) {
   const errorDialog = document.getElementById("error-dialog");
   const errorBody = document.getElementById("error-body");
   const errorOwnerStack = document.getElementById("error-owner-stack");
-  const errorStack = document.getElementById("error-stack");
 
   // Display console.error() message
   errorBody.innerText = consoleMessage;
@@ -361,8 +360,8 @@ createRoot(container).render(<App />);
 ```json package.json hidden
 {
   "dependencies": {
-    "react": "experimental",
-    "react-dom": "experimental",
+    "react": "canary",
+    "react-dom": "canary",
     "react-scripts": "latest"
   },
   "scripts": {
@@ -421,8 +420,8 @@ export default function App() {
 ```json package.json hidden
 {
   "dependencies": {
-    "react": "experimental",
-    "react-dom": "experimental",
+    "react": "canary",
+    "react-dom": "canary",
     "react-scripts": "latest"
   },
   "scripts": {

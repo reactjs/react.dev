@@ -1273,7 +1273,11 @@ By default, if your application throws an error during rendering, React will rem
 
 To implement an error boundary component, you need to provide [`static getDerivedStateFromError`](#static-getderivedstatefromerror) which lets you update state in response to an error and display an error message to the user. You can also optionally implement [`componentDidCatch`](#componentdidcatch) to add some extra logic, for example, to log the error to an analytics service.
 
-```js {7-10,12-19}
+<CanaryBadge /> With [`captureOwnerStack`](/reference/react/captureOwnerStack) you can include the Owner Stack during development.
+
+```js {9-12,14-27}
+import * as React from 'react';
+
 class ErrorBoundary extends React.Component {
   constructor(props) {
     super(props);
@@ -1286,12 +1290,18 @@ class ErrorBoundary extends React.Component {
   }
 
   componentDidCatch(error, info) {
-    // Example "componentStack":
-    //   in ComponentThatThrows (created by App)
-    //   in ErrorBoundary (created by App)
-    //   in div (created by App)
-    //   in App
-    logErrorToMyService(error, info.componentStack);
+    logErrorToMyService(
+      error,
+      // Example "componentStack":
+      //   in ComponentThatThrows (created by App)
+      //   in ErrorBoundary (created by App)
+      //   in div (created by App)
+      //   in App
+      info.componentStack,
+      // Only available in react@canary.
+      // Warning: Owner Stack is not available in production.
+      React.captureOwnerStack(),
+    );
   }
 
   render() {

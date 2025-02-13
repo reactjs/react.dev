@@ -147,6 +147,11 @@
           "title": "experimental_taintUniqueValue",
           "path": "/reference/react/experimental_taintUniqueValue",
           "version": "canary"
+        },
+        {
+          "title": "captureOwnerStack",
+          "path": "/reference/react/captureOwnerStack",
+          "version": "canary"
         }
       ]
     },
@@ -304,7 +309,6 @@
           "title": "prerenderToNodeStream",
           "path": "/reference/react-dom/static/prerenderToNodeStream"
         }
-        
       ]
     },
     {

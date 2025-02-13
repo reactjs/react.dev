@@ -83,7 +83,7 @@ const router = createBrowserRouter([
 
 export default function App() {
   return (
-    <Router.Provider value={router} />
+    <RouterProvider value={router} />
   )
 }
 ```
@@ -128,8 +128,6 @@ export async function loader() {
 
 // ✅ Fetching data in parallel while the code is downloading.
 export default function Dashboard({loaderData}) {
-  const [data, setData] = useState(null);
-  
   return (
     <div>
       {loaderData.map(item => <div key={item.id}>{item.name}</div>)}

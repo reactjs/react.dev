@@ -68,7 +68,7 @@ Routing determines what to display when a user visits a particular URL. You need
 * **Data fetching** to enable data fetching before the page loads on a route. This can prevent layout shifts ([Cumulative Layout Shift](https://web.dev/articles/cls)) and decrease the time it takes for the largest visible content of the app to render ([Largest Contentful Paint](https://web.dev/articles/lcp))
 * **Code splitting** to reduce the JavaScript bundle size sent to the client and improve performance on underpowered devices. This can reduce the time it takes for the browser to respond to a user interaction ([First Input Delay](https://web.dev/articles/fid)) and the largest visible content of the app to be rendered ([Largest Contentful Paint](https://web.dev/articles/lcp)).
 
-If you're not sure how to get started with routing, we recommend using [React Router as a library](https://reactrouter.com/start/library/installation).
+If you're not sure how to get started with routing, we recommend using [React Router as a library](https://reactrouter.com/start/framework/custom).
 
 ### Data-fetching {/*data-fetching*/}
 

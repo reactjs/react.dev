@@ -10,6 +10,12 @@ This blog is the official source for the updates from the React team. Anything i
 
 <div className="sm:-mx-5 flex flex-col gap-5 mt-12">
 
+<BlogCard title="Sunsetting Create React App" date="February 12, 2025" url="/blog/2025/02/12/sunsetting-create-react-app">
+
+Today, we’re deprecating Create React App and encouraging most existing apps migrate to a framework. We’re also providing docs for when a framework isn’t a good fit for your project, or you prefer to start by building a framework.
+
+</BlogCard>
+
 <BlogCard title="React v19 " date="December 5, 2024" url="/blog/2024/12/05/react-19">
 
 In the React 19 Upgrade Guide, we shared step-by-step instructions for upgrading your app to React 19. In this post, we'll give an overview of the new features in React 19, and how you can adopt them ...

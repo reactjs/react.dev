@@ -81,7 +81,7 @@ Data-fetching is the process of fetching data from a server or other data source
 
 Integrating routing and data fetching is particularly important to prevent network waterfalls. In a SPA, if you fetch data during a component's initial render, the first data fetch is delayed until all code has loaded and components have finished rendering. This is commonly known as a waterfall: instead of fetching data at the same time as your code is loading, you need to first wait for your code to load before fetching data. To address these waterfalls, your app needs to fetch the data for each route in parallel with sending code to the browser.
 
-Popular data fetching libraries that you can use as a part of your framework include [React Query](https://react-query.tanstack.com/), [SWR](https://swr.vercel.app/), and [Relay](https://relay.dev/).
+Popular data fetching libraries that you can use as a part of your framework include [React Query](https://react-query.tanstack.com/), [SWR](https://swr.vercel.app/), [Apollo](https://www.apollographql.com/docs/react), and [Relay](https://relay.dev/).
 
 ### Rendering strategies {/*rendering-strategies*/}
 

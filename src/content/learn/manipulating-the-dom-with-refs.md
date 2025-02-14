@@ -647,7 +647,7 @@ However, this doesn't mean that you can't do it at all. It requires caution. **Y
 - Refs are a generic concept, but most often you'll use them to hold DOM elements.
 - You instruct React to put a DOM node into `myRef.current` by passing `<div ref={myRef}>`.
 - Usually, you will use refs for non-destructive actions like focusing, scrolling, or measuring DOM elements.
-- A component doesn't expose its DOM nodes by default. You can opt into exposing a DOM node by using `forwardRef` and passing the second `ref` argument down to a specific node.
+- A component doesn't expose its DOM nodes by default. You can opt into exposing a DOM node by using the `ref` prop.
 - Avoid changing DOM nodes managed by React.
 - If you do modify DOM nodes managed by React, modify parts that React has no reason to update.
 
@@ -1049,7 +1049,7 @@ Make it so that clicking the "Search" button puts focus into the field. Note tha
 
 <Hint>
 
-You'll need `forwardRef` to opt into exposing a DOM node from your own component like `SearchInput`.
+You'll need to pass `ref` as a prop to opt into exposing a DOM node from your own component like `SearchInput`.
 
 </Hint>
 
@@ -1134,18 +1134,14 @@ export default function SearchButton({ onClick }) {
 ```
 
 ```js src/SearchInput.js
-import { forwardRef } from 'react';
-
-export default forwardRef(
-  function SearchInput(props, ref) {
-    return (
-      <input
-        ref={ref}
-        placeholder="Looking for something?"
-      />
-    );
-  }
-);
+export default function SearchInput({ ref }) {
+  return (
+    <input
+      ref={ref}
+      placeholder="Looking for something?"
+    />
+  );
+}
 ```
 
 ```css

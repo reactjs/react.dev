@@ -25,13 +25,23 @@
       "path": "/learn/installation",
       "routes": [
         {
-          "title": "Start a New React Project",
-          "path": "/learn/start-a-new-react-project"
+          "title": "Creating a React App",
+          "path": "/learn/creating-a-react-app"
+        },
+        {
+          "title": "Building a React Framework",
+          "path": "/learn/building-a-react-framework"
         },
         {
           "title": "Add React to an Existing Project",
           "path": "/learn/add-react-to-an-existing-project"
-        },
+        }
+      ]
+    },
+    {
+      "title": "Setup",
+      "path": "/learn/setup",
+      "routes": [
         {
           "title": "Editor Setup",
           "path": "/learn/editor-setup"

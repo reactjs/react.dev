@@ -4,11 +4,19 @@ title: React Blog
 
 <Intro>
 
-This blog is the official source for the updates from the React team. Anything important, including release notes or deprecation notices, will be posted here first. You can also follow the [@reactjs](https://twitter.com/reactjs) account on Twitter, but you won’t miss anything essential if you only read this blog.
+This blog is the official source for the updates from the React team. Anything important, including release notes or deprecation notices, will be posted here first. 
+
+You can also follow the [@react.dev](https://bsky.app/profiles/react.js) account on Bluesky, or [@reactjs](https://twitter.com/reactjs) account on Twitter, but you won’t miss anything essential if you only read this blog.
 
 </Intro>
 
 <div className="sm:-mx-5 flex flex-col gap-5 mt-12">
+
+<BlogCard title="Sunsetting Create React App" date="February 13, 2025" url="/blog/2025/02/14/sunsetting-create-react-app">
+
+Today, we’re deprecating Create React App for new apps, and encouraging existing apps to migrate to a framework. We’re also providing docs for when a framework isn’t a good fit for your project, or you prefer to start by building a framework.
+
+</BlogCard>
 
 <BlogCard title="React v19 " date="December 5, 2024" url="/blog/2024/12/05/react-19">
 

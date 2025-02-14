@@ -62,7 +62,7 @@ On the client, call [`hydrateRoot`](/reference/react-dom/client/hydrateRoot) to 
 #### Returns {/*returns*/}
 
 `prerender` returns a Promise:
-- If rendering the is successful, the Promise will resolve to an object containing:
+- If the rendering is successful, the Promise will resolve to an object containing:
   - `prelude`: a [Web Stream](https://developer.mozilla.org/en-US/docs/Web/API/Streams_API) of HTML. You can use this stream to send a response in chunks, or you can read the entire stream into a string.
 - If rendering fails, the Promise will be rejected. [Use this to output a fallback shell.](#recovering-from-errors-inside-the-shell)
 

@@ -2,7 +2,7 @@
 title: "Sunsetting Create React App"
 author: Matt Carroll and Ricky Hanlon
 date: 2025/02/13
-description: Today, we’re deprecating Create React App and encouraging most existing apps to migrate to a framework. We’re also providing docs for when a framework isn’t a good fit for your project, or you prefer to start by building a framework.
+description: Today, we’re deprecating Create React App for new apps, and encouraging existing apps to migrate to a framework. We’re also providing docs for when a framework isn’t a good fit for your project, or you prefer to start by building a framework.
 ---
 
 February 13, 2025 by [Matt Carroll](https://twitter.com/mattcarrollcode) and [Ricky Hanlon](https://bsky.app/profile/ricky.fm)
@@ -11,7 +11,7 @@ February 13, 2025 by [Matt Carroll](https://twitter.com/mattcarrollcode) and [Ri
 
 <Intro>
 
-Today, we’re deprecating [Create React App](https://create-react-app.dev/) and encouraging existing apps to migrate to a [framework](/learn/creating-a-react-app). We’re also providing docs for when a framework isn’t a good fit for your project, or you prefer to start by [building a framework](http://react.dev/learn/building-a-react-framework).
+Today, we’re deprecating [Create React App](https://create-react-app.dev/) for new apps, and encouraging existing apps to migrate to a [framework](/learn/creating-a-react-app). We’re also providing docs for when a framework isn’t a good fit for your project, or you prefer to start by [building a framework](http://react.dev/learn/building-a-react-framework).
 
 </Intro>
 

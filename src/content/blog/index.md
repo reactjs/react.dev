@@ -14,7 +14,7 @@ You can also follow the [@react.dev](https://bsky.app/profiles/react.js) account
 
 <BlogCard title="Sunsetting Create React App" date="February 13, 2025" url="/blog/2025/02/13/sunsetting-create-react-app">
 
-Today, we’re deprecating Create React App and encouraging most existing apps migrate to a framework. We’re also providing docs for when a framework isn’t a good fit for your project, or you prefer to start by building a framework.
+Today, we’re deprecating Create React App for new apps, and encouraging existing apps to migrate to a framework. We’re also providing docs for when a framework isn’t a good fit for your project, or you prefer to start by building a framework.
 
 </BlogCard>
 

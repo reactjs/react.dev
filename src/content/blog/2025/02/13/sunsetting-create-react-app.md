@@ -193,7 +193,7 @@ However, this requires correctly configuring the loaders in your app and trades 
 
 ### Code Splitting {/*code-splitting*/}
 
-Another common problem in Create React App is code splitting. Create React App does not include a specific code splitting solution. If you're just getting started, you might not consider code splitting at all. 
+Another common problem in Create React App is [code splitting](https://www.patterns.dev/vanilla/bundle-splitting. Create React App does not include a specific code splitting solution. If you're just getting started, you might not consider code splitting at all. 
 
 This means your app is shipped as a single bundle:
 
@@ -222,7 +222,7 @@ const router = createBrowserRouter([
 ]);
 ```
 
-Optimized code-splitting is tricky to get right, and it's easy to make mistakes that can cause the user to download more code than they need. It works best when integrated with your router and data loading solutions to maximize caching, parallel fetches, and preloading.
+Optimized code-splitting is tricky to get right, and it's easy to make mistakes that can cause the user to download more code than they need. It works best when integrated with your router and data loading solutions to maximize caching, parallelize fetches, and support ["import on interaction"](https://www.patterns.dev/vanilla/import-on-interaction) patterns.
 
 ### And more... {/*and-more*/}
 
@@ -235,21 +235,23 @@ Once you've integrated routing, data-fetching, and code splitting, you now also 
     <li>Accessibility</li>
     <li>Asset loading</li>
     <li>Authentication</li>
-    <li>Error handling</li>
+    <li>Caching</li>
   </ul>
   <ul>
+    <li>Error handling</li>
     <li>Mutating data</li>
     <li>Navigations</li>
-    <li>Nested routes</li>
     <li>Optimistic updates</li>
   </ul>
   <ul>
-    <li>Caching</li>
     <li>Progressive enhancement</li>
-    <li>Static site generation</li>
     <li>Server-side rendering</li>
+    <li>Static site generation</li>
+    <li>Streaming</li>
   </ul>
 </div>
+
+All of these work together to create the most optimal [loading sequence](https://www.patterns.dev/vanilla/loading-sequence). 
 
 Solving each of these problems individually in Create React App can be difficult as each problem is interconnected with the others and can require deep expertise in problem areas users may not be familiar with. In order to solve these problems, users end up building their own bespoke solutions on top of Create React App, which was the problem Create React App originally tried to solve.
 
@@ -290,8 +292,6 @@ While server rendering can improve SEO, it also improves performance by reducing
 This is why the Chrome team [has encouraged](https://web.dev/articles/rendering-on-the-web) developers to consider static or server-side render over a full client-side approach to achieve the best possible performance.
 
 </Note>
-
-
 
 ---
 

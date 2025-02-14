@@ -267,7 +267,7 @@ Frameworks provide the same getting started experience as Create React App, but 
 
 <DeepDive>
 
-#### Server Rendering is Not Required {/*server-rendering-is-not-required*/}
+#### Server rendering is optional {/*server-rendering-is-optional*/}
 
 The frameworks we recommend all provide the option to create a [client-side rendered (CSR)](https://developer.mozilla.org/en-US/docs/Glossary/CSR) app. 
 
@@ -278,6 +278,16 @@ Server rendering generally sends less JavaScript to the client, and a full HTML 
 There are tradeoffs to using a server, and it is not always the best option for every page. Generating pages on the server incurs additional cost and takes time to generate which can increase [Time to First Byte (TTFB)](https://web.dev/articles/ttfb). The best performing apps are able to pick the right rendering strategy on a per-page basis, based on the tradeoffs of each strategy.
 
 Frameworks provide the option to use a server on any page if you want to, but do not force you to use a server. This allows you to pick the right rendering strategy for each page in your app.
+
+#### What About Server Components {/*server-components*/}
+
+The frameworks we recommend also include support for React Server Components.
+
+Server Components help solve these problems by moving routing and data fetching to the server, and allowing code splitting to be done for client components based on the data you render, instead of just the route rendered, and reducing the amount of JavaScript shipped for the best possible [loading sequence](https://www.patterns.dev/vanilla/loading-sequence).
+
+Server Components do not require a server. They can be run at build time on your CI server to create a static-site generated app (SSG) app, at runtime on a web server for a server-side rendered (SSR) app. 
+
+See [Introducing zero-bundle size React Server Components](/blog/2020/12/21/data-fetching-with-react-server-components) and [the docs](/reference/rsc/server-components) for more info.
 
 </DeepDive>
 

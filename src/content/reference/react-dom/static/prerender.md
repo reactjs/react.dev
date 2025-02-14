@@ -83,7 +83,7 @@ The static `prerender` API is used for static server-side generation (SSG). Unli
 
 ### Rendering a React tree to a stream of static HTML {/*rendering-a-react-tree-to-a-stream-of-static-html*/}
 
-Call `prerender` to render your React tree to static HTML into a [Readable Web Stream:](https://developer.mozilla.org/en-US/docs/Web/API/ReadableStream):
+Call `prerender` to render your React tree to static HTML into a [Readable Web Stream:](https://developer.mozilla.org/en-US/docs/Web/API/ReadableStream)
 
 ```js [[1, 4, "<App />"], [2, 5, "['/main.js']"]]
 import { prerender } from 'react-dom/static';

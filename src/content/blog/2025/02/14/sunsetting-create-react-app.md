@@ -11,7 +11,7 @@ February 14, 2025 by [Matt Carroll](https://twitter.com/mattcarrollcode) and [Ri
 
 <Intro>
 
-Today, we’re deprecating [Create React App](https://create-react-app.dev/) for new apps, and encouraging existing apps to migrate to a [framework](/learn/creating-a-react-app). We’re also providing docs for when a framework isn’t a good fit for your project, or you prefer to start by [building a framework](http://react.dev/learn/building-a-react-framework).
+Today, we’re deprecating [Create React App](https://create-react-app.dev/) for new apps, and encouraging existing apps to migrate to a [framework](/learn/creating-a-react-app). We’re also providing docs for when a framework isn’t a good fit for your project, or you prefer to start by [building a framework](/learn/building-a-react-framework).
 
 </Intro>
 

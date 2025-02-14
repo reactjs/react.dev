@@ -33,13 +33,17 @@ However, since Create React App currently has no active maintainers, and there a
 
 Starting today, if you install a new app, you will see a deprecation warning:
 
-```bash
+<ConsoleBlockMulti>
+<ConsoleLogLine level="warning">
 create-react-app is deprecated.
-
-You can find a list of up-to-date React frameworks on react.dev
-
+{'\n\n'}
+You can find a list of up-to-date React frameworks on react.dev 
+For more info see: react.dev/link/cra
+{'\n\n'}
 This error message will only be shown once per install.
-```
+
+</ConsoleLogLine>
+</ConsoleBlockMulti>
 
 We recommend [creating new React apps](/learn/creating-a-react-app) with a framework. All the frameworks we recommend support client-only SPAs, and can be deployed to a CDN or static hosting service without a server.
 
@@ -278,11 +282,11 @@ Frameworks provide the option to use a server on any page if you want to, but do
 
 #### Server Rendering is not just for SEO {/*server-rendering-is-not-just-for-seo*/}
 
-A common misunderstanding is that server rendering is only for SEO. 
+A common misunderstanding is that server rendering is only for [SEO](https://developer.mozilla.org/en-US/docs/Glossary/SEO). 
 
-While server rendering can improve SEO, it also improves performance by reducing the amount of JavaScript the user needs to download and parse before they can see the content on the screen.
+While server rendering can improve SEO, it also improves performance by reducing the amount of JavaScript the user needs to download and parse before they can see the content on the screen. 
 
-Even if you don't care about SEO, server rendering can improve the user experience.
+This is why the Chrome team [has encouraged](https://web.dev/articles/rendering-on-the-web) developers to consider static or server-side render over a full client-side approach to achieve the best possible performance.
 
 </Note>
 

@@ -193,7 +193,7 @@ However, this requires correctly configuring the loaders in your app and trades 
 
 ### Code Splitting {/*code-splitting*/}
 
-Another common problem in Create React App is [code splitting](https://www.patterns.dev/vanilla/bundle-splitting. Create React App does not include a specific code splitting solution. If you're just getting started, you might not consider code splitting at all. 
+Another common problem in Create React App is [code splitting](https://www.patterns.dev/vanilla/bundle-splitting). Create React App does not include a specific code splitting solution. If you're just getting started, you might not consider code splitting at all. 
 
 This means your app is shipped as a single bundle:
 

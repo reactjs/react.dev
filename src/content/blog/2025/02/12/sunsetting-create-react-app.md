@@ -25,9 +25,55 @@ Create React App solved these problems by combining several tools into a single 
 
 This model became so popular that there's an entire category of tools working this way today.
 
-## Limitations of Create React App {/*the-limitations-of-create-react-app*/}
+## Deprecating Create React App {/*deprecating-create-react-app*/}
 
-Create React App and other build tools like it make it easy to get started building a React app. After running `npx create-react-app my-app`, you get a fully configured React app with a development server, linting, and a production build.
+Although Create React App makes it easy to get started, [there are several limitations](#limitations-of-create-react-app) that make it difficult to build high performant production apps. In principle, we could solve these problems by essentially evolving it into a [framework](#rise-of-frameworks).
+
+However, since Create React App currently has no active maintainers, and there are many existing frameworks that solve these problems, we’ve decided to deprecate Create React App.
+
+Starting today, if you install a new app with Create React App, you will see a deprecation warning:
+
+```bash
+create-react-app is deprecated.
+
+You can find a list of up-to-date React frameworks on react.dev
+
+This error message will only be shown once per install.
+```
+
+We recommend [creating new React apps](/learn/creating-a-react-app) with a framework. All of the frameworks we recommend support client-only SPAs, and can be deployed to a CDN or static hosting service without a server.
+
+For existing apps, these guides with help you migrate to a client-only SPA using a framework:
+
+* [Next.js’ Create React App migration guide](https://nextjs.org/docs/app/building-your-application/upgrading/from-create-react-app)
+* [React Router’s framework getting started guide](https://reactrouter.com/start/framework/installation).
+* [Expo Webpack to Expo Router migration guide](https://docs.expo.dev/router/migrate/from-expo-webpack/)
+
+Create React App will continue working in maintenance mode, and we've published a new version of Create React App to work with React 19.
+
+If your app has unusual constraints not served well by a framework, or you prefer to solve these problems by building your own framework, or you just want to learn how react works from scratch, you can roll your own custom setup with React using Vite or Parcel. See our new [Building Your Own Framework](/todo) guide.
+
+
+
+<Note>
+
+#### Do you recommend Vite? {/*do-you-recommend-vite*/}
+
+We provide several Vite-based recommendations.
+
+React Router v7 is a Vite based framework which allows you to use Vite's fast development server and build tooling with a framework that provides routing and data fetching. Just like the other frameworks we recommend, you can build a SPA with React Router v7.
+
+We also recommend using Vite when [adding react to an existing page](/learn/adding-react-to-an-existing-page), or [building your own framework](/learn/buidling-your-own-framwork).
+
+Just like Svelte has Sveltekit, Vue has Nuxt, and Solid has SolidStart, React recommends using a framework that integrates with build tools like Vite for new projects.
+
+</Note>
+
+Continue to learn more about the [limitations of Create React App](#limitations-of-create-react-app) and [why we recommend frameworks](#why-we-recommend-frameworks).
+
+## Limitations of Create React App {/*limitations-of-create-react-app*/}
+
+Create React App and build tools like it make it easy to get started building a React app. After running `npx create-react-app my-app`, you get a fully configured React app with a development server, linting, and a production build.
 
 For example, if you're building an internal admin tool, you can start with a landing page:
 
@@ -67,10 +113,10 @@ export default function App() {
 }
 ```
 
-This is why most apps that use Create React App solve add routing with a routing library like [React Router](https://reactrouter.com/). With a routing library, you can add additional routes to the app, which provides opinions on the structure of your app, and allows you to start sharing links to routes:
+This is why most apps that use Create React App solve add routing with a routing library like [React Router](https://reactrouter.com/) or [Tanstack Router](https://tanstack.com/router/latest). With a routing library, you can add additional routes to the app, which provides opinions on the structure of your app, and allows you to start sharing links to routes. For example, with React Router you can define routes:
 
 ```js
-import {RouterProvider, createBrowserRouter} from 'react-router-dom';
+import {RouterProvider, createBrowserRouter} from 'react-router';
 
 import Home from './Home';
 import Dashboard from './Dashboard';
@@ -88,11 +134,11 @@ export default function App() {
 }
 ```
 
-With a routing library, you can share a link to `/dashboard` and the app will navigate to the dashboard page. Once you have a routing library, you can add additional features like nested routes, route guards, and route transitions, which are difficult to implement without a routing library.
+With this change, you can share a link to `/dashboard` and the app will navigate to the dashboard page . Once you have a routing library, you can add additional features like nested routes, route guards, and route transitions, which are difficult to implement without a routing library.
 
 There's a tradeoff being made here: the routing library adds complexity to the app, but it also adds features that are difficult to implement without it.
 
-## Data Fetching {/*data-fetching*/}
+### Data Fetching {/*data-fetching*/}
 
 Another common problem in Create React App is data fetching. Create React App does not include a specific data fetching solution. If you're just getting started, a common option is to use `fetch` in an effect to load data. 
 
@@ -117,7 +163,9 @@ export default function Dashboard() {
 }
 ```
 
-Fetching in an effect means the user has to wait longer to see the content, even though the data could have been fetched earlier. This is why routing libraries like React Router include a "loader" pattern to specify data dependencies at the Route level. With a loader pattern, you can specify data dependencies at the route level, which allows the router to optimize your data fetches:
+Fetching in an effect means the user has to wait longer to see the content, even though the data could have been fetched earlier. To solve this, you can use a data fetching library like [React Query](https://react-query.tanstack.com/), [SWR](https://swr.vercel.app/), or [Relay](https://relay.dev/) which provide options to prefetch data so the request is started before the component renders.
+
+These libraries work best when integrated with your routing "loader" pattern to specify data dependencies at the Route level. With a loader pattern, you can specify data dependencies at the route level, which allows the router to optimize your data fetches:
 
 ```js
 export async function loader() {
@@ -126,7 +174,7 @@ export async function loader() {
   return data;
 }
 
-// ✅ Fetching data in parallel while the code is downloading.
+// ✅ Fetching data in parallel while the code is downloading
 export default function Dashboard({loaderData}) {
   return (
     <div>
@@ -138,9 +186,9 @@ export default function Dashboard({loaderData}) {
 
 On initial load, the router can fetch the data immediately before the route is rendered. As the user navigates around the app, the router is able to fetch both the data and the route at the same time, parallelizing the fetches. This reduces the time it takes to see the content on the screen, and can improve the user experience.
 
-This is especially important for client-only apps, where the user already has to wait for the entire app to download before they can see anything on the screen. However, this requires correctly configuring the loaders in your app and trades off complexity for performance.
+However, this requires correctly configuring the loaders in your app and trades off complexity for performance.
 
-## Code Splitting {/*code-splitting*/}
+### Code Splitting {/*code-splitting*/}
 
 Another common problem in Create React App is code splitting. Create React App does not include a specific code splitting solution. If you're just getting started, you might not consider code splitting at all. 
 
@@ -158,56 +206,51 @@ But for ideal performance, you should "split" your code into separate bundles so
 - dashboard.js 25kb
 ```
 
-One way to do code-splitting is with `React.lazy`. However, this means that the code is not fetched until the component renders, which can cause network waterfalls:
-
-```js
-const Home = React.lazy(() => import('./Home'));
-const Dashboard = React.lazy(() => import('./Dashboard'));
-
-// ⚠️ Routes are loaded when rendering.
-const router = createBrowserRouter([
-  {path: '/', element: <Home />},
-  {path: '/dashboard', element: <Dashboard />}
-]);
-```
-
-A more optimal solution is to use a router feature that fetches the code in parallel while the code is downloading. For example, React Router provides a `lazy` option to specify that a route should be code split and optimize when it is loaded:
+One way to do code-splitting is with `React.lazy`. However, this means that the code is not fetched until the component renders, which can cause network waterfalls. A more optimal solution is to use a router feature that fetches the code in parallel while the code is downloading. For example, React Router provides a `lazy` option to specify that a route should be code split and optimize when it is loaded:
 
 ```js
 import Home from './Home';
 import Dashboard from './Dashboard';
 
-// ✅ Routes are downloaded before rendering.
+// ✅ Routes are downloaded before rendering
 const router = createBrowserRouter([
   {path: '/', lazy: () => import('./Home')},
   {path: '/dashboard', lazy: () => import('Dashboard')}
 ]);
 ```
 
-Optimized code-splitting is tricky to get right, and it's easy to make mistakes that can cause the user to download more code than they need. This is why most apps that use Create React App solve code splitting with a routing library like React Router, but a library can still be difficult to configure correctly.
+Optimized code-splitting is tricky to get right, and it's easy to make mistakes that can cause the user to download more code than they need. It works best when integrated with your router and data loading solutions to maximize caching, parallel fetches, and preloading.
 
 ### And more... {/*and-more*/}
 
-These are just a few examples of the limitations of Create React App. There are many other problems that users need to solve like:
+These are just a few examples of the limitations of Create React App. 
+
+Once you've integrated routing, data-fetching, and code splitting, you now also need to consider pending states, navigation interruptions, error messages to the user, and revalidation of the data. There are entire categories of problems that users need to solve like:
 
 <div style={{display: 'flex', width: '100%', justifyContent: 'space-around'}}>
-<div>
-- accessibility
-- asset loading
-- authentication
-- error boundaries
-</div>
-<div>
-- mutating data
-- navigations
-- nested routes
-- optimistic updates
-</div>
+  <ul>
+    <li>Accessibility</li>
+    <li>Asset loading</li>
+    <li>Authentication</li>
+    <li>Error handling</li>
+  </ul>
+  <ul>
+    <li>Mutating data</li>
+    <li>Navigations</li>
+    <li>Nested routes</li>
+    <li>Optimistic updates</li>
+  </ul>
+  <ul>
+    <li>Caching</li>
+    <li>Progressive enhancement</li>
+    <li>Static site generation</li>
+    <li>Server-side rendering</li>
+  </ul>
 </div>
 
 Solving each of these problems individually in Create React App can be difficult as each problem is interconnected with the others and can require deep expertise in problem areas users may not be familiar with. In order to solve these problems, users end up building their own bespoke solutions on top of Create React App, which was the problem Create React App originally tried to solve.
 
-## Frameworks {/*frameworks*/}
+## Why we Recommend Frameworks {/*why-we-recommend-frameworks*/}
 
 Although you could solve all these pieces yourself in a build tool like Create React App, Vite, or Parcel, it is hard to do well. Just like when Create React App itself integrated several build tools together, you need a tool to integrate all of these features together to provide the best experience to users.
 
@@ -217,71 +260,22 @@ Frameworks impose some opinions about structuring your app in order to provide a
 
 Frameworks provide the same getting started experience as Create React App, but also provide solutions to problems users need to solve anyway in real production apps.
 
-<Note>
+<DeepDive>
 
-#### Frameworks do not require a server {/*frameworks-do-not-require-a-server*/}
+#### Server Rendering is Not Required {/*server-rendering-is-not-required*/}
 
-A common misunderstanding is that frameworks require a server. All of the features we've discussed so far are concerns for client-only Single Page apps.
+The frameworks we recommend all provide the option to create a [client-side rendered (CSR)](https://developer.mozilla.org/en-US/docs/Glossary/CSR) app. 
 
-All the frameworks that we recommend make it easy to create a single page app:
-
-* Next.js [supports a client-only single page app out of the box](https://nextjs.org/docs/app/building-your-application/upgrading/single-page-applications).
-* Expo [produces a client-side only single page app out of the box](https://docs.expo.dev/workflow/web/)
-* React Router [supports a client-side only single page app out of the box](https://reactrouter.com/how-to/spa)
-
-</Note>
-
-
-## Deprecating Create React App {/*deprecating-create-react-app*/}
-
-In principle, Create React App could solve these problems by evolving it into a framework. However, since it currently has no active maintainers, are there are many frameworks that provide these solutions even for client-only apps, we’ve decided to deprecate Create React App.
-
-Starting today, if you install a new app with Create React App, you will see a deprecation warning:
-
-```bash
-create-react-app is deprecated.
-
-You can find a list of up-to-date React frameworks on react.dev
-
-This error message will only be shown once per install.
-```
-
-Create React App will continue working in maintenance mode, and we've published a new version of Create React App to work with React 19. For new apps, we recommend most app start with a framework. For existing apps, we recommend most apps migrate to one of the frameworks we recommend, which all support client-only SPAs.
-
-## Migrating to a Framework {/*migrating-to-a-framework*/}
-
-We think frameworks are the right default for most new web apps. 
-
-In 2023, we started recommending frameworks for new projects and today we recommend projects built with Create React App migrate to a framework. Below is a list of recommended frameworks and guides to get your migration process started:
-
-* [Next.js’ Create React App migration guide](https://nextjs.org/docs/app/building-your-application/upgrading/from-create-react-app)
-* [React Router’s framework getting started guide](https://reactrouter.com/start/framework/installation).
-* [Expo Webpack to Expo Router migration guide](https://docs.expo.dev/router/migrate/from-expo-webpack/)
-
-
-<Note>
-
-#### Do you recommend Vite? {/*do-you-recommend-vite*/}
-
-We provide several Vite-based recommendations.
-
-React Router v7 is a Vite based framework which allows you to use Vite's fast development server and build tooling with a framework that provides routing and data fetching. We also recommend using Vite or Parcel when [adding react to an existing page](/learn/adding-react-to-an-existing-page), or [building your own framework](/learn/buidling-your-own-framwork).
-
-Just like Svelte has Sveltekit, Vue has Nuxt, and Solid has SolidStart, React recommends using a framework that integrates with build tools like Vite for new projects.
-
-</Note>
-
-
-## Optional: Server Rendering {/*optimization-server-rendering*/}
-
-Create React App is primarily designed for client-side rendering, and does not include built-in support for server-side rendering. In some cases, this is the right choice for a page, but many times it's not. Even if most of your app is client-side, there are often individual pages that could benefit from server rendering features like [static-site generation (SSG)](https://developer.mozilla.org/en-US/docs/Glossary/SSG) or [server-side rendering (SSR)](https://developer.mozilla.org/en-US/docs/Glossary/SSR).
+In some cases, CSR is the right choice for a page, but many times it's not. Even if most of your app is client-side, there are often individual pages that could benefit from server rendering features like [static-site generation (SSG)](https://developer.mozilla.org/en-US/docs/Glossary/SSG) or [server-side rendering (SSR)](https://developer.mozilla.org/en-US/docs/Glossary/SSR), for example a Terms of Service page, or documentation.
 
 Server rendering generally sends less JavaScript to the client, and a full HTML document which produces a faster [First Contentful Paint (FCP)](https://web.dev/articles/fcp) by reducing [Total Blocking Time (TBD)](https://web.dev/articles/tbt), which can also lower [Interaction to Next Paint (INP)](https://web.dev/articles/inp). This is why the [Chrome team has encouraged](https://web.dev/articles/rendering-on-the-web) developers to consider static or server-side render over a full client-side approach to achieve the best possible performance.
 
 There are tradeoffs to using a server, and it is not always the best option for every page. Generating pages on the server incurs additional cost and takes time to generate which can increase [Time to First Byte (TTFB)](https://web.dev/articles/ttfb). The best performing apps are able to pick the right rendering strategy on a per-page basis, based on the tradeoffs of each strategy.
 
 Frameworks provide the option to use a server on any page if you want to, but do not force you to use a server. This allows you to pick the right rendering strategy for each page in your app.
-q
+
+</DeepDive>
+
 <Note>
 
 #### Server Rendering is not just for SEO {/*server-rendering-is-not-just-for-seo*/}
@@ -294,11 +288,9 @@ Even if you don't care about SEO, server rendering can improve the user experien
 
 </Note>
 
-## When Not to Use a Framework {/*when-not-to-use-a-framework*/}
 
-If your app has unusual constraints not served well by a framework, or you prefer to solve these problems by building your own framework, or you just want to learn how react works from scratch, you can roll your own custom setup with React using Vite or Parcel. See our new [Building Your Own Framework](/todo) guide.
 
 ---
 
-_Thank you to Dan Abramov for creating Create React App, and Dan Abramov, Joe Haddad, Ian Schmitz, Brody McKee for maintaining Create React App. Thanks to Dan Abramov for [this GitHub comment](https://github.com/reactjs/react.dev/pull/5487#issuecomment-1409720741) that inspired much of this blog post. Thank you to Joe Savona, Eli White, TODO, TODO, and TODO for reviewing this post._
+_Thank you to [Dan Abramov](https://bsky.app/profile/danabra.mov) for creating Create React App, and [Joe Haddad](https://github.com/Timer), [Ian Schmitz](https://github.com/ianschmitz), [Brody McKee](https://github.com/mrmckeb), and [many others](https://github.com/facebook/create-react-app/graphs/contributors) for maintaining Create React App over the years. Thank you to [Brooks Lybrand](https://bsky.app/profile/brookslybrand.bsky.social), [Dan Abramov](https://bsky.app/profile/danabra.mov), [Eli White](https://x.com/Eli_White), [Jack Herrington](https://bsky.app/profile/jherr.dev), [Joe Savona](https://x.com/en_JS), [Lauren Tan](https://bsky.app/profile/no.lol), [Mark Erikson](https://bsky.app/profile/acemarke.dev), [Ryan Florance](https://x.com/ryanflorence), [Sophie Alpert](https://bsky.app/profile/sophiebits.com), [Tanner Linsley](https://bsky.app/profile/tannerlinsley.com), and [Theo Browne](https://x.com/theo) for reviewing and providing feedback on this post._
 

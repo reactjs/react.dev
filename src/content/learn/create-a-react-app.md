@@ -16,7 +16,7 @@ These recommended frameworks support all the features you need to deploy and sca
 
 #### React frameworks do not require a server. {/*react-frameworks-do-not-require-a-server*/}
 
-All of the frameworks on this page can create single-page apps. Single-page apps can be deployed to a [CDN](https://developer.mozilla.org/en-US/docs/Glossary/CDN) or static hosting service and do not need a server. If you would like to enable features that require a server (like server side rendering) you can opt-in on individual routes without rewriting your app.
+All the frameworks on this page can create single-page apps. Single-page apps can be deployed to a [CDN](https://developer.mozilla.org/en-US/docs/Glossary/CDN) or static hosting service and do not need a server. If you would like to enable features that require a server (like server side rendering), you can opt-in on individual routes without rewriting your app.
 
 </Note>
 
@@ -32,7 +32,7 @@ Next.js is maintained by [Vercel](https://vercel.com/). You can [deploy a Next.j
 
 ### React Router (v7) {/*react-router-v7*/}
 
-**[React Router](https://reactrouter.com/start/framework/installation) is the most popular routing library for React and can be paired with Vite to create a full-stack React framework**.
+**[React Router](https://reactrouter.com/start/framework/installation) is the most popular routing library for React and can be paired with Vite to create a full-stack React framework**. It emphasizes standard Web APIs and has several [ready to deploy templates](https://github.com/remix-run/react-router-templates) for various JavaScript runtimes and platforms.
 
 To create a new React Router framework project, run:
 

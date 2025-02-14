@@ -907,19 +907,27 @@ import { fetchBio } from './api.js';
 export default function Page() {
   const [person, setPerson] = useState('Alice');
   const [bio, setBio] = useState(null);
+  const [isLoading, setIsLoading] = useState(false)
+  const [error, setError] = useState(null)
 
   useEffect(() => {
-    let ignore = false;
-    setBio(null);
-    fetchBio(person).then(result => {
-      if (!ignore) {
-        setBio(result);
+    let ignore = false
+    setIsLoading(true)
+    setError(null)
+    setBio(null)
+    fetchBio(person).then(s => {
+      if(!ignore){
+        setBio(s)
       }
-    });
+    }).catch(s => setError(s))
+      .finally(() => setIsLoading(false))
+
     return () => {
-      ignore = true;
-    };
-  }, [person]);
+      ignore = true
+    }
+  },[person])
+
+}
 
   // ...
 ```

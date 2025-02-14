@@ -32,19 +32,25 @@ Most pages in the React documentation contain sandboxes like this. Outside of th
 
 To try React locally on your computer, [download this HTML page.](https://gist.githubusercontent.com/gaearon/0275b1e1518599bbeafcde4722e79ed1/raw/db72dcbf3384ee1708c4a07d3be79860db04bff0/example.html) Open it in your editor and in your browser!
 
-## Create a React App {/*create-a-react-app*/}
+## Creating a React App {/*creating-a-react-app*/}
 
-If you want to start a new React app, you can [create a React app](/learn/create-a-react-app) using a recommended framework.
+If you want to start a new React app, you can [create a React app](/learn/creating-a-react-app) using a recommended framework.
+
+## Build a React Framework {/*build-a-react-framework*/}
+
+If a framework is not a good fit for your project, or you prefer to start by building your own framework, you can [build your own React framework](/learn/building-a-react-framework).
 
 ## Add React to an existing project {/*add-react-to-an-existing-project*/}
 
 If want to try using React in your existing app or a website, you can [add React to an existing project.](/learn/add-react-to-an-existing-project)
 
-## Deprecated Frameworks {/*d*/}
+## Deprecated Options {/*deprecated-options*/}
 
 ### Create React App (Deprecated) {/*create-react-app-deprecated*/}
 
-Create React App is deprecated tool, previously recommended for creating new React apps. If you want to start a new React app, you can [create a React app](/learn/create-a-react-app) using a recommended framework.
+Create React App is a deprecated tool, previously recommended for creating new React apps. If you want to start a new React app, you can [create a React app](/learn/creat-a-react-app) using a recommended framework. 
+
+For more information, see [Sunsetting Create React App](/blog/2025/02/13/sunsetting-create-react-app).
 
 ## Next steps {/*next-steps*/}
 

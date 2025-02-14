@@ -54,13 +54,16 @@ If you're new to Expo, check out the [Expo tutorial](https://docs.expo.dev/tutor
 
 Expo is maintained by [Expo (the company)](https://expo.dev/about). Building apps with Expo is free, and you can submit them to the Google and Apple app stores without restrictions. Expo additionally provides opt-in paid cloud services.
 
-## Build your own framework {/*build-your-own-framework*/}
+<Note>
 
-When building a new app, we recommend starting with a framework. This is because most applications and websites require solutions to common problems such like routing, dating fetching, and code-splitting.
+#### Do you recommend Vite? {/*do-you-recommend-vite*/}
 
-These challenges are not unique to React, but are common to all UI libraries. Without a framework, you may find yourself re-inventing the wheel by solving these problems on your own, essentially creating an inefficient framework in the process. This is why we decided to [Sunset Create React App](/blog/2025/02/12/sunsetting-create-react-app) and recommend starting with a framework.
+We provide several Vite-based recommendations.
 
-If your app has unusual constraints not served well by a framework, or you prefer to solve these problems by building your own framework, you can start a React project from scratch with a build tool like [Parcel](https://parceljs.org/) or [Vite](https://vite.dev/). Before you start a React app from scratch please note that [frameworks do not require a server](#react-frameworks-do-not-require-a-server). 
+React Router v7 is a Vite based framework which allows you to use Vite's fast development server and build tooling with a framework that provides routing and data fetching. Just like the other frameworks we recommend, you can build a SPA with React Router v7.
 
-To learn more about creating a React app from scratch see our docs for [building a framework](learn/building-a-framework).
+We also recommend using Vite when [adding React to an existing project](/learn/add-react-to-an-existing-project), or [building a framework](/learn/building-a-react-framework).
 
+Just like Svelte has Sveltekit, Vue has Nuxt, and Solid has SolidStart, React recommends using a framework that integrates with build tools like Vite for new projects.
+
+</Note>

@@ -26,11 +26,11 @@
       "routes": [
         {
           "title": "Creating a React App",
-          "path": "/learn/create-a-react-app"
+          "path": "/learn/creating-a-react-app"
         },
         {
-          "title": "Building a Framework",
-          "path": "/learn/building-a-framework"
+          "title": "Building a React Framework",
+          "path": "/learn/building-a-react-framework"
         },
         {
           "title": "Add React to an Existing Project",

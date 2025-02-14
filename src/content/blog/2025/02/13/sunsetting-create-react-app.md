@@ -1,17 +1,17 @@
 ---
 title: "Sunsetting Create React App"
-author: Matt Carroll
-date: 2025/02/12
+author: Matt Carroll and Ricky Hanlon
+date: 2025/02/13
 description: Today, we’re deprecating Create React App and encouraging most existing apps to migrate to a framework. We’re also providing docs for when a framework isn’t a good fit for your project, or you prefer to start by building a framework.
 ---
 
-February 12, 2025 by [Matt Carroll](https://twitter.com/mattcarrollcode) and [Ricky Hanlon](https://bsky.app/profile/ricky.fm)
+February 13, 2025 by [Matt Carroll](https://twitter.com/mattcarrollcode) and [Ricky Hanlon](https://bsky.app/profile/ricky.fm)
 
 ---
 
 <Intro>
 
-Today, we’re deprecating [Create React App](https://create-react-app.dev/) and encouraging existing apps to migrate to a [framework](/learn/create-a-react-app). We’re also providing docs for when a framework isn’t a good fit for your project, or you prefer to start by [building a framework](http://react.dev/learn/building-a-framework).
+Today, we’re deprecating [Create React App](https://create-react-app.dev/) and encouraging existing apps to migrate to a [framework](/learn/creating-a-react-app). We’re also providing docs for when a framework isn’t a good fit for your project, or you prefer to start by [building a framework](http://react.dev/learn/building-a-react-framework).
 
 </Intro>
 
@@ -27,11 +27,11 @@ This model became so popular that there's an entire category of tools working th
 
 ## Deprecating Create React App {/*deprecating-create-react-app*/}
 
-Although Create React App makes it easy to get started, [there are several limitations](#limitations-of-create-react-app) that make it difficult to build high performant production apps. In principle, we could solve these problems by essentially evolving it into a [framework](#rise-of-frameworks).
+Although Create React App makes it easy to get started, [there are several limitations](#limitations-of-create-react-app) that make it difficult to build high performant production apps. In principle, we could solve these problems by essentially evolving it into a [framework](#why-we-recommend-frameworks).
 
-However, since Create React App currently has no active maintainers, and there are many existing frameworks that solve these problems, we’ve decided to deprecate Create React App.
+However, since Create React App currently has no active maintainers, and there are many existing frameworks that solve these problems already, we’ve decided to deprecate Create React App.
 
-Starting today, if you install a new app with Create React App, you will see a deprecation warning:
+Starting today, if you install a new app, you will see a deprecation warning:
 
 ```bash
 create-react-app is deprecated.
@@ -41,19 +41,19 @@ You can find a list of up-to-date React frameworks on react.dev
 This error message will only be shown once per install.
 ```
 
-We recommend [creating new React apps](/learn/creating-a-react-app) with a framework. All of the frameworks we recommend support client-only SPAs, and can be deployed to a CDN or static hosting service without a server.
+We recommend [creating new React apps](/learn/creating-a-react-app) with a framework. All the frameworks we recommend support client-only SPAs, and can be deployed to a CDN or static hosting service without a server.
 
-For existing apps, these guides with help you migrate to a client-only SPA using a framework:
+For existing apps, these guides will help you migrate to a client-only SPA using a framework:
 
 * [Next.js’ Create React App migration guide](https://nextjs.org/docs/app/building-your-application/upgrading/from-create-react-app)
-* [React Router’s framework getting started guide](https://reactrouter.com/start/framework/installation).
+* [React Router’s framework adoption guide](https://reactrouter.com/upgrading/component-routes).
 * [Expo Webpack to Expo Router migration guide](https://docs.expo.dev/router/migrate/from-expo-webpack/)
 
 Create React App will continue working in maintenance mode, and we've published a new version of Create React App to work with React 19.
 
-If your app has unusual constraints not served well by a framework, or you prefer to solve these problems by building your own framework, or you just want to learn how react works from scratch, you can roll your own custom setup with React using Vite or Parcel. See our new [Building Your Own Framework](/todo) guide.
+If your app has unusual constraints not served well by a framework, or you prefer to solve these problems by building your own framework, or you just want to learn how react works from scratch, you can roll your own custom setup with React using Vite or Parcel. 
 
-
+To help users get started with Vite or Parcel, we've published new docs for [Building a Framework](/learn/building-a-react-framework). Continue reading to learn more about the [limitations of Create React App](#limitations-of-create-react-app) and [why we recommend frameworks](#why-we-recommend-frameworks).
 
 <Note>
 
@@ -63,13 +63,11 @@ We provide several Vite-based recommendations.
 
 React Router v7 is a Vite based framework which allows you to use Vite's fast development server and build tooling with a framework that provides routing and data fetching. Just like the other frameworks we recommend, you can build a SPA with React Router v7.
 
-We also recommend using Vite when [adding react to an existing page](/learn/adding-react-to-an-existing-page), or [building your own framework](/learn/buidling-your-own-framwork).
+We also recommend using Vite when [adding React to an existing project](/learn/add-react-to-an-existing-project), or [building a framework](/learn/building-a-react-framework).
 
 Just like Svelte has Sveltekit, Vue has Nuxt, and Solid has SolidStart, React recommends using a framework that integrates with build tools like Vite for new projects.
 
 </Note>
-
-Continue to learn more about the [limitations of Create React App](#limitations-of-create-react-app) and [why we recommend frameworks](#why-we-recommend-frameworks).
 
 ## Limitations of Create React App {/*limitations-of-create-react-app*/}
 

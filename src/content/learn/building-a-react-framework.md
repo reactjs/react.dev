@@ -1,5 +1,5 @@
 ---
-title: Building a framework
+title: Building a React Framework
 ---
 
 <Intro>
@@ -12,19 +12,21 @@ If your app has constraints not well-served by existing frameworks, or you prefe
 
 ### Consider Using an Existing Framework {/*you-should-probably-use-a-framework*/}
 
-Building a framework is complex and requires extensive expertise across various domains (this complexity is not limited to React — it is a widespread challenge encountered by all UI libraries). Using an existing framework can save significant time and effort by allowing you to focus on building your application. Existing frameworks have tested, robust features and community support.
+Building a framework is complex and requires extensive expertise across various domains. This complexity is not limited to React — it is a widespread challenge encountered by all UI libraries. Using an existing framework can save significant time and effort by allowing you to focus on building your application. Existing frameworks have tested, robust features and community support.
 
-For a list of recommended frameworks, check out [Create a React App](/learn/create-a-react-app).
+For a list of recommended frameworks, check out [Creating a React App](/learn/creating-a-react-app).
 
 </Note>
 
 Building a framework is a large undertaking that often requires expertise in many different areas. Understanding your goals and requirements before starting to build your own framework can help guide your development process and save a considerable amount of time.
 
-For example, if you need to build a framework that integrates with a specific system or infrastructure, it's important to understand the features and limitations of those systems. Understanding your constraints can help guide your framework development process. If you are building your own framework to learn, using popular tools like Vite and React Router can be a good starting point and let you focus on how to combine different tools to build a framework.
+For example, if you need to build a framework that integrates with a specific system or infrastructure, it's important to understand the features and limitations of those systems. Understanding your constraints can help guide your framework development process. 
 
-## Step 1: Install a build tool {/*recommended-build-tools*/}
+If you are building your own framework to learn, using popular tools like Vite and React Router can be a good starting point and let you focus on how to combine different tools to build a framework.
 
-We recommend starting with a build tool like `vite` or `parcel`. These build tools provide features to package and run source code, provide a development server for local development and a build command to deploy your app to a production server.
+## Step 1: Install a build tool {/*step-1-install-a-build-tool*/}
+
+The first step is to install a build tool like `vite` or `parcel`. These build tools provide features to package and run source code, provide a development server for local development and a build command to deploy your app to a production server.
 
 ### Vite {/*vite*/}
 
@@ -36,7 +38,7 @@ npx vite@latest --template react
 
 Vite is opinionated and comes with sensible defaults out of the box. Vite has a rich ecosystem of plugins to support fast refresh, JSX,  Babel/SWC, and other common features. See Vite's [React plugin](https://vite.dev/plugins/#vitejs-plugin-react) or [React SWC plugin](https://vite.dev/plugins/#vitejs-plugin-react-swc) and [React SSR example project](https://vite.dev/guide/ssr.html#example-projects) to get started.
 
-Vite is already being used as a build tool in one of our [recommended frameworks](/learn/create-a-react-app): [React Router](https://reactrouter.com/start/framework/installation).
+Vite is already being used as a build tool in one of our [recommended frameworks](/learn/creating-a-react-app): [React Router](https://reactrouter.com/start/framework/installation).
 
 ### Parcel {/*parcel*/}
 
@@ -58,7 +60,7 @@ If you'd like your framework to support React Native you'll need to use [Metro](
 
 ## Step 2: Build your framework {/*step-2-build-your-framework*/}
 
-The build tools we recommend start with a client-only, single-page app (SPA). While SPAs can be a good place to start, many SPAs will encounter problems as they grow. Frameworks can provide the scaffolding to solve these problems. Most frameworks will implement routing, code-splitting, different rendering strategies, and data-fetching. These features are interconnected. For example, if you use a router that only works on the client it could prevent you from implementing server-side rendering. The best frameworks provide a cohesive, consistent experience across these features for developers and users.
+The build tool you select starts with a client-only, single-page app (SPA). While SPAs can be a good place to start, many SPAs will encounter problems as they grow. Frameworks can provide the scaffolding to solve these problems. Most frameworks will implement routing, code-splitting, different rendering strategies, and data-fetching. These features are interconnected. For example, if you use a router that only works on the client it could prevent you from implementing server-side rendering. The best frameworks provide a cohesive, consistent experience across these features for developers and users.
 
 ### Routing {/*routing*/}
 
@@ -83,9 +85,9 @@ Popular data fetching libraries that you can use as a part of your framework inc
 
 ### Rendering strategies {/*rendering-strategies*/}
 
-Since the build tools we recommend only support single page apps (SPAs) you'll need to implement server-side rendering (SSR), static site generation (SSG), and/or React Server Components (RSC). Even if you don't need these features at first, in the future there may be some routes that would benefit SSR, SSG or RSC.
+Since the build tool you select only support single page apps (SPAs) you'll need to implement server-side rendering (SSR), static site generation (SSG), and/or React Server Components (RSC). Even if you don't need these features at first, in the future there may be some routes that would benefit SSR, SSG or RSC.
 
-* **Single-page apps (SPA)** load a single HTML page and dynamically updates the page as the user interacts with the app. SPAs are fast and responsive, but they can have slower initial load times. SPAs are the default architecture for the build tools we recommend.
+* **Single-page apps (SPA)** load a single HTML page and dynamically updates the page as the user interacts with the app. SPAs are fast and responsive, but they can have slower initial load times. SPAs are the default architecture for most build tools.
 
 * **Streaming Server-side rendering (SSR)** renders a page on the server and sends the fully rendered page to the client. SSR can improve performance, but it can be more complex to set up and maintain than a single-page app. With the addition of streaming, SSR can be very complex to set up and maintain. See [Vite's SSR guide]( https://vite.dev/guide/ssr).
 
@@ -109,13 +111,17 @@ These are just a few examples of the features a framework will need to consider.
 
 There are many other problems that users need to solve like:
 
-- accessibility
-- asset loading
-- authentication
-- error boundaries
-- mutating data
-- navigations
-- nested routes
-- optimistic updates
+- Accessibility
+- Asset loading
+- Authentication
+- Error handling
+- Mutating data
+- Navigations
+- Nested routes
+- Optimistic updates
+- Caching
+- Progressive enhancement
+- Static site generation
+- Server-side rendering
 
-Many of these problems individually can be difficult as each problem is interconnected with the others and can require deep expertise in problem areas you may not be familiar with. If you don't want to solve these problems on your own, you can [get started with a framework](/learn/create-a-react-app) that provides these features out of the box. 
+Many of these problems individually can be difficult as each problem is interconnected with the others and can require deep expertise in problem areas you may not be familiar with. If you don't want to solve these problems on your own, you can [get started with a framework](/learn/creating-a-react-app) that provides these features out of the box. 

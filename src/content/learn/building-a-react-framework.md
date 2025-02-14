@@ -10,7 +10,7 @@ If your app has constraints not well-served by existing frameworks, or you prefe
 
 <Note>
 
-### Consider Using an Existing Framework {/*you-should-probably-use-a-framework*/}
+### Consider using an existing framework {/*you-should-probably-use-a-framework*/}
 
 Building a framework is complex and requires extensive expertise across various domains. This complexity is not limited to React — it is a widespread challenge encountered by all UI libraries. Using an existing framework can save significant time and effort by allowing you to focus on building your application. Existing frameworks have tested, robust features and community support.
 

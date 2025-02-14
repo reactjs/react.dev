@@ -34,7 +34,8 @@ However, since Create React App currently has no active maintainers, and there a
 Starting today, if you install a new app, you will see a deprecation warning:
 
 <ConsoleBlockMulti>
-<ConsoleLogLine level="warning">
+<ConsoleLogLine level="error">
+
 create-react-app is deprecated.
 {'\n\n'}
 You can find a list of up-to-date React frameworks on react.dev 

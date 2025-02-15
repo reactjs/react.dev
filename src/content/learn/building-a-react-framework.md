@@ -26,7 +26,7 @@ If you are building your own framework to learn, using popular tools like Vite a
 
 ## Step 1: Install a build tool {/*step-1-install-a-build-tool*/}
 
-The first step is to install a build tool like `vite` or `parcel`. These build tools provide features to package and run source code, provide a development server for local development and a build command to deploy your app to a production server.
+The first step is to install a build tool like `vite`, `parcel`, or `rsbuild`. These build tools provide features to package and run source code, provide a development server for local development and a build command to deploy your app to a production server.
 
 ### Vite {/*vite*/}
 
@@ -49,6 +49,16 @@ npm install --save-dev parcel
 </TerminalBlock>
 
 Parcel supports fast refresh, JSX, TypeScript, Flow, and styling out of the box. See [Parcel's React recipe](https://parceljs.org/recipes/react/#getting-started) to get started.
+
+### Rsbuild {/*rsbuild*/}
+
+[Rsbuild](https://rsbuild.dev/) is an Rspack-powered build tool that provides a seamless development experience for React applications. It comes with carefully tuned defaults and performance optimizations ready to use.
+
+<TerminalBlock>
+npx create-rsbuild --template react
+</TerminalBlock>
+
+Rsbuild includes built-in support for React features like fast refresh, JSX, TypeScript, and styling. See [Rsbuild's React guide](https://rsbuild.dev/guide/framework/react) to get started.
 
 <Note>
 

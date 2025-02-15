@@ -3,7 +3,7 @@ title: Setup
 ---
 <Intro>
 
-React integrates with tools like editors, TypeScript, browser extensions, and compliers. This section will help you get your environment set up.
+React integrates with tools like editors, TypeScript, browser extensions, and compilers. This section will help you get your environment set up.
 
 </Intro>
 
@@ -22,10 +22,6 @@ React Developer Tools is a browser extension that can inspect React components, 
 ## React Compiler {/*react-compiler*/}
 
 React Compiler is a tool that automatically optimizes your React app. [Learn more](/learn/react-compiler).
-
-## Start a React Project from scratch {/*start-a-react-project-from-scratch*/}
-
-If you want to build your own framework, you can [start a React project from scratch](/learn/start-a-react-project-from-scratch).
 
 ## Next steps {/*next-steps*/}
 

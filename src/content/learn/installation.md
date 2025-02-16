@@ -48,7 +48,7 @@ If want to try using React in your existing app or a website, you can [add React
 
 ### Create React App (Deprecated) {/*create-react-app-deprecated*/}
 
-Create React App is a deprecated tool, previously recommended for creating new React apps. If you want to start a new React app, you can [create a React app](/learn/creat-a-react-app) using a recommended framework. 
+Create React App is a deprecated tool, previously recommended for creating new React apps. If you want to start a new React app, you can [create a React app](/learn/creating-a-react-app) using a recommended framework. 
 
 For more information, see [Sunsetting Create React App](/blog/2025/02/14/sunsetting-create-react-app).
 

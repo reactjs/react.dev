@@ -44,6 +44,7 @@ exports.generateRssFeed = function () {
     if (id !== 'index.md') {
       const content = fs.readFileSync(filePath, 'utf-8');
       const {data} = matter(content);
+
       const slug = filePath.split('/').slice(-4).join('/').replace('.md', '');
 
       if (data.title == null || data.title.trim() === '') {

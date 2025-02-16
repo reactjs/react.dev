@@ -527,7 +527,7 @@ export default function Menu() {
     <>
       <h2>What's your travel snack?</h2>
       <ul>
-        {items.map((item, index) => (
+        {items.map((item) => (
           <li key={item.id}>
             <input
               value={item.title}

@@ -56,9 +56,9 @@ For existing apps, these guides will help you migrate to a client-only SPA:
 
 Create React App will continue working in maintenance mode, and we've published a new version of Create React App to work with React 19.
 
-If your app has unusual constraints, or you prefer to solve these problems by building your own framework, or you just want to learn how react works from scratch, you can roll your own custom setup with React using Vite or Parcel.
+If your app has unusual constraints, or you prefer to solve these problems by building your own framework, or you just want to learn how react works from scratch, you can roll your own custom setup with React using Vite, Parcel or Rsbuild.
 
-To help users get started with Vite or Parcel, we've published new docs for [Building a Framework](/learn/building-a-react-framework). Continue reading to learn more about the [limitations of Create React App](#limitations-of-create-react-app) and [why we recommend frameworks](#why-we-recommend-frameworks).
+To help users get started with Vite, Parcel or Rsbuild, we've published new docs for [Building a Framework](/learn/building-a-react-framework). Continue reading to learn more about the [limitations of Create React App](#limitations-of-create-react-app) and [why we recommend frameworks](#why-we-recommend-frameworks).
 
 <Note>
 

@@ -65,7 +65,7 @@ Rsbuild includes built-in support for React features like fast refresh, JSX, Typ
 
 #### Metro for React Native {/*react-native*/}
 
-If you'd like your framework to support React Native you'll need to use [Metro](https://metrobundler.dev/), the JavaScript bundler for React Native. Metro supports bundling for platforms like iOS and Android, but lacks many features when compared to Vite or Parcel. We recommend starting with Vite or Parcel unless your project requires React Native support.
+If you'd you're starting from scratch with React Native you'll need to use [Metro](https://metrobundler.dev/), the JavaScript bundler for React Native. Metro supports bundling for platforms like iOS and Android, but lacks many features when compared to the tools here. We recommend starting with Vite, Parcel, or Rsbuild unless your project requires React Native support.
 
 </Note>
 
@@ -138,19 +138,6 @@ Using the right rendering strategy for the right routes can decrease the time it
 
 ### And more... {/*and-more*/}
 
-These are just a few examples of the features a new app will need to consider.
+These are just a few examples of the features a new app will need to consider when building from scratch. Many limitations you'll hit can be difficult to solve as each problem is interconnected with the others and can require deep expertise in problem areas you may not be familiar with. 
 
-There are many other problems that users need to solve like:
-
-- Accessibility
-- Asset loading
-- Authentication
-- Error handling
-- Mutating data
-- Navigations
-- Nested routes
-- Optimistic updates
-- Caching
-- Progressive enhancement
-
-Many of these problems individually can be difficult as each problem is interconnected with the others and can require deep expertise in problem areas you may not be familiar with. If you don't want to solve these problems on your own, you can [get started with a framework](/learn/creating-a-react-app) that provides these features out of the box. 
+If you don't want to solve these problems on your own, you can [get started with a framework](/learn/creating-a-react-app) that provides these features out of the box. 

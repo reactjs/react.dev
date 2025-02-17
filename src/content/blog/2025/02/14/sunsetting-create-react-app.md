@@ -52,7 +52,7 @@ For existing apps, these guides will help you migrate to a client-only SPA:
 
 * [Next.js’ Create React App migration guide](https://nextjs.org/docs/app/building-your-application/upgrading/from-create-react-app)
 * [React Router’s framework adoption guide](https://reactrouter.com/upgrading/component-routes).
-* [Expo Webpack to Expo Router migration guide](https://docs.expo.dev/router/migrate/from-expo-webpack/)
+* [Expo webpack to Expo Router migration guide](https://docs.expo.dev/router/migrate/from-expo-webpack/)
 
 Create React App will continue working in maintenance mode, and we've published a new version of Create React App to work with React 19.
 

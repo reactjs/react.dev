@@ -83,45 +83,12 @@ There are other up-and-coming frameworks that are working towards our full stack
 - [TanStack Start (Beta)](https://tanstack.com/): TanStack Start is a full-stack React framework powered by TanStack Router. It provides a full-document SSR, streaming, server functions, bundling, and more using tools like Nitro and Vite.
 - [RedwoodJS](https://redwoodjs.com/): Redwood is a full stack React framework with lots of pre-installed packages and configuration that makes it easy to build full-stack web applications.
 
-<DeepDive>
-
-#### Which features make up the React team’s full-stack architecture vision? {/*which-features-make-up-the-react-teams-full-stack-architecture-vision*/}
-
-Next.js's App Router bundler fully implements the official [React Server Components specification](https://github.com/reactjs/rfcs/blob/main/text/0188-server-components.md). This lets you mix build-time, server-only, and interactive components in a single React tree.
-
-For example, you can write a server-only React component as an `async` function that reads from a database or from a file. Then you can pass data down from it to your interactive components:
-
-```js
-// This component runs *only* on the server (or during the build).
-async function Talks({ confId }) {
-  // 1. You're on the server, so you can talk to your data layer. API endpoint not required.
-  const talks = await db.Talks.findAll({ confId });
-
-  // 2. Add any amount of rendering logic. It won't make your JavaScript bundle larger.
-  const videos = talks.map(talk => talk.video);
-
-  // 3. Pass the data down to the components that will run in the browser.
-  return <SearchableVideoList videos={videos} />;
-}
-```
-
-Next.js's App Router also integrates [data fetching with Suspense](/blog/2022/03/29/react-v18#suspense-in-data-frameworks). This lets you specify a loading state (like a skeleton placeholder) for different parts of your user interface directly in your React tree:
-
-```js
-<Suspense fallback={<TalksLoading />}>
-  <Talks confId={conf.id} />
-</Suspense>
-```
-
-Server Components and Suspense are React features rather than Next.js features. However, adopting them at the framework level requires buy-in and non-trivial implementation work. At the moment, the Next.js App Router is the most complete implementation. The React team is working with bundler developers to make these features easier to implement in the next generation of frameworks.
-
-</DeepDive>
 
 ## Start From Scratch {/*start-from-scratch*/}
 
 If you are learning React, are not using JS in your backend, only need client-side functionality, or want to design your app configuration yourself, there are other options available for starting a React project from scratch.
 
-Starting from scratch gives you more flexibility, but does require that you make choices on which tools to use for routing, data fetching, and other common usage patterns.  The [frameworks we recommend](#recommended-react-frameworks) have built-in solutions for these problems.  If you want to choose your own solutions, we have some recommendations for commonly-used tools.
+Starting from scratch gives you more flexibility, but does require that you make choices on which tools to use for routing, data fetching, and other common usage patterns.  It's a lot like building your own framework, instead of using a framework that already exists. The [frameworks we recommend](#recommended-react-frameworks) have built-in solutions for these problems.  If you want to choose your own solutions, we have some recommendations for commonly-used tools.
 
 <Note>
 
@@ -194,7 +161,7 @@ Fetching data from a server or other data source is a key part of most applicati
 
 Purpose-built data fetching libraries do the hard work of fetching and caching the data for you, letting you focus on what data your app needs and how to display it.  These libraries are typically used directly in your components, but can also be integrated into routing loaders for faster pre-fetching and better performance, and in server rendering as well.
 
-Note that fetching data directly in components can lead to slower loading times due to network request waterfalls, so we recommend prefetching data in loaders or on the server as much as possible!
+Note that fetching data directly in components can lead to slower loading times due to network request waterfalls, so we recommend prefetching data in router loaders or on the server as much as possible!  This allows a page's data to be fetched all at once as the page is being displayed.
 
 If you're fetching data from most backends or REST-style APIs, we suggest using:
 

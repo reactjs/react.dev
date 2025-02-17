@@ -4,7 +4,7 @@ title: Server Components
 
 <RSC>
 
-Server Components are for use in [React Server Components](/learn/start-a-new-react-project#bleeding-edge-react-frameworks).
+Server Components are for use in [React Server Components](/learn/start-a-new-react-project#recommended-react-frameworks).
 
 </RSC>
 

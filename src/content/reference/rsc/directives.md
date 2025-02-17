@@ -4,13 +4,13 @@ title: Directives
 
 <RSC>
 
-Directives are for use in [React Server Components](/learn/start-a-new-react-project#bleeding-edge-react-frameworks).
+Directives are for use in [React Server Components](/learn/start-a-new-react-project#recommended-react-frameworks).
 
 </RSC>
 
 <Intro>
 
-Directives provide instructions to [bundlers compatible with React Server Components](/learn/start-a-new-react-project#bleeding-edge-react-frameworks).
+Directives provide instructions to [bundlers compatible with React Server Components](/learn/start-a-new-react-project#recommended-react-frameworks).
 
 </Intro>
 

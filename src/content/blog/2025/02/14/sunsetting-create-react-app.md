@@ -51,7 +51,7 @@ This error message will only be shown once per install.
 We've also added a deprecation notice to the Create React App [website](https://create-react-app.dev/) and GitHub [repo](https://github.com/facebook/create-react-app). Create React App will continue working in maintenance mode, and we've published a new version of Create React App to work with React 19.
 
 ## How to Migrate to a Framework {/*how-to-migrate-to-a-framework*/}
-We recommend [creating new React apps](/learn/creating-a-react-app) with a framework. All the frameworks we recommend support client-only SPAs, and can be deployed to a CDN or static hosting service without a server.
+We recommend [creating new React apps](/learn/creating-a-react-app) with a framework. All the frameworks we recommend support client-side rendering ([CSR](https://developer.mozilla.org/en-US/docs/Glossary/CSR)) and single-page apps ([SPA](https://developer.mozilla.org/en-US/docs/Glossary/SPA)), and can be deployed to a CDN or static hosting service without a server.
 
 For existing apps, these guides will help you migrate to a client-only SPA:
 

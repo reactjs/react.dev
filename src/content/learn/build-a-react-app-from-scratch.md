@@ -12,7 +12,6 @@ If your app has constraints not well-served by existing frameworks, you prefer t
 
 #### Consider using a framework {/*consider-using-a-framework*/}
 
-
 Starting from scratch is an easy way to get started using React, but a major tradeoff to be aware of is that going this route is often the same as building your own adhoc framework. As your requirements evolve, you may need to solve more framework-like problems that our recommended frameworks already have well developed and supported solutions for. 
 
 For example, if in the future your app needs support for server-side rendering (SSR), static site generation (SSG), and/or React Server Components (RSC), you will have to implement those on your own. Similarly, future React features that require integrating at the framework level will have to be implemented on your own if you want to use them.
@@ -35,7 +34,7 @@ The first step is to install a build tool like `vite`, `parcel`, or `rsbuild`. T
 [Vite](https://vite.dev/) is a build tool that aims to provide a faster and leaner development experience for modern web projects.
 
 <TerminalBlock>
-npm create vite@latest my-app -- --template react
+npx create-vite@latest my-app --template react
 </TerminalBlock>
 
 Vite is opinionated and comes with sensible defaults out of the box. Vite has a rich ecosystem of plugins to support fast refresh, JSX,  Babel/SWC, and other common features. See Vite's [React plugin](https://vite.dev/plugins/#vitejs-plugin-react) or [React SWC plugin](https://vite.dev/plugins/#vitejs-plugin-react-swc) and [React SSR example project](https://vite.dev/guide/ssr.html#example-projects) to get started.
@@ -70,44 +69,43 @@ If you'd like your framework to support React Native you'll need to use [Metro](
 
 </Note>
 
-## Step 2: Build your framework {/*step-2-build-your-framework*/}
+### Step 2: Build Common Application Patterns {/*step-2-build-common-application-patterns*/}
 
-The build tool you select starts with a client-only, single-page app (SPA). While SPAs can be a good place to start, many SPAs will encounter problems as they grow. Frameworks can provide the scaffolding to solve these problems. Most frameworks will implement routing, code-splitting, different rendering strategies, and data-fetching. These features are interconnected. For example, if you use a router that only works on the client it could prevent you from implementing server-side rendering. The best frameworks provide a cohesive, consistent experience across these features for developers and users.
+The build tools listed above start off with a client-only, single-page app (SPA), but don't include any further solutions for common functionality like routing, data fetching, or styling.
 
-### Routing {/*routing*/}
+The React ecosystem includes many tools for these problems. We've listed a few that are widely used as a starting point, but feel free to choose other tools if those work better for you.
 
-Routing determines what to display when a user visits a particular URL. You need to set up a router to map URLs to different parts of your app. You'll also need to handle nested routes, route parameters, and query parameters. Most modern routers use file-based routing. Routing can be integrated with other features like:
+#### Routing {/*routing*/}
 
-* **Rendering strategies** to enable different rendering strategies on different routes, so you can introduce new strategies without having to rewrite your whole app. This can decrease the time it takes for the first byte of content to be loaded ([Time to First Byte](https://web.dev/articles/ttfb)), the first piece of content to be rendered ([First Contentful Paint](https://web.dev/articles/fcp)), and the largest visible content of the app to be rendered ([Largest Contentful Paint](https://web.dev/articles/lcp)).
-* **Data fetching** to enable data fetching before the page loads on a route. This can prevent layout shifts ([Cumulative Layout Shift](https://web.dev/articles/cls)) and decrease the time it takes for the largest visible content of the app to render ([Largest Contentful Paint](https://web.dev/articles/lcp))
-* **Code splitting** to reduce the JavaScript bundle size sent to the client and improve performance on underpowered devices. This can reduce the time it takes for the browser to respond to a user interaction ([First Input Delay](https://web.dev/articles/fid)) and the largest visible content of the app to be rendered ([Largest Contentful Paint](https://web.dev/articles/lcp)).
+Routing determines what content or pages to display when a user visits a particular URL. You need to set up a router to map URLs to different parts of your app. You'll also need to handle nested routes, route parameters, and query parameters.  Routers can be configured within your code, or defined based on your component folder and file structures.
 
-If you're not sure how to get started with routing, we recommend using [React Router](https://reactrouter.com/start/framework/custom) or [Tanstack Router](https://tanstack.com/router/latest).
+Routers are a core part of modern applications, and are usually integrated with data fetching (including prefetching data for a whole page for faster loading), code splitting (to minimize client bundle sizes), and page rendering approaches (to decide how each page gets generated).
 
-### Data-fetching {/*data-fetching*/}
+We suggest using:
 
-Data-fetching is the process of fetching data from a server or other data source. You need to set up or create a data-fetching library to handle data retrieval from your server and manage the state of that data. You'll also need to handle loading states, error states, and caching data. Data fetching can be integrated with features like:
+- [React Router](https://reactrouter.com/start/framework/custom)
+- [Tanstack Router](https://tanstack.com/router/latest)
 
-* **Routing** to enable data fetching to take place before page loads. This can improve how quickly a page loads and becomes visible to users ([Largest Contentful Paint](https://web.dev/lcp)) and reduce time it takes for your app to be interactive ([Time to Interactive](https://web.dev/tti)).
-* **Rendering strategies** to prerender fetched data before it is sent to the client. This can reduce the time it takes for the largest visible content of the app to render ([Largest Contentful Paint](https://web.dev/lcp)).
 
-Integrating routing and data fetching is particularly important to prevent network waterfalls. In a SPA, if you fetch data during a component's initial render, the first data fetch is delayed until all code has loaded and components have finished rendering. This is commonly known as a waterfall: instead of fetching data at the same time as your code is loading, you need to first wait for your code to load before fetching data. To address these waterfalls, your app needs to fetch the data for each route in parallel with sending code to the browser.
+#### Data Fetching {/*data-fetching*/}
 
-Popular data fetching libraries that you can use as a part of your framework include [React Query](https://react-query.tanstack.com/), [SWR](https://swr.vercel.app/), [Apollo](https://www.apollographql.com/docs/react), and [Relay](https://relay.dev/).
+Fetching data from a server or other data source is a key part of most applications. Doing this properly requires handling loading states, error states, and caching the fetched data, which can be complex.
 
-### Rendering strategies {/*rendering-strategies*/}
+Purpose-built data fetching libraries do the hard work of fetching and caching the data for you, letting you focus on what data your app needs and how to display it.  These libraries are typically used directly in your components, but can also be integrated into routing loaders for faster pre-fetching and better performance, and in server rendering as well.
 
-Since the build tool you select only support single page apps (SPAs) you'll need to implement other [rendering patterns](https://www.patterns.dev/vanilla/rendering-patterns) like server-side rendering (SSR), static site generation (SSG), and/or React Server Components (RSC). Even if you don't need these features at first, in the future there may be some routes that would benefit SSR, SSG or RSC.
+Note that fetching data directly in components can lead to slower loading times due to network request waterfalls, so we recommend prefetching data in router loaders or on the server as much as possible!  This allows a page's data to be fetched all at once as the page is being displayed.
 
-* **Single-page apps (SPA)** load a single HTML page and dynamically updates the page as the user interacts with the app. SPAs are fast and responsive, but they can have slower initial load times. SPAs are the default architecture for most build tools.
+If you're fetching data from most backends or REST-style APIs, we suggest using:
 
-* **Streaming Server-side rendering (SSR)** renders a page on the server and sends the fully rendered page to the client. SSR can improve performance, but it can be more complex to set up and maintain than a single-page app. With the addition of streaming, SSR can be very complex to set up and maintain. See [Vite's SSR guide]( https://vite.dev/guide/ssr).
+- [React Query](https://react-query.tanstack.com/)
+- [SWR](https://swr.vercel.app/)
+- [RTK Query](https://redux-toolkit.js.org/rtk-query/overview)
 
-* **Static site generation (SSG)** generates static HTML files for your app at build time. SSG can improve performance, but it can be more complex to set up and maintain than server-side rendering.
+If you're fetching data from a GraphQL API, we suggest using:
 
-* **React Server Components (RSC)** lets you mix build-time, server-only, and interactive components in a single React tree. RSC can improve performance, but it currently requires deep expertise to set up and maintain. See [Parcel's RSC examples](https://github.com/parcel-bundler/rsc-examples).
+- [Apollo](https://www.apollographql.com/docs/react)
+- [Relay](https://relay.dev/)
 
-Your rendering strategies need to integrate with your router so apps built with your framework can choose the rendering strategy on a per-route level. This will enable different rendering strategies without having to rewrite your whole app. For example, the landing page for your app might benefit from being statically generated (SSG), while a page with a content feed might perform best with server-side rendering. Using the right rendering strategy for the right routes can decrease the time it takes for the first byte of content to be loaded ([Time to First Byte](https://web.dev/articles/ttfb)), the first piece of content to render ([First Contentful Paint](https://web.dev/articles/fcp)), and the largest visible content of the app to render ([Largest Contentful Paint](https://web.dev/articles/lcp)).
 
 ### Code-splitting {/*code-splitting*/}
 
@@ -117,9 +115,30 @@ Similarly, if you rely on the apps using your framework to split the code, you m
 
 Splitting code by route, when integrated with bundling and data fetching, can reduce the initial load time of your app and the time it takes for the largest visible content of the app to render ([Largest Contentful Paint](https://web.dev/articles/lcp)).
 
+For code-splitting instructions, see your build tool docs:
+- [Vite build optimizations](https://v3.vitejs.dev/guide/features.html#build-optimizations)
+- [Parcel code splitting](https://parceljs.org/features/code-splitting/)
+- [Rsbuild code splitting](https://rsbuild.dev/guide/optimization/code-splitting)
+
+### Improving Application Performance {/*improving-application-performance*/}
+
+Since the build tool you select only support single page apps (SPAs) you'll need to implement other [rendering patterns](https://www.patterns.dev/vanilla/rendering-patterns) like server-side rendering (SSR), static site generation (SSG), and/or React Server Components (RSC). Even if you don't need these features at first, in the future there may be some routes that would benefit SSR, SSG or RSC.
+
+* **Single-page apps (SPA)** load a single HTML page and dynamically updates the page as the user interacts with the app. SPAs are easier to get started with, but they can have slower initial load times. SPAs are the default architecture for most build tools.
+
+* **Streaming Server-side rendering (SSR)** renders a page on the server and sends the fully rendered page to the client. SSR can improve performance, but it can be more complex to set up and maintain than a single-page app. With the addition of streaming, SSR can be very complex to set up and maintain. See [Vite's SSR guide]( https://vite.dev/guide/ssr).
+
+* **Static site generation (SSG)** generates static HTML files for your app at build time. SSG can improve performance, but it can be more complex to set up and maintain than server-side rendering.
+
+* **React Server Components (RSC)** lets you mix build-time, server-only, and interactive components in a single React tree. RSC can improve performance, but it currently requires deep expertise to set up and maintain. See [Parcel's RSC examples](https://github.com/parcel-bundler/rsc-examples).
+
+Your rendering strategies need to integrate with your router so apps built with your framework can choose the rendering strategy on a per-route level. This will enable different rendering strategies without having to rewrite your whole app. For example, the landing page for your app might benefit from being statically generated (SSG), while a page with a content feed might perform best with server-side rendering. 
+
+Using the right rendering strategy for the right routes can decrease the time it takes for the first byte of content to be loaded ([Time to First Byte](https://web.dev/articles/ttfb)), the first piece of content to render ([First Contentful Paint](https://web.dev/articles/fcp)), and the largest visible content of the app to render ([Largest Contentful Paint](https://web.dev/articles/lcp)).
+
 ### And more... {/*and-more*/}
 
-These are just a few examples of the features a framework will need to consider.
+These are just a few examples of the features a new app will need to consider.
 
 There are many other problems that users need to solve like:
 
@@ -133,7 +152,5 @@ There are many other problems that users need to solve like:
 - Optimistic updates
 - Caching
 - Progressive enhancement
-- Static site generation
-- Server-side rendering
 
 Many of these problems individually can be difficult as each problem is interconnected with the others and can require deep expertise in problem areas you may not be familiar with. If you don't want to solve these problems on your own, you can [get started with a framework](/learn/creating-a-react-app) that provides these features out of the box. 

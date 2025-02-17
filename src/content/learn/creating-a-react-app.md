@@ -8,6 +8,8 @@ If you want to build a new app or website with React, we recommend starting with
 
 </Intro>
 
+If your app has constraints not well-served by existing frameworks, you prefer to build your own framework, or you just want to learn the basics of a React app, you can [build a React app from scratch](/learn/build-a-react-app-from-scratch).
+
 ## Recommended React frameworks {/*bleeding-edge-react-frameworks*/}
 
 These recommended frameworks support all the features you need to deploy and scale your app in production. They have integrated the latest React features and take advantage of React’s architecture.
@@ -95,21 +97,6 @@ Next.js's App Router also integrates [data fetching with Suspense](/blog/2022/03
 Server Components and Suspense are React features rather than Next.js features. However, adopting them at the framework level requires buy-in and non-trivial implementation work. At the moment, the Next.js App Router is the most complete implementation. The React team is working with bundler developers to make these features easier to implement in the next generation of frameworks.
 
 </DeepDive>
-
-<Note>
-
-
-#### Do you recommend Vite? {/*do-you-recommend-vite*/}
-
-We provide several Vite-based recommendations.
-
-React Router v7 is a Vite based framework which allows you to use Vite's fast development server and build tooling with a framework that provides routing and data fetching. Just like the other frameworks we recommend, you can build a SPA with React Router v7.
-
-We also recommend using Vite when [adding React to an existing project](/learn/add-react-to-an-existing-project), or [building a framework](/learn/building-a-react-framework).
-
-Just like Svelte has Sveltekit, Vue has Nuxt, and Solid has SolidStart, React recommends using a framework that integrates with build tools like Vite for new projects.
-
-</Note>
 
 -----
 

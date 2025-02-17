@@ -36,9 +36,9 @@ To try React locally on your computer, [download this HTML page.](https://gist.g
 
 If you want to start a new React app, you can [create a React app](/learn/creating-a-react-app) using a recommended framework.
 
-## Build a React Framework {/*build-a-react-framework*/}
+## Build a React App from Scratch {/*build-a-react-app-from-scratch*/}
 
-If a framework is not a good fit for your project, or you prefer to start by building your own framework, you can [build your own React framework](/learn/building-a-react-framework).
+If a framework is not a good fit for your project, you prefer to build your own framework, or you just want to learn the basics of a React app you can [build a React app from scratch](/learn/build-a-react-app-from-scratch).
 
 ## Add React to an existing project {/*add-react-to-an-existing-project*/}
 

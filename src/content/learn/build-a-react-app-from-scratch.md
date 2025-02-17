@@ -1,28 +1,30 @@
 ---
-title: Building a React Framework
+title: Build a React app from Scratch
 ---
 
 <Intro>
 
-If your app has constraints not well-served by existing frameworks, or you prefer to solve these problems yourself, you can build your own framework.
+If your app has constraints not well-served by existing frameworks, you prefer to build your own framework, or you just want to learn the basics of a React app, you can build a React app from scratch.
 
 </Intro>
 
-<Note>
+<DeepDive>
 
-### Consider using an existing framework {/*you-should-probably-use-a-framework*/}
+#### Consider using a framework {/*consider-using-a-framework*/}
 
-Building a framework is complex and requires extensive expertise across various domains. This complexity is not limited to React — it is a widespread challenge encountered by all UI libraries. Using an existing framework can save significant time and effort by allowing you to focus on building your application. Existing frameworks have tested, robust features and community support.
+
+Starting from scratch is an easy way to get started using React, but a major tradeoff to be aware of is that going this route is often the same as building your own adhoc framework. As your requirements evolve, you may need to solve more framework-like problems that our recommended frameworks already have well developed and supported solutions for. 
+
+For example, if in the future your app needs support for server-side rendering (SSR), static site generation (SSG), and/or React Server Components (RSC), you will have to implement those on your own. Similarly, future React features that require integrating at the framework level will have to be implemented on your own if you want to use them.
+
+Our recommended frameworks also help you build better performing apps. For example, reducing or eliminating waterfalls from network requests makes for a better user experience. This might not be a high priority when you are building a toy project, but if your app gains users you may want to improve its performance.
+
+Going this route also makes it more difficult to get support, since the way you develop routing, data-fetching, and other features will be unique to your situation. You should only choose this option if you are comfortable tackling these problems on your own, or if you’re confident that you will never need these features.
 
 For a list of recommended frameworks, check out [Creating a React App](/learn/creating-a-react-app).
 
-</Note>
+</DeepDive>
 
-Building a framework is a large undertaking that often requires expertise in many different areas. Understanding your goals and requirements before starting to build your own framework can help guide your development process and save a considerable amount of time.
-
-For example, if you need to build a framework that integrates with a specific system or infrastructure, it's important to understand the features and limitations of those systems. Understanding your constraints can help guide your framework development process. 
-
-If you are building your own framework to learn, using popular tools like Vite and React Router can be a good starting point and let you focus on how to combine different tools to build a framework.
 
 ## Step 1: Install a build tool {/*step-1-install-a-build-tool*/}
 

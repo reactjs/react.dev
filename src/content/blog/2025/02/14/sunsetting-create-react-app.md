@@ -110,7 +110,7 @@ export default function App() {
   return (
     <div>
       {route === 'home' && <Home />}
-      {route === 'dashboard' && <Dashbord />}
+      {route === 'dashboard' && <Dashboard />}
     </div>
   )
 }

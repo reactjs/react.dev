@@ -11,7 +11,7 @@ February 14, 2025 by [Matt Carroll](https://twitter.com/mattcarrollcode) and [Ri
 
 <Intro>
 
-Today, we’re deprecating [Create React App](https://create-react-app.dev/) for new apps, and encouraging existing apps to migrate to a [framework](/learn/creating-a-react-app). We’re also providing docs for when a framework isn’t a good fit for your project, or you prefer to start by [building a framework](/learn/building-a-react-framework).
+Today, we’re deprecating [Create React App](https://create-react-app.dev/) for new apps, and encouraging existing apps to migrate to a [framework](/learn/creating-a-react-app#recommended-react-frameworks). We’re also providing docs for when a framework isn’t a good fit for your project, or you prefer to [start from scratch](/learn/creating-a-react-app#start-from-scratch).
 
 </Intro>
 
@@ -56,9 +56,9 @@ For existing apps, these guides will help you migrate to a client-only SPA:
 
 Create React App will continue working in maintenance mode, and we've published a new version of Create React App to work with React 19.
 
-If your app has unusual constraints, or you prefer to solve these problems by building your own framework, or you just want to learn how react works from scratch, you can roll your own custom setup with React using Vite, Parcel or Rsbuild.
+If your app has unusual constraints, or you prefer to solve these problems by building your own framework, or you just want to learn how React works from scratch, you can roll your own custom setup with React using Vite, Parcel or Rsbuild.
 
-To help users get started with Vite, Parcel or Rsbuild, we've published new docs for [Building a Framework](/learn/building-a-react-framework). Continue reading to learn more about the [limitations of Create React App](#limitations-of-create-react-app) and [why we recommend frameworks](#why-we-recommend-frameworks).
+To help users get started with Vite, Parcel or Rsbuild, we've published new docs for [Starting from Scratch](/learn/creating-a-react-app#start-from-scratch). Continue reading to learn more about the [limitations of Create React App](#limitations-of-create-react-app) and [why we recommend frameworks](#why-we-recommend-frameworks).
 
 <Note>
 
@@ -68,7 +68,7 @@ We provide several Vite-based recommendations.
 
 React Router v7 is a Vite based framework which allows you to use Vite's fast development server and build tooling with a framework that provides routing and data fetching. Just like the other frameworks we recommend, you can build a SPA with React Router v7.
 
-We also recommend using Vite when [adding React to an existing project](/learn/add-react-to-an-existing-project), or [building a framework](/learn/building-a-react-framework).
+We also recommend using Vite when [adding React to an existing project](/learn/add-react-to-an-existing-project), or [starting from scratch](/learn/creating-a-react-app#start-from-scratch).
 
 Just like Svelte has Sveltekit, Vue has Nuxt, and Solid has SolidStart, React recommends using a framework that integrates with build tools like Vite for new projects.
 

@@ -2,7 +2,7 @@
 title: "Sunsetting Create React App"
 author: Matt Carroll and Ricky Hanlon
 date: 2025/02/14
-description: Today, we’re deprecating Create React App for new apps, and encouraging existing apps to migrate to a framework. We’re also providing docs for when a framework isn’t a good fit for your project, or you prefer to start by building a framework.
+description: Today, we’re deprecating Create React App for new apps, and encouraging existing apps to migrate to a framework, or to migrate to a build tool like Vite, Parcel, or RSBuild. We’re also providing docs for when a framework isn’t a good fit for your project, you want to build your own framework, or you just want to learn how React works by building a React app from scratch.
 ---
 
 February 14, 2025 by [Matt Carroll](https://twitter.com/mattcarrollcode) and [Ricky Hanlon](https://bsky.app/profile/ricky.fm)
@@ -11,7 +11,9 @@ February 14, 2025 by [Matt Carroll](https://twitter.com/mattcarrollcode) and [Ri
 
 <Intro>
 
-Today, we’re deprecating [Create React App](https://create-react-app.dev/) for new apps, and encouraging existing apps to migrate to a [framework](/learn/creating-a-react-app). We’re also providing docs for when a framework isn’t a good fit for your project, or you prefer to start by [building a framework](/learn/building-a-react-framework).
+Today, we’re deprecating [Create React App](https://create-react-app.dev/) for new apps, and encouraging existing apps to migrate to a [framework](#how-to-migrate-to-a-framework), or to [migrate to a build tool](how-to-migrate-to-a-build-tool) like Vite, Parcel, or RSBuild. 
+
+We’re also providing docs for when a framework isn’t a good fit for your project, you want to build your own framework, or you just want to learn how React works by [building a React app from scratch](/learn/build-a-react-app-from-scratch).
 
 </Intro>
 
@@ -46,7 +48,10 @@ This error message will only be shown once per install.
 </ConsoleLogLine>
 </ConsoleBlockMulti>
 
-We recommend [creating new React apps](/learn/creating-a-react-app) with a framework. All the frameworks we recommend support client-only SPAs, and can be deployed to a CDN or static hosting service without a server.
+We've also added a deprecation notice to the Create React App [website](https://create-react-app.dev/) and GitHub [repo](https://github.com/facebook/create-react-app). Create React App will continue working in maintenance mode, and we've published a new version of Create React App to work with React 19.
+
+## How to Migrate to a Framework {/*how-to-migrate-to-a-framework*/}
+We recommend [creating new React apps](/learn/creating-a-react-app) with a framework. All the frameworks we recommend support client-side rendering ([CSR](https://developer.mozilla.org/en-US/docs/Glossary/CSR)) and single-page apps ([SPA](https://developer.mozilla.org/en-US/docs/Glossary/SPA)), and can be deployed to a CDN or static hosting service without a server.
 
 For existing apps, these guides will help you migrate to a client-only SPA:
 
@@ -54,27 +59,33 @@ For existing apps, these guides will help you migrate to a client-only SPA:
 * [React Router’s framework adoption guide](https://reactrouter.com/upgrading/component-routes).
 * [Expo webpack to Expo Router migration guide](https://docs.expo.dev/router/migrate/from-expo-webpack/)
 
-Create React App will continue working in maintenance mode, and we've published a new version of Create React App to work with React 19.
+## How to Migrate to a Build Tool {/*how-to-migrate-to-a-build-tool*/}
 
 If your app has unusual constraints, or you prefer to solve these problems by building your own framework, or you just want to learn how react works from scratch, you can roll your own custom setup with React using Vite, Parcel or Rsbuild.
 
-To help users get started with Vite, Parcel or Rsbuild, we've published new docs for [Building a Framework](/learn/building-a-react-framework). Continue reading to learn more about the [limitations of Create React App](#limitations-of-create-react-app) and [why we recommend frameworks](#why-we-recommend-frameworks).
+For existing apps, these guides will help you migrate to a build tool:
 
-<Note>
+* [Vite Create React App migration guide](https://www.robinwieruch.de/vite-create-react-app/)
+* [Parcel Create React App migration guide](https://stackoverflow.com/a/49605484)
+* [Rsbuild Create React App migration guide](https://rsbuild.dev/guide/migration/cra)
 
-#### Do you recommend Vite? {/*do-you-recommend-vite*/}
+To help get started with Vite, Parcel or Rsbuild, we've added new docs for [Building a React App from Scratch](/learn/build-a-react-app-from-scratch).
 
-We provide several Vite-based recommendations.
+<DeepDive>
 
-React Router v7 is a Vite based framework which allows you to use Vite's fast development server and build tooling with a framework that provides routing and data fetching. Just like the other frameworks we recommend, you can build a SPA with React Router v7.
+#### Do I need a framework? {/*do-i-need-a-framework*/}
 
-We also recommend using Vite when [adding React to an existing project](/learn/add-react-to-an-existing-project), or [building a framework](/learn/building-a-react-framework).
+Most apps would benefit from a framework, but there are valid cases to build a React app from scratch. A good rule of thumb is if your app needs routing, you would probably benefit from a framework. 
 
-Just like Svelte has Sveltekit, Vue has Nuxt, and Solid has SolidStart, React recommends using a framework that integrates with build tools like Vite for new projects.
+Just like Svelte has Sveltekit, Vue has Nuxt, and Solid has SolidStart, [React recommends using a framework](#why-we-recommend-frameworks) that fully integrates routing into features like data-fetching and code-splitting out of the box. This avoids the pain of needing to write your own complex configurations and essentially build a framework yourself.
 
-</Note>
+However, you can always [build a React app from scratch](/learn/build-a-react-app-from-scratch) using a build tool like Vite, Parcel, or Rsbuild.
 
-## Limitations of Create React App {/*limitations-of-create-react-app*/}
+</DeepDive>
+
+Continue reading to learn more about the [limitations of build tools](#limitations-of-create-react-app) and [why we recommend frameworks](#why-we-recommend-frameworks).
+
+## Limitations of Build Tools {/*limitations-of-build-tools*/}
 
 Create React App and build tools like it make it easy to get started building a React app. After running `npx create-react-app my-app`, you get a fully configured React app with a development server, linting, and a production build.
 

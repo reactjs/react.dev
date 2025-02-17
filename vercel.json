@@ -235,6 +235,11 @@
       "permanent": true
     },
     {
+      "source": "/learn/building-a-react-framework",
+      "destination": "/learn/build-a-react-app-from-scratch",
+      "permanent": true
+    },
+    {
       "source": "/blog/2024/04/25/react-19",
       "destination": "/blog/2024/12/05/react-19",
       "permanent": true

@@ -83,7 +83,7 @@ However, you can always [build a React app from scratch](/learn/build-a-react-ap
 
 </DeepDive>
 
-Continue reading to learn more about the [limitations of build tools](#limitations-of-create-react-app) and [why we recommend frameworks](#why-we-recommend-frameworks).
+Continue reading to learn more about the [limitations of build tools](#limitations-of-build-tools) and [why we recommend frameworks](#why-we-recommend-frameworks).
 
 ## Limitations of Build Tools {/*limitations-of-build-tools*/}
 

@@ -54,6 +54,7 @@ The documentation is divided into several sections with a different tone and pur
 1. Go to the [react.dev repo](https://github.com/reactjs/react.dev) and you should see recently pushed branches.
 1. Follow GitHub's instructions.
 1. If possible, include screenshots of visual changes. A preview build is triggered after your changes are pushed to GitHub.
+1. Run tests!
 
 ## Translation
 

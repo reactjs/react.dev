@@ -69,13 +69,13 @@ If you'd you're starting from scratch with React Native you'll need to use [Metr
 
 </Note>
 
-### Step 2: Build Common Application Patterns {/*step-2-build-common-application-patterns*/}
+## Step 2: Build Common Application Patterns {/*step-2-build-common-application-patterns*/}
 
 The build tools listed above start off with a client-only, single-page app (SPA), but don't include any further solutions for common functionality like routing, data fetching, or styling.
 
 The React ecosystem includes many tools for these problems. We've listed a few that are widely used as a starting point, but feel free to choose other tools if those work better for you.
 
-#### Routing {/*routing*/}
+### Routing {/*routing*/}
 
 Routing determines what content or pages to display when a user visits a particular URL. You need to set up a router to map URLs to different parts of your app. You'll also need to handle nested routes, route parameters, and query parameters.  Routers can be configured within your code, or defined based on your component folder and file structures.
 
@@ -87,7 +87,7 @@ We suggest using:
 - [Tanstack Router](https://tanstack.com/router/latest)
 
 
-#### Data Fetching {/*data-fetching*/}
+### Data Fetching {/*data-fetching*/}
 
 Fetching data from a server or other data source is a key part of most applications. Doing this properly requires handling loading states, error states, and caching the fetched data, which can be complex.
 
@@ -128,7 +128,7 @@ Since the build tool you select only support single page apps (SPAs) you'll need
 
 * **Streaming Server-side rendering (SSR)** renders a page on the server and sends the fully rendered page to the client. SSR can improve performance, but it can be more complex to set up and maintain than a single-page app. With the addition of streaming, SSR can be very complex to set up and maintain. See [Vite's SSR guide]( https://vite.dev/guide/ssr).
 
-* **Static site generation (SSG)** generates static HTML files for your app at build time. SSG can improve performance, but it can be more complex to set up and maintain than server-side rendering.
+* **Static site generation (SSG)** generates static HTML files for your app at build time. SSG can improve performance, but it can be more complex to set up and maintain than server-side rendering. See [Vite's SSG guide](https://vite.dev/guide/ssr.html#pre-rendering-ssg).
 
 * **React Server Components (RSC)** lets you mix build-time, server-only, and interactive components in a single React tree. RSC can improve performance, but it currently requires deep expertise to set up and maintain. See [Parcel's RSC examples](https://github.com/parcel-bundler/rsc-examples).
 

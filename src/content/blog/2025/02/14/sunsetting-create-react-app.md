@@ -11,7 +11,7 @@ February 14, 2025 by [Matt Carroll](https://twitter.com/mattcarrollcode) and [Ri
 
 <Intro>
 
-Today, we’re deprecating [Create React App](https://create-react-app.dev/) for new apps, and encouraging existing apps to migrate to a [framework](#how-to-migrate-to-a-framework), or to [migrate to a build tool](how-to-migrate-to-a-build-tool) like Vite, Parcel, or RSBuild. 
+Today, we’re deprecating [Create React App](https://create-react-app.dev/) for new apps, and encouraging existing apps to migrate to a [framework](#how-to-migrate-to-a-framework), or to [migrate to a build tool](#how-to-migrate-to-a-build-tool) like Vite, Parcel, or RSBuild. 
 
 We’re also providing docs for when a framework isn’t a good fit for your project, you want to build your own framework, or you just want to learn how React works by [building a React app from scratch](/learn/build-a-react-app-from-scratch).
 

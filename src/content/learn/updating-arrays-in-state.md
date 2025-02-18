@@ -106,9 +106,8 @@ Now it works correctly:
 ```js
 import { useState } from 'react';
 
-let nextId = 0;
-
 export default function List() {
+  const [nextId, setNextId] = useState(0);
   const [name, setName] = useState('');
   const [artists, setArtists] = useState([]);
 
@@ -122,8 +121,9 @@ export default function List() {
       <button onClick={() => {
         setArtists([
           ...artists,
-          { id: nextId++, name: name }
+          { id: nextId, name: name }
         ]);
+        setNextId(nextId + 1);
       }}>Add</button>
       <ul>
         {artists.map(artist => (
@@ -343,7 +343,6 @@ In this example, the Insert button always inserts at the index `1`:
 ```js
 import { useState } from 'react';
 
-let nextId = 3;
 const initialArtists = [
   { id: 0, name: 'Marta Colvin Andrade' },
   { id: 1, name: 'Lamidi Olonade Fakeye'},
@@ -351,6 +350,7 @@ const initialArtists = [
 ];
 
 export default function List() {
+  const [nextId, setNextId] = useState(3);
   const [name, setName] = useState('');
   const [artists, setArtists] = useState(
     initialArtists
@@ -362,11 +362,12 @@ export default function List() {
       // Items before the insertion point:
       ...artists.slice(0, insertAt),
       // New item:
-      { id: nextId++, name: name },
+      { id: nextId, name: name },
       // Items after the insertion point:
       ...artists.slice(insertAt)
     ];
     setArtists(nextArtists);
+    setNextId(nextId + 1);
     setName('');
   }
 
@@ -466,7 +467,6 @@ In this example, two separate artwork lists have the same initial state. They ar
 ```js
 import { useState } from 'react';
 
-let nextId = 3;
 const initialList = [
   { id: 0, title: 'Big Bellies', seen: false },
   { id: 1, title: 'Lunar Landscape', seen: false },
@@ -474,6 +474,7 @@ const initialList = [
 ];
 
 export default function BucketList() {
+  const [nextId, setNextId] = useState(3);
   const [myList, setMyList] = useState(initialList);
   const [yourList, setYourList] = useState(
     initialList
@@ -573,7 +574,6 @@ With this approach, none of the existing state items are being mutated, and the 
 ```js
 import { useState } from 'react';
 
-let nextId = 3;
 const initialList = [
   { id: 0, title: 'Big Bellies', seen: false },
   { id: 1, title: 'Lunar Landscape', seen: false },
@@ -581,6 +581,7 @@ const initialList = [
 ];
 
 export default function BucketList() {
+  const [nextId, setNextId] = useState(3);
   const [myList, setMyList] = useState(initialList);
   const [yourList, setYourList] = useState(
     initialList
@@ -669,7 +670,6 @@ Here is the Art Bucket List example rewritten with Immer:
 import { useState } from 'react';
 import { useImmer } from 'use-immer';
 
-let nextId = 3;
 const initialList = [
   { id: 0, title: 'Big Bellies', seen: false },
   { id: 1, title: 'Lunar Landscape', seen: false },
@@ -677,6 +677,7 @@ const initialList = [
 ];
 
 export default function BucketList() {
+  const [nextId, setNextId] = useState(3);
   const [myList, updateMyList] = useImmer(
     initialList
   );
@@ -1088,7 +1089,6 @@ import { useState } from 'react';
 import AddTodo from './AddTodo.js';
 import TaskList from './TaskList.js';
 
-let nextId = 3;
 const initialTodos = [
   { id: 0, title: 'Buy milk', done: true },
   { id: 1, title: 'Eat tacos', done: false },
@@ -1096,16 +1096,18 @@ const initialTodos = [
 ];
 
 export default function TaskApp() {
+  const [nextId, setNextId] = useState(3);
   const [todos, setTodos] = useState(
     initialTodos
   );
 
   function handleAddTodo(title) {
     todos.push({
-      id: nextId++,
+      id: nextId,
       title: title,
       done: false
     });
+    setNextId(nextId + 1);
   }
 
   function handleChangeTodo(nextTodo) {
@@ -1251,7 +1253,6 @@ import { useState } from 'react';
 import AddTodo from './AddTodo.js';
 import TaskList from './TaskList.js';
 
-let nextId = 3;
 const initialTodos = [
   { id: 0, title: 'Buy milk', done: true },
   { id: 1, title: 'Eat tacos', done: false },
@@ -1259,6 +1260,7 @@ const initialTodos = [
 ];
 
 export default function TaskApp() {
+  const [nextId, setNextId] = useState(3);
   const [todos, setTodos] = useState(
     initialTodos
   );
@@ -1267,11 +1269,12 @@ export default function TaskApp() {
     setTodos([
       ...todos,
       {
-        id: nextId++,
+        id: nextId,
         title: title,
         done: false
       }
     ]);
+    setNextId(nextId + 1);
   }
 
   function handleChangeTodo(nextTodo) {
@@ -1422,7 +1425,6 @@ import { useImmer } from 'use-immer';
 import AddTodo from './AddTodo.js';
 import TaskList from './TaskList.js';
 
-let nextId = 3;
 const initialTodos = [
   { id: 0, title: 'Buy milk', done: true },
   { id: 1, title: 'Eat tacos', done: false },
@@ -1430,16 +1432,18 @@ const initialTodos = [
 ];
 
 export default function TaskApp() {
+  const [nextId, setNextId] = useState(3);
   const [todos, setTodos] = useState(
     initialTodos
   );
 
   function handleAddTodo(title) {
     todos.push({
-      id: nextId++,
+      id: nextId,
       title: title,
       done: false
     });
+    setNextId(nextId + 1);
   }
 
   function handleChangeTodo(nextTodo) {
@@ -1604,7 +1608,6 @@ import { useImmer } from 'use-immer';
 import AddTodo from './AddTodo.js';
 import TaskList from './TaskList.js';
 
-let nextId = 3;
 const initialTodos = [
   { id: 0, title: 'Buy milk', done: true },
   { id: 1, title: 'Eat tacos', done: false },
@@ -1612,6 +1615,7 @@ const initialTodos = [
 ];
 
 export default function TaskApp() {
+  const [nextId, setNextId] = useState(3);
   const [todos, updateTodos] = useImmer(
     initialTodos
   );
@@ -1619,11 +1623,12 @@ export default function TaskApp() {
   function handleAddTodo(title) {
     updateTodos(draft => {
       draft.push({
-        id: nextId++,
+        id: nextId,
         title: title,
         done: false
       });
     });
+    setNextId(nextId + 1);
   }
 
   function handleChangeTodo(nextTodo) {
@@ -1792,7 +1797,6 @@ import { useImmer } from 'use-immer';
 import AddTodo from './AddTodo.js';
 import TaskList from './TaskList.js';
 
-let nextId = 3;
 const initialTodos = [
   { id: 0, title: 'Buy milk', done: true },
   { id: 1, title: 'Eat tacos', done: false },
@@ -1800,6 +1804,7 @@ const initialTodos = [
 ];
 
 export default function TaskApp() {
+  const [nextId, setNextId] = useState(3);
   const [todos, updateTodos] = useImmer(
     initialTodos
   );
@@ -1807,11 +1812,12 @@ export default function TaskApp() {
   function handleAddTodo(title) {
     updateTodos(draft => {
       draft.push({
-        id: nextId++,
+        id: nextId,
         title: title,
         done: false
       });
     });
+    setNextId(nextId + 1);
   }
 
   function handleChangeTodo(nextTodo) {

@@ -38,6 +38,8 @@ There are two reasons for a component to render:
 
 ### Initial render {/*initial-render*/}
 
+Intial render is like React is making the customers comfortable when they arrive, by offering them water without them asking for anything.
+
 When your app starts, you need to trigger the initial render. Frameworks and sandboxes sometimes hide this code, but it's done by calling [`createRoot`](/reference/react-dom/client/createRoot) with the target DOM node, and then calling its `render` method with your component:
 
 <Sandpack>

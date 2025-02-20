@@ -400,7 +400,7 @@ The <CodeStep step={1}>onCaughtError</CodeStep> option is a function called with
 1. The <CodeStep step={2}>error</CodeStep> that was thrown.
 2. An <CodeStep step={3}>errorInfo</CodeStep> object that contains the <CodeStep step={4}>componentStack</CodeStep> of the error.
 
-Together with `onUncaughtError` and `onRecoverableError`, you can can implement your own error reporting system:
+Together with `onUncaughtError` and `onRecoverableError`, you can implement your own error reporting system:
 
 <Sandpack>
 

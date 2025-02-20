@@ -66,7 +66,7 @@ If your app has unusual constraints, or you prefer to solve these problems by bu
 For existing apps, these guides will help you migrate to a build tool:
 
 * [Vite Create React App migration guide](https://www.robinwieruch.de/vite-create-react-app/)
-* [Parcel Create React App migration guide](https://stackoverflow.com/a/49605484)
+* [Parcel Create React App migration guide](https://parceljs.org/migration/cra/)
 * [Rsbuild Create React App migration guide](https://rsbuild.dev/guide/migration/cra)
 
 To help get started with Vite, Parcel or Rsbuild, we've added new docs for [Building a React App from Scratch](/learn/build-a-react-app-from-scratch).

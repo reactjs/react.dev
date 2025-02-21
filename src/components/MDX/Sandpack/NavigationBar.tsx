@@ -11,11 +11,7 @@ import {
   Fragment,
 } from 'react';
 import cn from 'classnames';
-import {
-  FileTabs,
-  useSandpack,
-  useSandpackNavigation,
-} from '@codesandbox/sandpack-react/unstyled';
+import {FileTabs, useSandpack} from '@codesandbox/sandpack-react/unstyled';
 import {OpenInCodeSandboxButton} from './OpenInCodeSandboxButton';
 import {ResetButton} from './ResetButton';
 import {DownloadButton} from './DownloadButton';
@@ -47,9 +43,7 @@ export function NavigationBar({providedFiles}: {providedFiles: Array<string>}) {
   // By default, show the dropdown because all tabs may not fit.
   // We don't know whether they'll fit or not until after hydration:
   const [showDropdown, setShowDropdown] = useState(true);
-  const {activeFile, setActiveFile, visibleFiles, clients} = sandpack;
-  const clientId = Object.keys(clients)[0];
-  const {refresh} = useSandpackNavigation(clientId);
+  const {activeFile, setActiveFile, visibleFiles} = sandpack;
   const isMultiFile = visibleFiles.length > 1;
   const hasJustToggledDropdown = useRef(false);
 
@@ -109,8 +103,6 @@ export function NavigationBar({providedFiles}: {providedFiles: Array<string>}) {
     ) {
       sandpack.resetAllFiles();
     }
-
-    refresh();
   };
 
   return (

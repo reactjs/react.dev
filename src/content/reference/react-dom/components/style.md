@@ -52,6 +52,7 @@ To opt into this behavior, provide the `href` and `precedence` props. React will
 This special treatment comes with two caveats:
 
 * React will ignore changes to props after the style has been rendered. (React will issue a warning in development if this happens.)
+* React will drop all extraneous props when using the `precedence` prop (beyond `href` and `precedence`).
 * React may leave the style in the DOM even after the component that rendered it has been unmounted.
 
 ---

@@ -214,7 +214,7 @@ export default function App() {
   ]);
   async function sendMessage(formData) {
     const sentMessage = await deliverMessage(formData.get("message"));
-    setMessages([...messages, { text: sentMessage }]);
+    setMessages((messages) => [...messages, { text: sentMessage }]);
   }
   return <Thread messages={messages} sendMessage={sendMessage} />;
 }

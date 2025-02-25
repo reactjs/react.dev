@@ -97,7 +97,7 @@ Note that fetching data directly in components can lead to slower loading times 
 
 If you're fetching data from most backends or REST-style APIs, we suggest using:
 
-- [React Query](https://react-query.tanstack.com/)
+- [TanStack Query](https://tanstack.com/query)
 - [SWR](https://swr.vercel.app/)
 - [RTK Query](https://redux-toolkit.js.org/rtk-query/overview)
 

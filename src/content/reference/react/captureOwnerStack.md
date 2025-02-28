@@ -129,8 +129,8 @@ createRoot(document.createElement('div'), {
 ```json package.json hidden
 {
   "dependencies": {
-    "react": "canary",
-    "react-dom": "canary",
+    "react": "19.1.0-canary-ebc22ef7-20250225",
+    "react-dom": "19.1.0-canary-ebc22ef7-20250225",
     "react-scripts": "latest"
   },
   "scripts": {
@@ -360,8 +360,8 @@ createRoot(container).render(<App />);
 ```json package.json hidden
 {
   "dependencies": {
-    "react": "canary",
-    "react-dom": "canary",
+    "react": "19.1.0-canary-ebc22ef7-20250225",
+    "react-dom": "19.1.0-canary-ebc22ef7-20250225",
     "react-scripts": "latest"
   },
   "scripts": {
@@ -420,8 +420,8 @@ export default function App() {
 ```json package.json hidden
 {
   "dependencies": {
-    "react": "canary",
-    "react-dom": "canary",
+    "react": "19.1.0-canary-ebc22ef7-20250225",
+    "react-dom": "19.1.0-canary-ebc22ef7-20250225",
     "react-scripts": "latest"
   },
   "scripts": {

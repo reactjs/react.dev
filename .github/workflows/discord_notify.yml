@@ -2,7 +2,7 @@ name: Discord Notify
 
 on:
   pull_request_target:
-    types: [labeled]
+    types: [opened, ready_for_review]
 
 jobs:
   check_maintainer:

@@ -1,13 +1,6 @@
 ---
 title: preconnect
-canary: true
 ---
-
-<Canary>
-
-The `preconnect` function is currently only available in React's Canary and experimental channels. Learn more about [React's release channels here](/community/versioning-policy#all-release-channels).
-
-</Canary>
 
 <Intro>
 

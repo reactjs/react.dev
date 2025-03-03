@@ -252,7 +252,7 @@ Portals can be useful if your React root is only part of a static or server-rend
 
 <Sandpack>
 
-```html index.html
+```html public/index.html
 <!DOCTYPE html>
 <html>
   <head><title>My app</title></head>

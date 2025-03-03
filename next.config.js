@@ -9,10 +9,8 @@ const nextConfig = {
   pageExtensions: ['jsx', 'js', 'ts', 'tsx', 'mdx', 'md'],
   reactStrictMode: true,
   experimental: {
-    // TODO: Remove after https://github.com/vercel/next.js/issues/49355 is fixed
-    appDir: false,
     scrollRestoration: true,
-    legacyBrowsers: false,
+    reactCompiler: true,
   },
   env: {},
   webpack: (config, {dev, isServer, ...options}) => {

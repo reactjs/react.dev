@@ -16,7 +16,7 @@ interface SidebarLinkProps {
   selected?: boolean;
   title: string;
   level: number;
-  canary?: boolean;
+  version?: 'canary' | 'major';
   icon?: React.ReactNode;
   isExpanded?: boolean;
   hideArrow?: boolean;
@@ -27,7 +27,7 @@ export function SidebarLink({
   href,
   selected = false,
   title,
-  canary,
+  version,
   level,
   isExpanded,
   hideArrow,
@@ -75,10 +75,17 @@ export function SidebarLink({
       {/* This here needs to be refactored ofc */}
       <div>
         {title}{' '}
-        {canary && (
+        {version === 'major' && (
+          <span
+            title="- This feature is available in React 19 beta and the React canary channel"
+            className={`text-xs px-1 ms-1 rounded bg-gray-10 dark:bg-gray-40 dark:bg-opacity-20 text-gray-40 dark:text-gray-40`}>
+            React 19
+          </span>
+        )}
+        {version === 'canary' && (
           <IconCanary
             title=" - This feature is available in the latest Canary"
-            className="ms-2 text-gray-30 dark:text-gray-60 inline-block w-4 h-4 align-[-3px]"
+            className="ms-1 text-gray-30 dark:text-gray-60 inline-block w-3.5 h-3.5 align-[-3px]"
           />
         )}
       </div>

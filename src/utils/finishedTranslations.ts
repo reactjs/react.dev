@@ -11,5 +11,6 @@ export const finishedTranslations = [
   'es',
   'fr',
   'ja',
-  'tr'
+  'tr',
+  'ko'
 ];

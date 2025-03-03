@@ -38,6 +38,7 @@ function CollapseWrapper({
   // Disable pointer events while animating.
   const isExpandedRef = useRef(isExpanded);
   if (typeof window !== 'undefined') {
+    // eslint-disable-next-line react-compiler/react-compiler
     // eslint-disable-next-line react-hooks/rules-of-hooks
     useLayoutEffect(() => {
       const wasExpanded = isExpandedRef.current;
@@ -87,7 +88,7 @@ export function SidebarRouteTree({
             path,
             title,
             routes,
-            canary,
+            version,
             heading,
             hasSectionHeader,
             sectionHeader,
@@ -121,7 +122,7 @@ export function SidebarRouteTree({
                   selected={selected}
                   level={level}
                   title={title}
-                  canary={canary}
+                  version={version}
                   isExpanded={isExpanded}
                   hideArrow={isForceExpanded}
                 />
@@ -145,7 +146,7 @@ export function SidebarRouteTree({
                   selected={selected}
                   level={level}
                   title={title}
-                  canary={canary}
+                  version={version}
                 />
               </li>
             );

@@ -25,6 +25,11 @@
       "permanent": false
     },
     {
+      "source": "/docs/lists-and-keys",
+      "destination": "/learn/rendering-lists#keeping-list-items-in-order-with-key",
+      "permanent": false
+    },
+    {
       "source": "/link/invalid-hook-call",
       "destination": "/warnings/invalid-hook-call-warning",
       "permanent": false
@@ -76,7 +81,7 @@
     },
     {
       "source": "/link/strict-mode-find-node",
-      "destination": "/reference/react-dom/findDOMNode#alternatives",
+      "destination": "https://18.react.dev/reference/react-dom/findDOMNode#alternatives",
       "permanent": false
     },
     {
@@ -160,6 +165,11 @@
       "permanent": false
     },
     {
+      "source": "/link/cra",
+      "destination": "/blog/2025/02/14/sunsetting-create-react-app",
+      "permanent": false
+    },
+    {
       "source": "/warnings/version-mismatch",
       "destination": "/warnings/invalid-hook-call-warning#mismatching-versions-of-react-and-react-dom",
       "permanent": false
@@ -177,6 +187,61 @@
     {
       "source": "/reference/react/use-server",
       "destination": "/reference/rsc/use-server",
+      "permanent": true
+    },
+    {
+      "source": "/reference/rsc/server-actions",
+      "destination": "/reference/rsc/server-functions",
+      "permanent": true
+    },
+    {
+      "source": "/reference/react-dom/findDOMNode",
+      "destination": "https://18.react.dev/reference/react-dom/findDOMNode",
+      "permanent": true
+    },
+    {
+      "source": "/reference/react/createFactory",
+      "destination": "https://18.react.dev/reference/react/createFactory",
+      "permanent": true
+    },
+    {
+      "source": "/reference/react-dom/render",
+      "destination": "https://18.react.dev/reference/react-dom/render",
+      "permanent": true
+    },
+    {
+      "source": "/reference/react-dom/hydrate",
+      "destination": "https://18.react.dev/reference/react-dom/hydrate",
+      "permanent": true
+    },
+    {
+      "source": "/reference/react-dom/unmountComponentAtNode",
+      "destination": "https://18.react.dev/reference/react-dom/unmountComponentAtNode",
+      "permanent": true
+    },
+    {
+      "source": "/reference/react-dom/server/renderToStaticNodeStream",
+      "destination": "https://18.react.dev/reference/react-dom/server/renderToStaticNodeStream",
+      "permanent": true
+    },
+    {
+      "source": "/reference/react-dom/server/renderToNodeStream",
+      "destination": "https://18.react.dev/reference/react-dom/server/renderToNodeStream",
+      "permanent": true
+    },
+    {
+      "source": "/learn/start-a-new-react-project",
+      "destination": "/learn/creating-a-react-app",
+      "permanent": true
+    },
+    {
+      "source": "/learn/building-a-react-framework",
+      "destination": "/learn/build-a-react-app-from-scratch",
+      "permanent": true
+    },
+    {
+      "source": "/blog/2024/04/25/react-19",
+      "destination": "/blog/2024/12/05/react-19",
       "permanent": true
     },
     {

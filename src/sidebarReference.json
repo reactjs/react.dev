@@ -16,8 +16,7 @@
       "routes": [
         {
           "title": "useActionState",
-          "path": "/reference/react/useActionState",
-          "canary": true
+          "path": "/reference/react/useActionState"
         },
         {
           "title": "useCallback",
@@ -61,8 +60,7 @@
         },
         {
           "title": "useOptimistic",
-          "path": "/reference/react/useOptimistic",
-          "canary": true
+          "path": "/reference/react/useOptimistic"
         },
         {
           "title": "useReducer",
@@ -118,16 +116,11 @@
         },
         {
           "title": "cache",
-          "path": "/reference/react/cache",
-          "canary": true
+          "path": "/reference/react/cache"
         },
         {
           "title": "createContext",
           "path": "/reference/react/createContext"
-        },
-        {
-          "title": "forwardRef",
-          "path": "/reference/react/forwardRef"
         },
         {
           "title": "lazy",
@@ -143,18 +136,22 @@
         },
         {
           "title": "use",
-          "path": "/reference/react/use",
-          "canary": true
+          "path": "/reference/react/use"
         },
         {
           "title": "experimental_taintObjectReference",
           "path": "/reference/react/experimental_taintObjectReference",
-          "canary": true
+          "version": "canary"
         },
         {
           "title": "experimental_taintUniqueValue",
           "path": "/reference/react/experimental_taintUniqueValue",
-          "canary": true
+          "version": "canary"
+        },
+        {
+          "title": "captureOwnerStack",
+          "path": "/reference/react/captureOwnerStack",
+          "version": "canary"
         }
       ]
     },
@@ -168,8 +165,7 @@
       "routes": [
         {
           "title": "useFormStatus",
-          "path": "/reference/react-dom/hooks/useFormStatus",
-          "canary": true
+          "path": "/reference/react-dom/hooks/useFormStatus"
         }
       ]
     },
@@ -183,8 +179,7 @@
         },
         {
           "title": "<form>",
-          "path": "/reference/react-dom/components/form",
-          "canary": true
+          "path": "/reference/react-dom/components/form"
         },
         {
           "title": "<input>",
@@ -208,28 +203,23 @@
         },
         {
           "title": "<link>",
-          "path": "/reference/react-dom/components/link",
-          "canary": true
+          "path": "/reference/react-dom/components/link"
         },
         {
           "title": "<meta>",
-          "path": "/reference/react-dom/components/meta",
-          "canary": true
+          "path": "/reference/react-dom/components/meta"
         },
         {
           "title": "<script>",
-          "path": "/reference/react-dom/components/script",
-          "canary": true
+          "path": "/reference/react-dom/components/script"
         },
         {
           "title": "<style>",
-          "path": "/reference/react-dom/components/style",
-          "canary": true
+          "path": "/reference/react-dom/components/style"
         },
         {
           "title": "<title>",
-          "path": "/reference/react-dom/components/title",
-          "canary": true
+          "path": "/reference/react-dom/components/title"
         }
       ]
     },
@@ -246,50 +236,28 @@
           "path": "/reference/react-dom/flushSync"
         },
         {
-          "title": "findDOMNode",
-          "path": "/reference/react-dom/findDOMNode"
-        },
-        {
-          "title": "hydrate",
-          "path": "/reference/react-dom/hydrate"
-        },
-        {
           "title": "preconnect",
-          "path": "/reference/react-dom/preconnect",
-          "canary": true
+          "path": "/reference/react-dom/preconnect"
         },
         {
           "title": "prefetchDNS",
-          "path": "/reference/react-dom/prefetchDNS",
-          "canary": true
+          "path": "/reference/react-dom/prefetchDNS"
         },
         {
           "title": "preinit",
-          "path": "/reference/react-dom/preinit",
-          "canary": true
+          "path": "/reference/react-dom/preinit"
         },
         {
           "title": "preinitModule",
-          "path": "/reference/react-dom/preinitModule",
-          "canary": true
+          "path": "/reference/react-dom/preinitModule"
         },
         {
           "title": "preload",
-          "path": "/reference/react-dom/preload",
-          "canary": true
+          "path": "/reference/react-dom/preload"
         },
         {
           "title": "preloadModule",
-          "path": "/reference/react-dom/preloadModule",
-          "canary": true
-        },
-        {
-          "title": "render",
-          "path": "/reference/react-dom/render"
-        },
-        {
-          "title": "unmountComponentAtNode",
-          "path": "/reference/react-dom/unmountComponentAtNode"
+          "path": "/reference/react-dom/preloadModule"
         }
       ]
     },
@@ -312,10 +280,6 @@
       "path": "/reference/react-dom/server",
       "routes": [
         {
-          "title": "renderToNodeStream",
-          "path": "/reference/react-dom/server/renderToNodeStream"
-        },
-        {
           "title": "renderToPipeableStream",
           "path": "/reference/react-dom/server/renderToPipeableStream"
         },
@@ -328,12 +292,22 @@
           "path": "/reference/react-dom/server/renderToStaticMarkup"
         },
         {
-          "title": "renderToStaticNodeStream",
-          "path": "/reference/react-dom/server/renderToStaticNodeStream"
-        },
-        {
           "title": "renderToString",
           "path": "/reference/react-dom/server/renderToString"
+        }
+      ]
+    },
+    {
+      "title": "Static APIs",
+      "path": "/reference/react-dom/static",
+      "routes": [
+        {
+          "title": "prerender",
+          "path": "/reference/react-dom/static/prerender"
+        },
+        {
+          "title": "prerenderToNodeStream",
+          "path": "/reference/react-dom/static/prerenderToNodeStream"
         }
       ]
     },
@@ -365,28 +339,23 @@
     },
     {
       "title": "Server Components",
-      "path": "/reference/rsc/server-components",
-      "canary": true
+      "path": "/reference/rsc/server-components"
     },
     {
-      "title": "Server Actions",
-      "path": "/reference/rsc/server-actions",
-      "canary": true
+      "title": "Server Functions",
+      "path": "/reference/rsc/server-functions"
     },
     {
       "title": "Directives",
       "path": "/reference/rsc/directives",
-      "canary": true,
       "routes": [
         {
           "title": "'use client'",
-          "path": "/reference/rsc/use-client",
-          "canary": true
+          "path": "/reference/rsc/use-client"
         },
         {
           "title": "'use server'",
-          "path": "/reference/rsc/use-server",
-          "canary": true
+          "path": "/reference/rsc/use-server"
         }
       ]
     },
@@ -415,12 +384,12 @@
           "path": "/reference/react/createElement"
         },
         {
-          "title": "createFactory",
-          "path": "/reference/react/createFactory"
-        },
-        {
           "title": "createRef",
           "path": "/reference/react/createRef"
+        },
+        {
+          "title": "forwardRef",
+          "path": "/reference/react/forwardRef"
         },
         {
           "title": "isValidElement",

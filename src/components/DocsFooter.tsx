@@ -27,7 +27,7 @@ export const DocsPageFooter = memo<DocsPageFooterProps>(
       <>
         {prevRoute?.path || nextRoute?.path ? (
           <>
-            <div className="grid grid-cols-1 gap-4 py-4 mx-auto max-w-7xl md:grid-cols-2 md:py-12">
+            <div className="flex justify-between grid-cols-1 gap-4 py-4 mx-auto max-w-7xl md:grid-cols-2 md:py-12">
               {prevRoute?.path ? (
                 <FooterLink
                   type="Previous"

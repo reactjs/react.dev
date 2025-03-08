@@ -33,9 +33,12 @@ The first step is to install a build tool like `vite`, `parcel`, or `rsbuild`. T
 
 [Vite](https://vite.dev/) is a build tool that aims to provide a faster and leaner development experience for modern web projects.
 
-<TerminalBlock>
-{`npm create vite@latest my-app -- --template react`}
-</TerminalBlock>
+<TabTerminalBlock 
+  tabs={[
+    { label: 'npm', value: 'npm', content: 'npm create vite@latest my-app -- --template react' },
+    { label: 'Bun', value: 'bun', content: 'bun create vite@latest my-app -- --template react' }
+  ]}
+/>
 
 Vite is opinionated and comes with sensible defaults out of the box. Vite has a rich ecosystem of plugins to support fast refresh, JSX,  Babel/SWC, and other common features. See Vite's [React plugin](https://vite.dev/plugins/#vitejs-plugin-react) or [React SWC plugin](https://vite.dev/plugins/#vitejs-plugin-react-swc) and [React SSR example project](https://vite.dev/guide/ssr.html#example-projects) to get started.
 
@@ -45,9 +48,12 @@ Vite is already being used as a build tool in one of our [recommended frameworks
 
 [Parcel](https://parceljs.org/) combines a great out-of-the-box development experience with a scalable architecture that can take your project from just getting started to massive production applications.
 
-<TerminalBlock>
-{`npm install --save-dev parcel`}
-</TerminalBlock>
+<TabTerminalBlock 
+  tabs={[
+    { label: 'npm', value: 'npm', content: 'npm install --save-dev parcel' },
+    { label: 'Bun', value: 'bun', content: 'bun add --dev parcel' }
+  ]}
+/>
 
 Parcel supports fast refresh, JSX, TypeScript, Flow, and styling out of the box. See [Parcel's React recipe](https://parceljs.org/recipes/react/#getting-started) to get started.
 
@@ -55,9 +61,12 @@ Parcel supports fast refresh, JSX, TypeScript, Flow, and styling out of the box.
 
 [Rsbuild](https://rsbuild.dev/) is an Rspack-powered build tool that provides a seamless development experience for React applications. It comes with carefully tuned defaults and performance optimizations ready to use.
 
-<TerminalBlock>
-{`npx create-rsbuild --template react`}
-</TerminalBlock>
+<TabTerminalBlock 
+  tabs={[
+    { label: 'npm', value: 'npm', content: 'npx create-rsbuild --template react' },
+    { label: 'Bun', value: 'bun', content: 'bunx create-rsbuild --template react' }
+  ]}
+/>
 
 Rsbuild includes built-in support for React features like fast refresh, JSX, TypeScript, and styling. See [Rsbuild's React guide](https://rsbuild.dev/guide/framework/react) to get started.
 

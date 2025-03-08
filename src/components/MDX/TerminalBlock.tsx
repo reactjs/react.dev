@@ -12,6 +12,7 @@ type LogLevel = 'info' | 'warning' | 'error';
 interface TerminalBlockProps {
   level?: LogLevel;
   children: React.ReactNode;
+  customHeader?: React.ReactNode;
 }
 
 function LevelText({type}: {type: LogLevel}) {
@@ -25,7 +26,11 @@ function LevelText({type}: {type: LogLevel}) {
   }
 }
 
-function TerminalBlock({level = 'info', children}: TerminalBlockProps) {
+function TerminalBlock({
+  level = 'info',
+  children,
+  customHeader,
+}: TerminalBlockProps) {
   let message: string | undefined;
   if (typeof children === 'string') {
     message = children;
@@ -53,15 +58,20 @@ function TerminalBlock({level = 'info', children}: TerminalBlockProps) {
   }, [copied]);
 
   return (
-    <div className="rounded-lg bg-secondary dark:bg-gray-50 h-full">
+    <div className="rounded-lg bg-secondary dark:bg-gray-50 h-full my-4">
       <div className="bg-gray-90 dark:bg-gray-60 w-full rounded-t-lg">
         <div className="text-primary-dark dark:text-primary-dark flex text-sm px-4 py-0.5 relative justify-between">
           <div>
-            <IconTerminal className="inline-flex me-2 self-center" /> Terminal
+            {customHeader || (
+              <>
+                <IconTerminal className="inline-flex me-2 self-center" />{' '}
+                Terminal
+              </>
+            )}
           </div>
           <div>
             <button
-              className="w-full text-start text-primary-dark dark:text-primary-dark "
+              className="w-full text-start text-primary-dark dark:text-primary-dark"
               onClick={() => {
                 window.navigator.clipboard.writeText(message ?? '');
                 setCopied(true);

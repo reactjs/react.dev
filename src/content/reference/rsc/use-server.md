@@ -179,7 +179,9 @@ Server Functions are exposed server endpoints and can be called anywhere in clie
 
 When using a Server Function outside a [form](/reference/react-dom/components/form), call the Server Function in a [Transition](/reference/react/useTransition), which allows you to display a loading indicator, show [optimistic state updates](/reference/react/useOptimistic), and handle unexpected errors. Forms will automatically wrap Server Functions in transitions.
 
-```js {9-12}
+```js {11-14}
+'use client';
+
 import incrementLike from './actions';
 import { useState, useTransition } from 'react';
 

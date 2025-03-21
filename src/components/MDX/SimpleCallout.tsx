@@ -4,7 +4,7 @@
 
 import * as React from 'react';
 import cn from 'classnames';
-import {H3} from './Heading';
+import {H2} from './Heading';
 
 interface SimpleCalloutProps {
   title: string;
@@ -18,11 +18,11 @@ function SimpleCallout({title, children, className}: SimpleCalloutProps) {
         'p-6 xl:p-8 pb-4 xl:pb-6 bg-card dark:bg-card-dark rounded-2xl shadow-inner-border dark:shadow-inner-border-dark text-base text-secondary dark:text-secondary-dark my-8',
         className
       )}>
-      <H3
+      <H2
         className="text-primary dark:text-primary-dark mt-0 mb-3 leading-tight"
         isPageAnchor={false}>
         {title}
-      </H3>
+      </H2>
       {children}
     </div>
   );

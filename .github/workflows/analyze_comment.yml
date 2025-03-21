@@ -2,9 +2,11 @@ name: Analyze Bundle (Comment)
 
 on:
   workflow_run:
-    workflows: ["Analyze Bundle"]
+    workflows: ['Analyze Bundle']
     types:
       - completed
+
+permissions: {}
 
 jobs:
   comment:

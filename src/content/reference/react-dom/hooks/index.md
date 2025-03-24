@@ -14,7 +14,7 @@ The `react-dom` package contains Hooks that are only supported for web applicati
 
 *Forms* let you create interactive controls for submitting information.  To manage forms in your components, use one of these Hooks:
 
-* [`useFormStatus`](/reference/react-dom/hooks/useFormStatus) allows you to make updates to the UI based on the status of the a form.
+* [`useFormStatus`](/reference/react-dom/hooks/useFormStatus) allows you to make updates to the UI based on the status of a form.
 
 ```js
 function Form({ action }) {

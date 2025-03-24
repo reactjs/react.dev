@@ -5,6 +5,8 @@ on:
 
 permissions: {}
 
+permissions: {}
+
 env:
   TZ: /usr/share/zoneinfo/America/Los_Angeles
   # https://github.com/actions/cache/blob/main/tips-and-workarounds.md#cache-segment-restore-timeout
@@ -18,7 +20,6 @@ jobs:
       contents: read
     with:
       actor: ${{ github.event.pull_request.user.login }}
-      is_remote: true
 
   label:
     if: ${{ needs.check_maintainer.outputs.is_core_team == 'true' }}

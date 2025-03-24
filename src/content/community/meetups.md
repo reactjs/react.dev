@@ -48,7 +48,7 @@ Do you have a local React.js meetup? Add it here! (Please keep the list alphabet
 * [Medellin](https://www.meetup.com/React-Medellin/)
 
 ## Czechia {/*czechia*/}
-* [Prague](https://guild.host/react-prague/events)
+* [Prague](https://guild.host/react-prague/)
 
 ## Denmark {/*denmark*/}
 * [Aalborg](https://www.meetup.com/Aalborg-React-React-Native-Meetup/)

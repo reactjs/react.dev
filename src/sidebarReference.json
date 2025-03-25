@@ -103,6 +103,11 @@
         {
           "title": "<Suspense>",
           "path": "/reference/react/Suspense"
+        },
+        {
+          "title": "<ViewTransition>",
+          "path": "/reference/react/ViewTransition",
+          "version": "canary"
         }
       ]
     },

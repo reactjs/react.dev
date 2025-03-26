@@ -105,6 +105,11 @@
           "path": "/reference/react/Suspense"
         },
         {
+          "title": "<Activity>",
+          "path": "/reference/react/Activity",
+          "version": "canary"
+        },
+        {
           "title": "<ViewTransition>",
           "path": "/reference/react/ViewTransition",
           "version": "canary"

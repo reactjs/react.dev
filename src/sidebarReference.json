@@ -155,6 +155,11 @@
           "title": "experimental_taintUniqueValue",
           "path": "/reference/react/experimental_taintUniqueValue",
           "version": "canary"
+        },
+        {
+          "title": "unstable_addTransitionType",
+          "path": "/reference/react/addTransitionType",
+          "version": "canary"
         }
       ]
     },

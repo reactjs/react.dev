@@ -352,3 +352,60 @@ function Component() {
   );
 }
 ```
+
+### I'm getting an error "There are two `<ViewTransition name=%s>` components with the same name mounted at the same time." {/*two-viewtransition-with-same-name*/}
+
+This error occurs when two `<ViewTransition>` components with the same `name` are mounted at the same time:
+
+
+```js [3]
+function Item() {
+  // 🚩 All items will get the same "name".
+  return <ViewTransition name="item">...</ViewTransition>;
+}
+
+function ItemList({items}) {
+  return (
+    <>
+      {item.map(item => <Item key={item.id} />)}
+    </>
+  );
+}
+```
+
+This will cause the View Transition to error. In development, React detects this issue to surface it and logs two errors:
+
+<ConsoleBlockMulti>
+<ConsoleLogLine level="error">
+
+There are two `<ViewTransition name=%s>` components with the same name mounted at the same time. This is not supported and will cause View Transitions to error. Try to use a more unique name e.g. by using a namespace prefix and adding the id of an item to the name.
+{'    '}at Item
+{'    '}at ItemList
+
+</ConsoleLogLine>
+
+<ConsoleLogLine level="error">
+
+The existing `<ViewTransition name=%s>` duplicate has this stack trace.
+{'    '}at Item
+{'    '}at ItemList
+
+</ConsoleLogLine>
+</ConsoleBlockMulti>
+
+To fix, ensure that there's only one `<ViewTransition>` with the same name mounted at a time in the entire app by ensuring the `name` is uniquie, or adding an `id` to the name:
+
+```js [3]
+function Item({id}) {
+  // ✅ All items will get the same "name".
+  return <ViewTransition name={`item-${id}`}>...</ViewTransition>;
+}
+
+function ItemList({items}) {
+  return (
+    <>
+      {item.map(item => <Item key={item.id} item={item} />)}
+    </>
+  );
+}
+```

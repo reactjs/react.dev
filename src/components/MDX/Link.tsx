@@ -2,7 +2,6 @@
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
 
-import {Children, cloneElement} from 'react';
 import NextLink from 'next/link';
 import cn from 'classnames';
 
@@ -16,14 +15,6 @@ function Link({
 }: React.AnchorHTMLAttributes<HTMLAnchorElement>) {
   const classes =
     'inline text-link dark:text-link-dark border-b border-link border-opacity-0 hover:border-opacity-100 duration-100 ease-in transition leading-normal';
-  const modifiedChildren = Children.toArray(children).map((child: any) => {
-    if (child.type?.mdxName && child.type?.mdxName === 'inlineCode') {
-      return cloneElement(child, {
-        isLink: true,
-      });
-    }
-    return child;
-  });
 
   if (!href) {
     // eslint-disable-next-line jsx-a11y/anchor-has-content
@@ -33,16 +24,16 @@ function Link({
     <>
       {href.startsWith('https://') ? (
         <ExternalLink href={href} className={cn(classes, className)} {...props}>
-          {modifiedChildren}
+          {children}
         </ExternalLink>
       ) : href.startsWith('#') ? (
         // eslint-disable-next-line jsx-a11y/anchor-has-content
         <a className={cn(classes, className)} href={href} {...props}>
-          {modifiedChildren}
+          {children}
         </a>
       ) : (
         <NextLink href={href} className={cn(classes, className)} {...props}>
-          {modifiedChildren}
+          {children}
         </NextLink>
       )}
     </>

@@ -69,25 +69,23 @@ We expect most apps will not be affected since the transform is enabled in most 
 
 To install the latest version of React and React DOM:
 
-```bash
-npm install --save-exact react@^19.0.0 react-dom@^19.0.0
-```
-
-Or, if you're using Yarn:
-
-```bash
-yarn add --exact react@^19.0.0 react-dom@^19.0.0
-```
+<TabTerminalBlock 
+  tabs={[
+    { label: 'npm', value: 'npm', content: 'npm install --save-exact react@^19.0.0 react-dom@^19.0.0' },
+    { label: 'yarn', value: 'yarn', content: 'yarn add --exact react@^19.0.0 react-dom@^19.0.0' },
+    { label: 'Bun', value: 'bun', content: 'bun add --exact react@^19.0.0 react-dom@^19.0.0' }
+  ]}
+/>
 
 If you're using TypeScript, you also need to update the types.
-```bash
-npm install --save-exact @types/react@^19.0.0 @types/react-dom@^19.0.0
-```
 
-Or, if you're using Yarn:
-```bash
-yarn add --exact @types/react@^19.0.0 @types/react-dom@^19.0.0
-```
+<TabTerminalBlock 
+  tabs={[
+    { label: 'npm', value: 'npm', content: 'npm install --save-exact @types/react@^19.0.0 @types/react-dom@^19.0.0' },
+    { label: 'yarn', value: 'yarn', content: 'yarn add --exact @types/react@^19.0.0 @types/react-dom@^19.0.0' },
+    { label: 'Bun', value: 'bun', content: 'bun add --exact @types/react@^19.0.0 @types/react-dom@^19.0.0' }
+  ]}
+/>
 
 We're also including a codemod for the most common replacements. See [TypeScript changes](#typescript-changes) below.
 
@@ -104,9 +102,12 @@ All codemods are available in the [`react-codemod` repo](https://github.com/reac
 
 Run all codemods listed in this guide with the React 19 `codemod` recipe:
 
-```bash
-npx codemod@latest react/19/migration-recipe
-```
+<TabTerminalBlock 
+  tabs={[
+    { label: 'npm', value: 'npm', content: 'npx codemod@latest react/19/migration-recipe' },
+    { label: 'Bun', value: 'bun', content: 'bunx codemod@latest react/19/migration-recipe' }
+  ]}
+/>
 
 This will run the following codemods from `react-codemod`:
 - [`replace-reactdom-render`](https://github.com/reactjs/react-codemod?tab=readme-ov-file#replace-reactdom-render) 
@@ -187,9 +188,12 @@ function Heading({text = 'Hello, world!'}: Props) {
 
 Codemod `propTypes` to TypeScript with:
 
-```bash
-npx codemod@latest react/prop-types-typescript
-```
+<TabTerminalBlock 
+  tabs={[
+    { label: 'npm', value: 'npm', content: 'npx codemod@latest react/prop-types-typescript' },
+    { label: 'Bun', value: 'bun', content: 'bunx codemod@latest react/prop-types-typescript' }
+  ]}
+/>
 
 </Note>
 
@@ -290,9 +294,12 @@ class MyComponent extends React.Component {
 
 Codemod string refs with `ref` callbacks:
 
-```bash
-npx codemod@latest react/19/replace-string-ref
-```
+<TabTerminalBlock 
+  tabs={[
+    { label: 'npm', value: 'npm', content: 'npx codemod@latest react/19/replace-string-ref' },
+    { label: 'Bun', value: 'bun', content: 'bunx codemod@latest react/19/replace-string-ref' }
+  ]}
+/>
 
 </Note>
 
@@ -336,9 +343,13 @@ const button = <button />;
 
 In React 18, we updated `react-test-renderer/shallow` to re-export [react-shallow-renderer](https://github.com/enzymejs/react-shallow-renderer). In React 19, we're removing `react-test-render/shallow` to prefer installing the package directly:
 
-```bash
-npm install react-shallow-renderer --save-dev
-```
+<TabTerminalBlock 
+  tabs={[
+    { label: 'npm', value: 'npm', content: 'npm install react-shallow-renderer --save-dev' },
+    { label: 'Bun', value: 'bun', content: 'bun add react-shallow-renderer --dev' }
+  ]}
+/>
+
 ```diff
 - import ShallowRenderer from 'react-test-renderer/shallow';
 + import ShallowRenderer from 'react-shallow-renderer';
@@ -383,9 +394,12 @@ See the [warning page](https://react.dev/warnings/react-dom-test-utils) for alte
 
 Codemod `ReactDOMTestUtils.act` to `React.act`:
 
-```bash
-npx codemod@latest react/19/replace-act-import
-```
+<TabTerminalBlock 
+  tabs={[
+    { label: 'npm', value: 'npm', content: 'npx codemod@latest react/19/replace-act-import' },
+    { label: 'Bun', value: 'bun', content: 'bunx codemod@latest react/19/replace-act-import' }
+  ]}
+/>
 
 </Note>
 
@@ -408,9 +422,12 @@ root.render(<App />);
 
 Codemod `ReactDOM.render` to `ReactDOMClient.createRoot`:
 
-```bash
-npx codemod@latest react/19/replace-reactdom-render
-```
+<TabTerminalBlock 
+  tabs={[
+    { label: 'npm', value: 'npm', content: 'npx codemod@latest react/19/replace-reactdom-render' },
+    { label: 'Bun', value: 'bun', content: 'bunx codemod@latest react/19/replace-reactdom-render' }
+  ]}
+/>
 
 </Note>
 
@@ -432,9 +449,12 @@ hydrateRoot(document.getElementById('root'), <App />);
 
 Codemod `ReactDOM.hydrate` to `ReactDOMClient.hydrateRoot`:
 
-```bash
-npx codemod@latest react/19/replace-reactdom-render
-```
+<TabTerminalBlock 
+  tabs={[
+    { label: 'npm', value: 'npm', content: 'npx codemod@latest react/19/replace-reactdom-render' },
+    { label: 'Bun', value: 'bun', content: 'bunx codemod@latest react/19/replace-reactdom-render' }
+  ]}
+/>
 
 </Note>
 
@@ -457,9 +477,12 @@ For more see `root.unmount()` for [`createRoot`](https://react.dev/reference/rea
 
 Codemod `unmountComponentAtNode` to `root.unmount`:
 
-```bash
-npx codemod@latest react/19/replace-reactdom-render
-```
+<TabTerminalBlock 
+  tabs={[
+    { label: 'npm', value: 'npm', content: 'npx codemod@latest react/19/replace-reactdom-render' },
+    { label: 'Bun', value: 'bun', content: 'bunx codemod@latest react/19/replace-reactdom-render' }
+  ]}
+/>
 
 </Note>
 
@@ -584,15 +607,21 @@ We've cleaned up the TypeScript types based on the removed APIs in React 19. Som
 <Note>
 We've published [`types-react-codemod`](https://github.com/eps1lon/types-react-codemod/) to migrate most type related breaking changes:
 
-```bash
-npx types-react-codemod@latest preset-19 ./path-to-app
-```
+<TabTerminalBlock 
+  tabs={[
+    { label: 'npm', value: 'npm', content: 'npx types-react-codemod@latest preset-19 ./path-to-app' },
+    { label: 'Bun', value: 'bun', content: 'bunx types-react-codemod@latest preset-19 ./path-to-app' }
+  ]}
+/>
 
 If you have a lot of unsound access to `element.props`, you can run this additional codemod:
 
-```bash
-npx types-react-codemod@latest react-element-default-any-props ./path-to-your-react-ts-files
-```
+<TabTerminalBlock 
+  tabs={[
+    { label: 'npm', value: 'npm', content: 'npx types-react-codemod@latest react-element-default-any-props ./path-to-your-react-ts-files' },
+    { label: 'Bun', value: 'bun', content: 'bunx types-react-codemod@latest react-element-default-any-props ./path-to-your-react-ts-files' }
+  ]}
+/>
 
 </Note>
 

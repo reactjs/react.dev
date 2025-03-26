@@ -29,15 +29,13 @@ For React Native users, React 18 will ship in a future version of React Native. 
 
 To install the latest version of React:
 
-```bash
-npm install react react-dom
-```
-
-Or if you’re using yarn:
-
-```bash
-yarn add react react-dom
-```
+<TabTerminalBlock 
+  tabs={[
+    { label: 'npm', value: 'npm', content: 'npm install react react-dom' },
+    { label: 'yarn', value: 'yarn', content: 'yarn add react react-dom' },
+    { label: 'Bun', value: 'bun', content: 'bun add react react-dom' }
+  ]}
+/>
 
 ## Updates to Client Rendering APIs {/*updates-to-client-rendering-apis*/}
 

@@ -28,9 +28,12 @@ This allows you to start with a client-only app, and if your needs change later,
 
 **[Next.js's App Router](https://nextjs.org/docs) is a React framework that takes full advantage of React's architecture to enable full-stack React apps.**
 
-<TerminalBlock>
-npx create-next-app@latest
-</TerminalBlock>
+<TabTerminalBlock 
+  tabs={[
+    { label: 'npm', value: 'npm', content: 'npx create-next-app@latest' },
+    { label: 'Bun', value: 'bun', content: 'bunx create-next-app@latest' }
+  ]}
+/>
 
 Next.js is maintained by [Vercel](https://vercel.com/). You can [deploy a Next.js app](https://nextjs.org/docs/app/building-your-application/deploying) to any Node.js or serverless hosting, or to your own server. Next.js also supports [static export](https://nextjs.org/docs/app/building-your-application/deploying/static-exports) which doesn't require a server. Vercel additionally provides opt-in paid cloud services.
 
@@ -40,9 +43,12 @@ Next.js is maintained by [Vercel](https://vercel.com/). You can [deploy a Next.j
 
 To create a new React Router framework project, run:
 
-<TerminalBlock>
-npx create-react-router@latest
-</TerminalBlock>
+<TabTerminalBlock 
+  tabs={[
+    { label: 'npm', value: 'npm', content: 'npx create-react-router@latest' },
+    { label: 'Bun', value: 'bun', content: 'bunx create-react-router@latest' }
+  ]}
+/>
 
 React Router is maintained by [Shopify](https://www.shopify.com).
 
@@ -50,9 +56,12 @@ React Router is maintained by [Shopify](https://www.shopify.com).
 
 **[Expo](https://expo.dev/) is a React framework that lets you create universal Android, iOS, and web apps with truly native UIs.** It provides an SDK for [React Native](https://reactnative.dev/) that makes the native parts easier to use. To create a new Expo project, run:
 
-<TerminalBlock>
-npx create-expo-app@latest
-</TerminalBlock>
+<TabTerminalBlock 
+  tabs={[
+    { label: 'npm', value: 'npm', content: 'npx create-expo-app@latest' },
+    { label: 'Bun', value: 'bun', content: 'bunx create-expo-app@latest' }
+  ]}
+/>
 
 If you're new to Expo, check out the [Expo tutorial](https://docs.expo.dev/tutorial/introduction/).
 

@@ -43,9 +43,12 @@ In the keynote, we also announced that the React 18 RC is available to try now. 
 
 To try the React 18 RC, upgrade your dependencies:
 
-```bash
-npm install react@rc react-dom@rc
-```
+<TabTerminalBlock 
+  tabs={[
+    { label: 'npm', value: 'npm', content: 'npm install react@rc react-dom@rc' },
+    { label: 'Bun', value: 'bun', content: 'bun add react@rc react-dom@rc' }
+  ]}
+/>
 
 and switch to the new `createRoot` API:
 

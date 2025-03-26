@@ -123,11 +123,12 @@ If these `react` imports resolve to two different exports objects, you will see 
 
 If you use Node for package management, you can run this check in your project folder:
 
-<TerminalBlock>
-
-npm ls react
-
-</TerminalBlock>
+<TabTerminalBlock 
+  tabs={[
+    { label: 'npm', value: 'npm', content: 'npm ls react' },
+    { label: 'Bun', value: 'bun', content: 'bun pm ls react' }
+  ]}
+/>
 
 If you see more than one React, you'll need to figure out why this happens and fix your dependency tree. For example, maybe a library you're using incorrectly specifies `react` as a dependency (rather than a peer dependency). Until that library is fixed, [Yarn resolutions](https://yarnpkg.com/lang/en/docs/selective-version-resolutions/) is one possible workaround.
 

@@ -719,24 +719,16 @@ Another solution would be to remove the condition altogether by moving the infor
 <Sandpack>
 
 ```js
-const drinks = {
-  tea: {
-    part: 'leaf',
-    caffeine: '15–70 mg/cup',
-    age: '4,000+ years'
-  },
-  coffee: {
-    part: 'bean',
-    caffeine: '80–185 mg/cup',
-    age: '1,000+ years'
-  }
-};
+const drinks = [
+  {name: 'tea', part: 'leaf', caffeine: '15–70 mg/cup', age: '4,000+ years'},
+  {name: 'coffee', part: 'bean', caffeine: '80–185 mg/cup', age: '1,000+ years'}
+];
 
 function Drink({ name }) {
-  const info = drinks[name];
+  const info = drinks.find(d => d.name === name);
   return (
     <section>
-      <h1>{name}</h1>
+      <h1>{info.name}</h1>
       <dl>
         <dt>Part of plant</dt>
         <dd>{info.part}</dd>

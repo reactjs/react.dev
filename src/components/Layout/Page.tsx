@@ -21,6 +21,7 @@ import {HomeContent} from './HomeContent';
 import {TopNav} from './TopNav';
 import cn from 'classnames';
 import Head from 'next/head';
+import {EditThis} from 'components/EditThis';
 
 import(/* webpackPrefetch: true */ '../MDX/CodeBlock/CodeBlock');
 
@@ -57,6 +58,7 @@ export function Page({
   const description = meta.description || route?.description || '';
   const isHomePage = cleanedPath === '/';
   const isBlogIndex = cleanedPath === '/blog';
+  const isReferencePage = cleanedPath.startsWith('/reference');
 
   let content;
   if (isHomePage) {
@@ -88,6 +90,16 @@ export function Page({
               </LanguagesContext.Provider>
             </TocContext.Provider>
           </div>
+          {isReferencePage && route && (
+            <EditThis
+              isIndexPage={
+                routeTree.routes?.find((el: RouteItem): boolean | undefined =>
+                  el.path?.startsWith(route.path!)
+                )?.path === route.path
+              }
+              path={route?.path || routeTree.path || ''}
+            />
+          )}
           {!isBlogIndex && (
             <DocsPageFooter
               route={route}

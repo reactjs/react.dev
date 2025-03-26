@@ -154,8 +154,8 @@ module.exports = {
       colors,
       gridTemplateColumns: {
         'only-content': 'auto',
-        'sidebar-content': '20rem auto',
-        'sidebar-content-toc': '20rem auto 20rem',
+        'sidebar-content': '342px auto',
+        'sidebar-content-toc': '342px auto 20rem',
       },
     },
   },

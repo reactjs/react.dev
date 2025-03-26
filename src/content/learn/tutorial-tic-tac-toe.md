@@ -56,8 +56,11 @@ function Board({ xIsNext, squares, onPlay }) {
 
   const winner = calculateWinner(squares);
   let status;
+  const isBoardFull = squares.every(square => square !== null);
   if (winner) {
     status = 'Winner: ' + winner;
+  } else if (isBoardFull) {
+    status = 'Draw';
   } else {
     status = 'Next player: ' + (xIsNext ? 'X' : 'O');
   }
@@ -1568,15 +1571,18 @@ function handleClick(i) {
 }
 ```
 
-To let the players know when the game is over, you can display text such as "Winner: X" or "Winner: O". To do that you'll add a `status` section to the `Board` component. The status will display the winner if the game is over and if the game is ongoing you'll display which player's turn is next:
+To let the players know when the game is over, you can display text such as “Winner: X” or “Winner: O”. Additionally, if all squares are filled and there's no winner, you should display "Draw" to indicate the game has ended in a tie. To do that, you’ll add a `status` section to the `Board` component. The `status` will display the winner if the game is over, "Draw" if the game has no winner but is complete, and if the game is ongoing, you’ll display which player’s turn is next:
 
-```js {3-9,13}
+```js {3-12,16}
 export default function Board() {
   // ...
   const winner = calculateWinner(squares);
   let status;
+    const isBoardFull = squares.every(square => square !== null);
   if (winner) {
     status = "Winner: " + winner;
+  } else if(isBoardFull) {
+    status = "Draw";
   } else {
     status = "Next player: " + (xIsNext ? "X" : "O");
   }
@@ -1625,8 +1631,11 @@ export default function Board() {
 
   const winner = calculateWinner(squares);
   let status;
+  const isBoardFull = squares.every(square => square !== null);
   if (winner) {
     status = 'Winner: ' + winner;
+  } else if (isBoardFull) {
+    status = 'Draw';
   } else {
     status = 'Next player: ' + (xIsNext ? 'X' : 'O');
   }
@@ -2110,8 +2119,11 @@ function Board({ xIsNext, squares, onPlay }) {
 
   const winner = calculateWinner(squares);
   let status;
+  const isBoardFull = squares.every(square => square !== null);
   if (winner) {
     status = 'Winner: ' + winner;
+  } else if (isBoardFull) {
+    status = 'Draw';
   } else {
     status = 'Next player: ' + (xIsNext ? 'X' : 'O');
   }
@@ -2338,8 +2350,11 @@ function Board({ xIsNext, squares, onPlay }) {
 
   const winner = calculateWinner(squares);
   let status;
+  const isBoardFull = squares.every(square => square !== null);
   if (winner) {
     status = 'Winner: ' + winner;
+  } else if (isBoardFull) {
+    status = 'Draw';
   } else {
     status = 'Next player: ' + (xIsNext ? 'X' : 'O');
   }
@@ -2769,8 +2784,11 @@ function Board({ xIsNext, squares, onPlay }) {
 
   const winner = calculateWinner(squares);
   let status;
+  const isBoardFull = squares.every(square => square !== null);
   if (winner) {
     status = 'Winner: ' + winner;
+  } else if (isBoardFull) {
+    status = 'Draw';
   } else {
     status = 'Next player: ' + (xIsNext ? 'X' : 'O');
   }
@@ -2912,7 +2930,7 @@ If you have extra time or want to practice your new React skills, here are some 
 1. For the current move only, show "You are at move #..." instead of a button.
 1. Rewrite `Board` to use two loops to make the squares instead of hardcoding them.
 1. Add a toggle button that lets you sort the moves in either ascending or descending order.
-1. When someone wins, highlight the three squares that caused the win (and when no one wins, display a message about the result being a draw).
+1. When someone wins, highlight the three squares that caused the win.
 1. Display the location for each move in the format (row, col) in the move history list.
 
 Throughout this tutorial, you've touched on React concepts including elements, components, props, and state. Now that you've seen how these concepts work when building a game, check out [Thinking in React](/learn/thinking-in-react) to see how the same React concepts work when building an app's UI.

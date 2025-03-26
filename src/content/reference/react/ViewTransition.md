@@ -15,8 +15,6 @@ You can try it by upgrading React packages to the most recent experimental versi
 
 Experimental versions of React may contain bugs. Don't use them in production.
 
-This API is only available inside React Server Components.
-
 </Wip>
 
 <Intro>
@@ -25,6 +23,8 @@ This API is only available inside React Server Components.
 
 
 ```js
+import {unstableViewTransition as ViewTransition} from 'react';
+
 <ViewTransition>
   <div>...</div>
 </ViewTransition>
@@ -99,7 +99,7 @@ These callbacks allow you to adjust the animation imperatively using the [animat
 
 Each callback receives as arguments:
 - `element`: The DOM element that was animated.
-- `types`: The [transition types)(/todo) included in the animation.
+- `types`: The [Transition Types)(/reference/react/addTransitionType) included in the animation.
 
 ### View Transition Class {/*view-transition-classes*/}
 
@@ -363,7 +363,7 @@ TODO
 ---
 
 ### Custom animations with types {/*customizing-animations-with-types*/}
-You can use the [`addTransitionType`](/TODO) API to add a class name to the child elements when a specific transition type is activated for a specifc activation trigger. This allows you to customize the animation for each type of transition.
+You can use the [`addTransitionType`](/reference/react/addTransitionType) API to add a class name to the child elements when a specific transition type is activated for a specific activation trigger. This allows you to customize the animation for each type of transition.
 
 For example, to customize the animation for all forward and backward navigations:
 

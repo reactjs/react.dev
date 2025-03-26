@@ -157,6 +157,11 @@
           "title": "captureOwnerStack",
           "path": "/reference/react/captureOwnerStack",
           "version": "canary"
+        },
+        {
+          "title": "unstable_addTransitionType",
+          "path": "/reference/react/addTransitionType",
+          "version": "canary"
         }
       ]
     },

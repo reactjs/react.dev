@@ -20,6 +20,11 @@ April 3 (Reanimated Training) + April 4 (Conference), 2025. Paris, France.
 
 [Website](https://reactnativeconnection.io/) - [X](https://x.com/reactnativeconn) - [Bluesky](https://bsky.app/profile/reactnativeconnect.bsky.social)
 
+### React Miami 2025 {/*react-miami-2025*/}
+April 17 - 18, 2025. In-person in Miami, FL, USA (hybrid event)
+
+[Website](https://reactmiami.com/) - [Twitter](https://x.com/ReactMiamiConf)
+
 ### CityJS London 2025 {/*cityjs-london*/}
 April 23 - 25, 2025. In-person in London, UK 
 

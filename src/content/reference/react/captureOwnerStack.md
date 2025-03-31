@@ -2,12 +2,6 @@
 title: captureOwnerStack
 ---
 
-<Canary>
-
-The `captureOwnerStack` API is currently only available in React's Canary and experimental channels. Learn more about [React's release channels here](/community/versioning-policy#all-release-channels).
-
-</Canary>
-
 <Intro>
 
 `captureOwnerStack` reads the current Owner Stack in development and returns it as a string if available.

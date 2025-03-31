@@ -157,30 +157,108 @@ In the future, CSS libraries may add built-in animations using View Transition C
 
 Enter/Exit Transitions trigger when a `<ViewTransition>` is added or removed by a component in a transition:
 
-```js [[1, 10, "startTransition"], [2, 2, "<ViewTransition>"], [2, 2, "</ViewTransition>"]]
+```js
 function Child() {
-  return <ViewTransition><div>Hello</div></ViewTransition>;
+  return <ViewTransition>Hi</ViewTransition>
 }
 
 function Parent() {
-  const [show, setShow] = useState(false);
-  return (
-    <>
-      <button onClick={() => {
-        startTransition(() => {
-          setShow(true);
-        });
-      }}>Show</button>
-
-      {show && <Component />}
-    </>
-  );
+  const [show, setShow] = useState();
+  if (show) {
+    return <Child />;
+  }
+  return null;
 }
 ```
 
 When `setShow` is called, `show` switched to `true` and the `Child` component is rendered. Since `setShow` is called inside <CodeStep step={1}>startTransition</CodeStep>, and `Child` renders a <CodeStep step={2}>ViewTransition</CodeStep> before any other DOM nodes, an `enter` animation is triggered. 
 
 When `show` is switched back to `false`, an `exit` animation is triggered.
+
+<Sandpack>
+
+```js
+import {
+  unstable_ViewTransition as ViewTransition,
+  useState,
+  startTransition
+} from 'react';
+
+function Item() {
+  return (
+    <ViewTransition>
+      <div className="item">Hello world</div>
+    </ViewTransition>
+  );
+}
+
+export default function Component() {
+  const [showItem, setShowItem] = useState(false);
+  return (
+    <>
+      <button
+        onClick={() => {
+          startTransition(() => {
+            setShowItem((prev) => !prev);
+          });
+        }}
+      >{showItem ? '➖' : '➕'}</button>
+
+      {showItem ? <Item /> : null}
+    </>
+  );
+}
+```
+
+```css
+#root {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 150px;
+}
+button {
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f0f8ff;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s, border 0.3s;
+}
+button:hover {
+  border: 2px solid #ccc;
+  background-color: #e0e8ff;
+}
+.item {
+  width: 100%;
+  padding: 10px 20px;
+  margin: 10px 0;
+  border-radius: 50px;
+  background-color: #f0f8ff;
+  color: #333;
+  font-size: 16px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  height: 40px;
+}
+```
+
+```json package.json hidden
+{
+  "dependencies": {
+    "react": "experimental",
+    "react-dom": "experimental",
+    "react-scripts": "latest"
+  }
+}
+```
+
+</Sandpack>
 
 <Pitfall>
 
@@ -203,15 +281,109 @@ function Component() {
 
 Normally, we don't recommend assigning a name to a `<ViewTransition>` and instead let React assign it an automatic name. The reason you might want to assign a name is to animate between completely different components when one tree unmounts and another tree mounts at the same time. To preserve continuity.
 
+```js
+<ViewTransition name={UNIQUE_NAME}>
+  <Child />
+</ViewTransition>
+```
+
 When one tree unmounts and another mounts, if there's a pair where the same name exists in the unmounting tree and the mounting tree, they trigger the "share" animation on both. It animates from the unmounting side to the mounting side.
 
 Unlike an exit/enter animation this can be deeply inside the deleted/mounted tree. If a `<ViewTransition>` would also be eligible for exit/enter, then the "share" animation takes precedence.
 
-If Transition first unmounts one side an then leads to a `<Suspense>` fallback being shown before eventually the new name being mounted, then no shared element transition happens.
+If Transition first unmounts one side and then leads to a `<Suspense>` fallback being shown before eventually the new name being mounted, then no shared element transition happens.
 
-If either the mounted or unmounted side of a pair is outside the viewport, then no pair is formed. This ensures that it doesn't fly in or out of the viewport when something is scrolled. Instead it's treated as a regular enter/exit by itself.
+<Sandpack>
+
+```js
+import {
+  unstable_ViewTransition as ViewTransition,
+  useState,
+  startTransition
+} from 'react';
+
+export default function Component() {
+  const [position, setPosition] = useState(true);
+  return (
+    <>
+      <button
+        onClick={() => {
+          startTransition(() => {
+            setPosition((prev) => !prev);
+          });
+        }}
+      >{position ? "⬇️" : "⬆️"}</button>
+      <div className="item">
+        {position && (
+          <ViewTransition name="hello_world"><div>Hello</div></ViewTransition>
+        )}
+      </div>
+      <div className="item">
+        {!position && (
+          <ViewTransition name="hello_world"><div>World</div></ViewTransition>
+        )}
+      </div>
+    </>
+  );
+}
+
+```
+
+```css
+#root {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 150px;
+}
+button {
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f0f8ff;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s, border 0.3s;
+}
+button:hover {
+  border: 2px solid #ccc;
+  background-color: #e0e8ff;
+}
+.item {
+  width: 100%;
+  padding: 10px 20px;
+  margin: 10px 0;
+  border-radius: 50px;
+  background-color: #f0f8ff;
+  color: #333;
+  font-size: 16px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  height: 40px;
+}
+```
+
+
+```json package.json hidden
+{
+  "dependencies": {
+    "react": "experimental",
+    "react-dom": "experimental",
+    "react-scripts": "latest"
+  }
+}
+```
+
+</Sandpack>
+
 
 <Note>
+
+If either the mounted or unmounted side of a pair is outside the viewport, then no pair is formed. This ensures that it doesn't fly in or out of the viewport when something is scrolled. Instead it's treated as a regular enter/exit by itself.
 
 This does not happen if the same Component instance changes position, which triggers an "update". Those animate regardless if one position is outside the viewport.
 
@@ -261,11 +433,128 @@ function Component() {
 ```
 Instead, any parent `<ViewTransition>` would cross-fade. If there is no parent `<ViewTransition>` then there's no animation in that case.
 
-This means you might want to avoid a wrapper elements in lists where you want to allow the Component to control its own reorder animation:
+<Sandpack>
+
+```js
+import {
+  unstable_ViewTransition as ViewTransition,
+  useState,
+  startTransition
+} from 'react';
+
+function Item({color}) {
+  return <div className="item" style={{backgroundColor: color[1]}}>{color[0]}</div>;
+}
+
+function List({animateEach, items}) {
+  return items.map(item => {
+    if (animateEach) {
+      return <ViewTransition key={item}><Item color={item} /></ViewTransition>
+    }
+    return <Item color={item} key={item} />
+  })
+}
+
+export default function Component() {
+  const [items, setItems] = useState([
+    ['Yellow', 'yellow'],
+    ['Green', 'lightgreen'],
+    ['Blue', 'lightblue'],
+    ['Orange', 'orange'],
+  ]);
+
+  const reorder = () => {
+    startTransition(() => {
+      setItems((prev) => {
+        return [...prev.sort(() => Math.random() - 0.5)];
+      });
+    });
+  };
+
+  return (
+    <>
+      <button onClick={reorder}>🎲</button>
+      <div className="listContainer">
+        <div>
+          <p>Animates each item</p>
+          <List animateEach={true} items={items} />
+        </div>
+        <div>
+          <p>Animates the whole list</p>
+          <ViewTransition>
+            <List animateEach={false} items={items} />
+          </ViewTransition>
+        </div>
+      </div>
+    </>
+  );
+}
+```
+
+```css
+#root {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 150px;
+}
+button {
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f0f8ff;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s, border 0.3s;
+}
+button:hover {
+  border: 2px solid #ccc;
+  background-color: #e0e8ff;
+}
+.item {
+  width: 100%;
+  padding: 10px 20px;
+  margin: 10px 0;
+  border-radius: 50px;
+  background-color: #f0f8ff;
+  color: #333;
+  font-size: 16px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  height: 40px;
+}
+.listContainer {
+  display: flex;
+  width: 100%;
+}
+.listContainer > div {
+  width: 100%;
+  margin: 20px;
+}
+```
+
+```json package.json hidden
+{
+  "dependencies": {
+    "react": "experimental",
+    "react-dom": "experimental",
+    "react-scripts": "latest"
+  }
+}
+```
+
+</Sandpack>
+
+This means you might want to avoid wrapper elements in lists where you want to allow the Component to control its own reorder animation:
 
 ```
 items.map(item => <div><Component key={item.id} item={item} /></div>)
 ```
+
 The above rule also applies if one of the items updates to resize, which then causes the siblings to resize, it'll also animate its sibling `<ViewTransition>` but only if they're immediate siblings.
 
 This means that during an update, which causes a lot of re-layout, it doesn't individually animate every `<ViewTransition>` on the page. That would lead to a lot of noisy animations which distracts from the actual change. Therefore React is more conservative about when an individual animation triggers.

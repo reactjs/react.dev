@@ -83,7 +83,7 @@ Routers are a core part of modern applications, and are usually integrated with 
 
 We suggest using:
 
-- [React Router](https://reactrouter.com/start/framework/custom)
+- [React Router](https://reactrouter.com/start/data/custom)
 - [Tanstack Router](https://tanstack.com/router/latest)
 
 

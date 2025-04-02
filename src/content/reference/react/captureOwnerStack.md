@@ -120,22 +120,6 @@ createRoot(document.createElement('div'), {
 );
 ```
 
-```json package.json hidden
-{
-  "dependencies": {
-    "react": "canary",
-    "react-dom": "canary",
-    "react-scripts": "latest"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
-  }
-}
-```
-
 ```html public/index.html hidden
 <!DOCTYPE html>
 <html lang="en">
@@ -351,22 +335,6 @@ const container = document.getElementById("root");
 createRoot(container).render(<App />);
 ```
 
-```json package.json hidden
-{
-  "dependencies": {
-    "react": "canary",
-    "react-dom": "canary",
-    "react-scripts": "latest"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
-  }
-}
-```
-
 ```js src/App.js
 function Component() {
   return <button onClick={() => console.error('Some console error')}>Trigger console.error()</button>;
@@ -408,22 +376,6 @@ export default function App() {
   })
 
   return <button>Click me to see that Owner Stacks are not available in custom DOM event handlers</button>;
-}
-```
-
-```json package.json hidden
-{
-  "dependencies": {
-    "react": "canary",
-    "react-dom": "canary",
-    "react-scripts": "latest"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
-  }
 }
 ```
 

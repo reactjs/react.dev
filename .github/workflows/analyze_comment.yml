@@ -2,9 +2,11 @@ name: Analyze Bundle (Comment)
 
 on:
   workflow_run:
-    workflows: ["Analyze Bundle"]
+    workflows: ['Analyze Bundle']
     types:
       - completed
+
+permissions: {}
 
 jobs:
   comment:
@@ -14,7 +16,7 @@ jobs:
       github.event.workflow_run.conclusion == 'success' }}
     steps:
       - name: Download base branch bundle stats
-        uses: dawidd6/action-download-artifact@v2
+        uses: dawidd6/action-download-artifact@268677152d06ba59fcec7a7f0b5d961b6ccd7e1e
         with:
           workflow: analyze.yml
           run_id: ${{ github.event.workflow_run.id }}
@@ -22,7 +24,7 @@ jobs:
           path: analysis_comment.txt
 
       - name: Download PR number
-        uses: dawidd6/action-download-artifact@v2
+        uses: dawidd6/action-download-artifact@268677152d06ba59fcec7a7f0b5d961b6ccd7e1e
         with:
           workflow: analyze.yml
           run_id: ${{ github.event.workflow_run.id }}
@@ -33,40 +35,23 @@ jobs:
         id: get-comment-body
         if: success()
         run: |
+          echo 'body<<EOF' >> $GITHUB_OUTPUT
+          echo '' >>  $GITHUB_OUTPUT
+          echo '## Size changes' >>  $GITHUB_OUTPUT
+          echo '' >>  $GITHUB_OUTPUT
+          echo '<details>' >>  $GITHUB_OUTPUT
+          echo '' >>  $GITHUB_OUTPUT
+          cat analysis_comment.txt/__bundle_analysis_comment.txt >> $GITHUB_OUTPUT
+          echo '' >>  $GITHUB_OUTPUT
+          echo '</details>' >>  $GITHUB_OUTPUT
+          echo '' >>  $GITHUB_OUTPUT
+          echo 'EOF' >> $GITHUB_OUTPUT
           pr_number=$(cat pr_number/pr_number)
-          body=$(cat analysis_comment.txt/__bundle_analysis_comment.txt)
-          body="## Size Changes
-          <details>
+          echo "pr-number=$pr_number" >> $GITHUB_OUTPUT
 
-          ${body}
-          
-          </details>"
-          body="${body//'%'/'%25'}"
-          body="${body//$'\n'/'%0A'}"
-          body="${body//$'\r'/'%0D'}"
-          echo ::set-output name=body::$body
-          echo ::set-output name=pr-number::$pr_number
-
-      - name: Find Comment
-        uses: peter-evans/find-comment@v1
-        if: success()
-        id: fc
+      - name: Comment
+        uses: marocchino/sticky-pull-request-comment@52423e01640425a022ef5fd42c6fb5f633a02728
         with:
-          issue-number: ${{ steps.get-comment-body.outputs.pr-number }}
-          body-includes: "<!-- __NEXTJS_BUNDLE -->"
-
-      - name: Create Comment
-        uses: peter-evans/create-or-update-comment@v1.4.4
-        if: success() && steps.fc.outputs.comment-id == 0
-        with:
-          issue-number: ${{ steps.get-comment-body.outputs.pr-number }}
-          body: ${{ steps.get-comment-body.outputs.body }}
-
-      - name: Update Comment
-        uses: peter-evans/create-or-update-comment@v1.4.4
-        if: success() && steps.fc.outputs.comment-id != 0
-        with:
-          issue-number: ${{ steps.get-comment-body.outputs.pr-number }}
-          body: ${{ steps.get-comment-body.outputs.body }}
-          comment-id: ${{ steps.fc.outputs.comment-id }}
-          edit-mode: replace
+          header: next-bundle-analysis
+          number: ${{ steps.get-comment-body.outputs.pr-number }}
+          message: ${{ steps.get-comment-body.outputs.body }}

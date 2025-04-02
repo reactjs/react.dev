@@ -1,5 +1,0 @@
-User-agent: *
-Disallow: /
-
-User-agent: Algolia Crawler
-Disallow:

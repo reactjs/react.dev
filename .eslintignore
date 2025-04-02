@@ -1,13 +1,3 @@
-node_modules/*
-
-# Skip beta
-beta/*
-
-# Ignore markdown files and examples
-content/*
-
-# Ignore built files
-public/*
-
-# Ignore examples
-examples/*
+scripts
+plugins
+next.config.js

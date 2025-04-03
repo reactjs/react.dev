@@ -38,20 +38,22 @@ export default function ProductPage({ productId, referrer, theme }) {
 
 #### Parameters {/*parameters*/}
 
-* `fn`: The function value that you want to cache. It can take any arguments and return any values. React will return (not call!) your function back to you during the initial render. On next renders, React will give you the same function again if the `dependencies` have not changed since the last render. Otherwise, it will give you the function that you have passed during the current render, and store it in case it can be reused later. React will not call your function. The function is returned to you so you can decide when and whether to call it.
+* `fn`: The function that will be cached. It accepts any arguments and returns any type of value. React provides (but does not execute) this function during the first render. In later renders, React will return the same function if the dependencies haven’t changed; otherwise, it will give you the new function and save it for later. You control when to call it—React won’t call it for you.
 
-* `dependencies`: The list of all reactive values referenced inside of the `fn` code. Reactive values include props, state, and all the variables and functions declared directly inside your component body. If your linter is [configured for React](/learn/editor-setup#linting), it will verify that every reactive value is correctly specified as a dependency. The list of dependencies must have a constant number of items and be written inline like `[dep1, dep2, dep3]`. React will compare each dependency with its previous value using the [`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is) comparison algorithm.
+* `dependencies`: An array of reactive values (such as props, state, or variables from the component) that the function relies on. If your linter is set up for React, it will verify that all reactive values are included. The list of dependencies must have a constant number of items and be written inline like `[dep1, dep2, dep3]`. React will compare each dependency with its previous value using the [`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is) comparison algorithm.
 
 #### Returns {/*returns*/}
 
 On the initial render, `useCallback` returns the `fn` function you have passed.
 
-During subsequent renders, it will either return an already stored `fn`  function from the last render (if the dependencies haven't changed), or return the `fn` function you have passed during this render.
+In later renders, it will either return the cached function (if dependencies stay the same) or the new function you provided.
 
 #### Caveats {/*caveats*/}
 
 * `useCallback` is a Hook, so you can only call it **at the top level of your component** or your own Hooks. You can't call it inside loops or conditions. If you need that, extract a new component and move the state into it.
-* React **will not throw away the cached function unless there is a specific reason to do that.** For example, in development, React throws away the cache when you edit the file of your component. Both in development and in production, React will throw away the cache if your component suspends during the initial mount. In the future, React may add more features that take advantage of throwing away the cache--for example, if React adds built-in support for virtualized lists in the future, it would make sense to throw away the cache for items that scroll out of the virtualized table viewport. This should match your expectations if you rely on `useCallback` as a performance optimization. Otherwise, a [state variable](/reference/react/useState#im-trying-to-set-state-to-a-function-but-it-gets-called-instead) or a [ref](/reference/react/useRef#avoiding-recreating-the-ref-contents) may be more appropriate.
+* React preserves the cached function unless there's a specific reason to discard it. In development, the cache resets when you edit the component file. In both development and production, React also clears the cache if the component suspends during its initial mount.
+
+Future React updates may introduce more cases where caching is reset. For instance, if React adds built-in support for virtualized lists, it might clear the cache for items that scroll out of view. If you're using useCallback for performance optimization, this behavior should align with your expectations. Otherwise, a [state variable](/reference/react/useState#im-trying-to-set-state-to-a-function-but-it-gets-called-instead) or a [ref](/reference/react/useRef#avoiding-recreating-the-ref-contents) may be more appropriate.
 
 ---
 

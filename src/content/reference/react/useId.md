@@ -2,6 +2,12 @@
 title: useId
 ---
 
+<RSC>
+
+`useId` is allowed in non-async [Server Components](/reference/rsc/server-components).
+
+</RSC>
+
 <Intro>
 
 `useId` is a React Hook for generating unique IDs that can be passed to accessibility attributes.

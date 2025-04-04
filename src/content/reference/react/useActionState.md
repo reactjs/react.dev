@@ -7,7 +7,7 @@ title: useActionState
 `useActionState` is a Hook that allows you to update state based on the result of a form action.
 
 ```js
-const [state, formAction, isPending] = useActionState(fn, initialState, permalink?);
+const [state, formAction, isPending] = useActionState(action, initialState, permalink?);
 ```
 
 </Intro>

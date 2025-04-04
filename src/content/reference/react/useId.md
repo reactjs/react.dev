@@ -2,12 +2,6 @@
 title: useId
 ---
 
-<RSC>
-
-`useId` is allowed in non-async [Server Components](/reference/rsc/server-components).
-
-</RSC>
-
 <Intro>
 
 `useId` is a React Hook for generating unique IDs that can be passed to accessibility attributes.
@@ -51,6 +45,8 @@ function PasswordField() {
 * `useId` is a Hook, so you can only call it **at the top level of your component** or your own Hooks. You can't call it inside loops or conditions. If you need that, extract a new component and move the state into it.
 
 * `useId` **should not be used to generate keys** in a list. [Keys should be generated from your data.](/learn/rendering-lists#where-to-get-your-key)
+
+* `useId` currently cannot be used in [async Server Components](/reference/rsc/server-components#async-components-with-server-components).
 
 ---
 

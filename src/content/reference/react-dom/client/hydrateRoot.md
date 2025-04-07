@@ -380,10 +380,11 @@ By default, React will log all errors to the console. To implement your own erro
 
 ```js [[1, 6, "onCaughtError"], [2, 6, "error", 1], [3, 6, "errorInfo"], [4, 10, "componentStack", 15]]
 import { hydrateRoot } from "react-dom/client";
+import App from "./App.js";
 import { reportCaughtError } from "./reportError";
 
 const container = document.getElementById("root");
-const root = hydrateRoot(container, {
+const root = hydrateRoot(container, <App />, {
   onCaughtError: (error, errorInfo) => {
     if (error.message !== "Known error") {
       reportCaughtError({

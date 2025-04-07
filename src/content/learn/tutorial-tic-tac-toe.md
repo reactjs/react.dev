@@ -899,19 +899,21 @@ body {
 
 ### React Developer Tools {/*react-developer-tools*/}
 
-React DevTools let you check the props and the state of your React components. You can find the React DevTools tab at the bottom of the _browser_ section in CodeSandbox:
+React Developer Tools let you check the props and the state of your React components. It is available as a [Chrome](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=en), [Firefox](https://addons.mozilla.org/en-US/firefox/addon/react-devtools/), and [Edge](https://microsoftedge.microsoft.com/addons/detail/react-developer-tools/gpphkfbcpidddadnkolkpfckpihlkkil) browser extension. Install it, and the *Components* tab will appear in your browser Developer Tools for sites using React.
 
-![React DevTools in CodeSandbox](../images/tutorial/codesandbox-devtools.png)
+After React Developer Tools installation, you can take the URL present in the _preview_ section of CodeSandbox (similar to "https://***.csb.app/") and open it in a new browser tab.
 
-To inspect a particular component on the screen, use the button in the top left corner of React DevTools:
+![Warning shown by CodeSandbox for preview in a new tab](../images/tutorial/codesandbox-preview-warning.png)
+
+For this warning by CodeSandbox, you may click "Yes, proceed to preview".
+
+On the preview page, open the *Components* tab in your browser Developer Tools.
+
+![React DevTools in CodeSandbox](../images/tutorial/react-developer-tools-on-tictactoe-preview.png)
+
+To inspect a particular component on the screen, use the button in the top left corner of the *Components* tab:
 
 ![Selecting components on the page with React DevTools](../images/tutorial/devtools-select.gif)
-
-<Note>
-
-For local development, React DevTools is available as a [Chrome](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=en), [Firefox](https://addons.mozilla.org/en-US/firefox/addon/react-devtools/), and [Edge](https://microsoftedge.microsoft.com/addons/detail/react-developer-tools/gpphkfbcpidddadnkolkpfckpihlkkil) browser extension. Install it, and the *Components* tab will appear in your browser Developer Tools for sites using React.
-
-</Note>
 
 ## Completing the game {/*completing-the-game*/}
 

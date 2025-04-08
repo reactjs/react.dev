@@ -8,7 +8,7 @@ import {useRouter} from 'next/router';
 import {SidebarNav} from './SidebarNav';
 import {Footer} from './Footer';
 import {Toc} from './Toc';
-// import SocialBanner from '../SocialBanner';
+import SocialBanner from '../SocialBanner';
 import {DocsPageFooter} from 'components/DocsFooter';
 import {Seo} from 'components/Seo';
 import PageHeading from 'components/PageHeading';
@@ -137,7 +137,7 @@ export function Page({
           />
         </Head>
       )}
-      {/*<SocialBanner />*/}
+      <SocialBanner />
       <TopNav
         section={section}
         routeTree={routeTree}

@@ -353,10 +353,10 @@ function ProductTable({ products, filterText, inStockOnly }) {
         filterText.toLowerCase()
       ) === -1
     ) {
-      return;
+      continue;
     }
     if (inStockOnly && !product.stocked) {
-      return;
+      continue;
     }
     if (product.category !== lastCategory) {
       rows.push(

@@ -34,15 +34,13 @@ At [React India 2024](https://www.youtube.com/watch?v=qd5yk2gxbtg), we shared an
 
 To install React Compiler Beta:
 
-<TerminalBlock>
-npm install -D babel-plugin-react-compiler@beta eslint-plugin-react-compiler@beta
-</TerminalBlock>
-
-Or, if you're using Yarn:
-
-<TerminalBlock>
-yarn add -D babel-plugin-react-compiler@beta eslint-plugin-react-compiler@beta
-</TerminalBlock>
+<TabTerminalBlock 
+  tabs={[
+    { label: 'npm', value: 'npm', content: 'npm install -D babel-plugin-react-compiler@beta eslint-plugin-react-compiler@beta' },
+    { label: 'yarn', value: 'yarn', content: 'yarn add -D babel-plugin-react-compiler@beta eslint-plugin-react-compiler@beta' },
+    { label: 'Bun', value: 'bun', content: 'bun add -D babel-plugin-react-compiler@beta eslint-plugin-react-compiler@beta' }
+  ]}
+/>
 
 You can watch [Sathya Gunasekaran's](https://twitter.com/_gsathya) talk at React India here:
 
@@ -54,15 +52,13 @@ React Compiler’s ESLint plugin helps developers proactively identify and corre
 
 To install the linter only:
 
-<TerminalBlock>
-npm install -D eslint-plugin-react-compiler@beta
-</TerminalBlock>
-
-Or, if you're using Yarn:
-
-<TerminalBlock>
-yarn add -D eslint-plugin-react-compiler@beta
-</TerminalBlock>
+<TabTerminalBlock 
+  tabs={[
+    { label: 'npm', value: 'npm', content: 'npm install -D eslint-plugin-react-compiler@beta' },
+    { label: 'yarn', value: 'yarn', content: 'yarn add -D eslint-plugin-react-compiler@beta' },
+    { label: 'Bun', value: 'bun', content: 'bun add -D eslint-plugin-react-compiler@beta' }
+  ]}
+/>
 
 After installation you can enable the linter by [adding it to your ESLint config](/learn/react-compiler#installing-eslint-plugin-react-compiler). Using the linter helps identify Rules of React breakages, making it easier to adopt the compiler when it's fully released.
 

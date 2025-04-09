@@ -30,15 +30,12 @@ The compiler also includes an [ESLint plugin](#installing-eslint-plugin-react-co
 
 The compiler is currently released as `beta`, and is available to try out on React 17+ apps and libraries. To install the Beta:
 
-<TerminalBlock>
-npm install -D babel-plugin-react-compiler@beta eslint-plugin-react-compiler@beta
-</TerminalBlock>
-
-Or, if you're using Yarn:
-
-<TerminalBlock>
-yarn add -D babel-plugin-react-compiler@beta eslint-plugin-react-compiler@beta
-</TerminalBlock>
+<TabTerminalBlock 
+  tabs={[
+    { label: 'npm', value: 'npm', content: 'npm install -D babel-plugin-react-compiler@beta eslint-plugin-react-compiler@beta' },
+    { label: 'Bun', value: 'bun', content: 'bun add -D babel-plugin-react-compiler@beta eslint-plugin-react-compiler@beta' }
+  ]}
+/>
 
 If you are not using React 19 yet, please see [the section below](#using-react-compiler-with-react-17-or-18) for further instructions.
 
@@ -128,9 +125,12 @@ In addition to these docs, we recommend checking the [React Compiler Working Gro
 
 React Compiler also powers an ESLint plugin. The ESLint plugin can be used **independently** of the compiler, meaning you can use the ESLint plugin even if you don't use the compiler.
 
-<TerminalBlock>
-npm install -D eslint-plugin-react-compiler@beta
-</TerminalBlock>
+<TabTerminalBlock 
+  tabs={[
+    { label: 'npm', value: 'npm', content: 'npm install -D eslint-plugin-react-compiler@beta' },
+    { label: 'Bun', value: 'bun', content: 'bun add -D eslint-plugin-react-compiler@beta' }
+  ]}
+/>
 
 Then, add it to your ESLint config:
 
@@ -193,9 +193,12 @@ If you're starting a new project, you can enable the compiler on your entire cod
 
 React Compiler works best with React 19 RC. If you are unable to upgrade, you can install the extra `react-compiler-runtime` package which will allow the compiled code to run on versions prior to 19. However, note that the minimum supported version is 17.
 
-<TerminalBlock>
-npm install react-compiler-runtime@beta
-</TerminalBlock>
+<TabTerminalBlock 
+  tabs={[
+    { label: 'npm', value: 'npm', content: 'npm install react-compiler-runtime@beta' },
+    { label: 'Bun', value: 'bun', content: 'bun add react-compiler-runtime@beta' }
+  ]}
+/>
 
 You should also add the correct `target` to your compiler config, where `target` is the major version of React you are targeting:
 
@@ -228,9 +231,12 @@ Similarly to apps, it is not necessary to fully compile 100% of your components 
 
 ### Babel {/*usage-with-babel*/}
 
-<TerminalBlock>
-npm install babel-plugin-react-compiler@beta
-</TerminalBlock>
+<TabTerminalBlock 
+  tabs={[
+    { label: 'npm', value: 'npm', content: 'npm install babel-plugin-react-compiler@beta' },
+    { label: 'Bun', value: 'bun', content: 'bun add babel-plugin-react-compiler@beta' }
+  ]}
+/>
 
 The compiler includes a Babel plugin which you can use in your build pipeline to run the compiler.
 
@@ -283,9 +289,12 @@ Please refer to the [Next.js docs](https://nextjs.org/docs/app/api-reference/nex
 ### Remix {/*usage-with-remix*/}
 Install `vite-plugin-babel`, and add the compiler's Babel plugin to it:
 
-<TerminalBlock>
-npm install vite-plugin-babel
-</TerminalBlock>
+<TabTerminalBlock 
+  tabs={[
+    { label: 'npm', value: 'npm', content: 'npm install vite-plugin-babel' },
+    { label: 'Bun', value: 'bun', content: 'bun install vite-plugin-babel' }
+  ]}
+/>
 
 ```js {2,14}
 // vite.config.js

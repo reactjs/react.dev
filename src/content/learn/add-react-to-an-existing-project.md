@@ -10,7 +10,7 @@ If you want to add some interactivity to your existing project, you don't have t
 
 <Note>
 
-**You need to install [Node.js](https://nodejs.org/en/) for local development.** Although you can [try React](/learn/installation#try-react) online or with a simple HTML page, realistically most JavaScript tooling you'll want to use for development requires Node.js.
+**You need to install [Node.js](https://nodejs.org/en/) or [Bun](https://bun.sh/) for local development.** Although you can [try React](/learn/installation#try-react) online or with a simple HTML page, realistically most JavaScript tooling you'll want to use for development requires Node.js or Bun.
 
 </Note>
 
@@ -49,9 +49,12 @@ A modular JavaScript environment lets you write your React components in individ
 
 To check whether your setup works, run this command in your project folder:
 
-<TerminalBlock>
-npm install react react-dom
-</TerminalBlock>
+<TabTerminalBlock 
+  tabs={[
+    { label: 'npm', value: 'npm', content: 'npm install react react-dom' },
+    { label: 'Bun', value: 'bun', content: 'bun install react react-dom' }
+  ]}
+/>
 
 Then add these lines of code at the top of your main JavaScript file (it might be called `index.js` or `main.js`):
 

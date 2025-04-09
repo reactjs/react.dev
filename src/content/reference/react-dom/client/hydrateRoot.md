@@ -378,12 +378,13 @@ It is uncommon to call [`root.render`](#root-render) on a hydrated root. Usually
 
 By default, React will log all errors to the console. To implement your own error reporting, you can provide the optional error handler root options `onUncaughtError`, `onCaughtError` and `onRecoverableError`:
 
-```js [[1, 6, "onCaughtError"], [2, 6, "error", 1], [3, 6, "errorInfo"], [4, 10, "componentStack", 15]]
+```js [[1, 7, "onCaughtError"], [2, 7, "error", 1], [3, 7, "errorInfo"], [4, 11, "componentStack", 15]]
 import { hydrateRoot } from "react-dom/client";
+import App from "./App.js";
 import { reportCaughtError } from "./reportError";
 
 const container = document.getElementById("root");
-const root = hydrateRoot(container, {
+const root = hydrateRoot(container, <App />, {
   onCaughtError: (error, errorInfo) => {
     if (error.message !== "Known error") {
       reportCaughtError({

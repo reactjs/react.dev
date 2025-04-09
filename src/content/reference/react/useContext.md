@@ -951,6 +951,14 @@ ul, li { margin: 0; padding: 0; }
 
 If React can't find any providers of that particular <CodeStep step={1}>context</CodeStep> in the parent tree, the context value returned by `useContext()` will be equal to the <CodeStep step={3}>default value</CodeStep> that you specified when you [created that context](/reference/react/createContext):
 
+
+
+
+
+
+
+
+
 ```js [[1, 1, "ThemeContext"], [3, 1, "null"]]
 const ThemeContext = createContext(null);
 ```
@@ -1385,3 +1393,18 @@ In both of these cases you should see a warning from React in the console. To fi
 ```
 
 Note that the [default value from your `createContext(defaultValue)` call](#specifying-a-fallback-default-value) is only used **if there is no matching provider above at all.** If there is a `<SomeContext.Provider value={undefined}>` component somewhere in the parent tree, the component calling `useContext(SomeContext)` *will* receive `undefined` as the context value.
+
+**Note:** In Server Components (e.g., in Next.js), you can also use the [`use`](https://react.dev/reference/react/use) hook to read from context. It provides more flexibility, supports promises, and works in Server Components—making it more suitable in many modern use cases than `useContext`.
+
+🧩 Why Developers Should Be More Aware
+✅ Works in Server Components
+use() allows you to access context values inside Server Components, while useContext() is limited to Client Components.
+
+🔮 Future-Proofing Your Code
+Since React is shifting towards more Server Components (especially with Next.js), using use() makes your code more modern and compatible.
+
+🧵 Handles Async Better
+You can use() a promise directly. You can't do that with useContext().
+
+📚 Consistency in Docs
+The current page on useContext doesn't mention that use() can be used instead in many cases. Developers may miss this important update if it’s not noted.

@@ -17,7 +17,9 @@ In React Labs posts we write about projects in active research and development. 
 
 <Note>
 
-React Conf 2025 is scheduled for October 7–8 in Henderson, Nevada! If you’re interested in attending React Conf in person, you can [sign up for the ticket lottery](https://forms.reform.app/bLaLeE/react-conf-2024-ticket-lottery/1aRQLK) until April 25th.
+React Conf 2025 is scheduled for October 7–8 in Henderson, Nevada! 
+
+We're looking for speakers to work with us to create talks covering the features we're working on in this post. If you're interested in speaking at ReactConf, [please apply here](https://forms.reform.app/react-conf/call-for-speakers/piaae1?ga4_visitor_id=c3e8f3ce-2004-47a5-b801-f6b308280acd) (no talk proposal required).
 
 For more info on tickets, free streaming, sponsoring, and more, see [the React Conf website](https://conf.react.dev).
 
@@ -58,11 +60,7 @@ These new animation APIs integrate React with the new `startViewTransition` API 
 
 **View Transitions are experimental and not available in a stable version of React yet.**
 
-You can try them by upgrading React packages to the most recent experimental version:
-
-- `react@experimental`
-- `react-dom@experimental`
-- `eslint-plugin-react-hooks@experimental`
+We're ready for users to start testing View Transitions as an experimental feature. It has been tested in production and we are confident it's stable, but the final API might change while we iterate on feedback.
 
 View Transitions are currently only implemented in React DOM. In the future, we plan to support them in more renderers, including React Native.
 
@@ -1027,11 +1025,7 @@ We're now ready to share the API and how it works, so you can start testing it i
 
 **Activity is experimental and not available in a stable version of React yet.**
 
-You can try it by upgrading React packages to the most recent experimental version:
-
-- `react@experimental`
-- `react-dom@experimental`
-- `eslint-plugin-react-hooks@experimental`
+We're ready for users to start testing Activity as an experimental feature. It has been tested in production and we are confident it's stable, but the final API might change while we iterate on feedback.
 
 </Note>
 
@@ -1047,13 +1041,7 @@ Today, we're publishing docs for [`React Performance Tracks`](/TODO), a new set 
 
 **React Performance Tracks are experimental and not available in a stable version of React yet.**
 
-You can try it by upgrading React packages to the most recent experimental version:
-
-- `react@experimental`
-- `react-dom@experimental`
-- `eslint-plugin-react-hooks@experimental`
-
-When using an experimental version of React, you will automatically see the performance tracks added to profiles.
+When using an experimental version of React, you will automatically see the performance tracks added to profiles. This is an experimental feature, so the tracks might change while we iterate on feedback.
 
 </Note>
 

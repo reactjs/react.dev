@@ -6,7 +6,8 @@ on:
     types:
       - completed
 
-permissions: {}
+permissions:
+  pull-requests: write
 
 jobs:
   comment:

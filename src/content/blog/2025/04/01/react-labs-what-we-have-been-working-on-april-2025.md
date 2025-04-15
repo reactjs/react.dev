@@ -115,7 +115,6 @@ In this post, let's take a look at a few examples of how to use View Transitions
 
 We'll start with an app like this:
 
-
 <Sandpack>
 
 ```js src/App.js active

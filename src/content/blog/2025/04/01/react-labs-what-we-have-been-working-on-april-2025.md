@@ -10041,6 +10041,16 @@ You can use `Activity` save state for parts of the UI the user isn't using, or p
 
 Let's look at some examples improving the View Transition examples above.
 
+<Note>
+
+**Effects don’t mount when an Activity is hidden.**
+
+When an `<Activity>` is `hidden`, Effects are unmounted. Conceptually, the component is unmounted, but React saves the state for later.
+
+In practice, this works as expected if you have followed the [You Might Not Need an Effect](/learn/you-might-not-need-an-effect) guide. To eagerly find problematic Effects, we recommend adding [`<StrictMode>`](/reference/react/StrictMode) which will eagerly perform Activity unmounts and mounts to catch any unexpected side effects.
+
+</Note>
+
 ### Restoring state with Activity {/*restoring-state-with-activity*/}
 
 When a user navigates away from a page, it's common to stop rendering the old page:
@@ -11338,7 +11348,6 @@ root.render(
 
 </Sandpack>
 
-
 ### Pre-rendering with Activity {/*prerender-with-activity*/}
 
 Sometimes, you may want to prepare the next part of the UI a user is likely to use ahead of time, so it's ready by the time they are ready to use it. This is especially useful if the next route needs to suspend on data it needs to render, because you can help ensure the data is already fetched before the user navigates.
@@ -12621,14 +12630,6 @@ root.render(
 ```
 
 </Sandpack>
-
-### How Activity Works {/*how-activity-works*/}
-
-TODO:
-- deprioritizes render
-- unmounts effects
-- view transitions exit/enter
-- link to docs
 
 
 ## React Performance Tracks {/*react-performance-tracks*/}

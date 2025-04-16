@@ -10096,7 +10096,7 @@ export default function App() {
       <Activity mode={url === '/' ? 'visible' : 'hidden'}>
         <Home />
       </Activity>
-      {url === '/details' && <Details />}
+      {url === '/' && <Details />}
     </ViewTransition>
   );
 }

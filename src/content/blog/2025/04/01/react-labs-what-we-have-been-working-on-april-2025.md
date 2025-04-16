@@ -15,6 +15,7 @@ In React Labs posts we write about projects in active research and development. 
 
 </Intro>
 
+
 <Note>
 
 React Conf 2025 is scheduled for October 7–8 in Henderson, Nevada! 
@@ -12649,20 +12650,21 @@ TODO: explain performance tracks
 
 # Features in development {/*features-in-development*/}
 
-## React Compiler {/*react-compiler*/}
+## Compiler IDE Extension {/*ide-extension*/}
 
-TODO
+Last week [we shared](/TODO) the React Compiler release candidate, and we're working towards shipping the first semver stable version of the compiler in the coming months.
 
-## IDE Extension {/*ide-extension*/}
+We've also begun exploring ways to use the React Compiler to provide information that can improve understanding and debugging your code. One idea we've started exploring is a new experimental LSP-based React IDE extension powered by React Compiler, similar to the extension used in [Lauren Tan's React Conf talk](https://conf2024.react.dev/talks/5).
 
-TODO
+Our idea is that we can use the compiler's static analysis to provide more information, suggestions, and optimization opportunities directly in your IDE. For example, we can provide diagnostics for code breaking the Rules of React, hovers to show if components and hooks were optimized by the compiler, or a CodeLens to see [automatically inserted Effect dependencies](/todo).
+
+The IDE extension is still an early exploration, but we'll share our progress in future updates.
 
 ## Automatic Effect Dependencies {/*automatic-effect-dependencies*/}
 
 TODO
-## Fragment Refs {/*fragment-refs*/}
 
-TODO
+## Fragment Refs {/*fragment-refs*/}
 
 
 ## Gesture Animations {/*gesture-animations*/}

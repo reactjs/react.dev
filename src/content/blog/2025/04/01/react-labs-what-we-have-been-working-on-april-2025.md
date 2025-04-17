@@ -30,9 +30,9 @@ Today, we're excited to release docs for three new experimental features ready f
 
 - [View Transitions](#view-transitions)
 - [Activity](#activity)
-- [React Performance Tracks](#react-performance-tracks)
 
 We're also sharing updates on new features currently in development:
+- [React Performance Tracks](#react-performance-tracks)
 - [Automatic Effect Dependencies](#automatic-effect-dependencies)
 - [Fragment Refs](#fragment-refs)
 - [React Compiler](#react-compiler)
@@ -44,26 +44,22 @@ We're also sharing updates on new features currently in development:
 
 # New Experimental Features {/*new-experimental-features*/}
 
-## View Transitions {/*view-transitions*/}
+Today we're sharing two new experimental feautres: View Transitions and Activity.
 
-Today, we're publishing docs for new experimental APIs to support animations in React:
+These experimental features have been tested in production and we are confident they're stable, but the final API might change while we iterate on feedback.
+
+You can try them by upgrading React packages to the most recent experimental version:
+
+- `react@experimental`
+- `react-dom@experimental`
+
+Read more to see how to use these features in your app, or checkout the new docs published today:
 
 - [`<ViewTransition>`](/TODO): A component lets you activate an animation for a Transition.
 - [`addTransitionType`](/TODO): A function that allows you to specify the cause of a Transition.
+- [`<Activity>`](/TODO): A component that lets you hide and show part of the UI.
 
-In this post, we want to share how you can try out these APIs today to build smooth animations in your app.
-
-<Note>
-
-**View Transitions are experimental and not available in a stable version of React yet.**
-
-We're ready for users to start testing View Transitions as an experimental feature. It has been tested in production and we are confident it's stable, but the final API might change while we iterate on feedback.
-
-View Transitions are currently only implemented in React DOM. In the future, we will explore support for more renderers, including React Native.
-
-</Note>
-
-### What Are React View Transitions {/*what-are-react-view-transitions*/}
+## View Transitions {/*view-transitions*/}
 
 React View Transitions are a new experimental feature for React designed to make it easy to add animations to the UI transitons in your app. Under-the-hood, these animations APIs use the new [`startViewTransition`](https://developer.mozilla.org/en-US/docs/Web/API/Document/startViewTransition) API available in most modern browsers.
 
@@ -10012,21 +10008,9 @@ _For more background on how we built View Transtions, see: [#31975](https://gith
 
 ## Activity {/*activity*/}
 
-Today, we're also publishing docs for [`<Activity />`](/TODO), a new experimental API to hide and show parts of the UI.
-
 In [past](/blog/2022/06/15/react-labs-what-we-have-been-working-on-june-2022#offscreen) [updates](/blog/2024/02/15/react-labs-what-we-have-been-working-on-february-2024#offscreen-renamed-to-activity), we shared that we were researching an API to allow components to be visually hidden and deprioritized, preserving UI state with reduced performance costs relative to unmounting or hiding with CSS.
 
 We're now ready to share the API and how it works, so you can start testing it in experimental React versions.
-
-<Note>
-
-**Activity is experimental and not available in a stable version of React yet.**
-
-We're ready for users to start testing Activity as an experimental feature. It has been tested in production and we are confident it's stable, but the final API might change while we iterate on feedback.
-
-</Note>
-
-### What is `<Activity />` {/*what-is-activity*/}
 
 `<Activity>` is a new component to hide and show parts of the UI:
 
@@ -10107,7 +10091,7 @@ export default function App() {
       <Activity mode={url === '/' ? 'visible' : 'hidden'}>
         <Home />
       </Activity>
-      {url === '/' && <Details />}
+      {url !== '/' && <Details />}
     </ViewTransition>
   );
 }
@@ -11397,7 +11381,7 @@ export default function App() {
 }
 ```
 
-```js src/Details.js hidden
+```js src/Details.js
 import { use, Suspense, unstable_ViewTransition as ViewTransition } from "react";
 import { fetchVideo, fetchVideoDetails } from "./data";
 import { Thumbnail, VideoControls } from "./Videos";
@@ -12632,23 +12616,30 @@ root.render(
 
 </Sandpack>
 
+# Features in development {/*features-in-development*/}
 
 ## React Performance Tracks {/*react-performance-tracks*/}
 
-Today, we're publishing docs for [`React Performance Tracks`](/TODO), a new set of custom tracks in the Chrome Performance Profiler to provide more information about the performance of your React app.
+We're working on a new set of custom tracks to performance profilers using browser APIs that [allow adding custom tracks](https://developer.chrome.com/docs/devtools/performance/extension) to provide more information about the performance of your React app.
 
-<Note>
+This feature is still in progress, so we're not ready to publish docs to fully release it as an experimental feature yet. You can get a sneak preview when using an experimental version of React, which will automatically see the performance tracks added to profiles:
 
-**React Performance Tracks are experimental and not available in a stable version of React yet.**
+<div style={{display: 'flex', justifyContent: 'center', marginBottom: '1rem'}}>
+  <picture >
+      <source srcset="/images/blog/react-labs-april-2025/perf_tracks.png" />
+      <img className="w-full light-image" src="/images/blog/react-labs-april-2025/perf_tracks.webp" />
+  </picture>
+  <picture >
+      <source srcset="/images/blog/react-labs-april-2025/perf_tracks_dark.png" />
+      <img className="w-full dark-image" src="/images/blog/react-labs-april-2025/perf_tracks_dark.webp" />
+  </picture>
+</div>
 
-When using an experimental version of React, you will automatically see the performance tracks added to profiles. This is an experimental feature, so the tracks might change while we iterate on feedback.
+There are a few known issues we plan to address such as performance, and the scheduler track not always "connecting" work across Suspended trees, so it's not quite ready to try. We're also still collecting feedback from early adopters to improve the design and usability of the tracks.
 
-</Note>
-
-TODO: explain performance tracks
+Once we solve those issues, we'll publish experimental docs and share that it's ready to try.
 
 
-# Features in development {/*features-in-development*/}
 
 ## Compiler IDE Extension {/*ide-extension*/}
 

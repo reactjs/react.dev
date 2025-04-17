@@ -2,8 +2,6 @@
 title: react-test-renderer Deprecation Warnings
 ---
 
-TODO: Update this for 19?
-
 ## ReactTestRenderer.create() warning {/*reacttestrenderercreate-warning*/}
 
 react-test-renderer is deprecated. A warning will fire whenever calling ReactTestRenderer.create() or ReactShallowRender.render(). The react-test-renderer package will remain available on NPM but will not be maintained and may break with new React features or changes to React's internals.

@@ -1,7 +1,7 @@
 export const template = {
   '/src/index.js': {
     hidden: true,
-    code: `import React, { StrictMode } from "react";
+    code: `import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "./styles.css";
 

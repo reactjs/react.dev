@@ -154,7 +154,7 @@ Or, in the deprecated eslintrc config format:
 ```js
 module.exports = {
   plugins: [
-    'eslint-plugin-react-compiler',
+    'react-compiler',
   ],
   rules: {
     'react-compiler/react-compiler': 'error',

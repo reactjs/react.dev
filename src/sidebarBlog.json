@@ -12,6 +12,13 @@
       "skipBreadcrumb": true,
       "routes": [
         {
+          "title": "Sunsetting Create React App",
+          "titleForHomepage": "Sunsetting Create React App",
+          "icon": "blog",
+          "date": "February 14, 2025",
+          "path": "/blog/2025/02/14/sunsetting-create-react-app"
+        },
+        {
           "title": "React 19",
           "titleForHomepage": "React 19",
           "icon": "blog",

@@ -107,12 +107,12 @@
         {
           "title": "<Activity>",
           "path": "/reference/react/Activity",
-          "version": "canary"
+          "version": "experimental"
         },
         {
           "title": "<ViewTransition>",
           "path": "/reference/react/ViewTransition",
-          "version": "canary"
+          "version": "experimental"
         }
       ]
     },
@@ -154,17 +154,17 @@
         {
           "title": "experimental_taintObjectReference",
           "path": "/reference/react/experimental_taintObjectReference",
-          "version": "canary"
+          "version": "experimental"
         },
         {
           "title": "experimental_taintUniqueValue",
           "path": "/reference/react/experimental_taintUniqueValue",
-          "version": "canary"
+          "version": "experimental"
         },
         {
           "title": "unstable_addTransitionType",
           "path": "/reference/react/addTransitionType",
-          "version": "canary"
+          "version": "experimental"
         }
       ]
     },

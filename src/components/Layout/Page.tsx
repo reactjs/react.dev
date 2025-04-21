@@ -53,7 +53,7 @@ export function Page({
     routeTree
   );
   const title = meta.title || route?.title || '';
-  const version = meta.version || null;
+  const version = meta.version;
   const description = meta.description || route?.description || '';
   const isHomePage = cleanedPath === '/';
   const isBlogIndex = cleanedPath === '/blog';

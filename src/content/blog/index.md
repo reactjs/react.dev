@@ -12,6 +12,13 @@ You can also follow the [@react.dev](https://bsky.app/profile/react.dev) account
 
 <div className="sm:-mx-5 flex flex-col gap-5 mt-12">
 
+<BlogCard title="React Compiler RC" date="April 21, 2025" url="/blog/2025/04/21/react-compiler-rc">
+
+We are releasing the compiler's first Release Candidate (RC) today. ...
+
+</BlogCard>
+
+
 <BlogCard title="Sunsetting Create React App" date="February 14, 2025" url="/blog/2025/02/14/sunsetting-create-react-app">
 
 Today, we’re deprecating Create React App for new apps, and encouraging existing apps to migrate to a framework, or to migrate to a build tool like Vite, Parcel, or RSBuild. We’re also providing docs for when a framework isn’t a good fit for your project, you want to build your own framework, or you just want to learn how React works by building a React app from scratch ...

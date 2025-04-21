@@ -24,7 +24,7 @@ The React team is excited to share new updates:
 
 [React Compiler](https://react.dev/learn/react-compiler) is a build-time tool that optimizes your React app through automatic memoization. Last year, we published React Compiler’s [first beta](https://react.dev/blog/2024/10/21/react-compiler-beta-release) and received lots of great feedback and contributions. We’re excited about the wins we’ve seen from folks adopting the compiler (see case studies from [Sanity Studio](https://github.com/reactwg/react-compiler/discussions/33) and [Wakelet](https://github.com/reactwg/react-compiler/discussions/52)) and are working towards a stable release.
 
-We are releasing the compiler's first Release Candidate (RC) today. The RC is intended to be a stable and near-final version of the compiler, and safe to use in production for all React users.
+We are releasing the compiler's first Release Candidate (RC) today. The RC is intended to be a stable and near-final version of the compiler, and safe to try out in production.
 
 ## Use React Compiler RC today {/*use-react-compiler-rc-today*/}
 To install the RC:
@@ -50,7 +50,10 @@ We have also heard from the community that the ref-in-render validation sometime
 
 You can find more details on using the Compiler in [our docs](https://react.dev/learn/react-compiler).
 
-### Backwards Compatibility {/*backwards-compatibility*/}
+## Feedback {/*feedback*/}
+During the RC period, we encourage all React users to try the compiler and provide feedback in the React repo. Please [open an issue](https://github.com/facebook/react/issues) if you encounter any bugs or unexpected behavior. If you have a general question or suggestion, please post them in the [React Compiler Working Group](https://github.com/reactwg/react-compiler/discussions).
+
+## Backwards Compatibility {/*backwards-compatibility*/}
 As noted in the Beta announcement, React Compiler is compatible with React 17 and up. If you are not yet on React 19, you can use React Compiler by specifying a minimum target in your compiler config, and adding `react-compiler-runtime` as a dependency. You can find docs on this [here](https://react.dev/learn/react-compiler#using-react-compiler-with-react-17-or-18).
 
 ## Migrating from eslint-plugin-react-compiler to eslint-plugin-react-hooks {/*migrating-from-eslint-plugin-react-compiler-to-eslint-plugin-react-hooks*/}
@@ -100,11 +103,11 @@ Vite users can continue to use [vite-plugin-react](https://github.com/vitejs/vit
 ## Upgrading React Compiler {/*upgrading-react-compiler*/}
 React Compiler works best when the auto-memoization applied is strictly for performance. Future versions of the compiler may change how memoization is applied, for example it could become more granular and precise.
 
-However, because product code may sometimes break the [rules of React](https://react.dev/reference/rules) in ways that aren't always statically detectable in JavaScript, changing memoization can occasionally have unexpected results. For example, a previously memoized value might be used as a dependency for a useEffect somewhere in the component tree. Changing how or whether this value is memoized can cause over or under-firing of that useEffect. While we encourage [useEffect only for synchronization](https://react.dev/learn/synchronizing-with-effects), your codebase may have useEffects that cover other use-cases. For example you may have an effect that runs in response to some value changing (breaks the rules of React).
+However, because product code may sometimes break the [rules of React](https://react.dev/reference/rules) in ways that aren't always statically detectable in JavaScript, changing memoization can occasionally have unexpected results. For example, a previously memoized value might be used as a dependency for a useEffect somewhere in the component tree. Changing how or whether this value is memoized can cause over or under-firing of that useEffect. While we encourage [useEffect only for synchronization](https://react.dev/learn/synchronizing-with-effects), your codebase may have useEffects that cover other use-cases such as effects that needs to only run in response to specific values changing.
 
 In other words, changing memoization may under rare circumstances cause unexpected behavior. For this reason, we recommend following the Rules of React and employing continuous end-to-end testing of your app so you can upgrade the compiler with confidence and identify any rules of React violations that might cause issues.
 
-If you don't have good test coverage, we recommend pinning the compiler to an exact version (eg `19.0.0`) rather than a SemVer range (eg `^19.0.0`). You can do this by passing the `--save-exact` (npm/pnpm) or `--exact` flags (yarn) when upgrading the compiler. You should then do any upgrades of the compiler manually, taking care to check that your app still works as expected.
+If you don't have good test coverage, we recommend pinning the compiler to an exact version (eg `19.1.0`) rather than a SemVer range (eg `^19.1.0`). You can do this by passing the `--save-exact` (npm/pnpm) or `--exact` flags (yarn) when upgrading the compiler. You should then do any upgrades of the compiler manually, taking care to check that your app still works as expected.
 
 ## Roadmap to Stable {/*roadmap-to-stable*/}
 *This is not a final roadmap, and is subject to change.*
@@ -118,9 +121,6 @@ After a period of final feedback from the community on the RC, we plan on a Stab
 
 Post-Stable, we plan to add more compiler optimizations and improvements. This includes both continual improvements to automatic memoization, and new optimizations altogether, with minimal to no change of product code. Each upgrade will continue to improve performance and add better handling of diverse JavaScript and React patterns.
 
-## Feedback {/*feedback*/}
-During the RC period, we encourage all React users to try the compiler and provide feedback in the React repo. Please [open an issue](https://github.com/facebook/react/issues) if you encounter any bugs or unexpected behavior. If you have a general question or suggestion, please post them in the [React Compiler Working Group](https://github.com/reactwg/react-compiler/discussions).
-
 ---
 
-Thanks to [Joe Savona](https://x.com/en_JS), [Jason Bonta](https://twitter.com/someextent), [Jimmy Lai](https://x.com/feedthejim), and [Kang Dongyoon](https://x.com/kdy1dev) (@kdy1dev) for reviewing and editing this post.
+Thanks to [Joe Savona](https://x.com/en_JS), [Jason Bonta](https://x.com/someextent), [Jimmy Lai](https://x.com/feedthejim), and [Kang Dongyoon](https://x.com/kdy1dev) (@kdy1dev) for reviewing and editing this post.

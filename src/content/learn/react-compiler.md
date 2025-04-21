@@ -6,10 +6,6 @@ title: React Compiler
 This page will give you an introduction to React Compiler and how to try it out successfully.
 </Intro>
 
-<Wip>
-These docs are still a work in progress. More documentation is available in the [React Compiler Working Group repo](https://github.com/reactwg/react-compiler/discussions), and will be upstreamed into these docs when they are more stable.
-</Wip>
-
 <YouWillLearn>
 
 * Getting started with the compiler
@@ -19,9 +15,9 @@ These docs are still a work in progress. More documentation is available in the 
 </YouWillLearn>
 
 <Note>
-React Compiler is a new compiler currently in Beta, that we've open sourced to get early feedback from the community. While it has been used in production at companies like Meta, rolling out the compiler to production for your app will depend on the health of your codebase and how well you’ve followed the [Rules of React](/reference/rules).
+React Compiler is a new compiler currently in RC, that we've open sourced to get feedback from the community. We now recommend everyone to use the compiler.
 
-The latest Beta release can be found with the `@beta` tag, and daily experimental releases with `@experimental`.
+The latest RC release can be found with the `@rc` tag, and daily experimental releases with `@experimental`.
 </Note>
 
 React Compiler is a new compiler that we've open sourced to get early feedback from the community. It is a build-time only tool that automatically optimizes your React app. It works with plain JavaScript, and understands the [Rules of React](/reference/rules), so you don't need to rewrite any code to use it.

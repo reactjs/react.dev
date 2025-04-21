@@ -15,25 +15,25 @@ This page will give you an introduction to React Compiler and how to try it out 
 </YouWillLearn>
 
 <Note>
-React Compiler is a new compiler currently in RC, that we've open sourced to get feedback from the community. We now recommend everyone to use the compiler.
+React Compiler is a new compiler currently in RC, that we've open sourced to get feedback from the community. We now recommend everyone to try the compiler and provide feedback.
 
 The latest RC release can be found with the `@rc` tag, and daily experimental releases with `@experimental`.
 </Note>
 
-React Compiler is a new compiler that we've open sourced to get early feedback from the community. It is a build-time only tool that automatically optimizes your React app. It works with plain JavaScript, and understands the [Rules of React](/reference/rules), so you don't need to rewrite any code to use it.
+React Compiler is a new compiler that we've open sourced to get feedback from the community. It is a build-time only tool that automatically optimizes your React app. It works with plain JavaScript, and understands the [Rules of React](/reference/rules), so you don't need to rewrite any code to use it.
 
-The compiler also includes an [ESLint plugin](#installing-eslint-plugin-react-compiler) that surfaces the analysis from the compiler right in your editor. **We strongly recommend everyone use the linter today.** The linter does not require that you have the compiler installed, so you can use it even if you are not ready to try out the compiler.
+eslint-plugin-react-hooks also includes an [ESLint rule](#installing-eslint-plugin-react-compiler) that surfaces the analysis from the compiler right in your editor. **We strongly recommend everyone use the linter today.** The linter does not require that you have the compiler installed, so you can use it even if you are not ready to try out the compiler.
 
-The compiler is currently released as `beta`, and is available to try out on React 17+ apps and libraries. To install the Beta:
+The compiler is currently released as `rc`, and is available to try out on React 17+ apps and libraries. To install the RC:
 
 <TerminalBlock>
-npm install -D babel-plugin-react-compiler@beta eslint-plugin-react-compiler@beta
+{`npm install -D babel-plugin-react-compiler@rc eslint-plugin-react-hooks@^6.0.0-rc.1`}
 </TerminalBlock>
 
 Or, if you're using Yarn:
 
 <TerminalBlock>
-yarn add -D babel-plugin-react-compiler@beta eslint-plugin-react-compiler@beta
+{`yarn add -D babel-plugin-react-compiler@rc eslint-plugin-react-hooks@^6.0.0-rc.1`}
 </TerminalBlock>
 
 If you are not using React 19 yet, please see [the section below](#using-react-compiler-with-react-17-or-18) for further instructions.
@@ -112,7 +112,7 @@ So if `expensivelyProcessAReallyLargeArrayOfObjects` was used in many different 
 
 ### Should I try out the compiler? {/*should-i-try-out-the-compiler*/}
 
-Please note that the compiler is still in Beta and has many rough edges. While it has been used in production at companies like Meta, rolling out the compiler to production for your app will depend on the health of your codebase and how well you've followed the [Rules of React](/reference/rules).
+The compiler is now in RC and has been tested extensively in production. While it has been used in production at companies like Meta, rolling out the compiler to production for your app will depend on the health of your codebase and how well you've followed the [Rules of React](/reference/rules).
 
 **You don't have to rush into using the compiler now. It's okay to wait until it reaches a stable release before adopting it.** However, we do appreciate trying it out in small experiments in your apps so that you can [provide feedback](#reporting-issues) to us to help make the compiler better.
 
@@ -120,43 +120,15 @@ Please note that the compiler is still in Beta and has many rough edges. While i
 
 In addition to these docs, we recommend checking the [React Compiler Working Group](https://github.com/reactwg/react-compiler) for additional information and discussion about the compiler.
 
-### Installing eslint-plugin-react-compiler {/*installing-eslint-plugin-react-compiler*/}
+### Installing eslint-plugin-react-hooks {/*installing-eslint-plugin-react-compiler*/}
 
-React Compiler also powers an ESLint plugin. The ESLint plugin can be used **independently** of the compiler, meaning you can use the ESLint plugin even if you don't use the compiler.
+React Compiler also powers an ESLint plugin. You can try it out by installing eslint-plugin-react-hooks@^6.0.0-rc.1.
 
 <TerminalBlock>
-npm install -D eslint-plugin-react-compiler@beta
+npm install -D eslint-plugin-react-hooks@^6.0.0-rc.1`
 </TerminalBlock>
 
-Then, add it to your ESLint config:
-
-```js
-import reactCompiler from 'eslint-plugin-react-compiler'
-
-export default [
-  {
-    plugins: {
-      'react-compiler': reactCompiler,
-    },
-    rules: {
-      'react-compiler/react-compiler': 'error',
-    },
-  },
-]
-```
-
-Or, in the deprecated eslintrc config format:
-
-```js
-module.exports = {
-  plugins: [
-    'eslint-plugin-react-compiler',
-  ],
-  rules: {
-    'react-compiler/react-compiler': 'error',
-  },
-}
-```
+See our [editor setup](/learn/editor-setup#linting) guide for more details.
 
 The ESLint plugin will display any violations of the rules of React in your editor. When it does this, it means that the compiler has skipped over optimizing that component or hook. This is perfectly okay, and the compiler can recover and continue optimizing other components in your codebase.
 
@@ -190,7 +162,7 @@ If you're starting a new project, you can enable the compiler on your entire cod
 React Compiler works best with React 19 RC. If you are unable to upgrade, you can install the extra `react-compiler-runtime` package which will allow the compiled code to run on versions prior to 19. However, note that the minimum supported version is 17.
 
 <TerminalBlock>
-npm install react-compiler-runtime@beta
+npm install react-compiler-runtime@rc
 </TerminalBlock>
 
 You should also add the correct `target` to your compiler config, where `target` is the major version of React you are targeting:
@@ -225,7 +197,7 @@ Similarly to apps, it is not necessary to fully compile 100% of your components 
 ### Babel {/*usage-with-babel*/}
 
 <TerminalBlock>
-npm install babel-plugin-react-compiler@beta
+npm install babel-plugin-react-compiler@rc
 </TerminalBlock>
 
 The compiler includes a Babel plugin which you can use in your build pipeline to run the compiler.

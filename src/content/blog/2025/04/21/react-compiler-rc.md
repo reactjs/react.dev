@@ -17,7 +17,7 @@ The React team is excited to share new updates:
 </Intro>
 
 1. We're publishing React Compiler RC today, in preparation of the compiler's stable release.
-2. We're simplifying your eslint setup by merging `eslint-plugin-react-compiler` into `eslint-plugin-react-hooks`.
+2. We're merging `eslint-plugin-react-compiler` into `eslint-plugin-react-hooks`.
 3. We're working with the swc and oxc teams to add plugins to allow for Babel-free build pipelines.
 
 ---
@@ -58,20 +58,20 @@ To install eslint-plugin-react-hooks:
 
 npm
 <TerminalBlock>
-{`npm install --save-dev eslint-plugin-react-hooks@^6.0.0`}
+{`npm install --save-dev eslint-plugin-react-hooks@^6.0.0-rc.1`}
 </TerminalBlock>
 
 pnpm
 <TerminalBlock>
-{`pnpm add --save-dev eslint-plugin-react-hooks@^6.0.0`}
+{`pnpm add --save-dev eslint-plugin-react-hooks@^6.0.0-rc.1`}
 </TerminalBlock>
 
 yarn
 <TerminalBlock>
-{`yarn add --dev eslint-plugin-react-hooks@^6.0.0`}
+{`yarn add --dev eslint-plugin-react-hooks@^6.0.0-rc.1`}
 </TerminalBlock>
 
-`eslint-plugin-react-hooks` 5.2.0 has been ported to TypeScript, which allowed us to improve the type-safety of the plugin. In the 6.0.0 release of the ESLint plugin, the compiler lint rule has now been merged in. If you were previously using `eslint-plugin-react-compiler`, this means you can now use a single ESLint plugin in your codebase. Many thanks to [@michaelfaith](https://bsky.app/profile/michael.faith) for contributing to this improvement!
+`eslint-plugin-react-hooks` 5.2.0 has been ported to TypeScript, which allowed us to improve the type-safety of the plugin. In the 6.0.0-rc.1 release of the ESLint plugin, the compiler lint rule has now been merged in. If you were previously using `eslint-plugin-react-compiler`, this means you can now use a single ESLint plugin in your codebase. Many thanks to [@michaelfaith](https://bsky.app/profile/michael.faith) for contributing to this improvement!
 
 ```js
 // eslint.config.js

@@ -12,6 +12,13 @@
       "skipBreadcrumb": true,
       "routes": [
         {
+          "title": "React Compiler RC",
+          "titleForHomepage": "React Compiler RC",
+          "icon": "blog",
+          "date": "April 21, 2025",
+          "path": "/blog/2025/04/21/react-compiler-rc"
+        },
+        {
           "title": "Sunsetting Create React App",
           "titleForHomepage": "Sunsetting Create React App",
           "icon": "blog",

@@ -10,6 +10,14 @@ October 21, 2024 by [Lauren Tan](https://twitter.com/potetotes).
 
 ---
 
+<Note>
+
+### React Compiler is now in RC! {/*react-compiler-is-now-in-rc*/}
+
+Please see the [RC blog post](/blog/2025/04/21/react-compiler-rc) for details.
+
+</Note>
+
 <Intro>
 
 The React team is excited to share new updates:

@@ -123,4 +123,4 @@ Post-Stable, we plan to add more compiler optimizations and improvements. This i
 
 ---
 
-Thanks to [Joe Savona](https://x.com/en_JS), [Jason Bonta](https://twitter.com/someextent), [Jimmy Lai](https://x.com/feedthejim), and [Kang Dongyoon](https://x.com/kdy1dev) (@kdy1dev) for reviewing and editing this post.
+Thanks to [Joe Savona](https://x.com/en_JS), [Jason Bonta](https://x.com/someextent), [Jimmy Lai](https://x.com/feedthejim), and [Kang Dongyoon](https://x.com/kdy1dev) (@kdy1dev) for reviewing and editing this post.

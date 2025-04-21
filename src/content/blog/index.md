@@ -14,7 +14,7 @@ You can also follow the [@react.dev](https://bsky.app/profile/react.dev) account
 
 <BlogCard title="React Labs: What We've Been Working On – April 2025" date="April 1, 2025" url="/blog/2025/04/01/react-labs-what-we-have-been-working-on-april-2025">
 
-In React Labs posts we write about projects in active research and development. We’ve made significant progress since React Conf, including releasing React 19 and the React Compiler beta, and we’d like to share what we’re working on now.
+In React Labs posts we write about projects in active research and development. In this post, we're sharing two new experimental features that are ready to try today, and sharing other areas we're working on now.
 
 </BlogCard>
 

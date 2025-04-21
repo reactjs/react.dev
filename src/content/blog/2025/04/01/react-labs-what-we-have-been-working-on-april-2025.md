@@ -5,13 +5,13 @@ date: 2025/04/01
 description: TODO
 ---
 
-April 1, 2025 by [Ricky Hanlon](https://twitter.com/rickhanlonii), Lauren Tan, Mofei Zhang, Jordan Eldredge, Jack Pope, Matt Carroll
+April 1, 2025 by [Ricky Hanlon](https://twitter.com/rickhanlonii), and [Matt Carroll](https://twitter.com/mattcarrollcode).
 
 ---
 
 <Intro>
 
-In React Labs posts we write about projects in active research and development. We’ve made significant progress since [React Conf](/blog/2024/05/22/react-conf-2024-recap), including releasing [React 19](/blog/2024/12/05/react-19) and the [React Compiler beta](/blog/2024/10/21/react-compiler-beta-release), and we’d like to share what we’re working on now.
+In React Labs posts we write about projects in active research and development. In this post, we're sharing two new experimental features that are ready to try today, and updates on other areas we're working on now.
 
 </Intro>
 
@@ -33,12 +33,10 @@ Today, we're excited to release docs for three new experimental features ready f
 
 We're also sharing updates on new features currently in development:
 - [React Performance Tracks](#react-performance-tracks)
+- [Compiler IDE Extension](#compiler-ide-extension)
 - [Automatic Effect Dependencies](#automatic-effect-dependencies)
 - [Fragment Refs](#fragment-refs)
-- [React Compiler](#react-compiler)
-- [IDE extension](#ide-extension)
 - [Concurrent stores](#concurrent-stores)
-
 
 ---
 
@@ -12860,6 +12858,8 @@ root.render(
 
 </Sandpack>
 
+---
+
 # Features in development {/*features-in-development*/}
 
 ## React Performance Tracks {/*react-performance-tracks*/}
@@ -12883,17 +12883,19 @@ There are a few known issues we plan to address such as performance, and the sch
 
 Once we solve those issues, we'll publish experimental docs and share that it's ready to try.
 
+---
 
+## Compiler IDE Extension {/*compiler-ide-extension*/}
 
-## Compiler IDE Extension {/*ide-extension*/}
-
-This week [we shared](/TODO) the React Compiler release candidate, and we're working towards shipping the first semver stable version of the compiler in the coming months.
+Earlier this week [we shared](/blog/2025/04/21/react-compiler-rc) the React Compiler release candidate, and we're working towards shipping the first semver stable version of the compiler in the coming months.
 
 We've also begun exploring ways to use the React Compiler to provide information that can improve understanding and debugging your code. One idea we've started exploring is a new experimental LSP-based React IDE extension powered by React Compiler, similar to the extension used in [Lauren Tan's React Conf talk](https://conf2024.react.dev/talks/5).
 
 Our idea is that we can use the compiler's static analysis to provide more information, suggestions, and optimization opportunities directly in your IDE. For example, we can provide diagnostics for code breaking the Rules of React, hovers to show if components and hooks were optimized by the compiler, or a CodeLens to see [automatically inserted Effect dependencies](/#automatic-effect-dependencies).
 
 The IDE extension is still an early exploration, but we'll share our progress in future updates.
+
+---
 
 ## Automatic Effect Dependencies {/*automatic-effect-dependencies*/}
 
@@ -12951,6 +12953,8 @@ With this code, the React Compiler can infer the dependecies for you and insert 
 
 Our hope is that automatically inserting dependies is not only easier to write, but that it also makes them easier to understand by forcing you to think in terms of what the effect does, and not in component lifecycles. 
 
+---
+
 ## Fragment Refs {/*fragment-refs*/}
 
 Many DOM APIs like those for event management, positioning, and focus are difficult to compose when writing with React. This often leads developers to reach for Effects, managing multiple Refs, or APIs like `findDOMNode` (removed in React 19).
@@ -12958,6 +12962,8 @@ Many DOM APIs like those for event management, positioning, and focus are diffic
 We are exploring adding refs to Fragments that would point to a group of DOM elements, rather than just a single element. Our hope is that this will simplify managing multiple children and make it easier to write composable React code when calling DOM APIs.
 
 Fragment refs are still being researched. We'll share more when we're closer to having the final API finished.
+
+---
 
 ## Gesture Animations {/*gesture-animations*/}
 
@@ -12970,6 +12976,8 @@ Gestures present new challenges for a few reasons:
 - **Gestures invert old and new**: while you're animating, you want the page you are animating from to stay "alive" and interactive. This inverts the browser View Transition model where the "old" state is a snapshot and the "new" state is the live DOM.
 
 We have an approach we believe will work well, which may introduce a new API to trigger gesture transitions, but we're currently focused on shipping `<ViewTransition>` and re-visit gestures after it ships.
+
+---
 
 ## Concurrent stores {/*concurrent-stores*/}
 
@@ -12989,4 +12997,4 @@ This research is still early. We'll share more, and what the new APIs will look 
 
 ---
 
-_TODO: Thanks_
+_TODO: Thanks to [Dan Abramov](https://bsky.app/profile/danabra.mov), [Lauren Tan](https://bsky.app/profile/no.lol), [Jack Pope](https://jackpope.me), [Jason Bonta](https://threads.net/someextent), [Jordan Brown](https://github.com/jbrown215), [Jordan Eldredge](https://bsky.app/profile/capt.dev), and [Mofei Zhang](https://threads.net/z_mofei) for reviewing this post.

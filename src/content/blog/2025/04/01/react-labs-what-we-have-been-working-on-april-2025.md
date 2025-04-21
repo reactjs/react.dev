@@ -12897,18 +12897,95 @@ The IDE extension is still an early exploration, but we'll share our progress in
 
 ## Automatic Effect Dependencies {/*automatic-effect-dependencies*/}
 
-TODO
+When we released hooks, we had three motivations:
+
+- **Sharing code between components**: hooks replaced patterns like render props and higher-order components to allow you to reuse stateful logic without changing your component hierarchy.
+- **Think in terms of function, not lifecycles**: hooks let you split one component into smaller functions based on what pieces are related (such as setting up a subscription or fetching data), rather than forcing a split based on lifecycle methods.
+- **Support ahead-of-time compilation**: hooks were designed to support ahead-of-time compilation with less pitfalls causing unintention de-optimizations caused by lifecycle methods, and limitation of classes.
+
+Since their release, hooks have been successful at *sharing code between components*. Hooks are now the favored way to share logic between components, and there are less use cases for render props and higher order components. Hooks have also been successful at supporting features like Fast Refresh that were not possible with class components. 
+
+### Effects can be hard {/*effects-can-be-hard*/}
+
+Unfortunately, some hooks are still hard to think in terms of function instead of lifecycles. Effects specifically are still hard to understand and is the most common pain point we hear from developers. Last year, we spent a significant amount of time researching how effects were used, and how those use cases could be simplified and easier to understand.
+
+We found that often, the confusion is from using an Effect when you don't need to. The [You Probably Don't Need an Effect guide](/TODO), covers many cases for when Effects are not the right solution. However, even when an Effect is the right fit for a problem, Effects can still be harder to understand than class component lifecyles.
+
+We believe one of the reasons for confusion is the dependecy array, which allows developers to think of effects from the _components_ perspective (like a lifecycle), instead of the _effects_ point of view (what the effect does).
+
+Let's look at an example [from the docs](/learn/lifecycle-of-reactive-effects#thinking-from-the-effects-perspective):
+
+```js
+useEffect(() => {
+  // Your Effect connected to the room specified with roomId...
+  const connection = createConnection(serverUrl, roomId);
+  connection.connect();
+  return () => {
+    // ...until it disconnected
+    connection.disconnect();
+  };
+}, [roomId]);
+```
+
+Many users would read this code as "on mount, connect to the roomId. whenever `roomId` changes, disconnect to the old room and re-create the connection". However, this is thinking from the component's lifecycle perspective, which means you will need to think of every compoent lifecycle state to write the effect correctly. This can be difficult, so it's understandble that Effects seem harder than class lifecycles when using component perspecitve.
+
+### Effects on easy mode {/*effects-on-easy-mode*/}
+
+Instaed, it's better to think from the Effect's perspective. The effect doesn't know about about the component lifecycles. It only describes how to start synchronization and how to stop it. When users think of Effects in this way, their Effects tend to be easier to write, and more resilient to being started and stopped as many times as it’s needed.
+
+We spend some time reseaching why Effects are thought of from the component perspective, and we think one of the resons is the depenedency array. Since you have to write it, it's right there and in your face reminding you of what you're "reacting" to and baiting you into thinking of the component props and state changing.
+
+When we released hooks, we thought this might be the case, but knew it would be solved by ahead-of-time compilation of the depependencies. It's taken longer than expected, but with the React Compiler we can start inserting the dependencies for you:
+
+```js
+useEffect(() => {
+  const connection = createConnection(serverUrl, roomId);
+  connection.connect();
+  return () => {
+    connection.disconnect();
+  };
+}); // compiler inserted dependencies. 
+```
+
+With this code, the React Compiler can infer the dependecies for you and insert them automatically so you don't need to see or write them. With features like the IDE exension and `useEffectEvent`, we can provide a CodeLens to show you what the Compiler inserted for times you need to debug, or to optimize by removing a dependency. 
+
+Our hope is that automatically inserting dependies is not only easier to write, but that it also makes them easier to understand by forcing you to think in terms of what the effect does, and not in component lifecycles. 
 
 ## Fragment Refs {/*fragment-refs*/}
 
+Many DOM APIs like those for event management, positioning, and focus are difficult to compose when writing with React. This often leads developers to reach for Effects, managing multiple Refs, or APIs like `findDOMNode` (removed in React 19).
+
+We are exploring adding refs to Fragments that would point to a group of DOM elements, rather than just a single element. Our hope is that this will simplify managing multiple children and make it easier to write composable React code when calling DOM APIs.
+
+Fragment refs are still being researched. We'll share more when we're closer to having the final API finished.
 
 ## Gesture Animations {/*gesture-animations*/}
 
-TODO
+We're also researching ways to enhance View Transitions to support gesture animations such as swiping to open a menu, or scroll through a photo carosel. 
+
+Gestures present new challenges for a few reasons:
+
+- **Gestures are continuous**: as you swipe the animation is tied to your finger placement time, rather than triggering and running to completion.
+- **Gestures don't complete:**: when you release your finger gesture animtaions can run to completion, or revert to their original state (like when you only partially open a menu) depending on how far you go.
+- **Gestures invert old and new**: while you're animating, you want the page you are animating from to stay "alive" and interactive. This inverts the browser View Transition model where the "old" state is a snapshot and the "new" state is the live DOM.
+
+We have an approach we believe will work well, which may introduce a new API to trigger gesture transitions, but we're currently focused on shipping `<ViewTransition>` and re-visit gestures after it ships.
 
 ## Concurrent stores {/*concurrent-stores*/}
 
-TODO
+When we released React 18 with concurrent rendering, we also released `useSyncExternalStore` so external store libraries that did not use React state or context could [support concurrent rendering](https://github.com/reactwg/react-18/discussions/70) by forcing a sync render when the store is updated.
+
+Using `useSyncExternalStore` comes at a cost though, since it forces bail out from concurrent features like transitions, and forces existing content to show Suspense fallbacks.
+
+Now that React 19 has shipped, we're re-visiting this problem space to create a primiative to fully support concurrent external stores with the `use` API:
+
+```js
+const value = use(store);
+```
+
+Our goal is to allow state stored outside of React to be read in render without tearing, and to work seamlessly with all of the concurrent features React offers. 
+
+This research is still early. We'll share more, and what the new APIs will look like, when we're further along. 
 
 ---
 

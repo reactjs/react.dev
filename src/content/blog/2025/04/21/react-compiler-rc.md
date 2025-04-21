@@ -50,6 +50,9 @@ We have also heard from the community that the ref-in-render validation sometime
 
 You can find more details on using the Compiler in [our docs](https://react.dev/learn/react-compiler).
 
+## Feedback {/*feedback*/}
+During the RC period, we encourage all React users to try the compiler and provide feedback in the React repo. Please [open an issue](https://github.com/facebook/react/issues) if you encounter any bugs or unexpected behavior. If you have a general question or suggestion, please post them in the [React Compiler Working Group](https://github.com/reactwg/react-compiler/discussions).
+
 ### Backwards Compatibility {/*backwards-compatibility*/}
 As noted in the Beta announcement, React Compiler is compatible with React 17 and up. If you are not yet on React 19, you can use React Compiler by specifying a minimum target in your compiler config, and adding `react-compiler-runtime` as a dependency. You can find docs on this [here](https://react.dev/learn/react-compiler#using-react-compiler-with-react-17-or-18).
 
@@ -117,9 +120,6 @@ After a period of final feedback from the community on the RC, we plan on a Stab
 * General Availability: After final feedback period from the community.
 
 Post-Stable, we plan to add more compiler optimizations and improvements. This includes both continual improvements to automatic memoization, and new optimizations altogether, with minimal to no change of product code. Each upgrade will continue to improve performance and add better handling of diverse JavaScript and React patterns.
-
-## Feedback {/*feedback*/}
-During the RC period, we encourage all React users to try the compiler and provide feedback in the React repo. Please [open an issue](https://github.com/facebook/react/issues) if you encounter any bugs or unexpected behavior. If you have a general question or suggestion, please post them in the [React Compiler Working Group](https://github.com/reactwg/react-compiler/discussions).
 
 ---
 

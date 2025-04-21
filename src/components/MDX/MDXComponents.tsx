@@ -25,6 +25,7 @@ import Diagram from './Diagram';
 import DiagramGroup from './DiagramGroup';
 import SimpleCallout from './SimpleCallout';
 import TerminalBlock from './TerminalBlock';
+import TabTerminalBlock from './TabTerminalBlock';
 import YouWillLearnCard from './YouWillLearnCard';
 import {Challenges, Hint, Solution} from './Challenges';
 import {IconNavArrow} from '../Icon/IconNavArrow';
@@ -521,6 +522,7 @@ export const MDXComponents = {
   SandpackWithHTMLOutput,
   TeamMember,
   TerminalBlock,
+  TabTerminalBlock,
   YouWillLearn,
   YouWillLearnCard,
   Challenges,

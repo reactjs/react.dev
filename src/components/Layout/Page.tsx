@@ -31,7 +31,7 @@ interface PageProps {
   meta: {
     title?: string;
     titleForTitleTag?: string;
-    version?: 'experimetnal' | 'canary';
+    version?: 'experimental' | 'canary';
     description?: string;
   };
   section: 'learn' | 'reference' | 'community' | 'blog' | 'home' | 'unknown';

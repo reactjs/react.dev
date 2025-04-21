@@ -65,7 +65,7 @@ Rsbuild includes built-in support for React features like fast refresh, JSX, Typ
 
 #### Metro for React Native {/*react-native*/}
 
-If you'd you're starting from scratch with React Native you'll need to use [Metro](https://metrobundler.dev/), the JavaScript bundler for React Native. Metro supports bundling for platforms like iOS and Android, but lacks many features when compared to the tools here. We recommend starting with Vite, Parcel, or Rsbuild unless your project requires React Native support.
+If you're starting from scratch with React Native you'll need to use [Metro](https://metrobundler.dev/), the JavaScript bundler for React Native. Metro supports bundling for platforms like iOS and Android, but lacks many features when compared to the tools here. We recommend starting with Vite, Parcel, or Rsbuild unless your project requires React Native support.
 
 </Note>
 
@@ -83,7 +83,7 @@ Routers are a core part of modern applications, and are usually integrated with 
 
 We suggest using:
 
-- [React Router](https://reactrouter.com/start/framework/custom)
+- [React Router](https://reactrouter.com/start/data/custom)
 - [Tanstack Router](https://tanstack.com/router/latest)
 
 

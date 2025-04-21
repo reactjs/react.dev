@@ -405,14 +405,14 @@ If your store data is mutable, your `getSnapshot` function should return an immu
 
 This `subscribe` function is defined *inside* a component so it is different on every re-render:
 
-```js {4-7}
+```js {2-5}
 function ChatIndicator() {
-  const isOnline = useSyncExternalStore(subscribe, getSnapshot);
-  
   // 🚩 Always a different function, so React will resubscribe on every re-render
   function subscribe() {
     // ...
   }
+  
+  const isOnline = useSyncExternalStore(subscribe, getSnapshot);
 
   // ...
 }
@@ -420,28 +420,28 @@ function ChatIndicator() {
   
 React will resubscribe to your store if you pass a different `subscribe` function between re-renders. If this causes performance issues and you'd like to avoid resubscribing, move the `subscribe` function outside:
 
-```js {6-9}
-function ChatIndicator() {
-  const isOnline = useSyncExternalStore(subscribe, getSnapshot);
+```js {1-4}
+// ✅ Always the same function, so React won't need to resubscribe
+function subscribe() {
   // ...
 }
 
-// ✅ Always the same function, so React won't need to resubscribe
-function subscribe() {
+function ChatIndicator() {
+  const isOnline = useSyncExternalStore(subscribe, getSnapshot);
   // ...
 }
 ```
 
 Alternatively, wrap `subscribe` into [`useCallback`](/reference/react/useCallback) to only resubscribe when some argument changes:
 
-```js {4-8}
+```js {2-5}
 function ChatIndicator({ userId }) {
-  const isOnline = useSyncExternalStore(subscribe, getSnapshot);
-  
   // ✅ Same function as long as userId doesn't change
   const subscribe = useCallback(() => {
     // ...
   }, [userId]);
+  
+  const isOnline = useSyncExternalStore(subscribe, getSnapshot);
 
   // ...
 }

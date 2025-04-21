@@ -127,6 +127,9 @@
         {
           "title": "cache",
           "path": "/reference/react/cache"
+        },        {
+          "title": "captureOwnerStack",
+          "path": "/reference/react/captureOwnerStack"
         },
         {
           "title": "createContext",
@@ -156,11 +159,6 @@
         {
           "title": "experimental_taintUniqueValue",
           "path": "/reference/react/experimental_taintUniqueValue",
-          "version": "canary"
-        },
-        {
-          "title": "captureOwnerStack",
-          "path": "/reference/react/captureOwnerStack",
           "version": "canary"
         },
         {

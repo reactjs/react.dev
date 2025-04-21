@@ -92,7 +92,7 @@ const deferred = useDeferredValue(value);
 </Suspense>
 ```
 
-By default, these animations have the [default CSS animations for View Transitions](https://developer.mozilla.org/en-US/docs/Web/API/View_Transition_API/Using#customizing_your_animations) applied (most are given a default smooth cross-fade). You can use [view transition psuedo-sectors](https://developer.mozilla.org/en-US/docs/Web/API/View_Transition_API/Using#the_view_transition_pseudo-element_tree) to define "how" the animation runs: 
+By default, these animations have the [default CSS animations for View Transitions](https://developer.mozilla.org/en-US/docs/Web/API/View_Transition_API/Using#customizing_your_animations) applied (most are given a default smooth cross-fade). You can use [view transition psuedo-sectors](https://developer.mozilla.org/en-US/docs/Web/API/View_Transition_API/Using#the_view_transition_pseudo-element_tree) to define "how" the animation runs. For example, using `*` we can change the default for all animations: 
 
 ```
 // ✅ "how" to animate.
@@ -115,9 +115,7 @@ We'll start with an app like this:
 <Sandpack>
 
 ```js src/App.js active
-import TalkDetails from './Details';
-import Home from './Home';
-import {useRouter} from './router';
+import TalkDetails from './Details'; import Home from './Home'; import {useRouter} from './router';
 
 export default function App() {
   const {url} = useRouter();
@@ -257,7 +255,7 @@ export default function Home() {
 
 ```
 
-```js src/Icons.js hidden
+```js src/Icons.js
 export function ChevronLeft() {
   return (
     <svg
@@ -611,12 +609,14 @@ export function Router({ children }) {
     });
   }
   function navigate(url) {
+    // ✅ Update router state in transition.
     startTransition(() => {
       go(url);
     });
   }
 
   function navigateBack(url) {
+    // ✅ Update router state in transition.
     startTransition(() => {
       go(url);
     });
@@ -647,7 +647,6 @@ export function Router({ children }) {
 
   return (
     <RouterContext
-      key={routerState.url}
       value={{
         url: routerState.url,
         navigate,
@@ -1266,52 +1265,61 @@ root.render(
 
 </Sandpack>
 
-
 <Note>
 
-You may notice in this example there are already animations when you click the "like" button and the Suspense fallback glimmer.
+#### View Transitions do not replace CSS and JS driven animations {/*view-transitions-do-not-replace-css-and-js-driven-animations*/}
 
-This is expected! View Transitions are not meant to replace all of the animations in your app. They are meant to be used for the transitions between pages and between states of the same page. Animations driven by CSS and JS are still valid and should be used when appropriate.
+View Transitions are meant to be used for UI transitions such as navigation, expanding, opening, or re-ordering. They are not meant to replace all the animations in your app.
+
+In our example app above, notice that there are already animations when you click the "like" button and the Suspense fallback glimmer. These are good use cases for CSS animations because they are animating a specific element.
 
 </Note>
 
 ### Animating navigations {/*animating-navigations*/}
 
-Since our app includes a Suspense-enabled router, with [page transitions already marked as Transitions](/reference/react/useTransition#building-a-suspense-enabled-router), we can add `<ViewTransition>` to each page to animate the transition between them:
+Our app includes a Suspense-enabled router, with [page transitions already marked as Transitions](/reference/react/useTransition#building-a-suspense-enabled-router), which means navigations are performed with `startTranstion`:
+
+```js {2}
+function navigate(url) {
+  startTransition(() => {
+    go(url);
+  });
+}
+```
+
+`startTransition` is a View Transition trigger, so we can add `<ViewTransition>` to animate between pages:
 
 ```js {2,4}
 // "what" to animate
-<ViewTransition>
+<ViewTransition key={url}>
   {url === '/' ? <Home /> : <TalkDetails />}
 </ViewTransition>
 ```
 
-When the `url` changes inside a Transition, the `<ViewTransition>` around the routes are activated. By default, View Transitions include the browser default cross-fade animation.
+When the `url` changes, the `<ViewTransition>` and new route are rendered. Since the `<ViewTransition>` was updated inside of `startTransition`, the `<ViewTransition>` is activated for an animation.
 
-Adding this to our example, we now have a cross-fade whenever we navigate between pages: 
+
+By default, View Transitions include the browser default cross-fade animation. Adding this to our example, we now have a cross-fade whenever we navigate between pages: 
 
 <Sandpack>
 
 ```js src/App.js active
-import {unstable_ViewTransition as ViewTransition} from 'react';
-import Details from './Details';
-import Home from './Home';
-import {useRouter} from './router';
+import {unstable_ViewTransition as ViewTransition} from 'react'; import Details from './Details'; import Home from './Home'; import {useRouter} from './router';
 
 export default function App() {
   const {url} = useRouter();
   
-  // ✅ Use ViewTransition to animate between pages
+  // ✅ Use ViewTransition to animate between pages.
+  //    No additional CSS needed by default.
   return (
     <ViewTransition>
       {url === '/' ? <Home /> : <Details />}
     </ViewTransition>
   );
 }
-
 ```
 
-```js src/Details.js
+```js src/Details.js hidden
 import { fetchVideo, fetchVideoDetails } from "./data";
 import { Thumbnail, VideoControls } from "./Videos";
 import { useRouter } from "./router";
@@ -1370,7 +1378,7 @@ export default function Details({}) {
 
 ```
 
-```js src/Home.js
+```js src/Home.js hidden
 import { Video } from "./Videos";
 import Layout from "./Layout";
 import { fetchVideos } from "./data";
@@ -1559,7 +1567,7 @@ export function IconSearch(props) {
 }
 ```
 
-```js src/Layout.js
+```js src/Layout.js hidden
 import { useIsNavPending } from "./router";
 
 export default function Page({ heading, children }) {
@@ -1581,7 +1589,7 @@ export default function Page({ heading, children }) {
 }
 ```
 
-```js src/LikeButton.js
+```js src/LikeButton.js hidden
 import {useState} from 'react';
 import {Heart} from './Icons';
 
@@ -1612,7 +1620,7 @@ export default function LikeButton({video}) {
 }
 ```
 
-```js src/Videos.js
+```js src/Videos.js hidden
 import { useState } from "react";
 import LikeButton from "./LikeButton";
 import { useRouter } from "./router";
@@ -1760,31 +1768,26 @@ export function fetchVideoDetails(id) {
 ```
 
 ```js src/router.js
-import {
-  useState,
-  createContext,
-  use,
-  useTransition,
-  useLayoutEffect,
-  useEffect,
-} from "react";
-
-const RouterContext = createContext({ url: "/", params: {} });
-
-export function useRouter() {
-  return use(RouterContext);
-}
-
-export function useIsNavPending() {
-  return use(RouterContext).isPending;
-}
+import {useState, createContext,use,useTransition,useLayoutEffect,useEffect} from "react";
 
 export function Router({ children }) {
+  const [isPending, startTransition] = useTransition();
+  
+  function navigate(url) {
+    // ✅ Update router state in transition.
+    startTransition(() => {
+      go(url);
+    });
+  }
+  
+  
+  
+  
   const [routerState, setRouterState] = useState({
     pendingNav: () => {},
     url: document.location.pathname,
   });
-  const [isPending, startTransition] = useTransition();
+  
 
   function go(url) {
     setRouterState({
@@ -1794,11 +1797,7 @@ export function Router({ children }) {
       },
     });
   }
-  function navigate(url) {
-    startTransition(() => {
-      go(url);
-    });
-  }
+  
 
   function navigateBack(url) {
     startTransition(() => {
@@ -1831,7 +1830,6 @@ export function Router({ children }) {
 
   return (
     <RouterContext
-      key={routerState.url}
       value={{
         url: routerState.url,
         navigate,
@@ -1844,9 +1842,19 @@ export function Router({ children }) {
     </RouterContext>
   );
 }
+
+const RouterContext = createContext({ url: "/", params: {} });
+
+export function useRouter() {
+  return use(RouterContext);
+}
+
+export function useIsNavPending() {
+  return use(RouterContext).isPending;
+}
 ```
 
-```css src/styles.css
+```css src/styles.css hidden
 @font-face {
   font-family: Optimistic Text;
   src: url(https://react.dev/fonts/Optimistic_Text_W_Rg.woff2) format("woff2");
@@ -2450,6 +2458,9 @@ root.render(
 
 </Sandpack>
 
+Since our router already updates the route using `startTransition`, this one line change to add `<ViewTransition>` activates with the default cross-fade animation. 
+
+If you're curious how this works, see the docs for [How does `<ViewTransition>` work?](/reference/react/ViewTransition#how-does-viewtransition-work)
 
 ### Customizing animations {/*customizing-animations*/}
 
@@ -2457,27 +2468,27 @@ By default, `<ViewTransition>` includes the default cross-fade from the browser.
 
 To customize animations, you can provide props to the `<ViewTranstion>` component to specify which animations to use, based on how the `<ViewTransition>` activates (see [the docs](/TODO) for the heuristics React uses to activate different types of animations).
 
-For example, you can specify an enter and exit animation for navigation:
+For example, we can slow down the `default` cross fade animation:
 
 ```js
-<ViewTransition enter="slide-from-left" exit="slide-to-left">
+<ViewTransition default="slow-fade">
   <Home />
 </ViewTransition>
 ```
 
-The animations are specified in CSS using view transition classes:
+And define `slow-fade` in CSS using [view transition classes](/reference/react/ViewTransition#view-transition-classes):
 
 ```css {1,5}
-::view-transition-old(.slide-to-left) {
-    animation: 300ms ease-out both slide-to-left, 300ms ease-out both fade-out;
+::view-transition-old(.slow-fade) {
+    animation-duration: 500ms;
 }
 
-::view-transition-new(.slide-from-left) {
-    animation: 300ms ease-in both slide-from-left, 300ms ease-in both fade-in;
+::view-transition-new(.slow-fade) {
+    animation-duration: 500ms;
 }
 ```
 
-Now, the navigation slides while is cross-fades:
+Now, the cross fade is slower:
 
 <Sandpack>
 
@@ -2490,23 +2501,17 @@ import { useRouter } from "./router";
 export default function App() {
   const { url } = useRouter();
 
-  // ✅ Use ViewTransition to animate between pages
-  if (url === "/") {
-    return (
-      <ViewTransition enter="slide-from-left" exit="slide-to-left">
-        <Home />
-      </ViewTransition>
-    );
-  }
+  // ✅ Define a default animation of .slow-fade.
+  //    See animations.css for the animation definiton.
   return (
-    <ViewTransition enter="slide-from-right" exit="slide-to-right">
-      <Details />
+    <ViewTransition default="slow-fade">
+      {url === '/' ? <Home /> : <Details />}
     </ViewTransition>
   );
 }
 ```
 
-```js src/Details.js
+```js src/Details.js hidden
 import { fetchVideo, fetchVideoDetails } from "./data";
 import { Thumbnail, VideoControls } from "./Videos";
 import { useRouter } from "./router";
@@ -2565,7 +2570,7 @@ export default function Details({}) {
 
 ```
 
-```js src/Home.js
+```js src/Home.js hidden
 import { Video } from "./Videos";
 import Layout from "./Layout";
 import { fetchVideos } from "./data";
@@ -2754,7 +2759,7 @@ export function IconSearch(props) {
 }
 ```
 
-```js src/Layout.js
+```js src/Layout.js hidden
 import { useIsNavPending } from "./router";
 
 export default function Page({ heading, children }) {
@@ -2776,7 +2781,7 @@ export default function Page({ heading, children }) {
 }
 ```
 
-```js src/LikeButton.js
+```js src/LikeButton.js hidden
 import {useState} from 'react';
 import {Heart} from './Icons';
 
@@ -2807,7 +2812,7 @@ export default function LikeButton({video}) {
 }
 ```
 
-```js src/Videos.js
+```js src/Videos.js hidden
 import { useState } from "react";
 import LikeButton from "./LikeButton";
 import { useRouter } from "./router";
@@ -2954,7 +2959,7 @@ export function fetchVideoDetails(id) {
 }
 ```
 
-```js src/router.js
+```js src/router.js hidden
 import {
   useState,
   createContext,
@@ -2990,12 +2995,14 @@ export function Router({ children }) {
     });
   }
   function navigate(url) {
+    // ✅ Update router state in transition.
     startTransition(() => {
       go(url);
     });
   }
 
   function navigateBack(url) {
+    // ✅ Update router state in transition.
     startTransition(() => {
       go(url);
     });
@@ -3026,7 +3033,6 @@ export function Router({ children }) {
 
   return (
     <RouterContext
-      key={routerState.url}
       value={{
         url: routerState.url,
         navigate,
@@ -3041,7 +3047,7 @@ export function Router({ children }) {
 }
 ```
 
-```css src/styles.css
+```css src/styles.css hidden
 @font-face {
   font-family: Optimistic Text;
   src: url(https://react.dev/fonts/Optimistic_Text_W_Rg.woff2) format("woff2");
@@ -3611,62 +3617,13 @@ ul {
 
 
 ```css src/animations.css
-@keyframes fade-in {
-    from {
-        opacity: 0;
-    }
+/* ✅ Define .slow-fade using view transition classes */
+::view-transition-old(.slow-fade) {
+    animation-duration: 500ms;
 }
 
-@keyframes fade-out {
-    to {
-        opacity: 0;
-    }
-}
-
-@keyframes slide-to-right {
-    to {
-        transform: translateX(12px);
-    }
-}
-
-@keyframes slide-from-right {
-    from {
-        transform: translateX(12px);
-    }
-    to {
-        transform: translateX(0);
-    }
-}
-
-@keyframes slide-to-left {
-    to {
-        transform: translateX(-12px);
-    }
-}
-
-@keyframes slide-from-left {
-    from {
-        transform: translateX(-12px);
-    }
-    to {
-        transform: translateX(0);
-    }
-}
-
-::view-transition-old(.slide-to-right) {
-    animation: 300ms ease-out both slide-to-right, 300ms ease-out both fade-out;
-}
-
-::view-transition-new(.slide-from-right) {
-    animation: 300ms ease-in both slide-from-right, 300ms ease-in both fade-in;
-}
-
-::view-transition-old(.slide-to-left) {
-    animation: 300ms ease-out both slide-to-left, 300ms ease-out both fade-out;
-}
-
-::view-transition-new(.slide-from-left) {
-    animation: 300ms ease-in both slide-from-left, 300ms ease-in both fade-in;
+::view-transition-new(.slow-fade) {
+    animation-duration: 500ms;
 }
 ```
 
@@ -3707,6 +3664,7 @@ root.render(
 
 </Sandpack>
 
+See [Styling View Transitions](/reference/react/ViewTransition#styling-view-transitions) for a full guide on styling `<ViewTransition>`.
 
 ### Shared Element Transitions {/*shared-element-transitions*/}
 
@@ -3720,7 +3678,7 @@ To do this you can add a unique `name` to the `<ViewTransition>`:
 </ViewTranstion>
 ```
 
-Now, we can remove the slide animation, and just have the video thumbnail animate between the two pages:
+Now the video thumbnail animates between the two pages:
 
 <Sandpack>
 
@@ -3733,9 +3691,11 @@ import { useRouter } from "./router";
 export default function App() {
   const { url } = useRouter();
 
-  // ✅ Default cross-fade animation.
+  // ✅ Keeping our default slow-fade.
+  //    This allows the content not in the shared
+  //    element transition to cross-fade.
   return (
-    <ViewTransition>
+    <ViewTransition default="slow-fade">
       {url === "/" ? <Home /> : <Details />}
     </ViewTransition>
   );
@@ -4043,15 +4003,12 @@ export default function LikeButton({video}) {
 }
 ```
 
-```js src/Videos.js
-import { useState, unstable_ViewTransition as ViewTransition } from "react";
-import LikeButton from "./LikeButton";
-import { useRouter } from "./router";
-import { PauseIcon, PlayIcon } from "./Icons";
-import { startTransition } from "react";
+```js src/Videos.js active
+import { useState, unstable_ViewTransition as ViewTransition } from "react"; import LikeButton from "./LikeButton"; import { useRouter } from "./router"; import { PauseIcon, PlayIcon } from "./Icons"; import { startTransition } from "react";
 
 export function Thumbnail({ video, children }) {
-  // ✅ Animated with a shared element transition
+  // ✅ Add a name to animate with a shared element transition.
+  //    This uses the default animation, no additional css needed.
   return (
     <ViewTransition name={`video-${video.id}`}>
       <div
@@ -4229,12 +4186,14 @@ export function Router({ children }) {
     });
   }
   function navigate(url) {
+    // ✅ Update router state in transition.
     startTransition(() => {
       go(url);
     });
   }
 
   function navigateBack(url) {
+    // ✅ Update router state in transition.
     startTransition(() => {
       go(url);
     });
@@ -4265,7 +4224,6 @@ export function Router({ children }) {
 
   return (
     <RouterContext
-      key={routerState.url}
       value={{
         url: routerState.url,
         navigate,
@@ -4850,7 +4808,29 @@ ul {
 
 
 ```css src/animations.css
-// ✅ No custom animations, only browser defaults used.
+/* ✅ No additional animations needed */
+
+
+
+
+
+
+
+
+
+/* Previously defined animations below */
+
+
+
+
+
+::view-transition-old(.slow-fade) {
+    animation-duration: 500ms;
+}
+
+::view-transition-new(.slow-fade) {
+    animation-duration: 500ms;
+}
 ```
 
 ```js src/index.js hidden
@@ -4890,10 +4870,13 @@ root.render(
 
 </Sandpack>
 
+By defualt, React automatically generates a unique `name` for each element activated for a transition (see [How does `<ViewTransiton>` work](/reference/react/ViewTransition#how-does-viewtransition-work)). When React sees a transition where a `<ViewTransiton>` with a `name` is removed and a new `<ViewTransition>` with the same `name` is added, it will activate a shared element transtion.
+
+For more info, see the docs for [Animating a Shared Element](/reference/react/ViewTransition#animating-a-shared-element).
 
 ### Animating based on cause {/*animating-based-on-cause*/}
 
-Some times, you may want elements to animate differently because on how it was trigger. For this use case, we've added a new API called `addTransitionType` to specify the cause of a transition:
+Sometimes, you may want elements to animate differently because on how it was triggered. For this use case, we've added a new API called `addTransitionType` to specify the cause of a transition:
 
 ```js {4,11}
 function navigate(url) {
@@ -4912,7 +4895,7 @@ function navigateBack(url) {
 }
 ```
 
-With transition types you can provide custom animations via props to `<ViewTransition>`. Let's add a shared element transition to the header for "6 Videos" and "Back", and let's customize the animation based on the type:
+With transition types, you can provide custom animations via props to `<ViewTransition>`. Let's add a shared element transition to the header for "6 Videos" and "Back":
 
 ```js {4,5}
 <ViewTransition
@@ -4925,27 +4908,31 @@ With transition types you can provide custom animations via props to `<ViewTrans
 </ViewTransition>
 ```
 
-Finally, let's define the animations in CSS:
+Here we pass a `share` prop to define how to animate based on the transiton type. When the share transition activates from `nav-forward`, the view transition class `slide-forward` is applied. When it's from `nav-back`, the `slide-back` animation is activated. Let's define these animations in CSS:
 
 ```css {1,5,9,13}
 ::view-transition-old(.slide-forward) {
-  animation: ...
+    /* when sliding forward, the "old" page should slide out to left. */
+    animation: ...
 }
 
 ::view-transition-new(.slide-forward) {
-  animation: ...
+    /* when sliding forward, the "new" page should slide in from right. */
+    animation: ...
 }
 
 ::view-transition-old(.slide-back) {
-  animation: ...
+    /* when sliding back, the "old" page should slide out to right. */
+    animation: ...
 }
 
 ::view-transition-new(.slide-back) {
-  animation: ...
+    /* when sliding back, the "new" page should slide in from left. */
+    animation: ...
 }
 ```
 
-Now the header animates along with the video thumbnail:
+Now we can animate the header along with thumbnail based on navigation type:
 
 <Sandpack>
 
@@ -4958,9 +4945,9 @@ import { useRouter } from "./router";
 export default function App() {
   const { url } = useRouter();
 
-  // ✅ Default cross-fade animation.
+  // ✅ Keeping our default slow-fade.
   return (
-    <ViewTransition>
+    <ViewTransition default="slow-fade">
       {url === "/" ? <Home /> : <Details />}
     </ViewTransition>
   );
@@ -5215,9 +5202,8 @@ export function IconSearch(props) {
 }
 ```
 
-```js src/Layout.js 
-import {unstable_ViewTransition as ViewTransition} from 'react';
-import { useIsNavPending } from "./router";
+```js src/Layout.js active
+import {unstable_ViewTransition as ViewTransition} from 'react'; import { useIsNavPending } from "./router";
 
 export default function Page({ heading, children }) {
   const isPending = useIsNavPending();
@@ -5285,7 +5271,8 @@ import { PauseIcon, PlayIcon } from "./Icons";
 import { startTransition } from "react";
 
 export function Thumbnail({ video, children }) {
-  // ✅ Animated with a shared element transition
+  // ✅ Add a name to animate with a shared element transition.
+  //    This uses the default animation, no additional css needed.
   return (
     <ViewTransition name={`video-${video.id}`}>
       <div
@@ -5432,7 +5419,7 @@ import {useState, createContext, use, useTransition, useLayoutEffect, useEffect,
 
 export function Router({ children }) {
   const [isPending, startTransition] = useTransition();
-  const [routerState, setRouterState] = useState({pendingNav: () => {}, url: document.location.pathname});
+  
   function navigate(url) {
     startTransition(() => {
       // ✅ Transition type for the cause "nav forward"
@@ -5447,6 +5434,9 @@ export function Router({ children }) {
       go(url);
     });
   }
+
+
+  const [routerState, setRouterState] = useState({pendingNav: () => {}, url: document.location.pathname});
 
   function go(url) {
     setRouterState({
@@ -5482,7 +5472,6 @@ export function Router({ children }) {
 
   return (
     <RouterContext
-      key={routerState.url}
       value={{
         url: routerState.url,
         navigate,
@@ -6078,26 +6067,32 @@ ul {
 
 
 ```css src/animations.css
+/* ✅ Animations for view transition classed added by transition type */
 ::view-transition-old(.slide-forward) {
-    animation: 90ms cubic-bezier(0.4, 0, 1, 1) both fade-out,
-    300ms cubic-bezier(0.4, 0, 0.2, 1) both slide-to-left;
+    /* when sliding forward, the "old" page should slide out to left. */
+    animation: 150ms cubic-bezier(0.4, 0, 1, 1) both fade-out,
+    400ms cubic-bezier(0.4, 0, 0.2, 1) both slide-to-left;
 }
 
 ::view-transition-new(.slide-forward) {
-    animation: 210ms cubic-bezier(0, 0, 0.2, 1) 90ms both fade-in,
-    300ms cubic-bezier(0.4, 0, 0.2, 1) both slide-from-right;
+    /* when sliding forward, the "new" page should slide in from right. */
+    animation: 210ms cubic-bezier(0, 0, 0.2, 1) 150ms both fade-in,
+    400ms cubic-bezier(0.4, 0, 0.2, 1) both slide-from-right;
 }
 
 ::view-transition-old(.slide-back) {
-    animation: 90ms cubic-bezier(0.4, 0, 1, 1) both fade-out,
-    300ms cubic-bezier(0.4, 0, 0.2, 1) both slide-to-right;
+    /* when sliding back, the "old" page should slide out to right. */
+    animation: 150ms cubic-bezier(0.4, 0, 1, 1) both fade-out,
+    400ms cubic-bezier(0.4, 0, 0.2, 1) both slide-to-right;
 }
 
 ::view-transition-new(.slide-back) {
-    animation: 210ms cubic-bezier(0, 0, 0.2, 1) 90ms both fade-in,
-    300ms cubic-bezier(0.4, 0, 0.2, 1) both slide-from-left;
+    /* when sliding back, the "new" page should slide in from left. */
+    animation: 210ms cubic-bezier(0, 0, 0.2, 1) 150ms both fade-in,
+    400ms cubic-bezier(0.4, 0, 0.2, 1) both slide-from-left;
 }
 
+/* ✅ New keyframes to support our animations above. */
 @keyframes fade-in {
     from {
         opacity: 0;
@@ -6140,13 +6135,15 @@ ul {
     }
 }
 
-@keyframes slide-up {
-    from {
-        transform: translateY(20px);
-    }
-    to {
-        transform: translateX(0);
-    }
+/* Previously defined animations. */
+
+/* Default .slow-fade. */
+::view-transition-old(.slow-fade) {
+    animation-duration: 500ms;
+}
+
+::view-transition-new(.slow-fade) {
+    animation-duration: 500ms;
 }
 ```
 
@@ -6189,21 +6186,39 @@ root.render(
 
 ### Animating Suspense Boundaries {/*animating-suspense-boundaries*/}
 
-Suspense can also activate View Transitions when the fallback is replaced by content. This allows you to animate between Suspnse fallbacks and the content:
+Suspense will also activate `<ViewTransition>` when the fallback is replaced by content. This is why the video description currently fades in with our `slow-fade` animation after the Suspense fallback.
 
-```js {2,4,6,8}
-<Suspense fallback={
-  <ViewTransition>
-    <Fallback />
-  </ViewTransition>
-}>
-  <ViewTransition>
-    <ContentThatSuspends />
+We can customize the Suspense animation using an `exit` on the fallback, and `enter` on the content:
+
+```js {3,8}
+<Suspense
+  fallback={
+    <ViewTransition exit="slide-down">
+      <VideoInfoFallback />
+    </ViewTransition>
+  }
+>
+  <ViewTransition enter="slide-up">
+    <VideoInfo id={id} />
   </ViewTransition>
 </Suspense>
 ```
 
-Now, the Suspense fallback for the video description cross fades to the content when it's ready:
+Here's how we'll define `slide-down` and `slide-up` with CSS:
+
+```css {1, 6}
+::view-transition-old(.slide-down) { 
+  /* Slide the fallback down */
+  animation: ...;
+}
+
+::view-transition-new(.slide-up) {
+  /* Slide the content up */
+  animation: ...;
+}
+```
+
+Now, the Suspense content replaces the fallback with a sliding animation:
 
 <Sandpack>
 
@@ -6216,28 +6231,30 @@ import { useRouter } from "./router";
 export default function App() {
   const { url } = useRouter();
 
-  // ✅ Default cross-fade animation.
+  // ✅ Default slow-fade animation.
   return (
-    <ViewTransition>
+    <ViewTransition default="slow-fade">
       {url === "/" ? <Home /> : <Details />}
     </ViewTransition>
   );
 }
 ```
 
-```js src/Details.js
-import { use, Suspense, unstable_ViewTransition as ViewTransition } from "react";
-import { fetchVideo, fetchVideoDetails } from "./data";
-import { Thumbnail, VideoControls } from "./Videos";
-import { useRouter } from "./router";
-import Layout from "./Layout";
-import { ChevronLeft } from "./Icons";
+```js src/Details.js active
+import { use, Suspense, unstable_ViewTransition as ViewTransition } from "react"; import { fetchVideo, fetchVideoDetails } from "./data"; import { Thumbnail, VideoControls } from "./Videos"; import { useRouter } from "./router"; import Layout from "./Layout"; import { ChevronLeft } from "./Icons";
 
-function VideoDetails({id}) {
-  // ✅ Animate from Suspense fallback to content
+function VideoDetails({ id }) {
   return (
-    <Suspense fallback={<VideoInfoFallback />}>
-      <ViewTransition>
+    <Suspense
+      fallback={
+        // ✅ Animate the fallback down.
+        <ViewTransition exit="slide-down">
+          <VideoInfoFallback />
+        </ViewTransition>
+      }
+    >
+      {/* ✅ Animate the content up */}
+      <ViewTransition enter="slide-up">
         <VideoInfo id={id} />
       </ViewTransition>
     </Suspense>
@@ -6551,7 +6568,8 @@ import { PauseIcon, PlayIcon } from "./Icons";
 import { startTransition } from "react";
 
 export function Thumbnail({ video, children }) {
-  // ✅ Animated with a shared element transition
+  // ✅ Add a name to animate with a shared element transition.
+  //    This uses the default animation, no additional css needed.
   return (
     <ViewTransition name={`video-${video.id}`}>
       <div
@@ -6748,7 +6766,6 @@ export function Router({ children }) {
 
   return (
     <RouterContext
-      key={routerState.url}
       value={{
         url: routerState.url,
         navigate,
@@ -7343,29 +7360,64 @@ ul {
 ```
 
 
-```css src/animations.css hidden
-✅ No additional animations needs, our fallback uses the browser default crossfade
+```css src/animations.css
+/* ✅ Slide the fallback down */
+::view-transition-old(.slide-down) {
+    animation: 150ms ease-out both fade-out, 150ms ease-out both slide-down;
+}
 
+/* ✅ Slide the content up */
+::view-transition-new(.slide-up) {
+    animation: 210ms ease-in 150ms both fade-in, 400ms ease-in both slide-up;
+}
+
+/* ✅ Define the new keyframes */
+@keyframes slide-up {
+    from {
+        transform: translateY(10px);
+    }
+    to {
+        transform: translateY(0);
+    }
+}
+
+@keyframes slide-down {
+    from {
+        transform: translateY(0);
+    }
+    to {
+        transform: translateY(10px);
+    }
+}
+
+/* Previously defined animations below */
+
+/* Animations for view transition classed added by transition type */
 ::view-transition-old(.slide-forward) {
-    animation: 90ms cubic-bezier(0.4, 0, 1, 1) both fade-out,
-    300ms cubic-bezier(0.4, 0, 0.2, 1) both slide-to-left;
+    /* when sliding forward, the "old" page should slide out to left. */
+    animation: 150ms cubic-bezier(0.4, 0, 1, 1) both fade-out,
+    400ms cubic-bezier(0.4, 0, 0.2, 1) both slide-to-left;
 }
 
 ::view-transition-new(.slide-forward) {
-    animation: 210ms cubic-bezier(0, 0, 0.2, 1) 90ms both fade-in,
-    300ms cubic-bezier(0.4, 0, 0.2, 1) both slide-from-right;
+    /* when sliding forward, the "new" page should slide in from right. */
+    animation: 210ms cubic-bezier(0, 0, 0.2, 1) 150ms both fade-in,
+    400ms cubic-bezier(0.4, 0, 0.2, 1) both slide-from-right;
 }
 
 ::view-transition-old(.slide-back) {
-    animation: 90ms cubic-bezier(0.4, 0, 1, 1) both fade-out,
-    300ms cubic-bezier(0.4, 0, 0.2, 1) both slide-to-right;
+    /* when sliding back, the "old" page should slide out to right. */
+    animation: 150ms cubic-bezier(0.4, 0, 1, 1) both fade-out,
+    400ms cubic-bezier(0.4, 0, 0.2, 1) both slide-to-right;
 }
 
 ::view-transition-new(.slide-back) {
-    animation: 210ms cubic-bezier(0, 0, 0.2, 1) 90ms both fade-in,
-    300ms cubic-bezier(0.4, 0, 0.2, 1) both slide-from-left;
+    /* when sliding back, the "new" page should slide in from left. */
+    animation: 210ms cubic-bezier(0, 0, 0.2, 1) 150ms both fade-in,
+    400ms cubic-bezier(0.4, 0, 0.2, 1) both slide-from-left;
 }
 
+/* Keyframes to support our animations above. */
 @keyframes fade-in {
     from {
         opacity: 0;
@@ -7408,13 +7460,13 @@ ul {
     }
 }
 
-@keyframes slide-up {
-    from {
-        transform: translateY(20px);
-    }
-    to {
-        transform: translateX(0);
-    }
+/* Default .slow-fade. */
+::view-transition-old(.slow-fade) {
+    animation-duration: 500ms;
+}
+
+::view-transition-new(.slow-fade) {
+    animation-duration: 500ms;
 }
 ```
 
@@ -7458,7 +7510,7 @@ root.render(
 
 ### Animating Lists {/*animating-lists*/}
 
-You can also use `<ViewTransition>` to animate lists of items as they re-order, link in a searchable list of items:
+You can also use `<ViewTransition>` to animate lists of items as they re-order, like in a searchable list of items:
 
 ```js {3,5}
 <div className="videos">
@@ -7491,9 +7543,9 @@ import { useRouter } from "./router";
 export default function App() {
   const { url } = useRouter();
 
-  // ✅ Default cross-fade animation.
+  // ✅ Default slow-fade animation.
   return (
-    <ViewTransition>
+    <ViewTransition default="slow-fade">
       {url === "/" ? <Home /> : <Details />}
     </ViewTransition>
   );
@@ -7511,8 +7563,16 @@ import { ChevronLeft } from "./Icons";
 function VideoDetails({id}) {
   // ✅ Animate from Suspense fallback to content
   return (
-    <Suspense fallback={<VideoInfoFallback />}>
-      <ViewTransition>
+    <Suspense
+      fallback={
+        // ✅ Animate the fallback down.
+        <ViewTransition exit="slide-down">
+          <VideoInfoFallback />
+        </ViewTransition>
+      }
+    >
+      {/* ✅ Animate the content up */}
+      <ViewTransition enter="slide-up">
         <VideoInfo id={id} />
       </ViewTransition>
     </Suspense>
@@ -7576,9 +7636,6 @@ function SearchList({searchText, videos}) {
   const filteredVideos = filterVideos(videos, deferredSearchText);
   return (
     <div className="video-list">
-      {filteredVideos.length === 0 && (
-        <div className="no-results">No results</div>
-      )}
       <div className="videos">
         {filteredVideos.map((video) => (
           // ✅ Animate each item in list ("what") 
@@ -7587,6 +7644,9 @@ function SearchList({searchText, videos}) {
           </ViewTransition>
         ))}
       </div>
+      {filteredVideos.length === 0 && (
+        <div className="no-results">No results</div>
+      )}
     </div>
   );
 }
@@ -7833,7 +7893,8 @@ import { PauseIcon, PlayIcon } from "./Icons";
 import { startTransition } from "react";
 
 export function Thumbnail({ video, children }) {
-  // ✅ Animated with a shared element transition
+  // ✅ Add a name to animate with a shared element transition.
+  //    This uses the default animation, no additional css needed.
   return (
     <ViewTransition name={`video-${video.id}`}>
       <div
@@ -8030,7 +8091,6 @@ export function Router({ children }) {
 
   return (
     <RouterContext
-      key={routerState.url}
       value={{
         url: routerState.url,
         navigate,
@@ -8625,27 +8685,75 @@ ul {
 ```
 
 
-```css src/animations.css hidden
-✅ No additional animations needs, our fallback uses the browser default crossfade
+```css src/animations.css
+/* ✅ No additional animations needed */
 
+
+
+
+
+
+
+
+
+/* Previously defined animations below */
+
+
+
+
+
+
+/* Slide animation for Suspense */
+::view-transition-old(.slide-down) {
+    animation: 150ms ease-out both fade-out, 150ms ease-out both slide-down;
+}
+
+::view-transition-new(.slide-up) {
+    animation: 210ms ease-in 150ms both fade-in, 400ms ease-in both slide-up;
+}
+
+/* Animations for view transition classed added by transition type */
 ::view-transition-old(.slide-forward) {
-    animation: 90ms cubic-bezier(0.4, 0, 1, 1) both fade-out,
-    300ms cubic-bezier(0.4, 0, 0.2, 1) both slide-to-left;
+    /* when sliding forward, the "old" page should slide out to left. */
+    animation: 150ms cubic-bezier(0.4, 0, 1, 1) both fade-out,
+    400ms cubic-bezier(0.4, 0, 0.2, 1) both slide-to-left;
 }
 
 ::view-transition-new(.slide-forward) {
-    animation: 210ms cubic-bezier(0, 0, 0.2, 1) 90ms both fade-in,
-    300ms cubic-bezier(0.4, 0, 0.2, 1) both slide-from-right;
+    /* when sliding forward, the "new" page should slide in from right. */
+    animation: 210ms cubic-bezier(0, 0, 0.2, 1) 150ms both fade-in,
+    400ms cubic-bezier(0.4, 0, 0.2, 1) both slide-from-right;
 }
 
 ::view-transition-old(.slide-back) {
-    animation: 90ms cubic-bezier(0.4, 0, 1, 1) both fade-out,
-    300ms cubic-bezier(0.4, 0, 0.2, 1) both slide-to-right;
+    /* when sliding back, the "old" page should slide out to right. */
+    animation: 150ms cubic-bezier(0.4, 0, 1, 1) both fade-out,
+    400ms cubic-bezier(0.4, 0, 0.2, 1) both slide-to-right;
 }
 
 ::view-transition-new(.slide-back) {
-    animation: 210ms cubic-bezier(0, 0, 0.2, 1) 90ms both fade-in,
-    300ms cubic-bezier(0.4, 0, 0.2, 1) both slide-from-left;
+    /* when sliding back, the "new" page should slide in from left. */
+    animation: 210ms cubic-bezier(0, 0, 0.2, 1) 150ms both fade-in,
+    400ms cubic-bezier(0.4, 0, 0.2, 1) both slide-from-left;
+}
+
+/* Keyframes to support our animations above. */
+@keyframes slide-up {
+    from {
+        transform: translateY(10px);
+    }
+    to {
+        transform: translateY(0);
+    }
+}
+
+@keyframes slide-down {
+    from {
+        transform: translateY(0);
+    }
+    to {
+        transform: translateY(10px);
+    }
 }
 
 @keyframes fade-in {
@@ -8690,13 +8798,14 @@ ul {
     }
 }
 
-@keyframes slide-up {
-    from {
-        transform: translateY(20px);
-    }
-    to {
-        transform: translateX(0);
-    }
+
+/* Default .slow-fade. */
+::view-transition-old(.slow-fade) {
+    animation-duration: 500ms;
+}
+
+::view-transition-new(.slow-fade) {
+    animation-duration: 500ms;
 }
 ```
 
@@ -8739,45 +8848,45 @@ root.render(
 
 ### Final result {/*final-result*/}
 
-By adding a few `<ViewTransition>` components and a few lines of CSS, we were able to add all of the animations above into the final result.
+By adding a few `<ViewTransition>` components and a few lines of CSS, we were able to add all the animations above into the final result.
 
 We're excited about View Transitions and think they will level up the apps you're able to build. They're ready to start trying today in the experimental channel of React releases.
 
-If you're curious to know more about how they work, check out [How Do View Transitons Work](/todo) in the docs.
+Let's remove the slow fade, and take a look at the final result:
 
 <Sandpack>
 
 ```js src/App.js
-import { unstable_ViewTransition as ViewTransition } from "react";
-import Details from "./Details";
-import Home from "./Home";
-import { useRouter } from "./router";
+import {unstable_ViewTransition as ViewTransition} from 'react'; import Details from './Details'; import Home from './Home'; import {useRouter} from './router';
 
 export default function App() {
-  const { url } = useRouter();
+  const {url} = useRouter();
 
-  // ✅ Default cross-fade animation.
+  // ✅ Animate with a cross fade between pages.
   return (
-    <ViewTransition>
-      {url === "/" ? <Home /> : <Details />}
+    <ViewTransition key={url}>
+      {url === '/' ? <Home /> : <Details />}
     </ViewTransition>
   );
 }
 ```
 
 ```js src/Details.js
-import { use, Suspense, unstable_ViewTransition as ViewTransition } from "react";
-import { fetchVideo, fetchVideoDetails } from "./data";
-import { Thumbnail, VideoControls } from "./Videos";
-import { useRouter } from "./router";
-import Layout from "./Layout";
-import { ChevronLeft } from "./Icons";
+import { use, Suspense, unstable_ViewTransition as ViewTransition } from "react"; import { fetchVideo, fetchVideoDetails } from "./data"; import { Thumbnail, VideoControls } from "./Videos"; import { useRouter } from "./router"; import Layout from "./Layout"; import { ChevronLeft } from "./Icons";
 
 function VideoDetails({id}) {
   // ✅ Animate from Suspense fallback to content
   return (
-    <Suspense fallback={<VideoInfoFallback />}>
-      <ViewTransition>
+    <Suspense
+      fallback={
+        // ✅ Animate the fallback down.
+        <ViewTransition exit="slide-down">
+          <VideoInfoFallback />
+        </ViewTransition>
+      }
+    >
+      {/* ✅ Animate the content up */}
+      <ViewTransition enter="slide-up">
         <VideoInfo id={id} />
       </ViewTransition>
     </Suspense>
@@ -8841,9 +8950,6 @@ function SearchList({searchText, videos}) {
   const filteredVideos = filterVideos(videos, deferredSearchText);
   return (
     <div className="video-list">
-      {filteredVideos.length === 0 && (
-        <div className="no-results">No results</div>
-      )}
       <div className="videos">
         {filteredVideos.map((video) => (
           // ✅ Animate each item in list ("what") 
@@ -8852,6 +8958,9 @@ function SearchList({searchText, videos}) {
           </ViewTransition>
         ))}
       </div>
+      {filteredVideos.length === 0 && (
+        <div className="no-results">No results</div>
+      )}
     </div>
   );
 }
@@ -9029,8 +9138,7 @@ export function IconSearch(props) {
 ```
 
 ```js src/Layout.js
-import {unstable_ViewTransition as ViewTransition} from 'react';
-import { useIsNavPending } from "./router";
+import {unstable_ViewTransition as ViewTransition} from 'react'; import { useIsNavPending } from "./router";
 
 export default function Page({ heading, children }) {
   const isPending = useIsNavPending();
@@ -9091,14 +9199,10 @@ export default function LikeButton({video}) {
 ```
 
 ```js src/Videos.js
-import { useState, unstable_ViewTransition as ViewTransition } from "react";
-import LikeButton from "./LikeButton";
-import { useRouter } from "./router";
-import { PauseIcon, PlayIcon } from "./Icons";
-import { startTransition } from "react";
+import { useState, unstable_ViewTransition as ViewTransition } from "react"; import LikeButton from "./LikeButton"; import { useRouter } from "./router"; import { PauseIcon, PlayIcon } from "./Icons"; import { startTransition } from "react";
 
 export function Thumbnail({ video, children }) {
-  // ✅ Animated with a shared element transition
+  // ✅ Add a name to animate with a shared element transition.
   return (
     <ViewTransition name={`video-${video.id}`}>
       <div
@@ -9111,6 +9215,8 @@ export function Thumbnail({ video, children }) {
     </ViewTransition>
   );
 }
+
+
 
 export function VideoControls() {
   const [isPlaying, setIsPlaying] = useState(false);
@@ -9245,7 +9351,6 @@ import {useState, createContext, use, useTransition, useLayoutEffect, useEffect,
 
 export function Router({ children }) {
   const [isPending, startTransition] = useTransition();
-  const [routerState, setRouterState] = useState({pendingNav: () => {}, url: document.location.pathname});
   function navigate(url) {
     startTransition(() => {
       // ✅ Transition type for the cause "nav forward"
@@ -9261,6 +9366,8 @@ export function Router({ children }) {
     });
   }
 
+  const [routerState, setRouterState] = useState({pendingNav: () => {}, url: document.location.pathname});
+  
   function go(url) {
     setRouterState({
       url,
@@ -9295,7 +9402,6 @@ export function Router({ children }) {
 
   return (
     <RouterContext
-      key={routerState.url}
       value={{
         url: routerState.url,
         navigate,
@@ -9890,27 +9996,58 @@ ul {
 ```
 
 
-```css src/animations.css hidden
-✅ No additional animations needs, our fallback uses the browser default crossfade
+```css src/animations.css
+/* ✅ Slide animations for Suspense the fallback down */
+::view-transition-old(.slide-down) {
+    animation: 150ms ease-out both fade-out, 150ms ease-out both slide-down;
+}
 
+::view-transition-new(.slide-up) {
+    animation: 210ms ease-in 150ms both fade-in, 400ms ease-in both slide-up;
+}
+
+/* ✅ Animations for view transition classed added by transition type */
 ::view-transition-old(.slide-forward) {
-    animation: 90ms cubic-bezier(0.4, 0, 1, 1) both fade-out,
-    300ms cubic-bezier(0.4, 0, 0.2, 1) both slide-to-left;
+    /* when sliding forward, the "old" page should slide out to left. */
+    animation: 150ms cubic-bezier(0.4, 0, 1, 1) both fade-out,
+    400ms cubic-bezier(0.4, 0, 0.2, 1) both slide-to-left;
 }
 
 ::view-transition-new(.slide-forward) {
-    animation: 210ms cubic-bezier(0, 0, 0.2, 1) 90ms both fade-in,
-    300ms cubic-bezier(0.4, 0, 0.2, 1) both slide-from-right;
+    /* when sliding forward, the "new" page should slide in from right. */
+    animation: 210ms cubic-bezier(0, 0, 0.2, 1) 150ms both fade-in,
+    400ms cubic-bezier(0.4, 0, 0.2, 1) both slide-from-right;
 }
 
 ::view-transition-old(.slide-back) {
-    animation: 90ms cubic-bezier(0.4, 0, 1, 1) both fade-out,
-    300ms cubic-bezier(0.4, 0, 0.2, 1) both slide-to-right;
+    /* when sliding back, the "old" page should slide out to right. */
+    animation: 150ms cubic-bezier(0.4, 0, 1, 1) both fade-out,
+    400ms cubic-bezier(0.4, 0, 0.2, 1) both slide-to-right;
 }
 
 ::view-transition-new(.slide-back) {
-    animation: 210ms cubic-bezier(0, 0, 0.2, 1) 90ms both fade-in,
-    300ms cubic-bezier(0.4, 0, 0.2, 1) both slide-from-left;
+    /* when sliding back, the "new" page should slide in from left. */
+    animation: 210ms cubic-bezier(0, 0, 0.2, 1) 150ms both fade-in,
+    400ms cubic-bezier(0.4, 0, 0.2, 1) both slide-from-left;
+}
+
+/* ✅ Keyframes to support our animations above. */
+@keyframes slide-up {
+    from {
+        transform: translateY(10px);
+    }
+    to {
+        transform: translateY(0);
+    }
+}
+
+@keyframes slide-down {
+    from {
+        transform: translateY(0);
+    }
+    to {
+        transform: translateY(10px);
+    }
 }
 
 @keyframes fade-in {
@@ -9949,15 +10086,6 @@ ul {
 @keyframes slide-from-left {
     from {
         transform: translateX(-50px);
-    }
-    to {
-        transform: translateX(0);
-    }
-}
-
-@keyframes slide-up {
-    from {
-        transform: translateY(20px);
     }
     to {
         transform: translateX(0);
@@ -10002,7 +10130,9 @@ root.render(
 
 </Sandpack>
 
-_For more background on how we built View Transtions, see: [#31975](https://github.com/facebook/react/pull/31975), [#32105](https://github.com/facebook/react/pull/32105), [#32041](https://github.com/facebook/react/pull/32041), [#32734](https://github.com/facebook/react/pull/32734), [#32797](https://github.com/facebook/react/pull/32797) [#31999](https://github.com/facebook/react/pull/31999), [#32031](https://github.com/facebook/react/pull/32031), [#32050](https://github.com/facebook/react/pull/32050), [#32820](https://github.com/facebook/react/pull/32820), [#32029](https://github.com/facebook/react/pull/32029), [#32028](https://github.com/facebook/react/pull/32028), and [#32038](https://github.com/facebook/react/pull/32038) by [@sebmarkbage](https://twitter.com/sebmarkbage) (thanks Seb!)._
+If you're curious to know more about how they work, check out [How Do View Transitons Work](/todo) in the docs.
+
+_For more background on how we built View Transitions, see: [#31975](https://github.com/facebook/react/pull/31975), [#32105](https://github.com/facebook/react/pull/32105), [#32041](https://github.com/facebook/react/pull/32041), [#32734](https://github.com/facebook/react/pull/32734), [#32797](https://github.com/facebook/react/pull/32797) [#31999](https://github.com/facebook/react/pull/31999), [#32031](https://github.com/facebook/react/pull/32031), [#32050](https://github.com/facebook/react/pull/32050), [#32820](https://github.com/facebook/react/pull/32820), [#32029](https://github.com/facebook/react/pull/32029), [#32028](https://github.com/facebook/react/pull/32028), and [#32038](https://github.com/facebook/react/pull/32038) by [@sebmarkbage](https://twitter.com/sebmarkbage) (thanks Seb!)._
 
 ---
 
@@ -10108,8 +10238,16 @@ import { ChevronLeft } from "./Icons";
 function VideoDetails({id}) {
   // ✅ Animate from Suspense fallback to content
   return (
-    <Suspense fallback={<VideoInfoFallback />}>
-      <ViewTransition>
+    <Suspense
+      fallback={
+        // ✅ Animate the fallback down.
+        <ViewTransition exit="slide-down">
+          <VideoInfoFallback />
+        </ViewTransition>
+      }
+    >
+      {/* ✅ Animate the content up */}
+      <ViewTransition enter="slide-up">
         <VideoInfo id={id} />
       </ViewTransition>
     </Suspense>
@@ -10430,7 +10568,8 @@ import { PauseIcon, PlayIcon } from "./Icons";
 import { startTransition } from "react";
 
 export function Thumbnail({ video, children }) {
-  // ✅ Animated with a shared element transition
+  // ✅ Add a name to animate with a shared element transition.
+  //    This uses the default animation, no additional css needed.
   return (
     <ViewTransition name={`video-${video.id}`}>
       <div
@@ -11221,27 +11360,75 @@ ul {
 ```
 
 
-```css src/animations.css hidden
-✅ No additional animations needs, our fallback uses the browser default crossfade
+```css src/animations.css
+/* ✅ No additional animations needed */
 
+
+
+
+
+
+
+
+
+/* Previously defined animations below */
+
+
+
+
+
+
+/* Slide animations for Suspense the fallback down */
+::view-transition-old(.slide-down) {
+    animation: 150ms ease-out both fade-out, 150ms ease-out both slide-down;
+}
+
+::view-transition-new(.slide-up) {
+    animation: 210ms ease-in 150ms both fade-in, 400ms ease-in both slide-up;
+}
+
+/* Animations for view transition classed added by transition type */
 ::view-transition-old(.slide-forward) {
-    animation: 90ms cubic-bezier(0.4, 0, 1, 1) both fade-out,
-    300ms cubic-bezier(0.4, 0, 0.2, 1) both slide-to-left;
+    /* when sliding forward, the "old" page should slide out to left. */
+    animation: 150ms cubic-bezier(0.4, 0, 1, 1) both fade-out,
+    400ms cubic-bezier(0.4, 0, 0.2, 1) both slide-to-left;
 }
 
 ::view-transition-new(.slide-forward) {
-    animation: 210ms cubic-bezier(0, 0, 0.2, 1) 90ms both fade-in,
-    300ms cubic-bezier(0.4, 0, 0.2, 1) both slide-from-right;
+    /* when sliding forward, the "new" page should slide in from right. */
+    animation: 210ms cubic-bezier(0, 0, 0.2, 1) 150ms both fade-in,
+    400ms cubic-bezier(0.4, 0, 0.2, 1) both slide-from-right;
 }
 
 ::view-transition-old(.slide-back) {
-    animation: 90ms cubic-bezier(0.4, 0, 1, 1) both fade-out,
-    300ms cubic-bezier(0.4, 0, 0.2, 1) both slide-to-right;
+    /* when sliding back, the "old" page should slide out to right. */
+    animation: 150ms cubic-bezier(0.4, 0, 1, 1) both fade-out,
+    400ms cubic-bezier(0.4, 0, 0.2, 1) both slide-to-right;
 }
 
 ::view-transition-new(.slide-back) {
-    animation: 210ms cubic-bezier(0, 0, 0.2, 1) 90ms both fade-in,
-    300ms cubic-bezier(0.4, 0, 0.2, 1) both slide-from-left;
+    /* when sliding back, the "new" page should slide in from left. */
+    animation: 210ms cubic-bezier(0, 0, 0.2, 1) 150ms both fade-in,
+    400ms cubic-bezier(0.4, 0, 0.2, 1) both slide-from-left;
+}
+
+/* Keyframes to support our animations above. */
+@keyframes slide-up {
+    from {
+        transform: translateY(10px);
+    }
+    to {
+        transform: translateY(0);
+    }
+}
+
+@keyframes slide-down {
+    from {
+        transform: translateY(0);
+    }
+    to {
+        transform: translateY(10px);
+    }
 }
 
 @keyframes fade-in {
@@ -11286,13 +11473,13 @@ ul {
     }
 }
 
-@keyframes slide-up {
-    from {
-        transform: translateY(20px);
-    }
-    to {
-        transform: translateX(0);
-    }
+/* Default .slow-fade. */
+::view-transition-old(.slow-fade) {
+    animation-duration: 500ms;
+}
+
+::view-transition-new(.slow-fade) {
+    animation-duration: 500ms;
 }
 ```
 
@@ -11353,7 +11540,7 @@ For example, our app currently needs to suspend to load the data for each video 
 <ViewTransition>
 ```
 
-With this update, when you select a video, it is rendered without a Suspense fallback:
+With this update, if you select a video after 1 second, the content has time to pre-render and animates without the Suspense fallback:
 
 <Sandpack>
 
@@ -11381,7 +11568,7 @@ export default function App() {
 }
 ```
 
-```js src/Details.js
+```js src/Details.js hidden
 import { use, Suspense, unstable_ViewTransition as ViewTransition } from "react";
 import { fetchVideo, fetchVideoDetails } from "./data";
 import { Thumbnail, VideoControls } from "./Videos";
@@ -11392,8 +11579,16 @@ import { ChevronLeft } from "./Icons";
 function VideoDetails({id}) {
   // ✅ Animate from Suspense fallback to content
   return (
-    <Suspense fallback={<VideoInfoFallback />}>
-      <ViewTransition>
+    <Suspense
+      fallback={
+        // ✅ Animate the fallback down.
+        <ViewTransition exit="slide-down">
+          <VideoInfoFallback />
+        </ViewTransition>
+      }
+    >
+      {/* ✅ Animate the content up */}
+      <ViewTransition enter="slide-up">
         <VideoInfo id={id} />
       </ViewTransition>
     </Suspense>
@@ -11713,7 +11908,8 @@ import { PauseIcon, PlayIcon } from "./Icons";
 import { startTransition } from "react";
 
 export function Thumbnail({ video, children }) {
-  // ✅ Animated with a shared element transition
+  // ✅ Add a name to animate with a shared element transition.
+  //    This uses the default animation, no additional css needed.
   return (
     <ViewTransition name={`video-${video.id}`}>
       <div
@@ -12504,27 +12700,75 @@ ul {
 ```
 
 
-```css src/animations.css hidden
-✅ No additional animations needs, our fallback uses the browser default crossfade
+```css src/animations.css
+/* ✅ No additional animations needed */
 
+
+
+
+
+
+
+
+
+/* Previously defined animations below */
+
+
+
+
+
+
+/* Slide animations for Suspense the fallback down */
+::view-transition-old(.slide-down) {
+    animation: 150ms ease-out both fade-out, 150ms ease-out both slide-down;
+}
+
+::view-transition-new(.slide-up) {
+    animation: 210ms ease-in 150ms both fade-in, 400ms ease-in both slide-up;
+}
+
+/* Animations for view transition classed added by transition type */
 ::view-transition-old(.slide-forward) {
-    animation: 90ms cubic-bezier(0.4, 0, 1, 1) both fade-out,
-    300ms cubic-bezier(0.4, 0, 0.2, 1) both slide-to-left;
+    /* when sliding forward, the "old" page should slide out to left. */
+    animation: 150ms cubic-bezier(0.4, 0, 1, 1) both fade-out,
+    400ms cubic-bezier(0.4, 0, 0.2, 1) both slide-to-left;
 }
 
 ::view-transition-new(.slide-forward) {
-    animation: 210ms cubic-bezier(0, 0, 0.2, 1) 90ms both fade-in,
-    300ms cubic-bezier(0.4, 0, 0.2, 1) both slide-from-right;
+    /* when sliding forward, the "new" page should slide in from right. */
+    animation: 210ms cubic-bezier(0, 0, 0.2, 1) 150ms both fade-in,
+    400ms cubic-bezier(0.4, 0, 0.2, 1) both slide-from-right;
 }
 
 ::view-transition-old(.slide-back) {
-    animation: 90ms cubic-bezier(0.4, 0, 1, 1) both fade-out,
-    300ms cubic-bezier(0.4, 0, 0.2, 1) both slide-to-right;
+    /* when sliding back, the "old" page should slide out to right. */
+    animation: 150ms cubic-bezier(0.4, 0, 1, 1) both fade-out,
+    400ms cubic-bezier(0.4, 0, 0.2, 1) both slide-to-right;
 }
 
 ::view-transition-new(.slide-back) {
-    animation: 210ms cubic-bezier(0, 0, 0.2, 1) 90ms both fade-in,
-    300ms cubic-bezier(0.4, 0, 0.2, 1) both slide-from-left;
+    /* when sliding back, the "new" page should slide in from left. */
+    animation: 210ms cubic-bezier(0, 0, 0.2, 1) 150ms both fade-in,
+    400ms cubic-bezier(0.4, 0, 0.2, 1) both slide-from-left;
+}
+
+/* Keyframes to support our animations above. */
+@keyframes slide-up {
+    from {
+        transform: translateY(10px);
+    }
+    to {
+        transform: translateY(0);
+    }
+}
+
+@keyframes slide-down {
+    from {
+        transform: translateY(0);
+    }
+    to {
+        transform: translateY(10px);
+    }
 }
 
 @keyframes fade-in {
@@ -12569,13 +12813,13 @@ ul {
     }
 }
 
-@keyframes slide-up {
-    from {
-        transform: translateY(20px);
-    }
-    to {
-        transform: translateX(0);
-    }
+/* Default .slow-fade. */
+::view-transition-old(.slow-fade) {
+    animation-duration: 500ms;
+}
+
+::view-transition-new(.slow-fade) {
+    animation-duration: 500ms;
 }
 ```
 

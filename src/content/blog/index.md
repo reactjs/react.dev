@@ -14,10 +14,9 @@ You can also follow the [@react.dev](https://bsky.app/profile/react.dev) account
 
 <BlogCard title="React Compiler RC" date="April 21, 2025" url="/blog/2025/04/21/react-compiler-rc">
 
-We are releasing the compiler's first Release Candidate (RC) today. ...
+We are releasing the compiler's first Release Candidate (RC) today.
 
 </BlogCard>
-
 
 <BlogCard title="Sunsetting Create React App" date="February 14, 2025" url="/blog/2025/02/14/sunsetting-create-react-app">
 

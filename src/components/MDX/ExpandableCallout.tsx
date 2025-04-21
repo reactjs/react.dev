@@ -16,6 +16,7 @@ type CalloutVariants =
   | 'note'
   | 'wip'
   | 'canary'
+  | 'experimental'
   | 'major'
   | 'rsc';
 

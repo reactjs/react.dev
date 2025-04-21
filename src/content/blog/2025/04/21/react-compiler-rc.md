@@ -24,7 +24,7 @@ The React team is excited to share new updates:
 
 [React Compiler](https://react.dev/learn/react-compiler) is a build-time tool that optimizes your React app through automatic memoization. Last year, we published React Compiler’s [first beta](https://react.dev/blog/2024/10/21/react-compiler-beta-release) and received lots of great feedback and contributions. We’re excited about the wins we’ve seen from folks adopting the compiler (see case studies from [Sanity Studio](https://github.com/reactwg/react-compiler/discussions/33) and [Wakelet](https://github.com/reactwg/react-compiler/discussions/52)) and are working towards a stable release.
 
-We are releasing the compiler's first Release Candidate (RC) today. The RC is intended to be a stable and near-final version of the compiler, and safe to use in production for all React users.
+We are releasing the compiler's first Release Candidate (RC) today. The RC is intended to be a stable and near-final version of the compiler, and safe to try out in production.
 
 ## Use React Compiler RC today {/*use-react-compiler-rc-today*/}
 To install the RC:
@@ -100,11 +100,11 @@ Vite users can continue to use [vite-plugin-react](https://github.com/vitejs/vit
 ## Upgrading React Compiler {/*upgrading-react-compiler*/}
 React Compiler works best when the auto-memoization applied is strictly for performance. Future versions of the compiler may change how memoization is applied, for example it could become more granular and precise.
 
-However, because product code may sometimes break the [rules of React](https://react.dev/reference/rules) in ways that aren't always statically detectable in JavaScript, changing memoization can occasionally have unexpected results. For example, a previously memoized value might be used as a dependency for a useEffect somewhere in the component tree. Changing how or whether this value is memoized can cause over or under-firing of that useEffect. While we encourage [useEffect only for synchronization](https://react.dev/learn/synchronizing-with-effects), your codebase may have useEffects that cover other use-cases. For example you may have an effect that runs in response to some value changing (breaks the rules of React).
+However, because product code may sometimes break the [rules of React](https://react.dev/reference/rules) in ways that aren't always statically detectable in JavaScript, changing memoization can occasionally have unexpected results. For example, a previously memoized value might be used as a dependency for a useEffect somewhere in the component tree. Changing how or whether this value is memoized can cause over or under-firing of that useEffect. While we encourage [useEffect only for synchronization](https://react.dev/learn/synchronizing-with-effects), your codebase may have useEffects that cover other use-cases. For example you may have an effect that needs to run in response to very specific values changing.
 
 In other words, changing memoization may under rare circumstances cause unexpected behavior. For this reason, we recommend following the Rules of React and employing continuous end-to-end testing of your app so you can upgrade the compiler with confidence and identify any rules of React violations that might cause issues.
 
-If you don't have good test coverage, we recommend pinning the compiler to an exact version (eg `19.0.0`) rather than a SemVer range (eg `^19.0.0`). You can do this by passing the `--save-exact` (npm/pnpm) or `--exact` flags (yarn) when upgrading the compiler. You should then do any upgrades of the compiler manually, taking care to check that your app still works as expected.
+If you don't have good test coverage, we recommend pinning the compiler to an exact version (eg `19.1.0`) rather than a SemVer range (eg `^19.1.0`). You can do this by passing the `--save-exact` (npm/pnpm) or `--exact` flags (yarn) when upgrading the compiler. You should then do any upgrades of the compiler manually, taking care to check that your app still works as expected.
 
 ## Roadmap to Stable {/*roadmap-to-stable*/}
 *This is not a final roadmap, and is subject to change.*

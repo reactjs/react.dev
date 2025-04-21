@@ -8,10 +8,12 @@ import {H1} from './MDX/Heading';
 import type {RouteTag, RouteItem} from './Layout/getRouteMeta';
 import * as React from 'react';
 import {IconCanary} from './Icon/IconCanary';
+import {IconExperimental} from './Icon/IconExperimental';
 
 interface PageHeadingProps {
   title: string;
-  canary?: boolean;
+  version?: 'experimental' | 'canary';
+  experimental?: boolean;
   status?: string;
   description?: string;
   tags?: RouteTag[];
@@ -21,19 +23,26 @@ interface PageHeadingProps {
 function PageHeading({
   title,
   status,
-  canary,
+  version,
   tags = [],
   breadcrumbs,
 }: PageHeadingProps) {
+  console.log('version', version);
   return (
     <div className="px-5 sm:px-12 pt-3.5">
       <div className="max-w-4xl ms-0 2xl:mx-auto">
         {breadcrumbs ? <Breadcrumbs breadcrumbs={breadcrumbs} /> : null}
         <H1 className="mt-0 text-primary dark:text-primary-dark -mx-.5 break-words">
           {title}
-          {canary && (
+          {version === 'canary' && (
             <IconCanary
-              title=" - This feature is available in the latest Canary"
+              title=" - This feature is available in the latest Canary version of React"
+              className="ms-4 mt-1 text-gray-50 dark:text-gray-40 inline-block w-6 h-6 align-[-1px]"
+            />
+          )}
+          {version === 'experimental' && (
+            <IconExperimental
+              title=" - This feature is available in the latest Experimental version of React"
               className="ms-4 mt-1 text-gray-50 dark:text-gray-40 inline-block w-6 h-6 align-[-1px]"
             />
           )}

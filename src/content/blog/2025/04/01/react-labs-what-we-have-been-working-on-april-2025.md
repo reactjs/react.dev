@@ -55,9 +55,9 @@ You can try them by upgrading React packages to the most recent experimental ver
 
 Read more to see how to use these features in your app, or checkout the new docs published today:
 
-- [`<ViewTransition>`](/TODO): A component lets you activate an animation for a Transition.
-- [`addTransitionType`](/TODO): A function that allows you to specify the cause of a Transition.
-- [`<Activity>`](/TODO): A component that lets you hide and show part of the UI.
+- [`<ViewTransition>`](/reference/react/ViewTransition): A component lets you activate an animation for a Transition.
+- [`addTransitionType`](/reference/react/addTransitionType): A function that allows you to specify the cause of a Transition.
+- [`<Activity>`](/reference/react/Activity): A component that lets you hide and show part of the UI.
 
 ## View Transitions {/*view-transitions*/}
 
@@ -104,9 +104,9 @@ By default, these animations have the [default CSS animations for View Transitio
 }
 ```
 
-When the DOM updates in an animation trigger such as `startTransition`, `useDeferredValue`, or switching Suspense fallbacks to content, React will use [declarative heuristics](#todo) to automatically determine which `<ViewTransition>` components to activate for the animation. The browser will then run the animation that's defined in CSS.
+When the DOM updates in an animation trigger such as `startTransition`, `useDeferredValue`, or switching Suspense fallbacks to content, React will use [declarative heuristics](/reference/react/ViewTransition#viewtransition) to automatically determine which `<ViewTransition>` components to activate for the animation. The browser will then run the animation that's defined in CSS.
 
-If you're familar with the browser view transition APIs and curious how we've built support for them into React, checkout [How do View Transitions Work](/#TODO) in the docs. 
+If you're familar with the browser view transition APIs and curious how we've built support for them into React, checkout [How does View Transitions Work](/reference/react/ViewTransition#how-does-viewtransition-work) in the docs. 
 
 In this post, let's take a look at a few examples of how to use View Transitions. 
 
@@ -2466,7 +2466,7 @@ If you're curious how this works, see the docs for [How does `<ViewTransition>` 
 
 By default, `<ViewTransition>` includes the default cross-fade from the browser.
 
-To customize animations, you can provide props to the `<ViewTranstion>` component to specify which animations to use, based on how the `<ViewTransition>` activates (see [the docs](/TODO) for the heuristics React uses to activate different types of animations).
+To customize animations, you can provide props to the `<ViewTranstion>` component to specify which animations to use, based on [how the `<ViewTransition>` activates](/reference/react/ViewTransition#props).
 
 For example, we can slow down the `default` cross fade animation:
 
@@ -10130,7 +10130,7 @@ root.render(
 
 </Sandpack>
 
-If you're curious to know more about how they work, check out [How Do View Transitons Work](/todo) in the docs.
+If you're curious to know more about how they work, check out [How Does `<ViewTransition>` Work](/reference/react/ViewTransition#how-does-viewtransition-work) in the docs.
 
 _For more background on how we built View Transitions, see: [#31975](https://github.com/facebook/react/pull/31975), [#32105](https://github.com/facebook/react/pull/32105), [#32041](https://github.com/facebook/react/pull/32041), [#32734](https://github.com/facebook/react/pull/32734), [#32797](https://github.com/facebook/react/pull/32797) [#31999](https://github.com/facebook/react/pull/31999), [#32031](https://github.com/facebook/react/pull/32031), [#32050](https://github.com/facebook/react/pull/32050), [#32820](https://github.com/facebook/react/pull/32820), [#32029](https://github.com/facebook/react/pull/32029), [#32028](https://github.com/facebook/react/pull/32028), and [#32038](https://github.com/facebook/react/pull/32038) by [@sebmarkbage](https://twitter.com/sebmarkbage) (thanks Seb!)._
 
@@ -12887,11 +12887,11 @@ Once we solve those issues, we'll publish experimental docs and share that it's 
 
 ## Compiler IDE Extension {/*ide-extension*/}
 
-Last week [we shared](/TODO) the React Compiler release candidate, and we're working towards shipping the first semver stable version of the compiler in the coming months.
+This week [we shared](/TODO) the React Compiler release candidate, and we're working towards shipping the first semver stable version of the compiler in the coming months.
 
 We've also begun exploring ways to use the React Compiler to provide information that can improve understanding and debugging your code. One idea we've started exploring is a new experimental LSP-based React IDE extension powered by React Compiler, similar to the extension used in [Lauren Tan's React Conf talk](https://conf2024.react.dev/talks/5).
 
-Our idea is that we can use the compiler's static analysis to provide more information, suggestions, and optimization opportunities directly in your IDE. For example, we can provide diagnostics for code breaking the Rules of React, hovers to show if components and hooks were optimized by the compiler, or a CodeLens to see [automatically inserted Effect dependencies](/todo).
+Our idea is that we can use the compiler's static analysis to provide more information, suggestions, and optimization opportunities directly in your IDE. For example, we can provide diagnostics for code breaking the Rules of React, hovers to show if components and hooks were optimized by the compiler, or a CodeLens to see [automatically inserted Effect dependencies](/#automatic-effect-dependencies).
 
 The IDE extension is still an early exploration, but we'll share our progress in future updates.
 

@@ -17,8 +17,8 @@ The React team is excited to share new updates:
 </Intro>
 
 1. We're publishing React Compiler RC today, in preparation of the compiler's stable release.
-2. We're simplifying your eslint setup by merging `eslint-plugin-react-compiler` into `eslint-plugin-react-hooks`.
-3. We're working with the swc and oxc teams to add plugins to allow for Babel-free build pipelines.
+2. We're merging `eslint-plugin-react-compiler` into `eslint-plugin-react-hooks`.
+3. We've added support for swc and are working with oxc to support Babel-free builds.
 
 ---
 
@@ -54,24 +54,24 @@ You can find more details on using the Compiler in [our docs](https://react.dev/
 As noted in the Beta announcement, React Compiler is compatible with React 17 and up. If you are not yet on React 19, you can use React Compiler by specifying a minimum target in your compiler config, and adding `react-compiler-runtime` as a dependency. You can find docs on this [here](https://react.dev/learn/react-compiler#using-react-compiler-with-react-17-or-18).
 
 ## Migrating from eslint-plugin-react-compiler to eslint-plugin-react-hooks {/*migrating-from-eslint-plugin-react-compiler-to-eslint-plugin-react-hooks*/}
-To install eslint-plugin-react-hooks:
+If you have already installed eslint-plugin-react-compiler, you can now remove it and use `eslint-plugin-react-hooks@^6.0.0-rc.1`. Many thanks to [@michaelfaith](https://bsky.app/profile/michael.faith) for contributing to this improvement!
+
+To install:
 
 npm
 <TerminalBlock>
-{`npm install --save-dev eslint-plugin-react-hooks@^6.0.0`}
+{`npm install --save-dev eslint-plugin-react-hooks@^6.0.0-rc.1`}
 </TerminalBlock>
 
 pnpm
 <TerminalBlock>
-{`pnpm add --save-dev eslint-plugin-react-hooks@^6.0.0`}
+{`pnpm add --save-dev eslint-plugin-react-hooks@^6.0.0-rc.1`}
 </TerminalBlock>
 
 yarn
 <TerminalBlock>
-{`yarn add --dev eslint-plugin-react-hooks@^6.0.0`}
+{`yarn add --dev eslint-plugin-react-hooks@^6.0.0-rc.1`}
 </TerminalBlock>
-
-`eslint-plugin-react-hooks` 5.2.0 has been ported to TypeScript, which allowed us to improve the type-safety of the plugin. In the 6.0.0 release of the ESLint plugin, the compiler lint rule has now been merged in. If you were previously using `eslint-plugin-react-compiler`, this means you can now use a single ESLint plugin in your codebase. Many thanks to [@michaelfaith](https://bsky.app/profile/michael.faith) for contributing to this improvement!
 
 ```js
 // eslint.config.js
@@ -89,7 +89,11 @@ export default [
 The linter does not require the compiler to be installed, so there's no risk in upgrading eslint-plugin-react-hooks. We recommend everyone upgrade today.
 
 ## swc and oxc support (experimental) {/*swc-and-oxc-support-experimental*/}
-We have also been collaborating with Kang Dongyoong ([@kdy1dev](https://x.com/kdy1dev)) from the [swc](https://swc.rs/) team on adding support for React Compiler as an swc plugin. As part of the RC release, you can integrate the compiler into your [Next.js app with swc](https://nextjs.org/docs/app/api-reference/config/next-config-js/reactCompiler) instead of babel. We are also working with the [oxc](https://oxc.rs/) team to [add support for the compiler](https://github.com/oxc-project/oxc/issues/10048), which should allow more people to use the compiler if they have already migrated off of Babel.
+React Compiler can be installed across [several build tools](/learn/react-compiler#installation) such as Babel, Vite, and Rsbuild.
+
+We have been collaborating with Kang Dongyoong ([@kdy1dev](https://x.com/kdy1dev)) from the [swc](https://swc.rs/) team on adding additional support for React Compiler as an swc plugin. As part of the RC release, you can now integrate the compiler into your [Next.js app with swc](https://nextjs.org/docs/app/api-reference/config/next-config-js/reactCompiler) instead of Babel.
+
+We are also working with the [oxc](https://oxc.rs/) team to [add support for the compiler](https://github.com/oxc-project/oxc/issues/10048), which should allow more people to use the compiler if they have already migrated off of Babel.
 
 Next.js users can upgrade to [15.3.1](https://github.com/vercel/next.js/releases/tag/v15.3.1) or greater to try this out. If you have already enabled the compiler in your Next.js's config, swc support will be enabled automatically.
 

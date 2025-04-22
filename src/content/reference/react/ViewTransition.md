@@ -2125,15 +2125,7 @@ React waits for any pending Navigation to finish to ensure that scroll restorati
 
 If a `startTransition` is started from the legacy popstate event, such as during a "back"-navigation then it must finish synchronously to ensure scroll and form restoration works correctly. This is in conflict with running a View Transition animation. Therefore, React will skip animations from popstate. Therefore animations won't run for the back button. You can fix this by upgrading your router to use the Navigation API.
 
-TODO: add the navigation-forward and navigation-back recommendation?
-
 ---
-
-### Adjusting animations {/*adjusting-animations*/}
-
-TODO: example of using the callbacks with:
-- viewTransition.old.animate
-- -viewTransition.new.animate
 
 ## Troubleshooting {/*troubleshooting*/}
 

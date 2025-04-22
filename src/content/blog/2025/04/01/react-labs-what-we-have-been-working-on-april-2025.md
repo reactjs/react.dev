@@ -4867,7 +4867,7 @@ root.render(
 
 </Sandpack>
 
-By default, React automatically generates a unique `name` for each element activated for a transition (see [How does `<ViewTransiton>` work](/reference/react/ViewTransition#how-does-viewtransition-work)). When React sees a transition where a `<ViewTransiton>` with a `name` is removed and a new `<ViewTransition>` with the same `name` is added, it will activate a shared element transition.
+By default, React automatically generates a unique `name` for each element activated for a transition (see [How does `<ViewTransition>` work](/reference/react/ViewTransition#how-does-viewtransition-work)). When React sees a transition where a `<ViewTransition>` with a `name` is removed and a new `<ViewTransition>` with the same `name` is added, it will activate a shared element transition.
 
 For more info, see the docs for [Animating a Shared Element](/reference/react/ViewTransition#animating-a-shared-element).
 

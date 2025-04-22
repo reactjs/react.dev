@@ -82,7 +82,7 @@ Currently, Transition Types can be used to customize different animations based 
 
 - [Customize animations using browser view transition types](#customize-animations-using-browser-view-transition-types)
 - [Customize animations using `View Transition` Class](#customize-animations-using-view-transition-class)
-- [Customize animations using `ViewTransiton` events](#customize-animations-using-viewtransition-events) 
+- [Customize animations using `ViewTransition` events](#customize-animations-using-viewtransition-events) 
 
 In the future, we plan to support more use cases for using the cause of a transition.
 
@@ -157,7 +157,7 @@ exit={{
 
 ---
 
-### Customize animations using `ViewTransiton` events {/*customize-animations-using-viewtransition-events*/}
+### Customize animations using `ViewTransition` events {/*customize-animations-using-viewtransition-events*/}
 
 You can imperatively customize animations for an activated `ViewTransition` based on type using View Transition events:
 

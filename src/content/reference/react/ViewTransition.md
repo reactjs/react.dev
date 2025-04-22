@@ -38,7 +38,7 @@ import {unstableViewTransition as ViewTransition} from 'react';
 
 ## Reference {/*reference*/}
 
-### `<ViewTransiton>` {/*viewtransition*/}
+### `<ViewTransition>` {/*viewtransition*/}
 
 Wrap elements in `<ViewTransition>` to animate them when they update inside a [Transition](/reference/react/useTransition). React uses [heuristics](#heuristics) to determine if a View Transition activates for an animation:
 
@@ -47,7 +47,7 @@ Wrap elements in `<ViewTransition>` to animate them when they update inside a [T
 - `update`: If a `ViewTransition` has any DOM mutations inside it that React is doing (such as a prop changing) or if the `ViewTransition` boundary itself changes size or position due to an immediate sibling. If there are nested` ViewTransition` then the mutation applies to them and not the parent.
 - `share`: If a named `ViewTransition` is inside a deleted subtree and another named `ViewTransition` with the same name is part of an inserted subtree in the same Transition, they form a Shared Element Transition, and it animates from the deleted one to the inserted one.
 
-By default, `<ViewTransition>` animates with a smooth cross-fade (the browser default view transition). You can customize the animation by providing a [View Transition Class](#view-transition-class) to the `<ViewTransition>` component. You can use a customize animations for each kind of trigger (see [Styling View Transitions](#styling-view-transitions)).
+By default, `<ViewTransition>` animates with a smooth cross-fade (the browser default view transition). You can customize the animation by providing a [View Transition Class](#view-transition-class) to the `<ViewTransition>` component. You can  customize animations for each kind of trigger (see [Styling View Transitions](#styling-view-transitions)).
 
 <DeepDive>
 
@@ -144,7 +144,7 @@ In the future, CSS libraries may add built-in animations using View Transition C
 #### Caveats {/*caveats*/}
 
 - By default, `setState` updates immediately and does not activate `<ViewTransition>`, only updates wrapped in a [Transition](/reference/react/useTransition). You can also use [`<Suspense>`](/reference/react/Suspense) to opt-in to a Transition to [reveal content](/link-to-suspense-below).
-- `<ViewTransition>` creates an image that can be moved around, scaled and cross-faded. Unlike Layout Animations you may have seen in React Native or Motion, this means that not every individual Element inside of it animates its position. This can lead to better performance and a more continuous feeling, smooth, animation compared to animating every individual piece. However, it can also lose continuity in things that should be moving by themselves. So you might have to add more `<ViewTransition>` boundaries manually as a result.
+- `<ViewTransition>` creates an image that can be moved around, scaled and cross-faded. Unlike Layout Animations you may have seen in React Native or Motion, this means that not every individual Element inside of it animates its position. This can lead to better performance and a more continuous feeling, smooth animation compared to animating every individual piece. However, it can also lose continuity in things that should be moving by themselves. So you might have to add more `<ViewTransition>` boundaries manually as a result.
 - Many users may prefer not having animations on the page. React doesn't automatically disable animations for this case. We recommend that using the `@media (prefers-reduced-motion)` media query to disable animations or tone them down based on user preference. In the future, CSS libraries may have this built-in to their presets.
 - Currently, `<ViewTransition>` only works in the DOM. We're working on adding support for React Native and other platforms.
 
@@ -348,7 +348,7 @@ button:hover {
 
 <Pitfall>
 
-`<ViewTransition>` only activates if it is placed is before any DOM node. If `Child` instead looked like this, no animation would trigger:
+`<ViewTransition>` only activates if it is placed before any DOM node. If `Child` instead looked like this, no animation would trigger:
 
 ```js [3, 5]
 function Component() {
@@ -1047,7 +1047,7 @@ This means that during an update, which causes a lot of re-layout, it doesn't in
 
 <Pitfall>
 
-It's important to properly use keys to preserve identity when reordering lists. It might seems like you could use "name", shared element transitions, to animate reorders but that would not trigger if one side was outside the viewport. To animate a reorder you often want to show that it went to a position outside the viewport.
+It's important to properly use keys to preserve identity when reordering lists. It might seem like you could use "name", shared element transitions, to animate reorders but that would not trigger if one side was outside the viewport. To animate a reorder you often want to show that it went to a position outside the viewport.
 
 </Pitfall>
 
@@ -1055,7 +1055,7 @@ It's important to properly use keys to preserve identity when reordering lists. 
 
 ### Animating from Suspense content {/*animating-from-suspense-content*/}
 
-Just like any Transition, React waits for data and new CSS (`<link rel="stylesheet" precedence="...">`) before running the animation. In addition to this ViewTransitions also wait up to 500ms for new fonts to load before starting the animation to avoid them flickering in later. For the same reason, an image wrapped in ViewTransition will wait for the image to load.
+Just like any Transition, React waits for data and new CSS (`<link rel="stylesheet" precedence="...">`) before running the animation. In addition to this, ViewTransitions also wait up to 500ms for new fonts to load before starting the animation to avoid them flickering in later. For the same reason, an image wrapped in ViewTransition will wait for the image to load.
 
 If it's inside a new Suspense boundary instance, then the fallback is shown first. After the Suspense boundary fully loads, it triggers the `<ViewTransition>` to animate the reveal to the content.
 
@@ -2203,7 +2203,7 @@ The existing `<ViewTransition name=%s>` duplicate has this stack trace.
 </ConsoleLogLine>
 </ConsoleBlockMulti>
 
-To fix, ensure that there's only one `<ViewTransition>` with the same name mounted at a time in the entire app by ensuring the `name` is uniquie, or adding an `id` to the name:
+To fix, ensure that there's only one `<ViewTransition>` with the same name mounted at a time in the entire app by ensuring the `name` is unique, or adding an `id` to the name:
 
 ```js [3]
 function Item({id}) {

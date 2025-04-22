@@ -26,7 +26,7 @@ For more info on tickets, free streaming, sponsoring, and more, see [the React C
 
 </Note>
 
-Today, we're excited to release docs for three new experimental features ready for testing:
+Today, we're excited to release docs for two new experimental features ready for testing:
 
 - [View Transitions](#view-transitions)
 - [Activity](#activity)
@@ -12932,15 +12932,15 @@ useEffect(() => {
 }, [roomId]);
 ```
 
-Many users would read this code as "on mount, connect to the roomId. whenever `roomId` changes, disconnect to the old room and re-create the connection". However, this is thinking from the component's lifecycle perspective, which means you will need to think of every compoent lifecycle state to write the effect correctly. This can be difficult, so it's understandble that Effects seem harder than class lifecycles when using component perspecitve.
+Many users would read this code as "on mount, connect to the roomId. whenever `roomId` changes, disconnect to the old room and re-create the connection". However, this is thinking from the component's lifecycle perspective, which means you will need to think of every component lifecycle state to write the effect correctly. This can be difficult, so it's understandble that Effects seem harder than class lifecycles when using component perspective.
 
-### Effects on easy mode {/*effects-on-easy-mode*/}
+### Effects without dependencies {/*effects-without-dependencies*/}
 
 Instaed, it's better to think from the Effect's perspective. The effect doesn't know about about the component lifecycles. It only describes how to start synchronization and how to stop it. When users think of Effects in this way, their Effects tend to be easier to write, and more resilient to being started and stopped as many times as it’s needed.
 
-We spend some time reseaching why Effects are thought of from the component perspective, and we think one of the resons is the depenedency array. Since you have to write it, it's right there and in your face reminding you of what you're "reacting" to and baiting you into thinking of the component props and state changing.
+We spent some time researching why Effects are thought of from the component perspective, and we think one of the resons is the dependency array. Since you have to write it, it's right there and in your face reminding you of what you're "reacting" to and baiting you into the mental model of 'do this when these values change'.
 
-When we released hooks, we thought this might be the case, but knew it would be solved by ahead-of-time compilation of the depependencies. It's taken longer than expected, but with the React Compiler we can start inserting the dependencies for you:
+When we released hooks, we knew we could make them easier to use with ahead-of-time compilation. With the React Compiler, you're now able to avoid writing `useCallback` and `useMemo` yourself in most cases. For Effects, the compiler can insert the dependencies for you:
 
 ```js
 useEffect(() => {
@@ -12952,9 +12952,9 @@ useEffect(() => {
 }); // compiler inserted dependencies. 
 ```
 
-With this code, the React Compiler can infer the dependecies for you and insert them automatically so you don't need to see or write them. With features like the IDE exension and `useEffectEvent`, we can provide a CodeLens to show you what the Compiler inserted for times you need to debug, or to optimize by removing a dependency. 
+With this code, the React Compiler can infer the dependencies for you and insert them automatically so you don't need to see or write them. With features like the IDE exension and `useEffectEvent`, we can provide a CodeLens to show you what the Compiler inserted for times you need to debug, or to optimize by removing a dependency. This helps reinforce the correct mental model for writing Effects, which can run at any time to synchronize your component or hook's state with something else
 
-Our hope is that automatically inserting dependies is not only easier to write, but that it also makes them easier to understand by forcing you to think in terms of what the effect does, and not in component lifecycles. 
+Our hope is that automatically inserting dependencies is not only easier to write, but that it also makes them easier to understand by forcing you to think in terms of what the effect does, and not in component lifecycles. 
 
 ---
 
@@ -12970,7 +12970,7 @@ Fragment refs are still being researched. We'll share more when we're closer to 
 
 ## Gesture Animations {/*gesture-animations*/}
 
-We're also researching ways to enhance View Transitions to support gesture animations such as swiping to open a menu, or scroll through a photo carosel. 
+We're also researching ways to enhance View Transitions to support gesture animations such as swiping to open a menu, or scroll through a photo carousel. 
 
 Gestures present new challenges for a few reasons:
 

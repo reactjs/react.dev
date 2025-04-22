@@ -42,7 +42,7 @@ We're also sharing updates on new features currently in development:
 
 # New Experimental Features {/*new-experimental-features*/}
 
-Today we're sharing two new experimental feautres: View Transitions and Activity.
+Today we're sharing two new experimental features: View Transitions and Activity.
 
 These experimental features have been tested in production and we are confident they're stable, but the final API might change while we iterate on feedback.
 
@@ -51,7 +51,7 @@ You can try them by upgrading React packages to the most recent experimental ver
 - `react@experimental`
 - `react-dom@experimental`
 
-Read more to see how to use these features in your app, or checkout the new docs published today:
+Read more to see how to use these features in your app, or check out the new docs published today:
 
 - [`<ViewTransition>`](/reference/react/ViewTransition): A component lets you activate an animation for a Transition.
 - [`addTransitionType`](/reference/react/addTransitionType): A function that allows you to specify the cause of a Transition.
@@ -90,7 +90,7 @@ const deferred = useDeferredValue(value);
 </Suspense>
 ```
 
-By default, these animations have the [default CSS animations for View Transitions](https://developer.mozilla.org/en-US/docs/Web/API/View_Transition_API/Using#customizing_your_animations) applied (most are given a default smooth cross-fade). You can use [view transition psuedo-selectors](https://developer.mozilla.org/en-US/docs/Web/API/View_Transition_API/Using#the_view_transition_pseudo-element_tree) to define "how" the animation runs. For example, using `*` we can change the default for all animations: 
+By default, these animations have the [default CSS animations for View Transitions](https://developer.mozilla.org/en-US/docs/Web/API/View_Transition_API/Using#customizing_your_animations) applied (most are given a default smooth cross-fade). You can use [view transition pseudo-selectors](https://developer.mozilla.org/en-US/docs/Web/API/View_Transition_API/Using#the_view_transition_pseudo-element_tree) to define "how" the animation runs. For example, using `*` we can change the default for all animations: 
 
 ```
 // "how" to animate.
@@ -104,7 +104,7 @@ By default, these animations have the [default CSS animations for View Transitio
 
 When the DOM updates in an animation trigger such as `startTransition`, `useDeferredValue`, or switching Suspense fallbacks to content, React will use [declarative heuristics](/reference/react/ViewTransition#viewtransition) to automatically determine which `<ViewTransition>` components to activate for the animation. The browser will then run the animation that's defined in CSS.
 
-If you're familar with the browser view transition APIs and curious how we've built support for them into React, checkout [How does View Transitions Work](/reference/react/ViewTransition#how-does-viewtransition-work) in the docs. 
+If you're familiar with the browser view transition APIs and curious how we've built support for them into React, check  out [How does `<ViewTransition>` Work](/reference/react/ViewTransition#how-does-viewtransition-work) in the docs. 
 
 In this post, let's take a look at a few examples of how to use View Transitions. 
 
@@ -1278,7 +1278,7 @@ In our example app above, notice that there are already animations when you clic
 
 ### Animating navigations {/*animating-navigations*/}
 
-Our app includes a Suspense-enabled router, with [page transitions already marked as Transitions](/reference/react/useTransition#building-a-suspense-enabled-router), which means navigations are performed with `startTranstion`:
+Our app includes a Suspense-enabled router, with [page transitions already marked as Transitions](/reference/react/useTransition#building-a-suspense-enabled-router), which means navigations are performed with `startTransition`:
 
 ```js
 function navigate(url) {
@@ -2467,7 +2467,7 @@ If you're curious how this works, see the docs for [How does `<ViewTransition>` 
 
 By default, `<ViewTransition>` includes the default cross-fade from the browser.
 
-To customize animations, you can provide props to the `<ViewTranstion>` component to specify which animations to use, based on [how the `<ViewTransition>` activates](/reference/react/ViewTransition#props).
+To customize animations, you can provide props to the `<ViewTransition>` component to specify which animations to use, based on [how the `<ViewTransition>` activates](/reference/react/ViewTransition#props).
 
 For example, we can slow down the `default` cross fade animation:
 
@@ -3676,7 +3676,7 @@ To do this you can add a unique `name` to the `<ViewTransition>`:
 ```js
 <ViewTransition name={`video-${video.id}`}>
   <Thumbnail video={video} />
-</ViewTranstion>
+</ViewTransition>
 ```
 
 Now the video thumbnail animates between the two pages:
@@ -4871,7 +4871,7 @@ root.render(
 
 </Sandpack>
 
-By default, React automatically generates a unique `name` for each element activated for a transition (see [How does `<ViewTransiton>` work](/reference/react/ViewTransition#how-does-viewtransition-work)). When React sees a transition where a `<ViewTransiton>` with a `name` is removed and a new `<ViewTransition>` with the same `name` is added, it will activate a shared element transtion.
+By default, React automatically generates a unique `name` for each element activated for a transition (see [How does `<ViewTransiton>` work](/reference/react/ViewTransition#how-does-viewtransition-work)). When React sees a transition where a `<ViewTransiton>` with a `name` is removed and a new `<ViewTransition>` with the same `name` is added, it will activate a shared element transition.
 
 For more info, see the docs for [Animating a Shared Element](/reference/react/ViewTransition#animating-a-shared-element).
 

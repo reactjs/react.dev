@@ -64,8 +64,8 @@ React View Transitions are a new experimental feature for React designed to make
 To opt-in to animating an element, wrap it in the new `<ViewTransition>` component:
 
 
-```js {2,4}
-// ✅ "what" to animate.
+```js
+// "what" to animate.
 <ViewTransition>
   <div>animate me</div>
 </ViewTransition>
@@ -75,8 +75,8 @@ This new component lets you declaratively define "what" to animate when an anima
 
 You can define "when" to animate by using one of these three triggers for a View Transition:
 
-```js {4,7,10,12}
-// ✅ "when" to animate.
+```js
+// "when" to animate.
 
 // Transitions
 startTransition(() => setState(...));

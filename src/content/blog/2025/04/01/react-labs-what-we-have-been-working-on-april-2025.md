@@ -93,7 +93,7 @@ const deferred = useDeferredValue(value);
 By default, these animations have the [default CSS animations for View Transitions](https://developer.mozilla.org/en-US/docs/Web/API/View_Transition_API/Using#customizing_your_animations) applied (most are given a default smooth cross-fade). You can use [view transition psuedo-selectors](https://developer.mozilla.org/en-US/docs/Web/API/View_Transition_API/Using#the_view_transition_pseudo-element_tree) to define "how" the animation runs. For example, using `*` we can change the default for all animations: 
 
 ```
-// ✅ "how" to animate.
+// "how" to animate.
 ::view-transition-old(*) {
   animation: 300ms ease-out fade-out;
 }
@@ -1280,7 +1280,7 @@ In our example app above, notice that there are already animations when you clic
 
 Our app includes a Suspense-enabled router, with [page transitions already marked as Transitions](/reference/react/useTransition#building-a-suspense-enabled-router), which means navigations are performed with `startTranstion`:
 
-```js {2}
+```js
 function navigate(url) {
   startTransition(() => {
     go(url);
@@ -1290,7 +1290,7 @@ function navigate(url) {
 
 `startTransition` is a View Transition trigger, so we can add `<ViewTransition>` to animate between pages:
 
-```js {2,4}
+```js
 // "what" to animate
 <ViewTransition key={url}>
   {url === '/' ? <Home /> : <TalkDetails />}
@@ -2479,7 +2479,7 @@ For example, we can slow down the `default` cross fade animation:
 
 And define `slow-fade` in CSS using [view transition classes](/reference/react/ViewTransition#view-transition-classes):
 
-```css {1,5}
+```css
 ::view-transition-old(.slow-fade) {
     animation-duration: 500ms;
 }
@@ -3673,7 +3673,7 @@ When two pages include the same element, often you want to animate it from one p
 
 To do this you can add a unique `name` to the `<ViewTransition>`:
 
-```js {1,3}
+```js
 <ViewTransition name={`video-${video.id}`}>
   <Thumbnail video={video} />
 </ViewTranstion>
@@ -4882,14 +4882,14 @@ Sometimes, you may want elements to animate differently based on how it was trig
 ```js {4,11}
 function navigate(url) {
   startTransition(() => {
-    // ✅ Transition type for the cause "nav forward"
+    // Transition type for the cause "nav forward"
     addTransitionType('nav-forward');
     go(url);
   });
 }
 function navigateBack(url) {
   startTransition(() => {
-    // ✅ Transition type for the cause "nav backward"
+    // Transition type for the cause "nav backward"
     addTransitionType('nav-back');
     go(url);
   });
@@ -4911,7 +4911,7 @@ With transition types, you can provide custom animations via props to `<ViewTran
 
 Here we pass a `share` prop to define how to animate based on the transiton type. When the share transition activates from `nav-forward`, the view transition class `slide-forward` is applied. When it's from `nav-back`, the `slide-back` animation is activated. Let's define these animations in CSS:
 
-```css {1,5,9,13}
+```css
 ::view-transition-old(.slide-forward) {
     /* when sliding forward, the "old" page should slide out to left. */
     animation: ...
@@ -10145,8 +10145,8 @@ We're now ready to share the API and how it works, so you can start testing it i
 
 `<Activity>` is a new component to hide and show parts of the UI:
 
-```[[1, 1, 'visible'], [2,1,'hidden']]
-<Activity mode={isVisible ? 'visible' : 'hidden'>
+```js [[1, 1, "'visible'"], [2, 1, "'hidden'"]]
+<Activity mode={isVisible ? 'visible' : 'hidden'}>
   <Page />
 </Activity>
 ```

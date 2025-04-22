@@ -686,7 +686,7 @@ export default function Component() {
       <div className="listContainer">
         {orderedVideos.map((video, i) => {
           return (
-            <ViewTransition key={video.title}>
+            <ViewTransition key={video.title} update="none">
               <Video video={video} />
             </ViewTransition>
           );
@@ -1145,7 +1145,6 @@ export default function Component() {
           });
         }}
       >{showItem ? '➖' : '➕'}</button>
-
       {showItem ? (
         <ViewTransition>
           <Suspense fallback={<VideoPlaceholder />}>
@@ -1276,10 +1275,12 @@ button:hover {
 .video-title.loading {
   height: 20px;
   width: 80px;
+  border-radius: 0.5rem;
 }
 .video-description {
   color: #5e687e;
   font-size: 13px;
+  border-radius: 0.5rem;
 }
 .video-description.loading {
   height: 15px;
@@ -1332,37 +1333,464 @@ This will only animate if the theme changes and not if only the children update.
 
 ---
 
-### Customizing `default` animations {/*customizing-default-animations*/}
+### Customizing animations {/*customizing-animations*/}
 
-TODO
+By default, `<ViewTransition>` includes the default cross-fade from the browser.
 
----
+To customize animations, you can provide props to the `<ViewTransition>` component to specify which animations to use, based on how the `<ViewTransition>` activates.
 
-### Customizing `enter` animations {/*customizing-enter-animations*/}
+For example, we can slow down the default cross fade animation:
 
-TODO
+```js
+<ViewTransition default="slow-fade">
+  <Video />
+</ViewTransition>
+```
 
----
+And define slow-fade in CSS using view transition classes:
 
-### Customizing `exit` animations {/*customizing-exit-animations*/}
+```css
+::view-transition-old(.slow-fade) {
+    animation-duration: 500ms;
+}
 
-TODO
+::view-transition-new(.slow-fade) {
+    animation-duration: 500ms;
+}
+```
 
----
+<Sandpack>
 
-### Customizing `update` animations {/*customizing-update-animations*/}
+```js src/Video.js hidden
+function Thumbnail({ video, children }) {
+  return (
+    <div
+      aria-hidden="true"
+      tabIndex={-1}
+      className={`thumbnail ${video.image}`}
+    />
+  );
+}
 
-TODO
+export function Video({ video }) {
+  return (
+    <div className="video">
+      <div
+        className="link"
+      >
+        <Thumbnail video={video}></Thumbnail>
 
----
+        <div className="info">
+          <div className="video-title">{video.title}</div>
+          <div className="video-description">{video.description}</div>
+        </div>
+      </div>
+    </div>
+  );
+}
+```
 
-### Customizing `shared` animations {/*customizing-shared-animations*/}
+```js
+import {
+  unstable_ViewTransition as ViewTransition,
+  useState,
+  startTransition
+} from 'react';
+import {Video} from "./Video";
+import videos from "./data"
 
-TODO
+function Item() {
+  return (
+    <ViewTransition default="slow-fade">
+      <Video video={videos[0]}/>
+    </ViewTransition>
+  );
+}
 
----
+export default function Component() {
+  const [showItem, setShowItem] = useState(false);
+  return (
+    <>
+      <button
+        onClick={() => {
+          startTransition(() => {
+            setShowItem((prev) => !prev);
+          });
+        }}
+      >{showItem ? '➖' : '➕'}</button>
 
-### Custom animations with types {/*customizing-animations-with-types*/}
+      {showItem ? <Item /> : null}
+    </>
+  );
+}
+```
+
+```js src/data.js hidden
+export default [
+  {
+    id: '1',
+    title: 'First video',
+    description: 'Video description',
+    image: 'blue',
+  }
+]
+```
+
+
+```css
+::view-transition-old(.slow-fade) {
+    animation-duration: 500ms;
+}
+
+::view-transition-new(.slow-fade) {
+    animation-duration: 500ms;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 200px;
+}
+button {
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f0f8ff;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s, border 0.3s;
+}
+button:hover {
+  border: 2px solid #ccc;
+  background-color: #e0e8ff;
+}
+.thumbnail {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  display: flex;
+  overflow: hidden;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 0.5rem;
+  outline-offset: 2px;
+  width: 8rem;
+  vertical-align: middle;
+  background-color: #ffffff;
+  background-size: cover;
+  user-select: none;
+}
+.thumbnail.blue {
+  background-image: conic-gradient(at top right, #c76a15, #087ea4, #2b3491);
+}
+.video {
+  display: flex;
+  flex-direction: row;
+  gap: 0.75rem;
+  align-items: center;
+  margin-top: 1em;
+}
+.video .link {
+  display: flex;
+  flex-direction: row;
+  flex: 1 1 0;
+  gap: 0.125rem;
+  outline-offset: 4px;
+  cursor: pointer;
+}
+.video .info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 8px;
+  gap: 0.125rem;
+}
+.video .info:hover {
+  text-decoration: underline;
+}
+.video-title {
+  font-size: 15px;
+  line-height: 1.25;
+  font-weight: 700;
+  color: #23272f;
+}
+.video-description {
+  color: #5e687e;
+  font-size: 13px;
+}
+```
+
+```json package.json hidden
+{
+  "dependencies": {
+    "react": "experimental",
+    "react-dom": "experimental",
+    "react-scripts": "latest"
+  }
+}
+```
+
+</Sandpack>
+
+In addition to setting the `default`, you can also provide configurations for `enter`, `exit`, `update`, and `share` animations.
+
+<Sandpack>
+
+```js src/Video.js hidden
+function Thumbnail({ video, children }) {
+  return (
+    <div
+      aria-hidden="true"
+      tabIndex={-1}
+      className={`thumbnail ${video.image}`}
+    />
+  );
+}
+
+export function Video({ video }) {
+  return (
+    <div className="video">
+      <div
+        className="link"
+      >
+        <Thumbnail video={video}></Thumbnail>
+
+        <div className="info">
+          <div className="video-title">{video.title}</div>
+          <div className="video-description">{video.description}</div>
+        </div>
+      </div>
+    </div>
+  );
+}
+```
+
+```js
+import {
+  unstable_ViewTransition as ViewTransition,
+  useState,
+  startTransition
+} from 'react';
+import {Video} from "./Video";
+import videos from "./data"
+
+function Item() {
+  return (
+    <ViewTransition enter="slide-in" exit="slide-out">
+      <Video video={videos[0]}/>
+    </ViewTransition>
+  );
+}
+
+export default function Component() {
+  const [showItem, setShowItem] = useState(false);
+  return (
+    <>
+      <button
+        onClick={() => {
+          startTransition(() => {
+            setShowItem((prev) => !prev);
+          });
+        }}
+      >{showItem ? '➖' : '➕'}</button>
+
+      {showItem ? <Item /> : null}
+    </>
+  );
+}
+```
+
+```js src/data.js hidden
+export default [
+  {
+    id: '1',
+    title: 'First video',
+    description: 'Video description',
+    image: 'blue',
+  }
+]
+```
+
+
+```css
+::view-transition-old(.slide-in) {
+  animation-name: slideOutRight;
+  animation-duration: 500ms;
+  animation-timing-function: ease-in-out;
+}
+
+::view-transition-new(.slide-in) {
+  animation-name: slideInRight;
+  animation-duration: 500ms;
+  animation-timing-function: ease-in-out;
+}
+
+::view-transition-old(.slide-out) {
+  animation-name: slideOutLeft;
+  animation-duration: 500ms;
+  animation-timing-function: ease-in-out;
+}
+
+::view-transition-new(.slide-out) {
+  animation-name: slideInLeft;
+  animation-duration: 500ms;
+  animation-timing-function: ease-in-out;
+}
+
+@keyframes slideOutLeft {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideOutRight {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 200px;
+}
+button {
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f0f8ff;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s, border 0.3s;
+}
+button:hover {
+  border: 2px solid #ccc;
+  background-color: #e0e8ff;
+}
+.thumbnail {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  display: flex;
+  overflow: hidden;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 0.5rem;
+  outline-offset: 2px;
+  width: 8rem;
+  vertical-align: middle;
+  background-color: #ffffff;
+  background-size: cover;
+  user-select: none;
+}
+.thumbnail.blue {
+  background-image: conic-gradient(at top right, #c76a15, #087ea4, #2b3491);
+}
+.video {
+  display: flex;
+  flex-direction: row;
+  gap: 0.75rem;
+  align-items: center;
+  margin-top: 1em;
+}
+.video .link {
+  display: flex;
+  flex-direction: row;
+  flex: 1 1 0;
+  gap: 0.125rem;
+  outline-offset: 4px;
+  cursor: pointer;
+}
+.video .info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 8px;
+  gap: 0.125rem;
+}
+.video .info:hover {
+  text-decoration: underline;
+}
+.video-title {
+  font-size: 15px;
+  line-height: 1.25;
+  font-weight: 700;
+  color: #23272f;
+}
+.video-description {
+  color: #5e687e;
+  font-size: 13px;
+}
+```
+
+```json package.json hidden
+{
+  "dependencies": {
+    "react": "experimental",
+    "react-dom": "experimental",
+    "react-scripts": "latest"
+  }
+}
+```
+
+</Sandpack>
+
+### Customizing animations with types {/*customizing-animations-with-types*/}
 You can use the [`addTransitionType`](/reference/react/addTransitionType) API to add a class name to the child elements when a specific transition type is activated for a specific activation trigger. This allows you to customize the animation for each type of transition.
 
 For example, to customize the animation for all forward and backward navigations:
@@ -1384,6 +1812,312 @@ startTransition(() => {
 When the ViewTransition activates a "navigation-back" animation, React will add the class name "slide-right". When the ViewTransition activates a "navigation-forward" animation, React will add the class name "slide-left".
 
 In the future, routers and other libraries may add support for standard view-transition types and styles.
+
+<Sandpack>
+
+```js src/Video.js hidden
+function Thumbnail({ video, children }) {
+  return (
+    <div
+      aria-hidden="true"
+      tabIndex={-1}
+      className={`thumbnail ${video.image}`}
+    />
+  );
+}
+
+export function Video({ video }) {
+  return (
+    <div className="video">
+      <div
+        className="link"
+      >
+        <Thumbnail video={video}></Thumbnail>
+        <div className="info">
+          <div className="video-title">{video.title}</div>
+          <div className="video-description">{video.description}</div>
+        </div>
+      </div>
+    </div>
+  );
+}
+```
+
+```js
+import {
+  unstable_ViewTransition as ViewTransition,
+  unstable_addTransitionType as addTransitionType,
+  useState,
+  startTransition,
+} from "react";
+import {Video} from "./Video";
+import videos from "./data"
+
+function Item() {
+  return (
+    <ViewTransition enter={
+        {
+          "add-video-back": "slide-in-back",
+          "add-video-forward": "slide-in-forward"
+        }
+      }
+      exit={
+        {
+          "remove-video-back": "slide-in-forward",
+          "remove-video-forward": "slide-in-back"
+        }
+      }>
+      <Video video={videos[0]}/>
+    </ViewTransition>
+  );
+}
+
+export default function Component() {
+  const [showItem, setShowItem] = useState(false);
+  return (
+    <>
+      <div className="button-container">
+        <button
+          onClick={() => {
+            startTransition(() => {
+              if (showItem) {
+                addTransitionType("remove-video-back")
+              } else {
+                addTransitionType("add-video-back")
+              }
+              setShowItem((prev) => !prev);
+            });
+          }}
+        >⬅️</button>
+        <button
+          onClick={() => {
+            startTransition(() => {
+              if (showItem) {
+                addTransitionType("remove-video-forward")
+              } else {
+                addTransitionType("add-video-forward")
+              }
+              setShowItem((prev) => !prev);
+            });
+          }}
+        >➡️</button>
+      </div>
+      {showItem ? <Item /> : null}
+    </>
+  );
+}
+```
+
+```js src/data.js hidden
+export default [
+  {
+    id: '1',
+    title: 'First video',
+    description: 'Video description',
+    image: 'blue',
+  }
+]
+```
+
+
+```css
+::view-transition-old(.slide-in-back) {
+  animation-name: slideOutRight;
+  animation-duration: 500ms;
+  animation-timing-function: ease-in-out;
+}
+
+::view-transition-new(.slide-in-back) {
+  animation-name: slideInRight;
+  animation-duration: 500ms;
+  animation-timing-function: ease-in-out;
+}
+
+::view-transition-old(.slide-out-back) {
+  animation-name: slideOutLeft;
+  animation-duration: 500ms;
+  animation-timing-function: ease-in-out;
+}
+
+::view-transition-new(.slide-out-back) {
+  animation-name: slideInLeft;
+  animation-duration: 500ms;
+  animation-timing-function: ease-in-out;
+}
+
+::view-transition-old(.slide-in-forward) {
+  animation-name: slideOutLeft;
+  animation-duration: 500ms;
+  animation-timing-function: ease-in-out;
+}
+
+::view-transition-new(.slide-in-forward) {
+  animation-name: slideInLeft;
+  animation-duration: 500ms;
+  animation-timing-function: ease-in-out;
+}
+
+::view-transition-old(.slide-out-forward) {
+  animation-name: slideOutRight;
+  animation-duration: 500ms;
+  animation-timing-function: ease-in-out;
+}
+
+::view-transition-new(.slide-out-forward) {
+  animation-name: slideInRight;
+  animation-duration: 500ms;
+  animation-timing-function: ease-in-out;
+}
+
+@keyframes slideOutLeft {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideOutRight {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 200px;
+}
+button {
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f0f8ff;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s, border 0.3s;
+}
+button:hover {
+  border: 2px solid #ccc;
+  background-color: #e0e8ff;
+}
+.button-container {
+  display: flex;
+}
+.thumbnail {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  display: flex;
+  overflow: hidden;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 0.5rem;
+  outline-offset: 2px;
+  width: 8rem;
+  vertical-align: middle;
+  background-color: #ffffff;
+  background-size: cover;
+  user-select: none;
+}
+.thumbnail.blue {
+  background-image: conic-gradient(at top right, #c76a15, #087ea4, #2b3491);
+}
+.video {
+  display: flex;
+  flex-direction: row;
+  gap: 0.75rem;
+  align-items: center;
+  margin-top: 1em;
+}
+.video .link {
+  display: flex;
+  flex-direction: row;
+  flex: 1 1 0;
+  gap: 0.125rem;
+  outline-offset: 4px;
+  cursor: pointer;
+}
+.video .info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 8px;
+  gap: 0.125rem;
+}
+.video .info:hover {
+  text-decoration: underline;
+}
+.video-title {
+  font-size: 15px;
+  line-height: 1.25;
+  font-weight: 700;
+  color: #23272f;
+}
+.video-description {
+  color: #5e687e;
+  font-size: 13px;
+}
+```
+
+```json package.json hidden
+{
+  "dependencies": {
+    "react": "experimental",
+    "react-dom": "experimental",
+    "react-scripts": "latest"
+  }
+}
+```
+
+</Sandpack>
 
 ### Building View Transition enabled routers {/*building-view-transition-enabled-routers*/}
 

@@ -73,7 +73,7 @@ To opt-in to animating an element, wrap it in the new `<ViewTransition>` compone
 
 This new component lets you declaratively define "what" to animate when an animation is activated. 
 
-You can define "when" to animate in three ways:
+You can define "when" to animate by using one of these three triggers for a View Transition:
 
 ```js {4,7,10,12}
 // ✅ "when" to animate.
@@ -90,7 +90,7 @@ const deferred = useDeferredValue(value);
 </Suspense>
 ```
 
-By default, these animations have the [default CSS animations for View Transitions](https://developer.mozilla.org/en-US/docs/Web/API/View_Transition_API/Using#customizing_your_animations) applied (most are given a default smooth cross-fade). You can use [view transition psuedo-sectors](https://developer.mozilla.org/en-US/docs/Web/API/View_Transition_API/Using#the_view_transition_pseudo-element_tree) to define "how" the animation runs. For example, using `*` we can change the default for all animations: 
+By default, these animations have the [default CSS animations for View Transitions](https://developer.mozilla.org/en-US/docs/Web/API/View_Transition_API/Using#customizing_your_animations) applied (most are given a default smooth cross-fade). You can use [view transition psuedo-selectors](https://developer.mozilla.org/en-US/docs/Web/API/View_Transition_API/Using#the_view_transition_pseudo-element_tree) to define "how" the animation runs. For example, using `*` we can change the default for all animations: 
 
 ```
 // ✅ "how" to animate.
@@ -108,7 +108,10 @@ If you're familar with the browser view transition APIs and curious how we've bu
 
 In this post, let's take a look at a few examples of how to use View Transitions. 
 
-We'll start with an app like this:
+We'll start this app, which doesn't animate any of these interactions:
+- Click a video to view the details.
+- Click "back" to go back to the feed.
+- Type in the list to filter the videos.
 
 <Sandpack>
 
@@ -4868,13 +4871,13 @@ root.render(
 
 </Sandpack>
 
-By defualt, React automatically generates a unique `name` for each element activated for a transition (see [How does `<ViewTransiton>` work](/reference/react/ViewTransition#how-does-viewtransition-work)). When React sees a transition where a `<ViewTransiton>` with a `name` is removed and a new `<ViewTransition>` with the same `name` is added, it will activate a shared element transtion.
+By default, React automatically generates a unique `name` for each element activated for a transition (see [How does `<ViewTransiton>` work](/reference/react/ViewTransition#how-does-viewtransition-work)). When React sees a transition where a `<ViewTransiton>` with a `name` is removed and a new `<ViewTransition>` with the same `name` is added, it will activate a shared element transtion.
 
 For more info, see the docs for [Animating a Shared Element](/reference/react/ViewTransition#animating-a-shared-element).
 
 ### Animating based on cause {/*animating-based-on-cause*/}
 
-Sometimes, you may want elements to animate differently because on how it was triggered. For this use case, we've added a new API called `addTransitionType` to specify the cause of a transition:
+Sometimes, you may want elements to animate differently based on how it was triggered. For this use case, we've added a new API called `addTransitionType` to specify the cause of a transition:
 
 ```js {4,11}
 function navigate(url) {
@@ -12887,7 +12890,7 @@ Once we solve those issues, we'll publish experimental docs and share that it's 
 
 ## Compiler IDE Extension {/*compiler-ide-extension*/}
 
-Earlier this week [we shared](/blog/2025/04/21/react-compiler-rc) the React Compiler release candidate, and we're working towards shipping the first semver stable version of the compiler in the coming months.
+Earlier this week [we shared](/blog/2025/04/21/react-compiler-rc) the React Compiler release candidate, and we're working towards shipping the first SemVer stable version of the compiler in the coming months.
 
 We've also begun exploring ways to use the React Compiler to provide information that can improve understanding and debugging your code. One idea we've started exploring is a new experimental LSP-based React IDE extension powered by React Compiler, similar to the extension used in [Lauren Tan's React Conf talk](https://conf2024.react.dev/talks/5).
 
@@ -12913,7 +12916,7 @@ Unfortunately, some hooks are still hard to think in terms of function instead o
 
 We found that often, the confusion is from using an Effect when you don't need to. The [You Probably Don't Need an Effect guide](/TODO), covers many cases for when Effects are not the right solution. However, even when an Effect is the right fit for a problem, Effects can still be harder to understand than class component lifecyles.
 
-We believe one of the reasons for confusion is the dependecy array, which allows developers to think of effects from the _components_ perspective (like a lifecycle), instead of the _effects_ point of view (what the effect does).
+We believe one of the reasons for confusion is the dependency array, which allows developers to think of effects from the _components_ perspective (like a lifecycle), instead of the _effects_ point of view (what the effect does).
 
 Let's look at an example [from the docs](/learn/lifecycle-of-reactive-effects#thinking-from-the-effects-perspective):
 

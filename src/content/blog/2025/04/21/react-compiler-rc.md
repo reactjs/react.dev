@@ -94,7 +94,7 @@ The linter does not require the compiler to be installed, so there's no risk in 
 ## swc support (experimental) {/*swc-support-experimental*/}
 React Compiler can be installed across [several build tools](/learn/react-compiler#installation) such as Babel, Vite, and Rsbuild.
 
-In addition to those tools, we have been collaborating with Kang Dongyoong ([@kdy1dev](https://x.com/kdy1dev)) from the [swc](https://swc.rs/) team on adding additional support for React Compiler as an swc plugin. As part of the RC release, you can now integrate the compiler into your [Next.js app with swc](https://nextjs.org/docs/app/api-reference/config/next-config-js/reactCompiler) instead of Babel.
+In addition to those tools, we have been collaborating with Kang Dongyoon ([@kdy1dev](https://x.com/kdy1dev)) from the [swc](https://swc.rs/) team on adding additional support for React Compiler as an swc plugin. As part of the RC release, you can now integrate the compiler into your [Next.js app with swc](https://nextjs.org/docs/app/api-reference/config/next-config-js/reactCompiler) instead of Babel.
 
 Next.js users can upgrade to [15.3.1](https://github.com/vercel/next.js/releases/tag/v15.3.1) or greater to try this out. If you have already enabled the compiler in your Next.js's config, swc support will be enabled automatically.
 

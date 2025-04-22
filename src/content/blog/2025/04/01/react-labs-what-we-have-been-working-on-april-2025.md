@@ -610,14 +610,14 @@ export function Router({ children }) {
     });
   }
   function navigate(url) {
-    // ✅ Update router state in transition.
+    // Update router state in transition.
     startTransition(() => {
       go(url);
     });
   }
 
   function navigateBack(url) {
-    // ✅ Update router state in transition.
+    // Update router state in transition.
     startTransition(() => {
       go(url);
     });
@@ -1310,8 +1310,8 @@ import {unstable_ViewTransition as ViewTransition} from 'react'; import Details 
 export default function App() {
   const {url} = useRouter();
   
-  // ✅ Use ViewTransition to animate between pages.
-  //    No additional CSS needed by default.
+  // Use ViewTransition to animate between pages.
+  // No additional CSS needed by default.
   return (
     <ViewTransition>
       {url === '/' ? <Home /> : <Details />}
@@ -1775,7 +1775,7 @@ export function Router({ children }) {
   const [isPending, startTransition] = useTransition();
   
   function navigate(url) {
-    // ✅ Update router state in transition.
+    // Update router state in transition.
     startTransition(() => {
       go(url);
     });
@@ -2502,8 +2502,8 @@ import { useRouter } from "./router";
 export default function App() {
   const { url } = useRouter();
 
-  // ✅ Define a default animation of .slow-fade.
-  //    See animations.css for the animation definiton.
+  // Define a default animation of .slow-fade.
+  // See animations.css for the animation definiton.
   return (
     <ViewTransition default="slow-fade">
       {url === '/' ? <Home /> : <Details />}
@@ -2996,14 +2996,14 @@ export function Router({ children }) {
     });
   }
   function navigate(url) {
-    // ✅ Update router state in transition.
+    // Update router state in transition.
     startTransition(() => {
       go(url);
     });
   }
 
   function navigateBack(url) {
-    // ✅ Update router state in transition.
+    // Update router state in transition.
     startTransition(() => {
       go(url);
     });
@@ -3618,7 +3618,7 @@ ul {
 
 
 ```css src/animations.css
-/* ✅ Define .slow-fade using view transition classes */
+/* Define .slow-fade using view transition classes */
 ::view-transition-old(.slow-fade) {
     animation-duration: 500ms;
 }
@@ -3692,9 +3692,9 @@ import { useRouter } from "./router";
 export default function App() {
   const { url } = useRouter();
 
-  // ✅ Keeping our default slow-fade.
-  //    This allows the content not in the shared
-  //    element transition to cross-fade.
+  // Keeping our default slow-fade.
+  // This allows the content not in the shared
+  // element transition to cross-fade.
   return (
     <ViewTransition default="slow-fade">
       {url === "/" ? <Home /> : <Details />}
@@ -4008,8 +4008,8 @@ export default function LikeButton({video}) {
 import { useState, unstable_ViewTransition as ViewTransition } from "react"; import LikeButton from "./LikeButton"; import { useRouter } from "./router"; import { PauseIcon, PlayIcon } from "./Icons"; import { startTransition } from "react";
 
 export function Thumbnail({ video, children }) {
-  // ✅ Add a name to animate with a shared element transition.
-  //    This uses the default animation, no additional css needed.
+  // Add a name to animate with a shared element transition.
+  // This uses the default animation, no additional css needed.
   return (
     <ViewTransition name={`video-${video.id}`}>
       <div
@@ -4187,14 +4187,14 @@ export function Router({ children }) {
     });
   }
   function navigate(url) {
-    // ✅ Update router state in transition.
+    // Update router state in transition.
     startTransition(() => {
       go(url);
     });
   }
 
   function navigateBack(url) {
-    // ✅ Update router state in transition.
+    // Update router state in transition.
     startTransition(() => {
       go(url);
     });
@@ -4809,7 +4809,7 @@ ul {
 
 
 ```css src/animations.css
-/* ✅ No additional animations needed */
+/* No additional animations needed */
 
 
 
@@ -4946,7 +4946,7 @@ import { useRouter } from "./router";
 export default function App() {
   const { url } = useRouter();
 
-  // ✅ Keeping our default slow-fade.
+  // Keeping our default slow-fade.
   return (
     <ViewTransition default="slow-fade">
       {url === "/" ? <Home /> : <Details />}
@@ -5212,7 +5212,7 @@ export default function Page({ heading, children }) {
     <div className="page">
       <div className="top">
         <div className="top-nav">
-          {/*✅ Custom classes based on transition type.*/}
+          {/* Custom classes based on transition type. */}
           <ViewTransition
             name="nav"
             share={{
@@ -5272,8 +5272,8 @@ import { PauseIcon, PlayIcon } from "./Icons";
 import { startTransition } from "react";
 
 export function Thumbnail({ video, children }) {
-  // ✅ Add a name to animate with a shared element transition.
-  //    This uses the default animation, no additional css needed.
+  // Add a name to animate with a shared element transition.
+  // This uses the default animation, no additional css needed.
   return (
     <ViewTransition name={`video-${video.id}`}>
       <div
@@ -5423,14 +5423,14 @@ export function Router({ children }) {
   
   function navigate(url) {
     startTransition(() => {
-      // ✅ Transition type for the cause "nav forward"
+      // Transition type for the cause "nav forward"
       addTransitionType('nav-forward');
       go(url);
     });
   }
   function navigateBack(url) {
     startTransition(() => {
-      // ✅ Transition type for the cause "nav backward"
+      // Transition type for the cause "nav backward"
       addTransitionType('nav-back');
       go(url);
     });
@@ -6068,7 +6068,7 @@ ul {
 
 
 ```css src/animations.css
-/* ✅ Animations for view transition classed added by transition type */
+/* Animations for view transition classed added by transition type */
 ::view-transition-old(.slide-forward) {
     /* when sliding forward, the "old" page should slide out to left. */
     animation: 150ms cubic-bezier(0.4, 0, 1, 1) both fade-out,
@@ -6093,7 +6093,7 @@ ul {
     400ms cubic-bezier(0.4, 0, 0.2, 1) both slide-from-left;
 }
 
-/* ✅ New keyframes to support our animations above. */
+/* New keyframes to support our animations above. */
 @keyframes fade-in {
     from {
         opacity: 0;
@@ -6232,7 +6232,7 @@ import { useRouter } from "./router";
 export default function App() {
   const { url } = useRouter();
 
-  // ✅ Default slow-fade animation.
+  // Default slow-fade animation.
   return (
     <ViewTransition default="slow-fade">
       {url === "/" ? <Home /> : <Details />}
@@ -6248,13 +6248,13 @@ function VideoDetails({ id }) {
   return (
     <Suspense
       fallback={
-        // ✅ Animate the fallback down.
+        // Animate the fallback down.
         <ViewTransition exit="slide-down">
           <VideoInfoFallback />
         </ViewTransition>
       }
     >
-      {/* ✅ Animate the content up */}
+      {/* Animate the content up */}
       <ViewTransition enter="slide-up">
         <VideoInfo id={id} />
       </ViewTransition>
@@ -6509,7 +6509,7 @@ export default function Page({ heading, children }) {
     <div className="page">
       <div className="top">
         <div className="top-nav">
-          {/*✅ Custom classes based on transition type.*/}
+          {/* Custom classes based on transition type. */}
           <ViewTransition
             name="nav"
             share={{
@@ -6569,8 +6569,8 @@ import { PauseIcon, PlayIcon } from "./Icons";
 import { startTransition } from "react";
 
 export function Thumbnail({ video, children }) {
-  // ✅ Add a name to animate with a shared element transition.
-  //    This uses the default animation, no additional css needed.
+  // Add a name to animate with a shared element transition.
+  // This uses the default animation, no additional css needed.
   return (
     <ViewTransition name={`video-${video.id}`}>
       <div
@@ -6720,14 +6720,14 @@ export function Router({ children }) {
   const [routerState, setRouterState] = useState({pendingNav: () => {}, url: document.location.pathname});
   function navigate(url) {
     startTransition(() => {
-      // ✅ Transition type for the cause "nav forward"
+      // Transition type for the cause "nav forward"
       addTransitionType('nav-forward');
       go(url);
     });
   }
   function navigateBack(url) {
     startTransition(() => {
-      // ✅ Transition type for the cause "nav backward"
+      // Transition type for the cause "nav backward"
       addTransitionType('nav-back');
       go(url);
     });
@@ -7362,17 +7362,17 @@ ul {
 
 
 ```css src/animations.css
-/* ✅ Slide the fallback down */
+/* Slide the fallback down */
 ::view-transition-old(.slide-down) {
     animation: 150ms ease-out both fade-out, 150ms ease-out both slide-down;
 }
 
-/* ✅ Slide the content up */
+/* Slide the content up */
 ::view-transition-new(.slide-up) {
     animation: 210ms ease-in 150ms both fade-in, 400ms ease-in both slide-up;
 }
 
-/* ✅ Define the new keyframes */
+/* Define the new keyframes */
 @keyframes slide-up {
     from {
         transform: translateY(10px);
@@ -7544,7 +7544,7 @@ import { useRouter } from "./router";
 export default function App() {
   const { url } = useRouter();
 
-  // ✅ Default slow-fade animation.
+  // Default slow-fade animation.
   return (
     <ViewTransition default="slow-fade">
       {url === "/" ? <Home /> : <Details />}
@@ -7562,17 +7562,17 @@ import Layout from "./Layout";
 import { ChevronLeft } from "./Icons";
 
 function VideoDetails({id}) {
-  // ✅ Animate from Suspense fallback to content
+  // Animate from Suspense fallback to content
   return (
     <Suspense
       fallback={
-        // ✅ Animate the fallback down.
+        // Animate the fallback down.
         <ViewTransition exit="slide-down">
           <VideoInfoFallback />
         </ViewTransition>
       }
     >
-      {/* ✅ Animate the content up */}
+      {/* Animate the content up */}
       <ViewTransition enter="slide-up">
         <VideoInfo id={id} />
       </ViewTransition>
@@ -7632,14 +7632,14 @@ function VideoInfo({ id }) {
 import { useId, useState, use, useDeferredValue, unstable_ViewTransition as ViewTransition } from "react";import { Video } from "./Videos";import Layout from "./Layout";import { fetchVideos } from "./data";import { IconSearch } from "./Icons";
 
 function SearchList({searchText, videos}) {
-  // ✅ Activate with useDeferredValue ("when") 
+  // Activate with useDeferredValue ("when") 
   const deferredSearchText = useDeferredValue(searchText);
   const filteredVideos = filterVideos(videos, deferredSearchText);
   return (
     <div className="video-list">
       <div className="videos">
         {filteredVideos.map((video) => (
-          // ✅ Animate each item in list ("what") 
+          // Animate each item in list ("what") 
           <ViewTransition key={video.id}>
             <Video video={video} />
           </ViewTransition>
@@ -7834,7 +7834,7 @@ export default function Page({ heading, children }) {
     <div className="page">
       <div className="top">
         <div className="top-nav">
-          {/*✅ Custom classes based on transition type.*/}
+          {/* Custom classes based on transition type. */}
           <ViewTransition
             name="nav"
             share={{
@@ -7894,8 +7894,8 @@ import { PauseIcon, PlayIcon } from "./Icons";
 import { startTransition } from "react";
 
 export function Thumbnail({ video, children }) {
-  // ✅ Add a name to animate with a shared element transition.
-  //    This uses the default animation, no additional css needed.
+  // Add a name to animate with a shared element transition.
+  // This uses the default animation, no additional css needed.
   return (
     <ViewTransition name={`video-${video.id}`}>
       <div
@@ -8045,14 +8045,14 @@ export function Router({ children }) {
   const [routerState, setRouterState] = useState({pendingNav: () => {}, url: document.location.pathname});
   function navigate(url) {
     startTransition(() => {
-      // ✅ Transition type for the cause "nav forward"
+      // Transition type for the cause "nav forward"
       addTransitionType('nav-forward');
       go(url);
     });
   }
   function navigateBack(url) {
     startTransition(() => {
-      // ✅ Transition type for the cause "nav backward"
+      // Transition type for the cause "nav backward"
       addTransitionType('nav-back');
       go(url);
     });
@@ -8687,7 +8687,7 @@ ul {
 
 
 ```css src/animations.css
-/* ✅ No additional animations needed */
+/* No additional animations needed */
 
 
 
@@ -8863,7 +8863,7 @@ import {unstable_ViewTransition as ViewTransition} from 'react'; import Details 
 export default function App() {
   const {url} = useRouter();
 
-  // ✅ Animate with a cross fade between pages.
+  // Animate with a cross fade between pages.
   return (
     <ViewTransition key={url}>
       {url === '/' ? <Home /> : <Details />}
@@ -8876,17 +8876,17 @@ export default function App() {
 import { use, Suspense, unstable_ViewTransition as ViewTransition } from "react"; import { fetchVideo, fetchVideoDetails } from "./data"; import { Thumbnail, VideoControls } from "./Videos"; import { useRouter } from "./router"; import Layout from "./Layout"; import { ChevronLeft } from "./Icons";
 
 function VideoDetails({id}) {
-  // ✅ Animate from Suspense fallback to content
+  // Animate from Suspense fallback to content
   return (
     <Suspense
       fallback={
-        // ✅ Animate the fallback down.
+        // Animate the fallback down.
         <ViewTransition exit="slide-down">
           <VideoInfoFallback />
         </ViewTransition>
       }
     >
-      {/* ✅ Animate the content up */}
+      {/* Animate the content up */}
       <ViewTransition enter="slide-up">
         <VideoInfo id={id} />
       </ViewTransition>
@@ -8946,14 +8946,14 @@ function VideoInfo({ id }) {
 import { useId, useState, use, useDeferredValue, unstable_ViewTransition as ViewTransition } from "react";import { Video } from "./Videos";import Layout from "./Layout";import { fetchVideos } from "./data";import { IconSearch } from "./Icons";
 
 function SearchList({searchText, videos}) {
-  // ✅ Activate with useDeferredValue ("when") 
+  // Activate with useDeferredValue ("when") 
   const deferredSearchText = useDeferredValue(searchText);
   const filteredVideos = filterVideos(videos, deferredSearchText);
   return (
     <div className="video-list">
       <div className="videos">
         {filteredVideos.map((video) => (
-          // ✅ Animate each item in list ("what") 
+          // Animate each item in list ("what") 
           <ViewTransition key={video.id}>
             <Video video={video} />
           </ViewTransition>
@@ -9147,7 +9147,7 @@ export default function Page({ heading, children }) {
     <div className="page">
       <div className="top">
         <div className="top-nav">
-          {/*✅ Custom classes based on transition type.*/}
+          {/* Custom classes based on transition type. */}
           <ViewTransition
             name="nav"
             share={{
@@ -9203,7 +9203,7 @@ export default function LikeButton({video}) {
 import { useState, unstable_ViewTransition as ViewTransition } from "react"; import LikeButton from "./LikeButton"; import { useRouter } from "./router"; import { PauseIcon, PlayIcon } from "./Icons"; import { startTransition } from "react";
 
 export function Thumbnail({ video, children }) {
-  // ✅ Add a name to animate with a shared element transition.
+  // Add a name to animate with a shared element transition.
   return (
     <ViewTransition name={`video-${video.id}`}>
       <div
@@ -9354,14 +9354,14 @@ export function Router({ children }) {
   const [isPending, startTransition] = useTransition();
   function navigate(url) {
     startTransition(() => {
-      // ✅ Transition type for the cause "nav forward"
+      // Transition type for the cause "nav forward"
       addTransitionType('nav-forward');
       go(url);
     });
   }
   function navigateBack(url) {
     startTransition(() => {
-      // ✅ Transition type for the cause "nav backward"
+      // Transition type for the cause "nav backward"
       addTransitionType('nav-back');
       go(url);
     });
@@ -9998,7 +9998,7 @@ ul {
 
 
 ```css src/animations.css
-/* ✅ Slide animations for Suspense the fallback down */
+/* Slide animations for Suspense the fallback down */
 ::view-transition-old(.slide-down) {
     animation: 150ms ease-out both fade-out, 150ms ease-out both slide-down;
 }
@@ -10007,7 +10007,7 @@ ul {
     animation: 210ms ease-in 150ms both fade-in, 400ms ease-in both slide-up;
 }
 
-/* ✅ Animations for view transition classed added by transition type */
+/* Animations for view transition classed added by transition type */
 ::view-transition-old(.slide-forward) {
     /* when sliding forward, the "old" page should slide out to left. */
     animation: 150ms cubic-bezier(0.4, 0, 1, 1) both fade-out,
@@ -10032,7 +10032,7 @@ ul {
     400ms cubic-bezier(0.4, 0, 0.2, 1) both slide-from-left;
 }
 
-/* ✅ Keyframes to support our animations above. */
+/* Keyframes to support our animations above. */
 @keyframes slide-up {
     from {
         transform: translateY(10px);
@@ -10218,7 +10218,7 @@ export default function App() {
   return (
     // View Transitions know about Activity
     <ViewTransition>
-      {/* ✅ Render Home in Activity so we don't lose state */}
+      {/* Render Home in Activity so we don't lose state */}
       <Activity mode={url === '/' ? 'visible' : 'hidden'}>
         <Home />
       </Activity>
@@ -10237,17 +10237,17 @@ import Layout from "./Layout";
 import { ChevronLeft } from "./Icons";
 
 function VideoDetails({id}) {
-  // ✅ Animate from Suspense fallback to content
+  // Animate from Suspense fallback to content
   return (
     <Suspense
       fallback={
-        // ✅ Animate the fallback down.
+        // Animate the fallback down.
         <ViewTransition exit="slide-down">
           <VideoInfoFallback />
         </ViewTransition>
       }
     >
-      {/* ✅ Animate the content up */}
+      {/* Animate the content up */}
       <ViewTransition enter="slide-up">
         <VideoInfo id={id} />
       </ViewTransition>
@@ -10307,7 +10307,7 @@ function VideoInfo({ id }) {
 import { useId, useState, use, useDeferredValue, unstable_ViewTransition as ViewTransition } from "react";import { Video } from "./Videos";import Layout from "./Layout";import { fetchVideos } from "./data";import { IconSearch } from "./Icons";
 
 function SearchList({searchText, videos}) {
-  // ✅ Activate with useDeferredValue ("when") 
+  // Activate with useDeferredValue ("when") 
   const deferredSearchText = useDeferredValue(searchText);
   const filteredVideos = filterVideos(videos, deferredSearchText);
   return (
@@ -10317,7 +10317,7 @@ function SearchList({searchText, videos}) {
       )}
       <div className="videos">
         {filteredVideos.map((video) => (
-          // ✅ Animate each item in list ("what") 
+          // Animate each item in list ("what") 
           <ViewTransition key={video.id}>
             <Video video={video} />
           </ViewTransition>
@@ -10509,7 +10509,7 @@ export default function Page({ heading, children }) {
     <div className="page">
       <div className="top">
         <div className="top-nav">
-          {/*✅ Custom classes based on transition type.*/}
+          {/* Custom classes based on transition type. */}
           <ViewTransition
             name="nav"
             share={{
@@ -10569,8 +10569,8 @@ import { PauseIcon, PlayIcon } from "./Icons";
 import { startTransition } from "react";
 
 export function Thumbnail({ video, children }) {
-  // ✅ Add a name to animate with a shared element transition.
-  //    This uses the default animation, no additional css needed.
+  // Add a name to animate with a shared element transition.
+  // This uses the default animation, no additional css needed.
   return (
     <ViewTransition name={`video-${video.id}`}>
       <div
@@ -10720,14 +10720,14 @@ export function Router({ children }) {
   const [routerState, setRouterState] = useState({pendingNav: () => {}, url: document.location.pathname});
   function navigate(url) {
     startTransition(() => {
-      // ✅ Transition type for the cause "nav forward"
+      // Transition type for the cause "nav forward"
       addTransitionType('nav-forward');
       go(url);
     });
   }
   function navigateBack(url) {
     startTransition(() => {
-      // ✅ Transition type for the cause "nav backward"
+      // Transition type for the cause "nav backward"
       addTransitionType('nav-back');
       go(url);
     });
@@ -11362,7 +11362,7 @@ ul {
 
 
 ```css src/animations.css
-/* ✅ No additional animations needed */
+/* No additional animations needed */
 
 
 
@@ -11555,7 +11555,7 @@ export default function App() {
   
   return (
     <ViewTransition>
-      {/* ✅ Render videos in Activity to pre-render them */}
+      {/* Render videos in Activity to pre-render them */}
       {videos.map(({id}) => (
         <Activity key={id} mode={videoId === id ? 'visible' : 'hidden'}>
           <Details id={id}/>
@@ -11578,17 +11578,17 @@ import Layout from "./Layout";
 import { ChevronLeft } from "./Icons";
 
 function VideoDetails({id}) {
-  // ✅ Animate from Suspense fallback to content
+  // Animate from Suspense fallback to content
   return (
     <Suspense
       fallback={
-        // ✅ Animate the fallback down.
+        // Animate the fallback down.
         <ViewTransition exit="slide-down">
           <VideoInfoFallback />
         </ViewTransition>
       }
     >
-      {/* ✅ Animate the content up */}
+      {/* Animate the content up */}
       <ViewTransition enter="slide-up">
         <VideoInfo id={id} />
       </ViewTransition>
@@ -11647,7 +11647,7 @@ function VideoInfo({ id }) {
 import { useId, useState, use, useDeferredValue, unstable_ViewTransition as ViewTransition } from "react";import { Video } from "./Videos";import Layout from "./Layout";import { fetchVideos } from "./data";import { IconSearch } from "./Icons";
 
 function SearchList({searchText, videos}) {
-  // ✅ Activate with useDeferredValue ("when") 
+  // Activate with useDeferredValue ("when") 
   const deferredSearchText = useDeferredValue(searchText);
   const filteredVideos = filterVideos(videos, deferredSearchText);
   return (
@@ -11657,7 +11657,7 @@ function SearchList({searchText, videos}) {
       )}
       <div className="videos">
         {filteredVideos.map((video) => (
-          // ✅ Animate each item in list ("what") 
+          // Animate each item in list ("what") 
           <ViewTransition key={video.id}>
             <Video video={video} />
           </ViewTransition>
@@ -11849,7 +11849,7 @@ export default function Page({ heading, children }) {
     <div className="page">
       <div className="top">
         <div className="top-nav">
-          {/*✅ Custom classes based on transition type.*/}
+          {/* Custom classes based on transition type. */}
           <ViewTransition
             name="nav"
             share={{
@@ -11909,8 +11909,8 @@ import { PauseIcon, PlayIcon } from "./Icons";
 import { startTransition } from "react";
 
 export function Thumbnail({ video, children }) {
-  // ✅ Add a name to animate with a shared element transition.
-  //    This uses the default animation, no additional css needed.
+  // Add a name to animate with a shared element transition.
+  // This uses the default animation, no additional css needed.
   return (
     <ViewTransition name={`video-${video.id}`}>
       <div
@@ -12060,14 +12060,14 @@ export function Router({ children }) {
   const [routerState, setRouterState] = useState({pendingNav: () => {}, url: document.location.pathname});
   function navigate(url) {
     startTransition(() => {
-      // ✅ Transition type for the cause "nav forward"
+      // Transition type for the cause "nav forward"
       addTransitionType('nav-forward');
       go(url);
     });
   }
   function navigateBack(url) {
     startTransition(() => {
-      // ✅ Transition type for the cause "nav backward"
+      // Transition type for the cause "nav backward"
       addTransitionType('nav-back');
       go(url);
     });
@@ -12702,7 +12702,7 @@ ul {
 
 
 ```css src/animations.css
-/* ✅ No additional animations needed */
+/* No additional animations needed */
 
 
 

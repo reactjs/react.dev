@@ -11,7 +11,7 @@ April 1, 2025 by [Ricky Hanlon](https://twitter.com/rickhanlonii), and [Matt Car
 
 <Intro>
 
-In React Labs posts we write about projects in active research and development. In this post, we're sharing two new experimental features that are ready to try today, and updates on other areas we're working on now.
+In React Labs posts, we write about projects in active research and development. In this post, we're sharing two new experimental features that are ready to try today, and updates on other areas we're working on now.
 
 </Intro>
 
@@ -20,13 +20,13 @@ In React Labs posts we write about projects in active research and development. 
 
 React Conf 2025 is scheduled for October 7–8 in Henderson, Nevada! 
 
-We're looking for speakers to work with us to create talks covering the features we're working on in this post. If you're interested in speaking at ReactConf, [please apply here](https://forms.reform.app/react-conf/call-for-speakers/piaae1?ga4_visitor_id=c3e8f3ce-2004-47a5-b801-f6b308280acd) (no talk proposal required).
+We're looking for speakers to help us create talks about the features covered in this post. If you're interested in speaking at ReactConf, [please apply here](https://forms.reform.app/react-conf/call-for-speakers/piaae1?ga4_visitor_id=c3e8f3ce-2004-47a5-b801-f6b308280acd) (no talk proposal required).
 
 For more info on tickets, free streaming, sponsoring, and more, see [the React Conf website](https://conf.react.dev).
 
 </Note>
 
-Today, we're excited to release docs for two new experimental features ready for testing:
+Today, we're excited to release documentation for two new experimental features that are ready for testing:
 
 - [View Transitions](#view-transitions)
 - [Activity](#activity)
@@ -42,16 +42,16 @@ We're also sharing updates on new features currently in development:
 
 # New Experimental Features {/*new-experimental-features*/}
 
-Today we're sharing two new experimental features: View Transitions and Activity.
+View Transitions and Activity are now ready for testing in `react@experimental`.These features have been tested in production and are stable, but the final API may still change as we incorporate feedback.
 
-These experimental features have been tested in production and we are confident they're stable, but the final API might change while we iterate on feedback.
+
 
 You can try them by upgrading React packages to the most recent experimental version:
 
 - `react@experimental`
 - `react-dom@experimental`
 
-Read more to see how to use these features in your app, or check out the new docs published today:
+Read on to learn how to use these features in your app, or check out the newly published docs:
 
 - [`<ViewTransition>`](/reference/react/ViewTransition): A component lets you activate an animation for a Transition.
 - [`addTransitionType`](/reference/react/addTransitionType): A function that allows you to specify the cause of a Transition.
@@ -59,7 +59,7 @@ Read more to see how to use these features in your app, or check out the new doc
 
 ## View Transitions {/*view-transitions*/}
 
-React View Transitions are a new experimental feature for React designed to make it easy to add animations to the UI transitons in your app. Under-the-hood, these animations APIs use the new [`startViewTransition`](https://developer.mozilla.org/en-US/docs/Web/API/Document/startViewTransition) API available in most modern browsers.
+React View Transitions are a new experimental feature that makes it easier to add animations to UI transitions in your app. Under-the-hood, these animations APIs use the new [`startViewTransition`](https://developer.mozilla.org/en-US/docs/Web/API/Document/startViewTransition) API available in most modern browsers.
 
 To opt-in to animating an element, wrap it in the new `<ViewTransition>` component:
 
@@ -90,7 +90,7 @@ const deferred = useDeferredValue(value);
 </Suspense>
 ```
 
-By default, these animations have the [default CSS animations for View Transitions](https://developer.mozilla.org/en-US/docs/Web/API/View_Transition_API/Using#customizing_your_animations) applied (most are given a default smooth cross-fade). You can use [view transition pseudo-selectors](https://developer.mozilla.org/en-US/docs/Web/API/View_Transition_API/Using#the_view_transition_pseudo-element_tree) to define "how" the animation runs. For example, using `*` we can change the default for all animations: 
+By default, these animations use the [default CSS animations for View Transitions](https://developer.mozilla.org/en-US/docs/Web/API/View_Transition_API/Using#customizing_your_animations) applied (typically a smooth cross-fade). You can use [view transition pseudo-selectors](https://developer.mozilla.org/en-US/docs/Web/API/View_Transition_API/Using#the_view_transition_pseudo-element_tree) to define "how" the animation runs. For example, you can use `*` to change the default animation for all transitions:
 
 ```
 // "how" to animate.
@@ -102,13 +102,13 @@ By default, these animations have the [default CSS animations for View Transitio
 }
 ```
 
-When the DOM updates in an animation trigger such as `startTransition`, `useDeferredValue`, or switching Suspense fallbacks to content, React will use [declarative heuristics](/reference/react/ViewTransition#viewtransition) to automatically determine which `<ViewTransition>` components to activate for the animation. The browser will then run the animation that's defined in CSS.
+When the DOM updates due to an animation trigger&mdash;like `startTransition`, `useDeferredValue`, or a `Suspense` fallback switching to content&mdash;React will use [declarative heuristics](/reference/react/ViewTransition#viewtransition) to automatically determine which `<ViewTransition>` components to activate for the animation. The browser will then run the animation that's defined in CSS.
 
-If you're familiar with the browser view transition APIs and curious how we've built support for them into React, check  out [How does `<ViewTransition>` Work](/reference/react/ViewTransition#how-does-viewtransition-work) in the docs. 
+If you're familiar with the browser's View Transition API and want to know how React supports it, check out [How does `<ViewTransition>` Work](/reference/react/ViewTransition#how-does-viewtransition-work) in the docs. 
 
 In this post, let's take a look at a few examples of how to use View Transitions. 
 
-We'll start this app, which doesn't animate any of these interactions:
+We'll start with this app, which doesn't animate any of the following interactions:
 - Click a video to view the details.
 - Click "back" to go back to the feed.
 - Type in the list to filter the videos.
@@ -120,8 +120,8 @@ import TalkDetails from './Details'; import Home from './Home'; import {useRoute
 
 export default function App() {
   const {url} = useRouter();
-  
-  // 🚩Starting without animations
+
+  // 🚩This version doesn't include any animations yet
   return url === '/' ? <Home /> : <TalkDetails />;
 }
 ```
@@ -153,7 +153,7 @@ function VideoInfoFallback() {
   );
 }
 
-export default function Details({}) {
+export default function Details() {
   const { url, navigateBack } = useRouter();
   const videoId = url.split("/").pop();
   const video = use(fetchVideo(videoId));
@@ -206,7 +206,6 @@ function SearchInput({ value, onChange }) {
         <input
           type="text"
           id={id}
-          className="flex ps-11 py-4 h-10 w-full text-start bg-secondary-button outline-none betterhover:hover:bg-opacity-80 pointer items-center text-primary rounded-full align-middle text-base"
           placeholder="Search"
           value={value}
           onChange={(e) => onChange(e.target.value)}
@@ -1347,7 +1346,7 @@ function VideoInfoFallback() {
   );
 }
 
-export default function Details({}) {
+export default function Details() {
   const { url, navigateBack } = useRouter();
   const videoId = url.split("/").pop();
   const video = use(fetchVideo(videoId));
@@ -1400,7 +1399,6 @@ function SearchInput({ value, onChange }) {
         <input
           type="text"
           id={id}
-          className="flex ps-11 py-4 h-10 w-full text-start bg-secondary-button outline-none betterhover:hover:bg-opacity-80 pointer items-center text-primary rounded-full align-middle text-base"
           placeholder="Search"
           value={value}
           onChange={(e) => onChange(e.target.value)}
@@ -2539,7 +2537,7 @@ function VideoInfoFallback() {
   );
 }
 
-export default function Details({}) {
+export default function Details() {
   const { url, navigateBack } = useRouter();
   const videoId = url.split("/").pop();
   const video = use(fetchVideo(videoId));
@@ -2592,7 +2590,6 @@ function SearchInput({ value, onChange }) {
         <input
           type="text"
           id={id}
-          className="flex ps-11 py-4 h-10 w-full text-start bg-secondary-button outline-none betterhover:hover:bg-opacity-80 pointer items-center text-primary rounded-full align-middle text-base"
           placeholder="Search"
           value={value}
           onChange={(e) => onChange(e.target.value)}
@@ -3730,7 +3727,7 @@ function VideoInfoFallback() {
   );
 }
 
-export default function Details({}) {
+export default function Details() {
   const { url, navigateBack } = useRouter();
   const videoId = url.split("/").pop();
   const video = use(fetchVideo(videoId));
@@ -3783,7 +3780,6 @@ function SearchInput({ value, onChange }) {
         <input
           type="text"
           id={id}
-          className="flex ps-11 py-4 h-10 w-full text-start bg-secondary-button outline-none betterhover:hover:bg-opacity-80 pointer items-center text-primary rounded-full align-middle text-base"
           placeholder="Search"
           value={value}
           onChange={(e) => onChange(e.target.value)}
@@ -4982,7 +4978,7 @@ function VideoInfoFallback() {
   );
 }
 
-export default function Details({}) {
+export default function Details() {
   const { url, navigateBack } = useRouter();
   const videoId = url.split("/").pop();
   const video = use(fetchVideo(videoId));
@@ -5035,7 +5031,6 @@ function SearchInput({ value, onChange }) {
         <input
           type="text"
           id={id}
-          className="flex ps-11 py-4 h-10 w-full text-start bg-secondary-button outline-none betterhover:hover:bg-opacity-80 pointer items-center text-primary rounded-full align-middle text-base"
           placeholder="Search"
           value={value}
           onChange={(e) => onChange(e.target.value)}
@@ -6271,7 +6266,7 @@ function VideoInfoFallback() {
   );
 }
 
-export default function Details({}) {
+export default function Details() {
   const { url, navigateBack } = useRouter();
   const videoId = url.split("/").pop();
   const video = use(fetchVideo(videoId));
@@ -6331,7 +6326,6 @@ function SearchInput({ value, onChange }) {
         <input
           type="text"
           id={id}
-          className="flex ps-11 py-4 h-10 w-full text-start bg-secondary-button outline-none betterhover:hover:bg-opacity-80 pointer items-center text-primary rounded-full align-middle text-base"
           placeholder="Search"
           value={value}
           onChange={(e) => onChange(e.target.value)}
@@ -7589,7 +7583,7 @@ function VideoInfoFallback() {
   );
 }
 
-export default function Details({}) {
+export default function Details() {
   const { url, navigateBack } = useRouter();
   const videoId = url.split("/").pop();
   const video = use(fetchVideo(videoId));
@@ -7679,7 +7673,6 @@ function SearchInput({ value, onChange }) {
         <input
           type="text"
           id={id}
-          className="flex ps-11 py-4 h-10 w-full text-start bg-secondary-button outline-none betterhover:hover:bg-opacity-80 pointer items-center text-primary rounded-full align-middle text-base"
           placeholder="Search"
           value={value}
           onChange={(e) => onChange(e.target.value)}
@@ -8903,7 +8896,7 @@ function VideoInfoFallback() {
   );
 }
 
-export default function Details({}) {
+export default function Details() {
   const { url, navigateBack } = useRouter();
   const videoId = url.split("/").pop();
   const video = use(fetchVideo(videoId));
@@ -8993,7 +8986,6 @@ function SearchInput({ value, onChange }) {
         <input
           type="text"
           id={id}
-          className="flex ps-11 py-4 h-10 w-full text-start bg-secondary-button outline-none betterhover:hover:bg-opacity-80 pointer items-center text-primary rounded-full align-middle text-base"
           placeholder="Search"
           value={value}
           onChange={(e) => onChange(e.target.value)}
@@ -10264,7 +10256,7 @@ function VideoInfoFallback() {
   );
 }
 
-export default function Details({}) {
+export default function Details() {
   const { url, navigateBack } = useRouter();
   const videoId = url.split("/").pop();
   const video = use(fetchVideo(videoId));
@@ -10354,7 +10346,6 @@ function SearchInput({ value, onChange }) {
         <input
           type="text"
           id={id}
-          className="flex ps-11 py-4 h-10 w-full text-start bg-secondary-button outline-none betterhover:hover:bg-opacity-80 pointer items-center text-primary rounded-full align-middle text-base"
           placeholder="Search"
           value={value}
           onChange={(e) => onChange(e.target.value)}
@@ -11694,7 +11685,6 @@ function SearchInput({ value, onChange }) {
         <input
           type="text"
           id={id}
-          className="flex ps-11 py-4 h-10 w-full text-start bg-secondary-button outline-none betterhover:hover:bg-opacity-80 pointer items-center text-primary rounded-full align-middle text-base"
           placeholder="Search"
           value={value}
           onChange={(e) => onChange(e.target.value)}
@@ -12975,10 +12965,10 @@ We're also researching ways to enhance View Transitions to support gesture anima
 Gestures present new challenges for a few reasons:
 
 - **Gestures are continuous**: as you swipe the animation is tied to your finger placement time, rather than triggering and running to completion.
-- **Gestures don't complete:**: when you release your finger gesture animtaions can run to completion, or revert to their original state (like when you only partially open a menu) depending on how far you go.
+- **Gestures don't complete**: when you release your finger gesture animations can run to completion, or revert to their original state (like when you only partially open a menu) depending on how far you go.
 - **Gestures invert old and new**: while you're animating, you want the page you are animating from to stay "alive" and interactive. This inverts the browser View Transition model where the "old" state is a snapshot and the "new" state is the live DOM.
 
-We have an approach we believe will work well, which may introduce a new API to trigger gesture transitions, but we're currently focused on shipping `<ViewTransition>` and re-visit gestures after it ships.
+We believe we’ve found an approach that works well and may introduce a new API for triggering gesture transitions. For now, we're focused on shipping `<ViewTransition>`, and will revisit gestures afterward.
 
 ---
 
@@ -12988,13 +12978,13 @@ When we released React 18 with concurrent rendering, we also released `useSyncEx
 
 Using `useSyncExternalStore` comes at a cost though, since it forces bail out from concurrent features like transitions, and forces existing content to show Suspense fallbacks.
 
-Now that React 19 has shipped, we're re-visiting this problem space to create a primiative to fully support concurrent external stores with the `use` API:
+Now that React 19 has shipped, we're re-visiting this problem space to create a primitive to fully support concurrent external stores with the `use` API:
 
 ```js
 const value = use(store);
 ```
 
-Our goal is to allow state stored outside of React to be read in render without tearing, and to work seamlessly with all of the concurrent features React offers. 
+Our goal is to allow external state to be read during render without tearing, and to work seamlessly with all of the concurrent features React offers. 
 
 This research is still early. We'll share more, and what the new APIs will look like, when we're further along. 
 

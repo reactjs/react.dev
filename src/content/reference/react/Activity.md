@@ -81,17 +81,17 @@ Under the hood...
 
 You can pre-render part of the UI using `<Activity mode="hidden">`:
 
-```js [[1, 1, "Activity"], [1, 3, "Activity"], [2, 1, "mode"], [3, 1, "visible"], [4, 1, "hidden"]]
+```js
 <Activity mode={tab === "posts" ? "visible" : "hidden"}>
   <PostsTab />
 </Activity>
 ```
 
-When an <CodeStep step={1}>Activity</CodeStep> is rendered with <CodeStep step={2}>mode</CodeStep> "hidden", the `children` are not visible on the page, but are rendered at lower prioirty than the visible content on the page. 
+When an Activity is rendered with `mode` "hidden"`, the `children` are not visible on the page, but are rendered at lower prioirty than the visible content on the page. 
 
-When the <CodeStep step={2}>mode</CodeStep> later switches to <CodeStep step={4}>visible</CodeStep>, the pre-rendered children will mount and become visible. This can be used to prepare parts of the UI the user is likely to interact with next to reduce loading times.
+When the `mode` later switches to "visible", the pre-rendered children will mount and become visible. This can be used to prepare parts of the UI the user is likely to interact with next to reduce loading times.
 
-In the follow example from [`useTransition`](/reference/react/useTransition#preventing-unwanted-loading-indicators), the `PostsTab` component fetches some data using `use`. When you click the “Posts” tab, the `PostsTab` component suspends, causing the button loading state to appear:
+In the following example from [`useTransition`](/reference/react/useTransition#preventing-unwanted-loading-indicators), the `PostsTab` component fetches some data using `use`. When you click the “Posts” tab, the `PostsTab` component suspends, causing the button loading state to appear:
 
 <Sandpack>
 
@@ -481,17 +481,17 @@ b { display: inline-block; margin-right: 10px; }
 
 You can keep state for parts of the UI by switching `<Activity>` from "visible" to "hidden":
 
-```js [[1, 1, "Activity"], [1, 3, "Activity"], [2, 1, "mode"], [3, 1, "visible"], [4, 1, "hidden"]]
+```js
 <Activity mode={tab === "posts" ? "visible" : "hidden"}>
   <PostsTab />
 </Activity>
 ```
 
-When an <CodeStep step={1}>Activity</CodeStep> is switches from <CodeStep step={2}>mode</CodeStep> <CodeStep step={3}>visible</CodeStep> to <CodeStep step={4}>hidden</CodeStep>, the `children` will become hidden on the page, and unmount by destroying all Effects, but will keep their React and DOM state.
+When an Activity switches from `mode` "visible"` to`"hidden", the `children` will become hidden on the page, and unmount by destroying all Effects, but will keep their React and DOM state.
 
-When the <CodeStep step={2}>mode</CodeStep> later switches to <CodeStep step={4}>visible</CodeStep>, the saved state will be re-used when mounting the children by creating all the Effects. This can be used to keep state in parts of the UI the user is likely to interact with again to maintain DOM or React state.
+When the `mode` later switches to "visible", the saved state will be re-used when mounting the children by creating all the Effects. This can be used to keep state in parts of the UI the user is likely to interact with again to maintain DOM or React state.
 
-In the follow example from [`useTransition`](/reference/react/useTransition#preventing-unwanted-loading-indicators), the `ContactsTab` includes a `<textarea>` with a draft message to send. If you enter some text and change to a different tab, then when you click the “Contact” tab again, the draft message is lost:
+In the following example from [`useTransition`](/reference/react/useTransition#preventing-unwanted-loading-indicators), the `ContactTab` includes a `<textarea>` with a draft message to send. If you enter some text and change to a different tab, then when you click the “Contact” tab again, the draft message is lost:
 
 
 <Sandpack>

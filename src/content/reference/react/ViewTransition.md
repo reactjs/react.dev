@@ -40,7 +40,7 @@ import {unstableViewTransition as ViewTransition} from 'react';
 
 ### `<ViewTransition>` {/*viewtransition*/}
 
-Wrap elements in `<ViewTransition>` to animate them when they update inside a [Transition](/reference/react/useTransition). React uses [heuristics](#heuristics) to determine if a View Transition activates for an animation:
+Wrap elements in `<ViewTransition>` to animate them when they update inside a [Transition](/reference/react/useTransition). React uses the following heuristics to determine if a View Transition activates for an animation:
 
 - `enter`: If a `ViewTransition` itself gets inserted in this Transition, then this will activate.
 - `exit`: If a `ViewTransition` itself gets deleted in this Transition, then this will activate.
@@ -101,7 +101,7 @@ Each callback receives as arguments:
 - `element`: The DOM element that was animated.
 - `types`: The [Transition Types](/reference/react/addTransitionType) included in the animation.
 
-### View Transition Class {/*view-transition-classes*/}
+### View Transition Class {/*view-transition-class*/}
 
 The View Transition Class is the CSS class name(s) applied by React during the transition when the ViewTransition activates. It can be a string or an object.
 - `string`: the `class` added on the child elements when activated. If `'none'` is provided, no class will be added.
@@ -122,11 +122,11 @@ To customize the animation for a `<ViewTransition>` you can provide a View Trans
 For example, to customize an "enter" animation, provide a class name to the `enter` prop:
 
 
-```js [[1, 1, "enter"], [2, 1, "slide-in"]]
+```js
 <ViewTransition enter="slide-in">
 ```
 
-When the ViewTransition activates an <CodeStep step={1}>"enter"</CodeStep> animation, React will add the class name <CodeStep step={2}>slide-in</CodeStep>. Then you can refer to this class using [view transition pseudo selectors](https://developer.mozilla.org/en-US/docs/Web/API/View_Transition_API#pseudo-elements) to build reusable animations:
+When the `<ViewTransition>` activates an "enter" animation, React will add the class name `slide-in`. Then you can refer to this class using [view transition pseudo selectors](https://developer.mozilla.org/en-US/docs/Web/API/View_Transition_API#pseudo-elements) to build reusable animations:
 
 ```css
 ::view-transition-group(.slide-in) {
@@ -171,9 +171,9 @@ function Parent() {
 }
 ```
 
-When `setShow` is called, `show` switched to `true` and the `Child` component is rendered. Since `setShow` is called inside <CodeStep step={1}>startTransition</CodeStep>, and `Child` renders a <CodeStep step={2}>ViewTransition</CodeStep> before any other DOM nodes, an `enter` animation is triggered. 
+When `setShow` is called, `show` switches to `true` and the `Child` component is rendered. When `setShow` is called inside `startTransition`, and `Child` renders a `ViewTransition` before any other DOM nodes, an `enter` animation is triggered. 
 
-When `show` is switched back to `false`, an `exit` animation is triggered.
+When `show` switches back to `false`, an `exit` animation is triggered.
 
 <Sandpack>
 

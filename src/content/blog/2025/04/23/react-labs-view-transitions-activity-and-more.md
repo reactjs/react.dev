@@ -20,7 +20,7 @@ In React Labs posts, we write about projects in active research and development.
 
 React Conf 2025 is scheduled for October 7–8 in Henderson, Nevada! 
 
-We're looking for speakers to help us create talks about the features covered in this post. If you're interested in speaking at ReactConf, [please apply here](https://forms.reform.app/react-conf/call-for-speakers/piaae1?ga4_visitor_id=c3e8f3ce-2004-47a5-b801-f6b308280acd) (no talk proposal required).
+We're looking for speakers to help us create talks about the features covered in this post. If you're interested in speaking at ReactConf, [please apply here](https://forms.reform.app/react-conf/call-for-speakers/) (no talk proposal required).
 
 For more info on tickets, free streaming, sponsoring, and more, see [the React Conf website](https://conf.react.dev).
 
@@ -59,7 +59,7 @@ Read on to learn how to use these features in your app, or check out the newly p
 
 ## View Transitions {/*view-transitions*/}
 
-React View Transitions are a new experimental feature that makes it easier to add animations to UI transitions in your app. Under-the-hood, these animations APIs use the new [`startViewTransition`](https://developer.mozilla.org/en-US/docs/Web/API/Document/startViewTransition) API available in most modern browsers.
+React View Transitions are a new experimental feature that makes it easier to add animations to UI transitions in your app. Under-the-hood, these animations use the new [`startViewTransition`](https://developer.mozilla.org/en-US/docs/Web/API/Document/startViewTransition) API available in most modern browsers.
 
 To opt-in to animating an element, wrap it in the new `<ViewTransition>` component:
 
@@ -4905,7 +4905,7 @@ With transition types, you can provide custom animations via props to `<ViewTran
 </ViewTransition>
 ```
 
-Here we pass a `share` prop to define how to animate based on the transiton type. When the share transition activates from `nav-forward`, the view transition class `slide-forward` is applied. When it's from `nav-back`, the `slide-back` animation is activated. Let's define these animations in CSS:
+Here we pass a `share` prop to define how to animate based on the transition type. When the share transition activates from `nav-forward`, the view transition class `slide-forward` is applied. When it's from `nav-back`, the `slide-back` animation is activated. Let's define these animations in CSS:
 
 ```css
 ::view-transition-old(.slide-forward) {
@@ -10143,9 +10143,9 @@ We're now ready to share the API and how it works, so you can start testing it i
 </Activity>
 ```
 
-When an Activity is <CodeStep step={1}>visible</CodeStep> it's rendered as normal. When an Activity is <CodeStep step={2}>hidden</CodeStep> it is unmounted, but will save it's state and continue to render at a lower priority than anything visible on screen.
+When an Activity is <CodeStep step={1}>visible</CodeStep> it's rendered as normal. When an Activity is <CodeStep step={2}>hidden</CodeStep> it is unmounted, but will save its state and continue to render at a lower priority than anything visible on screen.
 
-You can use `Activity` save state for parts of the UI the user isn't using, or pre-render parts that a user is likely to use next.
+You can use `Activity` to save state for parts of the UI the user isn't using, or pre-render parts that a user is likely to use next.
 
 Let's look at some examples improving the View Transition examples above.
 
@@ -10176,7 +10176,7 @@ function App() {
 }
 ```
 
-However, this means if the user goes back to the old page, all of the previous state is lost. For example, if the `<Home />` page has an `<input>` field, when the user leaves the page the `<input`> is unmouted, and all of the text they had typed is lost.
+However, this means if the user goes back to the old page, all of the previous state is lost. For example, if the `<Home />` page has an `<input>` field, when the user leaves the page the `<input`> is unmounted, and all of the text they had typed is lost.
 
 Activity allows you to keep the state around as the user changes pages, so when they come back they can resume where they left off. This is done by wrapping part of the tree in `<Activity>` and toggling the `mode`:
 
@@ -11516,7 +11516,7 @@ root.render(
 
 Sometimes, you may want to prepare the next part of the UI a user is likely to use ahead of time, so it's ready by the time they are ready to use it. This is especially useful if the next route needs to suspend on data it needs to render, because you can help ensure the data is already fetched before the user navigates.
 
-For example, our app currently needs to suspend to load the data for each video when you select one. We can improve this by rendering all of the pages is a hidden `<Activity>` until the user navigates:
+For example, our app currently needs to suspend to load the data for each video when you select one. We can improve this by rendering all of the pages in a hidden `<Activity>` until the user navigates:
 
 ```js {2,5,8}
 <ViewTransition>
@@ -11560,16 +11560,13 @@ export default function App() {
 }
 ```
 
-```js src/Details.js hidden
-import { use, Suspense, unstable_ViewTransition as ViewTransition } from "react";
-import { fetchVideo, fetchVideoDetails } from "./data";
-import { Thumbnail, VideoControls } from "./Videos";
-import { useRouter } from "./router";
-import Layout from "./Layout";
-import { ChevronLeft } from "./Icons";
+```js src/Details.js
+import { use, Suspense, unstable_ViewTransition as ViewTransition } from "react"; import { fetchVideo, fetchVideoDetails } from "./data"; import { Thumbnail, VideoControls } from "./Videos"; import { useRouter } from "./router"; import Layout from "./Layout"; import { ChevronLeft } from "./Icons";
 
 function VideoDetails({id}) {
-  // Animate from Suspense fallback to content
+  // Animate from Suspense fallback to content.
+  // If this is pre-rendered then the fallback
+  // won't need to show.
   return (
     <Suspense
       fallback={
@@ -12884,7 +12881,7 @@ Earlier this week [we shared](/blog/2025/04/21/react-compiler-rc) the React Comp
 
 We've also begun exploring ways to use the React Compiler to provide information that can improve understanding and debugging your code. One idea we've started exploring is a new experimental LSP-based React IDE extension powered by React Compiler, similar to the extension used in [Lauren Tan's React Conf talk](https://conf2024.react.dev/talks/5).
 
-Our idea is that we can use the compiler's static analysis to provide more information, suggestions, and optimization opportunities directly in your IDE. For example, we can provide diagnostics for code breaking the Rules of React, hovers to show if components and hooks were optimized by the compiler, or a CodeLens to see [automatically inserted Effect dependencies](/#automatic-effect-dependencies).
+Our idea is that we can use the compiler's static analysis to provide more information, suggestions, and optimization opportunities directly in your IDE. For example, we can provide diagnostics for code breaking the Rules of React, hovers to show if components and hooks were optimized by the compiler, or a CodeLens to see [automatically inserted Effect dependencies](#automatic-effect-dependencies).
 
 The IDE extension is still an early exploration, but we'll share our progress in future updates.
 
@@ -12902,11 +12899,11 @@ Since their release, hooks have been successful at *sharing code between compone
 
 ### Effects can be hard {/*effects-can-be-hard*/}
 
-Unfortunately, some hooks are still hard to think in terms of function instead of lifecycles. Effects specifically are still hard to understand and is the most common pain point we hear from developers. Last year, we spent a significant amount of time researching how effects were used, and how those use cases could be simplified and easier to understand.
+Unfortunately, some hooks are still hard to think in terms of function instead of lifecycles. Effects specifically are still hard to understand and is the most common pain point we hear from developers. Last year, we spent a significant amount of time researching how Effects were used, and how those use cases could be simplified and easier to understand.
 
-We found that often, the confusion is from using an Effect when you don't need to. The [You Probably Don't Need an Effect guide](/TODO), covers many cases for when Effects are not the right solution. However, even when an Effect is the right fit for a problem, Effects can still be harder to understand than class component lifecyles.
+We found that often, the confusion is from using an Effect when you don't need to. The [You Might Not Need an Effect](/learn/you-might-not-need-an-effect) guide, covers many cases for when Effects are not the right solution. However, even when an Effect is the right fit for a problem, Effects can still be harder to understand than class component lifecyles.
 
-We believe one of the reasons for confusion is the dependency array, which allows developers to think of effects from the _components_ perspective (like a lifecycle), instead of the _effects_ point of view (what the effect does).
+We believe one of the reasons for confusion is that developers to think of Effects from the _components_ perspective (like a lifecycle), instead of the _Effects_ point of view (what the Effect does).
 
 Let's look at an example [from the docs](/learn/lifecycle-of-reactive-effects#thinking-from-the-effects-perspective):
 
@@ -12926,7 +12923,7 @@ Many users would read this code as "on mount, connect to the roomId. whenever `r
 
 ### Effects without dependencies {/*effects-without-dependencies*/}
 
-Instaed, it's better to think from the Effect's perspective. The effect doesn't know about about the component lifecycles. It only describes how to start synchronization and how to stop it. When users think of Effects in this way, their Effects tend to be easier to write, and more resilient to being started and stopped as many times as it’s needed.
+Instead, it's better to think from the Effect's perspective. The effect doesn't know about the component lifecycles. It only describes how to start synchronization and how to stop it. When users think of Effects in this way, their Effects tend to be easier to write, and more resilient to being started and stopped as many times as it’s needed.
 
 We spent some time researching why Effects are thought of from the component perspective, and we think one of the resons is the dependency array. Since you have to write it, it's right there and in your face reminding you of what you're "reacting" to and baiting you into the mental model of 'do this when these values change'.
 
@@ -12942,7 +12939,7 @@ useEffect(() => {
 }); // compiler inserted dependencies. 
 ```
 
-With this code, the React Compiler can infer the dependencies for you and insert them automatically so you don't need to see or write them. With features like the IDE exension and `useEffectEvent`, we can provide a CodeLens to show you what the Compiler inserted for times you need to debug, or to optimize by removing a dependency. This helps reinforce the correct mental model for writing Effects, which can run at any time to synchronize your component or hook's state with something else
+With this code, the React Compiler can infer the dependencies for you and insert them automatically so you don't need to see or write them. With features like the IDE exension and `useEffectEvent`, we can provide a CodeLens to show you what the Compiler inserted for times you need to debug, or to optimize by removing a dependency. This helps reinforce the correct mental model for writing Effects, which can run at any time to synchronize your component or hook's state with something else.
 
 Our hope is that automatically inserting dependencies is not only easier to write, but that it also makes them easier to understand by forcing you to think in terms of what the effect does, and not in component lifecycles. 
 
@@ -12990,4 +12987,4 @@ This research is still early. We'll share more, and what the new APIs will look 
 
 ---
 
-_TODO: Thanks to [Dan Abramov](https://bsky.app/profile/danabra.mov), [Lauren Tan](https://bsky.app/profile/no.lol), [Matt Carroll](https://twitter.com/mattcarrollcode), [Jack Pope](https://jackpope.me), [Jason Bonta](https://threads.net/someextent), [Jordan Brown](https://github.com/jbrown215), [Jordan Eldredge](https://bsky.app/profile/capt.dev), and [Mofei Zhang](https://threads.net/z_mofei) for reviewing this post.
+_TODO: Thanks to [Aurora Scharff](https://bsky.app/profile/aurorascharff.no), [Dan Abramov](https://bsky.app/profile/danabra.mov), [Lauren Tan](https://bsky.app/profile/no.lol), [Luna Wei](https://github.com/lunaleaps), [Matt Carroll](https://twitter.com/mattcarrollcode), [Jack Pope](https://jackpope.me), [Jason Bonta](https://threads.net/someextent), [Jordan Brown](https://github.com/jbrown215), [Jordan Eldredge](https://bsky.app/profile/capt.dev), [Mofei Zhang](https://threads.net/z_mofei), [Sebastien Lorber](https://bsky.app/profile/sebastienlorber.com), and [Sebastian Markbåge](https://bsky.app/profile/sebmarkbage.calyptus.eu) for reviewing this post.

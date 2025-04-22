@@ -99,7 +99,7 @@ These callbacks allow you to adjust the animation imperatively using the [animat
 
 Each callback receives as arguments:
 - `element`: The DOM element that was animated.
-- `types`: The [Transition Types)(/reference/react/addTransitionType) included in the animation.
+- `types`: The [Transition Types](/reference/react/addTransitionType) included in the animation.
 
 ### View Transition Class {/*view-transition-classes*/}
 
@@ -129,13 +129,13 @@ For example, to customize an "enter" animation, provide a class name to the `ent
 When the ViewTransition activates an <CodeStep step={1}>"enter"</CodeStep> animation, React will add the class name <CodeStep step={2}>slide-in</CodeStep>. Then you can refer to this class using [view transition pseudo selectors](https://developer.mozilla.org/en-US/docs/Web/API/View_Transition_API#pseudo-elements) to build reusable animations:
 
 ```css
-::view-transition-group(.my-class) {
+::view-transition-group(.slide-in) {
   
 }
-::view-transition-old(.my-class) {
+::view-transition-old(.slide-in) {
 
 }
-::view-transition-new(.my-class) {
+::view-transition-new(.slide-in) {
 
 }
 ```

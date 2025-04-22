@@ -89,6 +89,8 @@ export default [
 ];
 ```
 
+To enable the React Compiler rule, add `'react-hooks/react-compiler': 'error'` to your ESLint configuration.
+
 The linter does not require the compiler to be installed, so there's no risk in upgrading eslint-plugin-react-hooks. We recommend everyone upgrade today.
 
 ## swc support (experimental) {/*swc-support-experimental*/}

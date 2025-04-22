@@ -1,11 +1,11 @@
 ---
-title: "React Labs: What We've Been Working On – April 2025"
-author: Ricky Hanlon,  Lauren Tan, Mofei Zhang, Jordan Eldredge, Jack Pope, Matt Carroll
-date: 2025/04/01
-description: TODO
+title: "React Labs: View Transitions, Activity, and more"
+author: Ricky Hanlon
+date: 2025/04/23
+description: In React Labs posts, we write about projects in active research and development. In this post, we're sharing two new experimental features that are ready to try today, and updates on other areas we're working on now.
 ---
 
-April 1, 2025 by [Ricky Hanlon](https://twitter.com/rickhanlonii), and [Matt Carroll](https://twitter.com/mattcarrollcode).
+April 23, 2025 by [Ricky Hanlon](https://twitter.com/rickhanlonii)
 
 ---
 
@@ -12990,4 +12990,4 @@ This research is still early. We'll share more, and what the new APIs will look 
 
 ---
 
-_TODO: Thanks to [Dan Abramov](https://bsky.app/profile/danabra.mov), [Lauren Tan](https://bsky.app/profile/no.lol), [Jack Pope](https://jackpope.me), [Jason Bonta](https://threads.net/someextent), [Jordan Brown](https://github.com/jbrown215), [Jordan Eldredge](https://bsky.app/profile/capt.dev), and [Mofei Zhang](https://threads.net/z_mofei) for reviewing this post.
+_TODO: Thanks to [Dan Abramov](https://bsky.app/profile/danabra.mov), [Lauren Tan](https://bsky.app/profile/no.lol), [Matt Carroll](https://twitter.com/mattcarrollcode), [Jack Pope](https://jackpope.me), [Jason Bonta](https://threads.net/someextent), [Jordan Brown](https://github.com/jbrown215), [Jordan Eldredge](https://bsky.app/profile/capt.dev), and [Mofei Zhang](https://threads.net/z_mofei) for reviewing this post.

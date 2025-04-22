@@ -686,7 +686,7 @@ export default function Component() {
       <div className="listContainer">
         {orderedVideos.map((video, i) => {
           return (
-            <ViewTransition key={video.title} update="none">
+            <ViewTransition key={video.title}>
               <Video video={video} />
             </ViewTransition>
           );

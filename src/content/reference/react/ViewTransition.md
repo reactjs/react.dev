@@ -1055,7 +1055,7 @@ It's important to properly use keys to preserve identity when reordering lists. 
 
 ### Animating from Suspense content {/*animating-from-suspense-content*/}
 
-Just like any Transition React waits for data and new CSS (`<link rel="stylesheet" precedence="...">`) before running the animation. In addition to this ViewTransitions also wait up to 500ms for new fonts to load before starting the animation to avoid them flickering in later. In the future we plan on also waiting for images.
+Just like any Transition, React waits for data and new CSS (`<link rel="stylesheet" precedence="...">`) before running the animation. In addition to this ViewTransitions also wait up to 500ms for new fonts to load before starting the animation to avoid them flickering in later. For the same reason, an image wrapped in ViewTransition will wait for the image to load.
 
 If it's inside a new Suspense boundary instance, then the fallback is shown first. After the Suspense boundary fully loads, it triggers the `<ViewTransition>` to animate the reveal to the content.
 
@@ -1074,11 +1074,236 @@ Update:
 ```
 In this scenario when the content goes from A to B, it'll be treated as an "update" and apply that class if appropriate. Both A and B will get the same view-transition-name and therefore they're acting as a cross-fade by default.
 
+<Sandpack>
+
+```js src/Video.js hidden
+function Thumbnail({ video, children }) {
+  return (
+    <div
+      aria-hidden="true"
+      tabIndex={-1}
+      className={`thumbnail ${video.image}`}
+    />
+  );
+}
+
+export function Video({ video }) {
+  return (
+    <div className="video">
+      <div className="link">
+        <Thumbnail video={video}></Thumbnail>
+        <div className="info">
+          <div className="video-title">{video.title}</div>
+          <div className="video-description">{video.description}</div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export function VideoPlaceholder() {
+  const video = {image: "loading"}
+  return (
+    <div className="video">
+      <div className="link">
+        <Thumbnail video={video}></Thumbnail>
+        <div className="info">
+          <div className="video-title loading" />
+          <div className="video-description loading" />
+        </div>
+      </div>
+    </div>
+  );
+}
+```
+
+```js
+import {
+  unstable_ViewTransition as ViewTransition,
+  useState,
+  startTransition,
+  Suspense
+} from 'react';
+import {Video, VideoPlaceholder} from "./Video";
+import {useLazyVideoData} from "./data"
+
+function LazyVideo() {
+  const video = useLazyVideoData();
+  return (
+    <Video video={video}/>
+  );
+}
+
+export default function Component() {
+  const [showItem, setShowItem] = useState(false);
+  return (
+    <>
+      <button
+        onClick={() => {
+          startTransition(() => {
+            setShowItem((prev) => !prev);
+          });
+        }}
+      >{showItem ? '➖' : '➕'}</button>
+
+      {showItem ? (
+        <ViewTransition>
+          <Suspense fallback={<VideoPlaceholder />}>
+            <LazyVideo />
+          </Suspense>
+        </ViewTransition>
+      ) : null}
+    </>
+  );
+}
+```
+
+```js src/data.js hidden
+import {use} from "react";
+
+let cache = null;
+
+function fetchVideo() {
+  if (!cache) {
+    cache = new Promise((resolve) => {
+      setTimeout(() => {
+        resolve({
+          id: '1',
+          title: 'First video',
+          description: 'Video description',
+          image: 'blue',
+        });
+      }, 1000);
+    });
+  }
+  return cache;
+}
+
+export function useLazyVideoData() {
+  return use(fetchVideo());
+}
+```
+
+
+```css
+#root {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 200px;
+}
+button {
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f0f8ff;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s, border 0.3s;
+}
+button:hover {
+  border: 2px solid #ccc;
+  background-color: #e0e8ff;
+}
+.thumbnail {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  display: flex;
+  overflow: hidden;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 0.5rem;
+  outline-offset: 2px;
+  width: 8rem;
+  vertical-align: middle;
+  background-color: #ffffff;
+  background-size: cover;
+  user-select: none;
+}
+.thumbnail.blue {
+  background-image: conic-gradient(at top right, #c76a15, #087ea4, #2b3491);
+}
+.loading {
+  background-image: linear-gradient(90deg, rgba(173, 216, 230, 0.3) 25%, rgba(135, 206, 250, 0.5) 50%, rgba(173, 216, 230, 0.3) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+.video {
+  display: flex;
+  flex-direction: row;
+  gap: 0.75rem;
+  align-items: center;
+  margin-top: 1em;
+}
+.video .link {
+  display: flex;
+  flex-direction: row;
+  flex: 1 1 0;
+  gap: 0.125rem;
+  outline-offset: 4px;
+  cursor: pointer;
+}
+.video .info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 8px;
+  gap: 0.125rem;
+}
+.video .info:hover {
+  text-decoration: underline;
+}
+.video-title {
+  font-size: 15px;
+  line-height: 1.25;
+  font-weight: 700;
+  color: #23272f;
+}
+.video-title.loading {
+  height: 20px;
+  width: 80px;
+}
+.video-description {
+  color: #5e687e;
+  font-size: 13px;
+}
+.video-description.loading {
+  height: 15px;
+  width: 100px;
+}
+```
+
+```json package.json hidden
+{
+  "dependencies": {
+    "react": "experimental",
+    "react-dom": "experimental",
+    "react-scripts": "latest"
+  }
+}
+```
+
+</Sandpack>
+
 Enter/Exit:
 
 ```
 <Suspense fallback={<ViewTransition><A /></ViewTransition>}>
-<ViewTransition><B /></ViewTransition>
+  <ViewTransition><B /></ViewTransition>
 </Suspense>
 ```
 

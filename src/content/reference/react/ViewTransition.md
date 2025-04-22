@@ -177,17 +177,48 @@ When `show` is switched back to `false`, an `exit` animation is triggered.
 
 <Sandpack>
 
+```js src/Video.js hidden
+function Thumbnail({ video, children }) {
+  return (
+    <div
+      aria-hidden="true"
+      tabIndex={-1}
+      className={`thumbnail ${video.image}`}
+    />
+  );
+}
+
+export function Video({ video }) {
+  return (
+    <div className="video">
+      <div
+        className="link"
+      >
+        <Thumbnail video={video}></Thumbnail>
+
+        <div className="info">
+          <div className="video-title">{video.title}</div>
+          <div className="video-description">{video.description}</div>
+        </div>
+      </div>
+    </div>
+  );
+}
+```
+
 ```js
 import {
   unstable_ViewTransition as ViewTransition,
   useState,
   startTransition
 } from 'react';
+import {Video} from "./Video";
+import videos from "./data"
 
 function Item() {
   return (
     <ViewTransition>
-      <div className="item">Hello world</div>
+      <Video video={videos[0]}/>
     </ViewTransition>
   );
 }
@@ -210,12 +241,24 @@ export default function Component() {
 }
 ```
 
+```js src/data.js hidden
+export default [
+  {
+    id: '1',
+    title: 'First video',
+    description: 'Video description',
+    image: 'blue',
+  }
+]
+```
+
+
 ```css
 #root {
   display: flex;
   flex-direction: column;
   align-items: center;
-  min-height: 150px;
+  min-height: 200px;
 }
 button {
   border: none;
@@ -235,16 +278,59 @@ button:hover {
   border: 2px solid #ccc;
   background-color: #e0e8ff;
 }
-.item {
-  width: 100%;
-  padding: 10px 20px;
-  margin: 10px 0;
-  border-radius: 50px;
-  background-color: #f0f8ff;
-  color: #333;
-  font-size: 16px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  height: 40px;
+.thumbnail {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  display: flex;
+  overflow: hidden;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 0.5rem;
+  outline-offset: 2px;
+  width: 8rem;
+  vertical-align: middle;
+  background-color: #ffffff;
+  background-size: cover;
+  user-select: none;
+}
+.thumbnail.blue {
+  background-image: conic-gradient(at top right, #c76a15, #087ea4, #2b3491);
+}
+.video {
+  display: flex;
+  flex-direction: row;
+  gap: 0.75rem;
+  align-items: center;
+  margin-top: 1em;
+}
+.video .link {
+  display: flex;
+  flex-direction: row;
+  flex: 1 1 0;
+  gap: 0.125rem;
+  outline-offset: 4px;
+  cursor: pointer;
+}
+.video .info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 8px;
+  gap: 0.125rem;
+}
+.video .info:hover {
+  text-decoration: underline;
+}
+.video-title {
+  font-size: 15px;
+  line-height: 1.25;
+  font-weight: 700;
+  color: #23272f;
+}
+.video-description {
+  color: #5e687e;
+  font-size: 13px;
 }
 ```
 
@@ -300,41 +386,97 @@ import {
   unstable_ViewTransition as ViewTransition,
   useState,
   startTransition
-} from 'react';
+} from "react";
+import {Video, Thumbnail, FullscreenVideo} from "./Video";
+import videos from "./data";
 
 export default function Component() {
-  const [position, setPosition] = useState(true);
-  return (
-    <>
-      <button
-        onClick={() => {
-          startTransition(() => {
-            setPosition((prev) => !prev);
-          });
-        }}
-      >{position ? "⬇️" : "⬆️"}</button>
-      <div className="item">
-        {position && (
-          <ViewTransition name="hello_world"><div>Hello</div></ViewTransition>
-        )}
-      </div>
-      <div className="item">
-        {!position && (
-          <ViewTransition name="hello_world"><div>World</div></ViewTransition>
-        )}
-      </div>
-    </>
-  );
+  const [fullscreen, setFullscreen] = useState(false);
+  if (fullscreen) {
+    return <FullscreenVideo
+      video={videos[0]}
+      onExit={() => startTransition(() => setFullscreen(false))}
+    />
+  }
+  return <Video
+    video={videos[0]}
+    onClick={() => startTransition(() => setFullscreen(true))}
+  />
 }
 
 ```
+
+```js src/Video.js
+import {unstable_ViewTransition as ViewTransition} from "react";
+
+const THUMBNAIL_NAME = "video-thumbnail"
+
+export function Thumbnail({ video, children }) {
+  return (
+    <ViewTransition name={THUMBNAIL_NAME}>
+      <div
+        aria-hidden="true"
+        tabIndex={-1}
+        className={`thumbnail ${video.image}`}
+      />
+    </ViewTransition>
+  );
+}
+
+export function Video({ video, onClick }) {
+  return (
+    <div className="video">
+      <div className="link" onClick={onClick}>
+        <Thumbnail video={video} />
+        <div className="info">
+          <div className="video-title">{video.title}</div>
+          <div className="video-description">{video.description}</div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export function FullscreenVideo({video, onExit}) {
+  return (
+    <div className="fullscreenLayout">
+      <ViewTransition name={THUMBNAIL_NAME}>
+        <div
+          aria-hidden="true"
+          tabIndex={-1}
+          className={`thumbnail ${video.image} fullscreen`}
+        />
+        <button
+          className="close-button"
+          onClick={onExit}
+        >
+          ✖
+        </button>
+      </ViewTransition>
+    </div>
+  );
+}
+```
+
+
+```js src/data.js hidden
+export default [
+  {
+    id: '1',
+    title: 'First video',
+    description: 'Video description',
+    image: 'blue',
+  }
+]
+```
+
 
 ```css
 #root {
   display: flex;
   flex-direction: column;
   align-items: center;
-  min-height: 150px;
+  height: 300px;
 }
 button {
   border: none;
@@ -354,16 +496,85 @@ button:hover {
   border: 2px solid #ccc;
   background-color: #e0e8ff;
 }
-.item {
+.thumbnail {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  display: flex;
+  overflow: hidden;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 0.5rem;
+  outline-offset: 2px;
+  width: 8rem;
+  vertical-align: middle;
+  background-color: #ffffff;
+  background-size: cover;
+  user-select: none;
+}
+.thumbnail.blue {
+  background-image: conic-gradient(at top right, #c76a15, #087ea4, #2b3491);
+}
+.thumbnail.red {
+  background-image: conic-gradient(at top right, #c76a15, #a6423a, #2b3491);
+}
+.thumbnail.fullscreen {
+  height: 100%;
   width: 100%;
-  padding: 10px 20px;
-  margin: 10px 0;
-  border-radius: 50px;
-  background-color: #f0f8ff;
-  color: #333;
-  font-size: 16px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  height: 40px;
+}
+.video {
+  display: flex;
+  flex-direction: row;
+  gap: 0.75rem;
+  align-items: center;
+  margin-top: 1em;
+}
+.video .link {
+  display: flex;
+  flex-direction: row;
+  flex: 1 1 0;
+  gap: 0.125rem;
+  outline-offset: 4px;
+  cursor: pointer;
+}
+.video .info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 8px;
+  gap: 0.125rem;
+}
+.video .info:hover {
+  text-decoration: underline;
+}
+.video-title {
+  font-size: 15px;
+  line-height: 1.25;
+  font-weight: 700;
+  color: #23272f;
+}
+.video-description {
+  color: #5e687e;
+  font-size: 13px;
+}
+.fullscreenLayout {
+  position: relative;
+  height: 100%;
+  width: 100%;
+}
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  color: black;
+}
+@keyframes progress-animation {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
 }
 ```
 
@@ -420,76 +631,103 @@ This means that this will trigger the animation on this `<ViewTransition>`:
 
 ```js
 function Component() {
-return <ViewTransition><div>...</div></ViewTransition>;
+  return <ViewTransition><div>...</div></ViewTransition>;
 }
 ```
-
-However, this wouldn't animate each individual item:
-
-```
-function Component() {
-  return <div><ViewTransition>...</ViewTransition></div>;
-}
-```
-Instead, any parent `<ViewTransition>` would cross-fade. If there is no parent `<ViewTransition>` then there's no animation in that case.
-
 <Sandpack>
+
+```js src/Video.js hidden
+function Thumbnail({ video }) {
+  return (
+    <div
+      aria-hidden="true"
+      tabIndex={-1}
+      className={`thumbnail ${video.image}`}
+    />
+  );
+}
+
+export function Video({ video }) {
+  return (
+    <div className="video">
+      <div className="link">
+        <Thumbnail video={video}></Thumbnail>
+        <div className="info">
+          <div className="video-title">{video.title}</div>
+          <div className="video-description">{video.description}</div>
+        </div>
+      </div>
+    </div>
+  );
+}
+```
 
 ```js
 import {
   unstable_ViewTransition as ViewTransition,
   useState,
   startTransition
-} from 'react';
-
-function Item({color}) {
-  return <div className="item" style={{backgroundColor: color[1]}}>{color[0]}</div>;
-}
-
-function List({animateEach, items}) {
-  return items.map(item => {
-    if (animateEach) {
-      return <ViewTransition key={item}><Item color={item} /></ViewTransition>
-    }
-    return <Item color={item} key={item} />
-  })
-}
+} from "react";
+import {Video} from "./Video";
+import videos from "./data";
 
 export default function Component() {
-  const [items, setItems] = useState([
-    ['Yellow', 'yellow'],
-    ['Green', 'lightgreen'],
-    ['Blue', 'lightblue'],
-    ['Orange', 'orange'],
-  ]);
-
+  const [orderedVideos, setOrderedVideos] = useState(videos);
   const reorder = () => {
     startTransition(() => {
-      setItems((prev) => {
+      setOrderedVideos((prev) => {
         return [...prev.sort(() => Math.random() - 0.5)];
       });
     });
   };
-
   return (
     <>
       <button onClick={reorder}>🎲</button>
       <div className="listContainer">
-        <div>
-          <p>Animates each item</p>
-          <List animateEach={true} items={items} />
-        </div>
-        <div>
-          <p>Animates the whole list</p>
-          <ViewTransition>
-            <List animateEach={false} items={items} />
-          </ViewTransition>
-        </div>
+        {orderedVideos.map((video, i) => {
+          return (
+            <ViewTransition key={video.title}>
+              <Video video={video} />
+            </ViewTransition>
+          );
+        })}
       </div>
     </>
   );
 }
+  
+
 ```
+
+```js src/data.js hidden
+export default [
+  {
+    id: '1',
+    title: 'First video',
+    description: 'Video description',
+    image: 'blue',
+  },
+  {
+    id: '2',
+    title: 'Second video',
+    description: 'Video description',
+    image: 'red',
+  },
+  {
+    id: '3',
+    title: 'Third video',
+    description: 'Video description',
+    image: 'green',
+  },
+  {
+    id: '4',
+    title: 'Fourth video',
+    description: 'Video description',
+    image: 'purple',
+  }
+]
+```
+
 
 ```css
 #root {
@@ -516,26 +754,274 @@ button:hover {
   border: 2px solid #ccc;
   background-color: #e0e8ff;
 }
-.item {
-  width: 100%;
-  padding: 10px 20px;
-  margin: 10px 0;
-  border-radius: 50px;
-  background-color: #f0f8ff;
-  color: #333;
-  font-size: 16px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  height: 40px;
-}
-.listContainer {
+.thumbnail {
+  position: relative;
+  aspect-ratio: 16 / 9;
   display: flex;
-  width: 100%;
+  overflow: hidden;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 0.5rem;
+  outline-offset: 2px;
+  width: 8rem;
+  vertical-align: middle;
+  background-color: #ffffff;
+  background-size: cover;
+  user-select: none;
 }
-.listContainer > div {
-  width: 100%;
-  margin: 20px;
+.thumbnail.blue {
+  background-image: conic-gradient(at top right, #c76a15, #087ea4, #2b3491);
+}
+.thumbnail.red {
+  background-image: conic-gradient(at top right, #c76a15, #a6423a, #2b3491);
+}
+.thumbnail.green {
+  background-image: conic-gradient(at top right, #c76a15, #388f7f, #2b3491);
+}
+.thumbnail.purple {
+  background-image: conic-gradient(at top right, #c76a15, #575fb7, #2b3491);
+}
+.video {
+  display: flex;
+  flex-direction: row;
+  gap: 0.75rem;
+  align-items: center;
+  margin-top: 1em;
+}
+.video .link {
+  display: flex;
+  flex-direction: row;
+  flex: 1 1 0;
+  gap: 0.125rem;
+  outline-offset: 4px;
+}
+.video .info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 8px;
+  gap: 0.125rem;
+}
+.video .info:hover {
+  text-decoration: underline;
+}
+.video-title {
+  font-size: 15px;
+  line-height: 1.25;
+  font-weight: 700;
+  color: #23272f;
+}
+.video-description {
+  color: #5e687e;
+  font-size: 13px;
 }
 ```
+
+
+```json package.json hidden
+{
+  "dependencies": {
+    "react": "experimental",
+    "react-dom": "experimental",
+    "react-scripts": "latest"
+  }
+}
+```
+
+</Sandpack>
+
+However, this wouldn't animate each individual item:
+
+```js
+function Component() {
+  return <div><ViewTransition>...</ViewTransition></div>;
+}
+```
+Instead, any parent `<ViewTransition>` would cross-fade. If there is no parent `<ViewTransition>` then there's no animation in that case.
+
+<Sandpack>
+
+```js src/Video.js hidden
+function Thumbnail({ video }) {
+  return (
+    <div
+      aria-hidden="true"
+      tabIndex={-1}
+      className={`thumbnail ${video.image}`}
+    />
+  );
+}
+
+export function Video({ video }) {
+  return (
+    <div className="video">
+      <div className="link">
+        <Thumbnail video={video}></Thumbnail>
+        <div className="info">
+          <div className="video-title">{video.title}</div>
+          <div className="video-description">{video.description}</div>
+        </div>
+      </div>
+    </div>
+  );
+}
+```
+
+```js
+import {
+  unstable_ViewTransition as ViewTransition,
+  useState,
+  startTransition
+} from "react";
+import {Video} from "./Video";
+import videos from "./data";
+
+export default function Component() {
+  const [orderedVideos, setOrderedVideos] = useState(videos);
+  const reorder = () => {
+    startTransition(() => {
+      setOrderedVideos((prev) => {
+        return [...prev.sort(() => Math.random() - 0.5)];
+      });
+    });
+  };
+  return (
+    <>
+      <button onClick={reorder}>🎲</button>
+      <ViewTransition>
+        <div className="listContainer">
+          {orderedVideos.map((video, i) => {
+            return <Video video={video} key={video.title} />;
+          })}
+        </div>
+      </ViewTransition>
+    </>
+  );
+}
+  
+
+```
+
+```js src/data.js hidden
+export default [
+  {
+    id: '1',
+    title: 'First video',
+    description: 'Video description',
+    image: 'blue',
+  },
+  {
+    id: '2',
+    title: 'Second video',
+    description: 'Video description',
+    image: 'red',
+  },
+  {
+    id: '3',
+    title: 'Third video',
+    description: 'Video description',
+    image: 'green',
+  },
+  {
+    id: '4',
+    title: 'Fourth video',
+    description: 'Video description',
+    image: 'purple',
+  }
+]
+```
+
+
+```css
+#root {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 150px;
+}
+button {
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f0f8ff;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s, border 0.3s;
+}
+button:hover {
+  border: 2px solid #ccc;
+  background-color: #e0e8ff;
+}
+.thumbnail {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  display: flex;
+  overflow: hidden;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 0.5rem;
+  outline-offset: 2px;
+  width: 8rem;
+  vertical-align: middle;
+  background-color: #ffffff;
+  background-size: cover;
+  user-select: none;
+}
+.thumbnail.blue {
+  background-image: conic-gradient(at top right, #c76a15, #087ea4, #2b3491);
+}
+.thumbnail.red {
+  background-image: conic-gradient(at top right, #c76a15, #a6423a, #2b3491);
+}
+.thumbnail.green {
+  background-image: conic-gradient(at top right, #c76a15, #388f7f, #2b3491);
+}
+.thumbnail.purple {
+  background-image: conic-gradient(at top right, #c76a15, #575fb7, #2b3491);
+}
+.video {
+  display: flex;
+  flex-direction: row;
+  gap: 0.75rem;
+  align-items: center;
+  margin-top: 1em;
+}
+.video .link {
+  display: flex;
+  flex-direction: row;
+  flex: 1 1 0;
+  gap: 0.125rem;
+  outline-offset: 4px;
+}
+.video .info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 8px;
+  gap: 0.125rem;
+}
+.video .info:hover {
+  text-decoration: underline;
+}
+.video-title {
+  font-size: 15px;
+  line-height: 1.25;
+  font-weight: 700;
+  color: #23272f;
+}
+.video-description {
+  color: #5e687e;
+  font-size: 13px;
+}
+```
+
 
 ```json package.json hidden
 {

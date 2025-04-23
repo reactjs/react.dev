@@ -240,7 +240,7 @@ async function getPosts() {
     setTimeout(resolve, 1000);
   });
   let posts = [];
-  for (let i = 0; i < 500; i++) {
+  for (let i = 0; i < 10; i++) {
     posts.push({
       id: i,
       title: 'Post #' + (i + 1)
@@ -251,6 +251,7 @@ async function getPosts() {
 ```
 
 ```css
+body { height: 275px; }
 button { margin-right: 10px }
 b { display: inline-block; margin-right: 10px; }
 .pending { color: #777; }
@@ -431,7 +432,7 @@ async function getPosts() {
     setTimeout(resolve, 1000);
   });
   let posts = [];
-  for (let i = 0; i < 500; i++) {
+  for (let i = 0; i < 10; i++) {
     posts.push({
       id: i,
       title: 'Post #' + (i + 1)
@@ -442,6 +443,7 @@ async function getPosts() {
 ```
 
 ```css
+body { height: 275px; }
 button { margin-right: 10px }
 b { display: inline-block; margin-right: 10px; }
 .pending { color: #777; }
@@ -641,7 +643,7 @@ async function getPosts() {
     setTimeout(resolve, 1000);
   });
   let posts = [];
-  for (let i = 0; i < 500; i++) {
+  for (let i = 0; i < 10; i++) {
     posts.push({
       id: i,
       title: 'Post #' + (i + 1)
@@ -652,6 +654,7 @@ async function getPosts() {
 ```
 
 ```css
+body { height: 275px; }
 button { margin-right: 10px }
 b { display: inline-block; margin-right: 10px; }
 .pending { color: #777; }
@@ -831,7 +834,7 @@ async function getPosts() {
     setTimeout(resolve, 1000);
   });
   let posts = [];
-  for (let i = 0; i < 500; i++) {
+  for (let i = 0; i < 10; i++) {
     posts.push({
       id: i,
       title: 'Post #' + (i + 1)
@@ -842,6 +845,7 @@ async function getPosts() {
 ```
 
 ```css
+body { height: 275px; }
 button { margin-right: 10px }
 b { display: inline-block; margin-right: 10px; }
 .pending { color: #777; }
@@ -940,6 +944,7 @@ let interval = setInterval(() => {
 
 
 ```css
+body { height: 275px; }
 button { margin-right: 10px }
 b { display: inline-block; margin-right: 10px; }
 video { width: 300px; margin-top: 10px; }
@@ -1032,6 +1037,7 @@ export default function VideoChecker() {
 
 
 ```css
+body { height: 275px; }
 button { margin-right: 10px }
 b { display: inline-block; margin-right: 10px; }
 video { width: 300px; margin-top: 10px; }
@@ -1123,6 +1129,7 @@ export default function VideoChecker() {
 ```
 
 ```css
+body { height: 275px; }
 button { margin-right: 10px }
 b { display: inline-block; margin-right: 10px; }
 video { width: 300px; margin-top: 10px; }

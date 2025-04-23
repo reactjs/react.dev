@@ -31,7 +31,7 @@ interface PageProps {
   meta: {
     title?: string;
     titleForTitleTag?: string;
-    canary?: boolean;
+    version?: 'experimental' | 'canary';
     description?: string;
   };
   section: 'learn' | 'reference' | 'community' | 'blog' | 'home' | 'unknown';
@@ -53,7 +53,7 @@ export function Page({
     routeTree
   );
   const title = meta.title || route?.title || '';
-  const canary = meta.canary || false;
+  const version = meta.version;
   const description = meta.description || route?.description || '';
   const isHomePage = cleanedPath === '/';
   const isBlogIndex = cleanedPath === '/blog';
@@ -70,7 +70,7 @@ export function Page({
           )}>
           <PageHeading
             title={title}
-            canary={canary}
+            version={version}
             description={description}
             tags={route?.tags}
             breadcrumbs={breadcrumbs}

@@ -70,8 +70,9 @@ Under the hood...
 
 - While hidden, the `children` of `<Activity>` are hidden on the page. 
 - `<Activity>` will unmount all Effects when switching from "visible" to "hidden" without destroying React or DOM state. This means Effects that expect to only run "once" on "mount" will run again when switching from "hidden" to "visible". Conceptually, "hidden" Activities are unmounted, but they are not destroyed either. We recommend using [`<StrictMode>`](/reference/react/StrictMode) to catch any unexpected side-effects from this behavior.
-- Parts of the UI wrapped in `<Activity mode="hidden">` are not included in the SSR response.
 - When used with `<ViewTransition>`, hidden activities that reveal in a transition will activate an "enter" animation. Visible Activities hidden in a transition will activate an "exit" animation.
+- Parts of the UI wrapped in `<Activity mode="hidden">` are not included in the SSR response.
+- Parts of the UI wrapped in `<Activity mode="visible">` will hydrate at a lower priority than other content.
 
 ---
 

@@ -36,15 +36,13 @@ We're also sharing updates on new features currently in development:
 - [Compiler IDE Extension](#compiler-ide-extension)
 - [Automatic Effect Dependencies](#automatic-effect-dependencies)
 - [Fragment Refs](#fragment-refs)
-- [Concurrent stores](#concurrent-stores)
+- [Concurrent Stores](#concurrent-stores)
 
 ---
 
 # New Experimental Features {/*new-experimental-features*/}
 
-View Transitions and Activity are now ready for testing in `react@experimental`.These features have been tested in production and are stable, but the final API may still change as we incorporate feedback.
-
-
+View Transitions and Activity are now ready for testing in `react@experimental`. These features have been tested in production and are stable, but the final API may still change as we incorporate feedback.
 
 You can try them by upgrading React packages to the most recent experimental version:
 
@@ -62,7 +60,6 @@ Read on to learn how to use these features in your app, or check out the newly p
 React View Transitions are a new experimental feature that makes it easier to add animations to UI transitions in your app. Under-the-hood, these animations use the new [`startViewTransition`](https://developer.mozilla.org/en-US/docs/Web/API/Document/startViewTransition) API available in most modern browsers.
 
 To opt-in to animating an element, wrap it in the new `<ViewTransition>` component:
-
 
 ```js
 // "what" to animate.
@@ -11532,7 +11529,7 @@ For example, our app currently needs to suspend to load the data for each video 
 <ViewTransition>
 ```
 
-With this update, if you select a video after 1 second, the content has time to pre-render and animates without the Suspense fallback:
+With this update, if the content on the next page has time to pre-render, it will animate in without the Suspense fallback. Click a video, and notice that the video title and description on the Details page render immediately, without a fallback:
 
 <Sandpack>
 
@@ -12848,9 +12845,39 @@ root.render(
 
 </Sandpack>
 
+### Server-Side Rendering with Activity {/*server-side-rendering-with-activity*/}
+
+When using Activity on a page that uses server-side rendering (SSR), there are additional optimizations.
+
+If part of the page is rendered with `mode="hidden"`, then it will not be included in the SSR response. Instead, React will schedule a client render for the content inside Activity while the rest of the page hydrates, prioritizing the visible content on screen.
+
+For parts of the UI rendered with `mode="visible"`, React will de-prioirtize hydration of content within Activity, similar to how Suspense content is hydrated at a lower priority. If the user interacts with the page, we'll priorize hydration within the boundary if needed.
+
+These are advanced use cases, but they show the additional benefits considered with Activity.
+
+### Future modes for Activity {/*future-modes-for-activity*/}
+
+In the future, we may add more modes to Activity. 
+
+For example, a common use case is rendering a modal, where the previous "inactive" page is visible behind the "active" modal view. The "hidden" mode does not work for this use case, because it's not visible, and not included in SSR. 
+
+Instead, we're considering a new mode which would keep the content visible, including rendering it during SSR, but keep it unmounted and de-prioritize updates. This mode may also need to "pause" DOM updates, since it can be distracting to see backgrounded content updating while a modal is open. 
+
+Another mode we're considering for Activity is the ability to automatically destroy state for hidden Activities if there is too much memory being used. Since the component is already unmounted, it may be preferable to destroy state for the least recently used hidden parts of the app, rather than consume too many resources. 
+
+These are areas we're still exporing, and we'll share more as we make progress. For more information on what Activity includes today, [check out the docs](/reference/react/Activity).
+
 ---
 
 # Features in development {/*features-in-development*/}
+
+We're also developing features to help solve the common problems below. 
+
+As we iterate on possible solutions, you may see some potenial APIs we're testing being shared based on the PRs we are landing. Please keep in mind, that as we try different ideas, we often change or remove different solutions after trying them out. 
+
+When the solutions we're working on are shared too early, it can create churn and confusion in the community. To balance being transparent and limiting confusion, we're sharing the problems we're currently developing solutions for, without sharing a particular solution we have in mind. 
+
+As these features progress, we'll announce them on the blog with docs included so you can try them out. 
 
 ## React Performance Tracks {/*react-performance-tracks*/}
 
@@ -12872,18 +12899,6 @@ This feature is still in progress, so we're not ready to publish docs to fully r
 There are a few known issues we plan to address such as performance, and the scheduler track not always "connecting" work across Suspended trees, so it's not quite ready to try. We're also still collecting feedback from early adopters to improve the design and usability of the tracks.
 
 Once we solve those issues, we'll publish experimental docs and share that it's ready to try.
-
----
-
-## Compiler IDE Extension {/*compiler-ide-extension*/}
-
-Earlier this week [we shared](/blog/2025/04/21/react-compiler-rc) the React Compiler release candidate, and we're working towards shipping the first SemVer stable version of the compiler in the coming months.
-
-We've also begun exploring ways to use the React Compiler to provide information that can improve understanding and debugging your code. One idea we've started exploring is a new experimental LSP-based React IDE extension powered by React Compiler, similar to the extension used in [Lauren Tan's React Conf talk](https://conf2024.react.dev/talks/5).
-
-Our idea is that we can use the compiler's static analysis to provide more information, suggestions, and optimization opportunities directly in your IDE. For example, we can provide diagnostics for code breaking the Rules of React, hovers to show if components and hooks were optimized by the compiler, or a CodeLens to see [automatically inserted Effect dependencies](#automatic-effect-dependencies).
-
-The IDE extension is still an early exploration, but we'll share our progress in future updates.
 
 ---
 
@@ -12919,11 +12934,11 @@ useEffect(() => {
 }, [roomId]);
 ```
 
-Many users would read this code as "on mount, connect to the roomId. whenever `roomId` changes, disconnect to the old room and re-create the connection". However, this is thinking from the component's lifecycle perspective, which means you will need to think of every component lifecycle state to write the effect correctly. This can be difficult, so it's understandble that Effects seem harder than class lifecycles when using component perspective.
+Many users would read this code as "on mount, connect to the roomId. whenever `roomId` changes, disconnect to the old room and re-create the connection". However, this is thinking from the component's lifecycle perspective, which means you will need to think of every component lifecycle state to write the Effect correctly. This can be difficult, so it's understandble that Effects seem harder than class lifecycles when using component perspective.
 
 ### Effects without dependencies {/*effects-without-dependencies*/}
 
-Instead, it's better to think from the Effect's perspective. The effect doesn't know about the component lifecycles. It only describes how to start synchronization and how to stop it. When users think of Effects in this way, their Effects tend to be easier to write, and more resilient to being started and stopped as many times as it’s needed.
+Instead, it's better to think from the Effect's perspective. The Effect doesn't know about the component lifecycles. It only describes how to start synchronization and how to stop it. When users think of Effects in this way, their Effects tend to be easier to write, and more resilient to being started and stopped as many times as it’s needed.
 
 We spent some time researching why Effects are thought of from the component perspective, and we think one of the resons is the dependency array. Since you have to write it, it's right there and in your face reminding you of what you're "reacting" to and baiting you into the mental model of 'do this when these values change'.
 
@@ -12939,15 +12954,27 @@ useEffect(() => {
 }); // compiler inserted dependencies. 
 ```
 
-With this code, the React Compiler can infer the dependencies for you and insert them automatically so you don't need to see or write them. With features like the IDE exension and `useEffectEvent`, we can provide a CodeLens to show you what the Compiler inserted for times you need to debug, or to optimize by removing a dependency. This helps reinforce the correct mental model for writing Effects, which can run at any time to synchronize your component or hook's state with something else.
+With this code, the React Compiler can infer the dependencies for you and insert them automatically so you don't need to see or write them. With features like [the IDE exension](#compiler-ide-extension) and [`useEffectEvent`](/reference/react/experimental_useEffectEvent), we can provide a CodeLens to show you what the Compiler inserted for times you need to debug, or to optimize by removing a dependency. This helps reinforce the correct mental model for writing Effects, which can run at any time to synchronize your component or hook's state with something else.
 
-Our hope is that automatically inserting dependencies is not only easier to write, but that it also makes them easier to understand by forcing you to think in terms of what the effect does, and not in component lifecycles. 
+Our hope is that automatically inserting dependencies is not only easier to write, but that it also makes them easier to understand by forcing you to think in terms of what the Effect does, and not in component lifecycles. 
+
+---
+
+## Compiler IDE Extension {/*compiler-ide-extension*/}
+
+Earlier this week [we shared](/blog/2025/04/21/react-compiler-rc) the React Compiler release candidate, and we're working towards shipping the first SemVer stable version of the compiler in the coming months.
+
+We've also begun exploring ways to use the React Compiler to provide information that can improve understanding and debugging your code. One idea we've started exploring is a new experimental LSP-based React IDE extension powered by React Compiler, similar to the extension used in [Lauren Tan's React Conf talk](https://conf2024.react.dev/talks/5).
+
+Our idea is that we can use the compiler's static analysis to provide more information, suggestions, and optimization opportunities directly in your IDE. For example, we can provide diagnostics for code breaking the Rules of React, hovers to show if components and hooks were optimized by the compiler, or a CodeLens to see [automatically inserted Effect dependencies](#automatic-effect-dependencies).
+
+The IDE extension is still an early exploration, but we'll share our progress in future updates.
 
 ---
 
 ## Fragment Refs {/*fragment-refs*/}
 
-Many DOM APIs like those for event management, positioning, and focus are difficult to compose when writing with React. This often leads developers to reach for Effects, managing multiple Refs, or APIs like `findDOMNode` (removed in React 19).
+Many DOM APIs like those for event management, positioning, and focus are difficult to compose when writing with React. This often leads developers to reach for Effects, managing multiple Refs, by using APIs like `findDOMNode` (removed in React 19).
 
 We are exploring adding refs to Fragments that would point to a group of DOM elements, rather than just a single element. Our hope is that this will simplify managing multiple children and make it easier to write composable React code when calling DOM APIs.
 
@@ -12969,7 +12996,7 @@ We believe we’ve found an approach that works well and may introduce a new API
 
 ---
 
-## Concurrent stores {/*concurrent-stores*/}
+## Concurrent Stores {/*concurrent-stores*/}
 
 When we released React 18 with concurrent rendering, we also released `useSyncExternalStore` so external store libraries that did not use React state or context could [support concurrent rendering](https://github.com/reactwg/react-18/discussions/70) by forcing a sync render when the store is updated.
 
@@ -12987,4 +13014,4 @@ This research is still early. We'll share more, and what the new APIs will look 
 
 ---
 
-_TODO: Thanks to [Aurora Scharff](https://bsky.app/profile/aurorascharff.no), [Dan Abramov](https://bsky.app/profile/danabra.mov), [Lauren Tan](https://bsky.app/profile/no.lol), [Luna Wei](https://github.com/lunaleaps), [Matt Carroll](https://twitter.com/mattcarrollcode), [Jack Pope](https://jackpope.me), [Jason Bonta](https://threads.net/someextent), [Jordan Brown](https://github.com/jbrown215), [Jordan Eldredge](https://bsky.app/profile/capt.dev), [Mofei Zhang](https://threads.net/z_mofei), [Sebastien Lorber](https://bsky.app/profile/sebastienlorber.com), and [Sebastian Markbåge](https://bsky.app/profile/sebmarkbage.calyptus.eu) for reviewing this post.
+_Thanks to [Aurora Scharff](https://bsky.app/profile/aurorascharff.no), [Dan Abramov](https://bsky.app/profile/danabra.mov), [Eli White](https://twitter.com/Eli_White), [Lauren Tan](https://bsky.app/profile/no.lol), [Luna Wei](https://github.com/lunaleaps), [Matt Carroll](https://twitter.com/mattcarrollcode), [Jack Pope](https://jackpope.me), [Jason Bonta](https://threads.net/someextent), [Jordan Brown](https://github.com/jbrown215), [Jordan Eldredge](https://bsky.app/profile/capt.dev), [Mofei Zhang](https://threads.net/z_mofei), [Sebastien Lorber](https://bsky.app/profile/sebastienlorber.com), [Sebastian Markbåge](https://bsky.app/profile/sebmarkbage.calyptus.eu), and [Tim Yung](https://github.com/yungsters) for reviewing this post._

@@ -30,7 +30,6 @@ June 13, 2025. In-person in Oslo, Norway + remote (virtual event)
 
 [Website](https://reactnorway.com/) - [Twitter](https://x.com/ReactNorway)
 
-
 ### React Summit 2025 {/*react-summit-2025*/}
 June 13 - 17, 2025. In-person in Amsterdam, Netherlands + remote (hybrid event)
 

@@ -1563,11 +1563,12 @@ export function IconSearch(props) {
 }
 ```
 
-```js src/Layout.js hidden
-import { useIsNavPending } from "./router";
+```js src/Layout.js
+import {unstable_ViewTransition as ViewTransition} from 'react'; import { useIsNavPending } from "./router";
 
 export default function Page({ heading, children }) {
   const isPending = useIsNavPending();
+  
   return (
     <div className="page">
       <div className="top">
@@ -1576,10 +1577,13 @@ export default function Page({ heading, children }) {
           {isPending && <span className="loader"></span>}
         </div>
       </div>
-
-      <div className="bottom">
-        <div className="content">{children}</div>
-      </div>
+      {/* Opt-out of ViewTransition for the content. */}
+      {/* Content can define it's own ViewTransition. */}
+      <ViewTransition default="none">
+        <div className="bottom">
+          <div className="content">{children}</div>
+        </div>
+      </ViewTransition>
     </div>
   );
 }
@@ -2458,6 +2462,25 @@ Since our router already updates the route using `startTransition`, this one lin
 
 If you're curious how this works, see the docs for [How does `<ViewTransition>` work?](/reference/react/ViewTransition#how-does-viewtransition-work)
 
+<Note>
+
+#### Opting out of `<ViewTransition>` animations {/*opting-out-of-viewtransition-animations*/}
+
+In this example, we're wrapping the root of the app in `<ViewTransition>` for simplicity, but this means that all transitions in the app will be animated, which can lead to unexpected animations. 
+
+To fix, we're wrapping route children with `"none"` so each page can control it's own animation:
+
+```js
+// Layout.js
+<ViewTransition default="none">
+  {children}
+</ViewTransition>
+```
+
+In practice, navigations should be done via "enter" and "exit" props, or by using Transition Types. 
+
+</Note>
+
 ### Customizing animations {/*customizing-animations*/}
 
 By default, `<ViewTransition>` includes the default cross-fade from the browser.
@@ -2755,10 +2778,11 @@ export function IconSearch(props) {
 ```
 
 ```js src/Layout.js hidden
-import { useIsNavPending } from "./router";
+import {unstable_ViewTransition as ViewTransition} from 'react'; import { useIsNavPending } from "./router";
 
 export default function Page({ heading, children }) {
   const isPending = useIsNavPending();
+
   return (
     <div className="page">
       <div className="top">
@@ -2767,10 +2791,13 @@ export default function Page({ heading, children }) {
           {isPending && <span className="loader"></span>}
         </div>
       </div>
-
-      <div className="bottom">
-        <div className="content">{children}</div>
-      </div>
+      {/* Opt-out of ViewTransition for the content. */}
+      {/* Content can define it's own ViewTransition. */}
+      <ViewTransition default="none">
+        <div className="bottom">
+          <div className="content">{children}</div>
+        </div>
+      </ViewTransition>
     </div>
   );
 }
@@ -3945,10 +3972,11 @@ export function IconSearch(props) {
 ```
 
 ```js src/Layout.js hidden
-import { useIsNavPending } from "./router";
+import {unstable_ViewTransition as ViewTransition} from 'react'; import { useIsNavPending } from "./router";
 
 export default function Page({ heading, children }) {
   const isPending = useIsNavPending();
+
   return (
     <div className="page">
       <div className="top">
@@ -3957,10 +3985,13 @@ export default function Page({ heading, children }) {
           {isPending && <span className="loader"></span>}
         </div>
       </div>
-
-      <div className="bottom">
-        <div className="content">{children}</div>
-      </div>
+      {/* Opt-out of ViewTransition for the content. */}
+      {/* Content can define it's own ViewTransition. */}
+      <ViewTransition default="none">
+        <div className="bottom">
+          <div className="content">{children}</div>
+        </div>
+      </ViewTransition>
     </div>
   );
 }
@@ -5216,10 +5247,13 @@ export default function Page({ heading, children }) {
           {isPending && <span className="loader"></span>}
         </div>
       </div>
-
-      <div className="bottom">
-        <div className="content">{children}</div>
-      </div>
+      {/* Opt-out of ViewTransition for the content. */}
+      {/* Content can define it's own ViewTransition. */}
+      <ViewTransition default="none">
+        <div className="bottom">
+          <div className="content">{children}</div>
+        </div>
+      </ViewTransition>
     </div>
   );
 }
@@ -6179,9 +6213,1303 @@ root.render(
 
 ### Animating Suspense Boundaries {/*animating-suspense-boundaries*/}
 
-Suspense will also activate `<ViewTransition>` when the fallback is replaced by content. This is why the video description currently fades in with our `slow-fade` animation after the Suspense fallback.
+Suspense will also activate View Transitions. 
 
-We can customize the Suspense animation using an `exit` on the fallback, and `enter` on the content:
+To animate the fallback to content, we can wrap `Suspense` with `<ViewTranstion>`:
+
+```js
+<ViewTransition>
+  <Suspense fallback={<VideoInfoFallback />}>
+    <VideoInfo />
+  </Suspense>
+</ViewTransition>
+```
+
+By adding this, the fallback will cross-fade into the content. Click a video and see the video info animate in:
+
+<Sandpack>
+
+```js src/App.js hidden
+import { unstable_ViewTransition as ViewTransition } from "react";
+import Details from "./Details";
+import Home from "./Home";
+import { useRouter } from "./router";
+
+export default function App() {
+  const { url } = useRouter();
+
+  // Default slow-fade animation.
+  return (
+    <ViewTransition default="slow-fade">
+      {url === "/" ? <Home /> : <Details />}
+    </ViewTransition>
+  );
+}
+```
+
+```js src/Details.js active
+import { use, Suspense, unstable_ViewTransition as ViewTransition } from "react"; import { fetchVideo, fetchVideoDetails } from "./data"; import { Thumbnail, VideoControls } from "./Videos"; import { useRouter } from "./router"; import Layout from "./Layout"; import { ChevronLeft } from "./Icons";
+
+function VideoDetails({ id }) {
+  // Cross-fade the fallback to content.
+  return (
+    <ViewTransition default="slow-fade">
+      <Suspense fallback={<VideoInfoFallback />}>
+          <VideoInfo id={id} />
+      </Suspense>
+    </ViewTransition>
+  );
+}
+
+function VideoInfoFallback() {
+  return (
+    <div>
+      <div className="fit fallback title"></div>
+      <div className="fit fallback description"></div>
+    </div>
+  );
+}
+
+export default function Details() {
+  const { url, navigateBack } = useRouter();
+  const videoId = url.split("/").pop();
+  const video = use(fetchVideo(videoId));
+
+  return (
+    <Layout
+      heading={
+        <div
+          className="fit back"
+          onClick={() => {
+            navigateBack("/");
+          }}
+        >
+          <ChevronLeft /> Back
+        </div>
+      }
+    >
+      <div className="details">
+        <Thumbnail video={video} large>
+          <VideoControls />
+        </Thumbnail>
+        <VideoDetails id={video.id} />
+      </div>
+    </Layout>
+  );
+}
+
+function VideoInfo({ id }) {
+  const details = use(fetchVideoDetails(id));
+  return (
+    <div>
+      <p className="fit info-title">{details.title}</p>
+      <p className="fit info-description">{details.description}</p>
+    </div>
+  );
+}
+```
+
+```js src/Home.js hidden
+import { Video } from "./Videos";
+import Layout from "./Layout";
+import { fetchVideos } from "./data";
+import { useId, useState, use } from "react";
+import { IconSearch } from "./Icons";
+
+function SearchInput({ value, onChange }) {
+  const id = useId();
+  return (
+    <form className="search" onSubmit={(e) => e.preventDefault()}>
+      <label htmlFor={id} className="sr-only">
+        Search
+      </label>
+      <div className="search-input">
+        <div className="search-icon">
+          <IconSearch />
+        </div>
+        <input
+          type="text"
+          id={id}
+          placeholder="Search"
+          value={value}
+          onChange={(e) => onChange(e.target.value)}
+        />
+      </div>
+    </form>
+  );
+}
+
+function filterVideos(videos, query) {
+  const keywords = query
+    .toLowerCase()
+    .split(" ")
+    .filter((s) => s !== "");
+  if (keywords.length === 0) {
+    return videos;
+  }
+  return videos.filter((video) => {
+    const words = (video.title + " " + video.description)
+      .toLowerCase()
+      .split(" ");
+    return keywords.every((kw) => words.some((w) => w.includes(kw)));
+  });
+}
+
+export default function Home() {
+  const videos = use(fetchVideos());
+  const count = videos.length;
+  const [searchText, setSearchText] = useState("");
+  const foundVideos = filterVideos(videos, searchText);
+  return (
+    <Layout heading={<div className="fit">{count} Videos</div>}>
+      <SearchInput value={searchText} onChange={setSearchText} />
+      <div className="video-list">
+        {foundVideos.length === 0 && (
+          <div className="no-results">No results</div>
+        )}
+        <div className="videos">
+          {foundVideos.map((video) => (
+            <Video key={video.id} video={video} />
+          ))}
+        </div>
+      </div>
+    </Layout>
+  );
+}
+
+```
+
+```js src/Icons.js hidden
+export function ChevronLeft() {
+  return (
+    <svg
+      className="chevron-left"
+      xmlns="http://www.w3.org/2000/svg"
+      width="20"
+      height="20"
+      viewBox="0 0 20 20">
+      <g fill="none" fillRule="evenodd" transform="translate(-446 -398)">
+        <path
+          fill="currentColor"
+          fillRule="nonzero"
+          d="M95.8838835,240.366117 C95.3957281,239.877961 94.6042719,239.877961 94.1161165,240.366117 C93.6279612,240.854272 93.6279612,241.645728 94.1161165,242.133883 L98.6161165,246.633883 C99.1042719,247.122039 99.8957281,247.122039 100.383883,246.633883 L104.883883,242.133883 C105.372039,241.645728 105.372039,240.854272 104.883883,240.366117 C104.395728,239.877961 103.604272,239.877961 103.116117,240.366117 L99.5,243.982233 L95.8838835,240.366117 Z"
+          transform="translate(356.5 164.5)"
+        />
+        <polygon points="446 418 466 418 466 398 446 398" />
+      </g>
+    </svg>
+  );
+}
+
+export function PauseIcon() {
+  return (
+    <svg
+      className="control-icon"
+      style={{padding: '4px'}}
+      width="100"
+      height="100"
+      viewBox="0 0 512 512"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg">
+      <path
+        fillRule="evenodd"
+        clipRule="evenodd"
+        d="M256 0C114.617 0 0 114.615 0 256s114.617 256 256 256 256-114.615 256-256S397.383 0 256 0zm-32 320c0 8.836-7.164 16-16 16h-32c-8.836 0-16-7.164-16-16V192c0-8.836 7.164-16 16-16h32c8.836 0 16 7.164 16 16v128zm128 0c0 8.836-7.164 16-16 16h-32c-8.836 0-16-7.164-16-16V192c0-8.836 7.164-16 16-16h32c8.836 0 16 7.164 16 16v128z"
+        fill="currentColor"
+      />
+    </svg>
+  );
+}
+
+export function PlayIcon() {
+  return (
+    <svg
+      className="control-icon"
+      width="100"
+      height="100"
+      viewBox="0 0 72 72"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg">
+      <path
+        fillRule="evenodd"
+        clipRule="evenodd"
+        d="M36 69C54.2254 69 69 54.2254 69 36C69 17.7746 54.2254 3 36 3C17.7746 3 3 17.7746 3 36C3 54.2254 17.7746 69 36 69ZM52.1716 38.6337L28.4366 51.5801C26.4374 52.6705 24 51.2235 24 48.9464V23.0536C24 20.7764 26.4374 19.3295 28.4366 20.4199L52.1716 33.3663C54.2562 34.5034 54.2562 37.4966 52.1716 38.6337Z"
+        fill="currentColor"
+      />
+    </svg>
+  );
+}
+export function Heart({liked, animate}) {
+  return (
+    <>
+      <svg
+        className="absolute overflow-visible"
+        viewBox="0 0 24 24"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg">
+        <circle
+          className={`circle ${liked ? 'liked' : ''} ${animate ? 'animate' : ''}`}
+          cx="12"
+          cy="12"
+          r="11.5"
+          fill="transparent"
+          strokeWidth="0"
+          stroke="currentColor"
+        />
+      </svg>
+
+      <svg
+        className={`heart ${liked ? 'liked' : ''} ${animate ? 'animate' : ''}`}
+        viewBox="0 0 24 24"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg">
+        {liked ? (
+          <path
+            d="M12 23a.496.496 0 0 1-.26-.074C7.023 19.973 0 13.743 0 8.68c0-4.12 2.322-6.677 6.058-6.677 2.572 0 5.108 2.387 5.134 2.41l.808.771.808-.771C12.834 4.387 15.367 2 17.935 2 21.678 2 24 4.558 24 8.677c0 5.06-7.022 11.293-11.74 14.246a.496.496 0 0 1-.26.074V23z"
+            fill="currentColor"
+          />
+        ) : (
+          <path
+            fillRule="evenodd"
+            clipRule="evenodd"
+            d="m12 5.184-.808-.771-.004-.004C11.065 4.299 8.522 2.003 6 2.003c-3.736 0-6 2.558-6 6.677 0 4.47 5.471 9.848 10 13.079.602.43 1.187.82 1.74 1.167A.497.497 0 0 0 12 23v-.003c.09 0 .182-.026.26-.074C16.977 19.97 24 13.737 24 8.677 24 4.557 21.743 2 18 2c-2.569 0-5.166 2.387-5.192 2.413L12 5.184zm-.002 15.525c2.071-1.388 4.477-3.342 6.427-5.47C20.72 12.733 22 10.401 22 8.677c0-1.708-.466-2.855-1.087-3.55C20.316 4.459 19.392 4 18 4c-.726 0-1.63.364-2.5.9-.67.412-1.148.82-1.266.92-.03.025-.037.031-.019.014l-.013.013L12 7.949 9.832 5.88a10.08 10.08 0 0 0-1.33-.977C7.633 4.367 6.728 4.003 6 4.003c-1.388 0-2.312.459-2.91 1.128C2.466 5.826 2 6.974 2 8.68c0 1.726 1.28 4.058 3.575 6.563 1.948 2.127 4.352 4.078 6.423 5.466z"
+            fill="currentColor"
+          />
+        )}
+      </svg>
+    </>
+  );
+}
+
+export function IconSearch(props) {
+  return (
+    <svg width="1em" height="1em" viewBox="0 0 20 20">
+      <path
+        d="M14.386 14.386l4.0877 4.0877-4.0877-4.0877c-2.9418 2.9419-7.7115 2.9419-10.6533 0-2.9419-2.9418-2.9419-7.7115 0-10.6533 2.9418-2.9419 7.7115-2.9419 10.6533 0 2.9419 2.9418 2.9419 7.7115 0 10.6533z"
+        stroke="currentColor"
+        fill="none"
+        strokeWidth="2"
+        fillRule="evenodd"
+        strokeLinecap="round"
+        strokeLinejoin="round"></path>
+    </svg>
+  );
+}
+```
+
+```js src/Layout.js hidden
+import {unstable_ViewTransition as ViewTransition} from 'react';
+import { useIsNavPending } from "./router";
+
+export default function Page({ heading, children }) {
+  const isPending = useIsNavPending();
+  return (
+    <div className="page">
+      <div className="top">
+        <div className="top-nav">
+          {/* Custom classes based on transition type. */}
+          <ViewTransition
+            name="nav"
+            share={{
+              'nav-forward': 'slide-forward',
+              'nav-back': 'slide-back',
+            }}>
+            {heading}
+          </ViewTransition>
+          {isPending && <span className="loader"></span>}
+        </div>
+      </div>
+      {/* Opt-out of ViewTransition for the content. */}
+      {/* Content can define it's own ViewTransition. */}
+      <ViewTransition default="none">
+        <div className="bottom">
+          <div className="content">{children}</div>
+        </div>
+      </ViewTransition>
+    </div>
+  );
+}
+```
+
+```js src/LikeButton.js hidden
+import {useState} from 'react';
+import {Heart} from './Icons';
+
+// A hack since we don't actually have a backend.
+// Unlike local state, this survives videos being filtered.
+const likedVideos = new Set();
+
+export default function LikeButton({video}) {
+  const [isLiked, setIsLiked] = useState(() => likedVideos.has(video.id));
+  const [animate, setAnimate] = useState(false);
+  return (
+    <button
+      className={`like-button ${isLiked && 'liked'}`}
+      aria-label={isLiked ? 'Unsave' : 'Save'}
+      onClick={() => {
+        const nextIsLiked = !isLiked;
+        if (nextIsLiked) {
+          likedVideos.add(video.id);
+        } else {
+          likedVideos.delete(video.id);
+        }
+        setAnimate(true);
+        setIsLiked(nextIsLiked);
+      }}>
+      <Heart liked={isLiked} animate={animate} />
+    </button>
+  );
+}
+```
+
+```js src/Videos.js hidden
+import { useState, unstable_ViewTransition as ViewTransition } from "react";
+import LikeButton from "./LikeButton";
+import { useRouter } from "./router";
+import { PauseIcon, PlayIcon } from "./Icons";
+import { startTransition } from "react";
+
+export function Thumbnail({ video, children }) {
+  // Add a name to animate with a shared element transition.
+  // This uses the default animation, no additional css needed.
+  return (
+    <ViewTransition name={`video-${video.id}`}>
+      <div
+        aria-hidden="true"
+        tabIndex={-1}
+        className={`thumbnail ${video.image}`}
+      >
+        {children}
+      </div>
+    </ViewTransition>
+  );
+}
+
+export function VideoControls() {
+  const [isPlaying, setIsPlaying] = useState(false);
+
+  return (
+    <span
+      className="controls"
+      onClick={() =>
+        startTransition(() => {
+          setIsPlaying((p) => !p);
+        })
+      }
+    >
+      {isPlaying ? <PauseIcon /> : <PlayIcon />}
+    </span>
+  );
+}
+
+export function Video({ video }) {
+  const { navigate } = useRouter();
+
+  return (
+    <div className="video">
+      <div
+        className="link"
+        onClick={(e) => {
+          e.preventDefault();
+          navigate(`/video/${video.id}`);
+        }}
+      >
+        <Thumbnail video={video}></Thumbnail>
+
+        <div className="info">
+          <div className="video-title">{video.title}</div>
+          <div className="video-description">{video.description}</div>
+        </div>
+      </div>
+      <LikeButton video={video} />
+    </div>
+  );
+}
+```
+
+
+```js src/data.js hidden
+const videos = [
+  {
+    id: '1',
+    title: 'First video',
+    description: 'Video description',
+    image: 'blue',
+  },
+  {
+    id: '2',
+    title: 'Second video',
+    description: 'Video description',
+    image: 'red',
+  },
+  {
+    id: '3',
+    title: 'Third video',
+    description: 'Video description',
+    image: 'green',
+  },
+  {
+    id: '4',
+    title: 'Fourth video',
+    description: 'Video description',
+    image: 'purple',
+  },
+  {
+    id: '5',
+    title: 'Fifth video',
+    description: 'Video description',
+    image: 'yellow',
+  },
+  {
+    id: '6',
+    title: 'Sixth video',
+    description: 'Video description',
+    image: 'gray',
+  },
+];
+
+let videosCache = new Map();
+let videoCache = new Map();
+let videoDetailsCache = new Map();
+const VIDEO_DELAY = 1;
+const VIDEO_DETAILS_DELAY = 1000;
+export function fetchVideos() {
+  if (videosCache.has(0)) {
+    return videosCache.get(0);
+  }
+  const promise = new Promise((resolve) => {
+    setTimeout(() => {
+      resolve(videos);
+    }, VIDEO_DELAY);
+  });
+  videosCache.set(0, promise);
+  return promise;
+}
+
+export function fetchVideo(id) {
+  if (videoCache.has(id)) {
+    return videoCache.get(id);
+  }
+  const promise = new Promise((resolve) => {
+    setTimeout(() => {
+      resolve(videos.find((video) => video.id === id));
+    }, VIDEO_DELAY);
+  });
+  videoCache.set(id, promise);
+  return promise;
+}
+
+export function fetchVideoDetails(id) {
+  if (videoDetailsCache.has(id)) {
+    return videoDetailsCache.get(id);
+  }
+  const promise = new Promise((resolve) => {
+    setTimeout(() => {
+      resolve(videos.find((video) => video.id === id));
+    }, VIDEO_DETAILS_DELAY);
+  });
+  videoDetailsCache.set(id, promise);
+  return promise;
+}
+```
+
+```js src/router.js hidden
+import {useState, createContext, use, useTransition, useLayoutEffect, useEffect, unstable_addTransitionType as addTransitionType} from "react";
+
+export function Router({ children }) {
+  const [isPending, startTransition] = useTransition();
+  const [routerState, setRouterState] = useState({pendingNav: () => {}, url: document.location.pathname});
+  function navigate(url) {
+    startTransition(() => {
+      // Transition type for the cause "nav forward"
+      addTransitionType('nav-forward');
+      go(url);
+    });
+  }
+  function navigateBack(url) {
+    startTransition(() => {
+      // Transition type for the cause "nav backward"
+      addTransitionType('nav-back');
+      go(url);
+    });
+  }
+
+  function go(url) {
+    setRouterState({
+      url,
+      pendingNav() {
+        window.history.pushState({}, "", url);
+      },
+    });
+  }
+  
+  useEffect(() => {
+    function handlePopState() {
+      // This should not animate because restoration has to be synchronous.
+      // Even though it's a transition.
+      startTransition(() => {
+        setRouterState({
+          url: document.location.pathname + document.location.search,
+          pendingNav() {
+            // Noop. URL has already updated.
+          },
+        });
+      });
+    }
+    window.addEventListener("popstate", handlePopState);
+    return () => {
+      window.removeEventListener("popstate", handlePopState);
+    };
+  }, []);
+  const pendingNav = routerState.pendingNav;
+  useLayoutEffect(() => {
+    pendingNav();
+  }, [pendingNav]);
+
+  return (
+    <RouterContext
+      value={{
+        url: routerState.url,
+        navigate,
+        navigateBack,
+        isPending,
+        params: {},
+      }}
+    >
+      {children}
+    </RouterContext>
+  );
+}
+
+const RouterContext = createContext({ url: "/", params: {} });
+
+export function useRouter() {
+  return use(RouterContext);
+}
+
+export function useIsNavPending() {
+  return use(RouterContext).isPending;
+}
+
+```
+
+```css src/styles.css hidden
+@font-face {
+  font-family: Optimistic Text;
+  src: url(https://react.dev/fonts/Optimistic_Text_W_Rg.woff2) format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Optimistic Text;
+  src: url(https://react.dev/fonts/Optimistic_Text_W_Md.woff2) format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Optimistic Text;
+  src: url(https://react.dev/fonts/Optimistic_Text_W_Bd.woff2) format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Optimistic Text;
+  src: url(https://react.dev/fonts/Optimistic_Text_W_Bd.woff2) format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background-image: url(https://react.dev/images/meta-gradient-dark.png);
+  background-size: 100%;
+  background-position: -100%;
+  background-color: rgb(64 71 86);
+  background-repeat: no-repeat;
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  font-family: Optimistic Text, -apple-system, ui-sans-serif, system-ui, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
+  padding: 10px 0 10px 0;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+}
+
+#root {
+  flex: 1 1;
+  height: auto;
+  background-color: #fff;
+  border-radius: 10px;
+  max-width: 450px;
+  min-height: 600px;
+  padding-bottom: 10px;
+}
+
+h1 {
+  margin-top: 0;
+  font-size: 22px;
+}
+
+h2 {
+  margin-top: 0;
+  font-size: 20px;
+}
+
+h3 {
+  margin-top: 0;
+  font-size: 18px;
+}
+
+h4 {
+  margin-top: 0;
+  font-size: 16px;
+}
+
+h5 {
+  margin-top: 0;
+  font-size: 14px;
+}
+
+h6 {
+  margin-top: 0;
+  font-size: 12px;
+}
+
+code {
+  font-size: 1.2em;
+}
+
+ul {
+  padding-inline-start: 20px;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+.absolute {
+  position: absolute;
+}
+
+.overflow-visible {
+  overflow: visible;
+}
+
+.visible {
+  overflow: visible;
+}
+
+.fit {
+  width: fit-content;
+}
+
+
+/* Layout */
+.page {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.top-hero {
+  height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: conic-gradient(
+      from 90deg at -10% 100%,
+      #2b303b 0deg,
+      #2b303b 90deg,
+      #16181d 1turn
+  );
+}
+
+.bottom {
+  flex: 1;
+  overflow: auto;
+}
+
+.top-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0;
+  padding: 0 12px;
+  top: 0;
+  width: 100%;
+  height: 44px;
+  color: #23272f;
+  font-weight: 700;
+  font-size: 20px;
+  z-index: 100;
+  cursor: default;
+}
+
+.content {
+  padding: 0 12px;
+  margin-top: 4px;
+}
+
+
+.loader {
+  color: #23272f;
+  font-size: 3px;
+  width: 1em;
+  margin-right: 18px;
+  height: 1em;
+  border-radius: 50%;
+  position: relative;
+  text-indent: -9999em;
+  animation: loading-spinner 1.3s infinite linear;
+  animation-delay: 200ms;
+  transform: translateZ(0);
+}
+
+@keyframes loading-spinner {
+  0%,
+  100% {
+    box-shadow: 0 -3em 0 0.2em,
+    2em -2em 0 0em, 3em 0 0 -1em,
+    2em 2em 0 -1em, 0 3em 0 -1em,
+    -2em 2em 0 -1em, -3em 0 0 -1em,
+    -2em -2em 0 0;
+  }
+  12.5% {
+    box-shadow: 0 -3em 0 0, 2em -2em 0 0.2em,
+    3em 0 0 0, 2em 2em 0 -1em, 0 3em 0 -1em,
+    -2em 2em 0 -1em, -3em 0 0 -1em,
+    -2em -2em 0 -1em;
+  }
+  25% {
+    box-shadow: 0 -3em 0 -0.5em,
+    2em -2em 0 0, 3em 0 0 0.2em,
+    2em 2em 0 0, 0 3em 0 -1em,
+    -2em 2em 0 -1em, -3em 0 0 -1em,
+    -2em -2em 0 -1em;
+  }
+  37.5% {
+    box-shadow: 0 -3em 0 -1em, 2em -2em 0 -1em,
+    3em 0em 0 0, 2em 2em 0 0.2em, 0 3em 0 0em,
+    -2em 2em 0 -1em, -3em 0em 0 -1em, -2em -2em 0 -1em;
+  }
+  50% {
+    box-shadow: 0 -3em 0 -1em, 2em -2em 0 -1em,
+    3em 0 0 -1em, 2em 2em 0 0em, 0 3em 0 0.2em,
+    -2em 2em 0 0, -3em 0em 0 -1em, -2em -2em 0 -1em;
+  }
+  62.5% {
+    box-shadow: 0 -3em 0 -1em, 2em -2em 0 -1em,
+    3em 0 0 -1em, 2em 2em 0 -1em, 0 3em 0 0,
+    -2em 2em 0 0.2em, -3em 0 0 0, -2em -2em 0 -1em;
+  }
+  75% {
+    box-shadow: 0em -3em 0 -1em, 2em -2em 0 -1em,
+    3em 0em 0 -1em, 2em 2em 0 -1em, 0 3em 0 -1em,
+    -2em 2em 0 0, -3em 0em 0 0.2em, -2em -2em 0 0;
+  }
+  87.5% {
+    box-shadow: 0em -3em 0 0, 2em -2em 0 -1em,
+    3em 0 0 -1em, 2em 2em 0 -1em, 0 3em 0 -1em,
+    -2em 2em 0 0, -3em 0em 0 0, -2em -2em 0 0.2em;
+  }
+}
+
+/* LikeButton */
+.like-button {
+  outline-offset: 2px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  cursor: pointer;
+  border-radius: 9999px;
+  border: none;
+  outline: none 2px;
+  color: #5e687e;
+  background: none;
+}
+
+.like-button:focus {
+  color: #a6423a;
+  background-color: rgba(166, 66, 58, .05);
+}
+
+.like-button:active {
+  color: #a6423a;
+  background-color: rgba(166, 66, 58, .05);
+  transform: scaleX(0.95) scaleY(0.95);
+}
+
+.like-button:hover {
+  background-color: #f6f7f9;
+}
+
+.like-button.liked {
+  color: #a6423a;
+}
+
+/* Icons */
+@keyframes circle {
+  0% {
+    transform: scale(0);
+    stroke-width: 16px;
+  }
+
+  50% {
+    transform: scale(.5);
+    stroke-width: 16px;
+  }
+
+  to {
+    transform: scale(1);
+    stroke-width: 0;
+  }
+}
+
+.circle {
+  color: rgba(166, 66, 58, .5);
+  transform-origin: center;
+  transition-property: all;
+  transition-duration: .15s;
+  transition-timing-function: cubic-bezier(.4,0,.2,1);
+}
+
+.circle.liked.animate {
+  animation: circle .3s forwards;
+}
+
+.heart {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.heart.liked {
+  transform-origin: center;
+  transition-property: all;
+  transition-duration: .15s;
+  transition-timing-function: cubic-bezier(.4, 0, .2, 1);
+}
+
+.heart.liked.animate {
+  animation: scale .35s ease-in-out forwards;
+}
+
+.control-icon {
+  color: hsla(0, 0%, 100%, .5);
+  filter:  drop-shadow(0 20px 13px rgba(0, 0, 0, .03)) drop-shadow(0 8px 5px rgba(0, 0, 0, .08));
+}
+
+.chevron-left {
+  margin-top: 2px;
+  rotate: 90deg;
+}
+
+
+/* Video */
+.thumbnail {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  display: flex;
+  overflow: hidden;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 0.5rem;
+  outline-offset: 2px;
+  width: 8rem;
+  vertical-align: middle;
+  background-color: #ffffff;
+  background-size: cover;
+  user-select: none;
+}
+
+.thumbnail.blue {
+  background-image: conic-gradient(at top right, #c76a15, #087ea4, #2b3491);
+}
+
+.thumbnail.red {
+  background-image: conic-gradient(at top right, #c76a15, #a6423a, #2b3491);
+}
+
+.thumbnail.green {
+  background-image: conic-gradient(at top right, #c76a15, #388f7f, #2b3491);
+}
+
+.thumbnail.purple {
+  background-image: conic-gradient(at top right, #c76a15, #575fb7, #2b3491);
+}
+
+.thumbnail.yellow {
+  background-image: conic-gradient(at top right, #c76a15, #FABD62, #2b3491);
+}
+
+.thumbnail.gray {
+  background-image: conic-gradient(at top right, #c76a15, #4E5769, #2b3491);
+}
+
+.video {
+  display: flex;
+  flex-direction: row;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.video .link {
+  display: flex;
+  flex-direction: row;
+  flex: 1 1 0;
+  gap: 0.125rem;
+  outline-offset: 4px;
+  cursor: pointer;
+}
+
+.video .info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 8px;
+  gap: 0.125rem;
+}
+
+.video .info:hover {
+  text-decoration: underline;
+}
+
+.video-title {
+  font-size: 15px;
+  line-height: 1.25;
+  font-weight: 700;
+  color: #23272f;
+}
+
+.video-description {
+  color: #5e687e;
+  font-size: 13px;
+}
+
+/* Details */
+.details .thumbnail {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  display: flex;
+  overflow: hidden;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 0.5rem;
+  outline-offset: 2px;
+  width: 100%;
+  vertical-align: middle;
+  background-color: #ffffff;
+  background-size: cover;
+  user-select: none;
+}
+
+.video-details-title {
+  margin-top: 8px;
+}
+
+.video-details-speaker {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px
+}
+
+.back {
+  display: flex;
+  align-items: center;
+  margin-left: -5px;
+  cursor: pointer;
+}
+
+.back:hover {
+  text-decoration: underline;
+}
+
+.info-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1.25;
+  margin: 8px 0 0 0 ;
+}
+
+.info-description {
+  margin: 8px 0 0 0;
+}
+
+.controls {
+  cursor: pointer;
+}
+
+.fallback {
+  background: #f6f7f8 linear-gradient(to right, #e6e6e6 5%, #cccccc 25%, #e6e6e6 35%) no-repeat;
+  background-size: 800px 104px;
+  display: block;
+  line-height: 1.25;
+  margin: 8px 0 0 0;
+  border-radius: 5px;
+  overflow: hidden;
+
+  animation: 1s linear 1s infinite shimmer;
+  animation-delay: 300ms;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+  animation-iteration-count: infinite;
+  animation-name: shimmer;
+  animation-timing-function: linear;
+}
+
+
+.fallback.title {
+  width: 130px;
+  height: 30px;
+
+}
+
+.fallback.description {
+  width: 150px;
+  height: 21px;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -468px 0;
+  }
+
+  100% {
+    background-position: 468px 0;
+  }
+}
+
+.search {
+  margin-bottom: 10px;
+}
+.search-input {
+  width: 100%;
+  position: relative;
+}
+
+.search-icon {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  inset-inline-start: 0;
+  display: flex;
+  align-items: center;
+  padding-inline-start: 1rem;
+  pointer-events: none;
+  color: #99a1b3;
+}
+
+.search-input input {
+  display: flex;
+  padding-inline-start: 2.75rem;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  width: 100%;
+  text-align: start;
+  background-color: rgb(235 236 240);
+  outline: 2px solid transparent;
+  cursor: pointer;
+  border: none;
+  align-items: center;
+  color: rgb(35 39 47);
+  border-radius: 9999px;
+  vertical-align: middle;
+  font-size: 15px;
+}
+
+.search-input input:hover, .search-input input:active {
+  background-color: rgb(235 236 240/ 0.8);
+  color: rgb(35 39 47/ 0.8);
+}
+
+/* Home */
+.video-list {
+  position: relative;
+}
+
+.video-list .videos {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  overflow-y: auto;
+  height: 100%;
+}
+```
+
+
+```css src/animations.css
+/* Slide the fallback down */
+::view-transition-old(.slide-down) {
+    animation: 150ms ease-out both fade-out, 150ms ease-out both slide-down;
+}
+
+/* Slide the content up */
+::view-transition-new(.slide-up) {
+    animation: 210ms ease-in 150ms both fade-in, 400ms ease-in both slide-up;
+}
+
+/* Define the new keyframes */
+@keyframes slide-up {
+    from {
+        transform: translateY(10px);
+    }
+    to {
+        transform: translateY(0);
+    }
+}
+
+@keyframes slide-down {
+    from {
+        transform: translateY(0);
+    }
+    to {
+        transform: translateY(10px);
+    }
+}
+
+/* Previously defined animations below */
+
+/* Animations for view transition classed added by transition type */
+::view-transition-old(.slide-forward) {
+    /* when sliding forward, the "old" page should slide out to left. */
+    animation: 150ms cubic-bezier(0.4, 0, 1, 1) both fade-out,
+    400ms cubic-bezier(0.4, 0, 0.2, 1) both slide-to-left;
+}
+
+::view-transition-new(.slide-forward) {
+    /* when sliding forward, the "new" page should slide in from right. */
+    animation: 210ms cubic-bezier(0, 0, 0.2, 1) 150ms both fade-in,
+    400ms cubic-bezier(0.4, 0, 0.2, 1) both slide-from-right;
+}
+
+::view-transition-old(.slide-back) {
+    /* when sliding back, the "old" page should slide out to right. */
+    animation: 150ms cubic-bezier(0.4, 0, 1, 1) both fade-out,
+    400ms cubic-bezier(0.4, 0, 0.2, 1) both slide-to-right;
+}
+
+::view-transition-new(.slide-back) {
+    /* when sliding back, the "new" page should slide in from left. */
+    animation: 210ms cubic-bezier(0, 0, 0.2, 1) 150ms both fade-in,
+    400ms cubic-bezier(0.4, 0, 0.2, 1) both slide-from-left;
+}
+
+/* Keyframes to support our animations above. */
+@keyframes fade-in {
+    from {
+        opacity: 0;
+    }
+}
+
+@keyframes fade-out {
+    to {
+        opacity: 0;
+    }
+}
+
+@keyframes slide-to-right {
+    to {
+        transform: translateX(50px);
+    }
+}
+
+@keyframes slide-from-right {
+    from {
+        transform: translateX(50px);
+    }
+    to {
+        transform: translateX(0);
+    }
+}
+
+@keyframes slide-to-left {
+    to {
+        transform: translateX(-50px);
+    }
+}
+
+@keyframes slide-from-left {
+    from {
+        transform: translateX(-50px);
+    }
+    to {
+        transform: translateX(0);
+    }
+}
+
+/* Default .slow-fade. */
+::view-transition-old(.slow-fade) {
+    animation-duration: 500ms;
+}
+
+::view-transition-new(.slow-fade) {
+    animation-duration: 500ms;
+}
+```
+
+```js src/index.js hidden
+import React, {StrictMode} from 'react';
+import {createRoot} from 'react-dom/client';
+import './styles.css';
+import './animations.css';
+
+import App from './App';
+import {Router} from './router';
+
+const root = createRoot(document.getElementById('root'));
+root.render(
+  <StrictMode>
+    <Router>
+      <App />
+    </Router>
+  </StrictMode>
+);
+```
+
+```json package.json hidden
+{
+  "dependencies": {
+    "react": "experimental",
+    "react-dom": "experimental",
+    "react-scripts": "latest"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  }
+}
+```
+
+</Sandpack>
+
+We can also provide custom animatons using an `exit` on the fallback, and `enter` on the content:
 
 ```js {3,8}
 <Suspense
@@ -6512,10 +7840,13 @@ export default function Page({ heading, children }) {
           {isPending && <span className="loader"></span>}
         </div>
       </div>
-
-      <div className="bottom">
-        <div className="content">{children}</div>
-      </div>
+      {/* Opt-out of ViewTransition for the content. */}
+      {/* Content can define it's own ViewTransition. */}
+      <ViewTransition default="none">
+        <div className="bottom">
+          <div className="content">{children}</div>
+        </div>
+      </ViewTransition>
     </div>
   );
 }
@@ -7836,10 +9167,13 @@ export default function Page({ heading, children }) {
           {isPending && <span className="loader"></span>}
         </div>
       </div>
-
-      <div className="bottom">
-        <div className="content">{children}</div>
-      </div>
+      {/* Opt-out of ViewTransition for the content. */}
+      {/* Content can define it's own ViewTransition. */}
+      <ViewTransition default="none">
+        <div className="bottom">
+          <div className="content">{children}</div>
+        </div>
+      </ViewTransition>
     </div>
   );
 }
@@ -9148,10 +10482,13 @@ export default function Page({ heading, children }) {
           {isPending && <span className="loader"></span>}
         </div>
       </div>
-
-      <div className="bottom">
-        <div className="content">{children}</div>
-      </div>
+      {/* Opt-out of ViewTransition for the content. */}
+      {/* Content can define it's own ViewTransition. */}
+      <ViewTransition default="none">
+        <div className="bottom">
+          <div className="content">{children}</div>
+        </div>
+      </ViewTransition>
     </div>
   );
 }
@@ -10488,8 +11825,7 @@ export function IconSearch(props) {
 ```
 
 ```js src/Layout.js hidden
-import {unstable_ViewTransition as ViewTransition} from 'react';
-import { useIsNavPending } from "./router";
+import {unstable_ViewTransition as ViewTransition} from 'react'; import { useIsNavPending } from "./router";
 
 export default function Page({ heading, children }) {
   const isPending = useIsNavPending();
@@ -10509,10 +11845,13 @@ export default function Page({ heading, children }) {
           {isPending && <span className="loader"></span>}
         </div>
       </div>
-
-      <div className="bottom">
-        <div className="content">{children}</div>
-      </div>
+      {/* Opt-out of ViewTransition for the content. */}
+      {/* Content can define it's own ViewTransition. */}
+      <ViewTransition default="none">
+        <div className="bottom">
+          <div className="content">{children}</div>
+        </div>
+      </ViewTransition>
     </div>
   );
 }
@@ -11824,8 +13163,7 @@ export function IconSearch(props) {
 ```
 
 ```js src/Layout.js hidden
-import {unstable_ViewTransition as ViewTransition} from 'react';
-import { useIsNavPending } from "./router";
+import {unstable_ViewTransition as ViewTransition} from 'react'; import { useIsNavPending } from "./router";
 
 export default function Page({ heading, children }) {
   const isPending = useIsNavPending();
@@ -11845,10 +13183,13 @@ export default function Page({ heading, children }) {
           {isPending && <span className="loader"></span>}
         </div>
       </div>
-
-      <div className="bottom">
-        <div className="content">{children}</div>
-      </div>
+      {/* Opt-out of ViewTransition for the content. */}
+      {/* Content can define it's own ViewTransition. */}
+      <ViewTransition default="none">
+        <div className="bottom">
+          <div className="content">{children}</div>
+        </div>
+      </ViewTransition>
     </div>
   );
 }

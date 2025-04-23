@@ -48,18 +48,9 @@ import {unstableActivity as Activity} from 'react';
 </Activity>
 ```
 
-When "hidden", the `children` of `<Activity />` are not visible on the page. If a new `<Activity>` mounts as "hidden" then it pre-renders the content at lower priority without blocking the visible content on the page, but does not mount by creating effects. When a "visible" Activity switches to "hidden" it conceptually unmounts by destroying all the effects, but saves it's state. This allows fast switching between "visible" and "hidden" states without re-creating the state for a "hidden" Activity.
+When "hidden", the `children` of `<Activity />` are not visible on the page. If a new `<Activity>` mounts as "hidden" then it pre-renders the content at lower priority without blocking the visible content on the page, but it does not mount by creating Effects. When a "visible" Activity switches to "hidden" it conceptually unmounts by destroying all the Effects, but saves its state. This allows fast switching between "visible" and "hidden" states without recreating the state for a "hidden" Activity.
 
 In the future, "hidden" Activities may automatically destroy state based on resources like memory.
-
-
-<DeepDive>
-
-#### How does `<Acivity>` work? {/*how-does-activity-work*/}
-
-Under the hood...
-
-</DeepDive>
 
 #### Props {/*props*/}
 
@@ -69,7 +60,7 @@ Under the hood...
 #### Caveats {/*caveats*/}
 
 - While hidden, the `children` of `<Activity>` are hidden on the page. 
-- `<Activity>` will unmount all Effects when switching from "visible" to "hidden" without destroying React or DOM state. This means Effects that expect to only run "once" on "mount" will run again when switching from "hidden" to "visible". Conceptually, "hidden" Activities are unmounted, but they are not destroyed either. We recommend using [`<StrictMode>`](/reference/react/StrictMode) to catch any unexpected side-effects from this behavior.
+- `<Activity>` will unmount all Effects when switching from "visible" to "hidden" without destroying React or DOM state. This means Effects that are expected to run only once on mount will run again when switching from "hidden" to "visible". Conceptually, "hidden" Activities are unmounted, but they are not destroyed either. We recommend using [`<StrictMode>`](/reference/react/StrictMode) to catch any unexpected side-effects from this behavior.
 - When used with `<ViewTransition>`, hidden activities that reveal in a transition will activate an "enter" animation. Visible Activities hidden in a transition will activate an "exit" animation.
 - Parts of the UI wrapped in `<Activity mode="hidden">` are not included in the SSR response.
 - Parts of the UI wrapped in `<Activity mode="visible">` will hydrate at a lower priority than other content.
@@ -88,7 +79,7 @@ You can pre-render part of the UI using `<Activity mode="hidden">`:
 </Activity>
 ```
 
-When an Activity is rendered with `mode` "hidden"`, the `children` are not visible on the page, but are rendered at lower prioirty than the visible content on the page. 
+When an Activity is rendered with `mode="hidden"`, the `children` are not visible on the page, but are rendered at lower priority than the visible content on the page. 
 
 When the `mode` later switches to "visible", the pre-rendered children will mount and become visible. This can be used to prepare parts of the UI the user is likely to interact with next to reduce loading times.
 
@@ -488,7 +479,7 @@ You can keep state for parts of the UI by switching `<Activity>` from "visible" 
 </Activity>
 ```
 
-When an Activity switches from `mode` "visible"` to`"hidden", the `children` will become hidden on the page, and unmount by destroying all Effects, but will keep their React and DOM state.
+When an Activity switches from `mode="visible"` to "hidden", the `children` will become hidden on the page, and unmount by destroying all Effects, but will keep their React and DOM state.
 
 When the `mode` later switches to "visible", the saved state will be re-used when mounting the children by creating all the Effects. This can be used to keep state in parts of the UI the user is likely to interact with again to maintain DOM or React state.
 
@@ -685,7 +676,7 @@ b { display: inline-block; margin-right: 10px; }
 
 </Sandpack>
 
-This experience results in losing DOM state the user has input. We can keep the state for the Contact tab by hiding the inactive Tabs with `<Activity>`:
+This results in losing DOM state the user has input. We can keep the state for the Contact tab by hiding the inactive Tabs with `<Activity>`:
 
 
 <Sandpack>
@@ -1048,7 +1039,7 @@ video { width: 300px; margin-top: 10px; }
 
 </Sandpack>
 
-This is similar to what would happen if Activity mounted effects when hidden. Similarly, if Activity didn't unmount effects when hiding, the videos would continue to play in the background.
+This is similar to what would happen if Activity mounted Effects when hidden. Similarly, if Activity didn't unmount Effects when hiding, the videos would continue to play in the background.
 
 Activity solves this by not creating Effects when first rendered as "hidden" and destroying all Effects when switching from "visible" to "hidden":
 

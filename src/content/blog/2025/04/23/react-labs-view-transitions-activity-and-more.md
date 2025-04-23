@@ -12851,21 +12851,21 @@ When using Activity on a page that uses server-side rendering (SSR), there are a
 
 If part of the page is rendered with `mode="hidden"`, then it will not be included in the SSR response. Instead, React will schedule a client render for the content inside Activity while the rest of the page hydrates, prioritizing the visible content on screen.
 
-For parts of the UI rendered with `mode="visible"`, React will de-prioirtize hydration of content within Activity, similar to how Suspense content is hydrated at a lower priority. If the user interacts with the page, we'll priorize hydration within the boundary if needed.
+For parts of the UI rendered with `mode="visible"`, React will de-prioritize hydration of content within Activity, similar to how Suspense content is hydrated at a lower priority. If the user interacts with the page, we'll prioritize hydration within the boundary if needed.
 
 These are advanced use cases, but they show the additional benefits considered with Activity.
 
 ### Future modes for Activity {/*future-modes-for-activity*/}
 
-In the future, we may add more modes to Activity. 
+In the future, we may add more modes to Activity.
 
-For example, a common use case is rendering a modal, where the previous "inactive" page is visible behind the "active" modal view. The "hidden" mode does not work for this use case, because it's not visible, and not included in SSR. 
+For example, a common use case is rendering a modal, where the previous "inactive" page is visible behind the "active" modal view. The "hidden" mode does not work for this use case because it's not visible and not included in SSR.
 
-Instead, we're considering a new mode which would keep the content visible, including rendering it during SSR, but keep it unmounted and de-prioritize updates. This mode may also need to "pause" DOM updates, since it can be distracting to see backgrounded content updating while a modal is open. 
+Instead, we're considering a new mode that would keep the content visible&mdash;and included in SSR&mdash;but keep it unmounted and de-prioritize updates. This mode may also need to "pause" DOM updates, since it can be distracting to see backgrounded content updating while a modal is open.
 
-Another mode we're considering for Activity is the ability to automatically destroy state for hidden Activities if there is too much memory being used. Since the component is already unmounted, it may be preferable to destroy state for the least recently used hidden parts of the app, rather than consume too many resources. 
+Another mode we're considering for Activity is the ability to automatically destroy state for hidden Activities if there is too much memory being used. Since the component is already unmounted, it may be preferable to destroy state for the least recently used hidden parts of the app rather than consume too many resources.
 
-These are areas we're still exporing, and we'll share more as we make progress. For more information on what Activity includes today, [check out the docs](/reference/react/Activity).
+These are areas we're still exploring, and we'll share more as we make progress. For more information on what Activity includes today, [check out the docs](/reference/react/Activity).
 
 ---
 

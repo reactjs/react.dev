@@ -53,7 +53,7 @@ By default, `<ViewTransition>` animates with a smooth cross-fade (the browser de
 
 #### How does `<ViewTransition>` work? {/*how-does-viewtransition-work*/}
 
-Under the hood, React applies `view-transition-name` to inline styles of the nearest DOM node nested inside the `<ViewTransition>` component. If there are multiple siblings DOM nodes like `<ViewTransition><div /><div /></ViewTransition>` then React adds a suffix to the name to make each unique but conceptually they're part of the same one. React doesn't apply these eagerly but only at the time that boundary should participate in an animation.
+Under the hood, React applies `view-transition-name` to inline styles of the nearest DOM node nested inside the `<ViewTransition>` component. If there are multiple sibling DOM nodes like `<ViewTransition><div /><div /></ViewTransition>` then React adds a suffix to the name to make each unique but conceptually they're part of the same one. React doesn't apply these eagerly but only at the time that boundary should participate in an animation.
 
 React automatically calls `startViewTransition` itself behind the scenes so you should never do that yourself. In fact, if you have something else on the page running a ViewTransition React will interrupt it. So it's recommended that you use React itself to coordinate these. If you had other ways of trigger ViewTransitions in the past, we recommend that you migrate to the built-in way.
 
@@ -67,7 +67,7 @@ Then React calls `startViewTransition`. Inside the `updateCallback`, React will:
 - Wait for fonts to load.
 - Call componentDidMount, componentDidUpdate, useLayoutEffect and refs.
 - Wait for any pending Navigation to finish.
-- Then React will measure any changes to the layout to see which boundaries will need to animation.
+- Then React will measure any changes to the layout to see which boundaries will need to animate.
 
 After the ready Promise of the `startViewTransition` is resolved, React will then revert the `view-transition-name`. Then React will invoke the `onEnter`, `onExit`, `onUpdate` and `onShare` callbacks to allow for manual programmatic control over the Animations. This will be after the built-in default ones have already been computed.
 
@@ -94,7 +94,7 @@ These callbacks allow you to adjust the animation imperatively using the [animat
 
 * **optional** `onEnter`: A function. React calls `onEnter` after an "enter" animation.
 * **optional** `onExit`: A function. React calls `onExit` after an "exit" animation.
-* **optional** `onShare`:  A function. React calls `onShare` after an "share" animation.
+* **optional** `onShare`:  A function. React calls `onShare` after a "share" animation.
 * **optional** `onUpdate`:  A function. React calls `onUpdate` after an "update" animation.
 
 Each callback receives as arguments:
@@ -113,7 +113,7 @@ The value `'none'` can be used to prevent a View Transition from activating for 
 
 <Note>
 
-In many early examples of View Transitions around the web you'll have seen using a [`view-transition-name`](https://developer.mozilla.org/en-US/docs/Web/CSS/view-transition-name) and then style it using `::view-transition-...(my-name)` selectors. We don't recommend that for styling. Instead, we normally recommend using a View Transition Class instead.
+In many early examples of View Transitions around the web, you'll have seen using a [`view-transition-name`](https://developer.mozilla.org/en-US/docs/Web/CSS/view-transition-name) and then style it using `::view-transition-...(my-name)` selectors. We don't recommend that for styling. Instead, we normally recommend using a View Transition Class instead.
 
 </Note>
 
@@ -1308,14 +1308,14 @@ Enter/Exit:
 </Suspense>
 ```
 
-In this scenario, these are two separate ViewTransition instances each with their own `view-transition-name`. This will be treated as an "exit" of the `<A>` and an "enter of the `<B>`.
+In this scenario, these are two separate ViewTransition instances each with their own `view-transition-name`. This will be treated as an "exit" of the `<A>` and an "enter" of the `<B>`.
 
 You can achieve different effects depending on where you choose to place the `<ViewTransition>` boundary.
 
 ---
 ### Opting-out of an animation {/*opting-out-of-an-animation*/}
 
-Sometimes you're wrapping a large existing component, like a whole page, and you want to animate some updates to, such as changing the theme. However, you don't want it to opt-in all updates inside the whole page to cross-fade when they're updating. Especially if you're incrementally adding more animations.
+Sometimes you're wrapping a large existing component, like a whole page, and you want to animate some updates, such as changing the theme. However, you don't want it to opt-in all updates inside the whole page to cross-fade when they're updating. Especially if you're incrementally adding more animations.
 
 You can use the class "none" to opt-out of an animation. By wrapping your children in a "none" you can disable animations for updates to them while the parent still triggers.
 

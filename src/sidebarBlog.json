@@ -12,6 +12,13 @@
       "skipBreadcrumb": true,
       "routes": [
         {
+          "title": "React Labs: View Transitions, Activity, and more",
+          "titleForHomepage": "View Transitions and Activity",
+          "icon": "blog",
+          "date": "April 23, 2025",
+          "path": "/blog/2025/04/23/react-labs-view-transitions-activity-and-more"
+        },
+        {
           "title": "React Compiler RC",
           "titleForHomepage": "React Compiler RC",
           "icon": "blog",

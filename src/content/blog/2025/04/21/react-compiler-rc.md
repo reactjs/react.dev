@@ -63,17 +63,17 @@ To install:
 
 npm
 <TerminalBlock>
-{`npm install --save-dev eslint-plugin-react-hooks@^6.0.0-rc.1`}
+{`npm install --save-dev eslint-plugin-react-hooks@6.0.0-rc.1`}
 </TerminalBlock>
 
 pnpm
 <TerminalBlock>
-{`pnpm add --save-dev eslint-plugin-react-hooks@^6.0.0-rc.1`}
+{`pnpm add --save-dev eslint-plugin-react-hooks@6.0.0-rc.1`}
 </TerminalBlock>
 
 yarn
 <TerminalBlock>
-{`yarn add --dev eslint-plugin-react-hooks@^6.0.0-rc.1`}
+{`yarn add --dev eslint-plugin-react-hooks@6.0.0-rc.1`}
 </TerminalBlock>
 
 ```js

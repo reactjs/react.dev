@@ -1268,7 +1268,7 @@ root.render(
 
 View Transitions are meant to be used for UI transitions such as navigation, expanding, opening, or re-ordering. They are not meant to replace all the animations in your app.
 
-In our example app above, notice that there are already animations when you click the "like" button and the Suspense fallback glimmer. These are good use cases for CSS animations because they are animating a specific element.
+In our example app above, notice that there are already animations when you click the "like" button and in the Suspense fallback glimmer. These are good use cases for CSS animations because they are animating a specific element.
 
 </Note>
 
@@ -2468,7 +2468,7 @@ If you're curious how this works, see the docs for [How does `<ViewTransition>` 
 
 In this example, we're wrapping the root of the app in `<ViewTransition>` for simplicity, but this means that all transitions in the app will be animated, which can lead to unexpected animations. 
 
-To fix, we're wrapping route children with `"none"` so each page can control it's own animation:
+To fix, we're wrapping route children with `"none"` so each page can control its own animation:
 
 ```js
 // Layout.js
@@ -7509,7 +7509,7 @@ root.render(
 
 </Sandpack>
 
-We can also provide custom animatons using an `exit` on the fallback, and `enter` on the content:
+We can also provide custom animations using an `exit` on the fallback, and `enter` on the content:
 
 ```js {3,8}
 <Suspense
@@ -11510,7 +11510,7 @@ function App() {
 }
 ```
 
-However, this means if the user goes back to the old page, all of the previous state is lost. For example, if the `<Home />` page has an `<input>` field, when the user leaves the page the `<input`> is unmounted, and all of the text they had typed is lost.
+However, this means if the user goes back to the old page, all of the previous state is lost. For example, if the `<Home />` page has an `<input>` field, when the user leaves the page the `<input>` is unmounted, and all of the text they had typed is lost.
 
 Activity allows you to keep the state around as the user changes pages, so when they come back they can resume where they left off. This is done by wrapping part of the tree in `<Activity>` and toggling the `mode`:
 
@@ -11529,7 +11529,7 @@ function App() {
 }
 ```
 
-With this change, we can improve on our View Transitons example above. Before, when you searched for a video, selected one, and returned, your search filter was lost. With Activity, your search filter is restored and you can pick up where you left off.
+With this change, we can improve on our View Transitions example above. Before, when you searched for a video, selected one, and returned, your search filter was lost. With Activity, your search filter is restored and you can pick up where you left off.
 
 Try searching for a video, selecting it, and clicking "back":
 
@@ -14214,7 +14214,7 @@ These are areas we're still exploring, and we'll share more as we make progress.
 
 We're also developing features to help solve the common problems below. 
 
-As we iterate on possible solutions, you may see some potenial APIs we're testing being shared based on the PRs we are landing. Please keep in mind, that as we try different ideas, we often change or remove different solutions after trying them out. 
+As we iterate on possible solutions, you may see some potential APIs we're testing being shared based on the PRs we are landing. Please keep in mind that as we try different ideas, we often change or remove different solutions after trying them out. 
 
 When the solutions we're working on are shared too early, it can create churn and confusion in the community. To balance being transparent and limiting confusion, we're sharing the problems we're currently developing solutions for, without sharing a particular solution we have in mind. 
 
@@ -14224,7 +14224,7 @@ As these features progress, we'll announce them on the blog with docs included s
 
 We're working on a new set of custom tracks to performance profilers using browser APIs that [allow adding custom tracks](https://developer.chrome.com/docs/devtools/performance/extension) to provide more information about the performance of your React app.
 
-This feature is still in progress, so we're not ready to publish docs to fully release it as an experimental feature yet. You can get a sneak preview when using an experimental version of React, which will automatically see the performance tracks added to profiles:
+This feature is still in progress, so we're not ready to publish docs to fully release it as an experimental feature yet. You can get a sneak preview when using an experimental version of React, which will automatically add the performance tracks to profiles:
 
 <div style={{display: 'flex', justifyContent: 'center', marginBottom: '1rem'}}>
   <picture >
@@ -14249,17 +14249,17 @@ When we released hooks, we had three motivations:
 
 - **Sharing code between components**: hooks replaced patterns like render props and higher-order components to allow you to reuse stateful logic without changing your component hierarchy.
 - **Think in terms of function, not lifecycles**: hooks let you split one component into smaller functions based on what pieces are related (such as setting up a subscription or fetching data), rather than forcing a split based on lifecycle methods.
-- **Support ahead-of-time compilation**: hooks were designed to support ahead-of-time compilation with less pitfalls causing unintention de-optimizations caused by lifecycle methods, and limitation of classes.
+- **Support ahead-of-time compilation**: hooks were designed to support ahead-of-time compilation with less pitfalls causing unintentional de-optimizations caused by lifecycle methods, and limitations of classes.
 
 Since their release, hooks have been successful at *sharing code between components*. Hooks are now the favored way to share logic between components, and there are less use cases for render props and higher order components. Hooks have also been successful at supporting features like Fast Refresh that were not possible with class components. 
 
 ### Effects can be hard {/*effects-can-be-hard*/}
 
-Unfortunately, some hooks are still hard to think in terms of function instead of lifecycles. Effects specifically are still hard to understand and is the most common pain point we hear from developers. Last year, we spent a significant amount of time researching how Effects were used, and how those use cases could be simplified and easier to understand.
+Unfortunately, some hooks are still hard to think in terms of function instead of lifecycles. Effects specifically are still hard to understand and are the most common pain point we hear from developers. Last year, we spent a significant amount of time researching how Effects were used, and how those use cases could be simplified and easier to understand.
 
-We found that often, the confusion is from using an Effect when you don't need to. The [You Might Not Need an Effect](/learn/you-might-not-need-an-effect) guide, covers many cases for when Effects are not the right solution. However, even when an Effect is the right fit for a problem, Effects can still be harder to understand than class component lifecyles.
+We found that often, the confusion is from using an Effect when you don't need to. The [You Might Not Need an Effect](/learn/you-might-not-need-an-effect) guide covers many cases for when Effects are not the right solution. However, even when an Effect is the right fit for a problem, Effects can still be harder to understand than class component lifecycles.
 
-We believe one of the reasons for confusion is that developers to think of Effects from the _components_ perspective (like a lifecycle), instead of the _Effects_ point of view (what the Effect does).
+We believe one of the reasons for confusion is that developers to think of Effects from the _component's_ perspective (like a lifecycle), instead of the _Effects_ point of view (what the Effect does).
 
 Let's look at an example [from the docs](/learn/lifecycle-of-reactive-effects#thinking-from-the-effects-perspective):
 
@@ -14275,13 +14275,13 @@ useEffect(() => {
 }, [roomId]);
 ```
 
-Many users would read this code as "on mount, connect to the roomId. whenever `roomId` changes, disconnect to the old room and re-create the connection". However, this is thinking from the component's lifecycle perspective, which means you will need to think of every component lifecycle state to write the Effect correctly. This can be difficult, so it's understandble that Effects seem harder than class lifecycles when using component perspective.
+Many users would read this code as "on mount, connect to the roomId. whenever `roomId` changes, disconnect to the old room and re-create the connection". However, this is thinking from the component's lifecycle perspective, which means you will need to think of every component lifecycle state to write the Effect correctly. This can be difficult, so it's understandable that Effects seem harder than class lifecycles when using the component perspective.
 
 ### Effects without dependencies {/*effects-without-dependencies*/}
 
-Instead, it's better to think from the Effect's perspective. The Effect doesn't know about the component lifecycles. It only describes how to start synchronization and how to stop it. When users think of Effects in this way, their Effects tend to be easier to write, and more resilient to being started and stopped as many times as it’s needed.
+Instead, it's better to think from the Effect's perspective. The Effect doesn't know about the component lifecycles. It only describes how to start synchronization and how to stop it. When users think of Effects in this way, their Effects tend to be easier to write, and more resilient to being started and stopped as many times as is needed.
 
-We spent some time researching why Effects are thought of from the component perspective, and we think one of the resons is the dependency array. Since you have to write it, it's right there and in your face reminding you of what you're "reacting" to and baiting you into the mental model of 'do this when these values change'.
+We spent some time researching why Effects are thought of from the component perspective, and we think one of the reasons is the dependency array. Since you have to write it, it's right there and in your face reminding you of what you're "reacting" to and baiting you into the mental model of 'do this when these values change'.
 
 When we released hooks, we knew we could make them easier to use with ahead-of-time compilation. With the React Compiler, you're now able to avoid writing `useCallback` and `useMemo` yourself in most cases. For Effects, the compiler can insert the dependencies for you:
 
@@ -14295,7 +14295,7 @@ useEffect(() => {
 }); // compiler inserted dependencies. 
 ```
 
-With this code, the React Compiler can infer the dependencies for you and insert them automatically so you don't need to see or write them. With features like [the IDE exension](#compiler-ide-extension) and [`useEffectEvent`](/reference/react/experimental_useEffectEvent), we can provide a CodeLens to show you what the Compiler inserted for times you need to debug, or to optimize by removing a dependency. This helps reinforce the correct mental model for writing Effects, which can run at any time to synchronize your component or hook's state with something else.
+With this code, the React Compiler can infer the dependencies for you and insert them automatically so you don't need to see or write them. With features like [the IDE extension](#compiler-ide-extension) and [`useEffectEvent`](/reference/react/experimental_useEffectEvent), we can provide a CodeLens to show you what the Compiler inserted for times you need to debug, or to optimize by removing a dependency. This helps reinforce the correct mental model for writing Effects, which can run at any time to synchronize your component or hook's state with something else.
 
 Our hope is that automatically inserting dependencies is not only easier to write, but that it also makes them easier to understand by forcing you to think in terms of what the Effect does, and not in component lifecycles. 
 
@@ -14339,11 +14339,11 @@ We believe we’ve found an approach that works well and may introduce a new API
 
 ## Concurrent Stores {/*concurrent-stores*/}
 
-When we released React 18 with concurrent rendering, we also released `useSyncExternalStore` so external store libraries that did not use React state or context could [support concurrent rendering](https://github.com/reactwg/react-18/discussions/70) by forcing a sync render when the store is updated.
+When we released React 18 with concurrent rendering, we also released `useSyncExternalStore` so external store libraries that did not use React state or context could [support concurrent rendering](https://github.com/reactwg/react-18/discussions/70) by forcing a synchronous render when the store is updated.
 
-Using `useSyncExternalStore` comes at a cost though, since it forces bail out from concurrent features like transitions, and forces existing content to show Suspense fallbacks.
+Using `useSyncExternalStore` comes at a cost though, since it forces a bail out from concurrent features like transitions, and forces existing content to show Suspense fallbacks.
 
-Now that React 19 has shipped, we're re-visiting this problem space to create a primitive to fully support concurrent external stores with the `use` API:
+Now that React 19 has shipped, we're revisiting this problem space to create a primitive to fully support concurrent external stores with the `use` API:
 
 ```js
 const value = use(store);

@@ -4,7 +4,7 @@ title: Server Functions
 
 <RSC>
 
-Server Functions are for use in [React Server Components](/learn/start-a-new-react-project#bleeding-edge-react-frameworks).
+Server Functions are for use in [React Server Components](/reference/rsc/server-components).
 
 **Note:** Until September 2024, we referred to all Server Functions as "Server Actions". If a Server Function is passed to an action prop or called from inside an action then it is a Server Action, but not all Server Functions are Server Actions. The naming in this documentation has been updated to reflect that Server Functions can be used for multiple purposes.
 

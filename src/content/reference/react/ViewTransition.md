@@ -23,7 +23,7 @@ Experimental versions of React may contain bugs. Don't use them in production.
 
 
 ```js
-import {unstableViewTransition as ViewTransition} from 'react';
+import {unstable_ViewTransition as ViewTransition} from 'react';
 
 <ViewTransition>
   <div>...</div>

@@ -41,7 +41,7 @@ Experimental versions of React may contain bugs. Don't use them in production.
 Wrap a part of the UI in `<Activity>` to manage its visibility state:
 
 ```js
-import {unstableActivity as Activity} from 'react';
+import {unstable_Activity as Activity} from 'react';
 
 <Activity mode={isVisible ? 'visible' : 'hidden'}>
   <Page />

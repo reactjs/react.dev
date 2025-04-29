@@ -79,11 +79,11 @@ function Thread({ messages, sendMessageAction }) {
   const [optimisticMessages, addOptimisticMessage] = useOptimistic(
     messages,
     (state, newMessage) => [
-      ...state,
       {
         text: newMessage,
         sending: true
-      }
+      },
+      ...state,
     ]
   );
 
@@ -112,7 +112,7 @@ export default function App() {
     startTransition(async () => {
       const sentMessage = await deliverMessage(formData.get("message"));
       startTransition(() => {
-        setMessages((messages) => [...messages, { text: sentMessage }]);
+        setMessages((messages) => [{ text: sentMessage }, ...messages]);
       })
     })
   }

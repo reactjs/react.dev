@@ -66,15 +66,15 @@ For example, when a user types a message into the form and hits the "Send" butto
 
 
 ```js src/App.js
-import { useOptimistic, useState, useRef } from "react";
+import { useOptimistic, useState, useRef, startTransition } from "react";
 import { deliverMessage } from "./actions.js";
 
-function Thread({ messages, sendMessage }) {
+function Thread({ messages, sendMessageAction }) {
   const formRef = useRef();
-  async function formAction(formData) {
+  function formAction(formData) {
     addOptimisticMessage(formData.get("message"));
     formRef.current.reset();
-    await sendMessage(formData);
+    sendMessageAction(formData);
   }
   const [optimisticMessages, addOptimisticMessage] = useOptimistic(
     messages,
@@ -89,16 +89,17 @@ function Thread({ messages, sendMessage }) {
 
   return (
     <>
+      <form action={formAction} ref={formRef}>
+        <input type="text" name="message" placeholder="Hello!" />
+        <button type="submit">Send</button>
+      </form>
       {optimisticMessages.map((message, index) => (
         <div key={index}>
           {message.text}
           {!!message.sending && <small> (Sending...)</small>}
         </div>
       ))}
-      <form action={formAction} ref={formRef}>
-        <input type="text" name="message" placeholder="Hello!" />
-        <button type="submit">Send</button>
-      </form>
+      
     </>
   );
 }
@@ -107,11 +108,15 @@ export default function App() {
   const [messages, setMessages] = useState([
     { text: "Hello there!", sending: false, key: 1 }
   ]);
-  async function sendMessage(formData) {
-    const sentMessage = await deliverMessage(formData.get("message"));
-    setMessages((messages) => [...messages, { text: sentMessage }]);
+  function sendMessageAction(formData) {
+    startTransition(async () => {
+      const sentMessage = await deliverMessage(formData.get("message"));
+      startTransition(() => {
+        setMessages((messages) => [...messages, { text: sentMessage }]);
+      })
+    })
   }
-  return <Thread messages={messages} sendMessage={sendMessage} />;
+  return <Thread messages={messages} sendMessageAction={sendMessageAction} />;
 }
 ```
 

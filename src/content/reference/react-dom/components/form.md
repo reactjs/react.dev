@@ -73,6 +73,8 @@ export default function Search() {
 
 You can override the default reset behaviour of the form by additionally passing an `onSubmit` prop to the `<form>` component calls `preventDefault` on the event and calling the action yourself. Passing `onSubmit` alongside `action` ensures the form can be progressively enhanced if this component is rendered to HTML on the server.
 
+Notice how in the below example now the form is not reset and your input is preserved after the form is submitted.
+
 <Sandpack>
 
 ```js

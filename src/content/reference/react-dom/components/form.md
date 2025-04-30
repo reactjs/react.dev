@@ -71,6 +71,37 @@ export default function Search() {
 
 </Sandpack>
 
+You can override the default reset behaviour of the form by additionally passing an `onSubmit` prop to the `<form>` component calls `preventDefault` on the event and calling the action yourself. Passing `onSubmit` alongside `action` ensures the form can be progressively enhanced if this component is rendered to HTML on the server.
+
+<Sandpack>
+
+```js
+import { startTransition } from "react";
+export default function Search() {
+  function search(formData) {
+    const query = formData.get("query");
+    alert(`You searched for '${query}'`);
+  }
+  return (
+    <form
+      action={search}
+      onSubmit={(event) => {
+        event.preventDefault();
+        const formData = new FormData(event.currentTarget);
+        startTransition(() => {
+          search(formData);
+        });
+      }}
+    >
+      <input name="query" />
+      <button type="submit">Search</button>
+    </form>
+  );
+}
+```
+
+</Sandpack>
+
 ### Handle form submission with a Server Function {/*handle-form-submission-with-a-server-function*/}
 
 Render a `<form>` with an input and submit button. Pass a Server Function (a function marked with [`'use server'`](/reference/rsc/use-server)) to the `action` prop of form to run the function when the form is submitted.

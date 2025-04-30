@@ -51,9 +51,9 @@ You can try them by upgrading React packages to the most recent experimental ver
 
 Read on to learn how to use these features in your app, or check out the newly published docs:
 
-- [`<ViewTransition>`](/reference/react/ViewTransition): A component lets you activate an animation for a Transition.
+- [`<ViewTransition>`](/reference/react/ViewTransition): A component that lets you activate an animation for a Transition.
 - [`addTransitionType`](/reference/react/addTransitionType): A function that allows you to specify the cause of a Transition.
-- [`<Activity>`](/reference/react/Activity): A component that lets you hide and show part of the UI.
+- [`<Activity>`](/reference/react/Activity): A component that lets you hide and show parts of the UI.
 
 ## View Transitions {/*view-transitions*/}
 

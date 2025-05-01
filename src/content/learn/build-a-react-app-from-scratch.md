@@ -116,7 +116,7 @@ Similarly, if you rely on the apps using your framework to split the code, you m
 Splitting code by route, when integrated with bundling and data fetching, can reduce the initial load time of your app and the time it takes for the largest visible content of the app to render ([Largest Contentful Paint](https://web.dev/articles/lcp)).
 
 For code-splitting instructions, see your build tool docs:
-- [Vite build optimizations](https://v3.vitejs.dev/guide/features.html#build-optimizations)
+- [Vite build optimizations](https://vite.dev/guide/features.html#build-optimizations)
 - [Parcel code splitting](https://parceljs.org/features/code-splitting/)
 - [Rsbuild code splitting](https://rsbuild.dev/guide/optimization/code-splitting)
 

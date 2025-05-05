@@ -164,9 +164,9 @@ And `Profile` contains even more HTML: `<img />`. In the end, this is what the b
 ```html
 <section>
   <h1>Amazing scientists</h1>
-  <img src="https://i.imgur.com/MK3eW3As.jpg" alt="Katherine Johnson" />
-  <img src="https://i.imgur.com/MK3eW3As.jpg" alt="Katherine Johnson" />
-  <img src="https://i.imgur.com/MK3eW3As.jpg" alt="Katherine Johnson" />
+  <img src="https://i.imgur.com/MK3eW3As.jpg" alt="Katherine Johnson">
+  <img src="https://i.imgur.com/MK3eW3As.jpg" alt="Katherine Johnson">
+  <img src="https://i.imgur.com/MK3eW3As.jpg" alt="Katherine Johnson">
 </section>
 ```
 

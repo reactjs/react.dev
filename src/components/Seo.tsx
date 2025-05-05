@@ -131,6 +131,13 @@ export const Seo = withRouter(
         />
         <link
           rel="preload"
+          href="/fonts/Source-Code-Pro-Bold.woff2"
+          as="font"
+          type="font/woff2"
+          crossOrigin="anonymous"
+        />
+        <link
+          rel="preload"
           href="https://react.dev/fonts/Optimistic_Display_W_Md.woff2"
           as="font"
           type="font/woff2"

@@ -39,6 +39,7 @@ export function Preview({
   const {sandpack, listen} = useSandpack();
   const [bundlerIsReady, setBundlerIsReady] = useState(false);
   const [showLoading, setShowLoading] = useState(false);
+  const [iframeHeightIsReady, setIframeHeightIsReady] = useState(false);
   const [iframeComputedHeight, setComputedAutoHeight] = useState<number | null>(
     null
   );
@@ -106,6 +107,7 @@ export function Preview({
       const unsubscribe = listen((message) => {
         if (message.type === 'resize') {
           setComputedAutoHeight(message.height);
+          setIframeHeightIsReady(true);
         } else if (message.type === 'start') {
           if (message.firstLoad) {
             setBundlerIsReady(false);
@@ -129,7 +131,6 @@ export function Preview({
       return () => {
         clearTimeout(timeout);
         setBundlerIsReady(false);
-        setComputedAutoHeight(null);
         unsubscribe();
       };
     },
@@ -151,7 +152,7 @@ export function Preview({
   // - It should work on mobile.
   // The best way to test it is to actually go through some challenges.
 
-  const hideContent = error || !iframeComputedHeight || !bundlerIsReady;
+  const hideContent = error || !iframeHeightIsReady || !bundlerIsReady;
 
   const iframeWrapperPosition = (): CSSProperties => {
     if (hideContent) {
@@ -174,7 +175,10 @@ export function Preview({
           // Note we don't want this in the expanded state
           // because it breaks position: sticky (and isn't needed anyway).
           !isExpanded && (error || bundlerIsReady) ? 'overflow-auto' : null
-        )}>
+        )}
+        style={{
+          minHeight: iframeComputedHeight || '15px',
+        }}>
         <div style={iframeWrapperPosition()}>
           <iframe
             ref={iframeRef}
@@ -186,7 +190,7 @@ export function Preview({
               // if you make a compiler error and then fix it with code
               // that expands the content. You want to measure that.
               hideContent
-                ? 'absolute opacity-0 pointer-events-none duration-75'
+                ? 'opacity-0 pointer-events-none duration-75'
                 : 'opacity-100 duration-150'
             )}
             title="Sandbox Preview"
@@ -211,7 +215,7 @@ export function Preview({
 
         <LoadingOverlay
           clientId={clientId}
-          dependenciesLoading={!bundlerIsReady && iframeComputedHeight === null}
+          dependenciesLoading={!bundlerIsReady && !iframeHeightIsReady}
           forceLoading={showLoading}
         />
       </div>

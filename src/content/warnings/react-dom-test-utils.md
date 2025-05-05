@@ -2,8 +2,6 @@
 title: react-dom/test-utils Deprecation Warnings
 ---
 
-TODO: update for 19?
-
 ## ReactDOMTestUtils.act() warning {/*reactdomtestutilsact-warning*/}
 
 `act` from `react-dom/test-utils` has been deprecated in favor of `act` from `react`.

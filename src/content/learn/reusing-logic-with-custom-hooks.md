@@ -997,10 +997,10 @@ export function useChatRoom({ serverUrl, roomId, onReceiveMessage }) {
       roomId: roomId
     };
     const connection = createConnection(options);
-    connection.connect();
     connection.on('message', (msg) => {
       onMessage(msg);
     });
+    connection.connect();
     return () => connection.disconnect();
   }, [roomId, serverUrl]);
 }

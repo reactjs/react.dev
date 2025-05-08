@@ -2011,7 +2011,7 @@ export default function ContactList() {
       <label>
         <input
           type="checkbox"
-          value={reverse}
+          checked={reverse}
           onChange={e => {
             setReverse(e.target.checked)
           }}
@@ -2110,7 +2110,7 @@ export default function ContactList() {
       <label>
         <input
           type="checkbox"
-          value={reverse}
+          checked={reverse}
           onChange={e => {
             setReverse(e.target.checked)
           }}

@@ -583,6 +583,14 @@ export default function Page() {
         ...
         <Section level={3}>
           ...
+          <Section level={4}>
+            ...
+          </Section>
+        </Section>
+      </Section>
+    </Section>
+  );
+}
 ```
 
 Since context lets you read information from a component above, each `Section` could read the `level` from the `Section` above, and pass `level + 1` down automatically. Here is how you could do it:

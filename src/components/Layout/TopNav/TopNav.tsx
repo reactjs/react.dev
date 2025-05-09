@@ -2,30 +2,23 @@
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
 
-import {
-  useState,
-  useRef,
-  useCallback,
-  useEffect,
-  startTransition,
-  Suspense,
-} from 'react';
-import Image from 'next/image';
-import * as React from 'react';
 import cn from 'classnames';
+import Image from 'next/image';
 import NextLink from 'next/link';
-import {useRouter} from 'next/router';
-import {disableBodyScroll, enableBodyScroll} from 'body-scroll-lock';
+import * as React from 'react';
+import {Suspense} from 'react';
 
 import {IconClose} from 'components/Icon/IconClose';
 import {IconHamburger} from 'components/Icon/IconHamburger';
 import {IconSearch} from 'components/Icon/IconSearch';
+import NavItem from 'components/NavItem';
 import {Search} from 'components/Search';
+import {useMenuAndScroll} from 'hooks';
+import {siteConfig} from 'siteConfig';
 import {Logo} from '../../Logo';
 import {Feedback} from '../Feedback';
 import {SidebarRouteTree} from '../Sidebar';
 import type {RouteItem} from '../getRouteMeta';
-import {siteConfig} from 'siteConfig';
 import BrandMenu from './BrandMenu';
 
 declare global {
@@ -120,23 +113,6 @@ function Link({
   );
 }
 
-function NavItem({url, isActive, children}: any) {
-  return (
-    <div className="flex flex-auto sm:flex-1">
-      <Link
-        href={url}
-        className={cn(
-          'active:scale-95 transition-transform w-full text-center outline-link py-1.5 px-1.5 xs:px-3 sm:px-4 rounded-full capitalize whitespace-nowrap',
-          !isActive && 'hover:bg-primary/5 hover:dark:bg-primary-dark/5',
-          isActive &&
-            'bg-highlight dark:bg-highlight-dark text-link dark:text-link-dark'
-        )}>
-        {children}
-      </Link>
-    </div>
-  );
-}
-
 function Kbd(props: {children?: React.ReactNode; wide?: boolean}) {
   const {wide, ...rest} = props;
   const width = wide ? 'w-10' : 'w-5';
@@ -158,77 +134,16 @@ export default function TopNav({
   breadcrumbs: RouteItem[];
   section: 'learn' | 'reference' | 'community' | 'blog' | 'home' | 'unknown';
 }) {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [showSearch, setShowSearch] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
-  const scrollParentRef = useRef<HTMLDivElement>(null);
-  const {asPath} = useRouter();
-
-  // HACK. Fix up the data structures instead.
-  if ((routeTree as any).routes.length === 1) {
-    routeTree = (routeTree as any).routes[0];
-  }
-
-  // While the overlay is open, disable body scroll.
-  useEffect(() => {
-    if (isMenuOpen) {
-      const preferredScrollParent = scrollParentRef.current!;
-      disableBodyScroll(preferredScrollParent);
-      return () => enableBodyScroll(preferredScrollParent);
-    } else {
-      return undefined;
-    }
-  }, [isMenuOpen]);
-
-  // Close the overlay on any navigation.
-  useEffect(() => {
-    setIsMenuOpen(false);
-  }, [asPath]);
-
-  // Also close the overlay if the window gets resized past mobile layout.
-  // (This is also important because we don't want to keep the body locked!)
-  useEffect(() => {
-    const media = window.matchMedia(`(max-width: 1023px)`);
-
-    function closeIfNeeded() {
-      if (!media.matches) {
-        setIsMenuOpen(false);
-      }
-    }
-
-    closeIfNeeded();
-    media.addEventListener('change', closeIfNeeded);
-    return () => {
-      media.removeEventListener('change', closeIfNeeded);
-    };
-  }, []);
-
-  const scrollDetectorRef = useRef(null);
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          setIsScrolled(!entry.isIntersecting);
-        });
-      },
-      {
-        root: null,
-        rootMargin: `0px 0px`,
-        threshold: 0,
-      }
-    );
-    observer.observe(scrollDetectorRef.current!);
-    return () => observer.disconnect();
-  }, []);
-
-  const onOpenSearch = useCallback(() => {
-    startTransition(() => {
-      setShowSearch(true);
-    });
-  }, []);
-  const onCloseSearch = useCallback(() => {
-    setShowSearch(false);
-  }, []);
+  const {
+    isMenuOpen,
+    setIsMenuOpen,
+    showSearch,
+    isScrolled,
+    scrollParentRef,
+    scrollDetectorRef,
+    onOpenSearch,
+    onCloseSearch,
+  } = useMenuAndScroll(routeTree);
 
   return (
     <>

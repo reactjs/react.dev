@@ -27,7 +27,6 @@ function PageHeading({
   tags = [],
   breadcrumbs,
 }: PageHeadingProps) {
-  console.log('version', version);
   return (
     <div className="px-5 sm:px-12 pt-3.5">
       <div className="max-w-4xl ms-0 2xl:mx-auto">

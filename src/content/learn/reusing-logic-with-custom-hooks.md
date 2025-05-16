@@ -2081,7 +2081,6 @@ Write `useInterval` in the `useInterval.js` file and import it into the `useCoun
 <Sandpack>
 
 ```js
-import { useState } from 'react';
 import { useCounter } from './useCounter.js';
 
 export default function Counter() {

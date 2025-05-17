@@ -1419,7 +1419,7 @@ Similar to a [design system,](https://uxdesign.cc/everything-you-need-to-know-ab
 
 #### Will React provide any built-in solution for data fetching? {/*will-react-provide-any-built-in-solution-for-data-fetching*/}
 
-Today, with the [`use`](/reference/react/use#streaming-data-from-server-to-client) API, data can be streamed from the server to the client by passing a [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) as a prop:
+Today, with the [`use`](/reference/react/use#streaming-data-from-server-to-client) API, data can be read in render by passing a [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) to `use`:
 
 ```js {3,6,13}
 import { use, Suspense } from "react";

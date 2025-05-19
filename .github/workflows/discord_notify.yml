@@ -4,12 +4,16 @@ on:
   pull_request_target:
     types: [opened, ready_for_review]
 
+permissions: {}
+
 jobs:
   check_maintainer:
     uses: facebook/react/.github/workflows/shared_check_maintainer.yml@main
+    permissions:
+      # Used by check_maintainer
+      contents: read
     with:
       actor: ${{ github.event.pull_request.user.login }}
-      is_remote: true
 
   notify:
     if: ${{ needs.check_maintainer.outputs.is_core_team == 'true' }}

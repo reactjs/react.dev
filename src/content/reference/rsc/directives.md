@@ -4,7 +4,7 @@ title: Directives
 
 <RSC>
 
-Directives are for use in [React Server Components](/learn/start-a-new-react-project#bleeding-edge-react-frameworks).
+Directives are for use in [React Server Components](/reference/rsc/server-components).
 
 </RSC>
 

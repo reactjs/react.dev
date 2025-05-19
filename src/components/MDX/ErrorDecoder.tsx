@@ -69,7 +69,7 @@ function parseQueryString(search: string): Array<string | undefined> {
 }
 
 export default function ErrorDecoder() {
-  const {errorMessage} = useErrorDecoderParams();
+  const {errorMessage, errorCode} = useErrorDecoderParams();
   /** error messages that contain %s require reading location.search */
   const hasParams = errorMessage?.includes('%s');
   const [message, setMessage] = useState<React.ReactNode | null>(() =>
@@ -82,23 +82,28 @@ export default function ErrorDecoder() {
     if (errorMessage == null || !hasParams) {
       return;
     }
+    const args = parseQueryString(window.location.search);
+    let message = errorMessage;
+    if (errorCode === '418') {
+      // Hydration errors have a %s for the diff, but we don't add that to the args for security reasons.
+      message = message.replace(/%s$/, '');
 
-    setMessage(
-      urlify(
-        replaceArgs(
-          errorMessage,
-          parseQueryString(window.location.search),
-          '[missing argument]'
-        )
-      )
-    );
+      // Before React 19.1, the error message didn't have an arg, and was always HTML.
+      if (args.length === 0) {
+        args.push('HTML');
+      } else if (args.length === 1 && args[0] === '') {
+        args[0] = 'HTML';
+      }
+    }
+
+    setMessage(urlify(replaceArgs(message, args, '[missing argument]')));
     setIsReady(true);
-  }, [hasParams, errorMessage]);
+  }, [errorCode, hasParams, errorMessage]);
 
   return (
     <code
       className={cn(
-        'block bg-red-100 text-red-600 py-4 px-6 mt-5 rounded-lg',
+        'whitespace-pre-line block bg-red-100 text-red-600 py-4 px-6 mt-5 rounded-lg',
         isReady ? 'opacity-100' : 'opacity-0'
       )}>
       <b>{message}</b>

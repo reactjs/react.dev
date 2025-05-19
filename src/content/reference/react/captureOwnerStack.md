@@ -2,12 +2,6 @@
 title: captureOwnerStack
 ---
 
-<Canary>
-
-The `captureOwnerStack` API is currently only available in React's Canary and experimental channels. Learn more about [React's release channels here](/community/versioning-policy#all-release-channels).
-
-</Canary>
-
 <Intro>
 
 `captureOwnerStack` reads the current Owner Stack in development and returns it as a string if available.
@@ -124,22 +118,6 @@ createRoot(document.createElement('div'), {
     <Component label="disabled" />
   </App>
 );
-```
-
-```json package.json hidden
-{
-  "dependencies": {
-    "react": "canary",
-    "react-dom": "canary",
-    "react-scripts": "latest"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
-  }
-}
 ```
 
 ```html public/index.html hidden
@@ -357,22 +335,6 @@ const container = document.getElementById("root");
 createRoot(container).render(<App />);
 ```
 
-```json package.json hidden
-{
-  "dependencies": {
-    "react": "canary",
-    "react-dom": "canary",
-    "react-scripts": "latest"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
-  }
-}
-```
-
 ```js src/App.js
 function Component() {
   return <button onClick={() => console.error('Some console error')}>Trigger console.error()</button>;
@@ -414,22 +376,6 @@ export default function App() {
   })
 
   return <button>Click me to see that Owner Stacks are not available in custom DOM event handlers</button>;
-}
-```
-
-```json package.json hidden
-{
-  "dependencies": {
-    "react": "canary",
-    "react-dom": "canary",
-    "react-scripts": "latest"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
-  }
 }
 ```
 

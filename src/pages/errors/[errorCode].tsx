@@ -26,7 +26,7 @@ export default function ErrorDecoderPage({
   );
 
   return (
-    <ErrorDecoderContext.Provider value={{errorMessage, errorCode}}>
+    <ErrorDecoderContext value={{errorMessage, errorCode}}>
       <Page
         toc={[]}
         meta={{
@@ -48,7 +48,7 @@ export default function ErrorDecoderPage({
           <ErrorDecoder />
         </MaxWidth> */}
       </Page>
-    </ErrorDecoderContext.Provider>
+    </ErrorDecoderContext>
   );
 }
 

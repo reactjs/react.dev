@@ -83,9 +83,7 @@ export function Page({
               section === 'blog' && 'lg:flex lg:flex-col lg:items-center'
             )}>
             <TocContext value={toc}>
-              <LanguagesContext value={languages}>
-                {children}
-              </LanguagesContext>
+              <LanguagesContext value={languages}>{children}</LanguagesContext>
             </TocContext>
           </div>
           {!isBlogIndex && (

@@ -414,9 +414,9 @@ export default function List({ items, renderItem }) {
       {items.map((item, index) => {
         const isHighlighted = index === selectedIndex;
         return (
-          <HighlightContext.Provider key={item.id} value={isHighlighted}>
+          <HighlightContext key={item.id} value={isHighlighted}>
             {renderItem(item)}
-          </HighlightContext.Provider>
+          </HighlightContext>
         );
       })}
 ```
@@ -472,12 +472,12 @@ export default function List({ items, renderItem }) {
       {items.map((item, index) => {
         const isHighlighted = index === selectedIndex;
         return (
-          <HighlightContext.Provider
+          <HighlightContext
             key={item.id}
             value={isHighlighted}
           >
             {renderItem(item)}
-          </HighlightContext.Provider>
+          </HighlightContext>
         );
       })}
       <hr />

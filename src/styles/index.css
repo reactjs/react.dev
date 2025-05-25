@@ -393,6 +393,8 @@
   html {
     color-scheme: light;
 
+    overflow-x: hidden;
+
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
     -webkit-tap-highlight-color: transparent;
   }

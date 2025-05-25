@@ -242,7 +242,7 @@ export default function TopNav({
         className={cn(
           isMenuOpen
             ? 'h-screen sticky top-0 lg:bottom-0 lg:h-screen flex flex-col shadow-nav dark:shadow-nav-dark z-20'
-            : 'z-40 sticky top-0'
+            : 'z-40 fixed top-0 left-0 right-0'
         )}>
         <nav
           className={cn(

@@ -410,7 +410,7 @@ New function components will no longer need `forwardRef`, and we will be publish
 
 <Note>
 
-`refs` passed to classes are not passed as props since they reference the component instance.
+`ref`s passed to classes are not passed as props since they reference the component instance.
 
 </Note>
 

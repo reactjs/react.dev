@@ -165,6 +165,11 @@
       "permanent": false
     },
     {
+      "source": "/link/cra",
+      "destination": "/blog/2025/02/14/sunsetting-create-react-app",
+      "permanent": false
+    },
+    {
       "source": "/warnings/version-mismatch",
       "destination": "/warnings/invalid-hook-call-warning#mismatching-versions-of-react-and-react-dom",
       "permanent": false
@@ -222,6 +227,16 @@
     {
       "source": "/reference/react-dom/server/renderToNodeStream",
       "destination": "https://18.react.dev/reference/react-dom/server/renderToNodeStream",
+      "permanent": true
+    },
+    {
+      "source": "/learn/start-a-new-react-project",
+      "destination": "/learn/creating-a-react-app",
+      "permanent": true
+    },
+    {
+      "source": "/learn/building-a-react-framework",
+      "destination": "/learn/build-a-react-app-from-scratch",
       "permanent": true
     },
     {

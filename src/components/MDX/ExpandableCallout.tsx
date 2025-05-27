@@ -16,6 +16,7 @@ type CalloutVariants =
   | 'note'
   | 'wip'
   | 'canary'
+  | 'experimental'
   | 'major'
   | 'rsc';
 
@@ -48,6 +49,15 @@ const variantMap = {
     containerClasses:
       'bg-gray-5 dark:bg-gray-60 dark:bg-opacity-20 text-primary dark:text-primary-dark text-lg',
     textColor: 'text-gray-60 dark:text-gray-30',
+    overlayGradient:
+      'linear-gradient(rgba(245, 249, 248, 0), rgba(245, 249, 248, 1)',
+  },
+  experimental: {
+    title: 'Experimental Feature',
+    Icon: IconCanary,
+    containerClasses:
+      'bg-green-5 dark:bg-green-60 dark:bg-opacity-20 text-primary dark:text-primary-dark text-lg',
+    textColor: 'text-green-60 dark:text-green-40',
     overlayGradient:
       'linear-gradient(rgba(245, 249, 248, 0), rgba(245, 249, 248, 1)',
   },

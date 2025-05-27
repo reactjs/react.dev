@@ -8,7 +8,7 @@ import {useRouter} from 'next/router';
 import {SidebarNav} from './SidebarNav';
 import {Footer} from './Footer';
 import {Toc} from './Toc';
-// import SocialBanner from '../SocialBanner';
+import SocialBanner from '../SocialBanner';
 import {DocsPageFooter} from 'components/DocsFooter';
 import {Seo} from 'components/Seo';
 import PageHeading from 'components/PageHeading';
@@ -31,7 +31,7 @@ interface PageProps {
   meta: {
     title?: string;
     titleForTitleTag?: string;
-    canary?: boolean;
+    version?: 'experimental' | 'canary';
     description?: string;
   };
   section: 'learn' | 'reference' | 'community' | 'blog' | 'home' | 'unknown';
@@ -53,7 +53,7 @@ export function Page({
     routeTree
   );
   const title = meta.title || route?.title || '';
-  const canary = meta.canary || false;
+  const version = meta.version;
   const description = meta.description || route?.description || '';
   const isHomePage = cleanedPath === '/';
   const isBlogIndex = cleanedPath === '/blog';
@@ -70,7 +70,7 @@ export function Page({
           )}>
           <PageHeading
             title={title}
-            canary={canary}
+            version={version}
             description={description}
             tags={route?.tags}
             breadcrumbs={breadcrumbs}
@@ -137,7 +137,7 @@ export function Page({
           />
         </Head>
       )}
-      {/*<SocialBanner />*/}
+      <SocialBanner />
       <TopNav
         section={section}
         routeTree={routeTree}

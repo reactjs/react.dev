@@ -46,7 +46,7 @@ const ThemeContext = createContext('light');
 
 ---
 
-### `SomeContext` {/*provider*/}
+### `SomeContext` and `SomeContext.Provider` {/*provider*/}
 
 Wrap your components into a context provider to specify the value of this context for all components inside:
 
@@ -61,6 +61,8 @@ function App() {
   );
 }
 ```
+
+`SomeContext.Provider` is an alias for `SomeContext` and was used in older versions of React before 19.0.
 
 #### Props {/*provider-props*/}
 
@@ -215,4 +217,3 @@ const ThemeContext = createContext('light');
 This value never changes. React only uses this value as a fallback if it can't find a matching provider above.
 
 To make context change over time, [add state and wrap components in a context provider.](/reference/react/useContext#updating-data-passed-via-context)
-

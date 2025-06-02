@@ -45,6 +45,11 @@ September 2-4, 2025. Wrocław, Poland.
 
 [Website](https://www.reactuniverseconf.com/) - [Twitter](https://twitter.com/react_native_eu) - [LinkedIn](https://www.linkedin.com/events/reactuniverseconf7163919537074118657/)
 
+### React Alicante 2025 {/*react-alicante-2025*/}
+October 2-4, 2025. Alicante, Spain.
+
+[Website](https://reactalicante.es/) - [Twitter](https://x.com/ReactAlicante) - [Bluesky](https://bsky.app/profile/reactalicante.es) - [YouTube](https://www.youtube.com/channel/UCaSdUaITU1Cz6PvC97A7e0w)
+
 ### React Conf 2025 {/*react-conf-2025*/}
 October 7-8, 2025. Henderson, Nevada, USA and free livestream
 

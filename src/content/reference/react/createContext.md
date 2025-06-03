@@ -42,6 +42,7 @@ const ThemeContext = createContext('light');
 
 * `SomeContext` lets you provide the context value to components.
 * `SomeContext.Consumer` is an alternative and rarely used way to read the context value.
+* `SomeContext.Provider` is a legacy way to provide the context value before React 19.
 
 ---
 

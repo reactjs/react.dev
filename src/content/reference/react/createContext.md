@@ -46,7 +46,7 @@ const ThemeContext = createContext('light');
 
 ---
 
-### `SomeContext` and `SomeContext.Provider` {/*provider*/}
+### `SomeContext` Provider {/*provider*/}
 
 Wrap your components into a context provider to specify the value of this context for all components inside:
 

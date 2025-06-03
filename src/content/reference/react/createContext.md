@@ -62,7 +62,13 @@ function App() {
 }
 ```
 
-`SomeContext.Provider` is an alias for `SomeContext` and was used in older versions of React before 19.0.
+<Note>
+
+Starting in React 19, you can render `<SomeContext>` as a provider. 
+
+In older versions of React, use `<SomeContext.Provider>`.
+
+</Note>
 
 #### Props {/*provider-props*/}
 

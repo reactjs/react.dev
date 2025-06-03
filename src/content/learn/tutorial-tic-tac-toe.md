@@ -901,7 +901,7 @@ body {
 
 React Developer Tools let you check the props and the state of your React components. It is available as a [Chrome](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=en), [Firefox](https://addons.mozilla.org/en-US/firefox/addon/react-devtools/), and [Edge](https://microsoftedge.microsoft.com/addons/detail/react-developer-tools/gpphkfbcpidddadnkolkpfckpihlkkil) browser extension. Install it, and the *Components* tab will appear in your browser Developer Tools for sites using React.
 
-After React Developer Tools installation, you can take the URL present in the _preview_ section of CodeSandbox (similar to "https://***.csb.app/") and open it in a new browser tab.
+After React Developer Tools installation, you can take the URL present in the _preview_ section of CodeSandbox ("https://yjksdn.csb.app/") and open it in a new browser tab.
 
 ![Warning shown by CodeSandbox for preview in a new tab](../images/tutorial/codesandbox-preview-warning.png)
 

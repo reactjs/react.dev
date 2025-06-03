@@ -837,9 +837,7 @@ export function TasksProvider({ children }) {
 
   return (
     <TasksContext value={tasks}>
-      <TasksDispatchContext
-        value={dispatch}
-      >
+      <TasksDispatchContext value={dispatch}>
         {children}
       </TasksDispatchContext>
     </TasksContext>

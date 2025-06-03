@@ -1363,4 +1363,3 @@ As your app grows, you may have many context-reducer pairs like this. This is a 
 - You can have many context-reducer pairs like this in your app.
 
 </Recap>
-

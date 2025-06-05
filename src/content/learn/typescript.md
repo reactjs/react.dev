@@ -32,7 +32,7 @@ All [production-grade React frameworks](/learn/start-a-new-react-project#product
 To install the latest version of React's type definitions:
 
 <TerminalBlock>
-npm install @types/react @types/react-dom
+npm install @types/react @types/react-dom --save-dev
 </TerminalBlock>
 
 The following compiler options need to be set in your `tsconfig.json`:

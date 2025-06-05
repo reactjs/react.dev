@@ -685,7 +685,7 @@ Now you don't need to pass the list of tasks or the event handlers down the tree
 </TasksContext>
 ```
 
-Instead, any component that needs the task list can read it from the `TaskContext`:
+Instead, any component that needs the task list can read it from the `TasksContext`:
 
 ```js {2}
 export default function TaskList() {

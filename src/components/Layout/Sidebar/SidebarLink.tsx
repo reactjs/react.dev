@@ -97,7 +97,7 @@ export function SidebarLink({
         )}
       </div>
 
-      {isExpanded != null && !hideArrow && (
+      {!hideArrow && hideArrow !== undefined && (
         <span
           className={cn('pe-1', {
             'text-link dark:text-link-dark': isExpanded,

@@ -7,7 +7,7 @@ title: useActionState
 `useActionState` is a Hook that allows you to update state based on the result of a form action.
 
 ```js
-const [state, formAction, isPending] = useActionState(fn, initialState, permalink?);
+const [state, formAction, isPending] = useActionState(action, initialState, permalink?);
 ```
 
 </Intro>
@@ -57,9 +57,9 @@ If used with a Server Function, `useActionState` allows the server's response fr
 
 #### Parameters {/*parameters*/}
 
-* `fn`: The function to be called when the form is submitted or button pressed. When the function is called, it will receive the previous state of the form (initially the `initialState` that you pass, subsequently its previous return value) as its initial argument, followed by the arguments that a form action normally receives.
+* `action`: The function to be called when the form is submitted or button pressed. When the function is called, it will receive the previous state of the form (initially the `initialState` that you pass, subsequently its previous return value) as its initial argument, followed by the arguments that a form action normally receives.
 * `initialState`: The value you want the state to be initially. It can be any serializable value. This argument is ignored after the action is first invoked.
-* **optional** `permalink`: A string containing the unique page URL that this form modifies. For use on pages with dynamic content (eg: feeds) in conjunction with progressive enhancement: if `fn` is a [server function](/reference/rsc/server-functions) and the form is submitted before the JavaScript bundle loads, the browser will navigate to the specified permalink URL, rather than the current page's URL. Ensure that the same form component is rendered on the destination page (including the same action `fn` and `permalink`) so that React knows how to pass the state through. Once the form has been hydrated, this parameter has no effect.
+* **optional** `permalink`: A string containing the unique page URL that this form modifies. For use on pages with dynamic content (eg: feeds) in conjunction with progressive enhancement: if `action` is a [server function](/reference/rsc/server-functions) and the form is submitted before the JavaScript bundle loads, the browser will navigate to the specified permalink URL, rather than the current page's URL. Ensure that the same form component is rendered on the destination page (including the same action `action` and `permalink`) so that React knows how to pass the state through. Once the form has been hydrated, this parameter has no effect.
 
 {/* TODO T164397693: link to serializable values docs once it exists */}
 

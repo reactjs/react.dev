@@ -92,28 +92,28 @@ You can have more than a single ref in a component. In this example, there is a 
 import { useRef } from 'react';
 
 export default function CatFriends() {
-  const firstCatRef = useRef(null);
-  const secondCatRef = useRef(null);
-  const thirdCatRef = useRef(null);
+  const firstDogRef = useRef(null);
+  const secondDogRef = useRef(null);
+  const thirdDogRef = useRef(null);
 
-  function handleScrollToFirstCat() {
-    firstCatRef.current.scrollIntoView({
+  function handleScrollToFirstDog() {
+    firstDogRef.current.scrollIntoView({
       behavior: 'smooth',
       block: 'nearest',
       inline: 'center'
     });
   }
 
-  function handleScrollToSecondCat() {
-    secondCatRef.current.scrollIntoView({
+  function handleScrollToSecondDog() {
+    secondDogRef.current.scrollIntoView({
       behavior: 'smooth',
       block: 'nearest',
       inline: 'center'
     });
   }
 
-  function handleScrollToThirdCat() {
-    thirdCatRef.current.scrollIntoView({
+  function handleScrollToThirdDog() {
+    thirdDogRef.current.scrollIntoView({
       behavior: 'smooth',
       block: 'nearest',
       inline: 'center'
@@ -123,13 +123,13 @@ export default function CatFriends() {
   return (
     <>
       <nav>
-        <button onClick={handleScrollToFirstCat}>
-          Neo
+        <button onClick={handleScrollToFirstDog}>
+          Puppies
         </button>
-        <button onClick={handleScrollToSecondCat}>
-          Millie
+        <button onClick={handleScrollToSecondDog}>
+          Leo
         </button>
-        <button onClick={handleScrollToThirdCat}>
+        <button onClick={handleScrollToThirdDog}>
           Bella
         </button>
       </nav>
@@ -137,23 +137,23 @@ export default function CatFriends() {
         <ul>
           <li>
             <img
-              src="https://placecats.com/neo/300/200"
-              alt="Neo"
-              ref={firstCatRef}
+              src="https://placedog.net/300/300?id=2"
+              alt="Image of two Golden Retriever puppies"
+              ref={firstDogRef}
             />
           </li>
           <li>
             <img
-              src="https://placecats.com/millie/200/200"
-              alt="Millie"
-              ref={secondCatRef}
+              src="https://placedog.net/300/300?id=3"
+              alt="Image of a brown Golden Retriever"
+              ref={secondDogRef}
             />
           </li>
           <li>
             <img
-              src="https://placecats.com/bella/199/200"
-              alt="Bella"
-              ref={thirdCatRef}
+              src="https://placedog.net/300/300?id=8"
+              alt="Image of a Border Collie chasing a tennis ball"
+              ref={thirdDogRef}
             />
           </li>
         </ul>
@@ -220,13 +220,13 @@ This example shows how you can use this approach to scroll to an arbitrary node 
 ```js
 import { useRef, useState } from "react";
 
-export default function CatFriends() {
+export default function DogFriends() {
   const itemsRef = useRef(null);
-  const [catList, setCatList] = useState(setupCatList);
+  const [dogList, setDogList] = useState(setupDogList);
 
-  function scrollToCat(cat) {
+  function scrollToDog(dog) {
     const map = getMap();
-    const node = map.get(cat);
+    const node = map.get(dog);
     node.scrollIntoView({
       behavior: "smooth",
       block: "nearest",
@@ -245,25 +245,25 @@ export default function CatFriends() {
   return (
     <>
       <nav>
-        <button onClick={() => scrollToCat(catList[0])}>Neo</button>
-        <button onClick={() => scrollToCat(catList[5])}>Millie</button>
-        <button onClick={() => scrollToCat(catList[9])}>Bella</button>
+        <button onClick={() => scrollToDog(dogList[1])}>Puppies</button>
+        <button onClick={() => scrollToDog(dogList[2])}>Leo</button>
+        <button onClick={() => scrollToDog(dogList[7])}>Bella</button>
       </nav>
       <div>
         <ul>
-          {catList.map((cat) => (
+          {dogList.map((dog) => (
             <li
-              key={cat}
+              key={dog}
               ref={(node) => {
                 const map = getMap();
-                map.set(cat, node);
+                map.set(dog, node);
 
                 return () => {
-                  map.delete(cat);
+                  map.delete(dog);
                 };
               }}
             >
-              <img src={cat} />
+              <img src={dog} />
             </li>
           ))}
         </ul>
@@ -272,13 +272,13 @@ export default function CatFriends() {
   );
 }
 
-function setupCatList() {
-  const catList = [];
-  for (let i = 0; i < 10; i++) {
-    catList.push("https://loremflickr.com/320/240/cat?lock=" + i);
+function setupDogList() {
+  const dogList = [];
+  for (let i = 1; i < 10; i++) {
+    dogList.push("https://placedog.net/300/300?id=" + i);
   }
 
-  return catList;
+  return dogList;
 }
 
 ```
@@ -315,15 +315,15 @@ In this example, `itemsRef` doesn't hold a single DOM node. Instead, it holds a 
 
 ```js
 <li
-  key={cat.id}
+  key={dog.id}
   ref={node => {
     const map = getMap();
     // Add to the Map
-    map.set(cat, node);
+    map.set(dog, node);
 
     return () => {
       // Remove from the Map
-      map.delete(cat);
+      map.delete(dog);
     };
   }}
 >
@@ -840,13 +840,13 @@ You don't need to have a ref to every image for this exercise. It should be enou
 ```js
 import { useState } from 'react';
 
-export default function CatFriends() {
+export default function DogFriends() {
   const [index, setIndex] = useState(0);
   return (
     <>
       <nav>
         <button onClick={() => {
-          if (index < catList.length - 1) {
+          if (index < dogList.length - 1) {
             setIndex(index + 1);
           } else {
             setIndex(0);
@@ -857,16 +857,16 @@ export default function CatFriends() {
       </nav>
       <div>
         <ul>
-          {catList.map((cat, i) => (
-            <li key={cat.id}>
+          {dogList.map((dog, i) => (
+            <li key={dog.id}>
               <img
                 className={
                   index === i ?
                     'active' :
                     ''
                 }
-                src={cat.imageUrl}
-                alt={'Cat #' + cat.id}
+                src={dog.imageUrl}
+                alt={'Dog #' + dog.id}
               />
             </li>
           ))}
@@ -876,11 +876,11 @@ export default function CatFriends() {
   );
 }
 
-const catList = [];
-for (let i = 0; i < 10; i++) {
-  catList.push({
+const dogList = [];
+for (let i = 1; i < 10; i++) {
+  dogList.push({
     id: i,
-    imageUrl: 'https://loremflickr.com/250/200/cat?lock=' + i
+    imageUrl: 'https://placedog.net/300/300?id=' + i
   });
 }
 
@@ -942,7 +942,7 @@ Note that the `flushSync` call is necessary to force React to update the DOM bef
 import { useRef, useState } from 'react';
 import { flushSync } from 'react-dom';
 
-export default function CatFriends() {
+export default function DogFriends() {
   const selectedRef = useRef(null);
   const [index, setIndex] = useState(0);
 
@@ -951,7 +951,7 @@ export default function CatFriends() {
       <nav>
         <button onClick={() => {
           flushSync(() => {
-            if (index < catList.length - 1) {
+            if (index < dogList.length - 1) {
               setIndex(index + 1);
             } else {
               setIndex(0);
@@ -968,9 +968,9 @@ export default function CatFriends() {
       </nav>
       <div>
         <ul>
-          {catList.map((cat, i) => (
+          {dogList.map((dog, i) => (
             <li
-              key={cat.id}
+              key={dog.id}
               ref={index === i ?
                 selectedRef :
                 null
@@ -982,8 +982,8 @@ export default function CatFriends() {
                     'active'
                     : ''
                 }
-                src={cat.imageUrl}
-                alt={'Cat #' + cat.id}
+                src={dog.imageUrl}
+                alt={'Dog #' + dog.id}
               />
             </li>
           ))}
@@ -993,11 +993,11 @@ export default function CatFriends() {
   );
 }
 
-const catList = [];
-for (let i = 0; i < 10; i++) {
-  catList.push({
+const dogList = [];
+for (let i = 1; i < 10; i++) {
+  dogList.push({
     id: i,
-    imageUrl: 'https://loremflickr.com/250/200/cat?lock=' + i
+    imageUrl: 'https://placedog.net/300/300?id=' + i
   });
 }
 

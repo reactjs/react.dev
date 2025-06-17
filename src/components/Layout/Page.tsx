@@ -52,6 +52,12 @@ export function Page({
     cleanedPath,
     routeTree
   );
+  const getNavigationRoutes = () => {
+    if (section !== 'blog') return { nextRoute, prevRoute };
+    return { nextRoute: prevRoute, prevRoute: nextRoute }; // Swap for blog
+  };
+
+  const { nextRoute: finalNextRoute, prevRoute: finalPrevRoute } = getNavigationRoutes();
   const title = meta.title || route?.title || '';
   const version = meta.version;
   const description = meta.description || route?.description || '';
@@ -89,8 +95,8 @@ export function Page({
           {!isBlogIndex && (
             <DocsPageFooter
               route={route}
-              nextRoute={nextRoute}
-              prevRoute={prevRoute}
+              nextRoute={finalNextRoute}
+              prevRoute={finalPrevRoute}
             />
           )}
         </div>

@@ -29,7 +29,9 @@ Each community consists of many thousands of React users.
 
 ## Feature Requests {/*feature-requests*/}
 
-To submit feature request on React itself, first search the existing [issues](https://github.com/reactjs/rfcs/issues). If you can't find your feature request there, submit it as a formal [RFC (Request For Comment)](https://github.com/reactjs/rfcs/issues/new/choose).
+To submit a feature request for React, first search through the existing [open issues](https://github.com/reactjs/rfcs/issues) **and [closed issues](https://github.com/reactjs/rfcs/issues?q=is%3Aissue+is%3Aclosed)** to check if your idea has already been discussed.  
+
+If you can't find it there, you can submit it as a formal [RFC (Request For Comment)](https://github.com/reactjs/rfcs/issues/new/choose).
 
 ## News {/*news*/}
 

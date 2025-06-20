@@ -37,6 +37,10 @@ export interface RouteItem {
   sectionHeader?: string;
   /** Whether it should be omitted in breadcrumbs */
   skipBreadcrumb?: boolean;
+
+  /** Optional fields used only for blog routes */
+  icon?: string;
+  date?: string;
 }
 
 export interface Routes {
@@ -63,6 +67,21 @@ type TraversalContext = RouteMeta & {
 };
 
 export function getRouteMeta(cleanedPath: string, routeTree: RouteItem) {
+  // Locate the '/blog' route from the top-level route tree.
+  // This is needed so we can sort the individual blog post routes by date.
+  const blogRoute = routeTree.routes?.find((r) => r.path === '/blog');
+
+  // The blog route contains multiple blog posts.
+  // We sort them by date (oldest to newest) to ensure that
+  // getRouteMeta can correctly determine previous/next blog posts.
+  if (blogRoute && Array.isArray(blogRoute.routes)) {
+    blogRoute.routes = blogRoute.routes
+      .filter((r) => r.icon === 'blog' && r.date)
+      .sort(
+        (a, b) => new Date(a.date!).getTime() - new Date(b.date!).getTime()
+      );
+  }
+
   const breadcrumbs = getBreadcrumbs(cleanedPath, routeTree);
   const ctx: TraversalContext = {
     currentIndex: 0,
@@ -75,7 +94,6 @@ export function getRouteMeta(cleanedPath: string, routeTree: RouteItem) {
   };
 }
 
-// Performs a depth-first search to find the current route and its previous/next route
 function buildRouteMeta(
   searchPath: string,
   currentRoute: RouteItem,

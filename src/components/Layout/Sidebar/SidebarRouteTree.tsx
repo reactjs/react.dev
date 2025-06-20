@@ -2,7 +2,8 @@
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
 
-import {useRef, useLayoutEffect, Fragment} from 'react';
+import { useRef, useLayoutEffect, Fragment, useState} from 'react';
+
 
 import cn from 'classnames';
 import {useRouter} from 'next/router';
@@ -112,7 +113,15 @@ export function SidebarRouteTree({
             const isBreadcrumb =
               breadcrumbs.length > 1 &&
               breadcrumbs[breadcrumbs.length - 1].path === path;
-            const isExpanded = isForceExpanded || isBreadcrumb || selected;
+
+            const [isExpanded, setIsExpanded] = useState(
+              isForceExpanded || isBreadcrumb || selected
+            );
+
+            const toggleExpand = (e: React.MouseEvent) => {
+              e.preventDefault();
+              setIsExpanded(prev => !prev);
+            };
             listItem = (
               <li key={`${title}-${path}-${level}-heading`}>
                 <SidebarLink
@@ -125,6 +134,7 @@ export function SidebarRouteTree({
                   version={version}
                   isExpanded={isExpanded}
                   hideArrow={isForceExpanded}
+                  onClick={toggleExpand}
                 />
                 <CollapseWrapper duration={250} isExpanded={isExpanded}>
                   <SidebarRouteTree

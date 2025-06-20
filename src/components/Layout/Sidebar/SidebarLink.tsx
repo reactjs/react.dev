@@ -22,6 +22,7 @@ interface SidebarLinkProps {
   isExpanded?: boolean;
   hideArrow?: boolean;
   isPending: boolean;
+  onClick?: React.MouseEventHandler<HTMLDivElement>;
 }
 
 export function SidebarLink({
@@ -51,13 +52,17 @@ export function SidebarLink({
     target = '_blank';
   }
   return (
-    <Link
-      href={href}
+  <Link
+    href={href}
+    passHref
+    legacyBehavior // required to manually render an <a> tag or custom wrapper
+  >
+    <div
       ref={ref}
+      onClick={onClick}
       title={title}
-      target={target}
-      passHref
-      aria-current={selected ? 'page' : undefined}
+      role="link"
+      tabIndex={0}
       className={cn(
         'p-2 pe-2 w-full rounded-none lg:rounded-e-2xl text-start hover:bg-gray-5 dark:hover:bg-gray-80 relative flex items-center justify-between',
         {
@@ -72,14 +77,15 @@ export function SidebarLink({
           'dark:bg-gray-70 bg-gray-3 dark:hover:bg-gray-70 hover:bg-gray-3':
             isPending,
         }
-      )}>
-      {/* This here needs to be refactored ofc */}
+      )}
+    >
       <div>
         {title}{' '}
         {version === 'major' && (
           <span
             title="- This feature is available in React 19 beta and the React canary channel"
-            className={`text-xs px-1 ms-1 rounded bg-gray-10 dark:bg-gray-40 dark:bg-opacity-20 text-gray-40 dark:text-gray-40`}>
+            className="text-xs px-1 ms-1 rounded bg-gray-10 dark:bg-gray-40 dark:bg-opacity-20 text-gray-40 dark:text-gray-40"
+          >
             React 19
           </span>
         )}
@@ -102,10 +108,13 @@ export function SidebarLink({
           className={cn('pe-1', {
             'text-link dark:text-link-dark': isExpanded,
             'text-tertiary dark:text-tertiary-dark': !isExpanded,
-          })}>
+          })}
+        >
           <IconNavArrow displayDirection={isExpanded ? 'down' : 'end'} />
         </span>
       )}
-    </Link>
-  );
+    </div>
+  </Link>
+);
+
 }

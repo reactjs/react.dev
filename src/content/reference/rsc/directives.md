@@ -10,7 +10,7 @@ Directives are for use in [React Server Components](/reference/rsc/server-compon
 
 <Intro>
 
-Directives provide instructions to [bundlers compatible with React Server Components](/learn/start-a-new-react-project#bleeding-edge-react-frameworks).
+Directives provide instructions to [bundlers compatible with React Server Components](/learn/start-a-new-react-project#full-stack-frameworks).
 
 </Intro>
 

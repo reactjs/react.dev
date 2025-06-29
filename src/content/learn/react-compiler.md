@@ -197,7 +197,7 @@ Similarly to apps, it is not necessary to fully compile 100% of your components 
 ### Babel {/*usage-with-babel*/}
 
 <TerminalBlock>
-{`npm install babel-plugin-react-compiler@rc`}
+{`npm install -D babel-plugin-react-compiler@rc`}
 </TerminalBlock>
 
 The compiler includes a Babel plugin which you can use in your build pipeline to run the compiler.
@@ -252,7 +252,7 @@ Please refer to the [Next.js docs](https://nextjs.org/docs/app/api-reference/nex
 Install `vite-plugin-babel`, and add the compiler's Babel plugin to it:
 
 <TerminalBlock>
-{`npm install vite-plugin-babel`}
+{`npm install -D vite-plugin-babel`}
 </TerminalBlock>
 
 ```js {2,14}

@@ -65,7 +65,7 @@ The `dispatch` function returned by `useReducer` lets you update the state to a 
 const [state, dispatch] = useReducer(reducer, { age: 42 });
 
 function handleClick() {
-  dispatch({ type: 'incremented_age' });
+  dispatch({ type: 'increment_age' });
   // ...
 ```
 
@@ -116,7 +116,7 @@ To update what's on the screen, call <CodeStep step={2}>`dispatch`</CodeStep> wi
 
 ```js [[2, 2, "dispatch"]]
 function handleClick() {
-  dispatch({ type: 'incremented_age' });
+  dispatch({ type: 'increment_age' });
 }
 ```
 
@@ -128,7 +128,7 @@ React will pass the current state and the action to your <CodeStep step={4}>redu
 import { useReducer } from 'react';
 
 function reducer(state, action) {
-  if (action.type === 'incremented_age') {
+  if (action.type === 'increment_age') {
     return {
       age: state.age + 1
     };
@@ -142,7 +142,7 @@ export default function Counter() {
   return (
     <>
       <button onClick={() => {
-        dispatch({ type: 'incremented_age' })
+        dispatch({ type: 'increment_age' })
       }}>
         Increment age
       </button>
@@ -177,7 +177,7 @@ Then you need to fill in the code that will calculate and return the next state.
 ```js {4-7,10-13}
 function reducer(state, action) {
   switch (action.type) {
-    case 'incremented_age': {
+    case 'increment_age': {
       return {
         name: state.name,
         age: state.age + 1
@@ -201,7 +201,7 @@ function Form() {
   const [state, dispatch] = useReducer(reducer, { name: 'Taylor', age: 42 });
   
   function handleButtonClick() {
-    dispatch({ type: 'incremented_age' });
+    dispatch({ type: 'increment_age' });
   }
 
   function handleInputChange(e) {
@@ -224,7 +224,7 @@ State is read-only. Don't modify any objects or arrays in state:
 ```js {4,5}
 function reducer(state, action) {
   switch (action.type) {
-    case 'incremented_age': {
+    case 'increment_age': {
       // 🚩 Don't mutate an object in state like this:
       state.age = state.age + 1;
       return state;
@@ -236,7 +236,7 @@ Instead, always return new objects from your reducer:
 ```js {4-8}
 function reducer(state, action) {
   switch (action.type) {
-    case 'incremented_age': {
+    case 'increment_age': {
       // ✅ Instead, return a new object
       return {
         ...state,
@@ -262,7 +262,7 @@ import { useReducer } from 'react';
 
 function reducer(state, action) {
   switch (action.type) {
-    case 'incremented_age': {
+    case 'increment_age': {
       return {
         name: state.name,
         age: state.age + 1
@@ -284,7 +284,7 @@ export default function Form() {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   function handleButtonClick() {
-    dispatch({ type: 'incremented_age' });
+    dispatch({ type: 'increment_age' });
   }
 
   function handleInputChange(e) {
@@ -947,7 +947,7 @@ Calling the `dispatch` function **does not change state in the running code**:
 function handleClick() {
   console.log(state.age);  // 42
 
-  dispatch({ type: 'incremented_age' }); // Request a re-render with 43
+  dispatch({ type: 'increment_age' }); // Request a re-render with 43
   console.log(state.age);  // Still 42!
 
   setTimeout(() => {
@@ -961,7 +961,7 @@ This is because [states behaves like a snapshot.](/learn/state-as-a-snapshot) Up
 If you need to guess the next state value, you can calculate it manually by calling the reducer yourself:
 
 ```js
-const action = { type: 'incremented_age' };
+const action = { type: 'increment_age' };
 dispatch(action);
 
 const nextState = reducer(state, action);
@@ -978,7 +978,7 @@ React will **ignore your update if the next state is equal to the previous state
 ```js {4-5,9-10}
 function reducer(state, action) {
   switch (action.type) {
-    case 'incremented_age': {
+    case 'increment_age': {
       // 🚩 Wrong: mutating existing object
       state.age++;
       return state;
@@ -998,7 +998,7 @@ You mutated an existing `state` object and returned it, so React ignored the upd
 ```js {4-8,11-15}
 function reducer(state, action) {
   switch (action.type) {
-    case 'incremented_age': {
+    case 'increment_age': {
       // ✅ Correct: creating a new object
       return {
         ...state,
@@ -1026,7 +1026,7 @@ Make sure that every `case` branch **copies all of the existing fields** when re
 ```js {5}
 function reducer(state, action) {
   switch (action.type) {
-    case 'incremented_age': {
+    case 'increment_age': {
       return {
         ...state, // Don't forget this!
         age: state.age + 1
@@ -1046,7 +1046,7 @@ If your state unexpectedly becomes `undefined`, you're likely forgetting to `ret
 ```js {10}
 function reducer(state, action) {
   switch (action.type) {
-    case 'incremented_age': {
+    case 'increment_age': {
       // ...
     }
     case 'edited_name': {

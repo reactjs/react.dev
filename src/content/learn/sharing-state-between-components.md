@@ -138,7 +138,7 @@ export default function Accordion() {
   return (
     <>
       <h2>Almaty, Kazakhstan</h2>
-      <Panel title="About" isActive={isActive} onShow={() => setIsActive(true)}>
+      <Panel title="About" isActive={true} onShow={() => { } }>
         With a population of about 2 million, Almaty is Kazakhstan's largest city. From 1929 to 1997, it was its capital city.
       </Panel>
       <Panel title="Etymology" isActive={isActive} onShow={() => setIsActive(true)}>

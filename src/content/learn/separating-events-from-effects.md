@@ -281,7 +281,7 @@ Play with this example and see if you can spot the problem with this user experi
 
 ```js
 import { useState, useEffect } from 'react';
-import { createConnection, sendMessage } from './chat.js';
+import { createConnection } from './chat.js';
 import { showNotification } from './notifications.js';
 
 const serverUrl = 'https://localhost:1234';
@@ -465,7 +465,7 @@ Verify that the new behavior works as you would expect:
 ```js
 import { useState, useEffect } from 'react';
 import { experimental_useEffectEvent as useEffectEvent } from 'react';
-import { createConnection, sendMessage } from './chat.js';
+import { createConnection } from './chat.js';
 import { showNotification } from './notifications.js';
 
 const serverUrl = 'https://localhost:1234';
@@ -1475,7 +1475,7 @@ Your Effect knows which room it connected to. Is there any information that you 
 ```js
 import { useState, useEffect } from 'react';
 import { experimental_useEffectEvent as useEffectEvent } from 'react';
-import { createConnection, sendMessage } from './chat.js';
+import { createConnection } from './chat.js';
 import { showNotification } from './notifications.js';
 
 const serverUrl = 'https://localhost:1234';
@@ -1616,7 +1616,7 @@ To fix the issue, instead of reading the *latest* `roomId` inside the Effect Eve
 ```js
 import { useState, useEffect } from 'react';
 import { experimental_useEffectEvent as useEffectEvent } from 'react';
-import { createConnection, sendMessage } from './chat.js';
+import { createConnection } from './chat.js';
 import { showNotification } from './notifications.js';
 
 const serverUrl = 'https://localhost:1234';
@@ -1753,7 +1753,7 @@ To solve the additional challenge, save the notification timeout ID and clear it
 ```js
 import { useState, useEffect } from 'react';
 import { experimental_useEffectEvent as useEffectEvent } from 'react';
-import { createConnection, sendMessage } from './chat.js';
+import { createConnection } from './chat.js';
 import { showNotification } from './notifications.js';
 
 const serverUrl = 'https://localhost:1234';

@@ -312,7 +312,7 @@ For common use cases, React provides built-in abstractions such as:
 - [`<form>` actions](/reference/react-dom/components/form)
 - [Server Functions](/reference/rsc/server-functions)
 
-These solutions handle request ordering for you. When using Transitions to build your own custom hooks or libraries that manage async state transitions, you have greater control over the request ordering, but you must handle it yourself.
+These solutions handle request ordering for you. When using Transitions to build your own custom Hooks or libraries that manage async state transitions, you have greater control over the request ordering, but you must handle it yourself.
 
 <Solution />
 

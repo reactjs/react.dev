@@ -353,5 +353,3 @@ When you make the error go away, confirm that removing the opt out directive mak
 ### Other issues {/*other-issues*/}
 
 Please see https://github.com/reactwg/react-compiler/discussions/7.
-
-

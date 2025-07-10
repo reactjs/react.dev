@@ -52,6 +52,7 @@ export function Page({
     cleanedPath,
     routeTree
   );
+
   const title = meta.title || route?.title || '';
   const version = meta.version;
   const description = meta.description || route?.description || '';
@@ -86,13 +87,11 @@ export function Page({
               <LanguagesContext value={languages}>{children}</LanguagesContext>
             </TocContext>
           </div>
-          {!isBlogIndex && (
-            <DocsPageFooter
-              route={route}
-              nextRoute={nextRoute}
-              prevRoute={prevRoute}
-            />
-          )}
+          <DocsPageFooter
+            route={route}
+            nextRoute={nextRoute}
+            prevRoute={prevRoute}
+          />
         </div>
       </div>
     );

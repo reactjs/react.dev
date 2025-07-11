@@ -517,7 +517,7 @@ Strict Mode can also help find bugs in [Effects.](/learn/synchronizing-with-effe
 
 Every Effect has some setup code and may have some cleanup code. Normally, React calls setup when the component *mounts* (is added to the screen) and calls cleanup when the component *unmounts* (is removed from the screen). React then calls cleanup and setup again if its dependencies changed since the last render.
 
-When Strict Mode is on, React will also run **one extra setup+cleanup cycle in development for every Effect.** This may feel surprising, but it helps reveal subtle bugs that are hard to catch manually.
+When Strict Mode is on, React will also run **one extra setup+cleanup cycle in development for every Effect on mount.** This may feel surprising, but it helps reveal subtle bugs that are hard to catch manually.
 
 **Here is an example to illustrate how re-running Effects in Strict Mode helps you find bugs early.**
 

@@ -125,6 +125,7 @@ const Editor = memo(function Editor({
       showTabs={false}
       showRunButton={false}
       extensions={lintExtensions}
+      wrapContent={true}
     />
   );
 });

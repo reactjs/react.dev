@@ -85,6 +85,29 @@ You could think of your components as recipes: if you follow them and don't intr
 
 <Illustration src="/images/docs/illustrations/i_puritea-recipe.png" alt="A tea recipe for x people: take x cups of water, add x spoons of tea and 0.5x spoons of spices, and 0.5x cups of milk" />
 
+#### JSX Equality:  
+
+For two JSX values to be considered equal in React's purity model:  
+
+- **Type equality**: They must be the same component or HTML tag (e.g., `<Button />` vs `<div>`).  
+- **Prop equality**:  
+  - Primitive props (`string`, `number`, `boolean`) must be identical (`===`).  
+  - Object/array props must have *equivalent structure* (same keys/values, even if references differ).  
+- **Special props**: `key` and `ref` (if present) must be identical.  
+
+<Sandpack>
+
+```jsx
+// These are considered equal (same structure):
+<Child config={{ color: 'red' }} />
+<Child config={{ color: 'red' }} />
+
+// These are NOT equal (different structure):
+<Child config={{ color: 'red' }} />
+<Child config={{ color: 'blue' }} />
+```
+</Sandpack>
+
 ## Side Effects: (un)intended consequences {/*side-effects-unintended-consequences*/}
 
 React's rendering process must always be pure. Components should only *return* their JSX, and not *change* any objects or variables that existed before rendering—that would make them impure!

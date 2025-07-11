@@ -95,6 +95,12 @@ Usually, this code is fine! But maybe `getFilteredTodos()` is slow or you have a
 
 You can cache (or ["memoize"](https://en.wikipedia.org/wiki/Memoization)) an expensive calculation by wrapping it in a [`useMemo`](/reference/react/useMemo) Hook:
 
+<Note>
+
+[React Compiler](/learn/react-compiler) can automatically memoize expensive calculations for you, eliminating the need for manual `useMemo` in many cases.
+
+</Note>
+
 ```js {5-8}
 import { useMemo, useState } from 'react';
 

@@ -53,11 +53,37 @@
         {
           "title": "React Developer Tools",
           "path": "/learn/react-developer-tools"
+        }
+      ]
+    },
+    {
+      "title": "React Compiler",
+      "path": "/learn/react-compiler",
+      "canary": true,
+      "routes": [
+        {
+          "title": "Getting Started",
+          "path": "/learn/react-compiler/getting-started"
         },
         {
-          "title": "React Compiler",
-          "path": "/learn/react-compiler",
-          "canary": true
+          "title": "Backwards Compatibility",
+          "path": "/learn/react-compiler/compatibility"
+        },
+        {
+          "title": "Configuration",
+          "path": "/learn/react-compiler/configuration"
+        },
+        {
+          "title": "Incremental Adoption",
+          "path": "/learn/react-compiler/incremental-adoption"
+        },
+        {
+          "title": "Debugging and Troubleshooting",
+          "path": "/learn/react-compiler/debugging"
+        },
+        {
+          "title": "Library Authors Guide",
+          "path": "/learn/react-compiler/library-authors"
         }
       ]
     },

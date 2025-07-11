@@ -307,6 +307,16 @@
         {
           "title": "renderToString",
           "path": "/reference/react-dom/server/renderToString"
+        },
+        {
+          "title": "resume",
+          "path": "/reference/react-dom/server/resume",
+          "version": "canary"
+        },
+        {
+          "title": "resumeToPipeableStream",
+          "path": "/reference/react-dom/server/resumeToPipeableStream",
+          "version": "canary"
         }
       ]
     },

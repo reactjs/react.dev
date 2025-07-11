@@ -31,7 +31,7 @@ Call `prerender` to render your app to static HTML.
 ```js
 import { prerender } from 'react-dom/static';
 
-async function handler(request) {
+async function handler(request, response) {
   const {prelude} = await prerender(<App />, {
     bootstrapScripts: ['/main.js']
   });
@@ -64,6 +64,7 @@ On the client, call [`hydrateRoot`](/reference/react-dom/client/hydrateRoot) to 
 `prerender` returns a Promise:
 - If rendering the is successful, the Promise will resolve to an object containing:
   - `prelude`: a [Web Stream](https://developer.mozilla.org/en-US/docs/Web/API/Streams_API) of HTML. You can use this stream to send a response in chunks, or you can read the entire stream into a string.
+  - `postponed` <CanaryBadge />: an opaque object that can be passed to `resume` if `prerender` is aborted.
 - If rendering fails, the Promise will be rejected. [Use this to output a fallback shell.](/reference/react-dom/server/renderToReadableStream#recovering-from-errors-inside-the-shell)
 
 #### Caveats {/*caveats*/}
@@ -76,6 +77,8 @@ On the client, call [`hydrateRoot`](/reference/react-dom/client/hydrateRoot) to 
 ### When should I use `prerender`? {/*when-to-use-prerender*/}
 
 The static `prerender` API is used for static server-side generation (SSG). Unlike `renderToString`, `prerender` waits for all data to load before resolving. This makes it suitable for generating static HTML for a full page, including data that needs to be fetched using Suspense. To stream content as it loads, use a streaming server-side render (SSR) API like [renderToReadableStream](/reference/react-dom/server/renderToReadableStream).
+
+In Canary versions of React DOM, `prerender` can be aborted and resumed later with `resume` to support partial pre-rendering.
 
 </Note>
 
@@ -312,6 +315,10 @@ async function renderToString() {
 Any Suspense boundaries with incomplete children will be included in the prelude in the fallback state.
 
 ---
+
+## Partial pre-rendering and resuming later {/*partial-pre-rendering-and-resuming-later*/}
+
+TODO
 
 ## Troubleshooting {/*troubleshooting*/}
 

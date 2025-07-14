@@ -170,6 +170,14 @@
     },
     {
       "hasSectionHeader": true,
+      "sectionHeader": "React Compiler"
+    },
+    {
+      "title": "React Compiler Options",
+      "path": "/reference/react/react-compiler"
+    },
+    {
+      "hasSectionHeader": true,
       "sectionHeader": "react-dom@{{version}}"
     },
     {

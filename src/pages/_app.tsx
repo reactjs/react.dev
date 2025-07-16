@@ -1,6 +1,7 @@
 /*
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
+import { ErrorBoundary } from '../components/ErrorBoundary';
 
 import {useEffect} from 'react';
 import {AppProps} from 'next/app';
@@ -54,5 +55,7 @@ export default function MyApp({Component, pageProps}: AppProps) {
     };
   }, [router.events]);
 
-  return <Component {...pageProps} />;
+  return <ErrorBoundary>
+    <Component {...pageProps} />
+  </ErrorBoundary>;
 }

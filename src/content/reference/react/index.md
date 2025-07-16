@@ -19,6 +19,14 @@ Programmatic React features:
 * [APIs](/reference/react/apis) - APIs that are useful for defining components.
 * [Directives](/reference/rsc/directives) - Provide instructions to bundlers compatible with React Server Components.
 
+## React Compiler {/*react-compiler*/}
+
+The React Compiler is a build-time optimization tool that automatically memoizes your React components and values:
+
+* [Configuration](/reference/react-compiler/configuration) - Configuration options for React Compiler.
+* [Directives](/reference/react-compiler/directives) - Function-level directives to control compilation.
+* [Compiling Libraries](/reference/react-compiler/compiling-libraries) - Guide for shipping pre-compiled library code.
+
 ## React DOM {/*react-dom*/}
 
 React-dom contains features that are only supported for web applications (which run in the browser DOM environment). This section is broken into the following:

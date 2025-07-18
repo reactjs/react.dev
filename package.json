@@ -15,12 +15,13 @@
     "prettier:diff": "yarn nit:source",
     "lint-heading-ids": "node scripts/headingIdLinter.js",
     "fix-headings": "node scripts/headingIdLinter.js --fix",
-    "ci-check": "npm-run-all prettier:diff --parallel lint tsc lint-heading-ids rss",
+    "ci-check": "npm-run-all prettier:diff --parallel lint tsc lint-heading-ids rss deadlinks",
     "tsc": "tsc --noEmit",
     "start": "next start",
     "postinstall": "is-ci || husky install .husky",
     "check-all": "npm-run-all prettier lint:fix tsc rss",
-    "rss": "node scripts/generateRss.js"
+    "rss": "node scripts/generateRss.js",
+    "deadlinks": "node scripts/deadLinkChecker.js"
   },
   "dependencies": {
     "@codesandbox/sandpack-react": "2.13.5",
@@ -61,6 +62,7 @@
     "autoprefixer": "^10.4.2",
     "babel-eslint": "10.x",
     "babel-plugin-react-compiler": "19.0.0-beta-e552027-20250112",
+    "chalk": "4.1.2",
     "eslint": "7.x",
     "eslint-config-next": "12.0.3",
     "eslint-config-react-app": "^5.2.1",

@@ -1,56 +1,46 @@
 ---
-title: Render and Commit
+
+## title: Render and Commit
+
+Before your components appear on screen, they must first be rendered by React. Understanding this process helps you predict your app’s behavior and debug more effectively.
+
+This guide covers:
+
+- What rendering means in React
+- When and why components render
+- How rendering leads to updates on the screen
+- Why not every render results in a DOM update
+
 ---
 
-<Intro>
+Imagine your components as chefs preparing meals in a kitchen. React is the waiter who takes the customer’s order and ensures the correct dish reaches the table. The full process of serving UI includes three steps:
 
-Before your components are displayed on screen, they must be rendered by React. Understanding the steps in this process will help you think about how your code executes and explain its behavior.
+1. **Triggering** a render (the waiter takes the order to the kitchen)
+2. **Rendering** the component (the chef prepares the dish)
+3. **Committing** to the DOM (the waiter places the dish on the table)
 
-</Intro>
-
-<YouWillLearn>
-
-* What rendering means in React
-* When and why React renders a component
-* The steps involved in displaying a component on screen
-* Why rendering does not always produce a DOM update
-
-</YouWillLearn>
-
-Imagine that your components are cooks in the kitchen, assembling tasty dishes from ingredients. In this scenario, React is the waiter who puts in requests from customers and brings them their orders. This process of requesting and serving UI has three steps:
-
-1. **Triggering** a render (delivering the guest's order to the kitchen)
-2. **Rendering** the component (preparing the order in the kitchen)
-3. **Committing** to the DOM (placing the order on the table)
-
-<IllustrationBlock sequential>
-  <Illustration caption="Trigger" alt="React as a server in a restaurant, fetching orders from the users and delivering them to the Component Kitchen." src="/images/docs/illustrations/i_render-and-commit1.png" />
-  <Illustration caption="Render" alt="The Card Chef gives React a fresh Card component." src="/images/docs/illustrations/i_render-and-commit2.png" />
-  <Illustration caption="Commit" alt="React delivers the Card to the user at their table." src="/images/docs/illustrations/i_render-and-commit3.png" />
-</IllustrationBlock>
+---
 
 ## Step 1: Trigger a render {/*step-1-trigger-a-render*/}
 
-There are two reasons for a component to render:
+React renders a component for two main reasons:
 
-1. It's the component's **initial render.**
-2. The component's (or one of its ancestors') **state has been updated.**
+1. It's the component's **initial render**
+2. The component or one of its ancestors **has updated its state**
 
 ### Initial render {/*initial-render*/}
 
-When your app starts, you need to trigger the initial render. Frameworks and sandboxes sometimes hide this code, but it's done by calling [`createRoot`](/reference/react-dom/client/createRoot) with the target DOM node, and then calling its `render` method with your component:
+When your app starts, you trigger the first render by calling [`createRoot`](/reference/react-dom/client/createRoot) with a DOM node and rendering your component:
 
-<Sandpack>
-
-```js src/index.js active
+```js
 import Image from './Image.js';
 import { createRoot } from 'react-dom/client';
 
-const root = createRoot(document.getElementById('root'))
+const root = createRoot(document.getElementById('root'));
 root.render(<Image />);
-```
-
-```js src/Image.js
+js
+Copy
+Edit
 export default function Image() {
   return (
     <img
@@ -59,36 +49,27 @@ export default function Image() {
     />
   );
 }
-```
+🔍 Try commenting out root.render() to see that the component won’t appear at all.
 
-</Sandpack>
+Re-renders when state updates {/re-renders-when-state-updates/}
+After the initial render, you can trigger more renders by updating component state using setState. When state changes, React automatically queues a re-render.
 
-Try commenting out the `root.render()` call and see the component disappear!
+Think of it like a diner adding dessert to their order—the waiter (React) needs to bring something new based on the customer’s current appetite (component state).
 
-### Re-renders when state updates {/*re-renders-when-state-updates*/}
+Step 2: React renders your components {/step-2-react-renders-your-components/}
+Once triggered, React calls your component functions to figure out what to display.
 
-Once the component has been initially rendered, you can trigger further renders by updating its state with the [`set` function.](/reference/react/useState#setstate) Updating your component's state automatically queues a render. (You can imagine these as a restaurant guest ordering tea, dessert, and all sorts of things after putting in their first order, depending on the state of their thirst or hunger.)
+On the initial render, React calls the root component.
 
-<IllustrationBlock sequential>
-  <Illustration caption="State update..." alt="React as a server in a restaurant, serving a Card UI to the user, represented as a patron with a cursor for their head. The patron expresses they want a pink card, not a black one!" src="/images/docs/illustrations/i_rerender1.png" />
-  <Illustration caption="...triggers..." alt="React returns to the Component Kitchen and tells the Card Chef they need a pink Card." src="/images/docs/illustrations/i_rerender2.png" />
-  <Illustration caption="...render!" alt="The Card Chef gives React the pink Card." src="/images/docs/illustrations/i_rerender3.png" />
-</IllustrationBlock>
+On subsequent renders, React re-calls the component whose state changed.
 
-## Step 2: React renders your components {/*step-2-react-renders-your-components*/}
+This is a recursive process: if a component returns other components, React will render those next, continuing until all nested components are processed and it knows what to display.
 
-After you trigger a render, React calls your components to figure out what to display on screen. **"Rendering" is React calling your components.**
+Here’s an example:
 
-* **On initial render,** React will call the root component.
-* **For subsequent renders,** React will call the function component whose state update triggered the render.
-
-This process is recursive: if the updated component returns some other component, React will render _that_ component next, and if that component also returns something, it will render _that_ component next, and so on. The process will continue until there are no more nested components and React knows exactly what should be displayed on screen.
-
-In the following example, React will call `Gallery()` and `Image()` several times:
-
-<Sandpack>
-
-```js src/Gallery.js active
+js
+Copy
+Edit
 export default function Gallery() {
   return (
     <section>
@@ -108,56 +89,45 @@ function Image() {
     />
   );
 }
-```
-
-```js src/index.js
+js
+Copy
+Edit
 import Gallery from './Gallery.js';
 import { createRoot } from 'react-dom/client';
 
-const root = createRoot(document.getElementById('root'))
+const root = createRoot(document.getElementById('root'));
 root.render(<Gallery />);
-```
+css
+Copy
+Edit
+img {
+  margin: 0 10px 10px 0;
+}
+During initial render, React creates DOM nodes for <section>, <h1>, and three <img> tags.
 
-```css
-img { margin: 0 10px 10px 0; }
-```
+During a re-render, it compares the output to the previous render to decide if the DOM needs to change.
 
-</Sandpack>
+Pure rendering functions
+React rendering should be a pure calculation:
 
-* **During the initial render,** React will [create the DOM nodes](https://developer.mozilla.org/docs/Web/API/Document/createElement) for `<section>`, `<h1>`, and three `<img>` tags. 
-* **During a re-render,** React will calculate which of their properties, if any, have changed since the previous render. It won't do anything with that information until the next step, the commit phase.
+Same input → same output. A component should return the same JSX given the same props and state.
 
-<Pitfall>
+No side effects. Components shouldn’t modify external variables or state during render.
 
-Rendering must always be a [pure calculation](/learn/keeping-components-pure):
+🧪 In Strict Mode, React may call your component functions twice (in dev mode only) to help you catch impure code early.
 
-* **Same inputs, same output.** Given the same inputs, a component should always return the same JSX. (When someone orders a salad with tomatoes, they should not receive a salad with onions!)
-* **It minds its own business.** It should not change any objects or variables that existed before rendering. (One order should not change anyone else's order.)
+Step 3: React commits changes to the DOM {/step-3-react-commits-changes-to-the-dom/}
+Once React finishes rendering, it moves on to updating the DOM.
 
-Otherwise, you can encounter confusing bugs and unpredictable behavior as your codebase grows in complexity. When developing in "Strict Mode", React calls each component's function twice, which can help surface mistakes caused by impure functions.
+During the first render, it uses appendChild() to insert the new DOM nodes.
 
-</Pitfall>
+On subsequent renders, React calculates the minimal set of changes and applies only what's necessary.
 
-<DeepDive>
+For example:
 
-#### Optimizing performance {/*optimizing-performance*/}
-
-The default behavior of rendering all components nested within the updated component is not optimal for performance if the updated component is very high in the tree. If you run into a performance issue, there are several opt-in ways to solve it described in the [Performance](https://reactjs.org/docs/optimizing-performance.html) section. **Don't optimize prematurely!**
-
-</DeepDive>
-
-## Step 3: React commits changes to the DOM {/*step-3-react-commits-changes-to-the-dom*/}
-
-After rendering (calling) your components, React will modify the DOM.
-
-* **For the initial render,** React will use the [`appendChild()`](https://developer.mozilla.org/docs/Web/API/Node/appendChild) DOM API to put all the DOM nodes it has created on screen.
-* **For re-renders,** React will apply the minimal necessary operations (calculated while rendering!) to make the DOM match the latest rendering output.
-
-**React only changes the DOM nodes if there's a difference between renders.** For example, here is a component that re-renders with different props passed from its parent every second. Notice how you can add some text into the `<input>`, updating its `value`, but the text doesn't disappear when the component re-renders:
-
-<Sandpack>
-
-```js src/Clock.js active
+js
+Copy
+Edit
 export default function Clock({ time }) {
   return (
     <>
@@ -166,9 +136,9 @@ export default function Clock({ time }) {
     </>
   );
 }
-```
-
-```js src/App.js hidden
+js
+Copy
+Edit
 import { useState, useEffect } from 'react';
 import Clock from './Clock.js';
 
@@ -189,25 +159,20 @@ export default function App() {
     <Clock time={time.toLocaleTimeString()} />
   );
 }
-```
+You can type into the <input> and your text won’t disappear when the clock re-renders every second. That’s because React sees the input node hasn’t changed, so it doesn’t touch it.
 
-</Sandpack>
+Epilogue: Browser paint {/epilogue-browser-paint/}
+After React commits changes to the DOM, the browser repaints the screen.
 
-This works because during this last step, React only updates the content of `<h1>` with the new `time`. It sees that the `<input>` appears in the JSX in the same place as last time, so React doesn't touch the `<input>`—or its `value`!
-## Epilogue: Browser paint {/*epilogue-browser-paint*/}
+Although this process is sometimes called “browser rendering,” we use the term painting to avoid confusion with React rendering.
 
-After rendering is done and React updated the DOM, the browser will repaint the screen. Although this process is known as "browser rendering", we'll refer to it as "painting" to avoid confusion throughout the docs.
+Summary
+UI updates happen in three steps: Trigger → Render → Commit
 
-<Illustration alt="A browser painting 'still life with card element'." src="/images/docs/illustrations/i_browser-paint.png" />
+React rendering is a pure function of props and state
 
-<Recap>
+React commits only the necessary DOM changes
 
-* Any screen update in a React app happens in three steps:
-  1. Trigger
-  2. Render
-  3. Commit
-* You can use Strict Mode to find mistakes in your components
-* React does not touch the DOM if the rendering result is the same as last time
+Use Strict Mode to catch mistakes in render logic
 
-</Recap>
 

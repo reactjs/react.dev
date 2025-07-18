@@ -916,7 +916,7 @@ export default function Form() {
 
 </Sandpack>
 
-Read more about [manipulating DOM with refs](/learn/manipulating-the-dom-with-refs) and [check out more examples.](/reference/react/useRef#examples-dom)
+Read more about [manipulating DOM with refs](/learn/manipulating-the-dom-with-refs) and [check out more examples.](/reference/react/useRef#usage)
 
 For more advanced use cases, the `ref` attribute also accepts a [callback function.](#ref-callback)
 

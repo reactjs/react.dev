@@ -30,7 +30,7 @@ To link to external resources such as stylesheets, fonts, and icons, or to annot
 
 #### Props {/*props*/}
 
-`<link>` supports all [common element props.](/reference/react-dom/components/common#props)
+`<link>` supports all [common element props.](/reference/react-dom/components/common#common-props)
 
 * `rel`: a string, required. Specifies the [relationship to the resource](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/rel). React [treats links with `rel="stylesheet"` differently](#special-rendering-behavior) from other links.
 

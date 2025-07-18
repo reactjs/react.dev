@@ -30,7 +30,7 @@ To display a text area, render the [built-in browser `<textarea>`](https://devel
 
 #### Props {/*props*/}
 
-`<textarea>` supports all [common element props.](/reference/react-dom/components/common#props)
+`<textarea>` supports all [common element props.](/reference/react-dom/components/common#common-props)
 
 You can [make a text area controlled](#controlling-a-text-area-with-a-state-variable) by passing a `value` prop:
 

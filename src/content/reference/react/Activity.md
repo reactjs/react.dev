@@ -73,7 +73,7 @@ If the boundary becomes <CodeStep step={3}>visible</CodeStep> again, React will 
 
 The following example has a sidebar with an expandable section – press "Overview" to reveal the three subitems below it. The main app area also has a button that hides and shows the sidebar.
 
-Try expanding the Overview section, hiding the sidebar, and then showing the sidebar again:
+Try expanding the Overview section, then toggling the sidebar closed then open:
 
 <Sandpack>
 
@@ -179,7 +179,7 @@ h1 {
 
 </Sandpack>
 
-The Overview section starts out collapsed again! Because we unmount the sidebar when `isShowingSidebar` flips to `false`, all its internal state is lost.
+The Overview section resets, and starts out collapsed. Because we unmount the sidebar when `isShowingSidebar` flips to `false`, all its internal state is lost.
 
 This is a perfect use case for Activity. We can preserve the internal state of our sidebar, even when visually hiding it.
 

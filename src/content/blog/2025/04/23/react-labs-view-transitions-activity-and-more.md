@@ -2495,7 +2495,7 @@ For example, we can slow down the `default` cross fade animation:
 </ViewTransition>
 ```
 
-And define `slow-fade` in CSS using [view transition classes](/reference/react/ViewTransition#view-transition-class):
+And define `slow-fade` in CSS using [view transition classes](/reference/react/ViewTransition#view-transition-classes):
 
 ```css
 ::view-transition-old(.slow-fade) {

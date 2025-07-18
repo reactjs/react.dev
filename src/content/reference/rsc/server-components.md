@@ -4,7 +4,7 @@ title: Server Components
 
 <RSC>
 
-Server Components are for use in [React Server Components](/learn/creating-a-react-app#full-stack-frameworks).
+Server Components are for use in [React Server Components](/learn/start-a-new-react-project#full-stack-frameworks).
 
 </RSC>
 

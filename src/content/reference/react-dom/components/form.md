@@ -36,7 +36,7 @@ To create interactive controls for submitting information, render the [built-in 
 
 #### Props {/*props*/}
 
-`<form>` supports all [common element props.](/reference/react-dom/components/common#props)
+`<form>` supports all [common element props.](/reference/react-dom/components/common#common-props)
 
 [`action`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form#action): a URL or function. When a URL is passed to `action` the form will behave like the HTML form component. When a function is passed to `action` the function will handle the form submission. The function passed to `action` may be async and will be called with a single argument containing the [form data](https://developer.mozilla.org/en-US/docs/Web/API/FormData) of the submitted form. The `action` prop can be overridden by a `formAction` attribute on a `<button>`, `<input type="submit">`, or `<input type="image">` component.
 
@@ -230,7 +230,7 @@ export async function deliverMessage(message) {
 </Sandpack>
 
 [//]: # 'Uncomment the next line, and delete this line after the `useOptimistic` reference documentatino page is published'
-[//]: # 'To learn more about the `useOptimistic` Hook see the [reference documentation](/reference/react/hooks/useOptimistic).'
+[//]: # 'To learn more about the `useOptimistic` Hook see the [reference documentation](/reference/react/useOptimistic).'
 
 ### Handling form submission errors {/*handling-form-submission-errors*/}
 

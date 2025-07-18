@@ -129,7 +129,7 @@ For a list of all available codemods, see the [`react-codemod` repo](https://git
 
 In previous versions of React, errors thrown during render were caught and rethrown. In DEV, we would also log to `console.error`, resulting in duplicate error logs. 
 
-In React 19, we've [improved how errors are handled](/blog/2024/04/25/react-19#error-handling) to reduce duplication by not re-throwing:
+In React 19, we've [improved how errors are handled](/blog/2024/12/05/react-19#error-handling) to reduce duplication by not re-throwing:
 
 - **Uncaught Errors**: Errors that are not caught by an Error Boundary are reported to `window.reportError`.
 - **Caught Errors**: Errors that are caught by an Error Boundary are reported to `console.error`.
@@ -499,7 +499,7 @@ function AutoselectingInput() {
 
 ### Deprecated: `element.ref` {/*deprecated-element-ref*/}
 
-React 19 supports [`ref` as a prop](/blog/2024/04/25/react-19#ref-as-a-prop), so we're deprecating the `element.ref` in place of `element.props.ref`.
+React 19 supports [`ref` as a prop](/blog/2024/12/05/react-19#ref-as-a-prop), so we're deprecating the `element.ref` in place of `element.props.ref`.
 
 Accessing `element.ref` will warn:
 

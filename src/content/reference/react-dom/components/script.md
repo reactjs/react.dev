@@ -31,7 +31,7 @@ To add inline or external scripts to your document, render the [built-in browser
 
 #### Props {/*props*/}
 
-`<script>` supports all [common element props.](/reference/react-dom/components/common#props)
+`<script>` supports all [common element props.](/reference/react-dom/components/common#common-props)
 
 It should have *either* `children` or a `src` prop.
 

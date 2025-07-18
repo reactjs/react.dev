@@ -195,7 +195,7 @@ function UpdateName() {
 
 When using `useActionState` with Server Functions, React will also automatically replay form submissions entered before hydration finishes. This means users can interact with your app even before the app has hydrated.
 
-For more, see the docs for [`useActionState`](/reference/react/useActionState).
+For more, see the docs for [`useActionState`](/reference/react-dom/hooks/useFormState).
 
 ### Progressive enhancement with `useActionState` {/*progressive-enhancement-with-useactionstate*/}
 
@@ -219,4 +219,4 @@ function UpdateName() {
 
 When the <CodeStep step={2}>permalink</CodeStep> is provided to `useActionState`, React will redirect to the provided URL if the form is submitted before the JavaScript bundle loads.
 
-For more, see the docs for [`useActionState`](/reference/react/useActionState).
+For more, see the docs for [`useActionState`](/reference/react-dom/hooks/useFormState).

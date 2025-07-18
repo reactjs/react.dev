@@ -30,7 +30,7 @@ To specify the title of the document, render the [built-in browser `<title>` com
 
 #### Props {/*props*/}
 
-`<title>` supports all [common element props.](/reference/react-dom/components/common#props)
+`<title>` supports all [common element props.](/reference/react-dom/components/common#common-props)
 
 * `children`: `<title>` accepts only text as a child. This text will become the title of the document. You can also pass your own components as long as they only render text.
 

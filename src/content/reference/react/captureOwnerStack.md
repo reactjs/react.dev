@@ -57,7 +57,7 @@ If no Owner Stack is available, `null` is returned (see [Troubleshooting: The Ow
 
 #### Owner Stack vs Component Stack {/*owner-stack-vs-component-stack*/}
 
-The Owner Stack is different from the Component Stack available in React error handlers like [`errorInfo.componentStack` in `onUncaughtError`](/reference/react-dom/client/hydrateRoot#show-a-dialog-for-uncaught-errors).
+The Owner Stack is different from the Component Stack available in React error handlers like [`errorInfo.componentStack` in `onUncaughtError`](/reference/react-dom/client/hydrateRoot#error-logging-in-production).
 
 For example, consider the following code:
 

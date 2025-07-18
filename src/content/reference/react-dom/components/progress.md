@@ -30,7 +30,7 @@ To display a progress indicator, render the [built-in browser `<progress>`](http
 
 #### Props {/*props*/}
 
-`<progress>` supports all [common element props.](/reference/react-dom/components/common#props)
+`<progress>` supports all [common element props.](/reference/react-dom/components/common#common-props)
 
 Additionally, `<progress>` supports these props:
 

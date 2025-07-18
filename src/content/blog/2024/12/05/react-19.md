@@ -355,7 +355,7 @@ For more information, see [React DOM Static APIs](/reference/react-dom/static).
 
 Server Components are a new option that allows rendering components ahead of time, before bundling, in an environment separate from your client application or SSR server. This separate environment is the "server" in React Server Components. Server Components can run once at build time on your CI server, or they can be run for each request using a web server.
 
-React 19 includes all of the React Server Components features included from the Canary channel. This means libraries that ship with Server Components can now target React 19 as a peer dependency with a `react-server` [export condition](https://github.com/reactjs/rfcs/blob/main/text/0227-server-module-conventions.md#react-server-conditional-exports) for use in frameworks that support the [Full-stack React Architecture](/learn/start-a-new-react-project#which-features-make-up-the-react-teams-full-stack-architecture-vision). 
+React 19 includes all of the React Server Components features included from the Canary channel. This means libraries that ship with Server Components can now target React 19 as a peer dependency with a `react-server` [export condition](https://github.com/reactjs/rfcs/blob/main/text/0227-server-module-conventions.md#react-server-conditional-exports) for use in frameworks that support the [Full-stack React Architecture](/learn/creating-a-react-app#which-features-make-up-the-react-teams-full-stack-architecture-vision). 
 
 
 <Note>
@@ -389,7 +389,7 @@ For more info, see the docs for [Directives](/reference/rsc/directives).
 
 Server Actions can be created in Server Components and passed as props to Client Components, or they can be imported and used in Client Components.
 
-For more, see the docs for [React Server Actions](/reference/rsc/server-actions).
+For more, see the docs for [React Server Actions](/reference/rsc/server-functions).
 
 ## Improvements in React 19 {/*improvements-in-react-19*/}
 

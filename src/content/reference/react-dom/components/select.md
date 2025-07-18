@@ -36,7 +36,7 @@ To display a select box, render the [built-in browser `<select>`](https://develo
 
 #### Props {/*props*/}
 
-`<select>` supports all [common element props.](/reference/react-dom/components/common#props)
+`<select>` supports all [common element props.](/reference/react-dom/components/common#common-props)
 
 You can [make a select box controlled](#controlling-a-select-box-with-a-state-variable) by passing a `value` prop:
 

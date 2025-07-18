@@ -127,7 +127,8 @@
         {
           "title": "cache",
           "path": "/reference/react/cache"
-        },        {
+        },
+        {
           "title": "captureOwnerStack",
           "path": "/reference/react/captureOwnerStack"
         },
@@ -323,6 +324,54 @@
           "path": "/reference/react-dom/static/prerenderToNodeStream"
         }
       ]
+    },
+    {
+      "hasSectionHeader": true,
+      "sectionHeader": "React Compiler"
+    },
+    {
+      "title": "Configuration",
+      "path": "/reference/react-compiler/configuration",
+      "routes": [
+        {
+          "title": "compilationMode",
+          "path": "/reference/react-compiler/compilationMode"
+        },
+        {
+          "title": "gating",
+          "path": "/reference/react-compiler/gating"
+        },
+        {
+          "title": "logger",
+          "path": "/reference/react-compiler/logger"
+        },
+        {
+          "title": "panicThreshold",
+          "path": "/reference/react-compiler/panicThreshold"
+        },
+        {
+          "title": "target",
+          "path": "/reference/react-compiler/target"
+        }
+      ]
+    },
+    {
+      "title": "Directives",
+      "path": "/reference/react-compiler/directives",
+      "routes": [
+        {
+          "title": "\"use memo\"",
+          "path": "/reference/react-compiler/directives/use-memo"
+        },
+        {
+          "title": "\"use no memo\"",
+          "path": "/reference/react-compiler/directives/use-no-memo"
+        }
+      ]
+    },
+    {
+      "title": "Compiling Libraries",
+      "path": "/reference/react-compiler/compiling-libraries"
     },
     {
       "hasSectionHeader": true,

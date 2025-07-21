@@ -907,7 +907,7 @@ function Page() {
 }
 ```
 
-During hydration, React will leave the visible Activity boundary unmounted while hydrating the rest of the page, improving the performance of higher-priority content. Once the rest of the page has fetched its code and data and been rendered, React will move on to mount any remaining visible Activity boundaries.
+During hydration, React will leave the visible Activity boundary unmounted while hydrating the rest of the page, improving the performance of higher-priority content. Once the high-priority content has fetched its code and data, and been rendered to the page, React will move on to mount any remaining visible Activity boundaries.
 
 This feature is called Selective Hydration, and it's an under-the-hood optimization of React that's integrated with Suspense. You can read [an architectural overview](https://github.com/reactwg/react-18/discussions/37) and watch [a technical talk](https://www.youtube.com/watch?v=pj5N-Khihgc) to learn more.
 
@@ -1161,7 +1161,7 @@ export default function VideoTab() {
 
 We call `useLayoutEffect` instead of `useEffect` because conceptually the clean-up code is tied to the component's UI being visually hidden. If we used a regular effect, the code could be delayed by (say) a re-suspending Suspense boundary or a View Transition.
 
-Let's see the new behavior:
+Let's see the new behavior. Try playing the video, switching to the Home tab, then back to the Video tab:
 
 <Sandpack>
 
@@ -1278,7 +1278,7 @@ video { width: 300px; margin-top: 10px; aspect-ratio: 16/9; }
 
 </Sandpack>
 
-It's working great! Our cleanup function ensures that the video stops playing if it's ever hidden by an Activity boundary, and even better, because the `<video>` tag is never destroyed, the timecode is preserved, and the video itself doesn't need to be initialized or downloaded again when the user switches back to watch it.
+It works great! Our cleanup function ensures that the video stops playing if it's ever hidden by an Activity boundary, and even better, because the `<video>` tag is never destroyed, the timecode is preserved, and the video itself doesn't need to be initialized or downloaded again when the user switches back to watch it.
 
 This is a great example of using Activity to preserve ephemeral DOM state for parts of the UI that become hidden, but the user is likely to interact with again soon.
 

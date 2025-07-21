@@ -891,9 +891,9 @@ Suspense-enabled data fetching without the use of an opinionated framework is no
 
 ### Deferring hydration of low-priority content {/*deferring-hydration-of-low-priority-content*/}
 
-You can wrap part of your UI in a <CodeStep step={1}>visible</CodeStep> Activity boundary to defer mounting it on the initial render:
+You can wrap part of your UI in a <CodeStep step={3}>visible</CodeStep> Activity boundary to defer mounting it on the initial render:
 
-```jsx [[1,6,"\\"visible\\""]]
+```jsx [[3,6,"\\"visible\\""]]
 function Page() {
   return (
     <>

@@ -1,3 +1,5 @@
+
+
 ---
 title: React Compiler
 ---
@@ -316,6 +318,13 @@ React Compiler can verify many of the Rules of React statically, and will safely
 ### How do I know my components have been optimized? {/*how-do-i-know-my-components-have-been-optimized*/}
 
 [React DevTools](/learn/react-developer-tools) (v5.0+) and [React Native DevTools](https://reactnative.dev/docs/react-native-devtools) have built-in support for React Compiler and will display a "Memo ✨" badge next to components that have been optimized by the compiler.
+
+Additionally, React DevTools shows different indicators for memoized components:
+
+* **🧠 Brain emoji** - appears next to components that have been manually wrapped with [`memo()`](/reference/react/memo)
+* **"Memo ✨" badge** - appears next to components that have been automatically optimized by React Compiler
+
+This helps you distinguish between manual optimizations you've added and automatic optimizations applied by the compiler.
 
 ### Something is not working after compilation {/*something-is-not-working-after-compilation*/}
 If you have eslint-plugin-react-compiler installed, the compiler will display any violations of the rules of React in your editor. When it does this, it means that the compiler has skipped over optimizing that component or hook. This is perfectly okay, and the compiler can recover and continue optimizing other components in your codebase. **You don't have to fix all ESLint violations straight away.** You can address them at your own pace to increase the amount of components and hooks being optimized.

@@ -63,7 +63,7 @@ Configures runtime feature flag gating for compiled functions.
 // src/utils/feature-flags.js
 export function shouldUseCompiler() {
   // your logic here
-  return Math.random() < 0.5;
+  return getFeatureFlag('react-compiler-enabled');
 }
 ```
 
@@ -93,6 +93,8 @@ const Button = shouldUseCompiler()
   ? function Button_optimized(props) { /* compiled version */ }
   : function Button_original(props) { /* original version */ };
 ```
+
+Note that the gating function is evaluated once at module time, so once the JS bundle has been parsed and evaluated the choice of component stays static for the rest of the browser session.
 
 ---
 

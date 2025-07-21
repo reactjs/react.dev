@@ -19,12 +19,11 @@ Experimental versions of React may contain bugs. Don't use them in production.
 
 <Intro>
 
-`<Activity>` lets you hide and show its children without resetting their state.
-
+`<Activity>` lets you hide and restore the UI and internal state of its children.
 
 ```js
-<Activity mode="hidden">
-  <Page />
+<Activity mode={visibility}>
+  <Sidebar />
 </Activity>
 ```
 
@@ -38,6 +37,24 @@ Experimental versions of React may contain bugs. Don't use them in production.
 
 ### `<Activity>` {/*activity*/}
 
+You can use Activity to hide part of your application:
+
+```js [[1, 1, "\\"hidden\\""], [2, 2, "<Sidebar />"], [3, 1, "\\"visible\\""]]
+<Activity mode={isShowingSidebar ? "visible" : "hidden"}>
+  <Sidebar />
+</Activity>
+```
+
+When an Activity boundary becomes <CodeStep step={1}>hidden</CodeStep>, React will visually hide its <CodeStep step={2}>children</CodeStep> using the `display: "none"` CSS property. It will also destroy their Effects, cleaning up any active subscriptions.
+
+While hidden, children still receive updates, albeit at a lower priority then the rest of the content.
+
+When the boundary becomes <CodeStep step={3}>visible</CodeStep> again, React will reveal the children with their previous state restored, and create their Effects.
+
+In this way, Activity can thought of as a mechanism for rendering "background activity". Rather than unmounting content that's likely to become visible again, you can use Activity to maintain and restore that content's UI and internal state.
+
+[See more examples below.](#usage)
+
 #### Props {/*props*/}
 
 * `children`: The UI you intend to show and hide.
@@ -48,30 +65,35 @@ Experimental versions of React may contain bugs. Don't use them in production.
 - While hidden, the `children` of `<Activity>` are visually hidden on the page. 
 - `<Activity>` will unmount all Effects when switching from "visible" to "hidden" without destroying React or DOM state. This means Effects that are expected to run only once on mount will run again when switching from "hidden" to "visible". Conceptually, "hidden" Activities are unmounted, but they are not destroyed either. We recommend using [`<StrictMode>`](/reference/react/StrictMode) to catch any unexpected side-effects from this behavior.
 - When used with `<ViewTransition>`, hidden activities that reveal in a transition will activate an "enter" animation. Visible Activities hidden in a transition will activate an "exit" animation.
-- Parts of the UI wrapped in `<Activity mode="hidden">` are not included in the SSR response.
 - Parts of the UI wrapped in `<Activity mode="visible">` will hydrate at a lower priority than other content.
 
 ---
 
 ## Usage {/*usage*/}
 
-### Hiding content without resetting React state {/*hiding-content-without-resetting-react-state*/}
+### Restoring the state of hidden components {/*restoring-the-state-of-hidden-components*/}
 
-You can use Activity to hide part of your application without resetting its local React state:
+Typically in React, when you want to conditionally show or hide a component, you mount and unmount it:
 
-```js [[1, 1, "\\"hidden\\""], [2, 2, "<Sidebar />"], [3, 1, "\\"visible\\""]]
+```jsx
+{isShowingSidebar && (
+  <Sidebar />
+)}
+```
+
+But unmounting a component destroys its internal state, which is not always what you want.
+
+When you hide a component using an Activity boundary instead, React will "save" its state for later:
+
+```jsx
 <Activity mode={isShowingSidebar ? "visible" : "hidden"}>
   <Sidebar />
 </Activity>
 ```
 
-When an Activity boundary becomes <CodeStep step={1}>hidden</CodeStep>, React will _visually_ hide its <CodeStep step={2}>children</CodeStep> without destroying any of its local component state.
+This makes it possible to restore components to their previous state.
 
-If the boundary becomes <CodeStep step={3}>visible</CodeStep> again, React will reveal the content with the same state values from before it was hidden.
-
----
-
-The following example has a sidebar with an expandable section – press "Overview" to reveal the three subitems below it. The main app area also has a button that hides and shows the sidebar.
+The following example has a sidebar with an expandable section – you can press "Overview" to reveal the three subitems below it. The main app area also has a button that hides and shows the sidebar.
 
 Try expanding the Overview section, then toggling the sidebar closed then open:
 
@@ -179,7 +201,7 @@ h1 {
 
 </Sandpack>
 
-The Overview section resets, and starts out collapsed. Because we unmount the sidebar when `isShowingSidebar` flips to `false`, all its internal state is lost.
+The Overview section always starts out collapsed. Because we unmount the sidebar when `isShowingSidebar` flips to `false`, all its internal state is lost.
 
 This is a perfect use case for Activity. We can preserve the internal state of our sidebar, even when visually hiding it.
 
@@ -303,15 +325,15 @@ h1 {
 
 </Sandpack>
 
-Our sidebar's internal state is now preserved, and we didn't have to change anything about its implementation.
+Our sidebar's internal state is now restored, without any changes to its implementation.
 
 ---
 
-### Hiding content without resetting the DOM {/*hiding-content-without-resetting-the-dom*/}
+### Restoring the DOM of hidden components {/*restoring-the-dom-of-hidden-components*/}
 
-Activity boundaries also preserve their children's DOM when hidden, making them great for preserving ephemeral state in parts of the UI the user is likely to interact with again.
+Since Activity boundaries hide their children using `display: none`, their children's DOM is also preserved when hidden. This makes them great for maintaining ephemeral state in parts of the UI that the user is likely to interact with again.
 
-In this example, the Contact tab has a `<textarea>` that lets the user enter a message. If you enter some text, change to the Home tab, then change back to the Contact tab, the draft message is lost:
+In this example, the Contact tab has a `<textarea>` where the user can enter a message. If you enter some text, change to the Home tab, then change back to the Contact tab, the draft message is lost:
 
 <Sandpack>
 
@@ -414,7 +436,7 @@ b { display: inline-block; margin-right: 10px; }
 
 </Sandpack>
 
-This is because we're fully unmounting the `<ContactTab>` in `App.js`. When the Contact tab unmounts, the `<textarea>` element's internal state is lost.
+This is because we're fully unmounting `ContactTab` in `App`. When the Contact tab unmounts, the `<textarea>` element's internal DOM state is lost.
 
 If we switch to using an Activity boundary to show and hide the active tab, we can preserve the state of each tab's DOM. Try entering text and switching tabs again, and you'll see the draft message is no longer reset:
 
@@ -526,6 +548,372 @@ b { display: inline-block; margin-right: 10px; }
 Again, the Activity boundary let us preserve the Contact tab's internal state without changing its implementation.
 
 ---
+
+### Pre-rendering content that's likely to become visible {/*pre-rendering-content-thats-likely-to-become-visible*/}
+
+So far, we've seen how Activity can hide some content that the user has interacted with, without discarding that content's ephemeral state.
+
+But Activity boundaries can also be used to _prepare_ content that the user has yet to see for the first time:
+
+```jsx [[1, 1, "\\"hidden\\""]]
+<Activity mode="hidden">
+  <SlowComponent />
+</Activity>
+```
+
+When an Activity boundary is <CodeStep step={1}>hidden</CodeStep> during its initial render, its children won't be visible on the page — but they will _still be rendered_, albeit at a lower priority than the visible content, and without mounting their Effects.
+
+This _pre-rendering_ allows the children to load any code or data they need ahead of time, so that later, when the Activity boundary becomes visible, the children can appear faster with reduced loading times.
+
+Let's look at an example.
+
+In this demo, the Posts tab loads some data. If you press it, you'll see a Suspense fallback displayed while the data is being fetched:
+
+<Sandpack>
+
+```js src/App.js
+import { useState, Suspense } from 'react';
+import TabButton from './TabButton.js';
+import Home from './Home.js';
+import Posts from './Posts.js';
+
+export default function App() {
+  const [activeTab, setActiveTab] = useState('home');
+
+  return (
+    <>
+      <TabButton
+        isActive={activeTab === 'home'}
+        onClick={() => setActiveTab('home')}
+      >
+        Home
+      </TabButton>
+      <TabButton
+        isActive={activeTab === 'posts'}
+        onClick={() => setActiveTab('posts')}
+      >
+        Posts
+      </TabButton>
+
+      <hr />
+
+      <Suspense fallback={<h1>🌀 Loading...</h1>}>
+        {activeTab === 'home' && <Home />}
+        {activeTab === 'posts' && <Posts />}
+      </Suspense>
+    </>
+  );
+}
+```
+
+```js src/TabButton.js hidden
+export default function TabButton({ onClick, children, isActive }) {
+  if (isActive) {
+    return <b>{children}</b>
+  }
+
+  return (
+    <button onClick={onClick}>
+      {children}
+    </button>
+  );
+}
+```
+
+```js src/Home.js
+export default function Home() {
+  return (
+    <p>Welcome to my profile!</p>
+  );
+}
+```
+
+```js src/Posts.js
+import { use } from 'react';
+import { fetchData } from './data.js';
+
+export default function Posts() {
+  const posts = use(fetchData('/posts'));
+
+  return (
+    <ul className="items">
+      {posts.map(post =>
+        <li className="item" key={post.id}>
+          {post.title}
+        </li>
+      )}
+    </ul>
+  );
+}
+```
+
+```js src/data.js hidden
+// Note: the way you would do data fetching depends on
+// the framework that you use together with Suspense.
+// Normally, the caching logic would be inside a framework.
+
+let cache = new Map();
+
+export function fetchData(url) {
+  if (!cache.has(url)) {
+    cache.set(url, getData(url));
+  }
+  return cache.get(url);
+}
+
+async function getData(url) {
+  if (url.startsWith('/posts')) {
+    return await getPosts();
+  } else {
+    throw Error('Not implemented');
+  }
+}
+
+async function getPosts() {
+  // Add a fake delay to make waiting noticeable.
+  await new Promise(resolve => {
+    setTimeout(resolve, 1000);
+  });
+  let posts = [];
+  for (let i = 0; i < 10; i++) {
+    posts.push({
+      id: i,
+      title: 'Post #' + (i + 1)
+    });
+  }
+  return posts;
+}
+```
+
+```css
+body { height: 275px; }
+button { margin-right: 10px }
+b { display: inline-block; margin-right: 10px; }
+.pending { color: #777; }
+video { width: 300px; margin-top: 10px; aspect-ratio: 16/9; }
+```
+
+```json package.json hidden
+{
+  "dependencies": {
+    "react": "experimental",
+    "react-dom": "experimental",
+    "react-scripts": "latest",
+    "toastify-js": "1.12.0"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  }
+}
+```
+
+</Sandpack>
+
+This is because `App` doesn't mount `Posts` until its tab is active.
+
+If we update `App` to use an Activity boundary to show and hide the active tab, `Posts` will be pre-rendered when the app first loads, allowing it to fetch its data before it becomes visible.
+
+Try clicking the Posts tab now:
+
+<Sandpack>
+
+```js src/App.js
+import { useState, Suspense, unstable_Activity as Activity } from 'react';
+import TabButton from './TabButton.js';
+import Home from './Home.js';
+import Posts from './Posts.js';
+
+export default function App() {
+  const [activeTab, setActiveTab] = useState('home');
+
+  return (
+    <>
+      <TabButton
+        isActive={activeTab === 'home'}
+        onClick={() => setActiveTab('home')}
+      >
+        Home
+      </TabButton>
+      <TabButton
+        isActive={activeTab === 'posts'}
+        onClick={() => setActiveTab('posts')}
+      >
+        Posts
+      </TabButton>
+
+      <hr />
+
+      <Suspense fallback={<h1>🌀 Loading...</h1>}>
+        <Activity mode={activeTab === 'home' ? 'visible' : 'hidden'}>
+          <Home />
+        </Activity>
+        <Activity mode={activeTab === 'posts' ? 'visible' : 'hidden'}>
+          <Posts />
+        </Activity>
+      </Suspense>
+    </>
+  );
+}
+```
+
+```js src/TabButton.js hidden
+export default function TabButton({ onClick, children, isActive }) {
+  if (isActive) {
+    return <b>{children}</b>
+  }
+
+  return (
+    <button onClick={onClick}>
+      {children}
+    </button>
+  );
+}
+```
+
+```js src/Home.js
+export default function Home() {
+  return (
+    <p>Welcome to my profile!</p>
+  );
+}
+```
+
+```js src/Posts.js
+import { use } from 'react';
+import { fetchData } from './data.js';
+
+export default function Posts() {
+  const posts = use(fetchData('/posts'));
+
+  return (
+    <ul className="items">
+      {posts.map(post =>
+        <li className="item" key={post.id}>
+          {post.title}
+        </li>
+      )}
+    </ul>
+  );
+}
+```
+
+```js src/data.js hidden
+// Note: the way you would do data fetching depends on
+// the framework that you use together with Suspense.
+// Normally, the caching logic would be inside a framework.
+
+let cache = new Map();
+
+export function fetchData(url) {
+  if (!cache.has(url)) {
+    cache.set(url, getData(url));
+  }
+  return cache.get(url);
+}
+
+async function getData(url) {
+  if (url.startsWith('/posts')) {
+    return await getPosts();
+  } else {
+    throw Error('Not implemented');
+  }
+}
+
+async function getPosts() {
+  // Add a fake delay to make waiting noticeable.
+  await new Promise(resolve => {
+    setTimeout(resolve, 1000);
+  });
+  let posts = [];
+  for (let i = 0; i < 10; i++) {
+    posts.push({
+      id: i,
+      title: 'Post #' + (i + 1)
+    });
+  }
+  return posts;
+}
+```
+
+```css
+body { height: 275px; }
+button { margin-right: 10px }
+b { display: inline-block; margin-right: 10px; }
+.pending { color: #777; }
+video { width: 300px; margin-top: 10px; aspect-ratio: 16/9; }
+```
+
+```json package.json hidden
+{
+  "dependencies": {
+    "react": "experimental",
+    "react-dom": "experimental",
+    "react-scripts": "latest",
+    "toastify-js": "1.12.0"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  }
+}
+```
+
+</Sandpack>
+
+`Posts` was able to prepare itself for a faster render, thanks to the hidden Activity boundary.
+
+---
+
+Pre-rendering components with hidden Activity boundaries is a powerful way to reduce loading times for parts of the UI that the user is likely to interact with next.
+
+<Note>
+
+**Only Suspense-enabled data sources will be fetched during pre-rendering.** They include:
+
+- Data fetching with Suspense-enabled frameworks like [Relay](https://relay.dev/docs/guided-tour/rendering/loading-states/) and [Next.js](https://nextjs.org/docs/app/building-your-application/routing/loading-ui-and-streaming#streaming-with-suspense)
+- Lazy-loading component code with [`lazy`](/reference/react/lazy)
+- Reading the value of a cached Promise with [`use`](/reference/react/use)
+
+Activity **does not** detect data that is fetched inside an Effect.
+
+The exact way you would load data in the `Posts` component above depends on your framework. If you use a Suspense-enabled framework, you'll find the details in its data fetching documentation.
+
+Suspense-enabled data fetching without the use of an opinionated framework is not yet supported. The requirements for implementing a Suspense-enabled data source are unstable and undocumented. An official API for integrating data sources with Suspense will be released in a future version of React. 
+
+</Note>
+
+---
+
+### Deferring hydration of low-priority content {/*deferring-hydration-of-low-priority-content*/}
+
+You can wrap part of your UI in a <CodeStep step={1}>visible</CodeStep> Activity boundary to defer mounting it on the initial render:
+
+```jsx [[1,6,"\\"visible\\""]]
+function Page() {
+  return (
+    <>
+      <Post />
+    
+      <Activity mode="visible">
+        <Comments />
+      </Activity>
+    </>
+  )
+}
+```
+
+During hydration, React will leave the visible Activity boundary unmounted while hydrating the rest of the page, improving the performance of higher-priority content. Once the rest of the page has fetched its code and data and been rendered, React will move on to mount any remaining visible Activity boundaries.
+
+This feature is called Selective Hydration, and it's an under-the-hood optimization of React that's integrated with Suspense. You can read [an architectural overview](https://github.com/reactwg/react-18/discussions/37) and watch [a technical talk](https://www.youtube.com/watch?v=pj5N-Khihgc) to learn more.
+
+---
+
+## Troubleshooting {/*troubleshooting*/}
 
 ### Preventing hidden content from having unwanted side effects {/*preventing-hidden-content-from-having-unwanted-side-effects*/}
 
@@ -639,7 +1027,7 @@ Now, let's say we wanted to preserve the timecode where the user last watched, s
 
 This is a great use case for Activity!
 
-Let's update our `App.js` component to hide the inactive tab with a hidden Activity boundary instead of unmounting it, and see how the demo behaves this time:
+Let's update `App` to hide the inactive tab with a hidden Activity boundary instead of unmounting it, and see how the demo behaves this time:
 
 <Sandpack>
 
@@ -743,7 +1131,7 @@ video { width: 300px; margin-top: 10px; aspect-ratio: 16/9; }
 
 </Sandpack>
 
-Whoops! The video and audio continues to play even after it's been hidden, because the tab's `<video>` element is still in the DOM.
+Whoops! The video and audio continue to play even after it's been hidden, because the tab's `<video>` element is still in the DOM.
 
 To fix this, we can add an Effect with a cleanup function that pauses the video:
 
@@ -908,347 +1296,6 @@ To eagerly discover other Effects that don't have proper cleanup, which is impor
 
 ---
 
-### Pre-rendering content that's likely to become visible {/*pre-rendering-content-thats-likely-to-become-visible*/}
-
-So far, we've seen how Activity can hide some content that the user has interacted with, without discarding that content's ephemeral state.
-
-But Activity boundaries can also be used to _prepare_ content that the user has yet to see for the first time:
-
-```jsx [[1, 1, "\\"hidden\\""]]
-<Activity mode="hidden">
-  <SlowComponent />
-</Activity>
-```
-
-When an Activity boundary is <CodeStep step={1}>hidden</CodeStep> during its initial render, its children won't be visible on the page — but they will _still be rendered_, albeit at a lower priority than the visible content, and without mounting their Effects.
-
-This _pre-rendering_ allows the children to load any code or data they need ahead of time, so that later, when the Activity boundary becomes visible, the children can be mounted and appear instantly.
-
-Let's look at an example.
-
-In this demo, the Posts tab loads some data. If you press it, you'll see a Suspense fallback displayed while the data is being fetched:
-
-<Sandpack>
-
-```js src/App.js
-import { useState, Suspense } from 'react';
-import TabButton from './TabButton.js';
-import Home from './Home.js';
-import Posts from './Posts.js';
-
-export default function App() {
-  const [activeTab, setActiveTab] = useState('home');
-
-  return (
-    <>
-      <TabButton
-        isActive={activeTab === 'home'}
-        onClick={() => setActiveTab('home')}
-      >
-        Home
-      </TabButton>
-      <TabButton
-        isActive={activeTab === 'posts'}
-        onClick={() => setActiveTab('posts')}
-      >
-        Posts
-      </TabButton>
-
-      <hr />
-
-      <Suspense fallback={<h1>🌀 Loading...</h1>}>
-        {activeTab === 'home' && <Home />}
-        {activeTab === 'posts' && <Posts />}
-      </Suspense>
-    </>
-  );
-}
-```
-
-```js src/TabButton.js hidden
-export default function TabButton({ onClick, children, isActive }) {
-  if (isActive) {
-    return <b>{children}</b>
-  }
-
-  return (
-    <button onClick={onClick}>
-      {children}
-    </button>
-  );
-}
-```
-
-```js src/Home.js
-export default function Home() {
-  return (
-    <p>Welcome to my profile!</p>
-  );
-}
-```
-
-```js src/Posts.js
-import { use } from 'react';
-import { fetchData } from './data.js';
-
-export default function Posts() {
-  const posts = use(fetchData('/posts'));
-
-  return (
-    <ul className="items">
-      {posts.map(post =>
-        <li className="item" key={post.id}>
-          {post.title}
-        </li>
-      )}
-    </ul>
-  );
-}
-```
-
-```js src/data.js hidden
-// Note: the way you would do data fetching depends on
-// the framework that you use together with Suspense.
-// Normally, the caching logic would be inside a framework.
-
-let cache = new Map();
-
-export function fetchData(url) {
-  if (!cache.has(url)) {
-    cache.set(url, getData(url));
-  }
-  return cache.get(url);
-}
-
-async function getData(url) {
-  if (url.startsWith('/posts')) {
-    return await getPosts();
-  } else {
-    throw Error('Not implemented');
-  }
-}
-
-async function getPosts() {
-  // Add a fake delay to make waiting noticeable.
-  await new Promise(resolve => {
-    setTimeout(resolve, 1000);
-  });
-  let posts = [];
-  for (let i = 0; i < 10; i++) {
-    posts.push({
-      id: i,
-      title: 'Post #' + (i + 1)
-    });
-  }
-  return posts;
-}
-```
-
-```css
-body { height: 275px; }
-button { margin-right: 10px }
-b { display: inline-block; margin-right: 10px; }
-.pending { color: #777; }
-video { width: 300px; margin-top: 10px; aspect-ratio: 16/9; }
-```
-
-```json package.json hidden
-{
-  "dependencies": {
-    "react": "experimental",
-    "react-dom": "experimental",
-    "react-scripts": "latest",
-    "toastify-js": "1.12.0"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
-  }
-}
-```
-
-</Sandpack>
-
-This is because the `App` component doesn't render `Posts` until its tab is active.
-
-If we update the `App` component to use an Activity boundary to show and hide the active tab, the `Posts` component will be pre-rendered when the app first loads, allowing it to fetch its data before it becomes visible.
-
-Try clicking the Posts tab now:
-
-<Sandpack>
-
-```js src/App.js
-import { useState, Suspense, unstable_Activity as Activity } from 'react';
-import TabButton from './TabButton.js';
-import Home from './Home.js';
-import Posts from './Posts.js';
-
-export default function App() {
-  const [activeTab, setActiveTab] = useState('home');
-
-  return (
-    <>
-      <TabButton
-        isActive={activeTab === 'home'}
-        onClick={() => setActiveTab('home')}
-      >
-        Home
-      </TabButton>
-      <TabButton
-        isActive={activeTab === 'posts'}
-        onClick={() => setActiveTab('posts')}
-      >
-        Posts
-      </TabButton>
-
-      <hr />
-
-      <Suspense fallback={<h1>🌀 Loading...</h1>}>
-        <Activity mode={activeTab === 'home' ? 'visible' : 'hidden'}>
-          <Home />
-        </Activity>
-        <Activity mode={activeTab === 'posts' ? 'visible' : 'hidden'}>
-          <Posts />
-        </Activity>
-      </Suspense>
-    </>
-  );
-}
-```
-
-```js src/TabButton.js hidden
-export default function TabButton({ onClick, children, isActive }) {
-  if (isActive) {
-    return <b>{children}</b>
-  }
-
-  return (
-    <button onClick={onClick}>
-      {children}
-    </button>
-  );
-}
-```
-
-```js src/Home.js
-export default function Home() {
-  return (
-    <p>Welcome to my profile!</p>
-  );
-}
-```
-
-```js src/Posts.js
-import { use } from 'react';
-import { fetchData } from './data.js';
-
-export default function Posts() {
-  const posts = use(fetchData('/posts'));
-
-  return (
-    <ul className="items">
-      {posts.map(post =>
-        <li className="item" key={post.id}>
-          {post.title}
-        </li>
-      )}
-    </ul>
-  );
-}
-```
-
-```js src/data.js hidden
-// Note: the way you would do data fetching depends on
-// the framework that you use together with Suspense.
-// Normally, the caching logic would be inside a framework.
-
-let cache = new Map();
-
-export function fetchData(url) {
-  if (!cache.has(url)) {
-    cache.set(url, getData(url));
-  }
-  return cache.get(url);
-}
-
-async function getData(url) {
-  if (url.startsWith('/posts')) {
-    return await getPosts();
-  } else {
-    throw Error('Not implemented');
-  }
-}
-
-async function getPosts() {
-  // Add a fake delay to make waiting noticeable.
-  await new Promise(resolve => {
-    setTimeout(resolve, 1000);
-  });
-  let posts = [];
-  for (let i = 0; i < 10; i++) {
-    posts.push({
-      id: i,
-      title: 'Post #' + (i + 1)
-    });
-  }
-  return posts;
-}
-```
-
-```css
-body { height: 275px; }
-button { margin-right: 10px }
-b { display: inline-block; margin-right: 10px; }
-.pending { color: #777; }
-video { width: 300px; margin-top: 10px; aspect-ratio: 16/9; }
-```
-
-```json package.json hidden
-{
-  "dependencies": {
-    "react": "experimental",
-    "react-dom": "experimental",
-    "react-scripts": "latest",
-    "toastify-js": "1.12.0"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
-  }
-}
-```
-
-</Sandpack>
-
-`Posts` was able to prepare itself for an instant render, thanks to the hidden Activity boundary.
-
----
-
-Pre-rendering components with hidden Activity boundaries is a powerful way to reduce loading times for parts of the UI that the user is likely to interact with next.
-
-<Note>
-
-**Only Suspense-enabled data sources will be fetched during pre-rendering.** They include:
-
-- Data fetching with Suspense-enabled frameworks like [Relay](https://relay.dev/docs/guided-tour/rendering/loading-states/) and [Next.js](https://nextjs.org/docs/app/building-your-application/routing/loading-ui-and-streaming#streaming-with-suspense)
-- Lazy-loading component code with [`lazy`](/reference/react/lazy)
-- Reading the value of a cached Promise with [`use`](/reference/react/use)
-
-Activity **does not** detect data that is fetched inside an Effect.
-
-The exact way you would load data in the `Posts` component above depends on your framework. If you use a Suspense-enabled framework, you'll find the details in its data fetching documentation.
-
-Suspense-enabled data fetching without the use of an opinionated framework is not yet supported. The requirements for implementing a Suspense-enabled data source are unstable and undocumented. An official API for integrating data sources with Suspense will be released in a future version of React. 
-
-</Note>
-
----
-
-## Troubleshooting {/*troubleshooting*/}
 
 ### Effects don't mount when an Activity is hidden {/*effects-dont-mount-when-an-activity-is-hidden*/}
 
@@ -1257,7 +1304,3 @@ When an `<Activity>` is "hidden", all Effects are cleaned up. Conceptually, the 
 If you're relying on an Effect mounting to clean up a component's side effects, refactor the Effect to do the work in the returned cleanup function instead.
 
 To eagerly find problematic Effects, we recommend adding [`<StrictMode>`](/reference/react/StrictMode) which will eagerly perform Activity unmounts and mounts to catch any unexpected side-effects. 
-
-### My hidden Activity is not rendered in SSR {/*my-hidden-activity-is-not-rendered-in-ssr*/}
-
-When you use `<Activity mode="hidden">` during server-side rendering, the content of the Activity will not be included in the SSR response. This is because the content is not visible on the page and is not needed for the initial render. If you need to include the content in the SSR response, you can use a different approach like [`useDeferredValue`](/reference/react/useDeferredValue) to defer rendering of the content.

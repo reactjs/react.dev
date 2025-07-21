@@ -19,12 +19,13 @@ React Compiler can be adopted incrementally, allowing you to try it on specific 
 
 ## Why Incremental Adoption? {/*why-incremental-adoption*/}
 
-While React Compiler is designed to handle most React code automatically, adopting it incrementally allows you to:
+React Compiler is designed to optimize your entire codebase automatically, but you don't have to adopt it all at once. Incremental adoption gives you control over the rollout process, letting you test the compiler on small parts of your app before expanding to the rest.
 
-- Test the compiler on a small portion of your app first
-- Identify and fix any Rules of React violations
-- Build confidence before expanding to your entire codebase
-- Minimize risk in production applications
+Starting small helps you build confidence in the compiler's optimizations. You can verify that your app behaves correctly with compiled code, measure performance improvements, and identify any edge cases specific to your codebase. This approach is especially valuable for production applications where stability is critical.
+
+Incremental adoption also makes it easier to address any Rules of React violations the compiler might find. Instead of fixing violations across your entire codebase at once, you can tackle them systematically as you expand compiler coverage. This keeps the migration manageable and reduces the risk of introducing bugs.
+
+By controlling which parts of your code get compiled, you can also run A/B tests to measure the real-world impact of the compiler's optimizations. This data helps you make informed decisions about full adoption and demonstrates the value to your team.
 
 ## Approaches to Incremental Adoption {/*approaches-to-incremental-adoption*/}
 

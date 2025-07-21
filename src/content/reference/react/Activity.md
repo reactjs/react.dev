@@ -47,7 +47,7 @@ You can use Activity to hide part of your application:
 
 When an Activity boundary becomes <CodeStep step={1}>hidden</CodeStep>, React will visually hide its <CodeStep step={2}>children</CodeStep> using the `display: "none"` CSS property. It will also destroy their Effects, cleaning up any active subscriptions.
 
-While hidden, children still receive updates, albeit at a lower priority then the rest of the content.
+While hidden, children still receive updates, albeit at a lower priority than the rest of the content.
 
 When the boundary becomes <CodeStep step={3}>visible</CodeStep> again, React will reveal the children with their previous state restored, and create their Effects.
 

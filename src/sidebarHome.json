@@ -15,6 +15,10 @@
       "path": "/learn/installation"
     },
     {
+      "title": "React Compiler",
+      "path": "/learn/react-compiler"
+    },
+    {
       "hasSectionHeader": true,
       "sectionHeader": "LEARN REACT"
     },
@@ -73,6 +77,22 @@
     {
       "title": "Server APIs",
       "path": "/reference/react-dom/server"
+    },
+    {
+      "hasSectionHeader": true,
+      "sectionHeader": "REACT COMPILER API"
+    },
+    {
+      "title": "Configuration",
+      "path": "/reference/react-compiler/configuration"
+    },
+    {
+      "title": "Directives",
+      "path": "/reference/react-compiler/directives"
+    },
+    {
+      "title": "Compiling Libraries",
+      "path": "/reference/react-compiler/compiling-libraries"
     },
     {
       "hasSectionHeader": true,

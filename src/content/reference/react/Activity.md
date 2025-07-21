@@ -340,8 +340,8 @@ In this example, the Contact tab has a `<textarea>` where the user can enter a m
 ```js src/App.js 
 import { useState } from 'react';
 import TabButton from './TabButton.js';
-import HomeTab from './HomeTab.js';
-import ContactTab from './ContactTab.js';
+import Home from './Home.js';
+import Contact from './Contact.js';
 
 export default function App() {
   const [activeTab, setActiveTab] = useState('contact');
@@ -363,8 +363,8 @@ export default function App() {
 
       <hr />
 
-      {activeTab === 'home' && <HomeTab />}
-      {activeTab === 'contact' && <ContactTab />}
+      {activeTab === 'home' && <Home />}
+      {activeTab === 'contact' && <Contact />}
     </>
   );
 }
@@ -384,16 +384,16 @@ export default function TabButton({ onClick, children, isActive }) {
 }
 ```
 
-```js src/HomeTab.js
-export default function HomeTab() {
+```js src/Home.js
+export default function Home() {
   return (
     <p>Welcome to my profile!</p>
   );
 }
 ```
 
-```js src/ContactTab.js active
-export default function ContactTab() {
+```js src/Contact.js active
+export default function Contact() {
   return (
     <div>
       <p>Send me a message!</p>
@@ -436,7 +436,7 @@ b { display: inline-block; margin-right: 10px; }
 
 </Sandpack>
 
-This is because we're fully unmounting `ContactTab` in `App`. When the Contact tab unmounts, the `<textarea>` element's internal DOM state is lost.
+This is because we're fully unmounting `Contact` in `App`. When the Contact tab unmounts, the `<textarea>` element's internal DOM state is lost.
 
 If we switch to using an Activity boundary to show and hide the active tab, we can preserve the state of each tab's DOM. Try entering text and switching tabs again, and you'll see the draft message is no longer reset:
 
@@ -445,8 +445,8 @@ If we switch to using an Activity boundary to show and hide the active tab, we c
 ```js src/App.js active
 import { useState, unstable_Activity as Activity } from 'react';
 import TabButton from './TabButton.js';
-import HomeTab from './HomeTab.js';
-import ContactTab from './ContactTab.js';
+import Home from './Home.js';
+import Contact from './Contact.js';
 
 export default function App() {
   const [activeTab, setActiveTab] = useState('contact');
@@ -469,10 +469,10 @@ export default function App() {
       <hr />
 
       <Activity mode={activeTab === 'home' ? 'visible' : 'hidden'}>
-        <HomeTab />
+        <Home />
       </Activity>
       <Activity mode={activeTab === 'contact' ? 'visible' : 'hidden'}>
-        <ContactTab />
+        <Contact />
       </Activity>
     </>
   );
@@ -493,16 +493,16 @@ export default function TabButton({ onClick, children, isActive }) {
 }
 ```
 
-```js src/HomeTab.js
-export default function HomeTab() {
+```js src/Home.js
+export default function Home() {
   return (
     <p>Welcome to my profile!</p>
   );
 }
 ```
 
-```js src/ContactTab.js 
-export default function ContactTab() {
+```js src/Contact.js 
+export default function Contact() {
   return (
     <div>
       <p>Send me a message!</p>
@@ -915,7 +915,7 @@ This feature is called Selective Hydration, and it's an under-the-hood optimizat
 
 ## Troubleshooting {/*troubleshooting*/}
 
-### Preventing hidden content from having unwanted side effects {/*preventing-hidden-content-from-having-unwanted-side-effects*/}
+### My hidden components have unwanted side effects {/*my-hidden-components-have-unwanted-side-effects*/}
 
 An Activity boundary hides its content by setting `display: none` on its children and cleaning up any of their [Effects](/reference/react/useEffect). So, most well-behaved React components that properly clean up their side effects will already be robust to being hidden by Activity.
 
@@ -928,8 +928,8 @@ As an example, consider a `<video>` tag. Typically it doesn't require any cleanu
 ```js src/App.js active
 import { useState } from 'react';
 import TabButton from './TabButton.js';
-import HomeTab from './HomeTab.js';
-import VideoTab from './VideoTab.js';
+import Home from './Home.js';
+import Video from './Video.js';
 
 export default function App() {
   const [activeTab, setActiveTab] = useState('video');
@@ -951,8 +951,8 @@ export default function App() {
 
       <hr />
 
-      {activeTab === 'home' && <HomeTab />}
-      {activeTab === 'video' && <VideoTab />}
+      {activeTab === 'home' && <Home />}
+      {activeTab === 'video' && <Video />}
     </>
   );
 }
@@ -972,16 +972,16 @@ export default function TabButton({ onClick, children, isActive }) {
 }
 ```
 
-```js src/HomeTab.js
-export default function HomeTab() {
+```js src/Home.js
+export default function Home() {
   return (
     <p>Welcome to my profile!</p>
   );
 }
 ```
 
-```js src/VideoTab.js 
-export default function VideoTab() {
+```js src/Video.js 
+export default function Video() {
   return (
     <video
       // 'Big Buck Bunny' licensed under CC 3.0 by the Blender foundation. Hosted by archive.org
@@ -1034,8 +1034,8 @@ Let's update `App` to hide the inactive tab with a hidden Activity boundary inst
 ```js src/App.js active
 import { useState, unstable_Activity as Activity } from 'react';
 import TabButton from './TabButton.js';
-import HomeTab from './HomeTab.js';
-import VideoTab from './VideoTab.js';
+import Home from './Home.js';
+import Video from './Video.js';
 
 export default function App() {
   const [activeTab, setActiveTab] = useState('video');
@@ -1058,10 +1058,10 @@ export default function App() {
       <hr />
 
       <Activity mode={activeTab === 'home' ? 'visible' : 'hidden'}>
-        <HomeTab />
+        <Home />
       </Activity>
       <Activity mode={activeTab === 'video' ? 'visible' : 'hidden'}>
-        <VideoTab />
+        <Video />
       </Activity>
     </>
   );
@@ -1082,16 +1082,16 @@ export default function TabButton({ onClick, children, isActive }) {
 }
 ```
 
-```js src/HomeTab.js
-export default function HomeTab() {
+```js src/Home.js
+export default function Home() {
   return (
     <p>Welcome to my profile!</p>
   );
 }
 ```
 
-```js src/VideoTab.js 
-export default function VideoTab() {
+```js src/Video.js 
+export default function Video() {
   return (
     <video
       controls
@@ -1139,7 +1139,7 @@ To fix this, we can add an Effect with a cleanup function that pauses the video:
 export default function VideoTab() {
   const ref = useRef();
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const videoRef = ref.current;
 
     return () => {
@@ -1159,6 +1159,8 @@ export default function VideoTab() {
 }
 ```
 
+We call `useLayoutEffect` instead of `useEffect` because conceptually the clean-up code is tied to the component's UI being visually hidden. If we used a regular effect, the code could be delayed by (say) a re-suspending Suspense boundary or a View Transition.
+
 Let's see the new behavior:
 
 <Sandpack>
@@ -1166,8 +1168,8 @@ Let's see the new behavior:
 ```js src/App.js active
 import { useState, unstable_Activity as Activity } from 'react';
 import TabButton from './TabButton.js';
-import HomeTab from './HomeTab.js';
-import VideoTab from './VideoTab.js';
+import Home from './Home.js';
+import Video from './Video.js';
 
 export default function App() {
   const [activeTab, setActiveTab] = useState('video');
@@ -1190,10 +1192,10 @@ export default function App() {
       <hr />
 
       <Activity mode={activeTab === 'home' ? 'visible' : 'hidden'}>
-        <HomeTab />
+        <Home />
       </Activity>
       <Activity mode={activeTab === 'video' ? 'visible' : 'hidden'}>
-        <VideoTab />
+        <Video />
       </Activity>
     </>
   );
@@ -1214,21 +1216,21 @@ export default function TabButton({ onClick, children, isActive }) {
 }
 ```
 
-```js src/HomeTab.js
-export default function HomeTab() {
+```js src/Home.js
+export default function Home() {
   return (
     <p>Welcome to my profile!</p>
   );
 }
 ```
 
-```js src/VideoTab.js 
-import { useRef, useEffect } from 'react';
+```js src/Video.js 
+import { useRef, useLayoutEffect } from 'react';
 
-export default function VideoTab() {
+export default function Video() {
   const ref = useRef();
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const videoRef = ref.current
 
     return () => {
@@ -1297,9 +1299,9 @@ To eagerly discover other Effects that don't have proper cleanup, which is impor
 ---
 
 
-### Effects don't mount when an Activity is hidden {/*effects-dont-mount-when-an-activity-is-hidden*/}
+### My hidden components have Effects that aren't running {/*my-hidden-components-have-effects-that-arent-running*/}
 
-When an `<Activity>` is "hidden", all Effects are cleaned up. Conceptually, the children are unmounted, but React saves their state for later. This is a feature of Activity because it means subscriptions won't be active for hidden parts of the UI, reducing the amount of work needed for hidden content.
+When an `<Activity>` is "hidden", all its children's Effects are cleaned up. Conceptually, the children are unmounted, but React saves their state for later. This is a feature of Activity because it means subscriptions won't be active for hidden parts of the UI, reducing the amount of work needed for hidden content.
 
 If you're relying on an Effect mounting to clean up a component's side effects, refactor the Effect to do the work in the returned cleanup function instead.
 

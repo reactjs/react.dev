@@ -101,8 +101,7 @@ module.exports = {
       test: './src/experimental/**/*.{js,jsx,ts,tsx}',
       plugins: [
         ['babel-plugin-react-compiler', {
-          compilationMode: 'annotation', // Only compile "use memo" components
-          panicThreshold: 'none' // More permissive for experimental code
+          // options ...
         }]
       ]
     },
@@ -110,7 +109,7 @@ module.exports = {
       test: './src/production/**/*.{js,jsx,ts,tsx}',
       plugins: [
         ['babel-plugin-react-compiler', {
-          panicThreshold: 'critical_errors' // Stricter for production code
+          // options ...
         }]
       ]
     }

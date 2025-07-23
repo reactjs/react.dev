@@ -44,11 +44,11 @@ export interface Routes {
   routes: RouteItem[];
 }
 
-/** Routing metadata about a given route and it's siblings and parent */
+/** Routing metadata about a given route and its siblings and parent */
 export interface RouteMeta {
-  /** The previous route */
+  /** The previous route (older post) */
   prevRoute?: RouteItem;
-  /** The next route */
+  /** The next route (newer post) */
   nextRoute?: RouteItem;
   /** The current route */
   route?: RouteItem;
@@ -60,6 +60,7 @@ export interface RouteMeta {
 
 type TraversalContext = RouteMeta & {
   currentIndex: number;
+  _foundRoute?: boolean;
 };
 
 export function getRouteMeta(cleanedPath: string, routeTree: RouteItem) {
@@ -81,33 +82,28 @@ function buildRouteMeta(
   currentRoute: RouteItem,
   ctx: TraversalContext
 ) {
-  ctx.currentIndex++;
-
-  const {routes} = currentRoute;
-
-  if (ctx.route && !ctx.nextRoute) {
-    ctx.nextRoute = currentRoute;
-  }
-
   if (currentRoute.path === searchPath) {
     ctx.route = currentRoute;
     ctx.order = ctx.currentIndex;
-    // If we've found a deeper match, reset the previously stored next route.
-    // TODO: this only works reliably if deeper matches are first in the tree.
-    // We should revamp all of this to be more explicit.
-    ctx.nextRoute = undefined;
-  }
-
-  if (!ctx.route) {
-    ctx.prevRoute = currentRoute;
-  }
-
-  if (!routes) {
+    ctx._foundRoute = true;
     return;
   }
 
-  for (const route of routes) {
+  if (!ctx._foundRoute && currentRoute.path) {
+    ctx.nextRoute = currentRoute; // newer post
+  } else if (ctx._foundRoute && currentRoute.path && !ctx.prevRoute) {
+    ctx.prevRoute = currentRoute; // older post
+    return; // Stop once prevRoute is found
+  }
+
+  if (!currentRoute.routes) return;
+
+  for (const route of currentRoute.routes) {
     buildRouteMeta(searchPath, route, ctx);
+  }
+
+  if (!ctx._foundRoute && currentRoute.path) {
+    ctx.currentIndex++;
   }
 }
 

@@ -47,7 +47,7 @@ You can use Activity to hide part of your application:
 
 When an Activity boundary becomes <CodeStep step={1}>hidden</CodeStep>, React will visually hide its <CodeStep step={2}>children</CodeStep> using the `display: "none"` CSS property. It will also destroy their Effects, cleaning up any active subscriptions.
 
-While hidden, children still receive updates, albeit at a lower priority than the rest of the content.
+While hidden, children still re-render in response to new props, albeit at a lower priority than the rest of the content.
 
 When the boundary becomes <CodeStep step={3}>visible</CodeStep> again, React will reveal the children with their previous state restored, and create their Effects.
 
@@ -889,27 +889,140 @@ Suspense-enabled data fetching without the use of an opinionated framework is no
 
 ---
 
-### Deferring hydration of low-priority content {/*deferring-hydration-of-low-priority-content*/}
 
-You can wrap part of your UI in a <CodeStep step={3}>visible</CodeStep> Activity boundary to defer mounting it on the initial render:
+### Reducing the time it takes to hydrate server-rendered content {/*reducing-the-time-it-takes-to-hydrate-server-rendered-content*/}
 
-```jsx [[3,6,"\\"visible\\""]]
+React includes an under-the-hood performance optimization called Selective Hydration. It works by hydrating your app's initial HTML _in chunks_, enabling some components to become interactive even if other components on the page haven't loaded their code or data yet.
+
+Suspense boundaries participate in Selective Hydration, because they naturally divide your component tree into units that are independent from one another:
+
+```jsx
 function Page() {
   return (
     <>
-      <Post />
-    
-      <Activity mode="visible">
-        <Comments />
+      <MessageComposer />
+
+      <Suspense fallback="Loading chats...">
+        <Chats />
+      </Suspense>
+    </>
+  )
+}
+```
+
+Here, `MessageComposer` can be fully hydrated during the initial render of the page, even before `Chats` is mounted and starts to fetch its data.
+
+So by breaking up your component tree into discrete units, Suspense allows React to hydrate your app's server-rendered HTML in chunks, enabling parts of your app to become interactive as fast as possible.
+
+But what about pages that don't use Suspense?
+
+Take this tabs example:
+
+```jsx
+function Page() {
+  const [activeTab, setActiveTab] = useState('home');
+
+  return (
+    <>
+      <TabButton onClick={() => setActiveTab('home')}>
+        Home
+      </TabButton>
+      <TabButton onClick={() => setActiveTab('video')}>
+        Video
+      </TabButton>
+
+      {activeTab === 'home' && (
+        <Home />
+      )}
+      {activeTab === 'video' && (
+        <Video />
+      )}
+    </>
+  )
+}
+```
+
+Here, React must hydrate the entire page all at once. If `Home` or `Video` are slower to render, they could make the tab buttons feel unresponsive during hydration.
+
+Adding Suspense around the active tab would solve this:
+
+```jsx {13,20}
+function Page() {
+  const [activeTab, setActiveTab] = useState('home');
+
+  return (
+    <>
+      <TabButton onClick={() => setActiveTab('home')}>
+        Home
+      </TabButton>
+      <TabButton onClick={() => setActiveTab('video')}>
+        Video
+      </TabButton>
+
+      <Suspense fallback={<Placeholder />}>
+        {activeTab === 'home' && (
+          <Home />
+        )}
+        {activeTab === 'video' && (
+          <Video />
+        )}
+      </Suspense>
+    </>
+  )
+}
+```
+
+...but it would also change the UI, since the `Placeholder` fallback would be displayed on the initial render.
+
+Instead, we can use Activity. Since Activity boundaries show and hide their children, they already naturally divide the component tree into independent units. And just like Suspense, this feature allows them to participate in Selective Hydration.
+
+Let's update our example to use Activity boundaries around the active tab:
+
+```jsx {13-18}
+function Page() {
+  const [activeTab, setActiveTab] = useState('home');
+
+  return (
+    <>
+      <TabButton onClick={() => setActiveTab('home')}>
+        Home
+      </TabButton>
+      <TabButton onClick={() => setActiveTab('video')}>
+        Video
+      </TabButton>
+
+      <Activity mode={activeTab === "home" ? "visible" : "hidden"}>
+        <Home />
+      </Activity>
+      <Activity mode={activeTab === "video" ? "visible" : "hidden"}>
+        <Video />
       </Activity>
     </>
   )
 }
 ```
 
-During hydration, React will leave the visible Activity boundary unmounted while hydrating the rest of the page, improving the performance of higher-priority content. Once the high-priority content has fetched its code and data, and been rendered to the page, React will move on to mount any remaining visible Activity boundaries.
+Now our initial server-rendered HTML looks the same as it did in the original version, but thanks to Activity, React can hydrate the tab buttons first, before it even mounts `Home` or `Video`.
 
-This feature is called Selective Hydration, and it's an under-the-hood optimization of React that's integrated with Suspense. You can read [an architectural overview](https://github.com/reactwg/react-18/discussions/37) and watch [a technical talk](https://www.youtube.com/watch?v=pj5N-Khihgc) to learn more.
+---
+
+Thus, in addition to hiding and showing content, Activity boundaries help improve your app's performance during hydration by letting React know which parts of your page can become interactive in isolation.
+
+And even if your page doesn't ever hide part of its content, you can still add always-visible Activity boundaries to improve hydration performance:
+
+```jsx
+function Page() {
+  return (
+    <>
+      <Post />
+
+      <Activity>
+        <Comments />
+      </Activity>
+    </>
+  );
+} 
+```
 
 ---
 
@@ -917,7 +1030,7 @@ This feature is called Selective Hydration, and it's an under-the-hood optimizat
 
 ### My hidden components have unwanted side effects {/*my-hidden-components-have-unwanted-side-effects*/}
 
-An Activity boundary hides its content by setting `display: none` on its children and cleaning up any of their [Effects](/reference/react/useEffect). So, most well-behaved React components that properly clean up their side effects will already be robust to being hidden by Activity.
+An Activity boundary hides its content by setting `display: none` on its children and cleaning up any of their Effects. So, most well-behaved React components that properly clean up their side effects will already be robust to being hidden by Activity.
 
 But there _are_ some situations where a hidden component behaves differently than an unmounted one. Most notably, since a hidden component's DOM is not destroyed, any side effects from that DOM will persist, even after the component is hidden.
 

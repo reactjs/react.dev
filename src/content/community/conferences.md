@@ -10,6 +10,16 @@ Do you know of a local React.js conference? Add it here! (Please keep the list c
 
 ## Upcoming Conferences {/*upcoming-conferences*/}
 
+### React Advanced Canada 2026 {/*react-advanced-canada-2026*/}
+March 24 - 26, 2026. In-person in Toronto, Canada + online (hybrid event)
+
+[Website](https://reactadvanced.com/) - [Twitter](https://x.com/reactadvanced)
+
+### React Advanced London 2025 {/*react-advanced-london-2025*/}
+Novermber 28 - December 2, 2025. In-person in London, UK + online (hybrid event)
+
+[Website](https://reactadvanced.com/) - [Twitter](https://x.com/reactadvanced)
+
 ### CityJS London 2025 {/*cityjs-london*/}
 April 23 - 25, 2025. In-person in London, UK 
 

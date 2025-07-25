@@ -890,7 +890,7 @@ Suspense-enabled data fetching without the use of an opinionated framework is no
 ---
 
 
-### Reducing the time it takes to hydrate server-rendered content {/*reducing-the-time-it-takes-to-hydrate-server-rendered-content*/}
+### Speeding up interactions during page load {/*speeding-up-interactions-during-page-load*/}
 
 React includes an under-the-hood performance optimization called Selective Hydration. It works by hydrating your app's initial HTML _in chunks_, enabling some components to become interactive even if other components on the page haven't loaded their code or data yet.
 

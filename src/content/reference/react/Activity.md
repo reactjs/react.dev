@@ -58,14 +58,11 @@ In this way, Activity can thought of as a mechanism for rendering "background ac
 #### Props {/*props*/}
 
 * `children`: The UI you intend to show and hide.
-* **optional** `mode`: Either "visible" or "hidden". Defaults to "visible". When "hidden", updates to the children are deferred to lower priority. The component will not create Effects until the Activity is switched to "visible". If a "visible" Activity switches to "hidden", the Effects will be destroyed. 
+* `mode`: A string value of either `'visible'` or `'hidden'`. If omitted, defaults to `'visible'`. 
 
 #### Caveats {/*caveats*/}
 
-- While hidden, the `children` of `<Activity>` are visually hidden on the page. 
-- `<Activity>` will unmount all Effects when switching from "visible" to "hidden" without destroying React or DOM state. This means Effects that are expected to run only once on mount will run again when switching from "hidden" to "visible". Conceptually, "hidden" Activities are unmounted, but they are not destroyed either. We recommend using [`<StrictMode>`](/reference/react/StrictMode) to catch any unexpected side-effects from this behavior.
 - When used with `<ViewTransition>`, hidden activities that reveal in a transition will activate an "enter" animation. Visible Activities hidden in a transition will activate an "exit" animation.
-- Parts of the UI wrapped in `<Activity mode="visible">` will hydrate at a lower priority than other content.
 
 ---
 

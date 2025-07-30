@@ -45,11 +45,11 @@ You can use Activity to hide part of your application:
 </Activity>
 ```
 
-When an Activity boundary becomes <CodeStep step={1}>hidden</CodeStep>, React will visually hide its <CodeStep step={2}>children</CodeStep> using the `display: "none"` CSS property. It will also destroy their Effects, cleaning up any active subscriptions.
+When an Activity boundary is <CodeStep step={1}>hidden</CodeStep>, React will visually hide <CodeStep step={2}>its children</CodeStep> using the `display: "none"` CSS property. It will also destroy their Effects, cleaning up any active subscriptions.
 
 While hidden, children still re-render in response to new props, albeit at a lower priority than the rest of the content.
 
-When the boundary becomes <CodeStep step={3}>visible</CodeStep> again, React will reveal the children with their previous state restored, and create their Effects.
+When the boundary becomes <CodeStep step={3}>visible</CodeStep> again, React will reveal the children with their previous state restored, and re-create their Effects.
 
 In this way, Activity can thought of as a mechanism for rendering "background activity". Rather than completely discarding content that's likely to become visible again, you can use Activity to maintain and restore that content's UI and internal state.
 

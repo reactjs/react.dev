@@ -92,7 +92,7 @@ This makes it possible to restore components to their previous state.
 
 The following example has a sidebar with an expandable section – you can press "Overview" to reveal the three subitems below it. The main app area also has a button that hides and shows the sidebar.
 
-Try expanding the Overview section, then toggling the sidebar closed then open:
+Try expanding the Overview section, then toggling the sidebar closed and open:
 
 <Sandpack>
 

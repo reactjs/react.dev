@@ -51,7 +51,7 @@ While hidden, children still re-render in response to new props, albeit at a low
 
 When the boundary becomes <CodeStep step={3}>visible</CodeStep> again, React will reveal the children with their previous state restored, and create their Effects.
 
-In this way, Activity can thought of as a mechanism for rendering "background activity". Rather than unmounting content that's likely to become visible again, you can use Activity to maintain and restore that content's UI and internal state.
+In this way, Activity can thought of as a mechanism for rendering "background activity". Rather than completely discarding content that's likely to become visible again, you can use Activity to maintain and restore that content's UI and internal state.
 
 [See more examples below.](#usage)
 

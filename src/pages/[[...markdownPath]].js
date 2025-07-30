@@ -14,7 +14,34 @@ import {MDXComponents} from 'components/MDX/MDXComponents';
 import compileMDX from 'utils/compileMDX';
 import {generateRssFeed} from '../utils/rss';
 
+import {useEffect} from 'react';
+
+export function useScrollRestoration(key) {
+  // Restore scroll position on page load
+  useEffect(() => {
+    const saved = sessionStorage.getItem(key);
+    if (saved) {
+      const {x, y} = JSON.parse(saved);
+      window.scrollTo(x, y);
+    }
+  }, [key]);
+
+  // Save scroll position on unload
+  useEffect(() => {
+    const save = () => {
+      sessionStorage.setItem(
+        key,
+        JSON.stringify({x: window.scrollX, y: window.scrollY})
+      );
+    };
+
+    window.addEventListener('beforeunload', save);
+    return () => window.removeEventListener('beforeunload', save);
+  }, [key]);
+}
+
 export default function Layout({content, toc, meta, languages}) {
+  useScrollRestoration();
   const parsedContent = useMemo(
     () => JSON.parse(content, reviveNodeOnClient),
     [content]

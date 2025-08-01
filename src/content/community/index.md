@@ -4,29 +4,35 @@ title: React Community
 
 <Intro>
 
-React has a community of millions of developers. On this page we've listed some React-related communities that you can be a part of; see the other pages in this section for additional online and in-person learning materials.
+React has a vibrant community of millions of developers. On this page, we've listed several React-related communities you can join. Check out the other pages in this section for more online and in-person learning resources.
 
 </Intro>
 
 ## Code of Conduct {/*code-of-conduct*/}
 
-Before participating in React's communities, [please read our Code of Conduct.](https://github.com/facebook/react/blob/main/CODE_OF_CONDUCT.md) We have adopted the [Contributor Covenant](https://www.contributor-covenant.org/) and we expect that all community members adhere to the guidelines within.
+Before participating in any React communities, [please read our Code of Conduct](https://github.com/facebook/react/blob/main/CODE_OF_CONDUCT.md).  
+React follows the [Contributor Covenant](https://www.contributor-covenant.org/), and all community members are expected to adhere to its guidelines.
 
 ## Stack Overflow {/*stack-overflow*/}
 
-Stack Overflow is a popular forum to ask code-level questions or if you're stuck with a specific error. Read through the [existing questions](https://stackoverflow.com/questions/tagged/reactjs) tagged with **reactjs** or [ask your own](https://stackoverflow.com/questions/ask?tags=reactjs)!
+[Stack Overflow](https://stackoverflow.com/questions/tagged/reactjs) is a popular forum for asking code-level questions or resolving specific errors.  
+You can read [existing questions tagged with **reactjs**](https://stackoverflow.com/questions/tagged/reactjs) or [ask your own question](https://stackoverflow.com/questions/ask?tags=reactjs)!
 
 ## Popular Discussion Forums {/*popular-discussion-forums*/}
 
-There are many online forums which are a great place for discussion about best practices and application architecture as well as the future of React. If you have an answerable code-level question, Stack Overflow is usually a better fit.
+Many online forums are great places to discuss best practices, application architecture, and the future of React.  
+If you have a specific coding question, Stack Overflow is usually the best place.
 
-Each community consists of many thousands of React users.
+Each community includes thousands of active React developers:
 
-* [DEV's React community](https://dev.to/t/react)
-* [Hashnode's React community](https://hashnode.com/n/reactjs)
-* [Reactiflux online chat](https://discord.gg/reactiflux)
-* [Reddit's React community](https://www.reddit.com/r/reactjs/)
+- [DEV’s React community](https://dev.to/t/react)
+- [Hashnode’s React community](https://hashnode.com/n/reactjs)
+- [Reactiflux online chat (Discord)](https://discord.gg/reactiflux)
+- [Reddit’s React community](https://www.reddit.com/r/reactjs/)
 
 ## News {/*news*/}
 
-For the latest news about React, [follow **@reactjs** on Twitter](https://twitter.com/reactjs), [**@react.dev** on Bluesky](https://bsky.app/profile/react.dev) and the [official React blog](/blog/) on this website.
+For the latest updates on React:
+- Follow [**@reactjs** on Twitter](https://twitter.com/reactjs)
+- Follow [**@react.dev** on Bluesky](https://bsky.app/profile/react.dev)
+- Read the [official React blog](/blog/) on this website.

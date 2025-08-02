@@ -1189,16 +1189,19 @@ export function messengerReducer(state, action) {
 ```
 
 ```js src/ContactList.js
-export default function ContactList({contacts, selectedId, dispatch}) {
+export default function ContactList({ contacts, selectedId, dispatch }) {
   return (
     <section className="contact-list">
       <ul>
         {contacts.map((contact) => (
           <li key={contact.id}>
             <button
-              onClick={() => {
-                // TODO: dispatch changed_selection
-              }}>
+              onClick={() =>
+                dispatch({
+                  type: 'changed_selection',
+                  contactId: contact.id
+                })
+              }>
               {selectedId === contact.id ? <b>{contact.name}</b> : contact.name}
             </button>
           </li>
@@ -1207,27 +1210,29 @@ export default function ContactList({contacts, selectedId, dispatch}) {
     </section>
   );
 }
+
 ```
 
 ```js src/Chat.js
-import { useState } from 'react';
 
-export default function Chat({contact, message, dispatch}) {
+export default function Chat({ contact, message, dispatch }) {
   return (
     <section className="chat">
+      <h2>Chat with {contact.name}</h2>
       <textarea
         value={message}
-        placeholder={'Chat to ' + contact.name}
-        onChange={(e) => {
-          // TODO: dispatch edited_message
-          // (Read the input value from e.target.value)
-        }}
+        placeholder={`Message to ${contact.name}`}
+        onChange={(e) =>
+          dispatch({
+            type: 'edited_message',
+            message: e.target.value
+          })
+        }
       />
-      <br />
-      <button>Send to {contact.email}</button>
     </section>
   );
 }
+
 ```
 
 ```css

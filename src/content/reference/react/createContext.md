@@ -70,6 +70,11 @@ In older versions of React, use `<SomeContext.Provider>`.
 
 </Note>
 
+> **Recommendation**  
+> In React 19+, rendering a Context directly (without `.Provider`) is valid.  
+> However, for most apps we **recommend** using `MyContext.Provider` explicitly because it keeps intent clear, helps avoid accidental default values, and makes future refactors safer.  
+> Consider the shorthand only when you intentionally rely on the default value in a very small or localized scope.
+
 #### Props {/*provider-props*/}
 
 * `value`: The value that you want to pass to all the components reading this context inside this provider, no matter how deep. The context value can be of any type. A component calling [`useContext(SomeContext)`](/reference/react/useContext) inside of the provider receives the `value` of the innermost corresponding context provider above it.

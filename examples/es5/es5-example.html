@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>React ES5 Example</title>
+  <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+</head>
+<body>
+  <div id="root"></div>
+  <script>
+    //Here ES5-style functional component
+    function Hello(props) {
+      return React.createElement('h1', null, 'Hello, React ES5!');
+    }
+
+    ReactDOM.render(
+      React.createElement(Hello, null, null),
+      document.getElementById('root')
+    );
+  </script>
+</body>
+</html>

@@ -49,7 +49,7 @@ React can move `<style>` components to the document's `<head>`, de-duplicate ide
 
 To opt into this behavior, provide the `href` and `precedence` props. React will de-duplicate styles if they have the same `href`. The precedence prop tells React where to rank the `<style>` DOM node relative to others in the document `<head>`, which determines which stylesheet can override the other.
 
-This special treatment comes with two caveats:
+This special treatment comes with three caveats:
 
 * React will ignore changes to props after the style has been rendered. (React will issue a warning in development if this happens.)
 * React will drop all extraneous props when using the `precedence` prop (beyond `href` and `precedence`).

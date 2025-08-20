@@ -35,10 +35,6 @@ Wrap a component tree in a `<Profiler>` to measure its rendering performance.
 * `id`: A string identifying the part of the UI you are measuring.
 * `onRender`: An [`onRender` callback](#onrender-callback) that React calls every time components within the profiled tree update. It receives information about what was rendered and how much time it took.
 
-#### Caveats {/*caveats*/}
-
-* Profiling adds some additional overhead, so **it is disabled in the production build by default.** To opt into production profiling, you need to enable a [special production build with profiling enabled.](https://fb.me/react-profiling)
-
 ---
 
 ### `onRender` callback {/*onrender-callback*/}
@@ -129,4 +125,3 @@ You can also nest `<Profiler>` components:
 Although `<Profiler>` is a lightweight component, it should be used only when necessary. Each use adds some CPU and memory overhead to an application.
 
 ---
-

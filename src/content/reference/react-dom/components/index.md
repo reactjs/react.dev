@@ -285,7 +285,7 @@ export function App() {
 
 <Note>
 
-Events are case-sensative and support dashes (`-`). Preserve the casing of the event and include all dashes when listening for custom element's events:
+Events are case-sensitive and support dashes (`-`). Preserve the casing of the event and include all dashes when listening for custom element's events:
 
 ```jsx
 // Listens for `say-hi` events

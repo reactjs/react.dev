@@ -188,8 +188,21 @@ Non-string JavaScript values passed to custom elements will be serialized by def
 
 React will, however, recognize an custom element's property as one that it may pass arbitrary values to if the property name shows up on the class during construction:
 
-```javascript {4-6}
-class MyElement extends HTMLElement {
+<Sandpack>
+
+```js src/index.js hidden
+import {MyElement} from './MyElement.js';
+import { createRoot } from 'react-dom/client';
+import {App} from "./App.js";
+
+customElements.define('my-element', MyElement);
+
+const root = createRoot(document.getElementById('root'))
+root.render(<App />);
+```
+
+```js src/MyElement.js active
+export class MyElement extends HTMLElement {
   constructor() {
     super();
     // The value here will be overwritten by React 
@@ -203,12 +216,33 @@ class MyElement extends HTMLElement {
 }
 ```
 
+```js src/App.js
+export function App() {
+  return <my-element value={[1,2,3]}></my-element>
+}
+```
+
+</Sandpack>
+
 #### Listening for events on custom elements {/*custom-element-events*/}
 
-A common pattern when using custom elements is that they may dispatch [`CustomEvent`s](https://developer.mozilla.org/en-US/docs/Web/API/CustomEvent) rather than accept a function to call when an event occur:
+A common pattern when using custom elements is that they may dispatch [`CustomEvent`s](https://developer.mozilla.org/en-US/docs/Web/API/CustomEvent) rather than accept a function to call when an event occur. You can listen for these events using an `on` prefix when binding to the event via JSX.
 
-```javascript {8-15}
-class MyElement extends HTMLElement {
+<Sandpack>
+
+```js src/index.js hidden
+import {MyElement} from './MyElement.js';
+import { createRoot } from 'react-dom/client';
+import {App} from "./App.js";
+
+customElements.define('my-element', MyElement);
+
+const root = createRoot(document.getElementById('root'))
+root.render(<App />);
+```
+
+```javascript src/MyElement.js
+export class MyElement extends HTMLElement {
   constructor() {
     super();
     this.test = undefined;
@@ -237,11 +271,17 @@ class MyElement extends HTMLElement {
 }
 ```
 
-You can listen for these events using an `on` prefix when binding to the event via JSX:
-
-```jsx
-<my-element onspeak={e => console.log(e.detail.message)}></my-element>
+```jsx src/App.js active
+export function App() {
+  return (
+    <my-element
+      onspeak={e => console.log(e.detail.message)}
+    ></my-element>
+  )
+}
 ```
+
+</Sandpack>
 
 <Note>
 

@@ -157,14 +157,23 @@ You can pass a Server Function to a Form to automatically submit the form to the
 ```js [[1, 3, "updateName"], [1, 7, "updateName"]]
 "use client";
 
-import {updateName} from './actions';
+import { useState } from "react";
+import { updateName } from "./actions";
 
 function UpdateName() {
+  const [name, setName] = useState("");
+
   return (
     <form action={updateName}>
-      <input type="text" name="name" />
+      <input
+        type="text"
+        name="name"
+        value={name}
+        onChange={(e) => setName(e.target.value)}
+      />
+      <button type="submit">Update</button>
     </form>
-  )
+  );
 }
 ```
 

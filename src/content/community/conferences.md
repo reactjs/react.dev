@@ -31,7 +31,7 @@ October 31 - November 01, 2025. In-person in Goa, India (hybrid event) + Oct 15 
 [Website](https://www.reactindia.io) - [Twitter](https://twitter.com/react_india) - [Facebook](https://www.facebook.com/ReactJSIndia) - [Youtube](https://www.youtube.com/channel/UCaFbHCBkPvVv1bWs_jwYt3w)
 
 
-### CityJS New Delhi 2026 {/*cityjs-newdelhi*/}
+### CityJS New Delhi 2025 {/*cityjs-newdelhi*/}
 November 6-7,  2025. In-person in New Delhi, India
 
 [Website](https://india.cityjsconf.org/) - [Twitter](https://x.com/cityjsconf) - [Bluesky](https://bsky.app/profile/cityjsconf.bsky.social)

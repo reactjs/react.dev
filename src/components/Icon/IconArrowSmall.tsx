@@ -19,6 +19,7 @@ export const IconArrowSmall = memo<
   const classes = cn(className, {
     'rotate-180': displayDirection === 'left',
     'rotate-180 rtl:rotate-0': displayDirection === 'start',
+    'rtl:rotate-180': displayDirection === 'end',
     'rotate-90': displayDirection === 'down',
   });
   return (

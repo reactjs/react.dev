@@ -20,6 +20,11 @@ October 2-4, 2025. Alicante, Spain.
 
 [Website](https://reactalicante.es/) - [Twitter](https://x.com/ReactAlicante) - [Bluesky](https://bsky.app/profile/reactalicante.es) - [YouTube](https://www.youtube.com/channel/UCaSdUaITU1Cz6PvC97A7e0w)
 
+### RenderCon Kenya 2025 {/*rendercon-kenya-2025*/}
+October 04, 2025. Nairobi, Kenya
+
+[Website](https://rendercon.org/) - [Twitter](https://twitter.com/renderconke) - [LinkedIn](https://www.linkedin.com/company/renderconke/) - [YouTube](https://www.youtube.com/channel/UC0bCcG8gHUL4njDOpQGcMIA)
+
 ### React Conf 2025 {/*react-conf-2025*/}
 October 7-8, 2025. Henderson, Nevada, USA and free livestream
 

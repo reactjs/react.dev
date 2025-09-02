@@ -19,21 +19,15 @@ Experimental versions of React may contain bugs. Don't use them in production.
 
 <Intro>
 
-React Performance tracks are specialized custom entries that appear on the [Performance panel's timeline of Chrome DevTools](https://developer.chrome.com/docs/devtools/performance/overview).
+React Performance tracks are specialized custom entries that appear on the Performance panel's timeline.
 
 </Intro>
 
 These tracks are designed to provide developers with comprehensive insights into their React application's performance by visualizing React-specific events and metrics alongside other critical data sources such as Network requests, JavaScript execution, and Event Loop activity, all synchronized on a unified timeline within the Performance panel for a complete understanding of application behavior.
 
 <div style={{display: 'flex', justifyContent: 'center', marginBottom: '1rem'}}>
-  <picture >
-      <source srcset="/images/blog/react-labs-april-2025/perf_tracks.png" />
-      <img className="w-full light-image" src="/images/blog/react-labs-april-2025/perf_tracks.webp" />
-  </picture>
-  <picture >
-      <source srcset="/images/blog/react-labs-april-2025/perf_tracks_dark.png" />
-      <img className="w-full dark-image" src="/images/blog/react-labs-april-2025/perf_tracks_dark.webp" />
-  </picture>
+  <img className="w-full light-image" src="/images/docs/performance-tracks/overview.png" alt="React Performance Tracks" />
+  <img className="w-full dark-image" src="/images/docs/performance-tracks/overview.dark.png" alt="React Performance Tracks" />
 </div>
 
 <InlineToc />
@@ -42,11 +36,11 @@ These tracks are designed to provide developers with comprehensive insights into
 
 ## Usage {/*usage*/}
 
-You don't need to do anything to explicitly enable React Performance tracks. They are enabled by default in development and profiling builds of React and should appear by default in the traces you record with the Performance panel.
+You don't need to do anything to explicitly enable React Performance tracks. They are enabled by default in development and profiling builds of React and should appear automatically in the traces you record with the Performance panel of browsers that provide [extensibility APIs](https://developer.chrome.com/docs/devtools/performance/extension).
 
 <Pitfall>
 
-Profiling instrumentation that powers React Performance tracks adds some additional overhead, so it is disabled in the production build by default.
+The profiling instrumentation that powers React Performance tracks adds some additional overhead, so it is disabled in production builds by default.
 
 </Pitfall>
 
@@ -56,8 +50,55 @@ Profiling instrumentation that powers React Performance tracks adds some additio
 
 ### Scheduler {/*scheduler*/}
 
-🚧 Work in progress...
+The Scheduler is an internal React concept used for managing tasks with different priorities. This track consists of 4 subtracks, each representing work of a specific priority:
+
+- **Blocking** - The synchronous updates, which could've been initiated by user interactions.
+- **Transition** - Non-blocking work that happens in the background, usually initiated via [`startTransition`](/reference/react/startTransition).
+- **Suspense** - Work related to Suspense boundaries, such as displaying fallbacks or revealing content.
+- **Idle** - The lowest priority work that is done when there are no other tasks with higher priority.
+
+🚧 `<screenshot>`
+
+#### Updates {/*updates*/}
+
+Every update consists of multiple phases that you can see on a timeline:
+
+- **Render** - React renders the updated subtree by calling render functions of components. You can see the rendered components subtree on [Components track](/learn/react-performance-tracks#components), which follows the same color scheme.
+- **Commit** - After rendering components, React will submit the changes to the DOM and run layout effects, like [`useLayoutEffect`](/reference/react/useLayoutEffect).
+- **Remaining Effects** - React runs passive effects of a rendered subtree. This usually happens after the paint, and this is when React runs hooks like [`useEffect`](/reference/react/useEffect). One known exception is user interactions, like clicks, or other discrete events. In this scenario, this phase could run before the paint.
+
+🚧 `<screenshot>`
+
+[Learn more about renders and commits](/learn/render-and-commit).
 
 ### Components {/*components*/}
 
-🚧 Work in progress...
+The Components track visualizes the durations of React components. They are displayed as a flamegraph, where each entry represents the duration of the corresponding component render and all its descendant children components.
+
+<div style={{display: 'flex', justifyContent: 'center', marginBottom: '1rem'}}>
+  <img className="w-full light-image" src="/images/docs/performance-tracks/components-render.png" alt="Components Track: render durations" />
+  <img className="w-full dark-image" src="/images/docs/performance-tracks/components-render.dark.png" alt="Components Track: render durations" />
+</div>
+
+Similar to render durations, effect durations are also represented as a flamegraph, but with a different color scheme that aligns with the corresponding phase on the Scheduler track.
+
+<div style={{display: 'flex', justifyContent: 'center', marginBottom: '1rem'}}>
+  <img className="w-full light-image" src="/images/docs/performance-tracks/components-effects.png" alt="Components Track: effects durations" />
+  <img className="w-full dark-image" src="/images/docs/performance-tracks/components-effects.dark.png" alt="Components Track: effects durations" />
+</div>
+
+Additional events may be displayed during the render and effects phases:
+
+- <span style={{padding: '0.125rem 0.25rem', backgroundColor: '#facc15', color: '#1f1f1fff'}}>Mount</span> - A corresponding subtree of component renders or effects was mounted.
+- <span style={{padding: '0.125rem 0.25rem', backgroundColor: '#facc15', color: '#1f1f1fff'}}>Unmount</span> - A corresponding subtree of component renders or effects was unmounted.
+- <span style={{padding: '0.125rem 0.25rem', backgroundColor: '#facc15', color: '#1f1f1fff'}}>Reconnect</span> - Similar to Mount, but limited to cases when [`<Activity>`](/reference/react/Activity) is used.
+- <span style={{padding: '0.125rem 0.25rem', backgroundColor: '#facc15', color: '#1f1f1fff'}}>Disconnect</span> - Similar to Unmount, but limited to cases when [`<Activity>`](/reference/react/Activity) is used.
+
+#### Changed props {/*changed-props*/}
+
+In development builds, when you click on a component render entry, you can inspect potential changes in props. You can use this information to identify unnecessary renders.
+
+<div style={{display: 'flex', justifyContent: 'center', marginBottom: '1rem'}}>
+  <img className="w-full light-image" src="/images/docs/performance-tracks/changed-props.png" alt="Components Track: changed props" />
+  <img className="w-full dark-image" src="/images/docs/performance-tracks/changed-props.dark.png" alt="Components Track: changed props" />
+</div>

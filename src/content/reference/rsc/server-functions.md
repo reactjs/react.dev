@@ -133,6 +133,7 @@ function UpdateName() {
       }
     })
   }
+
   return (
     <form action={submitAction}>
       <input type="text" name="name" disabled={isPending}/>

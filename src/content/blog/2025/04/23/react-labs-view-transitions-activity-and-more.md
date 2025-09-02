@@ -2521,7 +2521,7 @@ export default function App() {
   const { url } = useRouter();
 
   // Define a default animation of .slow-fade.
-  // See animations.css for the animation definiton.
+  // See animations.css for the animation definition.
   return (
     <ViewTransition default="slow-fade">
       {url === '/' ? <Home /> : <Details />}

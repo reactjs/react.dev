@@ -79,6 +79,7 @@ Client Components can import Server Functions from files that use the `"use serv
 export async function createNote() {
   await db.notes.create();
 }
+
 ```
 
 When the bundler builds the `EmptyNote` Client Component, it will create a reference to the `createNote` function in the bundle. When the `button` is clicked, React will send a request to the server to execute the `createNote` function using the reference provided:
@@ -130,10 +131,8 @@ function UpdateName() {
       } else {
         setName('');
       }
-  
     })
   }
-
   return (
     <form action={submitAction}>
       <input type="text" name="name" disabled={isPending}/>
@@ -152,6 +151,7 @@ For more, see the docs for [Calling a Server Function outside of `<form>`](/refe
 Server Functions work with the new Form features in React 19.
 
 You can pass a Server Function to a Form to automatically submit the form to the server:
+
 
 ```js [[1, 3, "updateName"], [1, 7, "updateName"]]
 "use client";

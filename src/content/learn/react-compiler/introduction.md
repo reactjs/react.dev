@@ -43,7 +43,7 @@ const ExpensiveComponent = memo(function ExpensiveComponent({ data, onClick }) {
   return (
     <div>
       {processedData.map(item => (
-        <Item key={item.id} onClick={() => handleClick(item)} />
+        <Item key={item.id} item={item} onClick={handleClick} />
       ))}
     </div>
   );
@@ -65,14 +65,14 @@ function ExpensiveComponent({ data, onClick }) {
   return (
     <div>
       {processedData.map(item => (
-        <Item key={item.id} onClick={() => handleClick(item)} />
+        <Item key={item.id} item={item} onClick={handleClick} />
       ))}
     </div>
   );
 }
 ```
 
-_[See this example in the React Compiler Playground](https://playground.react.dev/#N4Igzg9grgTgxgUxALhAMygOzgFwJYSYAEAogB4AOCmYeAbggMIQC2Fh1OAFMEQCYBDHAIA0RQowA2eOAGsiAXwCURYAB1iROITA4iFGBERgwCPgBEhAogF4iCStVoMACoeO1MAcy6DhSgG4NDSItHT0ACwFMPkkmaTlbIi48HAQWFRsAPlUQ0PFMKRlZFLSWADo8PkC8hSDMPJgEHFhiLjzQgB4+eiyO-OADIwQTM0thcpYBClL02xz2zXz8zoBJMqJZBABPG2BU9Mq+BQKiuT2uTJyomLizkoOMk4B6PqX8pSUFfs7nnro3qEapgFCAFEA)_
+_[See this example in the React Compiler Playground](https://playground.react.dev/#N4Igzg9grgTgxgUxALhAMygOzgFwJYSYAEAogB4AOCmYeAbggMIQC2Fh1OAFMEQCYBDHAIA0RQowA2eOAGsiAXwCURYAB1iROITA4iFGBERgwCPgBEhAogF4iCStVoMACoeO1MAcy6DhSgG4NDSItHT0ACwFMPkkmaTlbIi48HAQWFRsAPlUQ0PFMKRlZFLSWADo8PkC8hSDMPJgEHFhiLjzQgB4+eiyO-OADIwQTM0thcpYBClL02xz2zXz8zoBJMqJZBABPG2BU9Mq+BSIDlj2zk4KiuT2omLib2ROAej6l-KUlBX7Ol566O9QjVMAoQCIQNpMGg8F4UCAQAogA)_
 
 React Compiler automatically applies the equivalent optimizations, ensuring your app only re-renders when necessary.
 

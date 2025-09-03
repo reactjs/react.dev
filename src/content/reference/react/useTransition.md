@@ -1773,7 +1773,7 @@ function setState() {
 
 If you `await` inside `startTransition`, you might see the updates happen out of order.
 
-In this example, the `updateQuantity` function simulates a request to the server to update the item's quantity in the cart. This function *artificially returns the every other request after the previous* to simulate race conditions for network requests.
+In this example, the `updateQuantity` function simulates a request to the server to update the item's quantity in the cart. This function *artificially returns every other request after the previous* to simulate race conditions for network requests.
 
 Try updating the quantity once, then update it quickly multiple times. You might see the incorrect total:
 

@@ -61,7 +61,7 @@ This manual memoization has a subtle bug that breaks memoization:
 
 Even though `handleClick` is wrapped in `useCallback`, the arrow function `() => handleClick(item)` creates a new function every time the component renders. This means that `Item` will always receive a new `onClick` prop, breaking memoization.
 
-The React Compiler is able to optimize this correctly with or without the arrow function, ensuring that `Item` only re-renders when `props.onClick` changes.
+React Compiler is able to optimize this correctly with or without the arrow function, ensuring that `Item` only re-renders when `props.onClick` changes.
 
 </Note>
 

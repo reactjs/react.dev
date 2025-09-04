@@ -80,7 +80,6 @@ Ignore this rule if you're specifically describing an experimental proposal. Mak
 - No space between function names and parens (`method() {}` not `method () {}`).
 - When in doubt, use the default style favored by [Prettier](https://prettier.io/playground/).
 - Always capitalize React concepts such as Hooks, Effects, and Transitions.
-
 ### Highlighting
 
 Use `js` as the highlighting language in Markdown code blocks:
@@ -131,6 +130,6 @@ function hello() {
 ```
 ````
 
-Be mindful that if you move some code in an example with highlighting, you also need to update the highlighting.
+Be mindful that if you move code in an example with highlighting, you must also update the highlighting accordingly.
 
-Don't be afraid to often use highlighting! It is very valuable when you need to focus the reader's attention on a particular detail that's easy to miss.
+Don't hesitate to use highlighting frequently! It’s a powerful tool for drawing the reader’s attention to important details that might otherwise be overlooked.

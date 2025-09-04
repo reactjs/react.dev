@@ -431,7 +431,7 @@ At this point your code should look something like this:
 
 <Sandpack>
 
-```js src/App.js
+```js
 export default function Board() {
   return (
     <>

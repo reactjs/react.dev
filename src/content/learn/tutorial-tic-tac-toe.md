@@ -283,11 +283,11 @@ In CodeSandbox you'll see three main sections:
 
 ![CodeSandbox with starter code](../images/tutorial/react-starter-code-codesandbox.png)
 
-1. The _Files_ section with a list of files like `App.js`, `index.js`, `styles.css` and a folder called `public`
-1. The _code editor_ where you'll see the source code of your selected file
-1. The _browser_ section where you'll see how the code you've written will be displayed
+1. In the *Files* section, you’ll see files like `src/App.js`, `src/index.js`, `src/styles.css`, and a `public` folder.
+1. The *code editor* where you'll see the source code of your selected file
+1. The *browser* section where you'll see how the code you've written will be displayed
 
-The `App.js` file should be selected in the _Files_ section. The contents of that file in the _code editor_ should be:
+The `src/App.js` file should be selected in the *Files* section. The contents of that file in the *code editor* should be:
 
 ```jsx
 export default function Square() {
@@ -295,15 +295,15 @@ export default function Square() {
 }
 ```
 
-The _browser_ section should be displaying a square with an X in it like this:
+The *browser* section should be displaying a square with an X in it like this:
 
 ![x-filled square](../images/tutorial/x-filled-square.png)
 
 Now let's have a look at the files in the starter code.
 
-#### `App.js` {/*appjs*/}
+#### `src/App.js` {/*appjs*/}
 
-The code in `App.js` creates a _component_. In React, a component is a piece of reusable code that represents a part of a user interface. Components are used to render, manage, and update the UI elements in your application. Let's look at the component line by line to see what's going on:
+The code in `src/App.js` creates a *component*. In React, a component is a piece of reusable code that represents a part of a user interface. Components are used to render, manage, and update the UI elements in your application. Let's look at the component line by line to see what's going on:
 
 ```js {1}
 export default function Square() {
@@ -321,13 +321,13 @@ export default function Square() {
 
 The second line returns a button. The `return` JavaScript keyword means whatever comes after is returned as a value to the caller of the function. `<button>` is a *JSX element*. A JSX element is a combination of JavaScript code and HTML tags that describes what you'd like to display. `className="square"` is a button property or *prop* that tells CSS how to style the button. `X` is the text displayed inside of the button and `</button>` closes the JSX element to indicate that any following content shouldn't be placed inside the button.
 
-#### `styles.css` {/*stylescss*/}
+#### `src/styles.css` {/*stylescss*/}
 
-Click on the file labeled `styles.css` in the _Files_ section of CodeSandbox. This file defines the styles for your React app. The first two _CSS selectors_ (`*` and `body`) define the style of large parts of your app while the `.square` selector defines the style of any component where the `className` property is set to `square`. In your code, that would match the button from your Square component in the `App.js` file.
+Click on the file labeled `src/styles.css` in the *Files* section of CodeSandbox. This file defines the styles for your React app. The first two *CSS selectors* (`*` and `body`) define the style of large parts of your app while the `.square` selector defines the style of any component where the `className` property is set to `square`. In your code, that would match the button from your Square component in the `src/App.js` file.
 
-#### `index.js` {/*indexjs*/}
+#### `src/index.js` {/*indexjs*/}
 
-Click on the file labeled `index.js` in the _Files_ section of CodeSandbox. You won't be editing this file during the tutorial but it is the bridge between the component you created in the `App.js` file and the web browser.
+Click on the file labeled `src/index.js` in the *Files* section of CodeSandbox. You won't be editing this file during the tutorial but it is the bridge between the component you created in the `src/App.js` file and the web browser.
 
 ```jsx
 import { StrictMode } from 'react';
@@ -337,18 +337,18 @@ import './styles.css';
 import App from './App';
 ```
 
-Lines 1-5 bring all the necessary pieces together: 
+Lines 1-5 bring all the necessary pieces together:
 
-* React
-* React's library to talk to web browsers (React DOM)
-* the styles for your components
-* the component you created in `App.js`.
+- React
+- React's library to talk to web browsers (React DOM)
+- the styles for your components
+- the component you created in `src/App.js`.
 
 The remainder of the file brings all the pieces together and injects the final product into `index.html` in the `public` folder.
 
 ### Building the board {/*building-the-board*/}
 
-Let's get back to `App.js`. This is where you'll spend the rest of the tutorial.
+Let's get back to `src/App.js`. This is where you'll spend the rest of the tutorial.
 
 Currently the board is only a single square, but you need nine! If you just try and copy paste your square to make two squares like this:
 
@@ -389,7 +389,7 @@ Great! Now you just need to copy-paste a few times to add nine squares and...
 
 Oh no! The squares are all in a single line, not in a grid like you need for our board. To fix this you'll need to group your squares into rows with `div`s and add some CSS classes. While you're at it, you'll give each square a number to make sure you know where each square is displayed.
 
-In the `App.js` file, update the `Square` component to look like this:
+In the `src/App.js` file, update the `Square` component to look like this:
 
 ```js {3-19}
 export default function Square() {
@@ -415,7 +415,7 @@ export default function Square() {
 }
 ```
 
-The CSS defined in `styles.css` styles the divs with the `className` of `board-row`. Now that you've grouped your components into rows with the styled `div`s you have your tic-tac-toe board:
+The CSS defined in `src/styles.css` styles the divs with the `className` of `board-row`. Now that you've grouped your components into rows with the styled `div`s you have your tic-tac-toe board:
 
 ![tic-tac-toe board filled with numbers 1 through 9](../images/tutorial/number-filled-board.png)
 
@@ -431,7 +431,7 @@ At this point your code should look something like this:
 
 <Sandpack>
 
-```js
+```js src/App.js
 export default function Board() {
   return (
     <>
@@ -551,7 +551,7 @@ export default function Board() {
 }
 ```
 
-Note how unlike the browser `div`s, your own components `Board` and `Square` must start with a capital letter. 
+Note how unlike the browser `div`s, your own components `Board` and `Square` must start with a capital letter.
 
 Let's take a look:
 
@@ -723,7 +723,7 @@ function Square({ value }) {
 }
 ```
 
-If you click on a square now, you should see a log saying `"clicked!"` in the _Console_ tab at the bottom of the _Browser_ section in CodeSandbox. Clicking the square more than once will log `"clicked!"` again. Repeated console logs with the same message will not create more lines in the console. Instead, you will see an incrementing counter next to your first `"clicked!"` log.
+If you click on a square now, you should see a log saying `"clicked!"` in the *Console* tab at the bottom of the *Browser* section in CodeSandbox. Clicking the square more than once will log `"clicked!"` again. Repeated console logs with the same message will not create more lines in the console. Instead, you will see an incrementing counter next to your first `"clicked!"` log.
 
 <Note>
 
@@ -899,7 +899,7 @@ body {
 
 ### React Developer Tools {/*react-developer-tools*/}
 
-React DevTools let you check the props and the state of your React components. You can find the React DevTools tab at the bottom of the _browser_ section in CodeSandbox:
+React DevTools let you check the props and the state of your React components. You can find the React DevTools tab at the bottom of the *browser* section in CodeSandbox:
 
 ![React DevTools in CodeSandbox](../images/tutorial/codesandbox-devtools.png)
 
@@ -1094,7 +1094,7 @@ function Square({ value, onSquareClick }) {
 }
 ```
 
-Now you'll connect the `onSquareClick` prop to a function in the `Board` component that you'll name `handleClick`. To connect `onSquareClick` to `handleClick` you'll pass a function to the `onSquareClick` prop of the first `Square` component: 
+Now you'll connect the `onSquareClick` prop to a function in the `Board` component that you'll name `handleClick`. To connect `onSquareClick` to `handleClick` you'll pass a function to the `onSquareClick` prop of the first `Square` component:
 
 ```js {7}
 export default function Board() {
@@ -1337,7 +1337,7 @@ The DOM `<button>` element's `onClick` attribute has a special meaning to React 
 
 Note how in `handleClick`, you call `.slice()` to create a copy of the `squares` array instead of modifying the existing array. To explain why, we need to discuss immutability and why immutability is important to learn.
 
-There are generally two approaches to changing data. The first approach is to _mutate_ the data by directly changing the data's values. The second approach is to replace the data with a new copy which has the desired changes. Here is what it would look like if you mutated the `squares` array:
+There are generally two approaches to changing data. The first approach is to *mutate* the data by directly changing the data's values. The second approach is to replace the data with a new copy which has the desired changes. Here is what it would look like if you mutated the `squares` array:
 
 ```jsx
 const squares = [null, null, null, null, null, null, null, null, null];
@@ -1590,7 +1590,7 @@ export default function Board() {
 }
 ```
 
-Congratulations! You now have a working tic-tac-toe game. And you've just learned the basics of React too. So _you_ are the real winner here. Here is what the code should look like:
+Congratulations! You now have a working tic-tac-toe game. And you've just learned the basics of React too. So *you* are the real winner here. Here is what the code should look like:
 
 <Sandpack>
 
@@ -1772,7 +1772,7 @@ export default function Game() {
 }
 ```
 
-Note that you are removing the `export default` keywords before the `function Board() {` declaration and adding them before the `function Game() {` declaration. This tells your `index.js` file to use the `Game` component as the top-level component instead of your `Board` component. The additional `div`s returned by the `Game` component are making room for the game information you'll add to the board later.
+Note that you are removing the `export default` keywords before the `function Board() {` declaration and adding them before the `function Game() {` declaration. This tells your `src/index.js` file to use the `Game` component as the top-level component instead of your `Board` component. The additional `div`s returned by the `Game` component are making room for the game information you'll add to the board later.
 
 Add some state to the `Game` component to track which player is next and the history of moves:
 
@@ -2073,7 +2073,7 @@ export default function Game() {
 }
 ```
 
-You can see what your code should look like below. Note that you should see an error in the developer tools console that says: 
+You can see what your code should look like below. Note that you should see an error in the developer tools console that says:
 
 <ConsoleBlock level="warning">
 Warning: Each child in an array or iterator should have a unique "key" prop. Check the render method of &#96;Game&#96;.
@@ -2272,7 +2272,7 @@ to
 <li>Alexa: 5 tasks left</li>
 ```
 
-In addition to the updated counts, a human reading this would probably say that you swapped Alexa and Ben's ordering and inserted Claudia between Alexa and Ben. However, React is a computer program and does not know what you intended, so you need to specify a _key_ property for each list item to differentiate each list item from its siblings. If your data was from a database, Alexa, Ben, and Claudia's database IDs could be used as keys.
+In addition to the updated counts, a human reading this would probably say that you swapped Alexa and Ben's ordering and inserted Claudia between Alexa and Ben. However, React is a computer program and does not know what you intended, so you need to specify a *key* property for each list item to differentiate each list item from its siblings. If your data was from a database, Alexa, Ben, and Claudia's database IDs could be used as keys.
 
 ```js {1}
 <li key={user.id}>

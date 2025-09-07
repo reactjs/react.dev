@@ -6,7 +6,7 @@ import {memo} from 'react';
 
 export const IconExperimental = memo<
   JSX.IntrinsicElements['svg'] & {title?: string; size?: 's' | 'md'}
->(function IconCanary(
+>(function IconExperimental(
   {className, title, size} = {
     className: undefined,
     title: undefined,

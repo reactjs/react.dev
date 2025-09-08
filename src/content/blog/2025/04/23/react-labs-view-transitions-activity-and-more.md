@@ -11465,6 +11465,14 @@ _For more background on how we built View Transitions, see: [#31975](https://git
 
 ## Activity {/*activity*/}
 
+<Note>
+
+**`<Activity />` is now available in React’s Canary channel.**
+
+[Learn more about React’s release channels here.](/community/versioning-policy#all-release-channels)
+
+</Note>
+
 In [past](/blog/2022/06/15/react-labs-what-we-have-been-working-on-june-2022#offscreen) [updates](/blog/2024/02/15/react-labs-what-we-have-been-working-on-february-2024#offscreen-renamed-to-activity), we shared that we were researching an API to allow components to be visually hidden and deprioritized, preserving UI state with reduced performance costs relative to unmounting or hiding with CSS.
 
 We're now ready to share the API and how it works, so you can start testing it in experimental React versions.

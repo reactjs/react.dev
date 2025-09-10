@@ -131,3 +131,57 @@ Without `flushSync`, the print dialog will display `isPrinting` as "no". This is
 Most of the time, `flushSync` can be avoided, so use `flushSync` as a last resort.
 
 </Pitfall>
+
+---
+
+## Troubleshooting {/*troubleshooting*/}
+
+### I'm getting an error: "flushSync was called from inside a lifecycle method" {/*im-getting-an-error-flushsync-was-called-from-inside-a-lifecycle-method*/}
+
+You might get an error that says: `flushSync was called from inside a lifecycle method. React cannot flush when React is already rendering. Consider moving this call to a scheduler task or micro task.`
+
+This happens when you call `flushSync` while React is already rendering, such as inside:
+
+- Class component lifecycle methods (`componentDidMount`, `componentDidUpdate`, etc.)
+- `useLayoutEffect` or `useEffect` hooks
+- During the render phase of a component
+
+```js {1-2,4-6}
+import { useEffect } from 'react';
+import { flushSync } from 'react-dom';
+
+function MyComponent() {
+  useEffect(() => {
+    // 🚩 Wrong: calling flushSync inside an effect
+    flushSync(() => {
+      setSomething(newValue);
+    });
+  }, []);
+
+  return <div>{/* ... */}</div>;
+}
+```
+
+To fix this, move the `flushSync` call outside of the rendering cycle:
+
+```js {3-7}
+useEffect(() => {
+  // ✅ Correct: defer flushSync to a microtask
+  queueMicrotask(() => {
+    flushSync(() => {
+      setSomething(newValue);
+    });
+  });
+}, []);
+```
+
+Or move the `flushSync` call to an event handler:
+
+```js {2-6}
+function handleClick() {
+  // ✅ Correct: flushSync in event handlers is safe
+  flushSync(() => {
+    setSomething(newValue);
+  });
+}
+```

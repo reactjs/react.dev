@@ -138,13 +138,22 @@ Most of the time, `flushSync` can be avoided, so use `flushSync` as a last resor
 
 ### I'm getting an error: "flushSync was called from inside a lifecycle method" {/*im-getting-an-error-flushsync-was-called-from-inside-a-lifecycle-method*/}
 
-You might get an error that says: `flushSync was called from inside a lifecycle method. React cannot flush when React is already rendering. Consider moving this call to a scheduler task or micro task.`
 
-This happens when you call `flushSync` while React is already rendering, such as inside:
+React cannot `flushSync` in the middle of a render. If you call `flushSync` in render, it will noop and you'll see a warning:
+
+<ConsoleBlock level="error">
+
+Warning: flushSync was called from inside a lifecycle method. React cannot flush when React is already rendering. Consider moving this call to a scheduler task or micro task.
+
+</ConsoleBlock level="error">
+
+This can happen when you call `flushSync` inside:
 
 - Class component lifecycle methods (`componentDidMount`, `componentDidUpdate`, etc.)
 - `useLayoutEffect` or `useEffect` hooks
 - During the render phase of a component
+
+For example, if you call `flushSync` in an Effect:
 
 ```js {1-2,4-6}
 import { useEffect } from 'react';

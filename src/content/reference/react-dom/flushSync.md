@@ -145,7 +145,7 @@ React cannot `flushSync` in the middle of a render. If you call `flushSync` in r
 
 Warning: flushSync was called from inside a lifecycle method. React cannot flush when React is already rendering. Consider moving this call to a scheduler task or micro task.
 
-</ConsoleBlock level="error">
+</ConsoleBlock>
 
 This can happen when you call `flushSync` inside:
 

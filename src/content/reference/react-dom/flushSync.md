@@ -149,13 +149,13 @@ Warning: flushSync was called from inside a lifecycle method. React cannot flush
 
 This includes calling `flushSync` inside:
 
-- During the render phase of a component.
+- rendering a component.
 - `useLayoutEffect` or `useEffect` hooks.
 - Class component lifecycle methods.
 
-For example, calling `flushSync` in an Effect will noop and warn: 
+For example, calling `flushSync` in an Effect will noop and warn:
 
-```js {1-2,4-6}
+```js
 import { useEffect } from 'react';
 import { flushSync } from 'react-dom';
 
@@ -173,18 +173,19 @@ function MyComponent() {
 
 To fix this, you usually want to move the `flushSync` call to an event:
 
-```js {2-6}
+```js
 function handleClick() {
   // ✅ Correct: flushSync in event handlers is safe
   flushSync(() => {
     setSomething(newValue);
   });
 }
+```
 
 
-If it's difficult to move to an event, you can move the flush outside render using a microtask:
+If it's difficult to move to an event, you can defer `flushSync` in a microtask:
 
-```js {3-7}
+```js {3,7}
 useEffect(() => {
   // ✅ Correct: defer flushSync to a microtask
   queueMicrotask(() => {
@@ -193,5 +194,12 @@ useEffect(() => {
     });
   });
 }, []);
-
 ```
+
+This will allow the current render to finish and schedule another syncronous render to flush the updates.
+
+<Pitfall>
+
+`flushSync` can significantly hurt performance, but this particular pattern is even worse for performance. Exhaust all other options before calling `flushSync` in a microtask as an escape hatch.
+
+</Pitfall>

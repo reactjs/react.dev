@@ -19,31 +19,37 @@ function areEqual(prevProps: DocsPageFooterProps, props: DocsPageFooterProps) {
 
 export const DocsPageFooter = memo<DocsPageFooterProps>(
   function DocsPageFooter({nextRoute, prevRoute, route}) {
-    if (!route || route?.heading) {
+    if (!route || route?.heading || !route.path || route.path === '/blog') {
       return null;
+    }
+
+    let next;
+    let prev;
+    if (route.path.indexOf('/blog') === 0) {
+      next = prevRoute;
+      prev = nextRoute;
+    } else {
+      next = nextRoute;
+      prev = prevRoute;
     }
 
     return (
       <>
-        {prevRoute?.path || nextRoute?.path ? (
+        {prev?.path || next?.path ? (
           <>
             <div className="grid grid-cols-1 gap-4 py-4 mx-auto max-w-7xl md:grid-cols-2 md:py-12">
-              {prevRoute?.path ? (
+              {prev?.path ? (
                 <FooterLink
                   type="Previous"
-                  title={prevRoute.title}
-                  href={prevRoute.path}
+                  title={prev.title}
+                  href={prev.path}
                 />
               ) : (
                 <div />
               )}
 
-              {nextRoute?.path ? (
-                <FooterLink
-                  type="Next"
-                  title={nextRoute.title}
-                  href={nextRoute.path}
-                />
+              {next?.path && next.path !== '/blog' ? (
+                <FooterLink type="Next" title={next.title} href={next.path} />
               ) : (
                 <div />
               )}

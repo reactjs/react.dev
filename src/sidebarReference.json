@@ -107,7 +107,7 @@
         {
           "title": "<Activity>",
           "path": "/reference/react/Activity",
-          "version": "experimental"
+          "version": "canary"
         },
         {
           "title": "<ViewTransition>",

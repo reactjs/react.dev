@@ -131,3 +131,75 @@ Without `flushSync`, the print dialog will display `isPrinting` as "no". This is
 Most of the time, `flushSync` can be avoided, so use `flushSync` as a last resort.
 
 </Pitfall>
+
+---
+
+## Troubleshooting {/*troubleshooting*/}
+
+### I'm getting an error: "flushSync was called from inside a lifecycle method" {/*im-getting-an-error-flushsync-was-called-from-inside-a-lifecycle-method*/}
+
+
+React cannot `flushSync` in the middle of a render. If you do, it will noop and warn:
+
+<ConsoleBlock level="error">
+
+Warning: flushSync was called from inside a lifecycle method. React cannot flush when React is already rendering. Consider moving this call to a scheduler task or micro task.
+
+</ConsoleBlock>
+
+This includes calling `flushSync` inside:
+
+- rendering a component.
+- `useLayoutEffect` or `useEffect` hooks.
+- Class component lifecycle methods.
+
+For example, calling `flushSync` in an Effect will noop and warn:
+
+```js
+import { useEffect } from 'react';
+import { flushSync } from 'react-dom';
+
+function MyComponent() {
+  useEffect(() => {
+    // 🚩 Wrong: calling flushSync inside an effect
+    flushSync(() => {
+      setSomething(newValue);
+    });
+  }, []);
+
+  return <div>{/* ... */}</div>;
+}
+```
+
+To fix this, you usually want to move the `flushSync` call to an event:
+
+```js
+function handleClick() {
+  // ✅ Correct: flushSync in event handlers is safe
+  flushSync(() => {
+    setSomething(newValue);
+  });
+}
+```
+
+
+If it's difficult to move to an event, you can defer `flushSync` in a microtask:
+
+```js {3,7}
+useEffect(() => {
+  // ✅ Correct: defer flushSync to a microtask
+  queueMicrotask(() => {
+    flushSync(() => {
+      setSomething(newValue);
+    });
+  });
+}, []);
+```
+
+This will allow the current render to finish and schedule another syncronous render to flush the updates.
+
+<Pitfall>
+
+`flushSync` can significantly hurt performance, but this particular pattern is even worse for performance. Exhaust all other options before calling `flushSync` in a microtask as an escape hatch.
+
+</Pitfall>

@@ -50,6 +50,21 @@ const ExpensiveComponent = memo(function ExpensiveComponent({ data, onClick }) {
 });
 ```
 
+
+<Note>
+
+This manual memoization has a subtle bug that breaks memoization:
+
+```js [[2, 1, "() => handleClick(item)"]]
+<Item key={item.id} onClick={() => handleClick(item)} />
+```
+
+Even though `handleClick` is wrapped in `useCallback`, the arrow function `() => handleClick(item)` creates a new function every time the component renders. This means that `Item` will always receive a new `onClick` prop, breaking memoization.
+
+React Compiler is able to optimize this correctly with or without the arrow function, ensuring that `Item` only re-renders when `props.onClick` changes.
+
+</Note>
+
 ### After React Compiler {/*after-react-compiler*/}
 
 With React Compiler, you write the same code without manual memoization:
@@ -74,7 +89,7 @@ function ExpensiveComponent({ data, onClick }) {
 
 _[See this example in the React Compiler Playground](https://playground.react.dev/#N4Igzg9grgTgxgUxALhAMygOzgFwJYSYAEAogB4AOCmYeAbggMIQC2Fh1OAFMEQCYBDHAIA0RQowA2eOAGsiAXwCURYAB1iROITA4iFGBERgwCPgBEhAogF4iCStVoMACoeO1MAcy6DhSgG4NDSItHT0ACwFMPkkmaTlbIi48HAQWFRsAPlUQ0PFMKRlZFLSWADo8PkC8hSDMPJgEHFhiLjzQgB4+eiyO-OADIwQTM0thcpYBClL02xz2zXz8zoBJMqJZBABPG2BU9Mq+BQKiuT2uTJyomLizkoOMk4B6PqX8pSUFfs7nnro3qEapgFCAFEA)_
 
-React Compiler automatically applies the equivalent optimizations, ensuring your app only re-renders when necessary.
+React Compiler automatically applies the optimal memoization, ensuring your app only re-renders when necessary.
 
 <DeepDive>
 #### What kind of memoization does React Compiler add? {/*what-kind-of-memoization-does-react-compiler-add*/}

@@ -144,11 +144,11 @@ export function Page({
       <div
         className={cn(
           hasColumns &&
-            'grid grid-cols-only-content lg:grid-cols-sidebar-content 2xl:grid-cols-sidebar-content-toc'
+            'grid grid-cols-only-content md:grid-cols-sidebar-content lg:grid-cols-sidebar-content 2xl:grid-cols-sidebar-content-toc'
         )}>
         {showSidebar && (
-          <div className="lg:-mt-16 z-10">
-            <div className="fixed top-0 py-0 shadow lg:pt-16 lg:sticky start-0 end-0 lg:shadow-none">
+          <div className="md:-mt-16 z-10">
+            <div className="fixed top-0 py-0 shadow md:pt-16 md:sticky start-0 end-0 md:shadow-none">
               <SidebarNav
                 key={section}
                 routeTree={routeTree}

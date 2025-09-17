@@ -23,7 +23,7 @@ Here's a component that renders a sculpture image. Clicking the "Next" button sh
 
 <Sandpack>
 
-```js
+```js {expectedErrors: {'react-compiler': [7]}}
 import { sculptureList } from './data.js';
 
 export default function Gallery() {
@@ -1229,7 +1229,7 @@ When you type into the input fields, nothing appears. It's like the input values
 
 <Sandpack>
 
-```js
+```js {expectedErrors: {'react-compiler': [6]}}
 export default function Form() {
   let firstName = '';
   let lastName = '';
@@ -1337,7 +1337,7 @@ Are there any limitations on _where_ Hooks may be called? Does this component br
 
 <Sandpack>
 
-```js
+```js {expectedErrors: {'react-compiler': [9]}}
 import { useState } from 'react';
 
 export default function FeedbackForm() {

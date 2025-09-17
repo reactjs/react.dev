@@ -34,7 +34,7 @@ To help you gain the right intuition, let's look at some common concrete example
 
 Suppose you have a component with two state variables: `firstName` and `lastName`. You want to calculate a `fullName` from them by concatenating them. Moreover, you'd like `fullName` to update whenever `firstName` or `lastName` change. Your first instinct might be to add a `fullName` state variable and update it in an Effect:
 
-```js {5-9}
+```js {expectedErrors: {'react-compiler': [8]}} {5-9}
 function Form() {
   const [firstName, setFirstName] = useState('Taylor');
   const [lastName, setLastName] = useState('Swift');
@@ -66,7 +66,7 @@ function Form() {
 
 This component computes `visibleTodos` by taking the `todos` it receives by props and filtering them according to the `filter` prop. You might feel tempted to store the result in state and update it from an Effect:
 
-```js {4-8}
+```js {expectedErrors: {'react-compiler': [7]}} {4-8}
 function TodoList({ todos, filter }) {
   const [newTodo, setNewTodo] = useState('');
 
@@ -165,7 +165,7 @@ Also note that measuring performance in development will not give you the most a
 
 This `ProfilePage` component receives a `userId` prop. The page contains a comment input, and you use a `comment` state variable to hold its value. One day, you notice a problem: when you navigate from one profile to another, the `comment` state does not get reset. As a result, it's easy to accidentally post a comment on a wrong user's profile. To fix the issue, you want to clear out the `comment` state variable whenever the `userId` changes:
 
-```js {4-7}
+```js {expectedErrors: {'react-compiler': [6]}} {4-7}
 export default function ProfilePage({ userId }) {
   const [comment, setComment] = useState('');
 
@@ -208,7 +208,7 @@ Sometimes, you might want to reset or adjust a part of the state on a prop chang
 
 This `List` component receives a list of `items` as a prop, and maintains the selected item in the `selection` state variable. You want to reset the `selection` to `null` whenever the `items` prop receives a different array:
 
-```js {5-8}
+```js {expectedErrors: {'react-compiler': [7]}} {5-8}
 function List({ items }) {
   const [isReverse, setIsReverse] = useState(false);
   const [selection, setSelection] = useState(null);
@@ -819,7 +819,7 @@ Simplify this component by removing all the unnecessary state and Effects.
 
 <Sandpack>
 
-```js
+```js {expectedErrors: {'react-compiler': [12, 16, 20]}}
 import { useState, useEffect } from 'react';
 import { initialTodos, createTodo } from './todos.js';
 
@@ -1022,7 +1022,7 @@ One solution is to add a `useMemo` call to cache the visible todos. There is als
 
 <Sandpack>
 
-```js
+```js {expectedErrors: {'react-compiler': [11]}}
 import { useState, useEffect } from 'react';
 import { initialTodos, createTodo, getVisibleTodos } from './todos.js';
 
@@ -1106,7 +1106,7 @@ Remove the state variable and the Effect, and instead add a `useMemo` call to ca
 
 <Sandpack>
 
-```js
+```js {expectedErrors: {'react-compiler': [8]}}
 import { useState, useMemo } from 'react';
 import { initialTodos, createTodo, getVisibleTodos } from './todos.js';
 
@@ -1363,7 +1363,7 @@ export default function ContactList({
 }
 ```
 
-```js src/EditContact.js active
+```js {expectedErrors: {'react-compiler': [8, 9]}} src/EditContact.js active
 import { useState, useEffect } from 'react';
 
 export default function EditContact({ savedContact, onSave }) {

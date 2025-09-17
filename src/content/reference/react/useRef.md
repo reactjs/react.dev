@@ -197,7 +197,7 @@ React expects that the body of your component [behaves like a pure function](/le
 
 Reading or writing a ref **during rendering** breaks these expectations.
 
-```js {3-4,6-7}
+```js {expectedErrors: {'react-compiler': [4]}} {3-4,6-7}
 function MyComponent() {
   // ...
   // 🚩 Don't write a ref during rendering

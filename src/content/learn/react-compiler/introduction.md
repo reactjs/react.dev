@@ -28,7 +28,7 @@ React Compiler automatically optimizes your React application at build time. Rea
 
 Without the compiler, you need to manually memoize components and values to optimize re-renders:
 
-```js
+```js {expectedErrors: {'react-compiler': [4]}}
 import { useMemo, useCallback, memo } from 'react';
 
 const ExpensiveComponent = memo(function ExpensiveComponent({ data, onClick }) {

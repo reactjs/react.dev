@@ -546,7 +546,7 @@ Clicking this button is supposed to switch the page background between white and
 
 <Sandpack>
 
-```js
+```js {expectedErrors: {'react-compiler': [5, 7]}}
 export default function LightSwitch() {
   function handleClick() {
     let bodyStyle = document.body.style;

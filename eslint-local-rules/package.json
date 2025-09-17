@@ -1,0 +1,6 @@
+{
+  "name": "eslint-plugin-local-rules",
+  "version": "0.0.0",
+  "main": "index.js",
+  "private": "true"
+}

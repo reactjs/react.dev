@@ -682,7 +682,8 @@ export default function AboutTab() {
 }
 ```
 
-```js src/PostsTab.js
+{/* TODO(@poteto) - investigate potential false positives in react compiler validation */}
+```js {expectedErrors: {'react-compiler': [19, 20]}} src/PostsTab.js
 import { memo } from 'react';
 
 const PostsTab = memo(function PostsTab() {
@@ -837,7 +838,8 @@ export default function AboutTab() {
 }
 ```
 
-```js src/PostsTab.js
+{/* TODO(@poteto) - investigate potential false positives in react compiler validation */}
+```js {expectedErrors: {'react-compiler': [19, 20]}} src/PostsTab.js
 import { memo } from 'react';
 
 const PostsTab = memo(function PostsTab() {

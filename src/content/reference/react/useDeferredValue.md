@@ -669,7 +669,8 @@ export default function App() {
 }
 ```
 
-```js src/SlowList.js
+<!-- TODO(@poteto) - investigate potential false positives in react compiler validation -->
+```js {expectedErrors: {'react-compiler': [19, 20]}} src/SlowList.js
 import { memo } from 'react';
 
 const SlowList = memo(function SlowList({ text }) {
@@ -746,7 +747,8 @@ export default function App() {
 }
 ```
 
-```js src/SlowList.js
+<!-- TODO(@poteto) - investigate potential false positives in react compiler validation -->
+```js {expectedErrors: {'react-compiler': [19, 20]}} src/SlowList.js
 import { memo } from 'react';
 
 const SlowList = memo(function SlowList({ text }) {

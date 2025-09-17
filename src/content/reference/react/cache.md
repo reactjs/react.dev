@@ -323,7 +323,8 @@ All mentioned APIs offer memoization but the difference is what they're intended
 
 In general, you should use [`useMemo`](/reference/react/useMemo) for caching an expensive computation in a Client Component across renders. As an example, to memoize a transformation of data within a component.
 
-```jsx {4}
+<!-- TODO(@poteto) - investigate potential false positives in react compiler validation -->
+```jsx {expectedErrors: {'react-compiler': [4]}} {4}
 'use client';
 
 function WeatherReport({record}) {
@@ -495,4 +496,3 @@ function App() {
   );
 }
 ```
-

@@ -296,7 +296,8 @@ import App from './App.js';
 hydrateRoot(document.getElementById('root'), <App />);
 ```
 
-```js src/App.js active
+<!-- TODO(@poteto) - investigate potential false positives in react compiler validation -->
+```js {expectedErrors: {'react-compiler': [7]}} src/App.js active
 import { useState, useEffect } from "react";
 
 export default function App() {

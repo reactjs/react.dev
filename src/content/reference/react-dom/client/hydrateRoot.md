@@ -296,8 +296,7 @@ import App from './App.js';
 hydrateRoot(document.getElementById('root'), <App />);
 ```
 
-{/* kind of an edge case, seems fine to use this hack here */}
-```js {expectedErrors: {'react-compiler': [7]}} src/App.js active
+```js src/App.js active
 import { useState, useEffect } from "react";
 
 export default function App() {

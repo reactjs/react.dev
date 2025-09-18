@@ -474,7 +474,7 @@ By strictly only writing your components as pure functions, you can avoid an ent
 
 <Sandpack>
 
-```js {expectedErrors: {'react-compiler': [5]}}
+```js
 let guest = 0;
 
 function Cup() {

@@ -55,7 +55,7 @@ This example holds an object in state to represent the current pointer position.
 
 <Sandpack>
 
-```js
+```js {expectedErrors: {'react-compiler': [11]}}
 import { useState } from 'react';
 
 export default function MovingDot() {
@@ -209,7 +209,7 @@ These input fields don't work because the `onChange` handlers mutate the state:
 
 <Sandpack>
 
-```js
+```js {expectedErrors: {'react-compiler': [11, 15, 19]}}
 import { useState } from 'react';
 
 export default function Form() {
@@ -832,7 +832,7 @@ Your task is to fix all of these bugs. As you fix them, explain why each of them
 
 <Sandpack>
 
-```js
+```js {expectedErrors: {'react-compiler': [11]}}
 import { useState } from 'react';
 
 export default function Scoreboard() {
@@ -988,7 +988,7 @@ If something unexpected changes, there is a mutation. Find the mutation in `App.
 
 <Sandpack>
 
-```js src/App.js
+```js {expectedErrors: {'react-compiler': [17]}} src/App.js
 import { useState } from 'react';
 import Background from './Background.js';
 import Box from './Box.js';
@@ -1293,7 +1293,7 @@ This is the same buggy example as in the previous challenge. This time, fix the 
 
 <Sandpack>
 
-```js src/App.js
+```js {expectedErrors: {'react-compiler': [18]}} src/App.js
 import { useState } from 'react';
 import { useImmer } from 'use-immer';
 import Background from './Background.js';

@@ -711,7 +711,7 @@ Here, `url` inside `onVisit` corresponds to the *latest* `url` (which could have
 
 In the existing codebases, you may sometimes see the lint rule suppressed like this:
 
-```js {7-9}
+```js {expectedErrors: {'react-compiler': [8]}} {7-9}
 function Page({ url }) {
   const { items } = useContext(ShoppingCartContext);
   const numberOfItems = items.length;
@@ -735,7 +735,7 @@ Can you see why?
 
 <Sandpack>
 
-```js
+```js {expectedErrors: {'react-compiler': [16]}}
 import { useState, useEffect } from 'react';
 
 export default function App() {
@@ -990,7 +990,7 @@ To fix this code, it's enough to follow the rules.
 ```
 
 
-```js
+```js {expectedErrors: {'react-compiler': [14]}}
 import { useState, useEffect } from 'react';
 
 export default function Timer() {

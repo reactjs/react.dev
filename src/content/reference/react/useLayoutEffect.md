@@ -48,7 +48,7 @@ function Tooltip() {
 #### Parameters {/*parameters*/}
 
 * `setup`: The function with your Effect's logic. Your setup function may also optionally return a *cleanup* function. Before your component is added to the DOM, React will run your setup function. After every re-render with changed dependencies, React will first run the cleanup function (if you provided it) with the old values, and then run your setup function with the new values. Before your component is removed from the DOM, React will run your cleanup function.
- 
+
 * **optional** `dependencies`: The list of all reactive values referenced inside of the `setup` code. Reactive values include props, state, and all the variables and functions declared directly inside your component body. If your linter is [configured for React](/learn/editor-setup#linting), it will verify that every reactive value is correctly specified as a dependency. The list of dependencies must have a constant number of items and be written inline like `[dep1, dep2, dep3]`. React will compare each dependency with its previous value using the [`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is) comparison. If you omit this argument, your Effect will re-run after every re-render of the component.
 
 #### Returns {/*returns*/}
@@ -87,7 +87,8 @@ To do this, you need to render in two passes:
 
 **All of this needs to happen before the browser repaints the screen.** You don't want the user to see the tooltip moving. Call `useLayoutEffect` to perform the layout measurements before the browser repaints the screen:
 
-```js {5-8}
+{/* TODO(@poteto) - fixed by https://github.com/facebook/react/pull/34462. need a new release */}
+```js {expectedErrors: {'react-compiler': [7]}} {5-8}
 function Tooltip() {
   const ref = useRef(null);
   const [tooltipHeight, setTooltipHeight] = useState(0); // You don't know real height yet
@@ -187,7 +188,8 @@ export default function ButtonWithTooltip({ tooltipContent, ...rest }) {
 }
 ```
 
-```js src/Tooltip.js active
+{/* TODO(@poteto) - fixed by https://github.com/facebook/react/pull/34462. need a new release */}
+```js {expectedErrors: {'react-compiler': [11]}} src/Tooltip.js active
 import { useRef, useLayoutEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 import TooltipContainer from './TooltipContainer.js';
@@ -337,7 +339,8 @@ export default function ButtonWithTooltip({ tooltipContent, ...rest }) {
 }
 ```
 
-```js src/Tooltip.js active
+{/* TODO(@poteto) - fixed by https://github.com/facebook/react/pull/34462. need a new release */}
+```js {expectedErrors: {'react-compiler': [11]}} src/Tooltip.js active
 import { useRef, useLayoutEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 import TooltipContainer from './TooltipContainer.js';
@@ -484,7 +487,8 @@ export default function ButtonWithTooltip({ tooltipContent, ...rest }) {
 }
 ```
 
-```js src/Tooltip.js active
+{/* TODO(@poteto) - fixed by https://github.com/facebook/react/pull/34462. need a new release */}
+```js {expectedErrors: {'react-compiler': [11]}} src/Tooltip.js active
 import { useRef, useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 import TooltipContainer from './TooltipContainer.js';
@@ -627,7 +631,7 @@ export default function ButtonWithTooltip({ tooltipContent, ...rest }) {
 }
 ```
 
-```js src/Tooltip.js active
+```js {expectedErrors: {'react-compiler': [10, 11]}} src/Tooltip.js active
 import { useRef, useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 import TooltipContainer from './TooltipContainer.js';

@@ -928,7 +928,8 @@ Note the `ignore` variable which is initialized to `false`, and is set to `true`
 
 <Sandpack>
 
-```js src/App.js
+{/* TODO(@poteto) - investigate potential false positives in react compiler validation */}
+```js {expectedErrors: {'react-compiler': [9]}} src/App.js
 import { useState, useEffect } from 'react';
 import { fetchBio } from './api.js';
 
@@ -1737,7 +1738,9 @@ If your app uses server rendering (either [directly](/reference/react-dom/server
 
 In rare cases, you might need to display different content on the client. For example, if your app reads some data from [`localStorage`](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage), it can't possibly do that on the server. Here is how you could implement this:
 
-```js
+
+{/* TODO(@poteto) - investigate potential false positives in react compiler validation */}
+```js {expectedErrors: {'react-compiler': [5]}}
 function MyComponent() {
   const [didMount, setDidMount] = useState(false);
 

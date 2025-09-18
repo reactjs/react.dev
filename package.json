@@ -72,6 +72,7 @@
     "eslint-plugin-react": "7.x",
     "eslint-plugin-react-compiler": "^19.0.0-beta-e552027-20250112",
     "eslint-plugin-react-hooks": "^0.0.0-experimental-fabef7a6b-20221215",
+    "eslint-plugin-unused-imports": "^1.1.5",
     "fs-extra": "^9.0.1",
     "globby": "^11.0.1",
     "gray-matter": "^4.0.2",

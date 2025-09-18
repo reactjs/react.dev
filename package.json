@@ -18,7 +18,7 @@
     "ci-check": "npm-run-all prettier:diff --parallel lint tsc lint-heading-ids rss deadlinks",
     "tsc": "tsc --noEmit",
     "start": "next start",
-    "postinstall": "is-ci || husky install .husky",
+    "postinstall": "yarn --cwd eslint-local-rules install && is-ci || husky install .husky",
     "check-all": "npm-run-all prettier lint:fix tsc rss",
     "rss": "node scripts/generateRss.js",
     "deadlinks": "node scripts/deadLinkChecker.js",

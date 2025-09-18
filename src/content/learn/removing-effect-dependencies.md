@@ -303,7 +303,7 @@ Suppressing the linter leads to very unintuitive bugs that are hard to find and 
 
 <Sandpack>
 
-```js
+```js {expectedErrors: {'react-compiler': [14]}}
 import { useState, useEffect } from 'react';
 
 export default function Timer() {
@@ -794,7 +794,7 @@ It is important to declare it as a dependency! This ensures, for example, that i
 
 <Sandpack>
 
-```js
+```js {expectedErrors: {'react-compiler': [10]}}
 import { useState, useEffect } from 'react';
 import { createConnection } from './chat.js';
 

@@ -1,3 +1,10 @@
+/**
+ * Copyright (c) Meta Platforms, Inc. and affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 const remark = require('remark');
 const externalLinks = require('remark-external-links'); // Add _target and rel to external links
 const customHeaders = require('./remark-header-custom-ids'); // Custom header id's for i18n

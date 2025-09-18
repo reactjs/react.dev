@@ -3405,6 +3405,10 @@ eslint-plugin-jsx-a11y@^6.4.1:
     safe-regex-test "^1.0.3"
     string.prototype.includes "^2.0.0"
 
+"eslint-plugin-local-rules@link:eslint-local-rules":
+  version "0.0.0"
+  uid ""
+
 eslint-plugin-react-compiler@^19.0.0-beta-e552027-20250112:
   version "19.0.0-beta-e552027-20250112"
   resolved "https://registry.yarnpkg.com/eslint-plugin-react-compiler/-/eslint-plugin-react-compiler-19.0.0-beta-e552027-20250112.tgz#f4ad9cebe47615ebf6097a8084a30d761ee164f4"

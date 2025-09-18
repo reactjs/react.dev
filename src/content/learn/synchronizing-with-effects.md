@@ -95,7 +95,7 @@ You might be tempted to try to call `play()` or `pause()` during rendering, but 
 
 <Sandpack>
 
-```js
+```js {expectedErrors: {'react-compiler': [7, 9]}}
 import { useState, useRef, useEffect } from 'react';
 
 function VideoPlayer({ src, isPlaying }) {
@@ -1468,7 +1468,8 @@ This component shows the biography for the selected person. It loads the biograp
 
 <Sandpack>
 
-```js src/App.js
+{/* TODO(@poteto) - investigate potential false positives in react compiler validation */}
+```js {expectedErrors: {'react-compiler': [9]}} src/App.js
 import { useState, useEffect } from 'react';
 import { fetchBio } from './api.js';
 
@@ -1541,7 +1542,8 @@ To fix this race condition, add a cleanup function:
 
 <Sandpack>
 
-```js src/App.js
+{/* TODO(@poteto) - investigate potential false positives in react compiler validation */}
+```js {expectedErrors: {'react-compiler': [9]}} src/App.js
 import { useState, useEffect } from 'react';
 import { fetchBio } from './api.js';
 
@@ -1605,4 +1607,3 @@ In addition to ignoring the result of an outdated API call, you can also use [`A
 </Solution>
 
 </Challenges>
-

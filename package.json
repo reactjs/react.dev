@@ -7,8 +7,8 @@
     "analyze": "ANALYZE=true next build",
     "dev": "next-remote-watch ./src/content",
     "build": "next build && node --experimental-modules ./scripts/downloadFonts.mjs",
-    "lint": "next lint",
-    "lint:fix": "next lint --fix",
+    "lint": "next lint && eslint \"src/content/**/*.md\"",
+    "lint:fix": "next lint --fix && eslint \"src/content/**/*.md\" --fix",
     "format:source": "prettier --config .prettierrc --write \"{plugins,src}/**/*.{js,ts,jsx,tsx,css}\"",
     "nit:source": "prettier --config .prettierrc --list-different \"{plugins,src}/**/*.{js,ts,jsx,tsx,css}\"",
     "prettier": "yarn format:source",
@@ -22,7 +22,8 @@
     "check-all": "npm-run-all prettier lint:fix tsc rss",
     "rss": "node scripts/generateRss.js",
     "deadlinks": "node scripts/deadLinkChecker.js",
-    "copyright": "node scripts/copyright.js"
+    "copyright": "node scripts/copyright.js",
+    "test:eslint-local-rules": "yarn --cwd eslint-local-rules test"
   },
   "dependencies": {
     "@codesandbox/sandpack-react": "2.13.5",
@@ -70,6 +71,7 @@
     "eslint-plugin-flowtype": "4.x",
     "eslint-plugin-import": "2.x",
     "eslint-plugin-jsx-a11y": "6.x",
+    "eslint-plugin-local-rules": "link:eslint-local-rules",
     "eslint-plugin-react": "7.x",
     "eslint-plugin-react-compiler": "^19.0.0-beta-e552027-20250112",
     "eslint-plugin-react-hooks": "^0.0.0-experimental-fabef7a6b-20221215",

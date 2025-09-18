@@ -16,6 +16,59 @@ export const AppJSPath = `/src/App.js`;
 export const StylesCSSPath = `/src/styles.css`;
 export const SUPPORTED_FILES = [AppJSPath, StylesCSSPath];
 
+/**
+ * Tokenize meta attributes while ignoring brace-wrapped metadata (e.g. {expectedErrors: …}).
+ */
+function splitMeta(meta: string): string[] {
+  const tokens: string[] = [];
+  let current = '';
+  let depth = 0;
+  const trimmed = meta.trim();
+
+  for (let ii = 0; ii < trimmed.length; ii++) {
+    const char = trimmed[ii];
+
+    if (char === '{') {
+      if (depth === 0 && current) {
+        tokens.push(current);
+        current = '';
+      }
+      depth += 1;
+      continue;
+    }
+
+    if (char === '}') {
+      if (depth > 0) {
+        depth -= 1;
+      }
+      if (depth === 0) {
+        current = '';
+      }
+      continue;
+    }
+
+    if (depth > 0) {
+      continue;
+    }
+
+    if (/\s/.test(char)) {
+      if (current) {
+        tokens.push(current);
+        current = '';
+      }
+      continue;
+    }
+
+    current += char;
+  }
+
+  if (current) {
+    tokens.push(current);
+  }
+
+  return tokens;
+}
+
 export const createFileMap = (codeSnippets: any) => {
   return codeSnippets.reduce(
     (result: Record<string, SandpackFile>, codeSnippet: React.ReactElement) => {
@@ -37,15 +90,32 @@ export const createFileMap = (codeSnippets: any) => {
       let fileActive = false; // if the file tab is shown by default
 
       if (props.meta) {
-        const [name, ...params] = props.meta.split(' ');
-        filePath = '/' + name;
-        if (params.includes('hidden')) {
+        const tokens = splitMeta(props.meta);
+        const name = tokens.find(
+          (token) => token.includes('/') || token.includes('.')
+        );
+        if (name) {
+          filePath = name.startsWith('/') ? name : `/${name}`;
+        }
+        if (tokens.includes('hidden')) {
           fileHidden = true;
         }
-        if (params.includes('active')) {
+        if (tokens.includes('active')) {
           fileActive = true;
         }
       } else {
+        if (props.className === 'language-js') {
+          filePath = AppJSPath;
+        } else if (props.className === 'language-css') {
+          filePath = StylesCSSPath;
+        } else {
+          throw new Error(
+            `Code block is missing a filename: ${props.children}`
+          );
+        }
+      }
+
+      if (!filePath) {
         if (props.className === 'language-js') {
           filePath = AppJSPath;
         } else if (props.className === 'language-css') {

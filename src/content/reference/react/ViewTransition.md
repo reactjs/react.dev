@@ -519,7 +519,6 @@ button:hover {
   background-image: conic-gradient(at top right, #c76a15, #a6423a, #2b3491);
 }
 .thumbnail.fullscreen {
-  height: 100%;
   width: 100%;
 }
 .video {

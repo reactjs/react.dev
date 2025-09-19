@@ -159,7 +159,11 @@ Enter/Exit Transitions trigger when a `<ViewTransition>` is added or removed by 
 
 ```js
 function Child() {
-  return <ViewTransition>Hi</ViewTransition>
+  return (
+    <ViewTransition>
+      <div>Hi</div>
+    </ViewTransition>
+  );
 }
 
 function Parent() {
@@ -352,11 +356,7 @@ button:hover {
 
 ```js [3, 5]
 function Component() {
-  return (
-    <div>
-      <ViewTransition>Hi</ViewTransition>
-    </div>
-  );
+  return <ViewTransition>Hi</ViewTransition>;
 }
 ```
 

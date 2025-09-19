@@ -32,9 +32,6 @@ jobs:
 
       - name: Install deps
         run: yarn install --frozen-lockfile
-      - name: Install deps (eslint-local-rules)
-        run: yarn install --frozen-lockfile
-        working-directory: eslint-local-rules
 
       - name: Lint codebase
         run: yarn ci-check

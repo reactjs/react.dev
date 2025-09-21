@@ -16,7 +16,7 @@ interface ButtonLinkProps {
   size?: 'md' | 'lg';
   type?: 'primary' | 'secondary';
   label?: string;
-  target?: '_self' | '_blank';
+  target?: '_self' | "_blank";
 }
 
 function ButtonLink({

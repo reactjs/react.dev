@@ -12,6 +12,7 @@ import type {SVGProps} from 'react';
 
 export function Logo(props: SVGProps<SVGSVGElement>) {
   return (
+    <>
     <svg
       width="100%"
       height="100%"
@@ -26,5 +27,6 @@ export function Logo(props: SVGProps<SVGSVGElement>) {
         <ellipse rx="10" ry="4.5" transform="rotate(120)" />
       </g>
     </svg>
+    </>
   );
 }

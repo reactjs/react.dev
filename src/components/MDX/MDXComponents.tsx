@@ -106,6 +106,10 @@ const Canary = ({children}: {children: React.ReactNode}) => (
   <ExpandableCallout type="canary">{children}</ExpandableCallout>
 );
 
+const RC = ({children}: {children: React.ReactNode}) => (
+  <ExpandableCallout type="rc">{children}</ExpandableCallout>
+);
+
 const Experimental = ({children}: {children: React.ReactNode}) => (
   <ExpandableCallout type="experimental">{children}</ExpandableCallout>
 );
@@ -533,6 +537,7 @@ export const MDXComponents = {
   Math,
   MathI,
   Note,
+  RC,
   Canary,
   Experimental,
   ExperimentalBadge,

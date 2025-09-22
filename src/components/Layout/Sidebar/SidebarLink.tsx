@@ -24,7 +24,7 @@ interface SidebarLinkProps {
   selected?: boolean;
   title: string;
   level: number;
-  version?: 'canary' | 'major' | 'experimental';
+  version?: 'canary' | 'major' | 'experimental' | 'rc';
   icon?: React.ReactNode;
   isExpanded?: boolean;
   hideArrow?: boolean;
@@ -99,6 +99,12 @@ export function SidebarLink({
         {version === 'experimental' && (
           <IconExperimental
             title=" - This feature is available in the latest Experimental version of React"
+            className="ms-1 text-gray-30 dark:text-gray-60 inline-block w-3.5 h-3.5 align-[-3px]"
+          />
+        )}
+        {version === 'rc' && (
+          <IconCanary
+            title=" - This feature is available in the latest RC version"
             className="ms-1 text-gray-30 dark:text-gray-60 inline-block w-3.5 h-3.5 align-[-3px]"
           />
         )}

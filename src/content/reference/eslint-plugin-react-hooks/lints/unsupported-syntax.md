@@ -1,5 +1,6 @@
 ---
 title: unsupported-syntax
+version: rc
 ---
 
 <Intro>
@@ -7,6 +8,14 @@ title: unsupported-syntax
 Validates against syntax that React Compiler does not support. If you need to, you can still use this syntax outside of React, such as in a standalone utility function.
 
 </Intro>
+
+<RC>
+
+This rule is available in the RC version of `eslint-plugin-react-hooks`.
+
+You can try it by upgrading the lint plugin [to the most recent RC version](/learn/react-compiler/installation#eslint-integration).
+
+</RC>
 
 ## Rule Details {/*rule-details*/}
 

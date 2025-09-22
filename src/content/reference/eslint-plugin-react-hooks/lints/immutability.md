@@ -1,5 +1,6 @@
 ---
 title: immutability
+version: rc
 ---
 
 <Intro>
@@ -7,6 +8,14 @@ title: immutability
 Validates against mutating props, state, and other values that [are immutable](/reference/rules/components-and-hooks-must-be-pure#props-and-state-are-immutable).
 
 </Intro>
+
+<RC>
+
+This rule is available in the RC version of `eslint-plugin-react-hooks`.
+
+You can try it by upgrading the lint plugin [to the most recent RC version](/learn/react-compiler/installation#eslint-integration).
+
+</RC>
 
 ## Rule Details {/*rule-details*/}
 

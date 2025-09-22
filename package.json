@@ -5,7 +5,7 @@
   "license": "CC",
   "scripts": {
     "analyze": "ANALYZE=true next build",
-    "dev": "next-remote-watch ./src/content",
+    "dev": "next-remote-watch ./src/content -p 5173",
     "build": "next build && node --experimental-modules ./scripts/downloadFonts.mjs",
     "lint": "next lint",
     "lint:fix": "next lint --fix",

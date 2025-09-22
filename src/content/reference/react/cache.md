@@ -1,6 +1,5 @@
 ---
 title: cache
-canary: true
 ---
 
 <RSC>

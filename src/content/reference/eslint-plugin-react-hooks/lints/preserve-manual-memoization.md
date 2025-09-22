@@ -1,5 +1,6 @@
 ---
 title: preserve-manual-memoization
+version: rc
 ---
 
 <Intro>
@@ -7,6 +8,14 @@ title: preserve-manual-memoization
 Validates that existing manual memoization is preserved by the compiler. React Compiler will only compile components and hooks if its inference [matches or exceeds the existing manual memoization](/learn/react-compiler/introduction#what-should-i-do-about-usememo-usecallback-and-reactmemo).
 
 </Intro>
+
+<RC>
+
+This rule is available in the RC version of `eslint-plugin-react-hooks`.
+
+You can try it by upgrading the lint plugin [to the most recent RC version](/learn/react-compiler/installation#eslint-integration).
+
+</RC>
 
 ## Rule Details {/*rule-details*/}
 

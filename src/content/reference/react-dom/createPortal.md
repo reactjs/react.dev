@@ -398,7 +398,8 @@ Here is a complete example you can play with:
 }
 ```
 
-```js src/App.js
+{/* TODO(@poteto) - fixed by https://github.com/facebook/react/pull/34462. need a new release */}
+```js {expectedErrors: {'react-compiler': [15]}} src/App.js
 import { useRef, useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { createMapWidget, addPopupToMapWidget } from './map-widget.js';

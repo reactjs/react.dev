@@ -21,7 +21,7 @@ function BlogPost() {
 }
 ```
 
-```js {2}
+```js {expectedErrors: {'react-compiler': [2]}} {2}
 function BlogPost() {
   return <Layout>{Article()}</Layout>; // 🔴 Bad: Never call them directly
 }
@@ -51,7 +51,7 @@ Breaking this rule will cause React to not automatically optimize your component
 
 Hooks should be as "static" as possible. This means you shouldn't dynamically mutate them. For example, this means you shouldn't write higher order Hooks:
 
-```js {2}
+```js {expectedErrors: {'react-compiler': [2, 3]}} {2}
 function ChatInput() {
   const useDataWithLogging = withLogging(useData); // 🔴 Bad: don't write higher order Hooks
   const data = useDataWithLogging();
@@ -74,7 +74,7 @@ function useDataWithLogging() {
 
 Hooks should also not be dynamically used: for example, instead of doing dependency injection in a component by passing a Hook as a value:
 
-```js {2}
+```js {expectedErrors: {'react-compiler': [2]}} {2}
 function ChatInput() {
   return <Button useData={useDataWithLogging} /> // 🔴 Bad: don't pass Hooks as props
 }

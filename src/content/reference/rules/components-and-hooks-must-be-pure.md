@@ -209,7 +209,7 @@ You can think of the props and state values as snapshots that are updated after 
 ### Don't mutate Props {/*props*/}
 Props are immutable because if you mutate them, the application will produce inconsistent output, which can be hard to debug as it may or may not work depending on the circumstances.
 
-```js {2}
+```js {expectedErrors: {'react-compiler': [2]}} {2}
 function Post({ item }) {
   item.url = new Url(item.url, base); // 🔴 Bad: never mutate props directly
   return <Link url={item.url}>{item.title}</Link>;
@@ -232,7 +232,7 @@ const [stateVariable, setter] = useState(0);
 
 Rather than updating the state variable in-place, we need to update it using the setter function that is returned by `useState`. Changing values on the state variable doesn't cause the component to update, leaving your users with an outdated UI. Using the setter function informs React that the state has changed, and that we need to queue a re-render to update the UI.
 
-```js {5}
+```js {expectedErrors: {'react-compiler': [2, 5]}} {5}
 function Counter() {
   const [count, setCount] = useState(0);
 
@@ -270,7 +270,7 @@ function Counter() {
 
 Once values are passed to a hook, you should not modify them. Like props in JSX, values become immutable when passed to a hook.
 
-```js {4}
+```js {expectedErrors: {'react-compiler': [4]}} {4}
 function useIconStyle(icon) {
   const theme = useContext(ThemeContext);
   if (icon.enabled) {
@@ -331,7 +331,7 @@ Don't mutate values after they've been used in JSX. Move the mutation to before 
 
 When you use JSX in an expression, React may eagerly evaluate the JSX before the component finishes rendering. This means that mutating values after they've been passed to JSX can lead to outdated UIs, as React won't know to update the component's output.
 
-```js {4}
+```js {expectedErrors: {'react-compiler': [4]}} {4}
 function Page({ colour }) {
   const styles = { colour, size: "large" };
   const header = <Header styles={styles} />;

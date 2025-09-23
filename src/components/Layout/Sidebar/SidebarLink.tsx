@@ -66,7 +66,7 @@ export function SidebarLink({
       passHref
       aria-current={selected ? 'page' : undefined}
       className={cn(
-        'p-2 pe-2 w-full rounded-none lg:rounded-e-2xl text-start hover:bg-gray-5 dark:hover:bg-gray-80 relative flex items-center justify-between',
+        'transition-all p-2 pe-2 w-full rounded-none lg:rounded-e-2xl text-start hover:bg-gray-5 dark:hover:bg-gray-80 relative flex items-center justify-between',
         {
           'text-sm ps-6': level > 0,
           'ps-5': level < 2,

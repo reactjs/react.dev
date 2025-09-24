@@ -39,6 +39,11 @@
           "path": "/reference/react/useEffect"
         },
         {
+          "title": "useEffectEvent",
+          "path": "/reference/react/useEffectEvent",
+          "version": "canary"
+        },
+        {
           "title": "useId",
           "path": "/reference/react/useId"
         },

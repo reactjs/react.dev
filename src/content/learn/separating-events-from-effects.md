@@ -400,13 +400,15 @@ You need a way to separate this non-reactive logic from the reactive Effect arou
 
 ### Declaring an Effect Event {/*declaring-an-effect-event*/}
 
-<Wip>
+<Canary>
 
-This section describes an **experimental API that has not yet been released** in a stable version of React.
+**The `useEffectEvent` API is currently only available in React’s Canary and Experimental channels.** 
 
-</Wip>
+[Learn more about React’s release channels here.](/community/versioning-policy#all-release-channels)
 
-Use a special Hook called [`useEffectEvent`](/reference/react/experimental_useEffectEvent) to extract this non-reactive logic out of your Effect:
+</Canary>
+
+Use a special Hook called [`useEffectEvent`](/reference/react/useEffectEvent) to extract this non-reactive logic out of your Effect:
 
 ```js {1,4-6}
 import { useEffect, useEffectEvent } from 'react';
@@ -578,11 +580,13 @@ You can think of Effect Events as being very similar to event handlers. The main
 
 ### Reading latest props and state with Effect Events {/*reading-latest-props-and-state-with-effect-events*/}
 
-<Wip>
+<Canary>
 
-This section describes an **experimental API that has not yet been released** in a stable version of React.
+**The `useEffectEvent` API is currently only available in React’s Canary and Experimental channels.** 
 
-</Wip>
+[Learn more about React’s release channels here.](/community/versioning-policy#all-release-channels)
+
+</Canary>
 
 Effect Events let you fix many patterns where you might be tempted to suppress the dependency linter.
 
@@ -878,11 +882,13 @@ Read [Removing Effect Dependencies](/learn/removing-effect-dependencies) for oth
 
 ### Limitations of Effect Events {/*limitations-of-effect-events*/}
 
-<Wip>
+<Canary>
 
-This section describes an **experimental API that has not yet been released** in a stable version of React.
+**The `useEffectEvent` API is currently only available in React’s Canary and Experimental channels.** 
 
-</Wip>
+[Learn more about React’s release channels here.](/community/versioning-policy#all-release-channels)
+
+</Canary>
 
 Effect Events are very limited in how you can use them:
 

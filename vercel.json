@@ -248,6 +248,11 @@
       "source": "/feed.xml",
       "destination": "/rss.xml",
       "permanent": true
+    },
+    {
+      "source": "/reference/react/experimental_useEffectEvent",
+      "destination": "/reference/react/useEffectEvent",
+      "permanent": true
     }
   ],
   "headers": [

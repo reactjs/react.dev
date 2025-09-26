@@ -42,7 +42,7 @@ These built-in browser components let you load external resources or annotate th
 * [`<style>`](/reference/react-dom/components/style)
 * [`<title>`](/reference/react-dom/components/title)
 
-They are special in React because React can render them into the document head, suspend while resources are loading, and enact other behaviors that are described on the reference page for each specific component.
+They are special in React because React can render them into the document `<head>`, suspend while resources are loading, and enact other behaviors that are described on the reference page for each specific component.
 
 ---
 

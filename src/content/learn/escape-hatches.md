@@ -343,7 +343,7 @@ All code inside Effects is *reactive.* It will run again if some reactive value 
 
 ```js
 import { useState, useEffect } from 'react';
-import { createConnection, sendMessage } from './chat.js';
+import { createConnection } from './chat.js';
 import { showNotification } from './notifications.js';
 
 const serverUrl = 'https://localhost:1234';
@@ -472,7 +472,7 @@ This is not ideal. You want to re-connect to the chat only if the `roomId` has c
 ```js
 import { useState, useEffect } from 'react';
 import { experimental_useEffectEvent as useEffectEvent } from 'react';
-import { createConnection, sendMessage } from './chat.js';
+import { createConnection } from './chat.js';
 import { showNotification } from './notifications.js';
 
 const serverUrl = 'https://localhost:1234';

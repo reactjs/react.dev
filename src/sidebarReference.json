@@ -129,6 +129,11 @@
           "path": "/reference/react/cache"
         },
         {
+          "title": "cacheSignal",
+          "path": "/reference/react/cacheSignal",
+          "version": "canary"
+        },
+        {
           "title": "captureOwnerStack",
           "path": "/reference/react/captureOwnerStack"
         },
@@ -424,7 +429,7 @@
           "path": "/reference/eslint-plugin-react-hooks/lints/incompatible-library",
           "version": "rc"
         },
-        
+
         {
           "title": "preserve-manual-memoization",
           "path": "/reference/eslint-plugin-react-hooks/lints/preserve-manual-memoization",
@@ -440,7 +445,7 @@
           "path": "/reference/eslint-plugin-react-hooks/lints/refs",
           "version": "rc"
         },
-        
+
         {
           "title": "set-state-in-effect",
           "path": "/reference/eslint-plugin-react-hooks/lints/set-state-in-effect",

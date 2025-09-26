@@ -305,7 +305,7 @@ function MyComponent() {
 }
 ```
 
-This pattern is an alternative to effect-based visibility logging, which is usually not what you want since you don't know of the element you're targeting is in the viewport.
+This pattern is an alternative to effect-based visibility logging, which is an anti-pattern in most cases. Relying on effects alone does not guarantee that the rendered component is observable by the user.
 
 ---
 

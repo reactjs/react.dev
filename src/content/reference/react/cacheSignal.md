@@ -59,7 +59,7 @@ This function does not accept any parameters.
 
 #### Caveats {/*caveats*/}
 
-- `cacheSignal` is for use in [React Server Components](/reference/rsc/server-components) only. In Client Components, it will always return `null`.
+- `cacheSignal` is currently for use in [React Server Components](/reference/rsc/server-components) only. In Client Components, it will always return `null`. In the future it will also be used for Client Component when a client cache refreshes or invalidates. You should not assume it'll always be null on the client.
 - If called outside of rendering, `cacheSignal` will return `null` to make it clear that the current scope isn't cached forever.
 
 ---

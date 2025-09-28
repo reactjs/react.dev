@@ -18,7 +18,7 @@ title: cacheSignal
 
 <Intro>
 
-`cacheSignal()` returns an [`AbortSignal`](https://developer.mozilla.org/en-US/docs/Web/API/AbortSignal) which aborts when the cache lifetime is done based on the same execution scope as a [`cache()`](/reference/react/cache)ed function 
+`cacheSignal` allows you to know when the `cache()` life time is over.
 
 ```js
 const signal = cacheSignal();

@@ -18,11 +18,9 @@ In React Labs posts, we write about projects in active research and development.
 
 <Note>
 
-React Conf 2025 is scheduled for October 7–8 in Henderson, Nevada! 
+React Conf 2025 is scheduled for October 7–8 in Henderson, Nevada!
 
-We're looking for speakers to help us create talks about the features covered in this post. If you're interested in speaking at ReactConf, [please apply here](https://forms.reform.app/react-conf/call-for-speakers/) (no talk proposal required).
-
-For more info on tickets, free streaming, sponsoring, and more, see [the React Conf website](https://conf.react.dev).
+Watch the livestream on [the React Conf website](https://conf.react.dev).
 
 </Note>
 

@@ -72,7 +72,7 @@ The Scheduler is an internal React concept used for managing tasks with differen
 Every render pass consists of multiple phases that you can see on a timeline:
 
 - **Update** - this is what caused a new render pass.
-- **Render** - React renders the updated subtree by calling render functions of components. You can see the rendered components subtree on [Components track](/learn/react-performance-tracks#components), which follows the same color scheme.
+- **Render** - React renders the updated subtree by calling render functions of components. You can see the rendered components subtree on [Components track](/reference/developer-tooling/react-performance-tracks#components), which follows the same color scheme.
 - **Commit** - After rendering components, React will submit the changes to the DOM and run layout effects, like [`useLayoutEffect`](/reference/react/useLayoutEffect).
 - **Remaining Effects** - React runs passive effects of a rendered subtree. This usually happens after the paint, and this is when React runs hooks like [`useEffect`](/reference/react/useEffect). One known exception is user interactions, like clicks, or other discrete events. In this scenario, this phase could run before the paint.
 

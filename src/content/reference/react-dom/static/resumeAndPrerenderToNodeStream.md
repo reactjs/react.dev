@@ -1,15 +1,6 @@
 ---
 title: resumeAndPrerenderToNodeStream
-version: canary
 ---
-
-<Canary>
-
-**The `resumeAndPrerenderToNodeStream` API is currently only available in React’s Experimental channels.** 
-
-[Learn more about React’s release channels here.](/community/versioning-policy#all-release-channels)
-
-</Canary>
 
 <Intro>
 

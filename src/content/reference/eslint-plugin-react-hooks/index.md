@@ -9,14 +9,6 @@ version: rc
 
 </Intro>
 
-<RC>
-
-These docs include rules available in the RC version of `eslint-plugin-react-hooks`.
-
-You can try them by upgrading the lint plugin [to the most recent RC version](/learn/react-compiler/installation#eslint-integration).
-
-</RC>
-
 This plugin helps you catch violations of React's rules at build time, ensuring your components and hooks follow React's rules for correctness and performance. The lints cover both fundamental React patterns (exhaustive-deps and rules-of-hooks) and issues flagged by React Compiler. React Compiler diagnostics are automatically surfaced by this ESLint plugin, and can be used even if your app hasn't adopted the compiler yet.
 
 <Note>
@@ -25,14 +17,16 @@ When the compiler reports a diagnostic, it means that the compiler was able to s
 What this means for linting, is that you don’t need to fix all violations immediately. Address them at your own pace to gradually increase the number of optimized components.
 </Note>
 
-## Available Lints {/*available-lints*/}
+## Recommended Rules {/*recommended*/}
 
-These rules are available in the stable version of `eslint-plugin-react-hooks`:
+These rules are included in the `recommended` preset `eslint-plugin-react-hooks`:
 
 * [`exhaustive-deps`](/reference/eslint-plugin-react-hooks/lints/exhaustive-deps) - Validates that dependency arrays for React hooks contain all necessary dependencies
 * [`rules-of-hooks`](/reference/eslint-plugin-react-hooks/lints/rules-of-hooks) - Validates that components and hooks follow the Rules of Hooks
 
-These rules are available in the RC version of `eslint-plugin-react-hooks`:
+## Additional Rules {/*additional-rules*/}
+
+Starting in version 6.0, these rules are available to opt-in:
 
 * [`component-hook-factories`](/reference/eslint-plugin-react-hooks/lints/component-hook-factories) - Validates higher order functions defining nested components or hooks
 * [`config`](/reference/eslint-plugin-react-hooks/lints/config) - Validates the compiler configuration options

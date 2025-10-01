@@ -1,16 +1,6 @@
 ---
 title: useEffectEvent
-version: canary
 ---
-
-
-<Canary>
-
-**The `useEffectEvent` API is currently only available in React’s Canary and Experimental channels.** 
-
-[Learn more about React’s release channels here.](/community/versioning-policy#all-release-channels)
-
-</Canary>
 
 <Intro>
 

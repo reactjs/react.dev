@@ -151,12 +151,48 @@ See the [Component track docs](/reference/dev-tools/react-performance-tracks#com
 
 ### `resume` {/*resume*/}
 
-We're adding new APIs to support partial pre-rendering for SSR:
+In 19.2 we're adding a new capability to pre-render part of the app ahead of time, and resume rendering it later. 
 
-- `resume`
-- `resumeToPipeableStream`
-- `resumeAndPrerender`
-- `resumeAndPrerenderToNodeStream`
+This feature is called "Partial Pre-rendering", and allows you to pre-render the static parts of your app and serve it from a CDN, and then resume rendering the shell to fill it in with dynamic content later.
+
+To pre-render an app to resume later, first call `prerender` with an `AbortController`:
+
+```
+const {prelude, postponed} = await prerender(<App />, {
+  signal: controller.signal,
+});
+
+// Save the postponed state for later
+await savePostponedState(postponed);
+
+// Send prelude to client or CDN.
+```
+
+Then, you can return the `prelude` shell to the client, and later call `resume` to "resume" to a SSR stream:
+
+```
+const postponed = await getPostponedState(request);
+const resumeStream = await resume(<App />, postponed);
+
+// Send stream to client.
+```
+
+Or you can call `resumeAndPrerender` to resume to get static HTML for SSG:
+
+```
+const postponedState = getPostponedState(request);
+const { prelude } = await resumeAndPrerender(<App />, postponedState);
+
+// Send complete HTML prelude to CDN.
+```
+
+For more info, see the docs for the new APIs:
+- `react-dom/server`
+  - [`resume`](/reference/react-dom/server/resume): for Web Streams.
+  - [`resumeToPipeableStream`](/reference/react-dom/server/resumeToPipeableStream) for Node Streams.
+- `react-dom/static`
+  - [`resumeAndPrerender`](/reference/react-dom/static/resumeAndPrerender) for Web Streams.
+  - [`resumeAndPrerenderToNodeStream`](/reference/react-dom/static/resumeAndPrerenderToNodeStream) for Node Streams.
 
 Additionally, the prerender apis now return a `postpone` state to pass to the `resume` apis.
 

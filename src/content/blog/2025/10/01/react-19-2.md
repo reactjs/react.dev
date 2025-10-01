@@ -56,9 +56,7 @@ For examples on how to use Activity, check out the [Activity docs](/reference/re
 
 ### Performance Tracks {/*performance-tracks*/}
 
-React 19.2 adds a new set of [custom tracks](https://developer.chrome.com/docs/devtools/performance/extension) to Chrome DevTools performance profiles to provide more information about the performance of your React app.
-
-#### Scheduler ⚛ {/*scheduler-*/}
+React 19.2 adds a new set of [custom tracks](https://developer.chrome.com/docs/devtools/performance/extension) to Chrome DevTools performance profiles to provide more information about the performance of your React app:
 
 <div style={{display: 'flex', justifyContent: 'center', marginBottom: '1rem'}}>
   <picture >
@@ -71,39 +69,23 @@ React 19.2 adds a new set of [custom tracks](https://developer.chrome.com/docs/d
   </picture>
 </div>
 
+The [React Performance Tracks docs](/reference/dev-tools/react-performance-tracks) explain everything included in the tracks, but here is a high-level overview. 
+
+#### Scheduler ⚛ {/*scheduler-*/}
+
 The Scheduler track shows what React is working on for different priorities such as "blocking" for user interactions, or "transition" for updates inside startTransition. Inside each track, you will see the type of work being performed such as the event that scheduled an update, and when the render for that update happened.
 
 We also show information such as when an update is blocked waiting for a different priority, or when React is waiting for paint before continuing. The Scheduler track helps you understand how React splits your code into different priorities, and the order it completed the work.
 
-See the [Scheduler track](/reference/dev-tools/react-performance-tracks#scheduler) docs for a full list.
+See the [Scheduler track](/reference/dev-tools/react-performance-tracks#scheduler) docs to see everything included.
 
 #### Components ⚛ {/*components-*/}
-
-<div style={{display: 'flex', justifyContent: 'center', marginBottom: '1rem'}}>
-  <img className="w-full light-image" src="/images/docs/performance-tracks/components-render.png" alt="Components track: render durations" />
-  <img className="w-full dark-image" src="/images/docs/performance-tracks/components-render.dark.png" alt="Components track: render durations" />
-</div>
 
 The Components track shows the tree of components that React is working on either to render or run effects. Inside you'll see labels such as "Mount" for when children mount or effects are mounted, or "Blocked" for when rendering is blocked due to yielding to work outside React.
 
 The Component track helps you understand when components are rendered or run effects, and the time it takes to complete that work to help identify performance problems. 
 
-See the [Component track docs](/reference/dev-tools/react-performance-tracks#components) for a full list.
-
-#### Finding performance issues {/*finding-performance-issues*/}
-
-Finally, the performance tracks include information to help identify performance pitfalls. For example, setting state in an Effect creates a "Cascading update", which is a common patterns for performance regressions.
-
-React flags cascading renders in the performance tracks and marks them with a red Cascading Update label:
-
-<div style={{display: 'flex', justifyContent: 'center', marginBottom: '1rem'}}>
-  <img className="w-full light-image" src="/images/docs/performance-tracks/scheduler-cascading-update.png" alt="Scheduler track: cascading updates" />
-  <img className="w-full dark-image" src="/images/docs/performance-tracks/scheduler-cascading-update.dark.png" alt="Scheduler track: cascading updates" />
-</div>
-
-These performance tracks are just a start. We will continue to expand on the performance tracks to provide more information and insights about your app.
-
-For more information, see the [React Performance Tracks docs](/reference/dev-tools/react-performance-tracks).
+See the [Component track docs](/reference/dev-tools/react-performance-tracks#components) for see everything included.
 
 ---
 

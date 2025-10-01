@@ -72,7 +72,7 @@ React 19.2 adds a new set of [custom tracks](https://developer.chrome.com/docs/d
   </picture>
 </div>
 
-For more information, see the [React Performance Tracks docs](/learn/react-performance-tracks).
+For more information, see the [React Performance Tracks docs](/reference/dev-tools/react-performance-tracks).
 
 ---
 

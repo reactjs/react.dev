@@ -403,11 +403,11 @@
     },
     {
       "hasSectionHeader": true,
-      "sectionHeader": "Developer tooling"
+      "sectionHeader": "React DevTools"
     },
     {
       "title": "React Performance tracks",
-      "path": "/reference/developer-tooling/react-performance-tracks"
+      "path": "/reference/dev-tools/react-performance-tracks"
     },
     {
       "hasSectionHeader": true,

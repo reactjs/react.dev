@@ -385,6 +385,14 @@
     },
     {
       "hasSectionHeader": true,
+      "sectionHeader": "Developer tooling"
+    },
+    {
+      "title": "React Performance tracks",
+      "path": "/reference/developer-tooling/react-performance-tracks"
+    },
+    {
+      "hasSectionHeader": true,
       "sectionHeader": "eslint-plugin-react-hooks"
     },
     {

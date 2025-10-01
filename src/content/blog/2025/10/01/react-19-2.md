@@ -56,8 +56,9 @@ For examples on how to use Activity, check out the [Activity docs](/reference/re
 
 ### React Performance Tracks {/*react-performance-tracks*/}
 
+React 19.2 adds a new set of [custom tracks](https://developer.chrome.com/docs/devtools/performance/extension) to Chrome DevTools performance profiles to provide more information about the performance of your React app.
 
-React 19.2 adds a new set of [custom tracks](https://developer.chrome.com/docs/devtools/performance/extension) to Chrome DevTools performance profiles to provide more information about the performance of your React app:
+#### Scheduler ⚛ {/*scheduler-*/}
 
 <div style={{display: 'flex', justifyContent: 'center', marginBottom: '1rem'}}>
   <picture >
@@ -69,6 +70,70 @@ React 19.2 adds a new set of [custom tracks](https://developer.chrome.com/docs/d
       <img className="w-full dark-image" src="/images/blog/react-labs-april-2025/perf_tracks_dark.webp" />
   </picture>
 </div>
+
+The Scheduler track shows what React is working on for different priorities:
+
+- **Blocking** - synchronous updates such as user interactions.
+- **Transition** - non-blocking updates such as Actions, or useDeferredValue.
+- **Suspense** - non-blocking updates rendering of Suspense content.
+- **Idle** - non-blocking updates such as children hidden by Activity.
+
+Inside each track, you will see the type of work being performed such as:
+
+- **Event** - the event that triggered an update.
+- **Update** - this is what scheduled an update.
+- **Render** - rendering components (visible in the [Components track](#components-track)).
+- **Commit** - committing the changes to the UI, and running effects during commit such as useLayoutEffect.
+- **Remaining Effects** - running effects after commit, such as useEffect.
+
+You'll also see states of work, such as:
+- **Update Blocked** - when an update is waiting for a different priority of work.
+- **Waiting for Paint** - when React yields for paint before continuing work such as running effects.
+
+See the [Scheduler track](/reference/dev-tools/react-performance-tracks#scheduler) docs for a full list.
+
+#### Components ⚛ {/*components-*/}
+
+<div style={{display: 'flex', justifyContent: 'center', marginBottom: '1rem'}}>
+  <img className="w-full light-image" src="/images/docs/performance-tracks/components-render.png" alt="Components track: render durations" />
+  <img className="w-full dark-image" src="/images/docs/performance-tracks/components-render.dark.png" alt="Components track: render durations" />
+</div>
+
+The Components track shows the tree of components that React is working on either to render or run effects.
+
+You'll see labels such as:
+- **Mount** - When the children mount or effects are mounted.
+- **Unmount** - When the children unmount or effects are unmounted.
+- **Reconnect** - Similar to Mount, but for `<Activity>`.
+- **Disconnect** - Similar to Unmount, but for `<Activity>`.
+- **Blocked** - When rendering is blocked due to yielding to work outside React.
+
+Each entry represents the duration of the corresponding component render and all its descendant children components. For each component, the color of the bar indicates how long the component itself took:
+- **0-0.5ms**: light
+- **0.5-10ms**: darker
+- **10ms-100ms**: darkest
+- **> 100ms**: red
+
+See the [Component track docs](/reference/dev-tools/react-performance-tracks#components) for a full list.
+
+## Finding performance issues {/*finding-performance-issues*/}
+
+Finally, the performance tracks include information to help identify performance pitfalls. For example, setting state in an Effect creates a "Cascading update", which is a common patterns for performance regressions.
+
+React flags cascading renders in the performance tracks and marks them with a red Cascading Update label:
+
+<div style={{display: 'flex', justifyContent: 'center', marginBottom: '1rem'}}>
+  <img className="w-full light-image" src="/images/docs/performance-tracks/scheduler-cascading-update.png" alt="Scheduler track: cascading updates" />
+  <img className="w-full dark-image" src="/images/docs/performance-tracks/scheduler-cascading-update.dark.png" alt="Scheduler track: cascading updates" />
+</div>
+
+<Note>
+
+In development builds, you can select the "Cascading Update" to view the source of the update in the "Summary" panel below.
+
+</Note>
+
+These performance tracks are just a start. We will continue to expand on the performance tracks to provide more information and insights about your app.
 
 For more information, see the [React Performance Tracks docs](/reference/dev-tools/react-performance-tracks).
 

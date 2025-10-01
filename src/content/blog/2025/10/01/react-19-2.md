@@ -91,7 +91,7 @@ See the [Component track docs](/reference/dev-tools/react-performance-tracks#com
 
 ### `useEffectEvent` {/*use-effect-event*/}
 
-One common pattern with useEffect is to notify the app code about some kind of "events" in an external system. For example, a chat room may get connected, and you might want to display a notification when that happens:
+One common pattern with `useEffect` is to notify the app code about some kind of "events" in an external system. For example, a chat room may get connected, and you might want to display a notification when that happens:
 
 ```js {5,11}
 function ChatRoom({ roomId, theme }) {
@@ -108,7 +108,7 @@ function ChatRoom({ roomId, theme }) {
   // ...
 ```
 
-The problem with the code above is that any values used inside such an "event" will cause the surrounding Effect to re-run when they change. For example, changing the theme will cause the chat room to reconnect. This behavior makes sense for values that are related to the Effect logic itself, like roomId, but it doesn't make sense for theme.
+The problem with the code above is that any values used inside such an "event" will cause the surrounding Effect to re-run when they change. For example, changing the `theme` will cause the chat room to reconnect. This behavior makes sense for values that are related to the Effect logic itself, like `roomId`, but it doesn't make sense for `theme`.
 
 To solve this, most users just disable the lint rule and exclude the dependency. But that can lead to bugs since the linter can no longer help you keep the dependencies up to date if you need to update the Effect later.
 
@@ -139,10 +139,9 @@ Similar to DOM events, Effect Events always "see" the latest props and state. Th
 
 You should use `useEffectEvent` for functions that are conceptually "events" that happen to be fired from an Effect instead of a user event (that's what makes it an "Effect Event"). You don't need to wrap everything in `useEffectEvent`, or to use it just to silence the lint error, as this can lead to bugs.
 
+For a deep dive on how to think about Event Effects, see: [Separating Events from Effects](https://react.dev/learn/separating-events-from-effects#extracting-non-reactive-logic-out-of-effects).
+
 </Note>
-
-
-For more information, see [Separating Events from Effects](/learn/separating-events-from-effects) and the [`useEffectEvent` docs](/reference/react/useEffectEvent).
 
 ---
 

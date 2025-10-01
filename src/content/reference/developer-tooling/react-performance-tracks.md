@@ -1,25 +1,19 @@
 ---
 title: React Performance tracks
-version: experimental
+version: canary
 ---
 
-<Experimental>
+<Canary>
 
-**This feature is experimental and is not available in a stable version of React yet.**
+**This feature is currently only available in React’s Canary and Experimental channels.**
 
-You can try it by upgrading React packages to the most recent experimental version:
+[Learn more about React’s release channels here.](/community/versioning-policy#all-release-channels)
 
-- `react@experimental`
-- `react-dom@experimental`
-- `eslint-plugin-react-hooks@experimental`
-
-Experimental versions of React may contain bugs. Don't use them in production.
-
-</Experimental>
+</Canary>
 
 <Intro>
 
-React Performance tracks are specialized custom entries that appear on the Performance panel's timeline.
+React Performance tracks are specialized custom entries that appear on the Performance panel's timeline in your browser developer tools.
 
 </Intro>
 

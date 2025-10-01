@@ -56,6 +56,8 @@ For examples on how to use Activity, check out the [Activity docs](/reference/re
 
 ### `useEffectEvent` {/*use-effect-event*/}
 
+_Note: Please upgrade to `eslint-plugin-react-hooks@6.1.0` when using `useEffectEvent`._
+
 One common pattern with `useEffect` is to notify the app code about some kind of "events" in an external system. For example, a chat room may get connected, and you might want to display a notification when that happens:
 
 ```js {5,11}

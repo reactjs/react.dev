@@ -9,13 +9,11 @@ Validates against syntax that React Compiler does not support. If you need to, y
 
 </Intro>
 
-<RC>
+<Note>
 
-This rule is available in the RC version of `eslint-plugin-react-hooks`.
+This rule is available in `eslint-plugin-react-hooks` v6.
 
-You can try it by upgrading the lint plugin [to the most recent RC version](/learn/react-compiler/installation#eslint-integration).
-
-</RC>
+</Note>
 
 ## Rule Details {/*rule-details*/}
 

@@ -287,6 +287,23 @@ This is because Node Streams are much faster than Web Streams in Node, and Web S
 
 ---
 
+### `eslint-plugin-react-hooks` v6 {/*eslint-plugin-react-hooks*/}
+
+We also published `eslint-plugin-react-hooks@6.1.0` with flat config by default in the `recommended` preset, and opt-in for new React Compiler powered rules.
+
+To continue using the legacy config, you can change to `recommended-legacy`:
+
+```diff
+- extends: ['plugin:react-hooks/recommended']
++ extends: ['plugin:react-hooks/recommended-legacy']
+```
+
+For a full list of compiler enabled rules, [check out the linter docs](/reference/eslint-plugin-react-hooks#available-lints).
+
+Check out the `eslint-plugin-react-hooks` [changelog for a full list of changes](https://github.com/facebook/react/blob/main/packages/eslint-plugin-react-hooks/CHANGELOG.md#610).
+
+---
+
 ### Update the default `useId` prefix {/*update-the-default-useid-prefix*/}
 
 In 19.2, we're updating the default `useId` prefix from `:r:` (19.0.0) or `«r»` (19.1.0) to `_r_`.

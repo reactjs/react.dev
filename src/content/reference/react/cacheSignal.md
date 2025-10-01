@@ -4,13 +4,13 @@ title: cacheSignal
 
 <RSC>
 
-`cacheSignal` is currently only used with [React Server Components](/blog/2023/03/22/react-labs-what-we-have-been-working-on-march-2023#react-server-components). 
+`cacheSignal` is currently only used with [React Server Components](/blog/2023/03/22/react-labs-what-we-have-been-working-on-march-2023#react-server-components).
 
 </RSC>
 
 <Intro>
 
-`cacheSignal` allows you to know when the `cache()` life time is over.
+`cacheSignal` allows you to know when the `cache()` lifetime is over.
 
 ```js
 const signal = cacheSignal();
@@ -37,7 +37,7 @@ async function Component() {
 
 When React has finished rendering, the `AbortSignal` will be aborted. This allows you to cancel any in-flight work that is no longer needed.
 Rendering is considered finished when:
-- React has successfully completed rendering 
+- React has successfully completed rendering
 - the render was aborted
 - the render has failed
 

@@ -112,6 +112,35 @@ For a deep dive on how to think about Event Effects, see: [Separating Events fro
 
 ---
 
+### `cacheSignal` {/*cache-signal*/}
+
+<RSC>
+
+`cacheSignal` is only for use with [React Server Components](/reference/rsc/server-components).
+
+</RSC>
+
+`cacheSignal` allows you to know when the [`cache()`](/reference/react/cache) lifetime is over:
+
+```
+import {cache, cacheSignal} from 'react';
+const dedupedFetch = cache(fetch);
+
+async function Component() {
+  await dedupedFetch(url, { signal: cacheSignal() });
+}
+```
+
+This allows you to clean up or abort work when the result will no longer be used in the cache, such as:
+
+- React has successfully completed rendering
+- The render was aborted
+- The render has failed
+
+For more info, see the [`cacheSignal` docs](/reference/react/cacheSignal).
+
+---
+
 ### Performance Tracks {/*performance-tracks*/}
 
 React 19.2 adds a new set of [custom tracks](https://developer.chrome.com/docs/devtools/performance/extension) to Chrome DevTools performance profiles to provide more information about the performance of your React app:
@@ -195,35 +224,6 @@ For more info, see the docs for the new APIs:
   - [`resumeAndPrerenderToNodeStream`](/reference/react-dom/static/resumeAndPrerenderToNodeStream) for Node Streams.
 
 Additionally, the prerender apis now return a `postpone` state to pass to the `resume` apis.
-
----
-
-### `cacheSignal` {/*cache-signal*/}
-
-<RSC>
-
-`cacheSignal` is only for use with [React Server Components](/reference/rsc/server-components).
-
-</RSC>
-
-`cacheSignal` allows you to know when the [`cache()`](/reference/react/cache) lifetime is over:
-
-```
-import {cache, cacheSignal} from 'react';
-const dedupedFetch = cache(fetch);
-
-async function Component() {
-  await dedupedFetch(url, { signal: cacheSignal() });
-}
-```
-
-This allows you to clean up or abort work when the result will no longer be used in the cache, such as:
-
-- React has successfully completed rendering
-- The render was aborted
-- The render has failed
-
-For more info, see the [`cacheSignal` docs](/reference/react/cacheSignal).
 
 ---
 

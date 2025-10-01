@@ -330,13 +330,13 @@
           "path": "/reference/react-dom/static/prerender"
         },
         {
+          "title": "prerenderToNodeStream",
+          "path": "/reference/react-dom/static/prerenderToNodeStream"
+        },
+        {
           "title": "resumeAndPrerender",
           "path": "/reference/react-dom/static/resumeAndPrerender",
           "version": "canary"
-        },
-        {
-          "title": "prerenderToNodeStream",
-          "path": "/reference/react-dom/static/prerenderToNodeStream"
         },
         {
           "title": "resumeAndPrerenderToNodeStream",

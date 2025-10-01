@@ -209,7 +209,7 @@ const resumeStream = await resume(<App />, postponed);
 Or you can call `resumeAndPrerender` to resume to get static HTML for SSG:
 
 ```
-const postponedState = getPostponedState(request);
+const postponedState = await getPostponedState(request);
 const { prelude } = await resumeAndPrerender(<App />, postponedState);
 
 // Send complete HTML prelude to CDN.

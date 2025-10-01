@@ -133,7 +133,7 @@
         },
         {
           "title": "cacheSignal",
-          "path": "/reference/react/cacheSignal",
+          "path": "/reference/react/cacheSignal"
         },
         {
           "title": "captureOwnerStack",

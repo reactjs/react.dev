@@ -52,7 +52,7 @@ You can use Activity to render hidden parts of the app that a user is likely to 
 
 In the future, we plan to add more modes to Activity for different use cases.
 
-For examples on how to use Activity, check out the [Activity docs](/reference/react/activity).
+For examples on how to use Activity, check out the [Activity docs](/reference/react/Activity).
 
 ---
 
@@ -247,4 +247,4 @@ For a full list of changes, please see the [Changelog](https://github.com/facebo
 
 ---
 
-_Thanks to everyone who helped review this post._
+_Thanks to [Ricky Hanlon](https://bsky.app/profile/ricky.fm) for [writing this post](https://www.youtube.com/shorts/T9X3YkgZRG0), [Dan Abramov](https://bsky.app/profile/danabra.mov), [Matt Carroll](https://twitter.com/mattcarrollcode), [Jack Pope](https://jackpope.me), and [Joe Savona](https://x.com/en_JS) for reviewing this post._

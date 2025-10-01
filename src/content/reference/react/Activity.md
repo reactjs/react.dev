@@ -1,15 +1,6 @@
 ---
 title: <Activity>
-version: canary
 ---
-
-<Canary>
-
-**The `<Activity />` API is currently only available in React’s Canary and Experimental channels.** 
-
-[Learn more about React’s release channels here.](/community/versioning-policy#all-release-channels)
-
-</Canary>
 
 <Intro>
 
@@ -215,7 +206,7 @@ and check out the new behavior:
 <Sandpack>
 
 ```js src/App.js active
-import { unstable_Activity as Activity, useState } from 'react';
+import { Activity, useState } from 'react';
 import Sidebar from './Sidebar.js';
 
 export default function App() {
@@ -434,7 +425,7 @@ If we switch to using an Activity boundary to show and hide the active tab, we c
 <Sandpack>
 
 ```js src/App.js active
-import { useState, unstable_Activity as Activity } from 'react';
+import { useState, Activity } from 'react';
 import TabButton from './TabButton.js';
 import Home from './Home.js';
 import Contact from './Contact.js';
@@ -712,7 +703,7 @@ Try clicking the Posts tab now:
 <Sandpack>
 
 ```js src/App.js
-import { useState, Suspense, unstable_Activity as Activity } from 'react';
+import { useState, Suspense, Activity } from 'react';
 import TabButton from './TabButton.js';
 import Home from './Home.js';
 import Posts from './Posts.js';
@@ -1136,7 +1127,7 @@ Let's update `App` to hide the inactive tab with a hidden Activity boundary inst
 <Sandpack>
 
 ```js src/App.js active
-import { useState, unstable_Activity as Activity } from 'react';
+import { useState, Activity } from 'react';
 import TabButton from './TabButton.js';
 import Home from './Home.js';
 import Video from './Video.js';
@@ -1270,7 +1261,7 @@ Let's see the new behavior. Try playing the video, switching to the Home tab, th
 <Sandpack>
 
 ```js src/App.js active
-import { useState, unstable_Activity as Activity } from 'react';
+import { useState, Activity } from 'react';
 import TabButton from './TabButton.js';
 import Home from './Home.js';
 import Video from './Video.js';

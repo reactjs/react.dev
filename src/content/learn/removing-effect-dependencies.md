@@ -609,14 +609,6 @@ function ChatRoom({ roomId }) {
 
 ### Do you want to read a value without "reacting" to its changes? {/*do-you-want-to-read-a-value-without-reacting-to-its-changes*/}
 
-<Canary>
-
-**The `useEffectEvent` API is currently only available in React’s Canary and Experimental channels.** 
-
-[Learn more about React’s release channels here.](/community/versioning-policy#all-release-channels)
-
-</Canary>
-
 Suppose that you want to play a sound when the user receives a new message unless `isMuted` is `true`:
 
 ```js {3,10-12}

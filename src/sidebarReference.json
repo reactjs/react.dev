@@ -41,7 +41,6 @@
         {
           "title": "useEffectEvent",
           "path": "/reference/react/useEffectEvent",
-          "version": "canary"
         },
         {
           "title": "useId",
@@ -112,7 +111,6 @@
         {
           "title": "<Activity>",
           "path": "/reference/react/Activity",
-          "version": "canary"
         },
         {
           "title": "<ViewTransition>",

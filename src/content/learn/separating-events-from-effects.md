@@ -400,14 +400,6 @@ You need a way to separate this non-reactive logic from the reactive Effect arou
 
 ### Declaring an Effect Event {/*declaring-an-effect-event*/}
 
-<Canary>
-
-**The `useEffectEvent` API is currently only available in React’s Canary and Experimental channels.** 
-
-[Learn more about React’s release channels here.](/community/versioning-policy#all-release-channels)
-
-</Canary>
-
 Use a special Hook called [`useEffectEvent`](/reference/react/useEffectEvent) to extract this non-reactive logic out of your Effect:
 
 ```js {1,4-6}
@@ -579,14 +571,6 @@ label { display: block; margin-top: 10px; }
 You can think of Effect Events as being very similar to event handlers. The main difference is that event handlers run in response to a user interactions, whereas Effect Events are triggered by you from Effects. Effect Events let you "break the chain" between the reactivity of Effects and code that should not be reactive.
 
 ### Reading latest props and state with Effect Events {/*reading-latest-props-and-state-with-effect-events*/}
-
-<Canary>
-
-**The `useEffectEvent` API is currently only available in React’s Canary and Experimental channels.** 
-
-[Learn more about React’s release channels here.](/community/versioning-policy#all-release-channels)
-
-</Canary>
 
 Effect Events let you fix many patterns where you might be tempted to suppress the dependency linter.
 
@@ -881,14 +865,6 @@ Read [Removing Effect Dependencies](/learn/removing-effect-dependencies) for oth
 </DeepDive>
 
 ### Limitations of Effect Events {/*limitations-of-effect-events*/}
-
-<Canary>
-
-**The `useEffectEvent` API is currently only available in React’s Canary and Experimental channels.** 
-
-[Learn more about React’s release channels here.](/community/versioning-policy#all-release-channels)
-
-</Canary>
 
 Effect Events are very limited in how you can use them:
 

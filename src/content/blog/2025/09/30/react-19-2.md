@@ -15,20 +15,11 @@ React 19.2 is now available on npm!
 
 </Intro>
 
+This is our third release in the last year, following React 19 in December and React 19.1 in June. In this post, we'll give an overview of the new features in React 19.2, and highlight some notable changes.
 
-<Note>
+<InlineToc />
 
-React Conf 2025 is October 7–8 in Henderson, Nevada! 
 
-Watch the livestream on [the React Conf website](https://conf.react.dev).
-
-</Note>
-
-React 19.2 is our third release in the last year, following React 19 in December and React 19.1 in June. 
-
-This release continues to build on the scheduling capabilities of concurrent rendering with Activity, adds performance tracks to help optimize your code for concurrent rendering, and new APIs to improve the developer experience. 
-
-In this post, we'll give an overview of the new features in React 19.2, and how you can adopt them.
 
 ---
 
@@ -38,19 +29,30 @@ In this post, we'll give an overview of the new features in React 19.2, and how 
 
 `<Activity>` lets you break your app into "activities" that can be controlled and prioritized.
 
-In React 19.2, Activity supports two modes: `visible` and `hidden`:
+You can use Activity as an alternative to conditionally rendering parts of your app:
 
 ```js
+// Before
+{isVisible && <Page />}
+
+// After
 <Activity mode={isVisible ? 'visible' : 'hidden'}>
   <Page />
 </Activity>
 ```
 
-When an Activity is `visible` it’s rendered as normal on the client, and will defer hydration during SSR. When an Activity is `hidden` it is unmounted (adding `display:none` to the children) and is excluded from the SSR output. While an Activity is hidden, React will keep the hook and DOM state, and continue to render at a lower priority than anything visible on screen.
-  
-You can use Activity to pre-render hidden parts of the app that a user is likely to navigate to next, or to save the state of parts the user navigates away from. This helps make navigations quicker, and allows back navigations to maintain state such as input fields.
+In React 19.2, Activity supports two modes: `visible` and `hidden`.
 
-For more information, see the last [React Labs post](/blog/2025/04/23/react-labs-view-transitions-activity-and-more#activity) and the [Activity docs](/reference/react/activity).
+- `hidden`: hides the children, unmounts effects, and defers all updates until React has nothing left to work on. 
+- `visible`: shows the children, mounts effects, and allows updates to be processed normally.
+
+This means you can pre-render and keep rendering hidden parts of the app without impacting the performance of anything visible on screen. 
+
+You can use Activity to render hidden parts of the app that a user is likely to navigate to next, or to save the state of parts the user navigates away from. This helps make navigations quicker by loading data, css, and images in the background, and allows back navigations to maintain state such as input fields.
+
+In the future, we plan to add more modes to Activity for different use cases.
+
+For examples on how to use Activity, check out the [Activity docs](/reference/react/activity).
 
 ---
 
@@ -76,16 +78,12 @@ For more information, see the [React Performance Tracks docs](/learn/react-perfo
 
 ### `useEffectEvent` {/*use-effect-event*/}
 
-When using Effects you may want to read the most recent props or state inside an Effect without causing the Effect to re-run when those values change. 
+When using Effects you may want to read the most recent props or state inside an Effect without re-running the Effect when those values change. For example, in the following code the `theme` prop is used inside an Effect, but we don’t want the Effect to re-run when `theme` changes:
 
-The typical workaround is to use a ref to store the latest `theme`, and read from that ref inside the Effect. This works, but it’s verbose and requires extra code, so in practice most users just disable the lint rule and leave the dependency out.
-
-Disabling the lint rule creates a refactor hazard, because the linter cannot help you if you later add a dependency that should be included. Here, `threadId` is added after the initial implementation, but the Effect does not re-run when `threadId` changes because it was not added to the dependency array:
-
-```js {1,3,12}
-function ChatRoom({ roomId, theme, threadId }) {
+```js {5,11}
+function ChatRoom({ roomId, theme }) {
   useEffect(() => {
-    const connection = createConnection(serverUrl, roomId + threadId);
+    const connection = createConnection(serverUrl, roomId);
     connection.on('connected', () => {
       showNotification('Connected!', theme);
     });
@@ -93,12 +91,15 @@ function ChatRoom({ roomId, theme, threadId }) {
     return () => {
       connection.disconnect()
     };
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [roomId]); // 🚩 threadId is missing!
+  }, [roomId, theme]);
   // ...
 ```
 
-To solve this problem, React 19.2 introduces `useEffectEvent`, which lets you declare Effect Events that can be called inside Effects. Effect Events always access the latest values from props and state when they are invoked, so you can read the latest values without re-running the Effect.
+To solve this, most users just disable the lint rule and exclude the dependency. But that can lead to bugs since the linter can no longer help you keep the dependencies up to date if you need to update the Effect later.
+
+React 19.2 introduces `useEffectEvent`, which lets you declare "Effect Events" that can be called inside Effects. Effect Events always access the latest values from props and state when they are invoked, so you can read the latest values without re-running the Effect:
+
+With `useEffectEvent`, we can define the `onConnected` callback as an "Effect Event". Now, it doesn't re-run when the values change, but it can still “see” the latest values of your props and state:
 
 ```js {2,3,4,9}
 function ChatRoom({ roomId, theme, threadId }) {
@@ -116,6 +117,17 @@ function ChatRoom({ roomId, theme, threadId }) {
   }, [roomId, threadId]); // ✅ All dependencies declared
   // ...
 ```
+
+<Note>
+
+#### Please don't over use `useEffectEvent` {/*please-dont-over-use-useeffectevent*/}
+
+We introduced `useEffectEvent` as an experimental API several years ago, and you may be curious why it took so long to ship. We've considered multiple alternatives, but all of them have different tradeoffs that can make it too easy to accidentally out of reactivity, especially if it is overused.  
+
+We're shipping `useEffectEvent` because it helps solve a common problem, but we recommend using it sparingly. In the future we may explore other APIs that can solve the same problem better.
+
+</Note>
+
 
 For more information, see [Separating Events from Effects](/learn/separating-events-from-effects) and the [`useEffectEvent` docs](/reference/react/useEffectEvent).
 
@@ -154,7 +166,7 @@ For more info, see the [`cacheSignal` docs](/reference/react/cacheSignal).
 
 ### Batching Suspense Boundaries for SSR {/*batching-suspense-boundaries-for-ssr*/}
 
-We fixed a long-standing behavior bug where Suspense boundaries would reveal differently depending on if they were rendered on the client or when streaming from server-side rendering. 
+We fixed a behavioral bug where Suspense boundaries would reveal differently depending on if they were rendered on the client or when streaming from server-side rendering. 
 
 Starting in 19.2, React will batch reveals of server-rendered Suspense boundaries for a short time, to allow more content to be revealed together and align with the client-rendered behavior.
 
@@ -170,7 +182,7 @@ In React 19.2, suspense boundaries are batched for a small amount of time, to al
 
 </Diagram>
 
-This fix also prepares apps for supporting `<ViewTransition>` for Suspense during SSR. By revealing more content together, animations can run in larger batches of content, and avoid chaining animations of content that streams in close together.
+This fix also prepares apps for supporting `<ViewTransition>` for Suspense during SSR. By revealing more content together, animations can run in larger batches of content, and avoid chaining animations of content that stream in close together.
 
 <Note>
 
@@ -190,7 +202,14 @@ React 19.2 adds support for Web Streams for streaming SSR in Node.js:
 
 <Pitfall>
 
-We still highly recommend using Node Streams for streaming server-side rendering in Node environments because Node Streams are much faster than Web Streams, and Web Streams do not support compression by default, leading to users accidentally missing the benefits of streaming.
+#### Prefer Node Streams for server-side rendering in Node.js {/*prefer-node-streams-for-server-side-rendering-in-nodejs*/}
+
+In Node.js environments, we still highly recommend using the Node Streams APIs:
+
+- [`renderToPipeableStream`](/reference/react-dom/server/renderToPipeableStream)
+- [`prerenderToNodeStream`](/reference/react-dom/static/prerenderToNodeStream)
+
+This is because Node Streams are much faster than Web Streams in Node, and Web Streams do not support compression by default, leading to users accidentally missing the benefits of streaming.
 
 </Pitfall>
 
@@ -218,10 +237,10 @@ Notable bug fixes
 - `react`: Hide/unhide the content of dehydrated suspense boundaries if they resuspend [#32900](https://github.com/facebook/react/pull/32900)
 - `react`: Avoid stack overflow on wide trees during Hot Reload [#34145](https://github.com/facebook/react/pull/34145)
 - `react`: Improve component stacks in various places [#33629](https://github.com/facebook/react/pull/33629), [#33724](https://github.com/facebook/react/pull/33724), [#32735](https://github.com/facebook/react/pull/32735), [#33723](https://github.com/facebook/react/pull/33723)
-- `react`: Fix a bug with React.use inside React.lazy-ed Component (@hi-ogawa [#33941](https://github.com/facebook/react/pull/33941)
-- `react-dom`: Stop warning when ARIA 1.3 attributes are used (@Abdul-Omira [#34264](https://github.com/facebook/react/pull/34264)
+- `react`: Fix a bug with React.use inside React.lazy-ed Component [#33941](https://github.com/facebook/react/pull/33941)
+- `react-dom`: Stop warning when ARIA 1.3 attributes are used [#34264](https://github.com/facebook/react/pull/34264)
 - `react-dom`: Fix a bug with deeply nested Suspense inside Suspense fallbacks [#33467](https://github.com/facebook/react/pull/33467)
-- `react-dom`: Avoid hanging when suspending after aborting while rendering (@gnoff [#34192)]()
+- `react-dom`: Avoid hanging when suspending after aborting while rendering [#34192](https://github.com/facebook/react/pull/34192)
 
 For a full list of changes, please see the [Changelog](https://github.com/facebook/react/blob/main/CHANGELOG.md).
 

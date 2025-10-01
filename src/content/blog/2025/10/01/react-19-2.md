@@ -56,7 +56,7 @@ For examples on how to use Activity, check out the [Activity docs](/reference/re
 
 ### `useEffectEvent` {/*use-effect-event*/}
 
-One common pattern with `useEffect` is to notify the app code about some kind of "events" in an external system. For example, when a chat room gets connected, and you might want to display a notification:
+One common pattern with `useEffect` is to notify the app code about some kind of "events" from an external system. For example, when a chat room gets connected, you might want to display a notification:
 
 ```js {5,11}
 function ChatRoom({ roomId, theme }) {

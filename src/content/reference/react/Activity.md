@@ -206,8 +206,7 @@ and check out the new behavior:
 <Sandpack>
 
 ```js src/App.js active
-import { useState } from 'react'; import { unstable_Activity, Activity as ActivityStable} from 'react'; let Activity = ActivityStable ?? unstable_Activity;
-
+import { Activity, useState } from 'react';
 import Sidebar from './Sidebar.js';
 
 export default function App() {
@@ -426,7 +425,7 @@ If we switch to using an Activity boundary to show and hide the active tab, we c
 <Sandpack>
 
 ```js src/App.js active
-import { useState } from 'react'; import { unstable_Activity, Activity as ActivityStable} from 'react'; let Activity = ActivityStable ?? unstable_Activity;
+import { useState, Activity } from 'react';
 import TabButton from './TabButton.js';
 import Home from './Home.js';
 import Contact from './Contact.js';
@@ -704,7 +703,7 @@ Try clicking the Posts tab now:
 <Sandpack>
 
 ```js src/App.js
-import { useState, Suspense } from 'react';  import { unstable_Activity, Activity as ActivityStable} from 'react'; let Activity = ActivityStable ?? unstable_Activity;
+import { useState, Suspense, Activity } from 'react';
 import TabButton from './TabButton.js';
 import Home from './Home.js';
 import Posts from './Posts.js';
@@ -1128,7 +1127,7 @@ Let's update `App` to hide the inactive tab with a hidden Activity boundary inst
 <Sandpack>
 
 ```js src/App.js active
-import { useState } from 'react'; import { unstable_Activity, Activity as ActivityStable} from 'react'; let Activity = ActivityStable ?? unstable_Activity;
+import { useState, Activity } from 'react';
 import TabButton from './TabButton.js';
 import Home from './Home.js';
 import Video from './Video.js';
@@ -1262,7 +1261,7 @@ Let's see the new behavior. Try playing the video, switching to the Home tab, th
 <Sandpack>
 
 ```js src/App.js active
-import { useState } from 'react';  import { unstable_Activity, Activity as ActivityStable} from 'react'; let Activity = ActivityStable ?? unstable_Activity;
+import { useState, Activity } from 'react';
 import TabButton from './TabButton.js';
 import Home from './Home.js';
 import Video from './Video.js';

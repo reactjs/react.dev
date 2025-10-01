@@ -11542,7 +11542,7 @@ Try searching for a video, selecting it, and clicking "back":
 <Sandpack>
 
 ```js src/App.js
-import { unstable_ViewTransition as ViewTransition } from "react"; import Details from "./Details"; import Home from "./Home"; import { useRouter } from "./router";  import { unstable_Activity, Activity as ActivityStable} from 'react'; let Activity = ActivityStable ?? unstable_Activity;
+import { unstable_ViewTransition as ViewTransition, Activity } from "react"; import Details from "./Details"; import Home from "./Home"; import { useRouter } from "./router";
 
 export default function App() {
   const { url } = useRouter();
@@ -12879,7 +12879,7 @@ With this update, if the content on the next page has time to pre-render, it wil
 <Sandpack>
 
 ```js src/App.js
-import { unstable_ViewTransition as ViewTransition, use } from "react"; import Details from "./Details"; import Home from "./Home"; import { useRouter } from "./router"; import {fetchVideos} from './data';  import { unstable_Activity, Activity as ActivityStable} from 'react'; let Activity = ActivityStable ?? unstable_Activity;
+import { unstable_ViewTransition as ViewTransition, Activity, use } from "react"; import Details from "./Details"; import Home from "./Home"; import { useRouter } from "./router"; import {fetchVideos} from './data'
 
 export default function App() {
   const { url } = useRouter();

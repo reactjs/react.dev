@@ -106,7 +106,7 @@ Similar to DOM events, Effect Events always “see” the latest props and state
 
 You should use `useEffectEvent` for functions that are conceptually "events" that happen to be fired from an Effect instead of a user event (that's what makes it an "Effect Event"). You don't need to wrap everything in `useEffectEvent`, or to use it just to silence the lint error, as this can lead to bugs.
 
-For a deep dive on how to think about Event Effects, see: [Separating Events from Effects](https://react.dev/learn/separating-events-from-effects#extracting-non-reactive-logic-out-of-effects).
+For a deep dive on how to think about Event Effects, see: [Separating Events from Effects](/learn/separating-events-from-effects#extracting-non-reactive-logic-out-of-effects).
 
 </Note>
 

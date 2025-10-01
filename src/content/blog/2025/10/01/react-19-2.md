@@ -1,11 +1,11 @@
 ---
 title: "React 19.2"
 author: The React Team
-date: 2025/09/30
-description: This release continues to build on the scheduling capabilities of concurrent rendering with Activity, adds performance tracks to help optimize your code for concurrent rendering, and new APIs to improve the developer experience.
+date: 2025/10/01
+description: React 19.2 is our third release in the last year and adds new features like Activity, React Performance Tracks, useEffectEvent, and more.
 ---
 
-September 30, 2025 by [The React Team](/community/team)
+October 1, 2025 by [The React Team](/community/team)
 
 ---
 
@@ -18,8 +18,6 @@ React 19.2 is now available on npm!
 This is our third release in the last year, following React 19 in December and React 19.1 in June. In this post, we'll give an overview of the new features in React 19.2, and highlight some notable changes.
 
 <InlineToc />
-
-
 
 ---
 

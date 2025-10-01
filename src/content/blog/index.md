@@ -12,9 +12,9 @@ You can also follow the [@react.dev](https://bsky.app/profile/react.dev) account
 
 <div className="sm:-mx-5 flex flex-col gap-5 mt-12">
 
-<BlogCard title="React 19.2" date="September 30, 2025" url="/blog/2025/09/30/react-19-2">
+<BlogCard title="React 19.2" date="October 1, 2025" url="/blog/2025/10/01/react-19-2">
 
-This release continues to build on the scheduling capabilities of concurrent rendering with Activity, adds performance tracks to help optimize your code for concurrent rendering, and new APIs to improve the developer experience ...
+React 19.2 is our third release in the last year and adds new features like Activity, React Performance Tracks, useEffectEvent, and more.
 
 </BlogCard>
 

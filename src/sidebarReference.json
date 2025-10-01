@@ -318,11 +318,11 @@
         },
         {
           "title": "resume",
-          "path": "/reference/react-dom/server/resume",
+          "path": "/reference/react-dom/server/resume"
         },
         {
           "title": "resumeToPipeableStream",
-          "path": "/reference/react-dom/server/resumeToPipeableStream",
+          "path": "/reference/react-dom/server/resumeToPipeableStream"
         }
       ]
     },
@@ -340,11 +340,11 @@
         },
         {
           "title": "resumeAndPrerender",
-          "path": "/reference/react-dom/static/resumeAndPrerender",
+          "path": "/reference/react-dom/static/resumeAndPrerender"
         },
         {
           "title": "resumeAndPrerenderToNodeStream",
-          "path": "/reference/react-dom/static/resumeAndPrerenderToNodeStream",
+          "path": "/reference/react-dom/static/resumeAndPrerenderToNodeStream"
         }
       ]
     },

@@ -2,7 +2,7 @@
 title: "React 19.2"
 author: The React Team
 date: 2025/10/01
-description: React 19.2 is our third release in the last year and adds new features like Activity, React Performance Tracks, useEffectEvent, and more.
+description: React 19.2 adds new features like Activity, React Performance Tracks, useEffectEvent, and more.
 ---
 
 October 1, 2025 by [The React Team](/community/team)

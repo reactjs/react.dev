@@ -14,7 +14,7 @@ You can also follow the [@react.dev](https://bsky.app/profile/react.dev) account
 
 <BlogCard title="React 19.2" date="October 1, 2025" url="/blog/2025/10/01/react-19-2">
 
-React 19.2 is our third release in the last year and adds new features like Activity, React Performance Tracks, useEffectEvent, and more.
+React 19.2 adds new features like Activity, React Performance Tracks, useEffectEvent, and more. In this post ...
 
 </BlogCard>
 

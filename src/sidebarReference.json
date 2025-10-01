@@ -40,7 +40,7 @@
         },
         {
           "title": "useEffectEvent",
-          "path": "/reference/react/useEffectEvent",
+          "path": "/reference/react/useEffectEvent"
         },
         {
           "title": "useId",
@@ -110,7 +110,7 @@
         },
         {
           "title": "<Activity>",
-          "path": "/reference/react/Activity",
+          "path": "/reference/react/Activity"
         },
         {
           "title": "<ViewTransition>",

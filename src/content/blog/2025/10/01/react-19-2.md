@@ -91,7 +91,7 @@ See the [Component track docs](/reference/dev-tools/react-performance-tracks#com
 
 ### `useEffectEvent` {/*use-effect-event*/}
 
-When using Effects you may want to read the most recent props or state inside an Effect without re-running the Effect when those values change. For example, in the following code the `theme` prop is used inside an Effect, but we don’t want the Effect to re-run when `theme` changes:
+One common pattern with useEffect is to notify the app code about some kind of "events" in an external system. For example, a chat room may get connected, and you might want to display a notification when that happens:
 
 ```js {5,11}
 function ChatRoom({ roomId, theme }) {
@@ -108,28 +108,30 @@ function ChatRoom({ roomId, theme }) {
   // ...
 ```
 
+The problem with the code above is that any values used inside such an "event" will cause the surrounding Effect to re-run when they change. For example, changing the theme will cause the chat room to reconnect. This behavior makes sense for values that are related to the Effect logic itself, like roomId, but it doesn't make sense for theme.
+
 To solve this, most users just disable the lint rule and exclude the dependency. But that can lead to bugs since the linter can no longer help you keep the dependencies up to date if you need to update the Effect later.
 
-React 19.2 introduces `useEffectEvent`, which lets you declare "Effect Events" that can be called inside Effects. Effect Events always access the latest values from props and state when they are invoked, so you can read the latest values without re-running the Effect:
-
-With `useEffectEvent`, we can define the `onConnected` callback as an "Effect Event". Now, it doesn't re-run when the values change, but it can still “see” the latest values of your props and state:
+With `useEffectEvent`, you can split the "event" part of this logic out of the Effect that emits it:
 
 ```js {2,3,4,9}
-function ChatRoom({ roomId, theme, threadId }) {
+function ChatRoom({ roomId, theme }) {
   const onConnected = useEffectEvent(() => {
     showNotification('Connected!', theme);
   });
 
   useEffect(() => {
-    const connection = createConnection(serverUrl, roomId, threadId);
+    const connection = createConnection(serverUrl, roomId);
     connection.on('connected', () => {
       onConnected();
     });
     connection.connect();
     return () => connection.disconnect();
-  }, [roomId, threadId]); // ✅ All dependencies declared
+  }, [roomId]); // ✅ All dependencies declared
   // ...
 ```
+
+Similar to DOM events, Effect Events always "see" the latest props and state. They should not be declared in the dependency array. They can only be declared in the same component or Hook, which is verified by the linter.
 
 <Note>
 

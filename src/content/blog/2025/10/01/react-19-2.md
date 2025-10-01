@@ -41,10 +41,10 @@ You can use Activity as an alternative to conditionally rendering parts of your 
 
 In React 19.2, Activity supports two modes: `visible` and `hidden`.
 
-- `hidden`: hides the children, unmounts effects, and defers all updates until React has nothing left to work on. 
+- `hidden`: hides the children, unmounts effects, and defers all updates until React has nothing left to work on.
 - `visible`: shows the children, mounts effects, and allows updates to be processed normally.
 
-This means you can pre-render and keep rendering hidden parts of the app without impacting the performance of anything visible on screen. 
+This means you can pre-render and keep rendering hidden parts of the app without impacting the performance of anything visible on screen.
 
 You can use Activity to render hidden parts of the app that a user is likely to navigate to next, or to save the state of parts the user navigates away from. This helps make navigations quicker by loading data, css, and images in the background, and allows back navigations to maintain state such as input fields.
 
@@ -56,9 +56,7 @@ For examples on how to use Activity, check out the [Activity docs](/reference/re
 
 ### `useEffectEvent` {/*use-effect-event*/}
 
-_Note: Please upgrade to `eslint-plugin-react-hooks@6.1.0` when using `useEffectEvent`._
-
-One common pattern with `useEffect` is to notify the app code about some kind of "events" in an external system. For example, a chat room may get connected, and you might want to display a notification when that happens:
+One common pattern with `useEffect` is to notify the app code about some kind of "events" in an external system. For example, when a chat room gets connected, and you might want to display a notification:
 
 ```js {5,11}
 function ChatRoom({ roomId, theme }) {
@@ -75,7 +73,7 @@ function ChatRoom({ roomId, theme }) {
   // ...
 ```
 
-The problem with the code above is that any values used inside such an "event" will cause the surrounding Effect to re-run when they change. For example, changing the `theme` will cause the chat room to reconnect. This behavior makes sense for values that are related to the Effect logic itself, like `roomId`, but it doesn't make sense for `theme`.
+The problem with the code above is that a change to any values used inside such an "event" will cause the surrounding Effect to re-run. For example, changing the `theme` will cause the chat room to reconnect. This makes sense for values related to the Effect logic itself, like `roomId`, but it doesn't make sense for `theme`.
 
 To solve this, most users just disable the lint rule and exclude the dependency. But that can lead to bugs since the linter can no longer help you keep the dependencies up to date if you need to update the Effect later.
 
@@ -100,7 +98,7 @@ function ChatRoom({ roomId, theme }) {
 
 Similar to DOM events, Effect Events always “see” the latest props and state.
 
-Effect Events should _not_ be declared in the dependency array. They can only be declared in the same component or Hook as "their" Effect. These restrictions are verified by the linter.
+**Effect Events should _not_ be declared in the dependency array**. You'll need to upgrade to `eslint-plugin-react-hooks@6.1.0` so that the linter doesn't try to insert them as dependencies. Note that Effect Events can only be declared in the same component or Hook as "their" Effect. These restrictions are verified by the linter.
 
 <Note>
 
@@ -153,7 +151,7 @@ See the [Component track docs](/reference/dev-tools/react-performance-tracks#com
 
 ### `resume` {/*resume*/}
 
-In 19.2 we're adding a new capability to pre-render part of the app ahead of time, and resume rendering it later. 
+In 19.2 we're adding a new capability to pre-render part of the app ahead of time, and resume rendering it later.
 
 This feature is called "Partial Pre-rendering", and allows you to pre-render the static parts of your app and serve it from a CDN, and then resume rendering the shell to fill it in with dynamic content later.
 
@@ -233,7 +231,7 @@ For more info, see the [`cacheSignal` docs](/reference/react/cacheSignal).
 
 ### Batching Suspense Boundaries for SSR {/*batching-suspense-boundaries-for-ssr*/}
 
-We fixed a behavioral bug where Suspense boundaries would reveal differently depending on if they were rendered on the client or when streaming from server-side rendering. 
+We fixed a behavioral bug where Suspense boundaries would reveal differently depending on if they were rendered on the client or when streaming from server-side rendering.
 
 Starting in 19.2, React will batch reveals of server-rendered Suspense boundaries for a short time, to allow more content to be revealed together and align with the client-rendered behavior.
 
@@ -255,7 +253,7 @@ This fix also prepares apps for supporting `<ViewTransition>` for Suspense durin
 
 React uses heuristics to ensure throttling does not impact core web vitals and search ranking.
 
-For example, if the total page load time is approaching 2.5s (which is the time considered "good" for [LCP](https://web.dev/articles/lcp)), React will stop batching and reveal content immediately so that the throttling is not the reason to miss the metric. 
+For example, if the total page load time is approaching 2.5s (which is the time considered "good" for [LCP](https://web.dev/articles/lcp)), React will stop batching and reveal content immediately so that the throttling is not the reason to miss the metric.
 
 </Note>
 

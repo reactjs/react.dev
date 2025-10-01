@@ -21,7 +21,7 @@ This is our third release in the last year, following React 19 in December and R
 
 ---
 
-## New Features {/*new-features*/}
+## New React Features {/*new-react-features*/}
 
 ### `<Activity />` {/*activity*/}
 
@@ -51,41 +51,6 @@ You can use Activity to render hidden parts of the app that a user is likely to 
 In the future, we plan to add more modes to Activity for different use cases.
 
 For examples on how to use Activity, check out the [Activity docs](/reference/react/Activity).
-
----
-
-### Performance Tracks {/*performance-tracks*/}
-
-React 19.2 adds a new set of [custom tracks](https://developer.chrome.com/docs/devtools/performance/extension) to Chrome DevTools performance profiles to provide more information about the performance of your React app:
-
-<div style={{display: 'flex', justifyContent: 'center', marginBottom: '1rem'}}>
-  <picture >
-      <source srcset="/images/blog/react-labs-april-2025/perf_tracks.png" />
-      <img className="w-full light-image" src="/images/blog/react-labs-april-2025/perf_tracks.webp" />
-  </picture>
-  <picture >
-      <source srcset="/images/blog/react-labs-april-2025/perf_tracks_dark.png" />
-      <img className="w-full dark-image" src="/images/blog/react-labs-april-2025/perf_tracks_dark.webp" />
-  </picture>
-</div>
-
-The [React Performance Tracks docs](/reference/dev-tools/react-performance-tracks) explain everything included in the tracks, but here is a high-level overview. 
-
-#### Scheduler ⚛ {/*scheduler-*/}
-
-The Scheduler track shows what React is working on for different priorities such as "blocking" for user interactions, or "transition" for updates inside startTransition. Inside each track, you will see the type of work being performed such as the event that scheduled an update, and when the render for that update happened.
-
-We also show information such as when an update is blocked waiting for a different priority, or when React is waiting for paint before continuing. The Scheduler track helps you understand how React splits your code into different priorities, and the order it completed the work.
-
-See the [Scheduler track](/reference/dev-tools/react-performance-tracks#scheduler) docs to see everything included.
-
-#### Components ⚛ {/*components-*/}
-
-The Components track shows the tree of components that React is working on either to render or run effects. Inside you'll see labels such as "Mount" for when children mount or effects are mounted, or "Blocked" for when rendering is blocked due to yielding to work outside React.
-
-The Component track helps you understand when components are rendered or run effects, and the time it takes to complete that work to help identify performance problems. 
-
-See the [Component track docs](/reference/dev-tools/react-performance-tracks#components) for see everything included.
 
 ---
 
@@ -127,11 +92,13 @@ function ChatRoom({ roomId, theme }) {
     });
     connection.connect();
     return () => connection.disconnect();
-  }, [roomId]); // ✅ All dependencies declared
+  }, [roomId]); // ✅ All dependencies declared (Effect Events aren't dependencies)
   // ...
 ```
 
-Similar to DOM events, Effect Events always "see" the latest props and state. They should not be declared in the dependency array. They can only be declared in the same component or Hook, which is verified by the linter.
+Similar to DOM events, Effect Events always “see” the latest props and state.
+
+Effect Events should _not_ be declared in the dependency array. They can only be declared in the same component or Hook as "their" Effect. These restrictions are verified by the linter.
 
 <Note>
 
@@ -145,7 +112,53 @@ For a deep dive on how to think about Event Effects, see: [Separating Events fro
 
 ---
 
-### Partial Pre-render Support {/*partial-prerender-support*/}
+### Performance Tracks {/*performance-tracks*/}
+
+React 19.2 adds a new set of [custom tracks](https://developer.chrome.com/docs/devtools/performance/extension) to Chrome DevTools performance profiles to provide more information about the performance of your React app:
+
+<div style={{display: 'flex', justifyContent: 'center', marginBottom: '1rem'}}>
+  <picture >
+      <source srcset="/images/blog/react-labs-april-2025/perf_tracks.png" />
+      <img className="w-full light-image" src="/images/blog/react-labs-april-2025/perf_tracks.webp" />
+  </picture>
+  <picture >
+      <source srcset="/images/blog/react-labs-april-2025/perf_tracks_dark.png" />
+      <img className="w-full dark-image" src="/images/blog/react-labs-april-2025/perf_tracks_dark.webp" />
+  </picture>
+</div>
+
+The [React Performance Tracks docs](/reference/dev-tools/react-performance-tracks) explain everything included in the tracks, but here is a high-level overview.
+
+#### Scheduler ⚛ {/*scheduler-*/}
+
+The Scheduler track shows what React is working on for different priorities such as "blocking" for user interactions, or "transition" for updates inside startTransition. Inside each track, you will see the type of work being performed such as the event that scheduled an update, and when the render for that update happened.
+
+We also show information such as when an update is blocked waiting for a different priority, or when React is waiting for paint before continuing. The Scheduler track helps you understand how React splits your code into different priorities, and the order it completed the work.
+
+See the [Scheduler track](/reference/dev-tools/react-performance-tracks#scheduler) docs to see everything included.
+
+#### Components ⚛ {/*components-*/}
+
+The Components track shows the tree of components that React is working on either to render or run effects. Inside you'll see labels such as "Mount" for when children mount or effects are mounted, or "Blocked" for when rendering is blocked due to yielding to work outside React.
+
+The Component track helps you understand when components are rendered or run effects, and the time it takes to complete that work to help identify performance problems.
+
+See the [Component track docs](/reference/dev-tools/react-performance-tracks#components) for see everything included.
+
+---
+
+## New React DOM Features {/*new-react-dom-features*/}
+
+### `resume` {/*resume*/}
+
+We're adding new APIs to support partial pre-rendering for SSR:
+
+- `resume`
+- `resumeToPipeableStream`
+- `resumeAndPrerender`
+- `resumeAndPrerenderToNodeStream`
+
+Additionally, the prerender apis now return a `postpone` state to pass to the `resume` apis.
 
 ---
 

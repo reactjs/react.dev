@@ -133,16 +133,18 @@ function ChatRoom({ roomId, theme, threadId }) {
 
 <Note>
 
-#### Please don't over use `useEffectEvent` {/*please-dont-over-use-useeffectevent*/}
+#### When to use `useEffectEvent` {/*when-to-use-useeffectevent*/}
 
-We introduced `useEffectEvent` as an experimental API several years ago, and you may be curious why it took so long to ship. We've considered multiple alternatives, but all of them have different tradeoffs that can make it too easy to accidentally opt out of reactivity, especially if it is overused.  
-
-We're shipping `useEffectEvent` because it helps solve a common problem, but we recommend using it sparingly. In the future we'll continue to explore solutions to improve the reactive model more broadly.
+You should use `useEffectEvent` for functions that are conceptually "events" that happen to be fired from an Effect instead of a user event (that's what makes it an "Effect Event"). You don't need to wrap everything in `useEffectEvent`, or to use it just to silence the lint error, as this can lead to bugs.
 
 </Note>
 
 
 For more information, see [Separating Events from Effects](/learn/separating-events-from-effects) and the [`useEffectEvent` docs](/reference/react/useEffectEvent).
+
+---
+
+### Partial Pre-render Support {/*partial-prerender-support*/}
 
 ---
 

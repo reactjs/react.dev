@@ -318,6 +318,16 @@
         {
           "title": "renderToString",
           "path": "/reference/react-dom/server/renderToString"
+        },
+        {
+          "title": "resume",
+          "path": "/reference/react-dom/server/resume",
+          "version": "canary"
+        },
+        {
+          "title": "resumeToPipeableStream",
+          "path": "/reference/react-dom/server/resumeToPipeableStream",
+          "version": "canary"
         }
       ]
     },
@@ -332,6 +342,16 @@
         {
           "title": "prerenderToNodeStream",
           "path": "/reference/react-dom/static/prerenderToNodeStream"
+        },
+        {
+          "title": "resumeAndPrerender",
+          "path": "/reference/react-dom/static/resumeAndPrerender",
+          "version": "canary"
+        },
+        {
+          "title": "resumeAndPrerenderToNodeStream",
+          "path": "/reference/react-dom/static/resumeAndPrerenderToNodeStream",
+          "version": "canary"
         }
       ]
     },

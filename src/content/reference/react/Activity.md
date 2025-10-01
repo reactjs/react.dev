@@ -167,8 +167,8 @@ h1 {
 ```json package.json hidden
 {
   "dependencies": {
-    "react": "experimental",
-    "react-dom": "experimental",
+    "react": "19.2.0",
+    "react-dom": "19.2.0",
     "react-scripts": "latest",
     "toastify-js": "1.12.0"
   },
@@ -291,8 +291,8 @@ h1 {
 ```json package.json hidden
 {
   "dependencies": {
-    "react": "experimental",
-    "react-dom": "experimental",
+    "react": "19.2.0",
+    "react-dom": "19.2.0",
     "react-scripts": "latest",
     "toastify-js": "1.12.0"
   },
@@ -402,8 +402,8 @@ b { display: inline-block; margin-right: 10px; }
 ```json package.json hidden
 {
   "dependencies": {
-    "react": "experimental",
-    "react-dom": "experimental",
+    "react": "19.2.0",
+    "react-dom": "19.2.0",
     "react-scripts": "latest",
     "toastify-js": "1.12.0"
   },
@@ -511,8 +511,8 @@ b { display: inline-block; margin-right: 10px; }
 ```json package.json hidden
 {
   "dependencies": {
-    "react": "experimental",
-    "react-dom": "experimental",
+    "react": "19.2.0",
+    "react-dom": "19.2.0",
     "react-scripts": "latest",
     "toastify-js": "1.12.0"
   },
@@ -678,8 +678,8 @@ video { width: 300px; margin-top: 10px; aspect-ratio: 16/9; }
 ```json package.json hidden
 {
   "dependencies": {
-    "react": "experimental",
-    "react-dom": "experimental",
+    "react": "19.2.0",
+    "react-dom": "19.2.0",
     "react-scripts": "latest",
     "toastify-js": "1.12.0"
   },
@@ -831,8 +831,8 @@ video { width: 300px; margin-top: 10px; aspect-ratio: 16/9; }
 ```json package.json hidden
 {
   "dependencies": {
-    "react": "experimental",
-    "react-dom": "experimental",
+    "react": "19.2.0",
+    "react-dom": "19.2.0",
     "react-scripts": "latest",
     "toastify-js": "1.12.0"
   },
@@ -1100,8 +1100,8 @@ video { width: 300px; margin-top: 10px; aspect-ratio: 16/9; }
 ```json package.json hidden
 {
   "dependencies": {
-    "react": "experimental",
-    "react-dom": "experimental",
+    "react": "19.2.0",
+    "react-dom": "19.2.0",
     "react-scripts": "latest",
     "toastify-js": "1.12.0"
   },
@@ -1210,8 +1210,8 @@ video { width: 300px; margin-top: 10px; aspect-ratio: 16/9; }
 ```json package.json hidden
 {
   "dependencies": {
-    "react": "experimental",
-    "react-dom": "experimental",
+    "react": "19.2.0",
+    "react-dom": "19.2.0",
     "react-scripts": "latest",
     "toastify-js": "1.12.0"
   },
@@ -1357,8 +1357,8 @@ video { width: 300px; margin-top: 10px; aspect-ratio: 16/9; }
 ```json package.json hidden
 {
   "dependencies": {
-    "react": "experimental",
-    "react-dom": "experimental",
+    "react": "19.2.0",
+    "react-dom": "19.2.0",
     "react-scripts": "latest",
     "toastify-js": "1.12.0"
   },

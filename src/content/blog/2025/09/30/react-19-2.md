@@ -122,9 +122,9 @@ function ChatRoom({ roomId, theme, threadId }) {
 
 #### Please don't over use `useEffectEvent` {/*please-dont-over-use-useeffectevent*/}
 
-We introduced `useEffectEvent` as an experimental API several years ago, and you may be curious why it took so long to ship. We've considered multiple alternatives, but all of them have different tradeoffs that can make it too easy to accidentally out of reactivity, especially if it is overused.  
+We introduced `useEffectEvent` as an experimental API several years ago, and you may be curious why it took so long to ship. We've considered multiple alternatives, but all of them have different tradeoffs that can make it too easy to accidentally opt out of reactivity, especially if it is overused.  
 
-We're shipping `useEffectEvent` because it helps solve a common problem, but we recommend using it sparingly. In the future we may explore other APIs that can solve the same problem better.
+We're shipping `useEffectEvent` because it helps solve a common problem, but we recommend using it sparingly. In the future we'll continue to explore solutions to improve the reactive model more broadly.
 
 </Note>
 

@@ -1,15 +1,6 @@
 ---
 title: resumeAndPrerender
-version: canary
 ---
-
-<Canary>
-
-**The `resume` API is currently only available in React’s Canary and Experimental channels.** 
-
-[Learn more about React’s release channels here.](/community/versioning-policy#all-release-channels)
-
-</Canary>
 
 <Intro>
 

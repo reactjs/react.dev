@@ -1,15 +1,6 @@
 ---
 title: resumeToPipeableStream
-canary: true
 ---
-
-<Canary>
-
-**The `resumeToPipeableStream` API is currently only available in React’s Canary and Experimental channels.** 
-
-[Learn more about React’s release channels here.](/community/versioning-policy#all-release-channels)
-
-</Canary>
 
 <Intro>
 

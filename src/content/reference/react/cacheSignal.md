@@ -2,14 +2,6 @@
 title: cacheSignal
 ---
 
-<Canary>
-
-**The `cacheSignal()` API is currently only available in React’s Canary and Experimental channels.** 
-
-[Learn more about React’s release channels here.](/community/versioning-policy#all-release-channels)
-
-</Canary>
-
 <RSC>
 
 `cacheSignal` is currently only used with [React Server Components](/blog/2023/03/22/react-labs-what-we-have-been-working-on-march-2023#react-server-components). 

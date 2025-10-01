@@ -134,7 +134,6 @@
         {
           "title": "cacheSignal",
           "path": "/reference/react/cacheSignal",
-          "version": "canary"
         },
         {
           "title": "captureOwnerStack",
@@ -320,12 +319,10 @@
         {
           "title": "resume",
           "path": "/reference/react-dom/server/resume",
-          "version": "canary"
         },
         {
           "title": "resumeToPipeableStream",
           "path": "/reference/react-dom/server/resumeToPipeableStream",
-          "version": "canary"
         }
       ]
     },
@@ -344,12 +341,10 @@
         {
           "title": "resumeAndPrerender",
           "path": "/reference/react-dom/static/resumeAndPrerender",
-          "version": "canary"
         },
         {
           "title": "resumeAndPrerenderToNodeStream",
           "path": "/reference/react-dom/static/resumeAndPrerenderToNodeStream",
-          "version": "canary"
         }
       ]
     },

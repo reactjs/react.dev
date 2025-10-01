@@ -265,6 +265,11 @@ React 19.2 adds support for Web Streams for streaming SSR in Node.js:
 - [`renderToReadableStream`](/reference/react-dom/server/renderToReadableStream) is now available for Node.js
 - [`prerender`](/reference/react-dom/static/prerender) is now available for Node.js
 
+As well as the new `resume` APIs:
+- [`resume`](/reference/react-dom/server/resume): is available for Node.js.
+- [`resumeAndPrerender`](/reference/react-dom/static/resumeAndPrerender) is available for Node.js.
+
+
 <Pitfall>
 
 #### Prefer Node Streams for server-side rendering in Node.js {/*prefer-node-streams-for-server-side-rendering-in-nodejs*/}
@@ -272,7 +277,9 @@ React 19.2 adds support for Web Streams for streaming SSR in Node.js:
 In Node.js environments, we still highly recommend using the Node Streams APIs:
 
 - [`renderToPipeableStream`](/reference/react-dom/server/renderToPipeableStream)
+- [`resumeToPipeableStream`](/reference/react-dom/server/resumeToPipeableStream)
 - [`prerenderToNodeStream`](/reference/react-dom/static/prerenderToNodeStream)
+- [`resumeAndPrerenderToNodeStream`](/reference/react-dom/static/resumeAndPrerenderToNodeStream)
 
 This is because Node Streams are much faster than Web Streams in Node, and Web Streams do not support compression by default, leading to users accidentally missing the benefits of streaming.
 

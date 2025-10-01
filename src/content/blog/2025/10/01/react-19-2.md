@@ -178,7 +178,7 @@ See the [Component track docs](/reference/dev-tools/react-performance-tracks#com
 
 ## New React DOM Features {/*new-react-dom-features*/}
 
-### `resume` {/*resume*/}
+### Partial Pre-rendering {/*partial-pre-rendering*/}
 
 In 19.2 we're adding a new capability to pre-render part of the app ahead of time, and resume rendering it later.
 

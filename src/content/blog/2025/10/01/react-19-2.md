@@ -298,7 +298,7 @@ To continue using the legacy config, you can change to `recommended-legacy`:
 + extends: ['plugin:react-hooks/recommended-legacy']
 ```
 
-For a full list of compiler enabled rules, [check out the linter docs](/reference/eslint-plugin-react-hooks#available-lints).
+For a full list of compiler enabled rules, [check out the linter docs](/reference/eslint-plugin-react-hooks#additional-rules).
 
 Check out the `eslint-plugin-react-hooks` [changelog for a full list of changes](https://github.com/facebook/react/blob/main/packages/eslint-plugin-react-hooks/CHANGELOG.md#610).
 

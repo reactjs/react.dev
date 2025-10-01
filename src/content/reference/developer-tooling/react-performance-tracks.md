@@ -33,13 +33,14 @@ These tracks are designed to provide developers with comprehensive insights into
 React Performance tracks are only available in development and profiling builds of React:
 
 - **Development**: enabled by default.
-- **Profiling**: you can either wrap a subtree that you want to instrument with [`<Profiler>`](/reference/react/Profiler) component or have [React Developer Tools extension](/learn/react-developer-tools) enabled.
+- **Profiling**: you can either wrap a subtree that you want to instrument with [`<Profiler>`](/reference/react/Profiler) component or have [React Developer Tools extension](/learn/react-developer-tools) enabled. Tracks specific to React Server Components are not enabled in profiling builds.
 
 If enabled, tracks should appear automatically in the traces you record with the Performance panel of browsers that provide [extensibility APIs](https://developer.chrome.com/docs/devtools/performance/extension).
 
 <Pitfall>
 
 The profiling instrumentation that powers React Performance tracks adds some additional overhead, so it is disabled in production builds by default.
+Server Components and Server Requests tracks are only available in development builds.
 
 </Pitfall>
 
@@ -129,3 +130,32 @@ In development builds, when you click on a component render entry, you can inspe
   <img className="w-full light-image" src="/images/docs/performance-tracks/changed-props.png" alt="Components track: changed props" />
   <img className="w-full dark-image" src="/images/docs/performance-tracks/changed-props.dark.png" alt="Components track: changed props" />
 </div>
+
+### Server {/*server*/}
+
+<div style={{display: 'flex', justifyContent: 'center', marginBottom: '1rem'}}>
+  <img className="w-full light-image" src="/images/docs/performance-tracks/server-overview.png" alt="React Server Performance Tracks" />
+  <img className="w-full dark-image" src="/images/docs/performance-tracks/server-overview.dark.png" alt="React Server Performance Tracks" />
+</div>
+
+#### Server Requests {/*server-requests*/}
+
+The Server Requests track visualized all Promises that eventually end up in a React Server Component. This includes any `async` operations like calling `fetch` or async Node.js file operations. 
+
+React will try to combine Promises that are started from inside third-party code into a single span representing the the duration of the entire operation blocking 1st party code.
+For example, a third party library method called `getUser` that calls `fetch` internally multiple times will be represented as a single span called `getUser`, instead of showing multiple `fetch` spans.
+
+Clicking on spans will show you a stack trace of where the Promise was created as well as a view of the value that the Promise resolved to, if available.
+
+Rejected Promises are displayed as red with their rejected value.
+
+#### Server Components {/*server-components*/}
+
+The Server Components tracks visualize the durations of React Server Components Promises they awaited. Timings are displayed as a flamegraph, where each entry represents the duration of the corresponding component render and all its descendant children components.
+
+If you await a Promise, React will display duration of that Promise. To see all I/O operations, use the Server Requests track.
+
+Different colors are used to indicate the duration of the component render. The darker the color, the longer the duration.
+
+The Server Components track group will always contain a "Primary" track. If React is able to render Server Components concurrently, it will display addititional "Parallel" tracks.
+If more than 8 Server Components are rendered concurrently, React will associate them with the last "Parallel" track instead of adding more tracks.

@@ -837,14 +837,6 @@ Every time your `ChatRoom` component re-renders, it passes the latest `roomId` a
 
 ### Passing event handlers to custom Hooks {/*passing-event-handlers-to-custom-hooks*/}
 
-<Canary>
-
-**The `useEffectEvent` API is currently only available in React’s Canary and Experimental channels.** 
-
-[Learn more about React’s release channels here.](/community/versioning-policy#all-release-channels)
-
-</Canary>
-
 As you start using `useChatRoom` in more components, you might want to let components customize its behavior. For example, currently, the logic for what to do when a message arrives is hardcoded inside the Hook:
 
 ```js {9-11}

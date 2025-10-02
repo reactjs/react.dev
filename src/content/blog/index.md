@@ -12,6 +12,12 @@ You can also follow the [@react.dev](https://bsky.app/profile/react.dev) account
 
 <div className="sm:-mx-5 flex flex-col gap-5 mt-12">
 
+<BlogCard title="React 19.2" date="October 1, 2025" url="/blog/2025/10/01/react-19-2">
+
+React 19.2 adds new features like Activity, React Performance Tracks, useEffectEvent, and more. In this post ...
+
+</BlogCard>
+
 <BlogCard title="React Labs: View Transitions, Activity, and more" date="April 23, 2025" url="/blog/2025/04/23/react-labs-view-transitions-activity-and-more">
 
 In React Labs posts, we write about projects in active research and development. In this post, we're sharing two new experimental features that are ready to try today, and sharing other areas we're working on now ...

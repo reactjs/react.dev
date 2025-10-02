@@ -400,14 +400,6 @@ You need a way to separate this non-reactive logic from the reactive Effect arou
 
 ### Declaring an Effect Event {/*declaring-an-effect-event*/}
 
-<Canary>
-
-**The `useEffectEvent` API is currently only available in React’s Canary and Experimental channels.** 
-
-[Learn more about React’s release channels here.](/community/versioning-policy#all-release-channels)
-
-</Canary>
-
 Use a special Hook called [`useEffectEvent`](/reference/react/useEffectEvent) to extract this non-reactive logic out of your Effect:
 
 ```js {1,4-6}
@@ -580,14 +572,6 @@ You can think of Effect Events as being very similar to event handlers. The main
 
 ### Reading latest props and state with Effect Events {/*reading-latest-props-and-state-with-effect-events*/}
 
-<Canary>
-
-**The `useEffectEvent` API is currently only available in React’s Canary and Experimental channels.** 
-
-[Learn more about React’s release channels here.](/community/versioning-policy#all-release-channels)
-
-</Canary>
-
 Effect Events let you fix many patterns where you might be tempted to suppress the dependency linter.
 
 For example, say you have an Effect to log the page visits:
@@ -729,7 +713,7 @@ function Page({ url }) {
 }
 ```
 
-After `useEffectEvent` becomes a stable part of React, we recommend **never suppressing the linter**.
+We recommend **never suppressing the linter**.
 
 The first downside of suppressing the rule is that React will no longer warn you when your Effect needs to "react" to a new reactive dependency you've introduced to your code. In the earlier example, you added `url` to the dependencies *because* React reminded you to do it. You will no longer get such reminders for any future edits to that Effect if you disable the linter. This leads to bugs.
 
@@ -881,14 +865,6 @@ Read [Removing Effect Dependencies](/learn/removing-effect-dependencies) for oth
 </DeepDive>
 
 ### Limitations of Effect Events {/*limitations-of-effect-events*/}
-
-<Canary>
-
-**The `useEffectEvent` API is currently only available in React’s Canary and Experimental channels.** 
-
-[Learn more about React’s release channels here.](/community/versioning-policy#all-release-channels)
-
-</Canary>
 
 Effect Events are very limited in how you can use them:
 

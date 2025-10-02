@@ -1061,7 +1061,7 @@ export function showNotification(message, theme = 'dark') {
 }
 ```
 
-```json package.json hidden	
+```json package.json hidden
 {
   "dependencies": {
     "react": "latest",

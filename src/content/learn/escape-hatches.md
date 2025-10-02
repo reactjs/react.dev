@@ -452,7 +452,7 @@ This is not ideal. You want to re-connect to the chat only if the `roomId` has c
 
 <Sandpack>
 
-```json package.json hidden	
+```json package.json hidden
 {
   "dependencies": {
     "react": "latest",

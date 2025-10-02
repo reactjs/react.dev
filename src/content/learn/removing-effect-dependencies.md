@@ -1785,7 +1785,7 @@ Another of these functions only exists to pass some state to an imported API met
 <Sandpack>
 
 ```json package.json hidden	
-{	
+{
   "dependencies": {
     "react": "latest",
     "react-dom": "latest",
@@ -2078,7 +2078,6 @@ export default function ChatRoom({ roomId, isEncrypted, onMessage }) { // Reacti
 As a result, the chat re-connects only when something meaningful (`roomId` or `isEncrypted`) changes:
 
 <Sandpack>
-
 
 ```json package.json hidden	
 {

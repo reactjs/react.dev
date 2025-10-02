@@ -78,22 +78,6 @@ The returned stream has an additional property:
 ```js src/App.js hidden 
 ```
 
-```json package.json hidden
-{
-  "dependencies": {
-    "react": "experimental",
-    "react-dom": "experimental",
-    "react-scripts": "latest"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
-  }
-}
-```
-
 ```html public/index.html
 <!DOCTYPE html>
 <html lang="en">

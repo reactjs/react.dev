@@ -1062,20 +1062,20 @@ export function showNotification(message, theme = 'dark') {
 ```
 
 ```json package.json hidden	
-{	
-  "dependencies": {	
-    "react": "latest",	
-    "react-dom": "latest",	
-    "react-scripts": "latest",	
-    "toastify-js": "1.12.0"	
-  },	
-  "scripts": {	
-    "start": "react-scripts start",	
-    "build": "react-scripts build",	
-    "test": "react-scripts test --env=jsdom",	
-    "eject": "react-scripts eject"	
-  }	
-}	
+{
+  "dependencies": {
+    "react": "latest",
+    "react-dom": "latest",
+    "react-scripts": "latest",
+    "toastify-js": "1.12.0"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  }
+}
 ```
 
 ```css

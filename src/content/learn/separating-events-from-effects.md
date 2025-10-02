@@ -439,6 +439,23 @@ Verify that the new behavior works as you would expect:
 
 <Sandpack>
 
+```json package.json hidden
+{
+  "dependencies": {
+    "react": "latest",
+    "react-dom": "latest",
+    "react-scripts": "latest",
+    "toastify-js": "1.12.0"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  }
+}
+```
+
 ```js
 import { useState, useEffect } from 'react';
 import { useEffectEvent } from 'react';
@@ -1307,6 +1324,23 @@ Your Effect knows which room it connected to. Is there any information that you 
 
 <Sandpack>
 
+```json package.json hidden
+{
+  "dependencies": {
+    "react": "latest",
+    "react-dom": "latest",
+    "react-scripts": "latest",
+    "toastify-js": "1.12.0"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  }
+}
+```
+
 ```js
 import { useState, useEffect } from 'react';
 import { useEffectEvent } from 'react';
@@ -1431,6 +1465,23 @@ To fix the issue, instead of reading the *latest* `roomId` inside the Effect Eve
 
 <Sandpack>
 
+```json package.json hidden
+{
+  "dependencies": {
+    "react": "latest",
+    "react-dom": "latest",
+    "react-scripts": "latest",
+    "toastify-js": "1.12.0"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  }
+}
+```
+
 ```js
 import { useState, useEffect } from 'react';
 import { useEffectEvent } from 'react';
@@ -1550,6 +1601,23 @@ The Effect that had `roomId` set to `"travel"` (so it connected to the `"travel"
 To solve the additional challenge, save the notification timeout ID and clear it in the cleanup function of your Effect:
 
 <Sandpack>
+
+```json package.json hidden
+{
+  "dependencies": {
+    "react": "latest",
+    "react-dom": "latest",
+    "react-scripts": "latest",
+    "toastify-js": "1.12.0"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  }
+}
+```
 
 ```js
 import { useState, useEffect } from 'react';

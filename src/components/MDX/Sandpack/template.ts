@@ -34,11 +34,9 @@ root.render(
           test: 'react-scripts test --env=jsdom',
           eject: 'react-scripts eject',
         },
-        // pin these deps to avoid issues
-        // with sandpack's dependency resolution
         dependencies: {
-          react: '19.2.0',
-          'react-dom': '19.2.0',
+          react: '^19.2.0',
+          'react-dom': '^19.2.0',
           'react-scripts': '^5.0.0',
         },
       },

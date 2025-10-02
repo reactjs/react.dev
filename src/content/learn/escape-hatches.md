@@ -455,8 +455,8 @@ This is not ideal. You want to re-connect to the chat only if the `roomId` has c
 ```json package.json hidden
 {
   "dependencies": {
-    "react": "canary",
-    "react-dom": "canary",
+    "react": "latest",
+    "react-dom": "latest",
     "react-scripts": "latest",
     "toastify-js": "1.12.0"
   },

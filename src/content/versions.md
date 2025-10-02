@@ -12,7 +12,7 @@ We aim to keep the docs updated within major versions, and do not publish versio
 
 You can find an archive of previous major versions below.
 
-## Latest version: 19.3 {/*latest-version*/}
+## Latest version: 19.2 {/*latest-version*/}
 
 - [react.dev](https://react.dev) {/*docs-19*/}
 

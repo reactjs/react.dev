@@ -1784,6 +1784,24 @@ Another of these functions only exists to pass some state to an imported API met
 
 <Sandpack>
 
+
+```json package.json hidden	
+{	
+  "dependencies": {	
+    "react": "latest",	
+    "react-dom": "latest",	
+    "react-scripts": "latest",	
+    "toastify-js": "1.12.0"	
+  },	
+  "scripts": {	
+    "start": "react-scripts start",	
+    "build": "react-scripts build",	
+    "test": "react-scripts test --env=jsdom",	
+    "eject": "react-scripts eject"	
+  }	
+}	
+```
+
 ```js src/App.js
 import { useState } from 'react';
 import ChatRoom from './ChatRoom.js';
@@ -2061,6 +2079,24 @@ export default function ChatRoom({ roomId, isEncrypted, onMessage }) { // Reacti
 As a result, the chat re-connects only when something meaningful (`roomId` or `isEncrypted`) changes:
 
 <Sandpack>
+
+
+```json package.json hidden	
+{	
+  "dependencies": {	
+    "react": "latest",	
+    "react-dom": "latest",	
+    "react-scripts": "latest",	
+    "toastify-js": "1.12.0"	
+  },	
+  "scripts": {	
+    "start": "react-scripts start",	
+    "build": "react-scripts build",	
+    "test": "react-scripts test --env=jsdom",	
+    "eject": "react-scripts eject"	
+  }	
+}	
+```
 
 ```js src/App.js
 import { useState } from 'react';

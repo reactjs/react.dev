@@ -452,6 +452,23 @@ This is not ideal. You want to re-connect to the chat only if the `roomId` has c
 
 <Sandpack>
 
+```json package.json hidden	
+{	
+  "dependencies": {	
+    "react": "latest",	
+    "react-dom": "latest",	
+    "react-scripts": "latest",	
+    "toastify-js": "1.12.0"	
+  },	
+  "scripts": {	
+    "start": "react-scripts start",	
+    "build": "react-scripts build",	
+    "test": "react-scripts test --env=jsdom",	
+    "eject": "react-scripts eject"	
+  }	
+}	
+```
+
 ```js
 import { useState, useEffect } from 'react';
 import { useEffectEvent } from 'react';

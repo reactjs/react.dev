@@ -162,7 +162,7 @@ const [permissions, setPermissions] = useState(
 
 ## Options {/*options*/}
 
-You can configure custom effect hooks using shared ESLint settings (available in `eslint-plugin-react-hooks` 6.1.0 and later):
+You can configure custom effect hooks using shared ESLint settings (available in `eslint-plugin-react-hooks` 6.1.1 and later):
 
 ```js
 {

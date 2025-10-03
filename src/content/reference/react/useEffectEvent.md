@@ -53,7 +53,7 @@ Returns an Effect Event function. You can call this function inside `useEffect`,
 
 #### Caveats {/*caveats*/}
 
-- **Only call inside Effects:** Effect Events should only be called within Effects. Define them just before the Effect that uses them. Do not pass them to other components or hooks. The [`eslint-plugin-react-hooks`](/reference/eslint-plugin-react-hooks) linter (version 6.1.0 or higher) will enforce this restriction to prevent calling Effect Events in the wrong context.
+- **Only call inside Effects:** Effect Events should only be called within Effects. Define them just before the Effect that uses them. Do not pass them to other components or hooks. The [`eslint-plugin-react-hooks`](/reference/eslint-plugin-react-hooks) linter (version 6.1.1 or higher) will enforce this restriction to prevent calling Effect Events in the wrong context.
 - **Not a dependency shortcut:** Do not use `useEffectEvent` to avoid specifying dependencies in your Effect's dependency array. This can hide bugs and make your code harder to understand. Prefer explicit dependencies or use refs to compare previous values if needed.
 - **Use for non-reactive logic:** Only use `useEffectEvent` to extract logic that does not depend on changing values.
 

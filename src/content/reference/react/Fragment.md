@@ -30,7 +30,7 @@ Wrap elements in `<Fragment>` to group them together in situations where you nee
 #### Props {/*props*/}
 
 - **optional** `key`: Fragments declared with the explicit `<Fragment>` syntax may have [keys.](/learn/rendering-lists#keeping-list-items-in-order-with-key)
-- <ExperimentalBadge />  **optional** `ref`: A ref object or callback function. React will forward the ref to a `FragmentInstance` object that provides methods for interacting with the DOM nodes wrapped by the Fragment.
+- <ExperimentalBadge />  **optional** `ref`: A ref object (e.g. from [`useRef`](/reference/react/useRef)) or [callback function](/reference/react-dom/components/common#ref-callback). React provides a `FragmentInstance` as the ref value that implements methods for interacting with the DOM nodes wrapped by the Fragment.
 
 ### <ExperimentalBadge /> FragmentInstance {/*fragmentinstance*/}
 
@@ -264,7 +264,7 @@ function ClickableFragment({ children, onClick }) {
 
 ### <ExperimentalBadge /> Tracking visibility with Fragment refs {/*tracking-visibility-with-fragment-refs*/}
 
-Fragment refs are useful for visibility tracking and intersection observation. This enables you to monitor when content becomes visible without requiring the child components to expose refs:
+Fragment refs are useful for visibility tracking and intersection observation. This enables you to monitor when content becomes visible without requiring the child Components to expose refs:
 
 ```js {19,21,31-34}
 import { Fragment, useRef, useLayoutEffect } from 'react';
@@ -305,7 +305,7 @@ function MyComponent() {
 }
 ```
 
-This pattern is an alternative to effect-based visibility logging, which is an anti-pattern in most cases. Relying on effects alone does not guarantee that the rendered component is observable by the user.
+This pattern is an alternative to Effect-based visibility logging, which is an anti-pattern in most cases. Relying on Effects alone does not guarantee that the rendered Component is observable by the user.
 
 ---
 

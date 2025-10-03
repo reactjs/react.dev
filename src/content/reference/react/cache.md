@@ -4,7 +4,7 @@ title: cache
 
 <RSC>
 
-`cache` is only for use with [React Server Components](/blog/2023/03/22/react-labs-what-we-have-been-working-on-march-2023#react-server-components).
+`cache` is only for use with [React Server Components](/reference/rsc/server-components).
 
 </RSC>
 
@@ -62,12 +62,10 @@ The optimization of caching return values based on inputs is known as [_memoizat
 
 #### Caveats {/*caveats*/}
 
-[//]: # 'TODO: add links to Server/Client Component reference once https://github.com/reactjs/react.dev/pull/6177 is merged'
-
 - React will invalidate the cache for all memoized functions for each server request.
 - Each call to `cache` creates a new function. This means that calling `cache` with the same function multiple times will return different memoized functions that do not share the same cache.
 - `cachedFn` will also cache errors. If `fn` throws an error for certain arguments, it will be cached, and the same error is re-thrown when `cachedFn` is called with those same arguments.
-- `cache` is for use in [Server Components](/blog/2023/03/22/react-labs-what-we-have-been-working-on-march-2023#react-server-components) only.
+- `cache` is for use in [Server Components](/reference/rsc/server-components) only.
 
 ---
 
@@ -102,6 +100,8 @@ If the same `user` object is rendered in both `Profile` and `TeamReport`, the tw
 Assume `Profile` is rendered first. It will call <CodeStep step={1}>`getUserMetrics`</CodeStep>, and check if there is a cached result. Since it is the first time `getUserMetrics` is called with that `user`, there will be a cache miss. `getUserMetrics` will then call `calculateUserMetrics` with that `user` and write the result to cache.
 
 When `TeamReport` renders its list of `users` and reaches the same `user` object, it will call <CodeStep step={2}>`getUserMetrics`</CodeStep> and read the result from cache.
+
+If `calculateUserMetrics` can be aborted by passing an [`AbortSignal`](https://developer.mozilla.org/en-US/docs/Web/API/AbortSignal), you can use [`cacheSignal()`](/reference/react/cacheSignal) to cancel the expensive computation if React has finished rendering. `calculateUserMetrics` may already handle cancellation internally by using `cacheSignal` directly.
 
 <Pitfall>
 
@@ -203,8 +203,6 @@ The <CodeStep step={1}>city</CodeStep> acts as a cache key.
 
 <Note>
 
-[//]: # 'TODO: add links to Server Components when merged.'
-
 <CodeStep step={3}>Asynchronous rendering</CodeStep> is only supported for Server Components.
 
 ```js [[3, 1, "async"], [3, 2, "await"]]
@@ -213,8 +211,8 @@ async function AnimatedWeatherCard({city}) {
 	// ...
 }
 ```
-[//]: # 'TODO: add link and mention to use documentation when merged'
-[//]: # 'To render components that use asynchronous data in Client Components, see `use` documentation.'
+
+To render components that use asynchronous data in Client Components, see [`use()` documentation](/reference/react/use).
 
 </Note>
 

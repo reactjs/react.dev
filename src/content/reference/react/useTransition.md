@@ -1551,7 +1551,11 @@ main {
 
 <Note>
 
-[Suspense-enabled](/reference/react/Suspense) routers are expected to wrap the navigation updates into Transitions by default.
+To support [Suspense](/reference/react/Suspense), Routers are expected to wrap the navigation updates into Transitions by default.
+
+This allows Routers to automatically support [displaying a fallback while content is loading](/reference/react/Suspense#displaying-a-fallback-while-content-is-loading) when navigating to new routes, and [preventing already revealed content from hiding](/reference/react/Suspense#preventing-already-revealed-content-from-hiding) when refreshing the current route. 
+
+Popular routers like [TanStack Router](https://tanstack.com/router/latest) and [React Router](https://reactrouter.com/) already support transitions by default.
 
 </Note>
 

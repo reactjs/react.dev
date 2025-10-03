@@ -57,23 +57,23 @@ During the RC period, we encourage all React users to try the compiler and provi
 As noted in the Beta announcement, React Compiler is compatible with React 17 and up. If you are not yet on React 19, you can use React Compiler by specifying a minimum target in your compiler config, and adding `react-compiler-runtime` as a dependency. You can find docs on this [here](https://react.dev/learn/react-compiler#using-react-compiler-with-react-17-or-18).
 
 ## Migrating from eslint-plugin-react-compiler to eslint-plugin-react-hooks {/*migrating-from-eslint-plugin-react-compiler-to-eslint-plugin-react-hooks*/}
-If you have already installed eslint-plugin-react-compiler, you can now remove it and use `eslint-plugin-react-hooks@rc`. Many thanks to [@michaelfaith](https://bsky.app/profile/michael.faith) for contributing to this improvement!
+If you have already installed eslint-plugin-react-compiler, you can now remove it and use `eslint-plugin-react-hooks@^6.1.1`. Many thanks to [@michaelfaith](https://bsky.app/profile/michael.faith) for contributing to this improvement!
 
 To install:
 
 npm
 <TerminalBlock>
-{`npm install --save-dev eslint-plugin-react-hooks@rc`}
+{`npm install --save-dev eslint-plugin-react-hooks@^6.1.1`}
 </TerminalBlock>
 
 pnpm
 <TerminalBlock>
-{`pnpm add --save-dev eslint-plugin-react-hooks@rc`}
+{`pnpm add --save-dev eslint-plugin-react-hooks@^6.1.1`}
 </TerminalBlock>
 
 yarn
 <TerminalBlock>
-{`yarn add --dev eslint-plugin-react-hooks@rc`}
+{`yarn add --dev eslint-plugin-react-hooks@^6.1.1`}
 </TerminalBlock>
 
 ```js

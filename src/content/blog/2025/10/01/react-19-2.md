@@ -98,7 +98,7 @@ function ChatRoom({ roomId, theme }) {
 
 Similar to DOM events, Effect Events always “see” the latest props and state.
 
-**Effect Events should _not_ be declared in the dependency array**. You'll need to upgrade to `eslint-plugin-react-hooks@6.1.0` so that the linter doesn't try to insert them as dependencies. Note that Effect Events can only be declared in the same component or Hook as "their" Effect. These restrictions are verified by the linter.
+**Effect Events should _not_ be declared in the dependency array**. You'll need to upgrade to `eslint-plugin-react-hooks@6.1.1` so that the linter doesn't try to insert them as dependencies. Note that Effect Events can only be declared in the same component or Hook as "their" Effect. These restrictions are verified by the linter.
 
 <Note>
 
@@ -289,7 +289,7 @@ This is because Node Streams are much faster than Web Streams in Node, and Web S
 
 ### `eslint-plugin-react-hooks` v6 {/*eslint-plugin-react-hooks*/}
 
-We also published `eslint-plugin-react-hooks@6.1.0` with flat config by default in the `recommended` preset, and opt-in for new React Compiler powered rules.
+We also published `eslint-plugin-react-hooks@6.1.1` with flat config by default in the `recommended` preset, and opt-in for new React Compiler powered rules.
 
 To continue using the legacy config, you can change to `recommended-legacy`:
 

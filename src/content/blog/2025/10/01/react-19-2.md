@@ -266,7 +266,7 @@ React 19.2 adds support for Web Streams for streaming SSR in Node.js:
 - [`prerender`](/reference/react-dom/static/prerender) is now available for Node.js
 
 As well as the new `resume` APIs:
-- [`resume`](/reference/react-dom/server/resume): is available for Node.js.
+- [`resume`](/reference/react-dom/server/resume) is available for Node.js.
 - [`resumeAndPrerender`](/reference/react-dom/static/resumeAndPrerender) is available for Node.js.
 
 

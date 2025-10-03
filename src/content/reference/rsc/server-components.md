@@ -183,7 +183,7 @@ The bundler then combines the data, rendered Server Components and dynamic Clien
 </div>
 ```
 
-Server Components can be made dynamic by re-fetching them from a server, where they can access the data and render again. This new application architecture combines the simple “request/response” mental model of server-centric Multi-Page Apps with the seamless interactivity of client-centric Single-Page Apps, giving you the best of both worlds.
+Server Components can be made dynamic by re-fetching them from a server, where they can access the data and render again. This new application architecture combines the simple "request/response" mental model of server-centric Multi-Page Apps with the seamless interactivity of client-centric Single-Page Apps, giving you the best of both worlds.
 
 ### Adding interactivity to Server Components {/*adding-interactivity-to-server-components*/}
 
@@ -300,3 +300,55 @@ function Comments({commentsPromise}) {
 The `note` content is important data for the page to render, so we `await` it on the server. The comments are below the fold and lower-priority, so we start the promise on the server, and wait for it on the client with the `use` API. This will Suspend on the client, without blocking the `note` content from rendering.
 
 Since async components are not supported on the client, we await the promise with `use`.
+
+<Note>
+
+#### Alternative: Manual Promise handling in Client Components {/*alternative-manual-promise-handling*/}
+
+While the `use()` hook provides seamless integration with Suspense boundaries, you can also handle Promises manually in Client Components using traditional React patterns with `useEffect` and `useState`. This approach gives you more control over loading states and error handling:
+
+```js
+// Client Component
+"use client";
+import { useState, useEffect } from 'react';
+
+function Comments({commentsPromise}) {
+  const [comments, setComments] = useState(null);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    let cancelled = false;
+    
+    commentsPromise
+      .then(data => {
+        if (!cancelled) {
+          setComments(data);
+        }
+      })
+      .catch(err => {
+        if (!cancelled) {
+          setError(err);
+        }
+      });
+    
+    return () => {
+      cancelled = true;
+    };
+  }, [commentsPromise]);
+
+  if (error) return <p>Error loading comments: {error.message}</p>;
+  if (!comments) return <p>Loading comments...</p>;
+  
+  return comments.map(comment => <p key={comment.id}>{comment.text}</p>);
+}
+```
+
+This pattern is useful when you need:
+- Custom loading indicators without Suspense boundaries
+- Granular error handling at the component level
+- To update parts of the UI progressively as data arrives
+- To maintain existing component patterns while adopting Server Components
+
+Both approaches are valid. Choose `use()` for simpler code that works with Suspense, or manual handling when you need more control over the loading experience.
+
+</Note>

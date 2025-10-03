@@ -7,7 +7,7 @@ title: prerenderToNodeStream
 `prerenderToNodeStream` renders a React tree to a static HTML string using a [Node.js Stream.](https://nodejs.org/api/stream.html).
 
 ```js
-const {prelude} = await prerenderToNodeStream(reactNode, options?)
+const {prelude, postponed} = await prerenderToNodeStream(reactNode, options?)
 ```
 
 </Intro>
@@ -65,6 +65,7 @@ On the client, call [`hydrateRoot`](/reference/react-dom/client/hydrateRoot) to 
 `prerenderToNodeStream` returns a Promise:
 - If rendering the is successful, the Promise will resolve to an object containing:
   - `prelude`: a [Node.js Stream.](https://nodejs.org/api/stream.html) of HTML. You can use this stream to send a response in chunks, or you can read the entire stream into a string.
+  - `postponed`: a JSON-serializeable, opaque object that can be passed to [`resumeToPipeableStream`](/reference/react-dom/server/resumeToPipeableStream) if `prerenderToNodeStream` did not finish. Otherwise `null` indicating that the `prelude` contains all the content and no resume is necessary.
 - If rendering fails, the Promise will be rejected. [Use this to output a fallback shell.](/reference/react-dom/server/renderToPipeableStream#recovering-from-errors-inside-the-shell)
 
 #### Caveats {/*caveats*/}
@@ -76,6 +77,8 @@ On the client, call [`hydrateRoot`](/reference/react-dom/client/hydrateRoot) to 
 ### When should I use `prerenderToNodeStream`? {/*when-to-use-prerender*/}
 
 The static `prerenderToNodeStream` API is used for static server-side generation (SSG). Unlike `renderToString`, `prerenderToNodeStream` waits for all data to load before resolving. This makes it suitable for generating static HTML for a full page, including data that needs to be fetched using Suspense. To stream content as it loads, use a streaming server-side render (SSR) API like [renderToReadableStream](/reference/react-dom/server/renderToReadableStream).
+
+`prerenderToNodeStream` can be aborted and resumed later with `resumeToPipeableStream` to support partial pre-rendering.
 
 </Note>
 
@@ -311,7 +314,7 @@ async function renderToString() {
 
 Any Suspense boundaries with incomplete children will be included in the prelude in the fallback state.
 
----
+This can be used for partial prerendering together with [`resumeToPipeableStream`](/reference/react-dom/server/resumeToPipeableStream) or [`resumeAndPrerenderToNodeStream`](/reference/react-dom/static/resumeAndPrerenderToNodeStream).
 
 ## Troubleshooting {/*troubleshooting*/}
 

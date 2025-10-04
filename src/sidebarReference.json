@@ -115,7 +115,7 @@
         {
           "title": "<ViewTransition>",
           "path": "/reference/react/ViewTransition",
-          "version": "experimental"
+          "version": "canary"
         }
       ]
     },
@@ -126,6 +126,11 @@
         {
           "title": "act",
           "path": "/reference/react/act"
+        },
+        {
+          "title": "addTransitionType",
+          "path": "/reference/react/addTransitionType",
+          "version": "canary"
         },
         {
           "title": "cache",
@@ -167,11 +172,6 @@
         {
           "title": "experimental_taintUniqueValue",
           "path": "/reference/react/experimental_taintUniqueValue",
-          "version": "experimental"
-        },
-        {
-          "title": "unstable_addTransitionType",
-          "path": "/reference/react/addTransitionType",
           "version": "experimental"
         }
       ]

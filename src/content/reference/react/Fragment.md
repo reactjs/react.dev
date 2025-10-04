@@ -6,7 +6,7 @@ title: <Fragment> (<>...</>)
 
 `<Fragment>`, often used via `<>...</>` syntax, lets you group elements without a wrapper node. 
 
-<Experimental> Fragments can also accept refs, which enable interacting with underlying DOM nodes without adding wrapper elements. See reference and usage below.</Experimental>
+<Canary> Fragments can also accept refs, which enable interacting with underlying DOM nodes without adding wrapper elements. See reference and usage below.</Canary>
 
 ```js
 <>
@@ -30,9 +30,9 @@ Wrap elements in `<Fragment>` to group them together in situations where you nee
 #### Props {/*props*/}
 
 - **optional** `key`: Fragments declared with the explicit `<Fragment>` syntax may have [keys.](/learn/rendering-lists#keeping-list-items-in-order-with-key)
-- <ExperimentalBadge />  **optional** `ref`: A ref object (e.g. from [`useRef`](/reference/react/useRef)) or [callback function](/reference/react-dom/components/common#ref-callback). React provides a `FragmentInstance` as the ref value that implements methods for interacting with the DOM nodes wrapped by the Fragment.
+- <CanaryBadge />  **optional** `ref`: A ref object (e.g. from [`useRef`](/reference/react/useRef)) or [callback function](/reference/react-dom/components/common#ref-callback). React provides a `FragmentInstance` as the ref value that implements methods for interacting with the DOM nodes wrapped by the Fragment.
 
-### <ExperimentalBadge /> FragmentInstance {/*fragmentinstance*/}
+### <CanaryBadge /> FragmentInstance {/*fragmentinstance*/}
 
 When you pass a ref to a fragment, React provides a `FragmentInstance` object with methods for interacting with the DOM nodes wrapped by the fragment:
 
@@ -64,7 +64,7 @@ When you pass a ref to a fragment, React provides a `FragmentInstance` object wi
 
 - React does not [reset state](/learn/preserving-and-resetting-state) when you go from rendering `<><Child /></>` to `[<Child />]` or back, or when you go from rendering `<><Child /></>` to `<Child />` and back. This only works a single level deep: for example, going from `<><><Child /></></>` to `<Child />` resets the state. See the precise semantics [here.](https://gist.github.com/clemmy/b3ef00f9507909429d8aa0d3ee4f986b)
 
-- <ExperimentalBadge /> If you want to pass `ref` to a Fragment, you can't use the `<>...</>` syntax. You have to explicitly import `Fragment` from `'react'` and render `<Fragment ref={yourRef}>...</Fragment>`.
+- <CanaryBadge /> If you want to pass `ref` to a Fragment, you can't use the `<>...</>` syntax. You have to explicitly import `Fragment` from `'react'` and render `<Fragment ref={yourRef}>...</Fragment>`.
 
 ---
 
@@ -242,7 +242,7 @@ function PostBody({ body }) {
 
 ---
 
-### <ExperimentalBadge /> Using Fragment refs for DOM interaction {/*using-fragment-refs-for-dom-interaction*/}
+### <CanaryBadge /> Using Fragment refs for DOM interaction {/*using-fragment-refs-for-dom-interaction*/}
 
 Fragment refs allow you to interact with the DOM nodes wrapped by a Fragment without adding extra wrapper elements. This is useful for event handling, visibility tracking, focus management, and replacing deprecated patterns like `ReactDOM.findDOMNode()`.
 
@@ -262,7 +262,7 @@ function ClickableFragment({ children, onClick }) {
 ```
 ---
 
-### <ExperimentalBadge /> Tracking visibility with Fragment refs {/*tracking-visibility-with-fragment-refs*/}
+### <CanaryBadge /> Tracking visibility with Fragment refs {/*tracking-visibility-with-fragment-refs*/}
 
 Fragment refs are useful for visibility tracking and intersection observation. This enables you to monitor when content becomes visible without requiring the child Components to expose refs:
 
@@ -309,7 +309,7 @@ This pattern is an alternative to Effect-based visibility logging, which is an a
 
 ---
 
-### <ExperimentalBadge /> Focus management with Fragment refs {/*focus-management-with-fragment-refs*/}
+### <CanaryBadge /> Focus management with Fragment refs {/*focus-management-with-fragment-refs*/}
 
 Fragment refs provide focus management methods that work across all DOM nodes within the Fragment:
 

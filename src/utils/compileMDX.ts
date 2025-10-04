@@ -103,9 +103,13 @@ export default async function compileMDX(
 
   // Prepare environment for MDX.
   let fakeExports = {};
+  const jsxRuntime = require('react/jsx-runtime');
+  const jsxDevRuntime = require('react/jsx-dev-runtime');
   const fakeRequire = (name: string) => {
     if (name === 'react/jsx-runtime') {
-      return require('react/jsx-runtime');
+      return jsxRuntime;
+    } else if (name === 'react/jsx-dev-runtime') {
+      return jsxDevRuntime;
     } else {
       // For each fake MDX import, give back the string component name.
       // It will get serialized later.

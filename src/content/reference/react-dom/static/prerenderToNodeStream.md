@@ -4,7 +4,7 @@ title: prerenderToNodeStream
 
 <Intro>
 
-`prerenderToNodeStream` renders a React tree to a static HTML string using a [Node.js Stream.](https://nodejs.org/api/stream.html).
+`prerenderToNodeStream` renders a React tree to a static HTML string using a [Node.js Stream.](https://nodejs.org/api/stream.html)
 
 ```js
 const {prelude, postponed} = await prerenderToNodeStream(reactNode, options?)
@@ -88,7 +88,7 @@ The static `prerenderToNodeStream` API is used for static server-side generation
 
 ### Rendering a React tree to a stream of static HTML {/*rendering-a-react-tree-to-a-stream-of-static-html*/}
 
-Call `prerenderToNodeStream` to render your React tree to static HTML into a [Node.js Stream.](https://nodejs.org/api/stream.html):
+Call `prerenderToNodeStream` to render your React tree to static HTML into a [Node.js Stream](https://nodejs.org/api/stream.html):
 
 ```js [[1, 5, "<App />"], [2, 6, "['/main.js']"]]
 import { prerenderToNodeStream } from 'react-dom/static';

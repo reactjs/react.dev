@@ -24,7 +24,7 @@ These tracks are designed to provide developers with comprehensive insights into
 React Performance tracks are only available in development and profiling builds of React:
 
 - **Development**: enabled by default.
-- **Profiling**: you can either wrap a subtree that you want to instrument with [`<Profiler>`](/reference/react/Profiler) component or have [React Developer Tools extension](/learn/react-developer-tools) enabled. Tracks specific to React Server Components are not enabled in profiling builds.
+- **Profiling**: Only Scheduler tracks are enabled by default. The Components track only lists Components that are in subtrees wrapped with [`<Profiler>`](/reference/react/Profiler). If you have [React Developer Tools extension](/learn/react-developer-tools) enabled, all Components are included in the Components track even if they're not wrapped in `<Profiler>`. Server tracks are not available in profiling builds.
 
 If enabled, tracks should appear automatically in the traces you record with the Performance panel of browsers that provide [extensibility APIs](https://developer.chrome.com/docs/devtools/performance/extension).
 
@@ -34,6 +34,13 @@ The profiling instrumentation that powers React Performance tracks adds some add
 Server Components and Server Requests tracks are only available in development builds.
 
 </Pitfall>
+
+### Using profiling builds {/*using-profiling-builds*/}
+
+In addition to production and development builds, React also includes a special profiling build.
+To use profiling builds, you have to use `react-dom/profiling` instead of `react-dom/client`.
+We recommend that you alias `react-dom/client` to `react-dom/profiling` at build time via bundler aliases instead of manually updating each `react-dom/client` import.
+Your framework might have built-in support for enabling React's profiling build.
 
 ---
 

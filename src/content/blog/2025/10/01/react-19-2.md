@@ -170,9 +170,9 @@ See the [Scheduler track](/reference/dev-tools/react-performance-tracks#schedule
 
 The Components track shows the tree of components that React is working on either to render or run effects. Inside you'll see labels such as "Mount" for when children mount or effects are mounted, or "Blocked" for when rendering is blocked due to yielding to work outside React.
 
-The Component track helps you understand when components are rendered or run effects, and the time it takes to complete that work to help identify performance problems.
+The Components track helps you understand when components are rendered or run effects, and the time it takes to complete that work to help identify performance problems.
 
-See the [Component track docs](/reference/dev-tools/react-performance-tracks#components) for see everything included.
+See the [Components track docs](/reference/dev-tools/react-performance-tracks#components) for see everything included.
 
 ---
 

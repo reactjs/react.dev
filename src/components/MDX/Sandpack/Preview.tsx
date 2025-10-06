@@ -97,14 +97,18 @@ export function Preview({
 
   const sandpackIdle = sandpack.status === 'idle';
 
-  useEffect(function createBundler() {
-    const iframeElement = iframeRef.current!;
+useEffect(function createBundler() {
+  const iframeElement = iframeRef.current!;
+  if (!iframeElement.dataset.registered) {
     registerBundler(iframeElement, clientId);
+    iframeElement.dataset.registered = 'true';
+  }
+  return () => {
+    unregisterBundler(clientId);
+    iframeElement.dataset.registered = '';
+  };
+}, []);
 
-    return () => {
-      unregisterBundler(clientId);
-    };
-  }, []);
 
   useEffect(
     function bundlerListener() {

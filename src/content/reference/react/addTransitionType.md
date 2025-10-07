@@ -168,9 +168,3 @@ You can imperatively customize animations for an activated `ViewTransition` base
 ```
 
 This allows you to pick different imperative Animations based on the cause.
-
----
-
-## Troubleshooting {/*troubleshooting*/}
-
-### TODO {/*todo2*/}

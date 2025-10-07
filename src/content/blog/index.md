@@ -12,6 +12,12 @@ You can also follow the [@react.dev](https://bsky.app/profile/react.dev) account
 
 <div className="sm:-mx-5 flex flex-col gap-5 mt-12">
 
+<BlogCard title="Introducing the React Foundation" date="October 7, 2025" url="/blog/2025/10/07/introducing-the-react-foundation">
+
+Today, we're announcing our plans to create the React Foundation and a new technical governance structure ...
+
+</BlogCard>
+
 <BlogCard title="React 19.2" date="October 1, 2025" url="/blog/2025/10/01/react-19-2">
 
 React 19.2 adds new features like Activity, React Performance Tracks, useEffectEvent, and more. In this post ...

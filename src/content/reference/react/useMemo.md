@@ -225,7 +225,7 @@ export default function App() {
 
 ```
 
-```js
+```js src/TodoList.js active
 import { useMemo } from 'react';
 import { filterTodos } from './utils.js'
 

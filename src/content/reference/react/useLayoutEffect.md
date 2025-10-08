@@ -187,7 +187,7 @@ export default function ButtonWithTooltip({ tooltipContent, ...rest }) {
 }
 ```
 
-```js
+```js src/Tooltip.js
 import { useRef, useLayoutEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 import TooltipContainer from './TooltipContainer.js';
@@ -263,7 +263,7 @@ React guarantees that the code inside `useLayoutEffect` and any state updates sc
 
 <Sandpack>
 
-```js
+```js src/App.js
 import ButtonWithTooltip from './ButtonWithTooltip.js';
 
 export default function App() {
@@ -337,7 +337,7 @@ export default function ButtonWithTooltip({ tooltipContent, ...rest }) {
 }
 ```
 
-```js
+```js src/Tooltip.js
 import { useRef, useLayoutEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 import TooltipContainer from './TooltipContainer.js';

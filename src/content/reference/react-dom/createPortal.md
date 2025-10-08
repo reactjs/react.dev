@@ -398,7 +398,7 @@ Here is a complete example you can play with:
 }
 ```
 
-```js
+```js src/App.js
 import { useRef, useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { createMapWidget, addPopupToMapWidget } from './map-widget.js';

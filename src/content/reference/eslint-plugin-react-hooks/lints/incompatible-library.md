@@ -1,6 +1,5 @@
 ---
 title: incompatible-library
-version: rc
 ---
 
 <Intro>
@@ -8,12 +7,6 @@ version: rc
 Validates against usage of libraries which are incompatible with memoization (manual or automatic).
 
 </Intro>
-
-<Note>
-
-This rule is available in `eslint-plugin-react-hooks` v6.
-
-</Note>
 
 <Note>
 

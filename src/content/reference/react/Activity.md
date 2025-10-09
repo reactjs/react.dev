@@ -48,6 +48,7 @@ In this way, Activity can be thought of as a mechanism for rendering "background
 #### Caveats {/*caveats*/}
 
 - If an Activity is rendered inside of a [ViewTransition](/reference/react/ViewTransition), and it becomes visible as a result of an update caused by [startTransition](/reference/react/startTransition), it will activate the ViewTransition's `enter` animation. If it becomes hidden, it will activate its `exit` animation.
+- If an Activity has a text node (plain text) as its child instead of an element, it won’t be rendered at all rather than hidden, because there’s no corresponding DOM node to apply visibility changes to.
 
 ---
 

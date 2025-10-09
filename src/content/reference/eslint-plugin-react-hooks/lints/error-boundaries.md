@@ -1,6 +1,5 @@
 ---
 title: error-boundaries
-version: rc
 ---
 
 <Intro>
@@ -8,12 +7,6 @@ version: rc
 Validates usage of Error Boundaries instead of try/catch for errors in child components.
 
 </Intro>
-
-<Note>
-
-This rule is available in `eslint-plugin-react-hooks` v6.
-
-</Note>
 
 ## Rule Details {/*rule-details*/}
 

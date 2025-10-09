@@ -1,6 +1,5 @@
 ---
 title: gating
-version: rc
 ---
 
 <Intro>
@@ -8,12 +7,6 @@ version: rc
 Validates configuration of [gating mode](/reference/react-compiler/gating).
 
 </Intro>
-
-<Note>
-
-This rule is available in `eslint-plugin-react-hooks` v6.
-
-</Note>
 
 ## Rule Details {/*rule-details*/}
 

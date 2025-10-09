@@ -16,10 +16,6 @@ React Compiler is a new build-time tool that automatically optimizes your React 
 
 </YouWillLearn>
 
-<Note>
-React Compiler is currently in Release Candidate (RC). We now recommend everyone to try the compiler and provide feedback. The latest RC release can be found with the `@rc` tag.
-</Note>
-
 ## What does React Compiler do? {/*what-does-react-compiler-do*/}
 
 React Compiler automatically optimizes your React application at build time. React is often fast enough without optimization, but sometimes you need to manually memoize components and values to keep your app responsive. This manual memoization is tedious, easy to get wrong, and adds extra code to maintain. React Compiler does this optimization automatically for you, freeing you from this mental burden so you can focus on building features.
@@ -157,7 +153,7 @@ We encourage everyone to start using React Compiler. While the compiler is still
 
 ### Is it safe to use? {/*is-it-safe-to-use*/}
 
-React Compiler is now in RC and has been tested extensively in production. While it has been used in production at companies like Meta, rolling out the compiler to production for your app will depend on the health of your codebase and how well you've followed the [Rules of React](/reference/rules).
+React Compiler is now stable and has been tested extensively in production. While it has been used in production at companies like Meta, rolling out the compiler to production for your app will depend on the health of your codebase and how well you've followed the [Rules of React](/reference/rules).
 
 ## What build tools are supported? {/*what-build-tools-are-supported*/}
 

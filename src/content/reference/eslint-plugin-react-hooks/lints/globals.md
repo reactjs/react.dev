@@ -1,6 +1,5 @@
 ---
 title: globals
-version: rc
 ---
 
 <Intro>
@@ -8,12 +7,6 @@ version: rc
 Validates against assignment/mutation of globals during render, part of ensuring that [side effects must run outside of render](/reference/rules/components-and-hooks-must-be-pure#side-effects-must-run-outside-of-render).
 
 </Intro>
-
-<Note>
-
-This rule is available in `eslint-plugin-react-hooks` v6.
-
-</Note>
 
 ## Rule Details {/*rule-details*/}
 

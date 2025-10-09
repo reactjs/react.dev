@@ -14310,7 +14310,7 @@ Our hope is that automatically inserting dependencies is not only easier to writ
 
 ## Compiler IDE Extension {/*compiler-ide-extension*/}
 
-Earlier this week [we shared](/blog/2025/04/21/react-compiler-rc) the React Compiler release candidate, and we're working towards shipping the first SemVer stable version of the compiler in the coming months.
+Later in 2025 [we shared](/blog/2025/10/08/react-compiler-1) the first stable release of React Compiler, and we're continuing to invest in shipping more improvements.
 
 We've also begun exploring ways to use the React Compiler to provide information that can improve understanding and debugging your code. One idea we've started exploring is a new experimental LSP-based React IDE extension powered by React Compiler, similar to the extension used in [Lauren Tan's React Conf talk](https://conf2024.react.dev/talks/5).
 

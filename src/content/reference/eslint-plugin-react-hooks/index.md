@@ -19,15 +19,10 @@ What this means for linting, is that you don’t need to fix all violations imme
 
 ## Recommended Rules {/*recommended*/}
 
-These rules are included in the `recommended` preset `eslint-plugin-react-hooks`:
+These rules are included in the `recommended` preset in `eslint-plugin-react-hooks`:
 
 * [`exhaustive-deps`](/reference/eslint-plugin-react-hooks/lints/exhaustive-deps) - Validates that dependency arrays for React hooks contain all necessary dependencies
 * [`rules-of-hooks`](/reference/eslint-plugin-react-hooks/lints/rules-of-hooks) - Validates that components and hooks follow the Rules of Hooks
-
-## Additional Rules {/*additional-rules*/}
-
-Starting in version 6.0, these rules are available to opt-in:
-
 * [`component-hook-factories`](/reference/eslint-plugin-react-hooks/lints/component-hook-factories) - Validates higher order functions defining nested components or hooks
 * [`config`](/reference/eslint-plugin-react-hooks/lints/config) - Validates the compiler configuration options
 * [`error-boundaries`](/reference/eslint-plugin-react-hooks/lints/error-boundaries) - Validates usage of Error Boundaries instead of try/catch for child errors

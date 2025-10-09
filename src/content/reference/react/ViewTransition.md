@@ -2124,7 +2124,7 @@ If a `startTransition` is started from the legacy popstate event, such as during
 
 ### My `<ViewTransition>` is not activating {/*my-viewtransition-is-not-activating*/}
 
-`<ViewTransition>` only activates if it is placed is before any DOM node:
+`<ViewTransition>` only activates if it is placed before any DOM node:
 
 ```js [3, 5]
 function Component() {

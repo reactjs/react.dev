@@ -41,7 +41,7 @@ For versions older than React 15, see [15.react.dev](https://15.react.dev).
 - [React v19](/blog/2024/12/05/react-19)
 - [React 19 Upgrade Guide](/blog/2024/04/25/react-19-upgrade-guide)
 - [React Compiler Beta Release](/blog/2024/10/21/react-compiler-beta-release)
-- [React Compiler RC](/blog/2025/04/21/react-compiler-rc)
+- [React Compiler v1.0](/blog/2025/10/07/react-compiler-1)
 - [React 19.2](/blog/2025/10/01/react-19-2)
 
 **Talks**
@@ -299,7 +299,7 @@ For versions older than React 15, see [15.react.dev](https://15.react.dev).
 
 React was open-sourced on May 29, 2013. The initial commit is: [`75897c`: Initial public release](https://github.com/facebook/react/commit/75897c2dcd1dd3a6ca46284dd37e13d22b4b16b4)
 
-See the first blog post: [Why did we build React?](https://legacy.reactjs.org/blog/2013/06/05/why-react.html) 
+See the first blog post: [Why did we build React?](https://legacy.reactjs.org/blog/2013/06/05/why-react.html)
 
 React was open sourced at Facebook Seattle in 2013:
 

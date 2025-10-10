@@ -422,80 +422,65 @@
         },
         {
           "title": "component-hook-factories",
-          "path": "/reference/eslint-plugin-react-hooks/lints/component-hook-factories",
-          "version": "rc"
+          "path": "/reference/eslint-plugin-react-hooks/lints/component-hook-factories"
         },
         {
           "title": "config",
-          "path": "/reference/eslint-plugin-react-hooks/lints/config",
-          "version": "rc"
+          "path": "/reference/eslint-plugin-react-hooks/lints/config"
         },
         {
           "title": "error-boundaries",
-          "path": "/reference/eslint-plugin-react-hooks/lints/error-boundaries",
-          "version": "rc"
+          "path": "/reference/eslint-plugin-react-hooks/lints/error-boundaries"
         },
         {
           "title": "gating",
-          "path": "/reference/eslint-plugin-react-hooks/lints/gating",
-          "version": "rc"
+          "path": "/reference/eslint-plugin-react-hooks/lints/gating"
         },
         {
           "title": "globals",
-          "path": "/reference/eslint-plugin-react-hooks/lints/globals",
-          "version": "rc"
+          "path": "/reference/eslint-plugin-react-hooks/lints/globals"
         },
         {
           "title": "immutability",
-          "path": "/reference/eslint-plugin-react-hooks/lints/immutability",
-          "version": "rc"
+          "path": "/reference/eslint-plugin-react-hooks/lints/immutability"
         },
         {
           "title": "incompatible-library",
-          "path": "/reference/eslint-plugin-react-hooks/lints/incompatible-library",
-          "version": "rc"
+          "path": "/reference/eslint-plugin-react-hooks/lints/incompatible-library"
         },
 
         {
           "title": "preserve-manual-memoization",
-          "path": "/reference/eslint-plugin-react-hooks/lints/preserve-manual-memoization",
-          "version": "rc"
+          "path": "/reference/eslint-plugin-react-hooks/lints/preserve-manual-memoization"
         },
         {
           "title": "purity",
-          "path": "/reference/eslint-plugin-react-hooks/lints/purity",
-          "version": "rc"
+          "path": "/reference/eslint-plugin-react-hooks/lints/purity"
         },
         {
           "title": "refs",
-          "path": "/reference/eslint-plugin-react-hooks/lints/refs",
-          "version": "rc"
+          "path": "/reference/eslint-plugin-react-hooks/lints/refs"
         },
 
         {
           "title": "set-state-in-effect",
-          "path": "/reference/eslint-plugin-react-hooks/lints/set-state-in-effect",
-          "version": "rc"
+          "path": "/reference/eslint-plugin-react-hooks/lints/set-state-in-effect"
         },
         {
           "title": "set-state-in-render",
-          "path": "/reference/eslint-plugin-react-hooks/lints/set-state-in-render",
-          "version": "rc"
+          "path": "/reference/eslint-plugin-react-hooks/lints/set-state-in-render"
         },
         {
           "title": "static-components",
-          "path": "/reference/eslint-plugin-react-hooks/lints/static-components",
-          "version": "rc"
+          "path": "/reference/eslint-plugin-react-hooks/lints/static-components"
         },
         {
           "title": "unsupported-syntax",
-          "path": "/reference/eslint-plugin-react-hooks/lints/unsupported-syntax",
-          "version": "rc"
+          "path": "/reference/eslint-plugin-react-hooks/lints/unsupported-syntax"
         },
         {
           "title": "use-memo",
-          "path": "/reference/eslint-plugin-react-hooks/lints/use-memo",
-          "version": "rc"
+          "path": "/reference/eslint-plugin-react-hooks/lints/use-memo"
         }
       ]
     },

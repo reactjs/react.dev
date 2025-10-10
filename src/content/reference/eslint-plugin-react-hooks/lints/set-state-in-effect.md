@@ -1,6 +1,5 @@
 ---
 title: set-state-in-effect
-version: rc
 ---
 
 <Intro>
@@ -8,12 +7,6 @@ version: rc
 Validates against calling setState synchronously in an effect, which can lead to re-renders that degrade performance.
 
 </Intro>
-
-<Note>
-
-This rule is available in `eslint-plugin-react-hooks` v6.
-
-</Note>
 
 ## Rule Details {/*rule-details*/}
 

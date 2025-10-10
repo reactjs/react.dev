@@ -253,6 +253,11 @@
       "source": "/reference/react/experimental_useEffectEvent",
       "destination": "/reference/react/useEffectEvent",
       "permanent": true
+    },
+    {
+      "source": "/blog/2025/04/21/react-compiler-rc",
+      "destination": "/blog/2025/10/07/react-compiler-1",
+      "permanent": true
     }
   ],
   "headers": [

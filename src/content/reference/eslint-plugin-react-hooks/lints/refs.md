@@ -1,6 +1,5 @@
 ---
 title: refs
-version: rc
 ---
 
 <Intro>
@@ -8,12 +7,6 @@ version: rc
 Validates correct usage of refs, not reading/writing during render. See the "pitfalls" section in [`useRef()` usage](/reference/react/useRef#usage).
 
 </Intro>
-
-<Note>
-
-This rule is available in `eslint-plugin-react-hooks` v6.
-
-</Note>
 
 ## Rule Details {/*rule-details*/}
 

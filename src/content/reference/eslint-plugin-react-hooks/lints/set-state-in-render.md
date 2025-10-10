@@ -1,6 +1,5 @@
 ---
 title: set-state-in-render
-version: rc
 ---
 
 <Intro>
@@ -8,12 +7,6 @@ version: rc
 Validates against unconditionally setting state during render, which can trigger additional renders and potential infinite render loops.
 
 </Intro>
-
-<Note>
-
-This rule is available in `eslint-plugin-react-hooks` v6.
-
-</Note>
 
 ## Rule Details {/*rule-details*/}
 

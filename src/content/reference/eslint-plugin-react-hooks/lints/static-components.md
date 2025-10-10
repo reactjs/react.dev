@@ -1,6 +1,5 @@
 ---
 title: static-components
-version: rc
 ---
 
 <Intro>
@@ -8,12 +7,6 @@ version: rc
 Validates that components are static, not recreated every render. Components that are recreated dynamically can reset state and trigger excessive re-rendering.
 
 </Intro>
-
-<Note>
-
-This rule is available in `eslint-plugin-react-hooks` v6.
-
-</Note>
 
 ## Rule Details {/*rule-details*/}
 
@@ -36,10 +29,10 @@ function Parent() {
 
 // ❌ Dynamic component creation
 function Parent({type}) {
-  const Component = type === 'button' 
+  const Component = type === 'button'
     ? () => <button>Click</button>
     : () => <div>Text</div>;
-  
+
   return <Component />;
 }
 ```
@@ -54,10 +47,10 @@ const ButtonComponent = () => <button>Click</button>;
 const TextComponent = () => <div>Text</div>;
 
 function Parent({type}) {
-  const Component = type === 'button' 
+  const Component = type === 'button'
     ? ButtonComponent  // Reference existing component
     : TextComponent;
-  
+
   return <Component />;
 }
 ```
@@ -72,7 +65,7 @@ You might define components inside to access local state:
 // ❌ Wrong: Inner component to access parent state
 function Parent() {
   const [theme, setTheme] = useState('light');
-  
+
   function ThemedButton() { // Recreated every render!
     return (
       <button className={theme}>
@@ -80,7 +73,7 @@ function Parent() {
       </button>
     );
   }
-  
+
   return <ThemedButton />;
 }
 ```

@@ -18,28 +18,24 @@ This guide will help you install and configure React Compiler in your React appl
 
 React Compiler is designed to work best with React 19, but it also supports React 17 and 18. Learn more about [React version compatibility](/reference/react-compiler/target).
 
-<Note>
-React Compiler is currently in RC. Install it using the `@rc` tag to get the latest release candidate version.
-</Note>
-
 ## Installation {/*installation*/}
 
 Install React Compiler as a `devDependency`:
 
 <TerminalBlock>
-npm install -D babel-plugin-react-compiler@rc
+npm install -D babel-plugin-react-compiler@latest
 </TerminalBlock>
 
 Or with Yarn:
 
 <TerminalBlock>
-yarn add -D babel-plugin-react-compiler@rc
+yarn add -D babel-plugin-react-compiler@latest
 </TerminalBlock>
 
 Or with pnpm:
 
 <TerminalBlock>
-pnpm install -D babel-plugin-react-compiler@rc
+pnpm install -D babel-plugin-react-compiler@latest
 </TerminalBlock>
 
 ## Basic Setup {/*basic-setup*/}
@@ -173,7 +169,7 @@ React Compiler includes an ESLint rule that helps identify code that can't be op
 Install the ESLint plugin:
 
 <TerminalBlock>
-npm install -D eslint-plugin-react-hooks@^6.1.1
+npm install -D eslint-plugin-react-hooks@latest
 </TerminalBlock>
 
 If you haven't already configured eslint-plugin-react-hooks, follow the [installation instructions in the readme](https://github.com/facebook/react/blob/main/packages/eslint-plugin-react-hooks/README.md#installation). The compiler rules are available in the `recommended-latest` preset.

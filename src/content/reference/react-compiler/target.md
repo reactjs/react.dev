@@ -45,7 +45,7 @@ Configures the React version compatibility for the compiled output.
 - Always use string values, not numbers (e.g., `'17'` not `17`)
 - Don't include patch versions (e.g., use `'18'` not `'18.2.0'`)
 - React 19 includes built-in compiler runtime APIs
-- React 17 and 18 require installing `react-compiler-runtime@rc`
+- React 17 and 18 require installing `react-compiler-runtime@latest`
 
 ---
 
@@ -75,7 +75,7 @@ For React 17 and React 18 projects, you need two steps:
 1. Install the runtime package:
 
 ```bash
-npm install react-compiler-runtime@rc
+npm install react-compiler-runtime@latest
 ```
 
 2. Configure the target:
@@ -114,7 +114,7 @@ If you see errors like "Cannot find module 'react/compiler-runtime'":
 
 2. If using React 17 or 18, install the runtime:
    ```bash
-   npm install react-compiler-runtime@rc
+   npm install react-compiler-runtime@latest
    ```
 
 3. Ensure your target matches your React version:
@@ -130,7 +130,7 @@ Ensure the runtime package is:
 
 1. Installed in your project (not globally)
 2. Listed in your `package.json` dependencies
-3. The correct version (`@rc` tag)
+3. The correct version (`@latest` tag)
 4. Not in `devDependencies` (it's needed at runtime)
 
 ### Checking compiled output {/*checking-output*/}

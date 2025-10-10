@@ -8,12 +8,6 @@ Validates against higher order functions defining nested components or hooks. Co
 
 </Intro>
 
-<Note>
-
-This rule is available in `eslint-plugin-react-hooks` v6.
-
-</Note>
-
 ## Rule Details {/*rule-details*/}
 
 Defining components or hooks inside other functions creates new instances on every call. React treats each as a completely different component, destroying and recreating the entire component tree, losing all state, and causing performance problems.

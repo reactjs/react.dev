@@ -87,6 +87,11 @@ _[See this example in the React Compiler Playground](https://playground.react.de
 
 React Compiler automatically applies the optimal memoization, ensuring your app only re-renders when necessary.
 
+## How does React Compiler work? {/*how-does-react-compiler-work*/}
+
+You can get an intuitive sense of how the Compiler works by [looking at the playground](https://playground.react.dev/#N4Igzg9grgTgxgUxALhAMygOzgFwJYSYAEAKhACYQAyeYOAFMEThRGADRFp4A2OCMIgF8AlEWAAdYkTiE6XXvxgJyZSmCIBeZqzAA6bnwH0cWgHzM9dAIY4oGzY4VGYIgNxSiRT1yy4CxAAW1pjkPAgAwjx4cADW9HjkYpLSXrKYkOF6PBAA5glJPkLexD7KdjDEADw08nj8ALZgmsCGSipqbMWEUTGxLcGh4b1xxQD0Zh6YQiDsIOncuSggeA0ADhAwpjgAnmsI4kQACjxQuXiYAPJr+HLCXDAQDUQA5ABG1m8IPAC0a6fnTA-ZTWXA-WTrXgCMbkWg4F5TKSMHxjMYQta8WwBACyFAQyG8IGsPB4EhAUmKYCxYG4CA0JzOF2utwy7lm4ECEAA7gBJTBKTDEsAoHAwKAIIRAA). Fundamentally, React Compiler relies on an old idea from functional programming: pure functions don't "do" anything (they only compute things), so it is safe to reorder their calls, or to reuse their past output for the same inputs. React Compiler checks that your code follows the [Rules of React](https://react.dev/reference/rules) which ensure your code can be reordered this way.
+
+
 <DeepDive>
 #### What kind of memoization does React Compiler add? {/*what-kind-of-memoization-does-react-compiler-add*/}
 
@@ -163,7 +168,7 @@ React Compiler is primarily a light Babel plugin wrapper around the core compile
 
 Next.js users can enable the swc-invoked React Compiler by using [v15.3.1](https://github.com/vercel/next.js/releases/tag/v15.3.1) and up.
 
-## What should I do about useMemo, useCallback, and React.memo? {/*what-should-i-do-about-usememo-usecallback-and-reactmemo*/}
+## What should I do about `useMemo`, `useCallback`, and `React.memo`? {/*what-should-i-do-about-usememo-usecallback-and-reactmemo*/}
 
 By default, React Compiler will memoize your code based on its analysis and heuristics. In most cases, this memoization will be as precise, or moreso, than what you may have written.
 

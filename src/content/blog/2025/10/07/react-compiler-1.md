@@ -20,17 +20,15 @@ The React team is excited to share new updates:
 2. Compiler-powered lint rules ship in `eslint-plugin-react-hooks`'s `recommended` and `recommended-latest` preset.
 3. We've published an incremental adoption guide, and partnered with Expo, Vite, and Next.js so new apps can start with the compiler enabled.
 
----
-
 We are releasing the compiler's first stable release today. React Compiler works on both React and React Native, and automatically optimizes components and hooks without requiring rewrites. The compiler has been battle tested on major apps at Meta and is fully production-ready.
 
-[React Compiler](/learn/react-compiler) is a build-time tool that optimizes your React app through automatic memoization. Last year, we published React Compiler's [first beta](/blog/2024/10/21/react-compiler-beta-release) and received lots of great feedback and contributions. We're excited about the wins we've seen from folks adopting the compiler (see case studies from [Sanity Studio](https://github.com/reactwg/react-compiler/discussions/33) and [Wakelet](https://github.com/reactwg/react-compiler/discussions/52)) and are excited to bring the compiler to more users in the React community.
+---
 
-This release is the culmination of a huge and complex engineering effort spanning almost a decade. The React team's first exploration into compilers started with [Prepack](https://github.com/facebookarchive/prepack) in 2017. While this project was eventually shut down, there were many learnings that informed the team on the design of Hooks, which were designed with a future compiler in mind. In 2021, [Xuan Huang](https://x.com/Huxpro) demoed the [first iteration](https://www.youtube.com/watch?v=lGEMwh32soc) of a new take on React Compiler.
+## What is React Compiler? {/*what-is-react-compiler*/}
 
-Although this first version of the new React Compiler was eventually rewritten, the first prototype gave us increased confidence that this was a tractable problem, and the learnings that an alternative compiler architecture could precisely give us the memoization characteristics we wanted. [Joe Savona](https://x.com/en_JS), [Sathya Gunasekaran](https://x.com/_gsathya), [Mofei Zhang](https://x.com/zmofei), and [Lauren Tan](https://x.com/potetotes) worked through our first rewrite, moving the compiler's architecture into a Control Flow Graph (CFG) based High-Level Intermediate Representation (HIR). This paved the way for much more precise analysis and even type inference within React Compiler. Since then, many significant portions of the compiler have been rewritten, with each rewrite informed by our learnings from the previous attempt. And we have received significant help and contributions from many members of the [React team](/community/team) along the way.
+[React Compiler](/learn/react-compiler) is a build-time tool that optimizes your React app through automatic memoization.
 
-This stable release is our first of many. The compiler will continue to evolve and improve, and we expect to see it become a new foundation and era for the next decade and more of React.
+You can get an intuitive sense of how the Compiler works by [looking at the playground](https://playground.react.dev/#N4Igzg9grgTgxgUxALhAMygOzgFwJYSYAEAKhACYQAyeYOAFMEThRGADRFp4A2OCMIgF8AlEWAAdYkTiE6XXvxgJyZSmCIBeZqzAA6bnwH0cWgHzM9dAIY4oGzY4VGYIgNxSiRT1yy4CxAAW1pjkPAgAwjx4cADW9HjkYpLSXrKYkOF6PBAA5glJPkLexD7KdjDEADw08nj8ALZgmsCGSipqbMWEUTGxLcGh4b1xxQD0Zh6YQiDsIOncuSggeA0ADhAwpjgAnmsI4kQACjxQuXiYAPJr+HLCXDAQDUQA5ABG1m8IPAC0a6fnTA-ZTWXA-WTrXgCMbkWg4F5TKSMHxjMYQta8WwBACyFAQyG8IGsPB4EhAUmKYCxYG4CA0JzOF2utwy7lm4ECEAA7gBJTBKTDEsAoHAwKAIIRAA). Fundamentally, React Compiler relies on an old idea from functional programming: pure functions don't "do" anything (they only compute things), so it is safe to reorder their calls, or to reuse their past output for the same inputs. React Compiler checks that your code follows the [Rules of React](https://react.dev/reference/rules) which ensure your code can be reordered this way.
 
 You can jump straight to the [quickstart](/learn/react-compiler), or read on for the highlights from React Conf 2025.
 
@@ -138,7 +136,7 @@ To enable React Compiler rules, we recommend using the `recommended` preset. You
 - Flagging expensive work inside effects via [`set-state-in-effect`](/reference/eslint-plugin-react-hooks/lints/set-state-in-effect).
 - Preventing unsafe ref access during render with [`refs`](/reference/eslint-plugin-react-hooks/lints/refs).
 
-## What should I do about useMemo, useCallback, and React.memo? {/*what-should-i-do-about-usememo-usecallback-and-reactmemo*/}
+## What should I do about `useMemo`, `useCallback`, and `React.memo`? {/*what-should-i-do-about-usememo-usecallback-and-reactmemo*/}
 By default, React Compiler will memoize your code based on its analysis and heuristics. In most cases, this memoization will be as precise, or moreso, than what you may have written — and as noted above, the compiler can memoize even in cases where `useMemo`/`useCallback` cannot be used, such as after an early return.
 
 However, in some cases developers may need more control over memoization. The `useMemo` and `useCallback` hooks can continue to be used with React Compiler as an escape hatch to provide control over which values are memoized. A common use-case for this is if a memoized value is used as an effect dependency, in order to ensure that an effect does not fire repeatedly even when its dependencies do not meaningfully change.
@@ -188,6 +186,18 @@ However, because product code may sometimes break the [rules of React](/referenc
 In other words, changing memoization may under rare circumstances cause unexpected behavior. For this reason, we recommend following the Rules of React and employing continuous end-to-end testing of your app so you can upgrade the compiler with confidence and identify any rules of React violations that might cause issues.
 
 If you don't have good test coverage, we recommend pinning the compiler to an exact version (eg `1.0.0`) rather than a SemVer range (eg `^1.0.0`). You can do this by passing the `--save-exact` (npm/pnpm) or `--exact` flags (yarn) when upgrading the compiler. You should then do any upgrades of the compiler manually, taking care to check that your app still works as expected.
+
+---
+
+## Looking back at the road to 1.0 {/*looking-back-at-the-road-to-10*/}
+
+Last year, we published React Compiler's [first beta](/blog/2024/10/21/react-compiler-beta-release) and received lots of great feedback and contributions. We're excited about the wins we've seen from folks adopting the compiler (see case studies from [Sanity Studio](https://github.com/reactwg/react-compiler/discussions/33) and [Wakelet](https://github.com/reactwg/react-compiler/discussions/52)) and are excited to bring the compiler to more users in the React community.
+
+This release is the culmination of a huge and complex engineering effort spanning almost a decade. The React team's first exploration into compilers started with [Prepack](https://github.com/facebookarchive/prepack) in 2017. While this project was eventually shut down, there were many learnings that informed the team on the design of Hooks, which were designed with a future compiler in mind. In 2021, [Xuan Huang](https://x.com/Huxpro) demoed the [first iteration](https://www.youtube.com/watch?v=lGEMwh32soc) of a new take on React Compiler.
+
+Although this first version of the new React Compiler was eventually rewritten, the first prototype gave us increased confidence that this was a tractable problem, and the learnings that an alternative compiler architecture could precisely give us the memoization characteristics we wanted. [Joe Savona](https://x.com/en_JS), [Sathya Gunasekaran](https://x.com/_gsathya), [Mofei Zhang](https://x.com/zmofei), and [Lauren Tan](https://x.com/potetotes) worked through our first rewrite, moving the compiler's architecture into a Control Flow Graph (CFG) based High-Level Intermediate Representation (HIR). This paved the way for much more precise analysis and even type inference within React Compiler. Since then, many significant portions of the compiler have been rewritten, with each rewrite informed by our learnings from the previous attempt. We also received significant help and contributions from many members of the [React team](/community/team).
+
+This stable release is our first of many. The compiler will continue to evolve and improve, and we expect to see it become a new foundation and era for the next decade and more of React.
 
 ---
 

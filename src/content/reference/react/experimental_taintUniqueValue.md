@@ -1,8 +1,9 @@
 ---
 title: experimental_taintUniqueValue
+version: experimental
 ---
 
-<Wip>
+<Experimental>
 
 **This API is experimental and is not available in a stable version of React yet.**
 
@@ -14,9 +15,9 @@ You can try it by upgrading React packages to the most recent experimental versi
 
 Experimental versions of React may contain bugs. Don't use them in production.
 
-This API is only available inside [React Server Components](/reference/react/use-client).
+This API is only available inside [React Server Components](/reference/rsc/use-client).
 
-</Wip>
+</Experimental>
 
 
 <Intro>
@@ -192,7 +193,7 @@ experimental_taintUniqueValue(
 );
 ```
 
-Now whenever anyone tries to pass this password to a Client Component, or send the password to a Client Component with a Server Action, an error will be thrown with message you defined when you called `taintUniqueValue`.
+Now whenever anyone tries to pass this password to a Client Component, or send the password to a Client Component with a Server Function, an error will be thrown with message you defined when you called `taintUniqueValue`.
 
 </DeepDive>
 

@@ -1,13 +1,6 @@
 ---
 title: preinit
-canary: true
 ---
-
-<Canary>
-
-The `preinit` function is currently only available in React's Canary and experimental channels. Learn more about [React's release channels here](/community/versioning-policy#all-release-channels).
-
-</Canary>
 
 <Note>
 
@@ -20,7 +13,7 @@ The `preinit` function is currently only available in React's Canary and experim
 `preinit` lets you eagerly fetch and evaluate a stylesheet or external script.
 
 ```js
-preinit("https://example.com/script.js", {as: "style"});
+preinit("https://example.com/script.js", {as: "script"});
 ```
 
 </Intro>
@@ -55,7 +48,7 @@ The `preinit` function provides the browser with a hint that it should start dow
 * `options`: an object. It contains the following properties:
   *  `as`: a required string. The type of resource. Its possible values are `script` and `style`.
   * `precedence`: a string. Required with stylesheets. Says where to insert the stylesheet relative to others. Stylesheets with higher precedence can override those with lower precedence. The possible values are `reset`, `low`, `medium`, `high`. 
-  *  `crossOrigin`: a string. The [CORS policy](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/crossorigin) to use. Its possible values are `anonymous` and `use-credentials`. It is required when `as` is set to `"fetch"`.
+  *  `crossOrigin`: a string. The [CORS policy](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/crossorigin) to use. Its possible values are `anonymous` and `use-credentials`.
   *  `integrity`: a string. A cryptographic hash of the resource, to [verify its authenticity](https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity).
   *  `nonce`: a string. A cryptographic [nonce to allow the resource](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/nonce) when using a strict Content Security Policy. 
   *  `fetchPriority`: a string. Suggests a relative priority for fetching the resource. The possible values are `auto` (the default), `high`, and `low`.
@@ -67,7 +60,7 @@ The `preinit` function provides the browser with a hint that it should start dow
 #### Caveats {/*caveats*/}
 
 * Multiple calls to `preinit` with the same `href` have the same effect as a single call.
-* In the browser, you can call `preinit` in any situation: while rendering a component, in an effect, in an event handler, and so on.
+* In the browser, you can call `preinit` in any situation: while rendering a component, in an Effect, in an event handler, and so on.
 * In server-side rendering or when rendering Server Components, `preinit` only has an effect if you call it while rendering a component or in an async context originating from rendering a component. Any other calls will be ignored.
 
 ---

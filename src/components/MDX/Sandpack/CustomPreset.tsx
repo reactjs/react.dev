@@ -1,3 +1,10 @@
+/**
+ * Copyright (c) Meta Platforms, Inc. and affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 /*
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
@@ -28,6 +35,7 @@ export const CustomPreset = memo(function CustomPreset({
   const {activeFile} = sandpack;
   const lineCountRef = useRef<{[key: string]: number}>({});
   if (!lineCountRef.current[activeFile]) {
+    // eslint-disable-next-line react-compiler/react-compiler
     lineCountRef.current[activeFile] = code.split('\n').length;
   }
   const lineCount = lineCountRef.current[activeFile];

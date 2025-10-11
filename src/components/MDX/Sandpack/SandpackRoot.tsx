@@ -1,3 +1,10 @@
+/**
+ * Copyright (c) Meta Platforms, Inc. and affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 /*
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
@@ -71,6 +78,13 @@ function SandpackRoot(props: SandpackProps) {
   const codeSnippets = Children.toArray(children) as React.ReactElement[];
   const files = createFileMap(codeSnippets);
 
+  if ('/index.html' in files) {
+    throw new Error(
+      'You cannot use `index.html` file in sandboxes. ' +
+        'Only `public/index.html` is respected by Sandpack and CodeSandbox (where forks are created).'
+    );
+  }
+
   files['/src/styles.css'] = {
     code: [sandboxStyle, files['/src/styles.css']?.code ?? ''].join('\n\n'),
     hidden: !files['/src/styles.css']?.visible,
@@ -88,7 +102,7 @@ function SandpackRoot(props: SandpackProps) {
           autorun,
           initMode: 'user-visible',
           initModeObserverOptions: {rootMargin: '1400px 0px'},
-          bundlerURL: 'https://1e4ad8f7.sandpack-bundler-4bw.pages.dev',
+          bundlerURL: 'https://786946de.sandpack-bundler-4bw.pages.dev',
           logLevel: SandpackLogLevel.None,
         }}>
         <CustomPreset providedFiles={Object.keys(files)} />

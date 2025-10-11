@@ -1,3 +1,10 @@
+/**
+ * Copyright (c) Meta Platforms, Inc. and affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 /*
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
@@ -10,6 +17,7 @@ import {SidebarLink} from './SidebarLink';
 import {useCollapse} from 'react-collapsed';
 import usePendingRoute from 'hooks/usePendingRoute';
 import type {RouteItem} from 'components/Layout/getRouteMeta';
+import {siteConfig} from 'siteConfig';
 
 interface SidebarRouteTreeProps {
   isForceExpanded: boolean;
@@ -37,6 +45,7 @@ function CollapseWrapper({
   // Disable pointer events while animating.
   const isExpandedRef = useRef(isExpanded);
   if (typeof window !== 'undefined') {
+    // eslint-disable-next-line react-compiler/react-compiler
     // eslint-disable-next-line react-hooks/rules-of-hooks
     useLayoutEffect(() => {
       const wasExpanded = isExpandedRef.current;
@@ -86,7 +95,7 @@ export function SidebarRouteTree({
             path,
             title,
             routes,
-            canary,
+            version,
             heading,
             hasSectionHeader,
             sectionHeader,
@@ -120,7 +129,7 @@ export function SidebarRouteTree({
                   selected={selected}
                   level={level}
                   title={title}
-                  canary={canary}
+                  version={version}
                   isExpanded={isExpanded}
                   hideArrow={isForceExpanded}
                 />
@@ -144,14 +153,18 @@ export function SidebarRouteTree({
                   selected={selected}
                   level={level}
                   title={title}
-                  canary={canary}
+                  version={version}
                 />
               </li>
             );
           }
           if (hasSectionHeader) {
+            let sectionHeaderText =
+              sectionHeader != null
+                ? sectionHeader.replace('{{version}}', siteConfig.version)
+                : '';
             return (
-              <Fragment key={`${sectionHeader}-${level}-separator`}>
+              <Fragment key={`${sectionHeaderText}-${level}-separator`}>
                 {index !== 0 && (
                   <li
                     role="separator"
@@ -163,7 +176,7 @@ export function SidebarRouteTree({
                     'mb-1 text-sm font-bold ms-5 text-tertiary dark:text-tertiary-dark',
                     index !== 0 && 'mt-2'
                   )}>
-                  {sectionHeader}
+                  {sectionHeaderText}
                 </h3>
               </Fragment>
             );

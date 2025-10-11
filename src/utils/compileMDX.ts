@@ -1,8 +1,16 @@
+/**
+ * Copyright (c) Meta Platforms, Inc. and affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+import {LanguageItem} from 'components/MDX/LanguagesContext';
 import {MDXComponents} from 'components/MDX/MDXComponents';
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // ~~~~ IMPORTANT: BUMP THIS IF YOU CHANGE ANY CODE BELOW ~~~
-const DISK_CACHE_BREAKER = 8;
+const DISK_CACHE_BREAKER = 10;
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 export default async function compileMDX(
@@ -124,15 +132,29 @@ export default async function compileMDX(
   const fm = require('gray-matter');
   const meta = fm(mdx).data;
 
+  // Load the list of translated languages conditionally.
+  let languages: Array<LanguageItem> | null = null;
+  if (typeof path === 'string' && path.endsWith('/translations')) {
+    languages = await (
+      await fetch(
+        'https://raw.githubusercontent.com/reactjs/translations.react.dev/main/langs/langs.json'
+      )
+    ).json(); // { code: string; name: string; enName: string}[]
+  }
+
   const output = {
     content: JSON.stringify(children, stringifyNodeOnServer),
     toc: JSON.stringify(toc, stringifyNodeOnServer),
     meta,
+    languages,
   };
 
   // Serialize a server React tree node to JSON.
   function stringifyNodeOnServer(key: unknown, val: any) {
-    if (val != null && val.$$typeof === Symbol.for('react.element')) {
+    if (
+      val != null &&
+      val.$$typeof === Symbol.for('react.transitional.element')
+    ) {
       // Remove fake MDX props.
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const {mdxType, originalType, parentName, ...cleanProps} = val.props;

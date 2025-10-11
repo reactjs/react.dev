@@ -1,3 +1,10 @@
+/**
+ * Copyright (c) Meta Platforms, Inc. and affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 import {Fragment, useMemo} from 'react';
 import {Page} from 'components/Layout/Page';
 import {MDXComponents} from 'components/MDX/MDXComponents';
@@ -26,7 +33,7 @@ export default function ErrorDecoderPage({
   );
 
   return (
-    <ErrorDecoderContext.Provider value={{errorMessage, errorCode}}>
+    <ErrorDecoderContext value={{errorMessage, errorCode}}>
       <Page
         toc={[]}
         meta={{
@@ -36,7 +43,7 @@ export default function ErrorDecoderPage({
         }}
         routeTree={sidebarLearn as RouteItem}
         section="unknown">
-        {parsedContent}
+        <div>{parsedContent}</div>
         {/* <MaxWidth>
           <P>
             We highly recommend using the development build locally when debugging
@@ -48,36 +55,32 @@ export default function ErrorDecoderPage({
           <ErrorDecoder />
         </MaxWidth> */}
       </Page>
-    </ErrorDecoderContext.Provider>
+    </ErrorDecoderContext>
   );
 }
 
 // Deserialize a client React tree from JSON.
-function reviveNodeOnClient(key: unknown, val: any) {
+function reviveNodeOnClient(parentPropertyName: unknown, val: any) {
   if (Array.isArray(val) && val[0] == '$r') {
     // Assume it's a React element.
-    let type = val[1];
+    let Type = val[1];
     let key = val[2];
+    if (key == null) {
+      key = parentPropertyName; // Index within a parent.
+    }
     let props = val[3];
-    if (type === 'wrapper') {
-      type = Fragment;
+    if (Type === 'wrapper') {
+      Type = Fragment;
       props = {children: props.children};
     }
-    if (type in MDXComponents) {
-      type = MDXComponents[type as keyof typeof MDXComponents];
+    if (Type in MDXComponents) {
+      Type = MDXComponents[Type as keyof typeof MDXComponents];
     }
-    if (!type) {
-      console.error('Unknown type: ' + type);
-      type = Fragment;
+    if (!Type) {
+      console.error('Unknown type: ' + Type);
+      Type = Fragment;
     }
-    return {
-      $$typeof: Symbol.for('react.element'),
-      type: type,
-      key: key,
-      ref: null,
-      props: props,
-      _owner: null,
-    };
+    return <Type key={key} {...props} />;
   } else {
     return val;
   }

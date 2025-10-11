@@ -12,7 +12,17 @@
     font-style: normal;
     font-weight: 400;
     font-display: swap;
-    src: url('/fonts/Source-Code-Pro-Regular.woff2') format('woff2');
+    src: url('https://react.dev/fonts/Source-Code-Pro-Regular.woff2')
+      format('woff2');
+  }
+
+  @font-face {
+    font-family: 'Source Code Pro';
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    src: url('https://react.dev/fonts/Source-Code-Pro-Bold.woff2')
+      format('woff2');
   }
 
   /* Latin */
@@ -450,7 +460,7 @@
   }
 
   html.dark a > code {
-    color: #149eca !important; /* blue-40 */
+    color: #58c4dc !important; /* blue-40 */
   }
 
   .text-code {
@@ -559,6 +569,17 @@
   background: none !important;
   padding: 2px !important;
 }
+
+.dark .console-block code {
+  background: rgba(235 236 240 / 0.05) !important;
+  color: rgba(208, 125, 119) !important;
+}
+
+.console-block code {
+  background: rgba(235 236 240 / 0.95) !important;
+  color: rgb(166, 66, 58) !important;
+}
+
 html.dark .code-step * {
   color: inherit !important;
 }
@@ -725,4 +746,19 @@ ol.mdx-illustration-block {
   transition: opacity 500ms ease-out;
   transition-delay: 1s;
   pointer-events: none;
+}
+
+.uwu-visible {
+  display: none;
+}
+.uwu-hidden {
+  display: flex;
+}
+
+.uwu .uwu-visible {
+  display: flex;
+}
+
+.uwu .uwu-hidden {
+  display: none;
 }

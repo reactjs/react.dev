@@ -1,3 +1,10 @@
+/**
+ * Copyright (c) Meta Platforms, Inc. and affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 /*
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
@@ -12,7 +19,9 @@ import sidebarCommunity from '../sidebarCommunity.json';
 import sidebarBlog from '../sidebarBlog.json';
 import {MDXComponents} from 'components/MDX/MDXComponents';
 import compileMDX from 'utils/compileMDX';
-export default function Layout({content, toc, meta}) {
+import {generateRssFeed} from '../utils/rss';
+
+export default function Layout({content, toc, meta, languages}) {
   const parsedContent = useMemo(
     () => JSON.parse(content, reviveNodeOnClient),
     [content]
@@ -39,7 +48,12 @@ export default function Layout({content, toc, meta}) {
       break;
   }
   return (
-    <Page toc={parsedToc} routeTree={routeTree} meta={meta} section={section}>
+    <Page
+      toc={parsedToc}
+      routeTree={routeTree}
+      meta={meta}
+      section={section}
+      languages={languages}>
       {parsedContent}
     </Page>
   );
@@ -64,31 +78,27 @@ function useActiveSection() {
 }
 
 // Deserialize a client React tree from JSON.
-function reviveNodeOnClient(key, val) {
+function reviveNodeOnClient(parentPropertyName, val) {
   if (Array.isArray(val) && val[0] == '$r') {
     // Assume it's a React element.
-    let type = val[1];
+    let Type = val[1];
     let key = val[2];
+    if (key == null) {
+      key = parentPropertyName; // Index within a parent.
+    }
     let props = val[3];
-    if (type === 'wrapper') {
-      type = Fragment;
+    if (Type === 'wrapper') {
+      Type = Fragment;
       props = {children: props.children};
     }
-    if (MDXComponents[type]) {
-      type = MDXComponents[type];
+    if (Type in MDXComponents) {
+      Type = MDXComponents[Type];
     }
-    if (!type) {
-      console.error('Unknown type: ' + type);
-      type = Fragment;
+    if (!Type) {
+      console.error('Unknown type: ' + Type);
+      Type = Fragment;
     }
-    return {
-      $$typeof: Symbol.for('react.element'),
-      type: type,
-      key: key,
-      ref: null,
-      props: props,
-      _owner: null,
-    };
+    return <Type key={key} {...props} />;
   } else {
     return val;
   }
@@ -96,6 +106,7 @@ function reviveNodeOnClient(key, val) {
 
 // Put MDX output into JSON for client.
 export async function getStaticProps(context) {
+  generateRssFeed();
   const fs = require('fs');
   const rootDir = process.cwd() + '/src/content/';
 
@@ -108,12 +119,13 @@ export async function getStaticProps(context) {
     mdx = fs.readFileSync(rootDir + path + '/index.md', 'utf8');
   }
 
-  const {toc, content, meta} = await compileMDX(mdx, path, {});
+  const {toc, content, meta, languages} = await compileMDX(mdx, path, {});
   return {
     props: {
       toc,
       content,
       meta,
+      languages,
     },
   };
 }

@@ -12,23 +12,16 @@ The `react-dom` package contains Hooks that are only supported for web applicati
 
 ## Form Hooks {/*form-hooks*/}
 
-<Canary>
-
-Form Hooks are currently only available in React's canary and experimental channels. Learn more about [React's release channels here](/community/versioning-policy#all-release-channels).
-
-</Canary>
-
 *Forms* let you create interactive controls for submitting information.  To manage forms in your components, use one of these Hooks:
 
-* [`useFormStatus`](/reference/react-dom/hooks/useFormStatus) allows you to make updates to the UI based on the status of the a form.
-* [`useFormState`](/reference/react-dom/hooks/useFormState) allows you to manage state inside a form.
+* [`useFormStatus`](/reference/react-dom/hooks/useFormStatus) allows you to make updates to the UI based on the status of a form.
 
 ```js
 function Form({ action }) {
   async function increment(n) {
     return n + 1;
   }
-  const [count, incrementFormAction] = useFormState(increment, 0);
+  const [count, incrementFormAction] = useActionState(increment, 0);
   return (
     <form action={action}>
       <button formAction={incrementFormAction}>Count: {count}</button>
@@ -46,4 +39,3 @@ function Button() {
   );
 }
 ```
-

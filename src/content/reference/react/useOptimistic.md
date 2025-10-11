@@ -1,13 +1,6 @@
 ---
 title: useOptimistic
-canary: true
 ---
-
-<Canary>
-
-The `useOptimistic` Hook is currently only available in React's Canary and experimental channels. Learn more about [React's release channels here](/community/versioning-policy#all-release-channels).
-
-</Canary>
 
 <Intro>
 
@@ -73,39 +66,42 @@ For example, when a user types a message into the form and hits the "Send" butto
 
 
 ```js src/App.js
-import { useOptimistic, useState, useRef } from "react";
+import { useOptimistic, useState, useRef, startTransition } from "react";
 import { deliverMessage } from "./actions.js";
 
-function Thread({ messages, sendMessage }) {
+function Thread({ messages, sendMessageAction }) {
   const formRef = useRef();
-  async function formAction(formData) {
+  function formAction(formData) {
     addOptimisticMessage(formData.get("message"));
     formRef.current.reset();
-    await sendMessage(formData);
+    startTransition(async () => {
+      await sendMessageAction(formData);
+    });
   }
   const [optimisticMessages, addOptimisticMessage] = useOptimistic(
     messages,
     (state, newMessage) => [
-      ...state,
       {
         text: newMessage,
         sending: true
-      }
+      },
+      ...state,
     ]
   );
 
   return (
     <>
+      <form action={formAction} ref={formRef}>
+        <input type="text" name="message" placeholder="Hello!" />
+        <button type="submit">Send</button>
+      </form>
       {optimisticMessages.map((message, index) => (
         <div key={index}>
           {message.text}
           {!!message.sending && <small> (Sending...)</small>}
         </div>
       ))}
-      <form action={formAction} ref={formRef}>
-        <input type="text" name="message" placeholder="Hello!" />
-        <button type="submit">Send</button>
-      </form>
+      
     </>
   );
 }
@@ -114,11 +110,13 @@ export default function App() {
   const [messages, setMessages] = useState([
     { text: "Hello there!", sending: false, key: 1 }
   ]);
-  async function sendMessage(formData) {
+  async function sendMessageAction(formData) {
     const sentMessage = await deliverMessage(formData.get("message"));
-    setMessages((messages) => [...messages, { text: sentMessage }]);
+    startTransition(() => {
+      setMessages((messages) => [{ text: sentMessage }, ...messages]);
+    })
   }
-  return <Thread messages={messages} sendMessage={sendMessage} />;
+  return <Thread messages={messages} sendMessageAction={sendMessageAction} />;
 }
 ```
 
@@ -129,17 +127,5 @@ export async function deliverMessage(message) {
 }
 ```
 
-
-```json package.json hidden
-{
-  "dependencies": {
-    "react": "18.3.0-canary-6db7f4209-20231021",
-    "react-dom": "18.3.0-canary-6db7f4209-20231021",
-    "react-scripts": "^5.0.0"
-  },
-  "main": "/index.js",
-  "devDependencies": {}
-}
-```
 
 </Sandpack>

@@ -1,14 +1,6 @@
 ---
 meta: "<meta>"
-canary: true
 ---
-
-<Canary>
-
-React's extensions to `<meta>` are currently only available in React's canary and experimental channels. In stable releases of React `<meta>` works only as a [built-in browser HTML component](https://react.dev/reference/react-dom/components#all-html-components). Learn more about [React's release channels here](/community/versioning-policy#all-release-channels).
-
-</Canary>
-
 
 <Intro>
 
@@ -38,7 +30,7 @@ To add document metadata, render the [built-in browser `<meta>` component](https
 
 #### Props {/*props*/}
 
-`<meta>` supports all [common element props.](/reference/react-dom/components/common#props)
+`<meta>` supports all [common element props.](/reference/react-dom/components/common#common-props)
 
 It should have *exactly one* of the following props: `name`, `httpEquiv`, `charset`, `itemProp`. The `<meta>` component does something different depending on which of these props is specified.
 

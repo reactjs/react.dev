@@ -327,7 +327,7 @@ In this example, the JavaScript `&&` operator is used to conditionally render a 
 function Item({ name, isPacked }) {
   return (
     <li className="item">
-      {name} {isPacked && '✔'}
+      {name} {isPacked && '✅'}
     </li>
   );
 }
@@ -474,7 +474,7 @@ By strictly only writing your components as pure functions, you can avoid an ent
 
 <Sandpack>
 
-```js
+```js {expectedErrors: {'react-compiler': [5]}}
 let guest = 0;
 
 function Cup() {

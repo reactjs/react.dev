@@ -1,3 +1,10 @@
+/**
+ * Copyright (c) Meta Platforms, Inc. and affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 /*
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
@@ -11,7 +18,7 @@ module.exports = {
   tertiary: '#5E687E', // gray-50
   'tertiary-dark': '#99A1B3', // gray-30
   link: '#087EA4', // blue-50
-  'link-dark': '#149ECA', // blue-40
+  'link-dark': '#58C4DC', // blue-40
   syntax: '#EBECF0', // gray-10
   wash: '#FFFFFF',
   'wash-dark': '#23272F', // gray-90
@@ -23,6 +30,8 @@ module.exports = {
   'border-dark': '#343A46', // gray-80
   'secondary-button': '#EBECF0', // gray-10
   'secondary-button-dark': '#404756', // gray-70
+  brand: '#087EA4', // blue-40
+  'brand-dark': '#58C4DC', // blue-40
 
   // Gray
   'gray-95': '#16181D',

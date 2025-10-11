@@ -1,0 +1,12 @@
+{
+  "name": "eslint-plugin-local-rules",
+  "version": "0.0.0",
+  "main": "index.js",
+  "private": "true",
+  "scripts": {
+    "test": "node __tests__/lint-markdown-code-blocks.test.js"
+  },
+  "devDependencies": {
+    "eslint-mdx": "^2"
+  }
+}

@@ -1,13 +1,6 @@
 ---
 title: preinitModule
-canary: true
 ---
-
-<Canary>
-
-The `preinitModule` function is currently only available in React's Canary and experimental channels. Learn more about [React's release channels here](/community/versioning-policy#all-release-channels).
-
-</Canary>
 
 <Note>
 
@@ -51,7 +44,7 @@ The `preinitModule` function provides the browser with a hint that it should sta
 
 #### Parameters {/*parameters*/}
 
-* `href`: a string. The URL of the module you want to download and exeucute.
+* `href`: a string. The URL of the module you want to download and execute.
 * `options`: an object. It contains the following properties:
   *  `as`: a required string. It must be `'script'`.
   *  `crossOrigin`: a string. The [CORS policy](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/crossorigin) to use. Its possible values are `anonymous` and `use-credentials`.
@@ -65,7 +58,7 @@ The `preinitModule` function provides the browser with a hint that it should sta
 #### Caveats {/*caveats*/}
 
 * Multiple calls to `preinitModule` with the same `href` have the same effect as a single call.
-* In the browser, you can call `preinitModule` in any situation: while rendering a component, in an effect, in an event handler, and so on.
+* In the browser, you can call `preinitModule` in any situation: while rendering a component, in an Effect, in an event handler, and so on.
 * In server-side rendering or when rendering Server Components, `preinitModule` only has an effect if you call it while rendering a component or in an async context originating from rendering a component. Any other calls will be ignored.
 
 ---

@@ -279,7 +279,7 @@ export default function Search() {
 Displaying a form submission error message before the JavaScript bundle loads for progressive enhancement requires that:
 
 1. `<form>` be rendered by a [Client Component](/reference/react/use-client)
-1. the function passed to the `<form>`'s `action` prop be a [Server Action](/reference/react/use-server)
+the function passed to the `<form>`'s `action` prop be a [Server Function](/reference/rsc/server-functions)
 1. the `useActionState` Hook be used to display the error message
 
 `useActionState` takes two parameters: a [Server Function](/reference/rsc/server-functions) and an initial state. `useActionState` returns two values, a state variable and an action. The action returned by `useActionState` should be passed to the `action` prop of the form. The state variable returned by `useActionState` can be used to display an error message. The value returned by the Server Function passed to `useActionState` will be used to update the state variable.

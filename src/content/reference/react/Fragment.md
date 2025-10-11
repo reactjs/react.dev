@@ -317,8 +317,6 @@ Fragment refs provide focus management methods that work across all DOM nodes wi
 import { Fragment, useRef } from 'react';
 
 function FocusFragment({ children }) {
-  const fragmentRef = useRef(null);
-
   return (
     <Fragment ref={(fragmentInstance) => fragmentInstance?.focus()}>
       {children}

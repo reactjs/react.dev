@@ -35,7 +35,7 @@ This markup represents this article `<article>`, its heading `<h1>`, and an (abb
 
 React lets you combine your markup, CSS, and JavaScript into custom "components", **reusable UI elements for your app.** The table of contents code you saw above could be turned into a `<TableOfContents />` component you could render on every page. Under the hood, it still uses the same HTML tags like `<article>`, `<h1>`, etc.
 
-Just like with HTML tags, you can compose, order and nest components to design whole pages. For example, the documentation page you're reading is made out of React components:
+Just like with HTML tags, you can compose, order and nest components to design whole pages. For example, the documentation page you're reading is made out of React components, Components help you break down your UI into smaller, reusable pieces.:
 
 ```js
 <PageLayout>

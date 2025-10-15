@@ -12,6 +12,13 @@
       "skipBreadcrumb": true,
       "routes": [
         {
+          "title": "React Conf 2025 Recap",
+          "titleForHomepage": "React Conf 2025 Recap",
+          "icon": "blog",
+          "date": "October 16, 2025",
+          "path": "/blog/2025/10/16/react-conf-2025-recap"
+        },
+        {
           "title": "React Compiler v1.0",
           "titleForHomepage": "React Compiler v1.0",
           "icon": "blog",

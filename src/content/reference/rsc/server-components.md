@@ -2,12 +2,6 @@
 title: Server Components
 ---
 
-<RSC>
-
-Server Components are for use in [Full-stack frameworks](/learn/start-a-new-react-project#full-stack-frameworks).
-
-</RSC>
-
 <Intro>
 
 Server Components are a new type of Component that renders ahead of time, before bundling, in an environment separate from your client app or SSR server.

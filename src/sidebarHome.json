@@ -15,6 +15,10 @@
       "path": "/learn/installation"
     },
     {
+      "title": "Setup",
+      "path": "/learn/setup"
+    },
+    {
       "title": "React Compiler",
       "path": "/learn/react-compiler"
     },

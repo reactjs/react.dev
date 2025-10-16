@@ -1,8 +1,15 @@
+/**
+ * Copyright (c) Meta Platforms, Inc. and affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 /*
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
 exports.siteConfig = {
-  version: '19.1',
+  version: '19.2',
   // --------------------------------------
   // Translations should replace these lines:
   languageCode: 'en',

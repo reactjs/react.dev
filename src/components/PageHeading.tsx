@@ -1,3 +1,10 @@
+/**
+ * Copyright (c) Meta Platforms, Inc. and affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 /*
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
@@ -12,7 +19,7 @@ import {IconExperimental} from './Icon/IconExperimental';
 
 interface PageHeadingProps {
   title: string;
-  version?: 'experimental' | 'canary';
+  version?: 'experimental' | 'canary' | 'rc';
   experimental?: boolean;
   status?: string;
   description?: string;
@@ -36,6 +43,12 @@ function PageHeading({
           {version === 'canary' && (
             <IconCanary
               title=" - This feature is available in the latest Canary version of React"
+              className="ms-4 mt-1 text-gray-50 dark:text-gray-40 inline-block w-6 h-6 align-[-1px]"
+            />
+          )}
+          {version === 'rc' && (
+            <IconCanary
+              title=" - This feature is available in the latest RC version"
               className="ms-4 mt-1 text-gray-50 dark:text-gray-40 inline-block w-6 h-6 align-[-1px]"
             />
           )}

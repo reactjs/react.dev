@@ -1,3 +1,10 @@
+/**
+ * Copyright (c) Meta Platforms, Inc. and affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 /*
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
@@ -19,6 +26,7 @@ export const IconArrowSmall = memo<
   const classes = cn(className, {
     'rotate-180': displayDirection === 'left',
     'rotate-180 rtl:rotate-0': displayDirection === 'start',
+    'rtl:rotate-180': displayDirection === 'end',
     'rotate-90': displayDirection === 'down',
   });
   return (

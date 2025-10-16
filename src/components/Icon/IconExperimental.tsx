@@ -1,3 +1,10 @@
+/**
+ * Copyright (c) Meta Platforms, Inc. and affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 /*
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
@@ -6,7 +13,7 @@ import {memo} from 'react';
 
 export const IconExperimental = memo<
   JSX.IntrinsicElements['svg'] & {title?: string; size?: 's' | 'md'}
->(function IconCanary(
+>(function IconExperimental(
   {className, title, size} = {
     className: undefined,
     title: undefined,

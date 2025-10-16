@@ -1,30 +1,24 @@
 ---
-title: unstable_addTransitionType
-version: experimental
+title: addTransitionType
+version: canary
 ---
 
-<Experimental>
+<Canary>
 
-**This API is experimental and is not available in a stable version of React yet.**
+**The `addTransitionType` API is currently only available in React’s Canary and Experimental channels.** 
 
-You can try it by upgrading React packages to the most recent experimental version:
+[Learn more about React’s release channels here.](/community/versioning-policy#all-release-channels)
 
-- `react@experimental`
-- `react-dom@experimental`
-- `eslint-plugin-react-hooks@experimental`
-
-Experimental versions of React may contain bugs. Don't use them in production.
-
-</Experimental>
+</Canary>
 
 <Intro>
 
-`unstable_addTransitionType` lets you specify the cause of a transition.
+`addTransitionType` lets you specify the cause of a transition.
 
 
 ```js
 startTransition(() => {
-  unstable_addTransitionType('my-transition-type');
+  addTransitionType('my-transition-type');
   setState(newState);
 });
 ```
@@ -60,13 +54,13 @@ startTransition(() => {
 
 Call `addTransitionType` inside of `startTransition` to indicate the cause of a transition:
 
-``` [[1, 6, "unstable_addTransitionType"], [2, 5, "startTransition", [3, 6, "'submit-click'"]]
-import { startTransition, unstable_addTransitionType } from 'react';
+``` [[1, 6, "addTransitionType"], [2, 5, "startTransition", [3, 6, "'submit-click'"]]
+import { startTransition, addTransitionType } from 'react';
 
 function Submit({action) {
   function handleClick() {
     startTransition(() => {
-      unstable_addTransitionType('submit-click');
+      addTransitionType('submit-click');
       action();
     });
   }
@@ -103,7 +97,7 @@ function Component() {
 }
 
 startTransition(() => {
-  unstable_addTransitionType('my-transition-type');
+  addTransitionType('my-transition-type');
   setShow(true);
 });
 ```
@@ -135,7 +129,7 @@ function Component() {
 
 // ...
 startTransition(() => {
-  unstable_addTransitionType('my-transition-type');
+  addTransitionType('my-transition-type');
   setState(newState);
 });
 ```
@@ -174,9 +168,3 @@ You can imperatively customize animations for an activated `ViewTransition` base
 ```
 
 This allows you to pick different imperative Animations based on the cause.
-
----
-
-## Troubleshooting {/*troubleshooting*/}
-
-### TODO {/*todo2*/}

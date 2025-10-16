@@ -14,7 +14,7 @@ You can also follow the [@react.dev](https://bsky.app/profile/react.dev) account
 
 <BlogCard title="React Conf 2025 Recap" date="October 16, 2025" url="/blog/2025/10/16/react-conf-2025-recap">
 
-Last week we hosted React Conf 2025, a two-day conference in Henderson, Nevada where 700+ attendees gathered in-person to discuss the latest in UI engineering. This was our first in-person conference since 2019, and we were thrilled to be able to bring the community together again ...
+Last week we hosted React Conf 2025. In this post, we summarize the talks and announcements from the event...
 
 </BlogCard>
 

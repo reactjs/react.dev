@@ -1,21 +1,15 @@
 ---
 title: <ViewTransition>
-version: experimental
+version: canary
 ---
 
-<Experimental>
+<Canary>
 
-**This API is experimental and is not available in a stable version of React yet.**
+**The `<ViewTransition />` API is currently only available in React’s Canary and Experimental channels.** 
 
-You can try it by upgrading React packages to the most recent experimental version:
+[Learn more about React’s release channels here.](/community/versioning-policy#all-release-channels)
 
-- `react@experimental`
-- `react-dom@experimental`
-- `eslint-plugin-react-hooks@experimental`
-
-Experimental versions of React may contain bugs. Don't use them in production.
-
-</Experimental>
+</Canary>
 
 <Intro>
 
@@ -23,7 +17,7 @@ Experimental versions of React may contain bugs. Don't use them in production.
 
 
 ```js
-import {unstable_ViewTransition as ViewTransition} from 'react';
+import {ViewTransition} from 'react';
 
 <ViewTransition>
   <div>...</div>
@@ -212,7 +206,7 @@ export function Video({ video }) {
 
 ```js
 import {
-  unstable_ViewTransition as ViewTransition,
+  ViewTransition,
   useState,
   startTransition
 } from 'react';
@@ -341,8 +335,8 @@ button:hover {
 ```json package.json hidden
 {
   "dependencies": {
-    "react": "experimental",
-    "react-dom": "experimental",
+    "react": "canary",
+    "react-dom": "canary",
     "react-scripts": "latest"
   }
 }
@@ -383,7 +377,7 @@ If Transition first unmounts one side and then leads to a `<Suspense>` fallback 
 
 ```js
 import {
-  unstable_ViewTransition as ViewTransition,
+  ViewTransition,
   useState,
   startTransition
 } from "react";
@@ -407,7 +401,7 @@ export default function Component() {
 ```
 
 ```js src/Video.js
-import {unstable_ViewTransition as ViewTransition} from "react";
+import {ViewTransition} from "react";
 
 const THUMBNAIL_NAME = "video-thumbnail"
 
@@ -581,8 +575,8 @@ button:hover {
 ```json package.json hidden
 {
   "dependencies": {
-    "react": "experimental",
-    "react-dom": "experimental",
+    "react": "canary",
+    "react-dom": "canary",
     "react-scripts": "latest"
   }
 }
@@ -663,7 +657,7 @@ export function Video({ video }) {
 
 ```js
 import {
-  unstable_ViewTransition as ViewTransition,
+  ViewTransition,
   useState,
   startTransition
 } from "react";
@@ -821,8 +815,8 @@ button:hover {
 ```json package.json hidden
 {
   "dependencies": {
-    "react": "experimental",
-    "react-dom": "experimental",
+    "react": "canary",
+    "react-dom": "canary",
     "react-scripts": "latest"
   }
 }
@@ -869,7 +863,7 @@ export function Video({ video }) {
 
 ```js
 import {
-  unstable_ViewTransition as ViewTransition,
+  ViewTransition,
   useState,
   startTransition
 } from "react";
@@ -1025,8 +1019,8 @@ button:hover {
 ```json package.json hidden
 {
   "dependencies": {
-    "react": "experimental",
-    "react-dom": "experimental",
+    "react": "canary",
+    "react-dom": "canary",
     "react-scripts": "latest"
   }
 }
@@ -1118,7 +1112,7 @@ export function VideoPlaceholder() {
 
 ```js
 import {
-  unstable_ViewTransition as ViewTransition,
+  ViewTransition,
   useState,
   startTransition,
   Suspense
@@ -1290,8 +1284,8 @@ button:hover {
 ```json package.json hidden
 {
   "dependencies": {
-    "react": "experimental",
-    "react-dom": "experimental",
+    "react": "canary",
+    "react-dom": "canary",
     "react-scripts": "latest"
   }
 }
@@ -1391,7 +1385,7 @@ export function Video({ video }) {
 
 ```js
 import {
-  unstable_ViewTransition as ViewTransition,
+  ViewTransition,
   useState,
   startTransition
 } from 'react';
@@ -1528,8 +1522,8 @@ button:hover {
 ```json package.json hidden
 {
   "dependencies": {
-    "react": "experimental",
-    "react-dom": "experimental",
+    "react": "canary",
+    "react-dom": "canary",
     "react-scripts": "latest"
   }
 }
@@ -1572,7 +1566,7 @@ export function Video({ video }) {
 
 ```js
 import {
-  unstable_ViewTransition as ViewTransition,
+  ViewTransition,
   useState,
   startTransition
 } from 'react';
@@ -1780,8 +1774,8 @@ button:hover {
 ```json package.json hidden
 {
   "dependencies": {
-    "react": "experimental",
-    "react-dom": "experimental",
+    "react": "canary",
+    "react-dom": "canary",
     "react-scripts": "latest"
   }
 }
@@ -1844,8 +1838,8 @@ export function Video({ video }) {
 
 ```js
 import {
-  unstable_ViewTransition as ViewTransition,
-  unstable_addTransitionType as addTransitionType,
+  ViewTransition,
+  addTransitionType,
   useState,
   startTransition,
 } from "react";
@@ -2109,8 +2103,8 @@ button:hover {
 ```json package.json hidden
 {
   "dependencies": {
-    "react": "experimental",
-    "react-dom": "experimental",
+    "react": "canary",
+    "react-dom": "canary",
     "react-scripts": "latest"
   }
 }
@@ -2130,7 +2124,7 @@ If a `startTransition` is started from the legacy popstate event, such as during
 
 ### My `<ViewTransition>` is not activating {/*my-viewtransition-is-not-activating*/}
 
-`<ViewTransition>` only activates if it is placed is before any DOM node:
+`<ViewTransition>` only activates if it is placed before any DOM node:
 
 ```js [3, 5]
 function Component() {

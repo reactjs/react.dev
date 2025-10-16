@@ -253,7 +253,7 @@ export function HomeContent() {
               doesn’t prescribe how to do routing and data fetching. To build an
               entire app with React, we recommend a full-stack React framework
               like <Link href="https://nextjs.org">Next.js</Link> or{' '}
-              <Link href="https://remix.run">Remix</Link>.
+              <Link href="https://reactrouter.com">React Router</Link>.
             </Para>
           </Center>
           <FullBleed>

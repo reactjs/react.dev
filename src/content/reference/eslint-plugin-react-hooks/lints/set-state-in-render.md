@@ -1,32 +1,23 @@
 ---
 title: set-state-in-render
-version: rc
 ---
 
 <Intro>
 
-Validates against setting state during render, which can trigger additional renders and potential infinite render loops.
+Validates against unconditionally setting state during render, which can trigger additional renders and potential infinite render loops.
 
 </Intro>
 
-<RC>
-
-This rule is available in the RC version of `eslint-plugin-react-hooks`.
-
-You can try it by upgrading the lint plugin [to the most recent RC version](/learn/react-compiler/installation#eslint-integration).
-
-</RC>
-
 ## Rule Details {/*rule-details*/}
 
-Calling `setState` during render triggers another render before the current one finishes. This creates an infinite loop that crashes your app.
+Calling `setState` during render unconditionally triggers another render before the current one finishes. This creates an infinite loop that crashes your app.
 
 ## Common Violations {/*common-violations*/}
 
 ### Invalid {/*invalid*/}
 
 ```js {expectedErrors: {'react-compiler': [4]}}
-// ❌ setState directly in render
+// ❌ Unconditional setState directly in render
 function Component({value}) {
   const [count, setCount] = useState(0);
   setCount(value); // Infinite loop!
@@ -58,6 +49,19 @@ function Component({user}) {
   const name = user?.name || '';
   const email = user?.email || '';
   return <div>{name}</div>;
+}
+
+// ✅ Conditionally derive state from props and state from previous renders
+function Component({ items }) {
+  const [isReverse, setIsReverse] = useState(false);
+  const [selection, setSelection] = useState(null);
+
+  const [prevItems, setPrevItems] = useState(items);
+  if (items !== prevItems) { // This condition makes it valid
+    setPrevItems(items);
+    setSelection(null);
+  }
+  // ...
 }
 ```
 
@@ -102,3 +106,5 @@ function Counter({max}) {
 ```
 
 Now the setter only runs in response to the click, React finishes the render normally, and `count` never crosses `max`.
+
+In rare cases, you may need to adjust state based on information from previous renders. For those, follow [this pattern](https://react.dev/reference/react/useState#storing-information-from-previous-renders) of setting state conditionally.

@@ -225,8 +225,7 @@ export default function App() {
 
 ```
 
-{/* TODO(@poteto) - investigate potential false positives in react compiler validation */}
-```js {expectedErrors: {'react-compiler': [5]}} src/TodoList.js active
+```js src/TodoList.js active
 import { useMemo } from 'react';
 import { filterTodos } from './utils.js'
 

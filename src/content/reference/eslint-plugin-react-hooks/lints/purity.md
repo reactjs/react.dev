@@ -1,6 +1,5 @@
 ---
 title: purity
-version: rc
 ---
 
 <Intro>
@@ -8,14 +7,6 @@ version: rc
 Validates that [components/hooks are pure](/reference/rules/components-and-hooks-must-be-pure) by checking that they do not call known-impure functions.
 
 </Intro>
-
-<RC>
-
-This rule is available in the RC version of `eslint-plugin-react-hooks`.
-
-You can try it by upgrading the lint plugin [to the most recent RC version](/learn/react-compiler/installation#eslint-integration).
-
-</RC>
 
 ## Rule Details {/*rule-details*/}
 

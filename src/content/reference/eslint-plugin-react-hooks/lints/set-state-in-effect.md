@@ -1,6 +1,5 @@
 ---
 title: set-state-in-effect
-version: rc
 ---
 
 <Intro>
@@ -8,14 +7,6 @@ version: rc
 Validates against calling setState synchronously in an effect, which can lead to re-renders that degrade performance.
 
 </Intro>
-
-<RC>
-
-This rule is available in the RC version of `eslint-plugin-react-hooks`.
-
-You can try it by upgrading the lint plugin [to the most recent RC version](/learn/react-compiler/installation#eslint-integration).
-
-</RC>
 
 ## Rule Details {/*rule-details*/}
 
@@ -80,7 +71,7 @@ function Component({selectedId, items}) {
 
 Examples of correct code for this rule:
 
-```js {expectedErrors: {'react-compiler': [8]}}
+```js
 // ✅ setState in an effect is fine if the value comes from a ref
 function Tooltip() {
   const ref = useRef(null);

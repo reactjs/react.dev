@@ -278,7 +278,7 @@ export default function Search() {
 
 Displaying a form submission error message before the JavaScript bundle loads for progressive enhancement requires that:
 
-1. `<form>` be rendered by a [Server Component](/reference/rsc/use-client)
+1. `<form>` be rendered by a [Client Component](/reference/rsc/use-client)
 1. the function passed to the `<form>`'s `action` prop be a [Server Function](/reference/rsc/server-functions)
 1. the `useActionState` Hook be used to display the error message
 

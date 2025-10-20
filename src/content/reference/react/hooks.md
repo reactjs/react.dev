@@ -74,6 +74,29 @@ function ChatRoom({ roomId }) {
 
 Effects are an "escape hatch" from the React paradigm. Don't use Effects to orchestrate the data flow of your application. If you're not interacting with an external system, [you might not need an Effect.](/learn/you-might-not-need-an-effect)
 
+* [`useEffectEvent`](/reference/react/useEffectEvent) extracts non-reactive logic from your Effects into a reusable function.
+
+```js
+function ChatRoom({ roomId, theme }) {
+  const onConnected = useEffectEvent(() => {
+    showNotification('Connected!', theme);
+  });
+
+  useEffect(() => {
+    const connection = createConnection(serverUrl, roomId);
+    connection.on('connected', () => {
+      onConnected();
+    });
+    connection.connect();
+    return () => connection.disconnect();
+  }, [roomId]);
+
+  // ...
+}
+```
+
+This can help avoid issues with stale values inside Effects and lets you keep your effect logic organized and up to date.
+
 There are two rarely used variations of `useEffect` with differences in timing:
 
 * [`useLayoutEffect`](/reference/react/useLayoutEffect) fires before the browser repaints the screen. You can measure layout here.
@@ -87,8 +110,8 @@ A common way to optimize re-rendering performance is to skip unnecessary work. F
 
 To skip calculations and unnecessary re-rendering, use one of these Hooks:
 
-- [`useMemo`](/reference/react/useMemo) lets you cache the result of an expensive calculation.
-- [`useCallback`](/reference/react/useCallback) lets you cache a function definition before passing it down to an optimized component.
+* [`useMemo`](/reference/react/useMemo) lets you cache the result of an expensive calculation.
+* [`useCallback`](/reference/react/useCallback) lets you cache a function definition before passing it down to an optimized component.
 
 ```js
 function TodoList({ todos, tab, theme }) {
@@ -101,8 +124,8 @@ Sometimes, you can't skip re-rendering because the screen actually needs to upda
 
 To prioritize rendering, use one of these Hooks:
 
-- [`useTransition`](/reference/react/useTransition) lets you mark a state transition as non-blocking and allow other updates to interrupt it.
-- [`useDeferredValue`](/reference/react/useDeferredValue) lets you defer updating a non-critical part of the UI and let other parts update first.
+* [`useTransition`](/reference/react/useTransition) lets you mark a state transition as non-blocking and allow other updates to interrupt it.
+* [`useDeferredValue`](/reference/react/useDeferredValue) lets you defer updating a non-critical part of the UI and let other parts update first.
 
 ---
 
@@ -110,9 +133,10 @@ To prioritize rendering, use one of these Hooks:
 
 These Hooks are mostly useful to library authors and aren't commonly used in the application code.
 
-- [`useDebugValue`](/reference/react/useDebugValue) lets you customize the label React DevTools displays for your custom Hook.
-- [`useId`](/reference/react/useId) lets a component associate a unique ID with itself. Typically used with accessibility APIs.
-- [`useSyncExternalStore`](/reference/react/useSyncExternalStore) lets a component subscribe to an external store.
+* [`useDebugValue`](/reference/react/useDebugValue) lets you customize the label React DevTools displays for your custom Hook.
+* [`useId`](/reference/react/useId) lets a component associate a unique ID with itself. Typically used with accessibility APIs.
+* [`useSyncExternalStore`](/reference/react/useSyncExternalStore) lets a component subscribe to an external store.
+
 * [`useActionState`](/reference/react/useActionState) allows you to manage state of actions.
 
 ---

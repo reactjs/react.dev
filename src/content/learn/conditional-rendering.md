@@ -675,26 +675,30 @@ There are multiple ways you could go about this, but here is one starting point:
 
 ```js
 function Drink({ name }) {
-  let part, caffeine, age;
-  if (name === 'tea') {
-    part = 'leaf';
-    caffeine = '15–70 mg/cup';
-    age = '4,000+ years';
-  } else if (name === 'coffee') {
-    part = 'bean';
-    caffeine = '80–185 mg/cup';
-    age = '1,000+ years';
-  }
+  const drinks = {
+    tea: {
+      part: 'leaf',
+      caffeine: '15–70 mg/cup',
+      age: '4,000+ years'
+    },
+    coffee: {
+      part: 'bean',
+      caffeine: '80–185 mg/cup',
+      age: '1,000+ years'
+    }
+  };
+
+  const info = drinks[name];
   return (
     <section>
       <h1>{name}</h1>
       <dl>
         <dt>Part of plant</dt>
-        <dd>{part}</dd>
+        <dd>{info.part}</dd>
         <dt>Caffeine content</dt>
-        <dd>{caffeine}</dd>
+        <dd>{info.caffeine}</dd>
         <dt>Age</dt>
-        <dd>{age}</dd>
+        <dd>{info.age}</dd>
       </dl>
     </section>
   );

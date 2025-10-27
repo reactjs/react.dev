@@ -1272,7 +1272,9 @@ input { margin-top: 10px; }
 
 </Sandpack>
 
-This approach satisfies the requirements too. When you type into the input, only the `text` state variable updates. Since the `text` state variable is in the child `NewTodo` component, the parent `TodoList` component won't get re-rendered. This is why `getVisibleTodos()` doesn't get called when you type. (It would still be called if the `TodoList` re-renders for another reason.)
+This approach works because `getVisibleTodos()` is only called when its dependencies (`todos` or `showActive`) change. In the original implementation, typing in the input doesn’t trigger additional calls because the `text` state is local to the `NewTodo` component and not part of the dependencies. 
+
+The key idea is that both the initial and extracted versions avoid unnecessary recomputations—the update to `text` does not cause `getVisibleTodos()` to run. Extracting `NewTodo` mainly improves clarity by keeping the input state isolated, not by changing performance behavior.
 
 </Solution>
 

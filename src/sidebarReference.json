@@ -383,6 +383,10 @@
       "path": "/reference/react-compiler/directives",
       "routes": [
         {
+          "title": "\"use\"",
+          "path": "/reference/react-compiler/directives/use"
+        },
+        {
           "title": "\"use memo\"",
           "path": "/reference/react-compiler/directives/use-memo"
         },

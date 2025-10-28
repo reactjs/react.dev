@@ -383,8 +383,20 @@
       "path": "/reference/react-compiler/directives",
       "routes": [
         {
+          "title": "\"use\"",
+          "path": "/reference/react-compiler/directives/use"
+        },
+        {
           "title": "\"use memo\"",
           "path": "/reference/react-compiler/directives/use-memo"
+        },
+        {
+          "title": "\"use php\"",
+          "path": "/reference/react-compiler/directives/use-php"
+        },
+        {
+          "title": "\"use nemo\"",
+          "path": "/reference/react-compiler/directives/use-nemo"
         },
         {
           "title": "\"use no memo\"",

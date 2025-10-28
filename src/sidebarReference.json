@@ -387,6 +387,10 @@
           "path": "/reference/react-compiler/directives/use-memo"
         },
         {
+          "title": "\"use nemo\"",
+          "path": "/reference/react-compiler/directives/use-nemo"
+        },
+        {
           "title": "\"use no memo\"",
           "path": "/reference/react-compiler/directives/use-no-memo"
         }

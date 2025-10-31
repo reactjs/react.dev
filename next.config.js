@@ -36,6 +36,9 @@ const nextConfig = {
     // Don't bundle the shim unnecessarily.
     config.resolve.alias['use-sync-external-store/shim'] = 'react';
 
+    // TODO comment
+    config.resolve.alias['esquery'] = 'esquery/dist/esquery.min.js';
+
     const {IgnorePlugin, NormalModuleReplacementPlugin} = require('webpack');
     config.plugins.push(
       new NormalModuleReplacementPlugin(

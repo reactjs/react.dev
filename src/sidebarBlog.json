@@ -33,6 +33,13 @@
           "path": "/blog/2025/10/07/introducing-the-react-foundation"
         },
         {
+          "title": "React 19.2",
+          "titleForHomepage": "React 19.2",
+          "icon": "blog",
+          "date": "October 1, 2025",
+          "path": "/blog/2025/10/01/react-19-2"
+        },
+        {
           "title": "React Labs: View Transitions, Activity, and more",
           "titleForHomepage": "View Transitions and Activity",
           "icon": "blog",

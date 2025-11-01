@@ -23,14 +23,20 @@ React Compiler directives provide fine-grained control over which functions are 
 
 ### Available directives {/*available-directives*/}
 
+* **[`"use"`](/reference/react-compiler/directives/use)** - Experimental directive with unspecified runtime behavior
 * **[`"use memo"`](/reference/react-compiler/directives/use-memo)** - Opts a function into compilation
+* **[`"use php"`](/reference/react-compiler/directives/use-php)** - Enables PHP interop inside the function
+* **[`"use nemo"`](/reference/react-compiler/directives/use-nemo)** - Blocks Hooks inside the function
 * **[`"use no memo"`](/reference/react-compiler/directives/use-no-memo)** - Opts a function out of compilation
 
 ### Quick comparison {/*quick-comparison*/}
 
 | Directive | Purpose | When to use |
 |-----------|---------|-------------|
+| [`"use"`](/reference/react-compiler/directives/use) | ??? | Experimental directive with undefined semantics |
 | [`"use memo"`](/reference/react-compiler/directives/use-memo) | Force compilation | When using `annotation` mode or to override `infer` mode heuristics |
+| [`"use php"`](/reference/react-compiler/directives/use-php) | Enable PHP interop | Gradual migrations or tapping into PHP libraries |
+| [`"use nemo"`](/reference/react-compiler/directives/use-nemo) | Forbid Hooks | Enforcing hook-free components or critical render paths |
 | [`"use no memo"`](/reference/react-compiler/directives/use-no-memo) | Prevent compilation | Debugging issues or working with incompatible code |
 
 ---
@@ -180,7 +186,10 @@ function ProblematicComponent() {
 
 For specific issues with directives, see the troubleshooting sections in:
 
+* [`"use"` musings](/reference/react-compiler/directives/use)
 * [`"use memo"` troubleshooting](/reference/react-compiler/directives/use-memo#troubleshooting)
+* [`"use php"` troubleshooting](/reference/react-compiler/directives/use-php#troubleshooting)
+* [`"use nemo"` troubleshooting](/reference/react-compiler/directives/use-nemo#troubleshooting)
 * [`"use no memo"` troubleshooting](/reference/react-compiler/directives/use-no-memo#troubleshooting)
 
 ### Common issues {/*common-issues*/}

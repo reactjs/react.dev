@@ -437,7 +437,7 @@ function Game() {
     // ✅ Calculate all the next state in the event handler
     setCard(nextCard);
     if (nextCard.gold) {
-      if (goldCardCount <= 3) {
+      if (goldCardCount < 3) {
         setGoldCardCount(goldCardCount + 1);
       } else {
         setGoldCardCount(0);

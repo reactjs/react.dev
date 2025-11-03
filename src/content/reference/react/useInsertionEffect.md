@@ -62,6 +62,36 @@ function useCSS(rule) {
 ---
 
 ## Usage {/*usage*/}
+### A simple example: inserting a style before the page paints {/*simple-example*/}
+
+If you’re new to `useInsertionEffect`, here’s a minimal example that shows when it runs.  
+It injects a `<style>` tag before the browser paints the UI, ensuring styles are applied immediately.
+
+```js
+import { useInsertionEffect } from 'react';
+
+export default function HighlightExample() {
+  useInsertionEffect(() => {
+    const style = document.createElement('style');
+    style.textContent = `
+      body {
+        background-color: #f0f8ff;
+      }
+    `;
+    document.head.appendChild(style);
+    return () => {
+      document.head.removeChild(style);
+    };
+  }, []);
+
+  return (
+    <p>
+      The background color is applied before the component paints!
+    </p>
+  );
+}
+This small example helps visualize that useInsertionEffect runs before any layout or regular effects,
+making it useful for cases where styles or DOM insertions must happen very early in the render lifecycle.
 
 ### Injecting dynamic styles from CSS-in-JS libraries {/*injecting-dynamic-styles-from-css-in-js-libraries*/}
 

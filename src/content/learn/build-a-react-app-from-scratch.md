@@ -34,7 +34,7 @@ The first step is to install a build tool like `vite`, `parcel`, or `rsbuild`. T
 [Vite](https://vite.dev/) is a build tool that aims to provide a faster and leaner development experience for modern web projects.
 
 <TerminalBlock>
-{`npm create vite@latest my-app -- --template react`}
+{`npm create vite@latest my-app -- --template react-ts`}
 </TerminalBlock>
 
 Vite is opinionated and comes with sensible defaults out of the box. Vite has a rich ecosystem of plugins to support fast refresh, JSX,  Babel/SWC, and other common features. See Vite's [React plugin](https://vite.dev/plugins/#vitejs-plugin-react) or [React SWC plugin](https://vite.dev/plugins/#vitejs-plugin-react-swc) and [React SSR example project](https://vite.dev/guide/ssr.html#example-projects) to get started.

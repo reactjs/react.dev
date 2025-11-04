@@ -438,6 +438,8 @@ To use the Promise's <CodeStep step={1}>`catch`</CodeStep> method, call <CodeSte
 
 ### Avoiding fallbacks by passing Promise subclasses {/*avoiding-fallbacks-by-passing-promise-subclasses*/}
 
+If you are implementing a Suspense-enabled library, you can help React avoid unnecessarily suspending when you know the Promise has already settled, by using `status` and `value` or `reason` fields.
+
 React will read the `status` field on Promise subclasses to synchronously read the value without waiting for a microtask. If the Promise is already settled (resolved or rejected), React can read the value immediately without suspending and showing a fallback if the update was not part of a Transition (e.g. [`ReactDOM.flushSync()`](/reference/react-dom/flushSync)).
 
 React will set the `status` field itself if the passed Promise does not have this field set. Suspense-enabled libraries should set the `status` field on the Promises they create to avoid unnecessary fallbacks.

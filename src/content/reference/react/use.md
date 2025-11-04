@@ -436,6 +436,88 @@ To use the Promise's <CodeStep step={1}>`catch`</CodeStep> method, call <CodeSte
 
 ---
 
+### Avoiding fallbacks by passing Promise subclasses {/*avoiding-fallbacks-by-passing-promise-subclasses*/}
+
+React will read the `status` field on Promise subclasses to synchronously read the value without waiting for a microtask. If the Promise is already settled (resolved or rejected), React can read the value immediately without suspending and showing a fallback if the update was not part of a Transition (e.g. [`ReactDOM.flushSync()`](/reference/react-dom/flushSync)).
+
+React will set the `status` field itself if the passed Promise does not have this field set. Suspense-enabled libraries should set the `status` field on the Promises they create to avoid unnecessary fallbacks. Calling `use` conditionally depending on whether a Promise is settled or not is discouraged. `use` should be called unconditionally so that React DevTools can show that the Component may suspend on data.
+
+<Sandpack>
+
+```js src/App.js active
+import { Suspense, use, useState } from "react";
+import { preload } from "./data-fetching.js";
+
+function UserDetails({ userUsable }) {
+  const user = use(userUsable);
+  return <p>Hello, {user}!</p>;
+}
+
+export default function App() {
+  const [userId, setUserId] = useState(null);
+  // The initial
+  const [userUsable, setUser] = useState(null);
+
+  return (
+    <div>
+      <p>
+        Passing the Promise without the <code>status</code> field will show the
+        fallback because the Promise resolves in the next microtask.
+      </p>
+      <button
+        onClick={() => {
+          setUser(Promise.resolve("User #2"));
+          setUserId(2);
+        }}
+      >
+        Load Promise not integrated with Suspense
+      </button>
+      <button
+        onClick={() => {
+          setUser(preload(1));
+          setUserId(1);
+        }}
+      >
+        Load Promise integrated with Suspense
+      </button>
+      <Suspense key={userId} fallback={<p>Loading user...</p>}>
+        {userUsable ? (
+          <UserDetails userUsable={userUsable} />
+        ) : (
+          <p>No user selected</p>
+        )}
+      </Suspense>
+    </div>
+  );
+}
+```
+
+
+```js src/data-fetching.js 
+export function preload(id) {
+  // This is not a real implementation of getting the Promise for the user.
+  // The actual implementation should cache the Promise
+  const promise = Promise.resolve(`User #${id}`);
+
+  // Setting the `status` field allows React to synchronously read
+  // the value if the Promise is already settled by the time the Promise is passed to `use`.
+  promise.status = "pending";
+  promise.then(
+    (value) => {
+      promise.status = "fulfilled";
+      promise.value = value;
+    },
+    (error) => {
+      promise.status = "rejected";
+      promise.reason = error;
+    },
+  );
+  return promise;
+}
+```
+
+</Sandpack>
+
 ## Troubleshooting {/*troubleshooting*/}
 
 ### "Suspense Exception: This is not a real error!" {/*suspense-exception-error*/}

@@ -440,13 +440,27 @@ To use the Promise's <CodeStep step={1}>`catch`</CodeStep> method, call <CodeSte
 
 React will read the `status` field on Promise subclasses to synchronously read the value without waiting for a microtask. If the Promise is already settled (resolved or rejected), React can read the value immediately without suspending and showing a fallback if the update was not part of a Transition (e.g. [`ReactDOM.flushSync()`](/reference/react-dom/flushSync)).
 
-React will set the `status` field itself if the passed Promise does not have this field set. Suspense-enabled libraries should set the `status` field on the Promises they create to avoid unnecessary fallbacks. Calling `use` conditionally depending on whether a Promise is settled or not is discouraged. `use` should be called unconditionally so that React DevTools can show that the Component may suspend on data.
+React will set the `status` field itself if the passed Promise does not have this field set. Suspense-enabled libraries should set the `status` field on the Promises they create to avoid unnecessary fallbacks.
+
+Calling `use` conditionally depending on whether a Promise is settled or not is discouraged. `use` should be called unconditionally so that React DevTools can show that the Component may suspend on data.
+
+<Recipes titleText="Difference between setting the status field in your library and not setting the status field" titleId="difference-between-setting-the-status-field-in-your-library-and-not-setting-the-status-field">
+
+#### Passing a basic Promise {/*passing-a-basic-promise*/}
 
 <Sandpack>
 
 ```js src/App.js active
 import { Suspense, use, useState } from "react";
-import { preload } from "./data-fetching.js";
+
+function preloadUser(id) {
+  // This is not a real implementation of getting the Promise for the user.
+  // A real implementation would probably call `fetch` or another data fetching method.
+  // The actual implementation should cache the Promise.
+  const promise = Promise.resolve(`User #${id}`);
+
+  return promise;
+}
 
 function UserDetails({ userUsable }) {
   const user = use(userUsable);
@@ -460,25 +474,21 @@ export default function App() {
 
   return (
     <div>
-      <p>
-        Passing the Promise without the <code>status</code> field will show the
-        fallback because the Promise resolves in the next microtask.
-      </p>
       <button
         onClick={() => {
-          setUser(Promise.resolve("User #2"));
-          setUserId(2);
-        }}
-      >
-        Load Promise not integrated with Suspense
-      </button>
-      <button
-        onClick={() => {
-          setUser(preload(1));
+          setUser(preloadUser(1));
           setUserId(1);
         }}
       >
-        Load Promise integrated with Suspense
+        Load User #1
+      </button>
+      <button
+        onClick={() => {
+          setUser(preloadUser(2));
+          setUserId(2);
+        }}
+      >
+        Load User #2
       </button>
       <Suspense key={userId} fallback={<p>Loading user...</p>}>
         {userUsable ? (
@@ -492,11 +502,22 @@ export default function App() {
 }
 ```
 
+</Sandpack>
 
-```js src/data-fetching.js 
-export function preload(id) {
+<Solution />
+
+#### Passing the Promise with a `status` field {/*passing-the-promise-with-the-status-field*/}
+
+
+<Sandpack>
+
+```js src/App.js active
+import { Suspense, use, useState } from "react";
+
+function preloadUser(id) {
   // This is not a real implementation of getting the Promise for the user.
-  // The actual implementation should cache the Promise
+  // A real implementation would probably call `fetch` or another data fetching method.
+  // The actual implementation should cache the Promise.
   const promise = Promise.resolve(`User #${id}`);
 
   // Setting the `status` field allows React to synchronously read
@@ -514,9 +535,52 @@ export function preload(id) {
   );
   return promise;
 }
+
+function UserDetails({ userUsable }) {
+  const user = use(userUsable);
+  return <p>Hello, {user}!</p>;
+}
+
+export default function App() {
+  const [userId, setUserId] = useState(null);
+  // The initial
+  const [userUsable, setUser] = useState(null);
+
+  return (
+    <div>
+      <button
+        onClick={() => {
+          setUser(preloadUser(1));
+          setUserId(1);
+        }}
+      >
+        Load User #1
+      </button>
+      <button
+        onClick={() => {
+          setUser(preloadUser(2));
+          setUserId(2);
+        }}
+      >
+        Load User #2
+      </button>
+      <Suspense key={userId} fallback={<p>Loading user...</p>}>
+        {userUsable ? (
+          <UserDetails userUsable={userUsable} />
+        ) : (
+          <p>No user selected</p>
+        )}
+      </Suspense>
+    </div>
+  );
+}
 ```
 
 </Sandpack>
+
+<Solution />
+
+</Recipes>
 
 ## Troubleshooting {/*troubleshooting*/}
 

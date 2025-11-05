@@ -456,8 +456,9 @@ Calling `use` conditionally depending on whether a Promise is settled or not is 
 import { Suspense, use, useState } from "react";
 
 function preloadUser(id) {
-  // This is not a real implementation of getting the Promise for the user.
-  // A real implementation would probably call `fetch` or another data fetching method.
+  // This is not a real implementation of getting the
+  // Promise for the user. A real implementation would
+  // probably call `fetch` or another data fetching method.
   // The actual implementation should cache the Promise.
   const promise = Promise.resolve(`User #${id}`);
 
@@ -492,7 +493,7 @@ export default function App() {
       >
         Load User #2
       </button>
-      <Suspense key={userId} fallback={<p>Loading user...</p>}>
+      <Suspense key={userId} fallback={<p>Loading</p>}>
         {userUsable ? (
           <UserDetails userUsable={userUsable} />
         ) : (
@@ -529,8 +530,9 @@ class PromiseWithStatus extends Promise {
       resolve = _resolve;
       reject = _reject;
     });
-    // Setting the `status` field allows React to synchronously read
-    // the value if the Promise is already settled by the time the Promise is
+    // Setting the `status` field allows React to
+    // synchronously read the value if the Promise
+    // is already settled by the time the Promise is
     // passed to `use`.
     executor(
       (value) => {
@@ -548,11 +550,13 @@ class PromiseWithStatus extends Promise {
 }
 
 function preloadUser(id) {
-  // This is not a real implementation of getting the Promise for the user.
-  // A real implementation would probably call `fetch` or another data fetching method.
+  // This is not a real implementation of getting the
+  // Promise for the user. A real implementation would
+  // probably call `fetch` or another data fetching method.
   // The actual implementation should cache the Promise.
-  // The important part is that we are using the PromiseWithStatus subclass here.
-  // Check out the next step if you're not controlling the Promise creation
+  // The important part is that we are using the
+  // PromiseWithStatus subclass here. Check out the next
+  // step if you're not controlling the Promise creation
   // (e.g. when `fetch` is used).
   const promise = PromiseWithStatus.resolve(`User #${id}`);
 
@@ -573,8 +577,9 @@ export default function App() {
     <div>
       <button
         onClick={() => {
-          // flushSync is only used for illustration purposes.
-          // A real app would probably use startTransition instead.
+          // flushSync is only used for illustration
+          // purposes. A real app would probably use
+          // startTransition instead.
           flushSync(() => {
             setUser(preloadUser(1));
             setUserId(1);
@@ -591,7 +596,7 @@ export default function App() {
       >
         Load User #2
       </button>
-      <Suspense key={userId} fallback={<p>Loading user...</p>}>
+      <Suspense key={userId} fallback={<p>Loading</p>}>
         {userUsable ? (
           <UserDetails userUsable={userUsable} />
         ) : (
@@ -618,13 +623,15 @@ import { flushSync } from "react-dom";
 
 function preloadUser(id) {
   const value = `User #${id}`;
-  // This is not a real implementation of getting the Promise for the user.
-  // A real implementation would probably call `fetch` or another data fetching method.
+  // This is not a real implementation of getting the
+  // Promise for the user. A real implementation would
+  // probably call `fetch` or another data fetching method.
   // The actual implementation should cache the Promise.
   const promise = Promise.resolve(value);
 
   // We don't need to create a custom subclass.
-  // We can just set the necessary fields directly on the Promise.
+  // We can just set the necessary fields directly on the
+  // Promise.
   promise.status = "pending";
   promise.then(
     (value) => {
@@ -637,10 +644,11 @@ function preloadUser(id) {
     }
   );
 
-  // Setting the status in `.then` is too late if we want to create an already
-  // settled Promise. We only included setting the fields in `.then` for
-  // illustration purposes. Since our demo wants an already resolved Promise, 
-  // we set the necessary fields synchronously.
+  // Setting the status in `.then` is too late if we want
+  // to create an already settled Promise. We only included
+  // setting the fields in `.then` for illustration
+  // purposes. Since our demo wants an already resolved
+  // Promise, we set the necessary fields synchronously.
   promise.status = "fulfilled";
   promise.value = value;
   return promise;
@@ -660,8 +668,9 @@ export default function App() {
     <div>
       <button
         onClick={() => {
-          // flushSync is only used for illustration purposes.
-          // A real app would probably use startTransition instead.
+          // flushSync is only used for illustration
+          // purposes. A real app would probably use
+          // startTransition instead.
           flushSync(() => {
             setUser(preloadUser(1));
             setUserId(1);
@@ -680,7 +689,7 @@ export default function App() {
       >
         Load User #2
       </button>
-      <Suspense key={userId} fallback={<p>Loading user...</p>}>
+      <Suspense key={userId} fallback={<p>Loading</p>}>
         {userUsable ? (
           <UserDetails userUsable={userUsable} />
         ) : (

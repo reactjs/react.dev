@@ -21,7 +21,7 @@ Programmatic React features:
 
 ## React DOM {/*react-dom*/}
 
-React-dom contains features that are only supported for web applications (which run in the browser DOM environment). This section is broken into the following:
+React DOM contains features that are only supported for web applications (which run in the browser DOM environment). This section is broken into the following:
 
 * [Hooks](/reference/react-dom/hooks) - Hooks for web applications which run in the browser DOM environment.
 * [Components](/reference/react-dom/components) - React supports all of the browser built-in HTML and SVG components.

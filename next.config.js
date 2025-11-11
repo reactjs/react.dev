@@ -20,6 +20,14 @@ const nextConfig = {
     reactCompiler: true,
   },
   env: {},
+  async rewrites() {
+    return [
+      {
+        source: '/:path*.md',
+        destination: '/api/raw-md/:path*',
+      },
+    ];
+  },
   webpack: (config, {dev, isServer, ...options}) => {
     if (process.env.ANALYZE) {
       const {BundleAnalyzerPlugin} = require('webpack-bundle-analyzer');

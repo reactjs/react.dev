@@ -105,7 +105,7 @@ All codemods are available in the [`react-codemod` repo](https://github.com/reac
 Run all codemods listed in this guide with the React 19 `codemod` recipe:
 
 ```bash
-npx codemod@latest react/19/migration-recipe
+npx codemod@0.18.12 react/19/migration-recipe
 ```
 
 This will run the following codemods from `react-codemod`:

@@ -90,6 +90,7 @@ Do you have a local React.js meetup? Add it here! (Please keep the list alphabet
 * [Mumbai](https://reactmumbai.dev)
 * [Pune](https://www.meetup.com/ReactJS-and-Friends/)
 * [Rajasthan](https://reactrajasthan.com)
+* [Hyderabad](https://www.linkedin.com/company/reacthyderabad/)
 
 ## Indonesia {/*indonesia*/}
 * [Indonesia](https://www.meetup.com/reactindonesia/)

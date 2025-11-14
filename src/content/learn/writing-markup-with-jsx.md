@@ -224,7 +224,7 @@ For historical reasons, [`aria-*`](https://developer.mozilla.org/docs/Web/Access
 
 
 
-### How React Handles HTML Attributes {/*how-react-handles-html-attributes*/}
+## How React Handles HTML Attributes {/*how-react-handles-html-attributes*/}
 
 JSX looks a lot like HTML, but a few attributes work slightly differently because JSX maps to JavaScript and DOM properties. This short reference explains the common differences and shows examples you can copy.
 

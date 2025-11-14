@@ -228,7 +228,7 @@ For historical reasons, [`aria-*`](https://developer.mozilla.org/docs/Web/Access
 
 JSX looks a lot like HTML, but a few attributes work slightly differently because JSX maps to JavaScript and DOM properties. This short reference explains the common differences and shows examples you can copy.
 
-### Attribute name differences
+### Attribute name differences {/*attribute-name-differences*/}
 
 Some HTML attribute names are either reserved words in JavaScript or differ from the DOM property names. Use the React/JSX name when writing JSX:
 
@@ -240,7 +240,7 @@ Some HTML attribute names are either reserved words in JavaScript or differ from
 <label htmlFor="email">Email</label>
 ```
 
-### Boolean attributes
+### Boolean attributes {/*boolean-attributes*/}
 
 In HTML, boolean attributes are represented by their presence. In JSX, you pass explicit boolean values—but JSX also supports the shorthand form (which means `true`):
 
@@ -256,7 +256,7 @@ In HTML, boolean attributes are represented by their presence. In JSX, you pass 
 <input disabled />
 ```
 
-### Inline styles
+### Inline styles {/*inline-styles*/}
 
 HTML uses a CSS string. JSX uses a JavaScript object with camelCased property names:
 ```html
@@ -272,7 +272,7 @@ Numeric values (like lineHeight, zIndex) can be written as numbers
 <div style={{ lineHeight: 1.5, zIndex: 10 }} />
 ```
 
-### Data and ARIA attributes
+### Data and ARIA attributes {/*data-and-aria-attributes*/}
 
 React preserves data-* and aria-* attributes exactly as they appear in HTML. These must remain dash-cased:
 ```jsx
@@ -284,7 +284,7 @@ React preserves data-* and aria-* attributes exactly as they appear in HTML. The
 ```
 These attributes are ideal for accessibility and for storing custom data.
 
-### Unknown or invalid attributes
+### Unknown or invalid attributes {/*unknown-or-invalid-attributes*/}
 
 React will not add invalid or unknown attributes to the DOM:
 ```jsx
@@ -305,7 +305,7 @@ function Button({ children, ...rest }) {
 <Button data-track="1" disabled>Click</Button>
 ```
 
-### Tips & common gotchas
+### Tips & common gotchas {/*tips--common-gotchas*/}
 
 - Use DOM property names (`className`, `htmlFor`, `defaultValue`) in JSX.
 - Boolean attributes should use `true` or `false`, not strings.

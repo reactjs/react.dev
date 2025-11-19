@@ -29,6 +29,7 @@ interface SidebarLinkProps {
   isExpanded?: boolean;
   hideArrow?: boolean;
   isPending: boolean;
+  onClick?: (event: React.MouseEvent<HTMLAnchorElement>) => void;
 }
 
 export function SidebarLink({
@@ -40,6 +41,7 @@ export function SidebarLink({
   isExpanded,
   hideArrow,
   isPending,
+  onClick,
 }: SidebarLinkProps) {
   const ref = useRef<HTMLAnchorElement>(null);
 
@@ -64,6 +66,7 @@ export function SidebarLink({
       title={title}
       target={target}
       passHref
+      onClick={onClick}
       aria-current={selected ? 'page' : undefined}
       className={cn(
         'p-2 pe-2 w-full rounded-none lg:rounded-e-2xl text-start hover:bg-gray-5 dark:hover:bg-gray-80 relative flex items-center justify-between',

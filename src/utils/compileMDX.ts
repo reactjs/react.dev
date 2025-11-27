@@ -45,15 +45,7 @@ export default async function compileMDX(
   );
   const cached = await store.get(hash);
   if (cached) {
-    console.log(
-      'Reading compiled MDX for /' + path + ' from ./node_modules/.cache/'
-    );
     return cached;
-  }
-  if (process.env.NODE_ENV === 'production') {
-    console.log(
-      'Cache miss for MDX for /' + path + ' from ./node_modules/.cache/'
-    );
   }
 
   // If we don't add these fake imports, the MDX compiler

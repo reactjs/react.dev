@@ -17,11 +17,10 @@ const usePendingRoute = () => {
   const [pendingRoute, setPendingRoute] = useState<string | null>(null);
   const currentRoute = useRef<string | null>(null);
   useEffect(() => {
-    let routeTransitionTimer: ReturnType<typeof setTimeout> | undefined =
-      undefined;
+    let routeTransitionTimer: NodeJS.Timeout | undefined = undefined;
 
     const handleRouteChangeStart = (url: string) => {
-      clearTimeout(routeTransitionTimer);
+      if (routeTransitionTimer) clearTimeout(routeTransitionTimer);
       routeTransitionTimer = setTimeout(() => {
         if (currentRoute.current !== url) {
           currentRoute.current = url;
@@ -31,7 +30,7 @@ const usePendingRoute = () => {
     };
     const handleRouteChangeComplete = () => {
       setPendingRoute(null);
-      clearTimeout(routeTransitionTimer);
+      if (routeTransitionTimer) clearTimeout(routeTransitionTimer);
     };
     events.on('routeChangeStart', handleRouteChangeStart);
     events.on('routeChangeComplete', handleRouteChangeComplete);
@@ -39,7 +38,7 @@ const usePendingRoute = () => {
     return () => {
       events.off('routeChangeStart', handleRouteChangeStart);
       events.off('routeChangeComplete', handleRouteChangeComplete);
-      clearTimeout(routeTransitionTimer);
+      if (routeTransitionTimer) clearTimeout(routeTransitionTimer);
     };
   }, [events]);
 

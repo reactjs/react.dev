@@ -17,7 +17,8 @@ const usePendingRoute = () => {
   const [pendingRoute, setPendingRoute] = useState<string | null>(null);
   const currentRoute = useRef<string | null>(null);
   useEffect(() => {
-    let routeTransitionTimer: ReturnType<typeof setTimeout> | undefined = undefined;
+    let routeTransitionTimer: ReturnType<typeof setTimeout> | undefined =
+      undefined;
 
     const handleRouteChangeStart = (url: string) => {
       clearTimeout(routeTransitionTimer);

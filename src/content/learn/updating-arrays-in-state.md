@@ -18,9 +18,9 @@ Arrays are mutable in JavaScript, but you should treat them as immutable when yo
 
 ## Updating arrays without mutation {/*updating-arrays-without-mutation*/}
 
-In JavaScript, arrays are just another kind of object. [Like with objects](/learn/updating-objects-in-state), **you should treat arrays in React state as read-only.** This means that you shouldn't reassign items inside an array like `arr[0] = 'bird'`, and you also shouldn't use methods that mutate the array, such as `push()` and `pop()`.
+In JavaScript, arrays are just another kind of object. [Like with objects](/learn/updating-objects-in-state), **you should treat arrays in React state as read-only.** Although JavaScript arrays are technically mutable, mutating them directly __(for example, with `arr[0] = 'bird'` or methods like `push() and pop()`)__ will not trigger a re‑render because React cannot detect the change.
 
-Instead, every time you want to update an array, you'll want to pass a *new* array to your state setting function. To do that, you can create a new array from the original array in your state by calling its non-mutating methods like `filter()` and `map()`. Then you can set your state to the resulting new array.
+Instead, every time you want to update an array, you need to pass a *new* array to your __state setting function__. To do that, you can create a new array from the original array in your state by calling its non-mutating methods like `filter()` and `map()` or simply using spread operator `[ ... ]`. Then you can set your state to the resulting new array.
 
 Here is a reference table of common array operations. When dealing with arrays inside React state, you will need to avoid the methods in the left column, and instead prefer the methods in the right column:
 

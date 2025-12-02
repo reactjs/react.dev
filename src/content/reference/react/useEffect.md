@@ -1418,6 +1418,66 @@ button { margin-left: 5px; }
 
 ---
 
+### Behavior of `useEffect()` with non-primitive dependencies {/*behavior-of-useeffect-with-non-primitive-dependencies*/}
+
+**Objects and arrays are non-primitive values**. In JavaScript, _a new object or array_ is created on every render when it is **defined inside the component body**, even if its contents are the same.
+
+Since `useEffect()` performs a _shallow comparison_ on its dependencies, it sees the new reference on every render and re-runs the effect. This often leads to _unnecessary work_ or even _infinite loops_.
+
+For example, defining an object inline and using it as a dependency will cause the effect to run on every render
+
+```js {2-5, 8}
+function getData({ roomId }) {
+  const config = {
+    roomId: roomId,
+    limit: 10
+  };
+  useEffect(() => {   
+    api.fetchData(config); // This fetches data for API on every render
+  }, [config]); // ❌ Dependency changes on every render
+  // ...
+}
+```
+To avoid this, there are two common strategies:
+
+1) __By using `useMemo` hook to memoize the objects and arrays:__
+
+```js {2-5,8}
+function getData({ roomId }) {
+  const config = useMemo(() => ({
+    roomId: roomId,
+    limit: 10
+  }), [roomId]);
+  useEffect(() => {
+    api.fetchData(config); // The API request will only run when 'config' changes 
+  }, [config]); 
+  // ...
+}
+```
+This prevents unnecessary effect executions while still recreating the object when its relevant values change.
+
+2) __If an object does not depend on props or state__, define it outside the component so it has a stable reference:
+
+```js {1-4.10}
+const DEFAULT_CONFIG = {
+  limit: 10
+};
+
+function getData() {
+
+  useEffect(() => {
+    api.fetchData(DEFAULT_CONFIG);// This only fetches data once on mount 
+
+  }, [DEFAULT_CONFIG]);
+  // ...
+}
+```
+_Because objects and arrays receive a new reference on each render,_ using them directly as dependencies will cause `useEffect()` to re-run unnecessarily. To avoid this use the `useMemo` Hook to memoize the value or only if the object/array does not depend on props or state define constant object/array _outside the component scope_, This ensures stable references and prevents unintentional re-renders or effect loops.
+
+__Because objects and arrays receive a new reference on each render__, using them directly as dependencies will cause `useEffect()` to re-run unnecessarily. To avoid this, define constant objects or arrays _outside the component_, or use `useMemo()` hook to memoize values that depend on _props or state_. This ensures stable references and prevents unintentional re-renders or effect loops.
+
+---
+
 ### Updating state based on previous state from an Effect {/*updating-state-based-on-previous-state-from-an-effect*/}
 
 When you want to update state based on previous state from an Effect, you might run into a problem:

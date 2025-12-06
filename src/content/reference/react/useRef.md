@@ -534,6 +534,18 @@ function Video() {
 
 Here, the `playerRef` itself is nullable. However, you should be able to convince your type checker that there is no case in which `getPlayer()` returns `null`. Then use `getPlayer()` in your event handlers.
 
+A More Robust Solution Using useState:
+If you want a more robust solution that avoids all kinds of acrobatics like lying to a type checker or performing checks inside the render body, you can leverage useState:
+
+```js
+function Video() {
+  const [playerRef] = useState(() => ({ current: new VideoPlayer() }));
+
+  // playerRef is now a stable object containing the video player instance
+}
+```
+
+
 </DeepDive>
 
 ---

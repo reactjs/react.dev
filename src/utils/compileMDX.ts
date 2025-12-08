@@ -1,9 +1,16 @@
+/**
+ * Copyright (c) Meta Platforms, Inc. and affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 import {LanguageItem} from 'components/MDX/LanguagesContext';
 import {MDXComponents} from 'components/MDX/MDXComponents';
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // ~~~~ IMPORTANT: BUMP THIS IF YOU CHANGE ANY CODE BELOW ~~~
-const DISK_CACHE_BREAKER = 9;
+const DISK_CACHE_BREAKER = 11;
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 export default async function compileMDX(
@@ -144,7 +151,10 @@ export default async function compileMDX(
 
   // Serialize a server React tree node to JSON.
   function stringifyNodeOnServer(key: unknown, val: any) {
-    if (val != null && val.$$typeof === Symbol.for('react.element')) {
+    if (
+      val != null &&
+      val.$$typeof === Symbol.for('react.transitional.element')
+    ) {
       // Remove fake MDX props.
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const {mdxType, originalType, parentName, ...cleanProps} = val.props;

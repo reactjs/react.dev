@@ -1,14 +1,6 @@
 ---
 title: "<title>"
-canary: true
 ---
-
-<Canary>
-
-React's extensions to `<title>` are currently only available in React's canary and experimental channels. In stable releases of React `<title>` works only as a [built-in browser HTML component](https://react.dev/reference/react-dom/components#all-html-components). Learn more about [React's release channels here](/community/versioning-policy#all-release-channels).
-
-</Canary>
-
 
 <Intro>
 
@@ -38,7 +30,7 @@ To specify the title of the document, render the [built-in browser `<title>` com
 
 #### Props {/*props*/}
 
-`<title>` supports all [common element props.](/reference/react-dom/components/common#props)
+`<title>` supports all [common element props.](/reference/react-dom/components/common#common-props)
 
 * `children`: `<title>` accepts only text as a child. This text will become the title of the document. You can also pass your own components as long as they only render text.
 

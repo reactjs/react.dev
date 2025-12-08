@@ -1,17 +1,10 @@
 ---
 title: preloadModule
-canary: true
 ---
-
-<Canary>
-
-The `preloadModule` function is currently only available in React's Canary and experimental channels. Learn more about [React's release channels here](/community/versioning-policy#all-release-channels).
-
-</Canary>
 
 <Note>
 
-[React-based frameworks](/learn/start-a-new-react-project) frequently handle resource loading for you, so you might not have to call this API yourself. Consult your framework's documentation for details.
+[React-based frameworks](/learn/creating-a-react-app) frequently handle resource loading for you, so you might not have to call this API yourself. Consult your framework's documentation for details.
 
 </Note>
 

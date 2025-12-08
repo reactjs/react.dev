@@ -1,6 +1,5 @@
 ---
-title: React Server Components
-canary: true
+title: Server Components
 ---
 
 <Intro>
@@ -17,7 +16,7 @@ This separate environment is the "server" in React Server Components. Server Com
 
 #### How do I build support for Server Components? {/*how-do-i-build-support-for-server-components*/}
 
-While React Server Components in React 19 are stable and will not break between major versions, the underlying APIs used to implement a React Server Components bundler or framework do not follow semver and may break between minors in React 19.x. 
+While React Server Components in React 19 are stable and will not break between minor versions, the underlying APIs used to implement a React Server Components bundler or framework do not follow semver and may break between minors in React 19.x.
 
 To support React Server Components as a bundler or framework, we recommend pinning to a specific React version, or using the Canary release. We will continue working with bundlers and frameworks to stabilize the APIs used to implement React Server Components in the future.
 
@@ -40,7 +39,7 @@ function Page({page}) {
       setContent(data.content);
     });
   }, [page]);
-  
+
   return <div>{sanitizeHtml(marked(content))}</div>;
 }
 ```
@@ -64,7 +63,7 @@ import sanitizeHtml from 'sanitize-html'; // Not included in bundle
 async function Page({page}) {
   // NOTE: loads *during* render, when the app is built.
   const content = await file.readFile(`${page}.md`);
-  
+
   return <div>{sanitizeHtml(marked(content))}</div>;
 }
 ```
@@ -108,7 +107,7 @@ function Note({id}) {
       setNote(data.note);
     });
   }, [id]);
-  
+
   return (
     <div>
       <Author id={note.authorId} />
@@ -174,7 +173,7 @@ The bundler then combines the data, rendered Server Components and dynamic Clien
 ```js
 <div>
   <span>By: The React Team</span>
-  <p>React 19 Beta is...</p>
+  <p>React 19 is...</p>
 </div>
 ```
 
@@ -188,7 +187,7 @@ Server Components are not sent to the browser, so they cannot use interactive AP
 
 #### There is no directive for Server Components. {/*there-is-no-directive-for-server-components*/}
 
-A common misunderstanding is that Server Components are denoted by `"use server"`, but there is no directive for Server Components. The `"use server"` directive is used for Server Actions.
+A common misunderstanding is that Server Components are denoted by `"use server"`, but there is no directive for Server Components. The `"use server"` directive is used for Server Functions.
 
 For more info, see the docs for [Directives](/reference/rsc/directives).
 
@@ -248,7 +247,7 @@ This works by first rendering `Notes` as a Server Component, and then instructin
       <p>this is the second note</p>
     </Expandable>
     <!--...-->
-  </div> 
+  </div>
 </body>
 ```
 
@@ -265,8 +264,8 @@ import db from './database';
 async function Page({id}) {
   // Will suspend the Server Component.
   const note = await db.notes.get(id);
-  
-  // NOTE: not awaited, will start here and await on the client. 
+
+  // NOTE: not awaited, will start here and await on the client.
   const commentsPromise = db.comments.get(note.id);
   return (
     <div>
@@ -288,10 +287,10 @@ function Comments({commentsPromise}) {
   // NOTE: this will resume the promise from the server.
   // It will suspend until the data is available.
   const comments = use(commentsPromise);
-  return comments.map(commment => <p>{comment}</p>);
+  return comments.map(comment => <p>{comment}</p>);
 }
 ```
 
 The `note` content is important data for the page to render, so we `await` it on the server. The comments are below the fold and lower-priority, so we start the promise on the server, and wait for it on the client with the `use` API. This will Suspend on the client, without blocking the `note` content from rendering.
 
-Since async components are [not supported on the client](#why-cant-i-use-async-components-on-the-client), we await the promise with `use`.
+Since async components are not supported on the client, we await the promise with `use`.

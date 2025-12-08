@@ -37,7 +37,7 @@ Start by drawing boxes around every component and subcomponent in the mockup and
 
 Depending on your background, you can think about splitting up a design into components in different ways:
 
-* **Programming**--use the same techniques for deciding if you should create a new function or object. One such technique is the [single responsibility principle](https://en.wikipedia.org/wiki/Single_responsibility_principle), that is, a component should ideally only do one thing. If it ends up growing, it should be decomposed into smaller subcomponents. 
+* **Programming**--use the same techniques for deciding if you should create a new function or object. One such technique is the [separation of concerns](https://en.wikipedia.org/wiki/Separation_of_concerns), that is, a component should ideally only be concerned with one thing. If it ends up growing, it should be decomposed into smaller subcomponents. 
 * **CSS**--consider what you would make class selectors for. (However, components are a bit less granular.)
 * **Design**--consider how you would organize the design's layers.
 
@@ -268,8 +268,8 @@ Now let's run through our strategy for them:
 1. **Identify components that use state:**
     * `ProductTable` needs to filter the product list based on that state (search text and checkbox value). 
     * `SearchBar` needs to display that state (search text and checkbox value).
-1. **Find their common parent:** The first parent component both components share is `FilterableProductTable`.
-2. **Decide where the state lives**: We'll keep the filter text and checked state values in `FilterableProductTable`.
+2. **Find their common parent:** The first parent component both components share is `FilterableProductTable`.
+3. **Decide where the state lives**: We'll keep the filter text and checked state values in `FilterableProductTable`.
 
 So the state values will live in `FilterableProductTable`. 
 

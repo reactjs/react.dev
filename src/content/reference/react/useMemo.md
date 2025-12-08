@@ -12,6 +12,12 @@ const cachedValue = useMemo(calculateValue, dependencies)
 
 </Intro>
 
+<Note>
+
+[React Compiler](/learn/react-compiler) automatically memoizes values and functions, reducing the need for manual `useMemo` calls. You can use the compiler to handle memoization automatically.
+
+</Note>
+
 <InlineToc />
 
 ---
@@ -143,7 +149,7 @@ Also note that measuring performance in development will not give you the most a
 
 #### Should you add useMemo everywhere? {/*should-you-add-usememo-everywhere*/}
 
-If your app is like this site, and most interactions are coarse (like replacing a page or an entire section), memoization is usually unnecessary. On the other hand, if your app is more like a drawing editor, and most interactions are granular (like moving shapes), then you might find memoization very helpful. 
+If your app is like this site, and most interactions are coarse (like replacing a page or an entire section), memoization is usually unnecessary. On the other hand, if your app is more like a drawing editor, and most interactions are granular (like moving shapes), then you might find memoization very helpful.
 
 Optimizing with `useMemo`  is only valuable in a few cases:
 
@@ -711,7 +717,7 @@ export default function TodoList({ todos, theme, tab }) {
 }
 ```
 
-```js src/List.js
+```js {expectedErrors: {'react-compiler': [5, 6]}} src/List.js
 import { memo } from 'react';
 
 const List = memo(function List({ items }) {
@@ -849,7 +855,7 @@ export default function TodoList({ todos, theme, tab }) {
 }
 ```
 
-```js src/List.js
+```js {expectedErrors: {'react-compiler': [5, 6]}} src/List.js
 import { memo } from 'react';
 
 const List = memo(function List({ items }) {
@@ -1055,6 +1061,82 @@ Keep in mind that you need to run React in production mode, disable [React Devel
 </Recipes>
 
 ---
+
+### Preventing an Effect from firing too often {/*preventing-an-effect-from-firing-too-often*/}
+
+Sometimes, you might want to use a value inside an [Effect:](/learn/synchronizing-with-effects)
+
+```js {4-7,10}
+function ChatRoom({ roomId }) {
+  const [message, setMessage] = useState('');
+
+  const options = {
+    serverUrl: 'https://localhost:1234',
+    roomId: roomId
+  }
+
+  useEffect(() => {
+    const connection = createConnection(options);
+    connection.connect();
+    // ...
+```
+
+This creates a problem. [Every reactive value must be declared as a dependency of your Effect.](/learn/lifecycle-of-reactive-effects#react-verifies-that-you-specified-every-reactive-value-as-a-dependency) However, if you declare `options` as a dependency, it will cause your Effect to constantly reconnect to the chat room:
+
+
+```js {5}
+  useEffect(() => {
+    const connection = createConnection(options);
+    connection.connect();
+    return () => connection.disconnect();
+  }, [options]); // 🔴 Problem: This dependency changes on every render
+  // ...
+```
+
+To solve this, you can wrap the object you need to call from an Effect in `useMemo`:
+
+```js {4-9,16}
+function ChatRoom({ roomId }) {
+  const [message, setMessage] = useState('');
+
+  const options = useMemo(() => {
+    return {
+      serverUrl: 'https://localhost:1234',
+      roomId: roomId
+    };
+  }, [roomId]); // ✅ Only changes when roomId changes
+
+  useEffect(() => {
+    const connection = createConnection(options);
+    connection.connect();
+    return () => connection.disconnect();
+  }, [options]); // ✅ Only changes when options changes
+  // ...
+```
+
+This ensures that the `options` object is the same between re-renders if `useMemo` returns the cached object.
+
+However, since `useMemo` is performance optimization, not a semantic guarantee, React may throw away the cached value if [there is a specific reason to do that](#caveats). This will also cause the effect to re-fire, **so it's even better to remove the need for a function dependency** by moving your object *inside* the Effect:
+
+```js {5-8,13}
+function ChatRoom({ roomId }) {
+  const [message, setMessage] = useState('');
+
+  useEffect(() => {
+    const options = { // ✅ No need for useMemo or object dependencies!
+      serverUrl: 'https://localhost:1234',
+      roomId: roomId
+    }
+
+    const connection = createConnection(options);
+    connection.connect();
+    return () => connection.disconnect();
+  }, [roomId]); // ✅ Only changes when roomId changes
+  // ...
+```
+
+Now your code is simpler and doesn't need `useMemo`. [Learn more about removing Effect dependencies.](/learn/removing-effect-dependencies#move-dynamic-objects-and-functions-inside-your-effect)
+
 
 ### Memoizing a dependency of another Hook {/*memoizing-a-dependency-of-another-hook*/}
 
@@ -1289,7 +1371,7 @@ When you find which dependency breaks memoization, either find a way to remove i
 
 Suppose the `Chart` component is wrapped in [`memo`](/reference/react/memo). You want to skip re-rendering every `Chart` in the list when the `ReportList` component re-renders. However, you can't call `useMemo` in a loop:
 
-```js {5-11}
+```js {expectedErrors: {'react-compiler': [6]}} {5-11}
 function ReportList({ items }) {
   return (
     <article>

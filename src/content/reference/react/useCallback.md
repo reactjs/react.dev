@@ -12,6 +12,12 @@ const cachedFn = useCallback(fn, dependencies)
 
 </Intro>
 
+<Note>
+
+[React Compiler](/learn/react-compiler) automatically memoizes values and functions, reducing the need for manual `useCallback` calls. You can use the compiler to handle memoization automatically.
+
+</Note>
+
 <InlineToc />
 
 ---
@@ -46,7 +52,7 @@ export default function ProductPage({ productId, referrer, theme }) {
 
 On the initial render, `useCallback` returns the `fn` function you have passed.
 
-During subsequent renders, it will either return an already stored `fn`  function from the last render (if the dependencies haven't changed), or return the `fn` function you have passed during this render.
+During subsequent renders, it will either return an already stored `fn` function from the last render (if the dependencies haven't changed), or return the `fn` function you have passed during this render.
 
 #### Caveats {/*caveats*/}
 
@@ -124,7 +130,7 @@ function ProductPage({ productId, referrer, theme }) {
       orderDetails,
     });
   }
-  
+
   return (
     <div className={theme}>
       {/* ... so ShippingForm's props will never be the same, and it will re-render every time */}
@@ -201,7 +207,7 @@ The difference is in *what* they're letting you cache:
 
 If you're already familiar with [`useMemo`,](/reference/react/useMemo) you might find it helpful to think of `useCallback` as this:
 
-```js
+```js {expectedErrors: {'react-compiler': [3]}}
 // Simplified implementation (inside React)
 function useCallback(fn, dependencies) {
   return useMemo(() => fn, dependencies);
@@ -216,9 +222,9 @@ function useCallback(fn, dependencies) {
 
 #### Should you add useCallback everywhere? {/*should-you-add-usecallback-everywhere*/}
 
-If your app is like this site, and most interactions are coarse (like replacing a page or an entire section), memoization is usually unnecessary. On the other hand, if your app is more like a drawing editor, and most interactions are granular (like moving shapes), then you might find memoization very helpful. 
+If your app is like this site, and most interactions are coarse (like replacing a page or an entire section), memoization is usually unnecessary. On the other hand, if your app is more like a drawing editor, and most interactions are granular (like moving shapes), then you might find memoization very helpful.
 
-Caching a function with `useCallback`  is only valuable in a few cases:
+Caching a function with `useCallback` is only valuable in a few cases:
 
 - You pass it as a prop to a component wrapped in [`memo`.](/reference/react/memo) You want to skip re-rendering if the value hasn't changed. Memoization lets your component re-render only if dependencies changed.
 - The function you're passing is later used as a dependency of some Hook. For example, another function wrapped in `useCallback` depends on it, or you depend on this function from [`useEffect.`](/reference/react/useEffect)
@@ -230,10 +236,10 @@ Note that `useCallback` does not prevent *creating* the function. You're always 
 **In practice, you can make a lot of memoization unnecessary by following a few principles:**
 
 1. When a component visually wraps other components, let it [accept JSX as children.](/learn/passing-props-to-a-component#passing-jsx-as-children) Then, if the wrapper component updates its own state, React knows that its children don't need to re-render.
-1. Prefer local state and don't [lift state up](/learn/sharing-state-between-components) any further than necessary. Don't keep transient state like forms and whether an item is hovered at the top of your tree or in a global state library.
-1. Keep your [rendering logic pure.](/learn/keeping-components-pure) If re-rendering a component causes a problem or produces some noticeable visual artifact, it's a bug in your component! Fix the bug instead of adding memoization.
-1. Avoid [unnecessary Effects that update state.](/learn/you-might-not-need-an-effect) Most performance problems in React apps are caused by chains of updates originating from Effects that cause your components to render over and over.
-1. Try to [remove unnecessary dependencies from your Effects.](/learn/removing-effect-dependencies) For example, instead of memoization, it's often simpler to move some object or a function inside an Effect or outside the component.
+2. Prefer local state and don't [lift state up](/learn/sharing-state-between-components) any further than necessary. Don't keep transient state like forms and whether an item is hovered at the top of your tree or in a global state library.
+3. Keep your [rendering logic pure.](/learn/keeping-components-pure) If re-rendering a component causes a problem or produces some noticeable visual artifact, it's a bug in your component! Fix the bug instead of adding memoization.
+4. Avoid [unnecessary Effects that update state.](/learn/you-might-not-need-an-effect) Most performance problems in React apps are caused by chains of updates originating from Effects that cause your components to render over and over.
+5. Try to [remove unnecessary dependencies from your Effects.](/learn/removing-effect-dependencies) For example, instead of memoization, it's often simpler to move some object or a function inside an Effect or outside the component.
 
 If a specific interaction still feels laggy, [use the React Developer Tools profiler](https://legacy.reactjs.org/blog/2018/09/10/introducing-the-react-profiler.html) to see which components benefit the most from memoization, and add memoization where needed. These principles make your components easier to debug and understand, so it's good to follow them in any case. In long term, we're researching [doing memoization automatically](https://www.youtube.com/watch?v=lGEMwh32soc) to solve this once and for all.
 
@@ -304,7 +310,7 @@ function post(url, data) {
 }
 ```
 
-```js src/ShippingForm.js
+```js {expectedErrors: {'react-compiler': [7, 8]}} src/ShippingForm.js
 import { memo, useState } from 'react';
 
 const ShippingForm = memo(function ShippingForm({ onSubmit }) {
@@ -443,7 +449,7 @@ function post(url, data) {
 }
 ```
 
-```js src/ShippingForm.js
+```js {expectedErrors: {'react-compiler': [7, 8]}} src/ShippingForm.js
 import { memo, useState } from 'react';
 
 const ShippingForm = memo(function ShippingForm({ onSubmit }) {
@@ -711,7 +717,7 @@ function ChatRoom({ roomId }) {
 
   useEffect(() => {
     const options = createOptions();
-    const connection = createConnection();
+    const connection = createConnection(options);
     connection.connect();
     // ...
 ```
@@ -722,7 +728,7 @@ This creates a problem. [Every reactive value must be declared as a dependency o
 ```js {6}
   useEffect(() => {
     const options = createOptions();
-    const connection = createConnection();
+    const connection = createConnection(options);
     connection.connect();
     return () => connection.disconnect();
   }, [createOptions]); // 🔴 Problem: This dependency changes on every render
@@ -744,7 +750,7 @@ function ChatRoom({ roomId }) {
 
   useEffect(() => {
     const options = createOptions();
-    const connection = createConnection();
+    const connection = createConnection(options);
     connection.connect();
     return () => connection.disconnect();
   }, [createOptions]); // ✅ Only changes when createOptions changes
@@ -766,7 +772,7 @@ function ChatRoom({ roomId }) {
     }
 
     const options = createOptions();
-    const connection = createConnection();
+    const connection = createConnection(options);
     connection.connect();
     return () => connection.disconnect();
   }, [roomId]); // ✅ Only changes when roomId changes
@@ -862,7 +868,7 @@ When you find which dependency is breaking memoization, either find a way to rem
 
 Suppose the `Chart` component is wrapped in [`memo`](/reference/react/memo). You want to skip re-rendering every `Chart` in the list when the `ReportList` component re-renders. However, you can't call `useCallback` in a loop:
 
-```js {5-14}
+```js {expectedErrors: {'react-compiler': [6]}} {5-14}
 function ReportList({ items }) {
   return (
     <article>

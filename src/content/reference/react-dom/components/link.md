@@ -1,13 +1,6 @@
 ---
 link: "<link>"
-canary: true
 ---
-
-<Canary>
-
-React's extensions to `<link>` are currently only available in React's canary and experimental channels. In stable releases of React `<link>` works only as a [built-in browser HTML component](https://react.dev/reference/react-dom/components#all-html-components). Learn more about [React's release channels here](/community/versioning-policy#all-release-channels).
-
-</Canary>
 
 <Intro>
 
@@ -37,19 +30,19 @@ To link to external resources such as stylesheets, fonts, and icons, or to annot
 
 #### Props {/*props*/}
 
-`<link>` supports all [common element props.](/reference/react-dom/components/common#props)
+`<link>` supports all [common element props.](/reference/react-dom/components/common#common-props)
 
 * `rel`: a string, required. Specifies the [relationship to the resource](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/rel). React [treats links with `rel="stylesheet"` differently](#special-rendering-behavior) from other links.
 
 These props apply when `rel="stylesheet"`:
 
-* `precedence`: a string. Tells React where to rank the `<link>` DOM node relative to others in the document `<head>`, which determines which stylesheet can override the other. Its value can be (in order of precedence) `"reset"`, `"low"`, `"medium"`, `"high"`. Stylesheets with the same precedence go together whether they are `<link>` or inline `<style>` tags or loaded using the [`preload`](/reference/react-dom/preload) or [`preinit`](/reference/react-dom/preinit) functions.
-* `media`: a string. Restricts the spreadsheet to a certain [media query](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_media_queries/Using_media_queries).
+* `precedence`: a string. Tells React where to rank the `<link>` DOM node relative to others in the document `<head>`, which determines which stylesheet can override the other. React will infer that precedence values it discovers first are "lower" and precedence values it discovers later are "higher". Many style systems can work fine using a single precedence value because style rules are atomic. Stylesheets with the same precedence go together whether they are `<link>` or inline `<style>` tags or loaded using [`preinit`](/reference/react-dom/preinit) functions.
+* `media`: a string. Restricts the stylesheet to a certain [media query](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_media_queries/Using_media_queries).
 * `title`: a string. Specifies the name of an [alternative stylesheet](https://developer.mozilla.org/en-US/docs/Web/CSS/Alternative_style_sheets).
 
 These props apply when `rel="stylesheet"` but disable React's [special treatment of stylesheets](#special-rendering-behavior):
 
-* `disabled`: a boolean. Disables the spreadsheet.
+* `disabled`: a boolean. Disables the stylesheet.
 * `onError`: a function. Called when the stylesheet fails to load.
 * `onLoad`: a function. Called when the stylesheet finishes being loaded.
 
@@ -158,9 +151,7 @@ export default function SiteMapPage() {
 
 ### Controlling stylesheet precedence {/*controlling-stylesheet-precedence*/}
 
-Stylesheets can conflict with each other, and when they do, the browser goes with the one that comes later in the document. React lets you control the order of stylesheets with the `precedence` prop. In this example, two components render stylesheets, and the one with the higher precedence goes later in the document even though the component that renders it comes earlier.
-
-{/*FIXME: this doesn't appear to actually work -- I guess precedence isn't implemented yet?*/}
+Stylesheets can conflict with each other, and when they do, the browser goes with the one that comes later in the document. React lets you control the order of stylesheets with the `precedence` prop. In this example, three components render stylesheets, and the ones with the same precedence are grouped together in the `<head>`. 
 
 <SandpackWithHTMLOutput>
 
@@ -172,22 +163,29 @@ export default function HomePage() {
     <ShowRenderedHTML>
       <FirstComponent />
       <SecondComponent />
+      <ThirdComponent/>
       ...
     </ShowRenderedHTML>
   );
 }
 
 function FirstComponent() {
-  return <link rel="stylesheet" href="first.css" precedence="high" />;
+  return <link rel="stylesheet" href="first.css" precedence="first" />;
 }
 
 function SecondComponent() {
-  return <link rel="stylesheet" href="second.css" precedence="low" />;
+  return <link rel="stylesheet" href="second.css" precedence="second" />;
+}
+
+function ThirdComponent() {
+  return <link rel="stylesheet" href="third.css" precedence="first" />;
 }
 
 ```
 
 </SandpackWithHTMLOutput>
+
+Note the `precedence` values themselves are arbitrary and their naming is up to you. React will infer that precedence values it discovers first are "lower" and precedence values it discovers later are "higher".
 
 ### Deduplicated stylesheet rendering {/*deduplicated-stylesheet-rendering*/}
 

@@ -1,26 +1,18 @@
 ---
-title: "React 19 Beta Upgrade Guide"
+title: "React 19 Upgrade Guide"
 author: Ricky Hanlon
 date: 2024/04/25
-description: The improvements added to React 19 require some breaking changes, but we've worked to make the upgrade as smooth as possible and we don't expect the changes to impact most apps. In this post, we will guide you through the steps for upgrading libraries to React 19 beta.
+description: The improvements added to React 19 require some breaking changes, but we've worked to make the upgrade as smooth as possible and we don't expect the changes to impact most apps. In this post, we will guide you through the steps for upgrading apps and libraries to React 19.
 ---
 
 April 25, 2024 by [Ricky Hanlon](https://twitter.com/rickhanlonii)
 
 ---
 
-<Note>
-
-This beta release is for libraries to prepare for React 19. App developers should upgrade to 18.3.0 and wait for React 19 stable as we work with libraries and make changes based on feedback.
-
-</Note>
-
 
 <Intro>
 
-The improvements added to React 19 require some breaking changes, but we've worked to make the upgrade as smooth as possible and we don't expect the changes to impact most apps.
-
-To help make the upgrade easier, today we are also publishing React 18.3.
+The improvements added to React 19 require some breaking changes, but we've worked to make the upgrade as smooth as possible, and we don't expect the changes to impact most apps.
 
 </Intro>
 
@@ -32,20 +24,21 @@ To help make the upgrade to React 19 easier, we've published a `react@18.3` rele
 
 We recommend upgrading to React 18.3 first to help identify any issues before upgrading to React 19.
 
-For a list of changes in 18.3 see the [Release Notes](https://github.com/facebook/react/blob/main/CHANGELOG.md).
+For a list of changes in 18.3 see the [Release Notes](https://github.com/facebook/react/blob/main/CHANGELOG.md#1830-april-25-2024).
 
 </Note>
 
-In this post, we will guide you through the steps for upgrading libraries to React 19 beta:
+In this post, we will guide you through the steps for upgrading to React 19:
 
 - [Installing](#installing)
+- [Codemods](#codemods)
 - [Breaking changes](#breaking-changes)
 - [New deprecations](#new-deprecations)
 - [Notable changes](#notable-changes)
 - [TypeScript changes](#typescript-changes)
 - [Changelog](#changelog)
 
-If you'd like to help us test React 19, follow the steps in this upgrade guide and [report any issues](https://github.com/facebook/react/issues/new?assignees=&labels=React+19&projects=&template=19.md&title=%5BReact+19%5D) you encounter. For a list of new features added to React 19 beta, see the [React 19 release post](/blog/2024/04/25/react-19).
+If you'd like to help us test React 19, follow the steps in this upgrade guide and [report any issues](https://github.com/facebook/react/issues/new?assignees=&labels=React+19&projects=&template=19.md&title=%5BReact+19%5D) you encounter. For a list of new features added to React 19, see the [React 19 release post](/blog/2024/12/05/react-19).
 
 ---
 ## Installing {/*installing*/}
@@ -77,26 +70,58 @@ We expect most apps will not be affected since the transform is enabled in most 
 To install the latest version of React and React DOM:
 
 ```bash
-npm install react@beta react-dom@beta
+npm install --save-exact react@^19.0.0 react-dom@^19.0.0
 ```
 
-If you're using TypeScript, you also need to update the types. Once React 19 is released as stable, you can install the types as usual from `@types/react` and `@types/react-dom`.  During the beta period, the types are available in different packages which need to be enforced in your `package.json`:
+Or, if you're using Yarn:
 
-```json
-{
-  "dependencies": {
-    "@types/react": "npm:types-react@beta",
-    "@types/react-dom": "npm:types-react-dom@beta"
-  },
-  "overrides": {
-    "@types/react": "npm:types-react@beta",
-    "@types/react-dom": "npm:types-react-dom@beta"
-  }
-}
+```bash
+yarn add --exact react@^19.0.0 react-dom@^19.0.0
+```
+
+If you're using TypeScript, you also need to update the types.
+```bash
+npm install --save-exact @types/react@^19.0.0 @types/react-dom@^19.0.0
+```
+
+Or, if you're using Yarn:
+```bash
+yarn add --exact @types/react@^19.0.0 @types/react-dom@^19.0.0
 ```
 
 We're also including a codemod for the most common replacements. See [TypeScript changes](#typescript-changes) below.
 
+## Codemods {/*codemods*/}
+
+To help with the upgrade, we've worked with the team at [codemod.com](https://codemod.com) to publish codemods that will automatically update your code to many of the new APIs and patterns in React 19.
+
+All codemods are available in the [`react-codemod` repo](https://github.com/reactjs/react-codemod) and the Codemod team have joined in helping maintain the codemods. To run these codemods, we recommend using the `codemod` command instead of the `react-codemod` because it runs faster, handles more complex code migrations, and provides better support for TypeScript.
+
+
+<Note>
+
+#### Run all React 19 codemods {/*run-all-react-19-codemods*/}
+
+Run all codemods listed in this guide with the React 19 `codemod` recipe:
+
+```bash
+npx codemod@latest react/19/migration-recipe
+```
+
+This will run the following codemods from `react-codemod`:
+- [`replace-reactdom-render`](https://github.com/reactjs/react-codemod?tab=readme-ov-file#replace-reactdom-render) 
+- [`replace-string-ref`](https://github.com/reactjs/react-codemod?tab=readme-ov-file#replace-string-ref)
+- [`replace-act-import`](https://github.com/reactjs/react-codemod?tab=readme-ov-file#replace-act-import)
+- [`replace-use-form-state`](https://github.com/reactjs/react-codemod?tab=readme-ov-file#replace-use-form-state) 
+- [`prop-types-typescript`](https://github.com/reactjs/react-codemod#react-proptypes-to-prop-types)
+
+This does not include the TypeScript changes. See [TypeScript changes](#typescript-changes) below.
+
+</Note>
+
+Changes that include a codemod include the command below. 
+
+For a list of all available codemods, see the [`react-codemod` repo](https://github.com/reactjs/react-codemod).
 
 ## Breaking changes {/*breaking-changes*/}
 
@@ -128,7 +153,7 @@ For more info, see the docs for [`createRoot`](https://react.dev/reference/react
 ### Removed deprecated React APIs {/*removed-deprecated-react-apis*/}
 
 #### Removed: `propTypes` and `defaultProps` for functions {/*removed-proptypes-and-defaultprops*/}
-`PropTypes` were deprecated in [April 2017 (v15.5.0)](https://legacy.reactjs.org/blog/2017/04/07/react-v15.5.0.html#new-deprecation-warnings). 
+`PropTypes` were deprecated in [April 2017 (v15.5.0)](https://legacy.reactjs.org/blog/2017/04/07/react-v15.5.0.html#new-deprecation-warnings).
 
 In React 19, we're removing the `propType` checks from the React package, and using them will be silently ignored. If you're using `propTypes`, we recommend migrating to TypeScript or another type-checking solution.
 
@@ -157,6 +182,16 @@ function Heading({text = 'Hello, world!'}: Props) {
   return <h1>{text}</h1>;
 }
 ```
+
+<Note>
+
+Codemod `propTypes` to TypeScript with:
+
+```bash
+npx codemod@latest react/prop-types-typescript
+```
+
+</Note>
 
 #### Removed: Legacy Context using `contextTypes` and `getChildContext` {/*removed-removing-legacy-context*/}
 
@@ -253,7 +288,11 @@ class MyComponent extends React.Component {
 
 <Note>
 
-To help with the migration, we will be publishing a [react-codemod](https://github.com/reactjs/react-codemod/#string-refs) to automatically replace string refs with `ref` callbacks. Follow [this PR](https://github.com/reactjs/react-codemod/pull/309) for updates and to try it out.
+Codemod string refs with `ref` callbacks:
+
+```bash
+npx codemod@latest react/19/replace-string-ref
+```
 
 </Note>
 
@@ -309,7 +348,7 @@ npm install react-shallow-renderer --save-dev
 
 ##### Please reconsider shallow rendering {/*please-reconsider-shallow-rendering*/}
 
-Shallow rendering depends on React internals and can block you from future upgrades. We recommend migrating your tests to [@testing-library/react](https://testing-library.com/docs/react-testing-library/intro/) or [@testing-library/react-native](https://callstack.github.io/react-native-testing-library/docs/getting-started). 
+Shallow rendering depends on React internals and can block you from future upgrades. We recommend migrating your tests to [@testing-library/react](https://testing-library.com/docs/react-testing-library/intro/) or [@testing-library/react-native](https://testing-library.com/docs/react-native-testing-library/intro). 
 
 </Note>
 
@@ -340,6 +379,16 @@ All other `test-utils` functions have been removed. These utilities were uncommo
 
 See the [warning page](https://react.dev/warnings/react-dom-test-utils) for alternatives.
 
+<Note>
+
+Codemod `ReactDOMTestUtils.act` to `React.act`:
+
+```bash
+npx codemod@latest react/19/replace-act-import
+```
+
+</Note>
+
 #### Removed: `ReactDOM.render` {/*removed-reactdom-render*/}
 
 `ReactDOM.render` was deprecated in [March 2022 (v18.0.0)](https://react.dev/blog/2022/03/08/react-18-upgrade-guide). In React 19, we're removing `ReactDOM.render` and you'll need to migrate to using [`ReactDOM.createRoot`](https://react.dev/reference/react-dom/client/createRoot):
@@ -355,6 +404,16 @@ const root = createRoot(document.getElementById('root'));
 root.render(<App />);
 ```
 
+<Note>
+
+Codemod `ReactDOM.render` to `ReactDOMClient.createRoot`:
+
+```bash
+npx codemod@latest react/19/replace-reactdom-render
+```
+
+</Note>
+
 #### Removed: `ReactDOM.hydrate` {/*removed-reactdom-hydrate*/}
 
 `ReactDOM.hydrate` was deprecated in [March 2022 (v18.0.0)](https://react.dev/blog/2022/03/08/react-18-upgrade-guide). In React 19, we're removing `ReactDOM.hydrate` you'll need to migrate to using [`ReactDOM.hydrateRoot`](https://react.dev/reference/react-dom/client/hydrateRoot),
@@ -369,6 +428,15 @@ import {hydrateRoot} from 'react-dom/client';
 hydrateRoot(document.getElementById('root'), <App />);
 ```
 
+<Note>
+
+Codemod `ReactDOM.hydrate` to `ReactDOMClient.hydrateRoot`:
+
+```bash
+npx codemod@latest react/19/replace-reactdom-render
+```
+
+</Note>
 
 #### Removed: `unmountComponentAtNode` {/*removed-unmountcomponentatnode*/}
 
@@ -385,8 +453,18 @@ root.unmount();
 
 For more see `root.unmount()` for [`createRoot`](https://react.dev/reference/react-dom/client/createRoot#root-unmount) and [`hydrateRoot`](https://react.dev/reference/react-dom/client/hydrateRoot#root-unmount).
 
+<Note>
+
+Codemod `unmountComponentAtNode` to `root.unmount`:
+
+```bash
+npx codemod@latest react/19/replace-reactdom-render
+```
+
+</Note>
 
 #### Removed: `ReactDOM.findDOMNode` {/*removed-reactdom-finddomnode*/}
+
 `ReactDOM.findDOMNode` was [deprecated in October 2018 (v16.6.0)](https://legacy.reactjs.org/blog/2018/10/23/react-v-16-6.html#deprecations-in-strictmode). 
 
 We're removing `findDOMNode` because it was a legacy escape hatch that was slow to execute, fragile to refactoring, only returned the first child, and broke abstraction levels (see more [here](https://legacy.reactjs.org/docs/strict-mode.html#warning-about-deprecated-finddomnode-usage)). You can replace `ReactDOM.findDOMNode` with [DOM refs](/learn/manipulating-the-dom-with-refs):
@@ -441,7 +519,7 @@ We are deprecating `react-test-renderer` because it implements its own renderer 
 
 The test renderer was created before there were more viable testing strategies available like [React Testing Library](https://testing-library.com), and we now recommend using a modern testing library instead.
 
-In React 19, `react-test-renderer` logs a deprecation warning, and has switched to concurrent rendering. We recommend migrating your tests to [@testing-library/react](https://testing-library.com/docs/react-testing-library/intro/) or [@testing-library/react-native](https://callstack.github.io/react-native-testing-library/docs/getting-started) for a modern and well supported testing experience.
+In React 19, `react-test-renderer` logs a deprecation warning, and has switched to concurrent rendering. We recommend migrating your tests to [@testing-library/react](https://testing-library.com/docs/react-testing-library/intro/) or [@testing-library/react-native](https://testing-library.com/docs/react-native-testing-library/intro) for a modern and well supported testing experience.
 
 ## Notable changes {/*notable-changes*/}
 
@@ -452,6 +530,24 @@ React 19 includes several fixes and improvements to Strict Mode.
 When double rendering in Strict Mode in development, `useMemo` and `useCallback` will reuse the memoized results from the first render during the second render. Components that are already Strict Mode compatible should not notice a difference in behavior.
 
 As with all Strict Mode behaviors, these features are designed to proactively surface bugs in your components during development so you can fix them before they are shipped to production. For example, during development, Strict Mode will double-invoke ref callback functions on initial mount, to simulate what happens when a mounted component is replaced by a Suspense fallback.
+
+### Improvements to Suspense {/*improvements-to-suspense*/}
+
+In React 19, when a component suspends, React will immediately commit the fallback of the nearest Suspense boundary without waiting for the entire sibling tree to render. After the fallback commits, React schedules another render for the suspended siblings to "pre-warm" lazy requests in the rest of the tree:
+
+<Diagram name="prerender" height={162} width={1270} alt="Diagram showing a tree of three components, one parent labeled Accordion and two children labeled Panel. Both Panel components contain isActive with value false.">
+
+Previously, when a component suspended, the suspended siblings were rendered and then the fallback was committed.
+
+</Diagram>
+
+<Diagram name="prewarm" height={162} width={1270} alt="The same diagram as the previous, with the isActive of the first child Panel component highlighted indicating a click with the isActive value set to true. The second Panel component still contains value false." >
+
+In React 19, when a component suspends, the fallback is committed and then the suspended siblings are rendered.
+
+</Diagram>
+
+This change means Suspense fallbacks display faster, while still warming lazy requests in the suspended tree.
 
 ### UMD builds removed {/*umd-builds-removed*/}
 
@@ -634,12 +730,12 @@ const reducer = (state: State, action: Action) => state;
 
 ### Other breaking changes {/*other-breaking-changes*/}
 
-- **react-dom**: Error for javascript URLs in src/href [#26507](https://github.com/facebook/react/pull/26507)
+- **react-dom**: Error for javascript URLs in `src` and `href` [#26507](https://github.com/facebook/react/pull/26507)
 - **react-dom**: Remove `errorInfo.digest` from `onRecoverableError` [#28222](https://github.com/facebook/react/pull/28222)
 - **react-dom**: Remove `unstable_flushControlled` [#26397](https://github.com/facebook/react/pull/26397)
 - **react-dom**: Remove `unstable_createEventHandle` [#28271](https://github.com/facebook/react/pull/28271)
 - **react-dom**: Remove `unstable_renderSubtreeIntoContainer` [#28271](https://github.com/facebook/react/pull/28271)
-- **react-dom**: Remove `unstable_runWithPrioirty` [#28271](https://github.com/facebook/react/pull/28271)
+- **react-dom**: Remove `unstable_runWithPriority` [#28271](https://github.com/facebook/react/pull/28271)
 - **react-is**: Remove deprecated methods from `react-is` [28224](https://github.com/facebook/react/pull/28224)
 
 ### Other notable changes {/*other-notable-changes*/}
@@ -651,7 +747,7 @@ const reducer = (state: State, action: Action) => state;
 - **react-dom**: Remove layout effect warning during SSR [#26395](https://github.com/facebook/react/pull/26395)
 - **react-dom**: Warn and don’t set empty string for src/href (except anchor tags) [#28124](https://github.com/facebook/react/pull/28124)
 
-We'll publish the full changelog with the stable release of React 19.
+For a full list of changes, please see the [Changelog](https://github.com/facebook/react/blob/main/CHANGELOG.md#1900-december-5-2024).
 
 ---
 

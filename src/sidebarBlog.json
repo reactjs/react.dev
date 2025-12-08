@@ -12,15 +12,85 @@
       "skipBreadcrumb": true,
       "routes": [
         {
-          "title": "React 19 Beta",
-          "titleForHomepage": "React 19 Beta",
+          "title": "Critical Security Vulnerability in React Server Components",
+          "titleForHomepage": "Vulnerability in React Server Components",
+          "icon": "blog",
+          "date": "December 03, 2025",
+          "path": "/blog/2025/12/03/critical-security-vulnerability-in-react-server-components"
+        },
+        {
+          "title": "React Conf 2025 Recap",
+          "titleForHomepage": "React Conf 2025 Recap",
+          "icon": "blog",
+          "date": "October 16, 2025",
+          "path": "/blog/2025/10/16/react-conf-2025-recap"
+        },
+        {
+          "title": "React Compiler v1.0",
+          "titleForHomepage": "React Compiler v1.0",
+          "icon": "blog",
+          "date": "October 7, 2025",
+          "path": "/blog/2025/10/07/react-compiler-1"
+        },
+        {
+          "title": "Introducing the React Foundation",
+          "titleForHomepage": "Introducing the React Foundation",
+          "icon": "blog",
+          "date": "October 7, 2025",
+          "path": "/blog/2025/10/07/introducing-the-react-foundation"
+        },
+        {
+          "title": "React 19.2",
+          "titleForHomepage": "React 19.2",
+          "icon": "blog",
+          "date": "October 1, 2025",
+          "path": "/blog/2025/10/01/react-19-2"
+        },
+        {
+          "title": "React Labs: View Transitions, Activity, and more",
+          "titleForHomepage": "View Transitions and Activity",
+          "icon": "blog",
+          "date": "April 23, 2025",
+          "path": "/blog/2025/04/23/react-labs-view-transitions-activity-and-more"
+        },
+        {
+          "title": "Sunsetting Create React App",
+          "titleForHomepage": "Sunsetting Create React App",
+          "icon": "blog",
+          "date": "February 14, 2025",
+          "path": "/blog/2025/02/14/sunsetting-create-react-app"
+        },
+        {
+          "title": "React 19",
+          "titleForHomepage": "React 19",
+          "icon": "blog",
+          "date": "December 05, 2024",
+          "path": "/blog/2024/12/05/react-19"
+        },
+        {
+          "title": "React Compiler Beta Release and Roadmap",
+          "titleForHomepage": "React Compiler Beta Release and Roadmap",
+          "icon": "blog",
+          "date": "October 21, 2024",
+          "path": "/blog/2024/10/21/react-compiler-beta-release"
+        },
+        {
+          "title": "React Conf 2024 Recap",
+          "titleForHomepage": "React Conf 2024 Recap",
+          "icon": "blog",
+          "date": "May 22, 2024",
+          "path": "/blog/2024/05/22/react-conf-2024-recap"
+        },
+        {
+          "title": "React 19 RC",
+          "titleForHomepage": "React 19 RC",
           "icon": "blog",
           "date": "April 25, 2024",
           "path": "/blog/2024/04/25/react-19"
         },
         {
-          "title": "React 19 Beta Upgrade Guide",
-          "titleForHomepage": "React 19 Beta Upgrade Guide",
+          "title": "React 19 RC Upgrade Guide",
+          "titleForHomepage": "React 19 RC Upgrade Guide",
           "icon": "blog",
           "date": "April 25, 2024",
           "path": "/blog/2024/04/25/react-19-upgrade-guide"

@@ -1,3 +1,10 @@
+/**
+ * Copyright (c) Meta Platforms, Inc. and affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 /*
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
@@ -15,8 +22,8 @@ interface DiagramProps {
 
 function Caption({text}: {text: string}) {
   return (
-    <div className="w-full table">
-      <figcaption className="p-1 sm:p-2 mt-0 sm:mt-0 text-gray-40 text-base lg:text-lg text-center leading-tight table-caption">
+    <div className="w-full flex justify-center">
+      <figcaption className="p-1 sm:p-2 mt-0 sm:mt-0 text-gray-40 text-base lg:text-lg text-center leading-tight table-caption max-w-lg">
         {text}
       </figcaption>
     </div>

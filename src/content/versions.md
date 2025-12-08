@@ -11,9 +11,10 @@ The React docs at [react.dev](https://react.dev) provide documentation for the l
 We aim to keep the docs updated within major versions, and do not publish versions for each minor or patch version. When a new major is released, we archive the docs for the previous version as `x.react.dev`. See our [versioning policy](/community/versioning-policy) for more info.
 
 You can find an archive of previous major versions below.
-## Future versions {/*future-versions*/}
 
-- [19.react.dev](https://19.react.dev) {/*docs-19*/}
+## Latest version: 19.2 {/*latest-version*/}
+
+- [react.dev](https://react.dev) {/*docs-19*/}
 
 ## Previous versions {/*previous-versions*/}
 
@@ -33,6 +34,33 @@ For versions older than React 15, see [15.react.dev](https://15.react.dev).
 </Note>
 
 ## Changelog {/*changelog*/}
+
+### React 19 {/*react-19*/}
+
+**Blog Posts**
+- [React v19](/blog/2024/12/05/react-19)
+- [React 19 Upgrade Guide](/blog/2024/04/25/react-19-upgrade-guide)
+- [React Compiler Beta Release](/blog/2024/10/21/react-compiler-beta-release)
+- [React Compiler v1.0](/blog/2025/10/07/react-compiler-1)
+- [React 19.2](/blog/2025/10/01/react-19-2)
+
+**Talks**
+- [React 19 Keynote](https://www.youtube.com/watch?v=lyEKhv8-3n0)
+- [A Roadmap to React 19](https://www.youtube.com/watch?v=R0B2HsSM78s)
+- [What's new in React 19](https://www.youtube.com/watch?v=AJOGzVygGcY)
+- [React for Two Computers](https://www.youtube.com/watch?v=ozI4V_29fj4)
+- [React Compiler Deep Dive](https://www.youtube.com/watch?v=uA_PVyZP7AI)
+- [React Compiler Case Studies](https://www.youtube.com/watch?v=lvhPq5chokM)
+- [React 19 Deep Dive: Coordinating HTML](https://www.youtube.com/watch?v=IBBN-s77YSI)
+
+**Releases**
+- [v19.2.1 (December, 2025)](https://github.com/facebook/react/blob/main/CHANGELOG.md#1921-dec-3-2025)
+- [v19.2.0 (October, 2025)](https://github.com/facebook/react/blob/main/CHANGELOG.md#1920-october-1st-2025)
+- [v19.1.2 (December, 2025)](https://github.com/facebook/react/blob/main/CHANGELOG.md#1912-dec-3-2025)
+- [v19.1.1 (July, 2025)](https://github.com/facebook/react/blob/main/CHANGELOG.md#1911-july-28-2025)
+- [v19.1.0 (March, 2025)](https://github.com/facebook/react/blob/main/CHANGELOG.md#1910-march-28-2025)
+- [v19.0.1 (December, 2025)](https://github.com/facebook/react/blob/main/CHANGELOG.md#1901-dec-3-2025)
+- [v19.0.0 (December, 2024)](https://github.com/facebook/react/blob/main/CHANGELOG.md#1900-december-5-2024)
 
 ### React 18 {/*react-18*/}
 
@@ -275,7 +303,7 @@ For versions older than React 15, see [15.react.dev](https://15.react.dev).
 
 React was open-sourced on May 29, 2013. The initial commit is: [`75897c`: Initial public release](https://github.com/facebook/react/commit/75897c2dcd1dd3a6ca46284dd37e13d22b4b16b4)
 
-See the first blog post: [Why did we build React?](https://legacy.reactjs.org/blog/2013/06/05/why-react.html) 
+See the first blog post: [Why did we build React?](https://legacy.reactjs.org/blog/2013/06/05/why-react.html)
 
 React was open sourced at Facebook Seattle in 2013:
 

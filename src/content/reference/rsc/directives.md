@@ -1,17 +1,16 @@
 ---
-title: "Directives"
-canary: true
+title: Directives
 ---
 
-<Canary>
+<RSC>
 
-These directives are needed only if you're [using React Server Components](/learn/start-a-new-react-project#bleeding-edge-react-frameworks) or building a library compatible with them.
+Directives are for use in [React Server Components](/reference/rsc/server-components).
 
-</Canary>
+</RSC>
 
 <Intro>
 
-Directives provide instructions to [bundlers compatible with React Server Components](/learn/start-a-new-react-project#bleeding-edge-react-frameworks).
+Directives provide instructions to [bundlers compatible with React Server Components](/learn/creating-a-react-app#full-stack-frameworks).
 
 </Intro>
 

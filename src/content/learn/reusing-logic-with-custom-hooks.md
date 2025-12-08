@@ -820,7 +820,7 @@ export default function ChatRoom({ roomId }) {
   // ...
 ```
 
-and pass it as an input to another Hook:
+and passing it as an input to another Hook:
 
 ```js {6}
 export default function ChatRoom({ roomId }) {
@@ -836,12 +836,6 @@ export default function ChatRoom({ roomId }) {
 Every time your `ChatRoom` component re-renders, it passes the latest `roomId` and `serverUrl` to your Hook. This is why your Effect re-connects to the chat whenever their values are different after a re-render. (If you ever worked with audio or video processing software, chaining Hooks like this might remind you of chaining visual or audio effects. It's as if the output of `useState` "feeds into" the input of the `useChatRoom`.)
 
 ### Passing event handlers to custom Hooks {/*passing-event-handlers-to-custom-hooks*/}
-
-<Wip>
-
-This section describes an **experimental API that has not yet been released** in a stable version of React.
-
-</Wip>
 
 As you start using `useChatRoom` in more components, you might want to let components customize its behavior. For example, currently, the logic for what to do when a message arrives is hardcoded inside the Hook:
 
@@ -985,7 +979,7 @@ export default function ChatRoom({ roomId }) {
 
 ```js src/useChatRoom.js
 import { useEffect } from 'react';
-import { experimental_useEffectEvent as useEffectEvent } from 'react';
+import { useEffectEvent } from 'react';
 import { createConnection } from './chat.js';
 
 export function useChatRoom({ serverUrl, roomId, onReceiveMessage }) {
@@ -1070,8 +1064,8 @@ export function showNotification(message, theme = 'dark') {
 ```json package.json hidden
 {
   "dependencies": {
-    "react": "experimental",
-    "react-dom": "experimental",
+    "react": "latest",
+    "react-dom": "latest",
     "react-scripts": "latest",
     "toastify-js": "1.12.0"
   },
@@ -1333,7 +1327,7 @@ export function useOnlineStatus() {
 
 In the above example, `useOnlineStatus` is implemented with a pair of [`useState`](/reference/react/useState) and [`useEffect`.](/reference/react/useEffect) However, this isn't the best possible solution. There is a number of edge cases it doesn't consider. For example, it assumes that when the component mounts, `isOnline` is already `true`, but this may be wrong if the network already went offline. You can use the browser [`navigator.onLine`](https://developer.mozilla.org/en-US/docs/Web/API/Navigator/onLine) API to check for that, but using it directly would not work on the server for generating the initial HTML. In short, this code could be improved.
 
-Luckily, React 18 includes a dedicated API called [`useSyncExternalStore`](/reference/react/useSyncExternalStore) which takes care of all of these problems for you. Here is how your `useOnlineStatus` Hook, rewritten to take advantage of this new API:
+React includes a dedicated API called [`useSyncExternalStore`](/reference/react/useSyncExternalStore) which takes care of all of these problems for you. Here is your `useOnlineStatus` Hook, rewritten to take advantage of this new API:
 
 <Sandpack>
 
@@ -1419,10 +1413,29 @@ Similar to a [design system,](https://uxdesign.cc/everything-you-need-to-know-ab
 
 #### Will React provide any built-in solution for data fetching? {/*will-react-provide-any-built-in-solution-for-data-fetching*/}
 
+Today, with the [`use`](/reference/react/use#streaming-data-from-server-to-client) API, data can be read in render by passing a [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) to `use`:
+
+```js {1,4,11}
+import { use, Suspense } from "react";
+
+function Message({ messagePromise }) {
+  const messageContent = use(messagePromise);
+  return <p>Here is the message: {messageContent}</p>;
+}
+
+export function MessageContainer({ messagePromise }) {
+  return (
+    <Suspense fallback={<p>⌛Downloading message...</p>}>
+      <Message messagePromise={messagePromise} />
+    </Suspense>
+  );
+}
+```
+
 We're still working out the details, but we expect that in the future, you'll write data fetching like this:
 
 ```js {1,4,6}
-import { use } from 'react'; // Not available yet!
+import { use } from 'react';
 
 function ShippingForm({ country }) {
   const cities = use(fetch(`/api/cities?country=${country}`));
@@ -1647,7 +1660,7 @@ export default function App() {
 
 ```js src/useFadeIn.js active
 import { useState, useEffect } from 'react';
-import { experimental_useEffectEvent as useEffectEvent } from 'react';
+import { useEffectEvent } from 'react';
 
 export function useFadeIn(ref, duration) {
   const [isRunning, setIsRunning] = useState(true);
@@ -1694,22 +1707,6 @@ html, body { min-height: 300px; }
   text-align: center;
   font-size: 50px;
   background-image: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%);
-}
-```
-
-```json package.json hidden
-{
-  "dependencies": {
-    "react": "experimental",
-    "react-dom": "experimental",
-    "react-scripts": "latest"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
-  }
 }
 ```
 
@@ -1899,7 +1896,7 @@ export default function Counter() {
 }
 ```
 
-You'll need to write your custom Hook in `useCounter.js` and import it into the `Counter.js` file.
+You'll need to write your custom Hook in `useCounter.js` and import it into the `App.js` file.
 
 <Sandpack>
 
@@ -2081,7 +2078,6 @@ Write `useInterval` in the `useInterval.js` file and import it into the `useCoun
 <Sandpack>
 
 ```js
-import { useState } from 'react';
 import { useCounter } from './useCounter.js';
 
 export default function Counter() {
@@ -2187,22 +2183,6 @@ It looks like your `useInterval` Hook accepts an event listener as an argument. 
 
 <Sandpack>
 
-```json package.json hidden
-{
-  "dependencies": {
-    "react": "experimental",
-    "react-dom": "experimental",
-    "react-scripts": "latest"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
-  }
-}
-```
-
 ```js
 import { useCounter } from './useCounter.js';
 import { useInterval } from './useInterval.js';
@@ -2234,7 +2214,7 @@ export function useCounter(delay) {
 
 ```js src/useInterval.js
 import { useEffect } from 'react';
-import { experimental_useEffectEvent as useEffectEvent } from 'react';
+import { useEffectEvent } from 'react';
 
 export function useInterval(onTick, delay) {
   useEffect(() => {
@@ -2257,22 +2237,6 @@ This will allow you to omit `onTick` from dependencies of your Effect. The Effec
 With this change, both intervals work as expected and don't interfere with each other:
 
 <Sandpack>
-
-```json package.json hidden
-{
-  "dependencies": {
-    "react": "experimental",
-    "react-dom": "experimental",
-    "react-scripts": "latest"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
-  }
-}
-```
 
 
 ```js
@@ -2306,7 +2270,7 @@ export function useCounter(delay) {
 
 ```js src/useInterval.js active
 import { useEffect } from 'react';
-import { experimental_useEffectEvent as useEffectEvent } from 'react';
+import { useEffectEvent } from 'react';
 
 export function useInterval(callback, delay) {
   const onTick = useEffectEvent(callback);

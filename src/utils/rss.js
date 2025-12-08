@@ -1,3 +1,10 @@
+/**
+ * Copyright (c) Meta Platforms, Inc. and affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 /*
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
@@ -40,7 +47,7 @@ exports.generateRssFeed = function () {
   const files = filesByOldest.reverse();
 
   for (const filePath of files) {
-    const id = filePath.split('/').slice(-1).join('');
+    const id = path.basename(filePath);
     if (id !== 'index.md') {
       const content = fs.readFileSync(filePath, 'utf-8');
       const {data} = matter(content);

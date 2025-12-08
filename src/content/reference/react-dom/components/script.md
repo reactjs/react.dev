@@ -1,13 +1,6 @@
 ---
 script: "<script>"
-canary: true
 ---
-
-<Canary>
-
-React's extensions to `<script>` are currently only available in React's canary and experimental channels. In stable releases of React `<script>` works only as a [built-in browser HTML component](https://react.dev/reference/react-dom/components#all-html-components). Learn more about [React's release channels here](/community/versioning-policy#all-release-channels).
-
-</Canary>
 
 <Intro>
 
@@ -38,7 +31,7 @@ To add inline or external scripts to your document, render the [built-in browser
 
 #### Props {/*props*/}
 
-`<script>` supports all [common element props.](/reference/react-dom/components/common#props)
+`<script>` supports all [common element props.](/reference/react-dom/components/common#common-props)
 
 It should have *either* `children` or a `src` prop.
 
@@ -68,11 +61,9 @@ Props that are **not recommended** for use with React:
 
 #### Special rendering behavior {/*special-rendering-behavior*/}
 
-React can move `<script>` components to the document's `<head>`, de-duplicate identical scripts, and [suspend](/reference/react/Suspense) while the script is loading.
+React can move `<script>` components to the document's `<head>` and de-duplicate identical scripts.
 
 To opt into this behavior, provide the `src` and `async={true}` props. React will de-duplicate scripts if they have the same `src`. The `async` prop must be true to allow scripts to be safely moved.
-
-If you supply any of the `onLoad` or `onError` props, there is no special behavior, because these props indicate that you are managing the loading of the script manually within your component.
 
 This special treatment comes with two caveats:
 
@@ -86,8 +77,10 @@ This special treatment comes with two caveats:
 ### Rendering an external script {/*rendering-an-external-script*/}
 
 If a component depends on certain scripts in order to be displayed correctly, you can render a `<script>` within the component.
+However, the component might be committed before the script has finished loading.
+You can start depending on the script content once the `load` event is fired e.g. by using the `onLoad` prop.
 
-If you supply an `src` and `async` prop, your component will suspend while the script is loading. React will de-duplicate scripts that have the same `src`, inserting only one of them into the DOM even if multiple components render it.
+React will de-duplicate scripts that have the same `src`, inserting only one of them into the DOM even if multiple components render it.
 
 <SandpackWithHTMLOutput>
 
@@ -97,7 +90,7 @@ import ShowRenderedHTML from './ShowRenderedHTML.js';
 function Map({lat, long}) {
   return (
     <>
-      <script async src="map-api.js" />
+      <script async src="map-api.js" onLoad={() => console.log('script loaded')} />
       <div id="map" data-lat={lat} data-long={long} />
     </>
   );
@@ -120,7 +113,7 @@ When you want to use a script, it can be beneficial to call the [preinit](/refer
 
 ### Rendering an inline script {/*rendering-an-inline-script*/}
 
-To include an inline script, render the `<script>` component with the script source code as its children. Inline scripts are not de-duplicated or moved to the document `<head>`, and since they don't load any external resources, they will not cause your component to suspend.
+To include an inline script, render the `<script>` component with the script source code as its children. Inline scripts are not de-duplicated or moved to the document `<head>`.
 
 <SandpackWithHTMLOutput>
 

@@ -1,13 +1,13 @@
 ---
 title: "'use client'"
 titleForTitleTag: "'use client' directive"
-canary: true
 ---
 
-<Canary>
+<RSC>
 
-`'use client'` is needed only if you're [using React Server Components](/learn/start-a-new-react-project#bleeding-edge-react-frameworks) or building a library compatible with them.
-</Canary>
+`'use client'` is for use with [React Server Components](/reference/rsc/server-components).
+
+</RSC>
 
 
 <Intro>
@@ -41,7 +41,7 @@ export default function RichTextEditor({ timestamp, text }) {
 }
 ```
 
-When a file marked with `'use client'` is imported from a Server Component, [compatible bundlers](/learn/start-a-new-react-project#bleeding-edge-react-frameworks) will treat the module import as a boundary between server-run and client-run code.
+When a file marked with `'use client'` is imported from a Server Component, [compatible bundlers](/learn/creating-a-react-app#full-stack-frameworks) will treat the module import as a boundary between server-run and client-run code.
 
 As dependencies of `RichTextEditor`, `formatDate` and `Button` will also be evaluated on the client regardless of whether their modules contain a `'use client'` directive. Note that a single module may be evaluated on the server when imported from server code and on the client when imported from client code.
 
@@ -269,7 +269,7 @@ Serializable props include:
 	* [TypedArray](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray) and [ArrayBuffer](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer)
 * [Date](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date)
 * Plain [objects](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object): those created with [object initializers](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Object_initializer), with serializable properties
-* Functions that are [Server Actions](/reference/rsc/use-server)
+* Functions that are [Server Functions](/reference/rsc/server-functions)
 * Client or Server Component elements (JSX)
 * [Promises](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)
 

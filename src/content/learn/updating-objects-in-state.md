@@ -55,8 +55,9 @@ This example holds an object in state to represent the current pointer position.
 
 <Sandpack>
 
-```js
+```js {expectedErrors: {'react-compiler': [11]}}
 import { useState } from 'react';
+
 export default function MovingDot() {
   const [position, setPosition] = useState({
     x: 0,
@@ -127,6 +128,7 @@ Notice how the red dot now follows your pointer when you touch or hover over the
 
 ```js
 import { useState } from 'react';
+
 export default function MovingDot() {
   const [position, setPosition] = useState({
     x: 0,
@@ -207,7 +209,7 @@ These input fields don't work because the `onChange` handlers mutate the state:
 
 <Sandpack>
 
-```js
+```js {expectedErrors: {'react-compiler': [11, 15, 19]}}
 import { useState } from 'react';
 
 export default function Form() {
@@ -377,7 +379,7 @@ Note that the `...` spread syntax is "shallow"--it only copies things one level 
 
 #### Using a single event handler for multiple fields {/*using-a-single-event-handler-for-multiple-fields*/}
 
-You can also use the `[` and `]` braces inside your object definition to specify a property with dynamic name. Here is the same example, but with a single event handler instead of three different ones:
+You can also use the `[` and `]` braces inside your object definition to specify a property with a dynamic name. Here is the same example, but with a single event handler instead of three different ones:
 
 <Sandpack>
 
@@ -830,7 +832,7 @@ Your task is to fix all of these bugs. As you fix them, explain why each of them
 
 <Sandpack>
 
-```js
+```js {expectedErrors: {'react-compiler': [11]}}
 import { useState } from 'react';
 
 export default function Scoreboard() {
@@ -986,7 +988,7 @@ If something unexpected changes, there is a mutation. Find the mutation in `App.
 
 <Sandpack>
 
-```js src/App.js
+```js {expectedErrors: {'react-compiler': [17]}} src/App.js
 import { useState } from 'react';
 import Background from './Background.js';
 import Box from './Box.js';
@@ -1291,7 +1293,7 @@ This is the same buggy example as in the previous challenge. This time, fix the 
 
 <Sandpack>
 
-```js src/App.js
+```js {expectedErrors: {'react-compiler': [18]}} src/App.js
 import { useState } from 'react';
 import { useImmer } from 'use-immer';
 import Background from './Background.js';

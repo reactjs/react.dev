@@ -50,7 +50,7 @@ A portal only changes the physical placement of the DOM node. In every other way
 
 * `domNode`: Some DOM node, such as those returned by `document.getElementById()`. The node must already exist. Passing a different DOM node during an update will cause the portal content to be recreated.
 
-* **optional** `key`: A unique string or number to be used as the portal's [key.](/learn/rendering-lists/#keeping-list-items-in-order-with-key)
+* **optional** `key`: A unique string or number to be used as the portal's [key.](/learn/rendering-lists#keeping-list-items-in-order-with-key)
 
 #### Returns {/*returns*/}
 
@@ -240,7 +240,7 @@ export default function ModalContent({ onClose }) {
 
 It's important to make sure that your app is accessible when using portals. For instance, you may need to manage keyboard focus so that the user can move the focus in and out of the portal in a natural way.
 
-Follow the [WAI-ARIA Modal Authoring Practices](https://www.w3.org/WAI/ARIA/apg/#dialog_modal) when creating modals. If you use a community package, ensure that it is accessible and follows these guidelines.
+Follow the [WAI-ARIA Modal Authoring Practices](https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal) when creating modals. If you use a community package, ensure that it is accessible and follows these guidelines.
 
 </Pitfall>
 
@@ -252,7 +252,7 @@ Portals can be useful if your React root is only part of a static or server-rend
 
 <Sandpack>
 
-```html index.html
+```html public/index.html
 <!DOCTYPE html>
 <html>
   <head><title>My app</title></head>

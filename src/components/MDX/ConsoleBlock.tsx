@@ -1,3 +1,10 @@
+/**
+ * Copyright (c) Meta Platforms, Inc. and affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 /*
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
@@ -38,7 +45,8 @@ export function ConsoleBlock({level = 'error', children}: ConsoleBlockProps) {
   if (typeof children === 'string') {
     message = children;
   } else if (isValidElement(children)) {
-    message = children.props.children;
+    message = (children as React.ReactElement<{children?: React.ReactNode}>)
+      .props.children;
   }
 
   return (
@@ -113,7 +121,8 @@ export function ConsoleLogLine({children, level}: ConsoleBlockProps) {
   if (typeof children === 'string') {
     message = children;
   } else if (isValidElement(children)) {
-    message = children.props.children;
+    message = (children as React.ReactElement<{children?: React.ReactNode}>)
+      .props.children;
   } else if (Array.isArray(children)) {
     message = children.reduce((result, child) => {
       if (typeof child === 'string') {

@@ -12,6 +12,12 @@ You can also follow the [@react.dev](https://bsky.app/profile/react.dev) account
 
 <div className="sm:-mx-5 flex flex-col gap-5 mt-12">
 
+<BlogCard title="Denial of Service and Source Code Exposure in React Server Components" date="December 11, 2025" url="/blog/2025/12/11/denial-of-service-and-source-code-exposure-in-react-server-components">
+
+Security researchers have found and disclosed two additional vulnerabilities in React Server Components while attempting to exploit the patches in last week’s critical vulnerability...
+
+</BlogCard>
+
 <BlogCard title="Critical Security Vulnerability in React Server Components" date="December 3, 2025" url="/blog/2025/12/03/critical-security-vulnerability-in-react-server-components">
 
 There is an unauthenticated remote code execution vulnerability in React Server Components. A fix has been published in versions 19.0.1, 19.1.2, and 19.2.1. We recommend upgrading immediately.

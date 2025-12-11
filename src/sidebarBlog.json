@@ -12,10 +12,17 @@
       "skipBreadcrumb": true,
       "routes": [
         {
+          "title": "Denial of Service and Source Code Exposure in React Server Components",
+          "titleForHomepage": "Additional Vulnerabilities in RSC",
+          "icon": "blog",
+          "date": "December 11, 2025",
+          "path": "/blog/2025/12/11/denial-of-service-and-source-code-exposure-in-react-server-components"
+        },
+        {
           "title": "Critical Security Vulnerability in React Server Components",
           "titleForHomepage": "Vulnerability in React Server Components",
           "icon": "blog",
-          "date": "December 03, 2025",
+          "date": "December 3, 2025",
           "path": "/blog/2025/12/03/critical-security-vulnerability-in-react-server-components"
         },
         {

@@ -26,20 +26,15 @@ The new vulnerabilities are disclosed as:
 - **Denial of Service - High Severity**: [CVE-2025-55184](https://www.cve.org/CVERecord?id=CVE-2025-55184) (CVSS 7.5)
 - **Source Code Exposure - Medium Severity**: [CVE-2025-55183](https://www.cve.org/CVERecord?id=CVE-2025-55183) (CVSS 5.3)
 
-These issues are present in the patches published last week. 
-
 We recommend upgrading immediately due to the severity of the newly disclosed vulnerabilities.
-
 
 <Note>
 
-#### It’s common for critical CVEs to uncover follow‑up vulnerabilities. {/*its-common-for-critical-cves-to-uncover-followup-vulnerabilities*/}
+#### The patches published last week are vulnerable. {/*the-patches-published-last-week-are-vulnerable*/}
 
-When a critical vulnerability is disclosed, researchers scrutinize adjacent code paths looking for variant exploit techniques to test whether the initial mitigation can be bypassed.
+If you already updated for the Critical Security Vulnerability, you will need to update again.
 
-This pattern shows up across the industry, not just in JavaScript. For example, after [Log4Shell](https://nvd.nist.gov/vuln/detail/cve-2021-44228), additional CVEs ([1](https://nvd.nist.gov/vuln/detail/cve-2021-45046), [2](https://nvd.nist.gov/vuln/detail/cve-2021-45105)) were reported as the community probed the original fix.
-
-Additional disclosures can be frustrating, but they are generally a sign of a healthy response cycle.
+Please see [the instructions in the previous post](/blog/2025/12/03/critical-security-vulnerability-in-react-server-components#update-instructions) for upgrade steps.
 
 </Note>
 
@@ -61,9 +56,13 @@ As before, if your app’s React code does not use a server, your app is not aff
 
 <Note>
 
-#### The patches published last week are vulnerable. {/*the-patches-published-last-week-are-vulnerable*/}
+#### It’s common for critical CVEs to uncover follow‑up vulnerabilities. {/*its-common-for-critical-cves-to-uncover-followup-vulnerabilities*/}
 
-If you already updated for the Critical Security Vulnerability, you will need to update again.
+When a critical vulnerability is disclosed, researchers scrutinize adjacent code paths looking for variant exploit techniques to test whether the initial mitigation can be bypassed.
+
+This pattern shows up across the industry, not just in JavaScript. For example, after [Log4Shell](https://nvd.nist.gov/vuln/detail/cve-2021-44228), additional CVEs ([1](https://nvd.nist.gov/vuln/detail/cve-2021-45046), [2](https://nvd.nist.gov/vuln/detail/cve-2021-45105)) were reported as the community probed the original fix.
+
+Additional disclosures can be frustrating, but they are generally a sign of a healthy response cycle.
 
 </Note>
 

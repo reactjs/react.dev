@@ -47,7 +47,7 @@ Further details of these vulnerabilities will be provided after the rollout of t
 
 ## Immediate Action Required {/*immediate-action-required*/}
 
-These vulnerabilities are present in the same packages and versions as [CVE-2025-55182](http://localhost:3000/blog/2025/12/03/critical-security-vulnerability-in-react-server-components).
+These vulnerabilities are present in the same packages and versions as [CVE-2025-55182](/blog/2025/12/03/critical-security-vulnerability-in-react-server-components).
 
 This includes versions 19.0.0, 19.0.1 19.1.0, 19.1.1, 19.1.2, 19.2.0 and 19.2.1 of:
 

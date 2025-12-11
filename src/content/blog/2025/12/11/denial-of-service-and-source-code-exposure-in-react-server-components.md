@@ -23,16 +23,18 @@ Security researchers have found and disclosed two additional vulnerabilities in 
 
 The new vulnerabilities are disclosed as:
 
-- **Denial of Service - High Severity**: [CVE-2025-55184](https://www.cve.org/CVERecord?id=CVE-2025-55184) (CVSS 7.5)
+- **Denial of Service - High Severity**: [CVE-2025-55184](https://www.cve.org/CVERecord?id=CVE-2025-55184) and [CVE-2025-67779](https://www.cve.org/CVERecord?id=CVE-2025-67779) (CVSS 7.5)
 - **Source Code Exposure - Medium Severity**: [CVE-2025-55183](https://www.cve.org/CVERecord?id=CVE-2025-55183) (CVSS 5.3)
 
 We recommend upgrading immediately due to the severity of the newly disclosed vulnerabilities.
 
 <Note>
 
-#### The patches published last week are vulnerable. {/*the-patches-published-last-week-are-vulnerable*/}
+#### The patches published earlier are vulnerable. {/*the-patches-published-earlier-are-vulnerable*/}
 
-If you already updated for the Critical Security Vulnerability, you will need to update again.
+If you already updated for the Critical Security Vulnerability last week, you will need to update again.
+
+If you updated to 19.0.2, 19.1.3, and 19.2.2, [these are incomplete](#additional-fix-published) and you will need to update again.
 
 Please see [the instructions in the previous post](/blog/2025/12/03/critical-security-vulnerability-in-react-server-components#update-instructions) for upgrade steps.
 
@@ -44,13 +46,13 @@ Further details of these vulnerabilities will be provided after the rollout of t
 
 These vulnerabilities are present in the same packages and versions as [CVE-2025-55182](/blog/2025/12/03/critical-security-vulnerability-in-react-server-components).
 
-This includes versions 19.0.0, 19.0.1 19.1.0, 19.1.1, 19.1.2, 19.2.0 and 19.2.1 of:
+This includes versions 19.0.0, 19.0.1, 19.0.2, 19.1.0, 19.1.1, 19.1.2, 19.1.2, 19.2.0, 19.2.1 and 19.2.2 of:
 
 * [react-server-dom-webpack](https://www.npmjs.com/package/react-server-dom-webpack)
 * [react-server-dom-parcel](https://www.npmjs.com/package/react-server-dom-parcel)
 * [react-server-dom-turbopack](https://www.npmjs.com/package/react-server-dom-turbopack?activeTab=readme)
 
-Fixes were backported to versions 19.0.2, 19.1.3, and 19.2.2. If you are using any of the above packages please upgrade to any of the fixed versions immediately.
+Fixes were backported to versions 19.0.3, 19.1.4, and 19.2.3. If you are using any of the above packages please upgrade to any of the fixed versions immediately.
 
 As before, if your app’s React code does not use a server, your app is not affected by these vulnerabilities. If your app does not use a framework, bundler, or bundler plugin that supports React Server Components, your app is not affected by these vulnerabilities.
 
@@ -94,7 +96,7 @@ See [this issue](https://github.com/facebook/react-native/issues/54772#issuecomm
 
 ## High Severity: Denial of Service {/*high-severity-denial-of-service*/}
 
-**CVE:** [CVE-2025-55184](https://www.cve.org/CVERecord?id=CVE-2025-55184) 
+**CVEs:** [CVE-2025-55184](https://www.cve.org/CVERecord?id=CVE-2025-55184) and [CVE-2025-67779](https://www.cve.org/CVERecord?id=CVE-2025-67779)
 **Base Score:** 7.5 (High)
 
 Security researchers have discovered that a malicious HTTP request can be crafted and sent to any Server Functions endpoint that, when deserialized by React, can cause an infinite loop that hangs the server process and consumes CPU. Even if your app does not implement any React Server Function endpoints it may still be vulnerable if your app supports React Server Components.
@@ -103,6 +105,17 @@ This creates a vulnerability vector where an attacker may be able to deny users 
 
 The patches published today mitigate by preventing the infinite loop.
 
+<Note>
+
+#### Additional fix published {/*additional-fix-published*/}
+
+The original fix addressing the DoS in [CVE-2025-55184](https://www.cve.org/CVERecord?id=CVE-2025-55184) was incomplete.
+
+This left versions 19.0.2, 19.1.3, 19.2.2 vulnerable. Versions 19.0.3, 19.1.4, 19.2.3 are safe.
+
+We've fixed the additional cases and filed [CVE-2025-67779](https://www.cve.org/CVERecord?id=CVE-2025-67779) for the vulnerable versions.
+
+</Note>
 
 ## Medium Severity: Source Code Exposure {/*low-severity-source-code-exposure*/}
 
@@ -154,11 +167,12 @@ Always verify against production bundles.
 * **December 7th**: Initial fixes created and the React team began verifying and planning new patch.
 * **December 8th**: Affected hosting providers and open source projects notified.
 * **December 10th**: Hosting provider mitigations in place and patches verified.
-* **December 11th**: Additional DoS reported to [Meta Bug Bounty](https://bugbounty.meta.com/) and added to patch.
+* **December 11th**: Additional DoS reported to [Meta Bug Bounty](https://bugbounty.meta.com/) by Shinsaku Nomura.
 * **December 11th**: Patches published and publicly disclosed as [CVE-2025-55183](https://www.cve.org/CVERecord?id=CVE-2025-55183) and [CVE-2025-55184](https://www.cve.org/CVERecord?id=CVE-2025-55184).
+* **December 11th**: Missing DoS case found internally, patched and publicly disclosed as [CVE-2025-67779](https://www.cve.org/CVERecord?id=CVE-2025-67779).
 
 ---
 
 ## Attribution {/*attribution*/}
 
-Thank you to [Andrew MacPherson (AndrewMohawk)](https://github.com/AndrewMohawk) for reporting the Source Code Exposure, [RyotaK](https://ryotak.net) from GMO Flatt Security Inc for reporting the initial Denial of Service vulnerability.
+Thank you to [Andrew MacPherson (AndrewMohawk)](https://github.com/AndrewMohawk) for reporting the Source Code Exposure, [RyotaK](https://ryotak.net) from GMO Flatt Security Inc and Shinsaku Nomura of Bitforest Co., Ltd. for reporting the Denial of Service vulnerabilities.

@@ -15,11 +15,12 @@
 const nextConfig = {
   pageExtensions: ['jsx', 'js', 'ts', 'tsx', 'mdx', 'md'],
   reactStrictMode: true,
+  reactCompiler: true,
   experimental: {
     scrollRestoration: true,
-    reactCompiler: true,
   },
   env: {},
+  turbopack: {},
   webpack: (config, {dev, isServer, ...options}) => {
     if (process.env.ANALYZE) {
       const {BundleAnalyzerPlugin} = require('webpack-bundle-analyzer');

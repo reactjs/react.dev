@@ -71,7 +71,7 @@ Suppose that you have some (perfectly valid) HTML:
 ```html
 <h1>Hedy Lamarr's Todos</h1>
 <img 
-  src="https://i.imgur.com/yXOvdOSs.jpg" 
+  src="https://i.imgur.com.prx.react.dev/yXOvdOSs.jpg" 
   alt="Hedy Lamarr" 
   class="photo"
 >
@@ -103,7 +103,7 @@ export default function TodoList() {
     // This doesn't quite work!
     <h1>Hedy Lamarr's Todos</h1>
     <img 
-      src="https://i.imgur.com/yXOvdOSs.jpg" 
+      src="https://i.imgur.com.prx.react.dev/yXOvdOSs.jpg" 
       alt="Hedy Lamarr" 
       class="photo"
     >
@@ -142,7 +142,7 @@ For example, you can use a `<div>`:
 <div>
   <h1>Hedy Lamarr's Todos</h1>
   <img 
-    src="https://i.imgur.com/yXOvdOSs.jpg" 
+    src="https://i.imgur.com.prx.react.dev/yXOvdOSs.jpg" 
     alt="Hedy Lamarr" 
     class="photo"
   >
@@ -159,7 +159,7 @@ If you don't want to add an extra `<div>` to your markup, you can write `<>` and
 <>
   <h1>Hedy Lamarr's Todos</h1>
   <img 
-    src="https://i.imgur.com/yXOvdOSs.jpg" 
+    src="https://i.imgur.com.prx.react.dev/yXOvdOSs.jpg" 
     alt="Hedy Lamarr" 
     class="photo"
   >
@@ -188,7 +188,7 @@ This is how Hedy Lamarr's image and list items look closed:
 ```js {2-6,8-10}
 <>
   <img 
-    src="https://i.imgur.com/yXOvdOSs.jpg" 
+    src="https://i.imgur.com.prx.react.dev/yXOvdOSs.jpg" 
     alt="Hedy Lamarr" 
     class="photo"
    />
@@ -208,7 +208,7 @@ This is why, in React, many HTML and SVG attributes are written in camelCase. Fo
 
 ```js {4}
 <img 
-  src="https://i.imgur.com/yXOvdOSs.jpg" 
+  src="https://i.imgur.com.prx.react.dev/yXOvdOSs.jpg" 
   alt="Hedy Lamarr" 
   className="photo"
 />
@@ -236,7 +236,7 @@ export default function TodoList() {
     <>
       <h1>Hedy Lamarr's Todos</h1>
       <img 
-        src="https://i.imgur.com/yXOvdOSs.jpg" 
+        src="https://i.imgur.com.prx.react.dev/yXOvdOSs.jpg" 
         alt="Hedy Lamarr" 
         className="photo" 
       />

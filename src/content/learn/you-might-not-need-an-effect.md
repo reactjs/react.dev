@@ -231,9 +231,9 @@ function List({ items }) {
   const [selection, setSelection] = useState(null);
 
   // Better: Adjust the state while rendering
-  const [prevItems, setPrevItems] = useState(items);
-  if (items !== prevItems) {
-    setPrevItems(items);
+  const prevItems = useRef(items);
+  if (items !== prevItems.current) {
+    prevItems.current = items;
     setSelection(null);
   }
   // ...

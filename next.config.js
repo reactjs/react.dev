@@ -72,6 +72,11 @@ const nextConfig = {
 
     return config;
   },
+  serverExternalPackages: [
+    '@babel/core',
+    '@babel/preset-react',
+    '@babel/plugin-transform-modules-commonjs',
+  ],
 };
 
 module.exports = nextConfig;

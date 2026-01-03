@@ -96,9 +96,13 @@ export default async function compileMDX(
     ],
   });
   const {transform} = require('@babel/core');
+
+  const babelPluginTransformModulesCommonjs = require('@babel/plugin-transform-modules-commonjs');
+  const babelPresetReact = require('@babel/preset-react');
+
   const jsCode = await transform(jsxCode, {
-    plugins: ['@babel/plugin-transform-modules-commonjs'],
-    presets: ['@babel/preset-react'],
+    plugins: [babelPluginTransformModulesCommonjs],
+    presets: [babelPresetReact],
   }).code;
 
   // Prepare environment for MDX.

@@ -1,3 +1,5 @@
+'use client';
+
 /**
  * Copyright (c) Meta Platforms, Inc. and affiliates.
  *
@@ -10,14 +12,13 @@
  */
 
 import {useState} from 'react';
-import {useRouter} from 'next/router';
+import {usePathname} from 'next/navigation';
 import cn from 'classnames';
 
 export function Feedback({onSubmit = () => {}}: {onSubmit?: () => void}) {
-  const {asPath} = useRouter();
-  const cleanedPath = asPath.split(/[\?\#]/)[0];
+  const pathname = usePathname();
   // Reset on route changes.
-  return <SendFeedback key={cleanedPath} onSubmit={onSubmit} />;
+  return <SendFeedback key={pathname} onSubmit={onSubmit} />;
 }
 
 const thumbsUpIcon = (

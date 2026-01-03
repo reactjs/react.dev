@@ -12,12 +12,12 @@
 import {useRef, useLayoutEffect, Fragment} from 'react';
 
 import cn from 'classnames';
-import {useRouter} from 'next/router';
 import {SidebarLink} from './SidebarLink';
 import {useCollapse} from 'react-collapsed';
 import usePendingRoute from 'hooks/usePendingRoute';
 import type {RouteItem} from 'components/Layout/getRouteMeta';
 import {siteConfig} from 'siteConfig';
+import {usePathname} from 'next/navigation';
 
 interface SidebarRouteTreeProps {
   isForceExpanded: boolean;
@@ -84,7 +84,7 @@ export function SidebarRouteTree({
   routeTree,
   level = 0,
 }: SidebarRouteTreeProps) {
-  const slug = useRouter().asPath.split(/[\?\#]/)[0];
+  const slug = usePathname();
   const pendingRoute = usePendingRoute();
   const currentRoutes = routeTree.routes as RouteItem[];
   return (

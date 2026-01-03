@@ -16,7 +16,7 @@ import {H2} from 'components/MDX/Heading';
 import {H4} from 'components/MDX/Heading';
 import {Challenge} from './Challenge';
 import {Navigation} from './Navigation';
-import {useRouter} from 'next/compat/router';
+import {useHash} from '../../../hooks/useHash';
 
 interface ChallengesProps {
   children: React.ReactElement[];
@@ -97,12 +97,12 @@ export function Challenges({
   const queuedScrollRef = useRef<undefined | QueuedScroll>(QueuedScroll.INIT);
   const [activeIndex, setActiveIndex] = useState(0);
   const currentChallenge = challenges[activeIndex];
-  const {asPath} = useRouter();
+  const hash = useHash();
 
   useEffect(() => {
     if (queuedScrollRef.current === QueuedScroll.INIT) {
       const initIndex = challenges.findIndex(
-        (challenge) => challenge.id === asPath.split('#')[1]
+        (challenge) => challenge.id === hash
       );
       if (initIndex === -1) {
         queuedScrollRef.current = undefined;

@@ -36,7 +36,7 @@ export async function generateStaticParams(): Promise<
 
 export async function generateMetadata(
   {params}: ErrorDecoderPageProps,
-  parent?: ResolvingMetadata
+  parent: Promise<ResolvingMetadata | undefined>
 ): Promise<Metadata> {
   const {errorCode} = await params;
   const resolvedParent = await parent;

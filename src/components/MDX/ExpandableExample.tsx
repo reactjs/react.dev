@@ -18,20 +18,8 @@ import {IconDeepDive} from '../Icon/IconDeepDive';
 import {IconCodeBlock} from '../Icon/IconCodeBlock';
 import {Button} from '../Button';
 import {H4} from './Heading';
-import {useEffect, useRef, useState, useSyncExternalStore} from 'react';
-
-function useHash() {
-  return useSyncExternalStore(
-    (callback) => {
-      window.addEventListener('hashchange', callback);
-      return () => {
-        window.removeEventListener('hashchange', callback);
-      };
-    },
-    () => window.location.hash,
-    () => null
-  );
-}
+import {useEffect, useRef, useState} from 'react';
+import {useHash} from '../../hooks/useHash';
 
 interface ExpandableExampleProps {
   children: React.ReactNode;

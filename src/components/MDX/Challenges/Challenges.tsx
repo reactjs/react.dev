@@ -119,7 +119,7 @@ export function Challenges({
       });
       queuedScrollRef.current = undefined;
     }
-  }, [activeIndex, asPath, challenges]);
+  }, [activeIndex, challenges, hash]);
 
   const handleChallengeChange = (index: number) => {
     setActiveIndex(index);

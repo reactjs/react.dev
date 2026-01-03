@@ -13,7 +13,7 @@ Do you know of a local React.js conference? Add it here! (Please keep the list c
 ### CityJS Singapore 2026 {/*cityjs-singapore-2026*/}
 February 4-6,  2026. In-person in Singapore
 
-[Website](https://india.cityjsconf.org/) - [Twitter](https://x.com/cityjsconf) - [Bluesky](https://bsky.app/profile/cityjsconf.bsky.social)
+[Website](https://singapore.cityjsconf.org/) - [Twitter](https://x.com/cityjsconf) - [Bluesky](https://bsky.app/profile/cityjsconf.bsky.social)
 
 ### CityJS New Delhi 2026 {/*cityjs-newdelhi-2026*/}
 February 12-13,  2026. In-person in New Delhi, India

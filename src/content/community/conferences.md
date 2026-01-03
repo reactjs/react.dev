@@ -70,16 +70,6 @@ October 2-4, 2025. Alicante, Spain.
 
 [Website](https://reactalicante.es/) - [Twitter](https://x.com/ReactAlicante) - [Bluesky](https://bsky.app/profile/reactalicante.es) - [YouTube](https://www.youtube.com/channel/UCaSdUaITU1Cz6PvC97A7e0w)
 
-### React Summit US 2025 {/*react-summit-us-2025*/}
-November 18 - 21, 2025. In-person in New York, USA + remote (hybrid event)
-
-[Website](https://reactsummit.us/) - [Twitter](https://x.com/reactsummit)
-
-### React Advanced London 2025 {/*react-advanced-london-2025*/}
-November 28 & December 1, 2025. In-person in London, UK + online (hybrid event)
-
-[Website](https://reactadvanced.com/) - [Twitter](https://x.com/reactadvanced)
-
 ### React Nexus 2025 {/*react-nexus-2025*/}
 July 03 - 05, 2025. In-person in Bangalore, India
 

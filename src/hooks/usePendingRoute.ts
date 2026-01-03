@@ -9,14 +9,20 @@
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
 
-import {useRouter} from 'next/router';
+import {useRouter} from 'next/compat/router';
 import {useState, useRef, useEffect} from 'react';
 
 const usePendingRoute = () => {
-  const {events} = useRouter();
+  const pagesRouter = useRouter();
   const [pendingRoute, setPendingRoute] = useState<string | null>(null);
   const currentRoute = useRef<string | null>(null);
   useEffect(() => {
+    if (!pagesRouter) {
+      return;
+    }
+
+    const {events} = pagesRouter;
+
     let routeTransitionTimer: any = null;
 
     const handleRouteChangeStart = (url: string) => {
@@ -40,7 +46,7 @@ const usePendingRoute = () => {
       events.off('routeChangeComplete', handleRouteChangeComplete);
       clearTimeout(routeTransitionTimer);
     };
-  }, [events]);
+  }, [pagesRouter]);
 
   return pendingRoute;
 };

@@ -33,7 +33,7 @@ April 14-17,  2026. In-person in London
 [Website](https://london.cityjsconf.org/) - [Twitter](https://x.com/cityjsconf) - [Bluesky](https://bsky.app/profile/cityjsconf.bsky.social)
 
 
-### React India 2026 {/*react-india-2025*/}
+### React India 2026 {/*react-india-2026*/}
 October 29-31, 2026. In-person in Goa, India (hybrid event) + Oct 15 2026 - remote day
 
 [Website](https://www.reactindia.io) - [Twitter](https://twitter.com/react_india) - [Facebook](https://www.facebook.com/ReactJSIndia) - [Youtube](https://www.youtube.com/channel/UCaFbHCBkPvVv1bWs_jwYt3w)

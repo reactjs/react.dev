@@ -9,7 +9,7 @@
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
 
-import {Children, useContext, useMemo} from 'react';
+import {useContext, useMemo} from 'react';
 import * as React from 'react';
 import cn from 'classnames';
 import type {HTMLAttributes} from 'react';
@@ -39,12 +39,14 @@ import ButtonLink from 'components/ButtonLink';
 import {TocContext} from './TocContext';
 import type {Toc, TocItem} from './TocContext';
 import {TeamMember} from './TeamMember';
-import {LanguagesContext} from './LanguagesContext';
-import {finishedTranslations} from 'utils/finishedTranslations';
 
 import ErrorDecoder from './ErrorDecoder';
 import {IconCanary} from '../Icon/IconCanary';
 import {IconExperimental} from 'components/Icon/IconExperimental';
+import {Illustration} from './Illustration/Illustration';
+import {IllustrationBlock} from './Illustration/IllustrationBlock';
+import {LanguageList} from './LanguageList';
+import {LI, OL, UL} from './List';
 
 function CodeStep({children, step}: {children: any; step: number}) {
   return (
@@ -74,16 +76,6 @@ const P = (p: HTMLAttributes<HTMLParagraphElement>) => (
 
 const Strong = (strong: HTMLAttributes<HTMLElement>) => (
   <strong className="font-bold" {...strong} />
-);
-
-const OL = (p: HTMLAttributes<HTMLOListElement>) => (
-  <ol className="ms-6 my-3 list-decimal" {...p} />
-);
-const LI = (p: HTMLAttributes<HTMLLIElement>) => (
-  <li className="leading-relaxed mb-1" {...p} />
-);
-const UL = (p: HTMLAttributes<HTMLUListElement>) => (
-  <ul className="ms-6 my-3 list-disc" {...p} />
 );
 
 const Divider = () => (
@@ -262,129 +254,6 @@ function Recipes(props: any) {
   return <Challenges {...props} isRecipes={true} />;
 }
 
-function AuthorCredit({
-  author = 'Rachel Lee Nabors',
-  authorLink = 'https://nearestnabors.com/',
-}: {
-  author: string;
-  authorLink: string;
-}) {
-  return (
-    <div className="sr-only group-hover:not-sr-only group-focus-within:not-sr-only hover:sr-only">
-      <p className="bg-card dark:bg-card-dark text-center text-sm text-secondary dark:text-secondary-dark leading-tight p-2 rounded-lg absolute start-1/2 -top-4 -translate-x-1/2 -translate-y-full group-hover:flex group-hover:opacity-100 after:content-[''] after:absolute after:start-1/2 after:top-[95%] after:-translate-x-1/2 after:border-8 after:border-x-transparent after:border-b-transparent after:border-t-card after:dark:border-t-card-dark opacity-0 transition-opacity duration-300">
-        <cite>
-          Illustrated by{' '}
-          {authorLink ? (
-            <a
-              target="_blank"
-              rel="noreferrer"
-              className="text-link dark:text-link-dark"
-              href={authorLink}>
-              {author}
-            </a>
-          ) : (
-            author
-          )}
-        </cite>
-      </p>
-    </div>
-  );
-}
-
-const IllustrationContext = React.createContext<{
-  isInBlock?: boolean;
-}>({
-  isInBlock: false,
-});
-
-function Illustration({
-  caption,
-  src,
-  alt,
-  author,
-  authorLink,
-}: {
-  caption: string;
-  src: string;
-  alt: string;
-  author: string;
-  authorLink: string;
-}) {
-  const {isInBlock} = React.useContext(IllustrationContext);
-
-  return (
-    <div className="relative group before:absolute before:-inset-y-16 before:inset-x-0 my-16 mx-0 2xl:mx-auto max-w-4xl 2xl:max-w-6xl">
-      <figure className="my-8 flex justify-center">
-        <img
-          src={src}
-          alt={alt}
-          style={{maxHeight: 300}}
-          className="rounded-lg"
-        />
-        {caption ? (
-          <figcaption className="text-center leading-tight mt-4">
-            {caption}
-          </figcaption>
-        ) : null}
-      </figure>
-      {!isInBlock && <AuthorCredit author={author} authorLink={authorLink} />}
-    </div>
-  );
-}
-
-const isInBlockTrue = {isInBlock: true};
-
-function IllustrationBlock({
-  sequential,
-  author,
-  authorLink,
-  children,
-}: {
-  author: string;
-  authorLink: string;
-  sequential: boolean;
-  children: any;
-}) {
-  const imageInfos = Children.toArray(children).map(
-    (child: any) => child.props
-  );
-  const images = imageInfos.map((info, index) => (
-    <figure key={index}>
-      <div className="bg-white rounded-lg p-4 flex-1 flex xl:p-6 justify-center items-center my-4">
-        <img
-          className="text-primary"
-          src={info.src}
-          alt={info.alt}
-          height={info.height}
-        />
-      </div>
-      {info.caption ? (
-        <figcaption className="text-secondary dark:text-secondary-dark text-center leading-tight mt-4">
-          {info.caption}
-        </figcaption>
-      ) : null}
-    </figure>
-  ));
-  return (
-    <IllustrationContext value={isInBlockTrue}>
-      <div className="relative group before:absolute before:-inset-y-16 before:inset-x-0 my-16 mx-0 2xl:mx-auto max-w-4xl 2xl:max-w-6xl">
-        {sequential ? (
-          <ol className="mdx-illustration-block flex">
-            {images.map((x: any, i: number) => (
-              <li className="flex-1" key={i}>
-                {x}
-              </li>
-            ))}
-          </ol>
-        ) : (
-          <div className="mdx-illustration-block">{images}</div>
-        )}
-        <AuthorCredit author={author} authorLink={authorLink} />
-      </div>
-    </IllustrationContext>
-  );
-}
-
 type NestedTocRoot = {
   item: null;
   children: Array<NestedTocNode>;
@@ -434,38 +303,6 @@ function InlineTocItem({items}: {items: Array<NestedTocNode>}) {
           {node.children.length > 0 && <InlineTocItem items={node.children} />}
         </LI>
       ))}
-    </UL>
-  );
-}
-
-type TranslationProgress = 'complete' | 'in-progress';
-
-function LanguageList({progress}: {progress: TranslationProgress}) {
-  const allLanguages = React.useContext(LanguagesContext) ?? [];
-  const languages = allLanguages
-    .filter(
-      ({code}) =>
-        code !== 'en' &&
-        (progress === 'complete'
-          ? finishedTranslations.includes(code)
-          : !finishedTranslations.includes(code))
-    )
-    .sort((a, b) => a.enName.localeCompare(b.enName));
-  return (
-    <UL>
-      {languages.map(({code, name, enName}) => {
-        return (
-          <LI key={code}>
-            <Link href={`https://${code}.react.dev/`}>
-              {enName} ({name})
-            </Link>{' '}
-            &mdash;{' '}
-            <Link href={`https://github.com/reactjs/${code}.react.dev`}>
-              Contribute
-            </Link>
-          </LI>
-        );
-      })}
     </UL>
   );
 }

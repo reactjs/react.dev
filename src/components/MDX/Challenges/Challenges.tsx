@@ -16,7 +16,7 @@ import {H2} from 'components/MDX/Heading';
 import {H4} from 'components/MDX/Heading';
 import {Challenge} from './Challenge';
 import {Navigation} from './Navigation';
-import {useRouter} from 'next/router';
+import {useRouter} from 'next/compat/router';
 
 interface ChallengesProps {
   children: React.ReactElement[];

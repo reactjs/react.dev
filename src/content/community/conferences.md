@@ -20,23 +20,31 @@ February 12-13,  2026. In-person in New Delhi, India
 
 [Website](https://india.cityjsconf.org/) - [Twitter](https://x.com/cityjsconf) - [Bluesky](https://bsky.app/profile/cityjsconf.bsky.social)
 
-
 ### React Paris 2026 {/*react-paris-2026*/}
 March 26 - 27, 2026. In-person in Paris, France (hybrid event)
 
 [Website](https://react.paris/) - [Twitter](https://x.com/BeJS_)
-
 
 ### CityJS London 2026 {/*cityjs-london-2026*/}
 April 14-17,  2026. In-person in London
 
 [Website](https://london.cityjsconf.org/) - [Twitter](https://x.com/cityjsconf) - [Bluesky](https://bsky.app/profile/cityjsconf.bsky.social)
 
+### React Miami 2026 {/*react-miami-2026*/}
+April 23 - 24, 2026. In-person in Miami, FL, USA
+
+[Website](https://reactmiami.com/) - [Twitter](https://twitter.com/ReactMiamiConf)
+
+### React Summit 2026 {/*react-summit-2026*/}
+June 12 - 16, 2026. In-person in Amsterdam, Netherlands + remote (hybrid event)
+
+[Website](https://reactsummit.com/) - [Twitter](https://x.com/reactsummit)
 
 ### React India 2026 {/*react-india-2026*/}
 October 29-31, 2026. In-person in Goa, India (hybrid event) + Oct 15 2026 - remote day
 
 [Website](https://www.reactindia.io) - [Twitter](https://twitter.com/react_india) - [Facebook](https://www.facebook.com/ReactJSIndia) - [Youtube](https://www.youtube.com/channel/UCaFbHCBkPvVv1bWs_jwYt3w)
+
 
 ## Past Conferences {/*past-conferences*/}
 

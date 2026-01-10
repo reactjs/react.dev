@@ -48,7 +48,7 @@ November 28 & December 1, 2025. In-person in London, UK + online (hybrid event)
 ### CityJS Singapore 2026 {/*cityjs-singapore-2026*/}
 February 4-6,  2026. In-person in Singapore
 
-[Website](https://india.cityjsconf.org/) - [Twitter](https://x.com/cityjsconf) - [Bluesky](https://bsky.app/profile/cityjsconf.bsky.social)
+[Website](https://singapore.cityjsconf.org/) - [Twitter](https://x.com/cityjsconf) - [Bluesky](https://bsky.app/profile/cityjsconf.bsky.social)
 
 ### CityJS New Delhi 2026 {/*cityjs-newdelhi-2026*/}
 February 12-13,  2026. In-person in New Delhi, India
@@ -65,7 +65,7 @@ March 26 - 27, 2026. In-person in Paris, France (hybrid event)
 ### CityJS London 2026 {/*cityjs-london-2026*/}
 April 14-17,  2026. In-person in London
 
-[Website](https://india.cityjsconf.org/) - [Twitter](https://x.com/cityjsconf) - [Bluesky](https://bsky.app/profile/cityjsconf.bsky.social)
+[Website](https://london.cityjsconf.org/) - [Twitter](https://x.com/cityjsconf) - [Bluesky](https://bsky.app/profile/cityjsconf.bsky.social)
 
 
 ## Past Conferences {/*past-conferences*/}

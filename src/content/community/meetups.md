@@ -66,7 +66,7 @@ Do you have a local React.js meetup? Add it here! (Please keep the list alphabet
 
 ## France {/*france*/}
 * [Lille](https://www.meetup.com/ReactBeerLille/)
-* [Paris](https://www.meetup.com/ReactJS-Paris/)
+* [Paris](https://www.meetup.com/react-paris/)
 
 ## Germany {/*germany*/}
 * [Cologne](https://www.meetup.com/React-Cologne/)

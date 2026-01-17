@@ -96,8 +96,8 @@ export function Page({
           {!isBlogIndex && (
             <DocsPageFooter
               route={route}
-              nextRoute={nextRoute}
-              prevRoute={prevRoute}
+              nextRoute={section === 'blog' ? prevRoute : nextRoute}
+              prevRoute={section === 'blog' ? nextRoute : prevRoute}
             />
           )}
         </div>

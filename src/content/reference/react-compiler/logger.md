@@ -8,13 +8,15 @@ The `logger` option provides custom logging for React Compiler events during com
 
 </Intro>
 
-```js
+```ts
+import type { Logger } from 'babel-plugin-react-compiler';
+
 {
   logger: {
     logEvent(filename, event) {
       console.log(`[Compiler] ${event.kind}: ${filename}`);
     }
-  }
+  } satisfies Logger,
 }
 ```
 
@@ -92,7 +94,9 @@ import type { Logger } from 'babel-plugin-react-compiler';
 
 Get specific information about compilation failures:
 
-```js
+```ts
+import type { Logger } from 'babel-plugin-react-compiler';
+
 {
   logger: {
     logEvent(filename, event) {
@@ -114,7 +118,7 @@ Get specific information about compilation failures:
         }
       }
     }
-  }
+  } satisfies Logger,
 }
 ```
 

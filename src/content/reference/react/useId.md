@@ -67,7 +67,16 @@ import { useId } from 'react';
 
 function PasswordField() {
   const passwordHintId = useId();
-  // ...
+  return (
+    <>
+      <input type="password" aria-describedby={passwordHintId} />
+      <p id={passwordHintId}>
+        The password should contain at least 18 characters
+      </p>
+    </>
+  );
+}
+
 ```
 
 You can then pass the <CodeStep step={1}>generated ID</CodeStep> to different attributes:

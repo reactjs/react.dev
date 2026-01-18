@@ -84,12 +84,12 @@ If used with a Server Function, `useActionState` allows the server's response fr
 
 Call `useActionState` at the top level of your component to access the return value of an action from the last time a form was submitted.
 
-```js [[1, 5, "state"], [2, 5, "formAction"], [3, 5, "action"], [4, 5, "null"], [2, 8, "formAction"]]
+```js [[1, 5, "state"], [2, 5, "formAction"], [3,5, "isPending"], [4, 5, "action"], [5, 5, "null"], [2, 8, "formAction"]]
 import { useActionState } from 'react';
 import { action } from './actions.js';
 
 function MyComponent() {
-  const [state, formAction] = useActionState(action, null);
+  const [state, formAction, isPending] = useActionState(action, null);
   // ...
   return (
     <form action={formAction}>
@@ -101,13 +101,13 @@ function MyComponent() {
 
 `useActionState` returns an array with the following items:
 
-1. The <CodeStep step={1}>current state</CodeStep> of the form, which is initially set to the <CodeStep step={4}>initial state</CodeStep> you provided, and after the form is submitted is set to the return value of the <CodeStep step={3}>action</CodeStep> you provided.
+1. The <CodeStep step={1}>current state</CodeStep> of the form, which is initially set to the <CodeStep step={5}>initial state</CodeStep> you provided, and after the form is submitted is set to the return value of the <CodeStep step={4}>action</CodeStep> you provided.
 2. A <CodeStep step={2}>new action</CodeStep> that you pass to `<form>` as its `action` prop or call manually within `startTransition`.
-3. A <CodeStep step={1}>pending state</CodeStep> that you can utilise while your action is processing.
+3. A <CodeStep step={3}>pending state</CodeStep> that you can utilise while your action is processing.
 
-When the form is submitted, the <CodeStep step={3}>action</CodeStep> function that you provided will be called. Its return value will become the new <CodeStep step={1}>current state</CodeStep> of the form.
+When the form is submitted, the <CodeStep step={4}>action</CodeStep> function that you provided will be called. Its return value will become the new <CodeStep step={1}>current state</CodeStep> of the form.
 
-The <CodeStep step={3}>action</CodeStep> that you provide will also receive a new first argument, namely the <CodeStep step={1}>current state</CodeStep> of the form. The first time the form is submitted, this will be the <CodeStep step={4}>initial state</CodeStep> you provided, while with subsequent submissions, it will be the return value from the last time the action was called. The rest of the arguments are the same as if `useActionState` had not been used.
+The <CodeStep step={4}>action</CodeStep> that you provide will also receive a new first argument, namely the <CodeStep step={1}>current state</CodeStep> of the form. The first time the form is submitted, this will be the <CodeStep step={5}>initial state</CodeStep> you provided, while with subsequent submissions, it will be the return value from the last time the action was called. The rest of the arguments are the same as if `useActionState` had not been used.
 
 ```js [[3, 1, "action"], [1, 1, "currentState"]]
 function action(currentState, formData) {

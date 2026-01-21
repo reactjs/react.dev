@@ -180,7 +180,7 @@ export async function getStaticPaths() {
   }));
 
   return {
-    paths: paths,
+    paths,
     fallback: false,
   };
 }

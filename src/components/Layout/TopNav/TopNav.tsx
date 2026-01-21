@@ -133,7 +133,7 @@ function NavItem({url, isActive, children}: any) {
       <Link
         href={url}
         className={cn(
-          'active:scale-95 transition-transform w-full text-center outline-link py-1.5 px-1.5 xs:px-3 sm:px-4 rounded-full capitalize whitespace-nowrap',
+          'active:scale-95 transition-all w-full text-center outline-link py-1.5 px-1.5 xs:px-3 sm:px-4 rounded-full capitalize whitespace-nowrap',
           !isActive && 'hover:bg-primary/5 hover:dark:bg-primary-dark/5',
           isActive &&
             'bg-highlight dark:bg-highlight-dark text-link dark:text-link-dark'
@@ -313,7 +313,7 @@ export default function TopNav({
               <button
                 type="button"
                 className={cn(
-                  'flex 3xl:w-[56rem] 3xl:mx-0 relative ps-4 pe-1 py-1 h-10 bg-gray-30/20 dark:bg-gray-40/20 outline-none focus:outline-link betterhover:hover:bg-opacity-80 pointer items-center text-start w-full text-gray-30 rounded-full align-middle text-base'
+                  'transition-all flex 3xl:w-[56rem] 3xl:mx-0 relative ps-4 pe-1 py-1 h-10 bg-gray-30/20 dark:bg-gray-40/20 outline-none focus:outline-link betterhover:hover:bg-opacity-80 pointer items-center text-start w-full text-gray-30 rounded-full align-middle text-base'
                 )}
                 onClick={onOpenSearch}>
                 <IconSearch className="align-middle me-3 text-gray-30 shrink-0 group-betterhover:hover:text-gray-70" />
@@ -362,7 +362,7 @@ export default function TopNav({
                     onClick={() => {
                       window.__setPreferredTheme('dark');
                     }}
-                    className="flex items-center justify-center w-12 h-12 transition-transform rounded-full active:scale-95 hover:bg-primary/5 hover:dark:bg-primary-dark/5 outline-link">
+                    className="transition-all flex items-center justify-center w-12 h-12 rounded-full active:scale-95 hover:bg-primary/5 hover:dark:bg-primary-dark/5 outline-link">
                     {darkIcon}
                   </button>
                 </div>
@@ -373,7 +373,7 @@ export default function TopNav({
                     onClick={() => {
                       window.__setPreferredTheme('light');
                     }}
-                    className="flex items-center justify-center w-12 h-12 transition-transform rounded-full active:scale-95 hover:bg-primary/5 hover:dark:bg-primary-dark/5 outline-link">
+                    className="flex items-center justify-center w-12 h-12 transition-all rounded-full active:scale-95 hover:bg-primary/5 hover:dark:bg-primary-dark/5 outline-link">
                     {lightIcon}
                   </button>
                 </div>
@@ -381,7 +381,7 @@ export default function TopNav({
                   <Link
                     href="/community/translations"
                     aria-label="Translations"
-                    className="active:scale-95 transition-transform flex w-12 h-12 rounded-full items-center justify-center hover:bg-primary/5 hover:dark:bg-primary-dark/5 outline-link">
+                    className="active:scale-95 transition-all flex w-12 h-12 rounded-full items-center justify-center hover:bg-primary/5 hover:dark:bg-primary-dark/5 outline-link">
                     {languageIcon}
                   </Link>
                 </div>
@@ -391,7 +391,7 @@ export default function TopNav({
                     target="_blank"
                     rel="noreferrer noopener"
                     aria-label="Open on GitHub"
-                    className="flex items-center justify-center w-12 h-12 transition-transform rounded-full active:scale-95 hover:bg-primary/5 hover:dark:bg-primary-dark/5 outline-link">
+                    className="flex items-center justify-center w-12 h-12 transition-all rounded-full active:scale-95 hover:bg-primary/5 hover:dark:bg-primary-dark/5 outline-link">
                     {githubIcon}
                   </Link>
                 </div>

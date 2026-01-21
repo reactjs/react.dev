@@ -4,7 +4,7 @@ title: Keeping Components Pure
 
 <Intro>
 
-Some JavaScript functions are *pure.* Pure functions only perform a calculation and nothing more. By strictly only writing your components as pure functions, you can avoid an entire class of baffling bugs and unpredictable behavior as your codebase grows. To get these benefits, though, there are a few rules you must follow.
+Some JavaScript functions are *pure.* Pure functions only perform a calculation and nothing more. By strictly only writing your Components as pure functions, you can avoid an entire class of baffling bugs and unpredictable behavior as your codebase grows. To get these benefits, though, there are a few rules you must follow.
 
 </Intro>
 
@@ -12,7 +12,7 @@ Some JavaScript functions are *pure.* Pure functions only perform a calculation 
 
 * What purity is and how it helps you avoid bugs
 * How to keep components pure by keeping changes out of the render phase
-* How to use Strict Mode to find mistakes in your components
+* How to use Strict Mode to find mistakes in your Components
 
 </YouWillLearn>
 
@@ -81,7 +81,7 @@ If you pass `drinkers={4}`, it will return JSX containing `4 cups of water`. Alw
 
 Just like a math formula. 
 
-You could think of your components as recipes: if you follow them and don't introduce new ingredients during the cooking process, you will get the same dish every time. That "dish" is the JSX that the component serves to React to [render.](/learn/render-and-commit)
+You could think of your Components as recipes: if you follow them and don't introduce new ingredients during the cooking process, you will get the same dish every time. That "dish" is the JSX that the component serves to React to [render.](/learn/render-and-commit)
 
 <Illustration src="/images/docs/illustrations/i_puritea-recipe.png" alt="A tea recipe for x people: take x cups of water, add x spoons of tea and 0.5x spoons of spices, and 0.5x cups of milk" />
 
@@ -143,7 +143,7 @@ export default function TeaSet() {
 
 Now your component is pure, as the JSX it returns only depends on the `guest` prop.
 
-In general, you should not expect your components to be rendered in any particular order. It doesn't matter if you call <Math><MathI>y</MathI> = 2<MathI>x</MathI></Math> before or after <Math><MathI>y</MathI> = 5<MathI>x</MathI></Math>: both formulas will resolve independently of each other. In the same way, each component should only "think for itself", and not attempt to coordinate with or depend upon others during rendering. Rendering is like a school exam: each component should calculate JSX on their own!
+In general, you should not expect your Components to be rendered in any particular order. It doesn't matter if you call <Math><MathI>y</MathI> = 2<MathI>x</MathI></Math> before or after <Math><MathI>y</MathI> = 5<MathI>x</MathI></Math>: both formulas will resolve independently of each other. In the same way, each component should only "think for itself", and not attempt to coordinate with or depend upon others during rendering. Rendering is like a school exam: each component should calculate JSX on their own!
 
 <DeepDive>
 
@@ -219,7 +219,7 @@ Every new React feature we're building takes advantage of purity. From data fetc
   * **It minds its own business.** It should not change any objects or variables that existed before rendering.
   * **Same inputs, same output.** Given the same inputs, a component should always return the same JSX. 
 * Rendering can happen at any time, so components should not depend on each others' rendering sequence.
-* You should not mutate any of the inputs that your components use for rendering. That includes props, state, and context. To update the screen, ["set" state](/learn/state-a-components-memory) instead of mutating preexisting objects.
+* You should not mutate any of the inputs that your Components use for rendering. That includes props, state, and context. To update the screen, ["set" state](/learn/state-a-components-memory) instead of mutating preexisting objects.
 * Strive to express your component's logic in the JSX you return. When you need to "change things", you'll usually want to do it in an event handler. As a last resort, you can `useEffect`.
 * Writing pure functions takes a bit of practice, but it unlocks the power of React's paradigm.
 

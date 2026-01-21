@@ -62,7 +62,7 @@ button { margin-right: 10px; }
 
 </Sandpack>
 
-You defined the `handleClick` function and then [passed it as a prop](/learn/passing-props-to-a-component) to `<button>`.  `handleClick` is an **event handler.** Event handler functions:
+You defined the `handleClick` function and then [passed it as a prop](/learn/passing-props-to-a-component) to `<button>`. `handleClick` is an **event handler.** Event handler functions:
 
 * Are usually defined *inside* your components.
 * Have names that start with `handle`, followed by the name of the event.
@@ -433,7 +433,7 @@ In rare cases, you might need to catch all events on child elements, *even if th
 </div>
 ```
 
-Each event propagates in three phases: 
+Each event propagates in three phases:
 
 1. It travels down, calling all `onClickCapture` handlers.
 2. It runs the clicked element's `onClick` handler. 
@@ -514,7 +514,7 @@ button { margin-left: 5px; }
 Don't confuse `e.stopPropagation()` and `e.preventDefault()`. They are both useful, but are unrelated:
 
 * [`e.stopPropagation()`](https://developer.mozilla.org/docs/Web/API/Event/stopPropagation) stops the event handlers attached to the tags above from firing.
-* [`e.preventDefault()` ](https://developer.mozilla.org/docs/Web/API/Event/preventDefault) prevents the default browser behavior for the few events that have it.
+* [`e.preventDefault()`](https://developer.mozilla.org/docs/Web/API/Event/preventDefault) prevents the default browser behavior for the few events that have it.
 
 ## Can event handlers have side effects? {/*can-event-handlers-have-side-effects*/}
 

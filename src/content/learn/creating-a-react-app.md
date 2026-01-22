@@ -65,6 +65,7 @@ There are other up-and-coming frameworks that are working towards our full stack
 
 - [TanStack Start (Beta)](https://tanstack.com/start/): TanStack Start is a full-stack React framework powered by TanStack Router. It provides a full-document SSR, streaming, server functions, bundling, and more using tools like Nitro and Vite.
 - [RedwoodSDK](https://rwsdk.com/): Redwood is a full stack React framework with lots of pre-installed packages and configuration that makes it easy to build full-stack web applications.
+- [Vike](https://vike.dev/): Vike is a composable framework to build React applications with architectural flexibility and stability.
 
 <DeepDive>
 

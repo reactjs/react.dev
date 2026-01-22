@@ -24,6 +24,13 @@ For a list of recommended frameworks, check out [Creating a React App](/learn/cr
 
 </DeepDive>
 
+<Note>
+
+#### Middle ground {/*middle-ground*/}
+
+For a middle ground, consider [Vike](https://vike.dev/), a framework that [allows you to manually integrate React](https://vike.dev/react#custom-integration) without having to implement framework features.
+
+</Note>
 
 ## Step 1: Install a build tool {/*step-1-install-a-build-tool*/}
 

@@ -8,6 +8,12 @@ The magic of components lies in their reusability: you can create components tha
 
 </Intro>
 
+<Note>
+
+**Before getting started with components, be sure to follow [Start a New React Project](https://react.dev/learn/start-a-new-react-project) to create your first React app.**
+
+</Note>
+
 <YouWillLearn>
 
 * What a root component file is

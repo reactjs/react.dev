@@ -2,22 +2,22 @@
 title: Queueing a Series of State Updates
 ---
 
-`<Intro>`{=html}
+<Intro>
 
 Setting a state variable will queue another render. But sometimes you
 might want to perform multiple operations on the value before queueing
 the next render. To do this, it helps to understand how React batches
 state updates.
 
-`</Intro>`{=html}
+</Intro>
 
-`<YouWillLearn>`{=html}
+<YouWillLearn>
 
 -   What "batching" is and how React uses it to process multiple state
     updates
 -   How to apply several updates to the same state variable in a row
 
-`</YouWillLearn>`{=html}
+</YouWillLearn>
 
 ## React batches state updates {/*react-batches-state-updates*/}
 
@@ -25,7 +25,7 @@ You might expect that clicking the "+3" button will increment the
 counter three times because it calls `setNumber(number + 1)` three
 times:
 
-`<Sandpack>`{=html}
+<Sandpack>
 
 ``` js
 import { useState } from 'react';
@@ -51,7 +51,7 @@ button { display: inline-block; margin: 10px; font-size: 20px; }
 h1 { display: inline-block; margin: 10px; width: 30px; text-align: center; }
 ```
 
-`</Sandpack>`{=html}
+</Sandpack>
 
 However, as you might recall from the previous section, [each render's
 state values are
@@ -75,7 +75,7 @@ waiter doesn't run to the kitchen at the mention of your first dish!
 Instead, they let you finish your order, let you make changes to it, and
 even take orders from other people at the table.
 
-`<Illustration src="/images/docs/illustrations/i_react-batching.png"  alt="An elegant cursor at a restaurant places and order multiple times with React, playing the part of the waiter. After she calls setState() multiple times, the waiter writes down the last one she requested as her final order." />`{=html}
+<Illustration src="/images/docs/illustrations/i_react-batching.png"  alt="An elegant cursor at a restaurant places and order multiple times with React, playing the part of the waiter. After she calls setState() multiple times, the waiter writes down the last one she requested as her final order." />
 
 This lets you update multiple state variables--even from multiple
 components--without triggering too many
@@ -103,7 +103,7 @@ the queue, like `setNumber(n => n + 1)`. It is a way to tell React to
 
 Try incrementing the counter now:
 
-`<Sandpack>`{=html}
+<Sandpack>
 
 ``` js
 import { useState } from 'react';
@@ -129,7 +129,7 @@ button { display: inline-block; margin: 10px; font-size: 20px; }
 h1 { display: inline-block; margin: 10px; width: 30px; text-align: center; }
 ```
 
-`</Sandpack>`{=html}
+</Sandpack>
 
 Here, `n => n + 1` is called an **updater function.** When you pass it
 to a state setter:
@@ -161,17 +161,19 @@ to the first updater function as the `n` argument. Then React takes the
 return value of your previous updater function and passes it to the next
 updater as `n`, and so on:
 
-  queued update   `n`   returns
-  --------------- ----- -------------
-  `n => n + 1`    `0`   `0 + 1 = 1`
-  `n => n + 1`    `1`   `1 + 1 = 2`
-  `n => n + 1`    `2`   `2 + 1 = 3`
+| queued update | `n` | returns |
+|---------------|-----|---------|
+| `n => n + 1`  | `0` | `0 + 1 = 1` |
+| `n => n + 1`  | `1` | `1 + 1 = 2` |
+| `n => n + 1`  | `2` | `2 + 1 = 3` |
 
 React stores `3` as the final result and returns it from `useState`.
 
 This is why clicking "+3" in the above example correctly increments the
-value by 3. \### What happens if you update state after replacing it
-{/*what-happens-if-you-update-state-after-replacing-it*/}
+value by 3.
+
+### What happens if you update state after replacing it {/*what-happens-if-you-update-state-after-replacing-it*/}
+
 
 What about this event handler? What do you think `number` will be in the
 next render?
@@ -183,7 +185,7 @@ next render?
 }}>
 ```
 
-`<Sandpack>`{=html}
+<Sandpack>
 
 ``` js
 import { useState } from 'react';
@@ -208,7 +210,7 @@ button { display: inline-block; margin: 10px; font-size: 20px; }
 h1 { display: inline-block; margin: 10px; width: 30px; text-align: center; }
 ```
 
-`</Sandpack>`{=html}
+</Sandpack>
 
 Here's what this event handler tells React to do:
 
@@ -219,22 +221,20 @@ Here's what this event handler tells React to do:
 
 During the next render, React goes through the state queue:
 
-  queued update        `n`            returns
-  -------------------- -------------- -------------
-  "replace with `5`"   `0` (unused)   `5`
-  `n => n + 1`         `5`            `5 + 1 = 6`
+| queued update | `n` | returns |
+|---------------|-----|---------|
+| "replace with `5`" | `0` (unused) | `5` |
+| `n => n + 1` | `5` | `6` |
 
 React stores `6` as the final result and returns it from `useState`.
 
-```{=html}
 <Note>
-```
+
 You may have noticed that `setState(5)` actually works like
 `setState(n => 5)`, but `n` is unused!
 
-```{=html}
 </Note>
-```
+
 ### What happens if you replace state after updating it {/*what-happens-if-you-replace-state-after-updating-it*/}
 
 Let's try one more example. What do you think `number` will be in the
@@ -248,7 +248,7 @@ next render?
 }}>
 ```
 
-`<Sandpack>`{=html}
+<Sandpack>
 
 ``` js
 import { useState } from 'react';
@@ -274,7 +274,7 @@ button { display: inline-block; margin: 10px; font-size: 20px; }
 h1 { display: inline-block; margin: 10px; width: 30px; text-align: center; }
 ```
 
-`</Sandpack>`{=html}
+</Sandpack>
 
 Here's how React works through these lines of code while executing this
 event handler:
@@ -287,11 +287,11 @@ event handler:
 
 During the next render, React goes through the state queue:
 
-  queued update         `n`            returns
-  --------------------- -------------- -------------
-  "replace with `5`"    `0` (unused)   `5`
-  `n => n + 1`          `5`            `5 + 1 = 6`
-  "replace with `42`"   `6` (unused)   `42`
+| queued update | `n` | returns |
+|---------------|-----|---------|
+| "replace with `5`" | `0` (unused) | `5` |
+| `n => n + 1` | `5` | `6` |
+| "replace with `42`" | `6` (unused) | `42` |
 
 Then React stores `42` as the final result and returns it from
 `useState`.
@@ -326,7 +326,7 @@ If you prefer more verbose code, another common convention is to repeat
 the full state variable name, like `setEnabled(enabled => !enabled)`, or
 to use a prefix like `setEnabled(prevEnabled => !prevEnabled)`.
 
-`<Recap>`{=html}
+<Recap>
 
 -   Setting state does not change the variable in the existing render,
     but it requests a new render.
@@ -335,9 +335,9 @@ to use a prefix like `setEnabled(prevEnabled => !prevEnabled)`.
 -   To update some state multiple times in one event, you can use
     `setNumber(n => n + 1)` updater function.
 
-`</Recap>`{=html}
+</Recap>
 
-`<Challenges>`{=html}
+<Challenges>
 
 #### Fix a request counter {/*fix-a-request-counter*/}
 
@@ -353,7 +353,7 @@ if you click fast twice, both counters seem to behave unpredictably.
 
 Why does this happen? Fix both counters.
 
-`<Sandpack>`{=html}
+<Sandpack>
 
 ``` js
 import { useState } from 'react';
@@ -391,7 +391,7 @@ function delay(ms) {
 }
 ```
 
-`</Sandpack>`{=html}
+</Sandpack>
 
 > **Why this bug happens**
 >
@@ -406,7 +406,7 @@ function delay(ms) {
 > (for example, `setPending(p => p + 1)`) ensures that each update is
 > applied to the most recent state value in the queue.
 
-`<Solution>`{=html}
+<Solution>
 
 Inside the `handleClick` event handler, the values of `pending` and
 `completed` correspond to what they were at the time of the click event.
@@ -415,7 +415,7 @@ becomes `setPending(-1)`, which is wrong. Since you want to *increment*
 or *decrement* the counters, rather than set them to a concrete value
 determined during the click, you can instead pass the updater functions:
 
-`<Sandpack>`{=html}
+<Sandpack>
 
 ``` js
 import { useState } from 'react';
@@ -453,13 +453,13 @@ function delay(ms) {
 }
 ```
 
-`</Sandpack>`{=html}
+</Sandpack>
 
 This ensures that when you increment or decrement a counter, you do it
 in relation to its *latest* state rather than what the state was at the
 time of the click.
 
-`</Solution>`{=html}
+</Solution>
 
 #### Implement the state queue yourself {/*implement-the-state-queue-yourself*/}
 
@@ -480,7 +480,7 @@ added.
 Your task is to return the final state, just like the tables on this
 page show!
 
-`<Hint>`{=html}
+<Hint>
 
 If you're feeling stuck, start with this code structure:
 
@@ -502,16 +502,19 @@ export function getFinalState(baseState, queue) {
 
 Fill out the missing lines!
 
-`</Hint>`{=html}
+</Hint>
 
-`<Sandpack>`{=html}
+<Sandpack>
 
-\`\`\`js src/processQueue.js active export function
-getFinalState(baseState, queue) { let finalState = baseState;
+```js src/processQueue.js active
+export function getFinalState(baseState, queue) {
+  let finalState = baseState;
 
-// TODO: do something with the queue...
+  // TODO: do something with the queue...
 
-return finalState; }
+  return finalState;
+}
+```
 
 
     ```js src/App.js
@@ -590,23 +593,32 @@ return finalState; }
       );
     }
 
-`</Sandpack>`{=html}
+</Sandpack>
 
-`<Solution>`{=html}
+<Solution>
 
 This is the exact algorithm described on this page that React uses to
 calculate the final state:
 
-`<Sandpack>`{=html}
+<Sandpack>
 
-\`\`\`js src/processQueue.js active export function
-getFinalState(baseState, queue) { let finalState = baseState;
+```js src/processQueue.js active
+export function getFinalState(baseState, queue) {
+  let finalState = baseState;
 
-for (let update of queue) { if (typeof update === 'function') { // Apply
-the updater function. finalState = update(finalState); } else { //
-Replace the next state. finalState = update; } }
+  for (let update of queue) {
+    if (typeof update === 'function') {
+      // Apply the updater function.
+      finalState = update(finalState);
+    } else {
+      // Replace the next state.
+      finalState = update;
+    }
+  }
 
-return finalState; }
+  return finalState;
+}
+```
 
 
     ```js src/App.js
@@ -685,10 +697,10 @@ return finalState; }
       );
     }
 
-`</Sandpack>`{=html}
+</Sandpack>
 
 Now you know how this part of React works!
 
-`</Solution>`{=html}
+</Solution>
 
-`</Challenges>`{=html}
+</Challenges>

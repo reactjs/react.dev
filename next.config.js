@@ -15,11 +15,28 @@
 const nextConfig = {
   pageExtensions: ['jsx', 'js', 'ts', 'tsx', 'mdx', 'md'],
   reactStrictMode: true,
+  reactCompiler: true,
   experimental: {
     scrollRestoration: true,
-    reactCompiler: true,
   },
   env: {},
+  turbopack: {
+    resolveAlias: {
+      'use-sync-external-store/shim': 'react',
+      raf: require.resolve('./src/utils/rafShim.js'),
+
+      // Unfortunately not working at the moment
+      process: require.resolve('./src/utils/processShim.js'),
+
+      // ESLint depends on the CommonJS version of esquery,
+      // but Webpack loads the ESM version by default. This
+      // alias ensures the correct version is used.
+      //
+      // More info:
+      // https://github.com/reactjs/react.dev/pull/8115
+      esquery: 'esquery/dist/esquery.min.js',
+    },
+  },
   webpack: (config, {dev, isServer, ...options}) => {
     if (process.env.ANALYZE) {
       const {BundleAnalyzerPlugin} = require('webpack-bundle-analyzer');

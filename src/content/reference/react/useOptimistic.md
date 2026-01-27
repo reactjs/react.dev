@@ -202,7 +202,7 @@ export default function App() {
   
   function onSubmit(newName) {
     startTransition(() => {
-      setName(newName)
+      setName(newName);
     });
   }
   return <EditName name={name} onSubmit={onSubmit} />;
@@ -457,7 +457,7 @@ Here, `liked => !liked` always toggles the latest state. If the base `isLiked` c
 
 `useOptimistic` supports two patterns for calculating state based on current state:
 
-**Updater functions** work just like [useState updaters](/reference/react/useState#updating-state-based-on-the-previous-state). Pass a function to the setter:
+**Updater functions** work like [useState updaters](/reference/react/useState#updating-state-based-on-the-previous-state). Pass a function to the setter:
 
 ```js
 const [optimistic, setOptimistic] = useOptimistic(value);
@@ -473,7 +473,7 @@ const [optimistic, dispatch] = useOptimistic(value, (current, action) => {
 dispatch(action);
 ```
 
-**Use updaters** for simple calculations where the setter call naturally describes the update. This is similar to using `setState(prev => ...)` with `useState`.
+**Use updaters** for calculations where the setter call naturally describes the update. This is similar to using `setState(prev => ...)` with `useState`.
 
 **Use reducers** when you need to pass data to the update (like which item to add) or when handling multiple types of updates with a single hook.
 
@@ -756,16 +756,23 @@ export default function ShoppingCart({ cart, cartActions }) {
     });
   }
 
-  const total = optimisticCart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+  const total = optimisticCart.reduce(
+    (sum, item) => sum + item.price * item.quantity,
+    0
+  );
 
   return (
     <div>
       <h2>Shopping Cart</h2>
       <div style={{ marginBottom: 16 }}>
-        <button onClick={() => handleAdd({ id: 1, name: 'T-Shirt', price: 25 })}>
+        <button onClick={() => handleAdd({
+          id: 1, name: 'T-Shirt', price: 25
+        })}>
           Add T-Shirt ($25)
         </button>{' '}
-        <button onClick={() => handleAdd({ id: 2, name: 'Mug', price: 15 })}>
+        <button onClick={() => handleAdd({
+          id: 2, name: 'Mug', price: 15
+        })}>
           Add Mug ($15)
         </button>
       </div>
@@ -778,7 +785,10 @@ export default function ShoppingCart({ cart, cartActions }) {
               {item.name} - ${item.price} ×
               {item.quantity}
               {' '}= ${item.price * item.quantity}
-              <button onClick={() => handleRemove(item.id)} style={{ marginLeft: 8 }}>
+              <button
+                onClick={() => handleRemove(item.id)}
+                style={{ marginLeft: 8 }}
+              >
                 Remove
               </button>
               {item.pending && ' ...'}
@@ -932,7 +942,7 @@ You may see this error:
 
 <ConsoleLogLine level="error">
 
-An optimistic state update occurred outside a transition or Action. To fix, move the update to an Action, or wrap with `startTransition`.
+An optimistic state update occurred outside a Transition or Action. To fix, move the update to an Action, or wrap with `startTransition`.
 
 </ConsoleLogLine>
 
@@ -941,7 +951,7 @@ An optimistic state update occurred outside a transition or Action. To fix, move
 The optimistic setter function must be called inside a Transition: 
 
 ```js
-// ❌ Incorrect: outside a Transition
+// 🚩 Incorrect: outside a Transition
 function handleClick() {
   setOptimistic(newValue);  // Warning!
   // ...
@@ -981,7 +991,7 @@ Cannot update optimistic state while rendering.
 This error occurs when you call the optimistic setter during the render phase of a component. You can only call it from event handlers, effects, or other callbacks:
 
 ```js
-// ❌ Incorrect: calling during render
+// 🚩 Incorrect: calling during render
 function MyComponent({ items }) {
   const [isPending, setPending] = useOptimistic(false);
 
@@ -1005,7 +1015,7 @@ function MyComponent({ items }) {
   // ...
 }
 
-// ✅ Also Correct: calling from an Action prop
+// ✅ Also correct: calling from an Action prop
 function MyComponent({ items }) {
   const [isPending, setPending] = useOptimistic(false);
 

@@ -103,15 +103,16 @@ If the Action throws an error, the Transition still ends, and React renders with
 
 ### `set` functions, like `setOptimistic(optimisticValue)` {/*setoptimistic*/}
 
-The `set` function returned by `useOptimistic` lets you update the state to a different value inside an Action or Transition and trigger an immediate re-render. You can pass the next state directly, or a function that calculates it from the previous state:
+The `set` function returned by `useOptimistic` lets you update the state for the duration of a Transition. You can pass the next state directly, or a function that calculates it from the previous state:
 
 ```js
-const [optimisticLike, setOptimisticLike] = useOptimistic(name);
+const [optimisticLike, setOptimisticLike] = useOptimistic(false);
+const [optimisticSubs, setOptimisticSubs] = useOptimistic(subs);
 
 function handleClick() {
   startTransition(async () => {
     setOptimisticLike(true);
-    setOptimisticLike(liked => !liked);
+    setOptimisticSubs(a => a + 1);
     await saveChanges();
   });
 }
@@ -128,7 +129,7 @@ function handleClick() {
 
 #### Caveats {/*setoptimistic-caveats*/}
 
-* The `set` function must be called inside a [Transition](/reference/react/useTransition) using [`startTransition`](/reference/react/startTransition) or inside an [Action](/reference/react/useTransition#perform-non-blocking-updates-with-actions). If you call the setter outside an Action or Transition, the optimistic value will briefly appear and then immediately revert.
+* The `set` function must be called inside a [Transition](/reference/react/useTransition) using [`startTransition`](/reference/react/startTransition) or inside an [Action](/reference/react/useTransition#perform-non-blocking-updates-with-actions). If you call the setter outside an Action or Transition, [React will show a warning](#an-optimistic-state-update-occurred-outside-a-transition-or-action) and the optimistic value will briefly render.
 
 ---
 
@@ -136,7 +137,7 @@ function handleClick() {
 
 ### Adding optimistic state to a component {/*adding-optimistic-state-to-a-component*/}
 
-Call useOptimistic at the top level of your component to declare one or more optimistic states.
+Call `useOptimistic` at the top level of your component to declare one or more optimistic states.
 
 ```js [[1, 4, "age"], [1, 5, "name"], [1, 6, "todos"], [2, 4, "optimisticAge"], [2, 5, "optimisticName"], [2, 6, "optimisticTodos"], [3, 4, "setOptimisticAge"], [3, 5, "setOptimisticName"], [3, 6, "setOptimisticTodos"], [4, 6, "reducer"]]
 import { useOptimistic } from 'react';
@@ -152,7 +153,7 @@ function MyComponent({age, name, todos}) {
 
 1. The <CodeStep step={2}>current state</CodeStep> of the optimistic value, returning the <CodeStep step={1}>state</CodeStep> provided.
 2. The <CodeStep step={3}>set function</CodeStep> that lets you temporarily change the state during an Action or Transition.
-   * If a <CodeStep step={1}>reducer</CodeStep> is provided, it will run before rendering the temporary state.
+   * If a <CodeStep step={4}>reducer</CodeStep> is provided, it will run before rendering the temporary state.
 
 To use the optimistic state, call the set function inside a Transition:
 
@@ -165,17 +166,99 @@ function handleClick(e) {
 }
 ```
 
-Or call it inside an action:
+React will render the optimistic state first, then complete the Transition with the new value.
 
-```js [[3, 3, "setOptimisticName"]]
+<Note>
+
+When using [Action props](/reference/react/useTransition#exposing-action-props-from-components), you can call the set function without `startTransition`:
+
+```js [[3, 2, "setOptimisticName"]]
 async function submitAction() {
-  // By convention, Actions are called inside startTransition.
   setOptimisticName('Taylor');
   await updateName('Taylor');
 }
 ```
 
-React will render the optimistic state first, then complete the Action or Transition with the new value.
+This works because Action props are already called inside a Transition. 
+
+For an example, see: [Using optimistic state in Action props](#using-optimistic-state-in-action-props).
+
+</Note>
+
+### Using optimistic state in Action props {/*using-optimistic-state-in-action-props*/}
+
+In an [Action prop](/reference/react/useTransition#exposing-action-props-from-components), you can call the optimistic setter directly without `startTransition`. 
+
+This example sets optimistc state inside a `<form>` `submitAction` prop:
+
+<Sandpack>
+
+```js src/App.js
+import { useState, startTransition } from 'react';
+import EditName from './EditName';
+
+export default function App() {
+  const [name, setName] = useState('Alice');
+  
+  function onSubmit(newName) {
+    startTransition(() => {
+      setName(newName)
+    });
+  }
+  return <EditName name={name} onSubmit={onSubmit} />;
+}
+```
+
+```js src/EditName.js active
+import { useOptimistic } from 'react';
+import { updateName } from './actions.js';
+
+export default function EditName({ name, onSubmit }) {
+  const [optimisticName, setOptimisticName] = useOptimistic(name);
+
+  async function submitAction(formData) {
+    const newName = formData.get('name');
+    setOptimisticName(newName);
+    const updatedName = await updateName(newName);
+    onSubmit(updatedName);  
+  }
+
+  return (
+    <form action={submitAction}>
+      <p>Your name is: {optimisticName}</p>
+      <p>
+        <label>Change it: </label>
+        <input
+          type="text"
+          name="name"
+          disabled={name !== optimisticName}
+        />
+      </p>
+    </form>
+  );
+}
+```
+
+```js src/actions.js hidden
+export async function updateName(name) {
+  await new Promise((res) => setTimeout(res, 1000));
+  return name;
+}
+```
+
+</Sandpack>
+
+In this example, when the user submits the form, the `optimisticName` updates immediately to show the new value while the server request is in progress. When the request completes, the real `name` is updated and the Transition completes rendering the new name.
+
+<Note>
+
+#### Why doesn't this need `startTransition`? {/*why-doesnt-this-need-starttransition*/}
+
+The optimistic setter must be called inside a Transition to work correctly. When you pass a function to an [Action prop](/reference/react/useTransition#exposing-action-props-from-components), by convention that function is already called inside `startTransition`. 
+
+Since you're already in a Transition, calling `setOptimisticName` directly is valid.
+
+</Note>
 
 ### Adding pending state to a component {/*adding-pending-state-to-a-component*/}
 
@@ -487,74 +570,6 @@ export async function unfollowUser(name) {
 </Sandpack>
 
 The reducer receives the new `isFollowing` value and calculates both the new follow state and the updated follower count in a single update. This ensures the button text and count always stay in sync.
-
-### Using optimistic state in Action props {/*using-optimistic-state-in-action-props*/}
-
-When you pass a function to an [Action prop](/reference/react/useTransition#exposing-action-props-from-components), you can call the optimistic setter directly without wrapping it in `startTransition`. This includes form actions:
-
-<Sandpack>
-
-```js src/App.js
-import { useState } from 'react';
-import EditName from './EditName';
-
-export default function App() {
-  const [name, setName] = useState('Alice');
-
-  return <EditName name={name} setName={setName} />;
-}
-```
-
-```js src/EditName.js active
-import { useOptimistic } from 'react';
-import { updateName } from './actions.js';
-
-export default function EditName({ name, setName }) {
-  const [optimisticName, setOptimisticName] = useOptimistic(name);
-
-  async function submitAction(formData) {
-    const newName = formData.get('name');
-    setOptimisticName(newName);
-    const updatedName = await updateName(newName);
-    setName(updatedName);
-  }
-
-  return (
-    <form action={submitAction}>
-      <p>Your name is: {optimisticName}</p>
-      <p>
-        <label>Change it: </label>
-        <input
-          type="text"
-          name="name"
-          disabled={name !== optimisticName}
-        />
-      </p>
-    </form>
-  );
-}
-```
-
-```js src/actions.js hidden
-export async function updateName(name) {
-  await new Promise((res) => setTimeout(res, 1000));
-  return name;
-}
-```
-
-</Sandpack>
-
-In this example, when the user submits the form, the `optimisticName` updates immediately to show the new value while the server request is in progress. When the request completes, React updates the real `name` state and the Transition ends.
-
-<DeepDive>
-
-#### Why doesn't this need `startTransition`? {/*why-doesnt-this-need-starttransition*/}
-
-The optimistic setter must be called inside a Transition to work correctly. When you pass a function to an Action prop, React automatically calls that function inside a Transition context. This means the action is already running inside a Transition when invoked.
-
-Since you're already in a Transition, calling `setOptimisticName` directly is valid. The `await` inside the async function keeps the Transition open until the server responds, at which point the optimistic state reverts to the real state.
-
-</DeepDive>
 
 ### Optimistically adding to a list {/*optimistically-adding-to-a-list*/}
 

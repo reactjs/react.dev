@@ -9,12 +9,11 @@
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
 
-import Head from 'next/head';
 import Link from 'next/link';
-import Router from 'next/router';
+import {useRouter} from 'next/navigation';
 import {lazy, useEffect} from 'react';
 import * as React from 'react';
-import {createPortal} from 'react-dom';
+import {createPortal, preconnect} from 'react-dom';
 import {siteConfig} from 'siteConfig';
 import type {ComponentType, PropsWithChildren} from 'react';
 import type {DocSearchModalProps} from '@docsearch/react/modal';
@@ -118,14 +117,13 @@ export function Search({
   },
 }: SearchProps) {
   useDocSearchKeyboardEvents({isOpen, onOpen, onClose});
+
+  const router = useRouter();
+
+  preconnect(`https://${options.appId}-dsn.algolia.net`);
+
   return (
     <>
-      <Head>
-        <link
-          rel="preconnect"
-          href={`https://${options.appId}-dsn.algolia.net`}
-        />
-      </Head>
       {isOpen &&
         createPortal(
           <DocSearchModal
@@ -134,7 +132,7 @@ export function Search({
             onClose={onClose}
             navigator={{
               navigate({itemUrl}: any) {
-                Router.push(itemUrl);
+                router.push(itemUrl);
               },
             }}
             transformItems={(items: any[]) => {

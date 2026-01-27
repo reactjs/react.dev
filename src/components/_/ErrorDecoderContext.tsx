@@ -1,3 +1,5 @@
+'use client';
+
 /**
  * Copyright (c) Meta Platforms, Inc. and affiliates.
  *
@@ -18,6 +20,8 @@ export const ErrorDecoderContext = createContext<
   | {errorMessage: string | null; errorCode: string | null}
   | typeof notInErrorDecoderContext
 >(notInErrorDecoderContext);
+
+export const ErrorDecoderProvider = ErrorDecoderContext.Provider;
 
 export const useErrorDecoderParams = () => {
   const params = useContext(ErrorDecoderContext);

@@ -72,6 +72,12 @@ const nextConfig = {
 
     return config;
   },
+  serverExternalPackages: [
+    'eslint',
+    '@babel/core',
+    '@babel/preset-react',
+    '@babel/plugin-transform-modules-commonjs',
+  ],
 };
 
 module.exports = nextConfig;

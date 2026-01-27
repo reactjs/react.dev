@@ -1,3 +1,5 @@
+'use client';
+
 /**
  * Copyright (c) Meta Platforms, Inc. and affiliates.
  *
@@ -6,7 +8,7 @@
  */
 
 import {useEffect, useState} from 'react';
-import {useErrorDecoderParams} from '../ErrorDecoderContext';
+import {useErrorDecoderParams} from '../_/ErrorDecoderContext';
 import cn from 'classnames';
 
 function replaceArgs(

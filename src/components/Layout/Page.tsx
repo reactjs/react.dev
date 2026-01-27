@@ -9,9 +9,11 @@
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
 
+'use client';
+
 import {Suspense} from 'react';
 import * as React from 'react';
-import {useRouter} from 'next/router';
+import {useRouter} from 'next/compat/router';
 import {SidebarNav} from './SidebarNav';
 import {Footer} from './Footer';
 import {Toc} from './Toc';
@@ -28,6 +30,7 @@ import {HomeContent} from './HomeContent';
 import {TopNav} from './TopNav';
 import cn from 'classnames';
 import Head from 'next/head';
+import {usePathname} from 'next/navigation';
 
 import(/* webpackPrefetch: true */ '../MDX/CodeBlock/CodeBlock');
 
@@ -43,6 +46,8 @@ interface PageProps {
   };
   section: 'learn' | 'reference' | 'community' | 'blog' | 'home' | 'unknown';
   languages?: Languages | null;
+  /** Should this being used with the Next.js App Router? */
+  appRouter?: boolean;
 }
 
 export function Page({
@@ -52,9 +57,14 @@ export function Page({
   meta,
   section,
   languages = null,
+  appRouter = false,
 }: PageProps) {
-  const {asPath} = useRouter();
-  const cleanedPath = asPath.split(/[\?\#]/)[0];
+  const pagesRouter = useRouter();
+  const pathname = usePathname()!;
+  const cleanedPath = pagesRouter
+    ? pagesRouter.asPath.split(/[\?\#]/)[0]
+    : pathname;
+
   const {route, nextRoute, prevRoute, breadcrumbs, order} = getRouteMeta(
     cleanedPath,
     routeTree
@@ -125,13 +135,15 @@ export function Page({
 
   return (
     <>
-      <Seo
-        title={title}
-        titleForTitleTag={meta.titleForTitleTag}
-        isHomePage={isHomePage}
-        image={`/images/og-` + section + '.png'}
-        searchOrder={searchOrder}
-      />
+      {!appRouter && (
+        <Seo
+          title={title}
+          titleForTitleTag={meta.titleForTitleTag}
+          isHomePage={isHomePage}
+          image={`/images/og-` + section + '.png'}
+          searchOrder={searchOrder}
+        />
+      )}
       {(isHomePage || isBlogIndex) && (
         <Head>
           <link
@@ -169,7 +181,7 @@ export function Page({
           <main className="min-w-0 isolate">
             <article
               className="font-normal break-words text-primary dark:text-primary-dark"
-              key={asPath}>
+              key={cleanedPath}>
               {content}
             </article>
             <div
@@ -193,7 +205,9 @@ export function Page({
           </main>
         </Suspense>
         <div className="hidden -mt-16 lg:max-w-custom-xs 2xl:block">
-          {showToc && toc.length > 0 && <Toc headings={toc} key={asPath} />}
+          {showToc && toc.length > 0 && (
+            <Toc headings={toc} key={cleanedPath} />
+          )}
         </div>
       </div>
     </>

@@ -388,13 +388,7 @@ See [Updating state based on the current state](#updating-state-based-on-current
 
 ### Updating state based on the current state {/*updating-state-based-on-current-state*/}
 
-The previous example toggles `isLiked` by reading from the current optimistic state:
-
-```js
-setOptimisticIsLiked(!optimisticIsLiked);
-```
-
-This works fine for simple cases, but can cause issues if the base state changes while your action is pending. For example, if another user's action changes the `isLiked` state on the server while you're waiting, your toggle could apply to the wrong value.
+The [previous example](#updating-props-or-state-optimistically) reads from the current optimistic state, which can cause issues if the base state changes while the action is pending. 
 
 To calculate the optimistic state relative to the current state, pass an updater function:
 
@@ -472,13 +466,6 @@ const [optimistic, dispatch] = useOptimistic(value, (current, action) => {
 });
 dispatch(action);
 ```
-
-| Use Case | Pattern | Example |
-|----------|---------|---------|
-| Boolean toggle | Updater | `setOptimistic(liked => !liked)` |
-| Increment/decrement | Updater | `setOptimistic(count => count + 1)` |
-| Add item to list | Reducer | `useOptimistic(items, (list, item) => [...list, item])` |
-| Multiple action types | Reducer | `useOptimistic(state, (current, action) => { switch(action.type) { ... } })` |
 
 **Use updaters** for simple calculations where the setter call naturally describes the update. This is similar to using `setState(prev => ...)` with `useState`.
 
@@ -1019,11 +1006,7 @@ function MyComponent({ items }) {
 
 ### My optimistic updates show stale values {/*my-optimistic-updates-show-stale-values*/}
 
-If your optimistic state seems to be based on old data, it might be because the canonical state changed while your action was pending. React will update your optimistic value by re-running `reducer` with the new state.
-
-If you're using the simple form without `reducer`, the value you passed directly replaces the state, which may not be what you want when the base state has changed. Consider using the `reducer` form to calculate the optimistic state relative to the current state. 
-
-See [Updating state based on the current state](#updating-state-based-on-current-state) for a detailed explanation.
+If your optimistic state seems to be based on old data, consider using an updater function or reducer to calculate the optimistic state relative to the current state.
 
 ```js
 // May show stale data if state changes during action
@@ -1034,6 +1017,8 @@ setOptimistic(5);  // Always sets to 5, even if count changed
 const [optimistic, adjust] = useOptimistic(count, (current, delta) => current + delta);
 adjust(1);  // Always adds 1 to whatever the current count is
 ```
+
+See [Updating state based on the current state](#updating-state-based-on-current-state) for details.
 
 ### I don't know if my optimistic update is pending {/*i-dont-know-if-my-optimistic-update-is-pending*/}
 

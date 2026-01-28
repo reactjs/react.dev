@@ -271,7 +271,7 @@ Here's a button that shows "Submitting..." while the Action is pending using the
 <Sandpack>
 
 ```js src/App.js
-import { useState } from 'react';
+import { useState, startTransition } from 'react';
 import Button from './Button';
 import { submitForm } from './actions.js';
 
@@ -279,9 +279,11 @@ export default function App() {
   const [count, setCount] = useState(0);
   return (
     <div>
-      <Button action={async () => {
+      <Button action={async () => {         
         await submitForm();
-        setCount(c => c + 1);
+        startTransition(() => {
+          setCount(c => c + 1);
+        });
       }}>Increment</Button>
       {count > 0 && <p>Submitted {count}!</p>}
     </div>

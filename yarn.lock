@@ -1225,10 +1225,10 @@
     unist-util-visit "^4.0.0"
     vfile "^5.0.0"
 
-"@next/env@15.1.11":
-  version "15.1.11"
-  resolved "https://registry.yarnpkg.com/@next/env/-/env-15.1.11.tgz#599a126f7ce56decc39cea46668cb60d96b66bc6"
-  integrity sha512-yp++FVldfLglEG5LoS2rXhGypPyoSOyY0kxZQJ2vnlYJeP8o318t5DrDu5Tqzr03qAhDWllAID/kOCsXNLcwKw==
+"@next/env@15.1.12":
+  version "15.1.12"
+  resolved "https://registry.yarnpkg.com/@next/env/-/env-15.1.12.tgz#0821510fa71871f1970cd216963d25a5970fe58a"
+  integrity sha512-EWKXZKsd9ZNn+gLqOtfwH2PQyWuWFmpLldjStw7mZgWgKu56vaqNkAGQrys2g5ER4CNXEDz3Khj2tD1pnsT9Uw==
 
 "@next/eslint-plugin-next@12.0.3":
   version "12.0.3"
@@ -5797,12 +5797,12 @@ next-tick@^1.1.0:
   resolved "https://registry.npmjs.org/next-tick/-/next-tick-1.1.0.tgz"
   integrity sha512-CXdUiJembsNjuToQvxayPZF9Vqht7hewsvy2sOWafLvi2awflj9mOC6bHIg50orX8IJvWKY9wYQ/zB2kogPslQ==
 
-next@15.1.11:
-  version "15.1.11"
-  resolved "https://registry.yarnpkg.com/next/-/next-15.1.11.tgz#8a70a236e02d8dd62fb0569bedfd5e4290e7af55"
-  integrity sha512-UiVJaOGhKST58AadwbFUZThlNBmYhKqaCs8bVtm4plTxsgKq0mJ0zTsp7t7j/rzsbAEj9WcAMdZCztjByi4EoQ==
+next@15.1.12:
+  version "15.1.12"
+  resolved "https://registry.yarnpkg.com/next/-/next-15.1.12.tgz#6d308fe6cb295faed724481b57f77b8abf4f5468"
+  integrity sha512-fClyhVCGTATGYBnETgKAi7YU5+bSwzM5rqNsY3Dg5wBoBMwE0NSvWA3fzwYj0ijl+LMeiV8P2QAnUFpeqDfTgw==
   dependencies:
-    "@next/env" "15.1.11"
+    "@next/env" "15.1.12"
     "@swc/counter" "0.1.3"
     "@swc/helpers" "0.5.15"
     busboy "1.6.0"

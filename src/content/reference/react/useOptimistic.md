@@ -1017,7 +1017,7 @@ function MyComponent({ items }) {
   // ...
 }
 
-// ✅ Also correct: calling from an Action prop
+// ✅ Also correct: calling from an Action
 function MyComponent({ items }) {
   const [isPending, setPending] = useOptimistic(false);
 

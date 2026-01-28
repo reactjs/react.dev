@@ -15,6 +15,14 @@ import visit from 'unist-util-visit';
 const CONTENT_ROOT = path.join(process.cwd(), 'src/content');
 const NOOP_ORIGIN = 'https://noop';
 
+const FOOTER = `
+---
+
+## Sitemap
+
+[Overview of all docs pages](/llms.txt)
+`;
+
 function rewriteInternalLinks(markdown: string): string {
   const processor = remark().use(() => (tree) => {
     visit(tree, 'link', (node: unknown) => {
@@ -86,7 +94,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
       const content = rewriteInternalLinks(raw);
       res.setHeader('Content-Type', 'text/plain; charset=utf-8');
       res.setHeader('Cache-Control', 'public, max-age=3600');
-      return res.status(200).send(content);
+      return res.status(200).send(content + FOOTER);
     } catch {
       // Try next candidate
     }

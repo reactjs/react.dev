@@ -29,7 +29,6 @@ import {IconHamburger} from 'components/Icon/IconHamburger';
 import {IconSearch} from 'components/Icon/IconSearch';
 import {Search} from 'components/Search';
 import {Logo} from '../../Logo';
-import {Feedback} from '../Feedback';
 import {SidebarRouteTree} from '../Sidebar';
 import type {RouteItem} from '../getRouteMeta';
 import {siteConfig} from 'siteConfig';
@@ -448,9 +447,6 @@ export default function TopNav({
                 </Suspense>
                 <div className="h-16" />
               </nav>
-              <div className="fixed bottom-0 hidden lg:block">
-                <Feedback />
-              </div>
             </aside>
           </div>
         )}

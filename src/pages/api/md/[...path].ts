@@ -9,6 +9,51 @@ import type {NextApiRequest, NextApiResponse} from 'next';
 import fs from 'fs';
 import path from 'path';
 
+import remark from 'remark';
+import visit from 'unist-util-visit';
+
+const CONTENT_ROOT = path.join(process.cwd(), 'src/content');
+const NOOP_ORIGIN = 'https://noop';
+
+function rewriteInternalLinks(markdown: string): string {
+  const processor = remark().use(() => (tree) => {
+    visit(tree, 'link', (node: unknown) => {
+      if (typeof node !== 'object' || node === null || !('url' in node)) {
+        return;
+      }
+      if (typeof node.url !== 'string') {
+        return;
+      }
+
+      if (!node.url.startsWith('/')) {
+        return;
+      }
+
+      let url: URL;
+      try {
+        url = new URL(node.url, NOOP_ORIGIN);
+      } catch {
+        return;
+      }
+
+      const pathname = url.pathname;
+
+      // Skip links that already have a file extension (e.g. .png, .svg)
+      if (/\.\w+$/.test(pathname)) {
+        return;
+      }
+
+      url.pathname = pathname.endsWith('/')
+        ? `${pathname.slice(0, -1)}.md`
+        : `${pathname}.md`;
+
+      node.url = url.toString().replace(NOOP_ORIGIN, '');
+    });
+  });
+
+  return processor.processSync(markdown).toString();
+}
+
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
   const pathSegments = req.query.path;
   if (!pathSegments) {
@@ -26,13 +71,19 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
 
   // Try exact path first, then with /index
   const candidates = [
-    path.join(process.cwd(), 'src/content', filePath + '.md'),
-    path.join(process.cwd(), 'src/content', filePath, 'index.md'),
+    path.join(CONTENT_ROOT, filePath + '.md'),
+    path.join(CONTENT_ROOT, filePath, 'index.md'),
   ];
 
-  for (const fullPath of candidates) {
+  for (const candidate of candidates) {
+    const fullPath = path.resolve(candidate);
+    if (!fullPath.startsWith(CONTENT_ROOT + path.sep)) {
+      continue;
+    }
+
     try {
-      const content = fs.readFileSync(fullPath, 'utf8');
+      const raw = fs.readFileSync(fullPath, 'utf8');
+      const content = rewriteInternalLinks(raw);
       res.setHeader('Content-Type', 'text/plain; charset=utf-8');
       res.setHeader('Cache-Control', 'public, max-age=3600');
       return res.status(200).send(content);

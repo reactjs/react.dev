@@ -14,10 +14,22 @@ const visit = require('unist-util-visit');
 const retext = require('retext');
 const smartypants = require('retext-smartypants');
 
-function check(parent) {
+function check(node, parent) {
+  if (node.data?.skipSmartyPants) return false;
   if (parent.tagName === 'script') return false;
   if (parent.tagName === 'style') return false;
   return true;
+}
+
+function markSkip(node) {
+  if (!node) return;
+  node.data ??= {};
+  node.data.skipSmartyPants = true;
+  if (Array.isArray(node.children)) {
+    for (const child of node.children) {
+      markSkip(child);
+    }
+  }
 }
 
 module.exports = function (options) {
@@ -43,8 +55,14 @@ module.exports = function (options) {
     let startIndex = 0;
     const textOrInlineCodeNodes = [];
 
+    visit(tree, 'mdxJsxFlowElement', (node) => {
+      if (['TerminalBlock'].includes(node.name)) {
+        markSkip(node); // Mark all children to skip smarty pants
+      }
+    });
+
     visit(tree, ['text', 'inlineCode'], (node, _, parent) => {
-      if (check(parent)) {
+      if (check(node, parent)) {
         if (node.type === 'text') allText += node.value;
         // for the case when inlineCode contains just one part of quote: `foo'bar`
         else allText += 'A'.repeat(node.value.length);

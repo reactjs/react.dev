@@ -8,11 +8,11 @@ body:
       value: |
         ## Apply to be included as a recommended React framework
 
-        _This form is for framework authors to apply to be included as a recommended [React framework](https://react.dev/learn/start-a-new-react-project). If you are not a framework author, please contact the authors before submitting._
+        _This form is for framework authors to apply to be included as a recommended [React framework](https://react.dev/learn/creating-a-react-app). If you are not a framework author, please contact the authors before submitting._
         
         Our goal when recommending a framework is to start developers with a React project that solves common problems like code splitting, data fetching, routing, and HTML generation without any extra work later. We believe this will allow users to get started quickly with React, and scale their app to production.
         
-        While we understand that many frameworks may want to be featured, this page is not a place to advertise every possible React framework or all frameworks that you can add React to. There are many great frameworks that offer support for React that are not listed in our guides. The frameworks we recommend have invested significantly in the React ecosystem, and collaborated with the React team to be compatible with our [full-stack React architecture vision](https://react.dev/learn/start-a-new-react-project#which-features-make-up-the-react-teams-full-stack-architecture-vision).
+        While we understand that many frameworks may want to be featured, this page is not a place to advertise every possible React framework or all frameworks that you can add React to. There are many great frameworks that offer support for React that are not listed in our guides. The frameworks we recommend have invested significantly in the React ecosystem, and collaborated with the React team to be compatible with our [full-stack React architecture vision](https://react.dev/learn/creating-a-react-app#which-features-make-up-the-react-teams-full-stack-architecture-vision).
         
         To be included, frameworks must meet the following criteria:
         

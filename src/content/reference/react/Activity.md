@@ -48,6 +48,7 @@ In this way, Activity can be thought of as a mechanism for rendering "background
 #### Caveats {/*caveats*/}
 
 - If an Activity is rendered inside of a [ViewTransition](/reference/react/ViewTransition), and it becomes visible as a result of an update caused by [startTransition](/reference/react/startTransition), it will activate the ViewTransition's `enter` animation. If it becomes hidden, it will activate its `exit` animation.
+- An Activity that just renders text will not render anything rather than rendering hidden text, because there’s no corresponding DOM element to apply visibility changes to. For example, `<Activity mode="hidden"><ComponentThatJustReturnsText /></Activity>` will not produce any output in the DOM for `const ComponentThatJustReturnsText = () => "Hello, World!"`.
 
 ---
 
@@ -189,7 +190,7 @@ and check out the new behavior:
 <Sandpack>
 
 ```js src/App.js active
-import { useState } from 'react'; import { unstable_Activity, Activity as ActivityStable} from 'react'; let Activity = ActivityStable ?? unstable_Activity;
+import { Activity, useState } from 'react';
 
 import Sidebar from './Sidebar.js';
 
@@ -375,7 +376,7 @@ If we switch to using an Activity boundary to show and hide the active tab, we c
 <Sandpack>
 
 ```js src/App.js active
-import { useState } from 'react'; import { unstable_Activity, Activity as ActivityStable} from 'react'; let Activity = ActivityStable ?? unstable_Activity;
+import { Activity, useState } from 'react';
 import TabButton from './TabButton.js';
 import Home from './Home.js';
 import Contact from './Contact.js';
@@ -619,7 +620,7 @@ Try clicking the Posts tab now:
 <Sandpack>
 
 ```js src/App.js
-import { useState, Suspense } from 'react';  import { unstable_Activity, Activity as ActivityStable} from 'react'; let Activity = ActivityStable ?? unstable_Activity;
+import { Activity, useState, Suspense } from 'react';
 import TabButton from './TabButton.js';
 import Home from './Home.js';
 import Posts from './Posts.js';
@@ -1009,7 +1010,7 @@ Let's update `App` to hide the inactive tab with a hidden Activity boundary inst
 <Sandpack>
 
 ```js src/App.js active
-import { useState } from 'react'; import { unstable_Activity, Activity as ActivityStable} from 'react'; let Activity = ActivityStable ?? unstable_Activity;
+import { Activity, useState } from 'react';
 import TabButton from './TabButton.js';
 import Home from './Home.js';
 import Video from './Video.js';
@@ -1126,7 +1127,7 @@ Let's see the new behavior. Try playing the video, switching to the Home tab, th
 <Sandpack>
 
 ```js src/App.js active
-import { useState } from 'react';  import { unstable_Activity, Activity as ActivityStable} from 'react'; let Activity = ActivityStable ?? unstable_Activity;
+import { Activity, useState } from 'react';
 import TabButton from './TabButton.js';
 import Home from './Home.js';
 import Video from './Video.js';

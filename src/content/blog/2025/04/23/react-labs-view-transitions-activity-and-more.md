@@ -16,14 +16,6 @@ In React Labs posts, we write about projects in active research and development.
 </Intro>
 
 
-<Note>
-
-React Conf 2025 is scheduled for October 7–8 in Henderson, Nevada!
-
-Watch the livestream on [the React Conf website](https://conf.react.dev).
-
-</Note>
-
 Today, we're excited to release documentation for two new experimental features that are ready for testing:
 
 - [View Transitions](#view-transitions)
@@ -39,6 +31,14 @@ We're also sharing updates on new features currently in development:
 ---
 
 # New Experimental Features {/*new-experimental-features*/}
+
+<Note>
+
+`<Activity />` has shipped in `react@19.2`.
+
+`<ViewTransition />` and `addTransitionType` are now available in `react@canary`.
+
+</Note>
 
 View Transitions and Activity are now ready for testing in `react@experimental`. These features have been tested in production and are stable, but the final API may still change as we incorporate feedback.
 
@@ -11543,7 +11543,7 @@ Try searching for a video, selecting it, and clicking "back":
 <Sandpack>
 
 ```js src/App.js
-import { ViewTransition } from "react"; import Details from "./Details"; import Home from "./Home"; import { useRouter } from "./router";  import { unstable_Activity, Activity as ActivityStable} from 'react'; let Activity = ActivityStable ?? unstable_Activity;
+import { Activity, ViewTransition } from "react"; import Details from "./Details"; import Home from "./Home"; import { useRouter } from "./router";
 
 export default function App() {
   const { url } = useRouter();
@@ -12880,7 +12880,7 @@ With this update, if the content on the next page has time to pre-render, it wil
 <Sandpack>
 
 ```js src/App.js
-import { ViewTransition, use } from "react"; import Details from "./Details"; import Home from "./Home"; import { useRouter } from "./router"; import {fetchVideos} from './data';  import { unstable_Activity, Activity as ActivityStable} from 'react'; let Activity = ActivityStable ?? unstable_Activity;
+import { Activity, ViewTransition, use } from "react"; import Details from "./Details"; import Home from "./Home"; import { useRouter } from "./router"; import {fetchVideos} from './data';
 
 export default function App() {
   const { url } = useRouter();

@@ -9,6 +9,14 @@ import type {NextApiRequest, NextApiResponse} from 'next';
 import fs from 'fs';
 import path from 'path';
 
+const FOOTER = `
+---
+
+## Sitemap
+
+[Overview of all docs pages](/llms.txt)
+`;
+
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
   const pathSegments = req.query.path;
   if (!pathSegments) {
@@ -35,7 +43,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
       const content = fs.readFileSync(fullPath, 'utf8');
       res.setHeader('Content-Type', 'text/plain; charset=utf-8');
       res.setHeader('Cache-Control', 'public, max-age=3600');
-      return res.status(200).send(content);
+      return res.status(200).send(content + FOOTER);
     } catch {
       // Try next candidate
     }

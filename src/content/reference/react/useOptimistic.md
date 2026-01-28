@@ -7,7 +7,7 @@ title: useOptimistic
 `useOptimistic` is a React Hook that lets you optimistically update the UI.
 
 ```js
-const [optimisticState, addOptimistic] = useOptimistic(state, reducer?);
+const [optimistic, setOptimistic] = useOptimistic(state, reducer?);
 ```
 
 </Intro>

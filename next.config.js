@@ -19,6 +19,14 @@ const nextConfig = {
     scrollRestoration: true,
     reactCompiler: true,
   },
+  async rewrites() {
+    return [
+      {
+        source: '/:path*.md',
+        destination: '/api/md/:path*',
+      },
+    ];
+  },
   env: {},
   webpack: (config, {dev, isServer, ...options}) => {
     if (process.env.ANALYZE) {

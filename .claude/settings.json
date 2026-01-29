@@ -13,6 +13,11 @@
   },
   "permissions": {
     "allow": [
+      "Skill(docs-voice)",
+      "Skill(docs-components)",
+      "Skill(docs-sandpack)",
+      "Skill(docs-writer-learn)",
+      "Skill(docs-writer-reference)",
       "Bash(yarn lint:*)",
       "Bash(yarn lint-heading-ids:*)",
       "Bash(yarn lint:fix:*)",

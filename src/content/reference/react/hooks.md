@@ -79,6 +79,9 @@ There are two rarely used variations of `useEffect` with differences in timing:
 * [`useLayoutEffect`](/reference/react/useLayoutEffect) fires before the browser repaints the screen. You can measure layout here.
 * [`useInsertionEffect`](/reference/react/useInsertionEffect) fires before React makes changes to the DOM. Libraries can insert dynamic CSS here.
 
+You can also create an event to fire from any Effect hook using:
+
+- [`useEffectEvent`](/reference/react/useEffectEvent) lets you extract non-reactive logic from Effects into reusable functions.
 ---
 
 ## Performance Hooks {/*performance-hooks*/}

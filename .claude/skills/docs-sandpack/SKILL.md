@@ -1,9 +1,35 @@
 ---
 name: docs-sandpack
-description: Sandpack patterns for React documentation. Invoke when adding interactive code examples.
+description: Use when adding interactive code examples to React docs.
 ---
 
 # Sandpack Patterns
+
+## Quick Start Template
+
+Most examples are single-file. Copy this and modify:
+
+```mdx
+<Sandpack>
+
+` ` `js
+import { useState } from 'react';
+
+export default function Example() {
+  const [value, setValue] = useState(0);
+
+  return (
+    <button onClick={() => setValue(value + 1)}>
+      Clicked {value} times
+    </button>
+  );
+}
+` ` `
+
+</Sandpack>
+```
+
+---
 
 ## File Naming
 
@@ -131,6 +157,50 @@ const mounted = useRef(false);
 useEffect(() => { mounted.current = true; }, []);
 ```
 
+## forwardRef and memo Patterns
+
+### forwardRef - Use Named Function
+```js
+// ✅ Named function for DevTools display name
+const MyInput = forwardRef(function MyInput(props, ref) {
+  return <input {...props} ref={ref} />;
+});
+
+// 🚫 Anonymous loses name
+const MyInput = forwardRef((props, ref) => { ... });
+```
+
+### memo - Use Named Function
+```js
+// ✅ Preserves component name
+const Greeting = memo(function Greeting({ name }) {
+  return <h1>Hello, {name}</h1>;
+});
+```
+
+## Line Length
+
+- Prose: ~80 characters
+- Code: ~60-70 characters
+- Break long lines to avoid horizontal scrolling
+
+## Anti-Patterns
+
+| Pattern | Problem | Fix |
+|---------|---------|-----|
+| `const Comp = () => {}` | Not standard | `function Comp() {}` |
+| `onClick={(event) => ...}` | Conflicts with global | `onClick={(e) => ...}` |
+| `useState` for non-rendered values | Re-renders | Use `useRef` |
+| Reading `window` during render | Hydration mismatch | Check in useEffect |
+| Single-line if without braces | Harder to debug | Use multiline with braces |
+| Chained `createRoot().render()` | Less clear | Two statements |
+| `//...` without space | Inconsistent | `// ...` with space |
+| Tabs | Inconsistent | 2 spaces |
+| `ReactDOM.render` | Deprecated | Use `createRoot` |
+| Fake package names | Confusing | Use `'./your-storage-layer'` |
+| `PropsWithChildren` | Outdated | `children?: ReactNode` |
+| Missing `key` in lists | Warnings | Always include key |
+
 ## Additional Code Quality Rules
 
 ### Always Include Keys in Lists
@@ -178,6 +248,68 @@ When modifying code in examples with line highlights (`{2-4}`), **always update 
 
 - Capitalize file names for component files: `Gallery.js` not `gallery.js`
 - After initially explaining files are in `src/`, refer to files by name only: `Gallery.js` not `src/Gallery.js`
+
+## Naming Conventions in Code
+
+**Components:** PascalCase
+- `Profile`, `Avatar`, `TodoList`, `PackingList`
+
+**State variables:** Destructured pattern
+- `const [count, setCount] = useState(0)`
+- Booleans: `[isOnline, setIsOnline]`, `[isPacked, setIsPacked]`
+- Status strings: `'typing'`, `'submitting'`, `'success'`, `'error'`
+
+**Event handlers:**
+- `handleClick`, `handleSubmit`, `handleAddTask`
+
+**Props for callbacks:**
+- `onClick`, `onChange`, `onAddTask`, `onSelect`
+
+**Custom Hooks:**
+- `useOnlineStatus`, `useChatRoom`, `useFormInput`
+
+**Reducer actions:**
+- Past tense: `'added'`, `'changed'`, `'deleted'`
+- Snake_case compounds: `'changed_selection'`, `'sent_message'`
+
+**Updater functions:** Single letter
+- `setCount(n => n + 1)`
+
+### Pedagogical Code Markers
+
+**Wrong vs right code:**
+```js
+// 🔴 Avoid: redundant state and unnecessary Effect
+// ✅ Good: calculated during rendering
+```
+
+**Console.log for lifecycle teaching:**
+```js
+console.log('✅ Connecting...');
+console.log('❌ Disconnected.');
+```
+
+### Server/Client Labeling
+
+```js
+// Server Component
+async function Notes() {
+  const notes = await db.notes.getAll();
+}
+
+// Client Component
+"use client"
+export default function Expandable({children}) {
+  const [expanded, setExpanded] = useState(false);
+}
+```
+
+### Bundle Size Annotations
+
+```js
+import marked from 'marked'; // 35.9K (11.2K gzipped)
+import sanitizeHtml from 'sanitize-html'; // 206K (63.3K gzipped)
+```
 
 ---
 

@@ -40,7 +40,7 @@ It should have *either* `children` or a `src` prop.
 
 Other supported props:
 
-* `async`: a boolean. Allows the browser to defer execution of the script until the rest of the document has been processed — the preferred behavior for performance.
+* `async`: a boolean. Scripts are fetched in parallel to parsing and evaluated as soon as they are available (potentially out of order) — the preferred behavior for performance.
 *  `crossOrigin`: a string. The [CORS policy](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/crossorigin) to use. Its possible values are `anonymous` and `use-credentials`.
 * `fetchPriority`: a string. Lets the browser rank scripts in priority when fetching multiple scripts at the same time. Can be `"high"`, `"low"`, or `"auto"` (the default).
 * `integrity`: a string. A cryptographic hash of the script, to [verify its authenticity](https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity).
@@ -57,7 +57,7 @@ Props that disable React's [special treatment of scripts](#special-rendering-beh
 Props that are **not recommended** for use with React:
 
 * `blocking`: a string. If set to `"render"`, instructs the browser not to render the page until the scriptsheet is loaded. React provides more fine-grained control using Suspense.
-* `defer`: a string. Prevents the browser from executing the script until the document is done loading. Not compatible with streaming server-rendered components. Use the `async` prop instead.
+* `defer`: a boolean. Scripts are fetched in parallel to parsing but deferred from execution until the document has finished loading (in document order). Not compatible with streaming server-rendered components. Use the `async` prop instead.
 
 #### Special rendering behavior {/*special-rendering-behavior*/}
 

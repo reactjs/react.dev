@@ -41,7 +41,14 @@ interface PageProps {
     version?: 'experimental' | 'canary';
     description?: string;
   };
-  section: 'learn' | 'reference' | 'community' | 'blog' | 'home' | 'unknown';
+  section:
+    | 'learn'
+    | 'reference'
+    | 'community'
+    | 'blog'
+    | 'home'
+    | 'careers'
+    | 'unknown';
   languages?: Languages | null;
 }
 
@@ -93,7 +100,7 @@ export function Page({
               <LanguagesContext value={languages}>{children}</LanguagesContext>
             </TocContext>
           </div>
-          {!isBlogIndex && (
+          {!isBlogIndex && section !== 'careers' && (
             <DocsPageFooter
               route={route}
               nextRoute={nextRoute}

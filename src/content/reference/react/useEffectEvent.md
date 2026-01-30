@@ -20,7 +20,7 @@ const onEvent = useEffectEvent(callback)
 
 ### `useEffectEvent(callback)` {/*useeffectevent*/}
 
-Call `useEffectEvent` at the top level of your component to declare an Effect Event.
+Call `useEffectEvent` at the top level of your component to create an Effect Event.
 
 ```js {4,6}
 import { useEffectEvent, useEffect } from 'react';
@@ -32,7 +32,7 @@ function ChatRoom({ roomId, theme }) {
 }
 ```
 
-Effect Events are functions you can call inside Effects, such as `useEffect`.
+Effect Events are a part of your Effect logic, but they behave more like an event handler. They always “see” the latest values of your props and state without re-synchronizing your Effect, so they're excluded from Effect dependencies. See [Separating Events from Effects](/learn/separating-events-from-effects#extracting-non-reactive-logic-out-of-effects) to learn more. 
 
 [See more examples below.](#usage)
 
@@ -70,7 +70,7 @@ This is a deliberate design choice. Effect Events are meant to be called only fr
 
 The non-stable identity acts as a runtime assertion: if your code incorrectly depends on the function identity, you'll see the Effect re-running on every render, making the bug obvious.
 
-This design reinforces the rule that Effect Events are "escape hatches" for reading the latest values, not general purpose callbacks to be passed around.
+This design reinforces that Effect Events conceptually belong to a particular effect, and are not a general purpose API to opt-out of reactivity.
 
 </DeepDive>
 

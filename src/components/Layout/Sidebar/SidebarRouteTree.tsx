@@ -9,7 +9,7 @@
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
 
-import {useRef, useLayoutEffect, Fragment} from 'react';
+import {useRef, useLayoutEffect, useState, useEffect, Fragment} from 'react';
 
 import cn from 'classnames';
 import {useRouter} from 'next/router';
@@ -78,6 +78,95 @@ function CollapseWrapper({
   );
 }
 
+interface SidebarItemProps {
+  item: RouteItem;
+  level: number;
+  isForceExpanded: boolean;
+  breadcrumbs: RouteItem[];
+  slug: string;
+  pendingRoute: string | null;
+}
+
+function SidebarItem({
+  item,
+  level,
+  isForceExpanded,
+  breadcrumbs,
+  slug,
+  pendingRoute,
+}: SidebarItemProps) {
+  const {path, title, routes, version, heading} = item;
+  const selected = slug === path;
+  const isBreadcrumb =
+    breadcrumbs.length > 1 && breadcrumbs[breadcrumbs.length - 1].path === path;
+
+  const [isCollapsed, setIsCollapsed] = useState(false);
+
+  const shouldBeExpanded = isForceExpanded || isBreadcrumb || selected;
+  const isExpanded = shouldBeExpanded && !isCollapsed;
+
+  useEffect(() => {
+    if (!selected) {
+      setIsCollapsed(false);
+    }
+  }, [selected]);
+
+  const handleClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
+    if (selected) {
+      event.preventDefault();
+      setIsCollapsed((prev) => !prev);
+    }
+  };
+
+  if (!path || heading) {
+    return (
+      <SidebarRouteTree
+        level={level + 1}
+        isForceExpanded={isForceExpanded}
+        routeTree={{title, routes}}
+        breadcrumbs={[]}
+      />
+    );
+  } else if (routes) {
+    return (
+      <li>
+        <SidebarLink
+          href={path}
+          isPending={pendingRoute === path}
+          selected={selected}
+          level={level}
+          title={title}
+          version={version}
+          isExpanded={isExpanded}
+          hideArrow={isForceExpanded}
+          onClick={handleClick}
+        />
+        <CollapseWrapper duration={250} isExpanded={isExpanded}>
+          <SidebarRouteTree
+            isForceExpanded={isForceExpanded}
+            routeTree={{title, routes}}
+            breadcrumbs={breadcrumbs}
+            level={level + 1}
+          />
+        </CollapseWrapper>
+      </li>
+    );
+  } else {
+    return (
+      <li>
+        <SidebarLink
+          isPending={pendingRoute === path}
+          href={path}
+          selected={selected}
+          level={level}
+          title={title}
+          version={version}
+        />
+      </li>
+    );
+  }
+}
+
 export function SidebarRouteTree({
   isForceExpanded,
   breadcrumbs,
@@ -89,102 +178,44 @@ export function SidebarRouteTree({
   const currentRoutes = routeTree.routes as RouteItem[];
   return (
     <ul>
-      {currentRoutes.map(
-        (
-          {
-            path,
-            title,
-            routes,
-            version,
-            heading,
-            hasSectionHeader,
-            sectionHeader,
-          },
-          index
-        ) => {
-          const selected = slug === path;
-          let listItem = null;
-          if (!path || heading) {
-            // if current route item has no path and children treat it as an API sidebar heading
-            listItem = (
-              <SidebarRouteTree
-                level={level + 1}
-                isForceExpanded={isForceExpanded}
-                routeTree={{title, routes}}
-                breadcrumbs={[]}
-              />
-            );
-          } else if (routes) {
-            // if route has a path and child routes, treat it as an expandable sidebar item
-            const isBreadcrumb =
-              breadcrumbs.length > 1 &&
-              breadcrumbs[breadcrumbs.length - 1].path === path;
-            const isExpanded = isForceExpanded || isBreadcrumb || selected;
-            listItem = (
-              <li key={`${title}-${path}-${level}-heading`}>
-                <SidebarLink
-                  key={`${title}-${path}-${level}-link`}
-                  href={path}
-                  isPending={pendingRoute === path}
-                  selected={selected}
-                  level={level}
-                  title={title}
-                  version={version}
-                  isExpanded={isExpanded}
-                  hideArrow={isForceExpanded}
+      {currentRoutes.map((item, index) => {
+        const {path, title, hasSectionHeader, sectionHeader} = item;
+        if (hasSectionHeader) {
+          let sectionHeaderText =
+            sectionHeader != null
+              ? sectionHeader.replace('{{version}}', siteConfig.version)
+              : '';
+          return (
+            <Fragment key={`${sectionHeaderText}-${level}-separator`}>
+              {index !== 0 && (
+                <li
+                  role="separator"
+                  className="mt-4 mb-2 ms-5 border-b border-border dark:border-border-dark"
                 />
-                <CollapseWrapper duration={250} isExpanded={isExpanded}>
-                  <SidebarRouteTree
-                    isForceExpanded={isForceExpanded}
-                    routeTree={{title, routes}}
-                    breadcrumbs={breadcrumbs}
-                    level={level + 1}
-                  />
-                </CollapseWrapper>
-              </li>
-            );
-          } else {
-            // if route has a path and no child routes, treat it as a sidebar link
-            listItem = (
-              <li key={`${title}-${path}-${level}-link`}>
-                <SidebarLink
-                  isPending={pendingRoute === path}
-                  href={path}
-                  selected={selected}
-                  level={level}
-                  title={title}
-                  version={version}
-                />
-              </li>
-            );
-          }
-          if (hasSectionHeader) {
-            let sectionHeaderText =
-              sectionHeader != null
-                ? sectionHeader.replace('{{version}}', siteConfig.version)
-                : '';
-            return (
-              <Fragment key={`${sectionHeaderText}-${level}-separator`}>
-                {index !== 0 && (
-                  <li
-                    role="separator"
-                    className="mt-4 mb-2 ms-5 border-b border-border dark:border-border-dark"
-                  />
-                )}
-                <h3
-                  className={cn(
-                    'mb-1 text-sm font-bold ms-5 text-tertiary dark:text-tertiary-dark',
-                    index !== 0 && 'mt-2'
-                  )}>
-                  {sectionHeaderText}
-                </h3>
-              </Fragment>
-            );
-          } else {
-            return listItem;
-          }
+              )}
+              <h3
+                className={cn(
+                  'mb-1 text-sm font-bold ms-5 text-tertiary dark:text-tertiary-dark',
+                  index !== 0 && 'mt-2'
+                )}>
+                {sectionHeaderText}
+              </h3>
+            </Fragment>
+          );
+        } else {
+          return (
+            <SidebarItem
+              key={`${title}-${path}-${level}-item`}
+              item={item}
+              level={level}
+              isForceExpanded={isForceExpanded}
+              breadcrumbs={breadcrumbs}
+              slug={slug}
+              pendingRoute={pendingRoute}
+            />
+          );
         }
-      )}
+      })}
     </ul>
   );
 }

@@ -83,7 +83,7 @@ function handleClick() {
 
 #### How optimistic state works {/*how-optimistic-state-works*/}
 
-`useOptimistic` lets you show a temporary value while a Transition is running:
+`useOptimistic` lets you show a temporary value while a Action is in progress:
 
 ```js
 const [value, setValue] = useState('a');
@@ -91,27 +91,38 @@ const [optimistic, setOptimistic] = useOptimistic(value);
 
 startTransition(async () => {
   setOptimistic('b');
-  setValue('b');
+  const newValue = await saveChanges('b');
+  setValue(newValue);
 });
 ```
 
-When the setter is called inside an Action, `useOptimistic` will trigger a re-render to show that value while the Action is in progress. Otherwise, the `value` passed to `useOptimistic` is returned.
+When the setter is called inside an Action, `useOptimistic` will trigger a re-render to show that state while the Action is in progress. Otherwise, the `value` passed to `useOptimistic` is returned.
 
 This state is called the "optimistic" because it is used to immediately present the user with the result of performing an Action, even though the Action actually takes time to complete.
 
-When the Action completes, `useOptimistic` returns the current `value` you passed in.
-
 **How the update flows**
 
-1. **Immediate optimistic update**: When `setOptimistic('b')` is called, `optimistic` immediately becomes `'b'` and React renders with this state.
+1. **Update immediately**: When `setOptimistic('b')` is called, React immediately renders with `'b'`.
 
-2. **Transition scheduled**: `setValue('b')` schedules an update to the real state, but this update won't commit until the Action completes.
+2. **(Optional) await in Action**: If you await in the Action, React continues showing `'b'`.
 
-3. **Optimistic state persists during async work**: If the Transition suspends or uses `await`, the optimistic `'b'` continues showing while React waits.
+3. **Transition scheduled**: `setValue(newValue)` schedules an update to the real state.
 
-4. **Single render commit**: When all async work finishes, the new state (`'b'`) and optimistic state (`'b'`) commit together in a single render.
+4. **(Optional) wait for Suspense**: If `newValue` suspends, React continues showing `'b'`.
+
+5. **Single render commit**: Finally, the `newValue` is commits for `value` and `optimistic`.
 
 There's no extra render to "clear" the optimistic state. The optimistic and real state converge in the same render when the Transition completes.
+
+<Note>
+
+#### Optimistic state is temporary {/*optimistic-state-is-temporary*/}
+
+Optimistic state is only renders while an Action is in progress, otherwise `value` is rendered.
+
+If `saveChanges` returned `'c'`, then both `value` and `optimistic` will be `'c'`, not `'b'`.
+
+</Note>
 
 **How the final state is determined**
 

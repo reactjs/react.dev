@@ -205,27 +205,25 @@ import EditName from './EditName';
 export default function App() {
   const [name, setName] = useState('Alice');
   
-  function onSubmit(newName) {
-    startTransition(() => {
-      setName(newName);
-    });
-  }
-  return <EditName name={name} onSubmit={onSubmit} />;
+  return <EditName name={name} action={setName} />;
 }
 ```
 
 ```js src/EditName.js active
-import { useOptimistic } from 'react';
+import { useOptimistic, startTransition } from 'react';
 import { updateName } from './actions.js';
 
-export default function EditName({ name, onSubmit }) {
+export default function EditName({ name, action }) {
   const [optimisticName, setOptimisticName] = useOptimistic(name);
 
   async function submitAction(formData) {
     const newName = formData.get('name');
     setOptimisticName(newName);
+    
     const updatedName = await updateName(newName);
-    onSubmit(updatedName);  
+    startTransition(() => {
+      action(updatedName);
+    })
   }
 
   return (

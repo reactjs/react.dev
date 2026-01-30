@@ -32,15 +32,21 @@ For tone, capitalization, jargon, and prose patterns, invoke `/docs-voice`.
 **Do:**
 - Start with single-line description: "`useState` is a React Hook that lets you..."
 - Include Parameters, Returns, Caveats sections for every API
-- Document all corner cases and edge behaviors
+- Document edge cases most developers will encounter
 - Use section dividers between major sections
 - Include "See more examples below" links
+- Be assertive, not hedging - "This is designed for..." not "This helps avoid issues with..."
+- State facts, not benefits - "The callback always accesses the latest values" not "This helps avoid stale closures"
+- Use minimal but meaningful names - `onEvent` or `onTick` over `onSomething`
 
 **Don't:**
 - Skip the InlineToc component
 - Omit error cases or caveats
 - Use conversational language
 - Mix teaching with reference (that's Learn's job)
+- Document past bugs or fixed issues
+- Include niche edge cases (e.g., `this` binding, rare class patterns)
+- Add phrases explaining "why you'd want this" - the Usage section examples do that
 - Exception: Pitfall and DeepDive asides can use slightly conversational phrasing
 
 ---
@@ -641,6 +647,48 @@ For Sandpack-specific patterns and code style, invoke `/docs-sandpack`.
 - Combine related warnings into one with titled subsections, or separate with prose/code
 - Consecutive DeepDives OK for multi-part explorations
 - See `/docs-components` Callout Spacing Rules
+
+---
+
+## Content Principles
+
+### Intro Section
+- **One sentence, ~15 words max** - State what the Hook does, not how it works
+- ✅ "`useEffectEvent` is a React Hook that lets you separate events from Effects."
+- ❌ "`useEffectEvent` is a React Hook that lets you extract non-reactive logic from your Effects into a reusable function called an Effect Event."
+
+### Reference Code Example
+- Show just the API call (5-10 lines), not a full component
+- Move full component examples to Usage section
+
+### Usage Section Structure
+1. **First example: Core mental model** - Show the canonical use case with simplest concrete example
+2. **Subsequent examples: Canonical use cases** - Name the *why* (e.g., "Avoid reconnecting to external systems"), show a concrete *how*
+   - Prefer broad canonical use cases over multiple narrow concrete examples
+   - The section title IS the teaching - "When would I use this?" should be answered by the heading
+
+### What to Include vs. Exclude
+- **Never** document past bugs or fixed issues
+- **Include** edge cases most developers will encounter
+- **Exclude** niche edge cases (e.g., `this` binding, rare class patterns)
+
+### Caveats Section
+- Include rules the linter enforces or that cause immediate errors
+- Include fundamental usage restrictions
+- Exclude implementation details unless they affect usage
+- Exclude repetition of things explained elsewhere
+- Keep each caveat to one sentence when possible
+
+### Troubleshooting Section
+- Error headings only: "I'm getting an error: '[message]'" format
+- Never document past bugs - if it's fixed, it doesn't belong here
+- Focus on errors developers will actually encounter today
+
+### DeepDive Content
+- **Goldilocks principle** - Deep enough for curious developers, short enough to not overwhelm
+- Answer "why is it designed this way?" - not exhaustive technical details
+- Readers who skip it should miss nothing essential for using the API
+- If the explanation is getting long, you're probably explaining too much
 
 ---
 

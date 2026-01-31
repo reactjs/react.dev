@@ -1,3 +1,10 @@
+/**
+ * Copyright (c) Meta Platforms, Inc. and affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 /*
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
@@ -38,6 +45,7 @@ function CollapseWrapper({
   // Disable pointer events while animating.
   const isExpandedRef = useRef(isExpanded);
   if (typeof window !== 'undefined') {
+    // eslint-disable-next-line react-compiler/react-compiler
     // eslint-disable-next-line react-hooks/rules-of-hooks
     useLayoutEffect(() => {
       const wasExpanded = isExpandedRef.current;

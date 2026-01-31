@@ -7,6 +7,8 @@ on:
       - main # change this if your default branch is named differently
   workflow_dispatch:
 
+permissions: {}
+
 jobs:
   analyze:
     runs-on: ubuntu-latest
@@ -23,7 +25,7 @@ jobs:
       - name: Restore cached node_modules
         uses: actions/cache@v4
         with:
-          path: "**/node_modules"
+          path: '**/node_modules'
           key: node_modules-${{ runner.arch }}-${{ runner.os }}-${{ hashFiles('yarn.lock') }}
 
       - name: Install deps
@@ -55,7 +57,7 @@ jobs:
           name: bundle_analysis.json
 
       - name: Download base branch bundle stats
-        uses: dawidd6/action-download-artifact@v2
+        uses: dawidd6/action-download-artifact@268677152d06ba59fcec7a7f0b5d961b6ccd7e1e
         if: success() && github.event.number
         with:
           workflow: analyze.yml

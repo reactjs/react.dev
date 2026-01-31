@@ -1,3 +1,10 @@
+/**
+ * Copyright (c) Meta Platforms, Inc. and affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 /*
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
@@ -5,7 +12,6 @@
 import {Suspense} from 'react';
 import * as React from 'react';
 import cn from 'classnames';
-import {Feedback} from '../Feedback';
 import {SidebarRouteTree} from '../Sidebar/SidebarRouteTree';
 import type {RouteItem} from '../getRouteMeta';
 
@@ -56,9 +62,6 @@ export default function SidebarNav({
             </Suspense>
             <div className="h-20" />
           </nav>
-          <div className="fixed bottom-0 hidden lg:block">
-            <Feedback />
-          </div>
         </aside>
       </div>
     </div>

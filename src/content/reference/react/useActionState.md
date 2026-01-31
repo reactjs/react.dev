@@ -68,7 +68,7 @@ If used with a Server Function, `useActionState` allows the server's response fr
 `useActionState` returns an array with the following values:
 
 1. The current state. During the first render, it will match the `initialState` you have passed. After the action is invoked, it will match the value returned by the action.
-2. A new action that you can pass as the `action` prop to your `form` component or `formAction` prop to any `button` component within the form.
+2. A new action that you can pass as the `action` prop to your `form` component or `formAction` prop to any `button` component within the form. The action can also be called manually within [`startTransition`](/reference/react/startTransition).
 3. The `isPending` flag that tells you whether there is a pending Transition.
 
 #### Caveats {/*caveats*/}
@@ -102,8 +102,8 @@ function MyComponent() {
 `useActionState` returns an array with the following items:
 
 1. The <CodeStep step={1}>current state</CodeStep> of the form, which is initially set to the <CodeStep step={4}>initial state</CodeStep> you provided, and after the form is submitted is set to the return value of the <CodeStep step={3}>action</CodeStep> you provided.
-2. A <CodeStep step={2}>new action</CodeStep> that you pass to `<form>` as its `action` prop.
-3. A <CodeStep step={1}>pending state</CodeStep> that you can utilise whilst your action is processing.
+2. A <CodeStep step={2}>new action</CodeStep> that you pass to `<form>` as its `action` prop or call manually within `startTransition`.
+3. A <CodeStep step={1}>pending state</CodeStep> that you can utilise while your action is processing.
 
 When the form is submitted, the <CodeStep step={3}>action</CodeStep> function that you provided will be called. Its return value will become the new <CodeStep step={1}>current state</CodeStep> of the form.
 

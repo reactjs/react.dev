@@ -1,9 +1,16 @@
+/**
+ * Copyright (c) Meta Platforms, Inc. and affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 /*
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
 
 import * as React from 'react';
-import Image from 'next/image';
+import Image from 'next/legacy/image';
 import {IconTwitter} from '../Icon/IconTwitter';
 import {IconThreads} from '../Icon/IconThreads';
 import {IconBsky} from '../Icon/IconBsky';
@@ -39,11 +46,9 @@ export function TeamMember({
   personal,
 }: TeamMemberProps) {
   if (name == null || title == null || permalink == null || children == null) {
+    const identifier = name ?? title ?? permalink ?? 'unknown';
     throw new Error(
-      'Expected name, title, permalink, and children for ' + name ??
-        title ??
-        permalink ??
-        'unknown'
+      `Expected name, title, permalink, and children for ${identifier}`
     );
   }
   return (

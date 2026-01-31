@@ -1,3 +1,10 @@
+/**
+ * Copyright (c) Meta Platforms, Inc. and affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 /*
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
@@ -5,6 +12,7 @@
 import {Children, useContext, useMemo} from 'react';
 import * as React from 'react';
 import cn from 'classnames';
+import type {HTMLAttributes} from 'react';
 
 import CodeBlock from './CodeBlock';
 import {CodeDiagram} from './CodeDiagram';
@@ -36,6 +44,7 @@ import {finishedTranslations} from 'utils/finishedTranslations';
 
 import ErrorDecoder from './ErrorDecoder';
 import {IconCanary} from '../Icon/IconCanary';
+import {IconExperimental} from 'components/Icon/IconExperimental';
 
 function CodeStep({children, step}: {children: any; step: number}) {
   return (
@@ -59,21 +68,21 @@ function CodeStep({children, step}: {children: any; step: number}) {
   );
 }
 
-const P = (p: JSX.IntrinsicElements['p']) => (
+const P = (p: HTMLAttributes<HTMLParagraphElement>) => (
   <p className="whitespace-pre-wrap my-4" {...p} />
 );
 
-const Strong = (strong: JSX.IntrinsicElements['strong']) => (
+const Strong = (strong: HTMLAttributes<HTMLElement>) => (
   <strong className="font-bold" {...strong} />
 );
 
-const OL = (p: JSX.IntrinsicElements['ol']) => (
+const OL = (p: HTMLAttributes<HTMLOListElement>) => (
   <ol className="ms-6 my-3 list-decimal" {...p} />
 );
-const LI = (p: JSX.IntrinsicElements['li']) => (
+const LI = (p: HTMLAttributes<HTMLLIElement>) => (
   <li className="leading-relaxed mb-1" {...p} />
 );
-const UL = (p: JSX.IntrinsicElements['ul']) => (
+const UL = (p: HTMLAttributes<HTMLUListElement>) => (
   <ul className="ms-6 my-3 list-disc" {...p} />
 );
 
@@ -95,6 +104,14 @@ const Note = ({children}: {children: React.ReactNode}) => (
 
 const Canary = ({children}: {children: React.ReactNode}) => (
   <ExpandableCallout type="canary">{children}</ExpandableCallout>
+);
+
+const RC = ({children}: {children: React.ReactNode}) => (
+  <ExpandableCallout type="rc">{children}</ExpandableCallout>
+);
+
+const Experimental = ({children}: {children: React.ReactNode}) => (
+  <ExpandableCallout type="experimental">{children}</ExpandableCallout>
 );
 
 const NextMajor = ({children}: {children: React.ReactNode}) => (
@@ -119,6 +136,20 @@ const CanaryBadge = ({title}: {title: string}) => (
   </span>
 );
 
+const ExperimentalBadge = ({title}: {title: string}) => (
+  <span
+    title={title}
+    className={
+      'text-base font-display px-1 py-0.5 font-bold bg-gray-10 dark:bg-gray-60 text-gray-60 dark:text-gray-10 rounded'
+    }>
+    <IconExperimental
+      size="s"
+      className={'inline me-1 mb-0.5 text-sm text-gray-60 dark:text-gray-10'}
+    />
+    Experimental only
+  </span>
+);
+
 const NextMajorBadge = ({title}: {title: string}) => (
   <span
     title={title}
@@ -139,10 +170,7 @@ const RSCBadge = ({title}: {title: string}) => (
   </span>
 );
 
-const Blockquote = ({
-  children,
-  ...props
-}: JSX.IntrinsicElements['blockquote']) => {
+const Blockquote = ({children, ...props}: HTMLAttributes<HTMLQuoteElement>) => {
   return (
     <blockquote
       className="mdx-blockquote py-4 px-8 my-8 shadow-inner-border dark:shadow-inner-border-dark bg-highlight dark:bg-highlight-dark bg-opacity-50 rounded-2xl leading-6 flex relative"
@@ -338,7 +366,7 @@ function IllustrationBlock({
     </figure>
   ));
   return (
-    <IllustrationContext.Provider value={isInBlockTrue}>
+    <IllustrationContext value={isInBlockTrue}>
       <div className="relative group before:absolute before:-inset-y-16 before:inset-x-0 my-16 mx-0 2xl:mx-auto max-w-4xl 2xl:max-w-6xl">
         {sequential ? (
           <ol className="mdx-illustration-block flex">
@@ -353,7 +381,7 @@ function IllustrationBlock({
         )}
         <AuthorCredit author={author} authorLink={authorLink} />
       </div>
-    </IllustrationContext.Provider>
+    </IllustrationContext>
   );
 }
 
@@ -509,7 +537,10 @@ export const MDXComponents = {
   Math,
   MathI,
   Note,
+  RC,
   Canary,
+  Experimental,
+  ExperimentalBadge,
   CanaryBadge,
   NextMajor,
   NextMajorBadge,

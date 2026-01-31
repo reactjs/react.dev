@@ -5,7 +5,7 @@ titleForTitleTag: "'use server' directive"
 
 <RSC>
 
-`'use server'` is for use with [using React Server Components](/learn/start-a-new-react-project#bleeding-edge-react-frameworks).
+`'use server'` is for use with [using React Server Components](/reference/rsc/server-components).
 
 </RSC>
 
@@ -95,7 +95,7 @@ Notably, these are not supported:
 * Events from event handlers
 
 
-Supported serializable return values are the same as [serializable props](/reference/rsc/use-client#passing-props-from-server-to-client-components) for a boundary Client Component.
+Supported serializable return values are the same as [serializable props](/reference/rsc/use-client#serializable-types) for a boundary Client Component.
 
 
 ## Usage {/*usage*/}

@@ -70,10 +70,10 @@ But in some cases, you may want to read the most recent props or state inside an
 To [read the latest props or state](/learn/separating-events-from-effects#reading-latest-props-and-state-with-effect-events) in your Effect, without making those values reactive, include them in an Effect Event.
 
 ```js {7-9,12}
-import { useEffect, useContext, useEffectEvent } from 'react';
+import { useEffect, use, useEffectEvent } from 'react';
 
 function Page({ url }) {
-  const { items } = useContext(ShoppingCartContext);
+  const { items } = use(ShoppingCartContext);
   const numberOfItems = items.length;
 
   const onNavigate = useEffectEvent((visitedUrl) => {

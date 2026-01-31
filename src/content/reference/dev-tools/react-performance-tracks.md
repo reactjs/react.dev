@@ -53,7 +53,7 @@ The Scheduler is an internal React concept used for managing tasks with differen
 - **Blocking** - The synchronous updates, which could've been initiated by user interactions.
 - **Transition** - Non-blocking work that happens in the background, usually initiated via [`startTransition`](/reference/react/startTransition).
 - **Suspense** - Work related to Suspense boundaries, such as displaying fallbacks or revealing content.
-- **Idle** - The lowest priority work that is done when there are no other tasks with higher priority.
+- **Idle** - The lowest priority work that is done when there are no other tasks with a higher priority.
 
 <div style={{display: 'flex', justifyContent: 'center', marginBottom: '1rem'}}>
   <img className="w-full light-image" src="/images/docs/performance-tracks/scheduler.png" alt="Scheduler track" />
@@ -65,9 +65,9 @@ The Scheduler is an internal React concept used for managing tasks with differen
 Every render pass consists of multiple phases that you can see on a timeline:
 
 - **Update** - this is what caused a new render pass.
-- **Render** - React renders the updated subtree by calling render functions of components. You can see the rendered components subtree on [Components track](#components), which follows the same color scheme.
+- **Render** - React renders the updated subtree by calling the render functions of components. You can see the rendered components subtree on [Components track](#components), which follows the same color scheme.
 - **Commit** - After rendering components, React will submit the changes to the DOM and run layout effects, like [`useLayoutEffect`](/reference/react/useLayoutEffect).
-- **Remaining Effects** - React runs passive effects of a rendered subtree. This usually happens after the paint, and this is when React runs hooks like [`useEffect`](/reference/react/useEffect). One known exception is user interactions, like clicks, or other discrete events. In this scenario, this phase could run before the paint.
+- **Remaining Effects** - React runs the passive effects of a rendered subtree. This usually happens after the paint, and this is when React runs hooks like [`useEffect`](/reference/react/useEffect). One known exception is user interactions, like clicks, or other discrete events. In this scenario, this phase could run before the paint.
 
 <div style={{display: 'flex', justifyContent: 'center', marginBottom: '1rem'}}>
   <img className="w-full light-image" src="/images/docs/performance-tracks/scheduler-update.png" alt="Scheduler track: updates" />
@@ -140,7 +140,7 @@ In development builds, when you click on a component render entry, you can inspe
 
 The Server Requests track visualized all Promises that eventually end up in a React Server Component. This includes any `async` operations like calling `fetch` or async Node.js file operations. 
 
-React will try to combine Promises that are started from inside third-party code into a single span representing the the duration of the entire operation blocking 1st party code.
+React will try to combine Promises that are started from inside third-party code into a single span representing the duration of the entire operation blocking 1st party code.
 For example, a third party library method called `getUser` that calls `fetch` internally multiple times will be represented as a single span called `getUser`, instead of showing multiple `fetch` spans.
 
 Clicking on spans will show you a stack trace of where the Promise was created as well as a view of the value that the Promise resolved to, if available.
@@ -151,9 +151,9 @@ Rejected Promises are displayed as red with their rejected value.
 
 The Server Components tracks visualize the durations of React Server Components Promises they awaited. Timings are displayed as a flamegraph, where each entry represents the duration of the corresponding component render and all its descendant children components.
 
-If you await a Promise, React will display duration of that Promise. To see all I/O operations, use the Server Requests track.
+If you await a Promise, React will display the duration of that Promise. To see all I/O operations, use the Server Requests track.
 
 Different colors are used to indicate the duration of the component render. The darker the color, the longer the duration.
 
-The Server Components track group will always contain a "Primary" track. If React is able to render Server Components concurrently, it will display addititional "Parallel" tracks.
+The Server Components track group will always contain a "Primary" track. If React is able to render Server Components concurrently, it will display additional "Parallel" tracks.
 If more than 8 Server Components are rendered concurrently, React will associate them with the last "Parallel" track instead of adding more tracks.

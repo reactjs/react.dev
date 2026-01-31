@@ -95,7 +95,7 @@ You might be tempted to try to call `play()` or `pause()` during rendering, but 
 
 <Sandpack>
 
-```js
+```js {expectedErrors: {'react-compiler': [7, 9]}}
 import { useState, useRef, useEffect } from 'react';
 
 function VideoPlayer({ src, isPlaying }) {
@@ -617,7 +617,7 @@ A common pitfall for preventing Effects firing twice in development is to use a 
 
 This makes it so you only see `"✅ Connecting..."` once in development, but it doesn't fix the bug.
 
-When the user navigates away, the connection still isn't closed and when they navigate back, a new connection is created. As the user navigates across the app, the connections would keep piling up, the same as it would before the "fix". 
+When the user navigates away, the connection still isn't closed and when they navigate back, a new connection is created. As the user navigates across the app, the connections would keep piling up, the same as it would before the "fix".
 
 To fix the bug, it is not enough to just make the Effect run once. The effect needs to work after re-mounting, which means the connection needs to be cleaned up like in the solution above.
 
@@ -732,8 +732,8 @@ Writing `fetch` calls inside Effects is a [popular way to fetch data](https://ww
 
 This list of downsides is not specific to React. It applies to fetching data on mount with any library. Like with routing, data fetching is not trivial to do well, so we recommend the following approaches:
 
-- **If you use a [framework](/learn/start-a-new-react-project#production-grade-react-frameworks), use its built-in data fetching mechanism.** Modern React frameworks have integrated data fetching mechanisms that are efficient and don't suffer from the above pitfalls.
-- **Otherwise, consider using or building a client-side cache.** Popular open source solutions include [React Query](https://tanstack.com/query/latest), [useSWR](https://swr.vercel.app/), and [React Router 6.4+.](https://beta.reactrouter.com/en/main/start/overview) You can build your own solution too, in which case you would use Effects under the hood, but add logic for deduplicating requests, caching responses, and avoiding network waterfalls (by preloading data or hoisting data requirements to routes).
+- **If you use a [framework](/learn/creating-a-react-app#full-stack-frameworks), use its built-in data fetching mechanism.** Modern React frameworks have integrated data fetching mechanisms that are efficient and don't suffer from the above pitfalls.
+- **Otherwise, consider using or building a client-side cache.** Popular open source solutions include [TanStack Query](https://tanstack.com/query/latest), [useSWR](https://swr.vercel.app/), and [React Router 6.4+.](https://beta.reactrouter.com/en/main/start/overview) You can build your own solution too, in which case you would use Effects under the hood, but add logic for deduplicating requests, caching responses, and avoiding network waterfalls (by preloading data or hoisting data requirements to routes).
 
 You can continue fetching data directly in Effects if neither of these approaches suit you.
 
@@ -1005,7 +1005,7 @@ export default function MyInput({ value, onChange }) {
   const ref = useRef(null);
 
   // TODO: This doesn't quite work. Fix it.
-  // ref.current.focus()    
+  // ref.current.focus()
 
   return (
     <input
@@ -1468,7 +1468,8 @@ This component shows the biography for the selected person. It loads the biograp
 
 <Sandpack>
 
-```js src/App.js
+{/* not the most efficient, but this validation is enabled in the linter only, so it's fine to ignore it here since we know what we're doing */}
+```js {expectedErrors: {'react-compiler': [9]}} src/App.js
 import { useState, useEffect } from 'react';
 import { fetchBio } from './api.js';
 
@@ -1541,7 +1542,8 @@ To fix this race condition, add a cleanup function:
 
 <Sandpack>
 
-```js src/App.js
+{/* not the most efficient, but this validation is enabled in the linter only, so it's fine to ignore it here since we know what we're doing */}
+```js {expectedErrors: {'react-compiler': [9]}} src/App.js
 import { useState, useEffect } from 'react';
 import { fetchBio } from './api.js';
 
@@ -1605,4 +1607,3 @@ In addition to ignoring the result of an outdated API call, you can also use [`A
 </Solution>
 
 </Challenges>
-

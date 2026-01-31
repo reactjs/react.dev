@@ -11,7 +11,7 @@ React documentation is written and maintained by the [React team](/community/tea
 ## Content {/*content*/}
 
 * [Rachel Nabors](https://twitter.com/RachelNabors): editing, writing, illustrating
-* [Dan Abramov](https://twitter.com/dan_abramov): writing, curriculum design
+* [Dan Abramov](https://bsky.app/profile/danabra.mov): writing, curriculum design
 * [Sylwia Vargas](https://twitter.com/SylwiaVargas): example code
 * [Rick Hanlon](https://twitter.com/rickhanlonii): writing
 * [David McCabe](https://twitter.com/mcc_abe): writing
@@ -34,7 +34,7 @@ React documentation is written and maintained by the [React team](/community/tea
 * [Jared Palmer](https://twitter.com/jaredpalmer): site development
 * [ThisDotLabs](https://www.thisdot.co/) ([Dane Grant](https://twitter.com/danecando), [Dustin Goodman](https://twitter.com/dustinsgoodman)): site development
 * [CodeSandbox](https://codesandbox.io/) ([Ives van Hoorne](https://twitter.com/CompuIves), [Alex Moldovan](https://twitter.com/alexnmoldovan), [Jasper De Moor](https://twitter.com/JasperDeMoor), [Danilo Woznica](https://twitter.com/danilowoz)): sandbox integration
-* [Dan Abramov](https://twitter.com/dan_abramov): site development
+* [Dan Abramov](https://bsky.app/profile/danabra.mov): site development
 * [Rick Hanlon](https://twitter.com/rickhanlonii): site development
 * [Harish Kumar](https://www.strek.in/): development and maintenance
 * [Luna Ruan](https://twitter.com/lunaruan): sandbox improvements

@@ -1,3 +1,10 @@
+/**
+ * Copyright (c) Meta Platforms, Inc. and affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 /*
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
@@ -22,7 +29,6 @@ import {IconHamburger} from 'components/Icon/IconHamburger';
 import {IconSearch} from 'components/Icon/IconSearch';
 import {Search} from 'components/Search';
 import {Logo} from '../../Logo';
-import {Feedback} from '../Feedback';
 import {SidebarRouteTree} from '../Sidebar';
 import type {RouteItem} from '../getRouteMeta';
 import {siteConfig} from 'siteConfig';
@@ -266,7 +272,9 @@ export default function TopNav({
               <BrandMenu>
                 <div className="flex items-center">
                   <div className="uwu-visible flex items-center justify-center h-full">
-                    <NextLink href="/">
+                    <NextLink
+                      href="/"
+                      className="active:scale-95 transition-transform">
                       <Image
                         alt="logo by @sawaratsuki1004"
                         title="logo by @sawaratsuki1004"
@@ -439,9 +447,6 @@ export default function TopNav({
                 </Suspense>
                 <div className="h-16" />
               </nav>
-              <div className="fixed bottom-0 hidden lg:block">
-                <Feedback />
-              </div>
             </aside>
           </div>
         )}

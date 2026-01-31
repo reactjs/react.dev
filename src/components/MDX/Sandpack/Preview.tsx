@@ -1,7 +1,15 @@
+/**
+ * Copyright (c) Meta Platforms, Inc. and affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 /*
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
 
+// eslint-disable-next-line react-compiler/react-compiler
 /* eslint-disable react-hooks/exhaustive-deps */
 import {useRef, useState, useEffect, useMemo, useId} from 'react';
 import {useSandpack, SandpackStack} from '@codesandbox/sandpack-react/unstyled';

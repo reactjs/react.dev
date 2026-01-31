@@ -77,8 +77,8 @@ function SubmitButton({ submitAction }) {
     <button
       disabled={isPending}
       onClick={() => {
-        startTransition(() => {
-          submitAction();
+        startTransition(async () => {
+          await submitAction();
         });
       }}
     >
@@ -95,7 +95,7 @@ function SubmitButton({ submitAction }) {
 
 #### Parameters {/*starttransition-parameters*/}
 
-* `action`: A function that updates some state by calling one or more [`set` functions](/reference/react/useState#setstate). React calls `action` immediately with no parameters and marks all state updates scheduled synchronously during the `action` function call as Transitions. Any async calls that are awaited in the `action` will be included in the Transition, but currently require wrapping any `set` functions after the `await` in an additional `startTransition` (see [Troubleshooting](#react-doesnt-treat-my-state-update-after-await-as-a-transition)). State updates marked as Transitions will be [non-blocking](#marking-a-state-update-as-a-non-blocking-transition) and [will not display unwanted loading indicators](#preventing-unwanted-loading-indicators).
+* `action`: A function that updates some state by calling one or more [`set` functions](/reference/react/useState#setstate). React calls `action` immediately with no parameters and marks all state updates scheduled synchronously during the `action` function call as Transitions. Any async calls that are awaited in the `action` will be included in the Transition, but currently require wrapping any `set` functions after the `await` in an additional `startTransition` (see [Troubleshooting](#react-doesnt-treat-my-state-update-after-await-as-a-transition)). State updates marked as Transitions will be [non-blocking](#perform-non-blocking-updates-with-actions) and [will not display unwanted loading indicators](#preventing-unwanted-loading-indicators).
 
 #### Returns {/*starttransition-returns*/}
 
@@ -161,9 +161,9 @@ function CheckoutForm() {
 }
 ```
 
-The function passed to `startTransition` is called the "Action". You can update state and (optionally) perform side effects within an Action, and the work will be done in the background without blocking user interactions on the page. A Transition can include multiple Actions, and while a Transition is in progress, your UI stays responsive. For example, if the user clicks a tab but then changes their mind and clicks another tab, the second click will be immediately handled without waiting for the first update to finish. 
+The function passed to `startTransition` is called the "Action". You can update state and (optionally) perform side effects within an Action, and the work will be done in the background without blocking user interactions on the page. A Transition can include multiple Actions, and while a Transition is in progress, your UI stays responsive. For example, if the user clicks a tab but then changes their mind and clicks another tab, the second click will be immediately handled without waiting for the first update to finish.
 
-To give the user feedback about in-progress Transitions, to `isPending` state switches to `true` at the first call to `startTransition`, and stays `true` until all Actions complete and the final state is shown to the user. Transitions ensure side effects in Actions to complete in order to [prevent unwanted loading indicators](#preventing-unwanted-loading-indicators), and you can provide immediate feedback while the Transition is in progress with `useOptimistic`.
+To give the user feedback about in-progress Transitions, the `isPending` state switches to `true` at the first call to `startTransition`, and stays `true` until all Actions complete and the final state is shown to the user. Transitions ensure side effects in Actions to complete in order to [prevent unwanted loading indicators](#preventing-unwanted-loading-indicators), and you can provide immediate feedback while the Transition is in progress with `useOptimistic`.
 
 <Recipes titleText="The difference between Actions and regular event handling">
 
@@ -227,9 +227,9 @@ import { startTransition } from "react";
 
 export default function Item({action}) {
   function handleChange(event) {
-    // To expose an action prop, call the callback in startTransition.
+    // To expose an action prop, await the callback in startTransition.
     startTransition(async () => {
-      action(event.target.value);
+      await action(event.target.value);
     })
   }
   return (
@@ -585,10 +585,9 @@ This solution makes the app feel slow, because the user must wait each time they
 
 You can expose an `action` prop from a component to allow a parent to call an Action.
 
-
 For example, this `TabButton` component wraps its `onClick` logic in an `action` prop:
 
-```js {8-10}
+```js {8-12}
 export default function TabButton({ action, children, isActive }) {
   const [isPending, startTransition] = useTransition();
   if (isActive) {
@@ -596,8 +595,10 @@ export default function TabButton({ action, children, isActive }) {
   }
   return (
     <button onClick={() => {
-      startTransition(() => {
-        action();
+      startTransition(async () => {
+        // await the action that's passed in.
+        // This allows it to be either sync or async.
+        await action();
       });
     }}>
       {children}
@@ -656,10 +657,15 @@ export default function TabButton({ action, children, isActive }) {
   if (isActive) {
     return <b>{children}</b>
   }
+  if (isPending) {
+    return <b className="pending">{children}</b>;
+  }
   return (
-    <button onClick={() => {
-      startTransition(() => {
-        action();
+    <button onClick={async () => {
+      startTransition(async () => {
+        // await the action that's passed in.
+        // This allows it to be either sync or async.
+        await action();
       });
     }}>
       {children}
@@ -676,7 +682,7 @@ export default function AboutTab() {
 }
 ```
 
-```js src/PostsTab.js
+```js {expectedErrors: {'react-compiler': [19, 20]}} src/PostsTab.js
 import { memo } from 'react';
 
 const PostsTab = memo(function PostsTab() {
@@ -729,9 +735,18 @@ export default function ContactTab() {
 ```css
 button { margin-right: 10px }
 b { display: inline-block; margin-right: 10px; }
+.pending { color: #777; }
 ```
 
 </Sandpack>
+
+<Note>
+
+When exposing an `action` prop from a component, you should `await` it inside the transition.
+
+This allows the `action` callback to be either synchronous or asynchronous without requiring an additional `startTransition` to wrap the `await` in the action.
+
+</Note>
 
 ---
 
@@ -804,8 +819,8 @@ export default function TabButton({ action, children, isActive }) {
   }
   return (
     <button onClick={() => {
-      startTransition(() => {
-        action();
+      startTransition(async () => {
+        await action();
       });
     }}>
       {children}
@@ -822,7 +837,7 @@ export default function AboutTab() {
 }
 ```
 
-```js src/PostsTab.js
+```js {expectedErrors: {'react-compiler': [19, 20]}} src/PostsTab.js
 import { memo } from 'react';
 
 const PostsTab = memo(function PostsTab() {
@@ -1095,8 +1110,8 @@ export default function TabButton({ action, children, isActive }) {
   }
   return (
     <button onClick={() => {
-      startTransition(() => {
-        action();
+      startTransition(async () => {
+        await action();
       });
     }}>
       {children}
@@ -1231,7 +1246,7 @@ function Router() {
 
 This is recommended for three reasons:
 
-- [Transitions are interruptible,](#marking-a-state-update-as-a-non-blocking-transition) which lets the user click away without waiting for the re-render to complete.
+- [Transitions are interruptible,](#perform-non-blocking-updates-with-actions) which lets the user click away without waiting for the re-render to complete.
 - [Transitions prevent unwanted loading indicators,](#preventing-unwanted-loading-indicators) which lets the user avoid jarring jumps on navigation.
 - [Transitions wait for all pending actions](#perform-non-blocking-updates-with-actions) which lets the user wait for side effects to complete before the new page is shown.
 
@@ -1758,7 +1773,7 @@ function setState() {
 
 If you `await` inside `startTransition`, you might see the updates happen out of order.
 
-In this example, the `updateQuantity` function simulates a request to the server to update the item's quantity in the cart. This function *artificially returns the every other request after the previous* to simulate race conditions for network requests.
+In this example, the `updateQuantity` function simulates a request to the server to update the item's quantity in the cart. This function *artificially returns every other request after the previous* to simulate race conditions for network requests.
 
 Try updating the quantity once, then update it quickly multiple times. You might see the incorrect total:
 
@@ -1790,7 +1805,7 @@ export default function App({}) {
   const [isPending, startTransition] = useTransition();
   // Store the actual quantity in separate state to show the mismatch.
   const [clientQuantity, setClientQuantity] = useState(1);
-  
+
   const updateQuantityAction = newQuantity => {
     setClientQuantity(newQuantity);
 
@@ -1822,10 +1837,10 @@ import {startTransition} from 'react';
 export default function Item({action}) {
   function handleChange(e) {
     // Update the quantity in an Action.
-    startTransition(() => {
-      action(e.target.value);
+    startTransition(async () => {
+      await action(e.target.value);
     });
-  }  
+  }
   return (
     <div className="item">
       <span>Eras Tour Tickets</span>
@@ -1933,3 +1948,162 @@ When clicking multiple times, it's possible for previous requests to finish afte
 This is expected, because Actions within a Transition do not guarantee execution order. For common use cases, React provides higher-level abstractions like [`useActionState`](/reference/react/useActionState) and [`<form>` actions](/reference/react-dom/components/form) that handle ordering for you. For advanced use cases, you'll need to implement your own queuing and abort logic to handle this.
 
 
+Example of `useActionState` handling execution order:
+
+<Sandpack>
+
+```json package.json hidden
+{
+  "dependencies": {
+    "react": "beta",
+    "react-dom": "beta"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  }
+}
+```
+
+```js src/App.js
+import { useState, useActionState } from "react";
+import { updateQuantity } from "./api";
+import Item from "./Item";
+import Total from "./Total";
+
+export default function App({}) {
+  // Store the actual quantity in separate state to show the mismatch.
+  const [clientQuantity, setClientQuantity] = useState(1);
+  const [quantity, updateQuantityAction, isPending] = useActionState(
+    async (prevState, payload) => {
+      setClientQuantity(payload);
+      const savedQuantity = await updateQuantity(payload);
+      return savedQuantity; // Return the new quantity to update the state
+    },
+    1 // Initial quantity
+  );
+
+  return (
+    <div>
+      <h1>Checkout</h1>
+      <Item action={updateQuantityAction}/>
+      <hr />
+      <Total clientQuantity={clientQuantity} savedQuantity={quantity} isPending={isPending} />
+    </div>
+  );
+}
+
+```
+
+```js src/Item.js
+import {startTransition} from 'react';
+
+export default function Item({action}) {
+  function handleChange(e) {
+    // Update the quantity in an Action.
+    startTransition(() => {
+      action(e.target.value);
+    });
+  }
+  return (
+    <div className="item">
+      <span>Eras Tour Tickets</span>
+      <label htmlFor="name">Quantity: </label>
+      <input
+        type="number"
+        onChange={handleChange}
+        defaultValue={1}
+        min={1}
+      />
+    </div>
+  )
+}
+```
+
+```js src/Total.js
+const intl = new Intl.NumberFormat("en-US", {
+  style: "currency",
+  currency: "USD"
+});
+
+export default function Total({ clientQuantity, savedQuantity, isPending }) {
+  return (
+    <div className="total">
+      <span>Total:</span>
+      <div>
+        <div>
+          {isPending
+            ? "🌀 Updating..."
+            : `${intl.format(savedQuantity * 9999)}`}
+        </div>
+        <div className="error">
+          {!isPending &&
+            clientQuantity !== savedQuantity &&
+            `Wrong total, expected: ${intl.format(clientQuantity * 9999)}`}
+        </div>
+      </div>
+    </div>
+  );
+}
+```
+
+```js src/api.js
+let firstRequest = true;
+export async function updateQuantity(newName) {
+  return new Promise((resolve, reject) => {
+    if (firstRequest === true) {
+      firstRequest = false;
+      setTimeout(() => {
+        firstRequest = true;
+        resolve(newName);
+        // Simulate every other request being slower
+      }, 1000);
+    } else {
+      setTimeout(() => {
+        resolve(newName);
+      }, 50);
+    }
+  });
+}
+```
+
+```css
+.item {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+}
+
+.item label {
+  flex: 1;
+  text-align: right;
+}
+
+.item input {
+  margin-left: 4px;
+  width: 60px;
+  padding: 4px;
+}
+
+.total {
+  height: 50px;
+  line-height: 25px;
+  display: flex;
+  align-content: center;
+  justify-content: space-between;
+}
+
+.total div {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.error {
+  color: red;
+}
+```
+
+</Sandpack>

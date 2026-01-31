@@ -30,7 +30,7 @@ To add inline styles to your document, render the [built-in browser `<style>` co
 
 #### Props {/*props*/}
 
-`<style>` supports all [common element props.](/reference/react-dom/components/common#props)
+`<style>` supports all [common element props.](/reference/react-dom/components/common#common-props)
 
 * `children`: a string, required. The contents of the stylesheet.
 * `precedence`: a string. Tells React where to rank the `<style>` DOM node relative to others in the document `<head>`, which determines which stylesheet can override the other. React will infer that precedence values it discovers first are "lower" and precedence values it discovers later are "higher". Many style systems can work fine using a single precedence value because style rules are atomic. Stylesheets with the same precedence go together whether they are `<link>` or inline `<style>` tags or loaded using [`preinit`](/reference/react-dom/preinit) functions.
@@ -49,9 +49,10 @@ React can move `<style>` components to the document's `<head>`, de-duplicate ide
 
 To opt into this behavior, provide the `href` and `precedence` props. React will de-duplicate styles if they have the same `href`. The precedence prop tells React where to rank the `<style>` DOM node relative to others in the document `<head>`, which determines which stylesheet can override the other.
 
-This special treatment comes with two caveats:
+This special treatment comes with three caveats:
 
 * React will ignore changes to props after the style has been rendered. (React will issue a warning in development if this happens.)
+* React will drop all extraneous props when using the `precedence` prop (beyond `href` and `precedence`).
 * React may leave the style in the DOM even after the component that rendered it has been unmounted.
 
 ---

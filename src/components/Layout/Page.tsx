@@ -1,3 +1,10 @@
+/**
+ * Copyright (c) Meta Platforms, Inc. and affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 /*
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
@@ -31,7 +38,7 @@ interface PageProps {
   meta: {
     title?: string;
     titleForTitleTag?: string;
-    canary?: boolean;
+    version?: 'experimental' | 'canary';
     description?: string;
   };
   section: 'learn' | 'reference' | 'community' | 'blog' | 'home' | 'unknown';
@@ -53,7 +60,7 @@ export function Page({
     routeTree
   );
   const title = meta.title || route?.title || '';
-  const canary = meta.canary || false;
+  const version = meta.version;
   const description = meta.description || route?.description || '';
   const isHomePage = cleanedPath === '/';
   const isBlogIndex = cleanedPath === '/blog';
@@ -70,7 +77,7 @@ export function Page({
           )}>
           <PageHeading
             title={title}
-            canary={canary}
+            version={version}
             description={description}
             tags={route?.tags}
             breadcrumbs={breadcrumbs}
@@ -82,11 +89,9 @@ export function Page({
               'max-w-7xl mx-auto',
               section === 'blog' && 'lg:flex lg:flex-col lg:items-center'
             )}>
-            <TocContext.Provider value={toc}>
-              <LanguagesContext.Provider value={languages}>
-                {children}
-              </LanguagesContext.Provider>
-            </TocContext.Provider>
+            <TocContext value={toc}>
+              <LanguagesContext value={languages}>{children}</LanguagesContext>
+            </TocContext>
           </div>
           {!isBlogIndex && (
             <DocsPageFooter
@@ -137,7 +142,7 @@ export function Page({
           />
         </Head>
       )}
-      {/*<SocialBanner />*/}
+      {/* <SocialBanner /> */}
       <TopNav
         section={section}
         routeTree={routeTree}

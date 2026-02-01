@@ -110,7 +110,7 @@ This state is called the "optimistic" because it is used to immediately present 
 
 4. **(Optional) wait for Suspense**: If `newValue` suspends, React continues showing `'b'`.
 
-5. **Single render commit**: Finally, the `newValue` is commits for `value` and `optimistic`.
+5. **Single render commit**: Finally, the `newValue` commits for `value` and `optimistic`.
 
 There's no extra render to "clear" the optimistic state. The optimistic and real state converge in the same render when the Transition completes.
 
@@ -118,7 +118,7 @@ There's no extra render to "clear" the optimistic state. The optimistic and real
 
 #### Optimistic state is temporary {/*optimistic-state-is-temporary*/}
 
-Optimistic state is only renders while an Action is in progress, otherwise `value` is rendered.
+Optimistic state only renders while an Action is in progress, otherwise `value` is rendered.
 
 If `saveChanges` returned `'c'`, then both `value` and `optimistic` will be `'c'`, not `'b'`.
 
@@ -403,7 +403,7 @@ export default function App() {
   }
 
   if (optimisticIsLiked !== isLiked) {
-    console.log('✅ rendering optmistic state: ' + optimisticIsLiked);  
+    console.log('✅ rendering optimistic state: ' + optimisticIsLiked);  
   } else {
     console.log('✅ rendering real value: ' + optimisticIsLiked);
   }
@@ -1061,7 +1061,7 @@ If the values are not equal, there's a Transition in progress.
 
 2. **Add a `useTransition`**
 
-```
+```js
 const [isPending, startTransition] = useTransition();
 const [optimistic, setOptimistic] = useOptimistic(value);
 
@@ -1071,9 +1071,9 @@ startTransition(() => {
 })
 ```
 
-Since `useTransition` uses `useOptimsitic` for `isPending` under the hood, this is equivalent to option 1.
+Since `useTransition` uses `useOptimistic` for `isPending` under the hood, this is equivalent to option 1.
 
-3**Add a `pending` flag in your reducer**
+3. **Add a `pending` flag in your reducer**
 
 ```js
 const [optimistic, addOptimistic] = useOptimistic(
@@ -1081,3 +1081,5 @@ const [optimistic, addOptimistic] = useOptimistic(
   (state, newItem) => [...state, { ...newItem, isPending: true }]
 );
 ```
+
+Since each optimistic item has its own flag, you can show loading state for individual items.

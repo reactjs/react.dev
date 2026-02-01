@@ -1061,7 +1061,7 @@ If the values are not equal, there's a Transition in progress.
 
 2. **Add a `useTransition`**
 
-```
+```js
 const [isPending, startTransition] = useTransition();
 const [optimistic, setOptimistic] = useOptimistic(value);
 
@@ -1073,7 +1073,7 @@ startTransition(() => {
 
 Since `useTransition` uses `useOptimsitic` for `isPending` under the hood, this is equivalent to option 1.
 
-3**Add a `pending` flag in your reducer**
+3. **Add a `pending` flag in your reducer**
 
 ```js
 const [optimistic, addOptimistic] = useOptimistic(
@@ -1081,3 +1081,5 @@ const [optimistic, addOptimistic] = useOptimistic(
   (state, newItem) => [...state, { ...newItem, isPending: true }]
 );
 ```
+
+Since each optimistic item has its own flag, you can show loading state for individual items.

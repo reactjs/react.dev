@@ -96,8 +96,10 @@ export function Page({
           {!isBlogIndex && (
             <DocsPageFooter
               route={route}
-              nextRoute={nextRoute}
-              prevRoute={prevRoute}
+              // For blog posts, swap prev/next since they're ordered newest->oldest
+              // but "Previous" should go to older posts and "Next" to newer posts
+              nextRoute={section === 'blog' ? prevRoute : nextRoute}
+              prevRoute={section === 'blog' ? nextRoute : prevRoute}
             />
           )}
         </div>

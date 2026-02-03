@@ -98,7 +98,7 @@ it('can render and update a counter', async () => {
   document.body.appendChild(container);
   
   // ✅ Render the component inside act().
-  await act(() => {
+  await act(async () => {
     ReactDOMClient.createRoot(container).render(<Counter />);
   });
   
@@ -126,7 +126,7 @@ it.only('can render and update a counter', async () => {
   const container = document.createElement('div');
   document.body.appendChild(container);
   
-  await act( async () => {
+  await act(async () => {
     ReactDOMClient.createRoot(container).render(<Counter />);
   });
   

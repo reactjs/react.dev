@@ -24,7 +24,7 @@ To help make the upgrade to React 19 easier, we've published a `react@18.3` rele
 
 We recommend upgrading to React 18.3 first to help identify any issues before upgrading to React 19.
 
-For a list of changes in 18.3 see the [Release Notes](https://github.com/facebook/react/blob/main/CHANGELOG.md).
+For a list of changes in 18.3 see the [Release Notes](https://github.com/facebook/react/blob/main/CHANGELOG.md#1830-april-25-2024).
 
 </Note>
 
@@ -113,7 +113,7 @@ This will run the following codemods from `react-codemod`:
 - [`replace-string-ref`](https://github.com/reactjs/react-codemod?tab=readme-ov-file#replace-string-ref)
 - [`replace-act-import`](https://github.com/reactjs/react-codemod?tab=readme-ov-file#replace-act-import)
 - [`replace-use-form-state`](https://github.com/reactjs/react-codemod?tab=readme-ov-file#replace-use-form-state) 
-- [`prop-types-typescript`](https://codemod.com/registry/react-prop-types-typescript)
+- [`prop-types-typescript`](https://github.com/reactjs/react-codemod#react-proptypes-to-prop-types)
 
 This does not include the TypeScript changes. See [TypeScript changes](#typescript-changes) below.
 

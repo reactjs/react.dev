@@ -93,7 +93,7 @@ Here is a component that breaks this rule:
 
 <Sandpack>
 
-```js
+```js {expectedErrors: {'react-compiler': [5]}}
 let guest = 0;
 
 function Cup() {
@@ -175,7 +175,7 @@ function Cup({ guest }) {
 }
 
 export default function TeaGathering() {
-  let cups = [];
+  const cups = [];
   for (let i = 1; i <= 12; i++) {
     cups.push(<Cup key={i} guest={i} />);
   }
@@ -245,7 +245,7 @@ Rendering is a *calculation*, it shouldn't try to "do" things. Can you express t
 
 ```js src/Clock.js active
 export default function Clock({ time }) {
-  let hours = time.getHours();
+  const hours = time.getHours();
   if (hours >= 0 && hours <= 6) {
     document.getElementById('time').className = 'night';
   } else {
@@ -307,7 +307,7 @@ You can fix this component by calculating the `className` and including it in th
 
 ```js src/Clock.js active
 export default function Clock({ time }) {
-  let hours = time.getHours();
+  const hours = time.getHours();
   let className;
   if (hours >= 0 && hours <= 6) {
     className = 'night';
@@ -380,7 +380,7 @@ The buggy code is in `Profile.js`. Make sure you read it all from top to bottom!
 
 <Sandpack>
 
-```js src/Profile.js
+```js {expectedErrors: {'react-compiler': [7]}} src/Profile.js
 import Panel from './Panel.js';
 import { getImageUrl } from './utils.js';
 
@@ -602,18 +602,18 @@ export default function StoryTray({ stories }) {
 }
 ```
 
-```js src/App.js hidden
+```js {expectedErrors: {'react-compiler': [16]}} src/App.js hidden
 import { useState, useEffect } from 'react';
 import StoryTray from './StoryTray.js';
 
-let initialStories = [
+const initialStories = [
   {id: 0, label: "Ankit's Story" },
   {id: 1, label: "Taylor's Story" },
 ];
 
 export default function App() {
-  let [stories, setStories] = useState([...initialStories])
-  let time = useTime();
+  const [stories, setStories] = useState([...initialStories])
+  const time = useTime();
 
   // HACK: Prevent the memory from growing forever while you read docs.
   // We're breaking our own rules here.
@@ -698,18 +698,18 @@ export default function StoryTray({ stories }) {
 }
 ```
 
-```js src/App.js hidden
+```js {expectedErrors: {'react-compiler': [16]}} src/App.js hidden
 import { useState, useEffect } from 'react';
 import StoryTray from './StoryTray.js';
 
-let initialStories = [
+const initialStories = [
   {id: 0, label: "Ankit's Story" },
   {id: 1, label: "Taylor's Story" },
 ];
 
 export default function App() {
-  let [stories, setStories] = useState([...initialStories])
-  let time = useTime();
+  const [stories, setStories] = useState([...initialStories])
+  const time = useTime();
 
   // HACK: Prevent the memory from growing forever while you read docs.
   // We're breaking our own rules here.
@@ -770,7 +770,7 @@ Alternatively, you could create a _new_ array (by copying the existing one) befo
 ```js src/StoryTray.js active
 export default function StoryTray({ stories }) {
   // Copy the array!
-  let storiesToDisplay = stories.slice();
+  const storiesToDisplay = stories.slice();
 
   // Does not affect the original array:
   storiesToDisplay.push({
@@ -790,18 +790,18 @@ export default function StoryTray({ stories }) {
 }
 ```
 
-```js src/App.js hidden
+```js {expectedErrors: {'react-compiler': [16]}} src/App.js hidden
 import { useState, useEffect } from 'react';
 import StoryTray from './StoryTray.js';
 
-let initialStories = [
+const initialStories = [
   {id: 0, label: "Ankit's Story" },
   {id: 1, label: "Taylor's Story" },
 ];
 
 export default function App() {
-  let [stories, setStories] = useState([...initialStories])
-  let time = useTime();
+  const [stories, setStories] = useState([...initialStories])
+  const time = useTime();
 
   // HACK: Prevent the memory from growing forever while you read docs.
   // We're breaking our own rules here.

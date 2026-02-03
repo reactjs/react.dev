@@ -207,9 +207,9 @@ A component's props and state are immutable [snapshots](learn/state-as-a-snapsho
 You can think of the props and state values as snapshots that are updated after rendering. For this reason, you don't modify the props or state variables directly: instead you pass new props, or use the setter function provided to you to tell React that state needs to update the next time the component is rendered.
 
 ### Don't mutate Props {/*props*/}
-Props are immutable because if you mutate them, the application will produce inconsistent output, which can be hard to debug since it may or may not work depending on the circumstance.
+Props are immutable because if you mutate them, the application will produce inconsistent output, which can be hard to debug as it may or may not work depending on the circumstances.
 
-```js {2}
+```js {expectedErrors: {'react-compiler': [2]}} {2}
 function Post({ item }) {
   item.url = new Url(item.url, base); // 🔴 Bad: never mutate props directly
   return <Link url={item.url}>{item.title}</Link>;
@@ -232,7 +232,7 @@ const [stateVariable, setter] = useState(0);
 
 Rather than updating the state variable in-place, we need to update it using the setter function that is returned by `useState`. Changing values on the state variable doesn't cause the component to update, leaving your users with an outdated UI. Using the setter function informs React that the state has changed, and that we need to queue a re-render to update the UI.
 
-```js {5}
+```js {expectedErrors: {'react-compiler': [2, 5]}} {5}
 function Counter() {
   const [count, setCount] = useState(0);
 
@@ -270,7 +270,7 @@ function Counter() {
 
 Once values are passed to a hook, you should not modify them. Like props in JSX, values become immutable when passed to a hook.
 
-```js {4}
+```js {expectedErrors: {'react-compiler': [4]}} {4}
 function useIconStyle(icon) {
   const theme = useContext(ThemeContext);
   if (icon.enabled) {
@@ -307,7 +307,7 @@ function useIconStyle(icon) {
 }
 ```
 
-If you were to mutate the Hooks arguments, the custom hook's memoization will become incorrect,  so it's important to avoid doing that.
+If you were to mutate the Hook's arguments, the custom hook's memoization will become incorrect,  so it's important to avoid doing that.
 
 ```js {4}
 style = useIconStyle(icon);         // `style` is memoized based on `icon`
@@ -327,11 +327,11 @@ Similarly, it's important to not modify the return values of Hooks, as they may 
 
 ## Values are immutable after being passed to JSX {/*values-are-immutable-after-being-passed-to-jsx*/}
 
-Don't mutate values after they've been used in JSX. Move the mutation before the JSX is created.
+Don't mutate values after they've been used in JSX. Move the mutation to before the JSX is created.
 
 When you use JSX in an expression, React may eagerly evaluate the JSX before the component finishes rendering. This means that mutating values after they've been passed to JSX can lead to outdated UIs, as React won't know to update the component's output.
 
-```js {4}
+```js {expectedErrors: {'react-compiler': [4]}} {4}
 function Page({ colour }) {
   const styles = { colour, size: "large" };
   const header = <Header styles={styles} />;

@@ -15,14 +15,6 @@ In React Labs posts, we write about projects in active research and development.
 
 </Intro>
 
-<Note>
-
-React Conf 2024 is scheduled for May 15–16 in Henderson, Nevada! If you’re interested in attending React Conf in person, you can [sign up for the ticket lottery](https://forms.reform.app/bLaLeE/react-conf-2024-ticket-lottery/1aRQLK) until February 28th. 
-
-For more info on tickets, free streaming, sponsoring, and more, see [the React Conf website](https://conf.react.dev).
-
-</Note>
-
 ---
 
 ## React Compiler {/*react-compiler*/}
@@ -107,7 +99,7 @@ Activity is still under research and our remaining work is to finalize the primi
 
 In addition to this update, our team has presented at conferences and made appearances on podcasts to speak more on our work and answer questions.
 
-- [Sathya Gunasekaran](/community/team#sathya-gunasekaran) spoke about the React Compiler at the [React India](https://www.youtube.com/watch?v=kjOacmVsLSE) conference
+- [Sathya Gunasekaran](https://github.com/gsathya) spoke about the React Compiler at the [React India](https://www.youtube.com/watch?v=kjOacmVsLSE) conference
 
 - [Dan Abramov](/community/team#dan-abramov) gave a talk at [RemixConf](https://www.youtube.com/watch?v=zMf_xeGPn6s) titled “React from Another Dimension” which explores an alternative history of how React Server Components and Actions could have been created
 

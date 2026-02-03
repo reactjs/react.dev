@@ -1,3 +1,10 @@
+/**
+ * Copyright (c) Meta Platforms, Inc. and affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 /*
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
@@ -72,13 +79,15 @@ function TerminalBlock({level = 'info', children}: TerminalBlockProps) {
           </div>
         </div>
       </div>
-      <div
+      <pre
         className="px-8 pt-4 pb-6 text-primary-dark dark:text-primary-dark font-mono text-code whitespace-pre overflow-x-auto"
         translate="no"
         dir="ltr">
-        <LevelText type={level} />
-        {message}
-      </div>
+        <code>
+          <LevelText type={level} />
+          {message}
+        </code>
+      </pre>
     </div>
   );
 }

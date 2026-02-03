@@ -1,3 +1,10 @@
+/**
+ * Copyright (c) Meta Platforms, Inc. and affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 /*
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
@@ -108,7 +115,7 @@ export function Navigation({
           onClick={handleScrollLeft}
           aria-label="Scroll left"
           className={cn(
-            'bg-secondary-button dark:bg-secondary-button-dark h-8 px-2 rounded-l border-gray-20 border-r rtl:rotate-180',
+            'bg-secondary-button dark:bg-secondary-button-dark h-8 px-2 rounded-l rtl:rounded-r rtl:rounded-l-none border-gray-20 border-r rtl:border-l rtl:border-r-0',
             {
               'text-primary dark:text-primary-dark': canScrollLeft,
               'text-gray-30': !canScrollLeft,
@@ -120,7 +127,7 @@ export function Navigation({
           onClick={handleScrollRight}
           aria-label="Scroll right"
           className={cn(
-            'bg-secondary-button dark:bg-secondary-button-dark h-8 px-2 rounded-e rtl:rotate-180',
+            'bg-secondary-button dark:bg-secondary-button-dark h-8 px-2 rounded-e',
             {
               'text-primary dark:text-primary-dark': canScrollRight,
               'text-gray-30': !canScrollRight,

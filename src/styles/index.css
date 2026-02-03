@@ -12,7 +12,17 @@
     font-style: normal;
     font-weight: 400;
     font-display: swap;
-    src: url('/fonts/Source-Code-Pro-Regular.woff2') format('woff2');
+    src: url('https://react.dev/fonts/Source-Code-Pro-Regular.woff2')
+      format('woff2');
+  }
+
+  @font-face {
+    font-family: 'Source Code Pro';
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    src: url('https://react.dev/fonts/Source-Code-Pro-Bold.woff2')
+      format('woff2');
   }
 
   /* Latin */
@@ -729,13 +739,6 @@ ol.mdx-illustration-block {
   to {
     width: 100%;
   }
-}
-
-.exit {
-  opacity: 0;
-  transition: opacity 500ms ease-out;
-  transition-delay: 1s;
-  pointer-events: none;
 }
 
 .uwu-visible {

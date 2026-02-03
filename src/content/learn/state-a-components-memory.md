@@ -23,7 +23,7 @@ Here's a component that renders a sculpture image. Clicking the "Next" button sh
 
 <Sandpack>
 
-```js
+```js {expectedErrors: {'react-compiler': [7]}}
 import { sculptureList } from './data.js';
 
 export default function Gallery() {
@@ -1229,7 +1229,7 @@ When you type into the input fields, nothing appears. It's like the input values
 
 <Sandpack>
 
-```js
+```js {expectedErrors: {'react-compiler': [6]}}
 export default function Form() {
   let firstName = '';
   let lastName = '';
@@ -1337,7 +1337,7 @@ Are there any limitations on _where_ Hooks may be called? Does this component br
 
 <Sandpack>
 
-```js
+```js {expectedErrors: {'react-compiler': [9]}}
 import { useState } from 'react';
 
 export default function FeedbackForm() {
@@ -1452,7 +1452,7 @@ If your linter is [configured for React](/learn/editor-setup#linting), you shoul
 
 #### Remove unnecessary state {/*remove-unnecessary-state*/}
 
-When the button is clicked, this example should ask for the user's name and then display an alert greeting them. You tried to use state to keep the name, but for some reason it always shows "Hello, !".
+When the button is clicked, this example should ask for the user's name and then display an alert greeting them. You tried to use state to keep the name, but for some reason the first time it shows "Hello, !", and then "Hello, [name]!" with the previous input every time after.
 
 To fix this code, remove the unnecessary state variable. (We will discuss about [why this didn't work](/learn/state-as-a-snapshot) later.)
 

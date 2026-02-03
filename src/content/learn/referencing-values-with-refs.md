@@ -211,7 +211,7 @@ If you tried to implement this with a ref, React would never re-render the compo
 
 <Sandpack>
 
-```js
+```js {expectedErrors: {'react-compiler': [13]}}
 import { useRef } from 'react';
 
 export default function Counter() {
@@ -313,7 +313,7 @@ Regular variables like `let timeoutID` don't "survive" between re-renders becaus
 
 <Sandpack>
 
-```js
+```js {expectedErrors: {'react-compiler': [10]}}
 import { useState } from 'react';
 
 export default function Chat() {
@@ -418,7 +418,7 @@ This button is supposed to toggle between showing "On" and "Off". However, it al
 
 <Sandpack>
 
-```js
+```js {expectedErrors: {'react-compiler': [10]}}
 import { useRef } from 'react';
 
 export default function Toggle() {
@@ -464,7 +464,7 @@ export default function Toggle() {
 
 #### Fix debouncing {/*fix-debouncing*/}
 
-In this example, all button click handlers are ["debounced".](https://redd.one/blog/debounce-vs-throttle) To see what this means, press one of the buttons. Notice how the message appears a second later. If you press the button while waiting for the message, the timer will reset. So if you keep clicking the same button fast many times, the message won't appear until a second *after* you stop clicking. Debouncing lets you delay some action until the user "stops doing things".
+In this example, all button click handlers are ["debounced".](https://kettanaito.com/blog/debounce-vs-throttle) To see what this means, press one of the buttons. Notice how the message appears a second later. If you press the button while waiting for the message, the timer will reset. So if you keep clicking the same button fast many times, the message won't appear until a second *after* you stop clicking. Debouncing lets you delay some action until the user "stops doing things".
 
 This example works, but not quite as intended. The buttons are not independent. To see the problem, click one of the buttons, and then immediately click another button. You'd expect that after a delay, you would see both button's messages. But only the last button's message shows up. The first button's message gets lost.
 

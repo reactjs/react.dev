@@ -32,13 +32,13 @@ function ChatRoom({ roomId, theme }) {
 }
 ```
 
-Effect Events are a part of your Effect logic, but they behave more like an event handler. They always “see” the latest values of your props and state without re-synchronizing your Effect, so they're excluded from Effect dependencies. See [Separating Events from Effects](/learn/separating-events-from-effects#extracting-non-reactive-logic-out-of-effects) to learn more. 
+Effect Events are a part of your Effect logic, but they behave more like an event handler. They always “see” the latest values from render (like props and state) without re-synchronizing your Effect, so they're excluded from Effect dependencies. See [Separating Events from Effects](/learn/separating-events-from-effects#extracting-non-reactive-logic-out-of-effects) to learn more. 
 
 [See more examples below.](#usage)
 
 #### Parameters {/*parameters*/}
 
-* `callback`: A function containing the logic for your Effect Event. The function can accept any number of arguments and return any value. When you call the returned Effect Event function, the `callback` always accesses the latest values from props and state at the time of the call. 
+* `callback`: A function containing the logic for your Effect Event. The function can accept any number of arguments and return any value. When you call the returned Effect Event function, the `callback` always accesses the latest committed values from render at the time of the call. 
 
 #### Returns {/*returns*/}
 
@@ -134,9 +134,9 @@ See [Separating Events from Effects](/learn/separating-events-from-effects) to l
 
 ### Using a timer with latest values {/*using-a-timer-with-latest-values*/}
 
-When you use `setInterval` or `setTimeout` in an Effect, you often want to read the latest state values without restarting the timer whenever those values change.
+When you use `setInterval` or `setTimeout` in an Effect, you often want to read the latest values from render without restarting the timer whenever those values change.
 
-This counter increments by the current `increment` value every second. The `onTick` Effect Event reads the latest `increment` without causing the interval to restart:
+This counter increments `count` by the current `increment` value every second. The `onTick` Effect Event reads the latest `count` and `increment` without causing the interval to restart:
 
 <Sandpack>
 
@@ -148,7 +148,7 @@ export default function Timer() {
   const [increment, setIncrement] = useState(1);
 
   const onTick = useEffectEvent(() => {
-    setCount(c => c + increment);
+    setCount(count + increment);
   });
 
   useEffect(() => {
@@ -192,9 +192,9 @@ Try changing the increment value while the timer is running. The counter immedia
 
 ---
 
-### Using an event listener with latest state {/*using-an-event-listener-with-latest-state*/}
+### Using an event listener with latest values {/*using-an-event-listener-with-latest-values*/}
 
-When you set up an event listener in an Effect, you often need to read the latest state in the callback. Without `useEffectEvent`, you would need to include the state in your dependencies, causing the listener to be removed and re-added on every change.
+When you set up an event listener in an Effect, you often need to read the latest values from render in the callback. Without `useEffectEvent`, you would need to include the values in your dependencies, causing the listener to be removed and re-added on every change.
 
 This example shows a dot that follows the cursor, but only when "Can move" is checked. The `onMove` Effect Event always reads the latest `canMove` value without re-running the Effect:
 

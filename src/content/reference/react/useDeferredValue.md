@@ -84,19 +84,6 @@ During updates, the <CodeStep step={2}>deferred value</CodeStep> will "lag behin
 
 **Let's walk through an example to see when this is useful.**
 
-<Note>
-
-This example assumes you use a Suspense-enabled data source:
-
-- Data fetching with Suspense-enabled frameworks like [Relay](https://relay.dev/docs/guided-tour/rendering/loading-states/) and [Next.js](https://nextjs.org/docs/app/getting-started/fetching-data#with-suspense)
-- Lazy-loading component code with [`lazy`](/reference/react/lazy)
-- Reading the value of a Promise with [`use`](/reference/react/use)
-
-[Learn more about Suspense and its limitations.](/reference/react/Suspense)
-
-</Note>
-
-
 In this example, the `SearchResults` component [suspends](/reference/react/Suspense#displaying-a-fallback-while-content-is-loading) while fetching the search results. Try typing `"a"`, waiting for the results, and then editing it to `"ab"`. The results for `"a"` get replaced by the loading fallback.
 
 <Sandpack>

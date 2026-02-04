@@ -205,17 +205,14 @@ async function getAlbums() {
 
 <Note>
 
-**Only Suspense-enabled data sources will activate the Suspense component.** They include:
+**The Suspense component is activated by suspending.** This includes:
 
-- Data fetching with Suspense-enabled frameworks like [Relay](https://relay.dev/docs/guided-tour/rendering/loading-states/) and [Next.js](https://nextjs.org/docs/app/building-your-application/routing/loading-ui-and-streaming#streaming-with-suspense)
-- Lazy-loading component code with [`lazy`](/reference/react/lazy)
-- Reading the value of a cached Promise with [`use`](/reference/react/use)
+- Reading the value of a Promise with [`use`](/reference/react/use).
+- Lazy-loading component code with [`lazy`](/reference/react/lazy).
+- Data-fetching libraries that suspend, like [TanStack Query](https://tanstack.com/query/latest/docs/framework/react/guides/suspense) and [Relay](https://relay.dev/docs/guided-tour/rendering/loading-states/).
+- Frameworks that support [Server Components](/reference/rsc/server-components), like [React Router v7](/learn/start-a-new-react-project#react-router-v7) and [Next.js App Router](/learn/start-a-new-react-project#nextjs-app-router).
 
-Suspense **does not** detect when data is fetched inside an Effect or event handler.
-
-The exact way you would load data in the `Albums` component above depends on your framework. If you use a Suspense-enabled framework, you'll find the details in its data fetching documentation.
-
-Suspense-enabled data fetching without the use of an opinionated framework is not yet supported. The requirements for implementing a Suspense-enabled data source are unstable and undocumented. An official API for integrating data sources with Suspense will be released in a future version of React. 
+Suspense **does not** activate when data is fetched inside an Effect or event handler.
 
 </Note>
 
@@ -1681,7 +1678,9 @@ A Transition doesn't wait for *all* content to load. It only waits long enough t
 
 <Note>
 
-Suspense-enabled routers are expected to wrap the navigation updates into Transitions by default.
+To support [Suspense](/reference/react/Suspense), Routers are expected to wrap the navigation updates into Transitions by default.
+
+See [Building a Suspense-enabled router](/reference/react/useTransition#building-a-suspense-enabled-router) for more info.
 
 </Note>
 

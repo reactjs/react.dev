@@ -10,7 +10,7 @@ React Performance tracks are specialized custom entries that appear on the Perfo
 
 These tracks are designed to provide developers with comprehensive insights into their React application's performance by visualizing React-specific events and metrics alongside other critical data sources such as network requests, JavaScript execution, and event loop activity, all synchronized on a unified timeline within the Performance panel for a complete understanding of application behavior.
 
-<div style={{display: 'flex', justifyContent: 'center', marginBottom: '1rem'}}>
+<div className="flex justify-center mb-4">
   <img className="w-full light-image" src="/images/docs/performance-tracks/overview.png" alt="React Performance Tracks" />
   <img className="w-full dark-image" src="/images/docs/performance-tracks/overview.dark.png" alt="React Performance Tracks" />
 </div>
@@ -55,7 +55,7 @@ The Scheduler is an internal React concept used for managing tasks with differen
 - **Suspense** - Work related to Suspense boundaries, such as displaying fallbacks or revealing content.
 - **Idle** - The lowest priority work that is done when there are no other tasks with higher priority.
 
-<div style={{display: 'flex', justifyContent: 'center', marginBottom: '1rem'}}>
+<div className="flex justify-center mb-4">
   <img className="w-full light-image" src="/images/docs/performance-tracks/scheduler.png" alt="Scheduler track" />
   <img className="w-full dark-image" src="/images/docs/performance-tracks/scheduler.dark.png" alt="Scheduler track" />
 </div>
@@ -69,7 +69,7 @@ Every render pass consists of multiple phases that you can see on a timeline:
 - **Commit** - After rendering components, React will submit the changes to the DOM and run layout effects, like [`useLayoutEffect`](/reference/react/useLayoutEffect).
 - **Remaining Effects** - React runs passive effects of a rendered subtree. This usually happens after the paint, and this is when React runs hooks like [`useEffect`](/reference/react/useEffect). One known exception is user interactions, like clicks, or other discrete events. In this scenario, this phase could run before the paint.
 
-<div style={{display: 'flex', justifyContent: 'center', marginBottom: '1rem'}}>
+<div className="flex justify-center mb-4">
   <img className="w-full light-image" src="/images/docs/performance-tracks/scheduler-update.png" alt="Scheduler track: updates" />
   <img className="w-full dark-image" src="/images/docs/performance-tracks/scheduler-update.dark.png" alt="Scheduler track: updates" />
 </div>
@@ -82,7 +82,7 @@ Cascading updates is one of the patterns for performance regressions. If an upda
 
 In development builds, React can show you which Component scheduled a new update. This includes both general updates and cascading ones. You can see the enhanced stack trace by clicking on the "Cascading update" entry, which should also display the name of the method that scheduled an update.
 
-<div style={{display: 'flex', justifyContent: 'center', marginBottom: '1rem'}}>
+<div className="flex justify-center mb-4">
   <img className="w-full light-image" src="/images/docs/performance-tracks/scheduler-cascading-update.png" alt="Scheduler track: cascading updates" />
   <img className="w-full dark-image" src="/images/docs/performance-tracks/scheduler-cascading-update.dark.png" alt="Scheduler track: cascading updates" />
 </div>
@@ -93,14 +93,14 @@ In development builds, React can show you which Component scheduled a new update
 
 The Components track visualizes the durations of React components. They are displayed as a flamegraph, where each entry represents the duration of the corresponding component render and all its descendant children components.
 
-<div style={{display: 'flex', justifyContent: 'center', marginBottom: '1rem'}}>
+<div className="flex justify-center mb-4">
   <img className="w-full light-image" src="/images/docs/performance-tracks/components-render.png" alt="Components track: render durations" />
   <img className="w-full dark-image" src="/images/docs/performance-tracks/components-render.dark.png" alt="Components track: render durations" />
 </div>
 
 Similar to render durations, effect durations are also represented as a flamegraph, but with a different color scheme that aligns with the corresponding phase on the Scheduler track.
 
-<div style={{display: 'flex', justifyContent: 'center', marginBottom: '1rem'}}>
+<div className="flex justify-center mb-4">
   <img className="w-full light-image" src="/images/docs/performance-tracks/components-effects.png" alt="Components track: effects durations" />
   <img className="w-full dark-image" src="/images/docs/performance-tracks/components-effects.dark.png" alt="Components track: effects durations" />
 </div>
@@ -124,14 +124,14 @@ Additional events may be displayed during the render and effects phases:
 
 In development builds, when you click on a component render entry, you can inspect potential changes in props. You can use this information to identify unnecessary renders.
 
-<div style={{display: 'flex', justifyContent: 'center', marginBottom: '1rem'}}>
+<div className="flex justify-center mb-4">
   <img className="w-full light-image" src="/images/docs/performance-tracks/changed-props.png" alt="Components track: changed props" />
   <img className="w-full dark-image" src="/images/docs/performance-tracks/changed-props.dark.png" alt="Components track: changed props" />
 </div>
 
 ### Server {/*server*/}
 
-<div style={{display: 'flex', justifyContent: 'center', marginBottom: '1rem'}}>
+<div className="flex justify-center mb-4">
   <img className="w-full light-image" src="/images/docs/performance-tracks/server-overview.png" alt="React Server Performance Tracks" />
   <img className="w-full dark-image" src="/images/docs/performance-tracks/server-overview.dark.png" alt="React Server Performance Tracks" />
 </div>

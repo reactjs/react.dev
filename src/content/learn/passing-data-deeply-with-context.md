@@ -998,7 +998,7 @@ export const places = [{
 ```js src/utils.js
 export function getImageUrl(place) {
   return (
-    'https://i.imgur.com/' +
+    'https://i.imgur.com.prx.react.dev/' +
     place.imageId +
     'l.jpg'
   );
@@ -1137,7 +1137,7 @@ export const places = [{
 ```js src/utils.js
 export function getImageUrl(place) {
   return (
-    'https://i.imgur.com/' +
+    'https://i.imgur.com.prx.react.dev/' +
     place.imageId +
     'l.jpg'
   );

@@ -45,7 +45,7 @@ Technically, it is possible to change the contents of _the object itself_. **Thi
 position.x = 5;
 ```
 
-However, although objects in React state are technically mutable, you should treat them **as if** they were immutable--like numbers, booleans, and strings. Instead of mutating them, you should always replace them.
+However, objects are technically **mutable**, but mutating them directly will not trigger **re-renders** because React cannot detect the change. Instead, always create a new object with the desired updates and replace the state with that new copy (Immutate object).
 
 ## Treat state as read-only {/*treat-state-as-read-only*/}
 
@@ -104,7 +104,7 @@ onPointerMove={e => {
 }}
 ```
 
-This code modifies the object assigned to `position` from [the previous render.](/learn/state-as-a-snapshot#rendering-takes-a-snapshot-in-time) But without using the state setting function, React has no idea that object has changed. So React does not do anything in response. It's like trying to change the order after you've already eaten the meal. While mutating state can work in some cases, we don't recommend it. You should treat the state value you have access to in a render as read-only.
+This code modifies the object assigned to `position` from [the previous render.](/learn/state-as-a-snapshot#rendering-takes-a-snapshot-in-time) But without using the state setting function, React cannot detect that the object has changed, so no **re-render** occurs. So React does not do anything in response. It's like trying to change the order after you've already eaten the meal. Mutating state directly is unreliable and should be avoided. In React, always treat state as read-only and use the setter function to replace it with a new object when making updates.
 
 To actually [trigger a re-render](/learn/state-as-a-snapshot#setting-state-triggers-renders) in this case, **create a *new* object and pass it to the state setting function:**
 
@@ -804,7 +804,7 @@ There are a few reasons:
 * **Requirement Changes:** Some application features, like implementing Undo/Redo, showing a history of changes, or letting the user reset a form to earlier values, are easier to do when nothing is mutated. This is because you can keep past copies of state in memory, and reuse them when appropriate. If you start with a mutative approach, features like this can be difficult to add later on.
 * **Simpler Implementation:** Because React does not rely on mutation, it does not need to do anything special with your objects. It does not need to hijack their properties, always wrap them into Proxies, or do other work at initialization as many "reactive" solutions do. This is also why React lets you put any object into state--no matter how large--without additional performance or correctness pitfalls.
 
-In practice, you can often "get away" with mutating state in React, but we strongly advise you not to do that so that you can use new React features developed with this approach in mind. Future contributors and perhaps even your future self will thank you!
+In practice, **mutating** state fundamentally prevents _React_ from detecting a change and triggering a **re-render**. For this reason, we strongly advise you _never_ to mutate state. Following the immutability rule ensures your components are reliable and avoids hard-to-debug issues. Future contributors and perhaps even your future self will thank you!
 
 </DeepDive>
 

@@ -1337,7 +1337,7 @@ The DOM `<button>` element's `onClick` attribute has a special meaning to React 
 
 Note how in `handleClick`, you call `.slice()` to create a copy of the `squares` array instead of modifying the existing array. To explain why, we need to discuss immutability and why immutability is important to learn.
 
-There are generally two approaches to changing data. The first approach is to _mutate_ the data by directly changing the data's values. The second approach is to replace the data with a new copy which has the desired changes. Here is what it would look like if you mutated the `squares` array:
+In React, _mutating_ state directly doesn’t trigger re-renders because React cannot detect changes to the same object reference. To update state, you must replace the data with a new copy that has the desired changes. This _immutable_ update ensures React knows the state has changed and re-renders your component. Here is what it would look like if you mutated the `squares` array:
 
 ```jsx
 const squares = [null, null, null, null, null, null, null, null, null];
@@ -1354,6 +1354,12 @@ const nextSquares = ['X', null, null, null, null, null, null, null, null];
 ```
 
 The result is the same but by not mutating (changing the underlying data) directly, you gain several benefits.
+
+<Note>
+
+__Mutating state__ directly doesn't trigger re-renders. When you mutate an object or array in place, React cannot detect the change because the reference remains the same and due to that your component will not re-render.
+
+</Note>
 
 Immutability makes complex features much easier to implement. Later in this tutorial, you will implement a "time travel" feature that lets you review the game's history and "jump back" to past moves. This functionality isn't specific to games--an ability to undo and redo certain actions is a common requirement for apps. Avoiding direct data mutation lets you keep previous versions of the data intact, and reuse them later.
 

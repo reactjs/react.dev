@@ -968,7 +968,7 @@ When used with a [Server Function](/reference/rsc/server-functions), `useActionS
 
 </RSC>
 
-See the [<form>](/reference/react-dom/components/form#handle-form-submission-with-a-server-function) docs for more information on using Actions with forms. 
+See the [`<form>`](/reference/react-dom/components/form#handle-form-submission-with-a-server-function) docs for more information on using Actions with forms. 
 
 ---
 

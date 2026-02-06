@@ -2160,7 +2160,7 @@ function Item() {
 function ItemList({items}) {
   return (
     <>
-      {item.map(item => <Item key={item.id} />)}
+      {items.map(item => <Item key={item.id} />)}
     </>
   );
 }
@@ -2197,7 +2197,7 @@ function Item({id}) {
 function ItemList({items}) {
   return (
     <>
-      {item.map(item => <Item key={item.id} item={item} />)}
+      {items.map(item => <Item key={item.id} item={item} />)}
     </>
   );
 }

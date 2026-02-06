@@ -801,7 +801,7 @@ You can use an `AbortController` to cancel pending Actions:
 <Sandpack>
 
 ```js src/App.js
-import { useActionState, useOptimistic, useRef } from 'react';
+import { useActionState, useRef } from 'react';
 import { addToCart, removeFromCart } from './api';
 import QuantityStepper from './QuantityStepper';
 import Total from './Total';
@@ -810,8 +810,6 @@ export default function Checkout() {
   const abortRef = useRef(null);
   const [count, dispatchAction, isPending] = useActionState(updateCartAction, 0);
   
-  const [optimisticCount, setOptimisticCount] = useOptimistic(count);
-
   async function addAction() {
     if (abortRef.current) {
       abortRef.current.abort();

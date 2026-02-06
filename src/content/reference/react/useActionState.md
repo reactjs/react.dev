@@ -1209,6 +1209,190 @@ For example, if the Action performs a mutation (like writing to a database), abo
 
 ---
 
+### Handling errors {/*handling-errors*/}
+
+There are two ways to handle errors with `useActionState`.
+
+For known errors, such as "quantity not available" validation errors from your backend, you can return it as part of your `reducerAction` state and display it in the UI.
+
+For unknown errors, such as `undefined is not a function`, you can throw an error. React will cancel all queued Actions and shows the nearest [Error Boundary](/reference/react/Component#catching-rendering-errors-with-an-error-boundary) by rethrowing the error from the `useActionState` hook.
+
+<Sandpack>
+
+```js src/App.js
+import {useActionState, startTransition} from 'react';
+import {ErrorBoundary} from 'react-error-boundary';
+import {addToCart} from './api';
+import Total from './Total';
+
+function Checkout() {
+  const [state, dispatchAction, isPending] = useActionState(
+    async (prevState, quantity) => {
+      const result = await addToCart(prevState.count, quantity);
+      if (result.error) {
+        // Return the error from the API as state
+        return {...prevState, error: `Could not add quanitiy ${quantity}: ${result.error}`};
+      }
+      
+      if (!isPending) {
+        // Clear the error state for the first dispatch.
+        return {count: result.count, error: null};    
+      }
+      
+      // Return the new count, and any errors that happened.
+      return {count: result.count, error: prevState.error};
+      
+      
+    },
+    {
+      count: 0,
+      error: null,
+    }
+  );
+
+  function handleAdd(quantity) {
+    startTransition(() => {
+      dispatchAction(quantity);
+    });
+  }
+
+  return (
+    <div className="checkout">
+      <h2>Checkout</h2>
+      <div className="row">
+        <span>Eras Tour Tickets</span>
+        <span>
+          {isPending && '🌀 '}Qty: {state.count}
+        </span>
+      </div>
+      <div className="buttons">
+        <button onClick={() => handleAdd(1)}>Add 1</button>
+        <button onClick={() => handleAdd(10)}>Add 10</button>
+        <button onClick={() => handleAdd(NaN)}>Add NaN</button>
+      </div>
+      {state.error && <div className="error">{state.error}</div>}
+      <hr />
+      <Total quantity={state.count} isPending={isPending} />
+    </div>
+  );
+}
+
+
+
+export default function App() {
+  return (
+    <ErrorBoundary
+      fallbackRender={({resetErrorBoundary}) => (
+        <div className="checkout">
+          <h2>Something went wrong</h2>
+          <p>The action could not be completed.</p>
+          <button onClick={resetErrorBoundary}>Try again</button>
+        </div>
+      )}>
+      <Checkout />
+    </ErrorBoundary>
+  );
+}
+```
+
+```js src/Total.js
+const formatter = new Intl.NumberFormat('en-US', {
+  style: 'currency',
+  currency: 'USD',
+  minimumFractionDigits: 0,
+});
+
+export default function Total({quantity, isPending}) {
+  return (
+    <div className="row total">
+      <span>Total</span>
+      <span>
+        {isPending ? '🌀 Updating...' : formatter.format(quantity * 9999)}
+      </span>
+    </div>
+  );
+}
+```
+
+```js src/api.js hidden
+export async function addToCart(count, quantity) {
+  await new Promise((resolve) => setTimeout(resolve, 1000));
+  if (quantity > 5) {
+    return {error: 'Quantity not available'};
+  } else if (isNaN(quantity)) {
+    throw new Error('Quantity must be a number');
+  }
+  return {count: count + quantity};
+}
+```
+
+```css
+.checkout {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 16px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-family: system-ui;
+}
+
+.checkout h2 {
+  margin: 0 0 8px 0;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.total {
+  font-weight: bold;
+}
+
+hr {
+  width: 100%;
+  border: none;
+  border-top: 1px solid #ccc;
+  margin: 4px 0;
+}
+
+button {
+  padding: 8px 16px;
+  cursor: pointer;
+}
+
+.buttons {
+  display: flex;
+  gap: 8px;
+}
+
+.error {
+  color: red;
+  font-size: 14px;
+}
+```
+
+```json package.json hidden
+{
+  "dependencies": {
+    "react": "19.0.0",
+    "react-dom": "19.0.0",
+    "react-scripts": "^5.0.0",
+    "react-error-boundary": "4.0.3"
+  },
+  "main": "/index.js"
+}
+```
+
+</Sandpack>
+
+In this example, "Add 10" simulates an API that returns a validation error, which `updateCartAction` stores in state and displays inline. "Add NaN" results in an invalid count, so `updateCartAction` throws, which propagates through `useActionState` to the `ErrorBoundary` and shows a reset UI.
+
+
+---
+
 ## Troubleshooting {/*troubleshooting*/}
 
 ### My Action can no longer read the submitted form data {/*action-cant-read-form-data*/}

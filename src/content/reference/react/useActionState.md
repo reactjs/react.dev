@@ -4,10 +4,10 @@ title: useActionState
 
 <Intro>
 
-`useActionState` is a React Hook that lets you track the state of an [Action](/reference/react/useTransition#functions-called-in-starttransition-are-called-actions).
+`useActionState` is a React Hook that updates state with side effects using [Actions](/reference/react/useTransition#functions-called-in-starttransition-are-called-actions).
 
 ```js
-const [state, action, isPending] = useActionState(reducerAction, initialState, permalink?);
+const [state, dispatchAction, isPending] = useActionState(reducerAction, initialState, permalink?);
 ```
 
 </Intro>
@@ -25,12 +25,12 @@ Call `useActionState` at the top level of your component to create state for the
 ```js
 import { useActionState } from 'react';
 
-function reducerAction(state, action) {
+function reducerAction(previousState, actionPayload) {
   // ...
 }
 
-function MyComponent() {
-  const [state, action, isPending] = useActionState(reducerAction, {quantity: 1});
+function MyCart({initialState}) {
+  const [state, dispatchAction, isPending] = useActionState(reducerAction, initialState);
   // ...
 }
 ```
@@ -39,8 +39,8 @@ function MyComponent() {
 
 #### Parameters {/*parameters*/}
 
-* `reducerAction`: The function to be called when the Action is triggered. When called, it receives the previous state (initially the `initialState` you provided, then its previous return value) as its first argument, followed by the arguments passed to the `action`.
-* `initialState`: The value you want the state to be initially. React ignores this argument after invoking the action for the first time.
+* `reducerAction`: The function to be called when the Action is triggered. When called, it receives the previous state (initially the `initialState` you provided, then its previous return value) as its first argument, followed by the `actionPayload` passed to `dispatchAction`.
+* `initialState`: The value you want the state to be initially. React ignores this argument after `dispatchAction` is invoked for the first time.
 * **optional** `permalink`: A string containing the unique page URL that this form modifies.
   * For use on pages with [React Server Components](/reference/rsc/server-components) with progressive enhancement.
   * If `reducerAction` is a [Server Function](/reference/rsc/server-functions) and the form is submitted before the JavaScript bundle loads, the browser will navigate to the specified permalink URL rather than the current page's URL.
@@ -49,24 +49,27 @@ function MyComponent() {
 
 `useActionState` returns an array with exactly three values:
 
-1. The current state. During the first render, it will match the `initialState` you passed. After the action is invoked, it will match the value returned by the `reducerAction`.
-2. An `action` function that you call inside [Actions](/reference/react/useTransition#functions-called-in-starttransition-are-called-actions).
-3. The `isPending` flag that tells you whether there is a pending Action.
+1. The current state. During the first render, it will match the `initialState` you passed. After `dispatchAction` is invoked, it will match the value returned by the `reducerAction`.
+2. A `dispatchAction` function that you call inside [Actions](/reference/react/useTransition#functions-called-in-starttransition-are-called-actions).
+3. The `isPending` flag that tells you if any dispatched Actions for this hook are pending.
 
 #### Caveats {/*caveats*/}
 
 * `useActionState` is a Hook, so it must be called **at the top level of your component** or your own Hooks. You can't call it inside loops or conditions. If you need that, extract a new component and move the state into it.
-* React queues and executes multiple calls to `action` sequentially, allowing each `reducerAction` to use the result of the previous Action.
-* The `action` function has a stable identity, so you will often see it omitted from Effect dependencies, but including it will not cause the Effect to fire. If the linter lets you omit a dependency without errors, it is safe to do. [Learn more about removing Effect dependencies.](/learn/removing-effect-dependencies#move-dynamic-objects-and-functions-inside-your-effect)
+* React queues and executes multiple calls to `dispatchAction` sequentially, allowing each `reducerAction` to use the result of the previous Action.
+* The `dispatchAction` function has a stable identity, so you will often see it omitted from Effect dependencies, but including it will not cause the Effect to fire. If the linter lets you omit a dependency without errors, it is safe to do. [Learn more about removing Effect dependencies.](/learn/removing-effect-dependencies#move-dynamic-objects-and-functions-inside-your-effect)
 * When using the `permalink` option, ensure the same form component is rendered on the destination page (including the same `reducerAction` and `permalink`) so React knows how to pass the state through. Once the page becomes interactive, this parameter has no effect.
-* When using Server Functions, `initialState` needs to be serializable (values like plain objects, arrays, strings, and numbers).
-* If `action` throws an error, React cancels all queued actions and shows the nearest [Error Boundary](/reference/react/Component#catching-rendering-errors-with-an-error-boundary).
+* When using Server Functions, `initialState` needs to be [serializable](/reference/rsc/use-server#serializable-parameters-and-return-values) (values like plain objects, arrays, strings, and numbers).
+* If `dispatchAction` throws an error, React cancels all queued actions and shows the nearest [Error Boundary](/reference/react/Component#catching-rendering-errors-with-an-error-boundary).
+* If there are multiple ongoing Actions, React currently batches them together. This is a limitation that may be removed in a future release.
 
-<Pitfall>
+<Note>
 
-When calling the `action` function, you must wrap the call in [`startTransition`](/reference/react/startTransition). If you call `action` without `startTransition`, the `isPending` flag will not update correctly, and React will show a warning in development.
+`dispatchAction` must be called within a Transition. 
 
-</Pitfall>
+You can wrap it in [`startTransition`](/reference/react/startTransition), or pass it to an [Action prop](/reference/react/useTransition#exposing-action-props-from-components).
+
+</Note>
 
 ---
 
@@ -77,32 +80,30 @@ The `reducerAction` function passed to `useActionState` receives the previous st
 Unlike reducers in `useReducer`, the `reducerAction` can be async and perform side effects:
 
 ```js
-async function reducerAction(previousState, update) {
-  const newState = await post(update);
+async function reducerAction(previousState, actionPayload) {
+  const newState = await post(actionPayload);
   return newState;
-}
-
-function MyCart({initialCart}) {
-  const [state, action, isPending] = useActionState(reducerAction, initialCart);
-  // ...
 }
 ```
 
-Each time you call `action`, React calls the `reducerAction` to perform side effects and compute the result of that Action. If the `action` is called multiple times, React queues and executes them in order so the result of the previous call is available for current call.
+Each time you call `dispatchAction`, React calls the `reducerAction` with the `actionPayload`. The reducer will perform side effects such as posting data, and return the new state. If `dispatchAction` is called multiple times, React queues and executes them in order so the result of the previous call is available for current call.
 
 #### Parameters {/*reduceraction-parameters*/}
 
-* `previousState`: The current state of the Action. Initially this is equal to the `initialState`. After the first call to `action`, it's equal to the last state returned.
+* `previousState`: The current state. Initially this is equal to the `initialState`. After the first call to `dispatchAction`, it's equal to the last state returned.
 
-* `update`: The argument passed to `action`. It can be a value of any type. Similar to `useReducer` conventions, it is usually an object with a `type` property identifying it and, optionally, other properties with additional information.
+* **optional** `actionPayload`: The argument passed to `dispatchAction`. It can be a value of any type. Similar to `useReducer` conventions, it is usually an object with a `type` property identifying it and, optionally, other properties with additional information.
 
 #### Returns {/*reduceraction-returns*/}
 
-`reducerAction` returns the new state, and triggers a re-render with that state.
+`reducerAction` returns the new state, and triggers a Transition to re-render with that state.
 
 #### Caveats {/*reduceraction-caveats*/}
 
+* `reducerAction` can be sync or async. It can perform sync actions like showing a notification, or async actions like posting updates to a server. 
 * `reducerAction` is not invoked twice in StrictMode since `reducerAction` is designed to allow side effects.
+* The return type of `reducerAction` must match the type of `initialState`. If TypeScript infers a mismatch, you may need to explicitly annotate your state type.
+* If you set state after `await` in the `reducerAction` you currently need to wrap the state update in an additional `startTransition`. See the [startTransition](/reference/react/useTransition#react-doesnt-treat-my-state-update-after-await-as-a-transition) docs for more info.
 
 <DeepDive>
 
@@ -111,7 +112,7 @@ Each time you call `action`, React calls the `reducerAction` to perform side eff
 The function passed to `useActionState` is called a *reducer action* because:
 
 - It *reduces* the previous state into a new state, like `useReducer`.
-- It's called inside a Transition and can perform side effects, like an Action.
+- It an *Action* because it's called inside a Transition and can perform side effects.
 
 Conceptually, `useActionState` is like `useReducer`, but you can do side effects in the reducer.
 
@@ -125,15 +126,15 @@ Conceptually, `useActionState` is like `useReducer`, but you can do side effects
 
 Call `useActionState` at the top level of your component to create state for the result of an Action.
 
-```js [[1, 7, "count"], [2, 7, "action"], [3, 7, "isPending"]]
+```js [[1, 7, "count"], [2, 7, "dispatchAction"], [3, 7, "isPending"]]
 import { useActionState } from 'react';
 
-async function increment(prevCount) {
+async function addToCartAction(prevCount) {
   // ...
 }
 function Counter() {
-  const [count, action, isPending] = useActionState(increment, 0);
-  
+  const [count, dispatchAction, isPending] = useActionState(addToCartAction, 0);
+
   // ...
 }
 ```
@@ -141,28 +142,26 @@ function Counter() {
 `useActionState` returns an array with exactly three items:
 
 1. The <CodeStep step={1}>current state</CodeStep>, initially set to the initial state you provided.
-2. The <CodeStep step={2}>`action` function</CodeStep> that lets you trigger the `reducerAction`.
-3. The <CodeStep step={3}>pending state</CodeStep> that tells you whether `action` is in progress.
+2. The <CodeStep step={2}>action dispatcher</CodeStep> that lets you trigger `reducerAction`.
+3. A <CodeStep step={3}>pending state</CodeStep> that tells you whether the Action is in progress.
 
-To trigger the Action, call the <CodeStep step={2}>`action` function</CodeStep> inside an [Action](/reference/react/useTransition#functions-called-in-starttransition-are-called-actions). React will call your `reducerAction` with the previous state and argument passed to `action`, and return the new <CodeStep step={1}>state</CodeStep>.
+To call `addToCartAction`, call the <CodeStep step={2}>action dispatcher</CodeStep>. React will call queue calls to `addToCartAction` with the previous count.
 
 <Sandpack>
 
 ```js src/App.js
 import { useActionState, startTransition } from 'react';
-import { addToCart } from './api';
+import { addToCartAction } from './api';
 import Total from './Total';
 
-async function addTicket(prevCount) {
-  return await addToCart(prevCount);
-}
-
 export default function Checkout() {
-  const [count, action, isPending] = useActionState(addTicket, 0);
+  const [count, dispatchAction, isPending] = useActionState(async (prevCount) => {
+    return await addToCart(prevCount)
+  }, 0);
 
   function handleClick() {
     startTransition(() => {
-      action();
+      dispatchAction();
     });
   }
 
@@ -200,8 +199,8 @@ export default function Total({quantity, isPending}) {
 }
 ```
 
-```js src/api.js hidden
-export async function addToCart(count) {
+```js src/api.js
+export async function addToCartAction(count) {
   await new Promise(resolve => setTimeout(resolve, 1000));
   return count + 1;
 }
@@ -252,17 +251,17 @@ button {
 
 </Sandpack>
 
-Every time you click "Add Ticket," React queues a call to `addTicket`. React shows the pending state until all of the tickets are added, and then re-renders with the final state.
+Every time you click "Add Ticket," React queues a call to `addToCartAction`. React shows the pending state until all the tickets are added, and then re-renders with the final state.
 
 <DeepDive>
 
 #### How `useActionState` queuing works {/*how-useactionstate-queuing-works*/}
 
-Try clicking "Add Ticket" multiple times. Every time you click, a new `addTicket` is queued. Since there's an artificial 1 second delay, that means 4 clicks will take ~4 seconds to complete.
+Try clicking "Add Ticket" multiple times. Every time you click, a new `addToCart` is queued. Since there's an artificial 1 second delay, that means 4 clicks will take ~4 seconds to complete.
 
-**This is intentional in the design of `useActionState`.** 
+**This is intentional in the design of `useActionState`.**
 
-We have to wait for the previous result of `addTicket` in order to pass the `prevCount` to the next call to `addTicket`. That means React has to wait for the previous Action to finish before calling the next Action. 
+We have to wait for the previous result of `addToCart` in order to pass the `prevCount` to the next call to `addToCart`. That means React has to wait for the previous Action to finish before calling the next Action. 
 
 You can typically solve this by [using with useOptimistic](/reference/react/useActionState#using-with-useoptimistic) but for more complex cases you may want to consider [cancelling queued actions](#cancelling-queued-actions) or not using `useActionState`.
 
@@ -270,7 +269,7 @@ You can typically solve this by [using with useOptimistic](/reference/react/useA
 
 ### Using multiple Action types {/*using-multiple-action-types*/}
 
-To handle multiple types, you can pass an argument to `action`. 
+To handle multiple types, you can pass an argument to `dispatchAction`.
 
 By convention, it is common to write it as a switch statement. For each case in the switch, calculate and return some next state. The argument can have any shape, but it is common to pass objects with a `type` property identifying the action.
 
@@ -282,17 +281,17 @@ import { addToCart, removeFromCart } from './api';
 import Total from './Total';
 
 export default function Checkout() {
-  const [count, action, isPending] = useActionState(updateCart, 0);
+  const [count, dispatchAction, isPending] = useActionState(updateCartAction, 0);
 
   function handleAdd() {
     startTransition(() => {
-      action({type: 'ADD'});
+      dispatchAction({type: 'ADD'});
     });
   }
 
   function handleRemove() {
     startTransition(() => {
-      action({type: 'REMOVE'});
+      dispatchAction({type: 'REMOVE'});
     });
   }
 
@@ -316,8 +315,8 @@ export default function Checkout() {
   );
 }
 
-async function updateCart(prevCount, update) {
-  switch (update.type) {
+async function updateCartAction(prevCount, actionPayload) {
+  switch (actionPayload.type) {
     case 'ADD': {
       return await addToCart(prevCount);
     }
@@ -440,10 +439,9 @@ You can think of `useActionState` as `useReducer` for side effects from user Act
 
 ### Using with Action props {/*using-with-action-props*/}
 
-When you pass the `action` function to a component that exposes an [Action prop](/reference/react/useTransition#exposing-action-props-from-components), you don't need to wrap the call in `startTransition` yourself. The component handles the transition internally.
+When you pass the `dispatchAction` function to a component that exposes an [Action prop](/reference/react/useTransition#exposing-action-props-from-components), you don't need to wrap the call in `startTransition` yourself.
 
 This example shows using the `increaseAction` and `decreaseAction` props of a QuantityStepper component:
-
 
 <Sandpack>
 
@@ -454,14 +452,14 @@ import QuantityStepper from './QuantityStepper';
 import Total from './Total';
 
 export default function Checkout() {
-  const [count, action, isPending] = useActionState(updateCart, 0);
+  const [count, dispatchAction, isPending] = useActionState(updateCartAction, 0);
 
   function addAction() {
-    action({type: 'ADD'});
+    dispatchAction({type: 'ADD'});
   }
 
   function removeAction() {
-    action({type: 'REMOVE'});
+    dispatchAction({type: 'REMOVE'});
   }
 
   return (
@@ -481,8 +479,8 @@ export default function Checkout() {
   );
 }
 
-async function updateCart(prevCount, update) {
-  switch (update.type) {
+async function updateCartAction(prevCount, actionPayload) {
+  switch (actionPayload.type) {
     case 'ADD': {
       return await addToCart(prevCount);
     }
@@ -635,8 +633,8 @@ import { addToCart, removeFromCart } from './api';
 import QuantityStepper from './QuantityStepper';
 import Total from './Total';
 
-async function updateCart(prevCount, update) {
-  switch (update.type) {
+async function updateCartAction(prevCount, actionPayload) {
+  switch (actionPayload.type) {
     case 'ADD': {
       return await addToCart(prevCount);
     }
@@ -648,17 +646,17 @@ async function updateCart(prevCount, update) {
 }
 
 export default function Checkout() {
-  const [count, action, isPending] = useActionState(updateCart, 0);
+  const [count, dispatchAction, isPending] = useActionState(updateCartAction, 0);
   const [optimisticCount, setOptimisticCount] = useOptimistic(count);
 
   async function addAction() {
     setOptimisticCount(c => c + 1);
-    await action({type: 'ADD'});
+    await dispatchAction({type: 'ADD'});
   }
 
   async function removeAction() {
     setOptimisticCount(c => Math.max(0, c - 1));
-    await action({type: 'REMOVE'});
+    await dispatchAction({type: 'REMOVE'});
   }
 
   return (
@@ -804,13 +802,13 @@ hr {
 </Sandpack>
 
 
-When the stepper arrow is clicked, `setOptimisticCount` immediately updates the quantity, and `action()` queues the `updateCart`. We show a pending indicator on both the quantity and total to give the user feedback that their update is still being applied.
+When the stepper arrow is clicked, `setOptimisticCount` immediately updates the quantity, and `dispatchAction()` queues the `updateCartAction`. We show a pending indicator on both the quantity and total to give the user feedback that their update is still being applied.
 
 ---
 
 ### Using with `<form>` action props {/*use-with-a-form*/}
 
-The `action` function can be passed as the `action` prop to a `<form>`.
+The `dispatchAction` function can be passed as the `action` prop to a `<form>`.
 
 When used this way, React automatically wraps the submission in a transition, so you don't need to call `startTransition` yourself. The `reducerAction` receives the previous state and the submitted `FormData`:
 
@@ -822,7 +820,7 @@ import { addToCart, removeFromCart } from './api';
 import Total from './Total';
 
 export default function Checkout() {
-  const [count, action, isPending] = useActionState(updateCart, 0);
+  const [count, dispatchAction, isPending] = useActionState(updateCartAction, 0);
   const [optimisticCount, setOptimisticCount] = useOptimistic(count);
 
   async function formAction(formData) {
@@ -832,7 +830,7 @@ export default function Checkout() {
     } else {
       setOptimisticCount(c => Math.max(0, c - 1));
     }
-    return action(formData);
+    return dispatchAction(formData);
   }
 
   return (
@@ -855,7 +853,7 @@ export default function Checkout() {
   );
 }
 
-async function updateCart(prevCount, formData) {
+async function updateCartAction(prevCount, formData) {
   const type = formData.get('type');
   switch (type) {
     case 'ADD': {
@@ -962,7 +960,7 @@ hr {
 
 </Sandpack>
 
-In this example, when the user clicks the stepper arrows, the button submits the form and `useActionState` calls `updateCart` with the form data. The action uses `useOptimistic` to immediately show the new quantity while the server confirms the update.
+In this example, when the user clicks the stepper arrows, the button submits the form and `useActionState` calls `updateCartAction` with the form data. The example uses `useOptimistic` to immediately show the new quantity while the server confirms the update.
 
 <RSC>
 
@@ -986,7 +984,7 @@ import Total from './Total';
 
 export default function Checkout() {
   const abortRef = useRef(null);
-  const [count, action, isPending] = useActionState(updateCart, 0);
+  const [count, dispatchAction, isPending] = useActionState(updateCartAction, 0);
   
   const [optimisticCount, setOptimisticCount] = useOptimistic(count);
 
@@ -996,7 +994,7 @@ export default function Checkout() {
     }
     abortRef.current = new AbortController();
     setOptimisticCount(c => c + 1);
-    await action({type: 'ADD', signal: abortRef.current.signal});
+    await dispatchAction({type: 'ADD', signal: abortRef.current.signal});
   }
 
   async function removeAction() {
@@ -1005,7 +1003,7 @@ export default function Checkout() {
     }
     abortRef.current = new AbortController();
     setOptimisticCount(c => Math.max(0, c - 1));
-    await action({type: 'REMOVE', signal: abortRef.current.signal});
+    await dispatchAction({type: 'REMOVE', signal: abortRef.current.signal});
   }
 
   return (
@@ -1026,18 +1024,18 @@ export default function Checkout() {
 }
 
 
-async function updateCart(prevCount, update) {
-  switch (update.type) {
+async function updateCartAction(prevCount, actionPayload) {
+  switch (actionPayload.type) {
     case 'ADD': {
       try {
-        return await addToCart(prevCount, {signal: update.signal});
+        return await addToCart(prevCount, {signal: actionPayload.signal});
       } catch (e) {
         return prevCount + 1;
       }
     }
     case 'REMOVE': {
       try {
-        return await removeFromCart(prevCount, {signal: update.signal});
+        return await removeFromCart(prevCount, {signal: actionPayload.signal});
       } catch (e) {
         return prevCount - 1;
       }
@@ -1200,7 +1198,9 @@ Try clicking increase or decrease multiple times, and notice that the total upda
 
 <Pitfall>
 
-Aborting an Action isn't always safe, which is why `useActionState` doesn't do it by default.
+Aborting an Action isn't always safe. 
+
+For example, if the Action performs a mutation (like writing to a database), aborting the network request doesn't undo the server-side change. This is why `useActionState` doesn't abort by default. It's only safe when you know the side effect can be safely ignored or retried.
 
 </Pitfall>
 
@@ -1228,18 +1228,18 @@ function action(prevState, formData) {
 
 ### My `isPending` flag is not updating {/*ispending-not-updating*/}
 
-If you're calling the action manually (not through a form's `action` prop), make sure you wrap the call in [`startTransition`](/reference/react/startTransition):
+If you're calling `dispatchAction` manually (not through an Action prop), make sure you wrap the call in [`startTransition`](/reference/react/startTransition):
 
 ```js
 import { useActionState, startTransition } from 'react';
 
 function MyComponent() {
-  const [state, action, isPending] = useActionState(myAction, null);
+  const [state, dispatchAction, isPending] = useActionState(myAction, null);
 
   function handleClick() {
     // ✅ Correct: wrap in startTransition
     startTransition(() => {
-      action();
+      dispatchAction();
     });
   }
 
@@ -1247,32 +1247,34 @@ function MyComponent() {
 }
 ```
 
-When the action is passed to a form's `action` prop or a button's `formAction` prop, React automatically wraps it in a transition.
+When `dispatchAction` is passed to an Action prop, React automatically wraps it in a Transition.
 
 ---
 
 ### I'm getting an error: "Cannot update form state while rendering" {/*cannot-update-during-render*/}
 
-You cannot call `action` during render. This causes an infinite loop because calling `action` schedules a state update, which triggers a re-render, which calls `action` again.
+You cannot call `dispatchAction` during render. This causes an infinite loop because calling `dispatchAction` schedules a state update, which triggers a re-render, which calls `dispatchAction` again.
 
 ```js
 function MyComponent() {
-  const [state, action, isPending] = useActionState(myAction, null);
+  const [state, dispatchAction, isPending] = useActionState(myAction, null);
 
-  // ❌ Wrong: calling action during render
-  action();
+  // ❌ Wrong: calling dispatchAction during render
+  dispatchAction();
 
   // ...
 }
 ```
 
-Only call `action` in response to user events (like form submissions or button clicks) or in Effects.
+Only call `dispatchAction` in response to user events (like form submissions or button clicks) or in Effects.
 
 ---
 
 ### My actions are being skipped {/*actions-skipped*/}
 
-If you call `action` multiple times and some of them don't run, it may be because an earlier `action` call threw an error. When a `reducerAction` throws, React skips all subsequently queued `action` calls.
+If you call `dispatchAction` multiple times and some of them don't run, it may be because an earlier `dispatchAction` call threw an error. 
+
+When a `reducerAction` throws, React skips all subsequently queued `dispatchAction` calls.
 
 To handle this, catch errors within your `reducerAction` and return an error state instead of throwing:
 
@@ -1308,11 +1310,11 @@ async function formAction(prevState, payload) {
 }
 
 function MyComponent() {
-  const [state, action, isPending] = useActionState(formAction, initialState);
+  const [state, dispatchAction, isPending] = useActionState(formAction, initialState);
 
   function handleReset() {
     startTransition(() => {
-      action(null); // Pass null to trigger reset
+      dispatchAction(null); // Pass null to trigger reset
     });
   }
 

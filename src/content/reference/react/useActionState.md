@@ -170,13 +170,13 @@ export default function Checkout() {
       <h2>Checkout</h2>
       <div className="row">
         <span>Eras Tour Tickets</span>
-        <span>{isPending && '🌀 '}Qty: {count}</span>
+        <span>Qty: {count}</span>
       </div>
       <div className="row">
-        <button onClick={handleClick}>Add Ticket</button>
+        <button onClick={handleClick}>Add Ticket{isPending ? ' 🌀' : '  '}</button>
       </div>
       <hr />
-      <Total quantity={count} isPending={isPending} />
+      <Total quantity={count}  />
     </div>
   );
 }
@@ -230,6 +230,11 @@ export async function removeFromCart(count) {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.row button {
+  margin-left: auto;
+  min-width: 150px;
 }
 
 .total {
@@ -303,8 +308,7 @@ export default function Checkout() {
       <div className="row">
         <span>Eras Tour Tickets</span>
         <span className="stepper">
-          <span className="pending">{isPending && '🌀'}</span>
-          <span className="qty">{count}</span>
+          <span className="qty">{isPending ? '🌀' : count}</span>
           <span className="buttons">
             <button onClick={handleAdd}>▲</button>
             <button onClick={handleRemove}>▼</button>
@@ -312,7 +316,7 @@ export default function Checkout() {
         </span>
       </div>
       <hr />
-      <Total quantity={count} />
+      <Total quantity={count} isPending={isPending}/>
     </div>
   );
 }
@@ -337,11 +341,11 @@ const formatter = new Intl.NumberFormat('en-US', {
   minimumFractionDigits: 0,
 });
 
-export default function Total({quantity}) {
+export default function Total({quantity, isPending}) {
   return (
     <div className="row total">
       <span>Total</span>
-      <span>{formatter.format(quantity * 9999)}</span>
+      {isPending ? '🌀 Updating...' : formatter.format(quantity * 9999)}
     </div>
   );
 }
@@ -423,6 +427,10 @@ hr {
 
 </Sandpack>
 
+When you click to increase or decrease the quantity, an `"ADD"` or `"REMOVE"` is dispatched. In the `reducerAction`, different APIs are called to update the quantity.
+
+In this example, we use the pending state of the Actions to replace both the quantity and the total. If you want to provide immediate feedback, such as immediately updating the quantity, you can use `useOptimistic`.
+
 <DeepDive>
 
 #### How is `useActionState` different from `useReducer`? {/*useactionstate-vs-usereducer*/}
@@ -439,9 +447,171 @@ You can think of `useActionState` as `useReducer` for side effects from user Act
 
 ---
 
+### Using with `useOptimistic` {/*using-with-useoptimistic*/}
+
+You can combine `useActionState` with [`useOptimistic`](/reference/react/useOptimistic) to show immediate UI feedback:
+
+
+<Sandpack>
+
+```js src/App.js
+import { useActionState, startTransition, useOptimistic } from 'react';
+import { addToCart, removeFromCart } from './api';
+import Total from './Total';
+
+export default function Checkout() {
+  const [count, dispatchAction, isPending] = useActionState(updateCartAction, 0);
+  const [optimisticCount, setOptimisticCount] = useOptimistic(count);
+
+  function handleAdd() {
+    startTransition(() => {
+      setOptimisticCount(c => c + 1);
+      dispatchAction({ type: 'ADD' });
+    });
+  }
+
+  function handleRemove() {
+    startTransition(() => {
+      setOptimisticCount(c => c - 1);
+      dispatchAction({ type: 'REMOVE' });
+    });
+  }
+
+  return (
+    <div className="checkout">
+      <h2>Checkout</h2>
+      <div className="row">
+        <span>Eras Tour Tickets</span>
+        <span className="stepper">
+          <span className="pending">{isPending && '🌀'}</span>
+          <span className="qty">{optimisticCount}</span>
+          <span className="buttons">
+            <button onClick={handleAdd}>▲</button>
+            <button onClick={handleRemove}>▼</button>
+          </span>
+        </span>
+      </div>
+      <hr />
+      <Total quantity={optimisticCount} isPending={isPending}/>
+    </div>
+  );
+}
+
+async function updateCartAction(prevCount, actionPayload) {
+  switch (actionPayload.type) {
+    case 'ADD': {
+      return await addToCart(prevCount);
+    }
+    case 'REMOVE': {
+      return await removeFromCart(prevCount);
+    }
+  }
+  return prevCount;
+}
+```
+
+```js src/Total.js
+const formatter = new Intl.NumberFormat('en-US', {
+  style: 'currency',
+  currency: 'USD',
+  minimumFractionDigits: 0,
+});
+
+export default function Total({quantity, isPending}) {
+  return (
+    <div className="row total">
+      <span>Total</span>
+      <span>{isPending ? '🌀 Updating...' : formatter.format(quantity * 9999)}</span>
+    </div>
+  );
+}
+```
+
+```js src/api.js hidden
+export async function addToCart(count) {
+  await new Promise(resolve => setTimeout(resolve, 1000));
+  return count + 1;
+}
+
+export async function removeFromCart(count) {
+  await new Promise(resolve => setTimeout(resolve, 1000));
+  return Math.max(0, count - 1);
+}
+```
+
+```css
+.checkout {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 16px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-family: system-ui;
+}
+
+.checkout h2 {
+  margin: 0 0 8px 0;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.stepper {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.qty {
+  min-width: 20px;
+  text-align: center;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.buttons button {
+  padding: 0 8px;
+  font-size: 10px;
+  line-height: 1.2;
+  cursor: pointer;
+}
+
+.pending {
+  width: 20px;
+  text-align: center;
+}
+
+.total {
+  font-weight: bold;
+}
+
+hr {
+  width: 100%;
+  border: none;
+  border-top: 1px solid #ccc;
+  margin: 4px 0;
+}
+```
+
+</Sandpack>
+
+
+`setOptimisticCount` immediately updates the quantity, and `dispatchAction()` queues the `updateCartAction`. A pending indicator appears on both the quantity and total to give the user feedback that their update is still being applied.
+
+---
+
+
 ### Using with Action props {/*using-with-action-props*/}
 
-When you pass the `dispatchAction` function to a component that exposes an [Action prop](/reference/react/useTransition#exposing-action-props-from-components), you don't need to wrap the call in `startTransition` yourself.
+When you pass the `dispatchAction` function to a component that exposes an [Action prop](/reference/react/useTransition#exposing-action-props-from-components), you don't need to call `startTransition` or `useOptmisitc` yourself.
 
 This example shows using the `increaseAction` and `decreaseAction` props of a QuantityStepper component:
 
@@ -476,7 +646,7 @@ export default function Checkout() {
         />
       </div>
       <hr />
-      <Total quantity={count} />
+      <Total quantity={count} isPending={isPending} />
     </div>
   );
 }
@@ -495,19 +665,21 @@ async function updateCartAction(prevCount, actionPayload) {
 ```
 
 ```js src/QuantityStepper.js
-import { useTransition } from 'react';
+import { startTransition, useOptimistic } from 'react';
 
 export default function QuantityStepper({value, increaseAction, decreaseAction}) {
-  const [isPending, startTransition] = useTransition();
-
+  const [optimisticValue, setOptimisticValue] = useOptimistic(value);
+  const isPending = value !== optimisticValue;
   function handleIncrease() {
     startTransition(async () => {
+      setOptimisticValue(c => c + 1);
       await increaseAction();
     });
   }
 
   function handleDecrease() {
     startTransition(async () => {
+      setOptimisticValue(c => c + 1);
       await decreaseAction();
     });
   }
@@ -515,192 +687,7 @@ export default function QuantityStepper({value, increaseAction, decreaseAction})
   return (
     <span className="stepper">
       <span className="pending">{isPending && '🌀'}</span>
-      <span className="qty">{value}</span>
-      <span className="buttons">
-        <button onClick={handleIncrease}>▲</button>
-        <button onClick={handleDecrease}>▼</button>
-      </span>
-    </span>
-  );
-}
-```
-
-```js src/Total.js
-const formatter = new Intl.NumberFormat('en-US', {
-  style: 'currency',
-  currency: 'USD',
-  minimumFractionDigits: 0,
-});
-
-export default function Total({quantity}) {
-  return (
-    <div className="row total">
-      <span>Total</span>
-      <span>{formatter.format(quantity * 9999)}</span>
-    </div>
-  );
-}
-```
-
-```js src/api.js hidden
-export async function addToCart(count) {
-  await new Promise(resolve => setTimeout(resolve, 1000));
-  return count + 1;
-}
-
-export async function removeFromCart(count) {
-  await new Promise(resolve => setTimeout(resolve, 1000));
-  return Math.max(0, count - 1);
-}
-```
-
-```css
-.checkout {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  padding: 16px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  font-family: system-ui;
-}
-
-.checkout h2 {
-  margin: 0 0 8px 0;
-}
-
-.row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.stepper {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.qty {
-  min-width: 20px;
-  text-align: center;
-}
-
-.buttons {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-}
-
-.buttons button {
-  padding: 0 8px;
-  font-size: 10px;
-  line-height: 1.2;
-  cursor: pointer;
-}
-
-.pending {
-  width: 20px;
-  text-align: center;
-}
-
-.total {
-  font-weight: bold;
-}
-
-hr {
-  width: 100%;
-  border: none;
-  border-top: 1px solid #ccc;
-  margin: 4px 0;
-}
-```
-
-</Sandpack>
-
-Since `<QuantityStepper>` has built-in support for pending state, the loading indicator is shown automatically.
-
----
-
-### Using with `useOptimistic` {/*using-with-useoptimistic*/}
-
-You can combine `useActionState` with [`useOptimistic`](/reference/react/useOptimistic) to show immediate UI feedback:
-
-
-<Sandpack>
-
-```js src/App.js
-import { useActionState, useOptimistic } from 'react';
-import { addToCart, removeFromCart } from './api';
-import QuantityStepper from './QuantityStepper';
-import Total from './Total';
-
-async function updateCartAction(prevCount, actionPayload) {
-  switch (actionPayload.type) {
-    case 'ADD': {
-      return await addToCart(prevCount);
-    }
-    case 'REMOVE': {
-      return await removeFromCart(prevCount);
-    }
-  }
-  return prevCount;
-}
-
-export default function Checkout() {
-  const [count, dispatchAction, isPending] = useActionState(updateCartAction, 0);
-  const [optimisticCount, setOptimisticCount] = useOptimistic(count);
-
-  async function addAction() {
-    setOptimisticCount(c => c + 1);
-    await dispatchAction({type: 'ADD'});
-  }
-
-  async function removeAction() {
-    setOptimisticCount(c => Math.max(0, c - 1));
-    await dispatchAction({type: 'REMOVE'});
-  }
-
-  return (
-    <div className="checkout">
-      <h2>Checkout</h2>
-      <div className="row">
-        <span>Eras Tour Tickets</span>
-        <QuantityStepper
-          value={optimisticCount}
-          increaseAction={addAction}
-          decreaseAction={removeAction}
-        />
-      </div>
-      <hr />
-      <Total quantity={optimisticCount} isPending={isPending} />
-    </div>
-  );
-}
-```
-
-```js src/QuantityStepper.js
-import { useTransition } from 'react';
-
-export default function QuantityStepper({value, increaseAction, decreaseAction}) {
-  const [isPending, startTransition] = useTransition();
-
-  function handleIncrease() {
-    startTransition(async () => {
-      await increaseAction();
-    });
-  }
-
-  function handleDecrease() {
-    startTransition(async () => {
-      await decreaseAction();
-    });
-  }
-
-  return (
-    <span className="stepper">
-      <span className="pending">{isPending && '🌀'}</span>
-      <span className="qty">{value}</span>
+      <span className="qty">{optimisticValue}</span>
       <span className="buttons">
         <button onClick={handleIncrease}>▲</button>
         <button onClick={handleDecrease}>▼</button>
@@ -721,7 +708,7 @@ export default function Total({quantity, isPending}) {
   return (
     <div className="row total">
       <span>Total</span>
-      <span>{isPending ? '🌀' : ''}{formatter.format(quantity * 9999)}</span>
+      {isPending ? '🌀 Updating...' : formatter.format(quantity * 9999)}
     </div>
   );
 }
@@ -803,8 +790,7 @@ hr {
 
 </Sandpack>
 
-
-When the stepper arrow is clicked, `setOptimisticCount` immediately updates the quantity, and `dispatchAction()` queues the `updateCartAction`. A pending indicator appears on both the quantity and total to give the user feedback that their update is still being applied.
+Since `<QuantityStepper>` has built-in support for transitions, pending state, and optimistically updating the count, you just need to tell the Action _what_ to change, and _how_ to change it is handled for you.
 
 ---
 

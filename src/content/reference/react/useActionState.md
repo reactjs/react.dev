@@ -794,175 +794,9 @@ Since `<QuantityStepper>` has built-in support for transitions, pending state, a
 
 ---
 
-### Using with `<form>` Action props {/*use-with-a-form*/}
-
-You can pass the `dispatchAction` function as the `action` prop to a `<form>`.
-
-When used this way, React automatically wraps the submission in a Transition, so you don't need to call `startTransition` yourself. The `reducerAction` receives the previous state and the submitted `FormData`:
-
-<Sandpack>
-
-```js src/App.js
-import { useActionState, useOptimistic } from 'react';
-import { addToCart, removeFromCart } from './api';
-import Total from './Total';
-
-export default function Checkout() {
-  const [count, dispatchAction, isPending] = useActionState(updateCartAction, 0);
-  const [optimisticCount, setOptimisticCount] = useOptimistic(count);
-
-  async function formAction(formData) {
-    const type = formData.get('type');
-    if (type === 'ADD') {
-      setOptimisticCount(c => c + 1);
-    } else {
-      setOptimisticCount(c => Math.max(0, c - 1));
-    }
-    return dispatchAction(formData);
-  }
-
-  return (
-    <form action={formAction} className="checkout">
-      <h2>Checkout</h2>
-      <div className="row">
-        <span>Eras Tour Tickets</span>
-        <span className="stepper">
-          <span className="pending">{isPending && '🌀'}</span>
-          <span className="qty">{optimisticCount}</span>
-          <span className="buttons">
-            <button type="submit" name="type" value="ADD">▲</button>
-            <button type="submit" name="type" value="REMOVE">▼</button>
-          </span>
-        </span>
-      </div>
-      <hr />
-      <Total quantity={optimisticCount} isPending={isPending} />
-    </form>
-  );
-}
-
-async function updateCartAction(prevCount, formData) {
-  const type = formData.get('type');
-  switch (type) {
-    case 'ADD': {
-      return await addToCart(prevCount);
-    }
-    case 'REMOVE': {
-      return await removeFromCart(prevCount);
-    }
-  }
-  return prevCount;
-}
-```
-
-```js src/Total.js
-const formatter = new Intl.NumberFormat('en-US', {
-  style: 'currency',
-  currency: 'USD',
-  minimumFractionDigits: 0,
-});
-
-export default function Total({quantity, isPending}) {
-  return (
-    <div className="row total">
-      <span>Total</span>
-      <span>{isPending ? '🌀' : ''}{formatter.format(quantity * 9999)}</span>
-    </div>
-  );
-}
-```
-
-```js src/api.js hidden
-export async function addToCart(count) {
-  await new Promise(resolve => setTimeout(resolve, 1000));
-  return count + 1;
-}
-
-export async function removeFromCart(count) {
-  await new Promise(resolve => setTimeout(resolve, 1000));
-  return Math.max(0, count - 1);
-}
-```
-
-```css
-.checkout {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  padding: 16px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  font-family: system-ui;
-}
-
-.checkout h2 {
-  margin: 0 0 8px 0;
-}
-
-.row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.stepper {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.qty {
-  min-width: 20px;
-  text-align: center;
-}
-
-.buttons {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-}
-
-.buttons button {
-  padding: 0 8px;
-  font-size: 10px;
-  line-height: 1.2;
-  cursor: pointer;
-}
-
-.pending {
-  width: 20px;
-  text-align: center;
-}
-
-.total {
-  font-weight: bold;
-}
-
-hr {
-  width: 100%;
-  border: none;
-  border-top: 1px solid #ccc;
-  margin: 4px 0;
-}
-```
-
-</Sandpack>
-
-In this example, when the user clicks the stepper arrows, the button submits the form and `useActionState` calls `updateCartAction` with the form data. The example uses `useOptimistic` to immediately show the new quantity while the server confirms the update.
-
-<RSC>
-
-When used with a [Server Function](/reference/rsc/server-functions), `useActionState` allows the server's response to be shown before hydration (when React attaches to server-rendered HTML) completes. You can also use the optional `permalink` parameter for progressive enhancement (allowing the form to work before JavaScript loads) on pages with dynamic content. This is typically handled by your framework for you.
-
-</RSC>
-
-See the [`<form>`](/reference/react-dom/components/form#handle-form-submission-with-a-server-function) docs for more information on using Actions with forms. 
-
----
-
 ### Cancelling queued Actions {/*cancelling-queued-actions*/}
 
-You can use an `AbortController` pattern to cancel pending Actions:
+You can use an `AbortController` to cancel pending Actions:
 
 <Sandpack>
 
@@ -983,7 +817,6 @@ export default function Checkout() {
       abortRef.current.abort();
     }
     abortRef.current = new AbortController();
-    setOptimisticCount(c => c + 1);
     await dispatchAction({ type: 'ADD', signal: abortRef.current.signal });
   }
 
@@ -992,7 +825,6 @@ export default function Checkout() {
       abortRef.current.abort();
     }
     abortRef.current = new AbortController();
-    setOptimisticCount(c => Math.max(0, c - 1));
     await dispatchAction({ type: 'REMOVE', signal: abortRef.current.signal });
   }
 
@@ -1002,13 +834,13 @@ export default function Checkout() {
       <div className="row">
         <span>Eras Tour Tickets</span>
         <QuantityStepper
-          value={optimisticCount}
+          value={count}
           increaseAction={addAction}
           decreaseAction={removeAction}
         />
       </div>
       <hr />
-      <Total quantity={optimisticCount} isPending={isPending} />
+      <Total quantity={count} isPending={isPending} />
     </div>
   );
 }
@@ -1035,27 +867,29 @@ async function updateCartAction(prevCount, actionPayload) {
 ```
 
 ```js src/QuantityStepper.js
-import { useTransition } from 'react';
+import { startTransition, useOptimistic } from 'react';
 
 export default function QuantityStepper({value, increaseAction, decreaseAction}) {
-  const [isPending, startTransition] = useTransition();
-
+  const [optimisticValue, setOptimisticValue] = useOptimistic(value);
+  const isPending = value !== optimisticValue;
   function handleIncrease() {
     startTransition(async () => {
+      setOptimisticValue(c => c + 1);
       await increaseAction();
     });
   }
 
   function handleDecrease() {
     startTransition(async () => {
+      setOptimisticValue(c => c + 1);
       await decreaseAction();
     });
   }
 
   return (
-    <span className="stepper">
+          <span className="stepper">
       <span className="pending">{isPending && '🌀'}</span>
-      <span className="qty">{value}</span>
+      <span className="qty">{optimisticValue}</span>
       <span className="buttons">
         <button onClick={handleIncrease}>▲</button>
         <button onClick={handleDecrease}>▼</button>
@@ -1076,7 +910,7 @@ export default function Total({quantity, isPending}) {
   return (
     <div className="row total">
       <span>Total</span>
-      <span>{isPending ? '🌀' : ''}{formatter.format(quantity * 9999)}</span>
+      {isPending ? '🌀 Updating...' : formatter.format(quantity * 9999)}
     </div>
   );
 }
@@ -1187,11 +1021,177 @@ Try clicking increase or decrease multiple times, and notice that the total upda
 
 <Pitfall>
 
-Aborting an Action isn't always safe. 
+Aborting an Action isn't always safe.
 
 For example, if the Action performs a mutation (like writing to a database), aborting the network request doesn't undo the server-side change. This is why `useActionState` doesn't abort by default. It's only safe when you know the side effect can be safely ignored or retried.
 
 </Pitfall>
+
+---
+
+### Using with `<form>` Action props {/*use-with-a-form*/}
+
+You can pass the `dispatchAction` function as the `action` prop to a `<form>`.
+
+When used this way, React automatically wraps the submission in a Transition, so you don't need to call `startTransition` yourself. The `reducerAction` receives the previous state and the submitted `FormData`:
+
+<Sandpack>
+
+```js src/App.js
+import { useActionState, useOptimistic } from 'react';
+import { addToCart, removeFromCart } from './api';
+import Total from './Total';
+
+export default function Checkout() {
+  const [count, dispatchAction, isPending] = useActionState(updateCartAction, 0);
+  const [optimisticCount, setOptimisticCount] = useOptimistic(count);
+
+  async function formAction(formData) {
+    const type = formData.get('type');
+    if (type === 'ADD') {
+      setOptimisticCount(c => c + 1);
+    } else {
+      setOptimisticCount(c => Math.max(0, c - 1));
+    }
+    return dispatchAction(formData);
+  }
+
+  return (
+    <form action={formAction} className="checkout">
+      <h2>Checkout</h2>
+      <div className="row">
+        <span>Eras Tour Tickets</span>
+        <span className="stepper">
+          <span className="pending">{isPending && '🌀'}</span>
+          <span className="qty">{optimisticCount}</span>
+          <span className="buttons">
+            <button type="submit" name="type" value="ADD">▲</button>
+            <button type="submit" name="type" value="REMOVE">▼</button>
+          </span>
+        </span>
+      </div>
+      <hr />
+      <Total quantity={count} isPending={isPending} />
+    </form>
+  );
+}
+
+async function updateCartAction(prevCount, formData) {
+  const type = formData.get('type');
+  switch (type) {
+    case 'ADD': {
+      return await addToCart(prevCount);
+    }
+    case 'REMOVE': {
+      return await removeFromCart(prevCount);
+    }
+  }
+  return prevCount;
+}
+```
+
+```js src/Total.js
+const formatter = new Intl.NumberFormat('en-US', {
+  style: 'currency',
+  currency: 'USD',
+  minimumFractionDigits: 0,
+});
+
+export default function Total({quantity, isPending}) {
+  return (
+    <div className="row total">
+      <span>Total</span>
+      {isPending ? '🌀 Updating...' : formatter.format(quantity * 9999)}
+    </div>
+  );
+}
+```
+
+```js src/api.js hidden
+export async function addToCart(count) {
+  await new Promise(resolve => setTimeout(resolve, 1000));
+  return count + 1;
+}
+
+export async function removeFromCart(count) {
+  await new Promise(resolve => setTimeout(resolve, 1000));
+  return Math.max(0, count - 1);
+}
+```
+
+```css
+.checkout {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 16px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-family: system-ui;
+}
+
+.checkout h2 {
+  margin: 0 0 8px 0;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.stepper {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.qty {
+  min-width: 20px;
+  text-align: center;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.buttons button {
+  padding: 0 8px;
+  font-size: 10px;
+  line-height: 1.2;
+  cursor: pointer;
+}
+
+.pending {
+  width: 20px;
+  text-align: center;
+}
+
+.total {
+  font-weight: bold;
+}
+
+hr {
+  width: 100%;
+  border: none;
+  border-top: 1px solid #ccc;
+  margin: 4px 0;
+}
+```
+
+</Sandpack>
+
+In this example, when the user clicks the stepper arrows, the button submits the form and `useActionState` calls `updateCartAction` with the form data. The example uses `useOptimistic` to immediately show the new quantity while the server confirms the update.
+
+<RSC>
+
+When used with a [Server Function](/reference/rsc/server-functions), `useActionState` allows the server's response to be shown before hydration (when React attaches to server-rendered HTML) completes. You can also use the optional `permalink` parameter for progressive enhancement (allowing the form to work before JavaScript loads) on pages with dynamic content. This is typically handled by your framework for you.
+
+</RSC>
+
+See the [`<form>`](/reference/react-dom/components/form#handle-form-submission-with-a-server-function) docs for more information on using Actions with forms. 
 
 ---
 

@@ -19,6 +19,30 @@ const nextConfig = {
     scrollRestoration: true,
     reactCompiler: true,
   },
+  async rewrites() {
+    return {
+      beforeFiles: [
+        // Serve markdown when Accept header prefers text/markdown
+        // Useful for LLM agents - https://www.skeptrune.com/posts/use-the-accept-header-to-serve-markdown-instead-of-html-to-llms/
+        {
+          source: '/:path((?!llms.txt).*)',
+          has: [
+            {
+              type: 'header',
+              key: 'accept',
+              value: '(.*text/markdown.*)',
+            },
+          ],
+          destination: '/api/md/:path*',
+        },
+        // Explicit .md extension also serves markdown
+        {
+          source: '/:path*.md',
+          destination: '/api/md/:path*',
+        },
+      ],
+    };
+  },
   env: {},
   webpack: (config, {dev, isServer, ...options}) => {
     if (process.env.ANALYZE) {
@@ -35,6 +59,14 @@ const nextConfig = {
 
     // Don't bundle the shim unnecessarily.
     config.resolve.alias['use-sync-external-store/shim'] = 'react';
+
+    // ESLint depends on the CommonJS version of esquery,
+    // but Webpack loads the ESM version by default. This
+    // alias ensures the correct version is used.
+    //
+    // More info:
+    // https://github.com/reactjs/react.dev/pull/8115
+    config.resolve.alias['esquery'] = 'esquery/dist/esquery.min.js';
 
     const {IgnorePlugin, NormalModuleReplacementPlugin} = require('webpack');
     config.plugins.push(

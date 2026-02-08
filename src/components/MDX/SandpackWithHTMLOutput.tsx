@@ -56,8 +56,8 @@ export default function formatHTML(markup) {
 const packageJSON = `
 {
   "dependencies": {
-    "react": "^19.2.0",
-    "react-dom": "^19.2.0",
+    "react": "^19.2.1",
+    "react-dom": "^19.2.1",
     "react-scripts": "^5.0.0",
     "html-format": "^1.1.2"
   },

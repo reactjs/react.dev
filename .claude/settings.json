@@ -1,0 +1,31 @@
+{
+  "skills": {
+    "suggest": [
+      {
+        "pattern": "src/content/learn/**/*.md",
+        "skill": "docs-writer-learn"
+      },
+      {
+        "pattern": "src/content/reference/**/*.md",
+        "skill": "docs-writer-reference"
+      }
+    ]
+  },
+  "permissions": {
+    "allow": [
+      "Skill(docs-voice)",
+      "Skill(docs-components)",
+      "Skill(docs-sandpack)",
+      "Skill(docs-writer-learn)",
+      "Skill(docs-writer-reference)",
+      "Bash(yarn lint:*)",
+      "Bash(yarn lint-heading-ids:*)",
+      "Bash(yarn lint:fix:*)",
+      "Bash(yarn tsc:*)",
+      "Bash(yarn check-all:*)",
+      "Bash(yarn fix-headings:*)",
+      "Bash(yarn deadlinks:*)",
+      "Bash(yarn prettier:diff:*)"
+    ]
+  }
+}

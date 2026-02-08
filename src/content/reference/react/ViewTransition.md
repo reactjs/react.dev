@@ -1052,8 +1052,6 @@ Just like any Transition, React waits for data and new CSS (`<link rel="styleshe
 
 If it's inside a new Suspense boundary instance, then the fallback is shown first. After the Suspense boundary fully loads, it triggers the `<ViewTransition>` to animate the reveal to the content.
 
-Currently, this only happens for client-side Transition. In the future, this will also animate Suspense boundary for streaming SSR when content from the server suspends during the initial load.
-
 There are two ways to animate Suspense boundaries depending on where you place the `<ViewTransition>`:
 
 Update:

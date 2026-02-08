@@ -132,7 +132,7 @@ useEffect(() => {
 
 <Note>
 
-There are better ways to fetch data rather than in a useEffect. Consider using React Query, useSWR, or React Router 6.4+ for data fetching. These solutions handle deduplicating requests, caching responses, and avoiding network waterfalls.
+There are better ways to fetch data rather than in a useEffect. Consider using TanStack Query, useSWR, or React Router 6.4+ for data fetching. These solutions handle deduplicating requests, caching responses, and avoiding network waterfalls.
 
 Learn more: [Fetching Data](/learn/synchronizing-with-effects#fetching-data)
 

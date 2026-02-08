@@ -38,7 +38,7 @@ This skill produces exhaustive documentation research on any React API or concep
 8. **TypeScript Types** - Note discrepancies with Flow
 9. **Current react.dev docs** - Baseline (not trusted as complete)
 
-**No web search** - No Stack Overflow, blog posts, or web searches. GitHub API via `gh` CLI is allowed.
+**No web search** - No Stack Overflow, blog posts, or web searches. GitHub API via `gh` CLI is allowed. **Exception:** Error code research mode (see below) explicitly allows web search to understand real-world developer pain points.
 
 ## Workflow
 

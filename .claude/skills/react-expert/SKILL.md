@@ -618,18 +618,20 @@ Write to `.claude/research/error-<CODE>.md`
 
 1. **Trusting prior knowledge** - If you "know" something about the API, find the source evidence anyway
 2. **Generating example code** - Every code example must come from an actual source file
-3. **Skipping agents** - All 6 agents must run; each provides unique perspective
+3. **Skipping agents** - All 6 agents must run (7 in error-code mode); each provides unique perspective
 4. **Summarizing without sources** - Every claim needs a file:line or PR/issue reference
-5. **Using web search** - No Stack Overflow, no blog posts, no social media
+5. **Using web search** - No Stack Overflow, no blog posts, no social media (exception: error-code research mode)
 
 ## Verification Checklist
 
 Before finalizing the research document:
 
 - [ ] React repo is at `.claude/react` with known commit hash
-- [ ] All 6 agents were spawned in parallel
+- [ ] All 6 agents were spawned in parallel (7 in error-code mode)
 - [ ] Every code example has a source file reference
 - [ ] Warnings/errors table has source locations
 - [ ] No claims made without source evidence
 - [ ] Discrepancies between Flow/TS types documented
 - [ ] Source links section is complete
+- [ ] (Error mode only) Web researcher found real-world occurrences
+- [ ] (Error mode only) Throw sites documented with conditions and %s arguments

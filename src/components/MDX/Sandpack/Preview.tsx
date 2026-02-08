@@ -99,10 +99,13 @@ export function Preview({
 
   useEffect(function createBundler() {
     const iframeElement = iframeRef.current!;
-    registerBundler(iframeElement, clientId);
-
+    if (!iframeElement.dataset.registered) {
+      registerBundler(iframeElement, clientId);
+      iframeElement.dataset.registered = 'true';
+    }
     return () => {
       unregisterBundler(clientId);
+      iframeElement.dataset.registered = '';
     };
   }, []);
 

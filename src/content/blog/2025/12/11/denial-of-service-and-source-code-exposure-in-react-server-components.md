@@ -106,7 +106,7 @@ See [this issue](https://github.com/facebook/react-native/issues/54772#issuecomm
 
 **CVEs:** [CVE-2026-23864](https://www.cve.org/CVERecord?id=CVE-2026-23864)
 **Base Score:** 7.5 (High)
-**Date**: January 26, 2025
+**Date**: January 26, 2026
 
 Security researchers discovered additional DoS vulnerabilities still exist in React Server Components.
 

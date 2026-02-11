@@ -10,6 +10,7 @@ var React = require('react');
 var ReactJSXRuntime = require('react/jsx-runtime');
 var RSDWServer = require('react-server-dom-webpack/server.browser');
 var Sucrase = require('sucrase');
+var acorn = require('acorn-loose');
 
 var deployed = null;
 
@@ -48,27 +49,27 @@ function registerServerReference(impl, moduleId, name) {
   return ref;
 }
 
-function hasDirective(code, directive) {
-  var lines = code.split('\n');
-  for (var i = 0; i < Math.min(lines.length, 10); i++) {
-    var line = lines[i].trim();
-    if (line === '') continue;
-    if (line.startsWith('//')) continue;
-    if (line.startsWith('/*')) {
-      while (i < lines.length && !lines[i].includes('*/')) i++;
-      continue;
-    }
-    if (
-      line === "'" + directive + "';" ||
-      line === '"' + directive + '";' ||
-      line === "'" + directive + "'" ||
-      line === '"' + directive + '"'
-    ) {
-      return true;
-    }
-    return false;
+// Detect 'use client' / 'use server' directives using acorn-loose,
+// matching the same approach as react-server-dom-webpack/node-register.
+function parseDirective(code) {
+  if (code.indexOf('use client') === -1 && code.indexOf('use server') === -1) {
+    return null;
   }
-  return false;
+  try {
+    var body = acorn.parse(code, {
+      ecmaVersion: '2024',
+      sourceType: 'source',
+    }).body;
+  } catch (x) {
+    return null;
+  }
+  for (var i = 0; i < body.length; i++) {
+    var node = body[i];
+    if (node.type !== 'ExpressionStatement' || !node.directive) break;
+    if (node.directive === 'use client') return 'use client';
+    if (node.directive === 'use server') return 'use server';
+  }
+  return null;
 }
 
 // Resolve relative paths (e.g., './Counter.js' from '/src/App.js' → '/src/Counter.js')
@@ -90,35 +91,33 @@ function resolvePath(from, to) {
 
 // Deploy new server code into the Worker
 // Receives raw source files — compiles them with Sucrase before execution.
-function deploy(rawFiles, clientManifest, clientFiles) {
+function deploy(files) {
   // Build a require function for the server module scope
   var modules = {
     react: React,
     'react/jsx-runtime': ReactJSXRuntime,
   };
 
-  // Create client module proxies for 'use client' files
-  Object.keys(clientManifest).forEach(function (moduleId) {
-    modules[moduleId] = RSDWServer.createClientModuleProxy(moduleId);
-  });
-
-  // Compile all server files first, then execute on-demand via require.
+  // Compile all files first, then execute on-demand via require.
   // This avoids ordering issues where a file imports another that hasn't been executed yet.
   var compiled = {};
-  var hasCompileError = false;
-  Object.keys(rawFiles).forEach(function (filePath) {
+  var compileError = null;
+  Object.keys(files).forEach(function (filePath) {
+    if (compileError) return;
     try {
-      compiled[filePath] = Sucrase.transform(rawFiles[filePath], {
+      compiled[filePath] = Sucrase.transform(files[filePath], {
         transforms: ['jsx', 'imports'],
         jsxRuntime: 'automatic',
         production: true,
       }).code;
     } catch (err) {
-      hasCompileError = true;
+      compileError = filePath + ': ' + (err.message || String(err));
     }
   });
 
-  if (hasCompileError) return null;
+  if (compileError) {
+    return {type: 'error', error: compileError};
+  }
 
   // Resolve a module id relative to a requesting file
   function resolveModuleId(from, id) {
@@ -137,6 +136,8 @@ function deploy(rawFiles, clientManifest, clientFiles) {
 
   // Execute a module lazily and cache its exports
   var executing = {};
+  var detectedClientFiles = {};
+
   function executeModule(filePath) {
     if (modules[filePath]) return modules[filePath];
     if (!compiled[filePath]) {
@@ -146,6 +147,18 @@ function deploy(rawFiles, clientManifest, clientFiles) {
       // Circular dependency — return partially populated exports
       return executing[filePath].exports;
     }
+
+    // Replicate node-register's _compile hook:
+    // detect directives BEFORE executing the module.
+    var directive = parseDirective(files[filePath]);
+
+    if (directive === 'use client') {
+      // Don't execute — return a client module proxy (same as node-register)
+      modules[filePath] = RSDWServer.createClientModuleProxy(filePath);
+      detectedClientFiles[filePath] = true;
+      return modules[filePath];
+    }
+
     var mod = {exports: {}};
     executing[filePath] = mod;
 
@@ -165,8 +178,8 @@ function deploy(rawFiles, clientManifest, clientFiles) {
 
     modules[filePath] = mod.exports;
 
-    // Register server functions from 'use server' modules
-    if (hasDirective(rawFiles[filePath], 'use server')) {
+    if (directive === 'use server') {
+      // Execute normally, then register server references (same as node-register)
       var exportNames = Object.keys(mod.exports);
       for (var i = 0; i < exportNames.length; i++) {
         var name = exportNames[i];
@@ -195,30 +208,13 @@ function deploy(rawFiles, clientManifest, clientFiles) {
 
   deployed = {
     module: mainModule.exports,
-    manifest: clientManifest,
   };
 
-  // Compile client files with Sucrase so the client can evaluate and register them.
-  var compiledClients = {};
-  if (clientFiles) {
-    Object.keys(clientFiles).forEach(function (filePath) {
-      try {
-        compiledClients[filePath] = Sucrase.transform(clientFiles[filePath], {
-          transforms: ['jsx', 'imports'],
-          jsxRuntime: 'automatic',
-          production: true,
-        }).code;
-      } catch (err) {
-        self.postMessage({
-          type: 'rsc-error',
-          requestId: -1,
-          error: 'Sucrase compile error in ' + filePath + ': ' + String(err),
-        });
-      }
-    });
-  }
-
-  return {type: 'deployed', compiledClients: compiledClients};
+  return {
+    type: 'deployed',
+    compiledClients: compiled,
+    clientEntries: detectedClientFiles,
+  };
 }
 
 // Render the deployed app to a Flight stream
@@ -298,8 +294,14 @@ self.onmessage = function (e) {
   var msg = e.data;
   if (msg.type === 'deploy') {
     try {
-      var result = deploy(msg.serverFiles, msg.clientManifest, msg.clientFiles);
-      if (result) {
+      var result = deploy(msg.files);
+      if (result && result.type === 'error') {
+        self.postMessage({
+          type: 'rsc-error',
+          requestId: msg.requestId,
+          error: result.error,
+        });
+      } else if (result) {
         self.postMessage({
           type: 'deploy-result',
           requestId: msg.requestId,
@@ -307,7 +309,11 @@ self.onmessage = function (e) {
         });
       }
     } catch (err) {
-      // Silently ignore — likely mid-edit syntax errors
+      self.postMessage({
+        type: 'rsc-error',
+        requestId: msg.requestId,
+        error: String(err),
+      });
     }
   } else if (msg.type === 'render') {
     try {

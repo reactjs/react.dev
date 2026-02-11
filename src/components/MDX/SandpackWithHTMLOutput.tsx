@@ -7,7 +7,7 @@
 
 import {Children, memo} from 'react';
 import InlineCode from './InlineCode';
-import Sandpack from './Sandpack';
+import {SandpackClient} from './Sandpack';
 
 const ShowRenderedHTML = `
 import { renderToStaticMarkup } from 'react-dom/server';
@@ -80,7 +80,7 @@ function createFile(meta: string, source: string) {
 }
 
 export default memo(function SandpackWithHTMLOutput(
-  props: React.ComponentProps<typeof Sandpack>
+  props: React.ComponentProps<typeof SandpackClient>
 ) {
   const children = [
     ...Children.toArray(props.children),
@@ -88,5 +88,5 @@ export default memo(function SandpackWithHTMLOutput(
     createFile('src/formatHTML.js hidden', formatHTML),
     createFile('package.json hidden', packageJSON),
   ];
-  return <Sandpack {...props}>{children}</Sandpack>;
+  return <SandpackClient {...props}>{children}</SandpackClient>;
 });

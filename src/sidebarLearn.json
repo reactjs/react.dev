@@ -234,6 +234,11 @@
           "path": "/learn/reusing-logic-with-custom-hooks"
         }
       ]
+    },
+    {
+      "title": "RSC Sandbox Test",
+      "path": "/learn/rsc-sandbox-test",
+      "canary": true
     }
   ]
 }

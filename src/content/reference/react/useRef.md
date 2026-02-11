@@ -112,7 +112,7 @@ This component uses a ref to keep track of how many times the button was clicked
 import { useRef } from 'react';
 
 export default function Counter() {
-  let ref = useRef(0);
+  const ref = useRef(0);
 
   function handleClick() {
     ref.current = ref.current + 1;

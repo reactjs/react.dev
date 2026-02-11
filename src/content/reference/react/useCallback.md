@@ -275,7 +275,7 @@ export default function App() {
       </label>
       <hr />
       <ProductPage
-        referrerId="wizard_of_oz"
+        referrer="wizard_of_oz"
         productId={123}
         theme={isDark ? 'dark' : 'light'}
       />
@@ -415,7 +415,7 @@ export default function App() {
       </label>
       <hr />
       <ProductPage
-        referrerId="wizard_of_oz"
+        referrer="wizard_of_oz"
         productId={123}
         theme={isDark ? 'dark' : 'light'}
       />
@@ -549,7 +549,7 @@ export default function App() {
       </label>
       <hr />
       <ProductPage
-        referrerId="wizard_of_oz"
+        referrer="wizard_of_oz"
         productId={123}
         theme={isDark ? 'dark' : 'light'}
       />

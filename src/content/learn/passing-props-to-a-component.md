@@ -29,7 +29,7 @@ function Avatar() {
   return (
     <img
       className="avatar"
-      src="https://i.imgur.com/1bX5QH6.jpg"
+      src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Lanying_Lin_image.jpg/640px-Lanying_Lin_image.jpg"
       alt="Lin Lanying"
       width={100}
       height={100}
@@ -128,21 +128,21 @@ export default function Profile() {
         size={100}
         person={{ 
           name: 'Katsuko Saruhashi', 
-          imageId: 'YfeOqp2'
+          imageId: '2/2b/Josei-Kyoyo-1965-March-1.jpg/640px-Josei-Kyoyo-1965-March-1.jpg'
         }}
       />
       <Avatar
         size={80}
         person={{
           name: 'Aklilu Lemma', 
-          imageId: 'OKS67lh'
+          imageId: '3/32/Portrait-aklilu-lemma-11.jpg/640px-Portrait-aklilu-lemma-11.jpg'
         }}
       />
       <Avatar
         size={50}
         person={{ 
           name: 'Lin Lanying',
-          imageId: '1bX5QH6'
+          imageId: '8/8a/Lanying_Lin_image.jpg/640px-Lanying_Lin_image.jpg'
         }}
       />
     </div>
@@ -153,7 +153,7 @@ export default function Profile() {
 ```js src/utils.js
 export function getImageUrl(person, size = 's') {
   return (
-    'https://i.imgur.com/' +
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/' +
     person.imageId +
     size +
     '.jpg'
@@ -293,7 +293,7 @@ export default function Profile() {
         size={100}
         person={{ 
           name: 'Katsuko Saruhashi',
-          imageId: 'YfeOqp2'
+          imageId: '2/2b/Josei-Kyoyo-1965-March-1.jpg/640px-Josei-Kyoyo-1965-March-1.jpg'
         }}
       />
     </Card>
@@ -320,7 +320,7 @@ export default function Avatar({ person, size }) {
 ```js src/utils.js
 export function getImageUrl(person, size = 's') {
   return (
-    'https://i.imgur.com/' +
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/' +
     person.imageId +
     size +
     '.jpg'
@@ -446,7 +446,7 @@ export default function Gallery() {
         <h2>Maria Skłodowska-Curie</h2>
         <img
           className="avatar"
-          src={getImageUrl('szV5sdG')}
+          src={getImageUrl('c/c8/Marie_Curie_c._1920s.jpg/640px-Marie_Curie_c._1920s.jpg')}
           alt="Maria Skłodowska-Curie"
           width={70}
           height={70}
@@ -470,7 +470,7 @@ export default function Gallery() {
         <h2>Katsuko Saruhashi</h2>
         <img
           className="avatar"
-          src={getImageUrl('YfeOqp2')}
+          src={getImageUrl('2/2b/Josei-Kyoyo-1965-March-1.jpg/640px-Josei-Kyoyo-1965-March-1.jpg')}
           alt="Katsuko Saruhashi"
           width={70}
           height={70}
@@ -498,7 +498,7 @@ export default function Gallery() {
 ```js src/utils.js
 export function getImageUrl(imageId, size = 's') {
   return (
-    'https://i.imgur.com/' +
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/' +
     imageId +
     size +
     '.jpg'
@@ -577,7 +577,7 @@ export default function Gallery() {
     <div>
       <h1>Notable Scientists</h1>
       <Profile
-        imageId="szV5sdG"
+        imageId="c/c8/Marie_Curie_c._1920s.jpg/640px-Marie_Curie_c._1920s.jpg"
         name="Maria Skłodowska-Curie"
         profession="physicist and chemist"
         discovery="polonium (chemical element)"
@@ -589,7 +589,7 @@ export default function Gallery() {
         ]}
       />
       <Profile
-        imageId='YfeOqp2'
+        imageId='2/2b/Josei-Kyoyo-1965-March-1.jpg/640px-Josei-Kyoyo-1965-March-1.jpg'
         name='Katsuko Saruhashi'
         profession='geochemist'
         discovery="a method for measuring carbon dioxide in seawater"
@@ -606,7 +606,7 @@ export default function Gallery() {
 ```js src/utils.js
 export function getImageUrl(imageId, size = 's') {
   return (
-    'https://i.imgur.com/' +
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/' +
     imageId +
     size +
     '.jpg'
@@ -674,7 +674,7 @@ export default function Gallery() {
     <div>
       <h1>Notable Scientists</h1>
       <Profile person={{
-        imageId: 'szV5sdG',
+        imageId: 'c/c8/Marie_Curie_c._1920s.jpg/640px-Marie_Curie_c._1920s.jpg',
         name: 'Maria Skłodowska-Curie',
         profession: 'physicist and chemist',
         discovery: 'polonium (chemical element)',
@@ -686,7 +686,7 @@ export default function Gallery() {
         ],
       }} />
       <Profile person={{
-        imageId: 'YfeOqp2',
+        imageId: '2/2b/Josei-Kyoyo-1965-March-1.jpg/640px-Josei-Kyoyo-1965-March-1.jpg',
         name: 'Katsuko Saruhashi',
         profession: 'geochemist',
         discovery: 'a method for measuring carbon dioxide in seawater',
@@ -703,7 +703,7 @@ export default function Gallery() {
 ```js src/utils.js
 export function getImageUrl(person, size = 's') {
   return (
-    'https://i.imgur.com/' +
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/' +
     person.imageId +
     size +
     '.jpg'
@@ -760,7 +760,7 @@ export default function Profile() {
       size={40}
       person={{ 
         name: 'Gregorio Y. Zara', 
-        imageId: '7vQD0fP'
+        imageId: '3/3a/Gregorio_Y._Zara_NAST.jpg/640px-Gregorio_Y._Zara_NAST.jpg'
       }}
     />
   );
@@ -770,7 +770,7 @@ export default function Profile() {
 ```js src/utils.js
 export function getImageUrl(person, size) {
   return (
-    'https://i.imgur.com/' +
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/' +
     person.imageId +
     size +
     '.jpg'
@@ -816,14 +816,14 @@ export default function Profile() {
         size={40}
         person={{ 
           name: 'Gregorio Y. Zara', 
-          imageId: '7vQD0fP'
+          imageId: '3/3a/Gregorio_Y._Zara_NAST.jpg/640px-Gregorio_Y._Zara_NAST.jpg'
         }}
       />
       <Avatar
         size={120}
         person={{ 
           name: 'Gregorio Y. Zara', 
-          imageId: '7vQD0fP'
+          imageId: '3/3a/Gregorio_Y._Zara_NAST.jpg/640px-Gregorio_Y._Zara_NAST.jpg'
         }}
       />
     </>
@@ -834,7 +834,7 @@ export default function Profile() {
 ```js src/utils.js
 export function getImageUrl(person, size) {
   return (
-    'https://i.imgur.com/' +
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/' +
     person.imageId +
     size +
     '.jpg'
@@ -880,21 +880,21 @@ export default function Profile() {
         size={40}
         person={{ 
           name: 'Gregorio Y. Zara', 
-          imageId: '7vQD0fP'
+          imageId: '3/3a/Gregorio_Y._Zara_NAST.jpg/640px-Gregorio_Y._Zara_NAST.jpg'
         }}
       />
       <Avatar
         size={70}
         person={{ 
           name: 'Gregorio Y. Zara', 
-          imageId: '7vQD0fP'
+          imageId: '3/3a/Gregorio_Y._Zara_NAST.jpg/640px-Gregorio_Y._Zara_NAST.jpg'
         }}
       />
       <Avatar
         size={120}
         person={{ 
           name: 'Gregorio Y. Zara', 
-          imageId: '7vQD0fP'
+          imageId: '3/3a/Gregorio_Y._Zara_NAST.jpg/640px-Gregorio_Y._Zara_NAST.jpg'
         }}
       />
     </>
@@ -905,7 +905,7 @@ export default function Profile() {
 ```js src/utils.js
 export function getImageUrl(person, size) {
   return (
-    'https://i.imgur.com/' +
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/' +
     person.imageId +
     size +
     '.jpg'
@@ -938,7 +938,7 @@ export default function Profile() {
           <h1>Photo</h1>
           <img
             className="avatar"
-            src="https://i.imgur.com/OKS67lhm.jpg"
+            src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/Portrait-aklilu-lemma-11.jpg/640px-Portrait-aklilu-lemma-11.jpg"
             alt="Aklilu Lemma"
             width={70}
             height={70}
@@ -1011,7 +1011,7 @@ export default function Profile() {
         <h1>Photo</h1>
         <img
           className="avatar"
-          src="https://i.imgur.com/OKS67lhm.jpg"
+          src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/Portrait-aklilu-lemma-11.jpg/640px-Portrait-aklilu-lemma-11.jpg"
           alt="Aklilu Lemma"
           width={100}
           height={100}
@@ -1073,7 +1073,7 @@ export default function Profile() {
       <Card title="Photo">
         <img
           className="avatar"
-          src="https://i.imgur.com/OKS67lhm.jpg"
+          src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/Portrait-aklilu-lemma-11.jpg/640px-Portrait-aklilu-lemma-11.jpg"
           alt="Aklilu Lemma"
           width={100}
           height={100}

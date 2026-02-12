@@ -27,6 +27,12 @@ Each community consists of many thousands of React users.
 * [Reactiflux online chat](https://discord.gg/reactiflux)
 * [Reddit's React community](https://www.reddit.com/r/reactjs/)
 
+## Feature Requests {/*feature-requests*/}
+
+To submit a feature request for React, first search through the existing [open issues](https://github.com/reactjs/rfcs/issues) **and [closed issues](https://github.com/reactjs/rfcs/issues?q=is%3Aissue+is%3Aclosed)** to check if your idea has already been discussed.  
+
+If you can't find it there, you can submit it as a formal [RFC (Request For Comment)](https://github.com/reactjs/rfcs/issues/new/choose).
+
 ## News {/*news*/}
 
 For the latest news about React, [follow **@reactjs** on Twitter](https://twitter.com/reactjs), [**@react.dev** on Bluesky](https://bsky.app/profile/react.dev) and the [official React blog](/blog/) on this website.

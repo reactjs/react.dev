@@ -4,7 +4,7 @@ title: useActionState
 
 <Intro>
 
-`useActionState` is a Hook that allows you to update state based on the result of a form action.
+`useActionState` is a Hook that allows you to update state based on the result of a form Action.
 
 ```js
 const [state, formAction, isPending] = useActionState(fn, initialState, permalink?);
@@ -29,7 +29,7 @@ In earlier React Canary versions, this API was part of React DOM and called `use
 
 {/* TODO T164397693: link to actions documentation once it exists */}
 
-Call `useActionState` at the top level of your component to create component state that is updated [when a form action is invoked](/reference/react-dom/components/form). You pass `useActionState` an existing form action function as well as an initial state, and it returns a new action that you use in your form, along with the latest form state and whether the Action is still pending. The latest form state is also passed to the function that you provided.
+Call `useActionState` at the top level of your component to create component state that is updated [when a form Action is invoked](/reference/react-dom/components/form). You pass `useActionState` an existing form action function as well as an initial state, and it returns a new action that you use in your form, along with the latest form state and whether the Action is still pending. The latest form state is also passed to the function that you provided.
 
 ```js
 import { useActionState } from "react";

@@ -92,6 +92,8 @@ function resolvePath(from, to) {
 // Deploy new server code into the Worker
 // Receives raw source files — compiles them with Sucrase before execution.
 function deploy(files) {
+  serverActionsRegistry = {};
+
   // Build a require function for the server module scope
   var modules = {
     react: React,
@@ -318,9 +320,17 @@ self.onmessage = function (e) {
   } else if (msg.type === 'render') {
     try {
       var streamPromise = render();
-      Promise.resolve(streamPromise).then(function (stream) {
-        sendStream(msg.requestId, stream);
-      });
+      Promise.resolve(streamPromise)
+        .then(function (stream) {
+          sendStream(msg.requestId, stream);
+        })
+        .catch(function (err) {
+          self.postMessage({
+            type: 'rsc-error',
+            requestId: msg.requestId,
+            error: String(err),
+          });
+        });
     } catch (err) {
       self.postMessage({
         type: 'rsc-error',
@@ -330,9 +340,17 @@ self.onmessage = function (e) {
     }
   } else if (msg.type === 'callAction') {
     try {
-      callAction(msg.actionId, msg.encodedArgs).then(function (stream) {
-        sendStream(msg.requestId, stream);
-      });
+      callAction(msg.actionId, msg.encodedArgs)
+        .then(function (stream) {
+          sendStream(msg.requestId, stream);
+        })
+        .catch(function (err) {
+          self.postMessage({
+            type: 'rsc-error',
+            requestId: msg.requestId,
+            error: String(err),
+          });
+        });
     } catch (err) {
       self.postMessage({
         type: 'rsc-error',

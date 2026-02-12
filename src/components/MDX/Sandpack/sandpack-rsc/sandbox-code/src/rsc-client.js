@@ -165,6 +165,14 @@ export function initClient() {
   }
 
   function triggerRender() {
+    // Close any in-flight streams from previous renders
+    Object.keys(chunkControllers).forEach(function (id) {
+      try {
+        chunkControllers[id].close();
+      } catch (e) {}
+      delete chunkControllers[id];
+    });
+
     renderRequestId++;
     var reqId = renderRequestId;
 
@@ -255,6 +263,11 @@ export function initClient() {
   // Evaluate compiled client modules and register them in the webpack cache
   // so RSDW client can resolve them via __webpack_require__.
   function registerClientModules(compiledClients, clientEntries) {
+    // Clear stale client modules from previous deploys
+    Object.keys(globalThis.__webpack_module_cache__).forEach(function (key) {
+      delete globalThis.__webpack_module_cache__[key];
+    });
+
     // Store all compiled code for lazy evaluation
     var allCompiled = compiledClients;
 
@@ -269,7 +282,8 @@ export function initClient() {
 
       var mod = {exports: {}};
       // Register before evaluating to handle circular deps
-      globalThis.__webpack_module_cache__[moduleId] = {exports: mod.exports};
+      var cacheEntry = {exports: mod.exports};
+      globalThis.__webpack_module_cache__[moduleId] = cacheEntry;
 
       var clientRequire = function (id) {
         if (id === 'react') return React;
@@ -304,8 +318,8 @@ export function initClient() {
         console.error('Error executing client module ' + moduleId + ':', err);
         return mod.exports;
       }
-      // Update cache with actual exports (handles non-circular case)
-      globalThis.__webpack_module_cache__[moduleId] = {exports: mod.exports};
+      // Update the SAME cache entry's exports (don't replace the wrapper)
+      cacheEntry.exports = mod.exports;
       return mod.exports;
     }
 

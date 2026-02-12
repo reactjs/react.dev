@@ -436,6 +436,277 @@ To use the Promise's <CodeStep step={1}>`catch`</CodeStep> method, call <CodeSte
 
 ---
 
+### Avoiding fallbacks by passing Promise subclasses {/*avoiding-fallbacks-by-passing-promise-subclasses*/}
+
+If you are implementing a Suspense-enabled library, you can help React avoid unnecessarily suspending when you know the Promise has already settled, by using `status` and `value` or `reason` fields.
+
+React will read the `status` field on the Promise to synchronously read the value without having to wait for a microtask. If the Promise is already settled (resolved or rejected), React can read the value immediately without suspending and showing a fallback if the update was not part of a Transition (e.g. [`ReactDOM.flushSync()`](/reference/react-dom/flushSync)).
+
+React will set the `status` field itself if the passed Promise does not have this field set. Suspense-enabled libraries should set the `status` field on the Promises they create to avoid unnecessary fallbacks.
+
+Calling `use` conditionally depending on whether a Promise is settled or not is discouraged. `use` should be called unconditionally so that React DevTools can show that the Component may suspend on data.
+
+<Recipes titleText="Difference between setting the status field in your library and not setting the status field" titleId="difference-between-setting-the-status-field-in-your-library-and-not-setting-the-status-field">
+
+#### Passing a basic Promise {/*passing-a-basic-promise*/}
+
+<Sandpack>
+
+```js src/App.js active
+import { Suspense, use, useState } from "react";
+
+function preloadUser(id) {
+  // This is not a real implementation of getting the
+  // Promise for the user. A real implementation would
+  // probably call `fetch` or another data fetching method.
+  // The actual implementation should cache the Promise.
+  const promise = Promise.resolve(`User #${id}`);
+
+  return promise;
+}
+
+function UserDetails({ userUsable }) {
+  const user = use(userUsable);
+  return <p>Hello, {user}!</p>;
+}
+
+export default function App() {
+  const [userId, setUserId] = useState(null);
+  // The initial
+  const [userUsable, setUser] = useState(null);
+
+  return (
+    <div>
+      <button
+        onClick={() => {
+          setUser(preloadUser(1));
+          setUserId(1);
+        }}
+      >
+        Load User #1
+      </button>
+      <button
+        onClick={() => {
+          setUser(preloadUser(2));
+          setUserId(2);
+        }}
+      >
+        Load User #2
+      </button>
+      <Suspense key={userId} fallback={<p>Loading</p>}>
+        {userUsable ? (
+          <UserDetails userUsable={userUsable} />
+        ) : (
+          <p>No user selected</p>
+        )}
+      </Suspense>
+    </div>
+  );
+}
+```
+
+</Sandpack>
+
+<Solution />
+
+#### Passing the Promise with a `status` field {/*passing-the-promise-with-the-status-field*/}
+
+
+<Sandpack>
+
+```js src/App.js active
+import { Suspense, use, useState } from "react";
+import { flushSync } from "react-dom";
+
+class PromiseWithStatus extends Promise {
+  status = "pending";
+  value = null;
+  reason = null;
+
+  constructor(executor) {
+    let resolve;
+    let reject;
+    super((_resolve, _reject) => {
+      resolve = _resolve;
+      reject = _reject;
+    });
+    // Setting the `status` field allows React to
+    // synchronously read the value if the Promise
+    // is already settled by the time the Promise is
+    // passed to `use`.
+    executor(
+      (value) => {
+        this.status = "fulfilled";
+        this.value = value;
+        resolve(value);
+      },
+      (reason) => {
+        this.status = "rejected";
+        this.reason = reason;
+        reject(reason);
+      }
+    );
+  }
+}
+
+function preloadUser(id) {
+  // This is not a real implementation of getting the
+  // Promise for the user. A real implementation would
+  // probably call `fetch` or another data fetching method.
+  // The actual implementation should cache the Promise.
+  // The important part is that we are using the
+  // PromiseWithStatus subclass here. Check out the next
+  // step if you're not controlling the Promise creation
+  // (e.g. when `fetch` is used).
+  const promise = PromiseWithStatus.resolve(`User #${id}`);
+
+  return promise;
+}
+
+function UserDetails({ userUsable }) {
+  const user = use(userUsable);
+  return <p>Hello, {user}!</p>;
+}
+
+export default function App() {
+  const [userId, setUserId] = useState(null);
+  // The initial
+  const [userUsable, setUser] = useState(null);
+
+  return (
+    <div>
+      <button
+        onClick={() => {
+          // flushSync is only used for illustration
+          // purposes. A real app would probably use
+          // startTransition instead.
+          flushSync(() => {
+            setUser(preloadUser(1));
+            setUserId(1);
+          });
+        }}
+      >
+        Load User #1
+      </button>
+      <button
+        onClick={() => {
+          setUser(preloadUser(2));
+          setUserId(2);
+        }}
+      >
+        Load User #2
+      </button>
+      <Suspense key={userId} fallback={<p>Loading</p>}>
+        {userUsable ? (
+          <UserDetails userUsable={userUsable} />
+        ) : (
+          <p>No user selected</p>
+        )}
+      </Suspense>
+    </div>
+  );
+}
+
+```
+
+</Sandpack>
+
+<Solution />
+
+#### Simplified implementation setting the `status` field {/*simplified-implementation-setting-the-status-field*/}
+
+<Sandpack>
+
+```js src/App.js active
+import { Suspense, use, useState } from "react";
+import { flushSync } from "react-dom";
+
+function preloadUser(id) {
+  const value = `User #${id}`;
+  // This is not a real implementation of getting the
+  // Promise for the user. A real implementation would
+  // probably call `fetch` or another data fetching method.
+  // The actual implementation should cache the Promise.
+  const promise = Promise.resolve(value);
+
+  // We don't need to create a custom subclass.
+  // We can just set the necessary fields directly on the
+  // Promise.
+  promise.status = "pending";
+  promise.then(
+    (value) => {
+      promise.status = "fulfilled";
+      promise.value = value;
+    },
+    (error) => {
+      promise.status = "rejected";
+      promise.reason = error;
+    }
+  );
+
+  // Setting the status in `.then` is too late if we want
+  // to create an already settled Promise. We only included
+  // setting the fields in `.then` for illustration
+  // purposes. Since our demo wants an already resolved
+  // Promise, we set the necessary fields synchronously.
+  promise.status = "fulfilled";
+  promise.value = value;
+  return promise;
+}
+
+function UserDetails({ userUsable }) {
+  const user = use(userUsable);
+  return <p>Hello, {user}!</p>;
+}
+
+export default function App() {
+  const [userId, setUserId] = useState(null);
+  // The initial
+  const [userUsable, setUser] = useState(null);
+
+  return (
+    <div>
+      <button
+        onClick={() => {
+          // flushSync is only used for illustration
+          // purposes. A real app would probably use
+          // startTransition instead.
+          flushSync(() => {
+            setUser(preloadUser(1));
+            setUserId(1);
+          });
+        }}
+      >
+        Load User #1
+      </button>
+      <button
+        onClick={() => {
+          flushSync(() => {
+            setUser(preloadUser(2));
+            setUserId(2);
+          });
+        }}
+      >
+        Load User #2
+      </button>
+      <Suspense key={userId} fallback={<p>Loading</p>}>
+        {userUsable ? (
+          <UserDetails userUsable={userUsable} />
+        ) : (
+          <p>No user selected</p>
+        )}
+      </Suspense>
+    </div>
+  );
+}
+```
+
+</Sandpack>
+
+<Solution />
+
+</Recipes>
+
 ## Troubleshooting {/*troubleshooting*/}
 
 ### "Suspense Exception: This is not a real error!" {/*suspense-exception-error*/}

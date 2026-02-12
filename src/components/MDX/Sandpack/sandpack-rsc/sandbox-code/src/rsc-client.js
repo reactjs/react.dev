@@ -42,7 +42,7 @@ export function initClient() {
   var worker = new Worker(workerUrl);
 
   // Render tracking
-  var renderRequestId = 0;
+  var nextStreamId = 0;
   var chunkControllers = {};
   var setCurrentPromise;
   var firstRender = true;
@@ -126,8 +126,8 @@ export function initClient() {
 
   function callServer(id, args) {
     return encodeReply(args).then(function (body) {
-      renderRequestId++;
-      var reqId = renderRequestId;
+      nextStreamId++;
+      var reqId = nextStreamId;
 
       var stream = new ReadableStream({
         start: function (controller) {
@@ -184,8 +184,8 @@ export function initClient() {
       delete chunkControllers[id];
     });
 
-    renderRequestId++;
-    var reqId = renderRequestId;
+    nextStreamId++;
+    var reqId = nextStreamId;
 
     var stream = new ReadableStream({
       start: function (controller) {
@@ -250,7 +250,6 @@ export function initClient() {
     });
     worker.postMessage({
       type: 'deploy',
-      requestId: ++renderRequestId,
       files: userFiles,
     });
   }

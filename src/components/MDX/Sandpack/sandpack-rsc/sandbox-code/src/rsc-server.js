@@ -212,9 +212,43 @@ function deploy(files) {
     module: mainModule.exports,
   };
 
+  // Collect only client-reachable compiled code.
+  // Start from 'use client' entries and trace their require() calls.
+  var clientReachable = {};
+  function traceClientDeps(filePath) {
+    if (clientReachable[filePath]) return;
+    clientReachable[filePath] = true;
+    var code = compiled[filePath];
+    if (!code) return;
+    var requireRegex = /require\(["']([^"']+)["']\)/g;
+    var match;
+    while ((match = requireRegex.exec(code)) !== null) {
+      var dep = match[1];
+      if (
+        dep === 'react' ||
+        dep === 'react/jsx-runtime' ||
+        dep === 'react/jsx-dev-runtime' ||
+        dep.endsWith('.css')
+      )
+        continue;
+      var resolved = resolveModuleId(filePath, dep);
+      if (compiled[resolved]) {
+        traceClientDeps(resolved);
+      }
+    }
+  }
+  Object.keys(detectedClientFiles).forEach(function (filePath) {
+    traceClientDeps(filePath);
+  });
+
+  var clientCompiled = {};
+  Object.keys(clientReachable).forEach(function (filePath) {
+    clientCompiled[filePath] = compiled[filePath];
+  });
+
   return {
     type: 'deployed',
-    compiledClients: compiled,
+    compiledClients: clientCompiled,
     clientEntries: detectedClientFiles,
   };
 }
@@ -300,20 +334,17 @@ self.onmessage = function (e) {
       if (result && result.type === 'error') {
         self.postMessage({
           type: 'rsc-error',
-          requestId: msg.requestId,
           error: result.error,
         });
       } else if (result) {
         self.postMessage({
           type: 'deploy-result',
-          requestId: msg.requestId,
           result: result,
         });
       }
     } catch (err) {
       self.postMessage({
         type: 'rsc-error',
-        requestId: msg.requestId,
         error: String(err),
       });
     }

@@ -24,6 +24,17 @@ import {
   encodeReply,
 } from 'react-server-dom-webpack/client.browser';
 
+import {
+  injectIntoGlobalHook,
+  register as refreshRegister,
+  performReactRefresh,
+  isLikelyComponentType,
+} from 'react-refresh/runtime';
+
+// Patch the DevTools hook to capture renderer helpers and track roots.
+// Must run after react-dom evaluates (injects renderer) but before createRoot().
+injectIntoGlobalHook(window);
+
 export function initClient() {
   // Create Worker from pre-bundled server runtime
   var blob = new Blob([rscServerForWorker], {type: 'application/javascript'});
@@ -234,6 +245,7 @@ export function initClient() {
       if (filePath === '/src/rsc-client.js') return;
       if (filePath === '/src/rsc-server.js') return;
       if (filePath === '/src/__webpack_shim__.js') return;
+      if (filePath === '/src/__react_refresh_init__.js') return;
       userFiles[filePath] = files[filePath];
     });
     worker.postMessage({
@@ -327,5 +339,33 @@ export function initClient() {
     Object.keys(clientEntries).forEach(function (moduleId) {
       evaluateModule(moduleId);
     });
+
+    // Register all evaluated components with react-refresh for Fast Refresh.
+    // This creates stable "component families" so React can preserve state
+    // across re-evaluations when component identity changes.
+    Object.keys(globalThis.__webpack_module_cache__).forEach(function (
+      moduleId
+    ) {
+      var moduleExports = globalThis.__webpack_module_cache__[moduleId];
+      var exports =
+        moduleExports.exports !== undefined
+          ? moduleExports.exports
+          : moduleExports;
+      if (exports && typeof exports === 'object') {
+        for (var key in exports) {
+          var exportValue = exports[key];
+          if (isLikelyComponentType(exportValue)) {
+            refreshRegister(exportValue, moduleId + ' %exports% ' + key);
+          }
+        }
+      }
+      if (typeof exports === 'function' && isLikelyComponentType(exports)) {
+        refreshRegister(exports, moduleId + ' %exports% default');
+      }
+    });
+
+    // Tell React about updated component families so it can
+    // preserve state for components whose implementation changed.
+    performReactRefresh();
   }
 }

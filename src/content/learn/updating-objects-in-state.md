@@ -457,7 +457,7 @@ const [person, setPerson] = useState({
   artwork: {
     title: 'Blue Nana',
     city: 'Hamburg',
-    image: 'https://i.imgur.com/Sd1AgUOm.jpg',
+    image: 'https://i.imgur.com.prx.react.dev/Sd1AgUOm.jpg',
   }
 });
 ```
@@ -501,7 +501,7 @@ export default function Form() {
     artwork: {
       title: 'Blue Nana',
       city: 'Hamburg',
-      image: 'https://i.imgur.com/Sd1AgUOm.jpg',
+      image: 'https://i.imgur.com.prx.react.dev/Sd1AgUOm.jpg',
     }
   });
 
@@ -608,7 +608,7 @@ let obj = {
   artwork: {
     title: 'Blue Nana',
     city: 'Hamburg',
-    image: 'https://i.imgur.com/Sd1AgUOm.jpg',
+    image: 'https://i.imgur.com.prx.react.dev/Sd1AgUOm.jpg',
   }
 };
 ```
@@ -619,7 +619,7 @@ However, "nesting" is an inaccurate way to think about how objects behave. When 
 let obj1 = {
   title: 'Blue Nana',
   city: 'Hamburg',
-  image: 'https://i.imgur.com/Sd1AgUOm.jpg',
+  image: 'https://i.imgur.com.prx.react.dev/Sd1AgUOm.jpg',
 };
 
 let obj2 = {
@@ -634,7 +634,7 @@ The `obj1` object is not "inside" `obj2`. For example, `obj3` could "point" at `
 let obj1 = {
   title: 'Blue Nana',
   city: 'Hamburg',
-  image: 'https://i.imgur.com/Sd1AgUOm.jpg',
+  image: 'https://i.imgur.com.prx.react.dev/Sd1AgUOm.jpg',
 };
 
 let obj2 = {
@@ -690,7 +690,7 @@ export default function Form() {
     artwork: {
       title: 'Blue Nana',
       city: 'Hamburg',
-      image: 'https://i.imgur.com/Sd1AgUOm.jpg',
+      image: 'https://i.imgur.com.prx.react.dev/Sd1AgUOm.jpg',
     }
   });
 

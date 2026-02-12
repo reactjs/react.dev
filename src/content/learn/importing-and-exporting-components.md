@@ -28,7 +28,7 @@ In [Your First Component](/learn/your-first-component), you made a `Profile` com
 function Profile() {
   return (
     <img
-      src="https://i.imgur.com/MK3eW3As.jpg"
+      src="https://i.imgur.com.prx.react.dev/MK3eW3As.jpg"
       alt="Katherine Johnson"
     />
   );
@@ -80,7 +80,7 @@ export default function App() {
 function Profile() {
   return (
     <img
-      src="https://i.imgur.com/QIrZWGIs.jpg"
+      src="https://i.imgur.com.prx.react.dev/QIrZWGIs.jpg"
       alt="Alan L. Hart"
     />
   );
@@ -198,7 +198,7 @@ export default function App() {
 export function Profile() {
   return (
     <img
-      src="https://i.imgur.com/QIrZWGIs.jpg"
+      src="https://i.imgur.com.prx.react.dev/QIrZWGIs.jpg"
       alt="Alan L. Hart"
     />
   );
@@ -286,7 +286,7 @@ export default function App() {
 export function Profile() {
   return (
     <img
-      src="https://i.imgur.com/QIrZWGIs.jpg"
+      src="https://i.imgur.com.prx.react.dev/QIrZWGIs.jpg"
       alt="Alan L. Hart"
     />
   );
@@ -354,7 +354,7 @@ export default function Gallery() {
 export function Profile() {
   return (
     <img
-      src="https://i.imgur.com/QIrZWGIs.jpg"
+      src="https://i.imgur.com.prx.react.dev/QIrZWGIs.jpg"
       alt="Alan L. Hart"
     />
   );
@@ -404,7 +404,7 @@ export default function Gallery() {
 export default function Profile() {
   return (
     <img
-      src="https://i.imgur.com/QIrZWGIs.jpg"
+      src="https://i.imgur.com.prx.react.dev/QIrZWGIs.jpg"
       alt="Alan L. Hart"
     />
   );

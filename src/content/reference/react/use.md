@@ -50,6 +50,9 @@ The `use` API returns the value that was read from the resource like the resolve
 * The `use` API must be called inside a Component or a Hook.
 * When fetching data in a [Server Component](/reference/rsc/server-components), prefer `async` and `await` over `use`. `async` and `await` pick up rendering from the point where `await` was invoked, whereas `use` re-renders the component after the data is resolved.
 * Prefer creating Promises in [Server Components](/reference/rsc/server-components) and passing them to [Client Components](/reference/rsc/use-client) over creating Promises in Client Components. Promises created in Client Components are recreated on every render. Promises passed from a Server Component to a Client Component are stable across re-renders. [See this example](#streaming-data-from-server-to-client).
+* A Promise used in Client Components and passed to `use` must be cached or stable between renders (e.g. not recreated between renders); otherwise each render creates a new Promise and the component may suspend indefinitely.
+* A Promise passed to `use` that comes from chaining [`.then`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/then), [`.catch`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/catch), or [`.finally`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/finally) must also be cached or stable between renders; each call returns a new Promise.
+
 
 ---
 
@@ -316,6 +319,139 @@ But using `await` in a [Server Component](/reference/rsc/server-components) will
 
 </DeepDive>
 
+### Using Promises in Client Components {/*using-promises-in-client-components*/}
+
+When you pass a Promise to `use` that was created in a Client Component, it must be cached or stable between renders. One way to do that is to memoize the async work by input—for example, a cache keyed by the same arguments returns the same Promise for the same arguments. In this example, `getDoubleCountCached(count)` returns the same Promise for a given `count`, so the component does not re-suspend when re-rendering with the same count.
+
+<Sandpack>
+
+```js src/DoubleCount.js active
+import { use } from 'react';
+
+export default function DoubleCount({ count }) {
+  const doubleCount = use(getDoubleCountCached(count));
+
+  return (
+    <div>
+      <p>Count: {count}</p>
+      <p>Double count: {doubleCount}</p>
+    </div>
+  );
+}
+
+function getDoubleCount(count) {
+  return new Promise((resolve) =>
+    setTimeout(() => resolve(count * 2), 500)
+  );
+}
+
+function cacheFn(fn) {
+  const cacheMap = new Map();
+  return (...args) => {
+    const key = JSON.stringify(args);
+    if (cacheMap.has(key)) {
+      return cacheMap.get(key);
+    }
+    const r = fn(...args);
+    cacheMap.set(key, r);
+    return r;
+  };
+}
+
+const getDoubleCountCached = cacheFn(getDoubleCount);
+```
+
+```js src/App.js
+import { useState, Suspense } from 'react';
+import DoubleCount from './DoubleCount.js';
+
+export default function App() {
+  const [count, setCount] = useState(0);
+  return (
+    <div>
+      <button
+        onClick={() => {
+          setCount((c) => c + 1);
+        }}
+      >
+        Increment
+      </button>
+      <button
+        onClick={() => {
+          setCount((c) => c - 1);
+        }}
+      >
+        Decrement
+      </button>
+      <Suspense fallback={<p>🌀 Loading...</p>}>
+        <DoubleCount count={count} />
+      </Suspense>
+    </div>
+  );
+}
+```
+
+```js src/index.js hidden
+import React, { StrictMode } from 'react';
+import { createRoot } from 'react-dom/client';
+import './styles.css';
+
+import App from './App';
+
+const root = createRoot(document.getElementById('root'));
+root.render(
+  <StrictMode>
+    <App />
+  </StrictMode>
+);
+```
+
+</Sandpack>
+
+<Pitfall>
+
+##### Using an uncached Promise in a Client Component keeps the app in the loading state. {/*pitfall-uncached-client-promise*/}
+
+If you pass `getDoubleCount(count)` instead of `getDoubleCountCached(count)` to `use`, a new Promise is created on every render. React treats it as a new resource each time, so the component suspends again and the Suspense fallback stays visible. The app will appear stuck on the loading state (or flicker between loading and content). Always cache or otherwise stabilize client-created Promises passed to `use`.
+
+```js
+// ❌ New Promise every render — component re-suspends each time
+const doubleCount = use(getDoubleCount(count));
+
+// ✅ Same Promise for same count — suspends once per count
+const doubleCount = use(getDoubleCountCached(count));
+```
+
+##### Chained Promises (`.then`, `.catch`, `.finally`) must be cached too. {/*pitfall-chained-promise*/}
+
+Each call to `.then`, `.catch`, or `.finally` returns a new Promise. If you pass that chained Promise to `use` without caching it, you get a new Promise every render and the component will re-suspend each time.
+
+```js
+// ❌ New Promise every render — .then() returns a new Promise each time
+const data = use(fetch(url).then((r) => r.json()));
+
+const fetchJsonCached = (() => {
+  const cache = new Map();
+  return (url) => {
+    if (!cache.has(url)) {
+      cache.set(url, fetch(url).then((r) => r.json()));
+    }
+    return cache.get(url);
+  };
+})();
+
+function MyComponent() {
+  // ✅ Cache the chained Promise so the same reference is used for the same url
+  const data = use(fetchJsonCached('/api/my-api'));
+
+  return <div> {data} </div>
+}
+```
+
+</Pitfall>
+
+---
+
 ### Dealing with rejected Promises {/*dealing-with-rejected-promises*/}
 
 In some cases a Promise passed to `use` could be rejected. You can handle rejected Promises by either:
@@ -438,6 +574,36 @@ To use the Promise's <CodeStep step={1}>`catch`</CodeStep> method, call <CodeSte
 
 ## Troubleshooting {/*troubleshooting*/}
 
+### My component stays on the loading state (or keeps flickering) when I use a Promise with `use` {/*promise-not-stable*/}
+
+The Promise you pass to `use` is likely recreated on every render. React treats a new Promise as a new resource, so the component suspends again each time and the Suspense fallback stays visible (or the UI flickers between fallback and content). This often happens when the Promise is created inside a Client Component without being cached or stored, or when you pass the result of `.then()`, `.catch()`, or `.finally()`—each call returns a new Promise, so that chained result must be cached too.
+
+```jsx
+// ❌ New Promise every render — component re-suspends each time
+function MyComponent({ id }) {
+  const data = use(fetchData(id)); // fetchData(id) returns a new Promise each render
+  return <p>{data}</p>;
+}
+```
+
+Cache or otherwise stabilize the Promise between renders. For example, store it in state, or use a cache keyed by the same inputs so the same Promise is returned for the same arguments. [See the Client Component caching example.](#using-promises-in-client-components)
+
+```jsx
+// ✅ Same Promise for same id — cache returns stable reference per argument
+const promiseCache = new Map();
+function fetchDataCached(id) {
+  if (!promiseCache.has(id)) promiseCache.set(id, fetchData(id));
+  return promiseCache.get(id);
+}
+
+function MyComponent({ id }) {
+  const data = use(fetchDataCached(id));
+  return <p>{data}</p>;
+}
+```
+
+---
+
 ### "Suspense Exception: This is not a real error!" {/*suspense-exception-error*/}
 
 You are either calling `use` outside of a React Component or Hook function, or calling `use` in a try–catch block. If you are calling `use` inside a try–catch block, wrap your component in an Error Boundary, or call the Promise's `catch` to catch the error and resolve the Promise with another value. [See these examples](#dealing-with-rejected-promises).
@@ -460,3 +626,4 @@ function MessageComponent({messagePromise}) {
   const message = use(messagePromise);
   // ...
 ```
+

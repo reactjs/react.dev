@@ -115,13 +115,15 @@ function ProductTable({ products }) {
       rows.push(
         <ProductCategoryRow
           category={product.category}
-          key={product.category} />
+          key={product.category}
+        />
       );
     }
     rows.push(
       <ProductRow
         product={product}
-        key={product.name} />
+        key={product.name}
+      />
     );
     lastCategory = product.category;
   });
@@ -287,11 +289,13 @@ Then, pass `filterText` and `inStockOnly` to `ProductTable` and `SearchBar` as p
 <div>
   <SearchBar 
     filterText={filterText} 
-    inStockOnly={inStockOnly} />
+    inStockOnly={inStockOnly}
+  />
   <ProductTable 
     products={products}
     filterText={filterText}
-    inStockOnly={inStockOnly} />
+    inStockOnly={inStockOnly}
+  />
 </div>
 ```
 
@@ -310,11 +314,13 @@ function FilterableProductTable({ products }) {
     <div>
       <SearchBar 
         filterText={filterText} 
-        inStockOnly={inStockOnly} />
+        inStockOnly={inStockOnly}
+      />
       <ProductTable 
         products={products}
         filterText={filterText}
-        inStockOnly={inStockOnly} />
+        inStockOnly={inStockOnly}
+      />
     </div>
   );
 }
@@ -362,13 +368,15 @@ function ProductTable({ products, filterText, inStockOnly }) {
       rows.push(
         <ProductCategoryRow
           category={product.category}
-          key={product.category} />
+          key={product.category}
+        />
       );
     }
     rows.push(
       <ProductRow
         product={product}
-        key={product.name} />
+        key={product.name}
+      />
     );
     lastCategory = product.category;
   });
@@ -392,11 +400,13 @@ function SearchBar({ filterText, inStockOnly }) {
       <input 
         type="text" 
         value={filterText} 
-        placeholder="Search..."/>
+        placeholder="Search..."
+      />
       <label>
         <input 
           type="checkbox" 
-          checked={inStockOnly} />
+          checked={inStockOnly}
+        />
         {' '}
         Only show products in stock
       </label>
@@ -454,7 +464,8 @@ function SearchBar({ filterText, inStockOnly }) {
       <input 
         type="text" 
         value={filterText} 
-        placeholder="Search..."/>
+        placeholder="Search..."
+      />
 ```
 
 However, you haven't added any code to respond to the user actions like typing yet. This will be your final step.
@@ -479,7 +490,8 @@ function FilterableProductTable({ products }) {
         filterText={filterText} 
         inStockOnly={inStockOnly}
         onFilterTextChange={setFilterText}
-        onInStockOnlyChange={setInStockOnly} />
+        onInStockOnlyChange={setInStockOnly}
+      />
 ```
 
 Inside the `SearchBar`, you will add the `onChange` event handlers and set the parent state from them:
@@ -523,11 +535,13 @@ function FilterableProductTable({ products }) {
         filterText={filterText} 
         inStockOnly={inStockOnly} 
         onFilterTextChange={setFilterText} 
-        onInStockOnlyChange={setInStockOnly} />
+        onInStockOnlyChange={setInStockOnly}
+      />
       <ProductTable 
         products={products} 
         filterText={filterText}
-        inStockOnly={inStockOnly} />
+        inStockOnly={inStockOnly}
+      />
     </div>
   );
 }
@@ -575,13 +589,15 @@ function ProductTable({ products, filterText, inStockOnly }) {
       rows.push(
         <ProductCategoryRow
           category={product.category}
-          key={product.category} />
+          key={product.category}
+        />
       );
     }
     rows.push(
       <ProductRow
         product={product}
-        key={product.name} />
+        key={product.name}
+      />
     );
     lastCategory = product.category;
   });
@@ -609,13 +625,16 @@ function SearchBar({
     <form>
       <input 
         type="text" 
-        value={filterText} placeholder="Search..." 
-        onChange={(e) => onFilterTextChange(e.target.value)} />
+        value={filterText}
+        placeholder="Search..." 
+        onChange={(e) => onFilterTextChange(e.target.value)}
+      />
       <label>
         <input 
           type="checkbox" 
           checked={inStockOnly} 
-          onChange={(e) => onInStockOnlyChange(e.target.checked)} />
+          onChange={(e) => onInStockOnlyChange(e.target.checked)}
+        />
         {' '}
         Only show products in stock
       </label>

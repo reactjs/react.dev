@@ -2330,7 +2330,7 @@ If a `startTransition` is started from the legacy popstate event, such as during
 
 ## Troubleshooting {/*troubleshooting*/}
 
-### My `<ViewTransition>` is not activating {/* my-viewtransition-is-not-activating */}
+### My `<ViewTransition>` is not activating {/*my-viewtransition-is-not-activating*/}
 
 `<ViewTransition>` only activates if it is placed before any DOM node:
 
@@ -2356,7 +2356,7 @@ function Component() {
 }
 ```
 
-### I'm getting an error "There are two `<ViewTransition name=%s>` components with the same name mounted at the same time." {/* two-viewtransition-with-same-name */}
+### I'm getting an error "There are two `<ViewTransition name=%s>` components with the same name mounted at the same time." {/*two-viewtransition-with-same-name*/}
 
 This error occurs when two `<ViewTransition>` components with the same `name` are mounted at the same time:
 

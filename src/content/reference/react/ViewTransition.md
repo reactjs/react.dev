@@ -84,16 +84,38 @@ By default, `<ViewTransition>` animates with a smooth cross-fade. You can custom
 
 #### Callback {/*events*/}
 
-These callbacks allow you to adjust the animation imperatively using the [animate](https://developer.mozilla.org/en-US/docs/Web/API/Element/animate) APIs:
+These callbacks allow you to control the animation imperatively using the [Web Animations API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Animations_API). React calls them after the View Transition's [`ready`](https://developer.mozilla.org/en-US/docs/Web/API/ViewTransition/ready) Promise resolves, once built-in default animations have already been computed. Only one callback fires per `<ViewTransition>` per Transition.
 
-* **optional** `onEnter`: A function. React calls `onEnter` after an "enter" animation.
-* **optional** `onExit`: A function. React calls `onExit` after an "exit" animation.
-* **optional** `onShare`:  A function. React calls `onShare` after a "share" animation.
-* **optional** `onUpdate`:  A function. React calls `onUpdate` after an "update" animation.
+* **optional** `onEnter`: `(instance, types) => void | (() => void)`. Called when this `<ViewTransition>` is inserted during a Transition without a matching named pair. Use this to animate the entering element imperatively.
+* **optional** `onExit`: `(instance, types) => void | (() => void)`. Called when this `<ViewTransition>` is removed during a Transition without a matching named pair. Use this to animate the exiting element imperatively.
+* **optional** `onShare`: `(instance, types) => void | (() => void)`. Called when this `<ViewTransition>` is part of a shared element Transition—where a named `<ViewTransition>` is deleted and another with the same name is inserted. Takes precedence over `onEnter` and `onExit`. Use this to animate the shared element Transition imperatively.
+* **optional** `onUpdate`: `(instance, types) => void | (() => void)`. Called when this `<ViewTransition>` has DOM mutations inside it, or when the boundary itself changes size or position due to a sibling change. Use this to animate content updates imperatively.
 
-Each callback receives as arguments:
-- `element`: The DOM element that was animated.
-- `types`: The [Transition Types](/reference/react/addTransitionType) included in the animation.
+Each callback receives two arguments:
+
+* `instance`: A View Transition instance object that provides access to the view transition [pseudo-elements](https://developer.mozilla.org/en-US/docs/Web/API/View_Transition_API/Using#the_view_transition_process). Call `instance.old.animate(keyframes, options)` and `instance.new.animate(keyframes, options)` to imperatively control the animation. The instance has these properties:
+  * `name`: The `view-transition-name` string for this boundary.
+  * `group`: The `::view-transition-group` pseudo-element. Supports `.animate()`, `.getAnimations()`, and `.getComputedStyle()`.
+  * `imagePair`: The `::view-transition-image-pair` pseudo-element. Supports `.animate()`, `.getAnimations()`, and `.getComputedStyle()`.
+  * `old`: The `::view-transition-old` pseudo-element (the snapshot of the previous state). Supports `.animate()`, `.getAnimations()`, and `.getComputedStyle()`.
+  * `new`: The `::view-transition-new` pseudo-element (the live representation of the new state). Supports `.animate()`, `.getAnimations()`, and `.getComputedStyle()`.
+* `types`: An `Array<string>` of [Transition Types](/reference/react/addTransitionType) included in the animation. Empty array if no types were specified.
+
+Each callback can optionally return a **cleanup function**. The cleanup function is called when the View Transition finishes, allowing you to cancel any manually started animations:
+
+```js
+<ViewTransition
+  onEnter={(instance, types) => {
+    const anim = instance.new.animate(
+      [{ opacity: 0 }, { opacity: 1 }],
+      { duration: 500 }
+    );
+    return () => anim.cancel();
+  }}
+>
+  <div>...</div>
+</ViewTransition>
+```
 
 ### View Transition Class {/*view-transition-class*/}
 

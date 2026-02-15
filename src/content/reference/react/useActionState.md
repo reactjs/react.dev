@@ -56,7 +56,7 @@ function MyCart({initialState}) {
 #### Caveats {/*caveats*/}
 
 * `useActionState` is a Hook, so you can only call it **at the top level of your component** or your own Hooks. You can't call it inside loops or conditions. If you need that, extract a new component and move the state into it.
-* React queues and executes multiple calls to `dispatchAction` sequentially, allowing each `reducerAction` to use the result of the previous Action.
+* React queues and executes multiple calls to `dispatchAction` sequentially. Each call to `reducerAction` receives the result of the previous call.
 * The `dispatchAction` function has a stable identity, so you will often see it omitted from Effect dependencies, but including it will not cause the Effect to fire. If the linter lets you omit a dependency without errors, it is safe to do. [Learn more about removing Effect dependencies.](/learn/removing-effect-dependencies#move-dynamic-objects-and-functions-inside-your-effect)
 * When using the `permalink` option, ensure the same form component is rendered on the destination page (including the same `reducerAction` and `permalink`) so React knows how to pass the state through. Once the page becomes interactive, this parameter has no effect.
 * When using Server Functions, `initialState` needs to be [serializable](/reference/rsc/use-server#serializable-parameters-and-return-values) (values like plain objects, arrays, strings, and numbers).
@@ -65,9 +65,9 @@ function MyCart({initialState}) {
 
 <Note>
 
-`dispatchAction` must be called within a Transition. 
+`dispatchAction` must be called from an Action. 
 
-You can wrap it in [`startTransition`](/reference/react/startTransition), or pass it to an [Action prop](/reference/react/useTransition#exposing-action-props-from-components).
+You can wrap it in [`startTransition`](/reference/react/startTransition), or pass it to an [Action prop](/reference/react/useTransition#exposing-action-props-from-components). Calls outside that scope won’t be treated as part of the Transition and [log an error](#async-function-outside-transition) on development mode.
 
 </Note>
 
@@ -86,11 +86,11 @@ async function reducerAction(previousState, actionPayload) {
 }
 ```
 
-Each time you call `dispatchAction`, React calls the `reducerAction` with the `actionPayload`. The reducer will perform side effects such as posting data, and return the new state. If `dispatchAction` is called multiple times, React queues and executes them in order so the result of the previous call is available for the current call.
+Each time you call `dispatchAction`, React calls the `reducerAction` with the `actionPayload`. The reducer will perform side effects such as posting data, and return the new state. If `dispatchAction` is called multiple times, React queues and executes them in order so the result of the previous call is passed as `previousState` for the current call.
 
 #### Parameters {/*reduceraction-parameters*/}
 
-* `previousState`: The current state. Initially this is equal to the `initialState`. After the first call to `dispatchAction`, it's equal to the last state returned.
+* `previousState`: The last state. Initially this is equal to the `initialState`. After the first call to `dispatchAction`, it's equal to the last state returned.
 
 * **optional** `actionPayload`: The argument passed to `dispatchAction`. It can be a value of any type. Similar to `useReducer` conventions, it is usually an object with a `type` property identifying it and, optionally, other properties with additional information.
 
@@ -104,6 +104,7 @@ Each time you call `dispatchAction`, React calls the `reducerAction` with the `a
 * `reducerAction` is not invoked twice in `<StrictMode>` since `reducerAction` is designed to allow side effects.
 * The return type of `reducerAction` must match the type of `initialState`. If TypeScript infers a mismatch, you may need to explicitly annotate your state type.
 * If you set state after `await` in the `reducerAction` you currently need to wrap the state update in an additional `startTransition`. See the [startTransition](/reference/react/useTransition#react-doesnt-treat-my-state-update-after-await-as-a-transition) docs for more info.
+* When using Server Functions, `actionPayload` needs to be [serializable](/reference/rsc/use-server#serializable-parameters-and-return-values) (values like plain objects, arrays, strings, and numbers).
 
 <DeepDive>
 
@@ -611,7 +612,7 @@ hr {
 
 ### Using with Action props {/*using-with-action-props*/}
 
-When you pass the `dispatchAction` function to a component that exposes an [Action prop](/reference/react/useTransition#exposing-action-props-from-components), you don't need to call `startTransition` or `useOptmisitc` yourself.
+When you pass the `dispatchAction` function to a component that exposes an [Action prop](/reference/react/useTransition#exposing-action-props-from-components), you don't need to call `startTransition` or `useOptimistic` yourself.
 
 This example shows using the `increaseAction` and `decreaseAction` props of a QuantityStepper component:
 
@@ -679,7 +680,7 @@ export default function QuantityStepper({value, increaseAction, decreaseAction})
 
   function handleDecrease() {
     startTransition(async () => {
-      setOptimisticValue(c => c + 1);
+      setOptimisticValue(c => Math.max(0, c - 1));
       await decreaseAction();
     });
   }
@@ -879,7 +880,7 @@ export default function QuantityStepper({value, increaseAction, decreaseAction})
 
   function handleDecrease() {
     startTransition(async () => {
-      setOptimisticValue(c => c + 1);
+      setOptimisticValue(c => Math.max(0, c - 1));
       await decreaseAction();
     });
   }
@@ -1408,7 +1409,7 @@ When `dispatchAction` is passed to an Action prop, React automatically wraps it 
 
 When you use `useActionState`, the `reducerAction` receives an extra argument as its first argument: the previous or initial state. The submitted form data is therefore its second argument instead of its first.
 
-```js
+```js {2,7}
 // Without useActionState
 function action(formData) {
   const name = formData.get('name');

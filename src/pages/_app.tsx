@@ -35,11 +35,14 @@ export default function MyApp({Component, pageProps}: AppProps) {
   useEffect(() => {
     // Taken from StackOverflow. Trying to detect both Safari desktop and mobile.
     const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
-    if (isSafari) {
+    // Detect Opera (desktop uses OPR, mobile may use Opera in user agent)
+    const isOpera = /OPR|Opera/i.test(navigator.userAgent);
+    if (isSafari || isOpera) {
       // This is kind of a lie.
       // We still rely on the manual Next.js scrollRestoration logic.
-      // However, we *also* don't want Safari grey screen during the back swipe gesture.
+      // However, we *also* don't want Safari/Opera grey screen during the back swipe gesture.
       // Seems like it doesn't hurt to enable auto restore *and* Next.js logic at the same time.
+      // Opera on mobile has similar scroll behavior issues as Safari, so it needs the same fix.
       history.scrollRestoration = 'auto';
     } else {
       // For other browsers, let Next.js set scrollRestoration to 'manual'.

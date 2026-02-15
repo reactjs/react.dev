@@ -154,6 +154,7 @@ function Panel({ title, children, isActive }) {
         <p>{children}</p>
       ) : (
         <button onClick={() => setIsActive(true)}>
+        // 👆 Be careful, This onClick handler doesn't work yet, because we removed setIsActive in step 1
           Show
         </button>
       )}

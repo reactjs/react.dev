@@ -46,36 +46,36 @@ globalThis.__webpack_get_script_filename__ = function (chunkId) {
     }
     var jc = Array.isArray,
       Jo = Symbol.for('react.transitional.element'),
-      If = Symbol.for('react.portal'),
-      Ef = Symbol.for('react.fragment'),
-      Af = Symbol.for('react.strict_mode'),
-      Pf = Symbol.for('react.profiler'),
-      Nf = Symbol.for('react.forward_ref'),
-      Rf = Symbol.for('react.suspense'),
-      Lf = Symbol.for('react.memo'),
+      Af = Symbol.for('react.portal'),
+      Pf = Symbol.for('react.fragment'),
+      Nf = Symbol.for('react.strict_mode'),
+      Rf = Symbol.for('react.profiler'),
+      Lf = Symbol.for('react.forward_ref'),
+      Of = Symbol.for('react.suspense'),
+      Df = Symbol.for('react.memo'),
       Uc = Symbol.for('react.lazy'),
       $c = Symbol.iterator;
-    function Of(e) {
+    function Mf(e) {
       return e === null || typeof e != 'object'
         ? null
         : ((e = ($c && e[$c]) || e['@@iterator']),
           typeof e == 'function' ? e : null);
     }
     var Hc = Object.prototype.hasOwnProperty,
-      Df = Object.assign;
+      Ff = Object.assign;
     function Qo(e, t, s, i, r, a) {
       return (
         (s = a.ref),
         {$$typeof: Jo, type: e, key: t, ref: s !== void 0 ? s : null, props: a}
       );
     }
-    function Mf(e, t) {
+    function Bf(e, t) {
       return Qo(e.type, t, void 0, void 0, void 0, e.props);
     }
     function Zo(e) {
       return typeof e == 'object' && e !== null && e.$$typeof === Jo;
     }
-    function Ff(e) {
+    function Vf(e) {
       var t = {'=': '=0', ':': '=2'};
       return (
         '$' +
@@ -87,11 +87,11 @@ globalThis.__webpack_get_script_filename__ = function (chunkId) {
     var qc = /\/+/g;
     function zo(e, t) {
       return typeof e == 'object' && e !== null && e.key != null
-        ? Ff('' + e.key)
+        ? Vf('' + e.key)
         : t.toString(36);
     }
     function Kc() {}
-    function Bf(e) {
+    function jf(e) {
       switch (e.status) {
         case 'fulfilled':
           return e.value;
@@ -137,7 +137,7 @@ globalThis.__webpack_get_script_filename__ = function (chunkId) {
           case 'object':
             switch (e.$$typeof) {
               case Jo:
-              case If:
+              case Af:
                 u = !0;
                 break;
               case Uc:
@@ -151,12 +151,12 @@ globalThis.__webpack_get_script_filename__ = function (chunkId) {
           jc(r)
             ? ((s = ''),
               u != null && (s = u.replace(qc, '$&/') + '/'),
-              Zs(r, t, s, '', function (g) {
-                return g;
+              Zs(r, t, s, '', function (x) {
+                return x;
               }))
             : r != null &&
               (Zo(r) &&
-                (r = Mf(
+                (r = Bf(
                   r,
                   s +
                     (r.key == null || (e && e.key === r.key)
@@ -172,11 +172,11 @@ globalThis.__webpack_get_script_filename__ = function (chunkId) {
       if (jc(e))
         for (var y = 0; y < e.length; y++)
           (i = e[y]), (a = d + zo(i, y)), (u += Zs(i, t, s, a, r));
-      else if (((y = Of(e)), typeof y == 'function'))
+      else if (((y = Mf(e)), typeof y == 'function'))
         for (e = y.call(e), y = 0; !(i = e.next()).done; )
           (i = i.value), (a = d + zo(i, y++)), (u += Zs(i, t, s, a, r));
       else if (a === 'object') {
-        if (typeof e.then == 'function') return Zs(Bf(e), t, s, i, r);
+        if (typeof e.then == 'function') return Zs(jf(e), t, s, i, r);
         throw (
           ((t = String(e)),
           Error(
@@ -202,7 +202,7 @@ globalThis.__webpack_get_script_filename__ = function (chunkId) {
         i
       );
     }
-    function Vf(e) {
+    function $f(e) {
       if (e._status === -1) {
         var t = e._result;
         (t = t()),
@@ -221,7 +221,7 @@ globalThis.__webpack_get_script_filename__ = function (chunkId) {
       if (e._status === 1) return e._result.default;
       throw e._result;
     }
-    function jf() {
+    function qf() {
       return new WeakMap();
     }
     function Xo() {
@@ -259,16 +259,16 @@ globalThis.__webpack_get_script_filename__ = function (chunkId) {
         return e;
       },
     };
-    ht.Fragment = Ef;
-    ht.Profiler = Pf;
-    ht.StrictMode = Af;
-    ht.Suspense = Rf;
+    ht.Fragment = Pf;
+    ht.Profiler = Rf;
+    ht.StrictMode = Nf;
+    ht.Suspense = Of;
     ht.__SERVER_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE = ei;
     ht.cache = function (e) {
       return function () {
         var t = ei.A;
         if (!t) return e.apply(null, arguments);
-        var s = t.getCacheForType(jf);
+        var s = t.getCacheForType(qf);
         (t = s.get(e)), t === void 0 && ((t = Xo()), s.set(e, t)), (s = 0);
         for (var i = arguments.length; s < i; s++) {
           var r = arguments[s];
@@ -295,7 +295,7 @@ globalThis.__webpack_get_script_filename__ = function (chunkId) {
     };
     ht.cloneElement = function (e, t, s) {
       if (e == null) throw Error(Yo(267, e));
-      var i = Df({}, e.props),
+      var i = Ff({}, e.props),
         r = e.key,
         a = void 0;
       if (t != null)
@@ -341,14 +341,14 @@ globalThis.__webpack_get_script_filename__ = function (chunkId) {
       return {current: null};
     };
     ht.forwardRef = function (e) {
-      return {$$typeof: Nf, render: e};
+      return {$$typeof: Lf, render: e};
     };
     ht.isValidElement = Zo;
     ht.lazy = function (e) {
-      return {$$typeof: Uc, _payload: {_status: -1, _result: e}, _init: Vf};
+      return {$$typeof: Uc, _payload: {_status: -1, _result: e}, _init: $f};
     };
     ht.memo = function (e, t) {
-      return {$$typeof: Lf, type: e, compare: t === void 0 ? null : t};
+      return {$$typeof: Df, type: e, compare: t === void 0 ? null : t};
     };
     ht.use = function (e) {
       return ei.H.use(e);
@@ -365,16 +365,16 @@ globalThis.__webpack_get_script_filename__ = function (chunkId) {
     };
     ht.version = '19.0.0';
   });
-  var Li = Z((Zg, Gc) => {
+  var Li = Z((e_, Gc) => {
     'use strict';
     Gc.exports = Wc();
   });
   var Xc = Z((Oi) => {
     'use strict';
-    var $f = Li(),
-      qf = Symbol.for('react.transitional.element'),
-      Kf = Symbol.for('react.fragment');
-    if (!$f.__SERVER_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE)
+    var Kf = Li(),
+      Uf = Symbol.for('react.transitional.element'),
+      Hf = Symbol.for('react.fragment');
+    if (!Kf.__SERVER_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE)
       throw Error(
         'The "react" package in this environment is not configured correctly. The "react-server" condition must be enabled in any environment that runs React Server Components.'
       );
@@ -390,21 +390,21 @@ globalThis.__webpack_get_script_filename__ = function (chunkId) {
       } else s = t;
       return (
         (t = s.ref),
-        {$$typeof: qf, type: e, key: i, ref: t !== void 0 ? t : null, props: s}
+        {$$typeof: Uf, type: e, key: i, ref: t !== void 0 ? t : null, props: s}
       );
     }
-    Oi.Fragment = Kf;
+    Oi.Fragment = Hf;
     Oi.jsx = zc;
     Oi.jsxDEV = void 0;
     Oi.jsxs = zc;
   });
-  var Jc = Z((t_, Yc) => {
+  var Jc = Z((n_, Yc) => {
     'use strict';
     Yc.exports = Xc();
   });
   var Qc = Z((jn) => {
     'use strict';
-    var Uf = Li();
+    var Wf = Li();
     function ns() {}
     var Sn = {
       d: {
@@ -425,7 +425,7 @@ globalThis.__webpack_get_script_filename__ = function (chunkId) {
       p: 0,
       findDOMNode: null,
     };
-    if (!Uf.__SERVER_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE)
+    if (!Wf.__SERVER_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE)
       throw Error(
         'The "react" package in this environment is not configured correctly. The "react-server" condition must be enabled in any environment that runs React Server Components.'
       );
@@ -522,34 +522,34 @@ globalThis.__webpack_get_script_filename__ = function (chunkId) {
     };
     jn.version = '19.0.0';
   });
-  var eu = Z((s_, Zc) => {
+  var eu = Z((i_, Zc) => {
     'use strict';
     Zc.exports = Qc();
   });
   var Zu = Z((En) => {
     'use strict';
-    var Hf = eu(),
-      Wf = Li(),
-      yu = new MessageChannel(),
+    var Gf = eu(),
+      zf = Li(),
+      Tu = new MessageChannel(),
       ku = [];
-    yu.port1.onmessage = function () {
+    Tu.port1.onmessage = function () {
       var e = ku.shift();
       e && e();
     };
     function Bi(e) {
-      ku.push(e), yu.port2.postMessage(null);
+      ku.push(e), Tu.port2.postMessage(null);
     }
-    function Gf(e) {
+    function Xf(e) {
       setTimeout(function () {
         throw e;
       });
     }
-    var zf = Promise,
+    var Yf = Promise,
       vu =
         typeof queueMicrotask == 'function'
           ? queueMicrotask
           : function (e) {
-              zf.resolve(null).then(e).catch(Gf);
+              Yf.resolve(null).then(e).catch(Xf);
             },
       ln = null,
       cn = 0;
@@ -576,9 +576,9 @@ globalThis.__webpack_get_script_filename__ = function (chunkId) {
         }
       return !0;
     }
-    var Xf = new TextEncoder();
+    var Jf = new TextEncoder();
     function pn(e) {
-      return Xf.encode(e);
+      return Jf.encode(e);
     }
     function la(e) {
       return e.byteLength;
@@ -595,12 +595,12 @@ globalThis.__webpack_get_script_filename__ = function (chunkId) {
         $$async: {value: s},
       });
     }
-    var Yf = Function.prototype.bind,
-      Jf = Array.prototype.slice;
+    var Qf = Function.prototype.bind,
+      Zf = Array.prototype.slice;
     function gu() {
-      var e = Yf.apply(this, arguments);
+      var e = Qf.apply(this, arguments);
       if (this.$$typeof === Ar) {
-        var t = Jf.call(arguments, 1),
+        var t = Zf.call(arguments, 1),
           s = {value: Ar},
           i = {value: this.$$id};
         return (
@@ -615,15 +615,15 @@ globalThis.__webpack_get_script_filename__ = function (chunkId) {
       }
       return e;
     }
-    var Qf = {
+    var ed = {
         value: function () {
           return 'function () { [omitted code] }';
         },
         configurable: !0,
         writable: !0,
       },
-      Zf = Promise.prototype,
-      ed = {
+      td = Promise.prototype,
+      nd = {
         get: function (e, t) {
           switch (t) {
             case '$$typeof':
@@ -739,7 +739,7 @@ globalThis.__webpack_get_script_filename__ = function (chunkId) {
             e.$$async
           )),
           Object.defineProperty(i, 'name', {value: t}),
-          (i = e[t] = new Proxy(i, ed))),
+          (i = e[t] = new Proxy(i, nd))),
         i
       );
     }
@@ -762,16 +762,16 @@ globalThis.__webpack_get_script_filename__ = function (chunkId) {
           );
         },
         getPrototypeOf: function () {
-          return Zf;
+          return td;
         },
         set: function () {
           throw Error('Cannot assign to a client module from a server module.');
         },
       },
-      bu = Hf.__DOM_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE,
+      bu = Gf.__DOM_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE,
       qn = bu.d;
-    bu.d = {f: qn.f, r: qn.r, D: td, C: nd, L: Sr, m: Cu, X: id, S: sd, M: rd};
-    function td(e) {
+    bu.d = {f: qn.f, r: qn.r, D: sd, C: id, L: Sr, m: Cu, X: od, S: rd, M: ad};
+    function sd(e) {
       if (typeof e == 'string' && e) {
         var t = st || null;
         if (t) {
@@ -781,7 +781,7 @@ globalThis.__webpack_get_script_filename__ = function (chunkId) {
         } else qn.D(e);
       }
     }
-    function nd(e, t) {
+    function id(e, t) {
       if (typeof e == 'string') {
         var s = st || null;
         if (s) {
@@ -828,7 +828,7 @@ globalThis.__webpack_get_script_filename__ = function (chunkId) {
         qn.m(e, t);
       }
     }
-    function sd(e, t, s) {
+    function rd(e, t, s) {
       if (typeof e == 'string') {
         var i = st || null;
         if (i) {
@@ -846,7 +846,7 @@ globalThis.__webpack_get_script_filename__ = function (chunkId) {
         qn.S(e, t, s);
       }
     }
-    function id(e, t) {
+    function od(e, t) {
       if (typeof e == 'string') {
         var s = st || null;
         if (s) {
@@ -859,7 +859,7 @@ globalThis.__webpack_get_script_filename__ = function (chunkId) {
         qn.X(e, t);
       }
     }
-    function rd(e, t) {
+    function ad(e, t) {
       if (typeof e == 'string') {
         var s = st || null;
         if (s) {
@@ -880,7 +880,7 @@ globalThis.__webpack_get_script_filename__ = function (chunkId) {
       for (i in e) e[i] != null && ((t = !0), (s[i] = e[i]));
       return t ? s : null;
     }
-    function od(e, t, s) {
+    function ld(e, t, s) {
       switch (t) {
         case 'img':
           t = s.src;
@@ -980,7 +980,7 @@ globalThis.__webpack_get_script_filename__ = function (chunkId) {
       }
     }
     var ca = Symbol.for('react.temporary.reference'),
-      ad = {
+      cd = {
         get: function (e, t) {
           switch (t) {
             case '$$typeof':
@@ -1018,7 +1018,7 @@ globalThis.__webpack_get_script_filename__ = function (chunkId) {
           );
         },
       };
-    function ld(e, t) {
+    function ud(e, t) {
       var s = Object.defineProperties(
         function () {
           throw Error(
@@ -1027,18 +1027,18 @@ globalThis.__webpack_get_script_filename__ = function (chunkId) {
         },
         {$$typeof: {value: ca}}
       );
-      return (s = new Proxy(s, ad)), e.set(s, t), s;
+      return (s = new Proxy(s, cd)), e.set(s, t), s;
     }
-    var cd = Symbol.for('react.element'),
+    var pd = Symbol.for('react.element'),
       In = Symbol.for('react.transitional.element'),
       ua = Symbol.for('react.fragment'),
       nu = Symbol.for('react.context'),
       wu = Symbol.for('react.forward_ref'),
-      ud = Symbol.for('react.suspense'),
-      pd = Symbol.for('react.suspense_list'),
+      hd = Symbol.for('react.suspense'),
+      fd = Symbol.for('react.suspense_list'),
       Su = Symbol.for('react.memo'),
       $i = Symbol.for('react.lazy'),
-      hd = Symbol.for('react.memo_cache_sentinel');
+      dd = Symbol.for('react.memo_cache_sentinel');
     Symbol.for('react.postpone');
     var su = Symbol.iterator;
     function Iu(e) {
@@ -1052,7 +1052,7 @@ globalThis.__webpack_get_script_filename__ = function (chunkId) {
     var pa = Error(
       "Suspense Exception: This is not a real error! It's an implementation detail of `use` to interrupt the current render. You must either rethrow it immediately, or move the `use` call outside of the `try/catch` block. Capturing without rethrowing will lead to unexpected behavior.\n\nTo handle async errors, wrap your component in an error boundary, or call the promise's `.catch` method and pass the result to `use`."
     );
-    function fd(e, t, s) {
+    function md(e, t, s) {
       switch (
         ((s = e[s]),
         s === void 0 ? e.push(t) : s !== t && (t.then(Cs, Cs), (t = s)),
@@ -1110,7 +1110,7 @@ globalThis.__webpack_get_script_filename__ = function (chunkId) {
     }
     var Pu = {
       readContext: na,
-      use: Td,
+      use: kd,
       useCallback: function (e) {
         return e;
       },
@@ -1129,24 +1129,24 @@ globalThis.__webpack_get_script_filename__ = function (chunkId) {
       useDeferredValue: Vt,
       useTransition: Vt,
       useSyncExternalStore: Vt,
-      useId: md,
+      useId: Td,
       useHostTransitionStatus: Vt,
       useFormState: Vt,
       useActionState: Vt,
       useOptimistic: Vt,
       useMemoCache: function (e) {
-        for (var t = Array(e), s = 0; s < e; s++) t[s] = hd;
+        for (var t = Array(e), s = 0; s < e; s++) t[s] = dd;
         return t;
       },
       useCacheRefresh: function () {
-        return dd;
+        return yd;
       },
     };
     Pu.useEffectEvent = Vt;
     function Vt() {
       throw Error('This Hook is not supported in Server Components.');
     }
-    function dd() {
+    function yd() {
       throw Error(
         'Refreshing the cache is not supported in Server Components.'
       );
@@ -1154,17 +1154,17 @@ globalThis.__webpack_get_script_filename__ = function (chunkId) {
     function na() {
       throw Error('Cannot read a Client Context from a Server Component.');
     }
-    function md() {
+    function Td() {
       if (Mi === null)
         throw Error('useId can only be used while React is rendering');
       var e = Mi.identifierCount++;
       return '_' + Mi.identifierPrefix + 'S_' + e.toString(32) + '_';
     }
-    function Td(e) {
+    function kd(e) {
       if ((e !== null && typeof e == 'object') || typeof e == 'function') {
         if (typeof e.then == 'function') {
           var t = ta;
-          return (ta += 1), ni === null && (ni = []), fd(ni, e, t);
+          return (ta += 1), ni === null && (ni = []), md(ni, e, t);
         }
         e.$$typeof === nu && na();
       }
@@ -1185,7 +1185,7 @@ globalThis.__webpack_get_script_filename__ = function (chunkId) {
           return e ? e.cacheController.signal : null;
         },
       },
-      Is = Wf.__SERVER_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE;
+      Is = zf.__SERVER_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE;
     if (!Is)
       throw Error(
         'The "react" package in this environment is not configured correctly. The "react-server" condition must be enabled in any environment that runs React Server Components.'
@@ -1218,9 +1218,9 @@ globalThis.__webpack_get_script_filename__ = function (chunkId) {
     function Er(e) {
       if (typeof e == 'string') return e;
       switch (e) {
-        case ud:
+        case hd:
           return 'Suspense';
-        case pd:
+        case fd:
           return 'SuspenseList';
       }
       if (typeof e == 'object')
@@ -1290,9 +1290,9 @@ globalThis.__webpack_get_script_filename__ = function (chunkId) {
   ` + r;
     }
     var Nr = Object.prototype.hasOwnProperty,
-      yd = Object.prototype,
+      vd = Object.prototype,
       Es = JSON.stringify;
-    function kd(e) {
+    function xd(e) {
       console.error(e);
     }
     function Ru(e, t, s, i, r, a, u, d, y) {
@@ -1301,8 +1301,8 @@ globalThis.__webpack_get_script_filename__ = function (chunkId) {
           'Currently React only supports one RSC renderer at a time.'
         );
       Is.A = iu;
-      var g = new Set(),
-        L = [],
+      var x = new Set(),
+        R = [],
         p = new Set();
       (this.type = e),
         (this.status = 10),
@@ -1313,8 +1313,8 @@ globalThis.__webpack_get_script_filename__ = function (chunkId) {
         (this.cacheController = new AbortController()),
         (this.pendingChunks = this.nextChunkId = 0),
         (this.hints = p),
-        (this.abortableTasks = g),
-        (this.pingedTasks = L),
+        (this.abortableTasks = x),
+        (this.pingedTasks = R),
         (this.completedImportChunks = []),
         (this.completedHintChunks = []),
         (this.completedRegularChunks = []),
@@ -1327,12 +1327,12 @@ globalThis.__webpack_get_script_filename__ = function (chunkId) {
         (this.identifierPrefix = d || ''),
         (this.identifierCount = 1),
         (this.taintCleanupQueue = []),
-        (this.onError = i === void 0 ? kd : i),
+        (this.onError = i === void 0 ? xd : i),
         (this.onPostpone = r === void 0 ? Cs : r),
         (this.onAllReady = a),
         (this.onFatalError = u),
-        (e = os(this, t, null, !1, 0, g)),
-        L.push(e);
+        (e = os(this, t, null, !1, 0, x)),
+        R.push(e);
     }
     var st = null;
     function ou(e, t, s) {
@@ -1383,47 +1383,47 @@ globalThis.__webpack_get_script_filename__ = function (chunkId) {
         i.id
       );
     }
-    function vd(e, t, s) {
-      function i(g) {
+    function gd(e, t, s) {
+      function i(x) {
         if (y.status === 0)
-          if (g.done)
+          if (x.done)
             (y.status = 1),
-              (g =
+              (x =
                 y.id.toString(16) +
                 `:C
 `),
-              e.completedRegularChunks.push(pn(g)),
+              e.completedRegularChunks.push(pn(x)),
               e.abortableTasks.delete(y),
               e.cacheController.signal.removeEventListener('abort', a),
               un(e),
               Or(e);
           else
             try {
-              (y.model = g.value),
+              (y.model = x.value),
                 e.pendingChunks++,
                 Bu(e, y),
                 un(e),
                 d.read().then(i, r);
-            } catch (L) {
-              r(L);
+            } catch (R) {
+              r(R);
             }
       }
-      function r(g) {
+      function r(x) {
         y.status === 0 &&
           (e.cacheController.signal.removeEventListener('abort', a),
-          Un(e, y, g),
+          Un(e, y, x),
           un(e),
-          d.cancel(g).then(r, r));
+          d.cancel(x).then(r, r));
       }
       function a() {
         if (y.status === 0) {
-          var g = e.cacheController.signal;
-          g.removeEventListener('abort', a),
-            (g = g.reason),
+          var x = e.cacheController.signal;
+          x.removeEventListener('abort', a),
+            (x = x.reason),
             e.type === 21
               ? (e.abortableTasks.delete(y), ri(y), oi(y, e))
-              : (Un(e, y, g), un(e)),
-            d.cancel(g).then(r, r);
+              : (Un(e, y, x), un(e)),
+            d.cancel(x).then(r, r);
         }
       }
       var u = s.supportsBYOB;
@@ -1456,29 +1456,29 @@ globalThis.__webpack_get_script_filename__ = function (chunkId) {
         Ct(y.id)
       );
     }
-    function xd(e, t, s, i) {
+    function _d(e, t, s, i) {
       function r(y) {
         if (d.status === 0)
           if (y.done) {
             if (((d.status = 1), y.value === void 0))
-              var g =
+              var x =
                 d.id.toString(16) +
                 `:C
 `;
             else
               try {
-                var L = bs(e, y.value, 0);
-                g =
+                var R = bs(e, y.value, 0);
+                x =
                   d.id.toString(16) +
                   ':C' +
-                  Es(Ct(L)) +
+                  Es(Ct(R)) +
                   `
 `;
               } catch (p) {
                 a(p);
                 return;
               }
-            e.completedRegularChunks.push(pn(g)),
+            e.completedRegularChunks.push(pn(x)),
               e.abortableTasks.delete(d),
               e.cacheController.signal.removeEventListener('abort', u),
               un(e),
@@ -1505,11 +1505,11 @@ globalThis.__webpack_get_script_filename__ = function (chunkId) {
         if (d.status === 0) {
           var y = e.cacheController.signal;
           y.removeEventListener('abort', u);
-          var g = y.reason;
+          var x = y.reason;
           e.type === 21
             ? (e.abortableTasks.delete(d), ri(d), oi(d, e))
             : (Un(e, d, y.reason), un(e)),
-            typeof i.throw == 'function' && i.throw(g).then(a, a);
+            typeof i.throw == 'function' && i.throw(x).then(a, a);
         }
       }
       s = s === i;
@@ -1547,11 +1547,11 @@ globalThis.__webpack_get_script_filename__ = function (chunkId) {
         e.completedHintChunks.push(t),
         un(e);
     }
-    function gd(e) {
+    function bd(e) {
       if (e.status === 'fulfilled') return e.value;
       throw e.status === 'rejected' ? e.reason : e;
     }
-    function _d(e, t, s) {
+    function Cd(e, t, s) {
       switch (s.status) {
         case 'fulfilled':
           return s.value;
@@ -1571,12 +1571,12 @@ globalThis.__webpack_get_script_filename__ = function (chunkId) {
               }
             ));
       }
-      return {$$typeof: $i, _payload: s, _init: gd};
+      return {$$typeof: $i, _payload: s, _init: bd};
     }
     function au() {}
-    function bd(e, t, s, i) {
+    function wd(e, t, s, i) {
       if (typeof i != 'object' || i === null || i.$$typeof === rs) return i;
-      if (typeof i.then == 'function') return _d(e, t, i);
+      if (typeof i.then == 'function') return Cd(e, t, i);
       var r = Iu(i);
       return r
         ? ((e = {}),
@@ -1611,7 +1611,7 @@ globalThis.__webpack_get_script_filename__ = function (chunkId) {
           null)
         );
       return (
-        (r = bd(e, t, i, r)),
+        (r = wd(e, t, i, r)),
         (i = t.keyPath),
         (a = t.implicitSlot),
         s !== null
@@ -1672,7 +1672,7 @@ globalThis.__webpack_get_script_filename__ = function (chunkId) {
       else
         typeof s == 'string' &&
           ((r = t.formatContext),
-          (u = od(r, s, a)),
+          (u = ld(r, s, a)),
           r !== u && a.children != null && bs(e, a.children, u));
       return (
         (e = i),
@@ -1714,13 +1714,13 @@ globalThis.__webpack_get_script_filename__ = function (chunkId) {
         ping: function () {
           return Vi(e, d);
         },
-        toJSON: function (y, g) {
+        toJSON: function (y, x) {
           is += y.length;
-          var L = d.keyPath,
+          var R = d.keyPath,
             p = d.implicitSlot;
           try {
-            var f = qi(e, d, this, y, g);
-          } catch (x) {
+            var h = qi(e, d, this, y, x);
+          } catch (g) {
             if (
               ((y = d.model),
               (y =
@@ -1731,13 +1731,13 @@ globalThis.__webpack_get_script_filename__ = function (chunkId) {
             )
               (d.status = 3),
                 e.type === 21
-                  ? ((L = e.nextChunkId++), (L = y ? ws(L) : Ct(L)), (f = L))
-                  : ((L = e.fatalError), (f = y ? ws(L) : Ct(L)));
+                  ? ((R = e.nextChunkId++), (R = y ? ws(R) : Ct(R)), (h = R))
+                  : ((R = e.fatalError), (h = y ? ws(R) : Ct(R)));
             else if (
-              ((g = x === pa ? Eu() : x),
-              typeof g == 'object' && g !== null && typeof g.then == 'function')
+              ((x = g === pa ? Eu() : g),
+              typeof x == 'object' && x !== null && typeof x.then == 'function')
             ) {
-              f = os(
+              h = os(
                 e,
                 d.model,
                 d.keyPath,
@@ -1745,22 +1745,22 @@ globalThis.__webpack_get_script_filename__ = function (chunkId) {
                 d.formatContext,
                 e.abortableTasks
               );
-              var v = f.ping;
-              g.then(v, v),
-                (f.thenableState = Au()),
-                (d.keyPath = L),
+              var T = h.ping;
+              x.then(T, T),
+                (h.thenableState = Au()),
+                (d.keyPath = R),
                 (d.implicitSlot = p),
-                (f = y ? ws(f.id) : Ct(f.id));
+                (h = y ? ws(h.id) : Ct(h.id));
             } else
-              (d.keyPath = L),
+              (d.keyPath = R),
                 (d.implicitSlot = p),
                 e.pendingChunks++,
-                (L = e.nextChunkId++),
-                (p = Kn(e, g, d)),
-                Rr(e, L, p),
-                (f = y ? ws(L) : Ct(L));
+                (R = e.nextChunkId++),
+                (p = Kn(e, x, d)),
+                Rr(e, R, p),
+                (h = y ? ws(R) : Ct(R));
           }
-          return f;
+          return h;
         },
         thenableState: null,
       };
@@ -1793,41 +1793,41 @@ globalThis.__webpack_get_script_filename__ = function (chunkId) {
         var d = e.bundlerConfig,
           y = i.$$id;
         u = '';
-        var g = d[y];
-        if (g) u = g.name;
+        var x = d[y];
+        if (x) u = x.name;
         else {
-          var L = y.lastIndexOf('#');
-          if ((L !== -1 && ((u = y.slice(L + 1)), (g = d[y.slice(0, L)])), !g))
+          var R = y.lastIndexOf('#');
+          if ((R !== -1 && ((u = y.slice(R + 1)), (x = d[y.slice(0, R)])), !x))
             throw Error(
               'Could not find the module "' +
                 y +
                 '" in the React Client Manifest. This is probably a bug in the React Server Components bundler.'
             );
         }
-        if (g.async === !0 && i.$$async === !0)
+        if (x.async === !0 && i.$$async === !0)
           throw Error(
             'The module "' +
               y +
               '" is marked as an async ESM module but was loaded as a CJS proxy. This is probably a bug in the React Server Components bundler.'
           );
         var p =
-          g.async === !0 || i.$$async === !0
-            ? [g.id, g.chunks, u, 1]
-            : [g.id, g.chunks, u];
+          x.async === !0 || i.$$async === !0
+            ? [x.id, x.chunks, u, 1]
+            : [x.id, x.chunks, u];
         e.pendingChunks++;
-        var f = e.nextChunkId++,
-          v = Es(p),
-          x =
-            f.toString(16) +
+        var h = e.nextChunkId++,
+          T = Es(p),
+          g =
+            h.toString(16) +
             ':I' +
-            v +
+            T +
             `
 `,
-          w = pn(x);
+          w = pn(g);
         return (
           e.completedImportChunks.push(w),
-          a.set(r, f),
-          t[0] === In && s === '1' ? ws(f) : Ct(f)
+          a.set(r, h),
+          t[0] === In && s === '1' ? ws(h) : Ct(h)
         );
       } catch (S) {
         return (
@@ -1847,7 +1847,7 @@ globalThis.__webpack_get_script_filename__ = function (chunkId) {
       var i = e.nextChunkId++;
       return Kt(e, i, t, s, !1), Ct(i);
     }
-    function Cd(e, t) {
+    function Sd(e, t) {
       function s(y) {
         if (u.status === 0)
           if (y.done)
@@ -1920,7 +1920,7 @@ globalThis.__webpack_get_script_filename__ = function (chunkId) {
             )
               throw null;
             return qi(e, t, Lr, '', r);
-          case cd:
+          case pd:
             throw Error(`A React Element from an older version of React was rendered. This is not supported. It can happen if:
 - Multiple copies of the "react" package is used.
 - A library pre-bundled an old copy of "react" or "react/jsx-runtime".
@@ -1986,7 +1986,7 @@ globalThis.__webpack_get_script_filename__ = function (chunkId) {
         if (r instanceof BigInt64Array) return Yt(e, 'M', r);
         if (r instanceof BigUint64Array) return Yt(e, 'm', r);
         if (r instanceof DataView) return Yt(e, 'V', r);
-        if (typeof Blob == 'function' && r instanceof Blob) return Cd(e, r);
+        if (typeof Blob == 'function' && r instanceof Blob) return Sd(e, r);
         if ((a = Iu(r)))
           return (
             (i = a.call(r)),
@@ -1995,17 +1995,17 @@ globalThis.__webpack_get_script_filename__ = function (chunkId) {
               : cu(e, t, Array.from(i))
           );
         if (typeof ReadableStream == 'function' && r instanceof ReadableStream)
-          return vd(e, t, r);
+          return gd(e, t, r);
         if (((a = r[Ss]), typeof a == 'function'))
           return (
             t.keyPath !== null
               ? ((e = [In, ua, t.keyPath, {children: r}]),
                 (e = t.implicitSlot ? [e] : e))
-              : ((i = a.call(r)), (e = xd(e, t, r, i))),
+              : ((i = a.call(r)), (e = _d(e, t, r, i))),
             e
           );
         if (r instanceof Date) return '$D' + r.toJSON();
-        if (((e = ii(r)), e !== yd && (e === null || ii(e) !== null)))
+        if (((e = ii(r)), e !== vd && (e === null || ii(e) !== null)))
           throw Error(
             'Only plain objects, and a few built-ins, can be passed to Client Components from Server Components. Classes or null prototypes are not supported.' +
               _s(s, i)
@@ -2353,7 +2353,7 @@ If you need interactivity, consider converting part of this to a Client Componen
         }
       }
     }
-    function wd(e, t) {
+    function Id(e, t) {
       try {
         t.forEach(function (i) {
           return oi(i, e);
@@ -2364,7 +2364,7 @@ If you need interactivity, consider converting part of this to a Client Componen
         Kn(e, i, null), Ki(e, i);
       }
     }
-    function Sd(e, t, s) {
+    function Ed(e, t, s) {
       try {
         t.forEach(function (r) {
           return fa(r, e, s);
@@ -2386,7 +2386,7 @@ If you need interactivity, consider converting part of this to a Client Componen
                 return ri(d, e);
               }),
                 Bi(function () {
-                  return wd(e, s);
+                  return Id(e, s);
                 });
             else {
               var i =
@@ -2410,7 +2410,7 @@ If you need interactivity, consider converting part of this to a Client Componen
                   return ha(d, e, a);
                 }),
                 Bi(function () {
-                  return Sd(e, s, a);
+                  return Ed(e, s, a);
                 });
             }
           else {
@@ -2451,7 +2451,7 @@ If you need interactivity, consider converting part of this to a Client Componen
           ),
           t);
     }
-    function Id() {}
+    function Ad() {}
     function qu(e) {
       for (var t = e[1], s = [], i = 0; i < t.length; ) {
         var r = t[i++],
@@ -2462,7 +2462,7 @@ If you need interactivity, consider converting part of this to a Client Componen
             (a = __webpack_chunk_load__(r)),
             s.push(a),
             (u = wr.set.bind(wr, r, null)),
-            a.then(u, Id),
+            a.then(u, Ad),
             wr.set(r, a))
           : u !== null && s.push(u);
       }
@@ -2486,10 +2486,10 @@ If you need interactivity, consider converting part of this to a Client Componen
       if (Nr.call(t, e[2])) return t[e[2]];
     }
     var Ku = new Map(),
-      Ed = __webpack_require__.u;
+      Pd = __webpack_require__.u;
     __webpack_require__.u = function (e) {
       var t = Ku.get(e);
-      return t !== void 0 ? t : Ed(e);
+      return t !== void 0 ? t : Pd(e);
     };
     var Dr = Symbol();
     function Ot(e, t, s) {
@@ -2601,15 +2601,15 @@ If you need interactivity, consider converting part of this to a Client Componen
         -1
       );
     }
-    function Ad(e, t, s, i) {
-      function r(L) {
+    function Nd(e, t, s, i) {
+      function r(R) {
         var p = d.reason,
-          f = d;
-        (f.status = 'rejected'),
-          (f.value = null),
-          (f.reason = L),
-          p !== null && da(e, p, L),
-          Pr(e, g, L);
+          h = d;
+        (h.status = 'rejected'),
+          (h.value = null),
+          (h.reason = R),
+          p !== null && da(e, p, R),
+          Pr(e, x, R);
       }
       var a = t.id;
       if (typeof a != 'string' || i === 'then') return null;
@@ -2637,13 +2637,13 @@ If you need interactivity, consider converting part of this to a Client Componen
       else if (u instanceof Ot) a = Promise.resolve(u);
       else return (u = Fi(y)), (a = d), (a.status = 'fulfilled'), (a.value = u);
       if (Ye) {
-        var g = Ye;
-        g.deps++;
+        var x = Ye;
+        x.deps++;
       } else
-        g = Ye = {chunk: null, value: null, reason: null, deps: 1, errored: !1};
+        x = Ye = {chunk: null, value: null, reason: null, deps: 1, errored: !1};
       return (
         a.then(function () {
-          var L = Fi(y);
+          var R = Fi(y);
           if (t.bound) {
             var p = t.bound.value;
             if (((p = kn(p) ? p.slice(0) : []), 1e3 < p.length)) {
@@ -2656,21 +2656,21 @@ If you need interactivity, consider converting part of this to a Client Componen
               );
               return;
             }
-            p.unshift(null), (L = L.bind.apply(L, p));
+            p.unshift(null), (R = R.bind.apply(R, p));
           }
           p = d.value;
-          var f = d;
-          (f.status = 'fulfilled'),
-            (f.value = L),
-            (f.reason = null),
-            p !== null && Mr(e, p, L, f),
-            aa(e, g, s, i, L);
+          var h = d;
+          (h.status = 'fulfilled'),
+            (h.value = R),
+            (h.reason = null),
+            p !== null && Mr(e, p, R, h),
+            aa(e, x, s, i, R);
         }, r),
         null
       );
     }
     function oa(e, t, s, i, r, a) {
-      if (typeof i == 'string') return Dd(e, t, s, i, r, a);
+      if (typeof i == 'string') return Fd(e, t, s, i, r, a);
       if (typeof i == 'object' && i !== null)
         if (
           (r !== void 0 &&
@@ -2741,13 +2741,13 @@ If you need interactivity, consider converting part of this to a Client Componen
           }
         }
         (e.status = 'fulfilled'), (e.value = u), (e.reason = r);
-      } catch (g) {
-        (e.status = 'rejected'), (e.reason = g);
+      } catch (x) {
+        (e.status = 'rejected'), (e.reason = x);
       } finally {
         Ye = t;
       }
     }
-    function Pd(e, t) {
+    function Rd(e, t) {
       (e._closed = !0),
         (e._closedReason = t),
         e._chunks.forEach(function (s) {
@@ -2781,33 +2781,33 @@ If you need interactivity, consider converting part of this to a Client Componen
         d = t.map,
         y = t.path;
       try {
-        for (var g = 0, L = e._rootArrayContexts, p = 1; p < y.length; p++) {
-          var f = y[p];
+        for (var x = 0, R = e._rootArrayContexts, p = 1; p < y.length; p++) {
+          var h = y[p];
           if (
             typeof s != 'object' ||
             s === null ||
             (ii(s) !== Uu && ii(s) !== Hu) ||
-            !Nr.call(s, f)
+            !Nr.call(s, h)
           )
             throw Error('Invalid reference.');
-          if (((s = s[f]), kn(s))) (g = 0), (i = L.get(s) || i);
-          else if (((i = null), typeof s == 'string')) g = s.length;
+          if (((s = s[h]), kn(s))) (x = 0), (i = R.get(s) || i);
+          else if (((i = null), typeof s == 'string')) x = s.length;
           else if (typeof s == 'bigint') {
-            var v = Math.abs(Number(s));
-            g = v === 0 ? 1 : Math.floor(Math.log10(v)) + 1;
-          } else g = ArrayBuffer.isView(s) ? s.byteLength : 0;
+            var T = Math.abs(Number(s));
+            x = T === 0 ? 1 : Math.floor(Math.log10(T)) + 1;
+          } else x = ArrayBuffer.isView(s) ? s.byteLength : 0;
         }
-        var x = d(e, s, a, u),
+        var g = d(e, s, a, u),
           w = t.arrayRoot;
         w !== null &&
           (i !== null
             ? (i.fork && (w.fork = !0), $n(w, i.count, e))
-            : 0 < g && $n(w, g, e));
+            : 0 < x && $n(w, x, e));
       } catch (S) {
         Pr(e, r, S);
         return;
       }
-      aa(e, r, a, u, x);
+      aa(e, r, a, u, g);
     }
     function aa(e, t, s, i, r) {
       i !== '__proto__' && (s[i] = r),
@@ -2842,9 +2842,9 @@ If you need interactivity, consider converting part of this to a Client Componen
       switch (d.status) {
         case 'fulfilled':
           (u = d.value), (d = d.reason);
-          for (var y = 0, g = e._rootArrayContexts, L = 1; L < t.length; L++) {
+          for (var y = 0, x = e._rootArrayContexts, R = 1; R < t.length; R++) {
             if (
-              ((y = t[L]),
+              ((y = t[R]),
               typeof u != 'object' ||
                 u === null ||
                 (ii(u) !== Uu && ii(u) !== Hu) ||
@@ -2853,7 +2853,7 @@ If you need interactivity, consider converting part of this to a Client Componen
               throw Error('Invalid reference.');
             (u = u[y]),
               kn(u)
-                ? ((y = 0), (d = g.get(u) || d))
+                ? ((y = 0), (d = x.get(u) || d))
                 : ((d = null),
                   typeof u == 'string'
                     ? (y = u.length)
@@ -2911,30 +2911,30 @@ If you need interactivity, consider converting part of this to a Client Componen
           );
       }
     }
-    function Nd(e, t) {
+    function Ld(e, t) {
       if (!kn(t)) throw Error('Invalid Map initializer.');
       if (t.$$consumed === !0) throw Error('Already initialized Map.');
       return (e = new Map(t)), (t.$$consumed = !0), e;
     }
-    function Rd(e, t) {
+    function Od(e, t) {
       if (!kn(t)) throw Error('Invalid Set initializer.');
       if (t.$$consumed === !0) throw Error('Already initialized Set.');
       return (e = new Set(t)), (t.$$consumed = !0), e;
     }
-    function Ld(e, t) {
+    function Dd(e, t) {
       if (!kn(t)) throw Error('Invalid Iterator initializer.');
       if (t.$$consumed === !0) throw Error('Already initialized Iterator.');
       return (e = t[Symbol.iterator]()), (t.$$consumed = !0), e;
     }
-    function Od(e, t, s, i) {
+    function Md(e, t, s, i) {
       return i === 'then' && typeof t == 'function' ? null : t;
     }
     function Jt(e, t, s, i, r, a, u) {
-      function d(L) {
-        if (!g.errored) {
-          (g.errored = !0), (g.value = null), (g.reason = L);
-          var p = g.chunk;
-          p !== null && p.status === 'blocked' && Fr(e, p, L);
+      function d(R) {
+        if (!x.errored) {
+          (x.errored = !0), (x.value = null), (x.reason = R);
+          var p = x.chunk;
+          p !== null && p.status === 'blocked' && Fr(e, p, R);
         }
       }
       t = parseInt(t.slice(2), 16);
@@ -2949,31 +2949,31 @@ If you need interactivity, consider converting part of this to a Client Componen
         (t = e._formData.get(y).arrayBuffer()),
         Ye)
       ) {
-        var g = Ye;
-        g.deps++;
+        var x = Ye;
+        x.deps++;
       } else
-        g = Ye = {chunk: null, value: null, reason: null, deps: 1, errored: !1};
+        x = Ye = {chunk: null, value: null, reason: null, deps: 1, errored: !1};
       return (
-        t.then(function (L) {
+        t.then(function (R) {
           try {
-            u !== null && $n(u, L.byteLength, e);
-            var p = s === ArrayBuffer ? L : new s(L);
+            u !== null && $n(u, R.byteLength, e);
+            var p = s === ArrayBuffer ? R : new s(R);
             y !== '__proto__' && (r[a] = p),
-              a === '' && g.value === null && (g.value = p);
-          } catch (f) {
-            d(f);
+              a === '' && x.value === null && (x.value = p);
+          } catch (h) {
+            d(h);
             return;
           }
-          g.deps--,
-            g.deps === 0 &&
-              ((L = g.chunk),
-              L !== null &&
-                L.status === 'blocked' &&
-                ((p = L.value),
-                (L.status = 'fulfilled'),
-                (L.value = g.value),
-                (L.reason = null),
-                p !== null && Mr(e, p, g.value, L)));
+          x.deps--,
+            x.deps === 0 &&
+              ((R = x.chunk),
+              R !== null &&
+                R.status === 'blocked' &&
+                ((p = R.value),
+                (R.status = 'fulfilled'),
+                (R.value = x.value),
+                (R.reason = null),
+                p !== null && Mr(e, p, x.value, R)));
         }, d),
         null
       );
@@ -2995,9 +2995,9 @@ If you need interactivity, consider converting part of this to a Client Componen
               : i.enqueueModel(r));
     }
     function du(e, t, s) {
-      function i(g) {
-        s !== 'bytes' || ArrayBuffer.isView(g)
-          ? r.enqueue(g)
+      function i(x) {
+        s !== 'bytes' || ArrayBuffer.isView(x)
+          ? r.enqueue(x)
           : y.error(Error('Invalid data for bytes stream.'));
       }
       if (((t = parseInt(t.slice(2), 16)), e._chunks.has(t)))
@@ -3006,26 +3006,26 @@ If you need interactivity, consider converting part of this to a Client Componen
         a = !1,
         u = new ReadableStream({
           type: s,
-          start: function (g) {
-            r = g;
+          start: function (x) {
+            r = x;
           },
         }),
         d = null,
         y = {
-          enqueueModel: function (g) {
+          enqueueModel: function (x) {
             if (d === null) {
-              var L = Wu(e, g, -1);
-              Br(L),
-                L.status === 'fulfilled'
-                  ? i(L.value)
-                  : (L.then(i, y.error), (d = L));
+              var R = Wu(e, x, -1);
+              Br(R),
+                R.status === 'fulfilled'
+                  ? i(R.value)
+                  : (R.then(i, y.error), (d = R));
             } else {
-              L = d;
+              R = d;
               var p = new Ot('pending', null, null);
               p.then(i, y.error),
                 (d = p),
-                L.then(function () {
-                  d === p && (d = null), Gu(e, p, g, -1);
+                R.then(function () {
+                  d === p && (d = null), Gu(e, p, x, -1);
                 });
             }
           },
@@ -3033,21 +3033,21 @@ If you need interactivity, consider converting part of this to a Client Componen
             if (!a)
               if (((a = !0), d === null)) r.close();
               else {
-                var g = d;
+                var x = d;
                 (d = null),
-                  g.then(function () {
+                  x.then(function () {
                     return r.close();
                   });
               }
           },
-          error: function (g) {
+          error: function (x) {
             if (!a)
-              if (((a = !0), d === null)) r.error(g);
+              if (((a = !0), d === null)) r.error(x);
               else {
-                var L = d;
+                var R = d;
                 (d = null),
-                  L.then(function () {
-                    return r.error(g);
+                  R.then(function () {
+                    return r.error(x);
                   });
               }
           },
@@ -3116,7 +3116,7 @@ If you need interactivity, consider converting part of this to a Client Componen
         s
       );
     }
-    function Dd(e, t, s, i, r, a) {
+    function Fd(e, t, s, i, r, a) {
       if (i[0] === '$') {
         switch (i[1]) {
           case '$':
@@ -3124,17 +3124,17 @@ If you need interactivity, consider converting part of this to a Client Componen
           case '@':
             return (t = parseInt(i.slice(2), 16)), Vr(e, t);
           case 'h':
-            return (a = i.slice(2)), Di(e, a, t, s, null, Ad);
+            return (a = i.slice(2)), Di(e, a, t, s, null, Nd);
           case 'T':
             if (r === void 0 || e._temporaryReferences === void 0)
               throw Error(
                 'Could not reference an opaque temporary reference. This is likely due to misconfiguring the temporaryReferences options on the server.'
               );
-            return ld(e._temporaryReferences, r);
+            return ud(e._temporaryReferences, r);
           case 'Q':
-            return (a = i.slice(2)), Di(e, a, t, s, null, Nd);
+            return (a = i.slice(2)), Di(e, a, t, s, null, Ld);
           case 'W':
-            return (a = i.slice(2)), Di(e, a, t, s, null, Rd);
+            return (a = i.slice(2)), Di(e, a, t, s, null, Od);
           case 'K':
             for (
               t = i.slice(2),
@@ -3157,7 +3157,7 @@ If you need interactivity, consider converting part of this to a Client Componen
               }
             return s;
           case 'i':
-            return (a = i.slice(2)), Di(e, a, t, s, null, Ld);
+            return (a = i.slice(2)), Di(e, a, t, s, null, Dd);
           case 'I':
             return 1 / 0;
           case '-':
@@ -3215,7 +3215,7 @@ If you need interactivity, consider converting part of this to a Client Componen
           case 'x':
             return mu(e, i, !0);
         }
-        return (i = i.slice(1)), Di(e, i, t, s, a, Od);
+        return (i = i.slice(1)), Di(e, i, t, s, a, Md);
       }
       return a !== null && $n(a, i.length, e), i;
     }
@@ -3240,9 +3240,9 @@ If you need interactivity, consider converting part of this to a Client Componen
       };
     }
     function Ju(e) {
-      Pd(e, Error('Connection closed.'));
+      Rd(e, Error('Connection closed.'));
     }
-    function Tu(e, t) {
+    function yu(e, t) {
       var s = t.id;
       if (typeof s != 'string') return null;
       var i = $u(e, s);
@@ -3297,10 +3297,10 @@ If you need interactivity, consider converting part of this to a Client Componen
                 (r.add(u),
                 (a = '$ACTION_' + u.slice(12) + ':'),
                 (a = Qu(e, t, a)),
-                (i = Tu(t, a)))
+                (i = yu(t, a)))
               : u.startsWith('$ACTION_ID_') &&
                 !r.has(u) &&
-                (r.add(u), (a = u.slice(11)), (i = Tu(t, {id: a, bound: null})))
+                (r.add(u), (a = u.slice(11)), (i = yu(t, {id: a, bound: null})))
             : s.append(u, a);
         }),
         i === null
@@ -3357,11 +3357,11 @@ If you need interactivity, consider converting part of this to a Client Componen
             var y = new ReadableStream(
               {
                 type: 'bytes',
-                pull: function (g) {
-                  ju(a, g);
+                pull: function (x) {
+                  ju(a, x);
                 },
-                cancel: function (g) {
-                  (a.destination = null), si(a, g);
+                cancel: function (x) {
+                  (a.destination = null), si(a, x);
                 },
               },
               {highWaterMark: 0}
@@ -3394,7 +3394,7 @@ If you need interactivity, consider converting part of this to a Client Componen
         $$id: {value: s === null ? t : t + '#' + s, configurable: !0},
         $$bound: {value: null, configurable: !0},
         bind: {value: gu, configurable: !0},
-        toString: Qf,
+        toString: ed,
       });
     };
     En.renderToReadableStream = function (e, t, s) {
@@ -3449,9 +3449,9 @@ If you need interactivity, consider converting part of this to a Client Componen
     Wn.createClientModuleProxy = Hn.createClientModuleProxy;
     Wn.createTemporaryReferenceSet = Hn.createTemporaryReferenceSet;
   });
-  var It = Z((Ta) => {
+  var It = Z((ya) => {
     'use strict';
-    Object.defineProperty(Ta, '__esModule', {value: !0});
+    Object.defineProperty(ya, '__esModule', {value: !0});
     var t1;
     (function (e) {
       e[(e.NONE = 0)] = 'NONE';
@@ -3469,19 +3469,19 @@ If you need interactivity, consider converting part of this to a Client Componen
       e[(e._async = d)] = '_async';
       let y = d + 1;
       e[(e._await = y)] = '_await';
-      let g = y + 1;
-      e[(e._checks = g)] = '_checks';
-      let L = g + 1;
-      e[(e._constructor = L)] = '_constructor';
-      let p = L + 1;
+      let x = y + 1;
+      e[(e._checks = x)] = '_checks';
+      let R = x + 1;
+      e[(e._constructor = R)] = '_constructor';
+      let p = R + 1;
       e[(e._declare = p)] = '_declare';
-      let f = p + 1;
-      e[(e._enum = f)] = '_enum';
-      let v = f + 1;
-      e[(e._exports = v)] = '_exports';
-      let x = v + 1;
-      e[(e._from = x)] = '_from';
-      let w = x + 1;
+      let h = p + 1;
+      e[(e._enum = h)] = '_enum';
+      let T = h + 1;
+      e[(e._exports = T)] = '_exports';
+      let g = T + 1;
+      e[(e._from = g)] = '_from';
+      let w = g + 1;
       e[(e._get = w)] = '_get';
       let S = w + 1;
       e[(e._global = S)] = '_global';
@@ -3489,15 +3489,15 @@ If you need interactivity, consider converting part of this to a Client Componen
       e[(e._implements = A)] = '_implements';
       let U = A + 1;
       e[(e._infer = U)] = '_infer';
-      let D = U + 1;
-      e[(e._interface = D)] = '_interface';
-      let c = D + 1;
+      let M = U + 1;
+      e[(e._interface = M)] = '_interface';
+      let c = M + 1;
       e[(e._is = c)] = '_is';
-      let M = c + 1;
-      e[(e._keyof = M)] = '_keyof';
-      let z = M + 1;
-      e[(e._mixins = z)] = '_mixins';
-      let X = z + 1;
+      let L = c + 1;
+      e[(e._keyof = L)] = '_keyof';
+      let W = L + 1;
+      e[(e._mixins = W)] = '_mixins';
+      let X = W + 1;
       e[(e._module = X)] = '_module';
       let ie = X + 1;
       e[(e._namespace = ie)] = '_namespace';
@@ -3533,9 +3533,9 @@ If you need interactivity, consider converting part of this to a Client Componen
       e[(e._type = Pt)] = '_type';
       let qt = Pt + 1;
       e[(e._unique = qt)] = '_unique';
-      let yn = qt + 1;
-      e[(e._using = yn)] = '_using';
-    })(t1 || (Ta.ContextualKeyword = t1 = {}));
+      let Tn = qt + 1;
+      e[(e._using = Tn)] = '_using';
+    })(t1 || (ya.ContextualKeyword = t1 = {}));
   });
   var be = Z((jr) => {
     'use strict';
@@ -3557,18 +3557,18 @@ If you need interactivity, consider converting part of this to a Client Componen
       e[(e.IS_EXPRESSION_START = d)] = 'IS_EXPRESSION_START';
       let y = 512;
       e[(e.num = y)] = 'num';
-      let g = 1536;
-      e[(e.bigint = g)] = 'bigint';
-      let L = 2560;
-      e[(e.decimal = L)] = 'decimal';
+      let x = 1536;
+      e[(e.bigint = x)] = 'bigint';
+      let R = 2560;
+      e[(e.decimal = R)] = 'decimal';
       let p = 3584;
       e[(e.regexp = p)] = 'regexp';
-      let f = 4608;
-      e[(e.string = f)] = 'string';
-      let v = 5632;
-      e[(e.name = v)] = 'name';
-      let x = 6144;
-      e[(e.eof = x)] = 'eof';
+      let h = 4608;
+      e[(e.string = h)] = 'string';
+      let T = 5632;
+      e[(e.name = T)] = 'name';
+      let g = 6144;
+      e[(e.eof = g)] = 'eof';
       let w = 7680;
       e[(e.bracketL = w)] = 'bracketL';
       let S = 8192;
@@ -3577,14 +3577,14 @@ If you need interactivity, consider converting part of this to a Client Componen
       e[(e.braceL = A)] = 'braceL';
       let U = 10752;
       e[(e.braceBarL = U)] = 'braceBarL';
-      let D = 11264;
-      e[(e.braceR = D)] = 'braceR';
+      let M = 11264;
+      e[(e.braceR = M)] = 'braceR';
       let c = 12288;
       e[(e.braceBarR = c)] = 'braceBarR';
-      let M = 13824;
-      e[(e.parenL = M)] = 'parenL';
-      let z = 14336;
-      e[(e.parenR = z)] = 'parenR';
+      let L = 13824;
+      e[(e.parenL = L)] = 'parenL';
+      let W = 14336;
+      e[(e.parenR = W)] = 'parenR';
       let X = 15360;
       e[(e.comma = X)] = 'comma';
       let ie = 16384;
@@ -3621,12 +3621,12 @@ If you need interactivity, consider converting part of this to a Client Componen
       e[(e.preIncDec = Pt)] = 'preIncDec';
       let qt = 33664;
       e[(e.postIncDec = qt)] = 'postIncDec';
-      let yn = 34432;
-      e[(e.bang = yn)] = 'bang';
+      let Tn = 34432;
+      e[(e.bang = Tn)] = 'bang';
       let V = 35456;
       e[(e.tilde = V)] = 'tilde';
-      let W = 35841;
-      e[(e.pipeline = W)] = 'pipeline';
+      let G = 35841;
+      e[(e.pipeline = G)] = 'pipeline';
       let J = 36866;
       e[(e.nullishCoalescing = J)] = 'nullishCoalescing';
       let re = 37890;
@@ -3653,8 +3653,8 @@ If you need interactivity, consider converting part of this to a Client Componen
       e[(e.bitShiftR = pt)] = 'bitShiftR';
       let bt = 49802;
       e[(e.plus = bt)] = 'plus';
-      let Tt = 50826;
-      e[(e.minus = Tt)] = 'minus';
+      let yt = 50826;
+      e[(e.minus = yt)] = 'minus';
       let vt = 51723;
       e[(e.modulo = vt)] = 'modulo';
       let bn = 52235;
@@ -3759,8 +3759,8 @@ If you need interactivity, consider converting part of this to a Client Componen
       e[(e._set = qo)] = '_set';
       let Ni = 103952;
       e[(e._declare = Ni)] = '_declare';
-      let Tr = 104976;
-      e[(e._readonly = Tr)] = '_readonly';
+      let yr = 104976;
+      e[(e._readonly = yr)] = '_readonly';
       let Ko = 106e3;
       e[(e._abstract = Ko)] = '_abstract';
       let le = 107024;
@@ -3773,8 +3773,8 @@ If you need interactivity, consider converting part of this to a Client Componen
       e[(e._protected = Uo)] = '_protected';
       let Ho = 110608;
       e[(e._override = Ho)] = '_override';
-      let yr = 112144;
-      e[(e._as = yr)] = '_as';
+      let Tr = 112144;
+      e[(e._as = Tr)] = '_as';
       let Wo = 113168;
       e[(e._enum = Wo)] = '_enum';
       let Go = 114192;
@@ -3782,7 +3782,7 @@ If you need interactivity, consider converting part of this to a Client Componen
       let kr = 115216;
       e[(e._implements = kr)] = '_implements';
     })(q || (jr.TokenType = q = {}));
-    function Md(e) {
+    function Bd(e) {
       switch (e) {
         case q.num:
           return 'num';
@@ -4014,23 +4014,23 @@ If you need interactivity, consider converting part of this to a Client Componen
           return '';
       }
     }
-    jr.formatTokenType = Md;
+    jr.formatTokenType = Bd;
   });
   var qr = Z((Ui) => {
     'use strict';
     Object.defineProperty(Ui, '__esModule', {value: !0});
-    var Fd = It(),
-      Bd = be(),
-      ya = class {
+    var Vd = It(),
+      jd = be(),
+      Ta = class {
         constructor(t, s, i) {
           (this.startTokenIndex = t),
             (this.endTokenIndex = s),
             (this.isFunctionScope = i);
         }
       };
-    Ui.Scope = ya;
+    Ui.Scope = Ta;
     var $r = class {
-      constructor(t, s, i, r, a, u, d, y, g, L, p, f, v) {
+      constructor(t, s, i, r, a, u, d, y, x, R, p, h, T) {
         (this.potentialArrowAt = t),
           (this.noAnonFunctionType = s),
           (this.inDisallowConditionalTypesContext = i),
@@ -4039,11 +4039,11 @@ If you need interactivity, consider converting part of this to a Client Componen
           (this.pos = u),
           (this.type = d),
           (this.contextualKeyword = y),
-          (this.start = g),
-          (this.end = L),
+          (this.start = x),
+          (this.end = R),
           (this.isType = p),
-          (this.scopeDepth = f),
-          (this.error = v);
+          (this.scopeDepth = h),
+          (this.error = T);
       }
     };
     Ui.StateSnapshot = $r;
@@ -4082,10 +4082,10 @@ If you need interactivity, consider converting part of this to a Client Componen
         this.pos = 0;
       }
       __init7() {
-        this.type = Bd.TokenType.eof;
+        this.type = jd.TokenType.eof;
       }
       __init8() {
-        this.contextualKeyword = Fd.ContextualKeyword.NONE;
+        this.contextualKeyword = Vd.ContextualKeyword.NONE;
       }
       __init9() {
         this.start = 0;
@@ -4158,18 +4158,18 @@ If you need interactivity, consider converting part of this to a Client Componen
       e[(e.exclamationMark = d)] = 'exclamationMark';
       let y = 34;
       e[(e.quotationMark = y)] = 'quotationMark';
-      let g = 35;
-      e[(e.numberSign = g)] = 'numberSign';
-      let L = 36;
-      e[(e.dollarSign = L)] = 'dollarSign';
+      let x = 35;
+      e[(e.numberSign = x)] = 'numberSign';
+      let R = 36;
+      e[(e.dollarSign = R)] = 'dollarSign';
       let p = 37;
       e[(e.percentSign = p)] = 'percentSign';
-      let f = 38;
-      e[(e.ampersand = f)] = 'ampersand';
-      let v = 39;
-      e[(e.apostrophe = v)] = 'apostrophe';
-      let x = 40;
-      e[(e.leftParenthesis = x)] = 'leftParenthesis';
+      let h = 38;
+      e[(e.ampersand = h)] = 'ampersand';
+      let T = 39;
+      e[(e.apostrophe = T)] = 'apostrophe';
+      let g = 40;
+      e[(e.leftParenthesis = g)] = 'leftParenthesis';
       let w = 41;
       e[(e.rightParenthesis = w)] = 'rightParenthesis';
       let S = 42;
@@ -4178,14 +4178,14 @@ If you need interactivity, consider converting part of this to a Client Componen
       e[(e.plusSign = A)] = 'plusSign';
       let U = 44;
       e[(e.comma = U)] = 'comma';
-      let D = 45;
-      e[(e.dash = D)] = 'dash';
+      let M = 45;
+      e[(e.dash = M)] = 'dash';
       let c = 46;
       e[(e.dot = c)] = 'dot';
-      let M = 47;
-      e[(e.slash = M)] = 'slash';
-      let z = 48;
-      e[(e.digit0 = z)] = 'digit0';
+      let L = 47;
+      e[(e.slash = L)] = 'slash';
+      let W = 48;
+      e[(e.digit0 = W)] = 'digit0';
       let X = 49;
       e[(e.digit1 = X)] = 'digit1';
       let ie = 50;
@@ -4222,12 +4222,12 @@ If you need interactivity, consider converting part of this to a Client Componen
       e[(e.uppercaseA = Pt)] = 'uppercaseA';
       let qt = 66;
       e[(e.uppercaseB = qt)] = 'uppercaseB';
-      let yn = 67;
-      e[(e.uppercaseC = yn)] = 'uppercaseC';
+      let Tn = 67;
+      e[(e.uppercaseC = Tn)] = 'uppercaseC';
       let V = 68;
       e[(e.uppercaseD = V)] = 'uppercaseD';
-      let W = 69;
-      e[(e.uppercaseE = W)] = 'uppercaseE';
+      let G = 69;
+      e[(e.uppercaseE = G)] = 'uppercaseE';
       let J = 70;
       e[(e.uppercaseF = J)] = 'uppercaseF';
       let re = 71;
@@ -4254,8 +4254,8 @@ If you need interactivity, consider converting part of this to a Client Componen
       e[(e.uppercaseQ = pt)] = 'uppercaseQ';
       let bt = 82;
       e[(e.uppercaseR = bt)] = 'uppercaseR';
-      let Tt = 83;
-      e[(e.uppercaseS = Tt)] = 'uppercaseS';
+      let yt = 83;
+      e[(e.uppercaseS = yt)] = 'uppercaseS';
       let vt = 84;
       e[(e.uppercaseT = vt)] = 'uppercaseT';
       let bn = 85;
@@ -4351,42 +4351,42 @@ If you need interactivity, consider converting part of this to a Client Componen
       let zs = 8233;
       e[(e.paragraphSeparator = zs)] = 'paragraphSeparator';
     })(as || (Kr.charCodes = as = {}));
-    function Vd(e) {
+    function $d(e) {
       return (
         (e >= as.digit0 && e <= as.digit9) ||
         (e >= as.lowercaseA && e <= as.lowercaseF) ||
         (e >= as.uppercaseA && e <= as.uppercaseF)
       );
     }
-    Kr.isDigit = Vd;
+    Kr.isDigit = $d;
   });
   var Zt = Z((ft) => {
     'use strict';
     Object.defineProperty(ft, '__esModule', {value: !0});
-    function jd(e) {
+    function qd(e) {
       return e && e.__esModule ? e : {default: e};
     }
-    var $d = qr(),
-      qd = jd($d),
-      Kd = Qt();
+    var Kd = qr(),
+      Ud = qd(Kd),
+      Hd = Qt();
     ft.isJSXEnabled;
     ft.isTypeScriptEnabled;
     ft.isFlowEnabled;
     ft.state;
     ft.input;
     ft.nextContextId;
-    function Ud() {
+    function Wd() {
       return ft.nextContextId++;
     }
-    ft.getNextContextId = Ud;
-    function Hd(e) {
+    ft.getNextContextId = Wd;
+    function Gd(e) {
       if ('pos' in e) {
         let t = n1(e.pos);
         (e.message += ` (${t.line}:${t.column})`), (e.loc = t);
       }
       return e;
     }
-    ft.augmentError = Hd;
+    ft.augmentError = Gd;
     var Ur = class {
       constructor(t, s) {
         (this.line = t), (this.column = s);
@@ -4397,19 +4397,19 @@ If you need interactivity, consider converting part of this to a Client Componen
       let t = 1,
         s = 1;
       for (let i = 0; i < e; i++)
-        ft.input.charCodeAt(i) === Kd.charCodes.lineFeed ? (t++, (s = 1)) : s++;
+        ft.input.charCodeAt(i) === Hd.charCodes.lineFeed ? (t++, (s = 1)) : s++;
       return new Ur(t, s);
     }
     ft.locationForIndex = n1;
-    function Wd(e, t, s, i) {
+    function zd(e, t, s, i) {
       (ft.input = e),
-        (ft.state = new qd.default()),
+        (ft.state = new Ud.default()),
         (ft.nextContextId = 1),
         (ft.isJSXEnabled = t),
         (ft.isTypeScriptEnabled = s),
         (ft.isFlowEnabled = i);
     }
-    ft.initParser = Wd;
+    ft.initParser = zd;
   });
   var cs = Z((tn) => {
     'use strict';
@@ -4418,15 +4418,15 @@ If you need interactivity, consider converting part of this to a Client Componen
       As = be(),
       Hr = Qt(),
       en = Zt();
-    function Gd(e) {
+    function Xd(e) {
       return en.state.contextualKeyword === e;
     }
-    tn.isContextual = Gd;
-    function zd(e) {
+    tn.isContextual = Xd;
+    function Yd(e) {
       let t = ls.lookaheadTypeAndKeyword.call(void 0);
       return t.type === As.TokenType.name && t.contextualKeyword === e;
     }
-    tn.isLookaheadContextual = zd;
+    tn.isLookaheadContextual = Yd;
     function s1(e) {
       return (
         en.state.contextualKeyword === e &&
@@ -4434,10 +4434,10 @@ If you need interactivity, consider converting part of this to a Client Componen
       );
     }
     tn.eatContextual = s1;
-    function Xd(e) {
+    function Jd(e) {
       s1(e) || Wr();
     }
-    tn.expectContextual = Xd;
+    tn.expectContextual = Jd;
     function i1() {
       return (
         ls.match.call(void 0, As.TokenType.eof) ||
@@ -4462,7 +4462,7 @@ If you need interactivity, consider converting part of this to a Client Componen
       return !1;
     }
     tn.hasPrecedingLineBreak = r1;
-    function Yd() {
+    function Qd() {
       let e = ls.nextTokenStart.call(void 0);
       for (let t = en.state.end; t < e; t++) {
         let s = en.input.charCodeAt(t);
@@ -4476,22 +4476,22 @@ If you need interactivity, consider converting part of this to a Client Componen
       }
       return !1;
     }
-    tn.hasFollowingLineBreak = Yd;
+    tn.hasFollowingLineBreak = Qd;
     function o1() {
       return ls.eat.call(void 0, As.TokenType.semi) || i1();
     }
     tn.isLineTerminator = o1;
-    function Jd() {
+    function Zd() {
       o1() || Wr('Unexpected token, expected ";"');
     }
-    tn.semicolon = Jd;
-    function Qd(e) {
+    tn.semicolon = Zd;
+    function em(e) {
       ls.eat.call(void 0, e) ||
         Wr(
           `Unexpected token, expected "${As.formatTokenType.call(void 0, e)}"`
         );
     }
-    tn.expect = Qd;
+    tn.expect = em;
     function Wr(e = 'Unexpected token', t = en.state.start) {
       if (en.state.error) return;
       let s = new SyntaxError(e);
@@ -4506,7 +4506,7 @@ If you need interactivity, consider converting part of this to a Client Componen
     'use strict';
     Object.defineProperty(Ps, '__esModule', {value: !0});
     var va = Qt(),
-      Zd = [
+      tm = [
         9,
         11,
         12,
@@ -4529,19 +4529,19 @@ If you need interactivity, consider converting part of this to a Client Componen
         12288,
         65279,
       ];
-    Ps.WHITESPACE_CHARS = Zd;
-    var em = /(?:\s|\/\/.*|\/\*[^]*?\*\/)*/g;
-    Ps.skipWhiteSpace = em;
-    var tm = new Uint8Array(65536);
-    Ps.IS_WHITESPACE = tm;
+    Ps.WHITESPACE_CHARS = tm;
+    var nm = /(?:\s|\/\/.*|\/\*[^]*?\*\/)*/g;
+    Ps.skipWhiteSpace = nm;
+    var sm = new Uint8Array(65536);
+    Ps.IS_WHITESPACE = sm;
     for (let e of Ps.WHITESPACE_CHARS) Ps.IS_WHITESPACE[e] = 1;
   });
   var li = Z((vn) => {
     'use strict';
     Object.defineProperty(vn, '__esModule', {value: !0});
     var a1 = Qt(),
-      nm = xa();
-    function sm(e) {
+      im = xa();
+    function rm(e) {
       if (e < 48) return e === 36;
       if (e < 58) return !0;
       if (e < 65) return !1;
@@ -4551,15 +4551,15 @@ If you need interactivity, consider converting part of this to a Client Componen
       if (e < 128) return !1;
       throw new Error('Should not be called with non-ASCII char code.');
     }
-    var im = new Uint8Array(65536);
-    vn.IS_IDENTIFIER_CHAR = im;
-    for (let e = 0; e < 128; e++) vn.IS_IDENTIFIER_CHAR[e] = sm(e) ? 1 : 0;
+    var om = new Uint8Array(65536);
+    vn.IS_IDENTIFIER_CHAR = om;
+    for (let e = 0; e < 128; e++) vn.IS_IDENTIFIER_CHAR[e] = rm(e) ? 1 : 0;
     for (let e = 128; e < 65536; e++) vn.IS_IDENTIFIER_CHAR[e] = 1;
-    for (let e of nm.WHITESPACE_CHARS) vn.IS_IDENTIFIER_CHAR[e] = 0;
+    for (let e of im.WHITESPACE_CHARS) vn.IS_IDENTIFIER_CHAR[e] = 0;
     vn.IS_IDENTIFIER_CHAR[8232] = 0;
     vn.IS_IDENTIFIER_CHAR[8233] = 0;
-    var rm = vn.IS_IDENTIFIER_CHAR.slice();
-    vn.IS_IDENTIFIER_START = rm;
+    var am = vn.IS_IDENTIFIER_CHAR.slice();
+    vn.IS_IDENTIFIER_START = am;
     for (let e = a1.charCodes.digit0; e <= a1.charCodes.digit9; e++)
       vn.IS_IDENTIFIER_START[e] = 0;
   });
@@ -4568,7 +4568,7 @@ If you need interactivity, consider converting part of this to a Client Componen
     Object.defineProperty(ga, '__esModule', {value: !0});
     var ge = It(),
       Ce = be(),
-      om = new Int32Array([
+      lm = new Int32Array([
         -1,
         27,
         783,
@@ -13534,7 +13534,7 @@ If you need interactivity, consider converting part of this to a Client Componen
         -1,
         -1,
       ]);
-    ga.READ_WORD_TREE = om;
+    ga.READ_WORD_TREE = lm;
   });
   var h1 = Z((ba) => {
     'use strict';
@@ -13545,7 +13545,7 @@ If you need interactivity, consider converting part of this to a Client Componen
       _a = xt(),
       u1 = l1(),
       p1 = be();
-    function am() {
+    function cm() {
       let e = 0,
         t = 0,
         s = xn.state.pos;
@@ -13593,12 +13593,12 @@ If you need interactivity, consider converting part of this to a Client Componen
       }
       (xn.state.pos = s), _a.finishToken.call(void 0, p1.TokenType.name);
     }
-    ba.default = am;
+    ba.default = cm;
   });
   var xt = Z((Be) => {
     'use strict';
     Object.defineProperty(Be, '__esModule', {value: !0});
-    function lm(e) {
+    function um(e) {
       return e && e.__esModule ? e : {default: e};
     }
     var b = Zt(),
@@ -13606,9 +13606,9 @@ If you need interactivity, consider converting part of this to a Client Componen
       F = Qt(),
       d1 = li(),
       wa = xa(),
-      cm = It(),
-      um = h1(),
-      pm = lm(um),
+      pm = It(),
+      hm = h1(),
+      fm = um(hm),
       ne = be(),
       it;
     (function (e) {
@@ -13630,14 +13630,14 @@ If you need interactivity, consider converting part of this to a Client Componen
       let y = d + 1;
       e[(e.ObjectShorthandBlockScopedDeclaration = y)] =
         'ObjectShorthandBlockScopedDeclaration';
-      let g = y + 1;
-      e[(e.ObjectShorthand = g)] = 'ObjectShorthand';
-      let L = g + 1;
-      e[(e.ImportDeclaration = L)] = 'ImportDeclaration';
-      let p = L + 1;
+      let x = y + 1;
+      e[(e.ObjectShorthand = x)] = 'ObjectShorthand';
+      let R = x + 1;
+      e[(e.ImportDeclaration = R)] = 'ImportDeclaration';
+      let p = R + 1;
       e[(e.ObjectKey = p)] = 'ObjectKey';
-      let f = p + 1;
-      e[(e.ImportAccess = f)] = 'ImportAccess';
+      let h = p + 1;
+      e[(e.ImportAccess = h)] = 'ImportAccess';
     })(it || (Be.IdentifierRole = it = {}));
     var f1;
     (function (e) {
@@ -13649,7 +13649,7 @@ If you need interactivity, consider converting part of this to a Client Componen
       let r = i + 1;
       e[(e.KeyAfterPropSpread = r)] = 'KeyAfterPropSpread';
     })(f1 || (Be.JSXRole = f1 = {}));
-    function hm(e) {
+    function dm(e) {
       let t = e.identifierRole;
       return (
         t === it.TopLevelDeclaration ||
@@ -13660,8 +13660,8 @@ If you need interactivity, consider converting part of this to a Client Componen
         t === it.ObjectShorthandBlockScopedDeclaration
       );
     }
-    Be.isDeclaration = hm;
-    function fm(e) {
+    Be.isDeclaration = dm;
+    function mm(e) {
       let t = e.identifierRole;
       return (
         t === it.FunctionScopedDeclaration ||
@@ -13670,8 +13670,8 @@ If you need interactivity, consider converting part of this to a Client Componen
         t === it.ObjectShorthandBlockScopedDeclaration
       );
     }
-    Be.isNonTopLevelDeclaration = fm;
-    function dm(e) {
+    Be.isNonTopLevelDeclaration = mm;
+    function ym(e) {
       let t = e.identifierRole;
       return (
         t === it.TopLevelDeclaration ||
@@ -13679,8 +13679,8 @@ If you need interactivity, consider converting part of this to a Client Componen
         t === it.ImportDeclaration
       );
     }
-    Be.isTopLevelDeclaration = dm;
-    function mm(e) {
+    Be.isTopLevelDeclaration = ym;
+    function Tm(e) {
       let t = e.identifierRole;
       return (
         t === it.TopLevelDeclaration ||
@@ -13689,23 +13689,23 @@ If you need interactivity, consider converting part of this to a Client Componen
         t === it.ObjectShorthandBlockScopedDeclaration
       );
     }
-    Be.isBlockScopedDeclaration = mm;
-    function Tm(e) {
+    Be.isBlockScopedDeclaration = Tm;
+    function km(e) {
       let t = e.identifierRole;
       return (
         t === it.FunctionScopedDeclaration ||
         t === it.ObjectShorthandFunctionScopedDeclaration
       );
     }
-    Be.isFunctionScopedDeclaration = Tm;
-    function ym(e) {
+    Be.isFunctionScopedDeclaration = km;
+    function vm(e) {
       return (
         e.identifierRole === it.ObjectShorthandTopLevelDeclaration ||
         e.identifierRole === it.ObjectShorthandBlockScopedDeclaration ||
         e.identifierRole === it.ObjectShorthandFunctionScopedDeclaration
       );
     }
-    Be.isObjectShorthandDeclaration = ym;
+    Be.isObjectShorthandDeclaration = vm;
     var Hi = class {
       constructor() {
         (this.type = b.state.type),
@@ -13734,73 +13734,73 @@ If you need interactivity, consider converting part of this to a Client Componen
       b.state.tokens.push(new Hi()), k1();
     }
     Be.next = zr;
-    function km() {
-      b.state.tokens.push(new Hi()), (b.state.start = b.state.pos), $m();
+    function xm() {
+      b.state.tokens.push(new Hi()), (b.state.start = b.state.pos), Km();
     }
-    Be.nextTemplateToken = km;
-    function vm() {
-      b.state.type === ne.TokenType.assign && --b.state.pos, Bm();
+    Be.nextTemplateToken = xm;
+    function gm() {
+      b.state.type === ne.TokenType.assign && --b.state.pos, jm();
     }
-    Be.retokenizeSlashAsRegex = vm;
-    function xm(e) {
+    Be.retokenizeSlashAsRegex = gm;
+    function _m(e) {
       for (let s = b.state.tokens.length - e; s < b.state.tokens.length; s++)
         b.state.tokens[s].isType = !0;
       let t = b.state.isType;
       return (b.state.isType = !0), t;
     }
-    Be.pushTypeContext = xm;
-    function gm(e) {
+    Be.pushTypeContext = _m;
+    function bm(e) {
       b.state.isType = e;
     }
-    Be.popTypeContext = gm;
+    Be.popTypeContext = bm;
     function m1(e) {
       return Sa(e) ? (zr(), !0) : !1;
     }
     Be.eat = m1;
-    function _m(e) {
+    function Cm(e) {
       let t = b.state.isType;
       (b.state.isType = !0), m1(e), (b.state.isType = t);
     }
-    Be.eatTypeToken = _m;
+    Be.eatTypeToken = Cm;
     function Sa(e) {
       return b.state.type === e;
     }
     Be.match = Sa;
-    function bm() {
+    function wm() {
       let e = b.state.snapshot();
       zr();
       let t = b.state.type;
       return b.state.restoreFromSnapshot(e), t;
     }
-    Be.lookaheadType = bm;
+    Be.lookaheadType = wm;
     var Gr = class {
       constructor(t, s) {
         (this.type = t), (this.contextualKeyword = s);
       }
     };
     Be.TypeAndKeyword = Gr;
-    function Cm() {
+    function Sm() {
       let e = b.state.snapshot();
       zr();
       let t = b.state.type,
         s = b.state.contextualKeyword;
       return b.state.restoreFromSnapshot(e), new Gr(t, s);
     }
-    Be.lookaheadTypeAndKeyword = Cm;
-    function T1() {
-      return y1(b.state.pos);
+    Be.lookaheadTypeAndKeyword = Sm;
+    function y1() {
+      return T1(b.state.pos);
     }
-    Be.nextTokenStart = T1;
-    function y1(e) {
+    Be.nextTokenStart = y1;
+    function T1(e) {
       wa.skipWhiteSpace.lastIndex = e;
       let t = wa.skipWhiteSpace.exec(b.input);
       return e + t[0].length;
     }
-    Be.nextTokenStartSince = y1;
-    function wm() {
-      return b.input.charCodeAt(T1());
+    Be.nextTokenStartSince = T1;
+    function Im() {
+      return b.input.charCodeAt(y1());
     }
-    Be.lookaheadCharCode = wm;
+    Be.lookaheadCharCode = Im;
     function k1() {
       if (
         (x1(), (b.state.start = b.state.pos), b.state.pos >= b.input.length)
@@ -13813,18 +13813,18 @@ If you need interactivity, consider converting part of this to a Client Componen
           Ve(ne.TokenType.eof);
         return;
       }
-      Sm(b.input.charCodeAt(b.state.pos));
+      Em(b.input.charCodeAt(b.state.pos));
     }
     Be.nextToken = k1;
-    function Sm(e) {
+    function Em(e) {
       d1.IS_IDENTIFIER_START[e] ||
       e === F.charCodes.backslash ||
       (e === F.charCodes.atSign &&
         b.input.charCodeAt(b.state.pos + 1) === F.charCodes.atSign)
-        ? pm.default.call(void 0)
+        ? fm.default.call(void 0)
         : _1(e);
     }
-    function Im() {
+    function Am() {
       for (
         ;
         b.input.charCodeAt(b.state.pos) !== F.charCodes.asterisk ||
@@ -13867,7 +13867,7 @@ If you need interactivity, consider converting part of this to a Client Componen
           case F.charCodes.slash:
             switch (b.input.charCodeAt(b.state.pos + 1)) {
               case F.charCodes.asterisk:
-                (b.state.pos += 2), Im();
+                (b.state.pos += 2), Am();
                 break;
               case F.charCodes.slash:
                 v1(2);
@@ -13883,13 +13883,13 @@ If you need interactivity, consider converting part of this to a Client Componen
       }
     }
     Be.skipSpace = x1;
-    function Ve(e, t = cm.ContextualKeyword.NONE) {
+    function Ve(e, t = pm.ContextualKeyword.NONE) {
       (b.state.end = b.state.pos),
         (b.state.type = e),
         (b.state.contextualKeyword = t);
     }
     Be.finishToken = Ve;
-    function Em() {
+    function Pm() {
       let e = b.input.charCodeAt(b.state.pos + 1);
       if (e >= F.charCodes.digit0 && e <= F.charCodes.digit9) {
         b1(!0);
@@ -13900,12 +13900,12 @@ If you need interactivity, consider converting part of this to a Client Componen
         ? ((b.state.pos += 3), Ve(ne.TokenType.ellipsis))
         : (++b.state.pos, Ve(ne.TokenType.dot));
     }
-    function Am() {
+    function Nm() {
       b.input.charCodeAt(b.state.pos + 1) === F.charCodes.equalsTo
         ? Fe(ne.TokenType.assign, 2)
         : Fe(ne.TokenType.slash, 1);
     }
-    function Pm(e) {
+    function Rm(e) {
       let t =
           e === F.charCodes.asterisk ? ne.TokenType.star : ne.TokenType.modulo,
         s = 1,
@@ -13920,7 +13920,7 @@ If you need interactivity, consider converting part of this to a Client Componen
           (s++, (t = ne.TokenType.assign)),
         Fe(t, s);
     }
-    function Nm(e) {
+    function Lm(e) {
       let t = b.input.charCodeAt(b.state.pos + 1);
       if (t === e) {
         b.input.charCodeAt(b.state.pos + 2) === F.charCodes.equalsTo
@@ -13953,12 +13953,12 @@ If you need interactivity, consider converting part of this to a Client Componen
         1
       );
     }
-    function Rm() {
+    function Om() {
       b.input.charCodeAt(b.state.pos + 1) === F.charCodes.equalsTo
         ? Fe(ne.TokenType.assign, 2)
         : Fe(ne.TokenType.bitwiseXOR, 1);
     }
-    function Lm(e) {
+    function Dm(e) {
       let t = b.input.charCodeAt(b.state.pos + 1);
       if (t === e) {
         Fe(ne.TokenType.preIncDec, 2);
@@ -13970,7 +13970,7 @@ If you need interactivity, consider converting part of this to a Client Componen
         ? Fe(ne.TokenType.plus, 1)
         : Fe(ne.TokenType.minus, 1);
     }
-    function Om() {
+    function Mm() {
       let e = b.input.charCodeAt(b.state.pos + 1);
       if (e === F.charCodes.lessThan) {
         if (b.input.charCodeAt(b.state.pos + 2) === F.charCodes.equalsTo) {
@@ -14008,11 +14008,11 @@ If you need interactivity, consider converting part of this to a Client Componen
         ? Fe(ne.TokenType.relationalOrEqual, 2)
         : Fe(ne.TokenType.greaterThan, 1);
     }
-    function Dm() {
+    function Fm() {
       b.state.type === ne.TokenType.greaterThan && ((b.state.pos -= 1), g1());
     }
-    Be.rescan_gt = Dm;
-    function Mm(e) {
+    Be.rescan_gt = Fm;
+    function Bm(e) {
       let t = b.input.charCodeAt(b.state.pos + 1);
       if (t === F.charCodes.equalsTo) {
         Fe(
@@ -14027,7 +14027,7 @@ If you need interactivity, consider converting part of this to a Client Componen
       }
       Fe(e === F.charCodes.equalsTo ? ne.TokenType.eq : ne.TokenType.bang, 1);
     }
-    function Fm() {
+    function Vm() {
       let e = b.input.charCodeAt(b.state.pos + 1),
         t = b.input.charCodeAt(b.state.pos + 2);
       e === F.charCodes.questionMark && !(b.isFlowEnabled && b.state.isType)
@@ -14045,7 +14045,7 @@ If you need interactivity, consider converting part of this to a Client Componen
           ++b.state.pos, Ve(ne.TokenType.hash);
           return;
         case F.charCodes.dot:
-          Em();
+          Pm();
           return;
         case F.charCodes.leftParenthesis:
           ++b.state.pos, Ve(ne.TokenType.parenL);
@@ -14080,7 +14080,7 @@ If you need interactivity, consider converting part of this to a Client Componen
             : (++b.state.pos, Ve(ne.TokenType.colon));
           return;
         case F.charCodes.questionMark:
-          Fm();
+          Vm();
           return;
         case F.charCodes.atSign:
           ++b.state.pos, Ve(ne.TokenType.at);
@@ -14098,7 +14098,7 @@ If you need interactivity, consider converting part of this to a Client Componen
             t === F.charCodes.lowercaseB ||
             t === F.charCodes.uppercaseB
           ) {
-            Vm();
+            $m();
             return;
           }
         }
@@ -14115,35 +14115,35 @@ If you need interactivity, consider converting part of this to a Client Componen
           return;
         case F.charCodes.quotationMark:
         case F.charCodes.apostrophe:
-          jm(e);
+          qm(e);
           return;
         case F.charCodes.slash:
-          Am();
+          Nm();
           return;
         case F.charCodes.percentSign:
         case F.charCodes.asterisk:
-          Pm(e);
+          Rm(e);
           return;
         case F.charCodes.verticalBar:
         case F.charCodes.ampersand:
-          Nm(e);
+          Lm(e);
           return;
         case F.charCodes.caret:
-          Rm();
+          Om();
           return;
         case F.charCodes.plusSign:
         case F.charCodes.dash:
-          Lm(e);
+          Dm(e);
           return;
         case F.charCodes.lessThan:
-          Om();
+          Mm();
           return;
         case F.charCodes.greaterThan:
           g1();
           return;
         case F.charCodes.equalsTo:
         case F.charCodes.exclamationMark:
-          Mm(e);
+          Bm(e);
           return;
         case F.charCodes.tilde:
           Fe(ne.TokenType.tilde, 1);
@@ -14161,7 +14161,7 @@ If you need interactivity, consider converting part of this to a Client Componen
     function Fe(e, t) {
       (b.state.pos += t), Ve(e);
     }
-    function Bm() {
+    function jm() {
       let e = b.state.pos,
         t = !1,
         s = !1;
@@ -14193,7 +14193,7 @@ If you need interactivity, consider converting part of this to a Client Componen
         else break;
       }
     }
-    function Vm() {
+    function $m() {
       for (b.state.pos += 2; ; ) {
         let t = b.input.charCodeAt(b.state.pos);
         if (
@@ -14237,7 +14237,7 @@ If you need interactivity, consider converting part of this to a Client Componen
       }
       Ve(ne.TokenType.num);
     }
-    function jm(e) {
+    function qm(e) {
       for (b.state.pos++; ; ) {
         if (b.state.pos >= b.input.length) {
           ci.unexpected.call(void 0, 'Unterminated string constant');
@@ -14250,7 +14250,7 @@ If you need interactivity, consider converting part of this to a Client Componen
       }
       b.state.pos++, Ve(ne.TokenType.string);
     }
-    function $m() {
+    function Km() {
       for (;;) {
         if (b.state.pos >= b.input.length) {
           ci.unexpected.call(void 0, 'Unterminated template');
@@ -14303,7 +14303,7 @@ If you need interactivity, consider converting part of this to a Client Componen
     'use strict';
     Object.defineProperty(Ia, '__esModule', {value: !0});
     var w1 = be();
-    function qm(e, t = e.currentIndex()) {
+    function Um(e, t = e.currentIndex()) {
       let s = t + 1;
       if (Xr(e, s)) {
         let i = e.identifierNameAtIndex(t);
@@ -14322,7 +14322,7 @@ If you need interactivity, consider converting part of this to a Client Componen
         return {isType: !0, leftName: null, rightName: null, endIndex: s};
       throw new Error(`Unexpected import/export specifier at ${t}`);
     }
-    Ia.default = qm;
+    Ia.default = Um;
     function Xr(e, t) {
       let s = e.tokens[t];
       return s.type === w1.TokenType.braceR || s.type === w1.TokenType.comma;
@@ -14590,12 +14590,12 @@ If you need interactivity, consider converting part of this to a Client Componen
   var Pa = Z((Aa) => {
     'use strict';
     Object.defineProperty(Aa, '__esModule', {value: !0});
-    function Km(e) {
+    function Hm(e) {
       let [t, s] = I1(e.jsxPragma || 'React.createElement'),
         [i, r] = I1(e.jsxFragmentPragma || 'React.Fragment');
       return {base: t, suffix: s, fragmentBase: i, fragmentSuffix: r};
     }
-    Aa.default = Km;
+    Aa.default = Hm;
     function I1(e) {
       let t = e.indexOf('.');
       return t === -1 && (t = e.length), [e.slice(0, t), e.slice(t)];
@@ -14623,16 +14623,16 @@ If you need interactivity, consider converting part of this to a Client Componen
     function Oa(e) {
       return e && e.__esModule ? e : {default: e};
     }
-    var Um = S1(),
-      Hm = Oa(Um),
+    var Wm = S1(),
+      Gm = Oa(Wm),
       Yr = xt(),
       Re = be(),
       An = Qt(),
-      Wm = Pa(),
-      Gm = Oa(Wm),
-      zm = hn(),
+      zm = Pa(),
       Xm = Oa(zm),
-      La = class e extends Xm.default {
+      Ym = hn(),
+      Jm = Oa(Ym),
+      La = class e extends Jm.default {
         __init() {
           this.lastLineNumber = 1;
         }
@@ -14660,7 +14660,7 @@ If you need interactivity, consider converting part of this to a Client Componen
             e.prototype.__init3.call(this),
             e.prototype.__init4.call(this),
             e.prototype.__init5.call(this),
-            (this.jsxPragmaInfo = Gm.default.call(void 0, a)),
+            (this.jsxPragmaInfo = Xm.default.call(void 0, a)),
             (this.isAutomaticRuntime = a.jsxRuntime === 'automatic'),
             (this.jsxImportSource = a.jsxImportSource || 'react');
         }
@@ -14934,7 +14934,7 @@ If you need interactivity, consider converting part of this to a Client Componen
           let t = this.tokens.currentToken(),
             s = this.tokens.code.slice(t.start + 1, t.end - 1),
             i = E1(s),
-            r = Jm(s);
+            r = Zm(s);
           this.tokens.replaceToken(r + i);
         }
         processAutomaticChildrenAndEndProps(t) {
@@ -14980,7 +14980,7 @@ If you need interactivity, consider converting part of this to a Client Componen
           let s = this.tokens.currentToken(),
             i = this.tokens.code.slice(s.start, s.end),
             r = E1(i),
-            a = Ym(i);
+            a = Qm(i);
           return a === '""'
             ? (this.tokens.replaceToken(r), !1)
             : (this.tokens.replaceToken(`${t ? ', ' : ''}${a}${r}`), !0);
@@ -15003,7 +15003,7 @@ If you need interactivity, consider converting part of this to a Client Componen
       return t >= An.charCodes.lowercaseA && t <= An.charCodes.lowercaseZ;
     }
     Jr.startsWithLowerCase = A1;
-    function Ym(e) {
+    function Qm(e) {
       let t = '',
         s = '',
         i = !1,
@@ -15041,7 +15041,7 @@ If you need interactivity, consider converting part of this to a Client Componen
 `.repeat(t) + ' '.repeat(s)
       );
     }
-    function Jm(e) {
+    function Zm(e) {
       let t = '';
       for (let s = 0; s < e.length; s++) {
         let i = e[s];
@@ -15072,8 +15072,8 @@ If you need interactivity, consider converting part of this to a Client Componen
         a++;
         let d;
         if (e[a] === 'x')
-          for (u = 16, a++, d = a; a < e.length && Zm(e.charCodeAt(a)); ) a++;
-        else for (d = a; a < e.length && Qm(e.charCodeAt(a)); ) a++;
+          for (u = 16, a++, d = a; a < e.length && ty(e.charCodeAt(a)); ) a++;
+        else for (d = a; a < e.length && ey(e.charCodeAt(a)); ) a++;
         if (e[a] === ';') {
           let y = e.slice(d, a);
           y && (a++, (r = String.fromCodePoint(parseInt(y, u))));
@@ -15082,17 +15082,17 @@ If you need interactivity, consider converting part of this to a Client Componen
         for (; a < e.length && i++ < 10; ) {
           let u = e[a];
           if ((a++, u === ';')) {
-            r = Hm.default.get(s);
+            r = Gm.default.get(s);
             break;
           }
           s += u;
         }
       return r ? {entity: r, newI: a} : {entity: '&', newI: t};
     }
-    function Qm(e) {
+    function ey(e) {
       return e >= An.charCodes.digit0 && e <= An.charCodes.digit9;
     }
-    function Zm(e) {
+    function ty(e) {
       return (
         (e >= An.charCodes.digit0 && e <= An.charCodes.digit9) ||
         (e >= An.charCodes.lowercaseA && e <= An.charCodes.lowercaseF) ||
@@ -15103,16 +15103,16 @@ If you need interactivity, consider converting part of this to a Client Componen
   var Fa = Z((Ma) => {
     'use strict';
     Object.defineProperty(Ma, '__esModule', {value: !0});
-    function eT(e) {
+    function ny(e) {
       return e && e.__esModule ? e : {default: e};
     }
     var Qr = xt(),
       ui = be(),
-      tT = Da(),
-      nT = Pa(),
-      sT = eT(nT);
-    function iT(e, t) {
-      let s = sT.default.call(void 0, t),
+      sy = Da(),
+      iy = Pa(),
+      ry = ny(iy);
+    function oy(e, t) {
+      let s = ry.default.call(void 0, t),
         i = new Set();
       for (let r = 0; r < e.tokens.length; r++) {
         let a = e.tokens[r];
@@ -15133,27 +15133,27 @@ If you need interactivity, consider converting part of this to a Client Componen
             a.identifierRole === Qr.IdentifierRole.Access)
         ) {
           let u = e.identifierNameForToken(a);
-          (!tT.startsWithLowerCase.call(void 0, u) ||
+          (!sy.startsWithLowerCase.call(void 0, u) ||
             e.tokens[r + 1].type === ui.TokenType.dot) &&
             i.add(e.identifierNameForToken(a));
         }
       }
       return i;
     }
-    Ma.getNonTypeIdentifiers = iT;
+    Ma.getNonTypeIdentifiers = oy;
   });
   var N1 = Z((Va) => {
     'use strict';
     Object.defineProperty(Va, '__esModule', {value: !0});
-    function rT(e) {
+    function ay(e) {
       return e && e.__esModule ? e : {default: e};
     }
-    var oT = xt(),
+    var ly = xt(),
       Zr = It(),
       me = be(),
-      aT = Wi(),
-      lT = rT(aT),
-      cT = Fa(),
+      cy = Wi(),
+      uy = ay(cy),
+      py = Fa(),
       Ba = class e {
         __init() {
           this.nonTypeIdentifiers = new Set();
@@ -15203,7 +15203,7 @@ If you need interactivity, consider converting part of this to a Client Componen
           this.generateImportReplacements();
         }
         pruneTypeOnlyImports() {
-          this.nonTypeIdentifiers = cT.getNonTypeIdentifiers.call(
+          this.nonTypeIdentifiers = py.getNonTypeIdentifiers.call(
             void 0,
             this.tokens,
             this.options
@@ -15250,44 +15250,44 @@ If you need interactivity, consider converting part of this to a Client Componen
               this.importsToReplace.set(t, `require('${t}');`);
               continue;
             }
-            let g = this.getFreeIdentifierForPath(t),
-              L;
+            let x = this.getFreeIdentifierForPath(t),
+              R;
             this.enableLegacyTypeScriptModuleInterop
-              ? (L = g)
-              : (L = r.length > 0 ? r[0] : this.getFreeIdentifierForPath(t));
-            let p = `var ${g} = require('${t}');`;
+              ? (R = x)
+              : (R = r.length > 0 ? r[0] : this.getFreeIdentifierForPath(t));
+            let p = `var ${x} = require('${t}');`;
             if (r.length > 0)
-              for (let f of r) {
-                let v = this.enableLegacyTypeScriptModuleInterop
-                  ? g
+              for (let h of r) {
+                let T = this.enableLegacyTypeScriptModuleInterop
+                  ? x
                   : `${this.helperManager.getHelperName(
                       'interopRequireWildcard'
-                    )}(${g})`;
-                p += ` var ${f} = ${v};`;
+                    )}(${x})`;
+                p += ` var ${h} = ${T};`;
               }
             else
-              d.length > 0 && L !== g
-                ? (p += ` var ${L} = ${this.helperManager.getHelperName(
+              d.length > 0 && R !== x
+                ? (p += ` var ${R} = ${this.helperManager.getHelperName(
                     'interopRequireWildcard'
-                  )}(${g});`)
+                  )}(${x});`)
                 : i.length > 0 &&
-                  L !== g &&
-                  (p += ` var ${L} = ${this.helperManager.getHelperName(
+                  R !== x &&
+                  (p += ` var ${R} = ${this.helperManager.getHelperName(
                     'interopRequireDefault'
-                  )}(${g});`);
-            for (let {importedName: f, localName: v} of u)
+                  )}(${x});`);
+            for (let {importedName: h, localName: T} of u)
               p += ` ${this.helperManager.getHelperName(
                 'createNamedExportFrom'
-              )}(${g}, '${v}', '${f}');`;
-            for (let f of d) p += ` exports.${f} = ${L};`;
+              )}(${x}, '${T}', '${h}');`;
+            for (let h of d) p += ` exports.${h} = ${R};`;
             y &&
               (p += ` ${this.helperManager.getHelperName(
                 'createStarExport'
-              )}(${g});`),
+              )}(${x});`),
               this.importsToReplace.set(t, p);
-            for (let f of i) this.identifierReplacements.set(f, `${L}.default`);
-            for (let {importedName: f, localName: v} of a)
-              this.identifierReplacements.set(v, `${g}.${f}`);
+            for (let h of i) this.identifierReplacements.set(h, `${R}.default`);
+            for (let {importedName: h, localName: T} of a)
+              this.identifierReplacements.set(T, `${x}.${h}`);
           }
         }
         getFreeIdentifierForPath(t) {
@@ -15428,7 +15428,7 @@ If you need interactivity, consider converting part of this to a Client Componen
                 i = r - 1;
               } else {
                 let r = this.tokens.tokens[i];
-                if (oT.isDeclaration.call(void 0, r)) {
+                if (ly.isDeclaration.call(void 0, r)) {
                   let a = this.tokens.identifierNameAtIndex(i);
                   this.identifierReplacements.set(a, `exports.${a}`);
                 }
@@ -15482,7 +15482,7 @@ If you need interactivity, consider converting part of this to a Client Componen
               t++;
               break;
             }
-            let i = lT.default.call(void 0, this.tokens, t);
+            let i = uy.default.call(void 0, this.tokens, t);
             if (
               ((t = i.endIndex),
               i.isType ||
@@ -15624,28 +15624,28 @@ If you need interactivity, consider converting part of this to a Client Componen
           A = [],
           U = 0;
         do {
-          let D = y(w, U),
+          let M = y(w, U),
             c = [],
-            M = !0,
-            z = 0;
+            L = !0,
+            W = 0;
           S[0] = 0;
-          for (let X = U; X < D; X++) {
+          for (let X = U; X < M; X++) {
             let ie;
-            X = g(w, X, S, 0);
+            X = x(w, X, S, 0);
             let pe = S[0];
-            pe < z && (M = !1),
-              (z = pe),
-              L(w, X, D)
-                ? ((X = g(w, X, S, 1)),
-                  (X = g(w, X, S, 2)),
-                  (X = g(w, X, S, 3)),
-                  L(w, X, D)
-                    ? ((X = g(w, X, S, 4)), (ie = [pe, S[1], S[2], S[3], S[4]]))
+            pe < W && (L = !1),
+              (W = pe),
+              R(w, X, M)
+                ? ((X = x(w, X, S, 1)),
+                  (X = x(w, X, S, 2)),
+                  (X = x(w, X, S, 3)),
+                  R(w, X, M)
+                    ? ((X = x(w, X, S, 4)), (ie = [pe, S[1], S[2], S[3], S[4]]))
                     : (ie = [pe, S[1], S[2], S[3]]))
                 : (ie = [pe]),
               c.push(ie);
           }
-          M || p(c), A.push(c), (U = D + 1);
+          L || p(c), A.push(c), (U = M + 1);
         } while (U <= w.length);
         return A;
       }
@@ -15653,68 +15653,68 @@ If you need interactivity, consider converting part of this to a Client Componen
         let A = w.indexOf(';', S);
         return A === -1 ? w.length : A;
       }
-      function g(w, S, A, U) {
-        let D = 0,
+      function x(w, S, A, U) {
+        let M = 0,
           c = 0,
-          M = 0;
+          L = 0;
         do {
           let X = w.charCodeAt(S++);
-          (M = a[X]), (D |= (M & 31) << c), (c += 5);
-        } while (M & 32);
-        let z = D & 1;
-        return (D >>>= 1), z && (D = -2147483648 | -D), (A[U] += D), S;
+          (L = a[X]), (M |= (L & 31) << c), (c += 5);
+        } while (L & 32);
+        let W = M & 1;
+        return (M >>>= 1), W && (M = -2147483648 | -M), (A[U] += M), S;
       }
-      function L(w, S, A) {
+      function R(w, S, A) {
         return S >= A ? !1 : w.charCodeAt(S) !== 44;
       }
       function p(w) {
-        w.sort(f);
+        w.sort(h);
       }
-      function f(w, S) {
+      function h(w, S) {
         return w[0] - S[0];
       }
-      function v(w) {
+      function T(w) {
         let S = new Int32Array(5),
           A = 1024 * 16,
           U = A - 36,
-          D = new Uint8Array(A),
-          c = D.subarray(0, U),
-          M = 0,
-          z = '';
+          M = new Uint8Array(A),
+          c = M.subarray(0, U),
+          L = 0,
+          W = '';
         for (let X = 0; X < w.length; X++) {
           let ie = w[X];
           if (
-            (X > 0 && (M === A && ((z += u.decode(D)), (M = 0)), (D[M++] = 59)),
+            (X > 0 && (L === A && ((W += u.decode(M)), (L = 0)), (M[L++] = 59)),
             ie.length !== 0)
           ) {
             S[0] = 0;
             for (let pe = 0; pe < ie.length; pe++) {
               let ae = ie[pe];
-              M > U && ((z += u.decode(c)), D.copyWithin(0, U, M), (M -= U)),
-                pe > 0 && (D[M++] = 44),
-                (M = x(D, M, S, ae, 0)),
+              L > U && ((W += u.decode(c)), M.copyWithin(0, U, L), (L -= U)),
+                pe > 0 && (M[L++] = 44),
+                (L = g(M, L, S, ae, 0)),
                 ae.length !== 1 &&
-                  ((M = x(D, M, S, ae, 1)),
-                  (M = x(D, M, S, ae, 2)),
-                  (M = x(D, M, S, ae, 3)),
-                  ae.length !== 4 && (M = x(D, M, S, ae, 4)));
+                  ((L = g(M, L, S, ae, 1)),
+                  (L = g(M, L, S, ae, 2)),
+                  (L = g(M, L, S, ae, 3)),
+                  ae.length !== 4 && (L = g(M, L, S, ae, 4)));
             }
           }
         }
-        return z + u.decode(D.subarray(0, M));
+        return W + u.decode(M.subarray(0, L));
       }
-      function x(w, S, A, U, D) {
-        let c = U[D],
-          M = c - A[D];
-        (A[D] = c), (M = M < 0 ? (-M << 1) | 1 : M << 1);
+      function g(w, S, A, U, M) {
+        let c = U[M],
+          L = c - A[M];
+        (A[M] = c), (L = L < 0 ? (-L << 1) | 1 : L << 1);
         do {
-          let z = M & 31;
-          (M >>>= 5), M > 0 && (z |= 32), (w[S++] = r[z]);
-        } while (M > 0);
+          let W = L & 31;
+          (L >>>= 5), L > 0 && (W |= 32), (w[S++] = r[W]);
+        } while (L > 0);
         return S;
       }
       (e.decode = d),
-        (e.encode = v),
+        (e.encode = T),
         Object.defineProperty(e, '__esModule', {value: !0});
     });
   });
@@ -15757,7 +15757,7 @@ If you need interactivity, consider converting part of this to a Client Componen
       function y(A) {
         return /^[.?#]/.test(A);
       }
-      function g(A) {
+      function x(A) {
         let U = t.exec(A);
         return p(
           U[1],
@@ -15769,43 +15769,43 @@ If you need interactivity, consider converting part of this to a Client Componen
           U[7] || ''
         );
       }
-      function L(A) {
+      function R(A) {
         let U = s.exec(A),
-          D = U[2];
+          M = U[2];
         return p(
           'file:',
           '',
           U[1] || '',
           '',
-          u(D) ? D : '/' + D,
+          u(M) ? M : '/' + M,
           U[3] || '',
           U[4] || ''
         );
       }
-      function p(A, U, D, c, M, z, X) {
+      function p(A, U, M, c, L, W, X) {
         return {
           scheme: A,
           user: U,
-          host: D,
+          host: M,
           port: c,
-          path: M,
-          query: z,
+          path: L,
+          query: W,
           hash: X,
           type: i.Absolute,
         };
       }
-      function f(A) {
+      function h(A) {
         if (a(A)) {
-          let D = g('http:' + A);
-          return (D.scheme = ''), (D.type = i.SchemeRelative), D;
+          let M = x('http:' + A);
+          return (M.scheme = ''), (M.type = i.SchemeRelative), M;
         }
         if (u(A)) {
-          let D = g('http://foo.com' + A);
-          return (D.scheme = ''), (D.host = ''), (D.type = i.AbsolutePath), D;
+          let M = x('http://foo.com' + A);
+          return (M.scheme = ''), (M.host = ''), (M.type = i.AbsolutePath), M;
         }
-        if (d(A)) return L(A);
-        if (r(A)) return g(A);
-        let U = g('http://foo.com/' + A);
+        if (d(A)) return R(A);
+        if (r(A)) return x(A);
+        let U = x('http://foo.com/' + A);
         return (
           (U.scheme = ''),
           (U.host = ''),
@@ -15819,20 +15819,20 @@ If you need interactivity, consider converting part of this to a Client Componen
           U
         );
       }
-      function v(A) {
+      function T(A) {
         if (A.endsWith('/..')) return A;
         let U = A.lastIndexOf('/');
         return A.slice(0, U + 1);
       }
-      function x(A, U) {
+      function g(A, U) {
         w(U, U.type),
-          A.path === '/' ? (A.path = U.path) : (A.path = v(U.path) + A.path);
+          A.path === '/' ? (A.path = U.path) : (A.path = T(U.path) + A.path);
       }
       function w(A, U) {
-        let D = U <= i.RelativePath,
+        let M = U <= i.RelativePath,
           c = A.path.split('/'),
-          M = 1,
-          z = 0,
+          L = 1,
+          W = 0,
           X = !1;
         for (let pe = 1; pe < c.length; pe++) {
           let ae = c[pe];
@@ -15842,52 +15842,52 @@ If you need interactivity, consider converting part of this to a Client Componen
           }
           if (((X = !1), ae !== '.')) {
             if (ae === '..') {
-              z ? ((X = !0), z--, M--) : D && (c[M++] = ae);
+              W ? ((X = !0), W--, L--) : M && (c[L++] = ae);
               continue;
             }
-            (c[M++] = ae), z++;
+            (c[L++] = ae), W++;
           }
         }
         let ie = '';
-        for (let pe = 1; pe < M; pe++) ie += '/' + c[pe];
+        for (let pe = 1; pe < L; pe++) ie += '/' + c[pe];
         (!ie || (X && !ie.endsWith('/..'))) && (ie += '/'), (A.path = ie);
       }
       function S(A, U) {
         if (!A && !U) return '';
-        let D = f(A),
-          c = D.type;
+        let M = h(A),
+          c = M.type;
         if (U && c !== i.Absolute) {
-          let z = f(U),
-            X = z.type;
+          let W = h(U),
+            X = W.type;
           switch (c) {
             case i.Empty:
-              D.hash = z.hash;
+              M.hash = W.hash;
             case i.Hash:
-              D.query = z.query;
+              M.query = W.query;
             case i.Query:
             case i.RelativePath:
-              x(D, z);
+              g(M, W);
             case i.AbsolutePath:
-              (D.user = z.user), (D.host = z.host), (D.port = z.port);
+              (M.user = W.user), (M.host = W.host), (M.port = W.port);
             case i.SchemeRelative:
-              D.scheme = z.scheme;
+              M.scheme = W.scheme;
           }
           X > c && (c = X);
         }
-        w(D, c);
-        let M = D.query + D.hash;
+        w(M, c);
+        let L = M.query + M.hash;
         switch (c) {
           case i.Hash:
           case i.Query:
-            return M;
+            return L;
           case i.RelativePath: {
-            let z = D.path.slice(1);
-            return z ? (y(U || A) && !y(z) ? './' + z + M : z + M) : M || '.';
+            let W = M.path.slice(1);
+            return W ? (y(U || A) && !y(W) ? './' + W + L : W + L) : L || '.';
           }
           case i.AbsolutePath:
-            return D.path + M;
+            return M.path + L;
           default:
-            return D.scheme + '//' + D.user + D.host + D.port + D.path + M;
+            return M.scheme + '//' + M.user + M.host + M.port + M.path + L;
         }
       }
       return S;
@@ -15914,109 +15914,109 @@ If you need interactivity, consider converting part of this to a Client Componen
         return V && typeof V == 'object' && 'default' in V ? V : {default: V};
       }
       var r = i(s);
-      function a(V, W) {
-        return W && !W.endsWith('/') && (W += '/'), r.default(V, W);
+      function a(V, G) {
+        return G && !G.endsWith('/') && (G += '/'), r.default(V, G);
       }
       function u(V) {
         if (!V) return '';
-        let W = V.lastIndexOf('/');
-        return V.slice(0, W + 1);
+        let G = V.lastIndexOf('/');
+        return V.slice(0, G + 1);
       }
       let d = 0,
         y = 1,
-        g = 2,
-        L = 3,
+        x = 2,
+        R = 3,
         p = 4,
-        f = 1,
-        v = 2;
-      function x(V, W) {
+        h = 1,
+        T = 2;
+      function g(V, G) {
         let J = w(V, 0);
         if (J === V.length) return V;
-        W || (V = V.slice());
-        for (let re = J; re < V.length; re = w(V, re + 1)) V[re] = A(V[re], W);
+        G || (V = V.slice());
+        for (let re = J; re < V.length; re = w(V, re + 1)) V[re] = A(V[re], G);
         return V;
       }
-      function w(V, W) {
-        for (let J = W; J < V.length; J++) if (!S(V[J])) return J;
+      function w(V, G) {
+        for (let J = G; J < V.length; J++) if (!S(V[J])) return J;
         return V.length;
       }
       function S(V) {
-        for (let W = 1; W < V.length; W++) if (V[W][d] < V[W - 1][d]) return !1;
+        for (let G = 1; G < V.length; G++) if (V[G][d] < V[G - 1][d]) return !1;
         return !0;
       }
-      function A(V, W) {
-        return W || (V = V.slice()), V.sort(U);
+      function A(V, G) {
+        return G || (V = V.slice()), V.sort(U);
       }
-      function U(V, W) {
-        return V[d] - W[d];
+      function U(V, G) {
+        return V[d] - G[d];
       }
-      let D = !1;
-      function c(V, W, J, re) {
+      let M = !1;
+      function c(V, G, J, re) {
         for (; J <= re; ) {
           let ve = J + ((re - J) >> 1),
-            he = V[ve][d] - W;
-          if (he === 0) return (D = !0), ve;
+            he = V[ve][d] - G;
+          if (he === 0) return (M = !0), ve;
           he < 0 ? (J = ve + 1) : (re = ve - 1);
         }
-        return (D = !1), J - 1;
+        return (M = !1), J - 1;
       }
-      function M(V, W, J) {
-        for (let re = J + 1; re < V.length && V[re][d] === W; J = re++);
+      function L(V, G, J) {
+        for (let re = J + 1; re < V.length && V[re][d] === G; J = re++);
         return J;
       }
-      function z(V, W, J) {
-        for (let re = J - 1; re >= 0 && V[re][d] === W; J = re--);
+      function W(V, G, J) {
+        for (let re = J - 1; re >= 0 && V[re][d] === G; J = re--);
         return J;
       }
       function X() {
         return {lastKey: -1, lastNeedle: -1, lastIndex: -1};
       }
-      function ie(V, W, J, re) {
+      function ie(V, G, J, re) {
         let {lastKey: ve, lastNeedle: he, lastIndex: Ie} = J,
           Ee = 0,
           Le = V.length - 1;
         if (re === ve) {
-          if (W === he) return (D = Ie !== -1 && V[Ie][d] === W), Ie;
-          W >= he ? (Ee = Ie === -1 ? 0 : Ie) : (Le = Ie);
+          if (G === he) return (M = Ie !== -1 && V[Ie][d] === G), Ie;
+          G >= he ? (Ee = Ie === -1 ? 0 : Ie) : (Le = Ie);
         }
         return (
-          (J.lastKey = re), (J.lastNeedle = W), (J.lastIndex = c(V, W, Ee, Le))
+          (J.lastKey = re), (J.lastNeedle = G), (J.lastIndex = c(V, G, Ee, Le))
         );
       }
-      function pe(V, W) {
-        let J = W.map(He);
+      function pe(V, G) {
+        let J = G.map(He);
         for (let re = 0; re < V.length; re++) {
           let ve = V[re];
           for (let he = 0; he < ve.length; he++) {
             let Ie = ve[he];
             if (Ie.length === 1) continue;
             let Ee = Ie[y],
-              Le = Ie[g],
-              Xe = Ie[L],
+              Le = Ie[x],
+              Xe = Ie[R],
               We = J[Ee],
               Ke = We[Le] || (We[Le] = []),
-              ut = W[Ee],
-              pt = M(Ke, Xe, ie(Ke, Xe, ut, Le));
+              ut = G[Ee],
+              pt = L(Ke, Xe, ie(Ke, Xe, ut, Le));
             ae(Ke, (ut.lastIndex = pt + 1), [Xe, re, Ie[d]]);
           }
         }
         return J;
       }
-      function ae(V, W, J) {
-        for (let re = V.length; re > W; re--) V[re] = V[re - 1];
-        V[W] = J;
+      function ae(V, G, J) {
+        for (let re = V.length; re > G; re--) V[re] = V[re - 1];
+        V[G] = J;
       }
       function He() {
         return {__proto__: null};
       }
-      let qe = function (V, W) {
+      let qe = function (V, G) {
         let J = typeof V == 'string' ? JSON.parse(V) : V;
-        if (!('sections' in J)) return new wt(J, W);
+        if (!('sections' in J)) return new wt(J, G);
         let re = [],
           ve = [],
           he = [],
           Ie = [];
-        Bt(J, W, re, ve, he, Ie, 0, 0, 1 / 0, 1 / 0);
+        Bt(J, G, re, ve, he, Ie, 0, 0, 1 / 0, 1 / 0);
         let Ee = {
           version: 3,
           file: J.file,
@@ -16027,30 +16027,30 @@ If you need interactivity, consider converting part of this to a Client Componen
         };
         return e.presortedDecodedMap(Ee);
       };
-      function Bt(V, W, J, re, ve, he, Ie, Ee, Le, Xe) {
+      function Bt(V, G, J, re, ve, he, Ie, Ee, Le, Xe) {
         let {sections: We} = V;
         for (let Ke = 0; Ke < We.length; Ke++) {
           let {map: ut, offset: pt} = We[Ke],
             bt = Le,
-            Tt = Xe;
+            yt = Xe;
           if (Ke + 1 < We.length) {
             let vt = We[Ke + 1].offset;
             (bt = Math.min(Le, Ie + vt.line)),
               bt === Le
-                ? (Tt = Math.min(Xe, Ee + vt.column))
-                : bt < Le && (Tt = Ee + vt.column);
+                ? (yt = Math.min(Xe, Ee + vt.column))
+                : bt < Le && (yt = Ee + vt.column);
           }
-          mt(ut, W, J, re, ve, he, Ie + pt.line, Ee + pt.column, bt, Tt);
+          mt(ut, G, J, re, ve, he, Ie + pt.line, Ee + pt.column, bt, yt);
         }
       }
-      function mt(V, W, J, re, ve, he, Ie, Ee, Le, Xe) {
+      function mt(V, G, J, re, ve, he, Ie, Ee, Le, Xe) {
         if ('sections' in V) return Bt(...arguments);
-        let We = new wt(V, W),
+        let We = new wt(V, G),
           Ke = re.length,
           ut = he.length,
           pt = e.decodedMappings(We),
-          {resolvedSources: bt, sourcesContent: Tt} = We;
-        if ((kt(re, bt), kt(he, We.names), Tt)) kt(ve, Tt);
+          {resolvedSources: bt, sourcesContent: yt} = We;
+        if ((kt(re, bt), kt(he, We.names), yt)) kt(ve, yt);
         else for (let vt = 0; vt < bt.length; vt++) ve.push(null);
         for (let vt = 0; vt < pt.length; vt++) {
           let bn = Ie + vt;
@@ -16067,20 +16067,20 @@ If you need interactivity, consider converting part of this to a Client Componen
               continue;
             }
             let te = Ke + zt[y],
-              Cn = zt[g],
-              Zn = zt[L];
+              Cn = zt[x],
+              Zn = zt[R];
             Dn.push(
               zt.length === 4 ? [Xt, te, Cn, Zn] : [Xt, te, Cn, Zn, ut + zt[p]]
             );
           }
         }
       }
-      function kt(V, W) {
-        for (let J = 0; J < W.length; J++) V.push(W[J]);
+      function kt(V, G) {
+        for (let J = 0; J < G.length; J++) V.push(G[J]);
       }
-      function At(V, W) {
-        for (let J = V.length; J <= W; J++) V[J] = [];
-        return V[W];
+      function At(V, G) {
+        for (let J = V.length; J <= G; J++) V[J] = [];
+        return V[G];
       }
       let tt = '`line` must be greater than 0 (lines start at line 1)',
         nt =
@@ -16098,10 +16098,10 @@ If you need interactivity, consider converting part of this to a Client Componen
         (e.decodedMap = void 0),
         (e.encodedMap = void 0);
       class wt {
-        constructor(W, J) {
-          let re = typeof W == 'string';
-          if (!re && W._decodedMemo) return W;
-          let ve = re ? JSON.parse(W) : W,
+        constructor(G, J) {
+          let re = typeof G == 'string';
+          if (!re && G._decodedMemo) return G;
+          let ve = re ? JSON.parse(G) : G,
             {
               version: he,
               file: Ie,
@@ -16121,48 +16121,48 @@ If you need interactivity, consider converting part of this to a Client Componen
           let {mappings: ut} = ve;
           typeof ut == 'string'
             ? ((this._encoded = ut), (this._decoded = void 0))
-            : ((this._encoded = void 0), (this._decoded = x(ut, re))),
+            : ((this._encoded = void 0), (this._decoded = g(ut, re))),
             (this._decodedMemo = X()),
             (this._bySources = void 0),
             (this._bySourceMemos = void 0);
         }
       }
       (e.encodedMappings = (V) => {
-        var W;
-        return (W = V._encoded) !== null && W !== void 0
-          ? W
+        var G;
+        return (G = V._encoded) !== null && G !== void 0
+          ? G
           : (V._encoded = t.encode(V._decoded));
       }),
         (e.decodedMappings = (V) =>
           V._decoded || (V._decoded = t.decode(V._encoded))),
-        (e.traceSegment = (V, W, J) => {
+        (e.traceSegment = (V, G, J) => {
           let re = e.decodedMappings(V);
-          return W >= re.length ? null : yn(re[W], V._decodedMemo, W, J, ct);
+          return G >= re.length ? null : Tn(re[G], V._decodedMemo, G, J, ct);
         }),
-        (e.originalPositionFor = (V, {line: W, column: J, bias: re}) => {
-          if ((W--, W < 0)) throw new Error(tt);
+        (e.originalPositionFor = (V, {line: G, column: J, bias: re}) => {
+          if ((G--, G < 0)) throw new Error(tt);
           if (J < 0) throw new Error(nt);
           let ve = e.decodedMappings(V);
-          if (W >= ve.length) return Pt(null, null, null, null);
-          let he = yn(ve[W], V._decodedMemo, W, J, re || ct);
+          if (G >= ve.length) return Pt(null, null, null, null);
+          let he = Tn(ve[G], V._decodedMemo, G, J, re || ct);
           if (he == null || he.length == 1) return Pt(null, null, null, null);
           let {names: Ie, resolvedSources: Ee} = V;
           return Pt(
             Ee[he[y]],
-            he[g] + 1,
-            he[L],
+            he[x] + 1,
+            he[R],
             he.length === 5 ? Ie[he[p]] : null
           );
         }),
         (e.generatedPositionFor = (
           V,
-          {source: W, line: J, column: re, bias: ve}
+          {source: G, line: J, column: re, bias: ve}
         ) => {
           if ((J--, J < 0)) throw new Error(tt);
           if (re < 0) throw new Error(nt);
           let {sources: he, resolvedSources: Ie} = V,
-            Ee = he.indexOf(W);
-          if ((Ee === -1 && (Ee = Ie.indexOf(W)), Ee === -1))
+            Ee = he.indexOf(G);
+          if ((Ee === -1 && (Ee = Ie.indexOf(G)), Ee === -1))
             return qt(null, null);
           let Le =
               V._bySources ||
@@ -16173,10 +16173,10 @@ If you need interactivity, consider converting part of this to a Client Componen
             Xe = V._bySourceMemos,
             We = Le[Ee][J];
           if (We == null) return qt(null, null);
-          let Ke = yn(We, Xe[Ee], J, re, ve || ct);
-          return Ke == null ? qt(null, null) : qt(Ke[f] + 1, Ke[v]);
+          let Ke = Tn(We, Xe[Ee], J, re, ve || ct);
+          return Ke == null ? qt(null, null) : qt(Ke[h] + 1, Ke[T]);
         }),
-        (e.eachMapping = (V, W) => {
+        (e.eachMapping = (V, G) => {
           let J = e.decodedMappings(V),
             {names: re, resolvedSources: ve} = V;
           for (let he = 0; he < J.length; he++) {
@@ -16192,7 +16192,7 @@ If you need interactivity, consider converting part of this to a Client Componen
               Le.length !== 1 &&
                 ((Ke = ve[Le[1]]), (ut = Le[2] + 1), (pt = Le[3])),
                 Le.length === 5 && (bt = re[Le[4]]),
-                W({
+                G({
                   generatedLine: Xe,
                   generatedColumn: We,
                   source: Ke,
@@ -16203,19 +16203,19 @@ If you need interactivity, consider converting part of this to a Client Componen
             }
           }
         }),
-        (e.sourceContentFor = (V, W) => {
+        (e.sourceContentFor = (V, G) => {
           let {sources: J, resolvedSources: re, sourcesContent: ve} = V;
           if (ve == null) return null;
-          let he = J.indexOf(W);
-          return he === -1 && (he = re.indexOf(W)), he === -1 ? null : ve[he];
+          let he = J.indexOf(G);
+          return he === -1 && (he = re.indexOf(G)), he === -1 ? null : ve[he];
         }),
-        (e.presortedDecodedMap = (V, W) => {
-          let J = new wt($t(V, []), W);
+        (e.presortedDecodedMap = (V, G) => {
+          let J = new wt($t(V, []), G);
           return (J._decoded = V.mappings), J;
         }),
         (e.decodedMap = (V) => $t(V, e.decodedMappings(V))),
         (e.encodedMap = (V) => $t(V, e.encodedMappings(V)));
-      function $t(V, W) {
+      function $t(V, G) {
         return {
           version: V.version,
           file: V.file,
@@ -16223,19 +16223,19 @@ If you need interactivity, consider converting part of this to a Client Componen
           sourceRoot: V.sourceRoot,
           sources: V.sources,
           sourcesContent: V.sourcesContent,
-          mappings: W,
+          mappings: G,
         };
       }
-      function Pt(V, W, J, re) {
-        return {source: V, line: W, column: J, name: re};
+      function Pt(V, G, J, re) {
+        return {source: V, line: G, column: J, name: re};
       }
-      function qt(V, W) {
-        return {line: V, column: W};
+      function qt(V, G) {
+        return {line: V, column: G};
       }
-      function yn(V, W, J, re, ve) {
-        let he = ie(V, re, W, J);
+      function Tn(V, G, J, re, ve) {
+        let he = ie(V, re, G, J);
         return (
-          D ? (he = (ve === _t ? M : z)(V, re, he)) : ve === _t && he++,
+          M ? (he = (ve === _t ? L : W)(V, re, he)) : ve === _t && he++,
           he === -1 || he === V.length ? null : V[he]
         );
       }
@@ -16273,31 +16273,31 @@ If you need interactivity, consider converting part of this to a Client Componen
         (e.toEncodedMap = void 0),
         (e.fromMap = void 0),
         (e.allMappings = void 0);
-      let L;
+      let R;
       class p {
-        constructor({file: M, sourceRoot: z} = {}) {
+        constructor({file: L, sourceRoot: W} = {}) {
           (this._names = new t.SetArray()),
             (this._sources = new t.SetArray()),
             (this._sourcesContent = []),
             (this._mappings = []),
-            (this.file = M),
-            (this.sourceRoot = z);
+            (this.file = L),
+            (this.sourceRoot = W);
         }
       }
-      (e.addSegment = (c, M, z, X, ie, pe, ae, He) =>
-        L(!1, c, M, z, X, ie, pe, ae, He)),
-        (e.maybeAddSegment = (c, M, z, X, ie, pe, ae, He) =>
-          L(!0, c, M, z, X, ie, pe, ae, He)),
-        (e.addMapping = (c, M) => D(!1, c, M)),
-        (e.maybeAddMapping = (c, M) => D(!0, c, M)),
-        (e.setSourceContent = (c, M, z) => {
+      (e.addSegment = (c, L, W, X, ie, pe, ae, He) =>
+        R(!1, c, L, W, X, ie, pe, ae, He)),
+        (e.maybeAddSegment = (c, L, W, X, ie, pe, ae, He) =>
+          R(!0, c, L, W, X, ie, pe, ae, He)),
+        (e.addMapping = (c, L) => M(!1, c, L)),
+        (e.maybeAddMapping = (c, L) => M(!0, c, L)),
+        (e.setSourceContent = (c, L, W) => {
           let {_sources: X, _sourcesContent: ie} = c;
-          ie[t.put(X, M)] = z;
+          ie[t.put(X, L)] = W;
         }),
         (e.toDecodedMap = (c) => {
           let {
-            file: M,
-            sourceRoot: z,
+            file: L,
+            sourceRoot: W,
             _mappings: X,
             _sources: ie,
             _sourcesContent: pe,
@@ -16307,9 +16307,9 @@ If you need interactivity, consider converting part of this to a Client Componen
             w(X),
             {
               version: 3,
-              file: M || void 0,
+              file: L || void 0,
               names: ae.array,
-              sourceRoot: z || void 0,
+              sourceRoot: W || void 0,
               sources: ie.array,
               sourcesContent: pe,
               mappings: X,
@@ -16317,16 +16317,16 @@ If you need interactivity, consider converting part of this to a Client Componen
           );
         }),
         (e.toEncodedMap = (c) => {
-          let M = e.toDecodedMap(c);
-          return Object.assign(Object.assign({}, M), {
-            mappings: s.encode(M.mappings),
+          let L = e.toDecodedMap(c);
+          return Object.assign(Object.assign({}, L), {
+            mappings: s.encode(L.mappings),
           });
         }),
         (e.allMappings = (c) => {
-          let M = [],
-            {_mappings: z, _sources: X, _names: ie} = c;
-          for (let pe = 0; pe < z.length; pe++) {
-            let ae = z[pe];
+          let L = [],
+            {_mappings: W, _sources: X, _names: ie} = c;
+          for (let pe = 0; pe < W.length; pe++) {
+            let ae = W[pe];
             for (let He = 0; He < ae.length; He++) {
               let qe = ae[He],
                 Bt = {line: pe + 1, column: qe[0]},
@@ -16337,86 +16337,86 @@ If you need interactivity, consider converting part of this to a Client Componen
                 ((mt = X.array[qe[1]]),
                 (kt = {line: qe[2] + 1, column: qe[3]}),
                 qe.length === 5 && (At = ie.array[qe[4]])),
-                M.push({generated: Bt, source: mt, original: kt, name: At});
+                L.push({generated: Bt, source: mt, original: kt, name: At});
             }
           }
-          return M;
+          return L;
         }),
         (e.fromMap = (c) => {
-          let M = new i.TraceMap(c),
-            z = new p({file: M.file, sourceRoot: M.sourceRoot});
+          let L = new i.TraceMap(c),
+            W = new p({file: L.file, sourceRoot: L.sourceRoot});
           return (
-            S(z._names, M.names),
-            S(z._sources, M.sources),
-            (z._sourcesContent = M.sourcesContent || M.sources.map(() => null)),
-            (z._mappings = i.decodedMappings(M)),
-            z
+            S(W._names, L.names),
+            S(W._sources, L.sources),
+            (W._sourcesContent = L.sourcesContent || L.sources.map(() => null)),
+            (W._mappings = i.decodedMappings(L)),
+            W
           );
         }),
-        (L = (c, M, z, X, ie, pe, ae, He, qe) => {
+        (R = (c, L, W, X, ie, pe, ae, He, qe) => {
           let {
               _mappings: Bt,
               _sources: mt,
               _sourcesContent: kt,
               _names: At,
-            } = M,
-            tt = f(Bt, z),
-            nt = v(tt, X);
-          if (!ie) return c && A(tt, nt) ? void 0 : x(tt, nt, [X]);
+            } = L,
+            tt = h(Bt, W),
+            nt = T(tt, X);
+          if (!ie) return c && A(tt, nt) ? void 0 : g(tt, nt, [X]);
           let _t = t.put(mt, ie),
             ct = He ? t.put(At, He) : -1;
           if (
             (_t === kt.length && (kt[_t] = qe ?? null),
             !(c && U(tt, nt, _t, pe, ae, ct)))
           )
-            return x(tt, nt, He ? [X, _t, pe, ae, ct] : [X, _t, pe, ae]);
+            return g(tt, nt, He ? [X, _t, pe, ae, ct] : [X, _t, pe, ae]);
         });
-      function f(c, M) {
-        for (let z = c.length; z <= M; z++) c[z] = [];
-        return c[M];
+      function h(c, L) {
+        for (let W = c.length; W <= L; W++) c[W] = [];
+        return c[L];
       }
-      function v(c, M) {
-        let z = c.length;
-        for (let X = z - 1; X >= 0; z = X--) {
+      function T(c, L) {
+        let W = c.length;
+        for (let X = W - 1; X >= 0; W = X--) {
           let ie = c[X];
-          if (M >= ie[0]) break;
+          if (L >= ie[0]) break;
         }
-        return z;
+        return W;
       }
-      function x(c, M, z) {
-        for (let X = c.length; X > M; X--) c[X] = c[X - 1];
-        c[M] = z;
+      function g(c, L, W) {
+        for (let X = c.length; X > L; X--) c[X] = c[X - 1];
+        c[L] = W;
       }
       function w(c) {
-        let {length: M} = c,
-          z = M;
-        for (let X = z - 1; X >= 0 && !(c[X].length > 0); z = X, X--);
-        z < M && (c.length = z);
+        let {length: L} = c,
+          W = L;
+        for (let X = W - 1; X >= 0 && !(c[X].length > 0); W = X, X--);
+        W < L && (c.length = W);
       }
-      function S(c, M) {
-        for (let z = 0; z < M.length; z++) t.put(c, M[z]);
+      function S(c, L) {
+        for (let W = 0; W < L.length; W++) t.put(c, L[W]);
       }
-      function A(c, M) {
-        return M === 0 ? !0 : c[M - 1].length === 1;
+      function A(c, L) {
+        return L === 0 ? !0 : c[L - 1].length === 1;
       }
-      function U(c, M, z, X, ie, pe) {
-        if (M === 0) return !1;
-        let ae = c[M - 1];
+      function U(c, L, W, X, ie, pe) {
+        if (L === 0) return !1;
+        let ae = c[L - 1];
         return ae.length === 1
           ? !1
-          : z === ae[1] &&
+          : W === ae[1] &&
               X === ae[2] &&
               ie === ae[3] &&
               pe === (ae.length === 5 ? ae[4] : -1);
       }
-      function D(c, M, z) {
-        let {generated: X, source: ie, original: pe, name: ae, content: He} = z;
+      function M(c, L, W) {
+        let {generated: X, source: ie, original: pe, name: ae, content: He} = W;
         if (!ie)
-          return L(c, M, X.line - 1, X.column, null, null, null, null, null);
+          return R(c, L, X.line - 1, X.column, null, null, null, null, null);
         let qe = ie;
-        return L(
+        return R(
           c,
-          M,
+          L,
           X.line - 1,
           X.column,
           qe,
@@ -16434,40 +16434,40 @@ If you need interactivity, consider converting part of this to a Client Componen
     Object.defineProperty(Ka, '__esModule', {value: !0});
     var Gi = V1(),
       j1 = Qt();
-    function uT({code: e, mappings: t}, s, i, r, a) {
-      let u = pT(r, a),
+    function hy({code: e, mappings: t}, s, i, r, a) {
+      let u = fy(r, a),
         d = new Gi.GenMapping({file: i.compiledFilename}),
         y = 0,
-        g = t[0];
-      for (; g === void 0 && y < t.length - 1; ) y++, (g = t[y]);
-      let L = 0,
+        x = t[0];
+      for (; x === void 0 && y < t.length - 1; ) y++, (x = t[y]);
+      let R = 0,
         p = 0;
-      g !== p && Gi.maybeAddSegment.call(void 0, d, L, 0, s, L, 0);
+      x !== p && Gi.maybeAddSegment.call(void 0, d, R, 0, s, R, 0);
       for (let w = 0; w < e.length; w++) {
-        if (w === g) {
-          let S = g - p,
+        if (w === x) {
+          let S = x - p,
             A = u[y];
           for (
-            Gi.maybeAddSegment.call(void 0, d, L, S, s, L, A);
-            (g === w || g === void 0) && y < t.length - 1;
+            Gi.maybeAddSegment.call(void 0, d, R, S, s, R, A);
+            (x === w || x === void 0) && y < t.length - 1;
 
           )
-            y++, (g = t[y]);
+            y++, (x = t[y]);
         }
         e.charCodeAt(w) === j1.charCodes.lineFeed &&
-          (L++,
+          (R++,
           (p = w + 1),
-          g !== p && Gi.maybeAddSegment.call(void 0, d, L, 0, s, L, 0));
+          x !== p && Gi.maybeAddSegment.call(void 0, d, R, 0, s, R, 0));
       }
       let {
-        sourceRoot: f,
-        sourcesContent: v,
-        ...x
+        sourceRoot: h,
+        sourcesContent: T,
+        ...g
       } = Gi.toEncodedMap.call(void 0, d);
-      return x;
+      return g;
     }
-    Ka.default = uT;
-    function pT(e, t) {
+    Ka.default = hy;
+    function fy(e, t) {
       let s = new Array(t.length),
         i = 0,
         r = t[i].start,
@@ -16481,7 +16481,7 @@ If you need interactivity, consider converting part of this to a Client Componen
   var q1 = Z((Ha) => {
     'use strict';
     Object.defineProperty(Ha, '__esModule', {value: !0});
-    var hT = {
+    var dy = {
         require: `
     import {createRequire as CREATE_REQUIRE_NAME} from "module";
     const require = CREATE_REQUIRE_NAME(import.meta.url);
@@ -16630,7 +16630,7 @@ If you need interactivity, consider converting part of this to a Client Componen
             this.getHelperName('optionalChain'),
             this.helperNames.asyncOptionalChainDelete &&
               this.getHelperName('asyncOptionalChain');
-          for (let [s, i] of Object.entries(hT)) {
+          for (let [s, i] of Object.entries(dy)) {
             let r = this.helperNames[s],
               a = i;
             s === 'optionalChainDelete'
@@ -16665,10 +16665,10 @@ If you need interactivity, consider converting part of this to a Client Componen
     Object.defineProperty(ro, '__esModule', {value: !0});
     var Wa = xt(),
       io = be();
-    function fT(e, t, s) {
-      U1(e, s) && dT(e, t, s);
+    function my(e, t, s) {
+      U1(e, s) && yy(e, t, s);
     }
-    ro.default = fT;
+    ro.default = my;
     function U1(e, t) {
       for (let s of e.tokens)
         if (
@@ -16680,7 +16680,7 @@ If you need interactivity, consider converting part of this to a Client Componen
       return !1;
     }
     ro.hasShadowedGlobals = U1;
-    function dT(e, t, s) {
+    function yy(e, t, s) {
       let i = [],
         r = t.length - 1;
       for (let a = e.tokens.length - 1; ; a--) {
@@ -16716,30 +16716,30 @@ If you need interactivity, consider converting part of this to a Client Componen
   var W1 = Z((Ga) => {
     'use strict';
     Object.defineProperty(Ga, '__esModule', {value: !0});
-    var mT = be();
-    function TT(e, t) {
+    var Ty = be();
+    function ky(e, t) {
       let s = [];
       for (let i of t)
-        i.type === mT.TokenType.name && s.push(e.slice(i.start, i.end));
+        i.type === Ty.TokenType.name && s.push(e.slice(i.start, i.end));
       return s;
     }
-    Ga.default = TT;
+    Ga.default = ky;
   });
   var G1 = Z((Xa) => {
     'use strict';
     Object.defineProperty(Xa, '__esModule', {value: !0});
-    function yT(e) {
+    function vy(e) {
       return e && e.__esModule ? e : {default: e};
     }
-    var kT = W1(),
-      vT = yT(kT),
+    var xy = W1(),
+      gy = vy(xy),
       za = class e {
         __init() {
           this.usedNames = new Set();
         }
         constructor(t, s) {
           e.prototype.__init.call(this),
-            (this.usedNames = new Set(vT.default.call(void 0, t, s)));
+            (this.usedNames = new Set(gy.default.call(void 0, t, s)));
         }
         claimFreeName(t) {
           let s = this.findFreeName(t);
@@ -16756,7 +16756,7 @@ If you need interactivity, consider converting part of this to a Client Componen
   });
   var oo = Z((Pn) => {
     'use strict';
-    var xT =
+    var _y =
       (Pn && Pn.__extends) ||
       (function () {
         var e = function (t, s) {
@@ -16787,7 +16787,7 @@ If you need interactivity, consider converting part of this to a Client Componen
     Object.defineProperty(Pn, '__esModule', {value: !0});
     Pn.DetailContext = Pn.NoopContext = Pn.VError = void 0;
     var z1 = (function (e) {
-      xT(t, e);
+      _y(t, e);
       function t(s, i) {
         var r = e.call(this, i) || this;
         return (r.path = s), Object.setPrototypeOf(r, t.prototype), r;
@@ -16795,7 +16795,7 @@ If you need interactivity, consider converting part of this to a Client Componen
       return t;
     })(Error);
     Pn.VError = z1;
-    var gT = (function () {
+    var by = (function () {
       function e() {}
       return (
         (e.prototype.fail = function (t, s, i) {
@@ -16811,7 +16811,7 @@ If you need interactivity, consider converting part of this to a Client Componen
         e
       );
     })();
-    Pn.NoopContext = gT;
+    Pn.NoopContext = by;
     var X1 = (function () {
       function e() {
         (this._propNames = ['']), (this._messages = [null]), (this._score = 0);
@@ -16826,7 +16826,7 @@ If you need interactivity, consider converting part of this to a Client Componen
           );
         }),
         (e.prototype.unionResolver = function () {
-          return new _T();
+          return new Cy();
         }),
         (e.prototype.resolveUnion = function (t) {
           for (
@@ -16866,7 +16866,7 @@ If you need interactivity, consider converting part of this to a Client Componen
       );
     })();
     Pn.DetailContext = X1;
-    var _T = (function () {
+    var Cy = (function () {
       function e() {
         this.contexts = [];
       }
@@ -16971,18 +16971,18 @@ If you need interactivity, consider converting part of this to a Client Componen
             d = u.getChecker(s, i, r);
           return u instanceof Dt || u instanceof t
             ? d
-            : function (y, g) {
-                return d(y, g) ? !0 : g.fail(null, a._failMsg, 0);
+            : function (y, x) {
+                return d(y, x) ? !0 : x.fail(null, a._failMsg, 0);
               };
         }),
         t
       );
     })(Ht);
     ce.TName = Za;
-    function bT(e) {
+    function wy(e) {
       return new el(e);
     }
-    ce.lit = bT;
+    ce.lit = wy;
     var el = (function (e) {
       nn(t, e);
       function t(s) {
@@ -17005,10 +17005,10 @@ If you need interactivity, consider converting part of this to a Client Componen
       );
     })(Ht);
     ce.TLiteral = el;
-    function CT(e) {
+    function Sy(e) {
       return new ep(ps(e));
     }
-    ce.array = CT;
+    ce.array = Sy;
     var ep = (function (e) {
       nn(t, e);
       function t(s) {
@@ -17031,7 +17031,7 @@ If you need interactivity, consider converting part of this to a Client Componen
       );
     })(Ht);
     ce.TArray = ep;
-    function wT() {
+    function Iy() {
       for (var e = [], t = 0; t < arguments.length; t++) e[t] = arguments[t];
       return new tp(
         e.map(function (s) {
@@ -17039,7 +17039,7 @@ If you need interactivity, consider converting part of this to a Client Componen
         })
       );
     }
-    ce.tuple = wT;
+    ce.tuple = Iy;
     var tp = (function (e) {
       nn(t, e);
       function t(s) {
@@ -17054,8 +17054,8 @@ If you need interactivity, consider converting part of this to a Client Componen
             a = function (u, d) {
               if (!Array.isArray(u)) return d.fail(null, 'is not an array', 0);
               for (var y = 0; y < r.length; y++) {
-                var g = r[y](u[y], d);
-                if (!g) return d.fail(y, null, 1);
+                var x = r[y](u[y], d);
+                if (!x) return d.fail(y, null, 1);
               }
               return !0;
             };
@@ -17073,7 +17073,7 @@ If you need interactivity, consider converting part of this to a Client Componen
       );
     })(Ht);
     ce.TTuple = tp;
-    function ST() {
+    function Ey() {
       for (var e = [], t = 0; t < arguments.length; t++) e[t] = arguments[t];
       return new np(
         e.map(function (s) {
@@ -17081,7 +17081,7 @@ If you need interactivity, consider converting part of this to a Client Componen
         })
       );
     }
-    ce.union = ST;
+    ce.union = Ey;
     var np = (function (e) {
       nn(t, e);
       function t(s) {
@@ -17110,9 +17110,9 @@ If you need interactivity, consider converting part of this to a Client Componen
               return u.getChecker(s, i);
             });
           return function (u, d) {
-            for (var y = d.unionResolver(), g = 0; g < a.length; g++) {
-              var L = a[g](u, y.createContext());
-              if (L) return !0;
+            for (var y = d.unionResolver(), x = 0; x < a.length; x++) {
+              var R = a[x](u, y.createContext());
+              if (R) return !0;
             }
             return d.resolveUnion(y), d.fail(null, r._failMsg, 0);
           };
@@ -17121,7 +17121,7 @@ If you need interactivity, consider converting part of this to a Client Componen
       );
     })(Ht);
     ce.TUnion = np;
-    function IT() {
+    function Ay() {
       for (var e = [], t = 0; t < arguments.length; t++) e[t] = arguments[t];
       return new sp(
         e.map(function (s) {
@@ -17129,7 +17129,7 @@ If you need interactivity, consider converting part of this to a Client Componen
         })
       );
     }
-    ce.intersection = IT;
+    ce.intersection = Ay;
     var sp = (function (e) {
       nn(t, e);
       function t(s) {
@@ -17143,8 +17143,8 @@ If you need interactivity, consider converting part of this to a Client Componen
               return u.getChecker(s, i, r);
             });
           return function (u, d) {
-            var y = a.every(function (g) {
-              return g(u, d);
+            var y = a.every(function (x) {
+              return x(u, d);
             });
             return y ? !0 : d.fail(null, null, 0);
           };
@@ -17153,10 +17153,10 @@ If you need interactivity, consider converting part of this to a Client Componen
       );
     })(Ht);
     ce.TIntersection = sp;
-    function ET(e) {
+    function Py(e) {
       return new tl(e);
     }
-    ce.enumtype = ET;
+    ce.enumtype = Py;
     var tl = (function (e) {
       nn(t, e);
       function t(s) {
@@ -17184,10 +17184,10 @@ If you need interactivity, consider converting part of this to a Client Componen
       );
     })(Ht);
     ce.TEnumType = tl;
-    function AT(e, t) {
+    function Ny(e, t) {
       return new ip(e, t);
     }
-    ce.enumlit = AT;
+    ce.enumlit = Ny;
     var ip = (function (e) {
       nn(t, e);
       function t(s, i) {
@@ -17224,18 +17224,18 @@ If you need interactivity, consider converting part of this to a Client Componen
       );
     })(Ht);
     ce.TEnumLiteral = ip;
-    function PT(e) {
+    function Ry(e) {
       return Object.keys(e).map(function (t) {
-        return NT(t, e[t]);
+        return Ly(t, e[t]);
       });
     }
-    function NT(e, t) {
+    function Ly(e, t) {
       return t instanceof nl ? new Ja(e, t.ttype, !0) : new Ja(e, ps(t), !1);
     }
-    function RT(e, t) {
-      return new rp(e, PT(t));
+    function Oy(e, t) {
+      return new rp(e, Ry(t));
     }
-    ce.iface = RT;
+    ce.iface = Oy;
     var rp = (function (e) {
       nn(t, e);
       function t(s, i) {
@@ -17254,44 +17254,44 @@ If you need interactivity, consider converting part of this to a Client Componen
       return (
         (t.prototype.getChecker = function (s, i, r) {
           var a = this,
-            u = this.bases.map(function (f) {
-              return Qa(s, f).getChecker(s, i);
+            u = this.bases.map(function (h) {
+              return Qa(s, h).getChecker(s, i);
             }),
-            d = this.props.map(function (f) {
-              return f.ttype.getChecker(s, i);
+            d = this.props.map(function (h) {
+              return h.ttype.getChecker(s, i);
             }),
             y = new Q1.NoopContext(),
-            g = this.props.map(function (f, v) {
-              return !f.isOpt && !d[v](void 0, y);
+            x = this.props.map(function (h, T) {
+              return !h.isOpt && !d[T](void 0, y);
             }),
-            L = function (f, v) {
-              if (typeof f != 'object' || f === null)
-                return v.fail(null, 'is not an object', 0);
-              for (var x = 0; x < u.length; x++) if (!u[x](f, v)) return !1;
-              for (var x = 0; x < d.length; x++) {
-                var w = a.props[x].name,
-                  S = f[w];
+            R = function (h, T) {
+              if (typeof h != 'object' || h === null)
+                return T.fail(null, 'is not an object', 0);
+              for (var g = 0; g < u.length; g++) if (!u[g](h, T)) return !1;
+              for (var g = 0; g < d.length; g++) {
+                var w = a.props[g].name,
+                  S = h[w];
                 if (S === void 0) {
-                  if (g[x]) return v.fail(w, 'is missing', 1);
+                  if (x[g]) return T.fail(w, 'is missing', 1);
                 } else {
-                  var A = d[x](S, v);
-                  if (!A) return v.fail(w, null, 1);
+                  var A = d[g](S, T);
+                  if (!A) return T.fail(w, null, 1);
                 }
               }
               return !0;
             };
-          if (!i) return L;
+          if (!i) return R;
           var p = this.propSet;
           return (
             r &&
-              (this.propSet.forEach(function (f) {
-                return r.add(f);
+              (this.propSet.forEach(function (h) {
+                return r.add(h);
               }),
               (p = r)),
-            function (f, v) {
-              if (!L(f, v)) return !1;
-              for (var x in f)
-                if (!p.has(x)) return v.fail(x, 'is extraneous', 2);
+            function (h, T) {
+              if (!R(h, T)) return !1;
+              for (var g in h)
+                if (!p.has(g)) return T.fail(g, 'is extraneous', 2);
               return !0;
             }
           );
@@ -17300,10 +17300,10 @@ If you need interactivity, consider converting part of this to a Client Componen
       );
     })(Ht);
     ce.TIface = rp;
-    function LT(e) {
+    function Dy(e) {
       return new nl(ps(e));
     }
-    ce.opt = LT;
+    ce.opt = Dy;
     var nl = (function (e) {
       nn(t, e);
       function t(s) {
@@ -17328,12 +17328,12 @@ If you need interactivity, consider converting part of this to a Client Componen
       return e;
     })();
     ce.TProp = Ja;
-    function OT(e) {
+    function My(e) {
       for (var t = [], s = 1; s < arguments.length; s++)
         t[s - 1] = arguments[s];
       return new op(new lp(t), ps(e));
     }
-    ce.func = OT;
+    ce.func = My;
     var op = (function (e) {
       nn(t, e);
       function t(s, i) {
@@ -17352,10 +17352,10 @@ If you need interactivity, consider converting part of this to a Client Componen
       );
     })(Ht);
     ce.TFunc = op;
-    function DT(e, t, s) {
+    function Fy(e, t, s) {
       return new ap(e, ps(t), !!s);
     }
-    ce.param = DT;
+    ce.param = Fy;
     var ap = (function () {
       function e(t, s, i) {
         (this.name = t), (this.ttype = s), (this.isOpt = i);
@@ -17372,32 +17372,32 @@ If you need interactivity, consider converting part of this to a Client Componen
       return (
         (t.prototype.getChecker = function (s, i) {
           var r = this,
-            a = this.params.map(function (g) {
-              return g.ttype.getChecker(s, i);
+            a = this.params.map(function (x) {
+              return x.ttype.getChecker(s, i);
             }),
             u = new Q1.NoopContext(),
-            d = this.params.map(function (g, L) {
-              return !g.isOpt && !a[L](void 0, u);
+            d = this.params.map(function (x, R) {
+              return !x.isOpt && !a[R](void 0, u);
             }),
-            y = function (g, L) {
-              if (!Array.isArray(g)) return L.fail(null, 'is not an array', 0);
+            y = function (x, R) {
+              if (!Array.isArray(x)) return R.fail(null, 'is not an array', 0);
               for (var p = 0; p < a.length; p++) {
-                var f = r.params[p];
-                if (g[p] === void 0) {
-                  if (d[p]) return L.fail(f.name, 'is missing', 1);
+                var h = r.params[p];
+                if (x[p] === void 0) {
+                  if (d[p]) return R.fail(h.name, 'is missing', 1);
                 } else {
-                  var v = a[p](g[p], L);
-                  if (!v) return L.fail(f.name, null, 1);
+                  var T = a[p](x[p], R);
+                  if (!T) return R.fail(h.name, null, 1);
                 }
               }
               return !0;
             };
           return i
-            ? function (g, L) {
-                return y(g, L)
-                  ? g.length <= a.length
+            ? function (x, R) {
+                return y(x, R)
+                  ? x.length <= a.length
                     ? !0
-                    : L.fail(a.length, 'is extraneous', 2)
+                    : R.fail(a.length, 'is extraneous', 2)
                   : !1;
               }
             : y;
@@ -17457,17 +17457,17 @@ If you need interactivity, consider converting part of this to a Client Componen
       Date: new Dt(Y1('[object Date]'), 'is not a Date'),
       RegExp: new Dt(Y1('[object RegExp]'), 'is not a RegExp'),
     };
-    var MT = Object.prototype.toString;
+    var By = Object.prototype.toString;
     function Y1(e) {
       return function (t) {
-        return typeof t == 'object' && t && MT.call(t) === e;
+        return typeof t == 'object' && t && By.call(t) === e;
       };
     }
     typeof Buffer < 'u' &&
       (ce.basicTypes.Buffer = new Dt(function (e) {
         return Buffer.isBuffer(e);
       }, 'is not a Buffer'));
-    var FT = function (e) {
+    var Vy = function (e) {
       ce.basicTypes[e.name] = new Dt(function (t) {
         return t instanceof e;
       }, 'is not a ' + e.name);
@@ -17489,12 +17489,12 @@ If you need interactivity, consider converting part of this to a Client Componen
       ao < Ya.length;
       ao++
     )
-      (J1 = Ya[ao]), FT(J1);
+      (J1 = Ya[ao]), Vy(J1);
     var J1, ao, Ya;
   });
   var il = Z((we) => {
     'use strict';
-    var BT =
+    var jy =
       (we && we.__spreadArrays) ||
       function () {
         for (var e = 0, t = 0, s = arguments.length; t < s; t++)
@@ -17677,17 +17677,17 @@ If you need interactivity, consider converting part of this to a Client Componen
         return ze.BasicType;
       },
     });
-    var VT = oo();
+    var $y = oo();
     Object.defineProperty(we, 'VError', {
       enumerable: !0,
       get: function () {
-        return VT.VError;
+        return $y.VError;
       },
     });
-    function jT() {
+    function qy() {
       for (var e = [], t = 0; t < arguments.length; t++) e[t] = arguments[t];
       for (
-        var s = Object.assign.apply(Object, BT([{}, zi.basicTypes], e)),
+        var s = Object.assign.apply(Object, jy([{}, zi.basicTypes], e)),
           i = {},
           r = 0,
           a = e;
@@ -17695,12 +17695,12 @@ If you need interactivity, consider converting part of this to a Client Componen
         r++
       )
         for (var u = a[r], d = 0, y = Object.keys(u); d < y.length; d++) {
-          var g = y[d];
-          i[g] = new cp(s, u[g]);
+          var x = y[d];
+          i[x] = new cp(s, u[x]);
         }
       return i;
     }
-    we.createCheckers = jT;
+    we.createCheckers = qy;
     var cp = (function () {
       function e(t, s, i) {
         if (
@@ -17794,7 +17794,7 @@ If you need interactivity, consider converting part of this to a Client Componen
   var up = Z((Gn) => {
     'use strict';
     Object.defineProperty(Gn, '__esModule', {value: !0});
-    function $T(e) {
+    function Ky(e) {
       if (e && e.__esModule) return e;
       var t = {};
       if (e != null)
@@ -17802,9 +17802,9 @@ If you need interactivity, consider converting part of this to a Client Componen
           Object.prototype.hasOwnProperty.call(e, s) && (t[s] = e[s]);
       return (t.default = e), t;
     }
-    var qT = il(),
-      Qe = $T(qT),
-      KT = Qe.union(
+    var Uy = il(),
+      Qe = Ky(Uy),
+      Hy = Qe.union(
         Qe.lit('jsx'),
         Qe.lit('typescript'),
         Qe.lit('flow'),
@@ -17812,10 +17812,10 @@ If you need interactivity, consider converting part of this to a Client Componen
         Qe.lit('react-hot-loader'),
         Qe.lit('jest')
       );
-    Gn.Transform = KT;
-    var UT = Qe.iface([], {compiledFilename: 'string'});
-    Gn.SourceMapOptions = UT;
-    var HT = Qe.iface([], {
+    Gn.Transform = Hy;
+    var Wy = Qe.iface([], {compiledFilename: 'string'});
+    Gn.SourceMapOptions = Wy;
+    var Gy = Qe.iface([], {
       transforms: Qe.array('Transform'),
       disableESTransforms: Qe.opt('boolean'),
       jsxRuntime: Qe.opt(
@@ -17832,33 +17832,33 @@ If you need interactivity, consider converting part of this to a Client Componen
       sourceMapOptions: Qe.opt('SourceMapOptions'),
       filePath: Qe.opt('string'),
     });
-    Gn.Options = HT;
-    var WT = {
+    Gn.Options = Gy;
+    var zy = {
       Transform: Gn.Transform,
       SourceMapOptions: Gn.SourceMapOptions,
       Options: Gn.Options,
     };
-    Gn.default = WT;
+    Gn.default = zy;
   });
   var pp = Z((rl) => {
     'use strict';
     Object.defineProperty(rl, '__esModule', {value: !0});
-    function GT(e) {
+    function Xy(e) {
       return e && e.__esModule ? e : {default: e};
     }
-    var zT = il(),
-      XT = up(),
-      YT = GT(XT),
-      {Options: JT} = zT.createCheckers.call(void 0, YT.default);
-    function QT(e) {
-      JT.strictCheck(e);
+    var Yy = il(),
+      Jy = up(),
+      Qy = Xy(Jy),
+      {Options: Zy} = Yy.createCheckers.call(void 0, Qy.default);
+    function eT(e) {
+      Zy.strictCheck(e);
     }
-    rl.validateOptions = QT;
+    rl.validateOptions = eT;
   });
   var lo = Z((Nn) => {
     'use strict';
     Object.defineProperty(Nn, '__esModule', {value: !0});
-    var ZT = Ji(),
+    var tT = Ji(),
       hp = hi(),
       Mt = xt(),
       Xi = It(),
@@ -17866,10 +17866,10 @@ If you need interactivity, consider converting part of this to a Client Componen
       gt = Zt(),
       Yi = Ns(),
       ol = cs();
-    function ey() {
+    function nT() {
       Mt.next.call(void 0), Yi.parseMaybeAssign.call(void 0, !1);
     }
-    Nn.parseSpread = ey;
+    Nn.parseSpread = nT;
     function fp(e) {
       Mt.next.call(void 0), ll(e);
     }
@@ -17878,12 +17878,12 @@ If you need interactivity, consider converting part of this to a Client Componen
       Yi.parseIdentifier.call(void 0), mp(e);
     }
     Nn.parseBindingIdentifier = dp;
-    function ty() {
+    function sT() {
       Yi.parseIdentifier.call(void 0),
         (gt.state.tokens[gt.state.tokens.length - 1].identifierRole =
           Mt.IdentifierRole.ImportDeclaration);
     }
-    Nn.parseImportedIdentifier = ty;
+    Nn.parseImportedIdentifier = sT;
     function mp(e) {
       let t;
       gt.state.scopeDepth === 0
@@ -17907,7 +17907,7 @@ If you need interactivity, consider converting part of this to a Client Componen
           return;
         }
         case fn.TokenType.bracketL: {
-          Mt.next.call(void 0), Tp(fn.TokenType.bracketR, e, !0);
+          Mt.next.call(void 0), yp(fn.TokenType.bracketR, e, !0);
           return;
         }
         case fn.TokenType.braceL:
@@ -17918,7 +17918,7 @@ If you need interactivity, consider converting part of this to a Client Componen
       }
     }
     Nn.parseBindingAtom = ll;
-    function Tp(e, t, s = !1, i = !1, r = 0) {
+    function yp(e, t, s = !1, i = !1, r = 0) {
       let a = !0,
         u = !1,
         d = gt.state.tokens.length;
@@ -17937,15 +17937,15 @@ If you need interactivity, consider converting part of this to a Client Componen
           if (Mt.eat.call(void 0, e)) break;
           if (Mt.match.call(void 0, fn.TokenType.ellipsis)) {
             fp(t),
-              yp(),
+              Tp(),
               Mt.eat.call(void 0, fn.TokenType.comma),
               ol.expect.call(void 0, e);
             break;
-          } else ny(i, t);
+          } else iT(i, t);
         }
     }
-    Nn.parseBindingList = Tp;
-    function ny(e, t) {
+    Nn.parseBindingList = yp;
+    function iT(e, t) {
       e &&
         hp.tsParseModifiers.call(void 0, [
           Xi.ContextualKeyword._public,
@@ -17955,12 +17955,12 @@ If you need interactivity, consider converting part of this to a Client Componen
           Xi.ContextualKeyword._override,
         ]),
         al(t),
-        yp(),
+        Tp(),
         al(t, !0);
     }
-    function yp() {
+    function Tp() {
       gt.isFlowEnabled
-        ? ZT.flowParseAssignableListItemTypes.call(void 0)
+        ? tT.flowParseAssignableListItemTypes.call(void 0)
         : gt.isTypeScriptEnabled &&
           hp.tsParseAssignableListItemTypes.call(void 0);
     }
@@ -17975,38 +17975,38 @@ If you need interactivity, consider converting part of this to a Client Componen
   var hi = Z((Oe) => {
     'use strict';
     Object.defineProperty(Oe, '__esModule', {value: !0});
-    var k = xt(),
+    var v = xt(),
       oe = It(),
-      T = be(),
+      k = be(),
       I = Zt(),
       _e = Ns(),
       di = lo(),
       Rn = nr(),
       H = cs(),
-      sy = vl();
+      rT = vl();
     function ul() {
-      return k.match.call(void 0, T.TokenType.name);
+      return v.match.call(void 0, k.TokenType.name);
     }
-    function iy() {
+    function oT() {
       return (
-        k.match.call(void 0, T.TokenType.name) ||
-        !!(I.state.type & T.TokenType.IS_KEYWORD) ||
-        k.match.call(void 0, T.TokenType.string) ||
-        k.match.call(void 0, T.TokenType.num) ||
-        k.match.call(void 0, T.TokenType.bigint) ||
-        k.match.call(void 0, T.TokenType.decimal)
+        v.match.call(void 0, k.TokenType.name) ||
+        !!(I.state.type & k.TokenType.IS_KEYWORD) ||
+        v.match.call(void 0, k.TokenType.string) ||
+        v.match.call(void 0, k.TokenType.num) ||
+        v.match.call(void 0, k.TokenType.bigint) ||
+        v.match.call(void 0, k.TokenType.decimal)
       );
     }
     function _p() {
       let e = I.state.snapshot();
       return (
-        k.next.call(void 0),
-        (k.match.call(void 0, T.TokenType.bracketL) ||
-          k.match.call(void 0, T.TokenType.braceL) ||
-          k.match.call(void 0, T.TokenType.star) ||
-          k.match.call(void 0, T.TokenType.ellipsis) ||
-          k.match.call(void 0, T.TokenType.hash) ||
-          iy()) &&
+        v.next.call(void 0),
+        (v.match.call(void 0, k.TokenType.bracketL) ||
+          v.match.call(void 0, k.TokenType.braceL) ||
+          v.match.call(void 0, k.TokenType.star) ||
+          v.match.call(void 0, k.TokenType.ellipsis) ||
+          v.match.call(void 0, k.TokenType.hash) ||
+          oT()) &&
         !H.hasPrecedingLineBreak.call(void 0)
           ? !0
           : (I.state.restoreFromSnapshot(e), !1)
@@ -18017,41 +18017,41 @@ If you need interactivity, consider converting part of this to a Client Componen
     }
     Oe.tsParseModifiers = bp;
     function dl(e) {
-      if (!k.match.call(void 0, T.TokenType.name)) return null;
+      if (!v.match.call(void 0, k.TokenType.name)) return null;
       let t = I.state.contextualKeyword;
       if (e.indexOf(t) !== -1 && _p()) {
         switch (t) {
           case oe.ContextualKeyword._readonly:
             I.state.tokens[I.state.tokens.length - 1].type =
-              T.TokenType._readonly;
+              k.TokenType._readonly;
             break;
           case oe.ContextualKeyword._abstract:
             I.state.tokens[I.state.tokens.length - 1].type =
-              T.TokenType._abstract;
+              k.TokenType._abstract;
             break;
           case oe.ContextualKeyword._static:
             I.state.tokens[I.state.tokens.length - 1].type =
-              T.TokenType._static;
+              k.TokenType._static;
             break;
           case oe.ContextualKeyword._public:
             I.state.tokens[I.state.tokens.length - 1].type =
-              T.TokenType._public;
+              k.TokenType._public;
             break;
           case oe.ContextualKeyword._private:
             I.state.tokens[I.state.tokens.length - 1].type =
-              T.TokenType._private;
+              k.TokenType._private;
             break;
           case oe.ContextualKeyword._protected:
             I.state.tokens[I.state.tokens.length - 1].type =
-              T.TokenType._protected;
+              k.TokenType._protected;
             break;
           case oe.ContextualKeyword._override:
             I.state.tokens[I.state.tokens.length - 1].type =
-              T.TokenType._override;
+              k.TokenType._override;
             break;
           case oe.ContextualKeyword._declare:
             I.state.tokens[I.state.tokens.length - 1].type =
-              T.TokenType._declare;
+              k.TokenType._declare;
             break;
           default:
             break;
@@ -18064,126 +18064,126 @@ If you need interactivity, consider converting part of this to a Client Componen
     function Zi() {
       for (
         _e.parseIdentifier.call(void 0);
-        k.eat.call(void 0, T.TokenType.dot);
+        v.eat.call(void 0, k.TokenType.dot);
 
       )
         _e.parseIdentifier.call(void 0);
     }
-    function ry() {
+    function aT() {
       Zi(),
         !H.hasPrecedingLineBreak.call(void 0) &&
-          k.match.call(void 0, T.TokenType.lessThan) &&
-          Ti();
+          v.match.call(void 0, k.TokenType.lessThan) &&
+          yi();
     }
-    function oy() {
-      k.next.call(void 0), tr();
+    function lT() {
+      v.next.call(void 0), tr();
     }
-    function ay() {
-      k.next.call(void 0);
+    function cT() {
+      v.next.call(void 0);
     }
-    function ly() {
-      H.expect.call(void 0, T.TokenType._typeof),
-        k.match.call(void 0, T.TokenType._import) ? Cp() : Zi(),
+    function uT() {
+      H.expect.call(void 0, k.TokenType._typeof),
+        v.match.call(void 0, k.TokenType._import) ? Cp() : Zi(),
         !H.hasPrecedingLineBreak.call(void 0) &&
-          k.match.call(void 0, T.TokenType.lessThan) &&
-          Ti();
+          v.match.call(void 0, k.TokenType.lessThan) &&
+          yi();
     }
     function Cp() {
-      H.expect.call(void 0, T.TokenType._import),
-        H.expect.call(void 0, T.TokenType.parenL),
-        H.expect.call(void 0, T.TokenType.string),
-        H.expect.call(void 0, T.TokenType.parenR),
-        k.eat.call(void 0, T.TokenType.dot) && Zi(),
-        k.match.call(void 0, T.TokenType.lessThan) && Ti();
+      H.expect.call(void 0, k.TokenType._import),
+        H.expect.call(void 0, k.TokenType.parenL),
+        H.expect.call(void 0, k.TokenType.string),
+        H.expect.call(void 0, k.TokenType.parenR),
+        v.eat.call(void 0, k.TokenType.dot) && Zi(),
+        v.match.call(void 0, k.TokenType.lessThan) && yi();
     }
-    function cy() {
-      k.eat.call(void 0, T.TokenType._const);
-      let e = k.eat.call(void 0, T.TokenType._in),
+    function pT() {
+      v.eat.call(void 0, k.TokenType._const);
+      let e = v.eat.call(void 0, k.TokenType._in),
         t = H.eatContextual.call(void 0, oe.ContextualKeyword._out);
-      k.eat.call(void 0, T.TokenType._const),
-        (e || t) && !k.match.call(void 0, T.TokenType.name)
-          ? (I.state.tokens[I.state.tokens.length - 1].type = T.TokenType.name)
+      v.eat.call(void 0, k.TokenType._const),
+        (e || t) && !v.match.call(void 0, k.TokenType.name)
+          ? (I.state.tokens[I.state.tokens.length - 1].type = k.TokenType.name)
           : _e.parseIdentifier.call(void 0),
-        k.eat.call(void 0, T.TokenType._extends) && rt(),
-        k.eat.call(void 0, T.TokenType.eq) && rt();
+        v.eat.call(void 0, k.TokenType._extends) && rt(),
+        v.eat.call(void 0, k.TokenType.eq) && rt();
     }
     function mi() {
-      k.match.call(void 0, T.TokenType.lessThan) && uo();
+      v.match.call(void 0, k.TokenType.lessThan) && uo();
     }
     Oe.tsTryParseTypeParameters = mi;
     function uo() {
-      let e = k.pushTypeContext.call(void 0, 0);
+      let e = v.pushTypeContext.call(void 0, 0);
       for (
-        k.match.call(void 0, T.TokenType.lessThan) ||
-        k.match.call(void 0, T.TokenType.typeParameterStart)
-          ? k.next.call(void 0)
+        v.match.call(void 0, k.TokenType.lessThan) ||
+        v.match.call(void 0, k.TokenType.typeParameterStart)
+          ? v.next.call(void 0)
           : H.unexpected.call(void 0);
-        !k.eat.call(void 0, T.TokenType.greaterThan) && !I.state.error;
+        !v.eat.call(void 0, k.TokenType.greaterThan) && !I.state.error;
 
       )
-        cy(), k.eat.call(void 0, T.TokenType.comma);
-      k.popTypeContext.call(void 0, e);
+        pT(), v.eat.call(void 0, k.TokenType.comma);
+      v.popTypeContext.call(void 0, e);
     }
     function ml(e) {
-      let t = e === T.TokenType.arrow;
+      let t = e === k.TokenType.arrow;
       mi(),
-        H.expect.call(void 0, T.TokenType.parenL),
+        H.expect.call(void 0, k.TokenType.parenL),
         I.state.scopeDepth++,
-        uy(!1),
+        hT(!1),
         I.state.scopeDepth--,
-        (t || k.match.call(void 0, e)) && Qi(e);
+        (t || v.match.call(void 0, e)) && Qi(e);
     }
-    function uy(e) {
-      di.parseBindingList.call(void 0, T.TokenType.parenR, e);
+    function hT(e) {
+      di.parseBindingList.call(void 0, k.TokenType.parenR, e);
     }
     function co() {
-      k.eat.call(void 0, T.TokenType.comma) || H.semicolon.call(void 0);
+      v.eat.call(void 0, k.TokenType.comma) || H.semicolon.call(void 0);
     }
     function kp() {
-      ml(T.TokenType.colon), co();
+      ml(k.TokenType.colon), co();
     }
-    function py() {
+    function fT() {
       let e = I.state.snapshot();
-      k.next.call(void 0);
+      v.next.call(void 0);
       let t =
-        k.eat.call(void 0, T.TokenType.name) &&
-        k.match.call(void 0, T.TokenType.colon);
+        v.eat.call(void 0, k.TokenType.name) &&
+        v.match.call(void 0, k.TokenType.colon);
       return I.state.restoreFromSnapshot(e), t;
     }
     function wp() {
-      if (!(k.match.call(void 0, T.TokenType.bracketL) && py())) return !1;
-      let e = k.pushTypeContext.call(void 0, 0);
+      if (!(v.match.call(void 0, k.TokenType.bracketL) && fT())) return !1;
+      let e = v.pushTypeContext.call(void 0, 0);
       return (
-        H.expect.call(void 0, T.TokenType.bracketL),
+        H.expect.call(void 0, k.TokenType.bracketL),
         _e.parseIdentifier.call(void 0),
         tr(),
-        H.expect.call(void 0, T.TokenType.bracketR),
+        H.expect.call(void 0, k.TokenType.bracketR),
         er(),
         co(),
-        k.popTypeContext.call(void 0, e),
+        v.popTypeContext.call(void 0, e),
         !0
       );
     }
     function vp(e) {
-      k.eat.call(void 0, T.TokenType.question),
+      v.eat.call(void 0, k.TokenType.question),
         !e &&
-        (k.match.call(void 0, T.TokenType.parenL) ||
-          k.match.call(void 0, T.TokenType.lessThan))
-          ? (ml(T.TokenType.colon), co())
+        (v.match.call(void 0, k.TokenType.parenL) ||
+          v.match.call(void 0, k.TokenType.lessThan))
+          ? (ml(k.TokenType.colon), co())
           : (er(), co());
     }
-    function hy() {
+    function dT() {
       if (
-        k.match.call(void 0, T.TokenType.parenL) ||
-        k.match.call(void 0, T.TokenType.lessThan)
+        v.match.call(void 0, k.TokenType.parenL) ||
+        v.match.call(void 0, k.TokenType.lessThan)
       ) {
         kp();
         return;
       }
-      if (k.match.call(void 0, T.TokenType._new)) {
-        k.next.call(void 0),
-          k.match.call(void 0, T.TokenType.parenL) ||
-          k.match.call(void 0, T.TokenType.lessThan)
+      if (v.match.call(void 0, k.TokenType._new)) {
+        v.next.call(void 0),
+          v.match.call(void 0, k.TokenType.parenL) ||
+          v.match.call(void 0, k.TokenType.lessThan)
             ? kp()
             : vp(!1);
         return;
@@ -18196,90 +18196,90 @@ If you need interactivity, consider converting part of this to a Client Componen
         _e.parsePropertyName.call(void 0, -1),
         vp(e));
     }
-    function fy() {
+    function mT() {
       Sp();
     }
     function Sp() {
       for (
-        H.expect.call(void 0, T.TokenType.braceL);
-        !k.eat.call(void 0, T.TokenType.braceR) && !I.state.error;
+        H.expect.call(void 0, k.TokenType.braceL);
+        !v.eat.call(void 0, k.TokenType.braceR) && !I.state.error;
 
       )
-        hy();
+        dT();
     }
-    function dy() {
+    function yT() {
       let e = I.state.snapshot(),
-        t = my();
+        t = TT();
       return I.state.restoreFromSnapshot(e), t;
     }
-    function my() {
+    function TT() {
       return (
-        k.next.call(void 0),
-        k.eat.call(void 0, T.TokenType.plus) ||
-        k.eat.call(void 0, T.TokenType.minus)
+        v.next.call(void 0),
+        v.eat.call(void 0, k.TokenType.plus) ||
+        v.eat.call(void 0, k.TokenType.minus)
           ? H.isContextual.call(void 0, oe.ContextualKeyword._readonly)
           : (H.isContextual.call(void 0, oe.ContextualKeyword._readonly) &&
-              k.next.call(void 0),
-            !k.match.call(void 0, T.TokenType.bracketL) ||
-            (k.next.call(void 0), !ul())
+              v.next.call(void 0),
+            !v.match.call(void 0, k.TokenType.bracketL) ||
+            (v.next.call(void 0), !ul())
               ? !1
-              : (k.next.call(void 0), k.match.call(void 0, T.TokenType._in)))
+              : (v.next.call(void 0), v.match.call(void 0, k.TokenType._in)))
       );
     }
-    function Ty() {
+    function kT() {
       _e.parseIdentifier.call(void 0),
-        H.expect.call(void 0, T.TokenType._in),
+        H.expect.call(void 0, k.TokenType._in),
         rt();
     }
-    function yy() {
-      H.expect.call(void 0, T.TokenType.braceL),
-        k.match.call(void 0, T.TokenType.plus) ||
-        k.match.call(void 0, T.TokenType.minus)
-          ? (k.next.call(void 0),
+    function vT() {
+      H.expect.call(void 0, k.TokenType.braceL),
+        v.match.call(void 0, k.TokenType.plus) ||
+        v.match.call(void 0, k.TokenType.minus)
+          ? (v.next.call(void 0),
             H.expectContextual.call(void 0, oe.ContextualKeyword._readonly))
           : H.eatContextual.call(void 0, oe.ContextualKeyword._readonly),
-        H.expect.call(void 0, T.TokenType.bracketL),
-        Ty(),
+        H.expect.call(void 0, k.TokenType.bracketL),
+        kT(),
         H.eatContextual.call(void 0, oe.ContextualKeyword._as) && rt(),
-        H.expect.call(void 0, T.TokenType.bracketR),
-        k.match.call(void 0, T.TokenType.plus) ||
-        k.match.call(void 0, T.TokenType.minus)
-          ? (k.next.call(void 0), H.expect.call(void 0, T.TokenType.question))
-          : k.eat.call(void 0, T.TokenType.question),
-        Ny(),
+        H.expect.call(void 0, k.TokenType.bracketR),
+        v.match.call(void 0, k.TokenType.plus) ||
+        v.match.call(void 0, k.TokenType.minus)
+          ? (v.next.call(void 0), H.expect.call(void 0, k.TokenType.question))
+          : v.eat.call(void 0, k.TokenType.question),
+        LT(),
         H.semicolon.call(void 0),
-        H.expect.call(void 0, T.TokenType.braceR);
+        H.expect.call(void 0, k.TokenType.braceR);
     }
-    function ky() {
+    function xT() {
       for (
-        H.expect.call(void 0, T.TokenType.bracketL);
-        !k.eat.call(void 0, T.TokenType.bracketR) && !I.state.error;
+        H.expect.call(void 0, k.TokenType.bracketL);
+        !v.eat.call(void 0, k.TokenType.bracketR) && !I.state.error;
 
       )
-        vy(), k.eat.call(void 0, T.TokenType.comma);
+        gT(), v.eat.call(void 0, k.TokenType.comma);
     }
-    function vy() {
-      k.eat.call(void 0, T.TokenType.ellipsis)
+    function gT() {
+      v.eat.call(void 0, k.TokenType.ellipsis)
         ? rt()
-        : (rt(), k.eat.call(void 0, T.TokenType.question)),
-        k.eat.call(void 0, T.TokenType.colon) && rt();
+        : (rt(), v.eat.call(void 0, k.TokenType.question)),
+        v.eat.call(void 0, k.TokenType.colon) && rt();
     }
-    function xy() {
-      H.expect.call(void 0, T.TokenType.parenL),
+    function _T() {
+      H.expect.call(void 0, k.TokenType.parenL),
         rt(),
-        H.expect.call(void 0, T.TokenType.parenR);
+        H.expect.call(void 0, k.TokenType.parenR);
     }
-    function gy() {
+    function bT() {
       for (
-        k.nextTemplateToken.call(void 0), k.nextTemplateToken.call(void 0);
-        !k.match.call(void 0, T.TokenType.backQuote) && !I.state.error;
+        v.nextTemplateToken.call(void 0), v.nextTemplateToken.call(void 0);
+        !v.match.call(void 0, k.TokenType.backQuote) && !I.state.error;
 
       )
-        H.expect.call(void 0, T.TokenType.dollarBraceL),
+        H.expect.call(void 0, k.TokenType.dollarBraceL),
           rt(),
-          k.nextTemplateToken.call(void 0),
-          k.nextTemplateToken.call(void 0);
-      k.next.call(void 0);
+          v.nextTemplateToken.call(void 0),
+          v.nextTemplateToken.call(void 0);
+      v.next.call(void 0);
     }
     var hs;
     (function (e) {
@@ -18293,93 +18293,93 @@ If you need interactivity, consider converting part of this to a Client Componen
       e === hs.TSAbstractConstructorType &&
         H.expectContextual.call(void 0, oe.ContextualKeyword._abstract),
         (e === hs.TSConstructorType || e === hs.TSAbstractConstructorType) &&
-          H.expect.call(void 0, T.TokenType._new);
+          H.expect.call(void 0, k.TokenType._new);
       let t = I.state.inDisallowConditionalTypesContext;
       (I.state.inDisallowConditionalTypesContext = !1),
-        ml(T.TokenType.arrow),
+        ml(k.TokenType.arrow),
         (I.state.inDisallowConditionalTypesContext = t);
     }
-    function _y() {
+    function CT() {
       switch (I.state.type) {
-        case T.TokenType.name:
-          ry();
+        case k.TokenType.name:
+          aT();
           return;
-        case T.TokenType._void:
-        case T.TokenType._null:
-          k.next.call(void 0);
+        case k.TokenType._void:
+        case k.TokenType._null:
+          v.next.call(void 0);
           return;
-        case T.TokenType.string:
-        case T.TokenType.num:
-        case T.TokenType.bigint:
-        case T.TokenType.decimal:
-        case T.TokenType._true:
-        case T.TokenType._false:
+        case k.TokenType.string:
+        case k.TokenType.num:
+        case k.TokenType.bigint:
+        case k.TokenType.decimal:
+        case k.TokenType._true:
+        case k.TokenType._false:
           _e.parseLiteral.call(void 0);
           return;
-        case T.TokenType.minus:
-          k.next.call(void 0), _e.parseLiteral.call(void 0);
+        case k.TokenType.minus:
+          v.next.call(void 0), _e.parseLiteral.call(void 0);
           return;
-        case T.TokenType._this: {
-          ay(),
+        case k.TokenType._this: {
+          cT(),
             H.isContextual.call(void 0, oe.ContextualKeyword._is) &&
               !H.hasPrecedingLineBreak.call(void 0) &&
-              oy();
+              lT();
           return;
         }
-        case T.TokenType._typeof:
-          ly();
+        case k.TokenType._typeof:
+          uT();
           return;
-        case T.TokenType._import:
+        case k.TokenType._import:
           Cp();
           return;
-        case T.TokenType.braceL:
-          dy() ? yy() : fy();
+        case k.TokenType.braceL:
+          yT() ? vT() : mT();
           return;
-        case T.TokenType.bracketL:
-          ky();
+        case k.TokenType.bracketL:
+          xT();
           return;
-        case T.TokenType.parenL:
-          xy();
+        case k.TokenType.parenL:
+          _T();
           return;
-        case T.TokenType.backQuote:
-          gy();
+        case k.TokenType.backQuote:
+          bT();
           return;
         default:
-          if (I.state.type & T.TokenType.IS_KEYWORD) {
-            k.next.call(void 0),
+          if (I.state.type & k.TokenType.IS_KEYWORD) {
+            v.next.call(void 0),
               (I.state.tokens[I.state.tokens.length - 1].type =
-                T.TokenType.name);
+                k.TokenType.name);
             return;
           }
           break;
       }
       H.unexpected.call(void 0);
     }
-    function by() {
+    function wT() {
       for (
-        _y();
+        CT();
         !H.hasPrecedingLineBreak.call(void 0) &&
-        k.eat.call(void 0, T.TokenType.bracketL);
+        v.eat.call(void 0, k.TokenType.bracketL);
 
       )
-        k.eat.call(void 0, T.TokenType.bracketR) ||
-          (rt(), H.expect.call(void 0, T.TokenType.bracketR));
+        v.eat.call(void 0, k.TokenType.bracketR) ||
+          (rt(), H.expect.call(void 0, k.TokenType.bracketR));
     }
-    function Cy() {
+    function ST() {
       if (
         (H.expectContextual.call(void 0, oe.ContextualKeyword._infer),
         _e.parseIdentifier.call(void 0),
-        k.match.call(void 0, T.TokenType._extends))
+        v.match.call(void 0, k.TokenType._extends))
       ) {
         let e = I.state.snapshot();
-        H.expect.call(void 0, T.TokenType._extends);
+        H.expect.call(void 0, k.TokenType._extends);
         let t = I.state.inDisallowConditionalTypesContext;
         (I.state.inDisallowConditionalTypesContext = !0),
           rt(),
           (I.state.inDisallowConditionalTypesContext = t),
           (I.state.error ||
             (!I.state.inDisallowConditionalTypesContext &&
-              k.match.call(void 0, T.TokenType.question))) &&
+              v.match.call(void 0, k.TokenType.question))) &&
             I.state.restoreFromSnapshot(e);
       }
     }
@@ -18389,119 +18389,119 @@ If you need interactivity, consider converting part of this to a Client Componen
         H.isContextual.call(void 0, oe.ContextualKeyword._unique) ||
         H.isContextual.call(void 0, oe.ContextualKeyword._readonly)
       )
-        k.next.call(void 0), pl();
-      else if (H.isContextual.call(void 0, oe.ContextualKeyword._infer)) Cy();
+        v.next.call(void 0), pl();
+      else if (H.isContextual.call(void 0, oe.ContextualKeyword._infer)) ST();
       else {
         let e = I.state.inDisallowConditionalTypesContext;
         (I.state.inDisallowConditionalTypesContext = !1),
-          by(),
+          wT(),
           (I.state.inDisallowConditionalTypesContext = e);
       }
     }
     function xp() {
       if (
-        (k.eat.call(void 0, T.TokenType.bitwiseAND),
+        (v.eat.call(void 0, k.TokenType.bitwiseAND),
         pl(),
-        k.match.call(void 0, T.TokenType.bitwiseAND))
+        v.match.call(void 0, k.TokenType.bitwiseAND))
       )
-        for (; k.eat.call(void 0, T.TokenType.bitwiseAND); ) pl();
+        for (; v.eat.call(void 0, k.TokenType.bitwiseAND); ) pl();
     }
-    function wy() {
+    function IT() {
       if (
-        (k.eat.call(void 0, T.TokenType.bitwiseOR),
+        (v.eat.call(void 0, k.TokenType.bitwiseOR),
         xp(),
-        k.match.call(void 0, T.TokenType.bitwiseOR))
+        v.match.call(void 0, k.TokenType.bitwiseOR))
       )
-        for (; k.eat.call(void 0, T.TokenType.bitwiseOR); ) xp();
+        for (; v.eat.call(void 0, k.TokenType.bitwiseOR); ) xp();
     }
-    function Sy() {
-      return k.match.call(void 0, T.TokenType.lessThan)
+    function ET() {
+      return v.match.call(void 0, k.TokenType.lessThan)
         ? !0
-        : k.match.call(void 0, T.TokenType.parenL) && Ey();
+        : v.match.call(void 0, k.TokenType.parenL) && PT();
     }
-    function Iy() {
+    function AT() {
       if (
-        k.match.call(void 0, T.TokenType.name) ||
-        k.match.call(void 0, T.TokenType._this)
+        v.match.call(void 0, k.TokenType.name) ||
+        v.match.call(void 0, k.TokenType._this)
       )
-        return k.next.call(void 0), !0;
+        return v.next.call(void 0), !0;
       if (
-        k.match.call(void 0, T.TokenType.braceL) ||
-        k.match.call(void 0, T.TokenType.bracketL)
+        v.match.call(void 0, k.TokenType.braceL) ||
+        v.match.call(void 0, k.TokenType.bracketL)
       ) {
         let e = 1;
-        for (k.next.call(void 0); e > 0 && !I.state.error; )
-          k.match.call(void 0, T.TokenType.braceL) ||
-          k.match.call(void 0, T.TokenType.bracketL)
+        for (v.next.call(void 0); e > 0 && !I.state.error; )
+          v.match.call(void 0, k.TokenType.braceL) ||
+          v.match.call(void 0, k.TokenType.bracketL)
             ? e++
-            : (k.match.call(void 0, T.TokenType.braceR) ||
-                k.match.call(void 0, T.TokenType.bracketR)) &&
+            : (v.match.call(void 0, k.TokenType.braceR) ||
+                v.match.call(void 0, k.TokenType.bracketR)) &&
               e--,
-            k.next.call(void 0);
+            v.next.call(void 0);
         return !0;
       }
       return !1;
     }
-    function Ey() {
+    function PT() {
       let e = I.state.snapshot(),
-        t = Ay();
+        t = NT();
       return I.state.restoreFromSnapshot(e), t;
     }
-    function Ay() {
+    function NT() {
       return (
-        k.next.call(void 0),
+        v.next.call(void 0),
         !!(
-          k.match.call(void 0, T.TokenType.parenR) ||
-          k.match.call(void 0, T.TokenType.ellipsis) ||
-          (Iy() &&
-            (k.match.call(void 0, T.TokenType.colon) ||
-              k.match.call(void 0, T.TokenType.comma) ||
-              k.match.call(void 0, T.TokenType.question) ||
-              k.match.call(void 0, T.TokenType.eq) ||
-              (k.match.call(void 0, T.TokenType.parenR) &&
-                (k.next.call(void 0),
-                k.match.call(void 0, T.TokenType.arrow)))))
+          v.match.call(void 0, k.TokenType.parenR) ||
+          v.match.call(void 0, k.TokenType.ellipsis) ||
+          (AT() &&
+            (v.match.call(void 0, k.TokenType.colon) ||
+              v.match.call(void 0, k.TokenType.comma) ||
+              v.match.call(void 0, k.TokenType.question) ||
+              v.match.call(void 0, k.TokenType.eq) ||
+              (v.match.call(void 0, k.TokenType.parenR) &&
+                (v.next.call(void 0),
+                v.match.call(void 0, k.TokenType.arrow)))))
         )
       );
     }
     function Qi(e) {
-      let t = k.pushTypeContext.call(void 0, 0);
-      H.expect.call(void 0, e), Ry() || rt(), k.popTypeContext.call(void 0, t);
+      let t = v.pushTypeContext.call(void 0, 0);
+      H.expect.call(void 0, e), OT() || rt(), v.popTypeContext.call(void 0, t);
     }
-    function Py() {
-      k.match.call(void 0, T.TokenType.colon) && Qi(T.TokenType.colon);
+    function RT() {
+      v.match.call(void 0, k.TokenType.colon) && Qi(k.TokenType.colon);
     }
     function er() {
-      k.match.call(void 0, T.TokenType.colon) && tr();
+      v.match.call(void 0, k.TokenType.colon) && tr();
     }
     Oe.tsTryParseTypeAnnotation = er;
-    function Ny() {
-      k.eat.call(void 0, T.TokenType.colon) && rt();
+    function LT() {
+      v.eat.call(void 0, k.TokenType.colon) && rt();
     }
-    function Ry() {
+    function OT() {
       let e = I.state.snapshot();
       return H.isContextual.call(void 0, oe.ContextualKeyword._asserts)
-        ? (k.next.call(void 0),
+        ? (v.next.call(void 0),
           H.eatContextual.call(void 0, oe.ContextualKeyword._is)
             ? (rt(), !0)
-            : ul() || k.match.call(void 0, T.TokenType._this)
-            ? (k.next.call(void 0),
+            : ul() || v.match.call(void 0, k.TokenType._this)
+            ? (v.next.call(void 0),
               H.eatContextual.call(void 0, oe.ContextualKeyword._is) && rt(),
               !0)
             : (I.state.restoreFromSnapshot(e), !1))
-        : ul() || k.match.call(void 0, T.TokenType._this)
-        ? (k.next.call(void 0),
+        : ul() || v.match.call(void 0, k.TokenType._this)
+        ? (v.next.call(void 0),
           H.isContextual.call(void 0, oe.ContextualKeyword._is) &&
           !H.hasPrecedingLineBreak.call(void 0)
-            ? (k.next.call(void 0), rt(), !0)
+            ? (v.next.call(void 0), rt(), !0)
             : (I.state.restoreFromSnapshot(e), !1))
         : !1;
     }
     function tr() {
-      let e = k.pushTypeContext.call(void 0, 0);
-      H.expect.call(void 0, T.TokenType.colon),
+      let e = v.pushTypeContext.call(void 0, 0);
+      H.expect.call(void 0, k.TokenType.colon),
         rt(),
-        k.popTypeContext.call(void 0, e);
+        v.popTypeContext.call(void 0, e);
     }
     Oe.tsParseTypeAnnotation = tr;
     function rt() {
@@ -18509,203 +18509,203 @@ If you need interactivity, consider converting part of this to a Client Componen
         (hl(),
         I.state.inDisallowConditionalTypesContext ||
           H.hasPrecedingLineBreak.call(void 0) ||
-          !k.eat.call(void 0, T.TokenType._extends))
+          !v.eat.call(void 0, k.TokenType._extends))
       )
         return;
       let e = I.state.inDisallowConditionalTypesContext;
       (I.state.inDisallowConditionalTypesContext = !0),
         hl(),
         (I.state.inDisallowConditionalTypesContext = e),
-        H.expect.call(void 0, T.TokenType.question),
+        H.expect.call(void 0, k.TokenType.question),
         rt(),
-        H.expect.call(void 0, T.TokenType.colon),
+        H.expect.call(void 0, k.TokenType.colon),
         rt();
     }
     Oe.tsParseType = rt;
-    function Ly() {
+    function DT() {
       return (
         H.isContextual.call(void 0, oe.ContextualKeyword._abstract) &&
-        k.lookaheadType.call(void 0) === T.TokenType._new
+        v.lookaheadType.call(void 0) === k.TokenType._new
       );
     }
     function hl() {
-      if (Sy()) {
+      if (ET()) {
         cl(hs.TSFunctionType);
         return;
       }
-      if (k.match.call(void 0, T.TokenType._new)) {
+      if (v.match.call(void 0, k.TokenType._new)) {
         cl(hs.TSConstructorType);
         return;
-      } else if (Ly()) {
+      } else if (DT()) {
         cl(hs.TSAbstractConstructorType);
         return;
       }
-      wy();
+      IT();
     }
     Oe.tsParseNonConditionalType = hl;
-    function Oy() {
-      let e = k.pushTypeContext.call(void 0, 1);
+    function MT() {
+      let e = v.pushTypeContext.call(void 0, 1);
       rt(),
-        H.expect.call(void 0, T.TokenType.greaterThan),
-        k.popTypeContext.call(void 0, e),
+        H.expect.call(void 0, k.TokenType.greaterThan),
+        v.popTypeContext.call(void 0, e),
         _e.parseMaybeUnary.call(void 0);
     }
-    Oe.tsParseTypeAssertion = Oy;
-    function Dy() {
-      if (k.eat.call(void 0, T.TokenType.jsxTagStart)) {
+    Oe.tsParseTypeAssertion = MT;
+    function FT() {
+      if (v.eat.call(void 0, k.TokenType.jsxTagStart)) {
         I.state.tokens[I.state.tokens.length - 1].type =
-          T.TokenType.typeParameterStart;
-        let e = k.pushTypeContext.call(void 0, 1);
+          k.TokenType.typeParameterStart;
+        let e = v.pushTypeContext.call(void 0, 1);
         for (
           ;
-          !k.match.call(void 0, T.TokenType.greaterThan) && !I.state.error;
+          !v.match.call(void 0, k.TokenType.greaterThan) && !I.state.error;
 
         )
-          rt(), k.eat.call(void 0, T.TokenType.comma);
-        sy.nextJSXTagToken.call(void 0), k.popTypeContext.call(void 0, e);
+          rt(), v.eat.call(void 0, k.TokenType.comma);
+        rT.nextJSXTagToken.call(void 0), v.popTypeContext.call(void 0, e);
       }
     }
-    Oe.tsTryParseJSXTypeArgument = Dy;
+    Oe.tsTryParseJSXTypeArgument = FT;
     function Ip() {
-      for (; !k.match.call(void 0, T.TokenType.braceL) && !I.state.error; )
-        My(), k.eat.call(void 0, T.TokenType.comma);
+      for (; !v.match.call(void 0, k.TokenType.braceL) && !I.state.error; )
+        BT(), v.eat.call(void 0, k.TokenType.comma);
     }
-    function My() {
-      Zi(), k.match.call(void 0, T.TokenType.lessThan) && Ti();
+    function BT() {
+      Zi(), v.match.call(void 0, k.TokenType.lessThan) && yi();
     }
-    function Fy() {
+    function VT() {
       di.parseBindingIdentifier.call(void 0, !1),
         mi(),
-        k.eat.call(void 0, T.TokenType._extends) && Ip(),
+        v.eat.call(void 0, k.TokenType._extends) && Ip(),
         Sp();
     }
-    function By() {
+    function jT() {
       di.parseBindingIdentifier.call(void 0, !1),
         mi(),
-        H.expect.call(void 0, T.TokenType.eq),
+        H.expect.call(void 0, k.TokenType.eq),
         rt(),
         H.semicolon.call(void 0);
     }
-    function Vy() {
+    function $T() {
       if (
-        (k.match.call(void 0, T.TokenType.string)
+        (v.match.call(void 0, k.TokenType.string)
           ? _e.parseLiteral.call(void 0)
           : _e.parseIdentifier.call(void 0),
-        k.eat.call(void 0, T.TokenType.eq))
+        v.eat.call(void 0, k.TokenType.eq))
       ) {
         let e = I.state.tokens.length - 1;
         _e.parseMaybeAssign.call(void 0),
           (I.state.tokens[e].rhsEndIndex = I.state.tokens.length);
       }
     }
-    function Tl() {
+    function yl() {
       for (
         di.parseBindingIdentifier.call(void 0, !1),
-          H.expect.call(void 0, T.TokenType.braceL);
-        !k.eat.call(void 0, T.TokenType.braceR) && !I.state.error;
+          H.expect.call(void 0, k.TokenType.braceL);
+        !v.eat.call(void 0, k.TokenType.braceR) && !I.state.error;
 
       )
-        Vy(), k.eat.call(void 0, T.TokenType.comma);
+        $T(), v.eat.call(void 0, k.TokenType.comma);
     }
-    function yl() {
-      H.expect.call(void 0, T.TokenType.braceL),
-        Rn.parseBlockBody.call(void 0, T.TokenType.braceR);
+    function Tl() {
+      H.expect.call(void 0, k.TokenType.braceL),
+        Rn.parseBlockBody.call(void 0, k.TokenType.braceR);
     }
     function fl() {
       di.parseBindingIdentifier.call(void 0, !1),
-        k.eat.call(void 0, T.TokenType.dot) ? fl() : yl();
+        v.eat.call(void 0, k.TokenType.dot) ? fl() : Tl();
     }
     function Ep() {
       H.isContextual.call(void 0, oe.ContextualKeyword._global)
         ? _e.parseIdentifier.call(void 0)
-        : k.match.call(void 0, T.TokenType.string)
+        : v.match.call(void 0, k.TokenType.string)
         ? _e.parseExprAtom.call(void 0)
         : H.unexpected.call(void 0),
-        k.match.call(void 0, T.TokenType.braceL)
-          ? yl()
+        v.match.call(void 0, k.TokenType.braceL)
+          ? Tl()
           : H.semicolon.call(void 0);
     }
     function Ap() {
       di.parseImportedIdentifier.call(void 0),
-        H.expect.call(void 0, T.TokenType.eq),
-        $y(),
+        H.expect.call(void 0, k.TokenType.eq),
+        KT(),
         H.semicolon.call(void 0);
     }
     Oe.tsParseImportEqualsDeclaration = Ap;
-    function jy() {
+    function qT() {
       return (
         H.isContextual.call(void 0, oe.ContextualKeyword._require) &&
-        k.lookaheadType.call(void 0) === T.TokenType.parenL
+        v.lookaheadType.call(void 0) === k.TokenType.parenL
       );
     }
-    function $y() {
-      jy() ? qy() : Zi();
+    function KT() {
+      qT() ? UT() : Zi();
     }
-    function qy() {
+    function UT() {
       H.expectContextual.call(void 0, oe.ContextualKeyword._require),
-        H.expect.call(void 0, T.TokenType.parenL),
-        k.match.call(void 0, T.TokenType.string) || H.unexpected.call(void 0),
+        H.expect.call(void 0, k.TokenType.parenL),
+        v.match.call(void 0, k.TokenType.string) || H.unexpected.call(void 0),
         _e.parseLiteral.call(void 0),
-        H.expect.call(void 0, T.TokenType.parenR);
+        H.expect.call(void 0, k.TokenType.parenR);
     }
-    function Ky() {
+    function HT() {
       if (H.isLineTerminator.call(void 0)) return !1;
       switch (I.state.type) {
-        case T.TokenType._function: {
-          let e = k.pushTypeContext.call(void 0, 1);
-          k.next.call(void 0);
+        case k.TokenType._function: {
+          let e = v.pushTypeContext.call(void 0, 1);
+          v.next.call(void 0);
           let t = I.state.start;
           return (
             Rn.parseFunction.call(void 0, t, !0),
-            k.popTypeContext.call(void 0, e),
+            v.popTypeContext.call(void 0, e),
             !0
           );
         }
-        case T.TokenType._class: {
-          let e = k.pushTypeContext.call(void 0, 1);
+        case k.TokenType._class: {
+          let e = v.pushTypeContext.call(void 0, 1);
           return (
             Rn.parseClass.call(void 0, !0, !1),
-            k.popTypeContext.call(void 0, e),
+            v.popTypeContext.call(void 0, e),
             !0
           );
         }
-        case T.TokenType._const:
+        case k.TokenType._const:
           if (
-            k.match.call(void 0, T.TokenType._const) &&
+            v.match.call(void 0, k.TokenType._const) &&
             H.isLookaheadContextual.call(void 0, oe.ContextualKeyword._enum)
           ) {
-            let e = k.pushTypeContext.call(void 0, 1);
+            let e = v.pushTypeContext.call(void 0, 1);
             return (
-              H.expect.call(void 0, T.TokenType._const),
+              H.expect.call(void 0, k.TokenType._const),
               H.expectContextual.call(void 0, oe.ContextualKeyword._enum),
               (I.state.tokens[I.state.tokens.length - 1].type =
-                T.TokenType._enum),
-              Tl(),
-              k.popTypeContext.call(void 0, e),
+                k.TokenType._enum),
+              yl(),
+              v.popTypeContext.call(void 0, e),
               !0
             );
           }
-        case T.TokenType._var:
-        case T.TokenType._let: {
-          let e = k.pushTypeContext.call(void 0, 1);
+        case k.TokenType._var:
+        case k.TokenType._let: {
+          let e = v.pushTypeContext.call(void 0, 1);
           return (
             Rn.parseVarStatement.call(
               void 0,
-              I.state.type !== T.TokenType._var
+              I.state.type !== k.TokenType._var
             ),
-            k.popTypeContext.call(void 0, e),
+            v.popTypeContext.call(void 0, e),
             !0
           );
         }
-        case T.TokenType.name: {
-          let e = k.pushTypeContext.call(void 0, 1),
+        case k.TokenType.name: {
+          let e = v.pushTypeContext.call(void 0, 1),
             t = I.state.contextualKeyword,
             s = !1;
           return (
             t === oe.ContextualKeyword._global
               ? (Ep(), (s = !0))
               : (s = po(t, !0)),
-            k.popTypeContext.call(void 0, e),
+            v.popTypeContext.call(void 0, e),
             s
           );
         }
@@ -18716,15 +18716,15 @@ If you need interactivity, consider converting part of this to a Client Componen
     function gp() {
       return po(I.state.contextualKeyword, !0);
     }
-    function Uy(e) {
+    function WT(e) {
       switch (e) {
         case oe.ContextualKeyword._declare: {
           let t = I.state.tokens.length - 1;
-          if (Ky()) return (I.state.tokens[t].type = T.TokenType._declare), !0;
+          if (HT()) return (I.state.tokens[t].type = k.TokenType._declare), !0;
           break;
         }
         case oe.ContextualKeyword._global:
-          if (k.match.call(void 0, T.TokenType.braceL)) return yl(), !0;
+          if (v.match.call(void 0, k.TokenType.braceL)) return Tl(), !0;
           break;
         default:
           return po(e, !1);
@@ -18734,50 +18734,50 @@ If you need interactivity, consider converting part of this to a Client Componen
     function po(e, t) {
       switch (e) {
         case oe.ContextualKeyword._abstract:
-          if (fi(t) && k.match.call(void 0, T.TokenType._class))
+          if (fi(t) && v.match.call(void 0, k.TokenType._class))
             return (
               (I.state.tokens[I.state.tokens.length - 1].type =
-                T.TokenType._abstract),
+                k.TokenType._abstract),
               Rn.parseClass.call(void 0, !0, !1),
               !0
             );
           break;
         case oe.ContextualKeyword._enum:
-          if (fi(t) && k.match.call(void 0, T.TokenType.name))
+          if (fi(t) && v.match.call(void 0, k.TokenType.name))
             return (
               (I.state.tokens[I.state.tokens.length - 1].type =
-                T.TokenType._enum),
-              Tl(),
+                k.TokenType._enum),
+              yl(),
               !0
             );
           break;
         case oe.ContextualKeyword._interface:
-          if (fi(t) && k.match.call(void 0, T.TokenType.name)) {
-            let s = k.pushTypeContext.call(void 0, t ? 2 : 1);
-            return Fy(), k.popTypeContext.call(void 0, s), !0;
+          if (fi(t) && v.match.call(void 0, k.TokenType.name)) {
+            let s = v.pushTypeContext.call(void 0, t ? 2 : 1);
+            return VT(), v.popTypeContext.call(void 0, s), !0;
           }
           break;
         case oe.ContextualKeyword._module:
           if (fi(t)) {
-            if (k.match.call(void 0, T.TokenType.string)) {
-              let s = k.pushTypeContext.call(void 0, t ? 2 : 1);
-              return Ep(), k.popTypeContext.call(void 0, s), !0;
-            } else if (k.match.call(void 0, T.TokenType.name)) {
-              let s = k.pushTypeContext.call(void 0, t ? 2 : 1);
-              return fl(), k.popTypeContext.call(void 0, s), !0;
+            if (v.match.call(void 0, k.TokenType.string)) {
+              let s = v.pushTypeContext.call(void 0, t ? 2 : 1);
+              return Ep(), v.popTypeContext.call(void 0, s), !0;
+            } else if (v.match.call(void 0, k.TokenType.name)) {
+              let s = v.pushTypeContext.call(void 0, t ? 2 : 1);
+              return fl(), v.popTypeContext.call(void 0, s), !0;
             }
           }
           break;
         case oe.ContextualKeyword._namespace:
-          if (fi(t) && k.match.call(void 0, T.TokenType.name)) {
-            let s = k.pushTypeContext.call(void 0, t ? 2 : 1);
-            return fl(), k.popTypeContext.call(void 0, s), !0;
+          if (fi(t) && v.match.call(void 0, k.TokenType.name)) {
+            let s = v.pushTypeContext.call(void 0, t ? 2 : 1);
+            return fl(), v.popTypeContext.call(void 0, s), !0;
           }
           break;
         case oe.ContextualKeyword._type:
-          if (fi(t) && k.match.call(void 0, T.TokenType.name)) {
-            let s = k.pushTypeContext.call(void 0, t ? 2 : 1);
-            return By(), k.popTypeContext.call(void 0, s), !0;
+          if (fi(t) && v.match.call(void 0, k.TokenType.name)) {
+            let s = v.pushTypeContext.call(void 0, t ? 2 : 1);
+            return jT(), v.popTypeContext.call(void 0, s), !0;
           }
           break;
         default:
@@ -18786,37 +18786,37 @@ If you need interactivity, consider converting part of this to a Client Componen
       return !1;
     }
     function fi(e) {
-      return e ? (k.next.call(void 0), !0) : !H.isLineTerminator.call(void 0);
+      return e ? (v.next.call(void 0), !0) : !H.isLineTerminator.call(void 0);
     }
-    function Hy() {
+    function GT() {
       let e = I.state.snapshot();
       return (
         uo(),
         Rn.parseFunctionParams.call(void 0),
-        Py(),
-        H.expect.call(void 0, T.TokenType.arrow),
+        RT(),
+        H.expect.call(void 0, k.TokenType.arrow),
         I.state.error
           ? (I.state.restoreFromSnapshot(e), !1)
           : (_e.parseFunctionBody.call(void 0, !0), !0)
       );
     }
     function kl() {
-      I.state.type === T.TokenType.bitShiftL &&
-        ((I.state.pos -= 1), k.finishToken.call(void 0, T.TokenType.lessThan)),
-        Ti();
+      I.state.type === k.TokenType.bitShiftL &&
+        ((I.state.pos -= 1), v.finishToken.call(void 0, k.TokenType.lessThan)),
+        yi();
     }
-    function Ti() {
-      let e = k.pushTypeContext.call(void 0, 0);
+    function yi() {
+      let e = v.pushTypeContext.call(void 0, 0);
       for (
-        H.expect.call(void 0, T.TokenType.lessThan);
-        !k.eat.call(void 0, T.TokenType.greaterThan) && !I.state.error;
+        H.expect.call(void 0, k.TokenType.lessThan);
+        !v.eat.call(void 0, k.TokenType.greaterThan) && !I.state.error;
 
       )
-        rt(), k.eat.call(void 0, T.TokenType.comma);
-      k.popTypeContext.call(void 0, e);
+        rt(), v.eat.call(void 0, k.TokenType.comma);
+      v.popTypeContext.call(void 0, e);
     }
-    function Wy() {
-      if (k.match.call(void 0, T.TokenType.name))
+    function zT() {
+      if (v.match.call(void 0, k.TokenType.name))
         switch (I.state.contextualKeyword) {
           case oe.ContextualKeyword._abstract:
           case oe.ContextualKeyword._declare:
@@ -18831,11 +18831,11 @@ If you need interactivity, consider converting part of this to a Client Componen
         }
       return !1;
     }
-    Oe.tsIsDeclarationStart = Wy;
-    function Gy(e, t) {
+    Oe.tsIsDeclarationStart = zT;
+    function XT(e, t) {
       if (
-        (k.match.call(void 0, T.TokenType.colon) && Qi(T.TokenType.colon),
-        !k.match.call(void 0, T.TokenType.braceL) &&
+        (v.match.call(void 0, k.TokenType.colon) && Qi(k.TokenType.colon),
+        !v.match.call(void 0, k.TokenType.braceL) &&
           H.isLineTerminator.call(void 0))
       ) {
         let s = I.state.tokens.length - 1;
@@ -18843,8 +18843,8 @@ If you need interactivity, consider converting part of this to a Client Componen
           ;
           s >= 0 &&
           (I.state.tokens[s].start >= e ||
-            I.state.tokens[s].type === T.TokenType._default ||
-            I.state.tokens[s].type === T.TokenType._export);
+            I.state.tokens[s].type === k.TokenType._default ||
+            I.state.tokens[s].type === k.TokenType._export);
 
         )
           (I.state.tokens[s].isType = !0), s--;
@@ -18852,33 +18852,33 @@ If you need interactivity, consider converting part of this to a Client Componen
       }
       _e.parseFunctionBody.call(void 0, !1, t);
     }
-    Oe.tsParseFunctionBodyAndFinish = Gy;
-    function zy(e, t, s) {
+    Oe.tsParseFunctionBodyAndFinish = XT;
+    function YT(e, t, s) {
       if (
         !H.hasPrecedingLineBreak.call(void 0) &&
-        k.eat.call(void 0, T.TokenType.bang)
+        v.eat.call(void 0, k.TokenType.bang)
       ) {
         I.state.tokens[I.state.tokens.length - 1].type =
-          T.TokenType.nonNullAssertion;
+          k.TokenType.nonNullAssertion;
         return;
       }
       if (
-        k.match.call(void 0, T.TokenType.lessThan) ||
-        k.match.call(void 0, T.TokenType.bitShiftL)
+        v.match.call(void 0, k.TokenType.lessThan) ||
+        v.match.call(void 0, k.TokenType.bitShiftL)
       ) {
         let i = I.state.snapshot();
-        if (!t && _e.atPossibleAsync.call(void 0) && Hy()) return;
+        if (!t && _e.atPossibleAsync.call(void 0) && GT()) return;
         if (
           (kl(),
-          !t && k.eat.call(void 0, T.TokenType.parenL)
+          !t && v.eat.call(void 0, k.TokenType.parenL)
             ? ((I.state.tokens[I.state.tokens.length - 1].subscriptStartIndex =
                 e),
               _e.parseCallExpressionArguments.call(void 0))
-            : k.match.call(void 0, T.TokenType.backQuote)
+            : v.match.call(void 0, k.TokenType.backQuote)
             ? _e.parseTemplate.call(void 0)
-            : (I.state.type === T.TokenType.greaterThan ||
-                (I.state.type !== T.TokenType.parenL &&
-                  I.state.type & T.TokenType.IS_EXPRESSION_START &&
+            : (I.state.type === k.TokenType.greaterThan ||
+                (I.state.type !== k.TokenType.parenL &&
+                  I.state.type & k.TokenType.IS_EXPRESSION_START &&
                   !H.hasPrecedingLineBreak.call(void 0))) &&
               H.unexpected.call(void 0),
           I.state.error)
@@ -18887,27 +18887,27 @@ If you need interactivity, consider converting part of this to a Client Componen
         else return;
       } else
         !t &&
-          k.match.call(void 0, T.TokenType.questionDot) &&
-          k.lookaheadType.call(void 0) === T.TokenType.lessThan &&
-          (k.next.call(void 0),
+          v.match.call(void 0, k.TokenType.questionDot) &&
+          v.lookaheadType.call(void 0) === k.TokenType.lessThan &&
+          (v.next.call(void 0),
           (I.state.tokens[e].isOptionalChainStart = !0),
           (I.state.tokens[I.state.tokens.length - 1].subscriptStartIndex = e),
-          Ti(),
-          H.expect.call(void 0, T.TokenType.parenL),
+          yi(),
+          H.expect.call(void 0, k.TokenType.parenL),
           _e.parseCallExpressionArguments.call(void 0));
       _e.baseParseSubscript.call(void 0, e, t, s);
     }
-    Oe.tsParseSubscript = zy;
-    function Xy() {
-      if (k.eat.call(void 0, T.TokenType._import))
+    Oe.tsParseSubscript = YT;
+    function JT() {
+      if (v.eat.call(void 0, k.TokenType._import))
         return (
           H.isContextual.call(void 0, oe.ContextualKeyword._type) &&
-            k.lookaheadType.call(void 0) !== T.TokenType.eq &&
+            v.lookaheadType.call(void 0) !== k.TokenType.eq &&
             H.expectContextual.call(void 0, oe.ContextualKeyword._type),
           Ap(),
           !0
         );
-      if (k.eat.call(void 0, T.TokenType.eq))
+      if (v.eat.call(void 0, k.TokenType.eq))
         return _e.parseExpression.call(void 0), H.semicolon.call(void 0), !0;
       if (H.eatContextual.call(void 0, oe.ContextualKeyword._as))
         return (
@@ -18917,137 +18917,137 @@ If you need interactivity, consider converting part of this to a Client Componen
           !0
         );
       if (H.isContextual.call(void 0, oe.ContextualKeyword._type)) {
-        let e = k.lookaheadType.call(void 0);
-        (e === T.TokenType.braceL || e === T.TokenType.star) &&
-          k.next.call(void 0);
+        let e = v.lookaheadType.call(void 0);
+        (e === k.TokenType.braceL || e === k.TokenType.star) &&
+          v.next.call(void 0);
       }
       return !1;
     }
-    Oe.tsTryParseExport = Xy;
-    function Yy() {
+    Oe.tsTryParseExport = JT;
+    function QT() {
       if (
         (_e.parseIdentifier.call(void 0),
-        k.match.call(void 0, T.TokenType.comma) ||
-          k.match.call(void 0, T.TokenType.braceR))
+        v.match.call(void 0, k.TokenType.comma) ||
+          v.match.call(void 0, k.TokenType.braceR))
       ) {
         I.state.tokens[I.state.tokens.length - 1].identifierRole =
-          k.IdentifierRole.ImportDeclaration;
+          v.IdentifierRole.ImportDeclaration;
         return;
       }
       if (
         (_e.parseIdentifier.call(void 0),
-        k.match.call(void 0, T.TokenType.comma) ||
-          k.match.call(void 0, T.TokenType.braceR))
+        v.match.call(void 0, k.TokenType.comma) ||
+          v.match.call(void 0, k.TokenType.braceR))
       ) {
         (I.state.tokens[I.state.tokens.length - 1].identifierRole =
-          k.IdentifierRole.ImportDeclaration),
+          v.IdentifierRole.ImportDeclaration),
           (I.state.tokens[I.state.tokens.length - 2].isType = !0),
           (I.state.tokens[I.state.tokens.length - 1].isType = !0);
         return;
       }
       if (
         (_e.parseIdentifier.call(void 0),
-        k.match.call(void 0, T.TokenType.comma) ||
-          k.match.call(void 0, T.TokenType.braceR))
+        v.match.call(void 0, k.TokenType.comma) ||
+          v.match.call(void 0, k.TokenType.braceR))
       ) {
         (I.state.tokens[I.state.tokens.length - 3].identifierRole =
-          k.IdentifierRole.ImportAccess),
+          v.IdentifierRole.ImportAccess),
           (I.state.tokens[I.state.tokens.length - 1].identifierRole =
-            k.IdentifierRole.ImportDeclaration);
+            v.IdentifierRole.ImportDeclaration);
         return;
       }
       _e.parseIdentifier.call(void 0),
         (I.state.tokens[I.state.tokens.length - 3].identifierRole =
-          k.IdentifierRole.ImportAccess),
+          v.IdentifierRole.ImportAccess),
         (I.state.tokens[I.state.tokens.length - 1].identifierRole =
-          k.IdentifierRole.ImportDeclaration),
+          v.IdentifierRole.ImportDeclaration),
         (I.state.tokens[I.state.tokens.length - 4].isType = !0),
         (I.state.tokens[I.state.tokens.length - 3].isType = !0),
         (I.state.tokens[I.state.tokens.length - 2].isType = !0),
         (I.state.tokens[I.state.tokens.length - 1].isType = !0);
     }
-    Oe.tsParseImportSpecifier = Yy;
-    function Jy() {
+    Oe.tsParseImportSpecifier = QT;
+    function ZT() {
       if (
         (_e.parseIdentifier.call(void 0),
-        k.match.call(void 0, T.TokenType.comma) ||
-          k.match.call(void 0, T.TokenType.braceR))
+        v.match.call(void 0, k.TokenType.comma) ||
+          v.match.call(void 0, k.TokenType.braceR))
       ) {
         I.state.tokens[I.state.tokens.length - 1].identifierRole =
-          k.IdentifierRole.ExportAccess;
+          v.IdentifierRole.ExportAccess;
         return;
       }
       if (
         (_e.parseIdentifier.call(void 0),
-        k.match.call(void 0, T.TokenType.comma) ||
-          k.match.call(void 0, T.TokenType.braceR))
+        v.match.call(void 0, k.TokenType.comma) ||
+          v.match.call(void 0, k.TokenType.braceR))
       ) {
         (I.state.tokens[I.state.tokens.length - 1].identifierRole =
-          k.IdentifierRole.ExportAccess),
+          v.IdentifierRole.ExportAccess),
           (I.state.tokens[I.state.tokens.length - 2].isType = !0),
           (I.state.tokens[I.state.tokens.length - 1].isType = !0);
         return;
       }
       if (
         (_e.parseIdentifier.call(void 0),
-        k.match.call(void 0, T.TokenType.comma) ||
-          k.match.call(void 0, T.TokenType.braceR))
+        v.match.call(void 0, k.TokenType.comma) ||
+          v.match.call(void 0, k.TokenType.braceR))
       ) {
         I.state.tokens[I.state.tokens.length - 3].identifierRole =
-          k.IdentifierRole.ExportAccess;
+          v.IdentifierRole.ExportAccess;
         return;
       }
       _e.parseIdentifier.call(void 0),
         (I.state.tokens[I.state.tokens.length - 3].identifierRole =
-          k.IdentifierRole.ExportAccess),
+          v.IdentifierRole.ExportAccess),
         (I.state.tokens[I.state.tokens.length - 4].isType = !0),
         (I.state.tokens[I.state.tokens.length - 3].isType = !0),
         (I.state.tokens[I.state.tokens.length - 2].isType = !0),
         (I.state.tokens[I.state.tokens.length - 1].isType = !0);
     }
-    Oe.tsParseExportSpecifier = Jy;
-    function Qy() {
+    Oe.tsParseExportSpecifier = ZT;
+    function ek() {
       if (
         H.isContextual.call(void 0, oe.ContextualKeyword._abstract) &&
-        k.lookaheadType.call(void 0) === T.TokenType._class
+        v.lookaheadType.call(void 0) === k.TokenType._class
       )
         return (
-          (I.state.type = T.TokenType._abstract),
-          k.next.call(void 0),
+          (I.state.type = k.TokenType._abstract),
+          v.next.call(void 0),
           Rn.parseClass.call(void 0, !0, !0),
           !0
         );
       if (H.isContextual.call(void 0, oe.ContextualKeyword._interface)) {
-        let e = k.pushTypeContext.call(void 0, 2);
+        let e = v.pushTypeContext.call(void 0, 2);
         return (
           po(oe.ContextualKeyword._interface, !0),
-          k.popTypeContext.call(void 0, e),
+          v.popTypeContext.call(void 0, e),
           !0
         );
       }
       return !1;
     }
-    Oe.tsTryParseExportDefaultExpression = Qy;
-    function Zy() {
-      if (I.state.type === T.TokenType._const) {
-        let e = k.lookaheadTypeAndKeyword.call(void 0);
+    Oe.tsTryParseExportDefaultExpression = ek;
+    function tk() {
+      if (I.state.type === k.TokenType._const) {
+        let e = v.lookaheadTypeAndKeyword.call(void 0);
         if (
-          e.type === T.TokenType.name &&
+          e.type === k.TokenType.name &&
           e.contextualKeyword === oe.ContextualKeyword._enum
         )
           return (
-            H.expect.call(void 0, T.TokenType._const),
+            H.expect.call(void 0, k.TokenType._const),
             H.expectContextual.call(void 0, oe.ContextualKeyword._enum),
             (I.state.tokens[I.state.tokens.length - 1].type =
-              T.TokenType._enum),
-            Tl(),
+              k.TokenType._enum),
+            yl(),
             !0
           );
       }
       return !1;
     }
-    Oe.tsTryParseStatementContent = Zy;
-    function ek(e) {
+    Oe.tsTryParseStatementContent = tk;
+    function nk(e) {
       let t = I.state.tokens.length;
       bp([
         oe.ContextualKeyword._abstract,
@@ -19064,76 +19064,76 @@ If you need interactivity, consider converting part of this to a Client Componen
       }
       return !1;
     }
-    Oe.tsTryParseClassMemberWithIsStatic = ek;
-    function tk(e) {
-      Uy(e) || H.semicolon.call(void 0);
+    Oe.tsTryParseClassMemberWithIsStatic = nk;
+    function sk(e) {
+      WT(e) || H.semicolon.call(void 0);
     }
-    Oe.tsParseIdentifierStatement = tk;
-    function nk() {
+    Oe.tsParseIdentifierStatement = sk;
+    function ik() {
       let e = H.eatContextual.call(void 0, oe.ContextualKeyword._declare);
       e &&
-        (I.state.tokens[I.state.tokens.length - 1].type = T.TokenType._declare);
+        (I.state.tokens[I.state.tokens.length - 1].type = k.TokenType._declare);
       let t = !1;
-      if (k.match.call(void 0, T.TokenType.name))
+      if (v.match.call(void 0, k.TokenType.name))
         if (e) {
-          let s = k.pushTypeContext.call(void 0, 2);
-          (t = gp()), k.popTypeContext.call(void 0, s);
+          let s = v.pushTypeContext.call(void 0, 2);
+          (t = gp()), v.popTypeContext.call(void 0, s);
         } else t = gp();
       if (!t)
         if (e) {
-          let s = k.pushTypeContext.call(void 0, 2);
-          Rn.parseStatement.call(void 0, !0), k.popTypeContext.call(void 0, s);
+          let s = v.pushTypeContext.call(void 0, 2);
+          Rn.parseStatement.call(void 0, !0), v.popTypeContext.call(void 0, s);
         } else Rn.parseStatement.call(void 0, !0);
     }
-    Oe.tsParseExportDeclaration = nk;
-    function sk(e) {
+    Oe.tsParseExportDeclaration = ik;
+    function rk(e) {
       if (
         (e &&
-          (k.match.call(void 0, T.TokenType.lessThan) ||
-            k.match.call(void 0, T.TokenType.bitShiftL)) &&
+          (v.match.call(void 0, k.TokenType.lessThan) ||
+            v.match.call(void 0, k.TokenType.bitShiftL)) &&
           kl(),
         H.eatContextual.call(void 0, oe.ContextualKeyword._implements))
       ) {
         I.state.tokens[I.state.tokens.length - 1].type =
-          T.TokenType._implements;
-        let t = k.pushTypeContext.call(void 0, 1);
-        Ip(), k.popTypeContext.call(void 0, t);
+          k.TokenType._implements;
+        let t = v.pushTypeContext.call(void 0, 1);
+        Ip(), v.popTypeContext.call(void 0, t);
       }
     }
-    Oe.tsAfterParseClassSuper = sk;
-    function ik() {
-      mi();
-    }
-    Oe.tsStartParseObjPropValue = ik;
-    function rk() {
-      mi();
-    }
-    Oe.tsStartParseFunctionParams = rk;
+    Oe.tsAfterParseClassSuper = rk;
     function ok() {
-      let e = k.pushTypeContext.call(void 0, 0);
-      H.hasPrecedingLineBreak.call(void 0) ||
-        k.eat.call(void 0, T.TokenType.bang),
-        er(),
-        k.popTypeContext.call(void 0, e);
+      mi();
     }
-    Oe.tsAfterParseVarHead = ok;
+    Oe.tsStartParseObjPropValue = ok;
     function ak() {
-      k.match.call(void 0, T.TokenType.colon) && tr();
+      mi();
     }
-    Oe.tsStartParseAsyncArrowFromCallExpression = ak;
-    function lk(e, t) {
+    Oe.tsStartParseFunctionParams = ak;
+    function lk() {
+      let e = v.pushTypeContext.call(void 0, 0);
+      H.hasPrecedingLineBreak.call(void 0) ||
+        v.eat.call(void 0, k.TokenType.bang),
+        er(),
+        v.popTypeContext.call(void 0, e);
+    }
+    Oe.tsAfterParseVarHead = lk;
+    function ck() {
+      v.match.call(void 0, k.TokenType.colon) && tr();
+    }
+    Oe.tsStartParseAsyncArrowFromCallExpression = ck;
+    function uk(e, t) {
       return I.isJSXEnabled ? Pp(e, t) : Np(e, t);
     }
-    Oe.tsParseMaybeAssign = lk;
+    Oe.tsParseMaybeAssign = uk;
     function Pp(e, t) {
-      if (!k.match.call(void 0, T.TokenType.lessThan))
+      if (!v.match.call(void 0, k.TokenType.lessThan))
         return _e.baseParseMaybeAssign.call(void 0, e, t);
       let s = I.state.snapshot(),
         i = _e.baseParseMaybeAssign.call(void 0, e, t);
       if (I.state.error) I.state.restoreFromSnapshot(s);
       else return i;
       return (
-        (I.state.type = T.TokenType.typeParameterStart),
+        (I.state.type = k.TokenType.typeParameterStart),
         uo(),
         (i = _e.baseParseMaybeAssign.call(void 0, e, t)),
         i || H.unexpected.call(void 0),
@@ -19142,7 +19142,7 @@ If you need interactivity, consider converting part of this to a Client Componen
     }
     Oe.tsParseMaybeAssignWithJSX = Pp;
     function Np(e, t) {
-      if (!k.match.call(void 0, T.TokenType.lessThan))
+      if (!v.match.call(void 0, k.TokenType.lessThan))
         return _e.baseParseMaybeAssign.call(void 0, e, t);
       let s = I.state.snapshot();
       uo();
@@ -19153,31 +19153,31 @@ If you need interactivity, consider converting part of this to a Client Componen
       return _e.baseParseMaybeAssign.call(void 0, e, t);
     }
     Oe.tsParseMaybeAssignWithoutJSX = Np;
-    function ck() {
-      if (k.match.call(void 0, T.TokenType.colon)) {
+    function pk() {
+      if (v.match.call(void 0, k.TokenType.colon)) {
         let e = I.state.snapshot();
-        Qi(T.TokenType.colon),
+        Qi(k.TokenType.colon),
           H.canInsertSemicolon.call(void 0) && H.unexpected.call(void 0),
-          k.match.call(void 0, T.TokenType.arrow) || H.unexpected.call(void 0),
+          v.match.call(void 0, k.TokenType.arrow) || H.unexpected.call(void 0),
           I.state.error && I.state.restoreFromSnapshot(e);
       }
-      return k.eat.call(void 0, T.TokenType.arrow);
+      return v.eat.call(void 0, k.TokenType.arrow);
     }
-    Oe.tsParseArrow = ck;
-    function uk() {
-      let e = k.pushTypeContext.call(void 0, 0);
-      k.eat.call(void 0, T.TokenType.question),
+    Oe.tsParseArrow = pk;
+    function hk() {
+      let e = v.pushTypeContext.call(void 0, 0);
+      v.eat.call(void 0, k.TokenType.question),
         er(),
-        k.popTypeContext.call(void 0, e);
+        v.popTypeContext.call(void 0, e);
     }
-    Oe.tsParseAssignableListItemTypes = uk;
-    function pk() {
-      (k.match.call(void 0, T.TokenType.lessThan) ||
-        k.match.call(void 0, T.TokenType.bitShiftL)) &&
+    Oe.tsParseAssignableListItemTypes = hk;
+    function fk() {
+      (v.match.call(void 0, k.TokenType.lessThan) ||
+        v.match.call(void 0, k.TokenType.bitShiftL)) &&
         kl(),
         Rn.baseParseMaybeDecoratorArguments.call(void 0);
     }
-    Oe.tsParseMaybeDecoratorArguments = pk;
+    Oe.tsParseMaybeDecoratorArguments = fk;
   });
   var vl = Z((fo) => {
     'use strict';
@@ -19189,8 +19189,8 @@ If you need interactivity, consider converting part of this to a Client Componen
       fs = cs(),
       at = Qt(),
       Rp = li(),
-      hk = hi();
-    function fk() {
+      dk = hi();
+    function mk() {
       let e = !1,
         t = !1;
       for (;;) {
@@ -19223,7 +19223,7 @@ If you need interactivity, consider converting part of this to a Client Componen
           fe.state.pos++;
       }
     }
-    function dk(e) {
+    function yk(e) {
       for (fe.state.pos++; ; ) {
         if (fe.state.pos >= fe.input.length) {
           fs.unexpected.call(void 0, 'Unterminated string constant');
@@ -19237,7 +19237,7 @@ If you need interactivity, consider converting part of this to a Client Componen
       }
       Se.finishToken.call(void 0, Me.TokenType.string);
     }
-    function mk() {
+    function Tk() {
       let e;
       do {
         if (fe.state.pos > fe.input.length) {
@@ -19271,7 +19271,7 @@ If you need interactivity, consider converting part of this to a Client Componen
           (s.identifierRole = null);
       }
     }
-    function Tk() {
+    function kk() {
       switch (fe.state.type) {
         case Me.TokenType.braceL:
           Se.next.call(void 0), ho.parseExpression.call(void 0), dn();
@@ -19289,13 +19289,13 @@ If you need interactivity, consider converting part of this to a Client Componen
           );
       }
     }
-    function yk() {
+    function vk() {
       fs.expect.call(void 0, Me.TokenType.ellipsis),
         ho.parseExpression.call(void 0);
     }
-    function kk(e) {
+    function xk(e) {
       if (Se.match.call(void 0, Me.TokenType.jsxTagEnd)) return !1;
-      Op(), fe.isTypeScriptEnabled && hk.tsTryParseJSXTypeArgument.call(void 0);
+      Op(), fe.isTypeScriptEnabled && dk.tsTryParseJSXTypeArgument.call(void 0);
       let t = !1;
       for (
         ;
@@ -19318,25 +19318,25 @@ If you need interactivity, consider converting part of this to a Client Componen
           fe.input.charCodeAt(fe.state.start + 2) === at.charCodes.lowercaseY &&
           (fe.state.tokens[e].jsxRole = Se.JSXRole.KeyAfterPropSpread),
           Lp(Se.IdentifierRole.ObjectKey),
-          Se.match.call(void 0, Me.TokenType.eq) && (dn(), Tk());
+          Se.match.call(void 0, Me.TokenType.eq) && (dn(), kk());
       }
       let s = Se.match.call(void 0, Me.TokenType.slash);
       return s && dn(), s;
     }
-    function vk() {
+    function gk() {
       Se.match.call(void 0, Me.TokenType.jsxTagEnd) || Op();
     }
     function Dp() {
       let e = fe.state.tokens.length - 1;
       fe.state.tokens[e].jsxRole = Se.JSXRole.NoChildren;
       let t = 0;
-      if (!kk(e))
-        for (yi(); ; )
+      if (!xk(e))
+        for (Ti(); ; )
           switch (fe.state.type) {
             case Me.TokenType.jsxTagStart:
               if ((dn(), Se.match.call(void 0, Me.TokenType.slash))) {
                 dn(),
-                  vk(),
+                  gk(),
                   fe.state.tokens[e].jsxRole !==
                     Se.JSXRole.KeyAfterPropSpread &&
                     (t === 1
@@ -19346,21 +19346,21 @@ If you need interactivity, consider converting part of this to a Client Componen
                           Se.JSXRole.StaticChildren));
                 return;
               }
-              t++, Dp(), yi();
+              t++, Dp(), Ti();
               break;
             case Me.TokenType.jsxText:
-              t++, yi();
+              t++, Ti();
               break;
             case Me.TokenType.jsxEmptyText:
-              yi();
+              Ti();
               break;
             case Me.TokenType.braceL:
               Se.next.call(void 0),
                 Se.match.call(void 0, Me.TokenType.ellipsis)
-                  ? (yk(), yi(), (t += 2))
+                  ? (vk(), Ti(), (t += 2))
                   : (Se.match.call(void 0, Me.TokenType.braceR) ||
                       (t++, ho.parseExpression.call(void 0)),
-                    yi());
+                    Ti());
               break;
             default:
               fs.unexpected.call(void 0);
@@ -19376,12 +19376,12 @@ If you need interactivity, consider converting part of this to a Client Componen
         Se.skipSpace.call(void 0),
         (fe.state.start = fe.state.pos);
       let e = fe.input.charCodeAt(fe.state.pos);
-      if (Rp.IS_IDENTIFIER_START[e]) mk();
+      if (Rp.IS_IDENTIFIER_START[e]) Tk();
       else if (
         e === at.charCodes.quotationMark ||
         e === at.charCodes.apostrophe
       )
-        dk(e);
+        yk(e);
       else
         switch ((++fe.state.pos, e)) {
           case at.charCodes.greaterThan:
@@ -19410,22 +19410,22 @@ If you need interactivity, consider converting part of this to a Client Componen
         }
     }
     fo.nextJSXTagToken = dn;
-    function yi() {
+    function Ti() {
       fe.state.tokens.push(new Se.Token()),
         (fe.state.start = fe.state.pos),
-        fk();
+        mk();
     }
   });
-  var Bp = Z((To) => {
+  var Bp = Z((yo) => {
     'use strict';
-    Object.defineProperty(To, '__esModule', {value: !0});
+    Object.defineProperty(yo, '__esModule', {value: !0});
     var mo = xt(),
       ki = be(),
       Fp = Zt(),
-      xk = Ns(),
-      gk = Ji(),
-      _k = hi();
-    function bk(e) {
+      _k = Ns(),
+      bk = Ji(),
+      Ck = hi();
+    function wk(e) {
       if (mo.match.call(void 0, ki.TokenType.question)) {
         let t = mo.lookaheadType.call(void 0);
         if (
@@ -19435,23 +19435,23 @@ If you need interactivity, consider converting part of this to a Client Componen
         )
           return;
       }
-      xk.baseParseConditional.call(void 0, e);
+      _k.baseParseConditional.call(void 0, e);
     }
-    To.typedParseConditional = bk;
-    function Ck() {
+    yo.typedParseConditional = wk;
+    function Sk() {
       mo.eatTypeToken.call(void 0, ki.TokenType.question),
         mo.match.call(void 0, ki.TokenType.colon) &&
           (Fp.isTypeScriptEnabled
-            ? _k.tsParseTypeAnnotation.call(void 0)
-            : Fp.isFlowEnabled && gk.flowParseTypeAnnotation.call(void 0));
+            ? Ck.tsParseTypeAnnotation.call(void 0)
+            : Fp.isFlowEnabled && bk.flowParseTypeAnnotation.call(void 0));
     }
-    To.typedParseParenItem = Ck;
+    yo.typedParseParenItem = Sk;
   });
   var Ns = Z((et) => {
     'use strict';
     Object.defineProperty(et, '__esModule', {value: !0});
     var Yn = Ji(),
-      wk = vl(),
+      Ik = vl(),
       Vp = Bp(),
       ms = hi(),
       K = xt(),
@@ -19459,7 +19459,7 @@ If you need interactivity, consider converting part of this to a Client Componen
       jp = qr(),
       B = be(),
       $p = Qt(),
-      Sk = li(),
+      Ek = li(),
       j = Zt(),
       ds = lo(),
       gn = nr(),
@@ -19484,12 +19484,12 @@ If you need interactivity, consider converting part of this to a Client Componen
     }
     et.parseMaybeAssign = mn;
     function qp(e, t) {
-      if (K.match.call(void 0, B.TokenType._yield)) return Kk(), !1;
+      if (K.match.call(void 0, B.TokenType._yield)) return Hk(), !1;
       (K.match.call(void 0, B.TokenType.parenL) ||
         K.match.call(void 0, B.TokenType.name) ||
         K.match.call(void 0, B.TokenType._yield)) &&
         (j.state.potentialArrowAt = j.state.start);
-      let s = Ik(e);
+      let s = Ak(e);
       return (
         t && wl(),
         j.state.type & B.TokenType.IS_ASSIGN
@@ -19498,10 +19498,10 @@ If you need interactivity, consider converting part of this to a Client Componen
       );
     }
     et.baseParseMaybeAssign = qp;
-    function Ik(e) {
-      return Ak(e) ? !0 : (Ek(e), !1);
+    function Ak(e) {
+      return Nk(e) ? !0 : (Pk(e), !1);
     }
-    function Ek(e) {
+    function Pk(e) {
       j.isTypeScriptEnabled || j.isFlowEnabled
         ? Vp.typedParseConditional.call(void 0, e)
         : Kp(e);
@@ -19511,11 +19511,11 @@ If you need interactivity, consider converting part of this to a Client Componen
         (mn(), Pe.expect.call(void 0, B.TokenType.colon), mn(e));
     }
     et.baseParseConditional = Kp;
-    function Ak(e) {
+    function Nk(e) {
       let t = j.state.tokens.length;
-      return rr() ? !0 : (yo(t, -1, e), !1);
+      return rr() ? !0 : (To(t, -1, e), !1);
     }
-    function yo(e, t, s) {
+    function To(e, t, s) {
       if (
         j.isTypeScriptEnabled &&
         (B.TokenType._in & B.TokenType.PRECEDENCE_MASK) > t &&
@@ -19527,7 +19527,7 @@ If you need interactivity, consider converting part of this to a Client Componen
         ms.tsParseType.call(void 0),
           K.popTypeContext.call(void 0, r),
           K.rescan_gt.call(void 0),
-          yo(e, t, s);
+          To(e, t, s);
         return;
       }
       let i = j.state.type & B.TokenType.PRECEDENCE_MASK;
@@ -19538,11 +19538,11 @@ If you need interactivity, consider converting part of this to a Client Componen
             (j.state.tokens[j.state.tokens.length - 1].nullishStartIndex = e);
         let a = j.state.tokens.length;
         rr(),
-          yo(a, r & B.TokenType.IS_RIGHT_ASSOCIATIVE ? i - 1 : i, s),
+          To(a, r & B.TokenType.IS_RIGHT_ASSOCIATIVE ? i - 1 : i, s),
           r === B.TokenType.nullishCoalescing &&
             (j.state.tokens[e].numNullishCoalesceStarts++,
             j.state.tokens[j.state.tokens.length - 1].numNullishCoalesceEnds++),
-          yo(e, t, s);
+          To(e, t, s);
       }
     }
     function rr() {
@@ -19557,7 +19557,7 @@ If you need interactivity, consider converting part of this to a Client Componen
         K.lookaheadCharCode.call(void 0) === $p.charCodes.leftCurlyBrace &&
         !Pe.hasFollowingLineBreak.call(void 0)
       )
-        return Uk(), !1;
+        return Wk(), !1;
       if (j.state.type & B.TokenType.IS_PREFIX)
         return K.next.call(void 0), rr(), !1;
       if (Up()) return !0;
@@ -19589,11 +19589,11 @@ If you need interactivity, consider converting part of this to a Client Componen
     }
     function Hp(e, t = !1) {
       let s = new vo(!1);
-      do Pk(e, t, s);
+      do Rk(e, t, s);
       while (!s.stop && !j.state.error);
     }
     et.baseParseSubscripts = Hp;
-    function Pk(e, t, s) {
+    function Rk(e, t, s) {
       j.isTypeScriptEnabled
         ? ms.tsParseSubscript.call(void 0, e, t, s)
         : j.isFlowEnabled
@@ -19635,12 +19635,12 @@ If you need interactivity, consider converting part of this to a Client Componen
           (j.state.tokens[j.state.tokens.length - 1].contextId = a),
             ko(),
             (j.state.tokens[j.state.tokens.length - 1].contextId = a),
-            Nk() &&
+            Lk() &&
               (j.state.restoreFromSnapshot(i),
               (s.stop = !0),
               j.state.scopeDepth++,
               gn.parseFunctionParams.call(void 0),
-              Rk(r));
+              Ok(r));
         } else {
           K.next.call(void 0),
             (j.state.tokens[j.state.tokens.length - 1].subscriptStartIndex = e);
@@ -19672,13 +19672,13 @@ If you need interactivity, consider converting part of this to a Client Componen
       }
     }
     et.parseCallExpressionArguments = ko;
-    function Nk() {
+    function Lk() {
       return (
         K.match.call(void 0, B.TokenType.colon) ||
         K.match.call(void 0, B.TokenType.arrow)
       );
     }
-    function Rk(e) {
+    function Ok(e) {
       j.isTypeScriptEnabled
         ? ms.tsStartParseAsyncArrowFromCallExpression.call(void 0)
         : j.isFlowEnabled &&
@@ -19700,7 +19700,7 @@ If you need interactivity, consider converting part of this to a Client Componen
       if (K.match.call(void 0, B.TokenType.lessThan) && j.isJSXEnabled)
         return (
           (j.state.type = B.TokenType.jsxTagStart),
-          wk.jsxParseElement.call(void 0),
+          Ik.jsxParseElement.call(void 0),
           K.next.call(void 0),
           !1
         );
@@ -19737,7 +19737,7 @@ If you need interactivity, consider converting part of this to a Client Componen
           return (
             Xn(),
             i === zn.ContextualKeyword._await
-              ? (qk(), !1)
+              ? (Uk(), !1)
               : i === zn.ContextualKeyword._async &&
                 K.match.call(void 0, B.TokenType._function) &&
                 !Pe.canInsertSemicolon.call(void 0)
@@ -19776,13 +19776,13 @@ If you need interactivity, consider converting part of this to a Client Componen
         case B.TokenType.braceL:
           return Yp(!1, !1), !1;
         case B.TokenType._function:
-          return Lk(), !1;
+          return Dk(), !1;
         case B.TokenType.at:
           gn.parseDecorators.call(void 0);
         case B.TokenType._class:
           return gn.parseClass.call(void 0, !1), !1;
         case B.TokenType._new:
-          return Mk(), !1;
+          return Bk(), !1;
         case B.TokenType.backQuote:
           return Sl(), !1;
         case B.TokenType.doubleColon:
@@ -19790,7 +19790,7 @@ If you need interactivity, consider converting part of this to a Client Componen
         case B.TokenType.hash: {
           let t = K.lookaheadCharCode.call(void 0);
           return (
-            Sk.IS_IDENTIFIER_START[t] || t === $p.charCodes.backslash
+            Ek.IS_IDENTIFIER_START[t] || t === $p.charCodes.backslash
               ? xo()
               : K.next.call(void 0),
             !1
@@ -19804,7 +19804,7 @@ If you need interactivity, consider converting part of this to a Client Componen
     function xo() {
       K.eat.call(void 0, B.TokenType.hash), Xn();
     }
-    function Lk() {
+    function Dk() {
       let e = j.state.start;
       Xn(),
         K.eat.call(void 0, B.TokenType.dot) && Xn(),
@@ -19814,12 +19814,12 @@ If you need interactivity, consider converting part of this to a Client Componen
       K.next.call(void 0);
     }
     et.parseLiteral = zp;
-    function Ok() {
+    function Mk() {
       Pe.expect.call(void 0, B.TokenType.parenL),
         sr(),
         Pe.expect.call(void 0, B.TokenType.parenR);
     }
-    et.parseParenExpression = Ok;
+    et.parseParenExpression = Mk;
     function Xp(e) {
       let t = j.state.snapshot(),
         s = j.state.tokens.length;
@@ -19839,7 +19839,7 @@ If you need interactivity, consider converting part of this to a Client Componen
       }
       return (
         Pe.expect.call(void 0, B.TokenType.parenR),
-        e && Dk() && gl()
+        e && Fk() && gl()
           ? (j.state.restoreFromSnapshot(t),
             j.state.scopeDepth++,
             gn.parseFunctionParams.call(void 0),
@@ -19849,7 +19849,7 @@ If you need interactivity, consider converting part of this to a Client Componen
           : !1
       );
     }
-    function Dk() {
+    function Fk() {
       return (
         K.match.call(void 0, B.TokenType.colon) ||
         !Pe.canInsertSemicolon.call(void 0)
@@ -19867,7 +19867,7 @@ If you need interactivity, consider converting part of this to a Client Componen
       (j.isTypeScriptEnabled || j.isFlowEnabled) &&
         Vp.typedParseParenItem.call(void 0);
     }
-    function Mk() {
+    function Bk() {
       if (
         (Pe.expect.call(void 0, B.TokenType._new),
         K.eat.call(void 0, B.TokenType.dot))
@@ -19875,11 +19875,11 @@ If you need interactivity, consider converting part of this to a Client Componen
         Xn();
         return;
       }
-      Fk(),
+      Vk(),
         j.isFlowEnabled && Yn.flowStartParseNewArguments.call(void 0),
         K.eat.call(void 0, B.TokenType.parenL) && Qp(B.TokenType.parenR);
     }
-    function Fk() {
+    function Vk() {
       Cl(), K.eat.call(void 0, B.TokenType.questionDot);
     }
     function Sl() {
@@ -19936,12 +19936,12 @@ If you need interactivity, consider converting part of this to a Client Componen
                   (K.next.call(void 0), (r = !0)),
                 go(s)))
             : go(s),
-          $k(e, t, s);
+          Kk(e, t, s);
       }
       j.state.tokens[j.state.tokens.length - 1].contextId = s;
     }
     et.parseObj = Yp;
-    function Bk(e) {
+    function jk(e) {
       return (
         !e &&
         (K.match.call(void 0, B.TokenType.string) ||
@@ -19951,15 +19951,15 @@ If you need interactivity, consider converting part of this to a Client Componen
           !!(j.state.type & B.TokenType.IS_KEYWORD))
       );
     }
-    function Vk(e, t) {
+    function $k(e, t) {
       let s = j.state.start;
       return K.match.call(void 0, B.TokenType.parenL)
         ? (e && Pe.unexpected.call(void 0), _l(s, !1), !0)
-        : Bk(e)
+        : jk(e)
         ? (go(t), _l(s, !1), !0)
         : !1;
     }
-    function jk(e, t) {
+    function qk(e, t) {
       if (K.eat.call(void 0, B.TokenType.colon)) {
         e ? ds.parseMaybeDefault.call(void 0, t) : mn(!1);
         return;
@@ -19975,11 +19975,11 @@ If you need interactivity, consider converting part of this to a Client Componen
         (j.state.tokens[j.state.tokens.length - 1].identifierRole = s),
         ds.parseMaybeDefault.call(void 0, t, !0);
     }
-    function $k(e, t, s) {
+    function Kk(e, t, s) {
       j.isTypeScriptEnabled
         ? ms.tsStartParseObjPropValue.call(void 0)
         : j.isFlowEnabled && Yn.flowStartParseObjPropValue.call(void 0),
-        Vk(e, s) || jk(e, t);
+        $k(e, s) || qk(e, t);
     }
     function go(e) {
       j.isFlowEnabled && Yn.flowParseVariance.call(void 0),
@@ -20053,16 +20053,16 @@ If you need interactivity, consider converting part of this to a Client Componen
         (j.state.tokens[j.state.tokens.length - 1].type = B.TokenType.name);
     }
     et.parseIdentifier = Xn;
-    function qk() {
+    function Uk() {
       rr();
     }
-    function Kk() {
+    function Hk() {
       K.next.call(void 0),
         !K.match.call(void 0, B.TokenType.semi) &&
           !Pe.canInsertSemicolon.call(void 0) &&
           (K.eat.call(void 0, B.TokenType.star), mn());
     }
-    function Uk() {
+    function Wk() {
       Pe.expectContextual.call(void 0, zn.ContextualKeyword._module),
         Pe.expect.call(void 0, B.TokenType.braceL),
         gn.parseBlockBody.call(void 0, B.TokenType.braceR);
@@ -20072,122 +20072,122 @@ If you need interactivity, consider converting part of this to a Client Componen
     'use strict';
     Object.defineProperty(Je, '__esModule', {value: !0});
     var C = xt(),
-      Te = It(),
+      ye = It(),
       _ = be(),
       ue = Zt(),
       je = Ns(),
-      Ts = nr(),
-      G = cs();
-    function Hk(e) {
+      ys = nr(),
+      z = cs();
+    function Gk(e) {
       return (
         (e.type === _.TokenType.name || !!(e.type & _.TokenType.IS_KEYWORD)) &&
-        e.contextualKeyword !== Te.ContextualKeyword._from
+        e.contextualKeyword !== ye.ContextualKeyword._from
       );
     }
     function Ln(e) {
       let t = C.pushTypeContext.call(void 0, 0);
-      G.expect.call(void 0, e || _.TokenType.colon),
+      z.expect.call(void 0, e || _.TokenType.colon),
         Wt(),
         C.popTypeContext.call(void 0, t);
     }
     function eh() {
-      G.expect.call(void 0, _.TokenType.modulo),
-        G.expectContextual.call(void 0, Te.ContextualKeyword._checks),
+      z.expect.call(void 0, _.TokenType.modulo),
+        z.expectContextual.call(void 0, ye.ContextualKeyword._checks),
         C.eat.call(void 0, _.TokenType.parenL) &&
           (je.parseExpression.call(void 0),
-          G.expect.call(void 0, _.TokenType.parenR));
+          z.expect.call(void 0, _.TokenType.parenR));
     }
     function Pl() {
       let e = C.pushTypeContext.call(void 0, 0);
-      G.expect.call(void 0, _.TokenType.colon),
+      z.expect.call(void 0, _.TokenType.colon),
         C.match.call(void 0, _.TokenType.modulo)
           ? eh()
           : (Wt(), C.match.call(void 0, _.TokenType.modulo) && eh()),
         C.popTypeContext.call(void 0, e);
     }
-    function Wk() {
+    function zk() {
       C.next.call(void 0), Nl(!0);
     }
-    function Gk() {
+    function Xk() {
       C.next.call(void 0),
         je.parseIdentifier.call(void 0),
         C.match.call(void 0, _.TokenType.lessThan) && On(),
-        G.expect.call(void 0, _.TokenType.parenL),
+        z.expect.call(void 0, _.TokenType.parenL),
         Al(),
-        G.expect.call(void 0, _.TokenType.parenR),
+        z.expect.call(void 0, _.TokenType.parenR),
         Pl(),
-        G.semicolon.call(void 0);
+        z.semicolon.call(void 0);
     }
     function El() {
       C.match.call(void 0, _.TokenType._class)
-        ? Wk()
-        : C.match.call(void 0, _.TokenType._function)
-        ? Gk()
-        : C.match.call(void 0, _.TokenType._var)
         ? zk()
-        : G.eatContextual.call(void 0, Te.ContextualKeyword._module)
-        ? C.eat.call(void 0, _.TokenType.dot)
-          ? Jk()
-          : Xk()
-        : G.isContextual.call(void 0, Te.ContextualKeyword._type)
-        ? Qk()
-        : G.isContextual.call(void 0, Te.ContextualKeyword._opaque)
-        ? Zk()
-        : G.isContextual.call(void 0, Te.ContextualKeyword._interface)
-        ? e0()
-        : C.match.call(void 0, _.TokenType._export)
+        : C.match.call(void 0, _.TokenType._function)
+        ? Xk()
+        : C.match.call(void 0, _.TokenType._var)
         ? Yk()
-        : G.unexpected.call(void 0);
+        : z.eatContextual.call(void 0, ye.ContextualKeyword._module)
+        ? C.eat.call(void 0, _.TokenType.dot)
+          ? Zk()
+          : Jk()
+        : z.isContextual.call(void 0, ye.ContextualKeyword._type)
+        ? e0()
+        : z.isContextual.call(void 0, ye.ContextualKeyword._opaque)
+        ? t0()
+        : z.isContextual.call(void 0, ye.ContextualKeyword._interface)
+        ? n0()
+        : C.match.call(void 0, _.TokenType._export)
+        ? Qk()
+        : z.unexpected.call(void 0);
     }
-    function zk() {
-      C.next.call(void 0), oh(), G.semicolon.call(void 0);
+    function Yk() {
+      C.next.call(void 0), oh(), z.semicolon.call(void 0);
     }
-    function Xk() {
+    function Jk() {
       for (
         C.match.call(void 0, _.TokenType.string)
           ? je.parseExprAtom.call(void 0)
           : je.parseIdentifier.call(void 0),
-          G.expect.call(void 0, _.TokenType.braceL);
+          z.expect.call(void 0, _.TokenType.braceL);
         !C.match.call(void 0, _.TokenType.braceR) && !ue.state.error;
 
       )
         C.match.call(void 0, _.TokenType._import)
-          ? (C.next.call(void 0), Ts.parseImport.call(void 0))
-          : G.unexpected.call(void 0);
-      G.expect.call(void 0, _.TokenType.braceR);
+          ? (C.next.call(void 0), ys.parseImport.call(void 0))
+          : z.unexpected.call(void 0);
+      z.expect.call(void 0, _.TokenType.braceR);
     }
-    function Yk() {
-      G.expect.call(void 0, _.TokenType._export),
+    function Qk() {
+      z.expect.call(void 0, _.TokenType._export),
         C.eat.call(void 0, _.TokenType._default)
           ? C.match.call(void 0, _.TokenType._function) ||
             C.match.call(void 0, _.TokenType._class)
             ? El()
-            : (Wt(), G.semicolon.call(void 0))
+            : (Wt(), z.semicolon.call(void 0))
           : C.match.call(void 0, _.TokenType._var) ||
             C.match.call(void 0, _.TokenType._function) ||
             C.match.call(void 0, _.TokenType._class) ||
-            G.isContextual.call(void 0, Te.ContextualKeyword._opaque)
+            z.isContextual.call(void 0, ye.ContextualKeyword._opaque)
           ? El()
           : C.match.call(void 0, _.TokenType.star) ||
             C.match.call(void 0, _.TokenType.braceL) ||
-            G.isContextual.call(void 0, Te.ContextualKeyword._interface) ||
-            G.isContextual.call(void 0, Te.ContextualKeyword._type) ||
-            G.isContextual.call(void 0, Te.ContextualKeyword._opaque)
-          ? Ts.parseExport.call(void 0)
-          : G.unexpected.call(void 0);
-    }
-    function Jk() {
-      G.expectContextual.call(void 0, Te.ContextualKeyword._exports),
-        vi(),
-        G.semicolon.call(void 0);
-    }
-    function Qk() {
-      C.next.call(void 0), Ll();
+            z.isContextual.call(void 0, ye.ContextualKeyword._interface) ||
+            z.isContextual.call(void 0, ye.ContextualKeyword._type) ||
+            z.isContextual.call(void 0, ye.ContextualKeyword._opaque)
+          ? ys.parseExport.call(void 0)
+          : z.unexpected.call(void 0);
     }
     function Zk() {
-      C.next.call(void 0), Ol(!0);
+      z.expectContextual.call(void 0, ye.ContextualKeyword._exports),
+        vi(),
+        z.semicolon.call(void 0);
     }
     function e0() {
+      C.next.call(void 0), Ll();
+    }
+    function t0() {
+      C.next.call(void 0), Ol(!0);
+    }
+    function n0() {
       C.next.call(void 0), Nl();
     }
     function Nl(e = !1) {
@@ -20198,12 +20198,12 @@ If you need interactivity, consider converting part of this to a Client Componen
       )
         do bo();
         while (!e && C.eat.call(void 0, _.TokenType.comma));
-      if (G.isContextual.call(void 0, Te.ContextualKeyword._mixins)) {
+      if (z.isContextual.call(void 0, ye.ContextualKeyword._mixins)) {
         C.next.call(void 0);
         do bo();
         while (C.eat.call(void 0, _.TokenType.comma));
       }
-      if (G.isContextual.call(void 0, Te.ContextualKeyword._implements)) {
+      if (z.isContextual.call(void 0, ye.ContextualKeyword._implements)) {
         C.next.call(void 0);
         do bo();
         while (C.eat.call(void 0, _.TokenType.comma));
@@ -20223,17 +20223,17 @@ If you need interactivity, consider converting part of this to a Client Componen
       So(),
         C.match.call(void 0, _.TokenType.lessThan) && On(),
         Ln(_.TokenType.eq),
-        G.semicolon.call(void 0);
+        z.semicolon.call(void 0);
     }
     function Ol(e) {
-      G.expectContextual.call(void 0, Te.ContextualKeyword._type),
+      z.expectContextual.call(void 0, ye.ContextualKeyword._type),
         So(),
         C.match.call(void 0, _.TokenType.lessThan) && On(),
         C.match.call(void 0, _.TokenType.colon) && Ln(_.TokenType.colon),
         e || Ln(_.TokenType.eq),
-        G.semicolon.call(void 0);
+        z.semicolon.call(void 0);
     }
-    function t0() {
+    function s0() {
       Fl(), oh(), C.eat.call(void 0, _.TokenType.eq) && Wt();
     }
     function On() {
@@ -20241,32 +20241,32 @@ If you need interactivity, consider converting part of this to a Client Componen
       C.match.call(void 0, _.TokenType.lessThan) ||
       C.match.call(void 0, _.TokenType.typeParameterStart)
         ? C.next.call(void 0)
-        : G.unexpected.call(void 0);
+        : z.unexpected.call(void 0);
       do
-        t0(),
+        s0(),
           C.match.call(void 0, _.TokenType.greaterThan) ||
-            G.expect.call(void 0, _.TokenType.comma);
+            z.expect.call(void 0, _.TokenType.comma);
       while (!C.match.call(void 0, _.TokenType.greaterThan) && !ue.state.error);
-      G.expect.call(void 0, _.TokenType.greaterThan),
+      z.expect.call(void 0, _.TokenType.greaterThan),
         C.popTypeContext.call(void 0, e);
     }
     Je.flowParseTypeParameterDeclaration = On;
     function Rs() {
       let e = C.pushTypeContext.call(void 0, 0);
       for (
-        G.expect.call(void 0, _.TokenType.lessThan);
+        z.expect.call(void 0, _.TokenType.lessThan);
         !C.match.call(void 0, _.TokenType.greaterThan) && !ue.state.error;
 
       )
         Wt(),
           C.match.call(void 0, _.TokenType.greaterThan) ||
-            G.expect.call(void 0, _.TokenType.comma);
-      G.expect.call(void 0, _.TokenType.greaterThan),
+            z.expect.call(void 0, _.TokenType.comma);
+      z.expect.call(void 0, _.TokenType.greaterThan),
         C.popTypeContext.call(void 0, e);
     }
-    function n0() {
+    function i0() {
       if (
-        (G.expectContextual.call(void 0, Te.ContextualKeyword._interface),
+        (z.expectContextual.call(void 0, ye.ContextualKeyword._interface),
         C.eat.call(void 0, _.TokenType._extends))
       )
         do bo();
@@ -20279,15 +20279,15 @@ If you need interactivity, consider converting part of this to a Client Componen
         ? je.parseExprAtom.call(void 0)
         : je.parseIdentifier.call(void 0);
     }
-    function s0() {
+    function r0() {
       C.lookaheadType.call(void 0) === _.TokenType.colon ? (Dl(), Ln()) : Wt(),
-        G.expect.call(void 0, _.TokenType.bracketR),
+        z.expect.call(void 0, _.TokenType.bracketR),
         Ln();
     }
-    function i0() {
+    function o0() {
       Dl(),
-        G.expect.call(void 0, _.TokenType.bracketR),
-        G.expect.call(void 0, _.TokenType.bracketR),
+        z.expect.call(void 0, _.TokenType.bracketR),
+        z.expect.call(void 0, _.TokenType.bracketR),
         C.match.call(void 0, _.TokenType.lessThan) ||
         C.match.call(void 0, _.TokenType.parenL)
           ? Ml()
@@ -20296,7 +20296,7 @@ If you need interactivity, consider converting part of this to a Client Componen
     function Ml() {
       for (
         C.match.call(void 0, _.TokenType.lessThan) && On(),
-          G.expect.call(void 0, _.TokenType.parenL);
+          z.expect.call(void 0, _.TokenType.parenL);
         !C.match.call(void 0, _.TokenType.parenR) &&
         !C.match.call(void 0, _.TokenType.ellipsis) &&
         !ue.state.error;
@@ -20304,48 +20304,48 @@ If you need interactivity, consider converting part of this to a Client Componen
       )
         wo(),
           C.match.call(void 0, _.TokenType.parenR) ||
-            G.expect.call(void 0, _.TokenType.comma);
+            z.expect.call(void 0, _.TokenType.comma);
       C.eat.call(void 0, _.TokenType.ellipsis) && wo(),
-        G.expect.call(void 0, _.TokenType.parenR),
+        z.expect.call(void 0, _.TokenType.parenR),
         Ln();
     }
-    function r0() {
+    function a0() {
       Ml();
     }
     function Co(e, t, s) {
       let i;
       for (
         t && C.match.call(void 0, _.TokenType.braceBarL)
-          ? (G.expect.call(void 0, _.TokenType.braceBarL),
+          ? (z.expect.call(void 0, _.TokenType.braceBarL),
             (i = _.TokenType.braceBarR))
-          : (G.expect.call(void 0, _.TokenType.braceL),
+          : (z.expect.call(void 0, _.TokenType.braceL),
             (i = _.TokenType.braceR));
         !C.match.call(void 0, i) && !ue.state.error;
 
       ) {
-        if (s && G.isContextual.call(void 0, Te.ContextualKeyword._proto)) {
+        if (s && z.isContextual.call(void 0, ye.ContextualKeyword._proto)) {
           let r = C.lookaheadType.call(void 0);
           r !== _.TokenType.colon &&
             r !== _.TokenType.question &&
             (C.next.call(void 0), (e = !1));
         }
-        if (e && G.isContextual.call(void 0, Te.ContextualKeyword._static)) {
+        if (e && z.isContextual.call(void 0, ye.ContextualKeyword._static)) {
           let r = C.lookaheadType.call(void 0);
           r !== _.TokenType.colon &&
             r !== _.TokenType.question &&
             C.next.call(void 0);
         }
         if ((Fl(), C.eat.call(void 0, _.TokenType.bracketL)))
-          C.eat.call(void 0, _.TokenType.bracketL) ? i0() : s0();
+          C.eat.call(void 0, _.TokenType.bracketL) ? o0() : r0();
         else if (
           C.match.call(void 0, _.TokenType.parenL) ||
           C.match.call(void 0, _.TokenType.lessThan)
         )
-          r0();
+          a0();
         else {
           if (
-            G.isContextual.call(void 0, Te.ContextualKeyword._get) ||
-            G.isContextual.call(void 0, Te.ContextualKeyword._set)
+            z.isContextual.call(void 0, ye.ContextualKeyword._get) ||
+            z.isContextual.call(void 0, ye.ContextualKeyword._set)
           ) {
             let r = C.lookaheadType.call(void 0);
             (r === _.TokenType.name ||
@@ -20353,16 +20353,16 @@ If you need interactivity, consider converting part of this to a Client Componen
               r === _.TokenType.num) &&
               C.next.call(void 0);
           }
-          o0();
+          l0();
         }
-        a0();
+        c0();
       }
-      G.expect.call(void 0, i);
+      z.expect.call(void 0, i);
     }
-    function o0() {
+    function l0() {
       if (C.match.call(void 0, _.TokenType.ellipsis)) {
         if (
-          (G.expect.call(void 0, _.TokenType.ellipsis),
+          (z.expect.call(void 0, _.TokenType.ellipsis),
           C.eat.call(void 0, _.TokenType.comma) ||
             C.eat.call(void 0, _.TokenType.semi),
           C.match.call(void 0, _.TokenType.braceR))
@@ -20376,12 +20376,12 @@ If you need interactivity, consider converting part of this to a Client Componen
             ? Ml()
             : (C.eat.call(void 0, _.TokenType.question), Ln());
     }
-    function a0() {
+    function c0() {
       !C.eat.call(void 0, _.TokenType.semi) &&
         !C.eat.call(void 0, _.TokenType.comma) &&
         !C.match.call(void 0, _.TokenType.braceR) &&
         !C.match.call(void 0, _.TokenType.braceBarR) &&
-        G.unexpected.call(void 0);
+        z.unexpected.call(void 0);
     }
     function sh(e) {
       for (
@@ -20391,22 +20391,22 @@ If you need interactivity, consider converting part of this to a Client Componen
       )
         je.parseIdentifier.call(void 0);
     }
-    function l0() {
+    function u0() {
       sh(!0), C.match.call(void 0, _.TokenType.lessThan) && Rs();
     }
-    function c0() {
-      G.expect.call(void 0, _.TokenType._typeof), ih();
+    function p0() {
+      z.expect.call(void 0, _.TokenType._typeof), ih();
     }
-    function u0() {
+    function h0() {
       for (
-        G.expect.call(void 0, _.TokenType.bracketL);
+        z.expect.call(void 0, _.TokenType.bracketL);
         ue.state.pos < ue.input.length &&
         !C.match.call(void 0, _.TokenType.bracketR) &&
         (Wt(), !C.match.call(void 0, _.TokenType.bracketR));
 
       )
-        G.expect.call(void 0, _.TokenType.comma);
-      G.expect.call(void 0, _.TokenType.bracketR);
+        z.expect.call(void 0, _.TokenType.comma);
+      z.expect.call(void 0, _.TokenType.bracketR);
     }
     function wo() {
       let e = C.lookaheadType.call(void 0);
@@ -20426,7 +20426,7 @@ If you need interactivity, consider converting part of this to a Client Componen
       )
         wo(),
           C.match.call(void 0, _.TokenType.parenR) ||
-            G.expect.call(void 0, _.TokenType.comma);
+            z.expect.call(void 0, _.TokenType.comma);
       C.eat.call(void 0, _.TokenType.ellipsis) && wo();
     }
     function ih() {
@@ -20434,11 +20434,11 @@ If you need interactivity, consider converting part of this to a Client Componen
         t = ue.state.noAnonFunctionType;
       switch (ue.state.type) {
         case _.TokenType.name: {
-          if (G.isContextual.call(void 0, Te.ContextualKeyword._interface)) {
-            n0();
+          if (z.isContextual.call(void 0, ye.ContextualKeyword._interface)) {
+            i0();
             return;
           }
-          je.parseIdentifier.call(void 0), l0();
+          je.parseIdentifier.call(void 0), u0();
           return;
         }
         case _.TokenType.braceL:
@@ -20448,14 +20448,14 @@ If you need interactivity, consider converting part of this to a Client Componen
           Co(!1, !0, !1);
           return;
         case _.TokenType.bracketL:
-          u0();
+          h0();
           return;
         case _.TokenType.lessThan:
           On(),
-            G.expect.call(void 0, _.TokenType.parenL),
+            z.expect.call(void 0, _.TokenType.parenL),
             Al(),
-            G.expect.call(void 0, _.TokenType.parenR),
-            G.expect.call(void 0, _.TokenType.arrow),
+            z.expect.call(void 0, _.TokenType.parenR),
+            z.expect.call(void 0, _.TokenType.arrow),
             Wt();
           return;
         case _.TokenType.parenL:
@@ -20480,12 +20480,12 @@ If you need interactivity, consider converting part of this to a Client Componen
                     C.lookaheadType.call(void 0) === _.TokenType.arrow)
                 ))
             ) {
-              G.expect.call(void 0, _.TokenType.parenR);
+              z.expect.call(void 0, _.TokenType.parenR);
               return;
             } else C.eat.call(void 0, _.TokenType.comma);
           Al(),
-            G.expect.call(void 0, _.TokenType.parenR),
-            G.expect.call(void 0, _.TokenType.arrow),
+            z.expect.call(void 0, _.TokenType.parenR),
+            z.expect.call(void 0, _.TokenType.arrow),
             Wt();
           return;
         case _.TokenType.minus:
@@ -20503,7 +20503,7 @@ If you need interactivity, consider converting part of this to a Client Componen
           return;
         default:
           if (ue.state.type === _.TokenType._typeof) {
-            c0();
+            p0();
             return;
           } else if (ue.state.type & _.TokenType.IS_KEYWORD) {
             C.next.call(void 0),
@@ -20512,23 +20512,23 @@ If you need interactivity, consider converting part of this to a Client Componen
             return;
           }
       }
-      G.unexpected.call(void 0);
+      z.unexpected.call(void 0);
     }
-    function p0() {
+    function f0() {
       for (
         ih();
-        !G.canInsertSemicolon.call(void 0) &&
+        !z.canInsertSemicolon.call(void 0) &&
         (C.match.call(void 0, _.TokenType.bracketL) ||
           C.match.call(void 0, _.TokenType.questionDot));
 
       )
         C.eat.call(void 0, _.TokenType.questionDot),
-          G.expect.call(void 0, _.TokenType.bracketL),
+          z.expect.call(void 0, _.TokenType.bracketL),
           C.eat.call(void 0, _.TokenType.bracketR) ||
-            (Wt(), G.expect.call(void 0, _.TokenType.bracketR));
+            (Wt(), z.expect.call(void 0, _.TokenType.bracketR));
     }
     function rh() {
-      C.eat.call(void 0, _.TokenType.question) ? rh() : p0();
+      C.eat.call(void 0, _.TokenType.question) ? rh() : f0();
     }
     function th() {
       rh(),
@@ -20544,7 +20544,7 @@ If you need interactivity, consider converting part of this to a Client Componen
       )
         th();
     }
-    function h0() {
+    function d0() {
       for (
         C.eat.call(void 0, _.TokenType.bitwiseOR), nh();
         C.eat.call(void 0, _.TokenType.bitwiseOR);
@@ -20553,7 +20553,7 @@ If you need interactivity, consider converting part of this to a Client Componen
         nh();
     }
     function Wt() {
-      h0();
+      d0();
     }
     function vi() {
       Ln();
@@ -20570,12 +20570,12 @@ If you need interactivity, consider converting part of this to a Client Componen
         (ue.state.tokens[ue.state.tokens.length - 1].isType = !0));
     }
     Je.flowParseVariance = Fl;
-    function f0(e) {
+    function m0(e) {
       C.match.call(void 0, _.TokenType.colon) && Pl(),
         je.parseFunctionBody.call(void 0, !1, e);
     }
-    Je.flowParseFunctionBodyAndFinish = f0;
-    function d0(e, t, s) {
+    Je.flowParseFunctionBodyAndFinish = m0;
+    function y0(e, t, s) {
       if (
         C.match.call(void 0, _.TokenType.questionDot) &&
         C.lookaheadType.call(void 0) === _.TokenType.lessThan
@@ -20586,14 +20586,14 @@ If you need interactivity, consider converting part of this to a Client Componen
         }
         C.next.call(void 0),
           Rs(),
-          G.expect.call(void 0, _.TokenType.parenL),
+          z.expect.call(void 0, _.TokenType.parenL),
           je.parseCallExpressionArguments.call(void 0);
         return;
       } else if (!t && C.match.call(void 0, _.TokenType.lessThan)) {
         let i = ue.state.snapshot();
         if (
           (Rs(),
-          G.expect.call(void 0, _.TokenType.parenL),
+          z.expect.call(void 0, _.TokenType.parenL),
           je.parseCallExpressionArguments.call(void 0),
           ue.state.error)
         )
@@ -20602,34 +20602,34 @@ If you need interactivity, consider converting part of this to a Client Componen
       }
       je.baseParseSubscript.call(void 0, e, t, s);
     }
-    Je.flowParseSubscript = d0;
-    function m0() {
+    Je.flowParseSubscript = y0;
+    function T0() {
       if (C.match.call(void 0, _.TokenType.lessThan)) {
         let e = ue.state.snapshot();
         Rs(), ue.state.error && ue.state.restoreFromSnapshot(e);
       }
     }
-    Je.flowStartParseNewArguments = m0;
-    function T0() {
+    Je.flowStartParseNewArguments = T0;
+    function k0() {
       if (
         C.match.call(void 0, _.TokenType.name) &&
-        ue.state.contextualKeyword === Te.ContextualKeyword._interface
+        ue.state.contextualKeyword === ye.ContextualKeyword._interface
       ) {
         let e = C.pushTypeContext.call(void 0, 0);
         return C.next.call(void 0), Rl(), C.popTypeContext.call(void 0, e), !0;
-      } else if (G.isContextual.call(void 0, Te.ContextualKeyword._enum))
+      } else if (z.isContextual.call(void 0, ye.ContextualKeyword._enum))
         return ah(), !0;
       return !1;
     }
-    Je.flowTryParseStatement = T0;
-    function y0() {
-      return G.isContextual.call(void 0, Te.ContextualKeyword._enum)
+    Je.flowTryParseStatement = k0;
+    function v0() {
+      return z.isContextual.call(void 0, ye.ContextualKeyword._enum)
         ? (ah(), !0)
         : !1;
     }
-    Je.flowTryParseExportDefaultExpression = y0;
-    function k0(e) {
-      if (e === Te.ContextualKeyword._declare) {
+    Je.flowTryParseExportDefaultExpression = v0;
+    function x0(e) {
+      if (e === ye.ContextualKeyword._declare) {
         if (
           C.match.call(void 0, _.TokenType._class) ||
           C.match.call(void 0, _.TokenType.name) ||
@@ -20641,76 +20641,76 @@ If you need interactivity, consider converting part of this to a Client Componen
           El(), C.popTypeContext.call(void 0, t);
         }
       } else if (C.match.call(void 0, _.TokenType.name)) {
-        if (e === Te.ContextualKeyword._interface) {
+        if (e === ye.ContextualKeyword._interface) {
           let t = C.pushTypeContext.call(void 0, 1);
           Rl(), C.popTypeContext.call(void 0, t);
-        } else if (e === Te.ContextualKeyword._type) {
+        } else if (e === ye.ContextualKeyword._type) {
           let t = C.pushTypeContext.call(void 0, 1);
           Ll(), C.popTypeContext.call(void 0, t);
-        } else if (e === Te.ContextualKeyword._opaque) {
+        } else if (e === ye.ContextualKeyword._opaque) {
           let t = C.pushTypeContext.call(void 0, 1);
           Ol(!1), C.popTypeContext.call(void 0, t);
         }
       }
-      G.semicolon.call(void 0);
+      z.semicolon.call(void 0);
     }
-    Je.flowParseIdentifierStatement = k0;
-    function v0() {
+    Je.flowParseIdentifierStatement = x0;
+    function g0() {
       return (
-        G.isContextual.call(void 0, Te.ContextualKeyword._type) ||
-        G.isContextual.call(void 0, Te.ContextualKeyword._interface) ||
-        G.isContextual.call(void 0, Te.ContextualKeyword._opaque) ||
-        G.isContextual.call(void 0, Te.ContextualKeyword._enum)
+        z.isContextual.call(void 0, ye.ContextualKeyword._type) ||
+        z.isContextual.call(void 0, ye.ContextualKeyword._interface) ||
+        z.isContextual.call(void 0, ye.ContextualKeyword._opaque) ||
+        z.isContextual.call(void 0, ye.ContextualKeyword._enum)
       );
     }
-    Je.flowShouldParseExportDeclaration = v0;
-    function x0() {
+    Je.flowShouldParseExportDeclaration = g0;
+    function _0() {
       return (
         C.match.call(void 0, _.TokenType.name) &&
-        (ue.state.contextualKeyword === Te.ContextualKeyword._type ||
-          ue.state.contextualKeyword === Te.ContextualKeyword._interface ||
-          ue.state.contextualKeyword === Te.ContextualKeyword._opaque ||
-          ue.state.contextualKeyword === Te.ContextualKeyword._enum)
+        (ue.state.contextualKeyword === ye.ContextualKeyword._type ||
+          ue.state.contextualKeyword === ye.ContextualKeyword._interface ||
+          ue.state.contextualKeyword === ye.ContextualKeyword._opaque ||
+          ue.state.contextualKeyword === ye.ContextualKeyword._enum)
       );
     }
-    Je.flowShouldDisallowExportDefaultSpecifier = x0;
-    function g0() {
-      if (G.isContextual.call(void 0, Te.ContextualKeyword._type)) {
+    Je.flowShouldDisallowExportDefaultSpecifier = _0;
+    function b0() {
+      if (z.isContextual.call(void 0, ye.ContextualKeyword._type)) {
         let e = C.pushTypeContext.call(void 0, 1);
         C.next.call(void 0),
           C.match.call(void 0, _.TokenType.braceL)
-            ? (Ts.parseExportSpecifiers.call(void 0),
-              Ts.parseExportFrom.call(void 0))
+            ? (ys.parseExportSpecifiers.call(void 0),
+              ys.parseExportFrom.call(void 0))
             : Ll(),
           C.popTypeContext.call(void 0, e);
-      } else if (G.isContextual.call(void 0, Te.ContextualKeyword._opaque)) {
+      } else if (z.isContextual.call(void 0, ye.ContextualKeyword._opaque)) {
         let e = C.pushTypeContext.call(void 0, 1);
         C.next.call(void 0), Ol(!1), C.popTypeContext.call(void 0, e);
-      } else if (G.isContextual.call(void 0, Te.ContextualKeyword._interface)) {
+      } else if (z.isContextual.call(void 0, ye.ContextualKeyword._interface)) {
         let e = C.pushTypeContext.call(void 0, 1);
         C.next.call(void 0), Rl(), C.popTypeContext.call(void 0, e);
-      } else Ts.parseStatement.call(void 0, !0);
+      } else ys.parseStatement.call(void 0, !0);
     }
-    Je.flowParseExportDeclaration = g0;
-    function _0() {
+    Je.flowParseExportDeclaration = b0;
+    function C0() {
       return (
         C.match.call(void 0, _.TokenType.star) ||
-        (G.isContextual.call(void 0, Te.ContextualKeyword._type) &&
+        (z.isContextual.call(void 0, ye.ContextualKeyword._type) &&
           C.lookaheadType.call(void 0) === _.TokenType.star)
       );
     }
-    Je.flowShouldParseExportStar = _0;
-    function b0() {
-      if (G.eatContextual.call(void 0, Te.ContextualKeyword._type)) {
+    Je.flowShouldParseExportStar = C0;
+    function w0() {
+      if (z.eatContextual.call(void 0, ye.ContextualKeyword._type)) {
         let e = C.pushTypeContext.call(void 0, 2);
-        Ts.baseParseExportStar.call(void 0), C.popTypeContext.call(void 0, e);
-      } else Ts.baseParseExportStar.call(void 0);
+        ys.baseParseExportStar.call(void 0), C.popTypeContext.call(void 0, e);
+      } else ys.baseParseExportStar.call(void 0);
     }
-    Je.flowParseExportStar = b0;
-    function C0(e) {
+    Je.flowParseExportStar = w0;
+    function S0(e) {
       if (
         (e && C.match.call(void 0, _.TokenType.lessThan) && Rs(),
-        G.isContextual.call(void 0, Te.ContextualKeyword._implements))
+        z.isContextual.call(void 0, ye.ContextualKeyword._implements))
       ) {
         let t = C.pushTypeContext.call(void 0, 0);
         C.next.call(void 0),
@@ -20721,40 +20721,40 @@ If you need interactivity, consider converting part of this to a Client Componen
         C.popTypeContext.call(void 0, t);
       }
     }
-    Je.flowAfterParseClassSuper = C0;
-    function w0() {
+    Je.flowAfterParseClassSuper = S0;
+    function I0() {
       C.match.call(void 0, _.TokenType.lessThan) &&
         (On(),
-        C.match.call(void 0, _.TokenType.parenL) || G.unexpected.call(void 0));
+        C.match.call(void 0, _.TokenType.parenL) || z.unexpected.call(void 0));
     }
-    Je.flowStartParseObjPropValue = w0;
-    function S0() {
+    Je.flowStartParseObjPropValue = I0;
+    function E0() {
       let e = C.pushTypeContext.call(void 0, 0);
       C.eat.call(void 0, _.TokenType.question),
         C.match.call(void 0, _.TokenType.colon) && vi(),
         C.popTypeContext.call(void 0, e);
     }
-    Je.flowParseAssignableListItemTypes = S0;
-    function I0() {
+    Je.flowParseAssignableListItemTypes = E0;
+    function A0() {
       if (
         C.match.call(void 0, _.TokenType._typeof) ||
-        G.isContextual.call(void 0, Te.ContextualKeyword._type)
+        z.isContextual.call(void 0, ye.ContextualKeyword._type)
       ) {
         let e = C.lookaheadTypeAndKeyword.call(void 0);
-        (Hk(e) ||
+        (Gk(e) ||
           e.type === _.TokenType.braceL ||
           e.type === _.TokenType.star) &&
           C.next.call(void 0);
       }
     }
-    Je.flowStartParseImportSpecifiers = I0;
-    function E0() {
+    Je.flowStartParseImportSpecifiers = A0;
+    function P0() {
       let e =
-        ue.state.contextualKeyword === Te.ContextualKeyword._type ||
+        ue.state.contextualKeyword === ye.ContextualKeyword._type ||
         ue.state.type === _.TokenType._typeof;
       e ? C.next.call(void 0) : je.parseIdentifier.call(void 0),
-        G.isContextual.call(void 0, Te.ContextualKeyword._as) &&
-        !G.isLookaheadContextual.call(void 0, Te.ContextualKeyword._as)
+        z.isContextual.call(void 0, ye.ContextualKeyword._as) &&
+        !z.isLookaheadContextual.call(void 0, ye.ContextualKeyword._as)
           ? (je.parseIdentifier.call(void 0),
             (e &&
               !C.match.call(void 0, _.TokenType.name) &&
@@ -20764,22 +20764,22 @@ If you need interactivity, consider converting part of this to a Client Componen
               (C.match.call(void 0, _.TokenType.name) ||
                 ue.state.type & _.TokenType.IS_KEYWORD) &&
               je.parseIdentifier.call(void 0),
-            G.eatContextual.call(void 0, Te.ContextualKeyword._as) &&
+            z.eatContextual.call(void 0, ye.ContextualKeyword._as) &&
               je.parseIdentifier.call(void 0));
     }
-    Je.flowParseImportSpecifier = E0;
-    function A0() {
+    Je.flowParseImportSpecifier = P0;
+    function N0() {
       if (C.match.call(void 0, _.TokenType.lessThan)) {
         let e = C.pushTypeContext.call(void 0, 0);
         On(), C.popTypeContext.call(void 0, e);
       }
     }
-    Je.flowStartParseFunctionParams = A0;
-    function P0() {
+    Je.flowStartParseFunctionParams = N0;
+    function R0() {
       C.match.call(void 0, _.TokenType.colon) && vi();
     }
-    Je.flowAfterParseVarHead = P0;
-    function N0() {
+    Je.flowAfterParseVarHead = R0;
+    function L0() {
       if (C.match.call(void 0, _.TokenType.colon)) {
         let e = ue.state.noAnonFunctionType;
         (ue.state.noAnonFunctionType = !0),
@@ -20787,8 +20787,8 @@ If you need interactivity, consider converting part of this to a Client Componen
           (ue.state.noAnonFunctionType = e);
       }
     }
-    Je.flowStartParseAsyncArrowFromCallExpression = N0;
-    function R0(e, t) {
+    Je.flowStartParseAsyncArrowFromCallExpression = L0;
+    function O0(e, t) {
       if (C.match.call(void 0, _.TokenType.lessThan)) {
         let s = ue.state.snapshot(),
           i = je.baseParseMaybeAssign.call(void 0, e, t);
@@ -20804,12 +20804,12 @@ If you need interactivity, consider converting part of this to a Client Componen
           i)
         )
           return !0;
-        G.unexpected.call(void 0);
+        z.unexpected.call(void 0);
       }
       return je.baseParseMaybeAssign.call(void 0, e, t);
     }
-    Je.flowParseMaybeAssign = R0;
-    function L0() {
+    Je.flowParseMaybeAssign = O0;
+    function D0() {
       if (C.match.call(void 0, _.TokenType.colon)) {
         let e = C.pushTypeContext.call(void 0, 0),
           t = ue.state.snapshot(),
@@ -20817,51 +20817,51 @@ If you need interactivity, consider converting part of this to a Client Componen
         (ue.state.noAnonFunctionType = !0),
           Pl(),
           (ue.state.noAnonFunctionType = s),
-          G.canInsertSemicolon.call(void 0) && G.unexpected.call(void 0),
-          C.match.call(void 0, _.TokenType.arrow) || G.unexpected.call(void 0),
+          z.canInsertSemicolon.call(void 0) && z.unexpected.call(void 0),
+          C.match.call(void 0, _.TokenType.arrow) || z.unexpected.call(void 0),
           ue.state.error && ue.state.restoreFromSnapshot(t),
           C.popTypeContext.call(void 0, e);
       }
       return C.eat.call(void 0, _.TokenType.arrow);
     }
-    Je.flowParseArrow = L0;
-    function O0(e, t = !1) {
+    Je.flowParseArrow = D0;
+    function M0(e, t = !1) {
       if (
         ue.state.tokens[ue.state.tokens.length - 1].contextualKeyword ===
-          Te.ContextualKeyword._async &&
+          ye.ContextualKeyword._async &&
         C.match.call(void 0, _.TokenType.lessThan)
       ) {
         let s = ue.state.snapshot();
-        if (D0() && !ue.state.error) return;
+        if (F0() && !ue.state.error) return;
         ue.state.restoreFromSnapshot(s);
       }
       je.baseParseSubscripts.call(void 0, e, t);
     }
-    Je.flowParseSubscripts = O0;
-    function D0() {
+    Je.flowParseSubscripts = M0;
+    function F0() {
       ue.state.scopeDepth++;
       let e = ue.state.tokens.length;
       return (
-        Ts.parseFunctionParams.call(void 0),
+        ys.parseFunctionParams.call(void 0),
         je.parseArrow.call(void 0)
           ? (je.parseArrowExpression.call(void 0, e), !0)
           : !1
       );
     }
     function ah() {
-      G.expectContextual.call(void 0, Te.ContextualKeyword._enum),
+      z.expectContextual.call(void 0, ye.ContextualKeyword._enum),
         (ue.state.tokens[ue.state.tokens.length - 1].type = _.TokenType._enum),
         je.parseIdentifier.call(void 0),
-        M0();
+        B0();
     }
-    function M0() {
-      G.eatContextual.call(void 0, Te.ContextualKeyword._of) &&
+    function B0() {
+      z.eatContextual.call(void 0, ye.ContextualKeyword._of) &&
         C.next.call(void 0),
-        G.expect.call(void 0, _.TokenType.braceL),
-        F0(),
-        G.expect.call(void 0, _.TokenType.braceR);
+        z.expect.call(void 0, _.TokenType.braceL),
+        V0(),
+        z.expect.call(void 0, _.TokenType.braceR);
     }
-    function F0() {
+    function V0() {
       for (
         ;
         !C.match.call(void 0, _.TokenType.braceR) &&
@@ -20869,125 +20869,125 @@ If you need interactivity, consider converting part of this to a Client Componen
         !C.eat.call(void 0, _.TokenType.ellipsis);
 
       )
-        B0(),
+        j0(),
           C.match.call(void 0, _.TokenType.braceR) ||
-            G.expect.call(void 0, _.TokenType.comma);
+            z.expect.call(void 0, _.TokenType.comma);
     }
-    function B0() {
+    function j0() {
       je.parseIdentifier.call(void 0),
         C.eat.call(void 0, _.TokenType.eq) && C.next.call(void 0);
     }
   });
-  var nr = Z((yt) => {
+  var nr = Z((Tt) => {
     'use strict';
-    Object.defineProperty(yt, '__esModule', {value: !0});
-    var V0 = Ul(),
+    Object.defineProperty(Tt, '__esModule', {value: !0});
+    var $0 = Ul(),
       Ft = Ji(),
       dt = hi(),
       $ = xt(),
       ke = It(),
-      ys = qr(),
-      O = be(),
+      Ts = qr(),
+      D = be(),
       lh = Qt(),
       P = Zt(),
       De = Ns(),
       ks = lo(),
       ee = cs();
-    function j0() {
+    function q0() {
       if (
-        (ql(O.TokenType.eof),
-        P.state.scopes.push(new ys.Scope(0, P.state.tokens.length, !0)),
+        (ql(D.TokenType.eof),
+        P.state.scopes.push(new Ts.Scope(0, P.state.tokens.length, !0)),
         P.state.scopeDepth !== 0)
       )
         throw new Error(
           `Invalid scope depth at end of file: ${P.state.scopeDepth}`
         );
-      return new V0.File(P.state.tokens, P.state.scopes);
+      return new $0.File(P.state.tokens, P.state.scopes);
     }
-    yt.parseTopLevel = j0;
+    Tt.parseTopLevel = q0;
     function _n(e) {
       (P.isFlowEnabled && Ft.flowTryParseStatement.call(void 0)) ||
-        ($.match.call(void 0, O.TokenType.at) && $l(), $0(e));
+        ($.match.call(void 0, D.TokenType.at) && $l(), K0(e));
     }
-    yt.parseStatement = _n;
-    function $0(e) {
+    Tt.parseStatement = _n;
+    function K0(e) {
       if (P.isTypeScriptEnabled && dt.tsTryParseStatementContent.call(void 0))
         return;
       let t = P.state.type;
       switch (t) {
-        case O.TokenType._break:
-        case O.TokenType._continue:
-          K0();
-          return;
-        case O.TokenType._debugger:
-          U0();
-          return;
-        case O.TokenType._do:
+        case D.TokenType._break:
+        case D.TokenType._continue:
           H0();
           return;
-        case O.TokenType._for:
+        case D.TokenType._debugger:
           W0();
           return;
-        case O.TokenType._function:
-          if ($.lookaheadType.call(void 0) === O.TokenType.dot) break;
-          e || ee.unexpected.call(void 0), X0();
+        case D.TokenType._do:
+          G0();
           return;
-        case O.TokenType._class:
+        case D.TokenType._for:
+          z0();
+          return;
+        case D.TokenType._function:
+          if ($.lookaheadType.call(void 0) === D.TokenType.dot) break;
+          e || ee.unexpected.call(void 0), J0();
+          return;
+        case D.TokenType._class:
           e || ee.unexpected.call(void 0), Io(!0);
           return;
-        case O.TokenType._if:
-          Y0();
-          return;
-        case O.TokenType._return:
-          J0();
-          return;
-        case O.TokenType._switch:
+        case D.TokenType._if:
           Q0();
           return;
-        case O.TokenType._throw:
+        case D.TokenType._return:
           Z0();
           return;
-        case O.TokenType._try:
+        case D.TokenType._switch:
+          ev();
+          return;
+        case D.TokenType._throw:
           tv();
           return;
-        case O.TokenType._let:
-        case O.TokenType._const:
-          e || ee.unexpected.call(void 0);
-        case O.TokenType._var:
-          Vl(t !== O.TokenType._var);
-          return;
-        case O.TokenType._while:
-          nv();
-          return;
-        case O.TokenType.braceL:
-          gi();
-          return;
-        case O.TokenType.semi:
+        case D.TokenType._try:
           sv();
           return;
-        case O.TokenType._export:
-        case O.TokenType._import: {
+        case D.TokenType._let:
+        case D.TokenType._const:
+          e || ee.unexpected.call(void 0);
+        case D.TokenType._var:
+          Vl(t !== D.TokenType._var);
+          return;
+        case D.TokenType._while:
+          iv();
+          return;
+        case D.TokenType.braceL:
+          gi();
+          return;
+        case D.TokenType.semi:
+          rv();
+          return;
+        case D.TokenType._export:
+        case D.TokenType._import: {
           let r = $.lookaheadType.call(void 0);
-          if (r === O.TokenType.parenL || r === O.TokenType.dot) break;
-          $.next.call(void 0), t === O.TokenType._import ? xh() : yh();
+          if (r === D.TokenType.parenL || r === D.TokenType.dot) break;
+          $.next.call(void 0), t === D.TokenType._import ? xh() : Th();
           return;
         }
-        case O.TokenType.name:
+        case D.TokenType.name:
           if (P.state.contextualKeyword === ke.ContextualKeyword._async) {
             let r = P.state.start,
               a = P.state.snapshot();
             if (
               ($.next.call(void 0),
-              $.match.call(void 0, O.TokenType._function) &&
+              $.match.call(void 0, D.TokenType._function) &&
                 !ee.canInsertSemicolon.call(void 0))
             ) {
-              ee.expect.call(void 0, O.TokenType._function), lr(r, !0);
+              ee.expect.call(void 0, D.TokenType._function), lr(r, !0);
               return;
             } else P.state.restoreFromSnapshot(a);
           } else if (
             P.state.contextualKeyword === ke.ContextualKeyword._using &&
             !ee.hasFollowingLineBreak.call(void 0) &&
-            $.lookaheadType.call(void 0) === O.TokenType.name
+            $.lookaheadType.call(void 0) === D.TokenType.name
           ) {
             Vl(!0);
             return;
@@ -21000,92 +21000,92 @@ If you need interactivity, consider converting part of this to a Client Componen
       let i = null;
       if (P.state.tokens.length === s + 1) {
         let r = P.state.tokens[P.state.tokens.length - 1];
-        r.type === O.TokenType.name && (i = r.contextualKeyword);
+        r.type === D.TokenType.name && (i = r.contextualKeyword);
       }
       if (i == null) {
         ee.semicolon.call(void 0);
         return;
       }
-      $.eat.call(void 0, O.TokenType.colon) ? iv() : rv(i);
+      $.eat.call(void 0, D.TokenType.colon) ? ov() : av(i);
     }
     function $l() {
-      for (; $.match.call(void 0, O.TokenType.at); ) ph();
+      for (; $.match.call(void 0, D.TokenType.at); ) ph();
     }
-    yt.parseDecorators = $l;
+    Tt.parseDecorators = $l;
     function ph() {
-      if (($.next.call(void 0), $.eat.call(void 0, O.TokenType.parenL)))
+      if (($.next.call(void 0), $.eat.call(void 0, D.TokenType.parenL)))
         De.parseExpression.call(void 0),
-          ee.expect.call(void 0, O.TokenType.parenR);
+          ee.expect.call(void 0, D.TokenType.parenR);
       else {
         for (
           De.parseIdentifier.call(void 0);
-          $.eat.call(void 0, O.TokenType.dot);
+          $.eat.call(void 0, D.TokenType.dot);
 
         )
           De.parseIdentifier.call(void 0);
-        q0();
+        U0();
       }
     }
-    function q0() {
+    function U0() {
       P.isTypeScriptEnabled
         ? dt.tsParseMaybeDecoratorArguments.call(void 0)
         : hh();
     }
     function hh() {
-      $.eat.call(void 0, O.TokenType.parenL) &&
+      $.eat.call(void 0, D.TokenType.parenL) &&
         De.parseCallExpressionArguments.call(void 0);
     }
-    yt.baseParseMaybeDecoratorArguments = hh;
-    function K0() {
+    Tt.baseParseMaybeDecoratorArguments = hh;
+    function H0() {
       $.next.call(void 0),
         ee.isLineTerminator.call(void 0) ||
           (De.parseIdentifier.call(void 0), ee.semicolon.call(void 0));
     }
-    function U0() {
+    function W0() {
       $.next.call(void 0), ee.semicolon.call(void 0);
     }
-    function H0() {
+    function G0() {
       $.next.call(void 0),
         _n(!1),
-        ee.expect.call(void 0, O.TokenType._while),
+        ee.expect.call(void 0, D.TokenType._while),
         De.parseParenExpression.call(void 0),
-        $.eat.call(void 0, O.TokenType.semi);
+        $.eat.call(void 0, D.TokenType.semi);
     }
-    function W0() {
+    function z0() {
       P.state.scopeDepth++;
       let e = P.state.tokens.length;
-      z0();
+      Y0();
       let t = P.state.tokens.length;
-      P.state.scopes.push(new ys.Scope(e, t, !1)), P.state.scopeDepth--;
+      P.state.scopes.push(new Ts.Scope(e, t, !1)), P.state.scopeDepth--;
     }
-    function G0() {
+    function X0() {
       return !(
         !ee.isContextual.call(void 0, ke.ContextualKeyword._using) ||
         ee.isLookaheadContextual.call(void 0, ke.ContextualKeyword._of)
       );
     }
-    function z0() {
+    function Y0() {
       $.next.call(void 0);
       let e = !1;
       if (
         (ee.isContextual.call(void 0, ke.ContextualKeyword._await) &&
           ((e = !0), $.next.call(void 0)),
-        ee.expect.call(void 0, O.TokenType.parenL),
-        $.match.call(void 0, O.TokenType.semi))
+        ee.expect.call(void 0, D.TokenType.parenL),
+        $.match.call(void 0, D.TokenType.semi))
       ) {
         e && ee.unexpected.call(void 0), Bl();
         return;
       }
       if (
-        $.match.call(void 0, O.TokenType._var) ||
-        $.match.call(void 0, O.TokenType._let) ||
-        $.match.call(void 0, O.TokenType._const) ||
-        G0()
+        $.match.call(void 0, D.TokenType._var) ||
+        $.match.call(void 0, D.TokenType._let) ||
+        $.match.call(void 0, D.TokenType._const) ||
+        X0()
       ) {
         if (
           ($.next.call(void 0),
-          fh(!0, P.state.type !== O.TokenType._var),
-          $.match.call(void 0, O.TokenType._in) ||
+          fh(!0, P.state.type !== D.TokenType._var),
+          $.match.call(void 0, D.TokenType._in) ||
             ee.isContextual.call(void 0, ke.ContextualKeyword._of))
         ) {
           ch(e);
@@ -21096,7 +21096,7 @@ If you need interactivity, consider converting part of this to a Client Componen
       }
       if (
         (De.parseExpression.call(void 0, !0),
-        $.match.call(void 0, O.TokenType._in) ||
+        $.match.call(void 0, D.TokenType._in) ||
           ee.isContextual.call(void 0, ke.ContextualKeyword._of))
       ) {
         ch(e);
@@ -21104,89 +21104,89 @@ If you need interactivity, consider converting part of this to a Client Componen
       }
       e && ee.unexpected.call(void 0), Bl();
     }
-    function X0() {
+    function J0() {
       let e = P.state.start;
       $.next.call(void 0), lr(e, !0);
     }
-    function Y0() {
+    function Q0() {
       $.next.call(void 0),
         De.parseParenExpression.call(void 0),
         _n(!1),
-        $.eat.call(void 0, O.TokenType._else) && _n(!1);
+        $.eat.call(void 0, D.TokenType._else) && _n(!1);
     }
-    function J0() {
+    function Z0() {
       $.next.call(void 0),
         ee.isLineTerminator.call(void 0) ||
           (De.parseExpression.call(void 0), ee.semicolon.call(void 0));
     }
-    function Q0() {
+    function ev() {
       $.next.call(void 0),
         De.parseParenExpression.call(void 0),
         P.state.scopeDepth++;
       let e = P.state.tokens.length;
       for (
-        ee.expect.call(void 0, O.TokenType.braceL);
-        !$.match.call(void 0, O.TokenType.braceR) && !P.state.error;
+        ee.expect.call(void 0, D.TokenType.braceL);
+        !$.match.call(void 0, D.TokenType.braceR) && !P.state.error;
 
       )
         if (
-          $.match.call(void 0, O.TokenType._case) ||
-          $.match.call(void 0, O.TokenType._default)
+          $.match.call(void 0, D.TokenType._case) ||
+          $.match.call(void 0, D.TokenType._default)
         ) {
-          let s = $.match.call(void 0, O.TokenType._case);
+          let s = $.match.call(void 0, D.TokenType._case);
           $.next.call(void 0),
             s && De.parseExpression.call(void 0),
-            ee.expect.call(void 0, O.TokenType.colon);
+            ee.expect.call(void 0, D.TokenType.colon);
         } else _n(!0);
       $.next.call(void 0);
       let t = P.state.tokens.length;
-      P.state.scopes.push(new ys.Scope(e, t, !1)), P.state.scopeDepth--;
+      P.state.scopes.push(new Ts.Scope(e, t, !1)), P.state.scopeDepth--;
     }
-    function Z0() {
+    function tv() {
       $.next.call(void 0),
         De.parseExpression.call(void 0),
         ee.semicolon.call(void 0);
     }
-    function ev() {
+    function nv() {
       ks.parseBindingAtom.call(void 0, !0),
         P.isTypeScriptEnabled && dt.tsTryParseTypeAnnotation.call(void 0);
     }
-    function tv() {
+    function sv() {
       if (
-        ($.next.call(void 0), gi(), $.match.call(void 0, O.TokenType._catch))
+        ($.next.call(void 0), gi(), $.match.call(void 0, D.TokenType._catch))
       ) {
         $.next.call(void 0);
         let e = null;
         if (
-          ($.match.call(void 0, O.TokenType.parenL) &&
+          ($.match.call(void 0, D.TokenType.parenL) &&
             (P.state.scopeDepth++,
             (e = P.state.tokens.length),
-            ee.expect.call(void 0, O.TokenType.parenL),
-            ev(),
-            ee.expect.call(void 0, O.TokenType.parenR)),
+            ee.expect.call(void 0, D.TokenType.parenL),
+            nv(),
+            ee.expect.call(void 0, D.TokenType.parenR)),
           gi(),
           e != null)
         ) {
           let t = P.state.tokens.length;
-          P.state.scopes.push(new ys.Scope(e, t, !1)), P.state.scopeDepth--;
+          P.state.scopes.push(new Ts.Scope(e, t, !1)), P.state.scopeDepth--;
         }
       }
-      $.eat.call(void 0, O.TokenType._finally) && gi();
+      $.eat.call(void 0, D.TokenType._finally) && gi();
     }
     function Vl(e) {
       $.next.call(void 0), fh(!1, e), ee.semicolon.call(void 0);
     }
-    yt.parseVarStatement = Vl;
-    function nv() {
+    Tt.parseVarStatement = Vl;
+    function iv() {
       $.next.call(void 0), De.parseParenExpression.call(void 0), _n(!1);
     }
-    function sv() {
+    function rv() {
       $.next.call(void 0);
     }
-    function iv() {
+    function ov() {
       _n(!0);
     }
-    function rv(e) {
+    function av(e) {
       P.isTypeScriptEnabled
         ? dt.tsParseIdentifierStatement.call(void 0, e)
         : P.isFlowEnabled
@@ -21196,26 +21196,26 @@ If you need interactivity, consider converting part of this to a Client Componen
     function gi(e = !1, t = 0) {
       let s = P.state.tokens.length;
       P.state.scopeDepth++,
-        ee.expect.call(void 0, O.TokenType.braceL),
+        ee.expect.call(void 0, D.TokenType.braceL),
         t && (P.state.tokens[P.state.tokens.length - 1].contextId = t),
-        ql(O.TokenType.braceR),
+        ql(D.TokenType.braceR),
         t && (P.state.tokens[P.state.tokens.length - 1].contextId = t);
       let i = P.state.tokens.length;
-      P.state.scopes.push(new ys.Scope(s, i, e)), P.state.scopeDepth--;
+      P.state.scopes.push(new Ts.Scope(s, i, e)), P.state.scopeDepth--;
     }
-    yt.parseBlock = gi;
+    Tt.parseBlock = gi;
     function ql(e) {
       for (; !$.eat.call(void 0, e) && !P.state.error; ) _n(!0);
     }
-    yt.parseBlockBody = ql;
+    Tt.parseBlockBody = ql;
     function Bl() {
-      ee.expect.call(void 0, O.TokenType.semi),
-        $.match.call(void 0, O.TokenType.semi) ||
+      ee.expect.call(void 0, D.TokenType.semi),
+        $.match.call(void 0, D.TokenType.semi) ||
           De.parseExpression.call(void 0),
-        ee.expect.call(void 0, O.TokenType.semi),
-        $.match.call(void 0, O.TokenType.parenR) ||
+        ee.expect.call(void 0, D.TokenType.semi),
+        $.match.call(void 0, D.TokenType.parenR) ||
           De.parseExpression.call(void 0),
-        ee.expect.call(void 0, O.TokenType.parenR),
+        ee.expect.call(void 0, D.TokenType.parenR),
         _n(!1);
     }
     function ch(e) {
@@ -21223,106 +21223,106 @@ If you need interactivity, consider converting part of this to a Client Componen
         ? ee.eatContextual.call(void 0, ke.ContextualKeyword._of)
         : $.next.call(void 0),
         De.parseExpression.call(void 0),
-        ee.expect.call(void 0, O.TokenType.parenR),
+        ee.expect.call(void 0, D.TokenType.parenR),
         _n(!1);
     }
     function fh(e, t) {
       for (;;) {
-        if ((ov(t), $.eat.call(void 0, O.TokenType.eq))) {
+        if ((lv(t), $.eat.call(void 0, D.TokenType.eq))) {
           let s = P.state.tokens.length - 1;
           De.parseMaybeAssign.call(void 0, e),
             (P.state.tokens[s].rhsEndIndex = P.state.tokens.length);
         }
-        if (!$.eat.call(void 0, O.TokenType.comma)) break;
+        if (!$.eat.call(void 0, D.TokenType.comma)) break;
       }
     }
-    function ov(e) {
+    function lv(e) {
       ks.parseBindingAtom.call(void 0, e),
         P.isTypeScriptEnabled
           ? dt.tsAfterParseVarHead.call(void 0)
           : P.isFlowEnabled && Ft.flowAfterParseVarHead.call(void 0);
     }
     function lr(e, t, s = !1) {
-      $.match.call(void 0, O.TokenType.star) && $.next.call(void 0),
+      $.match.call(void 0, D.TokenType.star) && $.next.call(void 0),
         t &&
           !s &&
-          !$.match.call(void 0, O.TokenType.name) &&
-          !$.match.call(void 0, O.TokenType._yield) &&
+          !$.match.call(void 0, D.TokenType.name) &&
+          !$.match.call(void 0, D.TokenType._yield) &&
           ee.unexpected.call(void 0);
       let i = null;
-      $.match.call(void 0, O.TokenType.name) &&
+      $.match.call(void 0, D.TokenType.name) &&
         (t || ((i = P.state.tokens.length), P.state.scopeDepth++),
         ks.parseBindingIdentifier.call(void 0, !1));
       let r = P.state.tokens.length;
       P.state.scopeDepth++, dh(), De.parseFunctionBodyAndFinish.call(void 0, e);
       let a = P.state.tokens.length;
-      P.state.scopes.push(new ys.Scope(r, a, !0)),
+      P.state.scopes.push(new Ts.Scope(r, a, !0)),
         P.state.scopeDepth--,
         i !== null &&
-          (P.state.scopes.push(new ys.Scope(i, a, !0)), P.state.scopeDepth--);
+          (P.state.scopes.push(new Ts.Scope(i, a, !0)), P.state.scopeDepth--);
     }
-    yt.parseFunction = lr;
+    Tt.parseFunction = lr;
     function dh(e = !1, t = 0) {
       P.isTypeScriptEnabled
         ? dt.tsStartParseFunctionParams.call(void 0)
         : P.isFlowEnabled && Ft.flowStartParseFunctionParams.call(void 0),
-        ee.expect.call(void 0, O.TokenType.parenL),
+        ee.expect.call(void 0, D.TokenType.parenL),
         t && (P.state.tokens[P.state.tokens.length - 1].contextId = t),
-        ks.parseBindingList.call(void 0, O.TokenType.parenR, !1, !1, e, t),
+        ks.parseBindingList.call(void 0, D.TokenType.parenR, !1, !1, e, t),
         t && (P.state.tokens[P.state.tokens.length - 1].contextId = t);
     }
-    yt.parseFunctionParams = dh;
+    Tt.parseFunctionParams = dh;
     function Io(e, t = !1) {
       let s = P.getNextContextId.call(void 0);
       $.next.call(void 0),
         (P.state.tokens[P.state.tokens.length - 1].contextId = s),
         (P.state.tokens[P.state.tokens.length - 1].isExpression = !e);
       let i = null;
-      e || ((i = P.state.tokens.length), P.state.scopeDepth++), uv(e, t), pv();
+      e || ((i = P.state.tokens.length), P.state.scopeDepth++), hv(e, t), fv();
       let r = P.state.tokens.length;
       if (
-        (av(s),
+        (cv(s),
         !P.state.error &&
           ((P.state.tokens[r].contextId = s),
           (P.state.tokens[P.state.tokens.length - 1].contextId = s),
           i !== null))
       ) {
         let a = P.state.tokens.length;
-        P.state.scopes.push(new ys.Scope(i, a, !1)), P.state.scopeDepth--;
+        P.state.scopes.push(new Ts.Scope(i, a, !1)), P.state.scopeDepth--;
       }
     }
-    yt.parseClass = Io;
+    Tt.parseClass = Io;
     function mh() {
       return (
-        $.match.call(void 0, O.TokenType.eq) ||
-        $.match.call(void 0, O.TokenType.semi) ||
-        $.match.call(void 0, O.TokenType.braceR) ||
-        $.match.call(void 0, O.TokenType.bang) ||
-        $.match.call(void 0, O.TokenType.colon)
+        $.match.call(void 0, D.TokenType.eq) ||
+        $.match.call(void 0, D.TokenType.semi) ||
+        $.match.call(void 0, D.TokenType.braceR) ||
+        $.match.call(void 0, D.TokenType.bang) ||
+        $.match.call(void 0, D.TokenType.colon)
       );
     }
-    function Th() {
+    function yh() {
       return (
-        $.match.call(void 0, O.TokenType.parenL) ||
-        $.match.call(void 0, O.TokenType.lessThan)
+        $.match.call(void 0, D.TokenType.parenL) ||
+        $.match.call(void 0, D.TokenType.lessThan)
       );
     }
-    function av(e) {
+    function cv(e) {
       for (
-        ee.expect.call(void 0, O.TokenType.braceL);
-        !$.eat.call(void 0, O.TokenType.braceR) && !P.state.error;
+        ee.expect.call(void 0, D.TokenType.braceL);
+        !$.eat.call(void 0, D.TokenType.braceR) && !P.state.error;
 
       ) {
-        if ($.eat.call(void 0, O.TokenType.semi)) continue;
-        if ($.match.call(void 0, O.TokenType.at)) {
+        if ($.eat.call(void 0, D.TokenType.semi)) continue;
+        if ($.match.call(void 0, D.TokenType.at)) {
           ph();
           continue;
         }
         let t = P.state.start;
-        lv(t, e);
+        uv(t, e);
       }
     }
-    function lv(e, t) {
+    function uv(e, t) {
       P.isTypeScriptEnabled &&
         dt.tsParseModifiers.call(void 0, [
           ke.ContextualKeyword._declare,
@@ -21333,10 +21333,10 @@ If you need interactivity, consider converting part of this to a Client Componen
         ]);
       let s = !1;
       if (
-        $.match.call(void 0, O.TokenType.name) &&
+        $.match.call(void 0, D.TokenType.name) &&
         P.state.contextualKeyword === ke.ContextualKeyword._static
       ) {
-        if ((De.parseIdentifier.call(void 0), Th())) {
+        if ((De.parseIdentifier.call(void 0), yh())) {
           or(e, !1);
           return;
         } else if (mh()) {
@@ -21345,23 +21345,23 @@ If you need interactivity, consider converting part of this to a Client Componen
         }
         if (
           ((P.state.tokens[P.state.tokens.length - 1].type =
-            O.TokenType._static),
+            D.TokenType._static),
           (s = !0),
-          $.match.call(void 0, O.TokenType.braceL))
+          $.match.call(void 0, D.TokenType.braceL))
         ) {
           (P.state.tokens[P.state.tokens.length - 1].contextId = t), gi();
           return;
         }
       }
-      cv(e, s, t);
+      pv(e, s, t);
     }
-    function cv(e, t, s) {
+    function pv(e, t, s) {
       if (
         P.isTypeScriptEnabled &&
         dt.tsTryParseClassMemberWithIsStatic.call(void 0, t)
       )
         return;
-      if ($.eat.call(void 0, O.TokenType.star)) {
+      if ($.eat.call(void 0, D.TokenType.star)) {
         xi(s), or(e, !1);
         return;
       }
@@ -21370,15 +21370,15 @@ If you need interactivity, consider converting part of this to a Client Componen
         r = P.state.tokens[P.state.tokens.length - 1];
       r.contextualKeyword === ke.ContextualKeyword._constructor && (i = !0),
         jl(),
-        Th()
+        yh()
           ? or(e, i)
           : mh()
           ? ar()
           : r.contextualKeyword === ke.ContextualKeyword._async &&
             !ee.isLineTerminator.call(void 0)
           ? ((P.state.tokens[P.state.tokens.length - 1].type =
-              O.TokenType._async),
-            $.match.call(void 0, O.TokenType.star) && $.next.call(void 0),
+              D.TokenType._async),
+            $.match.call(void 0, D.TokenType.star) && $.next.call(void 0),
             xi(s),
             jl(),
             or(e, !1))
@@ -21386,13 +21386,13 @@ If you need interactivity, consider converting part of this to a Client Componen
               r.contextualKeyword === ke.ContextualKeyword._set) &&
             !(
               ee.isLineTerminator.call(void 0) &&
-              $.match.call(void 0, O.TokenType.star)
+              $.match.call(void 0, D.TokenType.star)
             )
           ? (r.contextualKeyword === ke.ContextualKeyword._get
               ? (P.state.tokens[P.state.tokens.length - 1].type =
-                  O.TokenType._get)
+                  D.TokenType._get)
               : (P.state.tokens[P.state.tokens.length - 1].type =
-                  O.TokenType._set),
+                  D.TokenType._set),
             xi(s),
             or(e, !1))
           : r.contextualKeyword === ke.ContextualKeyword._accessor &&
@@ -21406,31 +21406,31 @@ If you need interactivity, consider converting part of this to a Client Componen
       P.isTypeScriptEnabled
         ? dt.tsTryParseTypeParameters.call(void 0)
         : P.isFlowEnabled &&
-          $.match.call(void 0, O.TokenType.lessThan) &&
+          $.match.call(void 0, D.TokenType.lessThan) &&
           Ft.flowParseTypeParameterDeclaration.call(void 0),
         De.parseMethod.call(void 0, e, t);
     }
     function xi(e) {
       De.parsePropertyName.call(void 0, e);
     }
-    yt.parseClassPropertyName = xi;
+    Tt.parseClassPropertyName = xi;
     function jl() {
       if (P.isTypeScriptEnabled) {
         let e = $.pushTypeContext.call(void 0, 0);
-        $.eat.call(void 0, O.TokenType.question),
+        $.eat.call(void 0, D.TokenType.question),
           $.popTypeContext.call(void 0, e);
       }
     }
-    yt.parsePostMemberNameModifiers = jl;
+    Tt.parsePostMemberNameModifiers = jl;
     function ar() {
       if (
         (P.isTypeScriptEnabled
-          ? ($.eatTypeToken.call(void 0, O.TokenType.bang),
+          ? ($.eatTypeToken.call(void 0, D.TokenType.bang),
             dt.tsTryParseTypeAnnotation.call(void 0))
           : P.isFlowEnabled &&
-            $.match.call(void 0, O.TokenType.colon) &&
+            $.match.call(void 0, D.TokenType.colon) &&
             Ft.flowParseTypeAnnotation.call(void 0),
-        $.match.call(void 0, O.TokenType.eq))
+        $.match.call(void 0, D.TokenType.eq))
       ) {
         let e = P.state.tokens.length;
         $.next.call(void 0),
@@ -21439,52 +21439,52 @@ If you need interactivity, consider converting part of this to a Client Componen
       }
       ee.semicolon.call(void 0);
     }
-    yt.parseClassProperty = ar;
-    function uv(e, t = !1) {
+    Tt.parseClassProperty = ar;
+    function hv(e, t = !1) {
       (P.isTypeScriptEnabled &&
         (!e || t) &&
         ee.isContextual.call(void 0, ke.ContextualKeyword._implements)) ||
-        ($.match.call(void 0, O.TokenType.name) &&
+        ($.match.call(void 0, D.TokenType.name) &&
           ks.parseBindingIdentifier.call(void 0, !0),
         P.isTypeScriptEnabled
           ? dt.tsTryParseTypeParameters.call(void 0)
           : P.isFlowEnabled &&
-            $.match.call(void 0, O.TokenType.lessThan) &&
+            $.match.call(void 0, D.TokenType.lessThan) &&
             Ft.flowParseTypeParameterDeclaration.call(void 0));
     }
-    function pv() {
+    function fv() {
       let e = !1;
-      $.eat.call(void 0, O.TokenType._extends)
+      $.eat.call(void 0, D.TokenType._extends)
         ? (De.parseExprSubscripts.call(void 0), (e = !0))
         : (e = !1),
         P.isTypeScriptEnabled
           ? dt.tsAfterParseClassSuper.call(void 0, e)
           : P.isFlowEnabled && Ft.flowAfterParseClassSuper.call(void 0, e);
     }
-    function yh() {
+    function Th() {
       let e = P.state.tokens.length - 1;
       (P.isTypeScriptEnabled && dt.tsTryParseExport.call(void 0)) ||
-        (mv()
-          ? Tv()
-          : dv()
+        (Tv()
+          ? kv()
+          : yv()
           ? (De.parseIdentifier.call(void 0),
-            $.match.call(void 0, O.TokenType.comma) &&
-            $.lookaheadType.call(void 0) === O.TokenType.star
-              ? (ee.expect.call(void 0, O.TokenType.comma),
-                ee.expect.call(void 0, O.TokenType.star),
+            $.match.call(void 0, D.TokenType.comma) &&
+            $.lookaheadType.call(void 0) === D.TokenType.star
+              ? (ee.expect.call(void 0, D.TokenType.comma),
+                ee.expect.call(void 0, D.TokenType.star),
                 ee.expectContextual.call(void 0, ke.ContextualKeyword._as),
                 De.parseIdentifier.call(void 0))
               : kh(),
             cr())
-          : $.eat.call(void 0, O.TokenType._default)
-          ? hv()
-          : kv()
-          ? fv()
+          : $.eat.call(void 0, D.TokenType._default)
+          ? dv()
+          : xv()
+          ? mv()
           : (Kl(), cr()),
         (P.state.tokens[e].rhsEndIndex = P.state.tokens.length));
     }
-    yt.parseExport = yh;
-    function hv() {
+    Tt.parseExport = Th;
+    function dv() {
       if (
         (P.isTypeScriptEnabled &&
           dt.tsTryParseExportDefaultExpression.call(void 0)) ||
@@ -21492,27 +21492,27 @@ If you need interactivity, consider converting part of this to a Client Componen
       )
         return;
       let e = P.state.start;
-      $.eat.call(void 0, O.TokenType._function)
+      $.eat.call(void 0, D.TokenType._function)
         ? lr(e, !0, !0)
         : ee.isContextual.call(void 0, ke.ContextualKeyword._async) &&
-          $.lookaheadType.call(void 0) === O.TokenType._function
+          $.lookaheadType.call(void 0) === D.TokenType._function
         ? (ee.eatContextual.call(void 0, ke.ContextualKeyword._async),
-          $.eat.call(void 0, O.TokenType._function),
+          $.eat.call(void 0, D.TokenType._function),
           lr(e, !0, !0))
-        : $.match.call(void 0, O.TokenType._class)
+        : $.match.call(void 0, D.TokenType._class)
         ? Io(!0, !0)
-        : $.match.call(void 0, O.TokenType.at)
+        : $.match.call(void 0, D.TokenType.at)
         ? ($l(), Io(!0, !0))
         : (De.parseMaybeAssign.call(void 0), ee.semicolon.call(void 0));
     }
-    function fv() {
+    function mv() {
       P.isTypeScriptEnabled
         ? dt.tsParseExportDeclaration.call(void 0)
         : P.isFlowEnabled
         ? Ft.flowParseExportDeclaration.call(void 0)
         : _n(!0);
     }
-    function dv() {
+    function yv() {
       if (P.isTypeScriptEnabled && dt.tsIsDeclarationStart.call(void 0))
         return !1;
       if (
@@ -21520,15 +21520,15 @@ If you need interactivity, consider converting part of this to a Client Componen
         Ft.flowShouldDisallowExportDefaultSpecifier.call(void 0)
       )
         return !1;
-      if ($.match.call(void 0, O.TokenType.name))
+      if ($.match.call(void 0, D.TokenType.name))
         return P.state.contextualKeyword !== ke.ContextualKeyword._async;
-      if (!$.match.call(void 0, O.TokenType._default)) return !1;
+      if (!$.match.call(void 0, D.TokenType._default)) return !1;
       let e = $.nextTokenStart.call(void 0),
         t = $.lookaheadTypeAndKeyword.call(void 0),
         s =
-          t.type === O.TokenType.name &&
+          t.type === D.TokenType.name &&
           t.contextualKeyword === ke.ContextualKeyword._from;
-      if (t.type === O.TokenType.comma) return !0;
+      if (t.type === D.TokenType.comma) return !0;
       if (s) {
         let i = P.input.charCodeAt($.nextTokenStartSince.call(void 0, e + 4));
         return (
@@ -21538,65 +21538,65 @@ If you need interactivity, consider converting part of this to a Client Componen
       return !1;
     }
     function kh() {
-      $.eat.call(void 0, O.TokenType.comma) && Kl();
+      $.eat.call(void 0, D.TokenType.comma) && Kl();
     }
     function cr() {
       ee.eatContextual.call(void 0, ke.ContextualKeyword._from) &&
         (De.parseExprAtom.call(void 0), gh()),
         ee.semicolon.call(void 0);
     }
-    yt.parseExportFrom = cr;
-    function mv() {
+    Tt.parseExportFrom = cr;
+    function Tv() {
       return P.isFlowEnabled
         ? Ft.flowShouldParseExportStar.call(void 0)
-        : $.match.call(void 0, O.TokenType.star);
+        : $.match.call(void 0, D.TokenType.star);
     }
-    function Tv() {
+    function kv() {
       P.isFlowEnabled ? Ft.flowParseExportStar.call(void 0) : vh();
     }
     function vh() {
-      ee.expect.call(void 0, O.TokenType.star),
-        ee.isContextual.call(void 0, ke.ContextualKeyword._as) ? yv() : cr();
+      ee.expect.call(void 0, D.TokenType.star),
+        ee.isContextual.call(void 0, ke.ContextualKeyword._as) ? vv() : cr();
     }
-    yt.baseParseExportStar = vh;
-    function yv() {
+    Tt.baseParseExportStar = vh;
+    function vv() {
       $.next.call(void 0),
-        (P.state.tokens[P.state.tokens.length - 1].type = O.TokenType._as),
+        (P.state.tokens[P.state.tokens.length - 1].type = D.TokenType._as),
         De.parseIdentifier.call(void 0),
         kh(),
         cr();
     }
-    function kv() {
+    function xv() {
       return (
         (P.isTypeScriptEnabled && dt.tsIsDeclarationStart.call(void 0)) ||
         (P.isFlowEnabled && Ft.flowShouldParseExportDeclaration.call(void 0)) ||
-        P.state.type === O.TokenType._var ||
-        P.state.type === O.TokenType._const ||
-        P.state.type === O.TokenType._let ||
-        P.state.type === O.TokenType._function ||
-        P.state.type === O.TokenType._class ||
+        P.state.type === D.TokenType._var ||
+        P.state.type === D.TokenType._const ||
+        P.state.type === D.TokenType._let ||
+        P.state.type === D.TokenType._function ||
+        P.state.type === D.TokenType._class ||
         ee.isContextual.call(void 0, ke.ContextualKeyword._async) ||
-        $.match.call(void 0, O.TokenType.at)
+        $.match.call(void 0, D.TokenType.at)
       );
     }
     function Kl() {
       let e = !0;
       for (
-        ee.expect.call(void 0, O.TokenType.braceL);
-        !$.eat.call(void 0, O.TokenType.braceR) && !P.state.error;
+        ee.expect.call(void 0, D.TokenType.braceL);
+        !$.eat.call(void 0, D.TokenType.braceR) && !P.state.error;
 
       ) {
         if (e) e = !1;
         else if (
-          (ee.expect.call(void 0, O.TokenType.comma),
-          $.eat.call(void 0, O.TokenType.braceR))
+          (ee.expect.call(void 0, D.TokenType.comma),
+          $.eat.call(void 0, D.TokenType.braceR))
         )
           break;
-        vv();
+        gv();
       }
     }
-    yt.parseExportSpecifiers = Kl;
-    function vv() {
+    Tt.parseExportSpecifiers = Kl;
+    function gv() {
       if (P.isTypeScriptEnabled) {
         dt.tsParseExportSpecifier.call(void 0);
         return;
@@ -21607,7 +21607,7 @@ If you need interactivity, consider converting part of this to a Client Componen
         ee.eatContextual.call(void 0, ke.ContextualKeyword._as) &&
           De.parseIdentifier.call(void 0);
     }
-    function xv() {
+    function _v() {
       let e = P.state.snapshot();
       return (
         ee.expectContextual.call(void 0, ke.ContextualKeyword._module),
@@ -21615,21 +21615,21 @@ If you need interactivity, consider converting part of this to a Client Componen
           ? ee.isContextual.call(void 0, ke.ContextualKeyword._from)
             ? (P.state.restoreFromSnapshot(e), !0)
             : (P.state.restoreFromSnapshot(e), !1)
-          : $.match.call(void 0, O.TokenType.comma)
+          : $.match.call(void 0, D.TokenType.comma)
           ? (P.state.restoreFromSnapshot(e), !1)
           : (P.state.restoreFromSnapshot(e), !0)
       );
     }
-    function gv() {
+    function bv() {
       ee.isContextual.call(void 0, ke.ContextualKeyword._module) &&
-        xv() &&
+        _v() &&
         $.next.call(void 0);
     }
     function xh() {
       if (
         P.isTypeScriptEnabled &&
-        $.match.call(void 0, O.TokenType.name) &&
-        $.lookaheadType.call(void 0) === O.TokenType.eq
+        $.match.call(void 0, D.TokenType.name) &&
+        $.lookaheadType.call(void 0) === D.TokenType.eq
       ) {
         dt.tsParseImportEqualsDeclaration.call(void 0);
         return;
@@ -21640,66 +21640,66 @@ If you need interactivity, consider converting part of this to a Client Componen
       ) {
         let e = $.lookaheadTypeAndKeyword.call(void 0);
         if (
-          e.type === O.TokenType.name &&
+          e.type === D.TokenType.name &&
           e.contextualKeyword !== ke.ContextualKeyword._from
         ) {
           if (
             (ee.expectContextual.call(void 0, ke.ContextualKeyword._type),
-            $.lookaheadType.call(void 0) === O.TokenType.eq)
+            $.lookaheadType.call(void 0) === D.TokenType.eq)
           ) {
             dt.tsParseImportEqualsDeclaration.call(void 0);
             return;
           }
         } else
-          (e.type === O.TokenType.star || e.type === O.TokenType.braceL) &&
+          (e.type === D.TokenType.star || e.type === D.TokenType.braceL) &&
             ee.expectContextual.call(void 0, ke.ContextualKeyword._type);
       }
-      $.match.call(void 0, O.TokenType.string) ||
-        (gv(),
-        bv(),
+      $.match.call(void 0, D.TokenType.string) ||
+        (bv(),
+        wv(),
         ee.expectContextual.call(void 0, ke.ContextualKeyword._from)),
         De.parseExprAtom.call(void 0),
         gh(),
         ee.semicolon.call(void 0);
     }
-    yt.parseImport = xh;
-    function _v() {
-      return $.match.call(void 0, O.TokenType.name);
+    Tt.parseImport = xh;
+    function Cv() {
+      return $.match.call(void 0, D.TokenType.name);
     }
     function uh() {
       ks.parseImportedIdentifier.call(void 0);
     }
-    function bv() {
+    function wv() {
       P.isFlowEnabled && Ft.flowStartParseImportSpecifiers.call(void 0);
       let e = !0;
-      if (!(_v() && (uh(), !$.eat.call(void 0, O.TokenType.comma)))) {
-        if ($.match.call(void 0, O.TokenType.star)) {
+      if (!(Cv() && (uh(), !$.eat.call(void 0, D.TokenType.comma)))) {
+        if ($.match.call(void 0, D.TokenType.star)) {
           $.next.call(void 0),
             ee.expectContextual.call(void 0, ke.ContextualKeyword._as),
             uh();
           return;
         }
         for (
-          ee.expect.call(void 0, O.TokenType.braceL);
-          !$.eat.call(void 0, O.TokenType.braceR) && !P.state.error;
+          ee.expect.call(void 0, D.TokenType.braceL);
+          !$.eat.call(void 0, D.TokenType.braceR) && !P.state.error;
 
         ) {
           if (e) e = !1;
           else if (
-            ($.eat.call(void 0, O.TokenType.colon) &&
+            ($.eat.call(void 0, D.TokenType.colon) &&
               ee.unexpected.call(
                 void 0,
                 'ES2015 named imports do not destructure. Use another statement for destructuring after the import.'
               ),
-            ee.expect.call(void 0, O.TokenType.comma),
-            $.eat.call(void 0, O.TokenType.braceR))
+            ee.expect.call(void 0, D.TokenType.comma),
+            $.eat.call(void 0, D.TokenType.braceR))
           )
             break;
-          Cv();
+          Sv();
         }
       }
     }
-    function Cv() {
+    function Sv() {
       if (P.isTypeScriptEnabled) {
         dt.tsParseImportSpecifier.call(void 0);
         return;
@@ -21727,45 +21727,45 @@ If you need interactivity, consider converting part of this to a Client Componen
     var _h = xt(),
       bh = Qt(),
       Hl = Zt(),
-      wv = nr();
-    function Sv() {
+      Iv = nr();
+    function Ev() {
       return (
         Hl.state.pos === 0 &&
           Hl.input.charCodeAt(0) === bh.charCodes.numberSign &&
           Hl.input.charCodeAt(1) === bh.charCodes.exclamationMark &&
           _h.skipLineComment.call(void 0, 2),
         _h.nextToken.call(void 0),
-        wv.parseTopLevel.call(void 0)
+        Iv.parseTopLevel.call(void 0)
       );
     }
-    Wl.parseFile = Sv;
+    Wl.parseFile = Ev;
   });
   var Ul = Z((Ao) => {
     'use strict';
     Object.defineProperty(Ao, '__esModule', {value: !0});
     var Eo = Zt(),
-      Iv = Ch(),
+      Av = Ch(),
       Gl = class {
         constructor(t, s) {
           (this.tokens = t), (this.scopes = s);
         }
       };
     Ao.File = Gl;
-    function Ev(e, t, s, i) {
+    function Pv(e, t, s, i) {
       if (i && s)
         throw new Error('Cannot combine flow and typescript plugins.');
       Eo.initParser.call(void 0, e, t, s, i);
-      let r = Iv.parseFile.call(void 0);
+      let r = Av.parseFile.call(void 0);
       if (Eo.state.error) throw Eo.augmentError.call(void 0, Eo.state.error);
       return r;
     }
-    Ao.parse = Ev;
+    Ao.parse = Pv;
   });
   var wh = Z((zl) => {
     'use strict';
     Object.defineProperty(zl, '__esModule', {value: !0});
-    var Av = It();
-    function Pv(e) {
+    var Nv = It();
+    function Rv(e) {
       let t = e.currentIndex(),
         s = 0,
         i = e.currentToken();
@@ -21776,7 +21776,7 @@ If you need interactivity, consider converting part of this to a Client Componen
           r.isOptionalChainEnd && s--,
           (s += r.numNullishCoalesceStarts),
           (s -= r.numNullishCoalesceEnds),
-          r.contextualKeyword === Av.ContextualKeyword._await &&
+          r.contextualKeyword === Nv.ContextualKeyword._await &&
             r.identifierRole == null &&
             r.scopeDepth === i.scopeDepth)
         )
@@ -21785,17 +21785,17 @@ If you need interactivity, consider converting part of this to a Client Componen
       } while (s > 0 && t < e.tokens.length);
       return !1;
     }
-    zl.default = Pv;
+    zl.default = Rv;
   });
   var Sh = Z((Yl) => {
     'use strict';
     Object.defineProperty(Yl, '__esModule', {value: !0});
-    function Nv(e) {
+    function Lv(e) {
       return e && e.__esModule ? e : {default: e};
     }
     var Po = be(),
-      Rv = wh(),
-      Lv = Nv(Rv),
+      Ov = wh(),
+      Dv = Lv(Ov),
       Xl = class e {
         __init() {
           this.resultCode = '';
@@ -21990,7 +21990,7 @@ If you need interactivity, consider converting part of this to a Client Componen
           let t = this.currentToken();
           if (
             ((t.numNullishCoalesceStarts || t.isOptionalChainStart) &&
-              (t.isAsyncOperation = Lv.default.call(void 0, this)),
+              (t.isAsyncOperation = Dv.default.call(void 0, this)),
             !this.disableESTransforms)
           ) {
             if (t.numNullishCoalesceStarts)
@@ -22078,88 +22078,88 @@ If you need interactivity, consider converting part of this to a Client Componen
     Object.defineProperty(Ql, '__esModule', {value: !0});
     var Ih = It(),
       Ne = be();
-    function Ov(e, t, s, i) {
+    function Mv(e, t, s, i) {
       let r = t.snapshot(),
-        a = Dv(t),
+        a = Fv(t),
         u = [],
         d = [],
         y = [],
-        g = null,
-        L = [],
+        x = null,
+        R = [],
         p = [],
-        f = t.currentToken().contextId;
-      if (f == null)
+        h = t.currentToken().contextId;
+      if (h == null)
         throw new Error(
           'Expected non-null class context ID on class open-brace.'
         );
-      for (t.nextToken(); !t.matchesContextIdAndLabel(Ne.TokenType.braceR, f); )
+      for (t.nextToken(); !t.matchesContextIdAndLabel(Ne.TokenType.braceR, h); )
         if (
           t.matchesContextual(Ih.ContextualKeyword._constructor) &&
           !t.currentToken().isType
         )
-          ({constructorInitializerStatements: u, constructorInsertPos: g} =
+          ({constructorInitializerStatements: u, constructorInsertPos: x} =
             Eh(t));
         else if (t.matches1(Ne.TokenType.semi))
           i || p.push({start: t.currentIndex(), end: t.currentIndex() + 1}),
             t.nextToken();
         else if (t.currentToken().isType) t.nextToken();
         else {
-          let v = t.currentIndex(),
-            x = !1,
+          let T = t.currentIndex(),
+            g = !1,
             w = !1,
             S = !1;
           for (; No(t.currentToken()); )
-            t.matches1(Ne.TokenType._static) && (x = !0),
+            t.matches1(Ne.TokenType._static) && (g = !0),
               t.matches1(Ne.TokenType.hash) && (w = !0),
               (t.matches1(Ne.TokenType._declare) ||
                 t.matches1(Ne.TokenType._abstract)) &&
                 (S = !0),
               t.nextToken();
-          if (x && t.matches1(Ne.TokenType.braceL)) {
-            Jl(t, f);
+          if (g && t.matches1(Ne.TokenType.braceL)) {
+            Jl(t, h);
             continue;
           }
           if (w) {
-            Jl(t, f);
+            Jl(t, h);
             continue;
           }
           if (
             t.matchesContextual(Ih.ContextualKeyword._constructor) &&
             !t.currentToken().isType
           ) {
-            ({constructorInitializerStatements: u, constructorInsertPos: g} =
+            ({constructorInitializerStatements: u, constructorInsertPos: x} =
               Eh(t));
             continue;
           }
           let A = t.currentIndex();
           if (
-            (Mv(t),
+            (Bv(t),
             t.matches1(Ne.TokenType.lessThan) ||
               t.matches1(Ne.TokenType.parenL))
           ) {
-            Jl(t, f);
+            Jl(t, h);
             continue;
           }
           for (; t.currentToken().isType; ) t.nextToken();
           if (t.matches1(Ne.TokenType.eq)) {
             let U = t.currentIndex(),
-              D = t.currentToken().rhsEndIndex;
-            if (D == null)
+              M = t.currentToken().rhsEndIndex;
+            if (M == null)
               throw new Error(
                 'Expected rhsEndIndex on class field assignment.'
               );
-            for (t.nextToken(); t.currentIndex() < D; ) e.processToken();
+            for (t.nextToken(); t.currentIndex() < M; ) e.processToken();
             let c;
-            x
+            g
               ? ((c = s.claimFreeName('__initStatic')), y.push(c))
               : ((c = s.claimFreeName('__init')), d.push(c)),
-              L.push({
+              R.push({
                 initializerName: c,
                 equalsIndex: U,
                 start: A,
                 end: t.currentIndex(),
               });
-          } else (!i || S) && p.push({start: v, end: t.currentIndex()});
+          } else (!i || S) && p.push({start: T, end: t.currentIndex()});
         }
       return (
         t.restoreToSnapshot(r),
@@ -22169,7 +22169,7 @@ If you need interactivity, consider converting part of this to a Client Componen
               constructorInitializerStatements: u,
               instanceInitializerNames: [],
               staticInitializerNames: [],
-              constructorInsertPos: g,
+              constructorInsertPos: x,
               fields: [],
               rangesToRemove: p,
             }
@@ -22178,18 +22178,18 @@ If you need interactivity, consider converting part of this to a Client Componen
               constructorInitializerStatements: u,
               instanceInitializerNames: d,
               staticInitializerNames: y,
-              constructorInsertPos: g,
-              fields: L,
+              constructorInsertPos: x,
+              fields: R,
               rangesToRemove: p,
             }
       );
     }
-    Ql.default = Ov;
+    Ql.default = Mv;
     function Jl(e, t) {
       for (e.nextToken(); e.currentToken().contextId !== t; ) e.nextToken();
       for (; No(e.tokenAtRelativeIndex(-1)); ) e.previousToken();
     }
-    function Dv(e) {
+    function Fv(e) {
       let t = e.currentToken(),
         s = t.contextId;
       if (s == null) throw new Error('Expected context ID on class token.');
@@ -22269,7 +22269,7 @@ If you need interactivity, consider converting part of this to a Client Componen
         Ne.TokenType.hash,
       ].includes(e.type);
     }
-    function Mv(e) {
+    function Bv(e) {
       if (e.matches1(Ne.TokenType.bracketL)) {
         let s = e.currentToken().contextId;
         if (s == null)
@@ -22286,7 +22286,7 @@ If you need interactivity, consider converting part of this to a Client Componen
     'use strict';
     Object.defineProperty(Zl, '__esModule', {value: !0});
     var Ph = be();
-    function Fv(e) {
+    function Vv(e) {
       if (
         (e.removeInitialToken(),
         e.removeToken(),
@@ -22298,50 +22298,50 @@ If you need interactivity, consider converting part of this to a Client Componen
       else
         for (; e.matches1(Ph.TokenType.dot); ) e.removeToken(), e.removeToken();
     }
-    Zl.default = Fv;
+    Zl.default = Vv;
   });
   var tc = Z((Ro) => {
     'use strict';
     Object.defineProperty(Ro, '__esModule', {value: !0});
-    var Bv = xt(),
-      Vv = be(),
-      jv = {typeDeclarations: new Set(), valueDeclarations: new Set()};
-    Ro.EMPTY_DECLARATION_INFO = jv;
-    function $v(e) {
+    var jv = xt(),
+      $v = be(),
+      qv = {typeDeclarations: new Set(), valueDeclarations: new Set()};
+    Ro.EMPTY_DECLARATION_INFO = qv;
+    function Kv(e) {
       let t = new Set(),
         s = new Set();
       for (let i = 0; i < e.tokens.length; i++) {
         let r = e.tokens[i];
-        r.type === Vv.TokenType.name &&
-          Bv.isTopLevelDeclaration.call(void 0, r) &&
+        r.type === $v.TokenType.name &&
+          jv.isTopLevelDeclaration.call(void 0, r) &&
           (r.isType
             ? t.add(e.identifierNameForToken(r))
             : s.add(e.identifierNameForToken(r)));
       }
       return {typeDeclarations: t, valueDeclarations: s};
     }
-    Ro.default = $v;
+    Ro.default = Kv;
   });
   var sc = Z((nc) => {
     'use strict';
     Object.defineProperty(nc, '__esModule', {value: !0});
-    var qv = It(),
+    var Uv = It(),
       Nh = be();
-    function Kv(e) {
+    function Hv(e) {
       e.matches2(Nh.TokenType.name, Nh.TokenType.braceL) &&
-        e.matchesContextual(qv.ContextualKeyword._assert) &&
+        e.matchesContextual(Uv.ContextualKeyword._assert) &&
         (e.removeToken(),
         e.removeToken(),
         e.removeBalancedCode(),
         e.removeToken());
     }
-    nc.removeMaybeImportAssertion = Kv;
+    nc.removeMaybeImportAssertion = Hv;
   });
   var rc = Z((ic) => {
     'use strict';
     Object.defineProperty(ic, '__esModule', {value: !0});
     var Rh = be();
-    function Uv(e, t, s) {
+    function Wv(e, t, s) {
       if (!e) return !1;
       let i = t.currentToken();
       if (i.rhsEndIndex == null)
@@ -22357,7 +22357,7 @@ If you need interactivity, consider converting part of this to a Client Componen
       let u = t.identifierNameForToken(a);
       return s.typeDeclarations.has(u) && !s.valueDeclarations.has(u);
     }
-    ic.default = Uv;
+    ic.default = Wv;
   });
   var Oh = Z((ac) => {
     'use strict';
@@ -22368,18 +22368,18 @@ If you need interactivity, consider converting part of this to a Client Componen
     var Lo = xt(),
       Ls = It(),
       N = be(),
-      Hv = ec(),
-      Wv = ur(Hv),
+      Gv = ec(),
+      zv = ur(Gv),
       Lh = tc(),
-      Gv = ur(Lh),
-      zv = Wi(),
-      Xv = ur(zv),
-      Oo = sc(),
-      Yv = rc(),
+      Xv = ur(Lh),
+      Yv = Wi(),
       Jv = ur(Yv),
-      Qv = hn(),
+      Oo = sc(),
+      Qv = rc(),
       Zv = ur(Qv),
-      oc = class e extends Zv.default {
+      ex = hn(),
+      tx = ur(ex),
+      oc = class e extends tx.default {
         __init() {
           this.hadExport = !1;
         }
@@ -22389,7 +22389,7 @@ If you need interactivity, consider converting part of this to a Client Componen
         __init3() {
           this.hadDefaultExport = !1;
         }
-        constructor(t, s, i, r, a, u, d, y, g, L) {
+        constructor(t, s, i, r, a, u, d, y, x, R) {
           super(),
             (this.rootTransformer = t),
             (this.tokens = s),
@@ -22399,13 +22399,13 @@ If you need interactivity, consider converting part of this to a Client Componen
             (this.reactHotLoaderTransformer = u),
             (this.enableLegacyBabel5ModuleInterop = d),
             (this.enableLegacyTypeScriptModuleInterop = y),
-            (this.isTypeScriptTransformEnabled = g),
-            (this.preserveDynamicImport = L),
+            (this.isTypeScriptTransformEnabled = x),
+            (this.preserveDynamicImport = R),
             e.prototype.__init.call(this),
             e.prototype.__init2.call(this),
             e.prototype.__init3.call(this),
-            (this.declarationInfo = g
-              ? Gv.default.call(void 0, s)
+            (this.declarationInfo = x
+              ? Xv.default.call(void 0, s)
               : Lh.EMPTY_DECLARATION_INFO);
         }
         getPrefixCode() {
@@ -22460,7 +22460,7 @@ module.exports = exports.default;
           );
           return (
             this.importProcessor.isTypeName(t)
-              ? Wv.default.call(void 0, this.tokens)
+              ? zv.default.call(void 0, this.tokens)
               : this.tokens.replaceToken('const'),
             !0
           );
@@ -22799,7 +22799,7 @@ module.exports = exports.default;
             let t = this.rootTransformer.processNamedClass();
             this.tokens.appendCode(` exports.default = ${t};`);
           } else if (
-            Jv.default.call(
+            Zv.default.call(
               void 0,
               this.isTypeScriptTransformEnabled,
               this.tokens,
@@ -22980,7 +22980,7 @@ module.exports = exports.default;
               this.tokens.removeToken();
               break;
             }
-            let s = Xv.default.call(void 0, this.tokens);
+            let s = Jv.default.call(void 0, this.tokens);
             for (; this.tokens.currentIndex() < s.endIndex; )
               this.tokens.removeToken();
             if (!s.isType && !this.shouldElideExportedIdentifier(s.leftName)) {
@@ -23046,19 +23046,19 @@ module.exports = exports.default;
     }
     var Jn = It(),
       se = be(),
-      ex = ec(),
-      tx = pr(ex),
+      nx = ec(),
+      sx = pr(nx),
       Fh = tc(),
-      nx = pr(Fh),
-      sx = Wi(),
-      Dh = pr(sx),
-      ix = Fa(),
+      ix = pr(Fh),
+      rx = Wi(),
+      Dh = pr(rx),
+      ox = Fa(),
       Mh = sc(),
-      rx = rc(),
-      ox = pr(rx),
-      ax = hn(),
+      ax = rc(),
       lx = pr(ax),
-      lc = class extends lx.default {
+      cx = hn(),
+      ux = pr(cx),
+      lc = class extends ux.default {
         constructor(t, s, i, r, a, u) {
           super(),
             (this.tokens = t),
@@ -23067,10 +23067,10 @@ module.exports = exports.default;
             (this.reactHotLoaderTransformer = r),
             (this.isTypeScriptTransformEnabled = a),
             (this.nonTypeIdentifiers = a
-              ? ix.getNonTypeIdentifiers.call(void 0, t, u)
+              ? ox.getNonTypeIdentifiers.call(void 0, t, u)
               : new Set()),
             (this.declarationInfo = a
-              ? nx.default.call(void 0, t)
+              ? ix.default.call(void 0, t)
               : Fh.EMPTY_DECLARATION_INFO),
             (this.injectCreateRequireForImportRequire =
               !!u.injectCreateRequireForImportRequire);
@@ -23164,7 +23164,7 @@ module.exports = exports.default;
           );
           return (
             this.isTypeName(t)
-              ? tx.default.call(void 0, this.tokens)
+              ? sx.default.call(void 0, this.tokens)
               : this.injectCreateRequireForImportRequire
               ? (this.tokens.replaceToken('const'),
                 this.tokens.copyToken(),
@@ -23269,7 +23269,7 @@ module.exports = exports.default;
         }
         processExportDefault() {
           if (
-            ox.default.call(
+            lx.default.call(
               void 0,
               this.isTypeScriptTransformEnabled,
               this.tokens,
@@ -23364,14 +23364,14 @@ module.exports = exports.default;
   var jh = Z((pc) => {
     'use strict';
     Object.defineProperty(pc, '__esModule', {value: !0});
-    function cx(e) {
+    function px(e) {
       return e && e.__esModule ? e : {default: e};
     }
     var Vh = It(),
       sn = be(),
-      ux = hn(),
-      px = cx(ux),
-      uc = class extends px.default {
+      hx = hn(),
+      fx = px(hx),
+      uc = class extends fx.default {
         constructor(t, s, i) {
           super(),
             (this.rootTransformer = t),
@@ -23459,10 +23459,10 @@ module.exports = exports.default;
   var $h = Z((fc) => {
     'use strict';
     Object.defineProperty(fc, '__esModule', {value: !0});
-    function hx(e) {
+    function dx(e) {
       return e && e.__esModule ? e : {default: e};
     }
-    function fx(e) {
+    function mx(e) {
       let t,
         s = e[0],
         i = 1;
@@ -23482,11 +23482,11 @@ module.exports = exports.default;
       return s;
     }
     var Qn = be(),
-      dx = hn(),
-      mx = hx(dx),
+      yx = hn(),
+      Tx = dx(yx),
       Do = 'jest',
-      Tx = ['mock', 'unmock', 'enableAutomock', 'disableAutomock'],
-      hc = class e extends mx.default {
+      kx = ['mock', 'unmock', 'enableAutomock', 'disableAutomock'],
+      hc = class e extends Tx.default {
         __init() {
           this.hoistedFunctionNames = [];
         }
@@ -23507,7 +23507,7 @@ module.exports = exports.default;
               Qn.TokenType.parenL
             ) &&
             this.tokens.identifierName() === Do
-            ? fx([
+            ? mx([
                 this,
                 'access',
                 (t) => t.importProcessor,
@@ -23544,7 +23544,7 @@ module.exports = exports.default;
             let s = this.tokens.identifierNameAtIndex(
               this.tokens.currentIndex() + 1
             );
-            if (Tx.includes(s)) {
+            if (kx.includes(s)) {
               let r = this.nameManager.claimFreeName('__jestHoist');
               this.hoistedFunctionNames.push(r),
                 this.tokens.replaceToken(`function ${r}(){${Do}.`),
@@ -23570,18 +23570,18 @@ module.exports = exports.default;
   var qh = Z((mc) => {
     'use strict';
     Object.defineProperty(mc, '__esModule', {value: !0});
-    function yx(e) {
+    function vx(e) {
       return e && e.__esModule ? e : {default: e};
     }
-    var kx = be(),
-      vx = hn(),
-      xx = yx(vx),
-      dc = class extends xx.default {
+    var xx = be(),
+      gx = hn(),
+      _x = vx(gx),
+      dc = class extends _x.default {
         constructor(t) {
           super(), (this.tokens = t);
         }
         process() {
-          if (this.tokens.matches1(kx.TokenType.num)) {
+          if (this.tokens.matches1(xx.TokenType.num)) {
             let t = this.tokens.currentTokenCode();
             if (t.includes('_'))
               return this.tokens.replaceToken(t.replace(/_/g, '')), !0;
@@ -23591,16 +23591,16 @@ module.exports = exports.default;
       };
     mc.default = dc;
   });
-  var Uh = Z((yc) => {
+  var Uh = Z((Tc) => {
     'use strict';
-    Object.defineProperty(yc, '__esModule', {value: !0});
-    function gx(e) {
+    Object.defineProperty(Tc, '__esModule', {value: !0});
+    function bx(e) {
       return e && e.__esModule ? e : {default: e};
     }
     var Kh = be(),
-      _x = hn(),
-      bx = gx(_x),
-      Tc = class extends bx.default {
+      Cx = hn(),
+      wx = bx(Cx),
+      yc = class extends wx.default {
         constructor(t, s) {
           super(), (this.tokens = t), (this.nameManager = s);
         }
@@ -23614,18 +23614,18 @@ module.exports = exports.default;
             : !1;
         }
       };
-    yc.default = Tc;
+    Tc.default = yc;
   });
   var Hh = Z((vc) => {
     'use strict';
     Object.defineProperty(vc, '__esModule', {value: !0});
-    function Cx(e) {
+    function Sx(e) {
       return e && e.__esModule ? e : {default: e};
     }
     var jt = be(),
-      wx = hn(),
-      Sx = Cx(wx),
-      kc = class extends Sx.default {
+      Ix = hn(),
+      Ex = Sx(Ix),
+      kc = class extends Ex.default {
         constructor(t, s) {
           super(), (this.tokens = t), (this.nameManager = s);
         }
@@ -23752,14 +23752,14 @@ module.exports = exports.default;
   var Gh = Z((gc) => {
     'use strict';
     Object.defineProperty(gc, '__esModule', {value: !0});
-    function Ix(e) {
+    function Ax(e) {
       return e && e.__esModule ? e : {default: e};
     }
     var Wh = xt(),
       Et = be(),
-      Ex = hn(),
-      Ax = Ix(Ex),
-      xc = class extends Ax.default {
+      Px = hn(),
+      Nx = Ax(Px),
+      xc = class extends Nx.default {
         constructor(t, s, i, r) {
           super(),
             (this.rootTransformer = t),
@@ -23892,13 +23892,13 @@ module.exports = exports.default;
   var Xh = Z((bc) => {
     'use strict';
     Object.defineProperty(bc, '__esModule', {value: !0});
-    function Px(e) {
+    function Rx(e) {
       return e && e.__esModule ? e : {default: e};
     }
     var zh = xt(),
-      Nx = hn(),
-      Rx = Px(Nx),
-      _c = class e extends Rx.default {
+      Lx = hn(),
+      Ox = Rx(Lx),
+      _c = class e extends Ox.default {
         __init() {
           this.extractedDefaultExportName = null;
         }
@@ -23965,7 +23965,7 @@ ${s.map(
     'use strict';
     Object.defineProperty(Cc, '__esModule', {value: !0});
     var Yh = li(),
-      Lx = new Set([
+      Dx = new Set([
         'break',
         'case',
         'catch',
@@ -24013,13 +24013,13 @@ ${s.map(
         'null',
         'true',
       ]);
-    function Ox(e) {
+    function Mx(e) {
       if (e.length === 0 || !Yh.IS_IDENTIFIER_START[e.charCodeAt(0)]) return !1;
       for (let t = 1; t < e.length; t++)
         if (!Yh.IS_IDENTIFIER_CHAR[e.charCodeAt(t)]) return !1;
-      return !Lx.has(e);
+      return !Dx.has(e);
     }
-    Cc.default = Ox;
+    Cc.default = Mx;
   });
   var ef = Z((Sc) => {
     'use strict';
@@ -24028,11 +24028,11 @@ ${s.map(
       return e && e.__esModule ? e : {default: e};
     }
     var $e = be(),
-      Dx = Jh(),
-      Qh = Zh(Dx),
-      Mx = hn(),
-      Fx = Zh(Mx),
-      wc = class extends Fx.default {
+      Fx = Jh(),
+      Qh = Zh(Fx),
+      Bx = hn(),
+      Vx = Zh(Bx),
+      wc = class extends Vx.default {
         constructor(t, s, i) {
           super(),
             (this.rootTransformer = t),
@@ -24174,35 +24174,35 @@ ${s.map(
   var tf = Z((Ec) => {
     'use strict';
     Object.defineProperty(Ec, '__esModule', {value: !0});
-    function Tn(e) {
+    function yn(e) {
       return e && e.__esModule ? e : {default: e};
     }
-    var Bx = It(),
+    var jx = It(),
       lt = be(),
-      Vx = Ah(),
-      jx = Tn(Vx),
-      $x = Oh(),
-      qx = Tn($x),
-      Kx = Bh(),
-      Ux = Tn(Kx),
-      Hx = jh(),
-      Wx = Tn(Hx),
-      Gx = $h(),
-      zx = Tn(Gx),
-      Xx = Da(),
-      Yx = Tn(Xx),
-      Jx = qh(),
-      Qx = Tn(Jx),
-      Zx = Uh(),
-      eg = Tn(Zx),
-      tg = Hh(),
-      ng = Tn(tg),
-      sg = Gh(),
-      ig = Tn(sg),
-      rg = Xh(),
-      og = Tn(rg),
-      ag = ef(),
-      lg = Tn(ag),
+      $x = Ah(),
+      qx = yn($x),
+      Kx = Oh(),
+      Ux = yn(Kx),
+      Hx = Bh(),
+      Wx = yn(Hx),
+      Gx = jh(),
+      zx = yn(Gx),
+      Xx = $h(),
+      Yx = yn(Xx),
+      Jx = Da(),
+      Qx = yn(Jx),
+      Zx = qh(),
+      eg = yn(Zx),
+      tg = Uh(),
+      ng = yn(tg),
+      sg = Hh(),
+      ig = yn(sg),
+      rg = Gh(),
+      og = yn(rg),
+      ag = Xh(),
+      lg = yn(ag),
+      cg = ef(),
+      ug = yn(cg),
       Ic = class e {
         __init() {
           this.transformers = [];
@@ -24222,22 +24222,22 @@ ${s.map(
               s.includes('react-hot-loader')),
             (this.disableESTransforms = !!r.disableESTransforms),
             r.disableESTransforms ||
-              (this.transformers.push(new ng.default(a, this.nameManager)),
-              this.transformers.push(new Qx.default(a)),
-              this.transformers.push(new eg.default(a, this.nameManager))),
+              (this.transformers.push(new ig.default(a, this.nameManager)),
+              this.transformers.push(new eg.default(a)),
+              this.transformers.push(new ng.default(a, this.nameManager))),
             s.includes('jsx') &&
               (r.jsxRuntime !== 'preserve' &&
                 this.transformers.push(
-                  new Yx.default(this, a, u, this.nameManager, r)
+                  new Qx.default(this, a, u, this.nameManager, r)
                 ),
-              this.transformers.push(new ig.default(this, a, u, r)));
+              this.transformers.push(new og.default(this, a, u, r)));
           let d = null;
           if (s.includes('react-hot-loader')) {
             if (!r.filePath)
               throw new Error(
                 'filePath is required when using the react-hot-loader transform.'
               );
-            (d = new og.default(a, r.filePath)), this.transformers.push(d);
+            (d = new lg.default(a, r.filePath)), this.transformers.push(d);
           }
           if (s.includes('imports')) {
             if (u === null)
@@ -24245,7 +24245,7 @@ ${s.map(
                 'Expected non-null importProcessor with imports transform enabled.'
               );
             this.transformers.push(
-              new qx.default(
+              new Ux.default(
                 this,
                 a,
                 u,
@@ -24260,7 +24260,7 @@ ${s.map(
             );
           } else
             this.transformers.push(
-              new Ux.default(
+              new Wx.default(
                 a,
                 this.nameManager,
                 this.helperManager,
@@ -24271,15 +24271,15 @@ ${s.map(
             );
           s.includes('flow') &&
             this.transformers.push(
-              new Wx.default(this, a, s.includes('imports'))
+              new zx.default(this, a, s.includes('imports'))
             ),
             s.includes('typescript') &&
               this.transformers.push(
-                new lg.default(this, a, s.includes('imports'))
+                new ug.default(this, a, s.includes('imports'))
               ),
             s.includes('jest') &&
               this.transformers.push(
-                new zx.default(this, a, this.nameManager, u)
+                new Yx.default(this, a, this.nameManager, u)
               );
         }
         transform() {
@@ -24350,7 +24350,7 @@ ${s.map(
           return this.processClass(), t;
         }
         processClass() {
-          let t = jx.default.call(
+          let t = qx.default.call(
               void 0,
               this,
               this.tokens,
@@ -24394,8 +24394,8 @@ ${s.map(
               instanceInitializerNames: d,
               rangesToRemove: y,
             } = t,
-            g = 0,
-            L = 0,
+            x = 0,
+            R = 0,
             p = this.tokens.currentToken().contextId;
           if (p == null)
             throw new Error('Expected non-null context ID on class.');
@@ -24404,61 +24404,61 @@ ${s.map(
               this.tokens.appendCode(
                 '__reactstandin__regenerateByEval(key, code) {this[key] = eval(code);}'
               );
-          let f = a.length + d.length > 0;
-          if (r === null && f) {
-            let v = this.makeConstructorInitCode(a, d, s);
+          let h = a.length + d.length > 0;
+          if (r === null && h) {
+            let T = this.makeConstructorInitCode(a, d, s);
             if (i.hasSuperclass) {
-              let x = this.nameManager.claimFreeName('args');
+              let g = this.nameManager.claimFreeName('args');
               this.tokens.appendCode(
-                `constructor(...${x}) { super(...${x}); ${v}; }`
+                `constructor(...${g}) { super(...${g}); ${T}; }`
               );
-            } else this.tokens.appendCode(`constructor() { ${v}; }`);
+            } else this.tokens.appendCode(`constructor() { ${T}; }`);
           }
           for (
             ;
             !this.tokens.matchesContextIdAndLabel(lt.TokenType.braceR, p);
 
           )
-            if (g < u.length && this.tokens.currentIndex() === u[g].start) {
-              let v = !1;
+            if (x < u.length && this.tokens.currentIndex() === u[x].start) {
+              let T = !1;
               for (
                 this.tokens.matches1(lt.TokenType.bracketL)
                   ? this.tokens.copyTokenWithPrefix(
-                      `${u[g].initializerName}() {this`
+                      `${u[x].initializerName}() {this`
                     )
                   : this.tokens.matches1(lt.TokenType.string) ||
                     this.tokens.matches1(lt.TokenType.num)
                   ? (this.tokens.copyTokenWithPrefix(
-                      `${u[g].initializerName}() {this[`
+                      `${u[x].initializerName}() {this[`
                     ),
-                    (v = !0))
+                    (T = !0))
                   : this.tokens.copyTokenWithPrefix(
-                      `${u[g].initializerName}() {this.`
+                      `${u[x].initializerName}() {this.`
                     );
-                this.tokens.currentIndex() < u[g].end;
+                this.tokens.currentIndex() < u[x].end;
 
               )
-                v &&
-                  this.tokens.currentIndex() === u[g].equalsIndex &&
+                T &&
+                  this.tokens.currentIndex() === u[x].equalsIndex &&
                   this.tokens.appendCode(']'),
                   this.processToken();
-              this.tokens.appendCode('}'), g++;
+              this.tokens.appendCode('}'), x++;
             } else if (
-              L < y.length &&
-              this.tokens.currentIndex() >= y[L].start
+              R < y.length &&
+              this.tokens.currentIndex() >= y[R].start
             ) {
               for (
-                this.tokens.currentIndex() < y[L].end &&
+                this.tokens.currentIndex() < y[R].end &&
                 this.tokens.removeInitialToken();
-                this.tokens.currentIndex() < y[L].end;
+                this.tokens.currentIndex() < y[R].end;
 
               )
                 this.tokens.removeToken();
-              L++;
+              R++;
             } else
               this.tokens.currentIndex() === r
                 ? (this.tokens.copyToken(),
-                  f &&
+                  h &&
                     this.tokens.appendCode(
                       `;${this.makeConstructorInitCode(a, d, s)};`
                     ),
@@ -24492,7 +24492,7 @@ ${s.map(
         }
         processPossibleAsyncArrowWithTypeParams() {
           if (
-            !this.tokens.matchesContextual(Bx.ContextualKeyword._async) &&
+            !this.tokens.matchesContextual(jx.ContextualKeyword._async) &&
             !this.tokens.matches1(lt.TokenType._async)
           )
             return !1;
@@ -24597,69 +24597,69 @@ ${s.map(
   var of = Z((Ac) => {
     'use strict';
     Object.defineProperty(Ac, '__esModule', {value: !0});
-    function cg(e) {
+    function pg(e) {
       return e && e.__esModule ? e : {default: e};
     }
-    var ug = rf(),
-      pg = cg(ug),
-      hg = be();
-    function fg(e, t) {
+    var hg = rf(),
+      fg = pg(hg),
+      dg = be();
+    function mg(e, t) {
       if (t.length === 0) return '';
       let s = Object.keys(t[0]).filter(
-          (f) =>
-            f !== 'type' &&
-            f !== 'value' &&
-            f !== 'start' &&
-            f !== 'end' &&
-            f !== 'loc'
+          (h) =>
+            h !== 'type' &&
+            h !== 'value' &&
+            h !== 'start' &&
+            h !== 'end' &&
+            h !== 'loc'
         ),
         i = Object.keys(t[0].type).filter(
-          (f) => f !== 'label' && f !== 'keyword'
+          (h) => h !== 'label' && h !== 'keyword'
         ),
         r = ['Location', 'Label', 'Raw', ...s, ...i],
-        a = new pg.default(e),
+        a = new fg.default(e),
         u = [r, ...t.map(y)],
         d = r.map(() => 0);
-      for (let f of u)
-        for (let v = 0; v < f.length; v++) d[v] = Math.max(d[v], f[v].length);
-      return u.map((f) => f.map((v, x) => v.padEnd(d[x])).join(' ')).join(`
+      for (let h of u)
+        for (let T = 0; T < h.length; T++) d[T] = Math.max(d[T], h[T].length);
+      return u.map((h) => h.map((T, g) => T.padEnd(d[g])).join(' ')).join(`
 `);
-      function y(f) {
-        let v = e.slice(f.start, f.end);
+      function y(h) {
+        let T = e.slice(h.start, h.end);
         return [
-          L(f.start, f.end),
-          hg.formatTokenType.call(void 0, f.type),
-          dg(String(v), 14),
-          ...s.map((x) => g(f[x], x)),
-          ...i.map((x) => g(f.type[x], x)),
+          R(h.start, h.end),
+          dg.formatTokenType.call(void 0, h.type),
+          yg(String(T), 14),
+          ...s.map((g) => x(h[g], g)),
+          ...i.map((g) => x(h.type[g], g)),
         ];
       }
-      function g(f, v) {
-        return f === !0 ? v : f === !1 || f === null ? '' : String(f);
+      function x(h, T) {
+        return h === !0 ? T : h === !1 || h === null ? '' : String(h);
       }
-      function L(f, v) {
-        return `${p(f)}-${p(v)}`;
+      function R(h, T) {
+        return `${p(h)}-${p(T)}`;
       }
-      function p(f) {
-        let v = a.locationForIndex(f);
-        return v ? `${v.line + 1}:${v.column + 1}` : 'Unknown';
+      function p(h) {
+        let T = a.locationForIndex(h);
+        return T ? `${T.line + 1}:${T.column + 1}` : 'Unknown';
       }
     }
-    Ac.default = fg;
-    function dg(e, t) {
+    Ac.default = mg;
+    function yg(e, t) {
       return e.length > t ? `${e.slice(0, t - 3)}...` : e;
     }
   });
   var af = Z((Pc) => {
     'use strict';
     Object.defineProperty(Pc, '__esModule', {value: !0});
-    function mg(e) {
+    function Tg(e) {
       return e && e.__esModule ? e : {default: e};
     }
     var Gt = be(),
-      Tg = Wi(),
-      yg = mg(Tg);
-    function kg(e) {
+      kg = Wi(),
+      vg = Tg(kg);
+    function xg(e) {
       let t = new Set();
       for (let s = 0; s < e.tokens.length; s++)
         e.matches1AtIndex(s, Gt.TokenType._import) &&
@@ -24669,11 +24669,11 @@ ${s.map(
             Gt.TokenType.name,
             Gt.TokenType.eq
           ) &&
-          vg(e, s, t);
+          gg(e, s, t);
       return t;
     }
-    Pc.default = kg;
-    function vg(e, t, s) {
+    Pc.default = xg;
+    function gg(e, t, s) {
       t++,
         !e.matches1AtIndex(t, Gt.TokenType.parenL) &&
           (e.matches1AtIndex(t, Gt.TokenType.name) &&
@@ -24682,12 +24682,12 @@ ${s.map(
             e.matches1AtIndex(t, Gt.TokenType.comma) && t++),
           e.matches1AtIndex(t, Gt.TokenType.star) &&
             ((t += 2), s.add(e.identifierNameAtIndex(t)), t++),
-          e.matches1AtIndex(t, Gt.TokenType.braceL) && (t++, xg(e, t, s)));
+          e.matches1AtIndex(t, Gt.TokenType.braceL) && (t++, _g(e, t, s)));
     }
-    function xg(e, t, s) {
+    function _g(e, t, s) {
       for (;;) {
         if (e.matches1AtIndex(t, Gt.TokenType.braceR)) return;
-        let i = yg.default.call(void 0, e, t);
+        let i = vg.default.call(void 0, e, t);
         if (
           ((t = i.endIndex),
           i.isType || s.add(i.rightName),
@@ -24707,34 +24707,34 @@ ${s.map(
     function vs(e) {
       return e && e.__esModule ? e : {default: e};
     }
-    var gg = N1(),
-      _g = vs(gg),
-      bg = $1(),
+    var bg = N1(),
       Cg = vs(bg),
-      wg = q1(),
-      Sg = H1(),
-      lf = vs(Sg),
-      Ig = G1(),
-      Eg = vs(Ig),
-      Ag = pp(),
-      Pg = Ul(),
-      Ng = Sh(),
-      Rg = vs(Ng),
-      Lg = tf(),
+      wg = $1(),
+      Sg = vs(wg),
+      Ig = q1(),
+      Eg = H1(),
+      lf = vs(Eg),
+      Ag = G1(),
+      Pg = vs(Ag),
+      Ng = pp(),
+      Rg = Ul(),
+      Lg = Sh(),
       Og = vs(Lg),
-      Dg = of(),
+      Dg = tf(),
       Mg = vs(Dg),
-      Fg = af(),
-      Bg = vs(Fg);
-    function Vg() {
+      Fg = of(),
+      Bg = vs(Fg),
+      Vg = af(),
+      jg = vs(Vg);
+    function $g() {
       return '3.32.0';
     }
-    fr.getVersion = Vg;
-    function jg(e, t) {
-      Ag.validateOptions.call(void 0, t);
+    fr.getVersion = $g;
+    function qg(e, t) {
+      Ng.validateOptions.call(void 0, t);
       try {
         let s = cf(e, t),
-          r = new Og.default(
+          r = new Mg.default(
             s,
             t.transforms,
             !!t.enableLegacyBabel5ModuleInterop,
@@ -24748,7 +24748,7 @@ ${s.map(
             );
           a = {
             ...a,
-            sourceMap: Cg.default.call(
+            sourceMap: Sg.default.call(
               void 0,
               r,
               t.filePath,
@@ -24767,46 +24767,46 @@ ${s.map(
         );
       }
     }
-    fr.transform = jg;
-    function $g(e, t) {
+    fr.transform = qg;
+    function Kg(e, t) {
       let s = cf(e, t).tokenProcessor.tokens;
-      return Mg.default.call(void 0, e, s);
+      return Bg.default.call(void 0, e, s);
     }
-    fr.getFormattedTokens = $g;
+    fr.getFormattedTokens = Kg;
     function cf(e, t) {
       let s = t.transforms.includes('jsx'),
         i = t.transforms.includes('typescript'),
         r = t.transforms.includes('flow'),
         a = t.disableESTransforms === !0,
-        u = Pg.parse.call(void 0, e, s, i, r),
+        u = Rg.parse.call(void 0, e, s, i, r),
         d = u.tokens,
         y = u.scopes,
-        g = new Eg.default(e, d),
-        L = new wg.HelperManager(g),
-        p = new Rg.default(e, d, r, a, L),
-        f = !!t.enableLegacyTypeScriptModuleInterop,
-        v = null;
+        x = new Pg.default(e, d),
+        R = new Ig.HelperManager(x),
+        p = new Og.default(e, d, r, a, R),
+        h = !!t.enableLegacyTypeScriptModuleInterop,
+        T = null;
       return (
         t.transforms.includes('imports')
-          ? ((v = new _g.default(
-              g,
+          ? ((T = new Cg.default(
+              x,
               p,
-              f,
+              h,
               t,
               t.transforms.includes('typescript'),
-              L
+              R
             )),
-            v.preprocessTokens(),
-            lf.default.call(void 0, p, y, v.getGlobalNames()),
-            t.transforms.includes('typescript') && v.pruneTypeOnlyImports())
+            T.preprocessTokens(),
+            lf.default.call(void 0, p, y, T.getGlobalNames()),
+            t.transforms.includes('typescript') && T.pruneTypeOnlyImports())
           : t.transforms.includes('typescript') &&
-            lf.default.call(void 0, p, y, Bg.default.call(void 0, p)),
+            lf.default.call(void 0, p, y, jg.default.call(void 0, p)),
         {
           tokenProcessor: p,
           scopes: y,
-          nameManager: g,
-          importProcessor: v,
-          helperManager: L,
+          nameManager: x,
+          importProcessor: T,
+          helperManager: R,
         }
       );
     }
@@ -24893,16 +24893,16 @@ ${s.map(
           6: u + ' const class extends export import super',
         },
         y = /^in(stanceof)?$/,
-        g = new RegExp('[' + r + ']'),
-        L = new RegExp('[' + r + i + ']');
+        x = new RegExp('[' + r + ']'),
+        R = new RegExp('[' + r + i + ']');
       function p(n, o) {
-        for (var l = 65536, h = 0; h < o.length; h += 2) {
-          if (((l += o[h]), l > n)) return !1;
-          if (((l += o[h + 1]), l >= n)) return !0;
+        for (var l = 65536, f = 0; f < o.length; f += 2) {
+          if (((l += o[f]), l > n)) return !1;
+          if (((l += o[f + 1]), l >= n)) return !0;
         }
         return !1;
       }
-      function f(n, o) {
+      function h(n, o) {
         return n < 65
           ? n === 36
           : n < 91
@@ -24912,12 +24912,12 @@ ${s.map(
           : n < 123
           ? !0
           : n <= 65535
-          ? n >= 170 && g.test(String.fromCharCode(n))
+          ? n >= 170 && x.test(String.fromCharCode(n))
           : o === !1
           ? !1
           : p(n, s);
       }
-      function v(n, o) {
+      function T(n, o) {
         return n < 48
           ? n === 36
           : n < 58
@@ -24931,12 +24931,12 @@ ${s.map(
           : n < 123
           ? !0
           : n <= 65535
-          ? n >= 170 && L.test(String.fromCharCode(n))
+          ? n >= 170 && R.test(String.fromCharCode(n))
           : o === !1
           ? !1
           : p(n, s) || p(n, t);
       }
-      var x = function (o, l) {
+      var g = function (o, l) {
         l === void 0 && (l = {}),
           (this.label = o),
           (this.keyword = l.keyword),
@@ -24950,43 +24950,43 @@ ${s.map(
           (this.updateContext = null);
       };
       function w(n, o) {
-        return new x(n, {beforeExpr: !0, binop: o});
+        return new g(n, {beforeExpr: !0, binop: o});
       }
       var S = {beforeExpr: !0},
         A = {startsExpr: !0},
         U = {};
-      function D(n, o) {
-        return o === void 0 && (o = {}), (o.keyword = n), (U[n] = new x(n, o));
+      function M(n, o) {
+        return o === void 0 && (o = {}), (o.keyword = n), (U[n] = new g(n, o));
       }
       var c = {
-          num: new x('num', A),
-          regexp: new x('regexp', A),
-          string: new x('string', A),
-          name: new x('name', A),
-          privateId: new x('privateId', A),
-          eof: new x('eof'),
-          bracketL: new x('[', {beforeExpr: !0, startsExpr: !0}),
-          bracketR: new x(']'),
-          braceL: new x('{', {beforeExpr: !0, startsExpr: !0}),
-          braceR: new x('}'),
-          parenL: new x('(', {beforeExpr: !0, startsExpr: !0}),
-          parenR: new x(')'),
-          comma: new x(',', S),
-          semi: new x(';', S),
-          colon: new x(':', S),
-          dot: new x('.'),
-          question: new x('?', S),
-          questionDot: new x('?.'),
-          arrow: new x('=>', S),
-          template: new x('template'),
-          invalidTemplate: new x('invalidTemplate'),
-          ellipsis: new x('...', S),
-          backQuote: new x('`', A),
-          dollarBraceL: new x('${', {beforeExpr: !0, startsExpr: !0}),
-          eq: new x('=', {beforeExpr: !0, isAssign: !0}),
-          assign: new x('_=', {beforeExpr: !0, isAssign: !0}),
-          incDec: new x('++/--', {prefix: !0, postfix: !0, startsExpr: !0}),
-          prefix: new x('!/~', {beforeExpr: !0, prefix: !0, startsExpr: !0}),
+          num: new g('num', A),
+          regexp: new g('regexp', A),
+          string: new g('string', A),
+          name: new g('name', A),
+          privateId: new g('privateId', A),
+          eof: new g('eof'),
+          bracketL: new g('[', {beforeExpr: !0, startsExpr: !0}),
+          bracketR: new g(']'),
+          braceL: new g('{', {beforeExpr: !0, startsExpr: !0}),
+          braceR: new g('}'),
+          parenL: new g('(', {beforeExpr: !0, startsExpr: !0}),
+          parenR: new g(')'),
+          comma: new g(',', S),
+          semi: new g(';', S),
+          colon: new g(':', S),
+          dot: new g('.'),
+          question: new g('?', S),
+          questionDot: new g('?.'),
+          arrow: new g('=>', S),
+          template: new g('template'),
+          invalidTemplate: new g('invalidTemplate'),
+          ellipsis: new g('...', S),
+          backQuote: new g('`', A),
+          dollarBraceL: new g('${', {beforeExpr: !0, startsExpr: !0}),
+          eq: new g('=', {beforeExpr: !0, isAssign: !0}),
+          assign: new g('_=', {beforeExpr: !0, isAssign: !0}),
+          incDec: new g('++/--', {prefix: !0, postfix: !0, startsExpr: !0}),
+          prefix: new g('!/~', {beforeExpr: !0, prefix: !0, startsExpr: !0}),
           logicalOR: w('||', 1),
           logicalAND: w('&&', 2),
           bitwiseOR: w('|', 3),
@@ -24995,7 +24995,7 @@ ${s.map(
           equality: w('==/!=/===/!==', 6),
           relational: w('</>/<=/>=', 7),
           bitShift: w('<</>>/>>>', 8),
-          plusMin: new x('+/-', {
+          plusMin: new g('+/-', {
             beforeExpr: !0,
             binop: 9,
             prefix: !0,
@@ -25004,57 +25004,57 @@ ${s.map(
           modulo: w('%', 10),
           star: w('*', 10),
           slash: w('/', 10),
-          starstar: new x('**', {beforeExpr: !0}),
+          starstar: new g('**', {beforeExpr: !0}),
           coalesce: w('??', 1),
-          _break: D('break'),
-          _case: D('case', S),
-          _catch: D('catch'),
-          _continue: D('continue'),
-          _debugger: D('debugger'),
-          _default: D('default', S),
-          _do: D('do', {isLoop: !0, beforeExpr: !0}),
-          _else: D('else', S),
-          _finally: D('finally'),
-          _for: D('for', {isLoop: !0}),
-          _function: D('function', A),
-          _if: D('if'),
-          _return: D('return', S),
-          _switch: D('switch'),
-          _throw: D('throw', S),
-          _try: D('try'),
-          _var: D('var'),
-          _const: D('const'),
-          _while: D('while', {isLoop: !0}),
-          _with: D('with'),
-          _new: D('new', {beforeExpr: !0, startsExpr: !0}),
-          _this: D('this', A),
-          _super: D('super', A),
-          _class: D('class', A),
-          _extends: D('extends', S),
-          _export: D('export'),
-          _import: D('import', A),
-          _null: D('null', A),
-          _true: D('true', A),
-          _false: D('false', A),
-          _in: D('in', {beforeExpr: !0, binop: 7}),
-          _instanceof: D('instanceof', {beforeExpr: !0, binop: 7}),
-          _typeof: D('typeof', {beforeExpr: !0, prefix: !0, startsExpr: !0}),
-          _void: D('void', {beforeExpr: !0, prefix: !0, startsExpr: !0}),
-          _delete: D('delete', {beforeExpr: !0, prefix: !0, startsExpr: !0}),
+          _break: M('break'),
+          _case: M('case', S),
+          _catch: M('catch'),
+          _continue: M('continue'),
+          _debugger: M('debugger'),
+          _default: M('default', S),
+          _do: M('do', {isLoop: !0, beforeExpr: !0}),
+          _else: M('else', S),
+          _finally: M('finally'),
+          _for: M('for', {isLoop: !0}),
+          _function: M('function', A),
+          _if: M('if'),
+          _return: M('return', S),
+          _switch: M('switch'),
+          _throw: M('throw', S),
+          _try: M('try'),
+          _var: M('var'),
+          _const: M('const'),
+          _while: M('while', {isLoop: !0}),
+          _with: M('with'),
+          _new: M('new', {beforeExpr: !0, startsExpr: !0}),
+          _this: M('this', A),
+          _super: M('super', A),
+          _class: M('class', A),
+          _extends: M('extends', S),
+          _export: M('export'),
+          _import: M('import', A),
+          _null: M('null', A),
+          _true: M('true', A),
+          _false: M('false', A),
+          _in: M('in', {beforeExpr: !0, binop: 7}),
+          _instanceof: M('instanceof', {beforeExpr: !0, binop: 7}),
+          _typeof: M('typeof', {beforeExpr: !0, prefix: !0, startsExpr: !0}),
+          _void: M('void', {beforeExpr: !0, prefix: !0, startsExpr: !0}),
+          _delete: M('delete', {beforeExpr: !0, prefix: !0, startsExpr: !0}),
         },
-        M = /\r\n?|\n|\u2028|\u2029/,
-        z = new RegExp(M.source, 'g');
+        L = /\r\n?|\n|\u2028|\u2029/,
+        W = new RegExp(L.source, 'g');
       function X(n) {
         return n === 10 || n === 13 || n === 8232 || n === 8233;
       }
       function ie(n, o, l) {
         l === void 0 && (l = n.length);
-        for (var h = o; h < l; h++) {
-          var m = n.charCodeAt(h);
+        for (var f = o; f < l; f++) {
+          var m = n.charCodeAt(f);
           if (X(m))
-            return h < l - 1 && m === 13 && n.charCodeAt(h + 1) === 10
-              ? h + 2
-              : h + 1;
+            return f < l - 1 && m === 13 && n.charCodeAt(f + 1) === 10
+              ? f + 2
+              : f + 1;
         }
         return -1;
       }
@@ -25093,16 +25093,16 @@ ${s.map(
       ct.prototype.offset = function (o) {
         return new ct(this.line, this.column + o);
       };
-      var wt = function (o, l, h) {
+      var wt = function (o, l, f) {
         (this.start = l),
-          (this.end = h),
+          (this.end = f),
           o.sourceFile !== null && (this.source = o.sourceFile);
       };
       function $t(n, o) {
-        for (var l = 1, h = 0; ; ) {
-          var m = ie(n, h, o);
-          if (m < 0) return new ct(l, o - h);
-          ++l, (h = m);
+        for (var l = 1, f = 0; ; ) {
+          var m = ie(n, f, o);
+          if (m < 0) return new ct(l, o - f);
+          ++l, (f = m);
         }
       }
       var Pt = {
@@ -25127,7 +25127,7 @@ ${s.map(
           preserveParens: !1,
         },
         qt = !1;
-      function yn(n) {
+      function Tn(n) {
         var o = {};
         for (var l in Pt) o[l] = n && mt(n, l) ? n[l] : Pt[l];
         if (
@@ -25147,22 +25147,22 @@ Defaulting to 2020, but this will stop working in the future.`)),
             (o.allowHashBang = o.ecmaVersion >= 14),
           kt(o.onToken))
         ) {
-          var h = o.onToken;
+          var f = o.onToken;
           o.onToken = function (m) {
-            return h.push(m);
+            return f.push(m);
           };
         }
         return kt(o.onComment) && (o.onComment = V(o, o.onComment)), o;
       }
       function V(n, o) {
-        return function (l, h, m, E, R, Y) {
-          var Q = {type: l ? 'Block' : 'Line', value: h, start: m, end: E};
-          n.locations && (Q.loc = new wt(this, R, Y)),
+        return function (l, f, m, E, O, Y) {
+          var Q = {type: l ? 'Block' : 'Line', value: f, start: m, end: E};
+          n.locations && (Q.loc = new wt(this, O, Y)),
             n.ranges && (Q.range = [m, E]),
             o.push(Q);
         };
       }
-      var W = 1,
+      var G = 1,
         J = 2,
         re = 4,
         ve = 8,
@@ -25172,18 +25172,18 @@ Defaulting to 2020, but this will stop working in the future.`)),
         Le = 128,
         Xe = 256,
         We = 512,
-        Ke = W | J | Xe;
+        Ke = G | J | Xe;
       function ut(n, o) {
         return J | (n ? re : 0) | (o ? ve : 0);
       }
       var pt = 0,
         bt = 1,
-        Tt = 2,
+        yt = 2,
         vt = 3,
         bn = 4,
         Dn = 5,
-        Ge = function (o, l, h) {
-          (this.options = o = yn(o)),
+        Ge = function (o, l, f) {
+          (this.options = o = Tn(o)),
             (this.sourceFile = o.sourceFile),
             (this.keywords = tt(
               d[
@@ -25204,17 +25204,17 @@ Defaulting to 2020, but this will stop working in the future.`)),
             (this.reservedWordsStrictBind = tt(E + ' ' + a.strictBind)),
             (this.input = String(l)),
             (this.containsEsc = !1),
-            h
-              ? ((this.pos = h),
+            f
+              ? ((this.pos = f),
                 (this.lineStart =
                   this.input.lastIndexOf(
                     `
 `,
-                    h - 1
+                    f - 1
                   ) + 1),
                 (this.curLine = this.input
                   .slice(0, this.lineStart)
-                  .split(M).length))
+                  .split(L).length))
               : ((this.pos = this.lineStart = 0), (this.curLine = 1)),
             (this.type = c.eof),
             (this.value = null),
@@ -25236,7 +25236,7 @@ Defaulting to 2020, but this will stop working in the future.`)),
               this.input.slice(0, 2) === '#!' &&
               this.skipLineComment(2),
             (this.scopeStack = []),
-            this.enterScope(W),
+            this.enterScope(G),
             (this.regexpState = null),
             (this.privateNameStack = []);
         },
@@ -25300,14 +25300,14 @@ Defaulting to 2020, but this will stop working in the future.`)),
         }),
         (Ge.extend = function () {
           for (var o = [], l = arguments.length; l--; ) o[l] = arguments[l];
-          for (var h = this, m = 0; m < o.length; m++) h = o[m](h);
-          return h;
+          for (var f = this, m = 0; m < o.length; m++) f = o[m](f);
+          return f;
         }),
         (Ge.parse = function (o, l) {
           return new this(l, o).parse();
         }),
-        (Ge.parseExpressionAt = function (o, l, h) {
-          var m = new this(h, o, l);
+        (Ge.parseExpressionAt = function (o, l, f) {
+          var m = new this(f, o, l);
           return m.nextToken(), m.parseExpression();
         }),
         (Ge.tokenizer = function (o, l) {
@@ -25325,15 +25325,15 @@ Defaulting to 2020, but this will stop working in the future.`)),
           if ((o[1] || o[2]) === 'use strict') {
             ae.lastIndex = n + o[0].length;
             var l = ae.exec(this.input),
-              h = l.index + l[0].length,
-              m = this.input.charAt(h);
+              f = l.index + l[0].length,
+              m = this.input.charAt(f);
             return (
               m === ';' ||
               m === '}' ||
-              (M.test(l[0]) &&
+              (L.test(l[0]) &&
                 !(
                   /[(`.[+\-/*%<>=,?^&]/.test(m) ||
-                  (m === '!' && this.input.charAt(h + 1) === '=')
+                  (m === '!' && this.input.charAt(f + 1) === '=')
                 ))
             );
           }
@@ -25359,7 +25359,7 @@ Defaulting to 2020, but this will stop working in the future.`)),
           return (
             this.type === c.eof ||
             this.type === c.braceR ||
-            M.test(this.input.slice(this.lastTokEnd, this.start))
+            L.test(this.input.slice(this.lastTokEnd, this.start))
           );
         }),
         (ot.insertSemicolon = function () {
@@ -25420,15 +25420,15 @@ Defaulting to 2020, but this will stop working in the future.`)),
         (ot.checkExpressionErrors = function (n, o) {
           if (!n) return !1;
           var l = n.shorthandAssign,
-            h = n.doubleProto;
-          if (!o) return l >= 0 || h >= 0;
+            f = n.doubleProto;
+          if (!o) return l >= 0 || f >= 0;
           l >= 0 &&
             this.raise(
               l,
               'Shorthand property assignments are valid only in destructuring patterns'
             ),
-            h >= 0 &&
-              this.raiseRecoverable(h, 'Redefinition of __proto__ property');
+            f >= 0 &&
+              this.raiseRecoverable(f, 'Redefinition of __proto__ property');
         }),
         (ot.checkYieldAwaitInDefaultParams = function () {
           this.yieldPos &&
@@ -25457,11 +25457,11 @@ Defaulting to 2020, but this will stop working in the future.`)),
         }
         if (this.inModule)
           for (
-            var h = 0, m = Object.keys(this.undefinedExports);
-            h < m.length;
-            h += 1
+            var f = 0, m = Object.keys(this.undefinedExports);
+            f < m.length;
+            f += 1
           ) {
-            var E = m[h];
+            var E = m[f];
             this.raiseRecoverable(
               this.undefinedExports[E].start,
               "Export '" + E + "' is not defined"
@@ -25482,13 +25482,13 @@ Defaulting to 2020, but this will stop working in the future.`)),
         ae.lastIndex = this.pos;
         var o = ae.exec(this.input),
           l = this.pos + o[0].length,
-          h = this.input.charCodeAt(l);
-        if (h === 91 || h === 92) return !0;
+          f = this.input.charCodeAt(l);
+        if (f === 91 || f === 92) return !0;
         if (n) return !1;
-        if (h === 123 || (h > 55295 && h < 56320)) return !0;
-        if (f(h, !0)) {
-          for (var m = l + 1; v((h = this.input.charCodeAt(m)), !0); ) ++m;
-          if (h === 92 || (h > 55295 && h < 56320)) return !0;
+        if (f === 123 || (f > 55295 && f < 56320)) return !0;
+        if (h(f, !0)) {
+          for (var m = l + 1; T((f = this.input.charCodeAt(m)), !0); ) ++m;
+          if (f === 92 || (f > 55295 && f < 56320)) return !0;
           var E = this.input.slice(l, m);
           if (!y.test(E)) return !0;
         }
@@ -25502,11 +25502,11 @@ Defaulting to 2020, but this will stop working in the future.`)),
             o = this.pos + n[0].length,
             l;
           return (
-            !M.test(this.input.slice(this.pos, o)) &&
+            !L.test(this.input.slice(this.pos, o)) &&
             this.input.slice(o, o + 8) === 'function' &&
             (o + 8 === this.input.length ||
               !(
-                v((l = this.input.charCodeAt(o + 8))) ||
+                T((l = this.input.charCodeAt(o + 8))) ||
                 (l > 55295 && l < 56320)
               ))
           );
@@ -25519,35 +25519,35 @@ Defaulting to 2020, but this will stop working in the future.`)),
             return !1;
           ae.lastIndex = this.pos;
           var l = ae.exec(this.input),
-            h = this.pos + l[0].length;
-          if (M.test(this.input.slice(this.pos, h))) return !1;
+            f = this.pos + l[0].length;
+          if (L.test(this.input.slice(this.pos, f))) return !1;
           if (n) {
-            var m = h + 5,
+            var m = f + 5,
               E;
             if (
-              this.input.slice(h, m) !== 'using' ||
+              this.input.slice(f, m) !== 'using' ||
               m === this.input.length ||
-              v((E = this.input.charCodeAt(m))) ||
+              T((E = this.input.charCodeAt(m))) ||
               (E > 55295 && E < 56320)
             )
               return !1;
             ae.lastIndex = m;
-            var R = ae.exec(this.input);
-            if (R && M.test(this.input.slice(m, m + R[0].length))) return !1;
+            var O = ae.exec(this.input);
+            if (O && L.test(this.input.slice(m, m + O[0].length))) return !1;
           }
           if (o) {
-            var Y = h + 2,
+            var Y = f + 2,
               Q;
             if (
-              this.input.slice(h, Y) === 'of' &&
+              this.input.slice(f, Y) === 'of' &&
               (Y === this.input.length ||
-                (!v((Q = this.input.charCodeAt(Y))) &&
+                (!T((Q = this.input.charCodeAt(Y))) &&
                   !(Q > 55295 && Q < 56320)))
             )
               return !1;
           }
-          var ye = this.input.charCodeAt(h);
-          return f(ye, !0) || ye === 92;
+          var Te = this.input.charCodeAt(f);
+          return h(Te, !0) || Te === 92;
         }),
         (te.isAwaitUsing = function (n) {
           return this.isUsingKeyword(!0, n);
@@ -25556,13 +25556,13 @@ Defaulting to 2020, but this will stop working in the future.`)),
           return this.isUsingKeyword(!1, n);
         }),
         (te.parseStatement = function (n, o, l) {
-          var h = this.type,
+          var f = this.type,
             m = this.startNode(),
             E;
-          switch ((this.isLet(n) && ((h = c._var), (E = 'let')), h)) {
+          switch ((this.isLet(n) && ((f = c._var), (E = 'let')), f)) {
             case c._break:
             case c._continue:
-              return this.parseBreakContinueStatement(m, h.keyword);
+              return this.parseBreakContinueStatement(m, f.keyword);
             case c._debugger:
               return this.parseDebuggerStatement(m);
             case c._do:
@@ -25606,10 +25606,10 @@ Defaulting to 2020, but this will stop working in the future.`)),
               return this.parseEmptyStatement(m);
             case c._export:
             case c._import:
-              if (this.options.ecmaVersion > 10 && h === c._import) {
+              if (this.options.ecmaVersion > 10 && f === c._import) {
                 ae.lastIndex = this.pos;
-                var R = ae.exec(this.input),
-                  Y = this.pos + R[0].length,
+                var O = ae.exec(this.input),
+                  Y = this.pos + O[0].length,
                   Q = this.input.charCodeAt(Y);
                 if (Q === 40 || Q === 46)
                   return this.parseExpressionStatement(
@@ -25629,7 +25629,7 @@ Defaulting to 2020, but this will stop working in the future.`)),
                       this.start,
                       "'import' and 'export' may appear only with 'sourceType: module'"
                     )),
-                h === c._import ? this.parseImport(m) : this.parseExport(m, l)
+                f === c._import ? this.parseImport(m) : this.parseExport(m, l)
               );
             default:
               if (this.isAsyncFunction())
@@ -25638,12 +25638,12 @@ Defaulting to 2020, but this will stop working in the future.`)),
                   this.next(),
                   this.parseFunctionStatement(m, !0, !n)
                 );
-              var ye = this.isAwaitUsing(!1)
+              var Te = this.isAwaitUsing(!1)
                 ? 'await using'
                 : this.isUsing(!1)
                 ? 'using'
                 : null;
-              if (ye)
+              if (Te)
                 return (
                   o &&
                     this.options.sourceType === 'script' &&
@@ -25651,7 +25651,7 @@ Defaulting to 2020, but this will stop working in the future.`)),
                       this.start,
                       'Using declaration cannot appear in the top level when source type is `script`'
                     ),
-                  ye === 'await using' &&
+                  Te === 'await using' &&
                     (this.canAwait ||
                       this.raise(
                         this.start,
@@ -25659,13 +25659,13 @@ Defaulting to 2020, but this will stop working in the future.`)),
                       ),
                     this.next()),
                   this.next(),
-                  this.parseVar(m, !1, ye),
+                  this.parseVar(m, !1, Te),
                   this.semicolon(),
                   this.finishNode(m, 'VariableDeclaration')
                 );
               var xe = this.value,
                 Ze = this.parseExpression();
-              return h === c.name &&
+              return f === c.name &&
                 Ze.type === 'Identifier' &&
                 this.eat(c.colon)
                 ? this.parseLabeledStatement(m, xe, Ze, n)
@@ -25680,8 +25680,8 @@ Defaulting to 2020, but this will stop working in the future.`)),
               : this.type !== c.name
               ? this.unexpected()
               : ((n.label = this.parseIdent()), this.semicolon());
-          for (var h = 0; h < this.labels.length; ++h) {
-            var m = this.labels[h];
+          for (var f = 0; f < this.labels.length; ++f) {
+            var m = this.labels[f];
             if (
               (n.label == null || m.name === n.label.name) &&
               ((m.kind != null && (l || m.kind === 'loop')) || (n.label && l))
@@ -25689,7 +25689,7 @@ Defaulting to 2020, but this will stop working in the future.`)),
               break;
           }
           return (
-            h === this.labels.length && this.raise(n.start, 'Unsyntactic ' + o),
+            f === this.labels.length && this.raise(n.start, 'Unsyntactic ' + o),
             this.finishNode(n, l ? 'BreakStatement' : 'ContinueStatement')
           );
         }),
@@ -25729,17 +25729,17 @@ Defaulting to 2020, but this will stop working in the future.`)),
             return o > -1 && this.unexpected(o), this.parseFor(n, null);
           var l = this.isLet();
           if (this.type === c._var || this.type === c._const || l) {
-            var h = this.startNode(),
+            var f = this.startNode(),
               m = l ? 'let' : this.value;
             return (
               this.next(),
-              this.parseVar(h, !0, m),
-              this.finishNode(h, 'VariableDeclaration'),
-              this.parseForAfterInit(n, h, o)
+              this.parseVar(f, !0, m),
+              this.finishNode(f, 'VariableDeclaration'),
+              this.parseForAfterInit(n, f, o)
             );
           }
           var E = this.isContextual('let'),
-            R = !1,
+            O = !1,
             Y = this.isUsing(!0)
               ? 'using'
               : this.isAwaitUsing(!0)
@@ -25755,7 +25755,7 @@ Defaulting to 2020, but this will stop working in the future.`)),
               this.parseForAfterInit(n, Q, o)
             );
           }
-          var ye = this.containsEsc,
+          var Te = this.containsEsc,
             xe = new Xt(),
             Ze = this.start,
             Lt =
@@ -25763,19 +25763,19 @@ Defaulting to 2020, but this will stop working in the future.`)),
                 ? this.parseExprSubscripts(xe, 'await')
                 : this.parseExpression(!0, xe);
           return this.type === c._in ||
-            (R = this.options.ecmaVersion >= 6 && this.isContextual('of'))
+            (O = this.options.ecmaVersion >= 6 && this.isContextual('of'))
             ? (o > -1
                 ? (this.type === c._in && this.unexpected(o), (n.await = !0))
-                : R &&
+                : O &&
                   this.options.ecmaVersion >= 8 &&
                   (Lt.start === Ze &&
-                  !ye &&
+                  !Te &&
                   Lt.type === 'Identifier' &&
                   Lt.name === 'async'
                     ? this.unexpected()
                     : this.options.ecmaVersion >= 9 && (n.await = !1)),
               E &&
-                R &&
+                O &&
                 this.raise(
                   Lt.start,
                   "The left-hand side of a for-of loop may not start with 'let'."
@@ -25833,12 +25833,12 @@ Defaulting to 2020, but this will stop working in the future.`)),
             this.enterScope(0);
           for (var o, l = !1; this.type !== c.braceR; )
             if (this.type === c._case || this.type === c._default) {
-              var h = this.type === c._case;
+              var f = this.type === c._case;
               o && this.finishNode(o, 'SwitchCase'),
                 n.cases.push((o = this.startNode())),
                 (o.consequent = []),
                 this.next(),
-                h
+                f
                   ? (o.test = this.parseExpression())
                   : (l &&
                       this.raiseRecoverable(
@@ -25862,7 +25862,7 @@ Defaulting to 2020, but this will stop working in the future.`)),
         (te.parseThrowStatement = function (n) {
           return (
             this.next(),
-            M.test(this.input.slice(this.lastTokEnd, this.start)) &&
+            L.test(this.input.slice(this.lastTokEnd, this.start)) &&
               this.raise(this.lastTokEnd, 'Illegal newline after throw'),
             (n.argument = this.parseExpression()),
             this.semicolon(),
@@ -25875,7 +25875,7 @@ Defaulting to 2020, but this will stop working in the future.`)),
           o = n.type === 'Identifier';
         return (
           this.enterScope(o ? Ie : 0),
-          this.checkLValPattern(n, o ? bn : Tt),
+          this.checkLValPattern(n, o ? bn : yt),
           this.expect(c.parenR),
           n
         );
@@ -25936,10 +25936,10 @@ Defaulting to 2020, but this will stop working in the future.`)),
         (te.parseEmptyStatement = function (n) {
           return this.next(), this.finishNode(n, 'EmptyStatement');
         }),
-        (te.parseLabeledStatement = function (n, o, l, h) {
+        (te.parseLabeledStatement = function (n, o, l, f) {
           for (var m = 0, E = this.labels; m < E.length; m += 1) {
-            var R = E[m];
-            R.name === o &&
+            var O = E[m];
+            O.name === o &&
               this.raise(l.start, "Label '" + o + "' is already declared");
           }
           for (
@@ -25952,15 +25952,15 @@ Defaulting to 2020, but this will stop working in the future.`)),
             Q >= 0;
             Q--
           ) {
-            var ye = this.labels[Q];
-            if (ye.statementStart === n.start)
-              (ye.statementStart = this.start), (ye.kind = Y);
+            var Te = this.labels[Q];
+            if (Te.statementStart === n.start)
+              (Te.statementStart = this.start), (Te.kind = Y);
             else break;
           }
           return (
             this.labels.push({name: o, kind: Y, statementStart: this.start}),
             (n.body = this.parseStatement(
-              h ? (h.indexOf('label') === -1 ? h + 'label' : h) : 'label'
+              f ? (f.indexOf('label') === -1 ? f + 'label' : f) : 'label'
             )),
             this.labels.pop(),
             (n.label = l),
@@ -25984,8 +25984,8 @@ Defaulting to 2020, but this will stop working in the future.`)),
             this.type !== c.braceR;
 
           ) {
-            var h = this.parseStatement(null);
-            o.body.push(h);
+            var f = this.parseStatement(null);
+            o.body.push(f);
           }
           return (
             l && (this.strict = !1),
@@ -26033,21 +26033,21 @@ Defaulting to 2020, but this will stop working in the future.`)),
             this.finishNode(n, l ? 'ForInStatement' : 'ForOfStatement')
           );
         }),
-        (te.parseVar = function (n, o, l, h) {
+        (te.parseVar = function (n, o, l, f) {
           for (n.declarations = [], n.kind = l; ; ) {
             var m = this.startNode();
             if (
               (this.parseVarId(m, l),
               this.eat(c.eq)
                 ? (m.init = this.parseMaybeAssign(o))
-                : !h &&
+                : !f &&
                   l === 'const' &&
                   !(
                     this.type === c._in ||
                     (this.options.ecmaVersion >= 6 && this.isContextual('of'))
                   )
                 ? this.unexpected()
-                : !h &&
+                : !f &&
                   (l === 'using' || l === 'await using') &&
                   this.options.ecmaVersion >= 17 &&
                   this.type !== c._in &&
@@ -26056,7 +26056,7 @@ Defaulting to 2020, but this will stop working in the future.`)),
                     this.lastTokEnd,
                     'Missing initializer in ' + l + ' declaration'
                   )
-                : !h &&
+                : !f &&
                   m.id.type !== 'Identifier' &&
                   !(o && (this.type === c._in || this.isContextual('of')))
                 ? this.raise(
@@ -26076,18 +26076,18 @@ Defaulting to 2020, but this will stop working in the future.`)),
             o === 'using' || o === 'await using'
               ? this.parseIdent()
               : this.parseBindingAtom()),
-            this.checkLValPattern(n.id, o === 'var' ? bt : Tt, !1);
+            this.checkLValPattern(n.id, o === 'var' ? bt : yt, !1);
         });
       var Mn = 1,
         xs = 2,
         Ds = 4;
-      (te.parseFunction = function (n, o, l, h, m) {
+      (te.parseFunction = function (n, o, l, f, m) {
         this.initFunction(n),
           (this.options.ecmaVersion >= 9 ||
-            (this.options.ecmaVersion >= 6 && !h)) &&
+            (this.options.ecmaVersion >= 6 && !f)) &&
             (this.type === c.star && o & xs && this.unexpected(),
             (n.generator = this.eat(c.star))),
-          this.options.ecmaVersion >= 8 && (n.async = !!h),
+          this.options.ecmaVersion >= 8 && (n.async = !!f),
           o & Mn &&
             ((n.id = o & Ds && this.type !== c.name ? null : this.parseIdent()),
             n.id &&
@@ -26097,11 +26097,11 @@ Defaulting to 2020, but this will stop working in the future.`)),
                 this.strict || n.generator || n.async
                   ? this.treatFunctionsAsVar
                     ? bt
-                    : Tt
+                    : yt
                   : vt
               ));
         var E = this.yieldPos,
-          R = this.awaitPos,
+          O = this.awaitPos,
           Y = this.awaitIdentPos;
         return (
           (this.yieldPos = 0),
@@ -26112,7 +26112,7 @@ Defaulting to 2020, but this will stop working in the future.`)),
           this.parseFunctionParams(n),
           this.parseFunctionBody(n, l, !1, m),
           (this.yieldPos = E),
-          (this.awaitPos = R),
+          (this.awaitPos = O),
           (this.awaitIdentPos = Y),
           this.finishNode(
             n,
@@ -26133,26 +26133,26 @@ Defaulting to 2020, but this will stop working in the future.`)),
           this.next();
           var l = this.strict;
           (this.strict = !0), this.parseClassId(n, o), this.parseClassSuper(n);
-          var h = this.enterClassBody(),
+          var f = this.enterClassBody(),
             m = this.startNode(),
             E = !1;
           for (m.body = [], this.expect(c.braceL); this.type !== c.braceR; ) {
-            var R = this.parseClassElement(n.superClass !== null);
-            R &&
-              (m.body.push(R),
-              R.type === 'MethodDefinition' && R.kind === 'constructor'
+            var O = this.parseClassElement(n.superClass !== null);
+            O &&
+              (m.body.push(O),
+              O.type === 'MethodDefinition' && O.kind === 'constructor'
                 ? (E &&
                     this.raiseRecoverable(
-                      R.start,
+                      O.start,
                       'Duplicate constructor in the same class'
                     ),
                   (E = !0))
-                : R.key &&
-                  R.key.type === 'PrivateIdentifier' &&
-                  bi(h, R) &&
+                : O.key &&
+                  O.key.type === 'PrivateIdentifier' &&
+                  bi(f, O) &&
                   this.raiseRecoverable(
-                    R.key.start,
-                    "Identifier '#" + R.key.name + "' has already been declared"
+                    O.key.start,
+                    "Identifier '#" + O.key.name + "' has already been declared"
                   ));
           }
           return (
@@ -26167,55 +26167,55 @@ Defaulting to 2020, but this will stop working in the future.`)),
           if (this.eat(c.semi)) return null;
           var o = this.options.ecmaVersion,
             l = this.startNode(),
-            h = '',
+            f = '',
             m = !1,
             E = !1,
-            R = 'method',
+            O = 'method',
             Y = !1;
           if (this.eatContextual('static')) {
             if (o >= 13 && this.eat(c.braceL))
               return this.parseClassStaticBlock(l), l;
             this.isClassElementNameStart() || this.type === c.star
               ? (Y = !0)
-              : (h = 'static');
+              : (f = 'static');
           }
           if (
             ((l.static = Y),
-            !h &&
+            !f &&
               o >= 8 &&
               this.eatContextual('async') &&
               ((this.isClassElementNameStart() || this.type === c.star) &&
               !this.canInsertSemicolon()
                 ? (E = !0)
-                : (h = 'async')),
-            !h && (o >= 9 || !E) && this.eat(c.star) && (m = !0),
-            !h && !E && !m)
+                : (f = 'async')),
+            !f && (o >= 9 || !E) && this.eat(c.star) && (m = !0),
+            !f && !E && !m)
           ) {
             var Q = this.value;
             (this.eatContextual('get') || this.eatContextual('set')) &&
-              (this.isClassElementNameStart() ? (R = Q) : (h = Q));
+              (this.isClassElementNameStart() ? (O = Q) : (f = Q));
           }
           if (
-            (h
+            (f
               ? ((l.computed = !1),
                 (l.key = this.startNodeAt(
                   this.lastTokStart,
                   this.lastTokStartLoc
                 )),
-                (l.key.name = h),
+                (l.key.name = f),
                 this.finishNode(l.key, 'Identifier'))
               : this.parseClassElementName(l),
-            o < 13 || this.type === c.parenL || R !== 'method' || m || E)
+            o < 13 || this.type === c.parenL || O !== 'method' || m || E)
           ) {
-            var ye = !l.static && es(l, 'constructor'),
-              xe = ye && n;
-            ye &&
-              R !== 'method' &&
+            var Te = !l.static && es(l, 'constructor'),
+              xe = Te && n;
+            Te &&
+              O !== 'method' &&
               this.raise(
                 l.key.start,
                 "Constructor can't have get/set modifier"
               ),
-              (l.kind = ye ? 'constructor' : R),
+              (l.kind = Te ? 'constructor' : O),
               this.parseClassMethod(l, m, E, xe);
           } else this.parseClassField(l);
           return l;
@@ -26241,7 +26241,7 @@ Defaulting to 2020, but this will stop working in the future.`)),
               (n.key = this.parsePrivateIdent()))
             : this.parsePropertyName(n);
         }),
-        (te.parseClassMethod = function (n, o, l, h) {
+        (te.parseClassMethod = function (n, o, l, f) {
           var m = n.key;
           n.kind === 'constructor'
             ? (o && this.raise(m.start, "Constructor can't be a generator"),
@@ -26252,7 +26252,7 @@ Defaulting to 2020, but this will stop working in the future.`)),
                 m.start,
                 'Classes may not have a static property named prototype'
               );
-          var E = (n.value = this.parseMethod(o, l, h));
+          var E = (n.value = this.parseMethod(o, l, f));
           return (
             n.kind === 'get' &&
               E.params.length !== 0 &&
@@ -26315,7 +26315,7 @@ Defaulting to 2020, but this will stop working in the future.`)),
         (te.parseClassId = function (n, o) {
           this.type === c.name
             ? ((n.id = this.parseIdent()),
-              o && this.checkLValSimple(n.id, Tt, !1))
+              o && this.checkLValSimple(n.id, yt, !1))
             : (o === !0 && this.unexpected(), (n.id = null));
         }),
         (te.parseClassSuper = function (n) {
@@ -26333,49 +26333,49 @@ Defaulting to 2020, but this will stop working in the future.`)),
             l = n.used;
           if (this.options.checkPrivateFields)
             for (
-              var h = this.privateNameStack.length,
-                m = h === 0 ? null : this.privateNameStack[h - 1],
+              var f = this.privateNameStack.length,
+                m = f === 0 ? null : this.privateNameStack[f - 1],
                 E = 0;
               E < l.length;
               ++E
             ) {
-              var R = l[E];
-              mt(o, R.name) ||
+              var O = l[E];
+              mt(o, O.name) ||
                 (m
-                  ? m.used.push(R)
+                  ? m.used.push(O)
                   : this.raiseRecoverable(
-                      R.start,
+                      O.start,
                       "Private field '#" +
-                        R.name +
+                        O.name +
                         "' must be declared in an enclosing class"
                     ));
             }
         });
       function bi(n, o) {
         var l = o.key.name,
-          h = n[l],
+          f = n[l],
           m = 'true';
         return (
           o.type === 'MethodDefinition' &&
             (o.kind === 'get' || o.kind === 'set') &&
             (m = (o.static ? 's' : 'i') + o.kind),
-          (h === 'iget' && m === 'iset') ||
-          (h === 'iset' && m === 'iget') ||
-          (h === 'sget' && m === 'sset') ||
-          (h === 'sset' && m === 'sget')
+          (f === 'iget' && m === 'iset') ||
+          (f === 'iset' && m === 'iget') ||
+          (f === 'sget' && m === 'sset') ||
+          (f === 'sset' && m === 'sget')
             ? ((n[l] = 'true'), !1)
-            : h
+            : f
             ? !0
             : ((n[l] = m), !1)
         );
       }
       function es(n, o) {
         var l = n.computed,
-          h = n.key;
+          f = n.key;
         return (
           !l &&
-          ((h.type === 'Identifier' && h.name === o) ||
-            (h.type === 'Literal' && h.value === o))
+          ((f.type === 'Identifier' && f.name === o) ||
+            (f.type === 'Literal' && f.value === o))
         );
       }
       (te.parseExportAllDeclaration = function (n, o) {
@@ -26422,8 +26422,8 @@ Defaulting to 2020, but this will stop working in the future.`)),
                 this.options.ecmaVersion >= 16 &&
                   (n.attributes = this.parseWithClause());
             else {
-              for (var l = 0, h = n.specifiers; l < h.length; l += 1) {
-                var m = h[l];
+              for (var l = 0, f = n.specifiers; l < f.length; l += 1) {
+                var m = f[l];
                 this.checkUnreserved(m.local),
                   this.checkLocalExport(m.local),
                   m.local.type === 'Literal' &&
@@ -26455,8 +26455,8 @@ Defaulting to 2020, but this will stop working in the future.`)),
             var l = this.startNode();
             return this.parseClass(l, 'nullableID');
           } else {
-            var h = this.parseMaybeAssign();
-            return this.semicolon(), h;
+            var f = this.parseMaybeAssign();
+            return this.semicolon(), f;
           }
         }),
         (te.checkExport = function (n, o, l) {
@@ -26471,13 +26471,13 @@ Defaulting to 2020, but this will stop working in the future.`)),
           var l = o.type;
           if (l === 'Identifier') this.checkExport(n, o, o.start);
           else if (l === 'ObjectPattern')
-            for (var h = 0, m = o.properties; h < m.length; h += 1) {
-              var E = m[h];
+            for (var f = 0, m = o.properties; f < m.length; f += 1) {
+              var E = m[f];
               this.checkPatternExport(n, E);
             }
           else if (l === 'ArrayPattern')
-            for (var R = 0, Y = o.elements; R < Y.length; R += 1) {
-              var Q = Y[R];
+            for (var O = 0, Y = o.elements; O < Y.length; O += 1) {
+              var Q = Y[O];
               Q && this.checkPatternExport(n, Q);
             }
           else
@@ -26489,8 +26489,8 @@ Defaulting to 2020, but this will stop working in the future.`)),
         }),
         (te.checkVariableExport = function (n, o) {
           if (n)
-            for (var l = 0, h = o; l < h.length; l += 1) {
-              var m = h[l];
+            for (var l = 0, f = o; l < f.length; l += 1) {
+              var m = f[l];
               this.checkPatternExport(n, m.id);
             }
         }),
@@ -26550,7 +26550,7 @@ Defaulting to 2020, but this will stop working in the future.`)),
             this.eatContextual('as')
               ? (n.local = this.parseIdent())
               : (this.checkUnreserved(n.imported), (n.local = n.imported)),
-            this.checkLValSimple(n.local, Tt),
+            this.checkLValSimple(n.local, yt),
             this.finishNode(n, 'ImportSpecifier')
           );
         }),
@@ -26558,7 +26558,7 @@ Defaulting to 2020, but this will stop working in the future.`)),
           var n = this.startNode();
           return (
             (n.local = this.parseIdent()),
-            this.checkLValSimple(n.local, Tt),
+            this.checkLValSimple(n.local, yt),
             this.finishNode(n, 'ImportDefaultSpecifier')
           );
         }),
@@ -26568,7 +26568,7 @@ Defaulting to 2020, but this will stop working in the future.`)),
             this.next(),
             this.expectContextual('as'),
             (n.local = this.parseIdent()),
-            this.checkLValSimple(n.local, Tt),
+            this.checkLValSimple(n.local, yt),
             this.finishNode(n, 'ImportNamespaceSpecifier')
           );
         }),
@@ -26598,15 +26598,15 @@ Defaulting to 2020, but this will stop working in the future.`)),
             if (l) l = !1;
             else if ((this.expect(c.comma), this.afterTrailingComma(c.braceR)))
               break;
-            var h = this.parseImportAttribute(),
-              m = h.key.type === 'Identifier' ? h.key.name : h.key.value;
+            var f = this.parseImportAttribute(),
+              m = f.key.type === 'Identifier' ? f.key.name : f.key.value;
             mt(o, m) &&
               this.raiseRecoverable(
-                h.key.start,
+                f.key.start,
                 "Duplicate attribute key '" + m + "'"
               ),
               (o[m] = !0),
-              n.push(h);
+              n.push(f);
           }
           return n;
         }),
@@ -26669,8 +26669,8 @@ Defaulting to 2020, but this will stop working in the future.`)),
               break;
             case 'ObjectExpression':
               (n.type = 'ObjectPattern'), l && this.checkPatternErrors(l, !0);
-              for (var h = 0, m = n.properties; h < m.length; h += 1) {
-                var E = m[h];
+              for (var f = 0, m = n.properties; f < m.length; f += 1) {
+                var E = m[f];
                 this.toAssignable(E, o),
                   E.type === 'RestElement' &&
                     (E.argument.type === 'ArrayPattern' ||
@@ -26728,8 +26728,8 @@ Defaulting to 2020, but this will stop working in the future.`)),
         return n;
       }),
         (Nt.toAssignableList = function (n, o) {
-          for (var l = n.length, h = 0; h < l; h++) {
-            var m = n[h];
+          for (var l = n.length, f = 0; f < l; f++) {
+            var m = n[f];
             m && this.toAssignable(m, o);
           }
           if (l) {
@@ -26777,7 +26777,7 @@ Defaulting to 2020, but this will stop working in the future.`)),
             }
           return this.parseIdent();
         }),
-        (Nt.parseBindingList = function (n, o, l, h) {
+        (Nt.parseBindingList = function (n, o, l, f) {
           for (var m = [], E = !0; !this.eat(n); )
             if (
               (E ? (E = !1) : this.expect(c.comma), o && this.type === c.comma)
@@ -26786,9 +26786,9 @@ Defaulting to 2020, but this will stop working in the future.`)),
             else {
               if (l && this.afterTrailingComma(n)) break;
               if (this.type === c.ellipsis) {
-                var R = this.parseRestBinding();
-                this.parseBindingListItem(R),
-                  m.push(R),
+                var O = this.parseRestBinding();
+                this.parseBindingListItem(O),
+                  m.push(O),
                   this.type === c.comma &&
                     this.raiseRecoverable(
                       this.start,
@@ -26796,7 +26796,7 @@ Defaulting to 2020, but this will stop working in the future.`)),
                     ),
                   this.expect(n);
                 break;
-              } else m.push(this.parseAssignableListItem(h));
+              } else m.push(this.parseAssignableListItem(f));
             }
           return m;
         }),
@@ -26813,28 +26813,28 @@ Defaulting to 2020, but this will stop working in the future.`)),
             this.options.ecmaVersion < 6 || !this.eat(c.eq))
           )
             return l;
-          var h = this.startNodeAt(n, o);
+          var f = this.startNodeAt(n, o);
           return (
-            (h.left = l),
-            (h.right = this.parseMaybeAssign()),
-            this.finishNode(h, 'AssignmentPattern')
+            (f.left = l),
+            (f.right = this.parseMaybeAssign()),
+            this.finishNode(f, 'AssignmentPattern')
           );
         }),
         (Nt.checkLValSimple = function (n, o, l) {
           o === void 0 && (o = pt);
-          var h = o !== pt;
+          var f = o !== pt;
           switch (n.type) {
             case 'Identifier':
               this.strict &&
                 this.reservedWordsStrictBind.test(n.name) &&
                 this.raiseRecoverable(
                   n.start,
-                  (h ? 'Binding ' : 'Assigning to ') +
+                  (f ? 'Binding ' : 'Assigning to ') +
                     n.name +
                     ' in strict mode'
                 ),
-                h &&
-                  (o === Tt &&
+                f &&
+                  (o === yt &&
                     n.name === 'let' &&
                     this.raiseRecoverable(
                       n.start,
@@ -26853,11 +26853,11 @@ Defaulting to 2020, but this will stop working in the future.`)),
               );
               break;
             case 'MemberExpression':
-              h && this.raiseRecoverable(n.start, 'Binding member expression');
+              f && this.raiseRecoverable(n.start, 'Binding member expression');
               break;
             case 'ParenthesizedExpression':
               return (
-                h &&
+                f &&
                   this.raiseRecoverable(
                     n.start,
                     'Binding parenthesized expression'
@@ -26865,20 +26865,20 @@ Defaulting to 2020, but this will stop working in the future.`)),
                 this.checkLValSimple(n.expression, o, l)
               );
             default:
-              this.raise(n.start, (h ? 'Binding' : 'Assigning to') + ' rvalue');
+              this.raise(n.start, (f ? 'Binding' : 'Assigning to') + ' rvalue');
           }
         }),
         (Nt.checkLValPattern = function (n, o, l) {
           switch ((o === void 0 && (o = pt), n.type)) {
             case 'ObjectPattern':
-              for (var h = 0, m = n.properties; h < m.length; h += 1) {
-                var E = m[h];
+              for (var f = 0, m = n.properties; f < m.length; f += 1) {
+                var E = m[f];
                 this.checkLValInnerPattern(E, o, l);
               }
               break;
             case 'ArrayPattern':
-              for (var R = 0, Y = n.elements; R < Y.length; R += 1) {
-                var Q = Y[R];
+              for (var O = 0, Y = n.elements; O < Y.length; O += 1) {
+                var Q = Y[O];
                 Q && this.checkLValInnerPattern(Q, o, l);
               }
               break;
@@ -26901,10 +26901,10 @@ Defaulting to 2020, but this will stop working in the future.`)),
               this.checkLValPattern(n, o, l);
           }
         });
-      var Rt = function (o, l, h, m, E) {
+      var Rt = function (o, l, f, m, E) {
           (this.token = o),
             (this.isExpr = !!l),
-            (this.preserveSpace = !!h),
+            (this.preserveSpace = !!f),
             (this.override = m),
             (this.generator = !!E);
         },
@@ -26936,7 +26936,7 @@ Defaulting to 2020, but this will stop working in the future.`)),
             : n === c.colon && (o === Ue.b_stat || o === Ue.b_expr)
             ? !o.isExpr
             : n === c._return || (n === c.name && this.exprAllowed)
-            ? M.test(this.input.slice(this.lastTokEnd, this.start))
+            ? L.test(this.input.slice(this.lastTokEnd, this.start))
             : n === c._else ||
               n === c.semi ||
               n === c.eof ||
@@ -27001,7 +27001,7 @@ Defaulting to 2020, but this will stop working in the future.`)),
             !(n === c.semi && this.curContext() !== Ue.p_stat) &&
             !(
               n === c._return &&
-              M.test(this.input.slice(this.lastTokEnd, this.start))
+              L.test(this.input.slice(this.lastTokEnd, this.start))
             ) &&
             !(
               (n === c.colon || n === c.braceL) &&
@@ -27048,14 +27048,14 @@ Defaulting to 2020, but this will stop working in the future.`)),
             (n.computed || n.method || n.shorthand)
           )
         ) {
-          var h = n.key,
+          var f = n.key,
             m;
-          switch (h.type) {
+          switch (f.type) {
             case 'Identifier':
-              m = h.name;
+              m = f.name;
               break;
             case 'Literal':
-              m = String(h.value);
+              m = String(f.value);
               break;
             default:
               return;
@@ -27066,32 +27066,32 @@ Defaulting to 2020, but this will stop working in the future.`)),
               E === 'init' &&
               (o.proto &&
                 (l
-                  ? l.doubleProto < 0 && (l.doubleProto = h.start)
+                  ? l.doubleProto < 0 && (l.doubleProto = f.start)
                   : this.raiseRecoverable(
-                      h.start,
+                      f.start,
                       'Redefinition of __proto__ property'
                     )),
               (o.proto = !0));
             return;
           }
           m = '$' + m;
-          var R = o[m];
-          if (R) {
+          var O = o[m];
+          if (O) {
             var Y;
             E === 'init'
-              ? (Y = (this.strict && R.init) || R.get || R.set)
-              : (Y = R.init || R[E]),
-              Y && this.raiseRecoverable(h.start, 'Redefinition of property');
-          } else R = o[m] = {init: !1, get: !1, set: !1};
-          R[E] = !0;
+              ? (Y = (this.strict && O.init) || O.get || O.set)
+              : (Y = O.init || O[E]),
+              Y && this.raiseRecoverable(f.start, 'Redefinition of property');
+          } else O = o[m] = {init: !1, get: !1, set: !1};
+          O[E] = !0;
         }
       }),
         (de.parseExpression = function (n, o) {
           var l = this.start,
-            h = this.startLoc,
+            f = this.startLoc,
             m = this.parseMaybeAssign(n, o);
           if (this.type === c.comma) {
-            var E = this.startNodeAt(l, h);
+            var E = this.startNodeAt(l, f);
             for (E.expressions = [m]; this.eat(c.comma); )
               E.expressions.push(this.parseMaybeAssign(n, o));
             return this.finishNode(E, 'SequenceExpression');
@@ -27103,53 +27103,53 @@ Defaulting to 2020, but this will stop working in the future.`)),
             if (this.inGenerator) return this.parseYield(n);
             this.exprAllowed = !1;
           }
-          var h = !1,
+          var f = !1,
             m = -1,
             E = -1,
-            R = -1;
+            O = -1;
           o
             ? ((m = o.parenthesizedAssign),
               (E = o.trailingComma),
-              (R = o.doubleProto),
+              (O = o.doubleProto),
               (o.parenthesizedAssign = o.trailingComma = -1))
-            : ((o = new Xt()), (h = !0));
+            : ((o = new Xt()), (f = !0));
           var Y = this.start,
             Q = this.startLoc;
           (this.type === c.parenL || this.type === c.name) &&
             ((this.potentialArrowAt = this.start),
             (this.potentialArrowInForAwait = n === 'await'));
-          var ye = this.parseMaybeConditional(n, o);
-          if ((l && (ye = l.call(this, ye, Y, Q)), this.type.isAssign)) {
+          var Te = this.parseMaybeConditional(n, o);
+          if ((l && (Te = l.call(this, Te, Y, Q)), this.type.isAssign)) {
             var xe = this.startNodeAt(Y, Q);
             return (
               (xe.operator = this.value),
-              this.type === c.eq && (ye = this.toAssignable(ye, !1, o)),
-              h ||
+              this.type === c.eq && (Te = this.toAssignable(Te, !1, o)),
+              f ||
                 (o.parenthesizedAssign = o.trailingComma = o.doubleProto = -1),
-              o.shorthandAssign >= ye.start && (o.shorthandAssign = -1),
+              o.shorthandAssign >= Te.start && (o.shorthandAssign = -1),
               this.type === c.eq
-                ? this.checkLValPattern(ye)
-                : this.checkLValSimple(ye),
-              (xe.left = ye),
+                ? this.checkLValPattern(Te)
+                : this.checkLValSimple(Te),
+              (xe.left = Te),
               this.next(),
               (xe.right = this.parseMaybeAssign(n)),
-              R > -1 && (o.doubleProto = R),
+              O > -1 && (o.doubleProto = O),
               this.finishNode(xe, 'AssignmentExpression')
             );
-          } else h && this.checkExpressionErrors(o, !0);
+          } else f && this.checkExpressionErrors(o, !0);
           return (
             m > -1 && (o.parenthesizedAssign = m),
             E > -1 && (o.trailingComma = E),
-            ye
+            Te
           );
         }),
         (de.parseMaybeConditional = function (n, o) {
           var l = this.start,
-            h = this.startLoc,
+            f = this.startLoc,
             m = this.parseExprOps(n, o);
           if (this.checkExpressionErrors(o)) return m;
           if (this.eat(c.question)) {
-            var E = this.startNodeAt(l, h);
+            var E = this.startNodeAt(l, f);
             return (
               (E.test = m),
               (E.consequent = this.parseMaybeAssign()),
@@ -27162,71 +27162,71 @@ Defaulting to 2020, but this will stop working in the future.`)),
         }),
         (de.parseExprOps = function (n, o) {
           var l = this.start,
-            h = this.startLoc,
+            f = this.startLoc,
             m = this.parseMaybeUnary(o, !1, !1, n);
           return this.checkExpressionErrors(o) ||
             (m.start === l && m.type === 'ArrowFunctionExpression')
             ? m
-            : this.parseExprOp(m, l, h, -1, n);
+            : this.parseExprOp(m, l, f, -1, n);
         }),
-        (de.parseExprOp = function (n, o, l, h, m) {
+        (de.parseExprOp = function (n, o, l, f, m) {
           var E = this.type.binop;
-          if (E != null && (!m || this.type !== c._in) && E > h) {
-            var R = this.type === c.logicalOR || this.type === c.logicalAND,
+          if (E != null && (!m || this.type !== c._in) && E > f) {
+            var O = this.type === c.logicalOR || this.type === c.logicalAND,
               Y = this.type === c.coalesce;
             Y && (E = c.logicalAND.binop);
             var Q = this.value;
             this.next();
-            var ye = this.start,
+            var Te = this.start,
               xe = this.startLoc,
               Ze = this.parseExprOp(
                 this.parseMaybeUnary(null, !1, !1, m),
-                ye,
+                Te,
                 xe,
                 E,
                 m
               ),
-              Lt = this.buildBinary(o, l, n, Ze, Q, R || Y);
+              Lt = this.buildBinary(o, l, n, Ze, Q, O || Y);
             return (
-              ((R && this.type === c.coalesce) ||
+              ((O && this.type === c.coalesce) ||
                 (Y &&
                   (this.type === c.logicalOR || this.type === c.logicalAND))) &&
                 this.raiseRecoverable(
                   this.start,
                   'Logical expressions and coalesce expressions cannot be mixed. Wrap either by parentheses'
                 ),
-              this.parseExprOp(Lt, o, l, h, m)
+              this.parseExprOp(Lt, o, l, f, m)
             );
           }
           return n;
         }),
-        (de.buildBinary = function (n, o, l, h, m, E) {
-          h.type === 'PrivateIdentifier' &&
+        (de.buildBinary = function (n, o, l, f, m, E) {
+          f.type === 'PrivateIdentifier' &&
             this.raise(
-              h.start,
+              f.start,
               'Private identifier can only be left side of binary expression'
             );
-          var R = this.startNodeAt(n, o);
+          var O = this.startNodeAt(n, o);
           return (
-            (R.left = l),
-            (R.operator = m),
-            (R.right = h),
-            this.finishNode(R, E ? 'LogicalExpression' : 'BinaryExpression')
+            (O.left = l),
+            (O.operator = m),
+            (O.right = f),
+            this.finishNode(O, E ? 'LogicalExpression' : 'BinaryExpression')
           );
         }),
-        (de.parseMaybeUnary = function (n, o, l, h) {
+        (de.parseMaybeUnary = function (n, o, l, f) {
           var m = this.start,
             E = this.startLoc,
-            R;
+            O;
           if (this.isContextual('await') && this.canAwait)
-            (R = this.parseAwait(h)), (o = !0);
+            (O = this.parseAwait(f)), (o = !0);
           else if (this.type.prefix) {
             var Y = this.startNode(),
               Q = this.type === c.incDec;
             (Y.operator = this.value),
               (Y.prefix = !0),
               this.next(),
-              (Y.argument = this.parseMaybeUnary(null, !0, Q, h)),
+              (Y.argument = this.parseMaybeUnary(null, !0, Q, f)),
               this.checkExpressionErrors(n, !0),
               Q
                 ? this.checkLValSimple(Y.argument)
@@ -27241,30 +27241,30 @@ Defaulting to 2020, but this will stop working in the future.`)),
                     'Private fields can not be deleted'
                   )
                 : (o = !0),
-              (R = this.finishNode(
+              (O = this.finishNode(
                 Y,
                 Q ? 'UpdateExpression' : 'UnaryExpression'
               ));
           } else if (!o && this.type === c.privateId)
-            (h || this.privateNameStack.length === 0) &&
+            (f || this.privateNameStack.length === 0) &&
               this.options.checkPrivateFields &&
               this.unexpected(),
-              (R = this.parsePrivateIdent()),
+              (O = this.parsePrivateIdent()),
               this.type !== c._in && this.unexpected();
           else {
             if (
-              ((R = this.parseExprSubscripts(n, h)),
+              ((O = this.parseExprSubscripts(n, f)),
               this.checkExpressionErrors(n))
             )
-              return R;
+              return O;
             for (; this.type.postfix && !this.canInsertSemicolon(); ) {
-              var ye = this.startNodeAt(m, E);
-              (ye.operator = this.value),
-                (ye.prefix = !1),
-                (ye.argument = R),
-                this.checkLValSimple(R),
+              var Te = this.startNodeAt(m, E);
+              (Te.operator = this.value),
+                (Te.prefix = !1),
+                (Te.argument = O),
+                this.checkLValSimple(O),
                 this.next(),
-                (R = this.finishNode(ye, 'UpdateExpression'));
+                (O = this.finishNode(Te, 'UpdateExpression'));
             }
           }
           if (!l && this.eat(c.starstar))
@@ -27273,12 +27273,12 @@ Defaulting to 2020, but this will stop working in the future.`)),
               return this.buildBinary(
                 m,
                 E,
-                R,
-                this.parseMaybeUnary(null, !1, !1, h),
+                O,
+                this.parseMaybeUnary(null, !1, !1, f),
                 '**',
                 !1
               );
-          else return R;
+          else return O;
         });
       function Ms(n) {
         return (
@@ -27296,14 +27296,14 @@ Defaulting to 2020, but this will stop working in the future.`)),
       }
       (de.parseExprSubscripts = function (n, o) {
         var l = this.start,
-          h = this.startLoc,
+          f = this.startLoc,
           m = this.parseExprAtom(n, o);
         if (
           m.type === 'ArrowFunctionExpression' &&
           this.input.slice(this.lastTokStart, this.lastTokEnd) !== ')'
         )
           return m;
-        var E = this.parseSubscripts(m, l, h, !1, o);
+        var E = this.parseSubscripts(m, l, f, !1, o);
         return (
           n &&
             E.type === 'MemberExpression' &&
@@ -27313,7 +27313,7 @@ Defaulting to 2020, but this will stop working in the future.`)),
           E
         );
       }),
-        (de.parseSubscripts = function (n, o, l, h, m) {
+        (de.parseSubscripts = function (n, o, l, f, m) {
           for (
             var E =
                 this.options.ecmaVersion >= 8 &&
@@ -27323,16 +27323,16 @@ Defaulting to 2020, but this will stop working in the future.`)),
                 !this.canInsertSemicolon() &&
                 n.end - n.start === 5 &&
                 this.potentialArrowAt === n.start,
-              R = !1;
+              O = !1;
             ;
 
           ) {
-            var Y = this.parseSubscript(n, o, l, h, E, R, m);
+            var Y = this.parseSubscript(n, o, l, f, E, O, m);
             if (
-              (Y.optional && (R = !0),
+              (Y.optional && (O = !0),
               Y === n || Y.type === 'ArrowFunctionExpression')
             ) {
-              if (R) {
+              if (O) {
                 var Q = this.startNodeAt(o, l);
                 (Q.expression = Y), (Y = this.finishNode(Q, 'ChainExpression'));
               }
@@ -27344,27 +27344,27 @@ Defaulting to 2020, but this will stop working in the future.`)),
         (de.shouldParseAsyncArrow = function () {
           return !this.canInsertSemicolon() && this.eat(c.arrow);
         }),
-        (de.parseSubscriptAsyncArrow = function (n, o, l, h) {
-          return this.parseArrowExpression(this.startNodeAt(n, o), l, !0, h);
+        (de.parseSubscriptAsyncArrow = function (n, o, l, f) {
+          return this.parseArrowExpression(this.startNodeAt(n, o), l, !0, f);
         }),
-        (de.parseSubscript = function (n, o, l, h, m, E, R) {
+        (de.parseSubscript = function (n, o, l, f, m, E, O) {
           var Y = this.options.ecmaVersion >= 11,
             Q = Y && this.eat(c.questionDot);
-          h &&
+          f &&
             Q &&
             this.raise(
               this.lastTokStart,
               'Optional chaining cannot appear in the callee of new expressions'
             );
-          var ye = this.eat(c.bracketL);
+          var Te = this.eat(c.bracketL);
           if (
-            ye ||
+            Te ||
             (Q && this.type !== c.parenL && this.type !== c.backQuote) ||
             this.eat(c.dot)
           ) {
             var xe = this.startNodeAt(o, l);
             (xe.object = n),
-              ye
+              Te
                 ? ((xe.property = this.parseExpression()),
                   this.expect(c.bracketR))
                 : this.type === c.privateId && n.type !== 'Super'
@@ -27372,10 +27372,10 @@ Defaulting to 2020, but this will stop working in the future.`)),
                 : (xe.property = this.parseIdent(
                     this.options.allowReserved !== 'never'
                   )),
-              (xe.computed = !!ye),
+              (xe.computed = !!Te),
               Y && (xe.optional = Q),
               (n = this.finishNode(xe, 'MemberExpression'));
-          } else if (!h && this.eat(c.parenL)) {
+          } else if (!f && this.eat(c.parenL)) {
             var Ze = new Xt(),
               Lt = this.yieldPos,
               Ri = this.awaitPos,
@@ -27399,7 +27399,7 @@ Defaulting to 2020, but this will stop working in the future.`)),
                 (this.yieldPos = Lt),
                 (this.awaitPos = Ri),
                 (this.awaitIdentPos = Ys),
-                this.parseSubscriptAsyncArrow(o, l, gr, R)
+                this.parseSubscriptAsyncArrow(o, l, gr, O)
               );
             this.checkExpressionErrors(Ze, !0),
               (this.yieldPos = Lt || this.yieldPos),
@@ -27425,36 +27425,36 @@ Defaulting to 2020, but this will stop working in the future.`)),
         }),
         (de.parseExprAtom = function (n, o, l) {
           this.type === c.slash && this.readRegexp();
-          var h,
+          var f,
             m = this.potentialArrowAt === this.start;
           switch (this.type) {
             case c._super:
               return (
                 this.allowSuper ||
                   this.raise(this.start, "'super' keyword outside a method"),
-                (h = this.startNode()),
+                (f = this.startNode()),
                 this.next(),
                 this.type === c.parenL &&
                   !this.allowDirectSuper &&
                   this.raise(
-                    h.start,
+                    f.start,
                     'super() call outside constructor of a subclass'
                   ),
                 this.type !== c.dot &&
                   this.type !== c.bracketL &&
                   this.type !== c.parenL &&
                   this.unexpected(),
-                this.finishNode(h, 'Super')
+                this.finishNode(f, 'Super')
               );
             case c._this:
               return (
-                (h = this.startNode()),
+                (f = this.startNode()),
                 this.next(),
-                this.finishNode(h, 'ThisExpression')
+                this.finishNode(f, 'ThisExpression')
               );
             case c.name:
               var E = this.start,
-                R = this.startLoc,
+                O = this.startLoc,
                 Y = this.containsEsc,
                 Q = this.parseIdent(!1);
               if (
@@ -27466,12 +27466,12 @@ Defaulting to 2020, but this will stop working in the future.`)),
               )
                 return (
                   this.overrideContext(Ue.f_expr),
-                  this.parseFunction(this.startNodeAt(E, R), 0, !1, !0, o)
+                  this.parseFunction(this.startNodeAt(E, O), 0, !1, !0, o)
                 );
               if (m && !this.canInsertSemicolon()) {
                 if (this.eat(c.arrow))
                   return this.parseArrowExpression(
-                    this.startNodeAt(E, R),
+                    this.startNodeAt(E, O),
                     [Q],
                     !1,
                     o
@@ -27490,7 +27490,7 @@ Defaulting to 2020, but this will stop working in the future.`)),
                     (this.canInsertSemicolon() || !this.eat(c.arrow)) &&
                       this.unexpected(),
                     this.parseArrowExpression(
-                      this.startNodeAt(E, R),
+                      this.startNodeAt(E, O),
                       [Q],
                       !0,
                       o
@@ -27499,11 +27499,11 @@ Defaulting to 2020, but this will stop working in the future.`)),
               }
               return Q;
             case c.regexp:
-              var ye = this.value;
+              var Te = this.value;
               return (
-                (h = this.parseLiteral(ye.value)),
-                (h.regex = {pattern: ye.pattern, flags: ye.flags}),
-                h
+                (f = this.parseLiteral(Te.value)),
+                (f.regex = {pattern: Te.pattern, flags: Te.flags}),
+                f
               );
             case c.num:
             case c.string:
@@ -27512,12 +27512,12 @@ Defaulting to 2020, but this will stop working in the future.`)),
             case c._true:
             case c._false:
               return (
-                (h = this.startNode()),
-                (h.value =
+                (f = this.startNode()),
+                (f.value =
                   this.type === c._null ? null : this.type === c._true),
-                (h.raw = this.type.keyword),
+                (f.raw = this.type.keyword),
                 this.next(),
-                this.finishNode(h, 'Literal')
+                this.finishNode(f, 'Literal')
               );
             case c.parenL:
               var xe = this.start,
@@ -27532,16 +27532,16 @@ Defaulting to 2020, but this will stop working in the future.`)),
               );
             case c.bracketL:
               return (
-                (h = this.startNode()),
+                (f = this.startNode()),
                 this.next(),
-                (h.elements = this.parseExprList(c.bracketR, !0, !0, n)),
-                this.finishNode(h, 'ArrayExpression')
+                (f.elements = this.parseExprList(c.bracketR, !0, !0, n)),
+                this.finishNode(f, 'ArrayExpression')
               );
             case c.braceL:
               return this.overrideContext(Ue.b_expr), this.parseObj(!1, n);
             case c._function:
               return (
-                (h = this.startNode()), this.next(), this.parseFunction(h, 0)
+                (f = this.startNode()), this.next(), this.parseFunction(f, 0)
               );
             case c._class:
               return this.parseClass(this.startNode(), !1);
@@ -27655,15 +27655,15 @@ Defaulting to 2020, but this will stop working in the future.`)),
         }),
         (de.parseParenAndDistinguishExpression = function (n, o) {
           var l = this.start,
-            h = this.startLoc,
+            f = this.startLoc,
             m,
             E = this.options.ecmaVersion >= 8;
           if (this.options.ecmaVersion >= 6) {
             this.next();
-            var R = this.start,
+            var O = this.start,
               Y = this.startLoc,
               Q = [],
-              ye = !0,
+              Te = !0,
               xe = !1,
               Ze = new Xt(),
               Lt = this.yieldPos,
@@ -27671,7 +27671,7 @@ Defaulting to 2020, but this will stop working in the future.`)),
               Ys;
             for (this.yieldPos = 0, this.awaitPos = 0; this.type !== c.parenR; )
               if (
-                (ye ? (ye = !1) : this.expect(c.comma),
+                (Te ? (Te = !1) : this.expect(c.comma),
                 E && this.afterTrailingComma(c.parenR, !0))
               ) {
                 xe = !0;
@@ -27697,7 +27697,7 @@ Defaulting to 2020, but this will stop working in the future.`)),
                 this.checkYieldAwaitInDefaultParams(),
                 (this.yieldPos = Lt),
                 (this.awaitPos = Ri),
-                this.parseParenArrowList(l, h, Q, o)
+                this.parseParenArrowList(l, f, Q, o)
               );
             (!Q.length || xe) && this.unexpected(this.lastTokStart),
               Ys && this.unexpected(Ys),
@@ -27705,13 +27705,13 @@ Defaulting to 2020, but this will stop working in the future.`)),
               (this.yieldPos = Lt || this.yieldPos),
               (this.awaitPos = Ri || this.awaitPos),
               Q.length > 1
-                ? ((m = this.startNodeAt(R, Y)),
+                ? ((m = this.startNodeAt(O, Y)),
                   (m.expressions = Q),
                   this.finishNodeAt(m, 'SequenceExpression', gr, Js))
                 : (m = Q[0]);
           } else m = this.parseParenExpression();
           if (this.options.preserveParens) {
-            var Qs = this.startNodeAt(l, h);
+            var Qs = this.startNodeAt(l, f);
             return (
               (Qs.expression = m),
               this.finishNode(Qs, 'ParenthesizedExpression')
@@ -27721,8 +27721,8 @@ Defaulting to 2020, but this will stop working in the future.`)),
         (de.parseParenItem = function (n) {
           return n;
         }),
-        (de.parseParenArrowList = function (n, o, l, h) {
-          return this.parseArrowExpression(this.startNodeAt(n, o), l, !1, h);
+        (de.parseParenArrowList = function (n, o, l, f) {
+          return this.parseArrowExpression(this.startNodeAt(n, o), l, !1, f);
         });
       var Ci = [];
       (de.parseNew = function () {
@@ -27757,12 +27757,12 @@ Defaulting to 2020, but this will stop working in the future.`)),
             this.finishNode(n, 'MetaProperty')
           );
         }
-        var h = this.start,
+        var f = this.start,
           m = this.startLoc;
         return (
           (n.callee = this.parseSubscripts(
             this.parseExprAtom(null, !1, !0),
-            h,
+            f,
             m,
             !0,
             !1
@@ -27814,14 +27814,14 @@ Defaulting to 2020, but this will stop working in the future.`)),
           o === void 0 && (o = !1);
           var l = this.startNode();
           this.next(), (l.expressions = []);
-          var h = this.parseTemplateElement({isTagged: o});
-          for (l.quasis = [h]; !h.tail; )
+          var f = this.parseTemplateElement({isTagged: o});
+          for (l.quasis = [f]; !f.tail; )
             this.type === c.eof &&
               this.raise(this.pos, 'Unterminated template literal'),
               this.expect(c.dollarBraceL),
               l.expressions.push(this.parseExpression()),
               this.expect(c.braceR),
-              l.quasis.push((h = this.parseTemplateElement({isTagged: o})));
+              l.quasis.push((f = this.parseTemplateElement({isTagged: o})));
           return this.next(), this.finishNode(l, 'TemplateLiteral');
         }),
         (de.isAsyncProp = function (n) {
@@ -27835,15 +27835,15 @@ Defaulting to 2020, but this will stop working in the future.`)),
               this.type === c.bracketL ||
               this.type.keyword ||
               (this.options.ecmaVersion >= 9 && this.type === c.star)) &&
-            !M.test(this.input.slice(this.lastTokEnd, this.start))
+            !L.test(this.input.slice(this.lastTokEnd, this.start))
           );
         }),
         (de.parseObj = function (n, o) {
           var l = this.startNode(),
-            h = !0,
+            f = !0,
             m = {};
           for (l.properties = [], this.next(); !this.eat(c.braceR); ) {
-            if (h) h = !1;
+            if (f) f = !1;
             else if (
               (this.expect(c.comma),
               this.options.ecmaVersion >= 5 &&
@@ -27857,10 +27857,10 @@ Defaulting to 2020, but this will stop working in the future.`)),
         }),
         (de.parseProperty = function (n, o) {
           var l = this.startNode(),
-            h,
+            f,
             m,
             E,
-            R;
+            O;
           if (this.options.ecmaVersion >= 9 && this.eat(c.ellipsis))
             return n
               ? ((l.argument = this.parseIdent(!1)),
@@ -27879,21 +27879,21 @@ Defaulting to 2020, but this will stop working in the future.`)),
           this.options.ecmaVersion >= 6 &&
             ((l.method = !1),
             (l.shorthand = !1),
-            (n || o) && ((E = this.start), (R = this.startLoc)),
-            n || (h = this.eat(c.star)));
+            (n || o) && ((E = this.start), (O = this.startLoc)),
+            n || (f = this.eat(c.star)));
           var Y = this.containsEsc;
           return (
             this.parsePropertyName(l),
             !n &&
             !Y &&
             this.options.ecmaVersion >= 8 &&
-            !h &&
+            !f &&
             this.isAsyncProp(l)
               ? ((m = !0),
-                (h = this.options.ecmaVersion >= 9 && this.eat(c.star)),
+                (f = this.options.ecmaVersion >= 9 && this.eat(c.star)),
                 this.parsePropertyName(l))
               : (m = !1),
-            this.parsePropertyValue(l, n, h, m, E, R, o, Y),
+            this.parsePropertyValue(l, n, f, m, E, O, o, Y),
             this.finishNode(l, 'Property')
           );
         }),
@@ -27904,11 +27904,11 @@ Defaulting to 2020, but this will stop working in the future.`)),
             (n.kind = o);
           var l = n.kind === 'get' ? 0 : 1;
           if (n.value.params.length !== l) {
-            var h = n.value.start;
+            var f = n.value.start;
             n.kind === 'get'
-              ? this.raiseRecoverable(h, 'getter should have no params')
+              ? this.raiseRecoverable(f, 'getter should have no params')
               : this.raiseRecoverable(
-                  h,
+                  f,
                   'setter should have exactly one param'
                 );
           } else
@@ -27919,17 +27919,17 @@ Defaulting to 2020, but this will stop working in the future.`)),
                 'Setter cannot use rest params'
               );
         }),
-        (de.parsePropertyValue = function (n, o, l, h, m, E, R, Y) {
-          (l || h) && this.type === c.colon && this.unexpected(),
+        (de.parsePropertyValue = function (n, o, l, f, m, E, O, Y) {
+          (l || f) && this.type === c.colon && this.unexpected(),
             this.eat(c.colon)
               ? ((n.value = o
                   ? this.parseMaybeDefault(this.start, this.startLoc)
-                  : this.parseMaybeAssign(!1, R)),
+                  : this.parseMaybeAssign(!1, O)),
                 (n.kind = 'init'))
               : this.options.ecmaVersion >= 6 && this.type === c.parenL
               ? (o && this.unexpected(),
                 (n.method = !0),
-                (n.value = this.parseMethod(l, h)),
+                (n.value = this.parseMethod(l, f)),
                 (n.kind = 'init'))
               : !o &&
                 !Y &&
@@ -27940,11 +27940,11 @@ Defaulting to 2020, but this will stop working in the future.`)),
                 this.type !== c.comma &&
                 this.type !== c.braceR &&
                 this.type !== c.eq
-              ? ((l || h) && this.unexpected(), this.parseGetterSetter(n))
+              ? ((l || f) && this.unexpected(), this.parseGetterSetter(n))
               : this.options.ecmaVersion >= 6 &&
                 !n.computed &&
                 n.key.type === 'Identifier'
-              ? ((l || h) && this.unexpected(),
+              ? ((l || f) && this.unexpected(),
                 this.checkUnreserved(n.key),
                 n.key.name === 'await' &&
                   !this.awaitIdentPos &&
@@ -27955,8 +27955,8 @@ Defaulting to 2020, but this will stop working in the future.`)),
                       E,
                       this.copyNode(n.key)
                     ))
-                  : this.type === c.eq && R
-                  ? (R.shorthandAssign < 0 && (R.shorthandAssign = this.start),
+                  : this.type === c.eq && O
+                  ? (O.shorthandAssign < 0 && (O.shorthandAssign = this.start),
                     (n.value = this.parseMaybeDefault(
                       m,
                       E,
@@ -27989,36 +27989,36 @@ Defaulting to 2020, but this will stop working in the future.`)),
             this.options.ecmaVersion >= 8 && (n.async = !1);
         }),
         (de.parseMethod = function (n, o, l) {
-          var h = this.startNode(),
+          var f = this.startNode(),
             m = this.yieldPos,
             E = this.awaitPos,
-            R = this.awaitIdentPos;
+            O = this.awaitIdentPos;
           return (
-            this.initFunction(h),
-            this.options.ecmaVersion >= 6 && (h.generator = n),
-            this.options.ecmaVersion >= 8 && (h.async = !!o),
+            this.initFunction(f),
+            this.options.ecmaVersion >= 6 && (f.generator = n),
+            this.options.ecmaVersion >= 8 && (f.async = !!o),
             (this.yieldPos = 0),
             (this.awaitPos = 0),
             (this.awaitIdentPos = 0),
-            this.enterScope(ut(o, h.generator) | Ee | (l ? Le : 0)),
+            this.enterScope(ut(o, f.generator) | Ee | (l ? Le : 0)),
             this.expect(c.parenL),
-            (h.params = this.parseBindingList(
+            (f.params = this.parseBindingList(
               c.parenR,
               !1,
               this.options.ecmaVersion >= 8
             )),
             this.checkYieldAwaitInDefaultParams(),
-            this.parseFunctionBody(h, !1, !0, !1),
+            this.parseFunctionBody(f, !1, !0, !1),
             (this.yieldPos = m),
             (this.awaitPos = E),
-            (this.awaitIdentPos = R),
-            this.finishNode(h, 'FunctionExpression')
+            (this.awaitIdentPos = O),
+            this.finishNode(f, 'FunctionExpression')
           );
         }),
-        (de.parseArrowExpression = function (n, o, l, h) {
+        (de.parseArrowExpression = function (n, o, l, f) {
           var m = this.yieldPos,
             E = this.awaitPos,
-            R = this.awaitIdentPos;
+            O = this.awaitIdentPos;
           return (
             this.enterScope(ut(l, !1) | he),
             this.initFunction(n),
@@ -28027,19 +28027,19 @@ Defaulting to 2020, but this will stop working in the future.`)),
             (this.awaitPos = 0),
             (this.awaitIdentPos = 0),
             (n.params = this.toAssignableList(o, !0)),
-            this.parseFunctionBody(n, !0, !1, h),
+            this.parseFunctionBody(n, !0, !1, f),
             (this.yieldPos = m),
             (this.awaitPos = E),
-            (this.awaitIdentPos = R),
+            (this.awaitIdentPos = O),
             this.finishNode(n, 'ArrowFunctionExpression')
           );
         }),
-        (de.parseFunctionBody = function (n, o, l, h) {
+        (de.parseFunctionBody = function (n, o, l, f) {
           var m = o && this.type !== c.braceL,
             E = this.strict,
-            R = !1;
+            O = !1;
           if (m)
-            (n.body = this.parseMaybeAssign(h)),
+            (n.body = this.parseMaybeAssign(f)),
               (n.expression = !0),
               this.checkParams(n, !1);
           else {
@@ -28047,8 +28047,8 @@ Defaulting to 2020, but this will stop working in the future.`)),
               this.options.ecmaVersion >= 7 &&
               !this.isSimpleParamList(n.params);
             (!E || Y) &&
-              ((R = this.strictDirective(this.end)),
-              R &&
+              ((O = this.strictDirective(this.end)),
+              O &&
                 Y &&
                 this.raiseRecoverable(
                   n.start,
@@ -28056,13 +28056,13 @@ Defaulting to 2020, but this will stop working in the future.`)),
                 ));
             var Q = this.labels;
             (this.labels = []),
-              R && (this.strict = !0),
+              O && (this.strict = !0),
               this.checkParams(
                 n,
-                !E && !R && !o && !l && this.isSimpleParamList(n.params)
+                !E && !O && !o && !l && this.isSimpleParamList(n.params)
               ),
               this.strict && n.id && this.checkLValSimple(n.id, Dn),
-              (n.body = this.parseBlock(!1, void 0, R && !E)),
+              (n.body = this.parseBlock(!1, void 0, O && !E)),
               (n.expression = !1),
               this.adaptDirectivePrologue(n.body.body),
               (this.labels = Q);
@@ -28071,85 +28071,85 @@ Defaulting to 2020, but this will stop working in the future.`)),
         }),
         (de.isSimpleParamList = function (n) {
           for (var o = 0, l = n; o < l.length; o += 1) {
-            var h = l[o];
-            if (h.type !== 'Identifier') return !1;
+            var f = l[o];
+            if (f.type !== 'Identifier') return !1;
           }
           return !0;
         }),
         (de.checkParams = function (n, o) {
           for (
-            var l = Object.create(null), h = 0, m = n.params;
-            h < m.length;
-            h += 1
+            var l = Object.create(null), f = 0, m = n.params;
+            f < m.length;
+            f += 1
           ) {
-            var E = m[h];
+            var E = m[f];
             this.checkLValInnerPattern(E, bt, o ? null : l);
           }
         }),
-        (de.parseExprList = function (n, o, l, h) {
+        (de.parseExprList = function (n, o, l, f) {
           for (var m = [], E = !0; !this.eat(n); ) {
             if (E) E = !1;
             else if ((this.expect(c.comma), o && this.afterTrailingComma(n)))
               break;
-            var R = void 0;
+            var O = void 0;
             l && this.type === c.comma
-              ? (R = null)
+              ? (O = null)
               : this.type === c.ellipsis
-              ? ((R = this.parseSpread(h)),
-                h &&
+              ? ((O = this.parseSpread(f)),
+                f &&
                   this.type === c.comma &&
-                  h.trailingComma < 0 &&
-                  (h.trailingComma = this.start))
-              : (R = this.parseMaybeAssign(!1, h)),
-              m.push(R);
+                  f.trailingComma < 0 &&
+                  (f.trailingComma = this.start))
+              : (O = this.parseMaybeAssign(!1, f)),
+              m.push(O);
           }
           return m;
         }),
         (de.checkUnreserved = function (n) {
           var o = n.start,
             l = n.end,
-            h = n.name;
+            f = n.name;
           if (
             (this.inGenerator &&
-              h === 'yield' &&
+              f === 'yield' &&
               this.raiseRecoverable(
                 o,
                 "Cannot use 'yield' as identifier inside a generator"
               ),
             this.inAsync &&
-              h === 'await' &&
+              f === 'await' &&
               this.raiseRecoverable(
                 o,
                 "Cannot use 'await' as identifier inside an async function"
               ),
             !(this.currentThisScope().flags & Ke) &&
-              h === 'arguments' &&
+              f === 'arguments' &&
               this.raiseRecoverable(
                 o,
                 "Cannot use 'arguments' in class field initializer"
               ),
             this.inClassStaticBlock &&
-              (h === 'arguments' || h === 'await') &&
+              (f === 'arguments' || f === 'await') &&
               this.raise(
                 o,
-                'Cannot use ' + h + ' in class static initialization block'
+                'Cannot use ' + f + ' in class static initialization block'
               ),
-            this.keywords.test(h) &&
-              this.raise(o, "Unexpected keyword '" + h + "'"),
+            this.keywords.test(f) &&
+              this.raise(o, "Unexpected keyword '" + f + "'"),
             !(
               this.options.ecmaVersion < 6 &&
               this.input.slice(o, l).indexOf('\\') !== -1
             ))
           ) {
             var m = this.strict ? this.reservedWordsStrict : this.reservedWords;
-            m.test(h) &&
+            m.test(f) &&
               (!this.inAsync &&
-                h === 'await' &&
+                f === 'await' &&
                 this.raiseRecoverable(
                   o,
                   "Cannot use keyword 'await' outside an async function"
                 ),
-              this.raiseRecoverable(o, "The keyword '" + h + "' is reserved"));
+              this.raiseRecoverable(o, "The keyword '" + f + "' is reserved"));
           }
         }),
         (de.parseIdent = function (n) {
@@ -28231,8 +28231,8 @@ Defaulting to 2020, but this will stop working in the future.`)),
         var l = $t(this.input, n);
         (o += ' (' + l.line + ':' + l.column + ')'),
           this.sourceFile && (o += ' in ' + this.sourceFile);
-        var h = new SyntaxError(o);
-        throw ((h.pos = n), (h.loc = l), (h.raisedAt = this.pos), h);
+        var f = new SyntaxError(o);
+        throw ((f.pos = n), (f.loc = l), (f.raisedAt = this.pos), f);
       }),
         (ts.raiseRecoverable = ts.raise),
         (ts.curPosition = function () {
@@ -28253,27 +28253,27 @@ Defaulting to 2020, but this will stop working in the future.`)),
           this.scopeStack.pop();
         }),
         (rn.treatFunctionsAsVarInScope = function (n) {
-          return n.flags & J || (!this.inModule && n.flags & W);
+          return n.flags & J || (!this.inModule && n.flags & G);
         }),
         (rn.declareName = function (n, o, l) {
-          var h = !1;
-          if (o === Tt) {
+          var f = !1;
+          if (o === yt) {
             var m = this.currentScope();
-            (h =
+            (f =
               m.lexical.indexOf(n) > -1 ||
               m.functions.indexOf(n) > -1 ||
               m.var.indexOf(n) > -1),
               m.lexical.push(n),
-              this.inModule && m.flags & W && delete this.undefinedExports[n];
+              this.inModule && m.flags & G && delete this.undefinedExports[n];
           } else if (o === bn) {
             var E = this.currentScope();
             E.lexical.push(n);
           } else if (o === vt) {
-            var R = this.currentScope();
+            var O = this.currentScope();
             this.treatFunctionsAsVar
-              ? (h = R.lexical.indexOf(n) > -1)
-              : (h = R.lexical.indexOf(n) > -1 || R.var.indexOf(n) > -1),
-              R.functions.push(n);
+              ? (f = O.lexical.indexOf(n) > -1)
+              : (f = O.lexical.indexOf(n) > -1 || O.var.indexOf(n) > -1),
+              O.functions.push(n);
           } else
             for (var Y = this.scopeStack.length - 1; Y >= 0; --Y) {
               var Q = this.scopeStack[Y];
@@ -28283,17 +28283,17 @@ Defaulting to 2020, but this will stop working in the future.`)),
                 (!this.treatFunctionsAsVarInScope(Q) &&
                   Q.functions.indexOf(n) > -1)
               ) {
-                h = !0;
+                f = !0;
                 break;
               }
               if (
                 (Q.var.push(n),
-                this.inModule && Q.flags & W && delete this.undefinedExports[n],
+                this.inModule && Q.flags & G && delete this.undefinedExports[n],
                 Q.flags & Ke)
               )
                 break;
             }
-          h &&
+          f &&
             this.raiseRecoverable(
               l,
               "Identifier '" + n + "' has already been declared"
@@ -28319,11 +28319,11 @@ Defaulting to 2020, but this will stop working in the future.`)),
             if (o.flags & (Ke | We | Xe) && !(o.flags & he)) return o;
           }
         });
-      var Fn = function (o, l, h) {
+      var Fn = function (o, l, f) {
           (this.type = ''),
             (this.start = l),
             (this.end = 0),
-            o.options.locations && (this.loc = new wt(o, h)),
+            o.options.locations && (this.loc = new wt(o, f)),
             o.options.directSourceFile &&
               (this.sourceFile = o.options.directSourceFile),
             o.options.ranges && (this.range = [l, 0]);
@@ -28335,11 +28335,11 @@ Defaulting to 2020, but this will stop working in the future.`)),
         (Bn.startNodeAt = function (n, o) {
           return new Fn(this, n, o);
         });
-      function Fs(n, o, l, h) {
+      function Fs(n, o, l, f) {
         return (
           (n.type = o),
           (n.end = l),
-          this.options.locations && (n.loc.end = h),
+          this.options.locations && (n.loc.end = f),
           this.options.ranges && (n.range[1] = l),
           n
         );
@@ -28347,8 +28347,8 @@ Defaulting to 2020, but this will stop working in the future.`)),
       (Bn.finishNode = function (n, o) {
         return Fs.call(this, n, o, this.lastTokEnd, this.lastTokEndLoc);
       }),
-        (Bn.finishNodeAt = function (n, o, l, h) {
-          return Fs.call(this, n, o, l, h);
+        (Bn.finishNodeAt = function (n, o, l, f) {
+          return Fs.call(this, n, o, l, f);
         }),
         (Bn.copyNode = function (n) {
           var o = new Fn(this, n.start, this.startLoc);
@@ -28398,8 +28398,8 @@ Defaulting to 2020, but this will stop working in the future.`)),
           (o.nonBinary.sc = o.nonBinary.Script),
           (o.nonBinary.scx = o.nonBinary.Script_Extensions);
       }
-      for (var Ni = 0, Tr = [9, 10, 11, 12, 13, 14]; Ni < Tr.length; Ni += 1) {
-        var Ko = Tr[Ni];
+      for (var Ni = 0, yr = [9, 10, 11, 12, 13, 14]; Ni < yr.length; Ni += 1) {
+        var Ko = yr[Ni];
         qo(Ko);
       }
       var le = Ge.prototype,
@@ -28408,8 +28408,8 @@ Defaulting to 2020, but this will stop working in the future.`)),
         };
       (Xs.prototype.separatedFrom = function (o) {
         for (var l = this; l; l = l.parent)
-          for (var h = o; h; h = h.parent)
-            if (l.base === h.base && l !== h) return !0;
+          for (var f = o; f; f = f.parent)
+            if (l.base === f.base && l !== f) return !0;
         return !1;
       }),
         (Xs.prototype.sibling = function () {
@@ -28441,12 +28441,12 @@ Defaulting to 2020, but this will stop working in the future.`)),
           (this.backReferenceNames = []),
           (this.branchID = null);
       };
-      (on.prototype.reset = function (o, l, h) {
-        var m = h.indexOf('v') !== -1,
-          E = h.indexOf('u') !== -1;
+      (on.prototype.reset = function (o, l, f) {
+        var m = f.indexOf('v') !== -1,
+          E = f.indexOf('u') !== -1;
         (this.start = o | 0),
           (this.source = l + ''),
-          (this.flags = h),
+          (this.flags = f),
           m && this.parser.options.ecmaVersion >= 15
             ? ((this.switchU = !0), (this.switchV = !0), (this.switchN = !0))
             : ((this.switchU = E && this.parser.options.ecmaVersion >= 6),
@@ -28461,28 +28461,28 @@ Defaulting to 2020, but this will stop working in the future.`)),
         }),
         (on.prototype.at = function (o, l) {
           l === void 0 && (l = !1);
-          var h = this.source,
-            m = h.length;
+          var f = this.source,
+            m = f.length;
           if (o >= m) return -1;
-          var E = h.charCodeAt(o);
+          var E = f.charCodeAt(o);
           if (!(l || this.switchU) || E <= 55295 || E >= 57344 || o + 1 >= m)
             return E;
-          var R = h.charCodeAt(o + 1);
-          return R >= 56320 && R <= 57343 ? (E << 10) + R - 56613888 : E;
+          var O = f.charCodeAt(o + 1);
+          return O >= 56320 && O <= 57343 ? (E << 10) + O - 56613888 : E;
         }),
         (on.prototype.nextIndex = function (o, l) {
           l === void 0 && (l = !1);
-          var h = this.source,
-            m = h.length;
+          var f = this.source,
+            m = f.length;
           if (o >= m) return m;
-          var E = h.charCodeAt(o),
-            R;
+          var E = f.charCodeAt(o),
+            O;
           return !(l || this.switchU) ||
             E <= 55295 ||
             E >= 57344 ||
             o + 1 >= m ||
-            (R = h.charCodeAt(o + 1)) < 56320 ||
-            R > 57343
+            (O = f.charCodeAt(o + 1)) < 56320 ||
+            O > 57343
             ? o + 1
             : o + 2;
         }),
@@ -28505,30 +28505,30 @@ Defaulting to 2020, but this will stop working in the future.`)),
         }),
         (on.prototype.eatChars = function (o, l) {
           l === void 0 && (l = !1);
-          for (var h = this.pos, m = 0, E = o; m < E.length; m += 1) {
-            var R = E[m],
-              Y = this.at(h, l);
-            if (Y === -1 || Y !== R) return !1;
-            h = this.nextIndex(h, l);
+          for (var f = this.pos, m = 0, E = o; m < E.length; m += 1) {
+            var O = E[m],
+              Y = this.at(f, l);
+            if (Y === -1 || Y !== O) return !1;
+            f = this.nextIndex(f, l);
           }
-          return (this.pos = h), !0;
+          return (this.pos = f), !0;
         }),
         (le.validateRegExpFlags = function (n) {
           for (
-            var o = n.validFlags, l = n.flags, h = !1, m = !1, E = 0;
+            var o = n.validFlags, l = n.flags, f = !1, m = !1, E = 0;
             E < l.length;
             E++
           ) {
-            var R = l.charAt(E);
-            o.indexOf(R) === -1 &&
+            var O = l.charAt(E);
+            o.indexOf(O) === -1 &&
               this.raise(n.start, 'Invalid regular expression flag'),
-              l.indexOf(R, E + 1) > -1 &&
+              l.indexOf(O, E + 1) > -1 &&
                 this.raise(n.start, 'Duplicate regular expression flag'),
-              R === 'u' && (h = !0),
-              R === 'v' && (m = !0);
+              O === 'u' && (f = !0),
+              O === 'v' && (m = !0);
           }
           this.options.ecmaVersion >= 15 &&
-            h &&
+            f &&
             m &&
             this.raise(n.start, 'Invalid regular expression flag');
         });
@@ -28560,8 +28560,8 @@ Defaulting to 2020, but this will stop working in the future.`)),
             n.maxBackReference > n.numCapturingParens &&
               n.raise('Invalid escape');
           for (var o = 0, l = n.backReferenceNames; o < l.length; o += 1) {
-            var h = l[o];
-            n.groupNames[h] || n.raise('Invalid named capture referenced');
+            var f = l[o];
+            n.groupNames[f] || n.raise('Invalid named capture referenced');
           }
         }),
         (le.regexp_disjunction = function (n) {
@@ -28636,11 +28636,11 @@ Defaulting to 2020, but this will stop working in the future.`)),
         (le.regexp_eatBracedQuantifier = function (n, o) {
           var l = n.pos;
           if (n.eat(123)) {
-            var h = 0,
+            var f = 0,
               m = -1;
             if (
               this.regexp_eatDecimalDigits(n) &&
-              ((h = n.lastIntValue),
+              ((f = n.lastIntValue),
               n.eat(44) &&
                 this.regexp_eatDecimalDigits(n) &&
                 (m = n.lastIntValue),
@@ -28648,7 +28648,7 @@ Defaulting to 2020, but this will stop working in the future.`)),
             )
               return (
                 m !== -1 &&
-                  m < h &&
+                  m < f &&
                   !o &&
                   n.raise('numbers out of order in {} quantifier'),
                 !0
@@ -28681,22 +28681,22 @@ Defaulting to 2020, but this will stop working in the future.`)),
             if (n.eat(63)) {
               if (this.options.ecmaVersion >= 16) {
                 var l = this.regexp_eatModifiers(n),
-                  h = n.eat(45);
-                if (l || h) {
+                  f = n.eat(45);
+                if (l || f) {
                   for (var m = 0; m < l.length; m++) {
                     var E = l.charAt(m);
                     l.indexOf(E, m + 1) > -1 &&
                       n.raise('Duplicate regular expression modifiers');
                   }
-                  if (h) {
-                    var R = this.regexp_eatModifiers(n);
+                  if (f) {
+                    var O = this.regexp_eatModifiers(n);
                     !l &&
-                      !R &&
+                      !O &&
                       n.current() === 58 &&
                       n.raise('Invalid regular expression modifiers');
-                    for (var Y = 0; Y < R.length; Y++) {
-                      var Q = R.charAt(Y);
-                      (R.indexOf(Q, Y + 1) > -1 || l.indexOf(Q) > -1) &&
+                    for (var Y = 0; Y < O.length; Y++) {
+                      var Q = O.charAt(Y);
+                      (O.indexOf(Q, Y + 1) > -1 || l.indexOf(Q) > -1) &&
                         n.raise('Duplicate regular expression modifiers');
                     }
                   }
@@ -28753,9 +28753,9 @@ Defaulting to 2020, but this will stop working in the future.`)),
         }),
         (le.regexp_eatSyntaxCharacter = function (n) {
           var o = n.current();
-          return yr(o) ? ((n.lastIntValue = o), n.advance(), !0) : !1;
+          return Tr(o) ? ((n.lastIntValue = o), n.advance(), !0) : !1;
         });
-      function yr(n) {
+      function Tr(n) {
         return (
           n === 36 ||
           (n >= 40 && n <= 43) ||
@@ -28766,7 +28766,7 @@ Defaulting to 2020, but this will stop working in the future.`)),
         );
       }
       (le.regexp_eatPatternCharacters = function (n) {
-        for (var o = n.pos, l = 0; (l = n.current()) !== -1 && !yr(l); )
+        for (var o = n.pos, l = 0; (l = n.current()) !== -1 && !Tr(l); )
           n.advance();
         return n.pos !== o;
       }),
@@ -28790,8 +28790,8 @@ Defaulting to 2020, but this will stop working in the future.`)),
               l = n.groupNames[n.lastStringValue];
             if (l)
               if (o)
-                for (var h = 0, m = l; h < m.length; h += 1) {
-                  var E = m[h];
+                for (var f = 0, m = l; f < m.length; f += 1) {
+                  var E = m[f];
                   E.separatedFrom(n.branchID) ||
                     n.raise('Duplicate capture group name');
                 }
@@ -28825,32 +28825,32 @@ Defaulting to 2020, but this will stop working in the future.`)),
         (le.regexp_eatRegExpIdentifierStart = function (n) {
           var o = n.pos,
             l = this.options.ecmaVersion >= 11,
-            h = n.current(l);
+            f = n.current(l);
           return (
             n.advance(l),
-            h === 92 &&
+            f === 92 &&
               this.regexp_eatRegExpUnicodeEscapeSequence(n, l) &&
-              (h = n.lastIntValue),
-            Wo(h) ? ((n.lastIntValue = h), !0) : ((n.pos = o), !1)
+              (f = n.lastIntValue),
+            Wo(f) ? ((n.lastIntValue = f), !0) : ((n.pos = o), !1)
           );
         });
       function Wo(n) {
-        return f(n, !0) || n === 36 || n === 95;
+        return h(n, !0) || n === 36 || n === 95;
       }
       le.regexp_eatRegExpIdentifierPart = function (n) {
         var o = n.pos,
           l = this.options.ecmaVersion >= 11,
-          h = n.current(l);
+          f = n.current(l);
         return (
           n.advance(l),
-          h === 92 &&
+          f === 92 &&
             this.regexp_eatRegExpUnicodeEscapeSequence(n, l) &&
-            (h = n.lastIntValue),
-          Go(h) ? ((n.lastIntValue = h), !0) : ((n.pos = o), !1)
+            (f = n.lastIntValue),
+          Go(f) ? ((n.lastIntValue = f), !0) : ((n.pos = o), !1)
         );
       };
       function Go(n) {
-        return v(n, !0) || n === 36 || n === 95 || n === 8204 || n === 8205;
+        return T(n, !0) || n === 36 || n === 95 || n === 8204 || n === 8205;
       }
       (le.regexp_eatAtomEscape = function (n) {
         return this.regexp_eatBackReference(n) ||
@@ -28930,21 +28930,21 @@ Defaulting to 2020, but this will stop working in the future.`)),
       le.regexp_eatRegExpUnicodeEscapeSequence = function (n, o) {
         o === void 0 && (o = !1);
         var l = n.pos,
-          h = o || n.switchU;
+          f = o || n.switchU;
         if (n.eat(117)) {
           if (this.regexp_eatFixedHexDigits(n, 4)) {
             var m = n.lastIntValue;
-            if (h && m >= 55296 && m <= 56319) {
+            if (f && m >= 55296 && m <= 56319) {
               var E = n.pos;
               if (
                 n.eat(92) &&
                 n.eat(117) &&
                 this.regexp_eatFixedHexDigits(n, 4)
               ) {
-                var R = n.lastIntValue;
-                if (R >= 56320 && R <= 57343)
+                var O = n.lastIntValue;
+                if (O >= 56320 && O <= 57343)
                   return (
-                    (n.lastIntValue = (m - 55296) * 1024 + (R - 56320) + 65536),
+                    (n.lastIntValue = (m - 55296) * 1024 + (O - 56320) + 65536),
                     !0
                   );
               }
@@ -28953,18 +28953,18 @@ Defaulting to 2020, but this will stop working in the future.`)),
             return !0;
           }
           if (
-            h &&
+            f &&
             n.eat(123) &&
             this.regexp_eatHexDigits(n) &&
             n.eat(125) &&
-            yf(n.lastIntValue)
+            vf(n.lastIntValue)
           )
             return !0;
-          h && n.raise('Invalid unicode escape'), (n.pos = l);
+          f && n.raise('Invalid unicode escape'), (n.pos = l);
         }
         return !1;
       };
-      function yf(n) {
+      function vf(n) {
         return n >= 0 && n <= 1114111;
       }
       (le.regexp_eatIdentityEscape = function (n) {
@@ -28994,7 +28994,7 @@ Defaulting to 2020, but this will stop working in the future.`)),
         an = 2;
       le.regexp_eatCharacterClassEscape = function (n) {
         var o = n.current();
-        if (kf(o)) return (n.lastIntValue = -1), n.advance(), Vn;
+        if (xf(o)) return (n.lastIntValue = -1), n.advance(), Vn;
         var l = !1;
         if (
           n.switchU &&
@@ -29002,18 +29002,18 @@ Defaulting to 2020, but this will stop working in the future.`)),
           ((l = o === 80) || o === 112)
         ) {
           (n.lastIntValue = -1), n.advance();
-          var h;
+          var f;
           if (
             n.eat(123) &&
-            (h = this.regexp_eatUnicodePropertyValueExpression(n)) &&
+            (f = this.regexp_eatUnicodePropertyValueExpression(n)) &&
             n.eat(125)
           )
-            return l && h === an && n.raise('Invalid property name'), h;
+            return l && f === an && n.raise('Invalid property name'), f;
           n.raise('Invalid property name');
         }
         return Rc;
       };
-      function kf(n) {
+      function xf(n) {
         return (
           n === 100 ||
           n === 68 ||
@@ -29028,8 +29028,8 @@ Defaulting to 2020, but this will stop working in the future.`)),
         if (this.regexp_eatUnicodePropertyName(n) && n.eat(61)) {
           var l = n.lastStringValue;
           if (this.regexp_eatUnicodePropertyValue(n)) {
-            var h = n.lastStringValue;
-            return this.regexp_validateUnicodePropertyNameAndValue(n, l, h), Vn;
+            var f = n.lastStringValue;
+            return this.regexp_validateUnicodePropertyNameAndValue(n, l, f), Vn;
           }
         }
         if (((n.pos = o), this.regexp_eatLoneUnicodePropertyNameOrValue(n))) {
@@ -29061,11 +29061,11 @@ Defaulting to 2020, but this will stop working in the future.`)),
       }
       le.regexp_eatUnicodePropertyValue = function (n) {
         var o = 0;
-        for (n.lastStringValue = ''; vf((o = n.current())); )
+        for (n.lastStringValue = ''; gf((o = n.current())); )
           (n.lastStringValue += nt(o)), n.advance();
         return n.lastStringValue !== '';
       };
-      function vf(n) {
+      function gf(n) {
         return Lc(n) || vr(n);
       }
       (le.regexp_eatLoneUnicodePropertyNameOrValue = function (n) {
@@ -29118,8 +29118,8 @@ Defaulting to 2020, but this will stop working in the future.`)),
             }
             n.pos = o;
           }
-          var h = n.current();
-          return h !== 93 ? ((n.lastIntValue = h), n.advance(), !0) : !1;
+          var f = n.current();
+          return f !== 93 ? ((n.lastIntValue = f), n.advance(), !0) : !1;
         }),
         (le.regexp_eatClassEscape = function (n) {
           var o = n.pos;
@@ -29140,7 +29140,7 @@ Defaulting to 2020, but this will stop working in the future.`)),
           if (!this.regexp_eatClassSetRange(n))
             if ((l = this.regexp_eatClassSetOperand(n))) {
               l === an && (o = an);
-              for (var h = n.pos; n.eatChars([38, 38]); ) {
+              for (var f = n.pos; n.eatChars([38, 38]); ) {
                 if (
                   n.current() !== 38 &&
                   (l = this.regexp_eatClassSetOperand(n))
@@ -29150,11 +29150,11 @@ Defaulting to 2020, but this will stop working in the future.`)),
                 }
                 n.raise('Invalid character in character class');
               }
-              if (h !== n.pos) return o;
+              if (f !== n.pos) return o;
               for (; n.eatChars([45, 45]); )
                 this.regexp_eatClassSetOperand(n) ||
                   n.raise('Invalid character in character class');
-              if (h !== n.pos) return o;
+              if (f !== n.pos) return o;
             } else n.raise('Invalid character in character class');
           for (;;)
             if (!this.regexp_eatClassSetRange(n)) {
@@ -29167,11 +29167,11 @@ Defaulting to 2020, but this will stop working in the future.`)),
           if (this.regexp_eatClassSetCharacter(n)) {
             var l = n.lastIntValue;
             if (n.eat(45) && this.regexp_eatClassSetCharacter(n)) {
-              var h = n.lastIntValue;
+              var f = n.lastIntValue;
               return (
                 l !== -1 &&
-                  h !== -1 &&
-                  l > h &&
+                  f !== -1 &&
+                  l > f &&
                   n.raise('Range out of order in character class'),
                 !0
               );
@@ -29190,13 +29190,13 @@ Defaulting to 2020, but this will stop working in the future.`)),
           var o = n.pos;
           if (n.eat(91)) {
             var l = n.eat(94),
-              h = this.regexp_classContents(n);
+              f = this.regexp_classContents(n);
             if (n.eat(93))
               return (
                 l &&
-                  h === an &&
+                  f === an &&
                   n.raise('Negated character class may contain strings'),
-                h
+                f
               );
             n.pos = o;
           }
@@ -29237,11 +29237,11 @@ Defaulting to 2020, but this will stop working in the future.`)),
               ? ((n.lastIntValue = 8), !0)
               : ((n.pos = o), !1);
           var l = n.current();
-          return l < 0 || (l === n.lookahead() && xf(l)) || gf(l)
+          return l < 0 || (l === n.lookahead() && _f(l)) || bf(l)
             ? !1
             : (n.advance(), (n.lastIntValue = l), !0);
         });
-      function xf(n) {
+      function _f(n) {
         return (
           n === 33 ||
           (n >= 35 && n <= 38) ||
@@ -29253,7 +29253,7 @@ Defaulting to 2020, but this will stop working in the future.`)),
           n === 126
         );
       }
-      function gf(n) {
+      function bf(n) {
         return (
           n === 40 ||
           n === 41 ||
@@ -29265,9 +29265,9 @@ Defaulting to 2020, but this will stop working in the future.`)),
       }
       le.regexp_eatClassSetReservedPunctuator = function (n) {
         var o = n.current();
-        return _f(o) ? ((n.lastIntValue = o), n.advance(), !0) : !1;
+        return Cf(o) ? ((n.lastIntValue = o), n.advance(), !0) : !1;
       };
-      function _f(n) {
+      function Cf(n) {
         return (
           n === 33 ||
           n === 35 ||
@@ -29349,7 +29349,7 @@ Defaulting to 2020, but this will stop working in the future.`)),
       le.regexp_eatFixedHexDigits = function (n, o) {
         var l = n.pos;
         n.lastIntValue = 0;
-        for (var h = 0; h < o; ++h) {
+        for (var f = 0; f < o; ++f) {
           var m = n.current();
           if (!Oc(m)) return (n.pos = l), !1;
           (n.lastIntValue = 16 * n.lastIntValue + Dc(m)), n.advance();
@@ -29406,7 +29406,7 @@ Defaulting to 2020, but this will stop working in the future.`)),
           this.readToken(this.fullCharCodeAtPos());
         }),
         (Ae.readToken = function (n) {
-          return f(n, this.options.ecmaVersion >= 6) || n === 92
+          return h(n, this.options.ecmaVersion >= 6) || n === 92
             ? this.readWord()
             : this.getTokenFromCode(n);
         }),
@@ -29426,11 +29426,11 @@ Defaulting to 2020, but this will stop working in the future.`)),
             this.options.locations)
           )
             for (
-              var h = void 0, m = o;
-              (h = ie(this.input, m, this.pos)) > -1;
+              var f = void 0, m = o;
+              (f = ie(this.input, m, this.pos)) > -1;
 
             )
-              ++this.curLine, (m = this.lineStart = h);
+              ++this.curLine, (m = this.lineStart = f);
           this.options.onComment &&
             this.options.onComment(
               !0,
@@ -29445,11 +29445,11 @@ Defaulting to 2020, but this will stop working in the future.`)),
           for (
             var o = this.pos,
               l = this.options.onComment && this.curPosition(),
-              h = this.input.charCodeAt((this.pos += n));
-            this.pos < this.input.length && !X(h);
+              f = this.input.charCodeAt((this.pos += n));
+            this.pos < this.input.length && !X(f);
 
           )
-            h = this.input.charCodeAt(++this.pos);
+            f = this.input.charCodeAt(++this.pos);
           this.options.onComment &&
             this.options.onComment(
               !1,
@@ -29524,15 +29524,15 @@ Defaulting to 2020, but this will stop working in the future.`)),
         (Ae.readToken_mult_modulo_exp = function (n) {
           var o = this.input.charCodeAt(this.pos + 1),
             l = 1,
-            h = n === 42 ? c.star : c.modulo;
+            f = n === 42 ? c.star : c.modulo;
           return (
             this.options.ecmaVersion >= 7 &&
               n === 42 &&
               o === 42 &&
               (++l,
-              (h = c.starstar),
+              (f = c.starstar),
               (o = this.input.charCodeAt(this.pos + 2))),
-            o === 61 ? this.finishOp(c.assign, l + 1) : this.finishOp(h, l)
+            o === 61 ? this.finishOp(c.assign, l + 1) : this.finishOp(f, l)
           );
         }),
         (Ae.readToken_pipe_amp = function (n) {
@@ -29561,7 +29561,7 @@ Defaulting to 2020, but this will stop working in the future.`)),
               !this.inModule &&
               this.input.charCodeAt(this.pos + 2) === 62 &&
               (this.lastTokEnd === 0 ||
-                M.test(this.input.slice(this.lastTokEnd, this.pos)))
+                L.test(this.input.slice(this.lastTokEnd, this.pos)))
               ? (this.skipLineComment(3), this.skipSpace(), this.nextToken())
               : this.finishOp(c.incDec, 2)
             : o === 61
@@ -29606,8 +29606,8 @@ Defaulting to 2020, but this will stop working in the future.`)),
             }
             if (o === 63) {
               if (n >= 12) {
-                var h = this.input.charCodeAt(this.pos + 2);
-                if (h === 61) return this.finishOp(c.assign, 3);
+                var f = this.input.charCodeAt(this.pos + 2);
+                if (f === 61) return this.finishOp(c.assign, 3);
               }
               return this.finishOp(c.coalesce, 2);
             }
@@ -29619,7 +29619,7 @@ Defaulting to 2020, but this will stop working in the future.`)),
             o = 35;
           if (
             n >= 13 &&
-            (++this.pos, (o = this.fullCharCodeAtPos()), f(o, !0) || o === 92)
+            (++this.pos, (o = this.fullCharCodeAtPos()), h(o, !0) || o === 92)
           )
             return this.finishToken(c.privateId, this.readWord1());
           this.raise(this.pos, "Unexpected character '" + nt(o) + "'");
@@ -29705,49 +29705,49 @@ Defaulting to 2020, but this will stop working in the future.`)),
           for (var n, o, l = this.pos; ; ) {
             this.pos >= this.input.length &&
               this.raise(l, 'Unterminated regular expression');
-            var h = this.input.charAt(this.pos);
+            var f = this.input.charAt(this.pos);
             if (
-              (M.test(h) && this.raise(l, 'Unterminated regular expression'), n)
+              (L.test(f) && this.raise(l, 'Unterminated regular expression'), n)
             )
               n = !1;
             else {
-              if (h === '[') o = !0;
-              else if (h === ']' && o) o = !1;
-              else if (h === '/' && !o) break;
-              n = h === '\\';
+              if (f === '[') o = !0;
+              else if (f === ']' && o) o = !1;
+              else if (f === '/' && !o) break;
+              n = f === '\\';
             }
             ++this.pos;
           }
           var m = this.input.slice(l, this.pos);
           ++this.pos;
           var E = this.pos,
-            R = this.readWord1();
+            O = this.readWord1();
           this.containsEsc && this.unexpected(E);
           var Y = this.regexpState || (this.regexpState = new on(this));
-          Y.reset(l, m, R),
+          Y.reset(l, m, O),
             this.validateRegExpFlags(Y),
             this.validateRegExpPattern(Y);
           var Q = null;
           try {
-            Q = new RegExp(m, R);
+            Q = new RegExp(m, O);
           } catch {}
-          return this.finishToken(c.regexp, {pattern: m, flags: R, value: Q});
+          return this.finishToken(c.regexp, {pattern: m, flags: O, value: Q});
         }),
         (Ae.readInt = function (n, o, l) {
           for (
-            var h = this.options.ecmaVersion >= 12 && o === void 0,
+            var f = this.options.ecmaVersion >= 12 && o === void 0,
               m = l && this.input.charCodeAt(this.pos) === 48,
               E = this.pos,
-              R = 0,
+              O = 0,
               Y = 0,
               Q = 0,
-              ye = o ?? 1 / 0;
-            Q < ye;
+              Te = o ?? 1 / 0;
+            Q < Te;
             ++Q, ++this.pos
           ) {
             var xe = this.input.charCodeAt(this.pos),
               Ze = void 0;
-            if (h && xe === 95) {
+            if (f && xe === 95) {
               m &&
                 this.raiseRecoverable(
                   this.pos,
@@ -29777,19 +29777,19 @@ Defaulting to 2020, but this will stop working in the future.`)),
               Ze >= n)
             )
               break;
-            (Y = xe), (R = R * n + Ze);
+            (Y = xe), (O = O * n + Ze);
           }
           return (
-            h &&
+            f &&
               Y === 95 &&
               this.raiseRecoverable(
                 this.pos - 1,
                 'Numeric separator is not allowed at the last of digits'
               ),
-            this.pos === E || (o != null && this.pos - E !== o) ? null : R
+            this.pos === E || (o != null && this.pos - E !== o) ? null : O
           );
         });
-      function bf(n, o) {
+      function wf(n, o) {
         return o ? parseInt(n, 8) : parseFloat(n.replace(/_/g, ''));
       }
       function Fc(n) {
@@ -29805,7 +29805,7 @@ Defaulting to 2020, but this will stop working in the future.`)),
           this.options.ecmaVersion >= 11 &&
           this.input.charCodeAt(this.pos) === 110
             ? ((l = Fc(this.input.slice(o, this.pos))), ++this.pos)
-            : f(this.fullCharCodeAtPos()) &&
+            : h(this.fullCharCodeAtPos()) &&
               this.raise(this.pos, 'Identifier directly after number'),
           this.finishToken(c.num, l)
         );
@@ -29817,30 +29817,30 @@ Defaulting to 2020, but this will stop working in the future.`)),
             this.raise(o, 'Invalid number');
           var l = this.pos - o >= 2 && this.input.charCodeAt(o) === 48;
           l && this.strict && this.raise(o, 'Invalid number');
-          var h = this.input.charCodeAt(this.pos);
-          if (!l && !n && this.options.ecmaVersion >= 11 && h === 110) {
+          var f = this.input.charCodeAt(this.pos);
+          if (!l && !n && this.options.ecmaVersion >= 11 && f === 110) {
             var m = Fc(this.input.slice(o, this.pos));
             return (
               ++this.pos,
-              f(this.fullCharCodeAtPos()) &&
+              h(this.fullCharCodeAtPos()) &&
                 this.raise(this.pos, 'Identifier directly after number'),
               this.finishToken(c.num, m)
             );
           }
           l && /[89]/.test(this.input.slice(o, this.pos)) && (l = !1),
-            h === 46 &&
+            f === 46 &&
               !l &&
               (++this.pos,
               this.readInt(10),
-              (h = this.input.charCodeAt(this.pos))),
-            (h === 69 || h === 101) &&
+              (f = this.input.charCodeAt(this.pos))),
+            (f === 69 || f === 101) &&
               !l &&
-              ((h = this.input.charCodeAt(++this.pos)),
-              (h === 43 || h === 45) && ++this.pos,
+              ((f = this.input.charCodeAt(++this.pos)),
+              (f === 43 || f === 45) && ++this.pos,
               this.readInt(10) === null && this.raise(o, 'Invalid number')),
-            f(this.fullCharCodeAtPos()) &&
+            h(this.fullCharCodeAtPos()) &&
               this.raise(this.pos, 'Identifier directly after number');
-          var E = bf(this.input.slice(o, this.pos), l);
+          var E = wf(this.input.slice(o, this.pos), l);
           return this.finishToken(c.num, E);
         }),
         (Ae.readCodePoint = function () {
@@ -29862,19 +29862,19 @@ Defaulting to 2020, but this will stop working in the future.`)),
           for (var o = '', l = ++this.pos; ; ) {
             this.pos >= this.input.length &&
               this.raise(this.start, 'Unterminated string constant');
-            var h = this.input.charCodeAt(this.pos);
-            if (h === n) break;
-            h === 92
+            var f = this.input.charCodeAt(this.pos);
+            if (f === n) break;
+            f === 92
               ? ((o += this.input.slice(l, this.pos)),
                 (o += this.readEscapedChar(!1)),
                 (l = this.pos))
-              : h === 8232 || h === 8233
+              : f === 8232 || f === 8233
               ? (this.options.ecmaVersion < 10 &&
                   this.raise(this.start, 'Unterminated string constant'),
                 ++this.pos,
                 this.options.locations &&
                   (this.curLine++, (this.lineStart = this.pos)))
-              : (X(h) && this.raise(this.start, 'Unterminated string constant'),
+              : (X(f) && this.raise(this.start, 'Unterminated string constant'),
                 ++this.pos);
           }
           return (
@@ -30007,16 +30007,16 @@ Defaulting to 2020, but this will stop working in the future.`)),
               }
             default:
               if (o >= 48 && o <= 55) {
-                var h = this.input.substr(this.pos - 1, 3).match(/^[0-7]+/)[0],
-                  m = parseInt(h, 8);
+                var f = this.input.substr(this.pos - 1, 3).match(/^[0-7]+/)[0],
+                  m = parseInt(f, 8);
                 return (
-                  m > 255 && ((h = h.slice(0, -1)), (m = parseInt(h, 8))),
-                  (this.pos += h.length - 1),
+                  m > 255 && ((f = f.slice(0, -1)), (m = parseInt(f, 8))),
+                  (this.pos += f.length - 1),
                   (o = this.input.charCodeAt(this.pos)),
-                  (h !== '0' || o === 56 || o === 57) &&
+                  (f !== '0' || o === 56 || o === 57) &&
                     (this.strict || n) &&
                     this.invalidStringToken(
-                      this.pos - 1 - h.length,
+                      this.pos - 1 - f.length,
                       n
                         ? 'Octal literal in template string'
                         : 'Octal literal in strict mode'
@@ -30043,12 +30043,12 @@ Defaulting to 2020, but this will stop working in the future.`)),
         (Ae.readWord1 = function () {
           this.containsEsc = !1;
           for (
-            var n = '', o = !0, l = this.pos, h = this.options.ecmaVersion >= 6;
+            var n = '', o = !0, l = this.pos, f = this.options.ecmaVersion >= 6;
             this.pos < this.input.length;
 
           ) {
             var m = this.fullCharCodeAtPos();
-            if (v(m, h)) this.pos += m <= 65535 ? 1 : 2;
+            if (T(m, f)) this.pos += m <= 65535 ? 1 : 2;
             else if (m === 92) {
               (this.containsEsc = !0), (n += this.input.slice(l, this.pos));
               var E = this.pos;
@@ -30058,10 +30058,10 @@ Defaulting to 2020, but this will stop working in the future.`)),
                   'Expecting Unicode escape sequence \\uXXXX'
                 ),
                 ++this.pos;
-              var R = this.readCodePoint();
-              (o ? f : v)(R, h) ||
+              var O = this.readCodePoint();
+              (o ? h : T)(O, f) ||
                 this.invalidStringToken(E, 'Invalid Unicode escape'),
-                (n += nt(R)),
+                (n += nt(O)),
                 (l = this.pos);
             } else break;
             o = !1;
@@ -30082,26 +30082,26 @@ Defaulting to 2020, but this will stop working in the future.`)),
         SourceLocation: wt,
         getLineInfo: $t,
         Node: Fn,
-        TokenType: x,
+        TokenType: g,
         tokTypes: c,
         keywordTypes: U,
         TokContext: Rt,
         tokContexts: Ue,
-        isIdentifierChar: v,
-        isIdentifierStart: f,
+        isIdentifierChar: T,
+        isIdentifierStart: h,
         Token: xr,
         isNewLine: X,
-        lineBreak: M,
-        lineBreakG: z,
+        lineBreak: L,
+        lineBreakG: W,
         nonASCIIwhitespace: pe,
       };
-      function Cf(n, o) {
+      function Sf(n, o) {
         return Ge.parse(n, o);
       }
-      function wf(n, o, l) {
+      function If(n, o, l) {
         return Ge.parseExpressionAt(n, o, l);
       }
-      function Sf(n, o) {
+      function Ef(n, o) {
         return Ge.tokenizer(n, o);
       }
       (e.Node = Fn),
@@ -30110,21 +30110,21 @@ Defaulting to 2020, but this will stop working in the future.`)),
         (e.SourceLocation = wt),
         (e.TokContext = Rt),
         (e.Token = xr),
-        (e.TokenType = x),
+        (e.TokenType = g),
         (e.defaultOptions = Pt),
         (e.getLineInfo = $t),
-        (e.isIdentifierChar = v),
-        (e.isIdentifierStart = f),
+        (e.isIdentifierChar = T),
+        (e.isIdentifierStart = h),
         (e.isNewLine = X),
         (e.keywordTypes = U),
-        (e.lineBreak = M),
-        (e.lineBreakG = z),
+        (e.lineBreak = L),
+        (e.lineBreakG = W),
         (e.nonASCIIwhitespace = pe),
-        (e.parse = Cf),
-        (e.parseExpressionAt = wf),
+        (e.parse = Sf),
+        (e.parseExpressionAt = If),
         (e.tokContexts = Ue),
         (e.tokTypes = c),
-        (e.tokenizer = Sf),
+        (e.tokenizer = Ef),
         (e.version = Vc);
     });
   });
@@ -30143,10 +30143,10 @@ Defaulting to 2020, but this will stop working in the future.`)),
         return p.name === s;
       }
       function r() {}
-      var a = function (f, v) {
+      var a = function (h, T) {
         if (
-          (v === void 0 && (v = {}),
-          (this.toks = this.constructor.BaseParser.tokenizer(f, v)),
+          (T === void 0 && (T = {}),
+          (this.toks = this.constructor.BaseParser.tokenizer(h, T)),
           (this.options = this.toks.options),
           (this.input = this.toks.input),
           (this.tok = this.last = {type: t.tokTypes.eof, start: 0, end: 0}),
@@ -30154,8 +30154,8 @@ Defaulting to 2020, but this will stop working in the future.`)),
           (this.tok.validateRegExpPattern = r),
           this.options.locations)
         ) {
-          var x = this.toks.curPosition();
-          this.tok.loc = new t.SourceLocation(this.toks, x, x);
+          var g = this.toks.curPosition();
+          this.tok.loc = new t.SourceLocation(this.toks, g, g);
         }
         (this.ahead = []),
           (this.context = []),
@@ -30178,52 +30178,52 @@ Defaulting to 2020, but this will stop working in the future.`)),
             ? [this.tok.start, this.tok.loc.start]
             : this.tok.start;
         }),
-        (a.prototype.startNodeAt = function (f) {
+        (a.prototype.startNodeAt = function (h) {
           return this.options.locations
-            ? new t.Node(this.toks, f[0], f[1])
-            : new t.Node(this.toks, f);
+            ? new t.Node(this.toks, h[0], h[1])
+            : new t.Node(this.toks, h);
         }),
-        (a.prototype.finishNode = function (f, v) {
+        (a.prototype.finishNode = function (h, T) {
           return (
-            (f.type = v),
-            (f.end = this.last.end),
-            this.options.locations && (f.loc.end = this.last.loc.end),
-            this.options.ranges && (f.range[1] = this.last.end),
-            f
+            (h.type = T),
+            (h.end = this.last.end),
+            this.options.locations && (h.loc.end = this.last.loc.end),
+            this.options.ranges && (h.range[1] = this.last.end),
+            h
           );
         }),
-        (a.prototype.dummyNode = function (f) {
-          var v = this.startNode();
+        (a.prototype.dummyNode = function (h) {
+          var T = this.startNode();
           return (
-            (v.type = f),
-            (v.end = v.start),
-            this.options.locations && (v.loc.end = v.loc.start),
-            this.options.ranges && (v.range[1] = v.start),
+            (T.type = h),
+            (T.end = T.start),
+            this.options.locations && (T.loc.end = T.loc.start),
+            this.options.ranges && (T.range[1] = T.start),
             (this.last = {
               type: t.tokTypes.name,
-              start: v.start,
-              end: v.start,
-              loc: v.loc,
+              start: T.start,
+              end: T.start,
+              loc: T.loc,
             }),
-            v
+            T
           );
         }),
         (a.prototype.dummyIdent = function () {
-          var f = this.dummyNode('Identifier');
-          return (f.name = s), f;
+          var h = this.dummyNode('Identifier');
+          return (h.name = s), h;
         }),
         (a.prototype.dummyString = function () {
-          var f = this.dummyNode('Literal');
-          return (f.value = f.raw = s), f;
+          var h = this.dummyNode('Literal');
+          return (h.value = h.raw = s), h;
         }),
-        (a.prototype.eat = function (f) {
-          return this.tok.type === f ? (this.next(), !0) : !1;
+        (a.prototype.eat = function (h) {
+          return this.tok.type === h ? (this.next(), !0) : !1;
         }),
-        (a.prototype.isContextual = function (f) {
-          return this.tok.type === t.tokTypes.name && this.tok.value === f;
+        (a.prototype.isContextual = function (h) {
+          return this.tok.type === t.tokTypes.name && this.tok.value === h;
         }),
-        (a.prototype.eatContextual = function (f) {
-          return this.tok.value === f && this.eat(t.tokTypes.name);
+        (a.prototype.eatContextual = function (h) {
+          return this.tok.value === h && this.eat(t.tokTypes.name);
         }),
         (a.prototype.canInsertSemicolon = function () {
           return (
@@ -30235,11 +30235,11 @@ Defaulting to 2020, but this will stop working in the future.`)),
         (a.prototype.semicolon = function () {
           return this.eat(t.tokTypes.semi);
         }),
-        (a.prototype.expect = function (f) {
-          if (this.eat(f)) return !0;
-          for (var v = 1; v <= 2; v++)
-            if (this.lookAhead(v).type === f) {
-              for (var x = 0; x < v; x++) this.next();
+        (a.prototype.expect = function (h) {
+          if (this.eat(h)) return !0;
+          for (var T = 1; T <= 2; T++)
+            if (this.lookAhead(T).type === h) {
+              for (var g = 0; g < T; g++) this.next();
               return !0;
             }
         }),
@@ -30249,53 +30249,53 @@ Defaulting to 2020, but this will stop working in the future.`)),
         (a.prototype.popCx = function () {
           this.curIndent = this.context.pop();
         }),
-        (a.prototype.lineEnd = function (f) {
+        (a.prototype.lineEnd = function (h) {
           for (
             ;
-            f < this.input.length && !t.isNewLine(this.input.charCodeAt(f));
+            h < this.input.length && !t.isNewLine(this.input.charCodeAt(h));
 
           )
-            ++f;
-          return f;
+            ++h;
+          return h;
         }),
-        (a.prototype.indentationAfter = function (f) {
-          for (var v = 0; ; ++f) {
-            var x = this.input.charCodeAt(f);
-            if (x === 32) ++v;
-            else if (x === 9) v += this.options.tabSize;
-            else return v;
+        (a.prototype.indentationAfter = function (h) {
+          for (var T = 0; ; ++h) {
+            var g = this.input.charCodeAt(h);
+            if (g === 32) ++T;
+            else if (g === 9) T += this.options.tabSize;
+            else return T;
           }
         }),
-        (a.prototype.closes = function (f, v, x, w) {
-          return this.tok.type === f || this.tok.type === t.tokTypes.eof
+        (a.prototype.closes = function (h, T, g, w) {
+          return this.tok.type === h || this.tok.type === t.tokTypes.eof
             ? !0
-            : x !== this.curLineStart &&
-                this.curIndent < v &&
+            : g !== this.curLineStart &&
+                this.curIndent < T &&
                 this.tokenStartsLine() &&
                 (!w ||
                   this.nextLineStart >= this.input.length ||
-                  this.indentationAfter(this.nextLineStart) < v);
+                  this.indentationAfter(this.nextLineStart) < T);
         }),
         (a.prototype.tokenStartsLine = function () {
-          for (var f = this.tok.start - 1; f >= this.curLineStart; --f) {
-            var v = this.input.charCodeAt(f);
-            if (v !== 9 && v !== 32) return !1;
+          for (var h = this.tok.start - 1; h >= this.curLineStart; --h) {
+            var T = this.input.charCodeAt(h);
+            if (T !== 9 && T !== 32) return !1;
           }
           return !0;
         }),
-        (a.prototype.extend = function (f, v) {
-          this[f] = v(this[f]);
+        (a.prototype.extend = function (h, T) {
+          this[h] = T(this[h]);
         }),
         (a.prototype.parse = function () {
           return this.next(), this.parseTopLevel();
         }),
         (a.extend = function () {
-          for (var f = [], v = arguments.length; v--; ) f[v] = arguments[v];
-          for (var x = this, w = 0; w < f.length; w++) x = f[w](x);
-          return x;
+          for (var h = [], T = arguments.length; T--; ) h[T] = arguments[T];
+          for (var g = this, w = 0; w < h.length; w++) g = h[w](g);
+          return g;
         }),
-        (a.parse = function (f, v) {
-          return new this(f, v).parse();
+        (a.parse = function (h, T) {
+          return new this(h, T).parse();
         }),
         (a.BaseParser = t.Parser);
       var u = a.prototype;
@@ -30330,71 +30330,71 @@ Defaulting to 2020, but this will stop working in the future.`)),
             } catch (S) {
               if (!(S instanceof SyntaxError)) throw S;
               var p = S.message,
-                f = S.raisedAt,
-                v = !0;
+                h = S.raisedAt,
+                T = !0;
               if (/unterminated/i.test(p))
-                if (((f = this.lineEnd(S.pos + 1)), /string/.test(p)))
-                  v = {
+                if (((h = this.lineEnd(S.pos + 1)), /string/.test(p)))
+                  T = {
                     start: S.pos,
-                    end: f,
+                    end: h,
                     type: t.tokTypes.string,
-                    value: this.input.slice(S.pos + 1, f),
+                    value: this.input.slice(S.pos + 1, h),
                   };
                 else if (/regular expr/i.test(p)) {
-                  var x = this.input.slice(S.pos, f);
+                  var g = this.input.slice(S.pos, h);
                   try {
-                    x = new RegExp(x);
+                    g = new RegExp(g);
                   } catch {}
-                  v = {start: S.pos, end: f, type: t.tokTypes.regexp, value: x};
+                  T = {start: S.pos, end: h, type: t.tokTypes.regexp, value: g};
                 } else
                   /template/.test(p)
-                    ? (v = {
+                    ? (T = {
                         start: S.pos,
-                        end: f,
+                        end: h,
                         type: t.tokTypes.template,
-                        value: this.input.slice(S.pos, f),
+                        value: this.input.slice(S.pos, h),
                       })
-                    : (v = !1);
+                    : (T = !1);
               else if (
                 /invalid (unicode|regexp|number)|expecting unicode|octal literal|is reserved|directly after number|expected number in radix|numeric separator/i.test(
                   p
                 )
               )
-                for (; f < this.input.length && !d(this.input.charCodeAt(f)); )
-                  ++f;
+                for (; h < this.input.length && !d(this.input.charCodeAt(h)); )
+                  ++h;
               else if (/character escape|expected hexadecimal/i.test(p))
-                for (; f < this.input.length; ) {
-                  var w = this.input.charCodeAt(f++);
+                for (; h < this.input.length; ) {
+                  var w = this.input.charCodeAt(h++);
                   if (w === 34 || w === 39 || t.isNewLine(w)) break;
                 }
-              else if (/unexpected character/i.test(p)) f++, (v = !1);
-              else if (/regular expression/i.test(p)) v = !0;
+              else if (/unexpected character/i.test(p)) h++, (T = !1);
+              else if (/regular expression/i.test(p)) T = !0;
               else throw S;
               if (
-                (this.resetTo(f),
-                v === !0 &&
-                  (v = {start: f, end: f, type: t.tokTypes.name, value: s}),
-                v)
+                (this.resetTo(h),
+                T === !0 &&
+                  (T = {start: h, end: h, type: t.tokTypes.name, value: s}),
+                T)
               )
                 return (
                   this.options.locations &&
-                    (v.loc = new t.SourceLocation(
+                    (T.loc = new t.SourceLocation(
                       this.toks,
-                      t.getLineInfo(this.input, v.start),
-                      t.getLineInfo(this.input, v.end)
+                      t.getLineInfo(this.input, T.start),
+                      t.getLineInfo(this.input, T.end)
                     )),
-                  v
+                  T
                 );
             }
         }),
         (u.resetTo = function (p) {
           (this.toks.pos = p), (this.toks.containsEsc = !1);
-          var f = this.input.charAt(p - 1);
+          var h = this.input.charAt(p - 1);
           if (
             ((this.toks.exprAllowed =
-              !f ||
-              /[[{(,;:?/*=+\-~!|&%^<>]/.test(f) ||
-              (/[enwfd]/.test(f) &&
+              !h ||
+              /[[{(,;:?/*=+\-~!|&%^<>]/.test(h) ||
+              (/[enwfd]/.test(h) &&
                 /\b(case|else|return|throw|new|in|(instance|type)?of|delete|void)$/.test(
                   this.input.slice(p - 10, p)
                 ))),
@@ -30402,9 +30402,9 @@ Defaulting to 2020, but this will stop working in the future.`)),
           ) {
             (this.toks.curLine = 1),
               (this.toks.lineStart = t.lineBreakG.lastIndex = 0);
-            for (var v; (v = t.lineBreakG.exec(this.input)) && v.index < p; )
+            for (var T; (T = t.lineBreakG.exec(this.input)) && T.index < p; )
               ++this.toks.curLine,
-                (this.toks.lineStart = v.index + v[0].length);
+                (this.toks.lineStart = T.index + T[0].length);
           }
         }),
         (u.lookAhead = function (p) {
@@ -30430,40 +30430,40 @@ Defaulting to 2020, but this will stop working in the future.`)),
       }),
         (y.parseStatement = function () {
           var p = this.tok.type,
-            f = this.startNode(),
-            v;
+            h = this.startNode(),
+            T;
           switch (
-            (this.toks.isLet() && ((p = t.tokTypes._var), (v = 'let')), p)
+            (this.toks.isLet() && ((p = t.tokTypes._var), (T = 'let')), p)
           ) {
             case t.tokTypes._break:
             case t.tokTypes._continue:
               this.next();
-              var x = p === t.tokTypes._break;
+              var g = p === t.tokTypes._break;
               return (
                 this.semicolon() || this.canInsertSemicolon()
-                  ? (f.label = null)
-                  : ((f.label =
+                  ? (h.label = null)
+                  : ((h.label =
                       this.tok.type === t.tokTypes.name
                         ? this.parseIdent()
                         : null),
                     this.semicolon()),
-                this.finishNode(f, x ? 'BreakStatement' : 'ContinueStatement')
+                this.finishNode(h, g ? 'BreakStatement' : 'ContinueStatement')
               );
             case t.tokTypes._debugger:
               return (
                 this.next(),
                 this.semicolon(),
-                this.finishNode(f, 'DebuggerStatement')
+                this.finishNode(h, 'DebuggerStatement')
               );
             case t.tokTypes._do:
               return (
                 this.next(),
-                (f.body = this.parseStatement()),
-                (f.test = this.eat(t.tokTypes._while)
+                (h.body = this.parseStatement()),
+                (h.test = this.eat(t.tokTypes._while)
                   ? this.parseParenExpression()
                   : this.dummyIdent()),
                 this.semicolon(),
-                this.finishNode(f, 'DoWhileStatement')
+                this.finishNode(h, 'DoWhileStatement')
               );
             case t.tokTypes._for:
               this.next();
@@ -30474,7 +30474,7 @@ Defaulting to 2020, but this will stop working in the future.`)),
                 this.expect(t.tokTypes.parenL),
                 this.tok.type === t.tokTypes.semi)
               )
-                return this.parseFor(f, null);
+                return this.parseFor(h, null);
               var S = this.toks.isLet(),
                 A = this.toks.isAwaitUsing(!0),
                 U = !A && this.toks.isUsing(!0);
@@ -30485,7 +30485,7 @@ Defaulting to 2020, but this will stop working in the future.`)),
                 U ||
                 A
               ) {
-                var D = S
+                var M = S
                     ? 'let'
                     : U
                     ? 'using'
@@ -30495,67 +30495,67 @@ Defaulting to 2020, but this will stop working in the future.`)),
                   c = this.startNode();
                 return (
                   U || A
-                    ? (A && this.next(), this.parseVar(c, !0, D))
-                    : (c = this.parseVar(c, !0, D)),
+                    ? (A && this.next(), this.parseVar(c, !0, M))
+                    : (c = this.parseVar(c, !0, M)),
                   c.declarations.length === 1 &&
                   (this.tok.type === t.tokTypes._in || this.isContextual('of'))
                     ? (this.options.ecmaVersion >= 9 &&
                         this.tok.type !== t.tokTypes._in &&
-                        (f.await = w),
-                      this.parseForIn(f, c))
-                    : this.parseFor(f, c)
+                        (h.await = w),
+                      this.parseForIn(h, c))
+                    : this.parseFor(h, c)
                 );
               }
-              var M = this.parseExpression(!0);
+              var L = this.parseExpression(!0);
               return this.tok.type === t.tokTypes._in || this.isContextual('of')
                 ? (this.options.ecmaVersion >= 9 &&
                     this.tok.type !== t.tokTypes._in &&
-                    (f.await = w),
-                  this.parseForIn(f, this.toAssignable(M)))
-                : this.parseFor(f, M);
+                    (h.await = w),
+                  this.parseForIn(h, this.toAssignable(L)))
+                : this.parseFor(h, L);
             case t.tokTypes._function:
-              return this.next(), this.parseFunction(f, !0);
+              return this.next(), this.parseFunction(h, !0);
             case t.tokTypes._if:
               return (
                 this.next(),
-                (f.test = this.parseParenExpression()),
-                (f.consequent = this.parseStatement()),
-                (f.alternate = this.eat(t.tokTypes._else)
+                (h.test = this.parseParenExpression()),
+                (h.consequent = this.parseStatement()),
+                (h.alternate = this.eat(t.tokTypes._else)
                   ? this.parseStatement()
                   : null),
-                this.finishNode(f, 'IfStatement')
+                this.finishNode(h, 'IfStatement')
               );
             case t.tokTypes._return:
               return (
                 this.next(),
                 this.eat(t.tokTypes.semi) || this.canInsertSemicolon()
-                  ? (f.argument = null)
-                  : ((f.argument = this.parseExpression()), this.semicolon()),
-                this.finishNode(f, 'ReturnStatement')
+                  ? (h.argument = null)
+                  : ((h.argument = this.parseExpression()), this.semicolon()),
+                this.finishNode(h, 'ReturnStatement')
               );
             case t.tokTypes._switch:
-              var z = this.curIndent,
+              var W = this.curIndent,
                 X = this.curLineStart;
               this.next(),
-                (f.discriminant = this.parseParenExpression()),
-                (f.cases = []),
+                (h.discriminant = this.parseParenExpression()),
+                (h.cases = []),
                 this.pushCx(),
                 this.expect(t.tokTypes.braceL);
-              for (var ie; !this.closes(t.tokTypes.braceR, z, X, !0); )
+              for (var ie; !this.closes(t.tokTypes.braceR, W, X, !0); )
                 if (
                   this.tok.type === t.tokTypes._case ||
                   this.tok.type === t.tokTypes._default
                 ) {
                   var pe = this.tok.type === t.tokTypes._case;
                   ie && this.finishNode(ie, 'SwitchCase'),
-                    f.cases.push((ie = this.startNode())),
+                    h.cases.push((ie = this.startNode())),
                     (ie.consequent = []),
                     this.next(),
                     pe ? (ie.test = this.parseExpression()) : (ie.test = null),
                     this.expect(t.tokTypes.colon);
                 } else
                   ie ||
-                    (f.cases.push((ie = this.startNode())),
+                    (h.cases.push((ie = this.startNode())),
                     (ie.consequent = []),
                     (ie.test = null)),
                     ie.consequent.push(this.parseStatement());
@@ -30563,20 +30563,20 @@ Defaulting to 2020, but this will stop working in the future.`)),
                 ie && this.finishNode(ie, 'SwitchCase'),
                 this.popCx(),
                 this.eat(t.tokTypes.braceR),
-                this.finishNode(f, 'SwitchStatement')
+                this.finishNode(h, 'SwitchStatement')
               );
             case t.tokTypes._throw:
               return (
                 this.next(),
-                (f.argument = this.parseExpression()),
+                (h.argument = this.parseExpression()),
                 this.semicolon(),
-                this.finishNode(f, 'ThrowStatement')
+                this.finishNode(h, 'ThrowStatement')
               );
             case t.tokTypes._try:
               if (
                 (this.next(),
-                (f.block = this.parseBlock()),
-                (f.handler = null),
+                (h.block = this.parseBlock()),
+                (h.handler = null),
                 this.tok.type === t.tokTypes._catch)
               ) {
                 var ae = this.startNode();
@@ -30586,37 +30586,37 @@ Defaulting to 2020, but this will stop working in the future.`)),
                       this.expect(t.tokTypes.parenR))
                     : (ae.param = null),
                   (ae.body = this.parseBlock()),
-                  (f.handler = this.finishNode(ae, 'CatchClause'));
+                  (h.handler = this.finishNode(ae, 'CatchClause'));
               }
               return (
-                (f.finalizer = this.eat(t.tokTypes._finally)
+                (h.finalizer = this.eat(t.tokTypes._finally)
                   ? this.parseBlock()
                   : null),
-                !f.handler && !f.finalizer
-                  ? f.block
-                  : this.finishNode(f, 'TryStatement')
+                !h.handler && !h.finalizer
+                  ? h.block
+                  : this.finishNode(h, 'TryStatement')
               );
             case t.tokTypes._var:
             case t.tokTypes._const:
-              return this.parseVar(f, !1, v || this.tok.value);
+              return this.parseVar(h, !1, T || this.tok.value);
             case t.tokTypes._while:
               return (
                 this.next(),
-                (f.test = this.parseParenExpression()),
-                (f.body = this.parseStatement()),
-                this.finishNode(f, 'WhileStatement')
+                (h.test = this.parseParenExpression()),
+                (h.body = this.parseStatement()),
+                this.finishNode(h, 'WhileStatement')
               );
             case t.tokTypes._with:
               return (
                 this.next(),
-                (f.object = this.parseParenExpression()),
-                (f.body = this.parseStatement()),
-                this.finishNode(f, 'WithStatement')
+                (h.object = this.parseParenExpression()),
+                (h.body = this.parseStatement()),
+                this.finishNode(h, 'WithStatement')
               );
             case t.tokTypes.braceL:
               return this.parseBlock();
             case t.tokTypes.semi:
-              return this.next(), this.finishNode(f, 'EmptyStatement');
+              return this.next(), this.finishNode(h, 'EmptyStatement');
             case t.tokTypes._class:
               return this.parseClass(!0);
             case t.tokTypes._import:
@@ -30624,9 +30624,9 @@ Defaulting to 2020, but this will stop working in the future.`)),
                 var He = this.lookAhead(1).type;
                 if (He === t.tokTypes.parenL || He === t.tokTypes.dot)
                   return (
-                    (f.expression = this.parseExpression()),
+                    (h.expression = this.parseExpression()),
                     this.semicolon(),
-                    this.finishNode(f, 'ExpressionStatement')
+                    this.finishNode(h, 'ExpressionStatement')
                   );
               }
               return this.parseImport();
@@ -30634,33 +30634,33 @@ Defaulting to 2020, but this will stop working in the future.`)),
               return this.parseExport();
             default:
               if (this.toks.isAsyncFunction())
-                return this.next(), this.next(), this.parseFunction(f, !0, !0);
-              if (this.toks.isUsing(!1)) return this.parseVar(f, !1, 'using');
+                return this.next(), this.next(), this.parseFunction(h, !0, !0);
+              if (this.toks.isUsing(!1)) return this.parseVar(h, !1, 'using');
               if (this.toks.isAwaitUsing(!1))
-                return this.next(), this.parseVar(f, !1, 'await using');
+                return this.next(), this.parseVar(h, !1, 'await using');
               var qe = this.parseExpression();
               return i(qe)
                 ? (this.next(),
                   this.tok.type === t.tokTypes.eof
-                    ? this.finishNode(f, 'EmptyStatement')
+                    ? this.finishNode(h, 'EmptyStatement')
                     : this.parseStatement())
                 : p === t.tokTypes.name &&
                   qe.type === 'Identifier' &&
                   this.eat(t.tokTypes.colon)
-                ? ((f.body = this.parseStatement()),
-                  (f.label = qe),
-                  this.finishNode(f, 'LabeledStatement'))
-                : ((f.expression = qe),
+                ? ((h.body = this.parseStatement()),
+                  (h.label = qe),
+                  this.finishNode(h, 'LabeledStatement'))
+                : ((h.expression = qe),
                   this.semicolon(),
-                  this.finishNode(f, 'ExpressionStatement'));
+                  this.finishNode(h, 'ExpressionStatement'));
           }
         }),
         (y.parseBlock = function () {
           var p = this.startNode();
           this.pushCx(), this.expect(t.tokTypes.braceL);
-          var f = this.curIndent,
-            v = this.curLineStart;
-          for (p.body = []; !this.closes(t.tokTypes.braceR, f, v, !0); )
+          var h = this.curIndent,
+            T = this.curLineStart;
+          for (p.body = []; !this.closes(t.tokTypes.braceR, h, T, !0); )
             p.body.push(this.parseStatement());
           return (
             this.popCx(),
@@ -30668,9 +30668,9 @@ Defaulting to 2020, but this will stop working in the future.`)),
             this.finishNode(p, 'BlockStatement')
           );
         }),
-        (y.parseFor = function (p, f) {
+        (y.parseFor = function (p, h) {
           return (
-            (p.init = f),
+            (p.init = h),
             (p.test = p.update = null),
             this.eat(t.tokTypes.semi) &&
               this.tok.type !== t.tokTypes.semi &&
@@ -30684,33 +30684,33 @@ Defaulting to 2020, but this will stop working in the future.`)),
             this.finishNode(p, 'ForStatement')
           );
         }),
-        (y.parseForIn = function (p, f) {
-          var v =
+        (y.parseForIn = function (p, h) {
+          var T =
             this.tok.type === t.tokTypes._in
               ? 'ForInStatement'
               : 'ForOfStatement';
           return (
             this.next(),
-            (p.left = f),
+            (p.left = h),
             (p.right = this.parseExpression()),
             this.popCx(),
             this.expect(t.tokTypes.parenR),
             (p.body = this.parseStatement()),
-            this.finishNode(p, v)
+            this.finishNode(p, T)
           );
         }),
-        (y.parseVar = function (p, f, v) {
-          (p.kind = v), this.next(), (p.declarations = []);
+        (y.parseVar = function (p, h, T) {
+          (p.kind = T), this.next(), (p.declarations = []);
           do {
-            var x = this.startNode();
-            (x.id =
+            var g = this.startNode();
+            (g.id =
               this.options.ecmaVersion >= 6
                 ? this.toAssignable(this.parseExprAtom(), !0)
                 : this.parseIdent()),
-              (x.init = this.eat(t.tokTypes.eq)
-                ? this.parseMaybeAssign(f)
+              (g.init = this.eat(t.tokTypes.eq)
+                ? this.parseMaybeAssign(h)
                 : null),
-              p.declarations.push(this.finishNode(x, 'VariableDeclarator'));
+              p.declarations.push(this.finishNode(g, 'VariableDeclarator'));
           } while (this.eat(t.tokTypes.comma));
           if (!p.declarations.length) {
             var w = this.startNode();
@@ -30718,34 +30718,34 @@ Defaulting to 2020, but this will stop working in the future.`)),
               p.declarations.push(this.finishNode(w, 'VariableDeclarator'));
           }
           return (
-            f || this.semicolon(), this.finishNode(p, 'VariableDeclaration')
+            h || this.semicolon(), this.finishNode(p, 'VariableDeclaration')
           );
         }),
         (y.parseClass = function (p) {
-          var f = this.startNode();
+          var h = this.startNode();
           this.next(),
             this.tok.type === t.tokTypes.name
-              ? (f.id = this.parseIdent())
+              ? (h.id = this.parseIdent())
               : p === !0
-              ? (f.id = this.dummyIdent())
-              : (f.id = null),
-            (f.superClass = this.eat(t.tokTypes._extends)
+              ? (h.id = this.dummyIdent())
+              : (h.id = null),
+            (h.superClass = this.eat(t.tokTypes._extends)
               ? this.parseExpression()
               : null),
-            (f.body = this.startNode()),
-            (f.body.body = []),
+            (h.body = this.startNode()),
+            (h.body.body = []),
             this.pushCx();
-          var v = this.curIndent + 1,
-            x = this.curLineStart;
+          var T = this.curIndent + 1,
+            g = this.curLineStart;
           for (
             this.eat(t.tokTypes.braceL),
-              this.curIndent + 1 < v &&
-                ((v = this.curIndent), (x = this.curLineStart));
-            !this.closes(t.tokTypes.braceR, v, x);
+              this.curIndent + 1 < T &&
+                ((T = this.curIndent), (g = this.curLineStart));
+            !this.closes(t.tokTypes.braceR, T, g);
 
           ) {
             var w = this.parseClassElement();
-            w && f.body.body.push(w);
+            w && h.body.body.push(w);
           }
           return (
             this.popCx(),
@@ -30754,51 +30754,51 @@ Defaulting to 2020, but this will stop working in the future.`)),
               this.options.locations &&
                 (this.last.loc.end = this.tok.loc.start)),
             this.semicolon(),
-            this.finishNode(f.body, 'ClassBody'),
-            this.finishNode(f, p ? 'ClassDeclaration' : 'ClassExpression')
+            this.finishNode(h.body, 'ClassBody'),
+            this.finishNode(h, p ? 'ClassDeclaration' : 'ClassExpression')
           );
         }),
         (y.parseClassElement = function () {
           if (this.eat(t.tokTypes.semi)) return null;
           var p = this.options,
-            f = p.ecmaVersion,
-            v = p.locations,
-            x = this.curIndent,
+            h = p.ecmaVersion,
+            T = p.locations,
+            g = this.curIndent,
             w = this.curLineStart,
             S = this.startNode(),
             A = '',
             U = !1,
-            D = !1,
+            M = !1,
             c = 'method',
-            M = !1;
+            L = !1;
           if (this.eatContextual('static')) {
-            if (f >= 13 && this.eat(t.tokTypes.braceL))
+            if (h >= 13 && this.eat(t.tokTypes.braceL))
               return this.parseClassStaticBlock(S), S;
             this.isClassElementNameStart() || this.toks.type === t.tokTypes.star
-              ? (M = !0)
+              ? (L = !0)
               : (A = 'static');
           }
           if (
-            ((S.static = M),
+            ((S.static = L),
             !A &&
-              f >= 8 &&
+              h >= 8 &&
               this.eatContextual('async') &&
               ((this.isClassElementNameStart() ||
                 this.toks.type === t.tokTypes.star) &&
               !this.canInsertSemicolon()
-                ? (D = !0)
+                ? (M = !0)
                 : (A = 'async')),
             !A)
           ) {
             U = this.eat(t.tokTypes.star);
-            var z = this.toks.value;
+            var W = this.toks.value;
             (this.eatContextual('get') || this.eatContextual('set')) &&
-              (this.isClassElementNameStart() ? (c = z) : (A = z));
+              (this.isClassElementNameStart() ? (c = W) : (A = W));
           }
           if (A)
             (S.computed = !1),
               (S.key = this.startNodeAt(
-                v
+                T
                   ? [this.toks.lastTokStart, this.toks.lastTokStartLoc]
                   : this.toks.lastTokStart
               )),
@@ -30811,28 +30811,28 @@ Defaulting to 2020, but this will stop working in the future.`)),
               null
             );
           if (
-            f < 13 ||
+            h < 13 ||
             this.toks.type === t.tokTypes.parenL ||
             c !== 'method' ||
             U ||
-            D
+            M
           ) {
             var X =
               !S.computed &&
               !S.static &&
               !U &&
-              !D &&
+              !M &&
               c === 'method' &&
               ((S.key.type === 'Identifier' && S.key.name === 'constructor') ||
                 (S.key.type === 'Literal' && S.key.value === 'constructor'));
             (S.kind = X ? 'constructor' : c),
-              (S.value = this.parseMethod(U, D)),
+              (S.value = this.parseMethod(U, M)),
               this.finishNode(S, 'MethodDefinition');
           } else {
             if (this.eat(t.tokTypes.eq))
               if (
                 this.curLineStart !== w &&
-                this.curIndent <= x &&
+                this.curIndent <= g &&
                 this.tokenStartsLine()
               )
                 S.value = null;
@@ -30851,11 +30851,11 @@ Defaulting to 2020, but this will stop working in the future.`)),
           return S;
         }),
         (y.parseClassStaticBlock = function (p) {
-          var f = this.curIndent,
-            v = this.curLineStart;
+          var h = this.curIndent,
+            T = this.curLineStart;
           for (
             p.body = [], this.pushCx();
-            !this.closes(t.tokTypes.braceR, f, v, !0);
+            !this.closes(t.tokTypes.braceR, h, T, !0);
 
           )
             p.body.push(this.parseStatement());
@@ -30873,28 +30873,28 @@ Defaulting to 2020, but this will stop working in the future.`)),
             ? ((p.computed = !1), (p.key = this.parsePrivateIdent()))
             : this.parsePropertyName(p);
         }),
-        (y.parseFunction = function (p, f, v) {
-          var x = this.inAsync,
+        (y.parseFunction = function (p, h, T) {
+          var g = this.inAsync,
             w = this.inGenerator,
             S = this.inFunction;
           return (
             this.initFunction(p),
             this.options.ecmaVersion >= 6 &&
               (p.generator = this.eat(t.tokTypes.star)),
-            this.options.ecmaVersion >= 8 && (p.async = !!v),
+            this.options.ecmaVersion >= 8 && (p.async = !!T),
             this.tok.type === t.tokTypes.name
               ? (p.id = this.parseIdent())
-              : f === !0 && (p.id = this.dummyIdent()),
+              : h === !0 && (p.id = this.dummyIdent()),
             (this.inAsync = p.async),
             (this.inGenerator = p.generator),
             (this.inFunction = !0),
             (p.params = this.parseFunctionParams()),
             (p.body = this.parseBlock()),
             this.toks.adaptDirectivePrologue(p.body.body),
-            (this.inAsync = x),
+            (this.inAsync = g),
             (this.inGenerator = w),
             (this.inFunction = S),
-            this.finishNode(p, f ? 'FunctionDeclaration' : 'FunctionExpression')
+            this.finishNode(p, h ? 'FunctionDeclaration' : 'FunctionExpression')
           );
         }),
         (y.parseExport = function () {
@@ -30914,15 +30914,15 @@ Defaulting to 2020, but this will stop working in the future.`)),
               this.finishNode(p, 'ExportAllDeclaration')
             );
           if (this.eat(t.tokTypes._default)) {
-            var f;
+            var h;
             if (
               this.tok.type === t.tokTypes._function ||
-              (f = this.toks.isAsyncFunction())
+              (h = this.toks.isAsyncFunction())
             ) {
-              var v = this.startNode();
+              var T = this.startNode();
               this.next(),
-                f && this.next(),
-                (p.declaration = this.parseFunction(v, 'nullableID', f));
+                h && this.next(),
+                (p.declaration = this.parseFunction(T, 'nullableID', h));
             } else
               this.tok.type === t.tokTypes._class
                 ? (p.declaration = this.parseClass('nullableID'))
@@ -30952,12 +30952,12 @@ Defaulting to 2020, but this will stop working in the future.`)),
           if ((this.next(), this.tok.type === t.tokTypes.string))
             (p.specifiers = []), (p.source = this.parseExprAtom());
           else {
-            var f;
+            var h;
             this.tok.type === t.tokTypes.name &&
               this.tok.value !== 'from' &&
-              ((f = this.startNode()),
-              (f.local = this.parseIdent()),
-              this.finishNode(f, 'ImportDefaultSpecifier'),
+              ((h = this.startNode()),
+              (h.local = this.parseIdent()),
+              this.finishNode(h, 'ImportDefaultSpecifier'),
               this.eat(t.tokTypes.comma)),
               (p.specifiers = this.parseImportSpecifiers()),
               (p.source =
@@ -30965,7 +30965,7 @@ Defaulting to 2020, but this will stop working in the future.`)),
                 this.tok.type === t.tokTypes.string
                   ? this.parseExprAtom()
                   : this.dummyString()),
-              f && p.specifiers.unshift(f);
+              h && p.specifiers.unshift(h);
           }
           return (
             this.options.ecmaVersion >= 16 &&
@@ -30977,15 +30977,15 @@ Defaulting to 2020, but this will stop working in the future.`)),
         (y.parseImportSpecifiers = function () {
           var p = [];
           if (this.tok.type === t.tokTypes.star) {
-            var f = this.startNode();
+            var h = this.startNode();
             this.next(),
-              (f.local = this.eatContextual('as')
+              (h.local = this.eatContextual('as')
                 ? this.parseIdent()
                 : this.dummyIdent()),
-              p.push(this.finishNode(f, 'ImportNamespaceSpecifier'));
+              p.push(this.finishNode(h, 'ImportNamespaceSpecifier'));
           } else {
-            var v = this.curIndent,
-              x = this.curLineStart,
+            var T = this.curIndent,
+              g = this.curLineStart,
               w = this.nextLineStart;
             for (
               this.pushCx(),
@@ -30993,8 +30993,8 @@ Defaulting to 2020, but this will stop working in the future.`)),
                 this.curLineStart > w && (w = this.curLineStart);
               !this.closes(
                 t.tokTypes.braceR,
-                v + (this.curLineStart <= w ? 1 : 0),
-                x
+                T + (this.curLineStart <= w ? 1 : 0),
+                g
               );
 
             ) {
@@ -31024,17 +31024,17 @@ Defaulting to 2020, but this will stop working in the future.`)),
         (y.parseWithClause = function () {
           var p = [];
           if (!this.eat(t.tokTypes._with)) return p;
-          var f = this.curIndent,
-            v = this.curLineStart,
-            x = this.nextLineStart;
+          var h = this.curIndent,
+            T = this.curLineStart,
+            g = this.nextLineStart;
           for (
             this.pushCx(),
               this.eat(t.tokTypes.braceL),
-              this.curLineStart > x && (x = this.curLineStart);
+              this.curLineStart > g && (g = this.curLineStart);
             !this.closes(
               t.tokTypes.braceR,
-              f + (this.curLineStart <= x ? 1 : 0),
-              v
+              h + (this.curLineStart <= g ? 1 : 0),
+              T
             );
 
           ) {
@@ -31062,17 +31062,17 @@ Defaulting to 2020, but this will stop working in the future.`)),
         }),
         (y.parseExportSpecifierList = function () {
           var p = [],
-            f = this.curIndent,
-            v = this.curLineStart,
-            x = this.nextLineStart;
+            h = this.curIndent,
+            T = this.curLineStart,
+            g = this.nextLineStart;
           for (
             this.pushCx(),
               this.eat(t.tokTypes.braceL),
-              this.curLineStart > x && (x = this.curLineStart);
+              this.curLineStart > g && (g = this.curLineStart);
             !this.closes(
               t.tokTypes.braceR,
-              f + (this.curLineStart <= x ? 1 : 0),
-              v
+              h + (this.curLineStart <= g ? 1 : 0),
+              T
             ) && !this.isContextual('from');
 
           ) {
@@ -31093,8 +31093,8 @@ Defaulting to 2020, but this will stop working in the future.`)),
             ? this.parseExprAtom()
             : this.parseIdent();
         });
-      var g = a.prototype;
-      (g.checkLVal = function (p) {
+      var x = a.prototype;
+      (x.checkLVal = function (p) {
         if (!p) return p;
         switch (p.type) {
           case 'Identifier':
@@ -31106,76 +31106,76 @@ Defaulting to 2020, but this will stop working in the future.`)),
             return this.dummyIdent();
         }
       }),
-        (g.parseExpression = function (p) {
-          var f = this.storeCurrentPos(),
-            v = this.parseMaybeAssign(p);
+        (x.parseExpression = function (p) {
+          var h = this.storeCurrentPos(),
+            T = this.parseMaybeAssign(p);
           if (this.tok.type === t.tokTypes.comma) {
-            var x = this.startNodeAt(f);
-            for (x.expressions = [v]; this.eat(t.tokTypes.comma); )
-              x.expressions.push(this.parseMaybeAssign(p));
-            return this.finishNode(x, 'SequenceExpression');
+            var g = this.startNodeAt(h);
+            for (g.expressions = [T]; this.eat(t.tokTypes.comma); )
+              g.expressions.push(this.parseMaybeAssign(p));
+            return this.finishNode(g, 'SequenceExpression');
           }
-          return v;
+          return T;
         }),
-        (g.parseParenExpression = function () {
+        (x.parseParenExpression = function () {
           this.pushCx(), this.expect(t.tokTypes.parenL);
           var p = this.parseExpression();
           return this.popCx(), this.expect(t.tokTypes.parenR), p;
         }),
-        (g.parseMaybeAssign = function (p) {
+        (x.parseMaybeAssign = function (p) {
           if (this.inGenerator && this.toks.isContextual('yield')) {
-            var f = this.startNode();
+            var h = this.startNode();
             return (
               this.next(),
               this.semicolon() ||
               this.canInsertSemicolon() ||
               (this.tok.type !== t.tokTypes.star && !this.tok.type.startsExpr)
-                ? ((f.delegate = !1), (f.argument = null))
-                : ((f.delegate = this.eat(t.tokTypes.star)),
-                  (f.argument = this.parseMaybeAssign())),
-              this.finishNode(f, 'YieldExpression')
+                ? ((h.delegate = !1), (h.argument = null))
+                : ((h.delegate = this.eat(t.tokTypes.star)),
+                  (h.argument = this.parseMaybeAssign())),
+              this.finishNode(h, 'YieldExpression')
             );
           }
-          var v = this.storeCurrentPos(),
-            x = this.parseMaybeConditional(p);
+          var T = this.storeCurrentPos(),
+            g = this.parseMaybeConditional(p);
           if (this.tok.type.isAssign) {
-            var w = this.startNodeAt(v);
+            var w = this.startNodeAt(T);
             return (
               (w.operator = this.tok.value),
               (w.left =
                 this.tok.type === t.tokTypes.eq
-                  ? this.toAssignable(x)
-                  : this.checkLVal(x)),
+                  ? this.toAssignable(g)
+                  : this.checkLVal(g)),
               this.next(),
               (w.right = this.parseMaybeAssign(p)),
               this.finishNode(w, 'AssignmentExpression')
             );
           }
-          return x;
+          return g;
         }),
-        (g.parseMaybeConditional = function (p) {
-          var f = this.storeCurrentPos(),
-            v = this.parseExprOps(p);
+        (x.parseMaybeConditional = function (p) {
+          var h = this.storeCurrentPos(),
+            T = this.parseExprOps(p);
           if (this.eat(t.tokTypes.question)) {
-            var x = this.startNodeAt(f);
+            var g = this.startNodeAt(h);
             return (
-              (x.test = v),
-              (x.consequent = this.parseMaybeAssign()),
-              (x.alternate = this.expect(t.tokTypes.colon)
+              (g.test = T),
+              (g.consequent = this.parseMaybeAssign()),
+              (g.alternate = this.expect(t.tokTypes.colon)
                 ? this.parseMaybeAssign(p)
                 : this.dummyIdent()),
-              this.finishNode(x, 'ConditionalExpression')
+              this.finishNode(g, 'ConditionalExpression')
             );
           }
-          return v;
+          return T;
         }),
-        (g.parseExprOps = function (p) {
-          var f = this.storeCurrentPos(),
-            v = this.curIndent,
-            x = this.curLineStart;
-          return this.parseExprOp(this.parseMaybeUnary(!1), f, -1, p, v, x);
+        (x.parseExprOps = function (p) {
+          var h = this.storeCurrentPos(),
+            T = this.curIndent,
+            g = this.curLineStart;
+          return this.parseExprOp(this.parseMaybeUnary(!1), h, -1, p, T, g);
         }),
-        (g.parseExprOp = function (p, f, v, x, w, S) {
+        (x.parseExprOp = function (p, h, T, g, w, S) {
           if (
             this.curLineStart !== S &&
             this.curIndent < w &&
@@ -31183,8 +31183,8 @@ Defaulting to 2020, but this will stop working in the future.`)),
           )
             return p;
           var A = this.tok.type.binop;
-          if (A != null && (!x || this.tok.type !== t.tokTypes._in) && A > v) {
-            var U = this.startNodeAt(f);
+          if (A != null && (!g || this.tok.type !== t.tokTypes._in) && A > T) {
+            var U = this.startNodeAt(h);
             if (
               ((U.left = p),
               (U.operator = this.tok.value),
@@ -31195,12 +31195,12 @@ Defaulting to 2020, but this will stop working in the future.`)),
             )
               U.right = this.dummyIdent();
             else {
-              var D = this.storeCurrentPos();
+              var M = this.storeCurrentPos();
               U.right = this.parseExprOp(
                 this.parseMaybeUnary(!1),
-                D,
+                M,
                 A,
-                x,
+                g,
                 w,
                 S
               );
@@ -31212,14 +31212,14 @@ Defaulting to 2020, but this will stop working in the future.`)),
                   ? 'LogicalExpression'
                   : 'BinaryExpression'
               ),
-              this.parseExprOp(U, f, v, x, w, S)
+              this.parseExprOp(U, h, T, g, w, S)
             );
           }
           return p;
         }),
-        (g.parseMaybeUnary = function (p) {
-          var f = this.storeCurrentPos(),
-            v;
+        (x.parseMaybeUnary = function (p) {
+          var h = this.storeCurrentPos(),
+            T;
           if (
             this.options.ecmaVersion >= 8 &&
             this.toks.isContextual('await') &&
@@ -31227,52 +31227,52 @@ Defaulting to 2020, but this will stop working in the future.`)),
               (this.toks.inModule && this.options.ecmaVersion >= 13) ||
               (!this.inFunction && this.options.allowAwaitOutsideFunction))
           )
-            (v = this.parseAwait()), (p = !0);
+            (T = this.parseAwait()), (p = !0);
           else if (this.tok.type.prefix) {
-            var x = this.startNode(),
+            var g = this.startNode(),
               w = this.tok.type === t.tokTypes.incDec;
             w || (p = !0),
-              (x.operator = this.tok.value),
-              (x.prefix = !0),
+              (g.operator = this.tok.value),
+              (g.prefix = !0),
               this.next(),
-              (x.argument = this.parseMaybeUnary(!0)),
-              w && (x.argument = this.checkLVal(x.argument)),
-              (v = this.finishNode(
-                x,
+              (g.argument = this.parseMaybeUnary(!0)),
+              w && (g.argument = this.checkLVal(g.argument)),
+              (T = this.finishNode(
+                g,
                 w ? 'UpdateExpression' : 'UnaryExpression'
               ));
           } else if (this.tok.type === t.tokTypes.ellipsis) {
             var S = this.startNode();
             this.next(),
               (S.argument = this.parseMaybeUnary(p)),
-              (v = this.finishNode(S, 'SpreadElement'));
+              (T = this.finishNode(S, 'SpreadElement'));
           } else if (!p && this.tok.type === t.tokTypes.privateId)
-            v = this.parsePrivateIdent();
+            T = this.parsePrivateIdent();
           else
             for (
-              v = this.parseExprSubscripts();
+              T = this.parseExprSubscripts();
               this.tok.type.postfix && !this.canInsertSemicolon();
 
             ) {
-              var A = this.startNodeAt(f);
+              var A = this.startNodeAt(h);
               (A.operator = this.tok.value),
                 (A.prefix = !1),
-                (A.argument = this.checkLVal(v)),
+                (A.argument = this.checkLVal(T)),
                 this.next(),
-                (v = this.finishNode(A, 'UpdateExpression'));
+                (T = this.finishNode(A, 'UpdateExpression'));
             }
           if (!p && this.eat(t.tokTypes.starstar)) {
-            var U = this.startNodeAt(f);
+            var U = this.startNodeAt(h);
             return (
               (U.operator = '**'),
-              (U.left = v),
+              (U.left = T),
               (U.right = this.parseMaybeUnary(!1)),
               this.finishNode(U, 'BinaryExpression')
             );
           }
-          return v;
+          return T;
         }),
-        (g.parseExprSubscripts = function () {
+        (x.parseExprSubscripts = function () {
           var p = this.storeCurrentPos();
           return this.parseSubscripts(
             this.parseExprAtom(),
@@ -31282,95 +31282,95 @@ Defaulting to 2020, but this will stop working in the future.`)),
             this.curLineStart
           );
         }),
-        (g.parseSubscripts = function (p, f, v, x, w) {
+        (x.parseSubscripts = function (p, h, T, g, w) {
           for (var S = this.options.ecmaVersion >= 11, A = !1; ; ) {
             if (
               this.curLineStart !== w &&
-              this.curIndent <= x &&
+              this.curIndent <= g &&
               this.tokenStartsLine()
             )
-              if (this.tok.type === t.tokTypes.dot && this.curIndent === x) --x;
+              if (this.tok.type === t.tokTypes.dot && this.curIndent === g) --g;
               else break;
             var U =
                 p.type === 'Identifier' &&
                 p.name === 'async' &&
                 !this.canInsertSemicolon(),
-              D = S && this.eat(t.tokTypes.questionDot);
+              M = S && this.eat(t.tokTypes.questionDot);
             if (
-              (D && (A = !0),
-              (D &&
+              (M && (A = !0),
+              (M &&
                 this.tok.type !== t.tokTypes.parenL &&
                 this.tok.type !== t.tokTypes.bracketL &&
                 this.tok.type !== t.tokTypes.backQuote) ||
                 this.eat(t.tokTypes.dot))
             ) {
-              var c = this.startNodeAt(f);
+              var c = this.startNodeAt(h);
               (c.object = p),
                 this.curLineStart !== w &&
-                this.curIndent <= x &&
+                this.curIndent <= g &&
                 this.tokenStartsLine()
                   ? (c.property = this.dummyIdent())
                   : (c.property =
                       this.parsePropertyAccessor() || this.dummyIdent()),
                 (c.computed = !1),
-                S && (c.optional = D),
+                S && (c.optional = M),
                 (p = this.finishNode(c, 'MemberExpression'));
             } else if (this.tok.type === t.tokTypes.bracketL) {
               this.pushCx(), this.next();
-              var M = this.startNodeAt(f);
-              (M.object = p),
-                (M.property = this.parseExpression()),
-                (M.computed = !0),
-                S && (M.optional = D),
+              var L = this.startNodeAt(h);
+              (L.object = p),
+                (L.property = this.parseExpression()),
+                (L.computed = !0),
+                S && (L.optional = M),
                 this.popCx(),
                 this.expect(t.tokTypes.bracketR),
-                (p = this.finishNode(M, 'MemberExpression'));
-            } else if (!v && this.tok.type === t.tokTypes.parenL) {
-              var z = this.parseExprList(t.tokTypes.parenR);
+                (p = this.finishNode(L, 'MemberExpression'));
+            } else if (!T && this.tok.type === t.tokTypes.parenL) {
+              var W = this.parseExprList(t.tokTypes.parenR);
               if (U && this.eat(t.tokTypes.arrow))
-                return this.parseArrowExpression(this.startNodeAt(f), z, !0);
-              var X = this.startNodeAt(f);
+                return this.parseArrowExpression(this.startNodeAt(h), W, !0);
+              var X = this.startNodeAt(h);
               (X.callee = p),
-                (X.arguments = z),
-                S && (X.optional = D),
+                (X.arguments = W),
+                S && (X.optional = M),
                 (p = this.finishNode(X, 'CallExpression'));
             } else if (this.tok.type === t.tokTypes.backQuote) {
-              var ie = this.startNodeAt(f);
+              var ie = this.startNodeAt(h);
               (ie.tag = p),
                 (ie.quasi = this.parseTemplate()),
                 (p = this.finishNode(ie, 'TaggedTemplateExpression'));
             } else break;
           }
           if (A) {
-            var pe = this.startNodeAt(f);
+            var pe = this.startNodeAt(h);
             (pe.expression = p), (p = this.finishNode(pe, 'ChainExpression'));
           }
           return p;
         }),
-        (g.parseExprAtom = function () {
+        (x.parseExprAtom = function () {
           var p;
           switch (this.tok.type) {
             case t.tokTypes._this:
             case t.tokTypes._super:
-              var f =
+              var h =
                 this.tok.type === t.tokTypes._this ? 'ThisExpression' : 'Super';
-              return (p = this.startNode()), this.next(), this.finishNode(p, f);
+              return (p = this.startNode()), this.next(), this.finishNode(p, h);
             case t.tokTypes.name:
-              var v = this.storeCurrentPos(),
-                x = this.parseIdent(),
+              var T = this.storeCurrentPos(),
+                g = this.parseIdent(),
                 w = !1;
-              if (x.name === 'async' && !this.canInsertSemicolon()) {
+              if (g.name === 'async' && !this.canInsertSemicolon()) {
                 if (this.eat(t.tokTypes._function))
                   return (
                     this.toks.overrideContext(t.tokContexts.f_expr),
-                    this.parseFunction(this.startNodeAt(v), !1, !0)
+                    this.parseFunction(this.startNodeAt(T), !1, !0)
                   );
                 this.tok.type === t.tokTypes.name &&
-                  ((x = this.parseIdent()), (w = !0));
+                  ((g = this.parseIdent()), (w = !0));
               }
               return this.eat(t.tokTypes.arrow)
-                ? this.parseArrowExpression(this.startNodeAt(v), [x], w)
-                : x;
+                ? this.parseArrowExpression(this.startNodeAt(T), [g], w)
+                : g;
             case t.tokTypes.regexp:
               p = this.startNode();
               var S = this.tok.value;
@@ -31416,10 +31416,10 @@ Defaulting to 2020, but this will stop working in the future.`)),
               if (
                 (this.expect(t.tokTypes.parenR), this.eat(t.tokTypes.arrow))
               ) {
-                var D = U.expressions || [U];
+                var M = U.expressions || [U];
                 return (
-                  D.length && i(D[D.length - 1]) && D.pop(),
-                  this.parseArrowExpression(this.startNodeAt(A), D)
+                  M.length && i(M[M.length - 1]) && M.pop(),
+                  this.parseArrowExpression(this.startNodeAt(A), M)
                 );
               }
               if (this.options.preserveParens) {
@@ -31456,41 +31456,41 @@ Defaulting to 2020, but this will stop working in the future.`)),
               return this.dummyIdent();
           }
         }),
-        (g.parseExprImport = function () {
+        (x.parseExprImport = function () {
           var p = this.startNode(),
-            f = this.parseIdent(!0);
+            h = this.parseIdent(!0);
           switch (this.tok.type) {
             case t.tokTypes.parenL:
               return this.parseDynamicImport(p);
             case t.tokTypes.dot:
-              return (p.meta = f), this.parseImportMeta(p);
+              return (p.meta = h), this.parseImportMeta(p);
             default:
               return (p.name = 'import'), this.finishNode(p, 'Identifier');
           }
         }),
-        (g.parseDynamicImport = function (p) {
-          var f = this.parseExprList(t.tokTypes.parenR);
+        (x.parseDynamicImport = function (p) {
+          var h = this.parseExprList(t.tokTypes.parenR);
           return (
-            (p.source = f[0] || this.dummyString()),
-            (p.options = f[1] || null),
+            (p.source = h[0] || this.dummyString()),
+            (p.options = h[1] || null),
             this.finishNode(p, 'ImportExpression')
           );
         }),
-        (g.parseImportMeta = function (p) {
+        (x.parseImportMeta = function (p) {
           return (
             this.next(),
             (p.property = this.parseIdent(!0)),
             this.finishNode(p, 'MetaProperty')
           );
         }),
-        (g.parseNew = function () {
+        (x.parseNew = function () {
           var p = this.startNode(),
-            f = this.curIndent,
-            v = this.curLineStart,
-            x = this.parseIdent(!0);
+            h = this.curIndent,
+            T = this.curLineStart,
+            g = this.parseIdent(!0);
           if (this.options.ecmaVersion >= 6 && this.eat(t.tokTypes.dot))
             return (
-              (p.meta = x),
+              (p.meta = g),
               (p.property = this.parseIdent(!0)),
               this.finishNode(p, 'MetaProperty')
             );
@@ -31500,8 +31500,8 @@ Defaulting to 2020, but this will stop working in the future.`)),
               this.parseExprAtom(),
               w,
               !0,
-              f,
-              v
+              h,
+              T
             )),
             this.tok.type === t.tokTypes.parenL
               ? (p.arguments = this.parseExprList(t.tokTypes.parenR))
@@ -31509,7 +31509,7 @@ Defaulting to 2020, but this will stop working in the future.`)),
             this.finishNode(p, 'NewExpression')
           );
         }),
-        (g.parseTemplateElement = function () {
+        (x.parseTemplateElement = function () {
           var p = this.startNode();
           return (
             this.tok.type === t.tokTypes.invalidTemplate
@@ -31527,38 +31527,38 @@ Defaulting to 2020, but this will stop working in the future.`)),
             this.finishNode(p, 'TemplateElement')
           );
         }),
-        (g.parseTemplate = function () {
+        (x.parseTemplate = function () {
           var p = this.startNode();
           this.next(), (p.expressions = []);
-          var f = this.parseTemplateElement();
-          for (p.quasis = [f]; !f.tail; )
+          var h = this.parseTemplateElement();
+          for (p.quasis = [h]; !h.tail; )
             this.next(),
               p.expressions.push(this.parseExpression()),
               this.expect(t.tokTypes.braceR)
-                ? (f = this.parseTemplateElement())
-                : ((f = this.startNode()),
-                  (f.value = {cooked: '', raw: ''}),
-                  (f.tail = !0),
-                  this.finishNode(f, 'TemplateElement')),
-              p.quasis.push(f);
+                ? (h = this.parseTemplateElement())
+                : ((h = this.startNode()),
+                  (h.value = {cooked: '', raw: ''}),
+                  (h.tail = !0),
+                  this.finishNode(h, 'TemplateElement')),
+              p.quasis.push(h);
           return (
             this.expect(t.tokTypes.backQuote),
             this.finishNode(p, 'TemplateLiteral')
           );
         }),
-        (g.parseObj = function () {
+        (x.parseObj = function () {
           var p = this.startNode();
           (p.properties = []), this.pushCx();
-          var f = this.curIndent + 1,
-            v = this.curLineStart;
+          var h = this.curIndent + 1,
+            T = this.curLineStart;
           for (
             this.eat(t.tokTypes.braceL),
-              this.curIndent + 1 < f &&
-                ((f = this.curIndent), (v = this.curLineStart));
-            !this.closes(t.tokTypes.braceR, f, v);
+              this.curIndent + 1 < h &&
+                ((h = this.curIndent), (T = this.curLineStart));
+            !this.closes(t.tokTypes.braceR, h, T);
 
           ) {
-            var x = this.startNode(),
+            var g = this.startNode(),
               w = void 0,
               S = void 0,
               A = void 0;
@@ -31566,65 +31566,65 @@ Defaulting to 2020, but this will stop working in the future.`)),
               this.options.ecmaVersion >= 9 &&
               this.eat(t.tokTypes.ellipsis)
             ) {
-              (x.argument = this.parseMaybeAssign()),
-                p.properties.push(this.finishNode(x, 'SpreadElement')),
+              (g.argument = this.parseMaybeAssign()),
+                p.properties.push(this.finishNode(g, 'SpreadElement')),
                 this.eat(t.tokTypes.comma);
               continue;
             }
             if (
               (this.options.ecmaVersion >= 6 &&
                 ((A = this.storeCurrentPos()),
-                (x.method = !1),
-                (x.shorthand = !1),
+                (g.method = !1),
+                (g.shorthand = !1),
                 (w = this.eat(t.tokTypes.star))),
-              this.parsePropertyName(x),
-              this.toks.isAsyncProp(x)
+              this.parsePropertyName(g),
+              this.toks.isAsyncProp(g)
                 ? ((S = !0),
                   (w =
                     this.options.ecmaVersion >= 9 && this.eat(t.tokTypes.star)),
-                  this.parsePropertyName(x))
+                  this.parsePropertyName(g))
                 : (S = !1),
-              i(x.key))
+              i(g.key))
             ) {
               i(this.parseMaybeAssign()) && this.next(),
                 this.eat(t.tokTypes.comma);
               continue;
             }
             if (this.eat(t.tokTypes.colon))
-              (x.kind = 'init'), (x.value = this.parseMaybeAssign());
+              (g.kind = 'init'), (g.value = this.parseMaybeAssign());
             else if (
               this.options.ecmaVersion >= 6 &&
               (this.tok.type === t.tokTypes.parenL ||
                 this.tok.type === t.tokTypes.braceL)
             )
-              (x.kind = 'init'),
-                (x.method = !0),
-                (x.value = this.parseMethod(w, S));
+              (g.kind = 'init'),
+                (g.method = !0),
+                (g.value = this.parseMethod(w, S));
             else if (
               this.options.ecmaVersion >= 5 &&
-              x.key.type === 'Identifier' &&
-              !x.computed &&
-              (x.key.name === 'get' || x.key.name === 'set') &&
+              g.key.type === 'Identifier' &&
+              !g.computed &&
+              (g.key.name === 'get' || g.key.name === 'set') &&
               this.tok.type !== t.tokTypes.comma &&
               this.tok.type !== t.tokTypes.braceR &&
               this.tok.type !== t.tokTypes.eq
             )
-              (x.kind = x.key.name),
-                this.parsePropertyName(x),
-                (x.value = this.parseMethod(!1));
+              (g.kind = g.key.name),
+                this.parsePropertyName(g),
+                (g.value = this.parseMethod(!1));
             else {
-              if (((x.kind = 'init'), this.options.ecmaVersion >= 6))
+              if (((g.kind = 'init'), this.options.ecmaVersion >= 6))
                 if (this.eat(t.tokTypes.eq)) {
                   var U = this.startNodeAt(A);
                   (U.operator = '='),
-                    (U.left = x.key),
+                    (U.left = g.key),
                     (U.right = this.parseMaybeAssign()),
-                    (x.value = this.finishNode(U, 'AssignmentExpression'));
-                } else x.value = x.key;
-              else x.value = this.dummyIdent();
-              x.shorthand = !0;
+                    (g.value = this.finishNode(U, 'AssignmentExpression'));
+                } else g.value = g.key;
+              else g.value = this.dummyIdent();
+              g.shorthand = !0;
             }
-            p.properties.push(this.finishNode(x, 'Property')),
+            p.properties.push(this.finishNode(g, 'Property')),
               this.eat(t.tokTypes.comma);
           }
           return (
@@ -31636,7 +31636,7 @@ Defaulting to 2020, but this will stop working in the future.`)),
             this.finishNode(p, 'ObjectExpression')
           );
         }),
-        (g.parsePropertyName = function (p) {
+        (x.parsePropertyName = function (p) {
           if (this.options.ecmaVersion >= 6)
             if (this.eat(t.tokTypes.bracketL)) {
               (p.computed = !0),
@@ -31644,30 +31644,30 @@ Defaulting to 2020, but this will stop working in the future.`)),
                 this.expect(t.tokTypes.bracketR);
               return;
             } else p.computed = !1;
-          var f =
+          var h =
             this.tok.type === t.tokTypes.num ||
             this.tok.type === t.tokTypes.string
               ? this.parseExprAtom()
               : this.parseIdent();
-          p.key = f || this.dummyIdent();
+          p.key = h || this.dummyIdent();
         }),
-        (g.parsePropertyAccessor = function () {
+        (x.parsePropertyAccessor = function () {
           if (this.tok.type === t.tokTypes.name || this.tok.type.keyword)
             return this.parseIdent();
           if (this.tok.type === t.tokTypes.privateId)
             return this.parsePrivateIdent();
         }),
-        (g.parseIdent = function () {
+        (x.parseIdent = function () {
           var p =
             this.tok.type === t.tokTypes.name
               ? this.tok.value
               : this.tok.type.keyword;
           if (!p) return this.dummyIdent();
           this.tok.type.keyword && (this.toks.type = t.tokTypes.name);
-          var f = this.startNode();
-          return this.next(), (f.name = p), this.finishNode(f, 'Identifier');
+          var h = this.startNode();
+          return this.next(), (h.name = p), this.finishNode(h, 'Identifier');
         }),
-        (g.parsePrivateIdent = function () {
+        (x.parsePrivateIdent = function () {
           var p = this.startNode();
           return (
             (p.name = this.tok.value),
@@ -31675,111 +31675,111 @@ Defaulting to 2020, but this will stop working in the future.`)),
             this.finishNode(p, 'PrivateIdentifier')
           );
         }),
-        (g.initFunction = function (p) {
+        (x.initFunction = function (p) {
           (p.id = null),
             (p.params = []),
             this.options.ecmaVersion >= 6 &&
               ((p.generator = !1), (p.expression = !1)),
             this.options.ecmaVersion >= 8 && (p.async = !1);
         }),
-        (g.toAssignable = function (p, f) {
+        (x.toAssignable = function (p, h) {
           if (
             !(
               !p ||
               p.type === 'Identifier' ||
-              (p.type === 'MemberExpression' && !f)
+              (p.type === 'MemberExpression' && !h)
             )
           )
             if (p.type === 'ParenthesizedExpression')
-              this.toAssignable(p.expression, f);
+              this.toAssignable(p.expression, h);
             else {
               if (this.options.ecmaVersion < 6) return this.dummyIdent();
               if (p.type === 'ObjectExpression') {
                 p.type = 'ObjectPattern';
-                for (var v = 0, x = p.properties; v < x.length; v += 1) {
-                  var w = x[v];
-                  this.toAssignable(w, f);
+                for (var T = 0, g = p.properties; T < g.length; T += 1) {
+                  var w = g[T];
+                  this.toAssignable(w, h);
                 }
               } else if (p.type === 'ArrayExpression')
-                (p.type = 'ArrayPattern'), this.toAssignableList(p.elements, f);
-              else if (p.type === 'Property') this.toAssignable(p.value, f);
+                (p.type = 'ArrayPattern'), this.toAssignableList(p.elements, h);
+              else if (p.type === 'Property') this.toAssignable(p.value, h);
               else if (p.type === 'SpreadElement')
-                (p.type = 'RestElement'), this.toAssignable(p.argument, f);
+                (p.type = 'RestElement'), this.toAssignable(p.argument, h);
               else if (p.type === 'AssignmentExpression')
                 (p.type = 'AssignmentPattern'), delete p.operator;
               else return this.dummyIdent();
             }
           return p;
         }),
-        (g.toAssignableList = function (p, f) {
-          for (var v = 0, x = p; v < x.length; v += 1) {
-            var w = x[v];
-            this.toAssignable(w, f);
+        (x.toAssignableList = function (p, h) {
+          for (var T = 0, g = p; T < g.length; T += 1) {
+            var w = g[T];
+            this.toAssignable(w, h);
           }
           return p;
         }),
-        (g.parseFunctionParams = function (p) {
+        (x.parseFunctionParams = function (p) {
           return (
             (p = this.parseExprList(t.tokTypes.parenR)),
             this.toAssignableList(p, !0)
           );
         }),
-        (g.parseMethod = function (p, f) {
-          var v = this.startNode(),
-            x = this.inAsync,
+        (x.parseMethod = function (p, h) {
+          var T = this.startNode(),
+            g = this.inAsync,
             w = this.inGenerator,
             S = this.inFunction;
           return (
-            this.initFunction(v),
-            this.options.ecmaVersion >= 6 && (v.generator = !!p),
-            this.options.ecmaVersion >= 8 && (v.async = !!f),
-            (this.inAsync = v.async),
-            (this.inGenerator = v.generator),
+            this.initFunction(T),
+            this.options.ecmaVersion >= 6 && (T.generator = !!p),
+            this.options.ecmaVersion >= 8 && (T.async = !!h),
+            (this.inAsync = T.async),
+            (this.inGenerator = T.generator),
             (this.inFunction = !0),
-            (v.params = this.parseFunctionParams()),
-            (v.body = this.parseBlock()),
-            this.toks.adaptDirectivePrologue(v.body.body),
-            (this.inAsync = x),
+            (T.params = this.parseFunctionParams()),
+            (T.body = this.parseBlock()),
+            this.toks.adaptDirectivePrologue(T.body.body),
+            (this.inAsync = g),
             (this.inGenerator = w),
             (this.inFunction = S),
-            this.finishNode(v, 'FunctionExpression')
+            this.finishNode(T, 'FunctionExpression')
           );
         }),
-        (g.parseArrowExpression = function (p, f, v) {
-          var x = this.inAsync,
+        (x.parseArrowExpression = function (p, h, T) {
+          var g = this.inAsync,
             w = this.inGenerator,
             S = this.inFunction;
           return (
             this.initFunction(p),
-            this.options.ecmaVersion >= 8 && (p.async = !!v),
+            this.options.ecmaVersion >= 8 && (p.async = !!T),
             (this.inAsync = p.async),
             (this.inGenerator = !1),
             (this.inFunction = !0),
-            (p.params = this.toAssignableList(f, !0)),
+            (p.params = this.toAssignableList(h, !0)),
             (p.expression = this.tok.type !== t.tokTypes.braceL),
             p.expression
               ? (p.body = this.parseMaybeAssign())
               : ((p.body = this.parseBlock()),
                 this.toks.adaptDirectivePrologue(p.body.body)),
-            (this.inAsync = x),
+            (this.inAsync = g),
             (this.inGenerator = w),
             (this.inFunction = S),
             this.finishNode(p, 'ArrowFunctionExpression')
           );
         }),
-        (g.parseExprList = function (p, f) {
+        (x.parseExprList = function (p, h) {
           this.pushCx();
-          var v = this.curIndent,
-            x = this.curLineStart,
+          var T = this.curIndent,
+            g = this.curLineStart,
             w = [];
-          for (this.next(); !this.closes(p, v + 1, x); ) {
+          for (this.next(); !this.closes(p, T + 1, g); ) {
             if (this.eat(t.tokTypes.comma)) {
-              w.push(f ? null : this.dummyIdent());
+              w.push(h ? null : this.dummyIdent());
               continue;
             }
             var S = this.parseMaybeAssign();
             if (i(S)) {
-              if (this.closes(p, v, x)) break;
+              if (this.closes(p, T, g)) break;
               this.next();
             } else w.push(S);
             this.eat(t.tokTypes.comma);
@@ -31793,7 +31793,7 @@ Defaulting to 2020, but this will stop working in the future.`)),
             w
           );
         }),
-        (g.parseAwait = function () {
+        (x.parseAwait = function () {
           var p = this.startNode();
           return (
             this.next(),
@@ -31802,19 +31802,19 @@ Defaulting to 2020, but this will stop working in the future.`)),
           );
         }),
         (t.defaultOptions.tabSize = 4);
-      function L(p, f) {
-        return a.parse(p, f);
+      function R(p, h) {
+        return a.parse(p, h);
       }
-      (e.LooseParser = a), (e.isDummy = i), (e.parse = L);
+      (e.LooseParser = a), (e.isDummy = i), (e.parse = R);
     });
   });
   var Vo = Li(),
-    qg = Jc(),
+    Ug = Jc(),
     dr = e1(),
-    Kg = uf(),
-    Ug = df(),
+    Hg = uf(),
+    Tf = df(),
     Os = null;
-  function Tf() {
+  function kf() {
     return new Proxy(
       {},
       {
@@ -31830,7 +31830,7 @@ Defaulting to 2020, but this will stop working in the future.`)),
     );
   }
   var Nc = {};
-  function Hg(e, t, s) {
+  function mf(e, t, s) {
     var i = dr.registerServerReference(e, t, s),
       r = t + '#' + s;
     return (Nc[r] = e), i;
@@ -31839,7 +31839,7 @@ Defaulting to 2020, but this will stop working in the future.`)),
     if (e.indexOf('use client') === -1 && e.indexOf('use server') === -1)
       return null;
     try {
-      var t = Ug.parse(e, {ecmaVersion: '2024', sourceType: 'source'}).body;
+      var t = Tf.parse(e, {ecmaVersion: '2024', sourceType: 'source'}).body;
     } catch {
       return null;
     }
@@ -31851,7 +31851,101 @@ Defaulting to 2020, but this will stop working in the future.`)),
     }
     return null;
   }
-  function Gg(e, t) {
+  function Gg(e) {
+    if (e.indexOf('use server') === -1) return e;
+    var t;
+    try {
+      t = Tf.parse(e, {ecmaVersion: '2024', sourceType: 'source'});
+    } catch {
+      return e;
+    }
+    var s = [],
+      i = 0;
+    function r(T, g) {
+      if (!(!T || typeof T != 'object')) {
+        var w =
+          T.type === 'FunctionDeclaration' ||
+          T.type === 'FunctionExpression' ||
+          T.type === 'ArrowFunctionExpression';
+        if (w && g > 0 && T.body && T.body.type === 'BlockStatement')
+          for (var S = T.body.body, A = 0; A < S.length; A++) {
+            var U = S[A];
+            if (U.type !== 'ExpressionStatement') break;
+            if (U.directive === 'use server') {
+              s.push({
+                funcStart: T.start,
+                funcEnd: T.end,
+                dStart: U.start,
+                dEnd: U.end,
+                name: T.id ? T.id.name : 'action' + i,
+                isDecl: T.type === 'FunctionDeclaration',
+              }),
+                i++;
+              return;
+            }
+            if (!U.directive) break;
+          }
+        var M = w ? g + 1 : g;
+        for (var c in T)
+          if (!(c === 'start' || c === 'end' || c === 'type')) {
+            var L = T[c];
+            if (Array.isArray(L))
+              for (var W = 0; W < L.length; W++)
+                L[W] && typeof L[W].type == 'string' && r(L[W], M);
+            else L && typeof L.type == 'string' && r(L, M);
+          }
+      }
+    }
+    if (
+      (t.body.forEach(function (T) {
+        r(T, 0);
+      }),
+      s.length === 0)
+    )
+      return e;
+    s.sort(function (T, g) {
+      return g.funcStart - T.funcStart;
+    });
+    for (var a = e, u = 0; u < s.length; u++) {
+      for (
+        var d = s[u], y = d.dEnd, x = a.charAt(y);
+        y < a.length &&
+        (x === ' ' ||
+          x ===
+            `
+` ||
+          x === '\r' ||
+          x === '	');
+
+      )
+        y++, (x = a.charAt(y));
+      a = a.slice(0, d.dStart) + a.slice(y);
+      var R = y - d.dStart,
+        p = d.funcEnd - R,
+        h = a.slice(d.funcStart, p);
+      d.isDecl
+        ? (a =
+            a.slice(0, d.funcStart) +
+            'var ' +
+            d.name +
+            ' = __rsa(' +
+            h +
+            ", '" +
+            d.name +
+            "');" +
+            a.slice(p))
+        : (a =
+            a.slice(0, d.funcStart) +
+            '__rsa(' +
+            h +
+            ", '" +
+            d.name +
+            "')" +
+            a.slice(p));
+    }
+    return a;
+  }
+  function zg(e, t) {
     if (!t.startsWith('.')) return t;
     var s = e.split('/');
     s.pop();
@@ -31865,87 +31959,92 @@ Defaulting to 2020, but this will stop working in the future.`)),
       }
     return s.join('/');
   }
-  function zg(e) {
+  function Xg(e) {
     Nc = {};
-    var t = {react: Vo, 'react/jsx-runtime': qg},
+    var t = {react: Vo, 'react/jsx-runtime': Ug},
       s = {},
       i = null;
     if (
-      (Object.keys(e).forEach(function (f) {
+      (Object.keys(e).forEach(function (h) {
         if (!i)
           try {
-            s[f] = Kg.transform(e[f], {
+            s[h] = Hg.transform(e[h], {
               transforms: ['jsx', 'imports'],
               jsxRuntime: 'automatic',
               production: !0,
             }).code;
-          } catch (v) {
-            i = f + ': ' + (v.message || String(v));
+          } catch (T) {
+            i = h + ': ' + (T.message || String(T));
           }
       }),
       i)
     )
       return {type: 'error', error: i};
-    function r(f, v) {
-      if (t[v]) return v;
-      if (v.startsWith('.')) {
-        var x = Gg(f, v);
-        if (t[x] || s[x]) return x;
+    function r(h, T) {
+      if (t[T]) return T;
+      if (T.startsWith('.')) {
+        var g = zg(h, T);
+        if (t[g] || s[g]) return g;
         for (var w = ['.js', '.jsx', '.ts', '.tsx'], S = 0; S < w.length; S++) {
-          var A = x + w[S];
+          var A = g + w[S];
           if (t[A] || s[A]) return A;
         }
       }
-      return v;
+      return T;
     }
     var a = {},
       u = {};
-    function d(f) {
-      if (t[f]) return t[f];
-      if (!s[f]) throw new Error('Module "' + f + '" not found');
-      if (a[f]) return a[f].exports;
-      var v = Wg(e[f]);
-      if (v === 'use client')
-        return (t[f] = dr.createClientModuleProxy(f)), (u[f] = !0), t[f];
-      var x = {exports: {}};
-      a[f] = x;
-      var w = function (D) {
-        if (D.endsWith('.css')) return {};
-        var c = r(f, D);
-        return t[c] ? t[c] : d(c);
-      };
+    function d(h) {
+      if (t[h]) return t[h];
+      if (!s[h]) throw new Error('Module "' + h + '" not found');
+      if (a[h]) return a[h].exports;
+      var T = Wg(e[h]);
+      if (T === 'use client')
+        return (t[h] = dr.createClientModuleProxy(h)), (u[h] = !0), t[h];
+      var g = {exports: {}};
+      a[h] = g;
+      var w = function (c) {
+          if (c.endsWith('.css')) return {};
+          var L = r(h, c);
+          return t[L] ? t[L] : d(L);
+        },
+        S = s[h];
       if (
-        (new Function('module', 'exports', 'require', 'React', s[f])(
-          x,
-          x.exports,
+        (T !== 'use server' && (S = Gg(S)),
+        new Function('module', 'exports', 'require', 'React', '__rsa', S)(
+          g,
+          g.exports,
           w,
-          Vo
+          Vo,
+          function (c, L) {
+            return mf(c, h, L);
+          }
         ),
-        (t[f] = x.exports),
-        v === 'use server')
+        (t[h] = g.exports),
+        T === 'use server')
       )
-        for (var S = Object.keys(x.exports), A = 0; A < S.length; A++) {
-          var U = S[A];
-          typeof x.exports[U] == 'function' && Hg(x.exports[U], f, U);
+        for (var A = Object.keys(g.exports), U = 0; U < A.length; U++) {
+          var M = A[U];
+          typeof g.exports[M] == 'function' && mf(g.exports[M], h, M);
         }
-      return delete a[f], x.exports;
+      return delete a[h], g.exports;
     }
     var y = {exports: {}};
-    Object.keys(s).forEach(function (f) {
-      d(f),
-        (f === '/src/App.js' || f === './App.js' || f === './src/App.js') &&
-          (y.exports = t[f]);
+    Object.keys(s).forEach(function (h) {
+      d(h),
+        (h === '/src/App.js' || h === './App.js' || h === './src/App.js') &&
+          (y.exports = t[h]);
     }),
       (Os = {module: y.exports});
-    var g = {};
-    function L(f) {
-      if (!g[f]) {
-        g[f] = !0;
-        var v = s[f];
-        if (v)
+    var x = {};
+    function R(h) {
+      if (!x[h]) {
+        x[h] = !0;
+        var T = s[h];
+        if (T)
           for (
-            var x = /require\(["']([^"']+)["']\)/g, w;
-            (w = x.exec(v)) !== null;
+            var g = /require\(["']([^"']+)["']\)/g, w;
+            (w = g.exec(T)) !== null;
 
           ) {
             var S = w[1];
@@ -31957,30 +32056,36 @@ Defaulting to 2020, but this will stop working in the future.`)),
                 S.endsWith('.css')
               )
             ) {
-              var A = r(f, S);
-              s[A] && L(A);
+              var A = r(h, S);
+              s[A] && R(A);
             }
           }
       }
     }
-    Object.keys(u).forEach(function (f) {
-      L(f);
+    Object.keys(u).forEach(function (h) {
+      R(h);
     });
     var p = {};
     return (
-      Object.keys(g).forEach(function (f) {
-        p[f] = s[f];
+      Object.keys(x).forEach(function (h) {
+        p[h] = s[h];
       }),
       {type: 'deployed', compiledClients: p, clientEntries: u}
     );
   }
-  function Xg() {
+  function Yg() {
     if (!Os) throw new Error('No code deployed');
     var e = Os.module.default || Os.module,
       t = Vo.createElement(e);
-    return dr.renderToReadableStream(t, Tf(), {onError: console.error});
+    return dr.renderToReadableStream(t, kf(), {
+      onError: function (s) {
+        var i = s && s.message ? s.message : String(s),
+          r = s && s.stack ? s.stack : '';
+        return console.error('[RSC Server Error]', i, r), i;
+      },
+    });
   }
-  function Yg(e, t) {
+  function Jg(e, t) {
     if (!Os) throw new Error('No code deployed');
     var s = Nc[e];
     if (!s) throw new Error('Action "' + e + '" not found');
@@ -31996,12 +32101,19 @@ Defaulting to 2020, but this will stop working in the future.`)),
         var d = Os.module.default || Os.module;
         return dr.renderToReadableStream(
           {root: Vo.createElement(d), returnValue: u},
-          Tf()
+          kf(),
+          {
+            onError: function (y) {
+              var x = y && y.message ? y.message : String(y),
+                R = y && y.stack ? y.stack : '';
+              return console.error('[RSC Server Error]', x, R), x;
+            },
+          }
         );
       });
     });
   }
-  function mf(e, t) {
+  function yf(e, t) {
     var s = t.getReader();
     function i() {
       return s.read().then(function (r) {
@@ -32026,7 +32138,7 @@ Defaulting to 2020, but this will stop working in the future.`)),
     var t = e.data;
     if (t.type === 'deploy')
       try {
-        var s = zg(t.files);
+        var s = Xg(t.files);
         s && s.type === 'error'
           ? self.postMessage({type: 'rsc-error', error: s.error})
           : s && self.postMessage({type: 'deploy-result', result: s});
@@ -32035,10 +32147,10 @@ Defaulting to 2020, but this will stop working in the future.`)),
       }
     else if (t.type === 'render')
       try {
-        var i = Xg();
+        var i = Yg();
         Promise.resolve(i)
           .then(function (r) {
-            mf(t.requestId, r);
+            yf(t.requestId, r);
           })
           .catch(function (r) {
             self.postMessage({
@@ -32056,9 +32168,9 @@ Defaulting to 2020, but this will stop working in the future.`)),
       }
     else if (t.type === 'callAction')
       try {
-        Yg(t.actionId, t.encodedArgs)
+        Jg(t.actionId, t.encodedArgs)
           .then(function (r) {
-            mf(t.requestId, r);
+            yf(t.requestId, r);
           })
           .catch(function (r) {
             self.postMessage({

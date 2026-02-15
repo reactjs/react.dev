@@ -72,6 +72,129 @@ function parseDirective(code) {
   return null;
 }
 
+// Transform inline 'use server' functions (inside function bodies) into
+// registered server references. Module-level 'use server' is handled
+// separately by executeModule.
+function transformInlineServerActions(code) {
+  if (code.indexOf('use server') === -1) return code;
+  var ast;
+  try {
+    ast = acorn.parse(code, {ecmaVersion: '2024', sourceType: 'source'});
+  } catch (x) {
+    return code;
+  }
+
+  var edits = [];
+  var counter = 0;
+
+  function visit(node, fnDepth) {
+    if (!node || typeof node !== 'object') return;
+    var isFn =
+      node.type === 'FunctionDeclaration' ||
+      node.type === 'FunctionExpression' ||
+      node.type === 'ArrowFunctionExpression';
+
+    // Only look for 'use server' inside nested functions (fnDepth > 0)
+    if (
+      isFn &&
+      fnDepth > 0 &&
+      node.body &&
+      node.body.type === 'BlockStatement'
+    ) {
+      var body = node.body.body;
+      for (var s = 0; s < body.length; s++) {
+        var stmt = body[s];
+        if (stmt.type !== 'ExpressionStatement') break;
+        if (stmt.directive === 'use server') {
+          edits.push({
+            funcStart: node.start,
+            funcEnd: node.end,
+            dStart: stmt.start,
+            dEnd: stmt.end,
+            name: node.id ? node.id.name : 'action' + counter,
+            isDecl: node.type === 'FunctionDeclaration',
+          });
+          counter++;
+          return; // don't recurse into this function
+        }
+        if (!stmt.directive) break;
+      }
+    }
+
+    var nextDepth = isFn ? fnDepth + 1 : fnDepth;
+    for (var key in node) {
+      if (key === 'start' || key === 'end' || key === 'type') continue;
+      var child = node[key];
+      if (Array.isArray(child)) {
+        for (var i = 0; i < child.length; i++) {
+          if (child[i] && typeof child[i].type === 'string') {
+            visit(child[i], nextDepth);
+          }
+        }
+      } else if (child && typeof child.type === 'string') {
+        visit(child, nextDepth);
+      }
+    }
+  }
+
+  ast.body.forEach(function (stmt) {
+    visit(stmt, 0);
+  });
+  if (edits.length === 0) return code;
+
+  // Apply in reverse order to preserve positions
+  edits.sort(function (a, b) {
+    return b.funcStart - a.funcStart;
+  });
+
+  var result = code;
+  for (var i = 0; i < edits.length; i++) {
+    var e = edits[i];
+    // Remove the 'use server' directive + trailing whitespace
+    var dEnd = e.dEnd;
+    var ch = result.charAt(dEnd);
+    while (
+      dEnd < result.length &&
+      (ch === ' ' || ch === '\n' || ch === '\r' || ch === '\t')
+    ) {
+      dEnd++;
+      ch = result.charAt(dEnd);
+    }
+    result = result.slice(0, e.dStart) + result.slice(dEnd);
+    var removed = dEnd - e.dStart;
+    var adjEnd = e.funcEnd - removed;
+
+    // Wrap function with __rsa (register server action)
+    var funcCode = result.slice(e.funcStart, adjEnd);
+    if (e.isDecl) {
+      // async function foo() { ... } →
+      // var foo = __rsa(async function foo() { ... }, 'foo');
+      result =
+        result.slice(0, e.funcStart) +
+        'var ' +
+        e.name +
+        ' = __rsa(' +
+        funcCode +
+        ", '" +
+        e.name +
+        "');" +
+        result.slice(adjEnd);
+    } else {
+      // expression/arrow: just wrap in __rsa(...)
+      result =
+        result.slice(0, e.funcStart) +
+        '__rsa(' +
+        funcCode +
+        ", '" +
+        e.name +
+        "')" +
+        result.slice(adjEnd);
+    }
+  }
+
+  return result;
+}
+
 // Resolve relative paths (e.g., './Counter.js' from '/src/App.js' → '/src/Counter.js')
 function resolvePath(from, to) {
   if (!to.startsWith('.')) return to;
@@ -171,12 +294,22 @@ function deploy(files) {
       return executeModule(resolved);
     };
 
-    new Function('module', 'exports', 'require', 'React', compiled[filePath])(
-      mod,
-      mod.exports,
-      localRequire,
-      React
-    );
+    // Transform inline 'use server' functions before execution
+    var codeToExecute = compiled[filePath];
+    if (directive !== 'use server') {
+      codeToExecute = transformInlineServerActions(codeToExecute);
+    }
+
+    new Function(
+      'module',
+      'exports',
+      'require',
+      'React',
+      '__rsa',
+      codeToExecute
+    )(mod, mod.exports, localRequire, React, function (fn, name) {
+      return registerServerReference(fn, filePath, name);
+    });
 
     modules[filePath] = mod.exports;
 
@@ -259,7 +392,12 @@ function render() {
   var App = deployed.module.default || deployed.module;
   var element = React.createElement(App);
   return RSDWServer.renderToReadableStream(element, createModuleMap(), {
-    onError: console.error,
+    onError: function (err) {
+      var msg = err && err.message ? err.message : String(err);
+      var stack = err && err.stack ? err.stack : '';
+      console.error('[RSC Server Error]', msg, stack);
+      return msg;
+    },
   });
 }
 
@@ -289,7 +427,15 @@ function callAction(actionId, encodedArgs) {
       var App = deployed.module.default || deployed.module;
       return RSDWServer.renderToReadableStream(
         {root: React.createElement(App), returnValue: resultPromise},
-        createModuleMap()
+        createModuleMap(),
+        {
+          onError: function (err) {
+            var msg = err && err.message ? err.message : String(err);
+            var stack = err && err.stack ? err.stack : '';
+            console.error('[RSC Server Error]', msg, stack);
+            return msg;
+          },
+        }
       );
     });
   });

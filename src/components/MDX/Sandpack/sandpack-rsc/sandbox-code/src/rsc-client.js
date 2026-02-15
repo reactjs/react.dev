@@ -63,7 +63,18 @@ export function initClient() {
 
   var rootEl = document.getElementById('root');
   if (!rootEl) throw new Error('#root element not found');
-  var root = createRoot(rootEl);
+  var root = createRoot(rootEl, {
+    onUncaughtError: function (error) {
+      var msg =
+        error && error.digest
+          ? error.digest
+          : error && error.message
+          ? error.message
+          : String(error);
+      console.error('[RSC Client Error] digest:', error && error.digest);
+      showError(msg);
+    },
+  });
   startTransition(function () {
     root.render(jsx(Root, {initialPromise: initialPromise}));
   });

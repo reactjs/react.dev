@@ -26,7 +26,7 @@ import BlogCard from './BlogCard';
 import Link from './Link';
 import {PackageImport} from './PackageImport';
 import Recap from './Recap';
-import Sandpack from './Sandpack';
+import {SandpackClient as Sandpack, SandpackRSC} from './Sandpack';
 import SandpackWithHTMLOutput from './SandpackWithHTMLOutput';
 import Diagram from './Diagram';
 import DiagramGroup from './DiagramGroup';
@@ -551,6 +551,7 @@ export const MDXComponents = {
   Recap,
   Recipes,
   Sandpack,
+  SandpackRSC,
   SandpackWithHTMLOutput,
   TeamMember,
   TerminalBlock,

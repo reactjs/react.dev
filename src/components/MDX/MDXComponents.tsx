@@ -25,6 +25,7 @@ import Intro from './Intro';
 import BlogCard from './BlogCard';
 import Link from './Link';
 import {PackageImport} from './PackageImport';
+import {PerformanceTracks} from './PerformanceTracks';
 import Recap from './Recap';
 import Sandpack from './Sandpack';
 import SandpackWithHTMLOutput from './SandpackWithHTMLOutput';
@@ -547,6 +548,7 @@ export const MDXComponents = {
   RSC,
   RSCBadge,
   PackageImport,
+  PerformanceTracks,
   ReadBlogPost,
   Recap,
   Recipes,

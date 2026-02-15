@@ -20,7 +20,7 @@ import {ViewTransition} from 'react';
 
 <ViewTransition>
   <div>...</div>
-</ViewTransition>;
+</ViewTransition>
 ```
 
 </Intro>

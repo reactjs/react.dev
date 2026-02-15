@@ -5,7 +5,7 @@ version: canary
 
 <Canary>
 
-**The `<ViewTransition />` API is currently only available in React’s Canary and Experimental channels.** 
+**The `<ViewTransition />` API is currently only available in React’s Canary and Experimental channels.**
 
 [Learn more about React’s release channels here.](/community/versioning-policy#all-release-channels)
 
@@ -14,7 +14,6 @@ version: canary
 <Intro>
 
 `<ViewTransition>` lets you animate elements that update inside a Transition.
-
 
 ```js
 import {ViewTransition} from 'react';
@@ -41,7 +40,7 @@ Wrap elements in `<ViewTransition>` to animate them when they update inside a [T
 - `update`: If a `ViewTransition` has any DOM mutations inside it that React is doing (such as a prop changing) or if the `ViewTransition` boundary itself changes size or position due to an immediate sibling. If there are nested` ViewTransition` then the mutation applies to them and not the parent.
 - `share`: If a named `ViewTransition` is inside a deleted subtree and another named `ViewTransition` with the same name is part of an inserted subtree in the same Transition, they form a Shared Element Transition, and it animates from the deleted one to the inserted one.
 
-By default, `<ViewTransition>` animates with a smooth cross-fade (the browser default view transition). You can customize the animation by providing a [View Transition Class](#view-transition-class) to the `<ViewTransition>` component. You can  customize animations for each kind of trigger (see [Styling View Transitions](#styling-view-transitions)).
+By default, `<ViewTransition>` animates with a smooth cross-fade (the browser default view transition). You can customize the animation by providing a [View Transition Class](#view-transition-class) to the `<ViewTransition>` component. You can customize animations for each kind of trigger (see [Styling View Transitions](#styling-view-transitions)).
 
 <DeepDive>
 
@@ -75,29 +74,50 @@ After the finished Promise of the `startViewTransition` is resolved, React will 
 
 By default, `<ViewTransition>` animates with a smooth cross-fade. You can customize the animation, or specify a shared element transition, with these props:
 
-* **optional** `enter`: A string or object. The [View Transition Class](#view-transition-class) to apply when enter is activated.
-* **optional** `exit`: A string or object. The [View Transition Class](#view-transition-class) to apply when exit is activated.
-* **optional** `update`: A string or object. The [View Transition Class](#view-transition-class) to apply when an update is activated.
-* **optional** `share`: A string or object. The [View Transition Class](#view-transition-class) to apply when a shared element is activated.
-* **optional** `default`: A string or object. The [View Transition Class](#view-transition-class) used when no other matching activation prop is found. 
-* **optional** `name`: A string or object. The name of the View Transition used for shared element transitions. If not provided, React will use a unique name for each View Transition to prevent unexpected animations.
+- **optional** `enter`: A string or object. The [View Transition Class](#view-transition-class) to apply when enter is activated.
+- **optional** `exit`: A string or object. The [View Transition Class](#view-transition-class) to apply when exit is activated.
+- **optional** `update`: A string or object. The [View Transition Class](#view-transition-class) to apply when an update is activated.
+- **optional** `share`: A string or object. The [View Transition Class](#view-transition-class) to apply when a shared element is activated.
+- **optional** `default`: A string or object. The [View Transition Class](#view-transition-class) used when no other matching activation prop is found.
+- **optional** `name`: A string or object. The name of the View Transition used for shared element transitions. If not provided, React will use a unique name for each View Transition to prevent unexpected animations.
 
 #### Callback {/*events*/}
 
-These callbacks allow you to adjust the animation imperatively using the [animate](https://developer.mozilla.org/en-US/docs/Web/API/Element/animate) APIs:
+These callbacks allow you to control the animation imperatively using the [Web Animations API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Animations_API). React calls them after the View Transition's [`ready`](https://developer.mozilla.org/en-US/docs/Web/API/ViewTransition/ready) Promise resolves, once built-in default animations have already been computed. Only one callback fires per `<ViewTransition>` per Transition.
 
-* **optional** `onEnter`: A function. React calls `onEnter` after an "enter" animation.
-* **optional** `onExit`: A function. React calls `onExit` after an "exit" animation.
-* **optional** `onShare`:  A function. React calls `onShare` after a "share" animation.
-* **optional** `onUpdate`:  A function. React calls `onUpdate` after an "update" animation.
+- **optional** `onEnter`: `(instance, types) => void | (() => void)`. Called when this `<ViewTransition>` is inserted during a Transition without a matching named pair. Use this to animate the entering element imperatively.
+- **optional** `onExit`: `(instance, types) => void | (() => void)`. Called when this `<ViewTransition>` is removed during a Transition without a matching named pair. Use this to animate the exiting element imperatively.
+- **optional** `onShare`: `(instance, types) => void | (() => void)`. Called when this `<ViewTransition>` is part of a shared element Transition—where a named `<ViewTransition>` is deleted and another with the same name is inserted. Takes precedence over `onEnter` and `onExit`. Use this to animate the shared element Transition imperatively.
+- **optional** `onUpdate`: `(instance, types) => void | (() => void)`. Called when this `<ViewTransition>` has DOM mutations inside it, or when the boundary itself changes size or position due to a sibling change. Use this to animate content updates imperatively.
 
-Each callback receives as arguments:
-- `element`: The DOM element that was animated.
-- `types`: The [Transition Types](/reference/react/addTransitionType) included in the animation.
+Each callback receives two arguments:
+
+- `instance`: A View Transition instance object that provides access to the view transition [pseudo-elements](https://developer.mozilla.org/en-US/docs/Web/API/View_Transition_API/Using#the_view_transition_process). Call `instance.old.animate(keyframes, options)` and `instance.new.animate(keyframes, options)` to imperatively control the animation. The instance has these properties:
+  - `name`: The `view-transition-name` string for this boundary.
+  - `group`: The `::view-transition-group` pseudo-element. Supports `.animate()`, `.getAnimations()`, and `.getComputedStyle()`.
+  - `imagePair`: The `::view-transition-image-pair` pseudo-element. Supports `.animate()`, `.getAnimations()`, and `.getComputedStyle()`.
+  - `old`: The `::view-transition-old` pseudo-element (the snapshot of the previous state). Supports `.animate()`, `.getAnimations()`, and `.getComputedStyle()`.
+  - `new`: The `::view-transition-new` pseudo-element (the live representation of the new state). Supports `.animate()`, `.getAnimations()`, and `.getComputedStyle()`.
+- `types`: An `Array<string>` of [Transition Types](/reference/react/addTransitionType) included in the animation. Empty array if no types were specified.
+
+Each callback can optionally return a **cleanup function**. The cleanup function is called when the View Transition finishes, allowing you to cancel any manually started animations:
+
+```js
+<ViewTransition
+  onEnter={(instance, types) => {
+    const anim = instance.new.animate([{opacity: 0}, {opacity: 1}], {
+      duration: 500,
+    });
+    return () => anim.cancel();
+  }}>
+  <div>...</div>
+</ViewTransition>
+```
 
 ### View Transition Class {/*view-transition-class*/}
 
 The View Transition Class is the CSS class name(s) applied by React during the transition when the ViewTransition activates. It can be a string or an object.
+
 - `string`: the `class` added on the child elements when activated. If `'none'` is provided, no class will be added.
 - `object`: the class added on the child elements will be the key matching View Transition type added with `addTransitionType`. The object can also specify a `default` to use if no matching type is found.
 
@@ -115,7 +135,6 @@ To customize the animation for a `<ViewTransition>` you can provide a View Trans
 
 For example, to customize an "enter" animation, provide a class name to the `enter` prop:
 
-
 ```js
 <ViewTransition enter="slide-in">
 ```
@@ -124,15 +143,13 @@ When the `<ViewTransition>` activates an "enter" animation, React will add the c
 
 ```css
 ::view-transition-group(.slide-in) {
-  
 }
 ::view-transition-old(.slide-in) {
-
 }
 ::view-transition-new(.slide-in) {
-
 }
 ```
+
 In the future, CSS libraries may add built-in animations using View Transition Classes to make this easier to use.
 
 #### Caveats {/*caveats*/}
@@ -143,7 +160,6 @@ In the future, CSS libraries may add built-in animations using View Transition C
 - Currently, `<ViewTransition>` only works in the DOM. We're working on adding support for React Native and other platforms.
 
 ---
-
 
 ## Usage {/*usage*/}
 
@@ -169,14 +185,14 @@ function Parent() {
 }
 ```
 
-When `setShow` is called, `show` switches to `true` and the `Child` component is rendered. When `setShow` is called inside `startTransition`, and `Child` renders a `ViewTransition` before any other DOM nodes, an `enter` animation is triggered. 
+When `setShow` is called, `show` switches to `true` and the `Child` component is rendered. When `setShow` is called inside `startTransition`, and `Child` renders a `ViewTransition` before any other DOM nodes, an `enter` animation is triggered.
 
 When `show` switches back to `false`, an `exit` animation is triggered.
 
 <Sandpack>
 
 ```js src/Video.js hidden
-function Thumbnail({ video, children }) {
+function Thumbnail({video, children}) {
   return (
     <div
       aria-hidden="true"
@@ -186,12 +202,10 @@ function Thumbnail({ video, children }) {
   );
 }
 
-export function Video({ video }) {
+export function Video({video}) {
   return (
     <div className="video">
-      <div
-        className="link"
-      >
+      <div className="link">
         <Thumbnail video={video}></Thumbnail>
 
         <div className="info">
@@ -205,18 +219,14 @@ export function Video({ video }) {
 ```
 
 ```js
-import {
-  ViewTransition,
-  useState,
-  startTransition
-} from 'react';
-import {Video} from "./Video";
-import videos from "./data"
+import {ViewTransition, useState, startTransition} from 'react';
+import {Video} from './Video';
+import videos from './data';
 
 function Item() {
   return (
     <ViewTransition>
-      <Video video={videos[0]}/>
+      <Video video={videos[0]} />
     </ViewTransition>
   );
 }
@@ -230,8 +240,9 @@ export default function Component() {
           startTransition(() => {
             setShowItem((prev) => !prev);
           });
-        }}
-      >{showItem ? '➖' : '➕'}</button>
+        }}>
+        {showItem ? '➖' : '➕'}
+      </button>
 
       {showItem ? <Item /> : null}
     </>
@@ -246,10 +257,9 @@ export default [
     title: 'First video',
     description: 'Video description',
     image: 'blue',
-  }
-]
+  },
+];
 ```
-
 
 ```css
 #root {
@@ -357,6 +367,7 @@ function Component() {
 </Pitfall>
 
 ---
+
 ### Animating a shared element {/*animating-a-shared-element*/}
 
 Normally, we don't recommend assigning a name to a `<ViewTransition>` and instead let React assign it an automatic name. The reason you might want to assign a name is to animate between completely different components when one tree unmounts and another tree mounts at the same time. To preserve continuity.
@@ -376,36 +387,35 @@ If Transition first unmounts one side and then leads to a `<Suspense>` fallback 
 <Sandpack>
 
 ```js
-import {
-  ViewTransition,
-  useState,
-  startTransition
-} from "react";
-import {Video, Thumbnail, FullscreenVideo} from "./Video";
-import videos from "./data";
+import {ViewTransition, useState, startTransition} from 'react';
+import {Video, Thumbnail, FullscreenVideo} from './Video';
+import videos from './data';
 
 export default function Component() {
   const [fullscreen, setFullscreen] = useState(false);
   if (fullscreen) {
-    return <FullscreenVideo
-      video={videos[0]}
-      onExit={() => startTransition(() => setFullscreen(false))}
-    />
+    return (
+      <FullscreenVideo
+        video={videos[0]}
+        onExit={() => startTransition(() => setFullscreen(false))}
+      />
+    );
   }
-  return <Video
-    video={videos[0]}
-    onClick={() => startTransition(() => setFullscreen(true))}
-  />
+  return (
+    <Video
+      video={videos[0]}
+      onClick={() => startTransition(() => setFullscreen(true))}
+    />
+  );
 }
-
 ```
 
 ```js src/Video.js
-import {ViewTransition} from "react";
+import {ViewTransition} from 'react';
 
-const THUMBNAIL_NAME = "video-thumbnail"
+const THUMBNAIL_NAME = 'video-thumbnail';
 
-export function Thumbnail({ video, children }) {
+export function Thumbnail({video, children}) {
   return (
     <ViewTransition name={THUMBNAIL_NAME}>
       <div
@@ -417,7 +427,7 @@ export function Thumbnail({ video, children }) {
   );
 }
 
-export function Video({ video, onClick }) {
+export function Video({video, onClick}) {
   return (
     <div className="video">
       <div className="link" onClick={onClick}>
@@ -440,10 +450,7 @@ export function FullscreenVideo({video, onExit}) {
           tabIndex={-1}
           className={`thumbnail ${video.image} fullscreen`}
         />
-        <button
-          className="close-button"
-          onClick={onExit}
-        >
+        <button className="close-button" onClick={onExit}>
           ✖
         </button>
       </ViewTransition>
@@ -452,7 +459,6 @@ export function FullscreenVideo({video, onExit}) {
 }
 ```
 
-
 ```js src/data.js hidden
 export default [
   {
@@ -460,10 +466,9 @@ export default [
     title: 'First video',
     description: 'Video description',
     image: 'blue',
-  }
-]
+  },
+];
 ```
-
 
 ```css
 #root {
@@ -571,7 +576,6 @@ button:hover {
 }
 ```
 
-
 ```json package.json hidden
 {
   "dependencies": {
@@ -583,7 +587,6 @@ button:hover {
 ```
 
 </Sandpack>
-
 
 <Note>
 
@@ -608,14 +611,12 @@ import {MY_NAME} from './shared-name';
 
 </Pitfall>
 
-
 ---
 
 ### Animating reorder of items in a list {/*animating-reorder-of-items-in-a-list*/}
 
-
 ```js
-items.map(item => <Component key={item.id} item={item} />)
+items.map((item) => <Component key={item.id} item={item} />);
 ```
 
 When reordering a list, without updating the content, the "update" animation triggers on each `<ViewTransition>` in the list if they're outside a DOM node. Similar to enter/exit animations.
@@ -624,13 +625,18 @@ This means that this will trigger the animation on this `<ViewTransition>`:
 
 ```js
 function Component() {
-  return <ViewTransition><div>...</div></ViewTransition>;
+  return (
+    <ViewTransition>
+      <div>...</div>
+    </ViewTransition>
+  );
 }
 ```
+
 <Sandpack>
 
 ```js src/Video.js hidden
-function Thumbnail({ video }) {
+function Thumbnail({video}) {
   return (
     <div
       aria-hidden="true"
@@ -640,7 +646,7 @@ function Thumbnail({ video }) {
   );
 }
 
-export function Video({ video }) {
+export function Video({video}) {
   return (
     <div className="video">
       <div className="link">
@@ -656,13 +662,9 @@ export function Video({ video }) {
 ```
 
 ```js
-import {
-  ViewTransition,
-  useState,
-  startTransition
-} from "react";
-import {Video} from "./Video";
-import videos from "./data";
+import {ViewTransition, useState, startTransition} from 'react';
+import {Video} from './Video';
+import videos from './data';
 
 export default function Component() {
   const [orderedVideos, setOrderedVideos] = useState(videos);
@@ -688,8 +690,6 @@ export default function Component() {
     </>
   );
 }
-  
-
 ```
 
 ```js src/data.js hidden
@@ -717,10 +717,9 @@ export default [
     title: 'Fourth video',
     description: 'Video description',
     image: 'purple',
-  }
-]
+  },
+];
 ```
-
 
 ```css
 #root {
@@ -811,7 +810,6 @@ button:hover {
 }
 ```
 
-
 ```json package.json hidden
 {
   "dependencies": {
@@ -828,15 +826,20 @@ However, this wouldn't animate each individual item:
 
 ```js
 function Component() {
-  return <div><ViewTransition>...</ViewTransition></div>;
+  return (
+    <div>
+      <ViewTransition>...</ViewTransition>
+    </div>
+  );
 }
 ```
+
 Instead, any parent `<ViewTransition>` would cross-fade. If there is no parent `<ViewTransition>` then there's no animation in that case.
 
 <Sandpack>
 
 ```js src/Video.js hidden
-function Thumbnail({ video }) {
+function Thumbnail({video}) {
   return (
     <div
       aria-hidden="true"
@@ -846,7 +849,7 @@ function Thumbnail({ video }) {
   );
 }
 
-export function Video({ video }) {
+export function Video({video}) {
   return (
     <div className="video">
       <div className="link">
@@ -862,13 +865,9 @@ export function Video({ video }) {
 ```
 
 ```js
-import {
-  ViewTransition,
-  useState,
-  startTransition
-} from "react";
-import {Video} from "./Video";
-import videos from "./data";
+import {ViewTransition, useState, startTransition} from 'react';
+import {Video} from './Video';
+import videos from './data';
 
 export default function Component() {
   const [orderedVideos, setOrderedVideos] = useState(videos);
@@ -892,8 +891,6 @@ export default function Component() {
     </>
   );
 }
-  
-
 ```
 
 ```js src/data.js hidden
@@ -921,10 +918,9 @@ export default [
     title: 'Fourth video',
     description: 'Video description',
     image: 'purple',
-  }
-]
+  },
+];
 ```
-
 
 ```css
 #root {
@@ -1014,7 +1010,6 @@ button:hover {
   font-size: 13px;
 }
 ```
-
 
 ```json package.json hidden
 {
@@ -1063,12 +1058,13 @@ Update:
   </Suspense>
 </ViewTransition>
 ```
+
 In this scenario when the content goes from A to B, it'll be treated as an "update" and apply that class if appropriate. Both A and B will get the same view-transition-name and therefore they're acting as a cross-fade by default.
 
 <Sandpack>
 
 ```js src/Video.js hidden
-function Thumbnail({ video, children }) {
+function Thumbnail({video, children}) {
   return (
     <div
       aria-hidden="true"
@@ -1078,7 +1074,7 @@ function Thumbnail({ video, children }) {
   );
 }
 
-export function Video({ video }) {
+export function Video({video}) {
   return (
     <div className="video">
       <div className="link">
@@ -1093,7 +1089,7 @@ export function Video({ video }) {
 }
 
 export function VideoPlaceholder() {
-  const video = {image: "loading"}
+  const video = {image: 'loading'};
   return (
     <div className="video">
       <div className="link">
@@ -1109,20 +1105,13 @@ export function VideoPlaceholder() {
 ```
 
 ```js
-import {
-  ViewTransition,
-  useState,
-  startTransition,
-  Suspense
-} from 'react';
-import {Video, VideoPlaceholder} from "./Video";
-import {useLazyVideoData} from "./data"
+import {ViewTransition, useState, startTransition, Suspense} from 'react';
+import {Video, VideoPlaceholder} from './Video';
+import {useLazyVideoData} from './data';
 
 function LazyVideo() {
   const video = useLazyVideoData();
-  return (
-    <Video video={video}/>
-  );
+  return <Video video={video} />;
 }
 
 export default function Component() {
@@ -1134,8 +1123,9 @@ export default function Component() {
           startTransition(() => {
             setShowItem((prev) => !prev);
           });
-        }}
-      >{showItem ? '➖' : '➕'}</button>
+        }}>
+        {showItem ? '➖' : '➕'}
+      </button>
       {showItem ? (
         <ViewTransition>
           <Suspense fallback={<VideoPlaceholder />}>
@@ -1149,7 +1139,7 @@ export default function Component() {
 ```
 
 ```js src/data.js hidden
-import {use} from "react";
+import {use} from 'react';
 
 let cache = null;
 
@@ -1173,7 +1163,6 @@ export function useLazyVideoData() {
   return use(fetchVideo());
 }
 ```
-
 
 ```css
 #root {
@@ -1220,7 +1209,12 @@ button:hover {
   background-image: conic-gradient(at top right, #c76a15, #087ea4, #2b3491);
 }
 .loading {
-  background-image: linear-gradient(90deg, rgba(173, 216, 230, 0.3) 25%, rgba(135, 206, 250, 0.5) 50%, rgba(173, 216, 230, 0.3) 75%);
+  background-image: linear-gradient(
+    90deg,
+    rgba(173, 216, 230, 0.3) 25%,
+    rgba(135, 206, 250, 0.5) 50%,
+    rgba(173, 216, 230, 0.3) 75%
+  );
   background-size: 200% 100%;
   animation: shimmer 1.5s infinite;
 }
@@ -1304,6 +1298,7 @@ In this scenario, these are two separate ViewTransition instances each with thei
 You can achieve different effects depending on where you choose to place the `<ViewTransition>` boundary.
 
 ---
+
 ### Opting-out of an animation {/*opting-out-of-an-animation*/}
 
 Sometimes you're wrapping a large existing component, like a whole page, and you want to animate some updates, such as changing the theme. However, you don't want it to opt-in all updates inside the whole page to cross-fade when they're updating. Especially if you're incrementally adding more animations.
@@ -1313,9 +1308,7 @@ You can use the class "none" to opt-out of an animation. By wrapping your childr
 ```js
 <ViewTransition>
   <div className={theme}>
-    <ViewTransition update="none">
-      {children}
-    </ViewTransition>
+    <ViewTransition update="none">{children}</ViewTransition>
   </div>
 </ViewTransition>
 ```
@@ -1342,18 +1335,18 @@ And define slow-fade in CSS using view transition classes:
 
 ```css
 ::view-transition-old(.slow-fade) {
-    animation-duration: 500ms;
+  animation-duration: 500ms;
 }
 
 ::view-transition-new(.slow-fade) {
-    animation-duration: 500ms;
+  animation-duration: 500ms;
 }
 ```
 
 <Sandpack>
 
 ```js src/Video.js hidden
-function Thumbnail({ video, children }) {
+function Thumbnail({video, children}) {
   return (
     <div
       aria-hidden="true"
@@ -1363,12 +1356,10 @@ function Thumbnail({ video, children }) {
   );
 }
 
-export function Video({ video }) {
+export function Video({video}) {
   return (
     <div className="video">
-      <div
-        className="link"
-      >
+      <div className="link">
         <Thumbnail video={video}></Thumbnail>
 
         <div className="info">
@@ -1382,18 +1373,14 @@ export function Video({ video }) {
 ```
 
 ```js
-import {
-  ViewTransition,
-  useState,
-  startTransition
-} from 'react';
-import {Video} from "./Video";
-import videos from "./data"
+import {ViewTransition, useState, startTransition} from 'react';
+import {Video} from './Video';
+import videos from './data';
 
 function Item() {
   return (
     <ViewTransition default="slow-fade">
-      <Video video={videos[0]}/>
+      <Video video={videos[0]} />
     </ViewTransition>
   );
 }
@@ -1407,8 +1394,9 @@ export default function Component() {
           startTransition(() => {
             setShowItem((prev) => !prev);
           });
-        }}
-      >{showItem ? '➖' : '➕'}</button>
+        }}>
+        {showItem ? '➖' : '➕'}
+      </button>
 
       {showItem ? <Item /> : null}
     </>
@@ -1423,18 +1411,17 @@ export default [
     title: 'First video',
     description: 'Video description',
     image: 'blue',
-  }
-]
+  },
+];
 ```
-
 
 ```css
 ::view-transition-old(.slow-fade) {
-    animation-duration: 500ms;
+  animation-duration: 500ms;
 }
 
 ::view-transition-new(.slow-fade) {
-    animation-duration: 500ms;
+  animation-duration: 500ms;
 }
 
 #root {
@@ -1534,7 +1521,7 @@ In addition to setting the `default`, you can also provide configurations for `e
 <Sandpack>
 
 ```js src/Video.js hidden
-function Thumbnail({ video, children }) {
+function Thumbnail({video, children}) {
   return (
     <div
       aria-hidden="true"
@@ -1544,12 +1531,10 @@ function Thumbnail({ video, children }) {
   );
 }
 
-export function Video({ video }) {
+export function Video({video}) {
   return (
     <div className="video">
-      <div
-        className="link"
-      >
+      <div className="link">
         <Thumbnail video={video}></Thumbnail>
 
         <div className="info">
@@ -1563,18 +1548,14 @@ export function Video({ video }) {
 ```
 
 ```js
-import {
-  ViewTransition,
-  useState,
-  startTransition
-} from 'react';
-import {Video} from "./Video";
-import videos from "./data"
+import {ViewTransition, useState, startTransition} from 'react';
+import {Video} from './Video';
+import videos from './data';
 
 function Item() {
   return (
     <ViewTransition enter="slide-in" exit="slide-out">
-      <Video video={videos[0]}/>
+      <Video video={videos[0]} />
     </ViewTransition>
   );
 }
@@ -1588,8 +1569,9 @@ export default function Component() {
           startTransition(() => {
             setShowItem((prev) => !prev);
           });
-        }}
-      >{showItem ? '➖' : '➕'}</button>
+        }}>
+        {showItem ? '➖' : '➕'}
+      </button>
 
       {showItem ? <Item /> : null}
     </>
@@ -1604,10 +1586,9 @@ export default [
     title: 'First video',
     description: 'Video description',
     image: 'blue',
-  }
-]
+  },
+];
 ```
-
 
 ```css
 ::view-transition-old(.slide-in) {
@@ -1782,18 +1763,20 @@ button:hover {
 </Sandpack>
 
 ### Customizing animations with types {/*customizing-animations-with-types*/}
+
 You can use the [`addTransitionType`](/reference/react/addTransitionType) API to add a class name to the child elements when a specific transition type is activated for a specific activation trigger. This allows you to customize the animation for each type of transition.
 
 For example, to customize the animation for all forward and backward navigations:
 
 ```js
-<ViewTransition default={{
-  'navigation-back': 'slide-right',
-  'navigation-forward': 'slide-left',
- }}>
+<ViewTransition
+  default={{
+    'navigation-back': 'slide-right',
+    'navigation-forward': 'slide-left',
+  }}>
   <div>...</div>
-</ViewTransition>
- 
+</ViewTransition>;
+
 // in your router:
 startTransition(() => {
   addTransitionType('navigation-' + navigationType);
@@ -1807,7 +1790,7 @@ In the future, routers and other libraries may add support for standard view-tra
 <Sandpack>
 
 ```js src/Video.js hidden
-function Thumbnail({ video, children }) {
+function Thumbnail({video, children}) {
   return (
     <div
       aria-hidden="true"
@@ -1817,12 +1800,10 @@ function Thumbnail({ video, children }) {
   );
 }
 
-export function Video({ video }) {
+export function Video({video}) {
   return (
     <div className="video">
-      <div
-        className="link"
-      >
+      <div className="link">
         <Thumbnail video={video}></Thumbnail>
         <div className="info">
           <div className="video-title">{video.title}</div>
@@ -1840,25 +1821,22 @@ import {
   addTransitionType,
   useState,
   startTransition,
-} from "react";
-import {Video} from "./Video";
-import videos from "./data"
+} from 'react';
+import {Video} from './Video';
+import videos from './data';
 
 function Item() {
   return (
-    <ViewTransition enter={
-        {
-          "add-video-back": "slide-in-back",
-          "add-video-forward": "slide-in-forward"
-        }
-      }
-      exit={
-        {
-          "remove-video-back": "slide-in-forward",
-          "remove-video-forward": "slide-in-back"
-        }
-      }>
-      <Video video={videos[0]}/>
+    <ViewTransition
+      enter={{
+        'add-video-back': 'slide-in-back',
+        'add-video-forward': 'slide-in-forward',
+      }}
+      exit={{
+        'remove-video-back': 'slide-in-forward',
+        'remove-video-forward': 'slide-in-back',
+      }}>
+      <Video video={videos[0]} />
     </ViewTransition>
   );
 }
@@ -1872,26 +1850,28 @@ export default function Component() {
           onClick={() => {
             startTransition(() => {
               if (showItem) {
-                addTransitionType("remove-video-back")
+                addTransitionType('remove-video-back');
               } else {
-                addTransitionType("add-video-back")
+                addTransitionType('add-video-back');
               }
               setShowItem((prev) => !prev);
             });
-          }}
-        >⬅️</button>
+          }}>
+          ⬅️
+        </button>
         <button
           onClick={() => {
             startTransition(() => {
               if (showItem) {
-                addTransitionType("remove-video-forward")
+                addTransitionType('remove-video-forward');
               } else {
-                addTransitionType("add-video-forward")
+                addTransitionType('add-video-forward');
               }
               setShowItem((prev) => !prev);
             });
-          }}
-        >➡️</button>
+          }}>
+          ➡️
+        </button>
       </div>
       {showItem ? <Item /> : null}
     </>
@@ -1906,10 +1886,9 @@ export default [
     title: 'First video',
     description: 'Video description',
     image: 'blue',
-  }
-]
+  },
+];
 ```
-
 
 ```css
 ::view-transition-old(.slide-in-back) {
@@ -2110,6 +2089,238 @@ button:hover {
 
 </Sandpack>
 
+---
+
+### Animating imperatively with callbacks {/*animating-imperatively-with-callbacks*/}
+
+While [View Transition Classes](#view-transition-class) let you define animations with CSS, sometimes you need imperative control over the animation. The `onEnter`, `onExit`, `onUpdate`, and `onShare` callbacks give you direct access to the view transition pseudo-elements so you can animate them using the [Web Animations API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Animations_API).
+
+Each callback receives an `instance` with `.old` and `.new` properties representing the view transition pseudo-elements. You can call `.animate()` on them just like you would on a DOM element:
+
+```js
+<ViewTransition
+  onEnter={(instance, types) => {
+    instance.new.animate(
+      [
+        {opacity: 0, transform: 'scale(0.8)'},
+        {opacity: 1, transform: 'scale(1)'},
+      ],
+      {duration: 300, easing: 'ease-out'}
+    );
+  }}>
+  <div>...</div>
+</ViewTransition>
+```
+
+When you start animations imperatively, return a cleanup function to cancel them when the View Transition is interrupted:
+
+<Sandpack>
+
+```js src/Video.js hidden
+function Thumbnail({video, children}) {
+  return (
+    <div
+      aria-hidden="true"
+      tabIndex={-1}
+      className={`thumbnail ${video.image}`}
+    />
+  );
+}
+
+export function Video({video}) {
+  return (
+    <div className="video">
+      <div className="link">
+        <Thumbnail video={video}></Thumbnail>
+
+        <div className="info">
+          <div className="video-title">{video.title}</div>
+          <div className="video-description">{video.description}</div>
+        </div>
+      </div>
+    </div>
+  );
+}
+```
+
+```js
+import {ViewTransition, useState, startTransition} from 'react';
+import {Video} from './Video';
+import videos from './data';
+
+function Item() {
+  return (
+    <ViewTransition
+      onEnter={(instance) => {
+        const anim = instance.new.animate(
+          [
+            {opacity: 0, transform: 'translateY(20px)'},
+            {opacity: 1, transform: 'translateY(0)'},
+          ],
+          {duration: 500, easing: 'ease-out'}
+        );
+        return () => anim.cancel();
+      }}
+      onExit={(instance) => {
+        const anim = instance.old.animate(
+          [
+            {opacity: 1, transform: 'translateY(0)'},
+            {opacity: 0, transform: 'translateY(-20px)'},
+          ],
+          {duration: 300, easing: 'ease-in'}
+        );
+        return () => anim.cancel();
+      }}>
+      <Video video={videos[0]} />
+    </ViewTransition>
+  );
+}
+
+export default function Component() {
+  const [showItem, setShowItem] = useState(false);
+  return (
+    <>
+      <button
+        onClick={() => {
+          startTransition(() => {
+            setShowItem((prev) => !prev);
+          });
+        }}>
+        {showItem ? '➖' : '➕'}
+      </button>
+
+      {showItem ? <Item /> : null}
+    </>
+  );
+}
+```
+
+```js src/data.js hidden
+export default [
+  {
+    id: '1',
+    title: 'First video',
+    description: 'Video description',
+    image: 'blue',
+  },
+];
+```
+
+```css
+#root {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 200px;
+}
+button {
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f0f8ff;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s, border 0.3s;
+}
+button:hover {
+  border: 2px solid #ccc;
+  background-color: #e0e8ff;
+}
+.thumbnail {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  display: flex;
+  overflow: hidden;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 0.5rem;
+  outline-offset: 2px;
+  width: 8rem;
+  vertical-align: middle;
+  background-color: #ffffff;
+  background-size: cover;
+  user-select: none;
+}
+.thumbnail.blue {
+  background-image: conic-gradient(at top right, #c76a15, #087ea4, #2b3491);
+}
+.video {
+  display: flex;
+  flex-direction: row;
+  gap: 0.75rem;
+  align-items: center;
+  margin-top: 1em;
+}
+.video .link {
+  display: flex;
+  flex-direction: row;
+  flex: 1 1 0;
+  gap: 0.125rem;
+  outline-offset: 4px;
+  cursor: pointer;
+}
+.video .info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 8px;
+  gap: 0.125rem;
+}
+.video .info:hover {
+  text-decoration: underline;
+}
+.video-title {
+  font-size: 15px;
+  line-height: 1.25;
+  font-weight: 700;
+  color: #23272f;
+}
+.video-description {
+  color: #5e687e;
+  font-size: 13px;
+}
+
+```
+
+```json package.json hidden
+{
+  "dependencies": {
+    "react": "canary",
+    "react-dom": "canary",
+    "react-scripts": "latest"
+  }
+}
+```
+
+</Sandpack>
+
+You can also use `types` to conditionally apply different animations based on how the Transition was triggered. For example, you could use [`addTransitionType`](/reference/react/addTransitionType) to mark a Transition as "fast" and then adjust the animation duration:
+
+```js
+startTransition(() => {
+  addTransitionType('fast');
+  setShowItem(true);
+});
+
+// In the ViewTransition callback:
+onEnter={(instance, types) => {
+  const duration = types.includes('fast') ? 150 : 500;
+  const anim = instance.new.animate(
+    [{opacity: 0}, {opacity: 1}],
+    {duration, easing: 'ease-out'}
+  );
+  return () => anim.cancel();
+}}
+```
+
+---
+
 ### Building View Transition enabled routers {/*building-view-transition-enabled-routers*/}
 
 React waits for any pending Navigation to finish to ensure that scroll restoration happens within the animation. If the Navigation is blocked on React, your router must unblock in `useLayoutEffect` since `useEffect` would lead to a deadlock.
@@ -2136,7 +2347,7 @@ function Component() {
 
 To fix, ensure that the `<ViewTransition>` comes before any other DOM nodes:
 
-```js [3, 5] 
+```js [3, 5]
 function Component() {
   return (
     <ViewTransition>
@@ -2150,7 +2361,6 @@ function Component() {
 
 This error occurs when two `<ViewTransition>` components with the same `name` are mounted at the same time:
 
-
 ```js [3]
 function Item() {
   // 🚩 All items will get the same "name".
@@ -2160,7 +2370,9 @@ function Item() {
 function ItemList({items}) {
   return (
     <>
-      {item.map(item => <Item key={item.id} />)}
+      {item.map((item) => (
+        <Item key={item.id} />
+      ))}
     </>
   );
 }
@@ -2172,16 +2384,16 @@ This will cause the View Transition to error. In development, React detects this
 <ConsoleLogLine level="error">
 
 There are two `<ViewTransition name=%s>` components with the same name mounted at the same time. This is not supported and will cause View Transitions to error. Try to use a more unique name e.g. by using a namespace prefix and adding the id of an item to the name.
-{'    '}at Item
-{'    '}at ItemList
+{' '}at Item
+{' '}at ItemList
 
 </ConsoleLogLine>
 
 <ConsoleLogLine level="error">
 
 The existing `<ViewTransition name=%s>` duplicate has this stack trace.
-{'    '}at Item
-{'    '}at ItemList
+{' '}at Item
+{' '}at ItemList
 
 </ConsoleLogLine>
 </ConsoleBlockMulti>
@@ -2197,7 +2409,9 @@ function Item({id}) {
 function ItemList({items}) {
   return (
     <>
-      {item.map(item => <Item key={item.id} item={item} />)}
+      {item.map((item) => (
+        <Item key={item.id} item={item} />
+      ))}
     </>
   );
 }

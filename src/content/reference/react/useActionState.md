@@ -1379,24 +1379,6 @@ In this example, "Add 10" simulates an API that returns a validation error, whic
 
 ## Troubleshooting {/*troubleshooting*/}
 
-### My Action can no longer read the submitted form data {/*action-cant-read-form-data*/}
-
-When you use `useActionState`, the `reducerAction` receives an extra argument as its first argument: the previous or initial state. The submitted form data is therefore its second argument instead of its first.
-
-```js
-// Without useActionState
-function action(formData) {
-  const name = formData.get('name');
-}
-
-// With useActionState
-function action(prevState, formData) {
-  const name = formData.get('name');
-}
-```
-
----
-
 ### My `isPending` flag is not updating {/*ispending-not-updating*/}
 
 If you're calling `dispatchAction` manually (not through an Action prop), make sure you wrap the call in [`startTransition`](/reference/react/startTransition):
@@ -1422,28 +1404,27 @@ When `dispatchAction` is passed to an Action prop, React automatically wraps it 
 
 ---
 
-### I'm getting an error: "Cannot update form state while rendering" {/*cannot-update-during-render*/}
+### My Action cannot read form data {/*action-cannot-read-form-data*/}
 
-You cannot call `dispatchAction` during render. This causes an infinite loop because calling `dispatchAction` schedules a state update, which triggers a re-render, which calls `dispatchAction` again.
+When you use `useActionState`, the `reducerAction` receives an extra argument as its first argument: the previous or initial state. The submitted form data is therefore its second argument instead of its first.
 
 ```js
-function MyComponent() {
-  const [state, dispatchAction, isPending] = useActionState(myAction, null);
+// Without useActionState
+function action(formData) {
+  const name = formData.get('name');
+}
 
-  // ❌ Wrong: calling dispatchAction during render
-  dispatchAction();
-
-  // ...
+// With useActionState
+function action(prevState, formData) {
+  const name = formData.get('name');
 }
 ```
-
-Only call `dispatchAction` in response to user events (like form submissions or button clicks) or in Effects.
 
 ---
 
 ### My actions are being skipped {/*actions-skipped*/}
 
-If you call `dispatchAction` multiple times and some of them don't run, it may be because an earlier `dispatchAction` call threw an error. 
+If you call `dispatchAction` multiple times and some of them don't run, it may be because an earlier `dispatchAction` call threw an error.
 
 When a `reducerAction` throws, React skips all subsequently queued `dispatchAction` calls.
 
@@ -1493,4 +1474,91 @@ function MyComponent() {
 }
 ```
 
-Alternatively, you can add a `key` prop to the component using `useActionState` to force it to remount with fresh state.
+Alternatively, you can add a `key` prop to the component using `useActionState` to force it to remount with fresh state, or a `<form>` `action` prop, which resets automatically after submission.
+
+---
+
+### I'm getting an error: "An async function with useActionState was called outside of a transition." {/*async-function-outside-transition*/}
+
+A common mistake is to forget to call `dispatchAction` from inside a Transition:
+
+<ConsoleBlockMulti>
+<ConsoleLogLine level="error">
+
+An async function with useActionState was called outside of a transition. This is likely not what you intended (for example, isPending will not update correctly). Either call the returned function inside startTransition, or pass it to an `action` or `formAction` prop.
+
+</ConsoleLogLine>
+</ConsoleBlockMulti>
+
+
+This error happens because `dispatchAction` must run inside a Transition:
+
+```js
+function MyComponent() {
+  const [state, dispatchAction, isPending] = useActionState(myAsyncAction, null);
+
+  function handleClick() {
+    // ❌ Wrong: calling dispatchAction outside a Transition
+    dispatchAction();
+  }
+
+  // ...
+}
+```
+
+To fix, either wrap the call in [`startTransition`](/reference/react/startTransition):
+
+```js
+import { useActionState, startTransition } from 'react';
+
+function MyComponent() {
+  const [state, dispatchAction, isPending] = useActionState(myAsyncAction, null);
+
+  function handleClick() {
+    // ✅ Correct: wrap in startTransition
+    startTransition(() => {
+      dispatchAction();
+    });
+  }
+
+  // ...
+}
+```
+
+Or pass `dispatchAction` to an Action prop, is call in a Transition:
+
+```js
+function MyComponent() {
+  const [state, dispatchAction, isPending] = useActionState(myAsyncAction, null);
+
+  // ✅ Correct: action prop wraps in a Transition for you
+  return <Button action={dispatchAction}>...</Button>;
+}
+```
+
+---
+
+### I'm getting an error: "Cannot update action state while rendering" {/*cannot-update-during-render*/}
+
+You cannot call `dispatchAction` during render:
+
+<ConsoleBlock level="error">
+
+Cannot update action state while rendering.
+
+</ConsoleBlock>
+
+This causes an infinite loop because calling `dispatchAction` schedules a state update, which triggers a re-render, which calls `dispatchAction` again.
+
+```js
+function MyComponent() {
+  const [state, dispatchAction, isPending] = useActionState(myAction, null);
+
+  // ❌ Wrong: calling dispatchAction during render
+  dispatchAction();
+
+  // ...
+}
+```
+
+To fix, only call `dispatchAction` in response to user events (like form submissions or button clicks).

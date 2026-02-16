@@ -177,7 +177,7 @@ export default function Checkout() {
         <button onClick={handleClick}>Add Ticket{isPending ? ' 🌀' : '  '}</button>
       </div>
       <hr />
-      <Total quantity={count}  />
+      <Total quantity={count} isPending={isPending} />
     </div>
   );
 }

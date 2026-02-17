@@ -53,6 +53,7 @@ When you pass a `ref` to a Fragment, React provides a `FragmentInstance` object.
 * [`getClientRects`](#getclientrects) returns bounding rectangles of all first-level DOM children.
 * [`getRootNode`](#getrootnode) returns the root node of the Fragment's parent.
 * [`compareDocumentPosition`](#comparedocumentposition) compares the Fragment's position with another node.
+* [`scrollIntoView`](#scrollintoview) scrolls the Fragment's children into view.
 
 ---
 
@@ -248,6 +249,29 @@ const position = fragmentRef.current.compareDocumentPosition(otherElement);
 ##### Returns {/*comparedocumentposition-returns*/}
 
 A bitmask of [position flags](https://developer.mozilla.org/en-US/docs/Web/API/Node/compareDocumentPosition#return_value). Empty Fragments and Fragments with children rendered through a [portal](/reference/react-dom/createPortal) include `Node.DOCUMENT_POSITION_IMPLEMENTATION_SPECIFIC` in the result.
+
+---
+
+#### `scrollIntoView(alignToTop?)` {/*scrollintoview*/}
+
+Scrolls the Fragment's children into view. When `alignToTop` is `true` or omitted, scrolls to align the first child with the top of the scrollable ancestor. When `alignToTop` is `false`, scrolls to align the last child with the bottom.
+
+```js
+fragmentRef.current.scrollIntoView();
+```
+
+##### Parameters {/*scrollintoview-parameters*/}
+
+* **optional** `alignToTop`: A boolean. If `true` (the default), scrolls the first child to the top of the scrollable area. If `false`, scrolls the last child to the bottom. Unlike [`Element.scrollIntoView()`](https://developer.mozilla.org/en-US/docs/Web/API/Element/scrollIntoView), this method does not accept a `ScrollIntoViewOptions` object.
+
+##### Returns {/*scrollintoview-returns*/}
+
+`scrollIntoView` does not return anything (`undefined`).
+
+##### Caveats {/*scrollintoview-caveats*/}
+
+* `scrollIntoView` does not accept an options object. Passing one throws an error. Use the `alignToTop` boolean instead.
+* When the Fragment has no children, `scrollIntoView` scrolls the nearest sibling or parent into view as a fallback.
 
 ---
 
@@ -521,6 +545,29 @@ function App() {
 
 Calling `focusFirst()` focuses the `street` input—even though it is nested inside a `<fieldset>` and `<label>`. `focus()` searches depth-first through all nested children, not just direct children of the Fragment. `focusLast()` does the same in reverse, and `blur()` removes focus if the currently focused element is within the Fragment.
 
+---
+
+### <CanaryBadge /> Scrolling a group of elements into view {/*scrolling-group-into-view*/}
+
+Use `scrollIntoView` to scroll a Fragment's children into view without a wrapper element. Pass `true` (or omit the argument) to scroll the first child to the top. Pass `false` to scroll the last child to the bottom:
+
+```js
+import { Fragment, useRef } from 'react';
+
+function ScrollableSection({ children }) {
+  const fragmentRef = useRef(null);
+
+  return (
+    <>
+      <button onClick={() => fragmentRef.current.scrollIntoView()}>Scroll to top</button>
+      <button onClick={() => fragmentRef.current.scrollIntoView(false)}>Scroll to bottom</button>
+      <Fragment ref={fragmentRef}>
+        {children}
+      </Fragment>
+    </>
+  );
+}
+```
 
 ---
 

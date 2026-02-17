@@ -248,6 +248,7 @@ A bitmask of [position flags](https://developer.mozilla.org/en-US/docs/Web/API/N
 * `observeUsing` does not work on text nodes. React logs a warning in development if the Fragment contains only text children.
 * `focus`, `focusLast`, and `blur` have no effect when the Fragment contains only text children.
 * React does not apply event listeners added via `addEventListener` to hidden [`<Activity>`](/reference/react/Activity) trees. When an `Activity` boundary switches from hidden to visible, listeners are applied automatically.
+* Each first-level DOM child of a Fragment with a `ref` gets a `reactFragments` property—a `Set<FragmentInstance>` containing all Fragment instances that own the element. This enables [caching a shared observer](#caching-global-intersection-observer) across multiple Fragments.
 
 ---
 
@@ -528,3 +529,78 @@ function FormFields({ children }) {
 ```
 
 `focus()` finds the first focusable element by searching depth-first through all nested children. `focusLast()` does the same in reverse. `blur()` removes focus if the currently focused element is within the Fragment.
+
+---
+
+### <CanaryBadge /> Caching a global IntersectionObserver {/*caching-global-intersection-observer*/}
+
+A common performance optimization for sites with many observers is to share a signal IntersectionObserver per config and route its entries to the correct callbacks based on which element intersected. Fragment `ref`s support this same pattern through the `reactFragments` property.
+
+Each first-level DOM child of a Fragment with a `ref` has a `reactFragments` property: a `Set` of `FragmentInstance` objects that contain that element. When the shared observer fires, you can use this property to look up which `FragmentInstance` owns the intersecting element and run the right callbacks.
+
+```js {22,39-42}
+import { Fragment, useRef, useLayoutEffect } from 'react';
+
+const callbackMap = new WeakMap();
+let cachedObserver = null;
+
+function getSharedObserver(fragmentInstance, onIntersection) {
+  // Register this callback for the fragment instance.
+  const existing = callbackMap.get(fragmentInstance);
+  callbackMap.set(
+    fragmentInstance,
+    existing ? [...existing, onIntersection] : [onIntersection],
+  );
+
+  if (cachedObserver !== null) {
+    return cachedObserver;
+  }
+
+  // Create a single shared IntersectionObserver.
+  cachedObserver = new IntersectionObserver(entries => {
+    for (const entry of entries) {
+      // Look up which FragmentInstances own this element.
+      const fragmentInstances = entry.target.reactFragments;
+      if (fragmentInstances) {
+        for (const instance of fragmentInstances) {
+          const callbacks = callbackMap.get(instance) || [];
+          callbacks.forEach(cb => cb(entry));
+        }
+      }
+    }
+  });
+
+  return cachedObserver;
+}
+
+function ObservedGroup({ onIntersection, children }) {
+  const fragmentRef = useRef(null);
+
+  useLayoutEffect(() => {
+    const observer = getSharedObserver(
+      fragmentRef.current,
+      onIntersection,
+    );
+    fragmentRef.current.observeUsing(observer);
+    return () => fragmentRef.current.unobserveUsing(observer);
+  }, [onIntersection]);
+
+  return (
+    <Fragment ref={fragmentRef}>
+      {children}
+    </Fragment>
+  );
+}
+```
+
+With this pattern, nesting multiple `ObservedGroup` components reuses the same `IntersectionObserver`. When a child element intersects, the observer looks up all `FragmentInstance` objects on that element via `reactFragments` and calls each registered callback:
+
+```js
+<ObservedGroup onIntersection={() => console.log('outer')}>
+  <ObservedGroup onIntersection={() => console.log('inner')}>
+    <div>Content</div>
+  </ObservedGroup>
+</ObservedGroup>
+```
+
+When the `<div>` becomes visible, both `'outer'` and `'inner'` are logged because the element's `reactFragments` Set contains both `FragmentInstance` objects.

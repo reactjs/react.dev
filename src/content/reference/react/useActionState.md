@@ -177,7 +177,7 @@ export default function Checkout() {
         <button onClick={handleClick}>Add Ticket{isPending ? ' 🌀' : '  '}</button>
       </div>
       <hr />
-      <Total quantity={count} isPending={isPending} />
+      <Total quantity={count} />
     </div>
   );
 }
@@ -190,11 +190,11 @@ const formatter = new Intl.NumberFormat('en-US', {
   minimumFractionDigits: 0,
 });
 
-export default function Total({quantity, isPending}) {
+export default function Total({quantity}) {
   return (
     <div className="row total">
       <span>Total</span>
-      <span>{isPending ? '🌀 Updating...' : formatter.format(quantity * 9999)}</span>
+      <span>{formatter.format(quantity * 9999)}</span>
     </div>
   );
 }

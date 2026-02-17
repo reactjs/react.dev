@@ -46,26 +46,15 @@ Wrap elements in `<Fragment>` to group them together in situations where you nee
 
 When you pass a `ref` to a Fragment, React provides a `FragmentInstance` object. It implements methods for interacting with the first-level DOM children wrapped by the Fragment.
 
-```js
-import { Fragment, useRef } from 'react';
+* [`addEventListener`](#addeventlistener) and [`removeEventListener`](#removeeventlistener) manage event listeners across all first-level DOM children.
+* [`dispatchEvent`](#dispatchevent) dispatches an event on the Fragment, which can bubble to the DOM parent.
+* [`focus`](#focus), [`focusLast`](#focuslast), and [`blur`](#blur) manage focus across all nested children depth-first.
+* [`observeUsing`](#observeusing) and [`unobserveUsing`](#unobserveusing) attach and detach `IntersectionObserver` or `ResizeObserver` instances.
+* [`getClientRects`](#getclientrects) returns bounding rectangles of all first-level DOM children.
+* [`getRootNode`](#getrootnode) returns the root node of the Fragment's parent.
+* [`compareDocumentPosition`](#comparedocumentposition) compares the Fragment's position with another node.
 
-function MyComponent() {
-  const ref = useRef(null);
-  return (
-    <Fragment ref={ref}>
-      <div id="A" />
-      <Wrapper>
-        <div id="B">
-          <div id="C" />
-        </div>
-      </Wrapper>
-      <div id="D" />
-    </Fragment>
-  );
-}
-```
-
-In the example above, the `FragmentInstance` targets `A`, `B`, and `D`—the first-level host (DOM) children. `C` is not targeted because it is nested inside `B`. If a new host sibling is dynamically added alongside `A`, `B`, or `D`, the `FragmentInstance` automatically tracks it and applies existing event listeners and observers.
+---
 
 #### `addEventListener(type, listener, options?)` {/*addeventlistener*/}
 
@@ -85,6 +74,8 @@ fragmentRef.current.addEventListener('click', handleClick);
 
 `addEventListener` does not return anything (`undefined`).
 
+---
+
 #### `removeEventListener(type, listener, options?)` {/*removeeventlistener*/}
 
 Removes an event listener from all first-level DOM children of the Fragment.
@@ -103,6 +94,8 @@ fragmentRef.current.removeEventListener('click', handleClick);
 
 `removeEventListener` does not return anything (`undefined`).
 
+---
+
 #### `dispatchEvent(event)` {/*dispatchevent*/}
 
 Dispatches an event on the Fragment. Added event listeners are called, and the event can bubble to the Fragment's DOM parent.
@@ -118,6 +111,8 @@ fragmentRef.current.dispatchEvent(new Event('custom', { bubbles: true }));
 ##### Returns {/*dispatchevent-returns*/}
 
 `true` if the event was not cancelled, `false` if `preventDefault()` was called.
+
+---
 
 #### `focus(options?)` {/*focus*/}
 
@@ -135,6 +130,8 @@ fragmentRef.current.focus();
 
 `focus` does not return anything (`undefined`).
 
+---
+
 #### `focusLast(options?)` {/*focuslast*/}
 
 Focuses the last focusable DOM node in the Fragment. Searches nested children depth-first, then iterates in reverse.
@@ -151,6 +148,8 @@ fragmentRef.current.focusLast();
 
 `focusLast` does not return anything (`undefined`).
 
+---
+
 #### `blur()` {/*blur*/}
 
 Removes focus from the active element if it is within the Fragment. If `document.activeElement` is not within the Fragment, `blur` does nothing.
@@ -162,6 +161,8 @@ fragmentRef.current.blur();
 ##### Returns {/*blur-returns*/}
 
 `blur` does not return anything (`undefined`).
+
+---
 
 #### `observeUsing(observer)` {/*observeusing*/}
 
@@ -180,6 +181,8 @@ fragmentRef.current.observeUsing(observer);
 
 `observeUsing` does not return anything (`undefined`).
 
+---
+
 #### `unobserveUsing(observer)` {/*unobserveusing*/}
 
 Stops observing the Fragment's DOM children with the specified observer.
@@ -196,6 +199,8 @@ fragmentRef.current.unobserveUsing(observer);
 
 `unobserveUsing` does not return anything (`undefined`).
 
+---
+
 #### `getClientRects()` {/*getclientrects*/}
 
 Returns a flat array of [`DOMRect`](https://developer.mozilla.org/en-US/docs/Web/API/DOMRect) objects representing the bounding rectangles of all first-level DOM children.
@@ -207,6 +212,8 @@ const rects = fragmentRef.current.getClientRects();
 ##### Returns {/*getclientrects-returns*/}
 
 An `Array<DOMRect>` containing the bounding rectangles of all children.
+
+---
 
 #### `getRootNode(options?)` {/*getrootnode*/}
 
@@ -224,6 +231,8 @@ const root = fragmentRef.current.getRootNode();
 
 A `Document`, `ShadowRoot`, or the `FragmentInstance` itself if there is no parent DOM node.
 
+---
+
 #### `compareDocumentPosition(otherNode)` {/*comparedocumentposition*/}
 
 Compares the document position of the Fragment with another node, returning a bitmask matching the behavior of [`Node.compareDocumentPosition()`](https://developer.mozilla.org/en-US/docs/Web/API/Node/compareDocumentPosition).
@@ -239,6 +248,8 @@ const position = fragmentRef.current.compareDocumentPosition(otherElement);
 ##### Returns {/*comparedocumentposition-returns*/}
 
 A bitmask of [position flags](https://developer.mozilla.org/en-US/docs/Web/API/Node/compareDocumentPosition#return_value). Empty Fragments and Fragments with children rendered through a [portal](/reference/react-dom/createPortal) include `Node.DOCUMENT_POSITION_IMPLEMENTATION_SPECIFIC` in the result.
+
+---
 
 #### `FragmentInstance` Caveats {/*fragmentinstance-caveats*/}
 

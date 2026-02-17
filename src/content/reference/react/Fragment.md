@@ -243,10 +243,8 @@ A bitmask of [position flags](https://developer.mozilla.org/en-US/docs/Web/API/N
 #### `FragmentInstance` Caveats {/*fragmentinstance-caveats*/}
 
 * Methods that target children (such as `addEventListener`, `observeUsing`, and `getClientRects`) operate on *first-level host (DOM) children* of the Fragment. They do not directly target children nested inside another DOM element.
-* When host children are dynamically added or removed, the `FragmentInstance` automatically updates. New children receive any previously added event listeners and active observers.
 * `focus` and `focusLast` search nested children depth-first for focusable elements, unlike event and observer methods which only target first-level host children.
 * `observeUsing` does not work on text nodes. React logs a warning in development if the Fragment contains only text children.
-* `focus`, `focusLast`, and `blur` have no effect when the Fragment contains only text children.
 * React does not apply event listeners added via `addEventListener` to hidden [`<Activity>`](/reference/react/Activity) trees. When an `Activity` boundary switches from hidden to visible, listeners are applied automatically.
 * Each first-level DOM child of a Fragment with a `ref` gets a `reactFragments` property—a `Set<FragmentInstance>` containing all Fragment instances that own the element. This enables [caching a shared observer](#caching-global-intersection-observer) across multiple Fragments.
 
@@ -430,7 +428,7 @@ function PostBody({ body }) {
 
 Fragment `ref`s let you add event listeners to a group of elements without adding a wrapper DOM node. Use a [ref callback](/reference/react-dom/components/common#ref-callback) to attach and clean up listeners:
 
-```js {4-7}
+```js
 import { Fragment } from 'react';
 
 function ClickableGroup({ children, onClick }) {
@@ -473,38 +471,6 @@ Methods like `addEventListener`, `observeUsing`, and `getClientRects` operate on
 
 ---
 
-### <CanaryBadge /> Observing visibility without a wrapper element {/*observing-visibility-without-wrapper*/}
-
-Use `observeUsing` to attach an `IntersectionObserver` to all first-level DOM children of a Fragment. This lets you track visibility without requiring child components to expose `ref`s or adding a wrapper element:
-
-```js {6-14,17}
-import { Fragment, useRef, useLayoutEffect } from 'react';
-
-function VisibleGroup({ onVisibilityChange, children }) {
-  const fragmentRef = useRef(null);
-
-  useLayoutEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        onVisibilityChange(entries.some(entry => entry.isIntersecting))
-      },
-      { threshold }
-    );
-
-    fragmentRef.current.observeUsing(observer);
-    return () => fragmentRef.current.unobserveUsing(observer);
-  }, [onVisibilityChange]);
-
-  return (
-    <Fragment ref={fragmentRef}>
-      {children}
-    </Fragment>
-  );
-}
-```
-
----
-
 ### <CanaryBadge /> Managing focus across a group of elements {/*managing-focus-across-elements*/}
 
 Fragment `ref`s provide `focus`, `focusLast`, and `blur` methods that operate across all DOM nodes within the Fragment:
@@ -543,6 +509,36 @@ function App() {
 ```
 
 Calling `focusFirst()` focuses the `street` input—even though it is nested inside a `<fieldset>` and `<label>`. `focus()` searches depth-first through all nested children, not just direct children of the Fragment. `focusLast()` does the same in reverse, and `blur()` removes focus if the currently focused element is within the Fragment.
+
+
+---
+
+### <CanaryBadge /> Observing visibility without a wrapper element {/*observing-visibility-without-wrapper*/}
+
+Use `observeUsing` to attach an `IntersectionObserver` to all first-level DOM children of a Fragment. This lets you track visibility without requiring child components to expose `ref`s or adding a wrapper element:
+
+```js
+import { Fragment, useRef, useLayoutEffect } from 'react';
+
+function VisibleGroup({ onVisibilityChange, children }) {
+  const fragmentRef = useRef(null);
+
+  useLayoutEffect(() => {
+    const observer = new IntersectionObserver((entries) => {
+      onVisibilityChange(entries.some(entry => entry.isIntersecting));
+    });
+
+    fragmentRef.current.observeUsing(observer);
+    return () => fragmentRef.current.unobserveUsing(observer);
+  }, [onVisibilityChange]);
+
+  return (
+    <Fragment ref={fragmentRef}>
+      {children}
+    </Fragment>
+  );
+}
+```
 
 ---
 

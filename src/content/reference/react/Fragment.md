@@ -526,9 +526,23 @@ function FormFields({ children }) {
     </>
   );
 }
+
+// Even though the inputs are deeply nested,
+// focus() searches depth-first to find them.
+function App() {
+  return (
+    <FormFields>
+      <fieldset>
+        <legend>Shipping</legend>
+        <label>Street: <input name="street" /></label>
+        <label>City: <input name="city" /></label>
+      </fieldset>
+    </FormFields>
+  );
+}
 ```
 
-`focus()` finds the first focusable element by searching depth-first through all nested children. `focusLast()` does the same in reverse. `blur()` removes focus if the currently focused element is within the Fragment.
+Calling `focusFirst()` focuses the `street` input—even though it is nested inside a `<fieldset>` and `<label>`. `focus()` searches depth-first through all nested children, not just direct children of the Fragment. `focusLast()` does the same in reverse, and `blur()` removes focus if the currently focused element is within the Fragment.
 
 ---
 

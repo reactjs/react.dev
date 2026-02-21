@@ -222,8 +222,12 @@ async function fetchUser() {
   return { name: 'Alice', role: 'Engineer' };
 }
 
+function now() {
+  return Date.now();
+}
+
 export default function App() {
-  const serverTime = Date.now();
+  const serverTime = now();
   const userPromise = fetchUser();
   return (
     <div>
@@ -252,9 +256,12 @@ export default async function SlowParent({ children }) {
 'use client';
 import { use } from 'react';
 
+function now() {
+  return Date.now();
+}
 export default function UserCard({ userPromise, serverTime }) {
   const user = use(userPromise);
-  const elapsed = Date.now() - serverTime;
+  const elapsed = now() - serverTime;
   return (
     <div style={{
       border: '1px solid #ccc',

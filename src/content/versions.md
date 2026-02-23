@@ -263,7 +263,7 @@ For versions older than React 15, see [15.react.dev](https://15.react.dev).
 - [The Road to 1.0](https://legacy.reactjs.org/blog/2014/03/28/the-road-to-1.0.html)
 - [React v0.11.1](https://legacy.reactjs.org/blog/2014/07/25/react-v0.11.1.html)
 - [React v0.11.2](https://legacy.reactjs.org/blog/2014/09/16/react-v0.11.2.html)
-- [Introducing the JSX Specificaion](https://legacy.reactjs.org/blog/2014/09/03/introducing-the-jsx-specification.html)
+- [Introducing the JSX Specification](https://legacy.reactjs.org/blog/2014/09/03/introducing-the-jsx-specification.html)
 
 **Releases**
 - [v0.11.2 (September 2014)](https://github.com/facebook/react/blob/main/CHANGELOG.md#0112-september-16-2014)

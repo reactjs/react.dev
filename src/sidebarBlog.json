@@ -12,11 +12,11 @@
       "skipBreadcrumb": true,
       "routes": [
         {
-          "title": "Launching the React Foundation",
-          "titleForHomepage": "Launching the React Foundation",
+          "title": "The React Foundation: A New Home for React Hosted by the Linux Foundation",
+          "titleForHomepage": "The React Foundation: A New Home for React Hosted by the Linux Foundation",
           "icon": "blog",
           "date": "February 24, 2026",
-          "path": "/blog/2026/02/24/launching-the-react-foundation"
+          "path": "/blog/2026/02/24/the-react-foundation"
         },
         {
           "title": "Denial of Service and Source Code Exposure in React Server Components",

@@ -259,10 +259,10 @@ In the future, CSS libraries may add built-in animations using View Transition C
 
 Enter/Exit Transitions trigger when a `<ViewTransition>` is added or removed by a component in a transition:
 
-```js
+```js {3}
 function Child() {
   return (
-    <ViewTransition>
+    <ViewTransition enter="auto" exit="auto" default="none">
       <div>Hi</div>
     </ViewTransition>
   );
@@ -299,7 +299,6 @@ export function Video({video}) {
     <div className="video">
       <div className="link">
         <Thumbnail video={video}></Thumbnail>
-
         <div className="info">
           <div className="video-title">{video.title}</div>
           <div className="video-description">{video.description}</div>
@@ -317,7 +316,7 @@ import videos from './data';
 
 function Item() {
   return (
-    <ViewTransition>
+    <ViewTransition enter="auto" exit="auto" default="none">
       <Video video={videos[0]} />
     </ViewTransition>
   );
@@ -448,15 +447,145 @@ button:hover {
 
 <Pitfall>
 
-`<ViewTransition>` only activates if it is placed before any DOM node. If `Child` instead looked like this, no animation would trigger:
+#### Only top-level ViewTransitions animate on exit/enter {/*only-top-level-viewtransition-animates-on-exit-enter*/}
+
+`<ViewTransition>` only activates exit/enter if it is placed _before_ any DOM nodes. 
+
+If there's a `<div>` above `<ViewTransition>`, no exit/enter animations trigger:
 
 ```js [3, 5]
-function Component() {
-  return <ViewTransition>Hi</ViewTransition>;
+function Item() {
+  return (
+    <div> {/* 🚩<div> above <ViewTransition> breaks exit/enter */}
+      <ViewTransition enter="auto" exit="auto" default="none">
+        <Video video={videos[0]} />
+      </ViewTransition>
+    </div>
+  );
 }
 ```
 
+This constraint prevents subtle bugs where too much or too little animates.
+
 </Pitfall>
+
+---
+
+### Animating enter/exit with Activity {/*animating-enter-exit-with-activity*/}
+
+If you want to animate a component in and out while preserving its state, or pre-rendering content for an animation, you can use [`<Activity>`](/reference/react/Activity). When a `<ViewTransition>` inside an `<Activity>` becomes visible, the `enter` animation activates. When it becomes hidden, the `exit` animation activates:
+
+```js
+<Activity mode={isVisible ? 'visible' : 'hidden'}>
+  <ViewTransition enter="auto" exit="auto">
+    <Counter />
+  </ViewTransition>
+</Activity>
+
+```
+
+In this example, `Counter` has a counter with internal state. Try incrementing the counter, hiding it, then showing it again. The counter's value is preserved while the sidebar animates in and out:
+
+<Sandpack>
+
+```js
+import { Activity, ViewTransition, useState, startTransition } from 'react';
+
+export default function App() {
+  const [show, setShow] = useState(true);
+  return (
+    <div className="layout">
+      <Toggle show={show} setShow={setShow} />
+      <Activity mode={show ? 'visible' : 'hidden'}>
+        <ViewTransition enter="auto" exit="auto" default="none">
+          <Counter />
+        </ViewTransition>
+      </Activity>
+    </div>
+  );
+}
+function Toggle({show, setShow}) {
+  return (
+    <button
+      className="toggle"
+      onClick={() => {
+        startTransition(() => {
+          setShow(s => !s);
+        });
+      }}>
+      {show ? 'Hide' : 'Show'}
+    </button>
+  )
+}
+function Counter() {
+  const [count, setCount] = useState(0);
+  return (
+    <div className="counter">
+      <h2>Counter</h2>
+      <p>Count: {count}</p>
+      <button onClick={() => setCount(count + 1)}>
+        Increment
+      </button>
+    </div>
+  );
+}
+
+```
+
+```css
+.layout {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  min-height: 200px;
+}
+.counter {
+  padding: 15px;
+  background: #f0f4f8;
+  border-radius: 8px;
+  width: 200px;
+}
+.counter h2 {
+  margin: 0 0 10px 0;
+  font-size: 16px;
+}
+.counter p {
+  margin: 0 0 10px 0;
+}
+.toggle {
+  padding: 8px 16px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background: #f0f8ff;
+  cursor: pointer;
+  font-size: 14px;
+}
+.toggle:hover {
+  background: #e0e8ff;
+}
+.counter button {
+  padding: 4px 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background: white;
+  cursor: pointer;
+}
+```
+
+```json package.json hidden
+{
+  "dependencies": {
+    "react": "canary",
+    "react-dom": "canary",
+    "react-scripts": "latest"
+  }
+}
+```
+
+</Sandpack>
+
+Without `<Activity>`, the counter would reset to `0` every time the sidebar reappears.
 
 ---
 

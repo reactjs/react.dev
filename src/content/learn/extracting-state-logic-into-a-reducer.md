@@ -183,11 +183,11 @@ Each of its event handlers calls `setTasks` in order to update the state. As thi
 
 Reducers are a different way to handle state. You can migrate from `useState` to `useReducer` in three steps:
 
-1. **Move** from setting state to dispatching actions.
+1. **Move** from setting state to dispatching Actions.
 2. **Write** a reducer function.
 3. **Use** the reducer from your component.
 
-### Step 1: Move from setting state to dispatching actions {/*step-1-move-from-setting-state-to-dispatching-actions*/}
+### Step 1: Move from setting state to dispatching Actions {/*step-1-move-from-setting-state-to-dispatching-actions*/}
 
 Your event handlers currently specify _what to do_ by setting state:
 
@@ -226,7 +226,7 @@ Remove all the state setting logic. What you are left with are three event handl
 - `handleChangeTask(task)` is called when the user toggles a task or presses "Save".
 - `handleDeleteTask(taskId)` is called when the user presses "Delete".
 
-Managing state with reducers is slightly different from directly setting state. Instead of telling React "what to do" by setting state, you specify "what the user just did" by dispatching "actions" from your event handlers. (The state update logic will live elsewhere!) So instead of "setting `tasks`" via an event handler, you're dispatching an "added/changed/deleted a task" action. This is more descriptive of the user's intent.
+Managing state with reducers is slightly different from directly setting state. Instead of telling React "what to do" by setting state, you specify "what the user just did" by dispatching "Actions" from your event handlers. (The state update logic will live elsewhere!) So instead of "setting `tasks`" via an event handler, you're dispatching an "added/changed/deleted a task" action. This is more descriptive of the user's intent.
 
 ```js
 function handleAddTask(text) {
@@ -862,7 +862,7 @@ li {
 
 </Sandpack>
 
-Component logic can be easier to read when you separate concerns like this. Now the event handlers only specify _what happened_ by dispatching actions, and the reducer function determines _how the state updates_ in response to them.
+Component logic can be easier to read when you separate concerns like this. Now the event handlers only specify _what happened_ by dispatching Actions, and the reducer function determines _how the state updates_ in response to them.
 
 ## Comparing `useState` and `useReducer` {/*comparing-usestate-and-usereducer*/}
 

@@ -252,8 +252,8 @@ import { Fragment } from 'react';
 function ClickableFragment({ children, onClick }) {
   return (
     <Fragment ref={fragmentInstance => {
-      fragmentInstance.addEventListener('click', handleClick);
-      return () => fragmentInstance.removeEventListener('click', handleClick);
+      fragmentInstance.addEventListener('click', onClick);
+      return () => fragmentInstance.removeEventListener('click', onClick);
     }}>
       {children}
     </Fragment>

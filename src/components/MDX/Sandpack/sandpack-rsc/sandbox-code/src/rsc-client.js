@@ -71,7 +71,7 @@ export function initClient() {
           : error && error.message
           ? error.message
           : String(error);
-      console.error('[RSC Client Error] digest:', error && error.digest);
+      console.error(msg);
       showError(msg);
     },
   });

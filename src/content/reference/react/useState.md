@@ -529,7 +529,7 @@ export default function Form() {
     artwork: {
       title: 'Blue Nana',
       city: 'Hamburg',
-      image: 'https://i.imgur.com/Sd1AgUOm.jpg',
+      image: 'https://i.imgur.com.prx.react.dev/Sd1AgUOm.jpg',
     }
   });
 

@@ -393,9 +393,7 @@ function render() {
   var element = React.createElement(App);
   return RSDWServer.renderToReadableStream(element, createModuleMap(), {
     onError: function (err) {
-      var msg = err && err.message ? err.message : String(err);
-      var stack = err && err.stack ? err.stack : '';
-      console.error('[RSC Server Error]', msg, stack);
+      console.error('[RSC Server Error]', err);
       return msg;
     },
   });
@@ -430,9 +428,7 @@ function callAction(actionId, encodedArgs) {
         createModuleMap(),
         {
           onError: function (err) {
-            var msg = err && err.message ? err.message : String(err);
-            var stack = err && err.stack ? err.stack : '';
-            console.error('[RSC Server Error]', msg, stack);
+            console.error('[RSC Server Error]', err);
             return msg;
           },
         }

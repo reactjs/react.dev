@@ -10,7 +10,7 @@ title: cache
 
 <Intro>
 
-`cache` lets you cache the result of a data fetch or computation.
+`cache` lets you cache the result of a data fetch or computation for the span of a server request.
 
 ```js
 const cachedFn = cache(fn);

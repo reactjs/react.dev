@@ -43,6 +43,7 @@ src/
 When editing files in `src/content/`, the appropriate skill will be auto-suggested:
 - `src/content/learn/` - Learn page structure and tone
 - `src/content/reference/` - Reference page structure and tone
+- `src/content/errors/` - Error page structure and tone
 
 For MDX components (DeepDive, Pitfall, Note, etc.), invoke `/docs-components`.
 For Sandpack code examples, invoke `/docs-sandpack`.

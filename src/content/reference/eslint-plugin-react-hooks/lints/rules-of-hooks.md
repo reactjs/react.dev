@@ -132,7 +132,7 @@ useEffect(() => {
 
 <Note>
 
-There are better ways to fetch data rather than in a useEffect. Consider using React Query, useSWR, or React Router 6.4+ for data fetching. These solutions handle deduplicating requests, caching responses, and avoiding network waterfalls.
+There are better ways to fetch data rather than in a useEffect. Consider using TanStack Query, useSWR, or React Router 6.4+ for data fetching. These solutions handle deduplicating requests, caching responses, and avoiding network waterfalls.
 
 Learn more: [Fetching Data](/learn/synchronizing-with-effects#fetching-data)
 
@@ -159,3 +159,21 @@ const [permissions, setPermissions] = useState(
   userType === 'admin' ? adminPerms : userPerms
 );
 ```
+
+## Options {/*options*/}
+
+You can configure custom effect hooks using shared ESLint settings (available in `eslint-plugin-react-hooks` 6.1.1 and later):
+
+```js
+{
+  "settings": {
+    "react-hooks": {
+      "additionalEffectHooks": "(useMyEffect|useCustomEffect)"
+    }
+  }
+}
+```
+
+- `additionalEffectHooks`: Regex pattern matching custom hooks that should be treated as effects. This allows `useEffectEvent` and similar event functions to be called from your custom effect hooks.
+
+This shared configuration is used by both `rules-of-hooks` and `exhaustive-deps` rules, ensuring consistent behavior across all hook-related linting.

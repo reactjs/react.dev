@@ -60,7 +60,7 @@ const MyDocument = () => {
                         document.documentElement.classList.add('uwu');
                         if (!logShown) {
                           console.log('uwu mode! turn off with ?uwu=0');
-                          console.log('logo credit to @sawaratsuki1004 via https://github.com/SAWARATSUKI/ServiceLogos');
+                          console.log('logo credit to @sawaratsuki1004 via https://github.com/SAWARATSUKI/KawaiiLogos');
                           logShown = true;
                         }
                       } else {

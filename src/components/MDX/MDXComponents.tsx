@@ -26,7 +26,7 @@ import BlogCard from './BlogCard';
 import Link from './Link';
 import {PackageImport} from './PackageImport';
 import Recap from './Recap';
-import Sandpack from './Sandpack';
+import {SandpackClient as Sandpack, SandpackRSC} from './Sandpack';
 import SandpackWithHTMLOutput from './SandpackWithHTMLOutput';
 import Diagram from './Diagram';
 import DiagramGroup from './DiagramGroup';
@@ -104,6 +104,10 @@ const Note = ({children}: {children: React.ReactNode}) => (
 
 const Canary = ({children}: {children: React.ReactNode}) => (
   <ExpandableCallout type="canary">{children}</ExpandableCallout>
+);
+
+const RC = ({children}: {children: React.ReactNode}) => (
+  <ExpandableCallout type="rc">{children}</ExpandableCallout>
 );
 
 const Experimental = ({children}: {children: React.ReactNode}) => (
@@ -533,6 +537,7 @@ export const MDXComponents = {
   Math,
   MathI,
   Note,
+  RC,
   Canary,
   Experimental,
   ExperimentalBadge,
@@ -546,6 +551,7 @@ export const MDXComponents = {
   Recap,
   Recipes,
   Sandpack,
+  SandpackRSC,
   SandpackWithHTMLOutput,
   TeamMember,
   TerminalBlock,

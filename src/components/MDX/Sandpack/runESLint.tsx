@@ -21,13 +21,6 @@ const getCodeMirrorPosition = (
 
 const linter = new Linter();
 
-// HACK! Eslint requires 'esquery' using `require`, but there's no commonjs interop.
-// because of this it tries to run `esquery.parse()`, while there's only `esquery.default.parse()`.
-// This hack places the functions in the right place.
-const esquery = require('esquery');
-esquery.parse = esquery.default?.parse;
-esquery.matches = esquery.default?.matches;
-
 const reactRules = require('eslint-plugin-react-hooks').rules;
 linter.defineRules({
   'react-hooks/rules-of-hooks': reactRules['rules-of-hooks'],

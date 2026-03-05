@@ -43,7 +43,7 @@ function Section({children, background = null}) {
         'mx-auto flex flex-col w-full',
         background === null && 'max-w-7xl',
         background === 'left-card' &&
-          'bg-gradient-left dark:bg-gradient-left-dark border-t border-primary/10 dark:border-primary-dark/10 ',
+          'bg-gradient-left dark:bg-gradient-left-dark border-t border-primary/10 dark:border-primary-dark/10',
         background === 'right-card' &&
           'bg-gradient-right dark:bg-gradient-right-dark border-t border-primary/5 dark:border-primary-dark/5'
       )}
@@ -793,7 +793,7 @@ const CommunityImages = memo(function CommunityImages({isLazy}) {
           )}>
           <div
             className={cn(
-              'h-auto rounded-2xl before:rounded-2xl before:absolute before:pointer-events-none before:inset-0 before:transition-opacity before:-z-1 before:shadow-lg lg:before:shadow-2xl before:opacity-0 before:group-hover:opacity-100  transition-transform ease-in-out duration-300',
+              'h-auto rounded-2xl before:rounded-2xl before:absolute before:pointer-events-none before:inset-0 before:transition-opacity before:-z-1 before:shadow-lg lg:before:shadow-2xl before:opacity-0 before:group-hover:opacity-100 transition-transform ease-in-out duration-300',
               i % 2 === 0
                 ? 'rotate-2 group-hover:rotate-[-1deg] group-hover:scale-110'
                 : 'group-hover:rotate-1 group-hover:scale-110 rotate-[-2deg]'
@@ -1325,7 +1325,7 @@ function BrowserChrome({children, hasPulse, hasRefresh, domain, path}) {
             <div
               ref={refreshRef}
               className={cn(
-                'relative rounded-full flex justify-center items-center ',
+                'relative rounded-full flex justify-center items-center',
                 isPulsing && shouldAnimatePulse && 'animation-pulse-button'
               )}>
               {isPulsing && shouldAnimatePulse && (

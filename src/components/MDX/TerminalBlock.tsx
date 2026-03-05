@@ -68,7 +68,7 @@ function TerminalBlock({level = 'info', children}: TerminalBlockProps) {
           </div>
           <div>
             <button
-              className="w-full text-start text-primary-dark dark:text-primary-dark "
+              className="w-full text-start text-primary-dark dark:text-primary-dark"
               onClick={() => {
                 window.navigator.clipboard.writeText(message ?? '');
                 setCopied(true);

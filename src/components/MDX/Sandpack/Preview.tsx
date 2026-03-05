@@ -210,7 +210,7 @@ export function Preview({
               'z-50',
               // This isn't absolutely positioned so that
               // the errors can also expand the parent height.
-              isExpanded ? 'sticky top-8 ' : null
+              isExpanded ? 'sticky top-8' : null
             )}>
             <ErrorMessage error={error} />
           </div>

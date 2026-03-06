@@ -12,7 +12,7 @@ const config = [
       'coverage/**',
       'dist/**',
       'out/**',
-      '.private-investigation/**',
+      '**/.*/**',
       'scripts/**',
       'plugins/**',
       '.claude/**',

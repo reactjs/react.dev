@@ -18,7 +18,7 @@ import {IconDeepDive} from '../Icon/IconDeepDive';
 import {IconCodeBlock} from '../Icon/IconCodeBlock';
 import {Button} from '../Button';
 import {H4} from './Heading';
-import {useState} from 'react';
+import {Children, isValidElement, useState} from 'react';
 import {useLocationHash} from 'hooks/useLocationHash';
 import {getMDXName} from './getMDXName';
 
@@ -28,15 +28,32 @@ interface ExpandableExampleProps {
   type: 'DeepDive' | 'Example';
 }
 
+function getExpandableChildren(children: React.ReactNode) {
+  return Children.toArray(children).filter((child) => {
+    return !(typeof child === 'string' && child.trim() === '');
+  });
+}
+
 function ExpandableExample({children, excerpt, type}: ExpandableExampleProps) {
-  if (!Array.isArray(children) || getMDXName(children[0]) !== 'h4') {
+  const expandableChildren = getExpandableChildren(children);
+  const titleChild = expandableChildren[0];
+
+  if (
+    !isValidElement(titleChild) ||
+    !(
+      getMDXName(titleChild) === 'h4' ||
+      getMDXName(titleChild) === 'H4' ||
+      titleChild.type === H4
+    )
+  ) {
     throw Error(
       `Expandable content ${type} is missing a corresponding title at the beginning`
     );
   }
+
   const isDeepDive = type === 'DeepDive';
   const isExample = type === 'Example';
-  const id = children[0].props.id;
+  const id = titleChild.props.id;
   const hash = useLocationHash();
   const [isExpanded, setIsExpanded] = useState(false);
   const [isAutoExpandedDismissed, setIsAutoExpandedDismissed] = useState(false);
@@ -88,7 +105,7 @@ function ExpandableExample({children, excerpt, type}: ExpandableExampleProps) {
           <H4
             id={id}
             className="text-xl font-bold text-primary dark:text-primary-dark">
-            {children[0].props.children}
+            {titleChild.props.children}
           </H4>
           {excerpt && <div>{excerpt}</div>}
         </div>
@@ -120,7 +137,7 @@ function ExpandableExample({children, excerpt, type}: ExpandableExampleProps) {
           'dark:border-purple-60 border-purple-10 ': isDeepDive,
           'dark:border-yellow-60 border-yellow-50': isExample,
         })}>
-        {children.slice(1)}
+        {expandableChildren.slice(1)}
       </div>
     </details>
   );

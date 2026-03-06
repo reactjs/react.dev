@@ -11,7 +11,7 @@
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
 
-import {isValidElement, useState, useEffect} from 'react';
+import {Children, isValidElement, useState, useEffect} from 'react';
 import * as React from 'react';
 import {IconTerminal} from '../Icon/IconTerminal';
 import {IconCopy} from 'components/Icon/IconCopy';
@@ -21,6 +21,26 @@ type LogLevel = 'info' | 'warning' | 'error';
 interface TerminalBlockProps {
   level?: LogLevel;
   children: React.ReactNode;
+}
+
+function getTerminalText(node: React.ReactNode): string {
+  let text = '';
+
+  Children.forEach(node, (child) => {
+    if (typeof child === 'string' || typeof child === 'number') {
+      text += child;
+      return;
+    }
+
+    if (!isValidElement(child)) {
+      return;
+    }
+
+    const props = child.props as {children?: React.ReactNode} | null;
+    text += getTerminalText(props?.children ?? null);
+  });
+
+  return text;
 }
 
 function LevelText({type}: {type: LogLevel}) {
@@ -35,17 +55,8 @@ function LevelText({type}: {type: LogLevel}) {
 }
 
 function TerminalBlock({level = 'info', children}: TerminalBlockProps) {
-  let message: string | undefined;
-  if (typeof children === 'string') {
-    message = children;
-  } else if (
-    isValidElement(children) &&
-    typeof (children as React.ReactElement<{children: string}>).props
-      .children === 'string'
-  ) {
-    message = (children as React.ReactElement<{children: string}>).props
-      .children;
-  } else {
+  const message = getTerminalText(children).trim();
+  if (message.length === 0) {
     throw Error('Expected TerminalBlock children to be a plain string.');
   }
 
@@ -72,7 +83,7 @@ function TerminalBlock({level = 'info', children}: TerminalBlockProps) {
             <button
               className="w-full text-start text-primary-dark dark:text-primary-dark "
               onClick={() => {
-                window.navigator.clipboard.writeText(message ?? '');
+                window.navigator.clipboard.writeText(message);
                 setCopied(true);
               }}>
               <IconCopy className="inline-flex me-2 self-center" />{' '}

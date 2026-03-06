@@ -1,3 +1,5 @@
+'use client';
+
 /**
  * Copyright (c) Meta Platforms, Inc. and affiliates.
  *
@@ -64,9 +66,9 @@ export const SandpackClient = memo(function SandpackWrapper(props: any): any {
   );
   let activeCode;
   if (!activeCodeSnippet.length) {
-    activeCode = codeSnippet[AppJSPath].code;
+    activeCode = codeSnippet[AppJSPath]?.code ?? '';
   } else {
-    activeCode = codeSnippet[activeCodeSnippet[0]].code;
+    activeCode = codeSnippet[activeCodeSnippet[0]]?.code ?? '';
   }
 
   return (
@@ -94,7 +96,7 @@ export const SandpackRSC = memo(function SandpackRSCWrapper(props: {
   if (!activeCodeSnippet.length) {
     activeCode = codeSnippet[AppJSPath]?.code ?? '';
   } else {
-    activeCode = codeSnippet[activeCodeSnippet[0]].code;
+    activeCode = codeSnippet[activeCodeSnippet[0]]?.code ?? '';
   }
 
   return (

@@ -11,6 +11,7 @@
 
 import type {SandpackFile} from '@codesandbox/sandpack-react/unstyled';
 import type {PropsWithChildren, ReactElement, HTMLAttributes} from 'react';
+import {getMDXName} from '../getMDXName';
 
 export const AppJSPath = `/src/App.js`;
 export const StylesCSSPath = `/src/styles.css`;
@@ -79,10 +80,7 @@ function splitMeta(meta: string): string[] {
 export const createFileMap = (codeSnippets: any) => {
   return codeSnippets.reduce(
     (result: Record<string, SandpackFile>, codeSnippet: React.ReactElement) => {
-      if (
-        (codeSnippet.type as any).mdxName !== 'pre' &&
-        codeSnippet.type !== 'pre'
-      ) {
+      if (getMDXName(codeSnippet) !== 'pre') {
         return result;
       }
       const {props} = (

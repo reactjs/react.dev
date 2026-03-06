@@ -11,7 +11,6 @@
 import {memo, useRef, useState} from 'react';
 import {flushSync} from 'react-dom';
 import {
-  useSandpack,
   useActiveCode,
   SandpackCodeEditor,
   SandpackLayout,
@@ -32,15 +31,8 @@ export const CustomPreset = memo(function CustomPreset({
   showOpenInCodeSandbox?: boolean;
 }) {
   const {lintErrors, lintExtensions} = useSandpackLint();
-  const {sandpack} = useSandpack();
   const {code} = useActiveCode();
-  const {activeFile} = sandpack;
-  const lineCountRef = useRef<{[key: string]: number}>({});
-  if (!lineCountRef.current[activeFile]) {
-    // eslint-disable-next-line react-compiler/react-compiler
-    lineCountRef.current[activeFile] = code.split('\n').length;
-  }
-  const lineCount = lineCountRef.current[activeFile];
+  const lineCount = (code ?? '').split('\n').length;
   const isExpandable = lineCount > 16;
   return (
     <SandboxShell

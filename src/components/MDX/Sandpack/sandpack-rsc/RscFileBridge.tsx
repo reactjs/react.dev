@@ -17,9 +17,9 @@ export function RscFileBridge() {
   const {sandpack, dispatch, listen} = useSandpack();
   const filesRef = useRef(sandpack.files);
 
-  // TODO: fix this with useEffectEvent
-  // eslint-disable-next-line react-compiler/react-compiler
-  filesRef.current = sandpack.files;
+  useEffect(() => {
+    filesRef.current = sandpack.files;
+  }, [sandpack.files]);
 
   useEffect(() => {
     const unsubscribe = listen((msg: any) => {

@@ -14,6 +14,7 @@ import NextLink from 'next/link';
 import cn from 'classnames';
 
 import {ExternalLink} from 'components/ExternalLink';
+import {getMDXName} from './getMDXName';
 
 function Link({
   href,
@@ -24,7 +25,7 @@ function Link({
   const classes =
     'inline text-link dark:text-link-dark border-b border-link border-opacity-0 hover:border-opacity-100 duration-100 ease-in transition leading-normal';
   const modifiedChildren = Children.toArray(children).map((child: any) => {
-    if (child.type?.mdxName && child.type?.mdxName === 'inlineCode') {
+    if (getMDXName(child) === 'code') {
       return cloneElement(child, {
         isLink: true,
       });
@@ -33,7 +34,6 @@ function Link({
   });
 
   if (!href) {
-    // eslint-disable-next-line jsx-a11y/anchor-has-content
     return <a href={href} className={className} {...props} />;
   }
   return (
@@ -43,7 +43,6 @@ function Link({
           {modifiedChildren}
         </ExternalLink>
       ) : href.startsWith('#') ? (
-        // eslint-disable-next-line jsx-a11y/anchor-has-content
         <a className={cn(classes, className)} href={href} {...props}>
           {modifiedChildren}
         </a>

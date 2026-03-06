@@ -42,7 +42,10 @@ interface TagProps {
 }
 
 function Tag({text, variant, className}: TagProps) {
-  const {name, classes} = variantMap[variant];
+  const {name, classes} = variantMap[variant as keyof typeof variantMap] ?? {
+    name: variant,
+    classes: 'bg-gray-40 text-white',
+  };
   return (
     <span className={cn('me-2', className)}>
       <span

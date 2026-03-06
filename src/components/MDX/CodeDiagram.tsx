@@ -12,6 +12,7 @@
 import {Children} from 'react';
 import * as React from 'react';
 import CodeBlock from './CodeBlock';
+import {getMDXName} from './getMDXName';
 
 interface CodeDiagramProps {
   children: React.ReactNode;
@@ -23,7 +24,7 @@ export function CodeDiagram({children, flip = false}: CodeDiagramProps) {
     return child.type === 'img';
   });
   const content = Children.toArray(children).map((child: any) => {
-    if (child.type?.mdxName === 'pre') {
+    if (getMDXName(child) === 'pre') {
       return (
         <CodeBlock
           key={child.key}

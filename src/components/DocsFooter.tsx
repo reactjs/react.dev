@@ -38,7 +38,7 @@ export const DocsPageFooter = memo<DocsPageFooterProps>(
               {prevRoute?.path ? (
                 <FooterLink
                   type="Previous"
-                  title={prevRoute.title}
+                  title={prevRoute.title ?? ''}
                   href={prevRoute.path}
                 />
               ) : (
@@ -48,7 +48,7 @@ export const DocsPageFooter = memo<DocsPageFooterProps>(
               {nextRoute?.path ? (
                 <FooterLink
                   type="Next"
-                  title={nextRoute.title}
+                  title={nextRoute.title ?? ''}
                   href={nextRoute.path}
                 />
               ) : (

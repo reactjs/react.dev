@@ -5,6 +5,6 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import ErrorDecoderPage from './[errorCode]';
-export default ErrorDecoderPage;
-export {getStaticProps} from './[errorCode]';
+const {validateRssFeed} = require('../src/utils/rss');
+
+validateRssFeed();

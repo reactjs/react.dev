@@ -1,3 +1,5 @@
+'use client';
+
 /**
  * Copyright (c) Meta Platforms, Inc. and affiliates.
  *
@@ -9,12 +11,11 @@
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
 
-import Head from 'next/head';
 import Link from 'next/link';
-import Router from 'next/router';
-import {lazy, useEffect} from 'react';
+import {lazy, Suspense, useEffect} from 'react';
 import * as React from 'react';
 import {createPortal} from 'react-dom';
+import {useRouter} from 'next/navigation';
 import {siteConfig} from 'siteConfig';
 import type {ComponentType, PropsWithChildren} from 'react';
 import type {DocSearchModalProps} from '@docsearch/react/modal';
@@ -117,37 +118,36 @@ export function Search({
     ],
   },
 }: SearchProps) {
+  const router = useRouter();
   useDocSearchKeyboardEvents({isOpen, onOpen, onClose});
   return (
     <>
-      <Head>
-        <link
-          rel="preconnect"
-          href={`https://${options.appId}-dsn.algolia.net`}
-        />
-      </Head>
       {isOpen &&
         createPortal(
-          <DocSearchModal
-            {...options}
-            searchParameters={searchParameters}
-            onClose={onClose}
-            navigator={{
-              navigate({itemUrl}: any) {
-                Router.push(itemUrl);
-              },
-            }}
-            transformItems={(items: any[]) => {
-              return items.map((item) => {
-                const url = new URL(item.url);
-                return {
-                  ...item,
-                  url: item.url.replace(url.origin, '').replace('#__next', ''),
-                };
-              });
-            }}
-            hitComponent={Hit}
-          />,
+          <Suspense fallback={null}>
+            <DocSearchModal
+              {...options}
+              searchParameters={searchParameters}
+              onClose={onClose}
+              navigator={{
+                navigate({itemUrl}: any) {
+                  router.push(itemUrl);
+                },
+              }}
+              transformItems={(items: any[]) => {
+                return items.map((item) => {
+                  const url = new URL(item.url);
+                  return {
+                    ...item,
+                    url: item.url
+                      .replace(url.origin, '')
+                      .replace('#__next', ''),
+                  };
+                });
+              }}
+              hitComponent={Hit}
+            />
+          </Suspense>,
           document.body
         )}
     </>

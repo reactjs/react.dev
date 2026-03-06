@@ -25,9 +25,11 @@ declare global {
 export default function SidebarNav({
   routeTree,
   breadcrumbs,
+  pathname,
 }: {
   routeTree: RouteItem;
   breadcrumbs: RouteItem[];
+  pathname: string;
 }) {
   // HACK. Fix up the data structures instead.
   if ((routeTree as any).routes.length === 1) {
@@ -57,6 +59,7 @@ export default function SidebarNav({
               <SidebarRouteTree
                 routeTree={routeTree}
                 breadcrumbs={breadcrumbs}
+                pathname={pathname}
                 isForceExpanded={false}
               />
             </Suspense>

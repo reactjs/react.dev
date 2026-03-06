@@ -1,3 +1,5 @@
+'use client';
+
 /**
  * Copyright (c) Meta Platforms, Inc. and affiliates.
  *
@@ -16,8 +18,9 @@ import {IconDeepDive} from '../Icon/IconDeepDive';
 import {IconCodeBlock} from '../Icon/IconCodeBlock';
 import {Button} from '../Button';
 import {H4} from './Heading';
-import {useRouter} from 'next/router';
-import {useEffect, useRef, useState} from 'react';
+import {useState} from 'react';
+import {useLocationHash} from 'hooks/useLocationHash';
+import {getMDXName} from './getMDXName';
 
 interface ExpandableExampleProps {
   children: React.ReactNode;
@@ -26,7 +29,7 @@ interface ExpandableExampleProps {
 }
 
 function ExpandableExample({children, excerpt, type}: ExpandableExampleProps) {
-  if (!Array.isArray(children) || children[0].type.mdxName !== 'h4') {
+  if (!Array.isArray(children) || getMDXName(children[0]) !== 'h4') {
     throw Error(
       `Expandable content ${type} is missing a corresponding title at the beginning`
     );
@@ -34,24 +37,17 @@ function ExpandableExample({children, excerpt, type}: ExpandableExampleProps) {
   const isDeepDive = type === 'DeepDive';
   const isExample = type === 'Example';
   const id = children[0].props.id;
-
-  const {asPath} = useRouter();
-  const shouldAutoExpand = id === asPath.split('#')[1];
-  const queuedExpandRef = useRef<boolean>(shouldAutoExpand);
+  const hash = useLocationHash();
   const [isExpanded, setIsExpanded] = useState(false);
-
-  useEffect(() => {
-    if (queuedExpandRef.current) {
-      queuedExpandRef.current = false;
-      setIsExpanded(true);
-    }
-  }, []);
+  const autoExpanded = hash === id;
 
   return (
     <details
-      open={isExpanded}
+      open={isExpanded || autoExpanded}
       onToggle={(e: any) => {
-        setIsExpanded(e.currentTarget!.open);
+        if (!autoExpanded) {
+          setIsExpanded(e.currentTarget!.open);
+        }
       }}
       className={cn(
         'my-12 rounded-2xl shadow-inner-border dark:shadow-inner-border-dark relative',
@@ -106,9 +102,11 @@ function ExpandableExample({children, excerpt, type}: ExpandableExampleProps) {
           })}
           onClick={() => setIsExpanded((current) => !current)}>
           <span className="me-1">
-            <IconChevron displayDirection={isExpanded ? 'up' : 'down'} />
+            <IconChevron
+              displayDirection={isExpanded || autoExpanded ? 'up' : 'down'}
+            />
           </span>
-          {isExpanded ? 'Hide Details' : 'Show Details'}
+          {isExpanded || autoExpanded ? 'Hide Details' : 'Show Details'}
         </Button>
       </summary>
       <div

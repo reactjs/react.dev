@@ -11,6 +11,7 @@ import {Linter} from 'eslint-linter-browserify';
 
 import type {Diagnostic} from '@codemirror/lint';
 import type {Text} from '@codemirror/text';
+import {reactHooksPlugin} from './generatedHooksLint';
 
 const getCodeMirrorPosition = (
   doc: Text,
@@ -20,8 +21,6 @@ const getCodeMirrorPosition = (
 };
 
 const linter = new Linter();
-
-const reactHooksPlugin = require('eslint-plugin-react-hooks-browser');
 
 const options = [
   {

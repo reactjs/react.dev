@@ -10,12 +10,22 @@
  */
 
 import type {SandpackFile} from '@codesandbox/sandpack-react/unstyled';
-import type {PropsWithChildren, ReactElement, HTMLAttributes} from 'react';
+import {Children, isValidElement} from 'react';
+import type {
+  PropsWithChildren,
+  ReactElement,
+  HTMLAttributes,
+  ReactNode,
+} from 'react';
 import {getMDXName} from '../getMDXName';
 
 export const AppJSPath = `/src/App.js`;
 export const StylesCSSPath = `/src/styles.css`;
 export const SUPPORTED_FILES = [AppJSPath, StylesCSSPath];
+
+export type SandpackSnippetFile = SandpackFile & {
+  visible?: boolean;
+};
 
 /**
  * Tokenize meta attributes while ignoring brace-wrapped metadata (e.g. {expectedErrors: …}).
@@ -77,22 +87,105 @@ function splitMeta(meta: string): string[] {
   return tokens;
 }
 
+function collectCodeSnippets(children: ReactNode): ReactElement[] {
+  const codeSnippets: ReactElement[] = [];
+
+  Children.forEach(children, (child) => {
+    if (!isValidElement(child)) {
+      return;
+    }
+
+    if (getMDXName(child) === 'pre') {
+      codeSnippets.push(child);
+      return;
+    }
+
+    const props = child.props as {children?: ReactNode} | null;
+    if (props?.children != null) {
+      codeSnippets.push(...collectCodeSnippets(props.children));
+    }
+  });
+
+  return codeSnippets;
+}
+
+type CodeElementProps = HTMLAttributes<HTMLDivElement> & {
+  meta?: string;
+  children?: ReactNode;
+};
+
+function findCodeElement(
+  children: ReactNode
+): ReactElement<CodeElementProps> | null {
+  let codeElement: ReactElement<CodeElementProps> | null = null;
+
+  Children.forEach(children, (child) => {
+    if (codeElement || !isValidElement(child)) {
+      return;
+    }
+
+    const props = child.props as CodeElementProps | null;
+    if (
+      getMDXName(child) === 'code' ||
+      typeof props?.meta === 'string' ||
+      (typeof props?.className === 'string' &&
+        props.className.startsWith('language-'))
+    ) {
+      codeElement = child as ReactElement<CodeElementProps>;
+      return;
+    }
+
+    if (props?.children != null) {
+      codeElement = findCodeElement(props.children);
+    }
+  });
+
+  return codeElement;
+}
+
+function getTextContent(node: ReactNode): string {
+  let text = '';
+
+  Children.forEach(node, (child) => {
+    if (typeof child === 'string' || typeof child === 'number') {
+      text += child;
+      return;
+    }
+
+    if (!isValidElement(child)) {
+      return;
+    }
+
+    const props = child.props as {children?: ReactNode} | null;
+    text += getTextContent(props?.children ?? null);
+  });
+
+  return text;
+}
+
 export const createFileMap = (codeSnippets: any) => {
-  return codeSnippets.reduce(
-    (result: Record<string, SandpackFile>, codeSnippet: React.ReactElement) => {
-      if (getMDXName(codeSnippet) !== 'pre') {
-        return result;
+  return collectCodeSnippets(codeSnippets).reduce(
+    (
+      result: Record<string, SandpackSnippetFile>,
+      codeSnippet: React.ReactElement
+    ) => {
+      const codeElement = findCodeElement(
+        (
+          codeSnippet.props as PropsWithChildren<{
+            children?: ReactNode;
+          }>
+        ).children
+      );
+
+      if (!codeElement) {
+        throw new Error('Code block is missing a code element.');
       }
-      const {props} = (
-        codeSnippet.props as PropsWithChildren<{
-          children: ReactElement<
-            HTMLAttributes<HTMLDivElement> & {meta?: string}
-          >;
-        }>
-      ).children;
+
+      const props = codeElement.props;
       let filePath; // path in the folder structure
       let fileHidden = false; // if the file is available as a tab
       let fileActive = false; // if the file tab is shown by default
+      let fileVisible = false; // if the file tab should be forced visible
 
       if (props.meta) {
         const tokens = splitMeta(props.meta);
@@ -107,6 +200,9 @@ export const createFileMap = (codeSnippets: any) => {
         }
         if (tokens.includes('active')) {
           fileActive = true;
+        }
+        if (tokens.includes('visible')) {
+          fileVisible = true;
         }
       } else {
         if (props.className === 'language-js') {
@@ -138,9 +234,10 @@ export const createFileMap = (codeSnippets: any) => {
         );
       }
       result[filePath] = {
-        code: (props.children || '') as string,
+        code: getTextContent(props.children ?? null),
         hidden: fileHidden,
         active: fileActive,
+        visible: fileVisible,
       };
 
       return result;

@@ -28,6 +28,11 @@ interface ExpandableExampleProps {
   type: 'DeepDive' | 'Example';
 }
 
+type ExpandableTitleElement = React.ReactElement<{
+  id?: string;
+  children?: React.ReactNode;
+}>;
+
 function getExpandableChildren(children: React.ReactNode) {
   return Children.toArray(children).filter((child) => {
     return !(typeof child === 'string' && child.trim() === '');
@@ -50,10 +55,11 @@ function ExpandableExample({children, excerpt, type}: ExpandableExampleProps) {
       `Expandable content ${type} is missing a corresponding title at the beginning`
     );
   }
+  const titleElement = titleChild as ExpandableTitleElement;
 
   const isDeepDive = type === 'DeepDive';
   const isExample = type === 'Example';
-  const id = titleChild.props.id;
+  const id = titleElement.props.id;
   const hash = useLocationHash();
   const [isExpanded, setIsExpanded] = useState(false);
   const [isAutoExpandedDismissed, setIsAutoExpandedDismissed] = useState(false);
@@ -105,7 +111,7 @@ function ExpandableExample({children, excerpt, type}: ExpandableExampleProps) {
           <H4
             id={id}
             className="text-xl font-bold text-primary dark:text-primary-dark">
-            {titleChild.props.children}
+            {titleElement.props.children}
           </H4>
           {excerpt && <div>{excerpt}</div>}
         </div>

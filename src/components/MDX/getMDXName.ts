@@ -19,5 +19,10 @@ export function getMDXName(node: ReactNode) {
     return mdxName;
   }
 
+  const typeMdxName = (node.type as {mdxName?: unknown})?.mdxName;
+  if (typeof typeMdxName === 'string') {
+    return typeMdxName;
+  }
+
   return typeof node.type === 'string' ? node.type : null;
 }

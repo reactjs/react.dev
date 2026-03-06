@@ -1,5 +1,3 @@
-'use client';
-
 /**
  * Copyright (c) Meta Platforms, Inc. and affiliates.
  *
@@ -11,10 +9,9 @@
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
 
-import {lazy, memo, Children, Suspense} from 'react';
+import {memo, Children, Suspense} from 'react';
 import {AppJSPath, createFileMap} from './createFileMap';
-
-const SandpackRoot = lazy(() => import('./SandpackRoot'));
+import SandpackRoot from './SandpackRoot';
 
 const SandpackGlimmer = ({code}: {code: string}) => (
   <div className="sandpack sandpack--playground my-8">
@@ -55,53 +52,62 @@ const SandpackGlimmer = ({code}: {code: string}) => (
 );
 
 export const SandpackClient = memo(function SandpackWrapper(props: any): any {
-  const codeSnippet = createFileMap(Children.toArray(props.children));
+  const files = createFileMap(Children.toArray(props.children));
+  const providedFiles = Object.keys(files);
 
   // To set the active file in the fallback we have to find the active file first.
   // If there are no active files we fallback to App.js as default.
-  let activeCodeSnippet = Object.keys(codeSnippet).filter(
+  let activeCodeSnippet = Object.keys(files).filter(
     (fileName) =>
-      codeSnippet[fileName]?.active === true &&
-      codeSnippet[fileName]?.hidden === false
+      files[fileName]?.active === true && files[fileName]?.hidden === false
   );
   let activeCode;
   if (!activeCodeSnippet.length) {
-    activeCode = codeSnippet[AppJSPath]?.code ?? '';
+    activeCode = files[AppJSPath]?.code ?? '';
   } else {
-    activeCode = codeSnippet[activeCodeSnippet[0]]?.code ?? '';
+    activeCode = files[activeCodeSnippet[0]]?.code ?? '';
   }
 
   return (
     <Suspense fallback={<SandpackGlimmer code={activeCode} />}>
-      <SandpackRoot {...props} />
+      <SandpackRoot
+        autorun={props.autorun}
+        files={files}
+        providedFiles={providedFiles}
+      />
     </Suspense>
   );
 });
 
-const SandpackRSCRoot = lazy(() => import('./SandpackRSCRoot'));
+import SandpackRSCRoot from './SandpackRSCRoot';
 
 export const SandpackRSC = memo(function SandpackRSCWrapper(props: {
   children: React.ReactNode;
+  autorun?: boolean;
 }): any {
-  const codeSnippet = createFileMap(Children.toArray(props.children));
+  const files = createFileMap(Children.toArray(props.children));
+  const providedFiles = Object.keys(files);
 
   // To set the active file in the fallback we have to find the active file first.
   // If there are no active files we fallback to App.js as default.
-  let activeCodeSnippet = Object.keys(codeSnippet).filter(
+  let activeCodeSnippet = Object.keys(files).filter(
     (fileName) =>
-      codeSnippet[fileName]?.active === true &&
-      codeSnippet[fileName]?.hidden === false
+      files[fileName]?.active === true && files[fileName]?.hidden === false
   );
   let activeCode;
   if (!activeCodeSnippet.length) {
-    activeCode = codeSnippet[AppJSPath]?.code ?? '';
+    activeCode = files[AppJSPath]?.code ?? '';
   } else {
-    activeCode = codeSnippet[activeCodeSnippet[0]]?.code ?? '';
+    activeCode = files[activeCodeSnippet[0]]?.code ?? '';
   }
 
   return (
     <Suspense fallback={<SandpackGlimmer code={activeCode} />}>
-      <SandpackRSCRoot>{props.children}</SandpackRSCRoot>
+      <SandpackRSCRoot
+        autorun={props.autorun}
+        files={files}
+        providedFiles={providedFiles}
+      />
     </Suspense>
   );
 });

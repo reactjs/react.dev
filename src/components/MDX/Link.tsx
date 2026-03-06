@@ -16,6 +16,31 @@ import cn from 'classnames';
 import {ExternalLink} from 'components/ExternalLink';
 import {getMDXName} from './getMDXName';
 
+const ABSOLUTE_DOC_SECTIONS = [
+  'blog',
+  'community',
+  'errors',
+  'learn',
+  'reference',
+] as const;
+
+function normalizeDocsHref(href: string) {
+  if (
+    href.startsWith('/') ||
+    href.startsWith('#') ||
+    href.startsWith('./') ||
+    href.startsWith('../')
+  ) {
+    return href;
+  }
+
+  const matchesDocsPath = ABSOLUTE_DOC_SECTIONS.some(
+    (section) => href === section || href.startsWith(`${section}/`)
+  );
+
+  return matchesDocsPath ? `/${href}` : href;
+}
+
 function Link({
   href,
   className,
@@ -36,18 +61,27 @@ function Link({
   if (!href) {
     return <a href={href} className={className} {...props} />;
   }
+
+  const normalizedHref = normalizeDocsHref(href);
+
   return (
     <>
-      {href.startsWith('https://') ? (
-        <ExternalLink href={href} className={cn(classes, className)} {...props}>
+      {normalizedHref.startsWith('https://') ? (
+        <ExternalLink
+          href={normalizedHref}
+          className={cn(classes, className)}
+          {...props}>
           {modifiedChildren}
         </ExternalLink>
-      ) : href.startsWith('#') ? (
-        <a className={cn(classes, className)} href={href} {...props}>
+      ) : normalizedHref.startsWith('#') ? (
+        <a className={cn(classes, className)} href={normalizedHref} {...props}>
           {modifiedChildren}
         </a>
       ) : (
-        <NextLink href={href} className={cn(classes, className)} {...props}>
+        <NextLink
+          href={normalizedHref}
+          className={cn(classes, className)}
+          {...props}>
           {modifiedChildren}
         </NextLink>
       )}

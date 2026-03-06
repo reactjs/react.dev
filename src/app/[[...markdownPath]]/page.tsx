@@ -11,6 +11,7 @@ import {
   getDocsPageData,
   getDocsStaticParams,
   MissingMarkdownContentError,
+  shouldServeDocsRoute,
 } from 'utils/content';
 
 export async function generateStaticParams() {
@@ -23,6 +24,11 @@ export default async function MarkdownPage({
   params: Promise<{markdownPath?: string[]}>;
 }) {
   const {markdownPath} = await params;
+
+  if (!shouldServeDocsRoute(markdownPath)) {
+    notFound();
+  }
+
   let pageData;
 
   try {

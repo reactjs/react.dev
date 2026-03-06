@@ -125,9 +125,11 @@ export function Challenges({
   const scrollAnchorRef = useRef<HTMLDivElement>(null);
   const queuedScrollRef = useRef<undefined | QueuedScroll>(QueuedScroll.INIT);
   const [selectedIndex, setSelectedIndex] = useState(0);
+  const [hasInteracted, setHasInteracted] = useState(false);
   const hash = useLocationHash();
   const hashIndex = challenges.findIndex((challenge) => challenge.id === hash);
-  const activeIndex = hashIndex === -1 ? selectedIndex : hashIndex;
+  const activeIndex =
+    !hasInteracted && hashIndex !== -1 ? hashIndex : selectedIndex;
   const currentChallenge = challenges[activeIndex];
 
   useEffect(() => {
@@ -152,6 +154,7 @@ export function Challenges({
   }
 
   const handleChallengeChange = (index: number) => {
+    setHasInteracted(true);
     setSelectedIndex(index);
   };
 
@@ -191,7 +194,8 @@ export function Challenges({
           totalChallenges={totalChallenges}
           hasNextChallenge={activeIndex < totalChallenges - 1}
           handleClickNextChallenge={() => {
-            setSelectedIndex((index) => index + 1);
+            setHasInteracted(true);
+            setSelectedIndex(activeIndex + 1);
             queuedScrollRef.current = QueuedScroll.NEXT;
           }}
         />

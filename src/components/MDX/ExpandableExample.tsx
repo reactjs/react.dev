@@ -39,15 +39,15 @@ function ExpandableExample({children, excerpt, type}: ExpandableExampleProps) {
   const id = children[0].props.id;
   const hash = useLocationHash();
   const [isExpanded, setIsExpanded] = useState(false);
-  const autoExpanded = hash === id;
+  const [isAutoExpandedDismissed, setIsAutoExpandedDismissed] = useState(false);
+  const autoExpanded = hash === id && !isAutoExpandedDismissed;
+  const isOpen = isExpanded || autoExpanded;
 
   return (
     <details
-      open={isExpanded || autoExpanded}
+      open={isOpen}
       onToggle={(e: any) => {
-        if (!autoExpanded) {
-          setIsExpanded(e.currentTarget!.open);
-        }
+        setIsExpanded(e.currentTarget!.open);
       }}
       className={cn(
         'my-12 rounded-2xl shadow-inner-border dark:shadow-inner-border-dark relative',
@@ -100,13 +100,19 @@ function ExpandableExample({children, excerpt, type}: ExpandableExampleProps) {
             'bg-yellow-50 border-yellow-50 hover:bg-yellow-40 focus:bg-yellow-50 active:bg-yellow-50':
               isExample,
           })}
-          onClick={() => setIsExpanded((current) => !current)}>
+          onClick={() => {
+            if (autoExpanded) {
+              setIsAutoExpandedDismissed(true);
+              setIsExpanded(false);
+              return;
+            }
+
+            setIsExpanded((current) => !current);
+          }}>
           <span className="me-1">
-            <IconChevron
-              displayDirection={isExpanded || autoExpanded ? 'up' : 'down'}
-            />
+            <IconChevron displayDirection={isOpen ? 'up' : 'down'} />
           </span>
-          {isExpanded || autoExpanded ? 'Hide Details' : 'Show Details'}
+          {isOpen ? 'Hide Details' : 'Show Details'}
         </Button>
       </summary>
       <div

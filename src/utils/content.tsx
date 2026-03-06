@@ -104,6 +104,27 @@ export async function getDocsPageData(
   return getDocsPageDataCached(normalizedPath, pathname);
 }
 
+export function shouldServeDocsRoute(markdownPath: string[] | undefined) {
+  const normalizedPath = normalizeMarkdownPath(markdownPath);
+
+  if (normalizedPath === 'index') {
+    return markdownPath == null || markdownPath.length === 0;
+  }
+
+  if (normalizedPath.endsWith('/index')) {
+    return false;
+  }
+
+  if (
+    process.env.NODE_ENV === 'production' &&
+    DEV_ONLY_PAGES.has(normalizedPath)
+  ) {
+    return false;
+  }
+
+  return true;
+}
+
 async function getDocsPageDataCached(
   normalizedPath: string,
   pathname: string
@@ -111,7 +132,11 @@ async function getDocsPageDataCached(
   'use cache';
 
   cacheTag(DEV_CONTENT_CACHE_TAG);
-  cacheLife(pathname.endsWith('/translations') ? 'hours' : 'max');
+  if (pathname.endsWith('/translations')) {
+    cacheLife('hours');
+  } else {
+    cacheLife('max');
+  }
   return getDocsPageDataUncached(normalizedPath, pathname);
 }
 

@@ -1,3 +1,4 @@
+/* eslint-disable */
 // @ts-nocheck
 /**
  * Copyright (c) Meta Platforms, Inc. and affiliates.
@@ -45557,9 +45558,11 @@ ${d}`;
         'Expected all "object" property names to be valid identifier, `*` to match any property, of `default` to define a module default export'
       ),
     $U = W.z.object({kind: W.z.literal('object'), properties: OU.nullable()}),
-    Wt = W.z.string().refine((e) => e.startsWith('@'), {
-      message: "Placeholder names must start with '@'",
-    }),
+    Wt = W.z
+      .string()
+      .refine((e) => e.startsWith('@'), {
+        message: "Placeholder names must start with '@'",
+      }),
     jU = W.z.object({kind: W.z.literal('Freeze'), value: Wt, reason: X0}),
     CU = W.z.object({kind: W.z.literal('Mutate'), value: Wt}),
     DU = W.z.object({

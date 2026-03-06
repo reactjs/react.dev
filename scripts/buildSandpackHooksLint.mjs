@@ -94,7 +94,8 @@ await esbuild.build({
 });
 
 const generatedSource = fs.readFileSync(generatedHooksLintOutfile, 'utf8');
-const header = `// @ts-nocheck
+const header = `/* eslint-disable */
+// @ts-nocheck
 /**
  * Copyright (c) Meta Platforms, Inc. and affiliates.
  *

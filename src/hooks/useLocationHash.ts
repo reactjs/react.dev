@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import {useSyncExternalStore} from 'react';
+import {useEffect, useState} from 'react';
 
 function getHashValue() {
   if (typeof window === 'undefined') {
@@ -17,17 +17,20 @@ function getHashValue() {
   return window.location.hash.slice(1);
 }
 
-function subscribeToHashChange(callback: () => void) {
-  if (typeof window === 'undefined') {
-    return () => {};
-  }
-
-  window.addEventListener('hashchange', callback);
-  return () => {
-    window.removeEventListener('hashchange', callback);
-  };
-}
-
 export function useLocationHash() {
-  return useSyncExternalStore(subscribeToHashChange, getHashValue, () => '');
+  const [hash, setHash] = useState('');
+
+  useEffect(() => {
+    const updateHash = () => {
+      setHash(getHashValue());
+    };
+
+    updateHash();
+    window.addEventListener('hashchange', updateHash);
+    return () => {
+      window.removeEventListener('hashchange', updateHash);
+    };
+  }, []);
+
+  return hash;
 }

@@ -14,8 +14,12 @@ import Tag from 'components/Tag';
 import {H1} from './MDX/Heading';
 import type {RouteTag, RouteItem} from './Layout/getRouteMeta';
 import * as React from 'react';
+import {useState, useEffect} from 'react';
+import {useRouter} from 'next/router';
 import {IconCanary} from './Icon/IconCanary';
 import {IconExperimental} from './Icon/IconExperimental';
+import {IconCopy} from './Icon/IconCopy';
+import {Button} from './Button';
 
 interface PageHeadingProps {
   title: string;
@@ -25,6 +29,44 @@ interface PageHeadingProps {
   description?: string;
   tags?: RouteTag[];
   breadcrumbs: RouteItem[];
+}
+
+function CopyAsMarkdownButton() {
+  const {asPath} = useRouter();
+  const [copied, setCopied] = useState(false);
+
+  useEffect(() => {
+    if (!copied) return;
+    const timer = setTimeout(() => setCopied(false), 2000);
+    return () => clearTimeout(timer);
+  }, [copied]);
+
+  async function handleCopy() {
+    const cleanPath = asPath.split(/[?#]/)[0];
+    try {
+      const res = await fetch(cleanPath + '.md');
+      if (!res.ok) return;
+      const text = await res.text();
+      await navigator.clipboard.writeText(text);
+      setCopied(true);
+    } catch {
+      // Silently fail
+    }
+  }
+
+  return (
+    <Button onClick={handleCopy} className="text-sm py-1 px-3">
+      <IconCopy className="w-3.5 h-3.5 me-1.5" />
+      {copied ? (
+        'Copied!'
+      ) : (
+        <>
+          <span className="hidden sm:inline">Copy page</span>
+          <span className="sm:hidden">Copy</span>
+        </>
+      )}
+    </Button>
+  );
 }
 
 function PageHeading({
@@ -37,7 +79,12 @@ function PageHeading({
   return (
     <div className="px-5 sm:px-12 pt-3.5">
       <div className="max-w-4xl ms-0 2xl:mx-auto">
-        {breadcrumbs ? <Breadcrumbs breadcrumbs={breadcrumbs} /> : null}
+        <div className="flex justify-between items-start">
+          <div className="flex-1">
+            {breadcrumbs ? <Breadcrumbs breadcrumbs={breadcrumbs} /> : null}
+          </div>
+          <CopyAsMarkdownButton />
+        </div>
         <H1 className="mt-0 text-primary dark:text-primary-dark -mx-.5 break-words">
           {title}
           {version === 'canary' && (

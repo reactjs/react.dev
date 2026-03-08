@@ -67,6 +67,10 @@ April 14-17,  2026. In-person in London
 
 [Website](https://india.cityjsconf.org/) - [Twitter](https://x.com/cityjsconf) - [Bluesky](https://bsky.app/profile/cityjsconf.bsky.social)
 
+### ZurichJS Conf 2026 {/*zurichjs-conf-2026*/}
+September 10-11,  2026. In-person in Zurich, Switzerland
+
+[Website](https://conf.zurichjs.com?utm_campaign=ZurichJS_Conf&utm_source=referral&utm_content=reactjs_community_conferences) - [Twitter](https://x.com/zurichjs) - [LinkedIn](https://www.linkedin.com/company/zurichjs/)
 
 ## Past Conferences {/*past-conferences*/}
 

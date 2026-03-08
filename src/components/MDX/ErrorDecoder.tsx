@@ -1,3 +1,5 @@
+'use client';
+
 /**
  * Copyright (c) Meta Platforms, Inc. and affiliates.
  *
@@ -5,9 +7,9 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import {useEffect, useState} from 'react';
 import {useErrorDecoderParams} from '../ErrorDecoderContext';
 import cn from 'classnames';
+import {useMemo, useSyncExternalStore} from 'react';
 
 function replaceArgs(
   msg: string,
@@ -75,21 +77,51 @@ function parseQueryString(search: string): Array<string | undefined> {
   return args;
 }
 
+function subscribeToLocationSearch(onStoreChange: () => void) {
+  if (typeof window === 'undefined') {
+    return () => {};
+  }
+
+  window.addEventListener('popstate', onStoreChange);
+  window.addEventListener('hashchange', onStoreChange);
+
+  return () => {
+    window.removeEventListener('popstate', onStoreChange);
+    window.removeEventListener('hashchange', onStoreChange);
+  };
+}
+
+function getLocationSearch() {
+  return window.location.search;
+}
+
+function getServerLocationSearch() {
+  return null;
+}
+
 export default function ErrorDecoder() {
   const {errorMessage, errorCode} = useErrorDecoderParams();
   /** error messages that contain %s require reading location.search */
   const hasParams = errorMessage?.includes('%s');
-  const [message, setMessage] = useState<React.ReactNode | null>(() =>
-    errorMessage ? urlify(errorMessage) : null
+  const search = useSyncExternalStore(
+    subscribeToLocationSearch,
+    getLocationSearch,
+    getServerLocationSearch
   );
-
-  const [isReady, setIsReady] = useState(errorMessage == null || !hasParams);
-
-  useEffect(() => {
-    if (errorMessage == null || !hasParams) {
-      return;
+  const message = useMemo(() => {
+    if (errorMessage == null) {
+      return null;
     }
-    const args = parseQueryString(window.location.search);
+
+    if (!hasParams) {
+      return urlify(errorMessage);
+    }
+
+    if (search == null) {
+      return null;
+    }
+
+    const args = parseQueryString(search);
     let message = errorMessage;
     if (errorCode === '418') {
       // Hydration errors have a %s for the diff, but we don't add that to the args for security reasons.
@@ -103,9 +135,9 @@ export default function ErrorDecoder() {
       }
     }
 
-    setMessage(urlify(replaceArgs(message, args, '[missing argument]')));
-    setIsReady(true);
-  }, [errorCode, hasParams, errorMessage]);
+    return urlify(replaceArgs(message, args, '[missing argument]'));
+  }, [errorCode, errorMessage, hasParams, search]);
+  const isReady = errorMessage == null || !hasParams || search != null;
 
   return (
     <code

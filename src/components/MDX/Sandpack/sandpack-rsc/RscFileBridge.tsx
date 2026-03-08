@@ -5,7 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import {useEffect, useRef} from 'react';
+import {useEffect, useLayoutEffect, useRef} from 'react';
 import {useSandpack} from '@codesandbox/sandpack-react/unstyled';
 
 /**
@@ -17,9 +17,11 @@ export function RscFileBridge() {
   const {sandpack, dispatch, listen} = useSandpack();
   const filesRef = useRef(sandpack.files);
 
-  // TODO: fix this with useEffectEvent
-  // eslint-disable-next-line react-compiler/react-compiler
-  filesRef.current = sandpack.files;
+  // Keep the latest file map available before passive effects can observe a
+  // completed bundle and dispatch it to the iframe.
+  useLayoutEffect(() => {
+    filesRef.current = sandpack.files;
+  }, [sandpack.files]);
 
   useEffect(() => {
     const unsubscribe = listen((msg: any) => {

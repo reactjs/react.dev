@@ -1,3 +1,5 @@
+'use client';
+
 /**
  * Copyright (c) Meta Platforms, Inc. and affiliates.
  *
@@ -9,17 +11,17 @@
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
 
-import {Children} from 'react';
 import * as React from 'react';
 import {SandpackProvider} from '@codesandbox/sandpack-react/unstyled';
 import {SandpackLogLevel} from '@codesandbox/sandpack-client';
 import {CustomPreset} from './CustomPreset';
-import {createFileMap} from './createFileMap';
+import type {SandpackSnippetFile} from './createFileMap';
 import {CustomTheme} from './Themes';
 import {template} from './template';
 
 type SandpackProps = {
-  children: React.ReactNode;
+  files: Record<string, SandpackSnippetFile>;
+  providedFiles: string[];
   autorun?: boolean;
 };
 
@@ -74,9 +76,7 @@ ul {
 `.trim();
 
 function SandpackRoot(props: SandpackProps) {
-  let {children, autorun = true} = props;
-  const codeSnippets = Children.toArray(children) as React.ReactElement[];
-  const files = createFileMap(codeSnippets);
+  const {files, providedFiles, autorun = true} = props;
 
   if ('/index.html' in files) {
     throw new Error(
@@ -85,15 +85,18 @@ function SandpackRoot(props: SandpackProps) {
     );
   }
 
-  files['/src/styles.css'] = {
-    code: [sandboxStyle, files['/src/styles.css']?.code ?? ''].join('\n\n'),
-    hidden: !files['/src/styles.css']?.visible,
+  const sandpackFiles = {
+    ...files,
+    '/src/styles.css': {
+      code: [sandboxStyle, files['/src/styles.css']?.code ?? ''].join('\n\n'),
+      hidden: !files['/src/styles.css']?.visible,
+    },
   };
 
   return (
     <div className="sandpack sandpack--playground w-full my-8" dir="ltr">
       <SandpackProvider
-        files={{...template, ...files}}
+        files={{...template, ...sandpackFiles}}
         theme={CustomTheme}
         customSetup={{
           environment: 'create-react-app',
@@ -105,7 +108,7 @@ function SandpackRoot(props: SandpackProps) {
           bundlerURL: 'https://786946de.sandpack-bundler-4bw.pages.dev',
           logLevel: SandpackLogLevel.None,
         }}>
-        <CustomPreset providedFiles={Object.keys(files)} />
+        <CustomPreset providedFiles={providedFiles} />
       </SandpackProvider>
     </div>
   );

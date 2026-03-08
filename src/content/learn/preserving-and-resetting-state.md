@@ -18,7 +18,7 @@ State is isolated between components. React keeps track of which state belongs t
 
 ## State is tied to a position in the render tree {/*state-is-tied-to-a-position-in-the-tree*/}
 
-React builds [render trees](learn/understanding-your-ui-as-a-tree#the-render-tree) for the component structure in your UI.
+React builds [render trees](/learn/understanding-your-ui-as-a-tree#the-render-tree) for the component structure in your UI.
 
 When you give a component state, you might think the state "lives" inside the component. But the state is actually held inside React. React associates each piece of state it's holding with the correct component by where that component sits in the render tree.
 

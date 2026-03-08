@@ -9,8 +9,8 @@
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
 
-import {Children, useContext, useMemo} from 'react';
 import * as React from 'react';
+import {Children} from 'react';
 import cn from 'classnames';
 import type {HTMLAttributes} from 'react';
 
@@ -36,12 +36,9 @@ import YouWillLearnCard from './YouWillLearnCard';
 import {Challenges, Hint, Solution} from './Challenges';
 import {IconNavArrow} from '../Icon/IconNavArrow';
 import ButtonLink from 'components/ButtonLink';
-import {TocContext} from './TocContext';
-import type {Toc, TocItem} from './TocContext';
 import {TeamMember} from './TeamMember';
-import {LanguagesContext} from './LanguagesContext';
-import {finishedTranslations} from 'utils/finishedTranslations';
-
+import InlineToc from './InlineToc';
+import LanguageList from './LanguageList';
 import ErrorDecoder from './ErrorDecoder';
 import {IconCanary} from '../Icon/IconCanary';
 import {IconExperimental} from 'components/Icon/IconExperimental';
@@ -291,12 +288,6 @@ function AuthorCredit({
   );
 }
 
-const IllustrationContext = React.createContext<{
-  isInBlock?: boolean;
-}>({
-  isInBlock: false,
-});
-
 function Illustration({
   caption,
   src,
@@ -310,8 +301,6 @@ function Illustration({
   author: string;
   authorLink: string;
 }) {
-  const {isInBlock} = React.useContext(IllustrationContext);
-
   return (
     <div className="relative group before:absolute before:-inset-y-16 before:inset-x-0 my-16 mx-0 2xl:mx-auto max-w-4xl 2xl:max-w-6xl">
       <figure className="my-8 flex justify-center">
@@ -327,12 +316,10 @@ function Illustration({
           </figcaption>
         ) : null}
       </figure>
-      {!isInBlock && <AuthorCredit author={author} authorLink={authorLink} />}
+      <AuthorCredit author={author} authorLink={authorLink} />
     </div>
   );
 }
-
-const isInBlockTrue = {isInBlock: true};
 
 function IllustrationBlock({
   sequential,
@@ -366,107 +353,20 @@ function IllustrationBlock({
     </figure>
   ));
   return (
-    <IllustrationContext value={isInBlockTrue}>
-      <div className="relative group before:absolute before:-inset-y-16 before:inset-x-0 my-16 mx-0 2xl:mx-auto max-w-4xl 2xl:max-w-6xl">
-        {sequential ? (
-          <ol className="mdx-illustration-block flex">
-            {images.map((x: any, i: number) => (
-              <li className="flex-1" key={i}>
-                {x}
-              </li>
-            ))}
-          </ol>
-        ) : (
-          <div className="mdx-illustration-block">{images}</div>
-        )}
-        <AuthorCredit author={author} authorLink={authorLink} />
-      </div>
-    </IllustrationContext>
-  );
-}
-
-type NestedTocRoot = {
-  item: null;
-  children: Array<NestedTocNode>;
-};
-
-type NestedTocNode = {
-  item: TocItem;
-  children: Array<NestedTocNode>;
-};
-
-function calculateNestedToc(toc: Toc): NestedTocRoot {
-  const currentAncestors = new Map<number, NestedTocNode | NestedTocRoot>();
-  const root: NestedTocRoot = {
-    item: null,
-    children: [],
-  };
-  const startIndex = 1; // Skip "Overview"
-  for (let i = startIndex; i < toc.length; i++) {
-    const item = toc[i];
-    const currentParent: NestedTocNode | NestedTocRoot =
-      currentAncestors.get(item.depth - 1) || root;
-    const node: NestedTocNode = {
-      item,
-      children: [],
-    };
-    currentParent.children.push(node);
-    currentAncestors.set(item.depth, node);
-  }
-  return root;
-}
-
-function InlineToc() {
-  const toc = useContext(TocContext);
-  const root = useMemo(() => calculateNestedToc(toc), [toc]);
-  if (root.children.length < 2) {
-    return null;
-  }
-  return <InlineTocItem items={root.children} />;
-}
-
-function InlineTocItem({items}: {items: Array<NestedTocNode>}) {
-  return (
-    <UL>
-      {items.map((node) => (
-        <LI key={node.item.url}>
-          <Link href={node.item.url}>{node.item.text}</Link>
-          {node.children.length > 0 && <InlineTocItem items={node.children} />}
-        </LI>
-      ))}
-    </UL>
-  );
-}
-
-type TranslationProgress = 'complete' | 'in-progress';
-
-function LanguageList({progress}: {progress: TranslationProgress}) {
-  const allLanguages = React.useContext(LanguagesContext) ?? [];
-  const languages = allLanguages
-    .filter(
-      ({code}) =>
-        code !== 'en' &&
-        (progress === 'complete'
-          ? finishedTranslations.includes(code)
-          : !finishedTranslations.includes(code))
-    )
-    .sort((a, b) => a.enName.localeCompare(b.enName));
-  return (
-    <UL>
-      {languages.map(({code, name, enName}) => {
-        return (
-          <LI key={code}>
-            <Link href={`https://${code}.react.dev/`}>
-              {enName} ({name})
-            </Link>{' '}
-            &mdash;{' '}
-            <Link href={`https://github.com/reactjs/${code}.react.dev`}>
-              Contribute
-            </Link>
-          </LI>
-        );
-      })}
-    </UL>
+    <div className="relative group before:absolute before:-inset-y-16 before:inset-x-0 my-16 mx-0 2xl:mx-auto max-w-4xl 2xl:max-w-6xl">
+      {sequential ? (
+        <ol className="mdx-illustration-block flex">
+          {images.map((x: any, i: number) => (
+            <li className="flex-1" key={i}>
+              {x}
+            </li>
+          ))}
+        </ol>
+      ) : (
+        <div className="mdx-illustration-block">{images}</div>
+      )}
+      <AuthorCredit author={author} authorLink={authorLink} />
+    </div>
   );
 }
 
@@ -489,6 +389,15 @@ function Image(props: any) {
   const {alt, ...rest} = props;
   return <img alt={alt} className="max-w-[calc(min(700px,100%))]" {...rest} />;
 }
+
+export const MDXComponentsToc = {
+  a: Link,
+  CanaryBadge,
+  code: InlineCode,
+  ExperimentalBadge,
+  NextMajorBadge,
+  RSCBadge,
+};
 
 export const MDXComponents = {
   p: P,
@@ -564,10 +473,3 @@ export const MDXComponents = {
   YouTubeIframe,
   ErrorDecoder,
 };
-
-for (let key in MDXComponents) {
-  if (MDXComponents.hasOwnProperty(key)) {
-    const MDXComponent: any = (MDXComponents as any)[key];
-    MDXComponent.mdxName = key;
-  }
-}

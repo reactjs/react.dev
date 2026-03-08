@@ -1,1 +1,9 @@
+*
+!plugins/
+!plugins/**
+!src/
+!src/**
 src/content/**/*.md
+src/components/MDX/Sandpack/generatedHooksLint.ts
+src/components/MDX/Sandpack/sandpack-rsc/generatedSources.ts
+src/components/MDX/Sandpack/sandpack-rsc/sandbox-code/**

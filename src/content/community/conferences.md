@@ -15,7 +15,6 @@ March 26 - 27, 2026. In-person in Paris, France (hybrid event)
 
 [Website](https://react.paris/) - [Twitter](https://x.com/BeJS_)
 
-
 ### CityJS London 2026 {/*cityjs-london-2026*/}
 April 14-17,  2026. In-person in London
 

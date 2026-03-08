@@ -67,6 +67,11 @@ April 14-17,  2026. In-person in London
 
 [Website](https://india.cityjsconf.org/) - [Twitter](https://x.com/cityjsconf) - [Bluesky](https://bsky.app/profile/cityjsconf.bsky.social)
 
+### React Norway 2026 {/*react-norway-2026*/}
+June 5, 2026. Rockefeller, Oslo, Norway.
+
+[Website](https://reactnorway.com/) - [Twitter](https://x.com/ReactNorway)
+
 
 ## Past Conferences {/*past-conferences*/}
 

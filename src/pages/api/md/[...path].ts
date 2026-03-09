@@ -6,8 +6,7 @@
  */
 
 import type {NextApiRequest, NextApiResponse} from 'next';
-import fs from 'fs';
-import path from 'path';
+import {readContentFile} from '../../../utils/docs';
 
 const FOOTER = `
 ---
@@ -18,6 +17,11 @@ const FOOTER = `
 `;
 
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
+  if (req.method !== 'GET') {
+    res.setHeader('Allow', 'GET');
+    return res.status(405).send('Method not allowed');
+  }
+
   const pathSegments = req.query.path;
   if (!pathSegments) {
     return res.status(404).send('Not found');
@@ -32,22 +36,12 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
     return res.status(404).send('Not found');
   }
 
-  // Try exact path first, then with /index
-  const candidates = [
-    path.join(process.cwd(), 'src/content', filePath + '.md'),
-    path.join(process.cwd(), 'src/content', filePath, 'index.md'),
-  ];
-
-  for (const fullPath of candidates) {
-    try {
-      const content = fs.readFileSync(fullPath, 'utf8');
-      res.setHeader('Content-Type', 'text/plain; charset=utf-8');
-      res.setHeader('Cache-Control', 'public, max-age=3600');
-      return res.status(200).send(content + FOOTER);
-    } catch {
-      // Try next candidate
-    }
+  const content = readContentFile(filePath);
+  if (content === null) {
+    return res.status(404).send('Not found');
   }
 
-  res.status(404).send('Not found');
+  res.setHeader('Content-Type', 'text/plain; charset=utf-8');
+  res.setHeader('Cache-Control', 'public, max-age=3600');
+  return res.status(200).send(content + FOOTER);
 }

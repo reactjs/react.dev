@@ -326,23 +326,20 @@ async function fetchErrorCodes() {
 
 async function buildRedirectsMap() {
   try {
-    const vercelConfigPath = path.join(__dirname, '../vercel.json');
-    const vercelConfig = JSON.parse(
-      await fs.promises.readFile(vercelConfigPath, 'utf8')
-    );
-
-    if (vercelConfig.redirects) {
-      for (const redirect of vercelConfig.redirects) {
+    const nextConfig = require('../next.config.js');
+    if (typeof nextConfig.redirects === 'function') {
+      const redirects = await nextConfig.redirects();
+      for (const redirect of redirects) {
         redirectMap.set(redirect.source, redirect.destination);
       }
-      console.log(
-        chalk.gray(`Loaded ${redirectMap.size} redirects from vercel.json`)
-      );
     }
+    console.log(
+      chalk.gray(`Loaded ${redirectMap.size} redirects from next.config.js`)
+    );
   } catch (error) {
     console.log(
       chalk.yellow(
-        `Warning: Could not load redirects from vercel.json: ${error.message}\n`
+        `Warning: Could not load redirects from next.config.js: ${error.message}\n`
       )
     );
   }

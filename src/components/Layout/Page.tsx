@@ -1,3 +1,5 @@
+'use client';
+
 /**
  * Copyright (c) Meta Platforms, Inc. and affiliates.
  *
@@ -11,7 +13,6 @@
 
 import {Suspense} from 'react';
 import * as React from 'react';
-import {useRouter} from 'next/router';
 import {SidebarNav} from './SidebarNav';
 import {Footer} from './Footer';
 import {Toc} from './Toc';
@@ -27,7 +28,6 @@ import type {RouteItem} from 'components/Layout/getRouteMeta';
 import {HomeContent} from './HomeContent';
 import {TopNav} from './TopNav';
 import cn from 'classnames';
-import Head from 'next/head';
 
 import(/* webpackPrefetch: true */ '../MDX/CodeBlock/CodeBlock');
 
@@ -41,6 +41,7 @@ interface PageProps {
     version?: 'experimental' | 'canary';
     description?: string;
   };
+  pathname: string;
   section: 'learn' | 'reference' | 'community' | 'blog' | 'home' | 'unknown';
   languages?: Languages | null;
 }
@@ -50,11 +51,11 @@ export function Page({
   toc,
   routeTree,
   meta,
+  pathname,
   section,
   languages = null,
 }: PageProps) {
-  const {asPath} = useRouter();
-  const cleanedPath = asPath.split(/[\?\#]/)[0];
+  const cleanedPath = pathname.split(/[\?\#]/)[0];
   const {route, nextRoute, prevRoute, breadcrumbs, order} = getRouteMeta(
     cleanedPath,
     routeTree
@@ -126,6 +127,7 @@ export function Page({
   return (
     <>
       <Seo
+        pathname={cleanedPath}
         title={title}
         titleForTitleTag={meta.titleForTitleTag}
         isHomePage={isHomePage}
@@ -133,17 +135,17 @@ export function Page({
         searchOrder={searchOrder}
       />
       {(isHomePage || isBlogIndex) && (
-        <Head>
-          <link
-            rel="alternate"
-            type="application/rss+xml"
-            title="React Blog RSS Feed"
-            href="/rss.xml"
-          />
-        </Head>
+        <link
+          rel="alternate"
+          type="application/rss+xml"
+          title="React Blog RSS Feed"
+          href="/rss.xml"
+        />
       )}
       {/* <SocialBanner /> */}
       <TopNav
+        key={cleanedPath}
+        pathname={cleanedPath}
         section={section}
         routeTree={routeTree}
         breadcrumbs={breadcrumbs}
@@ -160,6 +162,7 @@ export function Page({
                 key={section}
                 routeTree={routeTree}
                 breadcrumbs={breadcrumbs}
+                pathname={cleanedPath}
               />
             </div>
           </div>
@@ -169,7 +172,7 @@ export function Page({
           <main className="min-w-0 isolate">
             <article
               className="font-normal break-words text-primary dark:text-primary-dark"
-              key={asPath}>
+              key={cleanedPath}>
               {content}
             </article>
             <div
@@ -193,7 +196,9 @@ export function Page({
           </main>
         </Suspense>
         <div className="hidden -mt-16 lg:max-w-custom-xs 2xl:block">
-          {showToc && toc.length > 0 && <Toc headings={toc} key={asPath} />}
+          {showToc && toc.length > 0 && (
+            <Toc headings={toc} key={cleanedPath} />
+          )}
         </div>
       </div>
     </>

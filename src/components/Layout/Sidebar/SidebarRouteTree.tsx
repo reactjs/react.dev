@@ -1,3 +1,5 @@
+'use client';
+
 /**
  * Copyright (c) Meta Platforms, Inc. and affiliates.
  *
@@ -12,16 +14,15 @@
 import {useRef, useLayoutEffect, Fragment} from 'react';
 
 import cn from 'classnames';
-import {useRouter} from 'next/router';
 import {SidebarLink} from './SidebarLink';
 import {useCollapse} from 'react-collapsed';
-import usePendingRoute from 'hooks/usePendingRoute';
 import type {RouteItem} from 'components/Layout/getRouteMeta';
 import {siteConfig} from 'siteConfig';
 
 interface SidebarRouteTreeProps {
   isForceExpanded: boolean;
   breadcrumbs: RouteItem[];
+  pathname: string;
   routeTree: RouteItem;
   level?: number;
 }
@@ -45,7 +46,6 @@ function CollapseWrapper({
   // Disable pointer events while animating.
   const isExpandedRef = useRef(isExpanded);
   if (typeof window !== 'undefined') {
-    // eslint-disable-next-line react-compiler/react-compiler
     // eslint-disable-next-line react-hooks/rules-of-hooks
     useLayoutEffect(() => {
       const wasExpanded = isExpandedRef.current;
@@ -81,11 +81,11 @@ function CollapseWrapper({
 export function SidebarRouteTree({
   isForceExpanded,
   breadcrumbs,
+  pathname,
   routeTree,
   level = 0,
 }: SidebarRouteTreeProps) {
-  const slug = useRouter().asPath.split(/[\?\#]/)[0];
-  const pendingRoute = usePendingRoute();
+  const slug = pathname;
   const currentRoutes = routeTree.routes as RouteItem[];
   return (
     <ul>
@@ -112,6 +112,7 @@ export function SidebarRouteTree({
                 isForceExpanded={isForceExpanded}
                 routeTree={{title, routes}}
                 breadcrumbs={[]}
+                pathname={pathname}
               />
             );
           } else if (routes) {
@@ -125,10 +126,9 @@ export function SidebarRouteTree({
                 <SidebarLink
                   key={`${title}-${path}-${level}-link`}
                   href={path}
-                  isPending={pendingRoute === path}
                   selected={selected}
                   level={level}
-                  title={title}
+                  title={title ?? ''}
                   version={version}
                   isExpanded={isExpanded}
                   hideArrow={isForceExpanded}
@@ -138,6 +138,7 @@ export function SidebarRouteTree({
                     isForceExpanded={isForceExpanded}
                     routeTree={{title, routes}}
                     breadcrumbs={breadcrumbs}
+                    pathname={pathname}
                     level={level + 1}
                   />
                 </CollapseWrapper>
@@ -148,11 +149,10 @@ export function SidebarRouteTree({
             listItem = (
               <li key={`${title}-${path}-${level}-link`}>
                 <SidebarLink
-                  isPending={pendingRoute === path}
                   href={path}
                   selected={selected}
                   level={level}
-                  title={title}
+                  title={title ?? ''}
                   version={version}
                 />
               </li>

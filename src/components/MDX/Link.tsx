@@ -14,6 +14,32 @@ import NextLink from 'next/link';
 import cn from 'classnames';
 
 import {ExternalLink} from 'components/ExternalLink';
+import {getMDXName} from './getMDXName';
+
+const ABSOLUTE_DOC_SECTIONS = [
+  'blog',
+  'community',
+  'errors',
+  'learn',
+  'reference',
+] as const;
+
+function normalizeDocsHref(href: string) {
+  if (
+    href.startsWith('/') ||
+    href.startsWith('#') ||
+    href.startsWith('./') ||
+    href.startsWith('../')
+  ) {
+    return href;
+  }
+
+  const matchesDocsPath = ABSOLUTE_DOC_SECTIONS.some(
+    (section) => href === section || href.startsWith(`${section}/`)
+  );
+
+  return matchesDocsPath ? `/${href}` : href;
+}
 
 function Link({
   href,
@@ -24,7 +50,7 @@ function Link({
   const classes =
     'inline text-link dark:text-link-dark border-b border-link border-opacity-0 hover:border-opacity-100 duration-100 ease-in transition leading-normal';
   const modifiedChildren = Children.toArray(children).map((child: any) => {
-    if (child.type?.mdxName && child.type?.mdxName === 'inlineCode') {
+    if (getMDXName(child) === 'code') {
       return cloneElement(child, {
         isLink: true,
       });
@@ -33,22 +59,29 @@ function Link({
   });
 
   if (!href) {
-    // eslint-disable-next-line jsx-a11y/anchor-has-content
     return <a href={href} className={className} {...props} />;
   }
+
+  const normalizedHref = normalizeDocsHref(href);
+
   return (
     <>
-      {href.startsWith('https://') ? (
-        <ExternalLink href={href} className={cn(classes, className)} {...props}>
+      {normalizedHref.startsWith('https://') ? (
+        <ExternalLink
+          href={normalizedHref}
+          className={cn(classes, className)}
+          {...props}>
           {modifiedChildren}
         </ExternalLink>
-      ) : href.startsWith('#') ? (
-        // eslint-disable-next-line jsx-a11y/anchor-has-content
-        <a className={cn(classes, className)} href={href} {...props}>
+      ) : normalizedHref.startsWith('#') ? (
+        <a className={cn(classes, className)} href={normalizedHref} {...props}>
           {modifiedChildren}
         </a>
       ) : (
-        <NextLink href={href} className={cn(classes, className)} {...props}>
+        <NextLink
+          href={normalizedHref}
+          className={cn(classes, className)}
+          {...props}>
           {modifiedChildren}
         </NextLink>
       )}

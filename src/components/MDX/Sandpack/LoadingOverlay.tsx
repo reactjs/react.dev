@@ -5,14 +5,13 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
 
 import {
   LoadingOverlayState,
   OpenInCodeSandboxButton,
   useSandpack,
 } from '@codesandbox/sandpack-react/unstyled';
-import {useEffect} from 'react';
 
 const FADE_ANIMATION_DURATION = 200;
 
@@ -96,19 +95,14 @@ const useLoadingOverlayState = (
   const {sandpack, listen} = useSandpack();
   const [state, setState] = useState<LoadingOverlayState>('HIDDEN');
 
-  if (state !== 'LOADING' && forceLoading) {
-    setState('LOADING');
-  }
-
   /**
    * Sandpack listener
    */
-  const sandpackIdle = sandpack.status === 'idle';
   useEffect(() => {
     const unsubscribe = listen((message) => {
       if (message.type === 'done') {
         setState((prev) => {
-          return prev === 'LOADING' ? 'PRE_FADING' : 'HIDDEN';
+          return forceLoading || prev === 'LOADING' ? 'PRE_FADING' : 'HIDDEN';
         });
       }
     }, clientId);
@@ -116,16 +110,18 @@ const useLoadingOverlayState = (
     return () => {
       unsubscribe();
     };
-  }, [listen, clientId, sandpackIdle]);
+  }, [clientId, forceLoading, listen]);
 
   /**
    * Fading transient state
    */
   useEffect(() => {
-    let fadeTimeout: ReturnType<typeof setTimeout>;
+    let fadeTimeout: ReturnType<typeof setTimeout> | undefined;
 
     if (state === 'PRE_FADING' && !dependenciesLoading) {
-      setState('FADING');
+      fadeTimeout = setTimeout(() => {
+        setState('FADING');
+      }, 0);
     } else if (state === 'FADING') {
       fadeTimeout = setTimeout(
         () => setState('HIDDEN'),
@@ -134,7 +130,9 @@ const useLoadingOverlayState = (
     }
 
     return () => {
-      clearTimeout(fadeTimeout);
+      if (fadeTimeout !== undefined) {
+        clearTimeout(fadeTimeout);
+      }
     };
   }, [state, dependenciesLoading]);
 
@@ -146,5 +144,5 @@ const useLoadingOverlayState = (
     return 'HIDDEN';
   }
 
-  return state;
+  return forceLoading ? 'LOADING' : state;
 };

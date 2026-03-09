@@ -29,7 +29,7 @@ const getAllFiles = function (dirPath, arrayOfFiles) {
   return arrayOfFiles;
 };
 
-exports.generateRssFeed = function () {
+function buildRssFeed() {
   const feed = new Feed({
     title: 'React Blog',
     description:
@@ -85,5 +85,13 @@ exports.generateRssFeed = function () {
     }
   }
 
-  fs.writeFileSync('./public/rss.xml', feed.xml({indent: true}));
+  return feed;
+}
+
+exports.generateRssXml = function () {
+  return buildRssFeed().xml({indent: true});
+};
+
+exports.validateRssFeed = function () {
+  buildRssFeed();
 };

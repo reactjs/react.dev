@@ -1,3 +1,5 @@
+'use client';
+
 /**
  * Copyright (c) Meta Platforms, Inc. and affiliates.
  *
@@ -21,7 +23,6 @@ import Image from 'next/image';
 import * as React from 'react';
 import cn from 'classnames';
 import NextLink from 'next/link';
-import {useRouter} from 'next/router';
 import {disableBodyScroll, enableBodyScroll} from 'body-scroll-lock';
 
 import {IconClose} from 'components/Icon/IconClose';
@@ -156,10 +157,12 @@ function Kbd(props: {children?: React.ReactNode; wide?: boolean}) {
 }
 
 export default function TopNav({
+  pathname,
   routeTree,
   breadcrumbs,
   section,
 }: {
+  pathname: string;
   routeTree: RouteItem;
   breadcrumbs: RouteItem[];
   section: 'learn' | 'reference' | 'community' | 'blog' | 'home' | 'unknown';
@@ -168,7 +171,6 @@ export default function TopNav({
   const [showSearch, setShowSearch] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const scrollParentRef = useRef<HTMLDivElement>(null);
-  const {asPath} = useRouter();
 
   // HACK. Fix up the data structures instead.
   if ((routeTree as any).routes.length === 1) {
@@ -185,11 +187,6 @@ export default function TopNav({
       return undefined;
     }
   }, [isMenuOpen]);
-
-  // Close the overlay on any navigation.
-  useEffect(() => {
-    setIsMenuOpen(false);
-  }, [asPath]);
 
   // Also close the overlay if the window gets resized past mobile layout.
   // (This is also important because we don't want to keep the body locked!)
@@ -442,6 +439,7 @@ export default function TopNav({
                     key={isMenuOpen ? 'mobile-overlay' : 'desktop-or-hidden'}
                     routeTree={routeTree}
                     breadcrumbs={breadcrumbs}
+                    pathname={pathname}
                     isForceExpanded={isMenuOpen}
                   />
                 </Suspense>

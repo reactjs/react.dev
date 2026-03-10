@@ -16,7 +16,6 @@ import sidebarBlog from '../../sidebarBlog.json';
 import sidebarCommunity from '../../sidebarCommunity.json';
 
 import {
-  type RouteItem,
   type PageEntry,
   type Sidebar,
   collectPages,

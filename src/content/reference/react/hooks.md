@@ -104,8 +104,25 @@ Sometimes, you can't skip re-rendering because the screen actually needs to upda
 
 To prioritize rendering, use one of these Hooks:
 
-- [`useTransition`](/reference/react/useTransition) lets you mark a state transition as non-blocking and allow other updates to interrupt it.
 - [`useDeferredValue`](/reference/react/useDeferredValue) lets you defer updating a non-critical part of the UI and let other parts update first.
+
+---
+
+## Async React Hooks {/*async-react-hooks*/}
+
+Async React lets you build responsive apps by running asynchronous work inside Actions. These hooks help manage UI updates during asynchronous operations and allow React to keep the interface responsive while work is being processed.
+
+### useTransition {/*usetransition*/}
+
+Lets you mark state updates as non-blocking so the UI stays responsive while they run.
+
+### useActionState {/*useactionstate*/}
+
+Lets you update state from an Action, commonly used for form submissions or async reducers.
+
+### useOptimistic {/*useoptimistic*/}
+
+Lets you show a temporary UI state while an Action is running.
 
 ---
 
@@ -116,7 +133,6 @@ These Hooks are mostly useful to library authors and aren't commonly used in the
 - [`useDebugValue`](/reference/react/useDebugValue) lets you customize the label React DevTools displays for your custom Hook.
 - [`useId`](/reference/react/useId) lets a component associate a unique ID with itself. Typically used with accessibility APIs.
 - [`useSyncExternalStore`](/reference/react/useSyncExternalStore) lets a component subscribe to an external store.
-* [`useActionState`](/reference/react/useActionState) allows you to manage state of actions.
 
 ---
 

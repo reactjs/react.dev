@@ -112,17 +112,11 @@ To prioritize rendering, use one of these Hooks:
 
 Async React lets you build responsive apps by running asynchronous work inside Actions. These hooks help manage UI updates during asynchronous operations and allow React to keep the interface responsive while work is being processed.
 
-### useTransition {/*usetransition*/}
+To manage asynchronous updates, use one of these Hooks:
 
-Lets you mark state updates as non-blocking so the UI stays responsive while they run.
-
-### useActionState {/*useactionstate*/}
-
-Lets you update state from an Action, commonly used for form submissions or async reducers.
-
-### useOptimistic {/*useoptimistic*/}
-
-Lets you show a temporary UI state while an Action is running.
+- [`useTransition`](/reference/react/useTransition) lets you mark state updates as non-blocking so the UI stays responsive while they run.
+- [`useActionState`](/reference/react/useActionState) lets you update state from an Action, commonly used for form submissions or async reducers.
+- [`useOptimistic`](/reference/react/useOptimistic) lets you show a temporary UI state while an Action is running.
 
 ---
 

@@ -39,8 +39,13 @@ export function useTocHighlight() {
       const scrollPosition = window.scrollY + window.innerHeight;
       const headersAnchors = getHeaderAnchors();
 
+      if (headersAnchors.length === 0) {
+        setCurrentIndex(0);
+        return;
+      }
+
       if (scrollPosition >= 0 && pageHeight - scrollPosition <= 0) {
-        // Scrolled to bottom of page.
+        // Scrolled to the bottom of the page.
         setCurrentIndex(headersAnchors.length - 1);
         return;
       }
@@ -83,7 +88,28 @@ export function useTocHighlight() {
     };
   }, []);
 
+  // Adding a click listener to update the ToC highlight when an item is clicked
+  useEffect(() => {
+    function updateActiveLinkOnClick(event: MouseEvent) {
+      const target = event.target as HTMLAnchorElement;
+      const headersAnchors = getHeaderAnchors();
+      
+      headersAnchors.forEach((anchor, index) => {
+        if (anchor.href === target.href) {
+          setCurrentIndex(index);
+        }
+      });
+    }
+
+    document.addEventListener('click', updateActiveLinkOnClick);
+
+    return () => {
+      document.removeEventListener('click', updateActiveLinkOnClick);
+    };
+  }, []);
+
   return {
     currentIndex,
   };
 }
+

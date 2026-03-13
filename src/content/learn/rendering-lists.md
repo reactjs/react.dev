@@ -223,7 +223,7 @@ export const people = [{
 ```js src/utils.js
 export function getImageUrl(person) {
   return (
-    'https://i.imgur.com/' +
+    'https://i.imgur.com.prx.react.dev/' +
     person.imageId +
     's.jpg'
   );
@@ -353,7 +353,7 @@ export const people = [{
 ```js src/utils.js
 export function getImageUrl(person) {
   return (
-    'https://i.imgur.com/' +
+    'https://i.imgur.com.prx.react.dev/' +
     person.imageId +
     's.jpg'
   );
@@ -514,7 +514,7 @@ export const people = [{
 ```js src/utils.js
 export function getImageUrl(person) {
   return (
-    'https://i.imgur.com/' +
+    'https://i.imgur.com.prx.react.dev/' +
     person.imageId +
     's.jpg'
   );
@@ -629,7 +629,7 @@ export const people = [{
 ```js src/utils.js
 export function getImageUrl(person) {
   return (
-    'https://i.imgur.com/' +
+    'https://i.imgur.com.prx.react.dev/' +
     person.imageId +
     's.jpg'
   );
@@ -743,7 +743,7 @@ export const people = [{
 ```js src/utils.js
 export function getImageUrl(person) {
   return (
-    'https://i.imgur.com/' +
+    'https://i.imgur.com.prx.react.dev/' +
     person.imageId +
     's.jpg'
   );
@@ -861,7 +861,7 @@ export const people = [{
 ```js src/utils.js
 export function getImageUrl(person) {
   return (
-    'https://i.imgur.com/' +
+    'https://i.imgur.com.prx.react.dev/' +
     person.imageId +
     's.jpg'
   );

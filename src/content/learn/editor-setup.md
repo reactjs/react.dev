@@ -22,8 +22,8 @@ A properly configured editor can make code clearer to read and faster to write. 
 Other popular text editors used in the React community include:
 
 * [WebStorm](https://www.jetbrains.com/webstorm/) is an integrated development environment designed specifically for JavaScript.
-* [Sublime Text](https://www.sublimetext.com/) has support for JSX and TypeScript, [syntax highlighting](https://stackoverflow.com/a/70960574/458193) and autocomplete built in.
-* [Vim](https://www.vim.org/) is a highly configurable text editor built to make creating and changing any kind of text very efficient. It is included as "vi" with most UNIX systems and with Apple OS X.
+* [Sublime Text](https://www.sublimetext.com/) has support for JSX and TypeScript, syntax highlighting, and autocomplete built in.
+* [Vim](https://www.vim.org/) is a highly configurable text editor built to make creating and changing any kind of text very efficient. It is included as "vi" with most UNIX systems and with macOS.
 
 ## Recommended text editor features {/*recommended-text-editor-features*/}
 
@@ -31,12 +31,12 @@ Some editors come with these features built in, but others might require adding 
 
 ### Linting {/*linting*/}
 
-Code linters find problems in your code as you write, helping you fix them early. [ESLint](https://eslint.org/) is a popular, open source linter for JavaScript. 
+Code linters find problems in your code as you write, helping you fix them early. [ESLint](https://eslint.org/) is a popular, open source linter for JavaScript.
 
-* [Install ESLint with the recommended configuration for React](https://www.npmjs.com/package/eslint-config-react-app) (be sure you have [Node installed!](https://nodejs.org/en/download/current/))
+* [Install ESLint with the recommended configuration for React](https://www.npmjs.com/package/eslint-plugin-react-hooks) (be sure you have [Node installed!](https://nodejs.org/en/download/))
 * [Integrate ESLint in VSCode with the official extension](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
 
-**Make sure that you've enabled all the [`eslint-plugin-react-hooks`](https://www.npmjs.com/package/eslint-plugin-react-hooks) rules for your project.** They are essential and catch the most severe bugs early. The recommended [`eslint-config-react-app`](https://www.npmjs.com/package/eslint-config-react-app) preset already includes them.
+**Make sure that you've enabled all the [`eslint-plugin-react-hooks`](https://www.npmjs.com/package/eslint-plugin-react-hooks) rules for your project.** They are essential and catch the most severe bugs early. If you use a framework like Next.js or a build tool like Vite, these rules are often included in their default configuration.
 
 ### Formatting {/*formatting*/}
 

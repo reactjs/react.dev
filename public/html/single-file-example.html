@@ -11,14 +11,12 @@
   </head>
   <body>
     <div id="root"></div>
-    <script type="text/babel">
-
-      ReactDOM.render(
-        <h1>Hello, world!</h1>,
-        document.getElementById('root')
-      );
-
-    </script>
+    <script type="text/javascript">
+  const root = ReactDOM.createRoot(document.getElementById('root'));
+  root.render(
+    <h1>Hello, world!</h1>
+  );
+</script>
     <!--
       Note: this page is a great way to try React but it's not suitable for production.
       It slowly compiles JSX with Babel in the browser and uses a large development build of React.

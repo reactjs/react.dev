@@ -176,7 +176,7 @@ The patches published today prevent stringifying the Server Function source code
 
 Secrets hardcoded in source code may be exposed, but runtime secrets such as `process.env.SECRET` are not affected.
 
-The scope of the exposed code is limited to the code inside the Server Function, which may include other functions depending on the amount of inlining your bundler provides. 
+The scope of the exposed code is limited to the code inside the Server Function, which may include other functions depending on the amount of inlining your bundler provides.
 
 Always verify against production bundles.
 

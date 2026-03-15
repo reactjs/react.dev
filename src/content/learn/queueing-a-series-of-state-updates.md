@@ -177,7 +177,7 @@ During the next render, React goes through the state queue:
 | "replace with `5`" | `0` (unused) | `5` |
 | `n => n + 1` | `5` | `5 + 1 = 6` |
 
-React stores `6` as the final result and returns it from `useState`. 
+React stores `6` as the final result and returns it from `useState`.
 
 <Note>
 
@@ -305,7 +305,7 @@ export default function RequestTracker() {
         Completed: {completed}
       </h3>
       <button onClick={handleClick}>
-        Buy     
+        Buy
       </button>
     </>
   );
@@ -349,7 +349,7 @@ export default function RequestTracker() {
         Completed: {completed}
       </h3>
       <button onClick={handleClick}>
-        Buy     
+        Buy
       </button>
     </>
   );

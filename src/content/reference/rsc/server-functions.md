@@ -22,7 +22,7 @@ Server Functions allow Client Components to call async functions executed on the
 
 #### How do I build support for Server Functions? {/*how-do-i-build-support-for-server-functions*/}
 
-While Server Functions in React 19 are stable and will not break between minor versions, the underlying APIs used to implement Server Functions in a React Server Components bundler or framework do not follow semver and may break between minors in React 19.x. 
+While Server Functions in React 19 are stable and will not break between minor versions, the underlying APIs used to implement Server Functions in a React Server Components bundler or framework do not follow semver and may break between minors in React 19.x.
 
 To support Server Functions as a bundler or framework, we recommend pinning to a specific React version, or using the Canary release. We will continue working with bundlers and frameworks to stabilize the APIs used to implement Server Functions in the future.
 
@@ -46,7 +46,7 @@ function EmptyNote () {
   async function createNoteAction() {
     // Server Function
     'use server';
-    
+
     await db.notes.create();
   }
 
@@ -59,8 +59,8 @@ When React renders the `EmptyNote` Server Component, it will create a reference 
 ```js {5}
 "use client";
 
-export default function Button({onClick}) { 
-  console.log(onClick); 
+export default function Button({onClick}) {
+  console.log(onClick);
   // {$$typeof: Symbol.for("react.server.reference"), $$id: 'createNoteAction'}
   return <button onClick={() => onClick()}>Create Empty Note</button>
 }
@@ -133,7 +133,7 @@ function UpdateName() {
       }
     })
   }
-  
+
   return (
     <form action={submitAction}>
       <input type="text" name="name" disabled={isPending}/>

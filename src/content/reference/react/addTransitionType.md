@@ -5,7 +5,7 @@ version: canary
 
 <Canary>
 
-**The `addTransitionType` API is currently only available in React’s Canary and Experimental channels.** 
+**The `addTransitionType` API is currently only available in React’s Canary and Experimental channels.**
 
 [Learn more about React’s release channels here.](/community/versioning-policy#all-release-channels)
 
@@ -76,7 +76,7 @@ Currently, Transition Types can be used to customize different animations based 
 
 - [Customize animations using browser view transition types](#customize-animations-using-browser-view-transition-types)
 - [Customize animations using `View Transition` Class](#customize-animations-using-view-transition-class)
-- [Customize animations using `ViewTransition` events](#customize-animations-using-viewtransition-events) 
+- [Customize animations using `ViewTransition` events](#customize-animations-using-viewtransition-events)
 
 In the future, we plan to support more use cases for using the cause of a transition.
 

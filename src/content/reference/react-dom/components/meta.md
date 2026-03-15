@@ -34,7 +34,7 @@ To add document metadata, render the [built-in browser `<meta>` component](https
 
 It should have *exactly one* of the following props: `name`, `httpEquiv`, `charset`, `itemProp`. The `<meta>` component does something different depending on which of these props is specified.
 
-* `name`: a string. Specifies the [kind of metadata](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/meta/name) to be attached to the document. 
+* `name`: a string. Specifies the [kind of metadata](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/meta/name) to be attached to the document.
 * `charset`: a string. Specifies the character set used by the document. The only valid value is `"utf-8"`.
 * `httpEquiv`: a string. Specifies a directive for processing the document.
 * `itemProp`: a string. Specifies metadata about a particular item within the document rather than the document as a whole.
@@ -42,9 +42,9 @@ It should have *exactly one* of the following props: `name`, `httpEquiv`, `chars
 
 #### Special rendering behavior {/*special-rendering-behavior*/}
 
-React will always place the DOM element corresponding to the `<meta>` component within the document’s `<head>`, regardless of where in the React tree it is rendered. The `<head>` is the only valid place for `<meta>` to exist within the DOM, yet it’s convenient and keeps things composable if a component representing a specific page can render `<meta>` components itself. 
+React will always place the DOM element corresponding to the `<meta>` component within the document’s `<head>`, regardless of where in the React tree it is rendered. The `<head>` is the only valid place for `<meta>` to exist within the DOM, yet it’s convenient and keeps things composable if a component representing a specific page can render `<meta>` components itself.
 
-There is one exception to this: if `<meta>` has an [`itemProp`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/itemprop) prop, there is no special behavior, because in this case it doesn’t represent metadata about the document but rather metadata about a specific part of the page. 
+There is one exception to this: if `<meta>` has an [`itemProp`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/itemprop) prop, there is no special behavior, because in this case it doesn’t represent metadata about the document but rather metadata about a specific part of the page.
 
 ---
 
@@ -52,7 +52,7 @@ There is one exception to this: if `<meta>` has an [`itemProp`](https://develope
 
 ### Annotating the document with metadata {/*annotating-the-document-with-metadata*/}
 
-You can annotate the document with metadata such as keywords, a summary, or the author’s name. React will place this metadata within the document `<head>` regardless of where in the React tree it is rendered. 
+You can annotate the document with metadata such as keywords, a summary, or the author’s name. React will place this metadata within the document `<head>` regardless of where in the React tree it is rendered.
 
 ```html
 <meta name="author" content="John Smith" />
@@ -83,7 +83,7 @@ export default function SiteMapPage() {
 
 ### Annotating specific items within the document with metadata {/*annotating-specific-items-within-the-document-with-metadata*/}
 
-You can use the `<meta>` component with the `itemProp` prop to annotate specific items within the document with metadata. In this case, React will *not* place these annotations within the document `<head>` but will place them like any other React component. 
+You can use the `<meta>` component with the `itemProp` prop to annotate specific items within the document with metadata. In this case, React will *not* place these annotations within the document `<head>` but will place them like any other React component.
 
 ```js
 <section itemScope>

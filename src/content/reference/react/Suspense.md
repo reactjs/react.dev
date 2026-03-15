@@ -215,7 +215,7 @@ Suspense **does not** detect when data is fetched inside an Effect or event hand
 
 The exact way you would load data in the `Albums` component above depends on your framework. If you use a Suspense-enabled framework, you'll find the details in its data fetching documentation.
 
-Suspense-enabled data fetching without the use of an opinionated framework is not yet supported. The requirements for implementing a Suspense-enabled data source are unstable and undocumented. An official API for integrating data sources with Suspense will be released in a future version of React. 
+Suspense-enabled data fetching without the use of an opinionated framework is not yet supported. The requirements for implementing a Suspense-enabled data source are unstable and undocumented. An official API for integrating data sources with Suspense will be released in a future version of React.
 
 </Note>
 
@@ -362,9 +362,9 @@ async function getBio() {
     setTimeout(resolve, 1500);
   });
 
-  return `The Beatles were an English rock band, 
-    formed in Liverpool in 1960, that comprised 
-    John Lennon, Paul McCartney, George Harrison 
+  return `The Beatles were an English rock band,
+    formed in Liverpool in 1960, that comprised
+    John Lennon, Paul McCartney, George Harrison
     and Ringo Starr.`;
 }
 
@@ -624,9 +624,9 @@ async function getBio() {
     setTimeout(resolve, 500);
   });
 
-  return `The Beatles were an English rock band, 
-    formed in Liverpool in 1960, that comprised 
-    John Lennon, Paul McCartney, George Harrison 
+  return `The Beatles were an English rock band,
+    formed in Liverpool in 1960, that comprised
+    John Lennon, Paul McCartney, George Harrison
     and Ringo Starr.`;
 }
 
@@ -877,7 +877,7 @@ input { margin: 10px; }
 
 </Sandpack>
 
-A common alternative UI pattern is to *defer* updating the list and to keep showing the previous results until the new results are ready. The [`useDeferredValue`](/reference/react/useDeferredValue) Hook lets you pass a deferred version of the query down: 
+A common alternative UI pattern is to *defer* updating the list and to keep showing the previous results until the new results are ready. The [`useDeferredValue`](/reference/react/useDeferredValue) Hook lets you pass a deferred version of the query down:
 
 ```js {3,11}
 export default function App() {
@@ -903,7 +903,7 @@ To make it more obvious to the user, you can add a visual indication when the st
 
 ```js {2}
 <div style={{
-  opacity: query !== deferredQuery ? 0.5 : 1 
+  opacity: query !== deferredQuery ? 0.5 : 1
 }}>
   <SearchResults query={deferredQuery} />
 </div>
@@ -1251,9 +1251,9 @@ async function getBio() {
     setTimeout(resolve, 500);
   });
 
-  return `The Beatles were an English rock band, 
-    formed in Liverpool in 1960, that comprised 
-    John Lennon, Paul McCartney, George Harrison 
+  return `The Beatles were an English rock band,
+    formed in Liverpool in 1960, that comprised
+    John Lennon, Paul McCartney, George Harrison
     and Ringo Starr.`;
 }
 
@@ -1375,7 +1375,7 @@ function Router() {
 
   function navigate(url) {
     startTransition(() => {
-      setPage(url);      
+      setPage(url);
     });
   }
   // ...
@@ -1563,9 +1563,9 @@ async function getBio() {
     setTimeout(resolve, 500);
   });
 
-  return `The Beatles were an English rock band, 
-    formed in Liverpool in 1960, that comprised 
-    John Lennon, Paul McCartney, George Harrison 
+  return `The Beatles were an English rock band,
+    formed in Liverpool in 1960, that comprised
+    John Lennon, Paul McCartney, George Harrison
     and Ringo Starr.`;
 }
 
@@ -1874,9 +1874,9 @@ async function getBio() {
     setTimeout(resolve, 500);
   });
 
-  return `The Beatles were an English rock band, 
-    formed in Liverpool in 1960, that comprised 
-    John Lennon, Paul McCartney, George Harrison 
+  return `The Beatles were an English rock band,
+    formed in Liverpool in 1960, that comprised
+    John Lennon, Paul McCartney, George Harrison
     and Ringo Starr.`;
 }
 

@@ -64,7 +64,7 @@ function App() {
 
 <Note>
 
-Starting in React 19, you can render `<SomeContext>` as a provider. 
+Starting in React 19, you can render `<SomeContext>` as a provider.
 
 In older versions of React, use `<SomeContext.Provider>`.
 

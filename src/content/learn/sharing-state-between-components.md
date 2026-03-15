@@ -323,7 +323,7 @@ To see what this feels like in practice with a few more components, read [Thinki
 
 #### Synced inputs {/*synced-inputs*/}
 
-These two inputs are independent. Make them stay in sync: editing one input should update the other input with the same text, and vice versa. 
+These two inputs are independent. Make them stay in sync: editing one input should update the other input with the same text, and vice versa.
 
 <Hint>
 
@@ -571,7 +571,7 @@ function SearchBar({ query, onChange }) {
 function List({ items }) {
   return (
     <table>
-      <tbody> 
+      <tbody>
         {items.map(food => (
           <tr key={food.id}>
             <td>{food.name}</td>

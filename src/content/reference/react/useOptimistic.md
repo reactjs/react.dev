@@ -83,7 +83,7 @@ function handleClick() {
 
 #### How optimistic state works {/*how-optimistic-state-works*/}
 
-`useOptimistic` lets you show a temporary value while a Action is in progress:
+`useOptimistic` lets you show a temporary value while an Action is in progress:
 
 ```js
 const [value, setValue] = useState('a');

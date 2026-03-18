@@ -746,10 +746,14 @@ ol.mdx-illustration-block {
 }
 .uwu-hidden {
   display: flex;
+  flex-wrap: nowrap;
+  white-space: nowrap;
 }
 
 .uwu .uwu-visible {
   display: flex;
+  flex-wrap: nowrap;
+  white-space: nowrap;
 }
 
 .uwu .uwu-hidden {

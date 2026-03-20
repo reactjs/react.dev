@@ -141,7 +141,7 @@ globalThis.__webpack_get_script_filename__ = function (chunkId) {
                 u = !0;
                 break;
               case Uc:
-                return (u = e._init), Zs(u(e._payload), t, s, i, r);
+                return ((u = e._init), Zs(u(e._payload), t, s, i, r));
             }
         }
       if (u)
@@ -171,14 +171,14 @@ globalThis.__webpack_get_script_filename__ = function (chunkId) {
       var d = i === '' ? '.' : i + ':';
       if (jc(e))
         for (var y = 0; y < e.length; y++)
-          (i = e[y]), (a = d + zo(i, y)), (u += Zs(i, t, s, a, r));
+          ((i = e[y]), (a = d + zo(i, y)), (u += Zs(i, t, s, a, r)));
       else if (((y = Mf(e)), typeof y == 'function'))
         for (e = y.call(e), y = 0; !(i = e.next()).done; )
-          (i = i.value), (a = d + zo(i, y++)), (u += Zs(i, t, s, a, r));
+          ((i = i.value), (a = d + zo(i, y++)), (u += Zs(i, t, s, a, r)));
       else if (a === 'object') {
         if (typeof e.then == 'function') return Zs(jf(e), t, s, i, r);
         throw (
-          ((t = String(e)),
+          (t = String(e)),
           Error(
             Yo(
               31,
@@ -186,7 +186,7 @@ globalThis.__webpack_get_script_filename__ = function (chunkId) {
                 ? 'object with keys {' + Object.keys(e).join(', ') + '}'
                 : t
             )
-          ))
+          )
         );
       }
       return u;
@@ -205,7 +205,7 @@ globalThis.__webpack_get_script_filename__ = function (chunkId) {
     function $f(e) {
       if (e._status === -1) {
         var t = e._result;
-        (t = t()),
+        ((t = t()),
           t.then(
             function (s) {
               (e._status === 0 || e._status === -1) &&
@@ -216,7 +216,7 @@ globalThis.__webpack_get_script_filename__ = function (chunkId) {
                 ((e._status = 2), (e._result = s));
             }
           ),
-          e._status === -1 && ((e._status = 0), (e._result = t));
+          e._status === -1 && ((e._status = 0), (e._result = t)));
       }
       if (e._status === 1) return e._result.default;
       throw e._result;
@@ -269,25 +269,25 @@ globalThis.__webpack_get_script_filename__ = function (chunkId) {
         var t = ei.A;
         if (!t) return e.apply(null, arguments);
         var s = t.getCacheForType(qf);
-        (t = s.get(e)), t === void 0 && ((t = Xo()), s.set(e, t)), (s = 0);
+        ((t = s.get(e)), t === void 0 && ((t = Xo()), s.set(e, t)), (s = 0));
         for (var i = arguments.length; s < i; s++) {
           var r = arguments[s];
           if (typeof r == 'function' || (typeof r == 'object' && r !== null)) {
             var a = t.o;
-            a === null && (t.o = a = new WeakMap()),
+            (a === null && (t.o = a = new WeakMap()),
               (t = a.get(r)),
-              t === void 0 && ((t = Xo()), a.set(r, t));
+              t === void 0 && ((t = Xo()), a.set(r, t)));
           } else
-            (a = t.p),
+            ((a = t.p),
               a === null && (t.p = a = new Map()),
               (t = a.get(r)),
-              t === void 0 && ((t = Xo()), a.set(r, t));
+              t === void 0 && ((t = Xo()), a.set(r, t)));
         }
         if (t.s === 1) return t.v;
         if (t.s === 2) throw t.v;
         try {
           var u = e.apply(null, arguments);
-          return (s = t), (s.s = 1), (s.v = u);
+          return ((s = t), (s.s = 1), (s.v = u));
         } catch (d) {
           throw ((u = t), (u.s = 2), (u.v = d), d);
         }
@@ -537,7 +537,7 @@ globalThis.__webpack_get_script_filename__ = function (chunkId) {
       e && e();
     };
     function Bi(e) {
-      ku.push(e), Tu.port2.postMessage(null);
+      (ku.push(e), Tu.port2.postMessage(null));
     }
     function Xf(e) {
       setTimeout(function () {
@@ -556,14 +556,14 @@ globalThis.__webpack_get_script_filename__ = function (chunkId) {
     function Cr(e, t) {
       if (t.byteLength !== 0)
         if (2048 < t.byteLength)
-          0 < cn &&
+          (0 < cn &&
             (e.enqueue(new Uint8Array(ln.buffer, 0, cn)),
             (ln = new Uint8Array(2048)),
             (cn = 0)),
-            e.enqueue(t);
+            e.enqueue(t));
         else {
           var s = ln.length - cn;
-          s < t.byteLength &&
+          (s < t.byteLength &&
             (s === 0
               ? e.enqueue(ln)
               : (ln.set(t.subarray(0, s), cn),
@@ -572,7 +572,7 @@ globalThis.__webpack_get_script_filename__ = function (chunkId) {
             (ln = new Uint8Array(2048)),
             (cn = 0)),
             ln.set(t, cn),
-            (cn += t.byteLength);
+            (cn += t.byteLength));
         }
       return !0;
     }
@@ -803,11 +803,11 @@ globalThis.__webpack_get_script_filename__ = function (chunkId) {
             var u = s.imageSrcSet,
               d = s.imageSizes,
               y = '';
-            typeof u == 'string' && u !== ''
+            (typeof u == 'string' && u !== ''
               ? ((y += '[' + u + ']'),
                 typeof d == 'string' && (y += '[' + d + ']'))
               : (y += '[][]' + e),
-              (a += '[image]' + y);
+              (a += '[image]' + y));
           } else a += '[' + t + ']' + e;
           r.has(a) ||
             (r.add(a),
@@ -840,8 +840,8 @@ globalThis.__webpack_get_script_filename__ = function (chunkId) {
               (s = ji(s))
                 ? Ut(i, 'S', [e, typeof t == 'string' ? t : 0, s])
                 : typeof t == 'string'
-                ? Ut(i, 'S', [e, t])
-                : Ut(i, 'S', e));
+                  ? Ut(i, 'S', [e, t])
+                  : Ut(i, 'S', e));
         }
         qn.S(e, t, s);
       }
@@ -1027,7 +1027,7 @@ globalThis.__webpack_get_script_filename__ = function (chunkId) {
         },
         {$$typeof: {value: ca}}
       );
-      return (s = new Proxy(s, cd)), e.set(s, t), s;
+      return ((s = new Proxy(s, cd)), e.set(s, t), s);
     }
     var pd = Symbol.for('react.element'),
       In = Symbol.for('react.transitional.element'),
@@ -1072,13 +1072,13 @@ globalThis.__webpack_get_script_filename__ = function (chunkId) {
                   function (i) {
                     if (t.status === 'pending') {
                       var r = t;
-                      (r.status = 'fulfilled'), (r.value = i);
+                      ((r.status = 'fulfilled'), (r.value = i));
                     }
                   },
                   function (i) {
                     if (t.status === 'pending') {
                       var r = t;
-                      (r.status = 'rejected'), (r.reason = i);
+                      ((r.status = 'rejected'), (r.reason = i));
                     }
                   }
                 )),
@@ -1099,14 +1099,14 @@ globalThis.__webpack_get_script_filename__ = function (chunkId) {
           'Expected a suspended thenable. This is a bug in React. Please file an issue.'
         );
       var e = Ir;
-      return (Ir = null), e;
+      return ((Ir = null), e);
     }
     var Mi = null,
       ta = 0,
       ni = null;
     function Au() {
       var e = ni || [];
-      return (ni = null), e;
+      return ((ni = null), e);
     }
     var Pu = {
       readContext: na,
@@ -1164,7 +1164,7 @@ globalThis.__webpack_get_script_filename__ = function (chunkId) {
       if ((e !== null && typeof e == 'object') || typeof e == 'function') {
         if (typeof e.then == 'function') {
           var t = ta;
-          return (ta += 1), ni === null && (ni = []), md(ni, e, t);
+          return ((ta += 1), ni === null && (ni = []), md(ni, e, t));
         }
         e.$$typeof === nu && na();
       }
@@ -1178,7 +1178,7 @@ globalThis.__webpack_get_script_filename__ = function (chunkId) {
         getCacheForType: function (e) {
           var t = (t = st || null) ? t.cache : new Map(),
             s = t.get(e);
-          return s === void 0 && ((s = e()), t.set(e, s)), s;
+          return (s === void 0 && ((s = e()), t.set(e, s)), s);
         },
         cacheSignal: function () {
           var e = st || null;
@@ -1193,7 +1193,10 @@ globalThis.__webpack_get_script_filename__ = function (chunkId) {
     var kn = Array.isArray,
       ii = Object.getPrototypeOf;
     function Nu(e) {
-      return (e = Object.prototype.toString.call(e)), e.slice(8, e.length - 1);
+      return (
+        (e = Object.prototype.toString.call(e)),
+        e.slice(8, e.length - 1)
+      );
     }
     function ru(e) {
       switch (typeof e) {
@@ -1203,14 +1206,14 @@ globalThis.__webpack_get_script_filename__ = function (chunkId) {
           return kn(e)
             ? '[...]'
             : e !== null && e.$$typeof === sa
-            ? 'client'
-            : ((e = Nu(e)), e === 'Object' ? '{...}' : e);
+              ? 'client'
+              : ((e = Nu(e)), e === 'Object' ? '{...}' : e);
         case 'function':
           return e.$$typeof === sa
             ? 'client'
             : (e = e.displayName || e.name)
-            ? 'function ' + e
-            : 'function';
+              ? 'function ' + e
+              : 'function';
         default:
           return String(e);
       }
@@ -1248,13 +1251,13 @@ globalThis.__webpack_get_script_filename__ = function (chunkId) {
         for (var r = '[', a = 0; a < e.length; a++) {
           0 < a && (r += ', ');
           var u = e[a];
-          (u = typeof u == 'object' && u !== null ? _s(u) : ru(u)),
+          ((u = typeof u == 'object' && u !== null ? _s(u) : ru(u)),
             '' + a === t
               ? ((s = r.length), (i = u.length), (r += u))
               : (r =
                   10 > u.length && 40 > r.length + u.length
                     ? r + u
-                    : r + '...');
+                    : r + '...'));
         }
         r += ']';
       } else if (e.$$typeof === In) r = '<' + Er(e.type) + '/>';
@@ -1264,7 +1267,7 @@ globalThis.__webpack_get_script_filename__ = function (chunkId) {
           0 < u && (r += ', ');
           var d = a[u],
             y = JSON.stringify(d);
-          (r += ('"' + d + '"' === y ? d : y) + ': '),
+          ((r += ('"' + d + '"' === y ? d : y) + ': '),
             (y = e[d]),
             (y = typeof y == 'object' && y !== null ? _s(y) : ru(y)),
             d === t
@@ -1272,21 +1275,21 @@ globalThis.__webpack_get_script_filename__ = function (chunkId) {
               : (r =
                   10 > y.length && 40 > r.length + y.length
                     ? r + y
-                    : r + '...');
+                    : r + '...'));
         }
         r += '}';
       }
       return t === void 0
         ? r
         : -1 < s && 0 < i
-        ? ((e = ' '.repeat(s) + '^'.repeat(i)),
-          `
-  ` +
-            r +
+          ? ((e = ' '.repeat(s) + '^'.repeat(i)),
             `
   ` +
-            e)
-        : `
+              r +
+              `
+  ` +
+              e)
+          : `
   ` + r;
     }
     var Nr = Object.prototype.hasOwnProperty,
@@ -1304,7 +1307,7 @@ globalThis.__webpack_get_script_filename__ = function (chunkId) {
       var g = new Set(),
         L = [],
         p = new Set();
-      (this.type = e),
+      ((this.type = e),
         (this.status = 10),
         (this.flushScheduled = !1),
         (this.destination = this.fatalError = null),
@@ -1332,7 +1335,7 @@ globalThis.__webpack_get_script_filename__ = function (chunkId) {
         (this.onAllReady = a),
         (this.onFatalError = u),
         (e = os(this, t, null, !1, 0, g)),
-        L.push(e);
+        L.push(e));
     }
     var st = null;
     function ou(e, t, s) {
@@ -1346,9 +1349,9 @@ globalThis.__webpack_get_script_filename__ = function (chunkId) {
       );
       switch (s.status) {
         case 'fulfilled':
-          return (i.model = s.value), Vi(e, i), i.id;
+          return ((i.model = s.value), Vi(e, i), i.id);
         case 'rejected':
-          return Un(e, i, s.reason), i.id;
+          return (Un(e, i, s.reason), i.id);
         default:
           if (e.status === 12)
             return (
@@ -1374,7 +1377,7 @@ globalThis.__webpack_get_script_filename__ = function (chunkId) {
       return (
         s.then(
           function (r) {
-            (i.model = r), Vi(e, i);
+            ((i.model = r), Vi(e, i));
           },
           function (r) {
             i.status === 0 && (Un(e, i, r), un(e));
@@ -1387,7 +1390,7 @@ globalThis.__webpack_get_script_filename__ = function (chunkId) {
       function i(g) {
         if (y.status === 0)
           if (g.done)
-            (y.status = 1),
+            ((y.status = 1),
               (g =
                 y.id.toString(16) +
                 `:C
@@ -1396,14 +1399,14 @@ globalThis.__webpack_get_script_filename__ = function (chunkId) {
               e.abortableTasks.delete(y),
               e.cacheController.signal.removeEventListener('abort', a),
               un(e),
-              Or(e);
+              Or(e));
           else
             try {
-              (y.model = g.value),
+              ((y.model = g.value),
                 e.pendingChunks++,
                 Bu(e, y),
                 un(e),
-                d.read().then(i, r);
+                d.read().then(i, r));
             } catch (L) {
               r(L);
             }
@@ -1418,18 +1421,18 @@ globalThis.__webpack_get_script_filename__ = function (chunkId) {
       function a() {
         if (y.status === 0) {
           var g = e.cacheController.signal;
-          g.removeEventListener('abort', a),
+          (g.removeEventListener('abort', a),
             (g = g.reason),
             e.type === 21
               ? (e.abortableTasks.delete(y), ri(y), oi(y, e))
               : (Un(e, y, g), un(e)),
-            d.cancel(g).then(r, r);
+            d.cancel(g).then(r, r));
         }
       }
       var u = s.supportsBYOB;
       if (u === void 0)
         try {
-          s.getReader({mode: 'byob'}).releaseLock(), (u = !0);
+          (s.getReader({mode: 'byob'}).releaseLock(), (u = !0));
         } catch {
           u = !1;
         }
@@ -1478,18 +1481,18 @@ globalThis.__webpack_get_script_filename__ = function (chunkId) {
                 a(p);
                 return;
               }
-            e.completedRegularChunks.push(pn(g)),
+            (e.completedRegularChunks.push(pn(g)),
               e.abortableTasks.delete(d),
               e.cacheController.signal.removeEventListener('abort', u),
               un(e),
-              Or(e);
+              Or(e));
           } else
             try {
-              (d.model = y.value),
+              ((d.model = y.value),
                 e.pendingChunks++,
                 Bu(e, d),
                 un(e),
-                i.next().then(r, a);
+                i.next().then(r, a));
             } catch (p) {
               a(p);
             }
@@ -1506,10 +1509,10 @@ globalThis.__webpack_get_script_filename__ = function (chunkId) {
           var y = e.cacheController.signal;
           y.removeEventListener('abort', u);
           var g = y.reason;
-          e.type === 21
+          (e.type === 21
             ? (e.abortableTasks.delete(d), ri(d), oi(d, e))
             : (Un(e, d, y.reason), un(e)),
-            typeof i.throw == 'function' && i.throw(g).then(a, a);
+            typeof i.throw == 'function' && i.throw(g).then(a, a));
         }
       }
       s = s === i;
@@ -1536,7 +1539,7 @@ globalThis.__webpack_get_script_filename__ = function (chunkId) {
       );
     }
     function Ut(e, t, s) {
-      (s = Es(s)),
+      ((s = Es(s)),
         (t = pn(
           ':H' +
             t +
@@ -1545,7 +1548,7 @@ globalThis.__webpack_get_script_filename__ = function (chunkId) {
 `
         )),
         e.completedHintChunks.push(t),
-        un(e);
+        un(e));
     }
     function bd(e) {
       if (e.status === 'fulfilled') return e.value;
@@ -1585,13 +1588,13 @@ globalThis.__webpack_get_script_filename__ = function (chunkId) {
           }),
           e)
         : typeof i[Ss] != 'function' ||
-          (typeof ReadableStream == 'function' && i instanceof ReadableStream)
-        ? i
-        : ((e = {}),
-          (e[Ss] = function () {
-            return i[Ss]();
-          }),
-          e);
+            (typeof ReadableStream == 'function' && i instanceof ReadableStream)
+          ? i
+          : ((e = {}),
+            (e[Ss] = function () {
+              return i[Ss]();
+            }),
+            e);
     }
     function lu(e, t, s, i, r) {
       var a = t.thenableState;
@@ -1603,12 +1606,12 @@ globalThis.__webpack_get_script_filename__ = function (chunkId) {
         e.status === 12)
       )
         throw (
-          (typeof r == 'object' &&
+          typeof r == 'object' &&
             r !== null &&
             typeof r.then == 'function' &&
             r.$$typeof !== rs &&
             r.then(au, au),
-          null)
+          null
         );
       return (
         (r = wd(e, t, i, r)),
@@ -1685,7 +1688,7 @@ globalThis.__webpack_get_script_filename__ = function (chunkId) {
     }
     function Vi(e, t) {
       var s = e.pingedTasks;
-      s.push(t),
+      (s.push(t),
         s.length === 1 &&
           ((e.flushScheduled = e.destination !== null),
           e.type === 21 || e.status === 10
@@ -1694,7 +1697,7 @@ globalThis.__webpack_get_script_filename__ = function (chunkId) {
               })
             : Bi(function () {
                 return ra(e);
-              }));
+              })));
     }
     function os(e, t, s, i, r, a) {
       e.pendingChunks++;
@@ -1729,10 +1732,10 @@ globalThis.__webpack_get_script_filename__ = function (chunkId) {
                 (y.$$typeof === In || y.$$typeof === $i)),
               e.status === 12)
             )
-              (d.status = 3),
+              ((d.status = 3),
                 e.type === 21
                   ? ((L = e.nextChunkId++), (L = y ? ws(L) : Ct(L)), (h = L))
-                  : ((L = e.fatalError), (h = y ? ws(L) : Ct(L)));
+                  : ((L = e.fatalError), (h = y ? ws(L) : Ct(L))));
             else if (
               ((g = x === pa ? Eu() : x),
               typeof g == 'object' && g !== null && typeof g.then == 'function')
@@ -1746,25 +1749,25 @@ globalThis.__webpack_get_script_filename__ = function (chunkId) {
                 e.abortableTasks
               );
               var T = h.ping;
-              g.then(T, T),
+              (g.then(T, T),
                 (h.thenableState = Au()),
                 (d.keyPath = L),
                 (d.implicitSlot = p),
-                (h = y ? ws(h.id) : Ct(h.id));
+                (h = y ? ws(h.id) : Ct(h.id)));
             } else
-              (d.keyPath = L),
+              ((d.keyPath = L),
                 (d.implicitSlot = p),
                 e.pendingChunks++,
                 (L = e.nextChunkId++),
                 (p = Kn(e, g, d)),
                 Rr(e, L, p),
-                (h = y ? ws(L) : Ct(L));
+                (h = y ? ws(L) : Ct(L)));
           }
           return h;
         },
         thenableState: null,
       };
-      return a.add(d), d;
+      return (a.add(d), d);
     }
     function Ct(e) {
       return '$' + e.toString(16);
@@ -1840,19 +1843,20 @@ globalThis.__webpack_get_script_filename__ = function (chunkId) {
       }
     }
     function bs(e, t, s) {
-      return (t = os(e, t, null, !1, s, e.abortableTasks)), Fu(e, t), t.id;
+      return ((t = os(e, t, null, !1, s, e.abortableTasks)), Fu(e, t), t.id);
     }
     function Yt(e, t, s) {
       e.pendingChunks++;
       var i = e.nextChunkId++;
-      return Kt(e, i, t, s, !1), Ct(i);
+      return (Kt(e, i, t, s, !1), Ct(i));
     }
     function Sd(e, t) {
       function s(y) {
         if (u.status === 0)
           if (y.done)
-            e.cacheController.signal.removeEventListener('abort', r), Vi(e, u);
-          else return a.push(y.value), d.read().then(s).catch(i);
+            (e.cacheController.signal.removeEventListener('abort', r),
+              Vi(e, u));
+          else return (a.push(y.value), d.read().then(s).catch(i));
       }
       function i(y) {
         u.status === 0 &&
@@ -1864,12 +1868,12 @@ globalThis.__webpack_get_script_filename__ = function (chunkId) {
       function r() {
         if (u.status === 0) {
           var y = e.cacheController.signal;
-          y.removeEventListener('abort', r),
+          (y.removeEventListener('abort', r),
             (y = y.reason),
             e.type === 21
               ? (e.abortableTasks.delete(u), ri(u), oi(u, e))
               : (Un(e, u, y), un(e)),
-            d.cancel(y).then(i, i);
+            d.cancel(y).then(i, i));
         }
       }
       var a = [t.type],
@@ -1941,7 +1945,7 @@ globalThis.__webpack_get_script_filename__ = function (chunkId) {
             if (ss === r) ss = null;
             else return u;
           }
-          return (e = '$@' + ou(e, t, r).toString(16)), a.set(r, e), e;
+          return ((e = '$@' + ou(e, t, r).toString(16)), a.set(r, e), e);
         }
         if (u !== void 0)
           if (ss === r) {
@@ -1967,11 +1971,14 @@ globalThis.__webpack_get_script_filename__ = function (chunkId) {
         }
         if (kn(r)) return cu(e, t, r);
         if (r instanceof Map)
-          return (r = Array.from(r)), '$Q' + bs(e, r, 0).toString(16);
+          return ((r = Array.from(r)), '$Q' + bs(e, r, 0).toString(16));
         if (r instanceof Set)
-          return (r = Array.from(r)), '$W' + bs(e, r, 0).toString(16);
+          return ((r = Array.from(r)), '$W' + bs(e, r, 0).toString(16));
         if (typeof FormData == 'function' && r instanceof FormData)
-          return (r = Array.from(r.entries())), '$K' + bs(e, r, 0).toString(16);
+          return (
+            (r = Array.from(r.entries())),
+            '$K' + bs(e, r, 0).toString(16)
+          );
         if (r instanceof Error) return '$Z';
         if (r instanceof ArrayBuffer) return Yt(e, 'A', new Uint8Array(r));
         if (r instanceof Int8Array) return Yt(e, 'O', r);
@@ -2018,8 +2025,11 @@ globalThis.__webpack_get_script_filename__ = function (chunkId) {
           r[r.length - 1] === 'Z' && s[i] instanceof Date
             ? '$D' + r
             : 1024 <= r.length && la !== null
-            ? (e.pendingChunks++, (t = e.nextChunkId++), Du(e, t, r, !1), Ct(t))
-            : ((e = r[0] === '$' ? '$' + r : r), e)
+              ? (e.pendingChunks++,
+                (t = e.nextChunkId++),
+                Du(e, t, r, !1),
+                Ct(t))
+              : ((e = r[0] === '$' ? '$' + r : r), e)
         );
       if (typeof r == 'boolean') return r;
       if (typeof r == 'number')
@@ -2028,10 +2038,10 @@ globalThis.__webpack_get_script_filename__ = function (chunkId) {
             ? '$-0'
             : r
           : r === 1 / 0
-          ? '$Infinity'
-          : r === -1 / 0
-          ? '$-Infinity'
-          : '$NaN';
+            ? '$Infinity'
+            : r === -1 / 0
+              ? '$-Infinity'
+              : '$NaN';
       if (typeof r > 'u') return '$undefined';
       if (typeof r == 'function') {
         if (r.$$typeof === rs) return pu(e, s, i, r);
@@ -2058,16 +2068,16 @@ globalThis.__webpack_get_script_filename__ = function (chunkId) {
               'Could not reference an opaque temporary reference. This is likely due to misconfiguring the temporaryReferences options on the server.'
             )
           : /^on[A-Z]/.test(i)
-          ? Error(
-              'Event handlers cannot be passed to Client Component props.' +
-                _s(s, i) +
-                `
+            ? Error(
+                'Event handlers cannot be passed to Client Component props.' +
+                  _s(s, i) +
+                  `
 If you need interactivity, consider converting part of this to a Client Component.`
-            )
-          : Error(
-              'Functions cannot be passed directly to Client Components unless you explicitly expose it by marking it with "use server". Or maybe you meant to call this function rather than return it.' +
-                _s(s, i)
-            );
+              )
+            : Error(
+                'Functions cannot be passed directly to Client Components unless you explicitly expose it by marking it with "use server". Or maybe you meant to call this function rather than return it.' +
+                  _s(s, i)
+              );
       }
       if (typeof r == 'symbol') {
         if (((t = e.writtenSymbols), (a = t.get(r)), a !== void 0))
@@ -2114,16 +2124,16 @@ If you need interactivity, consider converting part of this to a Client Componen
     }
     function Ki(e, t) {
       var s = e.onFatalError;
-      s(t),
+      (s(t),
         e.destination !== null
           ? ((e.status = 14), xu(e.destination, t))
           : ((e.status = 13), (e.fatalError = t)),
         e.cacheController.abort(
           Error('The render was aborted due to a fatal error.', {cause: t})
-        );
+        ));
     }
     function Rr(e, t, s) {
-      (s = {digest: s}),
+      ((s = {digest: s}),
         (t =
           t.toString(16) +
           ':E' +
@@ -2131,77 +2141,77 @@ If you need interactivity, consider converting part of this to a Client Componen
           `
 `),
         (t = pn(t)),
-        e.completedErrorChunks.push(t);
+        e.completedErrorChunks.push(t));
     }
     function Ou(e, t, s) {
-      (t =
+      ((t =
         t.toString(16) +
         ':' +
         s +
         `
 `),
         (t = pn(t)),
-        e.completedRegularChunks.push(t);
+        e.completedRegularChunks.push(t));
     }
     function Kt(e, t, s, i, r) {
-      r ? e.pendingDebugChunks++ : e.pendingChunks++,
+      (r ? e.pendingDebugChunks++ : e.pendingChunks++,
         (r = new Uint8Array(i.buffer, i.byteOffset, i.byteLength)),
         (i = 2048 < i.byteLength ? r.slice() : r),
         (r = i.byteLength),
         (t = t.toString(16) + ':' + s + r.toString(16) + ','),
         (t = pn(t)),
-        e.completedRegularChunks.push(t, i);
+        e.completedRegularChunks.push(t, i));
     }
     function Du(e, t, s, i) {
       if (la === null)
         throw Error(
           'Existence of byteLengthOfChunk should have already been checked. This is a bug in React.'
         );
-      i ? e.pendingDebugChunks++ : e.pendingChunks++,
+      (i ? e.pendingDebugChunks++ : e.pendingChunks++,
         (s = pn(s)),
         (i = s.byteLength),
         (t = t.toString(16) + ':T' + i.toString(16) + ','),
         (t = pn(t)),
-        e.completedRegularChunks.push(t, s);
+        e.completedRegularChunks.push(t, s));
     }
     function Mu(e, t, s) {
       var i = t.id;
       typeof s == 'string' && la !== null
         ? Du(e, i, s, !1)
         : s instanceof ArrayBuffer
-        ? Kt(e, i, 'A', new Uint8Array(s), !1)
-        : s instanceof Int8Array
-        ? Kt(e, i, 'O', s, !1)
-        : s instanceof Uint8Array
-        ? Kt(e, i, 'o', s, !1)
-        : s instanceof Uint8ClampedArray
-        ? Kt(e, i, 'U', s, !1)
-        : s instanceof Int16Array
-        ? Kt(e, i, 'S', s, !1)
-        : s instanceof Uint16Array
-        ? Kt(e, i, 's', s, !1)
-        : s instanceof Int32Array
-        ? Kt(e, i, 'L', s, !1)
-        : s instanceof Uint32Array
-        ? Kt(e, i, 'l', s, !1)
-        : s instanceof Float32Array
-        ? Kt(e, i, 'G', s, !1)
-        : s instanceof Float64Array
-        ? Kt(e, i, 'g', s, !1)
-        : s instanceof BigInt64Array
-        ? Kt(e, i, 'M', s, !1)
-        : s instanceof BigUint64Array
-        ? Kt(e, i, 'm', s, !1)
-        : s instanceof DataView
-        ? Kt(e, i, 'V', s, !1)
-        : ((s = Es(s, t.toJSON)), Ou(e, t.id, s));
+          ? Kt(e, i, 'A', new Uint8Array(s), !1)
+          : s instanceof Int8Array
+            ? Kt(e, i, 'O', s, !1)
+            : s instanceof Uint8Array
+              ? Kt(e, i, 'o', s, !1)
+              : s instanceof Uint8ClampedArray
+                ? Kt(e, i, 'U', s, !1)
+                : s instanceof Int16Array
+                  ? Kt(e, i, 'S', s, !1)
+                  : s instanceof Uint16Array
+                    ? Kt(e, i, 's', s, !1)
+                    : s instanceof Int32Array
+                      ? Kt(e, i, 'L', s, !1)
+                      : s instanceof Uint32Array
+                        ? Kt(e, i, 'l', s, !1)
+                        : s instanceof Float32Array
+                          ? Kt(e, i, 'G', s, !1)
+                          : s instanceof Float64Array
+                            ? Kt(e, i, 'g', s, !1)
+                            : s instanceof BigInt64Array
+                              ? Kt(e, i, 'M', s, !1)
+                              : s instanceof BigUint64Array
+                                ? Kt(e, i, 'm', s, !1)
+                                : s instanceof DataView
+                                  ? Kt(e, i, 'V', s, !1)
+                                  : ((s = Es(s, t.toJSON)), Ou(e, t.id, s));
     }
     function Un(e, t, s) {
-      (t.status = 4),
+      ((t.status = 4),
         (s = Kn(e, s, t)),
         Rr(e, t.id, s),
         e.abortableTasks.delete(t),
-        Or(e);
+        Or(e));
     }
     var Lr = {};
     function Fu(e, t) {
@@ -2217,19 +2227,19 @@ If you need interactivity, consider converting part of this to a Client Componen
             (t.implicitSlot = !1),
             typeof i == 'object' && i !== null)
           )
-            e.writtenObjects.set(i, Ct(t.id)), Mu(e, t, i);
+            (e.writtenObjects.set(i, Ct(t.id)), Mu(e, t, i));
           else {
             var r = Es(i);
             Ou(e, t.id, r);
           }
-          (t.status = 1), e.abortableTasks.delete(t), Or(e);
+          ((t.status = 1), e.abortableTasks.delete(t), Or(e));
         } catch (y) {
           if (e.status === 12)
             if ((e.abortableTasks.delete(t), (t.status = 0), e.type === 21))
-              ri(t), oi(t, e);
+              (ri(t), oi(t, e));
             else {
               var a = e.fatalError;
-              ha(t), fa(t, e, a);
+              (ha(t), fa(t, e, a));
             }
           else {
             var u = y === pa ? Eu() : y;
@@ -2238,7 +2248,7 @@ If you need interactivity, consider converting part of this to a Client Componen
               u !== null &&
               typeof u.then == 'function'
             ) {
-              (t.status = 0), (t.thenableState = Au());
+              ((t.status = 0), (t.thenableState = Au()));
               var d = t.ping;
               u.then(d, d);
             } else Un(e, t, u);
@@ -2267,9 +2277,9 @@ If you need interactivity, consider converting part of this to a Client Componen
         for (var r = 0; r < i.length; r++) Fu(e, i[r]);
         ai(e);
       } catch (a) {
-        Kn(e, a, null), Ki(e, a);
+        (Kn(e, a, null), Ki(e, a));
       } finally {
-        (Is.H = t), (Mi = null), (st = s);
+        ((Is.H = t), (Mi = null), (st = s));
       }
     }
     function ha(e) {
@@ -2288,27 +2298,27 @@ If you need interactivity, consider converting part of this to a Client Componen
     function ai(e) {
       var t = e.destination;
       if (t !== null) {
-        (ln = new Uint8Array(2048)), (cn = 0);
+        ((ln = new Uint8Array(2048)), (cn = 0));
         try {
           for (var s = e.completedImportChunks, i = 0; i < s.length; i++)
-            e.pendingChunks--, Cr(t, s[i]);
+            (e.pendingChunks--, Cr(t, s[i]));
           s.splice(0, i);
           var r = e.completedHintChunks;
           for (i = 0; i < r.length; i++) Cr(t, r[i]);
           r.splice(0, i);
           var a = e.completedRegularChunks;
-          for (i = 0; i < a.length; i++) e.pendingChunks--, Cr(t, a[i]);
+          for (i = 0; i < a.length; i++) (e.pendingChunks--, Cr(t, a[i]));
           a.splice(0, i);
           var u = e.completedErrorChunks;
-          for (i = 0; i < u.length; i++) e.pendingChunks--, Cr(t, u[i]);
+          for (i = 0; i < u.length; i++) (e.pendingChunks--, Cr(t, u[i]));
           u.splice(0, i);
         } finally {
-          (e.flushScheduled = !1),
+          ((e.flushScheduled = !1),
             ln &&
               0 < cn &&
               (t.enqueue(new Uint8Array(ln.buffer, 0, cn)),
               (ln = null),
-              (cn = 0));
+              (cn = 0)));
         }
       }
       e.pendingChunks === 0 &&
@@ -2322,13 +2332,13 @@ If you need interactivity, consider converting part of this to a Client Componen
           ((e.status = 14), e.destination.close(), (e.destination = null)));
     }
     function Vu(e) {
-      (e.flushScheduled = e.destination !== null),
+      ((e.flushScheduled = e.destination !== null),
         vu(function () {
           return ra(e);
         }),
         Bi(function () {
           e.status === 10 && (e.status = 11);
-        });
+        }));
     }
     function un(e) {
       e.flushScheduled === !1 &&
@@ -2336,20 +2346,20 @@ If you need interactivity, consider converting part of this to a Client Componen
         e.destination !== null &&
         ((e.flushScheduled = !0),
         Bi(function () {
-          (e.flushScheduled = !1), ai(e);
+          ((e.flushScheduled = !1), ai(e));
         }));
     }
     function Or(e) {
       e.abortableTasks.size === 0 && ((e = e.onAllReady), e());
     }
     function ju(e, t) {
-      if (e.status === 13) (e.status = 14), xu(t, e.fatalError);
+      if (e.status === 13) ((e.status = 14), xu(t, e.fatalError));
       else if (e.status !== 14 && e.destination === null) {
         e.destination = t;
         try {
           ai(e);
         } catch (s) {
-          Kn(e, s, null), Ki(e, s);
+          (Kn(e, s, null), Ki(e, s));
         }
       }
     }
@@ -2359,9 +2369,9 @@ If you need interactivity, consider converting part of this to a Client Componen
           return oi(i, e);
         });
         var s = e.onAllReady;
-        s(), ai(e);
+        (s(), ai(e));
       } catch (i) {
-        Kn(e, i, null), Ki(e, i);
+        (Kn(e, i, null), Ki(e, i));
       }
     }
     function Ed(e, t, s) {
@@ -2370,24 +2380,24 @@ If you need interactivity, consider converting part of this to a Client Componen
           return fa(r, e, s);
         });
         var i = e.onAllReady;
-        i(), ai(e);
+        (i(), ai(e));
       } catch (r) {
-        Kn(e, r, null), Ki(e, r);
+        (Kn(e, r, null), Ki(e, r));
       }
     }
     function si(e, t) {
       if (!(11 < e.status))
         try {
-          (e.status = 12), e.cacheController.abort(t);
+          ((e.status = 12), e.cacheController.abort(t));
           var s = e.abortableTasks;
           if (0 < s.size)
             if (e.type === 21)
-              s.forEach(function (d) {
+              (s.forEach(function (d) {
                 return ri(d, e);
               }),
                 Bi(function () {
                   return Id(e, s);
-                });
+                }));
             else {
               var i =
                   t === void 0
@@ -2395,15 +2405,15 @@ If you need interactivity, consider converting part of this to a Client Componen
                         'The render was aborted by the server without a reason.'
                       )
                     : typeof t == 'object' &&
-                      t !== null &&
-                      typeof t.then == 'function'
-                    ? Error(
-                        'The render was aborted by the server with a promise.'
-                      )
-                    : t,
+                        t !== null &&
+                        typeof t.then == 'function'
+                      ? Error(
+                          'The render was aborted by the server with a promise.'
+                        )
+                      : t,
                 r = Kn(e, i, null),
                 a = e.nextChunkId++;
-              (e.fatalError = a),
+              ((e.fatalError = a),
                 e.pendingChunks++,
                 Rr(e, a, r, i, !1, null),
                 s.forEach(function (d) {
@@ -2411,14 +2421,14 @@ If you need interactivity, consider converting part of this to a Client Componen
                 }),
                 Bi(function () {
                   return Ed(e, s, a);
-                });
+                }));
             }
           else {
             var u = e.onAllReady;
-            u(), ai(e);
+            (u(), ai(e));
           }
         } catch (d) {
-          Kn(e, d, null), Ki(e, d);
+          (Kn(e, d, null), Ki(e, d));
         }
     }
     function $u(e, t) {
@@ -2443,10 +2453,10 @@ If you need interactivity, consider converting part of this to a Client Componen
         ? null
         : (t.then(
             function (s) {
-              (t.status = 'fulfilled'), (t.value = s);
+              ((t.status = 'fulfilled'), (t.value = s));
             },
             function (s) {
-              (t.status = 'rejected'), (t.reason = s);
+              ((t.status = 'rejected'), (t.reason = s));
             }
           ),
           t);
@@ -2473,8 +2483,8 @@ If you need interactivity, consider converting part of this to a Client Componen
               return hu(e[0]);
             })
         : 0 < s.length
-        ? Promise.all(s)
-        : null;
+          ? Promise.all(s)
+          : null;
     }
     function Fi(e) {
       var t = __webpack_require__(e[0]);
@@ -2493,7 +2503,7 @@ If you need interactivity, consider converting part of this to a Client Componen
     };
     var Dr = Symbol();
     function Ot(e, t, s) {
-      (this.status = e), (this.value = t), (this.reason = s);
+      ((this.status = e), (this.value = t), (this.reason = s));
     }
     Ot.prototype = Object.create(Promise.prototype);
     Ot.prototype.then = function (e, t) {
@@ -2518,10 +2528,11 @@ If you need interactivity, consider converting part of this to a Client Componen
           break;
         case 'pending':
         case 'blocked':
-          typeof e == 'function' &&
+          (typeof e == 'function' &&
             (this.value === null && (this.value = []), this.value.push(e)),
             typeof t == 'function' &&
-              (this.reason === null && (this.reason = []), this.reason.push(t));
+              (this.reason === null && (this.reason = []),
+              this.reason.push(t)));
           break;
         default:
           typeof t == 'function' && t(this.reason);
@@ -2545,7 +2556,7 @@ If you need interactivity, consider converting part of this to a Client Componen
       if (t.status !== 'pending' && t.status !== 'blocked') t.reason.error(s);
       else {
         var i = t.reason;
-        (t.status = 'rejected'), (t.reason = s), i !== null && da(e, i, s);
+        ((t.status = 'rejected'), (t.reason = s), i !== null && da(e, i, s));
       }
     }
     function Wu(e, t, s) {
@@ -2554,10 +2565,10 @@ If you need interactivity, consider converting part of this to a Client Componen
     }
     function Gu(e, t, s, i) {
       if (t.status !== 'pending')
-        (t = t.reason),
+        ((t = t.reason),
           s[0] === 'C'
             ? t.close(s === 'C' ? '"$undefined"' : s.slice(1))
-            : t.enqueueModel(s);
+            : t.enqueueModel(s));
       else {
         var r = t.value,
           a = t.reason;
@@ -2605,11 +2616,11 @@ If you need interactivity, consider converting part of this to a Client Componen
       function r(L) {
         var p = d.reason,
           h = d;
-        (h.status = 'rejected'),
+        ((h.status = 'rejected'),
           (h.value = null),
           (h.reason = L),
           p !== null && da(e, p, L),
-          Pr(e, g, L);
+          Pr(e, g, L));
       }
       var a = t.id;
       if (typeof a != 'string' || i === 'then') return null;
@@ -2635,7 +2646,8 @@ If you need interactivity, consider converting part of this to a Client Componen
       if (((u = t.bound), (a = qu(y))))
         u instanceof Ot && (a = Promise.all([a, u]));
       else if (u instanceof Ot) a = Promise.resolve(u);
-      else return (u = Fi(y)), (a = d), (a.status = 'fulfilled'), (a.value = u);
+      else
+        return ((u = Fi(y)), (a = d), (a.status = 'fulfilled'), (a.value = u));
       if (Ye) {
         var g = Ye;
         g.deps++;
@@ -2656,15 +2668,15 @@ If you need interactivity, consider converting part of this to a Client Componen
               );
               return;
             }
-            p.unshift(null), (L = L.bind.apply(L, p));
+            (p.unshift(null), (L = L.bind.apply(L, p)));
           }
           p = d.value;
           var h = d;
-          (h.status = 'fulfilled'),
+          ((h.status = 'fulfilled'),
             (h.value = L),
             (h.reason = null),
             p !== null && Mr(e, p, L, h),
-            aa(e, g, s, i, L);
+            aa(e, g, s, i, L));
         }, r),
         null
       );
@@ -2720,9 +2732,9 @@ If you need interactivity, consider converting part of this to a Client Componen
       Ye = null;
       var s = e.reason,
         i = s[Dr];
-      (s = s.id), (s = s === -1 ? void 0 : s.toString(16));
+      ((s = s.id), (s = s === -1 ? void 0 : s.toString(16)));
       var r = e.value;
-      (e.status = 'blocked'), (e.value = null), (e.reason = null);
+      ((e.status = 'blocked'), (e.value = null), (e.reason = null));
       try {
         var a = JSON.parse(r);
         r = {count: 0, fork: !1};
@@ -2736,19 +2748,19 @@ If you need interactivity, consider converting part of this to a Client Componen
         if (Ye !== null) {
           if (Ye.errored) throw Ye.reason;
           if (0 < Ye.deps) {
-            (Ye.value = u), (Ye.reason = r), (Ye.chunk = e);
+            ((Ye.value = u), (Ye.reason = r), (Ye.chunk = e));
             return;
           }
         }
-        (e.status = 'fulfilled'), (e.value = u), (e.reason = r);
+        ((e.status = 'fulfilled'), (e.value = u), (e.reason = r));
       } catch (g) {
-        (e.status = 'rejected'), (e.reason = g);
+        ((e.status = 'rejected'), (e.reason = g));
       } finally {
         Ye = t;
       }
     }
     function Rd(e, t) {
-      (e._closed = !0),
+      ((e._closed = !0),
         (e._closedReason = t),
         e._chunks.forEach(function (s) {
           s.status === 'pending'
@@ -2756,7 +2768,7 @@ If you need interactivity, consider converting part of this to a Client Componen
             : s.status === 'fulfilled' &&
               s.reason !== null &&
               ((s = s.reason), typeof s.error == 'function' && s.error(t));
-        });
+        }));
     }
     function Vr(e, t) {
       var s = e._chunks,
@@ -2768,8 +2780,8 @@ If you need interactivity, consider converting part of this to a Client Componen
             typeof i == 'string'
               ? Wu(e, i, t)
               : e._closed
-              ? new Ot('rejected', null, e._closedReason)
-              : new Ot('pending', null, null)),
+                ? new Ot('rejected', null, e._closedReason)
+                : new Ot('pending', null, null)),
           s.set(t, i)),
         i
       );
@@ -2790,7 +2802,7 @@ If you need interactivity, consider converting part of this to a Client Componen
             !Nr.call(s, h)
           )
             throw Error('Invalid reference.');
-          if (((s = s[h]), kn(s))) (g = 0), (i = L.get(s) || i);
+          if (((s = s[h]), kn(s))) ((g = 0), (i = L.get(s) || i));
           else if (((i = null), typeof s == 'string')) g = s.length;
           else if (typeof s == 'bigint') {
             var T = Math.abs(Number(s));
@@ -2810,7 +2822,7 @@ If you need interactivity, consider converting part of this to a Client Componen
       aa(e, r, a, u, x);
     }
     function aa(e, t, s, i, r) {
-      i !== '__proto__' && (s[i] = r),
+      (i !== '__proto__' && (s[i] = r),
         i === '' && t.value === null && (t.value = r),
         t.deps--,
         t.deps === 0 &&
@@ -2821,7 +2833,7 @@ If you need interactivity, consider converting part of this to a Client Componen
             (s.status = 'fulfilled'),
             (s.value = t.value),
             (s.reason = t.reason),
-            i !== null && Mr(e, i, t.value, s)));
+            i !== null && Mr(e, i, t.value, s))));
     }
     function Pr(e, t, s) {
       t.errored ||
@@ -2841,7 +2853,7 @@ If you need interactivity, consider converting part of this to a Client Componen
       }
       switch (d.status) {
         case 'fulfilled':
-          (u = d.value), (d = d.reason);
+          ((u = d.value), (d = d.reason));
           for (var y = 0, g = e._rootArrayContexts, L = 1; L < t.length; L++) {
             if (
               ((y = t[L]),
@@ -2851,16 +2863,16 @@ If you need interactivity, consider converting part of this to a Client Componen
                 !Nr.call(u, y))
             )
               throw Error('Invalid reference.');
-            (u = u[y]),
+            ((u = u[y]),
               kn(u)
                 ? ((y = 0), (d = g.get(u) || d))
                 : ((d = null),
                   typeof u == 'string'
                     ? (y = u.length)
                     : typeof u == 'bigint'
-                    ? ((y = Math.abs(Number(u))),
-                      (y = y === 0 ? 1 : Math.floor(Math.log10(y)) + 1))
-                    : (y = ArrayBuffer.isView(u) ? u.byteLength : 0));
+                      ? ((y = Math.abs(Number(u))),
+                        (y = y === 0 ? 1 : Math.floor(Math.log10(y)) + 1))
+                      : (y = ArrayBuffer.isView(u) ? u.byteLength : 0)));
           }
           return (
             (s = a(e, u, s, i)),
@@ -2914,17 +2926,17 @@ If you need interactivity, consider converting part of this to a Client Componen
     function Ld(e, t) {
       if (!kn(t)) throw Error('Invalid Map initializer.');
       if (t.$$consumed === !0) throw Error('Already initialized Map.');
-      return (e = new Map(t)), (t.$$consumed = !0), e;
+      return ((e = new Map(t)), (t.$$consumed = !0), e);
     }
     function Od(e, t) {
       if (!kn(t)) throw Error('Invalid Set initializer.');
       if (t.$$consumed === !0) throw Error('Already initialized Set.');
-      return (e = new Set(t)), (t.$$consumed = !0), e;
+      return ((e = new Set(t)), (t.$$consumed = !0), e);
     }
     function Dd(e, t) {
       if (!kn(t)) throw Error('Invalid Iterator initializer.');
       if (t.$$consumed === !0) throw Error('Already initialized Iterator.');
-      return (e = t[Symbol.iterator]()), (t.$$consumed = !0), e;
+      return ((e = t[Symbol.iterator]()), (t.$$consumed = !0), e);
     }
     function Md(e, t, s, i) {
       return i === 'then' && typeof t == 'function' ? null : t;
@@ -2932,7 +2944,7 @@ If you need interactivity, consider converting part of this to a Client Componen
     function Jt(e, t, s, i, r, a, u) {
       function d(L) {
         if (!g.errored) {
-          (g.errored = !0), (g.value = null), (g.reason = L);
+          ((g.errored = !0), (g.value = null), (g.reason = L));
           var p = g.chunk;
           p !== null && p.status === 'blocked' && Fr(e, p, L);
         }
@@ -2958,13 +2970,13 @@ If you need interactivity, consider converting part of this to a Client Componen
           try {
             u !== null && $n(u, L.byteLength, e);
             var p = s === ArrayBuffer ? L : new s(L);
-            y !== '__proto__' && (r[a] = p),
-              a === '' && g.value === null && (g.value = p);
+            (y !== '__proto__' && (r[a] = p),
+              a === '' && g.value === null && (g.value = p));
           } catch (h) {
             d(h);
             return;
           }
-          g.deps--,
+          (g.deps--,
             g.deps === 0 &&
               ((L = g.chunk),
               L !== null &&
@@ -2973,7 +2985,7 @@ If you need interactivity, consider converting part of this to a Client Componen
                 (L.status = 'fulfilled'),
                 (L.value = g.value),
                 (L.reason = null),
-                p !== null && Mr(e, p, g.value, L)));
+                p !== null && Mr(e, p, g.value, L))));
         }, d),
         null
       );
@@ -2988,11 +3000,11 @@ If you need interactivity, consider converting part of this to a Client Componen
         t < e.length;
         t++
       )
-        (r = e[t]),
+        ((r = e[t]),
           typeof r == 'string' &&
             (r[0] === 'C'
               ? i.close(r === 'C' ? '"$undefined"' : r.slice(1))
-              : i.enqueueModel(r));
+              : i.enqueueModel(r)));
     }
     function du(e, t, s) {
       function i(g) {
@@ -3015,18 +3027,18 @@ If you need interactivity, consider converting part of this to a Client Componen
           enqueueModel: function (g) {
             if (d === null) {
               var L = Wu(e, g, -1);
-              Br(L),
+              (Br(L),
                 L.status === 'fulfilled'
                   ? i(L.value)
-                  : (L.then(i, y.error), (d = L));
+                  : (L.then(i, y.error), (d = L)));
             } else {
               L = d;
               var p = new Ot('pending', null, null);
-              p.then(i, y.error),
+              (p.then(i, y.error),
                 (d = p),
                 L.then(function () {
-                  d === p && (d = null), Gu(e, p, g, -1);
-                });
+                  (d === p && (d = null), Gu(e, p, g, -1));
+                }));
             }
           },
           close: function () {
@@ -3034,10 +3046,10 @@ If you need interactivity, consider converting part of this to a Client Componen
               if (((a = !0), d === null)) r.close();
               else {
                 var g = d;
-                (d = null),
+                ((d = null),
                   g.then(function () {
                     return r.close();
-                  });
+                  }));
               }
           },
           error: function (g) {
@@ -3045,14 +3057,14 @@ If you need interactivity, consider converting part of this to a Client Componen
               if (((a = !0), d === null)) r.error(g);
               else {
                 var L = d;
-                (d = null),
+                ((d = null),
                   L.then(function () {
                     return r.error(g);
-                  });
+                  }));
               }
           },
         };
-      return Xu(e, t, u, y), u;
+      return (Xu(e, t, u, y), u);
     }
     function ma(e) {
       this.next = e;
@@ -3089,7 +3101,7 @@ If you need interactivity, consider converting part of this to a Client Componen
         (s = s ? u[Ss]() : u),
         Xu(e, t, s, {
           enqueueModel: function (d) {
-            a === i.length ? (i[a] = fu(e, d, !1)) : ea(e, i[a], d, !1), a++;
+            (a === i.length ? (i[a] = fu(e, d, !1)) : ea(e, i[a], d, !1), a++);
           },
           close: function (d) {
             if (!r)
@@ -3098,7 +3110,6 @@ If you need interactivity, consider converting part of this to a Client Componen
                   a === i.length ? (i[a] = fu(e, d, !0)) : ea(e, i[a], d, !0),
                   a++;
                 a < i.length;
-
               )
                 ea(e, i[a++], '"$undefined"', !0);
           },
@@ -3108,7 +3119,6 @@ If you need interactivity, consider converting part of this to a Client Componen
                 r = !0,
                   a === i.length && (i[a] = new Ot('pending', null, null));
                 a < i.length;
-
               )
                 Fr(e, i[a++], d);
           },
@@ -3120,11 +3130,11 @@ If you need interactivity, consider converting part of this to a Client Componen
       if (i[0] === '$') {
         switch (i[1]) {
           case '$':
-            return a !== null && $n(a, i.length - 1, e), i.slice(1);
+            return (a !== null && $n(a, i.length - 1, e), i.slice(1));
           case '@':
-            return (t = parseInt(i.slice(2), 16)), Vr(e, t);
+            return ((t = parseInt(i.slice(2), 16)), Vr(e, t));
           case 'h':
-            return (a = i.slice(2)), Di(e, a, t, s, null, Nd);
+            return ((a = i.slice(2)), Di(e, a, t, s, null, Nd));
           case 'T':
             if (r === void 0 || e._temporaryReferences === void 0)
               throw Error(
@@ -3132,9 +3142,9 @@ If you need interactivity, consider converting part of this to a Client Componen
               );
             return ud(e._temporaryReferences, r);
           case 'Q':
-            return (a = i.slice(2)), Di(e, a, t, s, null, Ld);
+            return ((a = i.slice(2)), Di(e, a, t, s, null, Ld));
           case 'W':
-            return (a = i.slice(2)), Di(e, a, t, s, null, Od);
+            return ((a = i.slice(2)), Di(e, a, t, s, null, Od));
           case 'K':
             for (
               t = i.slice(2),
@@ -3157,7 +3167,7 @@ If you need interactivity, consider converting part of this to a Client Componen
               }
             return s;
           case 'i':
-            return (a = i.slice(2)), Di(e, a, t, s, null, Dd);
+            return ((a = i.slice(2)), Di(e, a, t, s, null, Dd));
           case 'I':
             return 1 / 0;
           case '-':
@@ -3175,7 +3185,7 @@ If you need interactivity, consider converting part of this to a Client Componen
                   t.length +
                   ' digits but the limit is 300.'
               );
-            return a !== null && $n(a, t.length, e), BigInt(t);
+            return (a !== null && $n(a, t.length, e), BigInt(t));
           case 'A':
             return Jt(e, i, ArrayBuffer, 1, t, s, a);
           case 'O':
@@ -3204,7 +3214,8 @@ If you need interactivity, consider converting part of this to a Client Componen
             return Jt(e, i, DataView, 1, t, s, a);
           case 'B':
             return (
-              (t = parseInt(i.slice(2), 16)), e._formData.get(e._prefix + t)
+              (t = parseInt(i.slice(2), 16)),
+              e._formData.get(e._prefix + t)
             );
           case 'R':
             return du(e, i, void 0);
@@ -3215,9 +3226,9 @@ If you need interactivity, consider converting part of this to a Client Componen
           case 'x':
             return mu(e, i, !0);
         }
-        return (i = i.slice(1)), Di(e, i, t, s, a, Md);
+        return ((i = i.slice(1)), Di(e, i, t, s, a, Md));
       }
-      return a !== null && $n(a, i.length, e), i;
+      return (a !== null && $n(a, i.length, e), i);
     }
     function Yu(e, t, s) {
       var i =
@@ -3262,10 +3273,10 @@ If you need interactivity, consider converting part of this to a Client Componen
               return a.bind.apply(a, [null].concat(r));
             })
           : e
-          ? Promise.resolve(e).then(function () {
-              return Fi(i);
-            })
-          : Promise.resolve(Fi(i))
+            ? Promise.resolve(e).then(function () {
+                return Fi(i);
+              })
+            : Promise.resolve(Fi(i))
       );
     }
     function Qu(e, t, s, i) {
@@ -3280,7 +3291,7 @@ If you need interactivity, consider converting part of this to a Client Componen
       return e.value;
     }
     En.createClientModuleProxy = function (e) {
-      return (e = ti({}, e, !1)), new Proxy(e, _u);
+      return ((e = ti({}, e, !1)), new Proxy(e, _u));
     };
     En.createTemporaryReferenceSet = function () {
       return new WeakMap();
@@ -3330,7 +3341,7 @@ If you need interactivity, consider converting part of this to a Client Componen
     En.decodeReply = function (e, t, s) {
       if (typeof e == 'string') {
         var i = new FormData();
-        i.append('0', e), (e = i);
+        (i.append('0', e), (e = i));
       }
       return (
         (e = Yu(
@@ -3361,7 +3372,7 @@ If you need interactivity, consider converting part of this to a Client Componen
                   ju(a, g);
                 },
                 cancel: function (g) {
-                  (a.destination = null), si(a, g);
+                  ((a.destination = null), si(a, g));
                 },
               },
               {highWaterMark: 0}
@@ -3377,7 +3388,7 @@ If you need interactivity, consider converting part of this to a Client Componen
           if (u.aborted) si(a, u.reason);
           else {
             var d = function () {
-              si(a, u.reason), u.removeEventListener('abort', d);
+              (si(a, u.reason), u.removeEventListener('abort', d));
             };
             u.addEventListener('abort', d);
           }
@@ -3414,7 +3425,7 @@ If you need interactivity, consider converting part of this to a Client Componen
         if (r.aborted) si(i, r.reason);
         else {
           var a = function () {
-            si(i, r.reason), r.removeEventListener('abort', a);
+            (si(i, r.reason), r.removeEventListener('abort', a));
           };
           r.addEventListener('abort', a);
         }
@@ -3429,7 +3440,7 @@ If you need interactivity, consider converting part of this to a Client Componen
             ju(i, u);
           },
           cancel: function (u) {
-            (i.destination = null), si(i, u);
+            ((i.destination = null), si(i, u));
           },
         },
         {highWaterMark: 0}
@@ -4023,15 +4034,15 @@ If you need interactivity, consider converting part of this to a Client Componen
       jd = be(),
       Ta = class {
         constructor(t, s, i) {
-          (this.startTokenIndex = t),
+          ((this.startTokenIndex = t),
             (this.endTokenIndex = s),
-            (this.isFunctionScope = i);
+            (this.isFunctionScope = i));
         }
       };
     Ui.Scope = Ta;
     var $r = class {
       constructor(t, s, i, r, a, u, d, y, g, L, p, h, T) {
-        (this.potentialArrowAt = t),
+        ((this.potentialArrowAt = t),
           (this.noAnonFunctionType = s),
           (this.inDisallowConditionalTypesContext = i),
           (this.tokensLength = r),
@@ -4043,13 +4054,13 @@ If you need interactivity, consider converting part of this to a Client Componen
           (this.end = L),
           (this.isType = p),
           (this.scopeDepth = h),
-          (this.error = T);
+          (this.error = T));
       }
     };
     Ui.StateSnapshot = $r;
     var ka = class e {
       constructor() {
-        e.prototype.__init.call(this),
+        (e.prototype.__init.call(this),
           e.prototype.__init2.call(this),
           e.prototype.__init3.call(this),
           e.prototype.__init4.call(this),
@@ -4061,7 +4072,7 @@ If you need interactivity, consider converting part of this to a Client Componen
           e.prototype.__init10.call(this),
           e.prototype.__init11.call(this),
           e.prototype.__init12.call(this),
-          e.prototype.__init13.call(this);
+          e.prototype.__init13.call(this));
       }
       __init() {
         this.potentialArrowAt = -1;
@@ -4120,7 +4131,7 @@ If you need interactivity, consider converting part of this to a Client Componen
         );
       }
       restoreFromSnapshot(t) {
-        (this.potentialArrowAt = t.potentialArrowAt),
+        ((this.potentialArrowAt = t.potentialArrowAt),
           (this.noAnonFunctionType = t.noAnonFunctionType),
           (this.inDisallowConditionalTypesContext =
             t.inDisallowConditionalTypesContext),
@@ -4133,7 +4144,7 @@ If you need interactivity, consider converting part of this to a Client Componen
           (this.end = t.end),
           (this.isType = t.isType),
           (this.scopeDepth = t.scopeDepth),
-          (this.error = t.error);
+          (this.error = t.error));
       }
     };
     Ui.default = ka;
@@ -4382,14 +4393,14 @@ If you need interactivity, consider converting part of this to a Client Componen
     function Gd(e) {
       if ('pos' in e) {
         let t = n1(e.pos);
-        (e.message += ` (${t.line}:${t.column})`), (e.loc = t);
+        ((e.message += ` (${t.line}:${t.column})`), (e.loc = t));
       }
       return e;
     }
     ft.augmentError = Gd;
     var Ur = class {
       constructor(t, s) {
-        (this.line = t), (this.column = s);
+        ((this.line = t), (this.column = s));
       }
     };
     ft.Loc = Ur;
@@ -4402,12 +4413,12 @@ If you need interactivity, consider converting part of this to a Client Componen
     }
     ft.locationForIndex = n1;
     function zd(e, t, s, i) {
-      (ft.input = e),
+      ((ft.input = e),
         (ft.state = new Ud.default()),
         (ft.nextContextId = 1),
         (ft.isJSXEnabled = t),
         (ft.isTypeScriptEnabled = s),
-        (ft.isFlowEnabled = i);
+        (ft.isFlowEnabled = i));
     }
     ft.initParser = zd;
   });
@@ -4495,10 +4506,10 @@ If you need interactivity, consider converting part of this to a Client Componen
     function Wr(e = 'Unexpected token', t = en.state.start) {
       if (en.state.error) return;
       let s = new SyntaxError(e);
-      (s.pos = t),
+      ((s.pos = t),
         (en.state.error = s),
         (en.state.pos = en.input.length),
-        ls.finishToken.call(void 0, As.TokenType.eof);
+        ls.finishToken.call(void 0, As.TokenType.eof));
     }
     tn.unexpected = Wr;
   });
@@ -13554,18 +13565,17 @@ If you need interactivity, consider converting part of this to a Client Componen
         s < xn.input.length &&
         ((t = xn.input.charCodeAt(s)),
         !(t < us.charCodes.lowercaseA || t > us.charCodes.lowercaseZ));
-
       ) {
         let r = u1.READ_WORD_TREE[e + (t - us.charCodes.lowercaseA) + 1];
         if (r === -1) break;
-        (e = r), s++;
+        ((e = r), s++);
       }
       let i = u1.READ_WORD_TREE[e];
       if (i > -1 && !c1.IS_IDENTIFIER_CHAR[t]) {
-        (xn.state.pos = s),
+        ((xn.state.pos = s),
           i & 1
             ? _a.finishToken.call(void 0, i >>> 1)
-            : _a.finishToken.call(void 0, p1.TokenType.name, i >>> 1);
+            : _a.finishToken.call(void 0, p1.TokenType.name, i >>> 1));
         return;
       }
       for (; s < xn.input.length; ) {
@@ -13579,7 +13589,6 @@ If you need interactivity, consider converting part of this to a Client Componen
               ;
               s < xn.input.length &&
               xn.input.charCodeAt(s) !== us.charCodes.rightCurlyBrace;
-
             )
               s++;
             s++;
@@ -13591,7 +13600,7 @@ If you need interactivity, consider converting part of this to a Client Componen
           s += 2;
         else break;
       }
-      (xn.state.pos = s), _a.finishToken.call(void 0, p1.TokenType.name);
+      ((xn.state.pos = s), _a.finishToken.call(void 0, p1.TokenType.name));
     }
     ba.default = cm;
   });
@@ -13708,7 +13717,7 @@ If you need interactivity, consider converting part of this to a Client Componen
     Be.isObjectShorthandDeclaration = vm;
     var Hi = class {
       constructor() {
-        (this.type = b.state.type),
+        ((this.type = b.state.type),
           (this.contextualKeyword = b.state.contextualKeyword),
           (this.start = b.state.start),
           (this.end = b.state.end),
@@ -13726,27 +13735,27 @@ If you need interactivity, consider converting part of this to a Client Componen
           (this.isOptionalChainStart = !1),
           (this.isOptionalChainEnd = !1),
           (this.subscriptStartIndex = null),
-          (this.nullishStartIndex = null);
+          (this.nullishStartIndex = null));
       }
     };
     Be.Token = Hi;
     function zr() {
-      b.state.tokens.push(new Hi()), k1();
+      (b.state.tokens.push(new Hi()), k1());
     }
     Be.next = zr;
     function xm() {
-      b.state.tokens.push(new Hi()), (b.state.start = b.state.pos), Km();
+      (b.state.tokens.push(new Hi()), (b.state.start = b.state.pos), Km());
     }
     Be.nextTemplateToken = xm;
     function gm() {
-      b.state.type === ne.TokenType.assign && --b.state.pos, jm();
+      (b.state.type === ne.TokenType.assign && --b.state.pos, jm());
     }
     Be.retokenizeSlashAsRegex = gm;
     function _m(e) {
       for (let s = b.state.tokens.length - e; s < b.state.tokens.length; s++)
         b.state.tokens[s].isType = !0;
       let t = b.state.isType;
-      return (b.state.isType = !0), t;
+      return ((b.state.isType = !0), t);
     }
     Be.pushTypeContext = _m;
     function bm(e) {
@@ -13759,7 +13768,7 @@ If you need interactivity, consider converting part of this to a Client Componen
     Be.eat = m1;
     function Cm(e) {
       let t = b.state.isType;
-      (b.state.isType = !0), m1(e), (b.state.isType = t);
+      ((b.state.isType = !0), m1(e), (b.state.isType = t));
     }
     Be.eatTypeToken = Cm;
     function Sa(e) {
@@ -13770,12 +13779,12 @@ If you need interactivity, consider converting part of this to a Client Componen
       let e = b.state.snapshot();
       zr();
       let t = b.state.type;
-      return b.state.restoreFromSnapshot(e), t;
+      return (b.state.restoreFromSnapshot(e), t);
     }
     Be.lookaheadType = wm;
     var Gr = class {
       constructor(t, s) {
-        (this.type = t), (this.contextualKeyword = s);
+        ((this.type = t), (this.contextualKeyword = s));
       }
     };
     Be.TypeAndKeyword = Gr;
@@ -13784,7 +13793,7 @@ If you need interactivity, consider converting part of this to a Client Componen
       zr();
       let t = b.state.type,
         s = b.state.contextualKeyword;
-      return b.state.restoreFromSnapshot(e), new Gr(t, s);
+      return (b.state.restoreFromSnapshot(e), new Gr(t, s));
     }
     Be.lookaheadTypeAndKeyword = Sm;
     function y1() {
@@ -13806,11 +13815,11 @@ If you need interactivity, consider converting part of this to a Client Componen
         (x1(), (b.state.start = b.state.pos), b.state.pos >= b.input.length)
       ) {
         let e = b.state.tokens;
-        e.length >= 2 &&
+        (e.length >= 2 &&
           e[e.length - 1].start >= b.input.length &&
           e[e.length - 2].start >= b.input.length &&
           ci.unexpected.call(void 0, 'Unexpectedly reached the end of input.'),
-          Ve(ne.TokenType.eof);
+          Ve(ne.TokenType.eof));
         return;
       }
       Em(b.input.charCodeAt(b.state.pos));
@@ -13829,7 +13838,6 @@ If you need interactivity, consider converting part of this to a Client Componen
         ;
         b.input.charCodeAt(b.state.pos) !== F.charCodes.asterisk ||
         b.input.charCodeAt(b.state.pos + 1) !== F.charCodes.slash;
-
       )
         if ((b.state.pos++, b.state.pos > b.input.length)) {
           ci.unexpected.call(void 0, 'Unterminated comment', b.state.pos - 2);
@@ -13847,7 +13855,6 @@ If you need interactivity, consider converting part of this to a Client Componen
           t !== F.charCodes.lineSeparator &&
           t !== F.charCodes.paragraphSeparator &&
           ++b.state.pos < b.input.length;
-
         )
           t = b.input.charCodeAt(b.state.pos);
     }
@@ -13867,7 +13874,7 @@ If you need interactivity, consider converting part of this to a Client Componen
           case F.charCodes.slash:
             switch (b.input.charCodeAt(b.state.pos + 1)) {
               case F.charCodes.asterisk:
-                (b.state.pos += 2), Am();
+                ((b.state.pos += 2), Am());
                 break;
               case F.charCodes.slash:
                 v1(2);
@@ -13884,9 +13891,9 @@ If you need interactivity, consider converting part of this to a Client Componen
     }
     Be.skipSpace = x1;
     function Ve(e, t = pm.ContextualKeyword.NONE) {
-      (b.state.end = b.state.pos),
+      ((b.state.end = b.state.pos),
         (b.state.type = e),
-        (b.state.contextualKeyword = t);
+        (b.state.contextualKeyword = t));
     }
     Be.finishToken = Ve;
     function Pm() {
@@ -13910,7 +13917,7 @@ If you need interactivity, consider converting part of this to a Client Componen
           e === F.charCodes.asterisk ? ne.TokenType.star : ne.TokenType.modulo,
         s = 1,
         i = b.input.charCodeAt(b.state.pos + 1);
-      e === F.charCodes.asterisk &&
+      (e === F.charCodes.asterisk &&
         i === F.charCodes.asterisk &&
         (s++,
         (i = b.input.charCodeAt(b.state.pos + 2)),
@@ -13918,7 +13925,7 @@ If you need interactivity, consider converting part of this to a Client Componen
         i === F.charCodes.equalsTo &&
           b.input.charCodeAt(b.state.pos + 2) !== F.charCodes.greaterThan &&
           (s++, (t = ne.TokenType.assign)),
-        Fe(t, s);
+        Fe(t, s));
     }
     function Lm(e) {
       let t = b.input.charCodeAt(b.state.pos + 1);
@@ -13967,8 +13974,8 @@ If you need interactivity, consider converting part of this to a Client Componen
       t === F.charCodes.equalsTo
         ? Fe(ne.TokenType.assign, 2)
         : e === F.charCodes.plusSign
-        ? Fe(ne.TokenType.plus, 1)
-        : Fe(ne.TokenType.minus, 1);
+          ? Fe(ne.TokenType.plus, 1)
+          : Fe(ne.TokenType.minus, 1);
     }
     function Mm() {
       let e = b.input.charCodeAt(b.state.pos + 1);
@@ -14022,7 +14029,7 @@ If you need interactivity, consider converting part of this to a Client Componen
         return;
       }
       if (e === F.charCodes.equalsTo && t === F.charCodes.greaterThan) {
-        (b.state.pos += 2), Ve(ne.TokenType.arrow);
+        ((b.state.pos += 2), Ve(ne.TokenType.arrow));
         return;
       }
       Fe(e === F.charCodes.equalsTo ? ne.TokenType.eq : ne.TokenType.bang, 1);
@@ -14035,35 +14042,35 @@ If you need interactivity, consider converting part of this to a Client Componen
           ? Fe(ne.TokenType.assign, 3)
           : Fe(ne.TokenType.nullishCoalescing, 2)
         : e === F.charCodes.dot &&
-          !(t >= F.charCodes.digit0 && t <= F.charCodes.digit9)
-        ? ((b.state.pos += 2), Ve(ne.TokenType.questionDot))
-        : (++b.state.pos, Ve(ne.TokenType.question));
+            !(t >= F.charCodes.digit0 && t <= F.charCodes.digit9)
+          ? ((b.state.pos += 2), Ve(ne.TokenType.questionDot))
+          : (++b.state.pos, Ve(ne.TokenType.question));
     }
     function _1(e) {
       switch (e) {
         case F.charCodes.numberSign:
-          ++b.state.pos, Ve(ne.TokenType.hash);
+          (++b.state.pos, Ve(ne.TokenType.hash));
           return;
         case F.charCodes.dot:
           Pm();
           return;
         case F.charCodes.leftParenthesis:
-          ++b.state.pos, Ve(ne.TokenType.parenL);
+          (++b.state.pos, Ve(ne.TokenType.parenL));
           return;
         case F.charCodes.rightParenthesis:
-          ++b.state.pos, Ve(ne.TokenType.parenR);
+          (++b.state.pos, Ve(ne.TokenType.parenR));
           return;
         case F.charCodes.semicolon:
-          ++b.state.pos, Ve(ne.TokenType.semi);
+          (++b.state.pos, Ve(ne.TokenType.semi));
           return;
         case F.charCodes.comma:
-          ++b.state.pos, Ve(ne.TokenType.comma);
+          (++b.state.pos, Ve(ne.TokenType.comma));
           return;
         case F.charCodes.leftSquareBracket:
-          ++b.state.pos, Ve(ne.TokenType.bracketL);
+          (++b.state.pos, Ve(ne.TokenType.bracketL));
           return;
         case F.charCodes.rightSquareBracket:
-          ++b.state.pos, Ve(ne.TokenType.bracketR);
+          (++b.state.pos, Ve(ne.TokenType.bracketR));
           return;
         case F.charCodes.leftCurlyBrace:
           b.isFlowEnabled &&
@@ -14072,7 +14079,7 @@ If you need interactivity, consider converting part of this to a Client Componen
             : (++b.state.pos, Ve(ne.TokenType.braceL));
           return;
         case F.charCodes.rightCurlyBrace:
-          ++b.state.pos, Ve(ne.TokenType.braceR);
+          (++b.state.pos, Ve(ne.TokenType.braceR));
           return;
         case F.charCodes.colon:
           b.input.charCodeAt(b.state.pos + 1) === F.charCodes.colon
@@ -14083,10 +14090,10 @@ If you need interactivity, consider converting part of this to a Client Componen
           Vm();
           return;
         case F.charCodes.atSign:
-          ++b.state.pos, Ve(ne.TokenType.at);
+          (++b.state.pos, Ve(ne.TokenType.at));
           return;
         case F.charCodes.graveAccent:
-          ++b.state.pos, Ve(ne.TokenType.backQuote);
+          (++b.state.pos, Ve(ne.TokenType.backQuote));
           return;
         case F.charCodes.digit0: {
           let t = b.input.charCodeAt(b.state.pos + 1);
@@ -14159,7 +14166,7 @@ If you need interactivity, consider converting part of this to a Client Componen
     }
     Be.getTokenFromCode = _1;
     function Fe(e, t) {
-      (b.state.pos += t), Ve(e);
+      ((b.state.pos += t), Ve(e));
     }
     function jm() {
       let e = b.state.pos,
@@ -14180,7 +14187,7 @@ If you need interactivity, consider converting part of this to a Client Componen
         }
         ++b.state.pos;
       }
-      ++b.state.pos, C1(), Ve(ne.TokenType.regexp);
+      (++b.state.pos, C1(), Ve(ne.TokenType.regexp));
     }
     function Ca() {
       for (;;) {
@@ -14248,7 +14255,7 @@ If you need interactivity, consider converting part of this to a Client Componen
         else if (t === e) break;
         b.state.pos++;
       }
-      b.state.pos++, Ve(ne.TokenType.string);
+      (b.state.pos++, Ve(ne.TokenType.string));
     }
     function Km() {
       for (;;) {
@@ -14264,16 +14271,16 @@ If you need interactivity, consider converting part of this to a Client Componen
         ) {
           if (b.state.pos === b.state.start && Sa(ne.TokenType.template))
             if (e === F.charCodes.dollarSign) {
-              (b.state.pos += 2), Ve(ne.TokenType.dollarBraceL);
+              ((b.state.pos += 2), Ve(ne.TokenType.dollarBraceL));
               return;
             } else {
-              ++b.state.pos, Ve(ne.TokenType.backQuote);
+              (++b.state.pos, Ve(ne.TokenType.backQuote));
               return;
             }
           Ve(ne.TokenType.template);
           return;
         }
-        e === F.charCodes.backslash && b.state.pos++, b.state.pos++;
+        (e === F.charCodes.backslash && b.state.pos++, b.state.pos++);
       }
     }
     function C1() {
@@ -14289,7 +14296,6 @@ If you need interactivity, consider converting part of this to a Client Componen
               ;
               b.state.pos < b.input.length &&
               b.input.charCodeAt(b.state.pos) !== F.charCodes.rightCurlyBrace;
-
             )
               b.state.pos++;
             b.state.pos++;
@@ -14598,7 +14604,7 @@ If you need interactivity, consider converting part of this to a Client Componen
     Aa.default = Hm;
     function I1(e) {
       let t = e.indexOf('.');
-      return t === -1 && (t = e.length), [e.slice(0, t), e.slice(t)];
+      return (t === -1 && (t = e.length), [e.slice(0, t), e.slice(t)]);
     }
   });
   var hn = Z((Ra) => {
@@ -14649,7 +14655,7 @@ If you need interactivity, consider converting part of this to a Client Componen
           this.cjsAutomaticModuleNameResolutions = {};
         }
         constructor(t, s, i, r, a) {
-          super(),
+          (super(),
             (this.rootTransformer = t),
             (this.tokens = s),
             (this.importProcessor = i),
@@ -14662,7 +14668,7 @@ If you need interactivity, consider converting part of this to a Client Componen
             e.prototype.__init5.call(this),
             (this.jsxPragmaInfo = Xm.default.call(void 0, a)),
             (this.isAutomaticRuntime = a.jsxRuntime === 'automatic'),
-            (this.jsxImportSource = a.jsxImportSource || 'react');
+            (this.jsxImportSource = a.jsxImportSource || 'react'));
         }
         process() {
           return this.tokens.matches1(Re.TokenType.jsxTagStart)
@@ -14715,10 +14721,10 @@ If you need interactivity, consider converting part of this to a Client Componen
         getLineNumberForIndex(t) {
           let s = this.tokens.code;
           for (; this.lastIndex < t && this.lastIndex < s.length; )
-            s[this.lastIndex] ===
+            (s[this.lastIndex] ===
               `
 ` && this.lastLineNumber++,
-              this.lastIndex++;
+              this.lastIndex++);
           return this.lastLineNumber;
         }
         transformTagToJSXFunc(t, s) {
@@ -14726,8 +14732,8 @@ If you need interactivity, consider converting part of this to a Client Componen
           this.tokens.replaceToken(this.getJSXFuncInvocationCode(i));
           let r = null;
           if (this.tokens.matches1(Re.TokenType.jsxTagEnd))
-            this.tokens.replaceToken(`${this.getFragmentCode()}, {`),
-              this.processAutomaticChildrenAndEndProps(s);
+            (this.tokens.replaceToken(`${this.getFragmentCode()}, {`),
+              this.processAutomaticChildrenAndEndProps(s));
           else {
             if (
               (this.processTagIntro(),
@@ -14737,8 +14743,8 @@ If you need interactivity, consider converting part of this to a Client Componen
             )
               this.tokens.appendCode('}');
             else if (this.tokens.matches1(Re.TokenType.jsxTagEnd))
-              this.tokens.removeToken(),
-                this.processAutomaticChildrenAndEndProps(s);
+              (this.tokens.removeToken(),
+                this.processAutomaticChildrenAndEndProps(s));
             else
               throw new Error('Expected either /> or > at the end of the tag.');
             r && this.tokens.appendCode(`, ${r}`);
@@ -14749,7 +14755,6 @@ If you need interactivity, consider converting part of this to a Client Componen
               this.tokens.appendCode(`, ${i}, ${this.getDevSource(t)}, this`)),
               this.tokens.removeInitialToken();
             !this.tokens.matches1(Re.TokenType.jsxTagEnd);
-
           )
             this.tokens.removeToken();
           this.tokens.replaceToken(')');
@@ -14759,21 +14764,20 @@ If you need interactivity, consider converting part of this to a Client Componen
             (this.tokens.replaceToken(this.getCreateElementInvocationCode()),
             this.tokens.matches1(Re.TokenType.jsxTagEnd))
           )
-            this.tokens.replaceToken(`${this.getFragmentCode()}, null`),
-              this.processChildren(!0);
+            (this.tokens.replaceToken(`${this.getFragmentCode()}, null`),
+              this.processChildren(!0));
           else if (
             (this.processTagIntro(),
             this.processPropsObjectWithDevInfo(t),
             !this.tokens.matches2(Re.TokenType.slash, Re.TokenType.jsxTagEnd))
           )
             if (this.tokens.matches1(Re.TokenType.jsxTagEnd))
-              this.tokens.removeToken(), this.processChildren(!0);
+              (this.tokens.removeToken(), this.processChildren(!0));
             else
               throw new Error('Expected either /> or > at the end of the tag.');
           for (
             this.tokens.removeInitialToken();
             !this.tokens.matches1(Re.TokenType.jsxTagEnd);
-
           )
             this.tokens.removeToken();
           this.tokens.replaceToken(')');
@@ -14860,7 +14864,6 @@ If you need interactivity, consider converting part of this to a Client Componen
                 Re.TokenType.slash,
                 Re.TokenType.jsxTagEnd
               ));
-
           )
             t++;
           if (t === this.tokens.currentIndex() + 1) {
@@ -14883,9 +14886,9 @@ If you need interactivity, consider converting part of this to a Client Componen
               : this.tokens.appendCode(', null');
             return;
           }
-          this.tokens.appendCode(', {'),
+          (this.tokens.appendCode(', {'),
             this.processProps(!1),
-            s ? this.tokens.appendCode(` ${s}}`) : this.tokens.appendCode('}');
+            s ? this.tokens.appendCode(` ${s}}`) : this.tokens.appendCode('}'));
         }
         processProps(t) {
           let s = null;
@@ -14893,24 +14896,25 @@ If you need interactivity, consider converting part of this to a Client Componen
             if (this.tokens.matches2(Re.TokenType.jsxName, Re.TokenType.eq)) {
               let i = this.tokens.identifierName();
               if (t && i === 'key') {
-                s !== null && this.tokens.appendCode(s.replace(/[^\n]/g, '')),
+                (s !== null && this.tokens.appendCode(s.replace(/[^\n]/g, '')),
                   this.tokens.removeToken(),
-                  this.tokens.removeToken();
+                  this.tokens.removeToken());
                 let r = this.tokens.snapshot();
-                this.processPropValue(),
-                  (s = this.tokens.dangerouslyGetAndRemoveCodeSinceSnapshot(r));
+                (this.processPropValue(),
+                  (s =
+                    this.tokens.dangerouslyGetAndRemoveCodeSinceSnapshot(r)));
                 continue;
               } else
-                this.processPropName(i),
+                (this.processPropName(i),
                   this.tokens.replaceToken(': '),
-                  this.processPropValue();
+                  this.processPropValue());
             } else if (this.tokens.matches1(Re.TokenType.jsxName)) {
               let i = this.tokens.identifierName();
-              this.processPropName(i), this.tokens.appendCode(': true');
+              (this.processPropName(i), this.tokens.appendCode(': true'));
             } else if (this.tokens.matches1(Re.TokenType.braceL))
-              this.tokens.replaceToken(''),
+              (this.tokens.replaceToken(''),
                 this.rootTransformer.processBalancedCode(),
-                this.tokens.replaceToken('');
+                this.tokens.replaceToken(''));
             else break;
             this.tokens.appendCode(',');
           }
@@ -14927,8 +14931,8 @@ If you need interactivity, consider converting part of this to a Client Componen
               this.rootTransformer.processBalancedCode(),
               this.tokens.replaceToken(''))
             : this.tokens.matches1(Re.TokenType.jsxTagStart)
-            ? this.processJSXTag()
-            : this.processStringPropValue();
+              ? this.processJSXTag()
+              : this.processStringPropValue();
         }
         processStringPropValue() {
           let t = this.tokens.currentToken(),
@@ -14963,9 +14967,9 @@ If you need interactivity, consider converting part of this to a Client Componen
                   this.tokens.replaceToken(''),
                   (i = !0));
             else if (this.tokens.matches1(Re.TokenType.jsxTagStart))
-              this.tokens.appendCode(s ? ', ' : ''),
+              (this.tokens.appendCode(s ? ', ' : ''),
                 this.processJSXTag(),
-                (i = !0);
+                (i = !0));
             else if (
               this.tokens.matches1(Re.TokenType.jsxText) ||
               this.tokens.matches1(Re.TokenType.jsxEmptyText)
@@ -15016,16 +15020,16 @@ If you need interactivity, consider converting part of this to a Client Componen
           `
 `
         )
-          (s = ''), (i = !0);
+          ((s = ''), (i = !0));
         else {
           if ((r && i && (t += ' '), (t += s), (s = ''), u === '&')) {
             let {entity: d, newI: y} = P1(e, a + 1);
-            (a = y - 1), (t += d);
+            ((a = y - 1), (t += d));
           } else t += u;
-          (r = !0), (i = !1);
+          ((r = !0), (i = !1));
         }
       }
-      return i || (t += s), JSON.stringify(t);
+      return (i || (t += s), JSON.stringify(t));
     }
     function E1(e) {
       let t = 0,
@@ -15057,7 +15061,7 @@ If you need interactivity, consider converting part of this to a Client Componen
 `;
         else if (i === '&') {
           let {entity: r, newI: a} = P1(e, s + 1);
-          (t += r), (s = a - 1);
+          ((t += r), (s = a - 1));
         } else t += i;
       }
       return JSON.stringify(t);
@@ -15171,7 +15175,7 @@ If you need interactivity, consider converting part of this to a Client Componen
           this.exportBindingsByLocalName = new Map();
         }
         constructor(t, s, i, r, a, u) {
-          (this.nameManager = t),
+          ((this.nameManager = t),
             (this.tokens = s),
             (this.enableLegacyTypeScriptModuleInterop = i),
             (this.options = r),
@@ -15181,11 +15185,11 @@ If you need interactivity, consider converting part of this to a Client Componen
             e.prototype.__init2.call(this),
             e.prototype.__init3.call(this),
             e.prototype.__init4.call(this),
-            e.prototype.__init5.call(this);
+            e.prototype.__init5.call(this));
         }
         preprocessTokens() {
           for (let t = 0; t < this.tokens.tokens.length; t++)
-            this.tokens.matches1AtIndex(t, me.TokenType._import) &&
+            (this.tokens.matches1AtIndex(t, me.TokenType._import) &&
               !this.tokens.matches3AtIndex(
                 t,
                 me.TokenType._import,
@@ -15199,7 +15203,7 @@ If you need interactivity, consider converting part of this to a Client Componen
                   me.TokenType._export,
                   me.TokenType.eq
                 ) &&
-                this.preprocessExportAtIndex(t);
+                this.preprocessExportAtIndex(t));
           this.generateImportReplacements();
         }
         pruneTypeOnlyImports() {
@@ -15280,11 +15284,11 @@ If you need interactivity, consider converting part of this to a Client Componen
                 'createNamedExportFrom'
               )}(${g}, '${T}', '${h}');`;
             for (let h of d) p += ` exports.${h} = ${L};`;
-            y &&
+            (y &&
               (p += ` ${this.helperManager.getHelperName(
                 'createStarExport'
               )}(${g});`),
-              this.importsToReplace.set(t, p);
+              this.importsToReplace.set(t, p));
             for (let h of i) this.identifierReplacements.set(h, `${L}.default`);
             for (let {importedName: h, localName: T} of a)
               this.identifierReplacements.set(T, `${g}.${h}`);
@@ -15340,13 +15344,13 @@ If you need interactivity, consider converting part of this to a Client Componen
             );
           let a = this.tokens.stringValueAtIndex(t),
             u = this.getImportInfo(a);
-          u.defaultNames.push(...s),
+          (u.defaultNames.push(...s),
             u.wildcardNames.push(...i),
             u.namedImports.push(...r),
             s.length === 0 &&
               i.length === 0 &&
               r.length === 0 &&
-              (u.hasBareImport = !0);
+              (u.hasBareImport = !0));
         }
         preprocessExportAtIndex(t) {
           if (
@@ -15518,16 +15522,16 @@ If you need interactivity, consider converting part of this to a Client Componen
             exportStarNames: [],
             hasStarExport: !1,
           };
-          return this.importInfoByPath.set(t, i), i;
+          return (this.importInfoByPath.set(t, i), i);
         }
         addExportBinding(t, s) {
-          this.exportBindingsByLocalName.has(t) ||
+          (this.exportBindingsByLocalName.has(t) ||
             this.exportBindingsByLocalName.set(t, []),
-            this.exportBindingsByLocalName.get(t).push(s);
+            this.exportBindingsByLocalName.get(t).push(s));
         }
         claimImportCode(t) {
           let s = this.importsToReplace.get(t);
-          return this.importsToReplace.set(t, ''), s || '';
+          return (this.importsToReplace.set(t, ''), s || '');
         }
         getIdentifierReplacement(t) {
           return this.identifierReplacements.get(t) || null;
@@ -15552,18 +15556,18 @@ If you need interactivity, consider converting part of this to a Client Componen
       typeof eo == 'object' && typeof R1 < 'u'
         ? t(eo)
         : typeof define == 'function' && define.amd
-        ? define(['exports'], t)
-        : ((e = typeof globalThis < 'u' ? globalThis : e || self),
-          t((e.setArray = {})));
+          ? define(['exports'], t)
+          : ((e = typeof globalThis < 'u' ? globalThis : e || self),
+            t((e.setArray = {})));
     })(eo, function (e) {
       'use strict';
-      (e.get = void 0), (e.put = void 0), (e.pop = void 0);
+      ((e.get = void 0), (e.put = void 0), (e.pop = void 0));
       class t {
         constructor() {
-          (this._indexes = {__proto__: null}), (this.array = []);
+          ((this._indexes = {__proto__: null}), (this.array = []));
         }
       }
-      (e.get = (s, i) => s._indexes[i]),
+      ((e.get = (s, i) => s._indexes[i]),
         (e.put = (s, i) => {
           let r = e.get(s, i);
           if (r !== void 0) return r;
@@ -15577,7 +15581,7 @@ If you need interactivity, consider converting part of this to a Client Componen
           r[a] = void 0;
         }),
         (e.SetArray = t),
-        Object.defineProperty(e, '__esModule', {value: !0});
+        Object.defineProperty(e, '__esModule', {value: !0}));
     });
   });
   var ja = Z((to, O1) => {
@@ -15585,9 +15589,9 @@ If you need interactivity, consider converting part of this to a Client Componen
       typeof to == 'object' && typeof O1 < 'u'
         ? t(to)
         : typeof define == 'function' && define.amd
-        ? define(['exports'], t)
-        : ((e = typeof globalThis < 'u' ? globalThis : e || self),
-          t((e.sourcemapCodec = {})));
+          ? define(['exports'], t)
+          : ((e = typeof globalThis < 'u' ? globalThis : e || self),
+            t((e.sourcemapCodec = {})));
     })(to, function (e) {
       'use strict';
       let i =
@@ -15596,29 +15600,29 @@ If you need interactivity, consider converting part of this to a Client Componen
         a = new Uint8Array(128);
       for (let w = 0; w < i.length; w++) {
         let S = i.charCodeAt(w);
-        (r[w] = S), (a[S] = w);
+        ((r[w] = S), (a[S] = w));
       }
       let u =
         typeof TextDecoder < 'u'
           ? new TextDecoder()
           : typeof Buffer < 'u'
-          ? {
-              decode(w) {
-                return Buffer.from(
-                  w.buffer,
-                  w.byteOffset,
-                  w.byteLength
-                ).toString();
-              },
-            }
-          : {
-              decode(w) {
-                let S = '';
-                for (let A = 0; A < w.length; A++)
-                  S += String.fromCharCode(w[A]);
-                return S;
-              },
-            };
+            ? {
+                decode(w) {
+                  return Buffer.from(
+                    w.buffer,
+                    w.byteOffset,
+                    w.byteLength
+                  ).toString();
+                },
+              }
+            : {
+                decode(w) {
+                  let S = '';
+                  for (let A = 0; A < w.length; A++)
+                    S += String.fromCharCode(w[A]);
+                  return S;
+                },
+              };
       function d(w) {
         let S = new Int32Array(5),
           A = [],
@@ -15633,7 +15637,7 @@ If you need interactivity, consider converting part of this to a Client Componen
             let ie;
             X = g(w, X, S, 0);
             let pe = S[0];
-            pe < W && (R = !1),
+            (pe < W && (R = !1),
               (W = pe),
               L(w, X, M)
                 ? ((X = g(w, X, S, 1)),
@@ -15643,9 +15647,9 @@ If you need interactivity, consider converting part of this to a Client Componen
                     ? ((X = g(w, X, S, 4)), (ie = [pe, S[1], S[2], S[3], S[4]]))
                     : (ie = [pe, S[1], S[2], S[3]]))
                 : (ie = [pe]),
-              c.push(ie);
+              c.push(ie));
           }
-          R || p(c), A.push(c), (U = M + 1);
+          (R || p(c), A.push(c), (U = M + 1));
         } while (U <= w.length);
         return A;
       }
@@ -15659,10 +15663,10 @@ If you need interactivity, consider converting part of this to a Client Componen
           R = 0;
         do {
           let X = w.charCodeAt(S++);
-          (R = a[X]), (M |= (R & 31) << c), (c += 5);
+          ((R = a[X]), (M |= (R & 31) << c), (c += 5));
         } while (R & 32);
         let W = M & 1;
-        return (M >>>= 1), W && (M = -2147483648 | -M), (A[U] += M), S;
+        return ((M >>>= 1), W && (M = -2147483648 | -M), (A[U] += M), S);
       }
       function L(w, S, A) {
         return S >= A ? !1 : w.charCodeAt(S) !== 44;
@@ -15690,14 +15694,14 @@ If you need interactivity, consider converting part of this to a Client Componen
             S[0] = 0;
             for (let pe = 0; pe < ie.length; pe++) {
               let ae = ie[pe];
-              R > U && ((W += u.decode(c)), M.copyWithin(0, U, R), (R -= U)),
+              (R > U && ((W += u.decode(c)), M.copyWithin(0, U, R), (R -= U)),
                 pe > 0 && (M[R++] = 44),
                 (R = x(M, R, S, ae, 0)),
                 ae.length !== 1 &&
                   ((R = x(M, R, S, ae, 1)),
                   (R = x(M, R, S, ae, 2)),
                   (R = x(M, R, S, ae, 3)),
-                  ae.length !== 4 && (R = x(M, R, S, ae, 4)));
+                  ae.length !== 4 && (R = x(M, R, S, ae, 4))));
             }
           }
         }
@@ -15706,16 +15710,16 @@ If you need interactivity, consider converting part of this to a Client Componen
       function x(w, S, A, U, M) {
         let c = U[M],
           R = c - A[M];
-        (A[M] = c), (R = R < 0 ? (-R << 1) | 1 : R << 1);
+        ((A[M] = c), (R = R < 0 ? (-R << 1) | 1 : R << 1));
         do {
           let W = R & 31;
-          (R >>>= 5), R > 0 && (W |= 32), (w[S++] = r[W]);
+          ((R >>>= 5), R > 0 && (W |= 32), (w[S++] = r[W]));
         } while (R > 0);
         return S;
       }
-      (e.decode = d),
+      ((e.decode = d),
         (e.encode = T),
-        Object.defineProperty(e, '__esModule', {value: !0});
+        Object.defineProperty(e, '__esModule', {value: !0}));
     });
   });
   var D1 = Z(($a, qa) => {
@@ -15723,9 +15727,9 @@ If you need interactivity, consider converting part of this to a Client Componen
       typeof $a == 'object' && typeof qa < 'u'
         ? (qa.exports = t())
         : typeof define == 'function' && define.amd
-        ? define(t)
-        : ((e = typeof globalThis < 'u' ? globalThis : e || self),
-          (e.resolveURI = t()));
+          ? define(t)
+          : ((e = typeof globalThis < 'u' ? globalThis : e || self),
+            (e.resolveURI = t()));
     })($a, function () {
       'use strict';
       let e = /^[\w+.-]+:\/\//,
@@ -15734,13 +15738,13 @@ If you need interactivity, consider converting part of this to a Client Componen
         s = /^file:(?:\/\/((?![a-z]:)[^/#?]*)?)?(\/?[^#?]*)(\?[^#]*)?(#.*)?/i;
       var i;
       (function (A) {
-        (A[(A.Empty = 1)] = 'Empty'),
+        ((A[(A.Empty = 1)] = 'Empty'),
           (A[(A.Hash = 2)] = 'Hash'),
           (A[(A.Query = 3)] = 'Query'),
           (A[(A.RelativePath = 4)] = 'RelativePath'),
           (A[(A.AbsolutePath = 5)] = 'AbsolutePath'),
           (A[(A.SchemeRelative = 6)] = 'SchemeRelative'),
-          (A[(A.Absolute = 7)] = 'Absolute');
+          (A[(A.Absolute = 7)] = 'Absolute'));
       })(i || (i = {}));
       function r(A) {
         return e.test(A);
@@ -15797,11 +15801,11 @@ If you need interactivity, consider converting part of this to a Client Componen
       function h(A) {
         if (a(A)) {
           let M = g('http:' + A);
-          return (M.scheme = ''), (M.type = i.SchemeRelative), M;
+          return ((M.scheme = ''), (M.type = i.SchemeRelative), M);
         }
         if (u(A)) {
           let M = g('http://foo.com' + A);
-          return (M.scheme = ''), (M.host = ''), (M.type = i.AbsolutePath), M;
+          return ((M.scheme = ''), (M.host = ''), (M.type = i.AbsolutePath), M);
         }
         if (d(A)) return L(A);
         if (r(A)) return g(A);
@@ -15813,8 +15817,8 @@ If you need interactivity, consider converting part of this to a Client Componen
             ? A.startsWith('?')
               ? i.Query
               : A.startsWith('#')
-              ? i.Hash
-              : i.RelativePath
+                ? i.Hash
+                : i.RelativePath
             : i.Empty),
           U
         );
@@ -15825,8 +15829,8 @@ If you need interactivity, consider converting part of this to a Client Componen
         return A.slice(0, U + 1);
       }
       function x(A, U) {
-        w(U, U.type),
-          A.path === '/' ? (A.path = U.path) : (A.path = T(U.path) + A.path);
+        (w(U, U.type),
+          A.path === '/' ? (A.path = U.path) : (A.path = T(U.path) + A.path));
       }
       function w(A, U) {
         let M = U <= i.RelativePath,
@@ -15845,12 +15849,12 @@ If you need interactivity, consider converting part of this to a Client Componen
               W ? ((X = !0), W--, R--) : M && (c[R++] = ae);
               continue;
             }
-            (c[R++] = ae), W++;
+            ((c[R++] = ae), W++);
           }
         }
         let ie = '';
         for (let pe = 1; pe < R; pe++) ie += '/' + c[pe];
-        (!ie || (X && !ie.endsWith('/..'))) && (ie += '/'), (A.path = ie);
+        ((!ie || (X && !ie.endsWith('/..'))) && (ie += '/'), (A.path = ie));
       }
       function S(A, U) {
         if (!A && !U) return '';
@@ -15868,7 +15872,7 @@ If you need interactivity, consider converting part of this to a Client Componen
             case i.RelativePath:
               x(M, W);
             case i.AbsolutePath:
-              (M.user = W.user), (M.host = W.host), (M.port = W.port);
+              ((M.user = W.user), (M.host = W.host), (M.port = W.port));
             case i.SchemeRelative:
               M.scheme = W.scheme;
           }
@@ -15898,16 +15902,16 @@ If you need interactivity, consider converting part of this to a Client Componen
       typeof no == 'object' && typeof M1 < 'u'
         ? t(no, ja(), D1())
         : typeof define == 'function' && define.amd
-        ? define(
-            [
-              'exports',
-              '@jridgewell/sourcemap-codec',
-              '@jridgewell/resolve-uri',
-            ],
-            t
-          )
-        : ((e = typeof globalThis < 'u' ? globalThis : e || self),
-          t((e.traceMapping = {}), e.sourcemapCodec, e.resolveURI));
+          ? define(
+              [
+                'exports',
+                '@jridgewell/sourcemap-codec',
+                '@jridgewell/resolve-uri',
+              ],
+              t
+            )
+          : ((e = typeof globalThis < 'u' ? globalThis : e || self),
+            t((e.traceMapping = {}), e.sourcemapCodec, e.resolveURI));
     })(no, function (e, t, s) {
       'use strict';
       function i(V) {
@@ -15915,7 +15919,7 @@ If you need interactivity, consider converting part of this to a Client Componen
       }
       var r = i(s);
       function a(V, G) {
-        return G && !G.endsWith('/') && (G += '/'), r.default(V, G);
+        return (G && !G.endsWith('/') && (G += '/'), r.default(V, G));
       }
       function u(V) {
         if (!V) return '';
@@ -15945,7 +15949,7 @@ If you need interactivity, consider converting part of this to a Client Componen
         return !0;
       }
       function A(V, G) {
-        return G || (V = V.slice()), V.sort(U);
+        return (G || (V = V.slice()), V.sort(U));
       }
       function U(V, G) {
         return V[d] - G[d];
@@ -15955,10 +15959,10 @@ If you need interactivity, consider converting part of this to a Client Componen
         for (; J <= re; ) {
           let ve = J + ((re - J) >> 1),
             he = V[ve][d] - G;
-          if (he === 0) return (M = !0), ve;
+          if (he === 0) return ((M = !0), ve);
           he < 0 ? (J = ve + 1) : (re = ve - 1);
         }
-        return (M = !1), J - 1;
+        return ((M = !1), J - 1);
       }
       function R(V, G, J) {
         for (let re = J + 1; re < V.length && V[re][d] === G; J = re++);
@@ -15976,11 +15980,13 @@ If you need interactivity, consider converting part of this to a Client Componen
           Ee = 0,
           Le = V.length - 1;
         if (re === ve) {
-          if (G === he) return (M = Ie !== -1 && V[Ie][d] === G), Ie;
+          if (G === he) return ((M = Ie !== -1 && V[Ie][d] === G), Ie);
           G >= he ? (Ee = Ie === -1 ? 0 : Ie) : (Le = Ie);
         }
         return (
-          (J.lastKey = re), (J.lastNeedle = G), (J.lastIndex = c(V, G, Ee, Le))
+          (J.lastKey = re),
+          (J.lastNeedle = G),
+          (J.lastIndex = c(V, G, Ee, Le))
         );
       }
       function pe(V, G) {
@@ -16035,10 +16041,10 @@ If you need interactivity, consider converting part of this to a Client Componen
             yt = Xe;
           if (Ke + 1 < We.length) {
             let vt = We[Ke + 1].offset;
-            (bt = Math.min(Le, Ie + vt.line)),
+            ((bt = Math.min(Le, Ie + vt.line)),
               bt === Le
                 ? (yt = Math.min(Xe, Ee + vt.column))
-                : bt < Le && (yt = Ee + vt.column);
+                : bt < Le && (yt = Ee + vt.column));
           }
           mt(ut, G, J, re, ve, he, Ie + pt.line, Ee + pt.column, bt, yt);
         }
@@ -16087,7 +16093,7 @@ If you need interactivity, consider converting part of this to a Client Componen
           '`column` must be greater than or equal to 0 (columns start at column 0)',
         _t = -1,
         ct = 1;
-      (e.encodedMappings = void 0),
+      ((e.encodedMappings = void 0),
         (e.decodedMappings = void 0),
         (e.traceSegment = void 0),
         (e.originalPositionFor = void 0),
@@ -16096,7 +16102,7 @@ If you need interactivity, consider converting part of this to a Client Componen
         (e.sourceContentFor = void 0),
         (e.presortedDecodedMap = void 0),
         (e.decodedMap = void 0),
-        (e.encodedMap = void 0);
+        (e.encodedMap = void 0));
       class wt {
         constructor(G, J) {
           let re = typeof G == 'string';
@@ -16110,24 +16116,24 @@ If you need interactivity, consider converting part of this to a Client Componen
               sources: Xe,
               sourcesContent: We,
             } = ve;
-          (this.version = he),
+          ((this.version = he),
             (this.file = Ie),
             (this.names = Ee),
             (this.sourceRoot = Le),
             (this.sources = Xe),
-            (this.sourcesContent = We);
+            (this.sourcesContent = We));
           let Ke = a(Le || '', u(J));
           this.resolvedSources = Xe.map((pt) => a(pt || '', Ke));
           let {mappings: ut} = ve;
-          typeof ut == 'string'
+          (typeof ut == 'string'
             ? ((this._encoded = ut), (this._decoded = void 0))
             : ((this._encoded = void 0), (this._decoded = x(ut, re))),
             (this._decodedMemo = X()),
             (this._bySources = void 0),
-            (this._bySourceMemos = void 0);
+            (this._bySourceMemos = void 0));
         }
       }
-      (e.encodedMappings = (V) => {
+      ((e.encodedMappings = (V) => {
         var G;
         return (G = V._encoded) !== null && G !== void 0
           ? G
@@ -16189,7 +16195,7 @@ If you need interactivity, consider converting part of this to a Client Componen
                 ut = null,
                 pt = null,
                 bt = null;
-              Le.length !== 1 &&
+              (Le.length !== 1 &&
                 ((Ke = ve[Le[1]]), (ut = Le[2] + 1), (pt = Le[3])),
                 Le.length === 5 && (bt = re[Le[4]]),
                 G({
@@ -16199,7 +16205,7 @@ If you need interactivity, consider converting part of this to a Client Componen
                   originalLine: ut,
                   originalColumn: pt,
                   name: bt,
-                });
+                }));
             }
           }
         }),
@@ -16207,14 +16213,14 @@ If you need interactivity, consider converting part of this to a Client Componen
           let {sources: J, resolvedSources: re, sourcesContent: ve} = V;
           if (ve == null) return null;
           let he = J.indexOf(G);
-          return he === -1 && (he = re.indexOf(G)), he === -1 ? null : ve[he];
+          return (he === -1 && (he = re.indexOf(G)), he === -1 ? null : ve[he]);
         }),
         (e.presortedDecodedMap = (V, G) => {
           let J = new wt($t(V, []), G);
-          return (J._decoded = V.mappings), J;
+          return ((J._decoded = V.mappings), J);
         }),
         (e.decodedMap = (V) => $t(V, e.decodedMappings(V))),
-        (e.encodedMap = (V) => $t(V, e.encodedMappings(V)));
+        (e.encodedMap = (V) => $t(V, e.encodedMappings(V))));
       function $t(V, G) {
         return {
           version: V.version,
@@ -16239,11 +16245,11 @@ If you need interactivity, consider converting part of this to a Client Componen
           he === -1 || he === V.length ? null : V[he]
         );
       }
-      (e.AnyMap = qe),
+      ((e.AnyMap = qe),
         (e.GREATEST_LOWER_BOUND = ct),
         (e.LEAST_UPPER_BOUND = _t),
         (e.TraceMap = wt),
-        Object.defineProperty(e, '__esModule', {value: !0});
+        Object.defineProperty(e, '__esModule', {value: !0}));
     });
   });
   var V1 = Z((so, B1) => {
@@ -16251,20 +16257,25 @@ If you need interactivity, consider converting part of this to a Client Componen
       typeof so == 'object' && typeof B1 < 'u'
         ? t(so, L1(), ja(), F1())
         : typeof define == 'function' && define.amd
-        ? define(
-            [
-              'exports',
-              '@jridgewell/set-array',
-              '@jridgewell/sourcemap-codec',
-              '@jridgewell/trace-mapping',
-            ],
-            t
-          )
-        : ((e = typeof globalThis < 'u' ? globalThis : e || self),
-          t((e.genMapping = {}), e.setArray, e.sourcemapCodec, e.traceMapping));
+          ? define(
+              [
+                'exports',
+                '@jridgewell/set-array',
+                '@jridgewell/sourcemap-codec',
+                '@jridgewell/trace-mapping',
+              ],
+              t
+            )
+          : ((e = typeof globalThis < 'u' ? globalThis : e || self),
+            t(
+              (e.genMapping = {}),
+              e.setArray,
+              e.sourcemapCodec,
+              e.traceMapping
+            ));
     })(so, function (e, t, s, i) {
       'use strict';
-      (e.addSegment = void 0),
+      ((e.addSegment = void 0),
         (e.addMapping = void 0),
         (e.maybeAddSegment = void 0),
         (e.maybeAddMapping = void 0),
@@ -16272,19 +16283,19 @@ If you need interactivity, consider converting part of this to a Client Componen
         (e.toDecodedMap = void 0),
         (e.toEncodedMap = void 0),
         (e.fromMap = void 0),
-        (e.allMappings = void 0);
+        (e.allMappings = void 0));
       let L;
       class p {
         constructor({file: R, sourceRoot: W} = {}) {
-          (this._names = new t.SetArray()),
+          ((this._names = new t.SetArray()),
             (this._sources = new t.SetArray()),
             (this._sourcesContent = []),
             (this._mappings = []),
             (this.file = R),
-            (this.sourceRoot = W);
+            (this.sourceRoot = W));
         }
       }
-      (e.addSegment = (c, R, W, X, ie, pe, ae, He) =>
+      ((e.addSegment = (c, R, W, X, ie, pe, ae, He) =>
         L(!1, c, R, W, X, ie, pe, ae, He)),
         (e.maybeAddSegment = (c, R, W, X, ie, pe, ae, He) =>
           L(!0, c, R, W, X, ie, pe, ae, He)),
@@ -16333,11 +16344,11 @@ If you need interactivity, consider converting part of this to a Client Componen
                 mt,
                 kt,
                 At;
-              qe.length !== 1 &&
+              (qe.length !== 1 &&
                 ((mt = X.array[qe[1]]),
                 (kt = {line: qe[2] + 1, column: qe[3]}),
                 qe.length === 5 && (At = ie.array[qe[4]])),
-                R.push({generated: Bt, source: mt, original: kt, name: At});
+                R.push({generated: Bt, source: mt, original: kt, name: At}));
             }
           }
           return R;
@@ -16370,7 +16381,7 @@ If you need interactivity, consider converting part of this to a Client Componen
             !(c && U(tt, nt, _t, pe, ae, ct)))
           )
             return x(tt, nt, He ? [X, _t, pe, ae, ct] : [X, _t, pe, ae]);
-        });
+        }));
       function h(c, R) {
         for (let W = c.length; W <= R; W++) c[W] = [];
         return c[R];
@@ -16426,7 +16437,7 @@ If you need interactivity, consider converting part of this to a Client Componen
           He
         );
       }
-      (e.GenMapping = p), Object.defineProperty(e, '__esModule', {value: !0});
+      ((e.GenMapping = p), Object.defineProperty(e, '__esModule', {value: !0}));
     });
   });
   var $1 = Z((Ka) => {
@@ -16439,7 +16450,7 @@ If you need interactivity, consider converting part of this to a Client Componen
         d = new Gi.GenMapping({file: i.compiledFilename}),
         y = 0,
         g = t[0];
-      for (; g === void 0 && y < t.length - 1; ) y++, (g = t[y]);
+      for (; g === void 0 && y < t.length - 1; ) (y++, (g = t[y]));
       let L = 0,
         p = 0;
       g !== p && Gi.maybeAddSegment.call(void 0, d, L, 0, s, L, 0);
@@ -16450,9 +16461,8 @@ If you need interactivity, consider converting part of this to a Client Componen
           for (
             Gi.maybeAddSegment.call(void 0, d, L, S, s, L, A);
             (g === w || g === void 0) && y < t.length - 1;
-
           )
-            y++, (g = t[y]);
+            (y++, (g = t[y]));
         }
         e.charCodeAt(w) === j1.charCodes.lineFeed &&
           (L++,
@@ -16473,8 +16483,8 @@ If you need interactivity, consider converting part of this to a Client Componen
         r = t[i].start,
         a = 0;
       for (let u = 0; u < e.length; u++)
-        u === r && ((s[i] = r - a), i++, (r = t[i].start)),
-          e.charCodeAt(u) === j1.charCodes.lineFeed && (a = u + 1);
+        (u === r && ((s[i] = r - a), i++, (r = t[i].start)),
+          e.charCodeAt(u) === j1.charCodes.lineFeed && (a = u + 1));
       return s;
     }
   });
@@ -16611,9 +16621,9 @@ If you need interactivity, consider converting part of this to a Client Componen
           this.createRequireName = null;
         }
         constructor(t) {
-          (this.nameManager = t),
+          ((this.nameManager = t),
             e.prototype.__init.call(this),
-            e.prototype.__init2.call(this);
+            e.prototype.__init2.call(this));
         }
         getHelperName(t) {
           let s = this.helperNames[t];
@@ -16626,34 +16636,34 @@ If you need interactivity, consider converting part of this to a Client Componen
         }
         emitHelpers() {
           let t = '';
-          this.helperNames.optionalChainDelete &&
+          (this.helperNames.optionalChainDelete &&
             this.getHelperName('optionalChain'),
             this.helperNames.asyncOptionalChainDelete &&
-              this.getHelperName('asyncOptionalChain');
+              this.getHelperName('asyncOptionalChain'));
           for (let [s, i] of Object.entries(dy)) {
             let r = this.helperNames[s],
               a = i;
-            s === 'optionalChainDelete'
+            (s === 'optionalChainDelete'
               ? (a = a.replace(
                   'OPTIONAL_CHAIN_NAME',
                   this.helperNames.optionalChain
                 ))
               : s === 'asyncOptionalChainDelete'
-              ? (a = a.replace(
-                  'ASYNC_OPTIONAL_CHAIN_NAME',
-                  this.helperNames.asyncOptionalChain
-                ))
-              : s === 'require' &&
-                (this.createRequireName === null &&
-                  (this.createRequireName =
-                    this.nameManager.claimFreeName('_createRequire')),
-                (a = a.replace(
-                  /CREATE_REQUIRE_NAME/g,
-                  this.createRequireName
-                ))),
+                ? (a = a.replace(
+                    'ASYNC_OPTIONAL_CHAIN_NAME',
+                    this.helperNames.asyncOptionalChain
+                  ))
+                : s === 'require' &&
+                  (this.createRequireName === null &&
+                    (this.createRequireName =
+                      this.nameManager.claimFreeName('_createRequire')),
+                  (a = a.replace(
+                    /CREATE_REQUIRE_NAME/g,
+                    this.createRequireName
+                  ))),
               r &&
                 ((t += ' '),
-                (t += a.replace(s, r).replace(/\s+/g, ' ').trim()));
+                (t += a.replace(s, r).replace(/\s+/g, ' ').trim())));
           }
           return t;
         }
@@ -16686,7 +16696,7 @@ If you need interactivity, consider converting part of this to a Client Componen
       for (let a = e.tokens.length - 1; ; a--) {
         for (; i.length > 0 && i[i.length - 1].startTokenIndex === a + 1; )
           i.pop();
-        for (; r >= 0 && t[r].endTokenIndex === a + 1; ) i.push(t[r]), r--;
+        for (; r >= 0 && t[r].endTokenIndex === a + 1; ) (i.push(t[r]), r--);
         if (a < 0) break;
         let u = e.tokens[a],
           d = e.identifierNameForToken(u);
@@ -16738,12 +16748,12 @@ If you need interactivity, consider converting part of this to a Client Componen
           this.usedNames = new Set();
         }
         constructor(t, s) {
-          e.prototype.__init.call(this),
-            (this.usedNames = new Set(gy.default.call(void 0, t, s)));
+          (e.prototype.__init.call(this),
+            (this.usedNames = new Set(gy.default.call(void 0, t, s))));
         }
         claimFreeName(t) {
           let s = this.findFreeName(t);
-          return this.usedNames.add(s), s;
+          return (this.usedNames.add(s), s);
         }
         findFreeName(t) {
           if (!this.usedNames.has(t)) return t;
@@ -16790,7 +16800,7 @@ If you need interactivity, consider converting part of this to a Client Componen
       _y(t, e);
       function t(s, i) {
         var r = e.call(this, i) || this;
-        return (r.path = s), Object.setPrototypeOf(r, t.prototype), r;
+        return ((r.path = s), Object.setPrototypeOf(r, t.prototype), r);
       }
       return t;
     })(Error);
@@ -16814,7 +16824,9 @@ If you need interactivity, consider converting part of this to a Client Componen
     Pn.NoopContext = by;
     var X1 = (function () {
       function e() {
-        (this._propNames = ['']), (this._messages = [null]), (this._score = 0);
+        ((this._propNames = ['']),
+          (this._messages = [null]),
+          (this._score = 0));
       }
       return (
         (e.prototype.fail = function (t, s, i) {
@@ -16859,7 +16871,7 @@ If you need interactivity, consider converting part of this to a Client Componen
             a && s.push({path: t, message: a});
           }
           for (var u = null, i = s.length - 1; i >= 0; i--)
-            u && (s[i].nested = [u]), (u = s[i]);
+            (u && (s[i].nested = [u]), (u = s[i]));
           return u;
         }),
         e
@@ -16873,7 +16885,7 @@ If you need interactivity, consider converting part of this to a Client Componen
       return (
         (e.prototype.createContext = function () {
           var t = new X1();
-          return this.contexts.push(t), t;
+          return (this.contexts.push(t), t);
         }),
         e
       );
@@ -16962,7 +16974,7 @@ If you need interactivity, consider converting part of this to a Client Componen
       nn(t, e);
       function t(s) {
         var i = e.call(this) || this;
-        return (i.name = s), (i._failMsg = 'is not a ' + s), i;
+        return ((i.name = s), (i._failMsg = 'is not a ' + s), i);
       }
       return (
         (t.prototype.getChecker = function (s, i, r) {
@@ -17013,7 +17025,7 @@ If you need interactivity, consider converting part of this to a Client Componen
       nn(t, e);
       function t(s) {
         var i = e.call(this) || this;
-        return (i.ttype = s), i;
+        return ((i.ttype = s), i);
       }
       return (
         (t.prototype.getChecker = function (s, i) {
@@ -17044,7 +17056,7 @@ If you need interactivity, consider converting part of this to a Client Componen
       nn(t, e);
       function t(s) {
         var i = e.call(this) || this;
-        return (i.ttypes = s), i;
+        return ((i.ttypes = s), i);
       }
       return (
         (t.prototype.getChecker = function (s, i) {
@@ -17114,7 +17126,7 @@ If you need interactivity, consider converting part of this to a Client Componen
               var L = a[g](u, y.createContext());
               if (L) return !0;
             }
-            return d.resolveUnion(y), d.fail(null, r._failMsg, 0);
+            return (d.resolveUnion(y), d.fail(null, r._failMsg, 0));
           };
         }),
         t
@@ -17134,7 +17146,7 @@ If you need interactivity, consider converting part of this to a Client Componen
       nn(t, e);
       function t(s) {
         var i = e.call(this) || this;
-        return (i.ttypes = s), i;
+        return ((i.ttypes = s), i);
       }
       return (
         (t.prototype.getChecker = function (s, i) {
@@ -17308,7 +17320,7 @@ If you need interactivity, consider converting part of this to a Client Componen
       nn(t, e);
       function t(s) {
         var i = e.call(this) || this;
-        return (i.ttype = s), i;
+        return ((i.ttype = s), i);
       }
       return (
         (t.prototype.getChecker = function (s, i) {
@@ -17323,7 +17335,7 @@ If you need interactivity, consider converting part of this to a Client Componen
     ce.TOptional = nl;
     var Ja = (function () {
       function e(t, s, i) {
-        (this.name = t), (this.ttype = s), (this.isOpt = i);
+        ((this.name = t), (this.ttype = s), (this.isOpt = i));
       }
       return e;
     })();
@@ -17338,7 +17350,7 @@ If you need interactivity, consider converting part of this to a Client Componen
       nn(t, e);
       function t(s, i) {
         var r = e.call(this) || this;
-        return (r.paramList = s), (r.result = i), r;
+        return ((r.paramList = s), (r.result = i), r);
       }
       return (
         (t.prototype.getChecker = function (s, i) {
@@ -17358,7 +17370,7 @@ If you need interactivity, consider converting part of this to a Client Componen
     ce.param = Fy;
     var ap = (function () {
       function e(t, s, i) {
-        (this.name = t), (this.ttype = s), (this.isOpt = i);
+        ((this.name = t), (this.ttype = s), (this.isOpt = i));
       }
       return e;
     })();
@@ -17367,7 +17379,7 @@ If you need interactivity, consider converting part of this to a Client Componen
       nn(t, e);
       function t(s) {
         var i = e.call(this) || this;
-        return (i.params = s), i;
+        return ((i.params = s), i);
       }
       return (
         (t.prototype.getChecker = function (s, i) {
@@ -17410,7 +17422,7 @@ If you need interactivity, consider converting part of this to a Client Componen
       nn(t, e);
       function t(s, i) {
         var r = e.call(this) || this;
-        return (r.validator = s), (r.message = i), r;
+        return ((r.validator = s), (r.message = i), r);
       }
       return (
         (t.prototype.getChecker = function (s, i) {
@@ -17489,7 +17501,7 @@ If you need interactivity, consider converting part of this to a Client Componen
       ao < Ya.length;
       ao++
     )
-      (J1 = Ya[ao]), Vy(J1);
+      ((J1 = Ya[ao]), Vy(J1));
     var J1, ao, Ya;
   });
   var il = Z((we) => {
@@ -17715,8 +17727,8 @@ If you need interactivity, consider converting part of this to a Client Componen
             var u = a[r];
             this.props.set(u.name, u.ttype);
           }
-        (this.checkerPlain = this.ttype.getChecker(t, !1)),
-          (this.checkerStrict = this.ttype.getChecker(t, !0));
+        ((this.checkerPlain = this.ttype.getChecker(t, !1)),
+          (this.checkerStrict = this.ttype.getChecker(t, !0)));
       }
       return (
         (e.prototype.setReportedPath = function (t) {
@@ -17777,7 +17789,7 @@ If you need interactivity, consider converting part of this to a Client Componen
           var i = new pi.NoopContext();
           if (t(s, i)) return null;
           var r = new pi.DetailContext();
-          return t(s, r), r.getErrorDetail(this._path);
+          return (t(s, r), r.getErrorDetail(this._path));
         }),
         (e.prototype._getMethod = function (t) {
           var s = this.props.get(t);
@@ -17800,7 +17812,7 @@ If you need interactivity, consider converting part of this to a Client Componen
       if (e != null)
         for (var s in e)
           Object.prototype.hasOwnProperty.call(e, s) && (t[s] = e[s]);
-      return (t.default = e), t;
+      return ((t.default = e), t);
     }
     var Uy = il(),
       Qe = Ky(Uy),
@@ -17867,47 +17879,47 @@ If you need interactivity, consider converting part of this to a Client Componen
       Yi = Ns(),
       ol = cs();
     function nT() {
-      Mt.next.call(void 0), Yi.parseMaybeAssign.call(void 0, !1);
+      (Mt.next.call(void 0), Yi.parseMaybeAssign.call(void 0, !1));
     }
     Nn.parseSpread = nT;
     function fp(e) {
-      Mt.next.call(void 0), ll(e);
+      (Mt.next.call(void 0), ll(e));
     }
     Nn.parseRest = fp;
     function dp(e) {
-      Yi.parseIdentifier.call(void 0), mp(e);
+      (Yi.parseIdentifier.call(void 0), mp(e));
     }
     Nn.parseBindingIdentifier = dp;
     function sT() {
-      Yi.parseIdentifier.call(void 0),
+      (Yi.parseIdentifier.call(void 0),
         (gt.state.tokens[gt.state.tokens.length - 1].identifierRole =
-          Mt.IdentifierRole.ImportDeclaration);
+          Mt.IdentifierRole.ImportDeclaration));
     }
     Nn.parseImportedIdentifier = sT;
     function mp(e) {
       let t;
-      gt.state.scopeDepth === 0
+      (gt.state.scopeDepth === 0
         ? (t = Mt.IdentifierRole.TopLevelDeclaration)
         : e
-        ? (t = Mt.IdentifierRole.BlockScopedDeclaration)
-        : (t = Mt.IdentifierRole.FunctionScopedDeclaration),
-        (gt.state.tokens[gt.state.tokens.length - 1].identifierRole = t);
+          ? (t = Mt.IdentifierRole.BlockScopedDeclaration)
+          : (t = Mt.IdentifierRole.FunctionScopedDeclaration),
+        (gt.state.tokens[gt.state.tokens.length - 1].identifierRole = t));
     }
     Nn.markPriorBindingIdentifier = mp;
     function ll(e) {
       switch (gt.state.type) {
         case fn.TokenType._this: {
           let t = Mt.pushTypeContext.call(void 0, 0);
-          Mt.next.call(void 0), Mt.popTypeContext.call(void 0, t);
+          (Mt.next.call(void 0), Mt.popTypeContext.call(void 0, t));
           return;
         }
         case fn.TokenType._yield:
         case fn.TokenType.name: {
-          (gt.state.type = fn.TokenType.name), dp(e);
+          ((gt.state.type = fn.TokenType.name), dp(e));
           return;
         }
         case fn.TokenType.bracketL: {
-          Mt.next.call(void 0), yp(fn.TokenType.bracketR, e, !0);
+          (Mt.next.call(void 0), yp(fn.TokenType.bracketR, e, !0));
           return;
         }
         case fn.TokenType.braceL:
@@ -17936,17 +17948,17 @@ If you need interactivity, consider converting part of this to a Client Componen
         ) {
           if (Mt.eat.call(void 0, e)) break;
           if (Mt.match.call(void 0, fn.TokenType.ellipsis)) {
-            fp(t),
+            (fp(t),
               Tp(),
               Mt.eat.call(void 0, fn.TokenType.comma),
-              ol.expect.call(void 0, e);
+              ol.expect.call(void 0, e));
             break;
           } else iT(i, t);
         }
     }
     Nn.parseBindingList = yp;
     function iT(e, t) {
-      e &&
+      (e &&
         hp.tsParseModifiers.call(void 0, [
           Xi.ContextualKeyword._public,
           Xi.ContextualKeyword._protected,
@@ -17956,7 +17968,7 @@ If you need interactivity, consider converting part of this to a Client Componen
         ]),
         al(t),
         Tp(),
-        al(t, !0);
+        al(t, !0));
     }
     function Tp() {
       gt.isFlowEnabled
@@ -17967,8 +17979,8 @@ If you need interactivity, consider converting part of this to a Client Componen
     function al(e, t = !1) {
       if ((t || ll(e), !Mt.eat.call(void 0, fn.TokenType.eq))) return;
       let s = gt.state.tokens.length - 1;
-      Yi.parseMaybeAssign.call(void 0),
-        (gt.state.tokens[s].rhsEndIndex = gt.state.tokens.length);
+      (Yi.parseMaybeAssign.call(void 0),
+        (gt.state.tokens[s].rhsEndIndex = gt.state.tokens.length));
     }
     Nn.parseMaybeDefault = al;
   });
@@ -18065,47 +18077,46 @@ If you need interactivity, consider converting part of this to a Client Componen
       for (
         _e.parseIdentifier.call(void 0);
         v.eat.call(void 0, k.TokenType.dot);
-
       )
         _e.parseIdentifier.call(void 0);
     }
     function aT() {
-      Zi(),
+      (Zi(),
         !H.hasPrecedingLineBreak.call(void 0) &&
           v.match.call(void 0, k.TokenType.lessThan) &&
-          yi();
+          yi());
     }
     function lT() {
-      v.next.call(void 0), tr();
+      (v.next.call(void 0), tr());
     }
     function cT() {
       v.next.call(void 0);
     }
     function uT() {
-      H.expect.call(void 0, k.TokenType._typeof),
+      (H.expect.call(void 0, k.TokenType._typeof),
         v.match.call(void 0, k.TokenType._import) ? Cp() : Zi(),
         !H.hasPrecedingLineBreak.call(void 0) &&
           v.match.call(void 0, k.TokenType.lessThan) &&
-          yi();
+          yi());
     }
     function Cp() {
-      H.expect.call(void 0, k.TokenType._import),
+      (H.expect.call(void 0, k.TokenType._import),
         H.expect.call(void 0, k.TokenType.parenL),
         H.expect.call(void 0, k.TokenType.string),
         H.expect.call(void 0, k.TokenType.parenR),
         v.eat.call(void 0, k.TokenType.dot) && Zi(),
-        v.match.call(void 0, k.TokenType.lessThan) && yi();
+        v.match.call(void 0, k.TokenType.lessThan) && yi());
     }
     function pT() {
       v.eat.call(void 0, k.TokenType._const);
       let e = v.eat.call(void 0, k.TokenType._in),
         t = H.eatContextual.call(void 0, oe.ContextualKeyword._out);
-      v.eat.call(void 0, k.TokenType._const),
+      (v.eat.call(void 0, k.TokenType._const),
         (e || t) && !v.match.call(void 0, k.TokenType.name)
           ? (I.state.tokens[I.state.tokens.length - 1].type = k.TokenType.name)
           : _e.parseIdentifier.call(void 0),
         v.eat.call(void 0, k.TokenType._extends) && rt(),
-        v.eat.call(void 0, k.TokenType.eq) && rt();
+        v.eat.call(void 0, k.TokenType.eq) && rt());
     }
     function mi() {
       v.match.call(void 0, k.TokenType.lessThan) && uo();
@@ -18119,19 +18130,18 @@ If you need interactivity, consider converting part of this to a Client Componen
           ? v.next.call(void 0)
           : H.unexpected.call(void 0);
         !v.eat.call(void 0, k.TokenType.greaterThan) && !I.state.error;
-
       )
-        pT(), v.eat.call(void 0, k.TokenType.comma);
+        (pT(), v.eat.call(void 0, k.TokenType.comma));
       v.popTypeContext.call(void 0, e);
     }
     function ml(e) {
       let t = e === k.TokenType.arrow;
-      mi(),
+      (mi(),
         H.expect.call(void 0, k.TokenType.parenL),
         I.state.scopeDepth++,
         hT(!1),
         I.state.scopeDepth--,
-        (t || v.match.call(void 0, e)) && Qi(e);
+        (t || v.match.call(void 0, e)) && Qi(e));
     }
     function hT(e) {
       di.parseBindingList.call(void 0, k.TokenType.parenR, e);
@@ -18140,7 +18150,7 @@ If you need interactivity, consider converting part of this to a Client Componen
       v.eat.call(void 0, k.TokenType.comma) || H.semicolon.call(void 0);
     }
     function kp() {
-      ml(k.TokenType.colon), co();
+      (ml(k.TokenType.colon), co());
     }
     function fT() {
       let e = I.state.snapshot();
@@ -18148,7 +18158,7 @@ If you need interactivity, consider converting part of this to a Client Componen
       let t =
         v.eat.call(void 0, k.TokenType.name) &&
         v.match.call(void 0, k.TokenType.colon);
-      return I.state.restoreFromSnapshot(e), t;
+      return (I.state.restoreFromSnapshot(e), t);
     }
     function wp() {
       if (!(v.match.call(void 0, k.TokenType.bracketL) && fT())) return !1;
@@ -18165,12 +18175,12 @@ If you need interactivity, consider converting part of this to a Client Componen
       );
     }
     function vp(e) {
-      v.eat.call(void 0, k.TokenType.question),
+      (v.eat.call(void 0, k.TokenType.question),
         !e &&
         (v.match.call(void 0, k.TokenType.parenL) ||
           v.match.call(void 0, k.TokenType.lessThan))
           ? (ml(k.TokenType.colon), co())
-          : (er(), co());
+          : (er(), co()));
     }
     function dT() {
       if (
@@ -18181,11 +18191,11 @@ If you need interactivity, consider converting part of this to a Client Componen
         return;
       }
       if (v.match.call(void 0, k.TokenType._new)) {
-        v.next.call(void 0),
+        (v.next.call(void 0),
           v.match.call(void 0, k.TokenType.parenL) ||
           v.match.call(void 0, k.TokenType.lessThan)
             ? kp()
-            : vp(!1);
+            : vp(!1));
         return;
       }
       let e = !!dl([oe.ContextualKeyword._readonly]);
@@ -18203,14 +18213,13 @@ If you need interactivity, consider converting part of this to a Client Componen
       for (
         H.expect.call(void 0, k.TokenType.braceL);
         !v.eat.call(void 0, k.TokenType.braceR) && !I.state.error;
-
       )
         dT();
     }
     function yT() {
       let e = I.state.snapshot(),
         t = TT();
-      return I.state.restoreFromSnapshot(e), t;
+      return (I.state.restoreFromSnapshot(e), t);
     }
     function TT() {
       return (
@@ -18227,12 +18236,12 @@ If you need interactivity, consider converting part of this to a Client Componen
       );
     }
     function kT() {
-      _e.parseIdentifier.call(void 0),
+      (_e.parseIdentifier.call(void 0),
         H.expect.call(void 0, k.TokenType._in),
-        rt();
+        rt());
     }
     function vT() {
-      H.expect.call(void 0, k.TokenType.braceL),
+      (H.expect.call(void 0, k.TokenType.braceL),
         v.match.call(void 0, k.TokenType.plus) ||
         v.match.call(void 0, k.TokenType.minus)
           ? (v.next.call(void 0),
@@ -18248,37 +18257,35 @@ If you need interactivity, consider converting part of this to a Client Componen
           : v.eat.call(void 0, k.TokenType.question),
         LT(),
         H.semicolon.call(void 0),
-        H.expect.call(void 0, k.TokenType.braceR);
+        H.expect.call(void 0, k.TokenType.braceR));
     }
     function xT() {
       for (
         H.expect.call(void 0, k.TokenType.bracketL);
         !v.eat.call(void 0, k.TokenType.bracketR) && !I.state.error;
-
       )
-        gT(), v.eat.call(void 0, k.TokenType.comma);
+        (gT(), v.eat.call(void 0, k.TokenType.comma));
     }
     function gT() {
-      v.eat.call(void 0, k.TokenType.ellipsis)
+      (v.eat.call(void 0, k.TokenType.ellipsis)
         ? rt()
         : (rt(), v.eat.call(void 0, k.TokenType.question)),
-        v.eat.call(void 0, k.TokenType.colon) && rt();
+        v.eat.call(void 0, k.TokenType.colon) && rt());
     }
     function _T() {
-      H.expect.call(void 0, k.TokenType.parenL),
+      (H.expect.call(void 0, k.TokenType.parenL),
         rt(),
-        H.expect.call(void 0, k.TokenType.parenR);
+        H.expect.call(void 0, k.TokenType.parenR));
     }
     function bT() {
       for (
         v.nextTemplateToken.call(void 0), v.nextTemplateToken.call(void 0);
         !v.match.call(void 0, k.TokenType.backQuote) && !I.state.error;
-
       )
-        H.expect.call(void 0, k.TokenType.dollarBraceL),
+        (H.expect.call(void 0, k.TokenType.dollarBraceL),
           rt(),
           v.nextTemplateToken.call(void 0),
-          v.nextTemplateToken.call(void 0);
+          v.nextTemplateToken.call(void 0));
       v.next.call(void 0);
     }
     var hs;
@@ -18290,14 +18297,14 @@ If you need interactivity, consider converting part of this to a Client Componen
       e[(e.TSAbstractConstructorType = i)] = 'TSAbstractConstructorType';
     })(hs || (hs = {}));
     function cl(e) {
-      e === hs.TSAbstractConstructorType &&
+      (e === hs.TSAbstractConstructorType &&
         H.expectContextual.call(void 0, oe.ContextualKeyword._abstract),
         (e === hs.TSConstructorType || e === hs.TSAbstractConstructorType) &&
-          H.expect.call(void 0, k.TokenType._new);
+          H.expect.call(void 0, k.TokenType._new));
       let t = I.state.inDisallowConditionalTypesContext;
-      (I.state.inDisallowConditionalTypesContext = !1),
+      ((I.state.inDisallowConditionalTypesContext = !1),
         ml(k.TokenType.arrow),
-        (I.state.inDisallowConditionalTypesContext = t);
+        (I.state.inDisallowConditionalTypesContext = t));
     }
     function CT() {
       switch (I.state.type) {
@@ -18317,13 +18324,13 @@ If you need interactivity, consider converting part of this to a Client Componen
           _e.parseLiteral.call(void 0);
           return;
         case k.TokenType.minus:
-          v.next.call(void 0), _e.parseLiteral.call(void 0);
+          (v.next.call(void 0), _e.parseLiteral.call(void 0));
           return;
         case k.TokenType._this: {
-          cT(),
+          (cT(),
             H.isContextual.call(void 0, oe.ContextualKeyword._is) &&
               !H.hasPrecedingLineBreak.call(void 0) &&
-              lT();
+              lT());
           return;
         }
         case k.TokenType._typeof:
@@ -18346,9 +18353,9 @@ If you need interactivity, consider converting part of this to a Client Componen
           return;
         default:
           if (I.state.type & k.TokenType.IS_KEYWORD) {
-            v.next.call(void 0),
+            (v.next.call(void 0),
               (I.state.tokens[I.state.tokens.length - 1].type =
-                k.TokenType.name);
+                k.TokenType.name));
             return;
           }
           break;
@@ -18360,7 +18367,6 @@ If you need interactivity, consider converting part of this to a Client Componen
         CT();
         !H.hasPrecedingLineBreak.call(void 0) &&
         v.eat.call(void 0, k.TokenType.bracketL);
-
       )
         v.eat.call(void 0, k.TokenType.bracketR) ||
           (rt(), H.expect.call(void 0, k.TokenType.bracketR));
@@ -18374,13 +18380,13 @@ If you need interactivity, consider converting part of this to a Client Componen
         let e = I.state.snapshot();
         H.expect.call(void 0, k.TokenType._extends);
         let t = I.state.inDisallowConditionalTypesContext;
-        (I.state.inDisallowConditionalTypesContext = !0),
+        ((I.state.inDisallowConditionalTypesContext = !0),
           rt(),
           (I.state.inDisallowConditionalTypesContext = t),
           (I.state.error ||
             (!I.state.inDisallowConditionalTypesContext &&
               v.match.call(void 0, k.TokenType.question))) &&
-            I.state.restoreFromSnapshot(e);
+            I.state.restoreFromSnapshot(e));
       }
     }
     function pl() {
@@ -18389,13 +18395,13 @@ If you need interactivity, consider converting part of this to a Client Componen
         H.isContextual.call(void 0, oe.ContextualKeyword._unique) ||
         H.isContextual.call(void 0, oe.ContextualKeyword._readonly)
       )
-        v.next.call(void 0), pl();
+        (v.next.call(void 0), pl());
       else if (H.isContextual.call(void 0, oe.ContextualKeyword._infer)) ST();
       else {
         let e = I.state.inDisallowConditionalTypesContext;
-        (I.state.inDisallowConditionalTypesContext = !1),
+        ((I.state.inDisallowConditionalTypesContext = !1),
           wT(),
-          (I.state.inDisallowConditionalTypesContext = e);
+          (I.state.inDisallowConditionalTypesContext = e));
       }
     }
     function xp() {
@@ -18424,20 +18430,20 @@ If you need interactivity, consider converting part of this to a Client Componen
         v.match.call(void 0, k.TokenType.name) ||
         v.match.call(void 0, k.TokenType._this)
       )
-        return v.next.call(void 0), !0;
+        return (v.next.call(void 0), !0);
       if (
         v.match.call(void 0, k.TokenType.braceL) ||
         v.match.call(void 0, k.TokenType.bracketL)
       ) {
         let e = 1;
         for (v.next.call(void 0); e > 0 && !I.state.error; )
-          v.match.call(void 0, k.TokenType.braceL) ||
+          (v.match.call(void 0, k.TokenType.braceL) ||
           v.match.call(void 0, k.TokenType.bracketL)
             ? e++
             : (v.match.call(void 0, k.TokenType.braceR) ||
                 v.match.call(void 0, k.TokenType.bracketR)) &&
               e--,
-            v.next.call(void 0);
+            v.next.call(void 0));
         return !0;
       }
       return !1;
@@ -18445,7 +18451,7 @@ If you need interactivity, consider converting part of this to a Client Componen
     function PT() {
       let e = I.state.snapshot(),
         t = NT();
-      return I.state.restoreFromSnapshot(e), t;
+      return (I.state.restoreFromSnapshot(e), t);
     }
     function NT() {
       return (
@@ -18466,7 +18472,9 @@ If you need interactivity, consider converting part of this to a Client Componen
     }
     function Qi(e) {
       let t = v.pushTypeContext.call(void 0, 0);
-      H.expect.call(void 0, e), OT() || rt(), v.popTypeContext.call(void 0, t);
+      (H.expect.call(void 0, e),
+        OT() || rt(),
+        v.popTypeContext.call(void 0, t));
     }
     function RT() {
       v.match.call(void 0, k.TokenType.colon) && Qi(k.TokenType.colon);
@@ -18485,23 +18493,23 @@ If you need interactivity, consider converting part of this to a Client Componen
           H.eatContextual.call(void 0, oe.ContextualKeyword._is)
             ? (rt(), !0)
             : ul() || v.match.call(void 0, k.TokenType._this)
-            ? (v.next.call(void 0),
-              H.eatContextual.call(void 0, oe.ContextualKeyword._is) && rt(),
-              !0)
-            : (I.state.restoreFromSnapshot(e), !1))
+              ? (v.next.call(void 0),
+                H.eatContextual.call(void 0, oe.ContextualKeyword._is) && rt(),
+                !0)
+              : (I.state.restoreFromSnapshot(e), !1))
         : ul() || v.match.call(void 0, k.TokenType._this)
-        ? (v.next.call(void 0),
-          H.isContextual.call(void 0, oe.ContextualKeyword._is) &&
-          !H.hasPrecedingLineBreak.call(void 0)
-            ? (v.next.call(void 0), rt(), !0)
-            : (I.state.restoreFromSnapshot(e), !1))
-        : !1;
+          ? (v.next.call(void 0),
+            H.isContextual.call(void 0, oe.ContextualKeyword._is) &&
+            !H.hasPrecedingLineBreak.call(void 0)
+              ? (v.next.call(void 0), rt(), !0)
+              : (I.state.restoreFromSnapshot(e), !1))
+          : !1;
     }
     function tr() {
       let e = v.pushTypeContext.call(void 0, 0);
-      H.expect.call(void 0, k.TokenType.colon),
+      (H.expect.call(void 0, k.TokenType.colon),
         rt(),
-        v.popTypeContext.call(void 0, e);
+        v.popTypeContext.call(void 0, e));
     }
     Oe.tsParseTypeAnnotation = tr;
     function rt() {
@@ -18513,13 +18521,13 @@ If you need interactivity, consider converting part of this to a Client Componen
       )
         return;
       let e = I.state.inDisallowConditionalTypesContext;
-      (I.state.inDisallowConditionalTypesContext = !0),
+      ((I.state.inDisallowConditionalTypesContext = !0),
         hl(),
         (I.state.inDisallowConditionalTypesContext = e),
         H.expect.call(void 0, k.TokenType.question),
         rt(),
         H.expect.call(void 0, k.TokenType.colon),
-        rt();
+        rt());
     }
     Oe.tsParseType = rt;
     function DT() {
@@ -18545,10 +18553,10 @@ If you need interactivity, consider converting part of this to a Client Componen
     Oe.tsParseNonConditionalType = hl;
     function MT() {
       let e = v.pushTypeContext.call(void 0, 1);
-      rt(),
+      (rt(),
         H.expect.call(void 0, k.TokenType.greaterThan),
         v.popTypeContext.call(void 0, e),
-        _e.parseMaybeUnary.call(void 0);
+        _e.parseMaybeUnary.call(void 0));
     }
     Oe.tsParseTypeAssertion = MT;
     function FT() {
@@ -18559,32 +18567,31 @@ If you need interactivity, consider converting part of this to a Client Componen
         for (
           ;
           !v.match.call(void 0, k.TokenType.greaterThan) && !I.state.error;
-
         )
-          rt(), v.eat.call(void 0, k.TokenType.comma);
-        rT.nextJSXTagToken.call(void 0), v.popTypeContext.call(void 0, e);
+          (rt(), v.eat.call(void 0, k.TokenType.comma));
+        (rT.nextJSXTagToken.call(void 0), v.popTypeContext.call(void 0, e));
       }
     }
     Oe.tsTryParseJSXTypeArgument = FT;
     function Ip() {
       for (; !v.match.call(void 0, k.TokenType.braceL) && !I.state.error; )
-        BT(), v.eat.call(void 0, k.TokenType.comma);
+        (BT(), v.eat.call(void 0, k.TokenType.comma));
     }
     function BT() {
-      Zi(), v.match.call(void 0, k.TokenType.lessThan) && yi();
+      (Zi(), v.match.call(void 0, k.TokenType.lessThan) && yi());
     }
     function VT() {
-      di.parseBindingIdentifier.call(void 0, !1),
+      (di.parseBindingIdentifier.call(void 0, !1),
         mi(),
         v.eat.call(void 0, k.TokenType._extends) && Ip(),
-        Sp();
+        Sp());
     }
     function jT() {
-      di.parseBindingIdentifier.call(void 0, !1),
+      (di.parseBindingIdentifier.call(void 0, !1),
         mi(),
         H.expect.call(void 0, k.TokenType.eq),
         rt(),
-        H.semicolon.call(void 0);
+        H.semicolon.call(void 0));
     }
     function $T() {
       if (
@@ -18594,8 +18601,8 @@ If you need interactivity, consider converting part of this to a Client Componen
         v.eat.call(void 0, k.TokenType.eq))
       ) {
         let e = I.state.tokens.length - 1;
-        _e.parseMaybeAssign.call(void 0),
-          (I.state.tokens[e].rhsEndIndex = I.state.tokens.length);
+        (_e.parseMaybeAssign.call(void 0),
+          (I.state.tokens[e].rhsEndIndex = I.state.tokens.length));
       }
     }
     function yl() {
@@ -18603,33 +18610,32 @@ If you need interactivity, consider converting part of this to a Client Componen
         di.parseBindingIdentifier.call(void 0, !1),
           H.expect.call(void 0, k.TokenType.braceL);
         !v.eat.call(void 0, k.TokenType.braceR) && !I.state.error;
-
       )
-        $T(), v.eat.call(void 0, k.TokenType.comma);
+        ($T(), v.eat.call(void 0, k.TokenType.comma));
     }
     function Tl() {
-      H.expect.call(void 0, k.TokenType.braceL),
-        Rn.parseBlockBody.call(void 0, k.TokenType.braceR);
+      (H.expect.call(void 0, k.TokenType.braceL),
+        Rn.parseBlockBody.call(void 0, k.TokenType.braceR));
     }
     function fl() {
-      di.parseBindingIdentifier.call(void 0, !1),
-        v.eat.call(void 0, k.TokenType.dot) ? fl() : Tl();
+      (di.parseBindingIdentifier.call(void 0, !1),
+        v.eat.call(void 0, k.TokenType.dot) ? fl() : Tl());
     }
     function Ep() {
-      H.isContextual.call(void 0, oe.ContextualKeyword._global)
+      (H.isContextual.call(void 0, oe.ContextualKeyword._global)
         ? _e.parseIdentifier.call(void 0)
         : v.match.call(void 0, k.TokenType.string)
-        ? _e.parseExprAtom.call(void 0)
-        : H.unexpected.call(void 0),
+          ? _e.parseExprAtom.call(void 0)
+          : H.unexpected.call(void 0),
         v.match.call(void 0, k.TokenType.braceL)
           ? Tl()
-          : H.semicolon.call(void 0);
+          : H.semicolon.call(void 0));
     }
     function Ap() {
-      di.parseImportedIdentifier.call(void 0),
+      (di.parseImportedIdentifier.call(void 0),
         H.expect.call(void 0, k.TokenType.eq),
         KT(),
-        H.semicolon.call(void 0);
+        H.semicolon.call(void 0));
     }
     Oe.tsParseImportEqualsDeclaration = Ap;
     function qT() {
@@ -18642,11 +18648,11 @@ If you need interactivity, consider converting part of this to a Client Componen
       qT() ? UT() : Zi();
     }
     function UT() {
-      H.expectContextual.call(void 0, oe.ContextualKeyword._require),
+      (H.expectContextual.call(void 0, oe.ContextualKeyword._require),
         H.expect.call(void 0, k.TokenType.parenL),
         v.match.call(void 0, k.TokenType.string) || H.unexpected.call(void 0),
         _e.parseLiteral.call(void 0),
-        H.expect.call(void 0, k.TokenType.parenR);
+        H.expect.call(void 0, k.TokenType.parenR));
     }
     function HT() {
       if (H.isLineTerminator.call(void 0)) return !1;
@@ -18720,11 +18726,12 @@ If you need interactivity, consider converting part of this to a Client Componen
       switch (e) {
         case oe.ContextualKeyword._declare: {
           let t = I.state.tokens.length - 1;
-          if (HT()) return (I.state.tokens[t].type = k.TokenType._declare), !0;
+          if (HT())
+            return ((I.state.tokens[t].type = k.TokenType._declare), !0);
           break;
         }
         case oe.ContextualKeyword._global:
-          if (v.match.call(void 0, k.TokenType.braceL)) return Tl(), !0;
+          if (v.match.call(void 0, k.TokenType.braceL)) return (Tl(), !0);
           break;
         default:
           return po(e, !1);
@@ -18754,30 +18761,30 @@ If you need interactivity, consider converting part of this to a Client Componen
         case oe.ContextualKeyword._interface:
           if (fi(t) && v.match.call(void 0, k.TokenType.name)) {
             let s = v.pushTypeContext.call(void 0, t ? 2 : 1);
-            return VT(), v.popTypeContext.call(void 0, s), !0;
+            return (VT(), v.popTypeContext.call(void 0, s), !0);
           }
           break;
         case oe.ContextualKeyword._module:
           if (fi(t)) {
             if (v.match.call(void 0, k.TokenType.string)) {
               let s = v.pushTypeContext.call(void 0, t ? 2 : 1);
-              return Ep(), v.popTypeContext.call(void 0, s), !0;
+              return (Ep(), v.popTypeContext.call(void 0, s), !0);
             } else if (v.match.call(void 0, k.TokenType.name)) {
               let s = v.pushTypeContext.call(void 0, t ? 2 : 1);
-              return fl(), v.popTypeContext.call(void 0, s), !0;
+              return (fl(), v.popTypeContext.call(void 0, s), !0);
             }
           }
           break;
         case oe.ContextualKeyword._namespace:
           if (fi(t) && v.match.call(void 0, k.TokenType.name)) {
             let s = v.pushTypeContext.call(void 0, t ? 2 : 1);
-            return fl(), v.popTypeContext.call(void 0, s), !0;
+            return (fl(), v.popTypeContext.call(void 0, s), !0);
           }
           break;
         case oe.ContextualKeyword._type:
           if (fi(t) && v.match.call(void 0, k.TokenType.name)) {
             let s = v.pushTypeContext.call(void 0, t ? 2 : 1);
-            return jT(), v.popTypeContext.call(void 0, s), !0;
+            return (jT(), v.popTypeContext.call(void 0, s), !0);
           }
           break;
         default:
@@ -18801,18 +18808,17 @@ If you need interactivity, consider converting part of this to a Client Componen
       );
     }
     function kl() {
-      I.state.type === k.TokenType.bitShiftL &&
+      (I.state.type === k.TokenType.bitShiftL &&
         ((I.state.pos -= 1), v.finishToken.call(void 0, k.TokenType.lessThan)),
-        yi();
+        yi());
     }
     function yi() {
       let e = v.pushTypeContext.call(void 0, 0);
       for (
         H.expect.call(void 0, k.TokenType.lessThan);
         !v.eat.call(void 0, k.TokenType.greaterThan) && !I.state.error;
-
       )
-        rt(), v.eat.call(void 0, k.TokenType.comma);
+        (rt(), v.eat.call(void 0, k.TokenType.comma));
       v.popTypeContext.call(void 0, e);
     }
     function zT() {
@@ -18845,9 +18851,8 @@ If you need interactivity, consider converting part of this to a Client Componen
           (I.state.tokens[s].start >= e ||
             I.state.tokens[s].type === k.TokenType._default ||
             I.state.tokens[s].type === k.TokenType._export);
-
         )
-          (I.state.tokens[s].isType = !0), s--;
+          ((I.state.tokens[s].isType = !0), s--);
         return;
       }
       _e.parseFunctionBody.call(void 0, !1, t);
@@ -18875,12 +18880,12 @@ If you need interactivity, consider converting part of this to a Client Componen
                 e),
               _e.parseCallExpressionArguments.call(void 0))
             : v.match.call(void 0, k.TokenType.backQuote)
-            ? _e.parseTemplate.call(void 0)
-            : (I.state.type === k.TokenType.greaterThan ||
-                (I.state.type !== k.TokenType.parenL &&
-                  I.state.type & k.TokenType.IS_EXPRESSION_START &&
-                  !H.hasPrecedingLineBreak.call(void 0))) &&
-              H.unexpected.call(void 0),
+              ? _e.parseTemplate.call(void 0)
+              : (I.state.type === k.TokenType.greaterThan ||
+                  (I.state.type !== k.TokenType.parenL &&
+                    I.state.type & k.TokenType.IS_EXPRESSION_START &&
+                    !H.hasPrecedingLineBreak.call(void 0))) &&
+                H.unexpected.call(void 0),
           I.state.error)
         )
           I.state.restoreFromSnapshot(i);
@@ -18908,7 +18913,7 @@ If you need interactivity, consider converting part of this to a Client Componen
           !0
         );
       if (v.eat.call(void 0, k.TokenType.eq))
-        return _e.parseExpression.call(void 0), H.semicolon.call(void 0), !0;
+        return (_e.parseExpression.call(void 0), H.semicolon.call(void 0), !0);
       if (H.eatContextual.call(void 0, oe.ContextualKeyword._as))
         return (
           H.expectContextual.call(void 0, oe.ContextualKeyword._namespace),
@@ -18939,10 +18944,10 @@ If you need interactivity, consider converting part of this to a Client Componen
         v.match.call(void 0, k.TokenType.comma) ||
           v.match.call(void 0, k.TokenType.braceR))
       ) {
-        (I.state.tokens[I.state.tokens.length - 1].identifierRole =
+        ((I.state.tokens[I.state.tokens.length - 1].identifierRole =
           v.IdentifierRole.ImportDeclaration),
           (I.state.tokens[I.state.tokens.length - 2].isType = !0),
-          (I.state.tokens[I.state.tokens.length - 1].isType = !0);
+          (I.state.tokens[I.state.tokens.length - 1].isType = !0));
         return;
       }
       if (
@@ -18950,13 +18955,13 @@ If you need interactivity, consider converting part of this to a Client Componen
         v.match.call(void 0, k.TokenType.comma) ||
           v.match.call(void 0, k.TokenType.braceR))
       ) {
-        (I.state.tokens[I.state.tokens.length - 3].identifierRole =
+        ((I.state.tokens[I.state.tokens.length - 3].identifierRole =
           v.IdentifierRole.ImportAccess),
           (I.state.tokens[I.state.tokens.length - 1].identifierRole =
-            v.IdentifierRole.ImportDeclaration);
+            v.IdentifierRole.ImportDeclaration));
         return;
       }
-      _e.parseIdentifier.call(void 0),
+      (_e.parseIdentifier.call(void 0),
         (I.state.tokens[I.state.tokens.length - 3].identifierRole =
           v.IdentifierRole.ImportAccess),
         (I.state.tokens[I.state.tokens.length - 1].identifierRole =
@@ -18964,7 +18969,7 @@ If you need interactivity, consider converting part of this to a Client Componen
         (I.state.tokens[I.state.tokens.length - 4].isType = !0),
         (I.state.tokens[I.state.tokens.length - 3].isType = !0),
         (I.state.tokens[I.state.tokens.length - 2].isType = !0),
-        (I.state.tokens[I.state.tokens.length - 1].isType = !0);
+        (I.state.tokens[I.state.tokens.length - 1].isType = !0));
     }
     Oe.tsParseImportSpecifier = QT;
     function ZT() {
@@ -18982,10 +18987,10 @@ If you need interactivity, consider converting part of this to a Client Componen
         v.match.call(void 0, k.TokenType.comma) ||
           v.match.call(void 0, k.TokenType.braceR))
       ) {
-        (I.state.tokens[I.state.tokens.length - 1].identifierRole =
+        ((I.state.tokens[I.state.tokens.length - 1].identifierRole =
           v.IdentifierRole.ExportAccess),
           (I.state.tokens[I.state.tokens.length - 2].isType = !0),
-          (I.state.tokens[I.state.tokens.length - 1].isType = !0);
+          (I.state.tokens[I.state.tokens.length - 1].isType = !0));
         return;
       }
       if (
@@ -18997,13 +19002,13 @@ If you need interactivity, consider converting part of this to a Client Componen
           v.IdentifierRole.ExportAccess;
         return;
       }
-      _e.parseIdentifier.call(void 0),
+      (_e.parseIdentifier.call(void 0),
         (I.state.tokens[I.state.tokens.length - 3].identifierRole =
           v.IdentifierRole.ExportAccess),
         (I.state.tokens[I.state.tokens.length - 4].isType = !0),
         (I.state.tokens[I.state.tokens.length - 3].isType = !0),
         (I.state.tokens[I.state.tokens.length - 2].isType = !0),
-        (I.state.tokens[I.state.tokens.length - 1].isType = !0);
+        (I.state.tokens[I.state.tokens.length - 1].isType = !0));
     }
     Oe.tsParseExportSpecifier = ZT;
     function ek() {
@@ -19077,12 +19082,13 @@ If you need interactivity, consider converting part of this to a Client Componen
       if (v.match.call(void 0, k.TokenType.name))
         if (e) {
           let s = v.pushTypeContext.call(void 0, 2);
-          (t = gp()), v.popTypeContext.call(void 0, s);
+          ((t = gp()), v.popTypeContext.call(void 0, s));
         } else t = gp();
       if (!t)
         if (e) {
           let s = v.pushTypeContext.call(void 0, 2);
-          Rn.parseStatement.call(void 0, !0), v.popTypeContext.call(void 0, s);
+          (Rn.parseStatement.call(void 0, !0),
+            v.popTypeContext.call(void 0, s));
         } else Rn.parseStatement.call(void 0, !0);
     }
     Oe.tsParseExportDeclaration = ik;
@@ -19097,7 +19103,7 @@ If you need interactivity, consider converting part of this to a Client Componen
         I.state.tokens[I.state.tokens.length - 1].type =
           k.TokenType._implements;
         let t = v.pushTypeContext.call(void 0, 1);
-        Ip(), v.popTypeContext.call(void 0, t);
+        (Ip(), v.popTypeContext.call(void 0, t));
       }
     }
     Oe.tsAfterParseClassSuper = rk;
@@ -19111,10 +19117,10 @@ If you need interactivity, consider converting part of this to a Client Componen
     Oe.tsStartParseFunctionParams = ak;
     function lk() {
       let e = v.pushTypeContext.call(void 0, 0);
-      H.hasPrecedingLineBreak.call(void 0) ||
+      (H.hasPrecedingLineBreak.call(void 0) ||
         v.eat.call(void 0, k.TokenType.bang),
         er(),
-        v.popTypeContext.call(void 0, e);
+        v.popTypeContext.call(void 0, e));
     }
     Oe.tsAfterParseVarHead = lk;
     function ck() {
@@ -19156,26 +19162,26 @@ If you need interactivity, consider converting part of this to a Client Componen
     function pk() {
       if (v.match.call(void 0, k.TokenType.colon)) {
         let e = I.state.snapshot();
-        Qi(k.TokenType.colon),
+        (Qi(k.TokenType.colon),
           H.canInsertSemicolon.call(void 0) && H.unexpected.call(void 0),
           v.match.call(void 0, k.TokenType.arrow) || H.unexpected.call(void 0),
-          I.state.error && I.state.restoreFromSnapshot(e);
+          I.state.error && I.state.restoreFromSnapshot(e));
       }
       return v.eat.call(void 0, k.TokenType.arrow);
     }
     Oe.tsParseArrow = pk;
     function hk() {
       let e = v.pushTypeContext.call(void 0, 0);
-      v.eat.call(void 0, k.TokenType.question),
+      (v.eat.call(void 0, k.TokenType.question),
         er(),
-        v.popTypeContext.call(void 0, e);
+        v.popTypeContext.call(void 0, e));
     }
     Oe.tsParseAssignableListItemTypes = hk;
     function fk() {
-      (v.match.call(void 0, k.TokenType.lessThan) ||
+      ((v.match.call(void 0, k.TokenType.lessThan) ||
         v.match.call(void 0, k.TokenType.bitShiftL)) &&
         kl(),
-        Rn.baseParseMaybeDecoratorArguments.call(void 0);
+        Rn.baseParseMaybeDecoratorArguments.call(void 0));
     }
     Oe.tsParseMaybeDecoratorArguments = fk;
   });
@@ -19202,8 +19208,8 @@ If you need interactivity, consider converting part of this to a Client Componen
         if (s === at.charCodes.lessThan || s === at.charCodes.leftCurlyBrace) {
           if (fe.state.pos === fe.state.start) {
             if (s === at.charCodes.lessThan) {
-              fe.state.pos++,
-                Se.finishToken.call(void 0, Me.TokenType.jsxTagStart);
+              (fe.state.pos++,
+                Se.finishToken.call(void 0, Me.TokenType.jsxTagStart));
               return;
             }
             Se.getTokenFromCode.call(void 0, s);
@@ -19214,13 +19220,13 @@ If you need interactivity, consider converting part of this to a Client Componen
             : Se.finishToken.call(void 0, Me.TokenType.jsxText);
           return;
         }
-        s === at.charCodes.lineFeed
+        (s === at.charCodes.lineFeed
           ? (e = !0)
           : s !== at.charCodes.space &&
             s !== at.charCodes.carriageReturn &&
             s !== at.charCodes.tab &&
             (t = !0),
-          fe.state.pos++;
+          fe.state.pos++);
       }
     }
     function yk(e) {
@@ -19262,7 +19268,7 @@ If you need interactivity, consider converting part of this to a Client Componen
       let e = fe.state.tokens.length;
       Lp(Se.IdentifierRole.Access);
       let t = !1;
-      for (; Se.match.call(void 0, Me.TokenType.dot); ) (t = !0), dn(), xl();
+      for (; Se.match.call(void 0, Me.TokenType.dot); ) ((t = !0), dn(), xl());
       if (!t) {
         let s = fe.state.tokens[e],
           i = fe.input.charCodeAt(s.start);
@@ -19274,10 +19280,10 @@ If you need interactivity, consider converting part of this to a Client Componen
     function kk() {
       switch (fe.state.type) {
         case Me.TokenType.braceL:
-          Se.next.call(void 0), ho.parseExpression.call(void 0), dn();
+          (Se.next.call(void 0), ho.parseExpression.call(void 0), dn());
           return;
         case Me.TokenType.jsxTagStart:
-          Mp(), dn();
+          (Mp(), dn());
           return;
         case Me.TokenType.string:
           dn();
@@ -19290,38 +19296,38 @@ If you need interactivity, consider converting part of this to a Client Componen
       }
     }
     function vk() {
-      fs.expect.call(void 0, Me.TokenType.ellipsis),
-        ho.parseExpression.call(void 0);
+      (fs.expect.call(void 0, Me.TokenType.ellipsis),
+        ho.parseExpression.call(void 0));
     }
     function xk(e) {
       if (Se.match.call(void 0, Me.TokenType.jsxTagEnd)) return !1;
-      Op(), fe.isTypeScriptEnabled && dk.tsTryParseJSXTypeArgument.call(void 0);
+      (Op(),
+        fe.isTypeScriptEnabled && dk.tsTryParseJSXTypeArgument.call(void 0));
       let t = !1;
       for (
         ;
         !Se.match.call(void 0, Me.TokenType.slash) &&
         !Se.match.call(void 0, Me.TokenType.jsxTagEnd) &&
         !fe.state.error;
-
       ) {
         if (Se.eat.call(void 0, Me.TokenType.braceL)) {
-          (t = !0),
+          ((t = !0),
             fs.expect.call(void 0, Me.TokenType.ellipsis),
             ho.parseMaybeAssign.call(void 0),
-            dn();
+            dn());
           continue;
         }
-        t &&
+        (t &&
           fe.state.end - fe.state.start === 3 &&
           fe.input.charCodeAt(fe.state.start) === at.charCodes.lowercaseK &&
           fe.input.charCodeAt(fe.state.start + 1) === at.charCodes.lowercaseE &&
           fe.input.charCodeAt(fe.state.start + 2) === at.charCodes.lowercaseY &&
           (fe.state.tokens[e].jsxRole = Se.JSXRole.KeyAfterPropSpread),
           Lp(Se.IdentifierRole.ObjectKey),
-          Se.match.call(void 0, Me.TokenType.eq) && (dn(), kk());
+          Se.match.call(void 0, Me.TokenType.eq) && (dn(), kk()));
       }
       let s = Se.match.call(void 0, Me.TokenType.slash);
-      return s && dn(), s;
+      return (s && dn(), s);
     }
     function gk() {
       Se.match.call(void 0, Me.TokenType.jsxTagEnd) || Op();
@@ -19335,7 +19341,7 @@ If you need interactivity, consider converting part of this to a Client Componen
           switch (fe.state.type) {
             case Me.TokenType.jsxTagStart:
               if ((dn(), Se.match.call(void 0, Me.TokenType.slash))) {
-                dn(),
+                (dn(),
                   gk(),
                   fe.state.tokens[e].jsxRole !==
                     Se.JSXRole.KeyAfterPropSpread &&
@@ -19343,24 +19349,24 @@ If you need interactivity, consider converting part of this to a Client Componen
                       ? (fe.state.tokens[e].jsxRole = Se.JSXRole.OneChild)
                       : t > 1 &&
                         (fe.state.tokens[e].jsxRole =
-                          Se.JSXRole.StaticChildren));
+                          Se.JSXRole.StaticChildren)));
                 return;
               }
-              t++, Dp(), Ti();
+              (t++, Dp(), Ti());
               break;
             case Me.TokenType.jsxText:
-              t++, Ti();
+              (t++, Ti());
               break;
             case Me.TokenType.jsxEmptyText:
               Ti();
               break;
             case Me.TokenType.braceL:
-              Se.next.call(void 0),
+              (Se.next.call(void 0),
                 Se.match.call(void 0, Me.TokenType.ellipsis)
                   ? (vk(), Ti(), (t += 2))
                   : (Se.match.call(void 0, Me.TokenType.braceR) ||
                       (t++, ho.parseExpression.call(void 0)),
-                    Ti());
+                    Ti()));
               break;
             default:
               fs.unexpected.call(void 0);
@@ -19368,13 +19374,13 @@ If you need interactivity, consider converting part of this to a Client Componen
           }
     }
     function Mp() {
-      dn(), Dp();
+      (dn(), Dp());
     }
     fo.jsxParseElement = Mp;
     function dn() {
-      fe.state.tokens.push(new Se.Token()),
+      (fe.state.tokens.push(new Se.Token()),
         Se.skipSpace.call(void 0),
-        (fe.state.start = fe.state.pos);
+        (fe.state.start = fe.state.pos));
       let e = fe.input.charCodeAt(fe.state.pos);
       if (Rp.IS_IDENTIFIER_START[e]) Tk();
       else if (
@@ -19411,9 +19417,9 @@ If you need interactivity, consider converting part of this to a Client Componen
     }
     fo.nextJSXTagToken = dn;
     function Ti() {
-      fe.state.tokens.push(new Se.Token()),
+      (fe.state.tokens.push(new Se.Token()),
         (fe.state.start = fe.state.pos),
-        mk();
+        mk());
     }
   });
   var Bp = Z((yo) => {
@@ -19439,11 +19445,11 @@ If you need interactivity, consider converting part of this to a Client Componen
     }
     yo.typedParseConditional = wk;
     function Sk() {
-      mo.eatTypeToken.call(void 0, ki.TokenType.question),
+      (mo.eatTypeToken.call(void 0, ki.TokenType.question),
         mo.match.call(void 0, ki.TokenType.colon) &&
           (Fp.isTypeScriptEnabled
             ? Ck.tsParseTypeAnnotation.call(void 0)
-            : Fp.isFlowEnabled && bk.flowParseTypeAnnotation.call(void 0));
+            : Fp.isFlowEnabled && bk.flowParseTypeAnnotation.call(void 0)));
     }
     yo.typedParseParenItem = Sk;
   });
@@ -19479,12 +19485,12 @@ If you need interactivity, consider converting part of this to a Client Componen
       return j.isTypeScriptEnabled
         ? ms.tsParseMaybeAssign.call(void 0, e, t)
         : j.isFlowEnabled
-        ? Yn.flowParseMaybeAssign.call(void 0, e, t)
-        : qp(e, t);
+          ? Yn.flowParseMaybeAssign.call(void 0, e, t)
+          : qp(e, t);
     }
     et.parseMaybeAssign = mn;
     function qp(e, t) {
-      if (K.match.call(void 0, B.TokenType._yield)) return Hk(), !1;
+      if (K.match.call(void 0, B.TokenType._yield)) return (Hk(), !1);
       (K.match.call(void 0, B.TokenType.parenL) ||
         K.match.call(void 0, B.TokenType.name) ||
         K.match.call(void 0, B.TokenType._yield)) &&
@@ -19524,25 +19530,25 @@ If you need interactivity, consider converting part of this to a Client Componen
           Pe.eatContextual.call(void 0, zn.ContextualKeyword._satisfies))
       ) {
         let r = K.pushTypeContext.call(void 0, 1);
-        ms.tsParseType.call(void 0),
+        (ms.tsParseType.call(void 0),
           K.popTypeContext.call(void 0, r),
           K.rescan_gt.call(void 0),
-          To(e, t, s);
+          To(e, t, s));
         return;
       }
       let i = j.state.type & B.TokenType.PRECEDENCE_MASK;
       if (i > 0 && (!s || !K.match.call(void 0, B.TokenType._in)) && i > t) {
         let r = j.state.type;
-        K.next.call(void 0),
+        (K.next.call(void 0),
           r === B.TokenType.nullishCoalescing &&
-            (j.state.tokens[j.state.tokens.length - 1].nullishStartIndex = e);
+            (j.state.tokens[j.state.tokens.length - 1].nullishStartIndex = e));
         let a = j.state.tokens.length;
-        rr(),
+        (rr(),
           To(a, r & B.TokenType.IS_RIGHT_ASSOCIATIVE ? i - 1 : i, s),
           r === B.TokenType.nullishCoalescing &&
             (j.state.tokens[e].numNullishCoalesceStarts++,
             j.state.tokens[j.state.tokens.length - 1].numNullishCoalesceEnds++),
-          To(e, t, s);
+          To(e, t, s));
       }
     }
     function rr() {
@@ -19551,25 +19557,24 @@ If you need interactivity, consider converting part of this to a Client Componen
         !j.isJSXEnabled &&
         K.eat.call(void 0, B.TokenType.lessThan)
       )
-        return ms.tsParseTypeAssertion.call(void 0), !1;
+        return (ms.tsParseTypeAssertion.call(void 0), !1);
       if (
         Pe.isContextual.call(void 0, zn.ContextualKeyword._module) &&
         K.lookaheadCharCode.call(void 0) === $p.charCodes.leftCurlyBrace &&
         !Pe.hasFollowingLineBreak.call(void 0)
       )
-        return Wk(), !1;
+        return (Wk(), !1);
       if (j.state.type & B.TokenType.IS_PREFIX)
-        return K.next.call(void 0), rr(), !1;
+        return (K.next.call(void 0), rr(), !1);
       if (Up()) return !0;
       for (
         ;
         j.state.type & B.TokenType.IS_POSTFIX &&
         !Pe.canInsertSemicolon.call(void 0);
-
       )
-        j.state.type === B.TokenType.preIncDec &&
+        (j.state.type === B.TokenType.preIncDec &&
           (j.state.type = B.TokenType.postIncDec),
-          K.next.call(void 0);
+          K.next.call(void 0));
       return !1;
     }
     et.parseMaybeUnary = rr;
@@ -19597,12 +19602,12 @@ If you need interactivity, consider converting part of this to a Client Componen
       j.isTypeScriptEnabled
         ? ms.tsParseSubscript.call(void 0, e, t, s)
         : j.isFlowEnabled
-        ? Yn.flowParseSubscript.call(void 0, e, t, s)
-        : Wp(e, t, s);
+          ? Yn.flowParseSubscript.call(void 0, e, t, s)
+          : Wp(e, t, s);
     }
     function Wp(e, t, s) {
       if (!t && K.eat.call(void 0, B.TokenType.doubleColon))
-        Cl(), (s.stop = !0), bl(e, t);
+        (Cl(), (s.stop = !0), bl(e, t));
       else if (K.match.call(void 0, B.TokenType.questionDot)) {
         if (
           ((j.state.tokens[e].isOptionalChainStart = !0),
@@ -19611,28 +19616,29 @@ If you need interactivity, consider converting part of this to a Client Componen
           s.stop = !0;
           return;
         }
-        K.next.call(void 0),
+        (K.next.call(void 0),
           (j.state.tokens[j.state.tokens.length - 1].subscriptStartIndex = e),
           K.eat.call(void 0, B.TokenType.bracketL)
             ? (sr(), Pe.expect.call(void 0, B.TokenType.bracketR))
             : K.eat.call(void 0, B.TokenType.parenL)
-            ? ko()
-            : xo();
+              ? ko()
+              : xo());
       } else if (K.eat.call(void 0, B.TokenType.dot))
-        (j.state.tokens[j.state.tokens.length - 1].subscriptStartIndex = e),
-          xo();
+        ((j.state.tokens[j.state.tokens.length - 1].subscriptStartIndex = e),
+          xo());
       else if (K.eat.call(void 0, B.TokenType.bracketL))
-        (j.state.tokens[j.state.tokens.length - 1].subscriptStartIndex = e),
+        ((j.state.tokens[j.state.tokens.length - 1].subscriptStartIndex = e),
           sr(),
-          Pe.expect.call(void 0, B.TokenType.bracketR);
+          Pe.expect.call(void 0, B.TokenType.bracketR));
       else if (!t && K.match.call(void 0, B.TokenType.parenL))
         if (Gp()) {
           let i = j.state.snapshot(),
             r = j.state.tokens.length;
-          K.next.call(void 0),
-            (j.state.tokens[j.state.tokens.length - 1].subscriptStartIndex = e);
+          (K.next.call(void 0),
+            (j.state.tokens[j.state.tokens.length - 1].subscriptStartIndex =
+              e));
           let a = j.getNextContextId.call(void 0);
-          (j.state.tokens[j.state.tokens.length - 1].contextId = a),
+          ((j.state.tokens[j.state.tokens.length - 1].contextId = a),
             ko(),
             (j.state.tokens[j.state.tokens.length - 1].contextId = a),
             Lk() &&
@@ -19640,14 +19646,15 @@ If you need interactivity, consider converting part of this to a Client Componen
               (s.stop = !0),
               j.state.scopeDepth++,
               gn.parseFunctionParams.call(void 0),
-              Ok(r));
+              Ok(r)));
         } else {
-          K.next.call(void 0),
-            (j.state.tokens[j.state.tokens.length - 1].subscriptStartIndex = e);
+          (K.next.call(void 0),
+            (j.state.tokens[j.state.tokens.length - 1].subscriptStartIndex =
+              e));
           let i = j.getNextContextId.call(void 0);
-          (j.state.tokens[j.state.tokens.length - 1].contextId = i),
+          ((j.state.tokens[j.state.tokens.length - 1].contextId = i),
             ko(),
-            (j.state.tokens[j.state.tokens.length - 1].contextId = i);
+            (j.state.tokens[j.state.tokens.length - 1].contextId = i));
         }
       else K.match.call(void 0, B.TokenType.backQuote) ? Sl() : (s.stop = !0);
     }
@@ -19679,24 +19686,24 @@ If you need interactivity, consider converting part of this to a Client Componen
       );
     }
     function Ok(e) {
-      j.isTypeScriptEnabled
+      (j.isTypeScriptEnabled
         ? ms.tsStartParseAsyncArrowFromCallExpression.call(void 0)
         : j.isFlowEnabled &&
           Yn.flowStartParseAsyncArrowFromCallExpression.call(void 0),
         Pe.expect.call(void 0, B.TokenType.arrow),
-        ir(e);
+        ir(e));
     }
     function Cl() {
       let e = j.state.tokens.length;
-      _o(), bl(e, !0);
+      (_o(), bl(e, !0));
     }
     function _o() {
-      if (K.eat.call(void 0, B.TokenType.modulo)) return Xn(), !1;
+      if (K.eat.call(void 0, B.TokenType.modulo)) return (Xn(), !1);
       if (
         K.match.call(void 0, B.TokenType.jsxText) ||
         K.match.call(void 0, B.TokenType.jsxEmptyText)
       )
-        return zp(), !1;
+        return (zp(), !1);
       if (K.match.call(void 0, B.TokenType.lessThan) && j.isJSXEnabled)
         return (
           (j.state.type = B.TokenType.jsxTagStart),
@@ -19719,7 +19726,7 @@ If you need interactivity, consider converting part of this to a Client Componen
         case B.TokenType._null:
         case B.TokenType._true:
         case B.TokenType._false:
-          return K.next.call(void 0), !1;
+          return (K.next.call(void 0), !1);
         case B.TokenType._import:
           return (
             K.next.call(void 0),
@@ -19739,54 +19746,57 @@ If you need interactivity, consider converting part of this to a Client Componen
             i === zn.ContextualKeyword._await
               ? (Uk(), !1)
               : i === zn.ContextualKeyword._async &&
-                K.match.call(void 0, B.TokenType._function) &&
-                !Pe.canInsertSemicolon.call(void 0)
-              ? (K.next.call(void 0), gn.parseFunction.call(void 0, s, !1), !1)
-              : e &&
-                i === zn.ContextualKeyword._async &&
-                !Pe.canInsertSemicolon.call(void 0) &&
-                K.match.call(void 0, B.TokenType.name)
-              ? (j.state.scopeDepth++,
-                ds.parseBindingIdentifier.call(void 0, !1),
-                Pe.expect.call(void 0, B.TokenType.arrow),
-                ir(t),
-                !0)
-              : K.match.call(void 0, B.TokenType._do) &&
-                !Pe.canInsertSemicolon.call(void 0)
-              ? (K.next.call(void 0), gn.parseBlock.call(void 0), !1)
-              : e &&
-                !Pe.canInsertSemicolon.call(void 0) &&
-                K.match.call(void 0, B.TokenType.arrow)
-              ? (j.state.scopeDepth++,
-                ds.markPriorBindingIdentifier.call(void 0, !1),
-                Pe.expect.call(void 0, B.TokenType.arrow),
-                ir(t),
-                !0)
-              : ((j.state.tokens[j.state.tokens.length - 1].identifierRole =
-                  K.IdentifierRole.Access),
-                !1)
+                  K.match.call(void 0, B.TokenType._function) &&
+                  !Pe.canInsertSemicolon.call(void 0)
+                ? (K.next.call(void 0),
+                  gn.parseFunction.call(void 0, s, !1),
+                  !1)
+                : e &&
+                    i === zn.ContextualKeyword._async &&
+                    !Pe.canInsertSemicolon.call(void 0) &&
+                    K.match.call(void 0, B.TokenType.name)
+                  ? (j.state.scopeDepth++,
+                    ds.parseBindingIdentifier.call(void 0, !1),
+                    Pe.expect.call(void 0, B.TokenType.arrow),
+                    ir(t),
+                    !0)
+                  : K.match.call(void 0, B.TokenType._do) &&
+                      !Pe.canInsertSemicolon.call(void 0)
+                    ? (K.next.call(void 0), gn.parseBlock.call(void 0), !1)
+                    : e &&
+                        !Pe.canInsertSemicolon.call(void 0) &&
+                        K.match.call(void 0, B.TokenType.arrow)
+                      ? (j.state.scopeDepth++,
+                        ds.markPriorBindingIdentifier.call(void 0, !1),
+                        Pe.expect.call(void 0, B.TokenType.arrow),
+                        ir(t),
+                        !0)
+                      : ((j.state.tokens[
+                          j.state.tokens.length - 1
+                        ].identifierRole = K.IdentifierRole.Access),
+                        !1)
           );
         }
         case B.TokenType._do:
-          return K.next.call(void 0), gn.parseBlock.call(void 0), !1;
+          return (K.next.call(void 0), gn.parseBlock.call(void 0), !1);
         case B.TokenType.parenL:
           return Xp(e);
         case B.TokenType.bracketL:
-          return K.next.call(void 0), Qp(B.TokenType.bracketR, !0), !1;
+          return (K.next.call(void 0), Qp(B.TokenType.bracketR, !0), !1);
         case B.TokenType.braceL:
-          return Yp(!1, !1), !1;
+          return (Yp(!1, !1), !1);
         case B.TokenType._function:
-          return Dk(), !1;
+          return (Dk(), !1);
         case B.TokenType.at:
           gn.parseDecorators.call(void 0);
         case B.TokenType._class:
-          return gn.parseClass.call(void 0, !1), !1;
+          return (gn.parseClass.call(void 0, !1), !1);
         case B.TokenType._new:
-          return Bk(), !1;
+          return (Bk(), !1);
         case B.TokenType.backQuote:
-          return Sl(), !1;
+          return (Sl(), !1);
         case B.TokenType.doubleColon:
-          return K.next.call(void 0), Cl(), !1;
+          return (K.next.call(void 0), Cl(), !1);
         case B.TokenType.hash: {
           let t = K.lookaheadCharCode.call(void 0);
           return (
@@ -19797,27 +19807,27 @@ If you need interactivity, consider converting part of this to a Client Componen
           );
         }
         default:
-          return Pe.unexpected.call(void 0), !1;
+          return (Pe.unexpected.call(void 0), !1);
       }
     }
     et.parseExprAtom = _o;
     function xo() {
-      K.eat.call(void 0, B.TokenType.hash), Xn();
+      (K.eat.call(void 0, B.TokenType.hash), Xn());
     }
     function Dk() {
       let e = j.state.start;
-      Xn(),
+      (Xn(),
         K.eat.call(void 0, B.TokenType.dot) && Xn(),
-        gn.parseFunction.call(void 0, e, !1);
+        gn.parseFunction.call(void 0, e, !1));
     }
     function zp() {
       K.next.call(void 0);
     }
     et.parseLiteral = zp;
     function Mk() {
-      Pe.expect.call(void 0, B.TokenType.parenL),
+      (Pe.expect.call(void 0, B.TokenType.parenL),
         sr(),
-        Pe.expect.call(void 0, B.TokenType.parenR);
+        Pe.expect.call(void 0, B.TokenType.parenR));
     }
     et.parseParenExpression = Mk;
     function Xp(e) {
@@ -19833,7 +19843,7 @@ If you need interactivity, consider converting part of this to a Client Componen
         )
           break;
         if (K.match.call(void 0, B.TokenType.ellipsis)) {
-          ds.parseRest.call(void 0, !1), wl();
+          (ds.parseRest.call(void 0, !1), wl());
           break;
         } else mn(!1, !0);
       }
@@ -19859,8 +19869,8 @@ If you need interactivity, consider converting part of this to a Client Componen
       return j.isTypeScriptEnabled
         ? ms.tsParseArrow.call(void 0)
         : j.isFlowEnabled
-        ? Yn.flowParseArrow.call(void 0)
-        : K.eat.call(void 0, B.TokenType.arrow);
+          ? Yn.flowParseArrow.call(void 0)
+          : K.eat.call(void 0, B.TokenType.arrow);
     }
     et.parseArrow = gl;
     function wl() {
@@ -19875,23 +19885,22 @@ If you need interactivity, consider converting part of this to a Client Componen
         Xn();
         return;
       }
-      Vk(),
+      (Vk(),
         j.isFlowEnabled && Yn.flowStartParseNewArguments.call(void 0),
-        K.eat.call(void 0, B.TokenType.parenL) && Qp(B.TokenType.parenR);
+        K.eat.call(void 0, B.TokenType.parenL) && Qp(B.TokenType.parenR));
     }
     function Vk() {
-      Cl(), K.eat.call(void 0, B.TokenType.questionDot);
+      (Cl(), K.eat.call(void 0, B.TokenType.questionDot));
     }
     function Sl() {
       for (
         K.nextTemplateToken.call(void 0), K.nextTemplateToken.call(void 0);
         !K.match.call(void 0, B.TokenType.backQuote) && !j.state.error;
-
       )
-        Pe.expect.call(void 0, B.TokenType.dollarBraceL),
+        (Pe.expect.call(void 0, B.TokenType.dollarBraceL),
           sr(),
           K.nextTemplateToken.call(void 0),
-          K.nextTemplateToken.call(void 0);
+          K.nextTemplateToken.call(void 0));
       K.next.call(void 0);
     }
     et.parseTemplate = Sl;
@@ -19902,7 +19911,6 @@ If you need interactivity, consider converting part of this to a Client Componen
         K.next.call(void 0),
           j.state.tokens[j.state.tokens.length - 1].contextId = s;
         !K.eat.call(void 0, B.TokenType.braceR) && !j.state.error;
-
       ) {
         if (i) i = !1;
         else if (
@@ -19923,7 +19931,7 @@ If you need interactivity, consider converting part of this to a Client Componen
             break;
           continue;
         }
-        e || (r = K.eat.call(void 0, B.TokenType.star)),
+        (e || (r = K.eat.call(void 0, B.TokenType.star)),
           !e && Pe.isContextual.call(void 0, zn.ContextualKeyword._async)
             ? (r && Pe.unexpected.call(void 0),
               Xn(),
@@ -19936,7 +19944,7 @@ If you need interactivity, consider converting part of this to a Client Componen
                   (K.next.call(void 0), (r = !0)),
                 go(s)))
             : go(s),
-          Kk(e, t, s);
+          Kk(e, t, s));
       }
       j.state.tokens[j.state.tokens.length - 1].contextId = s;
     }
@@ -19956,8 +19964,8 @@ If you need interactivity, consider converting part of this to a Client Componen
       return K.match.call(void 0, B.TokenType.parenL)
         ? (e && Pe.unexpected.call(void 0), _l(s, !1), !0)
         : jk(e)
-        ? (go(t), _l(s, !1), !0)
-        : !1;
+          ? (go(t), _l(s, !1), !0)
+          : !1;
     }
     function qk(e, t) {
       if (K.eat.call(void 0, B.TokenType.colon)) {
@@ -19965,24 +19973,24 @@ If you need interactivity, consider converting part of this to a Client Componen
         return;
       }
       let s;
-      e
+      (e
         ? j.state.scopeDepth === 0
           ? (s = K.IdentifierRole.ObjectShorthandTopLevelDeclaration)
           : t
-          ? (s = K.IdentifierRole.ObjectShorthandBlockScopedDeclaration)
-          : (s = K.IdentifierRole.ObjectShorthandFunctionScopedDeclaration)
+            ? (s = K.IdentifierRole.ObjectShorthandBlockScopedDeclaration)
+            : (s = K.IdentifierRole.ObjectShorthandFunctionScopedDeclaration)
         : (s = K.IdentifierRole.ObjectShorthand),
         (j.state.tokens[j.state.tokens.length - 1].identifierRole = s),
-        ds.parseMaybeDefault.call(void 0, t, !0);
+        ds.parseMaybeDefault.call(void 0, t, !0));
     }
     function Kk(e, t, s) {
-      j.isTypeScriptEnabled
+      (j.isTypeScriptEnabled
         ? ms.tsStartParseObjPropValue.call(void 0)
         : j.isFlowEnabled && Yn.flowStartParseObjPropValue.call(void 0),
-        $k(e, s) || qk(e, t);
+        $k(e, s) || qk(e, t));
     }
     function go(e) {
-      j.isFlowEnabled && Yn.flowParseVariance.call(void 0),
+      (j.isFlowEnabled && Yn.flowParseVariance.call(void 0),
         K.eat.call(void 0, B.TokenType.bracketL)
           ? ((j.state.tokens[j.state.tokens.length - 1].contextId = e),
             mn(),
@@ -19996,7 +20004,7 @@ If you need interactivity, consider converting part of this to a Client Componen
               : xo(),
             (j.state.tokens[j.state.tokens.length - 1].identifierRole =
               K.IdentifierRole.ObjectKey),
-            (j.state.tokens[j.state.tokens.length - 1].contextId = e));
+            (j.state.tokens[j.state.tokens.length - 1].contextId = e)));
     }
     et.parsePropertyName = go;
     function _l(e, t) {
@@ -20004,23 +20012,23 @@ If you need interactivity, consider converting part of this to a Client Componen
       j.state.scopeDepth++;
       let i = j.state.tokens.length,
         r = t;
-      gn.parseFunctionParams.call(void 0, r, s), Jp(e, s);
+      (gn.parseFunctionParams.call(void 0, r, s), Jp(e, s));
       let a = j.state.tokens.length;
-      j.state.scopes.push(new jp.Scope(i, a, !0)), j.state.scopeDepth--;
+      (j.state.scopes.push(new jp.Scope(i, a, !0)), j.state.scopeDepth--);
     }
     et.parseMethod = _l;
     function ir(e) {
       Il(!0);
       let t = j.state.tokens.length;
-      j.state.scopes.push(new jp.Scope(e, t, !0)), j.state.scopeDepth--;
+      (j.state.scopes.push(new jp.Scope(e, t, !0)), j.state.scopeDepth--);
     }
     et.parseArrowExpression = ir;
     function Jp(e, t = 0) {
       j.isTypeScriptEnabled
         ? ms.tsParseFunctionBodyAndFinish.call(void 0, e, t)
         : j.isFlowEnabled
-        ? Yn.flowParseFunctionBodyAndFinish.call(void 0, t)
-        : Il(!1, t);
+          ? Yn.flowParseFunctionBodyAndFinish.call(void 0, t)
+          : Il(!1, t);
     }
     et.parseFunctionBodyAndFinish = Jp;
     function Il(e, t = 0) {
@@ -20045,27 +20053,27 @@ If you need interactivity, consider converting part of this to a Client Componen
         (K.match.call(void 0, B.TokenType.ellipsis)
           ? (ds.parseSpread.call(void 0), wl())
           : K.match.call(void 0, B.TokenType.question)
-          ? K.next.call(void 0)
-          : mn(!1, !0));
+            ? K.next.call(void 0)
+            : mn(!1, !0));
     }
     function Xn() {
-      K.next.call(void 0),
-        (j.state.tokens[j.state.tokens.length - 1].type = B.TokenType.name);
+      (K.next.call(void 0),
+        (j.state.tokens[j.state.tokens.length - 1].type = B.TokenType.name));
     }
     et.parseIdentifier = Xn;
     function Uk() {
       rr();
     }
     function Hk() {
-      K.next.call(void 0),
+      (K.next.call(void 0),
         !K.match.call(void 0, B.TokenType.semi) &&
           !Pe.canInsertSemicolon.call(void 0) &&
-          (K.eat.call(void 0, B.TokenType.star), mn());
+          (K.eat.call(void 0, B.TokenType.star), mn()));
     }
     function Wk() {
-      Pe.expectContextual.call(void 0, zn.ContextualKeyword._module),
+      (Pe.expectContextual.call(void 0, zn.ContextualKeyword._module),
         Pe.expect.call(void 0, B.TokenType.braceL),
-        gn.parseBlockBody.call(void 0, B.TokenType.braceR);
+        gn.parseBlockBody.call(void 0, B.TokenType.braceR));
     }
   });
   var Ji = Z((Je) => {
@@ -20086,61 +20094,61 @@ If you need interactivity, consider converting part of this to a Client Componen
     }
     function Ln(e) {
       let t = C.pushTypeContext.call(void 0, 0);
-      z.expect.call(void 0, e || _.TokenType.colon),
+      (z.expect.call(void 0, e || _.TokenType.colon),
         Wt(),
-        C.popTypeContext.call(void 0, t);
+        C.popTypeContext.call(void 0, t));
     }
     function eh() {
-      z.expect.call(void 0, _.TokenType.modulo),
+      (z.expect.call(void 0, _.TokenType.modulo),
         z.expectContextual.call(void 0, ye.ContextualKeyword._checks),
         C.eat.call(void 0, _.TokenType.parenL) &&
           (je.parseExpression.call(void 0),
-          z.expect.call(void 0, _.TokenType.parenR));
+          z.expect.call(void 0, _.TokenType.parenR)));
     }
     function Pl() {
       let e = C.pushTypeContext.call(void 0, 0);
-      z.expect.call(void 0, _.TokenType.colon),
+      (z.expect.call(void 0, _.TokenType.colon),
         C.match.call(void 0, _.TokenType.modulo)
           ? eh()
           : (Wt(), C.match.call(void 0, _.TokenType.modulo) && eh()),
-        C.popTypeContext.call(void 0, e);
+        C.popTypeContext.call(void 0, e));
     }
     function zk() {
-      C.next.call(void 0), Nl(!0);
+      (C.next.call(void 0), Nl(!0));
     }
     function Xk() {
-      C.next.call(void 0),
+      (C.next.call(void 0),
         je.parseIdentifier.call(void 0),
         C.match.call(void 0, _.TokenType.lessThan) && On(),
         z.expect.call(void 0, _.TokenType.parenL),
         Al(),
         z.expect.call(void 0, _.TokenType.parenR),
         Pl(),
-        z.semicolon.call(void 0);
+        z.semicolon.call(void 0));
     }
     function El() {
       C.match.call(void 0, _.TokenType._class)
         ? zk()
         : C.match.call(void 0, _.TokenType._function)
-        ? Xk()
-        : C.match.call(void 0, _.TokenType._var)
-        ? Yk()
-        : z.eatContextual.call(void 0, ye.ContextualKeyword._module)
-        ? C.eat.call(void 0, _.TokenType.dot)
-          ? Zk()
-          : Jk()
-        : z.isContextual.call(void 0, ye.ContextualKeyword._type)
-        ? e0()
-        : z.isContextual.call(void 0, ye.ContextualKeyword._opaque)
-        ? t0()
-        : z.isContextual.call(void 0, ye.ContextualKeyword._interface)
-        ? n0()
-        : C.match.call(void 0, _.TokenType._export)
-        ? Qk()
-        : z.unexpected.call(void 0);
+          ? Xk()
+          : C.match.call(void 0, _.TokenType._var)
+            ? Yk()
+            : z.eatContextual.call(void 0, ye.ContextualKeyword._module)
+              ? C.eat.call(void 0, _.TokenType.dot)
+                ? Zk()
+                : Jk()
+              : z.isContextual.call(void 0, ye.ContextualKeyword._type)
+                ? e0()
+                : z.isContextual.call(void 0, ye.ContextualKeyword._opaque)
+                  ? t0()
+                  : z.isContextual.call(void 0, ye.ContextualKeyword._interface)
+                    ? n0()
+                    : C.match.call(void 0, _.TokenType._export)
+                      ? Qk()
+                      : z.unexpected.call(void 0);
     }
     function Yk() {
-      C.next.call(void 0), oh(), z.semicolon.call(void 0);
+      (C.next.call(void 0), oh(), z.semicolon.call(void 0));
     }
     function Jk() {
       for (
@@ -20149,7 +20157,6 @@ If you need interactivity, consider converting part of this to a Client Componen
           : je.parseIdentifier.call(void 0),
           z.expect.call(void 0, _.TokenType.braceL);
         !C.match.call(void 0, _.TokenType.braceR) && !ue.state.error;
-
       )
         C.match.call(void 0, _.TokenType._import)
           ? (C.next.call(void 0), ys.parseImport.call(void 0))
@@ -20157,38 +20164,38 @@ If you need interactivity, consider converting part of this to a Client Componen
       z.expect.call(void 0, _.TokenType.braceR);
     }
     function Qk() {
-      z.expect.call(void 0, _.TokenType._export),
+      (z.expect.call(void 0, _.TokenType._export),
         C.eat.call(void 0, _.TokenType._default)
           ? C.match.call(void 0, _.TokenType._function) ||
             C.match.call(void 0, _.TokenType._class)
             ? El()
             : (Wt(), z.semicolon.call(void 0))
           : C.match.call(void 0, _.TokenType._var) ||
-            C.match.call(void 0, _.TokenType._function) ||
-            C.match.call(void 0, _.TokenType._class) ||
-            z.isContextual.call(void 0, ye.ContextualKeyword._opaque)
-          ? El()
-          : C.match.call(void 0, _.TokenType.star) ||
-            C.match.call(void 0, _.TokenType.braceL) ||
-            z.isContextual.call(void 0, ye.ContextualKeyword._interface) ||
-            z.isContextual.call(void 0, ye.ContextualKeyword._type) ||
-            z.isContextual.call(void 0, ye.ContextualKeyword._opaque)
-          ? ys.parseExport.call(void 0)
-          : z.unexpected.call(void 0);
+              C.match.call(void 0, _.TokenType._function) ||
+              C.match.call(void 0, _.TokenType._class) ||
+              z.isContextual.call(void 0, ye.ContextualKeyword._opaque)
+            ? El()
+            : C.match.call(void 0, _.TokenType.star) ||
+                C.match.call(void 0, _.TokenType.braceL) ||
+                z.isContextual.call(void 0, ye.ContextualKeyword._interface) ||
+                z.isContextual.call(void 0, ye.ContextualKeyword._type) ||
+                z.isContextual.call(void 0, ye.ContextualKeyword._opaque)
+              ? ys.parseExport.call(void 0)
+              : z.unexpected.call(void 0));
     }
     function Zk() {
-      z.expectContextual.call(void 0, ye.ContextualKeyword._exports),
+      (z.expectContextual.call(void 0, ye.ContextualKeyword._exports),
         vi(),
-        z.semicolon.call(void 0);
+        z.semicolon.call(void 0));
     }
     function e0() {
-      C.next.call(void 0), Ll();
+      (C.next.call(void 0), Ll());
     }
     function t0() {
-      C.next.call(void 0), Ol(!0);
+      (C.next.call(void 0), Ol(!0));
     }
     function n0() {
-      C.next.call(void 0), Nl();
+      (C.next.call(void 0), Nl());
     }
     function Nl(e = !1) {
       if (
@@ -20211,7 +20218,7 @@ If you need interactivity, consider converting part of this to a Client Componen
       Co(e, !1, e);
     }
     function bo() {
-      sh(!1), C.match.call(void 0, _.TokenType.lessThan) && Rs();
+      (sh(!1), C.match.call(void 0, _.TokenType.lessThan) && Rs());
     }
     function Rl() {
       Nl();
@@ -20220,21 +20227,21 @@ If you need interactivity, consider converting part of this to a Client Componen
       je.parseIdentifier.call(void 0);
     }
     function Ll() {
-      So(),
+      (So(),
         C.match.call(void 0, _.TokenType.lessThan) && On(),
         Ln(_.TokenType.eq),
-        z.semicolon.call(void 0);
+        z.semicolon.call(void 0));
     }
     function Ol(e) {
-      z.expectContextual.call(void 0, ye.ContextualKeyword._type),
+      (z.expectContextual.call(void 0, ye.ContextualKeyword._type),
         So(),
         C.match.call(void 0, _.TokenType.lessThan) && On(),
         C.match.call(void 0, _.TokenType.colon) && Ln(_.TokenType.colon),
         e || Ln(_.TokenType.eq),
-        z.semicolon.call(void 0);
+        z.semicolon.call(void 0));
     }
     function s0() {
-      Fl(), oh(), C.eat.call(void 0, _.TokenType.eq) && Wt();
+      (Fl(), oh(), C.eat.call(void 0, _.TokenType.eq) && Wt());
     }
     function On() {
       let e = C.pushTypeContext.call(void 0, 0);
@@ -20243,12 +20250,12 @@ If you need interactivity, consider converting part of this to a Client Componen
         ? C.next.call(void 0)
         : z.unexpected.call(void 0);
       do
-        s0(),
+        (s0(),
           C.match.call(void 0, _.TokenType.greaterThan) ||
-            z.expect.call(void 0, _.TokenType.comma);
+            z.expect.call(void 0, _.TokenType.comma));
       while (!C.match.call(void 0, _.TokenType.greaterThan) && !ue.state.error);
-      z.expect.call(void 0, _.TokenType.greaterThan),
-        C.popTypeContext.call(void 0, e);
+      (z.expect.call(void 0, _.TokenType.greaterThan),
+        C.popTypeContext.call(void 0, e));
     }
     Je.flowParseTypeParameterDeclaration = On;
     function Rs() {
@@ -20256,13 +20263,12 @@ If you need interactivity, consider converting part of this to a Client Componen
       for (
         z.expect.call(void 0, _.TokenType.lessThan);
         !C.match.call(void 0, _.TokenType.greaterThan) && !ue.state.error;
-
       )
-        Wt(),
+        (Wt(),
           C.match.call(void 0, _.TokenType.greaterThan) ||
-            z.expect.call(void 0, _.TokenType.comma);
-      z.expect.call(void 0, _.TokenType.greaterThan),
-        C.popTypeContext.call(void 0, e);
+            z.expect.call(void 0, _.TokenType.comma));
+      (z.expect.call(void 0, _.TokenType.greaterThan),
+        C.popTypeContext.call(void 0, e));
     }
     function i0() {
       if (
@@ -20280,18 +20286,18 @@ If you need interactivity, consider converting part of this to a Client Componen
         : je.parseIdentifier.call(void 0);
     }
     function r0() {
-      C.lookaheadType.call(void 0) === _.TokenType.colon ? (Dl(), Ln()) : Wt(),
+      (C.lookaheadType.call(void 0) === _.TokenType.colon ? (Dl(), Ln()) : Wt(),
         z.expect.call(void 0, _.TokenType.bracketR),
-        Ln();
+        Ln());
     }
     function o0() {
-      Dl(),
+      (Dl(),
         z.expect.call(void 0, _.TokenType.bracketR),
         z.expect.call(void 0, _.TokenType.bracketR),
         C.match.call(void 0, _.TokenType.lessThan) ||
         C.match.call(void 0, _.TokenType.parenL)
           ? Ml()
-          : (C.eat.call(void 0, _.TokenType.question), Ln());
+          : (C.eat.call(void 0, _.TokenType.question), Ln()));
     }
     function Ml() {
       for (
@@ -20300,14 +20306,13 @@ If you need interactivity, consider converting part of this to a Client Componen
         !C.match.call(void 0, _.TokenType.parenR) &&
         !C.match.call(void 0, _.TokenType.ellipsis) &&
         !ue.state.error;
-
       )
-        wo(),
+        (wo(),
           C.match.call(void 0, _.TokenType.parenR) ||
-            z.expect.call(void 0, _.TokenType.comma);
-      C.eat.call(void 0, _.TokenType.ellipsis) && wo(),
+            z.expect.call(void 0, _.TokenType.comma));
+      (C.eat.call(void 0, _.TokenType.ellipsis) && wo(),
         z.expect.call(void 0, _.TokenType.parenR),
-        Ln();
+        Ln());
     }
     function a0() {
       Ml();
@@ -20321,7 +20326,6 @@ If you need interactivity, consider converting part of this to a Client Componen
           : (z.expect.call(void 0, _.TokenType.braceL),
             (i = _.TokenType.braceR));
         !C.match.call(void 0, i) && !ue.state.error;
-
       ) {
         if (s && z.isContextual.call(void 0, ye.ContextualKeyword._proto)) {
           let r = C.lookaheadType.call(void 0);
@@ -20370,11 +20374,11 @@ If you need interactivity, consider converting part of this to a Client Componen
           return;
         Wt();
       } else
-        Dl(),
+        (Dl(),
           C.match.call(void 0, _.TokenType.lessThan) ||
           C.match.call(void 0, _.TokenType.parenL)
             ? Ml()
-            : (C.eat.call(void 0, _.TokenType.question), Ln());
+            : (C.eat.call(void 0, _.TokenType.question), Ln()));
     }
     function c0() {
       !C.eat.call(void 0, _.TokenType.semi) &&
@@ -20387,15 +20391,14 @@ If you need interactivity, consider converting part of this to a Client Componen
       for (
         e || je.parseIdentifier.call(void 0);
         C.eat.call(void 0, _.TokenType.dot);
-
       )
         je.parseIdentifier.call(void 0);
     }
     function u0() {
-      sh(!0), C.match.call(void 0, _.TokenType.lessThan) && Rs();
+      (sh(!0), C.match.call(void 0, _.TokenType.lessThan) && Rs());
     }
     function p0() {
-      z.expect.call(void 0, _.TokenType._typeof), ih();
+      (z.expect.call(void 0, _.TokenType._typeof), ih());
     }
     function h0() {
       for (
@@ -20403,7 +20406,6 @@ If you need interactivity, consider converting part of this to a Client Componen
         ue.state.pos < ue.input.length &&
         !C.match.call(void 0, _.TokenType.bracketR) &&
         (Wt(), !C.match.call(void 0, _.TokenType.bracketR));
-
       )
         z.expect.call(void 0, _.TokenType.comma);
       z.expect.call(void 0, _.TokenType.bracketR);
@@ -20422,11 +20424,10 @@ If you need interactivity, consider converting part of this to a Client Componen
         !C.match.call(void 0, _.TokenType.parenR) &&
         !C.match.call(void 0, _.TokenType.ellipsis) &&
         !ue.state.error;
-
       )
-        wo(),
+        (wo(),
           C.match.call(void 0, _.TokenType.parenR) ||
-            z.expect.call(void 0, _.TokenType.comma);
+            z.expect.call(void 0, _.TokenType.comma));
       C.eat.call(void 0, _.TokenType.ellipsis) && wo();
     }
     function ih() {
@@ -20438,7 +20439,7 @@ If you need interactivity, consider converting part of this to a Client Componen
             i0();
             return;
           }
-          je.parseIdentifier.call(void 0), u0();
+          (je.parseIdentifier.call(void 0), u0());
           return;
         }
         case _.TokenType.braceL:
@@ -20451,12 +20452,12 @@ If you need interactivity, consider converting part of this to a Client Componen
           h0();
           return;
         case _.TokenType.lessThan:
-          On(),
+          (On(),
             z.expect.call(void 0, _.TokenType.parenL),
             Al(),
             z.expect.call(void 0, _.TokenType.parenR),
             z.expect.call(void 0, _.TokenType.arrow),
-            Wt();
+            Wt());
           return;
         case _.TokenType.parenL:
           if (
@@ -20483,13 +20484,13 @@ If you need interactivity, consider converting part of this to a Client Componen
               z.expect.call(void 0, _.TokenType.parenR);
               return;
             } else C.eat.call(void 0, _.TokenType.comma);
-          Al(),
+          (Al(),
             z.expect.call(void 0, _.TokenType.parenR),
             z.expect.call(void 0, _.TokenType.arrow),
-            Wt();
+            Wt());
           return;
         case _.TokenType.minus:
-          C.next.call(void 0), je.parseLiteral.call(void 0);
+          (C.next.call(void 0), je.parseLiteral.call(void 0));
           return;
         case _.TokenType.string:
         case _.TokenType.num:
@@ -20506,9 +20507,9 @@ If you need interactivity, consider converting part of this to a Client Componen
             p0();
             return;
           } else if (ue.state.type & _.TokenType.IS_KEYWORD) {
-            C.next.call(void 0),
+            (C.next.call(void 0),
               (ue.state.tokens[ue.state.tokens.length - 1].type =
-                _.TokenType.name);
+                _.TokenType.name));
             return;
           }
       }
@@ -20520,27 +20521,25 @@ If you need interactivity, consider converting part of this to a Client Componen
         !z.canInsertSemicolon.call(void 0) &&
         (C.match.call(void 0, _.TokenType.bracketL) ||
           C.match.call(void 0, _.TokenType.questionDot));
-
       )
-        C.eat.call(void 0, _.TokenType.questionDot),
+        (C.eat.call(void 0, _.TokenType.questionDot),
           z.expect.call(void 0, _.TokenType.bracketL),
           C.eat.call(void 0, _.TokenType.bracketR) ||
-            (Wt(), z.expect.call(void 0, _.TokenType.bracketR));
+            (Wt(), z.expect.call(void 0, _.TokenType.bracketR)));
     }
     function rh() {
       C.eat.call(void 0, _.TokenType.question) ? rh() : f0();
     }
     function th() {
-      rh(),
+      (rh(),
         !ue.state.noAnonFunctionType &&
           C.eat.call(void 0, _.TokenType.arrow) &&
-          Wt();
+          Wt());
     }
     function nh() {
       for (
         C.eat.call(void 0, _.TokenType.bitwiseAND), th();
         C.eat.call(void 0, _.TokenType.bitwiseAND);
-
       )
         th();
     }
@@ -20548,7 +20547,6 @@ If you need interactivity, consider converting part of this to a Client Componen
       for (
         C.eat.call(void 0, _.TokenType.bitwiseOR), nh();
         C.eat.call(void 0, _.TokenType.bitwiseOR);
-
       )
         nh();
     }
@@ -20560,8 +20558,8 @@ If you need interactivity, consider converting part of this to a Client Componen
     }
     Je.flowParseTypeAnnotation = vi;
     function oh() {
-      je.parseIdentifier.call(void 0),
-        C.match.call(void 0, _.TokenType.colon) && vi();
+      (je.parseIdentifier.call(void 0),
+        C.match.call(void 0, _.TokenType.colon) && vi());
     }
     function Fl() {
       (C.match.call(void 0, _.TokenType.plus) ||
@@ -20571,8 +20569,8 @@ If you need interactivity, consider converting part of this to a Client Componen
     }
     Je.flowParseVariance = Fl;
     function m0(e) {
-      C.match.call(void 0, _.TokenType.colon) && Pl(),
-        je.parseFunctionBody.call(void 0, !1, e);
+      (C.match.call(void 0, _.TokenType.colon) && Pl(),
+        je.parseFunctionBody.call(void 0, !1, e));
     }
     Je.flowParseFunctionBodyAndFinish = m0;
     function y0(e, t, s) {
@@ -20584,10 +20582,10 @@ If you need interactivity, consider converting part of this to a Client Componen
           s.stop = !0;
           return;
         }
-        C.next.call(void 0),
+        (C.next.call(void 0),
           Rs(),
           z.expect.call(void 0, _.TokenType.parenL),
-          je.parseCallExpressionArguments.call(void 0);
+          je.parseCallExpressionArguments.call(void 0));
         return;
       } else if (!t && C.match.call(void 0, _.TokenType.lessThan)) {
         let i = ue.state.snapshot();
@@ -20606,7 +20604,7 @@ If you need interactivity, consider converting part of this to a Client Componen
     function T0() {
       if (C.match.call(void 0, _.TokenType.lessThan)) {
         let e = ue.state.snapshot();
-        Rs(), ue.state.error && ue.state.restoreFromSnapshot(e);
+        (Rs(), ue.state.error && ue.state.restoreFromSnapshot(e));
       }
     }
     Je.flowStartParseNewArguments = T0;
@@ -20616,9 +20614,14 @@ If you need interactivity, consider converting part of this to a Client Componen
         ue.state.contextualKeyword === ye.ContextualKeyword._interface
       ) {
         let e = C.pushTypeContext.call(void 0, 0);
-        return C.next.call(void 0), Rl(), C.popTypeContext.call(void 0, e), !0;
+        return (
+          C.next.call(void 0),
+          Rl(),
+          C.popTypeContext.call(void 0, e),
+          !0
+        );
       } else if (z.isContextual.call(void 0, ye.ContextualKeyword._enum))
-        return ah(), !0;
+        return (ah(), !0);
       return !1;
     }
     Je.flowTryParseStatement = k0;
@@ -20638,18 +20641,18 @@ If you need interactivity, consider converting part of this to a Client Componen
           C.match.call(void 0, _.TokenType._export)
         ) {
           let t = C.pushTypeContext.call(void 0, 1);
-          El(), C.popTypeContext.call(void 0, t);
+          (El(), C.popTypeContext.call(void 0, t));
         }
       } else if (C.match.call(void 0, _.TokenType.name)) {
         if (e === ye.ContextualKeyword._interface) {
           let t = C.pushTypeContext.call(void 0, 1);
-          Rl(), C.popTypeContext.call(void 0, t);
+          (Rl(), C.popTypeContext.call(void 0, t));
         } else if (e === ye.ContextualKeyword._type) {
           let t = C.pushTypeContext.call(void 0, 1);
-          Ll(), C.popTypeContext.call(void 0, t);
+          (Ll(), C.popTypeContext.call(void 0, t));
         } else if (e === ye.ContextualKeyword._opaque) {
           let t = C.pushTypeContext.call(void 0, 1);
-          Ol(!1), C.popTypeContext.call(void 0, t);
+          (Ol(!1), C.popTypeContext.call(void 0, t));
         }
       }
       z.semicolon.call(void 0);
@@ -20677,18 +20680,18 @@ If you need interactivity, consider converting part of this to a Client Componen
     function b0() {
       if (z.isContextual.call(void 0, ye.ContextualKeyword._type)) {
         let e = C.pushTypeContext.call(void 0, 1);
-        C.next.call(void 0),
+        (C.next.call(void 0),
           C.match.call(void 0, _.TokenType.braceL)
             ? (ys.parseExportSpecifiers.call(void 0),
               ys.parseExportFrom.call(void 0))
             : Ll(),
-          C.popTypeContext.call(void 0, e);
+          C.popTypeContext.call(void 0, e));
       } else if (z.isContextual.call(void 0, ye.ContextualKeyword._opaque)) {
         let e = C.pushTypeContext.call(void 0, 1);
-        C.next.call(void 0), Ol(!1), C.popTypeContext.call(void 0, e);
+        (C.next.call(void 0), Ol(!1), C.popTypeContext.call(void 0, e));
       } else if (z.isContextual.call(void 0, ye.ContextualKeyword._interface)) {
         let e = C.pushTypeContext.call(void 0, 1);
-        C.next.call(void 0), Rl(), C.popTypeContext.call(void 0, e);
+        (C.next.call(void 0), Rl(), C.popTypeContext.call(void 0, e));
       } else ys.parseStatement.call(void 0, !0);
     }
     Je.flowParseExportDeclaration = b0;
@@ -20703,7 +20706,7 @@ If you need interactivity, consider converting part of this to a Client Componen
     function w0() {
       if (z.eatContextual.call(void 0, ye.ContextualKeyword._type)) {
         let e = C.pushTypeContext.call(void 0, 2);
-        ys.baseParseExportStar.call(void 0), C.popTypeContext.call(void 0, e);
+        (ys.baseParseExportStar.call(void 0), C.popTypeContext.call(void 0, e));
       } else ys.baseParseExportStar.call(void 0);
     }
     Je.flowParseExportStar = w0;
@@ -20713,10 +20716,10 @@ If you need interactivity, consider converting part of this to a Client Componen
         z.isContextual.call(void 0, ye.ContextualKeyword._implements))
       ) {
         let t = C.pushTypeContext.call(void 0, 0);
-        C.next.call(void 0),
+        (C.next.call(void 0),
           (ue.state.tokens[ue.state.tokens.length - 1].type =
-            _.TokenType._implements);
-        do So(), C.match.call(void 0, _.TokenType.lessThan) && Rs();
+            _.TokenType._implements));
+        do (So(), C.match.call(void 0, _.TokenType.lessThan) && Rs());
         while (C.eat.call(void 0, _.TokenType.comma));
         C.popTypeContext.call(void 0, t);
       }
@@ -20730,9 +20733,9 @@ If you need interactivity, consider converting part of this to a Client Componen
     Je.flowStartParseObjPropValue = I0;
     function E0() {
       let e = C.pushTypeContext.call(void 0, 0);
-      C.eat.call(void 0, _.TokenType.question),
+      (C.eat.call(void 0, _.TokenType.question),
         C.match.call(void 0, _.TokenType.colon) && vi(),
-        C.popTypeContext.call(void 0, e);
+        C.popTypeContext.call(void 0, e));
     }
     Je.flowParseAssignableListItemTypes = E0;
     function A0() {
@@ -20752,7 +20755,7 @@ If you need interactivity, consider converting part of this to a Client Componen
       let e =
         ue.state.contextualKeyword === ye.ContextualKeyword._type ||
         ue.state.type === _.TokenType._typeof;
-      e ? C.next.call(void 0) : je.parseIdentifier.call(void 0),
+      (e ? C.next.call(void 0) : je.parseIdentifier.call(void 0),
         z.isContextual.call(void 0, ye.ContextualKeyword._as) &&
         !z.isLookaheadContextual.call(void 0, ye.ContextualKeyword._as)
           ? (je.parseIdentifier.call(void 0),
@@ -20765,13 +20768,13 @@ If you need interactivity, consider converting part of this to a Client Componen
                 ue.state.type & _.TokenType.IS_KEYWORD) &&
               je.parseIdentifier.call(void 0),
             z.eatContextual.call(void 0, ye.ContextualKeyword._as) &&
-              je.parseIdentifier.call(void 0));
+              je.parseIdentifier.call(void 0)));
     }
     Je.flowParseImportSpecifier = P0;
     function N0() {
       if (C.match.call(void 0, _.TokenType.lessThan)) {
         let e = C.pushTypeContext.call(void 0, 0);
-        On(), C.popTypeContext.call(void 0, e);
+        (On(), C.popTypeContext.call(void 0, e));
       }
     }
     Je.flowStartParseFunctionParams = N0;
@@ -20782,9 +20785,9 @@ If you need interactivity, consider converting part of this to a Client Componen
     function L0() {
       if (C.match.call(void 0, _.TokenType.colon)) {
         let e = ue.state.noAnonFunctionType;
-        (ue.state.noAnonFunctionType = !0),
+        ((ue.state.noAnonFunctionType = !0),
           vi(),
-          (ue.state.noAnonFunctionType = e);
+          (ue.state.noAnonFunctionType = e));
       }
     }
     Je.flowStartParseAsyncArrowFromCallExpression = L0;
@@ -20793,8 +20796,8 @@ If you need interactivity, consider converting part of this to a Client Componen
         let s = ue.state.snapshot(),
           i = je.baseParseMaybeAssign.call(void 0, e, t);
         if (ue.state.error)
-          ue.state.restoreFromSnapshot(s),
-            (ue.state.type = _.TokenType.typeParameterStart);
+          (ue.state.restoreFromSnapshot(s),
+            (ue.state.type = _.TokenType.typeParameterStart));
         else return i;
         let r = C.pushTypeContext.call(void 0, 0);
         if (
@@ -20814,13 +20817,13 @@ If you need interactivity, consider converting part of this to a Client Componen
         let e = C.pushTypeContext.call(void 0, 0),
           t = ue.state.snapshot(),
           s = ue.state.noAnonFunctionType;
-        (ue.state.noAnonFunctionType = !0),
+        ((ue.state.noAnonFunctionType = !0),
           Pl(),
           (ue.state.noAnonFunctionType = s),
           z.canInsertSemicolon.call(void 0) && z.unexpected.call(void 0),
           C.match.call(void 0, _.TokenType.arrow) || z.unexpected.call(void 0),
           ue.state.error && ue.state.restoreFromSnapshot(t),
-          C.popTypeContext.call(void 0, e);
+          C.popTypeContext.call(void 0, e));
       }
       return C.eat.call(void 0, _.TokenType.arrow);
     }
@@ -20849,17 +20852,17 @@ If you need interactivity, consider converting part of this to a Client Componen
       );
     }
     function ah() {
-      z.expectContextual.call(void 0, ye.ContextualKeyword._enum),
+      (z.expectContextual.call(void 0, ye.ContextualKeyword._enum),
         (ue.state.tokens[ue.state.tokens.length - 1].type = _.TokenType._enum),
         je.parseIdentifier.call(void 0),
-        B0();
+        B0());
     }
     function B0() {
-      z.eatContextual.call(void 0, ye.ContextualKeyword._of) &&
+      (z.eatContextual.call(void 0, ye.ContextualKeyword._of) &&
         C.next.call(void 0),
         z.expect.call(void 0, _.TokenType.braceL),
         V0(),
-        z.expect.call(void 0, _.TokenType.braceR);
+        z.expect.call(void 0, _.TokenType.braceR));
     }
     function V0() {
       for (
@@ -20867,15 +20870,14 @@ If you need interactivity, consider converting part of this to a Client Componen
         !C.match.call(void 0, _.TokenType.braceR) &&
         !ue.state.error &&
         !C.eat.call(void 0, _.TokenType.ellipsis);
-
       )
-        j0(),
+        (j0(),
           C.match.call(void 0, _.TokenType.braceR) ||
-            z.expect.call(void 0, _.TokenType.comma);
+            z.expect.call(void 0, _.TokenType.comma));
     }
     function j0() {
-      je.parseIdentifier.call(void 0),
-        C.eat.call(void 0, _.TokenType.eq) && C.next.call(void 0);
+      (je.parseIdentifier.call(void 0),
+        C.eat.call(void 0, _.TokenType.eq) && C.next.call(void 0));
     }
   });
   var nr = Z((Tt) => {
@@ -20930,10 +20932,10 @@ If you need interactivity, consider converting part of this to a Client Componen
           return;
         case D.TokenType._function:
           if ($.lookaheadType.call(void 0) === D.TokenType.dot) break;
-          e || ee.unexpected.call(void 0), J0();
+          (e || ee.unexpected.call(void 0), J0());
           return;
         case D.TokenType._class:
-          e || ee.unexpected.call(void 0), Io(!0);
+          (e || ee.unexpected.call(void 0), Io(!0));
           return;
         case D.TokenType._if:
           Q0();
@@ -20969,7 +20971,7 @@ If you need interactivity, consider converting part of this to a Client Componen
         case D.TokenType._import: {
           let r = $.lookaheadType.call(void 0);
           if (r === D.TokenType.parenL || r === D.TokenType.dot) break;
-          $.next.call(void 0), t === D.TokenType._import ? xh() : Th();
+          ($.next.call(void 0), t === D.TokenType._import ? xh() : Th());
           return;
         }
         case D.TokenType.name:
@@ -20981,7 +20983,7 @@ If you need interactivity, consider converting part of this to a Client Componen
               $.match.call(void 0, D.TokenType._function) &&
                 !ee.canInsertSemicolon.call(void 0))
             ) {
-              ee.expect.call(void 0, D.TokenType._function), lr(r, !0);
+              (ee.expect.call(void 0, D.TokenType._function), lr(r, !0));
               return;
             } else P.state.restoreFromSnapshot(a);
           } else if (
@@ -21014,13 +21016,12 @@ If you need interactivity, consider converting part of this to a Client Componen
     Tt.parseDecorators = $l;
     function ph() {
       if (($.next.call(void 0), $.eat.call(void 0, D.TokenType.parenL)))
-        De.parseExpression.call(void 0),
-          ee.expect.call(void 0, D.TokenType.parenR);
+        (De.parseExpression.call(void 0),
+          ee.expect.call(void 0, D.TokenType.parenR));
       else {
         for (
           De.parseIdentifier.call(void 0);
           $.eat.call(void 0, D.TokenType.dot);
-
         )
           De.parseIdentifier.call(void 0);
         U0();
@@ -21037,26 +21038,26 @@ If you need interactivity, consider converting part of this to a Client Componen
     }
     Tt.baseParseMaybeDecoratorArguments = hh;
     function H0() {
-      $.next.call(void 0),
+      ($.next.call(void 0),
         ee.isLineTerminator.call(void 0) ||
-          (De.parseIdentifier.call(void 0), ee.semicolon.call(void 0));
+          (De.parseIdentifier.call(void 0), ee.semicolon.call(void 0)));
     }
     function W0() {
-      $.next.call(void 0), ee.semicolon.call(void 0);
+      ($.next.call(void 0), ee.semicolon.call(void 0));
     }
     function G0() {
-      $.next.call(void 0),
+      ($.next.call(void 0),
         _n(!1),
         ee.expect.call(void 0, D.TokenType._while),
         De.parseParenExpression.call(void 0),
-        $.eat.call(void 0, D.TokenType.semi);
+        $.eat.call(void 0, D.TokenType.semi));
     }
     function z0() {
       P.state.scopeDepth++;
       let e = P.state.tokens.length;
       Y0();
       let t = P.state.tokens.length;
-      P.state.scopes.push(new Ts.Scope(e, t, !1)), P.state.scopeDepth--;
+      (P.state.scopes.push(new Ts.Scope(e, t, !1)), P.state.scopeDepth--);
     }
     function X0() {
       return !(
@@ -21073,7 +21074,7 @@ If you need interactivity, consider converting part of this to a Client Componen
         ee.expect.call(void 0, D.TokenType.parenL),
         $.match.call(void 0, D.TokenType.semi))
       ) {
-        e && ee.unexpected.call(void 0), Bl();
+        (e && ee.unexpected.call(void 0), Bl());
         return;
       }
       if (
@@ -21102,54 +21103,53 @@ If you need interactivity, consider converting part of this to a Client Componen
         ch(e);
         return;
       }
-      e && ee.unexpected.call(void 0), Bl();
+      (e && ee.unexpected.call(void 0), Bl());
     }
     function J0() {
       let e = P.state.start;
-      $.next.call(void 0), lr(e, !0);
+      ($.next.call(void 0), lr(e, !0));
     }
     function Q0() {
-      $.next.call(void 0),
+      ($.next.call(void 0),
         De.parseParenExpression.call(void 0),
         _n(!1),
-        $.eat.call(void 0, D.TokenType._else) && _n(!1);
+        $.eat.call(void 0, D.TokenType._else) && _n(!1));
     }
     function Z0() {
-      $.next.call(void 0),
+      ($.next.call(void 0),
         ee.isLineTerminator.call(void 0) ||
-          (De.parseExpression.call(void 0), ee.semicolon.call(void 0));
+          (De.parseExpression.call(void 0), ee.semicolon.call(void 0)));
     }
     function ev() {
-      $.next.call(void 0),
+      ($.next.call(void 0),
         De.parseParenExpression.call(void 0),
-        P.state.scopeDepth++;
+        P.state.scopeDepth++);
       let e = P.state.tokens.length;
       for (
         ee.expect.call(void 0, D.TokenType.braceL);
         !$.match.call(void 0, D.TokenType.braceR) && !P.state.error;
-
       )
         if (
           $.match.call(void 0, D.TokenType._case) ||
           $.match.call(void 0, D.TokenType._default)
         ) {
           let s = $.match.call(void 0, D.TokenType._case);
-          $.next.call(void 0),
+          ($.next.call(void 0),
             s && De.parseExpression.call(void 0),
-            ee.expect.call(void 0, D.TokenType.colon);
+            ee.expect.call(void 0, D.TokenType.colon));
         } else _n(!0);
       $.next.call(void 0);
       let t = P.state.tokens.length;
-      P.state.scopes.push(new Ts.Scope(e, t, !1)), P.state.scopeDepth--;
+      (P.state.scopes.push(new Ts.Scope(e, t, !1)), P.state.scopeDepth--);
     }
     function tv() {
-      $.next.call(void 0),
+      ($.next.call(void 0),
         De.parseExpression.call(void 0),
-        ee.semicolon.call(void 0);
+        ee.semicolon.call(void 0));
     }
     function nv() {
-      ks.parseBindingAtom.call(void 0, !0),
-        P.isTypeScriptEnabled && dt.tsTryParseTypeAnnotation.call(void 0);
+      (ks.parseBindingAtom.call(void 0, !0),
+        P.isTypeScriptEnabled && dt.tsTryParseTypeAnnotation.call(void 0));
     }
     function sv() {
       if (
@@ -21168,17 +21168,17 @@ If you need interactivity, consider converting part of this to a Client Componen
           e != null)
         ) {
           let t = P.state.tokens.length;
-          P.state.scopes.push(new Ts.Scope(e, t, !1)), P.state.scopeDepth--;
+          (P.state.scopes.push(new Ts.Scope(e, t, !1)), P.state.scopeDepth--);
         }
       }
       $.eat.call(void 0, D.TokenType._finally) && gi();
     }
     function Vl(e) {
-      $.next.call(void 0), fh(!1, e), ee.semicolon.call(void 0);
+      ($.next.call(void 0), fh(!1, e), ee.semicolon.call(void 0));
     }
     Tt.parseVarStatement = Vl;
     function iv() {
-      $.next.call(void 0), De.parseParenExpression.call(void 0), _n(!1);
+      ($.next.call(void 0), De.parseParenExpression.call(void 0), _n(!1));
     }
     function rv() {
       $.next.call(void 0);
@@ -21190,18 +21190,18 @@ If you need interactivity, consider converting part of this to a Client Componen
       P.isTypeScriptEnabled
         ? dt.tsParseIdentifierStatement.call(void 0, e)
         : P.isFlowEnabled
-        ? Ft.flowParseIdentifierStatement.call(void 0, e)
-        : ee.semicolon.call(void 0);
+          ? Ft.flowParseIdentifierStatement.call(void 0, e)
+          : ee.semicolon.call(void 0);
     }
     function gi(e = !1, t = 0) {
       let s = P.state.tokens.length;
-      P.state.scopeDepth++,
+      (P.state.scopeDepth++,
         ee.expect.call(void 0, D.TokenType.braceL),
         t && (P.state.tokens[P.state.tokens.length - 1].contextId = t),
         ql(D.TokenType.braceR),
-        t && (P.state.tokens[P.state.tokens.length - 1].contextId = t);
+        t && (P.state.tokens[P.state.tokens.length - 1].contextId = t));
       let i = P.state.tokens.length;
-      P.state.scopes.push(new Ts.Scope(s, i, e)), P.state.scopeDepth--;
+      (P.state.scopes.push(new Ts.Scope(s, i, e)), P.state.scopeDepth--);
     }
     Tt.parseBlock = gi;
     function ql(e) {
@@ -21209,76 +21209,80 @@ If you need interactivity, consider converting part of this to a Client Componen
     }
     Tt.parseBlockBody = ql;
     function Bl() {
-      ee.expect.call(void 0, D.TokenType.semi),
+      (ee.expect.call(void 0, D.TokenType.semi),
         $.match.call(void 0, D.TokenType.semi) ||
           De.parseExpression.call(void 0),
         ee.expect.call(void 0, D.TokenType.semi),
         $.match.call(void 0, D.TokenType.parenR) ||
           De.parseExpression.call(void 0),
         ee.expect.call(void 0, D.TokenType.parenR),
-        _n(!1);
+        _n(!1));
     }
     function ch(e) {
-      e
+      (e
         ? ee.eatContextual.call(void 0, ke.ContextualKeyword._of)
         : $.next.call(void 0),
         De.parseExpression.call(void 0),
         ee.expect.call(void 0, D.TokenType.parenR),
-        _n(!1);
+        _n(!1));
     }
     function fh(e, t) {
       for (;;) {
         if ((lv(t), $.eat.call(void 0, D.TokenType.eq))) {
           let s = P.state.tokens.length - 1;
-          De.parseMaybeAssign.call(void 0, e),
-            (P.state.tokens[s].rhsEndIndex = P.state.tokens.length);
+          (De.parseMaybeAssign.call(void 0, e),
+            (P.state.tokens[s].rhsEndIndex = P.state.tokens.length));
         }
         if (!$.eat.call(void 0, D.TokenType.comma)) break;
       }
     }
     function lv(e) {
-      ks.parseBindingAtom.call(void 0, e),
+      (ks.parseBindingAtom.call(void 0, e),
         P.isTypeScriptEnabled
           ? dt.tsAfterParseVarHead.call(void 0)
-          : P.isFlowEnabled && Ft.flowAfterParseVarHead.call(void 0);
+          : P.isFlowEnabled && Ft.flowAfterParseVarHead.call(void 0));
     }
     function lr(e, t, s = !1) {
-      $.match.call(void 0, D.TokenType.star) && $.next.call(void 0),
+      ($.match.call(void 0, D.TokenType.star) && $.next.call(void 0),
         t &&
           !s &&
           !$.match.call(void 0, D.TokenType.name) &&
           !$.match.call(void 0, D.TokenType._yield) &&
-          ee.unexpected.call(void 0);
+          ee.unexpected.call(void 0));
       let i = null;
       $.match.call(void 0, D.TokenType.name) &&
         (t || ((i = P.state.tokens.length), P.state.scopeDepth++),
         ks.parseBindingIdentifier.call(void 0, !1));
       let r = P.state.tokens.length;
-      P.state.scopeDepth++, dh(), De.parseFunctionBodyAndFinish.call(void 0, e);
+      (P.state.scopeDepth++,
+        dh(),
+        De.parseFunctionBodyAndFinish.call(void 0, e));
       let a = P.state.tokens.length;
-      P.state.scopes.push(new Ts.Scope(r, a, !0)),
+      (P.state.scopes.push(new Ts.Scope(r, a, !0)),
         P.state.scopeDepth--,
         i !== null &&
-          (P.state.scopes.push(new Ts.Scope(i, a, !0)), P.state.scopeDepth--);
+          (P.state.scopes.push(new Ts.Scope(i, a, !0)), P.state.scopeDepth--));
     }
     Tt.parseFunction = lr;
     function dh(e = !1, t = 0) {
-      P.isTypeScriptEnabled
+      (P.isTypeScriptEnabled
         ? dt.tsStartParseFunctionParams.call(void 0)
         : P.isFlowEnabled && Ft.flowStartParseFunctionParams.call(void 0),
         ee.expect.call(void 0, D.TokenType.parenL),
         t && (P.state.tokens[P.state.tokens.length - 1].contextId = t),
         ks.parseBindingList.call(void 0, D.TokenType.parenR, !1, !1, e, t),
-        t && (P.state.tokens[P.state.tokens.length - 1].contextId = t);
+        t && (P.state.tokens[P.state.tokens.length - 1].contextId = t));
     }
     Tt.parseFunctionParams = dh;
     function Io(e, t = !1) {
       let s = P.getNextContextId.call(void 0);
-      $.next.call(void 0),
+      ($.next.call(void 0),
         (P.state.tokens[P.state.tokens.length - 1].contextId = s),
-        (P.state.tokens[P.state.tokens.length - 1].isExpression = !e);
+        (P.state.tokens[P.state.tokens.length - 1].isExpression = !e));
       let i = null;
-      e || ((i = P.state.tokens.length), P.state.scopeDepth++), hv(e, t), fv();
+      (e || ((i = P.state.tokens.length), P.state.scopeDepth++),
+        hv(e, t),
+        fv());
       let r = P.state.tokens.length;
       if (
         (cv(s),
@@ -21288,7 +21292,7 @@ If you need interactivity, consider converting part of this to a Client Componen
           i !== null))
       ) {
         let a = P.state.tokens.length;
-        P.state.scopes.push(new Ts.Scope(i, a, !1)), P.state.scopeDepth--;
+        (P.state.scopes.push(new Ts.Scope(i, a, !1)), P.state.scopeDepth--);
       }
     }
     Tt.parseClass = Io;
@@ -21311,7 +21315,6 @@ If you need interactivity, consider converting part of this to a Client Componen
       for (
         ee.expect.call(void 0, D.TokenType.braceL);
         !$.eat.call(void 0, D.TokenType.braceR) && !P.state.error;
-
       ) {
         if ($.eat.call(void 0, D.TokenType.semi)) continue;
         if ($.match.call(void 0, D.TokenType.at)) {
@@ -21349,7 +21352,7 @@ If you need interactivity, consider converting part of this to a Client Componen
           (s = !0),
           $.match.call(void 0, D.TokenType.braceL))
         ) {
-          (P.state.tokens[P.state.tokens.length - 1].contextId = t), gi();
+          ((P.state.tokens[P.state.tokens.length - 1].contextId = t), gi());
           return;
         }
       }
@@ -21362,53 +21365,53 @@ If you need interactivity, consider converting part of this to a Client Componen
       )
         return;
       if ($.eat.call(void 0, D.TokenType.star)) {
-        xi(s), or(e, !1);
+        (xi(s), or(e, !1));
         return;
       }
       xi(s);
       let i = !1,
         r = P.state.tokens[P.state.tokens.length - 1];
-      r.contextualKeyword === ke.ContextualKeyword._constructor && (i = !0),
+      (r.contextualKeyword === ke.ContextualKeyword._constructor && (i = !0),
         jl(),
         yh()
           ? or(e, i)
           : mh()
-          ? ar()
-          : r.contextualKeyword === ke.ContextualKeyword._async &&
-            !ee.isLineTerminator.call(void 0)
-          ? ((P.state.tokens[P.state.tokens.length - 1].type =
-              D.TokenType._async),
-            $.match.call(void 0, D.TokenType.star) && $.next.call(void 0),
-            xi(s),
-            jl(),
-            or(e, !1))
-          : (r.contextualKeyword === ke.ContextualKeyword._get ||
-              r.contextualKeyword === ke.ContextualKeyword._set) &&
-            !(
-              ee.isLineTerminator.call(void 0) &&
-              $.match.call(void 0, D.TokenType.star)
-            )
-          ? (r.contextualKeyword === ke.ContextualKeyword._get
-              ? (P.state.tokens[P.state.tokens.length - 1].type =
-                  D.TokenType._get)
-              : (P.state.tokens[P.state.tokens.length - 1].type =
-                  D.TokenType._set),
-            xi(s),
-            or(e, !1))
-          : r.contextualKeyword === ke.ContextualKeyword._accessor &&
-            !ee.isLineTerminator.call(void 0)
-          ? (xi(s), ar())
-          : ee.isLineTerminator.call(void 0)
-          ? ar()
-          : ee.unexpected.call(void 0);
+            ? ar()
+            : r.contextualKeyword === ke.ContextualKeyword._async &&
+                !ee.isLineTerminator.call(void 0)
+              ? ((P.state.tokens[P.state.tokens.length - 1].type =
+                  D.TokenType._async),
+                $.match.call(void 0, D.TokenType.star) && $.next.call(void 0),
+                xi(s),
+                jl(),
+                or(e, !1))
+              : (r.contextualKeyword === ke.ContextualKeyword._get ||
+                    r.contextualKeyword === ke.ContextualKeyword._set) &&
+                  !(
+                    ee.isLineTerminator.call(void 0) &&
+                    $.match.call(void 0, D.TokenType.star)
+                  )
+                ? (r.contextualKeyword === ke.ContextualKeyword._get
+                    ? (P.state.tokens[P.state.tokens.length - 1].type =
+                        D.TokenType._get)
+                    : (P.state.tokens[P.state.tokens.length - 1].type =
+                        D.TokenType._set),
+                  xi(s),
+                  or(e, !1))
+                : r.contextualKeyword === ke.ContextualKeyword._accessor &&
+                    !ee.isLineTerminator.call(void 0)
+                  ? (xi(s), ar())
+                  : ee.isLineTerminator.call(void 0)
+                    ? ar()
+                    : ee.unexpected.call(void 0));
     }
     function or(e, t) {
-      P.isTypeScriptEnabled
+      (P.isTypeScriptEnabled
         ? dt.tsTryParseTypeParameters.call(void 0)
         : P.isFlowEnabled &&
           $.match.call(void 0, D.TokenType.lessThan) &&
           Ft.flowParseTypeParameterDeclaration.call(void 0),
-        De.parseMethod.call(void 0, e, t);
+        De.parseMethod.call(void 0, e, t));
     }
     function xi(e) {
       De.parsePropertyName.call(void 0, e);
@@ -21417,8 +21420,8 @@ If you need interactivity, consider converting part of this to a Client Componen
     function jl() {
       if (P.isTypeScriptEnabled) {
         let e = $.pushTypeContext.call(void 0, 0);
-        $.eat.call(void 0, D.TokenType.question),
-          $.popTypeContext.call(void 0, e);
+        ($.eat.call(void 0, D.TokenType.question),
+          $.popTypeContext.call(void 0, e));
       }
     }
     Tt.parsePostMemberNameModifiers = jl;
@@ -21433,9 +21436,9 @@ If you need interactivity, consider converting part of this to a Client Componen
         $.match.call(void 0, D.TokenType.eq))
       ) {
         let e = P.state.tokens.length;
-        $.next.call(void 0),
+        ($.next.call(void 0),
           De.parseMaybeAssign.call(void 0),
-          (P.state.tokens[e].rhsEndIndex = P.state.tokens.length);
+          (P.state.tokens[e].rhsEndIndex = P.state.tokens.length));
       }
       ee.semicolon.call(void 0);
     }
@@ -21454,12 +21457,12 @@ If you need interactivity, consider converting part of this to a Client Componen
     }
     function fv() {
       let e = !1;
-      $.eat.call(void 0, D.TokenType._extends)
+      ($.eat.call(void 0, D.TokenType._extends)
         ? (De.parseExprSubscripts.call(void 0), (e = !0))
         : (e = !1),
         P.isTypeScriptEnabled
           ? dt.tsAfterParseClassSuper.call(void 0, e)
-          : P.isFlowEnabled && Ft.flowAfterParseClassSuper.call(void 0, e);
+          : P.isFlowEnabled && Ft.flowAfterParseClassSuper.call(void 0, e));
     }
     function Th() {
       let e = P.state.tokens.length - 1;
@@ -21467,20 +21470,20 @@ If you need interactivity, consider converting part of this to a Client Componen
         (Tv()
           ? kv()
           : yv()
-          ? (De.parseIdentifier.call(void 0),
-            $.match.call(void 0, D.TokenType.comma) &&
-            $.lookaheadType.call(void 0) === D.TokenType.star
-              ? (ee.expect.call(void 0, D.TokenType.comma),
-                ee.expect.call(void 0, D.TokenType.star),
-                ee.expectContextual.call(void 0, ke.ContextualKeyword._as),
-                De.parseIdentifier.call(void 0))
-              : kh(),
-            cr())
-          : $.eat.call(void 0, D.TokenType._default)
-          ? dv()
-          : xv()
-          ? mv()
-          : (Kl(), cr()),
+            ? (De.parseIdentifier.call(void 0),
+              $.match.call(void 0, D.TokenType.comma) &&
+              $.lookaheadType.call(void 0) === D.TokenType.star
+                ? (ee.expect.call(void 0, D.TokenType.comma),
+                  ee.expect.call(void 0, D.TokenType.star),
+                  ee.expectContextual.call(void 0, ke.ContextualKeyword._as),
+                  De.parseIdentifier.call(void 0))
+                : kh(),
+              cr())
+            : $.eat.call(void 0, D.TokenType._default)
+              ? dv()
+              : xv()
+                ? mv()
+                : (Kl(), cr()),
         (P.state.tokens[e].rhsEndIndex = P.state.tokens.length));
     }
     Tt.parseExport = Th;
@@ -21495,22 +21498,22 @@ If you need interactivity, consider converting part of this to a Client Componen
       $.eat.call(void 0, D.TokenType._function)
         ? lr(e, !0, !0)
         : ee.isContextual.call(void 0, ke.ContextualKeyword._async) &&
-          $.lookaheadType.call(void 0) === D.TokenType._function
-        ? (ee.eatContextual.call(void 0, ke.ContextualKeyword._async),
-          $.eat.call(void 0, D.TokenType._function),
-          lr(e, !0, !0))
-        : $.match.call(void 0, D.TokenType._class)
-        ? Io(!0, !0)
-        : $.match.call(void 0, D.TokenType.at)
-        ? ($l(), Io(!0, !0))
-        : (De.parseMaybeAssign.call(void 0), ee.semicolon.call(void 0));
+            $.lookaheadType.call(void 0) === D.TokenType._function
+          ? (ee.eatContextual.call(void 0, ke.ContextualKeyword._async),
+            $.eat.call(void 0, D.TokenType._function),
+            lr(e, !0, !0))
+          : $.match.call(void 0, D.TokenType._class)
+            ? Io(!0, !0)
+            : $.match.call(void 0, D.TokenType.at)
+              ? ($l(), Io(!0, !0))
+              : (De.parseMaybeAssign.call(void 0), ee.semicolon.call(void 0));
     }
     function mv() {
       P.isTypeScriptEnabled
         ? dt.tsParseExportDeclaration.call(void 0)
         : P.isFlowEnabled
-        ? Ft.flowParseExportDeclaration.call(void 0)
-        : _n(!0);
+          ? Ft.flowParseExportDeclaration.call(void 0)
+          : _n(!0);
     }
     function yv() {
       if (P.isTypeScriptEnabled && dt.tsIsDeclarationStart.call(void 0))
@@ -21541,9 +21544,9 @@ If you need interactivity, consider converting part of this to a Client Componen
       $.eat.call(void 0, D.TokenType.comma) && Kl();
     }
     function cr() {
-      ee.eatContextual.call(void 0, ke.ContextualKeyword._from) &&
+      (ee.eatContextual.call(void 0, ke.ContextualKeyword._from) &&
         (De.parseExprAtom.call(void 0), gh()),
-        ee.semicolon.call(void 0);
+        ee.semicolon.call(void 0));
     }
     Tt.parseExportFrom = cr;
     function Tv() {
@@ -21555,16 +21558,16 @@ If you need interactivity, consider converting part of this to a Client Componen
       P.isFlowEnabled ? Ft.flowParseExportStar.call(void 0) : vh();
     }
     function vh() {
-      ee.expect.call(void 0, D.TokenType.star),
-        ee.isContextual.call(void 0, ke.ContextualKeyword._as) ? vv() : cr();
+      (ee.expect.call(void 0, D.TokenType.star),
+        ee.isContextual.call(void 0, ke.ContextualKeyword._as) ? vv() : cr());
     }
     Tt.baseParseExportStar = vh;
     function vv() {
-      $.next.call(void 0),
+      ($.next.call(void 0),
         (P.state.tokens[P.state.tokens.length - 1].type = D.TokenType._as),
         De.parseIdentifier.call(void 0),
         kh(),
-        cr();
+        cr());
     }
     function xv() {
       return (
@@ -21584,7 +21587,6 @@ If you need interactivity, consider converting part of this to a Client Componen
       for (
         ee.expect.call(void 0, D.TokenType.braceL);
         !$.eat.call(void 0, D.TokenType.braceR) && !P.state.error;
-
       ) {
         if (e) e = !1;
         else if (
@@ -21601,11 +21603,11 @@ If you need interactivity, consider converting part of this to a Client Componen
         dt.tsParseExportSpecifier.call(void 0);
         return;
       }
-      De.parseIdentifier.call(void 0),
+      (De.parseIdentifier.call(void 0),
         (P.state.tokens[P.state.tokens.length - 1].identifierRole =
           $.IdentifierRole.ExportAccess),
         ee.eatContextual.call(void 0, ke.ContextualKeyword._as) &&
-          De.parseIdentifier.call(void 0);
+          De.parseIdentifier.call(void 0));
     }
     function _v() {
       let e = P.state.snapshot();
@@ -21616,8 +21618,8 @@ If you need interactivity, consider converting part of this to a Client Componen
             ? (P.state.restoreFromSnapshot(e), !0)
             : (P.state.restoreFromSnapshot(e), !1)
           : $.match.call(void 0, D.TokenType.comma)
-          ? (P.state.restoreFromSnapshot(e), !1)
-          : (P.state.restoreFromSnapshot(e), !0)
+            ? (P.state.restoreFromSnapshot(e), !1)
+            : (P.state.restoreFromSnapshot(e), !0)
       );
     }
     function bv() {
@@ -21654,13 +21656,13 @@ If you need interactivity, consider converting part of this to a Client Componen
           (e.type === D.TokenType.star || e.type === D.TokenType.braceL) &&
             ee.expectContextual.call(void 0, ke.ContextualKeyword._type);
       }
-      $.match.call(void 0, D.TokenType.string) ||
+      ($.match.call(void 0, D.TokenType.string) ||
         (bv(),
         wv(),
         ee.expectContextual.call(void 0, ke.ContextualKeyword._from)),
         De.parseExprAtom.call(void 0),
         gh(),
-        ee.semicolon.call(void 0);
+        ee.semicolon.call(void 0));
     }
     Tt.parseImport = xh;
     function Cv() {
@@ -21674,15 +21676,14 @@ If you need interactivity, consider converting part of this to a Client Componen
       let e = !0;
       if (!(Cv() && (uh(), !$.eat.call(void 0, D.TokenType.comma)))) {
         if ($.match.call(void 0, D.TokenType.star)) {
-          $.next.call(void 0),
+          ($.next.call(void 0),
             ee.expectContextual.call(void 0, ke.ContextualKeyword._as),
-            uh();
+            uh());
           return;
         }
         for (
           ee.expect.call(void 0, D.TokenType.braceL);
           !$.eat.call(void 0, D.TokenType.braceR) && !P.state.error;
-
         ) {
           if (e) e = !1;
           else if (
@@ -21708,12 +21709,12 @@ If you need interactivity, consider converting part of this to a Client Componen
         Ft.flowParseImportSpecifier.call(void 0);
         return;
       }
-      ks.parseImportedIdentifier.call(void 0),
+      (ks.parseImportedIdentifier.call(void 0),
         ee.isContextual.call(void 0, ke.ContextualKeyword._as) &&
           ((P.state.tokens[P.state.tokens.length - 1].identifierRole =
             $.IdentifierRole.ImportAccess),
           $.next.call(void 0),
-          ks.parseImportedIdentifier.call(void 0));
+          ks.parseImportedIdentifier.call(void 0)));
     }
     function gh() {
       ee.isContextual.call(void 0, ke.ContextualKeyword._assert) &&
@@ -21747,7 +21748,7 @@ If you need interactivity, consider converting part of this to a Client Componen
       Av = Ch(),
       Gl = class {
         constructor(t, s) {
-          (this.tokens = t), (this.scopes = s);
+          ((this.tokens = t), (this.scopes = s));
         }
       };
     Ao.File = Gl;
@@ -21807,29 +21808,29 @@ If you need interactivity, consider converting part of this to a Client Componen
           this.tokenIndex = 0;
         }
         constructor(t, s, i, r, a) {
-          (this.code = t),
+          ((this.code = t),
             (this.tokens = s),
             (this.isFlowEnabled = i),
             (this.disableESTransforms = r),
             (this.helperManager = a),
             e.prototype.__init.call(this),
             e.prototype.__init2.call(this),
-            e.prototype.__init3.call(this);
+            e.prototype.__init3.call(this));
         }
         snapshot() {
           return {resultCode: this.resultCode, tokenIndex: this.tokenIndex};
         }
         restoreToSnapshot(t) {
-          (this.resultCode = t.resultCode), (this.tokenIndex = t.tokenIndex);
+          ((this.resultCode = t.resultCode), (this.tokenIndex = t.tokenIndex));
         }
         dangerouslyGetAndRemoveCodeSinceSnapshot(t) {
           let s = this.resultCode.slice(t.resultCode.length);
-          return (this.resultCode = t.resultCode), s;
+          return ((this.resultCode = t.resultCode), s);
         }
         reset() {
-          (this.resultCode = ''),
+          ((this.resultCode = ''),
             (this.resultMappings = new Array(this.tokens.length)),
-            (this.tokenIndex = 0);
+            (this.tokenIndex = 0));
         }
         matchesContextualAtIndex(t, s) {
           return (
@@ -21920,18 +21921,18 @@ If you need interactivity, consider converting part of this to a Client Componen
               ? this.tokens[this.tokenIndex].start
               : this.code.length
           );
-          return this.isFlowEnabled && (t = t.replace(/@flow/g, '')), t;
+          return (this.isFlowEnabled && (t = t.replace(/@flow/g, '')), t);
         }
         replaceToken(t) {
-          (this.resultCode += this.previousWhitespaceAndComments()),
+          ((this.resultCode += this.previousWhitespaceAndComments()),
             this.appendTokenPrefix(),
             (this.resultMappings[this.tokenIndex] = this.resultCode.length),
             (this.resultCode += t),
             this.appendTokenSuffix(),
-            this.tokenIndex++;
+            this.tokenIndex++);
         }
         replaceTokenTrimmingLeftWhitespace(t) {
-          (this.resultCode += this.previousWhitespaceAndComments().replace(
+          ((this.resultCode += this.previousWhitespaceAndComments().replace(
             /[^\r\n]/g,
             ''
           )),
@@ -21939,7 +21940,7 @@ If you need interactivity, consider converting part of this to a Client Componen
             (this.resultMappings[this.tokenIndex] = this.resultCode.length),
             (this.resultCode += t),
             this.appendTokenSuffix(),
-            this.tokenIndex++;
+            this.tokenIndex++);
         }
         removeInitialToken() {
           this.replaceToken('');
@@ -21964,7 +21965,7 @@ If you need interactivity, consider converting part of this to a Client Componen
           this.copyToken();
         }
         copyToken() {
-          (this.resultCode += this.previousWhitespaceAndComments()),
+          ((this.resultCode += this.previousWhitespaceAndComments()),
             this.appendTokenPrefix(),
             (this.resultMappings[this.tokenIndex] = this.resultCode.length),
             (this.resultCode += this.code.slice(
@@ -21972,10 +21973,10 @@ If you need interactivity, consider converting part of this to a Client Componen
               this.tokens[this.tokenIndex].end
             )),
             this.appendTokenSuffix(),
-            this.tokenIndex++;
+            this.tokenIndex++);
         }
         copyTokenWithPrefix(t) {
-          (this.resultCode += this.previousWhitespaceAndComments()),
+          ((this.resultCode += this.previousWhitespaceAndComments()),
             this.appendTokenPrefix(),
             (this.resultCode += t),
             (this.resultMappings[this.tokenIndex] = this.resultCode.length),
@@ -21984,7 +21985,7 @@ If you need interactivity, consider converting part of this to a Client Componen
               this.tokens[this.tokenIndex].end
             )),
             this.appendTokenSuffix(),
-            this.tokenIndex++;
+            this.tokenIndex++);
         }
         appendTokenPrefix() {
           let t = this.currentToken();
@@ -21995,14 +21996,14 @@ If you need interactivity, consider converting part of this to a Client Componen
           ) {
             if (t.numNullishCoalesceStarts)
               for (let s = 0; s < t.numNullishCoalesceStarts; s++)
-                t.isAsyncOperation
+                (t.isAsyncOperation
                   ? ((this.resultCode += 'await '),
                     (this.resultCode += this.helperManager.getHelperName(
                       'asyncNullishCoalesce'
                     )))
                   : (this.resultCode +=
                       this.helperManager.getHelperName('nullishCoalesce')),
-                  (this.resultCode += '(');
+                  (this.resultCode += '('));
             t.isOptionalChainStart &&
               (t.isAsyncOperation && (this.resultCode += 'await '),
               this.tokenIndex > 0 &&
@@ -22015,10 +22016,10 @@ If you need interactivity, consider converting part of this to a Client Componen
                       'optionalChainDelete'
                     ))
                 : t.isAsyncOperation
-                ? (this.resultCode +=
-                    this.helperManager.getHelperName('asyncOptionalChain'))
-                : (this.resultCode +=
-                    this.helperManager.getHelperName('optionalChain')),
+                  ? (this.resultCode +=
+                      this.helperManager.getHelperName('asyncOptionalChain'))
+                  : (this.resultCode +=
+                      this.helperManager.getHelperName('optionalChain')),
               (this.resultCode += '(['));
           }
         }
@@ -22100,8 +22101,8 @@ If you need interactivity, consider converting part of this to a Client Componen
           ({constructorInitializerStatements: u, constructorInsertPos: g} =
             Eh(t));
         else if (t.matches1(Ne.TokenType.semi))
-          i || p.push({start: t.currentIndex(), end: t.currentIndex() + 1}),
-            t.nextToken();
+          (i || p.push({start: t.currentIndex(), end: t.currentIndex() + 1}),
+            t.nextToken());
         else if (t.currentToken().isType) t.nextToken();
         else {
           let T = t.currentIndex(),
@@ -22109,12 +22110,12 @@ If you need interactivity, consider converting part of this to a Client Componen
             w = !1,
             S = !1;
           for (; No(t.currentToken()); )
-            t.matches1(Ne.TokenType._static) && (x = !0),
+            (t.matches1(Ne.TokenType._static) && (x = !0),
               t.matches1(Ne.TokenType.hash) && (w = !0),
               (t.matches1(Ne.TokenType._declare) ||
                 t.matches1(Ne.TokenType._abstract)) &&
                 (S = !0),
-              t.nextToken();
+              t.nextToken());
           if (x && t.matches1(Ne.TokenType.braceL)) {
             Jl(t, h);
             continue;
@@ -22150,7 +22151,7 @@ If you need interactivity, consider converting part of this to a Client Componen
               );
             for (t.nextToken(); t.currentIndex() < M; ) e.processToken();
             let c;
-            x
+            (x
               ? ((c = s.claimFreeName('__initStatic')), y.push(c))
               : ((c = s.claimFreeName('__init')), d.push(c)),
               L.push({
@@ -22158,7 +22159,7 @@ If you need interactivity, consider converting part of this to a Client Componen
                 equalsIndex: U,
                 start: A,
                 end: t.currentIndex(),
-              });
+              }));
           } else (!i || S) && p.push({start: T, end: t.currentIndex()});
         }
       return (
@@ -22201,12 +22202,11 @@ If you need interactivity, consider converting part of this to a Client Componen
         e.nextToken(),
           e.matches1(Ne.TokenType.name) && (r = e.identifierName());
         !e.matchesContextIdAndLabel(Ne.TokenType.braceL, s);
-
       )
-        e.matches1(Ne.TokenType._extends) &&
+        (e.matches1(Ne.TokenType._extends) &&
           !e.currentToken().isType &&
           (a = !0),
-          e.nextToken();
+          e.nextToken());
       return {isExpression: i, className: r, hasSuperclass: a};
     }
     function Eh(e) {
@@ -22241,7 +22241,7 @@ If you need interactivity, consider converting part of this to a Client Componen
             throw new Error('Expected a context ID on the super call');
           for (; !e.matchesContextIdAndLabel(Ne.TokenType.parenR, a); )
             e.nextToken();
-          (i = e.currentIndex()), (r = !0);
+          ((i = e.currentIndex()), (r = !0));
         }
         e.nextToken();
       }
@@ -22294,9 +22294,10 @@ If you need interactivity, consider converting part of this to a Client Componen
         e.removeToken(),
         e.matches1(Ph.TokenType.parenL))
       )
-        e.removeToken(), e.removeToken(), e.removeToken();
+        (e.removeToken(), e.removeToken(), e.removeToken());
       else
-        for (; e.matches1(Ph.TokenType.dot); ) e.removeToken(), e.removeToken();
+        for (; e.matches1(Ph.TokenType.dot); )
+          (e.removeToken(), e.removeToken());
     }
     Zl.default = Vv;
   });
@@ -22390,7 +22391,7 @@ If you need interactivity, consider converting part of this to a Client Componen
           this.hadDefaultExport = !1;
         }
         constructor(t, s, i, r, a, u, d, y, g, L) {
-          super(),
+          (super(),
             (this.rootTransformer = t),
             (this.tokens = s),
             (this.importProcessor = i),
@@ -22406,7 +22407,7 @@ If you need interactivity, consider converting part of this to a Client Componen
             e.prototype.__init3.call(this),
             (this.declarationInfo = g
               ? Xv.default.call(void 0, s)
-              : Lh.EMPTY_DECLARATION_INFO);
+              : Lh.EMPTY_DECLARATION_INFO));
         }
         getPrefixCode() {
           let t = '';
@@ -22434,25 +22435,27 @@ module.exports = exports.default;
           )
             ? this.processImportEquals()
             : this.tokens.matches1(N.TokenType._import)
-            ? (this.processImport(), !0)
-            : this.tokens.matches2(N.TokenType._export, N.TokenType.eq)
-            ? (this.tokens.replaceToken('module.exports'), !0)
-            : this.tokens.matches1(N.TokenType._export) &&
-              !this.tokens.currentToken().isType
-            ? ((this.hadExport = !0), this.processExport())
-            : this.tokens.matches2(N.TokenType.name, N.TokenType.postIncDec) &&
-              this.processPostIncDec()
-            ? !0
-            : this.tokens.matches1(N.TokenType.name) ||
-              this.tokens.matches1(N.TokenType.jsxName)
-            ? this.processIdentifier()
-            : this.tokens.matches1(N.TokenType.eq)
-            ? this.processAssignment()
-            : this.tokens.matches1(N.TokenType.assign)
-            ? this.processComplexAssignment()
-            : this.tokens.matches1(N.TokenType.preIncDec)
-            ? this.processPreIncDec()
-            : !1;
+              ? (this.processImport(), !0)
+              : this.tokens.matches2(N.TokenType._export, N.TokenType.eq)
+                ? (this.tokens.replaceToken('module.exports'), !0)
+                : this.tokens.matches1(N.TokenType._export) &&
+                    !this.tokens.currentToken().isType
+                  ? ((this.hadExport = !0), this.processExport())
+                  : this.tokens.matches2(
+                        N.TokenType.name,
+                        N.TokenType.postIncDec
+                      ) && this.processPostIncDec()
+                    ? !0
+                    : this.tokens.matches1(N.TokenType.name) ||
+                        this.tokens.matches1(N.TokenType.jsxName)
+                      ? this.processIdentifier()
+                      : this.tokens.matches1(N.TokenType.eq)
+                        ? this.processAssignment()
+                        : this.tokens.matches1(N.TokenType.assign)
+                          ? this.processComplexAssignment()
+                          : this.tokens.matches1(N.TokenType.preIncDec)
+                            ? this.processPreIncDec()
+                            : !1;
         }
         processImportEquals() {
           let t = this.tokens.identifierNameAtIndex(
@@ -22487,7 +22490,6 @@ module.exports = exports.default;
             for (
               this.tokens.copyToken();
               !this.tokens.matchesContextIdAndLabel(N.TokenType.parenR, i);
-
             )
               this.rootTransformer.processToken();
             this.tokens.replaceToken(s ? ')))' : '))');
@@ -22496,13 +22498,14 @@ module.exports = exports.default;
           if (this.removeImportAndDetectIfType()) this.tokens.removeToken();
           else {
             let s = this.tokens.stringValue();
-            this.tokens.replaceTokenTrimmingLeftWhitespace(
+            (this.tokens.replaceTokenTrimmingLeftWhitespace(
               this.importProcessor.claimImportCode(s)
             ),
-              this.tokens.appendCode(this.importProcessor.claimImportCode(s));
+              this.tokens.appendCode(this.importProcessor.claimImportCode(s)));
           }
-          Oo.removeMaybeImportAssertion.call(void 0, this.tokens),
-            this.tokens.matches1(N.TokenType.semi) && this.tokens.removeToken();
+          (Oo.removeMaybeImportAssertion.call(void 0, this.tokens),
+            this.tokens.matches1(N.TokenType.semi) &&
+              this.tokens.removeToken());
         }
         removeImportAndDetectIfType() {
           if (
@@ -22517,16 +22520,16 @@ module.exports = exports.default;
                 Ls.ContextualKeyword._from
               ))
           )
-            return this.removeRemainingImport(), !0;
+            return (this.removeRemainingImport(), !0);
           if (
             this.tokens.matches1(N.TokenType.name) ||
             this.tokens.matches1(N.TokenType.star)
           )
-            return this.removeRemainingImport(), !1;
+            return (this.removeRemainingImport(), !1);
           if (this.tokens.matches1(N.TokenType.string)) return !1;
           let t = !1;
           for (; !this.tokens.matches1(N.TokenType.string); )
-            ((!t && this.tokens.matches1(N.TokenType.braceL)) ||
+            (((!t && this.tokens.matches1(N.TokenType.braceL)) ||
               this.tokens.matches1(N.TokenType.comma)) &&
               (this.tokens.removeToken(),
               (this.tokens.matches2(N.TokenType.name, N.TokenType.comma) ||
@@ -22544,7 +22547,7 @@ module.exports = exports.default;
                   N.TokenType.braceR
                 )) &&
                 (t = !0)),
-              this.tokens.removeToken();
+              this.tokens.removeToken());
           return !t;
         }
         removeRemainingImport() {
@@ -22566,7 +22569,6 @@ module.exports = exports.default;
             ;
             i < this.tokens.tokens.length &&
             this.tokens.tokens[i].type === N.TokenType.parenR;
-
           )
             i++;
           return (
@@ -22615,7 +22617,7 @@ module.exports = exports.default;
               this.tokens.matches2(N.TokenType._export, N.TokenType._let) ||
               this.tokens.matches2(N.TokenType._export, N.TokenType._const))
           )
-            return this.processExportVar(), !0;
+            return (this.processExportVar(), !0);
           if (
             this.tokens.matches2(N.TokenType._export, N.TokenType._function) ||
             this.tokens.matches3(
@@ -22624,7 +22626,7 @@ module.exports = exports.default;
               N.TokenType._function
             )
           )
-            return this.processExportFunction(), !0;
+            return (this.processExportFunction(), !0);
           if (
             this.tokens.matches2(N.TokenType._export, N.TokenType._class) ||
             this.tokens.matches3(
@@ -22634,11 +22636,11 @@ module.exports = exports.default;
             ) ||
             this.tokens.matches2(N.TokenType._export, N.TokenType.at)
           )
-            return this.processExportClass(), !0;
+            return (this.processExportClass(), !0);
           if (this.tokens.matches2(N.TokenType._export, N.TokenType.braceL))
-            return this.processExportBindings(), !0;
+            return (this.processExportBindings(), !0);
           if (this.tokens.matches2(N.TokenType._export, N.TokenType.star))
-            return this.processExportStar(), !0;
+            return (this.processExportStar(), !0);
           if (
             this.tokens.matches2(N.TokenType._export, N.TokenType.name) &&
             this.tokens.matchesContextualAtIndex(
@@ -22655,9 +22657,9 @@ module.exports = exports.default;
                 this.tokens.removeToken();
               this.tokens.removeToken();
             } else
-              this.tokens.removeToken(),
+              (this.tokens.removeToken(),
                 this.tokens.matches1(N.TokenType._as) &&
-                  (this.tokens.removeToken(), this.tokens.removeToken());
+                  (this.tokens.removeToken(), this.tokens.removeToken()));
             return (
               this.tokens.matchesContextual(Ls.ContextualKeyword._from) &&
                 this.tokens.matches1AtIndex(
@@ -22746,7 +22748,7 @@ module.exports = exports.default;
           else if (u === '--')
             this.tokens.replaceToken(`(${d} = ${a} = ${d} - 1, ${d} + 1)`);
           else throw new Error(`Unexpected operator: ${u}`);
-          return this.tokens.removeToken(), !0;
+          return (this.tokens.removeToken(), !0);
         }
         processExportDefault() {
           if (
@@ -22768,7 +22770,7 @@ module.exports = exports.default;
                 Ls.ContextualKeyword._async
               ))
           ) {
-            this.tokens.removeInitialToken(), this.tokens.removeToken();
+            (this.tokens.removeInitialToken(), this.tokens.removeToken());
             let t = this.processNamedFunction();
             this.tokens.appendCode(` exports.default = ${t};`);
           } else if (
@@ -22791,11 +22793,11 @@ module.exports = exports.default;
               N.TokenType.at
             )
           ) {
-            this.tokens.removeInitialToken(),
+            (this.tokens.removeInitialToken(),
               this.tokens.removeToken(),
               this.copyDecorators(),
               this.tokens.matches1(N.TokenType._abstract) &&
-                this.tokens.removeToken();
+                this.tokens.removeToken());
             let t = this.rootTransformer.processNamedClass();
             this.tokens.appendCode(` exports.default = ${t};`);
           } else if (
@@ -22806,19 +22808,19 @@ module.exports = exports.default;
               this.declarationInfo
             )
           )
-            this.tokens.removeInitialToken(),
+            (this.tokens.removeInitialToken(),
               this.tokens.removeToken(),
-              this.tokens.removeToken();
+              this.tokens.removeToken());
           else if (this.reactHotLoaderTransformer) {
             let t = this.nameManager.claimFreeName('_default');
-            this.tokens.replaceToken(`let ${t}; exports.`),
+            (this.tokens.replaceToken(`let ${t}; exports.`),
               this.tokens.copyToken(),
               this.tokens.appendCode(` = ${t} =`),
-              this.reactHotLoaderTransformer.setExtractedDefaultExportName(t);
+              this.reactHotLoaderTransformer.setExtractedDefaultExportName(t));
           } else
-            this.tokens.replaceToken('exports.'),
+            (this.tokens.replaceToken('exports.'),
               this.tokens.copyToken(),
-              this.tokens.appendCode(' =');
+              this.tokens.appendCode(' ='));
         }
         copyDecorators() {
           for (; this.tokens.matches1(N.TokenType.at); )
@@ -22826,17 +22828,16 @@ module.exports = exports.default;
               (this.tokens.copyToken(),
               this.tokens.matches1(N.TokenType.parenL))
             )
-              this.tokens.copyExpectedToken(N.TokenType.parenL),
+              (this.tokens.copyExpectedToken(N.TokenType.parenL),
                 this.rootTransformer.processBalancedCode(),
-                this.tokens.copyExpectedToken(N.TokenType.parenR);
+                this.tokens.copyExpectedToken(N.TokenType.parenR));
             else {
               for (
                 this.tokens.copyExpectedToken(N.TokenType.name);
                 this.tokens.matches1(N.TokenType.dot);
-
               )
-                this.tokens.copyExpectedToken(N.TokenType.dot),
-                  this.tokens.copyExpectedToken(N.TokenType.name);
+                (this.tokens.copyExpectedToken(N.TokenType.dot),
+                  this.tokens.copyExpectedToken(N.TokenType.name));
               this.tokens.matches1(N.TokenType.parenL) &&
                 (this.tokens.copyExpectedToken(N.TokenType.parenL),
                 this.rootTransformer.processBalancedCode(),
@@ -22855,13 +22856,12 @@ module.exports = exports.default;
           for (
             t++;
             t < this.tokens.tokens.length && this.tokens.tokens[t].isType;
-
           )
             t++;
           return !!this.tokens.matches1AtIndex(t, N.TokenType.eq);
         }
         processSimpleExportVar() {
-          this.tokens.removeInitialToken(), this.tokens.copyToken();
+          (this.tokens.removeInitialToken(), this.tokens.copyToken());
           let t = this.tokens.identifierName();
           for (; !this.tokens.matches1(N.TokenType.eq); )
             this.rootTransformer.processToken();
@@ -22872,7 +22872,7 @@ module.exports = exports.default;
           this.tokens.appendCode(`; exports.${t} = ${t}`);
         }
         processComplexExportVar() {
-          this.tokens.removeInitialToken(), this.tokens.removeToken();
+          (this.tokens.removeInitialToken(), this.tokens.removeToken());
           let t = this.tokens.matches1(N.TokenType.braceL);
           t && this.tokens.appendCode('(');
           let s = 0;
@@ -22882,12 +22882,12 @@ module.exports = exports.default;
               this.tokens.matches1(N.TokenType.dollarBraceL) ||
               this.tokens.matches1(N.TokenType.bracketL)
             )
-              s++, this.tokens.copyToken();
+              (s++, this.tokens.copyToken());
             else if (
               this.tokens.matches1(N.TokenType.braceR) ||
               this.tokens.matches1(N.TokenType.bracketR)
             )
-              s--, this.tokens.copyToken();
+              (s--, this.tokens.copyToken());
             else {
               if (
                 s === 0 &&
@@ -22910,9 +22910,9 @@ module.exports = exports.default;
                     throw new Error(
                       `Expected a replacement for ${r} in \`export var\` syntax.`
                     );
-                  Lo.isObjectShorthandDeclaration.call(void 0, i) &&
+                  (Lo.isObjectShorthandDeclaration.call(void 0, i) &&
                     (a = `${r}: ${a}`),
-                    this.tokens.replaceToken(a);
+                    this.tokens.replaceToken(a));
                 } else this.rootTransformer.processToken();
               }
             }
@@ -22938,7 +22938,7 @@ module.exports = exports.default;
           ) {
             if (!this.tokens.matchesContextual(Ls.ContextualKeyword._async))
               throw new Error('Expected async keyword in function export.');
-            this.tokens.copyToken(), this.tokens.copyToken();
+            (this.tokens.copyToken(), this.tokens.copyToken());
           }
           if (
             (this.tokens.matches1(N.TokenType.star) && this.tokens.copyToken(),
@@ -22950,7 +22950,6 @@ module.exports = exports.default;
             for (
               this.tokens.removeInitialToken();
               this.tokens.currentToken().isType;
-
             )
               this.tokens.removeToken();
           return (
@@ -22965,15 +22964,15 @@ module.exports = exports.default;
           );
         }
         processExportClass() {
-          this.tokens.removeInitialToken(),
+          (this.tokens.removeInitialToken(),
             this.copyDecorators(),
             this.tokens.matches1(N.TokenType._abstract) &&
-              this.tokens.removeToken();
+              this.tokens.removeToken());
           let t = this.rootTransformer.processNamedClass();
           this.tokens.appendCode(` exports.${t} = ${t};`);
         }
         processExportBindings() {
-          this.tokens.removeInitialToken(), this.tokens.removeToken();
+          (this.tokens.removeInitialToken(), this.tokens.removeToken());
           let t = [];
           for (;;) {
             if (this.tokens.matches1(N.TokenType.braceR)) {
@@ -22994,7 +22993,7 @@ module.exports = exports.default;
               break;
             }
             if (this.tokens.matches2(N.TokenType.comma, N.TokenType.braceR)) {
-              this.tokens.removeToken(), this.tokens.removeToken();
+              (this.tokens.removeToken(), this.tokens.removeToken());
               break;
             } else if (this.tokens.matches1(N.TokenType.comma))
               this.tokens.removeToken();
@@ -23008,10 +23007,10 @@ module.exports = exports.default;
           if (this.tokens.matchesContextual(Ls.ContextualKeyword._from)) {
             this.tokens.removeToken();
             let s = this.tokens.stringValue();
-            this.tokens.replaceTokenTrimmingLeftWhitespace(
+            (this.tokens.replaceTokenTrimmingLeftWhitespace(
               this.importProcessor.claimImportCode(s)
             ),
-              Oo.removeMaybeImportAssertion.call(void 0, this.tokens);
+              Oo.removeMaybeImportAssertion.call(void 0, this.tokens));
           } else this.tokens.appendCode(t.join(' '));
           this.tokens.matches1(N.TokenType.semi) && this.tokens.removeToken();
         }
@@ -23019,15 +23018,15 @@ module.exports = exports.default;
           for (
             this.tokens.removeInitialToken();
             !this.tokens.matches1(N.TokenType.string);
-
           )
             this.tokens.removeToken();
           let t = this.tokens.stringValue();
-          this.tokens.replaceTokenTrimmingLeftWhitespace(
+          (this.tokens.replaceTokenTrimmingLeftWhitespace(
             this.importProcessor.claimImportCode(t)
           ),
             Oo.removeMaybeImportAssertion.call(void 0, this.tokens),
-            this.tokens.matches1(N.TokenType.semi) && this.tokens.removeToken();
+            this.tokens.matches1(N.TokenType.semi) &&
+              this.tokens.removeToken());
         }
         shouldElideExportedIdentifier(t) {
           return (
@@ -23060,7 +23059,7 @@ module.exports = exports.default;
       ux = pr(cx),
       lc = class extends ux.default {
         constructor(t, s, i, r, a, u) {
-          super(),
+          (super(),
             (this.tokens = t),
             (this.nameManager = s),
             (this.helperManager = i),
@@ -23073,7 +23072,7 @@ module.exports = exports.default;
               ? ix.default.call(void 0, t)
               : Fh.EMPTY_DECLARATION_INFO),
             (this.injectCreateRequireForImportRequire =
-              !!u.injectCreateRequireForImportRequire);
+              !!u.injectCreateRequireForImportRequire));
         }
         process() {
           if (
@@ -23101,7 +23100,7 @@ module.exports = exports.default;
             return !0;
           }
           if (this.tokens.matches2(se.TokenType._export, se.TokenType.eq))
-            return this.tokens.replaceToken('module.exports'), !0;
+            return (this.tokens.replaceToken('module.exports'), !0);
           if (
             this.tokens.matches5(
               se.TokenType._export,
@@ -23141,9 +23140,9 @@ module.exports = exports.default;
                 this.tokens.removeToken();
               this.tokens.removeToken();
             } else
-              this.tokens.removeToken(),
+              (this.tokens.removeToken(),
                 this.tokens.matches1(se.TokenType._as) &&
-                  (this.tokens.removeToken(), this.tokens.removeToken());
+                  (this.tokens.removeToken(), this.tokens.removeToken()));
             return (
               this.tokens.matchesContextual(Jn.ContextualKeyword._from) &&
                 this.tokens.matches1AtIndex(
@@ -23166,13 +23165,13 @@ module.exports = exports.default;
             this.isTypeName(t)
               ? sx.default.call(void 0, this.tokens)
               : this.injectCreateRequireForImportRequire
-              ? (this.tokens.replaceToken('const'),
-                this.tokens.copyToken(),
-                this.tokens.copyToken(),
-                this.tokens.replaceToken(
-                  this.helperManager.getHelperName('require')
-                ))
-              : this.tokens.replaceToken('const'),
+                ? (this.tokens.replaceToken('const'),
+                  this.tokens.copyToken(),
+                  this.tokens.copyToken(),
+                  this.tokens.replaceToken(
+                    this.helperManager.getHelperName('require')
+                  ))
+                : this.tokens.replaceToken('const'),
             !0
           );
         }
@@ -23184,13 +23183,12 @@ module.exports = exports.default;
             for (
               this.tokens.restoreToSnapshot(t);
               !this.tokens.matches1(se.TokenType.string);
-
             )
               this.tokens.removeToken();
-            this.tokens.removeToken(),
+            (this.tokens.removeToken(),
               Mh.removeMaybeImportAssertion.call(void 0, this.tokens),
               this.tokens.matches1(se.TokenType.semi) &&
-                this.tokens.removeToken();
+                this.tokens.removeToken());
           }
           return !0;
         }
@@ -23209,7 +23207,7 @@ module.exports = exports.default;
           )
             return !0;
           if (this.tokens.matches1(se.TokenType.string))
-            return this.tokens.copyToken(), !1;
+            return (this.tokens.copyToken(), !1);
           this.tokens.matchesContextual(Jn.ContextualKeyword._module) &&
             this.tokens.matchesContextualAtIndex(
               this.tokens.currentIndex() + 2,
@@ -23243,7 +23241,6 @@ module.exports = exports.default;
             for (
               s && this.tokens.appendCode(','), this.tokens.copyToken();
               !this.tokens.matches1(se.TokenType.braceR);
-
             ) {
               let i = Dh.default.call(void 0, this.tokens);
               if (i.isType || this.isTypeName(i.rightName)) {
@@ -23334,7 +23331,6 @@ module.exports = exports.default;
             this.tokens.copyExpectedToken(se.TokenType._export),
               this.tokens.copyExpectedToken(se.TokenType.braceL);
             !this.tokens.matches1(se.TokenType.braceR);
-
           ) {
             let t = Dh.default.call(void 0, this.tokens);
             if (t.isType || this.shouldElideExportedName(t.leftName)) {
@@ -23349,7 +23345,7 @@ module.exports = exports.default;
                 this.tokens.copyToken();
             }
           }
-          return this.tokens.copyExpectedToken(se.TokenType.braceR), !0;
+          return (this.tokens.copyExpectedToken(se.TokenType.braceR), !0);
         }
         shouldElideExportedName(t) {
           return (
@@ -23373,10 +23369,10 @@ module.exports = exports.default;
       fx = px(hx),
       uc = class extends fx.default {
         constructor(t, s, i) {
-          super(),
+          (super(),
             (this.rootTransformer = t),
             (this.tokens = s),
-            (this.isImportsTransformEnabled = i);
+            (this.isImportsTransformEnabled = i));
         }
         process() {
           return this.rootTransformer.processPossibleArrowParamEnd() ||
@@ -23384,35 +23380,36 @@ module.exports = exports.default;
             this.rootTransformer.processPossibleTypeRange()
             ? !0
             : this.tokens.matches1(sn.TokenType._enum)
-            ? (this.processEnum(), !0)
-            : this.tokens.matches2(sn.TokenType._export, sn.TokenType._enum)
-            ? (this.processNamedExportEnum(), !0)
-            : this.tokens.matches3(
-                sn.TokenType._export,
-                sn.TokenType._default,
-                sn.TokenType._enum
-              )
-            ? (this.processDefaultExportEnum(), !0)
-            : !1;
+              ? (this.processEnum(), !0)
+              : this.tokens.matches2(sn.TokenType._export, sn.TokenType._enum)
+                ? (this.processNamedExportEnum(), !0)
+                : this.tokens.matches3(
+                      sn.TokenType._export,
+                      sn.TokenType._default,
+                      sn.TokenType._enum
+                    )
+                  ? (this.processDefaultExportEnum(), !0)
+                  : !1;
         }
         processNamedExportEnum() {
           if (this.isImportsTransformEnabled) {
             this.tokens.removeInitialToken();
             let t = this.tokens.identifierNameAtRelativeIndex(1);
-            this.processEnum(), this.tokens.appendCode(` exports.${t} = ${t};`);
-          } else this.tokens.copyToken(), this.processEnum();
+            (this.processEnum(),
+              this.tokens.appendCode(` exports.${t} = ${t};`));
+          } else (this.tokens.copyToken(), this.processEnum());
         }
         processDefaultExportEnum() {
-          this.tokens.removeInitialToken(), this.tokens.removeToken();
+          (this.tokens.removeInitialToken(), this.tokens.removeToken());
           let t = this.tokens.identifierNameAtRelativeIndex(1);
-          this.processEnum(),
+          (this.processEnum(),
             this.isImportsTransformEnabled
               ? this.tokens.appendCode(` exports.default = ${t};`)
-              : this.tokens.appendCode(` export default ${t};`);
+              : this.tokens.appendCode(` export default ${t};`));
         }
         processEnum() {
-          this.tokens.replaceToken('const'),
-            this.tokens.copyExpectedToken(sn.TokenType.name);
+          (this.tokens.replaceToken('const'),
+            this.tokens.copyExpectedToken(sn.TokenType.name));
           let t = !1;
           this.tokens.matchesContextual(Vh.ContextualKeyword._of) &&
             (this.tokens.removeToken(),
@@ -23430,22 +23427,22 @@ module.exports = exports.default;
               i ? '.Mirrored([' : '({'
             );
             !this.tokens.matches1(sn.TokenType.braceR);
-
           ) {
             if (this.tokens.matches1(sn.TokenType.ellipsis)) {
               this.tokens.removeToken();
               break;
             }
-            this.processEnumElement(t, s),
+            (this.processEnumElement(t, s),
               this.tokens.matches1(sn.TokenType.comma) &&
-                this.tokens.copyToken();
+                this.tokens.copyToken());
           }
           this.tokens.replaceToken(i ? ']);' : '});');
         }
         processEnumElement(t, s) {
           if (t) {
             let i = this.tokens.identifierName();
-            this.tokens.copyToken(), this.tokens.appendCode(`: Symbol("${i}")`);
+            (this.tokens.copyToken(),
+              this.tokens.appendCode(`: Symbol("${i}")`));
           } else
             s
               ? (this.tokens.copyToken(),
@@ -23491,12 +23488,12 @@ module.exports = exports.default;
           this.hoistedFunctionNames = [];
         }
         constructor(t, s, i, r) {
-          super(),
+          (super(),
             (this.rootTransformer = t),
             (this.tokens = s),
             (this.nameManager = i),
             (this.importProcessor = r),
-            e.prototype.__init.call(this);
+            e.prototype.__init.call(this));
         }
         process() {
           return this.tokens.currentToken().scopeDepth === 0 &&
@@ -23539,28 +23536,27 @@ module.exports = exports.default;
               Qn.TokenType.name,
               Qn.TokenType.parenL
             );
-
           ) {
             let s = this.tokens.identifierNameAtIndex(
               this.tokens.currentIndex() + 1
             );
             if (kx.includes(s)) {
               let r = this.nameManager.claimFreeName('__jestHoist');
-              this.hoistedFunctionNames.push(r),
+              (this.hoistedFunctionNames.push(r),
                 this.tokens.replaceToken(`function ${r}(){${Do}.`),
                 this.tokens.copyToken(),
                 this.tokens.copyToken(),
                 this.rootTransformer.processBalancedCode(),
                 this.tokens.copyExpectedToken(Qn.TokenType.parenR),
                 this.tokens.appendCode(';}'),
-                (t = !1);
+                (t = !1));
             } else
-              t ? this.tokens.copyToken() : this.tokens.replaceToken(`${Do}.`),
+              (t ? this.tokens.copyToken() : this.tokens.replaceToken(`${Do}.`),
                 this.tokens.copyToken(),
                 this.tokens.copyToken(),
                 this.rootTransformer.processBalancedCode(),
                 this.tokens.copyExpectedToken(Qn.TokenType.parenR),
-                (t = !0);
+                (t = !0));
           }
           return !0;
         }
@@ -23578,13 +23574,13 @@ module.exports = exports.default;
       _x = vx(gx),
       dc = class extends _x.default {
         constructor(t) {
-          super(), (this.tokens = t);
+          (super(), (this.tokens = t));
         }
         process() {
           if (this.tokens.matches1(xx.TokenType.num)) {
             let t = this.tokens.currentTokenCode();
             if (t.includes('_'))
-              return this.tokens.replaceToken(t.replace(/_/g, '')), !0;
+              return (this.tokens.replaceToken(t.replace(/_/g, '')), !0);
           }
           return !1;
         }
@@ -23602,7 +23598,7 @@ module.exports = exports.default;
       wx = bx(Cx),
       yc = class extends wx.default {
         constructor(t, s) {
-          super(), (this.tokens = t), (this.nameManager = s);
+          (super(), (this.tokens = t), (this.nameManager = s));
         }
         process() {
           return this.tokens.matches2(Kh.TokenType._catch, Kh.TokenType.braceL)
@@ -23627,7 +23623,7 @@ module.exports = exports.default;
       Ex = Sx(Ix),
       kc = class extends Ex.default {
         constructor(t, s) {
-          super(), (this.tokens = t), (this.nameManager = s);
+          (super(), (this.tokens = t), (this.nameManager = s));
         }
         process() {
           if (this.tokens.matches1(jt.TokenType.nullishCoalescing)) {
@@ -23645,7 +23641,7 @@ module.exports = exports.default;
             this.tokens.matches1(jt.TokenType._delete) &&
             this.tokens.tokenAtRelativeIndex(1).isOptionalChainStart
           )
-            return this.tokens.removeInitialToken(), !0;
+            return (this.tokens.removeInitialToken(), !0);
           let s = this.tokens.currentToken().subscriptStartIndex;
           if (
             s != null &&
@@ -23670,10 +23666,10 @@ module.exports = exports.default;
                   jt.TokenType.lessThan
                 ))
             )
-              this.justSkippedSuper() && this.tokens.appendCode('.bind(this)'),
+              (this.justSkippedSuper() && this.tokens.appendCode('.bind(this)'),
                 this.tokens.replaceTokenTrimmingLeftWhitespace(
                   `, 'optionalCall', ${r}`
-                );
+                ));
             else if (
               this.tokens.matches2(
                 jt.TokenType.questionDot,
@@ -23696,10 +23692,10 @@ module.exports = exports.default;
                 `, 'access', ${r}[`
               );
             else if (this.tokens.matches1(jt.TokenType.parenL))
-              this.justSkippedSuper() && this.tokens.appendCode('.bind(this)'),
+              (this.justSkippedSuper() && this.tokens.appendCode('.bind(this)'),
                 this.tokens.replaceTokenTrimmingLeftWhitespace(
                   `, 'call', ${r}(`
-                );
+                ));
             else
               throw new Error(
                 'Unexpected subscript operator in optional chain.'
@@ -23761,11 +23757,11 @@ module.exports = exports.default;
       Nx = Ax(Px),
       xc = class extends Nx.default {
         constructor(t, s, i, r) {
-          super(),
+          (super(),
             (this.rootTransformer = t),
             (this.tokens = s),
             (this.importProcessor = i),
-            (this.options = r);
+            (this.options = r));
         }
         process() {
           let t = this.tokens.currentIndex();
@@ -23825,22 +23821,22 @@ module.exports = exports.default;
           return t < 2
             ? null
             : this.tokens.matches2AtIndex(
-                t - 2,
-                Et.TokenType.name,
-                Et.TokenType.eq
-              )
-            ? this.tokens.identifierNameAtIndex(t - 2)
-            : t >= 2 &&
-              this.tokens.tokens[t - 2].identifierRole ===
-                Wh.IdentifierRole.ObjectKey
-            ? this.tokens.identifierNameAtIndex(t - 2)
-            : this.tokens.matches2AtIndex(
-                t - 2,
-                Et.TokenType._export,
-                Et.TokenType._default
-              )
-            ? this.getDisplayNameFromFilename()
-            : null;
+                  t - 2,
+                  Et.TokenType.name,
+                  Et.TokenType.eq
+                )
+              ? this.tokens.identifierNameAtIndex(t - 2)
+              : t >= 2 &&
+                  this.tokens.tokens[t - 2].identifierRole ===
+                    Wh.IdentifierRole.ObjectKey
+                ? this.tokens.identifierNameAtIndex(t - 2)
+                : this.tokens.matches2AtIndex(
+                      t - 2,
+                      Et.TokenType._export,
+                      Et.TokenType._default
+                    )
+                  ? this.getDisplayNameFromFilename()
+                  : null;
         }
         getDisplayNameFromFilename() {
           let s = (this.options.filePath || 'unknown').split('/'),
@@ -23903,10 +23899,10 @@ module.exports = exports.default;
           this.extractedDefaultExportName = null;
         }
         constructor(t, s) {
-          super(),
+          (super(),
             (this.tokens = t),
             (this.filePath = s),
-            e.prototype.__init.call(this);
+            e.prototype.__init.call(this));
         }
         setExtractedDefaultExportName(t) {
           this.extractedDefaultExportName = t;
@@ -24034,10 +24030,10 @@ ${s.map(
       Vx = Zh(Bx),
       wc = class extends Vx.default {
         constructor(t, s, i) {
-          super(),
+          (super(),
             (this.rootTransformer = t),
             (this.tokens = s),
-            (this.isImportsTransformEnabled = i);
+            (this.isImportsTransformEnabled = i));
         }
         process() {
           return this.rootTransformer.processPossibleArrowParamEnd() ||
@@ -24045,35 +24041,37 @@ ${s.map(
             this.rootTransformer.processPossibleTypeRange()
             ? !0
             : this.tokens.matches1($e.TokenType._public) ||
-              this.tokens.matches1($e.TokenType._protected) ||
-              this.tokens.matches1($e.TokenType._private) ||
-              this.tokens.matches1($e.TokenType._abstract) ||
-              this.tokens.matches1($e.TokenType._readonly) ||
-              this.tokens.matches1($e.TokenType._override) ||
-              this.tokens.matches1($e.TokenType.nonNullAssertion)
-            ? (this.tokens.removeInitialToken(), !0)
-            : this.tokens.matches1($e.TokenType._enum) ||
-              this.tokens.matches2($e.TokenType._const, $e.TokenType._enum)
-            ? (this.processEnum(), !0)
-            : this.tokens.matches2($e.TokenType._export, $e.TokenType._enum) ||
-              this.tokens.matches3(
-                $e.TokenType._export,
-                $e.TokenType._const,
-                $e.TokenType._enum
-              )
-            ? (this.processEnum(!0), !0)
-            : !1;
+                this.tokens.matches1($e.TokenType._protected) ||
+                this.tokens.matches1($e.TokenType._private) ||
+                this.tokens.matches1($e.TokenType._abstract) ||
+                this.tokens.matches1($e.TokenType._readonly) ||
+                this.tokens.matches1($e.TokenType._override) ||
+                this.tokens.matches1($e.TokenType.nonNullAssertion)
+              ? (this.tokens.removeInitialToken(), !0)
+              : this.tokens.matches1($e.TokenType._enum) ||
+                  this.tokens.matches2($e.TokenType._const, $e.TokenType._enum)
+                ? (this.processEnum(), !0)
+                : this.tokens.matches2(
+                      $e.TokenType._export,
+                      $e.TokenType._enum
+                    ) ||
+                    this.tokens.matches3(
+                      $e.TokenType._export,
+                      $e.TokenType._const,
+                      $e.TokenType._enum
+                    )
+                  ? (this.processEnum(!0), !0)
+                  : !1;
         }
         processEnum(t = !1) {
           for (
             this.tokens.removeInitialToken();
             this.tokens.matches1($e.TokenType._const) ||
             this.tokens.matches1($e.TokenType._enum);
-
           )
             this.tokens.removeToken();
           let s = this.tokens.identifierName();
-          this.tokens.removeToken(),
+          (this.tokens.removeToken(),
             t &&
               !this.isImportsTransformEnabled &&
               this.tokens.appendCode('export '),
@@ -24083,7 +24081,7 @@ ${s.map(
             this.tokens.copyExpectedToken($e.TokenType.braceR),
             t && this.isImportsTransformEnabled
               ? this.tokens.appendCode(`)(${s} || (exports.${s} = ${s} = {}));`)
-              : this.tokens.appendCode(`)(${s} || (${s} = {}));`);
+              : this.tokens.appendCode(`)(${s} || (${s} = {}));`));
         }
         processEnumBody(t) {
           let s = null;
@@ -24091,7 +24089,7 @@ ${s.map(
             let {nameStringCode: i, variableName: r} = this.extractEnumKeyInfo(
               this.tokens.currentToken()
             );
-            this.tokens.removeInitialToken(),
+            (this.tokens.removeInitialToken(),
               this.tokens.matches3(
                 $e.TokenType.eq,
                 $e.TokenType.string,
@@ -24104,11 +24102,11 @@ ${s.map(
               )
                 ? this.processStringLiteralEnumMember(t, i, r)
                 : this.tokens.matches1($e.TokenType.eq)
-                ? this.processExplicitValueEnumMember(t, i, r)
-                : this.processImplicitValueEnumMember(t, i, r, s),
+                  ? this.processExplicitValueEnumMember(t, i, r)
+                  : this.processImplicitValueEnumMember(t, i, r, s),
               this.tokens.matches1($e.TokenType.comma) &&
                 this.tokens.removeToken(),
-              r != null ? (s = r) : (s = `${t}[${i}]`);
+              r != null ? (s = r) : (s = `${t}[${i}]`));
           }
         }
         extractEnumKeyInfo(t) {
@@ -24148,7 +24146,6 @@ ${s.map(
             for (
               this.tokens.appendCode(`const ${i}`), this.tokens.copyToken();
               this.tokens.currentIndex() < r;
-
             )
               this.rootTransformer.processToken();
             this.tokens.appendCode(`; ${t}[${t}[${s}] = ${i}] = ${s};`);
@@ -24157,7 +24154,6 @@ ${s.map(
               this.tokens.appendCode(`${t}[${t}[${s}]`),
                 this.tokens.copyToken();
               this.tokens.currentIndex() < r;
-
             )
               this.rootTransformer.processToken();
             this.tokens.appendCode(`] = ${s};`);
@@ -24165,8 +24161,9 @@ ${s.map(
         }
         processImplicitValueEnumMember(t, s, i, r) {
           let a = r != null ? `${r} + 1` : '0';
-          i != null && (this.tokens.appendCode(`const ${i} = ${a}; `), (a = i)),
-            this.tokens.appendCode(`${t}[${t}[${s}] = ${a}] = ${s};`);
+          (i != null &&
+            (this.tokens.appendCode(`const ${i} = ${a}; `), (a = i)),
+            this.tokens.appendCode(`${t}[${t}[${s}] = ${a}] = ${s};`));
         }
       };
     Sc.default = wc;
@@ -24211,12 +24208,12 @@ ${s.map(
           this.generatedVariables = [];
         }
         constructor(t, s, i, r) {
-          e.prototype.__init.call(this),
+          (e.prototype.__init.call(this),
             e.prototype.__init2.call(this),
             (this.nameManager = t.nameManager),
-            (this.helperManager = t.helperManager);
+            (this.helperManager = t.helperManager));
           let {tokenProcessor: a, importProcessor: u} = t;
-          (this.tokens = a),
+          ((this.tokens = a),
             (this.isImportsTransformEnabled = s.includes('imports')),
             (this.isReactHotLoaderTransformEnabled =
               s.includes('react-hot-loader')),
@@ -24230,14 +24227,14 @@ ${s.map(
                 this.transformers.push(
                   new Qx.default(this, a, u, this.nameManager, r)
                 ),
-              this.transformers.push(new og.default(this, a, u, r)));
+              this.transformers.push(new og.default(this, a, u, r))));
           let d = null;
           if (s.includes('react-hot-loader')) {
             if (!r.filePath)
               throw new Error(
                 'filePath is required when using the react-hot-loader transform.'
               );
-            (d = new lg.default(a, r.filePath)), this.transformers.push(d);
+            ((d = new lg.default(a, r.filePath)), this.transformers.push(d));
           }
           if (s.includes('imports')) {
             if (u === null)
@@ -24269,7 +24266,7 @@ ${s.map(
                 r
               )
             );
-          s.includes('flow') &&
+          (s.includes('flow') &&
             this.transformers.push(
               new zx.default(this, a, s.includes('imports'))
             ),
@@ -24280,14 +24277,14 @@ ${s.map(
             s.includes('jest') &&
               this.transformers.push(
                 new Yx.default(this, a, this.nameManager, u)
-              );
+              ));
         }
         transform() {
-          this.tokens.reset(), this.processBalancedCode();
+          (this.tokens.reset(), this.processBalancedCode());
           let s = this.isImportsTransformEnabled ? '"use strict";' : '';
           for (let u of this.transformers) s += u.getPrefixCode();
-          (s += this.helperManager.emitHelpers()),
-            (s += this.generatedVariables.map((u) => ` var ${u};`).join(''));
+          ((s += this.helperManager.emitHelpers()),
+            (s += this.generatedVariables.map((u) => ` var ${u};`).join('')));
           for (let u of this.transformers) s += u.getHoistedCode();
           let i = '';
           for (let u of this.transformers) i += u.getSuffixCode();
@@ -24347,7 +24344,7 @@ ${s.map(
           let t = this.tokens.identifierNameAtIndex(
             this.tokens.currentIndex() + 1
           );
-          return this.processClass(), t;
+          return (this.processClass(), t);
         }
         processClass() {
           let t = qx.default.call(
@@ -24373,7 +24370,6 @@ ${s.map(
           for (
             this.tokens.copyExpectedToken(lt.TokenType._class);
             !this.tokens.matchesContextIdAndLabel(lt.TokenType.braceL, a);
-
           )
             this.processToken();
           this.processClassBody(t, i);
@@ -24399,11 +24395,11 @@ ${s.map(
             p = this.tokens.currentToken().contextId;
           if (p == null)
             throw new Error('Expected non-null context ID on class.');
-          this.tokens.copyExpectedToken(lt.TokenType.braceL),
+          (this.tokens.copyExpectedToken(lt.TokenType.braceL),
             this.isReactHotLoaderTransformEnabled &&
               this.tokens.appendCode(
                 '__reactstandin__regenerateByEval(key, code) {this[key] = eval(code);}'
-              );
+              ));
           let h = a.length + d.length > 0;
           if (r === null && h) {
             let T = this.makeConstructorInitCode(a, d, s);
@@ -24417,7 +24413,6 @@ ${s.map(
           for (
             ;
             !this.tokens.matchesContextIdAndLabel(lt.TokenType.braceR, p);
-
           )
             if (g < u.length && this.tokens.currentIndex() === u[g].start) {
               let T = !1;
@@ -24427,22 +24422,21 @@ ${s.map(
                       `${u[g].initializerName}() {this`
                     )
                   : this.tokens.matches1(lt.TokenType.string) ||
-                    this.tokens.matches1(lt.TokenType.num)
-                  ? (this.tokens.copyTokenWithPrefix(
-                      `${u[g].initializerName}() {this[`
-                    ),
-                    (T = !0))
-                  : this.tokens.copyTokenWithPrefix(
-                      `${u[g].initializerName}() {this.`
-                    );
+                      this.tokens.matches1(lt.TokenType.num)
+                    ? (this.tokens.copyTokenWithPrefix(
+                        `${u[g].initializerName}() {this[`
+                      ),
+                      (T = !0))
+                    : this.tokens.copyTokenWithPrefix(
+                        `${u[g].initializerName}() {this.`
+                      );
                 this.tokens.currentIndex() < u[g].end;
-
               )
-                T &&
+                (T &&
                   this.tokens.currentIndex() === u[g].equalsIndex &&
                   this.tokens.appendCode(']'),
-                  this.processToken();
-              this.tokens.appendCode('}'), g++;
+                  this.processToken());
+              (this.tokens.appendCode('}'), g++);
             } else if (
               L < y.length &&
               this.tokens.currentIndex() >= y[L].start
@@ -24451,7 +24445,6 @@ ${s.map(
                 this.tokens.currentIndex() < y[L].end &&
                 this.tokens.removeInitialToken();
                 this.tokens.currentIndex() < y[L].end;
-
               )
                 this.tokens.removeToken();
               L++;
@@ -24482,10 +24475,12 @@ ${s.map(
               for (
                 this.tokens.removeInitialToken();
                 this.tokens.currentIndex() < t;
-
               )
                 this.tokens.removeToken();
-              return this.tokens.replaceTokenTrimmingLeftWhitespace(') =>'), !0;
+              return (
+                this.tokens.replaceTokenTrimmingLeftWhitespace(') =>'),
+                !0
+              );
             }
           }
           return !1;
@@ -24505,7 +24500,6 @@ ${s.map(
               this.tokens.replaceToken('async ('),
                 this.tokens.removeInitialToken();
               this.tokens.currentIndex() < s;
-
             )
               this.tokens.removeToken();
             return (
@@ -24522,7 +24516,6 @@ ${s.map(
             for (
               this.tokens.removeInitialToken();
               this.tokens.currentToken().isType;
-
             )
               this.tokens.removeToken();
             return !0;
@@ -24552,10 +24545,10 @@ ${s.map(
           for (var s = [0], i = 0; i < t.length; )
             switch (t[i]) {
               case Mo:
-                (i += Mo.length), s.push(i);
+                ((i += Mo.length), s.push(i));
                 break;
               case nf:
-                (i += nf.length), t[i] === Mo && (i += Mo.length), s.push(i);
+                ((i += nf.length), t[i] === Mo && (i += Mo.length), s.push(i));
                 break;
               default:
                 i++;
@@ -24674,7 +24667,7 @@ ${s.map(
     }
     Pc.default = xg;
     function gg(e, t, s) {
-      t++,
+      (t++,
         !e.matches1AtIndex(t, Gt.TokenType.parenL) &&
           (e.matches1AtIndex(t, Gt.TokenType.name) &&
             (s.add(e.identifierNameAtIndex(t)),
@@ -24682,7 +24675,7 @@ ${s.map(
             e.matches1AtIndex(t, Gt.TokenType.comma) && t++),
           e.matches1AtIndex(t, Gt.TokenType.star) &&
             ((t += 2), s.add(e.identifierNameAtIndex(t)), t++),
-          e.matches1AtIndex(t, Gt.TokenType.braceL) && (t++, _g(e, t, s)));
+          e.matches1AtIndex(t, Gt.TokenType.braceL) && (t++, _g(e, t, s))));
     }
     function _g(e, t, s) {
       for (;;) {
@@ -24761,9 +24754,9 @@ ${s.map(
         return a;
       } catch (s) {
         throw (
-          (t.filePath &&
+          t.filePath &&
             (s.message = `Error transforming ${t.filePath}: ${s.message}`),
-          s)
+          s
         );
       }
     }
@@ -24816,9 +24809,9 @@ ${s.map(
       typeof Fo == 'object' && typeof pf < 'u'
         ? t(Fo)
         : typeof define == 'function' && define.amd
-        ? define(['exports'], t)
-        : ((e = typeof globalThis < 'u' ? globalThis : e || self),
-          t((e.acorn = {})));
+          ? define(['exports'], t)
+          : ((e = typeof globalThis < 'u' ? globalThis : e || self),
+            t((e.acorn = {})));
     })(Fo, function (e) {
       'use strict';
       var t = [
@@ -24906,38 +24899,38 @@ ${s.map(
         return n < 65
           ? n === 36
           : n < 91
-          ? !0
-          : n < 97
-          ? n === 95
-          : n < 123
-          ? !0
-          : n <= 65535
-          ? n >= 170 && g.test(String.fromCharCode(n))
-          : o === !1
-          ? !1
-          : p(n, s);
+            ? !0
+            : n < 97
+              ? n === 95
+              : n < 123
+                ? !0
+                : n <= 65535
+                  ? n >= 170 && g.test(String.fromCharCode(n))
+                  : o === !1
+                    ? !1
+                    : p(n, s);
       }
       function T(n, o) {
         return n < 48
           ? n === 36
           : n < 58
-          ? !0
-          : n < 65
-          ? !1
-          : n < 91
-          ? !0
-          : n < 97
-          ? n === 95
-          : n < 123
-          ? !0
-          : n <= 65535
-          ? n >= 170 && L.test(String.fromCharCode(n))
-          : o === !1
-          ? !1
-          : p(n, s) || p(n, t);
+            ? !0
+            : n < 65
+              ? !1
+              : n < 91
+                ? !0
+                : n < 97
+                  ? n === 95
+                  : n < 123
+                    ? !0
+                    : n <= 65535
+                      ? n >= 170 && L.test(String.fromCharCode(n))
+                      : o === !1
+                        ? !1
+                        : p(n, s) || p(n, t);
       }
       var x = function (o, l) {
-        l === void 0 && (l = {}),
+        (l === void 0 && (l = {}),
           (this.label = o),
           (this.keyword = l.keyword),
           (this.beforeExpr = !!l.beforeExpr),
@@ -24947,7 +24940,7 @@ ${s.map(
           (this.prefix = !!l.prefix),
           (this.postfix = !!l.postfix),
           (this.binop = l.binop || null),
-          (this.updateContext = null);
+          (this.updateContext = null));
       };
       function w(n, o) {
         return new x(n, {beforeExpr: !0, binop: o});
@@ -24956,7 +24949,11 @@ ${s.map(
         A = {startsExpr: !0},
         U = {};
       function M(n, o) {
-        return o === void 0 && (o = {}), (o.keyword = n), (U[n] = new x(n, o));
+        return (
+          o === void 0 && (o = {}),
+          (o.keyword = n),
+          (U[n] = new x(n, o))
+        );
       }
       var c = {
           num: new x('num', A),
@@ -25088,21 +25085,21 @@ ${s.map(
       var _t =
           /(?:[\uD800-\uDBFF](?![\uDC00-\uDFFF])|(?:[^\uD800-\uDBFF]|^)[\uDC00-\uDFFF])/,
         ct = function (o, l) {
-          (this.line = o), (this.column = l);
+          ((this.line = o), (this.column = l));
         };
       ct.prototype.offset = function (o) {
         return new ct(this.line, this.column + o);
       };
       var wt = function (o, l, f) {
-        (this.start = l),
+        ((this.start = l),
           (this.end = f),
-          o.sourceFile !== null && (this.source = o.sourceFile);
+          o.sourceFile !== null && (this.source = o.sourceFile));
       };
       function $t(n, o) {
         for (var l = 1, f = 0; ; ) {
           var m = ie(n, f, o);
           if (m < 0) return new ct(l, o - f);
-          ++l, (f = m);
+          (++l, (f = m));
         }
       }
       var Pt = {
@@ -25134,14 +25131,14 @@ ${s.map(
           (o.ecmaVersion === 'latest'
             ? (o.ecmaVersion = 1e8)
             : o.ecmaVersion == null
-            ? (!qt &&
-                typeof console == 'object' &&
-                console.warn &&
-                ((qt = !0),
-                console.warn(`Since Acorn 8.0.0, options.ecmaVersion is required.
+              ? (!qt &&
+                  typeof console == 'object' &&
+                  console.warn &&
+                  ((qt = !0),
+                  console.warn(`Since Acorn 8.0.0, options.ecmaVersion is required.
 Defaulting to 2020, but this will stop working in the future.`)),
-              (o.ecmaVersion = 11))
-            : o.ecmaVersion >= 2015 && (o.ecmaVersion -= 2009),
+                (o.ecmaVersion = 11))
+              : o.ecmaVersion >= 2015 && (o.ecmaVersion -= 2009),
           o.allowReserved == null && (o.allowReserved = o.ecmaVersion < 5),
           (!n || n.allowHashBang == null) &&
             (o.allowHashBang = o.ecmaVersion >= 14),
@@ -25152,14 +25149,14 @@ Defaulting to 2020, but this will stop working in the future.`)),
             return f.push(m);
           };
         }
-        return kt(o.onComment) && (o.onComment = V(o, o.onComment)), o;
+        return (kt(o.onComment) && (o.onComment = V(o, o.onComment)), o);
       }
       function V(n, o) {
         return function (l, f, m, E, O, Y) {
           var Q = {type: l ? 'Block' : 'Line', value: f, start: m, end: E};
-          n.locations && (Q.loc = new wt(this, O, Y)),
+          (n.locations && (Q.loc = new wt(this, O, Y)),
             n.ranges && (Q.range = [m, E]),
-            o.push(Q);
+            o.push(Q));
         };
       }
       var G = 1,
@@ -25183,24 +25180,24 @@ Defaulting to 2020, but this will stop working in the future.`)),
         bn = 4,
         Dn = 5,
         Ge = function (o, l, f) {
-          (this.options = o = Tn(o)),
+          ((this.options = o = Tn(o)),
             (this.sourceFile = o.sourceFile),
             (this.keywords = tt(
               d[
                 o.ecmaVersion >= 6
                   ? 6
                   : o.sourceType === 'module'
-                  ? '5module'
-                  : 5
+                    ? '5module'
+                    : 5
               ]
-            ));
+            )));
           var m = '';
-          o.allowReserved !== !0 &&
+          (o.allowReserved !== !0 &&
             ((m = a[o.ecmaVersion >= 6 ? 6 : o.ecmaVersion === 5 ? 5 : 3]),
             o.sourceType === 'module' && (m += ' await')),
-            (this.reservedWords = tt(m));
+            (this.reservedWords = tt(m)));
           var E = (m ? m + ' ' : '') + a.strict;
-          (this.reservedWordsStrict = tt(E)),
+          ((this.reservedWordsStrict = tt(E)),
             (this.reservedWordsStrictBind = tt(E + ' ' + a.strictBind)),
             (this.input = String(l)),
             (this.containsEsc = !1),
@@ -25238,7 +25235,7 @@ Defaulting to 2020, but this will stop working in the future.`)),
             (this.scopeStack = []),
             this.enterScope(G),
             (this.regexpState = null),
-            (this.privateNameStack = []);
+            (this.privateNameStack = []));
         },
         St = {
           inFunction: {configurable: !0},
@@ -25251,9 +25248,9 @@ Defaulting to 2020, but this will stop working in the future.`)),
           allowNewDotTarget: {configurable: !0},
           inClassStaticBlock: {configurable: !0},
         };
-      (Ge.prototype.parse = function () {
+      ((Ge.prototype.parse = function () {
         var o = this.options.program || this.startNode();
-        return this.nextToken(), this.parseTopLevel(o);
+        return (this.nextToken(), this.parseTopLevel(o));
       }),
         (St.inFunction.get = function () {
           return (this.currentVarScope().flags & J) > 0;
@@ -25308,18 +25305,18 @@ Defaulting to 2020, but this will stop working in the future.`)),
         }),
         (Ge.parseExpressionAt = function (o, l, f) {
           var m = new this(f, o, l);
-          return m.nextToken(), m.parseExpression();
+          return (m.nextToken(), m.parseExpression());
         }),
         (Ge.tokenizer = function (o, l) {
           return new this(l, o);
         }),
-        Object.defineProperties(Ge.prototype, St);
+        Object.defineProperties(Ge.prototype, St));
       var ot = Ge.prototype,
         zt = /^(?:'((?:\\[^]|[^'\\])*?)'|"((?:\\[^]|[^"\\])*?)")/;
-      (ot.strictDirective = function (n) {
+      ((ot.strictDirective = function (n) {
         if (this.options.ecmaVersion < 5) return !1;
         for (;;) {
-          (ae.lastIndex = n), (n += ae.exec(this.input)[0].length);
+          ((ae.lastIndex = n), (n += ae.exec(this.input)[0].length));
           var o = zt.exec(this.input.slice(n));
           if (!o) return !1;
           if ((o[1] || o[2]) === 'use strict') {
@@ -25337,10 +25334,10 @@ Defaulting to 2020, but this will stop working in the future.`)),
                 ))
             );
           }
-          (n += o[0].length),
+          ((n += o[0].length),
             (ae.lastIndex = n),
             (n += ae.exec(this.input)[0].length),
-            this.input[n] === ';' && n++;
+            this.input[n] === ';' && n++);
         }
       }),
         (ot.eat = function (n) {
@@ -25393,7 +25390,7 @@ Defaulting to 2020, but this will stop working in the future.`)),
         }),
         (ot.unexpected = function (n) {
           this.raise(n ?? this.start, 'Unexpected token');
-        });
+        }));
       var Xt = function () {
         this.shorthandAssign =
           this.trailingComma =
@@ -25402,7 +25399,7 @@ Defaulting to 2020, but this will stop working in the future.`)),
           this.doubleProto =
             -1;
       };
-      (ot.checkPatternErrors = function (n, o) {
+      ((ot.checkPatternErrors = function (n, o) {
         if (n) {
           n.trailingComma > -1 &&
             this.raiseRecoverable(
@@ -25422,16 +25419,16 @@ Defaulting to 2020, but this will stop working in the future.`)),
           var l = n.shorthandAssign,
             f = n.doubleProto;
           if (!o) return l >= 0 || f >= 0;
-          l >= 0 &&
+          (l >= 0 &&
             this.raise(
               l,
               'Shorthand property assignments are valid only in destructuring patterns'
             ),
             f >= 0 &&
-              this.raiseRecoverable(f, 'Redefinition of __proto__ property');
+              this.raiseRecoverable(f, 'Redefinition of __proto__ property'));
         }),
         (ot.checkYieldAwaitInDefaultParams = function () {
-          this.yieldPos &&
+          (this.yieldPos &&
             (!this.awaitPos || this.yieldPos < this.awaitPos) &&
             this.raise(
               this.yieldPos,
@@ -25441,13 +25438,13 @@ Defaulting to 2020, but this will stop working in the future.`)),
               this.raise(
                 this.awaitPos,
                 'Await expression cannot be a default value'
-              );
+              ));
         }),
         (ot.isSimpleAssignTarget = function (n) {
           return n.type === 'ParenthesizedExpression'
             ? this.isSimpleAssignTarget(n.expression)
             : n.type === 'Identifier' || n.type === 'MemberExpression';
-        });
+        }));
       var te = Ge.prototype;
       te.parseTopLevel = function (n) {
         var o = Object.create(null);
@@ -25476,7 +25473,7 @@ Defaulting to 2020, but this will stop working in the future.`)),
       };
       var Cn = {kind: 'loop'},
         Zn = {kind: 'switch'};
-      (te.isLet = function (n) {
+      ((te.isLet = function (n) {
         if (this.options.ecmaVersion < 6 || !this.isContextual('let'))
           return !1;
         ae.lastIndex = this.pos;
@@ -25578,7 +25575,7 @@ Defaulting to 2020, but this will stop working in the future.`)),
                 this.parseFunctionStatement(m, !1, !n)
               );
             case c._class:
-              return n && this.unexpected(), this.parseClass(m, !0);
+              return (n && this.unexpected(), this.parseClass(m, !0));
             case c._if:
               return this.parseIfStatement(m);
             case c._return:
@@ -25641,8 +25638,8 @@ Defaulting to 2020, but this will stop working in the future.`)),
               var Te = this.isAwaitUsing(!1)
                 ? 'await using'
                 : this.isUsing(!1)
-                ? 'using'
-                : null;
+                  ? 'using'
+                  : null;
               if (Te)
                 return (
                   o &&
@@ -25674,12 +25671,12 @@ Defaulting to 2020, but this will stop working in the future.`)),
         }),
         (te.parseBreakContinueStatement = function (n, o) {
           var l = o === 'break';
-          this.next(),
+          (this.next(),
             this.eat(c.semi) || this.insertSemicolon()
               ? (n.label = null)
               : this.type !== c.name
-              ? this.unexpected()
-              : ((n.label = this.parseIdent()), this.semicolon());
+                ? this.unexpected()
+                : ((n.label = this.parseIdent()), this.semicolon()));
           for (var f = 0; f < this.labels.length; ++f) {
             var m = this.labels[f];
             if (
@@ -25726,7 +25723,7 @@ Defaulting to 2020, but this will stop working in the future.`)),
             this.expect(c.parenL),
             this.type === c.semi)
           )
-            return o > -1 && this.unexpected(o), this.parseFor(n, null);
+            return (o > -1 && this.unexpected(o), this.parseFor(n, null));
           var l = this.isLet();
           if (this.type === c._var || this.type === c._const || l) {
             var f = this.startNode(),
@@ -25743,8 +25740,8 @@ Defaulting to 2020, but this will stop working in the future.`)),
             Y = this.isUsing(!0)
               ? 'using'
               : this.isAwaitUsing(!0)
-              ? 'await using'
-              : null;
+                ? 'await using'
+                : null;
           if (Y) {
             var Q = this.startNode();
             return (
@@ -25799,7 +25796,7 @@ Defaulting to 2020, but this will stop working in the future.`)),
             : (l > -1 && this.unexpected(l), this.parseFor(n, o));
         }),
         (te.parseFunctionStatement = function (n, o, l) {
-          return this.next(), this.parseFunction(n, Mn | (l ? 0 : xs), !1, o);
+          return (this.next(), this.parseFunction(n, Mn | (l ? 0 : xs), !1, o));
         }),
         (te.parseIfStatement = function (n) {
           return (
@@ -25825,16 +25822,16 @@ Defaulting to 2020, but this will stop working in the future.`)),
           );
         }),
         (te.parseSwitchStatement = function (n) {
-          this.next(),
+          (this.next(),
             (n.discriminant = this.parseParenExpression()),
             (n.cases = []),
             this.expect(c.braceL),
             this.labels.push(Zn),
-            this.enterScope(0);
+            this.enterScope(0));
           for (var o, l = !1; this.type !== c.braceR; )
             if (this.type === c._case || this.type === c._default) {
               var f = this.type === c._case;
-              o && this.finishNode(o, 'SwitchCase'),
+              (o && this.finishNode(o, 'SwitchCase'),
                 n.cases.push((o = this.startNode())),
                 (o.consequent = []),
                 this.next(),
@@ -25847,10 +25844,10 @@ Defaulting to 2020, but this will stop working in the future.`)),
                       ),
                     (l = !0),
                     (o.test = null)),
-                this.expect(c.colon);
+                this.expect(c.colon));
             } else
-              o || this.unexpected(),
-                o.consequent.push(this.parseStatement(null));
+              (o || this.unexpected(),
+                o.consequent.push(this.parseStatement(null)));
           return (
             this.exitScope(),
             o && this.finishNode(o, 'SwitchCase'),
@@ -25868,9 +25865,9 @@ Defaulting to 2020, but this will stop working in the future.`)),
             this.semicolon(),
             this.finishNode(n, 'ThrowStatement')
           );
-        });
+        }));
       var _i = [];
-      (te.parseCatchClauseParam = function () {
+      ((te.parseCatchClauseParam = function () {
         var n = this.parseBindingAtom(),
           o = n.type === 'Identifier';
         return (
@@ -25888,7 +25885,7 @@ Defaulting to 2020, but this will stop working in the future.`)),
             this.type === c._catch)
           ) {
             var o = this.startNode();
-            this.next(),
+            (this.next(),
               this.eat(c.parenL)
                 ? (o.param = this.parseCatchClauseParam())
                 : (this.options.ecmaVersion < 10 && this.unexpected(),
@@ -25896,7 +25893,7 @@ Defaulting to 2020, but this will stop working in the future.`)),
                   this.enterScope(0)),
               (o.body = this.parseBlock(!1)),
               this.exitScope(),
-              (n.handler = this.finishNode(o, 'CatchClause'));
+              (n.handler = this.finishNode(o, 'CatchClause')));
           }
           return (
             (n.finalizer = this.eat(c._finally) ? this.parseBlock() : null),
@@ -25934,7 +25931,7 @@ Defaulting to 2020, but this will stop working in the future.`)),
           );
         }),
         (te.parseEmptyStatement = function (n) {
-          return this.next(), this.finishNode(n, 'EmptyStatement');
+          return (this.next(), this.finishNode(n, 'EmptyStatement'));
         }),
         (te.parseLabeledStatement = function (n, o, l, f) {
           for (var m = 0, E = this.labels; m < E.length; m += 1) {
@@ -25946,15 +25943,15 @@ Defaulting to 2020, but this will stop working in the future.`)),
             var Y = this.type.isLoop
                 ? 'loop'
                 : this.type === c._switch
-                ? 'switch'
-                : null,
+                  ? 'switch'
+                  : null,
               Q = this.labels.length - 1;
             Q >= 0;
             Q--
           ) {
             var Te = this.labels[Q];
             if (Te.statementStart === n.start)
-              (Te.statementStart = this.start), (Te.kind = Y);
+              ((Te.statementStart = this.start), (Te.kind = Y));
             else break;
           }
           return (
@@ -25982,7 +25979,6 @@ Defaulting to 2020, but this will stop working in the future.`)),
               this.expect(c.braceL),
               n && this.enterScope(0);
             this.type !== c.braceR;
-
           ) {
             var f = this.parseStatement(null);
             o.body.push(f);
@@ -26041,29 +26037,29 @@ Defaulting to 2020, but this will stop working in the future.`)),
               this.eat(c.eq)
                 ? (m.init = this.parseMaybeAssign(o))
                 : !f &&
-                  l === 'const' &&
-                  !(
-                    this.type === c._in ||
-                    (this.options.ecmaVersion >= 6 && this.isContextual('of'))
-                  )
-                ? this.unexpected()
-                : !f &&
-                  (l === 'using' || l === 'await using') &&
-                  this.options.ecmaVersion >= 17 &&
-                  this.type !== c._in &&
-                  !this.isContextual('of')
-                ? this.raise(
-                    this.lastTokEnd,
-                    'Missing initializer in ' + l + ' declaration'
-                  )
-                : !f &&
-                  m.id.type !== 'Identifier' &&
-                  !(o && (this.type === c._in || this.isContextual('of')))
-                ? this.raise(
-                    this.lastTokEnd,
-                    'Complex binding patterns require an initialization value'
-                  )
-                : (m.init = null),
+                    l === 'const' &&
+                    !(
+                      this.type === c._in ||
+                      (this.options.ecmaVersion >= 6 && this.isContextual('of'))
+                    )
+                  ? this.unexpected()
+                  : !f &&
+                      (l === 'using' || l === 'await using') &&
+                      this.options.ecmaVersion >= 17 &&
+                      this.type !== c._in &&
+                      !this.isContextual('of')
+                    ? this.raise(
+                        this.lastTokEnd,
+                        'Missing initializer in ' + l + ' declaration'
+                      )
+                    : !f &&
+                        m.id.type !== 'Identifier' &&
+                        !(o && (this.type === c._in || this.isContextual('of')))
+                      ? this.raise(
+                          this.lastTokEnd,
+                          'Complex binding patterns require an initialization value'
+                        )
+                      : (m.init = null),
               n.declarations.push(this.finishNode(m, 'VariableDeclarator')),
               !this.eat(c.comma))
             )
@@ -26072,17 +26068,17 @@ Defaulting to 2020, but this will stop working in the future.`)),
           return n;
         }),
         (te.parseVarId = function (n, o) {
-          (n.id =
+          ((n.id =
             o === 'using' || o === 'await using'
               ? this.parseIdent()
               : this.parseBindingAtom()),
-            this.checkLValPattern(n.id, o === 'var' ? bt : yt, !1);
-        });
+            this.checkLValPattern(n.id, o === 'var' ? bt : yt, !1));
+        }));
       var Mn = 1,
         xs = 2,
         Ds = 4;
-      (te.parseFunction = function (n, o, l, f, m) {
-        this.initFunction(n),
+      ((te.parseFunction = function (n, o, l, f, m) {
+        (this.initFunction(n),
           (this.options.ecmaVersion >= 9 ||
             (this.options.ecmaVersion >= 6 && !f)) &&
             (this.type === c.star && o & xs && this.unexpected(),
@@ -26099,7 +26095,7 @@ Defaulting to 2020, but this will stop working in the future.`)),
                     ? bt
                     : yt
                   : vt
-              ));
+              )));
         var E = this.yieldPos,
           O = this.awaitPos,
           Y = this.awaitIdentPos;
@@ -26121,18 +26117,20 @@ Defaulting to 2020, but this will stop working in the future.`)),
         );
       }),
         (te.parseFunctionParams = function (n) {
-          this.expect(c.parenL),
+          (this.expect(c.parenL),
             (n.params = this.parseBindingList(
               c.parenR,
               !1,
               this.options.ecmaVersion >= 8
             )),
-            this.checkYieldAwaitInDefaultParams();
+            this.checkYieldAwaitInDefaultParams());
         }),
         (te.parseClass = function (n, o) {
           this.next();
           var l = this.strict;
-          (this.strict = !0), this.parseClassId(n, o), this.parseClassSuper(n);
+          ((this.strict = !0),
+            this.parseClassId(n, o),
+            this.parseClassSuper(n));
           var f = this.enterClassBody(),
             m = this.startNode(),
             E = !1;
@@ -26174,7 +26172,7 @@ Defaulting to 2020, but this will stop working in the future.`)),
             Y = !1;
           if (this.eatContextual('static')) {
             if (o >= 13 && this.eat(c.braceL))
-              return this.parseClassStaticBlock(l), l;
+              return (this.parseClassStaticBlock(l), l);
             this.isClassElementNameStart() || this.type === c.star
               ? (Y = !0)
               : (f = 'static');
@@ -26209,14 +26207,14 @@ Defaulting to 2020, but this will stop working in the future.`)),
           ) {
             var Te = !l.static && es(l, 'constructor'),
               xe = Te && n;
-            Te &&
+            (Te &&
               O !== 'method' &&
               this.raise(
                 l.key.start,
                 "Constructor can't have get/set modifier"
               ),
               (l.kind = Te ? 'constructor' : O),
-              this.parseClassMethod(l, m, E, xe);
+              this.parseClassMethod(l, m, E, xe));
           } else this.parseClassField(l);
           return l;
         }),
@@ -26300,7 +26298,6 @@ Defaulting to 2020, but this will stop working in the future.`)),
           for (
             this.labels = [], this.enterScope(Xe | Ee);
             this.type !== c.braceR;
-
           ) {
             var l = this.parseStatement(null);
             n.body.push(l);
@@ -26325,7 +26322,7 @@ Defaulting to 2020, but this will stop working in the future.`)),
         }),
         (te.enterClassBody = function () {
           var n = {declared: Object.create(null), used: []};
-          return this.privateNameStack.push(n), n.declared;
+          return (this.privateNameStack.push(n), n.declared);
         }),
         (te.exitClassBody = function () {
           var n = this.privateNameStack.pop(),
@@ -26350,7 +26347,7 @@ Defaulting to 2020, but this will stop working in the future.`)),
                         "' must be declared in an enclosing class"
                     ));
             }
-        });
+        }));
       function bi(n, o) {
         var l = o.key.name,
           f = n[l],
@@ -26365,8 +26362,8 @@ Defaulting to 2020, but this will stop working in the future.`)),
           (f === 'sset' && m === 'sget')
             ? ((n[l] = 'true'), !1)
             : f
-            ? !0
-            : ((n[l] = m), !1)
+              ? !0
+              : ((n[l] = m), !1)
         );
       }
       function es(n, o) {
@@ -26378,7 +26375,7 @@ Defaulting to 2020, but this will stop working in the future.`)),
             (f.type === 'Literal' && f.value === o))
         );
       }
-      (te.parseExportAllDeclaration = function (n, o) {
+      ((te.parseExportAllDeclaration = function (n, o) {
         return (
           this.options.ecmaVersion >= 11 &&
             (this.eatContextual('as')
@@ -26404,36 +26401,36 @@ Defaulting to 2020, but this will stop working in the future.`)),
               this.finishNode(n, 'ExportDefaultDeclaration')
             );
           if (this.shouldParseExportStatement())
-            (n.declaration = this.parseExportDeclaration(n)),
+            ((n.declaration = this.parseExportDeclaration(n)),
               n.declaration.type === 'VariableDeclaration'
                 ? this.checkVariableExport(o, n.declaration.declarations)
                 : this.checkExport(o, n.declaration.id, n.declaration.id.start),
               (n.specifiers = []),
               (n.source = null),
-              this.options.ecmaVersion >= 16 && (n.attributes = []);
+              this.options.ecmaVersion >= 16 && (n.attributes = []));
           else {
             if (
               ((n.declaration = null),
               (n.specifiers = this.parseExportSpecifiers(o)),
               this.eatContextual('from'))
             )
-              this.type !== c.string && this.unexpected(),
+              (this.type !== c.string && this.unexpected(),
                 (n.source = this.parseExprAtom()),
                 this.options.ecmaVersion >= 16 &&
-                  (n.attributes = this.parseWithClause());
+                  (n.attributes = this.parseWithClause()));
             else {
               for (var l = 0, f = n.specifiers; l < f.length; l += 1) {
                 var m = f[l];
-                this.checkUnreserved(m.local),
+                (this.checkUnreserved(m.local),
                   this.checkLocalExport(m.local),
                   m.local.type === 'Literal' &&
                     this.raise(
                       m.local.start,
                       'A string literal cannot be used as an exported binding without `from`.'
-                    );
+                    ));
               }
-              (n.source = null),
-                this.options.ecmaVersion >= 16 && (n.attributes = []);
+              ((n.source = null),
+                this.options.ecmaVersion >= 16 && (n.attributes = []));
             }
             this.semicolon();
           }
@@ -26456,7 +26453,7 @@ Defaulting to 2020, but this will stop working in the future.`)),
             return this.parseClass(l, 'nullableID');
           } else {
             var f = this.parseMaybeAssign();
-            return this.semicolon(), f;
+            return (this.semicolon(), f);
           }
         }),
         (te.checkExport = function (n, o, l) {
@@ -26484,8 +26481,8 @@ Defaulting to 2020, but this will stop working in the future.`)),
             l === 'Property'
               ? this.checkPatternExport(n, o.value)
               : l === 'AssignmentPattern'
-              ? this.checkPatternExport(n, o.left)
-              : l === 'RestElement' && this.checkPatternExport(n, o.argument);
+                ? this.checkPatternExport(n, o.left)
+                : l === 'RestElement' && this.checkPatternExport(n, o.argument);
         }),
         (te.checkVariableExport = function (n, o) {
           if (n)
@@ -26581,7 +26578,7 @@ Defaulting to 2020, but this will stop working in the future.`)),
           )
             return n;
           if (this.type === c.star)
-            return n.push(this.parseImportNamespaceSpecifier()), n;
+            return (n.push(this.parseImportNamespaceSpecifier()), n);
           for (this.expect(c.braceL); !this.eat(c.braceR); ) {
             if (o) o = !1;
             else if ((this.expect(c.comma), this.afterTrailingComma(c.braceR)))
@@ -26600,13 +26597,13 @@ Defaulting to 2020, but this will stop working in the future.`)),
               break;
             var f = this.parseImportAttribute(),
               m = f.key.type === 'Identifier' ? f.key.name : f.key.value;
-            mt(o, m) &&
+            (mt(o, m) &&
               this.raiseRecoverable(
                 f.key.start,
                 "Duplicate attribute key '" + m + "'"
               ),
               (o[m] = !0),
-              n.push(f);
+              n.push(f));
           }
           return n;
         }),
@@ -26649,9 +26646,9 @@ Defaulting to 2020, but this will stop working in the future.`)),
             typeof n.expression.value == 'string' &&
             (this.input[n.start] === '"' || this.input[n.start] === "'")
           );
-        });
+        }));
       var Nt = Ge.prototype;
-      (Nt.toAssignable = function (n, o, l) {
+      ((Nt.toAssignable = function (n, o, l) {
         if (this.options.ecmaVersion >= 6 && n)
           switch (n.type) {
             case 'Identifier':
@@ -26668,47 +26665,47 @@ Defaulting to 2020, but this will stop working in the future.`)),
             case 'RestElement':
               break;
             case 'ObjectExpression':
-              (n.type = 'ObjectPattern'), l && this.checkPatternErrors(l, !0);
+              ((n.type = 'ObjectPattern'), l && this.checkPatternErrors(l, !0));
               for (var f = 0, m = n.properties; f < m.length; f += 1) {
                 var E = m[f];
-                this.toAssignable(E, o),
+                (this.toAssignable(E, o),
                   E.type === 'RestElement' &&
                     (E.argument.type === 'ArrayPattern' ||
                       E.argument.type === 'ObjectPattern') &&
-                    this.raise(E.argument.start, 'Unexpected token');
+                    this.raise(E.argument.start, 'Unexpected token'));
               }
               break;
             case 'Property':
-              n.kind !== 'init' &&
+              (n.kind !== 'init' &&
                 this.raise(
                   n.key.start,
                   "Object pattern can't contain getter or setter"
                 ),
-                this.toAssignable(n.value, o);
+                this.toAssignable(n.value, o));
               break;
             case 'ArrayExpression':
-              (n.type = 'ArrayPattern'),
+              ((n.type = 'ArrayPattern'),
                 l && this.checkPatternErrors(l, !0),
-                this.toAssignableList(n.elements, o);
+                this.toAssignableList(n.elements, o));
               break;
             case 'SpreadElement':
-              (n.type = 'RestElement'),
+              ((n.type = 'RestElement'),
                 this.toAssignable(n.argument, o),
                 n.argument.type === 'AssignmentPattern' &&
                   this.raise(
                     n.argument.start,
                     'Rest elements cannot have a default value'
-                  );
+                  ));
               break;
             case 'AssignmentExpression':
-              n.operator !== '=' &&
+              (n.operator !== '=' &&
                 this.raise(
                   n.left.end,
                   "Only '=' operator can be used for specifying default value."
                 ),
                 (n.type = 'AssignmentPattern'),
                 delete n.operator,
-                this.toAssignable(n.left, o);
+                this.toAssignable(n.left, o));
               break;
             case 'ParenthesizedExpression':
               this.toAssignable(n.expression, o, l);
@@ -26787,14 +26784,14 @@ Defaulting to 2020, but this will stop working in the future.`)),
               if (l && this.afterTrailingComma(n)) break;
               if (this.type === c.ellipsis) {
                 var O = this.parseRestBinding();
-                this.parseBindingListItem(O),
+                (this.parseBindingListItem(O),
                   m.push(O),
                   this.type === c.comma &&
                     this.raiseRecoverable(
                       this.start,
                       'Comma is not permitted after the rest element'
                     ),
-                  this.expect(n);
+                  this.expect(n));
                 break;
               } else m.push(this.parseAssignableListItem(f));
             }
@@ -26802,7 +26799,7 @@ Defaulting to 2020, but this will stop working in the future.`)),
         }),
         (Nt.parseAssignableListItem = function (n) {
           var o = this.parseMaybeDefault(this.start, this.startLoc);
-          return this.parseBindingListItem(o), o;
+          return (this.parseBindingListItem(o), o);
         }),
         (Nt.parseBindingListItem = function (n) {
           return n;
@@ -26825,7 +26822,7 @@ Defaulting to 2020, but this will stop working in the future.`)),
           var f = o !== pt;
           switch (n.type) {
             case 'Identifier':
-              this.strict &&
+              (this.strict &&
                 this.reservedWordsStrictBind.test(n.name) &&
                 this.raiseRecoverable(
                   n.start,
@@ -26844,7 +26841,7 @@ Defaulting to 2020, but this will stop working in the future.`)),
                     (mt(l, n.name) &&
                       this.raiseRecoverable(n.start, 'Argument name clash'),
                     (l[n.name] = !0)),
-                  o !== Dn && this.declareName(n.name, o, n.start));
+                  o !== Dn && this.declareName(n.name, o, n.start)));
               break;
             case 'ChainExpression':
               this.raiseRecoverable(
@@ -26900,13 +26897,13 @@ Defaulting to 2020, but this will stop working in the future.`)),
             default:
               this.checkLValPattern(n, o, l);
           }
-        });
+        }));
       var Rt = function (o, l, f, m, E) {
-          (this.token = o),
+          ((this.token = o),
             (this.isExpr = !!l),
             (this.preserveSpace = !!f),
             (this.override = m),
-            (this.generator = !!E);
+            (this.generator = !!E));
         },
         Ue = {
           b_stat: new Rt('{', !1),
@@ -26923,7 +26920,7 @@ Defaulting to 2020, but this will stop working in the future.`)),
           f_gen: new Rt('function', !1, !1, null, !0),
         },
         wn = Ge.prototype;
-      (wn.initialContext = function () {
+      ((wn.initialContext = function () {
         return [Ue.b_stat];
       }),
         (wn.curContext = function () {
@@ -26934,20 +26931,20 @@ Defaulting to 2020, but this will stop working in the future.`)),
           return o === Ue.f_expr || o === Ue.f_stat
             ? !0
             : n === c.colon && (o === Ue.b_stat || o === Ue.b_expr)
-            ? !o.isExpr
-            : n === c._return || (n === c.name && this.exprAllowed)
-            ? R.test(this.input.slice(this.lastTokEnd, this.start))
-            : n === c._else ||
-              n === c.semi ||
-              n === c.eof ||
-              n === c.parenR ||
-              n === c.arrow
-            ? !0
-            : n === c.braceL
-            ? o === Ue.b_stat
-            : n === c._var || n === c._const || n === c.name
-            ? !1
-            : !this.exprAllowed;
+              ? !o.isExpr
+              : n === c._return || (n === c.name && this.exprAllowed)
+                ? R.test(this.input.slice(this.lastTokEnd, this.start))
+                : n === c._else ||
+                    n === c.semi ||
+                    n === c.eof ||
+                    n === c.parenR ||
+                    n === c.arrow
+                  ? !0
+                  : n === c.braceL
+                    ? o === Ue.b_stat
+                    : n === c._var || n === c._const || n === c.name
+                      ? !1
+                      : !this.exprAllowed;
         }),
         (wn.inGeneratorContext = function () {
           for (var n = this.context.length - 1; n >= 1; n--) {
@@ -26962,8 +26959,8 @@ Defaulting to 2020, but this will stop working in the future.`)),
           l.keyword && n === c.dot
             ? (this.exprAllowed = !1)
             : (o = l.updateContext)
-            ? o.call(this, n)
-            : (this.exprAllowed = l.beforeExpr);
+              ? o.call(this, n)
+              : (this.exprAllowed = l.beforeExpr);
         }),
         (wn.overrideContext = function (n) {
           this.curContext() !== n &&
@@ -26976,27 +26973,28 @@ Defaulting to 2020, but this will stop working in the future.`)),
               return;
             }
             var n = this.context.pop();
-            n === Ue.b_stat &&
+            (n === Ue.b_stat &&
               this.curContext().token === 'function' &&
               (n = this.context.pop()),
-              (this.exprAllowed = !n.isExpr);
+              (this.exprAllowed = !n.isExpr));
           }),
         (c.braceL.updateContext = function (n) {
-          this.context.push(this.braceIsBlock(n) ? Ue.b_stat : Ue.b_expr),
-            (this.exprAllowed = !0);
+          (this.context.push(this.braceIsBlock(n) ? Ue.b_stat : Ue.b_expr),
+            (this.exprAllowed = !0));
         }),
         (c.dollarBraceL.updateContext = function () {
-          this.context.push(Ue.b_tmpl), (this.exprAllowed = !0);
+          (this.context.push(Ue.b_tmpl), (this.exprAllowed = !0));
         }),
         (c.parenL.updateContext = function (n) {
           var o =
             n === c._if || n === c._for || n === c._with || n === c._while;
-          this.context.push(o ? Ue.p_stat : Ue.p_expr), (this.exprAllowed = !0);
+          (this.context.push(o ? Ue.p_stat : Ue.p_expr),
+            (this.exprAllowed = !0));
         }),
         (c.incDec.updateContext = function () {}),
         (c._function.updateContext = c._class.updateContext =
           function (n) {
-            n.beforeExpr &&
+            (n.beforeExpr &&
             n !== c._else &&
             !(n === c.semi && this.curContext() !== Ue.p_stat) &&
             !(
@@ -27009,17 +27007,17 @@ Defaulting to 2020, but this will stop working in the future.`)),
             )
               ? this.context.push(Ue.f_expr)
               : this.context.push(Ue.f_stat),
-              (this.exprAllowed = !1);
+              (this.exprAllowed = !1));
           }),
         (c.colon.updateContext = function () {
-          this.curContext().token === 'function' && this.context.pop(),
-            (this.exprAllowed = !0);
+          (this.curContext().token === 'function' && this.context.pop(),
+            (this.exprAllowed = !0));
         }),
         (c.backQuote.updateContext = function () {
-          this.curContext() === Ue.q_tmpl
+          (this.curContext() === Ue.q_tmpl
             ? this.context.pop()
             : this.context.push(Ue.q_tmpl),
-            (this.exprAllowed = !1);
+            (this.exprAllowed = !1));
         }),
         (c.star.updateContext = function (n) {
           if (n === c._function) {
@@ -27032,15 +27030,15 @@ Defaulting to 2020, but this will stop working in the future.`)),
         }),
         (c.name.updateContext = function (n) {
           var o = !1;
-          this.options.ecmaVersion >= 6 &&
+          (this.options.ecmaVersion >= 6 &&
             n !== c.dot &&
             ((this.value === 'of' && !this.exprAllowed) ||
               (this.value === 'yield' && this.inGeneratorContext())) &&
             (o = !0),
-            (this.exprAllowed = o);
-        });
+            (this.exprAllowed = o));
+        }));
       var de = Ge.prototype;
-      (de.checkPropClash = function (n, o, l) {
+      ((de.checkPropClash = function (n, o, l) {
         if (
           !(this.options.ecmaVersion >= 9 && n.type === 'SpreadElement') &&
           !(
@@ -27078,10 +27076,10 @@ Defaulting to 2020, but this will stop working in the future.`)),
           var O = o[m];
           if (O) {
             var Y;
-            E === 'init'
+            (E === 'init'
               ? (Y = (this.strict && O.init) || O.get || O.set)
               : (Y = O.init || O[E]),
-              Y && this.raiseRecoverable(f.start, 'Redefinition of property');
+              Y && this.raiseRecoverable(f.start, 'Redefinition of property'));
           } else O = o[m] = {init: !1, get: !1, set: !1};
           O[E] = !0;
         }
@@ -27219,11 +27217,11 @@ Defaulting to 2020, but this will stop working in the future.`)),
             E = this.startLoc,
             O;
           if (this.isContextual('await') && this.canAwait)
-            (O = this.parseAwait(f)), (o = !0);
+            ((O = this.parseAwait(f)), (o = !0));
           else if (this.type.prefix) {
             var Y = this.startNode(),
               Q = this.type === c.incDec;
-            (Y.operator = this.value),
+            ((Y.operator = this.value),
               (Y.prefix = !0),
               this.next(),
               (Y.argument = this.parseMaybeUnary(null, !0, Q, f)),
@@ -27231,26 +27229,26 @@ Defaulting to 2020, but this will stop working in the future.`)),
               Q
                 ? this.checkLValSimple(Y.argument)
                 : this.strict && Y.operator === 'delete' && Ms(Y.argument)
-                ? this.raiseRecoverable(
-                    Y.start,
-                    'Deleting local variable in strict mode'
-                  )
-                : Y.operator === 'delete' && gs(Y.argument)
-                ? this.raiseRecoverable(
-                    Y.start,
-                    'Private fields can not be deleted'
-                  )
-                : (o = !0),
+                  ? this.raiseRecoverable(
+                      Y.start,
+                      'Deleting local variable in strict mode'
+                    )
+                  : Y.operator === 'delete' && gs(Y.argument)
+                    ? this.raiseRecoverable(
+                        Y.start,
+                        'Private fields can not be deleted'
+                      )
+                    : (o = !0),
               (O = this.finishNode(
                 Y,
                 Q ? 'UpdateExpression' : 'UnaryExpression'
-              ));
+              )));
           } else if (!o && this.type === c.privateId)
-            (f || this.privateNameStack.length === 0) &&
+            ((f || this.privateNameStack.length === 0) &&
               this.options.checkPrivateFields &&
               this.unexpected(),
               (O = this.parsePrivateIdent()),
-              this.type !== c._in && this.unexpected();
+              this.type !== c._in && this.unexpected());
           else {
             if (
               ((O = this.parseExprSubscripts(n, f)),
@@ -27259,12 +27257,12 @@ Defaulting to 2020, but this will stop working in the future.`)),
               return O;
             for (; this.type.postfix && !this.canInsertSemicolon(); ) {
               var Te = this.startNodeAt(m, E);
-              (Te.operator = this.value),
+              ((Te.operator = this.value),
                 (Te.prefix = !1),
                 (Te.argument = O),
                 this.checkLValSimple(O),
                 this.next(),
-                (O = this.finishNode(Te, 'UpdateExpression'));
+                (O = this.finishNode(Te, 'UpdateExpression')));
             }
           }
           if (!l && this.eat(c.starstar))
@@ -27279,7 +27277,7 @@ Defaulting to 2020, but this will stop working in the future.`)),
                 !1
               );
           else return O;
-        });
+        }));
       function Ms(n) {
         return (
           n.type === 'Identifier' ||
@@ -27294,7 +27292,7 @@ Defaulting to 2020, but this will stop working in the future.`)),
           (n.type === 'ParenthesizedExpression' && gs(n.expression))
         );
       }
-      (de.parseExprSubscripts = function (n, o) {
+      ((de.parseExprSubscripts = function (n, o) {
         var l = this.start,
           f = this.startLoc,
           m = this.parseExprAtom(n, o);
@@ -27325,7 +27323,6 @@ Defaulting to 2020, but this will stop working in the future.`)),
                 this.potentialArrowAt === n.start,
               O = !1;
             ;
-
           ) {
             var Y = this.parseSubscript(n, o, l, f, E, O, m);
             if (
@@ -27334,7 +27331,8 @@ Defaulting to 2020, but this will stop working in the future.`)),
             ) {
               if (O) {
                 var Q = this.startNodeAt(o, l);
-                (Q.expression = Y), (Y = this.finishNode(Q, 'ChainExpression'));
+                ((Q.expression = Y),
+                  (Y = this.finishNode(Q, 'ChainExpression')));
               }
               return Y;
             }
@@ -27363,24 +27361,26 @@ Defaulting to 2020, but this will stop working in the future.`)),
             this.eat(c.dot)
           ) {
             var xe = this.startNodeAt(o, l);
-            (xe.object = n),
+            ((xe.object = n),
               Te
                 ? ((xe.property = this.parseExpression()),
                   this.expect(c.bracketR))
                 : this.type === c.privateId && n.type !== 'Super'
-                ? (xe.property = this.parsePrivateIdent())
-                : (xe.property = this.parseIdent(
-                    this.options.allowReserved !== 'never'
-                  )),
+                  ? (xe.property = this.parsePrivateIdent())
+                  : (xe.property = this.parseIdent(
+                      this.options.allowReserved !== 'never'
+                    )),
               (xe.computed = !!Te),
               Y && (xe.optional = Q),
-              (n = this.finishNode(xe, 'MemberExpression'));
+              (n = this.finishNode(xe, 'MemberExpression')));
           } else if (!f && this.eat(c.parenL)) {
             var Ze = new Xt(),
               Lt = this.yieldPos,
               Ri = this.awaitPos,
               Ys = this.awaitIdentPos;
-            (this.yieldPos = 0), (this.awaitPos = 0), (this.awaitIdentPos = 0);
+            ((this.yieldPos = 0),
+              (this.awaitPos = 0),
+              (this.awaitIdentPos = 0));
             var gr = this.parseExprList(
               c.parenR,
               this.options.ecmaVersion >= 8,
@@ -27401,15 +27401,15 @@ Defaulting to 2020, but this will stop working in the future.`)),
                 (this.awaitIdentPos = Ys),
                 this.parseSubscriptAsyncArrow(o, l, gr, O)
               );
-            this.checkExpressionErrors(Ze, !0),
+            (this.checkExpressionErrors(Ze, !0),
               (this.yieldPos = Lt || this.yieldPos),
               (this.awaitPos = Ri || this.awaitPos),
-              (this.awaitIdentPos = Ys || this.awaitIdentPos);
+              (this.awaitIdentPos = Ys || this.awaitIdentPos));
             var Js = this.startNodeAt(o, l);
-            (Js.callee = n),
+            ((Js.callee = n),
               (Js.arguments = gr),
               Y && (Js.optional = Q),
-              (n = this.finishNode(Js, 'CallExpression'));
+              (n = this.finishNode(Js, 'CallExpression')));
           } else if (this.type === c.backQuote) {
             (Q || E) &&
               this.raise(
@@ -27417,9 +27417,9 @@ Defaulting to 2020, but this will stop working in the future.`)),
                 'Optional chaining cannot appear in the tag of tagged template expressions'
               );
             var Qs = this.startNodeAt(o, l);
-            (Qs.tag = n),
+            ((Qs.tag = n),
               (Qs.quasi = this.parseTemplate({isTagged: !0})),
-              (n = this.finishNode(Qs, 'TaggedTemplateExpression'));
+              (n = this.finishNode(Qs, 'TaggedTemplateExpression')));
           }
           return n;
         }),
@@ -27538,10 +27538,12 @@ Defaulting to 2020, but this will stop working in the future.`)),
                 this.finishNode(f, 'ArrayExpression')
               );
             case c.braceL:
-              return this.overrideContext(Ue.b_expr), this.parseObj(!1, n);
+              return (this.overrideContext(Ue.b_expr), this.parseObj(!1, n));
             case c._function:
               return (
-                (f = this.startNode()), this.next(), this.parseFunction(f, 0)
+                (f = this.startNode()),
+                this.next(),
+                this.parseFunction(f, 0)
               );
             case c._class:
               return this.parseClass(this.startNode(), !1);
@@ -27648,7 +27650,7 @@ Defaulting to 2020, but this will stop working in the future.`)),
         (de.parseParenExpression = function () {
           this.expect(c.parenL);
           var n = this.parseExpression();
-          return this.expect(c.parenR), n;
+          return (this.expect(c.parenR), n);
         }),
         (de.shouldParseArrow = function (n) {
           return !this.canInsertSemicolon();
@@ -27677,13 +27679,13 @@ Defaulting to 2020, but this will stop working in the future.`)),
                 xe = !0;
                 break;
               } else if (this.type === c.ellipsis) {
-                (Ys = this.start),
+                ((Ys = this.start),
                   Q.push(this.parseParenItem(this.parseRestBinding())),
                   this.type === c.comma &&
                     this.raiseRecoverable(
                       this.start,
                       'Comma is not permitted after the rest element'
-                    );
+                    ));
                 break;
               } else Q.push(this.parseMaybeAssign(!1, Ze, this.parseParenItem));
             var gr = this.lastTokEnd,
@@ -27699,7 +27701,7 @@ Defaulting to 2020, but this will stop working in the future.`)),
                 (this.awaitPos = Ri),
                 this.parseParenArrowList(l, f, Q, o)
               );
-            (!Q.length || xe) && this.unexpected(this.lastTokStart),
+            ((!Q.length || xe) && this.unexpected(this.lastTokStart),
               Ys && this.unexpected(Ys),
               this.checkExpressionErrors(Ze, !0),
               (this.yieldPos = Lt || this.yieldPos),
@@ -27708,7 +27710,7 @@ Defaulting to 2020, but this will stop working in the future.`)),
                 ? ((m = this.startNodeAt(O, Y)),
                   (m.expressions = Q),
                   this.finishNodeAt(m, 'SequenceExpression', gr, Js))
-                : (m = Q[0]);
+                : (m = Q[0]));
           } else m = this.parseParenExpression();
           if (this.options.preserveParens) {
             var Qs = this.startNodeAt(l, f);
@@ -27723,9 +27725,9 @@ Defaulting to 2020, but this will stop working in the future.`)),
         }),
         (de.parseParenArrowList = function (n, o, l, f) {
           return this.parseArrowExpression(this.startNodeAt(n, o), l, !1, f);
-        });
+        }));
       var Ci = [];
-      (de.parseNew = function () {
+      ((de.parseNew = function () {
         this.containsEsc &&
           this.raiseRecoverable(this.start, 'Escape sequence in keyword new');
         var n = this.startNode();
@@ -27733,9 +27735,9 @@ Defaulting to 2020, but this will stop working in the future.`)),
           (this.next(), this.options.ecmaVersion >= 6 && this.type === c.dot)
         ) {
           var o = this.startNodeAt(n.start, n.loc && n.loc.start);
-          (o.name = 'new'),
+          ((o.name = 'new'),
             (n.meta = this.finishNode(o, 'Identifier')),
-            this.next();
+            this.next());
           var l = this.containsEsc;
           return (
             (n.property = this.parseIdent(!0)),
@@ -27813,16 +27815,16 @@ Defaulting to 2020, but this will stop working in the future.`)),
           var o = n.isTagged;
           o === void 0 && (o = !1);
           var l = this.startNode();
-          this.next(), (l.expressions = []);
+          (this.next(), (l.expressions = []));
           var f = this.parseTemplateElement({isTagged: o});
           for (l.quasis = [f]; !f.tail; )
-            this.type === c.eof &&
+            (this.type === c.eof &&
               this.raise(this.pos, 'Unterminated template literal'),
               this.expect(c.dollarBraceL),
               l.expressions.push(this.parseExpression()),
               this.expect(c.braceR),
-              l.quasis.push((f = this.parseTemplateElement({isTagged: o})));
-          return this.next(), this.finishNode(l, 'TemplateLiteral');
+              l.quasis.push((f = this.parseTemplateElement({isTagged: o}))));
+          return (this.next(), this.finishNode(l, 'TemplateLiteral'));
         }),
         (de.isAsyncProp = function (n) {
           return (
@@ -27851,7 +27853,7 @@ Defaulting to 2020, but this will stop working in the future.`)),
             )
               break;
             var E = this.parseProperty(n, o);
-            n || this.checkPropClash(E, m, o), l.properties.push(E);
+            (n || this.checkPropClash(E, m, o), l.properties.push(E));
           }
           return this.finishNode(l, n ? 'ObjectPattern' : 'ObjectExpression');
         }),
@@ -27899,9 +27901,9 @@ Defaulting to 2020, but this will stop working in the future.`)),
         }),
         (de.parseGetterSetter = function (n) {
           var o = n.key.name;
-          this.parsePropertyName(n),
+          (this.parsePropertyName(n),
             (n.value = this.parseMethod(!1)),
-            (n.kind = o);
+            (n.kind = o));
           var l = n.kind === 'get' ? 0 : 1;
           if (n.value.params.length !== l) {
             var f = n.value.start;
@@ -27920,52 +27922,53 @@ Defaulting to 2020, but this will stop working in the future.`)),
               );
         }),
         (de.parsePropertyValue = function (n, o, l, f, m, E, O, Y) {
-          (l || f) && this.type === c.colon && this.unexpected(),
+          ((l || f) && this.type === c.colon && this.unexpected(),
             this.eat(c.colon)
               ? ((n.value = o
                   ? this.parseMaybeDefault(this.start, this.startLoc)
                   : this.parseMaybeAssign(!1, O)),
                 (n.kind = 'init'))
               : this.options.ecmaVersion >= 6 && this.type === c.parenL
-              ? (o && this.unexpected(),
-                (n.method = !0),
-                (n.value = this.parseMethod(l, f)),
-                (n.kind = 'init'))
-              : !o &&
-                !Y &&
-                this.options.ecmaVersion >= 5 &&
-                !n.computed &&
-                n.key.type === 'Identifier' &&
-                (n.key.name === 'get' || n.key.name === 'set') &&
-                this.type !== c.comma &&
-                this.type !== c.braceR &&
-                this.type !== c.eq
-              ? ((l || f) && this.unexpected(), this.parseGetterSetter(n))
-              : this.options.ecmaVersion >= 6 &&
-                !n.computed &&
-                n.key.type === 'Identifier'
-              ? ((l || f) && this.unexpected(),
-                this.checkUnreserved(n.key),
-                n.key.name === 'await' &&
-                  !this.awaitIdentPos &&
-                  (this.awaitIdentPos = m),
-                o
-                  ? (n.value = this.parseMaybeDefault(
-                      m,
-                      E,
-                      this.copyNode(n.key)
-                    ))
-                  : this.type === c.eq && O
-                  ? (O.shorthandAssign < 0 && (O.shorthandAssign = this.start),
-                    (n.value = this.parseMaybeDefault(
-                      m,
-                      E,
-                      this.copyNode(n.key)
-                    )))
-                  : (n.value = this.copyNode(n.key)),
-                (n.kind = 'init'),
-                (n.shorthand = !0))
-              : this.unexpected();
+                ? (o && this.unexpected(),
+                  (n.method = !0),
+                  (n.value = this.parseMethod(l, f)),
+                  (n.kind = 'init'))
+                : !o &&
+                    !Y &&
+                    this.options.ecmaVersion >= 5 &&
+                    !n.computed &&
+                    n.key.type === 'Identifier' &&
+                    (n.key.name === 'get' || n.key.name === 'set') &&
+                    this.type !== c.comma &&
+                    this.type !== c.braceR &&
+                    this.type !== c.eq
+                  ? ((l || f) && this.unexpected(), this.parseGetterSetter(n))
+                  : this.options.ecmaVersion >= 6 &&
+                      !n.computed &&
+                      n.key.type === 'Identifier'
+                    ? ((l || f) && this.unexpected(),
+                      this.checkUnreserved(n.key),
+                      n.key.name === 'await' &&
+                        !this.awaitIdentPos &&
+                        (this.awaitIdentPos = m),
+                      o
+                        ? (n.value = this.parseMaybeDefault(
+                            m,
+                            E,
+                            this.copyNode(n.key)
+                          ))
+                        : this.type === c.eq && O
+                          ? (O.shorthandAssign < 0 &&
+                              (O.shorthandAssign = this.start),
+                            (n.value = this.parseMaybeDefault(
+                              m,
+                              E,
+                              this.copyNode(n.key)
+                            )))
+                          : (n.value = this.copyNode(n.key)),
+                      (n.kind = 'init'),
+                      (n.shorthand = !0))
+                    : this.unexpected());
         }),
         (de.parsePropertyName = function (n) {
           if (this.options.ecmaVersion >= 6) {
@@ -27984,9 +27987,9 @@ Defaulting to 2020, but this will stop working in the future.`)),
               : this.parseIdent(this.options.allowReserved !== 'never'));
         }),
         (de.initFunction = function (n) {
-          (n.id = null),
+          ((n.id = null),
             this.options.ecmaVersion >= 6 && (n.generator = n.expression = !1),
-            this.options.ecmaVersion >= 8 && (n.async = !1);
+            this.options.ecmaVersion >= 8 && (n.async = !1));
         }),
         (de.parseMethod = function (n, o, l) {
           var f = this.startNode(),
@@ -28039,9 +28042,9 @@ Defaulting to 2020, but this will stop working in the future.`)),
             E = this.strict,
             O = !1;
           if (m)
-            (n.body = this.parseMaybeAssign(f)),
+            ((n.body = this.parseMaybeAssign(f)),
               (n.expression = !0),
-              this.checkParams(n, !1);
+              this.checkParams(n, !1));
           else {
             var Y =
               this.options.ecmaVersion >= 7 &&
@@ -28055,7 +28058,7 @@ Defaulting to 2020, but this will stop working in the future.`)),
                   "Illegal 'use strict' directive in function with non-simple parameter list"
                 ));
             var Q = this.labels;
-            (this.labels = []),
+            ((this.labels = []),
               O && (this.strict = !0),
               this.checkParams(
                 n,
@@ -28065,7 +28068,7 @@ Defaulting to 2020, but this will stop working in the future.`)),
               (n.body = this.parseBlock(!1, void 0, O && !E)),
               (n.expression = !1),
               this.adaptDirectivePrologue(n.body.body),
-              (this.labels = Q);
+              (this.labels = Q));
           }
           this.exitScope();
         }),
@@ -28092,16 +28095,16 @@ Defaulting to 2020, but this will stop working in the future.`)),
             else if ((this.expect(c.comma), o && this.afterTrailingComma(n)))
               break;
             var O = void 0;
-            l && this.type === c.comma
+            (l && this.type === c.comma
               ? (O = null)
               : this.type === c.ellipsis
-              ? ((O = this.parseSpread(f)),
-                f &&
-                  this.type === c.comma &&
-                  f.trailingComma < 0 &&
-                  (f.trailingComma = this.start))
-              : (O = this.parseMaybeAssign(!1, f)),
-              m.push(O);
+                ? ((O = this.parseSpread(f)),
+                  f &&
+                    this.type === c.comma &&
+                    f.trailingComma < 0 &&
+                    (f.trailingComma = this.start))
+                : (O = this.parseMaybeAssign(!1, f)),
+              m.push(O));
           }
           return m;
         }),
@@ -28171,13 +28174,13 @@ Defaulting to 2020, but this will stop working in the future.`)),
             this.type === c.name
               ? (n.name = this.value)
               : this.type.keyword
-              ? ((n.name = this.type.keyword),
-                (n.name === 'class' || n.name === 'function') &&
-                  (this.lastTokEnd !== this.lastTokStart + 1 ||
-                    this.input.charCodeAt(this.lastTokStart) !== 46) &&
-                  this.context.pop(),
-                (this.type = c.name))
-              : this.unexpected(),
+                ? ((n.name = this.type.keyword),
+                  (n.name === 'class' || n.name === 'function') &&
+                    (this.lastTokEnd !== this.lastTokStart + 1 ||
+                      this.input.charCodeAt(this.lastTokStart) !== 46) &&
+                    this.context.pop(),
+                  (this.type = c.name))
+                : this.unexpected(),
             n
           );
         }),
@@ -28225,12 +28228,12 @@ Defaulting to 2020, but this will stop working in the future.`)),
             (o.argument = this.parseMaybeUnary(null, !0, !1, n)),
             this.finishNode(o, 'AwaitExpression')
           );
-        });
+        }));
       var ts = Ge.prototype;
-      (ts.raise = function (n, o) {
+      ((ts.raise = function (n, o) {
         var l = $t(this.input, n);
-        (o += ' (' + l.line + ':' + l.column + ')'),
-          this.sourceFile && (o += ' in ' + this.sourceFile);
+        ((o += ' (' + l.line + ':' + l.column + ')'),
+          this.sourceFile && (o += ' in ' + this.sourceFile));
         var f = new SyntaxError(o);
         throw ((f.pos = n), (f.loc = l), (f.raisedAt = this.pos), f);
       }),
@@ -28238,15 +28241,15 @@ Defaulting to 2020, but this will stop working in the future.`)),
         (ts.curPosition = function () {
           if (this.options.locations)
             return new ct(this.curLine, this.pos - this.lineStart);
-        });
+        }));
       var rn = Ge.prototype,
         wi = function (o) {
-          (this.flags = o),
+          ((this.flags = o),
             (this.var = []),
             (this.lexical = []),
-            (this.functions = []);
+            (this.functions = []));
         };
-      (rn.enterScope = function (n) {
+      ((rn.enterScope = function (n) {
         this.scopeStack.push(new wi(n));
       }),
         (rn.exitScope = function () {
@@ -28259,21 +28262,21 @@ Defaulting to 2020, but this will stop working in the future.`)),
           var f = !1;
           if (o === yt) {
             var m = this.currentScope();
-            (f =
+            ((f =
               m.lexical.indexOf(n) > -1 ||
               m.functions.indexOf(n) > -1 ||
               m.var.indexOf(n) > -1),
               m.lexical.push(n),
-              this.inModule && m.flags & G && delete this.undefinedExports[n];
+              this.inModule && m.flags & G && delete this.undefinedExports[n]);
           } else if (o === bn) {
             var E = this.currentScope();
             E.lexical.push(n);
           } else if (o === vt) {
             var O = this.currentScope();
-            this.treatFunctionsAsVar
+            (this.treatFunctionsAsVar
               ? (f = O.lexical.indexOf(n) > -1)
               : (f = O.lexical.indexOf(n) > -1 || O.var.indexOf(n) > -1),
-              O.functions.push(n);
+              O.functions.push(n));
           } else
             for (var Y = this.scopeStack.length - 1; Y >= 0; --Y) {
               var Q = this.scopeStack[Y];
@@ -28318,23 +28321,23 @@ Defaulting to 2020, but this will stop working in the future.`)),
             var o = this.scopeStack[n];
             if (o.flags & (Ke | We | Xe) && !(o.flags & he)) return o;
           }
-        });
+        }));
       var Fn = function (o, l, f) {
-          (this.type = ''),
+          ((this.type = ''),
             (this.start = l),
             (this.end = 0),
             o.options.locations && (this.loc = new wt(o, f)),
             o.options.directSourceFile &&
               (this.sourceFile = o.options.directSourceFile),
-            o.options.ranges && (this.range = [l, 0]);
+            o.options.ranges && (this.range = [l, 0]));
         },
         Bn = Ge.prototype;
-      (Bn.startNode = function () {
+      ((Bn.startNode = function () {
         return new Fn(this, this.start, this.startLoc);
       }),
         (Bn.startNodeAt = function (n, o) {
           return new Fn(this, n, o);
-        });
+        }));
       function Fs(n, o, l, f) {
         return (
           (n.type = o),
@@ -28344,7 +28347,7 @@ Defaulting to 2020, but this will stop working in the future.`)),
           n
         );
       }
-      (Bn.finishNode = function (n, o) {
+      ((Bn.finishNode = function (n, o) {
         return Fs.call(this, n, o, this.lastTokEnd, this.lastTokEndLoc);
       }),
         (Bn.finishNodeAt = function (n, o, l, f) {
@@ -28354,7 +28357,7 @@ Defaulting to 2020, but this will stop working in the future.`)),
           var o = new Fn(this, n.start, this.startLoc);
           for (var l in n) o[l] = n[l];
           return o;
-        });
+        }));
       var Si =
           'Gara Garay Gukh Gurung_Khema Hrkt Katakana_Or_Hiragana Kawi Kirat_Rai Krai Nag_Mundari Nagm Ol_Onal Onao Sunu Sunuwar Todhri Todr Tulu_Tigalari Tutg Unknown Zzzz',
         Bs =
@@ -28393,10 +28396,10 @@ Defaulting to 2020, but this will stop working in the future.`)),
           binaryOfStrings: tt(Pi[n]),
           nonBinary: {General_Category: tt(Ks), Script: tt($o[n])},
         });
-        (o.nonBinary.Script_Extensions = o.nonBinary.Script),
+        ((o.nonBinary.Script_Extensions = o.nonBinary.Script),
           (o.nonBinary.gc = o.nonBinary.General_Category),
           (o.nonBinary.sc = o.nonBinary.Script),
-          (o.nonBinary.scx = o.nonBinary.Script_Extensions);
+          (o.nonBinary.scx = o.nonBinary.Script_Extensions));
       }
       for (var Ni = 0, yr = [9, 10, 11, 12, 13, 14]; Ni < yr.length; Ni += 1) {
         var Ko = yr[Ni];
@@ -28404,9 +28407,9 @@ Defaulting to 2020, but this will stop working in the future.`)),
       }
       var le = Ge.prototype,
         Xs = function (o, l) {
-          (this.parent = o), (this.base = l || this);
+          ((this.parent = o), (this.base = l || this));
         };
-      (Xs.prototype.separatedFrom = function (o) {
+      ((Xs.prototype.separatedFrom = function (o) {
         for (var l = this; l; l = l.parent)
           for (var f = o; f; f = f.parent)
             if (l.base === f.base && l !== f) return !0;
@@ -28414,9 +28417,9 @@ Defaulting to 2020, but this will stop working in the future.`)),
       }),
         (Xs.prototype.sibling = function () {
           return new Xs(this.parent, this.base);
-        });
+        }));
       var on = function (o) {
-        (this.parser = o),
+        ((this.parser = o),
           (this.validFlags =
             'gim' +
             (o.options.ecmaVersion >= 6 ? 'uy' : '') +
@@ -28439,19 +28442,19 @@ Defaulting to 2020, but this will stop working in the future.`)),
           (this.maxBackReference = 0),
           (this.groupNames = Object.create(null)),
           (this.backReferenceNames = []),
-          (this.branchID = null);
+          (this.branchID = null));
       };
-      (on.prototype.reset = function (o, l, f) {
+      ((on.prototype.reset = function (o, l, f) {
         var m = f.indexOf('v') !== -1,
           E = f.indexOf('u') !== -1;
-        (this.start = o | 0),
+        ((this.start = o | 0),
           (this.source = l + ''),
           (this.flags = f),
           m && this.parser.options.ecmaVersion >= 15
             ? ((this.switchU = !0), (this.switchV = !0), (this.switchN = !0))
             : ((this.switchU = E && this.parser.options.ecmaVersion >= 6),
               (this.switchV = !1),
-              (this.switchN = E && this.parser.options.ecmaVersion >= 9));
+              (this.switchN = E && this.parser.options.ecmaVersion >= 9)));
       }),
         (on.prototype.raise = function (o) {
           this.parser.raiseRecoverable(
@@ -28487,15 +28490,16 @@ Defaulting to 2020, but this will stop working in the future.`)),
             : o + 2;
         }),
         (on.prototype.current = function (o) {
-          return o === void 0 && (o = !1), this.at(this.pos, o);
+          return (o === void 0 && (o = !1), this.at(this.pos, o));
         }),
         (on.prototype.lookahead = function (o) {
           return (
-            o === void 0 && (o = !1), this.at(this.nextIndex(this.pos, o), o)
+            o === void 0 && (o = !1),
+            this.at(this.nextIndex(this.pos, o), o)
           );
         }),
         (on.prototype.advance = function (o) {
-          o === void 0 && (o = !1), (this.pos = this.nextIndex(this.pos, o));
+          (o === void 0 && (o = !1), (this.pos = this.nextIndex(this.pos, o)));
         }),
         (on.prototype.eat = function (o, l) {
           return (
@@ -28511,7 +28515,7 @@ Defaulting to 2020, but this will stop working in the future.`)),
             if (Y === -1 || Y !== O) return !1;
             f = this.nextIndex(f, l);
           }
-          return (this.pos = f), !0;
+          return ((this.pos = f), !0);
         }),
         (le.validateRegExpFlags = function (n) {
           for (
@@ -28520,31 +28524,31 @@ Defaulting to 2020, but this will stop working in the future.`)),
             E++
           ) {
             var O = l.charAt(E);
-            o.indexOf(O) === -1 &&
+            (o.indexOf(O) === -1 &&
               this.raise(n.start, 'Invalid regular expression flag'),
               l.indexOf(O, E + 1) > -1 &&
                 this.raise(n.start, 'Duplicate regular expression flag'),
               O === 'u' && (f = !0),
-              O === 'v' && (m = !0);
+              O === 'v' && (m = !0));
           }
           this.options.ecmaVersion >= 15 &&
             f &&
             m &&
             this.raise(n.start, 'Invalid regular expression flag');
-        });
+        }));
       function Uo(n) {
         for (var o in n) return !0;
         return !1;
       }
-      (le.validateRegExpPattern = function (n) {
-        this.regexp_pattern(n),
+      ((le.validateRegExpPattern = function (n) {
+        (this.regexp_pattern(n),
           !n.switchN &&
             this.options.ecmaVersion >= 9 &&
             Uo(n.groupNames) &&
-            ((n.switchN = !0), this.regexp_pattern(n));
+            ((n.switchN = !0), this.regexp_pattern(n)));
       }),
         (le.regexp_pattern = function (n) {
-          (n.pos = 0),
+          ((n.pos = 0),
             (n.lastIntValue = 0),
             (n.lastStringValue = ''),
             (n.lastAssertionIsQuantifiable = !1),
@@ -28558,7 +28562,7 @@ Defaulting to 2020, but this will stop working in the future.`)),
               (n.eat(41) && n.raise("Unmatched ')'"),
               (n.eat(93) || n.eat(125)) && n.raise('Lone quantifier brackets')),
             n.maxBackReference > n.numCapturingParens &&
-              n.raise('Invalid escape');
+              n.raise('Invalid escape'));
           for (var o = 0, l = n.backReferenceNames; o < l.length; o += 1) {
             var f = l[o];
             n.groupNames[f] || n.raise('Invalid named capture referenced');
@@ -28570,13 +28574,12 @@ Defaulting to 2020, but this will stop working in the future.`)),
             o && (n.branchID = new Xs(n.branchID, null)),
               this.regexp_alternative(n);
             n.eat(124);
-
           )
-            o && (n.branchID = n.branchID.sibling()),
-              this.regexp_alternative(n);
-          o && (n.branchID = n.branchID.parent),
+            (o && (n.branchID = n.branchID.sibling()),
+              this.regexp_alternative(n));
+          (o && (n.branchID = n.branchID.parent),
             this.regexp_eatQuantifier(n, !0) && n.raise('Nothing to repeat'),
-            n.eat(123) && n.raise('Lone quantifier brackets');
+            n.eat(123) && n.raise('Lone quantifier brackets'));
         }),
         (le.regexp_alternative = function (n) {
           for (; n.pos < n.source.length && this.regexp_eatTerm(n); );
@@ -28589,12 +28592,12 @@ Defaulting to 2020, but this will stop working in the future.`)),
                 n.raise('Invalid quantifier'),
               !0)
             : (
-                n.switchU
-                  ? this.regexp_eatAtom(n)
-                  : this.regexp_eatExtendedAtom(n)
-              )
-            ? (this.regexp_eatQuantifier(n), !0)
-            : !1;
+                  n.switchU
+                    ? this.regexp_eatAtom(n)
+                    : this.regexp_eatExtendedAtom(n)
+                )
+              ? (this.regexp_eatQuantifier(n), !0)
+              : !1;
         }),
         (le.regexp_eatAssertion = function (n) {
           var o = n.pos;
@@ -28617,7 +28620,7 @@ Defaulting to 2020, but this will stop working in the future.`)),
                 !0
               );
           }
-          return (n.pos = o), !1;
+          return ((n.pos = o), !1);
         }),
         (le.regexp_eatQuantifier = function (n, o) {
           return (
@@ -28653,7 +28656,7 @@ Defaulting to 2020, but this will stop working in the future.`)),
                   n.raise('numbers out of order in {} quantifier'),
                 !0
               );
-            n.switchU && !o && n.raise('Incomplete quantifier'), (n.pos = l);
+            (n.switchU && !o && n.raise('Incomplete quantifier'), (n.pos = l));
           }
           return !1;
         }),
@@ -28720,20 +28723,20 @@ Defaulting to 2020, but this will stop working in the future.`)),
               this.regexp_disjunction(n),
               n.eat(41))
             )
-              return (n.numCapturingParens += 1), !0;
+              return ((n.numCapturingParens += 1), !0);
             n.raise('Unterminated group');
           }
           return !1;
         }),
         (le.regexp_eatModifiers = function (n) {
           for (var o = '', l = 0; (l = n.current()) !== -1 && Ho(l); )
-            (o += nt(l)), n.advance();
+            ((o += nt(l)), n.advance());
           return o;
-        });
+        }));
       function Ho(n) {
         return n === 105 || n === 109 || n === 115;
       }
-      (le.regexp_eatExtendedAtom = function (n) {
+      ((le.regexp_eatExtendedAtom = function (n) {
         return (
           n.eat(46) ||
           this.regexp_eatReverseSolidusAtomEscape(n) ||
@@ -28754,7 +28757,7 @@ Defaulting to 2020, but this will stop working in the future.`)),
         (le.regexp_eatSyntaxCharacter = function (n) {
           var o = n.current();
           return Tr(o) ? ((n.lastIntValue = o), n.advance(), !0) : !1;
-        });
+        }));
       function Tr(n) {
         return (
           n === 36 ||
@@ -28765,7 +28768,7 @@ Defaulting to 2020, but this will stop working in the future.`)),
           (n >= 123 && n <= 125)
         );
       }
-      (le.regexp_eatPatternCharacters = function (n) {
+      ((le.regexp_eatPatternCharacters = function (n) {
         for (var o = n.pos, l = 0; (l = n.current()) !== -1 && !Tr(l); )
           n.advance();
         return n.pos !== o;
@@ -28815,7 +28818,6 @@ Defaulting to 2020, but this will stop working in the future.`)),
             for (
               n.lastStringValue += nt(n.lastIntValue);
               this.regexp_eatRegExpIdentifierPart(n);
-
             )
               n.lastStringValue += nt(n.lastIntValue);
             return !0;
@@ -28833,7 +28835,7 @@ Defaulting to 2020, but this will stop working in the future.`)),
               (f = n.lastIntValue),
             Wo(f) ? ((n.lastIntValue = f), !0) : ((n.pos = o), !1)
           );
-        });
+        }));
       function Wo(n) {
         return h(n, !0) || n === 36 || n === 95;
       }
@@ -28852,7 +28854,7 @@ Defaulting to 2020, but this will stop working in the future.`)),
       function Go(n) {
         return T(n, !0) || n === 36 || n === 95 || n === 8204 || n === 8205;
       }
-      (le.regexp_eatAtomEscape = function (n) {
+      ((le.regexp_eatAtomEscape = function (n) {
         return this.regexp_eatBackReference(n) ||
           this.regexp_eatCharacterClassEscape(n) ||
           this.regexp_eatCharacterEscape(n) ||
@@ -28868,7 +28870,7 @@ Defaulting to 2020, but this will stop working in the future.`)),
           if (this.regexp_eatDecimalEscape(n)) {
             var l = n.lastIntValue;
             if (n.switchU)
-              return l > n.maxBackReference && (n.maxBackReference = l), !0;
+              return (l > n.maxBackReference && (n.maxBackReference = l), !0);
             if (l <= n.numCapturingParens) return !0;
             n.pos = o;
           }
@@ -28877,7 +28879,7 @@ Defaulting to 2020, but this will stop working in the future.`)),
         (le.regexp_eatKGroupName = function (n) {
           if (n.eat(107)) {
             if (this.regexp_eatGroupName(n))
-              return n.backReferenceNames.push(n.lastStringValue), !0;
+              return (n.backReferenceNames.push(n.lastStringValue), !0);
             n.raise('Invalid named reference');
           }
           return !1;
@@ -28911,19 +28913,19 @@ Defaulting to 2020, but this will stop working in the future.`)),
           return o === 116
             ? ((n.lastIntValue = 9), n.advance(), !0)
             : o === 110
-            ? ((n.lastIntValue = 10), n.advance(), !0)
-            : o === 118
-            ? ((n.lastIntValue = 11), n.advance(), !0)
-            : o === 102
-            ? ((n.lastIntValue = 12), n.advance(), !0)
-            : o === 114
-            ? ((n.lastIntValue = 13), n.advance(), !0)
-            : !1;
+              ? ((n.lastIntValue = 10), n.advance(), !0)
+              : o === 118
+                ? ((n.lastIntValue = 11), n.advance(), !0)
+                : o === 102
+                  ? ((n.lastIntValue = 12), n.advance(), !0)
+                  : o === 114
+                    ? ((n.lastIntValue = 13), n.advance(), !0)
+                    : !1;
         }),
         (le.regexp_eatControlLetter = function (n) {
           var o = n.current();
           return kr(o) ? ((n.lastIntValue = o % 32), n.advance(), !0) : !1;
-        });
+        }));
       function kr(n) {
         return (n >= 65 && n <= 90) || (n >= 97 && n <= 122);
       }
@@ -28948,7 +28950,7 @@ Defaulting to 2020, but this will stop working in the future.`)),
                     !0
                   );
               }
-              (n.pos = E), (n.lastIntValue = m);
+              ((n.pos = E), (n.lastIntValue = m));
             }
             return !0;
           }
@@ -28960,20 +28962,20 @@ Defaulting to 2020, but this will stop working in the future.`)),
             vf(n.lastIntValue)
           )
             return !0;
-          f && n.raise('Invalid unicode escape'), (n.pos = l);
+          (f && n.raise('Invalid unicode escape'), (n.pos = l));
         }
         return !1;
       };
       function vf(n) {
         return n >= 0 && n <= 1114111;
       }
-      (le.regexp_eatIdentityEscape = function (n) {
+      ((le.regexp_eatIdentityEscape = function (n) {
         if (n.switchU)
           return this.regexp_eatSyntaxCharacter(n)
             ? !0
             : n.eat(47)
-            ? ((n.lastIntValue = 47), !0)
-            : !1;
+              ? ((n.lastIntValue = 47), !0)
+              : !1;
         var o = n.current();
         return o !== 99 && (!n.switchN || o !== 107)
           ? ((n.lastIntValue = o), n.advance(), !0)
@@ -28983,32 +28985,32 @@ Defaulting to 2020, but this will stop working in the future.`)),
           n.lastIntValue = 0;
           var o = n.current();
           if (o >= 49 && o <= 57) {
-            do (n.lastIntValue = 10 * n.lastIntValue + (o - 48)), n.advance();
+            do ((n.lastIntValue = 10 * n.lastIntValue + (o - 48)), n.advance());
             while ((o = n.current()) >= 48 && o <= 57);
             return !0;
           }
           return !1;
-        });
+        }));
       var Rc = 0,
         Vn = 1,
         an = 2;
       le.regexp_eatCharacterClassEscape = function (n) {
         var o = n.current();
-        if (xf(o)) return (n.lastIntValue = -1), n.advance(), Vn;
+        if (xf(o)) return ((n.lastIntValue = -1), n.advance(), Vn);
         var l = !1;
         if (
           n.switchU &&
           this.options.ecmaVersion >= 9 &&
           ((l = o === 80) || o === 112)
         ) {
-          (n.lastIntValue = -1), n.advance();
+          ((n.lastIntValue = -1), n.advance());
           var f;
           if (
             n.eat(123) &&
             (f = this.regexp_eatUnicodePropertyValueExpression(n)) &&
             n.eat(125)
           )
-            return l && f === an && n.raise('Invalid property name'), f;
+            return (l && f === an && n.raise('Invalid property name'), f);
           n.raise('Invalid property name');
         }
         return Rc;
@@ -29023,13 +29025,16 @@ Defaulting to 2020, but this will stop working in the future.`)),
           n === 87
         );
       }
-      (le.regexp_eatUnicodePropertyValueExpression = function (n) {
+      ((le.regexp_eatUnicodePropertyValueExpression = function (n) {
         var o = n.pos;
         if (this.regexp_eatUnicodePropertyName(n) && n.eat(61)) {
           var l = n.lastStringValue;
           if (this.regexp_eatUnicodePropertyValue(n)) {
             var f = n.lastStringValue;
-            return this.regexp_validateUnicodePropertyNameAndValue(n, l, f), Vn;
+            return (
+              this.regexp_validateUnicodePropertyNameAndValue(n, l, f),
+              Vn
+            );
           }
         }
         if (((n.pos = o), this.regexp_eatLoneUnicodePropertyNameOrValue(n))) {
@@ -29039,10 +29044,10 @@ Defaulting to 2020, but this will stop working in the future.`)),
         return Rc;
       }),
         (le.regexp_validateUnicodePropertyNameAndValue = function (n, o, l) {
-          mt(n.unicodeProperties.nonBinary, o) ||
+          (mt(n.unicodeProperties.nonBinary, o) ||
             n.raise('Invalid property name'),
             n.unicodeProperties.nonBinary[o].test(l) ||
-              n.raise('Invalid property value');
+              n.raise('Invalid property value'));
         }),
         (le.regexp_validateUnicodePropertyNameOrValue = function (n, o) {
           if (n.unicodeProperties.binary.test(o)) return Vn;
@@ -29053,22 +29058,22 @@ Defaulting to 2020, but this will stop working in the future.`)),
         (le.regexp_eatUnicodePropertyName = function (n) {
           var o = 0;
           for (n.lastStringValue = ''; Lc((o = n.current())); )
-            (n.lastStringValue += nt(o)), n.advance();
+            ((n.lastStringValue += nt(o)), n.advance());
           return n.lastStringValue !== '';
-        });
+        }));
       function Lc(n) {
         return kr(n) || n === 95;
       }
       le.regexp_eatUnicodePropertyValue = function (n) {
         var o = 0;
         for (n.lastStringValue = ''; gf((o = n.current())); )
-          (n.lastStringValue += nt(o)), n.advance();
+          ((n.lastStringValue += nt(o)), n.advance());
         return n.lastStringValue !== '';
       };
       function gf(n) {
         return Lc(n) || vr(n);
       }
-      (le.regexp_eatLoneUnicodePropertyNameOrValue = function (n) {
+      ((le.regexp_eatLoneUnicodePropertyNameOrValue = function (n) {
         return this.regexp_eatUnicodePropertyValue(n);
       }),
         (le.regexp_eatCharacterClass = function (n) {
@@ -29089,21 +29094,21 @@ Defaulting to 2020, but this will stop working in the future.`)),
           return n.current() === 93
             ? Vn
             : n.switchV
-            ? this.regexp_classSetExpression(n)
-            : (this.regexp_nonEmptyClassRanges(n), Vn);
+              ? this.regexp_classSetExpression(n)
+              : (this.regexp_nonEmptyClassRanges(n), Vn);
         }),
         (le.regexp_nonEmptyClassRanges = function (n) {
           for (; this.regexp_eatClassAtom(n); ) {
             var o = n.lastIntValue;
             if (n.eat(45) && this.regexp_eatClassAtom(n)) {
               var l = n.lastIntValue;
-              n.switchU &&
+              (n.switchU &&
                 (o === -1 || l === -1) &&
                 n.raise('Invalid character class'),
                 o !== -1 &&
                   l !== -1 &&
                   o > l &&
-                  n.raise('Range out of order in character class');
+                  n.raise('Range out of order in character class'));
             }
           }
         }),
@@ -29113,8 +29118,8 @@ Defaulting to 2020, but this will stop working in the future.`)),
             if (this.regexp_eatClassEscape(n)) return !0;
             if (n.switchU) {
               var l = n.current();
-              (l === 99 || Mc(l)) && n.raise('Invalid class escape'),
-                n.raise('Invalid escape');
+              ((l === 99 || Mc(l)) && n.raise('Invalid class escape'),
+                n.raise('Invalid escape'));
             }
             n.pos = o;
           }
@@ -29123,8 +29128,8 @@ Defaulting to 2020, but this will stop working in the future.`)),
         }),
         (le.regexp_eatClassEscape = function (n) {
           var o = n.pos;
-          if (n.eat(98)) return (n.lastIntValue = 8), !0;
-          if (n.switchU && n.eat(45)) return (n.lastIntValue = 45), !0;
+          if (n.eat(98)) return ((n.lastIntValue = 8), !0);
+          if (n.switchU && n.eat(45)) return ((n.lastIntValue = 45), !0);
           if (!n.switchU && n.eat(99)) {
             if (this.regexp_eatClassControlLetter(n)) return !0;
             n.pos = o;
@@ -29234,13 +29239,13 @@ Defaulting to 2020, but this will stop working in the future.`)),
               this.regexp_eatClassSetReservedPunctuator(n)
               ? !0
               : n.eat(98)
-              ? ((n.lastIntValue = 8), !0)
-              : ((n.pos = o), !1);
+                ? ((n.lastIntValue = 8), !0)
+                : ((n.pos = o), !1);
           var l = n.current();
           return l < 0 || (l === n.lookahead() && _f(l)) || bf(l)
             ? !1
             : (n.advance(), (n.lastIntValue = l), !0);
-        });
+        }));
       function _f(n) {
         return (
           n === 33 ||
@@ -29281,7 +29286,7 @@ Defaulting to 2020, but this will stop working in the future.`)),
           n === 126
         );
       }
-      (le.regexp_eatClassControlLetter = function (n) {
+      ((le.regexp_eatClassControlLetter = function (n) {
         var o = n.current();
         return vr(o) || o === 95
           ? ((n.lastIntValue = o % 32), n.advance(), !0)
@@ -29291,7 +29296,7 @@ Defaulting to 2020, but this will stop working in the future.`)),
           var o = n.pos;
           if (n.eat(120)) {
             if (this.regexp_eatFixedHexDigits(n, 2)) return !0;
-            n.switchU && n.raise('Invalid escape'), (n.pos = o);
+            (n.switchU && n.raise('Invalid escape'), (n.pos = o));
           }
           return !1;
         }),
@@ -29299,9 +29304,9 @@ Defaulting to 2020, but this will stop working in the future.`)),
           var o = n.pos,
             l = 0;
           for (n.lastIntValue = 0; vr((l = n.current())); )
-            (n.lastIntValue = 10 * n.lastIntValue + (l - 48)), n.advance();
+            ((n.lastIntValue = 10 * n.lastIntValue + (l - 48)), n.advance());
           return n.pos !== o;
-        });
+        }));
       function vr(n) {
         return n >= 48 && n <= 57;
       }
@@ -29309,7 +29314,7 @@ Defaulting to 2020, but this will stop working in the future.`)),
         var o = n.pos,
           l = 0;
         for (n.lastIntValue = 0; Oc((l = n.current())); )
-          (n.lastIntValue = 16 * n.lastIntValue + Dc(l)), n.advance();
+          ((n.lastIntValue = 16 * n.lastIntValue + Dc(l)), n.advance());
         return n.pos !== o;
       };
       function Oc(n) {
@@ -29321,10 +29326,10 @@ Defaulting to 2020, but this will stop working in the future.`)),
         return n >= 65 && n <= 70
           ? 10 + (n - 65)
           : n >= 97 && n <= 102
-          ? 10 + (n - 97)
-          : n - 48;
+            ? 10 + (n - 97)
+            : n - 48;
       }
-      (le.regexp_eatLegacyOctalEscapeSequence = function (n) {
+      ((le.regexp_eatLegacyOctalEscapeSequence = function (n) {
         if (this.regexp_eatOctalDigit(n)) {
           var o = n.lastIntValue;
           if (this.regexp_eatOctalDigit(n)) {
@@ -29342,7 +29347,7 @@ Defaulting to 2020, but this will stop working in the future.`)),
           return Mc(o)
             ? ((n.lastIntValue = o - 48), n.advance(), !0)
             : ((n.lastIntValue = 0), !1);
-        });
+        }));
       function Mc(n) {
         return n >= 48 && n <= 55;
       }
@@ -29351,22 +29356,22 @@ Defaulting to 2020, but this will stop working in the future.`)),
         n.lastIntValue = 0;
         for (var f = 0; f < o; ++f) {
           var m = n.current();
-          if (!Oc(m)) return (n.pos = l), !1;
-          (n.lastIntValue = 16 * n.lastIntValue + Dc(m)), n.advance();
+          if (!Oc(m)) return ((n.pos = l), !1);
+          ((n.lastIntValue = 16 * n.lastIntValue + Dc(m)), n.advance());
         }
         return !0;
       };
       var xr = function (o) {
-          (this.type = o.type),
+          ((this.type = o.type),
             (this.value = o.value),
             (this.start = o.start),
             (this.end = o.end),
             o.options.locations && (this.loc = new wt(o, o.startLoc, o.endLoc)),
-            o.options.ranges && (this.range = [o.start, o.end]);
+            o.options.ranges && (this.range = [o.start, o.end]));
         },
         Ae = Ge.prototype;
-      (Ae.next = function (n) {
-        !n &&
+      ((Ae.next = function (n) {
+        (!n &&
           this.type.keyword &&
           this.containsEsc &&
           this.raiseRecoverable(
@@ -29378,10 +29383,10 @@ Defaulting to 2020, but this will stop working in the future.`)),
           (this.lastTokStart = this.start),
           (this.lastTokEndLoc = this.endLoc),
           (this.lastTokStartLoc = this.startLoc),
-          this.nextToken();
+          this.nextToken());
       }),
         (Ae.getToken = function () {
-          return this.next(), new xr(this);
+          return (this.next(), new xr(this));
         }),
         typeof Symbol < 'u' &&
           (Ae[Symbol.iterator] = function () {
@@ -29428,9 +29433,8 @@ Defaulting to 2020, but this will stop working in the future.`)),
             for (
               var f = void 0, m = o;
               (f = ie(this.input, m, this.pos)) > -1;
-
             )
-              ++this.curLine, (m = this.lineStart = f);
+              (++this.curLine, (m = this.lineStart = f));
           this.options.onComment &&
             this.options.onComment(
               !0,
@@ -29447,7 +29451,6 @@ Defaulting to 2020, but this will stop working in the future.`)),
               l = this.options.onComment && this.curPosition(),
               f = this.input.charCodeAt((this.pos += n));
             this.pos < this.input.length && !X(f);
-
           )
             f = this.input.charCodeAt(++this.pos);
           this.options.onComment &&
@@ -29473,9 +29476,9 @@ Defaulting to 2020, but this will stop working in the future.`)),
               case 10:
               case 8232:
               case 8233:
-                ++this.pos,
+                (++this.pos,
                   this.options.locations &&
-                    (++this.curLine, (this.lineStart = this.pos));
+                    (++this.curLine, (this.lineStart = this.pos)));
                 break;
               case 47:
                 switch (this.input.charCodeAt(this.pos + 1)) {
@@ -29500,10 +29503,10 @@ Defaulting to 2020, but this will stop working in the future.`)),
           }
         }),
         (Ae.finishToken = function (n, o) {
-          (this.end = this.pos),
-            this.options.locations && (this.endLoc = this.curPosition());
+          ((this.end = this.pos),
+            this.options.locations && (this.endLoc = this.curPosition()));
           var l = this.type;
-          (this.type = n), (this.value = o), this.updateContext(l);
+          ((this.type = n), (this.value = o), this.updateContext(l));
         }),
         (Ae.readToken_dot = function () {
           var n = this.input.charCodeAt(this.pos + 1);
@@ -29518,8 +29521,8 @@ Defaulting to 2020, but this will stop working in the future.`)),
           return this.exprAllowed
             ? (++this.pos, this.readRegexp())
             : n === 61
-            ? this.finishOp(c.assign, 2)
-            : this.finishOp(c.slash, 1);
+              ? this.finishOp(c.assign, 2)
+              : this.finishOp(c.slash, 1);
         }),
         (Ae.readToken_mult_modulo_exp = function (n) {
           var o = this.input.charCodeAt(this.pos + 1),
@@ -29565,8 +29568,8 @@ Defaulting to 2020, but this will stop working in the future.`)),
               ? (this.skipLineComment(3), this.skipSpace(), this.nextToken())
               : this.finishOp(c.incDec, 2)
             : o === 61
-            ? this.finishOp(c.assign, 2)
-            : this.finishOp(c.plusMin, 1);
+              ? this.finishOp(c.assign, 2)
+              : this.finishOp(c.plusMin, 1);
         }),
         (Ae.readToken_lt_gt = function (n) {
           var o = this.input.charCodeAt(this.pos + 1),
@@ -29578,12 +29581,12 @@ Defaulting to 2020, but this will stop working in the future.`)),
                 ? this.finishOp(c.assign, l + 1)
                 : this.finishOp(c.bitShift, l))
             : o === 33 &&
-              n === 60 &&
-              !this.inModule &&
-              this.input.charCodeAt(this.pos + 2) === 45 &&
-              this.input.charCodeAt(this.pos + 3) === 45
-            ? (this.skipLineComment(4), this.skipSpace(), this.nextToken())
-            : (o === 61 && (l = 2), this.finishOp(c.relational, l));
+                n === 60 &&
+                !this.inModule &&
+                this.input.charCodeAt(this.pos + 2) === 45 &&
+                this.input.charCodeAt(this.pos + 3) === 45
+              ? (this.skipLineComment(4), this.skipSpace(), this.nextToken())
+              : (o === 61 && (l = 2), this.finishOp(c.relational, l));
         }),
         (Ae.readToken_eq_excl = function (n) {
           var o = this.input.charCodeAt(this.pos + 1);
@@ -29593,8 +29596,8 @@ Defaulting to 2020, but this will stop working in the future.`)),
                 this.input.charCodeAt(this.pos + 2) === 61 ? 3 : 2
               )
             : n === 61 && o === 62 && this.options.ecmaVersion >= 6
-            ? ((this.pos += 2), this.finishToken(c.arrow))
-            : this.finishOp(n === 61 ? c.eq : c.prefix, 1);
+              ? ((this.pos += 2), this.finishToken(c.arrow))
+              : this.finishOp(n === 61 ? c.eq : c.prefix, 1);
         }),
         (Ae.readToken_question = function () {
           var n = this.options.ecmaVersion;
@@ -29629,26 +29632,26 @@ Defaulting to 2020, but this will stop working in the future.`)),
             case 46:
               return this.readToken_dot();
             case 40:
-              return ++this.pos, this.finishToken(c.parenL);
+              return (++this.pos, this.finishToken(c.parenL));
             case 41:
-              return ++this.pos, this.finishToken(c.parenR);
+              return (++this.pos, this.finishToken(c.parenR));
             case 59:
-              return ++this.pos, this.finishToken(c.semi);
+              return (++this.pos, this.finishToken(c.semi));
             case 44:
-              return ++this.pos, this.finishToken(c.comma);
+              return (++this.pos, this.finishToken(c.comma));
             case 91:
-              return ++this.pos, this.finishToken(c.bracketL);
+              return (++this.pos, this.finishToken(c.bracketL));
             case 93:
-              return ++this.pos, this.finishToken(c.bracketR);
+              return (++this.pos, this.finishToken(c.bracketR));
             case 123:
-              return ++this.pos, this.finishToken(c.braceL);
+              return (++this.pos, this.finishToken(c.braceL));
             case 125:
-              return ++this.pos, this.finishToken(c.braceR);
+              return (++this.pos, this.finishToken(c.braceR));
             case 58:
-              return ++this.pos, this.finishToken(c.colon);
+              return (++this.pos, this.finishToken(c.colon));
             case 96:
               if (this.options.ecmaVersion < 6) break;
-              return ++this.pos, this.finishToken(c.backQuote);
+              return (++this.pos, this.finishToken(c.backQuote));
             case 48:
               var o = this.input.charCodeAt(this.pos + 1);
               if (o === 120 || o === 88) return this.readRadixNumber(16);
@@ -29699,7 +29702,7 @@ Defaulting to 2020, but this will stop working in the future.`)),
         }),
         (Ae.finishOp = function (n, o) {
           var l = this.input.slice(this.pos, this.pos + o);
-          return (this.pos += o), this.finishToken(n, l);
+          return ((this.pos += o), this.finishToken(n, l));
         }),
         (Ae.readRegexp = function () {
           for (var n, o, l = this.pos; ; ) {
@@ -29724,9 +29727,9 @@ Defaulting to 2020, but this will stop working in the future.`)),
             O = this.readWord1();
           this.containsEsc && this.unexpected(E);
           var Y = this.regexpState || (this.regexpState = new on(this));
-          Y.reset(l, m, O),
+          (Y.reset(l, m, O),
             this.validateRegExpFlags(Y),
-            this.validateRegExpPattern(Y);
+            this.validateRegExpPattern(Y));
           var Q = null;
           try {
             Q = new RegExp(m, O);
@@ -29748,7 +29751,7 @@ Defaulting to 2020, but this will stop working in the future.`)),
             var xe = this.input.charCodeAt(this.pos),
               Ze = void 0;
             if (f && xe === 95) {
-              m &&
+              (m &&
                 this.raiseRecoverable(
                   this.pos,
                   'Numeric separator is not allowed in legacy octal numeric literals'
@@ -29763,21 +29766,21 @@ Defaulting to 2020, but this will stop working in the future.`)),
                     this.pos,
                     'Numeric separator is not allowed at the first of digits'
                   ),
-                (Y = xe);
+                (Y = xe));
               continue;
             }
             if (
               (xe >= 97
                 ? (Ze = xe - 97 + 10)
                 : xe >= 65
-                ? (Ze = xe - 65 + 10)
-                : xe >= 48 && xe <= 57
-                ? (Ze = xe - 48)
-                : (Ze = 1 / 0),
+                  ? (Ze = xe - 65 + 10)
+                  : xe >= 48 && xe <= 57
+                    ? (Ze = xe - 48)
+                    : (Ze = 1 / 0),
               Ze >= n)
             )
               break;
-            (Y = xe), (O = O * n + Ze);
+            ((Y = xe), (O = O * n + Ze));
           }
           return (
             f &&
@@ -29788,14 +29791,14 @@ Defaulting to 2020, but this will stop working in the future.`)),
               ),
             this.pos === E || (o != null && this.pos - E !== o) ? null : O
           );
-        });
+        }));
       function wf(n, o) {
         return o ? parseInt(n, 8) : parseFloat(n.replace(/_/g, ''));
       }
       function Fc(n) {
         return typeof BigInt != 'function' ? null : BigInt(n.replace(/_/g, ''));
       }
-      (Ae.readRadixNumber = function (n) {
+      ((Ae.readRadixNumber = function (n) {
         var o = this.pos;
         this.pos += 2;
         var l = this.readInt(n);
@@ -29827,7 +29830,7 @@ Defaulting to 2020, but this will stop working in the future.`)),
               this.finishToken(c.num, m)
             );
           }
-          l && /[89]/.test(this.input.slice(o, this.pos)) && (l = !1),
+          (l && /[89]/.test(this.input.slice(o, this.pos)) && (l = !1),
             f === 46 &&
               !l &&
               (++this.pos,
@@ -29839,7 +29842,7 @@ Defaulting to 2020, but this will stop working in the future.`)),
               (f === 43 || f === 45) && ++this.pos,
               this.readInt(10) === null && this.raise(o, 'Invalid number')),
             h(this.fullCharCodeAtPos()) &&
-              this.raise(this.pos, 'Identifier directly after number');
+              this.raise(this.pos, 'Identifier directly after number'));
           var E = wf(this.input.slice(o, this.pos), l);
           return this.finishToken(c.num, E);
         }),
@@ -29849,12 +29852,12 @@ Defaulting to 2020, but this will stop working in the future.`)),
           if (n === 123) {
             this.options.ecmaVersion < 6 && this.unexpected();
             var l = ++this.pos;
-            (o = this.readHexChar(
+            ((o = this.readHexChar(
               this.input.indexOf('}', this.pos) - this.pos
             )),
               ++this.pos,
               o > 1114111 &&
-                this.invalidStringToken(l, 'Code point out of bounds');
+                this.invalidStringToken(l, 'Code point out of bounds'));
           } else o = this.readHexChar(4);
           return o;
         }),
@@ -29869,21 +29872,22 @@ Defaulting to 2020, but this will stop working in the future.`)),
                 (o += this.readEscapedChar(!1)),
                 (l = this.pos))
               : f === 8232 || f === 8233
-              ? (this.options.ecmaVersion < 10 &&
-                  this.raise(this.start, 'Unterminated string constant'),
-                ++this.pos,
-                this.options.locations &&
-                  (this.curLine++, (this.lineStart = this.pos)))
-              : (X(f) && this.raise(this.start, 'Unterminated string constant'),
-                ++this.pos);
+                ? (this.options.ecmaVersion < 10 &&
+                    this.raise(this.start, 'Unterminated string constant'),
+                  ++this.pos,
+                  this.options.locations &&
+                    (this.curLine++, (this.lineStart = this.pos)))
+                : (X(f) &&
+                    this.raise(this.start, 'Unterminated string constant'),
+                  ++this.pos);
           }
           return (
             (o += this.input.slice(l, this.pos++)),
             this.finishToken(c.string, o)
           );
-        });
+        }));
       var Bc = {};
-      (Ae.tryReadTemplateToken = function () {
+      ((Ae.tryReadTemplateToken = function () {
         this.inTemplateElement = !0;
         try {
           this.readTmplToken();
@@ -29914,9 +29918,9 @@ Defaulting to 2020, but this will stop working in the future.`)),
                 : ((n += this.input.slice(o, this.pos)),
                   this.finishToken(c.template, n));
             if (l === 92)
-              (n += this.input.slice(o, this.pos)),
+              ((n += this.input.slice(o, this.pos)),
                 (n += this.readEscapedChar(!0)),
-                (o = this.pos);
+                (o = this.pos));
             else if (X(l)) {
               switch (((n += this.input.slice(o, this.pos)), ++this.pos, l)) {
                 case 13:
@@ -29929,9 +29933,9 @@ Defaulting to 2020, but this will stop working in the future.`)),
                   n += String.fromCharCode(l);
                   break;
               }
-              this.options.locations &&
+              (this.options.locations &&
                 (++this.curLine, (this.lineStart = this.pos)),
-                (o = this.pos);
+                (o = this.pos));
             } else ++this.pos;
           }
         }),
@@ -29956,7 +29960,7 @@ Defaulting to 2020, but this will stop working in the future.`)),
 `:
               case '\u2028':
               case '\u2029':
-                ++this.curLine, (this.lineStart = this.pos + 1);
+                (++this.curLine, (this.lineStart = this.pos + 1));
                 break;
             }
           this.raise(this.start, 'Unterminated template');
@@ -30045,24 +30049,23 @@ Defaulting to 2020, but this will stop working in the future.`)),
           for (
             var n = '', o = !0, l = this.pos, f = this.options.ecmaVersion >= 6;
             this.pos < this.input.length;
-
           ) {
             var m = this.fullCharCodeAtPos();
             if (T(m, f)) this.pos += m <= 65535 ? 1 : 2;
             else if (m === 92) {
-              (this.containsEsc = !0), (n += this.input.slice(l, this.pos));
+              ((this.containsEsc = !0), (n += this.input.slice(l, this.pos)));
               var E = this.pos;
-              this.input.charCodeAt(++this.pos) !== 117 &&
+              (this.input.charCodeAt(++this.pos) !== 117 &&
                 this.invalidStringToken(
                   this.pos,
                   'Expecting Unicode escape sequence \\uXXXX'
                 ),
-                ++this.pos;
+                ++this.pos);
               var O = this.readCodePoint();
-              (o ? h : T)(O, f) ||
+              ((o ? h : T)(O, f) ||
                 this.invalidStringToken(E, 'Invalid Unicode escape'),
                 (n += nt(O)),
-                (l = this.pos);
+                (l = this.pos));
             } else break;
             o = !1;
           }
@@ -30071,8 +30074,8 @@ Defaulting to 2020, but this will stop working in the future.`)),
         (Ae.readWord = function () {
           var n = this.readWord1(),
             o = c.name;
-          return this.keywords.test(n) && (o = U[n]), this.finishToken(o, n);
-        });
+          return (this.keywords.test(n) && (o = U[n]), this.finishToken(o, n));
+        }));
       var Vc = '8.15.0';
       Ge.acorn = {
         Parser: Ge,
@@ -30104,7 +30107,7 @@ Defaulting to 2020, but this will stop working in the future.`)),
       function Ef(n, o) {
         return Ge.tokenizer(n, o);
       }
-      (e.Node = Fn),
+      ((e.Node = Fn),
         (e.Parser = Ge),
         (e.Position = ct),
         (e.SourceLocation = wt),
@@ -30125,7 +30128,7 @@ Defaulting to 2020, but this will stop working in the future.`)),
         (e.tokContexts = Ue),
         (e.tokTypes = c),
         (e.tokenizer = Ef),
-        (e.version = Vc);
+        (e.version = Vc));
     });
   });
   var df = Z((Bo, ff) => {
@@ -30133,9 +30136,9 @@ Defaulting to 2020, but this will stop working in the future.`)),
       typeof Bo == 'object' && typeof ff < 'u'
         ? t(Bo, hf())
         : typeof define == 'function' && define.amd
-        ? define(['exports', 'acorn'], t)
-        : ((e = typeof globalThis < 'u' ? globalThis : e || self),
-          t(((e.acorn = e.acorn || {}), (e.acorn.loose = {})), e.acorn));
+          ? define(['exports', 'acorn'], t)
+          : ((e = typeof globalThis < 'u' ? globalThis : e || self),
+            t(((e.acorn = e.acorn || {}), (e.acorn.loose = {})), e.acorn));
     })(Bo, function (e, t) {
       'use strict';
       var s = '\u2716';
@@ -30157,16 +30160,16 @@ Defaulting to 2020, but this will stop working in the future.`)),
           var x = this.toks.curPosition();
           this.tok.loc = new t.SourceLocation(this.toks, x, x);
         }
-        (this.ahead = []),
+        ((this.ahead = []),
           (this.context = []),
           (this.curIndent = 0),
           (this.curLineStart = 0),
           (this.nextLineStart = this.lineEnd(this.curLineStart) + 1),
           (this.inAsync = !1),
           (this.inGenerator = !1),
-          (this.inFunction = !1);
+          (this.inFunction = !1));
       };
-      (a.prototype.startNode = function () {
+      ((a.prototype.startNode = function () {
         return new t.Node(
           this.toks,
           this.tok.start,
@@ -30210,11 +30213,11 @@ Defaulting to 2020, but this will stop working in the future.`)),
         }),
         (a.prototype.dummyIdent = function () {
           var h = this.dummyNode('Identifier');
-          return (h.name = s), h;
+          return ((h.name = s), h);
         }),
         (a.prototype.dummyString = function () {
           var h = this.dummyNode('Literal');
-          return (h.value = h.raw = s), h;
+          return ((h.value = h.raw = s), h);
         }),
         (a.prototype.eat = function (h) {
           return this.tok.type === h ? (this.next(), !0) : !1;
@@ -30253,7 +30256,6 @@ Defaulting to 2020, but this will stop working in the future.`)),
           for (
             ;
             h < this.input.length && !t.isNewLine(this.input.charCodeAt(h));
-
           )
             ++h;
           return h;
@@ -30287,7 +30289,7 @@ Defaulting to 2020, but this will stop working in the future.`)),
           this[h] = T(this[h]);
         }),
         (a.prototype.parse = function () {
-          return this.next(), this.parseTopLevel();
+          return (this.next(), this.parseTopLevel());
         }),
         (a.extend = function () {
           for (var h = [], T = arguments.length; T--; ) h[T] = arguments[T];
@@ -30297,12 +30299,12 @@ Defaulting to 2020, but this will stop working in the future.`)),
         (a.parse = function (h, T) {
           return new this(h, T).parse();
         }),
-        (a.BaseParser = t.Parser);
+        (a.BaseParser = t.Parser));
       var u = a.prototype;
       function d(p) {
         return (p < 14 && p > 8) || p === 32 || p === 160 || t.isNewLine(p);
       }
-      (u.next = function () {
+      ((u.next = function () {
         if (
           ((this.last = this.tok),
           this.ahead.length
@@ -30311,8 +30313,8 @@ Defaulting to 2020, but this will stop working in the future.`)),
           this.tok.start >= this.nextLineStart)
         ) {
           for (; this.tok.start >= this.nextLineStart; )
-            (this.curLineStart = this.nextLineStart),
-              (this.nextLineStart = this.lineEnd(this.curLineStart) + 1);
+            ((this.curLineStart = this.nextLineStart),
+              (this.nextLineStart = this.lineEnd(this.curLineStart) + 1));
           this.curIndent = this.indentationAfter(this.curLineStart);
         }
       }),
@@ -30367,7 +30369,7 @@ Defaulting to 2020, but this will stop working in the future.`)),
                   var w = this.input.charCodeAt(h++);
                   if (w === 34 || w === 39 || t.isNewLine(w)) break;
                 }
-              else if (/unexpected character/i.test(p)) h++, (T = !1);
+              else if (/unexpected character/i.test(p)) (h++, (T = !1));
               else if (/regular expression/i.test(p)) T = !0;
               else throw S;
               if (
@@ -30388,7 +30390,7 @@ Defaulting to 2020, but this will stop working in the future.`)),
             }
         }),
         (u.resetTo = function (p) {
-          (this.toks.pos = p), (this.toks.containsEsc = !1);
+          ((this.toks.pos = p), (this.toks.containsEsc = !1));
           var h = this.input.charAt(p - 1);
           if (
             ((this.toks.exprAllowed =
@@ -30400,19 +30402,19 @@ Defaulting to 2020, but this will stop working in the future.`)),
                 ))),
             this.options.locations)
           ) {
-            (this.toks.curLine = 1),
-              (this.toks.lineStart = t.lineBreakG.lastIndex = 0);
+            ((this.toks.curLine = 1),
+              (this.toks.lineStart = t.lineBreakG.lastIndex = 0));
             for (var T; (T = t.lineBreakG.exec(this.input)) && T.index < p; )
-              ++this.toks.curLine,
-                (this.toks.lineStart = T.index + T[0].length);
+              (++this.toks.curLine,
+                (this.toks.lineStart = T.index + T[0].length));
           }
         }),
         (u.lookAhead = function (p) {
           for (; p > this.ahead.length; ) this.ahead.push(this.readToken());
           return this.ahead[p - 1];
-        });
+        }));
       var y = a.prototype;
-      (y.parseTopLevel = function () {
+      ((y.parseTopLevel = function () {
         var p = this.startNodeAt(
           this.options.locations ? [0, t.getLineInfo(this.input, 0)] : 0
         );
@@ -30488,10 +30490,10 @@ Defaulting to 2020, but this will stop working in the future.`)),
                 var M = S
                     ? 'let'
                     : U
-                    ? 'using'
-                    : A
-                    ? 'await using'
-                    : this.tok.value,
+                      ? 'using'
+                      : A
+                        ? 'await using'
+                        : this.tok.value,
                   c = this.startNode();
                 return (
                   U || A
@@ -30514,7 +30516,7 @@ Defaulting to 2020, but this will stop working in the future.`)),
                   this.parseForIn(h, this.toAssignable(R)))
                 : this.parseFor(h, R);
             case t.tokTypes._function:
-              return this.next(), this.parseFunction(h, !0);
+              return (this.next(), this.parseFunction(h, !0));
             case t.tokTypes._if:
               return (
                 this.next(),
@@ -30536,29 +30538,29 @@ Defaulting to 2020, but this will stop working in the future.`)),
             case t.tokTypes._switch:
               var W = this.curIndent,
                 X = this.curLineStart;
-              this.next(),
+              (this.next(),
                 (h.discriminant = this.parseParenExpression()),
                 (h.cases = []),
                 this.pushCx(),
-                this.expect(t.tokTypes.braceL);
+                this.expect(t.tokTypes.braceL));
               for (var ie; !this.closes(t.tokTypes.braceR, W, X, !0); )
                 if (
                   this.tok.type === t.tokTypes._case ||
                   this.tok.type === t.tokTypes._default
                 ) {
                   var pe = this.tok.type === t.tokTypes._case;
-                  ie && this.finishNode(ie, 'SwitchCase'),
+                  (ie && this.finishNode(ie, 'SwitchCase'),
                     h.cases.push((ie = this.startNode())),
                     (ie.consequent = []),
                     this.next(),
                     pe ? (ie.test = this.parseExpression()) : (ie.test = null),
-                    this.expect(t.tokTypes.colon);
+                    this.expect(t.tokTypes.colon));
                 } else
-                  ie ||
+                  (ie ||
                     (h.cases.push((ie = this.startNode())),
                     (ie.consequent = []),
                     (ie.test = null)),
-                    ie.consequent.push(this.parseStatement());
+                    ie.consequent.push(this.parseStatement()));
               return (
                 ie && this.finishNode(ie, 'SwitchCase'),
                 this.popCx(),
@@ -30580,13 +30582,13 @@ Defaulting to 2020, but this will stop working in the future.`)),
                 this.tok.type === t.tokTypes._catch)
               ) {
                 var ae = this.startNode();
-                this.next(),
+                (this.next(),
                   this.eat(t.tokTypes.parenL)
                     ? ((ae.param = this.toAssignable(this.parseExprAtom(), !0)),
                       this.expect(t.tokTypes.parenR))
                     : (ae.param = null),
                   (ae.body = this.parseBlock()),
-                  (h.handler = this.finishNode(ae, 'CatchClause'));
+                  (h.handler = this.finishNode(ae, 'CatchClause')));
               }
               return (
                 (h.finalizer = this.eat(t.tokTypes._finally)
@@ -30616,7 +30618,7 @@ Defaulting to 2020, but this will stop working in the future.`)),
             case t.tokTypes.braceL:
               return this.parseBlock();
             case t.tokTypes.semi:
-              return this.next(), this.finishNode(h, 'EmptyStatement');
+              return (this.next(), this.finishNode(h, 'EmptyStatement'));
             case t.tokTypes._class:
               return this.parseClass(!0);
             case t.tokTypes._import:
@@ -30634,10 +30636,14 @@ Defaulting to 2020, but this will stop working in the future.`)),
               return this.parseExport();
             default:
               if (this.toks.isAsyncFunction())
-                return this.next(), this.next(), this.parseFunction(h, !0, !0);
+                return (
+                  this.next(),
+                  this.next(),
+                  this.parseFunction(h, !0, !0)
+                );
               if (this.toks.isUsing(!1)) return this.parseVar(h, !1, 'using');
               if (this.toks.isAwaitUsing(!1))
-                return this.next(), this.parseVar(h, !1, 'await using');
+                return (this.next(), this.parseVar(h, !1, 'await using'));
               var qe = this.parseExpression();
               return i(qe)
                 ? (this.next(),
@@ -30645,19 +30651,19 @@ Defaulting to 2020, but this will stop working in the future.`)),
                     ? this.finishNode(h, 'EmptyStatement')
                     : this.parseStatement())
                 : p === t.tokTypes.name &&
-                  qe.type === 'Identifier' &&
-                  this.eat(t.tokTypes.colon)
-                ? ((h.body = this.parseStatement()),
-                  (h.label = qe),
-                  this.finishNode(h, 'LabeledStatement'))
-                : ((h.expression = qe),
-                  this.semicolon(),
-                  this.finishNode(h, 'ExpressionStatement'));
+                    qe.type === 'Identifier' &&
+                    this.eat(t.tokTypes.colon)
+                  ? ((h.body = this.parseStatement()),
+                    (h.label = qe),
+                    this.finishNode(h, 'LabeledStatement'))
+                  : ((h.expression = qe),
+                    this.semicolon(),
+                    this.finishNode(h, 'ExpressionStatement'));
           }
         }),
         (y.parseBlock = function () {
           var p = this.startNode();
-          this.pushCx(), this.expect(t.tokTypes.braceL);
+          (this.pushCx(), this.expect(t.tokTypes.braceL));
           var h = this.curIndent,
             T = this.curLineStart;
           for (p.body = []; !this.closes(t.tokTypes.braceR, h, T, !0); )
@@ -30700,41 +30706,42 @@ Defaulting to 2020, but this will stop working in the future.`)),
           );
         }),
         (y.parseVar = function (p, h, T) {
-          (p.kind = T), this.next(), (p.declarations = []);
+          ((p.kind = T), this.next(), (p.declarations = []));
           do {
             var x = this.startNode();
-            (x.id =
+            ((x.id =
               this.options.ecmaVersion >= 6
                 ? this.toAssignable(this.parseExprAtom(), !0)
                 : this.parseIdent()),
               (x.init = this.eat(t.tokTypes.eq)
                 ? this.parseMaybeAssign(h)
                 : null),
-              p.declarations.push(this.finishNode(x, 'VariableDeclarator'));
+              p.declarations.push(this.finishNode(x, 'VariableDeclarator')));
           } while (this.eat(t.tokTypes.comma));
           if (!p.declarations.length) {
             var w = this.startNode();
-            (w.id = this.dummyIdent()),
-              p.declarations.push(this.finishNode(w, 'VariableDeclarator'));
+            ((w.id = this.dummyIdent()),
+              p.declarations.push(this.finishNode(w, 'VariableDeclarator')));
           }
           return (
-            h || this.semicolon(), this.finishNode(p, 'VariableDeclaration')
+            h || this.semicolon(),
+            this.finishNode(p, 'VariableDeclaration')
           );
         }),
         (y.parseClass = function (p) {
           var h = this.startNode();
-          this.next(),
+          (this.next(),
             this.tok.type === t.tokTypes.name
               ? (h.id = this.parseIdent())
               : p === !0
-              ? (h.id = this.dummyIdent())
-              : (h.id = null),
+                ? (h.id = this.dummyIdent())
+                : (h.id = null),
             (h.superClass = this.eat(t.tokTypes._extends)
               ? this.parseExpression()
               : null),
             (h.body = this.startNode()),
             (h.body.body = []),
-            this.pushCx();
+            this.pushCx());
           var T = this.curIndent + 1,
             x = this.curLineStart;
           for (
@@ -30742,7 +30749,6 @@ Defaulting to 2020, but this will stop working in the future.`)),
               this.curIndent + 1 < T &&
                 ((T = this.curIndent), (x = this.curLineStart));
             !this.closes(t.tokTypes.braceR, T, x);
-
           ) {
             var w = this.parseClassElement();
             w && h.body.body.push(w);
@@ -30773,7 +30779,7 @@ Defaulting to 2020, but this will stop working in the future.`)),
             R = !1;
           if (this.eatContextual('static')) {
             if (h >= 13 && this.eat(t.tokTypes.braceL))
-              return this.parseClassStaticBlock(S), S;
+              return (this.parseClassStaticBlock(S), S);
             this.isClassElementNameStart() || this.toks.type === t.tokTypes.star
               ? (R = !0)
               : (A = 'static');
@@ -30796,14 +30802,14 @@ Defaulting to 2020, but this will stop working in the future.`)),
               (this.isClassElementNameStart() ? (c = W) : (A = W));
           }
           if (A)
-            (S.computed = !1),
+            ((S.computed = !1),
               (S.key = this.startNodeAt(
                 T
                   ? [this.toks.lastTokStart, this.toks.lastTokStartLoc]
                   : this.toks.lastTokStart
               )),
               (S.key.name = A),
-              this.finishNode(S.key, 'Identifier');
+              this.finishNode(S.key, 'Identifier'));
           else if ((this.parseClassElementName(S), i(S.key)))
             return (
               i(this.parseMaybeAssign()) && this.next(),
@@ -30825,9 +30831,9 @@ Defaulting to 2020, but this will stop working in the future.`)),
               c === 'method' &&
               ((S.key.type === 'Identifier' && S.key.name === 'constructor') ||
                 (S.key.type === 'Literal' && S.key.value === 'constructor'));
-            (S.kind = X ? 'constructor' : c),
+            ((S.kind = X ? 'constructor' : c),
               (S.value = this.parseMethod(U, M)),
-              this.finishNode(S, 'MethodDefinition');
+              this.finishNode(S, 'MethodDefinition'));
           } else {
             if (this.eat(t.tokTypes.eq))
               if (
@@ -30839,14 +30845,14 @@ Defaulting to 2020, but this will stop working in the future.`)),
               else {
                 var ie = this.inAsync,
                   pe = this.inGenerator;
-                (this.inAsync = !1),
+                ((this.inAsync = !1),
                   (this.inGenerator = !1),
                   (S.value = this.parseMaybeAssign()),
                   (this.inAsync = ie),
-                  (this.inGenerator = pe);
+                  (this.inGenerator = pe));
               }
             else S.value = null;
-            this.semicolon(), this.finishNode(S, 'PropertyDefinition');
+            (this.semicolon(), this.finishNode(S, 'PropertyDefinition'));
           }
           return S;
         }),
@@ -30856,7 +30862,6 @@ Defaulting to 2020, but this will stop working in the future.`)),
           for (
             p.body = [], this.pushCx();
             !this.closes(t.tokTypes.braceR, h, T, !0);
-
           )
             p.body.push(this.parseStatement());
           return (
@@ -30920,9 +30925,9 @@ Defaulting to 2020, but this will stop working in the future.`)),
               (h = this.toks.isAsyncFunction())
             ) {
               var T = this.startNode();
-              this.next(),
+              (this.next(),
                 h && this.next(),
-                (p.declaration = this.parseFunction(T, 'nullableID', h));
+                (p.declaration = this.parseFunction(T, 'nullableID', h)));
             } else
               this.tok.type === t.tokTypes._class
                 ? (p.declaration = this.parseClass('nullableID'))
@@ -30950,10 +30955,10 @@ Defaulting to 2020, but this will stop working in the future.`)),
         (y.parseImport = function () {
           var p = this.startNode();
           if ((this.next(), this.tok.type === t.tokTypes.string))
-            (p.specifiers = []), (p.source = this.parseExprAtom());
+            ((p.specifiers = []), (p.source = this.parseExprAtom()));
           else {
             var h;
-            this.tok.type === t.tokTypes.name &&
+            (this.tok.type === t.tokTypes.name &&
               this.tok.value !== 'from' &&
               ((h = this.startNode()),
               (h.local = this.parseIdent()),
@@ -30965,7 +30970,7 @@ Defaulting to 2020, but this will stop working in the future.`)),
                 this.tok.type === t.tokTypes.string
                   ? this.parseExprAtom()
                   : this.dummyString()),
-              h && p.specifiers.unshift(h);
+              h && p.specifiers.unshift(h));
           }
           return (
             this.options.ecmaVersion >= 16 &&
@@ -30978,11 +30983,11 @@ Defaulting to 2020, but this will stop working in the future.`)),
           var p = [];
           if (this.tok.type === t.tokTypes.star) {
             var h = this.startNode();
-            this.next(),
+            (this.next(),
               (h.local = this.eatContextual('as')
                 ? this.parseIdent()
                 : this.dummyIdent()),
-              p.push(this.finishNode(h, 'ImportNamespaceSpecifier'));
+              p.push(this.finishNode(h, 'ImportNamespaceSpecifier')));
           } else {
             var T = this.curIndent,
               x = this.curLineStart,
@@ -30996,28 +31001,27 @@ Defaulting to 2020, but this will stop working in the future.`)),
                 T + (this.curLineStart <= w ? 1 : 0),
                 x
               );
-
             ) {
               var S = this.startNode();
               if (this.eat(t.tokTypes.star))
-                (S.local = this.eatContextual('as')
+                ((S.local = this.eatContextual('as')
                   ? this.parseModuleExportName()
                   : this.dummyIdent()),
-                  this.finishNode(S, 'ImportNamespaceSpecifier');
+                  this.finishNode(S, 'ImportNamespaceSpecifier'));
               else {
                 if (
                   this.isContextual('from') ||
                   ((S.imported = this.parseModuleExportName()), i(S.imported))
                 )
                   break;
-                (S.local = this.eatContextual('as')
+                ((S.local = this.eatContextual('as')
                   ? this.parseModuleExportName()
                   : S.imported),
-                  this.finishNode(S, 'ImportSpecifier');
+                  this.finishNode(S, 'ImportSpecifier'));
               }
-              p.push(S), this.eat(t.tokTypes.comma);
+              (p.push(S), this.eat(t.tokTypes.comma));
             }
-            this.eat(t.tokTypes.braceR), this.popCx();
+            (this.eat(t.tokTypes.braceR), this.popCx());
           }
           return p;
         }),
@@ -31036,7 +31040,6 @@ Defaulting to 2020, but this will stop working in the future.`)),
               h + (this.curLineStart <= x ? 1 : 0),
               T
             );
-
           ) {
             var w = this.startNode();
             if (
@@ -31055,10 +31058,10 @@ Defaulting to 2020, but this will stop working in the future.`)),
                 w.value = this.parseExprAtom();
               else break;
             }
-            p.push(this.finishNode(w, 'ImportAttribute')),
-              this.eat(t.tokTypes.comma);
+            (p.push(this.finishNode(w, 'ImportAttribute')),
+              this.eat(t.tokTypes.comma));
           }
-          return this.eat(t.tokTypes.braceR), this.popCx(), p;
+          return (this.eat(t.tokTypes.braceR), this.popCx(), p);
         }),
         (y.parseExportSpecifierList = function () {
           var p = [],
@@ -31074,34 +31077,33 @@ Defaulting to 2020, but this will stop working in the future.`)),
               h + (this.curLineStart <= x ? 1 : 0),
               T
             ) && !this.isContextual('from');
-
           ) {
             var w = this.startNode();
             if (((w.local = this.parseModuleExportName()), i(w.local))) break;
-            (w.exported = this.eatContextual('as')
+            ((w.exported = this.eatContextual('as')
               ? this.parseModuleExportName()
               : w.local),
               this.finishNode(w, 'ExportSpecifier'),
               p.push(w),
-              this.eat(t.tokTypes.comma);
+              this.eat(t.tokTypes.comma));
           }
-          return this.eat(t.tokTypes.braceR), this.popCx(), p;
+          return (this.eat(t.tokTypes.braceR), this.popCx(), p);
         }),
         (y.parseModuleExportName = function () {
           return this.options.ecmaVersion >= 13 &&
             this.tok.type === t.tokTypes.string
             ? this.parseExprAtom()
             : this.parseIdent();
-        });
+        }));
       var g = a.prototype;
-      (g.checkLVal = function (p) {
+      ((g.checkLVal = function (p) {
         if (!p) return p;
         switch (p.type) {
           case 'Identifier':
           case 'MemberExpression':
             return p;
           case 'ParenthesizedExpression':
-            return (p.expression = this.checkLVal(p.expression)), p;
+            return ((p.expression = this.checkLVal(p.expression)), p);
           default:
             return this.dummyIdent();
         }
@@ -31118,9 +31120,9 @@ Defaulting to 2020, but this will stop working in the future.`)),
           return T;
         }),
         (g.parseParenExpression = function () {
-          this.pushCx(), this.expect(t.tokTypes.parenL);
+          (this.pushCx(), this.expect(t.tokTypes.parenL));
           var p = this.parseExpression();
-          return this.popCx(), this.expect(t.tokTypes.parenR), p;
+          return (this.popCx(), this.expect(t.tokTypes.parenR), p);
         }),
         (g.parseMaybeAssign = function (p) {
           if (this.inGenerator && this.toks.isContextual('yield')) {
@@ -31227,11 +31229,11 @@ Defaulting to 2020, but this will stop working in the future.`)),
               (this.toks.inModule && this.options.ecmaVersion >= 13) ||
               (!this.inFunction && this.options.allowAwaitOutsideFunction))
           )
-            (T = this.parseAwait()), (p = !0);
+            ((T = this.parseAwait()), (p = !0));
           else if (this.tok.type.prefix) {
             var x = this.startNode(),
               w = this.tok.type === t.tokTypes.incDec;
-            w || (p = !0),
+            (w || (p = !0),
               (x.operator = this.tok.value),
               (x.prefix = !0),
               this.next(),
@@ -31240,26 +31242,25 @@ Defaulting to 2020, but this will stop working in the future.`)),
               (T = this.finishNode(
                 x,
                 w ? 'UpdateExpression' : 'UnaryExpression'
-              ));
+              )));
           } else if (this.tok.type === t.tokTypes.ellipsis) {
             var S = this.startNode();
-            this.next(),
+            (this.next(),
               (S.argument = this.parseMaybeUnary(p)),
-              (T = this.finishNode(S, 'SpreadElement'));
+              (T = this.finishNode(S, 'SpreadElement')));
           } else if (!p && this.tok.type === t.tokTypes.privateId)
             T = this.parsePrivateIdent();
           else
             for (
               T = this.parseExprSubscripts();
               this.tok.type.postfix && !this.canInsertSemicolon();
-
             ) {
               var A = this.startNodeAt(h);
-              (A.operator = this.tok.value),
+              ((A.operator = this.tok.value),
                 (A.prefix = !1),
                 (A.argument = this.checkLVal(T)),
                 this.next(),
-                (T = this.finishNode(A, 'UpdateExpression'));
+                (T = this.finishNode(A, 'UpdateExpression')));
             }
           if (!p && this.eat(t.tokTypes.starstar)) {
             var U = this.startNodeAt(h);
@@ -31305,7 +31306,7 @@ Defaulting to 2020, but this will stop working in the future.`)),
                 this.eat(t.tokTypes.dot))
             ) {
               var c = this.startNodeAt(h);
-              (c.object = p),
+              ((c.object = p),
                 this.curLineStart !== w &&
                 this.curIndent <= x &&
                 this.tokenStartsLine()
@@ -31314,36 +31315,36 @@ Defaulting to 2020, but this will stop working in the future.`)),
                       this.parsePropertyAccessor() || this.dummyIdent()),
                 (c.computed = !1),
                 S && (c.optional = M),
-                (p = this.finishNode(c, 'MemberExpression'));
+                (p = this.finishNode(c, 'MemberExpression')));
             } else if (this.tok.type === t.tokTypes.bracketL) {
-              this.pushCx(), this.next();
+              (this.pushCx(), this.next());
               var R = this.startNodeAt(h);
-              (R.object = p),
+              ((R.object = p),
                 (R.property = this.parseExpression()),
                 (R.computed = !0),
                 S && (R.optional = M),
                 this.popCx(),
                 this.expect(t.tokTypes.bracketR),
-                (p = this.finishNode(R, 'MemberExpression'));
+                (p = this.finishNode(R, 'MemberExpression')));
             } else if (!T && this.tok.type === t.tokTypes.parenL) {
               var W = this.parseExprList(t.tokTypes.parenR);
               if (U && this.eat(t.tokTypes.arrow))
                 return this.parseArrowExpression(this.startNodeAt(h), W, !0);
               var X = this.startNodeAt(h);
-              (X.callee = p),
+              ((X.callee = p),
                 (X.arguments = W),
                 S && (X.optional = M),
-                (p = this.finishNode(X, 'CallExpression'));
+                (p = this.finishNode(X, 'CallExpression')));
             } else if (this.tok.type === t.tokTypes.backQuote) {
               var ie = this.startNodeAt(h);
-              (ie.tag = p),
+              ((ie.tag = p),
                 (ie.quasi = this.parseTemplate()),
-                (p = this.finishNode(ie, 'TaggedTemplateExpression'));
+                (p = this.finishNode(ie, 'TaggedTemplateExpression')));
             } else break;
           }
           if (A) {
             var pe = this.startNodeAt(h);
-            (pe.expression = p), (p = this.finishNode(pe, 'ChainExpression'));
+            ((pe.expression = p), (p = this.finishNode(pe, 'ChainExpression')));
           }
           return p;
         }),
@@ -31354,7 +31355,11 @@ Defaulting to 2020, but this will stop working in the future.`)),
             case t.tokTypes._super:
               var h =
                 this.tok.type === t.tokTypes._this ? 'ThisExpression' : 'Super';
-              return (p = this.startNode()), this.next(), this.finishNode(p, h);
+              return (
+                (p = this.startNode()),
+                this.next(),
+                this.finishNode(p, h)
+              );
             case t.tokTypes.name:
               var T = this.storeCurrentPos(),
                 x = this.parseIdent(),
@@ -31424,8 +31429,8 @@ Defaulting to 2020, but this will stop working in the future.`)),
               }
               if (this.options.preserveParens) {
                 var c = this.startNodeAt(A);
-                (c.expression = U),
-                  (U = this.finishNode(c, 'ParenthesizedExpression'));
+                ((c.expression = U),
+                  (U = this.finishNode(c, 'ParenthesizedExpression')));
               }
               return U;
             case t.tokTypes.bracketL:
@@ -31436,13 +31441,16 @@ Defaulting to 2020, but this will stop working in the future.`)),
               );
             case t.tokTypes.braceL:
               return (
-                this.toks.overrideContext(t.tokContexts.b_expr), this.parseObj()
+                this.toks.overrideContext(t.tokContexts.b_expr),
+                this.parseObj()
               );
             case t.tokTypes._class:
               return this.parseClass(!1);
             case t.tokTypes._function:
               return (
-                (p = this.startNode()), this.next(), this.parseFunction(p, !1)
+                (p = this.startNode()),
+                this.next(),
+                this.parseFunction(p, !1)
               );
             case t.tokTypes._new:
               return this.parseNew();
@@ -31463,9 +31471,9 @@ Defaulting to 2020, but this will stop working in the future.`)),
             case t.tokTypes.parenL:
               return this.parseDynamicImport(p);
             case t.tokTypes.dot:
-              return (p.meta = h), this.parseImportMeta(p);
+              return ((p.meta = h), this.parseImportMeta(p));
             default:
-              return (p.name = 'import'), this.finishNode(p, 'Identifier');
+              return ((p.name = 'import'), this.finishNode(p, 'Identifier'));
           }
         }),
         (g.parseDynamicImport = function (p) {
@@ -31529,10 +31537,10 @@ Defaulting to 2020, but this will stop working in the future.`)),
         }),
         (g.parseTemplate = function () {
           var p = this.startNode();
-          this.next(), (p.expressions = []);
+          (this.next(), (p.expressions = []));
           var h = this.parseTemplateElement();
           for (p.quasis = [h]; !h.tail; )
-            this.next(),
+            (this.next(),
               p.expressions.push(this.parseExpression()),
               this.expect(t.tokTypes.braceR)
                 ? (h = this.parseTemplateElement())
@@ -31540,7 +31548,7 @@ Defaulting to 2020, but this will stop working in the future.`)),
                   (h.value = {cooked: '', raw: ''}),
                   (h.tail = !0),
                   this.finishNode(h, 'TemplateElement')),
-              p.quasis.push(h);
+              p.quasis.push(h));
           return (
             this.expect(t.tokTypes.backQuote),
             this.finishNode(p, 'TemplateLiteral')
@@ -31548,7 +31556,7 @@ Defaulting to 2020, but this will stop working in the future.`)),
         }),
         (g.parseObj = function () {
           var p = this.startNode();
-          (p.properties = []), this.pushCx();
+          ((p.properties = []), this.pushCx());
           var h = this.curIndent + 1,
             T = this.curLineStart;
           for (
@@ -31556,7 +31564,6 @@ Defaulting to 2020, but this will stop working in the future.`)),
               this.curIndent + 1 < h &&
                 ((h = this.curIndent), (T = this.curLineStart));
             !this.closes(t.tokTypes.braceR, h, T);
-
           ) {
             var x = this.startNode(),
               w = void 0,
@@ -31566,9 +31573,9 @@ Defaulting to 2020, but this will stop working in the future.`)),
               this.options.ecmaVersion >= 9 &&
               this.eat(t.tokTypes.ellipsis)
             ) {
-              (x.argument = this.parseMaybeAssign()),
+              ((x.argument = this.parseMaybeAssign()),
                 p.properties.push(this.finishNode(x, 'SpreadElement')),
-                this.eat(t.tokTypes.comma);
+                this.eat(t.tokTypes.comma));
               continue;
             }
             if (
@@ -31586,20 +31593,20 @@ Defaulting to 2020, but this will stop working in the future.`)),
                 : (S = !1),
               i(x.key))
             ) {
-              i(this.parseMaybeAssign()) && this.next(),
-                this.eat(t.tokTypes.comma);
+              (i(this.parseMaybeAssign()) && this.next(),
+                this.eat(t.tokTypes.comma));
               continue;
             }
             if (this.eat(t.tokTypes.colon))
-              (x.kind = 'init'), (x.value = this.parseMaybeAssign());
+              ((x.kind = 'init'), (x.value = this.parseMaybeAssign()));
             else if (
               this.options.ecmaVersion >= 6 &&
               (this.tok.type === t.tokTypes.parenL ||
                 this.tok.type === t.tokTypes.braceL)
             )
-              (x.kind = 'init'),
+              ((x.kind = 'init'),
                 (x.method = !0),
-                (x.value = this.parseMethod(w, S));
+                (x.value = this.parseMethod(w, S)));
             else if (
               this.options.ecmaVersion >= 5 &&
               x.key.type === 'Identifier' &&
@@ -31609,23 +31616,23 @@ Defaulting to 2020, but this will stop working in the future.`)),
               this.tok.type !== t.tokTypes.braceR &&
               this.tok.type !== t.tokTypes.eq
             )
-              (x.kind = x.key.name),
+              ((x.kind = x.key.name),
                 this.parsePropertyName(x),
-                (x.value = this.parseMethod(!1));
+                (x.value = this.parseMethod(!1)));
             else {
               if (((x.kind = 'init'), this.options.ecmaVersion >= 6))
                 if (this.eat(t.tokTypes.eq)) {
                   var U = this.startNodeAt(A);
-                  (U.operator = '='),
+                  ((U.operator = '='),
                     (U.left = x.key),
                     (U.right = this.parseMaybeAssign()),
-                    (x.value = this.finishNode(U, 'AssignmentExpression'));
+                    (x.value = this.finishNode(U, 'AssignmentExpression')));
                 } else x.value = x.key;
               else x.value = this.dummyIdent();
               x.shorthand = !0;
             }
-            p.properties.push(this.finishNode(x, 'Property')),
-              this.eat(t.tokTypes.comma);
+            (p.properties.push(this.finishNode(x, 'Property')),
+              this.eat(t.tokTypes.comma));
           }
           return (
             this.popCx(),
@@ -31639,9 +31646,9 @@ Defaulting to 2020, but this will stop working in the future.`)),
         (g.parsePropertyName = function (p) {
           if (this.options.ecmaVersion >= 6)
             if (this.eat(t.tokTypes.bracketL)) {
-              (p.computed = !0),
+              ((p.computed = !0),
                 (p.key = this.parseExpression()),
-                this.expect(t.tokTypes.bracketR);
+                this.expect(t.tokTypes.bracketR));
               return;
             } else p.computed = !1;
           var h =
@@ -31665,7 +31672,7 @@ Defaulting to 2020, but this will stop working in the future.`)),
           if (!p) return this.dummyIdent();
           this.tok.type.keyword && (this.toks.type = t.tokTypes.name);
           var h = this.startNode();
-          return this.next(), (h.name = p), this.finishNode(h, 'Identifier');
+          return (this.next(), (h.name = p), this.finishNode(h, 'Identifier'));
         }),
         (g.parsePrivateIdent = function () {
           var p = this.startNode();
@@ -31676,11 +31683,11 @@ Defaulting to 2020, but this will stop working in the future.`)),
           );
         }),
         (g.initFunction = function (p) {
-          (p.id = null),
+          ((p.id = null),
             (p.params = []),
             this.options.ecmaVersion >= 6 &&
               ((p.generator = !1), (p.expression = !1)),
-            this.options.ecmaVersion >= 8 && (p.async = !1);
+            this.options.ecmaVersion >= 8 && (p.async = !1));
         }),
         (g.toAssignable = function (p, h) {
           if (
@@ -31701,12 +31708,13 @@ Defaulting to 2020, but this will stop working in the future.`)),
                   this.toAssignable(w, h);
                 }
               } else if (p.type === 'ArrayExpression')
-                (p.type = 'ArrayPattern'), this.toAssignableList(p.elements, h);
+                ((p.type = 'ArrayPattern'),
+                  this.toAssignableList(p.elements, h));
               else if (p.type === 'Property') this.toAssignable(p.value, h);
               else if (p.type === 'SpreadElement')
-                (p.type = 'RestElement'), this.toAssignable(p.argument, h);
+                ((p.type = 'RestElement'), this.toAssignable(p.argument, h));
               else if (p.type === 'AssignmentExpression')
-                (p.type = 'AssignmentPattern'), delete p.operator;
+                ((p.type = 'AssignmentPattern'), delete p.operator);
               else return this.dummyIdent();
             }
           return p;
@@ -31801,11 +31809,11 @@ Defaulting to 2020, but this will stop working in the future.`)),
             this.finishNode(p, 'AwaitExpression')
           );
         }),
-        (t.defaultOptions.tabSize = 4);
+        (t.defaultOptions.tabSize = 4));
       function L(p, h) {
         return a.parse(p, h);
       }
-      (e.LooseParser = a), (e.isDummy = i), (e.parse = L);
+      ((e.LooseParser = a), (e.isDummy = i), (e.parse = L));
     });
   });
   var Vo = Li(),
@@ -31824,7 +31832,7 @@ Defaulting to 2020, but this will stop working in the future.`)),
             i = s[0],
             r = s[1] || 'default',
             a = {id: i, chunks: [i], name: r, async: !0};
-          return (e[t] = a), a;
+          return ((e[t] = a), a);
         },
       }
     );
@@ -31833,7 +31841,7 @@ Defaulting to 2020, but this will stop working in the future.`)),
   function mf(e, t, s) {
     var i = dr.registerServerReference(e, t, s),
       r = t + '#' + s;
-    return (Nc[r] = e), i;
+    return ((Nc[r] = e), i);
   }
   function Wg(e) {
     if (e.indexOf('use client') === -1 && e.indexOf('use server') === -1)
@@ -31872,7 +31880,7 @@ Defaulting to 2020, but this will stop working in the future.`)),
             var U = S[A];
             if (U.type !== 'ExpressionStatement') break;
             if (U.directive === 'use server') {
-              s.push({
+              (s.push({
                 funcStart: T.start,
                 funcEnd: T.end,
                 dStart: U.start,
@@ -31880,7 +31888,7 @@ Defaulting to 2020, but this will stop working in the future.`)),
                 name: T.id ? T.id.name : 'action' + i,
                 isDecl: T.type === 'FunctionDeclaration',
               }),
-                i++;
+                i++);
               return;
             }
             if (!U.directive) break;
@@ -31916,9 +31924,8 @@ Defaulting to 2020, but this will stop working in the future.`)),
 ` ||
           g === '\r' ||
           g === '	');
-
       )
-        y++, (g = a.charAt(y));
+        (y++, (g = a.charAt(y)));
       a = a.slice(0, d.dStart) + a.slice(y);
       var L = y - d.dStart,
         p = d.funcEnd - L,
@@ -32000,7 +32007,7 @@ Defaulting to 2020, but this will stop working in the future.`)),
       if (a[h]) return a[h].exports;
       var T = Wg(e[h]);
       if (T === 'use client')
-        return (t[h] = dr.createClientModuleProxy(h)), (u[h] = !0), t[h];
+        return ((t[h] = dr.createClientModuleProxy(h)), (u[h] = !0), t[h]);
       var x = {exports: {}};
       a[h] = x;
       var w = function (c) {
@@ -32027,15 +32034,15 @@ Defaulting to 2020, but this will stop working in the future.`)),
           var M = A[U];
           typeof x.exports[M] == 'function' && mf(x.exports[M], h, M);
         }
-      return delete a[h], x.exports;
+      return (delete a[h], x.exports);
     }
     var y = {exports: {}};
-    Object.keys(s).forEach(function (h) {
-      d(h),
+    (Object.keys(s).forEach(function (h) {
+      (d(h),
         (h === '/src/App.js' || h === './App.js' || h === './src/App.js') &&
-          (y.exports = t[h]);
+          (y.exports = t[h]));
     }),
-      (Os = {module: y.exports});
+      (Os = {module: y.exports}));
     var g = {};
     function L(h) {
       if (!g[h]) {
@@ -32045,7 +32052,6 @@ Defaulting to 2020, but this will stop working in the future.`)),
           for (
             var x = /require\(["']([^"']+)["']\)/g, w;
             (w = x.exec(T)) !== null;
-
           ) {
             var S = w[1];
             if (
@@ -32079,7 +32085,7 @@ Defaulting to 2020, but this will stop working in the future.`)),
       t = Vo.createElement(e);
     return dr.renderToReadableStream(t, kf(), {
       onError: function (s) {
-        return console.error('[RSC Server Error]', s), msg;
+        return (console.error('[RSC Server Error]', s), msg);
       },
     });
   }
@@ -32102,7 +32108,7 @@ Defaulting to 2020, but this will stop working in the future.`)),
           kf(),
           {
             onError: function (y) {
-              return console.error('[RSC Server Error]', y), msg;
+              return (console.error('[RSC Server Error]', y), msg);
             },
           }
         );

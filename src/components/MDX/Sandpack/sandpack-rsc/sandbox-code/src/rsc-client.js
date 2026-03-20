@@ -69,8 +69,8 @@ export function initClient() {
         error && error.digest
           ? error.digest
           : error && error.message
-          ? error.message
-          : String(error);
+            ? error.message
+            : String(error);
       console.error(msg);
       showError(msg);
     },
@@ -353,26 +353,26 @@ export function initClient() {
     // Register all evaluated components with react-refresh for Fast Refresh.
     // This creates stable "component families" so React can preserve state
     // across re-evaluations when component identity changes.
-    Object.keys(globalThis.__webpack_module_cache__).forEach(function (
-      moduleId
-    ) {
-      var moduleExports = globalThis.__webpack_module_cache__[moduleId];
-      var exports =
-        moduleExports.exports !== undefined
-          ? moduleExports.exports
-          : moduleExports;
-      if (exports && typeof exports === 'object') {
-        for (var key in exports) {
-          var exportValue = exports[key];
-          if (isLikelyComponentType(exportValue)) {
-            refreshRegister(exportValue, moduleId + ' %exports% ' + key);
+    Object.keys(globalThis.__webpack_module_cache__).forEach(
+      function (moduleId) {
+        var moduleExports = globalThis.__webpack_module_cache__[moduleId];
+        var exports =
+          moduleExports.exports !== undefined
+            ? moduleExports.exports
+            : moduleExports;
+        if (exports && typeof exports === 'object') {
+          for (var key in exports) {
+            var exportValue = exports[key];
+            if (isLikelyComponentType(exportValue)) {
+              refreshRegister(exportValue, moduleId + ' %exports% ' + key);
+            }
           }
         }
+        if (typeof exports === 'function' && isLikelyComponentType(exports)) {
+          refreshRegister(exports, moduleId + ' %exports% default');
+        }
       }
-      if (typeof exports === 'function' && isLikelyComponentType(exports)) {
-        refreshRegister(exports, moduleId + ' %exports% default');
-      }
-    });
+    );
 
     // Tell React about updated component families so it can
     // preserve state for components whose implementation changed.

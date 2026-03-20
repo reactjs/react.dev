@@ -9,10 +9,10 @@
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
 
-import {memo} from 'react';
+import React, {memo} from 'react';
 
 export const IconExperimental = memo<
-  JSX.IntrinsicElements['svg'] & {title?: string; size?: 's' | 'md'}
+  React.JSX.IntrinsicElements['svg'] & {title?: string; size?: 's' | 'md'}
 >(function IconExperimental(
   {className, title, size} = {
     className: undefined,

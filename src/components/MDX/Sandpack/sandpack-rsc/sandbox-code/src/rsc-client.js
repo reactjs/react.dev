@@ -191,7 +191,7 @@ export function initClient() {
     Object.keys(chunkControllers).forEach(function (id) {
       try {
         chunkControllers[id].close();
-      } catch (e) {}
+      } catch (_e) {}
       delete chunkControllers[id];
     });
 

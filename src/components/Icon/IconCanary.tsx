@@ -9,10 +9,10 @@
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
 
-import {memo} from 'react';
+import React, {memo} from 'react';
 
 export const IconCanary = memo<
-  JSX.IntrinsicElements['svg'] & {title?: string; size?: 's' | 'md'}
+  React.JSX.IntrinsicElements['svg'] & {title?: string; size?: 's' | 'md'}
 >(function IconCanary(
   {className, title, size} = {
     className: undefined,

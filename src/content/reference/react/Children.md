@@ -245,7 +245,7 @@ Then, with the `RowList` implementation above, the final rendered result will lo
 <Sandpack>
 
 ```js
-import RowList from './RowList.js';
+import RowList from './RowList.jsx';
 
 export default function App() {
   return (
@@ -258,7 +258,7 @@ export default function App() {
 }
 ```
 
-```js src/RowList.js active
+```js src/RowList.jsx active
 import { Children } from 'react';
 
 export default function RowList({ children }) {
@@ -315,7 +315,7 @@ This is why only two row wrappers are generated in this example:
 <Sandpack>
 
 ```js
-import RowList from './RowList.js';
+import RowList from './RowList.jsx';
 
 export default function App() {
   return (
@@ -336,7 +336,7 @@ function MoreRows() {
 }
 ```
 
-```js src/RowList.js
+```js src/RowList.jsx
 import { Children } from 'react';
 
 export default function RowList({ children }) {
@@ -382,7 +382,7 @@ Call `Children.forEach` to iterate over each child in the `children` data struct
 <Sandpack>
 
 ```js
-import SeparatorList from './SeparatorList.js';
+import SeparatorList from './SeparatorList.jsx';
 
 export default function App() {
   return (
@@ -395,7 +395,7 @@ export default function App() {
 }
 ```
 
-```js src/SeparatorList.js active
+```js src/SeparatorList.jsx active
 import { Children } from 'react';
 
 export default function SeparatorList({ children }) {
@@ -426,7 +426,7 @@ Call `Children.count(children)` to calculate the number of children.
 <Sandpack>
 
 ```js
-import RowList from './RowList.js';
+import RowList from './RowList.jsx';
 
 export default function App() {
   return (
@@ -439,7 +439,7 @@ export default function App() {
 }
 ```
 
-```js src/RowList.js active
+```js src/RowList.jsx active
 import { Children } from 'react';
 
 export default function RowList({ children }) {
@@ -553,7 +553,7 @@ When you can, try to avoid using the `Children` methods. For example, if you wan
 <Sandpack>
 
 ```js
-import { RowList, Row } from './RowList.js';
+import { RowList, Row } from './RowList.jsx';
 
 export default function App() {
   return (
@@ -572,7 +572,7 @@ export default function App() {
 }
 ```
 
-```js src/RowList.js
+```js src/RowList.jsx
 export function RowList({ children }) {
   return (
     <div className="RowList">
@@ -612,7 +612,7 @@ Unlike using `Children.map`, this approach does not wrap every child automatical
 <Sandpack>
 
 ```js
-import { RowList, Row } from './RowList.js';
+import { RowList, Row } from './RowList.jsx';
 
 export default function App() {
   return (
@@ -639,7 +639,7 @@ function MoreRows() {
 }
 ```
 
-```js src/RowList.js
+```js src/RowList.jsx
 export function RowList({ children }) {
   return (
     <div className="RowList">
@@ -685,7 +685,7 @@ You can also explicitly pass an array as a prop. For example, this `RowList` acc
 <Sandpack>
 
 ```js
-import { RowList, Row } from './RowList.js';
+import { RowList, Row } from './RowList.jsx';
 
 export default function App() {
   return (
@@ -698,7 +698,7 @@ export default function App() {
 }
 ```
 
-```js src/RowList.js
+```js src/RowList.jsx
 export function RowList({ rows }) {
   return (
     <div className="RowList">
@@ -736,7 +736,7 @@ This pattern is especially useful when you want to be able to pass more informat
 <Sandpack>
 
 ```js
-import TabSwitcher from './TabSwitcher.js';
+import TabSwitcher from './TabSwitcher.jsx';
 
 export default function App() {
   return (
@@ -761,7 +761,7 @@ export default function App() {
 }
 ```
 
-```js src/TabSwitcher.js
+```js src/TabSwitcher.jsx
 import { useState } from 'react';
 
 export default function TabSwitcher({ tabs }) {
@@ -800,7 +800,7 @@ Instead of producing JSX for every single item, you can also pass a function tha
 <Sandpack>
 
 ```js
-import TabSwitcher from './TabSwitcher.js';
+import TabSwitcher from './TabSwitcher.jsx';
 
 export default function App() {
   return (
@@ -817,7 +817,7 @@ export default function App() {
 }
 ```
 
-```js src/TabSwitcher.js
+```js src/TabSwitcher.jsx
 import { useState } from 'react';
 
 export default function TabSwitcher({ tabIds, getHeader, renderContent }) {
@@ -851,7 +851,7 @@ Render props are functions, so you can pass information to them. For example, th
 <Sandpack>
 
 ```js
-import { RowList, Row } from './RowList.js';
+import { RowList, Row } from './RowList.jsx';
 
 export default function App() {
   return (
@@ -869,7 +869,7 @@ export default function App() {
 }
 ```
 
-```js src/RowList.js
+```js src/RowList.jsx
 import { Fragment } from 'react';
 
 export function RowList({ rowIds, renderRow }) {

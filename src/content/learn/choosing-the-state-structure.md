@@ -1839,7 +1839,7 @@ This `Clock` component receives two props: `color` and `time`. When you select a
 
 <Sandpack>
 
-```js src/Clock.js active
+```js src/Clock.jsx active
 import { useState } from 'react';
 
 export default function Clock(props) {
@@ -1852,9 +1852,9 @@ export default function Clock(props) {
 }
 ```
 
-```js src/App.js hidden
+```js src/App.jsx hidden
 import { useState, useEffect } from 'react';
-import Clock from './Clock.js';
+import Clock from './Clock.jsx';
 
 function useTime() {
   const [time, setTime] = useState(() => new Date());
@@ -1894,7 +1894,7 @@ The issue is that this component has `color` state initialized with the initial 
 
 <Sandpack>
 
-```js src/Clock.js active
+```js src/Clock.jsx active
 import { useState } from 'react';
 
 export default function Clock(props) {
@@ -1906,9 +1906,9 @@ export default function Clock(props) {
 }
 ```
 
-```js src/App.js hidden
+```js src/App.jsx hidden
 import { useState, useEffect } from 'react';
-import Clock from './Clock.js';
+import Clock from './Clock.jsx';
 
 function useTime() {
   const [time, setTime] = useState(() => new Date());
@@ -1946,7 +1946,7 @@ Or, using the destructuring syntax:
 
 <Sandpack>
 
-```js src/Clock.js active
+```js src/Clock.jsx active
 import { useState } from 'react';
 
 export default function Clock({ color, time }) {
@@ -1958,9 +1958,9 @@ export default function Clock({ color, time }) {
 }
 ```
 
-```js src/App.js hidden
+```js src/App.jsx hidden
 import { useState, useEffect } from 'react';
-import Clock from './Clock.js';
+import Clock from './Clock.jsx';
 
 function useTime() {
   const [time, setTime] = useState(() => new Date());
@@ -2008,10 +2008,10 @@ Is any state in this example redundant?
 
 <Sandpack>
 
-```js src/App.js
+```js src/App.jsx
 import { useState } from 'react';
-import AddItem from './AddItem.js';
-import PackingList from './PackingList.js';
+import AddItem from './AddItem.jsx';
+import PackingList from './PackingList.jsx';
 
 let nextId = 3;
 const initialItems = [
@@ -2076,7 +2076,7 @@ export default function TravelPlan() {
 }
 ```
 
-```js src/AddItem.js hidden
+```js src/AddItem.jsx hidden
 import { useState } from 'react';
 
 export default function AddItem({ onAddItem }) {
@@ -2097,7 +2097,7 @@ export default function AddItem({ onAddItem }) {
 }
 ```
 
-```js src/PackingList.js hidden
+```js src/PackingList.jsx hidden
 import { useState } from 'react';
 
 export default function PackingList({
@@ -2147,10 +2147,10 @@ Although you could carefully change each event handler to update the `total` and
 
 <Sandpack>
 
-```js src/App.js
+```js src/App.jsx
 import { useState } from 'react';
-import AddItem from './AddItem.js';
-import PackingList from './PackingList.js';
+import AddItem from './AddItem.jsx';
+import PackingList from './PackingList.jsx';
 
 let nextId = 3;
 const initialItems = [
@@ -2211,7 +2211,7 @@ export default function TravelPlan() {
 }
 ```
 
-```js src/AddItem.js hidden
+```js src/AddItem.jsx hidden
 import { useState } from 'react';
 
 export default function AddItem({ onAddItem }) {
@@ -2232,7 +2232,7 @@ export default function AddItem({ onAddItem }) {
 }
 ```
 
-```js src/PackingList.js hidden
+```js src/PackingList.jsx hidden
 import { useState } from 'react';
 
 export default function PackingList({
@@ -2288,10 +2288,10 @@ This code works, but there is a minor UI glitch. When you press "Star" or "Unsta
 
 <Sandpack>
 
-```js src/App.js
+```js src/App.jsx
 import { useState } from 'react';
 import { initialLetters } from './data.js';
-import Letter from './Letter.js';
+import Letter from './Letter.jsx';
 
 export default function MailClient() {
   const [letters, setLetters] = useState(initialLetters);
@@ -2335,7 +2335,7 @@ export default function MailClient() {
 }
 ```
 
-```js src/Letter.js
+```js src/Letter.jsx
 export default function Letter({
   letter,
   isHighlighted,
@@ -2397,10 +2397,10 @@ To fix the issue, remove the duplication from state. Instead of storing *the let
 
 <Sandpack>
 
-```js src/App.js
+```js src/App.jsx
 import { useState } from 'react';
 import { initialLetters } from './data.js';
-import Letter from './Letter.js';
+import Letter from './Letter.jsx';
 
 export default function MailClient() {
   const [letters, setLetters] = useState(initialLetters);
@@ -2444,7 +2444,7 @@ export default function MailClient() {
 }
 ```
 
-```js src/Letter.js
+```js src/Letter.jsx
 export default function Letter({
   letter,
   isHighlighted,
@@ -2514,10 +2514,10 @@ Instead of a single selected ID, you might want to hold an array or a [Set](http
 
 <Sandpack>
 
-```js src/App.js
+```js src/App.jsx
 import { useState } from 'react';
 import { letters } from './data.js';
-import Letter from './Letter.js';
+import Letter from './Letter.jsx';
 
 export default function MailClient() {
   const [selectedId, setSelectedId] = useState(null);
@@ -2557,7 +2557,7 @@ export default function MailClient() {
 }
 ```
 
-```js src/Letter.js
+```js src/Letter.jsx
 export default function Letter({
   letter,
   onToggle,
@@ -2613,10 +2613,10 @@ Instead of a single `selectedId`, keep a `selectedIds` *array* in state. For exa
 
 <Sandpack>
 
-```js src/App.js
+```js src/App.jsx
 import { useState } from 'react';
 import { letters } from './data.js';
-import Letter from './Letter.js';
+import Letter from './Letter.jsx';
 
 export default function MailClient() {
   const [selectedIds, setSelectedIds] = useState([]);
@@ -2665,7 +2665,7 @@ export default function MailClient() {
 }
 ```
 
-```js src/Letter.js
+```js src/Letter.jsx
 export default function Letter({
   letter,
   onToggle,
@@ -2721,10 +2721,10 @@ To fix this, you can hold a [Set](https://developer.mozilla.org/en-US/docs/Web/J
 
 <Sandpack>
 
-```js src/App.js
+```js src/App.jsx
 import { useState } from 'react';
 import { letters } from './data.js';
-import Letter from './Letter.js';
+import Letter from './Letter.jsx';
 
 export default function MailClient() {
   const [selectedIds, setSelectedIds] = useState(
@@ -2770,7 +2770,7 @@ export default function MailClient() {
 }
 ```
 
-```js src/Letter.js
+```js src/Letter.jsx
 export default function Letter({
   letter,
   onToggle,

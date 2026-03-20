@@ -83,7 +83,7 @@ For example, the browser `onbeforeprint` API allows you to change the page immed
 
 <Sandpack>
 
-```js src/App.js active
+```js src/App.jsx active
 import { useState, useEffect } from 'react';
 import { flushSync } from 'react-dom';
 

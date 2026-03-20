@@ -9,24 +9,21 @@ import {useState} from 'react';
 
 import {
   LoadingOverlayState,
-  OpenInCodeSandboxButton,
   useSandpack,
-} from '@codesandbox/sandpack-react/unstyled';
+  OpenInStackBlitzButton,
+} from '@webcontainer/react';
 import {useEffect} from 'react';
 
 const FADE_ANIMATION_DURATION = 200;
 
 export const LoadingOverlay = ({
-  clientId,
   dependenciesLoading,
   forceLoading,
 }: {
-  clientId: string;
   dependenciesLoading: boolean;
   forceLoading: boolean;
 } & React.HTMLAttributes<HTMLDivElement>): React.ReactNode | null => {
   const loadingOverlayState = useLoadingOverlayState(
-    clientId,
     dependenciesLoading,
     forceLoading
   );
@@ -39,18 +36,11 @@ export const LoadingOverlay = ({
     return (
       <div className="sp-overlay sp-error">
         <div className="sp-error-message">
-          Unable to establish connection with the sandpack bundler. Make sure
-          you are online or try again later. If the problem persists, please
-          report it via{' '}
+          Unable to start the sandbox. Make sure you are online or try again
+          later. If the problem persists, please submit an issue on{' '}
           <a
             className="sp-error-message"
-            href="mailto:hello@codesandbox.io?subject=Sandpack Timeout Error">
-            email
-          </a>{' '}
-          or submit an issue on{' '}
-          <a
-            className="sp-error-message"
-            href="https://github.com/codesandbox/sandpack/issues"
+            href="https://github.com/reactjs/react.dev/issues"
             rel="noreferrer noopener"
             target="_blank">
             GitHub.
@@ -70,9 +60,8 @@ export const LoadingOverlay = ({
         opacity: stillLoading ? 1 : 0,
         transition: `opacity ${FADE_ANIMATION_DURATION}ms ease-out`,
       }}>
-      <div className="sp-cube-wrapper" title="Open in CodeSandbox">
-        {/* @ts-ignore: the OpenInCodeSandboxButton type from '@codesandbox/sandpack-react/unstyled' is incompatible with JSX in React 19 */}
-        <OpenInCodeSandboxButton />
+      <div className="sp-cube-wrapper" title="Open in StackBlitz">
+        {/* <OpenInStackBlitzButton /> */}
         <div className="sp-cube">
           <div className="sp-sides">
             <div className="top" />
@@ -89,7 +78,6 @@ export const LoadingOverlay = ({
 };
 
 const useLoadingOverlayState = (
-  clientId: string,
   dependenciesLoading: boolean,
   forceLoading: boolean
 ): LoadingOverlayState => {
@@ -100,9 +88,6 @@ const useLoadingOverlayState = (
     setState('LOADING');
   }
 
-  /**
-   * Sandpack listener
-   */
   const sandpackIdle = sandpack.status === 'idle';
   useEffect(() => {
     const unsubscribe = listen((message) => {
@@ -111,12 +96,12 @@ const useLoadingOverlayState = (
           return prev === 'LOADING' ? 'PRE_FADING' : 'HIDDEN';
         });
       }
-    }, clientId);
+    });
 
     return () => {
       unsubscribe();
     };
-  }, [listen, clientId, sandpackIdle]);
+  }, [listen, sandpackIdle]);
 
   /**
    * Fading transient state

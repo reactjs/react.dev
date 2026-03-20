@@ -54,9 +54,9 @@ In the example below, the `Albums` component *suspends* while fetching the list 
 
 <Sandpack>
 
-```js src/App.js hidden
+```js src/App.jsx hidden
 import { useState } from 'react';
-import ArtistPage from './ArtistPage.js';
+import ArtistPage from './ArtistPage.jsx';
 
 export default function App() {
   const [show, setShow] = useState(false);
@@ -79,9 +79,9 @@ export default function App() {
 }
 ```
 
-```js src/ArtistPage.js active
+```js src/ArtistPage.jsx active
 import { Suspense } from 'react';
-import Albums from './Albums.js';
+import Albums from './Albums.jsx';
 
 export default function ArtistPage({ artist }) {
   return (
@@ -99,7 +99,7 @@ function Loading() {
 }
 ```
 
-```js src/Albums.js
+```js src/Albums.jsx
 import {use} from 'react';
 import { fetchData } from './data.js';
 
@@ -240,9 +240,9 @@ In the example below, both `Biography` and `Albums` fetch some data. However, be
 
 <Sandpack>
 
-```js src/App.js hidden
+```js src/App.jsx hidden
 import { useState } from 'react';
-import ArtistPage from './ArtistPage.js';
+import ArtistPage from './ArtistPage.jsx';
 
 export default function App() {
   const [show, setShow] = useState(false);
@@ -265,11 +265,11 @@ export default function App() {
 }
 ```
 
-```js src/ArtistPage.js active
+```js src/ArtistPage.jsx active
 import { Suspense } from 'react';
-import Albums from './Albums.js';
-import Biography from './Biography.js';
-import Panel from './Panel.js';
+import Albums from './Albums.jsx';
+import Biography from './Biography.jsx';
+import Panel from './Panel.jsx';
 
 export default function ArtistPage({ artist }) {
   return (
@@ -290,7 +290,7 @@ function Loading() {
 }
 ```
 
-```js src/Panel.js
+```js src/Panel.jsx
 export default function Panel({ children }) {
   return (
     <section className="panel">
@@ -300,7 +300,7 @@ export default function Panel({ children }) {
 }
 ```
 
-```js src/Biography.js
+```js src/Biography.jsx
 import {use} from 'react';
 import { fetchData } from './data.js';
 
@@ -314,7 +314,7 @@ export default function Biography({ artistId }) {
 }
 ```
 
-```js src/Albums.js
+```js src/Albums.jsx
 import {use} from 'react';
 import { fetchData } from './data.js';
 
@@ -490,9 +490,9 @@ The sequence will be:
 
 <Sandpack>
 
-```js src/App.js hidden
+```js src/App.jsx hidden
 import { useState } from 'react';
-import ArtistPage from './ArtistPage.js';
+import ArtistPage from './ArtistPage.jsx';
 
 export default function App() {
   const [show, setShow] = useState(false);
@@ -515,11 +515,11 @@ export default function App() {
 }
 ```
 
-```js src/ArtistPage.js active
+```js src/ArtistPage.jsx active
 import { Suspense } from 'react';
-import Albums from './Albums.js';
-import Biography from './Biography.js';
-import Panel from './Panel.js';
+import Albums from './Albums.jsx';
+import Biography from './Biography.jsx';
+import Panel from './Panel.jsx';
 
 export default function ArtistPage({ artist }) {
   return (
@@ -552,7 +552,7 @@ function AlbumsGlimmer() {
 }
 ```
 
-```js src/Panel.js
+```js src/Panel.jsx
 export default function Panel({ children }) {
   return (
     <section className="panel">
@@ -562,7 +562,7 @@ export default function Panel({ children }) {
 }
 ```
 
-```js src/Biography.js
+```js src/Biography.jsx
 import {use} from 'react';
 import { fetchData } from './data.js';
 
@@ -576,7 +576,7 @@ export default function Biography({ artistId }) {
 }
 ```
 
-```js src/Albums.js
+```js src/Albums.jsx
 import {use} from 'react';
 import { fetchData } from './data.js';
 
@@ -734,9 +734,9 @@ In this example, the `SearchResults` component suspends while fetching the searc
 
 <Sandpack>
 
-```js src/App.js
+```js src/App.jsx
 import { Suspense, useState } from 'react';
-import SearchResults from './SearchResults.js';
+import SearchResults from './SearchResults.jsx';
 
 export default function App() {
   const [query, setQuery] = useState('');
@@ -754,7 +754,7 @@ export default function App() {
 }
 ```
 
-```js src/SearchResults.js
+```js src/SearchResults.jsx
 import {use} from 'react';
 import { fetchData } from './data.js';
 
@@ -914,9 +914,9 @@ Enter `"a"` in the example below, wait for the results to load, and then edit th
 
 <Sandpack>
 
-```js src/App.js
+```js src/App.jsx
 import { Suspense, useState, useDeferredValue } from 'react';
-import SearchResults from './SearchResults.js';
+import SearchResults from './SearchResults.jsx';
 
 export default function App() {
   const [query, setQuery] = useState('');
@@ -938,7 +938,7 @@ export default function App() {
 }
 ```
 
-```js src/SearchResults.js hidden
+```js src/SearchResults.jsx hidden
 import {use} from 'react';
 import { fetchData } from './data.js';
 
@@ -1075,11 +1075,11 @@ When a component suspends, the closest parent Suspense boundary switches to show
 
 <Sandpack>
 
-```js src/App.js
+```js src/App.jsx
 import { Suspense, useState } from 'react';
-import IndexPage from './IndexPage.js';
-import ArtistPage from './ArtistPage.js';
-import Layout from './Layout.js';
+import IndexPage from './IndexPage.jsx';
+import ArtistPage from './ArtistPage.jsx';
+import Layout from './Layout.jsx';
 
 export default function App() {
   return (
@@ -1123,7 +1123,7 @@ function BigSpinner() {
 }
 ```
 
-```js src/Layout.js
+```js src/Layout.jsx
 export default function Layout({ children }) {
   return (
     <div className="layout">
@@ -1138,7 +1138,7 @@ export default function Layout({ children }) {
 }
 ```
 
-```js src/IndexPage.js
+```js src/IndexPage.jsx
 export default function IndexPage({ navigate }) {
   return (
     <button onClick={() => navigate('/the-beatles')}>
@@ -1148,11 +1148,11 @@ export default function IndexPage({ navigate }) {
 }
 ```
 
-```js src/ArtistPage.js
+```js src/ArtistPage.jsx
 import { Suspense } from 'react';
-import Albums from './Albums.js';
-import Biography from './Biography.js';
-import Panel from './Panel.js';
+import Albums from './Albums.jsx';
+import Biography from './Biography.jsx';
+import Panel from './Panel.jsx';
 
 export default function ArtistPage({ artist }) {
   return (
@@ -1179,7 +1179,7 @@ function AlbumsGlimmer() {
 }
 ```
 
-```js src/Albums.js
+```js src/Albums.jsx
 import {use} from 'react';
 import { fetchData } from './data.js';
 
@@ -1197,7 +1197,7 @@ export default function Albums({ artistId }) {
 }
 ```
 
-```js src/Biography.js
+```js src/Biography.jsx
 import {use} from 'react';
 import { fetchData } from './data.js';
 
@@ -1211,7 +1211,7 @@ export default function Biography({ artistId }) {
 }
 ```
 
-```js src/Panel.js
+```js src/Panel.jsx
 export default function Panel({ children }) {
   return (
     <section className="panel">
@@ -1385,11 +1385,11 @@ This tells React that the state transition is not urgent, and it's better to kee
 
 <Sandpack>
 
-```js src/App.js
+```js src/App.jsx
 import { Suspense, startTransition, useState } from 'react';
-import IndexPage from './IndexPage.js';
-import ArtistPage from './ArtistPage.js';
-import Layout from './Layout.js';
+import IndexPage from './IndexPage.jsx';
+import ArtistPage from './ArtistPage.jsx';
+import Layout from './Layout.jsx';
 
 export default function App() {
   return (
@@ -1435,7 +1435,7 @@ function BigSpinner() {
 }
 ```
 
-```js src/Layout.js
+```js src/Layout.jsx
 export default function Layout({ children }) {
   return (
     <div className="layout">
@@ -1450,7 +1450,7 @@ export default function Layout({ children }) {
 }
 ```
 
-```js src/IndexPage.js
+```js src/IndexPage.jsx
 export default function IndexPage({ navigate }) {
   return (
     <button onClick={() => navigate('/the-beatles')}>
@@ -1460,11 +1460,11 @@ export default function IndexPage({ navigate }) {
 }
 ```
 
-```js src/ArtistPage.js
+```js src/ArtistPage.jsx
 import { Suspense } from 'react';
-import Albums from './Albums.js';
-import Biography from './Biography.js';
-import Panel from './Panel.js';
+import Albums from './Albums.jsx';
+import Biography from './Biography.jsx';
+import Panel from './Panel.jsx';
 
 export default function ArtistPage({ artist }) {
   return (
@@ -1491,7 +1491,7 @@ function AlbumsGlimmer() {
 }
 ```
 
-```js src/Albums.js
+```js src/Albums.jsx
 import {use} from 'react';
 import { fetchData } from './data.js';
 
@@ -1509,7 +1509,7 @@ export default function Albums({ artistId }) {
 }
 ```
 
-```js src/Biography.js
+```js src/Biography.jsx
 import {use} from 'react';
 import { fetchData } from './data.js';
 
@@ -1523,7 +1523,7 @@ export default function Biography({ artistId }) {
 }
 ```
 
-```js src/Panel.js
+```js src/Panel.jsx
 export default function Panel({ children }) {
   return (
     <section className="panel">
@@ -1693,11 +1693,11 @@ In the above example, once you click the button, there is no visual indication t
 
 <Sandpack>
 
-```js src/App.js
+```js src/App.jsx
 import { Suspense, useState, useTransition } from 'react';
-import IndexPage from './IndexPage.js';
-import ArtistPage from './ArtistPage.js';
-import Layout from './Layout.js';
+import IndexPage from './IndexPage.jsx';
+import ArtistPage from './ArtistPage.jsx';
+import Layout from './Layout.jsx';
 
 export default function App() {
   return (
@@ -1744,7 +1744,7 @@ function BigSpinner() {
 }
 ```
 
-```js src/Layout.js
+```js src/Layout.jsx
 export default function Layout({ children, isPending }) {
   return (
     <div className="layout">
@@ -1761,7 +1761,7 @@ export default function Layout({ children, isPending }) {
 }
 ```
 
-```js src/IndexPage.js
+```js src/IndexPage.jsx
 export default function IndexPage({ navigate }) {
   return (
     <button onClick={() => navigate('/the-beatles')}>
@@ -1771,11 +1771,11 @@ export default function IndexPage({ navigate }) {
 }
 ```
 
-```js src/ArtistPage.js
+```js src/ArtistPage.jsx
 import { Suspense } from 'react';
-import Albums from './Albums.js';
-import Biography from './Biography.js';
-import Panel from './Panel.js';
+import Albums from './Albums.jsx';
+import Biography from './Biography.jsx';
+import Panel from './Panel.jsx';
 
 export default function ArtistPage({ artist }) {
   return (
@@ -1802,7 +1802,7 @@ function AlbumsGlimmer() {
 }
 ```
 
-```js src/Albums.js
+```js src/Albums.jsx
 import {use} from 'react';
 import { fetchData } from './data.js';
 
@@ -1820,7 +1820,7 @@ export default function Albums({ artistId }) {
 }
 ```
 
-```js src/Biography.js
+```js src/Biography.jsx
 import {use} from 'react';
 import { fetchData } from './data.js';
 
@@ -1834,7 +1834,7 @@ export default function Biography({ artistId }) {
 }
 ```
 
-```js src/Panel.js
+```js src/Panel.jsx
 export default function Panel({ children }) {
   return (
     <section className="panel">

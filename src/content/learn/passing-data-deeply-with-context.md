@@ -47,8 +47,8 @@ Context lets a parent component provide data to the entire tree below it. There 
 <Sandpack>
 
 ```js
-import Heading from './Heading.js';
-import Section from './Section.js';
+import Heading from './Heading.jsx';
+import Section from './Section.jsx';
 
 export default function Page() {
   return (
@@ -64,7 +64,7 @@ export default function Page() {
 }
 ```
 
-```js src/Section.js
+```js src/Section.jsx
 export default function Section({ children }) {
   return (
     <section className="section">
@@ -74,7 +74,7 @@ export default function Section({ children }) {
 }
 ```
 
-```js src/Heading.js
+```js src/Heading.jsx
 export default function Heading({ level, children }) {
   switch (level) {
     case 1:
@@ -111,8 +111,8 @@ Let's say you want multiple headings within the same `Section` to always have th
 <Sandpack>
 
 ```js
-import Heading from './Heading.js';
-import Section from './Section.js';
+import Heading from './Heading.jsx';
+import Section from './Section.jsx';
 
 export default function Page() {
   return (
@@ -138,7 +138,7 @@ export default function Page() {
 }
 ```
 
-```js src/Section.js
+```js src/Section.jsx
 export default function Section({ children }) {
   return (
     <section className="section">
@@ -148,7 +148,7 @@ export default function Section({ children }) {
 }
 ```
 
-```js src/Heading.js
+```js src/Heading.jsx
 export default function Heading({ level, children }) {
   switch (level) {
     case 1:
@@ -233,8 +233,8 @@ First, you need to create the context. You'll need to **export it from a file** 
 <Sandpack>
 
 ```js
-import Heading from './Heading.js';
-import Section from './Section.js';
+import Heading from './Heading.jsx';
+import Section from './Section.jsx';
 
 export default function Page() {
   return (
@@ -260,7 +260,7 @@ export default function Page() {
 }
 ```
 
-```js src/Section.js
+```js src/Section.jsx
 export default function Section({ children }) {
   return (
     <section className="section">
@@ -270,7 +270,7 @@ export default function Section({ children }) {
 }
 ```
 
-```js src/Heading.js
+```js src/Heading.jsx
 export default function Heading({ level, children }) {
   switch (level) {
     case 1:
@@ -363,8 +363,8 @@ As a reminder, this is the markup that you were trying to get working:
 <Sandpack>
 
 ```js
-import Heading from './Heading.js';
-import Section from './Section.js';
+import Heading from './Heading.jsx';
+import Section from './Section.jsx';
 
 export default function Page() {
   return (
@@ -390,7 +390,7 @@ export default function Page() {
 }
 ```
 
-```js src/Section.js
+```js src/Section.jsx
 export default function Section({ children }) {
   return (
     <section className="section">
@@ -400,7 +400,7 @@ export default function Section({ children }) {
 }
 ```
 
-```js src/Heading.js
+```js src/Heading.jsx
 import { useContext } from 'react';
 import { LevelContext } from './LevelContext.js';
 
@@ -481,8 +481,8 @@ This tells React: "if any component inside this `<Section>` asks for `LevelConte
 <Sandpack>
 
 ```js
-import Heading from './Heading.js';
-import Section from './Section.js';
+import Heading from './Heading.jsx';
+import Section from './Section.jsx';
 
 export default function Page() {
   return (
@@ -508,7 +508,7 @@ export default function Page() {
 }
 ```
 
-```js src/Section.js
+```js src/Section.jsx
 import { LevelContext } from './LevelContext.js';
 
 export default function Section({ level, children }) {
@@ -522,7 +522,7 @@ export default function Section({ level, children }) {
 }
 ```
 
-```js src/Heading.js
+```js src/Heading.jsx
 import { useContext } from 'react';
 import { LevelContext } from './LevelContext.js';
 
@@ -608,8 +608,8 @@ With this change, you don't need to pass the `level` prop *either* to the `<Sect
 <Sandpack>
 
 ```js
-import Heading from './Heading.js';
-import Section from './Section.js';
+import Heading from './Heading.jsx';
+import Section from './Section.jsx';
 
 export default function Page() {
   return (
@@ -635,7 +635,7 @@ export default function Page() {
 }
 ```
 
-```js src/Section.js
+```js src/Section.jsx
 import { useContext } from 'react';
 import { LevelContext } from './LevelContext.js';
 
@@ -651,7 +651,7 @@ export default function Section({ children }) {
 }
 ```
 
-```js src/Heading.js
+```js src/Heading.jsx
 import { useContext } from 'react';
 import { LevelContext } from './LevelContext.js';
 
@@ -712,8 +712,8 @@ In this example, the same `Post` component (with a dashed border) is rendered at
 <Sandpack>
 
 ```js
-import Heading from './Heading.js';
-import Section from './Section.js';
+import Heading from './Heading.jsx';
+import Section from './Section.jsx';
 
 export default function ProfilePage() {
   return (
@@ -765,7 +765,7 @@ function Post({ title, body }) {
 }
 ```
 
-```js src/Section.js
+```js src/Section.jsx
 import { useContext } from 'react';
 import { LevelContext } from './LevelContext.js';
 
@@ -784,7 +784,7 @@ export default function Section({ children, isFancy }) {
 }
 ```
 
-```js src/Heading.js
+```js src/Heading.jsx
 import { useContext } from 'react';
 import { LevelContext } from './LevelContext.js';
 
@@ -887,7 +887,7 @@ You can declare context in `Context.js`.
 
 <Sandpack>
 
-```js src/App.js
+```js src/App.jsx
 import { useState } from 'react';
 import { places } from './data.js';
 import { getImageUrl } from './utils.js';
@@ -1026,7 +1026,7 @@ Create and export `ImageSizeContext` from `Context.js`. Then wrap the List into 
 
 <Sandpack>
 
-```js src/App.js
+```js src/App.jsx
 import { useState, useContext } from 'react';
 import { places } from './data.js';
 import { getImageUrl } from './utils.js';

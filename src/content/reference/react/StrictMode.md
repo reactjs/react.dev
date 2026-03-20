@@ -148,7 +148,7 @@ This `StoryTray` component takes an array of `stories` and adds one last "Create
 
 <Sandpack>
 
-```js src/index.js
+```js src/index.jsx
 import { createRoot } from 'react-dom/client';
 import './styles.css';
 
@@ -158,9 +158,9 @@ const root = createRoot(document.getElementById("root"));
 root.render(<App />);
 ```
 
-```js src/App.js
+```js src/App.jsx
 import { useState } from 'react';
-import StoryTray from './StoryTray.js';
+import StoryTray from './StoryTray.jsx';
 
 let initialStories = [
   {id: 0, label: "Ankit's Story" },
@@ -183,7 +183,7 @@ export default function App() {
 }
 ```
 
-```js src/StoryTray.js active
+```js src/StoryTray.jsx active
 export default function StoryTray({ stories }) {
   const items = stories;
   items.push({ id: 'create', label: 'Create Story' });
@@ -228,7 +228,7 @@ This mistake will become more noticeable if the `StoryTray` component re-renders
 
 <Sandpack>
 
-```js src/index.js
+```js src/index.jsx
 import { createRoot } from 'react-dom/client';
 import './styles.css';
 
@@ -238,9 +238,9 @@ const root = createRoot(document.getElementById('root'));
 root.render(<App />);
 ```
 
-```js src/App.js
+```js src/App.jsx
 import { useState } from 'react';
-import StoryTray from './StoryTray.js';
+import StoryTray from './StoryTray.jsx';
 
 let initialStories = [
   {id: 0, label: "Ankit's Story" },
@@ -263,7 +263,7 @@ export default function App() {
 }
 ```
 
-```js src/StoryTray.js active
+```js src/StoryTray.jsx active
 import { useState } from 'react';
 
 export default function StoryTray({ stories }) {
@@ -328,7 +328,7 @@ This would [make the `StoryTray` function pure.](/learn/keeping-components-pure)
 
 <Sandpack>
 
-```js src/index.js
+```js src/index.jsx
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import './styles.css';
@@ -343,9 +343,9 @@ root.render(
 );
 ```
 
-```js src/App.js
+```js src/App.jsx
 import { useState } from 'react';
-import StoryTray from './StoryTray.js';
+import StoryTray from './StoryTray.jsx';
 
 let initialStories = [
   {id: 0, label: "Ankit's Story" },
@@ -368,7 +368,7 @@ export default function App() {
 }
 ```
 
-```js src/StoryTray.js active
+```js src/StoryTray.jsx active
 export default function StoryTray({ stories }) {
   const items = stories;
   items.push({ id: 'create', label: 'Create Story' });
@@ -411,7 +411,7 @@ li {
 
 <Sandpack>
 
-```js src/index.js
+```js src/index.jsx
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import './styles.css';
@@ -426,9 +426,9 @@ root.render(
 );
 ```
 
-```js src/App.js
+```js src/App.jsx
 import { useState } from 'react';
-import StoryTray from './StoryTray.js';
+import StoryTray from './StoryTray.jsx';
 
 let initialStories = [
   {id: 0, label: "Ankit's Story" },
@@ -451,7 +451,7 @@ export default function App() {
 }
 ```
 
-```js src/StoryTray.js active
+```js src/StoryTray.jsx active
 import { useState } from 'react';
 
 export default function StoryTray({ stories }) {
@@ -525,7 +525,7 @@ Consider this example that connects a component to a chat:
 
 <Sandpack>
 
-```js src/index.js
+```js src/index.jsx
 import { createRoot } from 'react-dom/client';
 import './styles.css';
 
@@ -584,7 +584,7 @@ To make the issue more obvious, let's implement a feature. In the example below,
 
 <Sandpack>
 
-```js src/index.js
+```js src/index.jsx
 import { createRoot } from 'react-dom/client';
 import './styles.css';
 
@@ -678,7 +678,7 @@ Now that your Effect "cleans up" after itself and destroys the outdated connecti
 
 <Sandpack>
 
-```js src/index.js
+```js src/index.jsx
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import './styles.css';
@@ -742,7 +742,7 @@ Strict Mode lets you notice such mistakes early in the process. When you fix you
 
 <Sandpack>
 
-```js src/index.js
+```js src/index.jsx
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import './styles.css';
@@ -845,7 +845,7 @@ Consider this example, which allows you to select an animal and then scroll to o
 
 <Sandpack>
 
-```js src/index.js
+```js src/index.jsx
 import { createRoot } from 'react-dom/client';
 import './styles.css';
 
@@ -856,7 +856,7 @@ const root = createRoot(document.getElementById("root"));
 root.render(<App />);
 ```
 
-```js src/App.js active
+```js src/App.jsx active
 import { useRef, useState } from "react";
 
 export default function CatFriends() {
@@ -981,7 +981,7 @@ Now let's wrap the original (buggy) code in `<StrictMode>`:
 
 <Sandpack>
 
-```js src/index.js
+```js src/index.jsx
 import { createRoot } from 'react-dom/client';
 import {StrictMode} from 'react';
 import './styles.css';
@@ -997,7 +997,7 @@ root.render(
 );
 ```
 
-```js src/App.js active
+```js src/App.jsx active
 import { useRef, useState } from "react";
 
 export default function CatFriends() {
@@ -1106,7 +1106,7 @@ Strict Mode lets you eagerly find mistakes in callback refs. When you fix your c
 
 <Sandpack>
 
-```js src/index.js
+```js src/index.jsx
 import { createRoot } from 'react-dom/client';
 import {StrictMode} from 'react';
 import './styles.css';
@@ -1122,7 +1122,7 @@ root.render(
 );
 ```
 
-```js src/App.js active
+```js src/App.jsx active
 import { useRef, useState } from "react";
 
 export default function CatFriends() {

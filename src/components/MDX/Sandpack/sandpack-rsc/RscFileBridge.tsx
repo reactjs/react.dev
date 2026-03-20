@@ -6,7 +6,7 @@
  */
 
 import {useEffect, useRef} from 'react';
-import {useSandpack} from '@codesandbox/sandpack-react/unstyled';
+import {useSandpack} from '@webcontainer/react';
 
 /**
  * Bridges file contents from the Sandpack editor to the RSC client entry

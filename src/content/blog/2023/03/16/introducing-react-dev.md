@@ -60,7 +60,7 @@ If you like to learn by doing, we recommend checking out the [Tic-Tac-Toe Tutori
 
 <Sandpack>
 
-```js src/App.js
+```js src/App.jsx
 import { useState } from 'react';
 
 function Square({ value, onSquareClick }) {

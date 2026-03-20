@@ -1329,9 +1329,9 @@ Suppressing the linter is always suspicious. Could this be a bug?
 
 <Sandpack>
 
-```js src/App.js
+```js src/App.jsx
 import { useState } from 'react';
-import ChatRoom from './ChatRoom.js';
+import ChatRoom from './ChatRoom.jsx';
 import {
   createEncryptedConnection,
   createUnencryptedConnection,
@@ -1374,7 +1374,7 @@ export default function App() {
 }
 ```
 
-```js {expectedErrors: {'react-compiler': [8]}} src/ChatRoom.js active
+```js {expectedErrors: {'react-compiler': [8]}} src/ChatRoom.jsx active
 import { useState, useEffect } from 'react';
 
 export default function ChatRoom({ roomId, createConnection }) {
@@ -1427,9 +1427,9 @@ If you remove the linter suppression, you will see a lint error. The problem is 
 
 <Sandpack>
 
-```js src/App.js
+```js src/App.jsx
 import { useState } from 'react';
-import ChatRoom from './ChatRoom.js';
+import ChatRoom from './ChatRoom.jsx';
 import {
   createEncryptedConnection,
   createUnencryptedConnection,
@@ -1472,7 +1472,7 @@ export default function App() {
 }
 ```
 
-```js src/ChatRoom.js active
+```js src/ChatRoom.jsx active
 import { useState, useEffect } from 'react';
 
 export default function ChatRoom({ roomId, createConnection }) {
@@ -1522,9 +1522,9 @@ It is correct that `createConnection` is a dependency. However, this code is a b
 
 <Sandpack>
 
-```js src/App.js
+```js src/App.jsx
 import { useState } from 'react';
-import ChatRoom from './ChatRoom.js';
+import ChatRoom from './ChatRoom.jsx';
 
 export default function App() {
   const [roomId, setRoomId] = useState('general');
@@ -1560,7 +1560,7 @@ export default function App() {
 }
 ```
 
-```js src/ChatRoom.js active
+```js src/ChatRoom.jsx active
 import { useState, useEffect } from 'react';
 import {
   createEncryptedConnection,
@@ -1633,7 +1633,7 @@ If you have two independent synchronization processes, you need to write two sep
 
 <Sandpack>
 
-```js src/App.js
+```js src/App.jsx
 import { useState, useEffect } from 'react';
 import { fetchData } from './api.js';
 
@@ -1782,7 +1782,7 @@ This is why it makes sense to describe them as two separate Effects. Here's an e
 
 <Sandpack>
 
-```js src/App.js
+```js src/App.jsx
 import { useState, useEffect } from 'react';
 import { fetchData } from './api.js';
 
@@ -1945,7 +1945,7 @@ Instead, to reduce repetition, you can extract some logic into a custom Hook lik
 
 <Sandpack>
 
-```js src/App.js
+```js src/App.jsx
 import { useState } from 'react';
 import { useSelectOptions } from './useSelectOptions.js';
 

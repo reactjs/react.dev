@@ -1284,10 +1284,10 @@ When you select a contact with the buttons at the top, the form resets to reflec
 
 <Sandpack>
 
-```js src/App.js hidden
+```js src/App.jsx hidden
 import { useState } from 'react';
-import ContactList from './ContactList.js';
-import EditContact from './EditContact.js';
+import ContactList from './ContactList.jsx';
+import EditContact from './EditContact.jsx';
 
 export default function ContactManager() {
   const [
@@ -1336,7 +1336,7 @@ const initialContacts = [
 ];
 ```
 
-```js src/ContactList.js hidden
+```js src/ContactList.jsx hidden
 export default function ContactList({
   contacts,
   selectedId,
@@ -1363,7 +1363,7 @@ export default function ContactList({
 }
 ```
 
-```js {expectedErrors: {'react-compiler': [8, 9]}} src/EditContact.js active
+```js {expectedErrors: {'react-compiler': [8, 9]}} src/EditContact.jsx active
 import { useState, useEffect } from 'react';
 
 export default function EditContact({ savedContact, onSave }) {
@@ -1448,10 +1448,10 @@ Split the `EditContact` component in two. Move all the form state into the inner
 
 <Sandpack>
 
-```js src/App.js hidden
+```js src/App.jsx hidden
 import { useState } from 'react';
-import ContactList from './ContactList.js';
-import EditContact from './EditContact.js';
+import ContactList from './ContactList.jsx';
+import EditContact from './EditContact.jsx';
 
 export default function ContactManager() {
   const [
@@ -1500,7 +1500,7 @@ const initialContacts = [
 ];
 ```
 
-```js src/ContactList.js hidden
+```js src/ContactList.jsx hidden
 export default function ContactList({
   contacts,
   selectedId,
@@ -1527,7 +1527,7 @@ export default function ContactList({
 }
 ```
 
-```js src/EditContact.js active
+```js src/EditContact.jsx active
 import { useState } from 'react';
 
 export default function EditContact(props) {

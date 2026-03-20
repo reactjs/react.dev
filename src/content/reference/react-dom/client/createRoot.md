@@ -164,16 +164,16 @@ Usually, you only need to run this code once at startup. It will:
 </html>
 ```
 
-```js src/index.js active
+```js src/index.jsx active
 import { createRoot } from 'react-dom/client';
-import App from './App.js';
+import App from './App.jsx';
 import './styles.css';
 
 const root = createRoot(document.getElementById('root'));
 root.render(<App />);
 ```
 
-```js src/App.js
+```js src/App.jsx
 import { useState } from 'react';
 
 export default function App() {
@@ -243,10 +243,10 @@ Here, two different React components are rendered into two DOM nodes defined in 
 </html>
 ```
 
-```js src/index.js active
+```js src/index.jsx active
 import './styles.css';
 import { createRoot } from 'react-dom/client';
-import { Comments, Navigation } from './Components.js';
+import { Comments, Navigation } from './Components.jsx';
 
 const navDomNode = document.getElementById('navigation');
 const navRoot = createRoot(navDomNode); 
@@ -257,7 +257,7 @@ const commentRoot = createRoot(commentDomNode);
 commentRoot.render(<Comments />);
 ```
 
-```js src/Components.js
+```js src/Components.jsx
 export function Navigation() {
   return (
     <ul>
@@ -324,10 +324,10 @@ You can call `render` more than once on the same root. As long as the component 
 
 <Sandpack>
 
-```js src/index.js active
+```js src/index.jsx active
 import { createRoot } from 'react-dom/client';
 import './styles.css';
-import App from './App.js';
+import App from './App.jsx';
 
 const root = createRoot(document.getElementById('root'));
 
@@ -338,7 +338,7 @@ setInterval(() => {
 }, 1000);
 ```
 
-```js src/App.js
+```js src/App.jsx
 export default function App({counter}) {
   return (
     <>
@@ -406,9 +406,9 @@ export function onRecoverableErrorProd(error, errorInfo) {
 }
 ```
 
-```js src/index.js active
+```js src/index.jsx active
 import { createRoot } from "react-dom/client";
-import App from "./App.js";
+import App from "./App.jsx";
 import {
   onCaughtErrorProd,
   onRecoverableErrorProd,
@@ -427,7 +427,7 @@ const root = createRoot(container, {
 root.render(<App />);
 ```
 
-```js src/App.js
+```js src/App.jsx
 import { Component, useState } from "react";
 
 function Boom() {

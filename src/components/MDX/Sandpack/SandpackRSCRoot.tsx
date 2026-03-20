@@ -11,8 +11,7 @@
 
 import {Children} from 'react';
 import * as React from 'react';
-import {SandpackProvider} from '@codesandbox/sandpack-react/unstyled';
-import {SandpackLogLevel} from '@codesandbox/sandpack-client';
+import {SandpackProvider} from '@webcontainer/react';
 import {CustomPreset} from './CustomPreset';
 import {createFileMap} from './createFileMap';
 import {CustomTheme} from './Themes';
@@ -96,15 +95,10 @@ function SandpackRSCRoot(props: SandpackProps) {
       <SandpackProvider
         files={{...templateRSC, ...files}}
         theme={CustomTheme}
-        customSetup={{
-          dependencies: {},
-        }}
         options={{
           autorun,
           initMode: 'user-visible',
           initModeObserverOptions: {rootMargin: '1400px 0px'},
-          bundlerURL: 'https://786946de.sandpack-bundler-4bw.pages.dev',
-          logLevel: SandpackLogLevel.None,
         }}>
         <RscFileBridge />
         <CustomPreset

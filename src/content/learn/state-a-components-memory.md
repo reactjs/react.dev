@@ -737,7 +737,7 @@ In this example, the `Gallery` component from earlier is rendered twice with no 
 <Sandpack>
 
 ```js
-import Gallery from './Gallery.js';
+import Gallery from './Gallery.jsx';
 
 export default function Page() {
   return (
@@ -750,7 +750,7 @@ export default function Page() {
 
 ```
 
-```js src/Gallery.js
+```js src/Gallery.jsx
 import { useState } from 'react';
 import { sculptureList } from './data.js';
 

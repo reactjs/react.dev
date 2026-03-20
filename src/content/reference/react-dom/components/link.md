@@ -107,8 +107,8 @@ You can annotate the document with links to related resources such as an icon, c
 
 <SandpackWithHTMLOutput>
 
-```js src/App.js active
-import ShowRenderedHTML from './ShowRenderedHTML.js';
+```js src/App.jsx active
+import ShowRenderedHTML from './ShowRenderedHTML.jsx';
 
 export default function BlogPage() {
   return (
@@ -134,8 +134,8 @@ When you want to use a stylesheet, it can be beneficial to call the [preinit](/r
 
 <SandpackWithHTMLOutput>
 
-```js src/App.js active
-import ShowRenderedHTML from './ShowRenderedHTML.js';
+```js src/App.jsx active
+import ShowRenderedHTML from './ShowRenderedHTML.jsx';
 
 export default function SiteMapPage() {
   return (
@@ -155,8 +155,8 @@ Stylesheets can conflict with each other, and when they do, the browser goes wit
 
 <SandpackWithHTMLOutput>
 
-```js src/App.js active
-import ShowRenderedHTML from './ShowRenderedHTML.js';
+```js src/App.jsx active
+import ShowRenderedHTML from './ShowRenderedHTML.jsx';
 
 export default function HomePage() {
   return (
@@ -193,8 +193,8 @@ If you render the same stylesheet from multiple components, React will place onl
 
 <SandpackWithHTMLOutput>
 
-```js src/App.js active
-import ShowRenderedHTML from './ShowRenderedHTML.js';
+```js src/App.jsx active
+import ShowRenderedHTML from './ShowRenderedHTML.jsx';
 
 export default function HomePage() {
   return (

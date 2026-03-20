@@ -92,7 +92,7 @@ The returned stream has an additional property:
 </html>
 ```
 
-```js src/index.js
+```js src/index.jsx
 import {
   flushReadableStreamToFrame,
   getUser,

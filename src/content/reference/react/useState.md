@@ -632,10 +632,10 @@ In this example, the `todos` state variable holds an array. Each button handler 
 
 <Sandpack>
 
-```js src/App.js
+```js src/App.jsx
 import { useState } from 'react';
-import AddTodo from './AddTodo.js';
-import TaskList from './TaskList.js';
+import AddTodo from './AddTodo.jsx';
+import TaskList from './TaskList.jsx';
 
 let nextId = 3;
 const initialTodos = [
@@ -689,7 +689,7 @@ export default function TaskApp() {
 }
 ```
 
-```js src/AddTodo.js
+```js src/AddTodo.jsx
 import { useState } from 'react';
 
 export default function AddTodo({ onAddTodo }) {
@@ -710,7 +710,7 @@ export default function AddTodo({ onAddTodo }) {
 }
 ```
 
-```js src/TaskList.js
+```js src/TaskList.jsx
 import { useState } from 'react';
 
 export default function TaskList({
@@ -1030,7 +1030,7 @@ Read [preserving and resetting state](/learn/preserving-and-resetting-state) to 
 
 <Sandpack>
 
-```js src/App.js
+```js src/App.jsx
 import { useState } from 'react';
 
 export default function App() {
@@ -1095,9 +1095,9 @@ Say you want to show whether the counter has *increased or decreased* since the 
 
 <Sandpack>
 
-```js src/App.js
+```js src/App.jsx
 import { useState } from 'react';
-import CountLabel from './CountLabel.js';
+import CountLabel from './CountLabel.jsx';
 
 export default function App() {
   const [count, setCount] = useState(0);
@@ -1115,7 +1115,7 @@ export default function App() {
 }
 ```
 
-```js src/CountLabel.js active
+```js src/CountLabel.jsx active
 import { useState } from 'react';
 
 export default function CountLabel({ count }) {

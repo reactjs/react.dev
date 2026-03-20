@@ -22,7 +22,7 @@ import {
   FileTabs,
   useSandpack,
   useSandpackNavigation,
-} from '@codesandbox/sandpack-react/unstyled';
+} from '@webcontainer/react';
 import {OpenInCodeSandboxButton} from './OpenInCodeSandboxButton';
 import {ReloadButton} from './ReloadButton';
 import {ClearButton} from './ClearButton';
@@ -61,9 +61,8 @@ export function NavigationBar({
   // By default, show the dropdown because all tabs may not fit.
   // We don't know whether they'll fit or not until after hydration:
   const [showDropdown, setShowDropdown] = useState(true);
-  const {activeFile, setActiveFile, visibleFiles, clients} = sandpack;
-  const clientId = Object.keys(clients)[0];
-  const {refresh} = useSandpackNavigation(clientId);
+  const {activeFile, setActiveFile, visibleFiles} = sandpack;
+  const {refresh} = useSandpackNavigation();
   const isMultiFile = visibleFiles.length > 1;
   const hasJustToggledDropdown = useRef(false);
 
@@ -146,7 +145,6 @@ export function NavigationBar({
                   'w-[fit-content]',
                   showDropdown ? 'invisible' : ''
                 )}>
-                {/* @ts-ignore: the FileTabs type from '@codesandbox/sandpack-react/unstyled' is incompatible with JSX in React 19 */}
                 <FileTabs />
               </div>
               {/* @ts-ignore: the Listbox type from '@headlessui/react' is incompatible with JSX in React 19 */}

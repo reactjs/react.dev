@@ -114,7 +114,7 @@ Hover over the buttons below and see how the tooltip adjusts its position depend
 <Sandpack>
 
 ```js
-import ButtonWithTooltip from './ButtonWithTooltip.js';
+import ButtonWithTooltip from './ButtonWithTooltip.jsx';
 
 export default function App() {
   return (
@@ -151,9 +151,9 @@ export default function App() {
 }
 ```
 
-```js src/ButtonWithTooltip.js
+```js src/ButtonWithTooltip.jsx
 import { useState, useRef } from 'react';
-import Tooltip from './Tooltip.js';
+import Tooltip from './Tooltip.jsx';
 
 export default function ButtonWithTooltip({ tooltipContent, ...rest }) {
   const [targetRect, setTargetRect] = useState(null);
@@ -187,10 +187,10 @@ export default function ButtonWithTooltip({ tooltipContent, ...rest }) {
 }
 ```
 
-```js src/Tooltip.js active
+```js src/Tooltip.jsx active
 import { useRef, useLayoutEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
-import TooltipContainer from './TooltipContainer.js';
+import TooltipContainer from './TooltipContainer.jsx';
 
 export default function Tooltip({ children, targetRect }) {
   const ref = useRef(null);
@@ -222,7 +222,7 @@ export default function Tooltip({ children, targetRect }) {
 }
 ```
 
-```js src/TooltipContainer.js
+```js src/TooltipContainer.jsx
 export default function TooltipContainer({ children, x, y, contentRef }) {
   return (
     <div
@@ -264,7 +264,7 @@ React guarantees that the code inside `useLayoutEffect` and any state updates sc
 <Sandpack>
 
 ```js
-import ButtonWithTooltip from './ButtonWithTooltip.js';
+import ButtonWithTooltip from './ButtonWithTooltip.jsx';
 
 export default function App() {
   return (
@@ -301,9 +301,9 @@ export default function App() {
 }
 ```
 
-```js src/ButtonWithTooltip.js
+```js src/ButtonWithTooltip.jsx
 import { useState, useRef } from 'react';
-import Tooltip from './Tooltip.js';
+import Tooltip from './Tooltip.jsx';
 
 export default function ButtonWithTooltip({ tooltipContent, ...rest }) {
   const [targetRect, setTargetRect] = useState(null);
@@ -337,10 +337,10 @@ export default function ButtonWithTooltip({ tooltipContent, ...rest }) {
 }
 ```
 
-```js src/Tooltip.js active
+```js src/Tooltip.jsx active
 import { useRef, useLayoutEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
-import TooltipContainer from './TooltipContainer.js';
+import TooltipContainer from './TooltipContainer.jsx';
 
 export default function Tooltip({ children, targetRect }) {
   const ref = useRef(null);
@@ -371,7 +371,7 @@ export default function Tooltip({ children, targetRect }) {
 }
 ```
 
-```js src/TooltipContainer.js
+```js src/TooltipContainer.jsx
 export default function TooltipContainer({ children, x, y, contentRef }) {
   return (
     <div
@@ -411,7 +411,7 @@ Here is the same example, but with [`useEffect`](/reference/react/useEffect) ins
 <Sandpack>
 
 ```js
-import ButtonWithTooltip from './ButtonWithTooltip.js';
+import ButtonWithTooltip from './ButtonWithTooltip.jsx';
 
 export default function App() {
   return (
@@ -448,9 +448,9 @@ export default function App() {
 }
 ```
 
-```js src/ButtonWithTooltip.js
+```js src/ButtonWithTooltip.jsx
 import { useState, useRef } from 'react';
-import Tooltip from './Tooltip.js';
+import Tooltip from './Tooltip.jsx';
 
 export default function ButtonWithTooltip({ tooltipContent, ...rest }) {
   const [targetRect, setTargetRect] = useState(null);
@@ -484,10 +484,10 @@ export default function ButtonWithTooltip({ tooltipContent, ...rest }) {
 }
 ```
 
-```js src/Tooltip.js active
+```js src/Tooltip.jsx active
 import { useRef, useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
-import TooltipContainer from './TooltipContainer.js';
+import TooltipContainer from './TooltipContainer.jsx';
 
 export default function Tooltip({ children, targetRect }) {
   const ref = useRef(null);
@@ -518,7 +518,7 @@ export default function Tooltip({ children, targetRect }) {
 }
 ```
 
-```js src/TooltipContainer.js
+```js src/TooltipContainer.jsx
 export default function TooltipContainer({ children, x, y, contentRef }) {
   return (
     <div
@@ -554,7 +554,7 @@ To make the bug easier to reproduce, this version adds an artificial delay durin
 <Sandpack>
 
 ```js
-import ButtonWithTooltip from './ButtonWithTooltip.js';
+import ButtonWithTooltip from './ButtonWithTooltip.jsx';
 
 export default function App() {
   return (
@@ -591,9 +591,9 @@ export default function App() {
 }
 ```
 
-```js src/ButtonWithTooltip.js
+```js src/ButtonWithTooltip.jsx
 import { useState, useRef } from 'react';
-import Tooltip from './Tooltip.js';
+import Tooltip from './Tooltip.jsx';
 
 export default function ButtonWithTooltip({ tooltipContent, ...rest }) {
   const [targetRect, setTargetRect] = useState(null);
@@ -627,10 +627,10 @@ export default function ButtonWithTooltip({ tooltipContent, ...rest }) {
 }
 ```
 
-```js {expectedErrors: {'react-compiler': [10, 11]}} src/Tooltip.js active
+```js {expectedErrors: {'react-compiler': [10, 11]}} src/Tooltip.jsx active
 import { useRef, useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
-import TooltipContainer from './TooltipContainer.js';
+import TooltipContainer from './TooltipContainer.jsx';
 
 export default function Tooltip({ children, targetRect }) {
   const ref = useRef(null);
@@ -667,7 +667,7 @@ export default function Tooltip({ children, targetRect }) {
 }
 ```
 
-```js src/TooltipContainer.js
+```js src/TooltipContainer.jsx
 export default function TooltipContainer({ children, x, y, contentRef }) {
   return (
     <div

@@ -69,8 +69,8 @@ You can declare many components in one file, but large files can get difficult t
 
 <Sandpack>
 
-```js src/App.js hidden
-import Gallery from './Gallery.js';
+```js src/App.jsx hidden
+import Gallery from './Gallery.jsx';
 
 export default function App() {
   return (
@@ -79,8 +79,8 @@ export default function App() {
 }
 ```
 
-```js src/Gallery.js active
-import Profile from './Profile.js';
+```js src/Gallery.jsx active
+import Profile from './Profile.jsx';
 
 export default function Gallery() {
   return (
@@ -94,7 +94,7 @@ export default function Gallery() {
 }
 ```
 
-```js src/Profile.js
+```js src/Profile.jsx
 export default function Profile() {
   return (
     <img
@@ -371,7 +371,7 @@ For each array item, you will need to specify a `key`. Usually, you will want to
 
 <Sandpack>
 
-```js src/App.js
+```js src/App.jsx
 import { people } from './data.js';
 import { getImageUrl } from './utils.js';
 

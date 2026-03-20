@@ -106,7 +106,7 @@ Now you can configure `Avatar` to render in many different ways with different p
 
 <Sandpack>
 
-```js src/App.js
+```js src/App.jsx
 import { getImageUrl } from './utils.js';
 
 function Avatar({ person, size }) {
@@ -275,8 +275,8 @@ When you nest content inside a JSX tag, the parent component will receive that c
 
 <Sandpack>
 
-```js src/App.js
-import Avatar from './Avatar.js';
+```js src/App.jsx
+import Avatar from './Avatar.jsx';
 
 function Card({ children }) {
   return (
@@ -301,7 +301,7 @@ export default function Profile() {
 }
 ```
 
-```js src/Avatar.js
+```js src/Avatar.jsx
 import { getImageUrl } from './utils.js';
 
 export default function Avatar({ person, size }) {
@@ -361,7 +361,7 @@ Try changing the color in the select box below:
 
 <Sandpack>
 
-```js src/Clock.js active
+```js src/Clock.jsx active
 export default function Clock({ color, time }) {
   return (
     <h1 style={{ color: color }}>
@@ -371,9 +371,9 @@ export default function Clock({ color, time }) {
 }
 ```
 
-```js src/App.js hidden
+```js src/App.jsx hidden
 import { useState, useEffect } from 'react';
-import Clock from './Clock.js';
+import Clock from './Clock.jsx';
 
 function useTime() {
   const [time, setTime] = useState(() => new Date());
@@ -435,7 +435,7 @@ This `Gallery` component contains some very similar markup for two profiles. Ext
 
 <Sandpack>
 
-```js src/App.js
+```js src/App.jsx
 import { getImageUrl } from './utils.js';
 
 export default function Gallery() {
@@ -536,7 +536,7 @@ Note that the `imageSize` prop has a default value, which is why we don't pass i
 
 <Sandpack>
 
-```js src/App.js
+```js src/App.jsx
 import { getImageUrl } from './utils.js';
 
 function Profile({
@@ -636,7 +636,7 @@ Another solution, which is more similar to the earlier examples on this page, is
 
 <Sandpack>
 
-```js src/App.js
+```js src/App.jsx
 import { getImageUrl } from './utils.js';
 
 function Profile({ person, imageSize = 70 }) {
@@ -739,7 +739,7 @@ Change the `Avatar` component to request the closest image size based on the `si
 
 <Sandpack>
 
-```js src/App.js
+```js src/App.jsx
 import { getImageUrl } from './utils.js';
 
 function Avatar({ person, size }) {
@@ -790,7 +790,7 @@ Here is how you could go about it:
 
 <Sandpack>
 
-```js src/App.js
+```js src/App.jsx
 import { getImageUrl } from './utils.js';
 
 function Avatar({ person, size }) {
@@ -852,7 +852,7 @@ You could also show a sharper image for high DPI screens by taking [`window.devi
 
 <Sandpack>
 
-```js src/App.js
+```js src/App.jsx
 import { getImageUrl } from './utils.js';
 
 const ratio = window.devicePixelRatio;

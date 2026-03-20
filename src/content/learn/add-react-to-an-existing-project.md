@@ -68,7 +68,7 @@ Then add these lines of code at the top of your main JavaScript file (it might b
 </html>
 ```
 
-```js src/index.js active
+```js src/index.jsx active
 import { createRoot } from 'react-dom/client';
 
 // Clear the existing HTML content
@@ -132,7 +132,7 @@ This lets you find that HTML element with [`document.getElementById`](https://de
 </html>
 ```
 
-```js src/index.js active
+```js src/index.jsx active
 import { createRoot } from 'react-dom/client';
 
 function NavigationBar() {

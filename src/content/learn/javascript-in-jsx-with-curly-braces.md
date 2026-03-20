@@ -529,7 +529,7 @@ You can also move this expression into a separate function like `getImageUrl` be
 
 <Sandpack>
 
-```js src/App.js
+```js src/App.jsx
 import { getImageUrl } from './utils.js'
 
 const person = {

@@ -12,11 +12,8 @@ import cn from 'classnames';
 import {useState, useRef, useEffect} from 'react';
 import {IconChevron} from 'components/Icon/IconChevron';
 
-import {
-  SandpackCodeViewer,
-  useSandpack,
-} from '@codesandbox/sandpack-react/unstyled';
-import type {SandpackMessageConsoleMethods} from '@codesandbox/sandpack-client';
+import {SandpackCodeViewer, useSandpack} from '@webcontainer/react';
+import type {SandpackMessageConsoleMethods} from '@webcontainer/react';
 
 const getType = (
   message: SandpackMessageConsoleMethods

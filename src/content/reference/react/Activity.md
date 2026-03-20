@@ -82,9 +82,9 @@ Try expanding the Overview section, and then toggling the sidebar closed then op
 
 <Sandpack>
 
-```js src/App.js active
+```js src/App.jsx active
 import { useState } from 'react';
-import Sidebar from './Sidebar.js';
+import Sidebar from './Sidebar.jsx';
 
 export default function App() {
   const [isShowingSidebar, setIsShowingSidebar] = useState(true);
@@ -106,7 +106,7 @@ export default function App() {
 }
 ```
 
-```js src/Sidebar.js
+```js src/Sidebar.jsx
 import { useState } from 'react';
 
 export default function Sidebar() {
@@ -189,10 +189,10 @@ and check out the new behavior:
 
 <Sandpack>
 
-```js src/App.js active
+```js src/App.jsx active
 import { Activity, useState } from 'react';
 
-import Sidebar from './Sidebar.js';
+import Sidebar from './Sidebar.jsx';
 
 export default function App() {
   const [isShowingSidebar, setIsShowingSidebar] = useState(true);
@@ -214,7 +214,7 @@ export default function App() {
 }
 ```
 
-```js src/Sidebar.js
+```js src/Sidebar.jsx
 import { useState } from 'react';
 
 export default function Sidebar() {
@@ -287,11 +287,11 @@ In this example, the Contact tab has a `<textarea>` where the user can enter a m
 
 <Sandpack>
 
-```js src/App.js 
+```js src/App.jsx 
 import { useState } from 'react';
-import TabButton from './TabButton.js';
-import Home from './Home.js';
-import Contact from './Contact.js';
+import TabButton from './TabButton.jsx';
+import Home from './Home.jsx';
+import Contact from './Contact.jsx';
 
 export default function App() {
   const [activeTab, setActiveTab] = useState('contact');
@@ -320,7 +320,7 @@ export default function App() {
 }
 ```
 
-```js src/TabButton.js
+```js src/TabButton.jsx
 export default function TabButton({ onClick, children, isActive }) {
   if (isActive) {
     return <b>{children}</b>
@@ -334,7 +334,7 @@ export default function TabButton({ onClick, children, isActive }) {
 }
 ```
 
-```js src/Home.js
+```js src/Home.jsx
 export default function Home() {
   return (
     <p>Welcome to my profile!</p>
@@ -342,7 +342,7 @@ export default function Home() {
 }
 ```
 
-```js src/Contact.js active
+```js src/Contact.jsx active
 export default function Contact() {
   return (
     <div>
@@ -375,11 +375,11 @@ If we switch to using an Activity boundary to show and hide the active tab, we c
 
 <Sandpack>
 
-```js src/App.js active
+```js src/App.jsx active
 import { Activity, useState } from 'react';
-import TabButton from './TabButton.js';
-import Home from './Home.js';
-import Contact from './Contact.js';
+import TabButton from './TabButton.jsx';
+import Home from './Home.jsx';
+import Contact from './Contact.jsx';
 
 export default function App() {
   const [activeTab, setActiveTab] = useState('contact');
@@ -412,7 +412,7 @@ export default function App() {
 }
 ```
 
-```js src/TabButton.js
+```js src/TabButton.jsx
 export default function TabButton({ onClick, children, isActive }) {
   if (isActive) {
     return <b>{children}</b>
@@ -426,7 +426,7 @@ export default function TabButton({ onClick, children, isActive }) {
 }
 ```
 
-```js src/Home.js
+```js src/Home.jsx
 export default function Home() {
   return (
     <p>Welcome to my profile!</p>
@@ -434,7 +434,7 @@ export default function Home() {
 }
 ```
 
-```js src/Contact.js 
+```js src/Contact.jsx 
 export default function Contact() {
   return (
     <div>
@@ -487,11 +487,11 @@ In this demo, the Posts tab loads some data. If you press it, you'll see a Suspe
 
 <Sandpack>
 
-```js src/App.js
+```js src/App.jsx
 import { useState, Suspense } from 'react';
-import TabButton from './TabButton.js';
-import Home from './Home.js';
-import Posts from './Posts.js';
+import TabButton from './TabButton.jsx';
+import Home from './Home.jsx';
+import Posts from './Posts.jsx';
 
 export default function App() {
   const [activeTab, setActiveTab] = useState('home');
@@ -522,7 +522,7 @@ export default function App() {
 }
 ```
 
-```js src/TabButton.js hidden
+```js src/TabButton.jsx hidden
 export default function TabButton({ onClick, children, isActive }) {
   if (isActive) {
     return <b>{children}</b>
@@ -536,7 +536,7 @@ export default function TabButton({ onClick, children, isActive }) {
 }
 ```
 
-```js src/Home.js
+```js src/Home.jsx
 export default function Home() {
   return (
     <p>Welcome to my profile!</p>
@@ -544,7 +544,7 @@ export default function Home() {
 }
 ```
 
-```js src/Posts.js
+```js src/Posts.jsx
 import { use } from 'react';
 import { fetchData } from './data.js';
 
@@ -619,11 +619,11 @@ Try clicking the Posts tab now:
 
 <Sandpack>
 
-```js src/App.js
+```js src/App.jsx
 import { Activity, useState, Suspense } from 'react';
-import TabButton from './TabButton.js';
-import Home from './Home.js';
-import Posts from './Posts.js';
+import TabButton from './TabButton.jsx';
+import Home from './Home.jsx';
+import Posts from './Posts.jsx';
 
 export default function App() {
   const [activeTab, setActiveTab] = useState('home');
@@ -658,7 +658,7 @@ export default function App() {
 }
 ```
 
-```js src/TabButton.js hidden
+```js src/TabButton.jsx hidden
 export default function TabButton({ onClick, children, isActive }) {
   if (isActive) {
     return <b>{children}</b>
@@ -672,7 +672,7 @@ export default function TabButton({ onClick, children, isActive }) {
 }
 ```
 
-```js src/Home.js
+```js src/Home.jsx
 export default function Home() {
   return (
     <p>Welcome to my profile!</p>
@@ -680,7 +680,7 @@ export default function Home() {
 }
 ```
 
-```js src/Posts.js
+```js src/Posts.jsx
 import { use } from 'react';
 import { fetchData } from './data.js';
 
@@ -920,11 +920,11 @@ As an example, consider a `<video>` tag. Typically it doesn't require any cleanu
 
 <Sandpack>
 
-```js src/App.js active
+```js src/App.jsx active
 import { useState } from 'react';
-import TabButton from './TabButton.js';
-import Home from './Home.js';
-import Video from './Video.js';
+import TabButton from './TabButton.jsx';
+import Home from './Home.jsx';
+import Video from './Video.jsx';
 
 export default function App() {
   const [activeTab, setActiveTab] = useState('video');
@@ -953,7 +953,7 @@ export default function App() {
 }
 ```
 
-```js src/TabButton.js hidden
+```js src/TabButton.jsx hidden
 export default function TabButton({ onClick, children, isActive }) {
   if (isActive) {
     return <b>{children}</b>
@@ -967,7 +967,7 @@ export default function TabButton({ onClick, children, isActive }) {
 }
 ```
 
-```js src/Home.js
+```js src/Home.jsx
 export default function Home() {
   return (
     <p>Welcome to my profile!</p>
@@ -975,7 +975,7 @@ export default function Home() {
 }
 ```
 
-```js src/Video.js 
+```js src/Video.jsx 
 export default function Video() {
   return (
     <video
@@ -1009,11 +1009,11 @@ Let's update `App` to hide the inactive tab with a hidden Activity boundary inst
 
 <Sandpack>
 
-```js src/App.js active
+```js src/App.jsx active
 import { Activity, useState } from 'react';
-import TabButton from './TabButton.js';
-import Home from './Home.js';
-import Video from './Video.js';
+import TabButton from './TabButton.jsx';
+import Home from './Home.jsx';
+import Video from './Video.jsx';
 
 export default function App() {
   const [activeTab, setActiveTab] = useState('video');
@@ -1046,7 +1046,7 @@ export default function App() {
 }
 ```
 
-```js src/TabButton.js hidden
+```js src/TabButton.jsx hidden
 export default function TabButton({ onClick, children, isActive }) {
   if (isActive) {
     return <b>{children}</b>
@@ -1060,7 +1060,7 @@ export default function TabButton({ onClick, children, isActive }) {
 }
 ```
 
-```js src/Home.js
+```js src/Home.jsx
 export default function Home() {
   return (
     <p>Welcome to my profile!</p>
@@ -1068,7 +1068,7 @@ export default function Home() {
 }
 ```
 
-```js src/Video.js 
+```js src/Video.jsx 
 export default function Video() {
   return (
     <video
@@ -1126,11 +1126,11 @@ Let's see the new behavior. Try playing the video, switching to the Home tab, th
 
 <Sandpack>
 
-```js src/App.js active
+```js src/App.jsx active
 import { Activity, useState } from 'react';
-import TabButton from './TabButton.js';
-import Home from './Home.js';
-import Video from './Video.js';
+import TabButton from './TabButton.jsx';
+import Home from './Home.jsx';
+import Video from './Video.jsx';
 
 export default function App() {
   const [activeTab, setActiveTab] = useState('video');
@@ -1163,7 +1163,7 @@ export default function App() {
 }
 ```
 
-```js src/TabButton.js hidden
+```js src/TabButton.jsx hidden
 export default function TabButton({ onClick, children, isActive }) {
   if (isActive) {
     return <b>{children}</b>
@@ -1177,7 +1177,7 @@ export default function TabButton({ onClick, children, isActive }) {
 }
 ```
 
-```js src/Home.js
+```js src/Home.jsx
 export default function Home() {
   return (
     <p>Welcome to my profile!</p>
@@ -1185,7 +1185,7 @@ export default function Home() {
 }
 ```
 
-```js src/Video.js 
+```js src/Video.jsx 
 import { useRef, useLayoutEffect } from 'react';
 
 export default function Video() {

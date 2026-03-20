@@ -150,7 +150,7 @@ To call `addToCartAction`, call the <CodeStep step={2}>action dispatcher</CodeSt
 
 <Sandpack>
 
-```js src/App.js
+```js src/App.jsx
 import { useActionState, startTransition } from 'react';
 import { addToCart } from './api';
 import Total from './Total';
@@ -183,7 +183,7 @@ export default function Checkout() {
 }
 ```
 
-```js src/Total.js
+```js src/Total.jsx
 const formatter = new Intl.NumberFormat('en-US', {
   style: 'currency',
   currency: 'USD',
@@ -283,7 +283,7 @@ By convention, it is common to write it as a switch statement. For each case in 
 
 <Sandpack>
 
-```js src/App.js
+```js src/App.jsx
 import { useActionState, startTransition } from 'react';
 import { addToCart, removeFromCart } from './api';
 import Total from './Total';
@@ -335,7 +335,7 @@ async function updateCartAction(prevCount, actionPayload) {
 }
 ```
 
-```js src/Total.js
+```js src/Total.jsx
 const formatter = new Intl.NumberFormat('en-US', {
   style: 'currency',
   currency: 'USD',
@@ -455,7 +455,7 @@ You can combine `useActionState` with [`useOptimistic`](/reference/react/useOpti
 
 <Sandpack>
 
-```js src/App.js
+```js src/App.jsx
 import { useActionState, startTransition, useOptimistic } from 'react';
 import { addToCart, removeFromCart } from './api';
 import Total from './Total';
@@ -511,7 +511,7 @@ async function updateCartAction(prevCount, actionPayload) {
 }
 ```
 
-```js src/Total.js
+```js src/Total.jsx
 const formatter = new Intl.NumberFormat('en-US', {
   style: 'currency',
   currency: 'USD',
@@ -618,7 +618,7 @@ This example shows using the `increaseAction` and `decreaseAction` props of a Qu
 
 <Sandpack>
 
-```js src/App.js
+```js src/App.jsx
 import { useActionState } from 'react';
 import { addToCart, removeFromCart } from './api';
 import QuantityStepper from './QuantityStepper';
@@ -665,7 +665,7 @@ async function updateCartAction(prevCount, actionPayload) {
 }
 ```
 
-```js src/QuantityStepper.js
+```js src/QuantityStepper.jsx
 import { startTransition, useOptimistic } from 'react';
 
 export default function QuantityStepper({value, increaseAction, decreaseAction}) {
@@ -698,7 +698,7 @@ export default function QuantityStepper({value, increaseAction, decreaseAction})
 }
 ```
 
-```js src/Total.js
+```js src/Total.jsx
 const formatter = new Intl.NumberFormat('en-US', {
   style: 'currency',
   currency: 'USD',
@@ -801,7 +801,7 @@ You can use an `AbortController` to cancel pending Actions:
 
 <Sandpack>
 
-```js src/App.js
+```js src/App.jsx
 import { useActionState, useRef } from 'react';
 import { addToCart, removeFromCart } from './api';
 import QuantityStepper from './QuantityStepper';
@@ -865,7 +865,7 @@ async function updateCartAction(prevCount, actionPayload) {
 }
 ```
 
-```js src/QuantityStepper.js
+```js src/QuantityStepper.jsx
 import { startTransition, useOptimistic } from 'react';
 
 export default function QuantityStepper({value, increaseAction, decreaseAction}) {
@@ -898,7 +898,7 @@ export default function QuantityStepper({value, increaseAction, decreaseAction})
 }
 ```
 
-```js src/Total.js
+```js src/Total.jsx
 const formatter = new Intl.NumberFormat('en-US', {
   style: 'currency',
   currency: 'USD',
@@ -1036,7 +1036,7 @@ When used this way, React automatically wraps the submission in a Transition, so
 
 <Sandpack>
 
-```js src/App.js
+```js src/App.jsx
 import { useActionState, useOptimistic } from 'react';
 import { addToCart, removeFromCart } from './api';
 import Total from './Total';
@@ -1089,7 +1089,7 @@ async function updateCartAction(prevCount, formData) {
 }
 ```
 
-```js src/Total.js
+```js src/Total.jsx
 const formatter = new Intl.NumberFormat('en-US', {
   style: 'currency',
   currency: 'USD',
@@ -1204,7 +1204,7 @@ For unknown errors, such as `undefined is not a function`, you can throw an erro
 
 <Sandpack>
 
-```js src/App.js
+```js src/App.jsx
 import {useActionState, startTransition} from 'react';
 import {ErrorBoundary} from 'react-error-boundary';
 import {addToCart} from './api';
@@ -1280,7 +1280,7 @@ export default function App() {
 }
 ```
 
-```js src/Total.js
+```js src/Total.jsx
 const formatter = new Intl.NumberFormat('en-US', {
   style: 'currency',
   currency: 'USD',

@@ -142,8 +142,8 @@ Notice how pressing "Next" updates the state of the `List`, and highlights a dif
 <Sandpack>
 
 ```js
-import List from './List.js';
-import Row from './Row.js';
+import List from './List.jsx';
+import Row from './Row.jsx';
 import { products } from './data.js';
 
 export default function App() {
@@ -160,7 +160,7 @@ export default function App() {
 }
 ```
 
-```js src/List.js active
+```js src/List.jsx active
 import { Children, cloneElement, useState } from 'react';
 
 export default function List({ children }) {
@@ -185,7 +185,7 @@ export default function List({ children }) {
 }
 ```
 
-```js src/Row.js
+```js src/Row.jsx
 export default function Row({ title, isHighlighted }) {
   return (
     <div className={[
@@ -298,8 +298,8 @@ However, you can clearly trace where the `isHighlighted` value is coming from.
 <Sandpack>
 
 ```js
-import List from './List.js';
-import Row from './Row.js';
+import List from './List.jsx';
+import Row from './Row.jsx';
 import { products } from './data.js';
 
 export default function App() {
@@ -318,7 +318,7 @@ export default function App() {
 }
 ```
 
-```js src/List.js active
+```js src/List.jsx active
 import { useState } from 'react';
 
 export default function List({ items, renderItem }) {
@@ -342,7 +342,7 @@ export default function List({ items, renderItem }) {
 }
 ```
 
-```js src/Row.js
+```js src/Row.jsx
 export default function Row({ title, isHighlighted }) {
   return (
     <div className={[
@@ -445,8 +445,8 @@ Instead, `List` and `Row` coordinate the highlighting logic through context.
 <Sandpack>
 
 ```js
-import List from './List.js';
-import Row from './Row.js';
+import List from './List.jsx';
+import Row from './Row.jsx';
 import { products } from './data.js';
 
 export default function App() {
@@ -461,7 +461,7 @@ export default function App() {
 }
 ```
 
-```js src/List.js active
+```js src/List.jsx active
 import { useState } from 'react';
 import { HighlightContext } from './HighlightContext.js';
 
@@ -493,7 +493,7 @@ export default function List({ items, renderItem }) {
 }
 ```
 
-```js src/Row.js
+```js src/Row.jsx
 import { useContext } from 'react';
 import { HighlightContext } from './HighlightContext.js';
 
@@ -603,7 +603,7 @@ The data flow is explicit, but the state is inside the `useList` custom Hook tha
 <Sandpack>
 
 ```js
-import Row from './Row.js';
+import Row from './Row.jsx';
 import useList from './useList.js';
 import { products } from './data.js';
 
@@ -644,7 +644,7 @@ export default function useList(items) {
 }
 ```
 
-```js src/Row.js
+```js src/Row.jsx
 export default function Row({ title, isHighlighted }) {
   return (
     <div className={[

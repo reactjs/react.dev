@@ -15,7 +15,7 @@ import {
   useActiveCode,
   SandpackCodeEditor,
   SandpackLayout,
-} from '@codesandbox/sandpack-react/unstyled';
+} from '@webcontainer/react';
 import cn from 'classnames';
 
 import {IconChevron} from 'components/Icon/IconChevron';

@@ -11,8 +11,8 @@
 
 // eslint-disable-next-line react-compiler/react-compiler
 /* eslint-disable react-hooks/exhaustive-deps */
-import {useRef, useState, useEffect, useMemo, useId} from 'react';
-import {useSandpack, SandpackStack} from '@codesandbox/sandpack-react/unstyled';
+import {useRef, useState, useEffect, useMemo} from 'react';
+import {useSandpack, SandpackStack} from '@webcontainer/react';
 import cn from 'classnames';
 import {ErrorMessage} from './ErrorMessage';
 import {SandpackConsole} from './Console';
@@ -50,15 +50,7 @@ export function Preview({
     null
   );
 
-  let {error: rawError, registerBundler, unregisterBundler} = sandpack;
-
-  if (
-    rawError &&
-    rawError.message === '_csbRefreshUtils.prelude is not a function'
-  ) {
-    // Work around a noisy internal error.
-    rawError = null;
-  }
+  let {error: rawError, previewUrl} = sandpack;
 
   // When throwing a new Error in Sandpack - we want to disable the dev error dialog
   // to show the Error Boundary fallback
@@ -92,19 +84,7 @@ export function Preview({
   // It changes too fast, causing flicker.
   const error = useDebounced(rawError);
 
-  const clientId = useId();
   const iframeRef = useRef<HTMLIFrameElement | null>(null);
-
-  const sandpackIdle = sandpack.status === 'idle';
-
-  useEffect(function createBundler() {
-    const iframeElement = iframeRef.current!;
-    registerBundler(iframeElement, clientId);
-
-    return () => {
-      unregisterBundler(clientId);
-    };
-  }, []);
 
   useEffect(
     function bundlerListener() {
@@ -118,11 +98,6 @@ export function Preview({
             setBundlerIsReady(false);
           }
 
-          /**
-           * The spinner component transition might be longer than
-           * the bundler loading, so we only show the spinner if
-           * it takes more than 500s to load the bundler.
-           */
           timeout = setTimeout(() => {
             setShowLoading(true);
           }, 500);
@@ -131,7 +106,7 @@ export function Preview({
           setShowLoading(false);
           clearTimeout(timeout);
         }
-      }, clientId);
+      });
 
       return () => {
         clearTimeout(timeout);
@@ -140,7 +115,7 @@ export function Preview({
         unsubscribe();
       };
     },
-    [sandpackIdle]
+    [listen]
   );
 
   // WARNING:
@@ -158,7 +133,8 @@ export function Preview({
   // - It should work on mobile.
   // The best way to test it is to actually go through some challenges.
 
-  const hideContent = error || !iframeComputedHeight || !bundlerIsReady;
+  const hideContent =
+    error || !iframeComputedHeight || !bundlerIsReady || !previewUrl;
 
   const iframeWrapperPosition = (): CSSProperties => {
     if (hideContent) {
@@ -185,6 +161,7 @@ export function Preview({
         <div style={iframeWrapperPosition()}>
           <iframe
             ref={iframeRef}
+            src={previewUrl ?? undefined}
             className={cn(
               'rounded-t-none bg-white md:shadow-md sm:rounded-lg w-full max-w-full transition-opacity',
               // We can't *actually* hide content because that would
@@ -198,8 +175,9 @@ export function Preview({
             )}
             title="Sandbox Preview"
             style={{
-              height: iframeComputedHeight || '15px',
+              height: iframeComputedHeight || '150px',
               zIndex: isExpanded ? 'initial' : -1,
+              // border: 'none',
             }}
           />
         </div>
@@ -217,7 +195,6 @@ export function Preview({
         )}
 
         <LoadingOverlay
-          clientId={clientId}
           dependenciesLoading={!bundlerIsReady && iframeComputedHeight === null}
           forceLoading={showLoading}
         />

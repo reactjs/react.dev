@@ -153,7 +153,7 @@ Clicking the button will focus the input. The `Form` component defines a ref and
 
 ```js
 import { useRef } from 'react';
-import MyInput from './MyInput.js';
+import MyInput from './MyInput.jsx';
 
 export default function Form() {
   const ref = useRef(null);
@@ -173,7 +173,7 @@ export default function Form() {
 }
 ```
 
-```js src/MyInput.js
+```js src/MyInput.jsx
 import { forwardRef } from 'react';
 
 const MyInput = forwardRef(function MyInput(props, ref) {
@@ -207,7 +207,7 @@ Clicking the button will call [`play()`](https://developer.mozilla.org/en-US/doc
 
 ```js
 import { useRef } from 'react';
-import MyVideoPlayer from './MyVideoPlayer.js';
+import MyVideoPlayer from './MyVideoPlayer.jsx';
 
 export default function App() {
   const ref = useRef(null);
@@ -231,7 +231,7 @@ export default function App() {
 }
 ```
 
-```js src/MyVideoPlayer.js
+```js src/MyVideoPlayer.jsx
 import { forwardRef } from 'react';
 
 const VideoPlayer = forwardRef(function VideoPlayer({ src, type, width }, ref) {
@@ -304,7 +304,7 @@ The `Form` component defines a ref and passes it to `FormField`. The `FormField`
 
 ```js
 import { useRef } from 'react';
-import FormField from './FormField.js';
+import FormField from './FormField.jsx';
 
 export default function Form() {
   const ref = useRef(null);
@@ -324,9 +324,9 @@ export default function Form() {
 }
 ```
 
-```js src/FormField.js
+```js src/FormField.jsx
 import { forwardRef, useState } from 'react';
-import MyInput from './MyInput.js';
+import MyInput from './MyInput.jsx';
 
 const FormField = forwardRef(function FormField({ label, isRequired }, ref) {
   const [value, setValue] = useState('');
@@ -349,7 +349,7 @@ export default FormField;
 ```
 
 
-```js src/MyInput.js
+```js src/MyInput.jsx
 import { forwardRef } from 'react';
 
 const MyInput = forwardRef((props, ref) => {
@@ -418,7 +418,7 @@ If some component gets a ref to `MyInput`, it will only receive your `{ focus, s
 
 ```js
 import { useRef } from 'react';
-import MyInput from './MyInput.js';
+import MyInput from './MyInput.jsx';
 
 export default function Form() {
   const ref = useRef(null);
@@ -440,7 +440,7 @@ export default function Form() {
 }
 ```
 
-```js src/MyInput.js
+```js src/MyInput.jsx
 import { forwardRef, useRef, useImperativeHandle } from 'react';
 
 const MyInput = forwardRef(function MyInput(props, ref) {

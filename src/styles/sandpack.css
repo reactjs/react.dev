@@ -31,7 +31,7 @@
     Noto Color Emoji;
   --sp-font-mono: Source Code Pro, ui-monospace, SFMono-Regular, Menlo, Monaco,
     Consolas, Liberation Mono, Courier New, monospace;
-  --sp-font-size: calc(1em - 20%);
+  --sp-font-size: 14px;
   --sp-font-lineHeight: 24px;
 }
 

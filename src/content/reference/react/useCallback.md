@@ -257,9 +257,9 @@ Next, try toggling the theme. **Thanks to `useCallback` together with [`memo`](/
 
 <Sandpack>
 
-```js src/App.js
+```js src/App.jsx
 import { useState } from 'react';
-import ProductPage from './ProductPage.js';
+import ProductPage from './ProductPage.jsx';
 
 export default function App() {
   const [isDark, setIsDark] = useState(false);
@@ -284,9 +284,9 @@ export default function App() {
 }
 ```
 
-```js src/ProductPage.js active
+```js src/ProductPage.jsx active
 import { useCallback } from 'react';
-import ShippingForm from './ShippingForm.js';
+import ShippingForm from './ShippingForm.jsx';
 
 export default function ProductPage({ productId, referrer, theme }) {
   const handleSubmit = useCallback((orderDetails) => {
@@ -310,7 +310,7 @@ function post(url, data) {
 }
 ```
 
-```js {expectedErrors: {'react-compiler': [7, 8]}} src/ShippingForm.js
+```js {expectedErrors: {'react-compiler': [7, 8]}} src/ShippingForm.jsx
 import { memo, useState } from 'react';
 
 const ShippingForm = memo(function ShippingForm({ onSubmit }) {
@@ -397,9 +397,9 @@ Unlike in the previous example, toggling the theme is also slow now! This is bec
 
 <Sandpack>
 
-```js src/App.js
+```js src/App.jsx
 import { useState } from 'react';
-import ProductPage from './ProductPage.js';
+import ProductPage from './ProductPage.jsx';
 
 export default function App() {
   const [isDark, setIsDark] = useState(false);
@@ -424,8 +424,8 @@ export default function App() {
 }
 ```
 
-```js src/ProductPage.js active
-import ShippingForm from './ShippingForm.js';
+```js src/ProductPage.jsx active
+import ShippingForm from './ShippingForm.jsx';
 
 export default function ProductPage({ productId, referrer, theme }) {
   function handleSubmit(orderDetails) {
@@ -449,7 +449,7 @@ function post(url, data) {
 }
 ```
 
-```js {expectedErrors: {'react-compiler': [7, 8]}} src/ShippingForm.js
+```js {expectedErrors: {'react-compiler': [7, 8]}} src/ShippingForm.jsx
 import { memo, useState } from 'react';
 
 const ShippingForm = memo(function ShippingForm({ onSubmit }) {
@@ -531,9 +531,9 @@ However, here is the same code **with the artificial slowdown removed.** Does th
 
 <Sandpack>
 
-```js src/App.js
+```js src/App.jsx
 import { useState } from 'react';
-import ProductPage from './ProductPage.js';
+import ProductPage from './ProductPage.jsx';
 
 export default function App() {
   const [isDark, setIsDark] = useState(false);
@@ -558,8 +558,8 @@ export default function App() {
 }
 ```
 
-```js src/ProductPage.js active
-import ShippingForm from './ShippingForm.js';
+```js src/ProductPage.jsx active
+import ShippingForm from './ShippingForm.jsx';
 
 export default function ProductPage({ productId, referrer, theme }) {
   function handleSubmit(orderDetails) {
@@ -583,7 +583,7 @@ function post(url, data) {
 }
 ```
 
-```js src/ShippingForm.js
+```js src/ShippingForm.jsx
 import { memo, useState } from 'react';
 
 const ShippingForm = memo(function ShippingForm({ onSubmit }) {

@@ -790,8 +790,8 @@ In the above example, `style={{}}` is not a special syntax, but a regular `{}` o
 
 <Sandpack>
 
-```js src/App.js
-import Avatar from './Avatar.js';
+```js src/App.jsx
+import Avatar from './Avatar.jsx';
 
 const user = {
   name: 'Hedy Lamarr',
@@ -804,7 +804,7 @@ export default function App() {
 }
 ```
 
-```js src/Avatar.js active
+```js src/Avatar.jsx active
 export default function Avatar({ user }) {
   return (
     <img
@@ -939,7 +939,7 @@ For example, if you use a Markdown library that converts Markdown to HTML, you t
 
 ```js
 import { useState } from 'react';
-import MarkdownPreview from './MarkdownPreview.js';
+import MarkdownPreview from './MarkdownPreview.jsx';
 
 export default function MarkdownEditor() {
   const [postContent, setPostContent] = useState('_Hello,_ **Markdown**!');
@@ -959,7 +959,7 @@ export default function MarkdownEditor() {
 }
 ```
 
-```js src/MarkdownPreview.js active
+```js src/MarkdownPreview.jsx active
 import { Remarkable } from 'remarkable';
 
 const md = new Remarkable();

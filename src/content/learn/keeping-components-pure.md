@@ -49,7 +49,7 @@ React is designed around this concept. **React assumes that every component you 
 
 <Sandpack>
 
-```js src/App.js
+```js src/App.jsx
 function Recipe({ drinkers }) {
   return (
     <ol>    
@@ -243,7 +243,7 @@ Rendering is a *calculation*, it shouldn't try to "do" things. Can you express t
 
 <Sandpack>
 
-```js src/Clock.js active
+```js src/Clock.jsx active
 export default function Clock({ time }) {
   const hours = time.getHours();
   if (hours >= 0 && hours <= 6) {
@@ -259,9 +259,9 @@ export default function Clock({ time }) {
 }
 ```
 
-```js src/App.js hidden
+```js src/App.jsx hidden
 import { useState, useEffect } from 'react';
-import Clock from './Clock.js';
+import Clock from './Clock.jsx';
 
 function useTime() {
   const [time, setTime] = useState(() => new Date());
@@ -305,7 +305,7 @@ You can fix this component by calculating the `className` and including it in th
 
 <Sandpack>
 
-```js src/Clock.js active
+```js src/Clock.jsx active
 export default function Clock({ time }) {
   const hours = time.getHours();
   let className;
@@ -322,9 +322,9 @@ export default function Clock({ time }) {
 }
 ```
 
-```js src/App.js hidden
+```js src/App.jsx hidden
 import { useState, useEffect } from 'react';
-import Clock from './Clock.js';
+import Clock from './Clock.jsx';
 
 function useTime() {
   const [time, setTime] = useState(() => new Date());
@@ -380,8 +380,8 @@ The buggy code is in `Profile.js`. Make sure you read it all from top to bottom!
 
 <Sandpack>
 
-```js {expectedErrors: {'react-compiler': [7]}} src/Profile.js
-import Panel from './Panel.js';
+```js {expectedErrors: {'react-compiler': [7]}} src/Profile.jsx
+import Panel from './Panel.jsx';
 import { getImageUrl } from './utils.js';
 
 let currentPerson;
@@ -413,7 +413,7 @@ function Avatar() {
 }
 ```
 
-```js src/Panel.js hidden
+```js src/Panel.jsx hidden
 import { useState } from 'react';
 
 export default function Panel({ children }) {
@@ -429,8 +429,8 @@ export default function Panel({ children }) {
 }
 ```
 
-```js src/App.js
-import Profile from './Profile.js';
+```js src/App.jsx
+import Profile from './Profile.jsx';
 
 export default function App() {
   return (
@@ -481,8 +481,8 @@ To fix the bug, remove the `currentPerson` variable. Instead, pass all informati
 
 <Sandpack>
 
-```js src/Profile.js active
-import Panel from './Panel.js';
+```js src/Profile.jsx active
+import Panel from './Panel.jsx';
 import { getImageUrl } from './utils.js';
 
 export default function Profile({ person }) {
@@ -511,7 +511,7 @@ function Avatar({ person }) {
 }
 ```
 
-```js src/Panel.js hidden
+```js src/Panel.jsx hidden
 import { useState } from 'react';
 
 export default function Panel({ children }) {
@@ -527,8 +527,8 @@ export default function Panel({ children }) {
 }
 ```
 
-```js src/App.js
-import Profile from './Profile.js';
+```js src/App.jsx
+import Profile from './Profile.jsx';
 
 export default function App() {
   return (
@@ -583,7 +583,7 @@ You implemented the "Create Story" placeholder by pushing one more fake story at
 
 <Sandpack>
 
-```js src/StoryTray.js active
+```js src/StoryTray.jsx active
 export default function StoryTray({ stories }) {
   stories.push({
     id: 'create',
@@ -602,9 +602,9 @@ export default function StoryTray({ stories }) {
 }
 ```
 
-```js {expectedErrors: {'react-compiler': [16]}} src/App.js hidden
+```js {expectedErrors: {'react-compiler': [16]}} src/App.jsx hidden
 import { useState, useEffect } from 'react';
-import StoryTray from './StoryTray.js';
+import StoryTray from './StoryTray.jsx';
 
 const initialStories = [
   {id: 0, label: "Ankit's Story" },
@@ -683,7 +683,7 @@ The simplest fix is to not touch the array at all, and render "Create Story" sep
 
 <Sandpack>
 
-```js src/StoryTray.js active
+```js src/StoryTray.jsx active
 export default function StoryTray({ stories }) {
   return (
     <ul>
@@ -698,9 +698,9 @@ export default function StoryTray({ stories }) {
 }
 ```
 
-```js {expectedErrors: {'react-compiler': [16]}} src/App.js hidden
+```js {expectedErrors: {'react-compiler': [16]}} src/App.jsx hidden
 import { useState, useEffect } from 'react';
-import StoryTray from './StoryTray.js';
+import StoryTray from './StoryTray.jsx';
 
 const initialStories = [
   {id: 0, label: "Ankit's Story" },
@@ -767,7 +767,7 @@ Alternatively, you could create a _new_ array (by copying the existing one) befo
 
 <Sandpack>
 
-```js src/StoryTray.js active
+```js src/StoryTray.jsx active
 export default function StoryTray({ stories }) {
   // Copy the array!
   const storiesToDisplay = stories.slice();
@@ -790,9 +790,9 @@ export default function StoryTray({ stories }) {
 }
 ```
 
-```js {expectedErrors: {'react-compiler': [16]}} src/App.js hidden
+```js {expectedErrors: {'react-compiler': [16]}} src/App.jsx hidden
 import { useState, useEffect } from 'react';
-import StoryTray from './StoryTray.js';
+import StoryTray from './StoryTray.jsx';
 
 const initialStories = [
   {id: 0, label: "Ankit's Story" },

@@ -161,7 +161,7 @@ return <ul>{listItems}</ul>;
 
 <Sandpack>
 
-```js src/App.js
+```js src/App.jsx
 import { people } from './data.js';
 import { getImageUrl } from './utils.js';
 
@@ -294,7 +294,7 @@ Rather than generating keys on the fly, you should include them in your data:
 
 <Sandpack>
 
-```js src/App.js
+```js src/App.jsx
 import { people } from './data.js';
 import { getImageUrl } from './utils.js';
 
@@ -450,7 +450,7 @@ Change it to show two separate lists one after another: **Chemists** and **Every
 
 <Sandpack>
 
-```js src/App.js
+```js src/App.jsx
 import { people } from './data.js';
 import { getImageUrl } from './utils.js';
 
@@ -541,7 +541,7 @@ You could use `filter()` twice, creating two separate arrays, and then `map` ove
 
 <Sandpack>
 
-```js src/App.js
+```js src/App.jsx
 import { people } from './data.js';
 import { getImageUrl } from './utils.js';
 
@@ -656,7 +656,7 @@ There is still a bit duplication between the rendered lists. You can go further 
 
 <Sandpack>
 
-```js src/App.js
+```js src/App.jsx
 import { people } from './data.js';
 import { getImageUrl } from './utils.js';
 
@@ -770,7 +770,7 @@ In fact, if `people` never change, you could move this code out of your componen
 
 <Sandpack>
 
-```js src/App.js
+```js src/App.jsx
 import { people } from './data.js';
 import { getImageUrl } from './utils.js';
 
@@ -896,7 +896,7 @@ This will require nesting two different `map` calls.
 
 <Sandpack>
 
-```js src/App.js
+```js src/App.jsx
 import { recipes } from './data.js';
 
 export default function RecipeList() {
@@ -932,7 +932,7 @@ Here is one way you could go about it:
 
 <Sandpack>
 
-```js src/App.js
+```js src/App.jsx
 import { recipes } from './data.js';
 
 export default function RecipeList() {
@@ -984,7 +984,7 @@ This `RecipeList` component contains two nested `map` calls. To simplify it, ext
 
 <Sandpack>
 
-```js src/App.js
+```js src/App.jsx
 import { recipes } from './data.js';
 
 export default function RecipeList() {

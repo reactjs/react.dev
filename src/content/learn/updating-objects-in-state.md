@@ -988,10 +988,10 @@ If something unexpected changes, there is a mutation. Find the mutation in `App.
 
 <Sandpack>
 
-```js {expectedErrors: {'react-compiler': [17]}} src/App.js
+```js {expectedErrors: {'react-compiler': [17]}} src/App.jsx
 import { useState } from 'react';
-import Background from './Background.js';
-import Box from './Box.js';
+import Background from './Background.jsx';
+import Box from './Box.jsx';
 
 const initialPosition = {
   x: 0,
@@ -1041,7 +1041,7 @@ export default function Canvas() {
 }
 ```
 
-```js src/Box.js
+```js src/Box.jsx
 import { useState } from 'react';
 
 export default function Box({
@@ -1104,7 +1104,7 @@ export default function Box({
 }
 ```
 
-```js src/Background.js
+```js src/Background.jsx
 export default function Background({
   position
 }) {
@@ -1138,10 +1138,10 @@ The fix is to remove the mutation from `handleMove`, and use the spread syntax t
 
 <Sandpack>
 
-```js src/App.js
+```js src/App.jsx
 import { useState } from 'react';
-import Background from './Background.js';
-import Box from './Box.js';
+import Background from './Background.jsx';
+import Box from './Box.jsx';
 
 const initialPosition = {
   x: 0,
@@ -1196,7 +1196,7 @@ export default function Canvas() {
 }
 ```
 
-```js src/Box.js
+```js src/Box.jsx
 import { useState } from 'react';
 
 export default function Box({
@@ -1259,7 +1259,7 @@ export default function Box({
 }
 ```
 
-```js src/Background.js
+```js src/Background.jsx
 export default function Background({
   position
 }) {
@@ -1293,11 +1293,11 @@ This is the same buggy example as in the previous challenge. This time, fix the 
 
 <Sandpack>
 
-```js {expectedErrors: {'react-compiler': [18]}} src/App.js
+```js {expectedErrors: {'react-compiler': [18]}} src/App.jsx
 import { useState } from 'react';
 import { useImmer } from 'use-immer';
-import Background from './Background.js';
-import Box from './Box.js';
+import Background from './Background.jsx';
+import Box from './Box.jsx';
 
 const initialPosition = {
   x: 0,
@@ -1347,7 +1347,7 @@ export default function Canvas() {
 }
 ```
 
-```js src/Box.js
+```js src/Box.jsx
 import { useState } from 'react';
 
 export default function Box({
@@ -1410,7 +1410,7 @@ export default function Box({
 }
 ```
 
-```js src/Background.js
+```js src/Background.jsx
 export default function Background({
   position
 }) {
@@ -1460,10 +1460,10 @@ This is the solution rewritten with Immer. Notice how the event handlers are wri
 
 <Sandpack>
 
-```js src/App.js
+```js src/App.jsx
 import { useImmer } from 'use-immer';
-import Background from './Background.js';
-import Box from './Box.js';
+import Background from './Background.jsx';
+import Box from './Box.jsx';
 
 const initialPosition = {
   x: 0,
@@ -1514,7 +1514,7 @@ export default function Canvas() {
 }
 ```
 
-```js src/Box.js
+```js src/Box.jsx
 import { useState } from 'react';
 
 export default function Box({
@@ -1577,7 +1577,7 @@ export default function Box({
 }
 ```
 
-```js src/Background.js
+```js src/Background.jsx
 export default function Background({
   position
 }) {

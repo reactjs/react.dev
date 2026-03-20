@@ -209,7 +209,7 @@ This example sets optimistic state inside a `<form>` `submitAction` prop:
 
 <Sandpack>
 
-```js src/App.js
+```js src/App.jsx
 import { useState, startTransition } from 'react';
 import EditName from './EditName';
 
@@ -220,7 +220,7 @@ export default function App() {
 }
 ```
 
-```js src/EditName.js active
+```js src/EditName.jsx active
 import { useOptimistic, startTransition } from 'react';
 import { updateName } from './actions.js';
 
@@ -286,7 +286,7 @@ Here's a button that shows "Submitting..." while the `action` is pending:
 
 <Sandpack>
 
-```js src/App.js
+```js src/App.jsx
 import { useState, startTransition } from 'react';
 import Button from './Button';
 import { submitForm } from './actions.js';
@@ -307,7 +307,7 @@ export default function App() {
 }
 ```
 
-```js src/Button.js active
+```js src/Button.jsx active
 import { useOptimistic, startTransition } from 'react';
 
 export default function Button({ action, children }) {
@@ -379,7 +379,7 @@ In this example, `LikeButton` receives `isLiked` as a prop and immediately toggl
 
 <Sandpack>
 
-```js src/App.js
+```js src/App.jsx
 import { useState, useOptimistic, startTransition } from 'react';
 import { toggleLike } from './actions.js';
 
@@ -424,7 +424,7 @@ export async function toggleLike(value) {
 }
 ```
 
-```js src/index.js hidden
+```js src/index.jsx hidden
 import React from 'react';
 import {createRoot} from 'react-dom/client';
 import './styles.css';
@@ -458,7 +458,7 @@ Here's a follow button that updates both the follow state and follower count:
 
 <Sandpack>
 
-```js src/App.js
+```js src/App.jsx
 import { useState, startTransition } from 'react';
 import { followUser, unfollowUser } from './actions.js';
 import FollowButton from './FollowButton';
@@ -489,7 +489,7 @@ export default function App() {
 }
 ```
 
-```js src/FollowButton.js active
+```js src/FollowButton.jsx active
 import { useOptimistic, startTransition } from 'react';
 
 export default function FollowButton({ user, followAction }) {
@@ -578,7 +578,7 @@ When you need to optimistically add items to a list, use a `reducer`:
 
 <Sandpack>
 
-```js src/App.js
+```js src/App.jsx
 import { useState, startTransition } from 'react';
 import { addTodo } from './actions.js';
 import TodoList from './TodoList';
@@ -599,7 +599,7 @@ export default function App() {
 }
 ```
 
-```js src/TodoList.js active
+```js src/TodoList.jsx active
 import { useOptimistic, startTransition } from 'react';
 
 export default function TodoList({ todos, addTodoAction }) {
@@ -662,7 +662,7 @@ This shopping cart example shows how to handle add and remove with a single redu
 
 <Sandpack>
 
-```js src/App.js
+```js src/App.jsx
 import { useState, startTransition } from 'react';
 import { addToCart, removeFromCart, updateQuantity } from './actions.js';
 import ShoppingCart from './ShoppingCart';
@@ -707,7 +707,7 @@ export default function App() {
 }
 ```
 
-```js src/ShoppingCart.js active
+```js src/ShoppingCart.jsx active
 import { useOptimistic, startTransition } from 'react';
 
 export default function ShoppingCart({ cart, cartActions }) {
@@ -834,7 +834,7 @@ This example shows how to display an error message when a delete fails, and the 
 
 <Sandpack>
 
-```js src/App.js
+```js src/App.jsx
 import { useState, startTransition } from 'react';
 import { deleteItem } from './actions.js';
 import ItemList from './ItemList';
@@ -857,7 +857,7 @@ export default function App() {
 }
 ```
 
-```js src/ItemList.js active
+```js src/ItemList.jsx active
 import { useState, useOptimistic, startTransition } from 'react';
 
 export default function ItemList({ items, deleteAction }) {

@@ -274,7 +274,7 @@ This is useful if you want to re-render some part of the UI in response to every
 
 ```js
 import { useState } from 'react';
-import MarkdownPreview from './MarkdownPreview.js';
+import MarkdownPreview from './MarkdownPreview.jsx';
 
 export default function MarkdownEditor() {
   const [postContent, setPostContent] = useState('_Hello,_ **Markdown**!');
@@ -294,7 +294,7 @@ export default function MarkdownEditor() {
 }
 ```
 
-```js src/MarkdownPreview.js
+```js src/MarkdownPreview.jsx
 import { Remarkable } from 'remarkable';
 
 const md = new Remarkable();

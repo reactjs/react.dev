@@ -374,7 +374,7 @@ In this example, the external system is the browser DOM. The `ModalDialog` compo
 
 ```js
 import { useState } from 'react';
-import ModalDialog from './ModalDialog.js';
+import ModalDialog from './ModalDialog.jsx';
 
 export default function App() {
   const [show, setShow] = useState(false);
@@ -395,7 +395,7 @@ export default function App() {
 }
 ```
 
-```js src/ModalDialog.js active
+```js src/ModalDialog.jsx active
 import { useEffect, useRef } from 'react';
 
 export default function ModalDialog({ isOpen, children }) {
@@ -433,7 +433,7 @@ In this example, the external system is again the browser DOM. The `App` compone
 <Sandpack>
 
 ```js
-import Box from './Box.js';
+import Box from './Box.jsx';
 
 export default function App() {
   return (
@@ -456,7 +456,7 @@ function LongSection() {
 }
 ```
 
-```js src/Box.js active
+```js src/Box.jsx active
 import { useRef, useEffect } from 'react';
 
 export default function Box() {
@@ -701,7 +701,7 @@ This example is identical to one of the [earlier examples,](#examples-connecting
 <Sandpack>
 
 ```js
-import Box from './Box.js';
+import Box from './Box.jsx';
 
 export default function App() {
   return (
@@ -724,7 +724,7 @@ function LongSection() {
 }
 ```
 
-```js src/Box.js active
+```js src/Box.jsx active
 import { useRef, useEffect } from 'react';
 import { useIntersectionObserver } from './useIntersectionObserver.js';
 
@@ -812,9 +812,9 @@ For example, if you have a third-party map widget or a video player component wr
 }
 ```
 
-```js src/App.js
+```js src/App.jsx
 import { useState } from 'react';
-import Map from './Map.js';
+import Map from './Map.jsx';
 
 export default function App() {
   const [zoomLevel, setZoomLevel] = useState(0);
@@ -830,7 +830,7 @@ export default function App() {
 }
 ```
 
-```js src/Map.js active
+```js src/Map.jsx active
 import { useRef, useEffect } from 'react';
 import { MapWidget } from './map-widget.js';
 
@@ -929,7 +929,7 @@ Note the `ignore` variable which is initialized to `false`, and is set to `true`
 <Sandpack>
 
 {/* TODO(@poteto) - investigate potential false positives in react compiler validation */}
-```js {expectedErrors: {'react-compiler': [9]}} src/App.js
+```js {expectedErrors: {'react-compiler': [9]}} src/App.jsx
 import { useState, useEffect } from 'react';
 import { fetchBio } from './api.js';
 
@@ -982,7 +982,7 @@ You can also rewrite using the [`async` / `await`](https://developer.mozilla.org
 
 <Sandpack>
 
-```js src/App.js
+```js src/App.jsx
 import { useState, useEffect } from 'react';
 import { fetchBio } from './api.js';
 

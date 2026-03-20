@@ -54,7 +54,7 @@ Pass a function to the `action` prop of form to run the function when the form i
 
 <Sandpack>
 
-```js src/App.js
+```js src/App.jsx
 export default function Search() {
   function search(formData) {
     const query = formData.get("query");
@@ -126,7 +126,7 @@ Here, we use the `pending` property to indicate the form is submitting.
 
 <Sandpack>
 
-```js src/App.js
+```js src/App.jsx
 import { useFormStatus } from "react-dom";
 import { submitForm } from "./actions.js";
 
@@ -170,7 +170,7 @@ For example, when a user types a message into the form and hits the "Send" butto
 <Sandpack>
 
 
-```js src/App.js
+```js src/App.jsx
 import { useOptimistic, useState, useRef } from "react";
 import { deliverMessage } from "./actions.js";
 
@@ -238,7 +238,7 @@ In some cases the function called by a `<form>`'s `action` prop throws an error.
 
 <Sandpack>
 
-```js src/App.js
+```js src/App.jsx
 import { ErrorBoundary } from "react-error-boundary";
 
 export default function Search() {
@@ -259,19 +259,6 @@ export default function Search() {
 
 ```
 
-```json package.json hidden
-{
-  "dependencies": {
-    "react": "19.0.0-rc-3edc000d-20240926",
-    "react-dom": "19.0.0-rc-3edc000d-20240926",
-    "react-scripts": "^5.0.0",
-    "react-error-boundary": "4.0.3"
-  },
-  "main": "/index.js",
-  "devDependencies": {}
-}
-```
-
 </Sandpack>
 
 ### Display a form submission error without JavaScript {/*display-a-form-submission-error-without-javascript*/}
@@ -286,7 +273,7 @@ Displaying a form submission error message before the JavaScript bundle loads fo
 
 <Sandpack>
 
-```js src/App.js
+```js src/App.jsx
 import { useActionState } from "react";
 import { signUpNewUser } from "./api";
 
@@ -340,7 +327,7 @@ When a user taps a specific button, the form is submitted, and a corresponding a
 
 <Sandpack>
 
-```js src/App.js
+```js src/App.jsx
 export default function Search() {
   function publish(formData) {
     const content = formData.get("content");

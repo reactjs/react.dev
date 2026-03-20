@@ -81,7 +81,7 @@ You can either build "top down" by starting with building the components higher 
 
 <Sandpack>
 
-```jsx src/App.js
+```jsx src/App.jsx
 function ProductCategoryRow({ category }) {
   return (
     <tr>
@@ -299,7 +299,7 @@ You can start seeing how your application will behave. Edit the `filterText` ini
 
 <Sandpack>
 
-```jsx src/App.js
+```jsx src/App.jsx
 import { useState } from 'react';
 
 function FilterableProductTable({ products }) {
@@ -510,7 +510,7 @@ Now the application fully works!
 
 <Sandpack>
 
-```jsx src/App.js
+```jsx src/App.jsx
 import { useState } from 'react';
 
 function FilterableProductTable({ products }) {

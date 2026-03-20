@@ -7,11 +7,7 @@
 
 import {useState} from 'react';
 
-import {
-  LoadingOverlayState,
-  useSandpack,
-  OpenInStackBlitzButton,
-} from '@webcontainer/react';
+import {LoadingOverlayState, useSandpack} from '@webcontainer/react';
 import {useEffect} from 'react';
 
 const FADE_ANIMATION_DURATION = 200;
@@ -61,7 +57,6 @@ export const LoadingOverlay = ({
         transition: `opacity ${FADE_ANIMATION_DURATION}ms ease-out`,
       }}>
       <div className="sp-cube-wrapper" title="Open in StackBlitz">
-        {/* <OpenInStackBlitzButton /> */}
         <div className="sp-cube">
           <div className="sp-sides">
             <div className="top" />

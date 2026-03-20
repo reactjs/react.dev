@@ -38,7 +38,7 @@ const reactRefreshRaw =
 // Wrap as a CJS module that Sandpack can require.
 // Strip the `if (process.env.NODE_ENV !== "production")` guard so the
 // runtime always executes inside the sandbox.
-const reactRefreshModule = reactRefreshRaw.replace(
+const _reactRefreshModule = reactRefreshRaw.replace(
   /if \(process\.env\.NODE_ENV !== "production"\) \{/,
   '{'
 );
@@ -46,14 +46,14 @@ const reactRefreshModule = reactRefreshRaw.replace(
 // Entry point that bootstraps the RSC client pipeline.
 // __react_refresh_init__ must be imported BEFORE rsc-client so the
 // DevTools hook stub exists before React's renderer loads.
-const indexEntry = `
+const _indexEntry = `
 import './styles.css';
 import './__react_refresh_init__';
 import { initClient } from './rsc-client.js';
 initClient();
 `.trim();
 
-const indexHTML = `
+const _indexHTML = `
 <!DOCTYPE html>
   <html lang="en">
   <head>

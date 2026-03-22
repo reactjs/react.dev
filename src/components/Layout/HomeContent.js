@@ -297,9 +297,9 @@ export function HomeContent() {
                     <div className="absolute inset-0 bg-gradient-right" />
                     <div className="bg-wash relative h-14 w-full" />
                     <div className="relative flex items-start justify-center flex-col flex-1 pb-16 pt-5 gap-3 px-5 lg:px-10 lg:pt-8">
-                      <h4 className="leading-tight text-primary font-semibold text-3xl lg:text-4xl">
+                      <h3 className="leading-tight text-primary font-semibold text-3xl lg:text-4xl">
                         Stay true to the web
-                      </h4>
+                      </h3>
                       <p className="lg:text-xl leading-normal text-secondary">
                         People expect web app pages to load fast. On the server,
                         React lets you start streaming HTML while you’re still
@@ -383,9 +383,9 @@ export function HomeContent() {
                         </div>
                       </div>
                       <div className="flex flex-col items-start justify-center pt-0 gap-3 px-2.5 lg:pt-8 lg:px-8">
-                        <h4 className="leading-tight text-primary dark:text-primary-dark font-semibold text-3xl lg:text-4xl">
+                        <h3 className="leading-tight text-primary dark:text-primary-dark font-semibold text-3xl lg:text-4xl">
                           Go truly native
-                        </h4>
+                        </h3>
                         <p className="h-full lg:text-xl text-secondary dark:text-secondary-dark leading-normal">
                           People expect native apps to look and feel like their
                           platform.{' '}
@@ -1114,9 +1114,9 @@ function SearchableVideoList({ videos }) {
             noPadding={true}
             contentMarginTop="72px"
             height="30rem">
-            <h1 className="mx-4 mb-1 font-bold text-3xl text-primary">
+            <h2 className="mx-4 mb-1 font-bold text-3xl text-primary">
               React Videos
-            </h1>
+            </h2>
             <p className="mx-4 mb-0 leading-snug text-secondary text-xl">
               A brief history of React
             </p>
@@ -1315,7 +1315,7 @@ function BrowserChrome({children, hasPulse, hasRefresh, domain, path}) {
               />
             </svg>
 
-            <span className="text-gray-30">
+            <span className="text-gray-50 dark:text-gray-30">
               {domain}
               {path != null && '/'}
             </span>

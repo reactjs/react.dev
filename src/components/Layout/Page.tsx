@@ -12,24 +12,35 @@
 import {Suspense} from 'react';
 import * as React from 'react';
 import {useRouter} from 'next/router';
-import {SidebarNav} from './SidebarNav';
-import {Footer} from './Footer';
-import {Toc} from './Toc';
 // import SocialBanner from '../SocialBanner';
-import {DocsPageFooter} from 'components/DocsFooter';
-import {Seo} from 'components/Seo';
-import PageHeading from 'components/PageHeading';
 import {getRouteMeta} from './getRouteMeta';
-import {TocContext} from '../MDX/TocContext';
 import {Languages, LanguagesContext} from '../MDX/LanguagesContext';
 import type {TocItem} from 'components/MDX/TocContext';
 import type {RouteItem} from 'components/Layout/getRouteMeta';
-import {HomeContent} from './HomeContent';
 import {TopNav} from './TopNav';
 import cn from 'classnames';
 import Head from 'next/head';
-
+import dynamic from 'next/dynamic';
 import(/* webpackPrefetch: true */ '../MDX/CodeBlock/CodeBlock');
+
+const HomeContent = dynamic(() =>
+  import('./HomeContent').then((mod) => mod.HomeContent)
+);
+const DocsPageFooter = dynamic(() =>
+  import('components/DocsFooter').then((mod) => mod.DocsPageFooter)
+);
+const SidebarNav = dynamic(() =>
+  import('./SidebarNav').then((mod) => mod.SidebarNav)
+);
+const Toc = dynamic(() => import('./Toc').then((mod) => mod.Toc));
+const Footer = dynamic(() => import('./Footer').then((mod) => mod.Footer));
+const Seo = dynamic(() => import('components/Seo').then((mod) => mod.Seo));
+const PageHeading = dynamic(() =>
+  import('components/PageHeading').then((mod) => mod.default)
+);
+const TocContext = dynamic(() =>
+  import('../MDX/TocContext').then((mod) => mod.TocContext)
+);
 
 interface PageProps {
   children: React.ReactNode;

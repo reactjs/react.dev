@@ -37,7 +37,6 @@
     ".next/types/**/*.ts"
   ],
   "exclude": [
-    "node_modules",
-    "src/components/MDX/Sandpack/templates/rsc-framework"
+    "node_modules"
   ]
 }

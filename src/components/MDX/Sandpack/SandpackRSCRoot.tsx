@@ -15,7 +15,7 @@ import {SandpackProvider} from '@webcontainer/react';
 import {CustomPreset} from './CustomPreset';
 import {createFileMap} from './createFileMap';
 import {CustomTheme} from './Themes';
-import {viteRscTemplate} from './templates/viteRscTemplate';
+import {viteRscTemplate} from './templates';
 
 type SandpackProps = {
   children: React.ReactNode;
@@ -100,10 +100,7 @@ function SandpackRSCRoot(props: SandpackProps) {
           initMode: 'user-visible',
           initModeObserverOptions: {rootMargin: '1400px 0px'},
         }}>
-        <CustomPreset
-          providedFiles={Object.keys(files)}
-          // showOpenInCodeSandbox={false}
-        />
+        <CustomPreset providedFiles={Object.keys(files)} />
       </SandpackProvider>
     </div>
   );

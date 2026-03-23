@@ -15,7 +15,7 @@ import {SandpackProvider} from '@webcontainer/react';
 import {CustomPreset} from './CustomPreset';
 import {createFileMap} from './createFileMap';
 import {CustomTheme} from './Themes';
-import {viteReactTemplate} from './templates/viteReactTemplate';
+import {viteReactTemplate} from './templates';
 
 type SandpackProps = {
   children: React.ReactNode;

@@ -303,7 +303,7 @@ export default function TopNav({
               <div className="flex flex-column justify-center items-center">
                 <NextLink
                   href="/versions"
-                  className=" flex py-2 flex-column justify-center items-center text-gray-50 dark:text-gray-30 hover:text-link hover:dark:text-link-dark hover:underline text-sm ms-1 cursor-pointer">
+                  className=" flex py-2 flex-column justify-center items-center text-gray-50 dark:text-gray-10 hover:text-link hover:dark:text-link-dark hover:underline text-sm ms-1 cursor-pointer">
                   v{siteConfig.version}
                 </NextLink>
               </div>
@@ -312,10 +312,10 @@ export default function TopNav({
               <button
                 type="button"
                 className={cn(
-                  'flex 3xl:w-[56rem] 3xl:mx-0 relative ps-4 pe-1 py-1 h-10 bg-gray-30/20 dark:bg-gray-40/20 outline-none focus:outline-link betterhover:hover:bg-opacity-80 pointer items-center text-start w-full text-gray-50 dark:text-gray-30 rounded-full align-middle text-base'
+                  'flex 3xl:w-[56rem] 3xl:mx-0 relative ps-4 pe-1 py-1 h-10 bg-gray-30/20 dark:bg-gray-40/20 outline-none focus:outline-link betterhover:hover:bg-opacity-80 pointer items-center text-start w-full text-gray-50 dark:text-gray-10 rounded-full align-middle text-base'
                 )}
                 onClick={onOpenSearch}>
-                <IconSearch className="align-middle me-3 text-gray-50 dark:text-gray-30 shrink-0 group-betterhover:hover:text-gray-70" />
+                <IconSearch className="align-middle me-3 text-gray-50 dark:text-gray-10 shrink-0 group-betterhover:hover:text-gray-70" />
                 Search
                 <span className="hidden ms-auto sm:flex item-center me-1">
                   <Kbd data-platform="mac">⌘</Kbd>

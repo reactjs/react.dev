@@ -15,8 +15,7 @@ import {SandpackProvider} from '@webcontainer/react';
 import {CustomPreset} from './CustomPreset';
 import {createFileMap} from './createFileMap';
 import {CustomTheme} from './Themes';
-import {templateRSC} from './templateRSC';
-import {RscFileBridge} from './sandpack-rsc/RscFileBridge';
+import {viteRscTemplate} from './templates/viteRscTemplate';
 
 type SandpackProps = {
   children: React.ReactNode;
@@ -93,17 +92,17 @@ function SandpackRSCRoot(props: SandpackProps) {
   return (
     <div className="sandpack sandpack--playground w-full my-8" dir="ltr">
       <SandpackProvider
-        files={{...templateRSC, ...files}}
+        template={viteRscTemplate}
+        files={files}
         theme={CustomTheme}
         options={{
           autorun,
           initMode: 'user-visible',
           initModeObserverOptions: {rootMargin: '1400px 0px'},
         }}>
-        <RscFileBridge />
         <CustomPreset
           providedFiles={Object.keys(files)}
-          showOpenInCodeSandbox={false}
+          // showOpenInCodeSandbox={false}
         />
       </SandpackProvider>
     </div>

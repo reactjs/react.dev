@@ -31,7 +31,7 @@
     "@docsearch/react": "^3.8.3",
     "@headlessui/react": "^1.7.0",
     "@radix-ui/react-context-menu": "^2.1.5",
-    "@webcontainer/react": "^0.0.1",
+    "@webcontainer/react": "^0.0.2",
     "body-scroll-lock": "^3.1.3",
     "classnames": "^2.2.6",
     "debounce": "^1.2.1",

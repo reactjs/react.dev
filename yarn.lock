@@ -1995,10 +1995,10 @@
   resolved "https://registry.yarnpkg.com/@webcontainer/api/-/api-1.6.1.tgz#8f4034b858279595b3b6aa2652b38af713924dfc"
   integrity sha512-2RS2KiIw32BY1Icf6M1DvqSmcon9XICZCDgS29QJb2NmF12ZY2V5Ia+949hMKB3Wno+P/Y8W+sPP59PZeXSELg==
 
-"@webcontainer/react@^0.0.1":
-  version "0.0.1"
-  resolved "https://registry.yarnpkg.com/@webcontainer/react/-/react-0.0.1.tgz#63647f7a7be9d4b29faad9bb2ab1e2d28214207b"
-  integrity sha512-RIAXPzNxJxV6JJp+OsY77VD+cLDAcnPPCeaXJoSjYtiWhrJ0Ll+teuaxkFE90H6ibNOcdoqV0AERTVlyy5VV4A==
+"@webcontainer/react@^0.0.2":
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/@webcontainer/react/-/react-0.0.2.tgz#ea593873633bde9c17f33121819455a5d051ca06"
+  integrity sha512-2+KEbr4/fCQ21KnoMzs8x9GLFzGU3s5yKnIWXDBAlKXm8vpeNUjtIc8p+z3tYg9mNweG4b6bO0w8yxYZEwhgbw==
   dependencies:
     "@codemirror/commands" "^6.10.3"
     "@codemirror/lang-css" "^6.3.1"

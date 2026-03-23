@@ -38,6 +38,6 @@
   ],
   "exclude": [
     "node_modules",
-    "src/components/MDX/Sandpack/sandpack-rsc/sandbox-code"
+    "src/components/MDX/Sandpack/templates/rsc-framework"
   ]
 }

@@ -15,6 +15,7 @@ import {SandpackProvider} from '@webcontainer/react';
 import {CustomPreset} from './CustomPreset';
 import {createFileMap} from './createFileMap';
 import {CustomTheme} from './Themes';
+import {viteReactTemplate} from './templates/viteReactTemplate';
 
 type SandpackProps = {
   children: React.ReactNode;
@@ -91,6 +92,7 @@ function SandpackRoot(props: SandpackProps) {
   return (
     <div className="sandpack sandpack--playground w-full my-8" dir="ltr">
       <SandpackProvider
+        template={viteReactTemplate}
         files={files}
         theme={CustomTheme}
         options={{

@@ -19,16 +19,16 @@ function hideFiles(
 }
 
 // --- Load RSC infrastructure files as raw strings via raw-loader ---
-const RSC_SOURCE_FILES = {
-  'framework-entry-browser':
-    require('!raw-loader?esModule=false!./sandpack-rsc/sandbox-code/src/framework/entry.browser.tsx') as string,
-  'framework-entry-rsc':
-    require('!raw-loader?esModule=false!./sandpack-rsc/sandbox-code/src/framework/entry.rsc.tsx') as string,
-  'framework-entry-ssr':
-    require('!raw-loader?esModule=false!./sandpack-rsc/sandbox-code/src/framework/entry.ssr.tsx') as string,
-  'framework-error-boundary':
-    require('!raw-loader?esModule=false!./sandpack-rsc/sandbox-code/src/framework/error-boundary.tsx') as string,
-};
+// const RSC_SOURCE_FILES = {
+//   'framework-entry-browser':
+//     require('!raw-loader?esModule=false!./sandpack-rsc/sandbox-code/src/framework/entry.browser.tsx') as string,
+//   'framework-entry-rsc':
+//     require('!raw-loader?esModule=false!./sandpack-rsc/sandbox-code/src/framework/entry.rsc.tsx') as string,
+//   'framework-entry-ssr':
+//     require('!raw-loader?esModule=false!./sandpack-rsc/sandbox-code/src/framework/entry.ssr.tsx') as string,
+//   'framework-error-boundary':
+//     require('!raw-loader?esModule=false!./sandpack-rsc/sandbox-code/src/framework/error-boundary.tsx') as string,
+// };
 
 // Load react-refresh runtime and strip the process.env.NODE_ENV guard
 // so it works in Sandpack's bundler which may not replace process.env.
@@ -114,12 +114,12 @@ export const templateRSC: SandpackFiles = {
   ...hideFiles({
     // '/public/index.html': indexHTML,
     // '/src/index.js': indexEntry,
-    '/src/framework/entry.browser.tsx':
-      RSC_SOURCE_FILES['framework-entry-browser'],
-    '/src/framework/entry.rsc.tsx': RSC_SOURCE_FILES['framework-entry-rsc'],
-    '/src/framework/entry.ssr.tsx': RSC_SOURCE_FILES['framework-entry-ssr'],
-    '/src/framework/error-boundary.tsx':
-      RSC_SOURCE_FILES['framework-error-boundary'],
+    // '/src/framework/entry.browser.tsx':
+    //   RSC_SOURCE_FILES['framework-entry-browser'],
+    // '/src/framework/entry.rsc.tsx': RSC_SOURCE_FILES['framework-entry-rsc'],
+    // '/src/framework/entry.ssr.tsx': RSC_SOURCE_FILES['framework-entry-ssr'],
+    // '/src/framework/error-boundary.tsx':
+    //   RSC_SOURCE_FILES['framework-error-boundary'],
 
     '/vite.config.js': VITE_CONFIG,
     '/package.json': JSON.stringify(

@@ -767,17 +767,11 @@ export default function Form() {
 ```json package.json
 {
   "dependencies": {
-    "immer": "1.7.3",
+    "immer": "11.1.4",
     "react": "latest",
     "react-dom": "latest",
     "react-scripts": "latest",
-    "use-immer": "0.5.1"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "use-immer": "0.11.0"
   }
 }
 ```
@@ -1437,17 +1431,11 @@ select { margin-bottom: 10px; }
 ```json package.json
 {
   "dependencies": {
-    "immer": "1.7.3",
+    "immer": "11.1.4",
     "react": "latest",
     "react-dom": "latest",
     "react-scripts": "latest",
-    "use-immer": "0.5.1"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "use-immer": "0.11.0"
   }
 }
 ```
@@ -1604,17 +1592,11 @@ select { margin-bottom: 10px; }
 ```json package.json
 {
   "dependencies": {
-    "immer": "1.7.3",
+    "immer": "11.1.4",
     "react": "latest",
     "react-dom": "latest",
     "react-scripts": "latest",
-    "use-immer": "0.5.1"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "use-immer": "0.11.0"
   }
 }
 ```

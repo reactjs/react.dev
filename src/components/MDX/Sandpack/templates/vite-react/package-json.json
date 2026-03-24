@@ -7,10 +7,12 @@
   },
   "dependencies": {
     "html-format": "^1.1.7",
+    "immer": "^11.1.4",
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
     "react-error-boundary": "^4.1.1",
-    "rsc-html-stream": "^0.0.7"
+    "rsc-html-stream": "^0.0.7",
+    "use-immer": "^0.11.0"
   },
   "devDependencies": {
     "@vitejs/plugin-react": "^5.1.4",

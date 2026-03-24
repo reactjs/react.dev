@@ -6,7 +6,6 @@ import {
   decodeAction,
   decodeFormState,
 } from '@vitejs/plugin-rsc/rsc';
-import {Root} from '../root.jsx';
 import {parseRenderRequest} from './request.jsx';
 
 export default {fetch: handler};
@@ -14,6 +13,15 @@ export default {fetch: handler};
 async function handler(request) {
   const renderRequest = parseRenderRequest(request);
   request = renderRequest.request;
+
+  let Root;
+  if (renderRequest.projectId) {
+    ({Root} = await import(
+      /* @vite-ignore */ `../../projects/${renderRequest.projectId}/src/root.jsx`
+    ));
+  } else {
+    ({Root} = await import(`../../src/root.jsx`));
+  }
 
   let returnValue;
   let formState;

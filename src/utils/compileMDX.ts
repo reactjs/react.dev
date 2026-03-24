@@ -13,21 +13,11 @@ import {MDXComponents} from 'components/MDX/MDXComponents';
 const DISK_CACHE_BREAKER = 11;
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-function getBaseUrl(): string {
-  return process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000';
-}
-
 export default async function compileMDX(
   mdx: string,
   path: string | string[],
   params: {[key: string]: any}
 ): Promise<{content: string; toc: string; meta: any}> {
-  const baseUrl = getBaseUrl();
-  mdx = mdx.replaceAll(
-    'https://react.dev/images/content/',
-    `${baseUrl}/images/content/`
-  );
-
   const fs = require('fs');
   const {
     prepareMDX,

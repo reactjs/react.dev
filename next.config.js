@@ -73,7 +73,15 @@ const nextConfig = {
       ],
     };
   },
-  env: {},
+  env: {
+    NEXT_PUBLIC_BASE_URL:
+      process.env.NEXT_PUBLIC_BASE_URL ||
+      (process.env.VERCEL_ENV === 'production'
+        ? 'https://react.dev'
+        : process.env.VERCEL_URL
+        ? `https://${process.env.VERCEL_URL}`
+        : 'http://localhost:3000'),
+  },
   webpack: (config, {dev, isServer, ...options}) => {
     if (process.env.ANALYZE) {
       const {BundleAnalyzerPlugin} = require('webpack-bundle-analyzer');

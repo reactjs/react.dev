@@ -23,7 +23,7 @@ import {
   useSandpack,
   useSandpackNavigation,
 } from '@webcontainer/react';
-import {OpenInCodeSandboxButton} from './OpenInCodeSandboxButton';
+import {OpenInStackBlitzButton} from './OpenInStackBlitzButton';
 import {ReloadButton} from './ReloadButton';
 import {ClearButton} from './ClearButton';
 import {DownloadButton} from './DownloadButton';
@@ -50,10 +50,10 @@ const getFileName = (filePath: string): string => {
 
 export function NavigationBar({
   providedFiles,
-  showOpenInCodeSandbox = true,
+  showOpenInStackBlitz = true,
 }: {
   providedFiles: Array<string>;
-  showOpenInCodeSandbox?: boolean;
+  showOpenInStackBlitz?: boolean;
 }) {
   const {sandpack} = useSandpack();
   const containerRef = useRef<HTMLDivElement | null>(null);
@@ -109,17 +109,9 @@ export function NavigationBar({
   }, [isMultiFile, onContainerResize]);
 
   const handleClear = () => {
-    /**
-     * resetAllFiles must come first, otherwise
-     * the previous content will appear for a second
-     * when the iframe loads.
-     *
-     * Plus, it should only prompt if there's any file changes
-     */
     if (sandpack.editorState === 'dirty' && confirm('Clear all your edits?')) {
       sandpack.resetAllFiles();
     }
-    refresh();
   };
 
   const handleReload = () => {
@@ -202,7 +194,7 @@ export function NavigationBar({
         <DownloadButton providedFiles={providedFiles} />
         <ReloadButton onReload={handleReload} />
         <ClearButton onClear={handleClear} />
-        {showOpenInCodeSandbox && <OpenInCodeSandboxButton />}
+        {showOpenInStackBlitz && <OpenInStackBlitzButton />}
         {activeFile.endsWith('.tsx') && (
           <OpenInTypeScriptPlaygroundButton
             content={sandpack.files[activeFile]?.code || ''}

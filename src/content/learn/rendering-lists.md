@@ -192,40 +192,40 @@ export const people = [{
   name: 'Creola Katherine Johnson',
   profession: 'mathematician',
   accomplishment: 'spaceflight calculations',
-  imageId: 'MK3eW3A'
+  imageId: 'creola-katherine-johnson'
 }, {
   id: 1,
   name: 'Mario José Molina-Pasquel Henríquez',
   profession: 'chemist',
   accomplishment: 'discovery of Arctic ozone hole',
-  imageId: 'mynHUSa'
+  imageId: 'mario-jose-molina-pasquel-henriquez'
 }, {
   id: 2,
   name: 'Mohammad Abdus Salam',
   profession: 'physicist',
   accomplishment: 'electromagnetism theory',
-  imageId: 'bE7W1ji'
+  imageId: 'abdus-salam'
 }, {
   id: 3,
   name: 'Percy Lavon Julian',
   profession: 'chemist',
   accomplishment: 'pioneering cortisone drugs, steroids and birth control pills',
-  imageId: 'IOjWm71'
+  imageId: 'percy-lavon-julian'
 }, {
   id: 4,
   name: 'Subrahmanyan Chandrasekhar',
   profession: 'astrophysicist',
   accomplishment: 'white dwarf star mass calculations',
-  imageId: 'lrWQx8l'
+  imageId: 'subrahmanyan-chandrasekhar'
 }];
 ```
 
 ```js src/utils.js
 export function getImageUrl(person) {
   return (
-    'https://i.imgur.com/' +
+    'https://react.dev/images/content/' +
     person.imageId +
-    's.jpg'
+    '-s.jpg'
   );
 }
 ```
@@ -322,40 +322,40 @@ export const people = [{
   name: 'Creola Katherine Johnson',
   profession: 'mathematician',
   accomplishment: 'spaceflight calculations',
-  imageId: 'MK3eW3A'
+  imageId: 'creola-katherine-johnson'
 }, {
   id: 1, // Used in JSX as a key
   name: 'Mario José Molina-Pasquel Henríquez',
   profession: 'chemist',
   accomplishment: 'discovery of Arctic ozone hole',
-  imageId: 'mynHUSa'
+  imageId: 'mario-jose-molina-pasquel-henriquez'
 }, {
   id: 2, // Used in JSX as a key
   name: 'Mohammad Abdus Salam',
   profession: 'physicist',
   accomplishment: 'electromagnetism theory',
-  imageId: 'bE7W1ji'
+  imageId: 'abdus-salam'
 }, {
   id: 3, // Used in JSX as a key
   name: 'Percy Lavon Julian',
   profession: 'chemist',
   accomplishment: 'pioneering cortisone drugs, steroids and birth control pills',
-  imageId: 'IOjWm71'
+  imageId: 'percy-lavon-julian'
 }, {
   id: 4, // Used in JSX as a key
   name: 'Subrahmanyan Chandrasekhar',
   profession: 'astrophysicist',
   accomplishment: 'white dwarf star mass calculations',
-  imageId: 'lrWQx8l'
+  imageId: 'subrahmanyan-chandrasekhar'
 }];
 ```
 
 ```js src/utils.js
 export function getImageUrl(person) {
   return (
-    'https://i.imgur.com/' +
+    'https://react.dev/images/content/' +
     person.imageId +
-    's.jpg'
+    '-s.jpg'
   );
 }
 ```
@@ -483,40 +483,40 @@ export const people = [{
   name: 'Creola Katherine Johnson',
   profession: 'mathematician',
   accomplishment: 'spaceflight calculations',
-  imageId: 'MK3eW3A'
+  imageId: 'creola-katherine-johnson'
 }, {
   id: 1,
   name: 'Mario José Molina-Pasquel Henríquez',
   profession: 'chemist',
   accomplishment: 'discovery of Arctic ozone hole',
-  imageId: 'mynHUSa'
+  imageId: 'mario-jose-molina-pasquel-henriquez'
 }, {
   id: 2,
   name: 'Mohammad Abdus Salam',
   profession: 'physicist',
   accomplishment: 'electromagnetism theory',
-  imageId: 'bE7W1ji'
+  imageId: 'abdus-salam'
 }, {
   id: 3,
   name: 'Percy Lavon Julian',
   profession: 'chemist',
   accomplishment: 'pioneering cortisone drugs, steroids and birth control pills',
-  imageId: 'IOjWm71'
+  imageId: 'percy-lavon-julian'
 }, {
   id: 4,
   name: 'Subrahmanyan Chandrasekhar',
   profession: 'astrophysicist',
   accomplishment: 'white dwarf star mass calculations',
-  imageId: 'lrWQx8l'
+  imageId: 'subrahmanyan-chandrasekhar'
 }];
 ```
 
 ```js src/utils.js
 export function getImageUrl(person) {
   return (
-    'https://i.imgur.com/' +
+    'https://react.dev/images/content/' +
     person.imageId +
-    's.jpg'
+    '-s.jpg'
   );
 }
 ```
@@ -598,40 +598,40 @@ export const people = [{
   name: 'Creola Katherine Johnson',
   profession: 'mathematician',
   accomplishment: 'spaceflight calculations',
-  imageId: 'MK3eW3A'
+  imageId: 'creola-katherine-johnson'
 }, {
   id: 1,
   name: 'Mario José Molina-Pasquel Henríquez',
   profession: 'chemist',
   accomplishment: 'discovery of Arctic ozone hole',
-  imageId: 'mynHUSa'
+  imageId: 'mario-jose-molina-pasquel-henriquez'
 }, {
   id: 2,
   name: 'Mohammad Abdus Salam',
   profession: 'physicist',
   accomplishment: 'electromagnetism theory',
-  imageId: 'bE7W1ji'
+  imageId: 'abdus-salam'
 }, {
   id: 3,
   name: 'Percy Lavon Julian',
   profession: 'chemist',
   accomplishment: 'pioneering cortisone drugs, steroids and birth control pills',
-  imageId: 'IOjWm71'
+  imageId: 'percy-lavon-julian'
 }, {
   id: 4,
   name: 'Subrahmanyan Chandrasekhar',
   profession: 'astrophysicist',
   accomplishment: 'white dwarf star mass calculations',
-  imageId: 'lrWQx8l'
+  imageId: 'subrahmanyan-chandrasekhar'
 }];
 ```
 
 ```js src/utils.js
 export function getImageUrl(person) {
   return (
-    'https://i.imgur.com/' +
+    'https://react.dev/images/content/' +
     person.imageId +
-    's.jpg'
+    '-s.jpg'
   );
 }
 ```
@@ -712,40 +712,40 @@ export const people = [{
   name: 'Creola Katherine Johnson',
   profession: 'mathematician',
   accomplishment: 'spaceflight calculations',
-  imageId: 'MK3eW3A'
+  imageId: 'creola-katherine-johnson'
 }, {
   id: 1,
   name: 'Mario José Molina-Pasquel Henríquez',
   profession: 'chemist',
   accomplishment: 'discovery of Arctic ozone hole',
-  imageId: 'mynHUSa'
+  imageId: 'mario-jose-molina-pasquel-henriquez'
 }, {
   id: 2,
   name: 'Mohammad Abdus Salam',
   profession: 'physicist',
   accomplishment: 'electromagnetism theory',
-  imageId: 'bE7W1ji'
+  imageId: 'abdus-salam'
 }, {
   id: 3,
   name: 'Percy Lavon Julian',
   profession: 'chemist',
   accomplishment: 'pioneering cortisone drugs, steroids and birth control pills',
-  imageId: 'IOjWm71'
+  imageId: 'percy-lavon-julian'
 }, {
   id: 4,
   name: 'Subrahmanyan Chandrasekhar',
   profession: 'astrophysicist',
   accomplishment: 'white dwarf star mass calculations',
-  imageId: 'lrWQx8l'
+  imageId: 'subrahmanyan-chandrasekhar'
 }];
 ```
 
 ```js src/utils.js
 export function getImageUrl(person) {
   return (
-    'https://i.imgur.com/' +
+    'https://react.dev/images/content/' +
     person.imageId +
-    's.jpg'
+    '-s.jpg'
   );
 }
 ```
@@ -830,40 +830,40 @@ export const people = [{
   name: 'Creola Katherine Johnson',
   profession: 'mathematician',
   accomplishment: 'spaceflight calculations',
-  imageId: 'MK3eW3A'
+  imageId: 'creola-katherine-johnson'
 }, {
   id: 1,
   name: 'Mario José Molina-Pasquel Henríquez',
   profession: 'chemist',
   accomplishment: 'discovery of Arctic ozone hole',
-  imageId: 'mynHUSa'
+  imageId: 'mario-jose-molina-pasquel-henriquez'
 }, {
   id: 2,
   name: 'Mohammad Abdus Salam',
   profession: 'physicist',
   accomplishment: 'electromagnetism theory',
-  imageId: 'bE7W1ji'
+  imageId: 'abdus-salam'
 }, {
   id: 3,
   name: 'Percy Lavon Julian',
   profession: 'chemist',
   accomplishment: 'pioneering cortisone drugs, steroids and birth control pills',
-  imageId: 'IOjWm71'
+  imageId: 'percy-lavon-julian'
 }, {
   id: 4,
   name: 'Subrahmanyan Chandrasekhar',
   profession: 'astrophysicist',
   accomplishment: 'white dwarf star mass calculations',
-  imageId: 'lrWQx8l'
+  imageId: 'subrahmanyan-chandrasekhar'
 }];
 ```
 
 ```js src/utils.js
 export function getImageUrl(person) {
   return (
-    'https://i.imgur.com/' +
+    'https://react.dev/images/content/' +
     person.imageId +
-    's.jpg'
+    '-s.jpg'
   );
 }
 ```

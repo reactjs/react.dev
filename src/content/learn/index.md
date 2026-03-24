@@ -143,7 +143,7 @@ You can put more complex expressions inside the JSX curly braces too, for exampl
 ```js
 const user = {
   name: 'Hedy Lamarr',
-  imageUrl: 'https://i.imgur.com/yXOvdOSs.jpg',
+  imageUrl: 'https://react.dev/images/content/hedy-lamarr-s.jpg',
   imageSize: 90,
 };
 

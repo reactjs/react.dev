@@ -29,7 +29,7 @@ function Avatar() {
   return (
     <img
       className="avatar"
-      src="https://i.imgur.com/1bX5QH6.jpg"
+      src="https://react.dev/images/content/lin-lanying.jpg"
       alt="Lin Lanying"
       width={100}
       height={100}
@@ -75,7 +75,7 @@ First, pass some props to `Avatar`. For example, let's pass two props: `person` 
 export default function Profile() {
   return (
     <Avatar
-      person={{ name: 'Lin Lanying', imageId: '1bX5QH6' }}
+      person={{ name: 'Lin Lanying', imageId: 'lin-lanying' }}
       size={100}
     />
   );
@@ -128,21 +128,21 @@ export default function Profile() {
         size={100}
         person={{ 
           name: 'Katsuko Saruhashi', 
-          imageId: 'YfeOqp2'
+          imageId: 'katsuko-saruhashi'
         }}
       />
       <Avatar
         size={80}
         person={{
           name: 'Aklilu Lemma', 
-          imageId: 'OKS67lh'
+          imageId: 'aklilu-lemma'
         }}
       />
       <Avatar
         size={50}
         person={{ 
           name: 'Lin Lanying',
-          imageId: '1bX5QH6'
+          imageId: 'lin-lanying'
         }}
       />
     </div>
@@ -153,9 +153,9 @@ export default function Profile() {
 ```js src/utils.js
 export function getImageUrl(person, size = 's') {
   return (
-    'https://i.imgur.com/' +
+    'https://react.dev/images/content/' +
     person.imageId +
-    size +
+    '-' + size +
     '.jpg'
   );
 }
@@ -293,7 +293,7 @@ export default function Profile() {
         size={100}
         person={{ 
           name: 'Katsuko Saruhashi',
-          imageId: 'YfeOqp2'
+          imageId: 'katsuko-saruhashi'
         }}
       />
     </Card>
@@ -320,9 +320,9 @@ export default function Avatar({ person, size }) {
 ```js src/utils.js
 export function getImageUrl(person, size = 's') {
   return (
-    'https://i.imgur.com/' +
+    'https://react.dev/images/content/' +
     person.imageId +
-    size +
+    '-' + size +
     '.jpg'
   );
 }
@@ -498,9 +498,9 @@ export default function Gallery() {
 ```js src/utils.js
 export function getImageUrl(imageId, size = 's') {
   return (
-    'https://i.imgur.com/' +
+    'https://react.dev/images/content/' +
     imageId +
-    size +
+    '-' + size +
     '.jpg'
   );
 }
@@ -606,9 +606,9 @@ export default function Gallery() {
 ```js src/utils.js
 export function getImageUrl(imageId, size = 's') {
   return (
-    'https://i.imgur.com/' +
+    'https://react.dev/images/content/' +
     imageId +
-    size +
+    '-' + size +
     '.jpg'
   );
 }
@@ -674,7 +674,7 @@ export default function Gallery() {
     <div>
       <h1>Notable Scientists</h1>
       <Profile person={{
-        imageId: 'szV5sdG',
+        imageId: 'maria-sklodowska-curie',
         name: 'Maria Skłodowska-Curie',
         profession: 'physicist and chemist',
         discovery: 'polonium (chemical element)',
@@ -686,7 +686,7 @@ export default function Gallery() {
         ],
       }} />
       <Profile person={{
-        imageId: 'YfeOqp2',
+        imageId: 'katsuko-saruhashi',
         name: 'Katsuko Saruhashi',
         profession: 'geochemist',
         discovery: 'a method for measuring carbon dioxide in seawater',
@@ -703,9 +703,9 @@ export default function Gallery() {
 ```js src/utils.js
 export function getImageUrl(person, size = 's') {
   return (
-    'https://i.imgur.com/' +
+    'https://react.dev/images/content/' +
     person.imageId +
-    size +
+    '-' + size +
     '.jpg'
   );
 }
@@ -760,7 +760,7 @@ export default function Profile() {
       size={40}
       person={{ 
         name: 'Gregorio Y. Zara', 
-        imageId: '7vQD0fP'
+        imageId: 'gregorio-y-zara'
       }}
     />
   );
@@ -770,9 +770,9 @@ export default function Profile() {
 ```js src/utils.js
 export function getImageUrl(person, size) {
   return (
-    'https://i.imgur.com/' +
+    'https://react.dev/images/content/' +
     person.imageId +
-    size +
+    '-' + size +
     '.jpg'
   );
 }
@@ -816,14 +816,14 @@ export default function Profile() {
         size={40}
         person={{ 
           name: 'Gregorio Y. Zara', 
-          imageId: '7vQD0fP'
+          imageId: 'gregorio-y-zara'
         }}
       />
       <Avatar
         size={120}
         person={{ 
           name: 'Gregorio Y. Zara', 
-          imageId: '7vQD0fP'
+          imageId: 'gregorio-y-zara'
         }}
       />
     </>
@@ -834,9 +834,9 @@ export default function Profile() {
 ```js src/utils.js
 export function getImageUrl(person, size) {
   return (
-    'https://i.imgur.com/' +
+    'https://react.dev/images/content/' +
     person.imageId +
-    size +
+    '-' + size +
     '.jpg'
   );
 }
@@ -880,21 +880,21 @@ export default function Profile() {
         size={40}
         person={{ 
           name: 'Gregorio Y. Zara', 
-          imageId: '7vQD0fP'
+          imageId: 'gregorio-y-zara'
         }}
       />
       <Avatar
         size={70}
         person={{ 
           name: 'Gregorio Y. Zara', 
-          imageId: '7vQD0fP'
+          imageId: 'gregorio-y-zara'
         }}
       />
       <Avatar
         size={120}
         person={{ 
           name: 'Gregorio Y. Zara', 
-          imageId: '7vQD0fP'
+          imageId: 'gregorio-y-zara'
         }}
       />
     </>
@@ -905,9 +905,9 @@ export default function Profile() {
 ```js src/utils.js
 export function getImageUrl(person, size) {
   return (
-    'https://i.imgur.com/' +
+    'https://react.dev/images/content/' +
     person.imageId +
-    size +
+    '-' + size +
     '.jpg'
   );
 }
@@ -938,7 +938,7 @@ export default function Profile() {
           <h1>Photo</h1>
           <img
             className="avatar"
-            src="https://i.imgur.com/OKS67lhm.jpg"
+            src="https://react.dev/images/content/aklilu-lemma-m.jpg"
             alt="Aklilu Lemma"
             width={70}
             height={70}
@@ -1011,7 +1011,7 @@ export default function Profile() {
         <h1>Photo</h1>
         <img
           className="avatar"
-          src="https://i.imgur.com/OKS67lhm.jpg"
+          src="https://react.dev/images/content/aklilu-lemma-m.jpg"
           alt="Aklilu Lemma"
           width={100}
           height={100}
@@ -1073,7 +1073,7 @@ export default function Profile() {
       <Card title="Photo">
         <img
           className="avatar"
-          src="https://i.imgur.com/OKS67lhm.jpg"
+          src="https://react.dev/images/content/aklilu-lemma-m.jpg"
           alt="Aklilu Lemma"
           width={100}
           height={100}

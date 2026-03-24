@@ -795,7 +795,7 @@ import Avatar from './Avatar.jsx';
 
 const user = {
   name: 'Hedy Lamarr',
-  imageUrl: 'https://i.imgur.com/yXOvdOSs.jpg',
+  imageUrl: 'https://react.dev/images/content/hedy-lamarr-s.jpg',
   imageSize: 90,
 };
 

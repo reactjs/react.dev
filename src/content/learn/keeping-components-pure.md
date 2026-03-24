@@ -436,11 +436,11 @@ export default function App() {
   return (
     <>
       <Profile person={{
-        imageId: 'lrWQx8l',
+        imageId: 'subrahmanyan-chandrasekhar',
         name: 'Subrahmanyan Chandrasekhar',
       }} />
       <Profile person={{
-        imageId: 'MK3eW3A',
+        imageId: 'creola-katherine-johnson',
         name: 'Creola Katherine Johnson',
       }} />
     </>
@@ -451,9 +451,9 @@ export default function App() {
 ```js src/utils.js hidden
 export function getImageUrl(person, size = 's') {
   return (
-    'https://i.imgur.com/' +
+    'https://react.dev/images/content/' +
     person.imageId +
-    size +
+    '-' + size +
     '.jpg'
   );
 }
@@ -534,11 +534,11 @@ export default function App() {
   return (
     <>
       <Profile person={{
-        imageId: 'lrWQx8l',
+        imageId: 'subrahmanyan-chandrasekhar',
         name: 'Subrahmanyan Chandrasekhar',
       }} />
       <Profile person={{
-        imageId: 'MK3eW3A',
+        imageId: 'creola-katherine-johnson',
         name: 'Creola Katherine Johnson',
       }} />
     </>
@@ -549,9 +549,9 @@ export default function App() {
 ```js src/utils.js hidden
 export function getImageUrl(person, size = 's') {
   return (
-    'https://i.imgur.com/' +
+    'https://react.dev/images/content/' +
     person.imageId +
-    size +
+    '-' + size +
     '.jpg'
   );
 }

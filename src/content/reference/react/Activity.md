@@ -1235,7 +1235,7 @@ The most common cases of this will be from the following tags:
   - `<video>`
   - `<audio>`
   - `<iframe>`
-### CSS selector side effects
+### CSS selector side effects {/*css-selector-side-effects*/}
 
 When using `<Activity mode="hidden">`, elements remain in the DOM but are hidden using `display: none`.
 

@@ -97,8 +97,7 @@ function SandpackRSCRoot(props: SandpackProps) {
         theme={CustomTheme}
         options={{
           autorun,
-          initMode: 'user-visible',
-          initModeObserverOptions: {rootMargin: '1400px 0px'},
+          initMode: 'immediate',
         }}>
         <CustomPreset providedFiles={Object.keys(files)} />
       </SandpackProvider>

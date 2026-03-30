@@ -50,9 +50,6 @@ export const viteRscTemplate = defineTemplate({
     '/src/framework/entry.ssr.jsx': {
       code: require('!raw-loader?esModule=false!./vite-rsc/src/framework/entry.ssr.jsx') as string,
     },
-    '/src/framework/error-boundary.jsx': {
-      code: require('!raw-loader?esModule=false!./vite-rsc/src/framework/error-boundary.jsx') as string,
-    },
     '/src/framework/request.jsx': {
       code: require('!raw-loader?esModule=false!./vite-rsc/src/framework/request.jsx') as string,
     },

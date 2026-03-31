@@ -60,7 +60,7 @@ function parseDirective(code) {
       ecmaVersion: '2024',
       sourceType: 'source',
     }).body;
-  } catch (x) {
+  } catch (_x) {
     return null;
   }
   for (var i = 0; i < body.length; i++) {
@@ -80,7 +80,7 @@ function transformInlineServerActions(code) {
   var ast;
   try {
     ast = acorn.parse(code, {ecmaVersion: '2024', sourceType: 'source'});
-  } catch (x) {
+  } catch (_x) {
     return code;
   }
 

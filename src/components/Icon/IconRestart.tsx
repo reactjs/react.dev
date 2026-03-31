@@ -9,9 +9,9 @@
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
 
-import {memo} from 'react';
+import React, {memo} from 'react';
 
-export const IconRestart = memo<JSX.IntrinsicElements['svg']>(
+export const IconRestart = memo<React.JSX.IntrinsicElements['svg']>(
   function IconRestart({className}) {
     return (
       <svg

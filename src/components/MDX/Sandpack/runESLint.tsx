@@ -7,7 +7,7 @@
 
 // @ts-nocheck
 
-import {Linter} from 'eslint/lib/linter/linter';
+import {Linter} from 'eslint/universal';
 
 import type {Diagnostic} from '@codemirror/lint';
 import type {Text} from '@codemirror/text';

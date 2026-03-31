@@ -25,12 +25,14 @@
   --sp-zIndices-overlay: 2;
   --sp-zIndices-top: 3;
 
-  --sp-font-body: Optimistic Display, -apple-system, ui-sans-serif, system-ui,
-    -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial,
-    Noto Sans, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol,
+  --sp-font-body:
+    Optimistic Display, -apple-system, ui-sans-serif, system-ui, -apple-system,
+    BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans,
+    sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol,
     Noto Color Emoji;
-  --sp-font-mono: Source Code Pro, ui-monospace, SFMono-Regular, Menlo, Monaco,
-    Consolas, Liberation Mono, Courier New, monospace;
+  --sp-font-mono:
+    Source Code Pro, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+    Liberation Mono, Courier New, monospace;
   --sp-font-size: calc(1em - 20%);
   --sp-font-lineHeight: 24px;
 }

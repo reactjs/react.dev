@@ -17,6 +17,23 @@ const FOOTER = `
 [Overview of all docs pages](/llms.txt)
 `;
 
+// Anchor the content directory so Turbopack's NFT tracer can
+// statically determine that reads are scoped to src/content.
+const CONTENT_DIR = path.join(process.cwd(), 'src', 'content');
+
+function readContentFile(relativePath: string): string | null {
+  // Prevent path traversal outside CONTENT_DIR
+  const resolved = path.resolve(CONTENT_DIR, relativePath);
+  if (!resolved.startsWith(CONTENT_DIR + path.sep)) {
+    return null;
+  }
+  try {
+    return fs.readFileSync(resolved, 'utf8');
+  } catch {
+    return null;
+  }
+}
+
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
   const pathSegments = req.query.path;
   if (!pathSegments) {
@@ -24,7 +41,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
   }
 
   const filePath = Array.isArray(pathSegments)
-    ? pathSegments.join('/')
+    ? pathSegments.join(path.sep)
     : pathSegments;
 
   // Block /index.md URLs - use /foo.md instead of /foo/index.md
@@ -33,21 +50,15 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
   }
 
   // Try exact path first, then with /index
-  const candidates = [
-    path.join(process.cwd(), 'src/content', filePath + '.md'),
-    path.join(process.cwd(), 'src/content', filePath, 'index.md'),
-  ];
+  const content =
+    readContentFile(filePath + '.md') ??
+    readContentFile(path.join(filePath, 'index.md'));
 
-  for (const fullPath of candidates) {
-    try {
-      const content = fs.readFileSync(fullPath, 'utf8');
-      res.setHeader('Content-Type', 'text/plain; charset=utf-8');
-      res.setHeader('Cache-Control', 'public, max-age=3600');
-      return res.status(200).send(content + FOOTER);
-    } catch {
-      // Try next candidate
-    }
+  if (content === null) {
+    return res.status(404).send('Not found');
   }
 
-  res.status(404).send('Not found');
+  res.setHeader('Content-Type', 'text/plain; charset=utf-8');
+  res.setHeader('Cache-Control', 'public, max-age=3600');
+  return res.status(200).send(content + FOOTER);
 }

@@ -218,10 +218,10 @@ export const SandpackConsole = ({visible}: {visible: boolean}) => {
                       } else {
                         try {
                           children = JSON.stringify(msg, null, 2);
-                        } catch (error) {
+                        } catch (_error) {
                           try {
                             children = Object.prototype.toString.call(msg);
-                          } catch (err) {
+                          } catch (_err) {
                             children = '[' + typeof msg + ']';
                           }
                         }

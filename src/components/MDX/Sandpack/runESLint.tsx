@@ -7,10 +7,11 @@
 
 // @ts-nocheck
 
-import {Linter} from 'eslint/lib/linter/linter';
+import {Linter} from 'eslint-linter-browserify';
 
 import type {Diagnostic} from '@codemirror/lint';
 import type {Text} from '@codemirror/text';
+import {reactHooksPlugin} from './generatedHooksLint';
 
 const getCodeMirrorPosition = (
   doc: Text,
@@ -21,29 +22,33 @@ const getCodeMirrorPosition = (
 
 const linter = new Linter();
 
-const reactRules = require('eslint-plugin-react-hooks').rules;
-linter.defineRules({
-  'react-hooks/rules-of-hooks': reactRules['rules-of-hooks'],
-  'react-hooks/exhaustive-deps': reactRules['exhaustive-deps'],
-});
-
-const options = {
-  parserOptions: {
-    ecmaVersion: 12,
-    sourceType: 'module',
-    ecmaFeatures: {jsx: true},
+const options = [
+  {
+    files: ['**/*.{js,jsx,ts,tsx}'],
+    plugins: {
+      'react-hooks': reactHooksPlugin,
+    },
+    languageOptions: {
+      ecmaVersion: 2022,
+      sourceType: 'module',
+      parserOptions: {
+        ecmaFeatures: {jsx: true},
+      },
+    },
+    rules: {
+      'react-hooks/rules-of-hooks': 'error',
+      'react-hooks/exhaustive-deps': 'error',
+    },
   },
-  rules: {
-    'react-hooks/rules-of-hooks': 'error',
-    'react-hooks/exhaustive-deps': 'error',
-  },
-};
+];
 
 export const runESLint = (
   doc: Text
 ): {errors: any[]; codeMirrorErrors: Diagnostic[]} => {
   const codeString = doc.toString();
-  const errors = linter.verify(codeString, options) as any[];
+  const errors = linter.verify(codeString, options, {
+    filename: 'SandpackEditor.jsx',
+  }) as any[];
 
   const severity = {
     1: 'warning',

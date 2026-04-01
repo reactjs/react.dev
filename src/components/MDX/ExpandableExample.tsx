@@ -1,3 +1,5 @@
+'use client';
+
 /**
  * Copyright (c) Meta Platforms, Inc. and affiliates.
  *
@@ -16,8 +18,9 @@ import {IconDeepDive} from '../Icon/IconDeepDive';
 import {IconCodeBlock} from '../Icon/IconCodeBlock';
 import {Button} from '../Button';
 import {H4} from './Heading';
-import {useRouter} from 'next/router';
-import {useEffect, useRef, useState} from 'react';
+import {Children, isValidElement, useState} from 'react';
+import {useLocationHash} from 'hooks/useLocationHash';
+import {getMDXName} from './getMDXName';
 
 interface ExpandableExampleProps {
   children: React.ReactNode;
@@ -25,31 +28,47 @@ interface ExpandableExampleProps {
   type: 'DeepDive' | 'Example';
 }
 
+type ExpandableTitleElement = React.ReactElement<{
+  id?: string;
+  children?: React.ReactNode;
+}>;
+
+function getExpandableChildren(children: React.ReactNode) {
+  return Children.toArray(children).filter((child) => {
+    return !(typeof child === 'string' && child.trim() === '');
+  });
+}
+
 function ExpandableExample({children, excerpt, type}: ExpandableExampleProps) {
-  if (!Array.isArray(children) || children[0].type.mdxName !== 'h4') {
+  const expandableChildren = getExpandableChildren(children);
+  const titleChild = expandableChildren[0];
+
+  if (
+    !isValidElement(titleChild) ||
+    !(
+      getMDXName(titleChild) === 'h4' ||
+      getMDXName(titleChild) === 'H4' ||
+      titleChild.type === H4
+    )
+  ) {
     throw Error(
       `Expandable content ${type} is missing a corresponding title at the beginning`
     );
   }
+  const titleElement = titleChild as ExpandableTitleElement;
+
   const isDeepDive = type === 'DeepDive';
   const isExample = type === 'Example';
-  const id = children[0].props.id;
-
-  const {asPath} = useRouter();
-  const shouldAutoExpand = id === asPath.split('#')[1];
-  const queuedExpandRef = useRef<boolean>(shouldAutoExpand);
+  const id = titleElement.props.id;
+  const hash = useLocationHash();
   const [isExpanded, setIsExpanded] = useState(false);
-
-  useEffect(() => {
-    if (queuedExpandRef.current) {
-      queuedExpandRef.current = false;
-      setIsExpanded(true);
-    }
-  }, []);
+  const [isAutoExpandedDismissed, setIsAutoExpandedDismissed] = useState(false);
+  const autoExpanded = hash === id && !isAutoExpandedDismissed;
+  const isOpen = isExpanded || autoExpanded;
 
   return (
     <details
-      open={isExpanded}
+      open={isOpen}
       onToggle={(e: any) => {
         setIsExpanded(e.currentTarget!.open);
       }}
@@ -92,7 +111,7 @@ function ExpandableExample({children, excerpt, type}: ExpandableExampleProps) {
           <H4
             id={id}
             className="text-xl font-bold text-primary dark:text-primary-dark">
-            {children[0].props.children}
+            {titleElement.props.children}
           </H4>
           {excerpt && <div>{excerpt}</div>}
         </div>
@@ -104,11 +123,19 @@ function ExpandableExample({children, excerpt, type}: ExpandableExampleProps) {
             'bg-yellow-50 border-yellow-50 hover:bg-yellow-40 focus:bg-yellow-50 active:bg-yellow-50':
               isExample,
           })}
-          onClick={() => setIsExpanded((current) => !current)}>
+          onClick={() => {
+            if (autoExpanded) {
+              setIsAutoExpandedDismissed(true);
+              setIsExpanded(false);
+              return;
+            }
+
+            setIsExpanded((current) => !current);
+          }}>
           <span className="me-1">
-            <IconChevron displayDirection={isExpanded ? 'up' : 'down'} />
+            <IconChevron displayDirection={isOpen ? 'up' : 'down'} />
           </span>
-          {isExpanded ? 'Hide Details' : 'Show Details'}
+          {isOpen ? 'Hide Details' : 'Show Details'}
         </Button>
       </summary>
       <div
@@ -116,7 +143,7 @@ function ExpandableExample({children, excerpt, type}: ExpandableExampleProps) {
           'dark:border-purple-60 border-purple-10 ': isDeepDive,
           'dark:border-yellow-60 border-yellow-50': isExample,
         })}>
-        {children.slice(1)}
+        {expandableChildren.slice(1)}
       </div>
     </details>
   );

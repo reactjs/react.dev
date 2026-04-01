@@ -1,3 +1,5 @@
+'use client';
+
 /**
  * Copyright (c) Meta Platforms, Inc. and affiliates.
  *
@@ -16,7 +18,8 @@ import {H2} from 'components/MDX/Heading';
 import {H4} from 'components/MDX/Heading';
 import {Challenge} from './Challenge';
 import {Navigation} from './Navigation';
-import {useRouter} from 'next/router';
+import {useLocationHash} from 'hooks/useLocationHash';
+import {getMDXName} from 'components/MDX/getMDXName';
 
 interface ChallengesProps {
   children: React.ReactElement[];
@@ -39,19 +42,20 @@ const parseChallengeContents = (
   children: React.ReactElement[]
 ): ChallengeContents[] => {
   const contents: ChallengeContents[] = [];
+  const flattenedChildren = flattenChallengeChildren(children);
 
-  if (!children) {
+  if (!flattenedChildren.length) {
     return contents;
   }
 
   let challenge: Partial<ChallengeContents> = {};
-  let content: React.ReactElement[] = [];
-  Children.forEach(children, (child) => {
-    const {props, type} = child as React.ReactElement<{
+  let content: React.ReactNode[] = [];
+  Children.forEach(flattenedChildren, (child) => {
+    const {props} = child as React.ReactElement<{
       children?: string;
       id?: string;
     }>;
-    switch ((type as any).mdxName) {
+    switch (getMDXName(child)) {
       case 'Solution': {
         challenge.solution = child;
         challenge.content = content;
@@ -79,6 +83,31 @@ const parseChallengeContents = (
   return contents;
 };
 
+function flattenChallengeChildren(
+  children: React.ReactNode
+): React.ReactNode[] {
+  const flattened: React.ReactNode[] = [];
+
+  Children.forEach(children, (child) => {
+    if (!React.isValidElement(child)) {
+      flattened.push(child);
+      return;
+    }
+
+    if (child.type === React.Fragment) {
+      const fragmentChild = child as React.ReactElement<{
+        children?: React.ReactNode;
+      }>;
+      flattened.push(...flattenChallengeChildren(fragmentChild.props.children));
+      return;
+    }
+
+    flattened.push(child);
+  });
+
+  return flattened;
+}
+
 enum QueuedScroll {
   INIT = 'init',
   NEXT = 'next',
@@ -95,19 +124,18 @@ export function Challenges({
   const totalChallenges = challenges.length;
   const scrollAnchorRef = useRef<HTMLDivElement>(null);
   const queuedScrollRef = useRef<undefined | QueuedScroll>(QueuedScroll.INIT);
-  const [activeIndex, setActiveIndex] = useState(0);
+  const [selectedIndex, setSelectedIndex] = useState(0);
+  const [hasInteracted, setHasInteracted] = useState(false);
+  const hash = useLocationHash();
+  const hashIndex = challenges.findIndex((challenge) => challenge.id === hash);
+  const activeIndex =
+    !hasInteracted && hashIndex !== -1 ? hashIndex : selectedIndex;
   const currentChallenge = challenges[activeIndex];
-  const {asPath} = useRouter();
 
   useEffect(() => {
     if (queuedScrollRef.current === QueuedScroll.INIT) {
-      const initIndex = challenges.findIndex(
-        (challenge) => challenge.id === asPath.split('#')[1]
-      );
-      if (initIndex === -1) {
+      if (hashIndex === -1) {
         queuedScrollRef.current = undefined;
-      } else if (initIndex !== activeIndex) {
-        setActiveIndex(initIndex);
       }
     }
     if (queuedScrollRef.current) {
@@ -119,10 +147,15 @@ export function Challenges({
       });
       queuedScrollRef.current = undefined;
     }
-  }, [activeIndex, asPath, challenges]);
+  }, [activeIndex, challenges, hashIndex]);
+
+  if (totalChallenges === 0 || currentChallenge == null) {
+    return <>{children}</>;
+  }
 
   const handleChallengeChange = (index: number) => {
-    setActiveIndex(index);
+    setHasInteracted(true);
+    setSelectedIndex(index);
   };
 
   const Heading = isRecipes ? H4 : H2;
@@ -161,7 +194,8 @@ export function Challenges({
           totalChallenges={totalChallenges}
           hasNextChallenge={activeIndex < totalChallenges - 1}
           handleClickNextChallenge={() => {
-            setActiveIndex((i) => i + 1);
+            setHasInteracted(true);
+            setSelectedIndex(activeIndex + 1);
             queuedScrollRef.current = QueuedScroll.NEXT;
           }}
         />

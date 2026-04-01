@@ -9,7 +9,7 @@
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
 
-import tailwindConfig from '../../../../tailwind.config';
+import {sandpackThemeFonts} from './generatedTheme';
 
 export const CustomTheme = {
   colors: {
@@ -38,13 +38,9 @@ export const CustomTheme = {
     string: 'inherit',
   },
   font: {
-    body: tailwindConfig.theme.extend.fontFamily.text
-      .join(', ')
-      .replace(/"/gm, ''),
-    mono: tailwindConfig.theme.extend.fontFamily.mono
-      .join(', ')
-      .replace(/"/gm, ''),
-    size: tailwindConfig.theme.extend.fontSize.code,
+    body: sandpackThemeFonts.body,
+    mono: sandpackThemeFonts.mono,
+    size: sandpackThemeFonts.size,
     lineHeight: '24px',
   },
 };

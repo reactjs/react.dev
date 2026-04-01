@@ -9,7 +9,7 @@
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
 
-import {useRef, useCallback, useEffect, createRef} from 'react';
+import {useRef, useEffect, createRef, useMemo} from 'react';
 import cn from 'classnames';
 import {IconChevron} from 'components/Icon/IconChevron';
 import {ChallengeContents} from './Challenges';
@@ -27,8 +27,9 @@ export function Navigation({
   isRecipes?: boolean;
 }) {
   const containerRef = useRef<HTMLDivElement>(null);
-  const challengesNavRef = useRef(
-    challenges.map(() => createRef<HTMLButtonElement>())
+  const challengesNavRefs = useMemo(
+    () => challenges.map(() => createRef<HTMLButtonElement>()),
+    [challenges]
   );
   const scrollPos = currentChallenge.order - 1;
   const canScrollLeft = scrollPos > 0;
@@ -36,7 +37,7 @@ export function Navigation({
 
   const handleScrollRight = () => {
     if (scrollPos < challenges.length - 1) {
-      const currentNavRef = challengesNavRef.current[scrollPos + 1].current;
+      const currentNavRef = challengesNavRefs[scrollPos + 1].current;
       if (!currentNavRef) {
         return;
       }
@@ -49,7 +50,7 @@ export function Navigation({
 
   const handleScrollLeft = () => {
     if (scrollPos > 0) {
-      const currentNavRef = challengesNavRef.current[scrollPos - 1].current;
+      const currentNavRef = challengesNavRefs[scrollPos - 1].current;
       if (!currentNavRef) {
         return;
       }
@@ -61,29 +62,27 @@ export function Navigation({
   };
 
   const handleSelectNav = (index: number) => {
-    const currentNavRef = challengesNavRef.current[index].current;
+    const currentNavRef = challengesNavRefs[index].current;
     if (containerRef.current) {
       containerRef.current.scrollLeft = currentNavRef?.offsetLeft || 0;
     }
     handleChange(index);
   };
 
-  const handleResize = useCallback(() => {
-    if (containerRef.current) {
-      const el = containerRef.current;
-      el.scrollLeft =
-        challengesNavRef.current[scrollPos].current?.offsetLeft || 0;
-    }
-  }, [containerRef, challengesNavRef, scrollPos]);
-
   useEffect(() => {
-    handleResize();
-    const debouncedHandleResize = debounce(handleResize, 200);
+    const scrollToCurrentChallenge = () => {
+      if (containerRef.current) {
+        const el = containerRef.current;
+        el.scrollLeft = challengesNavRefs[scrollPos].current?.offsetLeft || 0;
+      }
+    };
+    scrollToCurrentChallenge();
+    const debouncedHandleResize = debounce(scrollToCurrentChallenge, 200);
     window.addEventListener('resize', debouncedHandleResize);
     return () => {
       window.removeEventListener('resize', debouncedHandleResize);
     };
-  }, [handleResize]);
+  }, [challengesNavRefs, scrollPos]);
 
   return (
     <div className="flex items-center justify-between">
@@ -104,7 +103,7 @@ export function Navigation({
               )}
               onClick={() => handleSelectNav(index)}
               key={`button-${id}`}
-              ref={challengesNavRef.current[index]}>
+              ref={challengesNavRefs[index]}>
               {order}. {name}
             </button>
           ))}

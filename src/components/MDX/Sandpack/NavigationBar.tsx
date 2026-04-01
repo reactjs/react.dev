@@ -62,6 +62,7 @@ export function NavigationBar({
   // We don't know whether they'll fit or not until after hydration:
   const [showDropdown, setShowDropdown] = useState(true);
   const {activeFile, setActiveFile, visibleFiles, clients} = sandpack;
+  const currentFile = activeFile ?? visibleFiles[0] ?? providedFiles[0] ?? '';
   const clientId = Object.keys(clients)[0];
   const {refresh} = useSandpackNavigation(clientId);
   const isMultiFile = visibleFiles.length > 1;
@@ -133,7 +134,7 @@ export function NavigationBar({
       {/* prettier-ignore */}
       <div className="flex-1 grow min-w-0 px-4 lg:px-6">
         {/* @ts-ignore: the Listbox type from '@headlessui/react' is incompatible with JSX in React 19 */}
-        <Listbox value={activeFile} onChange={setActiveFile}>
+        <Listbox value={currentFile} onChange={setActiveFile}>
           <div ref={containerRef}>
             <div className="relative overflow-hidden">
               <div
@@ -165,7 +166,7 @@ export function NavigationBar({
                         'h-full py-2 px-1 mt-px -mb-px flex border-b text-link dark:text-link-dark border-link dark:border-link-dark items-center text-md leading-tight truncate'
                       )}
                       style={{maxWidth: '160px'}}>
-                      {getFileName(activeFile)}
+                      {getFileName(currentFile)}
                       {isMultiFile && (
                         <span className="ms-2">
                           <IconChevron
@@ -205,9 +206,9 @@ export function NavigationBar({
         <ReloadButton onReload={handleReload} />
         <ClearButton onClear={handleClear} />
         {showOpenInCodeSandbox && <OpenInCodeSandboxButton />}
-        {activeFile.endsWith('.tsx') && (
+        {currentFile.endsWith('.tsx') && (
           <OpenInTypeScriptPlaygroundButton
-            content={sandpack.files[activeFile]?.code || ''}
+            content={sandpack.files[currentFile]?.code || ''}
           />
         )}
       </div>

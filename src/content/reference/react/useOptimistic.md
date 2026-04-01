@@ -51,7 +51,7 @@ function MyComponent({name, todos}) {
 
 ### `set` functions, like `setOptimistic(optimisticState)` {/*setoptimistic*/}
 
-The `set` function returned by `useOptimistic` lets you update the state for the duration of an [Action](reference/react/useTransition#functions-called-in-starttransition-are-called-actions). You can pass the next state directly, or a function that calculates it from the previous state:
+The `set` function returned by `useOptimistic` lets you update the state for the duration of an [Action](/reference/react/useTransition#functions-called-in-starttransition-are-called-actions). You can pass the next state directly, or a function that calculates it from the previous state:
 
 ```js
 const [optimisticLike, setOptimisticLike] = useOptimistic(false);
@@ -68,7 +68,7 @@ function handleClick() {
 
 #### Parameters {/*setoptimistic-parameters*/}
 
-* `optimisticState`: The value that you want the optimistic state to be during an [Action](reference/react/useTransition#functions-called-in-starttransition-are-called-actions). If you provided a `reducer` to `useOptimistic`, this value will be passed as the second argument to your reducer. It can be a value of any type.
+* `optimisticState`: The value that you want the optimistic state to be during an [Action](/reference/react/useTransition#functions-called-in-starttransition-are-called-actions). If you provided a `reducer` to `useOptimistic`, this value will be passed as the second argument to your reducer. It can be a value of any type.
     * If you pass a function as `optimisticState`, it will be treated as an _updater function_. It must be pure, should take the pending state as its only argument, and should return the next optimistic state. React will put your updater function in a queue and re-render your component. During the next render, React will calculate the next state by applying the queued updaters to the previous state similar to [`useState` updaters](/reference/react/useState#setstate-parameters).
 
 #### Returns {/*setoptimistic-returns*/}
@@ -77,7 +77,7 @@ function handleClick() {
 
 #### Caveats {/*setoptimistic-caveats*/}
 
-* The `set` function must be called inside an [Action](reference/react/useTransition#functions-called-in-starttransition-are-called-actions). If you call the setter outside an Action, [React will show a warning](#an-optimistic-state-update-occurred-outside-a-transition-or-action) and the optimistic state will briefly render.
+* The `set` function must be called inside an [Action](/reference/react/useTransition#functions-called-in-starttransition-are-called-actions). If you call the setter outside an Action, [React will show a warning](#an-optimistic-state-update-occurred-outside-a-transition-or-action) and the optimistic state will briefly render.
 
 <DeepDive>
 
@@ -161,7 +161,7 @@ function MyComponent({age, name, todos}) {
 `useOptimistic` returns an array with exactly two items:
 
 1. The <CodeStep step={2}>optimistic state</CodeStep>, initially set to the <CodeStep step={1}>value</CodeStep> provided.
-2. The <CodeStep step={3}>set function</CodeStep> that lets you temporarily change the state during an [Action](reference/react/useTransition#functions-called-in-starttransition-are-called-actions).
+2. The <CodeStep step={3}>set function</CodeStep> that lets you temporarily change the state during an [Action](/reference/react/useTransition#functions-called-in-starttransition-are-called-actions).
    * If a <CodeStep step={4}>reducer</CodeStep> is provided, it will run before returning the optimistic state.
 
 To use the <CodeStep step={2}>optimistic state</CodeStep>, call the `set` function inside an Action. 

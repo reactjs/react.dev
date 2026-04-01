@@ -16,18 +16,13 @@
  * route object that is infinitely nestable.
  */
 
-export type RouteTag =
-  | 'foundation'
-  | 'intermediate'
-  | 'advanced'
-  | 'experimental'
-  | 'deprecated';
+export type RouteTag = string;
 
 export interface RouteItem {
   /** Page title (for the sidebar) */
-  title: string;
+  title?: string;
   /** Optional version flag for heading */
-  version?: 'canary' | 'major';
+  version?: 'canary' | 'major' | 'experimental' | 'rc';
   /** Optional page description for heading */
   description?: string;
   /* Additional meta info for page tagging */

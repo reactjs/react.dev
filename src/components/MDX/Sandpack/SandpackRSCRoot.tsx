@@ -1,3 +1,5 @@
+'use client';
+
 /**
  * Copyright (c) Meta Platforms, Inc. and affiliates.
  *
@@ -9,18 +11,18 @@
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
 
-import {Children} from 'react';
 import * as React from 'react';
 import {SandpackProvider} from '@codesandbox/sandpack-react/unstyled';
 import {SandpackLogLevel} from '@codesandbox/sandpack-client';
 import {CustomPreset} from './CustomPreset';
-import {createFileMap} from './createFileMap';
+import type {SandpackSnippetFile} from './createFileMap';
 import {CustomTheme} from './Themes';
 import {templateRSC} from './templateRSC';
 import {RscFileBridge} from './sandpack-rsc/RscFileBridge';
 
 type SandpackProps = {
-  children: React.ReactNode;
+  files: Record<string, SandpackSnippetFile>;
+  providedFiles: string[];
   autorun?: boolean;
 };
 
@@ -75,9 +77,7 @@ ul {
 `.trim();
 
 function SandpackRSCRoot(props: SandpackProps) {
-  const {children, autorun = true} = props;
-  const codeSnippets = Children.toArray(children) as React.ReactElement[];
-  const files = createFileMap(codeSnippets);
+  const {files, providedFiles, autorun = true} = props;
 
   if ('/index.html' in files) {
     throw new Error(
@@ -86,15 +86,18 @@ function SandpackRSCRoot(props: SandpackProps) {
     );
   }
 
-  files['/src/styles.css'] = {
-    code: [sandboxStyle, files['/src/styles.css']?.code ?? ''].join('\n\n'),
-    hidden: !files['/src/styles.css']?.visible,
+  const sandpackFiles = {
+    ...files,
+    '/src/styles.css': {
+      code: [sandboxStyle, files['/src/styles.css']?.code ?? ''].join('\n\n'),
+      hidden: !files['/src/styles.css']?.visible,
+    },
   };
 
   return (
     <div className="sandpack sandpack--playground w-full my-8" dir="ltr">
       <SandpackProvider
-        files={{...templateRSC, ...files}}
+        files={{...templateRSC, ...sandpackFiles}}
         theme={CustomTheme}
         customSetup={{
           dependencies: {},
@@ -108,7 +111,7 @@ function SandpackRSCRoot(props: SandpackProps) {
         }}>
         <RscFileBridge />
         <CustomPreset
-          providedFiles={Object.keys(files)}
+          providedFiles={providedFiles}
           showOpenInCodeSandbox={false}
         />
       </SandpackProvider>

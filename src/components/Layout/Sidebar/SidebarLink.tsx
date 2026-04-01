@@ -1,3 +1,5 @@
+'use client';
+
 /**
  * Copyright (c) Meta Platforms, Inc. and affiliates.
  *
@@ -9,15 +11,13 @@
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
 
-/* eslint-disable jsx-a11y/no-static-element-interactions */
-/* eslint-disable jsx-a11y/click-events-have-key-events */
 import {useRef, useEffect} from 'react';
 import * as React from 'react';
 import cn from 'classnames';
 import {IconNavArrow} from 'components/Icon/IconNavArrow';
 import {IconCanary} from 'components/Icon/IconCanary';
 import {IconExperimental} from 'components/Icon/IconExperimental';
-import Link from 'next/link';
+import Link, {useLinkStatus} from 'next/link';
 
 interface SidebarLinkProps {
   href: string;
@@ -28,43 +28,19 @@ interface SidebarLinkProps {
   icon?: React.ReactNode;
   isExpanded?: boolean;
   hideArrow?: boolean;
-  isPending: boolean;
 }
 
-export function SidebarLink({
-  href,
-  selected = false,
+function SidebarLinkContent({
+  hideArrow,
+  isExpanded,
+  pending,
+  selected,
   title,
   version,
   level,
-  isExpanded,
-  hideArrow,
-  isPending,
-}: SidebarLinkProps) {
-  const ref = useRef<HTMLAnchorElement>(null);
-
-  useEffect(() => {
-    if (selected && ref && ref.current) {
-      // @ts-ignore
-      if (typeof ref.current.scrollIntoViewIfNeeded === 'function') {
-        // @ts-ignore
-        ref.current.scrollIntoViewIfNeeded();
-      }
-    }
-  }, [ref, selected]);
-
-  let target = '';
-  if (href.startsWith('https://')) {
-    target = '_blank';
-  }
+}: Omit<SidebarLinkProps, 'href'> & {pending: boolean}) {
   return (
-    <Link
-      href={href}
-      ref={ref}
-      title={title}
-      target={target}
-      passHref
-      aria-current={selected ? 'page' : undefined}
+    <span
       className={cn(
         'p-2 pe-2 w-full rounded-none lg:rounded-e-2xl text-start hover:bg-gray-5 dark:hover:bg-gray-80 relative flex items-center justify-between',
         {
@@ -77,11 +53,10 @@ export function SidebarLink({
           'text-base text-link dark:text-link-dark bg-highlight dark:bg-highlight-dark border-blue-40 hover:bg-highlight hover:text-link dark:hover:bg-highlight-dark dark:hover:text-link-dark':
             selected,
           'dark:bg-gray-70 bg-gray-3 dark:hover:bg-gray-70 hover:bg-gray-3':
-            isPending,
+            pending,
         }
       )}>
-      {/* This here needs to be refactored ofc */}
-      <div>
+      <span>
         {title}{' '}
         {version === 'major' && (
           <span
@@ -108,9 +83,8 @@ export function SidebarLink({
             className="ms-1 text-gray-30 dark:text-gray-60 inline-block w-3.5 h-3.5 align-[-3px]"
           />
         )}
-      </div>
-
-      {isExpanded != null && !hideArrow && (
+      </span>
+      {isExpanded != null && !hideArrow ? (
         <span
           className={cn('pe-1', {
             'text-link dark:text-link-dark': isExpanded,
@@ -118,7 +92,75 @@ export function SidebarLink({
           })}>
           <IconNavArrow displayDirection={isExpanded ? 'down' : 'end'} />
         </span>
-      )}
+      ) : null}
+    </span>
+  );
+}
+
+function PendingSidebarLinkContent(props: Omit<SidebarLinkProps, 'href'>) {
+  const {pending} = useLinkStatus();
+  return <SidebarLinkContent {...props} pending={pending} />;
+}
+
+export function SidebarLink({
+  href,
+  selected = false,
+  title,
+  version,
+  level,
+  isExpanded,
+  hideArrow,
+}: SidebarLinkProps) {
+  const ref = useRef<HTMLAnchorElement>(null);
+
+  useEffect(() => {
+    if (selected && ref && ref.current) {
+      // @ts-ignore
+      if (typeof ref.current.scrollIntoViewIfNeeded === 'function') {
+        // @ts-ignore
+        ref.current.scrollIntoViewIfNeeded();
+      }
+    }
+  }, [ref, selected]);
+
+  let target = '';
+  if (href.startsWith('https://')) {
+    target = '_blank';
+  }
+
+  const contentProps = {
+    hideArrow,
+    isExpanded,
+    level,
+    selected,
+    title,
+    version,
+  };
+
+  if (target === '_blank') {
+    return (
+      <a
+        href={href}
+        ref={ref}
+        title={title}
+        target={target}
+        rel="noreferrer noopener"
+        aria-current={selected ? 'page' : undefined}
+        className="block">
+        <SidebarLinkContent {...contentProps} pending={false} />
+      </a>
+    );
+  }
+
+  return (
+    <Link
+      href={href}
+      ref={ref}
+      title={title}
+      target={target}
+      aria-current={selected ? 'page' : undefined}
+      className="block">
+      <PendingSidebarLinkContent {...contentProps} />
     </Link>
   );
 }

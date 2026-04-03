@@ -303,7 +303,7 @@ export default function TopNav({
               <div className="flex flex-column justify-center items-center">
                 <NextLink
                   href="/versions"
-                  className=" flex py-2 flex-column justify-center items-center text-gray-50 dark:text-gray-30 hover:text-link hover:dark:text-link-dark hover:underline text-sm ms-1 cursor-pointer">
+                  className="flex py-2 flex-column justify-center items-center text-gray-50 dark:text-gray-30 hover:text-link hover:dark:text-link-dark hover:underline text-sm ms-1 cursor-pointer">
                   v{siteConfig.version}
                 </NextLink>
               </div>
@@ -344,7 +344,7 @@ export default function TopNav({
                 </NavItem>
               </div>
               <div className="flex w-full md:hidden"></div>
-              <div className="flex items-center -space-x-2.5 xs:space-x-0 ">
+              <div className="flex items-center -space-x-2.5 xs:space-x-0">
                 <div className="flex md:hidden">
                   <button
                     aria-label="Search"

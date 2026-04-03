@@ -115,7 +115,7 @@ Now, if the parent component gets a ref to `MyInput`, it will be able to call th
 
 ```js
 import { useRef } from 'react';
-import MyInput from './MyInput.js';
+import MyInput from './MyInput.jsx';
 
 export default function Form() {
   const ref = useRef(null);
@@ -137,7 +137,7 @@ export default function Form() {
 }
 ```
 
-```js src/MyInput.js
+```js src/MyInput.jsx
 import { useRef, useImperativeHandle } from 'react';
 
 function MyInput({ ref, ...props }) {
@@ -178,7 +178,7 @@ The methods you expose via an imperative handle don't have to match the DOM meth
 
 ```js
 import { useRef } from 'react';
-import Post from './Post.js';
+import Post from './Post.jsx';
 
 export default function Page() {
   const postRef = useRef(null);
@@ -198,10 +198,10 @@ export default function Page() {
 }
 ```
 
-```js src/Post.js
+```js src/Post.jsx
 import { useRef, useImperativeHandle } from 'react';
-import CommentList from './CommentList.js';
-import AddComment from './AddComment.js';
+import CommentList from './CommentList.jsx';
+import AddComment from './AddComment.jsx';
 
 function Post({ ref }) {
   const commentsRef = useRef(null);
@@ -231,7 +231,7 @@ export default Post;
 ```
 
 
-```js src/CommentList.js
+```js src/CommentList.jsx
 import { useRef, useImperativeHandle } from 'react';
 
 function CommentList({ ref }) {
@@ -261,7 +261,7 @@ function CommentList({ ref }) {
 export default CommentList;
 ```
 
-```js src/AddComment.js
+```js src/AddComment.jsx
 import { useRef, useImperativeHandle } from 'react';
 
 function AddComment({ ref }) {

@@ -53,19 +53,6 @@ export default function formatHTML(markup) {
 }
 `;
 
-const packageJSON = `
-{
-  "dependencies": {
-    "react": "^19.2.1",
-    "react-dom": "^19.2.1",
-    "react-scripts": "^5.0.0",
-    "html-format": "^1.1.2"
-  },
-  "main": "/index.js",
-  "devDependencies": {}
-}
-`;
-
 // Intentionally not a React component because <Sandpack> will read
 // through its childrens' props. This imitates the output of ```
 // codeblocks in MDX.
@@ -84,9 +71,8 @@ export default memo(function SandpackWithHTMLOutput(
 ) {
   const children = [
     ...Children.toArray(props.children),
-    createFile('src/ShowRenderedHTML.js', ShowRenderedHTML),
+    createFile('src/ShowRenderedHTML.jsx', ShowRenderedHTML),
     createFile('src/formatHTML.js hidden', formatHTML),
-    createFile('package.json hidden', packageJSON),
   ];
   return <SandpackClient {...props}>{children}</SandpackClient>;
 });

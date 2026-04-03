@@ -1025,10 +1025,10 @@ In this chat app, the `<Chat>` component contains the text input state:
 
 <Sandpack>
 
-```js src/App.js
+```js src/App.jsx
 import { useState } from 'react';
-import Chat from './Chat.js';
-import ContactList from './ContactList.js';
+import Chat from './Chat.jsx';
+import ContactList from './ContactList.jsx';
 
 export default function Messenger() {
   const [to, setTo] = useState(contacts[0]);
@@ -1051,7 +1051,7 @@ const contacts = [
 ];
 ```
 
-```js src/ContactList.js
+```js src/ContactList.jsx
 export default function ContactList({
   selectedContact,
   contacts,
@@ -1075,7 +1075,7 @@ export default function ContactList({
 }
 ```
 
-```js src/Chat.js
+```js src/Chat.jsx
 import { useState } from 'react';
 
 export default function Chat({ contact }) {
@@ -1130,10 +1130,10 @@ Now switching the recipient always clears the text field:
 
 <Sandpack>
 
-```js src/App.js
+```js src/App.jsx
 import { useState } from 'react';
-import Chat from './Chat.js';
-import ContactList from './ContactList.js';
+import Chat from './Chat.jsx';
+import ContactList from './ContactList.jsx';
 
 export default function Messenger() {
   const [to, setTo] = useState(contacts[0]);
@@ -1156,7 +1156,7 @@ const contacts = [
 ];
 ```
 
-```js src/ContactList.js
+```js src/ContactList.jsx
 export default function ContactList({
   selectedContact,
   contacts,
@@ -1180,7 +1180,7 @@ export default function ContactList({
 }
 ```
 
-```js src/Chat.js
+```js src/Chat.jsx
 import { useState } from 'react';
 
 export default function Chat({ contact }) {
@@ -1254,7 +1254,7 @@ This example shows a message when you press the button. However, pressing the bu
 
 <Sandpack>
 
-```js src/App.js
+```js src/App.jsx
 import { useState } from 'react';
 
 export default function App() {
@@ -1305,7 +1305,7 @@ The easiest solution is to unify the branches so that `Form` always renders in t
 
 <Sandpack>
 
-```js src/App.js
+```js src/App.jsx
 import { useState } from 'react';
 
 export default function App() {
@@ -1351,7 +1351,7 @@ Technically, you could also add `null` before `<Form />` in the `else` branch to
 
 <Sandpack>
 
-```js src/App.js
+```js src/App.jsx
 import { useState } from 'react';
 
 export default function App() {
@@ -1413,7 +1413,7 @@ It seems like for these fields, their position within the parent is not enough. 
 
 <Sandpack>
 
-```js src/App.js
+```js src/App.jsx
 import { useState } from 'react';
 
 export default function App() {
@@ -1475,7 +1475,7 @@ Give a `key` to both `<Field>` components in both `if` and `else` branches. This
 
 <Sandpack>
 
-```js src/App.js
+```js src/App.jsx
 import { useState } from 'react';
 
 export default function App() {
@@ -1541,10 +1541,10 @@ When you select a different contact (for example, Alice), the state updates but 
 
 <Sandpack>
 
-```js src/App.js
+```js src/App.jsx
 import { useState } from 'react';
-import ContactList from './ContactList.js';
-import EditContact from './EditContact.js';
+import ContactList from './ContactList.jsx';
+import EditContact from './EditContact.jsx';
 
 export default function ContactManager() {
   const [
@@ -1593,7 +1593,7 @@ const initialContacts = [
 ];
 ```
 
-```js src/ContactList.js
+```js src/ContactList.jsx
 export default function ContactList({
   contacts,
   selectedId,
@@ -1620,7 +1620,7 @@ export default function ContactList({
 }
 ```
 
-```js src/EditContact.js
+```js src/EditContact.jsx
 import { useState } from 'react';
 
 export default function EditContact({ initialData, onSave }) {
@@ -1693,10 +1693,10 @@ Give `key={selectedId}` to the `EditContact` component. This way, switching betw
 
 <Sandpack>
 
-```js src/App.js
+```js src/App.jsx
 import { useState } from 'react';
-import ContactList from './ContactList.js';
-import EditContact from './EditContact.js';
+import ContactList from './ContactList.jsx';
+import EditContact from './EditContact.jsx';
 
 export default function ContactManager() {
   const [
@@ -1746,7 +1746,7 @@ const initialContacts = [
 ];
 ```
 
-```js src/ContactList.js
+```js src/ContactList.jsx
 export default function ContactList({
   contacts,
   selectedId,
@@ -1773,7 +1773,7 @@ export default function ContactList({
 }
 ```
 
-```js src/EditContact.js
+```js src/EditContact.jsx
 import { useState } from 'react';
 
 export default function EditContact({ initialData, onSave }) {
@@ -1888,25 +1888,25 @@ export default function Gallery() {
 
 let images = [{
   place: 'Penang, Malaysia',
-  src: 'https://i.imgur.com/FJeJR8M.jpg'
+  src: 'https://react.dev/images/content/penang-malaysia.jpg'
 }, {
   place: 'Lisbon, Portugal',
-  src: 'https://i.imgur.com/dB2LRbj.jpg'
+  src: 'https://react.dev/images/content/lisbon-portugal.jpg'
 }, {
   place: 'Bilbao, Spain',
-  src: 'https://i.imgur.com/z08o2TS.jpg'
+  src: 'https://react.dev/images/content/bilbao-spain.jpg'
 }, {
   place: 'Valparaíso, Chile',
-  src: 'https://i.imgur.com/Y3utgTi.jpg'
+  src: 'https://react.dev/images/content/valparaiso-chile.jpg'
 }, {
   place: 'Schwyz, Switzerland',
-  src: 'https://i.imgur.com/JBbMpWY.jpg'
+  src: 'https://react.dev/images/content/schwyz-switzerland.jpg'
 }, {
   place: 'Prague, Czechia',
-  src: 'https://i.imgur.com/QwUKKmF.jpg'
+  src: 'https://react.dev/images/content/prague-czechia.jpg'
 }, {
   place: 'Ljubljana, Slovenia',
-  src: 'https://i.imgur.com/3aIiwfm.jpg'
+  src: 'https://react.dev/images/content/ljubljana-slovenia.jpg'
 }];
 ```
 
@@ -1956,25 +1956,25 @@ export default function Gallery() {
 
 let images = [{
   place: 'Penang, Malaysia',
-  src: 'https://i.imgur.com/FJeJR8M.jpg'
+  src: 'https://react.dev/images/content/penang-malaysia.jpg'
 }, {
   place: 'Lisbon, Portugal',
-  src: 'https://i.imgur.com/dB2LRbj.jpg'
+  src: 'https://react.dev/images/content/lisbon-portugal.jpg'
 }, {
   place: 'Bilbao, Spain',
-  src: 'https://i.imgur.com/z08o2TS.jpg'
+  src: 'https://react.dev/images/content/bilbao-spain.jpg'
 }, {
   place: 'Valparaíso, Chile',
-  src: 'https://i.imgur.com/Y3utgTi.jpg'
+  src: 'https://react.dev/images/content/valparaiso-chile.jpg'
 }, {
   place: 'Schwyz, Switzerland',
-  src: 'https://i.imgur.com/JBbMpWY.jpg'
+  src: 'https://react.dev/images/content/schwyz-switzerland.jpg'
 }, {
   place: 'Prague, Czechia',
-  src: 'https://i.imgur.com/QwUKKmF.jpg'
+  src: 'https://react.dev/images/content/prague-czechia.jpg'
 }, {
   place: 'Ljubljana, Slovenia',
-  src: 'https://i.imgur.com/3aIiwfm.jpg'
+  src: 'https://react.dev/images/content/ljubljana-slovenia.jpg'
 }];
 ```
 
@@ -1994,9 +1994,9 @@ Fix it so that the expanded state is associated with each contact, regardless of
 
 <Sandpack>
 
-```js src/App.js
+```js src/App.jsx
 import { useState } from 'react';
-import Contact from './Contact.js';
+import Contact from './Contact.jsx';
 
 export default function ContactList() {
   const [reverse, setReverse] = useState(false);
@@ -2036,7 +2036,7 @@ const contacts = [
 ];
 ```
 
-```js src/Contact.js
+```js src/Contact.jsx
 import { useState } from 'react';
 
 export default function Contact({ contact }) {
@@ -2093,9 +2093,9 @@ Using the contact ID as a `key` instead fixes the issue:
 
 <Sandpack>
 
-```js src/App.js
+```js src/App.jsx
 import { useState } from 'react';
-import Contact from './Contact.js';
+import Contact from './Contact.jsx';
 
 export default function ContactList() {
   const [reverse, setReverse] = useState(false);
@@ -2135,7 +2135,7 @@ const contacts = [
 ];
 ```
 
-```js src/Contact.js
+```js src/Contact.jsx
 import { useState } from 'react';
 
 export default function Contact({ contact }) {

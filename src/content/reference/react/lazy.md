@@ -85,11 +85,11 @@ In this example, the code for `MarkdownPreview` won't be loaded until you attemp
 
 <Sandpack>
 
-```js src/App.js
+```js src/App.jsx
 import { useState, Suspense, lazy } from 'react';
-import Loading from './Loading.js';
+import Loading from './Loading.jsx';
 
-const MarkdownPreview = lazy(() => delayForDemo(import('./MarkdownPreview.js')));
+const MarkdownPreview = lazy(() => delayForDemo(import('./MarkdownPreview.jsx')));
 
 export default function MarkdownEditor() {
   const [showPreview, setShowPreview] = useState(false);
@@ -120,13 +120,13 @@ function delayForDemo(promise) {
 }
 ```
 
-```js src/Loading.js
+```js src/Loading.jsx
 export default function Loading() {
   return <p><i>Loading...</i></p>;
 }
 ```
 
-```js src/MarkdownPreview.js
+```js src/MarkdownPreview.jsx
 import { Remarkable } from 'remarkable';
 
 const md = new Remarkable();

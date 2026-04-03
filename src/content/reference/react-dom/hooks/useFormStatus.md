@@ -79,7 +79,7 @@ Here, we use the `pending` property to indicate the form is submitting.
 
 <Sandpack>
 
-```js src/App.js
+```js src/App.jsx
 import { useFormStatus } from "react-dom";
 import { submitForm } from "./actions.js";
 
@@ -156,7 +156,7 @@ Here, we have a form where users can request a username. We can use `useFormStat
 
 <Sandpack>
 
-```js src/UsernameForm.js active
+```js src/UsernameForm.jsx active
 import {useState, useMemo, useRef} from 'react';
 import {useFormStatus} from 'react-dom';
 
@@ -177,7 +177,7 @@ export default function UsernameForm() {
 }
 ```
 
-```js src/App.js
+```js src/App.jsx
 import UsernameForm from './UsernameForm';
 import { submitForm } from "./actions.js";
 import {useRef} from 'react';

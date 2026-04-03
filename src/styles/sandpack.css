@@ -31,7 +31,7 @@
     Noto Color Emoji;
   --sp-font-mono: Source Code Pro, ui-monospace, SFMono-Regular, Menlo, Monaco,
     Consolas, Liberation Mono, Courier New, monospace;
-  --sp-font-size: calc(1em - 20%);
+  --sp-font-size: 14px;
   --sp-font-lineHeight: 24px;
 }
 
@@ -305,106 +305,6 @@ html.dark .sp-wrapper {
 /**
  * Loading & error overlay component
  */
-.sandpack .sp-cube-wrapper {
-  background-color: var(--sp-colors-surface1);
-  position: absolute;
-  right: var(--sp-space-2);
-  bottom: var(--sp-space-2);
-  z-index: var(--sp-zIndices-top);
-  width: 32px;
-  height: 32px;
-  border-radius: var(--sp-border-radius);
-}
-
-.sandpack .sp-button {
-  display: flex;
-  align-items: center;
-  margin: auto;
-  width: 100%;
-  height: 100%;
-}
-
-.sandpack .sp-button svg {
-  min-width: var(--sp-space-5);
-  width: var(--sp-space-5);
-  height: var(--sp-space-5);
-  margin: auto;
-}
-
-.sandpack .sp-cube-wrapper .sp-cube {
-  display: flex;
-}
-
-.sandpack .sp-cube-wrapper .sp-button {
-  display: none;
-}
-
-.sandpack .sp-cube-wrapper:hover .sp-button {
-  display: block;
-}
-
-.sandpack .sp-cube-wrapper:hover .sp-cube {
-  display: none;
-}
-
-.sandpack .sp-cube {
-  transform: translate(-4px, 9px) scale(0.13, 0.13);
-}
-
-.sandpack .sp-cube * {
-  position: absolute;
-  width: 96px;
-  height: 96px;
-}
-
-@keyframes cubeRotate {
-  0% {
-    transform: rotateX(-25.5deg) rotateY(45deg);
-  }
-
-  100% {
-    transform: rotateX(-25.5deg) rotateY(405deg);
-  }
-}
-
-.sandpack .sp-sides {
-  animation: cubeRotate 1s linear infinite;
-  animation-fill-mode: forwards;
-  transform-style: preserve-3d;
-  transform: rotateX(-25.5deg) rotateY(45deg);
-}
-
-.sandpack .sp-sides * {
-  border: 10px solid var(--sp-colors-clickable);
-  border-radius: 8px;
-  background: var(--sp-colors-surface1);
-}
-
-.sandpack .sp-sides .top {
-  transform: rotateX(90deg) translateZ(44px);
-  transform-origin: 50% 50%;
-}
-.sandpack .sp-sides .bottom {
-  transform: rotateX(-90deg) translateZ(44px);
-  transform-origin: 50% 50%;
-}
-.sandpack .sp-sides .front {
-  transform: rotateY(0deg) translateZ(44px);
-  transform-origin: 50% 50%;
-}
-.sandpack .sp-sides .back {
-  transform: rotateY(-180deg) translateZ(44px);
-  transform-origin: 50% 50%;
-}
-.sandpack .sp-sides .left {
-  transform: rotateY(-90deg) translateZ(44px);
-  transform-origin: 50% 50%;
-}
-.sandpack .sp-sides .right {
-  transform: rotateY(90deg) translateZ(44px);
-  transform-origin: 50% 50%;
-}
-
 .sandpack .sp-overlay {
   @apply bg-card;
   position: absolute;
@@ -611,4 +511,65 @@ html.dark .sp-devtools > div {
 
 .sp-loading .sp-icon-standalone span {
   display: none;
+}
+
+/**
+ * Boot progress checklist
+ */
+.sp-boot-checklist {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  height: 100%;
+  margin: 0 auto;
+  width: fit-content;
+  gap: 10px;
+}
+
+.sp-boot-step {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--sp-font-body);
+  font-size: 13px;
+  line-height: 1;
+  transition: color 300ms ease, opacity 300ms ease;
+}
+
+.sp-boot-step-pending {
+  color: var(--sp-colors-clickable);
+  opacity: 0.4;
+}
+
+.sp-boot-step-active {
+  color: var(--sp-colors-accent);
+  opacity: 1;
+}
+
+.sp-boot-step-done {
+  color: var(--sp-colors-clickable);
+  opacity: 0.65;
+}
+
+.sp-boot-step-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+@keyframes bootSpinnerRotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.sp-boot-spinner {
+  animation: bootSpinnerRotate 0.8s linear infinite;
 }

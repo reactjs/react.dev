@@ -42,19 +42,19 @@ When your app starts, you need to trigger the initial render. Frameworks and san
 
 <Sandpack>
 
-```js src/index.js active
-import Image from './Image.js';
+```js src/index.jsx active
+import Image from './Image.jsx';
 import { createRoot } from 'react-dom/client';
 
 const root = createRoot(document.getElementById('root'))
 root.render(<Image />);
 ```
 
-```js src/Image.js
+```js src/Image.jsx
 export default function Image() {
   return (
     <img
-      src="https://i.imgur.com/ZF6s192.jpg"
+      src="https://react.dev/images/content/floralis-generica.jpg"
       alt="'Floralis Genérica' by Eduardo Catalano: a gigantic metallic flower sculpture with reflective petals"
     />
   );
@@ -88,7 +88,7 @@ In the following example, React will call `Gallery()` and `Image()` several time
 
 <Sandpack>
 
-```js src/Gallery.js active
+```js src/Gallery.jsx active
 export default function Gallery() {
   return (
     <section>
@@ -103,15 +103,15 @@ export default function Gallery() {
 function Image() {
   return (
     <img
-      src="https://i.imgur.com/ZF6s192.jpg"
+      src="https://react.dev/images/content/floralis-generica.jpg"
       alt="'Floralis Genérica' by Eduardo Catalano: a gigantic metallic flower sculpture with reflective petals"
     />
   );
 }
 ```
 
-```js src/index.js
-import Gallery from './Gallery.js';
+```js src/index.jsx
+import Gallery from './Gallery.jsx';
 import { createRoot } from 'react-dom/client';
 
 const root = createRoot(document.getElementById('root'))
@@ -157,7 +157,7 @@ After rendering (calling) your components, React will modify the DOM.
 
 <Sandpack>
 
-```js src/Clock.js active
+```js src/Clock.jsx active
 export default function Clock({ time }) {
   return (
     <>
@@ -168,9 +168,9 @@ export default function Clock({ time }) {
 }
 ```
 
-```js src/App.js hidden
+```js src/App.jsx hidden
 import { useState, useEffect } from 'react';
-import Clock from './Clock.js';
+import Clock from './Clock.jsx';
 
 function useTime() {
   const [time, setTime] = useState(() => new Date());

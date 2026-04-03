@@ -64,7 +64,7 @@ To better illustrate this, consider the following React Server Components app.
 
 <Sandpack>
 
-```js src/App.js
+```js src/App.jsx
 import FancyText from './FancyText';
 import InspirationGenerator from './InspirationGenerator';
 import Copyright from './Copyright';
@@ -82,7 +82,7 @@ export default function App() {
 
 ```
 
-```js src/FancyText.js
+```js src/FancyText.jsx
 export default function FancyText({title, text}) {
   return title
     ? <h1 className='fancy title'>{text}</h1>
@@ -90,7 +90,7 @@ export default function FancyText({title, text}) {
 }
 ```
 
-```js src/InspirationGenerator.js
+```js src/InspirationGenerator.jsx
 'use client';
 
 import { useState } from 'react';
@@ -113,7 +113,7 @@ export default function InspirationGenerator({children}) {
 }
 ```
 
-```js src/Copyright.js
+```js src/Copyright.jsx
 export default function Copyright({year}) {
   return <p className='small'>©️ {year}</p>;
 }
@@ -286,7 +286,7 @@ Notably, these are not supported:
 
 <Sandpack>
 
-```js src/App.js
+```js src/App.jsx
 'use client';
 
 import { useState } from 'react';

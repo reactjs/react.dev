@@ -190,10 +190,10 @@ React will, however, recognize an custom element's property as one that it may p
 
 <Sandpack>
 
-```js src/index.js hidden
+```js src/index.jsx hidden
 import {MyElement} from './MyElement.js';
 import { createRoot } from 'react-dom/client';
-import {App} from "./App.js";
+import {App} from "./App.jsx";
 
 customElements.define('my-element', MyElement);
 
@@ -216,7 +216,7 @@ export class MyElement extends HTMLElement {
 }
 ```
 
-```js src/App.js
+```js src/App.jsx
 export function App() {
   return <my-element value={[1,2,3]}></my-element>
 }
@@ -230,10 +230,10 @@ A common pattern when using custom elements is that they may dispatch [`CustomEv
 
 <Sandpack>
 
-```js src/index.js hidden
+```js src/index.jsx hidden
 import {MyElement} from './MyElement.js';
 import { createRoot } from 'react-dom/client';
-import {App} from "./App.js";
+import {App} from "./App.jsx";
 
 customElements.define('my-element', MyElement);
 
@@ -271,7 +271,7 @@ export class MyElement extends HTMLElement {
 }
 ```
 
-```jsx src/App.js active
+```jsx src/App.jsx active
 export function App() {
   return (
     <my-element

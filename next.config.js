@@ -19,6 +19,36 @@ const nextConfig = {
     scrollRestoration: true,
     reactCompiler: true,
   },
+  async headers() {
+    return [
+      {
+        source: '/(.*)',
+        headers: [
+          {
+            key: 'Cross-Origin-Embedder-Policy',
+            value: 'require-corp',
+          },
+          {
+            key: 'Cross-Origin-Opener-Policy',
+            value: 'same-origin',
+          },
+        ],
+      },
+      {
+        source: '/images/content/(.*)',
+        headers: [
+          {
+            key: 'Cross-Origin-Resource-Policy',
+            value: 'cross-origin',
+          },
+          {
+            key: 'Access-Control-Allow-Origin',
+            value: '*',
+          },
+        ],
+      },
+    ];
+  },
   async rewrites() {
     return {
       beforeFiles: [

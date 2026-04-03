@@ -453,9 +453,9 @@ Because custom Hooks re-render together with your component, they always receive
 
 <Sandpack>
 
-```js src/App.js
+```js src/App.jsx
 import { useState } from 'react';
-import ChatRoom from './ChatRoom.js';
+import ChatRoom from './ChatRoom.jsx';
 
 export default function App() {
   const [roomId, setRoomId] = useState('general');
@@ -481,7 +481,7 @@ export default function App() {
 }
 ```
 
-```js src/ChatRoom.js active
+```js src/ChatRoom.jsx active
 import { useState, useEffect } from 'react';
 import { createConnection } from './chat.js';
 import { showNotification } from './notifications.js';
@@ -649,9 +649,9 @@ Notice that the logic *still responds* to prop and state changes. Try editing th
 
 <Sandpack>
 
-```js src/App.js
+```js src/App.jsx
 import { useState } from 'react';
-import ChatRoom from './ChatRoom.js';
+import ChatRoom from './ChatRoom.jsx';
 
 export default function App() {
   const [roomId, setRoomId] = useState('general');
@@ -677,7 +677,7 @@ export default function App() {
 }
 ```
 
-```js src/ChatRoom.js active
+```js src/ChatRoom.jsx active
 import { useState } from 'react';
 import { useChatRoom } from './useChatRoom.js';
 
@@ -921,9 +921,9 @@ Now the chat won't re-connect every time that the `ChatRoom` component re-render
 
 <Sandpack>
 
-```js src/App.js
+```js src/App.jsx
 import { useState } from 'react';
-import ChatRoom from './ChatRoom.js';
+import ChatRoom from './ChatRoom.jsx';
 
 export default function App() {
   const [roomId, setRoomId] = useState('general');
@@ -949,7 +949,7 @@ export default function App() {
 }
 ```
 
-```js src/ChatRoom.js active
+```js src/ChatRoom.jsx active
 import { useState } from 'react';
 import { useChatRoom } from './useChatRoom.js';
 import { showNotification } from './notifications.js';

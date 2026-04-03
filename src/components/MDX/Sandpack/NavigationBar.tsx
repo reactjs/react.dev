@@ -22,8 +22,8 @@ import {
   FileTabs,
   useSandpack,
   useSandpackNavigation,
-} from '@codesandbox/sandpack-react/unstyled';
-import {OpenInCodeSandboxButton} from './OpenInCodeSandboxButton';
+} from '@webcontainer/react';
+import {OpenInStackBlitzButton} from './OpenInStackBlitzButton';
 import {ReloadButton} from './ReloadButton';
 import {ClearButton} from './ClearButton';
 import {DownloadButton} from './DownloadButton';
@@ -50,10 +50,10 @@ const getFileName = (filePath: string): string => {
 
 export function NavigationBar({
   providedFiles,
-  showOpenInCodeSandbox = true,
+  showOpenInStackBlitz = true,
 }: {
   providedFiles: Array<string>;
-  showOpenInCodeSandbox?: boolean;
+  showOpenInStackBlitz?: boolean;
 }) {
   const {sandpack} = useSandpack();
   const containerRef = useRef<HTMLDivElement | null>(null);
@@ -61,9 +61,8 @@ export function NavigationBar({
   // By default, show the dropdown because all tabs may not fit.
   // We don't know whether they'll fit or not until after hydration:
   const [showDropdown, setShowDropdown] = useState(true);
-  const {activeFile, setActiveFile, visibleFiles, clients} = sandpack;
-  const clientId = Object.keys(clients)[0];
-  const {refresh} = useSandpackNavigation(clientId);
+  const {activeFile, setActiveFile, visibleFiles} = sandpack;
+  const {refresh} = useSandpackNavigation();
   const isMultiFile = visibleFiles.length > 1;
   const hasJustToggledDropdown = useRef(false);
 
@@ -110,17 +109,9 @@ export function NavigationBar({
   }, [isMultiFile, onContainerResize]);
 
   const handleClear = () => {
-    /**
-     * resetAllFiles must come first, otherwise
-     * the previous content will appear for a second
-     * when the iframe loads.
-     *
-     * Plus, it should only prompt if there's any file changes
-     */
     if (sandpack.editorState === 'dirty' && confirm('Clear all your edits?')) {
       sandpack.resetAllFiles();
     }
-    refresh();
   };
 
   const handleReload = () => {
@@ -146,7 +137,6 @@ export function NavigationBar({
                   'w-[fit-content]',
                   showDropdown ? 'invisible' : ''
                 )}>
-                {/* @ts-ignore: the FileTabs type from '@codesandbox/sandpack-react/unstyled' is incompatible with JSX in React 19 */}
                 <FileTabs />
               </div>
               {/* @ts-ignore: the Listbox type from '@headlessui/react' is incompatible with JSX in React 19 */}
@@ -204,7 +194,7 @@ export function NavigationBar({
         <DownloadButton providedFiles={providedFiles} />
         <ReloadButton onReload={handleReload} />
         <ClearButton onClear={handleClear} />
-        {showOpenInCodeSandbox && <OpenInCodeSandboxButton />}
+        {showOpenInStackBlitz && <OpenInStackBlitzButton />}
         {activeFile.endsWith('.tsx') && (
           <OpenInTypeScriptPlaygroundButton
             content={sandpack.files[activeFile]?.code || ''}

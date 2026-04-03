@@ -101,9 +101,9 @@ In this example, the `SearchResults` component [suspends](/reference/react/Suspe
 
 <Sandpack>
 
-```js src/App.js
+```js src/App.jsx
 import { Suspense, useState } from 'react';
-import SearchResults from './SearchResults.js';
+import SearchResults from './SearchResults.jsx';
 
 export default function App() {
   const [query, setQuery] = useState('');
@@ -121,7 +121,7 @@ export default function App() {
 }
 ```
 
-```js src/SearchResults.js
+```js src/SearchResults.jsx
 import {use} from 'react';
 import { fetchData } from './data.js';
 
@@ -270,9 +270,9 @@ Enter `"a"` in the example below, wait for the results to load, and then edit th
 
 <Sandpack>
 
-```js src/App.js
+```js src/App.jsx
 import { Suspense, useState, useDeferredValue } from 'react';
-import SearchResults from './SearchResults.js';
+import SearchResults from './SearchResults.jsx';
 
 export default function App() {
   const [query, setQuery] = useState('');
@@ -291,7 +291,7 @@ export default function App() {
 }
 ```
 
-```js src/SearchResults.js
+```js src/SearchResults.jsx
 import {use} from 'react';
 import { fetchData } from './data.js';
 
@@ -448,9 +448,9 @@ With this change, as soon as you start typing, the stale result list gets slight
 
 <Sandpack>
 
-```js src/App.js
+```js src/App.jsx
 import { Suspense, useState, useDeferredValue } from 'react';
-import SearchResults from './SearchResults.js';
+import SearchResults from './SearchResults.jsx';
 
 export default function App() {
   const [query, setQuery] = useState('');
@@ -475,7 +475,7 @@ export default function App() {
 }
 ```
 
-```js src/SearchResults.js
+```js src/SearchResults.jsx
 import {use} from 'react';
 import { fetchData } from './data.js';
 
@@ -655,7 +655,7 @@ In this example, each item in the `SlowList` component is **artificially slowed 
 
 ```js
 import { useState, useDeferredValue } from 'react';
-import SlowList from './SlowList.js';
+import SlowList from './SlowList.jsx';
 
 export default function App() {
   const [text, setText] = useState('');
@@ -669,7 +669,7 @@ export default function App() {
 }
 ```
 
-```js {expectedErrors: {'react-compiler': [19, 20]}} src/SlowList.js
+```js {expectedErrors: {'react-compiler': [19, 20]}} src/SlowList.jsx
 import { memo } from 'react';
 
 const SlowList = memo(function SlowList({ text }) {
@@ -733,7 +733,7 @@ Notice how typing into the input feels very janky. This is because without `useD
 
 ```js
 import { useState } from 'react';
-import SlowList from './SlowList.js';
+import SlowList from './SlowList.jsx';
 
 export default function App() {
   const [text, setText] = useState('');
@@ -746,7 +746,7 @@ export default function App() {
 }
 ```
 
-```js {expectedErrors: {'react-compiler': [19, 20]}} src/SlowList.js
+```js {expectedErrors: {'react-compiler': [19, 20]}} src/SlowList.jsx
 import { memo } from 'react';
 
 const SlowList = memo(function SlowList({ text }) {

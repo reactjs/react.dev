@@ -137,7 +137,7 @@ In this example, the two containers have styles that disrupt the modal dialog, b
 
 <Sandpack>
 
-```js src/App.js active
+```js src/App.jsx active
 import NoPortalExample from './NoPortalExample';
 import PortalExample from './PortalExample';
 
@@ -155,9 +155,9 @@ export default function App() {
 }
 ```
 
-```js src/NoPortalExample.js
+```js src/NoPortalExample.jsx
 import { useState } from 'react';
-import ModalContent from './ModalContent.js';
+import ModalContent from './ModalContent.jsx';
 
 export default function NoPortalExample() {
   const [showModal, setShowModal] = useState(false);
@@ -174,10 +174,10 @@ export default function NoPortalExample() {
 }
 ```
 
-```js src/PortalExample.js active
+```js src/PortalExample.jsx active
 import { useState } from 'react';
 import { createPortal } from 'react-dom';
-import ModalContent from './ModalContent.js';
+import ModalContent from './ModalContent.jsx';
 
 export default function PortalExample() {
   const [showModal, setShowModal] = useState(false);
@@ -195,7 +195,7 @@ export default function PortalExample() {
 }
 ```
 
-```js src/ModalContent.js
+```js src/ModalContent.jsx
 export default function ModalContent({ onClose }) {
   return (
     <div className="modal">
@@ -269,10 +269,10 @@ Portals can be useful if your React root is only part of a static or server-rend
 </html>
 ```
 
-```js src/index.js
+```js src/index.jsx
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
-import App from './App.js';
+import App from './App.jsx';
 import './styles.css';
 
 const root = createRoot(document.getElementById('root'));
@@ -283,7 +283,7 @@ root.render(
 );
 ```
 
-```js src/App.js active
+```js src/App.jsx active
 import { createPortal } from 'react-dom';
 
 const sidebarContentEl = document.getElementById('sidebar-content');
@@ -398,7 +398,7 @@ Here is a complete example you can play with:
 }
 ```
 
-```js src/App.js
+```js src/App.jsx
 import { useRef, useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { createMapWidget, addPopupToMapWidget } from './map-widget.js';

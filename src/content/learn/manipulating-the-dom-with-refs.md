@@ -1102,9 +1102,9 @@ You'll need to pass `ref` as a prop to opt into exposing a DOM node from your ow
 
 <Sandpack>
 
-```js src/App.js
-import SearchButton from './SearchButton.js';
-import SearchInput from './SearchInput.js';
+```js src/App.jsx
+import SearchButton from './SearchButton.jsx';
+import SearchInput from './SearchInput.jsx';
 
 export default function Page() {
   return (
@@ -1118,7 +1118,7 @@ export default function Page() {
 }
 ```
 
-```js src/SearchButton.js
+```js src/SearchButton.jsx
 export default function SearchButton() {
   return (
     <button>
@@ -1128,7 +1128,7 @@ export default function SearchButton() {
 }
 ```
 
-```js src/SearchInput.js
+```js src/SearchInput.jsx
 export default function SearchInput() {
   return (
     <input
@@ -1150,10 +1150,10 @@ You'll need to add an `onClick` prop to the `SearchButton`, and make the `Search
 
 <Sandpack>
 
-```js src/App.js
+```js src/App.jsx
 import { useRef } from 'react';
-import SearchButton from './SearchButton.js';
-import SearchInput from './SearchInput.js';
+import SearchButton from './SearchButton.jsx';
+import SearchInput from './SearchInput.jsx';
 
 export default function Page() {
   const inputRef = useRef(null);
@@ -1170,7 +1170,7 @@ export default function Page() {
 }
 ```
 
-```js src/SearchButton.js
+```js src/SearchButton.jsx
 export default function SearchButton({ onClick }) {
   return (
     <button onClick={onClick}>
@@ -1180,7 +1180,7 @@ export default function SearchButton({ onClick }) {
 }
 ```
 
-```js src/SearchInput.js
+```js src/SearchInput.jsx
 export default function SearchInput({ ref }) {
   return (
     <input

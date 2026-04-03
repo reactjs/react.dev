@@ -246,8 +246,8 @@ If a component has a lot of visual states, it can be convenient to show them all
 
 <Sandpack>
 
-```js src/App.js active
-import Form from './Form.js';
+```js src/App.jsx active
+import Form from './Form.jsx';
 
 let statuses = [
   'empty',
@@ -271,7 +271,7 @@ export default function App() {
 }
 ```
 
-```js src/Form.js
+```js src/Form.jsx
 export default function Form({ status }) {
   if (status === 'success') {
     return <h1>That's right!</h1>
@@ -518,7 +518,7 @@ export default function Picture() {
       <img
         className="picture"
         alt="Rainbow houses in Kampung Pelangi, Indonesia"
-        src="https://i.imgur.com/5qwVYb1.jpeg"
+        src="https://react.dev/images/content/kampung-pelangi-indonesia.jpeg"
       />
     </div>
   );
@@ -594,7 +594,7 @@ export default function Picture() {
         }}
         className={pictureClassName}
         alt="Rainbow houses in Kampung Pelangi, Indonesia"
-        src="https://i.imgur.com/5qwVYb1.jpeg"
+        src="https://react.dev/images/content/kampung-pelangi-indonesia.jpeg"
       />
     </div>
   );
@@ -649,7 +649,7 @@ export default function Picture() {
         <img
           className="picture picture--active"
           alt="Rainbow houses in Kampung Pelangi, Indonesia"
-          src="https://i.imgur.com/5qwVYb1.jpeg"
+          src="https://react.dev/images/content/kampung-pelangi-indonesia.jpeg"
           onClick={e => e.stopPropagation()}
         />
       </div>
@@ -660,7 +660,7 @@ export default function Picture() {
       <img
         className="picture"
         alt="Rainbow houses in Kampung Pelangi, Indonesia"
-        src="https://i.imgur.com/5qwVYb1.jpeg"
+        src="https://react.dev/images/content/kampung-pelangi-indonesia.jpeg"
         onClick={() => setIsActive(true)}
       />
     </div>

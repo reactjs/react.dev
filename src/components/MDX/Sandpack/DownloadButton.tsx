@@ -10,7 +10,7 @@
  */
 
 import {useSyncExternalStore} from 'react';
-import {useSandpack} from '@codesandbox/sandpack-react/unstyled';
+import {useSandpack} from '@webcontainer/react';
 import {IconDownload} from '../../Icon/IconDownload';
 import {AppJSPath, StylesCSSPath, SUPPORTED_FILES} from './createFileMap';
 export interface DownloadButtonProps {}

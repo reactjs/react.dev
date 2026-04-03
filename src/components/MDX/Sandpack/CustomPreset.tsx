@@ -15,7 +15,7 @@ import {
   useActiveCode,
   SandpackCodeEditor,
   SandpackLayout,
-} from '@codesandbox/sandpack-react/unstyled';
+} from '@webcontainer/react';
 import cn from 'classnames';
 
 import {IconChevron} from 'components/Icon/IconChevron';
@@ -26,10 +26,10 @@ import {useSandpackLint} from './useSandpackLint';
 
 export const CustomPreset = memo(function CustomPreset({
   providedFiles,
-  showOpenInCodeSandbox = true,
+  showOpenInStackBlitz = true,
 }: {
   providedFiles: Array<string>;
-  showOpenInCodeSandbox?: boolean;
+  showOpenInStackBlitz?: boolean;
 }) {
   const {lintErrors, lintExtensions} = useSandpackLint();
   const {sandpack} = useSandpack();
@@ -48,7 +48,7 @@ export const CustomPreset = memo(function CustomPreset({
       lintErrors={lintErrors}
       lintExtensions={lintExtensions}
       isExpandable={isExpandable}
-      showOpenInCodeSandbox={showOpenInCodeSandbox}
+      showOpenInStackBlitz={showOpenInStackBlitz}
     />
   );
 });
@@ -58,13 +58,13 @@ const SandboxShell = memo(function SandboxShell({
   lintErrors,
   lintExtensions,
   isExpandable,
-  showOpenInCodeSandbox,
+  showOpenInStackBlitz,
 }: {
   providedFiles: Array<string>;
   lintErrors: Array<any>;
   lintExtensions: Array<any>;
   isExpandable: boolean;
-  showOpenInCodeSandbox: boolean;
+  showOpenInStackBlitz: boolean;
 }) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [isExpanded, setIsExpanded] = useState(false);
@@ -78,7 +78,7 @@ const SandboxShell = memo(function SandboxShell({
         }}>
         <NavigationBar
           providedFiles={providedFiles}
-          showOpenInCodeSandbox={showOpenInCodeSandbox}
+          showOpenInStackBlitz={showOpenInStackBlitz}
         />
         <SandpackLayout
           className={cn(

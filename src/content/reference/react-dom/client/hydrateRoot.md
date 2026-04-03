@@ -145,10 +145,10 @@ To hydrate your app, React will "attach" your components' logic to the initial g
 <div id="root"><h1>Hello, world!</h1><button>You clicked me <!-- -->0<!-- --> times</button></div>
 ```
 
-```js src/index.js active
+```js src/index.jsx active
 import './styles.css';
 import { hydrateRoot } from 'react-dom/client';
-import App from './App.js';
+import App from './App.jsx';
 
 hydrateRoot(
   document.getElementById('root'),
@@ -156,7 +156,7 @@ hydrateRoot(
 );
 ```
 
-```js src/App.js
+```js src/App.jsx
 import { useState } from 'react';
 
 export default function App() {
@@ -250,15 +250,15 @@ To silence hydration warnings on an element, add `suppressHydrationWarning={true
 <div id="root"><h1>Current Date: <!-- -->01/01/2020</h1></div>
 ```
 
-```js src/index.js
+```js src/index.jsx
 import './styles.css';
 import { hydrateRoot } from 'react-dom/client';
-import App from './App.js';
+import App from './App.jsx';
 
 hydrateRoot(document.getElementById('root'), <App />);
 ```
 
-```js src/App.js active
+```js src/App.jsx active
 export default function App() {
   return (
     <h1 suppressHydrationWarning={true}>
@@ -288,16 +288,16 @@ If you intentionally need to render something different on the server and the cl
 <div id="root"><h1>Is Server</h1></div>
 ```
 
-```js src/index.js
+```js src/index.jsx
 import './styles.css';
 import { hydrateRoot } from 'react-dom/client';
-import App from './App.js';
+import App from './App.jsx';
 
 hydrateRoot(document.getElementById('root'), <App />);
 ```
 
 {/* kind of an edge case, seems fine to use this hack here */}
-```js {expectedErrors: {'react-compiler': [7]}} src/App.js active
+```js {expectedErrors: {'react-compiler': [7]}} src/App.jsx active
 import { useState, useEffect } from "react";
 
 export default function App() {
@@ -343,10 +343,10 @@ If you call `root.render` at some point after hydration, and the component tree 
 <div id="root"><h1>Hello, world! <!-- -->0</h1><input placeholder="Type something here"/></div>
 ```
 
-```js src/index.js active
+```js src/index.jsx active
 import { hydrateRoot } from 'react-dom/client';
 import './styles.css';
-import App from './App.js';
+import App from './App.jsx';
 
 const root = hydrateRoot(
   document.getElementById('root'),
@@ -360,7 +360,7 @@ setInterval(() => {
 }, 1000);
 ```
 
-```js src/App.js
+```js src/App.jsx
 export default function App({counter}) {
   return (
     <>
@@ -429,9 +429,9 @@ export function onRecoverableErrorProd(error, errorInfo) {
 }
 ```
 
-```js src/index.js active
+```js src/index.jsx active
 import { hydrateRoot } from "react-dom/client";
-import App from "./App.js";
+import App from "./App.jsx";
 import {
   onCaughtErrorProd,
   onRecoverableErrorProd,
@@ -449,7 +449,7 @@ hydrateRoot(container, <App />, {
 });
 ```
 
-```js src/App.js
+```js src/App.jsx
 import { Component, useState } from "react";
 
 function Boom() {

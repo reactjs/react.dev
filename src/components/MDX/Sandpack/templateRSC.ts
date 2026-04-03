@@ -5,9 +5,11 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import type {SandpackFiles} from '@codesandbox/sandpack-react/unstyled';
+import type {SandpackFile, SandpackFiles} from '@webcontainer/react';
 
-function hideFiles(files: SandpackFiles): SandpackFiles {
+function hideFiles(
+  files: Record<string, string | SandpackFile>
+): SandpackFiles {
   return Object.fromEntries(
     Object.entries(files).map(([name, code]) => [
       name,
@@ -17,19 +19,16 @@ function hideFiles(files: SandpackFiles): SandpackFiles {
 }
 
 // --- Load RSC infrastructure files as raw strings via raw-loader ---
-const RSC_SOURCE_FILES = {
-  'webpack-shim':
-    require('!raw-loader?esModule=false!./sandpack-rsc/sandbox-code/src/webpack-shim.js') as string,
-  'rsc-client':
-    require('!raw-loader?esModule=false!./sandpack-rsc/sandbox-code/src/rsc-client.js') as string,
-  'react-refresh-init':
-    require('!raw-loader?esModule=false!./sandpack-rsc/sandbox-code/src/__react_refresh_init__.js') as string,
-  'worker-bundle': `export default ${JSON.stringify(
-    require('!raw-loader?esModule=false!./sandpack-rsc/sandbox-code/src/worker-bundle.dist.js') as string
-  )};`,
-  'rsdw-client':
-    require('!raw-loader?esModule=false!../../../../node_modules/react-server-dom-webpack/cjs/react-server-dom-webpack-client.browser.production.js') as string,
-};
+// const RSC_SOURCE_FILES = {
+//   'framework-entry-browser':
+//     require('!raw-loader?esModule=false!./sandpack-rsc/sandbox-code/src/framework/entry.browser.tsx') as string,
+//   'framework-entry-rsc':
+//     require('!raw-loader?esModule=false!./sandpack-rsc/sandbox-code/src/framework/entry.rsc.tsx') as string,
+//   'framework-entry-ssr':
+//     require('!raw-loader?esModule=false!./sandpack-rsc/sandbox-code/src/framework/entry.ssr.tsx') as string,
+//   'framework-error-boundary':
+//     require('!raw-loader?esModule=false!./sandpack-rsc/sandbox-code/src/framework/error-boundary.tsx') as string,
+// };
 
 // Load react-refresh runtime and strip the process.env.NODE_ENV guard
 // so it works in Sandpack's bundler which may not replace process.env.
@@ -39,7 +38,7 @@ const reactRefreshRaw =
 // Wrap as a CJS module that Sandpack can require.
 // Strip the `if (process.env.NODE_ENV !== "production")` guard so the
 // runtime always executes inside the sandbox.
-const reactRefreshModule = reactRefreshRaw.replace(
+const _reactRefreshModule = reactRefreshRaw.replace(
   /if \(process\.env\.NODE_ENV !== "production"\) \{/,
   '{'
 );
@@ -47,14 +46,14 @@ const reactRefreshModule = reactRefreshRaw.replace(
 // Entry point that bootstraps the RSC client pipeline.
 // __react_refresh_init__ must be imported BEFORE rsc-client so the
 // DevTools hook stub exists before React's renderer loads.
-const indexEntry = `
+const _indexEntry = `
 import './styles.css';
 import './__react_refresh_init__';
 import { initClient } from './rsc-client.js';
 initClient();
 `.trim();
 
-const indexHTML = `
+const _indexHTML = `
 <!DOCTYPE html>
   <html lang="en">
   <head>
@@ -68,23 +67,61 @@ const indexHTML = `
 </html>
 `.trim();
 
+const VITE_CONFIG = `import react from '@vitejs/plugin-react'
+import rsc from '@vitejs/plugin-rsc'
+import { defineConfig } from 'vite'
+
+export default defineConfig({
+  plugins: [
+    rsc(),
+    react(),
+  ],
+
+  environments: {
+    rsc: {
+      build: {
+        rollupOptions: {
+          input: {
+            index: './src/framework/entry.rsc.tsx',
+          },
+        },
+      },
+    },
+
+    ssr: {
+      build: {
+        rollupOptions: {
+          input: {
+            index: './src/framework/entry.ssr.tsx',
+          },
+        },
+      },
+    },
+
+    client: {
+      build: {
+        rollupOptions: {
+          input: {
+            index: './src/framework/entry.browser.tsx',
+          },
+        },
+      },
+    },
+  },
+})`.trim();
+
 export const templateRSC: SandpackFiles = {
   ...hideFiles({
-    '/public/index.html': indexHTML,
-    '/src/index.js': indexEntry,
-    '/src/__react_refresh_init__.js': RSC_SOURCE_FILES['react-refresh-init'],
-    '/src/rsc-client.js': RSC_SOURCE_FILES['rsc-client'],
-    '/src/rsc-server.js': RSC_SOURCE_FILES['worker-bundle'],
-    '/src/__webpack_shim__.js': RSC_SOURCE_FILES['webpack-shim'],
-    // RSDW client as a Sandpack local dependency (bypasses Babel bundler)
-    '/node_modules/react-server-dom-webpack/package.json':
-      '{"name":"react-server-dom-webpack","main":"index.js"}',
-    '/node_modules/react-server-dom-webpack/client.browser.js':
-      RSC_SOURCE_FILES['rsdw-client'],
-    // react-refresh runtime as a Sandpack local dependency
-    '/node_modules/react-refresh/package.json':
-      '{"name":"react-refresh","main":"runtime.js"}',
-    '/node_modules/react-refresh/runtime.js': reactRefreshModule,
+    // '/public/index.html': indexHTML,
+    // '/src/index.js': indexEntry,
+    // '/src/framework/entry.browser.tsx':
+    //   RSC_SOURCE_FILES['framework-entry-browser'],
+    // '/src/framework/entry.rsc.tsx': RSC_SOURCE_FILES['framework-entry-rsc'],
+    // '/src/framework/entry.ssr.tsx': RSC_SOURCE_FILES['framework-entry-ssr'],
+    // '/src/framework/error-boundary.tsx':
+    //   RSC_SOURCE_FILES['framework-error-boundary'],
+
+    '/vite.config.js': VITE_CONFIG,
     '/package.json': JSON.stringify(
       {
         name: 'react.dev',
@@ -93,6 +130,11 @@ export const templateRSC: SandpackFiles = {
         dependencies: {
           react: '19.2.4',
           'react-dom': '19.2.4',
+        },
+        devDependencies: {
+          vite: '^6.0.0',
+          '@vitejs/plugin-react': '^4.0.0',
+          '@vitejs/plugin-rsc': '^0.5.21',
         },
       },
       null,

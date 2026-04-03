@@ -47,8 +47,8 @@ Context lets a parent component provide data to the entire tree below it. There 
 <Sandpack>
 
 ```js
-import Heading from './Heading.js';
-import Section from './Section.js';
+import Heading from './Heading.jsx';
+import Section from './Section.jsx';
 
 export default function Page() {
   return (
@@ -64,7 +64,7 @@ export default function Page() {
 }
 ```
 
-```js src/Section.js
+```js src/Section.jsx
 export default function Section({ children }) {
   return (
     <section className="section">
@@ -74,7 +74,7 @@ export default function Section({ children }) {
 }
 ```
 
-```js src/Heading.js
+```js src/Heading.jsx
 export default function Heading({ level, children }) {
   switch (level) {
     case 1:
@@ -111,8 +111,8 @@ Let's say you want multiple headings within the same `Section` to always have th
 <Sandpack>
 
 ```js
-import Heading from './Heading.js';
-import Section from './Section.js';
+import Heading from './Heading.jsx';
+import Section from './Section.jsx';
 
 export default function Page() {
   return (
@@ -138,7 +138,7 @@ export default function Page() {
 }
 ```
 
-```js src/Section.js
+```js src/Section.jsx
 export default function Section({ children }) {
   return (
     <section className="section">
@@ -148,7 +148,7 @@ export default function Section({ children }) {
 }
 ```
 
-```js src/Heading.js
+```js src/Heading.jsx
 export default function Heading({ level, children }) {
   switch (level) {
     case 1:
@@ -233,8 +233,8 @@ First, you need to create the context. You'll need to **export it from a file** 
 <Sandpack>
 
 ```js
-import Heading from './Heading.js';
-import Section from './Section.js';
+import Heading from './Heading.jsx';
+import Section from './Section.jsx';
 
 export default function Page() {
   return (
@@ -260,7 +260,7 @@ export default function Page() {
 }
 ```
 
-```js src/Section.js
+```js src/Section.jsx
 export default function Section({ children }) {
   return (
     <section className="section">
@@ -270,7 +270,7 @@ export default function Section({ children }) {
 }
 ```
 
-```js src/Heading.js
+```js src/Heading.jsx
 export default function Heading({ level, children }) {
   switch (level) {
     case 1:
@@ -363,8 +363,8 @@ As a reminder, this is the markup that you were trying to get working:
 <Sandpack>
 
 ```js
-import Heading from './Heading.js';
-import Section from './Section.js';
+import Heading from './Heading.jsx';
+import Section from './Section.jsx';
 
 export default function Page() {
   return (
@@ -390,7 +390,7 @@ export default function Page() {
 }
 ```
 
-```js src/Section.js
+```js src/Section.jsx
 export default function Section({ children }) {
   return (
     <section className="section">
@@ -400,7 +400,7 @@ export default function Section({ children }) {
 }
 ```
 
-```js src/Heading.js
+```js src/Heading.jsx
 import { useContext } from 'react';
 import { LevelContext } from './LevelContext.js';
 
@@ -481,8 +481,8 @@ This tells React: "if any component inside this `<Section>` asks for `LevelConte
 <Sandpack>
 
 ```js
-import Heading from './Heading.js';
-import Section from './Section.js';
+import Heading from './Heading.jsx';
+import Section from './Section.jsx';
 
 export default function Page() {
   return (
@@ -508,7 +508,7 @@ export default function Page() {
 }
 ```
 
-```js src/Section.js
+```js src/Section.jsx
 import { LevelContext } from './LevelContext.js';
 
 export default function Section({ level, children }) {
@@ -522,7 +522,7 @@ export default function Section({ level, children }) {
 }
 ```
 
-```js src/Heading.js
+```js src/Heading.jsx
 import { useContext } from 'react';
 import { LevelContext } from './LevelContext.js';
 
@@ -608,8 +608,8 @@ With this change, you don't need to pass the `level` prop *either* to the `<Sect
 <Sandpack>
 
 ```js
-import Heading from './Heading.js';
-import Section from './Section.js';
+import Heading from './Heading.jsx';
+import Section from './Section.jsx';
 
 export default function Page() {
   return (
@@ -635,7 +635,7 @@ export default function Page() {
 }
 ```
 
-```js src/Section.js
+```js src/Section.jsx
 import { useContext } from 'react';
 import { LevelContext } from './LevelContext.js';
 
@@ -651,7 +651,7 @@ export default function Section({ children }) {
 }
 ```
 
-```js src/Heading.js
+```js src/Heading.jsx
 import { useContext } from 'react';
 import { LevelContext } from './LevelContext.js';
 
@@ -712,8 +712,8 @@ In this example, the same `Post` component (with a dashed border) is rendered at
 <Sandpack>
 
 ```js
-import Heading from './Heading.js';
-import Section from './Section.js';
+import Heading from './Heading.jsx';
+import Section from './Section.jsx';
 
 export default function ProfilePage() {
   return (
@@ -765,7 +765,7 @@ function Post({ title, body }) {
 }
 ```
 
-```js src/Section.js
+```js src/Section.jsx
 import { useContext } from 'react';
 import { LevelContext } from './LevelContext.js';
 
@@ -784,7 +784,7 @@ export default function Section({ children, isFancy }) {
 }
 ```
 
-```js src/Heading.js
+```js src/Heading.jsx
 import { useContext } from 'react';
 import { LevelContext } from './LevelContext.js';
 
@@ -887,7 +887,7 @@ You can declare context in `Context.js`.
 
 <Sandpack>
 
-```js src/App.js
+```js src/App.jsx
 import { useState } from 'react';
 import { places } from './data.js';
 import { getImageUrl } from './utils.js';
@@ -961,46 +961,46 @@ export const places = [{
   id: 0,
   name: 'Bo-Kaap in Cape Town, South Africa',
   description: 'The tradition of choosing bright colors for houses began in the late 20th century.',
-  imageId: 'K9HVAGH'
+  imageId: 'bo-kaap-cape-town'
 }, {
   id: 1, 
   name: 'Rainbow Village in Taichung, Taiwan',
   description: 'To save the houses from demolition, Huang Yung-Fu, a local resident, painted all 1,200 of them in 1924.',
-  imageId: '9EAYZrt'
+  imageId: 'rainbow-village-taichung'
 }, {
   id: 2, 
   name: 'Macromural de Pachuca, Mexico',
   description: 'One of the largest murals in the world covering homes in a hillside neighborhood.',
-  imageId: 'DgXHVwu'
+  imageId: 'macromural-de-pachuca'
 }, {
   id: 3, 
   name: 'Selarón Staircase in Rio de Janeiro, Brazil',
   description: 'This landmark was created by Jorge Selarón, a Chilean-born artist, as a "tribute to the Brazilian people."',
-  imageId: 'aeO3rpI'
+  imageId: 'selaron-staircase-rio-de-janeiro'
 }, {
   id: 4, 
   name: 'Burano, Italy',
   description: 'The houses are painted following a specific color system dating back to 16th century.',
-  imageId: 'kxsph5C'
+  imageId: 'burano-italy'
 }, {
   id: 5, 
   name: 'Chefchaouen, Marocco',
   description: 'There are a few theories on why the houses are painted blue, including that the color repels mosquitos or that it symbolizes sky and heaven.',
-  imageId: 'rTqKo46'
+  imageId: 'chefchaouen-morocco'
 }, {
   id: 6,
   name: 'Gamcheon Culture Village in Busan, South Korea',
   description: 'In 2009, the village was converted into a cultural hub by painting the houses and featuring exhibitions and art installations.',
-  imageId: 'ZfQOOzf'
+  imageId: 'gamcheon-culture-village-busan'
 }];
 ```
 
 ```js src/utils.js
 export function getImageUrl(place) {
   return (
-    'https://i.imgur.com/' +
+    'https://react.dev/images/content/' +
     place.imageId +
-    'l.jpg'
+    '-l.jpg'
   );
 }
 ```
@@ -1026,7 +1026,7 @@ Create and export `ImageSizeContext` from `Context.js`. Then wrap the List into 
 
 <Sandpack>
 
-```js src/App.js
+```js src/App.jsx
 import { useState, useContext } from 'react';
 import { places } from './data.js';
 import { getImageUrl } from './utils.js';
@@ -1100,46 +1100,46 @@ export const places = [{
   id: 0,
   name: 'Bo-Kaap in Cape Town, South Africa',
   description: 'The tradition of choosing bright colors for houses began in the late 20th century.',
-  imageId: 'K9HVAGH'
+  imageId: 'bo-kaap-cape-town'
 }, {
   id: 1, 
   name: 'Rainbow Village in Taichung, Taiwan',
   description: 'To save the houses from demolition, Huang Yung-Fu, a local resident, painted all 1,200 of them in 1924.',
-  imageId: '9EAYZrt'
+  imageId: 'rainbow-village-taichung'
 }, {
   id: 2, 
   name: 'Macromural de Pachuca, Mexico',
   description: 'One of the largest murals in the world covering homes in a hillside neighborhood.',
-  imageId: 'DgXHVwu'
+  imageId: 'macromural-de-pachuca'
 }, {
   id: 3, 
   name: 'Selarón Staircase in Rio de Janeiro, Brazil',
   description: 'This landmark was created by Jorge Selarón, a Chilean-born artist, as a "tribute to the Brazilian people".',
-  imageId: 'aeO3rpI'
+  imageId: 'selaron-staircase-rio-de-janeiro'
 }, {
   id: 4, 
   name: 'Burano, Italy',
   description: 'The houses are painted following a specific color system dating back to 16th century.',
-  imageId: 'kxsph5C'
+  imageId: 'burano-italy'
 }, {
   id: 5, 
   name: 'Chefchaouen, Marocco',
   description: 'There are a few theories on why the houses are painted blue, including that the color repels mosquitos or that it symbolizes sky and heaven.',
-  imageId: 'rTqKo46'
+  imageId: 'chefchaouen-morocco'
 }, {
   id: 6,
   name: 'Gamcheon Culture Village in Busan, South Korea',
   description: 'In 2009, the village was converted into a cultural hub by painting the houses and featuring exhibitions and art installations.',
-  imageId: 'ZfQOOzf'
+  imageId: 'gamcheon-culture-village-busan'
 }];
 ```
 
 ```js src/utils.js
 export function getImageUrl(place) {
   return (
-    'https://i.imgur.com/' +
+    'https://react.dev/images/content/' +
     place.imageId +
-    'l.jpg'
+    '-l.jpg'
   );
 }
 ```

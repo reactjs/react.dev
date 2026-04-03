@@ -7,50 +7,152 @@
 
 import {useState} from 'react';
 
-import {
-  LoadingOverlayState,
-  OpenInCodeSandboxButton,
-  useSandpack,
-} from '@codesandbox/sandpack-react/unstyled';
+import {LoadingOverlayState, useSandpack} from '@webcontainer/react';
 import {useEffect} from 'react';
 
 const FADE_ANIMATION_DURATION = 200;
 
+type BootPhase = 'booting' | 'installing' | 'starting';
+
+const BOOT_PHASES: BootPhase[] = ['booting', 'installing', 'starting'];
+
+function isBootPhase(status: string): status is BootPhase {
+  return BOOT_PHASES.includes(status as BootPhase);
+}
+
+const BOOT_STEPS: {phase: BootPhase; label: string}[] = [
+  {phase: 'booting', label: 'Booting sandbox'},
+  {phase: 'installing', label: 'Installing dependencies'},
+  {phase: 'starting', label: 'Starting dev server'},
+];
+
+type StepState = 'pending' | 'active' | 'done';
+
+function getStepState(
+  stepPhase: BootPhase,
+  currentPhase: BootPhase
+): StepState {
+  const stepIndex = BOOT_PHASES.indexOf(stepPhase);
+  const currentIndex = BOOT_PHASES.indexOf(currentPhase);
+  if (currentIndex > stepIndex) return 'done';
+  if (currentIndex === stepIndex) return 'active';
+  return 'pending';
+}
+
+function CheckIcon() {
+  return (
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+      <circle cx="8" cy="8" r="7" stroke="currentColor" strokeWidth="1.5" />
+      <path
+        d="M5 8.5l2 2 4-4.5"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
+function SpinnerIcon() {
+  return (
+    <svg
+      className="sp-boot-spinner"
+      width="16"
+      height="16"
+      viewBox="0 0 16 16"
+      fill="none">
+      <circle
+        cx="8"
+        cy="8"
+        r="6.5"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        opacity="0.2"
+      />
+      <path
+        d="M8 1.5A6.5 6.5 0 0 1 14.5 8"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+      />
+    </svg>
+  );
+}
+
+function CircleIcon() {
+  return (
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+      <circle
+        cx="8"
+        cy="8"
+        r="6.5"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        opacity="0.25"
+      />
+    </svg>
+  );
+}
+
+function BootProgressChecklist({
+  phase,
+  opacity = 1,
+}: {
+  phase: BootPhase | 'complete';
+  opacity?: number;
+}) {
+  return (
+    <div
+      className="sp-overlay sp-loading"
+      style={{
+        opacity,
+        transition: `opacity ${FADE_ANIMATION_DURATION}ms ease-out`,
+      }}>
+      <div className="sp-boot-checklist">
+        {BOOT_STEPS.map(({phase: stepPhase, label}) => {
+          const state =
+            phase === 'complete' ? 'done' : getStepState(stepPhase, phase);
+          return (
+            <div
+              key={stepPhase}
+              className={`sp-boot-step sp-boot-step-${state}`}>
+              <span className="sp-boot-step-icon">
+                {state === 'done' && <CheckIcon />}
+                {state === 'active' && <SpinnerIcon />}
+                {state === 'pending' && <CircleIcon />}
+              </span>
+              <span className="sp-boot-step-label">{label}</span>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
 export const LoadingOverlay = ({
-  clientId,
   dependenciesLoading,
   forceLoading,
 }: {
-  clientId: string;
   dependenciesLoading: boolean;
   forceLoading: boolean;
 } & React.HTMLAttributes<HTMLDivElement>): React.ReactNode | null => {
+  const {sandpack} = useSandpack();
   const loadingOverlayState = useLoadingOverlayState(
-    clientId,
     dependenciesLoading,
     forceLoading
   );
-
-  if (loadingOverlayState === 'HIDDEN') {
-    return null;
-  }
 
   if (loadingOverlayState === 'TIMEOUT') {
     return (
       <div className="sp-overlay sp-error">
         <div className="sp-error-message">
-          Unable to establish connection with the sandpack bundler. Make sure
-          you are online or try again later. If the problem persists, please
-          report it via{' '}
+          Unable to start the sandbox. Make sure you are online or try again
+          later. If the problem persists, please submit an issue on{' '}
           <a
             className="sp-error-message"
-            href="mailto:hello@codesandbox.io?subject=Sandpack Timeout Error">
-            email
-          </a>{' '}
-          or submit an issue on{' '}
-          <a
-            className="sp-error-message"
-            href="https://github.com/codesandbox/sandpack/issues"
+            href="https://github.com/reactjs/react.dev/issues"
             rel="noreferrer noopener"
             target="_blank">
             GitHub.
@@ -60,36 +162,23 @@ export const LoadingOverlay = ({
     );
   }
 
+  if (isBootPhase(sandpack.status)) {
+    return <BootProgressChecklist phase={sandpack.status} />;
+  }
+
+  if (loadingOverlayState === 'HIDDEN') {
+    return null;
+  }
+
   const stillLoading =
     loadingOverlayState === 'LOADING' || loadingOverlayState === 'PRE_FADING';
 
   return (
-    <div
-      className="sp-overlay sp-loading"
-      style={{
-        opacity: stillLoading ? 1 : 0,
-        transition: `opacity ${FADE_ANIMATION_DURATION}ms ease-out`,
-      }}>
-      <div className="sp-cube-wrapper" title="Open in CodeSandbox">
-        {/* @ts-ignore: the OpenInCodeSandboxButton type from '@codesandbox/sandpack-react/unstyled' is incompatible with JSX in React 19 */}
-        <OpenInCodeSandboxButton />
-        <div className="sp-cube">
-          <div className="sp-sides">
-            <div className="top" />
-            <div className="right" />
-            <div className="bottom" />
-            <div className="left" />
-            <div className="front" />
-            <div className="back" />
-          </div>
-        </div>
-      </div>
-    </div>
+    <BootProgressChecklist phase="complete" opacity={stillLoading ? 1 : 0} />
   );
 };
 
 const useLoadingOverlayState = (
-  clientId: string,
   dependenciesLoading: boolean,
   forceLoading: boolean
 ): LoadingOverlayState => {
@@ -100,9 +189,6 @@ const useLoadingOverlayState = (
     setState('LOADING');
   }
 
-  /**
-   * Sandpack listener
-   */
   const sandpackIdle = sandpack.status === 'idle';
   useEffect(() => {
     const unsubscribe = listen((message) => {
@@ -111,12 +197,12 @@ const useLoadingOverlayState = (
           return prev === 'LOADING' ? 'PRE_FADING' : 'HIDDEN';
         });
       }
-    }, clientId);
+    });
 
     return () => {
       unsubscribe();
     };
-  }, [listen, clientId, sandpackIdle]);
+  }, [listen, sandpackIdle]);
 
   /**
    * Fading transient state

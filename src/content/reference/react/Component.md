@@ -1145,9 +1145,9 @@ For example, this `ChatRoom` component keeps a chat connection synchronized with
 
 <Sandpack>
 
-```js src/App.js
+```js src/App.jsx
 import { useState } from 'react';
-import ChatRoom from './ChatRoom.js';
+import ChatRoom from './ChatRoom.jsx';
 
 export default function App() {
   const [roomId, setRoomId] = useState('general');
@@ -1175,7 +1175,7 @@ export default function App() {
 }
 ```
 
-```js src/ChatRoom.js active
+```js src/ChatRoom.jsx active
 import { Component } from 'react';
 import { createConnection } from './chat.js';
 
@@ -1544,9 +1544,9 @@ Suppose you're converting this `ChatRoom` class component with lifecycle methods
 
 <Sandpack>
 
-```js src/App.js
+```js src/App.jsx
 import { useState } from 'react';
-import ChatRoom from './ChatRoom.js';
+import ChatRoom from './ChatRoom.jsx';
 
 export default function App() {
   const [roomId, setRoomId] = useState('general');
@@ -1574,7 +1574,7 @@ export default function App() {
 }
 ```
 
-```js src/ChatRoom.js active
+```js src/ChatRoom.jsx active
 import { Component } from 'react';
 import { createConnection } from './chat.js';
 
@@ -1684,9 +1684,9 @@ This [`useEffect`](/reference/react/useEffect) call is equivalent to the logic i
 
 <Sandpack>
 
-```js src/App.js
+```js src/App.jsx
 import { useState } from 'react';
-import ChatRoom from './ChatRoom.js';
+import ChatRoom from './ChatRoom.jsx';
 
 export default function App() {
   const [roomId, setRoomId] = useState('general');
@@ -1714,7 +1714,7 @@ export default function App() {
 }
 ```
 
-```js src/ChatRoom.js active
+```js src/ChatRoom.jsx active
 import { useState, useEffect } from 'react';
 import { createConnection } from './chat.js';
 

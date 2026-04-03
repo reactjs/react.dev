@@ -9,10 +9,10 @@
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
 
-import type {SandpackFile} from '@codesandbox/sandpack-react/unstyled';
+import type {SandpackFile} from '@webcontainer/react';
 import type {PropsWithChildren, ReactElement, HTMLAttributes} from 'react';
 
-export const AppJSPath = `/src/App.js`;
+export const AppJSPath = `/src/App.jsx`;
 export const StylesCSSPath = `/src/styles.css`;
 export const SUPPORTED_FILES = [AppJSPath, StylesCSSPath];
 

@@ -323,10 +323,10 @@ In this example, the reducer manages an array of tasks. The array needs to be up
 
 <Sandpack>
 
-```js src/App.js
+```js src/App.jsx
 import { useReducer } from 'react';
-import AddTask from './AddTask.js';
-import TaskList from './TaskList.js';
+import AddTask from './AddTask.jsx';
+import TaskList from './TaskList.jsx';
 
 function tasksReducer(tasks, action) {
   switch (action.type) {
@@ -406,7 +406,7 @@ const initialTasks = [
 ];
 ```
 
-```js src/AddTask.js hidden
+```js src/AddTask.jsx hidden
 import { useState } from 'react';
 
 export default function AddTask({ onAddTask }) {
@@ -427,7 +427,7 @@ export default function AddTask({ onAddTask }) {
 }
 ```
 
-```js src/TaskList.js hidden
+```js src/TaskList.jsx hidden
 import { useState } from 'react';
 
 export default function TaskList({
@@ -516,10 +516,10 @@ If updating arrays and objects without mutation feels tedious, you can use a lib
 
 <Sandpack>
 
-```js src/App.js
+```js src/App.jsx
 import { useImmerReducer } from 'use-immer';
-import AddTask from './AddTask.js';
-import TaskList from './TaskList.js';
+import AddTask from './AddTask.jsx';
+import TaskList from './TaskList.jsx';
 
 function tasksReducer(draft, action) {
   switch (action.type) {
@@ -598,7 +598,7 @@ const initialTasks = [
 ];
 ```
 
-```js src/AddTask.js hidden
+```js src/AddTask.jsx hidden
 import { useState } from 'react';
 
 export default function AddTask({ onAddTask }) {
@@ -619,7 +619,7 @@ export default function AddTask({ onAddTask }) {
 }
 ```
 
-```js src/TaskList.js hidden
+```js src/TaskList.jsx hidden
 import { useState } from 'react';
 
 export default function TaskList({
@@ -764,15 +764,15 @@ This example passes the initializer function, so the `createInitialState` functi
 
 <Sandpack>
 
-```js src/App.js hidden
-import TodoList from './TodoList.js';
+```js src/App.jsx hidden
+import TodoList from './TodoList.jsx';
 
 export default function App() {
   return <TodoList username="Taylor" />;
 }
 ```
 
-```js src/TodoList.js active
+```js src/TodoList.jsx active
 import { useReducer } from 'react';
 
 function createInitialState(username) {
@@ -852,15 +852,15 @@ This example **does not** pass the initializer function, so the `createInitialSt
 
 <Sandpack>
 
-```js src/App.js hidden
-import TodoList from './TodoList.js';
+```js src/App.jsx hidden
+import TodoList from './TodoList.jsx';
 
 export default function App() {
   return <TodoList username="Taylor" />;
 }
 ```
 
-```js src/TodoList.js active
+```js src/TodoList.jsx active
 import { useReducer } from 'react';
 
 function createInitialState(username) {

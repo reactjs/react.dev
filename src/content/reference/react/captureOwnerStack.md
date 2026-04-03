@@ -63,7 +63,7 @@ For example, consider the following code:
 
 <Sandpack>
 
-```js src/App.js
+```js src/App.jsx
 import {Suspense} from 'react';
 
 function SubComponent({disabled}) {
@@ -97,10 +97,10 @@ export default function App({children}) {
 }
 ```
 
-```js src/index.js
+```js src/index.jsx
 import {captureOwnerStack} from 'react';
 import {createRoot} from 'react-dom/client';
-import App, {Component} from './App.js';
+import App, {Component} from './App.jsx';
 import './styles.css';
 
 createRoot(document.createElement('div'), {
@@ -312,7 +312,7 @@ export function onConsoleError({ consoleMessage, ownerStack }) {
 }
 ```
 
-```js src/index.js active
+```js src/index.jsx active
 import { captureOwnerStack } from "react";
 import { createRoot } from "react-dom/client";
 import App from './App';
@@ -335,7 +335,7 @@ const container = document.getElementById("root");
 createRoot(container).render(<App />);
 ```
 
-```js src/App.js
+```js src/App.jsx
 function Component() {
   return <button onClick={() => console.error('Some console error')}>Trigger console.error()</button>;
 }

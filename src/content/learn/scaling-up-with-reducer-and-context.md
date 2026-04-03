@@ -22,10 +22,10 @@ In this example from [the introduction to reducers](/learn/extracting-state-logi
 
 <Sandpack>
 
-```js src/App.js
+```js src/App.jsx
 import { useReducer } from 'react';
-import AddTask from './AddTask.js';
-import TaskList from './TaskList.js';
+import AddTask from './AddTask.jsx';
+import TaskList from './TaskList.jsx';
 
 export default function TaskApp() {
   const [tasks, dispatch] = useReducer(
@@ -105,7 +105,7 @@ const initialTasks = [
 ];
 ```
 
-```js src/AddTask.js
+```js src/AddTask.jsx
 import { useState } from 'react';
 
 export default function AddTask({ onAddTask }) {
@@ -126,7 +126,7 @@ export default function AddTask({ onAddTask }) {
 }
 ```
 
-```js src/TaskList.js
+```js src/TaskList.jsx
 import { useState } from 'react';
 
 export default function TaskList({
@@ -256,10 +256,10 @@ Export them from a separate file so that you can later import them from other fi
 
 <Sandpack>
 
-```js src/App.js
+```js src/App.jsx
 import { useReducer } from 'react';
-import AddTask from './AddTask.js';
-import TaskList from './TaskList.js';
+import AddTask from './AddTask.jsx';
+import TaskList from './TaskList.jsx';
 
 export default function TaskApp() {
   const [tasks, dispatch] = useReducer(
@@ -346,7 +346,7 @@ export const TasksContext = createContext(null);
 export const TasksDispatchContext = createContext(null);
 ```
 
-```js src/AddTask.js
+```js src/AddTask.jsx
 import { useState } from 'react';
 
 export default function AddTask({ onAddTask }) {
@@ -367,7 +367,7 @@ export default function AddTask({ onAddTask }) {
 }
 ```
 
-```js src/TaskList.js
+```js src/TaskList.jsx
 import { useState } from 'react';
 
 export default function TaskList({
@@ -474,10 +474,10 @@ For now, you pass the information both via props and in context:
 
 <Sandpack>
 
-```js src/App.js
+```js src/App.jsx
 import { useReducer } from 'react';
-import AddTask from './AddTask.js';
-import TaskList from './TaskList.js';
+import AddTask from './AddTask.jsx';
+import TaskList from './TaskList.jsx';
 import { TasksContext, TasksDispatchContext } from './TasksContext.js';
 
 export default function TaskApp() {
@@ -567,7 +567,7 @@ export const TasksContext = createContext(null);
 export const TasksDispatchContext = createContext(null);
 ```
 
-```js src/AddTask.js
+```js src/AddTask.jsx
 import { useState } from 'react';
 
 export default function AddTask({ onAddTask }) {
@@ -588,7 +588,7 @@ export default function AddTask({ onAddTask }) {
 }
 ```
 
-```js src/TaskList.js
+```js src/TaskList.jsx
 import { useState } from 'react';
 
 export default function TaskList({
@@ -717,10 +717,10 @@ export default function AddTask() {
 
 <Sandpack>
 
-```js src/App.js
+```js src/App.jsx
 import { useReducer } from 'react';
-import AddTask from './AddTask.js';
-import TaskList from './TaskList.js';
+import AddTask from './AddTask.jsx';
+import TaskList from './TaskList.jsx';
 import { TasksContext, TasksDispatchContext } from './TasksContext.js';
 
 export default function TaskApp() {
@@ -781,7 +781,7 @@ export const TasksContext = createContext(null);
 export const TasksDispatchContext = createContext(null);
 ```
 
-```js src/AddTask.js
+```js src/AddTask.jsx
 import { useState, useContext } from 'react';
 import { TasksDispatchContext } from './TasksContext.js';
 
@@ -810,7 +810,7 @@ export default function AddTask() {
 let nextId = 3;
 ```
 
-```js src/TaskList.js active
+```js src/TaskList.jsx active
 import { useState, useContext } from 'react';
 import { TasksContext, TasksDispatchContext } from './TasksContext.js';
 
@@ -934,10 +934,10 @@ export function TasksProvider({ children }) {
 
 <Sandpack>
 
-```js src/App.js
-import AddTask from './AddTask.js';
-import TaskList from './TaskList.js';
-import { TasksProvider } from './TasksContext.js';
+```js src/App.jsx
+import AddTask from './AddTask.jsx';
+import TaskList from './TaskList.jsx';
+import { TasksProvider } from './TasksContext.jsx';
 
 export default function TaskApp() {
   return (
@@ -950,7 +950,7 @@ export default function TaskApp() {
 }
 ```
 
-```js src/TasksContext.js
+```js src/TasksContext.jsx
 import { createContext, useReducer } from 'react';
 
 export const TasksContext = createContext(null);
@@ -1005,9 +1005,9 @@ const initialTasks = [
 ];
 ```
 
-```js src/AddTask.js
+```js src/AddTask.jsx
 import { useState, useContext } from 'react';
-import { TasksDispatchContext } from './TasksContext.js';
+import { TasksDispatchContext } from './TasksContext.jsx';
 
 export default function AddTask() {
   const [text, setText] = useState('');
@@ -1034,9 +1034,9 @@ export default function AddTask() {
 let nextId = 3;
 ```
 
-```js src/TaskList.js
+```js src/TaskList.jsx
 import { useState, useContext } from 'react';
-import { TasksContext, TasksDispatchContext } from './TasksContext.js';
+import { TasksContext, TasksDispatchContext } from './TasksContext.jsx';
 
 export default function TaskList() {
   const tasks = useContext(TasksContext);
@@ -1144,10 +1144,10 @@ This doesn't change the behavior in any way, but it lets you later split these c
 
 <Sandpack>
 
-```js src/App.js
-import AddTask from './AddTask.js';
-import TaskList from './TaskList.js';
-import { TasksProvider } from './TasksContext.js';
+```js src/App.jsx
+import AddTask from './AddTask.jsx';
+import TaskList from './TaskList.jsx';
+import { TasksProvider } from './TasksContext.jsx';
 
 export default function TaskApp() {
   return (
@@ -1160,7 +1160,7 @@ export default function TaskApp() {
 }
 ```
 
-```js src/TasksContext.js
+```js src/TasksContext.jsx
 import { createContext, useContext, useReducer } from 'react';
 
 const TasksContext = createContext(null);
@@ -1224,9 +1224,9 @@ const initialTasks = [
 ];
 ```
 
-```js src/AddTask.js
+```js src/AddTask.jsx
 import { useState } from 'react';
-import { useTasksDispatch } from './TasksContext.js';
+import { useTasksDispatch } from './TasksContext.jsx';
 
 export default function AddTask() {
   const [text, setText] = useState('');
@@ -1253,9 +1253,9 @@ export default function AddTask() {
 let nextId = 3;
 ```
 
-```js src/TaskList.js active
+```js src/TaskList.jsx active
 import { useState } from 'react';
-import { useTasks, useTasksDispatch } from './TasksContext.js';
+import { useTasks, useTasksDispatch } from './TasksContext.jsx';
 
 export default function TaskList() {
   const tasks = useTasks();

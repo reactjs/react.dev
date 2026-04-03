@@ -998,7 +998,7 @@ Use the input's [`focus()`](https://developer.mozilla.org/en-US/docs/Web/API/HTM
 
 <Sandpack>
 
-```js src/MyInput.js active
+```js src/MyInput.jsx active
 import { useEffect, useRef } from 'react';
 
 export default function MyInput({ value, onChange }) {
@@ -1017,9 +1017,9 @@ export default function MyInput({ value, onChange }) {
 }
 ```
 
-```js src/App.js hidden
+```js src/App.jsx hidden
 import { useState } from 'react';
-import MyInput from './MyInput.js';
+import MyInput from './MyInput.jsx';
 
 export default function Form() {
   const [show, setShow] = useState(false);
@@ -1082,7 +1082,7 @@ To fix the mistake, wrap the `ref.current.focus()` call into an Effect declarati
 
 <Sandpack>
 
-```js src/MyInput.js active
+```js src/MyInput.jsx active
 import { useEffect, useRef } from 'react';
 
 export default function MyInput({ value, onChange }) {
@@ -1102,9 +1102,9 @@ export default function MyInput({ value, onChange }) {
 }
 ```
 
-```js src/App.js hidden
+```js src/App.jsx hidden
 import { useState } from 'react';
-import MyInput from './MyInput.js';
+import MyInput from './MyInput.jsx';
 
 export default function Form() {
   const [show, setShow] = useState(false);
@@ -1166,7 +1166,7 @@ Let's say you want to focus the first field. The first `MyInput` component now r
 
 <Sandpack>
 
-```js src/MyInput.js active
+```js src/MyInput.jsx active
 import { useEffect, useRef } from 'react';
 
 export default function MyInput({ shouldFocus, value, onChange }) {
@@ -1187,9 +1187,9 @@ export default function MyInput({ shouldFocus, value, onChange }) {
 }
 ```
 
-```js src/App.js hidden
+```js src/App.jsx hidden
 import { useState } from 'react';
-import MyInput from './MyInput.js';
+import MyInput from './MyInput.jsx';
 
 export default function Form() {
   const [show, setShow] = useState(false);
@@ -1256,7 +1256,7 @@ Put the conditional logic inside the Effect. You will need to specify `shouldFoc
 
 <Sandpack>
 
-```js src/MyInput.js active
+```js src/MyInput.jsx active
 import { useEffect, useRef } from 'react';
 
 export default function MyInput({ shouldFocus, value, onChange }) {
@@ -1278,9 +1278,9 @@ export default function MyInput({ shouldFocus, value, onChange }) {
 }
 ```
 
-```js src/App.js hidden
+```js src/App.jsx hidden
 import { useState } from 'react';
-import MyInput from './MyInput.js';
+import MyInput from './MyInput.jsx';
 
 export default function Form() {
   const [show, setShow] = useState(false);
@@ -1349,7 +1349,7 @@ Keep in mind that `setInterval` returns an interval ID, which you can pass to [`
 
 <Sandpack>
 
-```js src/Counter.js active
+```js src/Counter.jsx active
 import { useState, useEffect } from 'react';
 
 export default function Counter() {
@@ -1367,9 +1367,9 @@ export default function Counter() {
 }
 ```
 
-```js src/App.js hidden
+```js src/App.jsx hidden
 import { useState } from 'react';
-import Counter from './Counter.js';
+import Counter from './Counter.jsx';
 
 export default function Form() {
   const [show, setShow] = useState(false);
@@ -1408,7 +1408,7 @@ To fix this code, save the interval ID returned by `setInterval`, and implement 
 
 <Sandpack>
 
-```js src/Counter.js active
+```js src/Counter.jsx active
 import { useState, useEffect } from 'react';
 
 export default function Counter() {
@@ -1427,9 +1427,9 @@ export default function Counter() {
 }
 ```
 
-```js src/App.js hidden
+```js src/App.jsx hidden
 import { useState } from 'react';
-import Counter from './Counter.js';
+import Counter from './Counter.jsx';
 
 export default function App() {
   const [show, setShow] = useState(false);
@@ -1469,7 +1469,7 @@ This component shows the biography for the selected person. It loads the biograp
 <Sandpack>
 
 {/* not the most efficient, but this validation is enabled in the linter only, so it's fine to ignore it here since we know what we're doing */}
-```js {expectedErrors: {'react-compiler': [9]}} src/App.js
+```js {expectedErrors: {'react-compiler': [9]}} src/App.jsx
 import { useState, useEffect } from 'react';
 import { fetchBio } from './api.js';
 
@@ -1543,7 +1543,7 @@ To fix this race condition, add a cleanup function:
 <Sandpack>
 
 {/* not the most efficient, but this validation is enabled in the linter only, so it's fine to ignore it here since we know what we're doing */}
-```js {expectedErrors: {'react-compiler': [9]}} src/App.js
+```js {expectedErrors: {'react-compiler': [9]}} src/App.jsx
 import { useState, useEffect } from 'react';
 import { fetchBio } from './api.js';
 

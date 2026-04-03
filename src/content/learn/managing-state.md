@@ -308,10 +308,10 @@ However, sometimes this is not what you want. In this chat app, typing a message
 
 <Sandpack>
 
-```js src/App.js
+```js src/App.jsx
 import { useState } from 'react';
-import Chat from './Chat.js';
-import ContactList from './ContactList.js';
+import Chat from './Chat.jsx';
+import ContactList from './ContactList.jsx';
 
 export default function Messenger() {
   const [to, setTo] = useState(contacts[0]);
@@ -334,7 +334,7 @@ const contacts = [
 ];
 ```
 
-```js src/ContactList.js
+```js src/ContactList.jsx
 export default function ContactList({
   selectedContact,
   contacts,
@@ -358,7 +358,7 @@ export default function ContactList({
 }
 ```
 
-```js src/Chat.js
+```js src/Chat.jsx
 import { useState } from 'react';
 
 export default function Chat({ contact }) {
@@ -403,10 +403,10 @@ React lets you override the default behavior, and *force* a component to reset i
 
 <Sandpack>
 
-```js src/App.js
+```js src/App.jsx
 import { useState } from 'react';
-import Chat from './Chat.js';
-import ContactList from './ContactList.js';
+import Chat from './Chat.jsx';
+import ContactList from './ContactList.jsx';
 
 export default function Messenger() {
   const [to, setTo] = useState(contacts[0]);
@@ -429,7 +429,7 @@ const contacts = [
 ];
 ```
 
-```js src/ContactList.js
+```js src/ContactList.jsx
 export default function ContactList({
   selectedContact,
   contacts,
@@ -453,7 +453,7 @@ export default function ContactList({
 }
 ```
 
-```js src/Chat.js
+```js src/Chat.jsx
 import { useState } from 'react';
 
 export default function Chat({ contact }) {
@@ -506,10 +506,10 @@ Components with many state updates spread across many event handlers can get ove
 
 <Sandpack>
 
-```js src/App.js
+```js src/App.jsx
 import { useReducer } from 'react';
-import AddTask from './AddTask.js';
-import TaskList from './TaskList.js';
+import AddTask from './AddTask.jsx';
+import TaskList from './TaskList.jsx';
 
 export default function TaskApp() {
   const [tasks, dispatch] = useReducer(
@@ -589,7 +589,7 @@ const initialTasks = [
 ];
 ```
 
-```js src/AddTask.js hidden
+```js src/AddTask.jsx hidden
 import { useState } from 'react';
 
 export default function AddTask({ onAddTask }) {
@@ -610,7 +610,7 @@ export default function AddTask({ onAddTask }) {
 }
 ```
 
-```js src/TaskList.js hidden
+```js src/TaskList.jsx hidden
 import { useState } from 'react';
 
 export default function TaskList({
@@ -706,8 +706,8 @@ Here, the `Heading` component determines its heading level by "asking" the close
 <Sandpack>
 
 ```js
-import Heading from './Heading.js';
-import Section from './Section.js';
+import Heading from './Heading.jsx';
+import Section from './Section.jsx';
 
 export default function Page() {
   return (
@@ -733,7 +733,7 @@ export default function Page() {
 }
 ```
 
-```js src/Section.js
+```js src/Section.jsx
 import { useContext } from 'react';
 import { LevelContext } from './LevelContext.js';
 
@@ -749,7 +749,7 @@ export default function Section({ children }) {
 }
 ```
 
-```js src/Heading.js
+```js src/Heading.jsx
 import { useContext } from 'react';
 import { LevelContext } from './LevelContext.js';
 
@@ -807,10 +807,10 @@ With this approach, a parent component with complex state manages it with a redu
 
 <Sandpack>
 
-```js src/App.js
-import AddTask from './AddTask.js';
-import TaskList from './TaskList.js';
-import { TasksProvider } from './TasksContext.js';
+```js src/App.jsx
+import AddTask from './AddTask.jsx';
+import TaskList from './TaskList.jsx';
+import { TasksProvider } from './TasksContext.jsx';
 
 export default function TaskApp() {
   return (
@@ -823,7 +823,7 @@ export default function TaskApp() {
 }
 ```
 
-```js src/TasksContext.js
+```js src/TasksContext.jsx
 import { createContext, useContext, useReducer } from 'react';
 
 const TasksContext = createContext(null);
@@ -886,9 +886,9 @@ const initialTasks = [
 ];
 ```
 
-```js src/AddTask.js
+```js src/AddTask.jsx
 import { useState, useContext } from 'react';
-import { useTasksDispatch } from './TasksContext.js';
+import { useTasksDispatch } from './TasksContext.jsx';
 
 export default function AddTask({ onAddTask }) {
   const [text, setText] = useState('');
@@ -915,9 +915,9 @@ export default function AddTask({ onAddTask }) {
 let nextId = 3;
 ```
 
-```js src/TaskList.js
+```js src/TaskList.jsx
 import { useState, useContext } from 'react';
-import { useTasks, useTasksDispatch } from './TasksContext.js';
+import { useTasks, useTasksDispatch } from './TasksContext.jsx';
 
 export default function TaskList() {
   const tasks = useTasks();

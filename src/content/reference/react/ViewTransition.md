@@ -283,7 +283,7 @@ When `show` switches back to `false`, an `exit` animation is triggered.
 
 <Sandpack>
 
-```js src/Video.js hidden
+```js src/Video.jsx hidden
 function Thumbnail({video, children}) {
   return (
     <div
@@ -631,7 +631,7 @@ export default function Component() {
 }
 ```
 
-```js src/Video.js
+```js src/Video.jsx
 import {ViewTransition} from 'react';
 
 const THUMBNAIL_NAME = 'video-thumbnail';
@@ -856,7 +856,7 @@ function Component() {
 
 <Sandpack>
 
-```js src/Video.js hidden
+```js src/Video.jsx hidden
 function Thumbnail({video}) {
   return (
     <div
@@ -1059,7 +1059,7 @@ Instead, any parent `<ViewTransition>` would cross-fade. If there is no parent `
 
 <Sandpack>
 
-```js src/Video.js hidden
+```js src/Video.jsx hidden
 function Thumbnail({video}) {
   return (
     <div
@@ -1284,7 +1284,7 @@ In this scenario when the content goes from A to B, it'll be treated as an "upda
 
 <Sandpack>
 
-```js src/Video.js hidden
+```js src/Video.jsx hidden
 function Thumbnail({video, children}) {
   return (
     <div
@@ -1566,7 +1566,7 @@ And define slow-fade in CSS using view transition classes:
 
 <Sandpack>
 
-```js src/Video.js hidden
+```js src/Video.jsx hidden
 function Thumbnail({video, children}) {
   return (
     <div
@@ -1741,7 +1741,7 @@ In addition to setting the `default`, you can also provide configurations for `e
 
 <Sandpack>
 
-```js src/Video.js hidden
+```js src/Video.jsx hidden
 function Thumbnail({video, children}) {
   return (
     <div
@@ -2012,7 +2012,7 @@ In the future, routers and other libraries may add support for standard view-tra
 
 <Sandpack>
 
-```js src/Video.js hidden
+```js src/Video.jsx hidden
 function Thumbnail({video, children}) {
   return (
     <div
@@ -2342,7 +2342,7 @@ In the following example, the default cross-fade is handled by CSS, and the slid
 
 <Sandpack>
 
-```js src/Video.js hidden
+```js src/Video.jsx hidden
 function Thumbnail({video, children}) {
   return (
     <div
@@ -2583,7 +2583,7 @@ This example calls [`addTransitionType`](/reference/react/addTransitionType) to 
 
 <Sandpack>
 
-```js src/Video.js hidden
+```js src/Video.jsx hidden
 function Thumbnail({video, children}) {
   return (
     <div

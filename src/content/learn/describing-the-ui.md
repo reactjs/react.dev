@@ -32,7 +32,7 @@ React applications are built from isolated pieces of UI called *components*. A R
 function Profile() {
   return (
     <img
-      src="https://i.imgur.com/MK3eW3As.jpg"
+      src="https://react.dev/images/content/creola-katherine-johnson-s.jpg"
       alt="Katherine Johnson"
     />
   );
@@ -69,8 +69,8 @@ You can declare many components in one file, but large files can get difficult t
 
 <Sandpack>
 
-```js src/App.js hidden
-import Gallery from './Gallery.js';
+```js src/App.jsx hidden
+import Gallery from './Gallery.jsx';
 
 export default function App() {
   return (
@@ -79,8 +79,8 @@ export default function App() {
 }
 ```
 
-```js src/Gallery.js active
-import Profile from './Profile.js';
+```js src/Gallery.jsx active
+import Profile from './Profile.jsx';
 
 export default function Gallery() {
   return (
@@ -94,11 +94,11 @@ export default function Gallery() {
 }
 ```
 
-```js src/Profile.js
+```js src/Profile.jsx
 export default function Profile() {
   return (
     <img
-      src="https://i.imgur.com/QIrZWGIs.jpg"
+      src="https://react.dev/images/content/alan-l-hart-s.jpg"
       alt="Alan L. Hart"
     />
   );
@@ -131,7 +131,7 @@ export default function TodoList() {
     // This doesn't quite work!
     <h1>Hedy Lamarr's Todos</h1>
     <img
-      src="https://i.imgur.com/yXOvdOSs.jpg"
+      src="https://react.dev/images/content/hedy-lamarr-s.jpg"
       alt="Hedy Lamarr"
       class="photo"
     >
@@ -160,7 +160,7 @@ export default function TodoList() {
     <>
       <h1>Hedy Lamarr's Todos</h1>
       <img
-        src="https://i.imgur.com/yXOvdOSs.jpg"
+        src="https://react.dev/images/content/hedy-lamarr-s.jpg"
         alt="Hedy Lamarr"
         className="photo"
       />
@@ -207,7 +207,7 @@ export default function TodoList() {
       <h1>{person.name}'s Todos</h1>
       <img
         className="avatar"
-        src="https://i.imgur.com/7vQD0fPs.jpg"
+        src="https://react.dev/images/content/gregorio-y-zara-s.jpg"
         alt="Gregorio Y. Zara"
       />
       <ul>
@@ -250,7 +250,7 @@ export default function Profile() {
         size={100}
         person={{
           name: 'Katsuko Saruhashi',
-          imageId: 'YfeOqp2'
+          imageId: 'katsuko-saruhashi'
         }}
       />
     </Card>
@@ -282,9 +282,9 @@ function Card({ children }) {
 ```js src/utils.js
 export function getImageUrl(person, size = 's') {
   return (
-    'https://i.imgur.com/' +
+    'https://react.dev/images/content/' +
     person.imageId +
-    size +
+    '-' + size +
     '.jpg'
   );
 }
@@ -371,7 +371,7 @@ For each array item, you will need to specify a `key`. Usually, you will want to
 
 <Sandpack>
 
-```js src/App.js
+```js src/App.jsx
 import { people } from './data.js';
 import { getImageUrl } from './utils.js';
 
@@ -404,40 +404,40 @@ export const people = [{
   name: 'Creola Katherine Johnson',
   profession: 'mathematician',
   accomplishment: 'spaceflight calculations',
-  imageId: 'MK3eW3A'
+  imageId: 'creola-katherine-johnson'
 }, {
   id: 1,
   name: 'Mario José Molina-Pasquel Henríquez',
   profession: 'chemist',
   accomplishment: 'discovery of Arctic ozone hole',
-  imageId: 'mynHUSa'
+  imageId: 'mario-jose-molina-pasquel-henriquez'
 }, {
   id: 2,
   name: 'Mohammad Abdus Salam',
   profession: 'physicist',
   accomplishment: 'electromagnetism theory',
-  imageId: 'bE7W1ji'
+  imageId: 'abdus-salam'
 }, {
   id: 3,
   name: 'Percy Lavon Julian',
   profession: 'chemist',
   accomplishment: 'pioneering cortisone drugs, steroids and birth control pills',
-  imageId: 'IOjWm71'
+  imageId: 'percy-lavon-julian'
 }, {
   id: 4,
   name: 'Subrahmanyan Chandrasekhar',
   profession: 'astrophysicist',
   accomplishment: 'white dwarf star mass calculations',
-  imageId: 'lrWQx8l'
+  imageId: 'subrahmanyan-chandrasekhar'
 }];
 ```
 
 ```js src/utils.js
 export function getImageUrl(person) {
   return (
-    'https://i.imgur.com/' +
+    'https://react.dev/images/content/' +
     person.imageId +
-    's.jpg'
+    '-s.jpg'
   );
 }
 ```

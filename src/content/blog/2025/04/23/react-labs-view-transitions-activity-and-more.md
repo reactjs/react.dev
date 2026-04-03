@@ -110,7 +110,7 @@ We'll start with this app, which doesn't animate any of the following interactio
 
 <Sandpack>
 
-```js src/App.js active
+```js src/App.jsx active
 import TalkDetails from './Details'; import Home from './Home'; import {useRouter} from './router';
 
 export default function App() {
@@ -121,7 +121,7 @@ export default function App() {
 }
 ```
 
-```js src/Details.js
+```js src/Details.jsx
 import { fetchVideo, fetchVideoDetails } from "./data";
 import { Thumbnail, VideoControls } from "./Videos";
 import { useRouter } from "./router";
@@ -180,7 +180,7 @@ export default function Details() {
 
 ```
 
-```js src/Home.js
+```js src/Home.jsx
 import { Video } from "./Videos";
 import Layout from "./Layout";
 import { fetchVideos } from "./data";
@@ -250,7 +250,7 @@ export default function Home() {
 
 ```
 
-```js src/Icons.js
+```js src/Icons.jsx
 export function ChevronLeft() {
   return (
     <svg
@@ -368,7 +368,7 @@ export function IconSearch(props) {
 }
 ```
 
-```js src/Layout.js
+```js src/Layout.jsx
 import { useIsNavPending } from "./router";
 
 export default function Page({ heading, children }) {
@@ -390,7 +390,7 @@ export default function Page({ heading, children }) {
 }
 ```
 
-```js src/LikeButton.js
+```js src/LikeButton.jsx
 import {useState} from 'react';
 import {Heart} from './Icons';
 
@@ -421,7 +421,7 @@ export default function LikeButton({video}) {
 }
 ```
 
-```js src/Videos.js
+```js src/Videos.jsx
 import { useState } from "react";
 import LikeButton from "./LikeButton";
 import { useRouter } from "./router";
@@ -568,7 +568,7 @@ export function fetchVideoDetails(id) {
 }
 ```
 
-```js src/router.js
+```js src/router.jsx
 import {
   useState,
   createContext,
@@ -1224,7 +1224,7 @@ ul {
 }
 ```
 
-```js src/index.js hidden
+```js src/index.jsx hidden
 import React, {StrictMode} from 'react';
 import {createRoot} from 'react-dom/client';
 import './styles.css';
@@ -1298,7 +1298,7 @@ By default, View Transitions include the browser default cross-fade animation. A
 
 <Sandpack>
 
-```js src/App.js active
+```js src/App.jsx active
 import {ViewTransition} from 'react'; import Details from './Details';
 import Home from './Home'; import {useRouter} from './router';
 
@@ -1315,7 +1315,7 @@ export default function App() {
 }
 ```
 
-```js src/Details.js hidden
+```js src/Details.jsx hidden
 import { fetchVideo, fetchVideoDetails } from "./data";
 import { Thumbnail, VideoControls } from "./Videos";
 import { useRouter } from "./router";
@@ -1374,7 +1374,7 @@ export default function Details() {
 
 ```
 
-```js src/Home.js hidden
+```js src/Home.jsx hidden
 import { Video } from "./Videos";
 import Layout from "./Layout";
 import { fetchVideos } from "./data";
@@ -1444,7 +1444,7 @@ export default function Home() {
 
 ```
 
-```js src/Icons.js hidden
+```js src/Icons.jsx hidden
 export function ChevronLeft() {
   return (
     <svg
@@ -1562,7 +1562,7 @@ export function IconSearch(props) {
 }
 ```
 
-```js src/Layout.js
+```js src/Layout.jsx
 import {ViewTransition} from 'react'; import { useIsNavPending } from "./router";
 
 export default function Page({ heading, children }) {
@@ -1588,7 +1588,7 @@ export default function Page({ heading, children }) {
 }
 ```
 
-```js src/LikeButton.js hidden
+```js src/LikeButton.jsx hidden
 import {useState} from 'react';
 import {Heart} from './Icons';
 
@@ -1619,7 +1619,7 @@ export default function LikeButton({video}) {
 }
 ```
 
-```js src/Videos.js hidden
+```js src/Videos.jsx hidden
 import { useState } from "react";
 import LikeButton from "./LikeButton";
 import { useRouter } from "./router";
@@ -1766,7 +1766,7 @@ export function fetchVideoDetails(id) {
 }
 ```
 
-```js src/router.js
+```js src/router.jsx
 import {useState, createContext,use,useTransition,useLayoutEffect,useEffect} from "react";
 
 export function Router({ children }) {
@@ -2421,7 +2421,7 @@ ul {
 }
 ```
 
-```js src/index.js hidden
+```js src/index.jsx hidden
 import React, {StrictMode} from 'react';
 import {createRoot} from 'react-dom/client';
 import './styles.css';
@@ -2510,7 +2510,7 @@ Now, the cross fade is slower:
 
 <Sandpack>
 
-```js src/App.js active
+```js src/App.jsx active
 import { ViewTransition } from "react";
 import Details from "./Details";
 import Home from "./Home";
@@ -2529,7 +2529,7 @@ export default function App() {
 }
 ```
 
-```js src/Details.js hidden
+```js src/Details.jsx hidden
 import { fetchVideo, fetchVideoDetails } from "./data";
 import { Thumbnail, VideoControls } from "./Videos";
 import { useRouter } from "./router";
@@ -2588,7 +2588,7 @@ export default function Details() {
 
 ```
 
-```js src/Home.js hidden
+```js src/Home.jsx hidden
 import { Video } from "./Videos";
 import Layout from "./Layout";
 import { fetchVideos } from "./data";
@@ -2658,7 +2658,7 @@ export default function Home() {
 
 ```
 
-```js src/Icons.js hidden
+```js src/Icons.jsx hidden
 export function ChevronLeft() {
   return (
     <svg
@@ -2776,7 +2776,7 @@ export function IconSearch(props) {
 }
 ```
 
-```js src/Layout.js hidden
+```js src/Layout.jsx hidden
 import {ViewTransition} from 'react'; import { useIsNavPending } from "./router";
 
 export default function Page({ heading, children }) {
@@ -2802,7 +2802,7 @@ export default function Page({ heading, children }) {
 }
 ```
 
-```js src/LikeButton.js hidden
+```js src/LikeButton.jsx hidden
 import {useState} from 'react';
 import {Heart} from './Icons';
 
@@ -2833,7 +2833,7 @@ export default function LikeButton({video}) {
 }
 ```
 
-```js src/Videos.js hidden
+```js src/Videos.jsx hidden
 import { useState } from "react";
 import LikeButton from "./LikeButton";
 import { useRouter } from "./router";
@@ -2980,7 +2980,7 @@ export function fetchVideoDetails(id) {
 }
 ```
 
-```js src/router.js hidden
+```js src/router.jsx hidden
 import {
   useState,
   createContext,
@@ -3648,7 +3648,7 @@ ul {
 }
 ```
 
-```js src/index.js hidden
+```js src/index.jsx hidden
 import React, {StrictMode} from 'react';
 import {createRoot} from 'react-dom/client';
 import './styles.css';
@@ -3703,7 +3703,7 @@ Now the video thumbnail animates between the two pages:
 
 <Sandpack>
 
-```js src/App.js
+```js src/App.jsx
 import { ViewTransition } from "react";
 import Details from "./Details";
 import Home from "./Home";
@@ -3723,7 +3723,7 @@ export default function App() {
 }
 ```
 
-```js src/Details.js hidden
+```js src/Details.jsx hidden
 import { fetchVideo, fetchVideoDetails } from "./data";
 import { Thumbnail, VideoControls } from "./Videos";
 import { useRouter } from "./router";
@@ -3782,7 +3782,7 @@ export default function Details() {
 
 ```
 
-```js src/Home.js hidden
+```js src/Home.jsx hidden
 import { Video } from "./Videos";
 import Layout from "./Layout";
 import { fetchVideos } from "./data";
@@ -3852,7 +3852,7 @@ export default function Home() {
 
 ```
 
-```js src/Icons.js hidden
+```js src/Icons.jsx hidden
 export function ChevronLeft() {
   return (
     <svg
@@ -3970,7 +3970,7 @@ export function IconSearch(props) {
 }
 ```
 
-```js src/Layout.js hidden
+```js src/Layout.jsx hidden
 import {ViewTransition} from 'react'; import { useIsNavPending } from "./router";
 
 export default function Page({ heading, children }) {
@@ -3996,7 +3996,7 @@ export default function Page({ heading, children }) {
 }
 ```
 
-```js src/LikeButton.js hidden
+```js src/LikeButton.jsx hidden
 import {useState} from 'react';
 import {Heart} from './Icons';
 
@@ -4027,7 +4027,7 @@ export default function LikeButton({video}) {
 }
 ```
 
-```js src/Videos.js active
+```js src/Videos.jsx active
 import { useState, ViewTransition } from "react"; import LikeButton from "./LikeButton"; import { useRouter } from "./router"; import { PauseIcon, PlayIcon } from "./Icons"; import { startTransition } from "react";
 
 export function Thumbnail({ video, children }) {
@@ -4174,7 +4174,7 @@ export function fetchVideoDetails(id) {
 }
 ```
 
-```js src/router.js hidden
+```js src/router.jsx hidden
 import {
   useState,
   createContext,
@@ -4857,7 +4857,7 @@ ul {
 }
 ```
 
-```js src/index.js hidden
+```js src/index.jsx hidden
 import React, {StrictMode} from 'react';
 import {createRoot} from 'react-dom/client';
 import './styles.css';
@@ -4960,7 +4960,7 @@ Now we can animate the header along with thumbnail based on navigation type:
 
 <Sandpack>
 
-```js src/App.js hidden
+```js src/App.jsx hidden
 import { ViewTransition } from "react";
 import Details from "./Details";
 import Home from "./Home";
@@ -4978,7 +4978,7 @@ export default function App() {
 }
 ```
 
-```js src/Details.js hidden
+```js src/Details.jsx hidden
 import { fetchVideo, fetchVideoDetails } from "./data";
 import { Thumbnail, VideoControls } from "./Videos";
 import { useRouter } from "./router";
@@ -5037,7 +5037,7 @@ export default function Details() {
 
 ```
 
-```js src/Home.js hidden
+```js src/Home.jsx hidden
 import { Video } from "./Videos";
 import Layout from "./Layout";
 import { fetchVideos } from "./data";
@@ -5107,7 +5107,7 @@ export default function Home() {
 
 ```
 
-```js src/Icons.js hidden
+```js src/Icons.jsx hidden
 export function ChevronLeft() {
   return (
     <svg
@@ -5225,7 +5225,7 @@ export function IconSearch(props) {
 }
 ```
 
-```js src/Layout.js active
+```js src/Layout.jsx active
 import {ViewTransition} from 'react'; import { useIsNavPending } from "./router";
 
 export default function Page({ heading, children }) {
@@ -5258,7 +5258,7 @@ export default function Page({ heading, children }) {
 }
 ```
 
-```js src/LikeButton.js hidden
+```js src/LikeButton.jsx hidden
 import {useState} from 'react';
 import {Heart} from './Icons';
 
@@ -5289,7 +5289,7 @@ export default function LikeButton({video}) {
 }
 ```
 
-```js src/Videos.js hidden
+```js src/Videos.jsx hidden
 import { useState, ViewTransition } from "react";
 import LikeButton from "./LikeButton";
 import { useRouter } from "./router";
@@ -5440,7 +5440,7 @@ export function fetchVideoDetails(id) {
 }
 ```
 
-```js src/router.js
+```js src/router.jsx
 import {useState, createContext, use, useTransition, useLayoutEffect, useEffect, addTransitionType} from "react";
 
 export function Router({ children }) {
@@ -6173,7 +6173,7 @@ ul {
 }
 ```
 
-```js src/index.js hidden
+```js src/index.jsx hidden
 import React, {StrictMode} from 'react';
 import {createRoot} from 'react-dom/client';
 import './styles.css';
@@ -6228,7 +6228,7 @@ By adding this, the fallback will cross-fade into the content. Click a video and
 
 <Sandpack>
 
-```js src/App.js hidden
+```js src/App.jsx hidden
 import { ViewTransition } from "react";
 import Details from "./Details";
 import Home from "./Home";
@@ -6246,7 +6246,7 @@ export default function App() {
 }
 ```
 
-```js src/Details.js active
+```js src/Details.jsx active
 import { use, Suspense, ViewTransition } from "react"; import { fetchVideo, fetchVideoDetails } from "./data"; import { Thumbnail, VideoControls } from "./Videos"; import { useRouter } from "./router"; import Layout from "./Layout"; import { ChevronLeft } from "./Icons";
 
 function VideoDetails({ id }) {
@@ -6308,7 +6308,7 @@ function VideoInfo({ id }) {
 }
 ```
 
-```js src/Home.js hidden
+```js src/Home.jsx hidden
 import { Video } from "./Videos";
 import Layout from "./Layout";
 import { fetchVideos } from "./data";
@@ -6378,7 +6378,7 @@ export default function Home() {
 
 ```
 
-```js src/Icons.js hidden
+```js src/Icons.jsx hidden
 export function ChevronLeft() {
   return (
     <svg
@@ -6496,7 +6496,7 @@ export function IconSearch(props) {
 }
 ```
 
-```js src/Layout.js hidden
+```js src/Layout.jsx hidden
 import {ViewTransition} from 'react';
 import { useIsNavPending } from "./router";
 
@@ -6530,7 +6530,7 @@ export default function Page({ heading, children }) {
 }
 ```
 
-```js src/LikeButton.js hidden
+```js src/LikeButton.jsx hidden
 import {useState} from 'react';
 import {Heart} from './Icons';
 
@@ -6561,7 +6561,7 @@ export default function LikeButton({video}) {
 }
 ```
 
-```js src/Videos.js hidden
+```js src/Videos.jsx hidden
 import { useState, ViewTransition } from "react";
 import LikeButton from "./LikeButton";
 import { useRouter } from "./router";
@@ -6712,7 +6712,7 @@ export function fetchVideoDetails(id) {
 }
 ```
 
-```js src/router.js hidden
+```js src/router.jsx hidden
 import {useState, createContext, use, useTransition, useLayoutEffect, useEffect, addTransitionType} from "react";
 
 export function Router({ children }) {
@@ -7471,7 +7471,7 @@ ul {
 }
 ```
 
-```js src/index.js hidden
+```js src/index.jsx hidden
 import React, {StrictMode} from 'react';
 import {createRoot} from 'react-dom/client';
 import './styles.css';
@@ -7542,7 +7542,7 @@ Now, the Suspense content replaces the fallback with a sliding animation:
 
 <Sandpack>
 
-```js src/App.js hidden
+```js src/App.jsx hidden
 import { ViewTransition } from "react";
 import Details from "./Details";
 import Home from "./Home";
@@ -7560,7 +7560,7 @@ export default function App() {
 }
 ```
 
-```js src/Details.js active
+```js src/Details.jsx active
 import { use, Suspense, ViewTransition } from "react"; import { fetchVideo, fetchVideoDetails } from "./data"; import { Thumbnail, VideoControls } from "./Videos"; import { useRouter } from "./router"; import Layout from "./Layout"; import { ChevronLeft } from "./Icons";
 
 function VideoDetails({ id }) {
@@ -7629,7 +7629,7 @@ function VideoInfo({ id }) {
 }
 ```
 
-```js src/Home.js hidden
+```js src/Home.jsx hidden
 import { Video } from "./Videos";
 import Layout from "./Layout";
 import { fetchVideos } from "./data";
@@ -7699,7 +7699,7 @@ export default function Home() {
 
 ```
 
-```js src/Icons.js hidden
+```js src/Icons.jsx hidden
 export function ChevronLeft() {
   return (
     <svg
@@ -7817,7 +7817,7 @@ export function IconSearch(props) {
 }
 ```
 
-```js src/Layout.js hidden
+```js src/Layout.jsx hidden
 import {ViewTransition} from 'react';
 import { useIsNavPending } from "./router";
 
@@ -7851,7 +7851,7 @@ export default function Page({ heading, children }) {
 }
 ```
 
-```js src/LikeButton.js hidden
+```js src/LikeButton.jsx hidden
 import {useState} from 'react';
 import {Heart} from './Icons';
 
@@ -7882,7 +7882,7 @@ export default function LikeButton({video}) {
 }
 ```
 
-```js src/Videos.js hidden
+```js src/Videos.jsx hidden
 import { useState, ViewTransition } from "react";
 import LikeButton from "./LikeButton";
 import { useRouter } from "./router";
@@ -8033,7 +8033,7 @@ export function fetchVideoDetails(id) {
 }
 ```
 
-```js src/router.js hidden
+```js src/router.jsx hidden
 import {useState, createContext, use, useTransition, useLayoutEffect, useEffect, addTransitionType} from "react";
 
 export function Router({ children }) {
@@ -8792,7 +8792,7 @@ ul {
 }
 ```
 
-```js src/index.js hidden
+```js src/index.jsx hidden
 import React, {StrictMode} from 'react';
 import {createRoot} from 'react-dom/client';
 import './styles.css';
@@ -8856,7 +8856,7 @@ Now the items animate as you type in the search bar:
 
 <Sandpack>
 
-```js src/App.js hidden
+```js src/App.jsx hidden
 import { ViewTransition } from "react";
 import Details from "./Details";
 import Home from "./Home";
@@ -8874,7 +8874,7 @@ export default function App() {
 }
 ```
 
-```js src/Details.js hidden
+```js src/Details.jsx hidden
 import { use, Suspense, ViewTransition } from "react";
 import { fetchVideo, fetchVideoDetails } from "./data";
 import { Thumbnail, VideoControls } from "./Videos";
@@ -8949,7 +8949,7 @@ function VideoInfo({ id }) {
 }
 ```
 
-```js src/Home.js
+```js src/Home.jsx
 import { useId, useState, use, useDeferredValue, ViewTransition } from "react";import { Video } from "./Videos";import Layout from "./Layout";import { fetchVideos } from "./data";import { IconSearch } from "./Icons";
 
 function SearchList({searchText, videos}) {
@@ -9026,7 +9026,7 @@ function filterVideos(videos, query) {
 }
 ```
 
-```js src/Icons.js hidden
+```js src/Icons.jsx hidden
 export function ChevronLeft() {
   return (
     <svg
@@ -9144,7 +9144,7 @@ export function IconSearch(props) {
 }
 ```
 
-```js src/Layout.js hidden
+```js src/Layout.jsx hidden
 import {ViewTransition} from 'react';
 import { useIsNavPending } from "./router";
 
@@ -9178,7 +9178,7 @@ export default function Page({ heading, children }) {
 }
 ```
 
-```js src/LikeButton.js hidden
+```js src/LikeButton.jsx hidden
 import {useState} from 'react';
 import {Heart} from './Icons';
 
@@ -9209,7 +9209,7 @@ export default function LikeButton({video}) {
 }
 ```
 
-```js src/Videos.js hidden
+```js src/Videos.jsx hidden
 import { useState, ViewTransition } from "react";
 import LikeButton from "./LikeButton";
 import { useRouter } from "./router";
@@ -9360,7 +9360,7 @@ export function fetchVideoDetails(id) {
 }
 ```
 
-```js src/router.js hidden
+```js src/router.jsx hidden
 import {useState, createContext, use, useTransition, useLayoutEffect, useEffect, addTransitionType} from "react";
 
 export function Router({ children }) {
@@ -10133,7 +10133,7 @@ ul {
 }
 ```
 
-```js src/index.js hidden
+```js src/index.jsx hidden
 import React, {StrictMode} from 'react';
 import {createRoot} from 'react-dom/client';
 import './styles.css';
@@ -10180,7 +10180,7 @@ Let's remove the slow fade, and take a look at the final result:
 
 <Sandpack>
 
-```js src/App.js
+```js src/App.jsx
 import {ViewTransition} from 'react'; import Details from './Details'; import Home from './Home'; import {useRouter} from './router';
 
 export default function App() {
@@ -10195,7 +10195,7 @@ export default function App() {
 }
 ```
 
-```js src/Details.js
+```js src/Details.jsx
 import { use, Suspense, ViewTransition } from "react"; import { fetchVideo, fetchVideoDetails } from "./data"; import { Thumbnail, VideoControls } from "./Videos"; import { useRouter } from "./router"; import Layout from "./Layout"; import { ChevronLeft } from "./Icons";
 
 function VideoDetails({id}) {
@@ -10265,7 +10265,7 @@ function VideoInfo({ id }) {
 }
 ```
 
-```js src/Home.js
+```js src/Home.jsx
 import { useId, useState, use, useDeferredValue, ViewTransition } from "react";import { Video } from "./Videos";import Layout from "./Layout";import { fetchVideos } from "./data";import { IconSearch } from "./Icons";
 
 function SearchList({searchText, videos}) {
@@ -10342,7 +10342,7 @@ function filterVideos(videos, query) {
 }
 ```
 
-```js src/Icons.js hidden
+```js src/Icons.jsx hidden
 export function ChevronLeft() {
   return (
     <svg
@@ -10460,7 +10460,7 @@ export function IconSearch(props) {
 }
 ```
 
-```js src/Layout.js
+```js src/Layout.jsx
 import {ViewTransition} from 'react'; import { useIsNavPending } from "./router";
 
 export default function Page({ heading, children }) {
@@ -10493,7 +10493,7 @@ export default function Page({ heading, children }) {
 }
 ```
 
-```js src/LikeButton.js hidden
+```js src/LikeButton.jsx hidden
 import {useState} from 'react';
 import {Heart} from './Icons';
 
@@ -10524,7 +10524,7 @@ export default function LikeButton({video}) {
 }
 ```
 
-```js src/Videos.js
+```js src/Videos.jsx
 import { useState, ViewTransition } from "react"; import LikeButton from "./LikeButton"; import { useRouter } from "./router"; import { PauseIcon, PlayIcon } from "./Icons"; import { startTransition } from "react";
 
 export function Thumbnail({ video, children }) {
@@ -10672,7 +10672,7 @@ export function fetchVideoDetails(id) {
 }
 ```
 
-```js src/router.js
+```js src/router.jsx
 import {useState, createContext, use, useTransition, useLayoutEffect, useEffect, addTransitionType} from "react";
 
 export function Router({ children }) {
@@ -11419,7 +11419,7 @@ ul {
 }
 ```
 
-```js src/index.js hidden
+```js src/index.jsx hidden
 import React, {StrictMode} from 'react';
 import {createRoot} from 'react-dom/client';
 import './styles.css';
@@ -11542,7 +11542,7 @@ Try searching for a video, selecting it, and clicking "back":
 
 <Sandpack>
 
-```js src/App.js
+```js src/App.jsx
 import { Activity, ViewTransition } from "react"; import Details from "./Details"; import Home from "./Home"; import { useRouter } from "./router";
 
 export default function App() {
@@ -11561,7 +11561,7 @@ export default function App() {
 }
 ```
 
-```js src/Details.js hidden
+```js src/Details.jsx hidden
 import { use, Suspense, ViewTransition } from "react";
 import { fetchVideo, fetchVideoDetails } from "./data";
 import { Thumbnail, VideoControls } from "./Videos";
@@ -11636,7 +11636,7 @@ function VideoInfo({ id }) {
 }
 ```
 
-```js src/Home.js hidden
+```js src/Home.jsx hidden
 import { useId, useState, use, useDeferredValue, ViewTransition } from "react";import { Video } from "./Videos";import Layout from "./Layout";import { fetchVideos } from "./data";import { IconSearch } from "./Icons";
 
 function SearchList({searchText, videos}) {
@@ -11713,7 +11713,7 @@ function filterVideos(videos, query) {
 }
 ```
 
-```js src/Icons.js hidden
+```js src/Icons.jsx hidden
 export function ChevronLeft() {
   return (
     <svg
@@ -11831,7 +11831,7 @@ export function IconSearch(props) {
 }
 ```
 
-```js src/Layout.js hidden
+```js src/Layout.jsx hidden
 import {ViewTransition} from 'react'; import { useIsNavPending } from "./router";
 
 export default function Page({ heading, children }) {
@@ -11864,7 +11864,7 @@ export default function Page({ heading, children }) {
 }
 ```
 
-```js src/LikeButton.js hidden
+```js src/LikeButton.jsx hidden
 import {useState} from 'react';
 import {Heart} from './Icons';
 
@@ -11895,7 +11895,7 @@ export default function LikeButton({video}) {
 }
 ```
 
-```js src/Videos.js hidden
+```js src/Videos.jsx hidden
 import { useState, ViewTransition } from "react";
 import LikeButton from "./LikeButton";
 import { useRouter } from "./router";
@@ -12046,7 +12046,7 @@ export function fetchVideoDetails(id) {
 }
 ```
 
-```js src/router.js hidden
+```js src/router.jsx hidden
 import {useState, createContext, use, useTransition, useLayoutEffect, useEffect, addTransitionType} from "react";
 
 export function Router({ children }) {
@@ -12818,7 +12818,7 @@ ul {
 }
 ```
 
-```js src/index.js hidden
+```js src/index.jsx hidden
 import React, {StrictMode} from 'react';
 import {createRoot} from 'react-dom/client';
 import './styles.css';
@@ -12879,7 +12879,7 @@ With this update, if the content on the next page has time to pre-render, it wil
 
 <Sandpack>
 
-```js src/App.js
+```js src/App.jsx
 import { Activity, ViewTransition, use } from "react"; import Details from "./Details"; import Home from "./Home"; import { useRouter } from "./router"; import {fetchVideos} from './data';
 
 export default function App() {
@@ -12903,7 +12903,7 @@ export default function App() {
 }
 ```
 
-```js src/Details.js
+```js src/Details.jsx
 import { use, Suspense, ViewTransition } from "react"; import { fetchVideo, fetchVideoDetails } from "./data"; import { Thumbnail, VideoControls } from "./Videos"; import { useRouter } from "./router"; import Layout from "./Layout"; import { ChevronLeft } from "./Icons";
 
 function VideoDetails({id}) {
@@ -12974,7 +12974,7 @@ function VideoInfo({ id }) {
 }
 ```
 
-```js src/Home.js hidden
+```js src/Home.jsx hidden
 import { useId, useState, use, useDeferredValue, ViewTransition } from "react";import { Video } from "./Videos";import Layout from "./Layout";import { fetchVideos } from "./data";import { IconSearch } from "./Icons";
 
 function SearchList({searchText, videos}) {
@@ -13051,7 +13051,7 @@ function filterVideos(videos, query) {
 }
 ```
 
-```js src/Icons.js hidden
+```js src/Icons.jsx hidden
 export function ChevronLeft() {
   return (
     <svg
@@ -13169,7 +13169,7 @@ export function IconSearch(props) {
 }
 ```
 
-```js src/Layout.js hidden
+```js src/Layout.jsx hidden
 import {ViewTransition} from 'react'; import { useIsNavPending } from "./router";
 
 export default function Page({ heading, children }) {
@@ -13202,7 +13202,7 @@ export default function Page({ heading, children }) {
 }
 ```
 
-```js src/LikeButton.js hidden
+```js src/LikeButton.jsx hidden
 import {useState} from 'react';
 import {Heart} from './Icons';
 
@@ -13233,7 +13233,7 @@ export default function LikeButton({video}) {
 }
 ```
 
-```js src/Videos.js hidden
+```js src/Videos.jsx hidden
 import { useState, ViewTransition } from "react";
 import LikeButton from "./LikeButton";
 import { useRouter } from "./router";
@@ -13384,7 +13384,7 @@ export function fetchVideoDetails(id) {
 }
 ```
 
-```js src/router.js hidden
+```js src/router.jsx hidden
 import {useState, createContext, use, useTransition, useLayoutEffect, useEffect, addTransitionType} from "react";
 
 export function Router({ children }) {
@@ -14156,7 +14156,7 @@ ul {
 }
 ```
 
-```js src/index.js hidden
+```js src/index.jsx hidden
 import React, {StrictMode} from 'react';
 import {createRoot} from 'react-dom/client';
 import './styles.css';

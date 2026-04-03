@@ -28,7 +28,7 @@ In [Your First Component](/learn/your-first-component), you made a `Profile` com
 function Profile() {
   return (
     <img
-      src="https://i.imgur.com/MK3eW3As.jpg"
+      src="https://react.dev/images/content/creola-katherine-johnson-s.jpg"
       alt="Katherine Johnson"
     />
   );
@@ -66,8 +66,8 @@ Here both `Profile` and `Gallery` have been moved out of `App.js` into a new fil
 
 <Sandpack>
 
-```js src/App.js
-import Gallery from './Gallery.js';
+```js src/App.jsx
+import Gallery from './Gallery.jsx';
 
 export default function App() {
   return (
@@ -76,11 +76,11 @@ export default function App() {
 }
 ```
 
-```js src/Gallery.js
+```js src/Gallery.jsx
 function Profile() {
   return (
     <img
-      src="https://i.imgur.com/QIrZWGIs.jpg"
+      src="https://react.dev/images/content/alan-l-hart-s.jpg"
       alt="Alan L. Hart"
     />
   );
@@ -183,9 +183,9 @@ Now `Gallery.js` contains two exports: a default `Gallery` export, and a named `
 
 <Sandpack>
 
-```js src/App.js
-import Gallery from './Gallery.js';
-import { Profile } from './Gallery.js';
+```js src/App.jsx
+import Gallery from './Gallery.jsx';
+import { Profile } from './Gallery.jsx';
 
 export default function App() {
   return (
@@ -194,11 +194,11 @@ export default function App() {
 }
 ```
 
-```js src/Gallery.js
+```js src/Gallery.jsx
 export function Profile() {
   return (
     <img
-      src="https://i.imgur.com/QIrZWGIs.jpg"
+      src="https://react.dev/images/content/alan-l-hart-s.jpg"
       alt="Alan L. Hart"
     />
   );
@@ -268,9 +268,9 @@ Don't forget to import your components where they are called. Doesn't `Gallery` 
 
 <Sandpack>
 
-```js src/App.js
-import Gallery from './Gallery.js';
-import { Profile } from './Gallery.js';
+```js src/App.jsx
+import Gallery from './Gallery.jsx';
+import { Profile } from './Gallery.jsx';
 
 export default function App() {
   return (
@@ -281,12 +281,12 @@ export default function App() {
 }
 ```
 
-```js src/Gallery.js active
+```js src/Gallery.jsx active
 // Move me to Profile.js!
 export function Profile() {
   return (
     <img
-      src="https://i.imgur.com/QIrZWGIs.jpg"
+      src="https://react.dev/images/content/alan-l-hart-s.jpg"
       alt="Alan L. Hart"
     />
   );
@@ -321,9 +321,9 @@ This is the solution with named exports:
 
 <Sandpack>
 
-```js src/App.js
-import Gallery from './Gallery.js';
-import { Profile } from './Profile.js';
+```js src/App.jsx
+import Gallery from './Gallery.jsx';
+import { Profile } from './Profile.jsx';
 
 export default function App() {
   return (
@@ -335,8 +335,8 @@ export default function App() {
 }
 ```
 
-```js src/Gallery.js
-import { Profile } from './Profile.js';
+```js src/Gallery.jsx
+import { Profile } from './Profile.jsx';
 
 export default function Gallery() {
   return (
@@ -350,11 +350,11 @@ export default function Gallery() {
 }
 ```
 
-```js src/Profile.js
+```js src/Profile.jsx
 export function Profile() {
   return (
     <img
-      src="https://i.imgur.com/QIrZWGIs.jpg"
+      src="https://react.dev/images/content/alan-l-hart-s.jpg"
       alt="Alan L. Hart"
     />
   );
@@ -371,9 +371,9 @@ This is the solution with default exports:
 
 <Sandpack>
 
-```js src/App.js
-import Gallery from './Gallery.js';
-import Profile from './Profile.js';
+```js src/App.jsx
+import Gallery from './Gallery.jsx';
+import Profile from './Profile.jsx';
 
 export default function App() {
   return (
@@ -385,8 +385,8 @@ export default function App() {
 }
 ```
 
-```js src/Gallery.js
-import Profile from './Profile.js';
+```js src/Gallery.jsx
+import Profile from './Profile.jsx';
 
 export default function Gallery() {
   return (
@@ -400,11 +400,11 @@ export default function Gallery() {
 }
 ```
 
-```js src/Profile.js
+```js src/Profile.jsx
 export default function Profile() {
   return (
     <img
-      src="https://i.imgur.com/QIrZWGIs.jpg"
+      src="https://react.dev/images/content/alan-l-hart-s.jpg"
       alt="Alan L. Hart"
     />
   );

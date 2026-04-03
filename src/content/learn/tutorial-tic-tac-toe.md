@@ -29,7 +29,7 @@ You can see what it will look like when you're finished here:
 
 <Sandpack>
 
-```js src/App.js
+```js src/App.jsx
 import { useState } from 'react';
 
 function Square({ value, onSquareClick }) {
@@ -206,7 +206,7 @@ In the live code editor below, click **Fork** in the top-right corner to open th
 
 <Sandpack>
 
-```js src/App.js
+```js src/App.jsx
 export default function Square() {
   return <button className="square">X</button>;
 }
@@ -627,7 +627,7 @@ Your updated code should look like this:
 
 <Sandpack>
 
-```js src/App.js
+```js src/App.jsx
 function Square({ value }) {
   return <button className="square">{value}</button>;
 }
@@ -807,7 +807,7 @@ After you've made the above changes, your code will look like this:
 
 <Sandpack>
 
-```js src/App.js
+```js src/App.jsx
 import { useState } from 'react';
 
 function Square() {
@@ -988,7 +988,7 @@ And your code should look like this:
 
 <Sandpack>
 
-```js src/App.js
+```js src/App.jsx
 import { useState } from 'react';
 
 function Square({ value }) {
@@ -1228,7 +1228,7 @@ This is what your code should look like:
 
 <Sandpack>
 
-```js src/App.js
+```js src/App.jsx
 import { useState } from 'react';
 
 function Square({ value, onSquareClick }) {
@@ -1422,7 +1422,7 @@ Now you can only add `X`'s or `O`'s to empty squares! Here is what your code sho
 
 <Sandpack>
 
-```js src/App.js
+```js src/App.jsx
 import { useState } from 'react';
 
 function Square({value, onSquareClick}) {
@@ -1594,7 +1594,7 @@ Congratulations! You now have a working tic-tac-toe game. And you've just learne
 
 <Sandpack>
 
-```js src/App.js
+```js src/App.jsx
 import { useState } from 'react';
 
 function Square({value, onSquareClick}) {
@@ -1872,7 +1872,7 @@ At this point, you've moved the state to live in the `Game` component, and the U
 
 <Sandpack>
 
-```js src/App.js
+```js src/App.jsx
 import { useState } from 'react';
 
 function Square({ value, onSquareClick }) {
@@ -2083,7 +2083,7 @@ You'll fix this error in the next section.
 
 <Sandpack>
 
-```js src/App.js
+```js src/App.jsx
 import { useState } from 'react';
 
 function Square({ value, onSquareClick }) {
@@ -2311,7 +2311,7 @@ const moves = history.map((squares, move) => {
 
 <Sandpack>
 
-```js src/App.js
+```js src/App.jsx
 import { useState } from 'react';
 
 function Square({ value, onSquareClick }) {
@@ -2532,7 +2532,7 @@ If you click on any step in the game's history, the tic-tac-toe board should imm
 
 <Sandpack>
 
-```js src/App.js
+```js src/App.jsx
 import { useState } from 'react';
 
 function Square({value, onSquareClick}) {
@@ -2742,7 +2742,7 @@ Check out the final result here:
 
 <Sandpack>
 
-```js src/App.js
+```js src/App.jsx
 import { useState } from 'react';
 
 function Square({ value, onSquareClick }) {

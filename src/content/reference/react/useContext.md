@@ -745,10 +745,10 @@ Read a [full walkthrough](/learn/scaling-up-with-reducer-and-context) of this ex
 
 <Sandpack>
 
-```js src/App.js
-import AddTask from './AddTask.js';
-import TaskList from './TaskList.js';
-import { TasksProvider } from './TasksContext.js';
+```js src/App.jsx
+import AddTask from './AddTask.jsx';
+import TaskList from './TaskList.jsx';
+import { TasksProvider } from './TasksContext.jsx';
 
 export default function TaskApp() {
   return (
@@ -761,7 +761,7 @@ export default function TaskApp() {
 }
 ```
 
-```js src/TasksContext.js
+```js src/TasksContext.jsx
 import { createContext, useContext, useReducer } from 'react';
 
 const TasksContext = createContext(null);
@@ -825,9 +825,9 @@ const initialTasks = [
 ];
 ```
 
-```js src/AddTask.js
+```js src/AddTask.jsx
 import { useState, useContext } from 'react';
-import { useTasksDispatch } from './TasksContext.js';
+import { useTasksDispatch } from './TasksContext.jsx';
 
 export default function AddTask() {
   const [text, setText] = useState('');
@@ -854,9 +854,9 @@ export default function AddTask() {
 let nextId = 3;
 ```
 
-```js src/TaskList.js
+```js src/TaskList.jsx
 import { useState, useContext } from 'react';
-import { useTasks, useTasksDispatch } from './TasksContext.js';
+import { useTasks, useTasksDispatch } from './TasksContext.jsx';
 
 export default function TaskList() {
   const tasks = useTasks();
@@ -1195,8 +1195,8 @@ Read a [detailed walkthrough](/learn/passing-data-deeply-with-context) of this e
 <Sandpack>
 
 ```js
-import Heading from './Heading.js';
-import Section from './Section.js';
+import Heading from './Heading.jsx';
+import Section from './Section.jsx';
 
 export default function Page() {
   return (
@@ -1222,7 +1222,7 @@ export default function Page() {
 }
 ```
 
-```js src/Section.js
+```js src/Section.jsx
 import { useContext } from 'react';
 import { LevelContext } from './LevelContext.js';
 
@@ -1238,7 +1238,7 @@ export default function Section({ children }) {
 }
 ```
 
-```js src/Heading.js
+```js src/Heading.jsx
 import { useContext } from 'react';
 import { LevelContext } from './LevelContext.js';
 

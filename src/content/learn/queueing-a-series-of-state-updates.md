@@ -414,7 +414,7 @@ export function getFinalState(baseState, queue) {
 }
 ```
 
-```js src/App.js
+```js src/App.jsx
 import { getFinalState } from './processQueue.js';
 
 function increment(n) {
@@ -517,7 +517,7 @@ export function getFinalState(baseState, queue) {
 }
 ```
 
-```js src/App.js
+```js src/App.jsx
 import { getFinalState } from './processQueue.js';
 
 function increment(n) {

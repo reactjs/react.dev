@@ -6,7 +6,7 @@ title: RSC Sandbox Test
 
 <SandpackRSC>
 
-```js src/App.js
+```js src/App.jsx
 export default function App() {
   return <h1>Hello from a Server Component!</h1>;
 }
@@ -18,7 +18,7 @@ export default function App() {
 
 <SandpackRSC>
 
-```js src/App.js
+```js src/App.jsx
 import Counter from './Counter';
 
 export default function App() {
@@ -32,7 +32,7 @@ export default function App() {
 }
 ```
 
-```js src/Counter.js
+```js src/Counter.jsx
 'use client';
 import { useState } from 'react';
 
@@ -52,7 +52,7 @@ export default function Counter() {
 
 <SandpackRSC>
 
-```js src/App.js
+```js src/App.jsx
 import { Suspense } from 'react';
 import Albums from './Albums';
 
@@ -68,7 +68,7 @@ export default function App() {
 }
 ```
 
-```js src/Albums.js
+```js src/Albums.jsx
 async function fetchAlbums() {
   await new Promise(resolve => setTimeout(resolve, 1000));
   return ['Abbey Road', 'Let It Be', 'Revolver'];
@@ -94,7 +94,7 @@ This demo proves streaming is incremental. The shell renders instantly with a `<
 
 <SandpackRSC>
 
-```js src/App.js
+```js src/App.jsx
 import { Suspense } from 'react';
 import SlowData from './SlowData';
 import Timestamp from './Timestamp';
@@ -112,7 +112,7 @@ export default function App() {
 }
 ```
 
-```js src/SlowData.js
+```js src/SlowData.jsx
 import Timestamp from './Timestamp';
 
 async function fetchData() {
@@ -135,7 +135,7 @@ export default async function SlowData() {
 }
 ```
 
-```js src/Timestamp.js
+```js src/Timestamp.jsx
 'use client';
 
 export default function Timestamp() {
@@ -151,7 +151,7 @@ This demo passes Map, Set, Date, and BigInt from a server component through the 
 
 <SandpackRSC>
 
-```js src/App.js
+```js src/App.jsx
 import DataViewer from './DataViewer';
 
 export default function App() {
@@ -172,7 +172,7 @@ export default function App() {
 }
 ```
 
-```js src/DataViewer.js
+```js src/DataViewer.jsx
 'use client';
 
 export default function DataViewer({ map, set, date, big }) {
@@ -212,7 +212,7 @@ The server creates a promise (resolves in 2s) and passes it as a prop through a 
 
 <SandpackRSC>
 
-```js src/App.js
+```js src/App.jsx
 import { Suspense } from 'react';
 import SlowParent from './SlowParent';
 import UserCard from './UserCard';
@@ -245,14 +245,14 @@ export default function App() {
 }
 ```
 
-```js src/SlowParent.js
+```js src/SlowParent.jsx
 export default async function SlowParent({ children }) {
   await new Promise(resolve => setTimeout(resolve, 3000));
   return <div>{children}</div>;
 }
 ```
 
-```js src/UserCard.js
+```js src/UserCard.jsx
 'use client';
 import { use } from 'react';
 
@@ -290,7 +290,7 @@ This demo sends Map, Set, Date, and BigInt from a client component *to* a server
 
 <SandpackRSC>
 
-```js src/App.js
+```js src/App.jsx
 import { testTypes, getResults } from './actions';
 import TestButton from './TestButton';
 
@@ -360,7 +360,7 @@ export async function getResults() {
 }
 ```
 
-```js src/TestButton.js
+```js src/TestButton.jsx
 'use client';
 import { useTransition } from 'react';
 
@@ -394,7 +394,7 @@ The server action mutates server-side data and returns a confirmation string. Th
 
 <SandpackRSC>
 
-```js src/App.js
+```js src/App.jsx
 import { getTodos } from './db';
 import { createTodo } from './actions';
 import AddTodo from './AddTodo';
@@ -443,7 +443,7 @@ export async function createTodo(text) {
 }
 ```
 
-```js src/AddTodo.js
+```js src/AddTodo.jsx
 'use client';
 import { useState, useTransition } from 'react';
 
@@ -491,7 +491,7 @@ Server actions defined inline inside a server component with `'use server'` on t
 
 <SandpackRSC>
 
-```js src/App.js
+```js src/App.jsx
 import LikeButton from './LikeButton';
 
 let count = 0;
@@ -512,7 +512,7 @@ export default function App() {
 }
 ```
 
-```js src/LikeButton.js
+```js src/LikeButton.jsx
 'use client';
 
 export default function LikeButton({ addLike }) {
@@ -530,7 +530,7 @@ export default function LikeButton({ addLike }) {
 
 <SandpackRSC>
 
-```js src/App.js
+```js src/App.jsx
 import { addLike, getLikeCount } from './actions';
 import LikeButton from './LikeButton';
 
@@ -560,7 +560,7 @@ export async function getLikeCount() {
 }
 ```
 
-```js src/LikeButton.js
+```js src/LikeButton.jsx
 'use client';
 
 export default function LikeButton({ addLike }) {

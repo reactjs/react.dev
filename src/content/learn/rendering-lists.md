@@ -161,7 +161,7 @@ return <ul>{listItems}</ul>;
 
 <Sandpack>
 
-```js src/App.js
+```js src/App.jsx
 import { people } from './data.js';
 import { getImageUrl } from './utils.js';
 
@@ -192,40 +192,40 @@ export const people = [{
   name: 'Creola Katherine Johnson',
   profession: 'mathematician',
   accomplishment: 'spaceflight calculations',
-  imageId: 'MK3eW3A'
+  imageId: 'creola-katherine-johnson'
 }, {
   id: 1,
   name: 'Mario José Molina-Pasquel Henríquez',
   profession: 'chemist',
   accomplishment: 'discovery of Arctic ozone hole',
-  imageId: 'mynHUSa'
+  imageId: 'mario-jose-molina-pasquel-henriquez'
 }, {
   id: 2,
   name: 'Mohammad Abdus Salam',
   profession: 'physicist',
   accomplishment: 'electromagnetism theory',
-  imageId: 'bE7W1ji'
+  imageId: 'abdus-salam'
 }, {
   id: 3,
   name: 'Percy Lavon Julian',
   profession: 'chemist',
   accomplishment: 'pioneering cortisone drugs, steroids and birth control pills',
-  imageId: 'IOjWm71'
+  imageId: 'percy-lavon-julian'
 }, {
   id: 4,
   name: 'Subrahmanyan Chandrasekhar',
   profession: 'astrophysicist',
   accomplishment: 'white dwarf star mass calculations',
-  imageId: 'lrWQx8l'
+  imageId: 'subrahmanyan-chandrasekhar'
 }];
 ```
 
 ```js src/utils.js
 export function getImageUrl(person) {
   return (
-    'https://i.imgur.com/' +
+    'https://react.dev/images/content/' +
     person.imageId +
-    's.jpg'
+    '-s.jpg'
   );
 }
 ```
@@ -294,7 +294,7 @@ Rather than generating keys on the fly, you should include them in your data:
 
 <Sandpack>
 
-```js src/App.js
+```js src/App.jsx
 import { people } from './data.js';
 import { getImageUrl } from './utils.js';
 
@@ -322,40 +322,40 @@ export const people = [{
   name: 'Creola Katherine Johnson',
   profession: 'mathematician',
   accomplishment: 'spaceflight calculations',
-  imageId: 'MK3eW3A'
+  imageId: 'creola-katherine-johnson'
 }, {
   id: 1, // Used in JSX as a key
   name: 'Mario José Molina-Pasquel Henríquez',
   profession: 'chemist',
   accomplishment: 'discovery of Arctic ozone hole',
-  imageId: 'mynHUSa'
+  imageId: 'mario-jose-molina-pasquel-henriquez'
 }, {
   id: 2, // Used in JSX as a key
   name: 'Mohammad Abdus Salam',
   profession: 'physicist',
   accomplishment: 'electromagnetism theory',
-  imageId: 'bE7W1ji'
+  imageId: 'abdus-salam'
 }, {
   id: 3, // Used in JSX as a key
   name: 'Percy Lavon Julian',
   profession: 'chemist',
   accomplishment: 'pioneering cortisone drugs, steroids and birth control pills',
-  imageId: 'IOjWm71'
+  imageId: 'percy-lavon-julian'
 }, {
   id: 4, // Used in JSX as a key
   name: 'Subrahmanyan Chandrasekhar',
   profession: 'astrophysicist',
   accomplishment: 'white dwarf star mass calculations',
-  imageId: 'lrWQx8l'
+  imageId: 'subrahmanyan-chandrasekhar'
 }];
 ```
 
 ```js src/utils.js
 export function getImageUrl(person) {
   return (
-    'https://i.imgur.com/' +
+    'https://react.dev/images/content/' +
     person.imageId +
-    's.jpg'
+    '-s.jpg'
   );
 }
 ```
@@ -450,7 +450,7 @@ Change it to show two separate lists one after another: **Chemists** and **Every
 
 <Sandpack>
 
-```js src/App.js
+```js src/App.jsx
 import { people } from './data.js';
 import { getImageUrl } from './utils.js';
 
@@ -483,40 +483,40 @@ export const people = [{
   name: 'Creola Katherine Johnson',
   profession: 'mathematician',
   accomplishment: 'spaceflight calculations',
-  imageId: 'MK3eW3A'
+  imageId: 'creola-katherine-johnson'
 }, {
   id: 1,
   name: 'Mario José Molina-Pasquel Henríquez',
   profession: 'chemist',
   accomplishment: 'discovery of Arctic ozone hole',
-  imageId: 'mynHUSa'
+  imageId: 'mario-jose-molina-pasquel-henriquez'
 }, {
   id: 2,
   name: 'Mohammad Abdus Salam',
   profession: 'physicist',
   accomplishment: 'electromagnetism theory',
-  imageId: 'bE7W1ji'
+  imageId: 'abdus-salam'
 }, {
   id: 3,
   name: 'Percy Lavon Julian',
   profession: 'chemist',
   accomplishment: 'pioneering cortisone drugs, steroids and birth control pills',
-  imageId: 'IOjWm71'
+  imageId: 'percy-lavon-julian'
 }, {
   id: 4,
   name: 'Subrahmanyan Chandrasekhar',
   profession: 'astrophysicist',
   accomplishment: 'white dwarf star mass calculations',
-  imageId: 'lrWQx8l'
+  imageId: 'subrahmanyan-chandrasekhar'
 }];
 ```
 
 ```js src/utils.js
 export function getImageUrl(person) {
   return (
-    'https://i.imgur.com/' +
+    'https://react.dev/images/content/' +
     person.imageId +
-    's.jpg'
+    '-s.jpg'
   );
 }
 ```
@@ -541,7 +541,7 @@ You could use `filter()` twice, creating two separate arrays, and then `map` ove
 
 <Sandpack>
 
-```js src/App.js
+```js src/App.jsx
 import { people } from './data.js';
 import { getImageUrl } from './utils.js';
 
@@ -598,40 +598,40 @@ export const people = [{
   name: 'Creola Katherine Johnson',
   profession: 'mathematician',
   accomplishment: 'spaceflight calculations',
-  imageId: 'MK3eW3A'
+  imageId: 'creola-katherine-johnson'
 }, {
   id: 1,
   name: 'Mario José Molina-Pasquel Henríquez',
   profession: 'chemist',
   accomplishment: 'discovery of Arctic ozone hole',
-  imageId: 'mynHUSa'
+  imageId: 'mario-jose-molina-pasquel-henriquez'
 }, {
   id: 2,
   name: 'Mohammad Abdus Salam',
   profession: 'physicist',
   accomplishment: 'electromagnetism theory',
-  imageId: 'bE7W1ji'
+  imageId: 'abdus-salam'
 }, {
   id: 3,
   name: 'Percy Lavon Julian',
   profession: 'chemist',
   accomplishment: 'pioneering cortisone drugs, steroids and birth control pills',
-  imageId: 'IOjWm71'
+  imageId: 'percy-lavon-julian'
 }, {
   id: 4,
   name: 'Subrahmanyan Chandrasekhar',
   profession: 'astrophysicist',
   accomplishment: 'white dwarf star mass calculations',
-  imageId: 'lrWQx8l'
+  imageId: 'subrahmanyan-chandrasekhar'
 }];
 ```
 
 ```js src/utils.js
 export function getImageUrl(person) {
   return (
-    'https://i.imgur.com/' +
+    'https://react.dev/images/content/' +
     person.imageId +
-    's.jpg'
+    '-s.jpg'
   );
 }
 ```
@@ -656,7 +656,7 @@ There is still a bit duplication between the rendered lists. You can go further 
 
 <Sandpack>
 
-```js src/App.js
+```js src/App.jsx
 import { people } from './data.js';
 import { getImageUrl } from './utils.js';
 
@@ -712,40 +712,40 @@ export const people = [{
   name: 'Creola Katherine Johnson',
   profession: 'mathematician',
   accomplishment: 'spaceflight calculations',
-  imageId: 'MK3eW3A'
+  imageId: 'creola-katherine-johnson'
 }, {
   id: 1,
   name: 'Mario José Molina-Pasquel Henríquez',
   profession: 'chemist',
   accomplishment: 'discovery of Arctic ozone hole',
-  imageId: 'mynHUSa'
+  imageId: 'mario-jose-molina-pasquel-henriquez'
 }, {
   id: 2,
   name: 'Mohammad Abdus Salam',
   profession: 'physicist',
   accomplishment: 'electromagnetism theory',
-  imageId: 'bE7W1ji'
+  imageId: 'abdus-salam'
 }, {
   id: 3,
   name: 'Percy Lavon Julian',
   profession: 'chemist',
   accomplishment: 'pioneering cortisone drugs, steroids and birth control pills',
-  imageId: 'IOjWm71'
+  imageId: 'percy-lavon-julian'
 }, {
   id: 4,
   name: 'Subrahmanyan Chandrasekhar',
   profession: 'astrophysicist',
   accomplishment: 'white dwarf star mass calculations',
-  imageId: 'lrWQx8l'
+  imageId: 'subrahmanyan-chandrasekhar'
 }];
 ```
 
 ```js src/utils.js
 export function getImageUrl(person) {
   return (
-    'https://i.imgur.com/' +
+    'https://react.dev/images/content/' +
     person.imageId +
-    's.jpg'
+    '-s.jpg'
   );
 }
 ```
@@ -770,7 +770,7 @@ In fact, if `people` never change, you could move this code out of your componen
 
 <Sandpack>
 
-```js src/App.js
+```js src/App.jsx
 import { people } from './data.js';
 import { getImageUrl } from './utils.js';
 
@@ -830,40 +830,40 @@ export const people = [{
   name: 'Creola Katherine Johnson',
   profession: 'mathematician',
   accomplishment: 'spaceflight calculations',
-  imageId: 'MK3eW3A'
+  imageId: 'creola-katherine-johnson'
 }, {
   id: 1,
   name: 'Mario José Molina-Pasquel Henríquez',
   profession: 'chemist',
   accomplishment: 'discovery of Arctic ozone hole',
-  imageId: 'mynHUSa'
+  imageId: 'mario-jose-molina-pasquel-henriquez'
 }, {
   id: 2,
   name: 'Mohammad Abdus Salam',
   profession: 'physicist',
   accomplishment: 'electromagnetism theory',
-  imageId: 'bE7W1ji'
+  imageId: 'abdus-salam'
 }, {
   id: 3,
   name: 'Percy Lavon Julian',
   profession: 'chemist',
   accomplishment: 'pioneering cortisone drugs, steroids and birth control pills',
-  imageId: 'IOjWm71'
+  imageId: 'percy-lavon-julian'
 }, {
   id: 4,
   name: 'Subrahmanyan Chandrasekhar',
   profession: 'astrophysicist',
   accomplishment: 'white dwarf star mass calculations',
-  imageId: 'lrWQx8l'
+  imageId: 'subrahmanyan-chandrasekhar'
 }];
 ```
 
 ```js src/utils.js
 export function getImageUrl(person) {
   return (
-    'https://i.imgur.com/' +
+    'https://react.dev/images/content/' +
     person.imageId +
-    's.jpg'
+    '-s.jpg'
   );
 }
 ```
@@ -896,7 +896,7 @@ This will require nesting two different `map` calls.
 
 <Sandpack>
 
-```js src/App.js
+```js src/App.jsx
 import { recipes } from './data.js';
 
 export default function RecipeList() {
@@ -932,7 +932,7 @@ Here is one way you could go about it:
 
 <Sandpack>
 
-```js src/App.js
+```js src/App.jsx
 import { recipes } from './data.js';
 
 export default function RecipeList() {
@@ -984,7 +984,7 @@ This `RecipeList` component contains two nested `map` calls. To simplify it, ext
 
 <Sandpack>
 
-```js src/App.js
+```js src/App.jsx
 import { recipes } from './data.js';
 
 export default function RecipeList() {

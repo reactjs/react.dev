@@ -23,10 +23,10 @@ As your components grow in complexity, it can get harder to see at a glance all 
 
 <Sandpack>
 
-```js src/App.js
+```js src/App.jsx
 import { useState } from 'react';
-import AddTask from './AddTask.js';
-import TaskList from './TaskList.js';
+import AddTask from './AddTask.jsx';
+import TaskList from './TaskList.jsx';
 
 export default function TaskApp() {
   const [tasks, setTasks] = useState(initialTasks);
@@ -79,7 +79,7 @@ const initialTasks = [
 ];
 ```
 
-```js src/AddTask.js hidden
+```js src/AddTask.jsx hidden
 import { useState } from 'react';
 
 export default function AddTask({onAddTask}) {
@@ -103,7 +103,7 @@ export default function AddTask({onAddTask}) {
 }
 ```
 
-```js src/TaskList.js hidden
+```js src/TaskList.jsx hidden
 import { useState } from 'react';
 
 export default function TaskList({tasks, onChangeTask, onDeleteTask}) {
@@ -493,10 +493,10 @@ Now it's fully wired up! Here, the reducer is declared at the bottom of the comp
 
 <Sandpack>
 
-```js src/App.js
+```js src/App.jsx
 import { useReducer } from 'react';
-import AddTask from './AddTask.js';
-import TaskList from './TaskList.js';
+import AddTask from './AddTask.jsx';
+import TaskList from './TaskList.jsx';
 
 export default function TaskApp() {
   const [tasks, dispatch] = useReducer(tasksReducer, initialTasks);
@@ -574,7 +574,7 @@ const initialTasks = [
 ];
 ```
 
-```js src/AddTask.js hidden
+```js src/AddTask.jsx hidden
 import { useState } from 'react';
 
 export default function AddTask({onAddTask}) {
@@ -598,7 +598,7 @@ export default function AddTask({onAddTask}) {
 }
 ```
 
-```js src/TaskList.js hidden
+```js src/TaskList.jsx hidden
 import { useState } from 'react';
 
 export default function TaskList({tasks, onChangeTask, onDeleteTask}) {
@@ -678,10 +678,10 @@ If you want, you can even move the reducer to a different file:
 
 <Sandpack>
 
-```js src/App.js
+```js src/App.jsx
 import { useReducer } from 'react';
-import AddTask from './AddTask.js';
-import TaskList from './TaskList.js';
+import AddTask from './AddTask.jsx';
+import TaskList from './TaskList.jsx';
 import tasksReducer from './tasksReducer.js';
 
 export default function TaskApp() {
@@ -762,7 +762,7 @@ export default function tasksReducer(tasks, action) {
 }
 ```
 
-```js src/AddTask.js hidden
+```js src/AddTask.jsx hidden
 import { useState } from 'react';
 
 export default function AddTask({onAddTask}) {
@@ -786,7 +786,7 @@ export default function AddTask({onAddTask}) {
 }
 ```
 
-```js src/TaskList.js hidden
+```js src/TaskList.jsx hidden
 import { useState } from 'react';
 
 export default function TaskList({tasks, onChangeTask, onDeleteTask}) {
@@ -889,10 +889,10 @@ Just like with [updating objects](/learn/updating-objects-in-state#write-concise
 
 <Sandpack>
 
-```js src/App.js
+```js src/App.jsx
 import { useImmerReducer } from 'use-immer';
-import AddTask from './AddTask.js';
-import TaskList from './TaskList.js';
+import AddTask from './AddTask.jsx';
+import TaskList from './TaskList.jsx';
 
 function tasksReducer(draft, action) {
   switch (action.type) {
@@ -964,7 +964,7 @@ const initialTasks = [
 ];
 ```
 
-```js src/AddTask.js hidden
+```js src/AddTask.jsx hidden
 import { useState } from 'react';
 
 export default function AddTask({onAddTask}) {
@@ -988,7 +988,7 @@ export default function AddTask({onAddTask}) {
 }
 ```
 
-```js src/TaskList.js hidden
+```js src/TaskList.jsx hidden
 import { useState } from 'react';
 
 export default function TaskList({tasks, onChangeTask, onDeleteTask}) {
@@ -1126,10 +1126,10 @@ This means that your action object should have a `type: 'changed_selection'`. Yo
 
 <Sandpack>
 
-```js src/App.js
+```js src/App.jsx
 import { useReducer } from 'react';
-import Chat from './Chat.js';
-import ContactList from './ContactList.js';
+import Chat from './Chat.jsx';
+import ContactList from './ContactList.jsx';
 import { initialState, messengerReducer } from './messengerReducer';
 
 export default function Messenger() {
@@ -1188,7 +1188,7 @@ export function messengerReducer(state, action) {
 }
 ```
 
-```js src/ContactList.js
+```js src/ContactList.jsx
 export default function ContactList({contacts, selectedId, dispatch}) {
   return (
     <section className="contact-list">
@@ -1209,7 +1209,7 @@ export default function ContactList({contacts, selectedId, dispatch}) {
 }
 ```
 
-```js src/Chat.js
+```js src/Chat.jsx
 import { useState } from 'react';
 
 export default function Chat({contact, message, dispatch}) {
@@ -1276,10 +1276,10 @@ Here is the example updated to dispatch the corresponding messages:
 
 <Sandpack>
 
-```js src/App.js
+```js src/App.jsx
 import { useReducer } from 'react';
-import Chat from './Chat.js';
-import ContactList from './ContactList.js';
+import Chat from './Chat.jsx';
+import ContactList from './ContactList.jsx';
 import { initialState, messengerReducer } from './messengerReducer';
 
 export default function Messenger() {
@@ -1338,7 +1338,7 @@ export function messengerReducer(state, action) {
 }
 ```
 
-```js src/ContactList.js
+```js src/ContactList.jsx
 export default function ContactList({contacts, selectedId, dispatch}) {
   return (
     <section className="contact-list">
@@ -1362,7 +1362,7 @@ export default function ContactList({contacts, selectedId, dispatch}) {
 }
 ```
 
-```js src/Chat.js
+```js src/Chat.jsx
 import { useState } from 'react';
 
 export default function Chat({contact, message, dispatch}) {
@@ -1420,10 +1420,10 @@ Currently, pressing "Send" doesn't do anything. Add an event handler to the "Sen
 
 <Sandpack>
 
-```js src/App.js
+```js src/App.jsx
 import { useReducer } from 'react';
-import Chat from './Chat.js';
-import ContactList from './ContactList.js';
+import Chat from './Chat.jsx';
+import ContactList from './ContactList.jsx';
 import { initialState, messengerReducer } from './messengerReducer';
 
 export default function Messenger() {
@@ -1482,7 +1482,7 @@ export function messengerReducer(state, action) {
 }
 ```
 
-```js src/ContactList.js
+```js src/ContactList.jsx
 export default function ContactList({contacts, selectedId, dispatch}) {
   return (
     <section className="contact-list">
@@ -1506,7 +1506,7 @@ export default function ContactList({contacts, selectedId, dispatch}) {
 }
 ```
 
-```js src/Chat.js active
+```js src/Chat.jsx active
 import { useState } from 'react';
 
 export default function Chat({contact, message, dispatch}) {
@@ -1559,10 +1559,10 @@ There are a couple of ways you could do it in the "Send" button event handler. O
 
 <Sandpack>
 
-```js src/App.js
+```js src/App.jsx
 import { useReducer } from 'react';
-import Chat from './Chat.js';
-import ContactList from './ContactList.js';
+import Chat from './Chat.jsx';
+import ContactList from './ContactList.jsx';
 import { initialState, messengerReducer } from './messengerReducer';
 
 export default function Messenger() {
@@ -1621,7 +1621,7 @@ export function messengerReducer(state, action) {
 }
 ```
 
-```js src/ContactList.js
+```js src/ContactList.jsx
 export default function ContactList({contacts, selectedId, dispatch}) {
   return (
     <section className="contact-list">
@@ -1645,7 +1645,7 @@ export default function ContactList({contacts, selectedId, dispatch}) {
 }
 ```
 
-```js src/Chat.js active
+```js src/Chat.jsx active
 import { useState } from 'react';
 
 export default function Chat({contact, message, dispatch}) {
@@ -1707,10 +1707,10 @@ However, _from the user's perspective_, sending a message is a different action 
 
 <Sandpack>
 
-```js src/App.js
+```js src/App.jsx
 import { useReducer } from 'react';
-import Chat from './Chat.js';
-import ContactList from './ContactList.js';
+import Chat from './Chat.jsx';
+import ContactList from './ContactList.jsx';
 import { initialState, messengerReducer } from './messengerReducer';
 
 export default function Messenger() {
@@ -1775,7 +1775,7 @@ export function messengerReducer(state, action) {
 }
 ```
 
-```js src/ContactList.js
+```js src/ContactList.jsx
 export default function ContactList({contacts, selectedId, dispatch}) {
   return (
     <section className="contact-list">
@@ -1799,7 +1799,7 @@ export default function ContactList({contacts, selectedId, dispatch}) {
 }
 ```
 
-```js src/Chat.js active
+```js src/Chat.jsx active
 import { useState } from 'react';
 
 export default function Chat({contact, message, dispatch}) {
@@ -1904,10 +1904,10 @@ The `[key]: value` [computed property](https://developer.mozilla.org/en-US/docs/
 
 <Sandpack>
 
-```js src/App.js
+```js src/App.jsx
 import { useReducer } from 'react';
-import Chat from './Chat.js';
-import ContactList from './ContactList.js';
+import Chat from './Chat.jsx';
+import ContactList from './ContactList.jsx';
 import { initialState, messengerReducer } from './messengerReducer';
 
 export default function Messenger() {
@@ -1972,7 +1972,7 @@ export function messengerReducer(state, action) {
 }
 ```
 
-```js src/ContactList.js
+```js src/ContactList.jsx
 export default function ContactList({contacts, selectedId, dispatch}) {
   return (
     <section className="contact-list">
@@ -1996,7 +1996,7 @@ export default function ContactList({contacts, selectedId, dispatch}) {
 }
 ```
 
-```js src/Chat.js
+```js src/Chat.jsx
 import { useState } from 'react';
 
 export default function Chat({contact, message, dispatch}) {
@@ -2081,10 +2081,10 @@ Here is the complete solution:
 
 <Sandpack>
 
-```js src/App.js
+```js src/App.jsx
 import { useReducer } from 'react';
-import Chat from './Chat.js';
-import ContactList from './ContactList.js';
+import Chat from './Chat.jsx';
+import ContactList from './ContactList.jsx';
 import { initialState, messengerReducer } from './messengerReducer';
 
 export default function Messenger() {
@@ -2158,7 +2158,7 @@ export function messengerReducer(state, action) {
 }
 ```
 
-```js src/ContactList.js
+```js src/ContactList.jsx
 export default function ContactList({contacts, selectedId, dispatch}) {
   return (
     <section className="contact-list">
@@ -2182,7 +2182,7 @@ export default function ContactList({contacts, selectedId, dispatch}) {
 }
 ```
 
-```js src/Chat.js
+```js src/Chat.jsx
 import { useState } from 'react';
 
 export default function Chat({contact, message, dispatch}) {
@@ -2269,10 +2269,10 @@ Recall that a reducer function takes two arguments--the current state and the ac
 
 <Sandpack>
 
-```js src/App.js
+```js src/App.jsx
 import { useReducer } from './MyReact.js';
-import Chat from './Chat.js';
-import ContactList from './ContactList.js';
+import Chat from './Chat.jsx';
+import ContactList from './ContactList.jsx';
 import { initialState, messengerReducer } from './messengerReducer';
 
 export default function Messenger() {
@@ -2358,7 +2358,7 @@ export function useReducer(reducer, initialState) {
 }
 ```
 
-```js src/ContactList.js hidden
+```js src/ContactList.jsx hidden
 export default function ContactList({contacts, selectedId, dispatch}) {
   return (
     <section className="contact-list">
@@ -2382,7 +2382,7 @@ export default function ContactList({contacts, selectedId, dispatch}) {
 }
 ```
 
-```js src/Chat.js hidden
+```js src/Chat.jsx hidden
 import { useState } from 'react';
 
 export default function Chat({contact, message, dispatch}) {
@@ -2443,10 +2443,10 @@ Dispatching an action calls a reducer with the current state and the action, and
 
 <Sandpack>
 
-```js src/App.js
+```js src/App.jsx
 import { useReducer } from './MyReact.js';
-import Chat from './Chat.js';
-import ContactList from './ContactList.js';
+import Chat from './Chat.jsx';
+import ContactList from './ContactList.jsx';
 import { initialState, messengerReducer } from './messengerReducer';
 
 export default function Messenger() {
@@ -2535,7 +2535,7 @@ export function useReducer(reducer, initialState) {
 }
 ```
 
-```js src/ContactList.js hidden
+```js src/ContactList.jsx hidden
 export default function ContactList({contacts, selectedId, dispatch}) {
   return (
     <section className="contact-list">
@@ -2559,7 +2559,7 @@ export default function ContactList({contacts, selectedId, dispatch}) {
 }
 ```
 
-```js src/Chat.js hidden
+```js src/Chat.jsx hidden
 import { useState } from 'react';
 
 export default function Chat({contact, message, dispatch}) {

@@ -229,7 +229,7 @@ Because <CodeStep step={2}>`Message`</CodeStep> is wrapped in <CodeStep step={3}
 
 <Sandpack>
 
-```js src/message.js active
+```js src/message.jsx active
 "use client";
 
 import { use, Suspense } from "react";
@@ -248,9 +248,9 @@ export function MessageContainer({ messagePromise }) {
 }
 ```
 
-```js src/App.js hidden
+```js src/App.jsx hidden
 import { useState } from "react";
-import { MessageContainer } from "./message.js";
+import { MessageContainer } from "./message.jsx";
 
 function fetchMessage() {
   return new Promise((resolve) => setTimeout(resolve, 1000, "⚛️"));
@@ -272,7 +272,7 @@ export default function App() {
 }
 ```
 
-```js src/index.js hidden
+```js src/index.jsx hidden
 import React, { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import './styles.css';
@@ -333,7 +333,7 @@ If you'd like to display an error to your users when a Promise is rejected, you 
 
 <Sandpack>
 
-```js src/message.js active
+```js src/message.jsx active
 "use client";
 
 import { use, Suspense } from "react";
@@ -355,9 +355,9 @@ function Message({ messagePromise }) {
 }
 ```
 
-```js src/App.js hidden
+```js src/App.jsx hidden
 import { useState } from "react";
-import { MessageContainer } from "./message.js";
+import { MessageContainer } from "./message.jsx";
 
 function fetchMessage() {
   return new Promise((resolve, reject) => setTimeout(reject, 1000));
@@ -379,7 +379,7 @@ export default function App() {
 }
 ```
 
-```js src/index.js hidden
+```js src/index.jsx hidden
 import React, { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import './styles.css';

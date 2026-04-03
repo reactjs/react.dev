@@ -190,7 +190,7 @@ Update the quantity multiple times quickly. Notice that the pending "Total" stat
 }
 ```
 
-```js src/App.js
+```js src/App.jsx
 import { useState, useTransition } from "react";
 import { updateQuantity } from "./api";
 import Item from "./Item";
@@ -222,7 +222,7 @@ export default function App({}) {
 }
 ```
 
-```js src/Item.js
+```js src/Item.jsx
 import { startTransition } from "react";
 
 export default function Item({action}) {
@@ -247,7 +247,7 @@ export default function Item({action}) {
 }
 ```
 
-```js src/Total.js
+```js src/Total.jsx
 const intl = new Intl.NumberFormat("en-US", {
   style: "currency",
   currency: "USD"
@@ -339,7 +339,7 @@ Update the quantity multiple times quickly. Notice that the pending "Total" stat
 }
 ```
 
-```js src/App.js
+```js src/App.jsx
 import { useState } from "react";
 import { updateQuantity } from "./api";
 import Item from "./Item";
@@ -369,7 +369,7 @@ export default function App({}) {
 
 ```
 
-```js src/Item.js
+```js src/Item.jsx
 export default function Item({onUpdateQuantity}) {
   function handleChange(event) {
     onUpdateQuantity(event.target.value);
@@ -389,7 +389,7 @@ export default function Item({onUpdateQuantity}) {
 }
 ```
 
-```js src/Total.js
+```js src/Total.jsx
 const intl = new Intl.NumberFormat("en-US", {
   style: "currency",
   currency: "USD"
@@ -466,7 +466,7 @@ A common solution to this problem is to prevent the user from making changes whi
 }
 ```
 
-```js src/App.js
+```js src/App.jsx
 import { useState, useTransition } from "react";
 import { updateQuantity } from "./api";
 import Item from "./Item";
@@ -497,7 +497,7 @@ export default function App({}) {
 
 ```
 
-```js src/Item.js
+```js src/Item.jsx
 export default function Item({isPending, onUpdateQuantity}) {
   return (
     <div className="item">
@@ -515,7 +515,7 @@ export default function Item({isPending, onUpdateQuantity}) {
 }
 ```
 
-```js src/Total.js
+```js src/Total.jsx
 const intl = new Intl.NumberFormat("en-US", {
   style: "currency",
   currency: "USD"
@@ -613,10 +613,10 @@ Because the parent component updates its state inside the `action`, that state u
 
 ```js
 import { useState } from 'react';
-import TabButton from './TabButton.js';
-import AboutTab from './AboutTab.js';
-import PostsTab from './PostsTab.js';
-import ContactTab from './ContactTab.js';
+import TabButton from './TabButton.jsx';
+import AboutTab from './AboutTab.jsx';
+import PostsTab from './PostsTab.jsx';
+import ContactTab from './ContactTab.jsx';
 
 export default function TabContainer() {
   const [tab, setTab] = useState('about');
@@ -649,7 +649,7 @@ export default function TabContainer() {
 }
 ```
 
-```js src/TabButton.js active
+```js src/TabButton.jsx active
 import { useTransition } from 'react';
 
 export default function TabButton({ action, children, isActive }) {
@@ -674,7 +674,7 @@ export default function TabButton({ action, children, isActive }) {
 }
 ```
 
-```js src/AboutTab.js
+```js src/AboutTab.jsx
 export default function AboutTab() {
   return (
     <p>Welcome to my profile!</p>
@@ -682,7 +682,7 @@ export default function AboutTab() {
 }
 ```
 
-```js {expectedErrors: {'react-compiler': [19, 20]}} src/PostsTab.js
+```js {expectedErrors: {'react-compiler': [19, 20]}} src/PostsTab.jsx
 import { memo } from 'react';
 
 const PostsTab = memo(function PostsTab() {
@@ -716,7 +716,7 @@ function SlowPost({ index }) {
 export default PostsTab;
 ```
 
-```js src/ContactTab.js
+```js src/ContactTab.jsx
 export default function ContactTab() {
   return (
     <>
@@ -770,10 +770,10 @@ Notice how clicking "Posts" now feels more responsive because the tab button its
 
 ```js
 import { useState } from 'react';
-import TabButton from './TabButton.js';
-import AboutTab from './AboutTab.js';
-import PostsTab from './PostsTab.js';
-import ContactTab from './ContactTab.js';
+import TabButton from './TabButton.jsx';
+import AboutTab from './AboutTab.jsx';
+import PostsTab from './PostsTab.jsx';
+import ContactTab from './ContactTab.jsx';
 
 export default function TabContainer() {
   const [tab, setTab] = useState('about');
@@ -806,7 +806,7 @@ export default function TabContainer() {
 }
 ```
 
-```js src/TabButton.js active
+```js src/TabButton.jsx active
 import { useTransition } from 'react';
 
 export default function TabButton({ action, children, isActive }) {
@@ -829,7 +829,7 @@ export default function TabButton({ action, children, isActive }) {
 }
 ```
 
-```js src/AboutTab.js
+```js src/AboutTab.jsx
 export default function AboutTab() {
   return (
     <p>Welcome to my profile!</p>
@@ -837,7 +837,7 @@ export default function AboutTab() {
 }
 ```
 
-```js {expectedErrors: {'react-compiler': [19, 20]}} src/PostsTab.js
+```js {expectedErrors: {'react-compiler': [19, 20]}} src/PostsTab.jsx
 import { memo } from 'react';
 
 const PostsTab = memo(function PostsTab() {
@@ -871,7 +871,7 @@ function SlowPost({ index }) {
 export default PostsTab;
 ```
 
-```js src/ContactTab.js
+```js src/ContactTab.jsx
 export default function ContactTab() {
   return (
     <>
@@ -905,10 +905,10 @@ In this example, the `PostsTab` component fetches some data using [use](/referen
 
 ```js
 import { Suspense, useState } from 'react';
-import TabButton from './TabButton.js';
-import AboutTab from './AboutTab.js';
-import PostsTab from './PostsTab.js';
-import ContactTab from './ContactTab.js';
+import TabButton from './TabButton.jsx';
+import AboutTab from './AboutTab.jsx';
+import PostsTab from './PostsTab.jsx';
+import ContactTab from './ContactTab.jsx';
 
 export default function TabContainer() {
   const [tab, setTab] = useState('about');
@@ -941,7 +941,7 @@ export default function TabContainer() {
 }
 ```
 
-```js src/TabButton.js
+```js src/TabButton.jsx
 export default function TabButton({ action, children, isActive }) {
   if (isActive) {
     return <b>{children}</b>
@@ -956,7 +956,7 @@ export default function TabButton({ action, children, isActive }) {
 }
 ```
 
-```js src/AboutTab.js hidden
+```js src/AboutTab.jsx hidden
 export default function AboutTab() {
   return (
     <p>Welcome to my profile!</p>
@@ -964,7 +964,7 @@ export default function AboutTab() {
 }
 ```
 
-```js src/PostsTab.js hidden
+```js src/PostsTab.jsx hidden
 import {use} from 'react';
 import { fetchData } from './data.js';
 
@@ -990,7 +990,7 @@ function Post({ title }) {
 export default PostsTab;
 ```
 
-```js src/ContactTab.js hidden
+```js src/ContactTab.jsx hidden
 export default function ContactTab() {
   return (
     <>
@@ -1061,10 +1061,10 @@ Notice that clicking "Posts" no longer replaces the entire tab container with a 
 
 ```js
 import { Suspense, useState } from 'react';
-import TabButton from './TabButton.js';
-import AboutTab from './AboutTab.js';
-import PostsTab from './PostsTab.js';
-import ContactTab from './ContactTab.js';
+import TabButton from './TabButton.jsx';
+import AboutTab from './AboutTab.jsx';
+import PostsTab from './PostsTab.jsx';
+import ContactTab from './ContactTab.jsx';
 
 export default function TabContainer() {
   const [tab, setTab] = useState('about');
@@ -1097,7 +1097,7 @@ export default function TabContainer() {
 }
 ```
 
-```js src/TabButton.js active
+```js src/TabButton.jsx active
 import { useTransition } from 'react';
 
 export default function TabButton({ action, children, isActive }) {
@@ -1120,7 +1120,7 @@ export default function TabButton({ action, children, isActive }) {
 }
 ```
 
-```js src/AboutTab.js hidden
+```js src/AboutTab.jsx hidden
 export default function AboutTab() {
   return (
     <p>Welcome to my profile!</p>
@@ -1128,7 +1128,7 @@ export default function AboutTab() {
 }
 ```
 
-```js src/PostsTab.js hidden
+```js src/PostsTab.jsx hidden
 import {use} from 'react';
 import { fetchData } from './data.js';
 
@@ -1154,7 +1154,7 @@ function Post({ title }) {
 export default PostsTab;
 ```
 
-```js src/ContactTab.js hidden
+```js src/ContactTab.jsx hidden
 export default function ContactTab() {
   return (
     <>
@@ -1254,11 +1254,11 @@ Here is a simplified router example using Transitions for navigations.
 
 <Sandpack>
 
-```js src/App.js
+```js src/App.jsx
 import { Suspense, useState, useTransition } from 'react';
-import IndexPage from './IndexPage.js';
-import ArtistPage from './ArtistPage.js';
-import Layout from './Layout.js';
+import IndexPage from './IndexPage.jsx';
+import ArtistPage from './ArtistPage.jsx';
+import Layout from './Layout.jsx';
 
 export default function App() {
   return (
@@ -1305,7 +1305,7 @@ function BigSpinner() {
 }
 ```
 
-```js src/Layout.js
+```js src/Layout.jsx
 export default function Layout({ children, isPending }) {
   return (
     <div className="layout">
@@ -1322,7 +1322,7 @@ export default function Layout({ children, isPending }) {
 }
 ```
 
-```js src/IndexPage.js
+```js src/IndexPage.jsx
 export default function IndexPage({ navigate }) {
   return (
     <button onClick={() => navigate('/the-beatles')}>
@@ -1332,11 +1332,11 @@ export default function IndexPage({ navigate }) {
 }
 ```
 
-```js src/ArtistPage.js
+```js src/ArtistPage.jsx
 import { Suspense } from 'react';
-import Albums from './Albums.js';
-import Biography from './Biography.js';
-import Panel from './Panel.js';
+import Albums from './Albums.jsx';
+import Biography from './Biography.jsx';
+import Panel from './Panel.jsx';
 
 export default function ArtistPage({ artist }) {
   return (
@@ -1363,7 +1363,7 @@ function AlbumsGlimmer() {
 }
 ```
 
-```js src/Albums.js
+```js src/Albums.jsx
 import {use} from 'react';
 import { fetchData } from './data.js';
 
@@ -1381,7 +1381,7 @@ export default function Albums({ artistId }) {
 }
 ```
 
-```js src/Biography.js
+```js src/Biography.jsx
 import {use} from 'react';
 import { fetchData } from './data.js';
 
@@ -1395,7 +1395,7 @@ export default function Biography({ artistId }) {
 }
 ```
 
-```js src/Panel.js
+```js src/Panel.jsx
 export default function Panel({ children }) {
   return (
     <section className="panel">
@@ -1563,7 +1563,7 @@ If a function passed to `startTransition` throws an error, you can display an er
 
 <Sandpack>
 
-```js src/AddCommentContainer.js active
+```js src/AddCommentContainer.jsx active
 import { useTransition } from "react";
 import { ErrorBoundary } from "react-error-boundary";
 
@@ -1602,15 +1602,15 @@ function AddCommentButton() {
 }
 ```
 
-```js src/App.js hidden
-import { AddCommentContainer } from "./AddCommentContainer.js";
+```js src/App.jsx hidden
+import { AddCommentContainer } from "./AddCommentContainer.jsx";
 
 export default function App() {
   return <AddCommentContainer />;
 }
 ```
 
-```js src/index.js hidden
+```js src/index.jsx hidden
 import React, { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import './styles.css';
@@ -1794,7 +1794,7 @@ Try updating the quantity once, then update it quickly multiple times. You might
 }
 ```
 
-```js src/App.js
+```js src/App.jsx
 import { useState, useTransition } from "react";
 import { updateQuantity } from "./api";
 import Item from "./Item";
@@ -1831,7 +1831,7 @@ export default function App({}) {
 
 ```
 
-```js src/Item.js
+```js src/Item.jsx
 import {startTransition} from 'react';
 
 export default function Item({action}) {
@@ -1856,7 +1856,7 @@ export default function Item({action}) {
 }
 ```
 
-```js src/Total.js
+```js src/Total.jsx
 const intl = new Intl.NumberFormat("en-US", {
   style: "currency",
   currency: "USD"
@@ -1967,7 +1967,7 @@ Example of `useActionState` handling execution order:
 }
 ```
 
-```js src/App.js
+```js src/App.jsx
 import { useState, useActionState } from "react";
 import { updateQuantity } from "./api";
 import Item from "./Item";
@@ -1997,7 +1997,7 @@ export default function App({}) {
 
 ```
 
-```js src/Item.js
+```js src/Item.jsx
 import {startTransition} from 'react';
 
 export default function Item({action}) {
@@ -2022,7 +2022,7 @@ export default function Item({action}) {
 }
 ```
 
-```js src/Total.js
+```js src/Total.jsx
 const intl = new Intl.NumberFormat("en-US", {
   style: "currency",
   currency: "USD"

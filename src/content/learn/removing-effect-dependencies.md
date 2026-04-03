@@ -1485,9 +1485,9 @@ There's more than one way to fix this, but ultimately you want to avoid having a
 
 <Sandpack>
 
-```js src/App.js
+```js src/App.jsx
 import { useState } from 'react';
-import ChatRoom from './ChatRoom.js';
+import ChatRoom from './ChatRoom.jsx';
 
 export default function App() {
   const [isDark, setIsDark] = useState(false);
@@ -1529,7 +1529,7 @@ export default function App() {
 }
 ```
 
-```js src/ChatRoom.js active
+```js src/ChatRoom.jsx active
 import { useEffect } from 'react';
 import { createConnection } from './chat.js';
 
@@ -1579,9 +1579,9 @@ The least invasive fix is to read `roomId` and `serverUrl` right outside the Eff
 
 <Sandpack>
 
-```js src/App.js
+```js src/App.jsx
 import { useState } from 'react';
-import ChatRoom from './ChatRoom.js';
+import ChatRoom from './ChatRoom.jsx';
 
 export default function App() {
   const [isDark, setIsDark] = useState(false);
@@ -1623,7 +1623,7 @@ export default function App() {
 }
 ```
 
-```js src/ChatRoom.js active
+```js src/ChatRoom.jsx active
 import { useEffect } from 'react';
 import { createConnection } from './chat.js';
 
@@ -1673,9 +1673,9 @@ It would be even better to replace the object `options` prop with the more speci
 
 <Sandpack>
 
-```js src/App.js
+```js src/App.jsx
 import { useState } from 'react';
-import ChatRoom from './ChatRoom.js';
+import ChatRoom from './ChatRoom.jsx';
 
 export default function App() {
   const [isDark, setIsDark] = useState(false);
@@ -1715,7 +1715,7 @@ export default function App() {
 }
 ```
 
-```js src/ChatRoom.js active
+```js src/ChatRoom.jsx active
 import { useState, useEffect } from 'react';
 import { createConnection } from './chat.js';
 
@@ -1801,9 +1801,9 @@ Another of these functions only exists to pass some state to an imported API met
 }
 ```
 
-```js src/App.js
+```js src/App.jsx
 import { useState } from 'react';
-import ChatRoom from './ChatRoom.js';
+import ChatRoom from './ChatRoom.jsx';
 import {
   createEncryptedConnection,
   createUnencryptedConnection,
@@ -1867,7 +1867,7 @@ export default function App() {
 }
 ```
 
-```js src/ChatRoom.js active
+```js src/ChatRoom.jsx active
 import { useState, useEffect } from 'react';
 import { useEffectEvent } from 'react';
 
@@ -2096,9 +2096,9 @@ As a result, the chat re-connects only when something meaningful (`roomId` or `i
 }
 ```
 
-```js src/App.js
+```js src/App.jsx
 import { useState } from 'react';
-import ChatRoom from './ChatRoom.js';
+import ChatRoom from './ChatRoom.jsx';
 
 import { showNotification } from './notifications.js';
 
@@ -2149,7 +2149,7 @@ export default function App() {
 }
 ```
 
-```js src/ChatRoom.js active
+```js src/ChatRoom.jsx active
 import { useState, useEffect } from 'react';
 import { useEffectEvent } from 'react';
 import {

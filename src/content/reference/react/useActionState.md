@@ -65,7 +65,7 @@ function MyCart({initialState}) {
 
 <Note>
 
-`dispatchAction` must be called from an Action. 
+`dispatchAction` must be called from an Action.
 
 You can wrap it in [`startTransition`](/reference/react/startTransition), or pass it to an [Action prop](/reference/react/useTransition#exposing-action-props-from-components). Calls outside that scope won’t be treated as part of the Transition and [log an error](#async-function-outside-transition) on development mode.
 
@@ -100,7 +100,7 @@ Each time you call `dispatchAction`, React calls the `reducerAction` with the `a
 
 #### Caveats {/*reduceraction-caveats*/}
 
-* `reducerAction` can be sync or async. It can perform sync actions like showing a notification, or async actions like posting updates to a server. 
+* `reducerAction` can be sync or async. It can perform sync actions like showing a notification, or async actions like posting updates to a server.
 * `reducerAction` is not invoked twice in `<StrictMode>` since `reducerAction` is designed to allow side effects.
 * The return type of `reducerAction` must match the type of `initialState`. If TypeScript infers a mismatch, you may need to explicitly annotate your state type.
 * If you set state after `await` in the `reducerAction` you currently need to wrap the state update in an additional `startTransition`. See the [startTransition](/reference/react/useTransition#react-doesnt-treat-my-state-update-after-await-as-a-transition) docs for more info.
@@ -267,7 +267,7 @@ Try clicking "Add Ticket" multiple times. Every time you click, a new `addToCart
 
 **This is intentional in the design of `useActionState`.**
 
-We have to wait for the previous result of `addToCartAction` in order to pass the `prevCount` to the next call to `addToCartAction`. That means React has to wait for the previous Action to finish before calling the next Action. 
+We have to wait for the previous result of `addToCartAction` in order to pass the `prevCount` to the next call to `addToCartAction`. That means React has to wait for the previous Action to finish before calling the next Action.
 
 You can typically solve this by [using with useOptimistic](/reference/react/useActionState#using-with-useoptimistic) but for more complex cases you may want to consider [cancelling queued actions](#cancelling-queued-actions) or not using `useActionState`.
 
@@ -810,7 +810,7 @@ import Total from './Total';
 export default function Checkout() {
   const abortRef = useRef(null);
   const [count, dispatchAction, isPending] = useActionState(updateCartAction, 0);
-  
+
   async function addAction() {
     if (abortRef.current) {
       abortRef.current.abort();
@@ -1190,7 +1190,7 @@ When used with a [Server Function](/reference/rsc/server-functions), `useActionS
 
 </RSC>
 
-See the [`<form>`](/reference/react-dom/components/form#handle-form-submission-with-a-server-function) docs for more information on using Actions with forms. 
+See the [`<form>`](/reference/react-dom/components/form#handle-form-submission-with-a-server-function) docs for more information on using Actions with forms.
 
 ---
 
@@ -1218,16 +1218,16 @@ function Checkout() {
         // Return the error from the API as state
         return {...prevState, error: `Could not add quanitiy ${quantity}: ${result.error}`};
       }
-      
+
       if (!isPending) {
         // Clear the error state for the first dispatch.
-        return {count: result.count, error: null};    
+        return {count: result.count, error: null};
       }
-      
+
       // Return the new count, and any errors that happened.
       return {count: result.count, error: prevState.error};
-      
-      
+
+
     },
     {
       count: 0,

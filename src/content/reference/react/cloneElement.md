@@ -103,7 +103,7 @@ export default function List({ children }) {
     <div className="List">
       {Children.map(children, (child, index) =>
         cloneElement(child, {
-          isHighlighted: index === selectedIndex 
+          isHighlighted: index === selectedIndex
         })
       )}
 ```
@@ -124,15 +124,15 @@ By cloning its children, the `List` can pass extra information to every `Row` in
 <List>
   <Row
     title="Cabbage"
-    isHighlighted={true} 
+    isHighlighted={true}
   />
   <Row
     title="Garlic"
-    isHighlighted={false} 
+    isHighlighted={false}
   />
   <Row
     title="Apple"
-    isHighlighted={false} 
+    isHighlighted={false}
   />
 </List>
 ```
@@ -152,7 +152,7 @@ export default function App() {
       {products.map(product =>
         <Row
           key={product.id}
-          title={product.title} 
+          title={product.title}
         />
       )}
     </List>
@@ -169,7 +169,7 @@ export default function List({ children }) {
     <div className="List">
       {Children.map(children, (child, index) =>
         cloneElement(child, {
-          isHighlighted: index === selectedIndex 
+          isHighlighted: index === selectedIndex
         })
       )}
       <hr />
@@ -246,7 +246,7 @@ Cloning children makes it hard to tell how the data flows through your app. Try 
 
 ### Passing data with a render prop {/*passing-data-with-a-render-prop*/}
 
-Instead of using `cloneElement`, consider accepting a *render prop* like `renderItem`. Here, `List` receives `renderItem` as a prop. `List` calls `renderItem` for every item and passes `isHighlighted` as an argument: 
+Instead of using `cloneElement`, consider accepting a *render prop* like `renderItem`. Here, `List` receives `renderItem` as a prop. `List` calls `renderItem` for every item and passes `isHighlighted` as an argument:
 
 ```js {1,7}
 export default function List({ items, renderItem }) {
@@ -280,15 +280,15 @@ The end result is the same as with `cloneElement`:
 <List>
   <Row
     title="Cabbage"
-    isHighlighted={true} 
+    isHighlighted={true}
   />
   <Row
     title="Garlic"
-    isHighlighted={false} 
+    isHighlighted={false}
   />
   <Row
     title="Apple"
-    isHighlighted={false} 
+    isHighlighted={false}
   />
 </List>
 ```

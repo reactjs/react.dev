@@ -86,7 +86,7 @@ label {
 
 </Sandpack>
 
-Here's how these look as a tree:    
+Here's how these look as a tree:
 
 <DiagramGroup>
 
@@ -186,7 +186,7 @@ export default function App() {
   return (
     <div>
       <Counter />
-      {showB && <Counter />} 
+      {showB && <Counter />}
       <label>
         <input
           type="checkbox"
@@ -288,9 +288,9 @@ export default function App() {
   return (
     <div>
       {isFancy ? (
-        <Counter isFancy={true} /> 
+        <Counter isFancy={true} />
       ) : (
-        <Counter isFancy={false} /> 
+        <Counter isFancy={false} />
       )}
       <label>
         <input
@@ -496,9 +496,9 @@ export default function App() {
   return (
     <div>
       {isPaused ? (
-        <p>See you later!</p> 
+        <p>See you later!</p>
       ) : (
-        <Counter /> 
+        <Counter />
       )}
       <label>
         <input
@@ -596,7 +596,7 @@ export default function App() {
     <div>
       {isFancy ? (
         <div>
-          <Counter isFancy={true} /> 
+          <Counter isFancy={true} />
         </div>
       ) : (
         <section>
@@ -1431,7 +1431,7 @@ export default function App() {
   if (reverse) {
     return (
       <>
-        <Field label="Last name" /> 
+        <Field label="Last name" />
         <Field label="First name" />
         {checkbox}
       </>
@@ -1439,11 +1439,11 @@ export default function App() {
   } else {
     return (
       <>
-        <Field label="First name" /> 
+        <Field label="First name" />
         <Field label="Last name" />
         {checkbox}
       </>
-    );    
+    );
   }
 }
 
@@ -1493,7 +1493,7 @@ export default function App() {
   if (reverse) {
     return (
       <>
-        <Field key="lastName" label="Last name" /> 
+        <Field key="lastName" label="Last name" />
         <Field key="firstName" label="First name" />
         {checkbox}
       </>
@@ -1501,11 +1501,11 @@ export default function App() {
   } else {
     return (
       <>
-        <Field key="firstName" label="First name" /> 
+        <Field key="firstName" label="First name" />
         <Field key="lastName" label="Last name" />
         {checkbox}
       </>
-    );    
+    );
   }
 }
 

@@ -118,7 +118,7 @@ Notice how this example is broken down into two component files now:
 
 You may encounter files that leave off the `.js` file extension like so:
 
-```js 
+```js
 import Gallery from './Gallery';
 ```
 

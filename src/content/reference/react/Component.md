@@ -117,7 +117,7 @@ class Counter extends Component {
 
   handleAgeChange = () => {
     this.setState({
-      age: this.state.age + 1 
+      age: this.state.age + 1
     });
   };
 
@@ -724,7 +724,7 @@ Return `false` to tell React that re-rendering can be skipped.
 
 #### Caveats {/*shouldcomponentupdate-caveats*/}
 
-- This method *only* exists as a performance optimization. If your component breaks without it, fix that first. 
+- This method *only* exists as a performance optimization. If your component breaks without it, fix that first.
 
 - Consider using [`PureComponent`](/reference/react/PureComponent) instead of writing `shouldComponentUpdate` by hand. `PureComponent` shallowly compares props and state, and reduces the chance that you'll skip a necessary update.
 
@@ -1098,7 +1098,7 @@ export default class Counter extends Component {
 
   handleAgeChange = () => {
     this.setState({
-      age: this.state.age + 1 
+      age: this.state.age + 1
     });
   };
 
@@ -1123,7 +1123,7 @@ export default class Counter extends Component {
 button { display: block; margin-top: 10px; }
 ```
 
-</Sandpack> 
+</Sandpack>
 
 <Pitfall>
 
@@ -1207,7 +1207,7 @@ export default class ChatRoom extends Component {
       this.state.serverUrl,
       this.props.roomId
     );
-    this.connection.connect();    
+    this.connection.connect();
   }
 
   destroyConnection() {
@@ -1275,7 +1275,7 @@ By default, if your application throws an error during rendering, React will rem
 Error boundaries do not catch errors for:
 
 - Event handlers [(learn more)](/learn/responding-to-events)
-- [Server side rendering](/reference/react-dom/server) 
+- [Server side rendering](/reference/react-dom/server)
 - Errors thrown in the error boundary itself (rather than its children)
 - Asynchronous code (e.g. `setTimeout` or `requestAnimationFrame` callbacks); an exception is the usage of the [`startTransition`](/reference/react/useTransition#starttransition) function returned by the [`useTransition`](/reference/react/useTransition) Hook. Errors thrown inside the transition function are caught by error boundaries [(learn more)](/reference/react/useTransition#displaying-an-error-to-users-with-error-boundary)
 
@@ -1439,7 +1439,7 @@ export default class Counter extends Component {
 
   handleAgeChange = (e) => {
     this.setState({
-      age: this.state.age + 1 
+      age: this.state.age + 1
     });
   };
 
@@ -1606,7 +1606,7 @@ export default class ChatRoom extends Component {
       this.state.serverUrl,
       this.props.roomId
     );
-    this.connection.connect();    
+    this.connection.connect();
   }
 
   destroyConnection() {
@@ -1795,7 +1795,7 @@ class Panel extends Component {
         <h1>{this.props.title}</h1>
         {this.props.children}
       </section>
-    );    
+    );
   }
 }
 

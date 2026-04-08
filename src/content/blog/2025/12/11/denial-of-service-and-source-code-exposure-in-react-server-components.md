@@ -2,7 +2,7 @@
 title: "Denial of Service and Source Code Exposure in React Server Components"
 author: The React Team
 date: 2025/12/11
-description: Security researchers have found and disclosed three additional vulnerabilities in React Server Components while attempting to exploit the patches in last week’s critical vulnerability. High vulnerability Denial of Service (CVE-2025-55184), high vulnerability Denial of Service (CVE-2026-23869), and medium vulnerability Source Code Exposure (CVE-2025-55183)
+description: Security researchers have found and disclosed two additional vulnerabilities in React Server Components while attempting to exploit the patches in last week’s critical vulnerability. High vulnerability Denial of Service (CVE-2025-55184), and medium vulnerability Source Code Exposure (CVE-2025-55183)
 
 
 ---
@@ -15,7 +15,7 @@ _Updated April 8th, 2026._
 
 <Intro>
 
-Security researchers have found and disclosed three additional vulnerabilities in React Server Components while attempting to exploit the patches in last week’s critical vulnerability.
+Security researchers have found and disclosed two additional vulnerabilities in React Server Components while attempting to exploit the patches in last week’s critical vulnerability.
 
 **These new vulnerabilities do not allow for Remote Code Execution.** The patch for React2Shell remains effective at mitigating the Remote Code Execution exploit.
 
@@ -118,7 +118,7 @@ The patches published January 26th mitigate these DoS vulnerabilities.
 
 #### Additional fixes published {/*additional-fix-published*/}
 
-The original fix addressing the DoS in [CVE-2025-55184](https://www.cve.org/CVERecord?id=CVE-2025-55184) and [CVE-2025-67779](https://www.cve.org/CVERecord?id=CVE-2025-67779) were incomplete.
+The original fix addressing the DoS in [CVE-2025-55184](https://www.cve.org/CVERecord?id=CVE-2025-55184) was incomplete.
 
 This left previous versions vulnerable. Versions 19.0.5, 19.1.6, 19.2.5 are safe.
 

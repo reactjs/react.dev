@@ -194,11 +194,11 @@ export default function App() {
 </Sandpack>
 
 This works because during this last step, React only updates the content of `<h1>` with the new `time`. It sees that the `<input>` appears in the JSX in the same place as last time, so React doesn't touch the `<input>`—or its `value`!
-## Debugging Hydration Mismatches
+## Debugging Hydration Mismatches {/*debugging-hydration-mismatches*/}
 
 Hydration mismatches can occur when the HTML rendered on the server differs from what React renders on the client.
 
-### Common causes
+### Common causes {/*common-causes*/}
 
 - Non-deterministic values such as:
   - `Math.random()`
@@ -207,7 +207,7 @@ Hydration mismatches can occur when the HTML rendered on the server differs from
 - Differences between server and client environments
 - Asynchronous or inconsistent data
 
-### Example
+### Example {/*example*/}
 
 ```jsx
 function App() {
@@ -215,7 +215,7 @@ function App() {
 }
 ```
 
-### How to fix
+### How to fix {/*how-to-fix*/}
 - Move non-deterministic logic into `useEffect`
 - Ensure consistent data between server and client
 - Guard browser-specific code:
@@ -225,13 +225,13 @@ if (typeof window !== "undefined") {
 }
 ```
 
-### Debugging checklist
+### Debugging checklist {/*debugging-checklist*/}
 - Is the output deterministic?
 - Is any browser-only API used during render?
 - Is server data identical to client data?
 - Are there time-based values?
 
-### Best practices
+### Best practices {/*best-practices*/}
 - Keep rendering logic pure
 - Avoid side effects during render
 - Use client-only rendering when necessary

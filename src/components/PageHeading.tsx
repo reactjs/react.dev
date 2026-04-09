@@ -19,7 +19,9 @@ import {useRouter} from 'next/router';
 import {IconCanary} from './Icon/IconCanary';
 import {IconExperimental} from './Icon/IconExperimental';
 import {IconCopy} from './Icon/IconCopy';
-import {Button} from './Button';
+import {IconChevron} from './Icon/IconChevron';
+import {Menu} from '@headlessui/react';
+import {IconNewPage} from './Icon/IconNewPage';
 
 interface PageHeadingProps {
   title: string;
@@ -35,6 +37,13 @@ function CopyAsMarkdownButton() {
   const {asPath} = useRouter();
   const [copied, setCopied] = useState(false);
 
+  const cleanPath = asPath.split(/[?#]/)[0];
+  const mdPath = cleanPath + '.md';
+  const fullMdUrl =
+    typeof window !== 'undefined'
+      ? `${window.location.origin}${mdPath}`
+      : mdPath;
+
   useEffect(() => {
     if (!copied) return;
     const timer = setTimeout(() => setCopied(false), 2000);
@@ -42,8 +51,7 @@ function CopyAsMarkdownButton() {
   }, [copied]);
 
   async function fetchPageBlob() {
-    const cleanPath = asPath.split(/[?#]/)[0];
-    const res = await fetch(cleanPath + '.md');
+    const res = await fetch(mdPath);
     if (!res.ok) throw new Error('Failed to fetch');
     const text = await res.text();
     return new Blob([text], {type: 'text/plain'});
@@ -62,17 +70,89 @@ function CopyAsMarkdownButton() {
   }
 
   return (
-    <Button onClick={handleCopy} className="text-sm py-1 px-3">
-      <IconCopy className="w-3.5 h-3.5 me-1.5" />
-      {copied ? (
-        'Copied!'
-      ) : (
-        <>
-          <span className="hidden sm:inline">Copy page</span>
-          <span className="sm:hidden">Copy</span>
-        </>
-      )}
-    </Button>
+    <div className="relative inline-flex items-center rounded-full text-primary dark:text-primary-dark shadow-secondary-button-stroke dark:shadow-secondary-button-stroke-dark">
+      <button
+        onMouseDown={(e) => {
+          e.preventDefault();
+          e.stopPropagation();
+        }}
+        onClick={handleCopy}
+        disabled={copied}
+        className="text-sm font-bold leading-tight py-1 p-3 inline-flex items-center rounded-s-full outline-none hover:bg-gray-40/5 active:bg-gray-40/10 hover:dark:bg-gray-60/2 active:dark:bg-gray-60/10 disabled:opacity-50 disabled:cursor-not-allowed">
+        <IconCopy className="w-3.5 h-3.5 me-1.5" />
+        {copied ? (
+          'Copied!'
+        ) : (
+          <>
+            <span className="hidden sm:inline">Copy page</span>
+            <span className="sm:hidden">Copy</span>
+          </>
+        )}
+      </button>
+
+      <span
+        className="w-px h-4 bg-gray-40/30 dark:bg-gray-60/30"
+        aria-hidden="true"
+      />
+
+      {/* @ts-ignore */}
+      <Menu>
+        {/* @ts-ignore */}
+        <Menu.Button as={React.Fragment}>
+          <button
+            onMouseDown={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+            }}
+            className="py-1 ps-2 pe-3 inline-flex items-center rounded-e-full outline-none hover:bg-gray-40/5 active:bg-gray-40/10 hover:dark:bg-gray-60/2 active:dark:bg-gray-60/10">
+            <IconChevron displayDirection="down" className="w-3.5 h-3.5" />
+          </button>
+        </Menu.Button>
+
+        {/* @ts-ignore */}
+        <Menu.Items
+          transition
+          className="absolute end-0 top-full mt-2 p-1 w-48 rounded-lg bg-white dark:bg-wash-dark border border-border dark:border-border-dark shadow-sm z-50 focus:outline-none">
+          {/* @ts-ignore */}
+          <Menu.Item>
+            <a
+              href={mdPath}
+              target="_blank"
+              rel="noreferrer"
+              className="w-full font-bold text-start px-4 py-0.5 text-sm rounded-md inline-flex items-center justify-between hover:bg-gray-40/5 active:bg-gray-40/10 hover:dark:bg-gray-60/2 active:dark:bg-gray-60/10">
+              View markdown
+              <IconNewPage className="w-3 h-3" />
+            </a>
+          </Menu.Item>
+          {/* @ts-ignore */}
+          <Menu.Item>
+            <a
+              href={`https://chatgpt.com/?q=${encodeURIComponent(
+                `Read from this URL: ${fullMdUrl} and explain it to me.`
+              )}`}
+              target="_blank"
+              rel="noreferrer"
+              className="w-full font-bold text-start px-4 py-0.5 text-sm rounded-md inline-flex items-center justify-between hover:bg-gray-40/5 active:bg-gray-40/10 hover:dark:bg-gray-60/2 active:dark:bg-gray-60/10">
+              Open in ChatGPT
+              <IconNewPage className="w-3 h-3" />
+            </a>
+          </Menu.Item>
+          {/* @ts-ignore */}
+          <Menu.Item>
+            <a
+              href={`https://claude.ai/new?q=${encodeURIComponent(
+                `Read from this URL: ${fullMdUrl} and explain it to me.`
+              )}`}
+              target="_blank"
+              rel="noreferrer"
+              className="w-full font-bold text-start px-4 py-0.5 text-sm rounded-md inline-flex items-center justify-between hover:bg-gray-40/5 active:bg-gray-40/10 hover:dark:bg-gray-60/2 active:dark:bg-gray-60/10">
+              Open in Claude
+              <IconNewPage className="w-3 h-3" />
+            </a>
+          </Menu.Item>
+        </Menu.Items>
+      </Menu>
+    </div>
   );
 }
 

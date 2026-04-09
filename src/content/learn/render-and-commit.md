@@ -209,7 +209,7 @@ Hydration mismatches can occur when the HTML rendered on the server differs from
 
 ### Example {/*example*/}
 
-```jsx
+```jsx {expectedErrors: {'react-compiler': [2]}}
 function App() {
   return <div>{Math.random()}</div>;
 }

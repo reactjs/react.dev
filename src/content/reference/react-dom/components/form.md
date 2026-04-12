@@ -68,6 +68,35 @@ export default function Search() {
   );
 }
 ```
+### Preventing form reset {/*preventing-form-reset*/}
+
+By default, forms using the `action` prop reset after submission.
+
+If you want to preserve form state, use controlled inputs with React state.
+
+<Sandpack>
+
+```js src/App.js
+import { useState } from "react";
+
+export default function Form() {
+  const [value, setValue] = useState("");
+
+  async function handleSubmit(formData) {
+    // handle submission
+  }
+
+  return (
+    <form action={handleSubmit}>
+      <input
+        name="text"
+        value={value}
+        onChange={(e) => setValue(e.target.value)}
+      />
+      <button type="submit">Submit</button>
+    </form>
+  );
+}
 
 </Sandpack>
 

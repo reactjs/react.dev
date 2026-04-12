@@ -68,6 +68,8 @@ export default function Search() {
   );
 }
 ```
+</Sandpack>
+
 ### Preventing form reset {/*preventing-form-reset*/}
 
 By default, forms using the `action` prop reset after submission.
@@ -97,7 +99,7 @@ export default function Form() {
     </form>
   );
 }
-
+```
 </Sandpack>
 
 ### Handle form submission with a Server Function {/*handle-form-submission-with-a-server-function*/}

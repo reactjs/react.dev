@@ -562,7 +562,7 @@ This renders a different value on the server and the client, so hydration fails.
 
 #### Debugging checklist {/*debugging-checklist*/}
 
-1. Open the browser console and find the first hydration warning.
+1. Open the browser console and find the hydration mismatch message or error, and its stack trace.
 2. Look for changing values in render (`Math.random()`, `Date.now()`). Move them to server data or calculate them after hydration in [`useEffect`.](/reference/react/useEffect)
 3. Keep browser-only code out of render. Read `window`, `document`, and similar APIs in [`useEffect`](/reference/react/useEffect) or an event handler.
 4. Make sure the first client render uses the same data as the server render.

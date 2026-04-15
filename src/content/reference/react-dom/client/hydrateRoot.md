@@ -191,6 +191,7 @@ This is important for the user experience. The user will spend some time looking
 The most common causes leading to hydration errors include:
 
 * Extra whitespace (like newlines) around the React-generated HTML inside the root node.
+* Using non-deterministic values like `Date.now()` or `Math.random()` in rendering logic.
 * Using checks like `typeof window !== 'undefined'` in your rendering logic.
 * Using browser-only APIs like [`window.matchMedia`](https://developer.mozilla.org/en-US/docs/Web/API/Window/matchMedia) in your rendering logic.
 * Rendering different data on the server and the client.
@@ -531,3 +532,42 @@ root.render(App, {onUncaughtError});
 // ✅ Correct: pass options to createRoot.
 const root = hydrateRoot(container, <App />, {onUncaughtError});
 ```
+
+### Debugging hydration mismatches {/*debugging-hydration-mismatches*/}
+
+If you see an error like "Hydration failed because the server rendered HTML didn't match the client.", it means the HTML from the server is different from what React renders first in the browser.
+
+<ConsoleBlock level="error">
+
+Uncaught Error: Hydration failed because the server rendered HTML didn't match the client.
+
+</ConsoleBlock>
+
+#### Common causes {/*common-causes*/}
+
+* Values that change every time you render, like `Math.random()` or `Date.now()`.
+* Rendering that depends on browser-only globals like `window`, `document`, or `localStorage`.
+* Different data on the server and the client during the first render.
+* Data loading timing issues where server data and client data do not match.
+
+#### Example mismatch {/*example-mismatch*/}
+
+```js
+function App() {
+  return <div>{Math.random()}</div>;
+}
+```
+
+This renders a different value on the server and the client, so hydration fails.
+
+#### Debugging checklist {/*debugging-checklist*/}
+
+1. Open the browser console and find the first hydration warning.
+2. Look for changing values in render (`Math.random()`, `Date.now()`). Move them to server data or calculate them after hydration in [`useEffect`.](/reference/react/useEffect)
+3. Keep browser-only code out of render. Read `window`, `document`, and similar APIs in [`useEffect`](/reference/react/useEffect) or an event handler.
+4. Make sure the first client render uses the same data as the server render.
+5. If one mismatch is expected (for example, a timestamp), use `suppressHydrationWarning={true}` on that element.
+
+#### Isolating the component {/*isolating-the-component*/}
+
+If you still cannot find the issue, replace parts of the UI with simple static markup. Add components back one at a time until the warning comes back. The last part you added is usually where the mismatch is.

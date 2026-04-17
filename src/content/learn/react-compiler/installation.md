@@ -88,7 +88,7 @@ Alternatively, if you prefer a separate Babel plugin for Vite:
 npm install -D vite-plugin-babel
 </TerminalBlock>
 
-```js {2,11}
+```js {2,11-12}
 // vite.config.js
 import babel from 'vite-plugin-babel';
 import { defineConfig } from 'vite';
@@ -99,6 +99,7 @@ export default defineConfig({
     react(),
     babel({
       babelConfig: {
+        sourceMaps: true,
         plugins: ['babel-plugin-react-compiler'],
       },
     }),
@@ -117,7 +118,7 @@ Install `vite-plugin-babel`, and add the compiler's Babel plugin to it:
 npm install vite-plugin-babel
 </TerminalBlock>
 
-```js {3-4,16}
+```js {3-4,14,16}
 // vite.config.js
 import { defineConfig } from "vite";
 import babel from "vite-plugin-babel";
@@ -131,6 +132,7 @@ export default defineConfig({
     babel({
       filter: /\.[jt]sx?$/,
       babelConfig: {
+        sourceMaps: true,
         presets: ["@babel/preset-typescript"], // if you use TypeScript
         plugins: [
           ["babel-plugin-react-compiler", ReactCompilerConfig],

@@ -1235,6 +1235,19 @@ The most common cases of this will be from the following tags:
   - `<video>`
   - `<audio>`
   - `<iframe>`
+### CSS selector side effects {/*css-selector-side-effects*/}
+
+When using `<Activity mode="hidden">`, elements remain in the DOM but are hidden using `display: none`.
+
+Because of this, some CSS selectors such as `:has()`, `:is()`, and `:where()` may still match these hidden elements. This can lead to unexpected styling behavior even after components are visually hidden.
+
+For example, selectors that depend on the presence of elements in the DOM may continue to apply styles even if those elements are no longer visible.
+
+This is expected behavior, since CSS selectors operate on DOM structure rather than element visibility.
+
+To avoid this, you can:
+- Remove elements from the DOM when necessary
+- Avoid selectors that depend on hidden elements
 
 Typically, though, most of your React components should already be robust to being hidden by an Activity boundary. And conceptually, you should think of "hidden" Activities as being unmounted.
 

@@ -315,13 +315,15 @@ A [JavaScript && expression](https://developer.mozilla.org/en-US/docs/Web/JavaSc
 
 <Pitfall>
 
-**Don't put numbers on the left side of `&&`.**
+**Be cautious when using numbers on the left side of && in conditional rendering.**
 
-To test the condition, JavaScript converts the left side to a boolean automatically. However, if the left side is `0`, then the whole expression gets that value (`0`), and React will happily render `0` rather than nothing.
+To test the condition, JavaScript converts the left side to a boolean automatically.
 
-For example, a common mistake is to write code like `messageCount && <p>New messages</p>`. It's easy to assume that it renders nothing when `messageCount` is `0`, but it really renders the `0` itself!
+While numbers generally evaluate to truthy values, there's a caveat when the number is 0. If the left side evaluates to 0, React will render the 0 itself instead of nothing.
 
-To fix it, make the left side a boolean: `messageCount > 0 && <p>New messages</p>`.
+For example, a common mistake is writing code like messageCount && <p>New messages</p>. It might be expected that it renders nothing when messageCount is 0, but in reality, it renders the 0 itself.
+
+To handle this correctly, ensure that the left side is explicitly a boolean by using a comparison: messageCount > 0 && <p>New messages</p>. This guarantees the expected behavior, rendering the element only when messageCount is greater than 0."
 
 </Pitfall>
 

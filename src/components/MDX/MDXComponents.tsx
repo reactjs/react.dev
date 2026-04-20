@@ -13,6 +13,7 @@ import {Children, useContext, useMemo} from 'react';
 import * as React from 'react';
 import cn from 'classnames';
 import type {HTMLAttributes} from 'react';
+import NextImage from 'next/image';
 
 import CodeBlock from './CodeBlock';
 import {CodeDiagram} from './CodeDiagram';
@@ -297,6 +298,21 @@ const IllustrationContext = React.createContext<{
   isInBlock: false,
 });
 
+function toNumber(value: unknown, fallback: number) {
+  if (typeof value === 'number' && Number.isFinite(value)) {
+    return value;
+  }
+
+  if (typeof value === 'string') {
+    const parsed = Number(value);
+    if (Number.isFinite(parsed) && parsed > 0) {
+      return parsed;
+    }
+  }
+
+  return fallback;
+}
+
 function Illustration({
   caption,
   src,
@@ -315,10 +331,12 @@ function Illustration({
   return (
     <div className="relative group before:absolute before:-inset-y-16 before:inset-x-0 my-16 mx-0 2xl:mx-auto max-w-4xl 2xl:max-w-6xl">
       <figure className="my-8 flex justify-center">
-        <img
+        <NextImage
           src={src}
           alt={alt}
-          style={{maxHeight: 300}}
+          width={1200}
+          height={630}
+          style={{maxHeight: 300, width: 'auto', height: 'auto'}}
           className="rounded-lg"
         />
         {caption ? (
@@ -351,11 +369,13 @@ function IllustrationBlock({
   const images = imageInfos.map((info, index) => (
     <figure key={index}>
       <div className="bg-white rounded-lg p-4 flex-1 flex xl:p-6 justify-center items-center my-4">
-        <img
+        <NextImage
           className="text-primary"
           src={info.src}
           alt={info.alt}
-          height={info.height}
+          width={toNumber(info.width, 1200)}
+          height={toNumber(info.height, 630)}
+          style={{height: 'auto'}}
         />
       </div>
       {info.caption ? (
@@ -485,9 +505,19 @@ function YouTubeIframe(props: any) {
   );
 }
 
-function Image(props: any) {
-  const {alt, ...rest} = props;
-  return <img alt={alt} className="max-w-[calc(min(700px,100%))]" {...rest} />;
+function MdxImage(props: any) {
+  const {alt = '', width, height, className, style, ...rest} = props;
+
+  return (
+    <NextImage
+      alt={alt}
+      width={toNumber(width, 1200)}
+      height={toNumber(height, 630)}
+      className={cn('max-w-[calc(min(700px,100%))]', className)}
+      style={{height: 'auto', ...style}}
+      {...rest}
+    />
+  );
 }
 
 export const MDXComponents = {
@@ -504,7 +534,7 @@ export const MDXComponents = {
   h5: H5,
   hr: Divider,
   a: Link,
-  img: Image,
+  img: MdxImage,
   BlogCard,
   code: InlineCode,
   pre: CodeBlock,

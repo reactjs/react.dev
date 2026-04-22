@@ -442,7 +442,7 @@ const container = document.getElementById("root");
 hydrateRoot(container, <App />, {
   // Keep in mind to remove these options in development to leverage
   // React's default handlers or implement your own overlay for development.
-  // The handlers are only specfied unconditionally here for demonstration purposes.
+  // The handlers are only specified unconditionally here for demonstration purposes.
   onCaughtError: onCaughtErrorProd,
   onRecoverableError: onRecoverableErrorProd,
   onUncaughtError: onUncaughtErrorProd,

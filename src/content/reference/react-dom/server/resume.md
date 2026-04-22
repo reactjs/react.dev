@@ -175,7 +175,7 @@ async function main(frame) {
   // Layer 2
   // Just waiting here for demonstration purposes.
   // In a real app, the prelude and postponed state would've been serialized in Layer 1 and Layer would deserialize them.
-  // The prelude content could be flushed immediated as plain HTML while
+  // The prelude content could be flushed immediately as plain HTML while
   // React is continuing to render from where the prerender left off.
   await sleep(2000);
 

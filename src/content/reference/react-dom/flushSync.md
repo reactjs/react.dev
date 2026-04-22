@@ -196,7 +196,7 @@ useEffect(() => {
 }, []);
 ```
 
-This will allow the current render to finish and schedule another syncronous render to flush the updates.
+This will allow the current render to finish and schedule another synchronous render to flush the updates.
 
 <Pitfall>
 

@@ -552,7 +552,7 @@ Uncaught Error: Hydration failed because the server rendered HTML didn't match t
 
 #### Example mismatch {/*example-mismatch*/}
 
-```js {expectedErrors: {'react-compiler': [2]}}
+```js
 function App() {
   return <div>{Math.random()}</div>;
 }
@@ -566,7 +566,7 @@ This renders a different value on the server and the client, so hydration fails.
 2. Look for changing values in render (`Math.random()`, `Date.now()`). Move them to server data or calculate them after hydration in [`useEffect`](/reference/react/useEffect).
 3. Keep browser-only code out of render. Read `window`, `document`, and similar APIs in [`useEffect`](/reference/react/useEffect) or an event handler.
 4. Make sure the first client render uses the same data as the server render.
-5. If one mismatch is expected (for example, a timestamp), use `suppressHydrationWarning={true}` on that element.
+5. If a mismatch is truly unavoidable, such as a one-off timestamp, use `suppressHydrationWarning={true}` as a last resort on the specific element. Apply it narrowly and avoid using it on large subtrees because it only silences the warning and does not fix the mismatch.
 
 #### Isolating the component {/*isolating-the-component*/}
 

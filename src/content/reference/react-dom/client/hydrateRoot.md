@@ -552,10 +552,12 @@ Uncaught Error: Hydration failed because the server rendered HTML didn't match t
 
 #### Example mismatch {/*example-mismatch*/}
 
-```js {expectedErrors: {'react-compiler': [2]}}
+```jsx
 function App() {
-  return <div>{Math.random()}</div>;
+  const value = Math.random();
+  return <div>{value}</div>;
 }
+```
 
 This renders a different value on the server and the client, so hydration fails.
 

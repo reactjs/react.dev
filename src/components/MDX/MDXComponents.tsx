@@ -14,37 +14,92 @@ import * as React from 'react';
 import cn from 'classnames';
 import type {HTMLAttributes} from 'react';
 
-import CodeBlock from './CodeBlock';
-import {CodeDiagram} from './CodeDiagram';
-import {ConsoleBlock, ConsoleLogLine, ConsoleBlockMulti} from './ConsoleBlock';
-import ExpandableCallout from './ExpandableCallout';
-import ExpandableExample from './ExpandableExample';
 import {H1, H2, H3, H4, H5} from './Heading';
-import InlineCode from './InlineCode';
-import Intro from './Intro';
-import BlogCard from './BlogCard';
-import Link from './Link';
-import {PackageImport} from './PackageImport';
-import Recap from './Recap';
-import {SandpackClient as Sandpack, SandpackRSC} from './Sandpack';
-import SandpackWithHTMLOutput from './SandpackWithHTMLOutput';
-import Diagram from './Diagram';
-import DiagramGroup from './DiagramGroup';
-import SimpleCallout from './SimpleCallout';
-import TerminalBlock from './TerminalBlock';
-import YouWillLearnCard from './YouWillLearnCard';
-import {Challenges, Hint, Solution} from './Challenges';
-import {IconNavArrow} from '../Icon/IconNavArrow';
-import ButtonLink from 'components/ButtonLink';
 import {TocContext} from './TocContext';
 import type {Toc, TocItem} from './TocContext';
-import {TeamMember} from './TeamMember';
 import {LanguagesContext} from './LanguagesContext';
 import {finishedTranslations} from 'utils/finishedTranslations';
+import dynamic from 'next/dynamic';
 
-import ErrorDecoder from './ErrorDecoder';
-import {IconCanary} from '../Icon/IconCanary';
-import {IconExperimental} from 'components/Icon/IconExperimental';
+const TeamMember = dynamic(() =>
+  import('./TeamMember').then((mod) => mod.TeamMember)
+);
+const CodeBlock = dynamic(() =>
+  import('./CodeBlock').then((mod) => mod.default)
+);
+const CodeDiagram = dynamic(() =>
+  import('./CodeDiagram').then((mod) => mod.CodeDiagram)
+);
+const ConsoleBlock = dynamic(() =>
+  import('./ConsoleBlock').then((mod) => mod.ConsoleBlock)
+);
+const ConsoleBlockMulti = dynamic(() =>
+  import('./ConsoleBlock').then((mod) => mod.ConsoleBlockMulti)
+);
+const ConsoleLogLine = dynamic(() =>
+  import('./ConsoleBlock').then((mod) => mod.ConsoleLogLine)
+);
+const ExpandableCallout = dynamic(() =>
+  import('./ExpandableCallout').then((mod) => mod.default)
+);
+const ExpandableExample = dynamic(() =>
+  import('./ExpandableExample').then((mod) => mod.default)
+);
+const InlineCode = dynamic(() =>
+  import('./InlineCode').then((mod) => mod.default)
+);
+const Intro = dynamic(() => import('./Intro').then((mod) => mod.default));
+const BlogCard = dynamic(() => import('./BlogCard').then((mod) => mod.default));
+const Link = dynamic(() => import('./Link').then((mod) => mod.default));
+const PackageImport = dynamic(() =>
+  import('./PackageImport').then((mod) => mod.PackageImport)
+);
+const Recap = dynamic(() => import('./Recap').then((mod) => mod.default));
+const Sandpack = dynamic(() =>
+  import('./Sandpack').then((mod) => mod.SandpackClient)
+);
+const SandpackRSC = dynamic(() =>
+  import('./Sandpack').then((mod) => mod.SandpackRSC)
+);
+const SandpackWithHTMLOutput = dynamic(() =>
+  import('./SandpackWithHTMLOutput').then((mod) => mod.default)
+);
+const Diagram = dynamic(() => import('./Diagram').then((mod) => mod.default));
+const DiagramGroup = dynamic(() =>
+  import('./DiagramGroup').then((mod) => mod.default)
+);
+const SimpleCallout = dynamic(() =>
+  import('./SimpleCallout').then((mod) => mod.default)
+);
+const TerminalBlock = dynamic(() =>
+  import('./TerminalBlock').then((mod) => mod.default)
+);
+const YouWillLearnCard = dynamic(() =>
+  import('./YouWillLearnCard').then((mod) => mod.default)
+);
+
+const Challenges = dynamic(() =>
+  import('./Challenges').then((mod) => mod.Challenges)
+);
+const Hint = dynamic(() => import('./Challenges').then((mod) => mod.Hint));
+const Solution = dynamic(() =>
+  import('./Challenges').then((mod) => mod.Solution)
+);
+const IconNavArrow = dynamic(() =>
+  import('../Icon/IconNavArrow').then((mod) => mod.IconNavArrow)
+);
+const ButtonLink = dynamic(() =>
+  import('components/ButtonLink').then((mod) => mod.default)
+);
+const ErrorDecoder = dynamic(() =>
+  import('./ErrorDecoder').then((mod) => mod.default)
+);
+const IconCanary = dynamic(() =>
+  import('../Icon/IconCanary').then((mod) => mod.IconCanary)
+);
+const IconExperimental = dynamic(() =>
+  import('components/Icon/IconExperimental').then((mod) => mod.IconExperimental)
+);
 
 function CodeStep({children, step}: {children: any; step: number}) {
   return (

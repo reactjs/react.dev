@@ -4,19 +4,19 @@ title: Adding Interactivity
 
 <Intro>
 
-Some things on the screen update in response to user input. For example, clicking an image gallery switches the active image. In React, data that changes over time is called *state.* You can add state to any component, and update it as needed. In this chapter, you'll learn how to write components that handle interactions, update their state, and display different output over time.
+Some things on the screen update in response to user input. For example, clicking an image gallery switches the active image. In React, data that changes over time is called *State.* You can add State to any Component, and update it as needed. In this chapter, you'll learn how to write Components that handle interactions, update their State, and display different output over time.
 
 </Intro>
 
 <YouWillLearn isChapter={true}>
 
-* [How to handle user-initiated events](/learn/responding-to-events)
-* [How to make components "remember" information with state](/learn/state-a-components-memory)
+* [How to handle user-initiated Events](/learn/responding-to-events)
+* [How to make Components "remember" information with State](/learn/state-a-components-memory)
 * [How React updates the UI in two phases](/learn/render-and-commit)
-* [Why state doesn't update right after you change it](/learn/state-as-a-snapshot)
-* [How to queue multiple state updates](/learn/queueing-a-series-of-state-updates)
-* [How to update an object in state](/learn/updating-objects-in-state)
-* [How to update an array in state](/learn/updating-arrays-in-state)
+* [Why State doesn't update right after you change it](/learn/state-as-a-snapshot)
+* [How to queue multiple State updates](/learn/queueing-a-series-of-state-updates)
+* [How to update an object in State](/learn/updating-objects-in-state)
+* [How to update an array in State](/learn/updating-arrays-in-state)
 
 </YouWillLearn>
 
@@ -74,7 +74,7 @@ Read **[Responding to Events](/learn/responding-to-events)** to learn how to add
 
 ## State: a component's memory {/*state-a-components-memory*/}
 
-Components often need to change what's on the screen as a result of an interaction. Typing into the form should update the input field, clicking "next" on an image carousel should change which image is displayed, clicking "buy" puts a product in the shopping cart. Components need to "remember" things: the current input value, the current image, the shopping cart. In React, this kind of component-specific memory is called *state.*
+Components often need to change what's on the screen as a result of an interaction. Typing into the form should update the input field, clicking "next" on an image carousel should change which image is displayed, clicking "buy" puts a product in the shopping cart. Components need to "remember" things: the current input value, the current image, the shopping cart. In React, this kind of Component-specific memory is called *state.*
 
 You can add state to a component with a [`useState`](/reference/react/useState) Hook. *Hooks* are special functions that let your components use React features (state is one of those features). The `useState` Hook lets you declare a state variable. It takes the initial state and returns a pair of values: the current state, and a state setter function that lets you update it.
 
@@ -235,9 +235,9 @@ Read **[State: A Component's Memory](/learn/state-a-components-memory)** to lear
 
 ## Render and commit {/*render-and-commit*/}
 
-Before your components are displayed on the screen, they must be rendered by React. Understanding the steps in this process will help you think about how your code executes and explain its behavior.
+Before your Components are displayed on the screen, they must be rendered by React. Understanding the steps in this process will help you think about how your code executes and explain its behavior.
 
-Imagine that your components are cooks in the kitchen, assembling tasty dishes from ingredients. In this scenario, React is the waiter who puts in requests from customers and brings them their orders. This process of requesting and serving UI has three steps:
+Imagine that your Components are cooks in the kitchen, assembling tasty dishes from ingredients. In this scenario, React is the waiter who puts in requests from customers and brings them their orders. This process of requesting and serving UI has three steps:
 
 1. **Triggering** a render (delivering the diner's order to the kitchen)
 2. **Rendering** the component (preparing the order in the kitchen)

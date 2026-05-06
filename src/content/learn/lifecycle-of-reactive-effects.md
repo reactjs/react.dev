@@ -284,7 +284,7 @@ The first two logs are development-only. In development, React always remounts e
 
 The main reason your Effect will re-synchronize in practice is if some data it uses has changed. In the sandbox above, change the selected chat room. Notice how, when the `roomId` changes, your Effect re-synchronizes.
 
-However, there are also more unusual cases in which re-synchronization is necessary. For example, try editing the `serverUrl` in the sandbox above while the chat is open. Notice how the Effect re-synchronizes in response to your edits to the code. In the future, React may add more features that rely on re-synchronization.
+However, there are also more unusual cases in which re-synchronization is necessary. For example, in development, React may re-synchronize an Effect after you edit its code so that it stays consistent with the latest changes. In the future, React may add more features that rely on re-synchronization.
 
 ### How React knows that it needs to re-synchronize the Effect {/*how-react-knows-that-it-needs-to-re-synchronize-the-effect*/}
 

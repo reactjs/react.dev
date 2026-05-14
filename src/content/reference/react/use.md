@@ -196,6 +196,8 @@ function Button({ show, children }) {
 
 ### Streaming data from the server to the client {/*streaming-data-from-server-to-client*/}
 
+When you are using Server Components, `use` can stream data from the server to the client without running `fetch` inside [an Effect](/reference/react/useEffect#fetching-data-with-effects). Because the request starts on the server, the client avoids the network waterfalls and extra render passes described in [What are good alternatives to data fetching in Effects?](/reference/react/useEffect#what-are-good-alternatives-to-data-fetching-in-effects). This pattern works only with frameworks that support React Server Components.
+
 Data can be streamed from the server to the client by passing a Promise as a prop from a <CodeStep step={1}>Server Component</CodeStep> to a <CodeStep step={2}>Client Component</CodeStep>.
 
 ```js [[1, 4, "App"], [2, 2, "Message"], [3, 7, "Suspense"], [4, 8, "messagePromise", 30], [4, 5, "messagePromise"]]

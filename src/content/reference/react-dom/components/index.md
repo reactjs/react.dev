@@ -91,7 +91,7 @@ React supports all built-in browser HTML components. This includes:
 * [`<html>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/html)
 * [`<i>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/i)
 * [`<iframe>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe)
-* [`<img>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img)
+* [`<Image />`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img)
 * [`<input>`](/reference/react-dom/components/input)
 * [`<ins>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/ins)
 * [`<kbd>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/kbd)

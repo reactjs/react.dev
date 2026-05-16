@@ -181,7 +181,7 @@ JSX looks like HTML, but under the hood it is transformed into plain JavaScript 
 
 ### 2. Close all the tags {/*2-close-all-the-tags*/}
 
-JSX requires tags to be explicitly closed: self-closing tags like `<img>` must become `<img />`, and wrapping tags like `<li>oranges` must be written as `<li>oranges</li>`.
+JSX requires tags to be explicitly closed: self-closing tags like `<Image />` must become `<img />`, and wrapping tags like `<li>oranges` must be written as `<li>oranges</li>`.
 
 This is how Hedy Lamarr's image and list items look closed:
 

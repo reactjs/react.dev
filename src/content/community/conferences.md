@@ -10,15 +10,10 @@ Do you know of a local React.js conference? Add it here! (Please keep the list c
 
 ## Upcoming Conferences {/*upcoming-conferences*/}
 
-### React Paris 2026 {/*react-paris-2026*/}
-March 26 - 27, 2026. In-person in Paris, France (hybrid event)
+### React Native Connection 2026 {/*react-native-connection-2026*/}
+September 24 - 27, 2026. In-person in Paris, France
 
-[Website](https://react.paris/) - [Twitter](https://x.com/BeJS_)
-
-### CityJS London 2026 {/*cityjs-london-2026*/}
-April 14-17,  2026. In-person in London
-
-[Website](https://india.cityjsconf.org/) - [Twitter](https://x.com/cityjsconf) - [Bluesky](https://bsky.app/profile/cityjsconf.bsky.social)
+[Website](https://reactnativeconnection.io/) - [X](https://x.com/ReactNativeConn) - [Bluesky](https://bsky.app/profile/reactnativeconnect.bsky.social)
 
 ### ZurichJS Conf 2026 {/*zurichjs-conf-2026*/}
 September 10-11,  2026. In-person in Zurich, Switzerland
@@ -26,6 +21,16 @@ September 10-11,  2026. In-person in Zurich, Switzerland
 [Website](https://conf.zurichjs.com?utm_campaign=ZurichJS_Conf&utm_source=referral&utm_content=reactjs_community_conferences) - [Twitter](https://x.com/zurichjs) - [LinkedIn](https://www.linkedin.com/company/zurichjs/)
 
 ## Past Conferences {/*past-conferences*/}
+
+### CityJS London 2026 {/*cityjs-london-2026*/}
+April 14-17,  2026. In-person in London
+
+[Website](https://india.cityjsconf.org/) - [Twitter](https://x.com/cityjsconf) - [Bluesky](https://bsky.app/profile/cityjsconf.bsky.social)
+
+### React Paris 2026 {/*react-paris-2026*/}
+March 26 - 27, 2026. In-person in Paris, France (hybrid event)
+
+[Website](https://react.paris/) - [Twitter](https://x.com/BeJS_)
 
 ### CityJS New Delhi 2026 {/*cityjs-newdelhi-2026*/}
 February 12-13,  2026. In-person in New Delhi, India

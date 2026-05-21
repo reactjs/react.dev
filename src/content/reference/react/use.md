@@ -74,9 +74,10 @@ The resolved value of the Promise.
 #### Caveats {/*promise-caveats*/}
 
 * `use` must be called inside a Component or a Hook.
+* Despite its name, `use` is not a Hook. Unlike Hooks, it can be called inside loops and conditional statements like `if`.
 * `use` cannot be called inside a try-catch block. Instead, wrap your component in an [Error Boundary](#displaying-an-error-with-an-error-boundary) to catch the error and display a fallback.
 * Promises passed to `use` must be cached so the same Promise instance is reused across re-renders. [See caching Promises below.](#caching-promises-for-client-components)
-* When passing a Promise from a Server Component to a Client Component, its resolved value must be serializable to pass between server and client. Data types like functions aren't serializable and cannot be the resolved value of such a Promise.
+* When passing a Promise from a Server Component to a Client Component, its resolved value must be [serializable](/reference/rsc/use-client#serializable-types). Data types like functions aren't serializable and cannot be the resolved value of such a Promise.
 
 ---
 
@@ -252,7 +253,7 @@ The component that calls <CodeStep step={1}>`use`</CodeStep> must be wrapped in 
 
 #### Fetching data with `use` {/*fetching-data-with-use*/}
 
-Calling `use` with a cached Promise is the recommended way to fetch data. The component suspends while the Promise is pending, and React displays the nearest Suspense fallback. Rejected Promises propagate to the nearest [Error Boundary](/reference/react/Component#catching-rendering-errors-with-an-error-boundary).
+In this example, `Albums` calls `use` with a cached Promise. The component suspends while the Promise is pending, and React displays the nearest Suspense fallback. Rejected Promises propagate to the nearest [Error Boundary](/reference/react/Component#catching-rendering-errors-with-an-error-boundary).
 
 <Sandpack>
 
@@ -355,7 +356,7 @@ async function getAlbums() {
 
 #### Fetching data with `useEffect` {/*fetching-data-with-useeffect*/}
 
-Without `use`, a common approach is to fetch data in an Effect and update state when the data arrives. This requires managing loading and error states manually, and the component renders empty on first paint before the Effect fires.
+Before `use`, a common approach was to fetch data in an Effect and update state when the data arrives. Compared to `use`, this approach requires managing loading and error states manually. For more details on why fetching in an Effect is discouraged, see [You Might Not Need an Effect](/learn/you-might-not-need-an-effect#fetching-data).
 
 <Sandpack>
 
@@ -439,10 +440,19 @@ export async function fetchAlbums() {
 
 Promises created inside a component are recreated on every render. This causes React to show the Suspense fallback repeatedly and prevents content from appearing. Instead, pass a Promise from a cache, a Suspense-enabled framework, or a Server Component.
 
+Common ways a Promise can be unintentionally recreated on every render:
+
 ```js
 function Albums() {
-  // 🔴 fetch creates a new Promise on every render.
+  // 🔴 `fetch` creates a new Promise on every render.
   const albums = use(fetch('/albums'));
+
+  // 🔴 Calling an async function creates a new Promise on every render.
+  const albums = use(getAlbums());
+
+  // 🔴 Adding `.then` returns a new Promise on every render,
+  // even if `fetchData` is cached.
+  const albums = use(fetchData('/albums').then(res => res.json()));
   // ...
 }
 ```
@@ -452,7 +462,7 @@ function Albums() {
 const albums = use(fetchData('/albums'));
 ```
 
-Ideally, Promises are created before rendering — such as in an event handler, a route loader, or a Server Component — and passed to the component that calls `use`. Fetching lazily in render delays network requests and can create waterfalls.
+Ideally, Promises are created before rendering, such as in an event handler, a route loader, or a Server Component, and passed to the component that calls `use`. Fetching lazily in render delays network requests and can create waterfalls.
 
 </Pitfall>
 
@@ -478,9 +488,11 @@ The `fetchData` function returns the same Promise each time it's called with the
 
 <Note>
 
-The way you cache Promises depends on the framework you use with Suspense. Frameworks typically provide built-in caching mechanisms. If you don't use a framework, you can use a simple module-level cache like the one above, or a library that supports Suspense-compatible caching.
+The way you cache Promises depends on the framework you use with Suspense. Frameworks typically provide built-in caching mechanisms. If you don't use a framework, you can use a simple module-level cache like the one above, or a [Suspense-enabled data source](/reference/react/Suspense#displaying-a-fallback-while-content-is-loading).
 
 </Note>
+
+In the example below, clicking "Re-render" updates state in `App` and triggers a re-render. Because `fetchData` returns the same cached Promise, `Albums` reads the value synchronously instead of showing the Suspense fallback again.
 
 <Sandpack>
 
@@ -567,7 +579,7 @@ async function getAlbums() {
 
 #### How to implement a promise cache {/*how-to-implement-a-promise-cache*/}
 
-A basic cache stores the Promise keyed by URL so the same instance is reused across renders. To also avoid unnecessary Suspense fallbacks when data is already available, you can set `status` and `value` (or `reason`) fields on the Promise. React checks these fields when `use` is called — if `status` is `'fulfilled'`, it reads `value` synchronously without suspending. If `status` is `'rejected'`, it throws `reason`. If the field is missing or `'pending'`, it suspends.
+A basic cache stores the Promise keyed by URL so the same instance is reused across renders. To also avoid unnecessary Suspense fallbacks when data is already available, you can set `status` and `value` (or `reason`) fields on the Promise. React checks these fields when `use` is called: if `status` is `'fulfilled'`, it reads `value` synchronously without suspending. If `status` is `'rejected'`, it throws `reason`. If the field is missing or `'pending'`, it suspends.
 
 ```js
 let cache = new Map();
@@ -758,7 +770,7 @@ button { margin-bottom: 10px; }
 
 <Note>
 
-Frameworks that support Suspense typically provide their own caching and invalidation mechanisms. Building a custom cache like the one above is useful for understanding the pattern, but in practice you should use your framework's data fetching solution.
+Frameworks that support Suspense typically provide their own caching and invalidation mechanisms. The custom cache above is useful for understanding the pattern, but in practice prefer your framework's data fetching solution.
 
 </Note>
 
@@ -887,7 +899,7 @@ async function getData(url) {
 async function getAlbums(artistId) {
   // Add a fake delay to make waiting noticeable.
   await new Promise(resolve => {
-    setTimeout(resolve, 80);
+    setTimeout(resolve, 800);
   });
 
   if (artistId === 'the-beatles') {
@@ -1047,16 +1059,33 @@ root.render(
 
 #### Should I resolve a Promise in a Server or Client Component? {/*resolve-promise-in-server-or-client-component*/}
 
-A Promise can be passed from a Server Component to a Client Component and resolved in the Client Component with the `use` API. You can also resolve the Promise in a Server Component with `await` and pass the required data to the Client Component as a prop.
+A Promise can be passed from a Server Component to a Client Component and resolved in the Client Component with the `use` API. You can also resolve the Promise in a Server Component with `await` and pass the resolved value to the Client Component as a prop. The difference comes down to how much of your UI you want to reveal before the data is ready.
+
+Using `await` in a [Server Component](/reference/rsc/server-components) suspends the Server Component itself, so React won't continue rendering it until the Promise resolves:
 
 ```js
+// Server Component
 export default async function App() {
   const messageContent = await fetchMessage();
-  return <Message messageContent={messageContent} />
+  return <Message messageContent={messageContent} />;
 }
 ```
 
-But using `await` in a [Server Component](/reference/rsc/server-components) will block its rendering until the `await` statement is finished. Passing a Promise from a Server Component to a Client Component prevents the Promise from blocking the rendering of the Server Component.
+Passing the Promise to a Client Component doesn't suspend the Server Component. The Server Component returns immediately, and the Client Component suspends when it calls `use`:
+
+```js
+// Server Component
+export default function App() {
+  const messagePromise = fetchMessage();
+  return <Message messagePromise={messagePromise} />;
+}
+```
+
+In both cases, the component that reads the Promise suspends. Make sure there's a [`<Suspense>`](/reference/react/Suspense) boundary above it so React can display a fallback there and keep rendering the rest of the page. Without a boundary above the suspending component, the suspension bubbles up the tree and blocks the surrounding UI until the Promise resolves.
+
+Passing the Promise down is useful when a Client Component needs the data and you want to reveal as much of the surrounding UI as possible while the Promise is pending. Because the Client Component is the component that suspends, you can place the `<Suspense>` boundary close to it and let the rest of the page render right away. See [Displaying a fallback while content is loading](/reference/react/Suspense#displaying-a-fallback-while-content-is-loading) for more on boundary placement.
+
+When the surrounding UI is small or depends on the same data, prefer `await` on the server. If a Server Component above already awaits the data, pass the resolved value down instead of creating a new Promise to call `use`.
 
 </DeepDive>
 
@@ -1066,36 +1095,40 @@ But using `await` in a [Server Component](/reference/rsc/server-components) will
 
 If the Promise passed to `use` is rejected, the error propagates to the nearest [Error Boundary](/reference/react/Component#catching-rendering-errors-with-an-error-boundary). Wrap the component that calls `use` in an Error Boundary to display a fallback when the Promise is rejected.
 
+In the example below, `fetchData` rejects on the first attempt and succeeds on retry. The Error Boundary catches the rejection and shows a fallback with a "Try again" button.
+
 <Sandpack>
 
 ```js src/App.js active
-import { use, Suspense, useState, useTransition } from "react";
+import { use, Suspense, useState, startTransition } from "react";
 import { ErrorBoundary } from "react-error-boundary";
-import { fetchData } from "./data.js";
+import { fetchData, refetchData } from "./data.js";
 
 export default function App() {
   const [albumsPromise, setAlbumsPromise] = useState(
     () => fetchData('/the-beatles/albums')
   );
-  const [isPending, startTransition] = useTransition();
 
-  function handleRefresh() {
+  function handleRetry() {
     startTransition(() => {
-      setAlbumsPromise(fetchData('/the-beatles/albums'));
+      setAlbumsPromise(refetchData('/the-beatles/albums'));
     });
   }
 
   return (
-    <>
-      <button onClick={handleRefresh} disabled={isPending}>
-        {isPending ? 'Refreshing...' : 'Refresh'}
-      </button>
-      <ErrorBoundary fallback={<p>⚠️Something went wrong</p>}>
-        <Suspense fallback={<p>Loading...</p>}>
-          <Albums albumsPromise={albumsPromise} />
-        </Suspense>
-      </ErrorBoundary>
-    </>
+    <ErrorBoundary
+      resetKeys={[albumsPromise]}
+      fallbackRender={() => (
+        <>
+          <p>⚠️ Something went wrong loading the albums.</p>
+          <button onClick={handleRetry}>Try again</button>
+        </>
+      )}
+    >
+      <Suspense fallback={<p>Loading...</p>}>
+        <Albums albumsPromise={albumsPromise} />
+      </Suspense>
+    </ErrorBoundary>
   );
 }
 
@@ -1118,17 +1151,50 @@ function Albums({ albumsPromise }) {
 // the framework that you use together with Suspense.
 // Normally, the caching logic would be inside a framework.
 
-async function getData(url) {
-  if (url === '/the-beatles/albums') {
-    // This fetch will always fail to demonstrate the error boundary.
-    throw new Error('Failed to fetch albums');
-  } else {
-    throw Error('Not implemented');
-  }
-}
+let cache = new Map();
+let retried = false;
 
 export function fetchData(url) {
-  return getData(url);
+  if (!cache.has(url)) {
+    cache.set(url, getData(url));
+  }
+  return cache.get(url);
+}
+
+export function refetchData(url) {
+  cache.delete(url);
+  retried = true;
+  return fetchData(url);
+}
+
+async function getData(url) {
+  // Add a fake delay to make the loading state visible.
+  await new Promise(resolve => setTimeout(resolve, 1000));
+  if (url === '/the-beatles/albums') {
+    // Fail the first attempt to demonstrate the Error Boundary,
+    // then succeed on retry.
+    if (!retried) {
+      throw new Error('Example Error: Failed to fetch albums');
+    }
+    return [{
+      id: 13,
+      title: 'Let It Be',
+      year: 1970
+    }, {
+      id: 12,
+      title: 'Abbey Road',
+      year: 1969
+    }, {
+      id: 11,
+      title: 'Yellow Submarine',
+      year: 1969
+    }, {
+      id: 10,
+      title: 'The Beatles',
+      year: 1968
+    }];
+  }
+  throw new Error('Not implemented');
 }
 ```
 

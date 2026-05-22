@@ -483,12 +483,12 @@ function Albums() {
 }
 ```
 
+Ideally, Promises are created before rendering, such as in an event handler, a route loader, or a Server Component, and passed to the component that calls `use`. Fetching lazily in render delays network requests and can create waterfalls.
+
 ```js
 // ✅ fetchData reads the Promise from a cache.
 const albums = use(fetchData('/albums'));
 ```
-
-Ideally, Promises are created before rendering, such as in an event handler, a route loader, or a Server Component, and passed to the component that calls `use`. Fetching lazily in render delays network requests and can create waterfalls.
 
 </DeepDive>
 

@@ -438,7 +438,7 @@ export async function fetchAlbums() {
 
 ##### Promises passed to `use` must be cached {/*promises-must-cached*/}
 
-Promises created inside a component are recreated on every render. This causes React to show the Suspense fallback repeatedly and prevents content from appearing. Instead, pass a Promise from a cache, a Suspense-enabled framework, or a Server Component.
+Promises created inside a component are recreated on every render because [React doesn't preserve state for renders that suspended before mounting](/reference/react/Suspense#caveats). After each suspension, React retries rendering from scratch, so any Promise created during render is recreated. This causes React to show the Suspense fallback repeatedly and prevents content from appearing. Instead, pass a Promise from a cache, a Suspense-enabled framework, or a Server Component.
 
 Common ways a Promise can be unintentionally recreated on every render:
 
@@ -1054,7 +1054,6 @@ root.render(
 
 </Sandpack>
 
-
 <DeepDive>
 
 #### Should I resolve a Promise in a Server or Client Component? {/*resolve-promise-in-server-or-client-component*/}
@@ -1210,8 +1209,6 @@ async function getData(url) {
 }
 ```
 </Sandpack>
-
----
 
 ---
 

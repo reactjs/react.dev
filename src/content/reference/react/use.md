@@ -438,17 +438,43 @@ export async function fetchAlbums() {
 
 ##### Promises passed to `use` must be cached {/*promises-must-cached*/}
 
-Promises created inside a component are recreated on every render because [React doesn't preserve state for renders that suspended before mounting](/reference/react/Suspense#caveats). After each suspension, React retries rendering from scratch, so any Promise created during render is recreated. This causes React to show the Suspense fallback repeatedly and prevents content from appearing. Instead, pass a Promise from a cache, a Suspense-enabled framework, or a Server Component.
+Promises created during render are recreated on every render, which causes React to show the Suspense fallback repeatedly and prevents content from appearing.
 
-Common ways a Promise can be unintentionally recreated on every render:
+```js
+function Albums() {
+  // 🔴 `fetch` creates a new Promise on every render.
+  const albums = use(fetch('/albums'));
+  // ...
+}
+```
+
+Instead, pass a Promise from a cache, a Suspense-enabled framework, or a Server Component:
+
+```js
+// ✅ fetchData reads the Promise from a cache.
+const albums = use(fetchData('/albums'));
+```
+
+</Pitfall>
+
+<DeepDive>
+
+#### Why are Promises recreated on every render? {/*why-promises-recreated*/}
+
+[React doesn't preserve state for renders that suspended before mounting](/reference/react/Suspense#caveats). After each suspension, React retries rendering from scratch, so any Promise created during render is recreated.
+
+Common ways a Promise can be unintentionally recreated during render:
 
 ```js
 function Albums() {
   // 🔴 `fetch` creates a new Promise on every render.
   const albums = use(fetch('/albums'));
 
-  // 🔴 Calling an async function creates a new Promise on every render.
-  const albums = use(getAlbums());
+  // 🔴 Inline `async` function calls create a new Promise on every render.
+  const albums = use((async () => {
+    const res = await fetch('/albums');
+    return res.json();
+  })());
 
   // 🔴 Adding `.then` returns a new Promise on every render,
   // even if `fetchData` is cached.
@@ -458,13 +484,13 @@ function Albums() {
 ```
 
 ```js
-// ✅ fetchData reads the promise from a cache.
+// ✅ fetchData reads the Promise from a cache.
 const albums = use(fetchData('/albums'));
 ```
 
 Ideally, Promises are created before rendering, such as in an event handler, a route loader, or a Server Component, and passed to the component that calls `use`. Fetching lazily in render delays network requests and can create waterfalls.
 
-</Pitfall>
+</DeepDive>
 
 ---
 

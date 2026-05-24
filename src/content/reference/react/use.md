@@ -222,6 +222,33 @@ function Button({ show, children }) {
 
 </Sandpack>
 
+### Reading a Promise from context {/*reading-a-promise-from-context*/}
+
+You can pass a Promise through context to share data without prop drilling. Pass the Promise as the context value, then call `use(context)` to read the Promise and `use(promise)` to read its resolved value:
+
+```js
+import { use } from 'react';
+import { UserContext } from './UserContext';
+
+function Profile() {
+  const userPromise = use(UserContext);
+  const user = use(userPromise);
+  return <h1>{user.name}</h1>;
+}
+```
+
+Wrap the components that read the Promise in [`<Suspense>`](/reference/react/Suspense) so only that subtree suspends while the Promise is pending. See [Usage (Promises)](#usage-promises) below for more on reading Promises with `use`.
+
+<Pitfall>
+
+Passing a Promise through context is convenient, but comes with trade-offs. Prefer passing the Promise as a [prop](#reading-a-promise-with-use) from a [Server Component](/reference/rsc/server-components) when possible.
+
+* **Double unwrap.** Reading the value requires two calls: `use(context)` to get the Promise, then `use(promise)` to get its resolved value. The context value itself is not awaited.
+* **Revalidation scope.** Because the Promise is created in the component that provides it, revalidating the data requires re-rendering that component. Hoisting data into a component high in the tree means everything below it re-renders to update the data.
+* **One Promise per context.** Each piece of data needs its own context. Reaching for more contexts to share more data is usually a sign that the data should be fetched closer to where it's used.
+
+</Pitfall>
+
 ---
 
 ## Usage (Promises) {/*usage-promises*/}

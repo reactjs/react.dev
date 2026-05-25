@@ -25,6 +25,11 @@ September 10-11,  2026. In-person in Zurich, Switzerland
 
 [Website](https://conf.zurichjs.com?utm_campaign=ZurichJS_Conf&utm_source=referral&utm_content=reactjs_community_conferences) - [Twitter](https://x.com/zurichjs) - [LinkedIn](https://www.linkedin.com/company/zurichjs/)
 
+### React Conf Japan 2027 {/*react-conf-japan-2027*/}
+April 24,  2027. In-person in Tokyo, Japan
+
+[Website](https://reactconf.jp/) - [Twitter](https://x.com/reactconfjp)
+
 ## Past Conferences {/*past-conferences*/}
 
 ### CityJS New Delhi 2026 {/*cityjs-newdelhi-2026*/}

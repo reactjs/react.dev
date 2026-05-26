@@ -49,7 +49,7 @@ The context value for the passed context, determined by the closest context prov
 
 ### `use(promise)` {/*use-promise*/}
 
-Call `use` with a [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) to read its resolved value. The component calling `use` *suspends* while the Promise is pending.
+Call `use` with a [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) to read its resolved value. The component calling `use` *suspends* while the Promise is pending. Despite its name, `use` is not a Hook. Unlike Hooks, it can be called inside loops and conditional statements like `if`.
 
 ```js
 import { use } from 'react';
@@ -59,7 +59,7 @@ function MessageComponent({ messagePromise }) {
   // ...
 ```
 
-If the component that calls `use` is wrapped in a [`Suspense`](/reference/react/Suspense) boundary, the fallback will be displayed while the Promise is pending. Once the Promise is resolved, the Suspense fallback is replaced by the rendered components using the data returned by `use`. If the Promise is rejected, the fallback of the nearest [Error Boundary](/reference/react/Component#catching-rendering-errors-with-an-error-boundary) will be displayed.
+If the component that calls `use` is wrapped in a [Suspense](/reference/react/Suspense) boundary, the fallback will be displayed while the Promise is pending. Once the Promise is resolved, the Suspense fallback is replaced by the rendered components using the data returned by `use`. If the Promise is rejected, the fallback of the nearest [Error Boundary](/reference/react/Component#catching-rendering-errors-with-an-error-boundary) will be displayed.
 
 [See more examples below.](#usage-promises)
 
@@ -74,10 +74,9 @@ The resolved value of the Promise.
 #### Caveats {/*promise-caveats*/}
 
 * `use` must be called inside a Component or a Hook.
-* Despite its name, `use` is not a Hook. Unlike Hooks, it can be called inside loops and conditional statements like `if`.
 * `use` cannot be called inside a try-catch block. Instead, wrap your component in an [Error Boundary](#displaying-an-error-with-an-error-boundary) to catch the error and display a fallback.
 * Promises passed to `use` must be cached so the same Promise instance is reused across re-renders. [See caching Promises below.](#caching-promises-for-client-components)
-* When passing a Promise from a Server Component to a Client Component, its resolved value must be [serializable](/reference/rsc/use-client#serializable-types). Data types like functions aren't serializable and cannot be the resolved value of such a Promise.
+* When passing a Promise from a Server Component to a Client Component, its resolved value must be [serializable](/reference/rsc/use-client#serializable-types).
 
 ---
 
@@ -224,7 +223,7 @@ function Button({ show, children }) {
 
 ### Reading a Promise from context {/*reading-a-promise-from-context*/}
 
-You can pass a Promise through context to share data without prop drilling. Pass the Promise as the context value, then call `use(context)` to read the Promise and `use(promise)` to read its resolved value:
+You can pass a Promise through context to share data without prop drilling. Pass the Promise as the context value, then read it with `use(context)` and resolve it with `use(promise)`:
 
 ```js
 import { use } from 'react';
@@ -237,11 +236,11 @@ function Profile() {
 }
 ```
 
-Wrap the components that read the Promise in [`<Suspense>`](/reference/react/Suspense) so only that subtree suspends while the Promise is pending. See [Usage (Promises)](#usage-promises) below for more on reading Promises with `use`.
+Wrap the components that read the Promise in a [Suspense](/reference/react/Suspense) boundary so only that subtree suspends while the Promise is pending. See [Usage (Promises)](#usage-promises) below for more on reading Promises with `use`.
 
 <Pitfall>
 
-Passing a Promise through context is convenient, but comes with trade-offs. Prefer passing the Promise as a [prop](#reading-a-promise-with-use) from a [Server Component](/reference/rsc/server-components) when possible.
+Reading a Promise from context comes with trade-offs. Prefer passing the Promise as a [prop](#reading-a-promise-with-use) from a [Server Component](/reference/rsc/server-components) when possible.
 
 * **Double unwrap.** Reading the value requires two calls: `use(context)` to get the Promise, then `use(promise)` to get its resolved value. The context value itself is not awaited.
 * **Revalidation scope.** Because the Promise is created in the component that provides it, revalidating the data requires re-rendering that component. Hoisting data into a component high in the tree means everything below it re-renders to update the data.
@@ -274,7 +273,7 @@ function Albums({ albumsPromise }) {
 }
 ```
 
-The component that calls <CodeStep step={1}>`use`</CodeStep> must be wrapped in a [`Suspense`](/reference/react/Suspense) boundary. While the Promise is pending, the Suspense fallback is displayed. Once the Promise resolves, React reads the value with `use` and replaces the fallback with the rendered component.
+Wrap the component that calls <CodeStep step={1}>`use`</CodeStep> in a [Suspense](/reference/react/Suspense) boundary so React can show a fallback while the Promise is pending. The closest Suspense boundary above the suspending component shows its fallback. Once the Promise resolves, React reads the value with `use` and replaces the fallback with the rendered component.
 
 <Recipes titleText="Reading a Promise with use vs fetching in an Effect" titleId="examples-promise">
 
@@ -497,7 +496,7 @@ function Albums() {
   // 🔴 `fetch` creates a new Promise on every render.
   const albums = use(fetch('/albums'));
 
-  // 🔴 Inline `async` function calls create a new Promise on every render.
+  // 🔴 Uncached `async` function calls create a new Promise on every render.
   const albums = use((async () => {
     const res = await fetch('/albums');
     return res.json();
@@ -1040,7 +1039,7 @@ export function Message({ messagePromise }) {
   return <p>Here is the message: {messageContent}</p>;
 }
 ```
-Because `Message` is wrapped in [`Suspense`](/reference/react/Suspense), the fallback will be displayed until the Promise is resolved. When the Promise is resolved, the value will be read by the `use` API and the `Message` component will replace the Suspense fallback.
+Because `Message` is wrapped in a [Suspense](/reference/react/Suspense) boundary, the fallback will be displayed until the Promise is resolved. When the Promise is resolved, the value will be read by the `use` API and the `Message` component will replace the Suspense fallback.
 
 <Sandpack>
 
@@ -1111,33 +1110,43 @@ root.render(
 
 #### Should I resolve a Promise in a Server or Client Component? {/*resolve-promise-in-server-or-client-component*/}
 
-A Promise can be passed from a Server Component to a Client Component and resolved in the Client Component with the `use` API. You can also resolve the Promise in a Server Component with `await` and pass the resolved value to the Client Component as a prop. The difference comes down to how much of your UI you want to reveal before the data is ready.
-
-Using `await` in a [Server Component](/reference/rsc/server-components) suspends the Server Component itself, so React won't continue rendering it until the Promise resolves:
+In general, prefer resolving the Promise with `await` in a Server Component. The Server Component suspends until the Promise resolves, and the Client Component receives the resolved value as a prop:
 
 ```js
 // Server Component
 export default async function App() {
+  // Will suspend the Server Component.
   const messageContent = await fetchMessage();
   return <Message messageContent={messageContent} />;
 }
 ```
 
-Passing the Promise to a Client Component doesn't suspend the Server Component. The Server Component returns immediately, and the Client Component suspends when it calls `use`:
+Resolve the Promise with `use` in a Client Component for data that isn't important for the surrounding UI to render, like below-the-fold content, or content revealed by a hover or click (popovers, tooltips). The Server Component starts the Promise but doesn't await it, so it returns immediately. The Client Component suspends when it calls `use`:
 
 ```js
 // Server Component
 export default function App() {
+  // Not awaited: starts here, resolves on the client.
   const messagePromise = fetchMessage();
   return <Message messagePromise={messagePromise} />;
 }
 ```
 
-In both cases, the component that reads the Promise suspends. Make sure there's a [`<Suspense>`](/reference/react/Suspense) boundary above it so React can display a fallback there and keep rendering the rest of the page. Without a boundary above the suspending component, the suspension bubbles up the tree and blocks the surrounding UI until the Promise resolves.
+```js
+// Client Component
+'use client';
+import { use } from 'react';
 
-Passing the Promise down is useful when a Client Component needs the data and you want to reveal as much of the surrounding UI as possible while the Promise is pending. Because the Client Component is the component that suspends, you can place the `<Suspense>` boundary close to it and let the rest of the page render right away. See [Displaying a fallback while content is loading](/reference/react/Suspense#displaying-a-fallback-while-content-is-loading) for more on boundary placement.
+export function Message({ messagePromise }) {
+  // Will suspend until the data is available.
+  const messageContent = use(messagePromise);
+  return <p>{messageContent}</p>;
+}
+```
 
-When the surrounding UI is small or depends on the same data, prefer `await` on the server. If a Server Component above already awaits the data, pass the resolved value down instead of creating a new Promise to call `use`.
+This way the Client Component suspends without blocking the rest of the page from rendering. If a Server Component above already awaits the data, pass the resolved value down as a prop instead of creating a new Promise to call `use`.
+
+In both cases, wrap the component that reads the Promise in a Suspense boundary so React can display a fallback while the Promise is pending.
 
 </DeepDive>
 

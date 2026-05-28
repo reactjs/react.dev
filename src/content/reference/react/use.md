@@ -1144,7 +1144,7 @@ export function Message({ messagePromise }) {
 }
 ```
 
-This way the Client Component suspends without blocking the rest of the page from rendering. If a Server Component above already awaits the data, pass the resolved value down as a prop instead of creating a new Promise to call `use`.
+If a Server Component above already awaits the data, pass the resolved value down as a prop instead of creating a new Promise to call `use`.
 
 In both cases, wrap the component that reads the Promise in a Suspense boundary so React can display a fallback while the Promise is pending.
 

@@ -309,7 +309,7 @@ This is a basic example to demonstrate how Actions work, but this example does n
 
 For common use cases, React provides built-in abstractions such as:
 - [`useActionState`](/reference/react/useActionState)
-- [`<form>` actions](/reference/react-dom/components/form)
+- [`<form>` Actions](/reference/react-dom/components/form)
 - [Server Functions](/reference/rsc/server-functions)
 
 These solutions handle request ordering for you. When using Transitions to build your own custom hooks or libraries that manage async state transitions, you have greater control over the request ordering, but you must handle it yourself.
@@ -1945,7 +1945,7 @@ export async function updateQuantity(newName) {
 
 When clicking multiple times, it's possible for previous requests to finish after later requests. When this happens, React currently has no way to know the intended order. This is because the updates are scheduled asynchronously, and React loses context of the order across the async boundary.
 
-This is expected, because Actions within a Transition do not guarantee execution order. For common use cases, React provides higher-level abstractions like [`useActionState`](/reference/react/useActionState) and [`<form>` actions](/reference/react-dom/components/form) that handle ordering for you. For advanced use cases, you'll need to implement your own queuing and abort logic to handle this.
+This is expected, because Actions within a Transition do not guarantee execution order. For common use cases, React provides higher-level abstractions like [`useActionState`](/reference/react/useActionState) and [`<form>` Actions](/reference/react-dom/components/form) that handle ordering for you. For advanced use cases, you'll need to implement your own queuing and abort logic to handle this.
 
 
 Example of `useActionState` handling execution order:

@@ -1248,7 +1248,7 @@ This is recommended for three reasons:
 
 - [Transitions are interruptible,](#perform-non-blocking-updates-with-actions) which lets the user click away without waiting for the re-render to complete.
 - [Transitions prevent unwanted loading indicators,](#preventing-unwanted-loading-indicators) which lets the user avoid jarring jumps on navigation.
-- [Transitions wait for all pending actions](#perform-non-blocking-updates-with-actions) which lets the user wait for side effects to complete before the new page is shown.
+- [Transitions wait for all pending Actions](#perform-non-blocking-updates-with-actions) which lets the user wait for side effects to complete before the new page is shown.
 
 Here is a simplified router example using Transitions for navigations.
 

@@ -34,7 +34,7 @@ Wrap elements in `<Fragment>` to group them together in situations where you nee
 
 ### <CanaryBadge /> FragmentInstance {/*fragmentinstance*/}
 
-When you pass a ref to a fragment, React provides a `FragmentInstance` object with methods for interacting with the DOM nodes wrapped by the fragment:
+When you pass a ref to a Fragment, React provides a `FragmentInstance` object with methods for interacting with the DOM nodes wrapped by the Fragment:
 
 **Event handling methods:**
 - `addEventListener(type, listener, options?)`: Adds an event listener to all first-level DOM children of the Fragment.

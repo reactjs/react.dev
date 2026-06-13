@@ -116,9 +116,7 @@ function createZip(files: Record<string, string>): Uint8Array {
   return bytes;
 }
 
-export function DownloadButton({}: {
-  providedFiles: Array<string>;
-}) {
+export function DownloadButton({}: {providedFiles: Array<string>}) {
   const {sandpack} = useSandpack();
 
   const downloadZip = () => {
@@ -129,7 +127,8 @@ export function DownloadButton({}: {
     for (const [path, file] of Object.entries(sandpack.files)) {
       // Zip paths must not start with '/' and should be nested under "sandbox/"
       // so extracting the archive creates a tidy top-level folder.
-      const zipPath = 'sandbox/' + (path.startsWith('/') ? path.slice(1) : path);
+      const zipPath =
+        'sandbox/' + (path.startsWith('/') ? path.slice(1) : path);
       zipFiles[zipPath] = (file as {code: string}).code ?? '';
     }
 

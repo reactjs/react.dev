@@ -116,9 +116,7 @@ function createZip(files: Record<string, string>): Uint8Array {
   return bytes;
 }
 
-export function DownloadButton({
-  providedFiles: _providedFiles,
-}: {
+export function DownloadButton({}: {
   providedFiles: Array<string>;
 }) {
   const {sandpack} = useSandpack();

@@ -223,7 +223,7 @@ function Button({ show, children }) {
 
 ### Reading a Promise from context {/*reading-a-promise-from-context*/}
 
-You can pass a Promise through context to share data without prop drilling. Pass the Promise as the context value, then read it with `use(context)` and resolve it with `use(promise)`:
+To share asynchronous data without prop drilling, set a Promise as a context value, then read it with `use(context)` and resolve it with `use(promise)`:
 
 ```js
 import { use } from 'react';
@@ -236,17 +236,9 @@ function Profile() {
 }
 ```
 
+Reading the value requires two `use` calls because the context value itself isn't awaited. See [Before you use context](/learn/passing-data-deeply-with-context#before-you-use-context) for alternatives to consider before reaching for context.
+
 Wrap the components that read the Promise in a [Suspense](/reference/react/Suspense) boundary so only that subtree suspends while the Promise is pending. See [Usage (Promises)](#usage-promises) below for more on reading Promises with `use`.
-
-<Pitfall>
-
-Reading a Promise from context comes with trade-offs. Prefer passing the Promise as a [prop](#reading-a-promise-with-use) from a [Server Component](/reference/rsc/server-components) when possible.
-
-* **Double unwrap.** Reading the value requires two calls: `use(context)` to get the Promise, then `use(promise)` to get its resolved value. The context value itself is not awaited.
-* **Revalidation scope.** Because the Promise is created in the component that provides it, revalidating the data requires re-rendering that component. Hoisting data into a component high in the tree means everything below it re-renders to update the data.
-* **One Promise per context.** Each piece of data needs its own context. Reaching for more contexts to share more data is usually a sign that the data should be fetched closer to where it's used.
-
-</Pitfall>
 
 ---
 
@@ -1110,7 +1102,9 @@ root.render(
 
 #### Should I resolve a Promise in a Server or Client Component? {/*resolve-promise-in-server-or-client-component*/}
 
-In general, prefer resolving the Promise with `await` in a Server Component. The Server Component suspends until the Promise resolves, and the Client Component receives the resolved value as a prop:
+A Promise can be resolved with `await` in a Server Component, or passed as a prop to a Client Component and resolved there with `use`.
+
+Using `await` in a Server Component suspends the Server Component itself, and the Client Component receives the resolved value as a prop:
 
 ```js
 // Server Component
@@ -1121,7 +1115,7 @@ export default async function App() {
 }
 ```
 
-Resolve the Promise with `use` in a Client Component for data that isn't important for the surrounding UI to render, like below-the-fold content, or content revealed by a hover or click (popovers, tooltips). The Server Component starts the Promise but doesn't await it, so it returns immediately. The Client Component suspends when it calls `use`:
+A Server Component can also start a Promise without awaiting it and pass the Promise to a Client Component. The Server Component returns immediately, and the Client Component suspends when it calls `use`:
 
 ```js
 // Server Component
@@ -1144,9 +1138,11 @@ export function Message({ messagePromise }) {
 }
 ```
 
-If a Server Component above already awaits the data, pass the resolved value down as a prop instead of creating a new Promise to call `use`.
+Prefer `await` in a Server Component when possible, since it keeps the data fetching on the server. If a Server Component above already awaits the data, pass the resolved value down as a prop instead of creating a new Promise to call `use`.
 
-In both cases, wrap the component that reads the Promise in a Suspense boundary so React can display a fallback while the Promise is pending.
+Use `use` in a Client Component to push the data read deeper in the tree, so more of the surrounding UI can render while the Promise is pending. A common case is interactive content like popovers and tooltips, where the data is needed only after a hover or click. Client Components can't `await`, so they rely on `use` to suspend on a Promise.
+
+In either case, wrap the component that reads the Promise in a Suspense boundary so React can show a fallback while the Promise is pending. See [Revealing content together at once](/reference/react/Suspense#revealing-content-together-at-once) for guidance on boundary placement.
 
 </DeepDive>
 

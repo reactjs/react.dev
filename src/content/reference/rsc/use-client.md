@@ -151,9 +151,9 @@ In the module dependency tree of this example app, the `'use client'` directive 
 `'use client'` segments the module dependency tree of the React Server Components app, marking `InspirationGenerator.js` and all of its dependencies as client-rendered.
 </Diagram>
 
-During render, the framework will server-render the root component and continue through the [render tree](/learn/understanding-your-ui-as-a-tree#the-render-tree), opting-out of evaluating any code imported from client-marked code.
+During render, the framework will server-render the root component and continue through the [render tree](/learn/understanding-your-ui-as-a-tree#the-render-tree). Client Components are also pre-rendered on the server to HTML. Their module source code is bundled for the client separately from Server Components.
 
-The server-rendered portion of the render tree is then sent to the client. The client, with its client code downloaded, then completes rendering the rest of the tree.
+The rendered HTML is sent to the client. The client downloads the client bundles and hydrates Client Components, attaching event handlers and other client-only behavior.
 
 <Diagram name="use_client_render_tree" height={250} width={500} alt="A tree graph where each node represents a component and its children as child components. The top-level node is labelled 'App' and it has two child components 'InspirationGenerator' and 'FancyText'. 'InspirationGenerator' has two child components, 'FancyText' and 'Copyright'. Both 'InspirationGenerator' and its child component 'FancyText' are marked to be client-rendered.">
 The render tree for the React Server Components app. `InspirationGenerator` and its child component `FancyText` are components exported from client-marked code and considered Client Components.
@@ -161,10 +161,10 @@ The render tree for the React Server Components app. `InspirationGenerator` and 
 
 We introduce the following definitions:
 
-* **Client Components** are components in a render tree that are rendered on the client.
-* **Server Components** are components in a render tree that are rendered on the server.
+* **Client Components** are component usages whose module is marked with `'use client'` or is a transitive dependency of one. They can be pre-rendered on the server and are hydrated on the client.
+* **Server Components** are component usages that are not Client Components. They are rendered on the server only.
 
-Working through the example app, `App`, `FancyText` and `Copyright` are all server-rendered and considered Server Components. As `InspirationGenerator.js` and its transitive dependencies are marked as client code, the component `InspirationGenerator` and its child component `FancyText` are Client Components.
+Working through the example app, `App`, `FancyText` and `Copyright` are considered Server Components. As `InspirationGenerator.js` and its transitive dependencies are marked as client code, the component usages `InspirationGenerator` and its child `FancyText` are Client Components.
 
 <DeepDive>
 #### How is `FancyText` both a Server and a Client Component? {/*how-is-fancytext-both-a-server-and-a-client-component*/}

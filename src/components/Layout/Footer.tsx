@@ -310,12 +310,12 @@ export function Footer() {
             uwu?
           </div>
           <div className="uwu-visible text-xs">
-            Logo by
-            <ExternalLink
-              className="ms-1"
-              href="https://twitter.com/sawaratsuki1004">
-              @sawaratsuki1004
-            </ExternalLink>
+            <span className="inline-flex items-center gap-1">
+              Logo by
+              <ExternalLink href="https://twitter.com/sawaratsuki1004">
+                @sawaratsuki1004
+              </ExternalLink>
+            </span>
           </div>
         </div>
         <div className="flex flex-col">

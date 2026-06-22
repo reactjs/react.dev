@@ -26,6 +26,7 @@ export async function generateMetadata({params}: PageProps): Promise<Metadata> {
   return sectionPageMetadata({
     section: 'learn',
     segments: ['learn', ...(slug ?? [])],
+    routeTree: sidebarLearn as RouteItem,
   });
 }
 

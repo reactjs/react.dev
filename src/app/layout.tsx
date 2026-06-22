@@ -39,9 +39,11 @@ export const metadata: Metadata = {
     ],
   },
   manifest: '/site.webmanifest',
+  // Items here render as `<meta name="...">`. Property-style tags
+  // (`<meta property="...">`) like `fb:app_id` must be rendered directly
+  // in `<head>` below, since Next's `metadata.other` only emits `name=`.
   other: {
     'msapplication-TileColor': '#2b5797',
-    'fb:app_id': '623268441017527',
     'google-site-verification': 'sIlAGs48RulR4DdP95YSWNKZIEtCqQmRjzn-Zq-CcD0',
   },
 };
@@ -161,6 +163,21 @@ export default function RootLayout({children}: {children: React.ReactNode}) {
   return (
     <html lang={siteConfig.languageCode} dir={siteConfig.isRTL ? 'rtl' : 'ltr'}>
       <head>
+        {/* RSS autodiscovery */}
+        <link
+          rel="alternate"
+          type="application/rss+xml"
+          title="React Blog RSS Feed"
+          href="/rss.xml"
+        />
+        {/* Preconnect to Algolia DocSearch for faster first-open search */}
+        <link
+          rel="preconnect"
+          href={`https://${siteConfig.algolia.appId}-dsn.algolia.net`}
+        />
+        {/* Facebook app id is a property-style meta tag and can't be expressed
+            via Next's `metadata.other`, which emits `name=` tags. */}
+        <meta property="fb:app_id" content="623268441017527" />
         {FONT_PRELOADS.map((file) => (
           <link
             key={file}

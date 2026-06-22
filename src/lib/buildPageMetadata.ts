@@ -8,6 +8,7 @@
 import type {Metadata} from 'next';
 import {siteConfig} from '../siteConfig';
 import {finishedTranslations} from 'utils/finishedTranslations';
+import {getRouteMeta, type RouteItem} from 'components/Layout/getRouteMeta';
 import type {PageData} from './readMarkdownPage';
 import type {PageSection} from 'components/Layout/Page';
 
@@ -20,12 +21,19 @@ export function buildPageMetadata({
   data,
   pathname,
   section,
+  routeTree,
 }: {
   data: PageData;
   pathname: string;
   section: PageSection;
+  /**
+   * Optional sidebar tree, used to compute the Algolia `algolia-search-order`
+   * meta tag for Learn/Blog pages. Omit for routes outside those sections.
+   */
+  routeTree?: RouteItem;
 }): Metadata {
   const isHomePage = pathname === '/';
+  const isBlogIndex = section === 'blog' && pathname === '/blog';
   const title = data.meta.title || '';
   const titleForTitleTag = data.meta.titleForTitleTag;
   const pageTitle =
@@ -47,6 +55,20 @@ export function buildPageMetadata({
   };
   for (const code of finishedTranslations) {
     languages[code] = canonicalUrl.replace(siteDomain, getDomain(code));
+  }
+
+  // Match the Pages Router behavior: emit `algolia-search-order` on Learn
+  // pages and Blog post pages (not the Blog index) so Algolia can preserve
+  // the docs sidebar ordering in search results.
+  const other: Record<string, string> = {};
+  if (
+    routeTree &&
+    (section === 'learn' || (section === 'blog' && !isBlogIndex))
+  ) {
+    const {order} = getRouteMeta(pathname, routeTree);
+    if (order != null) {
+      other['algolia-search-order'] = String(order);
+    }
   }
 
   return {
@@ -71,5 +93,6 @@ export function buildPageMetadata({
       description,
       images: [ogImage],
     },
+    other: Object.keys(other).length > 0 ? other : undefined,
   };
 }

@@ -6,7 +6,7 @@
  */
 
 import 'server-only';
-import fs from 'fs';
+import fs from 'fs/promises';
 import path from 'path';
 import compileMDX from 'utils/compileMDX';
 
@@ -27,9 +27,9 @@ export async function readMarkdownPage(segments: string[]): Promise<PageData> {
   const routePath = segments.join('/') || 'index';
   let mdx: string;
   try {
-    mdx = fs.readFileSync(path.join(ROOT, routePath + '.md'), 'utf8');
+    mdx = await fs.readFile(path.join(ROOT, routePath + '.md'), 'utf8');
   } catch {
-    mdx = fs.readFileSync(path.join(ROOT, routePath, 'index.md'), 'utf8');
+    mdx = await fs.readFile(path.join(ROOT, routePath, 'index.md'), 'utf8');
   }
   const {toc, content, meta, languages} = await compileMDX(mdx, routePath, {});
   return {toc, content, meta, languages};

@@ -41,14 +41,16 @@ export async function renderSectionPage({
 export async function sectionPageMetadata({
   segments,
   section,
+  routeTree,
 }: {
   segments: string[];
   section: PageSection;
+  routeTree?: RouteItem;
 }): Promise<Metadata> {
   const data = await safeReadPage(segments);
   if (!data) return {};
   const pathname = '/' + segments.join('/');
-  return buildPageMetadata({data, pathname, section});
+  return buildPageMetadata({data, pathname, section, routeTree});
 }
 
 async function safeReadPage(segments: string[]) {

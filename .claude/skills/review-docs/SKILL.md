@@ -9,6 +9,7 @@ Run these tasks in parallel for the given file(s). Each agent checks different a
 - [ ] Ask docs-reviewer agent to review {files} with docs-writer-learn (only for files in src/content/learn/).
 - [ ] Ask docs-reviewer agent to review {files} with docs-writer-reference (only for files in src/content/reference/).
 - [ ] Ask docs-reviewer agent to review {files} with docs-writer-blog (only for files in src/content/blog/).
+- [ ] Ask docs-reviewer agent to review {files} with docs-writer-error (only for files in src/content/errors/).
 - [ ] Ask docs-reviewer agent to review {files} with docs-voice (all documentation files).
 - [ ] Ask docs-reviewer agent to review {files} with docs-components (all documentation files).
 - [ ] Ask docs-reviewer agent to review {files} with docs-sandpack (files containing Sandpack examples).

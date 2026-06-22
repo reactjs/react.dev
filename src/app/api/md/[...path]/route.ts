@@ -5,9 +5,9 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import type {NextApiRequest, NextApiResponse} from 'next';
 import fs from 'fs';
 import path from 'path';
+import {NextResponse} from 'next/server';
 
 const FOOTER = `
 ---
@@ -17,22 +17,22 @@ const FOOTER = `
 [Overview of all docs pages](/llms.txt)
 `;
 
-export default function handler(req: NextApiRequest, res: NextApiResponse) {
-  const pathSegments = req.query.path;
-  if (!pathSegments) {
-    return res.status(404).send('Not found');
+export async function GET(
+  _req: Request,
+  ctx: {params: Promise<{path: string[]}>}
+) {
+  const {path: pathSegments} = await ctx.params;
+  if (!pathSegments || pathSegments.length === 0) {
+    return new NextResponse('Not found', {status: 404});
   }
 
-  const filePath = Array.isArray(pathSegments)
-    ? pathSegments.join('/')
-    : pathSegments;
+  const filePath = pathSegments.join('/');
 
   // Block /index.md URLs - use /foo.md instead of /foo/index.md
   if (filePath.endsWith('/index') || filePath === 'index') {
-    return res.status(404).send('Not found');
+    return new NextResponse('Not found', {status: 404});
   }
 
-  // Try exact path first, then with /index
   const candidates = [
     path.join(process.cwd(), 'src/content', filePath + '.md'),
     path.join(process.cwd(), 'src/content', filePath, 'index.md'),
@@ -41,13 +41,17 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
   for (const fullPath of candidates) {
     try {
       const content = fs.readFileSync(fullPath, 'utf8');
-      res.setHeader('Content-Type', 'text/plain; charset=utf-8');
-      res.setHeader('Cache-Control', 'public, max-age=3600');
-      return res.status(200).send(content + FOOTER);
+      return new NextResponse(content + FOOTER, {
+        status: 200,
+        headers: {
+          'Content-Type': 'text/plain; charset=utf-8',
+          'Cache-Control': 'public, max-age=3600',
+        },
+      });
     } catch {
       // Try next candidate
     }
   }
 
-  res.status(404).send('Not found');
+  return new NextResponse('Not found', {status: 404});
 }

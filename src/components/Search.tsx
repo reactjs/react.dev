@@ -5,13 +5,10 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-/*
- * Copyright (c) Facebook, Inc. and its affiliates.
- */
+'use client';
 
-import Head from 'next/head';
 import Link from 'next/link';
-import Router from 'next/router';
+import {useRouter} from 'next/navigation';
 import {lazy, useEffect} from 'react';
 import * as React from 'react';
 import {createPortal} from 'react-dom';
@@ -118,14 +115,9 @@ export function Search({
   },
 }: SearchProps) {
   useDocSearchKeyboardEvents({isOpen, onOpen, onClose});
+  const router = useRouter();
   return (
     <>
-      <Head>
-        <link
-          rel="preconnect"
-          href={`https://${options.appId}-dsn.algolia.net`}
-        />
-      </Head>
       {isOpen &&
         createPortal(
           <DocSearchModal
@@ -134,7 +126,7 @@ export function Search({
             onClose={onClose}
             navigator={{
               navigate({itemUrl}: any) {
-                Router.push(itemUrl);
+                router.push(itemUrl);
               },
             }}
             transformItems={(items: any[]) => {

@@ -15,10 +15,22 @@
 const nextConfig = {
   pageExtensions: ['jsx', 'js', 'ts', 'tsx', 'mdx', 'md'],
   reactStrictMode: true,
-  experimental: {
-    scrollRestoration: true,
-    reactCompiler: true,
-  },
+  reactCompiler: true,
+  cacheComponents: true,
+  serverExternalPackages: [
+    '@babel/core',
+    '@babel/plugin-transform-modules-commonjs',
+    '@babel/preset-react',
+    '@mdx-js/mdx',
+    'metro-cache',
+    'gray-matter',
+    'unist-util-visit',
+    'remark-gfm',
+    'remark-frontmatter',
+  ],
+  // Custom webpack config: opt out of Turbopack for builds.
+  // TODO: migrate webpack tweaks to Turbopack config.
+  turbopack: {},
   async rewrites() {
     return {
       beforeFiles: [

@@ -100,7 +100,7 @@ Without Server Components, it's common to fetch dynamic data on the client in an
 ```js
 // bundle.js
 function Note({id}) {
-  const [note, setNote] = useState('');
+  const [note, setNote] = useState(null);
   // NOTE: loads *after* first render.
   useEffect(() => {
     fetch(`/api/notes/${id}`).then(data => {
@@ -108,10 +108,14 @@ function Note({id}) {
     });
   }, [id]);
 
+  if (!note) {
+    return null;
+  }
+
   return (
     <div>
       <Author id={note.authorId} />
-      <p>{note}</p>
+      <p>{note.content}</p>
     </div>
   );
 }
@@ -155,7 +159,7 @@ async function Note({id}) {
   return (
     <div>
       <Author id={note.authorId} />
-      <p>{note}</p>
+      <p>{note.content}</p>
     </div>
   );
 }
@@ -269,7 +273,7 @@ async function Page({id}) {
   const commentsPromise = db.comments.get(note.id);
   return (
     <div>
-      {note}
+      <p>{note.content}</p>
       <Suspense fallback={<p>Loading Comments...</p>}>
         <Comments commentsPromise={commentsPromise} />
       </Suspense>

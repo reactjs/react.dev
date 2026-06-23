@@ -705,6 +705,8 @@ export default SlowList;
 
 ```css
 .items {
+  max-height: 1200px;
+  overflow-y: auto;
   padding: 0;
 }
 
@@ -782,6 +784,8 @@ export default SlowList;
 
 ```css
 .items {
+  max-height: 1200px;
+  overflow-y: auto;
   padding: 0;
 }
 

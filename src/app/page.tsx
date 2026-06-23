@@ -13,13 +13,11 @@ import {buildPageMetadata} from 'lib/buildPageMetadata';
 import {DocsPage} from './DocsPage';
 
 export async function generateMetadata(): Promise<Metadata> {
-  'use cache';
   const data = await readMarkdownPage([]);
   return buildPageMetadata({data, pathname: '/', section: 'home'});
 }
 
 export default async function HomePage() {
-  'use cache';
   const data = await readMarkdownPage([]);
   return (
     <DocsPage

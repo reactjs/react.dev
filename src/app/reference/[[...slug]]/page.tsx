@@ -21,7 +21,6 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({params}: PageProps): Promise<Metadata> {
-  'use cache';
   const {slug} = await params;
   return sectionPageMetadata({
     section: 'reference',
@@ -30,7 +29,6 @@ export async function generateMetadata({params}: PageProps): Promise<Metadata> {
 }
 
 export default async function ReferencePage({params}: PageProps) {
-  'use cache';
   const {slug} = await params;
   return renderSectionPage({
     section: 'reference',

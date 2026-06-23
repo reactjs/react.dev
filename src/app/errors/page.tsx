@@ -14,7 +14,6 @@ export const metadata: Metadata = {
 };
 
 export default async function ErrorDecoderIndex() {
-  'use cache';
   const data = await loadErrorDecoderData(null);
   return <ErrorDecoderView data={data} pathname="/errors" />;
 }

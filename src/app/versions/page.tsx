@@ -11,12 +11,10 @@ import type {RouteItem} from 'components/Layout/getRouteMeta';
 import {renderSectionPage, sectionPageMetadata} from '../renderSectionPage';
 
 export async function generateMetadata(): Promise<Metadata> {
-  'use cache';
   return sectionPageMetadata({section: 'unknown', segments: ['versions']});
 }
 
 export default async function VersionsPage() {
-  'use cache';
   return renderSectionPage({
     section: 'unknown',
     segments: ['versions'],

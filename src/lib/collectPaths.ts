@@ -9,6 +9,7 @@ import 'server-only';
 import fs from 'fs';
 import path from 'path';
 import {promisify} from 'util';
+import {cacheLife} from 'next/cache';
 
 const readdir = promisify(fs.readdir);
 const stat = promisify(fs.stat);
@@ -46,6 +47,8 @@ function getSegments(file: string): string[] {
 export async function collectSectionPaths(
   section: string
 ): Promise<string[][]> {
+  'use cache';
+  cacheLife('max');
   const dir = path.join(ROOT, section);
   if (!fs.existsSync(dir)) return [];
   const files = await getFiles(dir, dir);
@@ -64,6 +67,8 @@ export async function collectSectionPaths(
 export async function collectFlatSectionSlugs(
   section: string
 ): Promise<string[]> {
+  'use cache';
+  cacheLife('max');
   const dir = path.join(ROOT, section);
   if (!fs.existsSync(dir)) return [];
   const entries = await readdir(dir);

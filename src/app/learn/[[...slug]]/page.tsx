@@ -21,7 +21,6 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({params}: PageProps): Promise<Metadata> {
-  'use cache';
   const {slug} = await params;
   return sectionPageMetadata({
     section: 'learn',
@@ -31,7 +30,6 @@ export async function generateMetadata({params}: PageProps): Promise<Metadata> {
 }
 
 export default async function LearnPage({params}: PageProps) {
-  'use cache';
   const {slug} = await params;
   return renderSectionPage({
     section: 'learn',

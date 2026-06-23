@@ -19,13 +19,11 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({params}: PageProps): Promise<Metadata> {
-  'use cache';
   const {errorCode} = await params;
   return {title: `Minified React error #${errorCode}`};
 }
 
 export default async function ErrorDecoderPage({params}: PageProps) {
-  'use cache';
   const {errorCode} = await params;
   const data = await loadErrorDecoderData(errorCode);
   return <ErrorDecoderView data={data} pathname={`/errors/${errorCode}`} />;

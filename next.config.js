@@ -28,8 +28,13 @@ const nextConfig = {
     'remark-gfm',
     'remark-frontmatter',
   ],
-  // Custom webpack config: opt out of Turbopack for builds.
-  // TODO: migrate webpack tweaks to Turbopack config.
+  // Next 16 defaults to Turbopack, but this project still relies on the custom
+  // `webpack()` config below (module aliases, IgnorePlugin, and Sandpack's
+  // `raw-loader` imports) which Turbopack can't run yet. The build scripts pass
+  // `--webpack` to force the webpack pipeline; this empty `turbopack` object
+  // silences the "webpack config without turbopack config" warning in the
+  // meantime.
+  // TODO: port the webpack customizations to Turbopack and drop `--webpack`.
   turbopack: {},
   async rewrites() {
     return {

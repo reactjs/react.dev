@@ -61,6 +61,25 @@ export async function collectSectionPaths(
 }
 
 /**
+ * Collect every content path under `src/content` as segment arrays, with
+ * `index` collapsed the same way the `.md` route handler resolves them
+ * (e.g. `learn/index.md` -> ['learn'], served at `/learn.md`). Used to
+ * statically prerender the markdown route handler.
+ */
+export async function collectAllContentPaths(): Promise<string[][]> {
+  'use cache';
+  cacheLife('max');
+  const files = await getFiles(ROOT, ROOT);
+  return (
+    files
+      .map((file) => getSegments(file))
+      // Drop the root `index.md` (-> []); `/index.md` isn't a served URL and an
+      // empty catch-all param can't be prerendered.
+      .filter((segments) => segments.length > 0)
+  );
+}
+
+/**
  * Collect a flat list of slugs (one segment) for a top-level section
  * that only contains direct `.md` files (no subdirectories), e.g. `warnings/`.
  */

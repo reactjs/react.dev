@@ -6,6 +6,7 @@
  */
 
 import type {Metadata} from 'next';
+import {notFound} from 'next/navigation';
 import sidebarHome from '../sidebarHome.json';
 import type {RouteItem} from 'components/Layout/getRouteMeta';
 import {readMarkdownPage} from 'lib/readMarkdownPage';
@@ -14,11 +15,13 @@ import {DocsPage} from './DocsPage';
 
 export async function generateMetadata(): Promise<Metadata> {
   const data = await readMarkdownPage([]);
+  if (!data) return {};
   return buildPageMetadata({data, pathname: '/', section: 'home'});
 }
 
 export default async function HomePage() {
   const data = await readMarkdownPage([]);
+  if (!data) notFound();
   return (
     <DocsPage
       data={data}

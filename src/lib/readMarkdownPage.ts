@@ -22,22 +22,35 @@ const ROOT = path.join(process.cwd(), 'src/content');
 
 /**
  * Read and compile an MDX page from src/content. Resolves either
- * `<segments>.md` or `<segments>/index.md`. Throws if neither exists.
+ * `<segments>.md` or `<segments>/index.md`. Returns null when neither exists.
  *
  * Cached at this layer (keyed on `segments`) so the page render and its
  * `generateMetadata` share one compile, and so callers don't each need
  * their own `'use cache'`. Content only changes on deploy, so `'max'`.
+ *
+ * Returns null (rather than throwing) for a missing file: throwing inside a
+ * `'use cache'` scope surfaces as a render error instead of letting callers
+ * fall through to `notFound()`.
  */
-export async function readMarkdownPage(segments: string[]): Promise<PageData> {
+export async function readMarkdownPage(
+  segments: string[]
+): Promise<PageData | null> {
   'use cache';
   cacheLife('max');
   const routePath = segments.join('/') || 'index';
-  let mdx: string;
-  try {
-    mdx = await fs.readFile(path.join(ROOT, routePath + '.md'), 'utf8');
-  } catch {
-    mdx = await fs.readFile(path.join(ROOT, routePath, 'index.md'), 'utf8');
+  let mdx: string | null = null;
+  for (const candidate of [
+    path.join(ROOT, routePath + '.md'),
+    path.join(ROOT, routePath, 'index.md'),
+  ]) {
+    try {
+      mdx = await fs.readFile(candidate, 'utf8');
+      break;
+    } catch {
+      // Try next candidate.
+    }
   }
+  if (mdx == null) return null;
   const {toc, content, meta, languages} = await compileMDX(mdx, routePath, {});
   return {toc, content, meta, languages};
 }

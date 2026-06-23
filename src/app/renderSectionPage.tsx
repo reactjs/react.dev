@@ -25,7 +25,7 @@ export async function renderSectionPage({
   section,
   routeTree,
 }: RenderArgs) {
-  const data = await safeReadPage(segments);
+  const data = await readMarkdownPage(segments);
   if (!data) notFound();
   const pathname = '/' + segments.join('/');
   return (
@@ -47,21 +47,8 @@ export async function sectionPageMetadata({
   section: PageSection;
   routeTree?: RouteItem;
 }): Promise<Metadata> {
-  const data = await safeReadPage(segments);
+  const data = await readMarkdownPage(segments);
   if (!data) return {};
   const pathname = '/' + segments.join('/');
   return buildPageMetadata({data, pathname, section, routeTree});
-}
-
-async function safeReadPage(segments: string[]) {
-  try {
-    return await readMarkdownPage(segments);
-  } catch (err) {
-    console.error(
-      '[renderSectionPage] readMarkdownPage failed for',
-      segments,
-      err
-    );
-    return null;
-  }
 }

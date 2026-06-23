@@ -5,6 +5,10 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+/*
+ * Copyright (c) Facebook, Inc. and its affiliates.
+ */
+
 'use client';
 
 import Link from 'next/link';

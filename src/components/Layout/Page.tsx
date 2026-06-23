@@ -9,6 +9,7 @@
 
 import {Suspense} from 'react';
 import * as React from 'react';
+import dynamic from 'next/dynamic';
 import {SidebarNav} from './SidebarNav';
 import {Footer} from './Footer';
 import {Toc} from './Toc';
@@ -19,9 +20,14 @@ import {TocContext} from '../MDX/TocContext';
 import {Languages, LanguagesContext} from '../MDX/LanguagesContext';
 import type {TocItem} from 'components/MDX/TocContext';
 import type {RouteItem} from 'components/Layout/getRouteMeta';
-import {HomeContent} from './HomeContent';
 import {TopNav} from './TopNav';
 import cn from 'classnames';
+
+// The homepage is a large, standalone bundle that only ever renders at `/`.
+// Load it lazily so every other route doesn't ship it. (~2.7k LOC.)
+const HomeContent = dynamic(() =>
+  import('./HomeContent').then((m) => m.HomeContent)
+);
 
 import(/* webpackPrefetch: true */ '../MDX/CodeBlock/CodeBlock');
 

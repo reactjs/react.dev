@@ -9,7 +9,7 @@ description: Security researchers have found and disclosed two additional vulner
 
 December 11, 2025 by [The React Team](/community/team)
 
-_Updated January 26, 2026._
+_Updated April 8th, 2026._
 
 ---
 
@@ -36,13 +36,13 @@ We recommend upgrading immediately due to the severity of the newly disclosed vu
 
 If you already updated for the previous vulnerabilities, you will need to update again.
 
-If you updated to 19.0.3, 19.1.4, and 19.2.3, [these are incomplete](#additional-fix-published), and you will need to update again.
+If you updated to 19.0.4, 19.1.5, and 19.2.4, [these are incomplete](#additional-fix-published), and you will need to update again.
 
 Please see [the instructions in the previous post](/blog/2025/12/03/critical-security-vulnerability-in-react-server-components#update-instructions) for upgrade steps.
 
 -----
 
-_Updated January 26, 2026._
+_Updated April 8th, 2026._
 
 </Note>
 
@@ -52,7 +52,7 @@ Further details of these vulnerabilities will be provided after the rollout of t
 
 These vulnerabilities are present in the same packages and versions as [CVE-2025-55182](/blog/2025/12/03/critical-security-vulnerability-in-react-server-components).
 
-This includes 19.0.0, 19.0.1, 19.0.2, 19.0.3, 19.1.0, 19.1.1, 19.1.2, 19.1.3, 19.2.0, 19.2.1, 19.2.2, and 19.2.3 of:
+This includes 19.0.0, 19.0.1, 19.0.2, 19.0.3, 19.0.4, 19.1.0, 19.1.1, 19.1.2, 19.1.3, 19.1.5, 19.2.0, 19.2.1, 19.2.2, 19.2.3, and 19.2.4 of:
 
 * [react-server-dom-webpack](https://www.npmjs.com/package/react-server-dom-webpack)
 * [react-server-dom-parcel](https://www.npmjs.com/package/react-server-dom-parcel)
@@ -120,11 +120,11 @@ The patches published January 26th mitigate these DoS vulnerabilities.
 
 The original fix addressing the DoS in [CVE-2025-55184](https://www.cve.org/CVERecord?id=CVE-2025-55184) was incomplete.
 
-This left previous versions vulnerable. Versions 19.0.4, 19.1.5, 19.2.4 are safe.
+This left previous versions vulnerable. Versions 19.0.5, 19.1.6, 19.2.5 are safe.
 
 -----
 
-_Updated January 26, 2026._
+_Updated April 8th, 2026._
 
 </Note>
 
@@ -132,7 +132,7 @@ _Updated January 26, 2026._
 
 ## High Severity: Denial of Service {/*high-severity-denial-of-service*/}
 
-**CVEs:** [CVE-2025-55184](https://www.cve.org/CVERecord?id=CVE-2025-55184) and [CVE-2025-67779](https://www.cve.org/CVERecord?id=CVE-2025-67779)
+**CVEs:** [CVE-2025-55184](https://www.cve.org/CVERecord?id=CVE-2025-55184), [CVE-2025-67779](https://www.cve.org/CVERecord?id=CVE-2025-67779), and [CVE-2026-23869](https://www.cve.org/CVERecord?id=CVE-2026-23869)
 **Base Score:** 7.5 (High)
 
 Security researchers have discovered that a malicious HTTP request can be crafted and sent to any Server Functions endpoint that, when deserialized by React, can cause an infinite loop that hangs the server process and consumes CPU. Even if your app does not implement any React Server Function endpoints it may still be vulnerable if your app supports React Server Components.
@@ -195,6 +195,7 @@ Always verify against production bundles.
 * **December 11th**: Patches published and publicly disclosed as [CVE-2025-55183](https://www.cve.org/CVERecord?id=CVE-2025-55183) and [CVE-2025-55184](https://www.cve.org/CVERecord?id=CVE-2025-55184).
 * **December 11th**: Missing DoS case found internally, patched and publicly disclosed as [CVE-2025-67779](https://www.cve.org/CVERecord?id=CVE-2025-67779).
 * **January 26th**: Additional DoS cases found, patched, and publicly disclosed as [CVE-2026-23864](https://www.cve.org/CVERecord?id=CVE-2026-23864).
+* **April 8th**: Additional DoS cases found, patched, and publicly disclosed as [CVE-2026-23869](https://www.cve.org/CVERecord?id=CVE-2026-23869).
 ---
 
 ## Attribution {/*attribution*/}

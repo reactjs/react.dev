@@ -744,8 +744,11 @@ ol.mdx-illustration-block {
 .uwu-visible {
   display: none;
 }
+
+.uwu .uwu-visible,
 .uwu-hidden {
-  display: flex;
+  display: inline-flex !important;
+  flex-wrap: nowrap;
 }
 
 .uwu .uwu-visible {

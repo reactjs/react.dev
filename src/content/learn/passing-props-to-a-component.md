@@ -446,7 +446,8 @@ export default function Gallery() {
         <h2>Maria Skłodowska-Curie</h2>
         <img
           className="avatar"
-          src={getImageUrl('szV5sdG')}
+          src="http://localhost:3000/images/learn/maria-curie.jpeg
+          "
           alt="Maria Skłodowska-Curie"
           width={70}
           height={70}
@@ -470,7 +471,8 @@ export default function Gallery() {
         <h2>Katsuko Saruhashi</h2>
         <img
           className="avatar"
-          src={getImageUrl('YfeOqp2')}
+          src="https://react.dev/images/learn/katsuko-saruhashi.jpeg"
+
           alt="Katsuko Saruhashi"
           width={70}
           height={70}

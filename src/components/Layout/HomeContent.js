@@ -1315,7 +1315,7 @@ function BrowserChrome({children, hasPulse, hasRefresh, domain, path}) {
               />
             </svg>
 
-            <span className="text-gray-30">
+            <span>
               {domain}
               {path != null && '/'}
             </span>

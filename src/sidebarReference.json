@@ -165,6 +165,11 @@
           "path": "/reference/react/use"
         },
         {
+          "title": "experimental_optimisticKey",
+          "path": "/reference/react/experimental_optimisticKey",
+          "version": "experimental"
+        },
+        {
           "title": "experimental_taintObjectReference",
           "path": "/reference/react/experimental_taintObjectReference",
           "version": "experimental"

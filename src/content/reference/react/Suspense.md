@@ -95,7 +95,14 @@ export default function ArtistPage({ artist }) {
 }
 
 function Loading() {
-  return <h2>🌀 Loading...</h2>;
+  return (
+    <h2>
+      <span role="img" aria-label="loading-icon">
+        🌀
+      </span>
+      Loading...
+    </h2>
+  );
 }
 ```
 
@@ -286,7 +293,14 @@ export default function ArtistPage({ artist }) {
 }
 
 function Loading() {
-  return <h2>🌀 Loading...</h2>;
+  return (
+    <h2>
+      <span role="img" aria-label="loading-icon">
+        🌀
+      </span>
+      Loading...
+    </h2>
+  );
 }
 ```
 
@@ -538,7 +552,14 @@ export default function ArtistPage({ artist }) {
 }
 
 function BigSpinner() {
-  return <h2>🌀 Loading...</h2>;
+  return (
+    <h2>
+      <span role="img" aria-label="loading-icon">
+        🌀
+      </span>
+      Loading...
+    </h2>
+  );
 }
 
 function AlbumsGlimmer() {
@@ -1119,7 +1140,14 @@ function Router() {
 }
 
 function BigSpinner() {
-  return <h2>🌀 Loading...</h2>;
+  return (
+    <h2>
+      <span role="img" aria-label="loading-icon">
+        🌀
+      </span>
+      Loading...
+    </h2>
+  );
 }
 ```
 
@@ -1431,7 +1459,14 @@ function Router() {
 }
 
 function BigSpinner() {
-  return <h2>🌀 Loading...</h2>;
+  return (
+    <h2>
+      <span role="img" aria-label="loading-icon">
+        🌀
+      </span>
+      Loading...
+    </h2>
+  );
 }
 ```
 
@@ -1740,7 +1775,14 @@ function Router() {
 }
 
 function BigSpinner() {
-  return <h2>🌀 Loading...</h2>;
+  return (
+    <h2>
+      <span role="img" aria-label="loading-icon">
+        🌀
+      </span>
+      Loading...
+    </h2>
+  );
 }
 ```
 

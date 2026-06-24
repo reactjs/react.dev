@@ -18,7 +18,7 @@ module.exports = {
     './src/pages/**/*.{js,ts,jsx,tsx}',
     './src/styles/**/*.{js,ts,jsx,tsx}',
   ],
-  darkMode: 'class',
+  darkMode: 'selector',
   theme: {
     // Override base screen sizes
     screens: {

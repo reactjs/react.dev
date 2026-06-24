@@ -48,9 +48,44 @@ To create interactive controls for submitting information, render the [built-in 
 
 ## Usage {/*usage*/}
 
-### Handle form submission on the client {/*handle-form-submission-on-the-client*/}
+### Handle form submission with an event handler {/*handle-form-submission-with-an-event-handler*/}
 
-Pass a function to the `action` prop of form to run the function when the form is submitted. [`formData`](https://developer.mozilla.org/en-US/docs/Web/API/FormData) will be passed to the function as an argument so you can access the data submitted by the form. This differs from the conventional [HTML action](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form#action), which only accepts URLs. After the `action` function succeeds, all uncontrolled field elements in the form are reset.
+Pass a function to the `onSubmit` event handler to run code when the form is submitted. By default, the browser sends the form data to the current URL and refreshes the page, so call [`e.preventDefault()`](https://developer.mozilla.org/en-US/docs/Web/API/Event/preventDefault) to override that behavior. Read the submitted data with [`new FormData(e.target)`](https://developer.mozilla.org/en-US/docs/Web/API/FormData).
+
+<Sandpack>
+
+```js src/App.js
+export default function Search() {
+  function handleSubmit(e) {
+    // Prevent the browser from reloading the page
+    e.preventDefault();
+
+    // Read the form data
+    const formData = new FormData(e.target);
+    const query = formData.get("query");
+    alert(`You searched for '${query}'`);
+  }
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <input name="query" />
+      <button type="submit">Search</button>
+    </form>
+  );
+}
+```
+
+</Sandpack>
+
+<Note>
+
+Reading form data with `onSubmit` works in every version of React and gives you direct access to the [submit event](https://developer.mozilla.org/en-US/docs/Web/API/HTMLFormElement/submit_event). The `action` prop, described next, builds on this with extra features like automatic form resets, pending states with [`useFormStatus`](/reference/react-dom/hooks/useFormStatus), and [Server Functions](/reference/rsc/server-functions).
+
+</Note>
+
+### Handle form submission with an action {/*handle-form-submission-with-an-action*/}
+
+Pass a function to the `action` prop of form to run the function when the form is submitted. [`formData`](https://developer.mozilla.org/en-US/docs/Web/API/FormData) will be passed to the function as an argument so you can access the data submitted by the form. This differs from the conventional [HTML action](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form#action), which only accepts URLs. Unlike `onSubmit`, an `action` runs in a [Transition](/reference/react/useTransition) and calling `e.preventDefault()` isn't needed. After the `action` function succeeds, all uncontrolled field elements in the form are reset.
 
 <Sandpack>
 

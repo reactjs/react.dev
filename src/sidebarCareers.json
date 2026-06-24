@@ -1,0 +1,20 @@
+{
+  "title": "Careers",
+  "path": "/careers",
+  "routes": [
+    {
+      "hasSectionHeader": true
+    },
+    {
+      "title": "Careers",
+      "path": "/careers",
+      "skipBreadcrumb": true,
+      "routes": [
+        {
+          "title": "Windows Engineer",
+          "path": "/careers/2024/windows-engineer"
+        }
+      ]
+    }
+  ]
+}

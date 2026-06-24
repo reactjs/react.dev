@@ -721,11 +721,13 @@ Another solution would be to remove the condition altogether by moving the infor
 ```js
 const drinks = {
   tea: {
+    name: 'tea',
     part: 'leaf',
     caffeine: '15–70 mg/cup',
     age: '4,000+ years'
   },
   coffee: {
+    name: 'coffee',
     part: 'bean',
     caffeine: '80–185 mg/cup',
     age: '1,000+ years'
@@ -736,7 +738,7 @@ function Drink({ name }) {
   const info = drinks[name];
   return (
     <section>
-      <h1>{name}</h1>
+      <h1>{info.name}</h1>
       <dl>
         <dt>Part of plant</dt>
         <dd>{info.part}</dd>

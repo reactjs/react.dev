@@ -148,6 +148,12 @@ export function Page({
         routeTree={routeTree}
         breadcrumbs={breadcrumbs}
       />
+      {/* Skip to main content link for accessibility */}
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:bg-white focus:dark:bg-gray-900 focus:text-primary focus:dark:text-primary-dark focus:p-3 focus:rounded focus:border focus:border-border focus:dark:border-border-dark">
+        Skip to main content
+      </a>
       <div
         className={cn(
           hasColumns &&
@@ -166,7 +172,7 @@ export function Page({
         )}
         {/* No fallback UI so need to be careful not to suspend directly inside. */}
         <Suspense fallback={null}>
-          <main className="min-w-0 isolate">
+          <main id="main-content" className="min-w-0 isolate">
             <article
               className="font-normal break-words text-primary dark:text-primary-dark"
               key={asPath}>

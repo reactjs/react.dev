@@ -125,6 +125,11 @@ export function Page({
 
   return (
     <>
+      <a
+        href="#main"
+        className="sr-only focus:not-sr-only focus:absolute focus:z-50 focus:p-4">
+        Skip to main content
+      </a>
       <Seo
         title={title}
         titleForTitleTag={meta.titleForTitleTag}
@@ -166,7 +171,7 @@ export function Page({
         )}
         {/* No fallback UI so need to be careful not to suspend directly inside. */}
         <Suspense fallback={null}>
-          <main className="min-w-0 isolate">
+          <main id="main" className="min-w-0 isolate">
             <article
               className="font-normal break-words text-primary dark:text-primary-dark"
               key={asPath}>

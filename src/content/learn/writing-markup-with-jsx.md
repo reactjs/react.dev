@@ -279,9 +279,9 @@ This HTML was pasted into a component, but it's not valid JSX. Fix it:
 ```js
 export default function Bio() {
   return (
-    <div class="intro">
+    <header class="intro">
       <h1>Welcome to my website!</h1>
-    </div>
+    </header>
     <p class="summary">
       You can find my thoughts here.
       <br><br>
@@ -317,16 +317,16 @@ Whether to do it by hand or using the converter is up to you!
 ```js
 export default function Bio() {
   return (
-    <div>
-      <div className="intro">
+    <main>
+      <header className="intro">
         <h1>Welcome to my website!</h1>
-      </div>
+      </header>
       <p className="summary">
         You can find my thoughts here.
         <br /><br />
         <b>And <i>pictures</i></b> of scientists!
       </p>
-    </div>
+    </main>
   );
 }
 ```

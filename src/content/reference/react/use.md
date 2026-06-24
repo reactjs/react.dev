@@ -240,6 +240,12 @@ Reading the value requires two `use` calls because the context value itself isn'
 
 Wrap the components that read the Promise in a [Suspense](/reference/react/Suspense) boundary so only that subtree suspends while the Promise is pending. See [Usage (Promises)](#usage-promises) below for more on reading Promises with `use`.
 
+<Pitfall>
+
+When this pattern is used with [Server Components](/reference/rsc/server-components), refetching the Promise requires refetching the Server Component that sets the Promise in context. Avoid setting the Promise in context high in the tree, since that would refetch large parts of the app unnecessarily.
+
+</Pitfall>
+
 ---
 
 ## Usage (Promises) {/*usage-promises*/}

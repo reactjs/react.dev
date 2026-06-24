@@ -1053,7 +1053,7 @@ b { display: inline-block; margin-right: 10px; }
 
 </Sandpack>
 
-Hiding the entire tab container to show a loading indicator leads to a jarring user experience. If you add `useTransition` to `TabButton`, you can instead display the pending state in the tab button instead.
+Hiding the entire tab container to show a loading indicator leads to a jarring user experience. If you add `useTransition` to `TabButton`, you can display the pending state in the tab button instead.
 
 Notice that clicking "Posts" no longer replaces the entire tab container with a spinner:
 

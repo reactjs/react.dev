@@ -20,26 +20,33 @@ interface ErrorDecoderProps {
   content: string;
   toc: string;
   meta: any;
+  isCustom: boolean;
 }
 
 export default function ErrorDecoderPage({
   errorMessage,
   errorCode,
   content,
+  toc,
+  isCustom,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
   const parsedContent = useMemo<React.ReactNode>(
     () => JSON.parse(content, reviveNodeOnClient),
     [content]
   );
+  const parsedToc = useMemo(
+    () => (isCustom ? JSON.parse(toc, reviveNodeOnClient) : []),
+    [toc, isCustom]
+  );
 
   return (
     <ErrorDecoderContext value={{errorMessage, errorCode}}>
       <Page
-        toc={[]}
+        toc={parsedToc}
         meta={{
           title: errorCode
-            ? `Minified React error #${errorCode}`
-            : 'Minified Error Decoder',
+            ? `React error #${errorCode}`
+            : 'React Error Decoder',
         }}
         routeTree={sidebarLearn as RouteItem}
         section="unknown">
@@ -117,11 +124,13 @@ export const getStaticProps: GetStaticProps<ErrorDecoderProps> = async ({
   // Read MDX from the file.
   let path = params?.errorCode || 'index';
   let mdx;
+  let isCustom = true;
   try {
     mdx = fs.readFileSync(rootDir + '/' + path + '.md', 'utf8');
   } catch {
     // if [errorCode].md is not found, fallback to generic.md
     mdx = fs.readFileSync(rootDir + '/generic.md', 'utf8');
+    isCustom = false;
   }
 
   const {content, toc, meta} = await compileMDX(mdx, path, {code, errorCodes});
@@ -131,6 +140,7 @@ export const getStaticProps: GetStaticProps<ErrorDecoderProps> = async ({
       content,
       toc,
       meta,
+      isCustom,
       errorCode: code,
       errorMessage: code ? errorCodes[code] : null,
     },

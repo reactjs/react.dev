@@ -1051,8 +1051,9 @@ This list of downsides is not specific to React. It applies to fetching data on 
 
 - **If you use a [framework](/learn/creating-a-react-app#full-stack-frameworks), use its built-in data fetching mechanism.** Modern React frameworks have integrated data fetching mechanisms that are efficient and don't suffer from the above pitfalls.
 - **Otherwise, consider using or building a client-side cache.** Popular open source solutions include [TanStack Query](https://tanstack.com/query/latest/), [useSWR](https://swr.vercel.app/), and [React Router 6.4+.](https://beta.reactrouter.com/en/main/start/overview) You can build your own solution too, in which case you would use Effects under the hood but also add logic for deduplicating requests, caching responses, and avoiding network waterfalls (by preloading data or hoisting data requirements to routes).
+- **If you are using Server Components, you can stream data to the client with the [`use`](/reference/react/use) API.** When a Server Component creates a Promise and passes it as a prop to a Client Component, the Client Component can read the resolved value with `use` inside a [`<Suspense>`](/reference/react/Suspense) boundary. This avoids running data fetching in an Effect on the client and lets the server start the request earlier. See [Streaming data from the server to the client](/reference/react/use#streaming-data-from-server-to-client) for an example.
 
-You can continue fetching data directly in Effects if neither of these approaches suit you.
+You can continue fetching data directly in Effects if none of these approaches suit you.
 
 </DeepDive>
 

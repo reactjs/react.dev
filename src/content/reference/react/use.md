@@ -1140,7 +1140,7 @@ export function Message({ messagePromise }) {
 
 Prefer `await` in a Server Component when possible, since it keeps the data fetching on the server. If a Server Component above already awaits the data, pass the resolved value down as a prop instead of creating a new Promise to call `use`.
 
-Use `use` in a Client Component to push the data read deeper in the tree, so more of the surrounding UI can render while the Promise is pending. A common case is interactive content like popovers and tooltips, where the data is needed only after a hover or click. Client Components can't `await`, so they rely on `use` to suspend on a Promise.
+You can also pass promise as a prop to a Client Component without awaiting it, and then read it with `use(promise)` to suspend deeper in the tree. This allows more of the surrounding UI to complete while the Promise is pending. A common case is interactive content like popovers and tooltips, where the data is needed only after a hover or click. Client Components can't `await`, so they rely on `use` to suspend on a Promise.
 
 In either case, wrap the component that reads the Promise in a Suspense boundary so React can show a fallback while the Promise is pending. See [Revealing content together at once](/reference/react/Suspense#revealing-content-together-at-once) for guidance on boundary placement.
 

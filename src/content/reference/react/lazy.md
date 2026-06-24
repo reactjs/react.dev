@@ -4,7 +4,7 @@ title: lazy
 
 <Intro>
 
-`lazy` lets you defer loading component's code until it is rendered for the first time.
+`lazy` lets you defer loading a component's code until it's rendered for the first time.
 
 ```js
 const SomeComponent = lazy(load)

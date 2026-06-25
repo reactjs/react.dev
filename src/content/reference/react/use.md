@@ -678,6 +678,9 @@ const value = use(promise);
 ```js
 // ✅ Pass the promise to `use` and let React track the promise
 const value = use(promise);
+```
+
+Bypassing `use` this way can break React Suspense optimizations and Suspense features for React DevTools. You can `use(promise)` conditionally, but don't conditionally `use(promise)` based on the promise itself.
 
 </Pitfall>
 

@@ -677,7 +677,7 @@ const value = use(promise);
 ```
 
 ```js
-// ✅ Always pass the promise to `use` and let React track promise readiness
+// ✅ Pass the promise to `use` and let React track the promise
 const value = use(promise);
 ```
 

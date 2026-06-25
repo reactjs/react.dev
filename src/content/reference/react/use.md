@@ -678,7 +678,6 @@ const value = use(promise);
 ```js
 // ✅ Pass the promise to `use` and let React track the promise
 const value = use(promise);
-```
 
 </Pitfall>
 

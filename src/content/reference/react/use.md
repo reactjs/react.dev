@@ -662,10 +662,13 @@ This cache pattern is the foundation for [re-fetching data](#re-fetching-data-in
 
 <Pitfall>
 
-Don't conditionally call `use` based on whether a Promise is settled. Always call `use` unconditionally and let React handle reading the `status` field. This ensures React DevTools can show that the component may suspend on data.
+Don't skip calling `use` based on whether a Promise is already settled.
+
+Unlike other hooks, `use` can be called inside conditions and loops — but it must always be called for the Promise itself. Never read `promise.status` or `promise.value` directly to bypass `use`; always pass the Promise to `use` and let React handle it.
+
 
 ```js
-// 🔴 Don't conditionally skip `use`
+// 🔴 Don't bypass `use` by reading promise status directly
 if (promise.status === 'fulfilled') {
   return promise.value;
 }
@@ -673,9 +676,11 @@ const value = use(promise);
 ```
 
 ```js
-// ✅ Always call `use` unconditionally
+// ✅ Pass the promise to `use` and let React track the promise
 const value = use(promise);
 ```
+
+Bypassing `use` this way can break React Suspense optimizations and Suspense features for React DevTools. You can `use(promise)` conditionally, but don't conditionally `use(promise)` based on the promise itself.
 
 </Pitfall>
 

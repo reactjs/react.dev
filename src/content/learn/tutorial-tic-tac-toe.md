@@ -1137,7 +1137,7 @@ JavaScript supports [closures](https://developer.mozilla.org/en-US/docs/Web/Java
 
 </Note>
 
-Now you can add X's to the board...  but only to the upper left square. Your `handleClick` function is hardcoded to update the index for the upper left square (`0`). Let's update `handleClick` to be able to update any square. Add an argument `i` to the `handleClick` function that takes the index of the square to update:
+Now you can add X's to the board...  but only to the upper left square. Your `handleClick` function is hardcoded to update the index for the upper left square (`0`). Let's update `handleClick` to be able to update any square. Add a argument `i` to the `handleClick` function that takes the index of the square to update:
 
 ```js {4,6}
 export default function Board() {

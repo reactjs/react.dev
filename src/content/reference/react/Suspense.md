@@ -29,6 +29,7 @@ title: <Suspense>
 
 #### Caveats {/*caveats*/}
 
+- Suspense does not detect when data is fetched inside an Effect or event handler. It only activates for the [resources listed below.](#what-activates-a-suspense-boundary)
 - React does not preserve any state for renders that got suspended before they were able to mount for the first time. When the component has loaded, React will retry rendering the suspended tree from scratch.
 - If Suspense was displaying content for the tree, but then it suspended again, the `fallback` will be shown again unless the update causing it was caused by [`startTransition`](/reference/react/startTransition) or [`useDeferredValue`](/reference/react/useDeferredValue).
 - If React needs to hide the already visible content because it suspended again, it will clean up [layout Effects](/reference/react/useLayoutEffect) in the content tree. When the content is ready to be shown again, React will fire the layout Effects again. This ensures that Effects measuring the DOM layout don't try to do this while the content is hidden.
@@ -219,9 +220,9 @@ A Suspense boundary displays its `fallback` while its content is loading, and it
 
 <Note>
 
-Suspense **does not** detect when data is fetched inside an Effect or event handler.
+#### What is a Suspense-enabled framework? {/*what-is-a-suspense-enabled-framework*/}
 
-The exact way you would load data in the `Albums` component above depends on your framework. If you use a framework with built-in Suspense support, you'll find the details in its data fetching documentation.
+A *Suspense-enabled framework* integrates data fetching with Suspense, so that reading data in a component activates the nearest boundary. The exact way you load data in the `Albums` component above depends on your framework, and you'll find the details in its data fetching documentation.
 
 Suspense-enabled data fetching without the use of an opinionated framework is not yet supported. The requirements for implementing a Suspense-enabled data source are unstable and undocumented. An official API for integrating data sources with Suspense will be released in a future version of React.
 

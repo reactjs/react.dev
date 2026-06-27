@@ -763,7 +763,7 @@ Pre-rendering components with hidden Activity boundaries is a powerful way to re
 
 Activity **does not** detect data that is fetched inside an Effect.
 
-The exact way you would load data in the `Posts` component above depends on your framework. If you use a Suspense-enabled framework, you'll find the details in its data fetching documentation.
+The exact way you would load data in the `Posts` component above depends on your framework. If you use a [Suspense-enabled framework](/reference/react/Suspense#what-is-a-suspense-enabled-framework), you'll find the details in its data fetching documentation.
 
 Suspense-enabled data fetching without the use of an opinionated framework is not yet supported. The requirements for implementing a Suspense-enabled data source are unstable and undocumented. An official API for integrating data sources with Suspense will be released in a future version of React.
 

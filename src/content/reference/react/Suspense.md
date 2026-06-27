@@ -203,17 +203,25 @@ async function getAlbums() {
 
 </Sandpack>
 
+---
+
+### What activates a Suspense boundary {/*what-activates-a-suspense-boundary*/}
+
+A Suspense boundary displays its `fallback` while its content is loading, and it can also wait on other resources before revealing that content. The following activate a boundary:
+
+- Lazy-loading component code with [`lazy`](/reference/react/lazy).
+- Reading a Promise with [`use`](/reference/react/use), including data streamed from [Server Components](/reference/rsc/server-components) and integrations from frameworks like [Relay](https://relay.dev/docs/guided-tour/rendering/loading-states/).
+- Loading a stylesheet rendered with [`<link rel="stylesheet">` and a `precedence` prop.](/reference/react-dom/components/link#special-rendering-behavior) React blocks the boundary until the stylesheet loads, up to a timeout.
+- Loading fonts. React blocks a streamed boundary until [`document.fonts.ready`](https://developer.mozilla.org/en-US/docs/Web/API/FontFaceSet/ready) resolves, up to a timeout. Fonts also block a [`<ViewTransition>`](/reference/react/ViewTransition) update.
+- Streaming a large boundary's HTML during server rendering. React reveals the content as the HTML arrives.
+- Loading an image, where `img.src` blocks the boundary until the source loads. This behavior is not enabled by default. An `<img onLoad>` handler opts out, and images in a [`<ViewTransition>`](/reference/react/ViewTransition) update opt in automatically.
+- <ExperimentalBadge /> Performing CPU-bound render work inside a `<Suspense>` boundary marked with the `defer` prop.
+
 <Note>
-
-**Only Suspense-enabled data sources will activate the Suspense component.** They include:
-
-- Data fetching with Suspense-enabled frameworks like [Relay](https://relay.dev/docs/guided-tour/rendering/loading-states/) and [Next.js](https://nextjs.org/docs/app/building-your-application/routing/loading-ui-and-streaming#streaming-with-suspense)
-- Lazy-loading component code with [`lazy`](/reference/react/lazy)
-- Reading the value of a cached Promise with [`use`](/reference/react/use)
 
 Suspense **does not** detect when data is fetched inside an Effect or event handler.
 
-The exact way you would load data in the `Albums` component above depends on your framework. If you use a Suspense-enabled framework, you'll find the details in its data fetching documentation.
+The exact way you would load data in the `Albums` component above depends on your framework. If you use a framework with built-in Suspense support, you'll find the details in its data fetching documentation.
 
 Suspense-enabled data fetching without the use of an opinionated framework is not yet supported. The requirements for implementing a Suspense-enabled data source are unstable and undocumented. An official API for integrating data sources with Suspense will be released in a future version of React.
 

@@ -48,11 +48,11 @@ Only the `render` method is required, other methods are optional.
 
 ---
 
-### `context` {/*context*/}
+### `Context` {/*context*/}
 
-The [context](/learn/passing-data-deeply-with-context) of a class component is available as `this.context`. It is only available if you specify *which* context you want to receive using [`static contextType`](#static-contexttype).
+The [context](/learn/passing-data-deeply-with-context) of a Class Component is available as `this.context`. It is only available if you specify *which* context you want to receive using [`static contextType`](#static-contexttype).
 
-A class component can only read one context at a time.
+A Class Component can only read one Context at a time.
 
 ```js {2,5}
 class Button extends Component {
@@ -73,7 +73,7 @@ class Button extends Component {
 
 <Note>
 
-Reading `this.context` in class components is equivalent to [`useContext`](/reference/react/useContext) in function components.
+Reading `this.context` in Class Components is equivalent to [`useContext`](/reference/react/useContext) in Function Components.
 
 [See how to migrate.](#migrating-a-component-with-context-from-a-class-to-a-function)
 
@@ -83,7 +83,7 @@ Reading `this.context` in class components is equivalent to [`useContext`](/refe
 
 ### `props` {/*props*/}
 
-The props passed to a class component are available as `this.props`.
+The props passed to a Class Component are available as `this.props`.
 
 ```js {3}
 class Greeting extends Component {
@@ -97,7 +97,7 @@ class Greeting extends Component {
 
 <Note>
 
-Reading `this.props` in class components is equivalent to [declaring props](/learn/passing-props-to-a-component#step-2-read-props-inside-the-child-component) in function components.
+Reading `this.props` in Class Components is equivalent to [declaring props](/learn/passing-props-to-a-component#step-2-read-props-inside-the-child-component) in Function Components.
 
 [See how to migrate.](#migrating-a-simple-component-from-a-class-to-a-function)
 
@@ -107,7 +107,7 @@ Reading `this.props` in class components is equivalent to [declaring props](/lea
 
 ### `state` {/*state*/}
 
-The state of a class component is available as `this.state`. The `state` field must be an object. Do not mutate the state directly. If you wish to change the state, call `setState` with the new state.
+The state of a Class Component is available as `this.state`. The `state` field must be an object. Do not mutate the state directly. If you wish to change the state, call `setState` with the new state.
 
 ```js {2-4,7-9,18}
 class Counter extends Component {
@@ -136,7 +136,7 @@ class Counter extends Component {
 
 <Note>
 
-Defining `state` in class components is equivalent to calling [`useState`](/reference/react/useState) in function components.
+Defining `state` in Class Components is equivalent to calling [`useState`](/reference/react/useState) in Function Components.
 
 [See how to migrate.](#migrating-a-component-with-state-from-a-class-to-a-function)
 
@@ -146,7 +146,7 @@ Defining `state` in class components is equivalent to calling [`useState`](/refe
 
 ### `constructor(props)` {/*constructor*/}
 
-The [constructor](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/constructor) runs before your class component *mounts* (gets added to the screen). Typically, a constructor is only used for two purposes in React. It lets you declare state and [bind](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_objects/Function/bind) your class methods to the class instance:
+The [constructor](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/constructor) runs before your Class Component *mounts* (gets added to the screen). Typically, a constructor is only used for two purposes in React. It lets you declare state and [bind](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_objects/Function/bind) your class methods to the class instance:
 
 ```js {2-6}
 class Counter extends Component {
@@ -196,7 +196,7 @@ A constructor should not contain any side effects or subscriptions.
 
 <Note>
 
-There is no exact equivalent for `constructor` in function components. To declare state in a function component, call [`useState`.](/reference/react/useState) To avoid recalculating the initial state, [pass a function to `useState`.](/reference/react/useState#avoiding-recreating-the-initial-state)
+There is no exact equivalent for `constructor` in Function Components. To declare state in a Function Component, call [`useState`.](/reference/react/useState) To avoid recalculating the initial state, [pass a function to `useState`.](/reference/react/useState#avoiding-recreating-the-initial-state)
 
 </Note>
 
@@ -228,7 +228,7 @@ Typically, it is used together with [`static getDerivedStateFromError`](#static-
 
 <Note>
 
-There is no direct equivalent for `componentDidCatch` in function components yet. If you'd like to avoid creating class components, write a single `ErrorBoundary` component like above and use it throughout your app. Alternatively, you can use the [`react-error-boundary`](https://github.com/bvaughn/react-error-boundary) package which does that for you.
+There is no direct equivalent for `componentDidCatch` in Function Components yet. If you'd like to avoid creating Class Components, write a single `ErrorBoundary` component like above and use it throughout your app. Alternatively, you can use the [`react-error-boundary`](https://github.com/bvaughn/react-error-boundary) package which does that for you.
 
 </Note>
 
@@ -286,7 +286,7 @@ class ChatRoom extends Component {
 
 <Note>
 
-For many use cases, defining `componentDidMount`, `componentDidUpdate`, and `componentWillUnmount` together in class components is equivalent to calling [`useEffect`](/reference/react/useEffect) in function components. In the rare cases where it's important for the code to run before browser paint, [`useLayoutEffect`](/reference/react/useLayoutEffect) is a closer match.
+For many use cases, defining `componentDidMount`, `componentDidUpdate`, and `componentWillUnmount` together in Class Components is equivalent to calling [`useEffect`](/reference/react/useEffect) in Function Components. In the rare cases where it's important for the code to run before browser paint, [`useLayoutEffect`](/reference/react/useLayoutEffect) is a closer match.
 
 [See how to migrate.](#migrating-a-component-with-lifecycle-methods-from-a-class-to-a-function)
 
@@ -353,7 +353,7 @@ class ChatRoom extends Component {
 
 <Note>
 
-For many use cases, defining `componentDidMount`, `componentDidUpdate`, and `componentWillUnmount` together in class components is equivalent to calling [`useEffect`](/reference/react/useEffect) in function components. In the rare cases where it's important for the code to run before browser paint, [`useLayoutEffect`](/reference/react/useLayoutEffect) is a closer match.
+For many use cases, defining `componentDidMount`, `componentDidUpdate`, and `componentWillUnmount` together in Class Components is equivalent to calling [`useEffect`](/reference/react/useEffect) in Function Components. In the rare cases where it's important for the code to run before browser paint, [`useLayoutEffect`](/reference/react/useLayoutEffect) is a closer match.
 
 [See how to migrate.](#migrating-a-component-with-lifecycle-methods-from-a-class-to-a-function)
 
@@ -446,7 +446,7 @@ class ChatRoom extends Component {
 
 <Note>
 
-For many use cases, defining `componentDidMount`, `componentDidUpdate`, and `componentWillUnmount` together in class components is equivalent to calling [`useEffect`](/reference/react/useEffect) in function components. In the rare cases where it's important for the code to run before browser paint, [`useLayoutEffect`](/reference/react/useLayoutEffect) is a closer match.
+For many use cases, defining `componentDidMount`, `componentDidUpdate`, and `componentWillUnmount` together in Class Components is equivalent to calling [`useEffect`](/reference/react/useEffect) in Function Components. In the rare cases where it's important for the code to run before browser paint, [`useLayoutEffect`](/reference/react/useLayoutEffect) is a closer match.
 
 [See how to migrate.](#migrating-a-component-with-lifecycle-methods-from-a-class-to-a-function)
 
@@ -476,7 +476,7 @@ Try to avoid all uses of `forceUpdate` and only read from `this.props` and `this
 
 <Note>
 
-Reading an external data source and forcing class components to re-render in response to its changes with `forceUpdate` has been superseded by [`useSyncExternalStore`](/reference/react/useSyncExternalStore) in function components.
+Reading an external data source and forcing Class Components to re-render in response to its changes with `forceUpdate` has been superseded by [`useSyncExternalStore`](/reference/react/useSyncExternalStore) in Function Components.
 
 </Note>
 
@@ -541,7 +541,7 @@ You should return a snapshot value of any type that you'd like, or `null`. The v
 
 <Note>
 
-At the moment, there is no equivalent to `getSnapshotBeforeUpdate` for function components. This use case is very uncommon, but if you have the need for it, for now you'll have to write a class component.
+At the moment, there is no equivalent to `getSnapshotBeforeUpdate` for Function Components. This use case is very uncommon, but if you have the need for it, for now you'll have to write a Class Component.
 
 </Note>
 
@@ -549,7 +549,7 @@ At the moment, there is no equivalent to `getSnapshotBeforeUpdate` for function 
 
 ### `render()` {/*render*/}
 
-The `render` method is the only required method in a class component.
+The `render` method is the only required method in a Class Component.
 
 The `render` method should specify what you want to appear on the screen, for example:
 
@@ -669,7 +669,7 @@ You don't have to do this, but it's handy if you want to update state multiple t
 
 <Note>
 
-Calling `setState` in class components is similar to calling a [`set` function](/reference/react/useState#setstate) in function components.
+Calling `setState` in Class Components is similar to calling a [`set` function](/reference/react/useState#setstate) in Function Components.
 
 [See how to migrate.](#migrating-a-component-with-state-from-a-class-to-a-function)
 
@@ -736,7 +736,7 @@ Return `false` to tell React that re-rendering can be skipped.
 
 <Note>
 
-Optimizing class components with `shouldComponentUpdate` is similar to optimizing function components with [`memo`.](/reference/react/memo) Function components also offer more granular optimization with [`useMemo`.](/reference/react/useMemo)
+Optimizing Class Components with `shouldComponentUpdate` is similar to optimizing Function Components with [`memo`.](/reference/react/memo) Function components also offer more granular optimization with [`useMemo`.](/reference/react/useMemo)
 
 </Note>
 
@@ -769,7 +769,7 @@ If you define `UNSAFE_componentWillMount`, React will call it immediately after 
 
 <Note>
 
-Calling [`setState`](#setstate) inside `UNSAFE_componentWillMount` in a class component to initialize state is equivalent to passing that state as the initial state to [`useState`](/reference/react/useState) in a function component.
+Calling [`setState`](#setstate) inside `UNSAFE_componentWillMount` in a Class Component to initialize state is equivalent to passing that state as the initial state to [`useState`](/reference/react/useState) in a Function Component.
 
 </Note>
 
@@ -807,7 +807,7 @@ If you define `UNSAFE_componentWillReceiveProps`, React will call it when the co
 
 <Note>
 
-Calling [`setState`](#setstate) inside `UNSAFE_componentWillReceiveProps` in a class component to "adjust" state is equivalent to [calling the `set` function from `useState` during rendering](/reference/react/useState#storing-information-from-previous-renders) in a function component.
+Calling [`setState`](#setstate) inside `UNSAFE_componentWillReceiveProps` in a Class Component to "adjust" state is equivalent to [calling the `set` function from `useState` during rendering](/reference/react/useState#storing-information-from-previous-renders) in a Function Component.
 
 </Note>
 
@@ -848,7 +848,7 @@ If you define `UNSAFE_componentWillUpdate`, React will call it before rendering 
 
 <Note>
 
-There is no direct equivalent to `UNSAFE_componentWillUpdate` in function components.
+There is no direct equivalent to `UNSAFE_componentWillUpdate` in Function Components.
 
 </Note>
 
@@ -856,7 +856,7 @@ There is no direct equivalent to `UNSAFE_componentWillUpdate` in function compon
 
 ### `static contextType` {/*static-contexttype*/}
 
-If you want to read [`this.context`](#context-instance-field) from your class component, you must specify which context it needs to read. The context you specify as the `static contextType` must be a value previously created by [`createContext`.](/reference/react/createContext)
+If you want to read [`this.context`](#context-instance-field) from your Class Component, you must specify which context it needs to read. The context you specify as the `static contextType` must be a value previously created by [`createContext`.](/reference/react/createContext)
 
 ```js {2}
 class Button extends Component {
@@ -876,7 +876,7 @@ class Button extends Component {
 
 <Note>
 
-Reading `this.context` in class components is equivalent to [`useContext`](/reference/react/useContext) in function components.
+Reading `this.context` in Class Components is equivalent to [`useContext`](/reference/react/useContext) in Function Components.
 
 [See how to migrate.](#migrating-a-component-with-context-from-a-class-to-a-function)
 
@@ -922,7 +922,7 @@ If the `color` prop is not provided or is `undefined`, it will be set by default
 
 <Note>
 
-Defining `defaultProps` in class components is similar to using [default values](/learn/passing-props-to-a-component#specifying-a-default-value-for-a-prop) in function components.
+Defining `defaultProps` in Class Components is similar to using [default values](/learn/passing-props-to-a-component#specifying-a-default-value-for-a-prop) in Function Components.
 
 </Note>
 
@@ -950,7 +950,7 @@ Typically, it is used together with [`componentDidCatch`](#componentdidcatch) wh
 
 <Note>
 
-There is no direct equivalent for `static getDerivedStateFromError` in function components yet. If you'd like to avoid creating class components, write a single `ErrorBoundary` component like above and use it throughout your app. Alternatively, use the [`react-error-boundary`](https://github.com/bvaughn/react-error-boundary) package which does that.
+There is no direct equivalent for `static getDerivedStateFromError` in Function Components yet. If you'd like to avoid creating Class Components, write a single `ErrorBoundary` component like above and use it throughout your app. Alternatively, use the [`react-error-boundary`](https://github.com/bvaughn/react-error-boundary) package which does that.
 
 </Note>
 
@@ -1015,7 +1015,7 @@ Deriving state leads to verbose code and makes your components difficult to thin
 
 <Note>
 
-Implementing `static getDerivedStateFromProps` in a class component is equivalent to [calling the `set` function from `useState` during rendering](/reference/react/useState#storing-information-from-previous-renders) in a function component.
+Implementing `static getDerivedStateFromProps` in a Class Component is equivalent to [calling the `set` function from `useState` during rendering](/reference/react/useState#storing-information-from-previous-renders) in a Function Component.
 
 </Note>
 
@@ -1023,7 +1023,7 @@ Implementing `static getDerivedStateFromProps` in a class component is equivalen
 
 ## Usage {/*usage*/}
 
-### Defining a class component {/*defining-a-class-component*/}
+### Defining a Class Component {/*defining-a-class-component*/}
 
 To define a React component as a class, extend the built-in `Component` class and define a [`render` method:](#render)
 
@@ -1039,7 +1039,7 @@ class Greeting extends Component {
 
 React will call your [`render`](#render) method whenever it needs to figure out what to display on the screen. Usually, you will return some [JSX](/learn/writing-markup-with-jsx) from it. Your `render` method should be a [pure function:](https://en.wikipedia.org/wiki/Pure_function) it should only calculate the JSX.
 
-Similarly to [function components,](/learn/your-first-component#defining-a-component) a class component can [receive information by props](/learn/your-first-component#defining-a-component) from its parent component. However, the syntax for reading props is different. For example, if the parent component renders `<Greeting name="Taylor" />`, then you can read the `name` prop from [`this.props`](#props), like `this.props.name`:
+Similarly to [Function Components,](/learn/your-first-component#defining-a-component) a Class Component can [receive information by props](/learn/your-first-component#defining-a-component) from its parent component. However, the syntax for reading props is different. For example, if the parent component renders `<Greeting name="Taylor" />`, then you can read the `name` prop from [`this.props`](#props), like `this.props.name`:
 
 <Sandpack>
 
@@ -1065,7 +1065,7 @@ export default function App() {
 
 </Sandpack>
 
-Note that Hooks (functions starting with `use`, like [`useState`](/reference/react/useState)) are not supported inside class components.
+Note that Hooks (functions starting with `use`, like [`useState`](/reference/react/useState)) are not supported inside Class Components.
 
 <Pitfall>
 
@@ -1075,7 +1075,7 @@ We recommend defining components as functions instead of classes. [See how to mi
 
 ---
 
-### Adding state to a class component {/*adding-state-to-a-class-component*/}
+### Adding state to a Class Component {/*adding-state-to-a-class-component*/}
 
 To add [state](/learn/state-a-components-memory) to a class, assign an object to a property called [`state`](#state). To update state, call [`this.setState`](#setstate).
 
@@ -1133,7 +1133,7 @@ We recommend defining components as functions instead of classes. [See how to mi
 
 ---
 
-### Adding lifecycle methods to a class component {/*adding-lifecycle-methods-to-a-class-component*/}
+### Adding lifecycle methods to a Class Component {/*adding-lifecycle-methods-to-a-class-component*/}
 
 There are a few special methods you can define on your class.
 
@@ -1338,7 +1338,7 @@ You don't need to wrap every component into a separate Error Boundary. When you 
 
 <Note>
 
-There is currently no way to write an Error Boundary as a function component. However, you don't have to write the Error Boundary class yourself. For example, you can use [`react-error-boundary`](https://github.com/bvaughn/react-error-boundary) instead.
+There is currently no way to write an Error Boundary as a Function Component. However, you don't have to write the Error Boundary class yourself. For example, you can use [`react-error-boundary`](https://github.com/bvaughn/react-error-boundary) instead.
 
 </Note>
 
@@ -1350,7 +1350,7 @@ There is currently no way to write an Error Boundary as a function component. Ho
 
 Typically, you will [define components as functions](/learn/your-first-component#defining-a-component) instead.
 
-For example, suppose you're converting this `Greeting` class component to a function:
+For example, suppose you're converting this `Greeting` Class Component to a function:
 
 <Sandpack>
 
@@ -1418,7 +1418,7 @@ export default function App() {
 
 ### Migrating a component with state from a class to a function {/*migrating-a-component-with-state-from-a-class-to-a-function*/}
 
-Suppose you're converting this `Counter` class component to a function:
+Suppose you're converting this `Counter` Class Component to a function:
 
 <Sandpack>
 
@@ -1540,7 +1540,7 @@ button { display: block; margin-top: 10px; }
 
 ### Migrating a component with lifecycle methods from a class to a function {/*migrating-a-component-with-lifecycle-methods-from-a-class-to-a-function*/}
 
-Suppose you're converting this `ChatRoom` class component with lifecycle methods to a function:
+Suppose you're converting this `ChatRoom` Class Component with lifecycle methods to a function:
 
 <Sandpack>
 
@@ -1775,7 +1775,7 @@ If your component does not synchronize with any external systems, [you might not
 
 ### Migrating a component with context from a class to a function {/*migrating-a-component-with-context-from-a-class-to-a-function*/}
 
-In this example, the `Panel` and `Button` class components read [context](/learn/passing-data-deeply-with-context) from [`this.context`:](#context)
+In this example, the `Panel` and `Button` Class Components read [context](/learn/passing-data-deeply-with-context) from [`this.context`:](#context)
 
 <Sandpack>
 
@@ -1869,7 +1869,7 @@ export default function MyApp() {
 
 </Sandpack>
 
-When you convert them to function components, replace `this.context` with [`useContext`](/reference/react/useContext) calls:
+When you convert them to Function Components, replace `this.context` with [`useContext`](/reference/react/useContext) calls:
 
 <Sandpack>
 

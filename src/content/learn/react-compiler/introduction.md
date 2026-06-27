@@ -99,7 +99,7 @@ React Compiler's automatic memoization is primarily focused on **improving updat
 
 #### Optimizing Re-renders {/*optimizing-re-renders*/}
 
-React lets you express your UI as a function of their current state (more concretely: their props, state, and context). In its current implementation, when a component's state changes, React will re-render that component _and all of its children_ — unless you have applied some form of manual memoization with `useMemo()`, `useCallback()`, or `React.memo()`. For example, in the following example, `<MessageButton>` will re-render whenever `<FriendList>`'s state changes:
+React lets you express your UI as a function of their current state (more concretely: their props, state, and Context). In its current implementation, when a component's state changes, React will re-render that component _and all of its children_ — unless you have applied some form of manual memoization with `useMemo()`, `useCallback()`, or `React.memo()`. For example, in the following example, `<MessageButton>` will re-render whenever `<FriendList>`'s state changes:
 
 ```javascript
 function FriendList({ friends }) {

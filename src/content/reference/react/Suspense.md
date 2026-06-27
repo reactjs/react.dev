@@ -224,7 +224,7 @@ A Suspense boundary displays its `fallback` while its content is loading, and it
 
 A *Suspense-enabled framework* integrates data fetching with Suspense, so that reading data in a component activates the nearest boundary. The exact way you load data in the `Albums` component above depends on your framework, and you'll find the details in its data fetching documentation.
 
-Suspense-enabled data fetching without the use of an opinionated framework is not yet supported. The requirements for implementing a Suspense-enabled data source are unstable and undocumented. An official API for integrating data sources with Suspense will be released in a future version of React.
+Without a framework, you can read a Promise with [`use`](/reference/react/use) as long as the Promise is [cached so the same instance is reused across renders.](/reference/react/use#caching-promises-for-client-components)
 
 </Note>
 

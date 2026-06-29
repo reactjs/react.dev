@@ -38,11 +38,12 @@ To create interactive controls for submitting information, render the [built-in 
 
 `<form>` supports all [common element props.](/reference/react-dom/components/common#common-props)
 
-[`action`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form#action): a URL or function. When a URL is passed to `action` the form will behave like the HTML form component. When a function is passed to `action` the function will handle the form submission in a Transition following [the Action prop pattern](/reference/react/useTransition#exposing-action-props-from-components). The function passed to `action` may be async and will be called with a single argument containing the [form data](https://developer.mozilla.org/en-US/docs/Web/API/FormData) of the submitted form. The `action` prop can be overridden by a `formAction` attribute on a `<button>`, `<input type="submit">`, or `<input type="image">` component.
+[`action`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form#action): a URL or function. When a URL is passed to `action` the form will behave like the [HTML action](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/form#action). When a function is passed to `action` the function will handle the form submission in a Transition following [the Action prop pattern](/reference/react/useTransition#exposing-action-props-from-components). The function passed to `action` may be async and will be called with a single argument containing the [form data](https://developer.mozilla.org/en-US/docs/Web/API/FormData) of the submitted form. The `action` prop can be overridden by a `formAction` attribute on a `<button>`, `<input type="submit">`, or `<input type="image">` component.
 
 #### Caveats {/*caveats*/}
 
 * When a function is passed to `action` or `formAction` the HTTP method will be POST regardless of value of the `method` prop.
+* When a function is passed to `action` or `formAction`, React resets all [uncontrolled](/reference/react-dom/components/input#reading-the-input-values-when-submitting-a-form) field elements after the action succeeds. See [Preserve form values after submission](#preserve-form-values-after-submission).
 
 ---
 
@@ -59,7 +60,8 @@ This example reads the submitted values with [`new FormData(e.target)`](https://
 ```js src/App.js
 export default function Search() {
   function handleSubmit(e) {
-    // Prevent the browser from reloading the page
+    // Prevent the default browser behavior
+    // of reloading the page and resetting the form
     e.preventDefault();
 
     // Read the form data
@@ -88,7 +90,7 @@ Reading form data with `onSubmit` works in every version of React and gives you 
 
 ### Handle form submission with an action prop {/*handle-form-submission-with-an-action-prop*/}
 
-Pass a function to the `action` prop of form to run the function when the form is submitted. [`formData`](https://developer.mozilla.org/en-US/docs/Web/API/FormData) will be passed to the function as an argument so you can access the data submitted by the form. This differs from the conventional [HTML action](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form#action), which only accepts URLs. Unlike `onSubmit`, an `action` runs in a [Transition](/reference/react/useTransition) and calling `e.preventDefault()` isn't needed. After the `action` function succeeds, all uncontrolled field elements in the form are reset.
+Pass a function to the `action` prop of form to run the function when the form is submitted. [`formData`](https://developer.mozilla.org/en-US/docs/Web/API/FormData) will be passed to the function as an argument so you can access the data submitted by the form. This differs from the conventional [HTML action](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form#action), which only accepts URLs. Unlike `onSubmit`, an `action` runs in a [Transition](/reference/react/useTransition) and calling `e.preventDefault()` isn't needed. After the `action` function succeeds, React resets all [uncontrolled](/reference/react-dom/components/input#reading-the-input-values-when-submitting-a-form) field elements in the form. To keep their values, see [Preserve form values after submission](#preserve-form-values-after-submission).
 
 <Sandpack>
 
@@ -108,6 +110,85 @@ export default function Search() {
 ```
 
 </Sandpack>
+
+### Preserve form values after submission {/*preserve-form-values-after-submission*/}
+
+The browser clears a form's input state on submit. A URL `action` follows this same behavior. React does the same when `action` is a function, so your form works consistently before and after JavaScript loads.
+
+When you pass a function to `action` or `formAction`, React resets the form's [uncontrolled fields](/reference/react-dom/components/input#reading-the-input-values-when-submitting-a-form) after the action succeeds. The reset only applies to uncontrolled fields, so [inputs you control with state](/reference/react-dom/components/input#controlling-an-input-with-a-state-variable) are never cleared.
+
+To keep the values of uncontrolled fields, add an `onSubmit` handler that calls `e.preventDefault()` and runs the action inside a [Transition](/reference/react/useTransition). Keep the `action` prop on the form so it still works before JavaScript loads.
+
+<Sandpack>
+
+```js src/App.js
+import { useTransition } from "react";
+import { submitForm } from "./api.js";
+
+export default function EditForm() {
+  const [isPending, startTransition] = useTransition();
+
+  function handleSubmit(e) {
+    // Stop React from resetting the form after the action succeeds
+    e.preventDefault();
+    const formData = new FormData(e.target);
+    startTransition(async () => {
+      await submitForm(formData);
+    });
+  }
+
+  return (
+    <form action={submitForm} onSubmit={handleSubmit}>
+      <input name="title" defaultValue="My draft" />
+      <button type="submit" disabled={isPending}>
+        {isPending ? "Saving..." : "Save"}
+      </button>
+    </form>
+  );
+}
+```
+
+```js src/api.js hidden
+export async function submitForm(formData) {
+  await new Promise((res) => setTimeout(res, 1000));
+}
+```
+
+</Sandpack>
+
+Because you call the action manually from `onSubmit`, [`useFormStatus`](/reference/react-dom/hooks/useFormStatus) won't report its pending state. Read `isPending` from the same [`useTransition`](/reference/react/useTransition) call instead.
+
+<DeepDive>
+
+#### Resetting only some fields, or resetting on the server {/*resetting-only-some-fields*/}
+
+The `onSubmit` approach keeps every uncontrolled field. When you need finer control, two other patterns are available:
+
+* **Reset from your own action API.** If you build an action-based API and still want the form to reset after the action runs, call the `requestFormReset` API from `react-dom` with the form element inside the Transition.
+
+* **Reset to server-provided values.** When an action validates input on the server, return the submitted `FormData` and pass it to each field's `defaultValue`. React restores those values instead of clearing them, and the form keeps working before JavaScript loads:
+
+```js
+import { useActionState } from "react";
+import { submitForm } from "./actions.js";
+
+function EditForm() {
+  // The action returns { submitted: formData, error } on failure
+  const [state, formAction] = useActionState(submitForm, {});
+  const values = state.submitted ?? new FormData();
+  return (
+    <form action={formAction}>
+      <input name="title" defaultValue={values.get("title") ?? ""} />
+      {state.error && <p>{state.error}</p>}
+      <button type="submit">Save</button>
+    </form>
+  );
+}
+```
+
+Return the original `FormData` object rather than a new one so React can restore the values even before JavaScript has loaded.
+
+</DeepDive>
 
 ### Handle form submission with a Server Function {/*handle-form-submission-with-a-server-function*/}
 
@@ -372,28 +453,45 @@ Learn more about updating state from a form action with the [`useActionState`](/
 
 ### Handling multiple submission types {/*handling-multiple-submission-types*/}
 
-Forms can be designed to handle multiple submission actions based on the button pressed by the user. Each button inside a form can be associated with a distinct action or behavior by setting the `formAction` prop.
+A form can have more than one submit button, each running a different action. Set the `formAction` prop on a `<button>` to override the `<form>`'s `action` when that button submits the form.
 
-When a user taps a specific button, the form is submitted, and a corresponding action, defined by that button's attributes and action, is executed. For instance, a form might submit an article for review by default but have a separate button with `formAction` set to save the article as a draft.
+When a button without `formAction` submits the form, React calls the form's `action`. When a button with `formAction` submits the form, React calls that button's action instead. For example, the form below publishes an article by default, but its **Save draft** button stores the current content without publishing it.
+
+In this example the draft is held in state, so the saved content stays in the textarea after you submit it. In a real app you would persist the draft on the server. Pass a [Server Function](/reference/rsc/server-functions) (a function marked with [`'use server'`](/reference/rsc/use-server)) to `formAction` to save the draft from the server, optionally combined with [`useActionState`](/reference/react/useActionState) to track its pending state and result.
 
 <Sandpack>
 
 ```js src/App.js
-export default function Search() {
+import { useState } from 'react';
+
+export default function ArticleForm() {
+  const [draft, setDraft] = useState(() => new FormData());
+
   function publish(formData) {
-    const content = formData.get("content");
-    const button = formData.get("button");
-    alert(`'${content}' was published with the '${button}' button`);
+    const content = formData.get('content');
+    alert(`'${content}' was published!`);
+    // Clear the saved draft after publishing.
+    setDraft(new FormData());
   }
 
   function save(formData) {
-    const content = formData.get("content");
-    alert(`Your draft of '${content}' has been saved!`);
+    const content = formData.get('content');
+    alert(`Your draft of '${content}' was saved!`);
+    // Keep the submitted content as the current draft.
+    setDraft(formData);
   }
 
+  const savedContent = draft.get('content') || '';
   return (
     <form action={publish}>
-      <textarea name="content" rows={4} cols={40} />
+      <textarea
+        // Changing the key resets the textarea to the saved draft.
+        key={`${savedContent}-content`}
+        name="content"
+        rows={4}
+        cols={40}
+        defaultValue={savedContent}
+      />
       <br />
       <button type="submit" name="button" value="submit">Publish</button>
       <button formAction={save}>Save draft</button>

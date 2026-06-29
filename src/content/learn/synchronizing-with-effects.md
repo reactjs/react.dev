@@ -47,7 +47,7 @@ To write an Effect, follow these three steps:
 
 1. **Declare an Effect.** By default, your Effect will run after every [commit](/learn/render-and-commit).
 2. **Specify the Effect dependencies.** Most Effects should only re-run *when needed* rather than after every render. For example, a fade-in animation should only trigger when a component appears. Connecting and disconnecting to a chat room should only happen when the component appears and disappears, or when the chat room changes. You will learn how to control this by specifying *dependencies.*
-3. **Add cleanup if needed.** Some Effects need to specify how to stop, undo, or clean up whatever they were doing. For example, "connect" needs "disconnect", "subscribe" needs "unsubscribe", and "fetch" needs either "cancel" or "ignore". You will learn how to do this by returning a *cleanup function*.
+3. **Add cleanup if needed.** Some Effects need to specify how to stop, undo, or clean up whatever they were doing. For example, "connect" needs "disconnect", "subscribe" needs "unsubscribe", and "fetch" needs "cancel", "ignore", or an "isCurrent" check. You will learn how to do this by returning a *cleanup function*.
 
 Let's look at each of these steps in detail.
 
@@ -684,15 +684,15 @@ In development, opacity will be set to `1`, then to `0`, and then to `1` again. 
 
 ### Fetching data {/*fetching-data*/}
 
-If your Effect fetches something, the cleanup function should either [abort the fetch](https://developer.mozilla.org/en-US/docs/Web/API/AbortController) or ignore its result:
+If your Effect fetches something, the cleanup function should either [abort the fetch](https://developer.mozilla.org/en-US/docs/Web/API/AbortController) or ignore its result if it is not the most current rendering:
 
 ```js {2,6,13-15}
 useEffect(() => {
-  let ignore = false;
+  let isCurrent = true;
 
   async function startFetching() {
     const json = await fetchTodos(userId);
-    if (!ignore) {
+    if (isCurrent) {
       setTodos(json);
     }
   }
@@ -700,14 +700,14 @@ useEffect(() => {
   startFetching();
 
   return () => {
-    ignore = true;
+    isCurrent = false;
   };
 }, [userId]);
 ```
 
 You can't "undo" a network request that already happened, but your cleanup function should ensure that the fetch that's _not relevant anymore_ does not keep affecting your application. If the `userId` changes from `'Alice'` to `'Bob'`, cleanup ensures that the `'Alice'` response is ignored even if it arrives after `'Bob'`.
 
-**In development, you will see two fetches in the Network tab.** There is nothing wrong with that. With the approach above, the first Effect will immediately get cleaned up so its copy of the `ignore` variable will be set to `true`. So even though there is an extra request, it won't affect the state thanks to the `if (!ignore)` check.
+**In development, you will see two fetches in the Network tab.** There is nothing wrong with that. With the approach above, the first Effect will immediately get cleaned up so its copy of the `isCurrent` variable will be set to `false`. So even though there is an extra request, it won't affect the state thanks to the `if (isCurrent)` check.
 
 **In production, there will only be one request.** If the second request in development is bothering you, the best approach is to use a solution that deduplicates requests and caches their responses between components:
 
@@ -1551,15 +1551,15 @@ export default function Page() {
   const [person, setPerson] = useState('Alice');
   const [bio, setBio] = useState(null);
   useEffect(() => {
-    let ignore = false;
+    let isCurrent = true;
     setBio(null);
     fetchBio(person).then(result => {
-      if (!ignore) {
+      if (isCurrent) {
         setBio(result);
       }
     });
     return () => {
-      ignore = true;
+      isCurrent = false;
     }
   }, [person]);
 
@@ -1593,16 +1593,16 @@ export async function fetchBio(person) {
 
 </Sandpack>
 
-Each render's Effect has its own `ignore` variable. Initially, the `ignore` variable is set to `false`. However, if an Effect gets cleaned up (such as when you select a different person), its `ignore` variable becomes `true`. So now it doesn't matter in which order the requests complete. Only the last person's Effect will have `ignore` set to `false`, so it will call `setBio(result)`. Past Effects have been cleaned up, so the `if (!ignore)` check will prevent them from calling `setBio`:
+Each render's Effect has its own `isCurrent` variable. Initially, the `isCurrent` variable is set to `true`. However, if an Effect gets cleaned up (such as when you select a different person), its `isCurrent` variable becomes `false`. So now it doesn't matter in which order the requests complete. Only the last person's Effect will have `isCurrent` set to `true`, so it will call `setBio(result)`. Past Effects have been cleaned up, so the `if (isCurrent)` check will prevent them from calling `setBio`:
 
 - Selecting `'Bob'` triggers `fetchBio('Bob')`
 - Selecting `'Taylor'` triggers `fetchBio('Taylor')` **and cleans up the previous (Bob's) Effect**
 - Fetching `'Taylor'` completes *before* fetching `'Bob'`
 - The Effect from the `'Taylor'` render calls `setBio('This is Taylor’s bio')`
 - Fetching `'Bob'` completes
-- The Effect from the `'Bob'` render **does not do anything because its `ignore` flag was set to `true`**
+- The Effect from the `'Bob'` render **does not do anything because its `isCurrent` flag was set to `false`**
 
-In addition to ignoring the result of an outdated API call, you can also use [`AbortController`](https://developer.mozilla.org/en-US/docs/Web/API/AbortController) to cancel the requests that are no longer needed. However, by itself this is not enough to protect against race conditions. More asynchronous steps could be chained after the fetch, so using an explicit flag like `ignore` is the most reliable way to fix this type of problem.
+In addition to ignoring the result of an outdated API call, you can also use [`AbortController`](https://developer.mozilla.org/en-US/docs/Web/API/AbortController) to cancel the requests that are no longer needed. However, by itself this is not enough to protect against race conditions. More asynchronous steps could be chained after the fetch, so using an explicit flag like `isCurrent` is the most reliable way to fix this type of problem.
 
 </Solution>
 
